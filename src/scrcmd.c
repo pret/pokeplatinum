@@ -7547,7 +7547,7 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
     StringTemplate_SetCustomMessageWord(v6, 2, v4);
     StringTemplate_SetCustomMessageWord(v6, 3, v5);
 
-    v8 = MessageUtil_ExpandedStrbuf(v6, v7, 1, 32);
+    v8 = MessageUtil_ExpandedStrbuf(v6, v7, 1, HEAP_ID_FIELD_TASK);
     v9 = MessageLoader_GetNewStrbuf(v7, 0);
     *v1 = (Strbuf_Compare(v8, v9) == 0);
 

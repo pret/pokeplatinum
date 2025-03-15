@@ -1467,7 +1467,7 @@ static BOOL ov109_021D537C(Window *param0, int param1, TextColor param2, UnkStru
 
             TrainerInfo_NameStrbuf(param3->unk_3D8[v0][0], param3->unk_3C[v0]);
             StringTemplate_SetNumber(param3->unk_34, 0, v3, 5, 2, 1);
-            v2 = MessageUtil_ExpandedStrbuf(param3->unk_34, param3->unk_38, 1, 95);
+            v2 = MessageUtil_ExpandedStrbuf(param3->unk_34, param3->unk_38, 1, HEAP_ID_95);
 
             if (v1 == v0) {
                 Text_AddPrinterWithParamsAndColor(&param0[0], FONT_SYSTEM, param3->unk_3C[v0], 5, 1 + v0 * 18, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 3, 0), NULL);

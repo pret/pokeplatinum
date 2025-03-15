@@ -924,7 +924,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         // fall-through
     case MON_DATA_NICKNAME_STRBUF:
         if (boxMon->invalidData) {
-            Strbuf *strbuf = MessageUtil_SpeciesName(SPECIES_BAD_EGG, 0);
+            Strbuf *strbuf = MessageUtil_SpeciesName(SPECIES_BAD_EGG, HEAP_ID_SYSTEM);
 
             Strbuf_Copy(dest, strbuf);
             Strbuf_Free(strbuf);

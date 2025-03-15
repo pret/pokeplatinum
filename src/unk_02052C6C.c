@@ -298,7 +298,7 @@ static void sub_02053028(FieldSystem *fieldSystem, UnkStruct_0205300C *param1, i
 
         v1 = StringTemplate_Default(HEAP_ID_FIELD);
         StringTemplate_SetPlayerName(v1, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-        param1->unk_2C = MessageUtil_ExpandedStrbuf(v1, v0, 16, 4);
+        param1->unk_2C = MessageUtil_ExpandedStrbuf(v1, v0, 16, HEAP_ID_FIELD);
         StringTemplate_Free(v1);
     } else {
         param1->unk_2C = MessageLoader_GetNewStrbuf(v0, 18);

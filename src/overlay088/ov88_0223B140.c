@@ -505,7 +505,7 @@ static void ov88_0223B748(Window *param0, StringTemplate *param1, MessageLoader 
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param3); v0++) {
-        Strbuf *v1 = MessageUtil_ExpandedStrbuf(param1, param2, 1 + param4 + v0, 26);
+        Strbuf *v1 = MessageUtil_ExpandedStrbuf(param1, param2, 1 + param4 + v0, HEAP_ID_26);
 
         ov88_0223EC78(&param0[v0], v1, 8, TEXT_SPEED_INSTANT, 1, 0);
         Strbuf_Free(v1);

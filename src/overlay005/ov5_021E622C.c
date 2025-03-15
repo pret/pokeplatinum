@@ -755,7 +755,7 @@ void ov5_021E6DE8(Pokemon *param0, u16 param1, UnkStruct_02026310 *param2, u32 p
     Pokemon_SetValue(param0, MON_DATA_MET_LEVEL, &v0);
     Pokemon_SetValue(param0, MON_DATA_FORM, &param4);
 
-    v3 = MessageUtil_SpeciesName(SPECIES_EGG, 4);
+    v3 = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD);
 
     Pokemon_SetValue(param0, MON_DATA_NICKNAME_STRBUF, v3);
     Strbuf_Free(v3);

@@ -516,7 +516,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
 
                 v8 = sub_02030C28(v11, &v15, 102);
                 if (v8 == NULL) {
-                    v8 = sub_02014B34(&v15, 102);
+                    v8 = sub_02014B34(&v15, HEAP_ID_102);
                 }
 
                 Window_FillTilemap(v10, 0x00);

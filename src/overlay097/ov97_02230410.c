@@ -324,7 +324,7 @@ static void ov97_022305EC(Window *param0, int param1)
 
     Window_FillTilemap(param0, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
-    v0 = MessageUtil_ExpandedStrbuf(v2, v1, param1, 87);
+    v0 = MessageUtil_ExpandedStrbuf(v2, v1, param1, HEAP_ID_87);
     Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Window_CopyToVRAM(param0);
 
@@ -492,7 +492,7 @@ static BOOL ov97_02230A34(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
     if (param0->unk_2C14[param0->unk_2C20]->unk_348 == 255) {
         Strbuf *v0;
 
-        v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 51, 87);
+        v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 51, HEAP_ID_87);
         Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
         Strbuf_Free(v0);
         return 0;
@@ -649,7 +649,7 @@ static int ov97_02230E04(UnkStruct_ov97_02230868 *param0, Window *param1, int pa
     v2->unk_24(param0, param1, 66048);
 
     if (v2->unk_20) {
-        v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v2->unk_20, 87);
+        v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v2->unk_20, HEAP_ID_87);
 
         Text_AddPrinterWithParamsAndColor(param1, v2->unk_14, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, v2->unk_18, NULL);
         Strbuf_Free(v0);
@@ -1368,7 +1368,7 @@ static int ov97_02231CA0(UnkStruct_ov97_02230868 *param0, Window *param1)
 
         if (v5) {
             StringTemplate_SetPlayerName(v7, 0, v5);
-            v6 = MessageUtil_ExpandedStrbuf(v7, v8, 53, 87);
+            v6 = MessageUtil_ExpandedStrbuf(v7, v8, 53, HEAP_ID_87);
 
             if (TrainerInfo_Gender(v5) == 0) {
                 Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v6, 0, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
@@ -1379,7 +1379,7 @@ static int ov97_02231CA0(UnkStruct_ov97_02230868 *param0, Window *param1)
             Strbuf_Free(v6);
             StringTemplate_SetNumber(v7, 0, TrainerInfo_ID(v5) & 0xFFFF, 5, 2, 1);
 
-            v6 = MessageUtil_ExpandedStrbuf(v7, v8, 54, 87);
+            v6 = MessageUtil_ExpandedStrbuf(v7, v8, 54, HEAP_ID_87);
 
             Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v6, 80, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 15, 0), NULL);
             Strbuf_Free(v6);
@@ -1409,7 +1409,7 @@ static void ov97_02231E78(UnkStruct_ov97_02230868 *param0, Window *param1, int p
     Window_FillTilemap(param1, 0);
     StringTemplate_SetNumber(param0->unk_2A60, 0, param0->unk_2C54, 1, 1, 1);
 
-    v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 56, 87);
+    v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 56, HEAP_ID_87);
 
     Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Window_CopyToVRAM(param1);

@@ -847,7 +847,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
     if (v1->unk_14) {
         v0 = v1->unk_14;
     } else {
-        v0 = MessageUtil_ExpandedStrbuf(v1->unk_0C, v1->unk_10, param2, 86);
+        v0 = MessageUtil_ExpandedStrbuf(v1->unk_0C, v1->unk_10, param2, HEAP_ID_86);
     }
 
     v1->unk_6C = Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, v1->unk_68, TEXT_COLOR(1, 2, 15), NULL);
@@ -1032,7 +1032,7 @@ static int ov97_0222E228(OverlayManager *param0, Window *param1, int param2, int
     if (param1 && param2) {
         v1 = MessageLoader_Init(1, 26, 421, HEAP_ID_86);
         v0 = StringTemplate_Default(HEAP_ID_86);
-        v2->unk_14 = MessageUtil_ExpandedStrbuf(v0, v1, param2, 86);
+        v2->unk_14 = MessageUtil_ExpandedStrbuf(v0, v1, param2, HEAP_ID_86);
         v2->unk_68 = 1;
 
         ov97_0222DE78(param0, param1, param2);

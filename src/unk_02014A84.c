@@ -85,25 +85,25 @@ void sub_02014AC4(Sentence *param0, int param1)
     }
 }
 
-Strbuf *sub_02014B34(const Sentence *param0, u32 param1)
+Strbuf *sub_02014B34(const Sentence *sentence, u32 heapID)
 {
     Strbuf *v0;
     StringTemplate *v1;
     MessageLoader *v2;
     int v3;
 
-    v1 = StringTemplate_Default(param1);
+    v1 = StringTemplate_Default(heapID);
 
     for (v3 = 0; v3 < 2; v3++) {
-        if (param0->words[v3] != 0xffff) {
-            StringTemplate_SetCustomMessageWord(v1, v3, param0->words[v3]);
+        if (sentence->words[v3] != 0xffff) {
+            StringTemplate_SetCustomMessageWord(v1, v3, sentence->words[v3]);
         } else {
             break;
         }
     }
 
-    v2 = MessageLoader_Init(1, 26, Unk_020E5498[param0->type], param1);
-    v0 = MessageUtil_ExpandedStrbuf(v1, v2, param0->id, param1);
+    v2 = MessageLoader_Init(1, 26, Unk_020E5498[sentence->type], heapID);
+    v0 = MessageUtil_ExpandedStrbuf(v1, v2, sentence->id, heapID);
 
     MessageLoader_Free(v2);
     StringTemplate_Free(v1);
