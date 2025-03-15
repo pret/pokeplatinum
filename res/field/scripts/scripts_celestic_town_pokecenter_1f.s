@@ -40,8 +40,8 @@ _0044:
     FacePlayer
     GoToIfSet 0xAA1, _00C0
     Message 2
-    ScrCmd_247 0x8000
-    ScrCmd_1B9 0x800C, 0x8000
+    GetFirstNonEggInParty 0x8000
+    GetPartyMonFriendship 0x800C, 0x8000
     GoToIfGe 0x800C, 150, _0084
     GoToIfGe 0x800C, 50, _00CB
     GoTo _00D6

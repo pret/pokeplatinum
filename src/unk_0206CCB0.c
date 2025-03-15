@@ -1366,13 +1366,13 @@ static int sub_0206DD5C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     return 3;
 }
 
-void sub_0206DDB8(SaveData *param0, Pokemon *param1, u32 param2)
+void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 monDataParam)
 {
     u8 v0, v1;
     UnkUnion_0206D1B8 v2;
     UnkStruct_0206DE80 *v3 = &v2.val21;
 
-    v1 = sub_0206DE4C(param1);
+    v1 = sub_0206DE4C(mon);
 
     switch (v1) {
     case 15:
@@ -1381,18 +1381,18 @@ void sub_0206DDB8(SaveData *param0, Pokemon *param1, u32 param2)
     case 30:
     case 35:
     case 40:
-        if (Ribbon_RibbonIDToNameID(param2) > 0xff) {
+        if (Ribbon_MonDataParamToNameID(monDataParam) > 0xff) {
             GF_ASSERT(0);
             return;
         }
 
-        sub_0206CE38(param1, &v3->unk_1C, &v3->unk_19, &v3->unk_1A, &v3->unk_1B);
-        sub_0206CED0(32, param1, &v3->unk_18, v3->unk_00);
+        sub_0206CE38(mon, &v3->unk_1C, &v3->unk_19, &v3->unk_1A, &v3->unk_1B);
+        sub_0206CED0(32, mon, &v3->unk_18, v3->unk_00);
 
-        v3->unk_16 = Ribbon_RibbonIDToNameID(param2);
+        v3->unk_16 = Ribbon_MonDataParamToNameID(monDataParam);
         v3->unk_17 = v1;
 
-        sub_0206CD7C(param0, 3, 5, v3);
+        sub_0206CD7C(saveData, 3, 5, v3);
         break;
     }
 }
@@ -2828,7 +2828,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
 
     party = Party_GetFromSavedata(fieldSystem->saveData);
-    pokemon = Party_GetPokemonBySlotIndex(party, sub_0205E1B4(fieldSystem->saveData));
+    pokemon = Party_GetPokemonBySlotIndex(party, SaveData_GetFirstNonEggInParty(fieldSystem->saveData));
 
     sub_0206CE74(param1, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
     StringTemplate_SetContestAccessoryName(param1, 1, (LCRNG_Next() % 100));

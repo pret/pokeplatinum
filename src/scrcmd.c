@@ -47,6 +47,7 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_menu.h"
+#include "overlay005/footprint_type.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/land_data.h"
 #include "overlay005/map_object_anim_cmd.h"
@@ -58,7 +59,6 @@
 #include "overlay005/ov5_021EA874.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021EE7D4.h"
-#include "overlay005/ov5_021F0E84.h"
 #include "overlay005/ov5_021F6454.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/scrcmd_move_tutor.h"
@@ -614,7 +614,7 @@ static BOOL ScrCmd_22D(ScriptContext *ctx);
 static BOOL ScrCmd_233(ScriptContext *ctx);
 static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx);
 static BOOL ScrCmd_239(ScriptContext *ctx);
-static BOOL ScrCmd_23A(ScriptContext *ctx);
+static BOOL ScrCmd_GetSpeciesFootprintType(ScriptContext *ctx);
 static BOOL ScrCmd_23B(ScriptContext *ctx);
 static BOOL ScrCmd_23C(ScriptContext *ctx);
 static BOOL ScrCmd_23D(ScriptContext *ctx);
@@ -1206,7 +1206,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetTimeOfDay,
     ScrCmd_GetRandom,
     ScrCmd_GetRandom2,
-    ScrCmd_1B9,
+    ScrCmd_GetFriendshipByPartySlot,
     ScrCmd_1BA,
     ScrCmd_1BB,
     ScrCmd_1BC,
@@ -1325,8 +1325,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_22D,
     ScrCmd_22E,
     ScrCmd_22F,
-    ScrCmd_230,
-    ScrCmd_231,
+    ScrCmd_GetPartyMonRibbon,
+    ScrCmd_SetPartyMonRibbon,
     ScrCmd_232,
     ScrCmd_233,
     ScrCmd_GetDayOfWeek,
@@ -1335,7 +1335,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_237,
     ScrCmd_238,
     ScrCmd_239,
-    ScrCmd_23A,
+    ScrCmd_GetSpeciesFootprintType,
     ScrCmd_23B,
     ScrCmd_23C,
     ScrCmd_23D,
@@ -1348,7 +1348,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_244,
     ScrCmd_245,
     ScrCmd_246,
-    ScrCmd_247,
+    ScrCmd_GetFirstNonEggInParty,
     ScrCmd_248,
     ScrCmd_249,
     ScrCmd_24A,
@@ -6573,21 +6573,21 @@ static BOOL ScrCmd_239(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_23A(ScriptContext *ctx)
+static BOOL ScrCmd_GetSpeciesFootprintType(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 v4, v5;
+    Pokemon *mon;
+    u16 *hasPrintVar = ScriptContext_GetVarPointer(ctx);
+    u16 *typeVar = ScriptContext_GetVarPointer(ctx);
+    u16 slot = ScriptContext_GetVar(ctx);
+    u16 species, form;
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), v3);
-    v4 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
-    v5 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
-    *v1 = ov5_021F0E90(v4, v5);
-    *v2 = ov5_021F0E84(v4);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
+    species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    *hasPrintVar = FootprintType_SpeciesHasPrint(species, form);
+    *typeVar = FootprintType_GetTypeFromSpecies(species);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_23B(ScriptContext *ctx)

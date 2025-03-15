@@ -411,7 +411,7 @@ pokeplatinum_c = files(
     'overlay005/ov5_021F067C.c',
     'overlay005/ov5_021F0824.c',
     'overlay005/ov5_021F08CC.c',
-    'overlay005/ov5_021F0E84.c',
+    'overlay005/footprint_type.c',
     'overlay005/ov5_021F0EB0.c',
     'overlay005/ov5_021F101C.c',
     'overlay005/ov5_021F10E8.c',
