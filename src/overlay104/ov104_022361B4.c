@@ -797,7 +797,7 @@ static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, Tra
     Strbuf *v1 = Strbuf_Init((10 * 2), param0->heapID);
     Strbuf *v2 = Strbuf_Init((10 * 2), param0->heapID);
 
-    v0 = MessageLoader_Init(0, 26, 199, HEAP_ID_FIELDMAP);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 199, HEAP_ID_FIELDMAP);
 
     StringTemplate_SetNumber(param0->unk_44, 0, param3, 4, 1, 1);
     MessageLoader_GetStrbuf(v0, 2, v1);

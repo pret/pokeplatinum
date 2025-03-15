@@ -225,7 +225,7 @@ static int ov97_02237870(UnkStruct_ov97_02237808 *param0, int param1)
         }
 
         if (param0->unk_4C != -1) {
-            v3 = MessageLoader_Init(1, 26, param0->unk_34, v4->heapID);
+            v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param0->unk_34, v4->heapID);
 
             if (param0->unk_14 == NULL) {
                 v2 = StringTemplate_Default(v4->heapID);

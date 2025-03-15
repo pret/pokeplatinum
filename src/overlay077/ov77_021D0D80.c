@@ -1256,7 +1256,7 @@ static void ov77_021D2214(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 
 
         Bg_ClearTilesRange(4, 32, 0, param1);
 
-        v4 = MessageLoader_Init(1, 26, 609, param1);
+        v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 609, param1);
         v5 = Strbuf_Init(64, param1);
 
         Window_AddFromTemplate(param0, &param2->unk_22C, &Unk_ov77_021D72D0);

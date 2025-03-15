@@ -123,7 +123,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
 
     ov110_021D1180(v1);
 
-    v1->unk_110 = MessageLoader_Init(1, 26, 16, HEAP_ID_114);
+    v1->unk_110 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 16, HEAP_ID_114);
     v1->unk_114 = StringTemplate_Default(HEAP_ID_114);
     v1->unk_118 = Strbuf_Init(800, HEAP_ID_114);
     v1->unk_11C = Strbuf_Init(800, HEAP_ID_114);
@@ -962,7 +962,7 @@ static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
     MessageLoader * v0;
     Strbuf* v1;
 
-    v0 = MessageLoader_Init(1, 26, 412, HEAP_ID_114);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 412, HEAP_ID_114);
     v1 = MessageLoader_GetNewStrbuf(v0, param0->unk_08);
 
     MessageLoader_Free(v0);

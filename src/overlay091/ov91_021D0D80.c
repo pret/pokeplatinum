@@ -623,7 +623,7 @@ static void ov91_021D11A0(UnkStruct_ov91_021D0ED8 *param0)
 
 static void ov91_021D11B8(UnkStruct_ov91_021D0ED8 *param0)
 {
-    param0->unk_F8 = MessageLoader_Init(0, 26, 645, HEAP_ID_67);
+    param0->unk_F8 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 645, HEAP_ID_67);
     param0->unk_FC = StringTemplate_Default(HEAP_ID_67);
     param0->unk_100 = Strbuf_Init(256, HEAP_ID_67);
 }
@@ -982,7 +982,7 @@ static void ov91_021D18C8(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
         ov91_021D1618(param0, 31, v1, 2, 0);
         ov91_021D1580(param0, 9, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 2);
 
-        v0 = MessageLoader_Init(1, 26, 646, HEAP_ID_67);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 646, HEAP_ID_67);
         MessageLoader_GetStrbuf(v0, param1, param0->unk_100);
         ov91_021D1580(param0, 10, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0);
         MessageLoader_Free(v0);
@@ -1016,7 +1016,7 @@ static void ov91_021D1A68(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
 
         v1 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_EFFECT);
         v2 = sub_0209577C(v1);
-        v0 = MessageLoader_Init(0, 26, 210, HEAP_ID_67);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 210, HEAP_ID_67);
 
         MessageLoader_GetStrbuf(v0, v2, param0->unk_100);
         Text_AddPrinterWithParamsAndColor(&param0->unk_08[11], FONT_SYSTEM, param0->unk_100, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);

@@ -310,11 +310,11 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     sub_0201E450(4);
 
     v0->unk_20 = StringTemplate_New(11, 64, 109);
-    v0->unk_24 = MessageLoader_Init(0, 26, 671, HEAP_ID_109);
-    v0->unk_2C = MessageLoader_Init(0, 26, 674, HEAP_ID_109);
-    v0->unk_30 = MessageLoader_Init(0, 26, 695, HEAP_ID_109);
-    v0->unk_28 = MessageLoader_Init(0, 26, 412, HEAP_ID_109);
-    v0->unk_34 = MessageLoader_Init(0, 26, 358, HEAP_ID_109);
+    v0->unk_24 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 671, HEAP_ID_109);
+    v0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 674, HEAP_ID_109);
+    v0->unk_30 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 695, HEAP_ID_109);
+    v0->unk_28 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 412, HEAP_ID_109);
+    v0->unk_34 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 358, HEAP_ID_109);
     v0->unk_38 = Strbuf_Init((90 * 2), HEAP_ID_109);
     v0->unk_40 = Strbuf_Init((16 * 8 * 2), HEAP_ID_109);
     v0->unk_3C = MessageLoader_GetNewStrbuf(v0->unk_24, 31);

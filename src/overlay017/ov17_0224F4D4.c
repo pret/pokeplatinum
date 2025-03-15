@@ -189,7 +189,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
 
     ov17_0224FDDC();
 
-    v0->unk_10.unk_B4 = MessageLoader_Init(0, 26, 218, HEAP_ID_24);
+    v0->unk_10.unk_B4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 218, HEAP_ID_24);
     v0->unk_10.unk_B8 = StringTemplate_Default(HEAP_ID_24);
     v0->unk_10.unk_BC = Strbuf_Init((2 * 160), HEAP_ID_24);
     v0->unk_10.unk_C4 = sub_02012744(10, HEAP_ID_24);

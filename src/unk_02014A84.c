@@ -102,7 +102,7 @@ Strbuf *sub_02014B34(const Sentence *sentence, u32 heapID)
         }
     }
 
-    v2 = MessageLoader_Init(1, 26, Unk_020E5498[sentence->type], heapID);
+    v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, Unk_020E5498[sentence->type], heapID);
     v0 = MessageUtil_ExpandedStrbuf(v1, v2, sentence->id, heapID);
 
     MessageLoader_Free(v2);

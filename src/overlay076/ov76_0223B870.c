@@ -143,7 +143,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     MessageLoader *v4;
     Window v5;
 
-    v4 = MessageLoader_Init(0, 26, 8, HEAP_ID_53);
+    v4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 8, HEAP_ID_53);
     v1 = MessageLoader_GetNewStrbuf(v4, 5 + param1);
 
     {
@@ -487,7 +487,7 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
     {
         int v9;
         Strbuf *v10;
-        MessageLoader *v11 = MessageLoader_Init(0, 26, 8, HEAP_ID_53);
+        MessageLoader *v11 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 8, HEAP_ID_53);
 
         for (v9 = 0; v9 < v7; v9++) {
             v10 = MessageLoader_GetNewStrbuf(v11, Unk_ov76_0223EF3C[v8[v9]].unk_00);
@@ -939,7 +939,7 @@ void ov76_0223CA30(Window *param0, int param1)
         return;
     }
 
-    v0 = MessageLoader_Init(0, 26, 8, HEAP_ID_53);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 8, HEAP_ID_53);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     Window_FillTilemap(param0, 15);
@@ -1059,7 +1059,7 @@ void ov76_0223CDC4(Window *param0, int param1)
         return;
     }
 
-    v0 = MessageLoader_Init(0, 26, 12, HEAP_ID_53);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 12, HEAP_ID_53);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     Window_FillTilemap(param0, 15);

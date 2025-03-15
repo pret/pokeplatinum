@@ -112,7 +112,7 @@ void sub_0202616C(SaveData *param0, int param1, Strbuf *param2, int param3)
     UnkStruct_02026030 *v1 = NULL;
 
     if (param1 < NELEMS(Unk_02100880)) {
-        v0 = MessageLoader_Init(0, 26, 353, param3);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 353, param3);
         MessageLoader_GetStrbuf(v0, 70 + param1, param2);
         MessageLoader_Free(v0);
     } else {

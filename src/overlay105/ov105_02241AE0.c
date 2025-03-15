@@ -2719,7 +2719,7 @@ static void ov105_022450DC(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
 
     Window_FillTilemap(param1, param6);
 
-    v3 = MessageLoader_Init(1, 26, 412, HEAP_ID_93);
+    v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 412, HEAP_ID_93);
     v4 = MessageLoader_GetNewStrbuf(v3, param8);
 
     MessageLoader_Free(v3);
@@ -2829,7 +2829,7 @@ static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
     ov105_02244678(param0);
     ov105_0224472C(param0);
 
-    param0->unk_1C = MessageLoader_Init(1, 26, 364, HEAP_ID_93);
+    param0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 364, HEAP_ID_93);
     param0->unk_20 = StringTemplate_Default(HEAP_ID_93);
     param0->unk_24 = Strbuf_Init(800, HEAP_ID_93);
     param0->unk_28 = Strbuf_Init(800, HEAP_ID_93);

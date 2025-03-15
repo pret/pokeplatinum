@@ -34,7 +34,7 @@ PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
 {
     PokemonInfoDisplayStruct *v0 = Heap_AllocFromHeap(heapID, sizeof(PokemonInfoDisplayStruct));
     v0->unk_00 = heapID;
-    v0->unk_04 = MessageLoader_Init(1, 26, 455, v0->unk_00);
+    v0->unk_04 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 455, v0->unk_00);
     v0->unk_08 = StringTemplate_New(9, 32, v0->unk_00);
     v0->unk_0C = param0;
     v0->unk_10 = param1;

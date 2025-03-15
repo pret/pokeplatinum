@@ -145,7 +145,7 @@ void sub_02039834(int param0, int param1, int param2)
     Bg_MaskPalette(0, 0x6c21);
     Bg_MaskPalette(4, 0x6c21);
 
-    v2 = MessageLoader_Init(1, 26, 214, param0);
+    v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 214, param0);
     v3 = Strbuf_Init(0x180, param0);
     v4 = Strbuf_Init(0x180, param0);
     Text_ResetAllPrinters();

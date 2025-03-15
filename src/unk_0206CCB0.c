@@ -2774,7 +2774,7 @@ static Strbuf *sub_0206F0D8(u16 param0, u32 param1)
     MessageLoader *v0;
     Strbuf *v1;
 
-    v0 = MessageLoader_Init(1, 26, 412, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 412, param1);
     v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);

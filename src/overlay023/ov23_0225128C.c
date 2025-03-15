@@ -359,7 +359,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
         MessageLoader *v3;
         int v4 = 0;
 
-        v3 = MessageLoader_Init(0, 26, 639, HEAP_ID_FIELD);
+        v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 639, HEAP_ID_FIELD);
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == (v1 - 1)) {
@@ -405,7 +405,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
         MessageLoader *v3;
         int v4 = 0;
 
-        v3 = MessageLoader_Init(0, 26, 639, HEAP_ID_FIELD);
+        v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 639, HEAP_ID_FIELD);
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == param2) {

@@ -137,7 +137,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     v0->unk_44 = sub_02015F84(heapID, 1, 0);
     v0->unk_67 = 0;
     v0->unk_66 = 2;
-    v0->unk_08 = MessageLoader_Init(1, 26, 368, heapID);
+    v0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 368, heapID);
     v0->unk_0C = StringTemplate_Default(heapID);
     v0->unk_10 = Strbuf_Init((2 * 160), heapID);
     v0->unk_3C = Heap_AllocFromHeap(heapID, sizeof(PokemonSummary));

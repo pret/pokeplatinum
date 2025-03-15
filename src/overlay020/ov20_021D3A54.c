@@ -105,7 +105,7 @@ static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
     Strbuf *v5;
     u32 v6, v7;
 
-    v4 = MessageLoader_Init(1, 26, 436, HEAP_ID_35);
+    v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 436, HEAP_ID_35);
 
     v1 = 1;
     v2 = 9;
@@ -199,7 +199,7 @@ static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
     Strbuf *v3;
     int v4, v5;
 
-    v2 = MessageLoader_Init(1, 26, 436, HEAP_ID_35);
+    v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 436, HEAP_ID_35);
     v3 = MessageLoader_GetNewStrbuf(v2, 13);
     v5 = ((8 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0)) / 2;
 

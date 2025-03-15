@@ -1010,7 +1010,7 @@ static void ov64_0222E570(UnkStruct_ov64_0222E21C *param0)
 static void ov64_0222E5D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
 {
     param0->unk_214 = StringTemplate_Default(param1);
-    param0->unk_218 = MessageLoader_Init(0, 26, 675, param1);
+    param0->unk_218 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 675, param1);
 }
 
 static void ov64_0222E604(UnkStruct_ov64_0222E21C *param0)

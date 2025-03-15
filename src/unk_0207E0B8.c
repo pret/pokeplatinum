@@ -953,7 +953,7 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
         v0->unk_B20 = NULL;
     }
 
-    v0->unk_69C = MessageLoader_Init(0, 26, 453, HEAP_ID_12);
+    v0->unk_69C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 453, HEAP_ID_12);
     v0->unk_698 = sub_0200C440(15, 14, 0, HEAP_ID_12);
     v0->unk_6A0 = StringTemplate_Default(HEAP_ID_12);
 

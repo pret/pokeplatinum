@@ -2891,7 +2891,7 @@ static u16 ov69_0225EF04(u32 param0)
 static void ov69_0225EF1C(UnkStruct_ov69_0225EF54 *param0, u32 param1)
 {
     {
-        param0->unk_00 = MessageLoader_Init(0, 26, 696, param1);
+        param0->unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 696, param1);
     }
 
     {

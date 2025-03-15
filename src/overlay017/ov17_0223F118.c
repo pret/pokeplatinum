@@ -185,7 +185,7 @@ Strbuf *ov17_0223F310(u32 param0, u32 param1)
     MessageLoader *v0;
     Strbuf *v1;
 
-    v0 = MessageLoader_Init(1, 26, 207, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 207, param1);
     v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);

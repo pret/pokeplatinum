@@ -1117,7 +1117,7 @@ static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_022
 
     memset(param0, 0, sizeof(UnkStruct_ov112_0225D6DC));
 
-    v1 = MessageLoader_Init(0, 26, 653, param2);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 653, param2);
     v2 = Strbuf_Init(128, param2);
 
     for (v0 = 0; v0 < 4; v0++) {

@@ -425,13 +425,13 @@ static void ov22_0225A338(UnkStruct_ov22_02259C58 *param0, int param1, int param
     }
 }
 
-static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 param2, u32 param3, int param4, int param5)
+static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 narcID, u32 bankID, u32 param3, int param4, int param5)
 {
     MessageLoader *v0;
     Strbuf *v1;
     Window *v2;
 
-    v0 = MessageLoader_Init(0, param1, param2, HEAP_ID_13);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, narcID, bankID, HEAP_ID_13);
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 

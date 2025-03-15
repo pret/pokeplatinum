@@ -1174,7 +1174,7 @@ static void ov13_02220D4C(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02220F08(UnkStruct_ov13_022213F0 *param0)
 {
-    param0->unk_1FA4 = MessageLoader_Init(0, 26, 3, param0->unk_00->heapID);
+    param0->unk_1FA4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 3, param0->unk_00->heapID);
     param0->unk_1FA0 = sub_0200C440(15, 14, 0, param0->unk_00->heapID);
     param0->unk_1FA8 = StringTemplate_Default(param0->unk_00->heapID);
     param0->unk_1FAC = Strbuf_Init(512, param0->unk_00->heapID);

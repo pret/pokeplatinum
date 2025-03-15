@@ -1440,8 +1440,8 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
     ov107_02243324(param0);
     ov107_02243384(param0);
 
-    param0->unk_20 = MessageLoader_Init(1, 26, 199, HEAP_ID_100);
-    param0->unk_1C = MessageLoader_Init(1, 26, 391, HEAP_ID_100);
+    param0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 199, HEAP_ID_100);
+    param0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 391, HEAP_ID_100);
     param0->unk_24 = StringTemplate_Default(HEAP_ID_100);
     param0->unk_28 = Strbuf_Init(600, HEAP_ID_100);
     param0->unk_2C = Strbuf_Init(600, HEAP_ID_100);
@@ -2447,7 +2447,7 @@ static void ov107_02244240 (UnkStruct_ov107_02241D6C * param0, u8 param1)
     ov107_02249BAC(param0->unk_3EC, 1);
     ov107_02249BAC(param0->unk_434, 1);
 
-    v5 = MessageLoader_Init(1, 26, 392, HEAP_ID_100);
+    v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 392, HEAP_ID_100);
     v0 = ov107_02249CAC(param0->unk_1CC, param0->unk_09, 1);
 
     if (param1 == 6) {

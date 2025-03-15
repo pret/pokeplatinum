@@ -418,7 +418,7 @@ BOOL ov66_02231C94(const UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_0
     GF_ASSERT(ov66_02231C60(param0));
 
     v2 = param0->unk_5C.unk_188.unk_2C;
-    v1 = MessageLoader_Init(1, 26, 653, param4);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 653, param4);
     v0 = StringTemplate_Default(param4);
 
     if (v2->unk_00 < 9) {

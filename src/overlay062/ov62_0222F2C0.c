@@ -125,8 +125,8 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
 
     {
         param0->unk_14.unk_3C = sub_02012744((5 * 2) + 10, HEAP_ID_102);
-        param0->unk_14.unk_34 = MessageLoader_Init(0, 26, 10, HEAP_ID_102);
-        param0->unk_14.unk_38 = MessageLoader_Init(0, 26, 20, HEAP_ID_102);
+        param0->unk_14.unk_34 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 10, HEAP_ID_102);
+        param0->unk_14.unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 20, HEAP_ID_102);
     }
 
     ov62_022338A8(param0);

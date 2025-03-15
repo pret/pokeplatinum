@@ -519,7 +519,7 @@ static void sub_0206FA08(UnkStruct_0206F7F8 *param0)
 {
     int v0;
 
-    param0->unk_2C.unk_00 = MessageLoader_Init(0, 26, 532, param0->heapID);
+    param0->unk_2C.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 532, param0->heapID);
     param0->unk_2C.unk_04 = StringTemplate_New(2, (38 * 2), param0->heapID);
     param0->unk_2C.unk_08 = Strbuf_Init((38 * 2), param0->heapID);
     param0->unk_2C.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 13);
