@@ -443,7 +443,7 @@ static void ov5_021EAEE0(UnkStruct_ov5_021EAE78 *param0)
     MI_CpuClear8(param0, sizeof(UnkStruct_ov5_021EAE78));
 
     param0->unk_38 = StringTemplate_Default(HEAP_ID_FIELD);
-    param0->unk_3C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 675, HEAP_ID_FIELD);
+    param0->unk_3C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_FIELD);
     param0->unk_0C = Strbuf_Init(110, HEAP_ID_FIELD);
     param0->unk_08 = Strbuf_Init(110, HEAP_ID_FIELD);
 }

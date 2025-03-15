@@ -368,7 +368,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        v0->unk_B860 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 356, v0->heapID);
+        v0->unk_B860 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0356, v0->heapID);
         v2 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH, v0->heapID);
 
         ov92_021D2150(v0, v2);
@@ -1487,7 +1487,7 @@ BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int p
     int v1 = ov92_021D16F8(param0);
     BOOL v2;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 694, param4);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTRY_NAMES, param4);
 
     MessageLoader_GetStrbuf(v0, param0, param2);
     MessageLoader_Free(v0);

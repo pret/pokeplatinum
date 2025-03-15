@@ -866,7 +866,7 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
         int v1, v2, v3;
         MessageLoader *v4;
 
-        v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 412, HEAP_ID_FIELD);
+        v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD);
         v3 = Pokemon_GetStructSize();
 
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 21, 9, 10, 8, 13, 10);

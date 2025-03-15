@@ -203,10 +203,10 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     v0->unk_0C.unk_20 = ov12_0221FCDC(HEAP_ID_21);
     ov12_0221FDC0(v0->unk_0C.unk_20, 1);
 
-    v0->unk_0C.unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 204, HEAP_ID_21);
-    v0->unk_0C.unk_3C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 205, HEAP_ID_21);
-    v0->unk_0C.unk_40 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 210, HEAP_ID_21);
-    v0->unk_0C.unk_44 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 211, HEAP_ID_21);
+    v0->unk_0C.unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_TEXT, HEAP_ID_21);
+    v0->unk_0C.unk_3C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0205, HEAP_ID_21);
+    v0->unk_0C.unk_40 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_21);
+    v0->unk_0C.unk_44 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0211, HEAP_ID_21);
     v0->unk_0C.unk_54 = sub_02012744((2 * 4), HEAP_ID_21);
     v0->unk_0C.unk_48 = StringTemplate_Default(HEAP_ID_21);
     v0->unk_0C.unk_4C = Strbuf_Init((3 * 160), HEAP_ID_21);

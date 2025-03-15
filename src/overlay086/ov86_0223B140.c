@@ -293,7 +293,7 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov86_0223B3C8), HEAP_ID_63);
 
     v0->unk_0C = OverlayManager_Args(param0);
-    v0->unk_1C50 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 351, HEAP_ID_63);
+    v0->unk_1C50 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0351, HEAP_ID_63);
     v0->unk_1C48 = Strbuf_Init(500, HEAP_ID_63);
     v0->unk_1C4C = Strbuf_Init(500, HEAP_ID_63);
     v0->unk_1C44 = StringTemplate_Default(HEAP_ID_63);

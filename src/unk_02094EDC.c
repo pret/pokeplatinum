@@ -628,7 +628,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int par
         Strbuf *v3, *v4;
         MessageLoader *v5;
 
-        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 205, param2);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0205, param2);
         v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
         v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
 

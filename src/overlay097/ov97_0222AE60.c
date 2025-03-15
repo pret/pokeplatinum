@@ -563,7 +563,7 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
     UnkStruct_0222AE60 *v6 = (UnkStruct_0222AE60 *)param0;
     TextColor v7;
 
-    v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 550, HEAP_ID_81);
+    v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU, HEAP_ID_81);
     v4 = StringTemplate_Default(HEAP_ID_81);
 
     if (TrainerInfo_Gender(v6->unk_0C) == 1) {

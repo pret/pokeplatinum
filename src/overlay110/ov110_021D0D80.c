@@ -962,7 +962,7 @@ static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
     MessageLoader * v0;
     Strbuf* v1;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 412, HEAP_ID_114);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_114);
     v1 = MessageLoader_GetNewStrbuf(v0, param0->unk_08);
 
     MessageLoader_Free(v0);

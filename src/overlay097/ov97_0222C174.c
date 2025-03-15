@@ -794,7 +794,7 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
 
     MI_CpuClear8(v4, sizeof(UnkStruct_0202DBAC));
 
-    v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 421, param0->heapID);
+    v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, param0->heapID);
     v2 = StringTemplate_Default(param0->heapID);
 
     v4->unk_00 = 7;

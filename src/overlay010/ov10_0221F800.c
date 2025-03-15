@@ -677,7 +677,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
         param0->unk_B70 = 4;
         param0->unk_B71 = 2;
         param0->unk_B68 = 12;
-        param0->unk_BA0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 605, param0->unk_00->heapId);
+        param0->unk_BA0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0605, param0->unk_00->heapId);
         param0->unk_BA4 = StringTemplate_Default(param0->unk_00->heapId);
         param0->unk_BA8 = Strbuf_Init((2 * 160), param0->unk_00->heapId);
         param0->unk_BB0 = 1;
@@ -2339,7 +2339,7 @@ static void ov10_02222720(UnkStruct_ov10_0221FB28 *param0)
     Strbuf *v3;
     u32 v4;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 453, param0->unk_00->heapId);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0453, param0->unk_00->heapId);
     v1 = sub_0200C440(15, 14, 0, param0->unk_00->heapId);
     v2 = StringTemplate_Default(param0->unk_00->heapId);
     v3 = Strbuf_Init(32, param0->unk_00->heapId);

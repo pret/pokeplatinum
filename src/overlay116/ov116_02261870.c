@@ -395,7 +395,7 @@ void ov116_02261F70(UnkStruct_ov116_02262A8C *param0)
         MessageLoader *v0;
         Strbuf *v1;
 
-        v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 410, HEAP_ID_106);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0410, HEAP_ID_106);
         v1 = MessageLoader_GetNewStrbuf(v0, 0);
 
         Text_AddPrinterWithParams(&param0->unk_1FC8, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);

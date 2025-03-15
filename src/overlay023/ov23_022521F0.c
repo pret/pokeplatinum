@@ -406,13 +406,13 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
         int v3;
 
         if (param0->unk_2AC == 1) {
-            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 630, HEAP_ID_FIELD);
+            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_TRAP_NAMES, HEAP_ID_FIELD);
             ov23_02253DFC(ov23_022421DC(), 630, 0);
         } else if (param0->unk_2AC == 0) {
-            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 626, HEAP_ID_FIELD);
+            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD);
             ov23_02253DFC(ov23_022421DC(), 626, 0);
         } else {
-            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 628, HEAP_ID_FIELD);
+            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ITEM_NAMES, HEAP_ID_FIELD);
             ov23_02253DFC(ov23_022421DC(), 628, 0);
         }
 

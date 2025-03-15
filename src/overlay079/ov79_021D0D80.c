@@ -679,7 +679,7 @@ static void ov79_021D1568(UnkStruct_ov79_021D0E1C *param0)
 
     Font_InitManager(FONT_SUBSCREEN, param0->heapID);
 
-    param0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 463, param0->heapID);
+    param0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0463, param0->heapID);
     param0->unk_28 = sub_020158A8(param0->heapID);
     param0->unk_30.unk_00 = StringTemplate_New(2, 64, param0->heapID);
     param0->unk_30.unk_04 = Strbuf_Init(64, param0->heapID);

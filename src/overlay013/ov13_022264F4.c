@@ -424,7 +424,7 @@ static u8 ov13_02226A5C(UnkStruct_ov13_02227244 *param0)
                 MessageLoader *v5;
                 Strbuf *v6;
 
-                v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 213, v0->heapID);
+                v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, v0->heapID);
                 v6 = MessageLoader_GetNewStrbuf(v5, 36);
                 StringTemplate_SetPlayerName(param0->unk_14, 0, v0->unk_04);
                 StringTemplate_Format(param0->unk_14, param0->unk_18, v6);

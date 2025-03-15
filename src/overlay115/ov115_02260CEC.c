@@ -3232,7 +3232,7 @@ static void ov115_02263B78(UnkStruct_ov115_02261ADC *param0)
 static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 param1)
 {
     param0->unk_04 = StringTemplate_Default(param1);
-    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 407, param1);
+    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0407, param1);
     param0->unk_0C = Strbuf_Init(128, param1);
     param0->unk_10 = Strbuf_Init(128, param1);
 }

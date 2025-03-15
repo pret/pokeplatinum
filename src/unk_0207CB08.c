@@ -194,7 +194,7 @@ void sub_0207CD34(void *param0, Strbuf *param1, u16 param2, u32 param3, u32 para
         MessageLoader_Free(v0);
         break;
     default:
-        v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 213, param4);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, param4);
         v1 = StringTemplate_Default(param4);
         v2 = MessageLoader_GetNewStrbuf(v0, 36);
         StringTemplate_SetPlayerName(v1, 0, param0);

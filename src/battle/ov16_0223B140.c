@@ -612,7 +612,7 @@ static void ov16_0223B790(OverlayManager *param0)
     sub_0201E3D8();
     sub_0201E450(4);
 
-    battleSys->unk_0C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 368, HEAP_ID_BATTLE);
+    battleSys->unk_0C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
     battleSys->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVES_USED_IN_BATTLE, HEAP_ID_BATTLE);
     battleSys->strFormatter = StringTemplate_Default(HEAP_ID_BATTLE);
     battleSys->msgBuffer = Strbuf_Init((2 * 160), HEAP_ID_BATTLE);
@@ -1732,7 +1732,7 @@ static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
         MessageLoader *v5;
         Strbuf *v6;
 
-        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 368, HEAP_ID_BATTLE);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
         v6 = Strbuf_Init(0x100, HEAP_ID_BATTLE);
 
         MessageLoader_GetStrbuf(v5, 923, v6);

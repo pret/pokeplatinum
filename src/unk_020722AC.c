@@ -1010,7 +1010,7 @@ static void sub_02073130(UnkStruct_02072334 *param0)
     int v1;
     Strbuf *v2;
 
-    param0->unk_10C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 408, param0->heapID);
+    param0->unk_10C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0408, param0->heapID);
     param0->unk_110.unk_00 = StringTemplate_New(1, 128, param0->heapID);
     param0->unk_110.unk_04 = Strbuf_Init(128, param0->heapID);
     param0->unk_110.unk_08 = MessageLoader_GetNewStrbuf(param0->unk_10C, 4);

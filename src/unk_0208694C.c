@@ -891,9 +891,9 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, HEAP_ID_18);
 
         v0->unk_168 = StringTemplate_Default(HEAP_ID_18);
-        v0->unk_16C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 422, HEAP_ID_18);
-        v0->unk_170 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 427, HEAP_ID_18);
-        v0->unk_174 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 368, HEAP_ID_18);
+        v0->unk_16C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0422, HEAP_ID_18);
+        v0->unk_170 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0427, HEAP_ID_18);
+        v0->unk_174 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_18);
 
         SetAutorepeat(4, 8);
         sub_020871CC();

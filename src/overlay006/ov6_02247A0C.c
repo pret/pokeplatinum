@@ -134,7 +134,7 @@ void *ov6_02247A90(void *param0)
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A90));
 
-    v0->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 208, HEAP_ID_FIELDMAP);
+    v0->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0208, HEAP_ID_FIELDMAP);
     v0->unk_14 = StringTemplate_Default(HEAP_ID_FIELDMAP);
 
     Window_Add(v1, &v0->unk_00, 3, 1, 3, 30, 17, 12, (1 + 10));

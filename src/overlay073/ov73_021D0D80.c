@@ -441,7 +441,7 @@ static void ov73_021D1238(UnkStruct_ov73_021D1058 *param0)
 
 static void ov73_021D12C4(UnkStruct_ov73_021D1058 *param0)
 {
-    param0->unk_4C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 389, param0->heapId);
+    param0->unk_4C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0389, param0->heapId);
 
     Text_ResetAllPrinters();
 

@@ -1412,7 +1412,7 @@ static void ov114_0225D07C(UnkStruct_ov114_0225CFCC *param0)
 
 static void ov114_0225D084(UnkStruct_ov114_0225D084 *param0, u32 param1)
 {
-    param0->unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 411, param1);
+    param0->unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0411, param1);
     param0->unk_04 = StringTemplate_New(8, 64, param1);
     param0->unk_08 = Strbuf_Init(128, param1);
     param0->unk_0C = Strbuf_Init(128, param1);
