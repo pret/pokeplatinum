@@ -1356,10 +1356,10 @@ void PokemonSummaryScreen_PrintRibbonNameAndDesc(PokemonSummaryScreen *summarySc
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_NAME], 0);
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_DESCRIPTION], 0);
 
-    MessageLoader_GetStrbuf(summaryScreen->ribbonLoader, Ribbon_GetData(summaryScreen->ribbonNum, RIBBON_DATA_NAME_ID), summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->ribbonLoader, Ribbon_GetData(summaryScreen->ribbonID, RIBBON_DATA_NAME_ID), summaryScreen->strbuf);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_NAME], SUMMARY_TEXT_WHITE, ALIGN_LEFT);
 
-    MessageLoader_GetStrbuf(summaryScreen->ribbonLoader, PokemonSummaryScreen_GetRibbonDescriptionID(summaryScreen->data->specialRibbons, summaryScreen->ribbonNum), summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->ribbonLoader, PokemonSummaryScreen_GetRibbonDescriptionID(summaryScreen->data->specialRibbons, summaryScreen->ribbonID), summaryScreen->strbuf);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_DESCRIPTION], SUMMARY_TEXT_BLACK, ALIGN_LEFT);
 
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_NAME]);

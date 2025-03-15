@@ -1487,10 +1487,10 @@ void PokemonSummaryScreen_HideContestStatDots(PokemonSummaryScreen *summaryScree
     Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_CONTEST_STAT_DOT_TOUGH], FALSE);
 }
 
-static void SetRibbonSpriteGfx(PokemonSummaryScreen *summaryScreen, u8 ribbonNum, u8 ribbonIndex)
+static void SetRibbonSpriteGfx(PokemonSummaryScreen *summaryScreen, u8 ribbonID, u8 ribbonIndex)
 {
-    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, NARC_INDEX_GRAPHIC__PL_PST_GRA, Ribbon_GetData(ribbonNum, RIBBON_DATA_SPRITE_ID), 0, 26 + ribbonIndex);
-    Sprite_SetExplicitPalette2(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_1 + ribbonIndex], Ribbon_GetData(ribbonNum, RIBBON_DATA_PALETTE_NUM) + 7);
+    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, NARC_INDEX_GRAPHIC__PL_PST_GRA, Ribbon_GetData(ribbonID, RIBBON_DATA_SPRITE_ID), 0, 26 + ribbonIndex);
+    Sprite_SetExplicitPalette2(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_1 + ribbonIndex], Ribbon_GetData(ribbonID, RIBBON_DATA_PALETTE_NUM) + 7);
 }
 
 void PokemonSummaryScreen_UpdateRibbonSprites(PokemonSummaryScreen *summaryScreen)
@@ -1509,7 +1509,7 @@ void PokemonSummaryScreen_UpdateRibbonSprites(PokemonSummaryScreen *summaryScree
     for (i = 0; i < RIBBONS_PER_PAGE; i++) {
         if (i < summaryScreen->ribbonMax) {
             Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_RIBBON_SPRITES_START + i], TRUE);
-            SetRibbonSpriteGfx(summaryScreen, PokemonSummaryScreen_RibbonNumAt(summaryScreen, i), i);
+            SetRibbonSpriteGfx(summaryScreen, PokemonSummaryScreen_RibbonIDAt(summaryScreen, i), i);
         }
     }
 
@@ -1521,7 +1521,7 @@ void PokemonSummaryScreen_UpdateShownRibbonRows(PokemonSummaryScreen *summaryScr
     for (u16 i = 0; i < RIBBONS_PER_ROW * 2; i++) {
         if ((summaryScreen->ribbonRow * RIBBONS_PER_ROW + i) < summaryScreen->ribbonMax) {
             Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_RIBBON_SPRITES_START + i], TRUE);
-            SetRibbonSpriteGfx(summaryScreen, PokemonSummaryScreen_RibbonNumAt(summaryScreen, i), i);
+            SetRibbonSpriteGfx(summaryScreen, PokemonSummaryScreen_RibbonIDAt(summaryScreen, i), i);
         } else {
             Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_RIBBON_SPRITES_START + i], FALSE);
         }

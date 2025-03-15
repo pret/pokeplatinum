@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_ribbon_syndicate_1f.h"
+#include "generated/ribbons.h"
 
     .data
 
@@ -72,14 +73,14 @@ _00D6:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_247 0x8000
+    GetFirstNonEggInParty 0x8000
     BufferPlayerName 0
     BufferPartyMonSpecies 2, 0x8000
-    ScrCmd_230 0x800C, 0x8000, 68
+    GetPartyMonRibbon 0x800C, 0x8000, RIBBON_GORGEOUS_ROYAL
     GoToIfEq 0x800C, 1, _0244
-    ScrCmd_230 0x800C, 0x8000, 67
+    GetPartyMonRibbon 0x800C, 0x8000, RIBBON_ROYAL
     GoToIfEq 0x800C, 1, _01E7
-    ScrCmd_230 0x800C, 0x8000, 66
+    GetPartyMonRibbon 0x800C, 0x8000, RIBBON_GORGEOUS
     GoToIfEq 0x800C, 1, _018A
     GoTo _012F
 
@@ -98,7 +99,7 @@ _012F:
     Message 7
     Message 8
     WaitABXPadPress
-    ScrCmd_231 0x8000, 66
+    SetPartyMonRibbon 0x8000, RIBBON_GORGEOUS
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -119,7 +120,7 @@ _018A:
     Message 9
     Message 10
     WaitABXPadPress
-    ScrCmd_231 0x8000, 67
+    SetPartyMonRibbon 0x8000, RIBBON_ROYAL
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -140,7 +141,7 @@ _01E7:
     Message 11
     Message 12
     WaitABXPadPress
-    ScrCmd_231 0x8000, 68
+    SetPartyMonRibbon 0x8000, RIBBON_GORGEOUS_ROYAL
     CloseMessage
     ScrCmd_073
     ReleaseAll

@@ -107,7 +107,7 @@ static void WildEncounters_ReplaceGreatMarshDailyEncounters(FieldSystem *fieldSy
 static BOOL RepelPreventsEncounter(const u8 param0, const WildEncounters_FieldParams *param1);
 static void AddRoamerToEnemyParty(const u32 param0, Roamer *param1, FieldBattleDTO *param2);
 static BOOL TryEncounterRoamer(FieldSystem *fieldSystem, Roamer **param1);
-static BOOL AddWildMonToParty(const int partyId, const WildEncounters_FieldParams *fieldParams, Pokemon *mon, FieldBattleDTO *battleParams);
+static BOOL AddWildMonToParty(const int partySlot, const WildEncounters_FieldParams *fieldParams, Pokemon *mon, FieldBattleDTO *battleParams);
 static u8 TryFindHigherLevelSlot(const EncounterSlot *encounterTable, const WildEncounters_FieldParams *fieldParams, const u8 encounterSlot);
 static void InitEncounterFieldParams(FieldSystem *fieldSystem, Pokemon *firstPartyMon, WildEncounters *encounterData, WildEncounters_FieldParams *param3);
 static void ModifyEncounterRateWithHeldItem(Pokemon *param0, u8 *param1);
@@ -980,7 +980,7 @@ static u8 GetWildMonLevel(const EncounterSlot *slot, const WildEncounters_FieldP
 
 // Creates a mon with a personality that will make it shiny, and complies with Cute Charm/Synchronize.
 // It only has to check one or the other, not both, because only one ability can be in effect at a time.
-static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 level, const int partyId, const u32 param3, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *firstPartyMon, FieldBattleDTO *battleParams)
+static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 level, const int partySlot, const u32 param3, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *firstPartyMon, FieldBattleDTO *battleParams)
 {
     u8 firstMonGender;
     u8 firstMonNature;
@@ -1040,7 +1040,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
 
     Pokemon_InitWith(newEncounter, species, level, INIT_IVS_RANDOM, TRUE, newEncounterPersonality, OTID_SET, encounterFieldParams->trainerID);
 
-    GF_ASSERT(AddWildMonToParty(partyId, encounterFieldParams, newEncounter, battleParams));
+    GF_ASSERT(AddWildMonToParty(partySlot, encounterFieldParams, newEncounter, battleParams));
     Heap_FreeToHeap(newEncounter);
 }
 
@@ -1451,7 +1451,7 @@ static BOOL TryEncounterRoamer(FieldSystem *fieldSystem, Roamer **encounteredRoa
     return TRUE;
 }
 
-static BOOL AddWildMonToParty(const int partyId, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *mon, FieldBattleDTO *battleParams)
+static BOOL AddWildMonToParty(const int partySlot, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *mon, FieldBattleDTO *battleParams)
 {
     int hasCompoundEyes = 0;
 
@@ -1493,7 +1493,7 @@ static BOOL AddWildMonToParty(const int partyId, const WildEncounters_FieldParam
         Pokemon_SetValue(mon, MON_DATA_FORM, &form);
     }
 
-    return Party_AddPokemon(battleParams->parties[partyId], mon);
+    return Party_AddPokemon(battleParams->parties[partySlot], mon);
 }
 
 static u8 TryFindHigherLevelSlot(const EncounterSlot *encounterTable, const WildEncounters_FieldParams *encounterFieldParams, const u8 encounterSlot)

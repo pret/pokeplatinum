@@ -12,7 +12,7 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_247 0x8000
+    GetFirstNonEggInParty 0x8000
     GoToIfUnset 0x140, _005C
     GoToIfUnset 0x141, _005C
     GoToIfUnset 0x142, _005C
