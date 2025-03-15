@@ -4,7 +4,7 @@
 #include "field_task.h"
 
 typedef struct UnkStruct_020709CC_t {
-    FieldTask *unk_00;
+    FieldTask *fieldTask;
     u16 unk_04;
     u16 unk_06;
 } UnkStruct_020709CC;
