@@ -105,7 +105,7 @@ void sub_0209A74C(int param0)
     Bg_MaskPalette(0, 27681);
     Bg_MaskPalette(4, 27681);
 
-    v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 5, param0);
+    v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0005, param0);
     v3 = Strbuf_Init(384, param0);
 
     Text_ResetAllPrinters();
@@ -179,7 +179,7 @@ void sub_0209A8E0(int param0)
     Bg_MaskPalette(0, 0x6c21);
     Bg_MaskPalette(4, 0x6c21);
 
-    v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 5, param0);
+    v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0005, param0);
     v3 = Strbuf_Init(0x180, param0);
 
     Text_ResetAllPrinters();

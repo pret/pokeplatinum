@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02015214_decl.h"

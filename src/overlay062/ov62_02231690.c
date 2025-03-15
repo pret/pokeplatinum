@@ -3193,7 +3193,7 @@ static void ov62_022349E4(Strbuf *param0, int param1)
     MessageLoader *v0;
 
     Strbuf_Clear(param0);
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 10, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, param1);
 
     MessageLoader_GetStrbuf(v0, 332, param0);
     MessageLoader_Free(v0);

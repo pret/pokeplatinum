@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "constants/narc.h"
-#include "generated/text_banks.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 

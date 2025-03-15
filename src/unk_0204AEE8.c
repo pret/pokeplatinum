@@ -279,7 +279,7 @@ u16 sub_0204B0F0(UnkStruct_0204AFC4 *param0, u8 param1, u8 param2, int param3)
 static UnkStruct_0204B184 *sub_0204B184(UnkStruct_ov104_0223A348 *param0, u16 param1, int param2)
 {
     UnkStruct_0204B184 *v0;
-    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 21, param2);
+    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, param2);
     Strbuf *v2;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348));

@@ -5,7 +5,6 @@
 
 #include "constants/items.h"
 #include "constants/species.h"
-#include "generated/text_banks.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"

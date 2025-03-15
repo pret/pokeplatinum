@@ -5,7 +5,6 @@
 
 #include "constants/field/window.h"
 #include "constants/scrcmd.h"
-#include "generated/text_banks.h"
 
 #include "overlay007/shop_menu.h"
 

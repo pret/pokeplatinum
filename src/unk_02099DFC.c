@@ -237,7 +237,7 @@ static void sub_0209A044(UnkStruct_02099DFC *param0)
 
 static void sub_0209A098(UnkStruct_02099DFC *param0)
 {
-    param0->unk_18 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 4, param0->heapID);
+    param0->unk_18 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0004, param0->heapID);
     Text_ResetAllPrinters();
     param0->unk_08 = 0;
     Window_AddFromTemplate(param0->unk_14, &param0->unk_1C, &Unk_020F89E4);

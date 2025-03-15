@@ -598,7 +598,7 @@ static void ov90_021D13D8(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0 = 0;
 
-    param0->unk_28.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 22, param0->heapID);
+    param0->unk_28.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, param0->heapID);
     param0->unk_28.unk_04 = StringTemplate_New(2, ((18 + 1) * 4), param0->heapID);
     param0->unk_28.unk_08 = Strbuf_Init(((18 + 1) * 4), param0->heapID);
 

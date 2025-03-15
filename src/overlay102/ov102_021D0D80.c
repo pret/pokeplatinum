@@ -310,7 +310,7 @@ static void ov102_021D1174(UnkStruct_ov102_021D0F8C *param0)
 
     Text_ResetAllPrinters();
 
-    param0->unk_34 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 1, param0->heapID);
+    param0->unk_34 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0001, param0->heapID);
     param0->unk_38 = StringTemplate_Default(param0->heapID);
 
     v0.bgLayer = 0;

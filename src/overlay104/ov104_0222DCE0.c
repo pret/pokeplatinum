@@ -127,7 +127,7 @@ void ov104_0222DCF4(UnkStruct_0204B1E8 *param0, int param1, int param2)
 UnkStruct_0204B184 *ov104_0222DD04(UnkStruct_ov104_0223A348_sub1 *param0, int param1, int param2, int param3)
 {
     UnkStruct_0204B184 *v0;
-    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 21, param2);
+    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, param2);
     Strbuf *v2;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348_sub1));
