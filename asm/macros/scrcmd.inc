@@ -2408,7 +2408,7 @@
     .short \upperBound
     .endm
 
-    .macro GetFriendshipByPartySlot destVar, partySlot
+    .macro GetPartyMonFriendship destVar, partySlot
     .short 441
     .short \destVar
     .short \partySlot

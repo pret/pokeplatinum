@@ -201,7 +201,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hnurrr...\nWhat is left to say, I say?\rWe have come so far now, where can\nwe go but to see this through?\rHall of Fame...\nWords so sweet fall from my mouth.\rHnurrr...\r</language>
 	</row>
-	<row id="footstep_house_voiceless_type" index="50">
+	<row id="footstep_house_silent_type" index="50">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sssshhnnn...\n...\f...Ssshhhnnn...\f...\fSsshhhnnn...\f...\r</language>
 	</row>

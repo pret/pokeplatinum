@@ -9,7 +9,7 @@
 #include "res/text/bank/ribbon_names.h"
 
 typedef struct {
-    u32 monDataParam;
+    enum PokemonDataParam monDataParam;
     u16 spriteID;
     u16 paletteNum;
     u16 nameID;
@@ -620,7 +620,7 @@ u8 Ribbon_TryGetSpecialDescriptionID(u8 ribbonID)
     return 0xFF;
 }
 
-u16 Ribbon_MonDataParamToNameID(u32 monDataParam)
+u16 Ribbon_MonDataParamToNameID(enum PokemonDataParam monDataParam)
 {
     for (int i = 0; i < NELEMS(sRibbonDataTable); i++) {
         if (sRibbonDataTable[i].monDataParam == monDataParam) {

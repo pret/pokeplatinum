@@ -106,7 +106,7 @@ _010F:
     GoToIfEq 0x800C, 0, _0071
     ScrCmd_099 0x800C, 0x1B2, 0x8000
     GoToIfEq 0x800C, 1, _0087
-    GetFriendshipByPartySlot 0x800C, 0x8000
+    GetPartyMonFriendship 0x800C, 0x8000
     GoToIfLt 0x800C, 0xFF, _0097
     SetVar 0x8003, 0x1B2
     GoTo _019B

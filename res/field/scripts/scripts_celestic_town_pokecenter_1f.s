@@ -41,7 +41,7 @@ _0044:
     GoToIfSet 0xAA1, _00C0
     Message 2
     GetFirstNonEggInParty 0x8000
-    GetFriendshipByPartySlot 0x800C, 0x8000
+    GetPartyMonFriendship 0x800C, 0x8000
     GoToIfGe 0x800C, 150, _0084
     GoToIfGe 0x800C, 50, _00CB
     GoTo _00D6

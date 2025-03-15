@@ -126,7 +126,7 @@ FootstepHouse_SlowType:
     GoTo FootstepHouse_SlowType_WithoutPrint
 
 FootstepHouse_CuteType_WithPrint:
-    GetFriendshipByPartySlot 0x800C, VAR_PARTY_SLOT
+    GetPartyMonFriendship 0x800C, VAR_PARTY_SLOT
     GoToIfGe 0x800C, 0xFF, FootstepHouse_CuteType_WithPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_CuteType_WithPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_CuteType_WithPrint_Level3
@@ -134,7 +134,7 @@ FootstepHouse_CuteType_WithPrint:
     GoTo FootstepHouse_CuteType_WithPrint_Level1
 
 FootstepHouse_CuteType_WithoutPrint:
-    GetFriendshipByPartySlot 0x800C, VAR_PARTY_SLOT
+    GetPartyMonFriendship 0x800C, VAR_PARTY_SLOT
     GoToIfGe 0x800C, 0xFF, FootstepHouse_CuteType_WithoutPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_CuteType_WithoutPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_CuteType_WithoutPrint_Level3
@@ -142,7 +142,7 @@ FootstepHouse_CuteType_WithoutPrint:
     GoTo FootstepHouse_CuteType_WithoutPrint_Level1
 
 FootstepHouse_ToughType_WithPrint:
-    GetFriendshipByPartySlot 0x800C, VAR_PARTY_SLOT
+    GetPartyMonFriendship 0x800C, VAR_PARTY_SLOT
     GoToIfGe 0x800C, 0xFF, FootstepHouse_ToughType_WithPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_ToughType_WithPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_ToughType_WithPrint_Level3
@@ -150,7 +150,7 @@ FootstepHouse_ToughType_WithPrint:
     GoTo FootstepHouse_ToughType_WithPrint_Level1
 
 FootstepHouse_ToughType_WithoutPrint:
-    GetFriendshipByPartySlot 0x800C, VAR_PARTY_SLOT
+    GetPartyMonFriendship 0x800C, VAR_PARTY_SLOT
     GoToIfGe 0x800C, 0xFF, FootstepHouse_ToughType_WithoutPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_ToughType_WithoutPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_ToughType_WithoutPrint_Level3
@@ -158,7 +158,7 @@ FootstepHouse_ToughType_WithoutPrint:
     GoTo FootstepHouse_ToughType_WithoutPrint_Level1
 
 FootstepHouse_ScaryType_WithPrint:
-    GetFriendshipByPartySlot 0x800C, VAR_PARTY_SLOT
+    GetPartyMonFriendship 0x800C, VAR_PARTY_SLOT
     GoToIfGe 0x800C, 0xFF, FootstepHouse_ScaryType_WithPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_ScaryType_WithPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_ScaryType_WithPrint_Level3
@@ -166,7 +166,7 @@ FootstepHouse_ScaryType_WithPrint:
     GoTo FootstepHouse_ScaryType_WithPrint_Level1
 
 FootstepHouse_ScaryType_WithoutPrint:
-    GetFriendshipByPartySlot 0x800C, VAR_PARTY_SLOT
+    GetPartyMonFriendship 0x800C, VAR_PARTY_SLOT
     GoToIfGe 0x800C, 0xFF, FootstepHouse_ScaryType_WithoutPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_ScaryType_WithoutPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_ScaryType_WithoutPrint_Level3
@@ -174,7 +174,7 @@ FootstepHouse_ScaryType_WithoutPrint:
     GoTo FootstepHouse_ScaryType_WithoutPrint_Level1
 
 FootstepHouse_SlowType_WithPrint:
-    GetFriendshipByPartySlot 0x800C, VAR_PARTY_SLOT
+    GetPartyMonFriendship 0x800C, VAR_PARTY_SLOT
     GoToIfGe 0x800C, 0xFF, FootstepHouse_SlowType_WithPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_SlowType_WithPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_SlowType_WithPrint_Level3
@@ -182,7 +182,7 @@ FootstepHouse_SlowType_WithPrint:
     GoTo FootstepHouse_SlowType_WithPrint_Level1
 
 FootstepHouse_SlowType_WithoutPrint:
-    GetFriendshipByPartySlot 0x800C, VAR_PARTY_SLOT
+    GetPartyMonFriendship 0x800C, VAR_PARTY_SLOT
     GoToIfGe 0x800C, 0xFF, FootstepHouse_SlowType_WithoutPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_SlowType_WithoutPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_SlowType_WithoutPrint_Level3
@@ -360,8 +360,8 @@ FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon:
     GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
 FootstepHouse_VoicelessType:
-    Message footstep_house_voiceless_type
-    GetFriendshipByPartySlot 0x800C, VAR_PARTY_SLOT
+    Message footstep_house_silent_type
+    GetPartyMonFriendship 0x800C, VAR_PARTY_SLOT
     GoToIfLt 0x800C, 0xFF, FootstepHouse_PokemonSilentType_NoRibbon
     GetPartyMonRibbon 0x800C, VAR_PARTY_SLOT, RIBBON_FOOTPRINT
     GoToIfEq 0x800C, FALSE, FootstepHouse_PokemonSilentType_GiveRibbon
