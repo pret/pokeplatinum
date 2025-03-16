@@ -33,20 +33,20 @@ int Daycare_SaveSize(void)
     return sizeof(Daycare);
 }
 
-void Daycare_Init(Daycare *param0)
+void Daycare_Init(Daycare *daycare)
 {
-    memset(param0, 0, sizeof(Daycare));
+    memset(daycare, 0, sizeof(Daycare));
 
-    BoxPokemon_Init(&param0->unk_00[0].unk_00);
-    BoxPokemon_Init(&param0->unk_00[1].unk_00);
+    BoxPokemon_Init(&daycare->unk_00[0].unk_00);
+    BoxPokemon_Init(&daycare->unk_00[1].unk_00);
 
-    param0->unk_D8 = 0;
-    param0->unk_DC = 0;
+    daycare->unk_D8 = 0;
+    daycare->unk_DC = 0;
 }
 
-UnkStruct_02026218 *sub_02026218(Daycare *param0, int param1)
+UnkStruct_02026218 *sub_02026218(Daycare *daycare, int param1)
 {
-    return &(param0->unk_00[param1]);
+    return &(daycare->unk_00[param1]);
 }
 
 BoxPokemon *sub_02026220(UnkStruct_02026218 *param0)
@@ -69,23 +69,23 @@ UnkStruct_0202818C *sub_02026230(UnkStruct_02026224 *param0)
     return &(param0->unk_00);
 }
 
-int sub_02026234(const Daycare *param0)
+int sub_02026234(const Daycare *daycare)
 {
-    if (param0->unk_D8 != 0) {
+    if (daycare->unk_D8 != 0) {
         return 1;
     }
 
     return 0;
 }
 
-int sub_02026248(const Daycare *param0)
+int sub_02026248(const Daycare *daycare)
 {
-    return param0->unk_D8;
+    return daycare->unk_D8;
 }
 
-int sub_02026250(const Daycare *param0)
+int sub_02026250(const Daycare *daycare)
 {
-    return param0->unk_DC;
+    return daycare->unk_DC;
 }
 
 void sub_02026258(UnkStruct_02026218 *param0, int param1)
@@ -98,20 +98,20 @@ void sub_02026260(UnkStruct_02026218 *param0, int param1)
     param0->unk_68 += param1;
 }
 
-void sub_02026270(Daycare *param0, int param1)
+void sub_02026270(Daycare *daycare, int param1)
 {
-    param0->unk_D8 = param1;
+    daycare->unk_D8 = param1;
 }
 
-void sub_02026278(Daycare *param0, int param1)
+void sub_02026278(Daycare *daycare, int param1)
 {
-    param0->unk_DC = param1;
+    daycare->unk_DC = param1;
 }
 
-BOOL sub_02026280(Daycare *param0)
+BOOL sub_02026280(Daycare *daycare)
 {
-    int v0 = BoxPokemon_GetValue(&param0->unk_00[0].unk_00, MON_DATA_LANGUAGE, NULL);
-    int v1 = BoxPokemon_GetValue(&param0->unk_00[1].unk_00, MON_DATA_LANGUAGE, NULL);
+    int v0 = BoxPokemon_GetValue(&daycare->unk_00[0].unk_00, MON_DATA_LANGUAGE, NULL);
+    int v1 = BoxPokemon_GetValue(&daycare->unk_00[1].unk_00, MON_DATA_LANGUAGE, NULL);
 
     if (v0 != v1) {
         return 1;

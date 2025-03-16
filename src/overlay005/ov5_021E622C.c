@@ -42,28 +42,28 @@ typedef struct {
     u16 unk_94[16];
 } UnkStruct_ov5_021E6948;
 
-void ov5_021E6DE8(Pokemon *param0, u16 param1, Daycare *param2, u32 param3, u8 param4);
+void ov5_021E6DE8(Pokemon *param0, u16 param1, Daycare *daycare, u32 param3, u8 param4);
 void sub_020262C0(UnkStruct_02026224 *param0);
-static u8 ov5_021E70FC(Daycare *param0);
+static u8 ov5_021E70FC(Daycare *daycare);
 static int ov5_021E6F6C(Party *param0);
 static u8 ov5_021E6FF0(BoxPokemon **param0);
-void ov5_021E6B40(Daycare *param0);
-int ov5_021E6630(Daycare *param0, u8 param1, StringTemplate *param2);
-u8 ov5_021E6640(Daycare *param0, int param1, StringTemplate *param2);
+void ov5_021E6B40(Daycare *daycare);
+int ov5_021E6630(Daycare *daycare, u8 param1, StringTemplate *param2);
+u8 ov5_021E6640(Daycare *daycare, int param1, StringTemplate *param2);
 u16 ov5_021E73A0(Party *param0, int param1, StringTemplate *param2);
-u8 ov5_021E73C8(Daycare *param0);
-void ov5_021E72BC(Daycare *param0, StringTemplate *param1);
+u8 ov5_021E73C8(Daycare *daycare);
+void ov5_021E72BC(Daycare *daycare, StringTemplate *param1);
 static void ov5_021E62C4(Party *param0, int param1, UnkStruct_02026218 *param2, SaveData *param3);
 static int ov5_021E7110(FieldSystem *fieldSystem);
 
-static BoxPokemon *ov5_021E622C(Daycare *param0, int param1)
+static BoxPokemon *ov5_021E622C(Daycare *daycare, int param1)
 {
-    return sub_02026220(sub_02026218(param0, param1));
+    return sub_02026220(sub_02026218(daycare, param1));
 }
 
 static Daycare *Unk_ov5_02202124;
 
-u8 ov5_021E6238(Daycare *param0)
+u8 ov5_021E6238(Daycare *daycare)
 {
     u8 v0, v1;
     BoxPokemon *v2;
@@ -71,7 +71,7 @@ u8 ov5_021E6238(Daycare *param0)
     v0 = 0;
 
     for (v1 = 0; v1 < 2; v1++) {
-        v2 = sub_02026220(sub_02026218(param0, v1));
+        v2 = sub_02026220(sub_02026218(daycare, v1));
 
         if (BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) != 0) {
             v0++;
@@ -81,15 +81,15 @@ u8 ov5_021E6238(Daycare *param0)
     return v0;
 }
 
-int ov5_021E6270(Daycare *param0)
+int ov5_021E6270(Daycare *daycare)
 {
     u8 v0;
     BoxPokemon *v1;
 
-    Unk_ov5_02202124 = param0;
+    Unk_ov5_02202124 = daycare;
 
     for (v0 = 0; v0 < 2; v0++) {
-        v1 = sub_02026220(sub_02026218(param0, v0));
+        v1 = sub_02026220(sub_02026218(daycare, v0));
 
         if (BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == 0) {
             return v0;
@@ -133,23 +133,23 @@ static void ov5_021E62C4(Party *param0, int param1, UnkStruct_02026218 *param2, 
     }
 }
 
-void ov5_021E6358(Party *param0, int param1, Daycare *param2, SaveData *param3)
+void ov5_021E6358(Party *param0, int param1, Daycare *daycare, SaveData *param3)
 {
     int v0;
     GameRecords *v1 = SaveData_GetGameRecordsPtr(param3);
 
     GameRecords_IncrementRecordValue(v1, RECORD_UNK_040);
-    v0 = ov5_021E6270(param2);
-    ov5_021E62C4(param0, param1, sub_02026218(param2, v0), param3);
+    v0 = ov5_021E6270(daycare);
+    ov5_021E62C4(param0, param1, sub_02026218(daycare, v0), param3);
 }
 
-static void ov5_021E638C(Daycare *param0)
+static void ov5_021E638C(Daycare *daycare)
 {
     UnkStruct_02026218 *v0, *v1;
     BoxPokemon *v2, *v3;
 
-    v0 = sub_02026218(param0, 0);
-    v1 = sub_02026218(param0, 1);
+    v0 = sub_02026218(daycare, 0);
+    v1 = sub_02026218(daycare, 1);
     v2 = sub_02026220(v0);
     v3 = sub_02026220(v1);
 
@@ -215,13 +215,13 @@ static int ov5_021E6444(Party *param0, UnkStruct_02026218 *param1, StringTemplat
     return v4;
 }
 
-u16 ov5_021E64F8(Party *param0, StringTemplate *param1, Daycare *param2, u8 param3)
+u16 ov5_021E64F8(Party *param0, StringTemplate *param1, Daycare *daycare, u8 param3)
 {
     u16 v0;
-    UnkStruct_02026218 *v1 = sub_02026218(param2, param3);
+    UnkStruct_02026218 *v1 = sub_02026218(daycare, param3);
 
     v0 = ov5_021E6444(param0, v1, param1);
-    ov5_021E638C(param2);
+    ov5_021E638C(daycare);
 
     return v0;
 }
@@ -293,15 +293,15 @@ int ov5_021E65EC(UnkStruct_02026218 *param0, StringTemplate *param1)
     return v0;
 }
 
-int ov5_021E6630(Daycare *param0, u8 param1, StringTemplate *param2)
+int ov5_021E6630(Daycare *daycare, u8 param1, StringTemplate *param2)
 {
-    UnkStruct_02026218 *v0 = sub_02026218(param0, param1);
+    UnkStruct_02026218 *v0 = sub_02026218(daycare, param1);
     return ov5_021E65EC(v0, param2);
 }
 
-u8 ov5_021E6640(Daycare *param0, int param1, StringTemplate *param2)
+u8 ov5_021E6640(Daycare *daycare, int param1, StringTemplate *param2)
 {
-    UnkStruct_02026218 *v0 = sub_02026218(param0, param1);
+    UnkStruct_02026218 *v0 = sub_02026218(daycare, param1);
     BoxPokemon *v1 = sub_02026220(v0);
 
     if (BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL)) {
@@ -311,19 +311,19 @@ u8 ov5_021E6640(Daycare *param0, int param1, StringTemplate *param2)
     return 0;
 }
 
-static void ov5_021E6668(Daycare *param0, BoxPokemon *boxMon[])
+static void ov5_021E6668(Daycare *daycare, BoxPokemon *boxMon[])
 {
-    boxMon[0] = ov5_021E622C(param0, 0);
-    boxMon[1] = ov5_021E622C(param0, 1);
+    boxMon[0] = ov5_021E622C(daycare, 0);
+    boxMon[1] = ov5_021E622C(daycare, 1);
 }
 
-static int ov5_021E6684(Daycare *param0)
+static int ov5_021E6684(Daycare *daycare)
 {
     int v0;
     int v1[2], v2 = -1, v3;
     BoxPokemon *v4[2];
 
-    ov5_021E6668(param0, v4);
+    ov5_021E6668(daycare, v4);
 
     for (v0 = 0; v0 < 2; v0++) {
         if (BoxPokemon_GetGender(v4[v0]) == 1) {
@@ -357,16 +357,16 @@ static int ov5_021E6684(Daycare *param0)
     return v2;
 }
 
-void ov5_021E6720(Daycare *param0)
+void ov5_021E6720(Daycare *daycare)
 {
     u32 v0 = 0, v1;
     int v2, v3;
     int v4 = 0;
 
-    if ((v2 = ov5_021E6684(param0)) < 0) {
-        sub_02026270(param0, MTRNG_Next());
+    if ((v2 = ov5_021E6684(daycare)) < 0) {
+        sub_02026270(daycare, MTRNG_Next());
     } else {
-        BoxPokemon *v5 = ov5_021E622C(param0, v2);
+        BoxPokemon *v5 = ov5_021E622C(daycare, v2);
 
         v0 = BoxPokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL);
         v3 = Pokemon_GetNatureOf(v0);
@@ -383,7 +383,7 @@ void ov5_021E6720(Daycare *param0)
             }
         }
 
-        sub_02026270(param0, v1);
+        sub_02026270(daycare, v1);
     }
 }
 
@@ -407,7 +407,7 @@ static void ov5_021E6778(u8 *param0, u8 param1)
     }
 }
 
-static void ov5_021E67B0(Pokemon *param0, Daycare *param1)
+static void ov5_021E67B0(Pokemon *param0, Daycare *daycare)
 {
     u8 v0[3], v1, v2[6], v3[3], v4;
 
@@ -425,7 +425,7 @@ static void ov5_021E67B0(Pokemon *param0, Daycare *param1)
     }
 
     for (v1 = 0; v1 < 3; v1++) {
-        BoxPokemon *v5 = ov5_021E622C(param1, v3[v1]);
+        BoxPokemon *v5 = ov5_021E622C(daycare, v3[v1]);
 
         switch (v0[v1]) {
         case 0:
@@ -564,10 +564,10 @@ static void ov5_021E6948(Pokemon *param0, BoxPokemon *param1, BoxPokemon *param2
     Heap_FreeToHeap(v7);
 }
 
-void ov5_021E6B40(Daycare *param0)
+void ov5_021E6B40(Daycare *daycare)
 {
-    sub_02026270(param0, 0);
-    sub_02026278(param0, 0);
+    sub_02026270(daycare, 0);
+    sub_02026278(daycare, 0);
 }
 
 static const u16 sIncenseBabyTable[][3] = {
@@ -582,12 +582,12 @@ static const u16 sIncenseBabyTable[][3] = {
     { SPECIES_CHINGLING, ITEM_PURE_INCENSE, SPECIES_CHIMECHO }
 };
 
-static u16 ov5_021E6B54(u16 species, Daycare *param1)
+static u16 ov5_021E6B54(u16 species, Daycare *daycare)
 {
     u16 item1, item2, slot, i;
     BoxPokemon *parents[2];
 
-    ov5_021E6668(param1, parents);
+    ov5_021E6668(daycare, parents);
 
     for (i = 0; i < NELEMS(sIncenseBabyTable); i++) {
         if (species == sIncenseBabyTable[i][0]) {
@@ -610,12 +610,12 @@ static u16 ov5_021E6B54(u16 species, Daycare *param1)
     return species;
 }
 
-static void ov5_021E6BD0(Pokemon *param0, Daycare *param1)
+static void ov5_021E6BD0(Pokemon *param0, Daycare *daycare)
 {
     int v0, v1;
     BoxPokemon *v2[2];
 
-    ov5_021E6668(param1, v2);
+    ov5_021E6668(daycare, v2);
 
     v0 = BoxPokemon_GetValue(v2[0], MON_DATA_HELD_ITEM, NULL);
     v1 = BoxPokemon_GetValue(v2[1], MON_DATA_HELD_ITEM, NULL);
@@ -627,12 +627,12 @@ static void ov5_021E6BD0(Pokemon *param0, Daycare *param1)
     }
 }
 
-static u16 ov5_021E6C20(Daycare *param0, u8 param1[])
+static u16 ov5_021E6C20(Daycare *daycare, u8 param1[])
 {
     u16 v0[2], v1, v2, v3, v4, v5;
     BoxPokemon *v6[2];
 
-    ov5_021E6668(param0, v6);
+    ov5_021E6668(daycare, v6);
 
     v2 = 0;
 
@@ -650,7 +650,7 @@ static u16 ov5_021E6C20(Daycare *param0, u8 param1[])
     v4 = sub_02076F84(v3);
 
     if (v4 == 29) {
-        if (sub_02026248(param0) & 0x8000) {
+        if (sub_02026248(daycare) & 0x8000) {
             v4 = 32;
         } else {
             v4 = 29;
@@ -658,7 +658,7 @@ static u16 ov5_021E6C20(Daycare *param0, u8 param1[])
     }
 
     if (v4 == 314) {
-        if (sub_02026248(param0) & 0x8000) {
+        if (sub_02026248(daycare) & 0x8000) {
             v4 = 313;
         } else {
             v4 = 314;
@@ -719,7 +719,7 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     UpdateMonStatusAndTrainerInfo(egg, trainerInfo, param4, metLocation, HEAP_ID_SYSTEM);
 }
 
-void ov5_021E6DE8(Pokemon *param0, u16 param1, Daycare *param2, u32 param3, u8 param4)
+void ov5_021E6DE8(Pokemon *param0, u16 param1, Daycare *daycare, u32 param3, u8 param4)
 {
     u8 v0;
     u16 v1;
@@ -727,9 +727,9 @@ void ov5_021E6DE8(Pokemon *param0, u16 param1, Daycare *param2, u32 param3, u8 p
     Strbuf *v3;
     u8 hatchCycles = SpeciesData_GetSpeciesValue(param1, SPECIES_DATA_HATCH_CYCLES);
 
-    v2 = sub_02026248(param2);
+    v2 = sub_02026248(daycare);
 
-    if (sub_02026280(param2)) {
+    if (sub_02026280(daycare)) {
         int v5;
 
         if (Pokemon_IsPersonalityShiny(param3, v2) == 0) {
@@ -761,37 +761,37 @@ void ov5_021E6DE8(Pokemon *param0, u16 param1, Daycare *param2, u32 param3, u8 p
     Strbuf_Free(v3);
 }
 
-void ov5_021E6EA8(Daycare *param0, Party *param1, TrainerInfo *param2)
+void ov5_021E6EA8(Daycare *daycare, Party *param1, TrainerInfo *param2)
 {
     u16 v0;
     u8 v1[2], v2;
     Pokemon *v3 = Pokemon_New(HEAP_ID_FIELD);
 
-    v0 = ov5_021E6C20(param0, v1);
-    v0 = ov5_021E6B54(v0, param0);
+    v0 = ov5_021E6C20(daycare, v1);
+    v0 = ov5_021E6B54(v0, daycare);
 
     {
         u32 v4 = TrainerInfo_ID(param2);
-        BoxPokemon *v5 = ov5_021E622C(param0, v1[0]);
+        BoxPokemon *v5 = ov5_021E622C(daycare, v1[0]);
         u8 v6 = BoxPokemon_GetValue(v5, MON_DATA_FORM, NULL);
 
-        ov5_021E6DE8(v3, v0, param0, v4, v6);
+        ov5_021E6DE8(v3, v0, daycare, v4, v6);
     }
 
-    ov5_021E67B0(v3, param0);
-    ov5_021E6948(v3, ov5_021E622C(param0, v1[1]), ov5_021E622C(param0, v1[0]));
+    ov5_021E67B0(v3, daycare);
+    ov5_021E6948(v3, ov5_021E622C(daycare, v1[1]), ov5_021E622C(daycare, v1[0]));
 
     UpdateMonStatusAndTrainerInfo(v3, param2, 3, SpecialMetLoc_GetId(1, 0), HEAP_ID_FIELD);
 
     if (v0 == 172) {
-        ov5_021E6BD0(v3, param0);
+        ov5_021E6BD0(v3, daycare);
     }
 
     v2 = 1;
     Pokemon_SetValue(v3, MON_DATA_IS_EGG, &v2);
 
     Party_AddPokemon(param1, v3);
-    ov5_021E6B40(param0);
+    ov5_021E6B40(daycare);
     Heap_FreeToHeap(v3);
 }
 
@@ -888,11 +888,11 @@ static u8 ov5_021E6FF0(BoxPokemon **param0)
     return 0;
 }
 
-static u8 ov5_021E70FC(Daycare *param0)
+static u8 ov5_021E70FC(Daycare *daycare)
 {
     BoxPokemon *v0[2];
 
-    ov5_021E6668(param0, v0);
+    ov5_021E6668(daycare, v0);
     return ov5_021E6FF0(v0);
 }
 
@@ -929,41 +929,41 @@ static int ov5_021E7110(FieldSystem *fieldSystem)
     return 255;
 }
 
-BOOL ov5_021E7154(Daycare *param0, Party *param1, FieldSystem *fieldSystem)
+BOOL ov5_021E7154(Daycare *daycare, Party *param1, FieldSystem *fieldSystem)
 {
     u32 v0, v1, v2, v3, v4;
     u32 v5 = 0, v6;
     int v7;
     BoxPokemon *v8[2];
 
-    ov5_021E6668(param0, v8);
+    ov5_021E6668(daycare, v8);
 
     v2 = 0;
 
     for (v0 = 0; v0 < 2; v0++) {
         if (BoxPokemon_GetValue(v8[v0], MON_DATA_SPECIES_EXISTS, NULL) != 0) {
-            sub_02026260(sub_02026218(param0, v0), 1);
+            sub_02026260(sub_02026218(daycare, v0), 1);
             v2++;
         }
     }
 
-    if ((sub_02026234(param0) == 0) && (v2 == 2)) {
-        if ((sub_02026228(sub_02026218(param0, 1)) & 0xff) == 0xff) {
-            v3 = ov5_021E70FC(param0);
+    if ((sub_02026234(daycare) == 0) && (v2 == 2)) {
+        if ((sub_02026228(sub_02026218(daycare, 1)) & 0xff) == 0xff) {
+            v3 = ov5_021E70FC(daycare);
             v4 = LCRNG_Next();
             v4 = (v4 * 100) / 0xffff;
 
             if (v3 > v4) {
-                ov5_021E6720(param0);
+                ov5_021E6720(daycare);
             }
         }
     }
 
-    v6 = sub_02026250(param0);
-    sub_02026278(param0, ++v6);
+    v6 = sub_02026250(daycare);
+    sub_02026278(daycare, ++v6);
 
     if (v6 == ov5_021E7110(fieldSystem)) {
-        sub_02026278(param0, 0);
+        sub_02026278(daycare, 0);
         v7 = ov5_021E6F6C(param1);
 
         for (v0 = 0; v0 < Party_GetCurrentCount(param1); v0++) {
@@ -1012,12 +1012,12 @@ Pokemon *ov5_021E7278(Party *param0)
     return NULL;
 }
 
-void ov5_021E72BC(Daycare *param0, StringTemplate *param1)
+void ov5_021E72BC(Daycare *daycare, StringTemplate *param1)
 {
     BoxPokemon *v0[2];
     u16 v1[10 + 1];
 
-    ov5_021E6668(param0, v0);
+    ov5_021E6668(daycare, v0);
 
     if (BoxPokemon_GetValue(v0[0], MON_DATA_SPECIES, NULL) != 0) {
         StringTemplate_SetNickname(param1, 0, v0[0]);
@@ -1029,15 +1029,15 @@ void ov5_021E72BC(Daycare *param0, StringTemplate *param1)
     }
 }
 
-void ov5_021E7308(Daycare *param0, u32 param1, u32 param2, u32 param3, u8 param4, StringTemplate *param5)
+void ov5_021E7308(Daycare *daycare, u32 param1, u32 param2, u32 param3, u8 param4, StringTemplate *param5)
 {
     UnkStruct_02026218 *v0;
     BoxPokemon *v1;
     u8 v2, v3;
     u16 v4;
 
-    v0 = sub_02026218(param0, param4);
-    v1 = ov5_021E622C(param0, param4);
+    v0 = sub_02026218(daycare, param4);
+    v1 = ov5_021E622C(daycare, param4);
 
     StringTemplate_SetNickname(param5, param1, v1);
 
@@ -1064,15 +1064,15 @@ u16 ov5_021E73A0(Party *param0, int param1, StringTemplate *param2)
     return Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
 }
 
-u8 ov5_021E73C8(Daycare *param0)
+u8 ov5_021E73C8(Daycare *daycare)
 {
     u8 v0;
 
-    if (sub_02026234(param0)) {
+    if (sub_02026234(daycare)) {
         return 1;
     }
 
-    if ((v0 = ov5_021E6238(param0))) {
+    if ((v0 = ov5_021E6238(daycare))) {
         return v0 + 1;
     }
 
@@ -1095,9 +1095,9 @@ u8 ov5_021E73F0(u32 param0)
     return 0;
 }
 
-extern u32 ov5_021E7420(Daycare *param0)
+extern u32 ov5_021E7420(Daycare *daycare)
 {
-    u8 v0 = ov5_021E70FC(param0);
+    u8 v0 = ov5_021E70FC(daycare);
     u8 v1 = ov5_021E73F0(v0);
 
     return v1;

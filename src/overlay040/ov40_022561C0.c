@@ -42,7 +42,7 @@ static BOOL ov40_022562C0(UnkStruct_ov40_0225621C *param0);
 static BOOL ov40_02256300(UnkStruct_ov40_0225621C *param0);
 static BOOL ov40_02256354(UnkStruct_ov40_0225621C *param0);
 static BOOL ov40_02256388(UnkStruct_ov40_0225621C *param0);
-static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *param1);
+static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare);
 
 static void NitroStaticInit(void)
 {
@@ -202,18 +202,18 @@ static BOOL ov40_02256388(UnkStruct_ov40_0225621C *param0)
     return 0;
 }
 
-static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *param1)
+static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare)
 {
     UnkStruct_02026218 *v0;
     BoxPokemon *v1;
     int v2;
     BOOL v3;
 
-    param0->unk_00 = ov5_021E6238(param1);
-    param0->unk_01 = sub_02026234(param1);
+    param0->unk_00 = ov5_021E6238(daycare);
+    param0->unk_01 = sub_02026234(daycare);
 
     for (v2 = 0; v2 < param0->unk_00; v2++) {
-        v0 = sub_02026218(param1, v2);
+        v0 = sub_02026218(daycare, v2);
         v1 = sub_02026220(v0);
         v3 = BoxPokemon_EnterDecryptionContext(v1);
 
