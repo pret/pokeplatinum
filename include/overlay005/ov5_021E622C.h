@@ -26,7 +26,6 @@ u8 ov5_021E6640(Daycare *daycare, int param1, StringTemplate *param2);
 void ov5_021E6720(Daycare *daycare);
 void ov5_021E6B40(Daycare *daycare);
 void Egg_CreateEgg(Pokemon *mon, u16 species, u8 param2, TrainerInfo *trainerInfo, int param4, int metLocation);
-void ov5_021E6DE8(Pokemon *param0, u16 param1, Daycare *daycare, u32 param3, u8 param4);
 void ov5_021E6EA8(Daycare *daycare, Party *param1, TrainerInfo *param2);
 BOOL ov5_021E7154(Daycare *daycare, Party *param1, FieldSystem *fieldSystem);
 Pokemon *ov5_021E7278(Party *param0);

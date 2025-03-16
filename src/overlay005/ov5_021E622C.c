@@ -42,7 +42,6 @@ typedef struct {
     u16 unk_94[16];
 } UnkStruct_ov5_021E6948;
 
-void ov5_021E6DE8(Pokemon *param0, u16 param1, Daycare *daycare, u32 param3, u8 param4);
 void sub_020262C0(UnkStruct_02026224 *param0);
 static u8 ov5_021E70FC(Daycare *daycare);
 static int ov5_021E6F6C(Party *param0);
@@ -719,24 +718,24 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     UpdateMonStatusAndTrainerInfo(egg, trainerInfo, param4, metLocation, HEAP_ID_SYSTEM);
 }
 
-void ov5_021E6DE8(Pokemon *param0, u16 param1, Daycare *daycare, u32 param3, u8 param4)
+static void Daycare_CreateEgg(Pokemon *mon, u16 species, Daycare *daycare, u32 monOTID, u8 form)
 {
-    u8 v0;
-    u16 v1;
-    u32 v2;
-    Strbuf *v3;
-    u8 hatchCycles = SpeciesData_GetSpeciesValue(param1, SPECIES_DATA_HATCH_CYCLES);
+    u8 level;
+    u16 ball;
+    u32 personality;
+    Strbuf *strBuf;
+    u8 hatchCycles = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_HATCH_CYCLES);
 
-    v2 = sub_02026248(daycare);
+    personality = sub_02026248(daycare);
 
-    if (sub_02026280(daycare)) {
-        int v5;
+    if (Daycare_AreParentLanguagesDifferent(daycare)) {
+        int i;
 
-        if (Pokemon_IsPersonalityShiny(param3, v2) == 0) {
-            for (v5 = 0; v5 < 4; v5++) {
-                v2 = ARNG_Next(v2);
+        if (Pokemon_IsPersonalityShiny(monOTID, personality) == FALSE) {
+            for (i = 0; i < 4; i++) {
+                personality = ARNG_Next(personality);
 
-                if (Pokemon_IsPersonalityShiny(param3, v2)) {
+                if (Pokemon_IsPersonalityShiny(monOTID, personality)) {
                     break;
                 }
             }
@@ -745,54 +744,52 @@ void ov5_021E6DE8(Pokemon *param0, u16 param1, Daycare *daycare, u32 param3, u8 
         }
     }
 
-    Pokemon_InitWith(param0, param1, 1, INIT_IVS_RANDOM, TRUE, v2, OTID_NOT_SET, 0);
+    Pokemon_InitWith(mon, species, EGG_POKEMON_LEVEL, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
 
-    v0 = 0;
-    v1 = ITEM_POKE_BALL;
+    level = 0;
+    ball = ITEM_POKE_BALL;
 
-    Pokemon_SetValue(param0, MON_DATA_POKEBALL, &v1);
-    Pokemon_SetValue(param0, MON_DATA_FRIENDSHIP, &hatchCycles);
-    Pokemon_SetValue(param0, MON_DATA_MET_LEVEL, &v0);
-    Pokemon_SetValue(param0, MON_DATA_FORM, &param4);
+    Pokemon_SetValue(mon, MON_DATA_POKEBALL, &ball);
+    Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &hatchCycles);
+    Pokemon_SetValue(mon, MON_DATA_MET_LEVEL, &level);
+    Pokemon_SetValue(mon, MON_DATA_FORM, &form);
 
-    v3 = MessageUtil_SpeciesName(SPECIES_EGG, 4);
+    strBuf = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD);
 
-    Pokemon_SetValue(param0, MON_DATA_NICKNAME_STRBUF, v3);
-    Strbuf_Free(v3);
+    Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRBUF, strBuf);
+    Strbuf_Free(strBuf);
 }
 
 void ov5_021E6EA8(Daycare *daycare, Party *param1, TrainerInfo *param2)
 {
     u16 v0;
     u8 v1[2], v2;
-    Pokemon *v3 = Pokemon_New(HEAP_ID_FIELD);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
 
     v0 = ov5_021E6C20(daycare, v1);
     v0 = ov5_021E6B54(v0, daycare);
 
-    {
-        u32 v4 = TrainerInfo_ID(param2);
-        BoxPokemon *v5 = ov5_021E622C(daycare, v1[0]);
-        u8 v6 = BoxPokemon_GetValue(v5, MON_DATA_FORM, NULL);
+    u32 monOTID = TrainerInfo_ID(param2);
+    BoxPokemon *boxMon = ov5_021E622C(daycare, v1[0]);
+    u8 form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
 
-        ov5_021E6DE8(v3, v0, daycare, v4, v6);
-    }
+    Daycare_CreateEgg(mon, v0, daycare, monOTID, form);
 
-    ov5_021E67B0(v3, daycare);
-    ov5_021E6948(v3, ov5_021E622C(daycare, v1[1]), ov5_021E622C(daycare, v1[0]));
+    ov5_021E67B0(mon, daycare);
+    ov5_021E6948(mon, ov5_021E622C(daycare, v1[1]), ov5_021E622C(daycare, v1[0]));
 
-    UpdateMonStatusAndTrainerInfo(v3, param2, 3, SpecialMetLoc_GetId(1, 0), HEAP_ID_FIELD);
+    UpdateMonStatusAndTrainerInfo(mon, param2, 3, SpecialMetLoc_GetId(1, 0), HEAP_ID_FIELD);
 
     if (v0 == 172) {
-        ov5_021E6BD0(v3, daycare);
+        ov5_021E6BD0(mon, daycare);
     }
 
     v2 = 1;
-    Pokemon_SetValue(v3, MON_DATA_IS_EGG, &v2);
+    Pokemon_SetValue(mon, MON_DATA_IS_EGG, &v2);
 
-    Party_AddPokemon(param1, v3);
+    Party_AddPokemon(param1, mon);
     ov5_021E6B40(daycare);
-    Heap_FreeToHeap(v3);
+    Heap_FreeToHeap(mon);
 }
 
 static int ov5_021E6F6C(Party *param0)

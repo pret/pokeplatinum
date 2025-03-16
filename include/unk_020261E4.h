@@ -23,7 +23,7 @@ void sub_02026258(UnkStruct_02026218 *param0, int param1);
 void sub_02026260(UnkStruct_02026218 *param0, int param1);
 void sub_02026270(Daycare *daycare, int param1);
 void sub_02026278(Daycare *daycare, int param1);
-BOOL sub_02026280(Daycare *daycare);
+BOOL Daycare_AreParentLanguagesDifferent(Daycare *daycare);
 void sub_020262A8(UnkStruct_02026218 *param0, const UnkStruct_02026218 *param1);
 void sub_020262C0(UnkStruct_02026224 *param0);
 void sub_020262F4(UnkStruct_02026218 *param0);

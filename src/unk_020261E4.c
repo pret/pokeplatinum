@@ -17,7 +17,7 @@ typedef struct UnkStruct_02026224_t {
 } UnkStruct_02026224;
 
 typedef struct UnkStruct_02026218_t {
-    BoxPokemon unk_00;
+    BoxPokemon boxMon;
     UnkStruct_02026224 unk_08;
     u32 unk_68;
 } UnkStruct_02026218;
@@ -37,8 +37,8 @@ void Daycare_Init(Daycare *daycare)
 {
     memset(daycare, 0, sizeof(Daycare));
 
-    BoxPokemon_Init(&daycare->unk_00[0].unk_00);
-    BoxPokemon_Init(&daycare->unk_00[1].unk_00);
+    BoxPokemon_Init(&daycare->unk_00[0].boxMon);
+    BoxPokemon_Init(&daycare->unk_00[1].boxMon);
 
     daycare->unk_D8 = 0;
     daycare->unk_DC = 0;
@@ -51,7 +51,7 @@ UnkStruct_02026218 *sub_02026218(Daycare *daycare, int param1)
 
 BoxPokemon *sub_02026220(UnkStruct_02026218 *param0)
 {
-    return &(param0->unk_00);
+    return &(param0->boxMon);
 }
 
 UnkStruct_02026224 *sub_02026224(UnkStruct_02026218 *param0)
@@ -108,16 +108,16 @@ void sub_02026278(Daycare *daycare, int param1)
     daycare->unk_DC = param1;
 }
 
-BOOL sub_02026280(Daycare *daycare)
+BOOL Daycare_AreParentLanguagesDifferent(Daycare *daycare)
 {
-    int v0 = BoxPokemon_GetValue(&daycare->unk_00[0].unk_00, MON_DATA_LANGUAGE, NULL);
-    int v1 = BoxPokemon_GetValue(&daycare->unk_00[1].unk_00, MON_DATA_LANGUAGE, NULL);
+    int language1 = BoxPokemon_GetValue(&daycare->unk_00[0].boxMon, MON_DATA_LANGUAGE, NULL);
+    int language2 = BoxPokemon_GetValue(&daycare->unk_00[1].boxMon, MON_DATA_LANGUAGE, NULL);
 
-    if (v0 != v1) {
-        return 1;
+    if (language1 != language2) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_020262A8(UnkStruct_02026218 *param0, const UnkStruct_02026218 *param1)
@@ -143,7 +143,7 @@ void sub_020262C0(UnkStruct_02026224 *param0)
 
 void sub_020262F4(UnkStruct_02026218 *param0)
 {
-    BoxPokemon_Init(&param0->unk_00);
+    BoxPokemon_Init(&param0->boxMon);
     param0->unk_68 = 0;
     sub_020262C0(&param0->unk_08);
 }
