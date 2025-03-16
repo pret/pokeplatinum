@@ -609,7 +609,7 @@ static u16 ov5_021E6B54(u16 species, Daycare *daycare)
     return species;
 }
 
-static void Daycare_TryGiveVoltTackle(Pokemon *mon, Daycare *daycare)
+static void Egg_TryGiveVoltTackle(Pokemon *mon, Daycare *daycare)
 {
     int item1, item2;
     BoxPokemon *parents[2];
@@ -718,7 +718,7 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     UpdateMonStatusAndTrainerInfo(egg, trainerInfo, param4, metLocation, HEAP_ID_SYSTEM);
 }
 
-static void Daycare_SetInitialEggData(Pokemon *mon, u16 species, Daycare *daycare, u32 monOTID, u8 form)
+static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 monOTID, u8 form)
 {
     u8 level;
     u16 ball;
@@ -773,7 +773,7 @@ void ov5_021E6EA8(Daycare *daycare, Party *param1, TrainerInfo *param2)
     BoxPokemon *boxMon = ov5_021E622C(daycare, v1[0]);
     u8 form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
 
-    Daycare_SetInitialEggData(mon, species, daycare, monOTID, form);
+    Egg_SetInitialData(mon, species, daycare, monOTID, form);
 
     ov5_021E67B0(mon, daycare);
     ov5_021E6948(mon, ov5_021E622C(daycare, v1[1]), ov5_021E622C(daycare, v1[0]));
@@ -781,7 +781,7 @@ void ov5_021E6EA8(Daycare *daycare, Party *param1, TrainerInfo *param2)
     UpdateMonStatusAndTrainerInfo(mon, param2, 3, SpecialMetLoc_GetId(1, 0), HEAP_ID_FIELD);
 
     if (species == SPECIES_PICHU) {
-        Daycare_TryGiveVoltTackle(mon, daycare);
+        Egg_TryGiveVoltTackle(mon, daycare);
     }
 
     isEgg = TRUE;
