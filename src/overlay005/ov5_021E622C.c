@@ -609,19 +609,19 @@ static u16 ov5_021E6B54(u16 species, Daycare *daycare)
     return species;
 }
 
-static void ov5_021E6BD0(Pokemon *param0, Daycare *daycare)
+static void Daycare_TryGiveVoltTackle(Pokemon *mon, Daycare *daycare)
 {
-    int v0, v1;
-    BoxPokemon *v2[2];
+    int item1, item2;
+    BoxPokemon *parents[2];
 
-    ov5_021E6668(daycare, v2);
+    ov5_021E6668(daycare, parents);
 
-    v0 = BoxPokemon_GetValue(v2[0], MON_DATA_HELD_ITEM, NULL);
-    v1 = BoxPokemon_GetValue(v2[1], MON_DATA_HELD_ITEM, NULL);
+    item1 = BoxPokemon_GetValue(parents[0], MON_DATA_HELD_ITEM, NULL);
+    item2 = BoxPokemon_GetValue(parents[1], MON_DATA_HELD_ITEM, NULL);
 
-    if ((v0 == 236) || (v1 == 236)) {
-        if (Pokemon_AddMove(param0, 344) == 0xffff) {
-            Pokemon_ReplaceMove(param0, 344);
+    if (item1 == ITEM_LIGHT_BALL || item2 == ITEM_LIGHT_BALL) {
+        if (Pokemon_AddMove(mon, MOVE_VOLT_TACKLE) == 0xffff) {
+            Pokemon_ReplaceMove(mon, MOVE_VOLT_TACKLE);
         }
     }
 }
@@ -718,7 +718,7 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     UpdateMonStatusAndTrainerInfo(egg, trainerInfo, param4, metLocation, HEAP_ID_SYSTEM);
 }
 
-static void Daycare_CreateEgg(Pokemon *mon, u16 species, Daycare *daycare, u32 monOTID, u8 form)
+static void Daycare_SetInitialEggData(Pokemon *mon, u16 species, Daycare *daycare, u32 monOTID, u8 form)
 {
     u8 level;
     u16 ball;
@@ -762,30 +762,30 @@ static void Daycare_CreateEgg(Pokemon *mon, u16 species, Daycare *daycare, u32 m
 
 void ov5_021E6EA8(Daycare *daycare, Party *param1, TrainerInfo *param2)
 {
-    u16 v0;
-    u8 v1[2], v2;
+    u16 species;
+    u8 v1[2], isEgg;
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
 
-    v0 = ov5_021E6C20(daycare, v1);
-    v0 = ov5_021E6B54(v0, daycare);
+    species = ov5_021E6C20(daycare, v1);
+    species = ov5_021E6B54(species, daycare);
 
     u32 monOTID = TrainerInfo_ID(param2);
     BoxPokemon *boxMon = ov5_021E622C(daycare, v1[0]);
     u8 form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
 
-    Daycare_CreateEgg(mon, v0, daycare, monOTID, form);
+    Daycare_SetInitialEggData(mon, species, daycare, monOTID, form);
 
     ov5_021E67B0(mon, daycare);
     ov5_021E6948(mon, ov5_021E622C(daycare, v1[1]), ov5_021E622C(daycare, v1[0]));
 
     UpdateMonStatusAndTrainerInfo(mon, param2, 3, SpecialMetLoc_GetId(1, 0), HEAP_ID_FIELD);
 
-    if (v0 == 172) {
-        ov5_021E6BD0(mon, daycare);
+    if (species == SPECIES_PICHU) {
+        Daycare_TryGiveVoltTackle(mon, daycare);
     }
 
-    v2 = 1;
-    Pokemon_SetValue(mon, MON_DATA_IS_EGG, &v2);
+    isEgg = TRUE;
+    Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);
 
     Party_AddPokemon(param1, mon);
     ov5_021E6B40(daycare);
