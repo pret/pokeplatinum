@@ -36,6 +36,6 @@ u8 ov5_021E73C8(Daycare *daycare);
 u8 ov5_021E73F0(u32 param0);
 u32 ov5_021E7420(Daycare *daycare);
 void ov5_021E771C(Pokemon *param0, int param1);
-u32 ov5_021E7790(BoxPokemon **param0);
+u32 ov5_021E7790(BoxPokemon **boxMonPair);
 
 #endif // POKEPLATINUM_OV5_021E622C_H

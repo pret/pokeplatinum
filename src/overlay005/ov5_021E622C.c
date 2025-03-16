@@ -6,6 +6,7 @@
 #include "constants/daycare.h"
 #include "constants/items.h"
 #include "constants/species.h"
+#include "generated/egg_groups.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/struct_02026218_decl.h"
@@ -46,7 +47,6 @@ typedef struct {
 void sub_020262C0(UnkStruct_02026224 *param0);
 static u8 ov5_021E70FC(Daycare *daycare);
 static int ov5_021E6F6C(Party *param0);
-static u8 ov5_021E6FF0(BoxPokemon **param0);
 void ov5_021E6B40(Daycare *daycare);
 int ov5_021E6630(Daycare *daycare, u8 param1, StringTemplate *param2);
 u8 ov5_021E6640(Daycare *daycare, int param1, StringTemplate *param2);
@@ -825,56 +825,57 @@ static u8 ov5_021E6FC0(u16 *param0, u16 *param1)
     return 0;
 }
 
-static u8 ov5_021E6FF0(BoxPokemon **param0)
+static u8 Egg_GetBoxMonPairCompatibility(BoxPokemon **boxMonPair)
 {
-    u16 v0[2][2], v1[2];
-    u32 v2[2], v3[2], v4, v5;
+    u16 eggGroups[DAYCARE_MON_COUNT][2];
+    u16 species[DAYCARE_MON_COUNT];
+    u32 trainerIDs[DAYCARE_MON_COUNT], genders[2], personality, i;
 
-    for (v5 = 0; v5 < 2; v5++) {
-        v1[v5] = BoxPokemon_GetValue(param0[v5], MON_DATA_SPECIES, NULL);
-        v2[v5] = BoxPokemon_GetValue(param0[v5], MON_DATA_OT_ID, NULL);
-        v4 = BoxPokemon_GetValue(param0[v5], MON_DATA_PERSONALITY, NULL);
-        v3[v5] = Pokemon_GetGenderOf(v1[v5], v4);
-        v0[v5][0] = SpeciesData_GetSpeciesValue(v1[v5], SPECIES_DATA_EGG_GROUP_1);
-        v0[v5][1] = SpeciesData_GetSpeciesValue(v1[v5], SPECIES_DATA_EGG_GROUP_2);
+    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+        species[i] = BoxPokemon_GetValue(boxMonPair[i], MON_DATA_SPECIES, NULL);
+        trainerIDs[i] = BoxPokemon_GetValue(boxMonPair[i], MON_DATA_OT_ID, NULL);
+        personality = BoxPokemon_GetValue(boxMonPair[i], MON_DATA_PERSONALITY, NULL);
+        genders[i] = Pokemon_GetGenderOf(species[i], personality);
+        eggGroups[i][0] = SpeciesData_GetSpeciesValue(species[i], SPECIES_DATA_EGG_GROUP_1);
+        eggGroups[i][1] = SpeciesData_GetSpeciesValue(species[i], SPECIES_DATA_EGG_GROUP_2);
     }
 
-    if ((v0[0][0] == 15) || (v0[1][0] == 15)) {
+    if (eggGroups[0][0] == EGG_GROUP_UNDISCOVERED || eggGroups[1][0] == EGG_GROUP_UNDISCOVERED) {
         return 0;
     }
 
-    if ((v0[0][0] == 13) && (v0[1][0] == 13)) {
+    if (eggGroups[0][0] == EGG_GROUP_DITTO && eggGroups[1][0] == EGG_GROUP_DITTO) {
         return 0;
     }
 
-    if ((v0[0][0] == 13) || (v0[1][0] == 13)) {
-        if (v2[0] == v2[1]) {
+    if (eggGroups[0][0] == EGG_GROUP_DITTO || eggGroups[1][0] == EGG_GROUP_DITTO) {
+        if (trainerIDs[0] == trainerIDs[1]) {
             return 20;
         } else {
             return 50;
         }
     }
 
-    if (v3[0] == v3[1]) {
+    if (genders[0] == genders[1]) {
         return 0;
     }
 
-    if ((v3[0] == 2) || (v3[1] == 2)) {
+    if ((genders[0] == GENDER_NONE) || (genders[1] == GENDER_NONE)) {
         return 0;
     }
 
-    if (ov5_021E6FC0(v0[0], v0[1]) == 0) {
+    if (ov5_021E6FC0(eggGroups[0], eggGroups[1]) == 0) {
         return 0;
     }
 
-    if (v1[0] == v1[1]) {
-        if (v2[0] != v2[1]) {
+    if (species[0] == species[1]) {
+        if (trainerIDs[0] != trainerIDs[1]) {
             return 70;
         } else {
             return 50;
         }
     } else {
-        if (v2[0] != v2[1]) {
+        if (trainerIDs[0] != trainerIDs[1]) {
             return 50;
         } else {
             return 20;
@@ -886,10 +887,10 @@ static u8 ov5_021E6FF0(BoxPokemon **param0)
 
 static u8 ov5_021E70FC(Daycare *daycare)
 {
-    BoxPokemon *v0[2];
+    BoxPokemon *parents[DAYCARE_MON_COUNT];
 
-    ov5_021E6668(daycare, v0);
-    return ov5_021E6FF0(v0);
+    ov5_021E6668(daycare, parents);
+    return Egg_GetBoxMonPairCompatibility(parents);
 }
 
 static const u16 Unk_ov5_021F9F54[] = {
@@ -1225,7 +1226,7 @@ void ov5_021E771C(Pokemon *param0, int param1)
     Pokemon_CalcLevelAndStats(param0);
 }
 
-u32 ov5_021E7790(BoxPokemon **param0)
+u32 ov5_021E7790(BoxPokemon **boxMonPair)
 {
-    return ov5_021E73F0(ov5_021E6FF0(param0));
+    return ov5_021E73F0(Egg_GetBoxMonPairCompatibility(boxMonPair));
 }
