@@ -24,7 +24,7 @@ typedef struct UnkStruct_02026218_t {
 
 typedef struct Daycare_t {
     UnkStruct_02026218 unk_00[2];
-    u32 unk_D8;
+    u32 offspringPersonality;
     u8 unk_DC;
 } Daycare;
 
@@ -40,7 +40,7 @@ void Daycare_Init(Daycare *daycare)
     BoxPokemon_Init(&daycare->unk_00[0].boxMon);
     BoxPokemon_Init(&daycare->unk_00[1].boxMon);
 
-    daycare->unk_D8 = 0;
+    daycare->offspringPersonality = 0;
     daycare->unk_DC = 0;
 }
 
@@ -71,16 +71,16 @@ UnkStruct_0202818C *sub_02026230(UnkStruct_02026224 *param0)
 
 int sub_02026234(const Daycare *daycare)
 {
-    if (daycare->unk_D8 != 0) {
+    if (daycare->offspringPersonality != 0) {
         return 1;
     }
 
     return 0;
 }
 
-int sub_02026248(const Daycare *daycare)
+int Daycare_GetOffspringPersonality(const Daycare *daycare)
 {
-    return daycare->unk_D8;
+    return daycare->offspringPersonality;
 }
 
 int sub_02026250(const Daycare *daycare)
@@ -98,9 +98,9 @@ void sub_02026260(UnkStruct_02026218 *param0, int param1)
     param0->unk_68 += param1;
 }
 
-void sub_02026270(Daycare *daycare, int param1)
+void Daycare_SetOffspringPersonality(Daycare *daycare, int personality)
 {
-    daycare->unk_D8 = param1;
+    daycare->offspringPersonality = personality;
 }
 
 void sub_02026278(Daycare *daycare, int param1)

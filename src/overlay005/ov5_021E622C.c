@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/daycare.h"
 #include "constants/items.h"
 #include "constants/species.h"
 #include "generated/game_records.h"
@@ -363,7 +364,7 @@ void ov5_021E6720(Daycare *daycare)
     int v4 = 0;
 
     if ((v2 = ov5_021E6684(daycare)) < 0) {
-        sub_02026270(daycare, MTRNG_Next());
+        Daycare_SetOffspringPersonality(daycare, MTRNG_Next());
     } else {
         BoxPokemon *v5 = ov5_021E622C(daycare, v2);
 
@@ -382,7 +383,7 @@ void ov5_021E6720(Daycare *daycare)
             }
         }
 
-        sub_02026270(daycare, v1);
+        Daycare_SetOffspringPersonality(daycare, v1);
     }
 }
 
@@ -565,7 +566,7 @@ static void ov5_021E6948(Pokemon *param0, BoxPokemon *param1, BoxPokemon *param2
 
 void ov5_021E6B40(Daycare *daycare)
 {
-    sub_02026270(daycare, 0);
+    Daycare_SetOffspringPersonality(daycare, 0);
     sub_02026278(daycare, 0);
 }
 
@@ -626,55 +627,53 @@ static void Egg_TryGiveVoltTackle(Pokemon *mon, Daycare *daycare)
     }
 }
 
-static u16 ov5_021E6C20(Daycare *daycare, u8 param1[])
+static u16 Egg_DetermineEggSpeciesAndParentSlots(Daycare *daycare, u8 parentSlots[])
 {
-    u16 v0[2], v1, v2, v3, v4, v5;
-    BoxPokemon *v6[2];
+    u16 species[DAYCARE_MON_COUNT], i, eggSpecies;
+    BoxPokemon *boxMons[DAYCARE_MON_COUNT];
 
-    ov5_021E6668(daycare, v6);
+    ov5_021E6668(daycare, boxMons);
 
-    v2 = 0;
-
-    for (v1 = 0; v1 < 2; v1++) {
-        if ((v0[v1] = BoxPokemon_GetValue(v6[v1], MON_DATA_SPECIES, NULL)) == 132) {
-            param1[0] = v1 ^ 1;
-            param1[1] = v1;
-        } else if (BoxPokemon_GetGender(v6[v1]) == 1) {
-            param1[0] = v1;
-            param1[1] = v1 ^ 1;
+    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+        if ((species[i] = BoxPokemon_GetValue(boxMons[i], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
+            parentSlots[0] = i ^ 1;
+            parentSlots[1] = i;
+        } else if (BoxPokemon_GetGender(boxMons[i]) == GENDER_FEMALE) {
+            parentSlots[0] = i;
+            parentSlots[1] = i ^ 1;
         }
     }
 
-    v3 = v0[param1[0]];
-    v4 = sub_02076F84(v3);
+    eggSpecies = sub_02076F84(species[parentSlots[0]]);
 
-    if (v4 == 29) {
-        if (sub_02026248(daycare) & 0x8000) {
-            v4 = 32;
+    if (eggSpecies == SPECIES_NIDORAN_F) {
+        if (Daycare_GetOffspringPersonality(daycare) & EGG_GENDER_MALE) {
+            eggSpecies = SPECIES_NIDORAN_M;
         } else {
-            v4 = 29;
+            eggSpecies = SPECIES_NIDORAN_F;
         }
     }
 
-    if (v4 == 314) {
-        if (sub_02026248(daycare) & 0x8000) {
-            v4 = 313;
+    if (eggSpecies == SPECIES_ILLUMISE) {
+        if (Daycare_GetOffspringPersonality(daycare) & EGG_GENDER_MALE) {
+            eggSpecies = SPECIES_VOLBEAT;
         } else {
-            v4 = 314;
+            eggSpecies = SPECIES_ILLUMISE;
         }
     }
 
-    if (v4 == 490) {
-        v4 = 489;
+    if (eggSpecies == SPECIES_MANAPHY) {
+        eggSpecies = SPECIES_PHIONE;
     }
 
-    if ((v0[param1[1]] == 132) && (BoxPokemon_GetGender(v6[param1[0]]) != 1)) {
-        v5 = param1[1];
-        param1[1] = param1[0];
-        param1[0] = v5;
+    // Make Ditto the "mother" slot if the other daycare mon is male.
+    if ((species[parentSlots[1]] == SPECIES_DITTO) && (BoxPokemon_GetGender(boxMons[parentSlots[0]]) != GENDER_FEMALE)) {
+        u16 ditto = parentSlots[1];
+        parentSlots[1] = parentSlots[0];
+        parentSlots[0] = ditto;
     }
 
-    return v4;
+    return eggSpecies;
 }
 
 void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInfo, int param4, int metLocation)
@@ -726,7 +725,7 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
     Strbuf *strBuf;
     u8 hatchCycles = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_HATCH_CYCLES);
 
-    personality = sub_02026248(daycare);
+    personality = Daycare_GetOffspringPersonality(daycare);
 
     if (Daycare_AreParentLanguagesDifferent(daycare)) {
         int i;
@@ -766,7 +765,7 @@ void ov5_021E6EA8(Daycare *daycare, Party *param1, TrainerInfo *param2)
     u8 v1[2], isEgg;
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
 
-    species = ov5_021E6C20(daycare, v1);
+    species = Egg_DetermineEggSpeciesAndParentSlots(daycare, v1);
     species = ov5_021E6B54(species, daycare);
 
     u32 monOTID = TrainerInfo_ID(param2);
