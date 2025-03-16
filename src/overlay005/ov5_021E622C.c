@@ -54,7 +54,7 @@ u8 ov5_021E73C8(Daycare *daycare);
 void ov5_021E72BC(Daycare *daycare, StringTemplate *param1);
 static void ov5_021E62C4(Party *param0, int param1, UnkStruct_02026218 *param2, SaveData *param3);
 
-static BoxPokemon *ov5_021E622C(Daycare *daycare, int param1)
+static BoxPokemon *Daycare_CopyDayCareMonToBoxMon(Daycare *daycare, int param1)
 {
     return sub_02026220(sub_02026218(daycare, param1));
 }
@@ -309,42 +309,46 @@ u8 ov5_021E6640(Daycare *daycare, int param1, StringTemplate *param2)
     return 0;
 }
 
-static void ov5_021E6668(Daycare *daycare, BoxPokemon *boxMon[])
+static void Daycare_CopyDaycareMonToBoxMonArray(Daycare *daycare, BoxPokemon *boxMon[])
 {
-    boxMon[0] = ov5_021E622C(daycare, 0);
-    boxMon[1] = ov5_021E622C(daycare, 1);
+    boxMon[0] = Daycare_CopyDayCareMonToBoxMon(daycare, 0);
+    boxMon[1] = Daycare_CopyDayCareMonToBoxMon(daycare, 1);
 }
 
-static int ov5_021E6684(Daycare *daycare)
+static int Daycare_GetParentToInheritNature(Daycare *daycare)
 {
-    int v0;
-    int v1[2], v2 = -1, v3;
-    BoxPokemon *v4[2];
+    int i;
+    int species[DAYCARE_MON_COUNT], slot = -1, dittoCount;
+    BoxPokemon *boxMon[DAYCARE_MON_COUNT];
 
-    ov5_021E6668(daycare, v4);
+    Daycare_CopyDaycareMonToBoxMonArray(daycare, boxMon);
 
-    for (v0 = 0; v0 < 2; v0++) {
-        if (BoxPokemon_GetGender(v4[v0]) == 1) {
-            v2 = v0;
+    // search for female gender
+    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+        if (BoxPokemon_GetGender(boxMon[i]) == GENDER_FEMALE) {
+            slot = i;
         }
     }
 
-    for (v3 = 0, v0 = 0; v0 < 2; v0++) {
-        if ((v1[v0] = BoxPokemon_GetValue(v4[v0], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
-            v3++;
-            v2 = v0;
+    // search for ditto
+    for (dittoCount = 0, i = 0; i < DAYCARE_MON_COUNT; i++) {
+        if ((species[i] = BoxPokemon_GetValue(boxMon[i], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
+            dittoCount++;
+            slot = i;
         }
     }
 
-    if (v3 == 2) {
+    // coin flip on ...two Dittos
+    if (dittoCount == DAYCARE_MON_COUNT) {
         if (LCRNG_Next() >= (0xffff / 2)) {
-            v2 = 0;
+            slot = 0;
         } else {
-            v2 = 1;
+            slot = 1;
         }
     }
 
-    if (BoxPokemon_GetValue(v4[v2], MON_DATA_HELD_ITEM, NULL) == ITEM_EVERSTONE) {
+    // Don't inherit nature if not holding Everstone
+    if (BoxPokemon_GetValue(boxMon[slot], MON_DATA_HELD_ITEM, NULL) == ITEM_EVERSTONE) {
         if (LCRNG_Next() >= (0xffff / 2)) {
             return -1;
         }
@@ -352,36 +356,36 @@ static int ov5_021E6684(Daycare *daycare)
         return -1;
     }
 
-    return v2;
+    return slot;
 }
 
-void ov5_021E6720(Daycare *daycare)
+static void Daycare_SetInheritedNature(Daycare *daycare)
 {
-    u32 v0 = 0, v1;
-    int v2, v3;
-    int v4 = 0;
+    u32 personality = 0, newPersonality;
+    int slot, nature;
+    int natureTries = 0;
 
-    if ((v2 = ov5_021E6684(daycare)) < 0) {
+    if ((slot = Daycare_GetParentToInheritNature(daycare)) < 0) {
         Daycare_SetOffspringPersonality(daycare, MTRNG_Next());
     } else {
-        BoxPokemon *v5 = ov5_021E622C(daycare, v2);
+        BoxPokemon *boxMon = Daycare_CopyDayCareMonToBoxMon(daycare, slot);
 
-        v0 = BoxPokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL);
-        v3 = Pokemon_GetNatureOf(v0);
+        personality = BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL);
+        nature = Pokemon_GetNatureOf(personality);
 
         while (TRUE) {
-            v1 = MTRNG_Next();
+            newPersonality = MTRNG_Next();
 
-            if ((v3 == Pokemon_GetNatureOf(v1)) && (v1 != 0)) {
+            if ((nature == Pokemon_GetNatureOf(newPersonality)) && (newPersonality != 0)) {
                 break;
             }
 
-            if (++v4 > 2400) {
+            if (++natureTries > 2400) {
                 break;
             }
         }
 
-        Daycare_SetOffspringPersonality(daycare, v1);
+        Daycare_SetOffspringPersonality(daycare, newPersonality);
     }
 }
 
@@ -423,7 +427,7 @@ static void ov5_021E67B0(Pokemon *param0, Daycare *daycare)
     }
 
     for (v1 = 0; v1 < 3; v1++) {
-        BoxPokemon *v5 = ov5_021E622C(daycare, v3[v1]);
+        BoxPokemon *v5 = Daycare_CopyDayCareMonToBoxMon(daycare, v3[v1]);
 
         switch (v0[v1]) {
         case 0:
@@ -585,7 +589,7 @@ static u16 ov5_021E6B54(u16 species, Daycare *daycare)
     u16 item1, item2, slot, i;
     BoxPokemon *parents[2];
 
-    ov5_021E6668(daycare, parents);
+    Daycare_CopyDaycareMonToBoxMonArray(daycare, parents);
 
     for (i = 0; i < NELEMS(sIncenseBabyTable); i++) {
         if (species == sIncenseBabyTable[i][0]) {
@@ -613,7 +617,7 @@ static void Egg_TryGiveVoltTackle(Pokemon *mon, Daycare *daycare)
     int item1, item2;
     BoxPokemon *parents[2];
 
-    ov5_021E6668(daycare, parents);
+    Daycare_CopyDaycareMonToBoxMonArray(daycare, parents);
 
     item1 = BoxPokemon_GetValue(parents[0], MON_DATA_HELD_ITEM, NULL);
     item2 = BoxPokemon_GetValue(parents[1], MON_DATA_HELD_ITEM, NULL);
@@ -630,7 +634,7 @@ static u16 Egg_DetermineEggSpeciesAndParentSlots(Daycare *daycare, u8 parentSlot
     u16 species[DAYCARE_MON_COUNT], i, eggSpecies;
     BoxPokemon *boxMons[DAYCARE_MON_COUNT];
 
-    ov5_021E6668(daycare, boxMons);
+    Daycare_CopyDaycareMonToBoxMonArray(daycare, boxMons);
 
     for (i = 0; i < DAYCARE_MON_COUNT; i++) {
         if ((species[i] = BoxPokemon_GetValue(boxMons[i], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
@@ -767,13 +771,13 @@ void ov5_021E6EA8(Daycare *daycare, Party *param1, TrainerInfo *param2)
     species = ov5_021E6B54(species, daycare);
 
     u32 monOTID = TrainerInfo_ID(param2);
-    BoxPokemon *boxMon = ov5_021E622C(daycare, v1[0]);
+    BoxPokemon *boxMon = Daycare_CopyDayCareMonToBoxMon(daycare, v1[0]);
     u8 form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
 
     Egg_SetInitialData(mon, species, daycare, monOTID, form);
 
     ov5_021E67B0(mon, daycare);
-    ov5_021E6948(mon, ov5_021E622C(daycare, v1[1]), ov5_021E622C(daycare, v1[0]));
+    ov5_021E6948(mon, Daycare_CopyDayCareMonToBoxMon(daycare, v1[1]), Daycare_CopyDayCareMonToBoxMon(daycare, v1[0]));
 
     UpdateMonStatusAndTrainerInfo(mon, param2, 3, SpecialMetLoc_GetId(1, 0), HEAP_ID_FIELD);
 
@@ -887,7 +891,7 @@ static u8 ov5_021E70FC(Daycare *daycare)
 {
     BoxPokemon *parents[DAYCARE_MON_COUNT];
 
-    ov5_021E6668(daycare, parents);
+    Daycare_CopyDaycareMonToBoxMonArray(daycare, parents);
     return Egg_GetBoxMonPairCompatibility(parents);
 }
 
@@ -931,7 +935,7 @@ BOOL ov5_021E7154(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
     int toSubstract;
     BoxPokemon *v8[DAYCARE_MON_COUNT];
 
-    ov5_021E6668(daycare, v8);
+    Daycare_CopyDaycareMonToBoxMonArray(daycare, v8);
 
     v2 = 0;
 
@@ -949,7 +953,7 @@ BOOL ov5_021E7154(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
             v4 = (v4 * 100) / 0xffff;
 
             if (v3 > v4) {
-                ov5_021E6720(daycare);
+                Daycare_SetInheritedNature(daycare);
             }
         }
     }
@@ -1012,7 +1016,7 @@ void ov5_021E72BC(Daycare *daycare, StringTemplate *param1)
     BoxPokemon *v0[2];
     u16 v1[10 + 1];
 
-    ov5_021E6668(daycare, v0);
+    Daycare_CopyDaycareMonToBoxMonArray(daycare, v0);
 
     if (BoxPokemon_GetValue(v0[0], MON_DATA_SPECIES, NULL) != 0) {
         StringTemplate_SetNickname(param1, 0, v0[0]);
@@ -1032,7 +1036,7 @@ void ov5_021E7308(Daycare *daycare, u32 param1, u32 param2, u32 param3, u8 param
     u16 v4;
 
     v0 = sub_02026218(daycare, param4);
-    v1 = ov5_021E622C(daycare, param4);
+    v1 = Daycare_CopyDayCareMonToBoxMon(daycare, param4);
 
     StringTemplate_SetNickname(param5, param1, v1);
 
