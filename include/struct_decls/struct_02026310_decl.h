@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02026310_DECL_H
 #define POKEPLATINUM_STRUCT_02026310_DECL_H
 
-typedef struct UnkStruct_02026310_t UnkStruct_02026310;
+typedef struct Daycare_t Daycare;
 
 #endif // POKEPLATINUM_STRUCT_02026310_DECL_H

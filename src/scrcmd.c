@@ -8074,7 +8074,7 @@ static u32 sub_0204676C(SaveData *saveData)
     }
 
     {
-        UnkStruct_02026310 *v6;
+        Daycare *v6;
         UnkStruct_02026218 *v7;
 
         v6 = sub_02026310(saveData);

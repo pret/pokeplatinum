@@ -22,20 +22,20 @@ typedef struct UnkStruct_02026218_t {
     u32 unk_68;
 } UnkStruct_02026218;
 
-typedef struct UnkStruct_02026310_t {
+typedef struct Daycare_t {
     UnkStruct_02026218 unk_00[2];
     u32 unk_D8;
     u8 unk_DC;
-} UnkStruct_02026310;
+} Daycare;
 
 int Daycare_SaveSize(void)
 {
-    return sizeof(UnkStruct_02026310);
+    return sizeof(Daycare);
 }
 
-void Daycare_Init(UnkStruct_02026310 *param0)
+void Daycare_Init(Daycare *param0)
 {
-    memset(param0, 0, sizeof(UnkStruct_02026310));
+    memset(param0, 0, sizeof(Daycare));
 
     BoxPokemon_Init(&param0->unk_00[0].unk_00);
     BoxPokemon_Init(&param0->unk_00[1].unk_00);
@@ -44,7 +44,7 @@ void Daycare_Init(UnkStruct_02026310 *param0)
     param0->unk_DC = 0;
 }
 
-UnkStruct_02026218 *sub_02026218(UnkStruct_02026310 *param0, int param1)
+UnkStruct_02026218 *sub_02026218(Daycare *param0, int param1)
 {
     return &(param0->unk_00[param1]);
 }
@@ -69,7 +69,7 @@ UnkStruct_0202818C *sub_02026230(UnkStruct_02026224 *param0)
     return &(param0->unk_00);
 }
 
-int sub_02026234(const UnkStruct_02026310 *param0)
+int sub_02026234(const Daycare *param0)
 {
     if (param0->unk_D8 != 0) {
         return 1;
@@ -78,12 +78,12 @@ int sub_02026234(const UnkStruct_02026310 *param0)
     return 0;
 }
 
-int sub_02026248(const UnkStruct_02026310 *param0)
+int sub_02026248(const Daycare *param0)
 {
     return param0->unk_D8;
 }
 
-int sub_02026250(const UnkStruct_02026310 *param0)
+int sub_02026250(const Daycare *param0)
 {
     return param0->unk_DC;
 }
@@ -98,17 +98,17 @@ void sub_02026260(UnkStruct_02026218 *param0, int param1)
     param0->unk_68 += param1;
 }
 
-void sub_02026270(UnkStruct_02026310 *param0, int param1)
+void sub_02026270(Daycare *param0, int param1)
 {
     param0->unk_D8 = param1;
 }
 
-void sub_02026278(UnkStruct_02026310 *param0, int param1)
+void sub_02026278(Daycare *param0, int param1)
 {
     param0->unk_DC = param1;
 }
 
-BOOL sub_02026280(UnkStruct_02026310 *param0)
+BOOL sub_02026280(Daycare *param0)
 {
     int v0 = BoxPokemon_GetValue(&param0->unk_00[0].unk_00, MON_DATA_LANGUAGE, NULL);
     int v1 = BoxPokemon_GetValue(&param0->unk_00[1].unk_00, MON_DATA_LANGUAGE, NULL);
@@ -148,8 +148,8 @@ void sub_020262F4(UnkStruct_02026218 *param0)
     sub_020262C0(&param0->unk_08);
 }
 
-UnkStruct_02026310 *sub_02026310(SaveData *param0)
+Daycare *sub_02026310(SaveData *param0)
 {
-    UnkStruct_02026310 *v0 = SaveData_SaveTable(param0, 8);
+    Daycare *v0 = SaveData_SaveTable(param0, 8);
     return v0;
 }

@@ -27,7 +27,7 @@ typedef struct {
     UnkStruct_ov40_0225645C_1 unk_04;
     UnkStruct_ov40_0225645C *unk_28;
     PoketchSystem *poketchSys;
-    UnkStruct_02026310 *unk_30;
+    Daycare *unk_30;
 } UnkStruct_ov40_0225621C;
 
 static void NitroStaticInit(void);
@@ -42,7 +42,7 @@ static BOOL ov40_022562C0(UnkStruct_ov40_0225621C *param0);
 static BOOL ov40_02256300(UnkStruct_ov40_0225621C *param0);
 static BOOL ov40_02256354(UnkStruct_ov40_0225621C *param0);
 static BOOL ov40_02256388(UnkStruct_ov40_0225621C *param0);
-static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, UnkStruct_02026310 *param1);
+static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *param1);
 
 static void NitroStaticInit(void)
 {
@@ -202,7 +202,7 @@ static BOOL ov40_02256388(UnkStruct_ov40_0225621C *param0)
     return 0;
 }
 
-static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, UnkStruct_02026310 *param1)
+static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *param1)
 {
     UnkStruct_02026218 *v0;
     BoxPokemon *v1;
