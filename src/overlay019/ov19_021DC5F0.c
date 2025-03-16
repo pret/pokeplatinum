@@ -294,7 +294,7 @@ void ov19_021DCAC0(UnkStruct_ov19_021DC680 *param0)
 {
     u32 v0;
 
-    if (param0->unk_0C->unk_110 == ov19_021D5E68(param0->unk_0C)) {
+    if (param0->unk_0C->unk_110 == ov19_GetCurrentBox(param0->unk_0C)) {
         ov19_021D84E0(param0->unk_10);
     }
 

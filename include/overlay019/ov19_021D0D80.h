@@ -3,10 +3,10 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 
+#include "overlay019/box_customization.h"
 #include "overlay019/pc_compare_mon.h"
 #include "overlay019/pc_mon_preview.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
-#include "overlay019/struct_ov19_021D4F5C.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"
 
 #include "message.h"
@@ -57,11 +57,11 @@ BOOL ov19_021D5E34(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5E38(const UnkStruct_ov19_021D4DF0 *param0);
 BOOL ov19_021D5E3C(const UnkStruct_ov19_021D4DF0 *param0);
 BOOL ov19_021D5E4C(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5E68(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetCurrentBox(const UnkStruct_ov19_021D4DF0 *param0);
 const PCMonPreview *ov19_GetPCMonPreview(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetPreviewedMonHeldItem(const UnkStruct_ov19_021D4DF0 *param0);
-const UnkStruct_ov19_021D4F5C *ov19_021D5E8C(const UnkStruct_ov19_021D4DF0 *param0);
-const PCBoxes *ov19_021D5E90(const UnkStruct_ov19_021D4DF0 *param0);
+const BoxCustomization *ov19_GetBoxCustomization(const UnkStruct_ov19_021D4DF0 *param0);
+const PCBoxes *ov19_GetPCBoxes(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5E94(const UnkStruct_ov19_021D4DF0 *param0);
 BoxPokemon *ov19_GetPreviewedBoxMon(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetPreviewedMonMarkings(const UnkStruct_ov19_021D4DF0 *param0);
