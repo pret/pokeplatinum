@@ -46,7 +46,6 @@ typedef struct {
 
 void sub_020262C0(UnkStruct_02026224 *param0);
 static u8 ov5_021E70FC(Daycare *daycare);
-static int ov5_021E6F6C(Party *param0);
 void ov5_021E6B40(Daycare *daycare);
 int ov5_021E6630(Daycare *daycare, u8 param1, StringTemplate *param2);
 u8 ov5_021E6640(Daycare *daycare, int param1, StringTemplate *param2);
@@ -791,17 +790,17 @@ void ov5_021E6EA8(Daycare *daycare, Party *param1, TrainerInfo *param2)
     Heap_FreeToHeap(mon);
 }
 
-static int ov5_021E6F6C(Party *param0)
+static int Party_GetEggCyclesToSubtract(Party *party)
 {
-    u8 v0;
-    u8 v1;
-    int v2 = Party_GetCurrentCount(param0);
+    u8 i;
+    u8 ability;
+    int partyCount = Party_GetCurrentCount(party);
 
-    for (v0 = 0; v0 < v2; v0++) {
-        if (Pokemon_GetValue(Party_GetPokemonBySlotIndex(param0, v0), MON_DATA_EGG_EXISTS, NULL) == 0) {
-            v1 = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param0, v0), MON_DATA_ABILITY, NULL);
+    for (i = 0; i < partyCount; i++) {
+        if (Pokemon_GetValue(Party_GetPokemonBySlotIndex(party, i), MON_DATA_EGG_EXISTS, NULL) == FALSE) {
+            ability = Pokemon_GetValue(Party_GetPokemonBySlotIndex(party, i), MON_DATA_ABILITY, NULL);
 
-            if ((v1 == 40) || (v1 == 49)) {
+            if ((ability == ABILITY_MAGMA_ARMOR) || (ability == ABILITY_FLAME_BODY)) {
                 return 2;
             }
         }
@@ -926,20 +925,20 @@ static int ov5_021E7110(FieldSystem *fieldSystem)
     return 255;
 }
 
-BOOL ov5_021E7154(Daycare *daycare, Party *param1, FieldSystem *fieldSystem)
+BOOL ov5_021E7154(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
 {
-    u32 v0, v1, v2, v3, v4;
+    u32 i, eggCycles, v2, v3, v4;
     u32 v5 = 0, v6;
-    int v7;
-    BoxPokemon *v8[2];
+    int toSubstract;
+    BoxPokemon *v8[DAYCARE_MON_COUNT];
 
     ov5_021E6668(daycare, v8);
 
     v2 = 0;
 
-    for (v0 = 0; v0 < 2; v0++) {
-        if (BoxPokemon_GetValue(v8[v0], MON_DATA_SPECIES_EXISTS, NULL) != 0) {
-            sub_02026260(sub_02026218(daycare, v0), 1);
+    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+        if (BoxPokemon_GetValue(v8[i], MON_DATA_SPECIES_EXISTS, NULL) != FALSE) {
+            sub_02026260(sub_02026218(daycare, i), 1);
             v2++;
         }
     }
@@ -961,34 +960,34 @@ BOOL ov5_021E7154(Daycare *daycare, Party *param1, FieldSystem *fieldSystem)
 
     if (v6 == ov5_021E7110(fieldSystem)) {
         sub_02026278(daycare, 0);
-        v7 = ov5_021E6F6C(param1);
+        toSubstract = Party_GetEggCyclesToSubtract(party);
 
-        for (v0 = 0; v0 < Party_GetCurrentCount(param1); v0++) {
-            Pokemon *v9 = Party_GetPokemonBySlotIndex(param1, v0);
+        for (i = 0; i < Party_GetCurrentCount(party); i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-            if (Pokemon_GetValue(v9, MON_DATA_IS_EGG, NULL)) {
-                if (Pokemon_GetValue(v9, MON_DATA_IS_DATA_INVALID, NULL)) {
+            if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
+                if (Pokemon_GetValue(mon, MON_DATA_IS_DATA_INVALID, NULL)) {
                     continue;
                 }
 
-                v1 = Pokemon_GetValue(v9, MON_DATA_FRIENDSHIP, NULL);
+                eggCycles = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
-                if (v1 != 0) {
-                    if (v1 >= v7) {
-                        v1 -= v7;
+                if (eggCycles != 0) {
+                    if (eggCycles >= toSubstract) {
+                        eggCycles -= toSubstract;
                     } else {
-                        v1--;
+                        eggCycles--;
                     }
 
-                    Pokemon_SetValue(v9, MON_DATA_FRIENDSHIP, (u8 *)&v1);
+                    Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, (u8 *)&eggCycles);
                 } else {
-                    return 1;
+                    return TRUE;
                 }
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 Pokemon *Party_GetFirstEgg(Party *party)
