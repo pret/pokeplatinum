@@ -826,7 +826,7 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
 static BOOL Field_UpdateDaycare(FieldSystem *fieldSystem)
 {
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
-    Daycare *v1 = sub_02026310(fieldSystem->saveData);
+    Daycare *v1 = SaveData_GetDaycare(fieldSystem->saveData);
 
     if (ov5_021E7154(v1, party, fieldSystem) == TRUE) {
         GameRecords *v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);

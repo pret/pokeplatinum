@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/daycare.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/overworld_weather.h"
@@ -1189,7 +1190,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1A5,
     ScrCmd_1A6,
     ScrCmd_1A7,
-    ScrCmd_1A8,
+    ScrCmd_ResetDaycarePersonalityAndStepCounter,
     ScrCmd_1A9,
     ScrCmd_1AA,
     ScrCmd_1AB,
@@ -8052,56 +8053,44 @@ static BOOL ScrCmd_302(ScriptContext *ctx)
 
 static u32 sub_0204676C(SaveData *saveData)
 {
-    int v0;
-    Pokemon *v1;
-    BoxPokemon *v2;
+    int i;
+    Pokemon *mon;
+    BoxPokemon *boxMon;
     u32 v3 = 0;
 
-    {
-        Party *v4;
-        int v5;
+    Party *party = Party_GetFromSavedata(saveData);
+    int partyCount = Party_GetCurrentCount(party);
 
-        v4 = Party_GetFromSavedata(saveData);
-        v5 = Party_GetCurrentCount(v4);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(party, i);
 
-        for (v0 = 0; v0 < v5; v0++) {
-            v1 = Party_GetPokemonBySlotIndex(v4, v0);
-
-            if ((Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0)) {
-                v3 |= 1 << Pokemon_GetValue(v1, MON_DATA_FORM, NULL);
-            }
+        if ((Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0)) {
+            v3 |= 1 << Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         }
     }
 
-    {
-        Daycare *v6;
-        UnkStruct_02026218 *v7;
+    Daycare *daycare = SaveData_GetDaycare(saveData);
 
-        v6 = sub_02026310(saveData);
+    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+        DaycareMon *daycareMon = Daycare_GetDaycareMon(daycare, i);
+        boxMon = DaycareMon_GetBoxMon(daycareMon);
 
-        for (v0 = 0; v0 < 2; v0++) {
-            v7 = sub_02026218(v6, v0);
-            v2 = sub_02026220(v7);
-
-            if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
-                v3 |= 1 << BoxPokemon_GetValue(v2, MON_DATA_FORM, NULL);
-            }
+        if ((BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0)) {
+            v3 |= 1 << BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
         }
     }
 
-    {
-        PCBoxes *v8;
-        u32 v9;
+    PCBoxes *pcBoxes;
+    u32 boxID;
 
-        v8 = SaveData_PCBoxes(saveData);
+    pcBoxes = SaveData_PCBoxes(saveData);
 
-        for (v9 = 0; v9 < 18; v9++) {
-            for (v0 = 0; v0 < (5 * 6); v0++) {
-                v2 = PCBoxes_GetBoxMonAt(v8, v9, v0);
+    for (boxID = 0; boxID < MAX_PC_BOXES; boxID++) {
+        for (i = 0; i < MAX_MONS_PER_BOX; i++) {
+            boxMon = PCBoxes_GetBoxMonAt(pcBoxes, boxID, i);
 
-                if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
-                    v3 |= 1 << BoxPokemon_GetValue(v2, MON_DATA_FORM, NULL);
-                }
+            if ((BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0)) {
+                v3 |= 1 << BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
             }
         }
     }

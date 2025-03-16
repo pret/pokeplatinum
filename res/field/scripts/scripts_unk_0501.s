@@ -33,7 +33,7 @@ _004A:
     WaitABXPadPress
     CloseMessage
     ClearFlag 115
-    ScrCmd_1A8
+    ResetDaycarePersonalityAndStepCounter
     ReleaseAll
     End
 

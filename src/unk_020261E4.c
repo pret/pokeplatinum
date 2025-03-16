@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/daycare.h"
+
 #include "struct_defs/struct_0202818C.h"
 
 #include "pokemon.h"
@@ -16,14 +18,14 @@ typedef struct UnkStruct_02026224_t {
     u8 unk_5E_4 : 4;
 } UnkStruct_02026224;
 
-typedef struct UnkStruct_02026218_t {
+typedef struct DaycareMon_t {
     BoxPokemon boxMon;
     UnkStruct_02026224 unk_08;
-    u32 unk_68;
-} UnkStruct_02026218;
+    u32 steps;
+} DaycareMon;
 
 typedef struct Daycare_t {
-    UnkStruct_02026218 unk_00[2];
+    DaycareMon mons[DAYCARE_MON_COUNT];
     u32 offspringPersonality;
     u8 stepCounter;
 } Daycare;
@@ -37,31 +39,31 @@ void Daycare_Init(Daycare *daycare)
 {
     memset(daycare, 0, sizeof(Daycare));
 
-    BoxPokemon_Init(&daycare->unk_00[0].boxMon);
-    BoxPokemon_Init(&daycare->unk_00[1].boxMon);
+    BoxPokemon_Init(&daycare->mons[0].boxMon);
+    BoxPokemon_Init(&daycare->mons[1].boxMon);
 
     daycare->offspringPersonality = 0;
     daycare->stepCounter = 0;
 }
 
-UnkStruct_02026218 *sub_02026218(Daycare *daycare, int param1)
+DaycareMon *Daycare_GetDaycareMon(Daycare *daycare, int slot)
 {
-    return &(daycare->unk_00[param1]);
+    return &(daycare->mons[slot]);
 }
 
-BoxPokemon *sub_02026220(UnkStruct_02026218 *param0)
+BoxPokemon *DaycareMon_GetBoxMon(DaycareMon *daycareMon)
 {
-    return &(param0->boxMon);
+    return &(daycareMon->boxMon);
 }
 
-UnkStruct_02026224 *sub_02026224(UnkStruct_02026218 *param0)
+UnkStruct_02026224 *sub_02026224(DaycareMon *daycareMon)
 {
-    return &(param0->unk_08);
+    return &(daycareMon->unk_08);
 }
 
-u32 sub_02026228(const UnkStruct_02026218 *param0)
+u32 DaycareMon_GetSteps(const DaycareMon *daycareMon)
 {
-    return param0->unk_68;
+    return daycareMon->steps;
 }
 
 UnkStruct_0202818C *sub_02026230(UnkStruct_02026224 *param0)
@@ -88,14 +90,14 @@ int Daycare_GetStepCounter(const Daycare *daycare)
     return daycare->stepCounter;
 }
 
-void sub_02026258(UnkStruct_02026218 *param0, int param1)
+void DaycareMon_SetSteps(DaycareMon *daycareMon, int steps)
 {
-    param0->unk_68 = param1;
+    daycareMon->steps = steps;
 }
 
-void sub_02026260(UnkStruct_02026218 *param0, int param1)
+void DaycareMon_AddSteps(DaycareMon *daycareMon, int steps)
 {
-    param0->unk_68 += param1;
+    daycareMon->steps += steps;
 }
 
 void Daycare_SetOffspringPersonality(Daycare *daycare, int personality)
@@ -110,8 +112,8 @@ void Daycare_SetStepCounter(Daycare *daycare, int steps)
 
 BOOL Daycare_AreParentLanguagesDifferent(Daycare *daycare)
 {
-    int language1 = BoxPokemon_GetValue(&daycare->unk_00[0].boxMon, MON_DATA_LANGUAGE, NULL);
-    int language2 = BoxPokemon_GetValue(&daycare->unk_00[1].boxMon, MON_DATA_LANGUAGE, NULL);
+    int language1 = BoxPokemon_GetValue(&daycare->mons[0].boxMon, MON_DATA_LANGUAGE, NULL);
+    int language2 = BoxPokemon_GetValue(&daycare->mons[1].boxMon, MON_DATA_LANGUAGE, NULL);
 
     if (language1 != language2) {
         return TRUE;
@@ -120,9 +122,9 @@ BOOL Daycare_AreParentLanguagesDifferent(Daycare *daycare)
     return FALSE;
 }
 
-void sub_020262A8(UnkStruct_02026218 *param0, const UnkStruct_02026218 *param1)
+void DaycareMon_CopyToDaycareMon(DaycareMon *dest, const DaycareMon *src)
 {
-    *param0 = *param1;
+    *dest = *src;
 }
 
 void sub_020262C0(UnkStruct_02026224 *param0)
@@ -141,15 +143,15 @@ void sub_020262C0(UnkStruct_02026224 *param0)
     param0->unk_48[0] = 0xffff;
 }
 
-void sub_020262F4(UnkStruct_02026218 *param0)
+void sub_020262F4(DaycareMon *daycareMon)
 {
-    BoxPokemon_Init(&param0->boxMon);
-    param0->unk_68 = 0;
-    sub_020262C0(&param0->unk_08);
+    BoxPokemon_Init(&daycareMon->boxMon);
+    daycareMon->steps = 0;
+    sub_020262C0(&daycareMon->unk_08);
 }
 
-Daycare *sub_02026310(SaveData *param0)
+Daycare *SaveData_GetDaycare(SaveData *saveData)
 {
-    Daycare *v0 = SaveData_SaveTable(param0, 8);
-    return v0;
+    Daycare *daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
+    return daycare;
 }

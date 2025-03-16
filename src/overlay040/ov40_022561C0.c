@@ -69,7 +69,7 @@ static BOOL ov40_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
 
 static BOOL ov40_0225621C(UnkStruct_ov40_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
-    param0->unk_30 = sub_02026310(PoketchSystem_GetSaveData(poketchSys));
+    param0->unk_30 = SaveData_GetDaycare(PoketchSystem_GetSaveData(poketchSys));
 
     ov40_022563D0(&param0->unk_04, param0->unk_30);
 
@@ -204,7 +204,7 @@ static BOOL ov40_02256388(UnkStruct_ov40_0225621C *param0)
 
 static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare)
 {
-    UnkStruct_02026218 *v0;
+    DaycareMon *v0;
     BoxPokemon *v1;
     int v2;
     BOOL v3;
@@ -213,8 +213,8 @@ static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare)
     param0->unk_01 = sub_02026234(daycare);
 
     for (v2 = 0; v2 < param0->unk_00; v2++) {
-        v0 = sub_02026218(daycare, v2);
-        v1 = sub_02026220(v0);
+        v0 = Daycare_GetDaycareMon(daycare, v2);
+        v1 = DaycareMon_GetBoxMon(v0);
         v3 = BoxPokemon_EnterDecryptionContext(v1);
 
         param0->unk_04[v2] = BoxPokemon_IconSpriteIndex(v1);

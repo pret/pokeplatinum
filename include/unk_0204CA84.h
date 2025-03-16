@@ -5,7 +5,7 @@
 
 BOOL ScrCmd_16D(ScriptContext *param0);
 BOOL ScrCmd_16E(ScriptContext *param0);
-BOOL ScrCmd_1A8(ScriptContext *param0);
+BOOL ScrCmd_ResetDaycarePersonalityAndStepCounter(ScriptContext *ctx);
 BOOL ScrCmd_1A9(ScriptContext *param0);
 BOOL ScrCmd_1A4(ScriptContext *param0);
 BOOL ScrCmd_1AA(ScriptContext *param0);

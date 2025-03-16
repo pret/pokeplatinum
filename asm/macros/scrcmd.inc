@@ -2314,7 +2314,7 @@
     .short 423
     .endm
 
-    .macro ScrCmd_1A8
+    .macro ResetDaycarePersonalityAndStepCounter
     .short 424
     .endm
 
