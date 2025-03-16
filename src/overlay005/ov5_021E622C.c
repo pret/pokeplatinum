@@ -991,18 +991,18 @@ BOOL ov5_021E7154(Daycare *daycare, Party *param1, FieldSystem *fieldSystem)
     return 0;
 }
 
-Pokemon *ov5_021E7278(Party *param0)
+Pokemon *Party_GetFirstEgg(Party *party)
 {
-    int v0;
-    Pokemon *v1;
-    int v2 = Party_GetCurrentCount(param0);
+    int i;
+    Pokemon *mon;
+    int partyCount = Party_GetCurrentCount(party);
 
-    for (v0 = 0; v0 < v2; v0++) {
-        v1 = Party_GetPokemonBySlotIndex(param0, v0);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL)
-            && (Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL) == 0)) {
-            return v1;
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)
+            && (Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL) == 0)) {
+            return mon;
         }
     }
 

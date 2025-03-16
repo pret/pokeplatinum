@@ -1507,7 +1507,7 @@ void sub_0203E2FC(FieldSystem *fieldSystem)
 {
     UnkStruct_0203E2FC v0;
     Party *v1 = Party_GetFromSavedata(fieldSystem->saveData);
-    Pokemon *v2 = ov5_021E7278(v1);
+    Pokemon *v2 = Party_GetFirstEgg(v1);
 
     GF_ASSERT(v2 != NULL);
     sub_0206D578(fieldSystem, v2);
