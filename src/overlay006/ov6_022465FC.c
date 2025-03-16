@@ -74,9 +74,9 @@ static int ov6_0224663C(FieldSystem *fieldSystem)
     int v2, v3, v4;
     int v5;
 
-    v2 = (sub_02055BD0(fieldSystem) + 6) % 7;
-    v3 = sub_02055BDC(fieldSystem);
-    v4 = sub_02055BE8(fieldSystem);
+    v2 = (FieldSystem_GetWeek(fieldSystem) + 6) % 7;
+    v3 = FieldSystem_GetHour(fieldSystem);
+    v4 = FieldSystem_GetMinute(fieldSystem);
     v5 = (((19 + v3) % 24) * 4 + (v4 / 15)) * 7;
 
     NARC_ReadFromMemberByIndexPair(v1, NARC_INDEX_ARC__TV, 0, v5, sizeof(u8) * 7);

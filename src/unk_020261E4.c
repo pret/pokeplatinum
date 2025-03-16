@@ -25,7 +25,7 @@ typedef struct UnkStruct_02026218_t {
 typedef struct Daycare_t {
     UnkStruct_02026218 unk_00[2];
     u32 offspringPersonality;
-    u8 unk_DC;
+    u8 stepCounter;
 } Daycare;
 
 int Daycare_SaveSize(void)
@@ -41,7 +41,7 @@ void Daycare_Init(Daycare *daycare)
     BoxPokemon_Init(&daycare->unk_00[1].boxMon);
 
     daycare->offspringPersonality = 0;
-    daycare->unk_DC = 0;
+    daycare->stepCounter = 0;
 }
 
 UnkStruct_02026218 *sub_02026218(Daycare *daycare, int param1)
@@ -83,9 +83,9 @@ int Daycare_GetOffspringPersonality(const Daycare *daycare)
     return daycare->offspringPersonality;
 }
 
-int sub_02026250(const Daycare *daycare)
+int Daycare_GetStepCounter(const Daycare *daycare)
 {
-    return daycare->unk_DC;
+    return daycare->stepCounter;
 }
 
 void sub_02026258(UnkStruct_02026218 *param0, int param1)
@@ -103,9 +103,9 @@ void Daycare_SetOffspringPersonality(Daycare *daycare, int personality)
     daycare->offspringPersonality = personality;
 }
 
-void sub_02026278(Daycare *daycare, int param1)
+void Daycare_SetStepCounter(Daycare *daycare, int steps)
 {
-    daycare->unk_DC = param1;
+    daycare->stepCounter = steps;
 }
 
 BOOL Daycare_AreParentLanguagesDifferent(Daycare *daycare)

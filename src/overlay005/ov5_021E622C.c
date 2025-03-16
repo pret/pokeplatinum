@@ -53,7 +53,6 @@ u16 ov5_021E73A0(Party *param0, int param1, StringTemplate *param2);
 u8 ov5_021E73C8(Daycare *daycare);
 void ov5_021E72BC(Daycare *daycare, StringTemplate *param1);
 static void ov5_021E62C4(Party *param0, int param1, UnkStruct_02026218 *param2, SaveData *param3);
-static int ov5_021E7110(FieldSystem *fieldSystem);
 
 static BoxPokemon *ov5_021E622C(Daycare *daycare, int param1)
 {
@@ -566,7 +565,7 @@ static void ov5_021E6948(Pokemon *param0, BoxPokemon *param1, BoxPokemon *param2
 void ov5_021E6B40(Daycare *daycare)
 {
     Daycare_SetOffspringPersonality(daycare, 0);
-    sub_02026278(daycare, 0);
+    Daycare_SetStepCounter(daycare, 0);
 }
 
 static const u16 sIncenseBabyTable[][3] = {
@@ -892,32 +891,32 @@ static u8 ov5_021E70FC(Daycare *daycare)
     return Egg_GetBoxMonPairCompatibility(parents);
 }
 
-static const u16 Unk_ov5_021F9F54[] = {
-    0x70,
-    0xD6,
-    0x12F,
-    0x191,
-    0x1F5,
-    0x263,
-    0x2C3,
-    0x335,
-    0x38B,
-    0x3A0,
-    0x461,
-    0x4BE
+static const u16 sEggCycleSpecialDates[] = {
+    (100 * 1 + 12), // Jan 1st, New Years
+    (100 * 2 + 14), // Feb 14th, Valentine's Day
+    (100 * 3 + 3), // March 3rd
+    (100 * 4 + 1), // April 1st, April Fools
+    (100 * 5 + 1), // May 1st, Emerald US release date
+    (100 * 6 + 11), // June 11th
+    (100 * 7 + 7), // July 7th
+    (100 * 8 + 21), // August 21st
+    (100 * 9 + 7), // September 7th
+    (100 * 9 + 28), // September 28th, Diamond/Pearl JP release date
+    (100 * 11 + 21), // November 21st, Ruby/Sapphire JP release date
+    (100 * 12 + 14), // December 14th, Crystal JP release date
 };
 
-static int ov5_021E7110(FieldSystem *fieldSystem)
+static int Daycare_GetEggCycleLength(FieldSystem *fieldSystem)
 {
-    int v0 = sub_02055BB8(fieldSystem) * 100 + sub_02055BC4(fieldSystem);
-    int v1;
+    int date = FieldSystem_GetMonth(fieldSystem) * 100 + FieldSystem_GetDay(fieldSystem);
+    int i;
 
-    if (sub_02055C40(fieldSystem)) {
+    if (FieldSystem_HasPenalty(fieldSystem)) {
         return 255;
     }
 
-    for (v1 = 0; v1 < NELEMS(Unk_ov5_021F9F54); v1++) {
-        if (Unk_ov5_021F9F54[v1] == v0) {
+    for (i = 0; i < NELEMS(sEggCycleSpecialDates); i++) {
+        if (sEggCycleSpecialDates[i] == date) {
             return 230;
         }
     }
@@ -928,7 +927,7 @@ static int ov5_021E7110(FieldSystem *fieldSystem)
 BOOL ov5_021E7154(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
 {
     u32 i, eggCycles, v2, v3, v4;
-    u32 v5 = 0, v6;
+    u32 v5 = 0, steps;
     int toSubstract;
     BoxPokemon *v8[DAYCARE_MON_COUNT];
 
@@ -955,11 +954,11 @@ BOOL ov5_021E7154(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
         }
     }
 
-    v6 = sub_02026250(daycare);
-    sub_02026278(daycare, ++v6);
+    steps = Daycare_GetStepCounter(daycare);
+    Daycare_SetStepCounter(daycare, ++steps);
 
-    if (v6 == ov5_021E7110(fieldSystem)) {
-        sub_02026278(daycare, 0);
+    if (steps == Daycare_GetEggCycleLength(fieldSystem)) {
+        Daycare_SetStepCounter(daycare, 0);
         toSubstract = Party_GetEggCyclesToSubtract(party);
 
         for (i = 0; i < Party_GetCurrentCount(party); i++) {

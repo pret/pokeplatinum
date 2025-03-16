@@ -6904,7 +6904,7 @@ static BOOL ScrCmd_268(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_02055BDC(ctx->fieldSystem);
+    *v0 = FieldSystem_GetHour(ctx->fieldSystem);
     return 0;
 }
 
@@ -7149,7 +7149,7 @@ static BOOL ScrCmd_282(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SystemData *v2 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
-    if ((SystemData_GetOwnerBirthMonth(v2) == sub_02055BB8(fieldSystem)) && (SystemData_GetOwnerBirthDayOfMonth(v2) == sub_02055BC4(fieldSystem))) {
+    if ((SystemData_GetOwnerBirthMonth(v2) == FieldSystem_GetMonth(fieldSystem)) && (SystemData_GetOwnerBirthDayOfMonth(v2) == FieldSystem_GetDay(fieldSystem))) {
         *v0 = 1;
     } else {
         *v0 = 0;
