@@ -2769,7 +2769,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
         }
 
         if ((v0->unk_28[i].unk_00.pixels == NULL) || ((param2->move[i] != v0->unk_00.move[i]) && (param2->move[i] != 0))) {
-            v6 = MessageUtil_MoveName(param2->move[i], 5);
+            v6 = MessageUtil_MoveName(param2->move[i], HEAP_ID_BATTLE);
             ov16_0226AEA0(param0, v6, FONT_SUBSCREEN, &v0->unk_28[i], TEXT_COLOR(7, 8, 9));
             Strbuf_Free(v6);
         }

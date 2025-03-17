@@ -5,7 +5,6 @@
 
 #include "constants/heap.h"
 #include "constants/narc.h"
-#include "generated/text_banks.h"
 
 #include "message.h"
 #include "strbuf.h"

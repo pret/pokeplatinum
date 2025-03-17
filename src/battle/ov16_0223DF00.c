@@ -1734,9 +1734,9 @@ u8 ov16_0223F9FC(BattleSystem *battleSystem, int param1, int param2, int param3,
                 Strbuf *v2;
 
                 if (param3 == 100) {
-                    v2 = sub_02014B34(&battleSystem->trainers[param2].winMsg, 5);
+                    v2 = sub_02014B34(&battleSystem->trainers[param2].winMsg, HEAP_ID_BATTLE);
                 } else {
-                    v2 = sub_02014B34(&battleSystem->trainers[param2].loseMsg, 5);
+                    v2 = sub_02014B34(&battleSystem->trainers[param2].loseMsg, HEAP_ID_BATTLE);
                 }
 
                 Window_FillTilemap(v0, 0xff);
@@ -1769,7 +1769,7 @@ u8 ov16_0223F9FC(BattleSystem *battleSystem, int param1, int param2, int param3,
                     v6 = 613;
                 }
 
-                v3 = MessageLoader_Init(0, 26, v6, HEAP_ID_BATTLE);
+                v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v6, HEAP_ID_BATTLE);
                 v4 = MessageLoader_GetNewStrbuf(v3, v5);
 
                 Window_FillTilemap(v0, 0xff);

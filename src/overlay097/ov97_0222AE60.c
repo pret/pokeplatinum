@@ -528,7 +528,7 @@ static void ov97_0222B4FC(UnkStruct_0222AE60 *param0, int param1, int param2)
 static void ov97_0222B53C(Window *param0, MessageLoader *param1, StringTemplate *param2, TextColor param3, u32 param4, int param5)
 {
     int v0, v1;
-    Strbuf *v2 = MessageUtil_ExpandedStrbuf(param2, param1, param4, 81);
+    Strbuf *v2 = MessageUtil_ExpandedStrbuf(param2, param1, param4, HEAP_ID_81);
     v0 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
     v1 = Window_GetWidth(param0) * 8 - (v0 + 32);
 
@@ -563,7 +563,7 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
     UnkStruct_0222AE60 *v6 = (UnkStruct_0222AE60 *)param0;
     TextColor v7;
 
-    v5 = MessageLoader_Init(1, 26, 550, HEAP_ID_81);
+    v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU, HEAP_ID_81);
     v4 = StringTemplate_Default(HEAP_ID_81);
 
     if (TrainerInfo_Gender(v6->unk_0C) == 1) {
@@ -579,7 +579,7 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
             continue;
         }
 
-        v3 = MessageUtil_ExpandedStrbuf(v4, v5, Unk_ov97_0223DF40[v0], 81);
+        v3 = MessageUtil_ExpandedStrbuf(v4, v5, Unk_ov97_0223DF40[v0], HEAP_ID_81);
         Text_AddPrinterWithParamsAndColor(param2->unk_10, FONT_SYSTEM, v3, 32, v0 * 16, TEXT_SPEED_NO_TRANSFER, v7, NULL);
         Strbuf_Free(v3);
     }

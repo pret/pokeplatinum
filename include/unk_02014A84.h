@@ -9,7 +9,7 @@ void sub_02014A84(Sentence *param0);
 void sub_02014A9C(Sentence *param0, u32 param1);
 void sub_02014AB4(Sentence *param0);
 void sub_02014AC4(Sentence *param0, int param1);
-Strbuf *sub_02014B34(const Sentence *param0, u32 param1);
+Strbuf *sub_02014B34(const Sentence *sentence, u32 heapID);
 Strbuf *sub_02014BA0(const Sentence *param0, u32 param1);
 BOOL sub_02014BBC(const Sentence *param0);
 BOOL sub_02014BD0(const Sentence *param0);

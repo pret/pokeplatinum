@@ -7,7 +7,6 @@
 #include "generated/genders.h"
 #include "generated/journal_location_events.h"
 #include "generated/journal_online_events.h"
-#include "generated/text_banks.h"
 
 #include "applications/journal_display/journal_controller.h"
 

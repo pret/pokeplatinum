@@ -1964,7 +1964,7 @@ static void ov70_0225F208(UnkStruct_ov70_0225F208 *param0, u32 param1)
     param0->unk_00 = StringTemplate_New(8, 64, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_04[v0] = MessageLoader_Init(1, 26, v1[v0], param1);
+        param0->unk_04[v0] = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1[v0], param1);
     }
 
     param0->unk_14 = Strbuf_Init(480, param1);

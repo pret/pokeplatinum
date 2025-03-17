@@ -176,7 +176,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
             4,
         };
 
-        v5 = MessageLoader_Init(0, 26, 637, HEAP_ID_FIELD);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0637, HEAP_ID_FIELD);
 
         {
             Strbuf *v8;
@@ -408,7 +408,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         int v10;
         u8 v11;
 
-        v6 = MessageLoader_Init(0, 26, 626, HEAP_ID_FIELD);
+        v6 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD);
 
         {
             MessageLoader *v12;
@@ -417,7 +417,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
             Strbuf *v15;
             StringTemplate *v16;
 
-            v12 = MessageLoader_Init(0, 26, 637, HEAP_ID_FIELD);
+            v12 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0637, HEAP_ID_FIELD);
 
             Window_FillTilemap(&param0->unk_18, 15);
 

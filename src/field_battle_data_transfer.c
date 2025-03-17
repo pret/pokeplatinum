@@ -11,7 +11,6 @@
 #include "constants/string.h"
 #include "generated/items.h"
 #include "generated/species.h"
-#include "generated/text_banks.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"

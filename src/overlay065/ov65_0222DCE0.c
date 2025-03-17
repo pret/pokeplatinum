@@ -697,8 +697,8 @@ static void ov65_0222E01C(UnkStruct_ov65_0222EBE0 *param0)
 
     param0->unk_15C = BgConfig_New(HEAP_ID_54);
     param0->unk_164 = StringTemplate_Default(HEAP_ID_54);
-    param0->unk_168 = MessageLoader_Init(0, 26, 674, HEAP_ID_54);
-    param0->unk_16C = MessageLoader_Init(0, 26, 695, HEAP_ID_54);
+    param0->unk_168 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_54);
+    param0->unk_16C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_54);
 
     ov65_0222E618();
     ov65_0222E638(param0->unk_15C);

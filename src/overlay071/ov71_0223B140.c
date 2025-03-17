@@ -406,7 +406,7 @@ static void ov71_0223B620(UnkStruct_ov71_0223B620 *param0)
     {
         MessageLoader *v0;
 
-        v0 = MessageLoader_Init(0, 26, 616, HEAP_ID_25);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0616, HEAP_ID_25);
 
         MessageLoader_GetStrbuf(v0, 11, param0->unk_3370);
         MessageLoader_Free(v0);

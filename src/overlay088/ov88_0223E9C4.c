@@ -129,7 +129,7 @@ int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3,
     Strbuf *v0;
     int v1;
 
-    v0 = MessageUtil_ExpandedStrbuf(param4, param3, param1, 26);
+    v0 = MessageUtil_ExpandedStrbuf(param4, param3, param1, HEAP_ID_26);
 
     if (param2 == 1) {
         Window_DrawMessageBoxWithScrollCursor(param0, 0, (512 - (9 + (18 + 12))), 10);

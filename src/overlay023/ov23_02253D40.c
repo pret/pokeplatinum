@@ -85,7 +85,7 @@ UnkStruct_ov23_02253E2C *ov23_02253D48(int param0, int heapID, BgConfig *param2,
     v1->unk_04 = Strbuf_Init(v0, heapID);
     v1->unk_28 = StringTemplate_Default(heapID);
     v1->unk_2C = param0;
-    v1->unk_24 = MessageLoader_Init(1, 26, param0, heapID);
+    v1->unk_24 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param0, heapID);
     v1->unk_34 = heapID;
     v1->unk_18 = param2;
 
@@ -116,7 +116,7 @@ void ov23_02253DFC(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
         param0->unk_2C = param1;
         MessageLoader_Free(param0->unk_24);
 
-        param0->unk_24 = MessageLoader_Init(param2, 26, param1, param0->unk_34);
+        param0->unk_24 = MessageLoader_Init(param2, NARC_INDEX_MSGDATA__PL_MSG, param1, param0->unk_34);
         GF_ASSERT(param0->unk_24 != NULL);
     }
 }

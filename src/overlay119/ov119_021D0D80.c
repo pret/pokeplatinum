@@ -299,7 +299,7 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
 
     Window_FillTilemap(param0, 15);
 
-    v5 = MessageLoader_Init(0, 26, 357, HEAP_ID_71);
+    v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0357, HEAP_ID_71);
     v3 = StringTemplate_Default(HEAP_ID_71);
     v1 = MessageLoader_GetNewStrbuf(v5, param1);
     v2 = Strbuf_Init(255, HEAP_ID_71);
@@ -330,7 +330,7 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
     {
         int v1;
         Strbuf *v2;
-        MessageLoader *v3 = MessageLoader_Init(0, 26, 357, HEAP_ID_71);
+        MessageLoader *v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0357, HEAP_ID_71);
 
         for (v1 = 0; v1 < 2; v1++) {
             v2 = MessageLoader_GetNewStrbuf(v3, 2 + v1);

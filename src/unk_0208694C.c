@@ -891,9 +891,9 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, HEAP_ID_18);
 
         v0->unk_168 = StringTemplate_Default(HEAP_ID_18);
-        v0->unk_16C = MessageLoader_Init(0, 26, 422, HEAP_ID_18);
-        v0->unk_170 = MessageLoader_Init(1, 26, 427, HEAP_ID_18);
-        v0->unk_174 = MessageLoader_Init(1, 26, 368, HEAP_ID_18);
+        v0->unk_16C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0422, HEAP_ID_18);
+        v0->unk_170 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0427, HEAP_ID_18);
+        v0->unk_174 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_18);
 
         SetAutorepeat(4, 8);
         sub_020871CC();
@@ -1406,8 +1406,8 @@ static void sub_0208737C(UnkStruct_02087A10 *param0, OverlayManager *param1)
         param0->unk_14 = 1;
     }
 
-    param0->unk_178 = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_16C, Unk_020F2850[param0->unk_00], 18);
-    param0->unk_17C = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_16C, 8, 18);
+    param0->unk_178 = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_16C, Unk_020F2850[param0->unk_00], HEAP_ID_18);
+    param0->unk_17C = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_16C, 8, HEAP_ID_18);
     param0->unk_184 = MessageLoader_GetNewStrbuf(param0->unk_16C, 7);
     param0->unk_158 = CharCode_Length(param0->unk_118);
     param0->unk_1C.unk_00 = 0;
@@ -1473,7 +1473,7 @@ static void sub_02087544(UnkStruct_02087A10 *param0, OverlayManager *param1)
             StringTemplate_SetStrbuf(param0->unk_168, 0, v0, 0, 0, 0);
         }
 
-        param0->unk_180 = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_174, v1->unk_44, 18);
+        param0->unk_180 = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_174, v1->unk_44, HEAP_ID_18);
         param0->unk_14 = 1;
 
         Strbuf_Free(v0);

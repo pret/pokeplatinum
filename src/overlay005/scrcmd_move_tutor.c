@@ -9,7 +9,6 @@
 #include "constants/species.h"
 #include "generated/items.h"
 #include "generated/moves.h"
-#include "generated/text_banks.h"
 
 #include "field/field_system.h"
 #include "overlay005/field_menu.h"
