@@ -17,6 +17,7 @@ enum SoundHeapState {
     SOUND_HEAP_STATE_PERSISTENT,
     SOUND_HEAP_STATE_BGM_BANK,
     SOUND_HEAP_STATE_SFX,
+    SOUND_HEAP_STATE_BGM,
     
     SOUND_HEAP_STATE_COUNT = 7
 };
@@ -51,6 +52,7 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT,
     SOUND_SYSTEM_PARAM_HEAP_STATE_BGM_BANK,
     SOUND_SYSTEM_PARAM_HEAP_STATE_SFX,
+    SOUND_SYSTEM_PARAM_HEAP_STATE_BGM,
 };
 
 typedef struct SoundSystem {
@@ -114,6 +116,6 @@ BOOL SoundSystem_LoadSequenceEx(u16 id, u32 flags); // See NNS_SND_ARC_LOAD_* in
 BOOL SoundSystem_LoadWaveArc(u16 id);
 BOOL SoundSystem_LoadBank(u16 id);
 NNSSndHandle *SoundSystem_GetSoundHandle(enum SoundHandleType type);
-int SoundSystem_GetSoundHandleTypeFromPlayerID(int param0);
+enum SoundHandleType SoundSystem_GetSoundHandleTypeFromPlayerID(int playerID);
 
 #endif // POKEPLATINUM_SOUND_SYSTEM_H
