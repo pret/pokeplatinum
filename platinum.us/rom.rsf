@@ -415,7 +415,13 @@ RomSpec
 	File fielddata/areadata/area_data.narc
 	File fielddata/areadata/area_build_model/area_build.narc
 	File fielddata/areadata/area_build_model/areabm_texset.narc
-	File fielddata/areadata/area_map_tex/map_tex_set.narc
+
+	Root /fielddata/areadata/area_map_tex
+	HostRoot res/field/maps/texture_sets
+	File map_tex_set.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File fielddata/areadata/area_move_model/move_model_list.narc
 
 	Root /fielddata/land_data
