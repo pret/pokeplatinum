@@ -677,31 +677,31 @@
     .long \arg1
     .endm
 
-    .macro ScrCmd_072 arg0, arg1
+    .macro ShowMoney tilemapLeft, tilemapTop
     .short 114
-    .short \arg0
-    .short \arg1
+    .short \tilemapLeft
+    .short \tilemapTop
     .endm
 
-    .macro ScrCmd_073
+    .macro HideMoney
     .short 115
     .endm
 
-    .macro ScrCmd_074
+    .macro UpdateMoneyDisplay
     .short 116
     .endm
 
-    .macro ScrCmd_075 arg0, arg1
+    .macro ShowCoins tilemapLeft, tilemapTop
     .short 117
-    .short \arg0
-    .short \arg1
+    .short \tilemapLeft
+    .short \tilemapTop
     .endm
 
-    .macro ScrCmd_076
+    .macro HideCoins
     .short 118
     .endm
 
-    .macro ScrCmd_077
+    .macro UpdateCoinDisplay
     .short 119
     .endm
 
@@ -3659,17 +3659,17 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_294 arg0, arg1
+    .macro ShowBattlePoints tilemapLeft, tilemapTop
     .short 660
-    .byte \arg0
-    .byte \arg1
+    .byte \tilemapLeft
+    .byte \tilemapTop
     .endm
 
-    .macro ScrCmd_295
+    .macro HideBattlePoints
     .short 661
     .endm
 
-    .macro ScrCmd_296
+    .macro UpdateBPDisplay
     .short 662
     .endm
 

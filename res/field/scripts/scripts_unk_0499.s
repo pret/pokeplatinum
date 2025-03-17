@@ -10,7 +10,7 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_294 21, 1
+    ShowBattlePoints 21, 1
     GoToIfSet FLAG_UNK_0x0072, _0031
     SetFlag FLAG_UNK_0x0072
     BufferNumber 0, 1
@@ -46,11 +46,11 @@ _0085:
     ScrCmd_29A 1, 0x800C
     GoToIfEq 0x800C, 0, _0147
     ScrCmd_299 1
-    ScrCmd_296
+    UpdateBPDisplay
     Message 10
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_295
+    HideBattlePoints
     CloseMessage
     ScrCmd_2E2
     ScrCmd_2E4 0, 0x4000, 0x4001
@@ -90,7 +90,7 @@ _015D:
 _0168:
     WaitABXPadPress
     CloseMessage
-    ScrCmd_295
+    HideBattlePoints
     ReleaseAll
     End
 

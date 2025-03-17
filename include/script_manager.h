@@ -54,7 +54,7 @@ enum ScriptManagerMember {
     SCRIPT_MANAGER_TRAINER_1_TYPE,
     SCRIPT_MANAGER_TRAINER_1_MAP_OBJECT,
     SCRIPT_MANAGER_TRAINER_1_TASK,
-    SCRIPT_MANAGER_COIN_WINDOW,
+    SCRIPT_MANAGER_SPECIAL_CURRENCY_WINDOW,
     SCRIPT_MANAGER_MONEY_WINDOW,
     SCRIPT_MANAGER_SAVE_INFO_WINDOW,
     SCRIPT_DATA_START,
@@ -138,7 +138,7 @@ typedef struct ScriptManager {
     void *dataPtr; // used as a generic pointer to data in many different script commands
     UnkStruct_ov101_021D5D90 *unk_B0;
     SysTask *playerTask; // used to set player sprite animations while saving
-    Window coinWindow;
+    Window specialCurrencyWindow;
     Window moneyWindow;
     SaveInfoWindow *saveInfoWin;
 } ScriptManager;

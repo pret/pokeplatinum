@@ -1104,7 +1104,7 @@ _0E5D:
 _0E65:
     LockAll
     SetVar 0x40A1, 1
-    ScrCmd_072 21, 1
+    ShowMoney 21, 1
     Message 0
     ScrCmd_045 1, 1, 0, 1, 0x8002
     ScrCmd_046 189, 0xFF, 0
@@ -1120,7 +1120,7 @@ _0EA7:
     Message 1
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -1128,7 +1128,7 @@ _0EB4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_072 21, 1
+    ShowMoney 21, 1
     Message 1
     ScrCmd_045 1, 1, 0, 1, 0x8002
     ScrCmd_046 189, 0xFF, 0
@@ -1187,9 +1187,9 @@ _0F7C:
     CallIfEq 0x8002, 17, _21CD
     CallIfEq 0x8002, 18, _21E1
     CallIfEq 0x8002, 19, _21F5
-    ScrCmd_074
+    UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
-    ScrCmd_073
+    HideMoney
     ScrCmd_30D 0x8002
     Return
 
@@ -1452,7 +1452,7 @@ _1478:
     Message 1
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -1571,7 +1571,7 @@ _161C:
 _1624:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_072 21, 1
+    ShowMoney 21, 1
     BufferPlayerName 1
     Message 119
     Call _18F8
@@ -1665,7 +1665,7 @@ _18E6:
 
 _18F0:
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 

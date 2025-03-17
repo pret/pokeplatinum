@@ -404,8 +404,8 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
     case SCRIPT_MANAGER_TRAINER_1_TASK:
         trainer = &scriptManager->trainers[1];
         return &trainer->task;
-    case SCRIPT_MANAGER_COIN_WINDOW:
-        return &scriptManager->coinWindow;
+    case SCRIPT_MANAGER_SPECIAL_CURRENCY_WINDOW:
+        return &scriptManager->specialCurrencyWindow;
     case SCRIPT_MANAGER_MONEY_WINDOW:
         return &scriptManager->moneyWindow;
     case SCRIPT_MANAGER_SAVE_INFO_WINDOW:

@@ -119,8 +119,8 @@ _018D:
     End
 
 _0198:
-    ScrCmd_075 20, 2
-    ScrCmd_072 20, 7
+    ShowCoins 20, 2
+    ShowMoney 20, 7
 _01A4:
     Message 2
     ScrCmd_040 1, 1, 0, 1, 0x800C
@@ -142,11 +142,11 @@ _01E3:
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x3E8
     ScrCmd_070 0x3E8
-    ScrCmd_074
+    UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     PlayFanfare SEQ_SE_PL_COIN
     ScrCmd_079 50
-    ScrCmd_077
+    UpdateCoinDisplay
     WaitFanfare SEQ_SE_PL_COIN
     Message 3
     WaitTime 30, 0x800C
@@ -161,11 +161,11 @@ _0240:
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x2710
     ScrCmd_070 0x2710
-    ScrCmd_074
+    UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     PlayFanfare SEQ_SE_PL_COIN
     ScrCmd_079 0x1F4
-    ScrCmd_077
+    UpdateCoinDisplay
     WaitFanfare SEQ_SE_PL_COIN
     Message 3
     WaitTime 30, 0x800C
@@ -175,8 +175,8 @@ _029D:
     Message 4
     WaitABXPadPress
     CloseMessage
-    ScrCmd_076
-    ScrCmd_073
+    HideCoins
+    HideMoney
     ReleaseAll
     End
 
@@ -184,8 +184,8 @@ _02AC:
     Message 5
     WaitABXPadPress
     CloseMessage
-    ScrCmd_076
-    ScrCmd_073
+    HideCoins
+    HideMoney
     ReleaseAll
     End
 
@@ -193,8 +193,8 @@ _02BB:
     Message 6
     WaitABXPadPress
     CloseMessage
-    ScrCmd_076
-    ScrCmd_073
+    HideCoins
+    HideMoney
     ReleaseAll
     End
 

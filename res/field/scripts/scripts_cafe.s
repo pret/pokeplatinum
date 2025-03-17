@@ -27,7 +27,7 @@ _002B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_072 20, 2
+    ShowMoney 20, 2
     Message 1
     GoTo _0044
     End
@@ -68,14 +68,14 @@ _00E4:
     GoToIfEq 0x800C, 0, _0143
     ScrCmd_334 35, 0x8006
     ScrCmd_1A3 0x8006
-    ScrCmd_074
+    UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     CallIfEq 0x8006, 0x1F4, _0139
     CallIfEq 0x8006, 0x1770, _013E
     CallCommonScript 0x7E0
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -91,7 +91,7 @@ _0143:
     Message 3
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -99,7 +99,7 @@ _0150:
     Message 4
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -107,7 +107,7 @@ _015D:
     Message 5
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 

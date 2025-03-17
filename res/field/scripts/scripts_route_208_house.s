@@ -94,7 +94,7 @@ _0108:
     LockAll
     FacePlayer
     Message 7
-    ScrCmd_072 20, 2
+    ShowMoney 20, 2
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 223, 0
     ScrCmd_042 224, 1
@@ -123,7 +123,7 @@ _0180:
     CallIfEq 0x8000, 1, _02AB
     CallIfEq 0x8000, 2, _02B9
     CallIfEq 0x8000, 3, _02C7
-    ScrCmd_074
+    UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     AddItem 0x8001, 1, 0x800C
     BufferItemName 0, 0x8001
@@ -134,7 +134,7 @@ _0180:
 _0229:
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 

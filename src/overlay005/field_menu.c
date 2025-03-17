@@ -40,8 +40,8 @@
 #define CURRENT_FLOOR_WINDOW_HEIGHT 4
 #define MONEY_WINDOW_WIDTH          10
 #define MONEY_WINDOW_HEIGHT         4
-#define COINS_BP_WINDOW_WIDTH       10
-#define COINS_BP_WINDOW_HEIGHT      2
+#define COIN_BP_WINDOW_WIDTH        10
+#define COIN_BP_WINDOW_HEIGHT       2
 #define SHARD_COST_WINDOW_WIDTH     10
 #define SHARD_COST_WINDOW_HEIGHT    16
 
@@ -731,11 +731,11 @@ void FieldMenu_PrintMoneyToWindow(FieldSystem *fieldSystem, Window *window)
     Window_ScheduleCopyToVRAM(window);
 }
 
-Window *FieldMenu_CreateCoinsWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop)
+Window *FieldMenu_DrawCoinWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop)
 {
     Window *window = Window_New(HEAP_ID_FIELD, 1);
 
-    Window_Add(fieldSystem->bgConfig, window, BG_LAYER_MAIN_3, tilemapLeft, tilemapTop, COINS_BP_WINDOW_WIDTH, COINS_BP_WINDOW_HEIGHT, PLTT_13, (1 + (10 * 4)));
+    Window_Add(fieldSystem->bgConfig, window, BG_LAYER_MAIN_3, tilemapLeft, tilemapTop, COIN_BP_WINDOW_WIDTH, COIN_BP_WINDOW_HEIGHT, PLTT_13, (1 + (10 * 4)));
     LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD);
     Window_DrawStandardFrame(window, TRUE, 1024 - (18 + 12) - 9, PLTT_11);
 
@@ -744,7 +744,7 @@ Window *FieldMenu_CreateCoinsWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8
     return window;
 }
 
-void FieldMenu_DeleteCoinsBPWindow(Window *window)
+void FieldMenu_DeleteSpecialCurrencyWindow(Window *window)
 {
     Window_EraseStandardFrame(window, FALSE);
     Windows_Delete(window, 1);
@@ -763,7 +763,7 @@ void FieldMenu_PrintCoinsToWindow(FieldSystem *fieldSystem, Window *window)
     StringTemplate_SetNumber(stringTemplate, 0, coins, 5, PADDING_MODE_SPACES, CHARSET_MODE_EN);
     StringTemplate_Format(stringTemplate, strbuf, fmtString);
 
-    u32 printerOffset = (COINS_BP_WINDOW_WIDTH * TILE_SIDELENGTH) - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
+    u32 printerOffset = (COIN_BP_WINDOW_WIDTH * TILE_SIDELENGTH) - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
 
     Text_AddPrinterWithParams(window, FONT_SYSTEM, strbuf, printerOffset, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(fmtString);
@@ -773,11 +773,11 @@ void FieldMenu_PrintCoinsToWindow(FieldSystem *fieldSystem, Window *window)
     Window_ScheduleCopyToVRAM(window);
 }
 
-Window *FieldMenu_CreateBPWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop)
+Window *FieldMenu_DrawBPWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop)
 {
     Window *window = Window_New(HEAP_ID_FIELD, 1);
 
-    Window_Add(fieldSystem->bgConfig, window, BG_LAYER_MAIN_3, tilemapLeft, tilemapTop, COINS_BP_WINDOW_WIDTH, COINS_BP_WINDOW_HEIGHT, PLTT_13, (1 + (10 * 4)));
+    Window_Add(fieldSystem->bgConfig, window, BG_LAYER_MAIN_3, tilemapLeft, tilemapTop, COIN_BP_WINDOW_WIDTH, COIN_BP_WINDOW_HEIGHT, PLTT_13, (1 + (10 * 4)));
     LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD);
     Window_DrawStandardFrame(window, TRUE, 1024 - (18 + 12) - 9, PLTT_11);
 
@@ -799,7 +799,7 @@ void FieldMenu_PrintBPToWindow(FieldSystem *fieldSystem, Window *window)
     StringTemplate_SetNumber(stringTemplate, 0, battlePoints, 5, PADDING_MODE_SPACES, CHARSET_MODE_EN);
     StringTemplate_Format(stringTemplate, strbuf, fmtString);
 
-    u32 printerOffset = (COINS_BP_WINDOW_WIDTH * TILE_SIDELENGTH) - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
+    u32 printerOffset = (COIN_BP_WINDOW_WIDTH * TILE_SIDELENGTH) - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
 
     Text_AddPrinterWithParams(window, FONT_SYSTEM, strbuf, printerOffset, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(fmtString);
