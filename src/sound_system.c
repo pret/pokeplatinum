@@ -6,6 +6,8 @@
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_020052C8.h"
 
+#include "generated/sdat.h"
+
 #include "game_options.h"
 #include "sys_task_manager.h"
 #include "unk_020041CC.h"
@@ -209,8 +211,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->heapStates[SOUND_HEAP_STATE_BGM_BANK];
     case SOUND_SYSTEM_PARAM_HEAP_STATE_SFX:
         return &soundSys->heapStates[SOUND_HEAP_STATE_SFX];
-    case 27:
-        return &soundSys->heapStates[4];
+    case SOUND_SYSTEM_PARAM_HEAP_STATE_BGM:
+        return &soundSys->heapStates[SOUND_HEAP_STATE_BGM];
     case 28:
         return &soundSys->heapStates[5];
     case 29:
@@ -327,33 +329,33 @@ NNSSndHandle *SoundSystem_GetSoundHandle(enum SoundHandleType type)
     return &soundSys->soundHandles[type];
 }
 
-int SoundSystem_GetSoundHandleTypeFromPlayerID(int playerID)
+enum SoundHandleType SoundSystem_GetSoundHandleTypeFromPlayerID(int playerID)
 {
     enum SoundHandleType type;
 
     switch (playerID) {
-    case 1:
+    case PLAYER_FIELD:
         type = SOUND_HANDLE_TYPE_FIELD_BGM;
         break;
-    case 0:
+    case PLAYER_PV:
         type = SOUND_HANDLE_TYPE_POKEMON_CRY;
         break;
-    case 2:
+    case PLAYER_ME:
         type = 2;
         break;
-    case 3:
+    case PLAYER_SE_1:
         type = SOUND_HANDLE_TYPE_SFX_1;
         break;
-    case 4:
+    case PLAYER_SE_2:
         type = SOUND_HANDLE_TYPE_SFX_2;
         break;
-    case 5:
+    case PLAYER_SE_3:
         type = SOUND_HANDLE_TYPE_SFX_3;
         break;
-    case 6:
+    case PLAYER_SE_4:
         type = SOUND_HANDLE_TYPE_SFX_4;
         break;
-    case 7:
+    case PLAYER_BGM:
         type = SOUND_HANDLE_TYPE_BGM;
         break;
     default:

@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/species.h"
+#include "generated/sdat.h"
 
 #include "struct_defs/chatot_cry.h"
 
@@ -22,8 +23,8 @@ typedef struct {
 BOOL sub_02005474(u16 param0);
 BOOL Sound_PlayBGM(u16 param0);
 static void sub_020054EC(u16 param0, int param1);
-static BOOL sub_02005508(u16 param0, u8 param1, int param2);
-static BOOL sub_02005538(u16 param0, u8 param1, int param2);
+static BOOL Sound_PlayRegularBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
+static BOOL Sound_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
 BOOL sub_02005588(u8 param0, u16 param1);
 void sub_020055D0(u16 param0, int param1);
 static void sub_020055F4(void);
@@ -61,7 +62,7 @@ static void sub_02006214(u16 param0);
 BOOL sub_02005474(u16 param0)
 {
     int v0;
-    u8 v1 = sub_02004B18(param0);
+    u8 v1 = Sound_GetPlayerForSequence(param0);
     int v2 = SoundSystem_GetSoundHandleTypeFromPlayerID(v1);
 
     v0 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(v2), param0);
@@ -74,16 +75,16 @@ BOOL sub_02005474(u16 param0)
     return v0;
 }
 
-BOOL Sound_PlayBGM(u16 sdatID)
+BOOL Sound_PlayBGM(u16 seqID)
 {
-    int v0;
-    u8 v1 = sub_02004B18(sdatID);
-    int v2 = SoundSystem_GetSoundHandleTypeFromPlayerID(v1);
+    int result;
+    u8 player = Sound_GetPlayerForSequence(seqID);
+    enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(player);
 
-    if (v1 == 7) {
-        v0 = sub_02005508(sdatID, v1, v2);
-    } else if (v1 == 1) {
-        v0 = sub_02005538(sdatID, v1, v2);
+    if (player == PLAYER_BGM) {
+        result = Sound_PlayRegularBGM(seqID, player, handleType);
+    } else if (player == PLAYER_FIELD) {
+        result = Sound_PlayFieldBGM(seqID, player, handleType);
     } else {
         GF_ASSERT(FALSE);
         return FALSE;
@@ -91,8 +92,8 @@ BOOL Sound_PlayBGM(u16 sdatID)
 
     sub_0200501C(0);
 
-    sub_020054EC(sdatID, v2);
-    return v0;
+    sub_020054EC(seqID, handleType);
+    return result;
 }
 
 static void sub_020054EC(u16 param0, int param1)
@@ -104,28 +105,24 @@ static void sub_020054EC(u16 param0, int param1)
     return;
 }
 
-static BOOL sub_02005508(u16 param0, u8 param1, int param2)
+static BOOL Sound_PlayRegularBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType)
 {
-    int v0;
-
     SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_SFX));
-    SoundSystem_LoadSequence(param0);
-    SoundSystem_SaveHeapState(SoundSystem_GetParam(27));
+    SoundSystem_LoadSequence(seqID);
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_BGM));
 
-    v0 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(param2), param0);
-    return v0;
+    return NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(handleType), seqID);
 }
 
-static BOOL sub_02005538(u16 param0, u8 param1, int param2)
+static BOOL Sound_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType)
 {
-    int v0;
     u8 *v1 = SoundSystem_GetParam(19);
     u16 *v2 = SoundSystem_GetParam(32);
 
-    v0 = sub_02004B34(SoundSystem_GetSoundHandle(0));
-    sub_020047E8(param0, sub_02004B48(v0));
+    int v0 = Sound_GetSequenceFromSoundHandle(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FIELD_BGM));
+    sub_020047E8(seqID, sub_02004B48(v0));
 
-    return NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(param2), -1, sub_02004B48(*v2), -1, param0);
+    return NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(handleType), -1, sub_02004B48(*v2), -1, seqID);
 }
 
 BOOL sub_02005588(u8 param0, u16 param1)
@@ -137,7 +134,7 @@ BOOL sub_02005588(u8 param0, u16 param1)
         return 0;
     }
 
-    if (sub_02004B18(param1) != 7) {
+    if (Sound_GetPlayerForSequence(param1) != 7) {
         GF_ASSERT(FALSE);
         return 0;
     }
@@ -162,7 +159,7 @@ void sub_020055D0(u16 param0, int param1)
 
     NNS_SndPlayerStopSeqBySeqNo(param0, param1);
 
-    v0 = sub_02004B18(param0);
+    v0 = Sound_GetPlayerForSequence(param0);
 
     if (v0 != 0xff) {
         v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
@@ -188,7 +185,7 @@ void sub_0200560C(int param0, int param1, int param2)
     int v1;
     u16 v2 = Sound_GetCurrentBGM();
 
-    v0 = sub_02004B18(v2);
+    v0 = Sound_GetPlayerForSequence(v2);
 
     if (v0 == 0xff) {
         return;
@@ -210,7 +207,7 @@ void sub_0200560C(int param0, int param1, int param2)
 void sub_0200564C(int targetVolume, int frames)
 {
     u16 v2 = Sound_GetCurrentBGM();
-    u8 v0 = sub_02004B18(v2);
+    u8 v0 = Sound_GetPlayerForSequence(v2);
 
     if (v0 == 0xff) {
         return;
@@ -234,7 +231,7 @@ int Sound_CheckFade()
 
 int sub_02005690(u16 param0)
 {
-    u8 v0 = sub_02004B18(param0);
+    u8 v0 = Sound_GetPlayerForSequence(param0);
     return sub_02004B04(v0);
 }
 
@@ -292,7 +289,7 @@ BOOL sub_02005728(u16 param0, int param1)
 
 BOOL Sound_PlayEffect(u16 sdatID)
 {
-    int v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(sub_02004B18(sdatID));
+    int v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(Sound_GetPlayerForSequence(sdatID));
     int v1 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(v0), sdatID);
 
     sub_02004AA0(sdatID, v0);
@@ -339,7 +336,7 @@ void sub_020057BC(int param0)
 
 int Sound_IsEffectPlaying(u16 param0)
 {
-    return sub_02004B04(sub_02004B18(param0));
+    return sub_02004B04(Sound_GetPlayerForSequence(param0));
 }
 
 int sub_020057E0()
@@ -357,7 +354,7 @@ int sub_020057E0()
 
 void sub_020057FC(u16 param0, u16 param1, int param2)
 {
-    int v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(sub_02004B18(param0));
+    int v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(Sound_GetPlayerForSequence(param0));
 
     NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(v0), param1, param2);
     return;
@@ -886,7 +883,7 @@ BOOL sub_02006150(u16 param0)
     sub_02006214(param0);
 
     v0 = Sound_GetCurrentBGM();
-    v1 = sub_02004B18(v0);
+    v1 = Sound_GetPlayerForSequence(v0);
 
     if (v1 != 0xff) {
         sub_020049F4(v1, 1);
@@ -942,7 +939,7 @@ int sub_020061E4(void)
     sub_020061C8(0);
 
     v1 = Sound_GetCurrentBGM();
-    v0 = sub_02004B18(v1);
+    v0 = Sound_GetPlayerForSequence(v1);
 
     if (v0 != 0xff) {
         sub_020049F4(v0, 0);
