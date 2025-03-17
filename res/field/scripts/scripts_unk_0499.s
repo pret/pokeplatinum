@@ -26,12 +26,12 @@ _0031:
 
 _0041:
     Message 1
-    ScrCmd_041 30, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 2, 0
-    ScrCmd_042 3, 1
-    ScrCmd_042 4, 2
-    ScrCmd_043
+    InitLocalTextMenu 30, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 2, 0
+    AddMenuEntryImm 3, 1
+    AddMenuEntryImm 4, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0085
     GoToIfEq 0x8008, 1, _015D

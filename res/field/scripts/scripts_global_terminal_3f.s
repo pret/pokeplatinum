@@ -138,12 +138,12 @@ _0105:
 
 _0119:
     Message 11
-    ScrCmd_041 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 15, 2
-    ScrCmd_043
+    InitLocalTextMenu 31, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 13, 0
+    AddMenuEntryImm 14, 1
+    AddMenuEntryImm 15, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0163
     GoToIfEq 0x8008, 1, _0184

@@ -55,11 +55,11 @@ _009C:
 _00B3:
     BufferPlayerName 0
     Message 0
-    ScrCmd_044 30, 13, 0, 0, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_046 137, 0xFF, 0
-    ScrCmd_046 138, 0xFF, 1
-    ScrCmd_047
+    InitGlobalTextListMenu 30, 13, 0, 0x800C, NO_EXIT_ON_B
+    SetMenuXOriginToRight
+    AddListMenuEntry 137, 0
+    AddListMenuEntry 138, 1
+    ShowListMenu
     Message 1
     Call _012F
     Message 2
@@ -70,11 +70,11 @@ _00B3:
 _00F1:
     BufferPlayerName 0
     Message 4
-    ScrCmd_044 30, 13, 0, 0, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_046 137, 0xFF, 0
-    ScrCmd_046 138, 0xFF, 1
-    ScrCmd_047
+    InitGlobalTextListMenu 30, 13, 0, 0x800C, NO_EXIT_ON_B
+    SetMenuXOriginToRight
+    AddListMenuEntry 137, 0
+    AddListMenuEntry 138, 1
+    ShowListMenu
     Message 5
     Call _012F
     Message 6

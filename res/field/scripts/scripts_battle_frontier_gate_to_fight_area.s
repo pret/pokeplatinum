@@ -53,15 +53,15 @@ _007C:
     End
 
 _0095:
-    ScrCmd_041 31, 5, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 11, 0
-    ScrCmd_042 16, 1
-    ScrCmd_042 12, 2
-    ScrCmd_042 13, 3
-    ScrCmd_042 14, 4
-    ScrCmd_042 15, 5
-    ScrCmd_043
+    InitLocalTextMenu 31, 5, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 11, 0
+    AddMenuEntryImm 16, 1
+    AddMenuEntryImm 12, 2
+    AddMenuEntryImm 13, 3
+    AddMenuEntryImm 14, 4
+    AddMenuEntryImm 15, 5
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _010E
     GoToIfEq 0x8008, 1, _0146

@@ -856,12 +856,12 @@ void FieldMenuManager_DeleteMoveTutorCost(FieldMenuManager *menuManager)
     Heap_FreeToHeap(menuManager);
 }
 
-void FieldMenuManager_SetHorizontalAnchor(FieldMenuManager *menuManager, BOOL horizontalAnchor)
+void FieldMenuManager_SetHorizontalAnchor(FieldMenuManager *menuManager, BOOL anchorRight)
 {
-    menuManager->anchorRight = horizontalAnchor;
+    menuManager->anchorRight = anchorRight;
 }
 
-void FieldMenuManager_SetVerticalAnchor(FieldMenuManager *menuManager, BOOL verticalAnchor)
+void FieldMenuManager_SetVerticalAnchor(FieldMenuManager *menuManager, BOOL anchorBottom)
 {
-    menuManager->anchorBottom = verticalAnchor;
+    menuManager->anchorBottom = anchorBottom;
 }

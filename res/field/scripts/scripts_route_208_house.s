@@ -95,13 +95,13 @@ _0108:
     FacePlayer
     Message 7
     ShowMoney 20, 2
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 223, 0
-    ScrCmd_042 224, 1
-    ScrCmd_042 225, 2
-    ScrCmd_042 226, 3
-    ScrCmd_042 227, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 223, 0
+    AddMenuEntryImm 224, 1
+    AddMenuEntryImm 225, 2
+    AddMenuEntryImm 226, 3
+    AddMenuEntryImm 227, 4
+    ShowMenu
     SetVar 0x8000, 0x800C
     SetVar 0x8008, 0x8000
     GoToIfEq 0x8008, 0, _0245
@@ -208,14 +208,14 @@ _02D5:
 
 _02E8:
     Message 14
-    ScrCmd_041 30, 7, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 19, 0
-    ScrCmd_042 20, 1
-    ScrCmd_042 21, 2
-    ScrCmd_042 22, 3
-    ScrCmd_042 23, 4
-    ScrCmd_043
+    InitLocalTextMenu 30, 7, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 19, 0
+    AddMenuEntryImm 20, 1
+    AddMenuEntryImm 21, 2
+    AddMenuEntryImm 22, 3
+    AddMenuEntryImm 23, 4
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _035B
     GoToIfEq 0x8008, 1, _0366

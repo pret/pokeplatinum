@@ -927,10 +927,10 @@ _0C11:
 _0C1C:
     BufferPlayerName 0
     Message 33
-    ScrCmd_040 1, 1, 0, 1, 0x8006
+    InitGlobalTextMenu 1, 1, 0, 0x8006
     CallIfUnset FLAG_MET_BEBE, _0C7B
     CallIfSet FLAG_MET_BEBE, _0C81
-    ScrCmd_042 60, 1
+    AddMenuEntryImm 60, 1
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 0, _0C87
     CallIfEq 0x800C, 1, _0C8D
@@ -939,25 +939,25 @@ _0C1C:
     End
 
 _0C7B:
-    ScrCmd_042 58, 0
+    AddMenuEntryImm 58, 0
     Return
 
 _0C81:
-    ScrCmd_042 59, 0
+    AddMenuEntryImm 59, 0
     Return
 
 _0C87:
-    ScrCmd_042 63, 2
+    AddMenuEntryImm 63, 2
     Return
 
 _0C8D:
-    ScrCmd_042 62, 2
+    AddMenuEntryImm 62, 2
     Return
 
 _0C93:
-    ScrCmd_042 61, 3
-    ScrCmd_042 64, 4
-    ScrCmd_043
+    AddMenuEntryImm 61, 3
+    AddMenuEntryImm 64, 4
+    ShowMenu
     SetVar 0x8008, 0x8006
     GoToIfEq 0x8008, 0, _0D16
     GoToIfEq 0x8008, 1, _0E45
@@ -966,8 +966,8 @@ _0C93:
     GoTo _0F70
 
 _0CDD:
-    ScrCmd_042 64, 3
-    ScrCmd_043
+    AddMenuEntryImm 64, 3
+    ShowMenu
     SetVar 0x8008, 0x8006
     GoToIfEq 0x8008, 0, _0D16
     GoToIfEq 0x8008, 1, _0E45
@@ -982,21 +982,21 @@ _0D16:
     GoTo _0D73
 
 _0D2C:
-    ScrCmd_044 1, 1, 0, 1, 0x800C
-    ScrCmd_046 65, 74, 0
-    ScrCmd_046 66, 75, 1
-    ScrCmd_046 67, 76, 2
-    ScrCmd_046 68, 77, 3
+    InitGlobalTextListMenu 1, 1, 0, 0x800C
+    AddListMenuEntry 65, 0, 74
+    AddListMenuEntry 66, 1, 75
+    AddListMenuEntry 67, 2, 76
+    AddListMenuEntry 68, 3, 77
     CallIfSet FLAG_CONTEST_HALL_VISITED, _0D69
-    ScrCmd_046 70, 79, 5
+    AddListMenuEntry 70, 5, 79
     Return
 
 _0D69:
-    ScrCmd_046 69, 78, 4
+    AddListMenuEntry 69, 4, 78
     Return
 
 _0D73:
-    ScrCmd_047
+    ShowListMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0DC2
     GoToIfEq 0x8008, 1, _0DD5
@@ -1060,14 +1060,14 @@ _0E55:
     GoTo _0E83
 
 _0E61:
-    ScrCmd_044 1, 1, 0, 1, 0x800C
-    ScrCmd_046 71, 80, 0
-    ScrCmd_046 72, 81, 1
-    ScrCmd_046 73, 82, 3
+    InitGlobalTextListMenu 1, 1, 0, 0x800C
+    AddListMenuEntry 71, 0, 80
+    AddListMenuEntry 72, 1, 81
+    AddListMenuEntry 73, 3, 82
     Return
 
 _0E83:
-    ScrCmd_047
+    ShowListMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0EAB
     GoToIfEq 0x8008, 1, _0EE0

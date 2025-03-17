@@ -200,11 +200,11 @@ _023A:
 _0250:
     Message 12
 _0253:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 8, 0
-    ScrCmd_042 9, 1
-    ScrCmd_042 10, 2
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 8, 0
+    AddMenuEntryImm 9, 1
+    AddMenuEntryImm 10, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _02A8
     GoToIfEq 0x8008, 1, _02F0
@@ -252,12 +252,12 @@ _0305:
 _030E:
     Message 5
 _0311:
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 96, 0
-    ScrCmd_042 97, 1
-    ScrCmd_042 98, 2
-    ScrCmd_042 99, 3
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 96, 0
+    AddMenuEntryImm 97, 1
+    AddMenuEntryImm 98, 2
+    AddMenuEntryImm 99, 3
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0360
     GoToIfEq 0x8008, 1, _0368
@@ -282,13 +282,13 @@ _0373:
 _037E:
     Message 117
 _0381:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 36, 0
-    ScrCmd_042 37, 1
-    ScrCmd_042 38, 2
-    ScrCmd_042 39, 3
-    ScrCmd_042 40, 4
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 36, 0
+    AddMenuEntryImm 37, 1
+    AddMenuEntryImm 38, 2
+    AddMenuEntryImm 39, 3
+    AddMenuEntryImm 40, 4
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _03E1
     GoToIfEq 0x8008, 1, _03EC
@@ -319,13 +319,13 @@ _0402:
 
 _040D:
     Message 27
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 105, 0
-    ScrCmd_042 106, 1
-    ScrCmd_042 107, 2
-    ScrCmd_042 108, 3
-    ScrCmd_042 109, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 105, 0
+    AddMenuEntryImm 106, 1
+    AddMenuEntryImm 107, 2
+    AddMenuEntryImm 108, 3
+    AddMenuEntryImm 109, 4
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0470
     GoToIfEq 0x8008, 1, _047E
@@ -356,14 +356,14 @@ _049A:
 
 _04A8:
     Message 28
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 110, 0
-    ScrCmd_042 111, 1
-    ScrCmd_042 112, 2
-    ScrCmd_042 113, 3
-    ScrCmd_042 114, 4
-    ScrCmd_042 115, 5
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 110, 0
+    AddMenuEntryImm 111, 1
+    AddMenuEntryImm 112, 2
+    AddMenuEntryImm 113, 3
+    AddMenuEntryImm 114, 4
+    AddMenuEntryImm 115, 5
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _051C
     GoToIfEq 0x8008, 1, _052A
@@ -445,12 +445,12 @@ _0610:
 
 _0625:
     Message 219
-    ScrCmd_040 30, 1, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 5, 2
-    ScrCmd_043
+    InitGlobalTextMenu 30, 1, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 13, 0
+    AddMenuEntryImm 14, 1
+    AddMenuEntryImm 5, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0669
     GoToIfEq 0x8008, 1, _06BB
@@ -1029,11 +1029,11 @@ _0E74:
 
 _0E93:
     Message 112
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 113, 0
-    ScrCmd_042 114, 1
-    ScrCmd_042 115, 2
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 113, 0
+    AddMenuEntryImm 114, 1
+    AddMenuEntryImm 115, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0EE1
     GoToIfEq 0x8008, 1, _1169
@@ -1042,12 +1042,12 @@ _0E93:
     End
 
 _0EE1:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 155, 0
-    ScrCmd_042 156, 1
-    ScrCmd_042 157, 2
-    ScrCmd_042 158, 3
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 155, 0
+    AddMenuEntryImm 156, 1
+    AddMenuEntryImm 157, 2
+    AddMenuEntryImm 158, 3
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0F30
     GoToIfEq 0x8008, 1, _0F44
@@ -1256,14 +1256,14 @@ _1027:
 
 _103A:
     Message 160
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 161, 0
-    ScrCmd_042 162, 1
-    ScrCmd_042 163, 2
-    ScrCmd_042 164, 3
-    ScrCmd_042 165, 4
-    ScrCmd_042 166, 5
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 161, 0
+    AddMenuEntryImm 162, 1
+    AddMenuEntryImm 163, 2
+    AddMenuEntryImm 164, 3
+    AddMenuEntryImm 165, 4
+    AddMenuEntryImm 166, 5
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _10AE
     GoToIfEq 0x8008, 1, _10BC
@@ -1330,13 +1330,13 @@ _1146:
 _1169:
     Message 117
 _116C:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 121, 0
-    ScrCmd_042 118, 1
-    ScrCmd_042 119, 2
-    ScrCmd_042 120, 3
-    ScrCmd_042 122, 4
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 121, 0
+    AddMenuEntryImm 118, 1
+    AddMenuEntryImm 119, 2
+    AddMenuEntryImm 120, 3
+    AddMenuEntryImm 122, 4
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _1375
     GoToIfEq 0x8008, 1, _11CF
@@ -1348,12 +1348,12 @@ _116C:
 _11CC:
     Message 117
 _11CF:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 125, 0
-    ScrCmd_042 126, 1
-    ScrCmd_042 127, 2
-    ScrCmd_042 129, 3
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 125, 0
+    AddMenuEntryImm 126, 1
+    AddMenuEntryImm 127, 2
+    AddMenuEntryImm 129, 3
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _121E
     GoToIfEq 0x8008, 1, _1229
@@ -1383,13 +1383,13 @@ _123F:
 _1247:
     Message 117
 _124A:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 135, 0
-    ScrCmd_042 136, 1
-    ScrCmd_042 137, 2
-    ScrCmd_042 138, 3
-    ScrCmd_042 139, 4
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 135, 0
+    AddMenuEntryImm 136, 1
+    AddMenuEntryImm 137, 2
+    AddMenuEntryImm 138, 3
+    AddMenuEntryImm 139, 4
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _12AA
     GoToIfEq 0x8008, 1, _12B5
@@ -1425,13 +1425,13 @@ _12D6:
 _12DE:
     Message 117
 _12E1:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 145, 0
-    ScrCmd_042 146, 1
-    ScrCmd_042 147, 2
-    ScrCmd_042 148, 3
-    ScrCmd_042 149, 4
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 145, 0
+    AddMenuEntryImm 146, 1
+    AddMenuEntryImm 147, 2
+    AddMenuEntryImm 148, 3
+    AddMenuEntryImm 149, 4
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _1341
     GoToIfEq 0x8008, 1, _134C

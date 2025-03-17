@@ -136,12 +136,12 @@ _01F8:
     End
 
 _0254:
-    ScrCmd_041 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 15, 0
-    ScrCmd_042 16, 1
-    ScrCmd_042 14, 2
-    ScrCmd_043
+    InitLocalTextMenu 31, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 15, 0
+    AddMenuEntryImm 16, 1
+    AddMenuEntryImm 14, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _01F8
     GoToIfEq 0x8008, 2, _0295
@@ -500,10 +500,10 @@ _07BB:
     GetPartyRotomCountAndFirst 0x8003, 0x800C
     GoToIfEq 0x8003, 0, _0801
     Message RotomsRoom_Text_OhRotomWantsToRevertToItsOriginalForm
-    ScrCmd_041 31, 15, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 14, 0
-    ScrCmd_043
+    InitLocalTextMenu 31, 15, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 14, 0
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0295
     CloseMessage

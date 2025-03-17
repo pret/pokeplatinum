@@ -516,12 +516,12 @@ _0708:
     FacePlayer
     GoToIfEq 0x4106, 2, _0900
     Message 27
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 213, 0
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 213, 0
     CallIfSet FLAG_UNK_0x0133, _0790
     CallIfSet FLAG_UNK_0x013C, _078A
-    ScrCmd_042 218, 4
-    ScrCmd_043
+    AddMenuEntryImm 218, 4
+    ShowMenu
     GoToIfEq 0x800C, 0, _0796
     GoToIfEq 0x800C, 1, _07D1
     GoToIfEq 0x800C, 2, _080C
@@ -530,11 +530,11 @@ _0708:
     End
 
 _078A:
-    ScrCmd_042 215, 2
+    AddMenuEntryImm 215, 2
     Return
 
 _0790:
-    ScrCmd_042 214, 1
+    AddMenuEntryImm 214, 1
     Return
 
 _0796:

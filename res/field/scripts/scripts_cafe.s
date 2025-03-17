@@ -33,12 +33,12 @@ _002B:
     End
 
 _0044:
-    ScrCmd_041 30, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 7, 0
-    ScrCmd_042 8, 1
-    ScrCmd_042 9, 2
-    ScrCmd_043
+    InitLocalTextMenu 30, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 7, 0
+    AddMenuEntryImm 8, 1
+    AddMenuEntryImm 9, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0092
     GoToIfEq 0x8008, 1, _00BB

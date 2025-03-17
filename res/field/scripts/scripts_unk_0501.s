@@ -253,13 +253,13 @@ _0346:
     GetDaycareState 0x800C
     SetVar 0x8001, 0
     GoToIfEq 0x800C, DAYCARE_ONE_MON, _03BE
-    ScrCmd_040 1, 1, 0, 1, 0x8001
+    InitGlobalTextMenu 1, 1, 0, 0x8001
     ScrCmd_1BC 0, 1, 2, 0
-    ScrCmd_042 134, 0
+    AddMenuEntryImm 134, 0
     ScrCmd_1BC 0, 1, 2, 1
-    ScrCmd_042 135, 1
-    ScrCmd_042 136, 2
-    ScrCmd_043
+    AddMenuEntryImm 135, 1
+    AddMenuEntryImm 136, 2
+    ShowMenu
     SetVar 0x8008, 0x8001
     GoToIfEq 0x8008, 0, _03BE
     GoToIfEq 0x8008, 1, _03BE

@@ -44,10 +44,10 @@ _008F:
 
 _009F:
     Message 2
-    ScrCmd_040 1, 1, 0, 0, 0x8000
-    ScrCmd_042 174, 0
-    ScrCmd_042 175, 1
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x8000, NO_EXIT_ON_B
+    AddMenuEntryImm 174, 0
+    AddMenuEntryImm 175, 1
+    ShowMenu
     GetRandom 0x800C, 2
     GoToIfEq 0x800C, 0, _00E4
     Message 4
