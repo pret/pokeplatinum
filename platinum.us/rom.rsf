@@ -411,7 +411,13 @@ RomSpec
 	HostRoot res/prebuilt
 	File fielddata/build_model/build_model.narc
 	File fielddata/build_model/build_model_matshp.dat
-	File fielddata/mapmatrix/map_matrix.narc
+	
+	Root /fielddata/mapmatrix
+	HostRoot res/field/maps/matrices
+	File map_matrix.narc
+	
+	Root /
+	HostRoot res/prebuilt
 	File fielddata/areadata/area_data.narc
 	File fielddata/areadata/area_build_model/area_build.narc
 	File fielddata/areadata/area_build_model/areabm_texset.narc
