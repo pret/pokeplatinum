@@ -84,7 +84,7 @@ _00D6:
     GoTo _012F
 
 _012F:
-    ScrCmd_072 20, 2
+    ShowMoneyWindow 20, 2
     Message 3
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
@@ -92,7 +92,7 @@ _012F:
     GoToIfEq 0x800C, 0, _024F
     ScrCmd_334 35, 0x2710
     ScrCmd_070 0x2710
-    ScrCmd_074
+    UpdateMoneyWindow
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     Message 7
@@ -100,12 +100,12 @@ _012F:
     WaitABXPadPress
     ScrCmd_231 0x8000, 66
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
 _018A:
-    ScrCmd_072 20, 2
+    ShowMoneyWindow 20, 2
     Message 4
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
@@ -113,7 +113,7 @@ _018A:
     GoToIfEq 0x800C, 0, _024F
     ScrCmd_335 35, 0x186A0
     ScrCmd_070 0x186A0
-    ScrCmd_074
+    UpdateMoneyWindow
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     Message 9
@@ -121,12 +121,12 @@ _018A:
     WaitABXPadPress
     ScrCmd_231 0x8000, 67
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
 _01E7:
-    ScrCmd_072 20, 2
+    ShowMoneyWindow 20, 2
     Message 5
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
@@ -134,7 +134,7 @@ _01E7:
     GoToIfEq 0x800C, 0, _024F
     ScrCmd_335 35, 0xF423F
     ScrCmd_070 0xF423F
-    ScrCmd_074
+    UpdateMoneyWindow
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     Message 11
@@ -142,7 +142,7 @@ _01E7:
     WaitABXPadPress
     ScrCmd_231 0x8000, 68
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -157,7 +157,7 @@ _024F:
     Message 13
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -165,7 +165,7 @@ _025C:
     Message 14
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 

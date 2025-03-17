@@ -677,31 +677,31 @@
     .long \arg1
     .endm
 
-    .macro ScrCmd_072 arg0, arg1
+    .macro ShowMoneyWindow tilemapLeft, tilemapTop
     .short 114
-    .short \arg0
-    .short \arg1
+    .short \tilemapLeft
+    .short \tilemapTop
     .endm
 
-    .macro ScrCmd_073
+    .macro CloseMoneyWindow
     .short 115
     .endm
 
-    .macro ScrCmd_074
+    .macro UpdateMoneyWindow
     .short 116
     .endm
 
-    .macro ScrCmd_075 arg0, arg1
+    .macro ShowCoinWindow tilemapLeft, tilemapTop
     .short 117
-    .short \arg0
-    .short \arg1
+    .short \tilemapLeft
+    .short \tilemapTop
     .endm
 
-    .macro ScrCmd_076
+    .macro CloseCoinWindow
     .short 118
     .endm
 
-    .macro ScrCmd_077
+    .macro UpdateCoinWindow
     .short 119
     .endm
 
@@ -3653,17 +3653,17 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_294 arg0, arg1
+    .macro ShowBPWindow tilemapLeft, tilemapTop
     .short 660
-    .byte \arg0
-    .byte \arg1
+    .byte \tilemapLeft
+    .byte \tilemapTop
     .endm
 
-    .macro ScrCmd_295
+    .macro CloseBPWindow
     .short 661
     .endm
 
-    .macro ScrCmd_296
+    .macro UpdateBPWindow
     .short 662
     .endm
 

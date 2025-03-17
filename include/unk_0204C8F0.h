@@ -8,8 +8,8 @@ BOOL ScrCmd_070(ScriptContext *param0);
 BOOL ScrCmd_1A3(ScriptContext *param0);
 BOOL ScrCmd_071(ScriptContext *param0);
 BOOL ScrCmd_1AB(ScriptContext *param0);
-BOOL ScrCmd_072(ScriptContext *param0);
-BOOL ScrCmd_073(ScriptContext *param0);
-BOOL ScrCmd_074(ScriptContext *param0);
+BOOL ScrCmd_ShowMoneyWindow(ScriptContext *param0);
+BOOL ScrCmd_CloseMoneyWindow(ScriptContext *param0);
+BOOL ScrCmd_UpdateMoneyWindow(ScriptContext *param0);
 
 #endif // POKEPLATINUM_UNK_0204C8F0_H

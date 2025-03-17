@@ -16,35 +16,33 @@
 #include "script_manager.h"
 #include "trainer_info.h"
 
-BOOL ScrCmd_075(ScriptContext *param0)
+BOOL ScrCmd_ShowCoinWindow(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
-    Window **v3;
+    u16 tilemapLeft = ScriptContext_GetVar(param0);
+    u16 tilemapTop = ScriptContext_GetVar(param0);
+    Window **coinWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_BP_WINDOW);
+    *coinWindow = FieldMenu_CreateCoinWindow(param0->fieldSystem, tilemapLeft, tilemapTop);
 
-    v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
-    *v3 = FieldMenu_CreateCoinsWindow(param0->fieldSystem, v1, v2);
-
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_076(ScriptContext *param0)
+BOOL ScrCmd_CloseCoinWindow(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    Window **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
+    Window **coinWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_BP_WINDOW);
 
-    FieldMenu_DeleteCoinsBPWindow(*v1);
-    return 0;
+    FieldMenu_DeleteCoinBPWindow(*coinWindow);
+    return FALSE;
 }
 
-BOOL ScrCmd_077(ScriptContext *param0)
+BOOL ScrCmd_UpdateCoinWindow(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    Window **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
+    Window **coinWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_BP_WINDOW);
 
-    FieldMenu_PrintCoinsToWindow(param0->fieldSystem, *v1);
-    return 0;
+    FieldMenu_PrintCoinsToWindow(param0->fieldSystem, *coinWindow);
+    return FALSE;
 }
 
 BOOL ScrCmd_078(ScriptContext *param0)
