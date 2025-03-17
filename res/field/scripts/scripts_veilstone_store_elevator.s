@@ -48,15 +48,15 @@ _009A:
 _00A6:
     ShowCurrentFloor 20, 1, 0x40CE
     Message 0
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 120, 0
-    ScrCmd_042 119, 1
-    ScrCmd_042 118, 2
-    ScrCmd_042 117, 3
-    ScrCmd_042 116, 4
-    ScrCmd_042 121, 5
-    ScrCmd_042 124, 6
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, TRUE, 0x800C
+    AddMenuEntryImmediate 120, 0
+    AddMenuEntryImmediate 119, 1
+    AddMenuEntryImmediate 118, 2
+    AddMenuEntryImmediate 117, 3
+    AddMenuEntryImmediate 116, 4
+    AddMenuEntryImmediate 121, 5
+    AddMenuEntryImmediate 124, 6
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _02BC
     GoToIfEq 0x8008, 1, _026D

@@ -41,13 +41,13 @@ _0072:
 _007E:
     ShowCurrentFloor 20, 1, 0x40CE
     Message 0
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 119, 0
-    ScrCmd_042 118, 1
-    ScrCmd_042 117, 2
-    ScrCmd_042 116, 3
-    ScrCmd_042 124, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, TRUE, 0x800C
+    AddMenuEntryImmediate 119, 0
+    AddMenuEntryImmediate 118, 1
+    AddMenuEntryImmediate 117, 2
+    AddMenuEntryImmediate 116, 3
+    AddMenuEntryImmediate 124, 4
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _01DC
     GoToIfEq 0x8008, 1, _018B

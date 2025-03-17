@@ -123,11 +123,11 @@ _0198:
     ShowMoneyWindow 20, 7
 _01A4:
     Message 2
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 125, 0
-    ScrCmd_042 126, 1
-    ScrCmd_042 127, 2
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, TRUE, 0x800C
+    AddMenuEntryImmediate 125, 0
+    AddMenuEntryImmediate 126, 1
+    AddMenuEntryImmediate 127, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _01E3
     GoToIfEq 0x8008, 1, _0240

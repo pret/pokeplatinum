@@ -200,22 +200,22 @@ _02DB:
     End
 
 _02E6:
-    ScrCmd_040 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 141, 0
-    ScrCmd_042 142, 1
-    ScrCmd_042 143, 2
-    ScrCmd_043
+    InitGlobalTextMenu 31, 11, 0, TRUE, 0x800C
+    SetMenuHorizAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntryImmediate 141, 0
+    AddMenuEntryImmediate 142, 1
+    AddMenuEntryImmediate 143, 2
+    ShowMenu
     Return
 
 _0301:
     Message 4
-    ScrCmd_040 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 6, 0
-    ScrCmd_042 7, 1
-    ScrCmd_042 94, 2
-    ScrCmd_043
+    InitGlobalTextMenu 31, 11, 0, TRUE, 0x800C
+    SetMenuHorizAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntryImmediate 6, 0
+    AddMenuEntryImmediate 7, 1
+    AddMenuEntryImmediate 94, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0352
     GoToIfEq 0x8008, 1, _0385
@@ -523,13 +523,13 @@ _0832:
     End
 
 _087D:
-    ScrCmd_040 31, 9, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 141, 0
-    ScrCmd_042 151, 1
-    ScrCmd_042 142, 2
-    ScrCmd_042 143, 3
-    ScrCmd_043
+    InitGlobalTextMenu 31, 9, 0, TRUE, 0x800C
+    SetMenuHorizAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntryImmediate 141, 0
+    AddMenuEntryImmediate 151, 1
+    AddMenuEntryImmediate 142, 2
+    AddMenuEntryImmediate 143, 3
+    ShowMenu
     Return
 
 _089C:
@@ -550,14 +550,14 @@ _08A7:
     End
 
 _08FF:
-    ScrCmd_040 31, 7, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 141, 0
-    ScrCmd_042 151, 1
-    ScrCmd_042 152, 2
-    ScrCmd_042 142, 3
-    ScrCmd_042 143, 4
-    ScrCmd_043
+    InitGlobalTextMenu 31, 7, 0, TRUE, 0x800C
+    SetMenuHorizAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntryImmediate 141, 0
+    AddMenuEntryImmediate 151, 1
+    AddMenuEntryImmediate 152, 2
+    AddMenuEntryImmediate 142, 3
+    AddMenuEntryImmediate 143, 4
+    ShowMenu
     Return
 
 _0922:
@@ -742,12 +742,12 @@ _0C53:
 
 _0C70:
     Message 27
-    ScrCmd_040 30, 1, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 5, 2
-    ScrCmd_043
+    InitGlobalTextMenu 30, 1, 0, TRUE, 0x800C
+    SetMenuHorizAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntryImmediate 13, 0
+    AddMenuEntryImmediate 14, 1
+    AddMenuEntryImmediate 5, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0CB4
     GoToIfEq 0x8008, 1, _0D08
