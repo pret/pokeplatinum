@@ -724,7 +724,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 Pokemon_SetValue(v1, MON_DATA_STATUS_CONDITION, &v2);
 
                 v3 = sub_0202818C(param0->unk_5C);
-                Pokemon_SetValue(v1, MON_DATA_170, v3);
+                Pokemon_SetValue(v1, MON_DATA_MAIL, v3);
                 Heap_FreeToHeap(v3);
                 Pokemon_SetValue(v1, MON_DATA_MAIL_ID, &v2);
 

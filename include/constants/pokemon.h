@@ -213,7 +213,7 @@ enum PokemonDataParam {
     MON_DATA_SPEED,
     MON_DATA_SP_ATK,
     MON_DATA_SP_DEF,
-    MON_DATA_170,
+    MON_DATA_MAIL,
     MON_DATA_171,
     MON_DATA_SPECIES_EXISTS, //!< possible data sanity check
     MON_DATA_EGG_EXISTS,

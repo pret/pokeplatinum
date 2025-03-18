@@ -37,9 +37,9 @@ BoxPokemon *DaycareMon_GetBoxMon(DaycareMon *daycareMon)
     return &(daycareMon->boxMon);
 }
 
-DaycareMail *sub_02026224(DaycareMon *daycareMon)
+DaycareMail *DaycareMon_GetDaycareMail(DaycareMon *daycareMon)
 {
-    return &(daycareMon->mail);
+    return &(daycareMon->daycareMail);
 }
 
 u32 DaycareMon_GetSteps(const DaycareMon *daycareMon)
@@ -47,9 +47,9 @@ u32 DaycareMon_GetSteps(const DaycareMon *daycareMon)
     return daycareMon->steps;
 }
 
-Mail *sub_02026230(DaycareMail *daycareMail)
+Mail *DaycareMail_GetMail(DaycareMail *daycareMail)
 {
-    return &(daycareMail->unk_00);
+    return &(daycareMail->mail);
 }
 
 int sub_02026234(const Daycare *daycare)
@@ -128,7 +128,7 @@ void DaycareMon_Init(DaycareMon *daycareMon)
 {
     BoxPokemon_Init(&daycareMon->boxMon);
     daycareMon->steps = 0;
-    DaycareMail_Init(&daycareMon->mail);
+    DaycareMail_Init(&daycareMon->daycareMail);
 }
 
 Daycare *SaveData_GetDaycare(SaveData *saveData)

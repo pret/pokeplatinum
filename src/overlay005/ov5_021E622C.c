@@ -101,7 +101,7 @@ static void Daycare_MoveToDaycareMonFromParty(Party *party, int slot, DaycareMon
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
     const u16 *trainerName;
     u16 nickname[MON_NAME_LEN + 1];
-    DaycareMail *v4 = sub_02026224(daycareMon);
+    DaycareMail *daycareMail = DaycareMon_GetDaycareMail(daycareMon);
     BoxPokemon *daycareBoxMon = DaycareMon_GetBoxMon(daycareMon);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
 
@@ -109,7 +109,7 @@ static void Daycare_MoveToDaycareMonFromParty(Party *party, int slot, DaycareMon
     Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
 
     if (BoxPokemon_HoldsMail(Pokemon_GetBoxPokemon(mon))) {
-        Pokemon_GetValue(mon, MON_DATA_170, sub_02026230(v4));
+        Pokemon_GetValue(mon, MON_DATA_MAIL, DaycareMail_GetMail(daycareMail));
     }
 
     BoxPokemon_FromPokemon(mon, daycareBoxMon);
@@ -171,11 +171,11 @@ static void ov5_021E63E0(Pokemon *param0)
     Pokemon_CalcLevelAndStats(param0);
 }
 
-static int ov5_021E6444(Party *party, DaycareMon *daycareMon, StringTemplate *template)
+static int Daycare_MoveToPartyFromDaycareMon(Party *party, DaycareMon *daycareMon, StringTemplate *template)
 {
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
     BoxPokemon *boxMon = DaycareMon_GetBoxMon(daycareMon);
-    DaycareMail *daycareMail = sub_02026224(daycareMon);
+    DaycareMail *daycareMail = DaycareMon_GetDaycareMail(daycareMon);
     u32 experience;
     u16 species;
 
@@ -191,7 +191,7 @@ static int ov5_021E6444(Party *party, DaycareMon *daycareMon, StringTemplate *te
     }
 
     if (BoxPokemon_HoldsMail(boxMon)) {
-        Pokemon_SetValue(mon, MON_DATA_170, sub_02026230(daycareMail));
+        Pokemon_SetValue(mon, MON_DATA_MAIL, DaycareMail_GetMail(daycareMail));
     }
 
     Party_AddPokemon(party, mon);
@@ -207,7 +207,7 @@ u16 ov5_021E64F8(Party *party, StringTemplate *template, Daycare *daycare, u8 da
     u16 v0;
     DaycareMon *daycareMon = Daycare_GetDaycareMon(daycare, daycareSlot);
 
-    v0 = ov5_021E6444(party, daycareMon, template);
+    v0 = Daycare_MoveToPartyFromDaycareMon(party, daycareMon, template);
     Daycare_ShiftMonSlots(daycare);
 
     return v0;

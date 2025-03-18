@@ -233,7 +233,7 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
 
     Mail *v1 = sub_0202818C(0);
 
-    Pokemon_SetValue(mon, MON_DATA_170, v1);
+    Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
     Heap_FreeToHeap(v1);
 
     u32 zero = 0;
@@ -563,7 +563,7 @@ static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, vo
         result = mon->party.spDef;
         break;
 
-    case MON_DATA_170:
+    case MON_DATA_MAIL:
         sub_020281A0(&mon->party.unk_14, dest);
         result = TRUE;
         break;
@@ -1153,7 +1153,7 @@ static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, c
         mon->party.spDef = *u16Value;
         break;
 
-    case MON_DATA_170:
+    case MON_DATA_MAIL:
         sub_020281A0(value, &mon->party.unk_14);
         break;
 
@@ -1681,7 +1681,7 @@ static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam par
     case MON_DATA_SPEED:
     case MON_DATA_SP_ATK:
     case MON_DATA_SP_DEF:
-    case MON_DATA_170:
+    case MON_DATA_MAIL:
         GF_ASSERT(0);
         break;
     default:
@@ -3754,7 +3754,7 @@ void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
     Pokemon_SetValue(mon, MON_DATA_MAX_HP, &zero);
 
     Mail *v1 = sub_0202818C(0);
-    Pokemon_SetValue(mon, MON_DATA_170, v1);
+    Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
     Heap_FreeToHeap(v1);
 
     Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &zero);

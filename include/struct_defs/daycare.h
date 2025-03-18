@@ -7,7 +7,7 @@
 #include "struct_defs/pokemon.h"
 
 typedef struct DaycareMail {
-    Mail unk_00;
+    Mail mail;
     u16 otName[TRAINER_NAME_LEN + 1];
     u16 monName[MON_NAME_LEN + 1];
     u8 unk_5E_0 : 4;
@@ -16,7 +16,7 @@ typedef struct DaycareMail {
 
 typedef struct DaycareMon {
     BoxPokemon boxMon;
-    DaycareMail mail;
+    DaycareMail daycareMail;
     u32 steps;
 } DaycareMon;
 
