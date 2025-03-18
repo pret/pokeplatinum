@@ -23,7 +23,7 @@
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0202818C.h"
+#include "struct_defs/mail.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_02078B40.h"
 
@@ -231,7 +231,7 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
     Pokemon_SetValue(mon, MON_DATA_LEVEL, &monLevel);
 
-    UnkStruct_0202818C *v1 = sub_0202818C(0);
+    Mail *v1 = sub_0202818C(0);
 
     Pokemon_SetValue(mon, MON_DATA_170, v1);
     Heap_FreeToHeap(v1);
@@ -3753,7 +3753,7 @@ void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
     Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &zero);
     Pokemon_SetValue(mon, MON_DATA_MAX_HP, &zero);
 
-    UnkStruct_0202818C *v1 = sub_0202818C(0);
+    Mail *v1 = sub_0202818C(0);
     Pokemon_SetValue(mon, MON_DATA_170, v1);
     Heap_FreeToHeap(v1);
 

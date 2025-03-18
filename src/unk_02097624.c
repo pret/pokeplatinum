@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_0202818C.h"
+#include "struct_defs/mail.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_020978D8.h"
 
@@ -52,7 +52,7 @@ void sub_02097770(UnkStruct_02097728 *param0);
 int sub_02097788(UnkStruct_02028430 *param0, Pokemon *param1, int param2);
 int sub_020977E4(UnkStruct_02028430 *param0, u16 param1, Pokemon *param2, int param3);
 void sub_020978D8(UnkStruct_020978D8 *param0);
-void sub_020978F0(UnkStruct_0202818C *param0, UnkStruct_020978D8 *param1);
+void sub_020978F0(Mail *param0, UnkStruct_020978D8 *param1);
 
 const OverlayManagerTemplate Unk_020F64B0 = {
     sub_02097944,
@@ -172,7 +172,7 @@ int sub_02097788(UnkStruct_02028430 *param0, Pokemon *param1, int param2)
 {
     int v0;
     int v1 = 0;
-    UnkStruct_0202818C *v2 = NULL;
+    Mail *v2 = NULL;
 
     v0 = sub_0202845C(param0, 0);
 
@@ -195,7 +195,7 @@ int sub_02097788(UnkStruct_02028430 *param0, Pokemon *param1, int param2)
 int sub_020977E4(UnkStruct_02028430 *param0, u16 param1, Pokemon *param2, int param3)
 {
     int v0 = 0;
-    UnkStruct_0202818C *v1 = NULL;
+    Mail *v1 = NULL;
 
     v1 = sub_020284A8(param0, 0, param1, param3);
 
@@ -213,7 +213,7 @@ int sub_020977E4(UnkStruct_02028430 *param0, u16 param1, Pokemon *param2, int pa
     return param1;
 }
 
-UnkStruct_020978D8 *sub_02097834(const UnkStruct_0202818C *param0, int heapID)
+UnkStruct_020978D8 *sub_02097834(const Mail *param0, int heapID)
 {
     u16 v0;
     UnkStruct_020978D8 *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020978D8));
@@ -223,7 +223,7 @@ UnkStruct_020978D8 *sub_02097834(const UnkStruct_0202818C *param0, int heapID)
     v1->unk_08 = sub_02028308(param0);
     v1->unk_10 = Strbuf_Init(8, heapID);
 
-    Strbuf_CopyChars(v1->unk_10, sub_0202830C((UnkStruct_0202818C *)param0));
+    Strbuf_CopyChars(v1->unk_10, sub_0202830C((Mail *)param0));
 
     v1->unk_0F = sub_02028314(param0);
     v1->unk_0D = sub_02028320(param0);
@@ -234,7 +234,7 @@ UnkStruct_020978D8 *sub_02097834(const UnkStruct_0202818C *param0, int heapID)
     }
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02014CC0(&v1->unk_1A[v0], sub_0202840C((UnkStruct_0202818C *)param0, v0));
+        sub_02014CC0(&v1->unk_1A[v0], sub_0202840C((Mail *)param0, v0));
     }
 
     return v1;
@@ -249,7 +249,7 @@ void sub_020978D8(UnkStruct_020978D8 *param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_020978F0(UnkStruct_0202818C *param0, UnkStruct_020978D8 *param1)
+void sub_020978F0(Mail *param0, UnkStruct_020978D8 *param1)
 {
     u16 v0;
 

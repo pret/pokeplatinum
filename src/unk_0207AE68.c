@@ -12,7 +12,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0202818C.h"
+#include "struct_defs/mail.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0207AE68_t.h"
 #include "struct_defs/struct_0207C894.h"
@@ -691,7 +691,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
             {
                 Pokemon *v1;
                 int v2;
-                UnkStruct_0202818C *v3;
+                Mail *v3;
                 UnkStruct_0202CA28 v4;
 
                 v1 = Pokemon_New(param0->unk_5C);

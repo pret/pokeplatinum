@@ -6,7 +6,7 @@
 #include "constants/daycare.h"
 #include "constants/charcode.h"
 
-#include "struct_defs/struct_0202818C.h"
+#include "struct_defs/mail.h"
 
 #include "pokemon.h"
 #include "savedata.h"
@@ -47,9 +47,9 @@ u32 DaycareMon_GetSteps(const DaycareMon *daycareMon)
     return daycareMon->steps;
 }
 
-UnkStruct_0202818C *sub_02026230(DaycareMail *param0)
+Mail *sub_02026230(DaycareMail *daycareMail)
 {
-    return &(param0->unk_00);
+    return &(daycareMail->unk_00);
 }
 
 int sub_02026234(const Daycare *daycare)

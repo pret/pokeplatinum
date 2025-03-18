@@ -133,15 +133,12 @@ void Daycare_MoveToEmptySlotFromParty(Party *party, int partySlot, Daycare *dayc
     Daycare_MoveToDaycareMonFromParty(party, partySlot, Daycare_GetDaycareMon(daycare, daycareSlot), saveData);
 }
 
-static void Daycare_TryShiftDaycareSlots(Daycare *daycare)
+static void Daycare_ShiftMonSlots(Daycare *daycare)
 {
-    DaycareMon *daycareMon1, *daycareMon2;
-    BoxPokemon *boxMon1, *boxMon2;
-
-    daycareMon1 = Daycare_GetDaycareMon(daycare, 0);
-    daycareMon2 = Daycare_GetDaycareMon(daycare, 1);
-    boxMon1 = DaycareMon_GetBoxMon(daycareMon1);
-    boxMon2 = DaycareMon_GetBoxMon(daycareMon2);
+    DaycareMon *daycareMon1 = Daycare_GetDaycareMon(daycare, 0);
+    DaycareMon *daycareMon2 = Daycare_GetDaycareMon(daycare, 1);
+    BoxPokemon *boxMon1 = DaycareMon_GetBoxMon(daycareMon1);
+    BoxPokemon *boxMon2 = DaycareMon_GetBoxMon(daycareMon2);
 
     if (BoxPokemon_GetValue(boxMon1, MON_DATA_SPECIES, NULL) == SPECIES_NONE) {
         if (BoxPokemon_GetValue(boxMon2, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
@@ -174,44 +171,44 @@ static void ov5_021E63E0(Pokemon *param0)
     Pokemon_CalcLevelAndStats(param0);
 }
 
-static int ov5_021E6444(Party *param0, DaycareMon *param1, StringTemplate *param2)
+static int ov5_021E6444(Party *party, DaycareMon *daycareMon, StringTemplate *template)
 {
-    Pokemon *v0 = Pokemon_New(HEAP_ID_FIELD);
-    BoxPokemon *v1 = DaycareMon_GetBoxMon(param1);
-    DaycareMail *v2 = sub_02026224(param1);
-    u32 v3;
-    u16 v4;
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
+    BoxPokemon *boxMon = DaycareMon_GetBoxMon(daycareMon);
+    DaycareMail *daycareMail = sub_02026224(daycareMon);
+    u32 experience;
+    u16 species;
 
-    StringTemplate_SetNickname(param2, 0, v1);
-    v4 = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
-    Pokemon_FromBoxPokemon(v1, v0);
+    StringTemplate_SetNickname(template, 0, boxMon);
+    species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    Pokemon_FromBoxPokemon(boxMon, mon);
 
-    if (Pokemon_GetValue(v0, MON_DATA_LEVEL, NULL) != 100) {
-        v3 = Pokemon_GetValue(v0, MON_DATA_EXP, NULL);
-        v3 += DaycareMon_GetSteps(param1);
-        Pokemon_SetValue(v0, MON_DATA_EXP, (u8 *)&v3);
-        ov5_021E63E0(v0);
+    if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL) {
+        experience = Pokemon_GetValue(mon, MON_DATA_EXP, NULL);
+        experience += DaycareMon_GetSteps(daycareMon);
+        Pokemon_SetValue(mon, MON_DATA_EXP, (u8 *)&experience);
+        ov5_021E63E0(mon);
     }
 
-    if (BoxPokemon_HoldsMail(v1)) {
-        Pokemon_SetValue(v0, MON_DATA_170, sub_02026230(v2));
+    if (BoxPokemon_HoldsMail(boxMon)) {
+        Pokemon_SetValue(mon, MON_DATA_170, sub_02026230(daycareMail));
     }
 
-    Party_AddPokemon(param0, v0);
-    BoxPokemon_Init(v1);
-    DaycareMon_SetSteps(param1, 0);
-    Heap_FreeToHeap(v0);
+    Party_AddPokemon(party, mon);
+    BoxPokemon_Init(boxMon);
+    DaycareMon_SetSteps(daycareMon, 0);
+    Heap_FreeToHeap(mon);
 
-    return v4;
+    return species;
 }
 
-u16 ov5_021E64F8(Party *param0, StringTemplate *param1, Daycare *daycare, u8 param3)
+u16 ov5_021E64F8(Party *party, StringTemplate *template, Daycare *daycare, u8 daycareSlot)
 {
     u16 v0;
-    DaycareMon *v1 = Daycare_GetDaycareMon(daycare, param3);
+    DaycareMon *daycareMon = Daycare_GetDaycareMon(daycare, daycareSlot);
 
-    v0 = ov5_021E6444(param0, v1, param1);
-    Daycare_TryShiftDaycareSlots(daycare);
+    v0 = ov5_021E6444(party, daycareMon, template);
+    Daycare_ShiftMonSlots(daycare);
 
     return v0;
 }

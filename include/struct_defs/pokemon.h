@@ -124,7 +124,7 @@ typedef struct BoxPokemon {
     PokemonDataBlock dataBlocks[4]; //!< Data blocks containing the Pokemon's boxed data, stored encrypted.
 } BoxPokemon;
 
-#include "struct_defs/struct_0202818C.h"
+#include "struct_defs/mail.h"
 #include "struct_defs/struct_0202CA28.h"
 
 /**
@@ -143,7 +143,7 @@ typedef struct PartyPokemon {
     u16 speed; //!< The Pokemon's Speed stat.
     u16 spAtk; //!< The Pokemon's Special Attack stat.
     u16 spDef; //!< The Pokemon's Special Defense stat.
-    UnkStruct_0202818C unk_14;
+    Mail unk_14;
     UnkStruct_0202CA28 unk_4C;
 } PartyPokemon;
 
