@@ -53,16 +53,16 @@ BOOL ScrCmd_ResetDaycarePersonalityAndStepCounter(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_1A9(ScriptContext *param0)
+BOOL ScrCmd_GiveEggFromDaycare(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
-    Daycare *v2 = (Daycare *)(SaveData_SaveTable(v1, 8));
-    Party *v3 = Party_GetFromSavedata(fieldSystem->saveData);
-    TrainerInfo *v4 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    Daycare *daycare = (Daycare *)(SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE));
+    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
 
-    ov5_021E6EA8(v2, v3, v4);
-    return 0;
+    Daycare_GiveEggFromDaycare(daycare, party, trainerInfo);
+    return FALSE;
 }
 
 BOOL ScrCmd_1A4(ScriptContext *param0)

@@ -203,25 +203,25 @@ static BOOL ov40_02256388(UnkStruct_ov40_0225621C *param0)
 
 static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare)
 {
-    DaycareMon *v0;
-    BoxPokemon *v1;
-    int v2;
+    DaycareMon *daycareMon;
+    BoxPokemon *boxMon;
+    int slot;
     BOOL reencrypt;
 
     param0->unk_00 = Daycare_GetMonCount(daycare);
     param0->unk_01 = sub_02026234(daycare);
 
-    for (v2 = 0; v2 < param0->unk_00; v2++) {
-        v0 = Daycare_GetDaycareMon(daycare, v2);
-        v1 = DaycareMon_GetBoxMon(v0);
-        reencrypt = BoxPokemon_EnterDecryptionContext(v1);
+    for (slot = 0; slot < param0->unk_00; slot++) {
+        daycareMon = Daycare_GetDaycareMon(daycare, slot);
+        boxMon = DaycareMon_GetBoxMon(daycareMon);
+        reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-        param0->unk_04[v2] = BoxPokemon_IconSpriteIndex(v1);
-        param0->unk_1C[v2] = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
-        param0->unk_20[v2] = BoxPokemon_GetValue(v1, MON_DATA_FORM, NULL);
-        param0->unk_0C[v2] = ov5_021E6590(v0);
-        param0->unk_14[v2] = BoxPokemon_GetGender(v1);
+        param0->unk_04[slot] = BoxPokemon_IconSpriteIndex(boxMon);
+        param0->species[slot] = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+        param0->forms[slot] = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+        param0->unk_0C[slot] = DaycareMon_GiveExperience(daycareMon);
+        param0->genders[slot] = BoxPokemon_GetGender(boxMon);
 
-        BoxPokemon_ExitDecryptionContext(v1, reencrypt);
+        BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
     }
 }

@@ -2318,7 +2318,7 @@
     .short 424
     .endm
 
-    .macro ScrCmd_1A9
+    .macro GiveEggFromDaycare
     .short 425
     .endm
 

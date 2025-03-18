@@ -55,7 +55,7 @@ _009F:
     Message 6
     WaitABXPadPress
     CloseMessage
-    ScrCmd_1A9
+    GiveEggFromDaycare
     ClearFlag 115
     ReleaseAll
     End

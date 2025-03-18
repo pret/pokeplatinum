@@ -5,8 +5,8 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_02028430_decl.h"
-#include "struct_defs/sentence.h"
 #include "struct_defs/mail.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_020978D8.h"
 

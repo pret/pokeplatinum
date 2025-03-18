@@ -1190,7 +1190,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1A6,
     ScrCmd_1A7,
     ScrCmd_ResetDaycarePersonalityAndStepCounter,
-    ScrCmd_1A9,
+    ScrCmd_GiveEggFromDaycare,
     ScrCmd_BufferDaycarePriceBySlot,
     ScrCmd_1AB,
     ScrCmd_1AC,

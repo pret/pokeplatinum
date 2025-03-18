@@ -11,8 +11,8 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/mail.h"
+#include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0207AE68_t.h"
 #include "struct_defs/struct_0207C894.h"

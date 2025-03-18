@@ -35,12 +35,12 @@
 #include "unk_02092494.h"
 
 typedef struct {
-    int unk_00[4];
-    int unk_10[4];
-    int unk_20[4];
-    u16 unk_30[50];
-    u16 unk_94[16];
-} UnkStruct_ov5_021E6948;
+    int fatherMoves[LEARNED_MOVES_MAX];
+    int sharedMoves[LEARNED_MOVES_MAX];
+    int motherMoves[LEARNED_MOVES_MAX];
+    u16 eggSpeciesLevelUpMoves[MAX_LEVEL_UP_MOVES];
+    u16 eggSpeciesEggMoves[MAX_EGG_MOVES];
+} EggMoveBuilder;
 
 static u8 ov5_021E70FC(Daycare *daycare);
 u16 ov5_021E73A0(Party *param0, int param1, StringTemplate *param2);
@@ -242,13 +242,13 @@ static int Daycare_GiveDaycareMonExperience(DaycareMon *daycareMon)
     return newLevel - level;
 }
 
-int ov5_021E6590(DaycareMon *daycareMon)
+int DaycareMon_GiveExperience(DaycareMon *daycareMon)
 {
-    u8 v0;
-    BoxPokemon *v1 = DaycareMon_GetBoxMon(daycareMon);
-    v0 = BoxPokemon_GiveExperience(v1, DaycareMon_GetSteps(daycareMon));
+    u8 level;
+    BoxPokemon *boxMon = DaycareMon_GetBoxMon(daycareMon);
+    level = BoxPokemon_GiveExperience(boxMon, DaycareMon_GetSteps(daycareMon));
 
-    return v0;
+    return level;
 }
 
 static u8 DaycareMon_BufferGainedLevels(DaycareMon *daycareMon, StringTemplate *template)
@@ -397,108 +397,109 @@ static void ov5_021E6778(u8 *param0, u8 param1)
     }
 }
 
-static void ov5_021E67B0(Pokemon *mon, Daycare *daycare)
+static void Egg_InheritIVs(Pokemon *egg, Daycare *daycare)
 {
-    u8 v0[3], v1, v2[6], v3[3], value;
+    u8 selectedIVs[INHERITED_IV_COUNT], i, availableIVs[STAT_MAX], slots[INHERITED_IV_COUNT], value;
 
-    for (v1 = 0; v1 < 6; v1++) {
-        v2[v1] = v1;
+    for (i = 0; i < STAT_MAX; i++) {
+        availableIVs[i] = i;
     }
 
-    for (v1 = 0; v1 < 3; v1++) {
-        v0[v1] = v2[LCRNG_Next() % (6 - v1)];
-        ov5_021E6778(v2, v1);
+    for (i = 0; i < INHERITED_IV_COUNT; i++) {
+        selectedIVs[i] = availableIVs[LCRNG_Next() % (STAT_MAX - i)];
+        ov5_021E6778(availableIVs, i);
     }
 
-    for (v1 = 0; v1 < 3; v1++) {
-        v3[v1] = LCRNG_Next() % 2;
+    for (i = 0; i < INHERITED_IV_COUNT; i++) {
+        slots[i] = LCRNG_Next() % DAYCARE_MON_COUNT;
     }
 
-    for (v1 = 0; v1 < 3; v1++) {
-        BoxPokemon *boxMon = Daycare_GetBoxMon(daycare, v3[v1]);
+    for (i = 0; i < INHERITED_IV_COUNT; i++) {
+        BoxPokemon *daycareBoxMon = Daycare_GetBoxMon(daycare, slots[i]);
 
-        switch (v0[v1]) {
+        switch (selectedIVs[i]) {
         case STAT_HP:
-            value = BoxPokemon_GetValue(boxMon, MON_DATA_HP_IV, NULL);
-            Pokemon_SetValue(mon, MON_DATA_HP_IV, (u8 *)&value);
+            value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_HP_IV, NULL);
+            Pokemon_SetValue(egg, MON_DATA_HP_IV, (u8 *)&value);
             break;
         case STAT_ATTACK:
-            value = BoxPokemon_GetValue(boxMon, MON_DATA_ATK_IV, NULL);
-            Pokemon_SetValue(mon, MON_DATA_ATK_IV, (u8 *)&value);
+            value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_ATK_IV, NULL);
+            Pokemon_SetValue(egg, MON_DATA_ATK_IV, (u8 *)&value);
             break;
         case STAT_DEFENSE:
-            value = BoxPokemon_GetValue(boxMon, MON_DATA_DEF_IV, NULL);
-            Pokemon_SetValue(mon, MON_DATA_DEF_IV, (u8 *)&value);
+            value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_DEF_IV, NULL);
+            Pokemon_SetValue(egg, MON_DATA_DEF_IV, (u8 *)&value);
             break;
         case STAT_SPEED:
-            value = BoxPokemon_GetValue(boxMon, MON_DATA_SPEED_IV, NULL);
-            Pokemon_SetValue(mon, MON_DATA_SPEED_IV, (u8 *)&value);
+            value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_SPEED_IV, NULL);
+            Pokemon_SetValue(egg, MON_DATA_SPEED_IV, (u8 *)&value);
             break;
         case STAT_SPECIAL_ATTACK:
-            value = BoxPokemon_GetValue(boxMon, MON_DATA_SPATK_IV, NULL);
-            Pokemon_SetValue(mon, MON_DATA_SPATK_IV, (u8 *)&value);
+            value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_SPATK_IV, NULL);
+            Pokemon_SetValue(egg, MON_DATA_SPATK_IV, (u8 *)&value);
             break;
         case STAT_SPECIAL_DEFENSE:
-            value = BoxPokemon_GetValue(boxMon, MON_DATA_SPDEF_IV, NULL);
-            Pokemon_SetValue(mon, MON_DATA_SPDEF_IV, (u8 *)&value);
+            value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_SPDEF_IV, NULL);
+            Pokemon_SetValue(egg, MON_DATA_SPDEF_IV, (u8 *)&value);
             break;
         }
     }
 }
 
-static u8 ov5_021E68D8(Pokemon *mon, u16 *param1)
+static u8 Egg_GetSpeciesEggMoves(Pokemon *mon, u16 *eggMoves)
 {
-    u16 species, v1, v2, i;
+    u16 species, eggMoveOffset, eggMoveCount, i;
 
-    v2 = 0;
-    v1 = 0;
+    eggMoveCount = 0;
+    eggMoveOffset = 0;
     species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
     for (i = 0; i < NELEMS(sEggMoves) - 1; i++) {
         if (sEggMoves[i] == (EGG_MOVES_SPECIES_OFFSET + species)) {
-            v1 = i + 1;
+            eggMoveOffset = i + 1;
             break;
         }
     }
 
-    for (i = 0; i < 16; i++) {
-        if (sEggMoves[v1 + i] > EGG_MOVES_SPECIES_OFFSET) {
+    for (i = 0; i < MAX_EGG_MOVES; i++) {
+        if (sEggMoves[eggMoveOffset + i] > EGG_MOVES_SPECIES_OFFSET) {
             break;
         } else {
-            param1[i] = sEggMoves[v1 + i];
-            v2++;
+            eggMoves[i] = sEggMoves[eggMoveOffset + i];
+            eggMoveCount++;
         }
     }
 
-    return v2;
+    return eggMoveCount;
 }
 
-static void ov5_021E6948(Pokemon *param0, BoxPokemon *param1, BoxPokemon *param2)
+static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mother)
 {
-    u16 v0, v1, v2, v3, v4, v5, v6;
-    UnkStruct_ov5_021E6948 *v7 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E6948));
+    u16 i, j, v2, species, levelUpMoveCount, eggMoveCount, form;
+    EggMoveBuilder *builder = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(EggMoveBuilder));
 
     v2 = 0;
 
-    MI_CpuClearFast(v7, sizeof(UnkStruct_ov5_021E6948));
+    MI_CpuClearFast(builder, sizeof(EggMoveBuilder));
 
-    v3 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
-    v6 = Pokemon_GetValue(param0, MON_DATA_FORM, NULL);
-    v4 = Pokemon_LoadLevelUpMoveIdsOf(v3, v6, v7->unk_30);
+    species = Pokemon_GetValue(egg, MON_DATA_SPECIES, NULL);
+    form = Pokemon_GetValue(egg, MON_DATA_FORM, NULL);
+    levelUpMoveCount = Pokemon_LoadLevelUpMoveIdsOf(species, form, builder->eggSpeciesLevelUpMoves);
 
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        v7->unk_00[v0] = BoxPokemon_GetValue(param1, MON_DATA_MOVE1 + v0, NULL);
-        v7->unk_20[v0] = BoxPokemon_GetValue(param2, MON_DATA_MOVE1 + v0, NULL);
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        builder->fatherMoves[i] = BoxPokemon_GetValue(father, MON_DATA_MOVE1 + i, NULL);
+        builder->motherMoves[i] = BoxPokemon_GetValue(mother, MON_DATA_MOVE1 + i, NULL);
     }
 
-    v5 = ov5_021E68D8(param0, v7->unk_94);
+    eggMoveCount = Egg_GetSpeciesEggMoves(egg, builder->eggSpeciesEggMoves);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (v7->unk_00[v0] != 0) {
-            for (v1 = 0; v1 < v5; v1++) {
-                if (v7->unk_00[v0] == v7->unk_94[v1]) {
-                    if (Pokemon_AddMove(param0, v7->unk_00[v0]) == 0xffff) {
-                        Pokemon_ReplaceMove(param0, v7->unk_00[v0]);
+    // Egg moves from the father
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (builder->fatherMoves[i] != MOVE_NONE) {
+            for (j = 0; j < eggMoveCount; j++) {
+                if (builder->fatherMoves[i] == builder->eggSpeciesEggMoves[j]) {
+                    if (Pokemon_AddMove(egg, builder->fatherMoves[i]) == LEARNSET_ALL_SLOTS_FILLED) {
+                        Pokemon_ReplaceMove(egg, builder->fatherMoves[i]);
                     }
                     break;
                 }
@@ -508,13 +509,14 @@ static void ov5_021E6948(Pokemon *param0, BoxPokemon *param1, BoxPokemon *param2
         }
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (v7->unk_00[v0] != 0) {
-            for (v1 = 0; v1 < 100; v1++) {
-                if (v7->unk_00[v0] == Item_MoveForTMHM(328 + v1)) {
-                    if (CanPokemonFormLearnTM(v3, v6, v1)) {
-                        if (Pokemon_AddMove(param0, v7->unk_00[v0]) == 0xffff) {
-                            Pokemon_ReplaceMove(param0, v7->unk_00[v0]);
+    // TM/HM moves from the father
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (builder->fatherMoves[i] != MOVE_NONE) {
+            for (j = 0; j < MAX_TMHM; j++) {
+                if (builder->fatherMoves[i] == Item_MoveForTMHM(ITEM_TM01 + j)) {
+                    if (CanPokemonFormLearnTM(species, form, j)) {
+                        if (Pokemon_AddMove(egg, builder->fatherMoves[i]) == LEARNSET_ALL_SLOTS_FILLED) {
+                            Pokemon_ReplaceMove(egg, builder->fatherMoves[i]);
                         }
                     }
                 }
@@ -522,28 +524,29 @@ static void ov5_021E6948(Pokemon *param0, BoxPokemon *param1, BoxPokemon *param2
         }
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (v7->unk_00[v0] == 0) {
+    // Level-up moves that both parents know
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (builder->fatherMoves[i] == MOVE_NONE) {
             break;
         }
 
-        for (v1 = 0; v1 < 4; v1++) {
-            if ((v7->unk_00[v0] == v7->unk_20[v1]) && (v7->unk_00[v0] != 0)) {
-                v7->unk_10[v2++] = v7->unk_00[v0];
+        for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+            if (builder->fatherMoves[i] == builder->motherMoves[j] && builder->fatherMoves[i] != MOVE_NONE) {
+                builder->sharedMoves[v2++] = builder->fatherMoves[i];
             }
         }
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (v7->unk_10[v0] == 0) {
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (builder->sharedMoves[i] == MOVE_NONE) {
             break;
         }
 
-        for (v1 = 0; v1 < v4; v1++) {
-            if (v7->unk_30[v1] != 0) {
-                if (v7->unk_10[v0] == v7->unk_30[v1]) {
-                    if (Pokemon_AddMove(param0, v7->unk_10[v0]) == 0xffff) {
-                        Pokemon_ReplaceMove(param0, v7->unk_10[v0]);
+        for (j = 0; j < levelUpMoveCount; j++) {
+            if (builder->eggSpeciesLevelUpMoves[j] != MOVE_NONE) {
+                if (builder->sharedMoves[i] == builder->eggSpeciesLevelUpMoves[j]) {
+                    if (Pokemon_AddMove(egg, builder->sharedMoves[i]) == LEARNSET_ALL_SLOTS_FILLED) {
+                        Pokemon_ReplaceMove(egg, builder->sharedMoves[i]);
                     }
                     break;
                 }
@@ -551,7 +554,7 @@ static void ov5_021E6948(Pokemon *param0, BoxPokemon *param1, BoxPokemon *param2
         }
     }
 
-    Heap_FreeToHeap(v7);
+    Heap_FreeToHeap(builder);
 }
 
 void Daycare_ResetPersonalityAndStepCounter(Daycare *daycare)
@@ -611,7 +614,7 @@ static void Egg_TryGiveVoltTackle(Pokemon *mon, Daycare *daycare)
     item2 = BoxPokemon_GetValue(parents[1], MON_DATA_HELD_ITEM, NULL);
 
     if (item1 == ITEM_LIGHT_BALL || item2 == ITEM_LIGHT_BALL) {
-        if (Pokemon_AddMove(mon, MOVE_VOLT_TACKLE) == 0xffff) {
+        if (Pokemon_AddMove(mon, MOVE_VOLT_TACKLE) == LEARNSET_ALL_SLOTS_FILLED) {
             Pokemon_ReplaceMove(mon, MOVE_VOLT_TACKLE);
         }
     }
@@ -749,7 +752,7 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
     Strbuf_Free(strBuf);
 }
 
-void ov5_021E6EA8(Daycare *daycare, Party *party, TrainerInfo *trainerInfo)
+void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *trainerInfo)
 {
     u16 species;
     u8 parentSlots[DAYCARE_MON_COUNT], isEgg;
@@ -764,8 +767,8 @@ void ov5_021E6EA8(Daycare *daycare, Party *party, TrainerInfo *trainerInfo)
 
     Egg_SetInitialData(mon, species, daycare, monOTID, form);
 
-    ov5_021E67B0(mon, daycare);
-    ov5_021E6948(mon, Daycare_GetBoxMon(daycare, parentSlots[1]), Daycare_GetBoxMon(daycare, parentSlots[0]));
+    Egg_InheritIVs(mon, daycare);
+    Egg_BuildMoveset(mon, Daycare_GetBoxMon(daycare, parentSlots[1]), Daycare_GetBoxMon(daycare, parentSlots[0]));
 
     UpdateMonStatusAndTrainerInfo(mon, trainerInfo, 3, SpecialMetLoc_GetId(1, 0), HEAP_ID_FIELD);
 

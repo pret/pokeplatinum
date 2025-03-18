@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/daycare.h"
 #include "constants/charcode.h"
+#include "constants/daycare.h"
 
 #include "struct_defs/mail.h"
 
