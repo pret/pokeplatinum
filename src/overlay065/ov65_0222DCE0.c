@@ -4840,12 +4840,12 @@ static void ov65_02232E70(UnkStruct_ov65_0222EBE0 *param0, int param1)
         if (ov65_0222DE40(param1) || (param1 == 8) || (param1 == 20) || (param1 == 22) || (param1 == 24) || (param1 == 26) || (param1 == 18)) {
             (void)0;
         } else if (param1 == 1) {
-            sub_0200564C(0, 30);
+            Sound_FadeOutBGM(0, 30);
         } else if (param1 == 16) {
             ov4_021D2584(0);
 
             if (ov65_02231A54() == 1) {
-                sub_0200560C(120, 30, 1);
+                Sound_FadeInBGM(120, 30, 1);
             }
         }
     }

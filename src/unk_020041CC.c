@@ -42,7 +42,7 @@ void sub_02004A84(int param0);
 void Sound_AdjustVolumeForVoiceChat(int param0, enum SoundHandleType param1);
 void sub_02004AD4(u16 param0, int param1);
 BOOL sub_02004AE8(int param0, int param1, u16 param2);
-int sub_02004B04(int param0);
+int Sound_GetNumberOfPlayingSequencesForPlayer(int param0);
 u8 Sound_GetPlayerForSequence(u16 param0);
 int Sound_GetSequenceIDFromSoundHandle(NNSSndHandle *param0);
 const NNSSndArcBankInfo *sub_02004B3C(int param0);
@@ -73,7 +73,7 @@ void sub_02004F7C(u16 param0, u16 param1, int param2);
 void sub_02004F94(int param0, u16 param1, int param2);
 void sub_02004FA8(int param0, int param1);
 void Sound_SetPlaybackMode(BOOL param0);
-void sub_02004FCC(int param0);
+void Sound_SetFadeCounter(int param0);
 void sub_02004FDC(int param0);
 int sub_02004FEC(void);
 void sub_0200500C(int param0);
@@ -465,7 +465,7 @@ static void sub_0200478C(u16 param0, u16 param1)
 
     SoundSystem_SaveHeapState(SoundSystem_GetParam(27));
     sub_020049F4(1, 0);
-    sub_0200560C(127, 40, 0);
+    Sound_FadeInBGM(127, 40, 0);
     Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_IDLE);
 
     return;
@@ -658,10 +658,9 @@ void sub_02004A3C(void)
     return;
 }
 
-void sub_02004A54(int param0, int param1, int param2)
+void Sound_FadeVolumeForHandle(enum SoundHandleType handleType, int targetVolume, int frames)
 {
-    NNS_SndPlayerMoveVolume(SoundSystem_GetSoundHandle(param0), param1, param2);
-    return;
+    NNS_SndPlayerMoveVolume(SoundSystem_GetSoundHandle(handleType), targetVolume, frames);
 }
 
 void Sound_SetInitialVolumeForHandle(enum SoundHandleType handleType, int volume)
@@ -727,13 +726,13 @@ BOOL sub_02004AE8(int param0, int param1, u16 param2)
     return NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(param0), param1, -1, -1, param2);
 }
 
-int sub_02004B04(int param0)
+int Sound_GetNumberOfPlayingSequencesForPlayer(int playerID)
 {
-    if (param0 < 0) {
+    if (playerID < 0) {
         GF_ASSERT(FALSE);
     }
 
-    return NNS_SndPlayerCountPlayingSeqByPlayerNo(param0);
+    return NNS_SndPlayerCountPlayingSeqByPlayerNo(playerID);
 }
 
 u8 Sound_GetPlayerForSequence(u16 seqID)
@@ -1169,12 +1168,10 @@ void Sound_SetPlaybackMode(BOOL param0)
     return;
 }
 
-void sub_02004FCC(int param0)
+void Sound_SetFadeCounter(int frames)
 {
-    int *v0 = SoundSystem_GetParam(7);
-
-    *v0 = param0;
-    return;
+    int *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FADE_COUNTER);
+    *param = frames;
 }
 
 void sub_02004FDC(int param0)
@@ -1243,7 +1240,7 @@ static void sub_020050A4(u8 param0, u16 param1, int param2, int param3, u8 param
 {
     const NNSSndArcBankInfo **v0 = SoundSystem_GetParam(2);
 
-    sub_0200564C(0, param2);
+    Sound_FadeOutBGM(0, param2);
     Sound_SetCurrentBGM(0);
 
     Sound_SetNextBGM(param1);
@@ -1531,7 +1528,7 @@ void sub_020053CC(int param0)
 
 static void sub_0200540C(void)
 {
-    if ((Sound_CheckFade() == 0) && (Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(0)) != -1) && (Sound_GetCurrentBGM() != 1150)) {
+    if ((Sound_IsFadeActive() == FALSE) && (Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(0)) != -1) && (Sound_GetCurrentBGM() != 1150)) {
         sub_020056D4();
         sub_020049F4(1, 1);
     } else {

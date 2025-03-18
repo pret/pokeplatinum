@@ -4848,7 +4848,7 @@ static void ov16_02262D28(SysTask *param0, void *param1)
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
         PaletteData_StartFade(v1, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
         PokemonSpriteManager_StartFadeAll(v2, 0, 16, 0, 0x0);
-        sub_0200564C(0, 16);
+        Sound_FadeOutBGM(0, 16);
         v0->unk_06++;
     case 1:
         if (PaletteData_GetSelectedBuffersMask(v1) == 0) {

@@ -244,7 +244,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
 
         if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_START) == PAD_BUTTON_START)) {
             v0->unk_4E8 = 1;
-            sub_0200564C(0, 60);
+            Sound_FadeOutBGM(0, 60);
             sub_02005844(SPECIES_GIRATINA, 1);
             ov77_021D1D48(v0->unk_04, v0->heapID);
             *param1 = 4;
@@ -264,7 +264,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
             {
                 GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
             }
-            sub_0200564C(0, 60);
+            Sound_FadeOutBGM(0, 60);
             *param1 = 5;
             break;
         }
@@ -278,7 +278,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
         }
 
         if ((sub_0200598C() == 0) && (IsScreenTransitionDone() == 1) && (v0->unk_4FC >= 10)) {
-            sub_020055D0(1173, 0);
+            Sound_StopBGM(1173, 0);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -296,8 +296,8 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
         v0->unk_238.unk_254 = 0;
         ov77_021D20E4(&v0->unk_238, v0->unk_04, v0->heapID);
 
-        if (Sound_CheckFade() == 0) {
-            sub_020055D0(1173, 0);
+        if (Sound_IsFadeActive() == FALSE) {
+            Sound_StopBGM(1173, 0);
             StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, v0->heapID);
             *param1 = 6;
         }

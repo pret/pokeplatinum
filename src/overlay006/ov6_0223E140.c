@@ -554,11 +554,11 @@ static BOOL ov6_0223E408(FieldTask *param0)
 
     switch (v1->unk_0C) {
     case 0:
-        sub_0200564C(0, 1);
+        Sound_FadeOutBGM(0, 1);
         v1->unk_0C++;
         break;
     case 1:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             v1->unk_0C++;
             v1->unk_04 = 16;
         }
@@ -589,11 +589,11 @@ static BOOL ov6_0223E408(FieldTask *param0)
         }
         break;
     case 5:
-        sub_0200560C(127, 16, 0);
+        Sound_FadeInBGM(127, 16, 0);
         v1->unk_0C++;
         break;
     case 6:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             v1->unk_0C++;
         }
         break;

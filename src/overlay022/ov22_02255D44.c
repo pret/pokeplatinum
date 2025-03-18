@@ -476,11 +476,11 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200564C((127 / 3), 30);
+        Sound_FadeOutBGM((127 / 3), 30);
         (*param1)++;
         break;
     case 1:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             (*param1)++;
         }
         break;

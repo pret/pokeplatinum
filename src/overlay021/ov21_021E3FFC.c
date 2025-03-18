@@ -284,7 +284,7 @@ static int ov21_021E41A8(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
             ov21_021E448C(v3, v2, v0, 1);
         }
 
-        sub_0200564C(0, 3);
+        Sound_FadeOutBGM(0, 3);
 
         param1->unk_00++;
         break;
@@ -295,7 +295,7 @@ static int ov21_021E41A8(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
             v4 = ov21_021E4518(v3, v2, v0, 1);
         }
 
-        if ((v4 == 1) && (Sound_CheckFade() == 0)) {
+        if ((v4 == 1) && (Sound_IsFadeActive() == FALSE)) {
             sub_020049F4(1, 1);
             param1->unk_00++;
         }
@@ -337,7 +337,7 @@ static int ov21_021E4288(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
         }
 
         sub_020049F4(1, 0);
-        sub_0200560C(127, 3, 0);
+        Sound_FadeInBGM(127, 3, 0);
         param1->unk_00++;
         break;
     case 1:

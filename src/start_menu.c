@@ -1923,7 +1923,7 @@ static void StartMenu_Evolve(FieldTask *taskMan)
     if (sub_0207B0D0(menu->unk_25C) == 1) {
         sub_0207B0E0(menu->unk_25C);
         Heap_Destroy(HEAP_ID_73);
-        sub_020055D0(1141, 0);
+        Sound_StopBGM(1141, 0);
         Sound_SetScene(0);
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
 

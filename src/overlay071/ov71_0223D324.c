@@ -65,7 +65,7 @@ static void ov71_0223D370(UnkStruct_ov71_0223D324 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_00[v0][1] != 0xff) {
-            if (sub_02004B04(3 + param0->unk_00[v0][0]) == 0) {
+            if (Sound_GetNumberOfPlayingSequencesForPlayer(3 + param0->unk_00[v0][0]) == 0) {
                 param0->unk_00[v0][1] = 0xff;
             }
         }

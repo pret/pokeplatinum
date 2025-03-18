@@ -1354,7 +1354,7 @@ static void ov21_021E5F00(UnkStruct_ov21_021E51DC *param0)
 
 static void ov21_021E5F28(int param0)
 {
-    sub_02004A54(8, param0, 0);
+    Sound_FadeVolumeForHandle(8, param0, 0);
 }
 
 static void ov21_021E5F38(UnkStruct_ov21_021E5004 *param0, const UnkStruct_ov21_021E51DC *param1)

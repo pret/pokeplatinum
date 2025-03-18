@@ -1417,7 +1417,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
     switch (param0->unk_0C) {
     case 0:
         sub_02004550(2, 1029, 1);
-        sub_020055D0(1029, 0);
+        Sound_StopBGM(1029, 0);
         Bg_ToggleLayer(0, 1);
         Bg_ToggleLayer(7, 1);
         StartScreenTransition(0, 1, 1, 0x0, 6, 1, param0->heapId);
@@ -2186,7 +2186,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         break;
     case 101:
         if (ov73_021D1510(param0, 30, 1) == 1) {
-            sub_0200564C(0, 50);
+            Sound_FadeOutBGM(0, 50);
             param0->unk_0C = 102;
         }
         break;

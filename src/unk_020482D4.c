@@ -42,7 +42,7 @@ BOOL ScrCmd_2AE(ScriptContext *param0)
     u16 v0 = ScriptContext_ReadHalfWord(param0);
     u16 *v1 = ScriptContext_GetVarPointer(param0);
 
-    *v1 = sub_02005690(v0);
+    *v1 = Sound_IsSequencePlaying(v0);
     return 0;
 }
 
@@ -56,7 +56,7 @@ BOOL ScrCmd_StopMusic(ScriptContext *ctx)
 {
     u16 dummy = ScriptContext_ReadHalfWord(ctx);
 
-    sub_020055D0(Sound_GetCurrentBGM(), 0);
+    Sound_StopBGM(Sound_GetCurrentBGM(), 0);
     return FALSE;
 }
 
@@ -77,21 +77,21 @@ BOOL ScrCmd_FadeOutMusic(ScriptContext *ctx)
     u16 targetVolume = ScriptContext_ReadHalfWord(ctx);
     u16 frames = ScriptContext_ReadHalfWord(ctx);
 
-    sub_0200564C(targetVolume, frames);
+    Sound_FadeOutBGM(targetVolume, frames);
     ScriptContext_Pause(ctx, ScriptContext_IsSoundFadeFinished);
     return TRUE;
 }
 
 static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx)
 {
-    return Sound_CheckFade() == 0;
+    return Sound_IsFadeActive() == FALSE;
 }
 
 BOOL ScrCmd_055(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_ReadHalfWord(param0);
 
-    sub_0200560C(127, v0, 0);
+    Sound_FadeInBGM(127, v0, 0);
     ScriptContext_Pause(param0, ScriptContext_IsSoundFadeFinished);
 
     return 1;

@@ -72,7 +72,7 @@ void *ov100_021D13E4(UnkStruct_ov100_021D4DD8 *param0)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 7, 8);
 
     ov100_021D4DC8(1);
-    sub_0200564C(0, 10);
+    Sound_FadeOutBGM(0, 10);
 
     return v0;
 }

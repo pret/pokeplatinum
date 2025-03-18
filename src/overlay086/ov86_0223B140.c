@@ -418,11 +418,11 @@ static BOOL ov86_0223B40C(UnkStruct_ov86_0223B3C8 *param0)
     switch (param0->unk_00) {
     case 0:
         StartScreenTransition(3, 0, 0, 0x0, 2, 1, HEAP_ID_63);
-        sub_0200564C(0, 30);
+        Sound_FadeOutBGM(0, 30);
         param0->unk_00++;
         break;
     case 1:
-        if (IsScreenTransitionDone() && (Sound_CheckFade() == 0)) {
+        if (IsScreenTransitionDone() && (Sound_IsFadeActive() == FALSE)) {
             return 1;
         }
     }

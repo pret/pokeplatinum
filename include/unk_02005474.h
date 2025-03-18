@@ -4,14 +4,19 @@
 #include "constants/sound.h"
 #include "generated/sdat.h"
 
-BOOL sub_02005474(u16 param0);
+enum BGMFadeInType {
+    BGM_FADE_IN_TYPE_FROM_ZERO = 0, // Fade in from volume 0
+    BGM_FADE_IN_TYPE_FROM_CURRENT = 1, // Fade in from the current volume
+};
+
+BOOL Sound_PlayBasicBGM(u16 param0);
 BOOL Sound_PlayBGM(u16 param0);
 BOOL sub_02005588(u8 param0, u16 param1);
-void sub_020055D0(u16 param0, int param1);
-void sub_0200560C(int param0, int param1, int param2);
-void sub_0200564C(int param0, int param1);
-int Sound_CheckFade(void);
-int sub_02005690(u16 param0);
+void Sound_StopBGM(u16 param0, int param1);
+void Sound_FadeInBGM(int param0, int param1, enum BGMFadeInType param2);
+void Sound_FadeOutBGM(int param0, int param1);
+BOOL Sound_IsFadeActive(void);
+BOOL Sound_IsSequencePlaying(u16 param0);
 void Sound_StopAll(void);
 void sub_020056D4(void);
 BOOL sub_02005728(u16 param0, int param1);

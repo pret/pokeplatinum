@@ -481,7 +481,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         break;
     case 2:
         StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_24);
-        sub_020055D0(1135, 30);
+        Sound_StopBGM(1135, 30);
         v0->unk_10++;
         break;
     case 3:
@@ -515,7 +515,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         v0->unk_10++;
         break;
     case 5:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_24);
             v0->unk_10++;
         }
@@ -822,11 +822,11 @@ static void ov17_022529C8(SysTask *param0, void *param1)
     switch (v0->unk_10) {
     case 0:
         BrightnessController_StartTransition(90, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
-        sub_020055D0(1182, 90);
+        Sound_StopBGM(1182, 90);
         v0->unk_10++;
         break;
     case 1:
-        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) && (Sound_CheckFade() == 0)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) && (Sound_IsFadeActive() == FALSE)) {
             ov17_02251020(v0->unk_00);
             GX_SetMasterBrightness(16);
             GXS_SetMasterBrightness(16);

@@ -56,8 +56,8 @@ void SoundSystem_Update()
     SoundSystem *soundSys = SoundSystem_Get();
 
     if (sub_02003D28() == 0) {
-        if (soundSys->unk_BCD4C > 0) {
-            soundSys->unk_BCD4C--;
+        if (soundSys->fadeCounter > 0) {
+            soundSys->fadeCounter--;
         }
 
         sub_02003C64();
@@ -85,25 +85,25 @@ static void sub_02003C64()
     SoundSystem *v1 = SoundSystem_Get();
 
     switch (sSoundSystemState) {
-    case 0:
+    case SOUND_SYSTEM_STATE_IDLE:
         break;
-    case 1:
-        SoundSystem_SetState(2);
+    case SOUND_SYSTEM_STATE_PLAY:
+        SoundSystem_SetState(SOUND_SYSTEM_STATE_PLAYING);
         break;
-    case 2:
+    case SOUND_SYSTEM_STATE_PLAYING:
         break;
-    case 3:
-        if (Sound_CheckFade() == 0) {
-            SoundSystem_SetState(2);
+    case SOUND_SYSTEM_STATE_FADE_IN:
+        if (Sound_IsFadeActive() == FALSE) {
+            SoundSystem_SetState(SOUND_SYSTEM_STATE_PLAYING);
         }
         break;
-    case 4:
-        if (Sound_CheckFade() == 0) {
-            SoundSystem_SetState(2);
+    case SOUND_SYSTEM_STATE_FADE_OUT:
+        if (Sound_IsFadeActive() == FALSE) {
+            SoundSystem_SetState(SOUND_SYSTEM_STATE_PLAYING);
         }
         break;
     case 5:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             if (sub_02004FEC() == 0) {
                 sub_020041B4();
                 Sound_PlayBGM(v1->nextBGM);
@@ -111,11 +111,11 @@ static void sub_02003C64()
         }
         break;
     case 6:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             if (sub_02004FEC() == 0) {
                 sub_020041B4();
                 Sound_PlayBGM(v1->nextBGM);
-                sub_0200560C(127, v1->unk_BCD54, 0);
+                Sound_FadeInBGM(127, v1->unk_BCD54, 0);
             }
         }
         break;
@@ -136,7 +136,7 @@ static BOOL sub_02003D28()
 {
     SoundSystem *v0 = SoundSystem_Get();
 
-    if (sub_02004B04(2) != 0) {
+    if (Sound_GetNumberOfPlayingSequencesForPlayer(2) != 0) {
         return 1;
     }
 
@@ -171,8 +171,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->unk_BBD2C;
     case 4:
         return &soundSys->unk_BCD2C;
-    case 7:
-        return &soundSys->unk_BCD4C;
+    case SOUND_SYSTEM_PARAM_FADE_COUNTER:
+        return &soundSys->fadeCounter;
     case 8:
         return &soundSys->unk_BCD50;
     case 9:
@@ -386,7 +386,7 @@ static void SoundSystem_InitSoundHandles(SoundSystem *soundSys)
 static void SoundSystem_LoadPersistentGroup(SoundSystem *soundSys)
 {
     SoundSystem_SaveHeapState(&soundSys->heapStates[SOUND_HEAP_STATE_EMPTY]);
-    SoundSystem_LoadSoundGroup(0);
+    SoundSystem_LoadSoundGroup(GROUP_GLOBAL);
     SoundSystem_SaveHeapState(&soundSys->heapStates[SOUND_HEAP_STATE_PERSISTENT]);
 }
 

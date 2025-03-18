@@ -303,7 +303,7 @@ void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int param1)
     }
 
     if (Sound_GetCurrentBGM() != sub_020554A4(fieldSystem, param1)) {
-        sub_0200564C(0, 40);
+        Sound_FadeOutBGM(0, 40);
     }
 }
 
