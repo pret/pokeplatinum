@@ -21,8 +21,8 @@ _0032:
     End
 
 _0034:
-    ScrCmd_1BF 0x4000
-    GoToIfNe 0x4000, 0, _0047
+    DaycareHasEgg 0x4000
+    GoToIfNe 0x4000, FALSE, _0047
     End
 
 _0047:

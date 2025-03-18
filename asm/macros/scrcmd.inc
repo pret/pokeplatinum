@@ -2444,9 +2444,9 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_1BF arg0
+    .macro DaycareHasEgg destVar
     .short 447
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_1C0 destVarID, species

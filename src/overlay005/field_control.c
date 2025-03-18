@@ -826,13 +826,13 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
 static BOOL Field_UpdateDaycare(FieldSystem *fieldSystem)
 {
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
-    Daycare *v1 = SaveData_GetDaycare(fieldSystem->saveData);
+    Daycare *daycare = SaveData_GetDaycare(fieldSystem->saveData);
 
-    if (ov5_021E7154(v1, party, fieldSystem) == TRUE) {
-        GameRecords *v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    if (Daycare_Update(daycare, party, fieldSystem) == TRUE) {
+        GameRecords *records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
-        GameRecords_IncrementRecordValue(v2, RECORD_UNK_011);
-        GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_15);
+        GameRecords_IncrementRecordValue(records, RECORD_EGGS_HATCHED);
+        GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_UNK_15);
         ScriptManager_Set(fieldSystem, 2031, NULL);
 
         return TRUE;

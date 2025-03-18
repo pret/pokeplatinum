@@ -372,22 +372,22 @@ static void Daycare_SetInheritedNature(Daycare *daycare)
     }
 }
 
-static void ov5_021E6778(u8 *param0, u8 param1)
+static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIV)
 {
-    int v0, v1;
-    u8 v2[6];
+    int i, j;
+    u8 temp[STAT_MAX];
 
-    param0[param1] = 0xff;
+    ivs[selectedIV] = 0xff;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v2[v0] = param0[v0];
+    for (i = 0; i < STAT_MAX; i++) {
+        temp[i] = ivs[i];
     }
 
-    v1 = 0;
+    j = 0;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (v2[v0] != 0xff) {
-            param0[v1++] = v2[v0];
+    for (i = 0; i < STAT_MAX; i++) {
+        if (temp[i] != 0xff) {
+            ivs[j++] = temp[i];
         }
     }
 }
@@ -402,7 +402,7 @@ static void Egg_InheritIVs(Pokemon *egg, Daycare *daycare)
 
     for (i = 0; i < INHERITED_IV_COUNT; i++) {
         selectedIVs[i] = availableIVs[LCRNG_Next() % (STAT_MAX - i)];
-        ov5_021E6778(availableIVs, i);
+        RemoveIVIndexFromList(availableIVs, i);
     }
 
     for (i = 0; i < INHERITED_IV_COUNT; i++) {
@@ -914,31 +914,31 @@ static int Daycare_GetEggCycleLength(FieldSystem *fieldSystem)
     return 255;
 }
 
-BOOL ov5_021E7154(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
+BOOL Daycare_Update(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
 {
-    u32 i, eggCycles, v2, v3, v4;
+    u32 i, eggCycles, monCount, compatibilityScore, rand;
     u32 v5 = 0, steps;
     int toSubstract;
-    BoxPokemon *v8[DAYCARE_MON_COUNT];
+    BoxPokemon *boxMon[DAYCARE_MON_COUNT];
 
-    Daycare_CopyDaycareMonToBoxMonArray(daycare, v8);
+    Daycare_CopyDaycareMonToBoxMonArray(daycare, boxMon);
 
-    v2 = 0;
+    monCount = 0;
 
     for (i = 0; i < DAYCARE_MON_COUNT; i++) {
-        if (BoxPokemon_GetValue(v8[i], MON_DATA_SPECIES_EXISTS, NULL) != FALSE) {
+        if (BoxPokemon_GetValue(boxMon[i], MON_DATA_SPECIES_EXISTS, NULL) != FALSE) {
             DaycareMon_AddSteps(Daycare_GetDaycareMon(daycare, i), 1);
-            v2++;
+            monCount++;
         }
     }
 
-    if ((sub_02026234(daycare) == 0) && (v2 == 2)) {
+    if ((Daycare_HasEgg(daycare) == FALSE) && (monCount == DAYCARE_MON_COUNT)) {
         if ((DaycareMon_GetSteps(Daycare_GetDaycareMon(daycare, 1)) & 0xff) == 0xff) {
-            v3 = Daycare_GetCompatibilityScore(daycare);
-            v4 = LCRNG_Next();
-            v4 = (v4 * 100) / 0xffff;
+            compatibilityScore = Daycare_GetCompatibilityScore(daycare);
+            rand = LCRNG_Next();
+            rand = (rand * 100) / 0xffff;
 
-            if (v3 > v4) {
+            if (compatibilityScore > rand) {
                 Daycare_SetInheritedNature(daycare);
             }
         }
@@ -1053,7 +1053,7 @@ u8 ov5_021E73C8(Daycare *daycare)
 {
     u8 v0;
 
-    if (sub_02026234(daycare)) {
+    if (Daycare_HasEgg(daycare)) {
         return 1;
     }
 

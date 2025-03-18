@@ -13,7 +13,7 @@ BoxPokemon *DaycareMon_GetBoxMon(DaycareMon *daycareMon);
 DaycareMail *DaycareMon_GetDaycareMail(DaycareMon *daycareMon);
 u32 DaycareMon_GetSteps(const DaycareMon *daycareMon);
 Mail *DaycareMail_GetMail(DaycareMail *daycareMail);
-int sub_02026234(const Daycare *daycare);
+BOOL Daycare_HasEgg(const Daycare *daycare);
 int Daycare_GetOffspringPersonality(const Daycare *daycare);
 int Daycare_GetStepCounter(const Daycare *daycare);
 void DaycareMon_SetSteps(DaycareMon *daycareMon, int steps);

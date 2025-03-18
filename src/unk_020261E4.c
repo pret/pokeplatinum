@@ -52,13 +52,13 @@ Mail *DaycareMail_GetMail(DaycareMail *daycareMail)
     return &(daycareMail->mail);
 }
 
-int sub_02026234(const Daycare *daycare)
+BOOL Daycare_HasEgg(const Daycare *daycare)
 {
     if (daycare->offspringPersonality != 0) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 int Daycare_GetOffspringPersonality(const Daycare *daycare)
