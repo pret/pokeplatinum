@@ -208,7 +208,7 @@ static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare)
     int v2;
     BOOL reencrypt;
 
-    param0->unk_00 = ov5_021E6238(daycare);
+    param0->unk_00 = Daycare_GetMonCount(daycare);
     param0->unk_01 = sub_02026234(daycare);
 
     for (v2 = 0; v2 < param0->unk_00; v2++) {

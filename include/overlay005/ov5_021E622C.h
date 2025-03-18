@@ -11,7 +11,7 @@
 #include "string_template.h"
 #include "trainer_info.h"
 
-u8 ov5_021E6238(Daycare *daycare);
+u8 Daycare_GetMonCount(Daycare *daycare);
 void Daycare_MoveToEmptySlotFromParty(Party *party, int partySlot, Daycare *daycare, SaveData *saveData);
 u16 ov5_021E64F8(Party *param0, StringTemplate *param1, Daycare *daycare, u8 param3);
 int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 param1);

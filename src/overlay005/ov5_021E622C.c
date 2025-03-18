@@ -55,22 +55,22 @@ static BoxPokemon *Daycare_GetBoxMon(Daycare *daycare, int slot)
 
 static Daycare *Unk_ov5_02202124;
 
-u8 ov5_021E6238(Daycare *daycare)
+u8 Daycare_GetMonCount(Daycare *daycare)
 {
-    u8 v0, v1;
-    BoxPokemon *v2;
+    u8 count, i;
+    BoxPokemon *boxMon;
 
-    v0 = 0;
+    count = 0;
 
-    for (v1 = 0; v1 < 2; v1++) {
-        v2 = DaycareMon_GetBoxMon(Daycare_GetDaycareMon(daycare, v1));
+    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+        boxMon = DaycareMon_GetBoxMon(Daycare_GetDaycareMon(daycare, i));
 
-        if (BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) != 0) {
-            v0++;
+        if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+            count++;
         }
     }
 
-    return v0;
+    return count;
 }
 
 static int Daycare_GetEmptySlot(Daycare *daycare)
@@ -1063,7 +1063,7 @@ u8 ov5_021E73C8(Daycare *daycare)
         return 1;
     }
 
-    if ((v0 = ov5_021E6238(daycare))) {
+    if ((v0 = Daycare_GetMonCount(daycare))) {
         return v0 + 1;
     }
 
