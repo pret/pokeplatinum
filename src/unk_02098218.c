@@ -196,7 +196,7 @@ static BOOL sub_0209843C(FieldTask *param0)
 
     switch (v0->unk_00) {
     case 0:
-        ov5_021E771C(v0->unk_0C.unk_00, 11);
+        Egg_CreateHatchedMon(v0->unk_0C.unk_00, HEAP_ID_FIELDMAP);
         FieldTransition_FinishMap(param0);
         v0->unk_00++;
         break;

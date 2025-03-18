@@ -157,17 +157,17 @@ BOOL ScrCmd_1BC(ScriptContext *ctx)
     return 0;
 }
 
-BOOL ScrCmd_1BE(ScriptContext *param0)
+BOOL ScrCmd_GetDaycareCompatibilityString(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
-    Daycare *v2;
-    u16 *v3 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    Daycare *daycare;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v2 = (Daycare *)(SaveData_SaveTable(v1, 8));
-    *v3 = ov5_021E7420(v2);
+    daycare = (Daycare *)(SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE));
+    *destVar = Daycare_GetCompatibilityLevel(daycare);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1BF(ScriptContext *param0)

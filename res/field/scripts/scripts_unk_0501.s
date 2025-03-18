@@ -71,7 +71,7 @@ _00BE:
 _00CB:
     ScrCmd_16D
     Message 9
-    ScrCmd_1BE 0x800C
+    GetDaycareCompatibilityString 0x800C
     CallIfEq 0x800C, 0, _0110
     CallIfEq 0x800C, 1, _0115
     CallIfEq 0x800C, 2, _011A

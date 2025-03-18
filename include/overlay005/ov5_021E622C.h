@@ -27,9 +27,8 @@ void ov5_021E72BC(Daycare *daycare, StringTemplate *param1);
 void ov5_021E7308(Daycare *daycare, u32 param1, u32 param2, u32 param3, u8 slot, StringTemplate *template);
 u16 ov5_021E73A0(Party *param0, int param1, StringTemplate *param2);
 u8 ov5_021E73C8(Daycare *daycare);
-u8 ov5_021E73F0(u32 param0);
-u32 ov5_021E7420(Daycare *daycare);
-void ov5_021E771C(Pokemon *param0, int param1);
-u32 ov5_021E7790(BoxPokemon **boxMonPair);
+u32 Daycare_GetCompatibilityLevel(Daycare *daycare);
+void Egg_CreateHatchedMon(Pokemon *param0, int heapID);
+u32 BoxMon_GetPairDaycareCompatibilityLevel(BoxPokemon **boxMonPair);
 
 #endif // POKEPLATINUM_OV5_021E622C_H

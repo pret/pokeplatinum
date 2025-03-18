@@ -2439,9 +2439,9 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_1BE arg0
+    .macro GetDaycareCompatibilityString destVar
     .short 446
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_1BF arg0

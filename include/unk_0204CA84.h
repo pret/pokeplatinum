@@ -13,7 +13,7 @@ BOOL ScrCmd_BufferGainedLevelsInDaycareSlot(ScriptContext *ctx);
 BOOL ScrCmd_1AF(ScriptContext *param0);
 BOOL ScrCmd_StorePartyMonIntoDaycare(ScriptContext *ctx);
 BOOL ScrCmd_1BC(ScriptContext *param0);
-BOOL ScrCmd_1BE(ScriptContext *param0);
+BOOL ScrCmd_GetDaycareCompatibilityString(ScriptContext *ctx);
 BOOL ScrCmd_1BF(ScriptContext *param0);
 BOOL ScrCmd_1A5(ScriptContext *param0);
 BOOL ScrCmd_1A6(ScriptContext *param0);
