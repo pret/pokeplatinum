@@ -127,20 +127,20 @@ BOOL ScrCmd_1AF(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1B0(ScriptContext *param0)
+BOOL ScrCmd_StorePartyMonIntoDaycare(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
-    Daycare *v2;
-    Party *v3;
-    u8 v4 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    Daycare *daycare;
+    Party *party;
+    u8 partySlot = ScriptContext_GetVar(ctx);
 
-    v3 = Party_GetFromSavedata(fieldSystem->saveData);
-    v2 = (Daycare *)(SaveData_SaveTable(v1, 8));
+    party = Party_GetFromSavedata(fieldSystem->saveData);
+    daycare = (Daycare *)(SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE));
 
-    ov5_021E6358(v3, v4, v2, v1);
+    Daycare_MoveToEmptySlotFromParty(party, partySlot, daycare, saveData);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1BC(ScriptContext *ctx)

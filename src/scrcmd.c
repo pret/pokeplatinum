@@ -1197,7 +1197,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Dummy1AD,
     ScrCmd_1AE,
     ScrCmd_1AF,
-    ScrCmd_1B0,
+    ScrCmd_StorePartyMonIntoDaycare,
     ScrCmd_1B1,
     ScrCmd_1B2,
     ScrCmd_1B3,

@@ -148,7 +148,7 @@ _01DE:
     CountAliveMonsExcept 0x800C, 0x8000
     GoToIfEq 0x800C, 0, _02C8
     ScrCmd_1AF 0, 0x8000, 0x8001
-    ScrCmd_1B0 0x8000
+    StorePartyMonIntoDaycare 0x8000
     SetFlag 254
     ScrCmd_16E 0x800C
     GoToIfEq 0x800C, 2, _025F

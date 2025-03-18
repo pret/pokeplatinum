@@ -12,8 +12,7 @@
 #include "trainer_info.h"
 
 u8 ov5_021E6238(Daycare *daycare);
-int ov5_021E6270(Daycare *daycare);
-void ov5_021E6358(Party *param0, int param1, Daycare *daycare, SaveData *param3);
+void Daycare_MoveToEmptySlotFromParty(Party *party, int partySlot, Daycare *daycare, SaveData *saveData);
 u16 ov5_021E64F8(Party *param0, StringTemplate *param1, Daycare *daycare, u8 param3);
 int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 param1);
 int ov5_021E6568(DaycareMon *daycareMon);

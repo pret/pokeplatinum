@@ -11,7 +11,7 @@ BOOL ScrCmd_1A4(ScriptContext *param0);
 BOOL ScrCmd_1AA(ScriptContext *param0);
 BOOL ScrCmd_1AE(ScriptContext *param0);
 BOOL ScrCmd_1AF(ScriptContext *param0);
-BOOL ScrCmd_1B0(ScriptContext *param0);
+BOOL ScrCmd_StorePartyMonIntoDaycare(ScriptContext *ctx);
 BOOL ScrCmd_1BC(ScriptContext *param0);
 BOOL ScrCmd_1BE(ScriptContext *param0);
 BOOL ScrCmd_1BF(ScriptContext *param0);

@@ -2356,9 +2356,9 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_1B0 arg0
+    .macro StorePartyMonIntoDaycare partySlot
     .short 432
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_1B1 arg0
