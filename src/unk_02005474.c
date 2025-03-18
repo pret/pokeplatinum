@@ -22,9 +22,9 @@ typedef struct {
 
 BOOL sub_02005474(u16 param0);
 BOOL Sound_PlayBGM(u16 param0);
-static void sub_020054EC(u16 param0, int param1);
-static BOOL Sound_PlayRegularBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
-static BOOL Sound_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
+static void Sound_Impl_HandleBGMChange(u16 param0, enum SoundHandleType param1);
+static BOOL Sound_Impl_PlayBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
+static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
 BOOL sub_02005588(u8 param0, u16 param1);
 void sub_020055D0(u16 param0, int param1);
 static void sub_020055F4(void);
@@ -71,41 +71,40 @@ BOOL sub_02005474(u16 param0)
         (void)0;
     }
 
-    sub_020054EC(param0, v2);
+    Sound_Impl_HandleBGMChange(param0, v2);
     return v0;
 }
 
-BOOL Sound_PlayBGM(u16 seqID)
+BOOL Sound_PlayBGM(u16 bgmID)
 {
     int result;
-    u8 player = Sound_GetPlayerForSequence(seqID);
+    u8 player = Sound_GetPlayerForSequence(bgmID);
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(player);
 
     if (player == PLAYER_BGM) {
-        result = Sound_PlayRegularBGM(seqID, player, handleType);
+        result = Sound_Impl_PlayBGM(bgmID, player, handleType);
     } else if (player == PLAYER_FIELD) {
-        result = Sound_PlayFieldBGM(seqID, player, handleType);
+        result = Sound_Impl_PlayFieldBGM(bgmID, player, handleType);
     } else {
         GF_ASSERT(FALSE);
         return FALSE;
     }
 
-    sub_0200501C(0);
+    // Field BGM Bank may or may not have been switched, so set it to idle
+    Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_IDLE);
 
-    sub_020054EC(seqID, handleType);
+    Sound_Impl_HandleBGMChange(bgmID, handleType);
     return result;
 }
 
-static void sub_020054EC(u16 param0, int param1)
+static void Sound_Impl_HandleBGMChange(u16 seqID, enum SoundHandleType handleType)
 {
-    Sound_SetCurrentBGM(param0);
-    sub_02004AA0(param0, param1);
-    SoundSystem_SetState(1);
-
-    return;
+    Sound_SetCurrentBGM(seqID);
+    Sound_AdjustVolumeForVoiceChat(seqID, handleType);
+    SoundSystem_SetState(SOUND_SYSTEM_STATE_PLAY);
 }
 
-static BOOL Sound_PlayRegularBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType)
+static BOOL Sound_Impl_PlayBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType)
 {
     SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_SFX));
     SoundSystem_LoadSequence(seqID);
@@ -114,15 +113,21 @@ static BOOL Sound_PlayRegularBGM(u16 seqID, u8 playerID, enum SoundHandleType ha
     return NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(handleType), seqID);
 }
 
-static BOOL Sound_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType)
+static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType)
 {
     u8 *v1 = SoundSystem_GetParam(19);
-    u16 *v2 = SoundSystem_GetParam(32);
+    u16 *newFieldBGM = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM);
 
-    int v0 = Sound_GetSequenceFromSoundHandle(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FIELD_BGM));
-    sub_020047E8(seqID, sub_02004B48(v0));
+    int currentSeqID = Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FIELD_BGM));
+    Sound_LoadSoundDataForFieldBGM(seqID, Sound_GetBankIDFromSequenceID(currentSeqID));
 
-    return NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(handleType), -1, sub_02004B48(*v2), -1, seqID);
+    return NNS_SndArcPlayerStartSeqEx(
+        SoundSystem_GetSoundHandle(handleType), 
+        -1, 
+        Sound_GetBankIDFromSequenceID(*newFieldBGM), 
+        -1, 
+        seqID
+    );
 }
 
 BOOL sub_02005588(u8 param0, u16 param1)
@@ -292,7 +297,7 @@ BOOL Sound_PlayEffect(u16 sdatID)
     int v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(Sound_GetPlayerForSequence(sdatID));
     int v1 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(v0), sdatID);
 
-    sub_02004AA0(sdatID, v0);
+    Sound_AdjustVolumeForVoiceChat(sdatID, v0);
 
     return v1;
 }
@@ -302,7 +307,7 @@ BOOL sub_02005770(u16 param0, int param1)
     int v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(param1);
     int v1 = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(v0), param1, -1, -1, param0);
 
-    sub_02004AA0(param0, v0);
+    Sound_AdjustVolumeForVoiceChat(param0, v0);
 
     if (v1 == 0) {
         (void)0;
@@ -403,10 +408,10 @@ BOOL sub_02005844(u16 species, u8 form)
         }
 
         v1 = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(1), -1, species, -1, 2);
-        sub_02004AA0(species, 1);
+        Sound_AdjustVolumeForVoiceChat(species, 1);
     } else {
         v1 = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(8), -1, species, -1, 2);
-        sub_02004AA0(species, 8);
+        Sound_AdjustVolumeForVoiceChat(species, 8);
     }
 
     Sound_FlagDefaultChatotCry(FALSE);
@@ -661,8 +666,8 @@ BOOL Sound_PlayPokemonCry(enum PokemonCryMod cryMod, u16 species, int param2, in
 
 static void sub_02005E4C(u16 param0, int param1, int param2)
 {
-    sub_02004A68(param1, param2);
-    sub_02004AA0(param0, param1);
+    Sound_SetInitialVolumeForHandle(param1, param2);
+    Sound_AdjustVolumeForVoiceChat(param0, param1);
 
     return;
 }
@@ -894,7 +899,7 @@ BOOL sub_02006150(u16 param0)
     v2 = SoundSystem_LoadSequenceEx(param0, (NNS_SND_ARC_LOAD_SEQ | NNS_SND_ARC_LOAD_BANK));
     v2 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(2), param0);
 
-    sub_02004AA0(param0, 2);
+    Sound_AdjustVolumeForVoiceChat(param0, 2);
 
     return v2;
 }

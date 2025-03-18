@@ -24,6 +24,7 @@ enum SoundHeapState {
 
 enum SoundSystemState {
     SOUND_SYSTEM_STATE_IDLE = 0,
+    SOUND_SYSTEM_STATE_PLAY = 1, // Start playing a sound
 };
 
 enum SoundHandleType {
@@ -46,6 +47,8 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_CURRENT_BGM = 10,
     SOUND_SYSTEM_PARAM_NEXT_BGM,
 
+    SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE = 19,
+
     SOUND_SYSTEM_PARAM_MAIN_SCENE = 21,
     SOUND_SYSTEM_PARAM_SUB_SCENE,
     SOUND_SYSTEM_PARAM_HEAP_STATE_EMPTY,
@@ -53,6 +56,8 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_HEAP_STATE_BGM_BANK,
     SOUND_SYSTEM_PARAM_HEAP_STATE_SFX,
     SOUND_SYSTEM_PARAM_HEAP_STATE_BGM,
+
+    SOUND_SYSTEM_PARAM_FIELD_BGM = 32,
 };
 
 typedef struct SoundSystem {
@@ -79,14 +84,14 @@ typedef struct SoundSystem {
     u8 unk_BCD61;
     u8 unk_BCD62;
     u8 unk_BCD63;
-    u8 unk_BCD64;
+    u8 fieldBGMBankState;
     u8 unk_BCD65;
     u8 mainScene;
     u8 subScene;
     int heapStates[SOUND_HEAP_STATE_COUNT];
     u8 unk_BCD84;
     u8 unk_BCD85;
-    u16 unk_BCD86;
+    u16 currentFieldBGM;
     const SNDWaveData *unk_BCD88;
     void *unk_BCD8C;
     int unk_BCD90;

@@ -16,7 +16,7 @@ void Sound_SetCurrentBGM(u16 param0);
 u16 Sound_GetCurrentBGM(void);
 void Sound_SetNextBGM(u16 param0);
 u16 Sound_GetNextBGM(void);
-void sub_02004224(u16 param0);
+void Sound_SetFieldBGM(u16 param0);
 void sub_02004964(void);
 int Sound_GetHeapState(enum SoundHeapState state);
 void Sound_SetScene(u8 param0);
@@ -26,7 +26,7 @@ BOOL sub_02004550(u8 param0, u16 param1, int param2);
 static void Sound_LoadSoundEffectsForSceneWithState(u8 param0);
 static void sub_020046F8(u16 param0, int param1);
 static void sub_0200478C(u16 param0, u16 param1);
-void sub_020047E8(u16 param0, u16 param1);
+void Sound_LoadSoundDataForFieldBGM(u16 param0, u16 param1);
 static void sub_02004874(u16 param0, int param1);
 static void sub_020048AC(u16 param0, int param1);
 static void sub_020048CC(u16 param0, int param1);
@@ -37,16 +37,16 @@ void sub_02004950(u16 param0);
 void sub_020049F4(u8 param0, BOOL param1);
 void sub_02004A3C(void);
 void sub_02004A54(int param0, int param1, int param2);
-void sub_02004A68(int param0, int param1);
+void Sound_SetInitialVolumeForHandle(enum SoundHandleType param0, int param1);
 void sub_02004A84(int param0);
-void sub_02004AA0(int param0, int param1);
+void Sound_AdjustVolumeForVoiceChat(int param0, enum SoundHandleType param1);
 void sub_02004AD4(u16 param0, int param1);
 BOOL sub_02004AE8(int param0, int param1, u16 param2);
 int sub_02004B04(int param0);
 u8 Sound_GetPlayerForSequence(u16 param0);
-int Sound_GetSequenceFromSoundHandle(NNSSndHandle *param0);
+int Sound_GetSequenceIDFromSoundHandle(NNSSndHandle *param0);
 const NNSSndArcBankInfo *sub_02004B3C(int param0);
-u16 sub_02004B48(int param0);
+u16 Sound_GetBankIDFromSequenceID(int param0);
 MICResult sub_02004B5C(MICAutoParam *param0);
 MICResult sub_02004B64(void);
 NNSSndWaveOutHandle *sub_02004B78(u32 param0);
@@ -78,7 +78,7 @@ void sub_02004FDC(int param0);
 int sub_02004FEC(void);
 void sub_0200500C(int param0);
 void *sub_02005014(void);
-void sub_0200501C(int param0);
+void Sound_SetFieldBGMBankState(int param0);
 BOOL sub_0200502C(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
 BOOL sub_02005068(u8 param0, u16 param1, int param2, int param3, int param4, u8 param5, void *param6);
 static void sub_020050A4(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
@@ -134,12 +134,10 @@ u16 Sound_GetNextBGM(void)
     return *param;
 }
 
-void sub_02004224(u16 param0)
+void Sound_SetFieldBGM(u16 bgmID)
 {
-    u16 *v0 = SoundSystem_GetParam(32);
-
-    *v0 = param0;
-    return;
+    u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM);
+    *param = bgmID;
 }
 
 void Sound_SetScene(u8 scene)
@@ -417,7 +415,7 @@ static void sub_020046F8(u16 param0, int param1)
     int *v4 = SoundSystem_GetParam(24);
     u16 *v5 = SoundSystem_GetParam(32);
 
-    v1 = Sound_GetSequenceFromSoundHandle(SoundSystem_GetSoundHandle(0));
+    v1 = Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(0));
 
     if (*v3 == 0) {
         if (v1 == param0) {
@@ -427,7 +425,7 @@ static void sub_020046F8(u16 param0, int param1)
         }
     }
 
-    sub_0200501C(1);
+    Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_SWITCH);
     sub_020056D4();
 
     if (v1 != param0) {
@@ -456,7 +454,7 @@ static void sub_020046F8(u16 param0, int param1)
 static void sub_0200478C(u16 param0, u16 param1)
 {
     u16 *v0 = SoundSystem_GetParam(32);
-    u16 v1 = sub_02004B48(*v0);
+    u16 v1 = Sound_GetBankIDFromSequenceID(*v0);
 
     if ((v1 != 701) && (v1 != 703)) {
         SoundSystem_LoadSequenceEx(param0, NNS_SND_ARC_LOAD_WAVE);
@@ -468,35 +466,33 @@ static void sub_0200478C(u16 param0, u16 param1)
     SoundSystem_SaveHeapState(SoundSystem_GetParam(27));
     sub_020049F4(1, 0);
     sub_0200560C(127, 40, 0);
-    sub_0200501C(0);
+    Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_IDLE);
 
     return;
 }
 
-void sub_020047E8(u16 param0, u16 param1)
+void Sound_LoadSoundDataForFieldBGM(u16 seqID, u16 currentBankID)
 {
-    u16 v0;
     u8 *v1 = SoundSystem_GetParam(19);
-    u16 *v2 = SoundSystem_GetParam(32);
+    u16 *newFieldBGM = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM);
 
-    if ((*v1 == 1) || (param1 == 0)) {
+    if (*v1 == 1 || currentBankID == 0) {
         SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_PERSISTENT));
         Sound_SetSubScene(0);
-        SoundSystem_LoadSequenceEx(*v2, NNS_SND_ARC_LOAD_BANK);
-        SoundSystem_SaveHeapState(SoundSystem_GetParam(25));
+        SoundSystem_LoadSequenceEx(*newFieldBGM, NNS_SND_ARC_LOAD_BANK);
+        SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_BGM_BANK));
         Sound_LoadSoundEffectsForScene(4);
-        SoundSystem_SaveHeapState(SoundSystem_GetParam(26));
+        SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_SFX));
 
-        v0 = sub_02004B48(*v2);
-
-        if ((v0 != 701) && (v0 != 703)) {
-            SoundSystem_LoadSequenceEx(param0, NNS_SND_ARC_LOAD_WAVE);
+        u16 newBankID = Sound_GetBankIDFromSequenceID(*newFieldBGM);
+        if (newBankID != BANK_BGM_FIELD && newBankID != BANK_BGM_DUNGEON) {
+            SoundSystem_LoadSequenceEx(seqID, NNS_SND_ARC_LOAD_WAVE);
             GF_ASSERT(FALSE);
         } else {
-            SoundSystem_LoadSequenceEx(*v2, NNS_SND_ARC_LOAD_WAVE);
+            SoundSystem_LoadSequenceEx(*newFieldBGM, NNS_SND_ARC_LOAD_WAVE);
         }
 
-        SoundSystem_SaveHeapState(SoundSystem_GetParam(27));
+        SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_BGM));
     }
 
     return;
@@ -510,7 +506,7 @@ static void sub_02004874(u16 param0, int param1)
     SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_BGM_BANK));
     Sound_LoadSoundEffectsForScene(5);
     SoundSystem_SaveHeapState(SoundSystem_GetParam(26));
-    sub_0200501C(1);
+    Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_SWITCH);
     Sound_PlayBGM(param0);
 
     return;
@@ -534,7 +530,7 @@ void sub_020048CC(u16 param0, int param1)
 
     Sound_StopAll();
     Sound_LoadSoundEffectsForSceneWithState(6);
-    sub_0200501C(1);
+    Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_SWITCH);
     Sound_PlayBGM(param0);
 
     return;
@@ -546,7 +542,7 @@ void sub_020048F0(u16 param0, int param1)
 
     Sound_StopAll();
     Sound_LoadSoundEffectsForSceneWithState(7);
-    sub_0200501C(1);
+    Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_SWITCH);
     Sound_PlayBGM(param0);
 
     return;
@@ -642,7 +638,7 @@ void sub_020049F4(u8 param0, BOOL param1)
     }
 
     if (param1 == 0) {
-        Sound_SetCurrentBGM(Sound_GetSequenceFromSoundHandle(SoundSystem_GetSoundHandle(v0)));
+        Sound_SetCurrentBGM(Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(v0)));
     }
 
     NNS_SndPlayerPause(SoundSystem_GetSoundHandle(v0), param1);
@@ -668,18 +664,17 @@ void sub_02004A54(int param0, int param1, int param2)
     return;
 }
 
-void sub_02004A68(int param0, int param1)
+void Sound_SetInitialVolumeForHandle(enum SoundHandleType handleType, int volume)
 {
-    if (param1 < 0) {
-        param1 = 0;
+    if (volume < 0) {
+        volume = 0;
     }
 
-    if (param1 > 127) {
-        param1 = 127;
+    if (volume > 127) {
+        volume = 127;
     }
 
-    NNS_SndPlayerSetInitialVolume(SoundSystem_GetSoundHandle(param0), param1);
-    return;
+    NNS_SndPlayerSetInitialVolume(SoundSystem_GetSoundHandle(handleType), volume);
 }
 
 void sub_02004A84(int param0)
@@ -687,31 +682,32 @@ void sub_02004A84(int param0)
     u8 v0 = Sound_GetPlayerForSequence(param0);
     int v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
 
-    sub_02004AA0(param0, v1);
+    Sound_AdjustVolumeForVoiceChat(param0, v1);
     return;
 }
 
-void sub_02004AA0(int param0, int param1)
+void Sound_AdjustVolumeForVoiceChat(int seqID, enum SoundHandleType handleType)
 {
-    u8 v0;
-    const NNSSndSeqParam *v1 = NNS_SndArcGetSeqParam(param0);
+    u8 volume;
+    const NNSSndSeqParam *param = NNS_SndArcGetSeqParam(seqID);
 
-    switch (param1) {
-    case 1:
+    switch (handleType) {
+    case SOUND_HANDLE_TYPE_POKEMON_CRY:
     case 8:
-        v0 = 127;
+        volume = 127;
         break;
+
     default:
-        if (v1 == NULL) {
+        if (param == NULL) {
             return;
         }
 
-        v0 = v1->volume;
+        volume = param->volume;
         break;
     }
 
-    if (sub_02036314() == 1) {
-        sub_02004A68(param1, (v0 / 5));
+    if (sub_02036314() == TRUE) {
+        Sound_SetInitialVolumeForHandle(handleType, (volume / 5));
     }
 
     return;
@@ -722,7 +718,7 @@ void sub_02004AD4(u16 param0, int param1)
     u8 v0 = Sound_GetPlayerForSequence(param0);
     int v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
 
-    sub_02004A68(v1, param1);
+    Sound_SetInitialVolumeForHandle(v1, param1);
     return;
 }
 
@@ -754,14 +750,14 @@ u8 Sound_GetPlayerForSequence(u16 seqID)
     return param->playerNo;
 }
 
-int Sound_GetSequenceFromSoundHandle(NNSSndHandle *handle)
+int Sound_GetSequenceIDFromSoundHandle(NNSSndHandle *handle)
 {
     return NNS_SndPlayerGetSeqNo(handle);
 }
 
 const NNSSndArcBankInfo *sub_02004B3C(int param0)
 {
-    const NNSSndArcBankInfo *v0 = NNS_SndArcGetBankInfo(sub_02004B48(param0));
+    const NNSSndArcBankInfo *v0 = NNS_SndArcGetBankInfo(Sound_GetBankIDFromSequenceID(param0));
 
     if (v0 == NULL) {
         (void)0;
@@ -770,15 +766,14 @@ const NNSSndArcBankInfo *sub_02004B3C(int param0)
     return v0;
 }
 
-u16 sub_02004B48(int param0)
+u16 Sound_GetBankIDFromSequenceID(int seqID)
 {
-    const NNSSndSeqParam *v0 = NNS_SndArcGetSeqParam(param0);
-
-    if (v0 == NULL) {
+    const NNSSndSeqParam *param = NNS_SndArcGetSeqParam(seqID);
+    if (param == NULL) {
         return 0;
     }
 
-    return v0->bankNo;
+    return param->bankNo;
 }
 
 MICResult sub_02004B5C(MICAutoParam *param0)
@@ -1214,12 +1209,12 @@ void *sub_02005014(void)
     return &Unk_021BEBA0[0];
 }
 
-void sub_0200501C(int param0)
+// Needs to be set to FIELD_BGM_BANK_STATE_SWITCH before calling
+// Sound_PlayBGM, if the bank needs to be switched
+void Sound_SetFieldBGMBankState(int state)
 {
-    u8 *v0 = SoundSystem_GetParam(19);
-
-    *v0 = param0;
-    return;
+    u8 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE);
+    *param = state;
 }
 
 BOOL sub_0200502C(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5)
@@ -1255,7 +1250,7 @@ static void sub_020050A4(u8 param0, u16 param1, int param2, int param3, u8 param
     sub_02004FDC(param3);
 
     *v0 = sub_02004B3C(param1);
-    sub_0200501C(param4);
+    Sound_SetFieldBGMBankState(param4);
 
     return;
 }
@@ -1536,7 +1531,7 @@ void sub_020053CC(int param0)
 
 static void sub_0200540C(void)
 {
-    if ((Sound_CheckFade() == 0) && (Sound_GetSequenceFromSoundHandle(SoundSystem_GetSoundHandle(0)) != -1) && (Sound_GetCurrentBGM() != 1150)) {
+    if ((Sound_CheckFade() == 0) && (Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(0)) != -1) && (Sound_GetCurrentBGM() != 1150)) {
         sub_020056D4();
         sub_020049F4(1, 1);
     } else {
