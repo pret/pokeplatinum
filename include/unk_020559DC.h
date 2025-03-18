@@ -10,7 +10,7 @@
 void sub_020559DC(FieldSystem *fieldSystem);
 enum TimeOfDay FieldSystem_GetTimeOfDay(const FieldSystem *fieldSystem);
 int FieldSystem_GetMonth(const FieldSystem *fieldSystem);
-int FieldSystem_GetDay(const FieldSystem *fieldSystem);
+int FieldSystem_GetDayOfMonth(const FieldSystem *fieldSystem);
 int FieldSystem_GetWeek(const FieldSystem *fieldSystem);
 int FieldSystem_GetHour(const FieldSystem *fieldSystem);
 int FieldSystem_GetMinute(const FieldSystem *fieldSystem);

@@ -158,7 +158,7 @@ int FieldSystem_GetMonth(const FieldSystem *fieldSystem)
     return gameTime->date.month;
 }
 
-int FieldSystem_GetDay(const FieldSystem *fieldSystem)
+int FieldSystem_GetDayOfMonth(const FieldSystem *fieldSystem)
 {
     GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
     return gameTime->date.day;

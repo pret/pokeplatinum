@@ -7150,7 +7150,7 @@ static BOOL ScrCmd_282(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SystemData *v2 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
-    if ((SystemData_GetOwnerBirthMonth(v2) == FieldSystem_GetMonth(fieldSystem)) && (SystemData_GetOwnerBirthDayOfMonth(v2) == FieldSystem_GetDay(fieldSystem))) {
+    if ((SystemData_GetOwnerBirthMonth(v2) == FieldSystem_GetMonth(fieldSystem)) && (SystemData_GetOwnerBirthDayOfMonth(v2) == FieldSystem_GetDayOfMonth(fieldSystem))) {
         *v0 = 1;
     } else {
         *v0 = 0;

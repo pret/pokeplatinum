@@ -911,7 +911,7 @@ static const u16 sEggCycleSpecialDates[] = {
 
 static int Daycare_GetEggCycleLength(FieldSystem *fieldSystem)
 {
-    int date = FieldSystem_GetMonth(fieldSystem) * 100 + FieldSystem_GetDay(fieldSystem);
+    int date = FieldSystem_GetMonth(fieldSystem) * 100 + FieldSystem_GetDayOfMonth(fieldSystem);
     int i;
 
     if (FieldSystem_HasPenalty(fieldSystem)) {
