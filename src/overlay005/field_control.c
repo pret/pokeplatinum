@@ -8,9 +8,9 @@
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/daycare.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"

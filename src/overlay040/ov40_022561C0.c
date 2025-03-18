@@ -2,8 +2,7 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02026218_decl.h"
-#include "struct_decls/struct_02026310_decl.h"
+#include "struct_defs/daycare.h"
 
 #include "overlay005/ov5_021E622C.h"
 #include "overlay025/poketch_system.h"
@@ -207,7 +206,7 @@ static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare)
     DaycareMon *v0;
     BoxPokemon *v1;
     int v2;
-    BOOL v3;
+    BOOL reencrypt;
 
     param0->unk_00 = ov5_021E6238(daycare);
     param0->unk_01 = sub_02026234(daycare);
@@ -215,7 +214,7 @@ static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare)
     for (v2 = 0; v2 < param0->unk_00; v2++) {
         v0 = Daycare_GetDaycareMon(daycare, v2);
         v1 = DaycareMon_GetBoxMon(v0);
-        v3 = BoxPokemon_EnterDecryptionContext(v1);
+        reencrypt = BoxPokemon_EnterDecryptionContext(v1);
 
         param0->unk_04[v2] = BoxPokemon_IconSpriteIndex(v1);
         param0->unk_1C[v2] = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
@@ -223,6 +222,6 @@ static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare)
         param0->unk_0C[v2] = ov5_021E6590(v0);
         param0->unk_14[v2] = BoxPokemon_GetGender(v1);
 
-        BoxPokemon_ExitDecryptionContext(v1, v3);
+        BoxPokemon_ExitDecryptionContext(v1, reencrypt);
     }
 }

@@ -1,10 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020261E4_H
 #define POKEPLATINUM_UNK_020261E4_H
 
-#include "struct_decls/struct_02026218_decl.h"
-#include "struct_decls/struct_02026224_decl.h"
-#include "struct_decls/struct_02026310_decl.h"
-#include "struct_defs/struct_0202818C.h"
+#include "struct_defs/daycare.h"
 
 #include "pokemon.h"
 #include "savedata.h"

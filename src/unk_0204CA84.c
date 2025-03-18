@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02026310_decl.h"
+#include "struct_defs/daycare.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021E622C.h"

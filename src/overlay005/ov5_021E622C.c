@@ -9,10 +9,8 @@
 #include "generated/egg_groups.h"
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_02026218_decl.h"
-#include "struct_decls/struct_02026224_decl.h"
-#include "struct_decls/struct_02026310_decl.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/daycare.h"
 
 #include "field/field_system.h"
 #include "overlay005/egg_moves.h"
