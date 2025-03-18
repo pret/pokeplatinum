@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "generated/species.h"
-#include "generated/text_banks.h"
 
 #include "message.h"
 #include "pokemon.h"

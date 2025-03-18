@@ -291,14 +291,14 @@ static void sub_0205300C(UnkStruct_0205300C *param0)
 
 static void sub_02053028(FieldSystem *fieldSystem, UnkStruct_0205300C *param1, int param2)
 {
-    MessageLoader *v0 = MessageLoader_Init(1, 26, 213, HEAP_ID_FIELD);
+    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD);
 
     if (param2 == 2) {
         StringTemplate *v1;
 
         v1 = StringTemplate_Default(HEAP_ID_FIELD);
         StringTemplate_SetPlayerName(v1, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-        param1->unk_2C = MessageUtil_ExpandedStrbuf(v1, v0, 16, 4);
+        param1->unk_2C = MessageUtil_ExpandedStrbuf(v1, v0, 16, HEAP_ID_FIELD);
         StringTemplate_Free(v1);
     } else {
         param1->unk_2C = MessageLoader_GetNewStrbuf(v0, 18);

@@ -122,7 +122,7 @@ BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_3C.pixels = param0->unk_18->pRawData;
     param0->unk_3C.width = 32;
     param0->unk_3C.height = 32;
-    param0->unk_4BF8 = MessageLoader_Init(1, 26, 391, HEAP_ID_10);
+    param0->unk_4BF8 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0391, HEAP_ID_10);
 
     for (v0 = 0; v0 < 18; v0++) {
         param0->unk_48[v0] = NULL;

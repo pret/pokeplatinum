@@ -182,7 +182,7 @@ static void ov56_02256294(UnkStruct_ov56_02256468 *param0)
     param0->unk_2D8.unk_04 = 0;
     param0->unk_2D8.unk_06 = 0;
     param0->unk_18 = StringTemplate_Default(HEAP_ID_FIELD);
-    param0->unk_1C = MessageLoader_Init(0, 26, 635, HEAP_ID_FIELD);
+    param0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD);
     param0->unk_20 = Graphics_GetScrnData(74, 3, 1, &(param0->unk_24), 4);
 }
 
@@ -776,7 +776,7 @@ static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTempl
             Strbuf_Free(v1);
         }
 
-        v0 = MessageUtil_ExpandedStrbuf(param2, param3, 208, 89);
+        v0 = MessageUtil_ExpandedStrbuf(param2, param3, 208, HEAP_ID_89);
     }
 
     return v0;
@@ -807,7 +807,7 @@ static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence 
     v0->unk_00[*v2].unk_14 = *param2;
     v0->unk_00[*v2].unk_0C = param1;
     v0->unk_00[*v2].unk_10 = TrainerInfo_Gender(param3);
-    v0->unk_00[*v2].unk_04 = sub_02014B34(param2, 89);
+    v0->unk_00[*v2].unk_04 = sub_02014B34(param2, HEAP_ID_89);
     v0->unk_00[*v2].unk_08 = ov56_02256E5C(v1, param1, param0->unk_18, param0->unk_1C, param0->unk_10);
 
     (*v2)++;

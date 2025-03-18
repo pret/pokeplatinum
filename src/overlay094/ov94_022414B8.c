@@ -973,7 +973,7 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
     v0 = MessageLoader_GetNewStrbuf(param0, 100);
 
     StringTemplate_SetNumber(param1, 3, level, 3, 0, 1);
-    v1 = MessageUtil_ExpandedStrbuf(param1, param0, 102, 62);
+    v1 = MessageUtil_ExpandedStrbuf(param1, param0, 102, HEAP_ID_62);
 
     if (gender != GENDER_NONE + 1) {
         MessageLoader_GetStrbuf(param0, Unk_ov94_02245FD8[gender], v3);

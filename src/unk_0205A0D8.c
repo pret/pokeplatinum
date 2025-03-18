@@ -665,7 +665,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     v0->fieldSystem = fieldSystem;
     v0->unk_08 = param1;
     v0->unk_28 = StringTemplate_Default(HEAP_ID_FIELDMAP);
-    v0->unk_2C = MessageLoader_Init(0, 26, 11, HEAP_ID_FIELDMAP);
+    v0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0011, HEAP_ID_FIELDMAP);
     v0->unk_0C = Strbuf_Init((100 * 2), HEAP_ID_FIELDMAP);
     v0->unk_10 = Strbuf_Init((100 * 2), HEAP_ID_FIELDMAP);
 
@@ -866,7 +866,7 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
         int v1, v2, v3;
         MessageLoader *v4;
 
-        v4 = MessageLoader_Init(1, 26, 412, HEAP_ID_FIELD);
+        v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD);
         v3 = Pokemon_GetStructSize();
 
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 21, 9, 10, 8, 13, 10);
@@ -1008,7 +1008,7 @@ static BOOL sub_0205B140(FieldTask *param0)
     switch (v1->unk_28) {
     case 0:
         v1->unk_18 = StringTemplate_Default(HEAP_ID_FIELD);
-        v1->unk_1C = MessageLoader_Init(0, 26, 11, HEAP_ID_FIELD);
+        v1->unk_1C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0011, HEAP_ID_FIELD);
         v1->unk_00 = Strbuf_Init((100 * 2), HEAP_ID_FIELD);
         v1->unk_04 = Strbuf_Init((100 * 2), HEAP_ID_FIELD);
 

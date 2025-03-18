@@ -281,7 +281,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     v0->unk_14.unk_44 = PokemonSpriteManager_New(HEAP_ID_23);
     ov17_0223E450();
 
-    v0->unk_14.unk_84 = MessageLoader_Init(0, 26, 206, HEAP_ID_23);
+    v0->unk_14.unk_84 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0206, HEAP_ID_23);
     v0->unk_14.unk_88 = StringTemplate_Default(HEAP_ID_23);
     v0->unk_14.unk_8C = Strbuf_Init((2 * 160), HEAP_ID_23);
     v0->unk_14.unk_94 = sub_02012744((3 * 3), HEAP_ID_23);

@@ -827,7 +827,7 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
         Strbuf *v2;
         int v3;
 
-        param0->unk_20 = MessageLoader_Init(1, 26, 409, param0->heapID);
+        param0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0409, param0->heapID);
 
         v2 = Strbuf_Init(8 * 2, param0->heapID);
 

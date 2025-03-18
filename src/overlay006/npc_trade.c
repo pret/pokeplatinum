@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "generated/npc_trades.h"
-#include "generated/text_banks.h"
 
 #include "field/field_system.h"
 #include "overlay006/struct_ov6_02246254.h"

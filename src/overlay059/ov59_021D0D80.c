@@ -184,7 +184,7 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
         v0->unk_08 = (UnkStruct_0203DE34 *)OverlayManager_Args(param0);
         v0->unk_4A9C = v0->unk_08->unk_00;
         v0->unk_24 = StringTemplate_Default(HEAP_ID_51);
-        v0->unk_28 = MessageLoader_Init(0, 26, 533, HEAP_ID_51);
+        v0->unk_28 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0533, HEAP_ID_51);
 
         SetAutorepeat(4, 8);
 
@@ -1473,7 +1473,7 @@ static BOOL ov59_021D2418(Window *param0, int param1, u32 param2, UnkStruct_0209
             TrainerInfo_NameStrbuf(param3->unk_3C8[v0][0], param3->unk_2C[v0]);
             StringTemplate_SetNumber(param3->unk_24, 0, v3, 5, 2, 1);
 
-            v2 = MessageUtil_ExpandedStrbuf(param3->unk_24, param3->unk_28, 1, 51);
+            v2 = MessageUtil_ExpandedStrbuf(param3->unk_24, param3->unk_28, 1, HEAP_ID_51);
 
             if (v1 == v0) {
                 Text_AddPrinterWithParamsAndColor(&param0[0], FONT_SYSTEM, param3->unk_2C[v0], 5, 1 + v0 * 18, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 3, 0), NULL);

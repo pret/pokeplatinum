@@ -248,35 +248,28 @@ static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int
     return v0;
 }
 
-static s32 ov22_0225A860(Window *param0, int param1, int param2, int param3, int param4, int param5, TextColor param6, u32 param7)
+static s32 ov22_0225A860(Window *window, int narcID, int bankID, int param3, int param4, int param5, TextColor param6, u32 param7)
 {
-    MessageLoader *v0;
-    Strbuf *v1;
-    s32 v2;
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, narcID, bankID, HEAP_ID_13);
+    GF_ASSERT(msgLoader);
 
-    v0 = MessageLoader_Init(0, param1, param2, HEAP_ID_13);
-    GF_ASSERT(v0);
-
-    v1 = MessageLoader_GetNewStrbuf(v0, param3);
-    v2 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, v1, param4, param5, param7, param6, NULL);
+    Strbuf *v1 = MessageLoader_GetNewStrbuf(msgLoader, param3);
+    s32 v2 = Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, v1, param4, param5, param7, param6, NULL);
 
     Strbuf_Free(v1);
-    MessageLoader_Free(v0);
+    MessageLoader_Free(msgLoader);
 
     return v2;
 }
 
-static s32 ov22_0225A8B4(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8)
+static s32 ov22_0225A8B4(Window *param0, int narcID, int bankID, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8)
 {
-    MessageLoader *v0;
-    s32 v1;
-
     GF_ASSERT(*param8 == NULL);
 
-    v0 = MessageLoader_Init(0, param1, param2, HEAP_ID_13);
+    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, narcID, bankID, HEAP_ID_13);
     GF_ASSERT(v0);
     *param8 = MessageLoader_GetNewStrbuf(v0, param3);
-    v1 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, *param8, param4, param5, param7, param6, NULL);
+    s32 v1 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, *param8, param4, param5, param7, param6, NULL);
 
     MessageLoader_Free(v0);
 

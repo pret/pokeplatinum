@@ -221,7 +221,7 @@ static void ov104_022320FC(Strbuf *param0, u16 param1, u16 param2, u16 param3, u
     sub_02014CF8(&v0, 0, param3);
     sub_02014CF8(&v0, 1, param4);
 
-    v1 = sub_02014B34(&v0, 32);
+    v1 = sub_02014B34(&v0, HEAP_ID_FIELD_TASK);
     Strbuf_Copy(param0, v1);
     Strbuf_Free(v1);
 }
@@ -231,7 +231,7 @@ static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     int v0;
 
     if (param8 == NULL) {
-        param1->unk_8C = MessageLoader_Init(1, 26, 361, param0->heapID);
+        param1->unk_8C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS_2, param0->heapID);
         param1->unk_97_1 = 1;
     } else {
         param1->unk_8C = param8;
@@ -1071,7 +1071,7 @@ void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2)
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 
     if (param1[0] == 0xFFFF) {
-        v1 = MessageLoader_Init(1, 26, param2, HEAP_ID_FIELD_TASK);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, HEAP_ID_FIELD_TASK);
 
         ov104_02231F74(param0->unk_00, v1, param1[1], 1, NULL);
         MessageLoader_Free(v1);

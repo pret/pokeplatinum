@@ -4,8 +4,6 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay021/funcptr_ov21_021E9B74.h"

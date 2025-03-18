@@ -525,7 +525,7 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
 
     StringTemplate_SetNumber(param2, 3, level, 3, 0, 1);
 
-    v2 = MessageUtil_ExpandedStrbuf(param2, param0, 102, 62);
+    v2 = MessageUtil_ExpandedStrbuf(param2, param0, 102, HEAP_ID_62);
     v0 = MessageLoader_GetNewStrbuf(param1, species);
 
     Item_LoadName(v5, v8, 62);

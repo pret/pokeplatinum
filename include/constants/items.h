@@ -105,5 +105,4 @@
 #define MAX_HM   8
 #define MAX_TMHM (92 + 8)
 
-
 #endif // POKEPLATINUM_CONSTANTS_ITEMS_H

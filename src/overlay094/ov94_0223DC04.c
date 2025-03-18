@@ -299,8 +299,8 @@ static void ov94_0223DFDC(UnkStruct_ov94_0223FD4C *param0)
         StringTemplate_SetCityName(param0->unk_B8C, 9, v2->unk_11E, v2->unk_11F);
     }
 
-    param0->unk_BB4[0] = MessageUtil_ExpandedStrbuf(param0->unk_B8C, param0->unk_B90, 79, 62);
-    param0->unk_BB4[1] = MessageUtil_ExpandedStrbuf(param0->unk_B8C, param0->unk_B90, 80, 62);
+    param0->unk_BB4[0] = MessageUtil_ExpandedStrbuf(param0->unk_B8C, param0->unk_B90, 79, HEAP_ID_62);
+    param0->unk_BB4[1] = MessageUtil_ExpandedStrbuf(param0->unk_B8C, param0->unk_B90, 80, HEAP_ID_62);
 }
 
 static void ov94_0223E074(UnkStruct_ov94_0223FD4C *param0)

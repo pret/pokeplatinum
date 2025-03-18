@@ -481,7 +481,7 @@ static void ov79_021D2768(UnkStruct_ov79_021D2928 *param0)
 {
     int v0 = 0;
 
-    param0->unk_18 = MessageLoader_Init(0, 26, 462, param0->heapID);
+    param0->unk_18 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0462, param0->heapID);
     param0->unk_1C.unk_00 = StringTemplate_New(1, 64, param0->heapID);
     param0->unk_1C.unk_04 = Strbuf_Init(64, param0->heapID);
 

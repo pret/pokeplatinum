@@ -1450,7 +1450,7 @@ void ov17_02240A80(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
             v0->unk_130[v1] = 0;
         }
 
-        v2 = MessageUtil_MoveName(param1[v1], 21);
+        v2 = MessageUtil_MoveName(param1[v1], HEAP_ID_21);
 
         ov17_02240BF4(param0, v2, FONT_SUBSCREEN, &v0->unk_00[v1], TEXT_COLOR(1, 7, 8));
         Strbuf_Free(v2);

@@ -516,7 +516,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
 
                 v8 = sub_02030C28(v11, &v15, 102);
                 if (v8 == NULL) {
-                    v8 = sub_02014B34(&v15, 102);
+                    v8 = sub_02014B34(&v15, HEAP_ID_102);
                 }
 
                 Window_FillTilemap(v10, 0x00);
@@ -3193,7 +3193,7 @@ static void ov62_022349E4(Strbuf *param0, int param1)
     MessageLoader *v0;
 
     Strbuf_Clear(param0);
-    v0 = MessageLoader_Init(1, 26, 10, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, param1);
 
     MessageLoader_GetStrbuf(v0, 332, param0);
     MessageLoader_Free(v0);
