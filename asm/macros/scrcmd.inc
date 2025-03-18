@@ -2322,10 +2322,10 @@
     .short 425
     .endm
 
-    .macro ScrCmd_1AA arg0, arg1
+    .macro BufferDaycarePriceBySlot destVar, daycareSlot
     .short 426
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \daycareSlot
     .endm
 
     .macro ScrCmd_1AB arg0, arg1
@@ -2343,10 +2343,10 @@
     .short \dummy
     .endm
 
-    .macro ScrCmd_1AE arg0, arg1
+    .macro BufferGainedLevelsInDaycareSlot destVar, daycareSlot
     .short 430
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \daycareSlot
     .endm
 
     .macro ScrCmd_1AF arg0, arg1, arg2

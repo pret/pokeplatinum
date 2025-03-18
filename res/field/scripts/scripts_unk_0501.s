@@ -230,7 +230,7 @@ _02EF:
     Return
 
 _02F4:
-    ScrCmd_1AE 0x800C, 0x8000
+    BufferGainedLevelsInDaycareSlot 0x800C, 0x8000
     CallIfNe 0x800C, 0, _02EF
     Return
 
@@ -265,7 +265,7 @@ _0346:
     GoTo _0292
 
 _03BE:
-    ScrCmd_1AA 0x8004, 0x8001
+    BufferDaycarePriceBySlot 0x8004, 0x8001
     Message 28
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _03DE

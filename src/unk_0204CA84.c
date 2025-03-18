@@ -82,34 +82,34 @@ BOOL ScrCmd_1A4(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1AA(ScriptContext *param0)
+BOOL ScrCmd_BufferDaycarePriceBySlot(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    Daycare *v1;
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    SaveData *v3 = fieldSystem->saveData;
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
-    u8 v5 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    Daycare *daycare;
+    StringTemplate **template = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    SaveData *saveData = fieldSystem->saveData;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u8 daycareSlot = ScriptContext_GetVar(ctx);
 
-    v1 = (Daycare *)(SaveData_SaveTable(v3, 8));
-    *v4 = ov5_021E6630(v1, v5, *v2);
+    daycare = (Daycare *)(SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE));
+    *destVar = Daycare_BufferDaycarePriceBySlot(daycare, daycareSlot, *template);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_1AE(ScriptContext *param0)
+BOOL ScrCmd_BufferGainedLevelsInDaycareSlot(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
-    Daycare *v2;
-    StringTemplate **v3 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
-    u16 v5 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    Daycare *daycare;
+    StringTemplate **template = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 daycareSlot = ScriptContext_GetVar(ctx);
 
-    v2 = (Daycare *)(SaveData_SaveTable(v1, 8));
-    *v4 = ov5_021E6640(v2, v5, *v3);
+    daycare = (Daycare *)(SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE));
+    *destVar = Daycare_BufferGainedLevelsInSlot(daycare, daycareSlot, *template);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1AF(ScriptContext *param0)
