@@ -222,11 +222,11 @@ BOOL sub_02052B2C(FieldTask *task)
         (*state)++;
         break;
     case 1:
-        sub_0200564C(0, 20);
+        Sound_FadeOutBGM(0, 20);
         (*state)++;
         break;
     case 2:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             sub_020553DC();
             (*state)++;
         }

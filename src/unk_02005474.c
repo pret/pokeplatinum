@@ -20,18 +20,18 @@ typedef struct {
     SysTask *unk_04;
 } UnkStruct_02005E64;
 
-BOOL sub_02005474(u16 param0);
+BOOL Sound_PlayBasicBGM(u16 param0);
 BOOL Sound_PlayBGM(u16 param0);
 static void Sound_Impl_HandleBGMChange(u16 param0, enum SoundHandleType param1);
 static BOOL Sound_Impl_PlayBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
 static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
 BOOL sub_02005588(u8 param0, u16 param1);
-void sub_020055D0(u16 param0, int param1);
-static void sub_020055F4(void);
-void sub_0200560C(int param0, int param1, int param2);
-void sub_0200564C(int param0, int param1);
-int Sound_CheckFade(void);
-int sub_02005690(u16 param0);
+void Sound_StopBGM(u16 param0, int param1);
+static void Sound_Impl_ResetBGM(void);
+void Sound_FadeInBGM(int param0, int param1, enum BGMFadeInType param2);
+void Sound_FadeOutBGM(int param0, int param1);
+BOOL Sound_IsFadeActive(void);
+BOOL Sound_IsSequencePlaying(u16 param0);
 void Sound_StopAll(void);
 void sub_020056D4(void);
 BOOL Sound_PlayEffect(u16 param0);
@@ -59,20 +59,16 @@ static void sub_020061C8(int param0);
 int sub_020061E4(void);
 static void sub_02006214(u16 param0);
 
-BOOL sub_02005474(u16 param0)
+// "Basic" BGM refers to BGM stored in BANK_BASIC
+BOOL Sound_PlayBasicBGM(u16 seqID)
 {
-    int v0;
-    u8 v1 = Sound_GetPlayerForSequence(param0);
-    int v2 = SoundSystem_GetSoundHandleTypeFromPlayerID(v1);
+    u8 playerID = Sound_GetPlayerForSequence(seqID);
+    enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
 
-    v0 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(v2), param0);
+    BOOL result = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(handleType), seqID);
 
-    if (v0 == 0) {
-        (void)0;
-    }
-
-    Sound_Impl_HandleBGMChange(param0, v2);
-    return v0;
+    Sound_Impl_HandleBGMChange(seqID, handleType);
+    return result;
 }
 
 BOOL Sound_PlayBGM(u16 bgmID)
@@ -157,87 +153,76 @@ BOOL sub_02005588(u8 param0, u16 param1)
     return v0;
 }
 
-void sub_020055D0(u16 param0, int param1)
+void Sound_StopBGM(u16 bgmID, int fadeOutFrames)
 {
-    u8 v0;
-    int v1;
+    NNS_SndPlayerStopSeqBySeqNo(bgmID, fadeOutFrames);
 
-    NNS_SndPlayerStopSeqBySeqNo(param0, param1);
+    u8 playerID = Sound_GetPlayerForSequence(bgmID);
 
-    v0 = Sound_GetPlayerForSequence(param0);
-
-    if (v0 != 0xff) {
-        v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
-        NNS_SndHandleReleaseSeq(SoundSystem_GetSoundHandle(v1));
+    if (playerID != 0xff) {
+        enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
+        NNS_SndHandleReleaseSeq(SoundSystem_GetSoundHandle(handleType));
     }
 
-    sub_020055F4();
-    return;
+    Sound_Impl_ResetBGM();
 }
 
-static void sub_020055F4(void)
+static void Sound_Impl_ResetBGM(void)
 {
     Sound_SetCurrentBGM(0);
     Sound_SetNextBGM(0);
-    SoundSystem_SetState(0);
-
-    return;
+    SoundSystem_SetState(SOUND_SYSTEM_STATE_IDLE);
 }
 
-void sub_0200560C(int param0, int param1, int param2)
+void Sound_FadeInBGM(int targetVolume, int frames, enum BGMFadeInType fadeInType)
 {
-    u8 v0;
-    int v1;
-    u16 v2 = Sound_GetCurrentBGM();
-
-    v0 = Sound_GetPlayerForSequence(v2);
-
-    if (v0 == 0xff) {
+    u16 currentBGM = Sound_GetCurrentBGM();
+    u8 playerID = Sound_GetPlayerForSequence(currentBGM);
+    if (playerID == 0xff) {
         return;
     }
 
-    v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
+    enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
 
-    if (param2 == 0) {
-        sub_02004A54(v1, 0, 0);
+    if (fadeInType == BGM_FADE_IN_TYPE_FROM_ZERO) {
+        Sound_FadeVolumeForHandle(handleType, 0, 0);
     }
 
-    sub_02004A54(v1, param0, param1);
-    sub_02004FCC(param1);
-    SoundSystem_SetState(3);
-
-    return;
+    Sound_FadeVolumeForHandle(handleType, targetVolume, frames);
+    Sound_SetFadeCounter(frames);
+    SoundSystem_SetState(SOUND_SYSTEM_STATE_FADE_IN);
 }
 
-void sub_0200564C(int targetVolume, int frames)
+void Sound_FadeOutBGM(int targetVolume, int frames)
 {
-    u16 v2 = Sound_GetCurrentBGM();
-    u8 v0 = Sound_GetPlayerForSequence(v2);
-
-    if (v0 == 0xff) {
+    u16 currentBGM = Sound_GetCurrentBGM();
+    u8 playerID = Sound_GetPlayerForSequence(currentBGM);
+    if (playerID == 0xff) {
         return;
     }
 
-    if (Sound_CheckFade() == 0) {
-        int v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
-
-        sub_02004A54(v1, targetVolume, frames);
-        sub_02004FCC(frames);
+    if (Sound_IsFadeActive() == FALSE) {
+        enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
+        Sound_FadeVolumeForHandle(handleType, targetVolume, frames);
+        Sound_SetFadeCounter(frames);
     }
 
-    SoundSystem_SetState(4);
+    SoundSystem_SetState(SOUND_SYSTEM_STATE_FADE_OUT);
 }
 
-int Sound_CheckFade()
+BOOL Sound_IsFadeActive()
 {
-    u16 *v0 = SoundSystem_GetParam(7);
-    return *v0;
+    u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FADE_COUNTER);
+    return *param;
 }
 
-int sub_02005690(u16 param0)
+// Only "kind of" actually does what the function name says
+// Because it also returns >0 if a different sequence is playing
+// on the same player.
+BOOL Sound_IsSequencePlaying(u16 seqID)
 {
-    u8 v0 = Sound_GetPlayerForSequence(param0);
-    return sub_02004B04(v0);
+    u8 playerID = Sound_GetPlayerForSequence(seqID);
+    return Sound_GetNumberOfPlayingSequencesForPlayer(playerID);
 }
 
 void Sound_StopAll(void)
@@ -265,7 +250,7 @@ void sub_020056D4(void)
     u8 *v2 = SoundSystem_GetParam(17);
 
     NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(7), 0);
-    sub_020055F4();
+    Sound_Impl_ResetBGM();
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_020057AC((3 + v0), 0);
@@ -341,7 +326,7 @@ void sub_020057BC(int param0)
 
 int Sound_IsEffectPlaying(u16 param0)
 {
-    return sub_02004B04(Sound_GetPlayerForSequence(param0));
+    return Sound_GetNumberOfPlayingSequencesForPlayer(Sound_GetPlayerForSequence(param0));
 }
 
 int sub_020057E0()
@@ -349,7 +334,7 @@ int sub_020057E0()
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (sub_02004B04(3 + v0) == 1) {
+        if (Sound_GetNumberOfPlayingSequencesForPlayer(3 + v0) == 1) {
             return 1;
         }
     }
@@ -469,7 +454,7 @@ int sub_0200598C(void)
         return sub_02004D04(15);
     }
 
-    return sub_02004B04(0);
+    return Sound_GetNumberOfPlayingSequencesForPlayer(0);
 }
 
 BOOL Sound_PlayPokemonCry(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 form)
@@ -654,7 +639,7 @@ BOOL Sound_PlayPokemonCry(enum PokemonCryMod cryMod, u16 species, int param2, in
         sub_02005E4C(species, 1, 127);
         sub_020060EC(species, 20, form);
         sub_02004F94(8, 0xffff, param2);
-        sub_02004A54(8, volume, 0);
+        Sound_FadeVolumeForHandle(8, volume, 0);
         break;
     case POKECRY_POKEDEX:
         v4 = sub_02005844(species, form);
@@ -706,8 +691,8 @@ static void sub_02005EB0(SysTask *param0, void *param1)
     UnkStruct_02005E64 *v2 = (UnkStruct_02005E64 *)param1;
 
     if (v2->unk_00 == 10) {
-        sub_02004A54(1, 0, v2->unk_00);
-        sub_02004A54(8, 0, v2->unk_00);
+        Sound_FadeVolumeForHandle(1, 0, v2->unk_00);
+        Sound_FadeVolumeForHandle(8, 0, v2->unk_00);
     }
 
     v2->unk_00--;
@@ -908,7 +893,7 @@ int sub_0200619C(void)
 {
     u16 *v0 = SoundSystem_GetParam(14);
 
-    if (sub_02004B04(2) != 0) {
+    if (Sound_GetNumberOfPlayingSequencesForPlayer(2) != 0) {
         return 1;
     }
 

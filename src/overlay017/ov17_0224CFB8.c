@@ -387,11 +387,11 @@ static void ov17_0224D41C(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        sub_020055D0(1135, 30);
+        Sound_StopBGM(1135, 30);
         v0->unk_10++;
         break;
     case 1:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             v0->unk_10++;
         }
         break;
@@ -1471,7 +1471,7 @@ static void ov17_0224E86C(SysTask *param0, void *param1)
         v0->unk_4C++;
         break;
     case 1:
-        if (sub_02005690(v0->unk_10.unk_24.unk_00) == 0) {
+        if (Sound_IsSequencePlaying(v0->unk_10.unk_24.unk_00) == FALSE) {
             v0->unk_4C++;
         }
         break;

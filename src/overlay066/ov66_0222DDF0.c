@@ -2420,7 +2420,7 @@ static void ov66_0222FA88(UnkStruct_ov66_0222FB64 *param0, UnkStruct_ov66_0222FA
         param0->unk_04--;
 
         if (param0->unk_04 == (28 * 30)) {
-            sub_0200564C(0, 127);
+            Sound_FadeOutBGM(0, 127);
             param0->unk_0E = 1;
         }
     } else if (param0->unk_04 == 0) {

@@ -234,7 +234,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
         (v1->unk_00)++;
         break;
     case 5:
-        if (Sound_CheckFade() != 0) {
+        if (Sound_IsFadeActive()) {
             break;
         }
 

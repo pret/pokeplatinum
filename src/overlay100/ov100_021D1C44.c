@@ -378,7 +378,7 @@ BOOL ov100_021D2428(void *param0)
 
         ov100_021D4788(v0->unk_1EBC);
         ov100_021D46C8(v0->unk_1EBC, v0->unk_1EC0, 22);
-        sub_0200564C(0, 10);
+        Sound_FadeOutBGM(0, 10);
         v0->unk_00++;
         break;
     case 8:
@@ -633,7 +633,7 @@ BOOL ov100_021D2428(void *param0)
             {
                 u16 v2 = Sound_GetCurrentBGM();
 
-                sub_020055D0(v2, 0);
+                Sound_StopBGM(v2, 0);
             }
 
             ov100_021D4788(v0->unk_1EBC);

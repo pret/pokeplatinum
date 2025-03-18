@@ -25,6 +25,9 @@ enum SoundHeapState {
 enum SoundSystemState {
     SOUND_SYSTEM_STATE_IDLE = 0,
     SOUND_SYSTEM_STATE_PLAY = 1, // Start playing a sound
+    SOUND_SYSTEM_STATE_PLAYING = 2, // Sound is playing
+    SOUND_SYSTEM_STATE_FADE_IN = 3,
+    SOUND_SYSTEM_STATE_FADE_OUT = 4,
 };
 
 enum SoundHandleType {
@@ -43,6 +46,8 @@ enum SoundHandleType {
 
 enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_BGM_FIXED = 5,
+
+    SOUND_SYSTEM_PARAM_FADE_COUNTER = 7,
 
     SOUND_SYSTEM_PARAM_CURRENT_BGM = 10,
     SOUND_SYSTEM_PARAM_NEXT_BGM,
@@ -72,7 +77,7 @@ typedef struct SoundSystem {
     u16 unk_BCD48;
     u8 bgmFixed; // BGM can't change if this is set
     u8 unk_BCD4B;
-    int unk_BCD4C;
+    int fadeCounter;
     int unk_BCD50;
     int unk_BCD54;
     u16 currentBGM;
