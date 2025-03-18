@@ -319,7 +319,7 @@ void Sound_PlayMapBGM(FieldSystem *fieldSystem, int param1)
 
     v0 = sub_020554A4(fieldSystem, param1);
 
-    sub_02004224(v0);
+    Sound_SetFieldBGM(v0);
     sub_02004550(4, v0, 1);
 }
 
@@ -327,6 +327,6 @@ void sub_020556A0(FieldSystem *fieldSystem, int param1)
 {
     u16 v0 = sub_02055428(fieldSystem, param1);
 
-    sub_02004224(sub_020554A4(fieldSystem, param1));
+    Sound_SetFieldBGM(sub_020554A4(fieldSystem, param1));
     sub_02004550(4, v0, 1);
 }

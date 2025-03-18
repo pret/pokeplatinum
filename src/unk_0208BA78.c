@@ -322,7 +322,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
 
             v1 = sub_02055428(param0->fieldSystem, param0->fieldSystem->location->mapId);
 
-            sub_02004224(sub_020554A4(param0->fieldSystem, param0->fieldSystem->location->mapId));
+            Sound_SetFieldBGM(sub_020554A4(param0->fieldSystem, param0->fieldSystem->location->mapId));
             sub_02004550(4, v1, 1);
         }
 

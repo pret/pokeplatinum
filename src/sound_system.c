@@ -195,8 +195,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->unk_BCD62;
     case 18:
         return &soundSys->unk_BCD63;
-    case 19:
-        return &soundSys->unk_BCD64;
+    case SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE:
+        return &soundSys->fieldBGMBankState;
     case 20:
         return &soundSys->unk_BCD65;
     case SOUND_SYSTEM_PARAM_MAIN_SCENE:
@@ -221,8 +221,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->unk_BCD84;
     case 31:
         return &soundSys->unk_BCD85;
-    case 32:
-        return &soundSys->unk_BCD86;
+    case SOUND_SYSTEM_PARAM_FIELD_BGM:
+        return &soundSys->currentFieldBGM;
     case 33:
         return &soundSys->unk_BCD88;
     case 34:

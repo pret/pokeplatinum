@@ -916,7 +916,7 @@ int ov65_0222E548(OverlayManager *param0, int *param1)
     }
 
     if (ov65_02231A54() == 1) {
-        sub_02004A68(0, 120);
+        Sound_SetInitialVolumeForHandle(SOUND_HANDLE_TYPE_FIELD_BGM, 120);
     }
 
     return 1;

@@ -1246,7 +1246,7 @@ static void ov65_02237520(UnkStruct_ov65_022367A8 *param0)
 static void ov65_02237534(UnkStruct_ov65_022367A8 *param0)
 {
     if (ov65_02237504(param0)) {
-        sub_02004A68(0, 120);
+        Sound_SetInitialVolumeForHandle(SOUND_HANDLE_TYPE_FIELD_BGM, 120);
     }
 }
 

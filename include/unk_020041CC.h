@@ -9,34 +9,38 @@
 #include "struct_defs/struct_02004CB4.h"
 
 
+#define FIELD_BGM_BANK_STATE_IDLE   0
+#define FIELD_BGM_BANK_STATE_SWITCH 1
+
+
 void Sound_SetBGMFixed(u8 fixed);
 u8 Sound_IsBGMFixed(void);
 void Sound_SetCurrentBGM(u16 bgmID);
 u16 Sound_GetCurrentBGM();
 void Sound_SetNextBGM(u16 bgmID);
 u16 Sound_GetNextBGM();
-void sub_02004224(u16 param0);
+void Sound_SetFieldBGM(u16 param0);
 void Sound_SetScene(u8 scene);
 void Sound_SetSubScene(u8 scene);
 int Sound_LoadSoundEffectsForScene(u8 param0);
 BOOL sub_02004550(u8 param0, u16 param1, int param2);
-void sub_020047E8(u16 param0, u16 param1);
+void Sound_LoadSoundDataForFieldBGM(u16 param0, u16 param1);
 void sub_02004950(u16 param0);
 void sub_02004964(void);
 int Sound_GetHeapState(enum SoundHeapState state);
 void sub_020049F4(u8 param0, BOOL param1);
 void sub_02004A3C();
 void sub_02004A54(int param0, int param1, int param2);
-void sub_02004A68(int param0, int param1);
+void Sound_SetInitialVolumeForHandle(enum SoundHandleType param0, int param1);
 void sub_02004A84(int param0);
-void sub_02004AA0(int param0, int param1);
+void Sound_AdjustVolumeForVoiceChat(int param0, enum SoundHandleType param1);
 void sub_02004AD4(u16 param0, int param1);
 BOOL sub_02004AE8(int param0, int param1, u16 param2);
 int sub_02004B04(int param0);
 u8 Sound_GetPlayerForSequence(u16 param0);
-int Sound_GetSequenceFromSoundHandle(NNSSndHandle *param0);
+int Sound_GetSequenceIDFromSoundHandle(NNSSndHandle *param0);
 const NNSSndArcBankInfo *sub_02004B3C(int param0);
-u16 sub_02004B48(int param0);
+u16 Sound_GetBankIDFromSequenceID(int param0);
 MICResult sub_02004B5C(MICAutoParam *param0);
 MICResult sub_02004B64(void);
 MICResult sub_02004B70(MICSamplingType param0, void *param1, MICCallback param2, void *param3);
@@ -68,7 +72,7 @@ void sub_02004FDC(int param0);
 int sub_02004FEC(void);
 void sub_0200500C(int param0);
 void *sub_02005014(void);
-void sub_0200501C(int param0);
+void Sound_SetFieldBGMBankState(int param0);
 BOOL sub_0200502C(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
 BOOL sub_02005068(u8 param0, u16 param1, int param2, int param3, int param4, u8 param5, void *param6);
 const u8 *sub_020050E0(const SNDWaveData *param0);
