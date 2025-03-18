@@ -25,7 +25,7 @@ struct UnkStruct_ov45_022566EC_t {
     BgConfig *unk_04;
     u32 unk_08[10];
     UnkStruct_ov25_022555E8 *unk_30;
-    UnkStruct_ov25_022558C4 *unk_34[13];
+    ov25_LinkedElement *unk_34[13];
     UnkStruct_ov25_02255958 unk_68;
     UnkStruct_ov25_02255958 unk_7C;
     BOOL unk_90;
@@ -182,31 +182,31 @@ static void ov45_0225673C(UnkStruct_ov45_022566EC *param0, const UnkStruct_ov45_
     Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Graphics_LoadObjectTiles(12, 79, 1, 80 * 0x20, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_02255958(&param0->unk_68, 12, 77, 78, 8);
-    ov25_02255958(&param0->unk_7C, 12, 3, 4, 8);
+    ov25_LoadNARCMembers(&param0->unk_68, 12, 77, 78, 8);
+    ov25_LoadNARCMembers(&param0->unk_7C, 12, 3, 4, 8);
 
     for (v1 = 0; v1 < 13; v1++) {
         if ((v1 >= 9) && (v1 <= 12)) {
-            param0->unk_34[v1] = ov25_02255810(param0->unk_30, &v0[v1], &param0->unk_7C);
+            param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_7C);
         } else {
-            param0->unk_34[v1] = ov25_02255810(param0->unk_30, &v0[v1], &param0->unk_68);
-            ov25_02255940(param0->unk_34[v1], 80);
+            param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_68);
+            ov25_Set_unk_8C(param0->unk_34[v1], 80);
         }
     }
 
     if (param1->unk_00) {
-        ov25_022558C4(param0->unk_34[0], 3);
-        ov25_022558C4(param0->unk_34[3], 5);
-        ov25_022558C4(param0->unk_34[4], 5);
-        ov25_02255914(param0->unk_34[5], 1);
-        ov25_02255914(param0->unk_34[6], 1);
-        ov25_02255914(param0->unk_34[7], 1);
-        ov25_02255914(param0->unk_34[8], 1);
+        ov25_InitAnimation(param0->unk_34[0], 3);
+        ov25_InitAnimation(param0->unk_34[3], 5);
+        ov25_InitAnimation(param0->unk_34[4], 5);
+        ov25_Set_ElemApplyAffineTransformation(param0->unk_34[5], 1);
+        ov25_Set_ElemApplyAffineTransformation(param0->unk_34[6], 1);
+        ov25_Set_ElemApplyAffineTransformation(param0->unk_34[7], 1);
+        ov25_Set_ElemApplyAffineTransformation(param0->unk_34[8], 1);
         ov45_02256894(param0, param1->unk_01, param1->unk_02);
     } else {
-        ov25_022558C4(param0->unk_34[0], 2);
-        ov25_022558C4(param0->unk_34[3], 5);
-        ov25_022558C4(param0->unk_34[4], 4);
+        ov25_InitAnimation(param0->unk_34[0], 2);
+        ov25_InitAnimation(param0->unk_34[3], 5);
+        ov25_InitAnimation(param0->unk_34[4], 4);
         ov45_02256894(param0, param1->unk_03, param1->unk_04);
     }
 }
@@ -217,25 +217,25 @@ static void ov45_02256864(UnkStruct_ov45_022566EC *param0)
 
     for (v0 = 0; v0 < 13; v0++) {
         if (param0->unk_34[v0]) {
-            ov25_022558B0(param0->unk_30, param0->unk_34[v0]);
+            ov25_RemoveElem(param0->unk_30, param0->unk_34[v0]);
         }
     }
 
-    ov25_022559B0(&param0->unk_68);
-    ov25_022559B0(&param0->unk_7C);
+    ov25_FreeNARCMembers(&param0->unk_68);
+    ov25_FreeNARCMembers(&param0->unk_7C);
 }
 
 static void ov45_02256894(UnkStruct_ov45_022566EC *param0, u32 param1, u32 param2)
 {
     CP_SetDiv32_32(param1, 10);
 
-    ov25_022558C4(param0->unk_34[9], CP_GetDivResult32());
-    ov25_022558C4(param0->unk_34[10], CP_GetDivRemainder32());
+    ov25_InitAnimation(param0->unk_34[9], CP_GetDivResult32());
+    ov25_InitAnimation(param0->unk_34[10], CP_GetDivRemainder32());
 
     CP_SetDiv32_32(param2, 10);
 
-    ov25_022558C4(param0->unk_34[11], CP_GetDivResult32());
-    ov25_022558C4(param0->unk_34[12], CP_GetDivRemainder32());
+    ov25_InitAnimation(param0->unk_34[11], CP_GetDivResult32());
+    ov25_InitAnimation(param0->unk_34[12], CP_GetDivRemainder32());
 }
 
 static const PoketchTask Unk_ov45_02256CE0[] = {
@@ -331,15 +331,15 @@ static void ov45_02256A40(SysTask *param0, void *param1)
 
     PoketchSystem_PlaySoundEffect(1635);
 
-    ov25_022558C4(v0->unk_34[0], 3);
-    ov25_022558C4(v0->unk_34[3], 5);
-    ov25_022558C4(v0->unk_34[4], 5);
-    ov25_022558C4(v0->unk_34[1], 0);
-    ov25_022558C4(v0->unk_34[2], 0);
-    ov25_02255914(v0->unk_34[5], 1);
-    ov25_02255914(v0->unk_34[6], 1);
-    ov25_02255914(v0->unk_34[7], 1);
-    ov25_02255914(v0->unk_34[8], 1);
+    ov25_InitAnimation(v0->unk_34[0], 3);
+    ov25_InitAnimation(v0->unk_34[3], 5);
+    ov25_InitAnimation(v0->unk_34[4], 5);
+    ov25_InitAnimation(v0->unk_34[1], 0);
+    ov25_InitAnimation(v0->unk_34[2], 0);
+    ov25_Set_ElemApplyAffineTransformation(v0->unk_34[5], 1);
+    ov25_Set_ElemApplyAffineTransformation(v0->unk_34[6], 1);
+    ov25_Set_ElemApplyAffineTransformation(v0->unk_34[7], 1);
+    ov25_Set_ElemApplyAffineTransformation(v0->unk_34[8], 1);
     ov45_02256894(v0, v1->unk_01, v1->unk_02);
 
     ov45_02256954(param1);
@@ -352,15 +352,15 @@ static void ov45_02256ABC(SysTask *param0, void *param1)
 
     PoketchSystem_PlaySoundEffect(1635);
 
-    ov25_022558C4(v0->unk_34[0], 2);
-    ov25_022558C4(v0->unk_34[3], 5);
-    ov25_022558C4(v0->unk_34[4], 4);
-    ov25_022558C4(v0->unk_34[1], 0);
-    ov25_022558C4(v0->unk_34[2], 0);
-    ov25_02255914(v0->unk_34[5], 0);
-    ov25_02255914(v0->unk_34[6], 0);
-    ov25_02255914(v0->unk_34[7], 0);
-    ov25_02255914(v0->unk_34[8], 0);
+    ov25_InitAnimation(v0->unk_34[0], 2);
+    ov25_InitAnimation(v0->unk_34[3], 5);
+    ov25_InitAnimation(v0->unk_34[4], 4);
+    ov25_InitAnimation(v0->unk_34[1], 0);
+    ov25_InitAnimation(v0->unk_34[2], 0);
+    ov25_Set_ElemApplyAffineTransformation(v0->unk_34[5], 0);
+    ov25_Set_ElemApplyAffineTransformation(v0->unk_34[6], 0);
+    ov25_Set_ElemApplyAffineTransformation(v0->unk_34[7], 0);
+    ov25_Set_ElemApplyAffineTransformation(v0->unk_34[8], 0);
     ov45_02256894(v0, v1->unk_03, v1->unk_04);
 
     ov45_02256954(param1);
@@ -388,10 +388,10 @@ static void ov45_02256B78(SysTask *param0, void *param1)
     switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_90 = 0;
-        ov25_022558C4(v0->unk_34[3], 4);
-        ov25_022558C4(v0->unk_34[4], 4);
-        ov25_022558C4(v0->unk_34[1], 1);
-        ov25_022558C4(v0->unk_34[2], 1);
+        ov25_InitAnimation(v0->unk_34[3], 4);
+        ov25_InitAnimation(v0->unk_34[4], 4);
+        ov25_InitAnimation(v0->unk_34[1], 1);
+        ov25_InitAnimation(v0->unk_34[2], 1);
         PoketchSystem_PlaySoundEffect(1635);
         PoketchSystem_PlayCry(294, 0);
         v0->unk_94 = 0;
@@ -400,10 +400,10 @@ static void ov45_02256B78(SysTask *param0, void *param1)
         break;
     case 1:
         if (v0->unk_90) {
-            ov25_02255914(v0->unk_34[9], 0);
-            ov25_02255914(v0->unk_34[10], 0);
-            ov25_02255914(v0->unk_34[11], 0);
-            ov25_02255914(v0->unk_34[12], 0);
+            ov25_Set_ElemApplyAffineTransformation(v0->unk_34[9], 0);
+            ov25_Set_ElemApplyAffineTransformation(v0->unk_34[10], 0);
+            ov25_Set_ElemApplyAffineTransformation(v0->unk_34[11], 0);
+            ov25_Set_ElemApplyAffineTransformation(v0->unk_34[12], 0);
             ov45_02256954(param1);
             return;
         }
@@ -416,10 +416,10 @@ static void ov45_02256B78(SysTask *param0, void *param1)
             v0->unk_94 = 0;
             v0->unk_98 ^= 1;
 
-            ov25_02255914(v0->unk_34[9], v0->unk_98);
-            ov25_02255914(v0->unk_34[10], v0->unk_98);
-            ov25_02255914(v0->unk_34[11], v0->unk_98);
-            ov25_02255914(v0->unk_34[12], v0->unk_98);
+            ov25_Set_ElemApplyAffineTransformation(v0->unk_34[9], v0->unk_98);
+            ov25_Set_ElemApplyAffineTransformation(v0->unk_34[10], v0->unk_98);
+            ov25_Set_ElemApplyAffineTransformation(v0->unk_34[11], v0->unk_98);
+            ov25_Set_ElemApplyAffineTransformation(v0->unk_34[12], v0->unk_98);
         }
         break;
     }

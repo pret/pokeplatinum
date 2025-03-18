@@ -21,8 +21,8 @@ struct UnkStruct_ov36_02256404_t {
     BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
-    UnkStruct_ov25_022558C4 *unk_24;
-    UnkStruct_ov25_022558C4 *unk_28[5];
+    ov25_LinkedElement *unk_24;
+    ov25_LinkedElement *unk_28[5];
     UnkStruct_ov25_02255958 unk_3C;
     UnkStruct_ov25_02255958 unk_50;
 };
@@ -85,15 +85,15 @@ static void ov36_02256454(UnkStruct_ov36_02256404 *param0, const UnkStruct_ov36_
     Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Graphics_LoadObjectTiles(12, 52, 1, 80 * 0x20, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_02255958(&param0->unk_3C, 12, 50, 51, 8);
-    ov25_02255958(&param0->unk_50, 12, 3, 4, 8);
+    ov25_LoadNARCMembers(&param0->unk_3C, 12, 50, 51, 8);
+    ov25_LoadNARCMembers(&param0->unk_50, 12, 3, 4, 8);
 
-    param0->unk_24 = ov25_02255810(param0->unk_20, &v0, &param0->unk_3C);
-    ov25_02255940(param0->unk_24, 80);
+    param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v0, &param0->unk_3C);
+    ov25_Set_unk_8C(param0->unk_24, 80);
 
     for (v2 = 0; v2 < 5; v2++) {
-        param0->unk_28[v2] = ov25_02255810(param0->unk_20, &v1, &param0->unk_50);
-        ov25_02255900(param0->unk_28[v2], 327680 + 65536 * v2, 262144);
+        param0->unk_28[v2] = ov25_SetupNewElem(param0->unk_20, &v1, &param0->unk_50);
+        ov25_SetTranslation(param0->unk_28[v2], 327680 + 65536 * v2, 262144);
     }
 
     ov36_0225669C(param0, param1);
@@ -103,14 +103,14 @@ static void ov36_02256508(UnkStruct_ov36_02256404 *param0)
 {
     int v0;
 
-    ov25_022558B0(param0->unk_20, param0->unk_24);
+    ov25_RemoveElem(param0->unk_20, param0->unk_24);
 
     for (v0 = 0; v0 < 5; v0++) {
-        ov25_022558B0(param0->unk_20, param0->unk_28[v0]);
+        ov25_RemoveElem(param0->unk_20, param0->unk_28[v0]);
     }
 
-    ov25_022559B0(&(param0->unk_3C));
-    ov25_022559B0(&(param0->unk_50));
+    ov25_FreeNARCMembers(&(param0->unk_3C));
+    ov25_FreeNARCMembers(&(param0->unk_50));
 }
 
 static const PoketchTask Unk_ov36_02256764[] = {
@@ -194,10 +194,10 @@ static void ov36_02256638(SysTask *param0, void *param1)
     switch (v0->unk_00->unk_04) {
     case 0:
         PoketchSystem_PlaySoundEffect(1641);
-        ov25_022558C4(v0->unk_24, 1);
+        ov25_InitAnimation(v0->unk_24, 1);
         break;
     case 1:
-        ov25_022558C4(v0->unk_24, 0);
+        ov25_InitAnimation(v0->unk_24, 0);
         break;
     }
 
@@ -223,7 +223,7 @@ static void ov36_0225669C(UnkStruct_ov36_02256404 *param0, const UnkStruct_ov36_
         CP_SetDiv32_32(v1, v2);
         v1 = CP_GetDivResult32();
 
-        ov25_022558C4(param0->unk_28[v0], v1);
+        ov25_InitAnimation(param0->unk_28[v0], v1);
         v1 = CP_GetDivRemainder32();
         v2 /= 10;
     }

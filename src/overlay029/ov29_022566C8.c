@@ -26,7 +26,7 @@ struct UnkStruct_ov29_022566C8_t {
     u32 unk_08[18];
     UnkStruct_ov25_022555E8 *unk_50;
     UnkStruct_ov25_02255958 unk_54;
-    UnkStruct_ov25_022558C4 *unk_68[2];
+    ov25_LinkedElement *unk_68[2];
     Window *unk_70;
 };
 
@@ -202,11 +202,11 @@ static void ov29_02256908(SysTask *param0, void *param1)
     UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param1);
 
     if (v0->unk_00->unk_00 == 1) {
-        ov25_022558C4(v0->unk_68[0], 0);
-        ov25_022558C4(v0->unk_68[1], 3);
+        ov25_InitAnimation(v0->unk_68[0], 0);
+        ov25_InitAnimation(v0->unk_68[1], 3);
     } else {
-        ov25_022558C4(v0->unk_68[0], 1);
-        ov25_022558C4(v0->unk_68[1], 2);
+        ov25_InitAnimation(v0->unk_68[0], 1);
+        ov25_InitAnimation(v0->unk_68[1], 2);
     }
 
     PoketchSystem_PlaySoundEffect(1635);
@@ -316,11 +316,11 @@ static void ov29_02256ABC(UnkStruct_ov29_022566C8 *param0)
 
     Graphics_LoadObjectTiles(12, 32, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    if (ov25_02255958(&param0->unk_54, 12, 33, 34, 8)) {
+    if (ov25_LoadNARCMembers(&param0->unk_54, 12, 33, 34, 8)) {
         int v1;
 
         for (v1 = 0; v1 < 2; v1++) {
-            param0->unk_68[v1] = ov25_02255810(param0->unk_50, &v0[v1], &param0->unk_54);
+            param0->unk_68[v1] = ov25_SetupNewElem(param0->unk_50, &v0[v1], &param0->unk_54);
         }
     }
 }
@@ -330,8 +330,8 @@ static void ov29_02256B18(UnkStruct_ov29_022566C8 *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        ov25_022558B0(param0->unk_50, param0->unk_68[v0]);
+        ov25_RemoveElem(param0->unk_50, param0->unk_68[v0]);
     }
 
-    ov25_022559B0(&param0->unk_54);
+    ov25_FreeNARCMembers(&param0->unk_54);
 }
