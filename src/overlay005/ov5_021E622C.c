@@ -42,7 +42,6 @@ typedef struct {
     u16 unk_94[16];
 } UnkStruct_ov5_021E6948;
 
-void sub_020262C0(UnkStruct_02026224 *param0);
 static u8 ov5_021E70FC(Daycare *daycare);
 u16 ov5_021E73A0(Party *param0, int param1, StringTemplate *param2);
 u8 ov5_021E73C8(Daycare *daycare);
@@ -102,7 +101,7 @@ static void Daycare_MoveToDaycareMonFromParty(Party *party, int slot, DaycareMon
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
     const u16 *trainerName;
     u16 nickname[MON_NAME_LEN + 1];
-    UnkStruct_02026224 *v4 = sub_02026224(daycareMon);
+    DaycareMail *v4 = sub_02026224(daycareMon);
     BoxPokemon *daycareBoxMon = DaycareMon_GetBoxMon(daycareMon);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
 
@@ -134,20 +133,20 @@ void Daycare_MoveToEmptySlotFromParty(Party *party, int partySlot, Daycare *dayc
     Daycare_MoveToDaycareMonFromParty(party, partySlot, Daycare_GetDaycareMon(daycare, daycareSlot), saveData);
 }
 
-static void ov5_021E638C(Daycare *daycare)
+static void Daycare_TryShiftDaycareSlots(Daycare *daycare)
 {
-    DaycareMon *v0, *v1;
-    BoxPokemon *v2, *v3;
+    DaycareMon *daycareMon1, *daycareMon2;
+    BoxPokemon *boxMon1, *boxMon2;
 
-    v0 = Daycare_GetDaycareMon(daycare, 0);
-    v1 = Daycare_GetDaycareMon(daycare, 1);
-    v2 = DaycareMon_GetBoxMon(v0);
-    v3 = DaycareMon_GetBoxMon(v1);
+    daycareMon1 = Daycare_GetDaycareMon(daycare, 0);
+    daycareMon2 = Daycare_GetDaycareMon(daycare, 1);
+    boxMon1 = DaycareMon_GetBoxMon(daycareMon1);
+    boxMon2 = DaycareMon_GetBoxMon(daycareMon2);
 
-    if (BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == 0) {
-        if (BoxPokemon_GetValue(v3, MON_DATA_SPECIES, NULL) != 0) {
-            DaycareMon_CopyToDaycareMon(v0, v1);
-            sub_020262F4(v1);
+    if (BoxPokemon_GetValue(boxMon1, MON_DATA_SPECIES, NULL) == SPECIES_NONE) {
+        if (BoxPokemon_GetValue(boxMon2, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+            DaycareMon_CopyToDaycareMon(daycareMon1, daycareMon2);
+            DaycareMon_Init(daycareMon2);
         }
     }
 }
@@ -179,7 +178,7 @@ static int ov5_021E6444(Party *param0, DaycareMon *param1, StringTemplate *param
 {
     Pokemon *v0 = Pokemon_New(HEAP_ID_FIELD);
     BoxPokemon *v1 = DaycareMon_GetBoxMon(param1);
-    UnkStruct_02026224 *v2 = sub_02026224(param1);
+    DaycareMail *v2 = sub_02026224(param1);
     u32 v3;
     u16 v4;
 
@@ -212,7 +211,7 @@ u16 ov5_021E64F8(Party *param0, StringTemplate *param1, Daycare *daycare, u8 par
     DaycareMon *v1 = Daycare_GetDaycareMon(daycare, param3);
 
     v0 = ov5_021E6444(param0, v1, param1);
-    ov5_021E638C(daycare);
+    Daycare_TryShiftDaycareSlots(daycare);
 
     return v0;
 }

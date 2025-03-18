@@ -6,17 +6,17 @@
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/pokemon.h"
 
-typedef struct UnkStruct_02026224 {
+typedef struct DaycareMail {
     UnkStruct_0202818C unk_00;
-    u16 unk_38[8];
-    u16 unk_48[11];
+    u16 otName[TRAINER_NAME_LEN + 1];
+    u16 monName[MON_NAME_LEN + 1];
     u8 unk_5E_0 : 4;
     u8 unk_5E_4 : 4;
-} UnkStruct_02026224;
+} DaycareMail;
 
 typedef struct DaycareMon {
     BoxPokemon boxMon;
-    UnkStruct_02026224 unk_08;
+    DaycareMail mail;
     u32 steps;
 } DaycareMon;
 

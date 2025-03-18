@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/daycare.h"
+#include "constants/charcode.h"
 
 #include "struct_defs/struct_0202818C.h"
 
@@ -36,9 +37,9 @@ BoxPokemon *DaycareMon_GetBoxMon(DaycareMon *daycareMon)
     return &(daycareMon->boxMon);
 }
 
-UnkStruct_02026224 *sub_02026224(DaycareMon *daycareMon)
+DaycareMail *sub_02026224(DaycareMon *daycareMon)
 {
-    return &(daycareMon->unk_08);
+    return &(daycareMon->mail);
 }
 
 u32 DaycareMon_GetSteps(const DaycareMon *daycareMon)
@@ -46,7 +47,7 @@ u32 DaycareMon_GetSteps(const DaycareMon *daycareMon)
     return daycareMon->steps;
 }
 
-UnkStruct_0202818C *sub_02026230(UnkStruct_02026224 *param0)
+UnkStruct_0202818C *sub_02026230(DaycareMail *param0)
 {
     return &(param0->unk_00);
 }
@@ -107,27 +108,27 @@ void DaycareMon_CopyToDaycareMon(DaycareMon *dest, const DaycareMon *src)
     *dest = *src;
 }
 
-void sub_020262C0(UnkStruct_02026224 *param0)
+static void DaycareMail_Init(DaycareMail *mail)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 7 + 1; v0++) {
-        param0->unk_38[v0] = 0;
+    for (i = 0; i < TRAINER_NAME_LEN + 1; i++) {
+        mail->otName[i] = CHAR_NONE;
     }
 
-    for (v0 = 0; v0 < 10 + 1; v0++) {
-        param0->unk_48[v0] = 0;
+    for (i = 0; i < MON_NAME_LEN + 1; i++) {
+        mail->monName[i] = CHAR_NONE;
     }
 
-    param0->unk_38[0] = 0xffff;
-    param0->unk_48[0] = 0xffff;
+    mail->otName[0] = CHAR_EOS;
+    mail->monName[0] = CHAR_EOS;
 }
 
-void sub_020262F4(DaycareMon *daycareMon)
+void DaycareMon_Init(DaycareMon *daycareMon)
 {
     BoxPokemon_Init(&daycareMon->boxMon);
     daycareMon->steps = 0;
-    sub_020262C0(&daycareMon->unk_08);
+    DaycareMail_Init(&daycareMon->mail);
 }
 
 Daycare *SaveData_GetDaycare(SaveData *saveData)

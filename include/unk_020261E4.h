@@ -10,9 +10,9 @@ int Daycare_SaveSize(void);
 void Daycare_Init(Daycare *daycare);
 DaycareMon *Daycare_GetDaycareMon(Daycare *daycare, int slot);
 BoxPokemon *DaycareMon_GetBoxMon(DaycareMon *daycareMon);
-UnkStruct_02026224 *sub_02026224(DaycareMon *daycareMon);
+DaycareMail *sub_02026224(DaycareMon *daycareMon);
 u32 DaycareMon_GetSteps(const DaycareMon *daycareMon);
-UnkStruct_0202818C *sub_02026230(UnkStruct_02026224 *param0);
+UnkStruct_0202818C *sub_02026230(DaycareMail *param0);
 int sub_02026234(const Daycare *daycare);
 int Daycare_GetOffspringPersonality(const Daycare *daycare);
 int Daycare_GetStepCounter(const Daycare *daycare);
@@ -22,8 +22,7 @@ void Daycare_SetOffspringPersonality(Daycare *daycare, int personality);
 void Daycare_SetStepCounter(Daycare *daycare, int steps);
 BOOL Daycare_AreParentLanguagesDifferent(Daycare *daycare);
 void DaycareMon_CopyToDaycareMon(DaycareMon *dest, const DaycareMon *src);
-void sub_020262C0(UnkStruct_02026224 *param0);
-void sub_020262F4(DaycareMon *daycareMon);
+void DaycareMon_Init(DaycareMon *daycareMon);
 Daycare *SaveData_GetDaycare(SaveData *param0);
 
 #endif // POKEPLATINUM_UNK_020261E4_H
