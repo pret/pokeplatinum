@@ -14,8 +14,6 @@
 #include "struct_defs/struct_020711C8.h"
 
 #include "field/field_system.h"
-#include "functypes/funcptr_0203B7C0.h"
-#include "functypes/funcptr_02084808.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F101C.h"
 #include "overlay006/ov6_02247100.h"
@@ -62,15 +60,15 @@
 #define FIELD_MOVE_ERROR_STATE    4
 
 typedef struct {
-    UnkFuncPtr_0203B7C0 task;
-    UnkFuncPtr_02084808 error;
+    FieldMoveTaskContext task;
+    FieldMoveErrContext error;
 } FieldMoveTaskOrError;
 
 typedef struct {
     u32 unk_00;
     MapObject *mapObj;
     UnkStruct_020709CC unk_08;
-} UnkStruct_0207086C;
+} FieldMoveTaskData;
 
 static void FieldMoves_CanUseSurfDistortionWorld(FieldSystem *fieldSystem, FieldMoveContext *param1);
 
@@ -186,13 +184,13 @@ static inline BOOL PlayerOutsideLinkRoom(const FieldMoveContext *fieldMoveContex
     return TRUE;
 }
 
-u32 FieldMove_GetTaskOrError(u16 taskOrError, u16 fieldMove)
+void *FieldMove_GetTaskOrError(u16 taskOrError, u16 fieldMove)
 {
     if (taskOrError == FIELD_MOVE_TASK) {
-        return (u32)fieldMoveTaskOrError[fieldMove].task;
+        return fieldMoveTaskOrError[fieldMove].task;
     }
 
-    return (u32)fieldMoveTaskOrError[fieldMove].error;
+    return fieldMoveTaskOrError[fieldMove].error;
 }
 
 void FieldMoves_SetUsableMoves(FieldSystem *fieldSystem, FieldMoveContext *fieldMoveContext)
@@ -271,21 +269,21 @@ static void FieldMoves_CanUseSurfDistortionWorld(FieldSystem *fieldSystem, Field
     }
 }
 
-static UnkStruct_0207086C *sub_0207086C(const UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static FieldMoveTaskData *FieldMoves_AllocateTaskData(const UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
 {
-    UnkStruct_0207086C *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0207086C));
+    FieldMoveTaskData *taskData = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(FieldMoveTaskData));
 
-    v0->unk_00 = 0x19740205;
-    v0->mapObj = fieldMoveContext->mapObj;
-    v0->unk_08 = *param0;
+    taskData->unk_00 = 0x19740205;
+    taskData->mapObj = fieldMoveContext->mapObj;
+    taskData->unk_08 = *param0;
 
-    return v0;
+    return taskData;
 }
 
-static void sub_02070890(UnkStruct_0207086C *param0)
+static void FieldMoves_FreeTaskData(FieldMoveTaskData *taskData)
 {
-    GF_ASSERT(param0->unk_00 == 0x19740205);
-    Heap_FreeToHeap(param0);
+    GF_ASSERT(taskData->unk_00 == 0x19740205);
+    Heap_FreeToHeap(taskData);
 }
 
 static int FieldMoves_GetCutError(const FieldMoveContext *fieldMoveContext)
@@ -308,26 +306,26 @@ static int FieldMoves_GetCutError(const FieldMoveContext *fieldMoveContext)
 static void FieldMoves_SetCutTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
-    UnkStruct_0207086C *v1;
+    FieldMoveTaskData *taskData;
 
     menu = FieldTask_GetEnv(param0->fieldTask);
-    v1 = sub_0207086C(param0, fieldMoveContext);
+    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
-    menu->returnTask = FieldMoves_CutTask;
-    menu->unk_25C = v1;
+    menu->callback = FieldMoves_CutTask;
+    menu->taskData = taskData;
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL FieldMoves_CutTask(FieldTask *taskMan)
 {
-    UnkStruct_0207086C *v0 = FieldTask_GetEnv(taskMan);
+    FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10008, v0->mapObj);
-    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
-    sub_02070890(v0);
+    ScriptManager_Change(taskMan, 10008, taskData->mapObj);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldMoves_FreeTaskData(taskData);
 
     return 0;
 }
@@ -369,10 +367,10 @@ static void FieldMoves_SetFlyTask(UnkStruct_020709CC *param0, const FieldMoveCon
     *v2 = param0->unk_04;
     menu->unk_260 = (void *)v2;
 
-    menu->unk_25C = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
+    menu->taskData = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
 
-    sub_0206B70C(fieldSystem, menu->unk_25C, 1);
-    sub_0203D884(fieldSystem, menu->unk_25C);
+    sub_0206B70C(fieldSystem, menu->taskData, 1);
+    sub_0203D884(fieldSystem, menu->taskData);
     sub_0203B674(menu, sub_0203C434);
 }
 
@@ -404,26 +402,26 @@ static int FieldMoves_GetSurfError(const FieldMoveContext *fieldMoveContext)
 static void FieldMoves_SetSurfTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
-    UnkStruct_0207086C *v1;
+    FieldMoveTaskData *taskData;
 
     menu = FieldTask_GetEnv(param0->fieldTask);
-    v1 = sub_0207086C(param0, fieldMoveContext);
+    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
-    menu->returnTask = FieldMoves_SurfTask;
-    menu->unk_25C = v1;
+    menu->callback = FieldMoves_SurfTask;
+    menu->taskData = taskData;
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL FieldMoves_SurfTask(FieldTask *taskMan)
 {
-    UnkStruct_0207086C *v0 = FieldTask_GetEnv(taskMan);
+    FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     ScriptManager_Change(taskMan, 10012, NULL);
-    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
-    sub_02070890(v0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldMoves_FreeTaskData(taskData);
 
     return 0;
 }
@@ -448,26 +446,26 @@ static int FieldMoves_GetStrengthError(const FieldMoveContext *fieldMoveContext)
 static void FieldMoves_SetStrengthTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
-    UnkStruct_0207086C *v1;
+    FieldMoveTaskData *taskData;
 
     menu = FieldTask_GetEnv(param0->fieldTask);
-    v1 = sub_0207086C(param0, fieldMoveContext);
+    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
-    menu->returnTask = FieldMoves_StrengthTask;
-    menu->unk_25C = v1;
+    menu->callback = FieldMoves_StrengthTask;
+    menu->taskData = taskData;
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL FieldMoves_StrengthTask(FieldTask *param0)
 {
-    UnkStruct_0207086C *v0 = FieldTask_GetEnv(param0);
+    FieldMoveTaskData *taskData = FieldTask_GetEnv(param0);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
-    ScriptManager_Change(param0, 10010, v0->mapObj);
-    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
-    sub_02070890(v0);
+    ScriptManager_Change(param0, 10010, taskData->mapObj);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldMoves_FreeTaskData(taskData);
 
     return 0;
 }
@@ -492,26 +490,26 @@ static int FieldMoves_GetDefogError(const FieldMoveContext *fieldMoveContext)
 static void FieldMoves_SetDefogTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
-    UnkStruct_0207086C *v1;
+    FieldMoveTaskData *taskData;
 
     menu = FieldTask_GetEnv(param0->fieldTask);
-    v1 = sub_0207086C(param0, fieldMoveContext);
+    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
-    menu->returnTask = FieldMoves_DefogTask;
-    menu->unk_25C = v1;
+    menu->callback = FieldMoves_DefogTask;
+    menu->taskData = taskData;
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL FieldMoves_DefogTask(FieldTask *taskMan)
 {
-    UnkStruct_0207086C *v0 = FieldTask_GetEnv(taskMan);
+    FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     ScriptManager_Change(taskMan, 10014, NULL);
-    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
-    sub_02070890(v0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldMoves_FreeTaskData(taskData);
 
     return 0;
 }
@@ -540,26 +538,26 @@ static int FieldMoves_GetRockSmashError(const FieldMoveContext *fieldMoveContext
 static void FieldMoves_SetRockSmashTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
-    UnkStruct_0207086C *v1;
+    FieldMoveTaskData *taskData;
 
     menu = FieldTask_GetEnv(param0->fieldTask);
-    v1 = sub_0207086C(param0, fieldMoveContext);
+    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
-    menu->returnTask = FieldMoves_RockSmashTask;
-    menu->unk_25C = v1;
+    menu->callback = FieldMoves_RockSmashTask;
+    menu->taskData = taskData;
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL FieldMoves_RockSmashTask(FieldTask *taskMan)
 {
-    UnkStruct_0207086C *v0 = FieldTask_GetEnv(taskMan);
+    FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10009, v0->mapObj);
-    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
-    sub_02070890(v0);
+    ScriptManager_Change(taskMan, 10009, taskData->mapObj);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldMoves_FreeTaskData(taskData);
 
     return 0;
 }
@@ -584,26 +582,26 @@ static int FieldMoves_GetWaterfallError(const FieldMoveContext *fieldMoveContext
 static void FieldMoves_SetWaterfallTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
-    UnkStruct_0207086C *v1;
+    FieldMoveTaskData *taskData;
 
     menu = FieldTask_GetEnv(param0->fieldTask);
-    v1 = sub_0207086C(param0, fieldMoveContext);
+    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
-    menu->returnTask = FieldMoves_WaterfallTask;
-    menu->unk_25C = v1;
+    menu->callback = FieldMoves_WaterfallTask;
+    menu->taskData = taskData;
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL FieldMoves_WaterfallTask(FieldTask *param0)
 {
-    UnkStruct_0207086C *v0 = FieldTask_GetEnv(param0);
+    FieldMoveTaskData *taskData = FieldTask_GetEnv(param0);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
     ScriptManager_Change(param0, 10013, NULL);
-    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
-    sub_02070890(v0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldMoves_FreeTaskData(taskData);
 
     return 0;
 }
@@ -632,26 +630,26 @@ static int FieldMoves_GetRockClimbError(const FieldMoveContext *fieldMoveContext
 static void FieldMoves_SetRockClimbTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
-    UnkStruct_0207086C *v1;
+    FieldMoveTaskData *taskData;
 
     menu = FieldTask_GetEnv(param0->fieldTask);
-    v1 = sub_0207086C(param0, fieldMoveContext);
+    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
-    menu->returnTask = FieldMoves_RockClimbTask;
-    menu->unk_25C = v1;
+    menu->callback = FieldMoves_RockClimbTask;
+    menu->taskData = taskData;
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL FieldMoves_RockClimbTask(FieldTask *taskMan)
 {
-    UnkStruct_0207086C *v0 = FieldTask_GetEnv(taskMan);
+    FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     ScriptManager_Change(taskMan, 10011, NULL);
-    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
-    sub_02070890(v0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldMoves_FreeTaskData(taskData);
 
     return 0;
 }
@@ -672,26 +670,26 @@ static int FieldMoves_GetFlashError(const FieldMoveContext *fieldMoveContext)
 static void FieldMoves_SetFlashTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
-    UnkStruct_0207086C *v1;
+    FieldMoveTaskData *taskData;
 
     menu = FieldTask_GetEnv(param0->fieldTask);
-    v1 = sub_0207086C(param0, fieldMoveContext);
+    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
-    menu->returnTask = FieldMoves_FlashTask;
-    menu->unk_25C = v1;
+    menu->callback = FieldMoves_FlashTask;
+    menu->taskData = taskData;
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL FieldMoves_FlashTask(FieldTask *taskMan)
 {
-    UnkStruct_0207086C *v0 = FieldTask_GetEnv(taskMan);
+    FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     ScriptManager_Change(taskMan, 10015, NULL);
-    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
-    sub_02070890(v0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldMoves_FreeTaskData(taskData);
 
     return 0;
 }
@@ -729,8 +727,8 @@ static void FieldMoves_SetTeleportTask(UnkStruct_020709CC *param0, const FieldMo
 
     UnkStruct_020711C8 *v2 = sub_020711C8(11, param0->unk_04, fieldSystem->saveData);
 
-    menu->returnTask = FieldMoves_TeleportTask;
-    menu->unk_25C = v2;
+    menu->callback = FieldMoves_TeleportTask;
+    menu->taskData = v2;
     menu->state = START_MENU_STATE_10;
 }
 
@@ -778,8 +776,8 @@ static void FieldMoves_SetDigTask(UnkStruct_020709CC *param0, const FieldMoveCon
 
         v2 = sub_020711C8(11, param0->unk_04, fieldSystem->saveData);
 
-        v1->returnTask = FieldMoves_DigTask;
-        v1->unk_25C = v2;
+        v1->callback = FieldMoves_DigTask;
+        v1->taskData = v2;
         v1->state = START_MENU_STATE_10;
     }
 }
@@ -826,8 +824,8 @@ static void FieldMoves_SetSweetScentTask(UnkStruct_020709CC *param0, const Field
     v2 = sub_020711C8(11, param0->unk_04, fieldSystem->saveData);
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->returnTask = ov5_021F101C;
-    v1->unk_25C = v2;
+    v1->callback = ov5_021F101C;
+    v1->taskData = v2;
     v1->state = START_MENU_STATE_10;
 
     v4 = JournalEntry_CreateEventUsedMove((LOCATION_EVENT_LURED_POKEMON - LOCATION_EVENT_USED_CUT), fieldSystem->location->mapId, HEAP_ID_FIELDMAP);
@@ -847,27 +845,27 @@ static void sub_02071150(UnkStruct_020709CC *param0, const FieldMoveContext *fie
 {
     FieldSystem *fieldSystem;
     StartMenu *menu;
-    UnkStruct_0207086C *v2;
+    FieldMoveTaskData *taskData;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     menu = FieldTask_GetEnv(param0->fieldTask);
-    v2 = sub_0207086C(param0, fieldMoveContext);
+    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    menu->returnTask = sub_0207118C;
-    menu->unk_25C = v2;
+    menu->callback = sub_0207118C;
+    menu->taskData = taskData;
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL sub_0207118C(FieldTask *taskMan)
 {
-    UnkStruct_0207086C *v0 = FieldTask_GetEnv(taskMan);
+    FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     ScriptManager_Change(taskMan, 8900, NULL);
-    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
-    sub_02070890(v0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldMoves_FreeTaskData(taskData);
 
     return 0;
 }

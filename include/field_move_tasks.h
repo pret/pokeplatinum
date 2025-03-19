@@ -2,6 +2,7 @@
 #define POKEPLATINUM_FIELD_MOVE_TASKS_H
 
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/struct_020709CC_decl.h"
 
 #include "field/field_system_decl.h"
 
@@ -17,7 +18,10 @@ enum TaskOrError {
     FIELD_MOVE_ERROR,
 };
 
-u32 FieldMove_GetTaskOrError(u16 taskOrError, u16 fieldMove);
+typedef void (*FieldMoveTaskContext)(UnkStruct_020709CC *, const FieldMoveContext *);
+typedef int (*FieldMoveErrContext)(const FieldMoveContext *);
+
+void *FieldMove_GetTaskOrError(u16 taskOrError, u16 fieldMove);
 void FieldMoves_SetUsableMoves(FieldSystem *fieldSystem, FieldMoveContext *param1);
 
 #endif // POKEPLATINUM_FIELD_MOVE_TASKS_H

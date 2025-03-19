@@ -14,7 +14,7 @@ int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *param1, int param2, int
 void ov5_021E00EC(FieldTask *param0, int param1, int param2);
 int PlayerAvatar_CanUseSurf(PlayerAvatar *playerAvatar, u32 currTileBehavior, u32 nextTileBehavior);
 void ov5_021E0734(FieldTask *param0, int param1, int param2);
-int PlayerAvatar_CanUseRockClimb(u32 metatileBehavior, int facingDir);
+BOOL PlayerAvatar_CanUseRockClimb(u32 metatileBehavior, int facingDir);
 void ov5_021E097C(FieldSystem *fieldSystem, int param1);
 void ov5_021E0998(FieldTask *param0, int param1, int param2);
 void ov5_021E0DD4(FieldTask *param0);

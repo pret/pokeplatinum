@@ -22,7 +22,6 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
-#include "functypes/funcptr_0203B7C0.h"
 #include "functypes/funcptr_0203BC5C.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
@@ -346,7 +345,7 @@ static StartMenu *StartMenu_Alloc(void)
 
     menu->state = START_MENU_STATE_INIT;
     menu->unk_28 = 0;
-    menu->unk_25C = NULL;
+    menu->taskData = NULL;
 
     return menu;
 }
@@ -475,7 +474,7 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
         break;
     case START_MENU_STATE_11:
         if (IsScreenTransitionDone()) {
-            FieldTask_InitJump(taskMan, menu->returnTask, menu->unk_25C);
+            FieldTask_InitJump(taskMan, menu->callback, menu->taskData);
             Heap_FreeToHeap(menu);
         }
         break;
@@ -893,7 +892,7 @@ static void StartMenu_ApplicationStart(FieldTask *taskMan)
     Window_Remove(&menu->unk_00);
     sub_0203B200(taskMan);
 
-    menu->returnTask(taskMan);
+    menu->callback(taskMan);
     menu->state = START_MENU_STATE_APP_RUN;
 }
 
@@ -909,12 +908,12 @@ static void StartMenu_ApplicationRun(FieldTask *taskMan)
         return;
     }
 
-    menu->returnTask(taskMan);
+    menu->callback(taskMan);
 }
 
 void sub_0203B674(StartMenu *menu, void *param1)
 {
-    menu->returnTask = param1;
+    menu->callback = param1;
     menu->state = START_MENU_STATE_APP_RUN;
 }
 
@@ -924,7 +923,7 @@ static BOOL StartMenu_SelectPokedex(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->returnTask = StartMenu_OpenPokedex;
+    menu->callback = StartMenu_OpenPokedex;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
@@ -950,8 +949,8 @@ static BOOL StartMenu_OpenPokedex(FieldTask *taskMan)
 
     sub_0203E0AC(fieldSystem, pokedexArgs);
 
-    menu->unk_25C = pokedexArgs;
-    menu->returnTask = StartMenu_PokedexEnd;
+    menu->taskData = pokedexArgs;
+    menu->callback = StartMenu_PokedexEnd;
 
     return FALSE;
 }
@@ -966,8 +965,8 @@ static BOOL StartMenu_PokedexEnd(FieldTask *taskMan)
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    if (menu->unk_25C != NULL) {
-        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
+    if (menu->taskData != NULL) {
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->taskData);
     }
 
     menu->state = START_MENU_STATE_12;
@@ -981,7 +980,7 @@ static BOOL StartMenu_SelectPokemon(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->returnTask = sub_0203B78C;
+    menu->callback = sub_0203B78C;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
@@ -995,8 +994,8 @@ static BOOL sub_0203B78C(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, 0);
-    menu->returnTask = sub_0203B7C0;
+    menu->taskData = sub_0203D390(fieldSystem, &menu->unk_24C, 0);
+    menu->callback = sub_0203B7C0;
 
     return 0;
 }
@@ -1011,8 +1010,8 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
     partyMan = (PartyManagementData *)Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
-    memcpy(partyMan, menu->unk_25C, sizeof(PartyManagementData));
-    Heap_FreeToHeap(menu->unk_25C);
+    memcpy(partyMan, menu->taskData, sizeof(PartyManagementData));
+    Heap_FreeToHeap(menu->taskData);
 
     switch (partyMan->unk_23) {
     case 1: {
@@ -1034,7 +1033,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         PokemonSummaryScreen_SetPlayerProfile(summary, SaveData_GetTrainerInfo(fieldSystem->saveData));
         FieldSystem_OpenSummaryScreen(fieldSystem, summary);
 
-        menu->unk_25C = summary;
+        menu->taskData = summary;
         sub_0203B674(menu, sub_0203C1C8);
     } break;
     case 4: {
@@ -1061,7 +1060,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v5->unk_02 = 0;
         menu->unk_260 = v5;
 
-        menu->unk_25C = summary;
+        menu->taskData = summary;
         sub_0203B674(menu, sub_0203C1C8);
     } break;
     case 5: {
@@ -1088,14 +1087,14 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v7->unk_02 = (u16)partyMan->unk_34;
         menu->unk_260 = v7;
 
-        menu->unk_25C = summary;
+        menu->taskData = summary;
         sub_0203B674(menu, sub_0203C1C8);
     } break;
     case 6: {
         UnkStruct_02097728 *v8;
 
         v8 = sub_0203D920(fieldSystem, 2, partyMan->unk_22, Item_MailNumber(partyMan->unk_24), 11);
-        menu->unk_25C = v8;
+        menu->taskData = v8;
 
         if (partyMan->unk_20 == 10) {
             menu->unk_260 = sub_0203C540(
@@ -1114,7 +1113,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v10 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partyMan->unk_22);
         v9 = sub_0203D984(fieldSystem, v10, 11);
 
-        menu->unk_25C = v9;
+        menu->taskData = v9;
         menu->unk_260 = sub_0203C540(partyMan->unk_24, 2, partyMan->unk_22);
 
         sub_0203B674(menu, sub_0203C558);
@@ -1130,11 +1129,11 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         v11 = SaveData_GetBag(fieldSystem->saveData);
         v12 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        menu->unk_25C = sub_0207D824(v11, Unk_020EA020, 11);
+        menu->taskData = sub_0207D824(v11, Unk_020EA020, 11);
 
-        sub_0207CB2C(menu->unk_25C, fieldSystem->saveData, 1, fieldSystem->unk_98);
+        sub_0207CB2C(menu->taskData, fieldSystem->saveData, 1, fieldSystem->unk_98);
 
-        sub_0203D1E4(fieldSystem, menu->unk_25C);
+        sub_0203D1E4(fieldSystem, menu->taskData);
         sub_0203B674(menu, sub_0203BC5C);
     } break;
     case 8: {
@@ -1146,7 +1145,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v14->unk_04 = partyMan->unk_38;
         v14->unk_08 = partyMan->unk_3C;
 
-        menu->unk_25C = v14;
+        menu->taskData = v14;
         menu->state = START_MENU_STATE_EVOLVE_INIT;
     } break;
     case 9: {
@@ -1157,7 +1156,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v15->unk_00 = partyMan->unk_22;
         v15->unk_04 = partyMan->unk_38;
         v15->unk_08 = partyMan->unk_3C;
-        menu->unk_25C = v15;
+        menu->taskData = v15;
         menu->state = START_MENU_STATE_EVOLVE_INIT;
     } break;
     case 16:
@@ -1173,33 +1172,33 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     case 21:
     case 22:
     case 23:
-        UnkFuncPtr_0203B7C0 v16;
+        FieldMoveTaskContext v16;
         UnkStruct_020709CC v17;
 
         v17.unk_06 = partyMan->unk_23 - 11;
         v17.unk_04 = partyMan->unk_22;
         v17.fieldTask = taskMan;
 
-        v16 = (UnkFuncPtr_0203B7C0)FieldMove_GetTaskOrError(FIELD_MOVE_TASK, v17.unk_06);
+        v16 = (FieldMoveTaskContext)FieldMove_GetTaskOrError(FIELD_MOVE_TASK, v17.unk_06);
         v16(&v17, &menu->unk_24C);
         break;
     case 10:
-        menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
+        menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
         sub_0203B674(menu, sub_0203BC5C);
         break;
     default:
         if ((partyMan->unk_20 == 5) || (partyMan->unk_20 == 6) || (partyMan->unk_20 == 7) || (partyMan->unk_20 == 16) || (partyMan->unk_20 == 8)) {
-            menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
+            menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
 
             if (partyMan->unk_22 >= 6) {
-                sub_0207CB70(menu->unk_25C, 0);
+                sub_0207CB70(menu->taskData, 0);
             } else {
-                sub_0207CB70(menu->unk_25C, partyMan->unk_22);
+                sub_0207CB70(menu->taskData, partyMan->unk_22);
             }
 
             sub_0203B674(menu, sub_0203BC5C);
         } else if (partyMan->unk_20 == 9) {
-            menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
+            menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
             sub_0203B674(menu, sub_0203BC5C);
         } else {
             FieldSystem_StartFieldMap(fieldSystem);
@@ -1218,7 +1217,7 @@ static BOOL StartMenu_SelectBag(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->returnTask = StartMenu_Bag;
+    menu->callback = StartMenu_Bag;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
@@ -1229,9 +1228,9 @@ static BOOL StartMenu_Bag(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
-    sub_0207CB70(menu->unk_25C, 0);
-    menu->returnTask = sub_0203BC5C;
+    menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
+    sub_0207CB70(menu->taskData, 0);
+    menu->callback = sub_0203BC5C;
 
     FieldSystem_SaveStateIfCommunicationOff(fieldSystem);
 
@@ -1248,8 +1247,8 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
     v2 = sub_0207CB08(HEAP_ID_FIELDMAP);
 
-    memcpy(v2, menu->unk_25C, sub_0207CB20());
-    Heap_FreeToHeap(menu->unk_25C);
+    memcpy(v2, menu->taskData, sub_0207CB20());
+    Heap_FreeToHeap(menu->taskData);
 
     switch (sub_0207CB9C(v2)) {
     case 0: {
@@ -1284,7 +1283,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         v6->unk_1C = fieldSystem;
 
         FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v6);
-        menu->unk_25C = v6;
+        menu->taskData = v6;
         sub_0203B674(menu, sub_0203B7C0);
     } break;
     case 4: {
@@ -1305,7 +1304,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             UnkStruct_0203C540 *v12;
 
             v11 = sub_0203D920(fieldSystem, 2, v9, Item_MailNumber(v10), 11);
-            menu->unk_25C = v11;
+            menu->taskData = v11;
             menu->unk_260 = sub_0203C540(v10, 0, (u8)v9);
             sub_0203B674(menu, sub_0203C558);
         } else {
@@ -1331,7 +1330,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             }
 
             FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v13);
-            menu->unk_25C = v13;
+            menu->taskData = v13;
             sub_0203B674(menu, sub_0203B7C0);
         }
     } break;
@@ -1352,7 +1351,7 @@ static BOOL StartMenu_SelectTrainerCard(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->returnTask = StartMenu_TrainerCard;
+    menu->callback = StartMenu_TrainerCard;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
@@ -1366,12 +1365,12 @@ static BOOL StartMenu_TrainerCard(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    menu->unk_25C = sub_02071F04(HEAP_ID_FIELDMAP);
+    menu->taskData = sub_02071F04(HEAP_ID_FIELDMAP);
 
-    sub_02071D40(1, 1, 0, 0xff, fieldSystem, (TrainerCard *)menu->unk_25C);
-    sub_0203E09C(fieldSystem, (TrainerCard *)menu->unk_25C);
+    sub_02071D40(1, 1, 0, 0xff, fieldSystem, (TrainerCard *)menu->taskData);
+    sub_0203E09C(fieldSystem, (TrainerCard *)menu->taskData);
 
-    menu->returnTask = sub_0203BF00;
+    menu->callback = sub_0203BF00;
     return 0;
 }
 
@@ -1383,8 +1382,8 @@ static BOOL sub_0203BF00(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    sub_020721D4(fieldSystem, (TrainerCard *)menu->unk_25C);
-    sub_02071F20((TrainerCard *)menu->unk_25C);
+    sub_020721D4(fieldSystem, (TrainerCard *)menu->taskData);
+    sub_02071F20((TrainerCard *)menu->taskData);
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->state = START_MENU_STATE_12;
@@ -1416,8 +1415,8 @@ static void StartMenu_Save(FieldTask *taskMan)
     if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
         ScriptManager_Start(taskMan, 2034, NULL, NULL);
     } else {
-        menu->unk_25C = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(SaveMenu));
-        saveMenu = menu->unk_25C;
+        menu->taskData = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(SaveMenu));
+        saveMenu = menu->taskData;
         saveMenu->unk_04 = 0;
 
         ScriptManager_Start(taskMan, 2005, NULL, &saveMenu->unk_04);
@@ -1430,7 +1429,7 @@ static void StartMenu_SaveWait(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     StartMenu *menu = FieldTask_GetEnv(taskMan);
-    SaveMenu *saveMenu = menu->unk_25C;
+    SaveMenu *saveMenu = menu->taskData;
 
     if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
         menu->state = START_MENU_STATE_INIT;
@@ -1451,7 +1450,7 @@ static BOOL StartMenu_SelectOptions(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->returnTask = StartMenu_Options;
+    menu->callback = StartMenu_Options;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
@@ -1465,8 +1464,8 @@ static BOOL StartMenu_Options(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    menu->unk_25C = FieldSystem_OpenOptionsMenu(fieldSystem);
-    menu->returnTask = sub_0203C050;
+    menu->taskData = FieldSystem_OpenOptionsMenu(fieldSystem);
+    menu->callback = sub_0203C050;
 
     return FALSE;
 }
@@ -1479,7 +1478,7 @@ static BOOL sub_0203C050(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    Heap_FreeToHeap(menu->unk_25C);
+    Heap_FreeToHeap(menu->taskData);
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->state = START_MENU_STATE_12;
@@ -1493,7 +1492,7 @@ static BOOL StartMenu_SelectChat(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->returnTask = sub_0203C0A0;
+    menu->callback = sub_0203C0A0;
     menu->state = START_MENU_STATE_APP_START;
 
     return 1;
@@ -1508,13 +1507,13 @@ static BOOL sub_0203C0A0(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    menu->unk_25C = sub_0209747C(2, 0, fieldSystem->saveData, HEAP_ID_FIELDMAP);
+    menu->taskData = sub_0209747C(2, 0, fieldSystem->saveData, HEAP_ID_FIELDMAP);
 
     sub_02014A9C(&v2, 4);
-    sub_02097500(menu->unk_25C, &v2);
-    sub_0203D874(fieldSystem, (UnkStruct_0209747C *)menu->unk_25C);
+    sub_02097500(menu->taskData, &v2);
+    sub_0203D874(fieldSystem, (UnkStruct_0209747C *)menu->taskData);
 
-    menu->returnTask = sub_0203C0F8;
+    menu->callback = sub_0203C0F8;
 
     return 0;
 }
@@ -1528,8 +1527,8 @@ static BOOL sub_0203C0F8(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    if (sub_02097528(menu->unk_25C) == 0) {
-        sub_02097540(menu->unk_25C, &sentence);
+    if (sub_02097528(menu->taskData) == 0) {
+        sub_02097540(menu->taskData, &sentence);
 
         if (CommServerClient_IsInitialized()) {
             sub_0205C12C(&sentence);
@@ -1541,7 +1540,7 @@ static BOOL sub_0203C0F8(FieldTask *taskMan)
         menu->state = START_MENU_STATE_12;
     }
 
-    sub_020974EC((UnkStruct_0209747C *)menu->unk_25C);
+    sub_020974EC((UnkStruct_0209747C *)menu->taskData);
     FieldSystem_StartFieldMap(fieldSystem);
     sub_0205C2B0(fieldSystem->unk_80);
 
@@ -1582,8 +1581,8 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
-    memcpy(v2, menu->unk_25C, sizeof(PokemonSummary));
-    Heap_FreeToHeap(menu->unk_25C);
+    memcpy(v2, menu->taskData, sizeof(PokemonSummary));
+    Heap_FreeToHeap(menu->taskData);
 
     switch (v2->mode) {
     case SUMMARY_MODE_SELECT_MOVE: {
@@ -1618,11 +1617,11 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
 
         FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v3);
         Heap_FreeToHeap(menu->unk_260);
-        menu->unk_25C = v3;
+        menu->taskData = v3;
         sub_0203B674(menu, sub_0203B7C0);
     } break;
     default:
-        menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, v2->monIndex);
+        menu->taskData = sub_0203D390(fieldSystem, &menu->unk_24C, v2->monIndex);
         sub_0203B674(menu, sub_0203B7C0);
     }
 
@@ -1642,24 +1641,24 @@ static void sub_0203C2D8(FieldTask *taskMan, u16 param1)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    menu->unk_25C = sub_020972FC(HEAP_ID_FIELDMAP);
+    menu->taskData = sub_020972FC(HEAP_ID_FIELDMAP);
     v2 = SaveData_GetBag(fieldSystem->saveData);
-    sub_02097320(menu->unk_25C, param1, 1);
+    sub_02097320(menu->taskData, param1, 1);
     v6 = 0;
 
     for (v3 = 0; v3 < 64; v3++) {
         param1 = Item_ForBerryNumber(v3);
 
         if (Bag_CanRemoveItem(v2, param1, 1, 11) == 1) {
-            sub_02097320(menu->unk_25C, param1, 0);
+            sub_02097320(menu->taskData, param1, 0);
             v6++;
         }
     }
 
     BagCursor_GetFieldPocketPosition(fieldSystem->unk_98, 4, &v5, &v4);
-    sub_0209733C(menu->unk_25C, v4, v5, v6 + 3);
+    sub_0209733C(menu->taskData, v4, v5, v6 + 3);
 
-    sub_0203D2E4(fieldSystem, menu->unk_25C);
+    sub_0203D2E4(fieldSystem, menu->taskData);
     sub_0203B674(menu, sub_0203C390);
 }
 
@@ -1672,11 +1671,11 @@ static BOOL sub_0203C390(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    sub_02097390(menu->unk_25C, &v2, &v3);
+    sub_02097390(menu->taskData, &v2, &v3);
     BagCursor_SetFieldPocketPosition(fieldSystem->unk_98, 4, v3, v2);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->taskData);
 
-    menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
+    menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0203B674(menu, sub_0203BC5C);
 
     return 0;
@@ -1690,8 +1689,8 @@ BOOL sub_0203C3F4(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
-    menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->taskData);
+    menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0203B674(menu, sub_0203BC5C);
 
     return 0;
@@ -1710,11 +1709,11 @@ BOOL sub_0203C434(FieldTask *taskMan)
 
     Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_260);
 
-    v2 = (UnkStruct_0203D8AC *)menu->unk_25C;
+    v2 = (UnkStruct_0203D8AC *)menu->taskData;
 
     if (!(v2->unk_10)) {
-        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
-        menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, v3);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->taskData);
+        menu->taskData = sub_0203D390(fieldSystem, &menu->unk_24C, v3);
         sub_0203B674(menu, sub_0203B7C0);
     } else {
         Pokemon *mon;
@@ -1726,11 +1725,11 @@ BOOL sub_0203C434(FieldTask *taskMan)
         journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_FLEW_TO_LOCATION - LOCATION_EVENT_USED_CUT, v2->unk_1C, HEAP_ID_FIELDMAP);
 
         JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
-        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->taskData);
         FieldSystem_StartFieldMap(fieldSystem);
 
-        menu->returnTask = sub_02070680;
-        menu->unk_25C = v5;
+        menu->callback = sub_02070680;
+        menu->taskData = v5;
         menu->state = START_MENU_STATE_10;
     }
 
@@ -1745,7 +1744,7 @@ BOOL sub_0203C50C(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
+    menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0203B674(menu, sub_0203BC5C);
 
     return 0;
@@ -1776,30 +1775,30 @@ BOOL sub_0203C558(FieldTask *taskMan)
 
     switch (v2->unk_03) {
     case 3:
-        sub_02097770(menu->unk_25C);
-        menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
+        sub_02097770(menu->taskData);
+        menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
         sub_0203B674(menu, sub_0203BC5C);
         break;
     case 2:
-        sub_02097770(menu->unk_25C);
-        menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, v2->unk_02);
+        sub_02097770(menu->taskData);
+        menu->taskData = sub_0203D390(fieldSystem, &menu->unk_24C, v2->unk_02);
         sub_0203B674(menu, sub_0203B7C0);
         break;
     case 0:
-        if (sub_02097728(menu->unk_25C) == 1) {
+        if (sub_02097728(menu->taskData) == 1) {
             sub_0203C668(fieldSystem, menu, 12);
         } else {
-            sub_02097770(menu->unk_25C);
-            menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, v2->unk_02);
+            sub_02097770(menu->taskData);
+            menu->taskData = sub_0203D390(fieldSystem, &menu->unk_24C, v2->unk_02);
             sub_0203B674(menu, sub_0203B7C0);
         }
         break;
     case 1:
-        if (sub_02097728(menu->unk_25C) == 1) {
+        if (sub_02097728(menu->taskData) == 1) {
             sub_0203C668(fieldSystem, menu, 11);
         } else {
-            sub_02097770(menu->unk_25C);
-            menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
+            sub_02097770(menu->taskData);
+            menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
             sub_0203B674(menu, sub_0203BC5C);
         }
         break;
@@ -1809,12 +1808,12 @@ BOOL sub_0203C558(FieldTask *taskMan)
     return 0;
 }
 
-static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *param1, u8 param2)
+static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 param2)
 {
     UnkStruct_0203C540 *v0;
     PartyManagementData *partyMan;
 
-    v0 = param1->unk_260;
+    v0 = menu->unk_260;
     partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memset(partyMan, 0, sizeof(PartyManagementData));
@@ -1822,19 +1821,19 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *param1, u8 param2)
     partyMan->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     partyMan->unk_08 = sub_02028430(fieldSystem->saveData);
     partyMan->unk_0C = SaveData_Options(fieldSystem->saveData);
-    partyMan->unk_18 = &param1->unk_24C;
+    partyMan->unk_18 = &menu->unk_24C;
     partyMan->unk_21 = 0;
     partyMan->unk_24 = v0->unk_00;
     partyMan->unk_22 = v0->unk_02;
     partyMan->unk_20 = param2;
     partyMan->unk_1C = fieldSystem;
 
-    sub_02097750(param1->unk_25C, Party_GetPokemonBySlotIndex(partyMan->unk_00, v0->unk_02));
-    sub_02097770(param1->unk_25C);
+    sub_02097750(menu->taskData, Party_GetPokemonBySlotIndex(partyMan->unk_00, v0->unk_02));
+    sub_02097770(menu->taskData);
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    param1->unk_25C = partyMan;
-    sub_0203B674(param1, sub_0203B7C0);
+    menu->taskData = partyMan;
+    sub_0203B674(menu, sub_0203B7C0);
 }
 
 BOOL sub_0203C710(FieldTask *taskMan)
@@ -1845,9 +1844,9 @@ BOOL sub_0203C710(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    sub_02098AF0(menu->unk_25C);
+    sub_02098AF0(menu->taskData);
 
-    menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
+    menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0203B674(menu, sub_0203BC5C);
 
     return 0;
@@ -1861,7 +1860,7 @@ BOOL sub_0203C750(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
+    menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0203B674(menu, sub_0203BC5C);
 
     return 0;
@@ -1875,7 +1874,7 @@ BOOL sub_0203C784(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
+    menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0203B674(menu, sub_0203BC5C);
 
     return 0;
@@ -1892,7 +1891,7 @@ static void StartMenu_EvolveInit(FieldTask *taskMan)
 
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
-    v2 = menu->unk_25C;
+    v2 = menu->taskData;
 
     sub_0200569C();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_73, 0x30000);
@@ -1913,9 +1912,9 @@ static void StartMenu_EvolveInit(FieldTask *taskMan)
         menu->unk_260 = v6;
     }
 
-    Heap_FreeToHeap(menu->unk_25C);
+    Heap_FreeToHeap(menu->taskData);
 
-    menu->unk_25C = v5;
+    menu->taskData = v5;
     menu->state = START_MENU_STATE_EVOLVE;
 }
 
@@ -1927,19 +1926,19 @@ static void StartMenu_Evolve(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    if (sub_0207B0D0(menu->unk_25C) == 1) {
-        sub_0207B0E0(menu->unk_25C);
+    if (sub_0207B0D0(menu->taskData) == 1) {
+        sub_0207B0E0(menu->taskData);
         Heap_Destroy(HEAP_ID_73);
         sub_020055D0(1141, 0);
         sub_02004234(0);
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
 
-        menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
+        menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
 
         {
             u32 v2 = *((u32 *)menu->unk_260);
 
-            sub_0207CB70(menu->unk_25C, (u8)v2);
+            sub_0207CB70(menu->taskData, (u8)v2);
             Heap_FreeToHeap(menu->unk_260);
         }
 

@@ -10,7 +10,6 @@
 #include "struct_defs/struct_02083D1C.h"
 
 #include "field/field_system.h"
-#include "functypes/funcptr_02084808.h"
 #include "overlay118/ov118_021D0D80.h"
 
 #include "bag.h"
@@ -863,12 +862,11 @@ int sub_02084780(GameWindowLayout *param0)
 
 static void sub_02084808(GameWindowLayout *param0, int *param1)
 {
-    UnkFuncPtr_02084808 v0;
+    FieldMoveErrContext v0;
     u32 v1;
     u32 v2;
 
-    v0 = (UnkFuncPtr_02084808)FieldMove_GetTaskOrError(
-        FIELD_MOVE_ERROR, param0->unk_5A4->unk_23 - 11);
+    v0 = (FieldMoveErrContext)FieldMove_GetTaskOrError(FIELD_MOVE_ERROR, param0->unk_5A4->unk_23 - 11);
 
     if (v0 != NULL) {
         v1 = v0(param0->unk_5A4->unk_18);

@@ -973,24 +973,24 @@ void ov5_021E0734(FieldTask *param0, int param1, int param2)
     ov5_021E06F8(fieldSystem, param1, &v0);
 }
 
-int PlayerAvatar_CanUseRockClimb(u32 metatileBehavior, int facingDir)
+BOOL PlayerAvatar_CanUseRockClimb(u32 metatileBehavior, int facingDir)
 {
     switch (facingDir) {
     case DIR_NORTH:
     case DIR_SOUTH:
         if (TileBehavior_IsRockClimbNorthSouth(metatileBehavior) == 1) {
-            return 1;
+            return TRUE;
         }
         break;
     case DIR_WEST:
     case DIR_EAST:
         if (TileBehavior_IsRockClimbEastWest(metatileBehavior) == 1) {
-            return 1;
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov5_021E07A0(FieldTask *param0)
@@ -1081,10 +1081,10 @@ static int ov5_021E08C0(UnkStruct_ov5_021F9B54 *param0)
     }
 
     {
-        int v0 = MapObject_GetMovingDir(param0->unk_14);
-        u8 v1 = MapObject_GetTileBehaviorFromDir(param0->unk_14, v0);
+        int facingDir = MapObject_GetMovingDir(param0->unk_14);
+        u8 metatileBehaviour = MapObject_GetTileBehaviorFromDir(param0->unk_14, facingDir);
 
-        if (PlayerAvatar_CanUseRockClimb(v1, v0) == 1) {
+        if (PlayerAvatar_CanUseRockClimb(metatileBehaviour, facingDir) == TRUE) {
             param0->unk_00 = 5;
             return 1 + 1;
         }

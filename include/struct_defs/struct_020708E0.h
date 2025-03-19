@@ -26,10 +26,10 @@ typedef struct {
     u32 unk_220;
     u32 unk_224;
     u32 unk_228;
-    FieldTaskFunc returnTask;
+    FieldTaskFunc callback;
     UnkStruct_020684D0 unk_230;
     FieldMoveContext unk_24C;
-    void *unk_25C;
+    void *taskData;
     void *unk_260;
 } StartMenu;
 
