@@ -273,7 +273,7 @@ static void sub_02015C08(u32 param0, u32 param1, void *param2)
     if (param1 == 0) {
         v0->unk_9A = param0;
 
-        Sound_PlayEffect(1508);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
     }
 }
 

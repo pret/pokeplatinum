@@ -500,7 +500,7 @@ static void ov25_02254CA8(SysTask *param0, void *param1)
     UnkStruct_ov25_02254560 *v0 = PoketchTask_GetTaskData(param1);
 
     ov25_02254C54(param1, v0->unk_6C, 0);
-    Sound_PlayEffect(1649);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI04);
 }
 
 static void ov25_02254CCC(SysTask *param0, void *param1)
@@ -508,7 +508,7 @@ static void ov25_02254CCC(SysTask *param0, void *param1)
     UnkStruct_ov25_02254560 *v0 = PoketchTask_GetTaskData(param1);
 
     ov25_02254C54(param1, v0->unk_12C, 1);
-    Sound_PlayEffect(1649);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI04);
 }
 
 static void ov25_02254CF4(SysTask *param0, void *param1)
@@ -528,7 +528,7 @@ static void ov25_02254D24(SysTask *param0, void *param1)
     UnkStruct_ov25_02254560 *v0 = PoketchTask_GetTaskData(param1);
 
     ov25_02254C54(param1, v0->unk_AC, 0);
-    Sound_PlayEffect(1647);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI01);
 }
 
 static void ov25_02254D48(SysTask *param0, void *param1)
@@ -536,7 +536,7 @@ static void ov25_02254D48(SysTask *param0, void *param1)
     UnkStruct_ov25_02254560 *v0 = PoketchTask_GetTaskData(param1);
 
     ov25_02254C54(param1, v0->unk_16C, 1);
-    Sound_PlayEffect(1647);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI01);
 }
 
 static void ov25_02254D70(SysTask *param0, void *param1)

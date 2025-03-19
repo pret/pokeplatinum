@@ -149,7 +149,7 @@ int ov93_021D120C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        Sound_PlayEffect(1756);
+        Sound_PlayEffect(SEQ_SE_DP_SHIP01);
         (*param1)++;
         break;
     case 1:

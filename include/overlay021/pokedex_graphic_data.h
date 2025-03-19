@@ -1,9 +1,7 @@
 #ifndef POKEPLATINUM_POKEDEX_GRAPHIC_DATA_H
 #define POKEPLATINUM_POKEDEX_GRAPHIC_DATA_H
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D23F8.h"
@@ -13,6 +11,7 @@
 
 #include "bg_window.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
@@ -25,7 +24,7 @@ typedef struct PokedexGraphicData {
     SpriteList *spriteList;
     SpriteResourceCollection *spriteResourceCollection[4];
     UnkStruct_ov21_021D4C0C *unk_14C;
-    UnkStruct_02007768 *unk_150;
+    PokemonSpriteManager *unk_150;
     PokemonSprite *pokemonSprite[4];
     UnkStruct_02015064 *unk_164;
     UnkStruct_ov21_021D23F8 unk_168;

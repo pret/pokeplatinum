@@ -567,7 +567,7 @@ static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DF
     param0->unk_30 = param1;
 
     for (v0 = 0; v0 < 9; v0++) {
-        param0->unk_00[v0] = MessageLoader_Init(0, 26, v1[v0], param2);
+        param0->unk_00[v0] = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1[v0], param2);
     }
 
     param0->unk_24 = StringTemplate_Default(param2);
@@ -763,19 +763,19 @@ static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         break;
     case 5:
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_28++;
             break;
         }
 
         if (gSystem.pressedKeys & PAD_KEY_UP) {
             if ((param0->unk_10 - 1) >= 0) {
-                Sound_PlayEffect(1504);
+                Sound_PlayEffect(SEQ_SE_DP_SELECT78);
                 param0->unk_10--;
             }
         } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
             if ((param0->unk_10 + 1) < 3) {
-                Sound_PlayEffect(1504);
+                Sound_PlayEffect(SEQ_SE_DP_SELECT78);
                 param0->unk_10++;
             }
         }
@@ -791,7 +791,7 @@ static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
 
         ov68_0225D218(param3, v1);
         ov68_0225D284(param3);
-        Sound_PlayEffect(1381);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80);
         param0->unk_28 = 7;
         break;
     case 7: {
@@ -799,7 +799,7 @@ static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         v3 = ov66_02233434();
 
         if (v3 != UnkEnum_ov66_02233434_01) {
-            Sound_PlayEffect(1508);
+            Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
             ov68_0225D2A0(param3);
 
             v1 = ov68_0225CBEC(param1, 0, 97);
@@ -1113,7 +1113,7 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         ov68_0225D8F0(param0, &param0->unk_88, param1, param2, &v2, heapID, TEXT_COLOR(9, 10, 0), TEXT_COLOR(13, 14, 0), v4);
         ov68_0225DA30(param0, &param0->unk_C8, param2, 1);
 
-        Sound_PlayEffect(1472);
+        Sound_PlayEffect(SEQ_SE_PL_PINPON2);
     }
 
         param0->unk_60 = 5;
@@ -1228,7 +1228,7 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
 
         ov68_0225D8F0(param0, &param0->unk_A8, param1, param2, &v7, heapID, TEXT_COLOR(11, 12, 0), TEXT_COLOR(15, 14, 0), v9);
         ov68_0225DA30(param0, &param0->unk_DC, param2, 2);
-        Sound_PlayEffect(1472);
+        Sound_PlayEffect(SEQ_SE_PL_PINPON2);
     }
         param0->unk_60 = 18;
         break;

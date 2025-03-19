@@ -514,7 +514,7 @@ BOOL sub_02083D1C(GameWindowLayout *param0)
 
     switch (v0->unk_305) {
     case 0:
-        Sound_PlayEffect(1696);
+        Sound_PlayEffect(SEQ_SE_DP_POKELIST_001);
         v0->unk_305 = 1;
         break;
     case 1:
@@ -533,7 +533,7 @@ BOOL sub_02083D1C(GameWindowLayout *param0)
         break;
     case 2:
         sub_02084134(param0);
-        Sound_PlayEffect(1696);
+        Sound_PlayEffect(SEQ_SE_DP_POKELIST_001);
         v0->unk_305 = 3;
         break;
     case 3:

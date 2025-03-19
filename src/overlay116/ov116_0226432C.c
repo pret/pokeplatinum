@@ -487,7 +487,7 @@ static void ov116_022649E4(SysTask *param0, void *param1)
         if (v0->unk_08 == 0) {
             v0->unk_08++;
             ov116_02261E0C(v0->unk_00, 1, 0);
-            Sound_PlayEffect(1395);
+            Sound_PlayEffect(SEQ_SE_PL_140_2_2);
         }
 
         if (v0->unk_08 > 30) {
@@ -841,7 +841,7 @@ static void ov116_0226534C(SysTask *param0, void *param1)
         }
     case 4:
         if (v0->unk_08[3].unk_04 == 0) {
-            Sound_PlayEffect(1551);
+            Sound_PlayEffect(SEQ_SE_DP_DENDOU);
             v0->unk_08[3].unk_04 = 1;
             v0->unk_08[3].unk_50[0] = 0;
         }
@@ -852,7 +852,7 @@ static void ov116_0226534C(SysTask *param0, void *param1)
         }
     case 2:
         if (v0->unk_08[1].unk_04 == 0) {
-            Sound_PlayEffect(1393);
+            Sound_PlayEffect(SEQ_SE_PL_HAND);
             v0->unk_08[1].unk_04 = 1;
             v0->unk_08[1].unk_50[0] = 0;
         }

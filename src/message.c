@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
 #include "heap.h"
 #include "narc.h"
 #include "strbuf.h"

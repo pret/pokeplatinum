@@ -15,7 +15,7 @@ _0012:
     FacePlayer
     GoToIfSet 0xAA5, _00E2
     GoToIfEq 0x400A, 1, _00E2
-    ScrCmd_247 0x4000
+    GetFirstNonEggInParty 0x4000
     BufferPlayerName 0
     BufferPartyMonNickname 1, 0x4000
     Message 0

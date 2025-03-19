@@ -415,9 +415,9 @@ static int ov83_0223B9EC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
 
             if (param1->unk_3BC != (v3 + 1) / 3) {
                 if (v3 < 10) {
-                    Sound_PlayEffect(1725);
+                    Sound_PlayEffect(SEQ_SE_DP_NM10);
                 } else {
-                    Sound_PlayEffect(1726);
+                    Sound_PlayEffect(SEQ_SE_DP_NM10_2);
                 }
 
                 param1->unk_3BC = (v3 + 1) / 3;
@@ -535,7 +535,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         Sound_StopEffect(1723, 0);
         Sound_StopEffect(1727, 0);
         Sound_StopEffect(1729, 0);
-        Sound_PlayEffect(1730);
+        Sound_PlayEffect(SEQ_SE_DP_NM13);
 
         ov83_0223E484(&param1->unk_608, 0, 0);
         ov83_0223E484(&param1->unk_608, 1, 0);
@@ -661,7 +661,7 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
 
         if (param1->unk_1C < 0) {
             ov83_0223EC4C(&param1->unk_6A0, 1);
-            Sound_PlayEffect(1731);
+            Sound_PlayEffect(SEQ_SE_DP_NM14);
             (*param2)++;
             param1->unk_1C = (30 * 1);
         }
@@ -672,7 +672,7 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         if (param1->unk_1C < 0) {
             ov83_0223EC4C(&param1->unk_6A0, 2);
             ov83_0223F784(&param1->unk_1478);
-            Sound_PlayEffect(1731);
+            Sound_PlayEffect(SEQ_SE_DP_NM14);
             (*param2)++;
             param1->unk_1C = (30 * 20);
         }
@@ -924,14 +924,14 @@ static void ov83_0223C558(UnkStruct_ov83_0223B784 *param0)
                 ov83_0223F3A0(&param0->unk_AEC, 1);
                 param0->unk_328 = 1;
                 ov83_0223F3D0(&param0->unk_AEC, 3);
-                Sound_PlayEffect(1729);
+                Sound_PlayEffect(SEQ_SE_DP_NM12_2);
             }
         } else {
             if (param0->unk_328 != 2) {
                 ov83_0223F3A0(&param0->unk_AEC, 3);
                 param0->unk_328 = 2;
                 ov83_0223F3D0(&param0->unk_AEC, 1);
-                Sound_PlayEffect(1729);
+                Sound_PlayEffect(SEQ_SE_DP_NM12_2);
             }
         }
     }
@@ -1016,12 +1016,12 @@ static void ov83_0223C758(UnkStruct_ov83_0223B784 *param0)
         if (v0->unk_11 == 0) {
             ov83_0223F3A0(&param0->unk_AEC, 0);
             ov83_0223F3D0(&param0->unk_AEC, 2);
-            Sound_PlayEffect(1729);
+            Sound_PlayEffect(SEQ_SE_DP_NM12_2);
             param0->unk_324 = 1;
         } else {
             ov83_0223F3A0(&param0->unk_AEC, 2);
             ov83_0223F3D0(&param0->unk_AEC, 0);
-            Sound_PlayEffect(1729);
+            Sound_PlayEffect(SEQ_SE_DP_NM12_2);
             param0->unk_324 = 2;
         }
     }
@@ -1049,7 +1049,7 @@ static void ov83_0223C7FC(UnkStruct_ov83_0223B784 *param0)
 
     if (v0->unk_0F == 1) {
         ov83_0223F544(&param0->unk_B6C, v1, v2);
-        Sound_PlayEffect(1727);
+        Sound_PlayEffect(SEQ_SE_DP_NM11);
     }
 }
 

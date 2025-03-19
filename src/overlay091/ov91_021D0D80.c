@@ -623,7 +623,7 @@ static void ov91_021D11A0(UnkStruct_ov91_021D0ED8 *param0)
 
 static void ov91_021D11B8(UnkStruct_ov91_021D0ED8 *param0)
 {
-    param0->unk_F8 = MessageLoader_Init(0, 26, 645, HEAP_ID_67);
+    param0->unk_F8 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0645, HEAP_ID_67);
     param0->unk_FC = StringTemplate_Default(HEAP_ID_67);
     param0->unk_100 = Strbuf_Init(256, HEAP_ID_67);
 }
@@ -650,7 +650,7 @@ static int ov91_021D122C(UnkStruct_ov91_021D0ED8 *param0)
     u16 v1, v2;
 
     if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         param0->unk_00->unk_14 ^= 1;
         ov91_021D1498(param0);
         return 1;
@@ -671,7 +671,7 @@ static int ov91_021D122C(UnkStruct_ov91_021D0ED8 *param0)
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov91_021D2548(param0, param0->unk_00->unk_10, 1);
         ov91_021D25E4(param0);
         ov91_021D1DF8(param0, 2);
@@ -679,7 +679,7 @@ static int ov91_021D122C(UnkStruct_ov91_021D0ED8 *param0)
         param0->unk_180 = 3;
         return 2;
     default:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov91_021D2548(param0, param0->unk_00->unk_10, 1);
         ov91_021D25E4(param0);
 
@@ -931,7 +931,7 @@ static void ov91_021D188C(ListMenu *param0, u32 param1, u8 param2)
     UnkStruct_ov91_021D0ED8 *v0 = (UnkStruct_ov91_021D0ED8 *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 != 1) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
     }
 
     if (v0->unk_00->unk_14 == 0) {
@@ -982,7 +982,7 @@ static void ov91_021D18C8(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
         ov91_021D1618(param0, 31, v1, 2, 0);
         ov91_021D1580(param0, 9, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 2);
 
-        v0 = MessageLoader_Init(1, 26, 646, HEAP_ID_67);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_DESCRIPTIONS, HEAP_ID_67);
         MessageLoader_GetStrbuf(v0, param1, param0->unk_100);
         ov91_021D1580(param0, 10, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0);
         MessageLoader_Free(v0);
@@ -1016,7 +1016,7 @@ static void ov91_021D1A68(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
 
         v1 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_EFFECT);
         v2 = sub_0209577C(v1);
-        v0 = MessageLoader_Init(0, 26, 210, HEAP_ID_67);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_67);
 
         MessageLoader_GetStrbuf(v0, v2, param0->unk_100);
         Text_AddPrinterWithParamsAndColor(&param0->unk_08[11], FONT_SYSTEM, param0->unk_100, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -1148,7 +1148,7 @@ static BOOL ov91_021D1E50(TextPrinterTemplate *param0, u16 param1)
     case 2:
         return sub_020061E4();
     case 3:
-        Sound_PlayEffect(1510);
+        Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 4:
         sub_02006150(1155);

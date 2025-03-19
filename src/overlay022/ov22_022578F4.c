@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_020298D8.h"
 
 #include "overlay022/ov22_02254DE0.h"
@@ -20,8 +19,8 @@
 #include "overlay022/struct_ov22_0225B388.h"
 
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "touch_screen.h"
-#include "unk_0200762C.h"
 #include "unk_02015064.h"
 
 static void ov22_02257DEC(UnkStruct_ov22_02257964 *param0, UnkStruct_ov22_02259560 *param1, BOOL param2, NNSG2dCharacterData **param3);
@@ -60,19 +59,19 @@ void ov22_02257948(UnkStruct_ov22_02257964 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov22_02257964));
 }
 
-void ov22_02257964(UnkStruct_ov22_02257964 *param0, Pokemon *param1, ArchivedSprite *param2, int param3, int param4, int param5, int param6)
+void ov22_02257964(UnkStruct_ov22_02257964 *param0, Pokemon *param1, PokemonSpriteTemplate *param2, int param3, int param4, int param5, int param6)
 {
     ov22_022590C0(&param0->unk_2C.unk_4C, param0->unk_2C.unk_10, param1, param2, param6);
     ov22_022591D0(&param0->unk_2C.unk_4C, param5);
     ov22_022591EC(&param0->unk_2C.unk_4C, param3, param4);
 }
 
-void ov22_02257998(UnkStruct_ov22_02257964 *param0, Pokemon *param1, ArchivedSprite *param2, int param3)
+void ov22_02257998(UnkStruct_ov22_02257964 *param0, Pokemon *param1, PokemonSpriteTemplate *param2, int param3)
 {
     ov22_022590C0(&param0->unk_2C.unk_4C, param0->unk_2C.unk_10, param1, param2, param3);
 }
 
-void ov22_022579B4(UnkStruct_ov22_02257964 *param0, Pokemon *param1, ArchivedSprite *param2, int param3)
+void ov22_022579B4(UnkStruct_ov22_02257964 *param0, Pokemon *param1, PokemonSpriteTemplate *param2, int param3)
 {
     ov22_022590D4(&param0->unk_2C.unk_4C, param0->unk_2C.unk_10, param1, param2, param3, 1);
 }
@@ -329,8 +328,8 @@ void ov22_02257CD4(UnkStruct_ov22_02257964 *param0)
 
 void ov22_02257CE0(UnkStruct_ov22_02257964 *param0, int *param1, int *param2)
 {
-    *param1 = sub_020080C0(param0->unk_2C.unk_4C.unk_00, 0);
-    *param2 = sub_020080C0(param0->unk_2C.unk_4C.unk_00, 1);
+    *param1 = PokemonSprite_GetAttribute(param0->unk_2C.unk_4C.unk_00, MON_SPRITE_X_CENTER);
+    *param2 = PokemonSprite_GetAttribute(param0->unk_2C.unk_4C.unk_00, MON_SPRITE_Y_CENTER);
 }
 
 int ov22_02257D00(UnkStruct_ov22_02257964 *param0)
@@ -378,9 +377,9 @@ void ov22_02257D70(UnkStruct_ov22_02257964 *param0, GXRgb param1)
         } else {
             UnkStruct_020298D8 *v2 = v0->unk_00;
 
-            sub_02007DEC(v2->unk_00, 24, (param1 >> 10) & 0x1f);
-            sub_02007DEC(v2->unk_00, 25, (param1 >> 5) & 0x1f);
-            sub_02007DEC(v2->unk_00, 26, (param1 >> 0) & 0x1f);
+            PokemonSprite_SetAttribute(v2->unk_00, MON_SPRITE_DIFFUSE_R, (param1 >> 10) & 0x1f);
+            PokemonSprite_SetAttribute(v2->unk_00, MON_SPRITE_DIFFUSE_G, (param1 >> 5) & 0x1f);
+            PokemonSprite_SetAttribute(v2->unk_00, MON_SPRITE_DIFFUSE_B, (param1 >> 0) & 0x1f);
         }
 
         v0 = v0->unk_08;

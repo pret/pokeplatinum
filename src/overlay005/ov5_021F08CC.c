@@ -216,7 +216,7 @@ static int ov5_021F0A80(UnkStruct_ov5_021F0D6C *param0, PlayerAvatar *playerAvat
     param0->unk_10++;
 
     if (param0->unk_10 == 10) {
-        Sound_PlayEffect(1616);
+        Sound_PlayEffect(SEQ_SE_DP_FW104);
     }
 
     if (param0->unk_10 < 34) {
@@ -501,7 +501,7 @@ static int ov5_021F0D54(void)
 
 static void ov5_021F0D6C(UnkStruct_ov5_021F0D6C *param0)
 {
-    param0->unk_48 = MessageLoader_Init(1, 26, 213, HEAP_ID_FIELD);
+    param0->unk_48 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD);
     param0->unk_2C = Strbuf_Init(0x400, HEAP_ID_FIELD);
     param0->unk_30 = Strbuf_Init(0x400, HEAP_ID_FIELD);
     param0->unk_34 = StringTemplate_New(8, 64, 4);

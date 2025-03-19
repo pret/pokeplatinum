@@ -729,7 +729,7 @@ static void ov8_02249F14(const u8 param0, MapPropAnimationManager *param1)
     MapPropAnimation_SetAnimationPaused(v0, 0);
     MapPropAnimation_StartLoop(v0);
 
-    Sound_PlayEffect(1626);
+    Sound_PlayEffect(SEQ_SE_DP_FW056);
 }
 
 void include_ov8_02249960(void)
@@ -772,7 +772,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
     switch (v2->unk_00) {
     case 0:
         sub_0205ED2C(fieldSystem->playerAvatar, 0);
-        Sound_PlayEffect(1553);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
         (v2->unk_00)++;
         break;
     case 1: {
@@ -798,7 +798,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 10), fieldSystem->unk_A0);
         sub_0205ED48(fieldSystem->playerAvatar, 1);
-        Sound_PlayEffect(1562);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
     case 3:
@@ -818,7 +818,7 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
     switch (v2->unk_00) {
     case 0:
         sub_0205ED2C(fieldSystem->playerAvatar, 0);
-        Sound_PlayEffect(1553);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
         (v2->unk_00)++;
         break;
     case 1: {
@@ -843,7 +843,7 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
         sub_0205ED48(fieldSystem->playerAvatar, 1);
-        Sound_PlayEffect(1562);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
     case 3:
@@ -1333,7 +1333,7 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
     switch (v2->unk_00) {
     case 0:
         sub_0205ED2C(fieldSystem->playerAvatar, 0);
-        Sound_PlayEffect(1553);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
         (v2->unk_00)++;
         break;
     case 1: {
@@ -1376,7 +1376,7 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
     } break;
     case 2:
         sub_0205ED48(fieldSystem->playerAvatar, 1);
-        Sound_PlayEffect(1562);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
     case 3:
@@ -1401,7 +1401,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
         if (LocalMapObj_IsAnimationSet(v1) == 1) {
             LocalMapObj_SetAnimationCode(v1, 0x49);
 
-            Sound_PlayEffect(1553);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
             (v3->unk_00)++;
         }
         break;
@@ -1455,7 +1455,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
     case 3:
         if (LocalMapObj_CheckAnimationFinished(v1) == 1) {
             sub_020656AC(v1);
-            Sound_PlayEffect(1562);
+            Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
             (v3->unk_00)++;
         }
         break;
@@ -1481,7 +1481,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
         if (LocalMapObj_IsAnimationSet(v1) == 1) {
             LocalMapObj_SetAnimationCode(v1, 0x49);
 
-            Sound_PlayEffect(1553);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
             (v3->unk_00)++;
         }
         break;
@@ -1540,7 +1540,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
 
         if (LocalMapObj_CheckAnimationFinished(v8) == 1) {
             sub_020656AC(v8);
-            Sound_PlayEffect(1562);
+            Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
             (v3->unk_00)++;
         }
     } break;
@@ -2186,7 +2186,7 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
         v3->unk_00 = v4;
         v1->unk_13 = v4;
 
-        Sound_PlayEffect(1599);
+        Sound_PlayEffect(SEQ_SE_DP_GAGAGA);
         FieldTask_InitCall(fieldSystem->task, ov8_0224ADE8, v0);
     }
 }
@@ -2712,7 +2712,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
         }
 
         v2->unk_04 = 0;
-        Sound_PlayEffect(1355);
+        Sound_PlayEffect(SEQ_SE_PL_TOKEI21);
         v2->unk_00++;
     case 3:
         if (v3->unk_00 == 4) {
@@ -2741,7 +2741,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
 
         if (v0 == 1) {
             Sound_StopEffect(1355, 0);
-            Sound_PlayEffect(1507);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             v2->unk_00++;
         }
         break;
@@ -2805,7 +2805,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
                 ov5_021F416C(fieldSystem, 0);
             }
 
-            Sound_PlayEffect(1593);
+            Sound_PlayEffect(SEQ_SE_DP_T_AME);
             v2->unk_00++;
         }
         break;
@@ -3199,7 +3199,7 @@ static BOOL ov8_0224BAF4(FieldTask *taskMan)
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             LocalMapObj_SetAnimationCode(v0, sub_02065838(v2->unk_08, 0x28));
             ov5_021F4698(v2->unk_34->unk_08.unk_0C, v2->unk_08, 0);
-            Sound_PlayEffect(1367);
+            Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
             v2->unk_00++;
         }
         break;
@@ -3269,7 +3269,7 @@ static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0)
         }
     }
 
-    Sound_PlayEffect(1367);
+    Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
 
     param0->unk_00 = 2;
     return 1;
@@ -3290,7 +3290,7 @@ static int ov8_0224BC48(UnkStruct_ov8_0224C098 *param0)
         v0 /= param0->unk_1C * 16 / 2;
         ov5_021F4714(param0->unk_34->unk_08.unk_0C, v0);
         param0->unk_00 = 3;
-        Sound_PlayEffect(1356);
+        Sound_PlayEffect(SEQ_SE_PL_GYM01);
     }
 
     return 0;
@@ -3337,8 +3337,8 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
             MapObject_UpdateCoords(v0->unk_08.unk_08);
             ov5_021F4714(v0->unk_08.unk_0C, FX32_ONE);
             Sound_StopEffect(1356, 0);
-            Sound_PlayEffect(1367);
-            Sound_PlayEffect(1357);
+            Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
+            Sound_PlayEffect(SEQ_SE_PL_GYM02);
 
             if ((v1 & (1 << 1)) == 0) {
                 if (param0->unk_18 == 1) {
@@ -3367,7 +3367,7 @@ static int ov8_0224BDD0(UnkStruct_ov8_0224C098 *param0)
         param0->unk_04 = 0;
         param0->unk_00 = 5;
         ov5_021F44A4(param0->unk_38->unk_08.unk_0C);
-        Sound_PlayEffect(1578);
+        Sound_PlayEffect(SEQ_SE_DP_UG_026);
     }
 
     return 0;

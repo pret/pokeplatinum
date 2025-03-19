@@ -301,14 +301,14 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0 = CommInfo_TrainerInfo(param0->unk_8C);
         StringTemplate_SetPlayerName(param0->unk_38, 0, v0);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_90 = v1;
 
         {
@@ -443,7 +443,7 @@ static void ov5_021EAEE0(UnkStruct_ov5_021EAE78 *param0)
     MI_CpuClear8(param0, sizeof(UnkStruct_ov5_021EAE78));
 
     param0->unk_38 = StringTemplate_Default(HEAP_ID_FIELD);
-    param0->unk_3C = MessageLoader_Init(0, 26, 675, HEAP_ID_FIELD);
+    param0->unk_3C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_FIELD);
     param0->unk_0C = Strbuf_Init(110, HEAP_ID_FIELD);
     param0->unk_08 = Strbuf_Init(110, HEAP_ID_FIELD);
 }
@@ -482,6 +482,6 @@ void ov5_021EAF50(FieldSystem *fieldSystem)
 static void ov5_021EAF90(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }

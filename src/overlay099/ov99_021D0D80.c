@@ -126,7 +126,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     sub_0201E3D8();
     sub_0201E450(4);
 
-    v0->unk_20 = MessageLoader_Init(0, 26, 548, HEAP_ID_75);
+    v0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0548, HEAP_ID_75);
     v0->unk_10F8 = NARC_ctor(NARC_INDEX_GRAPHIC__ENDING, HEAP_ID_75);
 
     ov99_021D1918(v0);

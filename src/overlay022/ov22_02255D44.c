@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_02093BBC.h"
@@ -546,7 +545,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         break;
     case 10:
         ov22_0225718C(v0);
-        Sound_PlayEffect(1603);
+        Sound_PlayEffect(SEQ_SE_DP_CON_016);
         (*param1)++;
         break;
     case 11:
@@ -575,7 +574,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
 
         if (0 == v2) {
             (*param1) = 15;
-            Sound_PlayEffect(1664);
+            Sound_PlayEffect(SEQ_SE_DP_MAZYO);
         }
 
         ov22_0225890C(&v0->unk_4FC);
@@ -588,7 +587,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
 
         if (0 == v2) {
             (*param1) = 15;
-            Sound_PlayEffect(1664);
+            Sound_PlayEffect(SEQ_SE_DP_MAZYO);
         }
 
         ov22_02257564(v0);
@@ -608,7 +607,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         }
 
         StartScreenTransition(1, 26, 26, 0x0, 6, 1, HEAP_ID_13);
-        Sound_PlayEffect(1668);
+        Sound_PlayEffect(SEQ_SE_DP_CON_017);
         (*param1)++;
         break;
     case 20:
@@ -707,7 +706,7 @@ static void ov22_02256708(UnkStruct_ov22_02255D44 *param0, Pokemon *param1, int 
     ov22_022578F4(&param0->unk_458, &v0);
 
     {
-        ArchivedSprite v1;
+        PokemonSpriteTemplate v1;
 
         if (param3 == 0) {
             ov22_02257998(&param0->unk_458, param1, &v1, 14);
@@ -1337,7 +1336,7 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, HEAP_ID_14);
     Window_DrawMessageBoxWithScrollCursor(param0->unk_718, 0, (0 + (29 * 4)), 8);
 
-    v0 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
@@ -1354,7 +1353,7 @@ static void ov22_02257368(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
     Window_FillTilemap(param0->unk_718, 15);
 
-    v0 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
     v2 = MessageLoader_GetNewStrbuf(v0, param1);
     v1 = Strbuf_Init(256, HEAP_ID_13);
 
@@ -1377,7 +1376,7 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
     Window_FillTilemap(param0->unk_718, 15);
 
-    v1 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
     v3 = MessageLoader_GetNewStrbuf(v1, param1);
     param0->unk_740 = Strbuf_Init(256, HEAP_ID_13);
 

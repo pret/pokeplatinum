@@ -786,7 +786,7 @@ static void ov65_02236B90(UnkStruct_ov65_02236840 *param0, u32 param1)
 static void ov65_02236C10(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 param2)
 {
     param0->unk_04 = StringTemplate_Default(param2);
-    param0->unk_08 = MessageLoader_Init(0, 26, 674, param2);
+    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, param2);
     param0->unk_0C = Strbuf_Init(256, param2);
     param0->unk_10 = Strbuf_Init(256, param2);
     param0->unk_14 = 0xff;
@@ -1684,7 +1684,7 @@ static BOOL ov65_02237AC0(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
     do {
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
             if (ov65_02237450(param0) == 0) {
                 param0->unk_00.unk_05 = 6;
@@ -1701,20 +1701,20 @@ static BOOL ov65_02237AC0(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             param0->unk_00.unk_05 = 22;
             break;
         }
 
         if (param0->unk_00.unk_06 != 0xff) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             param0->unk_00.unk_05 = 3;
             break;
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_X) {
             param0->unk_00.unk_05 = 30;
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             break;
         }
     } while (0);

@@ -2,7 +2,6 @@
 
 #include "constants/items.h"
 #include "constants/narc.h"
-#include "generated/text_banks.h"
 
 #include "message.h"
 #include "narc.h"

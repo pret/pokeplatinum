@@ -94,7 +94,7 @@ int ov61_0222B008(UnkStruct_ov62_022349A8 *param0, const UnkStruct_ov62_02241130
 
     MI_CpuClear8(param0->unk_3B4, ov61_0222DE8C(-1));
 
-    param0->unk_3F4 = MessageLoader_Init(0, 26, 695, param1->unk_04);
+    param0->unk_3F4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, param1->unk_04);
     param0->unk_3F8 = StringTemplate_Default(param1->unk_04);
     param0->unk_3FC = Strbuf_Init((16 * 8 * 2), param1->unk_04);
     param0->unk_18C = ov61_0222BBF0(param1->unk_04);

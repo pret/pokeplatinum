@@ -180,24 +180,24 @@ static int ov7_0224B6E8(UnkStruct_ov7_0224B4E8 *param0)
     ListMenu_CalcTrueCursorPos(param0->unk_00, &param0->unk_80);
 
     if (v1 != param0->unk_80) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v0) {
     case 0xffffffff:
         return 0;
     case 12:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->fieldSystem->unk_B0 = NULL;
         ov7_0224B6AC(param0);
         return 2;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->fieldSystem->unk_B0 = NULL;
         ov7_0224B6AC(param0);
         return -1;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->fieldSystem->unk_B0 = sub_02026150(param0->fieldSystem->saveData, v0);
         break;
     }
@@ -257,18 +257,18 @@ static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0)
     ListMenu_CalcTrueCursorPos(param0->unk_04, &param0->unk_82);
 
     if (v1 != param0->unk_82) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v0) {
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0 = -1;
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov7_0224B6AC(param0);
         break;
     }
@@ -324,7 +324,7 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
     const int v12 = 55;
     const int v13 = (24 * 8) - 1;
 
-    v0 = MessageLoader_Init(0, 26, 353, HEAP_ID_FIELD);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, HEAP_ID_FIELD);
     v2 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
     v3 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
     v4 = &param0->unk_24;
@@ -429,7 +429,7 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
     case 0:
         return 1;
     case 4:
-        Sound_PlayEffect(1523);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03);
         ov7_0224B57C(param0, param0->unk_78 - 1);
         v2 = sub_02026074(param0->fieldSystem->unk_B0, 1);
         StringTemplate_SetNumber(param0->unk_64, 1, v2, 1, 1, 1);
@@ -437,7 +437,7 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
         break;
     default:
     case 1:
-        Sound_PlayEffect(1523);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03);
         ov7_0224B57C(param0, param0->unk_78 - 1);
         v2 = sub_02026074(param0->fieldSystem->unk_B0, 3);
         StringTemplate_SetNumber(param0->unk_64, 1, v2, 3, 0, 1);
@@ -557,7 +557,7 @@ static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
     v0->fieldSystem = fieldSystem;
     v0->fieldSystem->unk_B0 = NULL;
     v0->unk_64 = StringTemplate_Default(HEAP_ID_FIELD);
-    v0->unk_68 = MessageLoader_Init(0, 26, 221, HEAP_ID_FIELD);
+    v0->unk_68 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELD);
     v0->unk_14 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
     v0->unk_18 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
     v0->unk_1C = Strbuf_Init((90 * 2), HEAP_ID_FIELD);

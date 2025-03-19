@@ -1710,7 +1710,7 @@ static void ov16_02269550(UnkStruct_ov16_02268A14 *param0, int param1)
     v1->unk_0C = ((255 * 100) - v1->unk_08) / 100;
     v1->unk_0E = ((40 * 100) - v1->unk_0A) / 100;
 
-    Sound_PlayEffect(1806);
+    Sound_PlayEffect(SEQ_SE_DP_SLIDEIN);
     SysTask_Start(ov16_0226B988, v1, 1210);
 
     v0 = SetHBlankCallback(ov16_0226BB94, v1);
@@ -2769,7 +2769,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
         }
 
         if ((v0->unk_28[i].unk_00.pixels == NULL) || ((param2->move[i] != v0->unk_00.move[i]) && (param2->move[i] != 0))) {
-            v6 = MessageUtil_MoveName(param2->move[i], 5);
+            v6 = MessageUtil_MoveName(param2->move[i], HEAP_ID_BATTLE);
             ov16_0226AEA0(param0, v6, FONT_SUBSCREEN, &v0->unk_28[i], TEXT_COLOR(7, 8, 9));
             Strbuf_Free(v6);
         }
@@ -3750,7 +3750,7 @@ static int ov16_0226BE48(UnkStruct_ov16_02268A14 *param0)
     if (v0->unk_00 == 0) {
         if ((param0->unk_6C0 == 1) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
             if (param0->unk_6C0 == 0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
 
             v0->unk_00 = 1;
@@ -3802,12 +3802,12 @@ static int ov16_0226BEC0(UnkStruct_ov16_02268A14 *param0, int param1)
                 if (gSystem.pressedKeys & PAD_KEY_LEFT) {
                     v0->unk_02 = 0;
                     v0->unk_01 = 1;
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                     v1 = PAD_KEY_LEFT;
                 } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
                     v0->unk_02 = 2;
                     v0->unk_01 = 1;
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                     v1 = PAD_KEY_RIGHT;
                 }
             }
@@ -4408,7 +4408,7 @@ static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2
     }
 
     if ((param0->unk_02 != v1) || (param0->unk_01 != v0)) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else {
         if (v2 & PAD_KEY) {
             return 0;

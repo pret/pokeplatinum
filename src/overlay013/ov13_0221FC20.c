@@ -343,12 +343,12 @@ static u8 ov13_0221FF60(UnkStruct_ov13_022213F0 *param0)
     if (ov13_0222124C(param0) == 1) {
         if (param0->unk_00->unk_11 == 6) {
             if (param0->unk_00->unk_35 != 1) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 ov13_02225FCC(param0, 6);
                 return 25;
             }
         } else {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             ov13_02225FCC(param0, 0 + param0->unk_00->unk_11);
 
             if (param0->unk_00->unk_35 == 2) {
@@ -415,7 +415,7 @@ static u8 ov13_0222012C(UnkStruct_ov13_022213F0 *param0)
 
     switch (v0) {
     case 0:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 7);
 
         if (ov13_022217A4(param0) == 1) {
@@ -429,7 +429,7 @@ static u8 ov13_0222012C(UnkStruct_ov13_022213F0 *param0)
             break;
         }
 
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 8);
         param0->unk_2075 = 8;
         return 22;
@@ -438,12 +438,12 @@ static u8 ov13_0222012C(UnkStruct_ov13_022213F0 *param0)
             break;
         }
 
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 10);
         param0->unk_2075 = 9;
         return 22;
     case 3:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 6);
         param0->unk_2075 = 6;
         return 22;
@@ -466,7 +466,7 @@ static u8 ov13_022201DC(UnkStruct_ov13_022213F0 *param0)
 
         param0->unk_00->unk_11 = v1;
     }
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 12);
         param0->unk_2075 = 14;
         return 22;
@@ -479,17 +479,17 @@ static u8 ov13_022201DC(UnkStruct_ov13_022213F0 *param0)
 
         param0->unk_00->unk_11 = v2;
     }
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 13);
         param0->unk_2075 = 14;
         return 22;
     case 2:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 11);
         param0->unk_2075 = 9;
         return 22;
     case 3:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 6);
         param0->unk_2088 = 1;
         param0->unk_2075 = 7;
@@ -512,7 +512,7 @@ static u8 ov13_0222029C(UnkStruct_ov13_022213F0 *param0)
             break;
         }
 
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 14 + v0);
         param0->unk_00->unk_34 = v0;
         param0->unk_2075 = 10;
@@ -526,7 +526,7 @@ static u8 ov13_0222029C(UnkStruct_ov13_022213F0 *param0)
 
         param0->unk_00->unk_11 = v1;
     }
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 12);
         param0->unk_2075 = 14;
         return 22;
@@ -540,17 +540,17 @@ static u8 ov13_0222029C(UnkStruct_ov13_022213F0 *param0)
 
         param0->unk_00->unk_11 = v2;
     }
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 13);
         param0->unk_2075 = 14;
         return 22;
     case 6:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 9);
         param0->unk_2075 = 8;
         return 22;
     case 7:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 6);
         param0->unk_2088 = 2;
         param0->unk_2075 = 7;
@@ -573,11 +573,11 @@ static u8 ov13_022203A0(UnkStruct_ov13_022213F0 *param0)
             break;
         }
 
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         param0->unk_00->unk_34 = v0;
         return 10;
     case 4:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 6);
         param0->unk_2075 = 9;
         return 22;
@@ -608,7 +608,7 @@ static u8 ov13_02220418(UnkStruct_ov13_022213F0 *param0)
     case 4:
         param0->unk_00->unk_34 = (u8)v0;
         param0->unk_2089 = (u8)v0;
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 23 + v0);
         param0->unk_2075 = 12;
         return 22;
@@ -619,13 +619,13 @@ static u8 ov13_02220418(UnkStruct_ov13_022213F0 *param0)
 
         param0->unk_2073_0 ^= 1;
         param0->unk_2089 = (u8)v0;
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 18);
         param0->unk_2075 = 11;
         return 22;
     case 6:
         param0->unk_00->unk_34 = 4;
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 6);
         param0->unk_2075 = 25;
         return 22;
@@ -650,7 +650,7 @@ static u8 ov13_0222050C(UnkStruct_ov13_022213F0 *param0)
 
     switch (v0) {
     case 0:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
         if (param0->unk_2073_0 == 0) {
             ov13_02225FCC(param0, 28);
@@ -678,14 +678,14 @@ static u8 ov13_0222050C(UnkStruct_ov13_022213F0 *param0)
             break;
         }
 
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 18);
         param0->unk_2073_0 ^= 1;
         param0->unk_208A = (u8)v0;
         param0->unk_2075 = 12;
         return 22;
     case 2:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 6);
         param0->unk_208A = 0;
         param0->unk_2075 = 11;
@@ -723,7 +723,7 @@ static u8 ov13_02220628(UnkStruct_ov13_022213F0 *param0)
         }
 
         param0->unk_00->unk_34 = (u8)v1;
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 19 + v1);
 
         if (BattleSystem_UseBagItem(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11], v1, v0->unk_22) == 1) {
@@ -739,7 +739,7 @@ static u8 ov13_02220628(UnkStruct_ov13_022213F0 *param0)
         }
         break;
     case 4:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov13_02225FCC(param0, 6);
         param0->unk_2075 = 6;
         return 22;
@@ -891,7 +891,7 @@ static u8 ov13_022208A4(UnkStruct_ov13_022213F0 *param0)
             param0->unk_2078 = 4;
         }
 
-        Sound_PlayEffect(1516);
+        Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
         break;
     case 1:
         if (param0->unk_04[v0->unk_11].unk_10 != param0->unk_207A) {
@@ -948,7 +948,7 @@ static u8 ov13_02220A4C(UnkStruct_ov13_022213F0 *param0)
         }
 
         ov13_02224144(param0);
-        Sound_PlayEffect(1516);
+        Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
         param0->unk_2078 = 1;
         break;
     case 1:
@@ -1174,7 +1174,7 @@ static void ov13_02220D4C(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02220F08(UnkStruct_ov13_022213F0 *param0)
 {
-    param0->unk_1FA4 = MessageLoader_Init(0, 26, 3, param0->unk_00->heapID);
+    param0->unk_1FA4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0003, param0->unk_00->heapID);
     param0->unk_1FA0 = sub_0200C440(15, 14, 0, param0->unk_00->heapID);
     param0->unk_1FA8 = StringTemplate_Default(param0->unk_00->heapID);
     param0->unk_1FAC = Strbuf_Init(512, param0->unk_00->heapID);

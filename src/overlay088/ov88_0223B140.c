@@ -8,7 +8,6 @@
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_t.h"
@@ -103,7 +102,7 @@ static void ov88_0223CEF0(u16 *param0);
 static int ov88_0223CF30(int param0, int param1, UnkStruct_ov88_0223C8AC *param2);
 static void ov88_0223CF68(int param0, Sprite *param1, int param2);
 static int ov88_0223CFF4(u32 *param0, int *param1, Sprite *param2, UnkStruct_ov88_0223C8AC *param3, int param4);
-static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, ArchivedSprite *param3);
+static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteTemplate *param3);
 static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon);
 static void ov88_0223D140(ChatotCry *param0);
 static void ov88_0223E894(UnkStruct_02095E80 *param0);
@@ -294,7 +293,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, 26);
     v0->unk_17C = StringTemplate_Default(HEAP_ID_26);
     v0->unk_180 = StringTemplate_Default(HEAP_ID_26);
-    v0->unk_184 = MessageLoader_Init(0, 26, 354, HEAP_ID_26);
+    v0->unk_184 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);
     v0->unk_40 = NULL;
 
     ov88_0223C370(v0, param0);
@@ -506,7 +505,7 @@ static void ov88_0223B748(Window *param0, StringTemplate *param1, MessageLoader 
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param3); v0++) {
-        Strbuf *v1 = MessageUtil_ExpandedStrbuf(param1, param2, 1 + param4 + v0, 26);
+        Strbuf *v1 = MessageUtil_ExpandedStrbuf(param1, param2, 1 + param4 + v0, HEAP_ID_26);
 
         ov88_0223EC78(&param0[v0], v1, 8, TEXT_SPEED_INSTANT, 1, 0);
         Strbuf_Free(v1);
@@ -557,7 +556,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
     switch (param0->unk_4C) {
     case 0:
         CommTiming_StartSync(80);
-        ResetLock(2);
+        ResetLock(RESET_LOCK_0x2);
         ov88_0223E894(param0);
 
         int i, form, species;
@@ -730,7 +729,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
             Window_EraseMessageBox(&param0->unk_49C[23], 0);
             Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
             ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-            ResetUnlock(2);
+            ResetUnlock(RESET_LOCK_0x2);
 
             return 1;
         }
@@ -1257,9 +1256,9 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, HEAP_ID_26);
 }
 
-static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, ArchivedSprite *param3)
+static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteTemplate *param3)
 {
-    Pokemon_BuildArchivedSprite(param3, param1, 2);
+    Pokemon_BuildSpriteTemplate(param3, param1, 2);
 
     {
         int v0 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
@@ -1594,7 +1593,7 @@ static int ov88_0223CFF4(u32 *param0, int *param1, Sprite *param2, UnkStruct_ov8
             ov88_0223CF68(v1, param2, param4);
 
             if (*param1 != v1) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 *param1 = v1;
                 v2 = 1;
             }
@@ -1676,7 +1675,7 @@ static void ov88_0223D140(ChatotCry *param0)
 static int ov88_0223D150(UnkStruct_02095E80 *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_88[0] = 12;
         ov88_0223BE28(param0);
         ov88_0223CF68(param0->unk_88[0], param0->unk_39C[0], 0);
@@ -1854,14 +1853,14 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v1 = CommInfo_TrainerInfo(param0->unk_36C4);
         StringTemplate_SetPlayerName(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_36C8 = v0;
 
         {
@@ -2035,7 +2034,7 @@ static int ov88_0223D96C(UnkStruct_02095E80 *param0)
     }
 
     param0->unk_36CC = StringTemplate_Default(HEAP_ID_26);
-    param0->unk_36D0 = MessageLoader_Init(0, 26, 675, HEAP_ID_26);
+    param0->unk_36D0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_26);
     param0->unk_36EC = sub_0202B370(param0->unk_04);
     param0->unk_226C = ov88_0223D854;
 
@@ -2491,7 +2490,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         Pokemon_SetValue(v1, MON_DATA_FRIENDSHIP, &v3);
     }
 
-    sub_0209304C(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, 11);
+    UpdateMonStatusAndTrainerInfo(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELDMAP);
     sub_0207893C(v1);
     Pokemon_Copy(v0, param4->unk_3C);
     Pokemon_Copy(v1, param4->unk_40);

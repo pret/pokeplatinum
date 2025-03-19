@@ -4,8 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
-
 #include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223FB48.h"
@@ -351,11 +349,11 @@ static int ov94_0223D5B8(UnkStruct_ov94_0223FD4C *param0)
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov94_0223D88C(param0, 5, TEXT_SPEED_FAST, 0, 0xf0f, (Pokemon *)param0->unk_12C.unk_00.unk_00);
         ov94_0223C3F4(param0, 3, 7);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param0->unk_2C = 2;
         ov94_0223C4C0(param0, 1, 0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     return 3;
@@ -527,7 +525,7 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
 
     StringTemplate_SetNumber(param2, 3, level, 3, 0, 1);
 
-    v2 = MessageUtil_ExpandedStrbuf(param2, param0, 102, 62);
+    v2 = MessageUtil_ExpandedStrbuf(param2, param0, 102, HEAP_ID_62);
     v0 = MessageLoader_GetNewStrbuf(param1, species);
 
     Item_LoadName(v5, v8, 62);
@@ -582,10 +580,10 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
 
 void ov94_0223DB2C(Pokemon *param0)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     u8 *v1 = Heap_AllocFromHeap(HEAP_ID_62, (0x20 * 10 * 10));
 
-    Pokemon_BuildArchivedSprite(&v0, param0, 2);
+    Pokemon_BuildSpriteTemplate(&v0, param0, 2);
 
     {
         int v2 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);

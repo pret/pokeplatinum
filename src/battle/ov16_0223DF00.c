@@ -14,11 +14,9 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -53,6 +51,7 @@
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "poketch.h"
 #include "render_text.h"
 #include "sprite.h"
@@ -77,7 +76,7 @@ int BattleSystem_MaxBattlers(BattleSystem *battleSystem);
 Party *BattleSystem_Party(BattleSystem *battleSystem, int param1);
 int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
-UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSystem);
+PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSystem);
 UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem);
 SpriteSystem *ov16_0223E010(BattleSystem *battleSystem);
 SpriteManager *ov16_0223E018(BattleSystem *battleSystem);
@@ -289,7 +288,7 @@ Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slo
     return Party_GetPokemonBySlotIndex(battleSys->parties[battler], slot);
 }
 
-UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSystem)
+PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSystem)
 {
     return battleSystem->unk_88;
 }
@@ -1735,9 +1734,9 @@ u8 ov16_0223F9FC(BattleSystem *battleSystem, int param1, int param2, int param3,
                 Strbuf *v2;
 
                 if (param3 == 100) {
-                    v2 = sub_02014B34(&battleSystem->trainers[param2].winMsg, 5);
+                    v2 = sub_02014B34(&battleSystem->trainers[param2].winMsg, HEAP_ID_BATTLE);
                 } else {
-                    v2 = sub_02014B34(&battleSystem->trainers[param2].loseMsg, 5);
+                    v2 = sub_02014B34(&battleSystem->trainers[param2].loseMsg, HEAP_ID_BATTLE);
                 }
 
                 Window_FillTilemap(v0, 0xff);
@@ -1770,7 +1769,7 @@ u8 ov16_0223F9FC(BattleSystem *battleSystem, int param1, int param2, int param3,
                     v6 = 613;
                 }
 
-                v3 = MessageLoader_Init(0, 26, v6, HEAP_ID_BATTLE);
+                v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v6, HEAP_ID_BATTLE);
                 v4 = MessageLoader_GetNewStrbuf(v3, v5);
 
                 Window_FillTilemap(v0, 0xff);
@@ -2442,7 +2441,7 @@ static BOOL BattleMessage_Callback(TextPrinterTemplate *param0, u16 param1)
         sub_02006150(1156);
         break;
     case 4:
-        Sound_PlayEffect(1510);
+        Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 5:
         sub_02006150(1155);

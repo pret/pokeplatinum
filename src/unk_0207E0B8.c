@@ -589,7 +589,7 @@ static int sub_0207E6C0(GameWindowLayout *param0)
 static int sub_0207E6E4(GameWindowLayout *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         return 32;
     }
 
@@ -953,7 +953,7 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
         v0->unk_B20 = NULL;
     }
 
-    v0->unk_69C = MessageLoader_Init(0, 26, 453, HEAP_ID_12);
+    v0->unk_69C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0453, HEAP_ID_12);
     v0->unk_698 = sub_0200C440(15, 14, 0, HEAP_ID_12);
     v0->unk_6A0 = StringTemplate_Default(HEAP_ID_12);
 
@@ -1458,7 +1458,7 @@ static u8 sub_0207FA24(GameWindowLayout *param0)
 
             sub_02080500(param0, v4, 0);
             sub_02080500(param0, param0->unk_B11, 1);
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (v4 < 6) {
                 UpdateWindowLayout(param0, v4, 0);
@@ -1542,7 +1542,7 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
         param0->unk_B0C = 1;
         param0->unk_B0D = param0->unk_B11;
 
-        Sound_PlayEffect(1508);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
 
         if ((v3 != 6) && (v3 != 7)) {
             param0->unk_B12 = v3;
@@ -1614,37 +1614,37 @@ static u8 sub_0207FE98(GameWindowLayout *param0)
         if (param0->unk_B11 == 6) {
             return 4;
         } else if (param0->unk_B11 == 7) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (param0->unk_B0F_7 == 0) {
                 return 3;
             }
         } else if ((param0->unk_5A4->unk_20 == 3) || (param0->unk_5A4->unk_20 == 19)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             return 0;
         } else if ((param0->unk_5A4->unk_20 == 20) || (param0->unk_5A4->unk_20 == 14)) {
             if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 return 0;
             } else {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                 return 5;
             }
         } else if (param0->unk_5A4->unk_20 == 15) {
             if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 sub_0207FFC8(param0);
                 return 0;
             } else {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                 return 5;
             }
         } else if (param0->unk_5A4->unk_20 == 21) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             sub_0207FFC8(param0);
             return 0;
         } else {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             sub_0207FFC8(param0);
             return 0;
         }
@@ -1652,7 +1652,7 @@ static u8 sub_0207FE98(GameWindowLayout *param0)
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         if (param0->unk_B0F_7 == 0) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_B11 = 7;
             return 3;
         }
@@ -1663,7 +1663,7 @@ static u8 sub_0207FE98(GameWindowLayout *param0)
     if (v0 == 2) {
         if ((param0->unk_5A4->unk_20 == 20) || (param0->unk_5A4->unk_20 == 14) || (param0->unk_5A4->unk_20 == 15)) {
             if (param0->unk_704[param0->unk_B11].unk_10 != 0) {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                 return 5;
             }
         }
@@ -2020,7 +2020,7 @@ static u8 sub_020805E4(GameWindowLayout *param0)
     u8 v0;
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if ((param0->unk_B11 >= 6) || (param0->unk_B11 == param0->unk_B0F_0)) {
             sub_02083B88(param0);
@@ -2032,7 +2032,7 @@ static u8 sub_020805E4(GameWindowLayout *param0)
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         sub_02083B88(param0);
         return 3;
     }
@@ -2080,7 +2080,7 @@ static int HandleGameWindowEvent(GameWindowLayout *param0)
             }
 
             param0->unk_B0E = 23;
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
         }
     }
@@ -2103,17 +2103,17 @@ static int HandleGameWindowEvent(GameWindowLayout *param0)
         }
             sub_02082708(param0, 0xffffffff, 1);
             param0->unk_B0E = 23;
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
         case 2:
             sub_02082708(param0, 182, 1);
             param0->unk_B0E = 23;
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
         case 3:
             sub_02082708(param0, 183, 1);
             param0->unk_B0E = 23;
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
         }
     }
@@ -2125,12 +2125,12 @@ static int HandleGameWindowEvent(GameWindowLayout *param0)
         case 1:
             sub_02082708(param0, 182, 1);
             param0->unk_B0E = 23;
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
         case 2:
             sub_02082708(param0, 183, 1);
             param0->unk_B0E = 23;
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
         }
     }
@@ -2142,7 +2142,7 @@ static int HandleGameWindowEvent(GameWindowLayout *param0)
         case 1:
             sub_02082708(param0, 201, 1);
             param0->unk_B0E = 23;
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
         }
     }
@@ -2154,13 +2154,13 @@ static int HandleGameWindowEvent(GameWindowLayout *param0)
         case 1:
             sub_02082708(param0, 182, 1);
             param0->unk_B0E = 23;
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
         }
     }
 
     param0->unk_5A4->unk_23 = 0;
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
     return 32;
 }
 
@@ -2351,13 +2351,13 @@ static int ProcessWindowInput(GameWindowLayout *param0)
     case 0:
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_B11 >= 6) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 sub_02083B88(param0);
                 return 1;
             } else {
                 switch (CheckPokemonCondition(param0)) {
                 case 0:
-                    Sound_PlayEffect(1516);
+                    Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
                     Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
 
                     if (param0->unk_704[param0->unk_B11].unk_08 - param0->unk_704[param0->unk_B11].unk_06 < param0->unk_B14[0]) {
@@ -2368,18 +2368,18 @@ static int ProcessWindowInput(GameWindowLayout *param0)
                     param0->unk_B14[2] = 0;
                     break;
                 case 1:
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                     param0->unk_B14[1] = 1;
                     return 24;
                 case 2:
-                    Sound_PlayEffect(1522);
+                    Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                     return 30;
                 }
             }
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             sub_02083B88(param0);
             return 1;
         }
@@ -2391,7 +2391,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
             } else {
                 switch (CheckPokemonCondition(param0)) {
                 case 0:
-                    Sound_PlayEffect(1516);
+                    Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
                     Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
 
                     if (param0->unk_704[param0->unk_B11].unk_08 - param0->unk_704[param0->unk_B11].unk_06 < param0->unk_B14[0]) {
@@ -2405,7 +2405,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
                     param0->unk_B14[1] = 1;
                     return 24;
                 case 2:
-                    Sound_PlayEffect(1522);
+                    Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                     return 30;
                 }
             }
@@ -2413,7 +2413,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
         break;
     case 1:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             Window_EraseMessageBox(&param0->unk_04[34], 1);
             Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
             sub_020826E0(param0, 36, 1);
@@ -2422,7 +2422,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
         break;
     case 2:
         if (UpdatePokemonStatus(param0, param0->unk_B0F_0, -1) == 1) {
-            Sound_PlayEffect(1516);
+            Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
             param0->unk_B14[1] = 3;
             param0->unk_B14[2] = 0;
         }
@@ -2453,7 +2453,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
         break;
     case 4:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             Window_EraseMessageBox(&param0->unk_04[34], 1);
             Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
             sub_02083B88(param0);
@@ -2514,15 +2514,15 @@ static u8 HandleSpecialInput(GameWindowLayout *param0)
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         if (param0->unk_B11 == 7) {
             if (param0->unk_B0F_7 == 0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 return 3;
             }
         } else {
             if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 return 0;
             } else {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             }
         }
 
@@ -2531,7 +2531,7 @@ static u8 HandleSpecialInput(GameWindowLayout *param0)
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         if (param0->unk_B0F_7 == 0) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_B11 = 7;
             return 3;
         }
@@ -2543,7 +2543,7 @@ static u8 HandleSpecialInput(GameWindowLayout *param0)
 
     if (v0 == 2) {
         if (param0->unk_704[param0->unk_B11].unk_10 != 0) {
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 5;
         }
     }

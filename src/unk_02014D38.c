@@ -149,7 +149,7 @@ UnkStruct_02014D38 *sub_02014D38(u32 heapID)
 
     for (v0 = 0; v0 < 11; v0++) {
         v1->unk_00 = heapID;
-        v1->unk_04[v0] = MessageLoader_Init(1, 26, Unk_020E550C[v0], heapID);
+        v1->unk_04[v0] = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, Unk_020E550C[v0], heapID);
     }
 
     return v1;

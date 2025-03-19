@@ -465,7 +465,7 @@ BOOL ov100_021D2428(void *param0)
         }
 
         if ((v0->unk_04 == 15) || (v0->unk_04 == 45) || (v0->unk_04 == 75) || (v0->unk_04 == 95) || (v0->unk_04 == 115) || (v0->unk_04 == 130) || (v0->unk_04 == 145)) {
-            Sound_PlayEffect(1477);
+            Sound_PlayEffect(SEQ_SE_PL_W060);
             sub_02004F7C(1477, 0xffff, (v0->unk_04 / 30 * 32) + (v0->unk_04 % 32 * 10));
         }
 
@@ -507,7 +507,7 @@ BOOL ov100_021D2428(void *param0)
         v0->unk_04++;
 
         if (v0->unk_04 == 1) {
-            Sound_PlayEffect(1478);
+            Sound_PlayEffect(SEQ_SE_PL_W082C);
         }
 
         if (v0->unk_04 == 20) {

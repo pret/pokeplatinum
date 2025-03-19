@@ -10,7 +10,6 @@
 #include "generated/abilities.h"
 #include "generated/genders.h"
 #include "generated/moves.h"
-#include "generated/text_banks.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/trainer.h"

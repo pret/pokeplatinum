@@ -32,7 +32,7 @@ Static main
 	Object main.nef.p/src_overlay_manager.c.o
 	Object main.nef.p/src_narc.c.o
 	Object main.nef.p/src_graphics.c.o
-	Object main.nef.p/src_unk_0200762C.c.o
+	Object main.nef.p/src_pokemon_sprite.c.o
 	Object main.nef.p/src_sprite_util.c.o
 	Object main.nef.p/src_sprite_resource.c.o
 	Object main.nef.p/src_sprite_transfer.c.o
@@ -519,7 +519,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021F067C.c.o
 	Object main.nef.p/src_overlay005_ov5_021F0824.c.o
 	Object main.nef.p/src_overlay005_ov5_021F08CC.c.o
-	Object main.nef.p/src_overlay005_ov5_021F0E84.c.o
+	Object main.nef.p/src_overlay005_footprint_type.c.o
 	Object main.nef.p/src_overlay005_ov5_021F0EB0.c.o
 	Object main.nef.p/src_overlay005_ov5_021F101C.c.o
 	Object main.nef.p/src_overlay005_ov5_021F10E8.c.o
@@ -1467,7 +1467,7 @@ Overlay overlay97
 	Object main.nef.p/src_overlay097_ov97_02233408.c.o
 	Object main.nef.p/src_overlay097_ov97_022337FC.c.o
 	Object main.nef.p/src_overlay097_ov97_02233814.c.o
-	Object main.nef.p/src_overlay097_ov97_02233B18.c.o
+	Object main.nef.p/src_overlay097_gba_migrator.c.o
 	Object main.nef.p/src_overlay097_ov97_02235D18.c.o
 	Object main.nef.p/src_overlay097_ov97_0223635C.c.o
 	Object main.nef.p/src_overlay097_ov97_02236380.c.o
@@ -1475,7 +1475,7 @@ Overlay overlay97
 	Object main.nef.p/src_overlay097_ov97_02237694.c.o
 	Object main.nef.p/src_overlay097_ov97_02238534.c.o
 	Object main.nef.p/src_overlay097_ov97_02238D74.c.o
-	Object main.nef.p/src_overlay097_ov97_022392E4.c.o
+	Object main.nef.p/src_overlay097_gba_convert_string.c.o
 	Library libcrypto_ov97.a
 }
 

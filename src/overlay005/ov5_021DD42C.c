@@ -157,7 +157,7 @@ static void ov5_021DD664(UnkStruct_ov5_021DD648 *param0, u16 param1, u16 param2,
     sub_02014CF8(&v0, 0, param3);
     sub_02014CF8(&v0, 1, param4);
 
-    v1 = sub_02014B34(&v0, 32);
+    v1 = sub_02014B34(&v0, HEAP_ID_FIELD_TASK);
 
     Strbuf_Copy(param0->unk_00, v1);
     Strbuf_Free(v1);

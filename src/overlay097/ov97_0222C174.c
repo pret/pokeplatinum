@@ -794,7 +794,7 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
 
     MI_CpuClear8(v4, sizeof(UnkStruct_0202DBAC));
 
-    v3 = MessageLoader_Init(1, 26, 421, param0->heapID);
+    v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, param0->heapID);
     v2 = StringTemplate_Default(param0->heapID);
 
     v4->unk_00 = 7;
@@ -928,7 +928,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         Sprite_SetDrawFlag(param0->unk_3170, 0);
         DestroyWaitDial(param0->unk_34D8);
         param0->unk_34D8 = NULL;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_160 = 1800;
         *v3 = UnkEnum_ov97_0222C6F8_30;
         break;
@@ -951,7 +951,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
             *v3 = UnkEnum_ov97_0222C6F8_10;
             param0->unk_160 = 3200;
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 34);
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_34D8 = NULL;
 
             return 1;
@@ -1058,7 +1058,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
 
             Sprite_SetDrawFlag(param0->unk_3170, 0);
             DestroyWaitDial(param0->unk_34D8);
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             param0->unk_34D8 = NULL;
         }

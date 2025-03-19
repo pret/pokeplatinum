@@ -98,7 +98,7 @@ static void ov62_0224856C(Strbuf *param0, int param1)
 
     Strbuf_Clear(param0);
 
-    v0 = MessageLoader_Init(1, 26, 10, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, param1);
 
     MessageLoader_GetStrbuf(v0, 332, param0);
     MessageLoader_Free(v0);
@@ -166,7 +166,7 @@ int ov62_022486A4(SaveData *param0, int param1)
     Unk_021C07A4->unk_84.unk_60.unk_00 = SaveData_CalculateChecksum(param0, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
 
     sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
-    ResetLock(8);
+    ResetLock(RESET_LOCK_0x8);
 
     v0 = SaveData_SaveBattleRecording(param0, Unk_021C07A4, param1);
 
@@ -174,6 +174,6 @@ int ov62_022486A4(SaveData *param0, int param1)
         v0 = SaveData_Save(param0);
     }
 
-    ResetUnlock(8);
+    ResetUnlock(RESET_LOCK_0x8);
     return v0;
 }

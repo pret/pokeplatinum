@@ -3,10 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D1F90.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
@@ -32,6 +28,7 @@
 #include "narc.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -39,7 +36,6 @@
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_02012744.h"
 
 #include "res/text/bank/pokedex.h"
@@ -450,7 +446,7 @@ static void ov21_021DEC2C(Window *param0, int param1, int param2, u32 param3)
     Strbuf *v0 = Strbuf_Init(64, param1);
 
     int heightMessageBankIndex = Height_Message_Bank_Index();
-    MessageLoader *v1 = MessageLoader_Init(0, 26, heightMessageBankIndex, param1);
+    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, heightMessageBankIndex, param1);
 
     MessageLoader_GetStrbuf(v1, param2, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 184, 88, TEXT_SPEED_INSTANT, param3, NULL);
@@ -463,7 +459,7 @@ static void ov21_021DEC80(Window *param0, int param1, int param2, u32 param3)
     Strbuf *v0 = Strbuf_Init(64, param1);
 
     int weightMessageBankIndex = Weight_Message_Bank_Index();
-    MessageLoader *v1 = MessageLoader_Init(0, 26, weightMessageBankIndex, param1);
+    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, weightMessageBankIndex, param1);
 
     MessageLoader_GetStrbuf(v1, param2, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 184, 104, TEXT_SPEED_INSTANT, param3, NULL);
@@ -583,15 +579,15 @@ static void ov21_021DEF54(UnkStruct_ov21_021DE760 *param0, const UnkStruct_ov21_
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
     PokedexMain_DisplayPokemonSprite(param0->unk_00, param1->unk_04, species, 2, 48, 72);
-    sub_02007DEC(v0, 6, 0);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 0);
 }
 
 static void ov21_021DEF8C(UnkStruct_ov21_021DE760 *param0)
 {
     PokemonSprite *v0 = ov21_021D2170(param0->unk_00);
 
-    sub_02007DEC(v0, 6, 1);
-    sub_02008780(v0);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 1);
+    PokemonSprite_ClearFade(v0);
 }
 
 static void ov21_021DEFA8(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, int param2)

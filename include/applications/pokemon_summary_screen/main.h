@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 
 #include "bg_window.h"
@@ -18,6 +17,7 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "savedata.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -465,7 +465,7 @@ typedef struct PokemonSummaryScreen {
     u8 ribbonCol;
     u8 ribbonRow;
     u8 ribbonMax;
-    u8 ribbonNum;
+    u8 ribbonID;
 } PokemonSummaryScreen;
 
 BOOL PokemonSummaryScreen_ShowContestData(SaveData *saveData);
@@ -473,7 +473,7 @@ void PokemonSummaryScreen_FlagVisiblePages(PokemonSummary *summary, const u8 *pa
 u8 PokemonSummaryScreen_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 page);
 u8 PokemonSummaryScreen_CountVisiblePages(PokemonSummaryScreen *summaryScreen);
 void *PokemonSummaryScreen_MonData(PokemonSummaryScreen *summaryScreen);
-u8 PokemonSummaryScreen_RibbonNumAt(PokemonSummaryScreen *summaryScreen, u8 col);
+u8 PokemonSummaryScreen_RibbonIDAt(PokemonSummaryScreen *summaryScreen, u8 col);
 void PokemonSummaryScreen_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo *trainerInfo);
 u32 PokemonSummaryScreen_StatusIconChar(void);
 u32 PokemonSummaryScreen_StatusIconPltt(void);

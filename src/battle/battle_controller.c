@@ -14,7 +14,6 @@
 #include "constants/trainer.h"
 #include "generated/abilities.h"
 #include "generated/game_records.h"
-#include "generated/sdat.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/trainer.h"

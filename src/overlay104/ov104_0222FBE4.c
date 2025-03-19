@@ -1684,7 +1684,7 @@ static BOOL ov104_02230C04(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
     u16 *v2 = ov104_0222FBE4(param0);
 
-    ResetLock(4);
+    ResetLock(RESET_LOCK_SOFT_RESET);
     InitHeapCanary(v0->heapID);
     SaveData_SaveStateInit(v1->unk_08, 2);
 
@@ -1701,13 +1701,13 @@ static BOOL ov104_02230C3C(UnkStruct_ov104_0222E930 *param0)
 
     if (v0 == 2) {
         FreeHeapCanary();
-        ResetUnlock(4);
+        ResetUnlock(RESET_LOCK_SOFT_RESET);
         return 1;
     }
 
     if (v0 == 3) {
         FreeHeapCanary();
-        ResetUnlock(4);
+        ResetUnlock(RESET_LOCK_SOFT_RESET);
         return 1;
     }
 
@@ -1834,7 +1834,7 @@ static Strbuf *ov104_02230E90(u16 param0, u32 param1)
     MessageLoader *v0;
     Strbuf *v1;
 
-    v0 = MessageLoader_Init(1, 26, 412, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, param1);
     v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);

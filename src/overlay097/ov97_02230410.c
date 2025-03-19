@@ -299,7 +299,7 @@ static void ov97_02230530(UnkStruct_ov97_02230868 *param0, UnkStruct_ov97_0223E6
     }
 
     param0->unk_2C2C = StringList_New(param2, 87);
-    param0->unk_2A64 = MessageLoader_Init(0, 26, 421, HEAP_ID_87);
+    param0->unk_2A64 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_87);
 
     for (v0 = 0; v0 < param2; v0++) {
         StringList_AddFromMessageBank(param0->unk_2C2C, param0->unk_2A64, param1[v0].unk_00, param1[v0].unk_04);
@@ -319,12 +319,12 @@ static void ov97_02230530(UnkStruct_ov97_02230868 *param0, UnkStruct_ov97_0223E6
 static void ov97_022305EC(Window *param0, int param1)
 {
     Strbuf *v0;
-    MessageLoader *v1 = MessageLoader_Init(1, 26, 421, HEAP_ID_87);
+    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_87);
     StringTemplate *v2 = StringTemplate_Default(HEAP_ID_87);
 
     Window_FillTilemap(param0, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
-    v0 = MessageUtil_ExpandedStrbuf(v2, v1, param1, 87);
+    v0 = MessageUtil_ExpandedStrbuf(v2, v1, param1, HEAP_ID_87);
     Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Window_CopyToVRAM(param0);
 
@@ -492,7 +492,7 @@ static BOOL ov97_02230A34(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
     if (param0->unk_2C14[param0->unk_2C20]->unk_348 == 255) {
         Strbuf *v0;
 
-        v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 51, 87);
+        v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 51, HEAP_ID_87);
         Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
         Strbuf_Free(v0);
         return 0;
@@ -573,7 +573,7 @@ static void ov97_02230C44(UnkStruct_ov97_02230868 *param0, int param1, int param
     TextColor v3;
     UnkStruct_ov97_0223E680 *v4 = Unk_ov97_0223E680;
 
-    param0->unk_2A64 = MessageLoader_Init(1, 26, 421, param0->heapID);
+    param0->unk_2A64 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, param0->heapID);
     param0->unk_2A60 = StringTemplate_Default(param0->heapID);
     param0->unk_2C24 = param2;
 
@@ -639,7 +639,7 @@ static int ov97_02230E04(UnkStruct_ov97_02230868 *param0, Window *param1, int pa
     Window_FillTilemap(param1, v2->unk_1C);
 
     if (v2->unk_20) {
-        param0->unk_2A64 = MessageLoader_Init(1, 26, 421, HEAP_ID_87);
+        param0->unk_2A64 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_87);
         param0->unk_2A60 = StringTemplate_Default(HEAP_ID_87);
     }
 
@@ -649,7 +649,7 @@ static int ov97_02230E04(UnkStruct_ov97_02230868 *param0, Window *param1, int pa
     v2->unk_24(param0, param1, 66048);
 
     if (v2->unk_20) {
-        v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v2->unk_20, 87);
+        v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v2->unk_20, HEAP_ID_87);
 
         Text_AddPrinterWithParamsAndColor(param1, v2->unk_14, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, v2->unk_18, NULL);
         Strbuf_Free(v0);
@@ -740,7 +740,7 @@ static void ov97_02231088(OverlayManager *param0, int *param1, int (*param2)(Ove
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (param2) {
             v1 = param2(param0);
@@ -751,7 +751,7 @@ static void ov97_02231088(OverlayManager *param0, int *param1, int (*param2)(Ove
         }
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (v0) {
             if (v0 < 30) {
@@ -946,7 +946,7 @@ static void ov97_02231464(void *param0)
     v0 = ov97_0223847C();
 
     if ((v0 == 2) || (v0 == 3)) {
-        Sound_PlayEffect(1563);
+        Sound_PlayEffect(SEQ_SE_DP_SAVE);
         v1->unk_3E0C = NULL;
     }
 }
@@ -1001,7 +1001,7 @@ static void ov97_022314FC(UnkStruct_ov97_02230868 *param0, int param1, int *para
     }
 
     if (v0 == 1) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         CommTiming_StartSync(0xAB);
 
         param0->unk_2C94 = 1;
@@ -1011,12 +1011,12 @@ static void ov97_022314FC(UnkStruct_ov97_02230868 *param0, int param1, int *para
     }
 
     if (v0 == 2) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov97_02231F1C(param0, param2, 19);
     }
 
     if (v0 == 3) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
@@ -1063,15 +1063,15 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
             v0 = ov97_02230F20(v4, v4->unk_2C20, 1);
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov97_02230C10(v4, 0, 28, param1);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             *param1 = 4;
         }
 
         if (v4->unk_2C20 != v0) {
-            Sound_PlayEffect(1536);
+            Sound_PlayEffect(SEQ_SE_DP_CARD2);
             v4->unk_2C20 = v0;
             ov97_02230C44(v4, 1, 0);
         }
@@ -1085,12 +1085,12 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         ov97_02231088(param0, param1, NULL);
 
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             *param1 = 11;
         }
         break;
     case 6:
-        Sound_PlayEffect(1536);
+        Sound_PlayEffect(SEQ_SE_DP_CARD2);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
         ov97_02230518(&v4->unk_2C30, 0);
         ov97_02230500(&v4->unk_2C40, 0);
@@ -1108,7 +1108,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         ov97_02231354(v4);
 
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1536);
+            Sound_PlayEffect(SEQ_SE_DP_CARD2);
             ov97_022312B4(v4, 1, 1 * FX32_ONE, 0.025 * FX32_ONE);
             *param1 = 9;
         }
@@ -1358,7 +1358,7 @@ static int ov97_02231CA0(UnkStruct_ov97_02230868 *param0, Window *param1)
     v10[3] = ov97_02231C48(v9);
 
     v7 = StringTemplate_Default(HEAP_ID_87);
-    v8 = MessageLoader_Init(1, 26, 421, HEAP_ID_87);
+    v8 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_87);
     v2 = 0;
 
     Window_FillTilemap(param1, 0);
@@ -1368,7 +1368,7 @@ static int ov97_02231CA0(UnkStruct_ov97_02230868 *param0, Window *param1)
 
         if (v5) {
             StringTemplate_SetPlayerName(v7, 0, v5);
-            v6 = MessageUtil_ExpandedStrbuf(v7, v8, 53, 87);
+            v6 = MessageUtil_ExpandedStrbuf(v7, v8, 53, HEAP_ID_87);
 
             if (TrainerInfo_Gender(v5) == 0) {
                 Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v6, 0, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
@@ -1379,7 +1379,7 @@ static int ov97_02231CA0(UnkStruct_ov97_02230868 *param0, Window *param1)
             Strbuf_Free(v6);
             StringTemplate_SetNumber(v7, 0, TrainerInfo_ID(v5) & 0xFFFF, 5, 2, 1);
 
-            v6 = MessageUtil_ExpandedStrbuf(v7, v8, 54, 87);
+            v6 = MessageUtil_ExpandedStrbuf(v7, v8, 54, HEAP_ID_87);
 
             Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v6, 80, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 15, 0), NULL);
             Strbuf_Free(v6);
@@ -1403,13 +1403,13 @@ static void ov97_02231E78(UnkStruct_ov97_02230868 *param0, Window *param1, int p
     Strbuf *v0;
 
     param0->unk_2C54 = param2;
-    param0->unk_2A64 = MessageLoader_Init(1, 26, 421, HEAP_ID_87);
+    param0->unk_2A64 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_87);
     param0->unk_2A60 = StringTemplate_Default(HEAP_ID_87);
 
     Window_FillTilemap(param1, 0);
     StringTemplate_SetNumber(param0->unk_2A60, 0, param0->unk_2C54, 1, 1, 1);
 
-    v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 56, 87);
+    v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 56, HEAP_ID_87);
 
     Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Window_CopyToVRAM(param1);

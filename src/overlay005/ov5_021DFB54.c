@@ -246,7 +246,7 @@ static void PlayerAvatar_RequestStateCycle(PlayerAvatar *playerAvatar)
         sub_0205EC00(playerAvatar, NULL);
     }
 
-    Sound_PlayEffect(1560);
+    Sound_PlayEffect(SEQ_SE_DP_JITENSYA);
 }
 
 static void PlayerAvatar_RequestStateSurf(PlayerAvatar *playerAvatar)
@@ -529,7 +529,7 @@ static BOOL ov5_021DFFBC(FieldTask *param0)
 
             v3 = sub_02065838(v0->unk_04, 0x20);
             LocalMapObj_SetAnimationCode(v1, v3);
-            Sound_PlayEffect(1575);
+            Sound_PlayEffect(SEQ_SE_DP_UG_023);
         }
 
         v0->unk_00++;
@@ -845,7 +845,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
 
     switch (v0->unk_00) {
     case 0:
-        Sound_PlayEffect(1617);
+        Sound_PlayEffect(SEQ_SE_DP_ZUPO);
         v0->unk_00++;
     case 1:
         if (LocalMapObj_IsAnimationSet(v1) == 0) {
@@ -855,7 +855,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
         }
 
         if (v0->unk_04 >= 5) {
-            Sound_PlayEffect(1618);
+            Sound_PlayEffect(SEQ_SE_DP_ZUPO2);
             PlayerAvatar_SetInDeepSwamp(v0->playerAvatar, 1);
             ov5_021E1134(v0);
             return 1;
@@ -944,7 +944,7 @@ static int ov5_021E06A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar)
 
         ov5_021EC7F0(v1);
         MapObject_Delete(v1);
-        Sound_PlayEffect(1627);
+        Sound_PlayEffect(SEQ_SE_DP_FW291);
     }
 
     return 0;
@@ -1034,7 +1034,7 @@ static int ov5_021E07FC(UnkStruct_ov5_021F9B54 *param0)
     param0->unk_18 = ov5_021F28F4(param0->unk_14, v0, v1, param0->unk_04, 0);
     param0->unk_2C = ov6_0224892C(param0->fieldSystem);
 
-    Sound_PlayEffect(1575);
+    Sound_PlayEffect(SEQ_SE_DP_UG_023);
     param0->unk_00++;
 
     return 0;
@@ -1199,7 +1199,7 @@ static int ov5_021E0A1C(UnkStruct_ov5_021F9B10 *param0)
 static int ov5_021E0A44(UnkStruct_ov5_021F9B10 *param0)
 {
     if (ov5_021E1050(&param0->unk_40) == 1) {
-        Sound_PlayEffect(1613);
+        Sound_PlayEffect(SEQ_SE_DP_FW463);
         param0->unk_00++;
     }
 
@@ -1324,7 +1324,7 @@ static int ov5_021E0BEC(UnkStruct_ov5_021F9B10 *param0)
 static int ov5_021E0C10(UnkStruct_ov5_021F9B10 *param0)
 {
     if (ov5_021E1050(&param0->unk_40) == 1) {
-        Sound_PlayEffect(1613);
+        Sound_PlayEffect(SEQ_SE_DP_FW463);
         param0->unk_00++;
     }
 

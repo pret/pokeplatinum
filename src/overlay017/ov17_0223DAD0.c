@@ -33,6 +33,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
@@ -43,7 +44,6 @@
 #include "system.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -278,10 +278,10 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     SpriteSystem_InitManagerWithCapacities(v0->unk_14.unk_58, v0->unk_14.unk_5C, &Unk_ov17_02252FF0);
     SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_14.unk_58), 0, (256 * FX32_ONE));
 
-    v0->unk_14.unk_44 = sub_0200762C(HEAP_ID_23);
+    v0->unk_14.unk_44 = PokemonSpriteManager_New(HEAP_ID_23);
     ov17_0223E450();
 
-    v0->unk_14.unk_84 = MessageLoader_Init(0, 26, 206, HEAP_ID_23);
+    v0->unk_14.unk_84 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0206, HEAP_ID_23);
     v0->unk_14.unk_88 = StringTemplate_Default(HEAP_ID_23);
     v0->unk_14.unk_8C = Strbuf_Init((2 * 160), HEAP_ID_23);
     v0->unk_14.unk_94 = sub_02012744((3 * 3), HEAP_ID_23);
@@ -324,7 +324,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
 
     G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ), -6);
 
-    Sound_PlayEffect(1765);
+    Sound_PlayEffect(SEQ_SE_DP_CON_007);
     SetVBlankCallback(ov17_0223E09C, v0);
 
     return 1;
@@ -422,7 +422,7 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
 
     ov17_0224A1EC(&v0->unk_14);
 
-    sub_02007B6C(v0->unk_14.unk_44);
+    PokemonSpriteManager_Free(v0->unk_14.unk_44);
     sub_020127BC(v0->unk_14.unk_94);
     Font_Free(FONT_SUBSCREEN);
     Heap_FreeToHeap(v0->unk_1050.unk_00);
@@ -480,7 +480,7 @@ static void ov17_0223E09C(void *param0)
         }
     }
 
-    sub_02008A94(v0->unk_14.unk_44);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_14.unk_44);
 
     {
         int v3;
@@ -541,7 +541,7 @@ static void ov17_0223E1FC(SysTask *param0, void *param1)
     ov17_0223E18C(v0);
 
     if (v0->unk_1098 == 1) {
-        sub_02007768(v0->unk_14.unk_44);
+        PokemonSpriteManager_DrawSprites(v0->unk_14.unk_44);
         {
             int v1;
 

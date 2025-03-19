@@ -52,7 +52,7 @@ add_global_arguments(c_args,
 
 pokeplatinum_args = [
     '-DPM_KEEP_ASSERTS',
-    '-DGAME_VERSION=PLATINUM',
+    '-DGAME_VERSION=VERSION_PLATINUM',
     '-DGAME_LANGUAGE=ENGLISH'
 ]
 

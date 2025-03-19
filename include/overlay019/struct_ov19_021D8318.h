@@ -9,7 +9,7 @@
 #include "bg_window.h"
 
 typedef struct {
-    u8 unk_00;
+    u8 boxID;
     u8 unk_01;
     u8 unk_02;
     u8 unk_03;

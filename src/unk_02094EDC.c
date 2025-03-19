@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02007768_decl.h"
-#include "struct_defs/archived_sprite.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"
 #include "struct_defs/struct_02095C48.h"
@@ -20,9 +17,9 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_text.h"
 #include "strbuf.h"
-#include "unk_0200762C.h"
 #include "unk_020131EC.h"
 #include "unk_020298BC.h"
 #include "unk_020933F8.h"
@@ -631,7 +628,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int par
         Strbuf *v3, *v4;
         MessageLoader *v5;
 
-        v5 = MessageLoader_Init(1, 26, 205, param2);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0205, param2);
         v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
         v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
 
@@ -662,13 +659,13 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int par
     }
 }
 
-PokemonSprite *sub_02095484(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int heapID, int param6, int param7, int param8)
+PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int heapID, int param6, int param7, int param8)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     PokemonSprite *v1;
     int v2, v3, v4;
 
-    Pokemon_BuildArchivedSprite(&v0, param2, param3);
+    Pokemon_BuildSpriteTemplate(&v0, param2, param3);
 
     v2 = Pokemon_SpriteYOffset(param2, param3);
 
@@ -679,7 +676,7 @@ PokemonSprite *sub_02095484(UnkStruct_02007768 *param0, int param1, Pokemon *par
         param4->unk_04 = v0.archive;
     }
 
-    v1 = sub_02007C34(param0, &v0, param6, param7 + v2, param8, param1, NULL, NULL);
+    v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param6, param7 + v2, param8, param1, NULL, NULL);
     return v1;
 }
 

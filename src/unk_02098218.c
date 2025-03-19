@@ -28,11 +28,11 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "save_player.h"
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_02024220.h"
@@ -75,7 +75,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     v1->unk_04.unk_0C = Options_TextFrameDelay(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_10 = Options_Frame(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_34 = ov119_021D0DD4();
-    v1->unk_04.unk_38 = sub_0200762C(HEAP_ID_71);
+    v1->unk_04.unk_38 = PokemonSpriteManager_New(HEAP_ID_71);
     v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_71);
     v1->unk_04.unk_00 = BgConfig_New(HEAP_ID_71);
 
@@ -137,7 +137,7 @@ static int sub_02098304(OverlayManager *param0, int *param1)
             break;
         }
 
-        sub_02007768(v0->unk_04.unk_38);
+        PokemonSpriteManager_DrawSprites(v0->unk_04.unk_38);
         ov119_021D1004();
     } break;
     default:
@@ -175,7 +175,7 @@ static int sub_02098388(OverlayManager *param0, int *param1)
 
     Heap_FreeToHeap(v0->unk_04.unk_00);
     VramTransfer_Free();
-    sub_02007B6C(v0->unk_04.unk_38);
+    PokemonSpriteManager_Free(v0->unk_04.unk_38);
     sub_02015FB8(v0->unk_04.unk_54);
     NARC_dtor(v0->unk_04.unk_3C);
 
@@ -208,16 +208,16 @@ static BOOL sub_0209843C(FieldTask *param0)
         FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
         {
-            Pokemon *v2 = v0->unk_0C.unk_00;
-            TrainerInfo *v3 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
+            Pokemon *mon = v0->unk_0C.unk_00;
+            TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
             int v4 = 6;
-            int v5 = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
-            int v6 = 11;
-            int v7 = 0;
+            int location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
+            int heapID = HEAP_ID_FIELDMAP;
+            int isEgg = FALSE;
 
-            Pokemon_SetValue(v2, MON_DATA_IS_EGG, &v7);
-            sub_0209304C(v2, v3, v4, v5, v6);
-            Pokemon_SetValue(v2, MON_DATA_SPECIES_NAME, NULL);
+            Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);
+            UpdateMonStatusAndTrainerInfo(mon, trainerInfo, v4, location, heapID);
+            Pokemon_SetValue(mon, MON_DATA_SPECIES_NAME, NULL);
         }
 
         {

@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "generated/gender_ratios.h"
-#include "generated/text_banks.h"
 
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
@@ -343,7 +342,7 @@ static int ov21_021DF958(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
             ov21_021E0094(v2, v1);
             ov21_021E0C10(v2);
             v1->unk_04 = 1;
-            Sound_PlayEffect(1675);
+            Sound_PlayEffect(SEQ_SE_DP_DENSI06);
             param1->unk_00++;
         }
         break;

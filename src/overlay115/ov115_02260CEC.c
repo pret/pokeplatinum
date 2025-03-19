@@ -790,11 +790,11 @@ BOOL ov115_02260DAC(UnkStruct_ov115_02260D78 *param0, u32 param1)
         param0->unk_1AB4.unk_4E8.unk_08--;
 
         if (param0->unk_1AB4.unk_4E8.unk_08 == 50) {
-            Sound_PlayEffect(1562);
+            Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         }
 
         if (param0->unk_1AB4.unk_4E8.unk_08 == 20) {
-            Sound_PlayEffect(1598);
+            Sound_PlayEffect(SEQ_SE_DP_HAMARU);
         }
 
         ov115_02264214(&param0->unk_1AB4.unk_524, (FX32_CONST(1.0)));
@@ -811,7 +811,7 @@ BOOL ov115_02260DAC(UnkStruct_ov115_02260D78 *param0, u32 param1)
         break;
     case 5:
         ov115_02261A10(&param0->unk_1AB4.unk_4E8, &param0->unk_1AB4);
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         param0->unk_1AB4.unk_4E8.unk_00 = 6;
         break;
     case 6:
@@ -1971,16 +1971,16 @@ static void ov115_02262354(UnkStruct_ov115_02260D78 *param0, UnkStruct_ov115_022
 
         switch (param0->unk_1C) {
         case 0:
-            Sound_PlayEffect(1386);
-            Sound_PlayEffect(1387);
+            Sound_PlayEffect(SEQ_SE_PL_NOMI02);
+            Sound_PlayEffect(SEQ_SE_PL_POINT1);
             break;
         case 1:
-            Sound_PlayEffect(1386);
-            Sound_PlayEffect(1388);
+            Sound_PlayEffect(SEQ_SE_PL_NOMI02);
+            Sound_PlayEffect(SEQ_SE_PL_POINT2);
             break;
         default:
-            Sound_PlayEffect(1386);
-            Sound_PlayEffect(1389);
+            Sound_PlayEffect(SEQ_SE_PL_NOMI02);
+            Sound_PlayEffect(SEQ_SE_PL_POINT3);
             break;
         }
 
@@ -2004,7 +2004,7 @@ static void ov115_02262354(UnkStruct_ov115_02260D78 *param0, UnkStruct_ov115_022
             v3 = 1;
 
             if (v5 == 1) {
-                Sound_PlayEffect(1826);
+                Sound_PlayEffect(SEQ_SE_DP_023);
             }
 
             ov115_022626BC(param1, param0, 1);
@@ -2389,7 +2389,7 @@ static void ov115_02262990(UnkStruct_ov115_02260D78 *param0)
             }
 
             ov115_022621DC(param0, &v0, 1);
-            Sound_PlayEffect(1616);
+            Sound_PlayEffect(SEQ_SE_DP_FW104);
         }
     } else {
         v6 = 1;
@@ -2730,7 +2730,7 @@ static BOOL ov115_02263150(UnkStruct_ov115_02263130 *param0, UnkStruct_ov115_022
             case 10:
                 if (param0->unk_3B == 0) {
                     ov115_022613F8(param1, 128, 96, 128, 64, 2);
-                    Sound_PlayEffect(1616);
+                    Sound_PlayEffect(SEQ_SE_DP_FW104);
                     param0->unk_3B = 1;
                 }
                 break;
@@ -3232,7 +3232,7 @@ static void ov115_02263B78(UnkStruct_ov115_02261ADC *param0)
 static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 param1)
 {
     param0->unk_04 = StringTemplate_Default(param1);
-    param0->unk_08 = MessageLoader_Init(0, 26, 407, param1);
+    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0407, param1);
     param0->unk_0C = Strbuf_Init(128, param1);
     param0->unk_10 = Strbuf_Init(128, param1);
 }
@@ -4572,7 +4572,7 @@ static void ov115_022658E0(UnkStruct_ov115_022658E0 *param0)
     param0->unk_00 = 0;
     param0->unk_02 = 1;
     param0->unk_03 = 0;
-    Sound_PlayEffect(1390);
+    Sound_PlayEffect(SEQ_SE_PL_PINPON);
 }
 
 static void ov115_022658F8(UnkStruct_ov115_022658E0 *param0, UnkStruct_ov115_02264FA0 *param1, UnkStruct_ov115_02263DF8 *param2)
@@ -4599,7 +4599,7 @@ static void ov115_022658F8(UnkStruct_ov115_022658E0 *param0, UnkStruct_ov115_022
         sub_02004FA8(7, v1);
 
         if (12 == param0->unk_03) {
-            Sound_PlayEffect(1391);
+            Sound_PlayEffect(SEQ_SE_PL_BALLOON05_2);
         }
 
         if (param0->unk_03 >= 58) {

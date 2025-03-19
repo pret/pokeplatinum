@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_OV21_021D4C0C_H
 #define POKEPLATINUM_OV21_021D4C0C_H
 
+#include "generated/text_banks.h"
+
 #include "overlay021/struct_ov21_021D1FA4.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 #include "overlay021/struct_ov21_021D4CA0.h"

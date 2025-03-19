@@ -34,6 +34,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -42,7 +43,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_020041CC.h"
-#include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -197,16 +197,16 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     SpriteSystem_InitManagerWithCapacities(v0->unk_0C.unk_18, v0->unk_0C.unk_1C, &Unk_ov17_02252DB0);
     SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_0C.unk_18), 0, ((192 + 80) << FX32_SHIFT));
 
-    v0->unk_0C.unk_04 = sub_0200762C(HEAP_ID_21);
+    v0->unk_0C.unk_04 = PokemonSpriteManager_New(HEAP_ID_21);
     ov17_0223B884();
 
     v0->unk_0C.unk_20 = ov12_0221FCDC(HEAP_ID_21);
     ov12_0221FDC0(v0->unk_0C.unk_20, 1);
 
-    v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 204, HEAP_ID_21);
-    v0->unk_0C.unk_3C = MessageLoader_Init(0, 26, 205, HEAP_ID_21);
-    v0->unk_0C.unk_40 = MessageLoader_Init(0, 26, 210, HEAP_ID_21);
-    v0->unk_0C.unk_44 = MessageLoader_Init(0, 26, 211, HEAP_ID_21);
+    v0->unk_0C.unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_TEXT, HEAP_ID_21);
+    v0->unk_0C.unk_3C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0205, HEAP_ID_21);
+    v0->unk_0C.unk_40 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_21);
+    v0->unk_0C.unk_44 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0211, HEAP_ID_21);
     v0->unk_0C.unk_54 = sub_02012744((2 * 4), HEAP_ID_21);
     v0->unk_0C.unk_48 = StringTemplate_Default(HEAP_ID_21);
     v0->unk_0C.unk_4C = Strbuf_Init((3 * 160), HEAP_ID_21);
@@ -345,7 +345,7 @@ int ov17_0223B580(OverlayManager *param0, int *param1)
 
     ov17_022416E4(&v0->unk_0C);
 
-    sub_02007B6C(v0->unk_0C.unk_04);
+    PokemonSpriteManager_Free(v0->unk_0C.unk_04);
     Font_Free(FONT_SUBSCREEN);
     sub_020127BC(v0->unk_0C.unk_54);
 
@@ -385,7 +385,7 @@ static void ov17_0223B6BC(void *param0)
 {
     UnkStruct_ov17_02246F24 *v0 = param0;
 
-    sub_02008A94(v0->unk_0C.unk_04);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_0C.unk_04);
     VramTransfer_Process();
     SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_0C.unk_50);
@@ -399,7 +399,7 @@ static void ov17_0223B6F0(SysTask *param0, void *param1)
     UnkStruct_ov17_02246F24 *v0 = param1;
 
     if (v0->unk_7EC == 1) {
-        sub_02007768(v0->unk_0C.unk_04);
+        PokemonSpriteManager_DrawSprites(v0->unk_0C.unk_04);
         ov11_0221F8F0();
         SpriteSystem_DrawSprites(v0->unk_0C.unk_1C);
         SpriteSystem_UpdateTransfer();

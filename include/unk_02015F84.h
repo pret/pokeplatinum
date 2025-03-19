@@ -3,7 +3,8 @@
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_defs/poke_animation_settings.h"
-#include "struct_defs/pokemon_sprite.h"
+
+#include "pokemon_sprite.h"
 
 PokemonAnimationSys *sub_02015F84(const int heapID, const int param1, const u8 param2);
 void sub_02015FB8(PokemonAnimationSys *param0);

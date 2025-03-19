@@ -2408,10 +2408,10 @@
     .short \upperBound
     .endm
 
-    .macro ScrCmd_1B9 arg0, arg1
+    .macro GetPartyMonFriendship destVar, partySlot
     .short 441
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \partySlot
     .endm
 
     .macro ScrCmd_1BA arg0, arg1
@@ -3073,17 +3073,17 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_230 arg0, arg1, arg2
+    .macro GetPartyMonRibbon destVar, partySlot, ribbonID
     .short 560
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \destVar
+    .short \partySlot
+    .short \ribbonID
     .endm
 
-    .macro ScrCmd_231 arg0, arg1
+    .macro SetPartyMonRibbon partySlot, ribbonID
     .short 561
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \ribbonID
     .endm
 
     .macro ScrCmd_232 arg0, arg1
@@ -3146,11 +3146,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_23A arg0, arg1, arg2
+    .macro GetPartyMonFootprintType hasPrintVar, printTypeVar, partySlot
     .short 570
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \hasPrintVar
+    .short \printTypeVar
+    .short \partySlot
     .endm
 
     .macro ScrCmd_23B arg0
@@ -3228,9 +3228,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_247 arg0
+    .macro GetFirstNonEggInParty partySlot
     .short 583
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_248 arg0, arg1, arg2

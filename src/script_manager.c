@@ -5,7 +5,6 @@
 
 #include "constants/battle.h"
 #include "generated/map_headers.h"
-#include "generated/text_banks.h"
 
 #include "data/field/hidden_items.h"
 #include "field/field_system.h"

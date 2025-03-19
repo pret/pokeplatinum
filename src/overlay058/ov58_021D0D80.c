@@ -173,7 +173,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
         v0->unk_00 = BgConfig_New(HEAP_ID_39);
 
         v0->unk_0C = StringTemplate_Default(HEAP_ID_39);
-        v0->unk_10 = MessageLoader_Init(0, 26, 425, HEAP_ID_39);
+        v0->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0425, HEAP_ID_39);
 
         SetAutorepeat(4, 8);
 
@@ -819,14 +819,14 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
             if (param0->unk_43DA != v0) {
                 param0->unk_43DA = v0;
                 ov58_021D1CAC(param0->unk_2AC, v0);
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
             break;
         case 8:
             if (param0->unk_368 == 4) {
                 if (CommSys_CurNetId() == 0) {
                     if (param0->unk_380 != sub_020318EC()) {
-                        Sound_PlayEffect(1522);
+                        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                         break;
                     }
 
@@ -836,16 +836,16 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
                     ov58_021D2CB0(param0, 5);
                     ov58_021D1CDC(param0->unk_2AC, 1);
                     v2 = 1;
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                 } else {
                     if (param0->unk_43E6[0].unk_09 == 2) {
-                        Sound_PlayEffect(1522);
+                        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                     } else {
                         ov58_021D2A98(param0, 1, TEXT_SPEED_FAST);
                         ov58_021D2CB0(param0, 5);
                         ov58_021D1CDC(param0->unk_2AC, 1);
                         v2 = 1;
-                        Sound_PlayEffect(1500);
+                        Sound_PlayEffect(SEQ_SE_CONFIRM);
                     }
                 }
             }
@@ -865,7 +865,7 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
 
             if (param0->unk_43DB != (0 + v0 - 9)) {
                 param0->unk_43DB = 0 + v0 - 9;
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
             }
         } break;
         }
@@ -948,7 +948,7 @@ static int ov58_021D1D64(UnkStruct_02095EAC *param0, int param1)
     }
 
     ov58_021D2CB0(param0, 2);
-    Sound_PlayEffect(1508);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
 
     G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, -6);
 
@@ -1009,7 +1009,7 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
         ov58_021D1D40(param0);
 
         if (ov58_021D2D30(param0)) {
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
         }
 
         return param1;
@@ -1281,7 +1281,7 @@ static int ov58_021D2320(UnkStruct_02095EAC *param0, int param1)
 
     ov58_021D2A98(param0, 2, TEXT_SPEED_FAST);
     ov58_021D2CB0(param0, 22);
-    Sound_PlayEffect(1508);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
 
     if (CommSys_CurNetId() == 0) {
         ov58_021D2B3C(param0, 0);

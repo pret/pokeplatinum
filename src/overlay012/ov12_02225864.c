@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay012/funcptr_ov12_02226274.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02235254.h"
@@ -19,12 +17,12 @@
 #include "inlines.h"
 #include "palette.h"
 #include "pltt_transfer.h"
+#include "pokemon_sprite.h"
 #include "screen_scroll_manager.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     s16 unk_00;
@@ -227,14 +225,14 @@ void ov12_022259FC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
 
 void ov12_02225A18(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1, s16 param2, s16 param3)
 {
-    sub_02007DEC(param1, 0, param2 + param0->unk_00);
-    sub_02007DEC(param1, 1, param3 + param0->unk_02);
+    PokemonSprite_SetAttribute(param1, MON_SPRITE_X_CENTER, param2 + param0->unk_00);
+    PokemonSprite_SetAttribute(param1, MON_SPRITE_Y_CENTER, param3 + param0->unk_02);
 }
 
 void ov12_02225A3C(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
 {
-    sub_02007DEC(param1, 12, param0->unk_00);
-    sub_02007DEC(param1, 13, param0->unk_02);
+    PokemonSprite_SetAttribute(param1, MON_SPRITE_SCALE_X, param0->unk_00);
+    PokemonSprite_SetAttribute(param1, MON_SPRITE_SCALE_Y, param0->unk_02);
 }
 
 void ov12_02225A5C(UnkStruct_ov12_02225F6C *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7)
@@ -597,7 +595,7 @@ void ov12_02226024(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, i
         v1 = param1 - param2;
     }
 
-    sub_02007DEC(param0, 1, v1 + v0);
+    PokemonSprite_SetAttribute(param0, MON_SPRITE_Y_CENTER, v1 + v0);
 }
 
 void ov12_0222605C(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, int param4)
