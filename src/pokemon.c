@@ -4095,7 +4095,7 @@ u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect)
     return type;
 }
 
-int Pokemon_SetGiratinaForm(Pokemon *mon)
+int Pokemon_SetGiratinaFormByHeldItem(Pokemon *mon)
 {
     int result = BoxPokemon_SetGiratinaForm(&mon->box);
 
@@ -4137,17 +4137,17 @@ void Pokemon_SetGiratinaOriginForm(Pokemon *mon)
     }
 }
 
-void Party_SetGiratinaForm(Party *party, int param1)
+void Party_SetGiratinaForm(Party *party, int form)
 {
     int currentPartyCount = Party_GetCurrentCount(party);
 
     for (int i = 0; i < currentPartyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (param1) {
+        if (form) {
             Pokemon_SetGiratinaOriginForm(mon);
         } else {
-            Pokemon_SetGiratinaForm(mon);
+            Pokemon_SetGiratinaFormByHeldItem(mon);
         }
     }
 }
