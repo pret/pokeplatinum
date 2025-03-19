@@ -12,10 +12,6 @@
 
 static void MapMatrixData_Load(MapMatrixData *mapMatrixData, const u16 mapMatrixID, int mapHeaderID)
 {
-    u8 hasMapHeaderIDsSection, hasAltitudesSection;
-    u8 modelNamePrefixLen;
-    void *buffer;
-    u8 *iter;
     int i;
 
     mapMatrixData->width = 0;
@@ -31,14 +27,14 @@ static void MapMatrixData_Load(MapMatrixData *mapMatrixData, const u16 mapMatrix
         mapMatrixData->modelNamePrefix[i] = 0;
     }
 
-    buffer = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MAPMATRIX__MAP_MATRIX, mapMatrixID, HEAP_ID_FIELDMAP);
-    iter = (u8 *)buffer;
+    void *buffer = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MAPMATRIX__MAP_MATRIX, mapMatrixID, HEAP_ID_FIELDMAP);
+    u8 *iter = (u8 *)buffer;
 
     mapMatrixData->width = *(iter++);
     mapMatrixData->height = *(iter++);
-    hasMapHeaderIDsSection = *(iter++);
-    hasAltitudesSection = *(iter++);
-    modelNamePrefixLen = *(iter++);
+    u8 hasMapHeaderIDsSection = *(iter++);
+    u8 hasAltitudesSection = *(iter++);
+    u8 modelNamePrefixLen = *(iter++);
 
     GF_ASSERT(modelNamePrefixLen <= MAP_MATRIX_MAX_NAME_LENGTH);
     MI_CpuCopy8(iter, mapMatrixData->modelNamePrefix, modelNamePrefixLen);
@@ -152,19 +148,15 @@ int MapMatrix_GetAltitudeAtCoords(const MapMatrix *mapMatrix, const int param1, 
 
 MainMapMatrixData *MainMapMatrixData_Load(const u32 heapID)
 {
-    int modelNamePrefixLen;
-    void *buffer;
-    u8 *iter;
-
     MainMapMatrixData *mainMapMatrixData = Heap_AllocFromHeap(heapID, sizeof(MainMapMatrixData));
-    buffer = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MAPMATRIX__MAP_MATRIX, 0, heapID);
-    iter = (u8 *)buffer;
+    void *buffer = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MAPMATRIX__MAP_MATRIX, 0, heapID);
+    u8 *iter = (u8 *)buffer;
 
     iter += 4;
-    modelNamePrefixLen = *iter;
+    int modelNamePrefixLen = *iter;
 
     iter++;
-    iter += (modelNamePrefixLen);
+    iter += modelNamePrefixLen;
 
     MI_CpuCopy8(iter, mainMapMatrixData->mapHeaderIDs, MAP_MATRIX_MAX_SIZE * sizeof(u16));
     Heap_FreeToHeap(buffer);

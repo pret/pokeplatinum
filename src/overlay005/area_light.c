@@ -26,8 +26,6 @@ static char *AreaLightTemplate_ParseColor(char *fileIter, GXRgb *color);
 
 AreaLightManager *AreaLightManager_New(ModelAttributes *areaModelAttrs, const u8 archiveID)
 {
-    int i;
-
     GF_ASSERT(archiveID < AREA_LIGHT_FILE_COUNT);
 
     AreaLightManager *areaLightMan = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(AreaLightManager));
@@ -38,7 +36,7 @@ AreaLightManager *AreaLightManager_New(ModelAttributes *areaModelAttrs, const u8
 
     int currentTime = GetSecondsSinceMidnight() / 2;
 
-    for (i = 0; i < areaLightMan->templateCount; i++) {
+    for (int i = 0; i < areaLightMan->templateCount; i++) {
         if (areaLightMan->templates[i].endTime > currentTime) {
             areaLightMan->activeTemplateIndex = i;
             break;
@@ -63,21 +61,16 @@ void AreaLightManager_Free(AreaLightManager **areaLightMan)
 
 void AreaLightManager_UpdateActiveTemplate(AreaLightManager *areaLightMan)
 {
-    int previousEndTime;
-    int activeEndTime;
-
     GF_ASSERT(areaLightMan);
 
     int currentTime = GetSecondsSinceMidnight() / 2;
 
     if (areaLightMan->templateCount > 1) {
-        if (areaLightMan->activeTemplateIndex - 1 >= 0) {
-            previousEndTime = areaLightMan->templates[areaLightMan->activeTemplateIndex - 1].endTime;
-        } else {
-            previousEndTime = 0;
-        }
+        int previousEndTime = areaLightMan->activeTemplateIndex - 1 >= 0
+            ? areaLightMan->templates[areaLightMan->activeTemplateIndex - 1].endTime
+            : 0;
 
-        activeEndTime = areaLightMan->templates[areaLightMan->activeTemplateIndex].endTime;
+        int activeEndTime = areaLightMan->templates[areaLightMan->activeTemplateIndex].endTime;
 
         if (currentTime >= activeEndTime || currentTime < previousEndTime) {
             areaLightMan->activeTemplateIndex++;
@@ -130,17 +123,12 @@ void AreaLight_UseGlobalModelAttributes(NNSG3dResMdl *model)
 static u32 AreaLightTemplate_New(u32 archiveID, AreaLightTemplate **templates)
 {
     int i, j;
-    int templateCount;
-    void *fileIter;
-    void *fileBuffer;
     char lineBuffer[SCRATCH_BUFFER_SIZE];
-    char *iter;
     char endTimeBuffer[SCRATCH_BUFFER_SIZE];
-    AreaLightTemplate *template;
 
-    fileBuffer = LoadMemberFromNARC(NARC_INDEX_DATA__AREALIGHT, archiveID, FALSE, HEAP_ID_FIELD, FALSE);
-    fileIter = fileBuffer;
-    templateCount = 0;
+    void *fileBuffer = LoadMemberFromNARC(NARC_INDEX_DATA__AREALIGHT, archiveID, FALSE, HEAP_ID_FIELD, FALSE);
+    void *fileIter = fileBuffer;
+    int templateCount = 0;
 
     do {
         fileIter = Ascii_CopyToTerminator(fileIter, lineBuffer, '\r');
@@ -164,9 +152,9 @@ static u32 AreaLightTemplate_New(u32 archiveID, AreaLightTemplate **templates)
     fileIter = fileBuffer;
 
     for (i = 0; i < templateCount; i++) {
-        template = &(*templates)[i];
+        AreaLightTemplate *template = &(*templates)[i];
         fileIter = Ascii_CopyToTerminator(fileIter, lineBuffer, '\r');
-        iter = lineBuffer;
+        char *iter = lineBuffer;
         iter = Ascii_CopyToTerminator(iter, endTimeBuffer, ',');
         template->endTime = Ascii_ConvertToInt(endTimeBuffer);
 
@@ -202,19 +190,18 @@ static char *AreaLightTemplate_ParseLightAttrs(char *fileIter, GXRgb *lightColor
 {
     char lineBuffer[SCRATCH_BUFFER_SIZE];
     char partBuffer[SCRATCH_BUFFER_SIZE];
-    char *iter;
-    u32 lightValid;
-    int i;
-    u16 lightColorParts[GX_COLOR_DIMS];
-    s32 lightVectorParts[GX_VEC_FX_DIMS];
 
     fileIter = Ascii_CopyToTerminator(fileIter, lineBuffer, '\r');
 
-    iter = lineBuffer;
+    char *iter = lineBuffer;
     iter = Ascii_CopyToTerminator(iter, partBuffer, ',');
-    lightValid = Ascii_ConvertToInt(partBuffer);
+    u32 lightValid = Ascii_ConvertToInt(partBuffer);
 
     if (lightValid == TRUE) {
+        int i;
+        u16 lightColorParts[GX_COLOR_DIMS];
+        s32 lightVectorParts[GX_VEC_FX_DIMS];
+
         for (i = 0; i < GX_COLOR_DIMS; i++) {
             iter = Ascii_CopyToTerminator(iter, partBuffer, ',');
             lightColorParts[i] = Ascii_ConvertToInt(partBuffer);
@@ -265,14 +252,12 @@ static char *AreaLightTemplate_ParseColor(char *fileIter, GXRgb *color)
 {
     char lineBuffer[SCRATCH_BUFFER_SIZE];
     char partBuffer[SCRATCH_BUFFER_SIZE];
-    char *iter;
-    int i;
     u16 colorParts[GX_COLOR_DIMS];
 
     fileIter = Ascii_CopyToTerminator(fileIter, lineBuffer, '\r');
-    iter = lineBuffer;
+    char *iter = lineBuffer;
 
-    for (i = 0; i < GX_COLOR_DIMS; i++) {
+    for (int i = 0; i < GX_COLOR_DIMS; i++) {
         iter = Ascii_CopyToTerminator(iter, partBuffer, ',');
         colorParts[i] = Ascii_ConvertToInt(partBuffer);
     }

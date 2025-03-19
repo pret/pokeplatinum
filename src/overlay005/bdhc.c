@@ -114,9 +114,6 @@ static void BDHC_InitCandidateObjectHeightsArray(BDHCCandidateObjectHeight *cand
 
 static BOOL BDHC_FindStripIndexByLowerBound(const BDHCStrip *strips, const u16 stripsSize, const fx32 targetLowerBound, u16 *stripIndex)
 {
-    int low, high;
-    u32 mid;
-
     if (stripsSize == 0) {
         return FALSE;
     } else if (stripsSize == 1) {
@@ -125,9 +122,9 @@ static BOOL BDHC_FindStripIndexByLowerBound(const BDHCStrip *strips, const u16 s
     }
 
     // Simple binary search.
-    low = 0;
-    high = stripsSize - 1;
-    mid = high / 2;
+    int low = 0;
+    int high = stripsSize - 1;
+    u32 mid = high / 2;
 
     do {
         if (strips[mid].lowerBound > targetLowerBound) {
@@ -154,56 +151,51 @@ static BOOL BDHC_FindStripIndexByLowerBound(const BDHCStrip *strips, const u16 s
 
 BOOL CalculateObjectHeight(const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, const BDHC *bdhc, fx32 *newObjectHeight)
 {
-    BDHCPoint platePoints[2];
-    BDHCPoint objectPosition;
-    VecFx32 slope;
-    fx32 minObjectHeightDiff, objectHeightDiff;
-    BOOL isPointInBoundingBox;
     u16 i, plateIndex;
-    fx32 height, calculatedObjectHeight;
-    int newObjectHeightCandidateCount;
-    u32 stripsSize;
-    BDHCCandidateObjectHeight newObjectHeightCandidates[BDHC_NEW_OBJECT_HEIGHT_CANDIDATES_ARRAY_SIZE];
-    u32 accessListStartIndex;
-    u16 stripIndex;
-    u16 accessListElementCount;
-    const BDHCStrip *strips;
 
     if (bdhc->loaded == FALSE) {
         return FALSE;
     }
 
-    isPointInBoundingBox = FALSE;
+    BOOL isPointInBoundingBox = FALSE;
 
+    BDHCPoint objectPosition;
     objectPosition.x = objectX;
     objectPosition.y = objectZ;
 
-    newObjectHeightCandidateCount = 0;
+    int newObjectHeightCandidateCount = 0;
+    BDHCCandidateObjectHeight newObjectHeightCandidates[BDHC_NEW_OBJECT_HEIGHT_CANDIDATES_ARRAY_SIZE];
     BDHC_InitCandidateObjectHeightsArray(newObjectHeightCandidates);
 
-    stripsSize = bdhc->stripsSize;
-    strips = bdhc->strips;
+    u32 stripsSize = bdhc->stripsSize;
+    const BDHCStrip *strips = bdhc->strips;
+    u16 stripIndex;
 
     if (BDHC_FindStripIndexByLowerBound(strips, stripsSize, objectPosition.y, &stripIndex) == FALSE) {
         return FALSE;
     }
 
-    accessListElementCount = strips[stripIndex].accessListElementCount;
-    accessListStartIndex = strips[stripIndex].accessListStartIndex;
+    u16 accessListElementCount = strips[stripIndex].accessListElementCount;
+    u32 accessListStartIndex = strips[stripIndex].accessListStartIndex;
 
     for (i = 0; i < accessListElementCount; i++) {
+        BDHCPoint platePoints[2];
+
         plateIndex = bdhc->accessList[accessListStartIndex + i];
-        BDHC_GetPointsFromPlate(bdhc, plateIndex, platePoints);
+        BDHC_GetPointsFromPlate(bdhc, plateIndex, &platePoints[0]);
         isPointInBoundingBox = BDHC_IsPointInBoundingBox(&platePoints[0], &platePoints[1], &objectPosition);
 
         if (isPointInBoundingBox == TRUE) {
+            VecFx32 slope;
+            fx32 height;
+
             BDHC_GetSlopeFromPlate(bdhc, plateIndex, &slope);
             BDHC_GetHeightFromPlate(bdhc, plateIndex, &height);
 
             // On the next line, `slope.z` and `objectPosition.y` represent the same axis.
             // Remember that `objectPosition.y` is, in fact, `objectZ`.
             // Also, remember that `slope` is a normal vector, pointing upwards for a flat surface.
-            calculatedObjectHeight = -(FX_Mul(slope.x, objectPosition.x) + FX_Mul(slope.z, objectPosition.y) + height);
+            fx32 calculatedObjectHeight = -(FX_Mul(slope.x, objectPosition.x) + FX_Mul(slope.z, objectPosition.y) + height);
             calculatedObjectHeight = FX_Div(calculatedObjectHeight, slope.y);
 
             newObjectHeightCandidates[newObjectHeightCandidateCount].val = calculatedObjectHeight;
@@ -218,10 +210,10 @@ BOOL CalculateObjectHeight(const fx32 objectHeight, const fx32 objectX, const fx
     if (newObjectHeightCandidateCount > 1) {
         // Find the candidate with the smallest difference between the object's current height and the calculated height.
         plateIndex = 0;
-        minObjectHeightDiff = FX_Max(objectHeight, newObjectHeightCandidates[0].val) - FX_Min(objectHeight, newObjectHeightCandidates[0].val);
+        fx32 minObjectHeightDiff = FX_Max(objectHeight, newObjectHeightCandidates[0].val) - FX_Min(objectHeight, newObjectHeightCandidates[0].val);
 
         for (i = 1; i < newObjectHeightCandidateCount; i++) {
-            objectHeightDiff = FX_Max(objectHeight, newObjectHeightCandidates[i].val) - FX_Min(objectHeight, newObjectHeightCandidates[i].val);
+            fx32 objectHeightDiff = FX_Max(objectHeight, newObjectHeightCandidates[i].val) - FX_Min(objectHeight, newObjectHeightCandidates[i].val);
 
             if (minObjectHeightDiff > objectHeightDiff) {
                 minObjectHeightDiff = objectHeightDiff;
@@ -261,10 +253,9 @@ static void BDHC_LoadHeader(NARC *narc, BDHCHeader *bdhcHeader)
 
 static void BDHC_PrepareBuffers(const BDHCHeader *bdhcHeader, BDHC *bdhc, void **buffer)
 {
-    void *ptr;
     int offset = 0;
 
-    ptr = (u8 *)*buffer;
+    void *ptr = (u8 *)*buffer;
     bdhc->points = ptr;
     offset += (sizeof(BDHCPoint) * bdhcHeader->pointsSize);
 
