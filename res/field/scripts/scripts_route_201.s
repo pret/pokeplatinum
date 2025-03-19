@@ -359,8 +359,8 @@ _057A:
     CloseMessage
     ScrCmd_06D 2, 15
     GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, SPECIES_TURTWIG, Route201_StartFirstBattleTurtwig
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, Route201_StartFirstBattleChimchar
+    GoToIfEq 0x800C, SPECIES_CHIKORITA, Route201_StartFirstBattleTurtwig
+    GoToIfEq 0x800C, SPECIES_CYNDAQUIL, Route201_StartFirstBattleChimchar
     GoTo Route201_StartFirstBattlePiplup
     End
 

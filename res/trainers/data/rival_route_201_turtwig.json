@@ -10,7 +10,7 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CHIMCHAR",
+            "species": "SPECIES_CYNDAQUIL",
             "form": 0,
             "level": 5,
             "item": null,

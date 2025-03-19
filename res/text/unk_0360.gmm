@@ -7,15 +7,15 @@
 	</row>
 	<row id="pl_msg_00000360_00001" index="1">
 		<attribute name="window_context_name">used</attribute>
-		<language name="English">{COLOR 3}Tiny Leaf Pokémon TURTWIG{COLOR 0}!\nWill you take this Pokémon?</language>
+		<language name="English">{COLOR 3}Leaf Pokémon Chikorita{COLOR 0}!\nWill you take this Pokémon?</language>
 	</row>
 	<row id="pl_msg_00000360_00002" index="2">
 		<attribute name="window_context_name">used</attribute>
-		<language name="English">{COLOR 1}Chimp Pokémon CHIMCHAR{COLOR 0}!\nDo you choose this Pokémon?</language>
+		<language name="English">{COLOR 1}Fire Mouse Pokémon Cyndaquil{COLOR 0}!\nDo you choose this Pokémon?</language>
 	</row>
 	<row id="pl_msg_00000360_00003" index="3">
 		<attribute name="window_context_name">used</attribute>
-		<language name="English">{COLOR 2}Penguin Pokémon{COLOR 0} {COLOR 2}PIPLUP{COLOR 0}!\nIs this Pokémon the one for you?</language>
+		<language name="English">{COLOR 2}Big Jaw Pokémon Totodile{COLOR 0}!\nIs this Pokémon the one for you?</language>
 	</row>
 	<row id="pl_msg_00000360_00004" index="4">
 		<attribute name="window_context_name">garbage</attribute>
