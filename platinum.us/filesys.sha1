@@ -261,13 +261,13 @@ bda5c8e66cfa121c2d518d4388bd6f742746cda0 *res/prebuilt/fielddata/encountdata/d_e
 d9bf534c175c3c991e77fff985c099723499e1eb *res/field/encounters/pl_enc_data.narc
 7eca91aaa5f7ef816f51a884e2f42a26f51f8bbd *res/prebuilt/fielddata/build_model/build_model.narc
 f49c6992b8caf5fea13831789fe4bfb026beb967 *res/prebuilt/fielddata/build_model/build_model_matshp.dat
-992f33f6450613066830606d28e94b91031caddb *res/prebuilt/fielddata/mapmatrix/map_matrix.narc
+992f33f6450613066830606d28e94b91031caddb *res/field/maps/matrices/map_matrix.narc
 2df833d8f0145f29f21b23c06ba3561dec3f5180 *res/prebuilt/fielddata/areadata/area_data.narc
 a2cd6f636960544440b489e827e5e16dcaa7f014 *res/prebuilt/fielddata/areadata/area_build_model/area_build.narc
 8174da67845c24f377f56e84a0f5f0e890e765ec *res/prebuilt/fielddata/areadata/area_build_model/areabm_texset.narc
-74aded294b971d68f10554f86fd795b072a0b01f *res/prebuilt/fielddata/areadata/area_map_tex/map_tex_set.narc
+74aded294b971d68f10554f86fd795b072a0b01f *res/field/maps/texture_sets/map_tex_set.narc
 2fb9b73d29f2577fdbd385daf961749794969d72 *res/prebuilt/fielddata/areadata/area_move_model/move_model_list.narc
-fa044bf2e0599ed2bf42d3b632776af3b7e8452e *res/prebuilt/fielddata/land_data/land_data.narc
+fa044bf2e0599ed2bf42d3b632776af3b7e8452e *res/field/maps/data/land_data.narc
 f477dce1ffaf2db070ef0f31f422b51433463485 *res/prebuilt/contest/data/contest_data.narc
 e03ff29bc200e233217ad7a8f068ec77b33e6472 *res/prebuilt/particledata/particledata.narc
 5ab40a1a509372d16f6e3b678820c0932cce9d03 *res/pokemon/zukan_data.narc

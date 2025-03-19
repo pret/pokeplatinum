@@ -1,0 +1,24 @@
+{
+    "name": "m_dun0602_",
+    "headers": [
+        ["MAP_HEADER_EVERYWHERE", "MAP_HEADER_EVERYWHERE", "MAP_HEADER_EVERYWHERE", "MAP_HEADER_EVERYWHERE"],
+        ["MAP_HEADER_EVERYWHERE", "MAP_HEADER_GREAT_MARSH_1", "MAP_HEADER_GREAT_MARSH_2", "MAP_HEADER_EVERYWHERE"],
+        ["MAP_HEADER_EVERYWHERE", "MAP_HEADER_GREAT_MARSH_3", "MAP_HEADER_GREAT_MARSH_4", "MAP_HEADER_EVERYWHERE"],
+        ["MAP_HEADER_EVERYWHERE", "MAP_HEADER_GREAT_MARSH_5", "MAP_HEADER_GREAT_MARSH_6", "MAP_HEADER_EVERYWHERE"],
+        ["MAP_HEADER_EVERYWHERE", "MAP_HEADER_EVERYWHERE", "MAP_HEADER_EVERYWHERE", "MAP_HEADER_EVERYWHERE"]
+    ],
+    "altitudes": [
+        [2, 2, 2, 2],
+        [2, 0, 0, 2],
+        [2, 0, 0, 2],
+        [2, 0, 0, 2],
+        [2, 2, 2, 2]
+    ],
+    "maps": [
+        ["MAP_176", "MAP_176", "MAP_176", "MAP_176"],
+        ["MAP_176", "MAP_570", "MAP_571", "MAP_176"],
+        ["MAP_176", "MAP_572", "MAP_573", "MAP_176"],
+        ["MAP_176", "MAP_574", "MAP_575", "MAP_176"],
+        ["MAP_176", "MAP_176", "MAP_176", "MAP_176"]
+    ]
+}
