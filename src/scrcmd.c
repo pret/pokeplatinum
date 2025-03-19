@@ -1131,7 +1131,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_16B,
     ScrCmd_16C,
     ScrCmd_16D,
-    ScrCmd_16E,
+    ScrCmd_GetDaycareState,
     ScrCmd_16F,
     ScrCmd_170,
     ScrCmd_171,
@@ -1185,7 +1185,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1A1,
     ScrCmd_1A2,
     ScrCmd_1A3,
-    ScrCmd_1A4,
+    ScrCmd_MoveMonToPartyFromDaycareSlot,
     ScrCmd_1A5,
     ScrCmd_1A6,
     ScrCmd_1A7,
@@ -1195,7 +1195,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1AB,
     ScrCmd_1AC,
     ScrCmd_Dummy1AD,
-    ScrCmd_BufferGainedLevelsInDaycareSlot,
+    ScrCmd_BufferDaycareGainedLevelsBySlot,
     ScrCmd_1AF,
     ScrCmd_StorePartyMonIntoDaycare,
     ScrCmd_1B1,
@@ -1211,8 +1211,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1BB,
     ScrCmd_1BC,
     ScrCmd_GetPlayerDir,
-    ScrCmd_GetDaycareCompatibilityString,
-    ScrCmd_DaycareHasEgg,
+    ScrCmd_GetDaycareCompatibilityLevel,
+    ScrCmd_CheckDaycareHasEgg,
     ScrCmd_1C0,
     ScrCmd_1C1,
     ScrCmd_1C2,
@@ -8070,7 +8070,7 @@ static u32 sub_0204676C(SaveData *saveData)
 
     Daycare *daycare = SaveData_GetDaycare(saveData);
 
-    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+    for (i = 0; i < NUM_DAYCARE_MONS; i++) {
         DaycareMon *daycareMon = Daycare_GetDaycareMon(daycare, i);
         boxMon = DaycareMon_GetBoxMon(daycareMon);
 

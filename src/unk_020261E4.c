@@ -29,17 +29,17 @@ void Daycare_Init(Daycare *daycare)
 
 DaycareMon *Daycare_GetDaycareMon(Daycare *daycare, int slot)
 {
-    return &(daycare->mons[slot]);
+    return &daycare->mons[slot];
 }
 
 BoxPokemon *DaycareMon_GetBoxMon(DaycareMon *daycareMon)
 {
-    return &(daycareMon->boxMon);
+    return &daycareMon->boxMon;
 }
 
 DaycareMail *DaycareMon_GetDaycareMail(DaycareMon *daycareMon)
 {
-    return &(daycareMon->daycareMail);
+    return &daycareMon->daycareMail;
 }
 
 u32 DaycareMon_GetSteps(const DaycareMon *daycareMon)
@@ -54,11 +54,7 @@ Mail *DaycareMail_GetMail(DaycareMail *daycareMail)
 
 BOOL Daycare_HasEgg(const Daycare *daycare)
 {
-    if (daycare->offspringPersonality != 0) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return daycare->offspringPersonality != 0;
 }
 
 int Daycare_GetOffspringPersonality(const Daycare *daycare)

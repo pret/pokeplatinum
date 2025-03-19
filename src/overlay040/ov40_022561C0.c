@@ -208,7 +208,7 @@ static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare)
     int slot;
     BOOL reencrypt;
 
-    param0->unk_00 = Daycare_GetMonCount(daycare);
+    param0->unk_00 = Daycare_CountMons(daycare);
     param0->unk_01 = Daycare_HasEgg(daycare);
 
     for (slot = 0; slot < param0->unk_00; slot++) {

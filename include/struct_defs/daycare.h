@@ -21,7 +21,7 @@ typedef struct DaycareMon {
 } DaycareMon;
 
 typedef struct Daycare {
-    DaycareMon mons[DAYCARE_MON_COUNT];
+    DaycareMon mons[NUM_DAYCARE_MONS];
     u32 offspringPersonality;
     u8 stepCounter;
 } Daycare;

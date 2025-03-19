@@ -38,7 +38,7 @@ typedef struct {
     int fatherMoves[LEARNED_MOVES_MAX];
     int sharedMoves[LEARNED_MOVES_MAX];
     int motherMoves[LEARNED_MOVES_MAX];
-    u16 eggSpeciesLevelUpMoves[MAX_LEVEL_UP_MOVES];
+    u16 eggSpeciesLevelUpMoves[50];
     u16 eggSpeciesEggMoves[MAX_EGG_MOVES];
 } EggMoveBuilder;
 
@@ -47,16 +47,16 @@ static BoxPokemon *Daycare_GetBoxMon(Daycare *daycare, int slot)
     return DaycareMon_GetBoxMon(Daycare_GetDaycareMon(daycare, slot));
 }
 
-static Daycare *Unk_ov5_02202124;
+static Daycare *sUnusedDaycareRef;
 
-u8 Daycare_GetMonCount(Daycare *daycare)
+u8 Daycare_CountMons(Daycare *daycare)
 {
     u8 count, i;
     BoxPokemon *boxMon;
 
     count = 0;
 
-    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+    for (i = 0; i < NUM_DAYCARE_MONS; i++) {
         boxMon = DaycareMon_GetBoxMon(Daycare_GetDaycareMon(daycare, i));
 
         if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
@@ -67,14 +67,14 @@ u8 Daycare_GetMonCount(Daycare *daycare)
     return count;
 }
 
-static int Daycare_GetEmptySlot(Daycare *daycare)
+static int Daycare_FindFirstEmptySlot(Daycare *daycare)
 {
     u8 i;
     BoxPokemon *boxMon;
 
-    Unk_ov5_02202124 = daycare;
+    sUnusedDaycareRef = daycare;
 
-    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+    for (i = 0; i < NUM_DAYCARE_MONS; i++) {
         boxMon = DaycareMon_GetBoxMon(Daycare_GetDaycareMon(daycare, i));
 
         if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_NONE) {
@@ -91,11 +91,11 @@ static int BoxPokemon_HoldsMail(BoxPokemon *boxMon)
     return Item_IsMail(item);
 }
 
-static void Daycare_MoveToDaycareMonFromParty(Party *party, int slot, DaycareMon *daycareMon, SaveData *saveData)
+static void Daycare_MoveToDaycareMonFromParty(Party *party, int partySlot, DaycareMon *daycareMon, SaveData *saveData)
 {
-    Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
     const u16 *trainerName;
-    u16 nickname[MON_NAME_LEN + 1];
+    charcode_t nickname[MON_NAME_LEN + 1];
     DaycareMail *daycareMail = DaycareMon_GetDaycareMail(daycareMon);
     BoxPokemon *daycareBoxMon = DaycareMon_GetBoxMon(daycareMon);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
@@ -110,7 +110,7 @@ static void Daycare_MoveToDaycareMonFromParty(Party *party, int slot, DaycareMon
     BoxPokemon_FromPokemon(mon, daycareBoxMon);
     BoxPokemon_SetShayminForm(daycareBoxMon, 0);
     DaycareMon_SetSteps(daycareMon, 0);
-    Party_RemovePokemonBySlotIndex(party, slot);
+    Party_RemovePokemonBySlotIndex(party, partySlot);
 
     if (Party_HasSpecies(party, SPECIES_CHATOT) == FALSE) {
         ChatotCry *cry = GetChatotCryDataFromSave(saveData);
@@ -124,7 +124,7 @@ void Daycare_MoveToEmptySlotFromParty(Party *party, int partySlot, Daycare *dayc
     GameRecords *records = SaveData_GetGameRecordsPtr(saveData);
 
     GameRecords_IncrementRecordValue(records, RECORD_DEPOSITED_IN_DAYCARE);
-    daycareSlot = Daycare_GetEmptySlot(daycare);
+    daycareSlot = Daycare_FindFirstEmptySlot(daycare);
     Daycare_MoveToDaycareMonFromParty(party, partySlot, Daycare_GetDaycareMon(daycare, daycareSlot), saveData);
 }
 
@@ -197,15 +197,15 @@ static int Daycare_MoveToPartyFromDaycareMon(Party *party, DaycareMon *daycareMo
     return species;
 }
 
-u16 ov5_021E64F8(Party *party, StringTemplate *template, Daycare *daycare, u8 daycareSlot)
+u16 Daycare_MoveToPartyFromDaycareSlot(Party *party, StringTemplate *template, Daycare *daycare, u8 daycareSlot)
 {
-    u16 v0;
+    u16 movedSpecies;
     DaycareMon *daycareMon = Daycare_GetDaycareMon(daycare, daycareSlot);
 
-    v0 = Daycare_MoveToPartyFromDaycareMon(party, daycareMon, template);
+    movedSpecies = Daycare_MoveToPartyFromDaycareMon(party, daycareMon, template);
     Daycare_ShiftMonSlots(daycare);
 
-    return v0;
+    return movedSpecies;
 }
 
 int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 givenExp)
@@ -250,7 +250,7 @@ static u8 DaycareMon_BufferGainedLevels(DaycareMon *daycareMon, StringTemplate *
 {
     int levelsGained;
     Strbuf *strBuf;
-    u16 nickname[MON_NAME_LEN + 1];
+    charcode_t nickname[MON_NAME_LEN + 1];
     BoxPokemon *boxMon = DaycareMon_GetBoxMon(daycareMon);
 
     levelsGained = Daycare_GiveDaycareMonExperience(daycareMon);
@@ -280,9 +280,9 @@ int Daycare_BufferDaycarePriceBySlot(Daycare *daycare, u8 slot, StringTemplate *
     return DaycareMon_BufferDaycarePrice(daycareMon, template);
 }
 
-u8 Daycare_BufferGainedLevelsInSlot(Daycare *daycare, int daycareSlot, StringTemplate *template)
+u8 Daycare_BufferGainedLevelsInSlot(Daycare *daycare, int slot, StringTemplate *template)
 {
-    DaycareMon *daycareMon = Daycare_GetDaycareMon(daycare, daycareSlot);
+    DaycareMon *daycareMon = Daycare_GetDaycareMon(daycare, slot);
     BoxPokemon *boxMon = DaycareMon_GetBoxMon(daycareMon);
 
     if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
@@ -301,20 +301,20 @@ static void Daycare_CopyDaycareMonToBoxMonArray(Daycare *daycare, BoxPokemon *bo
 static int Daycare_GetParentToInheritNature(Daycare *daycare)
 {
     int i;
-    int species[DAYCARE_MON_COUNT], slot = -1, dittoCount;
-    BoxPokemon *boxMon[DAYCARE_MON_COUNT];
+    int species[NUM_DAYCARE_MONS], slot = -1, dittoCount;
+    BoxPokemon *boxMon[NUM_DAYCARE_MONS];
 
     Daycare_CopyDaycareMonToBoxMonArray(daycare, boxMon);
 
     // search for female gender
-    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+    for (i = 0; i < NUM_DAYCARE_MONS; i++) {
         if (BoxPokemon_GetGender(boxMon[i]) == GENDER_FEMALE) {
             slot = i;
         }
     }
 
     // search for ditto
-    for (dittoCount = 0, i = 0; i < DAYCARE_MON_COUNT; i++) {
+    for (dittoCount = 0, i = 0; i < NUM_DAYCARE_MONS; i++) {
         if ((species[i] = BoxPokemon_GetValue(boxMon[i], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
             dittoCount++;
             slot = i;
@@ -322,7 +322,7 @@ static int Daycare_GetParentToInheritNature(Daycare *daycare)
     }
 
     // coin flip on ...two Dittos
-    if (dittoCount == DAYCARE_MON_COUNT) {
+    if (dittoCount == NUM_DAYCARE_MONS) {
         if (LCRNG_Next() >= (0xffff / 2)) {
             slot = 0;
         } else {
@@ -394,22 +394,22 @@ static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIV)
 
 static void Egg_InheritIVs(Pokemon *egg, Daycare *daycare)
 {
-    u8 selectedIVs[INHERITED_IV_COUNT], i, availableIVs[STAT_MAX], slots[INHERITED_IV_COUNT], value;
+    u8 selectedIVs[NUM_INHERITED_IVS], i, availableIVs[STAT_MAX], slots[NUM_INHERITED_IVS], value;
 
     for (i = 0; i < STAT_MAX; i++) {
         availableIVs[i] = i;
     }
 
-    for (i = 0; i < INHERITED_IV_COUNT; i++) {
+    for (i = 0; i < NUM_INHERITED_IVS; i++) {
         selectedIVs[i] = availableIVs[LCRNG_Next() % (STAT_MAX - i)];
         RemoveIVIndexFromList(availableIVs, i);
     }
 
-    for (i = 0; i < INHERITED_IV_COUNT; i++) {
-        slots[i] = LCRNG_Next() % DAYCARE_MON_COUNT;
+    for (i = 0; i < NUM_INHERITED_IVS; i++) {
+        slots[i] = LCRNG_Next() % NUM_DAYCARE_MONS;
     }
 
-    for (i = 0; i < INHERITED_IV_COUNT; i++) {
+    for (i = 0; i < NUM_INHERITED_IVS; i++) {
         BoxPokemon *daycareBoxMon = Daycare_GetBoxMon(daycare, slots[i]);
 
         switch (selectedIVs[i]) {
@@ -441,7 +441,7 @@ static void Egg_InheritIVs(Pokemon *egg, Daycare *daycare)
     }
 }
 
-static u8 Egg_GetSpeciesEggMoves(Pokemon *mon, u16 *eggMoves)
+static u8 LoadSpeciesEggMoves(Pokemon *mon, u16 *eggMoves)
 {
     u16 species, eggMoveOffset, eggMoveCount, i;
 
@@ -486,7 +486,7 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
         builder->motherMoves[i] = BoxPokemon_GetValue(mother, MON_DATA_MOVE1 + i, NULL);
     }
 
-    eggMoveCount = Egg_GetSpeciesEggMoves(egg, builder->eggSpeciesEggMoves);
+    eggMoveCount = LoadSpeciesEggMoves(egg, builder->eggSpeciesEggMoves);
 
     // Egg moves from the father
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
@@ -617,12 +617,12 @@ static void Egg_TryGiveVoltTackle(Pokemon *mon, Daycare *daycare)
 
 static u16 Egg_DetermineEggSpeciesAndParentSlots(Daycare *daycare, u8 parentSlots[])
 {
-    u16 species[DAYCARE_MON_COUNT], i, eggSpecies;
-    BoxPokemon *boxMons[DAYCARE_MON_COUNT];
+    u16 species[NUM_DAYCARE_MONS], i, eggSpecies;
+    BoxPokemon *boxMons[NUM_DAYCARE_MONS];
 
     Daycare_CopyDaycareMonToBoxMonArray(daycare, boxMons);
 
-    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+    for (i = 0; i < NUM_DAYCARE_MONS; i++) {
         if ((species[i] = BoxPokemon_GetValue(boxMons[i], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
             parentSlots[0] = i ^ 1;
             parentSlots[1] = i;
@@ -750,7 +750,7 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
 void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *trainerInfo)
 {
     u16 species;
-    u8 parentSlots[DAYCARE_MON_COUNT], isEgg;
+    u8 parentSlots[NUM_DAYCARE_MONS], isEgg;
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
 
     species = Egg_DetermineEggSpeciesAndParentSlots(daycare, parentSlots);
@@ -815,11 +815,11 @@ static u8 Egg_AreEggGroupsCompatible(u16 *eggGroupSlots1, u16 *eggGroupSlots2)
 
 static u8 BoxMon_GetPairDaycareCompatibilityScore(BoxPokemon **boxMonPair)
 {
-    u16 eggGroups[DAYCARE_MON_COUNT][MAX_EGG_GROUPS];
-    u16 species[DAYCARE_MON_COUNT];
-    u32 trainerIDs[DAYCARE_MON_COUNT], genders[DAYCARE_MON_COUNT], personality, i;
+    u16 eggGroups[NUM_DAYCARE_MONS][MAX_EGG_GROUPS];
+    u16 species[NUM_DAYCARE_MONS];
+    u32 trainerIDs[NUM_DAYCARE_MONS], genders[NUM_DAYCARE_MONS], personality, i;
 
-    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+    for (i = 0; i < NUM_DAYCARE_MONS; i++) {
         species[i] = BoxPokemon_GetValue(boxMonPair[i], MON_DATA_SPECIES, NULL);
         trainerIDs[i] = BoxPokemon_GetValue(boxMonPair[i], MON_DATA_OT_ID, NULL);
         personality = BoxPokemon_GetValue(boxMonPair[i], MON_DATA_PERSONALITY, NULL);
@@ -875,7 +875,7 @@ static u8 BoxMon_GetPairDaycareCompatibilityScore(BoxPokemon **boxMonPair)
 
 static u8 Daycare_GetCompatibilityScore(Daycare *daycare)
 {
-    BoxPokemon *parents[DAYCARE_MON_COUNT];
+    BoxPokemon *parents[NUM_DAYCARE_MONS];
 
     Daycare_CopyDaycareMonToBoxMonArray(daycare, parents);
     return BoxMon_GetPairDaycareCompatibilityScore(parents);
@@ -919,20 +919,20 @@ BOOL Daycare_Update(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
     u32 i, eggCycles, monCount, compatibilityScore, rand;
     u32 v5 = 0, steps;
     int toSubstract;
-    BoxPokemon *boxMon[DAYCARE_MON_COUNT];
+    BoxPokemon *boxMon[NUM_DAYCARE_MONS];
 
     Daycare_CopyDaycareMonToBoxMonArray(daycare, boxMon);
 
     monCount = 0;
 
-    for (i = 0; i < DAYCARE_MON_COUNT; i++) {
+    for (i = 0; i < NUM_DAYCARE_MONS; i++) {
         if (BoxPokemon_GetValue(boxMon[i], MON_DATA_SPECIES_EXISTS, NULL) != FALSE) {
             DaycareMon_AddSteps(Daycare_GetDaycareMon(daycare, i), 1);
             monCount++;
         }
     }
 
-    if ((Daycare_HasEgg(daycare) == FALSE) && (monCount == DAYCARE_MON_COUNT)) {
+    if ((Daycare_HasEgg(daycare) == FALSE) && (monCount == NUM_DAYCARE_MONS)) {
         if ((DaycareMon_GetSteps(Daycare_GetDaycareMon(daycare, 1)) & 0xff) == 0xff) {
             compatibilityScore = Daycare_GetCompatibilityScore(daycare);
             rand = LCRNG_Next();
@@ -1049,19 +1049,19 @@ u16 ov5_021E73A0(Party *param0, int param1, StringTemplate *param2)
     return Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
 }
 
-u8 ov5_021E73C8(Daycare *daycare)
+u8 Daycare_GetState(Daycare *daycare)
 {
-    u8 v0;
+    u8 numMons;
 
     if (Daycare_HasEgg(daycare)) {
-        return 1;
+        return DAYCARE_EGG_WAITING;
     }
 
-    if ((v0 = Daycare_GetMonCount(daycare))) {
-        return v0 + 1;
+    if ((numMons = Daycare_CountMons(daycare))) {
+        return numMons + 1; // DAYCARE_ONE_MON or DAYCARE_TWO_MONS
     }
 
-    return 0;
+    return DAYCARE_NO_MONS;
 }
 
 static u8 DaycareCompatibilityScoreToLevel(u32 compatibility)
@@ -1187,7 +1187,7 @@ void Egg_CreateHatchedMon(Pokemon *egg, int heapID)
     u8 isEgg, hasNickname;
     u8 ball, metLevel;
     u16 species;
-    u16 nickname[MON_NAME_LEN + 1];
+    charcode_t nickname[MON_NAME_LEN + 1];
 
     isEgg = 70; // wtf?
     hasNickname = FALSE;
