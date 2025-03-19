@@ -27,9 +27,9 @@ typedef struct {
     int dummy28[2];
 } MapPropFile;
 
-MapPropManager *MapPropManager_New(const u8 heapId)
+MapPropManager *MapPropManager_New(const u8 heapID)
 {
-    MapPropManager *mapPropManager = Heap_AllocFromHeap(heapId, sizeof(MapPropManager));
+    MapPropManager *mapPropManager = Heap_AllocFromHeap(heapID, sizeof(MapPropManager));
     MapPropManager_Init(mapPropManager);
 
     return mapPropManager;
