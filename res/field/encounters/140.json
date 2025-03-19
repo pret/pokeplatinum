@@ -2,71 +2,71 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 3,
-            "species": "SPECIES_MAREEP"
-        },
-        {
-            "level": 3,
-            "species": "SPECIES_SENTRET"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_PIDGEY"
-        },
-        {
-            "level": 3,
-            "species": "SPECIES_LEDYBA"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_MAREEP"
-        },
-        {
-            "level": 3,
-            "species": "SPECIES_SENTRET"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_PIDGEY"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_SENTRET"
+            "level": 2,
+            "species": "SPECIES_STARLY"
         },
         {
             "level": 2,
-            "species": "SPECIES_SUNKERN"
+            "species": "SPECIES_BIDOOF"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_STARLY"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_KRICKETOT"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_STARLY"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_BIDOOF"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_STARLY"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_BIDOOF"
         },
         {
             "level": 2,
-            "species": "SPECIES_SENTRET"
+            "species": "SPECIES_STARLY"
         },
         {
             "level": 2,
-            "species": "SPECIES_PIDGEY"
+            "species": "SPECIES_BIDOOF"
         },
         {
             "level": 2,
-            "species": "SPECIES_SUNKERN"
+            "species": "SPECIES_STARLY"
+        },
+        {
+            "level": 2,
+            "species": "SPECIES_BIDOOF"
         }
     ],
     "swarms": [
-        "SPECIES_ZIGZAGOON",
-        "SPECIES_ZIGZAGOON"
+        "SPECIES_DODUO",
+        "SPECIES_DODUO"
     ],
     "morning": [
-        "SPECIES_PIDGEY",
-        "SPECIES_SENTRET"
+        "SPECIES_STARLY",
+        "SPECIES_BIDOOF"
     ],
     "night": [
-        "SPECIES_SPINARAK",
-        "SPECIES_HOOTHOOT"
+        "SPECIES_KRICKETOT",
+        "SPECIES_BIDOOF"
     ],
     "radar": [
-        "SPECIES_SENTRET",
-        "SPECIES_SENTRET",
-        "SPECIES_SENTRET",
-        "SPECIES_SENTRET"
+        "SPECIES_NIDORAN_M",
+        "SPECIES_NIDORAN_F",
+        "SPECIES_NIDORAN_M",
+        "SPECIES_NIDORAN_F"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -205,9 +205,5 @@
             "level_min": 0,
             "species": "SPECIES_NONE"
         }
-    ],
-    "map_category": {
-        "map_type": "field",
-        "map_number": 13
-    }
+    ]
 }

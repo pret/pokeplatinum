@@ -141,9 +141,9 @@ _01AE:
     SetVar 0x8004, 0
     ScrCmd_198 0x8004, 0x800C
     SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0x183, _0219
-    GoToIfEq 0x8008, 0x186, _0219
-    GoToIfEq 0x8008, 0x189, _0219
+    GoToIfEq 0x8008, 0x98, _0219
+    GoToIfEq 0x8008, 0x9B, _0219
+    GoToIfEq 0x8008, 0x9E, _0219
     GoTo _0222
 
 _0219:
