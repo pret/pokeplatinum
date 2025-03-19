@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_MAP_MATRIX_H
 #define POKEPLATINUM_MAP_MATRIX_H
 
-#include "constants/map_matrix.h"
+#include "constants/field/map_matrix.h"
 
 typedef struct MapMatrixData {
     u8 height;

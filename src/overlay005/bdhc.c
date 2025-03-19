@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/bdhc.h"
+#include "constants/field/bdhc.h"
 #include "constants/heap.h"
 
 #include "fx_util.h"
