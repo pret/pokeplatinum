@@ -54,4 +54,8 @@
 #define DEOXYS_FORM_SPEED   3
 #define DEOXYS_FORM_COUNT   4
 
+#define SHAYMIN_FORM_LAND  0
+#define SHAYMIN_FORM_SKY   1
+#define SHAYMIN_FORM_COUNT 2
+
 #endif

@@ -569,8 +569,8 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
             if (species == SPECIES_SHAYMIN) {
                 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-                if (form != 0) {
-                    Pokemon_SetShayminForm(mon, 0);
+                if (form != SHAYMIN_FORM_LAND) {
+                    Pokemon_SetShayminForm(mon, SHAYMIN_FORM_LAND);
                 }
             }
         }

@@ -83,7 +83,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
             v0->unk_10 = 0;
             break;
         case SPECIES_SHAYMIN:
-            Pokemon_SetShayminForm(v1, 1);
+            Pokemon_SetShayminForm(v1, SHAYMIN_FORM_SKY);
             v0->unk_08 = 35;
             v0->unk_10 = 1;
             break;

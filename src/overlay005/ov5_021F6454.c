@@ -544,7 +544,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
                 Pokemon_SetRotomForm(v0, 0, 0);
                 break;
             case SPECIES_SHAYMIN:
-                Pokemon_SetShayminForm(v0, 0);
+                Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
                 break;
             }
         }
@@ -601,7 +601,7 @@ BOOL ScrCmd_31E(ScriptContext *param0)
             Pokemon_SetRotomForm(v0, 0, 0);
             break;
         case SPECIES_SHAYMIN:
-            Pokemon_SetShayminForm(v0, 0);
+            Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
             break;
         }
     }

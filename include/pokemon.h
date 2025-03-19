@@ -3,6 +3,7 @@
 
 #include <nitro/rtc.h>
 
+#include "constants/forms.h"
 #include "constants/pokemon.h"
 #include "constants/sound.h"
 
