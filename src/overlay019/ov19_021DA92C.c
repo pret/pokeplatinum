@@ -57,7 +57,7 @@ BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *par
 {
     int v0;
 
-    if (ov19_021D5E08(param2) == 4) {
+    if (ov19_GetBoxMode(param2) == PC_MODE_COMPARE) {
         param0->unk_00 = 0;
         return 1;
     }
@@ -293,7 +293,7 @@ static void ov19_021DACF8(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        if (ov19_021D5E4C(v1->unk_10) == 0) {
+        if (ov19_021D5E4C(v1->unk_10) == FALSE) {
             break;
         }
 
