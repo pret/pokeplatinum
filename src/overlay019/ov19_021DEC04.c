@@ -85,7 +85,7 @@ static void ov19_021DF930(SysTask *param0, void *param1);
 
 BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, MessageLoader *param5, NARC *param6)
 {
-    if (ov19_021D5E08(param2) != 4) {
+    if (ov19_GetBoxMode(param2) != PC_MODE_COMPARE) {
         *param0 = NULL;
         return 1;
     } else {
@@ -384,14 +384,14 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int param1)
     };
 
     const PCCompareMon *compareMon;
-    BOOL v2, v3, v4;
+    BOOL isMonUnderCursor, v3, v4;
 
     compareMon = GetCompareMonFrom(param0->unk_08, param1);
-    v2 = ov19_021D5E34(param0->unk_08);
+    isMonUnderCursor = ov19_IsMonUnderCursor(param0->unk_08);
     v3 = (ov19_021D5F9C(param0->unk_08) == param1);
     v4 = ov19_021D5FB8(param0->unk_08, param1);
 
-    if ((((v2 == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) && (compareMon->isEgg == FALSE)) {
+    if ((((isMonUnderCursor == TRUE) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) && (compareMon->isEgg == FALSE)) {
         int i;
         VecFx32 v6;
         const u16 *contestStat = &compareMon->cool;
@@ -502,17 +502,17 @@ static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int param1)
 {
     Window *v0;
     const PCCompareMon *compareMon;
-    BOOL v2, v3, v4;
+    BOOL isMonUnderCursor, v3, v4;
 
     v0 = &(param0->unk_78[3 + param1]);
     compareMon = GetCompareMonFrom(param0->unk_08, param1);
-    v2 = ov19_021D5E34(param0->unk_08);
+    isMonUnderCursor = ov19_IsMonUnderCursor(param0->unk_08);
     v3 = ov19_021D5F9C(param0->unk_08) == param1;
     v4 = ov19_021D5FB8(param0->unk_08, param1);
 
     Window_FillTilemap(v0, 0);
 
-    if (((v2 == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) {
+    if (((isMonUnderCursor == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) {
         int v5;
 
         if (compareMon->isEgg == FALSE) {
@@ -540,17 +540,17 @@ static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int param1)
 {
     Window *v0;
     const PCCompareMon *compareMon;
-    BOOL v2, v3, v4;
+    BOOL isMonUnderCursor, v3, v4;
 
     v0 = &(param0->unk_78[5 + param1]);
     compareMon = GetCompareMonFrom(param0->unk_08, param1);
-    v2 = ov19_021D5E34(param0->unk_08);
+    isMonUnderCursor = ov19_IsMonUnderCursor(param0->unk_08);
     v3 = (ov19_021D5F9C(param0->unk_08) == param1);
     v4 = ov19_021D5FB8(param0->unk_08, param1);
 
     Window_FillTilemap(v0, 0);
 
-    if (((v2 == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) {
+    if (((isMonUnderCursor == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) {
         int i;
 
         if (compareMon->isEgg == FALSE) {
@@ -671,7 +671,7 @@ static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0)
     BoxPokemon *v3 = compareMon->mon;
     NNSG2dCharacterData *v4;
 
-    if (ov19_021D5E34(param0->unk_08)) {
+    if (ov19_IsMonUnderCursor(param0->unk_08)) {
         u32 v5 = 4 + PokeIconPaletteIndex(compareMon->species, compareMon->form, compareMon->isEgg);
 
         ov19_021DA744(param0->unk_14, param0->unk_E8, BoxPokemon_IconSpriteIndex(v3), sizeof(param0->unk_E8));
@@ -696,7 +696,7 @@ static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int param1)
 
     Window_FillTilemap(v0, 0);
 
-    if (ov19_021D5E34(param0->unk_08)) {
+    if (ov19_IsMonUnderCursor(param0->unk_08)) {
         const PCCompareMon *compareMon = GetCompareMonFrom(param0->unk_08, param1);
         Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, compareMon->monName, inline_ov19_021DF3AC(v0, 0, compareMon->monName), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     }
