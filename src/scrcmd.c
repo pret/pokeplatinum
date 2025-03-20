@@ -4267,7 +4267,7 @@ static BOOL ScrCmd_0AB(ScriptContext *ctx)
     UnkStruct_02042434 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02042434));
 
     v1->unk_00 = ctx->fieldSystem->saveData;
-    v1->unk_04 = ScriptContext_ReadByte(ctx);
+    v1->boxMode = ScriptContext_ReadByte(ctx);
     *v0 = v1;
 
     sub_0203D754(ctx->fieldSystem, *v0);
