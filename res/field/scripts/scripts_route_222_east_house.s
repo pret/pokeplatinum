@@ -15,7 +15,7 @@ _0010:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_1C0 0x800C, 223
+    PartyHasSpecies 0x800C, SPECIES_REMORAID
     GoToIfEq 0x800C, 0, _00CF
     Message 1
     CloseMessage

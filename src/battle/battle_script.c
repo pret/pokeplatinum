@@ -10963,7 +10963,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                             Pokemon_SetValue(v3, MON_DATA_MOVE1_CUR_PP + v27, &v28);
                         }
 
-                        if (Pokemon_SetGiratinaForm(v3) != -1) {
+                        if (Pokemon_SetGiratinaFormByHeldItem(v3) != -1) {
                             ov16_0223F9A0(v2->battleSys, v1);
                         }
 

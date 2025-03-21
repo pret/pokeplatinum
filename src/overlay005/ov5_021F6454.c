@@ -538,13 +538,13 @@ BOOL ScrCmd_31D(ScriptContext *param0)
 
             switch (v5) {
             case SPECIES_GIRATINA:
-                Pokemon_SetGiratinaForm(v0);
+                Pokemon_SetGiratinaFormByHeldItem(v0);
                 break;
             case SPECIES_ROTOM:
-                Pokemon_SetRotomForm(v0, 0, 0);
+                Pokemon_SetRotomForm(v0, ROTOM_FORM_NORMAL, 0);
                 break;
             case SPECIES_SHAYMIN:
-                Pokemon_SetShayminForm(v0, 0);
+                Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
                 break;
             }
         }
@@ -595,13 +595,13 @@ BOOL ScrCmd_31E(ScriptContext *param0)
 
         switch (v2) {
         case SPECIES_GIRATINA:
-            Pokemon_SetGiratinaForm(v0);
+            Pokemon_SetGiratinaFormByHeldItem(v0);
             break;
         case SPECIES_ROTOM:
-            Pokemon_SetRotomForm(v0, 0, 0);
+            Pokemon_SetRotomForm(v0, ROTOM_FORM_NORMAL, 0);
             break;
         case SPECIES_SHAYMIN:
-            Pokemon_SetShayminForm(v0, 0);
+            Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
             break;
         }
     }
@@ -656,22 +656,22 @@ BOOL ScrCmd_303(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_304(ScriptContext *param0)
+BOOL ScrCmd_304(ScriptContext *ctx)
 {
     u32 v0, v1;
     u16 v2, v3;
     Pokemon *v4;
     Party *v5;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v7 = ScriptContext_GetVar(param0);
-    u16 v8 = ScriptContext_GetVar(param0);
-    u16 v9 = ScriptContext_GetVar(param0);
-    u16 v10 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 v7 = ScriptContext_GetVar(ctx);
+    u16 v8 = ScriptContext_GetVar(ctx);
+    u16 v9 = ScriptContext_GetVar(ctx);
+    u16 form = ScriptContext_GetVar(ctx);
 
     v5 = Party_GetFromSavedata(fieldSystem->saveData);
     v4 = Party_GetPokemonBySlotIndex(v5, v7);
 
-    Pokemon_SetRotomForm(v4, v10, v8);
+    Pokemon_SetRotomForm(v4, form, v8);
     Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), v4);
 
     return 0;

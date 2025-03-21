@@ -123,7 +123,7 @@ static void ov5_021E62C4(Party *param0, int param1, UnkStruct_02026218 *param2, 
     }
 
     BoxPokemon_FromPokemon(v1, v5);
-    BoxPokemon_SetShayminForm(v5, 0);
+    BoxPokemon_SetShayminForm(v5, SHAYMIN_FORM_LAND);
     sub_02026258(param2, 0);
     Party_RemovePokemonBySlotIndex(param0, param1);
 

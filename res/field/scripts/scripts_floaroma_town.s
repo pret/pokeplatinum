@@ -127,9 +127,9 @@ _0141:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_31C 0x800C, 0x1EC
+    ScrCmd_31C 0x800C, SPECIES_SHAYMIN
     GoToIfEq 0x800C, 0xFF, _019D
-    ScrCmd_1C0 0x800C, 0x1EC
+    PartyHasSpecies 0x800C, SPECIES_SHAYMIN
     GoToIfEq 0x800C, 0, _019D
     CheckItem ITEM_GRACIDEA, 1, 0x800C
     GoToIfNe 0x800C, 0, _01A8

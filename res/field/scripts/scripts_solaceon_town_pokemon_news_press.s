@@ -42,7 +42,7 @@ _0081:
     Message 3
     GetNewsPressDeadline 0x800C
     GoToIfEq 0x800C, 0, _029F
-    ScrCmd_1C0 0x800C, 0x40E5
+    PartyHasSpecies 0x800C, 0x40E5
     GoToIfEq 0x800C, 0, _0283
     GoTo _00AE
 

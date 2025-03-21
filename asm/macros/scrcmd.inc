@@ -895,7 +895,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_095 arg0, arg1
+    .macro GetPartyFormByID arg0, arg1
     .short 149
     .short \arg0
     .short \arg1
@@ -2449,7 +2449,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1C0 destVarID, species
+    // Saves TRUE or FALSE into a var depending if the player
+    // has the specified Pokémon in their party.
+    .macro PartyHasSpecies destVarID, species
     .short 448
     .short \destVarID
     .short \species
@@ -3364,15 +3366,17 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_262 arg0, arg1
+    // Like PartyHasSpecies, but args are reversed and it checks the species inside eggs.
+    // Since it's only used for Deoxys, no bugs manifest on vanilla.
+    .macro PartyHasSpecies2 species, destVarID
     .short 610
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_263 arg0
+    .macro ChangeDeoxysForm form
     .short 611
-    .short \arg0
+    .short \form
     .endm
 
     .macro ScrCmd_264 arg0
@@ -4044,10 +4048,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2DD arg0, arg1
+    .macro GetPartyIDWithSpecies destVarID, species
     .short 733
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \species
     .endm
 
     .macro ScrCmd_2DE arg0, arg1, arg2, arg3, arg4
