@@ -418,7 +418,7 @@ int ov68_0225C8A8(OverlayManager *param0, int *param1)
 
     OverlayManager_FreeData(param0);
     Heap_Destroy(122);
-    sub_020057BC(0);
+    Sound_StopAllEffects(0);
 
     return 1;
 }

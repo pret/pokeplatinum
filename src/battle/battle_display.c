@@ -993,7 +993,7 @@ void ov16_0225DC4C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     }
 
     ClearCommand(battleSys, param1->battler, param2->unk_00);
-    sub_02005728(param2->unk_04, v0);
+    Sound_PlayPannedEffect(param2->unk_04, v0);
 }
 
 void ov16_0225DC7C(BattleSystem *battleSys, BattlerData *param1)
@@ -1438,13 +1438,13 @@ void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 
     switch (param2->unk_01) {
     case 0:
-        sub_02005728(1790, v0);
+        Sound_PlayPannedEffect(1790, v0);
         break;
     case 2:
-        sub_02005728(1788, v0);
+        Sound_PlayPannedEffect(1788, v0);
         break;
     case 1:
-        sub_02005728(1789, v0);
+        Sound_PlayPannedEffect(1789, v0);
         break;
     }
 
@@ -1771,9 +1771,9 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
             ov12_022363B4(v0->unk_08);
 
             if (v0->unk_84 == 2) {
-                sub_02005728(1798, 117);
+                Sound_PlayPannedEffect(1798, 117);
             } else {
-                sub_02005728(1798, -117);
+                Sound_PlayPannedEffect(1798, -117);
             }
 
             if (v0->unk_10) {
@@ -1970,9 +1970,9 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
             ov12_022363B4(v0->unk_08);
 
             if (v0->unk_84 == 2) {
-                sub_02005728(1798, 117);
+                Sound_PlayPannedEffect(1798, 117);
             } else {
-                sub_02005728(1798, -117);
+                Sound_PlayPannedEffect(1798, -117);
             }
 
             v0->unk_83++;
@@ -2190,12 +2190,12 @@ static void ov16_0225F764(SysTask *param0, void *param1)
         case 0:
         case 2:
         case 4:
-            sub_02005728(1798, -117);
+            Sound_PlayPannedEffect(1798, -117);
             break;
         case 1:
         case 3:
         case 5:
-            sub_02005728(1798, 117);
+            Sound_PlayPannedEffect(1798, 117);
             break;
         }
         break;
@@ -3670,14 +3670,14 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 17;
                             } else {
-                                sub_02005728(1516, -117);
+                                Sound_PlayPannedEffect(1516, -117);
                                 v0->unk_12 = 21;
                             }
                         } else {
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 25;
                             } else {
-                                sub_02005728(1516, -117);
+                                Sound_PlayPannedEffect(1516, -117);
                                 v0->unk_12 = 29;
                             }
                         }
@@ -3690,7 +3690,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                         if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                             v0->unk_12 = 17;
                         } else {
-                            sub_02005728(1516, -117);
+                            Sound_PlayPannedEffect(1516, -117);
                             v0->unk_12 = 21;
                         }
                     } else {
@@ -3705,14 +3705,14 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 13;
                             } else {
-                                sub_02005728(1516, -117);
+                                Sound_PlayPannedEffect(1516, -117);
                                 v0->unk_12 = 15;
                             }
                         } else {
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 11;
                             } else {
-                                sub_02005728(1516, -117);
+                                Sound_PlayPannedEffect(1516, -117);
                                 v0->unk_12 = 15;
                             }
                         }
@@ -4779,9 +4779,9 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
         break;
     case 6:
         if (v0->unk_67 == 2) {
-            sub_02005728(1795, 117);
+            Sound_PlayPannedEffect(1795, 117);
         } else {
-            sub_02005728(1795, -117);
+            Sound_PlayPannedEffect(1795, -117);
         }
 
         if (sub_020080C0(v0->unk_08, 41) > 0) {

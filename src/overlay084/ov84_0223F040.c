@@ -589,7 +589,7 @@ static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1)
 {
     switch (param1) {
     case 1:
-        return sub_020057E0();
+        return Sound_IsAnyEffectPlaying();
     case 2:
         return sub_020061E4();
     case 3:

@@ -778,7 +778,7 @@ static void ov70_02269508(const UnkStruct_ov70_0226949C *param0, fx32 *param1)
 static void ov70_02269510(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_02269800 *param1, u32 param2)
 {
     if (param1->unk_08 == ov70_0225CCAC(param0->unk_04)) {
-        sub_02005770(param2, 5);
+        Sound_PlayEffectOnPlayer(param2, 5);
     } else {
         if (ov70_0225CE70(param1->unk_08) == 0) {
             Sound_PlayEffect(param2);
