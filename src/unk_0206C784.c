@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/map_prop.h"
+#include "constants/field/map_prop.h"
 
 #include "struct_defs/struct_02055130.h"
 #include "struct_defs/struct_0206C8D4.h"
