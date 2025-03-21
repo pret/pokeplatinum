@@ -21,6 +21,7 @@
 #include "overlay005/const_ov5_021FF6B8.h"
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
+#include "overlay005/dynamic_terrain_height.h"
 #include "overlay005/hblank_system.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/land_data.h"
@@ -39,7 +40,6 @@
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021EE75C.h"
-#include "overlay005/ov5_021EF250.h"
 #include "overlay005/ov5_021EF4BC.h"
 #include "overlay005/ov5_021F0824.h"
 #include "overlay005/ov5_021F10E8.h"
@@ -275,7 +275,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
         fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
         fieldSystem->location->faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-        ov5_021EF300(fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_Free(fieldSystem->dynamicTerrainHeightMan);
 
         {
             GF_ASSERT(fieldSystem->mapPropAnimMan != 0);
@@ -810,7 +810,7 @@ static void ov5_021D17EC(FieldSystem *fieldSystem)
         LandDataManager_SetSkipMapProps(fieldSystem->landDataMan, TRUE);
     }
 
-    fieldSystem->unk_A0 = ov5_021EF28C(8, HEAP_ID_FIELD);
+    fieldSystem->dynamicTerrainHeightMan = DynamicTerrainHeightManager_New(8, HEAP_ID_FIELD);
     fieldSystem->unk_A8 = HoneyTree_ShakeDataInit();
 
     if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_OVERWORLD) {

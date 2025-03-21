@@ -402,7 +402,7 @@ pokeplatinum_c = files(
     'overlay005/ov5_021EE7D4.c',
     'overlay005/loaded_map_buffers.c',
     'overlay005/bdhc.c',
-    'overlay005/ov5_021EF250.c',
+    'overlay005/dynamic_terrain_height.c',
     'overlay005/hblank_system.c',
     'overlay005/ov5_021EF4BC.c',
     'overlay005/area_data.c',
