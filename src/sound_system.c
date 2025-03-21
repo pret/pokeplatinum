@@ -70,7 +70,7 @@ void SoundSystem_Update()
             soundSys->unk_BCDD0[i]--;
 
             if (soundSys->unk_BCDD0[i] == 0) {
-                Sound_PlayPokemonCry(soundSys->unk_BCDAC[i], soundSys->unk_BCDCC[i], soundSys->unk_BCDB4[i], soundSys->unk_BCDBC[i], soundSys->unk_BCDC4[i], 0);
+                Sound_PlayPokemonCryEx(soundSys->unk_BCDAC[i], soundSys->unk_BCDCC[i], soundSys->unk_BCDB4[i], soundSys->unk_BCDBC[i], soundSys->unk_BCDC4[i], 0);
             }
         }
     }
@@ -229,7 +229,7 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->unk_BCD8C;
     case 35:
         return &soundSys->unk_BCD94;
-    case 36:
+    case SOUND_SYSTEM_PARAM_CHATOT_CRY:
         return &soundSys->chatotCry;
     case 37:
         return &soundSys->unk_BCD9C[0];

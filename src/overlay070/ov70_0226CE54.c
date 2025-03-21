@@ -294,10 +294,10 @@ static void ov70_0226D27C(BOOL param0, BOOL param1, BOOL param2, u32 species)
 {
     if (param0) {
         if (param1) {
-            sub_02005844(species, 0);
+            Sound_PlayPokemonCry(species, 0);
         }
     } else {
-        sub_02005844(species, 0);
+        Sound_PlayPokemonCry(species, 0);
     }
 }
 

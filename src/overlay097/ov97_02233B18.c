@@ -1266,7 +1266,7 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMon
     ov97_02233DD0(param0, &v4, 0x2);
 
     Strbuf_Free(v8);
-    sub_02005844(species, 0);
+    Sound_PlayPokemonCry(species, 0);
 }
 
 static void ov97_02234CC4(UnkStruct_ov97_02234A2C *param0, int param1, int param2, int *param3)

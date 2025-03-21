@@ -127,7 +127,7 @@ BOOL ov100_021D14A8(void *param0)
         }
 
         if (v0->unk_04 == v2[v0->unk_08]) {
-            Sound_PlayPokemonCry(POKECRY_NORMAL, v4[v0->unk_08], 0, 100, HEAP_ID_111, 0);
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, v4[v0->unk_08], 0, 100, HEAP_ID_111, 0);
         }
 
         if ((++v0->unk_04) >= v1[v0->unk_08]) {

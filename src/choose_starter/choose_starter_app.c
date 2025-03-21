@@ -1244,7 +1244,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
         sub_02007DEC(param0->sprites[param0->cursorPosition], 6, 0);
 
         if (ov78_021D26A4(param0)) {
-            sub_02005844(GetSelectedSpecies(param0->cursorPosition), 0);
+            Sound_PlayPokemonCry(GetSelectedSpecies(param0->cursorPosition), 0);
 
             param0->unk_04++;
         }

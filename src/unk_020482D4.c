@@ -148,7 +148,7 @@ BOOL ScrCmd_PlayCry(ScriptContext *ctx)
     u16 species = ScriptContext_GetVar(ctx);
     u16 unused = ScriptContext_GetVar(ctx);
 
-    sub_02005844(species, 0);
+    Sound_PlayPokemonCry(species, 0);
 
     return FALSE;
 }
