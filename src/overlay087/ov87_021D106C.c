@@ -201,7 +201,7 @@ static BOOL ov87_021D12C0(UnkStruct_ov87_021D106C *param0, int *param1)
             Sprite_SetPriority(param0->unk_1C4[v1], 0);
             Sound_FlagDefaultChatotCry(TRUE);
 
-            sub_02005844(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
+            Sound_PlayPokemonCry(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
         } else {
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
             Sprite_SetPriority(param0->unk_1C4[v1], v1 + 1);
@@ -550,7 +550,7 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
 
         if (v3 == v2->unk_18) {
             Sound_FlagDefaultChatotCry(TRUE);
-            sub_02005844(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
+            Sound_PlayPokemonCry(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
         } else {
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_XLU);

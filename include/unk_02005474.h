@@ -37,11 +37,11 @@ BOOL Sound_IsAnyEffectPlaying();
 // tracks is for example (SOUND_EFFECT_TRACK(10) | SOUND_EFFECT_TRACK(2)) or SOUND_EFFECT_TRACK_ALL
 void Sound_PanEffect(u16 seqID, u16 tracks, int pan);
 void Sound_PanAllEffects(int param0);
-BOOL sub_02005844(u16 species, u8 form);
+BOOL Sound_PlayPokemonCry(u16 species, u8 form);
 BOOL sub_0200590C(u16 species, u8 delay, u8 form);
 void sub_0200592C(int param0);
 int sub_0200598C(void);
-BOOL Sound_PlayPokemonCry(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 form);
+BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 form);
 void Sound_PlayDelayedPokemonCry(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 delay, u8 form);
 void sub_0200605C(void);
 BOOL sub_02006150(u16 param0);

@@ -397,7 +397,7 @@ static void ov62_02239F98(u32 param0, u32 param1, void *param2)
         ov62_0223ADC0(v0, v1->unk_1B0);
 
         if ((v1->unk_04.unk_28[v1->unk_1B0] != 0) && (ov62_0223ADB0(v1->unk_04.unk_154, (1 << v1->unk_1B0)) != 1)) {
-            sub_02005844(v1->unk_04.unk_28[v1->unk_1B0], v1->unk_04.unk_158[v1->unk_1B0]);
+            Sound_PlayPokemonCry(v1->unk_04.unk_28[v1->unk_1B0], v1->unk_04.unk_158[v1->unk_1B0]);
         }
         break;
     case 1:
@@ -1971,7 +1971,7 @@ static BOOL ov62_0223C138(UnkStruct_0208C06C *param0)
             sub_0208BA08(param0->unk_6F0, 12, 12);
 
             if ((v0->unk_04.unk_28[v0->unk_1B0] != 0) && (ov62_0223ADB0(v0->unk_04.unk_154, (1 << v0->unk_1B0)) != 1)) {
-                sub_02005844(v0->unk_04.unk_28[v0->unk_1B0], v0->unk_04.unk_158[v0->unk_1B0]);
+                Sound_PlayPokemonCry(v0->unk_04.unk_28[v0->unk_1B0], v0->unk_04.unk_158[v0->unk_1B0]);
             }
 
             ov62_0222FB60(param0, 10);

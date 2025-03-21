@@ -1395,7 +1395,7 @@ static BOOL ov73_021D200C(UnkStruct_ov73_021D1058 *param0, int *param1)
         }
     } break;
     case 6:
-        sub_02005844(SPECIES_BUNEARY, 0);
+        Sound_PlayPokemonCry(SPECIES_BUNEARY, 0);
         v0 = 1;
         break;
     }

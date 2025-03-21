@@ -245,7 +245,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
         if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_START) == PAD_BUTTON_START)) {
             v0->unk_4E8 = 1;
             Sound_FadeOutBGM(0, 60);
-            sub_02005844(SPECIES_GIRATINA, 1);
+            Sound_PlayPokemonCry(SPECIES_GIRATINA, 1);
             ov77_021D1D48(v0->unk_04, v0->heapID);
             *param1 = 4;
             break;

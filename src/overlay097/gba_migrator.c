@@ -1308,7 +1308,7 @@ static void ov97_02234B0C(GBAMigrator *migrator, BoxPokemonGBA *boxMonGBA)
     ov97_02233DD0(migrator, &v4, 0x2);
 
     Strbuf_Free(strBuf);
-    sub_02005844(species, 0);
+    Sound_PlayPokemonCry(species, 0);
 }
 
 static void ov97_02234CC4(GBAMigrator *migrator, int param1, int param2, int *state)

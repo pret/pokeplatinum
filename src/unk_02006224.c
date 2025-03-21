@@ -176,7 +176,7 @@ BOOL Sound_PlayChatotCry(ChatotCry *param0, u32 param1, int volume, int pan)
 
     if (v0 == FALSE) {
         Sound_FlagDefaultChatotCry(TRUE);
-        v0 = Sound_PlayPokemonCry(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELDMAP, 0);
+        v0 = Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELDMAP, 0);
     }
 
     return v0;

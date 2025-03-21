@@ -1257,7 +1257,7 @@ static void ov21_021E5DE8(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D
 {
     param0->unk_2C = 1;
 
-    Sound_PlayPokemonCry(POKECRY_POKEDEX_CHORUS, species, 0, 127, 0x1ff, 0);
+    Sound_PlayPokemonCryEx(POKECRY_POKEDEX_CHORUS, species, 0, 127, 0x1ff, 0);
     ov21_021E5F00(param0);
 }
 

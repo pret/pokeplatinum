@@ -680,7 +680,7 @@ static void ov21_021E9828(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        v1 = Sound_PlayPokemonCry(POKECRY_POKEDEX, v0->unk_220, 0x1ff, 0x1ff, 0x1ff, 0);
+        v1 = Sound_PlayPokemonCryEx(POKECRY_POKEDEX, v0->unk_220, 0x1ff, 0x1ff, 0x1ff, 0);
         GF_ASSERT(v1);
         v0->unk_21C++;
         break;

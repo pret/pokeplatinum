@@ -1210,7 +1210,7 @@ static void ov86_0223C398(SysTask *param0, void *param1)
     int v1;
 
     if (v0->unk_6C) {
-        sub_02005844(v0->unk_70, v0->unk_74);
+        Sound_PlayPokemonCry(v0->unk_70, v0->unk_74);
         v0->unk_6C = 0;
     }
 

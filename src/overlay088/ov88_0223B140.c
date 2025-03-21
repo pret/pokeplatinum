@@ -1512,7 +1512,7 @@ static void ov88_0223CE74(UnkStruct_02095E80 *param0)
         if (species == SPECIES_CHATOT) {
             Sound_PlayChatotCry(SaveData_GetChatotCry(param0->unk_04), 0, 100, 0);
         } else {
-            sub_02005844(species, form);
+            Sound_PlayPokemonCry(species, form);
         }
 
         Sprite_SetAnimateFlag(param0->unk_464[v2], 1);

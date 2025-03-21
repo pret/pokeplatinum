@@ -63,6 +63,8 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_HEAP_STATE_BGM,
 
     SOUND_SYSTEM_PARAM_FIELD_BGM = 32,
+
+    SOUND_SYSTEM_PARAM_CHATOT_CRY = 36,
 };
 
 typedef struct SoundSystem {
