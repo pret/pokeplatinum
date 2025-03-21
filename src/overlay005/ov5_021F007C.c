@@ -20,8 +20,8 @@
 #include "palette.h"
 #include "player_avatar.h"
 #include "script_manager.h"
+#include "terrain_collision_manager.h"
 #include "unk_02005474.h"
-#include "unk_02054D00.h"
 
 typedef struct {
     int unk_00;
@@ -475,7 +475,7 @@ BOOL ov5_021F0488(FieldTask *param0)
 
                     v4 = Player_GetXPos(fieldSystem->playerAvatar);
                     v5 = Player_GetZPos(fieldSystem->playerAvatar);
-                    v3 = (u8)FieldSystem_GetTileBehavior(fieldSystem, v4, v5);
+                    v3 = (u8)TerrainCollisionManager_GetTileBehavior(fieldSystem, v4, v5);
 
                     if (WildEncounters_TileHasEncounterRate(fieldSystem, v3)) {
                         v1->unk_0C = 6;

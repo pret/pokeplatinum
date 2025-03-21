@@ -13,8 +13,8 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_matrix.h"
+#include "terrain_collision_manager.h"
 #include "unk_02005474.h"
-#include "unk_02054D00.h"
 
 typedef struct {
     VecFx32 unk_00;
@@ -43,7 +43,7 @@ void ov6_02246C24(FieldSystem *fieldSystem, const u8 param1)
     int v2;
     int v3 = 123;
 
-    v0 = sub_020552B4(fieldSystem, v3, &v1, &v2);
+    v0 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, v3, &v1, &v2);
 
     if (v0) {
         UnkStruct_ov6_02246C24 *v4 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02246C24));
@@ -56,7 +56,7 @@ void ov6_02246C24(FieldSystem *fieldSystem, const u8 param1)
         {
             VecFx32 v5;
 
-            sub_020553A4(v2, MapMatrix_GetWidth(fieldSystem->mapMatrix), &v5);
+            TerrainCollisionManager_GetMapAbsoluteOrigin(v2, MapMatrix_GetWidth(fieldSystem->mapMatrix), &v5);
 
             v4->unk_00 = MapProp_GetPosition(v1);
             v4->unk_00.x += v5.x;
@@ -91,7 +91,7 @@ static BOOL ov6_02246C9C(FieldTask *param0)
 
         MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 0x10, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, NULL, v2, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
 
-        v8 = sub_020552B4(fieldSystem, 124, &v6, NULL);
+        v8 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, 124, &v6, NULL);
         GF_ASSERT(v8);
         v7 = MapProp_GetRenderObj(v6);
 

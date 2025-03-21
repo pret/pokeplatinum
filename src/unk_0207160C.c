@@ -17,9 +17,9 @@
 #include "heap.h"
 #include "player_avatar.h"
 #include "savedata_misc.h"
+#include "terrain_collision_manager.h"
 #include "unk_02005474.h"
 #include "unk_02027F50.h"
-#include "unk_02054D00.h"
 
 typedef struct {
     fx32 unk_00[2];
@@ -141,7 +141,7 @@ void sub_0207160C(FieldSystem *fieldSystem)
     } else {
         const int v7[2] = { 258, 502 };
 
-        v0 = sub_02055324(fieldSystem, v7, 2, &v1, NULL);
+        v0 = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, v7, 2, &v1, NULL);
         GF_ASSERT(v0);
     }
 
@@ -333,7 +333,7 @@ static BOOL sub_020718D8(FieldTask *taskMan)
             v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM);
         } else {
             const int v3[2] = { 258, 502 };
-            BOOL v4 = sub_02055324(fieldSystem, v3, 2, &v0, NULL);
+            BOOL v4 = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, v3, 2, &v0, NULL);
 
             GF_ASSERT(v4);
         }
@@ -394,7 +394,7 @@ static BOOL sub_020719D8(FieldTask *taskMan)
             v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM);
         } else {
             const int v3[2] = { 258, 502 };
-            BOOL v4 = sub_02055324(fieldSystem, v3, 2, &v0, NULL);
+            BOOL v4 = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, v3, 2, &v0, NULL);
 
             GF_ASSERT(v4);
         }
