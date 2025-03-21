@@ -7,10 +7,10 @@
 
 #include "field/field_system.h"
 #include "overlay005/bdhc.h"
+#include "overlay005/dynamic_terrain_height.h"
 #include "overlay005/land_data.h"
 #include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_prop.h"
-#include "overlay005/ov5_021EF250.h"
 
 #include "map_matrix.h"
 #include "map_tile_behavior.h"
@@ -83,7 +83,7 @@ static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1
         v20 = v19 * 32;
         v3 = (param2 - v17.x) / (16 * FX32_ONE);
         v4 = (param3 - v17.z) / (16 * FX32_ONE);
-        v0 = ov5_021EF314(v3, v4, fieldSystem->unk_A0, &v14);
+        v0 = DynamicTerrainHeightManager_GetPlateIndexOfTile(v3, v4, fieldSystem->dynamicTerrainHeightMan, &v14);
         v5 = v3 / 32;
         v6 = v4 / 32;
         v7 = v5 + v6 * v19;
@@ -110,7 +110,7 @@ static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1
     if (v0) {
         fx32 v22;
 
-        v22 = ov5_021EF35C(v14, fieldSystem->unk_A0);
+        v22 = DynamicTerrainHeightManager_GetHeight(v14, fieldSystem->dynamicTerrainHeightMan);
 
         if (v1) {
             if (v22 <= v11.y) {

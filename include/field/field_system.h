@@ -15,6 +15,7 @@
 #include "field/field_system_sub2_decl.h"
 #include "overlay005/area_data.h"
 #include "overlay005/area_light.h"
+#include "overlay005/dynamic_terrain_height.h"
 #include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
@@ -24,7 +25,6 @@
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay005/struct_ov5_021EB0E0_decl.h"
-#include "overlay005/struct_ov5_021EF300_decl.h"
 #include "overlay023/struct_ov23_0224942C_decl.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
@@ -107,7 +107,7 @@ typedef struct FieldSystem_t {
     RadarChain *chain;
     BagCursor *unk_98;
     JournalEntry *journalEntry;
-    UnkStruct_ov5_021EF300 *unk_A0;
+    DynamicTerrainHeightManager *dynamicTerrainHeightMan;
     MapPropManager *mapPropManager;
     HoneyTreeShakeList *unk_A8;
     UnkStruct_0204AFC4 *unk_AC;

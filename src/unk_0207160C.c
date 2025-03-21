@@ -9,8 +9,8 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/dynamic_terrain_height.h"
 #include "overlay005/map_prop.h"
-#include "overlay005/ov5_021EF250.h"
 
 #include "field_system.h"
 #include "field_task.h"
@@ -154,7 +154,7 @@ void sub_0207160C(FieldSystem *fieldSystem)
         MapProp_SetPosition(v1, &v8);
     }
 
-    ov5_021EF2CC(0, v4->unk_08, v4->unk_0C, 3, 2, v5, fieldSystem->unk_A0);
+    DynamicTerrainHeightManager_SetPlate(0, v4->unk_08, v4->unk_0C, 3, 2, v5, fieldSystem->dynamicTerrainHeightMan);
 }
 
 void sub_020716D4(FieldSystem *fieldSystem)
@@ -364,7 +364,7 @@ static BOOL sub_020718D8(FieldTask *taskMan)
         }
     } break;
     case 2:
-        ov5_021EF388(0, v2->unk_04, fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_SetHeight(0, v2->unk_04, fieldSystem->dynamicTerrainHeightMan);
         sub_0205ED48(fieldSystem->playerAvatar, 1);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
@@ -417,7 +417,7 @@ static BOOL sub_020719D8(FieldTask *taskMan)
         }
     } break;
     case 2:
-        ov5_021EF388(0, v2->unk_04, fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_SetHeight(0, v2->unk_04, fieldSystem->dynamicTerrainHeightMan);
         sub_0205ED48(fieldSystem->playerAvatar, 1);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;

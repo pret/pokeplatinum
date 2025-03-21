@@ -509,7 +509,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021EE7D4.c.o
 	Object main.nef.p/src_overlay005_loaded_map_buffers.c.o
 	Object main.nef.p/src_overlay005_bdhc.c.o
-	Object main.nef.p/src_overlay005_ov5_021EF250.c.o
+	Object main.nef.p/src_overlay005_dynamic_terrain_height.c.o
 	Object main.nef.p/src_overlay005_hblank_system.c.o
 	Object main.nef.p/src_overlay005_ov5_021EF4BC.c.o
 	Object main.nef.p/src_overlay005_area_data.c.o
