@@ -101,7 +101,7 @@ _0124:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_072 20, 2
+    ShowMoneyWindow 20, 2
     ScrCmd_16E 0x800C
     GoToIfEq 0x800C, 1, _02E2
     GoToIfEq 0x800C, 2, _0309
@@ -112,7 +112,7 @@ _0124:
     Message 20
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -123,7 +123,7 @@ _017E:
     GoToIfEq 0x800C, 2, _02D5
     Message 16
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     SetVar 0x800C, 0
@@ -137,7 +137,7 @@ _01B9:
 
 _01DE:
     ReturnToField
-    ScrCmd_072 20, 2
+    ShowMoneyWindow 20, 2
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _0292
@@ -166,7 +166,7 @@ _0270:
     WaitABXPadPress
     CloseMessage
     ScrCmd_04D
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -174,7 +174,7 @@ _0285:
     Message 35
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -182,7 +182,7 @@ _0292:
     Message 23
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -197,7 +197,7 @@ _02BB:
     Message 31
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -205,7 +205,7 @@ _02C8:
     Message 33
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -213,7 +213,7 @@ _02D5:
     Message 34
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -221,7 +221,7 @@ _02E2:
     Message 19
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -252,13 +252,13 @@ _0346:
     ScrCmd_16E 0x800C
     SetVar 0x8001, 0
     GoToIfEq 0x800C, 2, _03BE
-    ScrCmd_040 1, 1, 0, 1, 0x8001
+    InitGlobalTextMenu 1, 1, 0, TRUE, 0x8001
     ScrCmd_1BC 0, 1, 2, 0
-    ScrCmd_042 134, 0
+    AddMenuEntryImmediate 134, 0
     ScrCmd_1BC 0, 1, 2, 1
-    ScrCmd_042 135, 1
-    ScrCmd_042 136, 2
-    ScrCmd_043
+    AddMenuEntryImmediate 135, 1
+    AddMenuEntryImmediate 136, 2
+    ShowMenu
     SetVar 0x8008, 0x8001
     GoToIfEq 0x8008, 0, _03BE
     GoToIfEq 0x8008, 1, _03BE
@@ -277,7 +277,7 @@ _03DE:
     Message 21
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -286,7 +286,7 @@ _03FE:
     WaitMovement
     ScrCmd_1A4 0x8002, 0x8001
     ScrCmd_1A3 0x8004
-    ScrCmd_074
+    UpdateMoneyWindow
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     Message 29
@@ -308,7 +308,7 @@ _045E:
     Message 26
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -340,7 +340,7 @@ _04A0:
     Message 23
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -365,7 +365,7 @@ _04A0:
     .byte 0
 
 _04EF:
-    ScrCmd_073
+    CloseMoneyWindow
     CallCommonScript 0x809
     End
 

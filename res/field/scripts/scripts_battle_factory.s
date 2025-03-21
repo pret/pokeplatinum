@@ -57,9 +57,9 @@ _0091:
 _00B7:
     CallIfEq 0x4004, 0, _057A
     CallIfEq 0x4004, 1, _0592
-    ScrCmd_042 19, 2
-    ScrCmd_042 20, 3
-    ScrCmd_043
+    AddMenuEntryImmediate 19, 2
+    AddMenuEntryImmediate 20, 3
+    ShowMenu
     GoToIfEq 0x800C, 0, _0152
     GoToIfEq 0x800C, 1, _0160
     GoToIfEq 0x800C, 2, _0117
@@ -102,12 +102,12 @@ _016E:
 
 _017C:
     Message 7
-    ScrCmd_041 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 21, 0
-    ScrCmd_042 22, 1
-    ScrCmd_042 23, 2
-    ScrCmd_043
+    InitLocalTextMenu 31, 11, 0, TRUE, 0x800C
+    SetMenuHorizAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntryImmediate 21, 0
+    AddMenuEntryImmediate 22, 1
+    AddMenuEntryImmediate 23, 2
+    ShowMenu
     GoToIfEq 0x800C, 0, _01BA
     GoToIfEq 0x800C, 1, _01C8
     GoTo _0139
@@ -141,12 +141,12 @@ _01DE:
 
 _022C:
     Message 24
-    ScrCmd_040 30, 1, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 5, 2
-    ScrCmd_043
+    InitGlobalTextMenu 30, 1, 0, TRUE, 0x800C
+    SetMenuHorizAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntryImmediate 13, 0
+    AddMenuEntryImmediate 14, 1
+    AddMenuEntryImmediate 5, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0270
     GoToIfEq 0x8008, 1, _02EC
@@ -373,17 +373,17 @@ _0575:
     Return
 
 _057A:
-    ScrCmd_041 31, 9, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 16, 0
-    ScrCmd_042 17, 1
+    InitLocalTextMenu 31, 9, 0, TRUE, 0x800C
+    SetMenuHorizAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntryImmediate 16, 0
+    AddMenuEntryImmediate 17, 1
     Message 1
     Return
 
 _0592:
-    ScrCmd_041 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 18, 4
+    InitLocalTextMenu 31, 11, 0, TRUE, 0x800C
+    SetMenuHorizAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntryImmediate 18, 4
     Message 4
     Return
 

@@ -94,14 +94,14 @@ _0108:
     LockAll
     FacePlayer
     Message 7
-    ScrCmd_072 20, 2
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 223, 0
-    ScrCmd_042 224, 1
-    ScrCmd_042 225, 2
-    ScrCmd_042 226, 3
-    ScrCmd_042 227, 4
-    ScrCmd_043
+    ShowMoneyWindow 20, 2
+    InitGlobalTextMenu 1, 1, 0, TRUE, 0x800C
+    AddMenuEntryImmediate 223, 0
+    AddMenuEntryImmediate 224, 1
+    AddMenuEntryImmediate 225, 2
+    AddMenuEntryImmediate 226, 3
+    AddMenuEntryImmediate 227, 4
+    ShowMenu
     SetVar 0x8000, 0x800C
     SetVar 0x8008, 0x8000
     GoToIfEq 0x8008, 0, _0245
@@ -123,7 +123,7 @@ _0180:
     CallIfEq 0x8000, 1, _02AB
     CallIfEq 0x8000, 2, _02B9
     CallIfEq 0x8000, 3, _02C7
-    ScrCmd_074
+    UpdateMoneyWindow
     PlayFanfare SEQ_SE_DP_REGI
     AddItem 0x8001, 1, 0x800C
     BufferItemName 0, 0x8001
@@ -134,7 +134,7 @@ _0180:
 _0229:
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    CloseMoneyWindow
     ReleaseAll
     End
 
@@ -208,14 +208,14 @@ _02D5:
 
 _02E8:
     Message 14
-    ScrCmd_041 30, 7, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 19, 0
-    ScrCmd_042 20, 1
-    ScrCmd_042 21, 2
-    ScrCmd_042 22, 3
-    ScrCmd_042 23, 4
-    ScrCmd_043
+    InitLocalTextMenu 30, 7, 0, TRUE, 0x800C
+    SetMenuHorizAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntryImmediate 19, 0
+    AddMenuEntryImmediate 20, 1
+    AddMenuEntryImmediate 21, 2
+    AddMenuEntryImmediate 22, 3
+    AddMenuEntryImmediate 23, 4
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _035B
     GoToIfEq 0x8008, 1, _0366

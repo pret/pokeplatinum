@@ -335,14 +335,14 @@ _03D9:
 
 _03EA:
     Message 21
-    ScrCmd_040 7, 2, 0, 1, 0x800C
-    ScrCmd_042 0, 0
-    ScrCmd_042 1, 1
-    ScrCmd_042 2, 2
-    ScrCmd_042 3, 3
-    ScrCmd_042 4, 4
-    ScrCmd_042 5, 5
-    ScrCmd_048 2
+    InitGlobalTextMenu 7, 2, 0, TRUE, 0x800C
+    AddMenuEntryImmediate 0, 0
+    AddMenuEntryImmediate 1, 1
+    AddMenuEntryImmediate 2, 2
+    AddMenuEntryImmediate 3, 3
+    AddMenuEntryImmediate 4, 4
+    AddMenuEntryImmediate 5, 5
+    ShowMenuMultiColumn 2
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _045F
     GoToIfEq 0x8008, 1, _046A

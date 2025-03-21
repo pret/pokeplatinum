@@ -65,8 +65,8 @@ void FieldMenuManager_ShowMultiColumnMenu(FieldMenuManager *menuManager, u8 colu
 Window *FieldMenu_CreateMoneyWindow(FieldSystem *fieldSystem, u8 tilemapTop, u8 tilemapLeft);
 void FieldMenu_DeleteMoneyWindow(Window *window);
 void FieldMenu_PrintMoneyToWindow(FieldSystem *fieldSystem, Window *window);
-Window *FieldMenu_CreateCoinsWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop);
-void FieldMenu_DeleteCoinsBPWindow(Window *window);
+Window *FieldMenu_CreateCoinWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop);
+void FieldMenu_DeleteCoinBPWindow(Window *window);
 void FieldMenu_PrintCoinsToWindow(FieldSystem *fieldSystem, Window *window);
 Window *FieldMenu_CreateBPWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop);
 void FieldMenu_PrintBPToWindow(FieldSystem *fieldSystem, Window *window);
