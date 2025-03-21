@@ -2426,7 +2426,7 @@ void sub_02061674(PlayerAvatar *playerAvatar, int param1, int *param2, int *para
     (*param4) += v0->unk_04;
 }
 
-u32 sub_020616F0(PlayerAvatar *playerAvatar, int param1)
+u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int param1)
 {
     u32 v0;
 
@@ -2446,7 +2446,7 @@ u32 sub_020616F0(PlayerAvatar *playerAvatar, int param1)
     return v0;
 }
 
-u32 sub_02061760(PlayerAvatar *playerAvatar)
+u32 PlayerAvatar_GetDistortionCurrTileBehaviour(PlayerAvatar *playerAvatar)
 {
     u32 v0;
     MapObject *mapObj = Player_MapObject(playerAvatar);
@@ -2466,7 +2466,7 @@ u32 sub_02061760(PlayerAvatar *playerAvatar)
 
 void sub_020617BC(PlayerAvatar *const playerAvatar, int *xOut, int *yOut, int *zOut)
 {
-    int v0 = sub_0205EAA0(playerAvatar);
+    int v0 = PlayerAvatar_GetDistortionDir(playerAvatar);
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
     *xOut = MapObject_GetX(mapObj);

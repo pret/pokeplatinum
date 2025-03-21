@@ -208,7 +208,7 @@ int PlayerAvatar_GetMoveDir(PlayerAvatar *const playerAvatar)
     return MapObject_GetMovingDir(Player_MapObject(playerAvatar));
 }
 
-int sub_0205EAA0(PlayerAvatar *const playerAvatar)
+int PlayerAvatar_GetDistortionDir(PlayerAvatar *const playerAvatar)
 {
     if (PlayerAvatar_DistortionStateOnFloor(playerAvatar) == TRUE) {
         return PlayerAvatar_GetDir(playerAvatar);
