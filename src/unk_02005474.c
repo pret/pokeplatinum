@@ -35,14 +35,14 @@ BOOL Sound_IsSequencePlaying(u16 param0);
 void Sound_StopAll(void);
 void sub_020056D4(void);
 BOOL Sound_PlayEffect(u16 param0);
-BOOL sub_02005770(u16 param0, int param1);
-BOOL sub_02005728(u16 param0, int param1);
+BOOL Sound_PlayEffectOnPlayer(u16 param0, int param1);
+BOOL Sound_PlayPannedEffect(u16 param0, int param1);
 void Sound_StopEffect(u16 param0, int param1);
-void sub_020057AC(int param0, int param1);
-void sub_020057BC(int param0);
-int sub_020057E0(void);
-void sub_020057FC(u16 param0, u16 param1, int param2);
-void sub_02005818(int param0);
+void Sound_StopEffectFromHandle(enum SoundHandleType param0, int param1);
+void Sound_StopAllEffects(int param0);
+BOOL Sound_IsAnyEffectPlaying(void);
+void Sound_PanEffect(u16 param0, u16 param1, int param2);
+void Sound_PanAllEffects(int param0);
 static void sub_02005E4C(u16 param0, int param1, int param2);
 void sub_0200592C(int param0);
 int sub_0200598C(void);
@@ -253,7 +253,7 @@ void sub_020056D4(void)
     Sound_Impl_ResetBGM();
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_020057AC((3 + v0), 0);
+        Sound_StopEffectFromHandle((3 + v0), 0);
     }
 
     sub_0200592C(0);
@@ -269,98 +269,80 @@ void sub_020056D4(void)
     return;
 }
 
-BOOL sub_02005728(u16 param0, int param1)
+BOOL Sound_PlayPannedEffect(u16 seqID, int pan)
 {
-    int v0 = Sound_PlayEffect(param0);
-    sub_020057FC(param0, 0xffff, param1);
+    int result = Sound_PlayEffect(seqID);
+    Sound_PanEffect(seqID, SOUND_EFFECT_TRACK_ALL, pan);
 
-    return v0;
+    return result;
 }
 
-BOOL Sound_PlayEffect(u16 sdatID)
+BOOL Sound_PlayEffect(u16 seqID)
 {
-    int v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(Sound_GetPlayerForSequence(sdatID));
-    int v1 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(v0), sdatID);
+    enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(Sound_GetPlayerForSequence(seqID));
+    BOOL result = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(handleType), seqID);
 
-    Sound_AdjustVolumeForVoiceChat(sdatID, v0);
+    Sound_AdjustVolumeForVoiceChat(seqID, handleType);
 
-    return v1;
+    return result;
 }
 
-BOOL sub_02005770(u16 param0, int param1)
+BOOL Sound_PlayEffectOnPlayer(u16 seqID, int playerID)
 {
-    int v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(param1);
-    int v1 = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(v0), param1, -1, -1, param0);
+    enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
+    BOOL result = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(handleType), playerID, -1, -1, seqID);
 
-    Sound_AdjustVolumeForVoiceChat(param0, v0);
+    Sound_AdjustVolumeForVoiceChat(seqID, handleType);
 
-    if (v1 == 0) {
-        (void)0;
+    return result;
+}
+
+void Sound_StopEffect(u16 seqID, int fadeOutFrames)
+{
+    NNS_SndPlayerStopSeqBySeqNo(seqID, fadeOutFrames);
+}
+
+void Sound_StopEffectFromHandle(enum SoundHandleType handleType, int fadeOutFrames)
+{
+    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(handleType), fadeOutFrames);
+}
+
+void Sound_StopAllEffects(int fadeOutFrames)
+{
+    for (int i = 0; i < 4; i++) {
+        Sound_StopEffectFromHandle(SOUND_HANDLE_TYPE_SFX_1 + i, 0);
     }
-
-    return v1;
 }
 
-void Sound_StopEffect(u16 param0, int param1)
+BOOL Sound_IsEffectPlaying(u16 seqID)
 {
-    NNS_SndPlayerStopSeqBySeqNo(param0, param1);
-    return;
+    return Sound_GetNumberOfPlayingSequencesForPlayer(Sound_GetPlayerForSequence(seqID));
 }
 
-void sub_020057AC(int param0, int param1)
+BOOL Sound_IsAnyEffectPlaying()
 {
-    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(param0), param1);
-    return;
-}
-
-void sub_020057BC(int param0)
-{
-    int v0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        sub_020057AC((3 + v0), 0);
-    }
-
-    return;
-}
-
-int Sound_IsEffectPlaying(u16 param0)
-{
-    return Sound_GetNumberOfPlayingSequencesForPlayer(Sound_GetPlayerForSequence(param0));
-}
-
-int sub_020057E0()
-{
-    int v0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        if (Sound_GetNumberOfPlayingSequencesForPlayer(3 + v0) == 1) {
-            return 1;
+    for (int i = 0; i < 4; i++) {
+        if (Sound_GetNumberOfPlayingSequencesForPlayer(PLAYER_SE_1 + i) == 1) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_020057FC(u16 param0, u16 param1, int param2)
+void Sound_PanEffect(u16 seqID, u16 tracks, int pan)
 {
-    int v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(Sound_GetPlayerForSequence(param0));
-
-    NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(v0), param1, param2);
-    return;
+    enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(Sound_GetPlayerForSequence(seqID));
+    NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(handleType), tracks, pan);
 }
 
-void sub_02005818(int param0)
+void Sound_PanAllEffects(int pan)
 {
-    int v0, v1;
+    enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(PLAYER_SE_1);
 
-    v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(3);
-
-    for (v1 = 0; v1 < 4; v1++) {
-        NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(v0 + v1), 0xffff, param0);
+    for (int i = 0; i < 4; i++) {
+        NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(handleType + i), SOUND_EFFECT_TRACK_ALL, pan);
     }
-
-    return;
 }
 
 BOOL sub_02005844(u16 species, u8 form)

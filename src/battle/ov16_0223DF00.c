@@ -2428,7 +2428,7 @@ static BOOL BattleMessage_Callback(TextPrinterTemplate *param0, u16 param1)
 
     switch (param1) {
     case 1:
-        v0 = sub_020057E0();
+        v0 = Sound_IsAnyEffectPlaying();
         break;
     case 2:
         v0 = sub_020061E4();
