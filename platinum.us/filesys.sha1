@@ -259,7 +259,7 @@ e484a4ea105e16977b9f39b965aaad014a4ec923 *res/field/events/zone_event.narc
 bda5c8e66cfa121c2d518d4388bd6f742746cda0 *res/prebuilt/fielddata/encountdata/d_enc_data.narc
 4bcbf53d522ed962160b85af588816f7257fb1c3 *res/prebuilt/fielddata/encountdata/p_enc_data.narc
 d9bf534c175c3c991e77fff985c099723499e1eb *res/field/encounters/pl_enc_data.narc
-7eca91aaa5f7ef816f51a884e2f42a26f51f8bbd *res/prebuilt/fielddata/build_model/build_model.narc
+7eca91aaa5f7ef816f51a884e2f42a26f51f8bbd *res/field/props/models/build_model.narc
 f49c6992b8caf5fea13831789fe4bfb026beb967 *res/prebuilt/fielddata/build_model/build_model_matshp.dat
 992f33f6450613066830606d28e94b91031caddb *res/field/maps/matrices/map_matrix.narc
 2df833d8f0145f29f21b23c06ba3561dec3f5180 *res/prebuilt/fielddata/areadata/area_data.narc
