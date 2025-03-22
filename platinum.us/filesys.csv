@@ -265,7 +265,7 @@ res/prebuilt/fielddata/build_model/build_model_matshp.dat,/fielddata/build_model
 res/field/matrices/map_matrix.narc,/fielddata/mapmatrix/map_matrix.narc
 res/prebuilt/fielddata/areadata/area_data.narc,/fielddata/areadata/area_data.narc
 res/prebuilt/fielddata/areadata/area_build_model/area_build.narc,/fielddata/areadata/area_build_model/area_build.narc
-res/prebuilt/fielddata/areadata/area_build_model/areabm_texset.narc,/fielddata/areadata/area_build_model/areabm_texset.narc
+res/field/props/texture_sets/areabm_texset.narc,/fielddata/areadata/area_build_model/areabm_texset.narc
 res/field/maps/texture_sets/map_tex_set.narc,/fielddata/areadata/area_map_tex/map_tex_set.narc
 res/prebuilt/fielddata/areadata/area_move_model/move_model_list.narc,/fielddata/areadata/area_move_model/move_model_list.narc
 res/field/maps/data/land_data.narc,/fielddata/land_data/land_data.narc
