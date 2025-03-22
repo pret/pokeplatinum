@@ -355,7 +355,7 @@ static BOOL ScrCmd_2AD(ScriptContext *ctx);
 static BOOL ScrCmd_06E(ScriptContext *ctx);
 static BOOL ScrCmd_093(ScriptContext *ctx);
 static BOOL ScrCmd_094(ScriptContext *ctx);
-static BOOL ScrCmd_GetPartyFormByID(ScriptContext *ctx);
+static BOOL ScrCmd_GetPartyMonForm(ScriptContext *ctx);
 static BOOL ScrCmd_09B(ScriptContext *ctx);
 static BOOL ScrCmd_315(ScriptContext *ctx);
 static BOOL ScrCmd_09C(ScriptContext *ctx);
@@ -534,7 +534,7 @@ static BOOL ScrCmd_2DB(ScriptContext *ctx);
 static BOOL ScrCmd_2A5(ScriptContext *ctx);
 static BOOL ScrCmd_196(ScriptContext *ctx);
 static BOOL ScrCmd_197(ScriptContext *ctx);
-static BOOL ScrCmd_2E7(ScriptContext *ctx);
+static BOOL ScrCmd_OpenSummaryScreenTeachMove(ScriptContext *ctx);
 static BOOL ScrCmd_2E8(ScriptContext *ctx);
 static BOOL ScrCmd_19E(ScriptContext *ctx);
 static BOOL sub_020441C8(ScriptContext *ctx);
@@ -914,11 +914,11 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_092,
     ScrCmd_093,
     ScrCmd_094,
-    ScrCmd_GetPartyFormByID,
+    ScrCmd_GetPartyMonForm,
     ScrCmd_GivePokemon,
     ScrCmd_GiveEgg,
     ScrCmd_098,
-    ScrCmd_099,
+    ScrCmd_CheckPartyMonHasMove,
     ScrCmd_09A,
     ScrCmd_09B,
     ScrCmd_09C,
@@ -1480,7 +1480,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2C8,
     ScrCmd_2C9,
     ScrCmd_2CA,
-    ScrCmd_2CB,
+    ScrCmd_GetPartyRepeatedSpeciesCount,
     ScrCmd_2CC,
     ScrCmd_2CD,
     ScrCmd_2CE,
@@ -1508,7 +1508,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2E4,
     ScrCmd_CheckHasLearnableTutorMoves,
     ScrCmd_ShowMoveTutorMoveSelectionMenu,
-    ScrCmd_2E7,
+    ScrCmd_OpenSummaryScreenTeachMove,
     ScrCmd_2E8,
     ScrCmd_ResetMoveSlot,
     ScrCmd_CheckCanAffordMove,
@@ -1537,8 +1537,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_301,
     ScrCmd_302,
     ScrCmd_303,
-    ScrCmd_304,
-    ScrCmd_305,
+    ScrCmd_SetRotomForm,
+    ScrCmd_GetPartyMonForm2,
     ScrCmd_306,
     ScrCmd_307,
     ScrCmd_308,
@@ -3486,13 +3486,13 @@ static BOOL ScrCmd_094(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_GetPartyFormByID(ScriptContext *ctx)
+static BOOL ScrCmd_GetPartyMonForm(ScriptContext *ctx)
 {
     Pokemon *mon;
-    u16 slot = ScriptContext_GetVar(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), partySlot);
     *destVar = Pokemon_GetForm(mon);
 
     return FALSE;
@@ -3744,16 +3744,16 @@ static BOOL ScrCmd_197(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_2E7(ScriptContext *ctx)
+static BOOL ScrCmd_OpenSummaryScreenTeachMove(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    void **partyData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 move = ScriptContext_GetVar(ctx);
 
-    *v0 = sub_0203E63C(32, ctx->fieldSystem, v1, v2);
+    *partyData = FieldSystem_OpenSummaryScreenTeachMove(32, ctx->fieldSystem, partySlot, move);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ScrCmd_2E8(ScriptContext *ctx)

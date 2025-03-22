@@ -895,10 +895,10 @@
     .short \arg1
     .endm
 
-    .macro GetPartyFormByID arg0, arg1
+    .macro GetPartyMonForm partySlot, destVar
     .short 149
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \destVar
     .endm
 
     .macro GivePokemon species, level, heldItem, successVar
@@ -923,11 +923,11 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_099 arg0, arg1, arg2
+    .macro CheckPartyMonHasMove destVar, move, partySlot
     .short 153
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \destVar
+    .short \move
+    .short \partySlot
     .endm
 
     .macro ScrCmd_09A arg0, arg1
@@ -3944,10 +3944,10 @@
     .short 714
     .endm
 
-    .macro ScrCmd_2CB arg0, arg1
+    .macro GetPartyRepeatedSpeciesCount destVar, species
     .short 715
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \species
     .endm
 
     .macro ScrCmd_2CC arg0, arg1, arg2
@@ -4110,10 +4110,10 @@
     .short \outSelectedOption
     .endm
 
-    .macro ScrCmd_2E7 arg0, arg1
+    .macro OpenSummaryScreenTeachMove partySlot, move
     .short 743
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \move
     .endm
 
     .macro ScrCmd_2E8 arg0
@@ -4281,18 +4281,18 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_304 arg0, arg1, arg2, arg3
+    .macro SetRotomForm partySlot, moveSlot, arg2, form
     .short 772
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \moveSlot
     .short \arg2
-    .short \arg3
+    .short \form
     .endm
 
-    .macro ScrCmd_305 arg0, arg1
+    .macro GetPartyMonForm2 partySlot, destVar
     .short 773
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \destVar
     .endm
 
     .macro ScrCmd_306 arg0, arg1

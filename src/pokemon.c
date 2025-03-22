@@ -4238,7 +4238,7 @@ BOOL Party_SetShayminForm(Party *party, int param1, const RTCTime *rtcTime)
     }
 }
 
-BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot)
+BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot)
 {
     int monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
@@ -4257,7 +4257,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot)
         MOVE_LEAF_STORM
     };
 
-    int newFormMoveID = rotomFormMoves[monForm];
+    int newFormMoveID = rotomFormMoves[form];
 
     int i;
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
@@ -4296,7 +4296,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot)
         Pokemon_ResetMoveSlot(mon, MOVE_THUNDER_SHOCK, 0);
     }
 
-    Pokemon_SetValue(mon, MON_DATA_FORM, &monForm);
+    Pokemon_SetValue(mon, MON_DATA_FORM, &form);
     Pokemon_CalcAbility(mon);
     Pokemon_CalcLevelAndStats(mon);
 

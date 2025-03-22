@@ -83,7 +83,7 @@ _00A6:
     GoTo _00FC
 
 _00E7:
-    ScrCmd_099 0x800C, 0x1B2, 0x4000
+    CheckPartyMonHasMove 0x800C, MOVE_DRACO_METEOR, 0x4000
     GoToIfEq 0x800C, 0, _010F
 _00FC:
     GoToIfNe 0x4000, 0, _00A6
@@ -104,7 +104,7 @@ _010F:
     GoToIfEq 0x8001, 0, _007C
     Call _01D7
     GoToIfEq 0x800C, 0, _0071
-    ScrCmd_099 0x800C, 0x1B2, 0x8000
+    CheckPartyMonHasMove 0x800C, MOVE_DRACO_METEOR, 0x8000
     GoToIfEq 0x800C, 1, _0087
     GetPartyMonFriendship 0x800C, 0x8000
     GoToIfLt 0x800C, 0xFF, _0097

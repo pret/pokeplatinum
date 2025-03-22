@@ -759,11 +759,11 @@ BOOL Party_SetShayminForm(Party *party, int param1, const RTCTime *rtcTime);
  * If Rotom should learn a form specific move and there is no room, overwrites moveSlot with the new move
  *
  * @param mon
- * @param monForm
+ * @param form
  * @param moveSlot
  * @return Whether the given pokemon was a Rotom
  */
-BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot);
+BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot);
 
 /**
  * @brief Loads a Level-Up move table based on a pokemon species and form into the pointed to array

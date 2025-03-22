@@ -117,15 +117,15 @@ _0251:
     GoTo _0285
 
 _0271:
-    ScrCmd_099 0x800C, 0x133, 0x8000
+    CheckPartyMonHasMove 0x800C, MOVE_BLAST_BURN, 0x8000
     Return
 
 _027B:
-    ScrCmd_099 0x800C, 0x134, 0x8000
+    CheckPartyMonHasMove 0x800C, MOVE_HYDRO_CANNON, 0x8000
     Return
 
 _0285:
-    ScrCmd_099 0x800C, 0x152, 0x8000
+    CheckPartyMonHasMove 0x800C, MOVE_FRENZY_PLANT, 0x8000
     Return
 
 _028F:

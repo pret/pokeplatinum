@@ -3,12 +3,12 @@
 
 #include "field_script_context.h"
 
-BOOL ScrCmd_GivePokemon(ScriptContext *param0);
+BOOL ScrCmd_GivePokemon(ScriptContext *ctx);
 BOOL ScrCmd_198(ScriptContext *param0);
 BOOL ScrCmd_199(ScriptContext *param0);
 BOOL ScrCmd_GiveEgg(ScriptContext *ctx);
 BOOL ScrCmd_098(ScriptContext *param0);
-BOOL ScrCmd_099(ScriptContext *param0);
+BOOL ScrCmd_CheckPartyMonHasMove(ScriptContext *ctx);
 BOOL ScrCmd_09A(ScriptContext *param0);
 BOOL ScrCmd_SurvivePoison(ScriptContext *ctx);
 BOOL ScrCmd_1F6(ScriptContext *param0);
@@ -34,7 +34,7 @@ BOOL ScrCmd_1CA(ScriptContext *param0);
 BOOL ScrCmd_1EE(ScriptContext *param0);
 BOOL ScrCmd_1F0(ScriptContext *param0);
 BOOL PartyHasSpecies(ScriptContext *ctx);
-BOOL ScrCmd_2CB(ScriptContext *param0);
+BOOL ScrCmd_GetPartyRepeatedSpeciesCount(ScriptContext *ctx);
 BOOL ScrCmd_GetPartyIDWithSpecies(ScriptContext *ctx);
 BOOL ScrCmd_22E(ScriptContext *param0);
 BOOL ScrCmd_22F(ScriptContext *param0);

@@ -33,7 +33,6 @@ static const u16 sExcludedMonsLocal[] = {};
 #define NUM_EXCLUDED_LOCAL    0 //((int)(sizeof(sExcludedMonsLocal) / sizeof(u16)))
 #define NATIONAL_DEX_GOAL     (NATIONAL_DEX_COUNT - NUM_EXCLUDED_NATIONAL)
 #define LOCAL_DEX_GOAL        (LOCAL_DEX_COUNT - NUM_EXCLUDED_LOCAL)
-#define ROTOM_COUNT           6
 
 typedef struct Pokedex {
     u32 magic;
@@ -507,7 +506,7 @@ static int NumFormsSeen_Rotom(const Pokedex *pokedexData, u32 species)
     int formIndex;
     int numFormsSeen = 0;
 
-    for (formIndex = 0; formIndex < ROTOM_COUNT; formIndex++) {
+    for (formIndex = 0; formIndex < ROTOM_FORM_COUNT; formIndex++) {
         form = ReadBit_Rotom(pokedexData->rotomFormsSeen, formIndex);
 
         if (form != 0x07) {
@@ -554,7 +553,7 @@ static void UpdateForms_Rotom(Pokedex *pokedexData, u32 species, int form)
 
     numFormsSeen = NumFormsSeen_Rotom(pokedexData, species);
 
-    if (numFormsSeen < ROTOM_COUNT) {
+    if (numFormsSeen < ROTOM_FORM_COUNT) {
         SetBit_Rotom(&pokedexData->rotomFormsSeen, numFormsSeen, form);
     }
 }
@@ -677,7 +676,7 @@ static int GetForm_TwoForms(const Pokedex *pokedexData, u32 species, int formInd
 static int GetForm_Rotom(const Pokedex *pokedexData, u32 species, int formIndex)
 {
     GF_ASSERT(species == SPECIES_ROTOM);
-    GF_ASSERT(formIndex < ROTOM_COUNT);
+    GF_ASSERT(formIndex < ROTOM_FORM_COUNT);
 
     return ReadBit_Rotom(pokedexData->rotomFormsSeen, formIndex);
 }

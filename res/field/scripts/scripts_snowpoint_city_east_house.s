@@ -95,7 +95,7 @@ _0161:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
-    ScrCmd_2E7 0x8000, 0x8003
+    OpenSummaryScreenTeachMove 0x8000, 0x8003
     ScrCmd_2E8 0x8002
     ReturnToField
     FadeScreen 6, 1, 1, 0

@@ -24,7 +24,7 @@ _000C:
 
 _0048:
     GetPartyIDWithSpecies 0x8004, SPECIES_UNOWN
-    GetPartyFormByID 0x8004, 0x8006
+    GetPartyMonForm 0x8004, 0x8006
     GoToIfEq 0x4000, 0x8006, _00EB
     GoTo _0067
 

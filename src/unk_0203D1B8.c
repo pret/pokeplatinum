@@ -1739,33 +1739,33 @@ void *sub_0203E608(FieldSystem *fieldSystem, int heapID)
     return v0;
 }
 
-static const u8 Unk_020EA15C[] = {
-    0x3,
-    0x5,
-    0x8
+static const u8 sTeachMoveSummaryPages[] = {
+    SUMMARY_PAGE_BATTLE_MOVES,
+    SUMMARY_PAGE_CONTEST_MOVES,
+    SUMMARY_PAGE_MAX
 };
 
-void *sub_0203E63C(int param0, FieldSystem *fieldSystem, u16 param2, u16 param3)
+void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSystem, u16 partySlot, u16 move)
 {
-    PokemonSummary *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
+    PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
-    v0->monData = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), param2);
-    v0->options = SaveData_Options(fieldSystem->saveData);
-    v0->dataType = SUMMARY_DATA_MON;
-    v0->monIndex = 0;
-    v0->monMax = 1;
-    v0->move = param3;
-    v0->mode = SUMMARY_MODE_SELECT_MOVE;
-    v0->specialRibbons = sub_0202D79C(fieldSystem->saveData);
-    v0->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
-    v0->showContest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
-    v0->chatotCry = NULL;
+    summary->monData = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
+    summary->options = SaveData_Options(fieldSystem->saveData);
+    summary->dataType = SUMMARY_DATA_MON;
+    summary->monIndex = 0;
+    summary->monMax = 1;
+    summary->move = move;
+    summary->mode = SUMMARY_MODE_SELECT_MOVE;
+    summary->specialRibbons = sub_0202D79C(fieldSystem->saveData);
+    summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
+    summary->showContest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
+    summary->chatotCry = NULL;
 
-    PokemonSummaryScreen_FlagVisiblePages(v0, Unk_020EA15C);
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
+    PokemonSummaryScreen_FlagVisiblePages(summary, sTeachMoveSummaryPages);
+    PokemonSummaryScreen_SetPlayerProfile(summary, SaveData_GetTrainerInfo(fieldSystem->saveData));
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, summary);
 
-    return v0;
+    return summary;
 }
 
 void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2)

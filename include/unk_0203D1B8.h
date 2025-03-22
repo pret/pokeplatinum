@@ -89,7 +89,7 @@ void *sub_0203E53C(FieldSystem *fieldSystem, int heapID, int param2);
 void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, int heapID);
 PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int param2);
 void *sub_0203E608(FieldSystem *fieldSystem, int heapID);
-void *sub_0203E63C(int param0, FieldSystem *fieldSystem, u16 param2, u16 param3);
+void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSystem, u16 partySlot, u16 move);
 void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2);
 void sub_0203E704(FieldSystem *fieldSystem);
 void sub_0203E714(FieldSystem *fieldSystem);
