@@ -595,7 +595,7 @@ void ov19_021DC29C(UnkStruct_ov19_021DBA9C *param0)
     UnkStruct_ov19_021DC29C *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DC29C));
 
     if (v0) {
-        u32 v1 = ov19_021D5F88(param0->unk_0C);
+        u32 v1 = ov19_GetCursorOrPreviewedItem(param0->unk_0C);
 
         Bg_SetOffset(param0->unk_04, 1, 3, 0);
         Bg_LoadToTilemapRect(param0->unk_04, 1, param0->unk_38->rawData, 0, 24, 32, 7);
