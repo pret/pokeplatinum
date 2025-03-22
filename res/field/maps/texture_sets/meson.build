@@ -75,7 +75,7 @@ map_texture_set_files = copy_gen.process(files(
     'map_texture_set_073.nsbtx'
 ))
 
-map_texture_set_order = files('map_texture_set.order')
+map_texture_set_order = files('map_texture_sets.order')
 map_texture_set_narc = custom_target('map_tex_set.narc',
     output: [
         'map_tex_set.narc',
