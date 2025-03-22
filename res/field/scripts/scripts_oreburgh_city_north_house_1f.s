@@ -30,7 +30,7 @@ _003B:
     GoToIfEq 0x800C, 0xFF, _00AC
     StartNpcTrade NPC_TRADE_KAZZA_ABRA
     SetVar 0x8004, 0x800C
-    ScrCmd_198 0x8004, 0x8005
+    GetPartyMonSpecies 0x8004, 0x8005
     GetNpcTradeRequestedSpecies 0x800C
     GoToIfNe 0x8005, 0x800C, _009F
     ScrCmd_229 0x8004

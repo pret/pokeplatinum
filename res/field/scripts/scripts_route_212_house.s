@@ -65,7 +65,7 @@ _007E:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _0264
-    ScrCmd_198 0x8000, 0x8001
+    GetPartyMonSpecies 0x8000, 0x8001
     GoToIfEq 0x8001, 0, _0259
     CheckHasLearnableTutorMoves 0x8000, TUTOR_LOCATION_ROUTE_212, 0x800C
     GoToIfEq 0x800C, 0, _026F

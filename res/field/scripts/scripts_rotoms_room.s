@@ -213,7 +213,7 @@ _037B:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _03F3
-    ScrCmd_198 0x8000, 0x800C
+    GetPartyMonSpecies 0x8000, 0x800C
     GoToIfEq 0x800C, 0, _045D
     GoToIfNe 0x800C, 0x1DF, _0468
     GetPartyMonForm2 0x8000, 0x800C
@@ -245,7 +245,7 @@ _0403:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, RotomsRoom_RotomGaveUpEnteringTheMotor
-    ScrCmd_198 0x8000, 0x800C
+    GetPartyMonSpecies 0x8000, 0x800C
     GoToIfEq 0x800C, 0, _045D
     GoToIfNe 0x800C, 0x1DF, _0468
     GoTo _0473

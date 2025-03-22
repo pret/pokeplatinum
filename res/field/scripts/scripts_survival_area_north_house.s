@@ -40,7 +40,7 @@ _004C:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _0232
-    ScrCmd_198 0x8000, 0x8001
+    GetPartyMonSpecies 0x8000, 0x8001
     GoToIfEq 0x8001, 0, _0227
     CheckHasLearnableTutorMoves 0x8000, TUTOR_LOCATION_SURVIVAL_AREA, 0x800C
     GoToIfEq 0x800C, 0, _023D

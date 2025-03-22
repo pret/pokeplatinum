@@ -75,7 +75,7 @@ _00A2:
     GetPartyCount 0x4000
 _00A6:
     SubVar 0x4000, 1
-    ScrCmd_198 0x4000, 0x800C
+    GetPartyMonSpecies 0x4000, 0x800C
     GoToIfEq 0x800C, 0, _00FC
     ScrCmd_248 0x8004, 0x8005, 0x4000
     GoToIfEq 0x8004, 16, _00E7
@@ -100,7 +100,7 @@ _010F:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _005B
-    ScrCmd_198 0x8000, 0x8001
+    GetPartyMonSpecies 0x8000, 0x8001
     GoToIfEq 0x8001, 0, _007C
     Call _01D7
     GoToIfEq 0x800C, 0, _0071

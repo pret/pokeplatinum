@@ -26,7 +26,7 @@ _000E:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x4000, 0xFF, _00EB
-    ScrCmd_198 0x4000, 0x800C
+    GetPartyMonSpecies 0x4000, 0x800C
     GoToIfEq 0x800C, 0, _00E0
     Message 3
     CloseMessage

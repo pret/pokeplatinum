@@ -133,7 +133,7 @@ _01B6:
     End
 
 _01CE:
-    ScrCmd_198 0x400A, 0x800C
+    GetPartyMonSpecies 0x400A, 0x800C
     GoToIfEq 0x800C, 0, _026D
     CallIfEq 0x4000, 0, _0C50
     CallIfEq 0x4000, 1, _0D36
@@ -175,7 +175,7 @@ _0299:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     SetVar 0x409D, 0x400A
-    ScrCmd_198 0x400A, 0x409A
+    GetPartyMonSpecies 0x400A, 0x409A
     GoTo _0E48
     End
 
@@ -805,7 +805,7 @@ _0ACC:
     End
 
 _0C50:
-    ScrCmd_198 0x400A, 0x800C
+    GetPartyMonSpecies 0x400A, 0x800C
     GoToIfEq 0x800C, 25, _0D2E
     GoToIfEq 0x800C, 35, _0D2E
     GoToIfEq 0x800C, 54, _0D2E
@@ -830,7 +830,7 @@ _0D2E:
     Return
 
 _0D36:
-    ScrCmd_198 0x400A, 0x800C
+    GetPartyMonSpecies 0x400A, 0x800C
     GoToIfEq 0x800C, 25, _0D2E
     GoToIfEq 0x800C, 35, _0D2E
     GoToIfEq 0x800C, 54, _0D2E

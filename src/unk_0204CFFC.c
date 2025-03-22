@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/species.h"
+
 #include "constants/heap.h"
 
 #include "struct_decls/pc_boxes_decl.h"
@@ -45,22 +47,22 @@ BOOL ScrCmd_GivePokemon(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_198(ScriptContext *param0)
+BOOL ScrCmd_GetPartyMonSpecies(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    Pokemon *v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-    u16 *v3 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    Pokemon *mon;
+    u16 *partySlot = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), *v2);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), *partySlot);
 
-    if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
-        *v3 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+    if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+        *destVar = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     } else {
-        *v3 = 0;
+        *destVar = SPECIES_NONE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_199(ScriptContext *param0)

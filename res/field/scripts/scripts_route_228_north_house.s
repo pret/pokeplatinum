@@ -35,7 +35,7 @@ _0055:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _028F
-    ScrCmd_198 0x8000, 0x8001
+    GetPartyMonSpecies 0x8000, 0x8001
     GoToIfEq 0x8001, 0, _02A5
     Call _0195
     GoToIfEq 0x800C, 0, _029A

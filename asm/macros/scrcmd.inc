@@ -2228,10 +2228,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_198 arg0, arg1
+    .macro GetPartyMonSpecies partySlot, destVar
     .short 408
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \destVar
     .endm
 
     .macro ScrCmd_199 arg0, arg1

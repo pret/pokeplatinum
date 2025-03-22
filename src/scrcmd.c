@@ -1173,7 +1173,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_195,
     ScrCmd_196,
     ScrCmd_197,
-    ScrCmd_198,
+    ScrCmd_GetPartyMonSpecies,
     ScrCmd_199,
     ScrCmd_GetPartyCountHatched,
     ScrCmd_CountAliveMonsExcept,

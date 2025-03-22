@@ -69,7 +69,7 @@ _00B0:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _0296
-    ScrCmd_198 0x8000, 0x8001
+    GetPartyMonSpecies 0x8000, 0x8001
     GoToIfEq 0x8001, 0, _028B
     CheckHasLearnableTutorMoves 0x8000, TUTOR_LOCATION_SNOWPOINT_CITY, 0x800C
     GoToIfEq 0x800C, 0, _02A1

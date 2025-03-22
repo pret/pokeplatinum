@@ -45,7 +45,7 @@ _0060:
     GoToIfEq 0x800C, 0xFF, _00D1
     StartNpcTrade NPC_TRADE_FOOPA_MAGIKARP
     SetVar 0x8004, 0x800C
-    ScrCmd_198 0x8004, 0x8005
+    GetPartyMonSpecies 0x8004, 0x8005
     GetNpcTradeRequestedSpecies 0x800C
     GoToIfNe 0x8005, 0x800C, _00C4
     ScrCmd_229 0x8004
