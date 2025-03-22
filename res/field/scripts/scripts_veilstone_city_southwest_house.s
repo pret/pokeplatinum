@@ -27,7 +27,7 @@ _000E:
     WaitFadeScreen
     GoToIfEq 0x4000, 0xFF, _00EB
     GetPartyMonSpecies 0x4000, 0x800C
-    GoToIfEq 0x800C, 0, _00E0
+    GoToIfEq 0x800C, SPECIES_NONE, _00E0
     Message 3
     CloseMessage
     FadeScreen 6, 1, 0, 0

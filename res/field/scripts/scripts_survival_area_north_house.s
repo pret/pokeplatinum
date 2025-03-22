@@ -41,7 +41,7 @@ _004C:
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _0232
     GetPartyMonSpecies 0x8000, 0x8001
-    GoToIfEq 0x8001, 0, _0227
+    GoToIfEq 0x8001, SPECIES_NONE, _0227
     CheckHasLearnableTutorMoves 0x8000, TUTOR_LOCATION_SURVIVAL_AREA, 0x800C
     GoToIfEq 0x800C, 0, _023D
     BufferPartyMonNickname 0, 0x8000

@@ -42,7 +42,7 @@ BOOL ScrCmd_GetPartyMonRibbon(ScriptContext *ctx);
 BOOL ScrCmd_SetPartyMonRibbon(ScriptContext *ctx);
 BOOL ScrCmd_2B7(ScriptContext *param0);
 int ScrCmd_0A0(ScriptContext *param0);
-BOOL ScrCmd_31C(ScriptContext *param0);
+BOOL ScrCmd_PartyHasSpeciesWithFatefulEncounter(ScriptContext *param0);
 BOOL ScrCmd_32F(ScriptContext *param0);
 
 #endif // POKEPLATINUM_UNK_0204CFFC_H

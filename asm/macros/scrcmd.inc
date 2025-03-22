@@ -4407,10 +4407,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_31C arg0, arg1
+    .macro PartyHasSpeciesWithFatefulEncounter destVar, species
     .short 796
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \species
     .endm
 
     .macro ScrCmd_31D arg0

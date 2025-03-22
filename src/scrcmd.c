@@ -1561,7 +1561,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_StartGiratinaOriginBattle,
     ScrCmd_WriteSpeciesSeen,
     ScrCmd_31B,
-    ScrCmd_31C,
+    ScrCmd_PartyHasSpeciesWithFatefulEncounter,
     ScrCmd_31D,
     ScrCmd_31E,
     ScrCmd_31F,

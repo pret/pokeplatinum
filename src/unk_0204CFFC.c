@@ -832,36 +832,36 @@ BOOL ScrCmd_0A0(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_31C(ScriptContext *param0)
+BOOL ScrCmd_PartyHasSpeciesWithFatefulEncounter(ScriptContext *ctx)
 {
-    u8 v0, v1;
-    u16 v2;
-    Pokemon *v3;
-    Party *v4;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v6 = ScriptContext_GetVarPointer(param0);
-    u16 v7 = ScriptContext_GetVar(param0);
+    u8 i, partyCount;
+    u16 partySpecies;
+    Pokemon *mon;
+    Party *party;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 species = ScriptContext_GetVar(ctx);
 
-    v4 = Party_GetFromSavedata(fieldSystem->saveData);
-    v1 = Party_GetCurrentCount(v4);
-    *v6 = 0xff;
+    party = Party_GetFromSavedata(fieldSystem->saveData);
+    partyCount = Party_GetCurrentCount(party);
+    *destVar = 0xff;
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v0);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
 
-        if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
-            v2 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            partySpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
-            if (v7 == v2) {
-                if (Pokemon_GetValue(v3, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
-                    *v6 = v0;
+            if (species == partySpecies) {
+                if (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == TRUE) {
+                    *destVar = i;
                     break;
                 }
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_32F(ScriptContext *param0)

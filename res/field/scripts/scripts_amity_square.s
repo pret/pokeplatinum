@@ -134,7 +134,7 @@ _01B6:
 
 _01CE:
     GetPartyMonSpecies 0x400A, 0x800C
-    GoToIfEq 0x800C, 0, _026D
+    GoToIfEq 0x800C, SPECIES_NONE, _026D
     CallIfEq 0x4000, 0, _0C50
     CallIfEq 0x4000, 1, _0D36
     GoToIfEq 0x800C, 0, _026D
