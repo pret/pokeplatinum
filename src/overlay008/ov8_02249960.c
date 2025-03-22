@@ -341,7 +341,11 @@ void ov8_0224997C(FieldSystem *fieldSystem)
     int v1, v2;
     BOOL v3;
     int v4;
-    int v5[] = { 239, 240, 241 };
+    int v5[] = {
+        MAP_PROP_MODEL_PASTORIA_GYM_BLUE_BUTTON,
+        MAP_PROP_MODEL_PASTORIA_GYM_GREEN_BUTTON,
+        MAP_PROP_MODEL_PASTORIA_GYM_ORANGE_BUTTON
+    };
 
     v1 = Player_GetXPos(fieldSystem->playerAvatar);
     v2 = Player_GetZPos(fieldSystem->playerAvatar);

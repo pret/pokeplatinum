@@ -41,7 +41,7 @@ void ov6_02246C24(FieldSystem *fieldSystem, const u8 param1)
     BOOL v0;
     MapProp *v1;
     int v2;
-    int v3 = 123;
+    int v3 = MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE;
 
     v0 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, v3, &v1, &v2);
 
@@ -91,7 +91,7 @@ static BOOL ov6_02246C9C(FieldTask *param0)
 
         MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 0x10, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, NULL, v2, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
 
-        v8 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, 124, &v6, NULL);
+        v8 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_TV, &v6, NULL);
         GF_ASSERT(v8);
         v7 = MapProp_GetRenderObj(v6);
 

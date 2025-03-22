@@ -40,7 +40,7 @@ void ov6_02247D30(FieldSystem *fieldSystem, const u8 param1)
     BOOL v0;
     MapProp *v1;
     int v2;
-    int v3 = 507;
+    int v3 = MAP_PROP_MODEL_POKEMON_LEAGUE_HALL_OF_FAME_MACHINE;
 
     v0 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, v3, &v1, &v2);
 

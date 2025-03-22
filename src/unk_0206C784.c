@@ -83,13 +83,13 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
     sub_02004550(64, 0, 0);
 
     if (param1 == 3) {
-        v4 = 34;
+        v4 = MAP_PROP_MODEL_REGULAR_SHIP;
         TerrainCollisionHitbox_Init(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1, -3, 3, 6, &v3);
         v1 = 1;
         v5 = (25 * 16 * FX32_ONE);
         v0->unk_10 = (14 * 16 * FX32_ONE);
     } else if (param1 == 2) {
-        v4 = 538;
+        v4 = MAP_PROP_MODEL_SCREW_STEAMSHIP_SPIRAL;
         TerrainCollisionHitbox_Init(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), -2, 2, 6, 3, &v3);
         v1 = 1;
         v5 = (12 * 16 * FX32_ONE);

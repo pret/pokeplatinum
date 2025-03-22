@@ -139,7 +139,10 @@ void sub_0207160C(FieldSystem *fieldSystem)
         MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM, &v6, NULL, fieldSystem->mapPropAnimMan);
         v1 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM);
     } else {
-        const int v7[2] = { 258, 502 };
+        const int v7[2] = {
+            MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM,
+            MAP_PROP_MODEL_POKEMON_LEAGUE_LIFT_PLATFORM
+        };
 
         v0 = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, v7, 2, &v1, NULL);
         GF_ASSERT(v0);
@@ -332,9 +335,12 @@ static BOOL sub_020718D8(FieldTask *taskMan)
         if (v2->unk_08) {
             v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM);
         } else {
-            const int v3[2] = { 258, 502 };
-            BOOL v4 = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, v3, 2, &v0, NULL);
+            const int v3[2] = {
+                MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM,
+                MAP_PROP_MODEL_POKEMON_LEAGUE_LIFT_PLATFORM
+            };
 
+            BOOL v4 = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, v3, 2, &v0, NULL);
             GF_ASSERT(v4);
         }
 
@@ -393,9 +399,12 @@ static BOOL sub_020719D8(FieldTask *taskMan)
         if (v2->unk_08) {
             v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM);
         } else {
-            const int v3[2] = { 258, 502 };
-            BOOL v4 = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, v3, 2, &v0, NULL);
+            const int v3[2] = {
+                MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM,
+                MAP_PROP_MODEL_POKEMON_LEAGUE_LIFT_PLATFORM
+            };
 
+            BOOL v4 = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, v3, 2, &v0, NULL);
             GF_ASSERT(v4);
         }
 

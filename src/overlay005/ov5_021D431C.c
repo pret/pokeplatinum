@@ -834,7 +834,10 @@ void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSys
     MapProp *v1;
     TerrainCollisionHitbox v2;
     int v3;
-    int v4[] = { 303, 304 };
+    int v4[] = {
+        MAP_PROP_MODEL_BIKE_MUDDY_SLOPE,
+        MAP_PROP_MODEL_BIKE_DUNGEON_MUDDY_SLOPE
+    };
 
     TerrainCollisionHitbox_Init(param0, param1, 0, -1, 1, 3, &v2);
 
