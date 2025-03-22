@@ -1,6 +1,5 @@
 prebuilt_files = [
-    'area_build.narc',
-    'areabm_texset.narc'
+    'area_build.narc'
 ]
 
 foreach f : prebuilt_files
