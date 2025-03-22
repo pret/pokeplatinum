@@ -25,7 +25,7 @@ _0032:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    ScrCmd_193 0x800C
+    GetSelectedPartySlot 0x800C
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -108,7 +108,7 @@ _0168:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2A5
-    ScrCmd_193 0x800C
+    GetSelectedPartySlot 0x800C
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen

@@ -342,7 +342,7 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
     v1->unk_20 = 22;
     v1->unk_1C = fieldSystem;
 
-    v1->unk_22 = param0->unk_05;
+    v1->selectedMonSlot = param0->unk_05;
 
     for (v0 = 0; v0 < 2; v0++) {
         v1->unk_2C[v0] = param0->unk_06[v0];
@@ -376,7 +376,7 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
 
     v1 = *(param0->unk_08);
 
-    switch (v1->unk_22) {
+    switch (v1->selectedMonSlot) {
     case 7:
         return UnkEnum_0204F13C_5;
 
@@ -389,7 +389,7 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
 
     MI_CpuCopy8(v1->unk_2C, param0->unk_06, 2);
 
-    param0->unk_05 = v1->unk_22;
+    param0->unk_05 = v1->selectedMonSlot;
 
     Heap_FreeToHeap(v1);
     *(param0->unk_08) = NULL;

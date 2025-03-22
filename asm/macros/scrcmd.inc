@@ -2199,9 +2199,9 @@
     .short 402
     .endm
 
-    .macro ScrCmd_193 arg0
+    .macro GetSelectedPartySlot destVar
     .short 403
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_194 arg0, arg1, arg2, arg3
@@ -4048,7 +4048,7 @@
     .short \arg0
     .endm
 
-    .macro GetPartyIDWithSpecies destVarID, species
+    .macro GetPartySlotWithSpecies destVarID, species
     .short 733
     .short \destVarID
     .short \species
@@ -4266,19 +4266,19 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_302 arg0, arg1, arg2, arg3, arg4
+    .macro GetRotomFormsInSave destVarHeat, destVarWash, destVarFrost, destVarFan, destVarMow
     .short 770
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \destVarHeat
+    .short \destVarWash
+    .short \destVarFrost
+    .short \destVarFan
+    .short \destVarMow
     .endm
 
-    .macro ScrCmd_303 arg0, arg1
+    .macro GetPartyRotomCountAndFirst destVarCount, destVarFirstSlot
     .short 771
-    .short \arg0
-    .short \arg1
+    .short \destVarCount
+    .short \destVarFirstSlot
     .endm
 
     .macro SetRotomForm partySlot, moveSlot, arg2, form

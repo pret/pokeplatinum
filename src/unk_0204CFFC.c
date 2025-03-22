@@ -691,7 +691,7 @@ BOOL ScrCmd_GetPartyRepeatedSpeciesCount(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GetPartyIDWithSpecies(ScriptContext *ctx)
+BOOL ScrCmd_GetPartySlotWithSpecies(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Pokemon *mon;

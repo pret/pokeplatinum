@@ -527,7 +527,7 @@ static BOOL ScrCmd_18E(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABPressTime(ScriptContext *ctx);
 static BOOL ScriptContext_DecrementABPressTimer(ScriptContext *ctx);
 static BOOL ScrCmd_191(ScriptContext *ctx);
-static BOOL ScrCmd_193(ScriptContext *ctx);
+static BOOL ScrCmd_GetSelectedPartySlot(ScriptContext *ctx);
 static BOOL ScrCmd_2D0(ScriptContext *ctx);
 static BOOL ScrCmd_2D4(ScriptContext *ctx);
 static BOOL ScrCmd_2DB(ScriptContext *ctx);
@@ -725,7 +725,7 @@ static BOOL ScrCmd_2F6(ScriptContext *ctx);
 static BOOL ScrCmd_2F7(ScriptContext *ctx);
 static BOOL ScrCmd_2FB(ScriptContext *ctx);
 static BOOL ScrCmd_2FC(ScriptContext *ctx);
-static BOOL ScrCmd_302(ScriptContext *ctx);
+static BOOL ScrCmd_GetRotomFormsInSave(ScriptContext *ctx);
 static BOOL ScrCmd_30A(ScriptContext *ctx);
 static BOOL ScrCmd_311(ScriptContext *ctx);
 static BOOL ScrCmd_312(ScriptContext *ctx);
@@ -742,7 +742,7 @@ static BOOL ScrCmd_32B(ScriptContext *ctx);
 static BOOL sub_02040F0C(ScriptContext *ctx);
 static void sub_02040F28(FieldSystem *fieldSystem, SysTask *param1, MapObjectAnimCmd *param2);
 static void sub_02040F5C(SysTask *param0, void *param1);
-static u32 sub_0204676C(SaveData *param0);
+static u32 SaveData_GetRotomFormsInSave(SaveData *saveData);
 
 static const u8 sConditionTable[6][3] = {
     //   <     ==      >
@@ -1168,7 +1168,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_WaitABPressTime,
     ScrCmd_191,
     ScrCmd_192,
-    ScrCmd_193,
+    ScrCmd_GetSelectedPartySlot,
     ScrCmd_194,
     ScrCmd_195,
     ScrCmd_196,
@@ -1498,7 +1498,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2DA,
     ScrCmd_2DB,
     ScrCmd_2DC,
-    ScrCmd_GetPartyIDWithSpecies,
+    ScrCmd_GetPartySlotWithSpecies,
     ScrCmd_2DE,
     ScrCmd_2DF,
     ScrCmd_2E0,
@@ -1535,8 +1535,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2FF,
     ScrCmd_300,
     ScrCmd_301,
-    ScrCmd_302,
-    ScrCmd_303,
+    ScrCmd_GetRotomFormsInSave,
+    ScrCmd_GetPartyRotomCountAndFirst,
     ScrCmd_SetRotomForm,
     ScrCmd_GetPartyMonForm2,
     ScrCmd_306,
@@ -3530,24 +3530,24 @@ static BOOL ScrCmd_192(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_193(ScriptContext *ctx)
+static BOOL ScrCmd_GetSelectedPartySlot(ScriptContext *ctx)
 {
-    void **v0;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
+    void **partySelect;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    partySelect = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    GF_ASSERT(*v0 != 0);
+    GF_ASSERT(*partySelect != 0);
 
-    *v1 = sub_0203D408(*v0);
+    *destVar = PartyManagementData_GetSelectedSlot(*partySelect);
 
-    if (*v1 == 7) {
-        *v1 = 0xff;
+    if (*destVar == MAX_PARTY_SIZE + 1) {
+        *destVar = 0xff;
     }
 
-    Heap_FreeToHeap(*v0);
-    *v0 = NULL;
+    Heap_FreeToHeap(*partySelect);
+    *partySelect = NULL;
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_2D0(ScriptContext *ctx)
@@ -3566,7 +3566,7 @@ static BOOL ScrCmd_2D0(ScriptContext *ctx)
 
     GF_ASSERT(*v2 != 0);
 
-    v1 = sub_0203D408(*v2);
+    v1 = PartyManagementData_GetSelectedSlot(*v2);
 
     if (v1 == 7) {
         *v3 = 0xff;
@@ -3606,7 +3606,7 @@ static BOOL ScrCmd_2D4(ScriptContext *ctx)
 
     GF_ASSERT(*v2 != 0);
 
-    v1 = sub_0203D408(*v2);
+    v1 = PartyManagementData_GetSelectedSlot(*v2);
 
     if (v1 == 7) {
         *v3 = 0xff;
@@ -3648,7 +3648,7 @@ static BOOL ScrCmd_2DB(ScriptContext *ctx)
 
     GF_ASSERT(*v2 != 0);
 
-    v1 = sub_0203D408(*v2);
+    v1 = PartyManagementData_GetSelectedSlot(*v2);
 
     if (v1 == 7) {
         *v3 = 0xff;
@@ -3697,7 +3697,7 @@ static BOOL ScrCmd_195(ScriptContext *ctx)
 
     GF_ASSERT(*v0 != 0);
 
-    *v1 = sub_0203D408(*v0);
+    *v1 = PartyManagementData_GetSelectedSlot(*v0);
 
     if (*v1 == 7) {
         *v1 = 0xff;
@@ -7401,7 +7401,7 @@ static BOOL ScrCmd_291(ScriptContext *ctx)
 
     GF_ASSERT(*v0 != 0);
 
-    *v1 = sub_0203D408(*v0);
+    *v1 = PartyManagementData_GetSelectedSlot(*v0);
 
     if (*v1 == 7) {
         *v1 = 0xff;
@@ -8009,53 +8009,53 @@ static BOOL ScrCmd_2FC(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_302(ScriptContext *ctx)
+static BOOL ScrCmd_GetRotomFormsInSave(ScriptContext *ctx)
 {
-    u32 v0;
+    u32 rotomForms;
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
-    u16 *v3 = ScriptContext_GetVarPointer(ctx);
-    u16 *v4 = ScriptContext_GetVarPointer(ctx);
-    u16 *v5 = ScriptContext_GetVarPointer(ctx);
-    u16 *v6 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarHeat = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarWash = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarFrost = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarFan = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarMow = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = 0;
-    *v3 = 0;
-    *v4 = 0;
-    *v5 = 0;
-    *v6 = 0;
+    *destVarHeat = FALSE;
+    *destVarWash = FALSE;
+    *destVarFrost = FALSE;
+    *destVarFan = FALSE;
+    *destVarMow = FALSE;
 
-    v0 = sub_0204676C(fieldSystem->saveData);
+    rotomForms = SaveData_GetRotomFormsInSave(fieldSystem->saveData);
 
-    if (((v0 >> 1) & 0x1) == 1) {
-        *v2 = 1;
+    if (((rotomForms >> ROTOM_FORM_HEAT) & 0x1) == TRUE) {
+        *destVarHeat = TRUE;
     }
 
-    if (((v0 >> 2) & 0x1) == 1) {
-        *v3 = 1;
+    if (((rotomForms >> ROTOM_FORM_WASH) & 0x1) == TRUE) {
+        *destVarWash = TRUE;
     }
 
-    if (((v0 >> 3) & 0x1) == 1) {
-        *v4 = 1;
+    if (((rotomForms >> ROTOM_FORM_FROST) & 0x1) == TRUE) {
+        *destVarFrost = TRUE;
     }
 
-    if (((v0 >> 4) & 0x1) == 1) {
-        *v5 = 1;
+    if (((rotomForms >> ROTOM_FORM_FAN) & 0x1) == TRUE) {
+        *destVarFan = TRUE;
     }
 
-    if (((v0 >> 5) & 0x1) == 1) {
-        *v6 = 1;
+    if (((rotomForms >> ROTOM_FORM_MOW) & 0x1) == TRUE) {
+        *destVarMow = TRUE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static u32 sub_0204676C(SaveData *saveData)
+static u32 SaveData_GetRotomFormsInSave(SaveData *saveData)
 {
     int i;
     Pokemon *mon;
     BoxPokemon *boxMon;
-    u32 v3 = 0;
+    u32 rotomForms = 0;
 
     Party *party = Party_GetFromSavedata(saveData);
     int partyCount = Party_GetCurrentCount(party);
@@ -8063,8 +8063,9 @@ static u32 sub_0204676C(SaveData *saveData)
     for (i = 0; i < partyCount; i++) {
         mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if ((Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0)) {
-            v3 |= 1 << Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        if ((Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM)
+            && (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE)) {
+            rotomForms |= 1 << Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         }
     }
 
@@ -8074,8 +8075,9 @@ static u32 sub_0204676C(SaveData *saveData)
         DaycareMon *daycareMon = Daycare_GetDaycareMon(daycare, i);
         boxMon = DaycareMon_GetBoxMon(daycareMon);
 
-        if ((BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0)) {
-            v3 |= 1 << BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+        if ((BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM)
+            && (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE)) {
+            rotomForms |= 1 << BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
         }
     }
 
@@ -8088,13 +8090,14 @@ static u32 sub_0204676C(SaveData *saveData)
         for (i = 0; i < MAX_MONS_PER_BOX; i++) {
             boxMon = PCBoxes_GetBoxMonAt(pcBoxes, boxID, i);
 
-            if ((BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0)) {
-                v3 |= 1 << BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+            if ((BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM)
+                && (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE)) {
+                rotomForms |= 1 << BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
             }
         }
     }
 
-    return v3;
+    return rotomForms;
 }
 
 static BOOL ScrCmd_30A(ScriptContext *ctx)

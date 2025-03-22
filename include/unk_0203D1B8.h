@@ -36,7 +36,7 @@ void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *overlayArgs);
 void *sub_0203D390(FieldSystem *fieldSystem, UnkStruct_02070950 *param1, u8 param2);
 void *sub_0203D3C0(int param0, FieldSystem *fieldSystem);
 void *sub_0203D3E4(int param0, FieldSystem *fieldSystem);
-int sub_0203D408(void *param0);
+int PartyManagementData_GetSelectedSlot(PartyManagementData *partyMan);
 void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2);
 int sub_0203D438(void *param0);
 int sub_0203D440(void *param0);

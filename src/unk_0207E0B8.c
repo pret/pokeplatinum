@@ -439,7 +439,7 @@ static int sub_0207E2A8(OverlayManager *param0, int *param1)
         break;
     case 33:
         if (IsScreenTransitionDone() == 1) {
-            v0->unk_5A4->unk_22 = v0->unk_B11;
+            v0->unk_5A4->selectedMonSlot = v0->unk_B11;
             return 1;
         }
         break;
@@ -968,7 +968,7 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
         v0->unk_6AC[v1] = Strbuf_Init(32, HEAP_ID_12);
     }
 
-    v0->unk_B11 = v0->unk_5A4->unk_22;
+    v0->unk_B11 = v0->unk_5A4->selectedMonSlot;
     v0->unk_B12 = v0->unk_B11;
 
     return v0;

@@ -1021,7 +1021,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->monData = Party_GetFromSavedata(fieldSystem->saveData);
         summary->options = SaveData_Options(fieldSystem->saveData);
         summary->dataType = SUMMARY_DATA_PARTY_MON;
-        summary->monIndex = partyMan->unk_22;
+        summary->monIndex = partyMan->selectedMonSlot;
         summary->monMax = Party_GetCurrentCount(summary->monData);
         summary->move = 0;
         summary->mode = SUMMARY_MODE_NORMAL;
@@ -1043,7 +1043,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->monData = Party_GetFromSavedata(fieldSystem->saveData);
         summary->options = SaveData_Options(fieldSystem->saveData);
         summary->dataType = SUMMARY_DATA_PARTY_MON;
-        summary->monIndex = partyMan->unk_22;
+        summary->monIndex = partyMan->selectedMonSlot;
         summary->monMax = 1;
         summary->move = partyMan->unk_26;
         summary->mode = SUMMARY_MODE_SELECT_MOVE;
@@ -1070,7 +1070,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->monData = Party_GetFromSavedata(fieldSystem->saveData);
         summary->options = SaveData_Options(fieldSystem->saveData);
         summary->dataType = SUMMARY_DATA_PARTY_MON;
-        summary->monIndex = partyMan->unk_22;
+        summary->monIndex = partyMan->selectedMonSlot;
         summary->monMax = 1;
         summary->move = partyMan->unk_26;
         summary->mode = SUMMARY_MODE_SELECT_MOVE;
@@ -1094,15 +1094,15 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     case 6: {
         UnkStruct_02097728 *v8;
 
-        v8 = sub_0203D920(fieldSystem, 2, partyMan->unk_22, Item_MailNumber(partyMan->unk_24), 11);
+        v8 = sub_0203D920(fieldSystem, 2, partyMan->selectedMonSlot, Item_MailNumber(partyMan->unk_24), 11);
         menu->unk_25C = v8;
 
         if (partyMan->unk_20 == 10) {
             menu->unk_260 = sub_0203C540(
-                partyMan->unk_24, 0, partyMan->unk_22);
+                partyMan->unk_24, 0, partyMan->selectedMonSlot);
         } else {
             menu->unk_260 = sub_0203C540(
-                partyMan->unk_24, 1, partyMan->unk_22);
+                partyMan->unk_24, 1, partyMan->selectedMonSlot);
         }
 
         sub_0203B674(menu, sub_0203C558);
@@ -1111,11 +1111,11 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         UnkStruct_02097728 *v9;
         Pokemon *v10;
 
-        v10 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partyMan->unk_22);
+        v10 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partyMan->selectedMonSlot);
         v9 = sub_0203D984(fieldSystem, v10, 11);
 
         menu->unk_25C = v9;
-        menu->unk_260 = sub_0203C540(partyMan->unk_24, 2, partyMan->unk_22);
+        menu->unk_260 = sub_0203C540(partyMan->unk_24, 2, partyMan->selectedMonSlot);
 
         sub_0203B674(menu, sub_0203C558);
     } break;
@@ -1125,7 +1125,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         u32 *v13;
 
         v13 = (u32 *)Heap_AllocFromHeap(HEAP_ID_FIELDMAP, 4);
-        *v13 = partyMan->unk_22;
+        *v13 = partyMan->selectedMonSlot;
         menu->unk_260 = (void *)v13;
 
         v11 = SaveData_GetBag(fieldSystem->saveData);
@@ -1142,7 +1142,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         v14->unk_02 = partyMan->unk_24;
         v14->unk_01 = 3;
-        v14->unk_00 = partyMan->unk_22;
+        v14->unk_00 = partyMan->selectedMonSlot;
         v14->unk_04 = partyMan->unk_38;
         v14->unk_08 = partyMan->unk_3C;
 
@@ -1154,7 +1154,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         v15->unk_02 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
         v15->unk_01 = 0;
-        v15->unk_00 = partyMan->unk_22;
+        v15->unk_00 = partyMan->selectedMonSlot;
         v15->unk_04 = partyMan->unk_38;
         v15->unk_08 = partyMan->unk_3C;
         menu->unk_25C = v15;
@@ -1177,7 +1177,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         UnkStruct_020709CC v17;
 
         v17.unk_06 = partyMan->unk_23 - 11;
-        v17.unk_04 = partyMan->unk_22;
+        v17.unk_04 = partyMan->selectedMonSlot;
         v17.unk_00 = taskMan;
 
         v16 = (UnkFuncPtr_0203B7C0)sub_0207070C(0, v17.unk_06);
@@ -1191,10 +1191,10 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         if ((partyMan->unk_20 == 5) || (partyMan->unk_20 == 6) || (partyMan->unk_20 == 7) || (partyMan->unk_20 == 16) || (partyMan->unk_20 == 8)) {
             menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
 
-            if (partyMan->unk_22 >= 6) {
+            if (partyMan->selectedMonSlot >= 6) {
                 sub_0207CB70(menu->unk_25C, 0);
             } else {
-                sub_0207CB70(menu->unk_25C, partyMan->unk_22);
+                sub_0207CB70(menu->unk_25C, partyMan->selectedMonSlot);
             }
 
             sub_0203B674(menu, sub_0203BC5C);
@@ -1321,7 +1321,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             v13->unk_18 = &menu->unk_24C;
             v13->unk_21 = 0;
             v13->unk_24 = sub_0207CB94(v2);
-            v13->unk_22 = (u8)v9;
+            v13->selectedMonSlot = (u8)v9;
             v13->unk_1C = fieldSystem;
 
             if (v13->unk_24 == 0) {
@@ -1612,7 +1612,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         }
 
         v3->unk_24 = v4->unk_00;
-        v3->unk_22 = v2->monIndex;
+        v3->selectedMonSlot = v2->monIndex;
         v3->unk_26 = v2->move;
         v3->unk_28 = v2->selectedMoveSlot;
 
@@ -1825,7 +1825,7 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *param1, u8 param2)
     partyMan->unk_18 = &param1->unk_24C;
     partyMan->unk_21 = 0;
     partyMan->unk_24 = v0->unk_00;
-    partyMan->unk_22 = v0->unk_02;
+    partyMan->selectedMonSlot = v0->unk_02;
     partyMan->unk_20 = param2;
     partyMan->unk_1C = fieldSystem;
 

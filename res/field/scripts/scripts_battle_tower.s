@@ -1282,7 +1282,7 @@ _140A:
     WaitFadeScreen
     CloseMessage
     ScrCmd_191
-    ScrCmd_193 0x800C
+    GetSelectedPartySlot 0x800C
     ReturnToField
     SetVar 0x8000, 0x800C
     FadeScreen 6, 1, 1, 0

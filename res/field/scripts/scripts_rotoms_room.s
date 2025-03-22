@@ -4,6 +4,7 @@
 #include "constants/forms.h"
 #include "res/text/bank/rotoms_room.h"
 
+#define VAR_PARTY_SLOT 0x8000
 #define VAR_ROTOM_FORM 0x8004
 
     .data
@@ -13,31 +14,31 @@
     ScriptEntry RotomsRoom_WashingMachine
     ScriptEntry RotomsRoom_RotaryFan
     ScriptEntry RotomsRoom_LawnMower
-    ScriptEntry _07AA
-    ScriptEntry _0030
+    ScriptEntry RotomsRoom_MysteriousNotebook
+    ScriptEntry RotomsRoom_InitFlags
     ScriptEntry _002E
     ScriptEntry _07BB
-    ScriptEntry _0908
-    ScriptEntry _081E
+    ScriptEntry RotomsRoom_OldNotebook
+    ScriptEntry RotomsRoom_ProfessorRowan
     ScriptEntryEnd
 
 _002E:
     End
 
-_0030:
-    SetFlag 0x2BB
-    SetFlag 0x2BC
-    SetFlag 0x2BD
-    SetFlag 0x2BE
-    SetFlag 0x2BF
+RotomsRoom_InitFlags:
+    SetFlag FLAG_ROTOM_ROOM_HIDE_MICROWAVE_OVEN
+    SetFlag FLAG_ROTOM_ROOM_HIDE_WASHING_MACHINE
+    SetFlag FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR
+    SetFlag FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN
+    SetFlag FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER
     CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, 0x4000
     GoToIfEq 0x4000, FALSE, _00A5
-    ScrCmd_302 0x4000, 0x4001, 0x4002, 0x4003, 0x4004
-    CallIfEq 0x4000, 0, _00CF
-    CallIfEq 0x4001, 0, _00D5
-    CallIfEq 0x4002, 0, _00DB
-    CallIfEq 0x4003, 0, _00E1
-    CallIfEq 0x4004, 0, _00E7
+    GetRotomFormsInSave 0x4000, 0x4001, 0x4002, 0x4003, 0x4004
+    CallIfEq 0x4000, FALSE, RotomsRoom_InitShowMicrowaveOven
+    CallIfEq 0x4001, FALSE, RotomsRoom_InitShowWashingMachine
+    CallIfEq 0x4002, FALSE, RotomsRoom_InitShowRefrigerator
+    CallIfEq 0x4003, FALSE, RotomsRoom_InitShowRotaryFan
+    CallIfEq 0x4004, FALSE, RotomsRoom_InitShowLawnMower
     End
 
 _00A5:
@@ -48,24 +49,24 @@ _00A5:
     ScrCmd_18B 4, 4, 1
     End
 
-_00CF:
-    ClearFlag 0x2BB
+RotomsRoom_InitShowMicrowaveOven:
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_MICROWAVE_OVEN
     Return
 
-_00D5:
-    ClearFlag 0x2BC
+RotomsRoom_InitShowWashingMachine:
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_WASHING_MACHINE
     Return
 
-_00DB:
-    ClearFlag 0x2BD
+RotomsRoom_InitShowRefrigerator:
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR
     Return
 
-_00E1:
-    ClearFlag 0x2BE
+RotomsRoom_InitShowRotaryFan:
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN
     Return
 
-_00E7:
-    ClearFlag 0x2BF
+RotomsRoom_InitShowLawnMower:
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER
     Return
 
 RotomsRoom_MicrowaveOven:
@@ -115,7 +116,7 @@ _0151:
     CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_WASH, _06CF
     CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_FAN, _06D4
     CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_MOW, _06D9
-    ScrCmd_303 0x8003, 0x800C
+    GetPartyRotomCountAndFirst 0x8003, 0x800C
     GoToIfGe 0x8003, 1, _0254
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, RotomsRoom_RotomGaveUpEnteringTheMotor
@@ -129,7 +130,7 @@ _01F8:
     CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_SetVarAirSlash
     CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_SetVarLeafStorm
     GetPartyRepeatedSpeciesCount 0x800C, SPECIES_ROTOM
-    GoToIfEq 0x800C, 1, _03F5
+    GoToIfEq 0x800C, 1, RotomsRoom_GetRotomPartySlot
     GoTo _0403
     End
 
@@ -147,25 +148,25 @@ _0254:
     End
 
 _0295:
-    ScrCmd_303 0x8003, 0x800C
-    SetVar 0x8000, 0x800C
+    GetPartyRotomCountAndFirst 0x8003, 0x800C
+    SetVar VAR_PARTY_SLOT, 0x800C
     GoToIfGe 0x8003, 2, _037B
     GoTo _02B6
     End
 
 _02B6:
-    BufferPartyMonNickname 0, 0x8000
+    BufferPartyMonNickname 0, VAR_PARTY_SLOT
     Message RotomsRoom_Text_PokemonEmergedFromTheMotor
-    SetRotomForm 0x8000, 0, 0, ROTOM_FORM_NORMAL
+    SetRotomForm VAR_PARTY_SLOT, 0, 0, ROTOM_FORM_NORMAL
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
-    GetPartyMonForm2 0x8000, VAR_ROTOM_FORM
-    CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_HEAT, _0349
-    CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_FAN, _0367
-    CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_FROST, _0353
-    CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_WASH, _035D
-    CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_MOW, _0371
+    GetPartyMonForm2 VAR_PARTY_SLOT, VAR_ROTOM_FORM
+    CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_AddMicrowaveOven
+    CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_AddRotaryFan
+    CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_AddRefrigerator
+    CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_AddWashingMachine
+    CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_AddLawnMower
     GoTo _0325
     End
 
@@ -177,28 +178,28 @@ _0325:
     WaitFadeScreen
     End
 
-_0349:
-    ClearFlag 0x2BB
+RotomsRoom_AddMicrowaveOven:
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_MICROWAVE_OVEN
     AddObject 0
     Return
 
-_0353:
-    ClearFlag 0x2BD
+RotomsRoom_AddRefrigerator:
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR
     AddObject 2
     Return
 
-_035D:
-    ClearFlag 0x2BC
+RotomsRoom_AddWashingMachine:
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_WASHING_MACHINE
     AddObject 3
     Return
 
-_0367:
-    ClearFlag 0x2BE
+RotomsRoom_AddRotaryFan:
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN
     AddObject 1
     Return
 
-_0371:
-    ClearFlag 0x2BF
+RotomsRoom_AddLawnMower:
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER
     AddObject 4
     Return
 
@@ -208,7 +209,7 @@ _037B:
     WaitFadeScreen
     CloseMessage
     ScrCmd_191
-    ScrCmd_193 0x8000
+    GetSelectedPartySlot 0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -229,8 +230,8 @@ _03E8:
 _03F3:
     End
 
-_03F5:
-    GetPartyIDWithSpecies 0x8000, SPECIES_ROTOM
+RotomsRoom_GetRotomPartySlot:
+    GetPartySlotWithSpecies VAR_PARTY_SLOT, SPECIES_ROTOM
     GoTo _0473
     End
 
@@ -240,12 +241,12 @@ _0403:
     WaitFadeScreen
     CloseMessage
     ScrCmd_191
-    ScrCmd_193 0x8000
+    GetSelectedPartySlot 0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x8000, 0xFF, RotomsRoom_RotomGaveUpEnteringTheMotor
-    GetPartyMonSpecies 0x8000, 0x800C
+    GoToIfEq VAR_PARTY_SLOT, 0xFF, RotomsRoom_RotomGaveUpEnteringTheMotor
+    GetPartyMonSpecies VAR_PARTY_SLOT, 0x800C
     GoToIfEq 0x800C, 0, _045D
     GoToIfNe 0x800C, 0x1DF, _0468
     GoTo _0473
@@ -483,7 +484,7 @@ _07A2:
     ReleaseAll
     End
 
-_07AA:
+RotomsRoom_MysteriousNotebook:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message RotomsRoom_Text_ThereIsAMysteriousNotebookHere
@@ -495,7 +496,7 @@ _07AA:
 _07BB:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_303 0x8003, 0x800C
+    GetPartyRotomCountAndFirst 0x8003, 0x800C
     GoToIfEq 0x8003, 0, _0801
     Message RotomsRoom_Text_OhRotomWantsToRevertToItsOriginalForm
     ScrCmd_041 31, 15, 0, 1, 0x800C
@@ -521,7 +522,7 @@ _080C:
     GoTo _0325
     End
 
-_081E:
+RotomsRoom_ProfessorRowan:
     LockAll
     ClearFlag 0x2C0
     PlayFanfare SEQ_SE_DP_KAIDAN2
@@ -619,7 +620,7 @@ _0900:
     MoveAction_013 2
     EndMovement
 
-_0908:
+RotomsRoom_OldNotebook:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

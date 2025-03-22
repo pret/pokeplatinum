@@ -398,7 +398,7 @@ void *sub_0203D390(FieldSystem *fieldSystem, UnkStruct_02070950 *param1, u8 para
     PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 0);
 
     v0->unk_18 = param1;
-    v0->unk_22 = param2;
+    v0->selectedMonSlot = param2;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
 
@@ -421,20 +421,19 @@ void *sub_0203D3E4(int param0, FieldSystem *fieldSystem)
     return v0;
 }
 
-int sub_0203D408(void *param0)
+int PartyManagementData_GetSelectedSlot(PartyManagementData *partyMan)
 {
-    PartyManagementData *v0 = param0;
-    return v0->unk_22;
+    return partyMan->selectedMonSlot;
 }
 
 void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2)
 {
-    PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 18);
+    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 18);
 
-    v0->unk_22 = param2;
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
+    partyMan->selectedMonSlot = param2;
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    return v0;
+    return partyMan;
 }
 
 int sub_0203D438(void *param0)
@@ -466,7 +465,7 @@ static BOOL sub_0203D444(FieldTask *param0)
         break;
     case 1:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            switch (v1->unk_04->unk_22) {
+            switch (v1->unk_04->selectedMonSlot) {
             case 7:
                 sub_0205BAAC(2);
                 *v2 = 4;
@@ -482,7 +481,7 @@ static BOOL sub_0203D444(FieldTask *param0)
         break;
     case 2:
         v1->unk_08 = sub_0203D670(fieldSystem, v1->heapID, 0);
-        v1->unk_08->monIndex = v1->unk_04->unk_22;
+        v1->unk_08->monIndex = v1->unk_04->selectedMonSlot;
         FieldSystem_OpenSummaryScreen(fieldSystem, v1->unk_08);
         *v2 = 3;
         break;
@@ -524,7 +523,7 @@ void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3,
 {
     PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 13);
 
-    v0->unk_22 = param5;
+    v0->selectedMonSlot = param5;
     v0->unk_29 = 2;
     v0->unk_2A = param2;
 
@@ -566,7 +565,7 @@ void *sub_0203D644(FieldSystem *fieldSystem, int param1)
 {
     PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 21);
 
-    v0->unk_22 = param1;
+    v0->selectedMonSlot = param1;
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
 
     return v0;
@@ -1709,7 +1708,7 @@ PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int para
     v0->unk_21 = 0;
     v0->unk_20 = 5;
     v0->unk_24 = param2;
-    v0->unk_22 = 0;
+    v0->selectedMonSlot = 0;
     v0->unk_1C = fieldSystem;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
