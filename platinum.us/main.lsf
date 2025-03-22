@@ -227,7 +227,7 @@ Static main
 	Object main.nef.p/src_field_map_change.c.o
 	Object main.nef.p/src_unk_02054884.c.o
 	Object main.nef.p/src_unk_02054BD0.c.o
-	Object main.nef.p/src_unk_02054D00.c.o
+	Object main.nef.p/src_terrain_collision_manager.c.o
 	Object main.nef.p/src_unk_020553DC.c.o
 	Object main.nef.p/src_unk_020556C4.c.o
 	Object main.nef.p/src_field_transition.c.o

@@ -53,6 +53,7 @@
 #include "system.h"
 #include "system_flags.h"
 #include "system_vars.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -63,7 +64,6 @@
 #include "unk_0203A944.h"
 #include "unk_0203D1B8.h"
 #include "unk_02054BD0.h"
-#include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
@@ -156,11 +156,11 @@ static void sub_02053E5C(FieldTask *task);
 static BOOL sub_0205444C(FieldTask *task, int param1);
 
 static const MapLoadMode sMapLoadMode[] = {
-    { 0x1, FALSE, 0x0, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
-    { 0x2, TRUE, 0x1, 0x1, 0x1, 0x0, 0x10, 0xC4000 },
-    { 0x3, FALSE, 0x0, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
-    { 0x4, TRUE, 0x1, 0x0, 0x1, 0x1, 0x1, 0xC4000 },
-    { 0x1, TRUE, 0x1, 0x0, 0x1, 0x1, 0x1, 0xA0000 }
+    { 0x1, FALSE, FALSE, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
+    { 0x2, TRUE, TRUE, 0x1, 0x1, 0x0, 0x10, 0xC4000 },
+    { 0x3, FALSE, FALSE, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
+    { 0x4, TRUE, TRUE, 0x0, 0x1, 0x1, 0x1, 0xC4000 },
+    { 0x1, TRUE, TRUE, 0x0, 0x1, 0x1, 0x1, 0xA0000 }
 };
 
 static const WindowTemplate Unk_020EC3A0 = {
@@ -386,7 +386,7 @@ static void FieldMapChange_InitTerrainCollisionManager(FieldSystem *fieldSystem)
     fieldSystem->skipMapAttributes = fieldSystem->mapLoadMode->skipMapAttributes;
     fieldSystem->bottomScreen = fieldSystem->mapLoadMode->fieldBottomScreen;
 
-    sub_02054F44(&fieldSystem->terrainCollisionMan, fieldSystem->mapLoadMode->unk_00_8);
+    TerrainCollisionManager_Init(&fieldSystem->terrainCollisionMan, fieldSystem->mapLoadMode->useSimpleTerrainCollisions);
 
     if (fieldSystem->mapLoadMode->unk_00_16) {
         sub_02054BD0(fieldSystem, fieldSystem->mapLoadMode->unk_00_24);

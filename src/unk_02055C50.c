@@ -23,8 +23,8 @@
 #include "savedata_misc.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "terrain_collision_manager.h"
 #include "unk_0201CED8.h"
-#include "unk_02054D00.h"
 #include "unk_020655F4.h"
 #include "unk_020677F4.h"
 #include "unk_0206CCB0.h"
@@ -313,7 +313,7 @@ static BOOL sub_02056010(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, i
         GF_ASSERT(0);
     }
 
-    if (FieldSystem_CheckCollision(fieldSystem, v0, v1)) {
+    if (TerrainCollisionManager_CheckCollision(fieldSystem, v0, v1)) {
         return 1;
     }
 

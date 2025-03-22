@@ -8,6 +8,8 @@ enum MapPropModelId {
     MAP_PROP_MODEL_CANALAVE_BRIDGE_LEFT = 31,
     // Model name: c2_s03b
     MAP_PROP_MODEL_CANALAVE_BRIDGE_RIGHT = 32,
+    // Model name: c2_o02
+    MAP_PROP_MODEL_REGULAR_SHIP = 34,
     // Model name: door01
     MAP_PROP_MODEL_DOOR01 = 66,
     // Model name: t1_door1
@@ -26,6 +28,8 @@ enum MapPropModelId {
     MAP_PROP_MODEL_DESK_DRAWER_LAPTOP_FACING_RIGHT = 115,
     // Model name: pc01
     MAP_PROP_MODEL_POKECENTER_PC = 119,
+    // Model name: machine_pc02
+    MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE = 123,
     // Model name: machine_pc03
     MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_TV = 124,
     // Model name: counter_pc04
@@ -34,6 +38,12 @@ enum MapPropModelId {
     MAP_PROP_MODEL_POKECENTER_STAIR_UP_LEFT = 130,
     // Model name: stair_pc_d01
     MAP_PROP_MODEL_POKECENTER_STAIR_DOWN_LEFT = 131,
+    // Model name: r04_b1
+    MAP_PROP_MODEL_PASTORIA_GYM_BLUE_BUTTON = 239,
+    // Model name: r04_b2
+    MAP_PROP_MODEL_PASTORIA_GYM_GREEN_BUTTON = 240,
+    // Model name: r04_b3
+    MAP_PROP_MODEL_PASTORIA_GYM_ORANGE_BUTTON = 241,
     // Model name: r04_w
     MAP_PROP_MODEL_PASTORIA_GYM_WATER_FLOOR = 242,
     // Model name: c1_door1
@@ -46,6 +56,10 @@ enum MapPropModelId {
     MAP_PROP_MODEL_HEARTHOME_GYM_INSIDE_DOOR = 260,
     // Model name: gym_door00
     MAP_PROP_MODEL_GYM_DOOR = 298,
+    // Model name: cy_slope
+    MAP_PROP_MODEL_BIKE_MUDDY_SLOPE = 303,
+    // Model name: cy_slope_dun
+    MAP_PROP_MODEL_BIKE_DUNGEON_MUDDY_SLOPE = 304,
     // Model name: c3_door1
     MAP_PROP_MODEL_BLUE_DOOR = 312,
     // Model name: c3_door2
@@ -72,10 +86,16 @@ enum MapPropModelId {
     MAP_PROP_MODEL_CARD_DOOR = 484,
     // Model name: ev_o01
     MAP_PROP_MODEL_ELEVATOR_LIGHTS = 498,
+    // Model name: leage_lift
+    MAP_PROP_MODEL_POKEMON_LEAGUE_LIFT_PLATFORM = 502,
+    // Model name: leage_o03
+    MAP_PROP_MODEL_POKEMON_LEAGUE_HALL_OF_FAME_MACHINE = 507,
     // Model name: pc_mb
     MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL = 517,
     // Model name: l2_door1
     MAP_PROP_MODEL_HOTEL_GRAND_LAKE_DOOR = 527,
+    // Model name: c09_s02
+    MAP_PROP_MODEL_SCREW_STEAMSHIP_SPIRAL = 538,
 };
 
 #endif // POKEPLATINUM_CONSTANTS_FIELD_MAP_PROP_H

@@ -51,11 +51,11 @@
 #include "system.h"
 #include "system_flags.h"
 #include "system_vars.h"
+#include "terrain_collision_manager.h"
 #include "unk_0200F174.h"
 #include "unk_02028124.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
-#include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_02055C50.h"
 #include "unk_0205F180.h"
@@ -222,7 +222,7 @@ void sub_0206842C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
-    param1->unk_0E = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
+    param1->unk_0E = TerrainCollisionManager_GetTileBehavior(fieldSystem, v0, v1);
 
     v2 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
@@ -241,7 +241,7 @@ void sub_0206842C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
         break;
     }
 
-    param1->unk_0C = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
+    param1->unk_0C = TerrainCollisionManager_GetTileBehavior(fieldSystem, v0, v1);
     sub_0203C9D4(fieldSystem, &v3);
 
     param1->unk_10 = sub_02055FC8(fieldSystem, v3);

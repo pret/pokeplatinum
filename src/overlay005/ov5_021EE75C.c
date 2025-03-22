@@ -12,7 +12,7 @@
 
 #include "map_tile_behavior.h"
 #include "player_avatar.h"
-#include "unk_02054D00.h"
+#include "terrain_collision_manager.h"
 
 typedef struct {
     int unk_00;
@@ -49,7 +49,7 @@ static void ov5_021EE768(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     v4->unk_00 = v1;
     v4->unk_04 = v2;
 
-    v0 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+    v0 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
     if (TileBehavior_IsBikeSlopeBottom(v0)) {
         v3 = 0;

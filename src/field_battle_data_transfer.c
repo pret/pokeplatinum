@@ -47,6 +47,7 @@
 #include "system_data.h"
 #include "system_flags.h"
 #include "system_vars.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_0202602C.h"
 #include "unk_02027F84.h"
@@ -54,7 +55,6 @@
 #include "unk_0202CC64.h"
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
-#include "unk_02054D00.h"
 #include "unk_020559DC.h"
 #include "unk_0205C980.h"
 #include "unk_0206CCB0.h"
@@ -470,7 +470,7 @@ static const enum BattleTerrain sTerrainForBackground[] = {
 
 static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground background)
 {
-    u8 behavior = FieldSystem_GetTileBehavior(fieldSystem, fieldSystem->location->x, fieldSystem->location->z);
+    u8 behavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, fieldSystem->location->x, fieldSystem->location->z);
     if (TileBehavior_IsIce(behavior)) {
         return TERRAIN_ICE;
     } else if (TileBehavior_IsTallGrass(behavior) || TileBehavior_IsVeryTallGrass(behavior)) {

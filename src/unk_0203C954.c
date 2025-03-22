@@ -13,7 +13,7 @@
 #include "map_tile_behavior.h"
 #include "player_avatar.h"
 #include "script_manager.h"
-#include "unk_02054D00.h"
+#include "terrain_collision_manager.h"
 
 static u8 sub_0203CB18(FieldSystem *fieldSystem, const BgEvent *param1);
 static u8 sub_0203CAEC(FieldSystem *fieldSystem, const BgEvent *param1);
@@ -61,7 +61,7 @@ void sub_0203C9D4(FieldSystem *fieldSystem, MapObject **param1)
     u8 v3;
 
     v2 = sub_0203C954(fieldSystem, &v0, &v1);
-    v3 = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
+    v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v0, v1);
 
     if (TileBehavior_IsTable(v3) == 1) {
         switch (v2) {

@@ -48,12 +48,12 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_vars.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
-#include "unk_02054D00.h"
 #include "unk_0206CCB0.h"
 #include "unk_020711EC.h"
 #include "vars_flags.h"
@@ -956,7 +956,7 @@ static UnkStruct_ov23_02243DA8 *ov23_02243A80(int param0, int param1, UnkStruct_
     int v0 = 0;
     UnkStruct_ov23_02243DA8 *v1;
 
-    if (FieldSystem_CheckCollision(Unk_ov23_02257764->fieldSystem, param0, param1)) {
+    if (TerrainCollisionManager_CheckCollision(Unk_ov23_02257764->fieldSystem, param0, param1)) {
         return NULL;
     }
 
@@ -1038,7 +1038,7 @@ void ov23_02243B0C(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    if (FieldSystem_CheckCollision(Unk_ov23_02257764->fieldSystem, v1, v2)) {
+    if (TerrainCollisionManager_CheckCollision(Unk_ov23_02257764->fieldSystem, v1, v2)) {
         v4.unk_07 = 6;
         CommSys_SendDataServer(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
         return;

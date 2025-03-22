@@ -16,7 +16,7 @@
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
 #include "player_avatar.h"
-#include "unk_02054D00.h"
+#include "terrain_collision_manager.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
 
@@ -850,7 +850,7 @@ static BOOL sub_0206A524(FieldSystem *fieldSystem, int param1, int param2, int p
     param1 += Unk_020EF92C[param3][param4];
     param2 += Unk_020EF94C[param3][param4];
 
-    v0 = FieldSystem_CheckCollision(fieldSystem, param1, param2);
+    v0 = TerrainCollisionManager_CheckCollision(fieldSystem, param1, param2);
     return v0;
 }
 
@@ -861,7 +861,7 @@ static BOOL sub_0206A54C(FieldSystem *fieldSystem, int param1, int param2, int p
     param1 += Unk_020EF98C[param3][param4];
     param2 += Unk_020EF9AC[param3][param4];
 
-    v0 = FieldSystem_CheckCollision(fieldSystem, param1, param2);
+    v0 = TerrainCollisionManager_CheckCollision(fieldSystem, param1, param2);
     return v0;
 }
 
