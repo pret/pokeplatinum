@@ -864,27 +864,27 @@ BOOL ScrCmd_PartyHasSpeciesWithFatefulEncounter(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_32F(ScriptContext *param0)
+BOOL ScrCmd_PartyHasHeldItem(ScriptContext *ctx)
 {
-    int v0, v1;
-    Party *v2;
-    Pokemon *v3;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v5 = ScriptContext_GetVar(param0);
-    u16 *v6 = ScriptContext_GetVarPointer(param0);
+    int i, partyCount;
+    Party *party;
+    Pokemon *mon;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 item = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v2 = Party_GetFromSavedata(fieldSystem->saveData);
-    v1 = Party_GetCurrentCount(v2);
-    *v6 = 0;
+    party = Party_GetFromSavedata(fieldSystem->saveData);
+    partyCount = Party_GetCurrentCount(party);
+    *destVar = FALSE;
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v0);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
 
-        if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == v5) {
-            *v6 = 1;
+        if (Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL) == item) {
+            *destVar = TRUE;
             break;
         }
     }
 
-    return 0;
+    return FALSE;
 }

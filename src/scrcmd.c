@@ -1580,7 +1580,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_32C,
     ScrCmd_32D,
     ScrCmd_32E,
-    ScrCmd_32F,
+    ScrCmd_PartyHasHeldItem,
     ScrCmd_330,
     ScrCmd_331,
     ScrCmd_332,

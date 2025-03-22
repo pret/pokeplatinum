@@ -4510,10 +4510,10 @@
     .short 814
     .endm
 
-    .macro ScrCmd_32F arg0, arg1
+    .macro PartyHasHeldItem item, destVar
     .short 815
-    .short \arg0
-    .short \arg1
+    .short \item
+    .short \destVar
     .endm
 
     .macro ScrCmd_330
