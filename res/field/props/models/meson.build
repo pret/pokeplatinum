@@ -1,4 +1,10 @@
-prop_model_files = copy_gen.process(files(
+prop_model_gen = generator(
+    find_program('cp'),
+    arguments: [ '@INPUT@', '@OUTPUT@', ],
+    output: '@BASENAME@'
+)
+
+prop_model_files = files(
     'prop_model_000.nsbmd',
     'prop_model_001.nsbmd',
     'prop_model_002.nsbmd',
@@ -589,7 +595,7 @@ prop_model_files = copy_gen.process(files(
     'prop_model_587.nsbmd',
     'prop_model_588.nsbmd',
     'prop_model_589.nsbmd',
-))
+)
 
 prop_model_order = files('prop_models.order')
 prop_model_narc = custom_target('build_model.narc',
@@ -597,11 +603,12 @@ prop_model_narc = custom_target('build_model.narc',
         'build_model.narc',
     ],
     input: [
-        prop_model_files,
+        prop_model_gen.process(prop_model_files),
         prop_model_order,
     ],
     command: [
         narc_exe, 'create',
+        '--naix',
         '--order', prop_model_order,
         '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
