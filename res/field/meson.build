@@ -1,6 +1,7 @@
 subdir('encounters')
 subdir('events')
 subdir('maps')
+subdir('matrices')
 subdir('props')
 subdir('scripts')
 subdir('trades')

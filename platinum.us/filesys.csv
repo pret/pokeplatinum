@@ -262,7 +262,7 @@ res/prebuilt/fielddata/encountdata/p_enc_data.narc,/fielddata/encountdata/p_enc_
 res/field/encounters/pl_enc_data.narc,/fielddata/encountdata/pl_enc_data.narc
 res/field/props/models/build_model.narc,/fielddata/build_model/build_model.narc
 res/prebuilt/fielddata/build_model/build_model_matshp.dat,/fielddata/build_model/build_model_matshp.dat
-res/field/maps/matrices/map_matrix.narc,/fielddata/mapmatrix/map_matrix.narc
+res/field/matrices/map_matrix.narc,/fielddata/mapmatrix/map_matrix.narc
 res/prebuilt/fielddata/areadata/area_data.narc,/fielddata/areadata/area_data.narc
 res/prebuilt/fielddata/areadata/area_build_model/area_build.narc,/fielddata/areadata/area_build_model/area_build.narc
 res/prebuilt/fielddata/areadata/area_build_model/areabm_texset.narc,/fielddata/areadata/area_build_model/areabm_texset.narc
