@@ -3,11 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02026310_decl.h"
+#include "struct_defs/daycare.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 
+#include "daycare_save.h"
 #include "field_script_context.h"
 #include "field_system.h"
 #include "inlines.h"
@@ -16,7 +17,6 @@
 #include "savedata.h"
 #include "script_manager.h"
 #include "trainer_info.h"
-#include "unk_020261E4.h"
 
 BOOL ScrCmd_16D(ScriptContext *param0)
 {
@@ -24,92 +24,92 @@ BOOL ScrCmd_16D(ScriptContext *param0)
     SaveData *v1 = fieldSystem->saveData;
     StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    ov5_021E72BC(sub_02026310(v1), *v2);
+    ov5_021E72BC(SaveData_GetDaycare(v1), *v2);
 
     return 0;
 }
 
-BOOL ScrCmd_16E(ScriptContext *param0)
+BOOL ScrCmd_GetDaycareState(ScriptContext *ctx)
 {
-    u16 *v0;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v2 = fieldSystem->saveData;
-    UnkStruct_02026310 *v3;
+    u16 *destVar;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    Daycare *daycare;
 
-    v0 = ScriptContext_GetVarPointer(param0);
-    v3 = (UnkStruct_02026310 *)(SaveData_SaveTable(v2, 8));
-    *v0 = ov5_021E73C8(v3);
+    destVar = ScriptContext_GetVarPointer(ctx);
+    daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
+    *destVar = Daycare_GetState(daycare);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_1A8(ScriptContext *param0)
+BOOL ScrCmd_ResetDaycarePersonalityAndStepCounter(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
-    UnkStruct_02026310 *v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
-    ov5_021E6B40(v2);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    Daycare *daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
+    Daycare_ResetPersonalityAndStepCounter(daycare);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_1A9(ScriptContext *param0)
+BOOL ScrCmd_GiveEggFromDaycare(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
-    UnkStruct_02026310 *v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
-    Party *v3 = Party_GetFromSavedata(fieldSystem->saveData);
-    TrainerInfo *v4 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    Daycare *daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
+    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
 
-    ov5_021E6EA8(v2, v3, v4);
-    return 0;
+    Daycare_GiveEggFromDaycare(daycare, party, trainerInfo);
+    return FALSE;
 }
 
-BOOL ScrCmd_1A4(ScriptContext *param0)
+BOOL ScrCmd_MoveMonToPartyFromDaycareSlot(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    UnkStruct_02026310 *v1;
-    Party *v2;
-    StringTemplate **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    SaveData *v4 = fieldSystem->saveData;
-    u16 *v5 = ScriptContext_GetVarPointer(param0);
-    u8 v6 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    Daycare *daycare;
+    Party *party;
+    StringTemplate **template = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    SaveData *saveData = fieldSystem->saveData;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u8 daycareSlot = ScriptContext_GetVar(ctx);
 
-    v1 = (UnkStruct_02026310 *)(SaveData_SaveTable(v4, 8));
-    v2 = Party_GetFromSavedata(fieldSystem->saveData);
-    *v5 = ov5_021E64F8(v2, *v3, v1, v6);
+    daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
+    party = Party_GetFromSavedata(fieldSystem->saveData);
+    *destVar = Daycare_MoveToPartyFromDaycareSlot(party, *template, daycare, daycareSlot);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_1AA(ScriptContext *param0)
+BOOL ScrCmd_BufferDaycarePriceBySlot(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    UnkStruct_02026310 *v1;
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    SaveData *v3 = fieldSystem->saveData;
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
-    u8 v5 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    Daycare *daycare;
+    StringTemplate **template = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    SaveData *saveData = fieldSystem->saveData;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u8 daycareSlot = ScriptContext_GetVar(ctx);
 
-    v1 = (UnkStruct_02026310 *)(SaveData_SaveTable(v3, 8));
-    *v4 = ov5_021E6630(v1, v5, *v2);
+    daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
+    *destVar = Daycare_BufferDaycarePriceBySlot(daycare, daycareSlot, *template);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_1AE(ScriptContext *param0)
+BOOL ScrCmd_BufferDaycareGainedLevelsBySlot(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
-    UnkStruct_02026310 *v2;
-    StringTemplate **v3 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
-    u16 v5 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    Daycare *daycare;
+    StringTemplate **template = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 daycareSlot = ScriptContext_GetVar(ctx);
 
-    v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
-    *v4 = ov5_021E6640(v2, v5, *v3);
+    daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
+    *destVar = Daycare_BufferGainedLevelsInSlot(daycare, daycareSlot, *template);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1AF(ScriptContext *param0)
@@ -127,60 +127,60 @@ BOOL ScrCmd_1AF(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1B0(ScriptContext *param0)
+BOOL ScrCmd_StorePartyMonIntoDaycare(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
-    UnkStruct_02026310 *v2;
-    Party *v3;
-    u8 v4 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    Daycare *daycare;
+    Party *party;
+    u8 partySlot = ScriptContext_GetVar(ctx);
 
-    v3 = Party_GetFromSavedata(fieldSystem->saveData);
-    v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
+    party = Party_GetFromSavedata(fieldSystem->saveData);
+    daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
 
-    ov5_021E6358(v3, v4, v2, v1);
+    Daycare_MoveToEmptySlotFromParty(party, partySlot, daycare, saveData);
 
+    return FALSE;
+}
+
+BOOL ScrCmd_1BC(ScriptContext *ctx)
+{
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 v3 = ScriptContext_GetVar(ctx);
+    u8 v4 = ScriptContext_GetVar(ctx);
+    u8 v5 = ScriptContext_GetVar(ctx);
+    u8 v6 = ScriptContext_GetVar(ctx);
+
+    ov5_021E7308(SaveData_GetDaycare(saveData), v3, v4, v5, v6, *v2);
     return 0;
 }
 
-BOOL ScrCmd_1BC(ScriptContext *param0)
+BOOL ScrCmd_GetDaycareCompatibilityLevel(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v3 = ScriptContext_GetVar(param0);
-    u8 v4 = ScriptContext_GetVar(param0);
-    u8 v5 = ScriptContext_GetVar(param0);
-    u8 v6 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    Daycare *daycare;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    ov5_021E7308(sub_02026310(v1), v3, v4, v5, v6, *v2);
-    return 0;
+    daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
+    *destVar = Daycare_GetCompatibilityLevel(daycare);
+
+    return FALSE;
 }
 
-BOOL ScrCmd_1BE(ScriptContext *param0)
+BOOL ScrCmd_CheckDaycareHasEgg(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
-    UnkStruct_02026310 *v2;
-    u16 *v3 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    Daycare *daycare;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
-    *v3 = ov5_021E7420(v2);
+    daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
+    *destVar = Daycare_HasEgg(daycare);
 
-    return 0;
-}
-
-BOOL ScrCmd_1BF(ScriptContext *param0)
-{
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
-    UnkStruct_02026310 *v2;
-    u16 *v3 = ScriptContext_GetVarPointer(param0);
-
-    v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
-    *v3 = sub_02026234(v2);
-
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1A5(ScriptContext *param0)

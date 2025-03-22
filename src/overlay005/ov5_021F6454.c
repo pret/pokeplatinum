@@ -864,7 +864,7 @@ BOOL ScrCmd_30F(ScriptContext *param0)
         }
         break;
     case 18:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_011) < 30) {
+        if (GameRecords_GetRecordValue(v1, RECORD_EGGS_HATCHED) < 30) {
             *v4 = 0;
         }
         break;

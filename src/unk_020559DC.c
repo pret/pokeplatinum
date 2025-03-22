@@ -131,7 +131,7 @@ static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *rt
 {
     sub_02055CD4(fieldSystem, param1);
     SpecialEncounter_DecrementHoneyTreeTimers(fieldSystem->saveData, param1);
-    sub_02028758(fieldSystem->saveData, param1, sub_02055C40(fieldSystem));
+    sub_02028758(fieldSystem->saveData, param1, FieldSystem_HasPenalty(fieldSystem));
 
     {
         TVBroadcast *v0 = SaveData_TVBroadcast(fieldSystem->saveData);
@@ -150,34 +150,34 @@ enum TimeOfDay FieldSystem_GetTimeOfDay(const FieldSystem *fieldSystem)
     return TimeOfDayForHour(v0->time.hour);
 }
 
-int sub_02055BB8(const FieldSystem *fieldSystem)
+int FieldSystem_GetMonth(const FieldSystem *fieldSystem)
 {
-    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
-    return v0->date.month;
+    GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
+    return gameTime->date.month;
 }
 
-int sub_02055BC4(const FieldSystem *fieldSystem)
+int FieldSystem_GetDayOfMonth(const FieldSystem *fieldSystem)
 {
-    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
-    return v0->date.day;
+    GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
+    return gameTime->date.day;
 }
 
-int sub_02055BD0(const FieldSystem *fieldSystem)
+int FieldSystem_GetWeek(const FieldSystem *fieldSystem)
 {
-    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
-    return v0->date.week;
+    GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
+    return gameTime->date.week;
 }
 
-int sub_02055BDC(const FieldSystem *fieldSystem)
+int FieldSystem_GetHour(const FieldSystem *fieldSystem)
 {
-    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
-    return v0->time.hour;
+    GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
+    return gameTime->time.hour;
 }
 
-int sub_02055BE8(const FieldSystem *fieldSystem)
+int FieldSystem_GetMinute(const FieldSystem *fieldSystem)
 {
-    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
-    return v0->time.minute;
+    GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
+    return gameTime->time.minute;
 }
 
 void sub_02055BF4(const FieldSystem *fieldSystem, RTCDate *param1, RTCTime *param2)
@@ -199,8 +199,8 @@ void sub_02055C2C(const FieldSystem *fieldSystem)
     v0->playTimestamp = GetTimestamp();
 }
 
-BOOL sub_02055C40(FieldSystem *fieldSystem)
+BOOL FieldSystem_HasPenalty(FieldSystem *fieldSystem)
 {
-    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
-    return GameTime_HasPenalty(v0);
+    GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
+    return GameTime_HasPenalty(gameTime);
 }

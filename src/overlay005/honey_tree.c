@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/map_prop.h"
 #include "constants/map_object.h"
-#include "constants/map_prop.h"
 #include "generated/map_headers.h"
 
 #include "struct_defs/struct_02055130.h"

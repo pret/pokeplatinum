@@ -18,7 +18,7 @@ stateDiagram-v2
     state "Area map prop model IDs (area_build.narc)" as area_build
     state "Area map prop textures (areabm_texset.narc)" as areabm_texset
     state "Map textures (map_tex_set.narc)" as map_tex_set
-    state "Area light (area_light.narc)" as area_light
+    state "Area light (arealight.narc)" as area_light
     state "Map prop material & shapes (build_model_matshp.dat)" as build_model_matshp
     state "Map prop models (build_model.narc)" as build_model
     state "Map prop animations (bm_anime.narc)" as bm_anime
@@ -214,7 +214,7 @@ Here's the structure of each file:
 | `mapPropArchivesID`   | `0x0000` | 2    | `u16` | Index of the associated files in the `area_build.narc` and `areabm_texset.narc` NARCs. |
 | `mapTextureArchiveID` | `0x0002` | 2    | `u16` | Index of the associated file in the `map_tex_set.narc` NARC.                           |
 | `dummy`               | `0x0004` | 2    | `u16` | Unknown: value changes in the NARC, but is unused in the code.                         |
-| `areaLightArchiveID`  | `0x0006` | 2    | `u16` | Index of the associated file in the `area_light.narc` NARC.                            |
+| `areaLightArchiveID`  | `0x0006` | 2    | `u16` | Index of the associated file in the `arealight.narc` NARC.                             |
 
 ## Area map prop model IDs (`area_build.narc`)
 
@@ -237,7 +237,7 @@ Here's the structure of each file:
 | ---------------- | -------- | ---------- | ----- | ----------------------------------------- |
 | `mapPropTexture` | `0x0000` | Whole file | NSBTX | The texture file for the map prop models. |
 
-## Area light (`area_light.narc`)
+## Area light (`arealight.narc`)
 
 This NARC contains 4 files.
 
@@ -257,7 +257,7 @@ Here's the structure of each block:
     - Parameter 1: the end time at which this light is no longer active (in
       seconds divided by 2, since midnight).
 - Line 2: light #0 properties
-    - Parameter 1: whether the light is enabled (`0` is disabled, `1` is enabled).
+    - Parameter 1: whether the light is valid (`1` is valid, invalid otherwise).
     - Parameter 2: red color component (unsigned 5 bit number).
     - Parameter 3: green color component (unsigned 5 bit number).
     - Parameter 4: blue color component (unsigned 5 bit number).

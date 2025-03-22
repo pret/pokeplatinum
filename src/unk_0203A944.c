@@ -1865,7 +1865,7 @@ int FieldSystem_GetWeather(FieldSystem *fieldSystem, int param1)
             v1++;
         }
 
-        if (sub_02055C40(fieldSystem)) {
+        if (FieldSystem_HasPenalty(fieldSystem)) {
             v1 = 1;
         }
 

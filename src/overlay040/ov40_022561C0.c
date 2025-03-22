@@ -2,23 +2,22 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02026218_decl.h"
-#include "struct_decls/struct_02026310_decl.h"
+#include "struct_defs/daycare.h"
 
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 #include "overlay025/poketch_system.h"
 #include "overlay040/ov40_0225645C.h"
 #include "overlay040/struct_ov40_0225645C_1.h"
 #include "overlay040/struct_ov40_0225645C_decl.h"
 
 #include "bg_window.h"
+#include "daycare_save.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_020261E4.h"
 
 typedef struct {
     u8 unk_00;
@@ -27,7 +26,7 @@ typedef struct {
     UnkStruct_ov40_0225645C_1 unk_04;
     UnkStruct_ov40_0225645C *unk_28;
     PoketchSystem *poketchSys;
-    UnkStruct_02026310 *unk_30;
+    Daycare *unk_30;
 } UnkStruct_ov40_0225621C;
 
 static void NitroStaticInit(void);
@@ -42,7 +41,7 @@ static BOOL ov40_022562C0(UnkStruct_ov40_0225621C *param0);
 static BOOL ov40_02256300(UnkStruct_ov40_0225621C *param0);
 static BOOL ov40_02256354(UnkStruct_ov40_0225621C *param0);
 static BOOL ov40_02256388(UnkStruct_ov40_0225621C *param0);
-static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, UnkStruct_02026310 *param1);
+static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare);
 
 static void NitroStaticInit(void)
 {
@@ -69,7 +68,7 @@ static BOOL ov40_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
 
 static BOOL ov40_0225621C(UnkStruct_ov40_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
-    param0->unk_30 = sub_02026310(PoketchSystem_GetSaveData(poketchSys));
+    param0->unk_30 = SaveData_GetDaycare(PoketchSystem_GetSaveData(poketchSys));
 
     ov40_022563D0(&param0->unk_04, param0->unk_30);
 
@@ -202,27 +201,27 @@ static BOOL ov40_02256388(UnkStruct_ov40_0225621C *param0)
     return 0;
 }
 
-static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, UnkStruct_02026310 *param1)
+static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare)
 {
-    UnkStruct_02026218 *v0;
-    BoxPokemon *v1;
-    int v2;
-    BOOL v3;
+    DaycareMon *daycareMon;
+    BoxPokemon *boxMon;
+    int slot;
+    BOOL reencrypt;
 
-    param0->unk_00 = ov5_021E6238(param1);
-    param0->unk_01 = sub_02026234(param1);
+    param0->unk_00 = Daycare_CountMons(daycare);
+    param0->unk_01 = Daycare_HasEgg(daycare);
 
-    for (v2 = 0; v2 < param0->unk_00; v2++) {
-        v0 = sub_02026218(param1, v2);
-        v1 = sub_02026220(v0);
-        v3 = BoxPokemon_EnterDecryptionContext(v1);
+    for (slot = 0; slot < param0->unk_00; slot++) {
+        daycareMon = Daycare_GetDaycareMon(daycare, slot);
+        boxMon = DaycareMon_GetBoxMon(daycareMon);
+        reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-        param0->unk_04[v2] = BoxPokemon_IconSpriteIndex(v1);
-        param0->unk_1C[v2] = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
-        param0->unk_20[v2] = BoxPokemon_GetValue(v1, MON_DATA_FORM, NULL);
-        param0->unk_0C[v2] = ov5_021E6590(v0);
-        param0->unk_14[v2] = BoxPokemon_GetGender(v1);
+        param0->unk_04[slot] = BoxPokemon_IconSpriteIndex(boxMon);
+        param0->species[slot] = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+        param0->forms[slot] = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+        param0->unk_0C[slot] = DaycareMon_GiveExperience(daycareMon);
+        param0->genders[slot] = BoxPokemon_GetGender(boxMon);
 
-        BoxPokemon_ExitDecryptionContext(v1, v3);
+        BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
     }
 }

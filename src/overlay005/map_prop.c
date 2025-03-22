@@ -27,9 +27,9 @@ typedef struct {
     int dummy28[2];
 } MapPropFile;
 
-MapPropManager *MapPropManager_New(const u8 heapId)
+MapPropManager *MapPropManager_New(const u8 heapID)
 {
-    MapPropManager *mapPropManager = Heap_AllocFromHeap(heapId, sizeof(MapPropManager));
+    MapPropManager *mapPropManager = Heap_AllocFromHeap(heapID, sizeof(MapPropManager));
     MapPropManager_Init(mapPropManager);
 
     return mapPropManager;
@@ -76,7 +76,6 @@ void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDat
 {
     MapPropFile *mapPropFiles = NULL;
     u32 mapPropFilesCount;
-    int i;
 
     if (mapPropFilesSize != 0) {
         mapPropFiles = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, mapPropFilesSize);
@@ -86,7 +85,7 @@ void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDat
         mapPropFilesCount = 0;
     }
 
-    for (i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
+    for (int i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
         MapProp *loadedProp = &mapPropManager->loadedProps[i];
 
         if (i < mapPropFilesCount) {
@@ -123,7 +122,6 @@ void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDat
 
 void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager *areaDataManager, const BOOL applyAttrsToModel, ModelAttributes *const modelAttrs, MapPropManager *mapPropManager)
 {
-    int i;
     VecFx32 position;
     MtxFx33 rotationMatrix = {
         FX32_ONE,
@@ -137,7 +135,7 @@ void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager 
         FX32_ONE
     };
 
-    for (i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
+    for (int i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
         MapProp *loadedProp = &mapPropManager->loadedProps[i];
 
         if (loadedProp->loaded != FALSE) {
@@ -245,22 +243,19 @@ static void MapPropManager_InitRenderObj(const int modelID, AreaDataManager *con
 static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *model, VecFx32 *position, MtxFx33 *rotation, VecFx32 *scale, const MapPropMaterialShape *propMatShp, const int modelID)
 {
     u8 i;
-    u16 propMatShpIDsCount;
-    u16 propMatShpIDsIndex;
-    u8 materialID;
-    BOOL sendMaterial;
-    MapPropMaterialShapeIDs const *propMatShpIDs;
 
     NNS_G3dGlbSetBaseTrans(position);
     NNS_G3dGlbSetBaseRot(rotation);
     NNS_G3dGlbSetBaseScale(scale);
     NNS_G3dGlbFlush();
 
+    u16 propMatShpIDsCount;
+    u16 propMatShpIDsIndex;
     MapProp_GetMaterialShapeIDsLocator(modelID, propMatShp, &propMatShpIDsCount, &propMatShpIDsIndex);
 
-    propMatShpIDs = MapPropMaterialShape_GetMaterialShapeIDsAt(propMatShpIDsIndex, propMatShp);
-    materialID = 0xFF;
-    sendMaterial = TRUE;
+    MapPropMaterialShapeIDs const *propMatShpIDs = MapPropMaterialShape_GetMaterialShapeIDsAt(propMatShpIDsIndex, propMatShp);
+    u8 materialID = 0xFF;
+    BOOL sendMaterial = TRUE;
 
     for (i = 0; i < propMatShpIDsCount; i++) {
         if (materialID != propMatShpIDs[i].materialID) {
@@ -276,10 +271,9 @@ static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *model, VecFx3
 
 u8 MapPropManager_LoadOne(MapPropManager *mapPropManager, AreaDataManager *const areaDataManager, const int modelID, const VecFx32 *position, const VecFx32 *rotation, MapPropAnimationManager *mapPropAnimMan)
 {
-    u8 i;
     VecFx32 scale = { FX32_ONE, FX32_ONE, FX32_ONE };
 
-    for (i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
+    for (u8 i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
         MapProp *loadedProp = &mapPropManager->loadedProps[i];
 
         if (loadedProp->loaded == FALSE) {
@@ -309,7 +303,6 @@ u8 MapPropManager_LoadOne(MapPropManager *mapPropManager, AreaDataManager *const
 
 void MapPropManager_Render2(MapPropManager *mapPropManager, AreaDataManager *const areaDataManager)
 {
-    u8 i;
     MtxFx33 rotationMatrix = {
         FX32_ONE,
         0,
@@ -322,7 +315,7 @@ void MapPropManager_Render2(MapPropManager *mapPropManager, AreaDataManager *con
         FX32_ONE
     };
 
-    for (i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
+    for (u8 i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
         MapProp *loadedProp = &mapPropManager->loadedProps[i];
 
         if (loadedProp->loaded) {

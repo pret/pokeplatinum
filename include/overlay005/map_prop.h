@@ -28,7 +28,7 @@ typedef struct MapPropManager {
     MapProp loadedProps[MAX_LOADED_MAP_PROPS];
 } MapPropManager;
 
-MapPropManager *MapPropManager_New(const u8 heapId);
+MapPropManager *MapPropManager_New(const u8 heapID);
 void MapPropManager_Free(MapPropManager *mapPropManager);
 void MapPropManager_Init(MapPropManager *mapPropManager);
 void MapPropManager_InitOne(const int index, MapPropManager *mapPropManager);

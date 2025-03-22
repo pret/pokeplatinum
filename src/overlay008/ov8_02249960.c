@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/map_prop.h"
+#include "constants/field/map_prop.h"
 
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -19,12 +19,12 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/dynamic_terrain_height.h"
 #include "overlay005/land_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021DF440.h"
-#include "overlay005/ov5_021EF250.h"
 #include "overlay005/ov5_021F4018.h"
 #include "overlay005/ov5_021F428C.h"
 #include "overlay005/ov5_021F47B0.h"
@@ -442,7 +442,7 @@ static BOOL ov8_02249A94(FieldTask *taskMan)
         }
     } break;
     case 2:
-        ov5_021EF388(0, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 0), fieldSystem->dynamicTerrainHeightMan);
         Sound_StopEffect(1626, 0);
         (v2->unk_00)++;
         break;
@@ -529,7 +529,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
         }
         break;
     case 4:
-        ov5_021EF388(0, (FX32_ONE * 16 * 2), fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 2), fieldSystem->dynamicTerrainHeightMan);
         Sound_StopEffect(1626, 0);
         (v2->unk_00)++;
         break;
@@ -580,7 +580,7 @@ static BOOL ov8_02249CD8(FieldTask *taskMan)
         }
     } break;
     case 2:
-        ov5_021EF388(0, (FX32_ONE * 16 * 4), fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 4), fieldSystem->dynamicTerrainHeightMan);
         Sound_StopEffect(1626, 0);
         (v2->unk_00)++;
         break;
@@ -610,7 +610,7 @@ void ov8_02249DBC(FieldSystem *fieldSystem)
         MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 242, &v9, NULL, fieldSystem->mapPropAnimMan);
     }
 
-    ov5_021EF2CC(0, 1, 2, 25, 38, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
+    DynamicTerrainHeightManager_SetPlate(0, 1, 2, 25, 38, (FX32_ONE * 16 * 0), fieldSystem->dynamicTerrainHeightMan);
 
     v0 = v8->unk_00;
 
@@ -656,7 +656,7 @@ void ov8_02249DBC(FieldSystem *fieldSystem)
         MapProp_SetPosition(v1, &v10);
     }
 
-    ov5_021EF388(0, v3, fieldSystem->unk_A0);
+    DynamicTerrainHeightManager_SetHeight(0, v3, fieldSystem->dynamicTerrainHeightMan);
 
     {
         MapPropAnimation *v11;
@@ -796,7 +796,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
         }
     } break;
     case 2:
-        ov5_021EF388(0, (FX32_ONE * 16 * 10), fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 10), fieldSystem->dynamicTerrainHeightMan);
         sub_0205ED48(fieldSystem->playerAvatar, 1);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
@@ -841,7 +841,7 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
         }
     } break;
     case 2:
-        ov5_021EF388(0, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 0), fieldSystem->dynamicTerrainHeightMan);
         sub_0205ED48(fieldSystem->playerAvatar, 1);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;

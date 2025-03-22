@@ -769,7 +769,7 @@ static BOOL ShouldGetRandomEncounter(FieldSystem *fieldSystem, const u32 encount
         flatEncounterRate += 30;
     }
 
-    flatEncounterRate = SpecialDates_ModifyEncounterRate(flatEncounterRate, sub_02055C40(fieldSystem));
+    flatEncounterRate = SpecialDates_ModifyEncounterRate(flatEncounterRate, FieldSystem_HasPenalty(fieldSystem));
 
     if (flatEncounterRate > 100) {
         flatEncounterRate = 100;

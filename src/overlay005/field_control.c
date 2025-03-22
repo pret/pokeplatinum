@@ -8,16 +8,16 @@
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/daycare.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/daycare.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1154.h"
-#include "overlay005/ov5_021E622C.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/ov5_021EF4BC.h"
 #include "overlay005/ov5_021F8370.h"
@@ -32,6 +32,7 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "daycare_save.h"
 #include "encounter.h"
 #include "field_comm_manager.h"
 #include "field_map_change.h"
@@ -55,7 +56,6 @@
 #include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_020261E4.h"
 #include "unk_02030EE0.h"
 #include "unk_020366A0.h"
 #include "unk_0203C954.h"
@@ -826,13 +826,13 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
 static BOOL Field_UpdateDaycare(FieldSystem *fieldSystem)
 {
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
-    UnkStruct_02026310 *v1 = sub_02026310(fieldSystem->saveData);
+    Daycare *daycare = SaveData_GetDaycare(fieldSystem->saveData);
 
-    if (ov5_021E7154(v1, party, fieldSystem) == TRUE) {
-        GameRecords *v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    if (Daycare_Update(daycare, party, fieldSystem) == TRUE) {
+        GameRecords *records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
-        GameRecords_IncrementRecordValue(v2, RECORD_UNK_011);
-        GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_15);
+        GameRecords_IncrementRecordValue(records, RECORD_EGGS_HATCHED);
+        GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_UNK_15);
         ScriptManager_Set(fieldSystem, 2031, NULL);
 
         return TRUE;

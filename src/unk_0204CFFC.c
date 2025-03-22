@@ -8,7 +8,7 @@
 #include "struct_decls/pc_boxes_decl.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 #include "savedata/save_table.h"
 
 #include "field_script_context.h"
