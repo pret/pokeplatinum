@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0209843C.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 #include "overlay119/ov119_021D0D80.h"
 #include "overlay119/ov119_021D191C.h"
 #include "overlay119/struct_ov119_021D0FD0.h"
@@ -196,7 +196,7 @@ static BOOL sub_0209843C(FieldTask *param0)
 
     switch (v0->unk_00) {
     case 0:
-        ov5_021E771C(v0->unk_0C.unk_00, 11);
+        Egg_CreateHatchedMon(v0->unk_0C.unk_00, HEAP_ID_FIELDMAP);
         FieldTransition_FinishMap(param0);
         v0->unk_00++;
         break;

@@ -8,7 +8,7 @@
 #include "constants/heap.h"
 #include "constants/items.h"
 
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 
 #include "heap.h"
 #include "party.h"

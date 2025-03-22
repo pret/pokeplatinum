@@ -21,9 +21,9 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/mail.h"
 #include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_02078B40.h"
 
@@ -231,9 +231,9 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
     Pokemon_SetValue(mon, MON_DATA_LEVEL, &monLevel);
 
-    UnkStruct_0202818C *v1 = sub_0202818C(0);
+    Mail *v1 = sub_0202818C(0);
 
-    Pokemon_SetValue(mon, MON_DATA_170, v1);
+    Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
     Heap_FreeToHeap(v1);
 
     u32 zero = 0;
@@ -563,7 +563,7 @@ static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, vo
         result = mon->party.spDef;
         break;
 
-    case MON_DATA_170:
+    case MON_DATA_MAIL:
         sub_020281A0(&mon->party.unk_14, dest);
         result = TRUE;
         break;
@@ -1153,7 +1153,7 @@ static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, c
         mon->party.spDef = *u16Value;
         break;
 
-    case MON_DATA_170:
+    case MON_DATA_MAIL:
         sub_020281A0(value, &mon->party.unk_14);
         break;
 
@@ -1681,7 +1681,7 @@ static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam par
     case MON_DATA_SPEED:
     case MON_DATA_SP_ATK:
     case MON_DATA_SP_DEF:
-    case MON_DATA_170:
+    case MON_DATA_MAIL:
         GF_ASSERT(0);
         break;
     default:
@@ -3753,8 +3753,8 @@ void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
     Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &zero);
     Pokemon_SetValue(mon, MON_DATA_MAX_HP, &zero);
 
-    UnkStruct_0202818C *v1 = sub_0202818C(0);
-    Pokemon_SetValue(mon, MON_DATA_170, v1);
+    Mail *v1 = sub_0202818C(0);
+    Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
     Heap_FreeToHeap(v1);
 
     Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &zero);

@@ -100,4 +100,9 @@
 
 #define BERRY_ID(itemId) (ITEM_##itemId##_BERRY - FIRST_BERRY_IDX)
 
+// HMs are considered to be TMs 93 - 100.
+#define MAX_TM   92
+#define MAX_HM   8
+#define MAX_TMHM (92 + 8)
+
 #endif // POKEPLATINUM_CONSTANTS_ITEMS_H

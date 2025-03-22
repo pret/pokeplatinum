@@ -2008,9 +2008,9 @@
     .short 365
     .endm
 
-    .macro ScrCmd_16E arg0
+    .macro GetDaycareState destVar
     .short 366
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_16F
@@ -2295,10 +2295,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1A4 arg0, arg1
+    .macro MoveMonToPartyFromDaycareSlot destVarSpecies, daycareSlot
     .short 420
-    .short \arg0
-    .short \arg1
+    .short \destVarSpecies
+    .short \daycareSlot
     .endm
 
     .macro ScrCmd_1A5 arg0
@@ -2314,18 +2314,18 @@
     .short 423
     .endm
 
-    .macro ScrCmd_1A8
+    .macro ResetDaycarePersonalityAndStepCounter
     .short 424
     .endm
 
-    .macro ScrCmd_1A9
+    .macro GiveEggFromDaycare
     .short 425
     .endm
 
-    .macro ScrCmd_1AA arg0, arg1
+    .macro BufferDaycarePriceBySlot destVar, daycareSlot
     .short 426
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \daycareSlot
     .endm
 
     .macro ScrCmd_1AB arg0, arg1
@@ -2343,10 +2343,10 @@
     .short \dummy
     .endm
 
-    .macro ScrCmd_1AE arg0, arg1
+    .macro BufferDaycareGainedLevelsBySlot destVar, daycareSlot
     .short 430
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \daycareSlot
     .endm
 
     .macro ScrCmd_1AF arg0, arg1, arg2
@@ -2356,9 +2356,9 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_1B0 arg0
+    .macro StorePartyMonIntoDaycare partySlot
     .short 432
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_1B1 arg0
@@ -2439,14 +2439,14 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_1BE arg0
+    .macro GetDaycareCompatibilityLevel destVar
     .short 446
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_1BF arg0
+    .macro CheckDaycareHasEgg destVar
     .short 447
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_1C0 destVarID, species
