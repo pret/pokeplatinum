@@ -1,7 +1,7 @@
 matrix_bin_gen = generator(
     map_matrix_py,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
-    output: '@BASENAME@.bin'
+    output: '@BASENAME@'
 )
 
 matrix_data_srcs = files(
@@ -307,6 +307,7 @@ map_matrix_narc = custom_target('map_matrix.narc',
     depends: [ py_consts_generators ],
     command: [
         narc_exe, 'create',
+        '--naix',
         '--order', matrix_data_order,
         '--output', '@OUTPUT@',
         '@PRIVATE_DIR@',
