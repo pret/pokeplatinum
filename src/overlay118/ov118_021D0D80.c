@@ -78,7 +78,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
 
         switch (v0->unk_0C) {
         case SPECIES_GIRATINA:
-            Pokemon_SetGiratinaForm(v1);
+            Pokemon_SetGiratinaFormByHeldItem(v1);
             v0->unk_08 = 65;
             v0->unk_10 = 0;
             break;
