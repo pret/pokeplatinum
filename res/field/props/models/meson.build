@@ -1,4 +1,10 @@
-map_prop_model_files = copy_gen.process(files(
+map_prop_model_gen = generator(
+    find_program('cp'),
+    arguments: [ '@INPUT@', '@OUTPUT@', ],
+    output: '@BASENAME@'
+)
+
+map_prop_model_files = files(
     'unk_000.nsbmd',
     'unk_001.nsbmd',
     'unk_002.nsbmd',
@@ -589,7 +595,7 @@ map_prop_model_files = copy_gen.process(files(
     'unk_587.nsbmd',
     'unk_588.nsbmd',
     'unk_589.nsbmd',
-))
+)
 
 map_prop_model_order = files('map_prop_models.order')
 map_prop_model_narc = custom_target('build_model.narc',
@@ -597,7 +603,7 @@ map_prop_model_narc = custom_target('build_model.narc',
         'build_model.narc',
     ],
     input: [
-        map_prop_model_files,
+        map_prop_model_gen.process(map_prop_model_files),
         map_prop_model_order,
     ],
     command: [
