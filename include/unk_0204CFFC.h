@@ -33,7 +33,7 @@ BOOL ScrCmd_1C9(ScriptContext *param0);
 BOOL ScrCmd_1CA(ScriptContext *param0);
 BOOL ScrCmd_1EE(ScriptContext *param0);
 BOOL ScrCmd_1F0(ScriptContext *param0);
-BOOL PartyHasSpecies(ScriptContext *ctx);
+BOOL ScrCmd_PartyHasSpecies(ScriptContext *ctx);
 BOOL ScrCmd_GetPartyRepeatedSpeciesCount(ScriptContext *ctx);
 BOOL ScrCmd_GetPartyIDWithSpecies(ScriptContext *ctx);
 BOOL ScrCmd_22E(ScriptContext *param0);

@@ -1213,7 +1213,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetPlayerDir,
     ScrCmd_GetDaycareCompatibilityLevel,
     ScrCmd_CheckDaycareHasEgg,
-    PartyHasSpecies,
+    ScrCmd_PartyHasSpecies,
     ScrCmd_1C1,
     ScrCmd_1C2,
     ScrCmd_1C3,

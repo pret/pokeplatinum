@@ -613,7 +613,7 @@ BOOL ScrCmd_1F0(ScriptContext *param0)
     return 0;
 }
 
-BOOL PartyHasSpecies(ScriptContext *ctx)
+BOOL ScrCmd_PartyHasSpecies(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Pokemon *mon;
