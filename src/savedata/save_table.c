@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "bag.h"
+#include "daycare_save.h"
 #include "field_overworld_state.h"
 #include "game_records.h"
 #include "journal.h"
@@ -20,7 +21,6 @@
 #include "system_data.h"
 #include "unk_02014D38.h"
 #include "unk_0202602C.h"
-#include "unk_020261E4.h"
 #include "unk_02027F84.h"
 #include "unk_02028124.h"
 #include "unk_0202854C.h"

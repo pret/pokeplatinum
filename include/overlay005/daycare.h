@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV5_021E622C_H
-#define POKEPLATINUM_OV5_021E622C_H
+#ifndef POKEPLATINUM_DAYCARE_H
+#define POKEPLATINUM_DAYCARE_H
 
 #include "struct_defs/daycare.h"
 
@@ -31,4 +31,4 @@ u32 Daycare_GetCompatibilityLevel(Daycare *daycare);
 void Egg_CreateHatchedMon(Pokemon *param0, int heapID);
 u32 BoxMon_GetPairDaycareCompatibilityLevel(BoxPokemon **boxMonPair);
 
-#endif // POKEPLATINUM_OV5_021E622C_H
+#endif // POKEPLATINUM_DAYCARE_H

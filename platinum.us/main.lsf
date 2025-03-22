@@ -109,7 +109,7 @@ Static main
 	Object main.nef.p/src_trainer_info.c.o
 	Object main.nef.p/src_unk_0202602C.c.o
 	Object main.nef.p/src_unk_02026150.c.o
-	Object main.nef.p/src_unk_020261E4.c.o
+	Object main.nef.p/src_daycare_save.c.o
 	Object main.nef.p/src_pokedex.c.o
 	Object main.nef.p/src_savedata_misc.c.o
 	Object main.nef.p/src_game_options.c.o
@@ -495,7 +495,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_motion_blur.c.o
 	Object main.nef.p/src_overlay005_field_motion_blur.c.o
 	Object main.nef.p/src_overlay005_encounter_effect_core.c.o
-	Object main.nef.p/src_overlay005_ov5_021E622C.c.o
+	Object main.nef.p/src_overlay005_daycare.c.o
 	Object main.nef.p/src_overlay005_land_data.c.o
 	Object main.nef.p/src_overlay005_ov5_021EA714.c.o
 	Object main.nef.p/src_overlay005_ov5_021EA874.c.o

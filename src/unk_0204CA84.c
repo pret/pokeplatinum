@@ -6,8 +6,9 @@
 #include "struct_defs/daycare.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 
+#include "daycare_save.h"
 #include "field_script_context.h"
 #include "field_system.h"
 #include "inlines.h"
@@ -16,7 +17,6 @@
 #include "savedata.h"
 #include "script_manager.h"
 #include "trainer_info.h"
-#include "unk_020261E4.h"
 
 BOOL ScrCmd_16D(ScriptContext *param0)
 {

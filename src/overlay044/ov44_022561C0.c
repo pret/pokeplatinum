@@ -2,7 +2,7 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 #include "overlay025/poketch_button.h"
 #include "overlay025/poketch_system.h"
 #include "overlay044/ov44_022565BC.h"

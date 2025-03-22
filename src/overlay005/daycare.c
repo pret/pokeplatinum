@@ -1,4 +1,4 @@
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -15,6 +15,7 @@
 #include "field/field_system.h"
 #include "overlay005/egg_moves.h"
 
+#include "daycare_save.h"
 #include "game_records.h"
 #include "heap.h"
 #include "item.h"
@@ -29,7 +30,6 @@
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
-#include "unk_020261E4.h"
 #include "unk_0202CC64.h"
 #include "unk_020559DC.h"
 #include "unk_02092494.h"

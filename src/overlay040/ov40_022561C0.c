@@ -4,20 +4,20 @@
 
 #include "struct_defs/daycare.h"
 
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 #include "overlay025/poketch_system.h"
 #include "overlay040/ov40_0225645C.h"
 #include "overlay040/struct_ov40_0225645C_1.h"
 #include "overlay040/struct_ov40_0225645C_decl.h"
 
 #include "bg_window.h"
+#include "daycare_save.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_020261E4.h"
 
 typedef struct {
     u8 unk_00;

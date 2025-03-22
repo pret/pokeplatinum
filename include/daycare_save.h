@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020261E4_H
-#define POKEPLATINUM_UNK_020261E4_H
+#ifndef POKEPLATINUM_DAYCARE_SAVE_H
+#define POKEPLATINUM_DAYCARE_SAVE_H
 
 #include "struct_defs/daycare.h"
 
@@ -25,4 +25,4 @@ void DaycareMon_CopyToDaycareMon(DaycareMon *dest, const DaycareMon *src);
 void DaycareMon_Init(DaycareMon *daycareMon);
 Daycare *SaveData_GetDaycare(SaveData *param0);
 
-#endif // POKEPLATINUM_UNK_020261E4_H
+#endif // POKEPLATINUM_DAYCARE_SAVE_H
