@@ -33,7 +33,7 @@ _0034:
     LockAll
     FacePlayer
     GoToIfSet 193, _00A1
-    PartyHasSpecies 0x800C, SPECIES_GEODUDE
+    CheckPartyHasSpecies 0x800C, SPECIES_GEODUDE
     GoToIfEq 0x800C, 0, _0096
     Message 3
     SetVar 0x8004, 14

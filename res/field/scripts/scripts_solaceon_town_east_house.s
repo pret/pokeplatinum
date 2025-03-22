@@ -14,7 +14,7 @@ _000C:
     FacePlayer
     GoToIfUnset 0x117, _00FE
     CallIfUnset 1, _00F6
-    PartyHasSpecies 0x800C, SPECIES_UNOWN
+    CheckPartyHasSpecies 0x800C, SPECIES_UNOWN
     GoToIfEq 0x800C, 1, _0048
     Message 0
     WaitABXPadPress

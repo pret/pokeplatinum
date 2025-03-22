@@ -33,7 +33,7 @@ BOOL ScrCmd_1C9(ScriptContext *param0);
 BOOL ScrCmd_1CA(ScriptContext *param0);
 BOOL ScrCmd_1EE(ScriptContext *param0);
 BOOL ScrCmd_1F0(ScriptContext *param0);
-BOOL ScrCmd_PartyHasSpecies(ScriptContext *ctx);
+BOOL ScrCmd_CheckPartyHasSpecies(ScriptContext *ctx);
 BOOL ScrCmd_GetPartyRepeatedSpeciesCount(ScriptContext *ctx);
 BOOL ScrCmd_GetPartyIDWithSpecies(ScriptContext *ctx);
 BOOL ScrCmd_22E(ScriptContext *param0);
@@ -42,7 +42,7 @@ BOOL ScrCmd_GetPartyMonRibbon(ScriptContext *ctx);
 BOOL ScrCmd_SetPartyMonRibbon(ScriptContext *ctx);
 BOOL ScrCmd_2B7(ScriptContext *param0);
 int ScrCmd_0A0(ScriptContext *param0);
-BOOL ScrCmd_PartyHasSpeciesWithFatefulEncounter(ScriptContext *ctx);
+BOOL ScrCmd_CheckPartyHasSpeciesWithFatefulEncounter(ScriptContext *ctx);
 BOOL ScrCmd_PartyHasHeldItem(ScriptContext *ctx);
 
 #endif // POKEPLATINUM_UNK_0204CFFC_H

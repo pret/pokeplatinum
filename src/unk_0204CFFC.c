@@ -615,7 +615,7 @@ BOOL ScrCmd_1F0(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_PartyHasSpecies(ScriptContext *ctx)
+BOOL ScrCmd_CheckPartyHasSpecies(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Pokemon *mon;
@@ -832,7 +832,7 @@ BOOL ScrCmd_0A0(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_PartyHasSpeciesWithFatefulEncounter(ScriptContext *ctx)
+BOOL ScrCmd_CheckPartyHasSpeciesWithFatefulEncounter(ScriptContext *ctx)
 {
     u8 i, partyCount;
     u16 partySpecies;

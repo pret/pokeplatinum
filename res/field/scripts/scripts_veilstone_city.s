@@ -1435,7 +1435,7 @@ _10A2:
 VeilstoneCity_DeoxysMeteoriteSpeed:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    PartyHasSpecies2 SPECIES_DEOXYS, 0x800C
+    CheckPartyHasSpecies2 SPECIES_DEOXYS, 0x800C
     GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_SPEED
     PlayCry SPECIES_DEOXYS
@@ -1449,7 +1449,7 @@ VeilstoneCity_DeoxysMeteoriteSpeed:
 VeilstoneCity_DeoxysMeteoriteDefense:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    PartyHasSpecies2 SPECIES_DEOXYS, 0x800C
+    CheckPartyHasSpecies2 SPECIES_DEOXYS, 0x800C
     GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_DEFENSE
     PlayCry SPECIES_DEOXYS
@@ -1463,7 +1463,7 @@ VeilstoneCity_DeoxysMeteoriteDefense:
 VeilstoneCity_DeoxysMeteoriteAttack:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    PartyHasSpecies2 SPECIES_DEOXYS, 0x800C
+    CheckPartyHasSpecies2 SPECIES_DEOXYS, 0x800C
     GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_ATTACK
     PlayCry SPECIES_DEOXYS
@@ -1477,7 +1477,7 @@ VeilstoneCity_DeoxysMeteoriteAttack:
 VeilstoneCity_DeoxysMeteoriteNormal:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    PartyHasSpecies2 SPECIES_DEOXYS, 0x800C
+    CheckPartyHasSpecies2 SPECIES_DEOXYS, 0x800C
     GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_NORMAL
     PlayCry SPECIES_DEOXYS

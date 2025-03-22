@@ -104,7 +104,7 @@ RotomsRoom_LawnMower:
     End
 
 _0151:
-    PartyHasSpecies 0x800C, SPECIES_ROTOM
+    CheckPartyHasSpecies 0x800C, SPECIES_ROTOM
     GoToIfEq 0x800C, FALSE, RotomsRoom_ItsAnAppliance
     CheckItem ITEM_SECRET_KEY, 1, 0x800C
     GoToIfEq 0x800C, FALSE, RotomsRoom_ItsAnAppliance
