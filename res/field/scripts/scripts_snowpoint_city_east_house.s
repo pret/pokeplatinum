@@ -80,7 +80,7 @@ _00B0:
     GoToIfEq 0x8003, -2, _0296
     CheckCanAffordMove 0x8003, 0x800C
     GoToIfEq 0x800C, 0, _02AC
-    ScrCmd_1C8 0x800C, 0x8000
+    GetPartyMonMoveCount 0x800C, 0x8000
     SetVar 0x8002, 0x800C
     GoToIfEq 0x800C, 4, _0161
     GoTo _0256
@@ -96,18 +96,18 @@ _0161:
     WaitFadeScreen
     CloseMessage
     OpenSummaryScreenTeachMove 0x8000, 0x8003
-    ScrCmd_2E8 0x8002
+    GetSummarySelectedMoveSlot 0x8002
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8002, 4, _021B
-    ScrCmd_1CA 0x800C, 0x8000, 0x8002
+    GetPartyMonMove 0x800C, 0x8000, 0x8002
     BufferMoveName 1, 0x800C
     Message 19
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _021B
     BufferPartyMonNickname 0, 0x8000
-    ScrCmd_1CA 0x800C, 0x8000, 0x8002
+    GetPartyMonMove 0x800C, 0x8000, 0x8002
     BufferMoveName 1, 0x800C
     Message 20
     PlayFanfare SEQ_SE_DP_KON

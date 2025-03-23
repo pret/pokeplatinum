@@ -28,7 +28,7 @@ BOOL ScrCmd_19C(ScriptContext *param0);
 BOOL ScrCmd_19D(ScriptContext *param0);
 BOOL ScrCmd_CheckPartyPokerus(ScriptContext *ctx);
 BOOL ScrCmd_11A(ScriptContext *param0);
-BOOL ScrCmd_1C8(ScriptContext *param0);
+BOOL ScrCmd_GetPartyMonMoveCount(ScriptContext *ctx);
 BOOL ScrCmd_1C9(ScriptContext *param0);
 BOOL ScrCmd_1CA(ScriptContext *param0);
 BOOL ScrCmd_1EE(ScriptContext *param0);

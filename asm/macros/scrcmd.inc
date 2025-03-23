@@ -2496,10 +2496,10 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_1C8 arg0, arg1
+    .macro GetPartyMonMoveCount destVar, partySlot
     .short 456
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \partySlot
     .endm
 
     .macro ScrCmd_1C9 arg0, arg1
@@ -2508,11 +2508,11 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1CA arg0, arg1, arg2
+    .macro GetPartyMonMove destVar, partySlot, moveSlot
     .short 458
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \destVar
+    .short \partySlot
+    .short \moveSlot
     .endm
 
     .macro ScrCmd_1CB arg0, arg1, arg2
@@ -4116,9 +4116,9 @@
     .short \move
     .endm
 
-    .macro ScrCmd_2E8 arg0
+    .macro GetSummarySelectedMoveSlot destVar
     .short 744
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ResetMoveSlot partySlot, moveID, moveSlot

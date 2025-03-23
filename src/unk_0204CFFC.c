@@ -520,41 +520,40 @@ BOOL ScrCmd_11A(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1C8(ScriptContext *param0)
+BOOL ScrCmd_GetPartyMonMoveCount(ScriptContext *ctx)
 {
-    FieldSystem *v0 = param0->fieldSystem;
-    Pokemon *v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
-    u8 v4;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u8 count;
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->saveData), v3);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
 
-    if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) != 0) {
-        *v2 = 0;
-        return 0;
+    if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
+        *destVar = 0;
+        return FALSE;
     }
 
-    v4 = 0;
+    count = 0;
 
-    if (Pokemon_GetValue(v1, MON_DATA_MOVE1, NULL) != 0) {
-        v4++;
+    if (Pokemon_GetValue(mon, MON_DATA_MOVE1, NULL) != MOVE_NONE) {
+        count++;
     }
 
-    if (Pokemon_GetValue(v1, MON_DATA_MOVE2, NULL) != 0) {
-        v4++;
+    if (Pokemon_GetValue(mon, MON_DATA_MOVE2, NULL) != MOVE_NONE) {
+        count++;
     }
 
-    if (Pokemon_GetValue(v1, MON_DATA_MOVE3, NULL) != 0) {
-        v4++;
+    if (Pokemon_GetValue(mon, MON_DATA_MOVE3, NULL) != MOVE_NONE) {
+        count++;
     }
 
-    if (Pokemon_GetValue(v1, MON_DATA_MOVE4, NULL) != 0) {
-        v4++;
+    if (Pokemon_GetValue(mon, MON_DATA_MOVE4, NULL) != MOVE_NONE) {
+        count++;
     }
 
-    *v2 = v4;
-    return 0;
+    *destVar = count;
+    return FALSE;
 }
 
 BOOL ScrCmd_1C9(ScriptContext *param0)
@@ -572,16 +571,15 @@ BOOL ScrCmd_1C9(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1CA(ScriptContext *param0)
+BOOL ScrCmd_1CA(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    Pokemon *v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 v4 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 moveSlot = ScriptContext_GetVar(ctx);
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
-    *v2 = Pokemon_GetValue(v1, MON_DATA_MOVE1 + v4, NULL);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
+    *destVar = Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
 
     return 0;
 }

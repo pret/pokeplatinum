@@ -535,7 +535,7 @@ static BOOL ScrCmd_2A5(ScriptContext *ctx);
 static BOOL ScrCmd_196(ScriptContext *ctx);
 static BOOL ScrCmd_197(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSummaryScreenTeachMove(ScriptContext *ctx);
-static BOOL ScrCmd_2E8(ScriptContext *ctx);
+static BOOL ScrCmd_GetSummarySelectedMoveSlot(ScriptContext *ctx);
 static BOOL ScrCmd_19E(ScriptContext *ctx);
 static BOOL sub_020441C8(ScriptContext *ctx);
 static BOOL ScrCmd_19F(ScriptContext *ctx);
@@ -1221,7 +1221,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_InitSizeContestRecord,
     ScrCmd_SelectPartyMonMove,
     ScrCmd_GetSelectedPartyMonMove,
-    ScrCmd_1C8,
+    ScrCmd_GetPartyMonMoveCount,
     ScrCmd_1C9,
     ScrCmd_1CA,
     ScrCmd_1CB,
@@ -1509,7 +1509,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckHasLearnableTutorMoves,
     ScrCmd_ShowMoveTutorMoveSelectionMenu,
     ScrCmd_OpenSummaryScreenTeachMove,
-    ScrCmd_2E8,
+    ScrCmd_GetSummarySelectedMoveSlot,
     ScrCmd_ResetMoveSlot,
     ScrCmd_CheckCanAffordMove,
     ScrCmd_PayShardsCost,
@@ -3756,24 +3756,24 @@ static BOOL ScrCmd_OpenSummaryScreenTeachMove(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_2E8(ScriptContext *ctx)
+static BOOL ScrCmd_GetSummarySelectedMoveSlot(ScriptContext *ctx)
 {
-    void **v0;
-    u16 *v1;
-    PokemonSummary *v2;
+    void **partySelect;
+    u16 *destVar;
+    PokemonSummary *summary;
 
-    v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
+    destVar = ScriptContext_GetVarPointer(ctx);
+    partySelect = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    GF_ASSERT(*v0 != 0);
+    GF_ASSERT(*partySelect != 0);
 
-    v2 = *v0;
-    *v1 = v2->selectedMoveSlot;
+    summary = *partySelect;
+    *destVar = summary->selectedMoveSlot;
 
-    Heap_FreeToHeap(*v0);
-    *v0 = NULL;
+    Heap_FreeToHeap(*partySelect);
+    *partySelect = NULL;
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ScrCmd_09B(ScriptContext *ctx)
