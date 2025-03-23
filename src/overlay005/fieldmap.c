@@ -52,6 +52,7 @@
 #include "camera.h"
 #include "char_transfer.h"
 #include "comm_player_manager.h"
+#include "dynamic_map_features.h"
 #include "easy3d.h"
 #include "field_map_change.h"
 #include "field_message.h"
@@ -83,7 +84,6 @@
 #include "unk_020556C4.h"
 #include "unk_020559DC.h"
 #include "unk_02055C50.h"
-#include "unk_02068344.h"
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay6);
@@ -268,7 +268,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_02068368(fieldSystem);
+        DynamicMapFeatures_Free(fieldSystem);
         LandDataManager_ForgetTrackedTarget(fieldSystem->landDataMan);
 
         fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
@@ -909,7 +909,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     fieldSystem->unk_04->unk_10 = ov5_021D5CB0();
 
     ov5_021D5CE4(fieldSystem->unk_04->unk_10, AreaDataManager_GetMapTexture(fieldSystem->areaDataManager));
-    sub_02068344(fieldSystem);
+    DynamicMapFeatures_Init(fieldSystem);
     ov5_021EE7C0(fieldSystem);
     SetVBlankCallback(fieldmap, fieldSystem);
 }

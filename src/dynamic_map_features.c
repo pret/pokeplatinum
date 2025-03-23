@@ -1,14 +1,12 @@
-#include "unk_02068344.h"
+#include "dynamic_map_features.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
+#include "generated/map_headers.h"
 
 #include "field/field_system.h"
-#include "functypes/funcptr_020EF718.h"
-#include "functypes/funcptr_020EF744.h"
-#include "functypes/funcptr_020EF770.h"
 #include "overlay005/ov5_021F8370.h"
 #include "overlay006/ov6_02242AF0.h"
 #include "overlay008/ov8_02249960.h"
@@ -19,7 +17,7 @@
 #include "savedata_misc.h"
 #include "unk_0207160C.h"
 
-const static UnkFuncPtr_020EF744 Unk_020EF744[DYNAMIC_MAP_FEATURES_COUNT] = {
+const static DynamicMapFeaturesInitFunc sInitFuncs[DYNAMIC_MAP_FEATURES_COUNT] = {
     NULL,
     ov8_02249DBC,
     ov8_0224C198,
@@ -33,7 +31,7 @@ const static UnkFuncPtr_020EF744 Unk_020EF744[DYNAMIC_MAP_FEATURES_COUNT] = {
     ov5_021F8370
 };
 
-const static UnkFuncPtr_020EF718 Unk_020EF718[DYNAMIC_MAP_FEATURES_COUNT] = {
+const static DynamicMapFeaturesFreeFunc sFreeFuncs[DYNAMIC_MAP_FEATURES_COUNT] = {
     NULL,
     NULL,
     ov8_0224C388,
@@ -47,7 +45,7 @@ const static UnkFuncPtr_020EF718 Unk_020EF718[DYNAMIC_MAP_FEATURES_COUNT] = {
     ov5_021F83C0
 };
 
-const static UnkFuncPtr_020EF770 Unk_020EF770[DYNAMIC_MAP_FEATURES_COUNT] = {
+const static DynamicMapFeaturesCheckCollisionFunc sCheckCollisionFuncs[DYNAMIC_MAP_FEATURES_COUNT] = {
     NULL,
     ov8_02249A40,
     NULL,
@@ -61,7 +59,7 @@ const static UnkFuncPtr_020EF770 Unk_020EF770[DYNAMIC_MAP_FEATURES_COUNT] = {
     ov5_021F83D4
 };
 
-void sub_02068344(FieldSystem *fieldSystem)
+void DynamicMapFeatures_Init(FieldSystem *fieldSystem)
 {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     int id = PersistedMapFeatures_GetID(persistedMapFeatures);
@@ -70,10 +68,10 @@ void sub_02068344(FieldSystem *fieldSystem)
         return;
     }
 
-    Unk_020EF744[id](fieldSystem);
+    sInitFuncs[id](fieldSystem);
 }
 
-void sub_02068368(FieldSystem *fieldSystem)
+void DynamicMapFeatures_Free(FieldSystem *fieldSystem)
 {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     int id = PersistedMapFeatures_GetID(persistedMapFeatures);
@@ -82,37 +80,30 @@ void sub_02068368(FieldSystem *fieldSystem)
         return;
     }
 
-    if (Unk_020EF718[id] != NULL) {
-        Unk_020EF718[id](fieldSystem);
+    if (sFreeFuncs[id] != NULL) {
+        sFreeFuncs[id](fieldSystem);
     }
 }
 
-BOOL sub_02068390(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
+BOOL DynamicMapFeatures_CheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
 {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     int id = PersistedMapFeatures_GetID(persistedMapFeatures);
 
     if (id == DYNAMIC_MAP_FEATURES_NONE) {
-        return 0;
+        return FALSE;
     }
 
-    if (Unk_020EF770[id] != NULL) {
-        BOOL v2;
-
-        v2 = Unk_020EF770[id](fieldSystem, param1, param2, param3, param4);
-        return v2;
+    if (sCheckCollisionFuncs[id] != NULL) {
+        BOOL hasCollision = sCheckCollisionFuncs[id](fieldSystem, tileX, tileY, height, isColliding);
+        return hasCollision;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_020683D8(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, int param4)
+BOOL DynamicMapFeatures_WillPlayerJumpEternaGymClock(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 unused3, int direction)
 {
-    if (fieldSystem->location->mapId == 67) {
-        if (ov8_0224B714(fieldSystem, param1, param2, param4)) {
-            return 1;
-        }
-    }
-
-    return 0;
+    return fieldSystem->location->mapId == MAP_HEADER_ETERNA_CITY_GYM
+        && ov8_0224B714(fieldSystem, tileX, tileY, direction);
 }

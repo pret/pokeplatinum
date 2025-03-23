@@ -245,7 +245,7 @@ pokeplatinum_c = files(
     'unk_020673B8.c',
     'unk_020677F4.c',
     'unk_02067A84.c',
-    'unk_02068344.c',
+    'dynamic_map_features.c',
     'unk_020683F4.c',
     'pokeradar.c',
     'unk_02069BE0.c',

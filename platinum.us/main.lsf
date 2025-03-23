@@ -258,7 +258,7 @@ Static main
 	Object main.nef.p/src_unk_020673B8.c.o
 	Object main.nef.p/src_unk_020677F4.c.o
 	Object main.nef.p/src_unk_02067A84.c.o
-	Object main.nef.p/src_unk_02068344.c.o
+	Object main.nef.p/src_dynamic_map_features.c.o
 	Object main.nef.p/src_unk_020683F4.c.o
 	Object main.nef.p/src_pokeradar.c.o
 	Object main.nef.p/src_unk_02069BE0.c.o

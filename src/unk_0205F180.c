@@ -15,6 +15,7 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay009/ov9_02249960.h"
 
+#include "dynamic_map_features.h"
 #include "game_records.h"
 #include "inlines.h"
 #include "map_object.h"
@@ -24,7 +25,6 @@
 #include "terrain_collision_manager.h"
 #include "unk_02005474.h"
 #include "unk_020655F4.h"
-#include "unk_02068344.h"
 #include "unk_02071B10.h"
 
 typedef BOOL (*UnkFuncPtr_020EDB84)(u8);
@@ -1762,7 +1762,7 @@ static int sub_02060CE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
 
-        if (sub_020683D8(fieldSystem, v1, v2, 0, param2) == 1) {
+        if (DynamicMapFeatures_WillPlayerJumpEternaGymClock(fieldSystem, v1, v2, 0, param2) == 1) {
             return 1;
         }
 
