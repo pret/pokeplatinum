@@ -82,7 +82,7 @@ static const fx32 Unk_ov6_02249074[] = {
     FX32_ONE / 2
 };
 
-void ov6_02242AF0(FieldSystem *fieldSystem)
+void GreatMarsh_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     PersistedMapFeatures *v0;
     UnkStruct_ov6_02242AF0 *v1;

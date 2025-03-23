@@ -19,44 +19,44 @@
 
 const static DynamicMapFeaturesInitFunc sInitFuncs[DYNAMIC_MAP_FEATURES_COUNT] = {
     NULL,
-    ov8_02249DBC,
-    ov8_0224C198,
-    ov8_0224A8C8,
-    ov8_0224B764,
-    ov8_0224ABD4,
-    ov6_02242AF0,
-    sub_0207160C,
-    ov8_0224B020,
-    ov9_02249960,
-    ov5_021F8370
+    PastoriaGym_DynamicMapFeaturesInit,
+    HearthomeGym_DynamicMapFeaturesInit,
+    CanalaveGym_DynamicMapFeaturesInit,
+    VeilstoneGym_DynamicMapFeaturesInit,
+    SunyshoreGym_DynamicMapFeaturesInit,
+    GreatMarsh_DynamicMapFeaturesInit,
+    PlatformLift_DynamicMapFeaturesInit,
+    EternaGym_DynamicMapFeaturesInit,
+    DistortionWorld_DynamicMapFeaturesInit,
+    Villa_DynamicMapFeaturesInit
 };
 
 const static DynamicMapFeaturesFreeFunc sFreeFuncs[DYNAMIC_MAP_FEATURES_COUNT] = {
     NULL,
     NULL,
-    ov8_0224C388,
-    ov8_0224AAE8,
-    ov8_0224B7C0,
-    ov8_0224ACAC,
+    HearthomeGym_DynamicMapFeaturesFree,
+    CanalaveGym_DynamicMapFeaturesFree,
+    VeilstoneGym_DynamicMapFeaturesFree,
+    SunyshoreGym_DynamicMapFeaturesFree,
     NULL,
     NULL,
-    ov8_0224B0FC,
-    ov9_02249A60,
-    ov5_021F83C0
+    EternaGym_DynamicMapFeaturesFree,
+    DistortionWorld_DynamicMapFeaturesFree,
+    Villa_DynamicMapFeaturesFree
 };
 
 const static DynamicMapFeaturesCheckCollisionFunc sCheckCollisionFuncs[DYNAMIC_MAP_FEATURES_COUNT] = {
     NULL,
-    ov8_02249A40,
+    PastoriaGym_DynamicMapFeaturesCheckCollision,
     NULL,
-    ov8_0224AAFC,
-    ov8_0224B7D4,
-    ov8_0224ACC0,
+    CanalaveGym_DynamicMapFeaturesCheckCollision,
+    VeilstoneGym_DynamicMapFeaturesCheckCollision,
+    SunyshoreGym_DynamicMapFeaturesCheckCollision,
     NULL,
     NULL,
-    ov8_0224B110,
-    ov9_02249E50,
-    ov5_021F83D4
+    EternaGym_DynamicMapFeaturesCheckCollision,
+    DistortionWorld_DynamicMapFeaturesCheckCollision,
+    Villa_DynamicMapFeaturesCheckCollision
 };
 
 void DynamicMapFeatures_Init(FieldSystem *fieldSystem)
@@ -105,5 +105,5 @@ BOOL DynamicMapFeatures_CheckCollision(FieldSystem *fieldSystem, const int tileX
 BOOL DynamicMapFeatures_WillPlayerJumpEternaGymClock(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 unused3, int direction)
 {
     return fieldSystem->location->mapId == MAP_HEADER_ETERNA_CITY_GYM
-        && ov8_0224B714(fieldSystem, tileX, tileY, direction);
+        && EternaGym_IsHourHandJumpTile(fieldSystem, tileX, tileY, direction);
 }

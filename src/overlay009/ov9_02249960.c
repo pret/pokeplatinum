@@ -1165,7 +1165,7 @@ const UnkStruct_ov9_02251438 Unk_ov9_022513D8[];
 const UnkStruct_ov9_02252548 Unk_ov9_02252548[];
 const UnkStruct_ov9_02252EB4 Unk_ov9_02252EB4[];
 
-void ov9_02249960(FieldSystem *fieldSystem)
+void DistortionWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     PersistedMapFeatures *v0;
     UnkStruct_02071C5C *v1;
@@ -1217,7 +1217,7 @@ void ov9_02249960(FieldSystem *fieldSystem)
     v1->unk_00_0 = 1;
 }
 
-void ov9_02249A60(FieldSystem *fieldSystem)
+void DistortionWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
     UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
 
@@ -1476,24 +1476,24 @@ static u32 ov9_02249E44(UnkStruct_ov9_02249B04 *param0)
     return v0->unk_00_25;
 }
 
-BOOL ov9_02249E50(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
+BOOL DistortionWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
 {
     UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
     u32 v1 = ov9_022510D0(v0);
 
     if (v1 == 582) {
-        if ((param1 == 15) && (param2 == 26)) {
-            *param4 = 1;
+        if ((tileX == 15) && (tileY == 26)) {
+            *isColliding = 1;
             return 1;
         }
     } else if (v1 == 581) {
-        if ((param1 == 89) && (param2 == 56)) {
-            *param4 = 1;
+        if ((tileX == 89) && (tileY == 56)) {
+            *isColliding = 1;
             return 1;
         }
     }
 
-    *param4 = 0;
+    *isColliding = 0;
     return 0;
 }
 

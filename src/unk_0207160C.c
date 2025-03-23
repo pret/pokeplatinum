@@ -113,7 +113,7 @@ static const UnkStruct_020F03F4 Unk_020F03F4[9] = {
     }
 };
 
-void sub_0207160C(FieldSystem *fieldSystem)
+void PlatformLift_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     BOOL v0;
     MapProp *v1;

@@ -60,7 +60,7 @@ static const UnkStruct_ov5_0220192C Unk_ov5_0220192C[23];
 static const u32 Unk_ov5_0220188C[20];
 static const UnkStruct_ov5_022018DC Unk_ov5_022018DC[20];
 
-void ov5_021F8370(FieldSystem *fieldSystem)
+void Villa_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     int v0;
     PersistedMapFeatures *v1;
@@ -89,7 +89,7 @@ void ov5_021F8370(FieldSystem *fieldSystem)
     }
 }
 
-void ov5_021F83C0(FieldSystem *fieldSystem)
+void Villa_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
     UnkStruct_ov5_021F8480 *v0 = fieldSystem->unk_04->unk_24;
 
@@ -97,20 +97,20 @@ void ov5_021F83C0(FieldSystem *fieldSystem)
     fieldSystem->unk_04->unk_24 = NULL;
 }
 
-BOOL ov5_021F83D4(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
+BOOL Villa_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
 {
     int v0;
     const UnkStruct_ov5_021F83D4 *v1;
     const UnkStruct_ov5_0220192C *v2 = Unk_ov5_0220192C;
 
     for (v0 = 0; v0 < 23; v0++, v2++) {
-        if (ov5_021F851C(param1, param2, v2, fieldSystem) == 1) {
-            *param4 = 1;
+        if (ov5_021F851C(tileX, tileY, v2, fieldSystem) == 1) {
+            *isColliding = 1;
             return 1;
         }
     }
 
-    *param4 = 0;
+    *isColliding = 0;
     return 0;
 }
 
