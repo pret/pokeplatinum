@@ -320,7 +320,7 @@ static void UpdateForms_TwoForms(Pokedex *pokedexData, u32 species, int form)
 
 static int NumFormsSeen_ThreeForms(const Pokedex *pokedexData, u32 species)
 {
-    GF_ASSERT((species == SPECIES_BURMY) || (species == SPECIES_WORMADAM));
+    GF_ASSERT(species == SPECIES_BURMY || species == SPECIES_WORMADAM);
 
     if (Pokedex_HasSeenSpecies(pokedexData, species) == FALSE) {
         return 0;
@@ -347,7 +347,7 @@ static int NumFormsSeen_ThreeForms(const Pokedex *pokedexData, u32 species)
 
 static BOOL FormSeen_ThreeForms(const Pokedex *pokedexData, u32 species, u8 form)
 {
-    GF_ASSERT((species == SPECIES_BURMY) || (species == SPECIES_WORMADAM));
+    GF_ASSERT(species == SPECIES_BURMY || species == SPECIES_WORMADAM);
 
     if (Pokedex_HasSeenSpecies(pokedexData, species) == FALSE) {
         return FALSE;
@@ -373,7 +373,7 @@ static BOOL FormSeen_ThreeForms(const Pokedex *pokedexData, u32 species, u8 form
 
 static void UpdateForms_ThreeForms(Pokedex *pokedexData, u32 species, int form)
 {
-    GF_ASSERT((species == SPECIES_BURMY) || (species == SPECIES_WORMADAM));
+    GF_ASSERT(species == SPECIES_BURMY || species == SPECIES_WORMADAM);
 
     if (FormSeen_ThreeForms(pokedexData, species, form)) {
         return;
@@ -685,7 +685,7 @@ static int GetForm_3Forms(const Pokedex *pokedexData, u32 species, int formIndex
 {
     const u8 *formArray;
 
-    GF_ASSERT((species == SPECIES_BURMY) || (species == SPECIES_WORMADAM));
+    GF_ASSERT(species == SPECIES_BURMY || species == SPECIES_WORMADAM);
     GF_ASSERT(formIndex < 3);
 
     if (species == SPECIES_BURMY) {

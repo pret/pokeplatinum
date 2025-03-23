@@ -2625,7 +2625,7 @@ static int ProcessItemApplication(GameWindowLayout *param0)
     fieldSystem = param0->unk_5A4->unk_1C;
 
     if (param0->unk_5A4->unk_24 == 112) {
-        if (Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL) != 487) {
+        if (Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
             MessageLoader_GetStrbuf(param0->unk_69C, 203, param0->unk_6A8);
             StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
             StringTemplate_SetItemNameWithArticle(param0->unk_6A0, 1, param0->unk_5A4->unk_24);

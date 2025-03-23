@@ -203,13 +203,13 @@ static void ov118_021D1028(OverlayMetadata *param0)
     sub_020144CC(param0->unk_18, v0, (1 << 1) | (1 << 3), 1);
 
     switch (param0->unk_0C) {
-    case 487:
+    case SPECIES_GIRATINA:
         sub_020146F4(param0->unk_18, 0, ov118_021D10B0, param0);
         sub_020146F4(param0->unk_18, 1, ov118_021D10B0, param0);
         sub_020146F4(param0->unk_18, 2, ov118_021D10B0, param0);
         Sound_PlayEffect(SEQ_SE_PL_W467109);
         break;
-    case 492:
+    case SPECIES_SHAYMIN:
         sub_020146F4(param0->unk_18, 0, ov118_021D10B0, param0);
         sub_020146F4(param0->unk_18, 1, ov118_021D10B0, param0);
         Sound_PlayEffect(SEQ_SE_PL_W363);

@@ -209,7 +209,7 @@ u8 BattleSystem_TextSpeed(BattleSystem *battleSys);
 int BattleSystem_Ruleset(BattleSystem *battleSys);
 PokemonAnimationSys *BattleSystem_GetPokemonAnimationSystem(BattleSystem *battleSys);
 ChatotCry *BattleSystem_ChatotVoice(BattleSystem *battleSys, int param1);
-void ov16_0223EE70(BattleSystem *battleSys);
+void BattleSystem_SetBurmyForm(BattleSystem *battleSys);
 void ov16_0223EF2C(BattleSystem *battleSys, int param1, int param2);
 void ov16_0223EF48(BattleSystem *battleSys, Pokemon *param1);
 void ov16_0223EF68(BattleSystem *battleSys, Pokemon *param1);

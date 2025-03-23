@@ -2122,7 +2122,7 @@ u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam 
 {
     monSpecies = Pokemon_GetFormNarcIndex(monSpecies, monForm);
 
-    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, 0);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, HEAP_ID_SYSTEM);
     u32 result = SpeciesData_GetValue(speciesData, param);
 
     SpeciesData_Free(speciesData);
@@ -2132,7 +2132,7 @@ u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam 
 
 u32 SpeciesData_GetSpeciesValue(int monSpecies, enum SpeciesDataParam param)
 {
-    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, 0);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, HEAP_ID_SYSTEM);
     u32 result = SpeciesData_GetValue(speciesData, param);
 
     SpeciesData_Free(speciesData);
@@ -2219,7 +2219,7 @@ u32 BoxPokemon_GetLevel(BoxPokemon *boxMon)
 
 u32 Pokemon_GetSpeciesLevelAt(u16 monSpecies, u32 monExp)
 {
-    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, 0);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, HEAP_ID_SYSTEM);
 
     u32 monLevel = SpeciesData_GetLevelAt(speciesData, monSpecies, monExp);
     SpeciesData_Free(speciesData);
@@ -2412,7 +2412,7 @@ u8 BoxPokemon_GetGender(BoxPokemon *boxMon)
 
 u8 Pokemon_GetGenderOf(u16 monSpecies, u32 monPersonality)
 {
-    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, 0);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, HEAP_ID_SYSTEM);
     u8 monGender = SpeciesData_GetGenderOf(speciesData, monSpecies, monPersonality);
 
     SpeciesData_Free(speciesData);

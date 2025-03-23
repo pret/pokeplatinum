@@ -341,15 +341,15 @@ static int sub_020838F4(void *param0)
     GameWindowLayout *v0 = param0;
 
     if (Bag_TryAddItem(v0->unk_5A4->unk_04, v0->unk_704[v0->unk_B11].unk_0C, 1, 12) == 1) {
-        Pokemon *v1;
-        u32 v2;
+        Pokemon *mon;
+        u32 item;
 
-        v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
-        v2 = 0;
+        mon = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
+        item = 0;
 
-        Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v2);
-        Pokemon_SetArceusForm(v1);
-        Pokemon_SetGiratinaFormByHeldItem(v1);
+        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
+        Pokemon_SetArceusForm(mon);
+        Pokemon_SetGiratinaFormByHeldItem(mon);
 
         v0->unk_704[v0->unk_B11].unk_0C = 0;
 

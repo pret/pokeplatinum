@@ -54,6 +54,11 @@
 #define DEOXYS_FORM_SPEED   3
 #define DEOXYS_FORM_COUNT   4
 
+#define BURMY_FORM_PLANT 0
+#define BURMY_FORM_SAND  1
+#define BURMY_FORM_TRASH 2
+#define BURMY_FORM_COUNT 3
+
 #define ROTOM_FORM_NORMAL 0
 #define ROTOM_FORM_HEAT   1
 #define ROTOM_FORM_WASH   2
@@ -69,5 +74,8 @@
 #define SHAYMIN_FORM_LAND  0
 #define SHAYMIN_FORM_SKY   1
 #define SHAYMIN_FORM_COUNT 2
+
+#define EGG_FORM_NORMAL  0
+#define EGG_FORM_MANAPHY 1
 
 #endif

@@ -132,7 +132,6 @@ u8 BattleSystem_TextSpeed(BattleSystem *battleSystem);
 int BattleSystem_Ruleset(BattleSystem *battleSystem);
 PokemonAnimationSys *BattleSystem_GetPokemonAnimationSystem(BattleSystem *battleSystem);
 ChatotCry *BattleSystem_ChatotVoice(BattleSystem *battleSystem, int param1);
-void ov16_0223EE70(BattleSystem *battleSystem);
 void ov16_0223EF2C(BattleSystem *battleSystem, int param1, int param2);
 void ov16_0223EF48(BattleSystem *battleSystem, Pokemon *param1);
 void ov16_0223EF68(BattleSystem *battleSystem, Pokemon *param1);
@@ -1054,25 +1053,23 @@ ChatotCry *BattleSystem_ChatotVoice(BattleSystem *battleSystem, int param1)
     }
 }
 
-void ov16_0223EE70(BattleSystem *battleSystem)
+void BattleSystem_SetBurmyForm(BattleSystem *battleSys)
 {
-    int v0, v1;
-    Pokemon *v2;
-    u16 v3;
+    int i, form;
 
-    if (battleSystem->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
+    if (battleSys->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
         return;
     }
 
-    for (v0 = 0; v0 < BattleSystem_PartyCount(battleSystem, 0); v0++) {
-        v2 = BattleSystem_PartyPokemon(battleSystem, 0, v0);
-        v3 = Pokemon_GetValue(v2, MON_DATA_SPECIES_EGG, NULL);
+    for (i = 0; i < BattleSystem_PartyCount(battleSys, 0); i++) {
+        Pokemon *mon = BattleSystem_PartyPokemon(battleSys, 0, i);
+        u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL);
 
-        if ((v3 == SPECIES_BURMY) && (battleSystem->unk_2414[0] & FlagIndex(v0))) {
-            switch (BattleSystem_Terrain(battleSystem)) {
+        if (species == SPECIES_BURMY && (battleSys->unk_2414[0] & FlagIndex(i))) {
+            switch (BattleSystem_Terrain(battleSys)) {
             default:
             case TERRAIN_GRASS:
-                v1 = 0;
+                form = BURMY_FORM_PLANT;
                 break;
             case TERRAIN_PLAIN:
             case TERRAIN_SAND:
@@ -1080,7 +1077,7 @@ void ov16_0223EE70(BattleSystem *battleSystem)
             case TERRAIN_CAVE:
             case TERRAIN_DISTORTION_WORLD:
             case TERRAIN_GIRATINA:
-                v1 = 1;
+                form = BURMY_FORM_SAND;
                 break;
             case TERRAIN_BUILDING:
             case TERRAIN_BRIDGE:
@@ -1094,11 +1091,11 @@ void ov16_0223EE70(BattleSystem *battleSystem)
             case TERRAIN_BATTLE_ARCADE:
             case TERRAIN_BATTLE_CASTLE:
             case TERRAIN_BATTLE_HALL:
-                v1 = 2;
+                form = BURMY_FORM_TRASH;
                 break;
             }
 
-            Pokemon_SetValue(v2, MON_DATA_FORM, &v1);
+            Pokemon_SetValue(mon, MON_DATA_FORM, &form);
         }
     }
 }
@@ -1675,22 +1672,21 @@ u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo)
 
 void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1)
 {
-    int v0;
-    Pokemon *v1;
-    int v2;
-
-    v0 = Battler_Type(battleSystem->battlers[param1]);
-    v2 = BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, param1);
-    v1 = BattleSystem_PartyPokemon(battleSystem, param1, v2);
+    int battlerType = Battler_Type(battleSystem->battlers[param1]);
+    int v2 = BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, param1);
+    Pokemon *mon = BattleSystem_PartyPokemon(battleSystem, param1, v2);
 
     if ((battleSystem->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER)) == FALSE) {
-        if ((v0 & 0x1) || (battleSystem->battleType == BATTLE_TYPE_AI_PARTNER) || (battleSystem->battleType == (BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))) {
-            Pokedex_Encounter(battleSystem->pokedex, v1);
+        if (battlerType & BATTLER_THEM
+            || battleSystem->battleType == BATTLE_TYPE_AI_PARTNER
+            || battleSystem->battleType == (BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI)) {
+            Pokedex_Encounter(battleSystem->pokedex, mon);
         }
     }
 
-    if (((v0 & 0x1) == 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) == 412)) {
-        Pokedex_Capture(battleSystem->pokedex, v1);
+    if (((battlerType & BATTLER_THEM) == FALSE)
+        && (Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) == SPECIES_BURMY)) {
+        Pokedex_Capture(battleSystem->pokedex, mon);
     }
 }
 

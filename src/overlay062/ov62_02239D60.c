@@ -1168,41 +1168,41 @@ static void ov62_0223AFEC(UnkStruct_0208C06C *param0)
 static void ov62_0223B050(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
-    SpeciesData *v1;
+    SpeciesData *speciesData;
     PokemonSpriteTemplate v2;
-    u8 v3;
-    u8 v4;
-    u32 v5 = v0->unk_04.unk_DC[v0->unk_1B0];
-    u32 v6 = v0->unk_04.unk_158[v0->unk_1B0];
-    u16 v7 = v0->unk_04.unk_28[v0->unk_1B0];
-    u32 v8 = v0->unk_04.unk_64[v0->unk_1B0];
+    u8 gender;
+    u8 isShiny;
+    u32 otID = v0->unk_04.unk_DC[v0->unk_1B0];
+    u32 form = v0->unk_04.unk_158[v0->unk_1B0];
+    u16 species = v0->unk_04.unk_28[v0->unk_1B0];
+    u32 personality = v0->unk_04.unk_64[v0->unk_1B0];
     u32 v9;
     int v10 = 2;
 
-    if (v7 == 0) {
+    if (species == SPECIES_NONE) {
         v0->unk_32C = NULL;
         return;
     }
 
     if (ov62_0223ADB0(v0->unk_04.unk_154, (1 << v0->unk_1B0)) == 1) {
-        if (v7 == 490) {
-            v6 = 1;
+        if (species == SPECIES_MANAPHY) {
+            form = EGG_FORM_MANAPHY;
         } else {
-            v6 = 0;
+            form = EGG_FORM_NORMAL;
         }
 
-        v7 = SPECIES_EGG;
+        species = SPECIES_EGG;
     }
 
-    v1 = SpeciesData_FromMonSpecies(v7, 102);
-    v3 = Pokemon_GetGenderOf(v7, v8);
-    v4 = Pokemon_IsPersonalityShiny(v5, v8);
-    v9 = LoadPokemonSpriteYOffset(v7, v3, v10, v6, v8);
+    speciesData = SpeciesData_FromMonSpecies(species, HEAP_ID_102);
+    gender = Pokemon_GetGenderOf(species, personality);
+    isShiny = Pokemon_IsPersonalityShiny(otID, personality);
+    v9 = LoadPokemonSpriteYOffset(species, gender, v10, form, personality);
     v9 = 0;
 
-    BuildPokemonSpriteTemplate(&v2, v7, v3, v10, v4, v6, v8);
+    BuildPokemonSpriteTemplate(&v2, species, gender, v10, isShiny, form, personality);
     v0->unk_32C = PokemonSpriteManager_CreateSprite(param0->unk_14.unk_50, &v2, 42, 91 + v9, 0, 0, NULL, NULL);
-    SpeciesData_Free(v1);
+    SpeciesData_Free(speciesData);
 }
 
 static void ov62_0223B124(UnkStruct_0208C06C *param0, int param1)
