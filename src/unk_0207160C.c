@@ -159,112 +159,108 @@ void PlatformLift_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     DynamicTerrainHeightManager_SetPlate(0, v4->unk_08, v4->unk_0C, 3, 2, v5, fieldSystem->dynamicTerrainHeightMan);
 }
 
-void sub_020716D4(FieldSystem *fieldSystem)
+void PersistedMapFeatures_InitForPlatformLift(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0;
-    UnkStruct_020716D4 *v1;
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
 
-    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    PersistedMapFeatures_InitWithID(v0, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
-
-    v1 = (UnkStruct_020716D4 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
-
-    v1->unk_04 = 1;
-    v1->unk_08 = 0;
+    UnkStruct_020716D4 *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
+    data->unk_04 = 1;
+    data->unk_08 = 0;
 
     switch (fieldSystem->location->mapId) {
     case 291:
         if (fieldSystem->location->z == 26) {
-            v1->unk_00 = 0;
+            data->unk_00 = 0;
         } else {
-            v1->unk_00 = 1;
+            data->unk_00 = 1;
         }
 
-        v1->unk_02 = 0;
+        data->unk_02 = 0;
         break;
     case 293:
         if (fieldSystem->location->z == (32 * 1 + 16)) {
-            v1->unk_00 = 0;
+            data->unk_00 = 0;
         } else {
-            v1->unk_00 = 1;
+            data->unk_00 = 1;
         }
 
-        v1->unk_02 = 1;
+        data->unk_02 = 1;
         break;
     case 294:
         if (fieldSystem->location->z == 15) {
-            v1->unk_00 = 0;
+            data->unk_00 = 0;
         } else {
-            v1->unk_00 = 1;
+            data->unk_00 = 1;
         }
 
-        v1->unk_02 = 2;
+        data->unk_02 = 2;
         break;
     case 176:
         if (fieldSystem->location->z == 15) {
-            v1->unk_00 = 0;
+            data->unk_00 = 0;
         } else {
-            v1->unk_00 = 1;
-            v1->unk_04 = 0;
+            data->unk_00 = 1;
+            data->unk_04 = 0;
         }
 
-        v1->unk_02 = 3;
-        v1->unk_08 = 1;
+        data->unk_02 = 3;
+        data->unk_08 = 1;
         break;
     case 178:
         if (fieldSystem->location->z == 15) {
-            v1->unk_00 = 0;
+            data->unk_00 = 0;
         } else {
-            v1->unk_00 = 1;
-            v1->unk_04 = 0;
+            data->unk_00 = 1;
+            data->unk_04 = 0;
         }
 
-        v1->unk_02 = 4;
-        v1->unk_08 = 1;
+        data->unk_02 = 4;
+        data->unk_08 = 1;
         break;
     case 180:
         if (fieldSystem->location->z == 15) {
-            v1->unk_00 = 0;
+            data->unk_00 = 0;
         } else {
-            v1->unk_00 = 1;
-            v1->unk_04 = 0;
+            data->unk_00 = 1;
+            data->unk_04 = 0;
         }
 
-        v1->unk_02 = 5;
-        v1->unk_08 = 1;
+        data->unk_02 = 5;
+        data->unk_08 = 1;
         break;
     case 182:
         if (fieldSystem->location->z == 15) {
-            v1->unk_00 = 0;
+            data->unk_00 = 0;
         } else {
-            v1->unk_00 = 1;
-            v1->unk_04 = 0;
+            data->unk_00 = 1;
+            data->unk_04 = 0;
         }
 
-        v1->unk_02 = 6;
-        v1->unk_08 = 1;
+        data->unk_02 = 6;
+        data->unk_08 = 1;
         break;
     case 184:
         if (fieldSystem->location->z == 23) {
-            v1->unk_00 = 0;
+            data->unk_00 = 0;
         } else {
-            v1->unk_00 = 1;
-            v1->unk_04 = 0;
+            data->unk_00 = 1;
+            data->unk_04 = 0;
         }
 
-        v1->unk_02 = 7;
-        v1->unk_08 = 1;
+        data->unk_02 = 7;
+        data->unk_08 = 1;
         break;
     case 185:
         if (fieldSystem->location->z == 18) {
-            v1->unk_00 = 0;
+            data->unk_00 = 0;
         } else {
-            v1->unk_00 = 1;
-            v1->unk_04 = 0;
+            data->unk_00 = 1;
+            data->unk_04 = 0;
         }
 
-        v1->unk_02 = 8;
-        v1->unk_08 = 1;
+        data->unk_02 = 8;
+        data->unk_08 = 1;
         break;
     default:
         GF_ASSERT(0);

@@ -21,11 +21,11 @@
 #include "map_object.h"
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "terrain_collision_manager.h"
 #include "unk_02005474.h"
 #include "unk_020655F4.h"
-#include "unk_02071B10.h"
 
 typedef BOOL (*UnkFuncPtr_020EDB84)(u8);
 
@@ -1823,7 +1823,7 @@ static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         }
 
         if (v0 == 1) {
-            if (sub_02071CB4(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
+            if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
                 if (ov9_022511A0(fieldSystem, v2, v3, param2) == 1) {
                     v0 = 0;
                 }
@@ -1984,7 +1984,7 @@ static int sub_02061100(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     u32 v0 = 0;
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-    if (sub_02071CB4(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
+    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
         int x = MapObject_GetX(mapObj);
         int y = MapObject_GetY(mapObj) / 2;
         int z = MapObject_GetZ(mapObj);
@@ -2010,7 +2010,7 @@ static int sub_02061180(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
             BOOL v1;
             u32 v2;
             int x = MapObject_GetX(mapObj);
@@ -2061,7 +2061,7 @@ static int sub_02061248(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     if ((param2 != -1) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
             u32 v2;
             int x = MapObject_GetX(mapObj);
             int y = MapObject_GetY(mapObj) / 2;

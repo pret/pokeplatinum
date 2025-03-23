@@ -122,6 +122,7 @@
 #include "message_util.h"
 #include "party.h"
 #include "pc_boxes.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "poffin.h"
 #include "pokedex.h"
@@ -209,8 +210,6 @@
 #include "unk_0206F314.h"
 #include "unk_02070428.h"
 #include "unk_0207160C.h"
-#include "unk_02071B10.h"
-#include "unk_02071CD0.h"
 #include "unk_02071D40.h"
 #include "unk_020722AC.h"
 #include "unk_0207DA28.h"
@@ -4054,7 +4053,7 @@ static BOOL ScrCmd_20B(ScriptContext *ctx)
     MapObject **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
 
     if (*v0 != NULL) {
-        if ((sub_02071CB4(ctx->fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 0) || (ov8_0224C5DC(ctx->fieldSystem, *v0) == 0)) {
+        if ((PersistedMapFeatures_IsCurrentDynamicMap(ctx->fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 0) || (ov8_0224C5DC(ctx->fieldSystem, *v0) == 0)) {
             VsSeeker_SetMoveCodeForFacingDirection(ctx->fieldSystem, *v0);
         }
     }
@@ -5731,7 +5730,7 @@ static BOOL ScrCmd_16F(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    sub_02071B10(fieldSystem);
+    PersistedMapFeatures_InitForPastoriaGym(fieldSystem);
     return 0;
 }
 
@@ -5747,7 +5746,7 @@ static BOOL ScrCmd_171(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    sub_02071C18(fieldSystem);
+    PersistedMapFeatures_InitForHearthomeGym(fieldSystem);
     return 0;
 }
 
@@ -5763,7 +5762,7 @@ static BOOL ScrCmd_173(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    sub_02071B30(fieldSystem);
+    PersistedMapFeatures_InitForCanalaveGym(fieldSystem);
     return 0;
 }
 
@@ -5771,7 +5770,7 @@ static BOOL ScrCmd_174(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    sub_02071BF8(fieldSystem);
+    PersistedMapFeatures_InitForVeilstoneGym(fieldSystem);
     return 0;
 }
 
@@ -5780,7 +5779,7 @@ static BOOL ScrCmd_175(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 v1 = ScriptContext_ReadByte(ctx);
 
-    sub_02071B6C(fieldSystem, v1);
+    PersistedMapFeatures_InitForSunyshoreGym(fieldSystem, v1);
     return 0;
 }
 
@@ -5797,7 +5796,7 @@ static BOOL ScrCmd_2C9(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    sub_02071BD0(fieldSystem);
+    PersistedMapFeatures_InitForEternaGym(fieldSystem);
     return 0;
 }
 
@@ -5805,7 +5804,7 @@ static BOOL ScrCmd_2F0(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    sub_02071C34(fieldSystem);
+    PersistedMapFeatures_InitForVilla(fieldSystem);
     return 0;
 }
 
@@ -5813,7 +5812,7 @@ static BOOL ScrCmd_2F2(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    sub_02071C5C(fieldSystem);
+    PersistedMapFeatures_InitForDistortionWorld(fieldSystem);
     return 0;
 }
 
@@ -6374,7 +6373,7 @@ static BOOL ScrCmd_20D(ScriptContext *ctx)
 
 static BOOL ScrCmd_20E(ScriptContext *ctx)
 {
-    sub_02071CD0(ctx->fieldSystem);
+    PersistedMapFeatures_InitForGreatMarsh(ctx->fieldSystem);
     return 0;
 }
 
@@ -6763,7 +6762,7 @@ static BOOL ScrCmd_25A(ScriptContext *ctx)
 
 static BOOL ScrCmd_25B(ScriptContext *ctx)
 {
-    sub_020716D4(ctx->fieldSystem);
+    PersistedMapFeatures_InitForPlatformLift(ctx->fieldSystem);
     return 0;
 }
 

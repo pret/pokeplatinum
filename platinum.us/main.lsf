@@ -280,8 +280,7 @@ Static main
 	Object main.nef.p/src_unk_020711C8.c.o
 	Object main.nef.p/src_unk_020711EC.c.o
 	Object main.nef.p/src_unk_0207160C.c.o
-	Object main.nef.p/src_unk_02071B10.c.o
-	Object main.nef.p/src_unk_02071CD0.c.o
+	Object main.nef.p/src_persisted_map_features_init.c.o
 	Object main.nef.p/src_map_header_util.c.o
 	Object main.nef.p/src_unk_02071D40.c.o
 	Object main.nef.p/src_unk_020722AC.c.o
