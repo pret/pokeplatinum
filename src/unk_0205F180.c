@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/struct_0205E884_decl.h"
@@ -1822,7 +1823,7 @@ static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         }
 
         if (v0 == 1) {
-            if (sub_02071CB4(fieldSystem, 9) == 1) {
+            if (sub_02071CB4(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
                 if (ov9_022511A0(fieldSystem, v2, v3, param2) == 1) {
                     v0 = 0;
                 }
@@ -1983,7 +1984,7 @@ static int sub_02061100(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     u32 v0 = 0;
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-    if (sub_02071CB4(fieldSystem, 9) == 1) {
+    if (sub_02071CB4(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
         int x = MapObject_GetX(mapObj);
         int y = MapObject_GetY(mapObj) / 2;
         int z = MapObject_GetZ(mapObj);
@@ -2009,7 +2010,7 @@ static int sub_02061180(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 9) == 1) {
+        if (sub_02071CB4(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
             BOOL v1;
             u32 v2;
             int x = MapObject_GetX(mapObj);
@@ -2060,7 +2061,7 @@ static int sub_02061248(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     if ((param2 != -1) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 9) == 1) {
+        if (sub_02071CB4(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
             u32 v2;
             int x = MapObject_GetX(mapObj);
             int y = MapObject_GetY(mapObj) / 2;

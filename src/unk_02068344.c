@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02027860_decl.h"
+#include "constants/field/dynamic_map_features.h"
 
 #include "field/field_system.h"
 #include "functypes/funcptr_020EF718.h"
@@ -15,11 +15,11 @@
 #include "overlay009/ov9_02249960.h"
 
 #include "field_system.h"
+#include "persisted_map_features.h"
 #include "savedata_misc.h"
-#include "unk_02027F50.h"
 #include "unk_0207160C.h"
 
-const static UnkFuncPtr_020EF744 Unk_020EF744[11] = {
+const static UnkFuncPtr_020EF744 Unk_020EF744[DYNAMIC_MAP_FEATURES_COUNT] = {
     NULL,
     ov8_02249DBC,
     ov8_0224C198,
@@ -33,7 +33,7 @@ const static UnkFuncPtr_020EF744 Unk_020EF744[11] = {
     ov5_021F8370
 };
 
-const static UnkFuncPtr_020EF718 Unk_020EF718[11] = {
+const static UnkFuncPtr_020EF718 Unk_020EF718[DYNAMIC_MAP_FEATURES_COUNT] = {
     NULL,
     NULL,
     ov8_0224C388,
@@ -47,7 +47,7 @@ const static UnkFuncPtr_020EF718 Unk_020EF718[11] = {
     ov5_021F83C0
 };
 
-const static UnkFuncPtr_020EF770 Unk_020EF770[11] = {
+const static UnkFuncPtr_020EF770 Unk_020EF770[DYNAMIC_MAP_FEATURES_COUNT] = {
     NULL,
     ov8_02249A40,
     NULL,
@@ -63,46 +63,43 @@ const static UnkFuncPtr_020EF770 Unk_020EF770[11] = {
 
 void sub_02068344(FieldSystem *fieldSystem)
 {
-    int v0;
-    UnkStruct_02027860 *v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v0 = sub_02027F80(v1);
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    int id = PersistedMapFeatures_GetID(persistedMapFeatures);
 
-    if (v0 == 0) {
+    if (id == DYNAMIC_MAP_FEATURES_NONE) {
         return;
     }
 
-    Unk_020EF744[v0](fieldSystem);
+    Unk_020EF744[id](fieldSystem);
 }
 
 void sub_02068368(FieldSystem *fieldSystem)
 {
-    int v0;
-    UnkStruct_02027860 *v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v0 = sub_02027F80(v1);
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    int id = PersistedMapFeatures_GetID(persistedMapFeatures);
 
-    if (v0 == 0) {
+    if (id == DYNAMIC_MAP_FEATURES_NONE) {
         return;
     }
 
-    if (Unk_020EF718[v0] != NULL) {
-        Unk_020EF718[v0](fieldSystem);
+    if (Unk_020EF718[id] != NULL) {
+        Unk_020EF718[id](fieldSystem);
     }
 }
 
 BOOL sub_02068390(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
 {
-    int v0;
-    UnkStruct_02027860 *v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v0 = sub_02027F80(v1);
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    int id = PersistedMapFeatures_GetID(persistedMapFeatures);
 
-    if (v0 == 0) {
+    if (id == DYNAMIC_MAP_FEATURES_NONE) {
         return 0;
     }
 
-    if (Unk_020EF770[v0] != NULL) {
+    if (Unk_020EF770[id] != NULL) {
         BOOL v2;
 
-        v2 = Unk_020EF770[v0](fieldSystem, param1, param2, param3, param4);
+        v2 = Unk_020EF770[id](fieldSystem, param1, param2, param3, param4);
         return v2;
     }
 

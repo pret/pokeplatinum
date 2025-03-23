@@ -3,7 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02027860_decl.h"
+#include "constants/field/dynamic_map_features.h"
+
 #include "struct_defs/struct_02071C34.h"
 
 #include "field/field_system.h"
@@ -12,10 +13,10 @@
 
 #include "field_system.h"
 #include "heap.h"
+#include "persisted_map_features.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
 #include "system_flags.h"
-#include "unk_02027F50.h"
 #include "vars_flags.h"
 
 typedef struct UnkStruct_ov5_021F8480_t UnkStruct_ov5_021F8480;
@@ -62,12 +63,12 @@ static const UnkStruct_ov5_022018DC Unk_ov5_022018DC[20];
 void ov5_021F8370(FieldSystem *fieldSystem)
 {
     int v0;
-    UnkStruct_02027860 *v1;
+    PersistedMapFeatures *v1;
     UnkStruct_02071C34 *v2;
     UnkStruct_ov5_021F8480 *v3;
 
-    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v2 = sub_02027F6C(v1, 10);
+    v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v2 = PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_VILLA);
     v3 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021F8480));
 
     memset(v3, 0, sizeof(UnkStruct_ov5_021F8480));
@@ -115,9 +116,9 @@ BOOL ov5_021F83D4(FieldSystem *fieldSystem, const int param1, const int param2, 
 
 BOOL ov5_021F8410(FieldSystem *fieldSystem, const int param1, const int param2, const int param3)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (sub_02027F80(v0) == 10) {
+    if (PersistedMapFeatures_GetID(v0) == DYNAMIC_MAP_FEATURES_VILLA) {
         int v1;
         const UnkStruct_ov5_021F83D4 *v2;
         const UnkStruct_ov5_0220192C *v3 = Unk_ov5_0220192C;

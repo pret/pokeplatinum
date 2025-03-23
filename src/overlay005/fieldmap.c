@@ -3,12 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
 #include "constants/field/map_load.h"
 #include "constants/heap.h"
 
 #include "struct_decls/struct_02020C44_decl.h"
-#include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_02099F80.h"
@@ -68,6 +68,7 @@
 #include "map_object.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "pltt_transfer.h"
 #include "pokeradar.h"
@@ -78,7 +79,6 @@
 #include "unk_0200F174.h"
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
-#include "unk_02027F50.h"
 #include "unk_020553DC.h"
 #include "unk_020556C4.h"
 #include "unk_020559DC.h"
@@ -366,14 +366,14 @@ const OverlayManagerTemplate gFieldMapTemplate = {
 
 static int ov5_021D1178(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    int v1 = sub_02027F80(v0);
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    int v1 = PersistedMapFeatures_GetID(v0);
 
-    if (v1 == 0) {
+    if (v1 == DYNAMIC_MAP_FEATURES_NONE) {
         return 1;
     }
 
-    if (v1 == 9) {
+    if (v1 == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
         return 2;
     }
 
@@ -869,8 +869,8 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
     FieldEffect_InitRenderObject(fieldSystem->unk_40);
 
     {
-        UnkStruct_02027860 *v3 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-        int v4 = sub_02027F80(v3);
+        PersistedMapFeatures *v3 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+        int v4 = PersistedMapFeatures_GetID(v3);
 
         PlayerAvatar_InitDraw(fieldSystem->playerAvatar, v4);
     }
@@ -955,10 +955,10 @@ static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0)
 
 static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    int v1 = sub_02027F80(v0);
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    int v1 = PersistedMapFeatures_GetID(v0);
 
-    if (v1 == 9) {
+    if (v1 == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
         return TRUE;
     }
 

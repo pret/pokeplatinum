@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "constants/species.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
-#include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -51,6 +51,7 @@
 #include "map_tile_behavior.h"
 #include "math.h"
 #include "narc.h"
+#include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "resource_collection.h"
 #include "savedata_misc.h"
@@ -66,7 +67,6 @@
 #include "unk_02005474.h"
 #include "unk_0201CED8.h"
 #include "unk_02020AEC.h"
-#include "unk_02027F50.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_020711EC.h"
@@ -1167,12 +1167,12 @@ const UnkStruct_ov9_02252EB4 Unk_ov9_02252EB4[];
 
 void ov9_02249960(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_02071C5C *v1;
     UnkStruct_ov9_02249B04 *v2;
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v1 = sub_02027F6C(v0, 9);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD);
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov9_02249B04));
 
     memset(v2, 0, sizeof(UnkStruct_ov9_02249B04));
@@ -1598,13 +1598,13 @@ void ov9_02249F9C(FieldSystem *fieldSystem)
 
 void ov9_02249FD0(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_02071C5C *v1;
 
     GF_ASSERT(fieldSystem != NULL);
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v1 = sub_02027F6C(v0, 9);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD);
 
     v1->unk_04 = 0;
     v1->unk_06 = 0;
@@ -2042,9 +2042,9 @@ static void *ov9_0224A598(UnkStruct_ov9_02249B04 *param0)
 
 BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (sub_02027F80(v0) == 9) {
+    if (PersistedMapFeatures_GetID(v0) == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
         int v1, v2, v3, v4;
         UnkStruct_ov9_02249B04 *v5 = fieldSystem->unk_04->unk_24;
 
@@ -2124,9 +2124,9 @@ BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1)
 
 BOOL ov9_0224A71C(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (sub_02027F80(v0) != 9) {
+    if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
         return 0;
     }
 
@@ -9407,9 +9407,9 @@ static void ov9_02250F44(UnkStruct_ov9_02249B04 *param0, int *param1, int *param
 
 BOOL ov9_02250F74(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (sub_02027F80(v0) != 9) {
+    if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
         return 0;
     }
 
@@ -9473,9 +9473,9 @@ void ov9_02251000(FieldSystem *fieldSystem, int param1, int param2, int param3)
 
 BOOL ov9_02251044(FieldSystem *fieldSystem, int param1, int param2, int param3, u32 *param4)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (sub_02027F80(v0) != 9) {
+    if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
         GF_ASSERT(0);
         return 0;
     }

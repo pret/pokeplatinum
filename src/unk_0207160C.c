@@ -3,9 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "constants/field/map_prop.h"
-
-#include "struct_decls/struct_02027860_decl.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -15,11 +14,11 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
+#include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "savedata_misc.h"
 #include "terrain_collision_manager.h"
 #include "unk_02005474.h"
-#include "unk_02027F50.h"
 
 typedef struct {
     fx32 unk_00[2];
@@ -118,13 +117,13 @@ void sub_0207160C(FieldSystem *fieldSystem)
 {
     BOOL v0;
     MapProp *v1;
-    UnkStruct_02027860 *v2;
+    PersistedMapFeatures *v2;
     UnkStruct_020716D4 *v3;
     const UnkStruct_020F03F4 *v4;
     fx32 v5;
 
-    v2 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v3 = (UnkStruct_020716D4 *)sub_02027F6C(v2, 7);
+    v2 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v3 = (UnkStruct_020716D4 *)PersistedMapFeatures_GetBuffer(v2, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
     v4 = &Unk_020F03F4[v3->unk_02];
     v5 = v4->unk_00[v3->unk_00];
 
@@ -162,13 +161,13 @@ void sub_0207160C(FieldSystem *fieldSystem)
 
 void sub_020716D4(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_020716D4 *v1;
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    sub_02027F5C(v0, 7);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures_InitWithID(v0, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
 
-    v1 = (UnkStruct_020716D4 *)sub_02027F6C(v0, 7);
+    v1 = (UnkStruct_020716D4 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
 
     v1->unk_04 = 1;
     v1->unk_08 = 0;
@@ -274,11 +273,11 @@ void sub_020716D4(FieldSystem *fieldSystem)
 
 u8 sub_02071818(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_020716D4 *v1;
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v1 = (UnkStruct_020716D4 *)sub_02027F6C(v0, 7);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v1 = (UnkStruct_020716D4 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
 
     if (v1->unk_04) {
         return 1;
@@ -289,12 +288,12 @@ u8 sub_02071818(FieldSystem *fieldSystem)
 
 void sub_0207183C(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_020716D4 *v1;
     UnkStruct_020718D8 *v2;
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v1 = (UnkStruct_020716D4 *)sub_02027F6C(v0, 7);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v1 = (UnkStruct_020716D4 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
 
     if ((Unk_020F03F4[v1->unk_02].unk_10) && (v1->unk_00 == 1)) {
         return;

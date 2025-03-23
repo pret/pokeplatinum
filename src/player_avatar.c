@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
+
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0205EC34.h"
@@ -90,7 +92,7 @@ PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *param1
     return playerAvatar;
 }
 
-void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int groundId)
+void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     GF_ASSERT(mapObj != NULL);
@@ -99,7 +101,7 @@ void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int groundId)
     ov5_021F6218(playerAvatar);
 
     if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_SURFING) {
-        if (groundId != 9) {
+        if (dynamicMapFeaturesID != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
             int x = Player_GetXPos(playerAvatar);
             int z = Player_GetZPos(playerAvatar);
             int dir = PlayerAvatar_GetDir(playerAvatar);

@@ -114,7 +114,7 @@ Static main
 	Object main.nef.p/src_savedata_misc.c.o
 	Object main.nef.p/src_game_options.c.o
 	Object main.nef.p/src_berry_patches.c.o
-	Object main.nef.p/src_unk_02027F50.c.o
+	Object main.nef.p/src_persisted_map_features.c.o
 	Object main.nef.p/src_unk_02027F84.c.o
 	Object main.nef.p/src_unk_02028124.c.o
 	Object main.nef.p/src_unk_0202854C.c.o

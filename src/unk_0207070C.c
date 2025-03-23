@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "constants/field/map_load.h"
 #include "generated/journal_location_events.h"
 
@@ -805,7 +806,7 @@ static void sub_020710D4(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
 
 static int sub_02071130(const UnkStruct_02070950 *param0)
 {
-    if ((inline_02070AF0(param0) == 0) || (sub_02071CB4(param0->fieldSystem, 9) == 1)) {
+    if ((inline_02070AF0(param0) == 0) || (sub_02071CB4(param0->fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1)) {
         return 1;
     }
 
