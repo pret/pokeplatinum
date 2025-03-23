@@ -95,7 +95,7 @@ static void ov35_02256460(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_
 
     param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v0, &param0->unk_38);
 
-    ov25_Set_unk_8C(param0->unk_24, 80);
+    ov25_Set_charNo(param0->unk_24, 80);
 
     for (v2 = 0; v2 < 4; v2++) {
         param0->unk_28[v2] = ov25_SetupNewElem(param0->unk_20, &v1, &param0->unk_4C);

@@ -193,12 +193,12 @@ static void ov40_022564D4(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
     for (v1 = 0; v1 < 11; v1++) {
         if ((v1 >= 0) && (v1 <= 2)) {
             param0->unk_24[v1] = ov25_SetupNewElem(param0->unk_20, &v0[v1], &param0->unk_64);
-            ov25_Set_unk_8C(param0->unk_24[v1], v3 + v1 * 0x20);
+            ov25_Set_charNo(param0->unk_24[v1], v3 + v1 * 0x20);
         } else {
             param0->unk_24[v1] = ov25_SetupNewElem(param0->unk_20, &v0[v1], &param0->unk_50);
         }
 
-        ov25_Set_unk_92(param0->unk_24[v1], 1);
+        ov25_Set_mosaic(param0->unk_24[v1], 1);
     }
 
     ov40_02256848(param0, param1);
@@ -382,10 +382,10 @@ static void ov40_02256848(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
     BOOL v1;
 
     for (v0 = 0; v0 < param1->unk_00; v0++) {
-        ov25_Set_unk_88(param0->unk_24[0 + v0], 1 + PokeIconPaletteIndex(param1->unk_1C[v0], param1->unk_20[v0], 0));
+        ov25_Set_cParam(param0->unk_24[0 + v0], 1 + PokeIconPaletteIndex(param1->unk_1C[v0], param1->unk_20[v0], 0));
     }
 
-    ov25_Set_unk_88(param0->unk_24[2], 1 + PokeIconPaletteIndex(1, 0, 1));
+    ov25_Set_cParam(param0->unk_24[2], 1 + PokeIconPaletteIndex(1, 0, 1));
 
     if (param1->unk_00 > 0) {
         if (SpeciesData_GetFormValue(param1->unk_1C[0], param1->unk_20[0], 28)) {

@@ -89,7 +89,7 @@ static void ov36_02256454(UnkStruct_ov36_02256404 *param0, const UnkStruct_ov36_
     ov25_LoadNARCMembers(&param0->unk_50, 12, 3, 4, 8);
 
     param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v0, &param0->unk_3C);
-    ov25_Set_unk_8C(param0->unk_24, 80);
+    ov25_Set_charNo(param0->unk_24, 80);
 
     for (v2 = 0; v2 < 5; v2++) {
         param0->unk_28[v2] = ov25_SetupNewElem(param0->unk_20, &v1, &param0->unk_50);

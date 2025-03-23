@@ -148,7 +148,7 @@ static void DrawAppScreen(SysTask *param0, void *param1)
     CreateHpBars(v2, v2->playerParty, v3);
     Bg_CopyTilemapBufferToVRAM(v2->bgConfig, 6);
 
-    ov25_02255308(15, 1);
+    ov25_FillPaletteFromActivePaletteSlot(15, 1);
     ov25_02255360(2);
     ov32_02256898(v2, v2->playerParty);
     ov32_0225692C(v2, v2->playerParty);
@@ -284,14 +284,14 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
 
             param0->unk_9C[v3] = ov25_SetupNewElem(param0->unk_08, &v1, &param0->unk_CC);
 
-            ov25_Set_unk_8C(param0->unk_9C[v3], (0 + 8) + 16 * v3);
+            ov25_Set_charNo(param0->unk_9C[v3], (0 + 8) + 16 * v3);
             ov25_InitAnimation(param0->unk_9C[v3], 4);
 
             if ((param1->mons[v3].currentHp == 0) || param1->mons[v3].status) { // darken sprite if mon is incapacitated
-                ov25_Set_unk_88(param0->unk_9C[v3], 1);
+                ov25_Set_cParam(param0->unk_9C[v3], 1);
             } else {
                 u16 v4 = PokeIconPaletteIndex(param1->mons[v3].species, param1->mons[v3].form, param1->mons[v3].isEgg);
-                ov25_Set_unk_88(param0->unk_9C[v3], 2 + v4);
+                ov25_Set_cParam(param0->unk_9C[v3], 2 + v4);
             }
         }
 

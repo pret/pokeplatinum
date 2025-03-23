@@ -190,7 +190,7 @@ static void ov45_0225673C(UnkStruct_ov45_022566EC *param0, const UnkStruct_ov45_
             param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_7C);
         } else {
             param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_68);
-            ov25_Set_unk_8C(param0->unk_34[v1], 80);
+            ov25_Set_charNo(param0->unk_34[v1], 80);
         }
     }
 

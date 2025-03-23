@@ -230,7 +230,7 @@ static void ov46_02256C20(UnkStruct_ov46_02256BCC *param0, const UnkStruct_ov46_
             param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_8C);
         } else {
             param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_78);
-            ov25_Set_unk_8C(param0->unk_34[v1], 80);
+            ov25_Set_charNo(param0->unk_34[v1], 80);
         }
     }
 

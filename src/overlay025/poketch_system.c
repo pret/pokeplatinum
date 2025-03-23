@@ -655,7 +655,7 @@ static BOOL ov25_022543EC(UnkStruct_ov25_02254560 *param0, u32 param1)
     return TRUE;
 }
 
-UnkStruct_ov25_02254560 *ov25_02254418(void)
+UnkStruct_ov25_02254560 *PoketchSystem_Get_ov25_560_struct(void)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
     return poketchSys->unk_1C;

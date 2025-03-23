@@ -52,7 +52,7 @@ struct UnkStruct_ov25_02254560_t {
     NNSG2dOamManagerInstance unk_1AC;
     NNSG2dOamManagerInstance *unk_1C8;
     UnkStruct_ov25_022555E8 *unk_1CC;
-    SysTask *unk_1D0;
+    SysTask *task;
     UnkStruct_ov25_02254DD8 unk_1D4;
     BgConfig *bgConfig;
     PoketchSystem *poketchSys;
@@ -128,7 +128,7 @@ BOOL ov25_02254560(UnkStruct_ov25_02254560 **param0, const UnkStruct_ov25_022545
         ov25_02254798((*param0)->unk_12C, 64 + 24, 2, 4);
         ov25_02254798((*param0)->unk_16C, 64 + 28, 2, 4);
 
-        v0->unk_1D0 = SysTask_ExecuteAfterVBlank(ov25_TaskCallback, v0, 0);
+        v0->task = SysTask_ExecuteAfterVBlank(ov25_TaskCallback, v0, 0);
 
         return 1;
     }
@@ -144,13 +144,13 @@ static void ov25_TaskCallback(SysTask *task, void *data)
 
 UnkStruct_ov25_022555E8 *ov25_02254664(void)
 {
-    UnkStruct_ov25_02254560 *v0 = ov25_02254418();
+    UnkStruct_ov25_02254560 *v0 = PoketchSystem_Get_ov25_560_struct();
     return v0->unk_1CC;
 }
 
 BgConfig *Poketch_GetBgConfig(void)
 {
-    UnkStruct_ov25_02254560 *v0 = ov25_02254418();
+    UnkStruct_ov25_02254560 *v0 = PoketchSystem_Get_ov25_560_struct();
     return v0->bgConfig;
 }
 
@@ -169,7 +169,7 @@ static void Poketch_InitPaletteData(UnkStruct_ov25_02254560 *param0)
 
 void Poketch_LoadActivePalette(u32 bgOffset, u32 objOffset)
 {
-    UnkStruct_ov25_02254560 *v0 = ov25_02254418();
+    UnkStruct_ov25_02254560 *v0 = PoketchSystem_Get_ov25_560_struct();
     Poketch *poketch = PoketchSystem_GetPoketchData(v0->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
@@ -179,7 +179,7 @@ void Poketch_LoadActivePalette(u32 bgOffset, u32 objOffset)
 
 void Poketch_LoadActiveBacklightPalette(u32 unused_1, u32 unused_2)
 {
-    UnkStruct_ov25_02254560 *v0 = ov25_02254418();
+    UnkStruct_ov25_02254560 *v0 = PoketchSystem_Get_ov25_560_struct();
     Poketch *poketch = PoketchSystem_GetPoketchData(v0->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
@@ -189,7 +189,7 @@ void Poketch_LoadActiveBacklightPalette(u32 unused_1, u32 unused_2)
 
 void Poketch_CopyActivePalette(u16 *dest)
 {
-    UnkStruct_ov25_02254560 *v0 = ov25_02254418();
+    UnkStruct_ov25_02254560 *v0 = PoketchSystem_Get_ov25_560_struct();
     Poketch *poketch = PoketchSystem_GetPoketchData(v0->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
@@ -209,8 +209,8 @@ void ov25_02254754(UnkStruct_ov25_02254560 *param0)
             Heap_FreeToHeap(param0->bgConfig);
         }
 
-        if (param0->unk_1D0) {
-            SysTask_Done(param0->unk_1D0);
+        if (param0->task) {
+            SysTask_Done(param0->task);
         }
 
         Heap_FreeToHeap(param0);
@@ -603,8 +603,8 @@ static void ov25_02254DE0(UnkStruct_ov25_02254560 *param0, UnkStruct_ov25_02254D
         }
 
         ov25_addTranslation(param1->unk_1C[1], 16 * FX32_ONE, 0);
-        ov25_Set_unk_88(param1->unk_1C[0], 15);
-        ov25_Set_unk_88(param1->unk_1C[1], 15);
+        ov25_Set_cParam(param1->unk_1C[0], 15);
+        ov25_Set_cParam(param1->unk_1C[1], 15);
 
         param1->unk_00 = 1;
     }
@@ -699,12 +699,12 @@ static void ov25_02255004(SysTask *param0, void *param1)
     ov25_0225480C(param1);
 }
 
-static void ov25_02255064(SysTask *param0, void *param1)
+static void ov25_02255064(SysTask *task, void *poketchTaskMan)
 {
-    UnkStruct_ov25_02254560 *v0 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov25_02254560 *taskData = PoketchTask_GetTaskData(poketchTaskMan);
 
-    Bg_FreeTilemapBuffer(v0->bgConfig, 4);
-    Bg_FreeTilemapBuffer(v0->bgConfig, 5);
+    Bg_FreeTilemapBuffer(taskData->bgConfig, 4);
+    Bg_FreeTilemapBuffer(taskData->bgConfig, 5);
 
-    ov25_0225480C(param1);
+    ov25_0225480C(poketchTaskMan);
 }

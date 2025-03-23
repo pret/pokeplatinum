@@ -271,16 +271,16 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
             v2.unk_0C = 1;
             param0->unk_134[v5].unk_00 = ov25_SetupNewElem(param0->unk_30, &v2, &param0->unk_34);
 
-            ov25_Set_unk_8C(param0->unk_134[v5].unk_00, (4 * 4 * 2) * v5);
-            ov25_Set_unk_88(param0->unk_134[v5].unk_00, 1 + PokeIconPaletteIndex(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 0));
+            ov25_Set_charNo(param0->unk_134[v5].unk_00, (4 * 4 * 2) * v5);
+            ov25_Set_cParam(param0->unk_134[v5].unk_00, 1 + PokeIconPaletteIndex(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 0));
 
             v2.unk_0C = 0;
             param0->unk_134[v5].unk_04 = ov25_SetupNewElem(param0->unk_30, &v2, &param0->unk_48);
 
             if (param0->unk_134[v5].unk_04) {
                 ov25_Set_ElemApplyAffineTransformation(param0->unk_134[v5].unk_04, 1);
-                ov25_Set_unk_8C(param0->unk_134[v5].unk_04, ((4 * 4 * 2) * 6));
-                ov25_Set_unk_88(param0->unk_134[v5].unk_04, 0);
+                ov25_Set_charNo(param0->unk_134[v5].unk_04, ((4 * 4 * 2) * 6));
+                ov25_Set_cParam(param0->unk_134[v5].unk_04, 0);
             } else {
                 GF_ASSERT(0);
             }

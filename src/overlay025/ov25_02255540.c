@@ -282,17 +282,17 @@ void ov25_UpdateElem_unk_84_00(UnkStruct_ov25_022555E8 *param0, ov25_LinkedEleme
     ov25_SortElemIntoList(param0, param1);
 }
 
-void ov25_Set_unk_88(ov25_LinkedElement *param0, u32 value)
+void ov25_Set_cParam(ov25_LinkedElement *param0, u32 value)
 {
     param0->cParam = value;
 }
 
-void ov25_Set_unk_8C(ov25_LinkedElement *param0, u32 value)
+void ov25_Set_charNo(ov25_LinkedElement *param0, u32 value)
 {
     param0->charNo = value;
 }
 
-void ov25_Set_unk_92(ov25_LinkedElement *param0, BOOL value)
+void ov25_Set_mosaic(ov25_LinkedElement *param0, BOOL value)
 {
     param0->mosaic = value;
 }
