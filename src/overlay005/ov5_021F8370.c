@@ -76,7 +76,7 @@ void Villa_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     v3->fieldSystem = fieldSystem;
     v3->unk_04 = v2;
 
-    fieldSystem->unk_04->unk_24 = v3;
+    fieldSystem->unk_04->dynamicMapFeaturesData = v3;
 
     {
         int v4;
@@ -91,10 +91,10 @@ void Villa_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
 void Villa_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov5_021F8480 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov5_021F8480 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     Heap_FreeToHeap(v0);
-    fieldSystem->unk_04->unk_24 = NULL;
+    fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
 BOOL Villa_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)

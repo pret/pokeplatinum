@@ -21,7 +21,7 @@ struct FieldSystem_sub2_t {
     UnkStruct_02055CBC *unk_18;
     HBlankSystem *hBlankSystem;
     UnkStruct_ov5_021EF4F8 *unk_20;
-    void *unk_24;
+    void *dynamicMapFeaturesData;
 };
 
 #endif // POKEPLATINUM_FIELD_SYSTEM_SUB2_T_H

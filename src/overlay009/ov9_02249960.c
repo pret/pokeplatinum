@@ -1180,7 +1180,7 @@ void DistortionWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     v2->fieldSystem = fieldSystem;
     v2->unk_04 = v1;
 
-    fieldSystem->unk_04->unk_24 = v2;
+    fieldSystem->unk_04->dynamicMapFeaturesData = v2;
 
     ov9_02249C88(v2);
 
@@ -1219,7 +1219,7 @@ void DistortionWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
 void DistortionWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     ov9_02249F18(v0);
     ov9_0224E988(v0);
@@ -1247,7 +1247,7 @@ void DistortionWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 
     Heap_FreeToHeap(v0);
 
-    fieldSystem->unk_04->unk_24 = NULL;
+    fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
 static void ov9_02249B04(UnkStruct_ov9_02249B04 *param0)
@@ -1478,7 +1478,7 @@ static u32 ov9_02249E44(UnkStruct_ov9_02249B04 *param0)
 
 BOOL DistortionWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     u32 v1 = ov9_022510D0(v0);
 
     if (v1 == 582) {
@@ -1586,7 +1586,7 @@ static void ov9_02249F98(UnkStruct_ov9_02249B04 *param0)
 void ov9_02249F9C(FieldSystem *fieldSystem)
 {
     CameraAngle v0;
-    UnkStruct_ov9_02249B04 *v1 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v1 = fieldSystem->unk_04->dynamicMapFeaturesData;
     UnkStruct_ov9_02249F9C *v2 = &v1->unk_14;
 
     v0.x = v2->unk_04.x + v2->unk_0C.x;
@@ -1980,7 +1980,7 @@ static void ov9_0224A4D0(UnkStruct_ov9_02249B04 *param0, MapObject *param1, int 
 int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1)
 {
     int v0 = 0;
-    UnkStruct_ov9_02249B04 *v1 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v1 = fieldSystem->unk_04->dynamicMapFeaturesData;
     UnkStruct_ov9_0224A228 *v2 = &v1->unk_188;
     UnkStruct_ov9_0224A294 *v3 = v2->unk_04;
 
@@ -2000,13 +2000,13 @@ int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1)
 
 void ov9_0224A558(FieldSystem *fieldSystem, UnkStruct_020216E0 *param1, int param2)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     ov9_0224A3C4(v0, param1, param2);
 }
 
 void ov9_0224A564(FieldSystem *fieldSystem, const UnkStruct_020216E0 *param1)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     ov9_0224A408(v0, param1);
 }
 
@@ -2046,7 +2046,7 @@ BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1)
 
     if (PersistedMapFeatures_GetID(v0) == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
         int v1, v2, v3, v4;
-        UnkStruct_ov9_02249B04 *v5 = fieldSystem->unk_04->unk_24;
+        UnkStruct_ov9_02249B04 *v5 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
         v4 = sub_02061434(fieldSystem->playerAvatar, param1);
         ov9_02250F44(v5, &v1, &v2, &v3);
@@ -2085,7 +2085,7 @@ BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1)
 
 BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     u32 v1 = ov9_022510D0(v0);
 
     switch (v1) {
@@ -2133,7 +2133,7 @@ BOOL ov9_0224A71C(FieldSystem *fieldSystem)
     {
         int v1, v2, v3;
         int v4 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
-        UnkStruct_ov9_02249B04 *v5 = fieldSystem->unk_04->unk_24;
+        UnkStruct_ov9_02249B04 *v5 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
         ov9_02250F44(v5, &v1, &v2, &v3);
 
@@ -2170,7 +2170,7 @@ BOOL ov9_0224A71C(FieldSystem *fieldSystem)
 
 BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     u32 v1 = ov9_022510D0(v0);
 
     switch (v1) {
@@ -4446,13 +4446,13 @@ static void ov9_0224CA30(UnkStruct_ov9_02249B04 *param0)
 
 void ov9_0224CA50(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     ov9_0224CA30(v0);
 }
 
 void ov9_0224CA5C(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     UnkStruct_ov9_0224C8E8 *v1 = &v0->unk_1E88;
 
     {
@@ -6548,13 +6548,13 @@ void ov9_0224E884(FieldSystem *fieldSystem, u16 param1)
     UnkStruct_ov9_02249B04 *v0;
 
     GF_ASSERT(param1 < 1);
-    v0 = fieldSystem->unk_04->unk_24;
+    v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     ov9_0224E91C(v0, &Unk_ov9_02252414[param1]);
 }
 
 void ov9_0224E8A8(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     ov9_0224E988(v0);
 }
 
@@ -7258,7 +7258,7 @@ static MapObject *ov9_0224F0D4(UnkStruct_ov9_02249B04 *param0, u32 param1, u16 p
 void ov9_0224F158(FieldSystem *fieldSystem, u16 param1)
 {
     u32 v0 = fieldSystem->location->mapId;
-    UnkStruct_ov9_02249B04 *v1 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v1 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     ov9_0224F0D4(v1, v0, param1);
 }
@@ -7269,7 +7269,7 @@ void ov9_0224F16C(FieldSystem *fieldSystem, u16 param1)
     MapObject *v1;
     u32 v2 = fieldSystem->location->mapId;
     MapObjectManager *v3 = fieldSystem->mapObjMan;
-    UnkStruct_ov9_02249B04 *v4 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v4 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     while (sub_020625B0(
                v3, &v1, &v0, (1 << 0))
@@ -7374,7 +7374,7 @@ UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, FieldTask *param1
     UnkStruct_ov9_0224F6EC *v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov9_0224F6EC));
     memset(v0, 0, sizeof(UnkStruct_ov9_0224F6EC));
 
-    v0->unk_00 = fieldSystem->unk_04->unk_24;
+    v0->unk_00 = fieldSystem->unk_04->dynamicMapFeaturesData;
     v0->fieldSystem = fieldSystem;
     v0->unk_08 = param1;
     v0->unk_0C = param2;
@@ -8742,7 +8742,7 @@ static void ov9_0225074C(UnkStruct_ov9_0225074C *param0)
 
 void ov9_02250780(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     if (v0->unk_1EC0 == 1) {
         UnkStruct_ov9_0225074C *v1 = ov9_0224E39C(v0);
@@ -9419,7 +9419,7 @@ BOOL ov9_02250F74(FieldSystem *fieldSystem)
 BOOL ov9_02250F90(FieldSystem *fieldSystem, int param1, int param2, int param3)
 {
     u16 v0;
-    UnkStruct_ov9_02249B04 *v1 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v1 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     v0 = ov9_0224C55C(v1, param1, param2, param3);
 
@@ -9439,7 +9439,7 @@ BOOL ov9_02250F90(FieldSystem *fieldSystem, int param1, int param2, int param3)
 BOOL ov9_02250FBC(FieldSystem *fieldSystem, int param1, int param2, int param3)
 {
     u16 v0;
-    UnkStruct_ov9_02249B04 *v1 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v1 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     v0 = ov9_0224C55C(v1, param1, param2, param3);
 
@@ -9452,7 +9452,7 @@ BOOL ov9_02250FBC(FieldSystem *fieldSystem, int param1, int param2, int param3)
 
 BOOL ov9_02250FD8(FieldSystem *fieldSystem, int param1, int param2, int param3)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     s16 v1 = ov9_0224C494(v0);
 
     return ov9_0224C324(v0, param1, param2, param3, v1);
@@ -9460,7 +9460,7 @@ BOOL ov9_02250FD8(FieldSystem *fieldSystem, int param1, int param2, int param3)
 
 void ov9_02251000(FieldSystem *fieldSystem, int param1, int param2, int param3)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     s16 v1 = ov9_0224C494(v0);
 
     if (ov9_0224C324(v0, param1, param2, param3, v1) == 1) {
@@ -9482,7 +9482,7 @@ BOOL ov9_02251044(FieldSystem *fieldSystem, int param1, int param2, int param3, 
 
     {
         u16 v1;
-        UnkStruct_ov9_02249B04 *v2 = fieldSystem->unk_04->unk_24;
+        UnkStruct_ov9_02249B04 *v2 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
         v1 = ov9_0224C55C(v2, param1, param2, param3);
 
@@ -9577,7 +9577,7 @@ static BOOL ov9_02251104(UnkStruct_ov9_02249B04 *param0, u32 param1, u32 param2)
 
 BOOL ov9_022511A0(FieldSystem *fieldSystem, int param1, int param2, int param3)
 {
-    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     if (ov9_022510D0(v0) == 582) {
         if ((param2 == 15) && (param1 == 15) && (param3 == 1)) {
