@@ -102,7 +102,7 @@ BOOL ScrCmd_056(ScriptContext *param0)
     u8 v0 = ScriptContext_ReadByte(param0);
     BOOL v1 = ScriptContext_ReadByte(param0);
 
-    sub_020049F4(v0, v1);
+    Sound_SetBGMPlayerPaused(v0, v1);
     return 0;
 }
 

@@ -1239,7 +1239,7 @@ static BOOL ov65_02237504(UnkStruct_ov65_022367A8 *param0)
 static void ov65_02237520(UnkStruct_ov65_022367A8 *param0)
 {
     if (ov65_022374DC(param0)) {
-        sub_02004A84(Sound_GetCurrentBGM());
+        Sound_AdjustVolumeForVoiceChat(Sound_GetCurrentBGM());
     }
 }
 

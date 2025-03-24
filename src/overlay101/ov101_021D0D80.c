@@ -622,7 +622,7 @@ static void ov101_021D18F4(SysTask *param0, void *param1)
     case 1:
         switch (v1->unk_08) {
         case UnkEnum_ov101_021D1894_00:
-            sub_020049F4(1, 1);
+            Sound_SetBGMPlayerPaused(1, 1);
             break;
         case UnkEnum_ov101_021D1894_01:
             Sound_StopBGM(1184, 0);
@@ -637,7 +637,7 @@ static void ov101_021D18F4(SysTask *param0, void *param1)
     case 2:
         switch (v1->unk_0C) {
         case UnkEnum_ov101_021D1894_00:
-            sub_020049F4(1, 0);
+            Sound_SetBGMPlayerPaused(1, 0);
             break;
         case UnkEnum_ov101_021D1894_01:
             Sound_PlayBasicBGM(1184);

@@ -113,7 +113,7 @@ u16 sub_0205560C(int param0);
 void sub_020553DC()
 {
     Sound_StopAll();
-    sub_02004A3C();
+    Sound_ClearBGMPauseFlags();
     Sound_SetScene(0);
 }
 
@@ -247,7 +247,7 @@ BOOL sub_02055554(FieldSystem *fieldSystem, u16 param1, int param2)
         return 0;
     }
 
-    sub_02004A3C();
+    Sound_ClearBGMPauseFlags();
     sub_020555CC(fieldSystem, param2, &v1, &v2);
 
     if ((v3 == 0x1) || (v3 == 0x1)) {

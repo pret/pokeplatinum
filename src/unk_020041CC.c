@@ -34,21 +34,21 @@ static void sub_020048F0(u16 param0, int param1);
 static void sub_02004914(u8 param0);
 static void sub_02004930(u8 param0, u16 param1, int param2);
 void sub_02004950(u16 param0);
-void sub_020049F4(u8 param0, BOOL param1);
-void sub_02004A3C(void);
+void Sound_SetBGMPlayerPaused(u8 param0, BOOL param1);
+void Sound_ClearBGMPauseFlags(void);
 void sub_02004A54(int param0, int param1, int param2);
 void Sound_SetInitialVolumeForHandle(enum SoundHandleType param0, int param1);
-void sub_02004A84(int param0);
-void Sound_AdjustVolumeForVoiceChat(int param0, enum SoundHandleType param1);
+void Sound_AdjustVolumeForVoiceChat(int param0);
+void Sound_AdjustVolumeForVoiceChatEx(int param0, enum SoundHandleType param1);
 void sub_02004AD4(u16 param0, int param1);
-BOOL sub_02004AE8(int param0, int param1, u16 param2);
+BOOL Sound_PlaySequenceWithPlayer(enum SoundHandleType param0, int param1, u16 param2);
 int Sound_GetNumberOfPlayingSequencesForPlayer(int param0);
 u8 Sound_GetPlayerForSequence(u16 param0);
 int Sound_GetSequenceIDFromSoundHandle(NNSSndHandle *param0);
-const NNSSndArcBankInfo *sub_02004B3C(int param0);
+const NNSSndArcBankInfo *Sound_GetBankInfoForSequence(int param0);
 u16 Sound_GetBankIDFromSequenceID(int param0);
-MICResult sub_02004B5C(MICAutoParam *param0);
-MICResult sub_02004B64(void);
+MICResult Sound_StartMicAutoSampling(MICAutoParam *param0);
+MICResult Sound_StopMicAutoSampling(void);
 NNSSndWaveOutHandle *sub_02004B78(u32 param0);
 BOOL sub_02004BCC(u32 param0);
 void sub_02004C4C(u32 param0);
@@ -429,7 +429,7 @@ static void sub_020046F8(u16 param0, int param1)
     sub_020056D4();
 
     if (v1 != param0) {
-        sub_020049F4(1, 0);
+        Sound_SetBGMPlayerPaused(1, 0);
         Sound_StopAll();
     }
 
@@ -439,7 +439,7 @@ static void sub_020046F8(u16 param0, int param1)
         SoundSystem_SaveHeapState(SoundSystem_GetParam(26));
 
         if (v1 != param0) {
-            sub_020049F4(1, 0);
+            Sound_SetBGMPlayerPaused(1, 0);
         }
 
         sub_0200478C(param0, v1);
@@ -464,7 +464,7 @@ static void sub_0200478C(u16 param0, u16 param1)
     }
 
     SoundSystem_SaveHeapState(SoundSystem_GetParam(27));
-    sub_020049F4(1, 0);
+    Sound_SetBGMPlayerPaused(1, 0);
     Sound_FadeInBGM(127, 40, 0);
     Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_IDLE);
 
@@ -517,7 +517,7 @@ static void sub_020048AC(u16 param0, int param1)
     int *v0 = SoundSystem_GetParam(24);
 
     Sound_StopAll();
-    sub_02004A3C();
+    Sound_ClearBGMPauseFlags();
     Sound_LoadSoundEffectsForSceneWithState(4);
     Sound_PlayBGM(param0);
 
@@ -608,8 +608,8 @@ int Sound_GetHeapState(enum SoundHeapState state)
     case SOUND_HEAP_STATE_SFX:
         param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_SFX);
         break;
-    case 4:
-        param = SoundSystem_GetParam(27);
+    case SOUND_HEAP_STATE_BGM:
+        param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_BGM);
         break;
     case 5:
         param = SoundSystem_GetParam(28);
@@ -622,40 +622,36 @@ int Sound_GetHeapState(enum SoundHeapState state)
     return *param;
 }
 
-void sub_020049F4(u8 param0, BOOL param1)
+void Sound_SetBGMPlayerPaused(u8 playerID, BOOL paused)
 {
-    u8 v0;
-    u8 *v1;
+    u8 handleType;
+    u8 *playerPaused;
 
-    if (param0 == 1) {
-        v1 = SoundSystem_GetParam(12);
-        v0 = 0;
-    } else if (param0 == 7) {
-        v1 = SoundSystem_GetParam(13);
-        v0 = 7;
+    if (playerID == PLAYER_FIELD) {
+        playerPaused = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED);
+        handleType = SOUND_HANDLE_TYPE_FIELD_BGM;
+    } else if (playerID == PLAYER_BGM) {
+        playerPaused = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_BGM_PAUSED);
+        handleType = SOUND_HANDLE_TYPE_BGM;
     } else {
         return;
     }
 
-    if (param1 == 0) {
-        Sound_SetCurrentBGM(Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(v0)));
+    if (paused == FALSE) {
+        Sound_SetCurrentBGM(Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(handleType)));
     }
 
-    NNS_SndPlayerPause(SoundSystem_GetSoundHandle(v0), param1);
-    *v1 = param1;
-
-    return;
+    NNS_SndPlayerPause(SoundSystem_GetSoundHandle(handleType), paused);
+    *playerPaused = paused;
 }
 
-void sub_02004A3C(void)
+void Sound_ClearBGMPauseFlags(void)
 {
-    u8 *v0 = SoundSystem_GetParam(12);
-    u8 *v1 = SoundSystem_GetParam(13);
+    u8 *fieldBGMPaused = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED);
+    u8 *bgmPaused = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_BGM_PAUSED);
 
-    *v0 = 0;
-    *v1 = 0;
-
-    return;
+    *fieldBGMPaused = FALSE;
+    *bgmPaused = FALSE;
 }
 
 void Sound_FadeVolumeForHandle(enum SoundHandleType handleType, int targetVolume, int frames)
@@ -676,16 +672,15 @@ void Sound_SetInitialVolumeForHandle(enum SoundHandleType handleType, int volume
     NNS_SndPlayerSetInitialVolume(SoundSystem_GetSoundHandle(handleType), volume);
 }
 
-void sub_02004A84(int param0)
+void Sound_AdjustVolumeForVoiceChat(int seqID)
 {
-    u8 v0 = Sound_GetPlayerForSequence(param0);
-    int v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
+    u8 playerID = Sound_GetPlayerForSequence(seqID);
+    enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
 
-    Sound_AdjustVolumeForVoiceChat(param0, v1);
-    return;
+    Sound_AdjustVolumeForVoiceChatEx(seqID, handleType);
 }
 
-void Sound_AdjustVolumeForVoiceChat(int seqID, enum SoundHandleType handleType)
+void Sound_AdjustVolumeForVoiceChatEx(int seqID, enum SoundHandleType handleType)
 {
     u8 volume;
     const NNSSndSeqParam *param = NNS_SndArcGetSeqParam(seqID);
@@ -708,8 +703,6 @@ void Sound_AdjustVolumeForVoiceChat(int seqID, enum SoundHandleType handleType)
     if (sub_02036314() == TRUE) {
         Sound_SetInitialVolumeForHandle(handleType, (volume / 5));
     }
-
-    return;
 }
 
 void sub_02004AD4(u16 param0, int param1)
@@ -721,9 +714,9 @@ void sub_02004AD4(u16 param0, int param1)
     return;
 }
 
-BOOL sub_02004AE8(int param0, int param1, u16 param2)
+BOOL Sound_PlaySequenceWithPlayer(enum SoundHandleType handleType, int playerID, u16 seqID)
 {
-    return NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(param0), param1, -1, -1, param2);
+    return NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(handleType), playerID, -1, -1, seqID);
 }
 
 int Sound_GetNumberOfPlayingSequencesForPlayer(int playerID)
@@ -754,15 +747,9 @@ int Sound_GetSequenceIDFromSoundHandle(NNSSndHandle *handle)
     return NNS_SndPlayerGetSeqNo(handle);
 }
 
-const NNSSndArcBankInfo *sub_02004B3C(int param0)
+const NNSSndArcBankInfo *Sound_GetBankInfoForSequence(int seqID)
 {
-    const NNSSndArcBankInfo *v0 = NNS_SndArcGetBankInfo(Sound_GetBankIDFromSequenceID(param0));
-
-    if (v0 == NULL) {
-        (void)0;
-    }
-
-    return v0;
+    return NNS_SndArcGetBankInfo(Sound_GetBankIDFromSequenceID(seqID));
 }
 
 u16 Sound_GetBankIDFromSequenceID(int seqID)
@@ -775,44 +762,20 @@ u16 Sound_GetBankIDFromSequenceID(int seqID)
     return param->bankNo;
 }
 
-MICResult sub_02004B5C(MICAutoParam *param0)
+MICResult Sound_StartMicAutoSampling(MICAutoParam *param)
 {
-    MICResult v0;
-
-    v0 = MIC_StartAutoSampling(param0);
-
-    if (v0 != MIC_RESULT_SUCCESS) {
-        (void)0;
-    }
-
-    return v0;
+    return MIC_StartAutoSampling(param);
 }
 
-MICResult sub_02004B64(void)
+MICResult Sound_StopMicAutoSampling(void)
 {
-    MICResult v0;
-    SoundSystem *v1 = SoundSystem_Get();
-
-    v0 = MIC_StopAutoSampling();
-
-    if (v0 != MIC_RESULT_SUCCESS) {
-        (void)0;
-    }
-
-    return v0;
+    (void)SoundSystem_Get();
+    return MIC_StopAutoSampling();
 }
 
-MICResult sub_02004B70(MICSamplingType param0, void *param1, MICCallback param2, void *param3)
+MICResult Sound_StartMicManualSampling(MICSamplingType type, void *buffer, MICCallback callback, void *param)
 {
-    MICResult v0;
-
-    v0 = MIC_DoSamplingAsync(param0, param1, param2, param3);
-
-    if (v0 != MIC_RESULT_SUCCESS) {
-        (void)0;
-    }
-
-    return v0;
+    return MIC_DoSamplingAsync(type, buffer, callback, param);
 }
 
 NNSSndWaveOutHandle *sub_02004B78(u32 param0)
@@ -1246,7 +1209,7 @@ static void sub_020050A4(u8 param0, u16 param1, int param2, int param3, u8 param
     Sound_SetNextBGM(param1);
     sub_02004FDC(param3);
 
-    *v0 = sub_02004B3C(param1);
+    *v0 = Sound_GetBankInfoForSequence(param1);
     Sound_SetFieldBGMBankState(param4);
 
     return;
@@ -1530,7 +1493,7 @@ static void sub_0200540C(void)
 {
     if ((Sound_IsFadeActive() == FALSE) && (Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(0)) != -1) && (Sound_GetCurrentBGM() != 1150)) {
         sub_020056D4();
-        sub_020049F4(1, 1);
+        Sound_SetBGMPlayerPaused(1, 1);
     } else {
         Sound_StopAll();
     }

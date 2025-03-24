@@ -134,17 +134,17 @@ void SoundSystem_SetState(enum SoundSystemState state)
 
 static BOOL sub_02003D28()
 {
-    SoundSystem *v0 = SoundSystem_Get();
+    SoundSystem *soundSys = SoundSystem_Get();
 
-    if (Sound_GetNumberOfPlayingSequencesForPlayer(2) != 0) {
-        return 1;
+    if (Sound_GetNumberOfPlayingSequencesForPlayer(PLAYER_ME) != 0) {
+        return TRUE;
     }
 
-    if (v0->unk_BCD5E != 0) {
-        return 1;
+    if (soundSys->unk_BCD5E != 0) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 SoundSystem *SoundSystem_Get()
@@ -181,10 +181,10 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->currentBGM;
     case SOUND_SYSTEM_PARAM_NEXT_BGM:
         return &soundSys->nextBGM;
-    case 12:
-        return &soundSys->unk_BCD5C;
-    case 13:
-        return &soundSys->unk_BCD5D;
+    case SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED:
+        return &soundSys->fieldBGMPaused;
+    case SOUND_SYSTEM_PARAM_BGM_PAUSED:
+        return &soundSys->bgmPaused;
     case 14:
         return &soundSys->unk_BCD5E;
     case 15:
@@ -263,8 +263,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->unk_BCDCC[1];
     case 52:
         return &soundSys->unk_BCDD0[1];
-    case 53:
-        return &soundSys->unk_BCDD2;
+    case SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES:
+        return &soundSys->allowTwoPokemonCries;
     case 54:
         return &soundSys->unk_BCDD3;
     }
