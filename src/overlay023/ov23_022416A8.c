@@ -28,9 +28,9 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_flags.h"
+#include "terrain_collision_manager.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
-#include "unk_02054D00.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -366,7 +366,7 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
         return;
     }
 
-    if (FieldSystem_CheckCollision(Unk_ov23_02257744->fieldSystem, param2, param3)) {
+    if (TerrainCollisionManager_CheckCollision(Unk_ov23_02257744->fieldSystem, param2, param3)) {
         ov23_02253F40(ov23_0224219C(), 60, 0, NULL);
         return;
     }

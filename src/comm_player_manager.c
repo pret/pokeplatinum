@@ -40,10 +40,10 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
-#include "unk_02054D00.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_0206CCB0.h"
@@ -667,7 +667,7 @@ static BOOL CommPlayer_CheckCollision(int x, int z, int netIdTarget)
         }
     }
 
-    return FieldSystem_CheckCollision(sCommPlayerManager->fieldSystem, x, z);
+    return TerrainCollisionManager_CheckCollision(sCommPlayerManager->fieldSystem, x, z);
 }
 
 static int sub_020581CC(int param0, int param1)
@@ -847,7 +847,7 @@ void CommPlayer_RecvLocation(int netId, int unused0, void *src, void *unused1)
     sCommPlayerManager->isActive[netId] = 1;
     sCommPlayerManager->movementChanged[netId] = 1;
 
-    if (FieldSystem_CheckCollision(sCommPlayerManager->fieldSystem, playerLocation->x, playerLocation->z)) {
+    if (TerrainCollisionManager_CheckCollision(sCommPlayerManager->fieldSystem, playerLocation->x, playerLocation->z)) {
         GF_ASSERT(0);
     }
 }

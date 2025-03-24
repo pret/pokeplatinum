@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02055130.h"
 #include "struct_defs/struct_02071B10.h"
 #include "struct_defs/struct_02071B30.h"
 #include "struct_defs/struct_02071B6C.h"
@@ -55,10 +54,10 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_vars.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_02027F50.h"
-#include "unk_02054D00.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
@@ -338,18 +337,22 @@ static void ov8_0224996C(const u8 param0, int *param1)
 
 void ov8_0224997C(FieldSystem *fieldSystem)
 {
-    UnkStruct_02055130 v0;
+    TerrainCollisionHitbox v0;
     int v1, v2;
     BOOL v3;
     int v4;
-    int v5[] = { 239, 240, 241 };
+    int v5[] = {
+        MAP_PROP_MODEL_PASTORIA_GYM_BLUE_BUTTON,
+        MAP_PROP_MODEL_PASTORIA_GYM_GREEN_BUTTON,
+        MAP_PROP_MODEL_PASTORIA_GYM_ORANGE_BUTTON
+    };
 
     v1 = Player_GetXPos(fieldSystem->playerAvatar);
     v2 = Player_GetZPos(fieldSystem->playerAvatar);
 
-    sub_020550F4(v1, v2, 0, 0, 1, 1, &v0);
+    TerrainCollisionHitbox_Init(v1, v2, 0, 0, 1, 1, &v0);
 
-    v3 = sub_02055208(fieldSystem, v5, NELEMS(v5), &v0, NULL, &v4);
+    v3 = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, v5, NELEMS(v5), &v0, NULL, &v4);
 
     if (v3) {
         UnkStruct_ov8_0224997C *v6;
@@ -379,7 +382,7 @@ void ov8_0224997C(FieldSystem *fieldSystem)
 
 BOOL ov8_02249A40(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
 {
-    u8 v0 = FieldSystem_GetTileBehavior(fieldSystem, param1, param2);
+    u8 v0 = TerrainCollisionManager_GetTileBehavior(fieldSystem, param1, param2);
 
     if (TileBehavior_IsPastoriaGymHighGround(v0)) {
         if (param3 != 0) {
@@ -3754,7 +3757,7 @@ void ov8_0224C198(FieldSystem *fieldSystem)
                 GF_ASSERT(v1->unk_02 < (v8->unk_04 + v8->unk_08));
                 GF_ASSERT(v1->unk_04 < (v8->unk_0C + v8->unk_14));
                 GF_ASSERT(v1->unk_06 < (v8->unk_10 + v8->unk_18));
-                GF_ASSERT(FieldSystem_CheckCollision(fieldSystem, v1->unk_04, v1->unk_06) == 0);
+                GF_ASSERT(TerrainCollisionManager_CheckCollision(fieldSystem, v1->unk_04, v1->unk_06) == 0);
             }
         }
 

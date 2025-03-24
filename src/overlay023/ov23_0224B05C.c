@@ -50,6 +50,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_flags.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -57,7 +58,6 @@
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
-#include "unk_02054D00.h"
 #include "unk_020573FC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
@@ -1913,7 +1913,7 @@ void ov23_0224CD80(int param0, int param1, void *param2, void *param3)
         (void)0;
     } else if (ov23_02242E58(v1, v2)) {
         v8.unk_01 = 6;
-    } else if (FieldSystem_CheckCollision(Unk_ov23_022577AC->fieldSystem, v1, v2) && FieldSystem_CheckCollision(Unk_ov23_022577AC->fieldSystem, v3, v4) && FieldSystem_CheckCollision(Unk_ov23_022577AC->fieldSystem, v5, v6)) {
+    } else if (TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v1, v2) && TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v3, v4) && TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v5, v6)) {
         if (v0[0] == 0) {
             v8.unk_01 = 1;
         } else {
@@ -2677,7 +2677,7 @@ void ov23_0224DAD0(int param0)
     v0 = sub_02058EA0(v3);
     v1 = sub_02058EC0(v3);
 
-    if (!FieldSystem_CheckCollision(Unk_ov23_022577AC->fieldSystem, v0, v1)) {
+    if (!TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v0, v1)) {
         if (param0 == 0) {
             return;
         }
@@ -2689,7 +2689,7 @@ void ov23_0224DAD0(int param0)
 
     if ((v0 == 0xffff) && (v1 == 0xffff)) {
         ov23_0224B844(v3, v3, 1);
-    } else if (ov23_02242E58(v0, v1) || FieldSystem_CheckCollision(Unk_ov23_022577AC->fieldSystem, v0, v1)) {
+    } else if (ov23_02242E58(v0, v1) || TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v0, v1)) {
         ov23_0224B844(v3, v3, 1);
     }
 }
