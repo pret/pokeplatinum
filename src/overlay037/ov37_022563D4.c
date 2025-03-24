@@ -23,8 +23,8 @@ struct UnkStruct_ov37_022563D4_t {
     const UnkStruct_ov37_022563D4_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    UnkStruct_ov25_022555E8 *unk_20;
-    ov25_LinkedElement *unk_24;
+    Ov25_540_GraphicManager *unk_20;
+    ov25_540_GraphicObject *unk_24;
     UnkStruct_ov25_02255958 unk_28;
 };
 

@@ -92,8 +92,8 @@ struct PoketchSystem {
     u32 appSkipTimer;
     enum PoketchAppID loadedAppID;
     FSOverlayID loadedAppOverlayID;
-    UnkStruct_ov25_02254560 *unk_1C;
-    UnkStruct_ov25_02254560_1 unk_20;
+    Ov25_560_TaskData *unk_1C;
+    Ov25_560_TaskData_1 unk_20;
     void *unk_24;
     PoketchButtonManager *buttonManager;
     u32 unk_2C;
@@ -125,7 +125,7 @@ void PoketchSystem_SetAppFunctions(PoketchAppInitFunction initFunction, PoketchA
 void PoketchSystem_NotifyAppLoaded(PoketchSystem *poketchSys);
 void PoketchSystem_NotifyAppUnloaded(PoketchSystem *poketchSys);
 void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *saveData);
-UnkStruct_ov25_02254560 *PoketchSystem_Get_ov25_560_struct(void);
+Ov25_560_TaskData *PoketchSystem_Get_ov25_560_struct(void);
 void PoketchSystem_PlaySoundEffect(u32 soundID);
 void PoketchSystem_PlayCry(u32 species, u32 form);
 BOOL PoketchSystem_GetDisplayHeldCoords(u32 *x, u32 *y);

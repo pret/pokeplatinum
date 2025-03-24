@@ -28,10 +28,10 @@ struct UnkStruct_ov48_0225650C_t {
     const UnkStruct_ov48_0225650C_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    UnkStruct_ov25_022555E8 *unk_20;
-    ov25_LinkedElement *unk_24;
-    ov25_LinkedElement *unk_28[64];
-    ov25_LinkedElement *unk_128[4];
+    Ov25_540_GraphicManager *unk_20;
+    ov25_540_GraphicObject *unk_24;
+    ov25_540_GraphicObject *unk_28[64];
+    ov25_540_GraphicObject *unk_128[4];
     UnkStruct_ov25_02255958 unk_138;
     SysTask *unk_14C;
     BOOL unk_150;
@@ -239,14 +239,14 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
 
     ov25_LoadNARCMembers(&param0->unk_138, 12, 118, 119, 8);
 
-    v1.unk_0A = 0;
-    v1.unk_0B = 2;
-    v1.unk_0D = 0;
+    v1.flip = 0;
+    v1.oamPriority = 2;
+    v1.hasAffineTransform = 0;
 
     ov25_02255DBC(v0->unk_00, v0->unk_04, &v2, &v3);
 
-    v1.unk_00.x = ((v2) << FX32_SHIFT);
-    v1.unk_00.y = ((v3) << FX32_SHIFT);
+    v1.translation.x = ((v2) << FX32_SHIFT);
+    v1.translation.y = ((v3) << FX32_SHIFT);
     v1.unk_0C = 0;
     v1.animIDX = 0;
     param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v1, &(param0->unk_138));
@@ -255,8 +255,8 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
 
     v1.unk_0C = 1;
     v1.animIDX = 7;
-    v1.unk_00.x = 0;
-    v1.unk_00.y = 0;
+    v1.translation.x = 0;
+    v1.translation.y = 0;
 
     for (v4 = 0; v4 < 64; v4++) {
         param0->unk_28[v4] = ov25_SetupNewElem(param0->unk_20, &v1, &(param0->unk_138));
@@ -267,8 +267,8 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
 
     for (v4 = 0; v4 < 4; v4++) {
         ov25_02255DFC(v4, &v2, &v3);
-        v1.unk_00.x = ((v2) << FX32_SHIFT);
-        v1.unk_00.y = ((v3) << FX32_SHIFT);
+        v1.translation.x = ((v2) << FX32_SHIFT);
+        v1.translation.y = ((v3) << FX32_SHIFT);
         v1.unk_0C = 2;
         v1.animIDX = 14 + v4;
         param0->unk_128[v4] = ov25_SetupNewElem(param0->unk_20, &v1, &(param0->unk_138));
@@ -276,7 +276,7 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
         ov25_Set_mosaic(param0->unk_128[v4], 1);
 
         if (v0->unk_94[v4] == 0) {
-            ov25_Set_ElemApplyAffineTransformation(param0->unk_128[v4], 1);
+            ov25_540_Hide(param0->unk_128[v4], 1);
         }
     }
 
@@ -290,12 +290,12 @@ static void ov48_02256920(UnkStruct_ov48_0225650C *param0)
 
     for (v2 = 0; v2 < param0->unk_00->unk_08; v2++) {
         ov25_02255DBC(param0->unk_00->unk_0C[v2].unk_00, param0->unk_00->unk_0C[v2].unk_01, &v0, &v1);
-        ov25_SetTranslation(param0->unk_28[v2], ((v0) << FX32_SHIFT), ((v1) << FX32_SHIFT));
-        ov25_Set_ElemApplyAffineTransformation(param0->unk_28[v2], 0);
+        ov25_SetPosition(param0->unk_28[v2], ((v0) << FX32_SHIFT), ((v1) << FX32_SHIFT));
+        ov25_540_Hide(param0->unk_28[v2], 0);
     }
 
     for (; v2 < 64; v2++) {
-        ov25_Set_ElemApplyAffineTransformation(param0->unk_28[v2], 1);
+        ov25_540_Hide(param0->unk_28[v2], 1);
     }
 }
 
@@ -339,6 +339,6 @@ static void ov48_022569FC(SysTask *param0, void *param1)
         u32 v2, v3;
 
         ov25_02255DBC(v1->unk_00, v1->unk_04, &v2, &v3);
-        ov25_SetTranslation(v0->unk_24, ((v2) << FX32_SHIFT), ((v3) << FX32_SHIFT));
+        ov25_SetPosition(v0->unk_24, ((v2) << FX32_SHIFT), ((v3) << FX32_SHIFT));
     }
 }

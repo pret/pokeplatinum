@@ -25,8 +25,8 @@ struct UnkStruct_ov30_022563EC_t {
     u32 unk_08[10];
     SysTask *unk_30;
     UnkStruct_ov25_02255958 unk_34;
-    UnkStruct_ov25_022555E8 *unk_48;
-    ov25_LinkedElement *unk_4C[2];
+    Ov25_540_GraphicManager *unk_48;
+    ov25_540_GraphicObject *unk_4C[2];
 };
 
 static void ov30_02256460(SysTask *param0, void *param1);

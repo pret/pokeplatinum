@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV25_022558C4_DECL_H
 #define POKEPLATINUM_STRUCT_OV25_022558C4_DECL_H
 
-typedef struct ov25_LinkedElement_t ov25_LinkedElement;
+typedef struct ov25_540_GraphicObject_t ov25_540_GraphicObject;
 
 #endif // POKEPLATINUM_STRUCT_OV25_022558C4_DECL_H

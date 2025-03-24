@@ -25,8 +25,8 @@ struct UnkStruct_ov44_022565BC_t {
     const UnkStruct_ov44_022565BC_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    UnkStruct_ov25_022555E8 *unk_20;
-    ov25_LinkedElement *unk_24[6];
+    Ov25_540_GraphicManager *unk_20;
+    ov25_540_GraphicObject *unk_24[6];
     UnkStruct_ov25_02255958 unk_3C;
     UnkStruct_ov25_02255958 unk_50;
     u32 unk_64;
@@ -158,8 +158,8 @@ static void ov44_0225660C(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_
     ov44_02256954(param0, 5, param1->unk_33, param1->unk_18[param1->unk_33], param1->unk_24[param1->unk_33]);
 
     if (param1->unk_30 <= 1) {
-        ov25_Set_ElemApplyAffineTransformation(param0->unk_24[5], 1);
-        ov25_Set_ElemApplyAffineTransformation(param0->unk_24[3], 1);
+        ov25_540_Hide(param0->unk_24[5], 1);
+        ov25_540_Hide(param0->unk_24[3], 1);
         ov25_InitAnimation(param0->unk_24[0], 10);
     }
 }
@@ -318,7 +318,7 @@ static void ov44_02256908(SysTask *param0, void *param1)
 
 static void ov44_02256954(UnkStruct_ov44_022565BC *param0, u32 param1, u32 param2, u16 param3, u16 param4)
 {
-    ov25_LinkedElement *v0 = param0->unk_24[param1];
+    ov25_540_GraphicObject *v0 = param0->unk_24[param1];
     u32 v1;
 
     if (param1 == 5) {
@@ -338,8 +338,8 @@ static void ov44_02256954(UnkStruct_ov44_022565BC *param0, u32 param1, u32 param
 
 static void ov44_022569AC(UnkStruct_ov44_022565BC *param0)
 {
-    ov25_SetTranslation(param0->unk_24[2], (48 << FX32_SHIFT), (88 << FX32_SHIFT));
-    ov25_SetTranslation(param0->unk_24[3], (176 << FX32_SHIFT), (88 << FX32_SHIFT));
+    ov25_SetPosition(param0->unk_24[2], (48 << FX32_SHIFT), (88 << FX32_SHIFT));
+    ov25_SetPosition(param0->unk_24[3], (176 << FX32_SHIFT), (88 << FX32_SHIFT));
     ov25_InitAnimation(param0->unk_24[2], 5);
     ov25_InitAnimation(param0->unk_24[3], 6);
     ov25_InitAnimation(param0->unk_24[1], 0);
@@ -526,8 +526,8 @@ func_start:
                 param0->unk_78 = param0->unk_80;
             }
 
-            ov25_SetTranslation(param0->unk_24[2], (48 << FX32_SHIFT) + param0->unk_78, (88 << FX32_SHIFT));
-            ov25_SetTranslation(param0->unk_24[3], (176 << FX32_SHIFT) - param0->unk_78, (88 << FX32_SHIFT));
+            ov25_SetPosition(param0->unk_24[2], (48 << FX32_SHIFT) + param0->unk_78, (88 << FX32_SHIFT));
+            ov25_SetPosition(param0->unk_24[3], (176 << FX32_SHIFT) - param0->unk_78, (88 << FX32_SHIFT));
         }
 
         if (param0->unk_84 == 0) {

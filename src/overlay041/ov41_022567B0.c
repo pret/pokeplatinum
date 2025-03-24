@@ -25,8 +25,8 @@ struct UnkStruct_ov41_022567B0_t {
     const UnkStruct_ov41_022567B0_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    UnkStruct_ov25_022555E8 *unk_20;
-    ov25_LinkedElement *unk_24[4];
+    Ov25_540_GraphicManager *unk_20;
+    ov25_540_GraphicObject *unk_24[4];
     UnkStruct_ov25_02255958 unk_34;
     Window unk_48;
     u32 unk_58;

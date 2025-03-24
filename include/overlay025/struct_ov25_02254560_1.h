@@ -3,6 +3,6 @@
 
 typedef struct {
     u32 unk_00;
-} UnkStruct_ov25_02254560_1;
+} Ov25_560_TaskData_1;
 
 #endif // POKEPLATINUM_STRUCT_OV25_02254560_1_H

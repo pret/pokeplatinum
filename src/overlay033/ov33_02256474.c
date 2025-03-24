@@ -27,8 +27,8 @@
 #include "system.h"
 
 typedef struct {
-    ov25_LinkedElement *unk_00;
-    ov25_LinkedElement *unk_04;
+    ov25_540_GraphicObject *unk_00;
+    ov25_540_GraphicObject *unk_04;
     VecFx32 unk_08;
     VecFx32 unk_14;
     VecFx32 unk_20;
@@ -50,7 +50,7 @@ struct UnkStruct_ov33_02256474_t {
     const UnkStruct_ov33_02256474_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[10];
-    UnkStruct_ov25_022555E8 *unk_30;
+    Ov25_540_GraphicManager *unk_30;
     UnkStruct_ov25_02255958 unk_34;
     UnkStruct_ov25_02255958 unk_48;
     VecFx32 unk_5C[6];
@@ -254,9 +254,9 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
         int v5;
 
         v2.animIDX = 0;
-        v2.unk_0A = 0;
-        v2.unk_0B = 2;
-        v2.unk_0D = 1;
+        v2.flip = 0;
+        v2.oamPriority = 2;
+        v2.hasAffineTransform = 1;
 
         for (v5 = 0; v5 < param1->unk_00; v5++) {
             v4 = NARC_AllocAndReadWholeMember(v1, param1->unk_04[v5].unk_00, 8);
@@ -265,8 +265,8 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
             GXS_LoadOBJ(v3->pRawData, ((4 * 4 * 2) * 0x20) * v5, ((4 * 4 * 2) * 0x20));
             Heap_FreeToHeap(v4);
 
-            v2.unk_00.x = ((v0[v5].x) << FX32_SHIFT);
-            v2.unk_00.y = ((v0[v5].y) << FX32_SHIFT);
+            v2.translation.x = ((v0[v5].x) << FX32_SHIFT);
+            v2.translation.y = ((v0[v5].y) << FX32_SHIFT);
 
             v2.unk_0C = 1;
             param0->unk_134[v5].unk_00 = ov25_SetupNewElem(param0->unk_30, &v2, &param0->unk_34);
@@ -278,7 +278,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
             param0->unk_134[v5].unk_04 = ov25_SetupNewElem(param0->unk_30, &v2, &param0->unk_48);
 
             if (param0->unk_134[v5].unk_04) {
-                ov25_Set_ElemApplyAffineTransformation(param0->unk_134[v5].unk_04, 1);
+                ov25_540_Hide(param0->unk_134[v5].unk_04, 1);
                 ov25_Set_charNo(param0->unk_134[v5].unk_04, ((4 * 4 * 2) * 6));
                 ov25_Set_cParam(param0->unk_134[v5].unk_04, 0);
             } else {
@@ -289,7 +289,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
             param0->unk_134[v5].unk_31 = 0;
             param0->unk_134[v5].unk_32 = 0;
 
-            VEC_Set(&param0->unk_134[v5].unk_14, v2.unk_00.x, v2.unk_00.y, 0);
+            VEC_Set(&param0->unk_134[v5].unk_14, v2.translation.x, v2.translation.y, 0);
             VEC_Set(&param0->unk_134[v5].unk_20, 0, 0, 0);
         }
 
@@ -579,7 +579,7 @@ static void ov33_02256C54(UnkStruct_ov33_02256474 *param0, int param1)
     if (param0->unk_00->unk_04[param1].unk_0A == 0) {
         ov25_UpdateElem_unk_84_00(param0->unk_30, param0->unk_134[param1].unk_04, 0);
         ov25_InitAnimation(param0->unk_134[param1].unk_04, 0 + (param0->unk_00->unk_04[param1].unk_0B - 1));
-        ov25_Set_ElemApplyAffineTransformation(param0->unk_134[param1].unk_04, 0);
+        ov25_540_Hide(param0->unk_134[param1].unk_04, 0);
     }
 }
 
@@ -587,12 +587,12 @@ static void ov33_02256C98(UnkStruct_ov33_02256474 *param0, int param1)
 {
     ov25_UpdateElem_unk_84_00(param0->unk_30, param0->unk_134[param1].unk_04, 2);
     ov25_InitAnimation(param0->unk_134[param1].unk_04, 3);
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_134[param1].unk_04, 0);
+    ov25_540_Hide(param0->unk_134[param1].unk_04, 0);
 }
 
 static void ov33_02256CC4(UnkStruct_ov33_02256474 *param0, int param1)
 {
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_134[param1].unk_04, 1);
+    ov25_540_Hide(param0->unk_134[param1].unk_04, 1);
 }
 
 static void ov33_02256CDC(fx32 param0, u32 param1, VecFx32 *param2)
@@ -788,8 +788,8 @@ static void ov33_0225718C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
         VEC_Set(&v0->unk_20, 0, -20 * CalcSineDegrees(v0->unk_34_val3[1]), 0);
         VEC_Add(&v0->unk_14, &v0->unk_20, &param0->unk_A4);
 
-        ov25_SetTranslation(v0->unk_00, param0->unk_A4.x, param0->unk_A4.y);
-        ov25_SetTranslation(v0->unk_04, v0->unk_14.x, v0->unk_14.y + (8 << FX32_SHIFT));
+        ov25_SetPosition(v0->unk_00, param0->unk_A4.x, param0->unk_A4.y);
+        ov25_SetPosition(v0->unk_04, v0->unk_14.x, v0->unk_14.y + (8 << FX32_SHIFT));
 
         if (v0->unk_34_val3[2] == 2) {
             ov33_022567D4(&v0->unk_08);
@@ -986,8 +986,8 @@ static void ov33_022572A0(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
 
         VEC_Add(&param0->unk_134[v7].unk_14, &param0->unk_134[v7].unk_20, &param0->unk_A4);
 
-        ov25_SetTranslation(param0->unk_134[v7].unk_00, param0->unk_A4.x, param0->unk_A4.y);
-        ov25_SetTranslation(param0->unk_134[v7].unk_04, param0->unk_134[v7].unk_14.x, param0->unk_134[v7].unk_14.y + (8 << FX32_SHIFT));
+        ov25_SetPosition(param0->unk_134[v7].unk_00, param0->unk_A4.x, param0->unk_A4.y);
+        ov25_SetPosition(param0->unk_134[v7].unk_04, param0->unk_134[v7].unk_14.x, param0->unk_134[v7].unk_14.y + (8 << FX32_SHIFT));
     }
 }
 

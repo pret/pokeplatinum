@@ -26,8 +26,8 @@ struct UnkStruct_ov40_0225645C_t {
     const UnkStruct_ov40_0225645C_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    UnkStruct_ov25_022555E8 *unk_20;
-    ov25_LinkedElement *unk_24[11];
+    Ov25_540_GraphicManager *unk_20;
+    ov25_540_GraphicObject *unk_24[11];
     UnkStruct_ov25_02255958 unk_50;
     UnkStruct_ov25_02255958 unk_64;
     u32 unk_78;
@@ -48,8 +48,8 @@ static void ov40_022567D8(UnkStruct_ov40_0225645C *param0);
 static void ov40_022567E0(SysTask *param0, void *param1);
 static void ov40_02256808(u32 param0, const UnkStruct_ov40_0225645C_1 *param1);
 static void ov40_02256848(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_0225645C_1 *param1);
-static void ov40_02256958(ov25_LinkedElement **param0, u32 param1);
-static void ov40_02256A14(ov25_LinkedElement *param0, u32 param1);
+static void ov40_02256958(ov25_540_GraphicObject **param0, u32 param1);
+static void ov40_02256A14(ov25_540_GraphicObject *param0, u32 param1);
 
 BOOL ov40_0225645C(UnkStruct_ov40_0225645C **param0, const UnkStruct_ov40_0225645C_1 *param1, BgConfig *param2)
 {
@@ -402,24 +402,24 @@ static void ov40_02256848(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
 
     v1 = (param1->unk_00 == 0);
 
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[0], v1);
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[3], v1);
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[4], v1);
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[5], v1);
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[9], v1);
+    ov25_540_Hide(param0->unk_24[0], v1);
+    ov25_540_Hide(param0->unk_24[3], v1);
+    ov25_540_Hide(param0->unk_24[4], v1);
+    ov25_540_Hide(param0->unk_24[5], v1);
+    ov25_540_Hide(param0->unk_24[9], v1);
 
     v1 = (param1->unk_00 <= 1);
 
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[1], v1);
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[6], v1);
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[7], v1);
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[8], v1);
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[10], v1);
+    ov25_540_Hide(param0->unk_24[1], v1);
+    ov25_540_Hide(param0->unk_24[6], v1);
+    ov25_540_Hide(param0->unk_24[7], v1);
+    ov25_540_Hide(param0->unk_24[8], v1);
+    ov25_540_Hide(param0->unk_24[10], v1);
 
-    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[2], (param1->unk_01 == 0));
+    ov25_540_Hide(param0->unk_24[2], (param1->unk_01 == 0));
 }
 
-static void ov40_02256958(ov25_LinkedElement **param0, u32 param1)
+static void ov40_02256958(ov25_540_GraphicObject **param0, u32 param1)
 {
     u32 v0[3];
     int v1;
@@ -439,11 +439,11 @@ static void ov40_02256958(ov25_LinkedElement **param0, u32 param1)
         ov25_InitAnimation(param0[v1], v0[v1]);
     }
 
-    ov25_Set_ElemApplyAffineTransformation(param0[0], (param1 < 100));
-    ov25_Set_ElemApplyAffineTransformation(param0[1], (param1 < 10));
+    ov25_540_Hide(param0[0], (param1 < 100));
+    ov25_540_Hide(param0[1], (param1 < 10));
 }
 
-static void ov40_02256A14(ov25_LinkedElement *param0, u32 param1)
+static void ov40_02256A14(ov25_540_GraphicObject *param0, u32 param1)
 {
     switch (param1) {
     case 0:

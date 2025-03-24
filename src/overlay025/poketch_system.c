@@ -77,7 +77,7 @@ static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys);
 static void PoketchSystem_ButtonShutdown(PoketchSystem *poketchSys);
 static void PoketchSystem_ButtonUpdate(PoketchSystem *poketchSys);
 static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touchEvent, void *system);
-static BOOL ov25_022543EC(UnkStruct_ov25_02254560 *param0, u32 param1);
+static BOOL ov25_022543EC(Ov25_560_TaskData *param0, u32 param1);
 static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y);
 
 // the order of this array determines the app order in the poketch.
@@ -222,7 +222,7 @@ static void PoketchSystem_Shutdown(PoketchSystem *poketchSys)
 
     PoketchSystem_ButtonShutdown(poketchSys);
     PoketchSystem_UnloadApp(poketchSys);
-    ov25_02254754(poketchSys->unk_1C);
+    ov25_560_Close(poketchSys->unk_1C);
 }
 
 typedef void (*const PoketchEvent)(PoketchSystem *poketchSys);
@@ -273,11 +273,11 @@ static void PoketchEvent_InitApp(PoketchSystem *poketchSys)
 {
     switch (poketchSys->subState) {
     case 0:
-        ov25_022547D0(poketchSys->unk_1C, 0);
+        ov25_560_StartTask(poketchSys->unk_1C, 0);
         poketchSys->subState++;
         break;
     case 1:
-        if (ov25_022547F4(poketchSys->unk_1C, 0)) {
+        if (ov25_560_TaskIsNotActive(poketchSys->unk_1C, 0)) {
             u32 app_ID = Poketch_CurrentAppID(poketchSys->poketch);
 
             PoketchSystem_LoadApp(poketchSys, app_ID);
@@ -291,10 +291,10 @@ static void PoketchEvent_InitApp(PoketchSystem *poketchSys)
             break;
         }
 
-        ov25_022547D0(poketchSys->unk_1C, 1);
+        ov25_560_StartTask(poketchSys->unk_1C, 1);
         poketchSys->subState++;
     case 3:
-        if (ov25_022547F4(poketchSys->unk_1C, 1)) {
+        if (ov25_560_TaskIsNotActive(poketchSys->unk_1C, 1)) {
             PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_UPDATE);
         }
     }
@@ -313,7 +313,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
         case BUTTON_MANAGER_STATE_TIMER0:
             poketchSys->skipApp = FALSE;
             poketchSys->appChanging = TRUE;
-            ov25_022547D0(poketchSys->unk_1C, 4);
+            ov25_560_StartTask(poketchSys->unk_1C, 4);
             poketchSys->subState++;
             break;
         }
@@ -323,7 +323,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
             poketchSys->skipApp = TRUE;
         }
 
-        if (ov25_02254800(poketchSys->unk_1C)) {
+        if (ov25_560_NoActiveTasks(poketchSys->unk_1C)) {
             if (poketchSys->buttonDir == BUTTON_UP) {
                 poketchSys->unk_20.unk_00 = Poketch_DecrementAppID(poketchSys->poketch);
             } else {
@@ -331,7 +331,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
             }
 
             if (poketchSys->skipApp) {
-                ov25_022547D0(poketchSys->unk_1C, 12);
+                ov25_560_StartTask(poketchSys->unk_1C, 12);
                 poketchSys->appSkipTimer = 30;
                 poketchSys->skipApp = FALSE;
                 poketchSys->subState = 4;
@@ -343,7 +343,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
         break;
     case 2:
         if (poketchSys->buttonState == BUTTON_MANAGER_STATE_TAP || poketchSys->buttonState == BUTTON_MANAGER_STATE_TIMER0) {
-            ov25_022547D0(poketchSys->unk_1C, 12);
+            ov25_560_StartTask(poketchSys->unk_1C, 12);
             poketchSys->appSkipTimer = 30;
             poketchSys->skipApp = FALSE;
             poketchSys->subState = 4;
@@ -373,14 +373,14 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
             }
 
             poketchSys->appSkipTimer = 30;
-            ov25_022547D0(poketchSys->unk_1C, 13);
+            ov25_560_StartTask(poketchSys->unk_1C, 13);
             break;
         }
 
         if (poketchSys->appSkipTimer) {
             poketchSys->appSkipTimer--;
         } else {
-            ov25_022547D0(poketchSys->unk_1C, 14);
+            ov25_560_StartTask(poketchSys->unk_1C, 14);
             PoketchSystem_ShutdownApp(poketchSys);
             poketchSys->subState = 3;
         }
@@ -404,12 +404,12 @@ static void PoketchEvent_OnAppChange(PoketchSystem *poketchSys)
     } break;
     case 1:
         if (PoketchSystem_IsAppInitialized(poketchSys)) {
-            ov25_022547D0(poketchSys->unk_1C, 2);
+            ov25_560_StartTask(poketchSys->unk_1C, 2);
             poketchSys->subState++;
         }
         break;
     case 2:
-        if (ov25_022547F4(poketchSys->unk_1C, 2)) {
+        if (ov25_560_TaskIsNotActive(poketchSys->unk_1C, 2)) {
             poketchSys->appChanging = FALSE;
             poketchSys->unk_06 = 0;
             PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_UPDATE);
@@ -444,12 +444,12 @@ static void PoketchEvent_OnShutdown(PoketchSystem *poketchSys)
         break;
     case 2:
         if (PoketchSystem_IsAppShutdown(poketchSys)) {
-            ov25_022547D0(poketchSys->unk_1C, 17);
+            ov25_560_StartTask(poketchSys->unk_1C, 17);
             poketchSys->subState = 3;
         }
         break;
     case 3:
-        if (ov25_02254800(poketchSys->unk_1C)) {
+        if (ov25_560_NoActiveTasks(poketchSys->unk_1C)) {
             PoketchSystem_UnloadApp(poketchSys);
             sub_0201E530();
             PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_UNLOAD);
@@ -643,19 +643,19 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
     }
 }
 
-static BOOL ov25_022543EC(UnkStruct_ov25_02254560 *param0, u32 param1)
+static BOOL ov25_022543EC(Ov25_560_TaskData *param0, u32 param1)
 {
     for (u32 i = 0; i < 6; i++) {
-        if (ov25_022547F4(param0, param1) == FALSE) {
+        if (ov25_560_TaskIsNotActive(param0, param1) == FALSE) {
             return FALSE;
         }
     }
 
-    ov25_022547D0(param0, param1);
+    ov25_560_StartTask(param0, param1);
     return TRUE;
 }
 
-UnkStruct_ov25_02254560 *PoketchSystem_Get_ov25_560_struct(void)
+Ov25_560_TaskData *PoketchSystem_Get_ov25_560_struct(void)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
     return poketchSys->unk_1C;

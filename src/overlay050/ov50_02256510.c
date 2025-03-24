@@ -22,13 +22,13 @@ struct UnkStruct_ov50_02256510_t {
     const UnkStruct_ov50_02256510_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    UnkStruct_ov25_022555E8 *unk_20;
-    ov25_LinkedElement *unk_24;
+    Ov25_540_GraphicManager *unk_20;
+    ov25_540_GraphicObject *unk_24;
     UnkStruct_ov25_02255958 unk_28;
 };
 
 static void ov50_02256560(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1);
-static void ov50_022565B0(ov25_LinkedElement *param0, u32 param1);
+static void ov50_022565B0(ov25_540_GraphicObject *param0, u32 param1);
 static void ov50_022565E4(UnkStruct_ov50_02256510 *param0);
 static void ov50_02256638(PoketchTaskManager *param0);
 static void ov50_0225664C(SysTask *param0, void *param1);
@@ -84,14 +84,14 @@ static void ov50_02256560(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_
     ov50_022565B0(param0->unk_24, param1->unk_0C[param1->unk_08 - 1].unk_02);
 }
 
-static void ov50_022565B0(ov25_LinkedElement *param0, u32 param1)
+static void ov50_022565B0(ov25_540_GraphicObject *param0, u32 param1)
 {
     fx32 v0, v1;
 
     v0 = (((4 + 3 * (param1 % 7)) + 1) * 8) << FX32_SHIFT;
     v1 = (((5 + 3 * (param1 / 7)) + 1) * 8) << FX32_SHIFT;
 
-    ov25_SetTranslation(param0, v0, v1);
+    ov25_SetPosition(param0, v0, v1);
 }
 
 static void ov50_022565E4(UnkStruct_ov50_02256510 *param0)

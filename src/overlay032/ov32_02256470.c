@@ -241,16 +241,16 @@ static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyS
 
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 109, DS_SCREEN_SUB, 0 * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
-    v1.unk_0A = 0;
-    v1.unk_0B = 2;
+    v1.flip = 0;
+    v1.oamPriority = 2;
     v1.unk_0C = 0;
-    v1.unk_0D = 0;
+    v1.hasAffineTransform = 0;
 
     for (v0 = 0; v0 < param1->partyCount; v0++) {
         if (param1->mons[v0].heldItem != ITEM_NONE) {
             v1.animIDX = Item_IsMail(param1->mons[v0].heldItem) ? TRUE : FALSE;
-            v1.unk_00.x = ((sMonIconCoords[v0].x + 28) << FX32_SHIFT);
-            v1.unk_00.y = ((sMonIconCoords[v0].y + 21) << FX32_SHIFT);
+            v1.translation.x = ((sMonIconCoords[v0].x + 28) << FX32_SHIFT);
+            v1.translation.y = ((sMonIconCoords[v0].y + 21) << FX32_SHIFT);
 
             param0->unk_B4[v0] = ov25_SetupNewElem(param0->unk_08, &v1, &param0->unk_E0);
         }
@@ -267,10 +267,10 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
         int v3;
 
         v1.animIDX = 0;
-        v1.unk_0A = 0;
-        v1.unk_0B = 2;
+        v1.flip = 0;
+        v1.oamPriority = 2;
         v1.unk_0C = 1;
-        v1.unk_0D = 1;
+        v1.hasAffineTransform = 1;
 
         for (v3 = 0; v3 < param1->partyCount; v3++) {
             NARC_ReadFromMember(v0, param1->mons[v3].iconSpriteIndex, 0, ((16 * TILE_SIZE_4BPP) + 0x80), param0->iconSpriteBuffer);
@@ -279,8 +279,8 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
             DC_FlushRange(v2->pRawData, (16 * TILE_SIZE_4BPP));
             GXS_LoadOBJ(v2->pRawData, (0 + 8) * TILE_SIZE_4BPP + (16 * TILE_SIZE_4BPP) * v3, (16 * TILE_SIZE_4BPP));
 
-            v1.unk_00.x = ((sMonIconCoords[v3].x) << FX32_SHIFT);
-            v1.unk_00.y = ((sMonIconCoords[v3].y) << FX32_SHIFT);
+            v1.translation.x = ((sMonIconCoords[v3].x) << FX32_SHIFT);
+            v1.translation.y = ((sMonIconCoords[v3].y) << FX32_SHIFT);
 
             param0->unk_9C[v3] = ov25_SetupNewElem(param0->unk_08, &v1, &param0->unk_CC);
 
@@ -343,7 +343,7 @@ static void Task_HandleMonIconBounce(SysTask *task, void *taskData)
     case 1:
         if (data->bouncesDone == data->numBounces) { // bouncing will continue for as long as the touch screen is held on the same icon
             if (!(playerData->isTouchingPoketch && (data->partySlot == PoketchPartyStatus_CheckTouchingPartySlot(playerData->touchX, playerData->touchY, playerData->partyCount)))) {
-                ov25_SetTranslation(graphicsData->unk_9C[data->partySlot], (sMonIconCoords[data->partySlot].x << FX32_SHIFT), (sMonIconCoords[data->partySlot].y << FX32_SHIFT));
+                ov25_SetPosition(graphicsData->unk_9C[data->partySlot], (sMonIconCoords[data->partySlot].x << FX32_SHIFT), (sMonIconCoords[data->partySlot].y << FX32_SHIFT));
                 data->taskState = 0;
                 break;
             }
@@ -355,7 +355,7 @@ static void Task_HandleMonIconBounce(SysTask *task, void *taskData)
             targetX = sMonIconCoords[data->partySlot].x << FX32_SHIFT;
             targetY = (sMonIconCoords[data->partySlot].y + data->spriteOffset) << FX32_SHIFT;
 
-            ov25_SetTranslation(graphicsData->unk_9C[data->partySlot], targetX, targetY);
+            ov25_SetPosition(graphicsData->unk_9C[data->partySlot], targetX, targetY);
 
             if (data->bouncesDone < data->numBounces) {
                 data->bouncesDone++;

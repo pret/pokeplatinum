@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV25_022555E8_DECL_H
 #define POKEPLATINUM_STRUCT_OV25_022555E8_DECL_H
 
-typedef struct UnkStruct_ov25_022555E8_t UnkStruct_ov25_022555E8;
+typedef struct Ov25_540_GraphicManager_t Ov25_540_GraphicManager;
 
 #endif // POKEPLATINUM_STRUCT_OV25_022555E8_DECL_H

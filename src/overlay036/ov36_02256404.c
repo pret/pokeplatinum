@@ -20,9 +20,9 @@ struct UnkStruct_ov36_02256404_t {
     const UnkStruct_ov36_02256404_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    UnkStruct_ov25_022555E8 *unk_20;
-    ov25_LinkedElement *unk_24;
-    ov25_LinkedElement *unk_28[5];
+    Ov25_540_GraphicManager *unk_20;
+    ov25_540_GraphicObject *unk_24;
+    ov25_540_GraphicObject *unk_28[5];
     UnkStruct_ov25_02255958 unk_3C;
     UnkStruct_ov25_02255958 unk_50;
 };
@@ -93,7 +93,7 @@ static void ov36_02256454(UnkStruct_ov36_02256404 *param0, const UnkStruct_ov36_
 
     for (v2 = 0; v2 < 5; v2++) {
         param0->unk_28[v2] = ov25_SetupNewElem(param0->unk_20, &v1, &param0->unk_50);
-        ov25_SetTranslation(param0->unk_28[v2], 327680 + 65536 * v2, 262144);
+        ov25_SetPosition(param0->unk_28[v2], 327680 + 65536 * v2, 262144);
     }
 
     ov36_0225669C(param0, param1);

@@ -25,12 +25,12 @@ struct UnkStruct_ov53_02256420_t {
     const UnkStruct_ov53_02256420_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    UnkStruct_ov25_022555E8 *unk_20;
-    ov25_LinkedElement *unk_24[16];
+    Ov25_540_GraphicManager *unk_20;
+    ov25_540_GraphicObject *unk_24[16];
     UnkStruct_ov25_02255958 unk_64;
     UnkStruct_ov25_02255958 unk_78;
     u32 unk_8C[4];
-    ov25_LinkedElement *unk_9C;
+    ov25_540_GraphicObject *unk_9C;
     fx32 unk_A0;
     fx32 unk_A4;
     fx32 unk_A8;
@@ -44,7 +44,7 @@ static void ov53_02256568(SysTask *param0, void *param1);
 static void ov53_022565E0(SysTask *param0, void *param1);
 static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_02256420_1 *param1);
 static void ov53_02256840(UnkStruct_ov53_02256420 *param0);
-static void ov53_02256874(ov25_LinkedElement **param0, u32 param1);
+static void ov53_02256874(ov25_540_GraphicObject **param0, u32 param1);
 
 BOOL ov53_02256420(UnkStruct_ov53_02256420 **param0, const UnkStruct_ov53_02256420_1 *param1, BgConfig *param2)
 {
@@ -158,10 +158,10 @@ static void ov53_02256568(SysTask *param0, void *param1)
     } else {
         int v3;
 
-        ov25_Set_ElemApplyAffineTransformation(v0->unk_24[0], 1);
+        ov25_540_Hide(v0->unk_24[0], 1);
 
         for (v3 = 0; v3 < 3; v3++) {
-            ov25_Set_ElemApplyAffineTransformation(v0->unk_24[4 + v3], 1);
+            ov25_540_Hide(v0->unk_24[4 + v3], 1);
         }
     }
 
@@ -181,7 +181,7 @@ static void ov53_022565E0(SysTask *param0, void *param1)
     switch (v2) {
     case 0: {
         v0->unk_9C = v0->unk_24[1 + v1->unk_24];
-        ov25_GetTranslation(v0->unk_9C, &(v0->unk_A4), &(v0->unk_A0));
+        ov25_GetPosition(v0->unk_9C, &(v0->unk_A4), &(v0->unk_A0));
     }
 
         PoketchSystem_PlayCry(v1->unk_08[v1->unk_24], 0);
@@ -194,12 +194,12 @@ static void ov53_022565E0(SysTask *param0, void *param1)
 
         v3 = ((((180 << FX32_SHIFT) / 16) * v2) + FX32_HALF) >> FX32_SHIFT;
         v4 = CalcSineDegrees(v3) * 24;
-        ov25_SetTranslation(v0->unk_9C, v0->unk_A4, v0->unk_A0 - v4);
+        ov25_SetPosition(v0->unk_9C, v0->unk_A4, v0->unk_A0 - v4);
     }
         PoketchTask_IncrementState(param1);
         break;
     case 16:
-        ov25_SetTranslation(v0->unk_9C, v0->unk_A4, v0->unk_A0);
+        ov25_SetPosition(v0->unk_9C, v0->unk_A4, v0->unk_A0);
         ov25_InitAnimation(v0->unk_9C, 4);
         ov53_0225649C(param1);
         break;
@@ -376,11 +376,11 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
         }
 
         if (v2[v3] == 0) {
-            ov25_Set_ElemApplyAffineTransformation(param0->unk_24[0 + v3], 1);
+            ov25_540_Hide(param0->unk_24[0 + v3], 1);
 
             for (v4 = 0; v4 < 3; v4++) {
                 v5 = 4 + v3 * 3 + v4;
-                ov25_Set_ElemApplyAffineTransformation(param0->unk_24[v5], 1);
+                ov25_540_Hide(param0->unk_24[v5], 1);
             }
         } else {
             ov25_Set_cParam(param0->unk_24[0 + v3], 1 + PokeIconPaletteIndex(v2[v3], 0, 0));
@@ -404,7 +404,7 @@ static void ov53_02256840(UnkStruct_ov53_02256420 *param0)
     ov25_FreeNARCMembers(&param0->unk_64);
 }
 
-static void ov53_02256874(ov25_LinkedElement **param0, u32 param1)
+static void ov53_02256874(ov25_540_GraphicObject **param0, u32 param1)
 {
     int v0, v1, v2;
     BOOL v3 = 0;
@@ -420,7 +420,7 @@ static void ov53_02256874(ov25_LinkedElement **param0, u32 param1)
             ov25_InitAnimation(*param0, v1);
             v3 = 1;
         } else {
-            ov25_Set_ElemApplyAffineTransformation(*param0, 1);
+            ov25_540_Hide(*param0, 1);
         }
 
         param1 -= (v1 * v2);

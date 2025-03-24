@@ -24,11 +24,11 @@ struct UnkStruct_ov47_02256634_t {
     const UnkStruct_ov47_02256634_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    UnkStruct_ov25_022555E8 *unk_20;
-    ov25_LinkedElement *unk_24[6];
-    ov25_LinkedElement *unk_3C[4];
-    ov25_LinkedElement *unk_4C[6];
-    ov25_LinkedElement *unk_64;
+    Ov25_540_GraphicManager *unk_20;
+    ov25_540_GraphicObject *unk_24[6];
+    ov25_540_GraphicObject *unk_3C[4];
+    ov25_540_GraphicObject *unk_4C[6];
+    ov25_540_GraphicObject *unk_64;
     UnkStruct_ov25_02255958 unk_68;
     SysTask *unk_7C;
 };
@@ -78,22 +78,22 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
 
     ov25_LoadNARCMembers(&param0->unk_68, 12, 118, 119, 8);
 
-    v0.unk_0A = 0;
-    v0.unk_0B = 2;
-    v0.unk_0D = 0;
+    v0.flip = 0;
+    v0.oamPriority = 2;
+    v0.hasAffineTransform = 0;
 
     ov25_02255DBC(param1->unk_00, param1->unk_04, &v3, &v4);
 
-    v0.unk_00.x = ((v3) << FX32_SHIFT);
-    v0.unk_00.y = ((v4) << FX32_SHIFT);
+    v0.translation.x = ((v3) << FX32_SHIFT);
+    v0.translation.y = ((v4) << FX32_SHIFT);
     v0.unk_0C = 1;
     v0.animIDX = 0;
     param0->unk_64 = ov25_SetupNewElem(param0->unk_20, &v0, &(param0->unk_68));
-    v0.unk_0D = 1;
+    v0.hasAffineTransform = 1;
 
     for (v1 = 0; v1 < 6; v1++) {
-        v0.unk_00.x = ((param1->unk_0C[v1].unk_00) << FX32_SHIFT);
-        v0.unk_00.y = ((param1->unk_0C[v1].unk_01) << FX32_SHIFT);
+        v0.translation.x = ((param1->unk_0C[v1].unk_00) << FX32_SHIFT);
+        v0.translation.y = ((param1->unk_0C[v1].unk_01) << FX32_SHIFT);
         v0.unk_0C = 2 + param1->unk_0C[v1].unk_02;
         v0.animIDX = 1 + v1;
         param0->unk_24[v1] = ov25_SetupNewElem(param0->unk_20, &v0, &(param0->unk_68));
@@ -102,30 +102,30 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
     for (v1 = 0; v1 < 4; v1++) {
         ov25_02255DFC(v1, &v3, &v4);
 
-        v0.unk_00.x = ((v3) << FX32_SHIFT);
-        v0.unk_00.y = ((v4) << FX32_SHIFT);
+        v0.translation.x = ((v3) << FX32_SHIFT);
+        v0.translation.y = ((v4) << FX32_SHIFT);
         v0.unk_0C = 9;
         v0.animIDX = 14 + v1;
 
         param0->unk_3C[v1] = ov25_SetupNewElem(param0->unk_20, &v0, &(param0->unk_68));
 
         if (param1->unk_2C[v1] == 0) {
-            ov25_Set_ElemApplyAffineTransformation(param0->unk_3C[v1], 1);
+            ov25_540_Hide(param0->unk_3C[v1], 1);
         }
     }
 
     for (v1 = 0; v1 < 6; v1++) {
         v2 = ov25_02255E24(param1->unk_3C[v1].unk_04, &v3, &v4);
 
-        v0.unk_00.x = ((v3) << FX32_SHIFT);
-        v0.unk_00.y = ((v4) << FX32_SHIFT);
+        v0.translation.x = ((v3) << FX32_SHIFT);
+        v0.translation.y = ((v4) << FX32_SHIFT);
         v0.unk_0C = 8;
         v0.animIDX = 18;
 
         param0->unk_4C[v1] = ov25_SetupNewElem(param0->unk_20, &v0, &(param0->unk_68));
 
         if ((param1->unk_3C[v1].unk_00 == 0) || (v2 == 0)) {
-            ov25_Set_ElemApplyAffineTransformation(param0->unk_4C[v1], 1);
+            ov25_540_Hide(param0->unk_4C[v1], 1);
         }
     }
 
@@ -253,25 +253,25 @@ static void ov47_02256968(SysTask *param0, void *param1)
             ov25_InitAnimation(v0->unk_24[v3], 1 + v3);
         }
 
-        ov25_SetTranslation(v0->unk_24[v3], ((v1->unk_0C[v3].unk_00) << FX32_SHIFT), ((v1->unk_0C[v3].unk_01) << FX32_SHIFT));
+        ov25_SetPosition(v0->unk_24[v3], ((v1->unk_0C[v3].unk_00) << FX32_SHIFT), ((v1->unk_0C[v3].unk_01) << FX32_SHIFT));
     }
 
     if (v1->unk_08) {
         u32 v4, v5, v6;
 
         ov25_02255DBC(v1->unk_00, v1->unk_04, &v4, &v5);
-        ov25_SetTranslation(v0->unk_64, ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
+        ov25_SetPosition(v0->unk_64, ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
 
         for (v6 = 0; v6 < 6; v6++) {
             if (v1->unk_3C[v6].unk_00) {
                 if (ov25_02255E24(v1->unk_3C[v6].unk_04, &v4, &v5)) {
-                    ov25_SetTranslation(v0->unk_4C[v6], ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
-                    ov25_Set_ElemApplyAffineTransformation(v0->unk_4C[v6], 0);
+                    ov25_SetPosition(v0->unk_4C[v6], ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
+                    ov25_540_Hide(v0->unk_4C[v6], 0);
                 } else {
-                    ov25_Set_ElemApplyAffineTransformation(v0->unk_4C[v6], 1);
+                    ov25_540_Hide(v0->unk_4C[v6], 1);
                 }
             } else {
-                ov25_Set_ElemApplyAffineTransformation(v0->unk_4C[v6], 1);
+                ov25_540_Hide(v0->unk_4C[v6], 1);
             }
         }
     }

@@ -23,8 +23,8 @@ struct UnkStruct_ov49_022563D4_t {
     const UnkStruct_ov49_022563D4_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    UnkStruct_ov25_022555E8 *unk_20;
-    ov25_LinkedElement *unk_24;
+    Ov25_540_GraphicManager *unk_20;
+    ov25_540_GraphicObject *unk_24;
     UnkStruct_ov25_02255958 unk_28;
 };
 
@@ -68,7 +68,7 @@ static void ov49_02256410(UnkStruct_ov49_022563D4 *param0, const UnkStruct_ov49_
 
     ov25_LoadNARCMembers(&param0->unk_28, 12, 67, 68, 8);
     param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v0, &param0->unk_28);
-    ov25_SetTranslation(param0->unk_24, (56 + (16 * param1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
+    ov25_SetPosition(param0->unk_24, (56 + (16 * param1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
 }
 
 static void ov49_02256464(UnkStruct_ov49_022563D4 *param0)
@@ -172,6 +172,6 @@ static void ov49_02256594(SysTask *param0, void *param1)
 
     PoketchSystem_PlaySoundEffect(1635);
     Poketch_LoadActivePalette(0, 0);
-    ov25_SetTranslation(v0->unk_24, (56 + (16 * v1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
+    ov25_SetPosition(v0->unk_24, (56 + (16 * v1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
     ov49_022564D0(param1);
 }
