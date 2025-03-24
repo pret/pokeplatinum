@@ -50,7 +50,7 @@
     ScriptEntryEnd
 
 _00B2:
-    ScrCmd_2F0
+    InitPersistedMapFeaturesForVilla
     GetPlayerGender 0x4000
     CallIfEq 0x4000, GENDER_MALE, _01EF
     CallIfEq 0x4000, GENDER_FEMALE, _01F7

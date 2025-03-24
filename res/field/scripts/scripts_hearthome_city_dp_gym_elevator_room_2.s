@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    ScrCmd_171
+    InitPersistedMapFeaturesForHearthomeGym
     End
 
 _0016:

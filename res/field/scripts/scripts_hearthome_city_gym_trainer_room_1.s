@@ -7,5 +7,5 @@
 
 _0006:
     SetVar 0x4000, 0
-    ScrCmd_171
+    InitPersistedMapFeaturesForHearthomeGym
     End

@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    ScrCmd_173
+    InitPersistedMapFeaturesForCanalaveGym
     End
 
 _0016:

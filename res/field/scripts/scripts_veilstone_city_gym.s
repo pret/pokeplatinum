@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 _001E:
-    ScrCmd_174
+    InitPersistedMapFeaturesForVeilstoneGym
     End
 
 _0022:
