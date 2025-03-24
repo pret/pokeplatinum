@@ -51,6 +51,8 @@ enum SoundSystemParam {
 
     SOUND_SYSTEM_PARAM_CURRENT_BGM = 10,
     SOUND_SYSTEM_PARAM_NEXT_BGM,
+    SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED,
+    SOUND_SYSTEM_PARAM_BGM_PAUSED,
 
     SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE = 19,
 
@@ -65,6 +67,8 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_FIELD_BGM = 32,
 
     SOUND_SYSTEM_PARAM_CHATOT_CRY = 36,
+
+    SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES = 53,
 };
 
 typedef struct SoundSystem {
@@ -84,8 +88,8 @@ typedef struct SoundSystem {
     int unk_BCD54;
     u16 currentBGM;
     u16 nextBGM;
-    u8 unk_BCD5C;
-    u8 unk_BCD5D;
+    u8 fieldBGMPaused;
+    u8 bgmPaused;
     u16 unk_BCD5E;
     u8 unk_BCD60;
     u8 unk_BCD61;
@@ -111,7 +115,7 @@ typedef struct SoundSystem {
     int unk_BCDC4[2];
     u16 unk_BCDCC[2];
     u8 unk_BCDD0[2];
-    u8 unk_BCDD2;
+    u8 allowTwoPokemonCries; // Whether to allow 2 simultaneous pokemon cries or not
     u8 unk_BCDD3;
 } SoundSystem;
 

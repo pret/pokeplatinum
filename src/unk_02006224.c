@@ -141,12 +141,12 @@ MICResult StartMicSampling(void)
     v0.full_callback = NULL;
     v0.full_arg = NULL;
 
-    return sub_02004B5C(&v0);
+    return Sound_StartMicAutoSampling(&v0);
 }
 
 MICResult StopMicSampling(void)
 {
-    return sub_02004B64();
+    return Sound_StopMicAutoSampling();
 }
 
 void StoreMicDataInChatotCryStruct(ChatotCry *param0)

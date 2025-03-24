@@ -320,10 +320,10 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
 
     if (IsNight() == 0) {
         sub_02004550(4, 1085, 1);
-        sub_02004A84(1085);
+        Sound_AdjustVolumeForVoiceChat(1085);
     } else {
         sub_02004550(4, 1086, 1);
-        sub_02004A84(1086);
+        Sound_AdjustVolumeForVoiceChat(1086);
     }
 
     NARC_dtor(v1);

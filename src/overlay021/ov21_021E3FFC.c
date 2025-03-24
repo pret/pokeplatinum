@@ -296,7 +296,7 @@ static int ov21_021E41A8(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
         }
 
         if ((v4 == 1) && (Sound_IsFadeActive() == FALSE)) {
-            sub_020049F4(1, 1);
+            Sound_SetBGMPlayerPaused(1, 1);
             param1->unk_00++;
         }
         break;
@@ -336,7 +336,7 @@ static int ov21_021E4288(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
             ov21_021E448C(v3, v2, v0, 0);
         }
 
-        sub_020049F4(1, 0);
+        Sound_SetBGMPlayerPaused(1, 0);
         Sound_FadeInBGM(127, 3, 0);
         param1->unk_00++;
         break;

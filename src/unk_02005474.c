@@ -96,7 +96,7 @@ BOOL Sound_PlayBGM(u16 bgmID)
 static void Sound_Impl_HandleBGMChange(u16 seqID, enum SoundHandleType handleType)
 {
     Sound_SetCurrentBGM(seqID);
-    Sound_AdjustVolumeForVoiceChat(seqID, handleType);
+    Sound_AdjustVolumeForVoiceChatEx(seqID, handleType);
     SoundSystem_SetState(SOUND_SYSTEM_STATE_PLAY);
 }
 
@@ -282,7 +282,7 @@ BOOL Sound_PlayEffect(u16 seqID)
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(Sound_GetPlayerForSequence(seqID));
     BOOL result = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(handleType), seqID);
 
-    Sound_AdjustVolumeForVoiceChat(seqID, handleType);
+    Sound_AdjustVolumeForVoiceChatEx(seqID, handleType);
 
     return result;
 }
@@ -292,7 +292,7 @@ BOOL Sound_PlayEffectOnPlayer(u16 seqID, int playerID)
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
     BOOL result = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(handleType), playerID, -1, -1, seqID);
 
-    Sound_AdjustVolumeForVoiceChat(seqID, handleType);
+    Sound_AdjustVolumeForVoiceChatEx(seqID, handleType);
 
     return result;
 }
@@ -350,7 +350,7 @@ BOOL Sound_PlayPokemonCry(u16 species, u8 form)
     int v1;
     u8 *v2 = SoundSystem_GetParam(18);
     ChatotCry **chatotCry = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY);
-    u8 *v4 = SoundSystem_GetParam(53);
+    u8 *v4 = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES);
 
     u16 waveID = species;
     if (sub_02006038(species, form) == 1) {
@@ -376,10 +376,10 @@ BOOL Sound_PlayPokemonCry(u16 species, u8 form)
         }
 
         v1 = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_POKEMON_CRY), -1, waveID, -1, 2);
-        Sound_AdjustVolumeForVoiceChat(waveID, 1);
+        Sound_AdjustVolumeForVoiceChatEx(waveID, 1);
     } else {
         v1 = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(8), -1, waveID, -1, 2);
-        Sound_AdjustVolumeForVoiceChat(waveID, 8);
+        Sound_AdjustVolumeForVoiceChatEx(waveID, 8);
     }
 
     Sound_FlagDefaultChatotCry(FALSE);
@@ -449,7 +449,7 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
     u8 *v9 = SoundSystem_GetParam(17);
     u8 *v10 = SoundSystem_GetParam(18);
     u8 *v11 = SoundSystem_GetParam(30);
-    ChatotCry **v12 = SoundSystem_GetParam(36);
+    ChatotCry **v12 = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY);
 
     v4 = 0;
     v5 = 0;
@@ -635,7 +635,7 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
 static void sub_02005E4C(u16 param0, int param1, int param2)
 {
     Sound_SetInitialVolumeForHandle(param1, param2);
-    Sound_AdjustVolumeForVoiceChat(param0, param1);
+    Sound_AdjustVolumeForVoiceChatEx(param0, param1);
 
     return;
 }
@@ -727,7 +727,7 @@ void Sound_PlayDelayedPokemonCry(enum PokemonCryMod cryMod, u16 species, int par
     int *v5;
     u8 *v6;
     u8 *v7 = SoundSystem_GetParam(6);
-    u8 *v8 = SoundSystem_GetParam(53);
+    u8 *v8 = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES);
 
     if (*v7 == 0) {
         v1 = SoundSystem_GetParam(41);
@@ -851,7 +851,7 @@ BOOL sub_02006150(u16 param0)
     u16 v0;
     u8 v1;
     int v2, v3;
-    const NNSSndArcBankInfo *v4 = sub_02004B3C(param0);
+    const NNSSndArcBankInfo *v4 = Sound_GetBankInfoForSequence(param0);
 
     sub_02006214(param0);
 
@@ -859,7 +859,7 @@ BOOL sub_02006150(u16 param0)
     v1 = Sound_GetPlayerForSequence(v0);
 
     if (v1 != 0xff) {
-        sub_020049F4(v1, 1);
+        Sound_SetBGMPlayerPaused(v1, 1);
     }
 
     SoundSystem_SaveHeapState(SoundSystem_GetParam(29));
@@ -867,7 +867,7 @@ BOOL sub_02006150(u16 param0)
     v2 = SoundSystem_LoadSequenceEx(param0, (NNS_SND_ARC_LOAD_SEQ | NNS_SND_ARC_LOAD_BANK));
     v2 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(2), param0);
 
-    Sound_AdjustVolumeForVoiceChat(param0, 2);
+    Sound_AdjustVolumeForVoiceChatEx(param0, 2);
 
     return v2;
 }
@@ -915,7 +915,7 @@ int sub_020061E4(void)
     v0 = Sound_GetPlayerForSequence(v1);
 
     if (v0 != 0xff) {
-        sub_020049F4(v0, 0);
+        Sound_SetBGMPlayerPaused(v0, 0);
     }
 
     return 0;
