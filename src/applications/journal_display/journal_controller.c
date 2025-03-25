@@ -104,7 +104,7 @@ int JournalController_Init(OverlayManager *ovyManager, int *state)
     GXLayers_TurnBothDispOn();
     sub_02039734();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02004550(67, 0, 0);
+    Sound_SetSceneAndPlayBGM(67, 0, 0);
 
     return TRUE;
 }

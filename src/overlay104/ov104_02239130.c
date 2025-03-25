@@ -196,7 +196,7 @@ BOOL ov104_02239314(UnkStruct_ov104_0222E930 *param0)
 
     v1->unk_8D0 = v0;
 
-    sub_02004550(5, 1119, 1);
+    Sound_SetSceneAndPlayBGM(5, 1119, 1);
     sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v0, 0, NULL);
 
     return 1;

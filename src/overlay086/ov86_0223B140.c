@@ -334,7 +334,7 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
     v0->unk_00 = 0;
     v0->unk_1C28 = ov86_0223B744(ov86_0223B6CC, v0, 6);
 
-    sub_02004550(8, 1171, 1);
+    Sound_SetSceneAndPlayBGM(8, 1171, 1);
 
     return 1;
 }

@@ -180,7 +180,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02004550(4, ov104_0222EA90(v2, 3), 1);
+    Sound_SetSceneAndPlayBGM(4, ov104_0222EA90(v2, 3), 1);
 
     RenderControlFlags_SetAutoScrollFlags(1);
     RenderControlFlags_SetCanABSpeedUpPrint(0);

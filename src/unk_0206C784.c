@@ -80,7 +80,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
     v0->unk_05 = 0;
     v0->unk_08 = 0;
 
-    sub_02004550(64, 0, 0);
+    Sound_SetSceneAndPlayBGM(64, 0, 0);
 
     if (param1 == 3) {
         v4 = MAP_PROP_MODEL_REGULAR_SHIP;

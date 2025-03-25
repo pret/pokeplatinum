@@ -134,7 +134,7 @@ int ov83_0223B5B0(OverlayManager *param0, int *param1)
 
     SetVBlankCallback(ov83_0223B5A0, v0);
     DisableHBlank();
-    sub_02004550(12, 1183, 1);
+    Sound_SetSceneAndPlayBGM(12, 1183, 1);
 
     return 1;
 }

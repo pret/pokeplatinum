@@ -289,9 +289,9 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
         sub_02005464(1);
 
         if (sub_0208BE80(param0->unk_10->trainer[1].header.trainerType) == 1) {
-            sub_02004550(5, 1202, 1);
+            Sound_SetSceneAndPlayBGM(5, 1202, 1);
         } else {
-            sub_02004550(5, 1119, 1);
+            Sound_SetSceneAndPlayBGM(5, 1119, 1);
         }
     }
         param0->unk_08 = OverlayManager_New(&gBattleOverlayTemplate, param0->unk_10, heapID);
@@ -323,7 +323,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
             v1 = sub_02055428(param0->fieldSystem, param0->fieldSystem->location->mapId);
 
             Sound_SetFieldBGM(sub_020554A4(param0->fieldSystem, param0->fieldSystem->location->mapId));
-            sub_02004550(4, v1, 1);
+            Sound_SetSceneAndPlayBGM(4, v1, 1);
         }
 
         param0->unk_00 = 0;

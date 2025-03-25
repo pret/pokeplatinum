@@ -110,8 +110,8 @@ BOOL ov100_021D14A8(void *param0)
             break;
         }
 
-        sub_02004550(18, 1065, 0);
-        sub_02004550(63, 0, 0);
+        Sound_SetSceneAndPlayBGM(18, 1065, 0);
+        Sound_SetSceneAndPlayBGM(63, 0, 0);
         v0->unk_00 = 2;
         break;
     case 2:

@@ -366,7 +366,7 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     StartCursorMovement(&app->unk_658);
     MakePreviewWindow(&app->unk_6A8, app, HEAP_ID_CHOOSE_STARTER_APP);
 
-    sub_02004550(60, 0, 0);
+    Sound_SetSceneAndPlayBGM(60, 0, 0);
 
     return TRUE;
 }

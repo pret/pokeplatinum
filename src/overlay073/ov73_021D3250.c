@@ -97,7 +97,7 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
             v0->unk_24--;
         } else {
             Sound_SetFieldBGM(1030);
-            sub_02004550(4, 1030, 1);
+            Sound_SetSceneAndPlayBGM(4, 1030, 1);
 
             v0->unk_24 = 3 * 30;
             *param1 = 2;

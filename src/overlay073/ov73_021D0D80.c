@@ -1416,7 +1416,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
 
     switch (param0->unk_0C) {
     case 0:
-        sub_02004550(2, 1029, 1);
+        Sound_SetSceneAndPlayBGM(2, 1029, 1);
         Sound_StopBGM(1029, 0);
         Bg_ToggleLayer(0, 1);
         Bg_ToggleLayer(7, 1);

@@ -1837,7 +1837,7 @@ static int GBAMigrator_Init(OverlayManager *param0, int *state)
     migrator->unk_12668 = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
     migrator->unk_1266C = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
 
-    sub_02004550(9, 1174, 1);
+    Sound_SetSceneAndPlayBGM(9, 1174, 1);
 
     if (OS_IsTickAvailable() == 0) {
         OS_InitTick();

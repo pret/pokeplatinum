@@ -113,7 +113,7 @@ int ov80_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_02 = v1->unk_13C;
     v0->heapID = HEAP_ID_17;
 
-    sub_02004550(55, 0, 0);
+    Sound_SetSceneAndPlayBGM(55, 0, 0);
 
     return 1;
 }

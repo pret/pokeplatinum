@@ -6366,7 +6366,7 @@ static BOOL ScrCmd_20F(ScriptContext *ctx)
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
 
-    sub_02004550(65, 0, 0);
+    Sound_SetSceneAndPlayBGM(65, 0, 0);
     ov6_02242B58(ctx->fieldSystem, *v0, v1);
 
     return 1;

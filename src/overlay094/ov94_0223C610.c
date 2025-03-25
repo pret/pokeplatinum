@@ -83,7 +83,7 @@ int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_02245934(param0);
     ov94_0223CF3C(param0);
 
-    sub_02004550(23, 1097, 1);
+    Sound_SetSceneAndPlayBGM(23, 1097, 1);
 
     if (param0->unk_34 == 0) {
         ov94_0223C85C(param0);

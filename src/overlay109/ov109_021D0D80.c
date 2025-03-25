@@ -785,7 +785,7 @@ static int ov109_021D122C(UnkStruct_ov109_021D0F70 *param0)
     param0->unk_D4.unk_40 = (FX32_ONE * (v1->unk_04));
     param0->unk_00 = 17;
 
-    sub_02004550(15, 1210, 1);
+    Sound_SetSceneAndPlayBGM(15, 1210, 1);
     ov109_021D2788(param0);
 
     return 1;
@@ -1455,7 +1455,7 @@ static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
     StartScreenTransition(2, 0, 0, 0x0, 8, 1, HEAP_ID_95);
 
     if (param0->unk_1C != Sound_GetCurrentBGM()) {
-        sub_02004550(4, param0->unk_1C, 1);
+        Sound_SetSceneAndPlayBGM(4, param0->unk_1C, 1);
     }
 
     param0->unk_00 = 52;

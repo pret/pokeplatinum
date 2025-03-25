@@ -131,7 +131,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_57, 98304);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_58, 98304);
         ov95_02247688();
-        sub_02004550(3, 1170, 1);
+        Sound_SetSceneAndPlayBGM(3, 1170, 1);
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov95_02247628), HEAP_ID_57);
 

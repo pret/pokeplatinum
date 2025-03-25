@@ -1616,7 +1616,7 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
             param0->unk_3A8 = 61;
         }
     } else {
-        sub_02004550(11, 1175, 1);
+        Sound_SetSceneAndPlayBGM(11, 1175, 1);
         ov65_0222EE98(param0);
 
         if (!DWC_CheckHasProfile(sub_0202AD28(param0->unk_00))) {
@@ -3809,7 +3809,7 @@ static void ov65_02231A0C(void)
         }
 
         Sound_SetScene(0);
-        sub_02004550(11, v0, 1);
+        Sound_SetSceneAndPlayBGM(11, v0, 1);
     } else {
         sub_02004AD4(Sound_GetCurrentBGM(), 120);
     }

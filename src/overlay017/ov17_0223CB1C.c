@@ -214,7 +214,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     Sound_SetScene(0);
-    sub_02004550(6, 1135, 1);
+    Sound_SetSceneAndPlayBGM(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
     SetVBlankCallback(ov17_0223D0C8, v0);
     Sound_PlayEffect(SEQ_SE_DP_DOOR_OPEN);
