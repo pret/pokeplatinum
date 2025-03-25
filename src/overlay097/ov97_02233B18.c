@@ -1796,7 +1796,7 @@ static int ov97_02235624(OverlayManager *param0, int *param1)
     v0->unk_12668 = Strbuf_Init(256, HEAP_ID_78);
     v0->unk_1266C = Strbuf_Init(256, HEAP_ID_78);
 
-    sub_02004550(9, 1174, 1);
+    Sound_SetSceneAndPlayBGM(9, 1174, 1);
 
     if (OS_IsTickAvailable() == 0) {
         OS_InitTick();

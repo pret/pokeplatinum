@@ -225,7 +225,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
         break;
     case 2:
         Sound_SetScene(0);
-        sub_02004550(1, 1173, 1);
+        Sound_SetSceneAndPlayBGM(1, 1173, 1);
         *param1 = 3;
         break;
     case 3:

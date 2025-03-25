@@ -15,35 +15,48 @@
 #define MIN_BGM_VOLUME 0
 #define MAX_BGM_VOLUME 127
 
+
+enum SoundScene {
+    SOUND_SCENE_NONE = 0,
+
+    SOUND_SCENE_FIELD = 4,
+    SOUND_SCENE_BATTLE,
+    SOUND_SCENE_CONTEST,
+
+    SOUND_SCENE_MAX = 51,
+
+    SOUND_SCENE_SUB_BAG = 51,
+};
+
 void Sound_SetBGMFixed(u8 fixed);
 u8 Sound_IsBGMFixed(void);
 void Sound_SetCurrentBGM(u16 bgmID);
 u16 Sound_GetCurrentBGM();
 void Sound_SetNextBGM(u16 bgmID);
 u16 Sound_GetNextBGM();
-void Sound_SetFieldBGM(u16 param0);
+void Sound_SetFieldBGM(u16 bgmID);
 void Sound_SetScene(u8 scene);
 void Sound_SetSubScene(u8 scene);
-int Sound_LoadSoundEffectsForScene(u8 param0);
-BOOL sub_02004550(u8 param0, u16 param1, int param2);
-void Sound_LoadSoundDataForFieldBGM(u16 param0, u16 param1);
+int Sound_LoadSoundEffectsForScene(u8 scene);
+BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int param2);
+void Sound_LoadSoundDataForFieldBGM(u16 seqID, u16 currentBankID);
 void sub_02004950(u16 param0);
-void sub_02004964(void);
+void Sound_LoadHeapStateBGM(void);
 int Sound_GetHeapState(enum SoundHeapState state);
 void Sound_SetBGMPlayerPaused(u8 playerID, BOOL paused); // playerID can be either PLAYER_FIELD or PLAYER_BGM
 void Sound_ClearBGMPauseFlags();
-void Sound_FadeVolumeForHandle(enum SoundHandleType param0, int param1, int param2);
-void Sound_SetInitialVolumeForHandle(enum SoundHandleType param0, int param1);
-void Sound_AdjustVolumeForVoiceChat(int param0);
-void Sound_AdjustVolumeForVoiceChatEx(int param0, enum SoundHandleType param1);
+void Sound_FadeVolumeForHandle(enum SoundHandleType handleType, int targetVolume, int frames);
+void Sound_SetInitialVolumeForHandle(enum SoundHandleType handleType, int volume);
+void Sound_AdjustVolumeForVoiceChat(int seqID);
+void Sound_AdjustVolumeForVoiceChatEx(int seqID, enum SoundHandleType handleType);
 void sub_02004AD4(u16 param0, int param1);
-BOOL Sound_PlaySequenceWithPlayer(enum SoundHandleType param0, int param1, u16 param2);
-int Sound_GetNumberOfPlayingSequencesForPlayer(int param0);
-u8 Sound_GetPlayerForSequence(u16 param0);
-int Sound_GetSequenceIDFromSoundHandle(NNSSndHandle *param0);
-const NNSSndArcBankInfo *Sound_GetBankInfoForSequence(int param0);
-u16 Sound_GetBankIDFromSequenceID(int param0);
-MICResult Sound_StartMicAutoSampling(MICAutoParam *param0);
+BOOL Sound_PlaySequenceWithPlayer(enum SoundHandleType handleType, int playerID, u16 seqID);
+int Sound_GetNumberOfPlayingSequencesForPlayer(int playerID);
+u8 Sound_GetPlayerForSequence(u16 seqID);
+int Sound_GetSequenceIDFromSoundHandle(NNSSndHandle *handle);
+const NNSSndArcBankInfo *Sound_GetBankInfoForSequence(int seqID);
+u16 Sound_GetBankIDFromSequenceID(int seqID);
+MICResult Sound_StartMicAutoSampling(MICAutoParam *param);
 MICResult Sound_StopMicAutoSampling(void);
 MICResult Sound_StartMicManualSampling(MICSamplingType param0, void *param1, MICCallback param2, void *param3);
 NNSSndWaveOutHandle *sub_02004B78(u32 param0);
@@ -69,14 +82,14 @@ void sub_02004F7C(u16 param0, u16 param1, int param2);
 void sub_02004F94(int param0, u16 param1, int param2);
 void sub_02004FA8(int param0, int param1);
 void Sound_SetPlaybackMode(BOOL param0);
-void Sound_SetFadeCounter(int param0);
-void Sound_SetFollowUpWaitFrames(int param0);
+void Sound_SetFadeCounter(int frames);
+void Sound_SetFollowUpWaitFrames(int frames);
 BOOL Sound_UpdateFollowUpWaitFrames(void);
 void sub_0200500C(int param0);
 void *sub_02005014(void);
-void Sound_SetFieldBGMBankState(int param0);
-BOOL Sound_FadeOutAndPlayBGM(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
-BOOL Sound_FadeToBGM(u8 param0, u16 param1, int param2, int param3, int param4, u8 param5, void *param6);
+void Sound_SetFieldBGMBankState(int state); // See FIELD_BGM_BANK_STATE_*
+BOOL Sound_FadeOutAndPlayBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, u8 bankState, void *unused2);
+BOOL Sound_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, int fadeInFrames, u8 bankState, void *unused2);
 const u8 *sub_020050E0(const SNDWaveData *param0);
 const u32 sub_020050EC(const SNDWaveData *param0);
 const SNDWaveData *sub_020050F8(int param0);
@@ -84,8 +97,8 @@ u32 sub_02005188(int param0, const SNDWaveData *param1, int param2);
 u32 sub_020051C4(int param0);
 void sub_020051D0(const SNDWaveData *param0, u8 *param1, int param2, int param3);
 void sub_020053CC(int param0);
-void Sound_SetPlayerVolume(int param0, int param1);
-void Sound_Set2PokemonCriesAllowed(BOOL param0);
+void Sound_SetPlayerVolume(int playerID, int volume);
+void Sound_Set2PokemonCriesAllowed(BOOL allowed);
 void sub_02005464(BOOL param0);
 
 #endif // POKEPLATINUM_UNK_020041CC_H

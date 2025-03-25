@@ -442,7 +442,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     }
 
     SetVBlankCallback(ov84_0223BA14, v0);
-    sub_02004550(51, 0, 0);
+    Sound_SetSceneAndPlayBGM(51, 0, 0);
     DrawWifiConnectionIcon();
 
     return 1;

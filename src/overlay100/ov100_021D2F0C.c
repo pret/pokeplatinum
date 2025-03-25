@@ -277,7 +277,7 @@ void *ov100_021D3620(UnkStruct_ov100_021D4DD8 *param0)
     v0->unk_1D28->unk_44.z = FX32_CONST(34);
 
     ov100_021D3504(v0->unk_1D28->camera, &v0->unk_1D28->unk_44);
-    sub_02004550(63, 0, 0);
+    Sound_SetSceneAndPlayBGM(63, 0, 0);
 
     return v0;
 }

@@ -30,7 +30,7 @@ static BOOL FieldTask_RunEncounterEffect(FieldTask *task)
     switch (data->taskState) {
     case 0:
         EncounterEffect_Start(data->encEffectID, fieldSystem, &data->done);
-        sub_02004550(5, data->battleBGM, 1);
+        Sound_SetSceneAndPlayBGM(5, data->battleBGM, 1);
         data->taskState++;
         break;
 

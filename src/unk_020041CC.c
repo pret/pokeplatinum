@@ -12,21 +12,10 @@
 #include "unk_02005474.h"
 #include "generated/sdat.h"
 
-void Sound_SetCurrentBGM(u16 param0);
-u16 Sound_GetCurrentBGM(void);
-void Sound_SetNextBGM(u16 param0);
-u16 Sound_GetNextBGM(void);
-void Sound_SetFieldBGM(u16 param0);
-void sub_02004964(void);
-int Sound_GetHeapState(enum SoundHeapState state);
-void Sound_SetScene(u8 param0);
-void Sound_SetSubScene(u8 param0);
-int Sound_LoadSoundEffectsForScene(u8 param0);
-BOOL sub_02004550(u8 param0, u16 param1, int param2);
+
 static void Sound_LoadSoundEffectsForSceneWithState(u8 param0);
 static void Sound_Impl_PlayFieldBGM(u16 param0, int param1);
 static void Sound_Impl_ResumeAndSwitchFieldBGM(u16 param0, u16 param1);
-void Sound_LoadSoundDataForFieldBGM(u16 param0, u16 param1);
 static void sub_02004874(u16 param0, int param1);
 static void sub_020048AC(u16 param0, int param1);
 static void sub_020048CC(u16 param0, int param1);
@@ -34,21 +23,8 @@ static void sub_020048F0(u16 param0, int param1);
 static void sub_02004914(u8 param0);
 static void sub_02004930(u8 param0, u16 param1, int param2);
 void sub_02004950(u16 param0);
-void Sound_SetBGMPlayerPaused(u8 param0, BOOL param1);
-void Sound_ClearBGMPauseFlags(void);
 void sub_02004A54(int param0, int param1, int param2);
-void Sound_SetInitialVolumeForHandle(enum SoundHandleType param0, int param1);
-void Sound_AdjustVolumeForVoiceChat(int param0);
-void Sound_AdjustVolumeForVoiceChatEx(int param0, enum SoundHandleType param1);
 void sub_02004AD4(u16 param0, int param1);
-BOOL Sound_PlaySequenceWithPlayer(enum SoundHandleType param0, int param1, u16 param2);
-int Sound_GetNumberOfPlayingSequencesForPlayer(int param0);
-u8 Sound_GetPlayerForSequence(u16 param0);
-int Sound_GetSequenceIDFromSoundHandle(NNSSndHandle *param0);
-const NNSSndArcBankInfo *Sound_GetBankInfoForSequence(int param0);
-u16 Sound_GetBankIDFromSequenceID(int param0);
-MICResult Sound_StartMicAutoSampling(MICAutoParam *param0);
-MICResult Sound_StopMicAutoSampling(void);
 NNSSndWaveOutHandle *sub_02004B78(u32 param0);
 BOOL sub_02004BCC(u32 param0);
 void sub_02004C4C(u32 param0);
@@ -72,15 +48,8 @@ void sub_02004F68(int param0, u16 param1, int param2);
 void sub_02004F7C(u16 param0, u16 param1, int param2);
 void sub_02004F94(int param0, u16 param1, int param2);
 void sub_02004FA8(int param0, int param1);
-void Sound_SetPlaybackMode(BOOL param0);
-void Sound_SetFadeCounter(int param0);
-void Sound_SetFollowUpWaitFrames(int param0);
-BOOL Sound_UpdateFollowUpFadeCounter(void);
 void sub_0200500C(int param0);
 void *sub_02005014(void);
-void Sound_SetFieldBGMBankState(int param0);
-BOOL Sound_FadeOutAndPlayBGM(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
-BOOL Sound_FadeToBGM(u8 param0, u16 param1, int param2, int param3, int param4, u8 param5, void *param6);
 static void Sound_Impl_FadeToBGM(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
 static void Sound_SetBGMAllocatableChannels(u16 param0);
 void sub_020053CC(int param0);
@@ -145,14 +114,12 @@ void Sound_SetScene(u8 scene)
     u8 *mainScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_MAIN_SCENE);
     u8 *subScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_SUB_SCENE);
 
-    if (scene < 51) {
+    if (scene < SOUND_SCENE_MAX) {
         *mainScene = scene;
-        *subScene = 0;
+        *subScene = SOUND_SCENE_NONE;
     } else {
         *subScene = scene;
     }
-
-    return;
 }
 
 void Sound_SetSubScene(u8 scene)
@@ -217,17 +184,17 @@ int Sound_LoadSoundEffectsForScene(u8 scene)
     case 3:
         result = SoundSystem_LoadSoundGroup(GROUP_SE_TRADE);
         break;
-    case 4:
+    case SOUND_SCENE_FIELD:
     case 22:
         result = SoundSystem_LoadSoundGroup(GROUP_SE_FIELD);
         break;
-    case 5:
+    case SOUND_SCENE_BATTLE:
         result = SoundSystem_LoadSoundGroup(GROUP_SE_BATTLE);
         break;
     case 11:
         result = SoundSystem_LoadSoundGroup(GROUP_SE_FIELD);
         break;
-    case 6:
+    case SOUND_SCENE_CONTEST:
         result = SoundSystem_LoadSoundGroup(GROUP_SE_CONTEST);
         break;
     case 8:
@@ -243,7 +210,7 @@ int Sound_LoadSoundEffectsForScene(u8 scene)
     case 15:
         result = SoundSystem_LoadSoundGroup(GROUP_SE_FIELD);
         break;
-    case 51:
+    case SOUND_SCENE_SUB_BAG:
         result = SoundSystem_LoadSoundGroup(GROUP_SE_BAG);
         break;
     case 66:
@@ -305,43 +272,43 @@ int Sound_LoadSoundEffectsForScene(u8 scene)
     return result;
 }
 
-BOOL sub_02004550(u8 scene, u16 bgmID, int param2)
+BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int param2)
 {
     u8 *mainScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_MAIN_SCENE);
     u8 *subScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_SUB_SCENE);
     u16 *v2 = SoundSystem_GetParam(14);
 
-    if (scene < 51) {
+    if (scene < SOUND_SCENE_MAX) {
         if (*mainScene == scene) {
-            return 0;
+            return FALSE;
         }
     } else {
         if (*subScene == scene) {
-            return 0;
+            return FALSE;
         }
     }
 
     Sound_SetScene(scene);
 
     switch (scene) {
-    case 4:
+    case SOUND_SCENE_FIELD:
         sub_020053CC(0);
         Sound_Impl_PlayFieldBGM(bgmID, param2);
         (*v2) = 0;
         break;
-    case 5:
+    case SOUND_SCENE_BATTLE:
         sub_02004874(bgmID, param2);
         break;
     case 11:
         sub_020048AC(bgmID, param2);
         break;
-    case 6:
+    case SOUND_SCENE_CONTEST:
         sub_020048CC(bgmID, param2);
         break;
     case 7:
         sub_020048F0(bgmID, param2);
         break;
-    case 51:
+    case SOUND_SCENE_SUB_BAG:
     case 52:
     case 53:
     case 54:
@@ -394,7 +361,7 @@ BOOL sub_02004550(u8 scene, u16 bgmID, int param2)
         break;
     }
 
-    return 1;
+    return TRUE;
 }
 
 static void Sound_LoadSoundEffectsForSceneWithState(u8 scene)
@@ -433,7 +400,7 @@ static void Sound_Impl_PlayFieldBGM(u16 bgmID, int unused)
 
     if (*fieldBGMPaused == TRUE) {
         SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_BGM_BANK));
-        Sound_LoadSoundEffectsForScene(4);
+        Sound_LoadSoundEffectsForScene(SOUND_SCENE_FIELD);
         SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_SFX));
 
         if (currentFieldBGM != bgmID) {
@@ -475,7 +442,7 @@ void Sound_LoadSoundDataForFieldBGM(u16 seqID, u16 currentBankID)
         Sound_SetSubScene(0);
         SoundSystem_LoadSequenceEx(*newFieldBGM, NNS_SND_ARC_LOAD_BANK);
         SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_BGM_BANK));
-        Sound_LoadSoundEffectsForScene(4);
+        Sound_LoadSoundEffectsForScene(SOUND_SCENE_FIELD);
         SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_SFX));
 
         u16 newBankID = Sound_GetBankIDFromSequenceID(*newFieldBGM);
@@ -510,7 +477,7 @@ static void sub_020048AC(u16 param0, int param1)
 
     Sound_StopAll();
     Sound_ClearBGMPauseFlags();
-    Sound_LoadSoundEffectsForSceneWithState(4);
+    Sound_LoadSoundEffectsForSceneWithState(SOUND_SCENE_FIELD);
     Sound_PlayBGM(param0);
 
     return;
@@ -542,7 +509,7 @@ void sub_020048F0(u16 param0, int param1)
 
 static void sub_02004914(u8 param0)
 {
-    sub_02004964();
+    Sound_LoadHeapStateBGM();
     Sound_LoadSoundEffectsForScene(param0);
     SoundSystem_SaveHeapState(SoundSystem_GetParam(28));
 
@@ -571,9 +538,9 @@ void sub_02004950(u16 param0)
     return;
 }
 
-void sub_02004964(void)
+void Sound_LoadHeapStateBGM(void)
 {
-    SoundSystem_LoadHeapState(Sound_GetHeapState(4));
+    SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_BGM));
 }
 
 int Sound_GetHeapState(enum SoundHeapState state)
@@ -1166,11 +1133,11 @@ void Sound_SetFieldBGMBankState(int state)
     *param = state;
 }
 
-BOOL Sound_FadeOutAndPlayBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, u8 param4, void *unused2)
+BOOL Sound_FadeOutAndPlayBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, u8 bankState, void *unused2)
 {
     u8 *subScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_SUB_SCENE);
 
-    Sound_Impl_FadeToBGM(unused1, bgmID, fadeOutFrames, waitFrames, param4, unused2);
+    Sound_Impl_FadeToBGM(unused1, bgmID, fadeOutFrames, waitFrames, bankState, unused2);
     *subScene = 0;
     SoundSystem_SetState(SOUND_SYSTEM_STATE_FADE_OUT_PLAY);
 
