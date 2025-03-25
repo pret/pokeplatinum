@@ -74,14 +74,14 @@ void sub_02004F94(int param0, u16 param1, int param2);
 void sub_02004FA8(int param0, int param1);
 void Sound_SetPlaybackMode(BOOL param0);
 void Sound_SetFadeCounter(int param0);
-void sub_02004FDC(int param0);
-int sub_02004FEC(void);
+void Sound_SetFollowUpWaitFrames(int param0);
+BOOL Sound_UpdateFollowUpFadeCounter(void);
 void sub_0200500C(int param0);
 void *sub_02005014(void);
 void Sound_SetFieldBGMBankState(int param0);
-BOOL sub_0200502C(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
-BOOL sub_02005068(u8 param0, u16 param1, int param2, int param3, int param4, u8 param5, void *param6);
-static void sub_020050A4(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
+BOOL Sound_FadeOutAndPlayBGM(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
+BOOL Sound_FadeToBGM(u8 param0, u16 param1, int param2, int param3, int param4, u8 param5, void *param6);
+static void Sound_Impl_FadeToBGM(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
 static void sub_020053C0(u16 param0);
 void sub_020053CC(int param0);
 static void sub_0200540C(void);
@@ -473,10 +473,10 @@ static void sub_0200478C(u16 param0, u16 param1)
 
 void Sound_LoadSoundDataForFieldBGM(u16 seqID, u16 currentBankID)
 {
-    u8 *v1 = SoundSystem_GetParam(19);
+    u8 *bankState = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE);
     u16 *newFieldBGM = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM);
 
-    if (*v1 == 1 || currentBankID == 0) {
+    if (*bankState == FIELD_BGM_BANK_STATE_SWITCH || currentBankID == 0) {
         SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_PERSISTENT));
         Sound_SetSubScene(0);
         SoundSystem_LoadSequenceEx(*newFieldBGM, NNS_SND_ARC_LOAD_BANK);
@@ -494,8 +494,6 @@ void Sound_LoadSoundDataForFieldBGM(u16 seqID, u16 currentBankID)
 
         SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_BGM));
     }
-
-    return;
 }
 
 static void sub_02004874(u16 param0, int param1)
@@ -1137,25 +1135,22 @@ void Sound_SetFadeCounter(int frames)
     *param = frames;
 }
 
-void sub_02004FDC(int param0)
+void Sound_SetFollowUpWaitFrames(int frames)
 {
-    int *v0 = SoundSystem_GetParam(8);
-
-    *v0 = param0;
-    return;
+    int *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FOLLOW_UP_WAIT_FRAMES);
+    *param = frames;
 }
 
-int sub_02004FEC()
+BOOL Sound_UpdateFollowUpFadeCounter()
 {
-    u16 *v0 = SoundSystem_GetParam(8);
-
-    if (*v0 <= 0) {
-        *v0 = 0;
-        return 0;
+    u16 *fadeCounter = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FOLLOW_UP_WAIT_FRAMES);
+    if (*fadeCounter <= 0) {
+        *fadeCounter = 0;
+        return FALSE;
     }
 
-    (*v0)--;
-    return *v0;
+    (*fadeCounter)--;
+    return *fadeCounter;
 }
 
 void sub_0200500C(int param0)
@@ -1177,42 +1172,40 @@ void Sound_SetFieldBGMBankState(int state)
     *param = state;
 }
 
-BOOL sub_0200502C(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5)
+BOOL Sound_FadeOutAndPlayBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, u8 param4, void *unused2)
 {
-    u8 *v0 = SoundSystem_GetParam(22);
+    u8 *subScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_SUB_SCENE);
 
-    sub_020050A4(param0, param1, param2, param3, param4, param5);
-    *v0 = 0;
-    SoundSystem_SetState(5);
+    Sound_Impl_FadeToBGM(unused1, bgmID, fadeOutFrames, waitFrames, param4, unused2);
+    *subScene = 0;
+    SoundSystem_SetState(SOUND_SYSTEM_STATE_FADE_OUT_PLAY);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL sub_02005068(u8 param0, u16 param1, int param2, int param3, int param4, u8 param5, void *param6)
+BOOL Sound_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, int fadeInFrames, u8 bankState, void *unused2)
 {
-    int *v0 = SoundSystem_GetParam(9);
+    int *fadeFrames = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FOLLOW_UP_FADE_FRAMES);
 
-    sub_020050A4(param0, param1, param2, param3, param5, param6);
-    *v0 = param4;
-    SoundSystem_SetState(6);
+    Sound_Impl_FadeToBGM(unused1, bgmID, fadeOutFrames, waitFrames, bankState, unused2);
+    *fadeFrames = fadeInFrames;
+    SoundSystem_SetState(SOUND_SYSTEM_STATE_FADE_OUT_PLAY);
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_020050A4(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5)
+static void Sound_Impl_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int fadeInFrames, u8 bankState, void *unused2)
 {
-    const NNSSndArcBankInfo **v0 = SoundSystem_GetParam(2);
+    const NNSSndArcBankInfo **currentBankInfo = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO);
 
-    Sound_FadeOutBGM(0, param2);
+    Sound_FadeOutBGM(MIN_BGM_VOLUME, fadeOutFrames);
     Sound_SetCurrentBGM(0);
 
-    Sound_SetNextBGM(param1);
-    sub_02004FDC(param3);
+    Sound_SetNextBGM(bgmID);
+    Sound_SetFollowUpWaitFrames(fadeInFrames);
 
-    *v0 = Sound_GetBankInfoForSequence(param1);
-    Sound_SetFieldBGMBankState(param4);
-
-    return;
+    *currentBankInfo = Sound_GetBankInfoForSequence(bgmID);
+    Sound_SetFieldBGMBankState(bankState);
 }
 
 const u8 *sub_020050E0(const SNDWaveData *param0)

@@ -22,7 +22,7 @@ static void SoundSystem_LoadPersistentGroup(SoundSystem *soundSys);
 static void SoundSystem_InitMic();
 static BOOL sub_02003D28();
 static void sub_02003C64();
-static void sub_020041B4();
+static void SoundSystem_StopBGM();
 
 static SoundSystem sSoundSystem;
 static int sSoundSystemState;
@@ -82,7 +82,7 @@ void SoundSystem_Update()
 static void sub_02003C64()
 {
     int v0;
-    SoundSystem *v1 = SoundSystem_Get();
+    SoundSystem *soundSys = SoundSystem_Get();
 
     switch (sSoundSystemState) {
     case SOUND_SYSTEM_STATE_IDLE:
@@ -102,20 +102,20 @@ static void sub_02003C64()
             SoundSystem_SetState(SOUND_SYSTEM_STATE_PLAYING);
         }
         break;
-    case 5:
+    case SOUND_SYSTEM_STATE_FADE_OUT_PLAY:
         if (Sound_IsFadeActive() == FALSE) {
-            if (sub_02004FEC() == 0) {
-                sub_020041B4();
-                Sound_PlayBGM(v1->nextBGM);
+            if (Sound_UpdateFollowUpWaitFrames() == 0) {
+                SoundSystem_StopBGM();
+                Sound_PlayBGM(soundSys->nextBGM);
             }
         }
         break;
-    case 6:
+    case SOUND_SYSTEM_STATE_FADE_OUT_FADE_IN:
         if (Sound_IsFadeActive() == FALSE) {
-            if (sub_02004FEC() == 0) {
-                sub_020041B4();
-                Sound_PlayBGM(v1->nextBGM);
-                Sound_FadeInBGM(127, v1->unk_BCD54, 0);
+            if (Sound_UpdateFollowUpWaitFrames() == 0) {
+                SoundSystem_StopBGM();
+                Sound_PlayBGM(soundSys->nextBGM);
+                Sound_FadeInBGM(MAX_BGM_VOLUME, soundSys->followUpFadeFrames, BGM_FADE_IN_TYPE_FROM_ZERO);
             }
         }
         break;
@@ -165,18 +165,18 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->unk_BBD20[0];
     case 1:
         return &soundSys->unk_BBD20[1];
-    case 2:
-        return &soundSys->unk_BBD28;
+    case SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO:
+        return &soundSys->currentBankInfo;
     case 3:
         return &soundSys->unk_BBD2C;
     case 4:
         return &soundSys->unk_BCD2C;
     case SOUND_SYSTEM_PARAM_FADE_COUNTER:
         return &soundSys->fadeCounter;
-    case 8:
-        return &soundSys->unk_BCD50;
-    case 9:
-        return &soundSys->unk_BCD54;
+    case SOUND_SYSTEM_PARAM_FOLLOW_UP_WAIT_FRAMES:
+        return &soundSys->followUpWaitFrames;
+    case SOUND_SYSTEM_PARAM_FOLLOW_UP_FADE_FRAMES:
+        return &soundSys->followUpFadeFrames;
     case SOUND_SYSTEM_PARAM_CURRENT_BGM:
         return &soundSys->currentBGM;
     case SOUND_SYSTEM_PARAM_NEXT_BGM:
@@ -397,8 +397,8 @@ static void SoundSystem_InitMic()
     PM_SetAmpGain(PM_AMPGAIN_80);
 }
 
-static void sub_020041B4()
+static void SoundSystem_StopBGM()
 {
-    NNS_SndPlayerStopSeqByPlayerNo(7, 0);
-    NNS_SndHandleReleaseSeq(SoundSystem_GetSoundHandle(7));
+    NNS_SndPlayerStopSeqByPlayerNo(PLAYER_BGM, 0);
+    NNS_SndHandleReleaseSeq(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_BGM));
 }
