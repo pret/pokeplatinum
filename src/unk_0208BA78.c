@@ -212,7 +212,7 @@ static int sub_0208BC08(OverlayManager *param0, int *param1)
 
     Heap_FreeToHeap(v0->unk_14);
     OverlayManager_FreeData(param0);
-    sub_0200544C(1, 127);
+    Sound_SetPlayerVolume(1, 127);
     Heap_Destroy(HEAP_ID_119);
 
     return 1;
@@ -285,7 +285,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
         }
     } break;
     case 2: {
-        sub_0200544C(1, 127);
+        Sound_SetPlayerVolume(1, 127);
         sub_02005464(1);
 
         if (sub_0208BE80(param0->unk_10->trainer[1].header.trainerType) == 1) {

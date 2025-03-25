@@ -62,7 +62,7 @@ int ov100_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_0C.unk_50.unk_02 = 31;
     v0->unk_0C.unk_C1 = 31;
 
-    sub_02005454(1);
+    Sound_Set2PokemonCriesAllowed(1);
 
     {
         Window *v1 = &v0->unk_0C.unk_30;
@@ -150,7 +150,7 @@ int ov100_021D0F44(OverlayManager *param0, int *param1)
     GXLayers_SwapDisplay();
     OverlayManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_111);
-    sub_02005454(0);
+    Sound_Set2PokemonCriesAllowed(0);
 
     return 1;
 }

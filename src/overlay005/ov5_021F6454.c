@@ -1131,6 +1131,6 @@ BOOL ScrCmd_333(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
 
-    sub_0200544C(1, v0);
+    Sound_SetPlayerVolume(1, v0);
     return 0;
 }

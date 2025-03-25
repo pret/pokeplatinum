@@ -244,7 +244,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
 
     SetVBlankCallback(ov71_0223C18C, NULL);
     DrawWifiConnectionIcon();
-    sub_0200544C(1, (127 / 3));
+    Sound_SetPlayerVolume(1, (127 / 3));
     StartScreenTransition(2, 3, 3, 0x0, 6, 1, HEAP_ID_25);
     NARC_dtor(v1);
 
@@ -393,7 +393,7 @@ int ov71_0223B5B8(OverlayManager *param0, int *param1)
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_25);
-    sub_0200544C(1, 127);
+    Sound_SetPlayerVolume(1, 127);
 
     return 1;
 }

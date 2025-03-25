@@ -15,7 +15,6 @@
 #define MIN_BGM_VOLUME 0
 #define MAX_BGM_VOLUME 127
 
-
 void Sound_SetBGMFixed(u8 fixed);
 u8 Sound_IsBGMFixed(void);
 void Sound_SetCurrentBGM(u16 bgmID);
@@ -85,8 +84,8 @@ u32 sub_02005188(int param0, const SNDWaveData *param1, int param2);
 u32 sub_020051C4(int param0);
 void sub_020051D0(const SNDWaveData *param0, u8 *param1, int param2, int param3);
 void sub_020053CC(int param0);
-void sub_0200544C(int param0, int param1);
-void sub_02005454(BOOL param0);
+void Sound_SetPlayerVolume(int param0, int param1);
+void Sound_Set2PokemonCriesAllowed(BOOL param0);
 void sub_02005464(BOOL param0);
 
 #endif // POKEPLATINUM_UNK_020041CC_H
