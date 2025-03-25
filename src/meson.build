@@ -214,7 +214,7 @@ pokeplatinum_c = files(
     'unk_02052C6C.c',
     'field_map_change.c',
     'unk_02054884.c',
-    'unk_02054BD0.c',
+    'terrain_attributes.c',
     'terrain_collision_manager.c',
     'unk_020553DC.c',
     'unk_020556C4.c',

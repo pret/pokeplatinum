@@ -16,10 +16,10 @@
 #include "dynamic_map_features.h"
 #include "map_matrix.h"
 #include "map_tile_behavior.h"
-#include "unk_02054BD0.h"
+#include "terrain_attributes.h"
 
-#define INVALID_TERRAIN_ATTRIBUTES 0xFF
-#define INVALID_TILE_BEHAVIOR      0xFF
+#define INVALID_TILE_ATTRIBUTES 0xFF
+#define INVALID_TILE_BEHAVIOR   0xFF
 
 #define TERRAIN_ATTRIBUTES_COLLISION_SHIFT 15
 #define TERRAIN_ATTRIBUTES_COLLISION_MASK  0x01
@@ -180,7 +180,7 @@ static BOOL GetTileAttributes(const FieldSystem *fieldSystem, const int tileX, c
     BOOL loadedMapIndexValid = LandDataManager_GetRelativeLoadedMapsQuadrantOfTile(landDataMan, tileX, tileY, &loadedMapIndex);
 
     if (loadedMapIndexValid == FALSE) {
-        (*attributes) = INVALID_TERRAIN_ATTRIBUTES;
+        (*attributes) = INVALID_TILE_ATTRIBUTES;
         return FALSE;
     }
 
@@ -203,7 +203,7 @@ static BOOL GetSimpleTileAttributes(const FieldSystem *fieldSystem, const int ti
     u32 mapMatrixIndex = mapMatrixX + mapMatrixY * mapMatrixWidth;
 
     u32 tileIndex = (tileY % MAP_TILES_COUNT_Y) * MAP_TILES_COUNT_X + (tileX % MAP_TILES_COUNT_X);
-    u16 const *terrainAttributes = sub_02054C0C(mapMatrixIndex, fieldSystem->unk_58);
+    u16 const *terrainAttributes = TerrainAttributes_Get(mapMatrixIndex, fieldSystem->terrainAttributes);
     *attributes = terrainAttributes[tileIndex];
 
     return TRUE;
