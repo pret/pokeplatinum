@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "constants/field/map_load.h"
 #include "generated/journal_location_events.h"
 
@@ -28,6 +29,7 @@
 #include "map_header.h"
 #include "map_object.h"
 #include "map_tile_behavior.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "save_player.h"
 #include "script_manager.h"
@@ -40,7 +42,6 @@
 #include "unk_0205F180.h"
 #include "unk_0206B70C.h"
 #include "unk_020711C8.h"
-#include "unk_02071B10.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -805,7 +806,7 @@ static void sub_020710D4(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
 
 static int sub_02071130(const UnkStruct_02070950 *param0)
 {
-    if ((inline_02070AF0(param0) == 0) || (sub_02071CB4(param0->fieldSystem, 9) == 1)) {
+    if ((inline_02070AF0(param0) == 0) || (PersistedMapFeatures_IsCurrentDynamicMap(param0->fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1)) {
         return 1;
     }
 

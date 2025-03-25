@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/struct_0205E884_decl.h"
@@ -14,17 +15,17 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay009/ov9_02249960.h"
 
+#include "dynamic_map_features.h"
 #include "game_records.h"
 #include "inlines.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "terrain_collision_manager.h"
 #include "unk_02005474.h"
 #include "unk_020655F4.h"
-#include "unk_02068344.h"
-#include "unk_02071B10.h"
 
 typedef BOOL (*UnkFuncPtr_020EDB84)(u8);
 
@@ -1761,7 +1762,7 @@ static int sub_02060CE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
 
-        if (sub_020683D8(fieldSystem, v1, v2, 0, param2) == 1) {
+        if (DynamicMapFeatures_WillPlayerJumpEternaGymClock(fieldSystem, v1, v2, 0, param2) == 1) {
             return 1;
         }
 
@@ -1822,7 +1823,7 @@ static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         }
 
         if (v0 == 1) {
-            if (sub_02071CB4(fieldSystem, 9) == 1) {
+            if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
                 if (ov9_022511A0(fieldSystem, v2, v3, param2) == 1) {
                     v0 = 0;
                 }
@@ -1983,7 +1984,7 @@ static int sub_02061100(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     u32 v0 = 0;
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-    if (sub_02071CB4(fieldSystem, 9) == 1) {
+    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
         int x = MapObject_GetX(mapObj);
         int y = MapObject_GetY(mapObj) / 2;
         int z = MapObject_GetZ(mapObj);
@@ -2009,7 +2010,7 @@ static int sub_02061180(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 9) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
             BOOL v1;
             u32 v2;
             int x = MapObject_GetX(mapObj);
@@ -2060,7 +2061,7 @@ static int sub_02061248(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     if ((param2 != -1) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 9) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
             u32 v2;
             int x = MapObject_GetX(mapObj);
             int y = MapObject_GetY(mapObj) / 2;

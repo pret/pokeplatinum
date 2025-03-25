@@ -41,6 +41,7 @@
 #include "map_object.h"
 #include "menu.h"
 #include "message.h"
+#include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "pokeradar.h"
 #include "render_window.h"
@@ -58,7 +59,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02027F50.h"
 #include "unk_0202854C.h"
 #include "unk_0203A7D8.h"
 #include "unk_0203A944.h"
@@ -255,7 +255,7 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
     }
 
     if (!noWarp) {
-        sub_02027F50(sub_02027860(fieldSystem->saveData));
+        PersistedMapFeatures_Init(MiscSaveBlock_GetPersistedMapFeatures(fieldSystem->saveData));
     }
 
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
@@ -312,7 +312,7 @@ void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL
     }
 
     if (!param1) {
-        sub_02027F50(sub_02027860(fieldSystem->saveData));
+        PersistedMapFeatures_Init(MiscSaveBlock_GetPersistedMapFeatures(fieldSystem->saveData));
     }
 
     if (!param1) {

@@ -4,11 +4,10 @@
 #include "constants/savedata/save_table.h"
 #include "constants/string.h"
 
-#include "struct_decls/struct_02027860_decl.h"
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_02027860.h"
 
 #include "berry_patches.h"
+#include "persisted_map_features.h"
 #include "savedata.h"
 #include "strbuf.h"
 
@@ -21,7 +20,7 @@ typedef struct ExtraSaveKey {
 
 typedef struct MiscSaveBlock {
     BerryPatch berryPatches[MAX_BERRY_PATCHES];
-    UnkStruct_02027860 unk_680;
+    PersistedMapFeatures persistedMapFeatures;
     u16 rivalName[TRAINER_NAME_LEN + 1];
     u16 tabletName[TABLET_NAME_LEN + 1]; // used in shaymin event
     u16 favoriteMon;
@@ -40,7 +39,7 @@ void MiscSaveBlock_Init(MiscSaveBlock *miscSave);
 MiscSaveBlock *SaveData_MiscSaveBlock(SaveData *saveData);
 const MiscSaveBlock *SaveData_MiscSaveBlockConst(const SaveData *saveData);
 BerryPatch *MiscSaveBlock_GetBerryPatches(SaveData *saveData);
-UnkStruct_02027860 *sub_02027860(SaveData *saveData);
+PersistedMapFeatures *MiscSaveBlock_GetPersistedMapFeatures(SaveData *saveData);
 const u16 *MiscSaveBlock_RivalName(const MiscSaveBlock *miscSave);
 void MiscSaveBlock_SetRivalName(MiscSaveBlock *miscSave, Strbuf *name);
 const u16 *MiscSaveBlock_TabletName(const MiscSaveBlock *miscSave);

@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 _001E:
-    ScrCmd_2C9
+    InitPersistedMapFeaturesForEternaGym
     End
 
 _0022:

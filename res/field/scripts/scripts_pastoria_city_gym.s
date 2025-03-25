@@ -16,7 +16,7 @@ _001E:
     SetVar 0x4001, 0
     SetVar 0x4002, 1
     SetVar 0x4003, 0
-    ScrCmd_16F
+    InitPersistedMapFeaturesForPastoriaGym
     End
 
 _0034:

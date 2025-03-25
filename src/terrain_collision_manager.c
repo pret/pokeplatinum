@@ -13,10 +13,10 @@
 #include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_prop.h"
 
+#include "dynamic_map_features.h"
 #include "map_matrix.h"
 #include "map_tile_behavior.h"
 #include "unk_02054BD0.h"
-#include "unk_02068344.h"
 
 #define INVALID_TERRAIN_ATTRIBUTES 0xFF
 #define INVALID_TILE_BEHAVIOR      0xFF
@@ -324,9 +324,9 @@ BOOL TerrainCollisionManager_WillPlayerCollide(FieldSystem *fieldSystem, const V
 
     if (direction == VERTICAL_DIRECTION_NONE) {
         BOOL isColliding;
-        BOOL v3 = sub_02068390(fieldSystem, tileX, tileY, objectPosition->y, &isColliding);
+        BOOL hasDynamicCollision = DynamicMapFeatures_CheckCollision(fieldSystem, tileX, tileY, objectPosition->y, &isColliding);
 
-        if (!v3) {
+        if (!hasDynamicCollision) {
             isColliding = TerrainCollisionManager_CheckCollision(fieldSystem, tileX, tileY);
 
             if (!isColliding && newObjectHeightSource == CALCULATED_HEIGHT_SOURCE_DYNAMIC) {

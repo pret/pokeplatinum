@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000A:
-    ScrCmd_25B
+    InitPersistedMapFeaturesForPlatformLift
     End
 
 _000E:
