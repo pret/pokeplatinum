@@ -12,6 +12,9 @@
 #define FIELD_BGM_BANK_STATE_IDLE   0
 #define FIELD_BGM_BANK_STATE_SWITCH 1
 
+#define MIN_BGM_VOLUME 0
+#define MAX_BGM_VOLUME 127
+
 
 void Sound_SetBGMFixed(u8 fixed);
 u8 Sound_IsBGMFixed(void);
@@ -68,13 +71,13 @@ void sub_02004F94(int param0, u16 param1, int param2);
 void sub_02004FA8(int param0, int param1);
 void Sound_SetPlaybackMode(BOOL param0);
 void Sound_SetFadeCounter(int param0);
-void sub_02004FDC(int param0);
-int sub_02004FEC(void);
+void Sound_SetFollowUpWaitFrames(int param0);
+BOOL Sound_UpdateFollowUpWaitFrames(void);
 void sub_0200500C(int param0);
 void *sub_02005014(void);
 void Sound_SetFieldBGMBankState(int param0);
-BOOL sub_0200502C(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
-BOOL sub_02005068(u8 param0, u16 param1, int param2, int param3, int param4, u8 param5, void *param6);
+BOOL Sound_FadeOutAndPlayBGM(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
+BOOL Sound_FadeToBGM(u8 param0, u16 param1, int param2, int param3, int param4, u8 param5, void *param6);
 const u8 *sub_020050E0(const SNDWaveData *param0);
 const u32 sub_020050EC(const SNDWaveData *param0);
 const SNDWaveData *sub_020050F8(int param0);

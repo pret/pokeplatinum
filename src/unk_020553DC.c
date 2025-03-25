@@ -251,9 +251,9 @@ BOOL sub_02055554(FieldSystem *fieldSystem, u16 param1, int param2)
     sub_020555CC(fieldSystem, param2, &v1, &v2);
 
     if ((v3 == 0x1) || (v3 == 0x1)) {
-        sub_02005068(4, param1, v1, v2, 30, 0, NULL);
+        Sound_FadeToBGM(4, param1, v1, v2, 30, 0, NULL);
     } else {
-        sub_0200502C(4, param1, v1, v2, 0, NULL);
+        Sound_FadeOutAndPlayBGM(4, param1, v1, v2, 0, NULL);
     }
 
     return 1;

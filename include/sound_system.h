@@ -24,10 +24,12 @@ enum SoundHeapState {
 
 enum SoundSystemState {
     SOUND_SYSTEM_STATE_IDLE = 0,
-    SOUND_SYSTEM_STATE_PLAY = 1, // Start playing a sound
-    SOUND_SYSTEM_STATE_PLAYING = 2, // Sound is playing
-    SOUND_SYSTEM_STATE_FADE_IN = 3,
-    SOUND_SYSTEM_STATE_FADE_OUT = 4,
+    SOUND_SYSTEM_STATE_PLAY, // Start playing a sound
+    SOUND_SYSTEM_STATE_PLAYING, // Sound is playing
+    SOUND_SYSTEM_STATE_FADE_IN, // Fade in sound
+    SOUND_SYSTEM_STATE_FADE_OUT, // Fade out sound
+    SOUND_SYSTEM_STATE_FADE_OUT_PLAY, // Fade out sound then play another sound
+    SOUND_SYSTEM_STATE_FADE_OUT_FADE_IN, // Fade out sound then fade in another sound
 };
 
 enum SoundHandleType {
@@ -45,9 +47,13 @@ enum SoundHandleType {
 };
 
 enum SoundSystemParam {
+    SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO = 2,
+
     SOUND_SYSTEM_PARAM_BGM_FIXED = 5,
 
     SOUND_SYSTEM_PARAM_FADE_COUNTER = 7,
+    SOUND_SYSTEM_PARAM_FOLLOW_UP_WAIT_FRAMES,
+    SOUND_SYSTEM_PARAM_FOLLOW_UP_FADE_FRAMES,
 
     SOUND_SYSTEM_PARAM_CURRENT_BGM = 10,
     SOUND_SYSTEM_PARAM_NEXT_BGM,
@@ -77,15 +83,15 @@ typedef struct SoundSystem {
     u8 heapBuffer[SOUND_SYSTEM_HEAP_SIZE]; // Main sound heap where sound data is loaded into
     NNSSndHandle soundHandles[SOUND_HANDLE_TYPE_COUNT];
     NNSSndWaveOutHandle unk_BBD20[2];
-    const NNSSndArcBankInfo *unk_BBD28;
+    const NNSSndArcBankInfo *currentBankInfo;
     u8 unk_BBD2C[SOUND_SYSTEM_CAPTURE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
     UnkStruct_020052C8 unk_BCD2C;
     u16 unk_BCD48;
     u8 bgmFixed; // BGM can't change if this is set
     u8 unk_BCD4B;
     int fadeCounter;
-    int unk_BCD50;
-    int unk_BCD54;
+    int followUpWaitFrames;
+    int followUpFadeFrames;
     u16 currentBGM;
     u16 nextBGM;
     u8 fieldBGMPaused;
