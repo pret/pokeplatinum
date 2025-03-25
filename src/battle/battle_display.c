@@ -327,7 +327,7 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         SysTask_Start(ov16_0225E4E8, v4, 0);
     }
 
-    sub_02005454(1);
+    Sound_Set2PokemonCriesAllowed(1);
 }
 
 void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C17C *param2)
@@ -374,7 +374,7 @@ void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v1->unk_92 = param2->unk_01_2;
     v1->unk_94 = 0;
 
-    sub_02005454(1);
+    Sound_Set2PokemonCriesAllowed(1);
     SysTask_Start(ov16_0225EA80, v1, 0);
 }
 
@@ -1589,7 +1589,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
         }
         break;
     default:
-        sub_02005454(0);
+        Sound_Set2PokemonCriesAllowed(0);
         ClearCommand(v0->unk_00, v0->unk_11, v0->unk_10);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
@@ -1671,7 +1671,7 @@ static void ov16_0225E894(SysTask *param0, void *param1)
         }
         break;
     default:
-        sub_02005454(0);
+        Sound_Set2PokemonCriesAllowed(0);
         ClearCommand(v0->unk_00, v0->unk_11, v0->unk_10);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
@@ -1885,7 +1885,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
         }
         break;
     default:
-        sub_02005454(0);
+        Sound_Set2PokemonCriesAllowed(0);
         ClearCommand(v0->unk_00, v0->unk_81, v0->unk_80);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);

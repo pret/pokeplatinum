@@ -2482,9 +2482,9 @@ static void ov66_0222FB64(UnkStruct_ov66_0222FB64 *param0)
 static void ov66_0222FBAC(const UnkStruct_ov66_0222FB64 *param0)
 {
     if (param0->unk_0D == 1) {
-        sub_0200544C(7, (127 / 3));
+        Sound_SetPlayerVolume(7, (127 / 3));
     } else {
-        sub_0200544C(7, 127);
+        Sound_SetPlayerVolume(7, 127);
     }
 }
 

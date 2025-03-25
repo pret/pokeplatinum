@@ -245,15 +245,15 @@ void Sound_StopAll(void)
 
 void sub_020056D4(void)
 {
-    int v0;
+    int i;
     u8 *v1 = SoundSystem_GetParam(16);
     u8 *v2 = SoundSystem_GetParam(17);
 
-    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(7), 0);
+    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_BGM), 0);
     Sound_Impl_ResetBGM();
 
-    for (v0 = 0; v0 < 4; v0++) {
-        Sound_StopEffectFromHandle((3 + v0), 0);
+    for (i = 0; i < 4; i++) {
+        Sound_StopEffectFromHandle(SOUND_HANDLE_TYPE_SFX_1 + i, 0);
     }
 
     sub_0200592C(0);

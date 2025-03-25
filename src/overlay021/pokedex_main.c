@@ -125,7 +125,7 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
 
     *appPtr = PokedexMain_NewPokedexApp(HEAP_ID_POKEDEX, &pokedexOverlayArgs);
 
-    sub_0200544C(1, (127 / 3));
+    Sound_SetPlayerVolume(1, (127 / 3));
 
     return 1;
 }
@@ -176,7 +176,7 @@ int PokedexMain_Exit(OverlayManager *overlayMan, int *state)
     VramTransfer_Free();
     OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_POKEDEX);
-    sub_0200544C(1, 127);
+    Sound_SetPlayerVolume(1, 127);
 
     return 1;
 }
