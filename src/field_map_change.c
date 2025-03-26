@@ -156,11 +156,11 @@ static void sub_02053E5C(FieldTask *task);
 static BOOL sub_0205444C(FieldTask *task, int param1);
 
 static const MapLoadMode sMapLoadMode[] = {
-    { 0x1, FALSE, FALSE, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
-    { 0x2, TRUE, TRUE, 0x1, 0x1, 0x0, 0x10, 0xC4000 },
-    { 0x3, FALSE, FALSE, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
-    { 0x4, TRUE, TRUE, 0x0, 0x1, 0x1, 0x1, 0xC4000 },
-    { 0x1, TRUE, TRUE, 0x0, 0x1, 0x1, 0x1, 0xA0000 }
+    { 0x1, FALSE, FALSE, 0x0, FALSE, 0x1, 0x0, 0xC4000 },
+    { 0x2, TRUE, TRUE, 0x1, TRUE, 0x0, 0x10, 0xC4000 },
+    { 0x3, FALSE, FALSE, 0x0, FALSE, 0x1, 0x0, 0xC4000 },
+    { 0x4, TRUE, TRUE, 0x0, TRUE, 0x1, 0x1, 0xC4000 },
+    { 0x1, TRUE, TRUE, 0x0, TRUE, 0x1, 0x1, 0xA0000 }
 };
 
 static const WindowTemplate Unk_020EC3A0 = {
@@ -388,8 +388,8 @@ static void FieldMapChange_InitTerrainCollisionManager(FieldSystem *fieldSystem)
 
     TerrainCollisionManager_Init(&fieldSystem->terrainCollisionMan, fieldSystem->mapLoadMode->useSimpleTerrainCollisions);
 
-    if (fieldSystem->mapLoadMode->unk_00_16) {
-        TerrainAttributes_New(fieldSystem, fieldSystem->mapLoadMode->unk_00_24);
+    if (fieldSystem->mapLoadMode->useSeparateTerrainAttributes) {
+        TerrainAttributes_New(fieldSystem, fieldSystem->mapLoadMode->separateTerrainAttributesBlockCount);
     }
 }
 
@@ -400,7 +400,7 @@ static void FieldMapChange_RemoveTerrainCollisionManager(FieldSystem *fieldSyste
     fieldSystem->terrainCollisionMan = NULL;
     fieldSystem->bottomScreen = 5;
 
-    if (fieldSystem->mapLoadMode->unk_00_16) {
+    if (fieldSystem->mapLoadMode->useSeparateTerrainAttributes) {
         TerrainAttributes_Free(fieldSystem);
     }
 
