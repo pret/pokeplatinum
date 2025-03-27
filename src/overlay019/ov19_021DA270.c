@@ -149,7 +149,7 @@ void ov19_021DA428(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, s32 para
     GF_ASSERT(param7->unk_00 != NULL);
 
     Sprite_SetExplicitPalette(param7->unk_00, 2 + param7->unk_2C);
-    ov19_021DA63C(param0, param7, ov19_021D5EC8(param0->unk_40));
+    ov19_021DA63C(param0, param7, ov19_GetMonSpriteTransparencyMask(param0->unk_40));
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
@@ -183,7 +183,7 @@ void ov19_021DA548(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, u32 para
     GF_ASSERT(param10->unk_00 != NULL);
 
     Sprite_SetExplicitPalette(param10->unk_00, 2 + param10->unk_2C);
-    ov19_021DA63C(param0, param10, ov19_021D5EC8(param0->unk_40));
+    ov19_021DA63C(param0, param10, ov19_GetMonSpriteTransparencyMask(param0->unk_40));
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
+
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D79F8.h"
@@ -70,10 +72,10 @@ BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_758 = ov19_021D77E0(param1);
     param0->unk_75C = ov19_021D77E8(param1);
     param0->unk_48 = ov19_021D77D8(param1);
-    param0->unk_785 = ov19_021D5E10(param2);
-    param0->unk_789 = ov19_021D5E14(param2);
-    param0->unk_78A = ov19_021D5E1C(param2);
-    param0->unk_78B = ov19_021D5E2C(param2);
+    param0->unk_785 = ov19_GetCursorLocation(param2);
+    param0->unk_789 = ov19_GetCursorBoxCol(param2);
+    param0->unk_78A = ov19_GetCursorBoxRow(param2);
+    param0->unk_78B = ov19_GetCursorPartyPosition(param2);
     param0->unk_04 = NULL;
     param0->unk_08 = NULL;
     param0->unk_0C = NULL;
@@ -93,7 +95,7 @@ BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *par
 void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
 {
     SpriteResourcesHeader v0;
-    u32 v1, v2;
+    u32 cursorLocation, pcMode;
 
     NNS_G2dInitImageProxy(&(param0->unk_24));
 
@@ -104,13 +106,13 @@ void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
     param0->unk_04 = ov19_021D785C(param0->unk_00, &v0, param0->unk_764, param0->unk_768, 1, NNS_G2D_VRAM_TYPE_2DMAIN);
     param0->unk_08 = ov19_021D785C(param0->unk_00, &v0, param0->unk_764, param0->unk_768 + 24, 42, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v1 = ov19_021D5E10(param0->unk_790);
-    v2 = ov19_021D5E08(param0->unk_790);
+    cursorLocation = ov19_GetCursorLocation(param0->unk_790);
+    pcMode = ov19_GetBoxMode(param0->unk_790);
 
     {
         int v3, v4;
 
-        if (v2 != 4) {
+        if (pcMode != PC_MODE_COMPARE) {
             v3 = 108;
             v4 = 236;
         } else {
@@ -126,9 +128,9 @@ void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
     Sprite_SetAnim(param0->unk_08, 5);
     Sprite_SetExplicitPriority(param0->unk_08, 2);
 
-    v1 = ov19_021D5E10(param0->unk_790);
+    cursorLocation = ov19_GetCursorLocation(param0->unk_790);
 
-    if (v1 != 2) {
+    if (cursorLocation != CURSOR_ON_BOX_HEADER) {
         Sprite_SetAnim(param0->unk_0C, 6);
         Sprite_SetAnim(param0->unk_10, 7);
     } else {
@@ -136,11 +138,11 @@ void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
         Sprite_SetAnim(param0->unk_10, 9);
     }
 
-    if (v1 != 0) {
+    if (cursorLocation != CURSOR_IN_BOX) {
         Sprite_SetDrawFlag(param0->unk_08, 0);
     }
 
-    if (v2 != 3) {
+    if (pcMode != PC_MODE_MOVE_ITEMS) {
         if (ov19_021D5E38(param0->unk_790) == 1) {
             Sprite_SetAnim(param0->unk_04, 0);
             ov19_021DA3CC(param0->unk_48, param0->unk_4C, (5 * 6));
@@ -153,7 +155,7 @@ void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
 
         param0->unk_78D = 0;
     } else {
-        if (ov19_021D5F7C(param0->unk_790) == 0) {
+        if (ov19_GetCursorItem(param0->unk_790) == ITEM_NONE) {
             Sprite_SetAnim(param0->unk_04, 0);
             param0->unk_78D = 0;
         } else {
@@ -228,9 +230,9 @@ static void ov19_021D8EE0(const UnkStruct_ov19_021D8E00 *param0, BOOL *param1, B
     switch (param0->unk_785) {
     case 0:
         if (param0->unk_786 == 0) {
-            u32 v0 = ov19_021D5E14(param0->unk_790);
+            u32 col = ov19_GetCursorBoxCol(param0->unk_790);
 
-            if ((param0->unk_789 == 0) && (v0 == 5) || (param0->unk_789 == 5) && (v0 == 0)) {
+            if ((param0->unk_789 == 0) && (col == 5) || (param0->unk_789 == 5) && (col == 0)) {
                 *param1 = 1;
             }
         }
@@ -358,9 +360,9 @@ static void ov19_021D9088(SysTask *param0, void *param1)
     v0->unk_764 = v0->unk_76C;
     v0->unk_768 = v0->unk_770;
     v0->unk_785 = v0->unk_786;
-    v0->unk_789 = ov19_021D5E14(v0->unk_790);
-    v0->unk_78A = ov19_021D5E1C(v0->unk_790);
-    v0->unk_78B = ov19_021D5E2C(v0->unk_790);
+    v0->unk_789 = ov19_GetCursorBoxCol(v0->unk_790);
+    v0->unk_78A = ov19_GetCursorBoxRow(v0->unk_790);
+    v0->unk_78B = ov19_GetCursorPartyPosition(v0->unk_790);
 
     if (v0->unk_786 == 0) {
         Sprite_SetDrawFlag(v0->unk_08, 1);
@@ -806,7 +808,7 @@ void ov19_021D9A64(UnkStruct_ov19_021D8E00 *param0)
 
 void ov19_021D9A8C(UnkStruct_ov19_021D8E00 *param0)
 {
-    u32 v0 = ov19_021D5EC8(param0->unk_790);
+    u32 v0 = ov19_GetMonSpriteTransparencyMask(param0->unk_790);
 
     if (param0->unk_4C->unk_00 != NULL) {
         ov19_021DA63C(param0->unk_48, param0->unk_4C, v0);
@@ -817,14 +819,14 @@ void ov19_021D9AB0(UnkStruct_ov19_021D8E00 *param0, u32 param1)
 {
     if (param0->unk_4C->unk_00 != NULL) {
         ov19_021DA690(param0->unk_48, param0->unk_4C, param1);
-        ov19_021DA63C(param0->unk_48, param0->unk_4C, ov19_021D5EC8(param0->unk_790));
+        ov19_021DA63C(param0->unk_48, param0->unk_4C, ov19_GetMonSpriteTransparencyMask(param0->unk_790));
         ov19_021DA694(param0->unk_48, param0->unk_4C, 0);
     }
 }
 
 void ov19_021D9AEC(UnkStruct_ov19_021D8E00 *param0)
 {
-    if (ov19_021D5EE0(param0->unk_790)) {
+    if (ov19_IsCursorFastMode(param0->unk_790)) {
         Sprite_SetExplicitPalette(param0->unk_04, 1);
     } else {
         Sprite_SetExplicitPalette(param0->unk_04, 0);
@@ -957,33 +959,33 @@ void ov19_021D9D28(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-static void ov19_021D9D48(s32 *param0, s32 *param1, u8 *param2, UnkStruct_ov19_021D8E00 *param3)
+static void ov19_021D9D48(s32 *param0, s32 *param1, u8 *cursorLocation, UnkStruct_ov19_021D8E00 *param3)
 {
     const UnkStruct_ov19_021D4DF0 *v0 = param3->unk_790;
 
-    *param2 = ov19_021D5E10(v0);
+    *cursorLocation = ov19_GetCursorLocation(v0);
 
-    switch (*param2) {
-    case 0:
-        *param0 = 112 + ov19_021D7820(param3->unk_794) + ov19_021D5E14(v0) * 24 + 0;
-        *param1 = 40 + ov19_021D5E1C(v0) * 24 + -16;
+    switch (*cursorLocation) {
+    case CURSOR_IN_BOX:
+        *param0 = 112 + ov19_021D7820(param3->unk_794) + ov19_GetCursorBoxCol(v0) * 24 + 0;
+        *param1 = 40 + ov19_GetCursorBoxRow(v0) * 24 + -16;
         break;
-    case 1: {
-        u32 v1 = ov19_021D5E2C(v0);
+    case CURSOR_IN_PARTY: {
+        u32 partyIndex = ov19_GetCursorPartyPosition(v0);
 
-        ov19_021DCD30(ov19_021D77E8(param3->unk_794), v1, param0, param1);
+        ov19_021DCD30(ov19_021D77E8(param3->unk_794), partyIndex, param0, param1);
         (*param0) += 0;
         (*param1) += -16;
     } break;
-    case 2:
+    case CURSOR_ON_BOX_HEADER:
         *param0 = 168 + ov19_021D7820(param3->unk_794);
         *param1 = 8;
         break;
-    case 3:
+    case CURSOR_ON_PARTY_BUTTON:
         *param0 = 159 + ov19_021D7820(param3->unk_794);
         *param1 = 160;
         break;
-    case 4:
+    case CURSOR_ON_CLOSE_BUTTON:
         *param0 = 235 + ov19_021D7820(param3->unk_794);
         *param1 = 160;
         break;
@@ -1021,20 +1023,20 @@ static void ov19_021D9E04(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1)
 
 static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 *param0)
 {
-    if (ov19_021D5E10(param0->unk_790) == 0) {
+    if (ov19_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
         if (ov19_021D5F20(param0->unk_790)) {
-            u32 v0 = ov19_021D5E24(param0->unk_790);
-            ov19_021D8408(param0->unk_758, v0, 1240, param0->unk_4C);
+            u32 posInBox = ov19_GetCursorBoxPosition(param0->unk_790);
+            ov19_021D8408(param0->unk_758, posInBox, 1240, param0->unk_4C);
             param0->unk_754 = 1;
             param0->unk_664[0].unk_00 = (0 * FX32_ONE);
             param0->unk_664[0].unk_04 = (-4 * FX32_ONE);
         } else {
-            u32 v1, v2, v3, v4, v5, v6, v7, v8, v9;
+            u32 v1, v2, v3, v4, v5, v6, v7, col, row;
 
             ov19_021D5EE8(param0->unk_790, &v4, &v5, &v6, &v7);
 
-            v8 = ov19_021D5E14(param0->unk_790);
-            v9 = ov19_021D5E1C(param0->unk_790);
+            col = ov19_GetCursorBoxCol(param0->unk_790);
+            row = ov19_GetCursorBoxRow(param0->unk_790);
             v1 = 0;
 
             for (v3 = v6; v3 <= v7; v3++) {
@@ -1042,8 +1044,8 @@ static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 *param0)
                     ov19_021D8408(param0->unk_758, v3 * 6 + v2, 1520 + v1 * 16, &param0->unk_4C[v1]);
 
                     if (param0->unk_4C[v1].unk_00 != NULL) {
-                        param0->unk_664[v1].unk_00 = (0 + (v2 - v8) * 24) * FX32_ONE;
-                        param0->unk_664[v1].unk_04 = (-4 - (v3 - v9) * 24) * FX32_ONE;
+                        param0->unk_664[v1].unk_00 = (0 + (v2 - col) * 24) * FX32_ONE;
+                        param0->unk_664[v1].unk_04 = (-4 - (v3 - row) * 24) * FX32_ONE;
                         v1++;
                     }
                 }
@@ -1052,9 +1054,9 @@ static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 *param0)
             param0->unk_754 = v1;
         }
     } else {
-        u32 v10 = ov19_021D5E2C(param0->unk_790);
+        u32 partyIndex = ov19_GetCursorPartyPosition(param0->unk_790);
 
-        ov19_021DCC44(param0->unk_75C, v10, 1240, param0->unk_4C);
+        ov19_021DCC44(param0->unk_75C, partyIndex, 1240, param0->unk_4C);
 
         param0->unk_754 = 1;
         param0->unk_664[0].unk_00 = (0 * FX32_ONE);
@@ -1075,10 +1077,10 @@ static void ov19_021DA038(UnkStruct_ov19_021D8E00 *param0)
 
 static void ov19_021DA06C(UnkStruct_ov19_021D8E00 *param0)
 {
-    if (ov19_021D5E10(param0->unk_790) == 0) {
+    if (ov19_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
         if (ov19_021D5F20(param0->unk_790)) {
-            u32 v0 = ov19_021D5E24(param0->unk_790);
-            ov19_021D845C(param0->unk_758, v0, param0->unk_4C);
+            u32 posInBox = ov19_GetCursorBoxPosition(param0->unk_790);
+            ov19_021D845C(param0->unk_758, posInBox, param0->unk_4C);
         } else {
             int v1, v2, v3;
 
@@ -1090,18 +1092,18 @@ static void ov19_021DA06C(UnkStruct_ov19_021D8E00 *param0)
             }
         }
     } else {
-        u32 v4 = ov19_021D5E2C(param0->unk_790);
-        ov19_021DCC80(param0->unk_75C, v4, param0->unk_4C);
+        u32 partyIndex = ov19_GetCursorPartyPosition(param0->unk_790);
+        ov19_021DCC80(param0->unk_75C, partyIndex, param0->unk_4C);
     }
 }
 
 static void ov19_021DA110(UnkStruct_ov19_021D8E00 *param0)
 {
-    if (ov19_021D5E10(param0->unk_790) == 0) {
-        u32 v0 = ov19_021D5E24(param0->unk_790);
+    if (ov19_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
+        u32 posInBox = ov19_GetCursorBoxPosition(param0->unk_790);
 
         {
-            UnkStruct_ov19_021DCD18 *v1 = ov19_021D84C8(param0->unk_758, v0);
+            UnkStruct_ov19_021DCD18 *v1 = ov19_021D84C8(param0->unk_758, posInBox);
 
             ov19_021DA754(param0->unk_48, param0->unk_4C, 1520);
             ov19_021DA754(param0->unk_48, v1, 1520 + 16);
@@ -1109,11 +1111,11 @@ static void ov19_021DA110(UnkStruct_ov19_021D8E00 *param0)
             OS_WaitVBlankIntr();
         }
 
-        ov19_021D8408(param0->unk_758, v0, 1240, &param0->unk_4C[1]);
-        ov19_021D845C(param0->unk_758, v0, param0->unk_4C);
+        ov19_021D8408(param0->unk_758, posInBox, 1240, &param0->unk_4C[1]);
+        ov19_021D845C(param0->unk_758, posInBox, param0->unk_4C);
         ov19_021DA418(&(param0->unk_4C[1]), &(param0->unk_4C[0]), 1);
     } else {
-        u32 v2 = ov19_021D5E2C(param0->unk_790);
+        u32 v2 = ov19_GetCursorPartyPosition(param0->unk_790);
 
         {
             UnkStruct_ov19_021DCD18 *v3 = ov19_021DCD18(param0->unk_75C, v2);
@@ -1145,15 +1147,15 @@ static void ov19_021DA204(UnkStruct_ov19_021D8E00 *param0)
 static Sprite *ov19_021DA224(UnkStruct_ov19_021D8E00 *param0)
 {
     UnkStruct_ov19_021DCD18 *v0;
-    u32 v1;
+    u32 cursorPosition;
 
-    if (ov19_021D5E10(param0->unk_790) == 0) {
-        v1 = ov19_021D5E24(param0->unk_790);
-        v0 = ov19_021D84C8(param0->unk_758, v1);
+    if (ov19_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
+        cursorPosition = ov19_GetCursorBoxPosition(param0->unk_790);
+        v0 = ov19_021D84C8(param0->unk_758, cursorPosition);
         return v0->unk_00;
     } else {
-        v1 = ov19_021D5E2C(param0->unk_790);
-        v0 = ov19_021DCD18(param0->unk_75C, v1);
+        cursorPosition = ov19_GetCursorPartyPosition(param0->unk_790);
+        v0 = ov19_021DCD18(param0->unk_75C, cursorPosition);
         return v0->unk_00;
     }
 }

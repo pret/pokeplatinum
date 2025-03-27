@@ -4,7 +4,7 @@
 #include "pokemon.h"
 
 typedef struct {
-    BoxPokemon *unk_00;
+    BoxPokemon *boxMon;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;
