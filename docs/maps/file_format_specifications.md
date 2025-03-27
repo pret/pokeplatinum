@@ -142,11 +142,11 @@ Here's the structure of each file:
 
 | Name       | Offset   | Size | Type      | Description                                                        |
 | ---------- | -------- | ---- | --------- | ------------------------------------------------------------------ |
-| `modelID`  | `0x0000` | 2    | `u16`     | Index of the associated model in the `build_model.narc` NARC.      |
-| `position` | `0x0002` | 12   | `VecFx32` | Position of the map prop on the map.                               |
-| `rotation` | `0x000E` | 12   | `VecFx32` | Rotation of the map prop, where each angle is between 0 and 65535. |
-| `scale`    | `0x001A` | 12   | `VecFx32` | Scale of the map prop, where 1.0 is the original size.             |
-| `dummy`    | `0x0026` | 8    | `u32[2]`  | Unknown: unused in the code, and seems to be always zero.          |
+| `modelID`  | `0x0000` | 4    | `u32`     | Index of the associated model in the `build_model.narc` NARC.      |
+| `position` | `0x0004` | 12   | `VecFx32` | Position of the map prop on the map.                               |
+| `rotation` | `0x0010` | 12   | `VecFx32` | Rotation of the map prop, where each angle is between 0 and 65535. |
+| `scale`    | `0x001C` | 12   | `VecFx32` | Scale of the map prop, where 1.0 is the original size.             |
+| `dummy`    | `0x0028` | 8    | `u32[2]`  | Unknown: unused in the code, and seems to be always zero.          |
 
 ### Struct `BDHC`
 
