@@ -406,7 +406,7 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 
             Window_DrawMessageBox(&(param0->unk_5C), 109, 2);
             Window_CopyToVRAM(&(param0->unk_5C));
-            sub_02006150(1156);
+            Sound_PlayFanfare(1156);
 
             param0->unk_08 = 0;
             param0->unk_0C = 1;
@@ -453,7 +453,7 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 static BOOL ov95_0224B990(UnkStruct_ov95_0224B4D4 *param0, int param1)
 {
     if (param0->unk_0C) {
-        param0->unk_0C = sub_020061E4();
+        param0->unk_0C = Sound_IsBGMPausedByFanfare();
     }
 
     if (param0->unk_08 < param1) {

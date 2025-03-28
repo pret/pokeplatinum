@@ -44,8 +44,8 @@ int sub_0200598C(void);
 BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 form);
 void Sound_PlayDelayedPokemonCry(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 delay, u8 form);
 void sub_0200605C(void);
-BOOL sub_02006150(u16 param0);
-int sub_0200619C(void);
-int sub_020061E4(void);
+BOOL Sound_PlayFanfare(u16 param0);
+BOOL Sound_UpdateFanfareDelay(void);
+BOOL Sound_IsBGMPausedByFanfare(void);
 
 #endif // POKEPLATINUM_UNK_02005474_H

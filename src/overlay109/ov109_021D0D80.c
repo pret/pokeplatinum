@@ -1245,7 +1245,7 @@ static int ov109_021D18A0(UnkStruct_ov109_021D0F70 *param0)
     }
 
     {
-        sub_02006150(1158);
+        Sound_PlayFanfare(1158);
     }
 
     param0->unk_00 = 38;
@@ -1256,7 +1256,7 @@ static int ov109_021D18F4(UnkStruct_ov109_021D0F70 *param0)
 {
     if (param0->unk_0C < (30 * 4)) {
         param0->unk_0C++;
-    } else if (sub_020061E4() == 0) {
+    } else if (Sound_IsBGMPausedByFanfare() == 0) {
         param0->unk_0C = 0;
         param0->unk_00 = 39;
     }
@@ -1288,7 +1288,7 @@ static int ov109_021D1918(UnkStruct_ov109_021D0F70 *param0)
         ov109_021D2714(param0, 3, v0);
 
         BOOL removedItem = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, HEAP_ID_95);
-        sub_02006150(1158);
+        Sound_PlayFanfare(1158);
 
         if (removedItem == TRUE) {
             param0->unk_00 = 40;
@@ -1304,7 +1304,7 @@ static int ov109_021D19AC(UnkStruct_ov109_021D0F70 *param0)
 {
     if (param0->unk_0C < (30 * 4)) {
         param0->unk_0C++;
-    } else if (sub_020061E4() == 0) {
+    } else if (Sound_IsBGMPausedByFanfare() == 0) {
         param0->unk_0C = 0;
         param0->unk_00 = 43;
     }
@@ -1316,7 +1316,7 @@ static int ov109_021D19D0(UnkStruct_ov109_021D0F70 *param0)
 {
     if (param0->unk_0C < (30 * 4)) {
         param0->unk_0C++;
-    } else if (sub_020061E4() == 0) {
+    } else if (Sound_IsBGMPausedByFanfare() == 0) {
         param0->unk_0C = 0;
         param0->unk_00 = 40;
         ov109_021D2634(param0, 4);

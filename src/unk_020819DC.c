@@ -618,12 +618,12 @@ static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
     case 1:
         return Sound_IsAnyEffectPlaying();
     case 2:
-        return sub_020061E4();
+        return Sound_IsBGMPausedByFanfare();
     case 3:
         Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 4:
-        sub_02006150(1155);
+        Sound_PlayFanfare(1155);
         break;
     case 5:
         return Sound_IsEffectPlaying(1510);

@@ -2431,16 +2431,16 @@ static BOOL BattleMessage_Callback(TextPrinterTemplate *param0, u16 param1)
         v0 = Sound_IsAnyEffectPlaying();
         break;
     case 2:
-        v0 = sub_020061E4();
+        v0 = Sound_IsBGMPausedByFanfare();
         break;
     case 3:
-        sub_02006150(1156);
+        Sound_PlayFanfare(1156);
         break;
     case 4:
         Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 5:
-        sub_02006150(1155);
+        Sound_PlayFanfare(1155);
         break;
     default:
         break;

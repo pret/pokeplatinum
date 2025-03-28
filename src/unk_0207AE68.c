@@ -603,7 +603,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 38:
-        if (sub_020061E4() == 0) {
+        if (Sound_IsBGMPausedByFanfare() == 0) {
             if (--param0->unk_66 == 0) {
                 param0->unk_64 = 13;
             }
@@ -989,16 +989,16 @@ static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
         v0 = Sound_IsAnyEffectPlaying();
         break;
     case 2:
-        v0 = sub_020061E4();
+        v0 = Sound_IsBGMPausedByFanfare();
         break;
     case 3:
-        sub_02006150(1156);
+        Sound_PlayFanfare(1156);
         break;
     case 4:
         Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 5:
-        sub_02006150(1155);
+        Sound_PlayFanfare(1155);
         break;
     default:
         break;
