@@ -47,7 +47,9 @@ enum SoundHandleType {
 };
 
 enum SoundSystemParam {
-    SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO = 2,
+    SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_HANDLE = 0,
+    SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_HANDLE,
+    SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO,
 
     SOUND_SYSTEM_PARAM_BGM_FIXED = 5,
 
@@ -59,6 +61,9 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_NEXT_BGM,
     SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED,
     SOUND_SYSTEM_PARAM_BGM_PAUSED,
+
+    SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED = 16,
+    SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED,
 
     SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE = 19,
 
@@ -82,7 +87,7 @@ typedef struct SoundSystem {
     NNSSndHeapHandle heap;
     u8 heapBuffer[SOUND_SYSTEM_HEAP_SIZE]; // Main sound heap where sound data is loaded into
     NNSSndHandle soundHandles[SOUND_HANDLE_TYPE_COUNT];
-    NNSSndWaveOutHandle unk_BBD20[2];
+    NNSSndWaveOutHandle waveOutHandles[2];
     const NNSSndArcBankInfo *currentBankInfo;
     u8 unk_BBD2C[SOUND_SYSTEM_CAPTURE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
     UnkStruct_020052C8 unk_BCD2C;
@@ -98,8 +103,8 @@ typedef struct SoundSystem {
     u8 bgmPaused;
     u16 unk_BCD5E;
     u8 unk_BCD60;
-    u8 unk_BCD61;
-    u8 unk_BCD62;
+    u8 waveOutPrimaryAllocated;
+    u8 waveOutSecondaryAllocated;
     u8 unk_BCD63;
     u8 fieldBGMBankState;
     u8 unk_BCD65;

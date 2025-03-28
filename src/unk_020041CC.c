@@ -25,9 +25,9 @@ static void sub_02004930(u8 param0, u16 param1, int param2);
 void sub_02004950(u16 param0);
 void sub_02004A54(int param0, int param1, int param2);
 void sub_02004AD4(u16 param0, int param1);
-NNSSndWaveOutHandle *sub_02004B78(u32 param0);
-BOOL sub_02004BCC(u32 param0);
-void sub_02004C4C(u32 param0);
+NNSSndWaveOutHandle *Sound_GetWaveOutHandle(enum WaveOutChannel channel);
+BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel param0);
+void Sound_FreeWaveOutChannel(enum WaveOutChannel param0);
 void sub_02004D14(u32 param0, u8 param1);
 void sub_02004D2C(u32 param0, u32 param1);
 void sub_02004D40(u32 param0, int param1);
@@ -737,107 +737,101 @@ MICResult Sound_StartMicManualSampling(MICSamplingType type, void *buffer, MICCa
     return MIC_DoSamplingAsync(type, buffer, callback, param);
 }
 
-NNSSndWaveOutHandle *sub_02004B78(u32 param0)
+NNSSndWaveOutHandle *Sound_GetWaveOutHandle(enum WaveOutChannel channel)
 {
-    SoundSystem *v0 = SoundSystem_Get();
-    u8 *v1 = SoundSystem_GetParam(16);
-    u8 *v2 = SoundSystem_GetParam(17);
+    (void)SoundSystem_Get();
+    u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
+    u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
 
-    if ((param0 != 14) && (param0 != 15)) {
+    if (channel != WAVE_OUT_CHANNEL_PRIMARY && channel != WAVE_OUT_CHANNEL_SECONDARY) {
         GF_ASSERT(FALSE);
     }
 
-    if ((param0 == 14) && (*v1 == 0)) {
+    if (channel == WAVE_OUT_CHANNEL_PRIMARY && *primaryAllocated == FALSE) {
         GF_ASSERT(FALSE);
     }
 
-    if ((param0 == 15) && (*v2 == 0)) {
+    if (channel == WAVE_OUT_CHANNEL_SECONDARY && *secondaryAllocated == FALSE) {
         GF_ASSERT(FALSE);
     }
 
-    if (param0 == 14) {
-        return SoundSystem_GetParam(0);
+    if (channel == WAVE_OUT_CHANNEL_PRIMARY) {
+        return SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_HANDLE);
     } else {
-        return SoundSystem_GetParam(1);
+        return SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_HANDLE);
     }
 }
 
-BOOL sub_02004BCC(u32 param0)
+BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel channel)
 {
-    u8 *v0;
-    u8 *v1;
-    NNSSndWaveOutHandle *v2;
-    SoundSystem *v3 = SoundSystem_Get();
+    NNSSndWaveOutHandle *handle;
+    
+    (void)SoundSystem_Get();
+    u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
+    u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
 
-    v0 = SoundSystem_GetParam(16);
-    v1 = SoundSystem_GetParam(17);
-
-    if ((param0 != 14) && (param0 != 15)) {
+    if (channel != WAVE_OUT_CHANNEL_PRIMARY && channel != WAVE_OUT_CHANNEL_SECONDARY) {
         GF_ASSERT(FALSE);
     }
 
-    if (param0 == 14) {
-        if (*v0 == 0) {
-            v2 = SoundSystem_GetParam(0);
-            *v2 = NNS_SndWaveOutAllocChannel(param0);
+    if (channel == WAVE_OUT_CHANNEL_PRIMARY) {
+        if (*primaryAllocated == FALSE) {
+            handle = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_HANDLE);
+            *handle = NNS_SndWaveOutAllocChannel(channel);
 
-            if (*v2 == NNS_SND_WAVEOUT_INVALID_HANDLE) {
-                return 0;
+            if (*handle == NNS_SND_WAVEOUT_INVALID_HANDLE) {
+                return FALSE;
             }
 
-            *v0 = 1;
+            *primaryAllocated = TRUE;
         } else {
             GF_ASSERT(FALSE);
         }
     } else {
-        if (*v1 == 0) {
-            v2 = SoundSystem_GetParam(1);
-            *v2 = NNS_SndWaveOutAllocChannel(param0);
+        if (*secondaryAllocated == FALSE) {
+            handle = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_HANDLE);
+            *handle = NNS_SndWaveOutAllocChannel(channel);
 
-            if (*v2 == NNS_SND_WAVEOUT_INVALID_HANDLE) {
-                return 0;
+            if (*handle == NNS_SND_WAVEOUT_INVALID_HANDLE) {
+                return FALSE;
             }
 
-            *v1 = 1;
+            *secondaryAllocated = TRUE;
         } else {
             GF_ASSERT(FALSE);
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-void sub_02004C4C(u32 param0)
+void Sound_FreeWaveOutChannel(enum WaveOutChannel channel)
 {
-    NNSSndWaveOutHandle *v0;
-    SoundSystem *v1 = SoundSystem_Get();
-    u8 *v2 = SoundSystem_GetParam(16);
-    u8 *v3 = SoundSystem_GetParam(17);
+    (void)SoundSystem_Get();
+    
+    u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
+    u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
 
-    if ((param0 != 14) && (param0 != 15)) {
+    if (channel != WAVE_OUT_CHANNEL_PRIMARY && channel != WAVE_OUT_CHANNEL_SECONDARY) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    if (param0 == 14) {
-        if (*v2 == 1) {
-            v0 = sub_02004B78(param0);
-            NNS_SndWaveOutFreeChannel(*v0);
-            *v2 = 0;
+    if (channel == WAVE_OUT_CHANNEL_PRIMARY) {
+        if (*primaryAllocated == TRUE) {
+            NNS_SndWaveOutFreeChannel(*Sound_GetWaveOutHandle(channel));
+            *primaryAllocated = FALSE;
         } else {
             GF_ASSERT(FALSE);
         }
     } else {
-        if (*v3 == 1) {
-            v0 = sub_02004B78(param0);
-            NNS_SndWaveOutFreeChannel(*v0);
-            *v3 = 0;
+        if (*secondaryAllocated == TRUE) {
+            NNS_SndWaveOutFreeChannel(*Sound_GetWaveOutHandle(channel));
+            *secondaryAllocated = FALSE;
         } else {
             GF_ASSERT(FALSE);
         }
     }
-
-    return;
 }
 
 BOOL sub_02004CB4(UnkStruct_02004CB4 *param0, u32 param1)
@@ -845,7 +839,7 @@ BOOL sub_02004CB4(UnkStruct_02004CB4 *param0, u32 param1)
     int v0 = NNS_SndWaveOutStart(*param0->unk_00, param0->unk_04, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14, param0->unk_18, param0->unk_1C, param0->unk_20, param0->unk_24);
 
     if (v0 == 0) {
-        sub_02004C4C(param1);
+        Sound_FreeWaveOutChannel(param1);
     }
 
     return v0;
@@ -853,13 +847,13 @@ BOOL sub_02004CB4(UnkStruct_02004CB4 *param0, u32 param1)
 
 void sub_02004CF4(u32 param0)
 {
-    NNS_SndWaveOutStop(*sub_02004B78(param0));
+    NNS_SndWaveOutStop(*Sound_GetWaveOutHandle(param0));
     return;
 }
 
 BOOL sub_02004D04(u32 param0)
 {
-    return NNS_SndWaveOutIsPlaying(*sub_02004B78(param0));
+    return NNS_SndWaveOutIsPlaying(*Sound_GetWaveOutHandle(param0));
 }
 
 void sub_02004D14(u32 param0, u8 param1)
@@ -872,22 +866,22 @@ void sub_02004D14(u32 param0, u8 param1)
         v0 = param1;
     }
 
-    NNS_SndWaveOutSetPan(*sub_02004B78(param0), v0);
+    NNS_SndWaveOutSetPan(*Sound_GetWaveOutHandle(param0), v0);
     return;
 }
 
 void sub_02004D2C(u32 param0, u32 param1)
 {
-    NNS_SndWaveOutSetSpeed(*sub_02004B78(param0), param1);
+    NNS_SndWaveOutSetSpeed(*Sound_GetWaveOutHandle(param0), param1);
     return;
 }
 
 void sub_02004D40(u32 param0, int param1)
 {
     if (sub_02036314() == 1) {
-        NNS_SndWaveOutSetVolume(*sub_02004B78(param0), (param1 / 5));
+        NNS_SndWaveOutSetVolume(*Sound_GetWaveOutHandle(param0), (param1 / 5));
     } else {
-        NNS_SndWaveOutSetVolume(*sub_02004B78(param0), param1);
+        NNS_SndWaveOutSetVolume(*Sound_GetWaveOutHandle(param0), param1);
     }
 
     return;
@@ -943,7 +937,7 @@ BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int heapID)
     {
         UnkStruct_02004CB4 v7;
 
-        v7.unk_00 = sub_02004B78(param3);
+        v7.unk_00 = Sound_GetWaveOutHandle(param3);
         v7.unk_04 = NNS_SND_WAVE_FORMAT_PCM8;
         v7.unk_08 = *v6;
         v7.unk_0C = 0;

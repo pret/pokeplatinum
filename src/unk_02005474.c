@@ -391,12 +391,12 @@ void sub_0200592C(int param0)
 
     if (*v0 == 1) {
         sub_02004E84(14);
-        sub_02004C4C(14);
+        Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
     if (*v1 == 1) {
         sub_02004E84(15);
-        sub_02004C4C(15);
+        Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
     }
 
     ResetMicStatusFlags();
@@ -466,12 +466,12 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
 
     if (*v8 == 1) {
         sub_02004E84(14);
-        sub_02004C4C(14);
+        Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
     if (*v9 == 1) {
         sub_02004E84(15);
-        sub_02004C4C(15);
+        Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
     }
 
     if (species == SPECIES_CHATOT) {
@@ -536,7 +536,7 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
         sub_02005E4C(species, 8, v1);
         break;
     case POKECRY_HYPERVOICE_1:
-        v5 = sub_02004BCC(14);
+        v5 = Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
         v5 = sub_02004D78(species, volume, v0, 14, heapID);
         sub_02004D14(14, v0);
         sub_02005E64(15, heapID);
@@ -574,7 +574,7 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
         sub_02004F68(1, 0xffff, 60);
         break;
     case POKECRY_UPROAR_1:
-        v5 = sub_02004BCC(14);
+        v5 = Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
         v5 = sub_02004D78(species, volume, v0, 14, heapID);
         sub_02004D14(14, v0);
         sub_02005E64(13, heapID);
@@ -672,12 +672,12 @@ static void sub_02005EB0(SysTask *param0, void *param1)
 
         if (*v0 == 1) {
             sub_02004E84(14);
-            sub_02004C4C(14);
+            Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
         }
 
         if (*v1 == 1) {
             sub_02004E84(15);
-            sub_02004C4C(15);
+            Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
         }
 
         sub_02005F24();
@@ -823,7 +823,7 @@ static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int heap
 
     *v1 = 1;
 
-    v0 = sub_02004BCC(15);
+    v0 = Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
     v0 = sub_02004D78(param0, param2, param3, 15, heapID);
 
     return v0;

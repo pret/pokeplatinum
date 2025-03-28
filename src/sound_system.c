@@ -161,10 +161,10 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->bgmFixed;
     case 6:
         return &soundSys->unk_BCD4B;
-    case 0:
-        return &soundSys->unk_BBD20[0];
-    case 1:
-        return &soundSys->unk_BBD20[1];
+    case SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_HANDLE:
+        return &soundSys->waveOutHandles[0];
+    case SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_HANDLE:
+        return &soundSys->waveOutHandles[1];
     case SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO:
         return &soundSys->currentBankInfo;
     case 3:
@@ -189,10 +189,10 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->unk_BCD5E;
     case 15:
         return &soundSys->unk_BCD60;
-    case 16:
-        return &soundSys->unk_BCD61;
-    case 17:
-        return &soundSys->unk_BCD62;
+    case SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED:
+        return &soundSys->waveOutPrimaryAllocated;
+    case SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED:
+        return &soundSys->waveOutSecondaryAllocated;
     case 18:
         return &soundSys->unk_BCD63;
     case SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE:
