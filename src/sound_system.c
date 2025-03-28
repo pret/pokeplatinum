@@ -167,8 +167,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->waveOutHandles[1];
     case SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO:
         return &soundSys->currentBankInfo;
-    case 3:
-        return &soundSys->unk_BBD2C;
+    case SOUND_SYSTEM_PARAM_REVERB_BUFFER:
+        return &soundSys->reverbBuffer;
     case 4:
         return &soundSys->unk_BCD2C;
     case SOUND_SYSTEM_PARAM_FADE_COUNTER:
