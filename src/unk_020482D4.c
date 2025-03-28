@@ -170,7 +170,7 @@ static BOOL sub_020484B0(ScriptContext *param0)
 
 BOOL ScrCmd_PlaySound(ScriptContext *ctx)
 {
-    sub_02006150(ScriptContext_ReadHalfWord(ctx));
+    Sound_PlayFanfare(ScriptContext_ReadHalfWord(ctx));
     return FALSE;
 }
 
@@ -182,7 +182,7 @@ BOOL ScrCmd_WaitSound(ScriptContext *ctx)
 
 static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx)
 {
-    return sub_020061E4() == FALSE;
+    return Sound_IsBGMPausedByFanfare() == FALSE;
 }
 
 BOOL ScrCmd_059(ScriptContext *ctx)

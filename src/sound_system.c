@@ -20,7 +20,7 @@ static void SoundSystem_InitHeapStates(SoundSystem *soundSys);
 static void SoundSystem_InitSoundHandles(SoundSystem *soundSys);
 static void SoundSystem_LoadPersistentGroup(SoundSystem *soundSys);
 static void SoundSystem_InitMic();
-static BOOL sub_02003D28();
+static BOOL SoundSystem_IsFanfarePlaying();
 static void SoundSystem_UpdateState();
 static void SoundSystem_StopBGM();
 
@@ -55,7 +55,7 @@ void SoundSystem_Update()
 {
     SoundSystem *soundSys = SoundSystem_Get();
 
-    if (sub_02003D28() == 0) {
+    if (SoundSystem_IsFanfarePlaying() == FALSE) {
         if (soundSys->fadeCounter > 0) {
             soundSys->fadeCounter--;
         }
@@ -129,7 +129,7 @@ void SoundSystem_SetState(enum SoundSystemState state)
     sSoundSystemState = state;
 }
 
-static BOOL sub_02003D28()
+static BOOL SoundSystem_IsFanfarePlaying()
 {
     SoundSystem *soundSys = SoundSystem_Get();
 
@@ -137,7 +137,7 @@ static BOOL sub_02003D28()
         return TRUE;
     }
 
-    if (soundSys->unk_BCD5E != 0) {
+    if (soundSys->fanfareDelay != 0) {
         return TRUE;
     }
 
@@ -182,8 +182,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->fieldBGMPaused;
     case SOUND_SYSTEM_PARAM_BGM_PAUSED:
         return &soundSys->bgmPaused;
-    case 14:
-        return &soundSys->unk_BCD5E;
+    case SOUND_SYSTEM_PARAM_FANFARE_DELAY:
+        return &soundSys->fanfareDelay;
     case SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK:
         return &soundSys->waveOutReversedPlayback;
     case SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED:
@@ -210,10 +210,10 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->heapStates[SOUND_HEAP_STATE_SFX];
     case SOUND_SYSTEM_PARAM_HEAP_STATE_BGM:
         return &soundSys->heapStates[SOUND_HEAP_STATE_BGM];
-    case 28:
-        return &soundSys->heapStates[5];
-    case 29:
-        return &soundSys->heapStates[6];
+    case SOUND_SYSTEM_PARAM_HEAP_STATE_SUB_SFX:
+        return &soundSys->heapStates[SOUND_HEAP_STATE_SUB_SFX];
+    case SOUND_SYSTEM_PARAM_HEAP_STATE_FANFARE:
+        return &soundSys->heapStates[SOUND_HEAP_STATE_FANFARE];
     case 30:
         return &soundSys->unk_BCD84;
     case 31:
@@ -338,7 +338,7 @@ enum SoundHandleType SoundSystem_GetSoundHandleTypeFromPlayerID(int playerID)
         type = SOUND_HANDLE_TYPE_POKEMON_CRY;
         break;
     case PLAYER_ME:
-        type = 2;
+        type = SOUND_HANDLE_TYPE_FANFARE;
         break;
     case PLAYER_SE_1:
         type = SOUND_HANDLE_TYPE_SFX_1;

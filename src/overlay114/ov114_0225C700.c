@@ -3510,7 +3510,7 @@ static BOOL ov114_0225F7D8(UnkStruct_ov114_0225E854 *param0)
 static void ov114_0225F83C(UnkStruct_ov114_0225E854 *param0)
 {
     if (param0->unk_6C4 == 0) {
-        sub_02006150(1222);
+        Sound_PlayFanfare(1222);
         param0->unk_6C4 = 1;
     }
 }
@@ -3518,7 +3518,7 @@ static void ov114_0225F83C(UnkStruct_ov114_0225E854 *param0)
 static BOOL ov114_0225F860(UnkStruct_ov114_0225E854 *param0)
 {
     if (param0->unk_6C4 == 1) {
-        if (sub_020061E4() == 0) {
+        if (Sound_IsBGMPausedByFanfare() == 0) {
             param0->unk_6C4 = 0;
         }
     }

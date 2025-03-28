@@ -18,6 +18,8 @@
 #define WAVE_OUT_SPEED_HYPERVOICE_1 (WAVE_OUT_SPEED(1.046875))
 #define WAVE_OUT_SPEED_UPROAR_1     (WAVE_OUT_SPEED(0.8125))
 
+#define DEFAULT_FANFARE_DELAY 15 
+
 typedef struct {
     int unk_00;
     SysTask *unk_04;
@@ -39,11 +41,11 @@ static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form);
 void sub_0200605C(void);
 static BOOL sub_020060EC(u16 species, s8 pitch, u8 form);
 static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int heapID);
-BOOL sub_02006150(u16 param0);
-int sub_0200619C(void);
-static void sub_020061C8(int param0);
-int sub_020061E4(void);
-static void sub_02006214(u16 param0);
+BOOL Sound_PlayFanfare(u16 param0);
+BOOL Sound_UpdateFanfareDelay(void);
+static void Sound_Impl_StopFanfare(int param0);
+BOOL Sound_IsBGMPausedByFanfare(void);
+static void Sound_Impl_SetFanfareDelay(u16 param0);
 
 // "Basic" BGM refers to BGM stored in BANK_BASIC
 BOOL Sound_PlayBasicBGM(u16 seqID)
@@ -827,85 +829,71 @@ static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int heap
     return v0;
 }
 
-BOOL sub_02006150(u16 param0)
+BOOL Sound_PlayFanfare(u16 seqID)
 {
-    u16 v0;
-    u8 v1;
-    int v2, v3;
-    const NNSSndArcBankInfo *v4 = Sound_GetBankInfoForSequence(param0);
+    const NNSSndArcBankInfo *bankInfo = Sound_GetBankInfoForSequence(seqID);
 
-    sub_02006214(param0);
+    Sound_Impl_SetFanfareDelay(seqID);
 
-    v0 = Sound_GetCurrentBGM();
-    v1 = Sound_GetPlayerForSequence(v0);
-
-    if (v1 != 0xff) {
-        Sound_SetBGMPlayerPaused(v1, 1);
+    u16 seqID = Sound_GetCurrentBGM();
+    u8 playerID = Sound_GetPlayerForSequence(seqID);
+    if (playerID != 0xff) {
+        Sound_SetBGMPlayerPaused(playerID, TRUE);
     }
 
-    SoundSystem_SaveHeapState(SoundSystem_GetParam(29));
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_FANFARE));
 
-    v2 = SoundSystem_LoadSequenceEx(param0, (NNS_SND_ARC_LOAD_SEQ | NNS_SND_ARC_LOAD_BANK));
-    v2 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(2), param0);
+    BOOL success = SoundSystem_LoadSequenceEx(seqID, (NNS_SND_ARC_LOAD_SEQ | NNS_SND_ARC_LOAD_BANK));
+    success = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FANFARE), seqID);
 
-    Sound_AdjustVolumeForVoiceChatEx(param0, 2);
+    Sound_AdjustVolumeForVoiceChatEx(seqID, SOUND_HANDLE_TYPE_FANFARE);
 
-    return v2;
+    return success;
 }
 
-int sub_0200619C(void)
+BOOL Sound_UpdateFanfareDelay(void)
 {
-    u16 *v0 = SoundSystem_GetParam(14);
+    u16 *fanfareDelay = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FANFARE_DELAY);
 
-    if (Sound_GetNumberOfPlayingSequencesForPlayer(2) != 0) {
-        return 1;
+    if (Sound_GetNumberOfPlayingSequencesForPlayer(PLAYER_ME) != 0) {
+        return TRUE;
     }
 
-    if (*v0 > 0) {
-        (*v0)--;
-        return 1;
+    if (*fanfareDelay > 0) {
+        (*fanfareDelay)--;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void sub_020061C8(int param0)
+static void Sound_Impl_StopFanfare(int frames)
 {
-    int v0, v1;
-    u16 v2;
-
-    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(2), param0);
-    SoundSystem_LoadHeapState(Sound_GetHeapState(6));
-
-    return;
+    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FANFARE), frames);
+    SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_FANFARE));
 }
 
-int sub_020061E4(void)
+BOOL Sound_IsBGMPausedByFanfare(void)
 {
-    u8 v0;
-    u16 v1;
-    u16 *v2 = SoundSystem_GetParam(14);
+    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FANFARE_DELAY);
 
-    if (sub_0200619C() == 1) {
-        return 1;
+    if (Sound_UpdateFanfareDelay() == TRUE) {
+        return TRUE;
     }
 
-    sub_020061C8(0);
+    Sound_Impl_StopFanfare(0);
 
-    v1 = Sound_GetCurrentBGM();
-    v0 = Sound_GetPlayerForSequence(v1);
-
-    if (v0 != 0xff) {
-        Sound_SetBGMPlayerPaused(v0, 0);
+    u16 currentBGM = Sound_GetCurrentBGM();
+    u8 playerID = Sound_GetPlayerForSequence(currentBGM);
+    if (playerID != 0xff) {
+        Sound_SetBGMPlayerPaused(playerID, FALSE);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void sub_02006214(u16 param0)
+static void Sound_Impl_SetFanfareDelay(u16 unused)
 {
-    u16 *v0 = SoundSystem_GetParam(14);
-
-    (*v0) = 15;
-    return;
+    u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FANFARE_DELAY);
+    *param = DEFAULT_FANFARE_DELAY;
 }

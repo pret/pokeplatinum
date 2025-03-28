@@ -19,6 +19,7 @@ enum SoundHeapState {
     SOUND_HEAP_STATE_SFX,
     SOUND_HEAP_STATE_BGM,
     SOUND_HEAP_STATE_SUB_SFX,
+    SOUND_HEAP_STATE_FANFARE,
     
     SOUND_HEAP_STATE_COUNT = 7
 };
@@ -36,8 +37,8 @@ enum SoundSystemState {
 enum SoundHandleType {
     SOUND_HANDLE_TYPE_FIELD_BGM = 0,
     SOUND_HANDLE_TYPE_POKEMON_CRY,
-    // Unknown (2)
-    SOUND_HANDLE_TYPE_SFX_1 = 3,
+    SOUND_HANDLE_TYPE_FANFARE,
+    SOUND_HANDLE_TYPE_SFX_1,
     SOUND_HANDLE_TYPE_SFX_2,
     SOUND_HANDLE_TYPE_SFX_3,
     SOUND_HANDLE_TYPE_SFX_4,
@@ -63,8 +64,8 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_NEXT_BGM,                        // The next BGM ID
     SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED,                // Whether field BGM is paused
     SOUND_SYSTEM_PARAM_BGM_PAUSED,                      // Whether non-field BGM is paused
-
-    SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK = 15, // Whether reversed waveform playback is enabled
+    SOUND_SYSTEM_PARAM_FANFARE_DELAY,                   // While > 0, other sound processing is disabled
+    SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK,      // Whether reversed waveform playback is enabled
     SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED,      // Whether the primary waveform channel is currently allocated
     SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED,    // Whether the secondary waveform channel is currently allocated
 
@@ -85,6 +86,7 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_HEAP_STATE_SFX,                  // Sound Effect data
     SOUND_SYSTEM_PARAM_HEAP_STATE_BGM,                  // Actual BGM data
     SOUND_SYSTEM_PARAM_HEAP_STATE_SUB_SFX,              // Sub screen SFX
+    SOUND_SYSTEM_PARAM_HEAP_STATE_FANFARE,              // Fanfare data
 
     SOUND_SYSTEM_PARAM_FIELD_BGM = 32,                  // Currently active field BGM
 
@@ -114,7 +116,7 @@ typedef struct SoundSystem {
     u16 nextBGM;
     u8 fieldBGMPaused;
     u8 bgmPaused;
-    u16 unk_BCD5E;
+    u16 fanfareDelay;
     u8 waveOutReversedPlayback;
     u8 waveOutPrimaryAllocated;
     u8 waveOutSecondaryAllocated;
