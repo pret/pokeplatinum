@@ -362,7 +362,7 @@ static BOOL sub_02097F38(FieldTask *param0)
         v6->unk_00 = v1->unk_1C;
         v6->unk_04 = SaveData_GetBag(v0->unk_10);
         v6->unk_08 = sub_02028430(v0->unk_10);
-        v6->unk_22 = 0;
+        v6->selectedMonSlot = 0;
         v6->unk_21 = 0;
         v6->unk_20 = 15;
         v6->unk_0C = v1->unk_24;
@@ -381,8 +381,8 @@ static BOOL sub_02097F38(FieldTask *param0)
 
         v13 = sub_02097F18(v0->unk_08) + 1;
 
-        if (v7->unk_22 != 7) {
-            v8 = sub_02097F00(v0->unk_08, v7->unk_22);
+        if (v7->selectedMonSlot != 7) {
+            v8 = sub_02097F00(v0->unk_08, v7->selectedMonSlot);
 
             Pokemon_SetValue(v8, MON_DATA_MAIL_ID, (u8 *)&v13);
             Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(v1->unk_20, v13 - 1));

@@ -127,7 +127,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
     sub_0206F2F0(fieldSystem->saveData);
 }
 
-static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *param2)
+static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *rtcTime)
 {
     sub_02055CD4(fieldSystem, param1);
     SpecialEncounter_DecrementHoneyTreeTimers(fieldSystem->saveData, param1);
@@ -135,14 +135,12 @@ static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *pa
 
     {
         TVBroadcast *v0 = SaveData_TVBroadcast(fieldSystem->saveData);
-        sub_0202E324(v0, param1, param2->minute);
+        sub_0202E324(v0, param1, rtcTime->minute);
     }
 
     {
-        Party *v1;
-
-        v1 = Party_GetFromSavedata(fieldSystem->saveData);
-        Party_SetShayminForm(v1, param1, param2);
+        Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+        Party_SetShayminForm(party, param1, rtcTime);
     }
 }
 

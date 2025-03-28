@@ -118,7 +118,7 @@ static BOOL sub_0209C280(UnkStruct_0209C1EC *param0)
 static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
 {
     if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
-        int v0 = param0->unk_30->unk_22;
+        int v0 = param0->unk_30->selectedMonSlot;
 
         Heap_FreeToHeap(param0->unk_30);
 

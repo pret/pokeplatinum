@@ -83,7 +83,7 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
     v2->unk_32_0 = param0->unk_0A;
     v2->unk_32_4 = param0->unk_0B;
     v2->unk_33 = param0->unk_0C;
-    v2->unk_22 = param0->unk_0D;
+    v2->selectedMonSlot = param0->unk_0D;
 
     for (v0 = 0; v0 < 6; v0++) {
         v2->unk_2C[v0] = param0->unk_0E[v0];
@@ -106,7 +106,7 @@ static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
 
     v1 = *(param0->unk_14);
 
-    switch (v1->unk_22) {
+    switch (v1->selectedMonSlot) {
     case 7:
         param0->unk_00 = 0;
         return 4;
@@ -118,7 +118,7 @@ static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
     }
 
     MI_CpuCopy8(v1->unk_2C, param0->unk_0E, 6);
-    param0->unk_0D = v1->unk_22;
+    param0->unk_0D = v1->selectedMonSlot;
     Heap_FreeToHeap(v1);
     *(param0->unk_14) = NULL;
 

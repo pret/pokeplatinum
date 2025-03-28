@@ -226,12 +226,12 @@ void ov19_021DA694(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *par
     u32 v1;
     NNSG2dCharacterData *v2;
 
-    if ((param1->unk_30 == 112) && (param1->unk_28 == PokeIconSpriteIndex(487, 0, 0))) {
-        param1->unk_28 = PokeIconSpriteIndex(487, 0, 1);
-    } else if ((param1->unk_30 != 112) && (param1->unk_28 == PokeIconSpriteIndex(487, 0, 1))) {
-        param1->unk_28 = PokeIconSpriteIndex(487, 0, 0);
-    } else if ((param2 == 1) && (param1->unk_28 == PokeIconSpriteIndex(492, 0, 1))) {
-        param1->unk_28 = PokeIconSpriteIndex(492, 0, 0);
+    if (param1->unk_30 == 112 && param1->unk_28 == PokeIconSpriteIndex(SPECIES_GIRATINA, 0, GIRATINA_FORM_ALTERED)) {
+        param1->unk_28 = PokeIconSpriteIndex(SPECIES_GIRATINA, 0, GIRATINA_FORM_ORIGIN);
+    } else if (param1->unk_30 != 112 && param1->unk_28 == PokeIconSpriteIndex(SPECIES_GIRATINA, 0, GIRATINA_FORM_ORIGIN)) {
+        param1->unk_28 = PokeIconSpriteIndex(SPECIES_GIRATINA, 0, GIRATINA_FORM_ALTERED);
+    } else if (param2 == 1 && param1->unk_28 == PokeIconSpriteIndex(SPECIES_SHAYMIN, 0, SHAYMIN_FORM_SKY)) {
+        param1->unk_28 = PokeIconSpriteIndex(SPECIES_SHAYMIN, 0, SHAYMIN_FORM_LAND);
     } else {
         return;
     }

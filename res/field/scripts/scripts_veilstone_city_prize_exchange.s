@@ -119,16 +119,16 @@ _01CB:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    ScrCmd_193 0x8000
+    GetSelectedPartySlot 0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _0250
-    ScrCmd_198 0x8000, 0x8001
+    GetPartyMonSpecies 0x8000, 0x8001
     GoToIfEq 0x8001, 0, _025B
     ScrCmd_2FF 0x8000, 0x8004
     GoToIfEq 0x8004, -1, _0245
-    ScrCmd_099 0x800C, 237, 0x8000
+    CheckPartyMonHasMove 0x800C, MOVE_HIDDEN_POWER, 0x8000
     GoToIfEq 0x800C, 0, _0266
     ScrCmd_2FD 0, 0x8004
     Message 11

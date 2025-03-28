@@ -18,35 +18,77 @@
 
 #define MOVESET_MAX MOVESET_FORM_ROTOM_MOW
 
-enum UnownForms {
-    UNOWN_FORM_A = 0,
-    UNOWN_FORM_B,
-    UNOWN_FORM_C,
-    UNOWN_FORM_D,
-    UNOWN_FORM_E,
-    UNOWN_FORM_F,
-    UNOWN_FORM_G,
-    UNOWN_FORM_H,
-    UNOWN_FORM_I,
-    UNOWN_FORM_J,
-    UNOWN_FORM_K,
-    UNOWN_FORM_L,
-    UNOWN_FORM_M,
-    UNOWN_FORM_N,
-    UNOWN_FORM_O,
-    UNOWN_FORM_P,
-    UNOWN_FORM_Q,
-    UNOWN_FORM_R,
-    UNOWN_FORM_S,
-    UNOWN_FORM_T,
-    UNOWN_FORM_U,
-    UNOWN_FORM_V,
-    UNOWN_FORM_W,
-    UNOWN_FORM_X,
-    UNOWN_FORM_Y,
-    UNOWN_FORM_Z,
-    UNOWN_FORM_EXC,
-    UNOWN_FORM_QUE
-};
+#define UNOWN_FORM_A     0
+#define UNOWN_FORM_B     1
+#define UNOWN_FORM_C     2
+#define UNOWN_FORM_D     3
+#define UNOWN_FORM_E     4
+#define UNOWN_FORM_F     5
+#define UNOWN_FORM_G     6
+#define UNOWN_FORM_H     7
+#define UNOWN_FORM_I     8
+#define UNOWN_FORM_J     9
+#define UNOWN_FORM_K     10
+#define UNOWN_FORM_L     11
+#define UNOWN_FORM_M     12
+#define UNOWN_FORM_N     13
+#define UNOWN_FORM_O     14
+#define UNOWN_FORM_P     15
+#define UNOWN_FORM_Q     16
+#define UNOWN_FORM_R     17
+#define UNOWN_FORM_S     18
+#define UNOWN_FORM_T     19
+#define UNOWN_FORM_U     20
+#define UNOWN_FORM_V     21
+#define UNOWN_FORM_W     22
+#define UNOWN_FORM_X     23
+#define UNOWN_FORM_Y     24
+#define UNOWN_FORM_Z     25
+#define UNOWN_FORM_EXC   26
+#define UNOWN_FORM_QUE   27
+#define UNOWN_FORM_COUNT 28
+
+#define DEOXYS_FORM_NORMAL  0
+#define DEOXYS_FORM_ATTACK  1
+#define DEOXYS_FORM_DEFENSE 2
+#define DEOXYS_FORM_SPEED   3
+#define DEOXYS_FORM_COUNT   4
+
+#define BURMY_FORM_PLANT 0
+#define BURMY_FORM_SAND  1
+#define BURMY_FORM_TRASH 2
+#define BURMY_FORM_COUNT 3
+
+#define WORMADAM_FORM_PLANT 0
+#define WORMADAM_FORM_SAND  1
+#define WORMADAM_FORM_TRASH 2
+#define WORMADAM_FORM_COUNT 3
+
+#define SHELLOS_FORM_WEST  0
+#define SHELLOS_FORM_EAST  1
+#define SHELLOS_FORM_COUNT 2
+
+#define GASTRODON_FORM_WEST  0
+#define GASTRODON_FORM_EAST  1
+#define GASTRODON_FORM_COUNT 2
+
+#define ROTOM_FORM_BASE  0
+#define ROTOM_FORM_HEAT  1
+#define ROTOM_FORM_WASH  2
+#define ROTOM_FORM_FROST 3
+#define ROTOM_FORM_FAN   4
+#define ROTOM_FORM_MOW   5
+#define ROTOM_FORM_COUNT 6
+
+#define GIRATINA_FORM_ALTERED 0
+#define GIRATINA_FORM_ORIGIN  1
+#define GIRATINA_FORM_COUNT   2
+
+#define SHAYMIN_FORM_LAND  0
+#define SHAYMIN_FORM_SKY   1
+#define SHAYMIN_FORM_COUNT 2
+
+#define EGG_FORM_BASE    0
+#define EGG_FORM_MANAPHY 1
 
 #endif

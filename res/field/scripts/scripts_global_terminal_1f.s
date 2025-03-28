@@ -454,7 +454,7 @@ _0546:
     ScrCmd_2B7 0x800C
     GoToIfEq 0x800C, 1, _05A0
     SetVar 0x8000, 0
-    ScrCmd_198 0x8000, 0x800C
+    GetPartyMonSpecies 0x8000, 0x800C
     GoToIfEq 0x800C, 0, _05CB
     BufferPartyMonSpecies 0, 0
     Message 18

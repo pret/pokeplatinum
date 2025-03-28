@@ -55,7 +55,7 @@ _00A7:
     End
 
 _00C5:
-    ScrCmd_198 0x8000, 0x8001
+    GetPartyMonSpecies 0x8000, 0x8001
     BufferPartyMonSpecies 0, 0x8000
     Message 4
     SetVar 0x8004, 16
@@ -66,7 +66,7 @@ _00C5:
     End
 
 _00E5:
-    ScrCmd_198 0x8000, 0x8001
+    GetPartyMonSpecies 0x8000, 0x8001
     BufferPartyMonSpecies 0, 0x8000
     Message 5
     SetVar 0x8004, 17
@@ -77,7 +77,7 @@ _00E5:
     End
 
 _0105:
-    ScrCmd_198 0x8000, 0x8001
+    GetPartyMonSpecies 0x8000, 0x8001
     BufferPartyMonSpecies 0, 0x8000
     Message 6
     SetVar 0x8004, 18

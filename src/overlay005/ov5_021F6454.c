@@ -100,7 +100,6 @@ static void ov5_021F70CC(Pokemon *param0, int *param1, int *param2);
 BOOL ScrCmd_300(ScriptContext *ctx);
 BOOL ScrCmd_301(ScriptContext *ctx);
 BOOL ScrCmd_30F(ScriptContext *ctx);
-BOOL ScrCmd_JudgeStats(ScriptContext *ctx);
 BOOL ScrCmd_2F1(ScriptContext *ctx);
 static void ov5_021F661C(UnkStruct_ov5_021F6704 *param0, MessageLoader *param1);
 static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, Window *param8, MessageLoader *param9, u16 *param10, u16 *param11);
@@ -538,13 +537,13 @@ BOOL ScrCmd_31D(ScriptContext *param0)
 
             switch (v5) {
             case SPECIES_GIRATINA:
-                Pokemon_SetGiratinaForm(v0);
+                Pokemon_SetGiratinaFormByHeldItem(v0);
                 break;
             case SPECIES_ROTOM:
-                Pokemon_SetRotomForm(v0, 0, 0);
+                Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
                 break;
             case SPECIES_SHAYMIN:
-                Pokemon_SetShayminForm(v0, 0);
+                Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
                 break;
             }
         }
@@ -595,13 +594,13 @@ BOOL ScrCmd_31E(ScriptContext *param0)
 
         switch (v2) {
         case SPECIES_GIRATINA:
-            Pokemon_SetGiratinaForm(v0);
+            Pokemon_SetGiratinaFormByHeldItem(v0);
             break;
         case SPECIES_ROTOM:
-            Pokemon_SetRotomForm(v0, 0, 0);
+            Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
             break;
         case SPECIES_SHAYMIN:
-            Pokemon_SetShayminForm(v0, 0);
+            Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
             break;
         }
     }
@@ -622,59 +621,52 @@ BOOL ScrCmd_2F1(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_303(ScriptContext *param0)
+BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
 {
-    u32 v0, v1, v2;
-    int v3, v4, v5;
-    Pokemon *v6;
-    Party *v7;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v9 = ScriptContext_GetVarPointer(param0);
-    u16 *v10 = ScriptContext_GetVarPointer(param0);
+    int partyCount, i, count;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVarCount = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarPartySlot = ScriptContext_GetVarPointer(ctx);
 
-    v5 = 0;
-    *v10 = 0xff;
-    v7 = Party_GetFromSavedata(fieldSystem->saveData);
-    v3 = Party_GetCurrentCount(v7);
+    count = 0;
+    *destVarPartySlot = 0xff;
+    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    partyCount = Party_GetCurrentCount(party);
 
-    for (v4 = 0; v4 < v3; v4++) {
-        v6 = Party_GetPokemonBySlotIndex(v7, v4);
-        v0 = Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL);
-        v1 = Pokemon_GetValue(v6, MON_DATA_FORM, NULL);
-        v2 = Pokemon_GetValue(v6, MON_DATA_IS_EGG, NULL);
+    for (i = 0; i < partyCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+        u32 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        u32 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        u32 isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
-        if ((v0 == SPECIES_ROTOM) && (v1 != 0) && (v2 == 0)) {
-            if (*v10 == 0xff) {
-                *v10 = v4;
+        if (species == SPECIES_ROTOM && form != ROTOM_FORM_BASE && isEgg == FALSE) {
+            if (*destVarPartySlot == 0xff) {
+                *destVarPartySlot = i;
             }
 
-            v5++;
+            count++;
         }
     }
 
-    *v9 = v5;
+    *destVarCount = count;
     return 0;
 }
 
-BOOL ScrCmd_304(ScriptContext *param0)
+BOOL ScrCmd_SetRotomForm(ScriptContext *ctx)
 {
-    u32 v0, v1;
-    u16 v2, v3;
-    Pokemon *v4;
-    Party *v5;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v7 = ScriptContext_GetVar(param0);
-    u16 v8 = ScriptContext_GetVar(param0);
-    u16 v9 = ScriptContext_GetVar(param0);
-    u16 v10 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 moveSlot = ScriptContext_GetVar(ctx);
+    u16 v9 = ScriptContext_GetVar(ctx);
+    u16 form = ScriptContext_GetVar(ctx);
 
-    v5 = Party_GetFromSavedata(fieldSystem->saveData);
-    v4 = Party_GetPokemonBySlotIndex(v5, v7);
+    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
-    Pokemon_SetRotomForm(v4, v10, v8);
-    Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), v4);
+    Pokemon_SetRotomForm(mon, form, moveSlot);
+    Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), mon);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_2FF(ScriptContext *param0)
@@ -782,19 +774,17 @@ BOOL ScrCmd_301(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_305(ScriptContext *param0)
+BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    Party *v1;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
-    v1 = Party_GetFromSavedata(fieldSystem->saveData);
-    v0 = Party_GetPokemonBySlotIndex(v1, v3);
-    *v4 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+    *destVar = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_30F(ScriptContext *param0)

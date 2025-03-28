@@ -145,13 +145,13 @@ BOOL ov104_0223971C(UnkStruct_ov104_0222E930 *param0)
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
 
-    if (v1->unk_A8->unk_22 == 7) {
+    if (v1->unk_A8->selectedMonSlot == 7) {
         *v3 = 0xff;
 
         for (v0 = 0; v0 < 2; v0++) {
             v1->unk_A1[v0] = 0;
         }
-    } else if (v1->unk_A8->unk_22 == 6) {
+    } else if (v1->unk_A8->selectedMonSlot == 6) {
         *v3 = v1->unk_A8->unk_2C[0];
         *v3 -= 1;
 

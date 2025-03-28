@@ -895,10 +895,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_095 arg0, arg1
+    .macro GetPartyMonForm partySlot, destVar
     .short 149
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \destVar
     .endm
 
     .macro GivePokemon species, level, heldItem, successVar
@@ -923,11 +923,11 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_099 arg0, arg1, arg2
+    .macro CheckPartyMonHasMove destVar, move, partySlot
     .short 153
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \destVar
+    .short \move
+    .short \partySlot
     .endm
 
     .macro ScrCmd_09A arg0, arg1
@@ -2199,9 +2199,9 @@
     .short 402
     .endm
 
-    .macro ScrCmd_193 arg0
+    .macro GetSelectedPartySlot destVar
     .short 403
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_194 arg0, arg1, arg2, arg3
@@ -2228,10 +2228,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_198 arg0, arg1
+    .macro GetPartyMonSpecies partySlot, destVar
     .short 408
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \destVar
     .endm
 
     .macro ScrCmd_199 arg0, arg1
@@ -2449,7 +2449,9 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_1C0 destVarID, species
+    // Saves TRUE or FALSE into a var depending if the player
+    // has the specified Pokémon in their party.
+    .macro CheckPartyHasSpecies destVarID, species
     .short 448
     .short \destVarID
     .short \species
@@ -2494,10 +2496,10 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_1C8 arg0, arg1
+    .macro GetPartyMonMoveCount destVar, partySlot
     .short 456
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \partySlot
     .endm
 
     .macro ScrCmd_1C9 arg0, arg1
@@ -2506,11 +2508,11 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1CA arg0, arg1, arg2
+    .macro GetPartyMonMove destVar, partySlot, moveSlot
     .short 458
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \destVar
+    .short \partySlot
+    .short \moveSlot
     .endm
 
     .macro ScrCmd_1CB arg0, arg1, arg2
@@ -3364,15 +3366,17 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_262 arg0, arg1
+    // Like CheckPartyHasSpecies, but args are reversed and it checks the species inside eggs.
+    // Since it's only used for Deoxys, no bugs manifest on vanilla.
+    .macro CheckPartyHasSpecies2 species, destVarID
     .short 610
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_263 arg0
+    .macro ChangeDeoxysForm form
     .short 611
-    .short \arg0
+    .short \form
     .endm
 
     .macro ScrCmd_264 arg0
@@ -3940,10 +3944,10 @@
     .short 714
     .endm
 
-    .macro ScrCmd_2CB arg0, arg1
+    .macro CountRepeatedSpeciesInParty destVar, species
     .short 715
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \species
     .endm
 
     .macro ScrCmd_2CC arg0, arg1, arg2
@@ -4044,10 +4048,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2DD arg0, arg1
+    .macro FindPartySlotWithSpecies destVarID, species
     .short 733
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \species
     .endm
 
     .macro ScrCmd_2DE arg0, arg1, arg2, arg3, arg4
@@ -4106,15 +4110,15 @@
     .short \outSelectedOption
     .endm
 
-    .macro ScrCmd_2E7 arg0, arg1
+    .macro OpenSummaryScreenTeachMove partySlot, move
     .short 743
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \move
     .endm
 
-    .macro ScrCmd_2E8 arg0
+    .macro GetSummarySelectedMoveSlot destVar
     .short 744
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ResetMoveSlot partySlot, moveID, moveSlot
@@ -4262,33 +4266,33 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_302 arg0, arg1, arg2, arg3, arg4
+    .macro GetRotomFormsInSave destVarHeat, destVarWash, destVarFrost, destVarFan, destVarMow
     .short 770
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \destVarHeat
+    .short \destVarWash
+    .short \destVarFrost
+    .short \destVarFan
+    .short \destVarMow
     .endm
 
-    .macro ScrCmd_303 arg0, arg1
+    .macro GetPartyRotomCountAndFirst destVarCount, destVarFirstSlot
     .short 771
-    .short \arg0
-    .short \arg1
+    .short \destVarCount
+    .short \destVarFirstSlot
     .endm
 
-    .macro ScrCmd_304 arg0, arg1, arg2, arg3
+    .macro SetRotomForm partySlot, moveSlot, arg2, form
     .short 772
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \moveSlot
     .short \arg2
-    .short \arg3
+    .short \form
     .endm
 
-    .macro ScrCmd_305 arg0, arg1
+    .macro GetPartyMonForm2 partySlot, destVar
     .short 773
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \destVar
     .endm
 
     .macro ScrCmd_306 arg0, arg1
@@ -4403,10 +4407,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_31C arg0, arg1
+    .macro CheckPartyHasFatefulEncounter destVar, species
     .short 796
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \species
     .endm
 
     .macro ScrCmd_31D arg0
@@ -4506,10 +4510,10 @@
     .short 814
     .endm
 
-    .macro ScrCmd_32F arg0, arg1
+    .macro CheckPartyHasHeldItem item, destVar
     .short 815
-    .short \arg0
-    .short \arg1
+    .short \item
+    .short \destVar
     .endm
 
     .macro ScrCmd_330

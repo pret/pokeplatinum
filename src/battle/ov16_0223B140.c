@@ -713,7 +713,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
-    ov16_0223EE70(battleSystem);
+    BattleSystem_SetBurmyForm(battleSystem);
 
     if (battleSystem->resultMask != 0x4) {
         ov16_0223EF68(battleSystem, Party_GetPokemonBySlotIndex(battleSystem->parties[1], 0));

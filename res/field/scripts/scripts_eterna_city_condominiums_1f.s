@@ -25,13 +25,13 @@ _0032:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    ScrCmd_193 0x800C
+    GetSelectedPartySlot 0x800C
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0xFF, _00B3
     SetVar 0x8005, 0x800C
-    ScrCmd_198 0x8005, 0x800C
+    GetPartyMonSpecies 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00BE
     ScrCmd_199 0x8005, 0x800C
     GoToIfEq 0x800C, 1, _00C9
@@ -108,14 +108,14 @@ _0168:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2A5
-    ScrCmd_193 0x800C
+    GetSelectedPartySlot 0x800C
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0xFF, _01D9
     StartNpcTrade NPC_TRADE_CHARAP_CHATOT
     SetVar 0x8004, 0x800C
-    ScrCmd_198 0x8004, 0x8005
+    GetPartyMonSpecies 0x8004, 0x8005
     GetNpcTradeRequestedSpecies 0x800C
     GoToIfNe 0x8005, 0x800C, _01CC
     ScrCmd_229 0x8004

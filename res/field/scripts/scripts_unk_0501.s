@@ -144,8 +144,8 @@ _01DE:
     GoToIfEq 0x8000, 0xFF, _0292
     ScrCmd_31E 0x8000, 0x800C
     GoToIfEq 0x800C, 0xFF, _04EF
-    ScrCmd_198 0x8000, 0x800C
-    GoToIfEq 0x800C, 0, _0285
+    GetPartyMonSpecies 0x8000, 0x800C
+    GoToIfEq 0x800C, SPECIES_NONE, _0285
     CountAliveMonsExcept 0x800C, 0x8000
     GoToIfEq 0x800C, 0, _02C8
     ScrCmd_1AF 0, 0x8000, 0x8001

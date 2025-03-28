@@ -527,7 +527,7 @@ static void sub_02072754(SysTask *param0, void *param1)
             return;
         }
 
-        v0 = v2->unk_1B4->unk_22;
+        v0 = v2->unk_1B4->selectedMonSlot;
         Heap_FreeToHeap(v2->unk_1B4);
 
         if (v0 == 7) {
@@ -604,7 +604,7 @@ static void sub_02072878(SysTask *param0, void *param1)
             return;
         }
 
-        v1 = v4->unk_1B4->unk_22;
+        v1 = v4->unk_1B4->selectedMonSlot;
         v2 = v4->unk_1B4->unk_23;
 
         Heap_FreeToHeap(v4->unk_1B4);
@@ -1211,7 +1211,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
         v0->unk_24 = param0->unk_1C[param0->unk_18].unk_06;
 
         if (param1 == 11) {
-            v0->unk_22 = param0->unk_17;
+            v0->selectedMonSlot = param0->unk_17;
         }
 
         FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, v0);

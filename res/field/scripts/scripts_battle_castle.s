@@ -141,7 +141,7 @@ _01FF:
     GoToIfEq 0x800C, 0xFF, _05D5
     ScrCmd_31E 0x4006, 0x800C
     GoToIfEq 0x800C, 0xFF, _05D5
-    ScrCmd_198 0x4002, 0x4001
+    GetPartyMonSpecies 0x4002, 0x4001
     GoToIfEq 0x4001, 0, _0139
     GoTo _028F
     End
@@ -219,8 +219,8 @@ _03C7:
 _03D1:
     ScrCmd_136
     ScrCmd_135 136
-    ScrCmd_198 0x4002, 0x8000
-    ScrCmd_198 0x4005, 0x8001
+    GetPartyMonSpecies 0x4002, 0x8000
+    GetPartyMonSpecies 0x4005, 0x8001
     ScrCmd_2D3 0x8000, 0x8001, 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 1, _0444

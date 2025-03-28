@@ -432,7 +432,7 @@ BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *param2)
     Party *v2;
     Pokemon *v3;
 
-    if ((v1->unk_23 != 0) || (v1->unk_22 == 7)) {
+    if ((v1->unk_23 != 0) || (v1->selectedMonSlot == 7)) {
         Heap_FreeToHeap(*param1);
         *param1 = NULL;
         return 0;
