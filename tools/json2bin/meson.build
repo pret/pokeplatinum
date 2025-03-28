@@ -13,3 +13,4 @@ encdata_ex_trophy_garden_py = find_program('encdata_ex_trophy_garden.py', native
 encdata_ex_great_marsh_py = find_program('encdata_ex_great_marsh.py', native: true)
 map_matrix_py = find_program('map_matrix.py', native: true)
 npc_trades_py = find_program('npc_trades.py', native: true)
+prop_model_set_py = find_program('prop_model_set.py', native: true)
