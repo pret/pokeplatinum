@@ -15,6 +15,9 @@
 #include "unk_020041CC.h"
 #include "unk_02006224.h"
 
+#define WAVE_OUT_SPEED_HYPERVOICE_1 (WAVE_OUT_SPEED(1.046875))
+#define WAVE_OUT_SPEED_UPROAR_1     (WAVE_OUT_SPEED(0.8125))
+
 typedef struct {
     int unk_00;
     SysTask *unk_04;
@@ -216,11 +219,11 @@ void Sound_StopAll(void)
     NNS_SndPlayerStopSeqAll(0);
 
     if (*v0 == 1) {
-        sub_02004CF4(14);
+        Sound_StopWaveOut(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
     if (*v1 == 1) {
-        sub_02004CF4(15);
+        Sound_StopWaveOut(WAVE_OUT_CHANNEL_SECONDARY);
     }
 
     SoundSystem_SetState(SOUND_SYSTEM_STATE_IDLE);
@@ -242,11 +245,11 @@ void sub_020056D4(void)
     sub_0200592C(0);
 
     if (*v1 == 1) {
-        sub_02004CF4(14);
+        Sound_StopWaveOut(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
     if (*v2 == 1) {
-        sub_02004CF4(15);
+        Sound_StopWaveOut(WAVE_OUT_CHANNEL_SECONDARY);
     }
 
     return;
@@ -390,12 +393,12 @@ void sub_0200592C(int param0)
     NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(8), param0);
 
     if (*v0 == 1) {
-        sub_02004E84(14);
+        Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_PRIMARY);
         Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
     if (*v1 == 1) {
-        sub_02004E84(15);
+        Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_SECONDARY);
         Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
     }
 
@@ -413,11 +416,11 @@ int sub_0200598C(void)
     u8 *v3 = SoundSystem_GetParam(46);
 
     if (*v0 == 1) {
-        return sub_02004D04(14);
+        return Sound_IsWaveOutPlaying(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
     if (*v1 == 1) {
-        return sub_02004D04(15);
+        return Sound_IsWaveOutPlaying(WAVE_OUT_CHANNEL_SECONDARY);
     }
 
     return Sound_GetNumberOfPlayingSequencesForPlayer(0);
@@ -450,9 +453,9 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
     }
 
     if (param2 < 0) {
-        v0 = 64 + (param2 / 2);
+        v0 = WAVE_OUT_PAN_CENTER + (param2 / 2);
     } else {
-        v0 = 64 + (param2 / 2);
+        v0 = WAVE_OUT_PAN_CENTER + (param2 / 2);
     }
 
     v1 = volume - 30;
@@ -465,12 +468,12 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
     *v10 = 0;
 
     if (*v8 == 1) {
-        sub_02004E84(14);
+        Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_PRIMARY);
         Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
     if (*v9 == 1) {
-        sub_02004E84(15);
+        Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_SECONDARY);
         Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
     }
 
@@ -489,8 +492,8 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
                 sub_02005E4C(species, 1, volume);
             } else {
                 if (*v8 == 1) {
-                    sub_02004D14(14, v0);
-                    sub_02004D40(14, volume);
+                    Sound_SetWaveOutPan(WAVE_OUT_CHANNEL_PRIMARY, v0);
+                    Sound_SetWaveOutVolume(WAVE_OUT_CHANNEL_PRIMARY, volume);
                 } else {
                     sub_02004F94(1, 0xffff, param2);
                     sub_02005E4C(species, 1, volume);
@@ -537,12 +540,12 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
         break;
     case POKECRY_HYPERVOICE_1:
         v5 = Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
-        v5 = sub_02004D78(species, volume, v0, 14, heapID);
-        sub_02004D14(14, v0);
+        v5 = Sound_PlayWaveOutReversed(species, volume, v0, WAVE_OUT_CHANNEL_PRIMARY, heapID);
+        Sound_SetWaveOutPan(WAVE_OUT_CHANNEL_PRIMARY, v0);
         sub_02005E64(15, heapID);
-        sub_02004D2C(14, (32768 + 1536));
+        Sound_SetWaveOutSpeed(WAVE_OUT_CHANNEL_PRIMARY, WAVE_OUT_SPEED_HYPERVOICE_1);
         v7 = sub_02006120(species, -64, v1, v0, heapID);
-        sub_02004D2C(15, (32768 + 1536));
+        Sound_SetWaveOutSpeed(WAVE_OUT_CHANNEL_SECONDARY, WAVE_OUT_SPEED_HYPERVOICE_1);
         break;
     case POKECRY_FAINT:
         v4 = Sound_PlayPokemonCry(species, form);
@@ -575,10 +578,10 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
         break;
     case POKECRY_UPROAR_1:
         v5 = Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
-        v5 = sub_02004D78(species, volume, v0, 14, heapID);
-        sub_02004D14(14, v0);
+        v5 = Sound_PlayWaveOutReversed(species, volume, v0, WAVE_OUT_CHANNEL_PRIMARY, heapID);
+        Sound_SetWaveOutPan(WAVE_OUT_CHANNEL_PRIMARY, v0);
         sub_02005E64(13, heapID);
-        sub_02004D2C(14, (32768 - 6144));
+        Sound_SetWaveOutSpeed(WAVE_OUT_CHANNEL_PRIMARY, WAVE_OUT_SPEED_UPROAR_1);
         break;
     case POKECRY_UPROAR_2:
         v4 = Sound_PlayPokemonCry(species, form);
@@ -671,12 +674,12 @@ static void sub_02005EB0(SysTask *param0, void *param1)
         sub_0200592C(0);
 
         if (*v0 == 1) {
-            sub_02004E84(14);
+            Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_PRIMARY);
             Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
         }
 
         if (*v1 == 1) {
-            sub_02004E84(15);
+            Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_SECONDARY);
             Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
         }
 
@@ -824,7 +827,7 @@ static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int heap
     *v1 = 1;
 
     v0 = Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
-    v0 = sub_02004D78(param0, param2, param3, 15, heapID);
+    v0 = Sound_PlayWaveOutReversed(param0, param2, param3, WAVE_OUT_CHANNEL_SECONDARY, heapID);
 
     return v0;
 }

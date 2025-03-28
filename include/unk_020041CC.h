@@ -6,7 +6,6 @@
 #include <nnsys.h>
 
 #include "sound_system.h"
-#include "struct_defs/struct_02004CB4.h"
 
 
 #define FIELD_BGM_BANK_STATE_IDLE   0
@@ -15,6 +14,11 @@
 #define MIN_BGM_VOLUME 0
 #define MAX_BGM_VOLUME 127
 
+#define WAVE_OUT_SPEED(SPEED) (int)((SPEED) * 32768)
+
+#define WAVE_OUT_PAN_LEFT   0
+#define WAVE_OUT_PAN_CENTER 64
+#define WAVE_OUT_PAN_RIGHT  127
 
 enum SoundScene {
     SOUND_SCENE_NONE = 0,
@@ -32,6 +36,19 @@ enum WaveOutChannel {
     WAVE_OUT_CHANNEL_PRIMARY = 14,
     WAVE_OUT_CHANNEL_SECONDARY = 15,
 };
+
+typedef struct WaveOutParam {
+    NNSSndWaveOutHandle *handle;
+    NNSSndWaveFormat format;
+    const void *data;
+    BOOL loop;
+    int loopStartSample;
+    int samples;
+    int sampleRate;
+    int volume;
+    int speed;
+    int pan;
+} WaveOutParam;
 
 void Sound_SetBGMFixed(u8 fixed);
 u8 Sound_IsBGMFixed(void);
@@ -67,14 +84,14 @@ MICResult Sound_StartMicManualSampling(MICSamplingType param0, void *param1, MIC
 NNSSndWaveOutHandle *Sound_GetWaveOutHandle(enum WaveOutChannel channel);
 BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel param0);
 void Sound_FreeWaveOutChannel(enum WaveOutChannel param0);
-BOOL sub_02004CB4(UnkStruct_02004CB4 *param0, u32 param1);
-void sub_02004CF4(u32 param0);
-BOOL sub_02004D04(u32 param0);
-void sub_02004D14(u32 param0, u8 param1);
-void sub_02004D2C(u32 param0, u32 param1);
-void sub_02004D40(u32 param0, int param1);
-BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int heapID);
-void sub_02004E84(u32 param0);
+BOOL Sound_PlayWaveOut(WaveOutParam *param0, enum WaveOutChannel param1);
+void Sound_StopWaveOut(enum WaveOutChannel param0);
+BOOL Sound_IsWaveOutPlaying(enum WaveOutChannel param0);
+void Sound_SetWaveOutPan(enum WaveOutChannel param0, u8 param1);
+void Sound_SetWaveOutSpeed(enum WaveOutChannel param0, u32 param1);
+void Sound_SetWaveOutVolume(enum WaveOutChannel param0, int param1);
+BOOL Sound_PlayWaveOutReversed(u16 param0, int param1, int param2, enum WaveOutChannel param3, int heapID);
+void Sound_StopWaveOutReversed(enum WaveOutChannel param0);
 BOOL sub_02004EC0(void);
 BOOL sub_02004EC8(int param0);
 void sub_02004EEC(int param0);

@@ -6,7 +6,6 @@
 #include "constants/species.h"
 
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_02004CB4.h"
 
 #include "math.h"
 #include "sound_system.h"
@@ -29,7 +28,7 @@ BOOL CheckMicRecordingStatus(void)
 
     if (*v1 == 1) {
         if (*v0 == 1) {
-            if (sub_02004D04(14) == 0) {
+            if (Sound_IsWaveOutPlaying(WAVE_OUT_CHANNEL_PRIMARY) == 0) {
                 ResetMicStatusFlags();
                 return 1;
             }
@@ -87,21 +86,21 @@ BOOL ProcessAudioInput(const ChatotCry *cry, u32 param1, int volume, int pan)
     ProcessChatotCryAudioData(v3, GetChatotCryAudioBuffer(cry));
 
     {
-        UnkStruct_02004CB4 v5;
+        WaveOutParam v5;
 
-        v5.unk_00 = Sound_GetWaveOutHandle(WAVE_OUT_CHANNEL_PRIMARY);
-        v5.unk_04 = NNS_SND_WAVE_FORMAT_PCM8;
-        v5.unk_08 = sub_02005014();
-        v5.unk_0C = 0;
-        v5.unk_10 = 0;
-        v5.unk_14 = (2000 * 1);
-        v5.unk_18 = 2000;
-        v5.unk_1C = volume;
-        v5.unk_20 = (32768 + v0);
-        v5.unk_24 = v2;
+        v5.handle = Sound_GetWaveOutHandle(WAVE_OUT_CHANNEL_PRIMARY);
+        v5.format = NNS_SND_WAVE_FORMAT_PCM8;
+        v5.data = sub_02005014();
+        v5.loop = FALSE;
+        v5.loopStartSample = 0;
+        v5.samples = (2000 * 1);
+        v5.sampleRate = 2000;
+        v5.volume = volume;
+        v5.speed = WAVE_OUT_SPEED(1.0) + v0;
+        v5.pan = v2;
 
-        v1 = sub_02004CB4(&v5, 14);
-        sub_02004D40(14, volume);
+        v1 = Sound_PlayWaveOut(&v5, WAVE_OUT_CHANNEL_PRIMARY);
+        Sound_SetWaveOutVolume(WAVE_OUT_CHANNEL_PRIMARY, volume);
     }
 
     *v4 = 1;
@@ -116,7 +115,7 @@ void ResetMicStatusFlags(void)
     u8 *v1 = SoundSystem_GetParam(30);
 
     if (*v0 == 1) {
-        sub_02004E84(14);
+        Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_PRIMARY);
         Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
     }
 

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02004CB4.h"
 #include "struct_defs/struct_020052C8.h"
 
 #include "communication_system.h"
@@ -28,14 +27,14 @@ void sub_02004AD4(u16 param0, int param1);
 NNSSndWaveOutHandle *Sound_GetWaveOutHandle(enum WaveOutChannel channel);
 BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel param0);
 void Sound_FreeWaveOutChannel(enum WaveOutChannel param0);
-void sub_02004D14(u32 param0, u8 param1);
-void sub_02004D2C(u32 param0, u32 param1);
-void sub_02004D40(u32 param0, int param1);
-BOOL sub_02004CB4(UnkStruct_02004CB4 *param0, u32 param1);
-void sub_02004CF4(u32 param0);
-BOOL sub_02004D04(u32 param0);
-void sub_02004E84(u32 param0);
-static void sub_02004E64(u8 *param0, u32 param1);
+void Sound_SetWaveOutPan(enum WaveOutChannel param0, u8 param1);
+void Sound_SetWaveOutSpeed(enum WaveOutChannel param0, u32 param1);
+void Sound_SetWaveOutVolume(enum WaveOutChannel param0, int param1);
+BOOL Sound_PlayWaveOut(WaveOutParam *param0, enum WaveOutChannel param1);
+void Sound_StopWaveOut(enum WaveOutChannel param0);
+BOOL Sound_IsWaveOutPlaying(enum WaveOutChannel param0);
+void Sound_StopWaveOutReversed(enum WaveOutChannel param0);
+static void Sound_Impl_ReverseBuffer(u8 *param0, u32 param1);
 BOOL sub_02004EC0(void);
 BOOL sub_02004EC8(int param0);
 void sub_02004EEC(int param0);
@@ -834,163 +833,149 @@ void Sound_FreeWaveOutChannel(enum WaveOutChannel channel)
     }
 }
 
-BOOL sub_02004CB4(UnkStruct_02004CB4 *param0, u32 param1)
+BOOL Sound_PlayWaveOut(WaveOutParam *param, enum WaveOutChannel channel)
 {
-    int v0 = NNS_SndWaveOutStart(*param0->unk_00, param0->unk_04, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14, param0->unk_18, param0->unk_1C, param0->unk_20, param0->unk_24);
+    BOOL success = NNS_SndWaveOutStart(
+        *param->handle, 
+        param->format, 
+        param->data, 
+        param->loop, 
+        param->loopStartSample, 
+        param->samples, 
+        param->sampleRate, 
+        param->volume, 
+        param->speed, 
+        param->pan
+    );
 
-    if (v0 == 0) {
-        Sound_FreeWaveOutChannel(param1);
+    if (success == FALSE) {
+        Sound_FreeWaveOutChannel(channel);
     }
 
-    return v0;
+    return success;
 }
 
-void sub_02004CF4(u32 param0)
+void Sound_StopWaveOut(enum WaveOutChannel channel)
 {
-    NNS_SndWaveOutStop(*Sound_GetWaveOutHandle(param0));
-    return;
+    NNS_SndWaveOutStop(*Sound_GetWaveOutHandle(channel));
 }
 
-BOOL sub_02004D04(u32 param0)
+BOOL Sound_IsWaveOutPlaying(enum WaveOutChannel channel)
 {
-    return NNS_SndWaveOutIsPlaying(*Sound_GetWaveOutHandle(param0));
+    return NNS_SndWaveOutIsPlaying(*Sound_GetWaveOutHandle(channel));
 }
 
-void sub_02004D14(u32 param0, u8 param1)
+void Sound_SetWaveOutPan(enum WaveOutChannel channel, u8 pan)
 {
-    u8 v0;
-
-    if (param1 > 127) {
-        v0 = 127;
+    u8 clampedPan;
+    if (pan > 127) {
+        clampedPan = 127;
     } else {
-        v0 = param1;
+        clampedPan = pan;
     }
 
-    NNS_SndWaveOutSetPan(*Sound_GetWaveOutHandle(param0), v0);
-    return;
+    NNS_SndWaveOutSetPan(*Sound_GetWaveOutHandle(channel), clampedPan);
 }
 
-void sub_02004D2C(u32 param0, u32 param1)
+void Sound_SetWaveOutSpeed(enum WaveOutChannel channel, u32 speed)
 {
-    NNS_SndWaveOutSetSpeed(*Sound_GetWaveOutHandle(param0), param1);
-    return;
+    NNS_SndWaveOutSetSpeed(*Sound_GetWaveOutHandle(channel), speed);
 }
 
-void sub_02004D40(u32 param0, int param1)
+void Sound_SetWaveOutVolume(enum WaveOutChannel channel, int volume)
 {
     if (sub_02036314() == 1) {
-        NNS_SndWaveOutSetVolume(*Sound_GetWaveOutHandle(param0), (param1 / 5));
+        NNS_SndWaveOutSetVolume(*Sound_GetWaveOutHandle(channel), volume / 5);
     } else {
-        NNS_SndWaveOutSetVolume(*Sound_GetWaveOutHandle(param0), param1);
+        NNS_SndWaveOutSetVolume(*Sound_GetWaveOutHandle(channel), volume);
     }
-
-    return;
 }
 
-BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int heapID)
+BOOL Sound_PlayWaveOutReversed(u16 waveArcID, int volume, int pan, enum WaveOutChannel channel, int heapID)
 {
-    u8 *v0;
-    const NNSSndArcWaveArcInfo *v1;
-    u32 v2;
-    int v3, v4;
-    SoundSystem *v5 = SoundSystem_Get();
-    void **v6 = SoundSystem_GetParam(34);
+    (void)SoundSystem_Get();
+    void **reverseBuffer = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER);
 
-    if ((param3 != 14) && (param3 != 15)) {
+    if (channel != WAVE_OUT_CHANNEL_PRIMARY && channel != WAVE_OUT_CHANNEL_SECONDARY) {
         GF_ASSERT(FALSE);
     }
 
-    v1 = NNS_SndArcGetWaveArcInfo(param0);
-
-    if (v1 == NULL) {
+    const NNSSndArcWaveArcInfo *info = NNS_SndArcGetWaveArcInfo(waveArcID);
+    if (info == NULL) {
         GF_ASSERT(FALSE);
-        return 0;
+        return FALSE;
     }
 
-    v2 = NNS_SndArcGetFileSize(v1->fileId);
-
-    if (v2 == 0) {
+    u32 fileSize = NNS_SndArcGetFileSize(info->fileId);
+    if (fileSize == 0) {
         GF_ASSERT(FALSE);
-        return 0;
+        return FALSE;
     }
 
-    if (param3 == 14) {
-        *v6 = Heap_AllocFromHeap(heapID, v2);
-
-        if (*v6 == NULL) {
+    if (channel == WAVE_OUT_CHANNEL_PRIMARY) {
+        *reverseBuffer = Heap_AllocFromHeap(heapID, fileSize);
+        if (*reverseBuffer == NULL) {
             GF_ASSERT(FALSE);
-            return 0;
+            return FALSE;
         }
 
-        memset(*v6, 0, v2);
+        memset(*reverseBuffer, 0, fileSize);
 
-        v3 = NNS_SndArcReadFile(v1->fileId, *v6, v2, 0);
-
-        if (v3 == -1) {
+        if (NNS_SndArcReadFile(info->fileId, *reverseBuffer, fileSize, 0) == -1) {
             GF_ASSERT(FALSE);
-            return 0;
+            return FALSE;
         }
 
-        sub_02004E64(*v6, v2);
+        Sound_Impl_ReverseBuffer(*reverseBuffer, fileSize);
     }
 
-    {
-        UnkStruct_02004CB4 v7;
+    WaveOutParam param;
+    param.handle = Sound_GetWaveOutHandle(channel);
+    param.format = NNS_SND_WAVE_FORMAT_PCM8;
+    param.data = *reverseBuffer;
+    param.loop = FALSE;
+    param.loopStartSample = 0;
+    param.samples = fileSize;
+    param.sampleRate = 13379;
+    param.volume = volume;
+    param.speed = WAVE_OUT_SPEED(0.75);
+    param.pan = pan;
 
-        v7.unk_00 = Sound_GetWaveOutHandle(param3);
-        v7.unk_04 = NNS_SND_WAVE_FORMAT_PCM8;
-        v7.unk_08 = *v6;
-        v7.unk_0C = 0;
-        v7.unk_10 = 0;
-        v7.unk_14 = v2;
-        v7.unk_18 = 13379;
-        v7.unk_1C = param1;
-        v7.unk_20 = 24576;
-        v7.unk_24 = param2;
+    BOOL result = Sound_PlayWaveOut(&param, channel);
 
-        v4 = sub_02004CB4(&v7, param3);
+    Sound_SetWaveOutVolume(channel, volume);
 
-        sub_02004D40(param3, param1);
-    }
+    u8 *reversedPlayback = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK);
+    *reversedPlayback = TRUE;
 
-    v0 = SoundSystem_GetParam(15);
-    *v0 = 1;
-
-    return v4;
+    return result;
 }
 
-static void sub_02004E64(u8 *param0, u32 param1)
+static void Sound_Impl_ReverseBuffer(u8 *buffer, u32 size)
 {
-    int v0;
-    u8 v1;
-
-    for (v0 = 0; v0 < (param1 / 2); v0++) {
-        v1 = param0[v0];
-        param0[v0] = param0[param1 - 1 - v0];
-        param0[param1 - 1 - v0] = v1;
+    for (int i = 0; i < (size / 2); i++) {
+        u8 tmp = buffer[i];
+        buffer[i] = buffer[size - 1 - i];
+        buffer[size - 1 - i] = tmp;
     }
-
-    return;
 }
 
-void sub_02004E84(u32 param0)
+void Sound_StopWaveOutReversed(enum WaveOutChannel channel)
 {
-    SoundSystem *v0 = SoundSystem_Get();
-    u8 *v1 = SoundSystem_GetParam(15);
-    void **v2 = SoundSystem_GetParam(34);
+    (void)SoundSystem_Get();
+    u8 *reversedPlaybackEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK);
+    void **reverseBuffer = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER);
 
-    if ((param0 != 14) && (param0 != 15)) {
+    if (channel != WAVE_OUT_CHANNEL_PRIMARY && channel != WAVE_OUT_CHANNEL_SECONDARY) {
         GF_ASSERT(FALSE);
     }
 
-    sub_02004CF4(param0);
+    Sound_StopWaveOut(channel);
 
-    if (*v1 == 1) {
-        *v1 = 0;
-        Heap_FreeToHeap(*v2);
+    if (*reversedPlaybackEnabled == TRUE) {
+        *reversedPlaybackEnabled = FALSE;
+        Heap_FreeToHeap(*reverseBuffer);
     }
-
-    return;
 }
 
 BOOL sub_02004EC0(void)

@@ -62,7 +62,8 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED,
     SOUND_SYSTEM_PARAM_BGM_PAUSED,
 
-    SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED = 16,
+    SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK = 15,
+    SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED,
     SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED,
 
     SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE = 19,
@@ -76,6 +77,8 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_HEAP_STATE_BGM,
 
     SOUND_SYSTEM_PARAM_FIELD_BGM = 32,
+
+    SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER = 34,
 
     SOUND_SYSTEM_PARAM_CHATOT_CRY = 36,
 
@@ -102,7 +105,7 @@ typedef struct SoundSystem {
     u8 fieldBGMPaused;
     u8 bgmPaused;
     u16 unk_BCD5E;
-    u8 unk_BCD60;
+    u8 waveOutReversedPlayback;
     u8 waveOutPrimaryAllocated;
     u8 waveOutSecondaryAllocated;
     u8 unk_BCD63;
@@ -115,7 +118,7 @@ typedef struct SoundSystem {
     u8 unk_BCD85;
     u16 currentFieldBGM;
     const SNDWaveData *unk_BCD88;
-    void *unk_BCD8C;
+    void *waveOutReverseBuffer;
     int unk_BCD90;
     SysTask *unk_BCD94;
     ChatotCry *chatotCry;

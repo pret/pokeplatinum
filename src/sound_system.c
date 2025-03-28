@@ -187,8 +187,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->bgmPaused;
     case 14:
         return &soundSys->unk_BCD5E;
-    case 15:
-        return &soundSys->unk_BCD60;
+    case SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK:
+        return &soundSys->waveOutReversedPlayback;
     case SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED:
         return &soundSys->waveOutPrimaryAllocated;
     case SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED:
@@ -225,8 +225,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->currentFieldBGM;
     case 33:
         return &soundSys->unk_BCD88;
-    case 34:
-        return &soundSys->unk_BCD8C;
+    case SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER:
+        return &soundSys->waveOutReverseBuffer;
     case 35:
         return &soundSys->unk_BCD94;
     case SOUND_SYSTEM_PARAM_CHATOT_CRY:
