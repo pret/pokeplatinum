@@ -16,7 +16,7 @@
 #include "rtc.h"
 #include "system_flags.h"
 #include "trainer_data.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_02005474.h"
 #include "vars_flags.h"
 

@@ -12,7 +12,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "sound_system.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_02006224.h"
 
 #define WAVE_OUT_SPEED_HYPERVOICE_1 (WAVE_OUT_SPEED(1.046875))

@@ -37,7 +37,7 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_0206CCB0.h"

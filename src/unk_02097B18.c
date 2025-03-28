@@ -33,7 +33,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "system.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_0201E3D8.h"

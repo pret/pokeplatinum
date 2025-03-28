@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_02030108.h"
 #include "unk_0206CCB0.h"
 #include "unk_0209B6F8.h"

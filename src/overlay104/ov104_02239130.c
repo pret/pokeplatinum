@@ -23,7 +23,7 @@
 #include "game_records.h"
 #include "pokemon.h"
 #include "savedata.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_020363E8.h"
 #include "unk_02049D08.h"
 #include "unk_0206CCB0.h"

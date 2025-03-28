@@ -22,7 +22,7 @@ pokeplatinum_c = files(
     'font.c',
     'palette.c',
     'sound_system.c',
-    'unk_020041CC.c',
+    'sound.c',
     'unk_02005474.c',
     'unk_02006224.c',
     'unk_0200679C.c',

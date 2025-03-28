@@ -44,7 +44,7 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "trainer_data.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_02026150.h"
 #include "unk_0202F1D4.h"
 #include "unk_0203D1B8.h"

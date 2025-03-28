@@ -26,7 +26,7 @@
 #include "render_window.h"
 #include "sprite_system.h"
 #include "system.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_0200F174.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"

@@ -1,4 +1,4 @@
-#include "unk_020041CC.h"
+#include "sound.h"
 
 #include <nitro.h>
 #include <string.h>

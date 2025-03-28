@@ -32,7 +32,7 @@
 #include "sprite_util.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"

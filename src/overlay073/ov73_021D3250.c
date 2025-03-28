@@ -15,7 +15,7 @@
 #include "palette.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_0200F174.h"
 #include "system.h"
 

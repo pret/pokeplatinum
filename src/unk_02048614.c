@@ -18,7 +18,7 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "system_vars.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_020528D0.h"
 #include "unk_02054884.h"
 #include "unk_020553DC.h"

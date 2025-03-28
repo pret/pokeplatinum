@@ -12,7 +12,7 @@
 #include "heap.h"
 #include "overlay_manager.h"
 #include "system.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
 #include "unk_0208BA78.h"
