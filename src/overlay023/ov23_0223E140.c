@@ -56,6 +56,7 @@
 #include "system.h"
 #include "system_flags.h"
 #include "system_vars.h"
+#include "terrain_collision_manager.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -63,7 +64,6 @@
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
-#include "unk_02054D00.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
@@ -726,20 +726,20 @@ static BOOL ov23_0223E3AC(FieldSystem *fieldSystem, int param1, int param2)
         return 0;
     }
 
-    if (FieldSystem_CheckCollision(fieldSystem, param1, param2)) {
-        if (!FieldSystem_CheckCollision(fieldSystem, param1, param2 + 1)) {
+    if (TerrainCollisionManager_CheckCollision(fieldSystem, param1, param2)) {
+        if (!TerrainCollisionManager_CheckCollision(fieldSystem, param1, param2 + 1)) {
             return 1;
         }
 
-        if (!FieldSystem_CheckCollision(fieldSystem, param1, param2 - 1)) {
+        if (!TerrainCollisionManager_CheckCollision(fieldSystem, param1, param2 - 1)) {
             return 1;
         }
 
-        if (!FieldSystem_CheckCollision(fieldSystem, param1 + 1, param2)) {
+        if (!TerrainCollisionManager_CheckCollision(fieldSystem, param1 + 1, param2)) {
             return 1;
         }
 
-        if (!FieldSystem_CheckCollision(fieldSystem, param1 - 1, param2)) {
+        if (!TerrainCollisionManager_CheckCollision(fieldSystem, param1 - 1, param2)) {
             return 1;
         }
     }
@@ -797,7 +797,7 @@ static void ov23_0223E434(MATHRandContext16 *param0, int param1)
             v5 = MATH_Rand16(param0, 20) + v4 - 10;
             v8 = MATH_Rand16(param0, 20) + v7 - 10;
 
-            if (!FieldSystem_CheckCollision(Unk_ov23_02257740->fieldSystem, v5, v8)) {
+            if (!TerrainCollisionManager_CheckCollision(Unk_ov23_02257740->fieldSystem, v5, v8)) {
                 int v12 = ov23_02243C3C(v5, v8, param0, Unk_ov23_02257740->unk_A30);
 
                 if (0 != v12) {

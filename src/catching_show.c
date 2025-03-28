@@ -22,8 +22,8 @@
 #include "pokemon.h"
 #include "rtc.h"
 #include "species.h"
+#include "terrain_collision_manager.h"
 #include "unk_0202EEC0.h"
-#include "unk_02054D00.h"
 
 #define PAL_PARK_AREA_NONE     0
 #define POINTS_LOST_PER_SECOND 2
@@ -186,7 +186,7 @@ static BOOL IsStepCountZero(CatchingShow *catchingShow)
 
 static int GetEncounterArea(FieldSystem *fieldSystem, int playerX, int playerY)
 {
-    u16 tileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerY);
+    u16 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerY);
     int area = (playerX < 32) ? 0 : 1;
     area += (playerY < 32) ? 0 : 2;
 

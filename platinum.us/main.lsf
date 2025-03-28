@@ -114,7 +114,7 @@ Static main
 	Object main.nef.p/src_savedata_misc.c.o
 	Object main.nef.p/src_game_options.c.o
 	Object main.nef.p/src_berry_patches.c.o
-	Object main.nef.p/src_unk_02027F50.c.o
+	Object main.nef.p/src_persisted_map_features.c.o
 	Object main.nef.p/src_unk_02027F84.c.o
 	Object main.nef.p/src_unk_02028124.c.o
 	Object main.nef.p/src_unk_0202854C.c.o
@@ -227,7 +227,7 @@ Static main
 	Object main.nef.p/src_field_map_change.c.o
 	Object main.nef.p/src_unk_02054884.c.o
 	Object main.nef.p/src_unk_02054BD0.c.o
-	Object main.nef.p/src_unk_02054D00.c.o
+	Object main.nef.p/src_terrain_collision_manager.c.o
 	Object main.nef.p/src_unk_020553DC.c.o
 	Object main.nef.p/src_unk_020556C4.c.o
 	Object main.nef.p/src_field_transition.c.o
@@ -258,7 +258,7 @@ Static main
 	Object main.nef.p/src_unk_020673B8.c.o
 	Object main.nef.p/src_unk_020677F4.c.o
 	Object main.nef.p/src_unk_02067A84.c.o
-	Object main.nef.p/src_unk_02068344.c.o
+	Object main.nef.p/src_dynamic_map_features.c.o
 	Object main.nef.p/src_unk_020683F4.c.o
 	Object main.nef.p/src_pokeradar.c.o
 	Object main.nef.p/src_unk_02069BE0.c.o
@@ -280,8 +280,7 @@ Static main
 	Object main.nef.p/src_unk_020711C8.c.o
 	Object main.nef.p/src_unk_020711EC.c.o
 	Object main.nef.p/src_unk_0207160C.c.o
-	Object main.nef.p/src_unk_02071B10.c.o
-	Object main.nef.p/src_unk_02071CD0.c.o
+	Object main.nef.p/src_persisted_map_features_init.c.o
 	Object main.nef.p/src_map_header_util.c.o
 	Object main.nef.p/src_unk_02071D40.c.o
 	Object main.nef.p/src_unk_020722AC.c.o

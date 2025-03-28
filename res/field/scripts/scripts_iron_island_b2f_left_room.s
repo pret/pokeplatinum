@@ -16,7 +16,7 @@
     ScriptEntryEnd
 
 _0026:
-    ScrCmd_25B
+    InitPersistedMapFeaturesForPlatformLift
     GoToIfUnset 229, _0035
     End
 

@@ -29,7 +29,7 @@
     ScriptEntryEnd
 
 _005E:
-    ScrCmd_20E
+    InitPersistedMapFeaturesForGreatMarsh
     End
 
 _0062:

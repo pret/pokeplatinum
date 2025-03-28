@@ -45,11 +45,11 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_flags.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
 #include "unk_020366A0.h"
-#include "unk_02054D00.h"
 #include "vars_flags.h"
 
 typedef BOOL (*UnkFuncPtr_ov23_02242540)(int, int);
@@ -323,7 +323,7 @@ BOOL ov23_0224240C(int param0, int param1)
     v0.unk_00 = param0;
     v0.unk_02 = param1;
 
-    if (FieldSystem_CheckCollision(sCommManUnderground->fieldSystem, param0, param1)) {
+    if (TerrainCollisionManager_CheckCollision(sCommManUnderground->fieldSystem, param0, param1)) {
         return 1;
     }
 

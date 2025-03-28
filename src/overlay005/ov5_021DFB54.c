@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
@@ -35,6 +36,7 @@
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
 #include "party.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "pokemon.h"
 #include "sys_task.h"
@@ -44,7 +46,6 @@
 #include "unk_020553DC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "unk_02071B10.h"
 
 typedef struct {
     u32 unk_00;
@@ -206,7 +207,7 @@ static void PlayerAvatar_RequestStateWalking(PlayerAvatar *playerAvatar)
         MapObject *mapObj = Player_MapObject(playerAvatar);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 2) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 1) {
             v1 = 0x1c;
         }
     }
@@ -314,7 +315,7 @@ static void PlayerAvatar_RequestStatePoketch(PlayerAvatar *playerAvatar)
         MapObject *mapObj = Player_MapObject(playerAvatar);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 2) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 1) {
             v1 = 0x1e;
         }
     }
@@ -334,7 +335,7 @@ static void PlayerAvatar_RequestStateSave(PlayerAvatar *playerAvatar)
         MapObject *mapObj = Player_MapObject(playerAvatar);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 2) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 1) {
             v1 = 0x1d;
         }
     }
@@ -476,7 +477,7 @@ static int ov5_021DFF1C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
             v2 &= ~(1 << 0);
 
             if (v2 != 0) {
-                if (sub_02071CB4(fieldSystem, 9) == 1) {
+                if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
                     if (ov9_0224F240(mapObj, param2) == 0) {
                         return 0;
                     }
@@ -543,7 +544,7 @@ static BOOL ov5_021DFFBC(FieldTask *param0)
             break;
         }
 
-        if (sub_02071CB4(v0->fieldSystem, 9) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(v0->fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
             if (ov9_0224F2B0(v2) == 1) {
                 v0->unk_14 = ov9_0224F2BC(v0->fieldSystem, param0, v2);
                 v0->unk_00 = 3;

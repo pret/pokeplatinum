@@ -12,7 +12,7 @@
     ScriptEntryEnd
 
 _001A:
-    ScrCmd_2F2
+    InitPersistedMapFeaturesForDistortionWorld
     End
 
 _001E:

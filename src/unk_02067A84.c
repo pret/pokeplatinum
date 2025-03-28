@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
+
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -16,13 +18,13 @@
 #include "heap.h"
 #include "map_object.h"
 #include "map_object_move.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "script_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020655F4.h"
 #include "unk_020711EC.h"
-#include "unk_02071B10.h"
 
 typedef struct {
     int unk_00;
@@ -667,7 +669,7 @@ static int sub_02068308(UnkStruct_020EF6D0 *param0)
 {
     sub_020656AC(param0->unk_24);
 
-    if ((sub_02071CB4(param0->fieldSystem, 2) == 0) || (ov8_0224C5DC(param0->fieldSystem, param0->unk_24) == 0)) {
+    if ((PersistedMapFeatures_IsCurrentDynamicMap(param0->fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 0) || (ov8_0224C5DC(param0->fieldSystem, param0->unk_24) == 0)) {
         MapObject_SetMoveCode(param0->unk_24, 0x0);
     }
 

@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "constants/field/map_load.h"
 #include "generated/journal_location_events.h"
 
@@ -28,19 +29,19 @@
 #include "map_header.h"
 #include "map_object.h"
 #include "map_tile_behavior.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "save_player.h"
 #include "script_manager.h"
 #include "start_menu.h"
 #include "system_flags.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
-#include "unk_02054D00.h"
 #include "unk_0205F180.h"
 #include "unk_0206B70C.h"
 #include "unk_020711C8.h"
-#include "unk_02071B10.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -199,10 +200,10 @@ void sub_02070728(FieldSystem *fieldSystem, UnkStruct_02070950 *param1)
 
     v1 = Player_GetXPos(fieldSystem->playerAvatar);
     v2 = Player_GetZPos(fieldSystem->playerAvatar);
-    v4 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+    v4 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
     PlayerAvatar_GetFacingTileCoords(fieldSystem->playerAvatar, &v1, &v2);
-    v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+    v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
     if (ov5_021E0118(fieldSystem->playerAvatar, v4, v3)) {
         param1->unk_0C |= (1 << 2);
@@ -805,7 +806,7 @@ static void sub_020710D4(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
 
 static int sub_02071130(const UnkStruct_02070950 *param0)
 {
-    if ((inline_02070AF0(param0) == 0) || (sub_02071CB4(param0->fieldSystem, 9) == 1)) {
+    if ((inline_02070AF0(param0) == 0) || (PersistedMapFeatures_IsCurrentDynamicMap(param0->fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1)) {
         return 1;
     }
 

@@ -10,7 +10,7 @@
 
 _0012:
     SetVar 0x4000, 0
-    ScrCmd_175 1
+    InitPersistedMapFeaturesForSunyshoreGym 1
     End
 
 _001D:

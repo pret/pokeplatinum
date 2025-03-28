@@ -2013,7 +2013,7 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_16F
+    .macro InitPersistedMapFeaturesForPastoriaGym
     .short 367
     .endm
 
@@ -2021,7 +2021,7 @@
     .short 368
     .endm
 
-    .macro ScrCmd_171
+    .macro InitPersistedMapFeaturesForHearthomeGym
     .short 369
     .endm
 
@@ -2029,17 +2029,17 @@
     .short 370
     .endm
 
-    .macro ScrCmd_173
+    .macro InitPersistedMapFeaturesForCanalaveGym
     .short 371
     .endm
 
-    .macro ScrCmd_174
+    .macro InitPersistedMapFeaturesForVeilstoneGym
     .short 372
     .endm
 
-    .macro ScrCmd_175 arg0
+    .macro InitPersistedMapFeaturesForSunyshoreGym floorID
     .short 373
-    .byte \arg0
+    .byte \floorID
     .endm
 
     .macro ScrCmd_176 arg0
@@ -2895,7 +2895,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_20E
+    .macro InitPersistedMapFeaturesForGreatMarsh
     .short 526
     .endm
 
@@ -3334,7 +3334,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_25B
+    .macro InitPersistedMapFeaturesForPlatformLift
     .short 603
     .endm
 
@@ -3936,7 +3936,7 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_2C9
+    .macro InitPersistedMapFeaturesForEternaGym
     .short 713
     .endm
 
@@ -4166,7 +4166,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_2F0
+    .macro InitPersistedMapFeaturesForVilla
     .short 752
     .endm
 
@@ -4176,7 +4176,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_2F2
+    .macro InitPersistedMapFeaturesForDistortionWorld
     .short 754
     .endm
 

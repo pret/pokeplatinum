@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/struct_0205E884_decl.h"
@@ -14,17 +15,17 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay009/ov9_02249960.h"
 
+#include "dynamic_map_features.h"
 #include "game_records.h"
 #include "inlines.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
+#include "terrain_collision_manager.h"
 #include "unk_02005474.h"
-#include "unk_02054D00.h"
 #include "unk_020655F4.h"
-#include "unk_02068344.h"
-#include "unk_02071B10.h"
 
 typedef BOOL (*UnkFuncPtr_020EDB84)(u8);
 
@@ -1734,7 +1735,7 @@ static u32 sub_02060C24(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         s8 v6;
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_0205507C(fieldSystem, &v0, x, z, &v6) == 1) {
+        if (TerrainCollisionManager_WillPlayerCollide(fieldSystem, &v0, x, z, &v6) == 1) {
             v1 |= (1 << 1);
 
             if (v6 != 0) {
@@ -1761,12 +1762,12 @@ static int sub_02060CE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
 
-        if (sub_020683D8(fieldSystem, v1, v2, 0, param2) == 1) {
+        if (DynamicMapFeatures_WillPlayerJumpEternaGymClock(fieldSystem, v1, v2, 0, param2) == 1) {
             return 1;
         }
 
         {
-            u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+            u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
             switch (param2) {
             case 0:
@@ -1804,7 +1805,7 @@ static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v2 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v3 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
-        u8 v4 = FieldSystem_GetTileBehavior(fieldSystem, v2, v3);
+        u8 v4 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v2, v3);
 
         switch (param2) {
         case 0:
@@ -1822,7 +1823,7 @@ static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         }
 
         if (v0 == 1) {
-            if (sub_02071CB4(fieldSystem, 9) == 1) {
+            if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
                 if (ov9_022511A0(fieldSystem, v2, v3, param2) == 1) {
                     v0 = 0;
                 }
@@ -1839,7 +1840,7 @@ static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj);
         int v2 = MapObject_GetZ(mapObj);
-        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+        u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
         switch (param2) {
         case 0:
@@ -1866,7 +1867,7 @@ static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
         v1 += MapObject_GetDxFromDir(param2);
         v2 += MapObject_GetDzFromDir(param2);
-        v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+        v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
         if (TileBehavior_IsDoor(v3) == 1) {
             return 1;
@@ -1882,7 +1883,7 @@ static int sub_02060EE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
-        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+        u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
         if ((param2 == 3) && TileBehavior_IsBikeRampEastward(v3)) {
             return 1;
@@ -1902,7 +1903,7 @@ static int sub_02060F4C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
-        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+        u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
         if (MapObject_IsOnWater(mapObj, v3)) {
             return 1;
@@ -1918,7 +1919,7 @@ static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
-        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+        u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
         if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
             if (MapObject_IsOnBikeBridgeNorthSouth(mapObj, v3) == 1) {
@@ -1952,7 +1953,7 @@ static int sub_02061058(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
-        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+        u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
         if (MapObject_IsOnWater(mapObj, v3)) {
             return 1;
@@ -1983,7 +1984,7 @@ static int sub_02061100(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     u32 v0 = 0;
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-    if (sub_02071CB4(fieldSystem, 9) == 1) {
+    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
         int x = MapObject_GetX(mapObj);
         int y = MapObject_GetY(mapObj) / 2;
         int z = MapObject_GetZ(mapObj);
@@ -2009,7 +2010,7 @@ static int sub_02061180(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 9) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
             BOOL v1;
             u32 v2;
             int x = MapObject_GetX(mapObj);
@@ -2060,7 +2061,7 @@ static int sub_02061248(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     if ((param2 != -1) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 9) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
             u32 v2;
             int x = MapObject_GetX(mapObj);
             int y = MapObject_GetY(mapObj) / 2;
@@ -2456,7 +2457,7 @@ u32 sub_02061760(PlayerAvatar *playerAvatar)
     int z = MapObject_GetZ(mapObj);
 
     if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == FALSE) {
-        v0 = FieldSystem_GetTileBehavior(fieldSystem, x, z);
+        v0 = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
     } else {
         ov9_02251044(fieldSystem, x, y, z, &v0);
     }
