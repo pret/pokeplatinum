@@ -78,7 +78,7 @@ BOOL ProcessAudioInput(const ChatotCry *cry, u32 param1, int volume, int pan)
         v2 = 64 + (pan / 2);
     }
 
-    sub_0200592C(0);
+    Sound_StopPokemonCries(0);
     ResetMicStatusFlags();
     Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
 

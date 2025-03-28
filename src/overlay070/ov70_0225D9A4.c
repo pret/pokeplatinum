@@ -808,7 +808,7 @@ int ov70_0225DDF8(OverlayManager *param0, int *param1)
     Heap_Destroy(112);
     Heap_Destroy(113);
     Sound_StopAllEffects(0);
-    sub_0200592C(0);
+    Sound_StopPokemonCries(0);
 
     return 1;
 }

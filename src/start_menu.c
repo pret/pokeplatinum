@@ -1894,7 +1894,7 @@ static void StartMenu_EvolveInit(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
     v2 = menu->unk_25C;
 
-    Sound_StopAll();
+    Sound_StopWaveOutAndSequences();
     Heap_Create(3, 73, 0x30000);
 
     v3 = Party_GetFromSavedata(fieldSystem->saveData);

@@ -28,14 +28,14 @@ static BOOL Sound_Impl_PlayBGM(u16 seqID, u8 playerID, enum SoundHandleType hand
 static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
 BOOL sub_02005588(u8 param0, u16 param1);
 static void Sound_Impl_ResetBGM(void);
-void sub_020056D4(void);
+void Sound_StopAll(void);
 static void sub_02005E4C(u16 param0, int param1, int param2);
-void sub_0200592C(int param0);
+void Sound_StopPokemonCries(int param0);
 int sub_0200598C(void);
 void sub_02005E64(int param0, int heapID);
 static void sub_02005EB0(SysTask *param0, void *param1);
 void sub_02005F24(void);
-static BOOL sub_02006038(u16 species, u8 form);
+static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form);
 void sub_0200605C(void);
 static BOOL sub_020060EC(u16 species, s8 pitch, u8 form);
 static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int heapID);
@@ -211,48 +211,45 @@ BOOL Sound_IsSequencePlaying(u16 seqID)
     return Sound_GetNumberOfPlayingSequencesForPlayer(playerID);
 }
 
-void Sound_StopAll(void)
+void Sound_StopWaveOutAndSequences(void)
 {
-    u8 *v0 = SoundSystem_GetParam(16);
-    u8 *v1 = SoundSystem_GetParam(17);
+    u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
+    u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
 
     NNS_SndPlayerStopSeqAll(0);
 
-    if (*v0 == 1) {
+    if (*primaryAllocated == TRUE) {
         Sound_StopWaveOut(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
-    if (*v1 == 1) {
+    if (*secondaryAllocated == TRUE) {
         Sound_StopWaveOut(WAVE_OUT_CHANNEL_SECONDARY);
     }
 
     SoundSystem_SetState(SOUND_SYSTEM_STATE_IDLE);
 }
 
-void sub_020056D4(void)
+void Sound_StopAll(void)
 {
-    int i;
-    u8 *v1 = SoundSystem_GetParam(16);
-    u8 *v2 = SoundSystem_GetParam(17);
+    u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
+    u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
 
     NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_BGM), 0);
     Sound_Impl_ResetBGM();
 
-    for (i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
         Sound_StopEffectFromHandle(SOUND_HANDLE_TYPE_SFX_1 + i, 0);
     }
 
-    sub_0200592C(0);
+    Sound_StopPokemonCries(0);
 
-    if (*v1 == 1) {
+    if (*primaryAllocated == TRUE) {
         Sound_StopWaveOut(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
-    if (*v2 == 1) {
+    if (*secondaryAllocated == TRUE) {
         Sound_StopWaveOut(WAVE_OUT_CHANNEL_SECONDARY);
     }
-
-    return;
 }
 
 BOOL Sound_PlayPannedEffect(u16 seqID, int pan)
@@ -339,7 +336,7 @@ BOOL Sound_PlayPokemonCry(u16 species, u8 form)
     u8 *v4 = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES);
 
     u16 waveID = species;
-    if (sub_02006038(species, form) == 1) {
+    if (Sound_Impl_IsShayminSkyForm(species, form) == TRUE) {
         waveID = WAVE_ARC_PV516_SKY;
     }
 
@@ -358,7 +355,7 @@ BOOL Sound_PlayPokemonCry(u16 species, u8 form)
 
     if (*v2 == 0) {
         if (*v4 == 0) {
-            sub_0200592C(0);
+            Sound_StopPokemonCries(0);
         }
 
         v1 = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_POKEMON_CRY), -1, waveID, -1, 2);
@@ -383,29 +380,27 @@ BOOL sub_0200590C(u16 species, u8 delay, u8 form)
     return 1;
 }
 
-void sub_0200592C(int param0)
+void Sound_StopPokemonCries(int fadeOutFrames)
 {
-    u8 *v0 = SoundSystem_GetParam(16);
-    u8 *v1 = SoundSystem_GetParam(17);
-    u8 *v2 = SoundSystem_GetParam(15);
+    u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
+    u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
+    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK);
 
-    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(1), param0);
-    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(8), param0);
+    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_POKEMON_CRY), fadeOutFrames);
+    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(8), fadeOutFrames);
 
-    if (*v0 == 1) {
+    if (*primaryAllocated == TRUE) {
         Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_PRIMARY);
         Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
-    if (*v1 == 1) {
+    if (*secondaryAllocated == TRUE) {
         Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_SECONDARY);
         Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
     }
 
     ResetMicStatusFlags();
     sub_0200605C();
-
-    return;
 }
 
 int sub_0200598C(void)
@@ -442,7 +437,7 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
     v6 = 0;
     v7 = 0;
 
-    if (sub_02006038(species, form) == 1) {
+    if (Sound_Impl_IsShayminSkyForm(species, form) == 1) {
         species = SPECIES_EGG;
     }
 
@@ -671,7 +666,7 @@ static void sub_02005EB0(SysTask *param0, void *param1)
     }
 
     if (v2->unk_00 <= 0) {
-        sub_0200592C(0);
+        Sound_StopPokemonCries(0);
 
         if (*v0 == 1) {
             Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_PRIMARY);
@@ -735,7 +730,7 @@ void Sound_PlayDelayedPokemonCry(enum PokemonCryMod cryMod, u16 species, int par
         *v7 ^= 1;
     }
 
-    if (sub_02006038(species, form) == 1) {
+    if (Sound_Impl_IsShayminSkyForm(species, form) == 1) {
         species = SPECIES_EGG;
     }
 
@@ -758,7 +753,7 @@ void Sound_PlayDelayedPokemonCry(enum PokemonCryMod cryMod, u16 species, int par
     return;
 }
 
-static BOOL sub_02006038(u16 species, u8 form)
+static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form)
 {
     if (species == SPECIES_SHAYMIN) {
         if (form == 1) {
@@ -766,7 +761,7 @@ static BOOL sub_02006038(u16 species, u8 form)
         }
     }
 
-    if (species == SPECIES_EGG) {
+    if (species == WAVE_ARC_PV516_SKY) {
         return TRUE;
     }
 

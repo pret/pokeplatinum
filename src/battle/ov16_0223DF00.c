@@ -1565,7 +1565,7 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
     ov16_0226CEB0(battleSys->unk_198, flag);
 
     StartScreenTransition(3, 0, 0, 0, 16, 2, 5);
-    Sound_StopAll();
+    Sound_StopWaveOutAndSequences();
     sub_0200500C(0);
 
     battleSys->unk_2474_0 = 1;

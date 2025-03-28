@@ -390,11 +390,11 @@ static void Sound_Impl_PlayFieldBGM(u16 bgmID, int unused)
     }
 
     Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_SWITCH);
-    sub_020056D4();
+    Sound_StopAll();
 
     if (currentFieldBGM != bgmID) {
         Sound_SetBGMPlayerPaused(PLAYER_FIELD, FALSE);
-        Sound_StopAll();
+        Sound_StopWaveOutAndSequences();
     }
 
     if (*fieldBGMPaused == TRUE) {
@@ -474,7 +474,7 @@ static void sub_020048AC(u16 param0, int param1)
 {
     int *v0 = SoundSystem_GetParam(24);
 
-    Sound_StopAll();
+    Sound_StopWaveOutAndSequences();
     Sound_ClearBGMPauseFlags();
     Sound_LoadSoundEffectsForSceneWithState(SOUND_SCENE_FIELD);
     Sound_PlayBGM(param0);
@@ -486,7 +486,7 @@ void sub_020048CC(u16 param0, int param1)
 {
     int *v0 = SoundSystem_GetParam(24);
 
-    Sound_StopAll();
+    Sound_StopWaveOutAndSequences();
     Sound_LoadSoundEffectsForSceneWithState(6);
     Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_SWITCH);
     Sound_PlayBGM(param0);
@@ -498,7 +498,7 @@ void sub_020048F0(u16 param0, int param1)
 {
     int *v0 = SoundSystem_GetParam(24);
 
-    Sound_StopAll();
+    Sound_StopWaveOutAndSequences();
     Sound_LoadSoundEffectsForSceneWithState(7);
     Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_SWITCH);
     Sound_PlayBGM(param0);
@@ -519,7 +519,7 @@ static void sub_02004930(u8 param0, u16 param1, int param2)
 {
     (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT); // Required to match
 
-    Sound_StopAll();
+    Sound_StopWaveOutAndSequences();
     Sound_LoadSoundEffectsForSceneWithState(param0);
     Sound_PlayBGM(param1);
 
@@ -1426,10 +1426,10 @@ static void sub_0200540C(void)
     if ((Sound_IsFadeActive() == FALSE) && 
         (Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FIELD_BGM)) != -1) && 
         (Sound_GetCurrentBGM() != SEQ_POKERADAR)) {
-        sub_020056D4();
+        Sound_StopAll();
         Sound_SetBGMPlayerPaused(PLAYER_FIELD, TRUE);
     } else {
-        Sound_StopAll();
+        Sound_StopWaveOutAndSequences();
     }
 }
 
