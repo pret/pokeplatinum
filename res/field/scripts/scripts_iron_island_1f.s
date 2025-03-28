@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 _0006:
-    SetFlag 0x9DB
+    SetFlag FLAG_UNK_0x09DB
     End
 
     .byte 2

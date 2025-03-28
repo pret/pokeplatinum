@@ -15,7 +15,7 @@
 
 _001A:
     CallIfEq 0x4057, 1, _00AA
-    GoToIfSet 0x12D, _0080
+    GoToIfSet FLAG_UNK_0x012D, _0080
     CheckGameCompleted 0x4000
     GoToIfEq 0x4000, 0, _0080
     ScrCmd_22D 2, 0x4000
@@ -24,12 +24,12 @@ _001A:
     GoToIfEq 0x4000, FALSE, _0080
     CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, 0x4000
     GoToIfEq 0x4000, FALSE, _0080
-    ClearFlag 0x252
+    ClearFlag FLAG_UNK_0x0252
 _0080:
     End
 
 _0082:
-    GoToIfSet 0x12D, _009A
+    GoToIfSet FLAG_UNK_0x012D, _009A
     CallIfEq 0x408D, 1, _009C
 _009A:
     End
@@ -54,7 +54,7 @@ _00B8:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x12D, _00D6
+    GoToIfSet FLAG_UNK_0x012D, _00D6
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -70,7 +70,7 @@ _00D6:
     End
 
 _00E4:
-    GoToIfSet 0x12D, _022D
+    GoToIfSet FLAG_UNK_0x012D, _022D
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -116,9 +116,9 @@ _0124:
     CloseMessage
     ScrCmd_333 127
     ScrCmd_055 10
-    SetFlag 0x12D
-    SetFlag 0x252
-    SetFlag 0x2CA
+    SetFlag FLAG_UNK_0x012D
+    SetFlag FLAG_UNK_0x0252
+    SetFlag FLAG_UNK_0x02CA
     SetVar 0x408D, 0
     ReleaseAll
     End
@@ -202,7 +202,7 @@ _02B8:
     WaitMovement
     ApplyMovement 16, _0448
     WaitMovement
-    SetFlag 0x25C
+    SetFlag FLAG_UNK_0x025C
     RemoveObject 16
     PlayCry SPECIES_SHAYMIN
     ScrCmd_04D
@@ -340,7 +340,7 @@ _0448:
 
 _0458:
     LockAll
-    ClearFlag 0x2CA
+    ClearFlag FLAG_UNK_0x02CA
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x1F0, _048D
     GoToIfEq 0x8005, 0x1F1, _04AF
@@ -463,7 +463,7 @@ _05F4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x12D, _061C
+    GoToIfSet FLAG_UNK_0x012D, _061C
     Message 10
     WaitABXPadPress
     CloseMessage

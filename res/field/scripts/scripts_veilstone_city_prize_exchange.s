@@ -99,8 +99,8 @@ _017C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 196, _01AF
-    SetFlag 196
+    GoToIfSet FLAG_UNK_0x00C4, _01AF
+    SetFlag FLAG_UNK_0x00C4
     Message 8
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _0250

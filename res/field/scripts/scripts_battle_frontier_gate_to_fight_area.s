@@ -18,14 +18,14 @@
     ScriptEntryEnd
 
 _0032:
-    SetFlag 0x9E5
+    SetFlag FLAG_UNK_0x09E5
     End
 
 _0038:
     LockAll
     SetVar 0x4113, 1
-    SetFlag 0x290
-    SetFlag 0x291
+    SetFlag FLAG_UNK_0x0290
+    SetFlag FLAG_UNK_0x0291
     Call _02C1
     Message 0
     CloseMessage

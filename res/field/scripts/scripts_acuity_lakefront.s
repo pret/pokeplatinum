@@ -32,8 +32,8 @@ _004E:
     End
 
 _0079:
-    SetFlag 0x234
-    ClearFlag 0x298
+    SetFlag FLAG_UNK_0x0234
+    ClearFlag FLAG_UNK_0x0298
     Return
 
 _0083:

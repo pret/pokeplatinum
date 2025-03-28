@@ -19,20 +19,20 @@ _001A:
 _002F:
     ScrCmd_238 11, 0x4000
     GoToIfNe 0x4000, 0, _0055
-    CallIfUnset 0x217, _004F
+    CallIfUnset FLAG_UNK_0x0217, _004F
     End
 
 _004F:
-    SetFlag 0x217
+    SetFlag FLAG_UNK_0x0217
     Return
 
 _0055:
-    GoToIfSet 0x217, _0066
-    ClearFlag 0x217
+    GoToIfSet FLAG_UNK_0x0217, _0066
+    ClearFlag FLAG_UNK_0x0217
     End
 
 _0066:
-    ClearFlag 0x217
+    ClearFlag FLAG_UNK_0x0217
     AddObject 4
     End
 

@@ -81,7 +81,7 @@ _00D2:
     ScrCmd_169 77
     ScrCmd_16A 77
     RemoveObject 2
-    SetFlag 0x162
+    SetFlag FLAG_UNK_0x0162
     ReleaseAll
     End
 

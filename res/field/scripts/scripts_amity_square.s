@@ -51,8 +51,8 @@
     ScriptEntryEnd
 
 _00B6:
-    SetFlag 0x9CC
-    SetFlag 0x2A1
+    SetFlag FLAG_UNK_0x09CC
+    SetFlag FLAG_UNK_0x02A1
     ScrCmd_2DF 0x40AB
     GetRandom 0x4002, 5
     GoToIfEq 0x4002, 0, _00FE
@@ -981,7 +981,7 @@ _1064:
 
 _1072:
     SetVar 0x8002, 5
-    ClearFlag 0x2A1
+    ClearFlag FLAG_UNK_0x02A1
     GoTo _02C9
     End
 
@@ -999,7 +999,7 @@ _10AA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0xAB5, _117C
+    GoToIfSet FLAG_UNK_0x0AB5, _117C
     Message 36
     ScrCmd_2E1 0x40AB, 0x8004
     ScrCmd_2E0 0x40AB, 0x800C
@@ -1055,7 +1055,7 @@ _1172:
     End
 
 _117C:
-    SetFlag 0xAB5
+    SetFlag FLAG_UNK_0x0AB5
     Message 39
     WaitABXPadPress
     CloseMessage

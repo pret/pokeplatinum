@@ -18,7 +18,7 @@
 
 _002E:
     CallIfEq 0x40A4, 3, _0048
-    CallIfSet 143, _005E
+    CallIfSet FLAG_UNK_0x008F, _005E
     End
 
 _0048:
@@ -28,7 +28,7 @@ _0048:
     Return
 
 _005E:
-    SetFlag 0x1F1
+    SetFlag FLAG_UNK_0x01F1
     Return
 
 _0064:
@@ -36,7 +36,7 @@ _0064:
     ApplyMovement LOCALID_PLAYER, _00A4
     ApplyMovement 0, _00B0
     WaitMovement
-    SetFlag 135
+    SetFlag FLAG_UNK_0x0087
     BufferPlayerName 0
     BufferRivalName 1
     Message 0
@@ -75,8 +75,8 @@ _00CC:
 _00E0:
     LockAll
     SetVar 0x410F, 2
-    GoToIfSet 0x15C, _014B
-    GoToIfUnset 0x15D, _0110
+    GoToIfSet FLAG_UNK_0x015C, _014B
+    GoToIfUnset FLAG_UNK_0x015D, _0110
     ScrCmd_22D 2, 0x800C
     GoToIfEq 0x800C, 0, _014B
 _0110:
@@ -95,12 +95,12 @@ _014B:
     End
 
 _014F:
-    SetFlag 0x15C
+    SetFlag FLAG_UNK_0x015C
     Message 35
     Return
 
 _0158:
-    SetFlag 0x15D
+    SetFlag FLAG_UNK_0x015D
     Message 36
     Return
 
@@ -168,16 +168,16 @@ _0214:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 2, _02AF
+    GoToIfSet FLAG_UNK_0x0002, _02AF
     GoToIfGe 0x40A4, 7, _0792
     GoToIfEq 0x40A4, 6, _035E
-    GoToIfSet 144, _036C
+    GoToIfSet FLAG_UNK_0x0090, _036C
     GoToIfGe 0x40A4, 5, _0788
     GoToIfGe 0x40A4, 4, _0711
-    GoToIfSet 248, _075A
+    GoToIfSet FLAG_UNK_0x00F8, _075A
     GoToIfGe 0x40A4, 2, _0768
-    GoToIfSet 135, _077A
-    SetFlag 135
+    GoToIfSet FLAG_UNK_0x0087, _077A
+    SetFlag FLAG_UNK_0x0087
     BufferPlayerName 0
     BufferRivalName 1
     Message 0
@@ -296,7 +296,7 @@ _03CA:
     Message 18
     CloseMessage
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ClearFlag 0x1F1
+    ClearFlag FLAG_UNK_0x01F1
     AddObject 1
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0, _07B4
@@ -412,7 +412,7 @@ _05B1:
     SetVar 0x8004, 0x1CB
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 143
+    SetFlag FLAG_UNK_0x008F
     Message 27
     BufferRivalName 1
     Message 26
@@ -475,7 +475,7 @@ _0688:
     HealParty
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetFlag 2
+    SetFlag FLAG_UNK_0x0002
     Return
 
 _06F8:
@@ -577,7 +577,7 @@ _075A:
     End
 
 _0768:
-    SetFlag 248
+    SetFlag FLAG_UNK_0x00F8
     BufferPlayerName 0
     Message 2
     WaitABXPadPress

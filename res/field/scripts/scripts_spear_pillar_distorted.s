@@ -15,13 +15,13 @@
 
 _0022:
     LockAll
-    ClearFlag 0x2BA
+    ClearFlag FLAG_UNK_0x02BA
     AddObject 1
     ScrCmd_1B2 1
     SetObjectEventPos 0, 32, 34
     ScrCmd_189 0, 0
     ScrCmd_188 0, 14
-    ClearFlag 0x1CD
+    ClearFlag FLAG_UNK_0x01CD
     AddObject 0
     ScrCmd_066 30, 30
     ApplyMovement 241, _016C
@@ -50,7 +50,7 @@ _0088:
     ApplyMovement 0, _0154
     WaitMovement
     Message 5
-    SetFlag 0x29E
+    SetFlag FLAG_UNK_0x029E
     GoTo _00DA
     End
 

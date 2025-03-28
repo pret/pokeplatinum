@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 _0006:
-    SetFlag 0x9C8
+    SetFlag FLAG_UNK_0x09C8
     End
 
     .byte 2

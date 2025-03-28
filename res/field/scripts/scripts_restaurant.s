@@ -28,36 +28,36 @@
     End
 
 _0058:
-    SetFlag 0x9EE
+    SetFlag FLAG_UNK_0x09EE
     ScrCmd_268 0x4000
     GoToIfLt 0x4000, 9, _0087
     GoToIfGe 0x4000, 23, _0087
-    GoToIfUnset 0xAAB, _00B3
+    GoToIfUnset FLAG_UNK_0x0AAB, _00B3
     End
 
 _0087:
-    SetFlag 0x244
-    SetFlag 0x245
-    SetFlag 0x246
-    SetFlag 0x247
-    SetFlag 0x248
-    SetFlag 0x249
-    SetFlag 0x24A
-    SetFlag 0x24B
-    SetFlag 0x24C
+    SetFlag FLAG_UNK_0x0244
+    SetFlag FLAG_UNK_0x0245
+    SetFlag FLAG_UNK_0x0246
+    SetFlag FLAG_UNK_0x0247
+    SetFlag FLAG_UNK_0x0248
+    SetFlag FLAG_UNK_0x0249
+    SetFlag FLAG_UNK_0x024A
+    SetFlag FLAG_UNK_0x024B
+    SetFlag FLAG_UNK_0x024C
     SetVar 0x4104, 1
     End
 
 _00B3:
-    SetFlag 0x244
-    SetFlag 0x245
-    SetFlag 0x246
-    SetFlag 0x247
-    SetFlag 0x248
-    SetFlag 0x249
-    SetFlag 0x24A
-    SetFlag 0x24B
-    SetFlag 0x24C
+    SetFlag FLAG_UNK_0x0244
+    SetFlag FLAG_UNK_0x0245
+    SetFlag FLAG_UNK_0x0246
+    SetFlag FLAG_UNK_0x0247
+    SetFlag FLAG_UNK_0x0248
+    SetFlag FLAG_UNK_0x0249
+    SetFlag FLAG_UNK_0x024A
+    SetFlag FLAG_UNK_0x024B
+    SetFlag FLAG_UNK_0x024C
     ClearTrainerFlag TRAINER_ARTIST_ISMAEL
     ClearTrainerFlag TRAINER_BEAUTY_HARLEY
     ClearTrainerFlag TRAINER_RICH_BOY_ROMAN
@@ -95,68 +95,68 @@ _0137:
     GoToIfEq 0x400A, 0, _01D2
     GoToIfNe 0x4000, 0, _0137
 _01D2:
-    SetFlag 0xAAB
+    SetFlag FLAG_UNK_0x0AAB
     End
 
 _01D8:
-    GoToIfUnset 0x244, _02DD
-    ClearFlag 0x244
+    GoToIfUnset FLAG_UNK_0x0244, _02DD
+    ClearFlag FLAG_UNK_0x0244
     GetRandom2 0x40FB, 3
     SubVar 0x4000, 1
     Return
 
 _01F5:
-    GoToIfUnset 0x245, _02DD
-    ClearFlag 0x245
+    GoToIfUnset FLAG_UNK_0x0245, _02DD
+    ClearFlag FLAG_UNK_0x0245
     GetRandom2 0x40FC, 3
     SubVar 0x4000, 1
     Return
 
 _0212:
-    GoToIfUnset 0x246, _02DD
-    ClearFlag 0x246
+    GoToIfUnset FLAG_UNK_0x0246, _02DD
+    ClearFlag FLAG_UNK_0x0246
     GetRandom2 0x40FD, 3
     SubVar 0x4000, 1
     Return
 
 _022F:
-    GoToIfUnset 0x247, _02DD
-    ClearFlag 0x247
+    GoToIfUnset FLAG_UNK_0x0247, _02DD
+    ClearFlag FLAG_UNK_0x0247
     GetRandom2 0x40FE, 3
     SubVar 0x4000, 1
     Return
 
 _024C:
-    GoToIfUnset 0x248, _02DD
-    ClearFlag 0x248
+    GoToIfUnset FLAG_UNK_0x0248, _02DD
+    ClearFlag FLAG_UNK_0x0248
     GetRandom2 0x40FF, 3
     SubVar 0x4000, 1
     Return
 
 _0269:
-    GoToIfUnset 0x249, _02DD
-    ClearFlag 0x249
+    GoToIfUnset FLAG_UNK_0x0249, _02DD
+    ClearFlag FLAG_UNK_0x0249
     GetRandom2 0x4100, 3
     SubVar 0x4000, 1
     Return
 
 _0286:
-    GoToIfUnset 0x24A, _02DD
-    ClearFlag 0x24A
+    GoToIfUnset FLAG_UNK_0x024A, _02DD
+    ClearFlag FLAG_UNK_0x024A
     GetRandom2 0x4101, 3
     SubVar 0x4000, 1
     Return
 
 _02A3:
-    GoToIfUnset 0x24B, _02DD
-    ClearFlag 0x24B
+    GoToIfUnset FLAG_UNK_0x024B, _02DD
+    ClearFlag FLAG_UNK_0x024B
     GetRandom2 0x4102, 3
     SubVar 0x4000, 1
     Return
 
 _02C0:
-    GoToIfUnset 0x24C, _02DD
-    ClearFlag 0x24C
+    GoToIfUnset FLAG_UNK_0x024C, _02DD
+    ClearFlag FLAG_UNK_0x024C
     GetRandom2 0x4103, 3
     SubVar 0x4000, 1
     Return

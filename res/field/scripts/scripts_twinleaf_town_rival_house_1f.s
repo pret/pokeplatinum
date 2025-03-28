@@ -10,10 +10,10 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 144, _00B0
+    GoToIfSet FLAG_UNK_0x0090, _00B0
     GoToIfGe 0x4095, 1, _0082
-    GoToIfSet 110, _0090
-    GoToIfSet 234, _009E
+    GoToIfSet FLAG_UNK_0x006E, _0090
+    GoToIfSet FLAG_UNK_0x00EA, _009E
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, GENDER_MALE, _005C
     GoToIfEq 0x800C, GENDER_FEMALE, _006B
@@ -54,7 +54,7 @@ _0090:
     End
 
 _009E:
-    SetFlag 110
+    SetFlag FLAG_UNK_0x006E
     BufferRivalName 1
     Message 2
     WaitABXPadPress

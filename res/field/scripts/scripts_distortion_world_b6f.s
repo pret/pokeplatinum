@@ -19,7 +19,7 @@ _0022:
 
 _0026:
     GoToIfEq 0x4055, 7, _0080
-    GoToIfSet 0x9AD, _0051
+    GoToIfSet FLAG_UNK_0x09AD, _0051
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -35,7 +35,7 @@ _0051:
     FacePlayer
     Message 4
     CloseMessage
-    SetFlag 0x977
+    SetFlag FLAG_UNK_0x0977
     ApplyMovement 134, _0108
     WaitMovement
     ApplyMovement 134, _011C

@@ -13,11 +13,11 @@ _000E:
     LockAll
     FacePlayer
     GetFirstNonEggInParty 0x8000
-    GoToIfUnset 0x140, _005C
-    GoToIfUnset 0x141, _005C
-    GoToIfUnset 0x142, _005C
-    GoToIfUnset 0x143, _005C
-    GoToIfUnset 0x144, _005C
+    GoToIfUnset FLAG_UNK_0x0140, _005C
+    GoToIfUnset FLAG_UNK_0x0141, _005C
+    GoToIfUnset FLAG_UNK_0x0142, _005C
+    GoToIfUnset FLAG_UNK_0x0143, _005C
+    GoToIfUnset FLAG_UNK_0x0144, _005C
     Message 10
     WaitABXPadPress
     CloseMessage
@@ -59,7 +59,7 @@ _00D7:
     BufferItemName 1, 0x104
     Message 4
     CallCommonScript 0x7FC
-    SetFlag 0x140
+    SetFlag FLAG_UNK_0x0140
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -75,7 +75,7 @@ _0118:
     BufferItemName 1, 0x105
     Message 4
     CallCommonScript 0x7FC
-    SetFlag 0x141
+    SetFlag FLAG_UNK_0x0141
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -91,7 +91,7 @@ _0159:
     BufferItemName 1, 0x106
     Message 4
     CallCommonScript 0x7FC
-    SetFlag 0x142
+    SetFlag FLAG_UNK_0x0142
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -107,7 +107,7 @@ _019A:
     BufferItemName 1, 0x107
     Message 4
     CallCommonScript 0x7FC
-    SetFlag 0x143
+    SetFlag FLAG_UNK_0x0143
     Message 8
     WaitABXPadPress
     CloseMessage
@@ -123,7 +123,7 @@ _01DB:
     BufferItemName 1, 0x108
     Message 4
     CallCommonScript 0x7FC
-    SetFlag 0x144
+    SetFlag FLAG_UNK_0x0144
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -131,7 +131,7 @@ _01DB:
     End
 
 _021C:
-    GoToIfSet 0x140, _0244
+    GoToIfSet FLAG_UNK_0x0140, _0244
     ScrCmd_281 0x8000, 0, 0x800C
     GoToIfLt 0x800C, 200, _0244
     SetVar 0x800C, 1
@@ -142,7 +142,7 @@ _0244:
     Return
 
 _024C:
-    GoToIfSet 0x141, _0274
+    GoToIfSet FLAG_UNK_0x0141, _0274
     ScrCmd_281 0x8000, 1, 0x800C
     GoToIfLt 0x800C, 200, _0274
     SetVar 0x800C, 1
@@ -153,7 +153,7 @@ _0274:
     Return
 
 _027C:
-    GoToIfSet 0x142, _02A4
+    GoToIfSet FLAG_UNK_0x0142, _02A4
     ScrCmd_281 0x8000, 2, 0x800C
     GoToIfLt 0x800C, 200, _02A4
     SetVar 0x800C, 1
@@ -164,7 +164,7 @@ _02A4:
     Return
 
 _02AC:
-    GoToIfSet 0x143, _02D4
+    GoToIfSet FLAG_UNK_0x0143, _02D4
     ScrCmd_281 0x8000, 3, 0x800C
     GoToIfLt 0x800C, 200, _02D4
     SetVar 0x800C, 1
@@ -175,7 +175,7 @@ _02D4:
     Return
 
 _02DC:
-    GoToIfSet 0x144, _0304
+    GoToIfSet FLAG_UNK_0x0144, _0304
     ScrCmd_281 0x8000, 4, 0x800C
     GoToIfLt 0x800C, 200, _0304
     SetVar 0x800C, 1

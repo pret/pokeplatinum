@@ -14,7 +14,7 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag 0x9DD
+    SetFlag FLAG_UNK_0x09DD
     End
 
 _0028:
@@ -127,7 +127,7 @@ _012A:
     ApplyMovement 5, _0164
     ApplyMovement 6, _016C
     WaitMovement
-    SetFlag 0x224
+    SetFlag FLAG_UNK_0x0224
     RemoveObject 5
     RemoveObject 6
     CloseMessage

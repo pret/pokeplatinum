@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag 0x9D1
+    SetFlag FLAG_UNK_0x09D1
     End
 
 _0018:

@@ -7,14 +7,14 @@
     ScriptEntryEnd
 
 _000A:
-    GoToIfSet 0x132, _0040
-    GoToIfUnset 0x132, _004A
+    GoToIfSet FLAG_UNK_0x0132, _0040
+    GoToIfUnset FLAG_UNK_0x0132, _004A
     End
 
 _0022:
     Call _0118
-    GoToIfSet 0x132, _0040
-    GoToIfUnset 0x132, _004A
+    GoToIfSet FLAG_UNK_0x0132, _0040
+    GoToIfUnset FLAG_UNK_0x0132, _004A
     End
 
 _0040:
@@ -31,8 +31,8 @@ _005F:
     End
 
 _0069:
-    GoToIfUnset 0x145, _005F
-    GoToIfSet 208, _00BC
+    GoToIfUnset FLAG_UNK_0x0145, _005F
+    GoToIfSet FLAG_UNK_0x00D0, _00BC
     GoToIfGe 0x40C4, 1, _00BC
     CheckItem ITEM_ADAMANT_ORB, 1, 0x4001
     GoToIfEq 0x4001, 1, _0104
@@ -42,7 +42,7 @@ _0069:
     End
 
 _00BC:
-    GoToIfSet 209, _005F
+    GoToIfSet FLAG_UNK_0x00D1, _005F
     GoToIfGe 0x40C5, 1, _005F
     CheckItem ITEM_LUSTROUS_ORB, 1, 0x4001
     GoToIfEq 0x4001, 1, _010E

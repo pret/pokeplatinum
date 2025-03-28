@@ -15,7 +15,7 @@
     ScriptEntryEnd
 
 _0026:
-    CallIfSet 0x106, _004B
+    CallIfSet FLAG_UNK_0x0106, _004B
     GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, _0079
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _008B
     End
@@ -45,7 +45,7 @@ _008B:
 _009D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 0x106, _013A
+    GoToIfSet FLAG_UNK_0x0106, _013A
     Message 0
     FacePlayer
     ApplyMovement 5, _0214
@@ -76,7 +76,7 @@ _010E:
 
 _0126:
     ScrCmd_187 5, 0x2D3, 1, 0x301, 0
-    SetFlag 0x106
+    SetFlag FLAG_UNK_0x0106
     ReleaseAll
     End
 
@@ -114,8 +114,8 @@ _01AD:
 
 _01C5:
     RemoveObject 5
-    SetFlag 0x211
-    ClearFlag 0x156
+    SetFlag FLAG_UNK_0x0211
+    ClearFlag FLAG_UNK_0x0156
     GoTo _0248
     End
 
@@ -182,7 +182,7 @@ _0248:
     CallIfEq 0x8000, 1, _03F6
     CallIfEq 0x8000, 2, _0400
     CallIfEq 0x8000, 3, _040A
-    ClearFlag 0x1AD
+    ClearFlag FLAG_UNK_0x01AD
     ScrCmd_189 0, 1
     ScrCmd_188 0, 15
     AddObject 0
@@ -194,7 +194,7 @@ _0248:
     CallIfEq 0x8000, 1, _044E
     CallIfEq 0x8000, 2, _0458
     CallIfEq 0x8000, 3, _0462
-    ClearFlag 0x1D5
+    ClearFlag FLAG_UNK_0x01D5
     ScrCmd_189 10, 0
     ScrCmd_188 10, 14
     AddObject 10
@@ -358,9 +358,9 @@ _0522:
 _053A:
     RemoveObject 0
     SetVar 0x4083, 2
-    SetFlag 183
-    SetFlag 0x1A9
-    ClearFlag 0x20F
+    SetFlag FLAG_UNK_0x00B7
+    SetFlag FLAG_UNK_0x01A9
+    ClearFlag FLAG_UNK_0x020F
     SetVar 0x407C, 6
     ReleaseAll
     End
@@ -518,8 +518,8 @@ _065A:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    ClearFlag 0x25E
-    SetFlag 0x25D
+    ClearFlag FLAG_UNK_0x025E
+    SetFlag FLAG_UNK_0x025D
     ReleaseAll
     End
 

@@ -12,19 +12,19 @@
     ScriptEntryEnd
 
 _001A:
-    SetFlag 0x2C9
+    SetFlag FLAG_UNK_0x02C9
     CallIfEq 0x4056, 2, _002D
     End
 
 _002D:
-    ClearFlag 0x2C9
+    ClearFlag FLAG_UNK_0x02C9
     Return
 
 _0033:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _0051
+    GoToIfSet FLAG_UNK_0x00A8, _0051
     Message 0
     WaitABXPadPress
     CloseMessage

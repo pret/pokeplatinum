@@ -71,9 +71,9 @@ _00F2:
     RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x40E7, 1
-    SetFlag 241
-    ClearFlag 0x1F6
-    ClearFlag 0x1F5
+    SetFlag FLAG_UNK_0x00F1
+    ClearFlag FLAG_UNK_0x01F6
+    ClearFlag FLAG_UNK_0x01F5
     ReleaseAll
     End
 
@@ -158,8 +158,8 @@ _01A6:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x112, _02A8
-    GoToIfSet 0x10C, _02BD
+    GoToIfSet FLAG_UNK_0x0112, _02A8
+    GoToIfSet FLAG_UNK_0x010C, _02BD
     Message 9
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _01E7
@@ -193,9 +193,9 @@ _022E:
 _023C:
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _02DE
-    SetFlag 0x10C
-    GoToIfSet 0x10D, _0274
-    GoToIfUnset 0x10D, _0269
+    SetFlag FLAG_UNK_0x010C
+    GoToIfSet FLAG_UNK_0x010D, _0274
+    GoToIfUnset FLAG_UNK_0x010D, _0269
     End
 
 _0269:
@@ -212,7 +212,7 @@ _0274:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _02B3
     CallCommonScript 0x7FC
-    SetFlag 0x112
+    SetFlag FLAG_UNK_0x0112
     GoTo _02A8
     End
 
@@ -230,7 +230,7 @@ _02B3:
     End
 
 _02BD:
-    GoToIfSet 0x10D, _0274
+    GoToIfSet FLAG_UNK_0x010D, _0274
     Message 12
     WaitABXPadPress
     CloseMessage
@@ -253,7 +253,7 @@ _02E4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x10D, _039C
+    GoToIfSet FLAG_UNK_0x010D, _039C
     Message 15
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _031A
@@ -287,9 +287,9 @@ _0361:
 _036F:
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _03D3
-    SetFlag 0x10D
-    GoToIfSet 0x10C, _03BD
-    GoToIfUnset 0x10C, _03B2
+    SetFlag FLAG_UNK_0x010D
+    GoToIfSet FLAG_UNK_0x010C, _03BD
+    GoToIfUnset FLAG_UNK_0x010C, _03B2
     End
 
 _039C:
@@ -314,7 +314,7 @@ _03B2:
     End
 
 _03BD:
-    GoToIfSet 0x112, _03B2
+    GoToIfSet FLAG_UNK_0x0112, _03B2
     Message 19
     WaitABXPadPress
     CloseMessage

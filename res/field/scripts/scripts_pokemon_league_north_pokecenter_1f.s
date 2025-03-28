@@ -14,20 +14,20 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag 0x9F4
-    SetFlag 0x282
-    SetFlag 0x283
-    SetFlag 0x284
-    SetFlag 0x285
-    ClearFlag 0x286
-    ClearFlag 0x287
-    ClearFlag 0x288
-    ClearFlag 0x289
-    ClearFlag 176
-    ClearFlag 177
-    ClearFlag 178
-    ClearFlag 179
-    GoToIfSet 175, _0063
+    SetFlag FLAG_UNK_0x09F4
+    SetFlag FLAG_UNK_0x0282
+    SetFlag FLAG_UNK_0x0283
+    SetFlag FLAG_UNK_0x0284
+    SetFlag FLAG_UNK_0x0285
+    ClearFlag FLAG_UNK_0x0286
+    ClearFlag FLAG_UNK_0x0287
+    ClearFlag FLAG_UNK_0x0288
+    ClearFlag FLAG_UNK_0x0289
+    ClearFlag FLAG_UNK_0x00B0
+    ClearFlag FLAG_UNK_0x00B1
+    ClearFlag FLAG_UNK_0x00B2
+    ClearFlag FLAG_UNK_0x00B3
+    GoToIfSet FLAG_UNK_0x00AF, _0063
     End
 
 _0063:
@@ -38,7 +38,7 @@ _006D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 175, _00F7
+    GoToIfSet FLAG_UNK_0x00AF, _00F7
     Message 2
     CloseMessage
     PlaySound SEQ_BADGE
@@ -65,7 +65,7 @@ _00D8:
     GoTo _00E8
 
 _00E8:
-    SetFlag 175
+    SetFlag FLAG_UNK_0x00AF
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -119,7 +119,7 @@ _013E:
 
 _0154:
     LockAll
-    ClearFlag 0x21D
+    ClearFlag FLAG_UNK_0x021D
     AddObject 5
     CallCommonScript 0x7FA
     GetPlayerMapPos 0x8004, 0x8005
@@ -203,7 +203,7 @@ _0296:
     End
 
 _02AC:
-    SetFlag 0x21D
+    SetFlag FLAG_UNK_0x021D
     BlackOutFromBattle
     ReleaseAll
     End

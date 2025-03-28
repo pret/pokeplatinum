@@ -16,65 +16,65 @@
     ScriptEntryEnd
 
 _002A:
-    GoToIfUnset 227, _0121
+    GoToIfUnset FLAG_UNK_0x00E3, _0121
     GoToIfNe 0x40DF, 2, _0057
     ScrCmd_1DD 55, 2, 0x4009
     GoToIfEq 0x4009, 0, _0121
 _0057:
-    ClearFlag 0x1EC
+    ClearFlag FLAG_UNK_0x01EC
 _005B:
-    GoToIfUnset 228, _012D
+    GoToIfUnset FLAG_UNK_0x00E4, _012D
     GoToIfNe 0x40DF, 2, _0088
     ScrCmd_1DD 55, 2, 0x4009
     GoToIfEq 0x4009, 1, _012D
 _0088:
-    ClearFlag 0x1ED
+    ClearFlag FLAG_UNK_0x01ED
 _008C:
-    GoToIfUnset 229, _0139
+    GoToIfUnset FLAG_UNK_0x00E5, _0139
     GoToIfNe 0x40DF, 2, _00B9
     ScrCmd_1DD 55, 2, 0x4009
     GoToIfEq 0x4009, 2, _0139
 _00B9:
-    ClearFlag 0x1EE
+    ClearFlag FLAG_UNK_0x01EE
 _00BD:
-    GoToIfUnset 230, _0145
+    GoToIfUnset FLAG_UNK_0x00E6, _0145
     GoToIfNe 0x40DF, 2, _00EA
     ScrCmd_1DD 55, 2, 0x4009
     GoToIfEq 0x4009, 3, _0145
 _00EA:
-    ClearFlag 0x1EF
+    ClearFlag FLAG_UNK_0x01EF
 _00EE:
-    GoToIfUnset 231, _0151
+    GoToIfUnset FLAG_UNK_0x00E7, _0151
     GoToIfNe 0x40DF, 2, _011B
     ScrCmd_1DD 55, 2, 0x4009
     GoToIfEq 0x4009, 4, _0151
 _011B:
-    ClearFlag 0x1F0
+    ClearFlag FLAG_UNK_0x01F0
 _011F:
     End
 
 _0121:
-    SetFlag 0x1EC
+    SetFlag FLAG_UNK_0x01EC
     GoTo _005B
     End
 
 _012D:
-    SetFlag 0x1ED
+    SetFlag FLAG_UNK_0x01ED
     GoTo _008C
     End
 
 _0139:
-    SetFlag 0x1EE
+    SetFlag FLAG_UNK_0x01EE
     GoTo _00BD
     End
 
 _0145:
-    SetFlag 0x1EF
+    SetFlag FLAG_UNK_0x01EF
     GoTo _00EE
     End
 
 _0151:
-    SetFlag 0x1F0
+    SetFlag FLAG_UNK_0x01F0
     GoTo _011F
     End
 

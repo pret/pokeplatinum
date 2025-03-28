@@ -42,7 +42,7 @@ _0082:
     End
 
 _0098:
-    SetFlag 0x1D3
+    SetFlag FLAG_UNK_0x01D3
     End
 
     .byte 52
@@ -175,7 +175,7 @@ _0198:
     WaitMovement
     BufferRivalName 0
     Message 12
-    ClearFlag 0x1E3
+    ClearFlag FLAG_UNK_0x01E3
     AddObject 26
     ScrCmd_04A 0x5DC
     PlayFanfare SEQ_SE_DP_WALL_HIT2
@@ -229,7 +229,7 @@ _0198:
 _02E0:
     RemoveObject 22
     RemoveObject 23
-    SetFlag 0x294
+    SetFlag FLAG_UNK_0x0294
     Return
 
 _02EE:
@@ -539,7 +539,7 @@ _0521:
     LockAll
     FacePlayer
     BufferItemName 0, 0x1BF
-    GoToIfSet 107, _057A
+    GoToIfSet FLAG_UNK_0x006B, _057A
     Message 42
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _056F
@@ -547,7 +547,7 @@ _0521:
     SetVar 0x8004, 0x1BF
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 107
+    SetFlag FLAG_UNK_0x006B
     Message 44
     WaitABXPadPress
     CloseMessage

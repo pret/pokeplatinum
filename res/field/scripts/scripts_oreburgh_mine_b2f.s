@@ -84,8 +84,8 @@ _0091:
 
 _00A1:
     RemoveObject 0
-    SetFlag 122
-    SetFlag 0x17C
+    SetFlag FLAG_UNK_0x007A
+    SetFlag FLAG_UNK_0x017C
     ReleaseAll
     End
 

@@ -104,8 +104,8 @@ _013E:
     Message 0
     CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _018D
-    GoToIfSet 0x130, _0198
-    GoToIfSet 0x165, GameCorner_GiveTM64
+    GoToIfSet FLAG_UNK_0x0130, _0198
+    GoToIfSet FLAG_UNK_0x0165, GameCorner_GiveTM64
     CheckBonusRoundStreak 0x800C
     GoToIfEq 0x800C, FALSE, _0198
     GoTo GameCorner_GiveTM64
@@ -207,7 +207,7 @@ GameCorner_GiveTM64:
     End
 
 _02F3:
-    GoToIfSet 0x165, _0309
+    GoToIfSet FLAG_UNK_0x0165, _0309
     Message 7
     GoTo _0314
     End
@@ -219,7 +219,7 @@ _0309:
 
 _0314:
     CallCommonScript 0x7FC
-    SetFlag 0x130
+    SetFlag FLAG_UNK_0x0130
     Message 8
     WaitABXPadPress
     CloseMessage
@@ -227,7 +227,7 @@ _0314:
     End
 
 _0327:
-    SetFlag 0x165
+    SetFlag FLAG_UNK_0x0165
     GoTo _0198
     End
 
@@ -247,11 +247,11 @@ _0346:
     FacePlayer
     CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _03A1
-    GoToIfSet 0x12E, _03AC
+    GoToIfSet FLAG_UNK_0x012E, _03AC
     ScrCmd_276 0x800C, 20
     Noop
     GoToIfEq 0x800C, 0, _03AC
-    SetFlag 0x12E
+    SetFlag FLAG_UNK_0x012E
     BufferPlayerName 0
     Message 14
     WaitABXPadPress
@@ -282,11 +282,11 @@ _03B7:
     FacePlayer
     CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0412
-    GoToIfSet 0x12F, _041D
+    GoToIfSet FLAG_UNK_0x012F, _041D
     ScrCmd_276 0x800C, 50
     Noop
     GoToIfEq 0x800C, 0, _041D
-    SetFlag 0x12F
+    SetFlag FLAG_UNK_0x012F
     BufferPlayerName 0
     Message 17
     WaitABXPadPress
@@ -376,7 +376,7 @@ _04AD:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 214, _04CB
+    GoToIfSet FLAG_UNK_0x00D6, _04CB
     Message 23
     GoTo _04D6
     End

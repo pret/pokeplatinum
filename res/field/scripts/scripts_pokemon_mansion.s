@@ -12,16 +12,16 @@
     ScriptEntryEnd
 
 _001A:
-    SetFlag 0x9EB
-    SetFlag 0x257
-    SetFlag 0x258
-    GoToIfUnset 0xAB6, _0033
+    SetFlag FLAG_UNK_0x09EB
+    SetFlag FLAG_UNK_0x0257
+    SetFlag FLAG_UNK_0x0258
+    GoToIfUnset FLAG_UNK_0x0AB6, _0033
     End
 
 _0033:
     GetRandom VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET, 5
     AddVar VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET, 5
-    SetFlag 0xAB6
+    SetFlag FLAG_UNK_0x0AB6
     ClearTrainerFlag TRAINER_RICH_BOY_LIAM
     ClearTrainerFlag TRAINER_LADY_CELESTE
     End
@@ -77,9 +77,9 @@ _00E5:
     End
 
 _00FF:
-    CallIfUnset 0x166, _045A
-    CallIfSet 0x166, _0467
-    SetFlag 0x166
+    CallIfUnset FLAG_UNK_0x0166, _045A
+    CallIfSet FLAG_UNK_0x0166, _0467
+    SetFlag FLAG_UNK_0x0166
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _0471
     SetTrainerFlag TRAINER_RICH_BOY_LIAM
@@ -90,7 +90,7 @@ _00FF:
     WaitMovement
     SetVar 0x404D, 0
     SetVar 0x8005, 0
-    ClearFlag 0x257
+    ClearFlag FLAG_UNK_0x0257
     AddObject 5
     ApplyMovement 5, _0420
     WaitMovement
@@ -173,7 +173,7 @@ _00FF:
     CloseMessage
     ApplyMovement 2, _03FC
     WaitMovement
-    ClearFlag 0x258
+    ClearFlag FLAG_UNK_0x0258
     AddObject 4
     ApplyMovement 4, _0420
     WaitMovement

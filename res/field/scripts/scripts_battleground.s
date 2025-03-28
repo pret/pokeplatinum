@@ -14,19 +14,19 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag 200
-    GoToIfUnset 0xAB7, _0039
+    SetFlag FLAG_UNK_0x00C8
+    GoToIfUnset FLAG_UNK_0x0AB7, _0039
     Call _0140
     End
 
 _0039:
-    SetFlag 0xAB7
+    SetFlag FLAG_UNK_0x0AB7
     ScrCmd_2F4 0x4065, 0x4066, 0x4067, 0x4068
     Call _0140
-    ClearFlag 0x2A2
-    ClearFlag 0x2A3
-    ClearFlag 0x2A4
-    ClearFlag 0x2A5
+    ClearFlag FLAG_UNK_0x02A2
+    ClearFlag FLAG_UNK_0x02A3
+    ClearFlag FLAG_UNK_0x02A4
+    ClearFlag FLAG_UNK_0x02A5
     CallIfEq 0x4022, 0xFFF, _00ED
     CallIfEq 0x4023, 0xFFF, _00F3
     CallIfEq 0x4024, 0xFFF, _00F9
@@ -35,47 +35,47 @@ _0039:
     CallIfEq 0x4024, 143, _0119
     CallIfEq 0x4024, 144, _0126
     CallIfEq 0x4024, 145, _0133
-    ClearFlag 1
-    ClearFlag 2
-    ClearFlag 3
-    ClearFlag 4
-    ClearFlag 5
-    ClearFlag 6
-    ClearFlag 7
-    ClearFlag 8
+    ClearFlag FLAG_UNK_0x0001
+    ClearFlag FLAG_UNK_0x0002
+    ClearFlag FLAG_UNK_0x0003
+    ClearFlag FLAG_UNK_0x0004
+    ClearFlag FLAG_UNK_0x0005
+    ClearFlag FLAG_UNK_0x0006
+    ClearFlag FLAG_UNK_0x0007
+    ClearFlag FLAG_UNK_0x0008
     GetRandom 0x4061, 2
     End
 
 _00ED:
-    SetFlag 0x2A3
+    SetFlag FLAG_UNK_0x02A3
     Return
 
 _00F3:
-    SetFlag 0x2A4
+    SetFlag FLAG_UNK_0x02A4
     Return
 
 _00F9:
-    SetFlag 0x2A5
+    SetFlag FLAG_UNK_0x02A5
     Return
 
 _00FF:
-    CallIfUnset 227, _00F9
+    CallIfUnset FLAG_UNK_0x00E3, _00F9
     Return
 
 _010C:
-    CallIfUnset 229, _00F9
+    CallIfUnset FLAG_UNK_0x00E5, _00F9
     Return
 
 _0119:
-    CallIfUnset 230, _00F9
+    CallIfUnset FLAG_UNK_0x00E6, _00F9
     Return
 
 _0126:
-    CallIfUnset 231, _00F9
+    CallIfUnset FLAG_UNK_0x00E7, _00F9
     Return
 
 _0133:
-    CallIfUnset 228, _00F9
+    CallIfUnset FLAG_UNK_0x00E4, _00F9
     Return
 
 _0140:
@@ -89,7 +89,7 @@ _015A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 215, _0178
+    GoToIfSet FLAG_UNK_0x00D7, _0178
     Message 1
     WaitABXPadPress
     CloseMessage
@@ -107,7 +107,7 @@ _0183:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetFlag 0x125
+    SetFlag FLAG_MESPRIT_CAUGHT
     Message 5
     CloseMessage
     GetPlayerMapPos 0x8004, 0x8005
@@ -116,8 +116,8 @@ _0183:
     CallIfEq 0x8005, 9, _01FD
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
-    SetFlag 231
-    SetFlag 0x1D6
+    SetFlag FLAG_UNK_0x00E7
+    SetFlag FLAG_UNK_0x01D6
     ReleaseAll
     End
 
@@ -212,16 +212,16 @@ _02B4:
     FacePlayer
     BufferPlayerName 0
     SetVar 0x4001, 0x4021
-    GoToIfSet 5, _034D
+    GoToIfSet FLAG_UNK_0x0005, _034D
     Call _118A
     GoToIfEq 0x800C, 1, _034D
-    CallIfUnset 1, _036E
-    CallIfSet 1, _0376
+    CallIfUnset FLAG_UNK_0x0001, _036E
+    CallIfSet FLAG_UNK_0x0001, _0376
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _0386
     Call _032F
     GoToIfEq 0x8000, 0, _0398
-    SetFlag 5
+    SetFlag FLAG_UNK_0x0005
     Call _1091
     GoTo _034D
     End
@@ -257,7 +257,7 @@ _037E:
     End
 
 _0386:
-    SetFlag 1
+    SetFlag FLAG_UNK_0x0001
     Call _090A
     GoTo _037E
     End
@@ -287,22 +287,22 @@ _03CA:
     FacePlayer
     BufferPlayerName 0
     SetVar 0x4001, 0x4022
-    GoToIfSet 6, _034D
+    GoToIfSet FLAG_UNK_0x0006, _034D
     Call _118A
     GoToIfEq 0x800C, 1, _034D
-    CallIfUnset 2, _036E
-    CallIfSet 2, _0376
+    CallIfUnset FLAG_UNK_0x0002, _036E
+    CallIfSet FLAG_UNK_0x0002, _0376
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _0445
     Call _032F
     GoToIfEq 0x8000, FALSE, _0398
-    SetFlag 6
+    SetFlag FLAG_UNK_0x0006
     Call _1091
     GoTo _034D
     End
 
 _0445:
-    SetFlag 2
+    SetFlag FLAG_UNK_0x0002
     Call _090A
     GoTo _037E
     End
@@ -313,22 +313,22 @@ _0457:
     FacePlayer
     BufferPlayerName 0
     SetVar 0x4001, 0x4023
-    GoToIfSet 7, _034D
+    GoToIfSet FLAG_UNK_0x0007, _034D
     Call _118A
     GoToIfEq 0x800C, 1, _034D
-    CallIfUnset 3, _036E
-    CallIfSet 3, _0376
+    CallIfUnset FLAG_UNK_0x0003, _036E
+    CallIfSet FLAG_UNK_0x0003, _0376
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _04D2
     Call _032F
     GoToIfEq 0x8000, 0, _0398
-    SetFlag 7
+    SetFlag FLAG_UNK_0x0007
     Call _1091
     GoTo _034D
     End
 
 _04D2:
-    SetFlag 3
+    SetFlag FLAG_UNK_0x0003
     Call _090A
     GoTo _037E
     End
@@ -339,22 +339,22 @@ _04E4:
     FacePlayer
     BufferPlayerName 0
     SetVar 0x4001, 0x4024
-    GoToIfSet 8, _034D
+    GoToIfSet FLAG_UNK_0x0008, _034D
     Call _118A
     GoToIfEq 0x800C, 1, _034D
-    CallIfUnset 4, _036E
-    CallIfSet 4, _0376
+    CallIfUnset FLAG_UNK_0x0004, _036E
+    CallIfSet FLAG_UNK_0x0004, _0376
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _055F
     Call _032F
     GoToIfEq 0x8000, 0, _0398
-    SetFlag 8
+    SetFlag FLAG_UNK_0x0008
     Call _1091
     GoTo _034D
     End
 
 _055F:
-    SetFlag 4
+    SetFlag FLAG_UNK_0x0004
     Call _090A
     GoTo _037E
     End
@@ -1150,55 +1150,55 @@ _1091:
     Return
 
 _113C:
-    SetFlag 0xAB8
+    SetFlag FLAG_UNK_0x0AB8
     Return
 
 _1142:
-    SetFlag 0xAB9
+    SetFlag FLAG_UNK_0x0AB9
     Return
 
 _1148:
-    SetFlag 0xABA
+    SetFlag FLAG_UNK_0x0ABA
     Return
 
 _114E:
-    SetFlag 0xABB
+    SetFlag FLAG_UNK_0x0ABB
     Return
 
 _1154:
-    SetFlag 0xAC5
+    SetFlag FLAG_UNK_0x0AC5
     Return
 
 _115A:
-    SetFlag 0xAC6
+    SetFlag FLAG_UNK_0x0AC6
     Return
 
 _1160:
-    SetFlag 0xAC7
+    SetFlag FLAG_UNK_0x0AC7
     Return
 
 _1166:
-    SetFlag 0xAC8
+    SetFlag FLAG_UNK_0x0AC8
     Return
 
 _116C:
-    SetFlag 0xAC9
+    SetFlag FLAG_UNK_0x0AC9
     Return
 
 _1172:
-    SetFlag 0xACA
+    SetFlag FLAG_UNK_0x0ACA
     Return
 
 _1178:
-    SetFlag 0xACB
+    SetFlag FLAG_UNK_0x0ACB
     Return
 
 _117E:
-    SetFlag 0xACC
+    SetFlag FLAG_UNK_0x0ACC
     Return
 
 _1184:
-    SetFlag 0xACD
+    SetFlag FLAG_UNK_0x0ACD
     Return
 
 _118A:
@@ -1219,55 +1219,55 @@ _118A:
     Return
 
 _123B:
-    GoToIfSet 0xAB8, _12E4
+    GoToIfSet FLAG_UNK_0x0AB8, _12E4
     Return
 
 _1248:
-    GoToIfSet 0xAB9, _12E4
+    GoToIfSet FLAG_UNK_0x0AB9, _12E4
     Return
 
 _1255:
-    GoToIfSet 0xABA, _12E4
+    GoToIfSet FLAG_UNK_0x0ABA, _12E4
     Return
 
 _1262:
-    GoToIfSet 0xABB, _12E4
+    GoToIfSet FLAG_UNK_0x0ABB, _12E4
     Return
 
 _126F:
-    GoToIfSet 0xAC5, _12E4
+    GoToIfSet FLAG_UNK_0x0AC5, _12E4
     Return
 
 _127C:
-    GoToIfSet 0xAC6, _12E4
+    GoToIfSet FLAG_UNK_0x0AC6, _12E4
     Return
 
 _1289:
-    GoToIfSet 0xAC7, _12E4
+    GoToIfSet FLAG_UNK_0x0AC7, _12E4
     Return
 
 _1296:
-    GoToIfSet 0xAC8, _12E4
+    GoToIfSet FLAG_UNK_0x0AC8, _12E4
     Return
 
 _12A3:
-    GoToIfSet 0xAC9, _12E4
+    GoToIfSet FLAG_UNK_0x0AC9, _12E4
     Return
 
 _12B0:
-    GoToIfSet 0xACA, _12E4
+    GoToIfSet FLAG_UNK_0x0ACA, _12E4
     Return
 
 _12BD:
-    GoToIfSet 0xACB, _12E4
+    GoToIfSet FLAG_UNK_0x0ACB, _12E4
     Return
 
 _12CA:
-    GoToIfSet 0xACC, _12E4
+    GoToIfSet FLAG_UNK_0x0ACC, _12E4
     Return
 
 _12D7:
-    GoToIfSet 0xACD, _12E4
+    GoToIfSet FLAG_UNK_0x0ACD, _12E4
     Return
 
 _12E4:

@@ -85,7 +85,7 @@ _00DF:
     GoTo _0126
 
 _00E8:
-    GoToIfUnset 0x9BA, _0104
+    GoToIfUnset FLAG_UNK_0x09BA, _0104
     ScrCmd_1E8 0x800C
     CallIfEq 0x800C, 1, _0120
 _0104:
@@ -99,7 +99,7 @@ _0104:
     Return
 
 _0120:
-    SetFlag 0x110
+    SetFlag FLAG_UNK_0x0110
     Return
 
 _0126:

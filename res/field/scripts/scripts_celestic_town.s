@@ -86,7 +86,7 @@ _013C:
     SetObjectEventPos 3, 0x1D2, 0x213
     ScrCmd_189 3, 0
     ScrCmd_188 3, 14
-    ClearFlag 0x1AC
+    ClearFlag FLAG_UNK_0x01AC
     AddObject 3
     ScrCmd_062 3
     Return
@@ -99,7 +99,7 @@ _0166:
     Message 6
     WaitSound
     RemoveItem ITEM_OLD_CHARM, 1, 0x800C
-    SetFlag 166
+    SetFlag FLAG_UNK_0x00A6
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -224,7 +224,7 @@ _026C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 166, _0289
+    GoToIfSet FLAG_UNK_0x00A6, _0289
     Call _024A
     ReleaseAll
     End
@@ -249,7 +249,7 @@ _0294:
     ApplyMovement 4, _02FC
     WaitMovement
     SetVar 0x4074, 2
-    SetFlag 0x299
+    SetFlag FLAG_UNK_0x0299
     WaitTime 12, 0x800C
     Message 11
     WaitABXPadPress

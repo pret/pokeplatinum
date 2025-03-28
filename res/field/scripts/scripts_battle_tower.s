@@ -38,23 +38,23 @@ _0062:
     CallIfNe 0x4000, 0, _014A
     ScrCmd_1E0 0x4000
     GoToIfNe 0x4000, 0, _00DF
-    SetFlag 0x1E9
+    SetFlag FLAG_UNK_0x01E9
     GoTo _00C6
     End
 
 _00C6:
     ScrCmd_238 2, 0x4000
     GoToIfNe 0x4000, 0, _00EB
-    SetFlag 0x20E
+    SetFlag FLAG_UNK_0x020E
     End
 
 _00DF:
-    ClearFlag 0x1E9
+    ClearFlag FLAG_UNK_0x01E9
     GoTo _00C6
     End
 
 _00EB:
-    ClearFlag 0x20E
+    ClearFlag FLAG_UNK_0x020E
     End
 
 _00F1:
@@ -76,11 +76,11 @@ _013C:
     End
 
 _0144:
-    SetFlag 0x2C3
+    SetFlag FLAG_UNK_0x02C3
     Return
 
 _014A:
-    ClearFlag 0x2C3
+    ClearFlag FLAG_UNK_0x02C3
     Return
 
     .byte 219
@@ -1271,9 +1271,9 @@ _13E0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfUnset 0xFF, _1492
-    CallIfSet 0xFF, _1497
-    SetFlag 0xFF
+    CallIfUnset FLAG_UNK_0x00FF, _1492
+    CallIfSet FLAG_UNK_0x00FF, _1497
+    SetFlag FLAG_UNK_0x00FF
     GoTo _140A
     End
 

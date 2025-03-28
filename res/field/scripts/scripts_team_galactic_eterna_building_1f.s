@@ -64,19 +64,19 @@ _006A:
     CloseMessage
     ApplyMovement 4, _0110
     WaitMovement
-    ClearFlag 0x1BB
+    ClearFlag FLAG_UNK_0x01BB
     SetObjectEventPos 5, 12, 15
     ScrCmd_188 5, 16
     ScrCmd_189 5, 2
     AddObject 5
     RemoveObject 4
-    SetFlag 113
+    SetFlag FLAG_UNK_0x0071
     SetVar 0x411D, 1
     WaitTime 30, 0x800C
     Message 1
     ApplyMovement 5, _0110
     WaitMovement
-    ClearFlag 0x1C2
+    ClearFlag FLAG_UNK_0x01C2
     SetObjectEventPos 4, 12, 15
     ScrCmd_188 4, 16
     ScrCmd_189 4, 2
@@ -117,7 +117,7 @@ _0134:
     GoToIfEq 0x800C, FALSE, _01AA
     CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, 0x800C
     GoToIfEq 0x800C, FALSE, _01AA
-    GoToIfUnset 129, _01AA
+    GoToIfUnset FLAG_UNK_0x0081, _01AA
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

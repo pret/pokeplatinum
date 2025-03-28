@@ -159,13 +159,13 @@ _01F1:
     End
 
 _021E:
-    GoToIfSet 163, _024A
+    GoToIfSet FLAG_UNK_0x00A3, _024A
     ApplyMovement 2, _0334
     WaitMovement
     Message 18
     SetVar 0x8004, 22
     CallCommonScript 0x7D9
-    SetFlag 163
+    SetFlag FLAG_UNK_0x00A3
     CloseMessage
     ReleaseAll
     End
@@ -235,7 +235,7 @@ _0300:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 163, _031E
+    GoToIfSet FLAG_UNK_0x00A3, _031E
     Message 15
     GoTo _0329
     End

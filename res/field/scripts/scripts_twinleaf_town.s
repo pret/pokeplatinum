@@ -36,9 +36,9 @@ _0067:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 144, _00A3
+    GoToIfSet FLAG_UNK_0x0090, _00A3
     GoToIfGe 0x4095, 1, _00AE
-    GoToIfSet 234, _00BC
+    GoToIfSet FLAG_UNK_0x00EA, _00BC
     BufferPlayerName 0
     BufferRivalName 1
     Message 4
@@ -391,7 +391,7 @@ _04D0:
     ScrCmd_168 3, 27, 9, 11, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ClearFlag 0x174
+    ClearFlag FLAG_UNK_0x0174
     AddObject 2
     ApplyMovement 2, _05A4
     ApplyMovement LOCALID_PLAYER, _0588
@@ -482,7 +482,7 @@ _05E7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 144, _0612
+    GoToIfSet FLAG_UNK_0x0090, _0612
     GoToIfGe 0x4095, 1, _061D
     Message 8
     WaitABXPadPress

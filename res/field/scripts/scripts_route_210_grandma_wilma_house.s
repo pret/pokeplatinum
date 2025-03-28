@@ -8,15 +8,15 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag 0x9EA
+    SetFlag FLAG_UNK_0x09EA
     End
 
 _0010:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x100, _0041
-    SetFlag 0x100
+    GoToIfSet FLAG_UNK_0x0100, _0041
+    SetFlag FLAG_UNK_0x0100
     Message 0
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _005B

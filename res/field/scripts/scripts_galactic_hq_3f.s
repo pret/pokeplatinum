@@ -46,7 +46,7 @@ _006C:
     ApplyMovement 5, _00A8
     ApplyMovement 6, _00B0
     WaitMovement
-    SetFlag 0x225
+    SetFlag FLAG_UNK_0x0225
     RemoveObject 5
     RemoveObject 6
     CloseMessage

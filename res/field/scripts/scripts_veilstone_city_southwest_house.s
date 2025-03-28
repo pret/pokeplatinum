@@ -12,7 +12,7 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0xAAC, _00D5
+    GoToIfSet FLAG_UNK_0x0AAC, _00D5
     Message 0
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _00EB
@@ -38,7 +38,7 @@ _000E:
     WaitFadeScreen
     BufferPartyMonNickname 0, 0x4000
     Message 4
-    SetFlag 0xAAC
+    SetFlag FLAG_UNK_0x0AAC
     ScrCmd_1BA 3, 0x4000
     ScrCmd_26C 0x8004
     GoToIfEq 0x8004, -1, _00F6
