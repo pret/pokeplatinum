@@ -81,7 +81,7 @@ BOOL ProcessAudioInput(const ChatotCry *cry, u32 param1, int volume, int pan)
 
     sub_0200592C(0);
     ResetMicStatusFlags();
-    sub_02004BCC(14);
+    Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
 
     v0 = (LCRNG_Next() % 8192);
     ProcessChatotCryAudioData(v3, GetChatotCryAudioBuffer(cry));
@@ -89,7 +89,7 @@ BOOL ProcessAudioInput(const ChatotCry *cry, u32 param1, int volume, int pan)
     {
         UnkStruct_02004CB4 v5;
 
-        v5.unk_00 = sub_02004B78(14);
+        v5.unk_00 = Sound_GetWaveOutHandle(WAVE_OUT_CHANNEL_PRIMARY);
         v5.unk_04 = NNS_SND_WAVE_FORMAT_PCM8;
         v5.unk_08 = sub_02005014();
         v5.unk_0C = 0;
@@ -117,7 +117,7 @@ void ResetMicStatusFlags(void)
 
     if (*v0 == 1) {
         sub_02004E84(14);
-        sub_02004C4C(14);
+        Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
     *v1 = 0;

@@ -28,6 +28,11 @@ enum SoundScene {
     SOUND_SCENE_SUB_BAG = 51,
 };
 
+enum WaveOutChannel {
+    WAVE_OUT_CHANNEL_PRIMARY = 14,
+    WAVE_OUT_CHANNEL_SECONDARY = 15,
+};
+
 void Sound_SetBGMFixed(u8 fixed);
 u8 Sound_IsBGMFixed(void);
 void Sound_SetCurrentBGM(u16 bgmID);
@@ -59,9 +64,9 @@ u16 Sound_GetBankIDFromSequenceID(int seqID);
 MICResult Sound_StartMicAutoSampling(MICAutoParam *param);
 MICResult Sound_StopMicAutoSampling(void);
 MICResult Sound_StartMicManualSampling(MICSamplingType param0, void *param1, MICCallback param2, void *param3);
-NNSSndWaveOutHandle *sub_02004B78(u32 param0);
-BOOL sub_02004BCC(u32 param0);
-void sub_02004C4C(u32 param0);
+NNSSndWaveOutHandle *Sound_GetWaveOutHandle(enum WaveOutChannel channel);
+BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel param0);
+void Sound_FreeWaveOutChannel(enum WaveOutChannel param0);
 BOOL sub_02004CB4(UnkStruct_02004CB4 *param0, u32 param1);
 void sub_02004CF4(u32 param0);
 BOOL sub_02004D04(u32 param0);
