@@ -284,7 +284,7 @@ res/prebuilt/pokeanime/pl_poke_anm.narc,/pokeanime/pl_poke_anm.narc
 res/prebuilt/battle/tr_ai/tr_ai_seq.narc,/battle/tr_ai/tr_ai_seq.narc
 res/prebuilt/arc/area_win_gra.narc,/arc/area_win_gra.narc
 res/prebuilt/arc/balance_ball_gra.narc,/arc/balance_ball_gra.narc
-res/prebuilt/arc/bm_anime.narc,/arc/bm_anime.narc
+res/field/props/animations/bm_anime.narc,/arc/bm_anime.narc
 res/prebuilt/arc/bm_anime_list.narc,/arc/bm_anime_list.narc
 res/prebuilt/arc/codein_gra.narc,/arc/codein_gra.narc
 res/prebuilt/arc/demo_tengan_gra.narc,/arc/demo_tengan_gra.narc
