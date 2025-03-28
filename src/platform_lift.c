@@ -5,9 +5,9 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
-#include "constants/field/map_prop.h"
 #include "constants/heap.h"
 #include "generated/map_headers.h"
+#include "generated/map_prop_models.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
