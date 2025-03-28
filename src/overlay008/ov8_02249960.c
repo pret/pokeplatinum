@@ -5,7 +5,7 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
-#include "constants/field/map_prop.h"
+#include "generated/map_prop_models.h"
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
