@@ -11,22 +11,22 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 178, _00D2
+    GoToIfSet FLAG_UNK_0x00B2, _00D2
     ScrCmd_0EA TRAINER_ELITE_FOUR_FLINT
-    CallIfUnset 0x964, _00F0
-    CallIfSet 0x964, _0104
+    CallIfUnset FLAG_UNK_0x0964, _00F0
+    CallIfSet FLAG_UNK_0x0964, _0104
     CloseMessage
-    CallIfUnset 214, _00A0
-    CallIfSet 214, _00A8
+    CallIfUnset FLAG_UNK_0x00D6, _00A0
+    CallIfSet FLAG_UNK_0x00D6, _00A8
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _00CC
-    SetFlag 178
+    SetFlag FLAG_UNK_0x00B2,
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     RemoveObject 1
-    CallIfUnset 214, _00B0
-    CallIfSet 214, _00BE
-    CallIfUnset 0x964, _0109
-    CallIfSet 0x964, _010E
+    CallIfUnset FLAG_UNK_0x00D6, _00B0
+    CallIfSet FLAG_UNK_0x00D6, _00BE
+    CallIfUnset FLAG_UNK_0x0964, _0109
+    CallIfSet FLAG_UNK_0x0964, _010E
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -54,8 +54,8 @@ _00CC:
     End
 
 _00D2:
-    CallIfUnset 0x964, _0113
-    CallIfSet 0x964, _0118
+    CallIfUnset FLAG_UNK_0x0964, _0113
+    CallIfSet FLAG_UNK_0x0964, _0118
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -103,7 +103,7 @@ _0138:
     ApplyMovement LOCALID_PLAYER, _015C
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    ClearFlag 0x284
+    ClearFlag FLAG_UNK_0x0284,
     AddObject 2
     SetVar 0x4001, 1
     ReleaseAll

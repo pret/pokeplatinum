@@ -10,8 +10,8 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 169, _002B
-    SetFlag 169
+    GoToIfSet FLAG_UNK_0x00A9, _002B
+    SetFlag FLAG_UNK_0x00A9,
     BufferRivalName 0
     Message 0
     WaitABXPadPress

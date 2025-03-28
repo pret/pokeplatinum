@@ -10,13 +10,13 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag 0x9C2
-    SetFlag 0x2C8
+    SetFlag FLAG_UNK_0x09C2
+    SetFlag FLAG_UNK_0x02C8
     CallIfEq 0x4056, 1, _0029
     End
 
 _0029:
-    ClearFlag 0x2C8
+    ClearFlag FLAG_UNK_0x02C8,
     Return
 
 _002F:
@@ -43,7 +43,7 @@ _0055:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 165, _012B
+    GoToIfSet FLAG_UNK_0x00A5, _012B
     Message 2
     GoTo _0073
     End
@@ -88,7 +88,7 @@ _0102:
     End
 
 _0114:
-    SetFlag 165
+    SetFlag FLAG_UNK_0x00A5,
     Message 3
     GoTo _0123
     End

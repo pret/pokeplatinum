@@ -21,11 +21,11 @@ _002E:
     End
 
 _0030:
-    SetFlag 0x2BB
-    SetFlag 0x2BC
-    SetFlag 0x2BD
-    SetFlag 0x2BE
-    SetFlag 0x2BF
+    SetFlag FLAG_ROTOM_ROOM_HIDE_MICROWAVE_OVEN,
+    SetFlag FLAG_ROTOM_ROOM_HIDE_WASHING_MACHINE,
+    SetFlag FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR,
+    SetFlag FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN,
+    SetFlag FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER,
     CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, 0x4000
     GoToIfEq 0x4000, FALSE, _00A5
     ScrCmd_302 0x4000, 0x4001, 0x4002, 0x4003, 0x4004
@@ -45,23 +45,23 @@ _00A5:
     End
 
 _00CF:
-    ClearFlag 0x2BB
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_MICROWAVE_OVEN,
     Return
 
 _00D5:
-    ClearFlag 0x2BC
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_WASHING_MACHINE,
     Return
 
 _00DB:
-    ClearFlag 0x2BD
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR,
     Return
 
 _00E1:
-    ClearFlag 0x2BE
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN,
     Return
 
 _00E7:
-    ClearFlag 0x2BF
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER,
     Return
 
 _00ED:
@@ -174,27 +174,27 @@ _0325:
     End
 
 _0349:
-    ClearFlag 0x2BB
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_MICROWAVE_OVEN,
     AddObject 0
     Return
 
 _0353:
-    ClearFlag 0x2BD
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR,
     AddObject 2
     Return
 
 _035D:
-    ClearFlag 0x2BC
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_WASHING_MACHINE,
     AddObject 3
     Return
 
 _0367:
-    ClearFlag 0x2BE
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN,
     AddObject 1
     Return
 
 _0371:
-    ClearFlag 0x2BF
+    ClearFlag FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER,
     AddObject 4
     Return
 
@@ -351,7 +351,7 @@ _0613:
     CallIfEq 0x8004, 3, _0685
     CallIfEq 0x8004, 2, _068B
     CallIfEq 0x8004, 5, _0697
-    GoToIfUnset 119, _080C
+    GoToIfUnset FLAG_UNK_0x0077, _080C
     GoTo _0325
     End
 
@@ -512,14 +512,14 @@ _0801:
     End
 
 _080C:
-    SetFlag 119
+    SetFlag FLAG_UNK_0x0077,
     SetVar 0x411B, 1
     GoTo _0325
     End
 
 _081E:
     LockAll
-    ClearFlag 0x2C0
+    ClearFlag FLAG_UNK_0x02C0,
     PlayFanfare SEQ_SE_DP_KAIDAN2
     AddObject 6
     WaitFanfare SEQ_SE_DP_KAIDAN2

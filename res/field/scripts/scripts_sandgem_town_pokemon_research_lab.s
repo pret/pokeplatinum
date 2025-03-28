@@ -26,11 +26,11 @@ _003E:
     End
 
 _005A:
-    ClearFlag 0x198
+    ClearFlag FLAG_UNK_0x0198,
     SetObjectEventPos 0, 7, 14
     ScrCmd_189 0, 1
     ScrCmd_188 0, 15
-    ClearFlag 0x199
+    ClearFlag FLAG_UNK_0x0199,
     SetObjectEventPos 3, 6, 14
     ScrCmd_189 3, 1
     ScrCmd_188 3, 15
@@ -52,7 +52,7 @@ _00AF:
 _00B7:
     ScrCmd_22D 2, 0x800C
     GoToIfEq 0x800C, 1, _07AE
-    GoToIfUnset 0x9BA, _00E5
+    GoToIfUnset FLAG_UNK_0x09BA, _00E5
     ScrCmd_1E8 0x800C
     GoToIfEq 0x800C, 1, _060E
 _00E5:
@@ -107,7 +107,7 @@ _016A:
     Message 54
     WaitABXPadPress
     CloseMessage
-    SetFlag 0x27D
+    SetFlag FLAG_UNK_0x027D
     SetVar 0x4112, 1
     ClearFlag FLAG_MESPRIT_DISAPPEARED
     ClearFlag FLAG_AZELF_DISAPPEARED
@@ -227,7 +227,7 @@ _0330:
     ApplyMovement LOCALID_PLAYER, _04B4
     WaitMovement
     WaitTime 35, 0x800C
-    SetFlag 0x993
+    SetFlag FLAG_UNK_0x0993
     PlayMusic SEQ_OPENING2
     Message 9
     Message 10
@@ -247,7 +247,7 @@ _0375:
 _0394:
     Message 12
     GivePokedex
-    SetFlag 144
+    SetFlag FLAG_UNK_0x0090,
     BufferPlayerName 0
     Message 13
     PlaySound SEQ_FANFA4
@@ -308,7 +308,7 @@ _044D:
     ApplyMovement 3, _04D8
     WaitMovement
     RemoveObject 3
-    ClearFlag 0x177
+    ClearFlag FLAG_UNK_0x0177,
     SetVar 0x40A6, 1
     ReleaseAll
     End
@@ -514,7 +514,7 @@ _05FD:
     End
 
 _060E:
-    GoToIfSet 0x110, _0621
+    GoToIfSet FLAG_UNK_0x0110, _0621
     GoTo _0631
     End
 
@@ -556,7 +556,7 @@ _0677:
     CallIfEq 0x8007, 1, _07BB
     CallIfEq 0x8007, 2, _07CF
     CallIfEq 0x8007, 3, _07E3
-    ClearFlag 0x22A
+    ClearFlag FLAG_UNK_0x022A,
     AddObject 4
     ApplyMovement LOCALID_PLAYER, _0858
     ApplyMovement 4, _0884
@@ -574,7 +574,7 @@ _0677:
     ApplyMovement LOCALID_PLAYER, _086C
     WaitMovement
     Message 35
-    CallIfSet 0x964, _07A2
+    CallIfSet FLAG_UNK_0x0964, _07A2
     CallIfGe 0x4081, 2, _079C
     ScrCmd_22D 1, 0x800C
     BufferPlayerName 0
@@ -609,7 +609,7 @@ _0677:
     End
 
 _079C:
-    SetFlag 0x294
+    SetFlag FLAG_UNK_0x0294
     Return
 
 _07A2:
@@ -742,7 +742,7 @@ _08A0:
     Return
 
 _08B5:
-    GoToIfUnset 0x9BE, _08C2
+    GoToIfUnset FLAG_UNK_0x09BE, _08C2
     Return
 
 _08C2:

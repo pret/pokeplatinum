@@ -59,7 +59,7 @@ _008F:
     ApplyMovement LOCALID_PLAYER, _0100
     WaitMovement
     Call _0513
-    ClearFlag 0x966
+    ClearFlag FLAG_UNK_0x0966,
     SetVar 0x40D5, 0
     ReleaseAll
     End
@@ -359,7 +359,7 @@ _045D:
 
 _046A:
     SetVar 0x40D5, 1
-    SetFlag 0x966
+    SetFlag FLAG_UNK_0x0966
     ScrCmd_02E 52
     WaitABPressTime 45
     ScrCmd_135 96
@@ -460,17 +460,17 @@ _05CF:
     ScrCmd_31D 0x800C
     GoToIfEq 0x800C, 0xFF, _068E
     SetVar 0x40D5, 2
-    SetFlag 0x966
+    SetFlag FLAG_UNK_0x0966
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _062D
     SetVar 0x40D5, 0
-    ClearFlag 0x966
+    ClearFlag FLAG_UNK_0x0966,
     GoTo _01D3
 
 _062D:
     SetVar 0x40D5, 2
-    SetFlag 0x966
+    SetFlag FLAG_UNK_0x0966
     Message 63
     CloseMessage
     ScrCmd_168 0, 0, 8, 5, 77
@@ -523,7 +523,7 @@ _06B4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetFlag 170
+    SetFlag FLAG_UNK_0x00AA,
     Message 102
     GoTo _06CB
     End

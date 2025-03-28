@@ -85,7 +85,7 @@ _0139:
     End
 
 _0149:
-    ClearFlag 0x17A
+    ClearFlag FLAG_UNK_0x017A,
     AddObject 7
     ScrCmd_062 7
     ApplyMovement 7, _043C
@@ -615,8 +615,8 @@ _07A6:
     End
 
 _07FC:
-    GoToIfUnset 241, _0817
-    GoToIfUnset 243, _081C
+    GoToIfUnset FLAG_UNK_0x00F1, _0817
+    GoToIfUnset FLAG_UNK_0x00F3, _081C
     Message 35
     Return
 
@@ -629,8 +629,8 @@ _081C:
     Return
 
 _0821:
-    GoToIfUnset 241, _083C
-    GoToIfUnset 243, _0841
+    GoToIfUnset FLAG_UNK_0x00F1, _083C
+    GoToIfUnset FLAG_UNK_0x00F3, _0841
     Message 35
     Return
 
@@ -758,7 +758,7 @@ _0954:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 243, _097F
+    GoToIfSet FLAG_UNK_0x00F3, _097F
     Call _0821
     WaitABPress
     CloseMessage
@@ -891,7 +891,7 @@ _0AFE:
     WaitMovement
     RemoveObject 17
     RemoveObject 18
-    SetFlag 0x19C
+    SetFlag FLAG_UNK_0x019C
     ApplyMovement 16, _0EF8
     ApplyMovement 7, _0E54
     WaitMovement
@@ -959,7 +959,7 @@ _0C52:
 _0C7C:
     RemoveObject 7
     RemoveObject 16
-    ClearFlag 0x198
+    ClearFlag FLAG_UNK_0x0198,
     SetVar 0x4077, 4
     SetVar 0x4076, 2
     SetVar 0x4079, 3
@@ -968,7 +968,7 @@ _0C7C:
     RemoveObject 27
     SetObjectEventPos 30, 174, 0x2EE
     ScrCmd_188 30, 14
-    ClearFlag 0x18B
+    ClearFlag FLAG_UNK_0x018B,
     AddObject 30
     ScrCmd_062 30
     ApplyMovement 30, _0DC0
@@ -988,7 +988,7 @@ _0CF0:
     SetVar 0x8004, 0x1B3
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 242
+    SetFlag FLAG_UNK_0x00F2,
     Call _0D58
     Call _0D58
     Call _0D58
@@ -1527,9 +1527,9 @@ _11CC:
     End
 
 _11F8:
-    CallIfSet 237, _121B
-    CallIfSet 238, _121B
-    CallIfSet 239, _121B
+    CallIfSet FLAG_UNK_0x00ED, _121B
+    CallIfSet FLAG_UNK_0x00EE, _121B
+    CallIfSet FLAG_UNK_0x00EF, _121B
     Return
 
 _121B:
@@ -1576,10 +1576,10 @@ _12BB:
 
 _12D5:
     RemoveObject 23
-    SetFlag 243
-    ClearFlag 0x1F7
+    SetFlag FLAG_UNK_0x00F3,
+    ClearFlag FLAG_UNK_0x01F7,
     RemoveObject 31
-    SetFlag 0x181
+    SetFlag FLAG_UNK_0x0181
     ReleaseAll
     End
 
@@ -1611,7 +1611,7 @@ _1320:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 237, _138C
+    GoToIfSet FLAG_UNK_0x00ED, _138C
     Message 45
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _1356
@@ -1625,7 +1625,7 @@ _1356:
     Message 49
     SetVar 0x8004, 0x1CC
     SetVar 0x8005, 1
-    SetFlag 237
+    SetFlag FLAG_UNK_0x00ED,
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
@@ -1650,7 +1650,7 @@ _1397:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 238, _1403
+    GoToIfSet FLAG_UNK_0x00EE, _1403
     Message 51
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _13CD
@@ -1664,7 +1664,7 @@ _13CD:
     Message 55
     SetVar 0x8004, 0x1CD
     SetVar 0x8005, 1
-    SetFlag 238
+    SetFlag FLAG_UNK_0x00EE,
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
@@ -1690,7 +1690,7 @@ _140E:
     LockAll
     FacePlayer
     GoToIfLt 0x40E7, 2, _149E
-    GoToIfSet 239, _1493
+    GoToIfSet FLAG_UNK_0x00EF, _1493
     Message 57
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _1451
@@ -1705,7 +1705,7 @@ _1451:
     ScrCmd_187 23, 174, 1, 0x303, 1
     SetVar 0x8004, 0x1CE
     SetVar 0x8005, 1
-    SetFlag 239
+    SetFlag FLAG_UNK_0x00EF,
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
@@ -1759,7 +1759,7 @@ _14CF:
     SetObjectEventPos 31, 179, 0x8005
     ScrCmd_189 31, 3
     ScrCmd_188 31, 17
-    ClearFlag 0x181
+    ClearFlag FLAG_UNK_0x0181,
     AddObject 31
     ApplyMovement 31, _1538
     WaitMovement

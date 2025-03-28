@@ -10,11 +10,11 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 152, _0113
+    GoToIfSet FLAG_UNK_0x0098, _0113
     Call _0119
     GoToIfEq 0x800C, 1, _0106
-    GoToIfSet 153, _00B3
-    GoToIfSet 0x119, _008B
+    GoToIfSet FLAG_UNK_0x0099, _00B3
+    GoToIfSet FLAG_UNK_0x0119, _008B
     BufferPlayerName 0
     Message 0
     CloseMessage
@@ -26,7 +26,7 @@ _0006:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0091
     CallCommonScript 0x7FC
-    SetFlag 0x119
+    SetFlag FLAG_UNK_0x0119
     Message 2
     GoTo _009B
     End
@@ -45,7 +45,7 @@ _009B:
     ActivateRoamingPokemon ROAMING_SLOT_MOLTRES
     ActivateRoamingPokemon ROAMING_SLOT_ZAPDOS
     ActivateRoamingPokemon ROAMING_SLOT_ARTICUNO
-    SetFlag 153
+    SetFlag FLAG_UNK_0x0099,
     Message 3
     GoTo _0150
     End
@@ -75,7 +75,7 @@ _00FB:
 
 _0106:
     Message 5
-    SetFlag 152
+    SetFlag FLAG_UNK_0x0098,
     CallCommonScript 0x26E1
     End
 

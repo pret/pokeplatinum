@@ -22,7 +22,7 @@ _0036:
     LockAll
     SetVar 0x800C, 7
     Call _0052
-    ClearFlag 0x966
+    ClearFlag FLAG_UNK_0x0966,
     SetVar 0x40D5, 0
     ReleaseAll
     End
@@ -124,11 +124,11 @@ _0166:
 
 _0168:
     SetVar 0x40CC, 0
-    SetFlag 0x201
-    SetFlag 0x202
-    SetFlag 0x203
-    SetFlag 0x204
-    SetFlag 0x205
+    SetFlag FLAG_UNK_0x0201
+    SetFlag FLAG_UNK_0x0202
+    SetFlag FLAG_UNK_0x0203
+    SetFlag FLAG_UNK_0x0204
+    SetFlag FLAG_UNK_0x0205
     Return
 
 _0184:
@@ -137,15 +137,15 @@ _0184:
     Call _0168
     ScrCmd_238 7, 0x4000
     GoToIfEq 0x4000, 0, _01AB
-    ClearFlag 0x213
+    ClearFlag FLAG_UNK_0x0213,
     End
 
 _01AB:
-    SetFlag 0x213
+    SetFlag FLAG_UNK_0x0213
     End
 
 _01B1:
-    GoToIfSet 0x159, _01BE
+    GoToIfSet FLAG_UNK_0x0159, _01BE
     Return
 
 _01BE:
@@ -214,7 +214,7 @@ _0253:
 _0291:
     ScrCmd_150
     SetVar 0x40D5, 0
-    ClearFlag 0x966
+    ClearFlag FLAG_UNK_0x0966,
     Message 11
     WaitABXPadPress
     CloseMessage
@@ -228,7 +228,7 @@ _02A8:
 
 _02BD:
     HealParty
-    ClearFlag 0x966
+    ClearFlag FLAG_UNK_0x0966,
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _02E2
@@ -547,7 +547,7 @@ _07BC:
     End
 
 _07F1:
-    SetFlag 0x966
+    SetFlag FLAG_UNK_0x0966
     SetVar 0x40D5, 5
     ScrCmd_168 0, 0, 7, 5, 77
     Call _010D
@@ -630,14 +630,14 @@ _08CD:
     End
 
 _0947:
-    ClearFlag 0x220
+    ClearFlag FLAG_UNK_0x0220,
     SetVar 0x40CC, 1
     Call _0D20
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ClearFlag 0x201
-    ClearFlag 0x202
-    ClearFlag 0x203
-    ClearFlag 0x204
+    ClearFlag FLAG_UNK_0x0201,
+    ClearFlag FLAG_UNK_0x0202,
+    ClearFlag FLAG_UNK_0x0203,
+    ClearFlag FLAG_UNK_0x0204,
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 0, 29, 7, 0
@@ -775,7 +775,7 @@ _0B50:
     WaitFadeScreen
     SetVar 0x800C, 7
     Call _0052
-    ClearFlag 0x966
+    ClearFlag FLAG_UNK_0x0966,
     SetVar 0x40D5, 0
     GoTo _0C45
 
@@ -863,7 +863,7 @@ _0D20:
 _0D3A:
     ScrCmd_108 0x800C
     ScrCmd_10A 0x800C, 0x4024
-    ClearFlag 0x205
+    ClearFlag FLAG_UNK_0x0205,
     AddObject 5
     ScrCmd_108 0x4000
     GoToIfEq 0x4000, 0, _0D86

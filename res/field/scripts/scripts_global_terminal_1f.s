@@ -97,8 +97,8 @@ _00F4:
     FacePlayer
     ScrCmd_2B7 0x800C
     GoToIfEq 0x800C, 1, _0368
-    GoToIfSet 195, _02FB
-    SetFlag 195
+    GoToIfSet FLAG_UNK_0x00C3, _02FB
+    SetFlag FLAG_UNK_0x00C3,
     Message 0
     GoTo _0127
     End
@@ -534,8 +534,8 @@ _0652:
     FacePlayer
     CheckItem ITEM_FASHION_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0696
-    GoToIfSet 0xAC3, _06FD
-    GoToIfSet 207, _06F2
+    GoToIfSet FLAG_UNK_0x0AC3, _06FD
+    GoToIfSet FLAG_UNK_0x00CF, _06F2
     Message 24
     SetVar 0x8004, 1
     GoTo _06A1
@@ -551,7 +551,7 @@ _06A1:
     GoToIfEq 0x800C, 0, _06D3
     AddVar 0x8004, 1
     GoToIfLe 0x8004, 13, _06A1
-    SetFlag 207
+    SetFlag FLAG_UNK_0x00CF,
     GoTo _06F2
     End
 
@@ -560,7 +560,7 @@ _06D3:
     CallCommonScript 0x7FD
     Message 28
     Call _0710
-    SetFlag 0xAC3
+    SetFlag FLAG_UNK_0x0AC3
     GoTo _0708
     End
 
@@ -590,7 +590,7 @@ _071E:
     GoToIfEq 0x800C, 0, _074A
     AddVar 0x8004, 1
     GoToIfLe 0x8004, 13, _071E
-    SetFlag 207
+    SetFlag FLAG_UNK_0x00CF,
     Return
 
 _074A:

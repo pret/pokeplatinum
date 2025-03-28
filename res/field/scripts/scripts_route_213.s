@@ -14,7 +14,7 @@
     ScriptEntryEnd
 
 _0022:
-    GoToIfUnset 0x104, _002F
+    GoToIfUnset FLAG_UNK_0x0104, _002F
     End
 
 _002F:
@@ -23,12 +23,12 @@ _002F:
     End
 
 _0044:
-    GoToIfSet 0x103, _0051
+    GoToIfSet FLAG_UNK_0x0103, _0051
     End
 
 _0051:
-    CallIfUnset 0x118, _0062
-    ClearFlag 0x21A
+    CallIfUnset FLAG_UNK_0x0118, _0062
+    ClearFlag FLAG_UNK_0x021A,
     End
 
 _0062:
@@ -40,7 +40,7 @@ _0062:
 _0078:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 0x118, _0133
+    GoToIfSet FLAG_UNK_0x0118, _0133
     Message 0
     CloseMessage
     FacePlayer
@@ -75,12 +75,12 @@ _00F1:
     End
 
 _010B:
-    SetFlag 0x118
+    SetFlag FLAG_UNK_0x0118
     RemoveObject 30
     SetObjectEventPos 30, 0x2AB, 0x341
     ScrCmd_189 30, 3
     ScrCmd_188 30, 17
-    ClearFlag 0x21A
+    ClearFlag FLAG_UNK_0x021A,
     AddObject 30
     ReleaseAll
     End
@@ -115,8 +115,8 @@ _0180:
 
 _019A:
     RemoveObject 30
-    SetFlag 0x104
-    ClearFlag 0x1E8
+    SetFlag FLAG_UNK_0x0104
+    ClearFlag FLAG_UNK_0x01E8,
     AddObject 33
     CallCommonScript 0x807
     ScrCmd_315 0x800C
@@ -139,8 +139,8 @@ _019A:
     CallCommonScript 0x808
     ScrCmd_315 0x800C
     CallIfEq 0x800C, 2, _0261
-    ClearFlag 0x211
-    ClearFlag 0x21B
+    ClearFlag FLAG_UNK_0x0211,
+    ClearFlag FLAG_UNK_0x021B,
     ReleaseAll
     End
 

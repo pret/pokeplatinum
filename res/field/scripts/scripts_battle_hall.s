@@ -50,21 +50,21 @@ _00A6:
 _00B5:
     Call _015D
     GetRandom 0x4007, 100
-    CallIfUnset 0x2CB, _00DB
+    CallIfUnset FLAG_UNK_0x02CB, _00DB
     GoToIfLt 0x4007, 30, _00E5
     End
 
 _00DB:
     RemoveObject 13
-    SetFlag 0x2CB
+    SetFlag FLAG_UNK_0x02CB
     Return
 
 _00E5:
-    GoToIfUnset 0xAC4, _00F2
+    GoToIfUnset FLAG_UNK_0x0AC4, _00F2
     End
 
 _00F2:
-    SetFlag 0xAC4
+    SetFlag FLAG_UNK_0x0AC4
     ScrCmd_326 0x4008
     GoToIfGe 0x4008, 0x2710, _0123
     GoToIfGe 0x4008, 0x3E8, _0131
@@ -87,28 +87,28 @@ _013F:
     End
 
 _014D:
-    ClearFlag 0x2CB
+    ClearFlag FLAG_UNK_0x02CB,
     Call _01DF
     AddObject 13
     End
 
 _015D:
-    CallIfUnset 0x2C1, _019C
+    CallIfUnset FLAG_UNK_0x02C1, _019C
     ScrCmd_238 14, 0x4000
     GoToIfEq 0x4000, 0, _0196
     ScrCmd_32A 0x4000
     GoToIfEq 0x4000, 0, _0196
-    ClearFlag 0x2C1
+    ClearFlag FLAG_UNK_0x02C1,
     AddObject 10
     Return
 
 _0196:
-    SetFlag 0x2C1
+    SetFlag FLAG_UNK_0x02C1
     Return
 
 _019C:
     RemoveObject 10
-    SetFlag 0x2C1
+    SetFlag FLAG_UNK_0x02C1
     Return
 
 _01A6:
@@ -755,7 +755,7 @@ _0A4F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset 190, _0AD7
+    GoToIfUnset FLAG_UNK_0x00BE, _0AD7
     ScrCmd_324 1, 2, 3, 4, 0x4062, 0x800C
     GoToIfEq 0x800C, 0, _0AAD
     GoToIfEq 0x800C, 2, _0AB8
@@ -788,7 +788,7 @@ _0AC9:
     End
 
 _0AD7:
-    SetFlag 190
+    SetFlag FLAG_UNK_0x00BE,
     Message 68
     GoTo _0AE6
     End

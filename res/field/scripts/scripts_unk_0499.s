@@ -11,8 +11,8 @@ _0006:
     LockAll
     FacePlayer
     ScrCmd_294 21, 1
-    GoToIfSet 114, _0031
-    SetFlag 114
+    GoToIfSet FLAG_UNK_0x0072, _0031
+    SetFlag FLAG_UNK_0x0072,
     BufferNumber 0, 1
     Message 15
     GoTo _0041

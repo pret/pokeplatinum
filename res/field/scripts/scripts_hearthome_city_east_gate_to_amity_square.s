@@ -11,11 +11,11 @@
 _000E:
     ScrCmd_238 13, 0x4000
     GoToIfEq 0x4000, 0, _0027
-    ClearFlag 0x219
+    ClearFlag FLAG_UNK_0x0219,
     End
 
 _0027:
-    SetFlag 0x219
+    SetFlag FLAG_UNK_0x0219
     End
 
 _002D:

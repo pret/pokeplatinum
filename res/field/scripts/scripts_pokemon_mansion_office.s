@@ -20,12 +20,12 @@ _001E:
     GoTo _004F
 
 _004F:
-    ClearFlag 0x28B
+    ClearFlag FLAG_UNK_0x028B,
     SetVar 0x4116, 0
     End
 
 _005B:
-    SetFlag 0x28B
+    SetFlag FLAG_UNK_0x028B
     SetVar 0x4116, 1
     End
 
@@ -33,7 +33,7 @@ _0067:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0xAA2, _0155
+    GoToIfSet FLAG_UNK_0x0AA2, _0155
     GoToIfEq 0x400B, 1, _0155
     ScrCmd_22D 2, 0x800C
     GoToIfEq 0x800C, 1, _00AA
@@ -86,7 +86,7 @@ _00FB:
     RemoveObject 2
     SetVar 0x400B, 1
     Call _016C
-    SetFlag 0xAA2
+    SetFlag FLAG_UNK_0x0AA2
     GoTo _0155
 
 _0155:
@@ -179,13 +179,13 @@ _0224:
     GoTo _0270
 
 _0244:
-    GoToIfSet 0x164, _0270
+    GoToIfSet FLAG_UNK_0x0164, _0270
     GoTo _0257
     End
 
 _0257:
     Message 15
-    SetFlag 0x164
+    SetFlag FLAG_UNK_0x0164
     WaitABXPadPress
     CloseMessage
     ApplyMovement 2, _01CC
@@ -194,7 +194,7 @@ _0257:
     End
 
 _0270:
-    GoToIfSet 0xAA2, _0304
+    GoToIfSet FLAG_UNK_0x0AA2, _0304
     CheckGameCompleted 0x800C
     GoToIfEq 0x800C, 1, _02C8
     GetRandom 0x800C, 2
@@ -305,19 +305,19 @@ _0399:
 
 _03C2:
     Message 20
-    GoToIfSet 251, _0408
+    GoToIfSet FLAG_UNK_0x00FB, _0408
     CheckHasSeenSpecies SPECIES_MANAPHY, 0x800C
     GoToIfEq 0x800C, 1, _03FC
     DrawPokemonPreview SPECIES_MANAPHY, GENDER_MALE
     WaitABPress
     ScrCmd_209
-    SetFlag 251
+    SetFlag FLAG_UNK_0x00FB,
     Message 21
     GoTo _0416
     End
 
 _03FC:
-    SetFlag 251
+    SetFlag FLAG_UNK_0x00FB,
     GoTo _0408
     End
 

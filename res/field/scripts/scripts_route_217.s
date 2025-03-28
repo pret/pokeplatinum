@@ -34,7 +34,7 @@ _003A:
 
 _004D:
     LockAll
-    ClearFlag 0x297
+    ClearFlag FLAG_UNK_0x0297,
     AddObject 15
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x12E, _00CA
@@ -53,7 +53,7 @@ _004D:
     CallIfEq 0x8004, 0x12F, _00F6
     RemoveObject 15
     SetVar 0x40A8, 1
-    SetFlag 0x298
+    SetFlag FLAG_UNK_0x0298
     ReleaseAll
     End
 

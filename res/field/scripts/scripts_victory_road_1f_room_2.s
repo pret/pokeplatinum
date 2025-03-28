@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    GoToIfUnset 230, _001F
+    GoToIfUnset FLAG_UNK_0x00E6, _001F
     End
 
 _001F:
@@ -63,13 +63,13 @@ _00DC:
 
 _00EC:
     BufferPlayerName 0
-    CallIfUnset 223, _0134
-    CallIfSet 223, _0139
+    CallIfUnset FLAG_UNK_0x00DF, _0134
+    CallIfSet FLAG_UNK_0x00DF, _0139
     BufferPlayerName 0
     PlaySound SEQ_GONIN
     Message 1
     WaitSound
-    SetFlag 223
+    SetFlag FLAG_UNK_0x00DF,
     SetVar 0x4090, 1
     Message 2
     WaitABXPadPress
@@ -283,7 +283,7 @@ _0389:
 
 _03A1:
     RemoveObject 28
-    SetFlag 230
+    SetFlag FLAG_UNK_0x00E6,
     SetVar 0x4090, 2
     ReleaseAll
     End

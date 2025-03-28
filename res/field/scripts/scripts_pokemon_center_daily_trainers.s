@@ -27,8 +27,8 @@
     ScriptEntryEnd
 
 PokemonCenterDailyTrainers_CheckUnlockedVSSeeker:
-    SetFlag 0x183
-    SetFlag 0x184
+    SetFlag FLAG_UNK_0x0183
+    SetFlag FLAG_UNK_0x0184
     GoToIfUnset FLAG_UNLOCKED_VS_SEEKER_LVL_1, PokemonCenterDailyTrainers_End
     Call PokemonCenterDailyTrainers_SetNPCs
     End
@@ -124,43 +124,43 @@ PokemonCenterDailyTrainers_SetNPCsSaturday:
     Return
 
 PokemonCenterDailyTrainers_SetNPCGrace:
-    ClearFlag 0x183
+    ClearFlag FLAG_UNK_0x0183,
     SetVar VAR_NPC_1, GRACE
     Return
 
 PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey:
-    ClearFlag 0x183
-    ClearFlag 0x184
+    ClearFlag FLAG_UNK_0x0183,
+    ClearFlag FLAG_UNK_0x0184,
     SetVar VAR_NPC_1, KINSEY
     SetVar VAR_NPC_2, TEVIN
     Return
 
 PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey2:
-    ClearFlag 0x183
-    ClearFlag 0x184
+    ClearFlag FLAG_UNK_0x0183,
+    ClearFlag FLAG_UNK_0x0184,
     SetVar VAR_NPC_1, KINSEY
     SetVar VAR_NPC_2, TEVIN
     Return
 
 PokemonCenterDailyTrainers_SetNPCLee:
-    ClearFlag 0x183
+    ClearFlag FLAG_UNK_0x0183,
     SetVar VAR_NPC_1, LEE
     Return
 
 PokemonCenterDailyTrainers_SetNPCsRoxyAndOli:
-    ClearFlag 0x183
-    ClearFlag 0x184
+    ClearFlag FLAG_UNK_0x0183,
+    ClearFlag FLAG_UNK_0x0184,
     SetVar VAR_NPC_1, ROXY_AND_OLI_1
     SetVar VAR_NPC_2, ROXY_AND_OLI_2
     Return
 
 PokemonCenterDailyTrainers_SetNPCAriel:
-    ClearFlag 0x183
+    ClearFlag FLAG_UNK_0x0183,
     SetVar VAR_NPC_1, ARIEL
     Return
 
 PokemonCenterDailyTrainers_SetNPCArturo:
-    ClearFlag 0x183
+    ClearFlag FLAG_UNK_0x0183,
     SetVar VAR_NPC_1, ARTURO
     Return
 

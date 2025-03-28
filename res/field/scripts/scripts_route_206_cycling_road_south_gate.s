@@ -21,7 +21,7 @@ _001C:
     End
 
 _0037:
-    SetFlag 0x996
+    SetFlag FLAG_UNK_0x0996
     Return
 
 _003D:
@@ -48,7 +48,7 @@ _0050:
     End
 
 _0080:
-    SetFlag 0x996
+    SetFlag FLAG_UNK_0x0996
     SetVar 0x4002, 1
     ReleaseAll
     End
@@ -65,7 +65,7 @@ _0098:
 
 _00A0:
     LockAll
-    ClearFlag 0x996
+    ClearFlag FLAG_UNK_0x0996,
     SetVar 0x4002, 0
     ReleaseAll
     End
@@ -74,13 +74,13 @@ _00B0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x12B, _00E5
+    GoToIfSet FLAG_UNK_0x012B, _00E5
     SetVar 0x8004, 96
     ScrCmd_261 0, 0x8004
     Message 3
     SetVar 0x8005, 1
     CallCommonScript 0x7DF
-    SetFlag 0x12B
+    SetFlag FLAG_UNK_0x012B
     CloseMessage
     ReleaseAll
     End

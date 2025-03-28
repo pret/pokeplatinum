@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag 0x9DF
+    SetFlag FLAG_UNK_0x09DF
     End
 
 VerityCavern_Mesprit:
@@ -77,7 +77,7 @@ VerityCavern_EnterProfessorRowanEast:
     End
 
 VerityCavern_EnterProfessorRowan:
-    ClearFlag 0x296
+    ClearFlag FLAG_UNK_0x0296,
     AddObject LOCALID_ROWAN
     ApplyMovement LOCALID_ROWAN, _0190
     WaitMovement

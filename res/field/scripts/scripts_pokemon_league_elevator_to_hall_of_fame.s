@@ -12,7 +12,7 @@ _000A:
     ApplyMovement LOCALID_PLAYER, _016C
     WaitMovement
     SetObjectEventPos 0, 6, 14
-    ClearFlag 0x23A
+    ClearFlag FLAG_UNK_0x023A,
     AddObject 0
     ScrCmd_062 0
     ApplyMovement 0, _0138
@@ -21,7 +21,7 @@ _000A:
     Message 0
     CloseMessage
     SetObjectEventPos 1, 4, 14
-    ClearFlag 0x23B
+    ClearFlag FLAG_UNK_0x023B,
     AddObject 1
     ScrCmd_062 1
     ApplyMovement 1, _0114

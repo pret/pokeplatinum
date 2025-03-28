@@ -11,18 +11,18 @@
     ScriptEntryEnd
 
 _0016:
-    SetFlag 0x9E6
+    SetFlag FLAG_UNK_0x09E6
     End
 
 _001C:
-    CallIfSet 0x994, _009F
+    CallIfSet FLAG_UNK_0x0994, _009F
     GetPreviousMapID 0x4000
     GoToIfEq 0x4000, MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE, _0047
     GoToIfEq 0x4000, MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE, _0047
     End
 
 _0047:
-    GoToIfSet 3, _009D
+    GoToIfSet FLAG_UNK_0x0003, _009D
     GetPlayerMapPos 0x4000, 0x4001
     GoToIfLt 0x4000, 0x12B, _009D
     GoToIfGt 0x4000, 0x132, _009D
@@ -31,8 +31,8 @@ _0047:
     End
 
 _008E:
-    SetFlag 3
-    SetFlag 0x994
+    SetFlag FLAG_UNK_0x0003,
+    SetFlag FLAG_UNK_0x0994
     ScrCmd_2BF
     ScrCmd_0C9 1
     End

@@ -8,17 +8,17 @@
     ScriptEntryEnd
 
 _000A:
-    GoToIfSet 0x11D, _0029
+    GoToIfSet FLAG_UNK_0x011D, _0029
     ScrCmd_22D 2, 0x4000
     CallIfEq 0x4000, 1, _002F
     End
 
 _0029:
-    SetFlag 0x24D
+    SetFlag FLAG_UNK_0x024D
     End
 
 _002F:
-    ClearFlag 0x24D
+    ClearFlag FLAG_UNK_0x024D,
     Return
 
 _0035:
@@ -31,7 +31,7 @@ _0035:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00A8
     CallCommonScript 0x7FC
-    SetFlag 0x11D
+    SetFlag FLAG_UNK_0x011D
     Message 1
     CloseMessage
     GetPlayerDir 0x8004

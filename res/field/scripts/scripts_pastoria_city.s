@@ -30,11 +30,11 @@
 
 _005E:
     SetVar 0x40C7, 0
-    SetFlag 0x17E
+    SetFlag FLAG_UNK_0x017E
     CallIfEq 0x407C, 5, _074D
     CallIfEq 0x407C, 4, _0721
     CallIfEq 0x407C, 4, _0737
-    GoToIfSet 0x102, _009C
+    GoToIfSet FLAG_UNK_0x0102, _009C
     End
 
 _009C:
@@ -106,7 +106,7 @@ _012F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x128, _0189
+    GoToIfSet FLAG_UNK_0x0128, _0189
     GetPlayerStarterSpecies 0x800C
     CallIfEq 0x800C, SPECIES_TURTWIG, _0194
     CallIfEq 0x800C, SPECIES_CHIMCHAR, _019C
@@ -115,7 +115,7 @@ _012F:
     Message 37
     SetVar 0x8005, 1
     CallCommonScript 0x7DF
-    SetFlag 0x128
+    SetFlag FLAG_UNK_0x0128
     CloseMessage
     ReleaseAll
     End
@@ -185,7 +185,7 @@ _01E5:
 _0204:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 0x102, _0220
+    GoToIfSet FLAG_UNK_0x0102, _0220
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -237,7 +237,7 @@ _02B2:
 _02D2:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 21
-    SetFlag 0x103
+    SetFlag FLAG_UNK_0x0103
     ReleaseAll
     End
 
@@ -543,7 +543,7 @@ _04C0:
 
 _04C8:
     LockAll
-    ClearFlag 0x1A9
+    ClearFlag FLAG_UNK_0x01A9,
     SetObjectEventPos 26, 0x253, 0x333
     ScrCmd_188 26, 16
     ScrCmd_189 26, 2
@@ -592,7 +592,7 @@ _0563:
     End
 
 _0597:
-    SetFlag 0x1A9
+    SetFlag FLAG_UNK_0x01A9
     BlackOutFromBattle
     ReleaseAll
     End
@@ -629,7 +629,7 @@ _05D4:
 
 _05E0:
     LockAll
-    ClearFlag 0x1A9
+    ClearFlag FLAG_UNK_0x01A9,
     SetObjectEventPos 26, 0x253, 0x333
     ScrCmd_188 26, 15
     ScrCmd_189 26, 1
@@ -647,7 +647,7 @@ _05E0:
     ScrCmd_169 77
     ApplyMovement LOCALID_PLAYER, _07D8
     WaitMovement
-    ClearFlag 0x1FB
+    ClearFlag FLAG_UNK_0x01FB,
     SetObjectEventPos 27, 0x24D, 0x33B
     ScrCmd_189 27, 0
     ScrCmd_188 27, 14
@@ -658,7 +658,7 @@ _05E0:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    SetFlag 0x20F
+    SetFlag FLAG_UNK_0x020F
     ApplyMovement 27, _076C
     WaitMovement
     Message 8
@@ -689,10 +689,10 @@ _05E0:
     ApplyMovement 26, _07C0
     WaitMovement
     Call _0737
-    ClearFlag 0x1FB
+    ClearFlag FLAG_UNK_0x01FB,
     ScrCmd_187 27, 0x263, 0, 0x32A, 0
     Call _0721
-    ClearFlag 0x1A9
+    ClearFlag FLAG_UNK_0x01A9,
     ScrCmd_187 26, 0x260, 0, 0x32E, 1
     SetVar 0x407C, 4
     ReleaseAll
@@ -830,7 +830,7 @@ _086F:
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
     CloseMessage
-    ClearFlag 0x20C
+    ClearFlag FLAG_UNK_0x020C,
     SetObjectEventPos 21, 0x262, 0x328
     ScrCmd_189 21, 3
     ScrCmd_188 21, 17
@@ -851,7 +851,7 @@ _08D9:
 
 _08FA:
     RemoveObject 21
-    ClearFlag 0x20C
+    ClearFlag FLAG_UNK_0x020C,
     SetObjectEventPos 21, 0x27D, 0x32C
     ScrCmd_188 21, 17
     ScrCmd_189 21, 3
@@ -869,9 +869,9 @@ _091C:
     CallIfEq 0x8004, 0x261, _0981
     CallIfEq 0x8004, 0x263, _098D
     CallIfEq 0x8004, 0x264, _0981
-    SetFlag 0x20D
+    SetFlag FLAG_UNK_0x020D
     SetVar 0x407C, 5
-    SetFlag 0x102
+    SetFlag FLAG_UNK_0x0102
     BufferRivalName 0
     BufferPlayerName 1
     Message 25
@@ -1127,7 +1127,7 @@ _0BE0:
 
 _0BF0:
     LockAll
-    GoToIfSet 0x156, _0C1E
+    GoToIfSet FLAG_UNK_0x0156, _0C1E
     SetVar 0x40C7, 1
     GetRandom 0x800C, 100
     GoToIfGe 0x800C, 90, _0C22
@@ -1139,7 +1139,7 @@ _0C1E:
     End
 
 _0C22:
-    ClearFlag 0x29D
+    ClearFlag FLAG_UNK_0x029D,
     AddObject 28
     ApplyMovement LOCALID_PLAYER, _0C78
     ApplyMovement 28, _0C64

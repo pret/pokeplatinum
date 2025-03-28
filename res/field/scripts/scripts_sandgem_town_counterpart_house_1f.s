@@ -57,9 +57,9 @@ _0092:
     End
 
 _009A:
-    GoToIfUnset 0x964, _005A
-    GoToIfSet 240, _00C4
-    SetFlag 240
+    GoToIfUnset FLAG_UNK_0x0964, _005A
+    GoToIfSet FLAG_UNK_0x00F0, _00C4
+    SetFlag FLAG_UNK_0x00F0,
     EnableSwarms
     BufferPlayerName 0
     Message 4

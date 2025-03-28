@@ -89,7 +89,7 @@ _00D2:
 
 _00E0:
     LockAll
-    ClearFlag 0x173
+    ClearFlag FLAG_UNK_0x0173,
     AddObject 0
     ApplyMovement 0, _0394
     WaitMovement
@@ -134,7 +134,7 @@ _00E0:
     RemoveObject 0
     CallCommonScript 0x7FB
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetFlag 0x173
+    SetFlag FLAG_UNK_0x0173
     SetVar 0x40A5, 1
     ReleaseAll
     End

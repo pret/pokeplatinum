@@ -82,7 +82,7 @@ _0094:
     SetTrainerFlag TRAINER_AROMA_LADY_ANGELA
     SetTrainerFlag TRAINER_LASS_CAROLINE
     SetTrainerFlag TRAINER_BEAUTY_LINDSAY
-    ClearFlag 0x1FC
+    ClearFlag FLAG_UNK_0x01FC,
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 67, TRAINER_LEADER_GARDENIA, 0, 0
     Message 3
     GoTo _0177
@@ -94,7 +94,7 @@ _0119:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0157
     CallCommonScript 0x7FC
-    SetFlag 116
+    SetFlag FLAG_UNK_0x0074,
     BufferItemName 0, 0x8004
     BufferTMHMMoveName 1, 0x8004
     Message 4
@@ -110,7 +110,7 @@ _0157:
     End
 
 _0161:
-    GoToIfUnset 116, _0119
+    GoToIfUnset FLAG_UNK_0x0074, _0119
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -123,7 +123,7 @@ _0177:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _01B7
     CallCommonScript 0x7FC
-    SetFlag 116
+    SetFlag FLAG_UNK_0x0074,
     BufferItemName 0, 0x8004
     BufferTMHMMoveName 1, 0x8004
     Message 4

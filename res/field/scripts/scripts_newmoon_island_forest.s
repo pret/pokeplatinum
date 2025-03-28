@@ -16,22 +16,22 @@ _000E:
     GoToIfEq 0x4000, FALSE, _0058
     CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
     GoToIfEq 0x4000, FALSE, _0058
-    GoToIfSet 0x158, _0058
-    ClearFlag 0x240
+    GoToIfSet FLAG_UNK_0x0158, _0058
+    ClearFlag FLAG_UNK_0x0240,
     End
 
 _0058:
-    SetFlag 0x240
+    SetFlag FLAG_UNK_0x0240
     End
 
 _005E:
-    GoToIfSet 142, _006B
+    GoToIfSet FLAG_UNK_0x008E, _006B
     End
 
 _006B:
-    SetFlag 0x240
+    SetFlag FLAG_UNK_0x0240
     RemoveObject 0
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E,
     End
 
 _0079:
@@ -40,16 +40,16 @@ _0079:
     WaitFanfare SEQ_SE_CONFIRM
     Message 0
     CloseMessage
-    SetFlag 142
+    SetFlag FLAG_UNK_0x008E,
     StartLegendaryBattle SPECIES_DARKRAI, 50
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E,
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _014C
     CheckDidNotCapture 0x800C
     GoToIfEq 0x800C, TRUE, _00D8
-    SetFlag 0x158
+    SetFlag FLAG_UNK_0x0158
 _00BC:
-    SetFlag 0x241
+    SetFlag FLAG_UNK_0x0241
     GoToIfEq 0x40F8, 2, _00E3
     Message 3
     WaitABXPadPress

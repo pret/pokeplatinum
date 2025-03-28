@@ -40,7 +40,7 @@ _0063:
     End
 
 _0086:
-    SetFlag 0x10E
+    SetFlag FLAG_UNK_0x010E
     RemoveItem ITEM_STORAGE_KEY, 1, 0x800C
     BufferPlayerName 0
     Message 9
@@ -146,7 +146,7 @@ _0197:
     SetObjectEventPos 4, 8, 11
     ScrCmd_188 4, 14
     ScrCmd_189 4, 0
-    ClearFlag 0x20D
+    ClearFlag FLAG_UNK_0x020D,
     AddObject 4
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 8, _025A
@@ -157,7 +157,7 @@ _0197:
     WaitMovement
     Message 5
     CloseMessage
-    SetFlag 0x10E
+    SetFlag FLAG_UNK_0x010E
     WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 2, _00C8
@@ -172,7 +172,7 @@ _0197:
     CallIfEq 0x8004, 8, _029A
     CallIfEq 0x8004, 9, _02AE
     RemoveObject 4
-    SetFlag 0x28A
+    SetFlag FLAG_UNK_0x028A
     SetVar 0x411F, 4
     ReleaseAll
     End

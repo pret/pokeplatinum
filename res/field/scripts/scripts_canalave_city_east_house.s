@@ -11,9 +11,9 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 1, _0026
+    GoToIfSet FLAG_UNK_0x0001, _0026
     Message 0
-    SetFlag 1
+    SetFlag FLAG_UNK_0x0001,
     GoTo _0026
 
 _0026:

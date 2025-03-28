@@ -11,8 +11,8 @@
 
 _0012:
     GoToIfEq 0x40DE, 0, _0054
-    SetFlag 0x1EA
-    SetFlag 0x1EB
+    SetFlag FLAG_UNK_0x01EA
+    SetFlag FLAG_UNK_0x01EB
     ScrCmd_207 0x4000
     GoToIfEq 0x4000, 1, _0056
     ScrCmd_1DD 55, 0, 0x4000
@@ -288,8 +288,8 @@ _04C5:
     SetVar 0x4022, 0x800C
     ScrCmd_1DD 41, 1, 0x800C
     SetVar 0x4023, 0x800C
-    ClearFlag 0x1EA
-    ClearFlag 0x1EB
+    ClearFlag FLAG_UNK_0x01EA,
+    ClearFlag FLAG_UNK_0x01EB,
     AddObject 5
     AddObject 4
     ApplyMovement 5, _05D8
@@ -319,8 +319,8 @@ _0541:
     ApplyMovement 5, _0618
     ApplyMovement 4, _0628
     WaitMovement
-    SetFlag 0x1EA
-    SetFlag 0x1EB
+    SetFlag FLAG_UNK_0x01EA
+    SetFlag FLAG_UNK_0x01EB
     RemoveObject 5
     RemoveObject 4
     Return

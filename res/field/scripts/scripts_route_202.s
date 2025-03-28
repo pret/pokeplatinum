@@ -94,7 +94,7 @@ _0164:
     GoTo _0174
 
 _0174:
-    GoToIfUnset 143, _027C
+    GoToIfUnset FLAG_UNK_0x008F, _027C
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, GENDER_MALE, _019F
     GoToIfEq 0x800C, GENDER_FEMALE, _01B2
@@ -173,8 +173,8 @@ _027C:
 _029C:
     BufferCounterpartName 0
     BufferPlayerName 1
-    CallIfUnset 0x115, _02BE
-    CallIfSet 0x115, _02C3
+    CallIfUnset FLAG_UNK_0x0115, _02BE
+    CallIfSet FLAG_UNK_0x0115, _02C3
     GoTo _02F4
 
 _02BE:
@@ -188,8 +188,8 @@ _02C3:
 _02C8:
     BufferCounterpartName 0
     BufferPlayerName 1
-    CallIfUnset 0x115, _02EA
-    CallIfSet 0x115, _02EF
+    CallIfUnset FLAG_UNK_0x0115, _02EA
+    CallIfSet FLAG_UNK_0x0115, _02EF
     GoTo _02F4
 
 _02EA:
@@ -242,7 +242,7 @@ _0399:
 _03B1:
     ApplyMovement 3, _0480
     WaitMovement
-    SetFlag 0x115
+    SetFlag FLAG_UNK_0x0115
     ReleaseAll
     End
 
@@ -446,7 +446,7 @@ _0635:
 
 _0641:
     RemoveObject 3
-    ClearFlag 0x177
+    ClearFlag FLAG_UNK_0x0177,
     SetVar 0x4087, 3
     ReleaseAll
     End

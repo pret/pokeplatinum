@@ -82,7 +82,7 @@ _0104:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 5
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetFlag 0x978
+    SetFlag FLAG_UNK_0x0978
     ReleaseAll
     End
 
@@ -304,8 +304,8 @@ _0361:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset 0x159, _03D3
-    GoToIfUnset 0x15A, _038A
+    GoToIfUnset FLAG_UNK_0x0159, _03D3
+    GoToIfUnset FLAG_UNK_0x015A, _038A
 _037F:
     Message 18
     WaitABXPadPress
@@ -320,7 +320,7 @@ _038A:
     ScrCmd_28A 0x800C
     GoToIfEq 0x800C, 0, _03C8
     Call _0437
-    SetFlag 0x15A
+    SetFlag FLAG_UNK_0x015A
     Message 17
     WaitABXPadPress
     CloseMessage
@@ -335,14 +335,14 @@ _03C8:
     End
 
 _03D3:
-    SetFlag 0x159
+    SetFlag FLAG_UNK_0x0159
     CheckItem ITEM_POFFIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0428
     Message 13
     ScrCmd_28A 0x800C
     GoToIfEq 0x800C, 0, _0419
     Call _0437
-    SetFlag 0x15A
+    SetFlag FLAG_UNK_0x015A
     Message 16
     CloseMessage
     Call _0458
@@ -475,7 +475,7 @@ _05D3:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 10
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetFlag 0x18D
+    SetFlag FLAG_UNK_0x018D
     ReleaseAll
     End
 

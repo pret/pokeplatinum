@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _000E:
-    SetFlag 0x9CF
+    SetFlag FLAG_UNK_0x09CF
     End
 
 _0014:
@@ -25,7 +25,7 @@ _0014:
     End
 
 _003A:
-    GoToIfSet 147, _0064
+    GoToIfSet FLAG_UNK_0x0093, _0064
     Message 0
     SetVar 0x8004, 0x1A9
     SetVar 0x8005, 1
@@ -41,7 +41,7 @@ _0064:
     End
 
 _006F:
-    SetFlag 147
+    SetFlag FLAG_UNK_0x0093,
     SetVar 0x4093, 2
     Return
 

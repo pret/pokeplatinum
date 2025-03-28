@@ -25,25 +25,25 @@ _002A:
     End
 
 _0071:
-    ClearFlag 0x260
-    ClearFlag 0x262
-    ClearFlag 0x264
-    ClearFlag 0x266
-    SetFlag 0x261
-    SetFlag 0x263
-    SetFlag 0x265
-    SetFlag 0x267
+    ClearFlag FLAG_UNK_0x0260,
+    ClearFlag FLAG_UNK_0x0262,
+    ClearFlag FLAG_UNK_0x0264,
+    ClearFlag FLAG_UNK_0x0266,
+    SetFlag FLAG_UNK_0x0261
+    SetFlag FLAG_UNK_0x0263
+    SetFlag FLAG_UNK_0x0265
+    SetFlag FLAG_UNK_0x0267
     End
 
 _0093:
-    ClearFlag 0x261
-    ClearFlag 0x263
-    ClearFlag 0x265
-    ClearFlag 0x267
-    SetFlag 0x260
-    SetFlag 0x262
-    SetFlag 0x264
-    SetFlag 0x266
+    ClearFlag FLAG_UNK_0x0261,
+    ClearFlag FLAG_UNK_0x0263,
+    ClearFlag FLAG_UNK_0x0265,
+    ClearFlag FLAG_UNK_0x0267,
+    SetFlag FLAG_UNK_0x0260
+    SetFlag FLAG_UNK_0x0262
+    SetFlag FLAG_UNK_0x0264
+    SetFlag FLAG_UNK_0x0266
     End
 
 _00B5:

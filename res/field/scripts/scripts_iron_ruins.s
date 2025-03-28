@@ -28,7 +28,7 @@ _003D:
     FacePlayer
     GoToIfEq 0x4069, 0x122, _00ED
     GoToIfEq 0x4069, 0x118, _00F8
-    GoToIfUnset 0x964, _010F
+    GoToIfUnset FLAG_UNK_0x0964, _010F
     ScrCmd_32B 0x800C
     GoToIfEq 0x800C, 0, _011A
     GoToIfEq 0x4069, 0x10E, _00AE
@@ -140,7 +140,7 @@ _020D:
     End
 
 _020F:
-    GoToIfUnset 0x964, _020D
+    GoToIfUnset FLAG_UNK_0x0964, _020D
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
     SetVar 0x4069, 0x10E

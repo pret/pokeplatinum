@@ -12,7 +12,7 @@
     ScriptEntryEnd
 
 _001A:
-    SetFlag 0x9C0
+    SetFlag FLAG_UNK_0x09C0
     End
 
 _0020:

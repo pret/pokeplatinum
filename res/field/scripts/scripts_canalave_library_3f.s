@@ -182,11 +182,11 @@ _0184:
     ScrCmd_04A 0x603
     SetVar 0x4078, 4
     SetVar 0x40B2, 2
-    SetFlag 168
-    SetFlag 0x1AE
-    ClearFlag 0x1B3
-    ClearFlag 0x1B5
-    ClearFlag 0x1B2
+    SetFlag FLAG_UNK_0x00A8,
+    SetFlag FLAG_UNK_0x01AE
+    ClearFlag FLAG_UNK_0x01B3,
+    ClearFlag FLAG_UNK_0x01B5,
+    ClearFlag FLAG_UNK_0x01B2,
     ReleaseAll
     End
 
@@ -337,7 +337,7 @@ _03E8:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _0406
+    GoToIfSet FLAG_UNK_0x00A8, _0406
     Message 26
     WaitABXPadPress
     CloseMessage
@@ -355,7 +355,7 @@ _0411:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _042F
+    GoToIfSet FLAG_UNK_0x00A8, _042F
     Message 28
     WaitABXPadPress
     CloseMessage

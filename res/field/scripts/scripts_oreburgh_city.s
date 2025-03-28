@@ -31,12 +31,12 @@ _005A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 138, _0082
+    GoToIfSet FLAG_UNK_0x008A, _0082
     BufferRivalName 0
     BufferPlayerName 1
     Message 0
     WaitABXPadPress
-    SetFlag 138
+    SetFlag FLAG_UNK_0x008A,
     CloseMessage
     ReleaseAll
     End
@@ -55,7 +55,7 @@ _0090:
     FacePlayer
     CheckBadgeAcquired BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 1, _00C1
-    GoToIfSet 122, _00CC
+    GoToIfSet FLAG_UNK_0x007A, _00CC
     Message 8
     WaitABXPadPress
     CloseMessage
@@ -78,7 +78,7 @@ _00CC:
 
 _00D7:
     LockAll
-    ClearFlag 0x17C
+    ClearFlag FLAG_UNK_0x017C,
     ScrCmd_188 3, 16
     ScrCmd_189 3, 2
     GetPlayerMapPos 0x8004, 0x8005
@@ -287,14 +287,14 @@ _0376:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x109, _03BD
+    GoToIfSet FLAG_UNK_0x0109, _03BD
     Message 17
     SetVar 0x8004, 26
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _03C8
     CallCommonScript 0x7FC
-    SetFlag 0x109
+    SetFlag FLAG_UNK_0x0109
     GoTo _03BD
     End
 
@@ -523,7 +523,7 @@ _0647:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 122, _0665
+    GoToIfSet FLAG_UNK_0x007A, _0665
     Message 11
     WaitABXPadPress
     CloseMessage

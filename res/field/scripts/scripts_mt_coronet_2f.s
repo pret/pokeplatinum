@@ -35,7 +35,7 @@ _0036:
     SetObjectEventPos 5, 20, 25
     ScrCmd_188 5, 16
     ScrCmd_189 5, 2
-    ClearFlag 0x29F
+    ClearFlag FLAG_UNK_0x029F,
     AddObject 5
     ApplyMovement 5, _0148
     WaitMovement
@@ -61,7 +61,7 @@ _0036:
     End
 
 _00E5:
-    SetFlag 0x160
+    SetFlag FLAG_UNK_0x0160
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -144,7 +144,7 @@ _01A0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset 0x160, _01BE
+    GoToIfUnset FLAG_UNK_0x0160, _01BE
     Message 3
     WaitABXPadPress
     CloseMessage

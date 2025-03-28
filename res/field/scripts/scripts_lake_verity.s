@@ -210,16 +210,16 @@ _0230:
     RemoveObject 1
     RemoveObject 2
     RemoveObject 3
-    SetFlag 0x98E
+    SetFlag FLAG_UNK_0x098E
     ApplyMovement 6, _02FC
     ApplyMovement LOCALID_PLAYER, _0304
     WaitMovement
     ScrCmd_187 5, 53, 1, 39, 3
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetFlag 0x29A
+    SetFlag FLAG_UNK_0x029A
     SetFlag FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY
-    ClearFlag 0x1BA
+    ClearFlag FLAG_UNK_0x01BA,
     SetVar 0x40D3, 1
     BufferRivalName 0
     Message 13

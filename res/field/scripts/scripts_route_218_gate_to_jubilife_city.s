@@ -23,7 +23,7 @@ _001D:
     FacePlayer
     SetVar 0x8004, 0x1BD
     BufferItemName 0, 0x8004
-    GoToIfSet 132, _005E
+    GoToIfSet FLAG_UNK_0x0084, _005E
     Message 1
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _00A7
@@ -64,7 +64,7 @@ _00A7:
     Message 2
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 132
+    SetFlag FLAG_UNK_0x0084,
     GoTo _005E
 
     .byte 0

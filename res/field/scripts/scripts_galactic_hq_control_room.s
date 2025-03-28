@@ -21,7 +21,7 @@
     ScriptEntryEnd
 
 _003E:
-    GoToIfSet 0x97D, _004B
+    GoToIfSet FLAG_UNK_0x097D, _004B
     End
 
 _004B:
@@ -36,14 +36,14 @@ _0059:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x97D, _0109
-    GoToIfSet 173, _0114
+    GoToIfSet FLAG_UNK_0x097D, _0109
+    GoToIfSet FLAG_UNK_0x00AD, _0114
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_SATURN_GALACTIC_HQ
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _011F
-    SetFlag 173
+    SetFlag FLAG_UNK_0x00AD,
     SetVar 0x410D, 1
     Message 1
     CloseMessage
@@ -113,7 +113,7 @@ _0140:
 _014C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 0x97D, _0168
+    GoToIfSet FLAG_UNK_0x097D, _0168
     Message 13
     WaitABXPadPress
     CloseMessage
@@ -130,7 +130,7 @@ _0168:
 _0173:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 0x97D, _018F
+    GoToIfSet FLAG_UNK_0x097D, _018F
     Message 14
     WaitABXPadPress
     CloseMessage
@@ -147,7 +147,7 @@ _018F:
 _019A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 0x97D, _01B6
+    GoToIfSet FLAG_UNK_0x097D, _01B6
     Message 15
     WaitABXPadPress
     CloseMessage
@@ -173,7 +173,7 @@ _01C5:
 _01C7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 0x97D, _0347
+    GoToIfSet FLAG_UNK_0x097D, _0347
     Message 10
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _01FB
@@ -186,8 +186,8 @@ _01FB:
     BufferPlayerName 0
     Message 11
     CloseMessage
-    ClearFlag 0x295
-    SetFlag 0x97D
+    ClearFlag FLAG_UNK_0x0295,
+    SetFlag FLAG_UNK_0x097D
     ScrCmd_25F
     WaitTime 30, 0x800C
     ApplyMovement 2, _036C
@@ -213,7 +213,7 @@ _0296:
     RemoveObject 1
     RemoveObject 3
     WaitTime 2, 0x800C
-    ClearFlag 0x236
+    ClearFlag FLAG_UNK_0x0236,
     AddObject 2
     AddObject 1
     AddObject 3
@@ -249,8 +249,8 @@ _030E:
     RemoveObject 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetFlag 0x235
-    ClearFlag 0x182
+    SetFlag FLAG_UNK_0x0235
+    ClearFlag FLAG_UNK_0x0182,
     SetVar 0x40A9, 1
     ReleaseAll
     End
@@ -358,7 +358,7 @@ _03EA:
 _03FD:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 173, _0450
+    GoToIfSet FLAG_UNK_0x00AD, _0450
     ApplyMovement 4, _0470
     WaitMovement
     Message 5

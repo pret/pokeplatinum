@@ -11,19 +11,19 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 177, _00AC
+    GoToIfSet FLAG_UNK_0x00B1, _00AC
     ScrCmd_0EA TRAINER_ELITE_FOUR_BERTHA
     Message 0
     CloseMessage
-    CallIfUnset 214, _007A
-    CallIfSet 214, _0082
+    CallIfUnset FLAG_UNK_0x00D6, _007A
+    CallIfSet FLAG_UNK_0x00D6, _0082
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _00A6
-    SetFlag 177
+    SetFlag FLAG_UNK_0x00B1,
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     RemoveObject 2
-    CallIfUnset 214, _008A
-    CallIfSet 214, _0098
+    CallIfUnset FLAG_UNK_0x00D6, _008A
+    CallIfSet FLAG_UNK_0x00D6, _0098
     Message 1
     WaitABXPadPress
     CloseMessage
@@ -63,7 +63,7 @@ _00B7:
     ApplyMovement LOCALID_PLAYER, _00DC
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    ClearFlag 0x283
+    ClearFlag FLAG_UNK_0x0283,
     AddObject 1
     SetVar 0x4001, 1
     ReleaseAll

@@ -12,7 +12,7 @@
 _0012:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 198, _0066
+    GoToIfSet FLAG_UNK_0x00C6, _0066
     Message 0
     CloseMessage
     FacePlayer
@@ -24,7 +24,7 @@ _0012:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0073
     CallCommonScript 0x7FC
-    SetFlag 198
+    SetFlag FLAG_UNK_0x00C6,
     GoTo _0066
 
 _0066:

@@ -15,7 +15,7 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag 0x9C7
+    SetFlag FLAG_UNK_0x09C7
     Call _00C7
     Call _0062
     GetPlayerGender 0x4000
@@ -40,7 +40,7 @@ _0062:
     GoToIfEq 0x4000, FALSE, _00C5
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
     GoToIfEq 0x4000, FALSE, _00C5
-    GoToIfSet 0x11E, _00C5
+    GoToIfSet FLAG_UNK_0x011E, _00C5
     SetVar 0x4118, 1
     GoTo _00C5
     End
@@ -57,7 +57,7 @@ _00C7:
     Return
 
 _0101:
-    SetFlag 0x1C5
+    SetFlag FLAG_UNK_0x01C5
     Return
 
 _0107:
@@ -245,7 +245,7 @@ _02D0:
     End
 
 _02DC:
-    ClearFlag 0x1C5
+    ClearFlag FLAG_UNK_0x01C5,
     GetPlayerMapPos 0x8004, 0x8005
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 30, _0315
@@ -470,13 +470,13 @@ _0567:
     ScrCmd_20D 1, 0x800C
     GoToIfEq 0x800C, 0, _0567
     ScrCmd_2FB
-    SetFlag 0x1C8
-    SetFlag 0x1C9
-    SetFlag 0x1CA
+    SetFlag FLAG_UNK_0x01C8
+    SetFlag FLAG_UNK_0x01C9
+    SetFlag FLAG_UNK_0x01CA
     SetVar 0x4098, 3
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_3
-    ClearFlag 0x1C7
-    SetFlag 0x132
+    ClearFlag FLAG_UNK_0x01C7,
+    SetFlag FLAG_UNK_0x0132
     SetVar 0x40C3, 1
     SetSpeciesSeen SPECIES_DIALGA
     SetSpeciesSeen SPECIES_PALKIA

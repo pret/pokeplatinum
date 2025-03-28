@@ -16,7 +16,7 @@ _0006:
     End
 
 _0027:
-    GoToIfUnset 0x9BE, _003A
+    GoToIfUnset FLAG_UNK_0x09BE, _003A
     GoTo _006C
     End
 
@@ -43,7 +43,7 @@ _006C:
     GoToIfEq 0x800C, 1, _0133
     ScrCmd_1E8 0x800C
     GoToIfEq 0x800C, 1, _00B2
-    GoToIfUnset 0x145, _0332
+    GoToIfUnset FLAG_UNK_0x0145, _0332
     Call _04A4
     GoToIfEq 0x800C, 0, _037C
     GoTo _0357
@@ -51,15 +51,15 @@ _006C:
 _00B2:
     ScrCmd_22D 2, 0x800C
     GoToIfEq 0x800C, 0, _030D
-    GoToIfUnset 240, _02E8
-    GoToIfUnset 0x131, _02C3
+    GoToIfUnset FLAG_UNK_0x00F0, _02E8
+    GoToIfUnset FLAG_UNK_0x0131, _02C3
     ScrCmd_1E9 0x800C
     GoToIfEq 0x800C, 1, _0158
     GoTo _00F3
     End
 
 _00F3:
-    GoToIfUnset 0x146, _01F4
+    GoToIfUnset FLAG_UNK_0x0146, _01F4
     GetRandom 0x800C, 3
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _01CB
@@ -89,7 +89,7 @@ _017D:
     End
 
 _01A2:
-    SetFlag 0x148
+    SetFlag FLAG_UNK_0x0148
     BufferPlayerName 0
     CallIfEq 0x8004, 0, _0453
     CallIfEq 0x8004, 1, _0458
@@ -97,7 +97,7 @@ _01A2:
     End
 
 _01CB:
-    SetFlag 0x147
+    SetFlag FLAG_UNK_0x0147
     BufferPlayerName 0
     CallIfEq 0x8004, 0, _0449
     CallIfEq 0x8004, 1, _044E
@@ -105,7 +105,7 @@ _01CB:
     End
 
 _01F4:
-    SetFlag 0x146
+    SetFlag FLAG_UNK_0x0146
     BufferPlayerName 0
     CallIfEq 0x8004, 0, _043F
     CallIfEq 0x8004, 1, _0444
@@ -146,7 +146,7 @@ _029F:
 
 _02B1:
     RemoveObject 4
-    ClearFlag 0x188
+    ClearFlag FLAG_UNK_0x0188,
     SetVar 0x4087, 2
     ReleaseAll
     End

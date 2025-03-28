@@ -10,9 +10,9 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x131, _0105
-    GoToIfSet 0x97E, _0033
-    SetFlag 0x97E
+    GoToIfSet FLAG_UNK_0x0131, _0105
+    GoToIfSet FLAG_UNK_0x097E, _0033
+    SetFlag FLAG_UNK_0x097E
     Message 0
     GoTo _003E
     End
@@ -37,7 +37,7 @@ _0057:
     Message 3
     WaitSound
     GivePokemon SPECIES_EEVEE, 20, ITEM_NONE, 0x800C
-    SetFlag 0x131
+    SetFlag FLAG_UNK_0x0131
     Message 4
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _00A8

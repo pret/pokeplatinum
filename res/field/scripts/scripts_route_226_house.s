@@ -9,18 +9,18 @@
     ScriptEntryEnd
 
 _000E:
-    SetFlag 0x9F1
+    SetFlag FLAG_UNK_0x09F1
     End
 
 _0014:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 245, _00DC
-    GoToIfSet 246, _0046
+    GoToIfSet FLAG_UNK_0x00F5, _00DC
+    GoToIfSet FLAG_UNK_0x00F6, _0046
     Message 0
     ScrCmd_22B
-    SetFlag 246
+    SetFlag FLAG_UNK_0x00F6,
     Message 1
     WaitABXPadPress
     CloseMessage
@@ -50,7 +50,7 @@ _0060:
     GoToIfNe 0x8005, 0x800C, _00C4
     ScrCmd_229 0x8004
     FinishNpcTrade
-    SetFlag 245
+    SetFlag FLAG_UNK_0x00F5,
     Message 3
     WaitABXPadPress
     CloseMessage

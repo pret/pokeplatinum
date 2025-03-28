@@ -11,12 +11,12 @@ _000A:
     ScrCmd_23E 0
     ScrCmd_23E 1, 0x40ED
     GoToIfEq 0x40ED, 0, _002B
-    ClearFlag 0x20A
+    ClearFlag FLAG_UNK_0x020A,
     ScrCmd_23E 7
     End
 
 _002B:
-    SetFlag 0x20A
+    SetFlag FLAG_UNK_0x020A
     ScrCmd_23E 7
     End
 

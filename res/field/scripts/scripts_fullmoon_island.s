@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag 0x9D0
+    SetFlag FLAG_UNK_0x09D0
     EnableHiddenLocation HIDDEN_LOCATION_FULLMOON_ISLAND
     End
 

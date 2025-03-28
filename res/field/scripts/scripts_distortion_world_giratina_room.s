@@ -19,7 +19,7 @@ _0022:
     End
 
 _0026:
-    GoToIfSet 142, _0033
+    GoToIfSet FLAG_UNK_0x008E, _0033
     End
 
 _0033:
@@ -67,9 +67,9 @@ _00C4:
     Message 2
     ScrCmd_04D
     CloseMessage
-    SetFlag 142
+    SetFlag FLAG_UNK_0x008E,
     StartGiratinaOriginBattle SPECIES_GIRATINA, 47
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E,
     CheckWonBattle 0x800C
     ScrCmd_314 0x800C
     GoToIfEq 0x800C, 2, _0204
@@ -97,9 +97,9 @@ _014E:
     GoTo _0194
 
 _016E:
-    SetFlag 0x121
-    SetFlag 0x250
-    ClearFlag 0x278
+    SetFlag FLAG_UNK_0x0121
+    SetFlag FLAG_UNK_0x0250
+    ClearFlag FLAG_UNK_0x0278,
     ScrCmd_311 130
     ScrCmd_311 129
     ApplyMovement 129, _0250

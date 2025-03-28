@@ -11,17 +11,17 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0xAA4, _006A
-    GoToIfSet 0xAA7, _005F
-    GoToIfUnset 247, _004C
+    GoToIfSet FLAG_UNK_0x0AA4, _006A
+    GoToIfSet FLAG_UNK_0x0AA7, _005F
+    GoToIfUnset FLAG_UNK_0x00F7, _004C
     GetFirstNonEggInParty 0x8002
     Call _0070
     GoToIfEq 0x800C, 1, _0136
     GoTo _0146
 
 _004C:
-    SetFlag 247
-    SetFlag 0xAA7
+    SetFlag FLAG_UNK_0x00F7,
+    SetFlag FLAG_UNK_0x0AA7
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -124,7 +124,7 @@ _019E:
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
     Message 21
-    SetFlag 0xAA4
+    SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon 0x8002, RIBBON_SMILE
     ScrCmd_232 3, 65
     GoTo _010E
@@ -142,7 +142,7 @@ _01F2:
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
     Message 3
-    SetFlag 0xAA4
+    SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon 0x8002, RIBBON_ALERT
     ScrCmd_232 3, 59
     GoTo _010E
@@ -160,7 +160,7 @@ _0246:
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
     Message 11
-    SetFlag 0xAA4
+    SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon 0x8002, RIBBON_SHOCK
     ScrCmd_232 3, 60
     GoTo _010E
@@ -178,7 +178,7 @@ _029A:
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
     Message 13
-    SetFlag 0xAA4
+    SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon 0x8002, RIBBON_DOWNCAST
     ScrCmd_232 3, 61
     GoTo _010E
@@ -196,7 +196,7 @@ _02EE:
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
     Message 15
-    SetFlag 0xAA4
+    SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon 0x8002, RIBBON_CARELESS
     ScrCmd_232 3, 62
     GoTo _010E
@@ -214,7 +214,7 @@ _0342:
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
     Message 17
-    SetFlag 0xAA4
+    SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon 0x8002, RIBBON_RELAX
     ScrCmd_232 3, 63
     GoTo _010E
@@ -232,7 +232,7 @@ _0396:
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
     Message 19
-    SetFlag 0xAA4
+    SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon 0x8002, RIBBON_SNOOZE
     ScrCmd_232 3, 64
     GoTo _010E

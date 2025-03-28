@@ -11,9 +11,9 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 151, _0109
-    GoToIfSet 181, _0037
-    SetFlag 181
+    GoToIfSet FLAG_UNK_0x0097, _0109
+    GoToIfSet FLAG_UNK_0x00B5, _0037
+    SetFlag FLAG_UNK_0x00B5,
     Message 0
     GoTo _0042
     End
@@ -38,7 +38,7 @@ _005B:
     Message 3
     WaitSound
     GivePokemon SPECIES_PORYGON, 25, ITEM_NONE, 0x800C
-    SetFlag 151
+    SetFlag FLAG_UNK_0x0097,
     Message 4
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _00AC

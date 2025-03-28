@@ -10,10 +10,10 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 1, _00D3
+    GoToIfSet FLAG_UNK_0x0001, _00D3
     ScrCmd_1E8 0x800C
     GoToIfEq 0x800C, 0, _004C
-    GoToIfUnset 171, _0057
+    GoToIfUnset FLAG_UNK_0x00AB, _0057
     ScrCmd_1E9 0x800C
     GoToIfEq 0x800C, 0, _0057
     GoTo _0095
@@ -26,9 +26,9 @@ _004C:
     End
 
 _0057:
-    CallIfUnset 171, _00DE
-    SetFlag 171
-    SetFlag 1
+    CallIfUnset FLAG_UNK_0x00AB, _00DE
+    SetFlag FLAG_UNK_0x00AB,
+    SetFlag FLAG_UNK_0x0001,
     Message 1
     PlaySound SEQ_FANFA4
     WaitSound
@@ -43,9 +43,9 @@ _0057:
     End
 
 _0095:
-    CallIfUnset 172, _00E4
-    SetFlag 172
-    SetFlag 1
+    CallIfUnset FLAG_UNK_0x00AC, _00E4
+    SetFlag FLAG_UNK_0x00AC,
+    SetFlag FLAG_UNK_0x0001,
     Message 2
     PlaySound SEQ_FANFA4
     WaitSound

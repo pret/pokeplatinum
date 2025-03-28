@@ -22,7 +22,7 @@ _0032:
     End
 
 _0041:
-    SetFlag 0x1F3
+    SetFlag FLAG_UNK_0x01F3
     End
 
 _0047:
@@ -44,7 +44,7 @@ _0072:
     End
 
 _0088:
-    GoToIfUnset 0x964, _0072
+    GoToIfUnset FLAG_UNK_0x0964, _0072
     GoTo _0111
 
     .balign 4, 0
@@ -78,7 +78,7 @@ _00D4:
     End
 
 _00DF:
-    GoToIfUnset 0x964, _00D4
+    GoToIfUnset FLAG_UNK_0x0964, _00D4
     GoToIfEq 0x407F, 0, _0102
     Message 2
     WaitABXPadPress
@@ -100,7 +100,7 @@ _0111:
 
 _011B:
     WaitTime 30, 0x800C
-    ClearFlag 0x1F3
+    ClearFlag FLAG_UNK_0x01F3,
     AddObject 7
     ApplyMovement 7, _016C
     WaitMovement
@@ -210,7 +210,7 @@ _022A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset 0x964, _0260
+    GoToIfUnset FLAG_UNK_0x0964, _0260
     Message 10
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _0276
@@ -232,7 +232,7 @@ _026B:
     End
 
 _0276:
-    CallIfUnset 0x157, _02A0
+    CallIfUnset FLAG_UNK_0x0157, _02A0
     Message 11
     CloseMessage
     Call _035C
@@ -242,7 +242,7 @@ _0276:
     End
 
 _02A0:
-    ClearFlag 0x256
+    ClearFlag FLAG_UNK_0x0256,
     AddObject 10
     ScrCmd_062 10
     CloseMessage
@@ -266,7 +266,7 @@ _02A0:
     RemoveObject 10
     ApplyMovement LOCALID_PLAYER, _0318
     WaitMovement
-    SetFlag 0x157
+    SetFlag FLAG_UNK_0x0157
     Return
 
     .balign 4, 0

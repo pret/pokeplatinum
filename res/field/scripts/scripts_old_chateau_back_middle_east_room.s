@@ -9,11 +9,11 @@
 _000A:
     ScrCmd_292 25, 0x4000
     GoToIfEq 0x4000, 1, _0022
-    SetFlag 0x27C
+    SetFlag FLAG_UNK_0x027C
     End
 
 _0022:
-    ClearFlag 0x27C
+    ClearFlag FLAG_UNK_0x027C,
     SetVar 0x4111, 1
     End
 
@@ -21,7 +21,7 @@ _002E:
     LockAll
     ApplyMovement 1, _004C
     WaitMovement
-    SetFlag 0x27C
+    SetFlag FLAG_UNK_0x027C
     RemoveObject 1
     SetVar 0x4111, 0
     ReleaseAll

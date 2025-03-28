@@ -24,7 +24,7 @@ _003A:
     LockAll
     FacePlayer
     SetVar 0x8007, 0
-    CallIfUnset 136, _006F
+    CallIfUnset FLAG_UNK_0x0088, _006F
     GoToIfEq 0x4001, 0, _0077
     GoToIfEq 0x4001, 1, _0080
     End
@@ -120,7 +120,7 @@ _01D2:
     GoTo _01EC
 
 _01EC:
-    SetFlag 136
+    SetFlag FLAG_UNK_0x0088,
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A6 0x4002, 0x8005, 0x8007

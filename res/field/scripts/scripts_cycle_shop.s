@@ -14,12 +14,12 @@ _0016:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 130, _0052
+    GoToIfSet FLAG_UNK_0x0082, _0052
     Message 0
     SetVar 0x8004, 0x1C2
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 130
+    SetFlag FLAG_UNK_0x0082,
     SetVar 0x4114, 1
     ScrCmd_14C 9
     GoTo _0052
@@ -49,7 +49,7 @@ _007C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 129, _009A
+    GoToIfSet FLAG_UNK_0x0081, _009A
     Message 3
     WaitABXPadPress
     CloseMessage

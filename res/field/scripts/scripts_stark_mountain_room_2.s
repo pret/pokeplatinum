@@ -22,13 +22,13 @@ _0029:
 _0031:
     LockAll
     SetPlayerBike FALSE
-    CallIfUnset 221, _007D
-    CallIfSet 221, _00B7
+    CallIfUnset FLAG_UNK_0x00DD, _007D
+    CallIfSet FLAG_UNK_0x00DD, _00B7
     BufferPlayerName 0
     PlaySound SEQ_GONIN
     Message 1
     WaitSound
-    SetFlag 221
+    SetFlag FLAG_UNK_0x00DD,
     SetVar 0x4094, 1
     Message 2
     WaitABXPadPress
@@ -46,7 +46,7 @@ _007D:
     SetObjectEventPos 14, 42, 78
     ScrCmd_189 14, 0
     ScrCmd_188 14, 14
-    ClearFlag 0x1DA
+    ClearFlag FLAG_UNK_0x01DA,
     AddObject 14
     ApplyMovement 14, _00DC
     WaitMovement

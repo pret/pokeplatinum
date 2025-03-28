@@ -21,14 +21,14 @@
     ScriptEntryEnd
 
 _003E:
-    SetFlag 0x2AA
-    SetFlag 0x2AD
-    SetFlag 0x2AF
-    SetFlag 0x2B2
-    SetFlag 0x2B5
+    SetFlag FLAG_UNK_0x02AA
+    SetFlag FLAG_UNK_0x02AD
+    SetFlag FLAG_UNK_0x02AF
+    SetFlag FLAG_UNK_0x02B2
+    SetFlag FLAG_UNK_0x02B5
     GoToIfEq 0x404E, 0xFF, _00BA
     GoToIfEq 0x40C8, 0, _00BA
-    GoToIfSet 0x9AB, _00BA
+    GoToIfSet FLAG_UNK_0x09AB, _00BA
     CallIfEq 0x404E, 2, _00BC
     CallIfEq 0x404E, 4, _00C2
     CallIfEq 0x404E, 5, _00C8
@@ -40,23 +40,23 @@ _00BA:
     End
 
 _00BC:
-    ClearFlag 0x2AA
+    ClearFlag FLAG_UNK_0x02AA,
     Return
 
 _00C2:
-    ClearFlag 0x2AD
+    ClearFlag FLAG_UNK_0x02AD,
     Return
 
 _00C8:
-    ClearFlag 0x2AF
+    ClearFlag FLAG_UNK_0x02AF,
     Return
 
 _00CE:
-    ClearFlag 0x2B2
+    ClearFlag FLAG_UNK_0x02B2,
     Return
 
 _00D4:
-    ClearFlag 0x2B5
+    ClearFlag FLAG_UNK_0x02B5,
     Return
 
 _00DA:
@@ -83,8 +83,8 @@ _0100:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfUnset 250, _0126
-    CallIfSet 250, _012B
+    CallIfUnset FLAG_UNK_0x00FA, _0126
+    CallIfSet FLAG_UNK_0x00FA, _012B
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -316,9 +316,9 @@ _03D4:
     GoToIfEq 0x800C, MENU_NO, _0429
     Message 11
     CloseMessage
-    SetFlag 0x2AA
+    SetFlag FLAG_UNK_0x02AA
     SetVar 0x404E, 2
-    SetFlag 0x9AB
+    SetFlag FLAG_UNK_0x09AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 11, 11, 0
@@ -346,9 +346,9 @@ _043C:
     GoToIfEq 0x800C, MENU_NO, _0491
     Message 14
     CloseMessage
-    SetFlag 0x2AD
+    SetFlag FLAG_UNK_0x02AD
     SetVar 0x404E, 4
-    SetFlag 0x9AB
+    SetFlag FLAG_UNK_0x09AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 11, 11, 0
@@ -370,9 +370,9 @@ _049C:
     GoToIfEq 0x800C, MENU_NO, _04F1
     Message 17
     CloseMessage
-    SetFlag 0x2AF
+    SetFlag FLAG_UNK_0x02AF
     SetVar 0x404E, 5
-    SetFlag 0x9AB
+    SetFlag FLAG_UNK_0x09AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 11, 11, 0
@@ -394,9 +394,9 @@ _04FC:
     GoToIfEq 0x800C, MENU_NO, _0551
     Message 20
     CloseMessage
-    SetFlag 0x2B2
+    SetFlag FLAG_UNK_0x02B2
     SetVar 0x404E, 7
-    SetFlag 0x9AB
+    SetFlag FLAG_UNK_0x09AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 11, 11, 0
@@ -418,9 +418,9 @@ _055C:
     GoToIfEq 0x800C, MENU_NO, _05B1
     Message 23
     CloseMessage
-    SetFlag 0x2B5
+    SetFlag FLAG_UNK_0x02B5
     SetVar 0x404E, 9
-    SetFlag 0x9AB
+    SetFlag FLAG_UNK_0x09AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 11, 11, 0

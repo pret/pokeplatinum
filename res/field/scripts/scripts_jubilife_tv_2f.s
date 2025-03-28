@@ -12,11 +12,11 @@
 _0012:
     ScrCmd_238 9, 0x4000
     GoToIfEq 0x4000, 0, _002B
-    ClearFlag 0x215
+    ClearFlag FLAG_UNK_0x0215,
     End
 
 _002B:
-    SetFlag 0x215
+    SetFlag FLAG_UNK_0x0215
     End
 
 _0031:
@@ -33,7 +33,7 @@ _0044:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x13D, _00A4
+    GoToIfSet FLAG_UNK_0x013D, _00A4
     GetPlayerStarterSpecies 0x800C
     CallIfEq 0x800C, SPECIES_TURTWIG, _00B4
     CallIfEq 0x800C, SPECIES_CHIMCHAR, _00BC
@@ -43,7 +43,7 @@ _0044:
     Message 1
     SetVar 0x8005, 1
     CallCommonScript 0x7DF
-    SetFlag 0x13D
+    SetFlag FLAG_UNK_0x013D
     CloseMessage
     ReleaseAll
     End
