@@ -466,7 +466,13 @@ RomSpec
 	File battle/tr_ai/tr_ai_seq.narc
 	File arc/area_win_gra.narc
 	File arc/balance_ball_gra.narc
-	File arc/bm_anime.narc
+
+	Root /arc
+	HostRoot res/field/props/animations
+	File bm_anime.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File arc/bm_anime_list.narc
 	File arc/codein_gra.narc
 	File arc/demo_tengan_gra.narc
