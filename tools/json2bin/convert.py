@@ -9,6 +9,7 @@ from generated import (
     genders,
     map_headers,
     maps,
+    map_prop_models,
     moves,
     movement_types,
     object_events,
@@ -73,6 +74,9 @@ def from_map_header(s: str) -> int:
 
 def from_map(s: str) -> int:
     return maps.MapID[s].value
+
+def from_map_prop_model(s: str) -> int:
+    return map_prop_models.MapPropModelID[s].value
 
 TrainerDataFlags = collections.namedtuple('TrainerDataFlags', ['has_moves', 'has_items'])
 

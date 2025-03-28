@@ -1,0 +1,21 @@
+{
+    "mapPropModels": [
+        "MAP_PROP_MODEL_004",
+        "MAP_PROP_MODEL_005",
+        "MAP_PROP_MODEL_008",
+        "MAP_PROP_MODEL_039",
+        "MAP_PROP_MODEL_040",
+        "MAP_PROP_MODEL_HONEY_TREE",
+        "MAP_PROP_MODEL_POKECENTER_DOOR",
+        "MAP_PROP_MODEL_219",
+        "MAP_PROP_MODEL_217",
+        "MAP_PROP_MODEL_233",
+        "MAP_PROP_MODEL_234",
+        "MAP_PROP_MODEL_454",
+        "MAP_PROP_MODEL_455",
+        "MAP_PROP_MODEL_GYM_DOOR",
+        "MAP_PROP_MODEL_HOTEL_GRAND_LAKE_DOOR",
+        "MAP_PROP_MODEL_GREEN_WOODEN_DOOR",
+        "MAP_PROP_MODEL_BLUE_DOOR"
+    ]
+}

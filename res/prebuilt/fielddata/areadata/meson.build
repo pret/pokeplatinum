@@ -1,4 +1,3 @@
-subdir('area_build_model')
 subdir('area_move_model')
 
 prebuilt_files = [
