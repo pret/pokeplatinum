@@ -47,43 +47,50 @@ enum SoundHandleType {
 };
 
 enum SoundSystemParam {
-    SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_HANDLE = 0,
-    SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_HANDLE,
-    SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO,
-    SOUND_SYSTEM_PARAM_REVERB_BUFFER,
+    SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_HANDLE = 0,     // Primary waveform playback handle
+    SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_HANDLE,       // Secondary waveform playback handle
+    SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO,               // Currently active BGM bank info (only used when fading BGM)
+    SOUND_SYSTEM_PARAM_REVERB_BUFFER,                   // The buffer used for reverb
 
-    SOUND_SYSTEM_PARAM_BGM_FIXED = 5,
+    SOUND_SYSTEM_PARAM_BGM_FIXED = 5,                   // Determines if the BGM can be changed right now
 
-    SOUND_SYSTEM_PARAM_FADE_COUNTER = 7,
-    SOUND_SYSTEM_PARAM_FOLLOW_UP_WAIT_FRAMES,
-    SOUND_SYSTEM_PARAM_FOLLOW_UP_FADE_FRAMES,
+    SOUND_SYSTEM_PARAM_FADE_COUNTER = 7,                // A counter used to track how many frames are left in a fade operation
+    SOUND_SYSTEM_PARAM_FOLLOW_UP_WAIT_FRAMES,           // Keeps track of how many frames are let until the next BGM is played
+    SOUND_SYSTEM_PARAM_FOLLOW_UP_FADE_FRAMES,           // Keeps track of how many frames the next BGM should be faded in for
 
-    SOUND_SYSTEM_PARAM_CURRENT_BGM = 10,
-    SOUND_SYSTEM_PARAM_NEXT_BGM,
-    SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED,
-    SOUND_SYSTEM_PARAM_BGM_PAUSED,
+    SOUND_SYSTEM_PARAM_CURRENT_BGM = 10,                // The current BGM ID
+    SOUND_SYSTEM_PARAM_NEXT_BGM,                        // The next BGM ID
+    SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED,                // Whether field BGM is paused
+    SOUND_SYSTEM_PARAM_BGM_PAUSED,                      // Whether non-field BGM is paused
 
-    SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK = 15,
-    SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED,
-    SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED,
+    SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK = 15, // Whether reversed waveform playback is enabled
+    SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED,      // Whether the primary waveform channel is currently allocated
+    SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED,    // Whether the secondary waveform channel is currently allocated
 
-    SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE = 19,
+    SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE = 19,       // Whether the field BGM bank needs to be swapped or not. See FIELD_BGM_BANK_STATE_*
 
-    SOUND_SYSTEM_PARAM_MAIN_SCENE = 21,
-    SOUND_SYSTEM_PARAM_SUB_SCENE,
-    SOUND_SYSTEM_PARAM_HEAP_STATE_EMPTY,
-    SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT,
-    SOUND_SYSTEM_PARAM_HEAP_STATE_BGM_BANK,
-    SOUND_SYSTEM_PARAM_HEAP_STATE_SFX,
-    SOUND_SYSTEM_PARAM_HEAP_STATE_BGM,
+    // A sound scene refers to a specific set of sound data and
+    // parameters. They're an easy way to switch the sound system
+    // to a specific state. See SoundScene enum.
+    SOUND_SYSTEM_PARAM_MAIN_SCENE = 21,                 // The main screen sound scene
+    SOUND_SYSTEM_PARAM_SUB_SCENE,                       // The sub screen sound scene
 
-    SOUND_SYSTEM_PARAM_FIELD_BGM = 32,
+    // The following parameters are used to save and restore specific states
+    // of the sound heap. EMPTY and PERSISTENT should not be modified. Each heap
+    // state contains all of the data of the previous states as well.
+    SOUND_SYSTEM_PARAM_HEAP_STATE_EMPTY,                // Empty sound heap state
+    SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT,           // Only persistent sound data (GROUP_GLOBAL)
+    SOUND_SYSTEM_PARAM_HEAP_STATE_BGM_BANK,             // BGM *bank* data
+    SOUND_SYSTEM_PARAM_HEAP_STATE_SFX,                  // Sound Effect data
+    SOUND_SYSTEM_PARAM_HEAP_STATE_BGM,                  // Actual BGM data
 
-    SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER = 34,
+    SOUND_SYSTEM_PARAM_FIELD_BGM = 32,                  // Currently active field BGM
 
-    SOUND_SYSTEM_PARAM_CHATOT_CRY = 36,
+    SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER = 34,    // The buffer used for reversed waveform playback
 
-    SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES = 53,
+    SOUND_SYSTEM_PARAM_CHATOT_CRY = 36,                 // The users ChatotCry structure
+
+    SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES = 53,      // Whether to allow 2 simultaneous pokemon cries playing
 };
 
 typedef struct SoundSystem {
