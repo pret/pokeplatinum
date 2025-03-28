@@ -50,6 +50,7 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_HANDLE = 0,
     SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_HANDLE,
     SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO,
+    SOUND_SYSTEM_PARAM_REVERB_BUFFER,
 
     SOUND_SYSTEM_PARAM_BGM_FIXED = 5,
 
@@ -92,7 +93,7 @@ typedef struct SoundSystem {
     NNSSndHandle soundHandles[SOUND_HANDLE_TYPE_COUNT];
     NNSSndWaveOutHandle waveOutHandles[2];
     const NNSSndArcBankInfo *currentBankInfo;
-    u8 unk_BBD2C[SOUND_SYSTEM_CAPTURE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
+    u8 reverbBuffer[SOUND_SYSTEM_CAPTURE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
     UnkStruct_020052C8 unk_BCD2C;
     u16 unk_BCD48;
     u8 bgmFixed; // BGM can't change if this is set

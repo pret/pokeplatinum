@@ -1059,7 +1059,7 @@ static void ov21_021E5AD8(UnkStruct_ov21_021E51DC *param0)
 
     if ((param0->unk_5C > 0) && (param0->unk_5C <= (88 / 2))) {
         if (param0->unk_50 == 1) {
-            sub_02004EEC(0);
+            Sound_StopReverb(0);
         }
 
         if (param0->unk_50 != 2) {
@@ -1080,7 +1080,7 @@ static void ov21_021E5AD8(UnkStruct_ov21_021E51DC *param0)
         }
 
         if (param0->unk_50 != 1) {
-            sub_02004EC8(0);
+            Sound_StartReverb(0);
             param0->unk_50 = 1;
         }
 
@@ -1095,7 +1095,7 @@ static void ov21_021E5AD8(UnkStruct_ov21_021E51DC *param0)
             v0--;
         }
 
-        sub_02004EF4(v0, 0);
+        Sound_SetReverbVolume(v0, 0);
     }
 }
 
@@ -1270,7 +1270,7 @@ static void ov21_021E5E18(UnkStruct_ov21_021E51DC *param0)
 static void ov21_021E5E28(UnkStruct_ov21_021E51DC *param0)
 {
     if (param0->unk_50 == 1) {
-        sub_02004EEC(0);
+        Sound_StopReverb(0);
     }
 
     if (param0->unk_50 == 2) {

@@ -35,10 +35,10 @@ void Sound_StopWaveOut(enum WaveOutChannel param0);
 BOOL Sound_IsWaveOutPlaying(enum WaveOutChannel param0);
 void Sound_StopWaveOutReversed(enum WaveOutChannel param0);
 static void Sound_Impl_ReverseBuffer(u8 *param0, u32 param1);
-BOOL sub_02004EC0(void);
-BOOL sub_02004EC8(int param0);
-void sub_02004EEC(int param0);
-void sub_02004EF4(int param0, int param1);
+BOOL Sound_IsCaptureActive(void);
+BOOL Sound_StartReverb(int param0);
+void Sound_StopReverb(int param0);
+void Sound_SetReverbVolume(int param0, int param1);
 BOOL sub_02004EFC(void);
 void sub_02004F44(void);
 void sub_02004F4C(int param0);
@@ -978,33 +978,26 @@ void Sound_StopWaveOutReversed(enum WaveOutChannel channel)
     }
 }
 
-BOOL sub_02004EC0(void)
+BOOL Sound_IsCaptureActive(void)
 {
-    int v0, v1;
-
-    v1 = NNS_SndCaptureIsActive();
-
-    return v1;
+    return NNS_SndCaptureIsActive();
 }
 
-BOOL sub_02004EC8(int param0)
+BOOL Sound_StartReverb(int volume)
 {
-    SoundSystem *v0 = SoundSystem_Get();
-    s8 *v1 = SoundSystem_GetParam(3);
-
-    return NNS_SndCaptureStartReverb(v1, 0x1000, (NNS_SND_CAPTURE_FORMAT_PCM16), 16000, param0);
+    (void)SoundSystem_Get();
+    void *buffer = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_REVERB_BUFFER);
+    return NNS_SndCaptureStartReverb(buffer, 0x1000, (NNS_SND_CAPTURE_FORMAT_PCM16), 16000, volume);
 }
 
-void sub_02004EEC(int param0)
+void Sound_StopReverb(int frames)
 {
-    NNS_SndCaptureStopReverb(param0);
-    return;
+    NNS_SndCaptureStopReverb(frames);
 }
 
-void sub_02004EF4(int param0, int param1)
+void Sound_SetReverbVolume(int targetVolume, int frames)
 {
-    NNS_SndCaptureSetReverbVolume(param0, param1);
-    return;
+    NNS_SndCaptureSetReverbVolume(targetVolume, frames);
 }
 
 BOOL sub_02004EFC(void)
@@ -1012,7 +1005,14 @@ BOOL sub_02004EFC(void)
     SoundSystem *v1 = SoundSystem_Get();
 
     MI_CpuClear8(SoundSystem_GetParam(4), sizeof(UnkStruct_020052C8));
-    return NNS_SndCaptureStartEffect(SoundSystem_GetParam(3), 0x1000, NNS_SND_CAPTURE_FORMAT_PCM16, 22000, 2, sub_020052C8, SoundSystem_GetParam(4));
+    return NNS_SndCaptureStartEffect(
+        SoundSystem_GetParam(SOUND_SYSTEM_PARAM_REVERB_BUFFER), 
+        0x1000, 
+        NNS_SND_CAPTURE_FORMAT_PCM16, 
+        22000, 
+        2, 
+        sub_020052C8, SoundSystem_GetParam(4)
+    );
 }
 
 void sub_02004F44(void)
@@ -1397,11 +1397,11 @@ void sub_020053CC(int param0)
 {
     if (param0 == 0) {
         Sound_SetBGMAllocatableChannels(0x7ff);
-        sub_02004EEC(0);
+        Sound_StopReverb(0);
     } else if (param0 == 1) {
         Sound_SetBGMAllocatableChannels(0x7fff);
 
-        if (sub_02004EC8(30) == 0) {
+        if (Sound_StartReverb(30) == 0) {
             (void)0;
         } else {
             (void)0;
@@ -1409,14 +1409,14 @@ void sub_020053CC(int param0)
     } else {
         Sound_SetBGMAllocatableChannels(0x7fff);
 
-        if (sub_02004EC8(15) == 0) {
+        if (Sound_StartReverb(15) == 0) {
             (void)0;
         } else {
             (void)0;
         }
     }
 
-    sub_02004EC0();
+    Sound_IsCaptureActive();
 
     return;
 }
