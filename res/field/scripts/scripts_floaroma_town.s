@@ -127,7 +127,7 @@ _0141:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckPartyHasSpeciesWithFatefulEncounter 0x800C, SPECIES_SHAYMIN
+    CheckPartyHasFatefulEncounter 0x800C, SPECIES_SHAYMIN
     GoToIfEq 0x800C, 0xFF, _019D
     CheckPartyHasSpecies 0x800C, SPECIES_SHAYMIN
     GoToIfEq 0x800C, 0, _019D

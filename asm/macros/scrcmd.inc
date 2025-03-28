@@ -3944,7 +3944,7 @@
     .short 714
     .endm
 
-    .macro GetPartyRepeatedSpeciesCount destVar, species
+    .macro CountRepeatedSpeciesInParty destVar, species
     .short 715
     .short \destVar
     .short \species
@@ -4048,7 +4048,7 @@
     .short \arg0
     .endm
 
-    .macro GetPartySlotWithSpecies destVarID, species
+    .macro FindPartySlotWithSpecies destVarID, species
     .short 733
     .short \destVarID
     .short \species
@@ -4407,7 +4407,7 @@
     .short \arg0
     .endm
 
-    .macro CheckPartyHasSpeciesWithFatefulEncounter destVar, species
+    .macro CheckPartyHasFatefulEncounter destVar, species
     .short 796
     .short \destVar
     .short \species
@@ -4510,7 +4510,7 @@
     .short 814
     .endm
 
-    .macro PartyHasHeldItem item, destVar
+    .macro CheckPartyHasHeldItem item, destVar
     .short 815
     .short \item
     .short \destVar

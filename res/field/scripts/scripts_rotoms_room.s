@@ -130,7 +130,7 @@ _01F8:
     CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_SetVarHydroPump
     CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_SetVarAirSlash
     CallIfEq VAR_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_SetVarLeafStorm
-    GetPartyRepeatedSpeciesCount 0x800C, SPECIES_ROTOM
+    CountRepeatedSpeciesInParty 0x800C, SPECIES_ROTOM
     GoToIfEq 0x800C, 1, RotomsRoom_GetRotomPartySlot
     GoTo _0403
     End
@@ -158,7 +158,7 @@ _0295:
 _02B6:
     BufferPartyMonNickname 0, VAR_PARTY_SLOT
     Message RotomsRoom_Text_PokemonEmergedFromTheMotor
-    SetRotomForm VAR_PARTY_SLOT, 0, 0, ROTOM_FORM_NORMAL
+    SetRotomForm VAR_PARTY_SLOT, 0, 0, ROTOM_FORM_BASE
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
@@ -216,8 +216,8 @@ RotomsRoom_ChooseARotom:
     WaitFadeScreen
     GoToIfEq VAR_PARTY_SLOT, 0xFF, RotomsRoom_End
     GetPartyMonSpecies VAR_PARTY_SLOT, 0x800C
-    GoToIfEq 0x800C, 0, RotomsRoom_AnEggCantEnterAMotor
-    GoToIfNe 0x800C, 0x1DF, RotomsRoom_ThatPokemonCantEnterAMotor
+    GoToIfEq 0x800C, SPECIES_NONE, RotomsRoom_AnEggCantEnterAMotor
+    GoToIfNe 0x800C, SPECIES_ROTOM, RotomsRoom_ThatPokemonCantEnterAMotor
     GetPartyMonForm2 VAR_PARTY_SLOT, 0x800C
     GoToIfEq 0x800C, 0, _03E8
     GoTo _02B6
@@ -232,7 +232,7 @@ RotomsRoom_End:
     End
 
 RotomsRoom_GetRotomPartySlot:
-    GetPartySlotWithSpecies VAR_PARTY_SLOT, SPECIES_ROTOM
+    FindPartySlotWithSpecies VAR_PARTY_SLOT, SPECIES_ROTOM
     GoTo _0473
     End
 

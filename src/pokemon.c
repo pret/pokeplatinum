@@ -4099,7 +4099,6 @@ int Pokemon_SetGiratinaFormByHeldItem(Pokemon *mon)
 {
     int result = BoxPokemon_SetGiratinaForm(&mon->box);
 
-    // TODO enum value?
     if (result != -1) {
         Pokemon_CalcLevelAndStats(mon);
     }
@@ -4109,17 +4108,16 @@ int Pokemon_SetGiratinaFormByHeldItem(Pokemon *mon)
 
 int BoxPokemon_SetGiratinaForm(BoxPokemon *boxMon)
 {
-    int monSpecies = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    int monHeldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    int species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    int item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
 
-    // TODO enum?
-    if (monSpecies == SPECIES_GIRATINA) {
-        int monForm = (monHeldItem == ITEM_GRISEOUS_ORB) ? 1 : 0;
+    if (species == SPECIES_GIRATINA) {
+        int form = (item == ITEM_GRISEOUS_ORB) ? GIRATINA_FORM_ORIGIN : GIRATINA_FORM_ALTERED;
 
-        BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &monForm);
+        BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &form);
         BoxPokemon_CalcAbility(boxMon);
 
-        return monForm;
+        return form;
     }
 
     return -1;
@@ -4127,11 +4125,10 @@ int BoxPokemon_SetGiratinaForm(BoxPokemon *boxMon)
 
 void Pokemon_SetGiratinaOriginForm(Pokemon *mon)
 {
-    // TODO enum?
-    int monForm = 1;
+    int form = GIRATINA_FORM_ORIGIN;
 
     if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA) {
-        BoxPokemon_SetValue(&mon->box, MON_DATA_FORM, &monForm);
+        BoxPokemon_SetValue(&mon->box, MON_DATA_FORM, &form);
         BoxPokemon_CalcAbility(&mon->box);
         Pokemon_CalcLevelAndStats(mon);
     }
@@ -4661,27 +4658,27 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
     // TODO enum values?
     switch (monSpecies) {
     case SPECIES_DEOXYS:
-        if (monForm && monForm <= 3) {
+        if (monForm && monForm <= DEOXYS_FORM_COUNT - 1) {
             monSpecies = (496 - 1) + monForm;
         }
         break;
     case SPECIES_WORMADAM:
-        if (monForm && monForm <= 2) {
+        if (monForm && monForm <= WORMADAM_FORM_COUNT - 1) {
             monSpecies = (499 - 1) + monForm;
         }
         break;
     case SPECIES_GIRATINA:
-        if (monForm && monForm <= 1) {
+        if (monForm && monForm <= GIRATINA_FORM_COUNT - 1) {
             monSpecies = (501 - 1) + monForm;
         }
         break;
     case SPECIES_SHAYMIN:
-        if (monForm && monForm <= 1) {
+        if (monForm && monForm <= SHAYMIN_FORM_COUNT - 1) {
             monSpecies = (502 - 1) + monForm;
         }
         break;
     case SPECIES_ROTOM:
-        if (monForm && monForm <= 5) {
+        if (monForm && monForm <= ROTOM_FORM_COUNT - 1) {
             monSpecies = (503 - 1) + monForm;
         }
         break;

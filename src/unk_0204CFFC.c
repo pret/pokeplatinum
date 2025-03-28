@@ -644,7 +644,7 @@ BOOL ScrCmd_CheckPartyHasSpecies(ScriptContext *ctx)
 
 // If you pass SPECIES_NONE, it returns 1 to check if there's repeated species.
 // This is not used in vanilla, however.
-BOOL ScrCmd_GetPartyRepeatedSpeciesCount(ScriptContext *ctx)
+BOOL ScrCmd_CountRepeatedSpeciesInParty(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Pokemon *mon;
@@ -689,7 +689,7 @@ BOOL ScrCmd_GetPartyRepeatedSpeciesCount(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GetPartySlotWithSpecies(ScriptContext *ctx)
+BOOL ScrCmd_FindPartySlotWithSpecies(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Pokemon *mon;
@@ -829,7 +829,7 @@ BOOL ScrCmd_0A0(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_CheckPartyHasSpeciesWithFatefulEncounter(ScriptContext *ctx)
+BOOL ScrCmd_CheckPartyHasFatefulEncounter(ScriptContext *ctx)
 {
     u8 i, partyCount;
     u16 partySpecies;
@@ -861,7 +861,7 @@ BOOL ScrCmd_CheckPartyHasSpeciesWithFatefulEncounter(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_PartyHasHeldItem(ScriptContext *ctx)
+BOOL ScrCmd_CheckPartyHasHeldItem(ScriptContext *ctx)
 {
     int i, partyCount;
     Party *party;

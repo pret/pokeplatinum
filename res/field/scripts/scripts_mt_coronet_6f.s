@@ -36,7 +36,7 @@ _0069:
     GoToIfGe 0x40C4, 1, _00BC
     CheckItem ITEM_ADAMANT_ORB, 1, 0x4001
     GoToIfEq 0x4001, 1, _0104
-    PartyHasHeldItem ITEM_ADAMANT_ORB, 0x4001
+    CheckPartyHasHeldItem ITEM_ADAMANT_ORB, 0x4001
     GoToIfEq 0x4001, 1, _0104
     GoTo _00BC
     End
@@ -46,7 +46,7 @@ _00BC:
     GoToIfGe 0x40C5, 1, _005F
     CheckItem ITEM_LUSTROUS_ORB, 1, 0x4001
     GoToIfEq 0x4001, 1, _010E
-    PartyHasHeldItem ITEM_LUSTROUS_ORB, 0x4001
+    CheckPartyHasHeldItem ITEM_LUSTROUS_ORB, 0x4001
     GoToIfEq 0x4001, 1, _010E
     GoTo _005F
     End

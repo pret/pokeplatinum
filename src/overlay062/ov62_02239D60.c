@@ -1188,7 +1188,7 @@ static void ov62_0223B050(UnkStruct_0208C06C *param0)
         if (species == SPECIES_MANAPHY) {
             form = EGG_FORM_MANAPHY;
         } else {
-            form = EGG_FORM_NORMAL;
+            form = EGG_FORM_BASE;
         }
 
         species = SPECIES_EGG;

@@ -540,7 +540,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
                 Pokemon_SetGiratinaFormByHeldItem(v0);
                 break;
             case SPECIES_ROTOM:
-                Pokemon_SetRotomForm(v0, ROTOM_FORM_NORMAL, 0);
+                Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
                 break;
             case SPECIES_SHAYMIN:
                 Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
@@ -597,7 +597,7 @@ BOOL ScrCmd_31E(ScriptContext *param0)
             Pokemon_SetGiratinaFormByHeldItem(v0);
             break;
         case SPECIES_ROTOM:
-            Pokemon_SetRotomForm(v0, ROTOM_FORM_NORMAL, 0);
+            Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
             break;
         case SPECIES_SHAYMIN:
             Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
@@ -639,7 +639,7 @@ BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
         u32 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         u32 isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
-        if (species == SPECIES_ROTOM && form != ROTOM_FORM_NORMAL && isEgg == FALSE) {
+        if (species == SPECIES_ROTOM && form != ROTOM_FORM_BASE && isEgg == FALSE) {
             if (*destVarPartySlot == 0xff) {
                 *destVarPartySlot = i;
             }
