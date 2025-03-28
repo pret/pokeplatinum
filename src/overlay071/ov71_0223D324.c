@@ -5,7 +5,7 @@
 
 #include "overlay071/struct_ov71_0223D324.h"
 
-#include "unk_020041CC.h"
+#include "sound.h"
 
 static void ov71_0223D370(UnkStruct_ov71_0223D324 *param0);
 static BOOL ov71_0223D3A0(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2);

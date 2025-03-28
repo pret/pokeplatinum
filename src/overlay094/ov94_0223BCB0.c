@@ -45,7 +45,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_0200F174.h"
 #include "unk_02033200.h"
 #include "unk_020797C8.h"

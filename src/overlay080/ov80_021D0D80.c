@@ -21,7 +21,7 @@
 #include "overlay_manager.h"
 #include "strbuf.h"
 #include "system.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
 #include "unk_0208C098.h"

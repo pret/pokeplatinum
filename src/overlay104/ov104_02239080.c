@@ -6,7 +6,7 @@
 #include "overlay104/struct_ov104_0222E930_decl.h"
 #include "overlay104/struct_ov104_0222E930_t.h"
 
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_02005474.h"
 
 static BOOL ov104_022390C0(UnkStruct_ov104_0222E930 *param0);

@@ -23,7 +23,7 @@
 #include "strbuf.h"
 #include "system.h"
 #include "system_flags.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_02030CE8.h"
 #include "unk_02033200.h"
 #include "unk_02038FFC.h"

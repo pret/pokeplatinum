@@ -50,7 +50,7 @@
 #include "system.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202DAB4.h"

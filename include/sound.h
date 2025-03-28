@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020041CC_H
-#define POKEPLATINUM_UNK_020041CC_H
+#ifndef POKEPLATINUM_SOUND_H
+#define POKEPLATINUM_SOUND_H
 
 #include <nitro/snd.h>
 #include <nitro/spi.h>
@@ -123,4 +123,4 @@ void Sound_SetPlayerVolume(int playerID, int volume);
 void Sound_Set2PokemonCriesAllowed(BOOL allowed);
 void sub_02005464(BOOL param0);
 
-#endif // POKEPLATINUM_UNK_020041CC_H
+#endif // POKEPLATINUM_SOUND_H

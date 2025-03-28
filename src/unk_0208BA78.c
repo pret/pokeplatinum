@@ -22,7 +22,7 @@
 #include "overlay_manager.h"
 #include "savedata.h"
 #include "system_flags.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_0202F1D4.h"
 #include "unk_020553DC.h"
 #include "unk_0208C010.h"

@@ -49,7 +49,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"

@@ -71,7 +71,7 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
