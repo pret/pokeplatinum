@@ -698,7 +698,7 @@ static int ov79_021D2B3C(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
         return 3;
     }
 
-    sub_0200592C(0);
+    Sound_StopPokemonCries(0);
     return 4;
 }
 

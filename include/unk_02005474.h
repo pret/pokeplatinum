@@ -22,8 +22,8 @@ void Sound_FadeInBGM(int targetVolume, int frames, enum BGMFadeInType fadeInType
 void Sound_FadeOutBGM(int targetVolume, int frames);
 BOOL Sound_IsFadeActive(void);
 BOOL Sound_IsSequencePlaying(u16 seqID);
+void Sound_StopWaveOutAndSequences(void);
 void Sound_StopAll(void);
-void sub_020056D4(void);
 BOOL Sound_PlayPannedEffect(u16 seqID, int pan);
 BOOL Sound_PlayEffect(u16 seqID);
 BOOL Sound_PlayEffectOnPlayer(u16 seqID, int playerID);
@@ -39,7 +39,7 @@ void Sound_PanEffect(u16 seqID, u16 tracks, int pan);
 void Sound_PanAllEffects(int pan);
 BOOL Sound_PlayPokemonCry(u16 species, u8 form);
 BOOL sub_0200590C(u16 species, u8 delay, u8 form);
-void sub_0200592C(int param0);
+void Sound_StopPokemonCries(int param0);
 int sub_0200598C(void);
 BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 form);
 void Sound_PlayDelayedPokemonCry(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 delay, u8 form);

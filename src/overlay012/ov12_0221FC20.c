@@ -3804,7 +3804,7 @@ static void ov12_02223134(UnkStruct_ov12_0221FCDC *param0)
         v0 = inline_ov12_022204C4(param0->unk_18);
         param0->unk_18 += 1;
         param0->unk_89 = 0;
-        sub_0200592C(v0);
+        Sound_StopPokemonCries(v0);
     } else {
         param0->unk_89 = 1;
     }

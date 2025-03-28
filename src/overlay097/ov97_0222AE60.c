@@ -1176,11 +1176,11 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         RebootAndLoadROM("data/eoo.dat");
         break;
     case 7:
-        Sound_StopAll();
+        Sound_StopWaveOutAndSequences();
         EnqueueApplication(0xffffffff, &Unk_020F6DF0);
         break;
     case 8:
-        Sound_StopAll();
+        Sound_StopWaveOutAndSequences();
         EnqueueApplication(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
         break;
     case 0:

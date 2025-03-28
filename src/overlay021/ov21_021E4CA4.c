@@ -591,7 +591,7 @@ static void ov21_021E5268(u32 param0, u32 param1, void *param2)
                     }
                 } else {
                     if (v2->unk_2C == 1) {
-                        sub_0200592C(0);
+                        Sound_StopPokemonCries(0);
                     }
 
                     ov21_021E5DE8(v2, v1, species);
@@ -1263,7 +1263,7 @@ static void ov21_021E5DE8(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D
 
 static void ov21_021E5E18(UnkStruct_ov21_021E51DC *param0)
 {
-    sub_0200592C(0);
+    Sound_StopPokemonCries(0);
     param0->unk_2C = 0;
 }
 
@@ -1381,7 +1381,7 @@ static void ov21_021E5F5C(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D
 
         if (param0->unk_64 == 0) {
             if (param0->unk_2C == 1) {
-                sub_0200592C(0);
+                Sound_StopPokemonCries(0);
             }
 
             ov21_021E5DE8(param0, param1, species);

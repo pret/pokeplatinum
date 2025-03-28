@@ -112,7 +112,7 @@ u16 sub_0205560C(int param0);
 
 void sub_020553DC()
 {
-    Sound_StopAll();
+    Sound_StopWaveOutAndSequences();
     Sound_ClearBGMPauseFlags();
     Sound_SetScene(0);
 }

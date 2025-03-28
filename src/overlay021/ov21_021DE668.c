@@ -236,7 +236,7 @@ static int ov21_021DE79C(UnkStruct_ov21_021E6A68 *param0, void *param1)
 
 static int ov21_021DE7F8(UnkStruct_ov21_021E6A68 *param0, void *param1)
 {
-    sub_0200592C(0);
+    Sound_StopPokemonCries(0);
     return 1;
 }
 
