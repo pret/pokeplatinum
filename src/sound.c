@@ -15,15 +15,15 @@
 static void Sound_LoadSoundEffectsForSceneWithState(u8 param0);
 static void Sound_Impl_PlayFieldBGM(u16 param0, int param1);
 static void Sound_Impl_ResumeAndSwitchFieldBGM(u16 param0, u16 param1);
-static void sub_02004874(u16 param0, int param1);
+static void Sound_Impl_PlayBattleBGM(u16 param0, int param1);
 static void sub_020048AC(u16 param0, int param1);
-static void sub_020048CC(u16 param0, int param1);
+static void Sound_Impl_PlayContestBGM(u16 param0, int param1);
 static void sub_020048F0(u16 param0, int param1);
-static void sub_02004914(u8 param0);
-static void sub_02004930(u8 param0, u16 param1, int param2);
+static void Sound_Impl_LoadSubSceneSoundData(u8 param0);
+static void Sound_Impl_PlayCutsceneBGM(u8 param0, u16 param1, int param2);
 void sub_02004950(u16 param0);
 void sub_02004A54(int param0, int param1, int param2);
-void sub_02004AD4(u16 param0, int param1);
+void Sound_SetInitialVolumeForSequence(u16 param0, int param1);
 NNSSndWaveOutHandle *Sound_GetWaveOutHandle(enum WaveOutChannel channel);
 BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel param0);
 void Sound_FreeWaveOutChannel(enum WaveOutChannel param0);
@@ -47,12 +47,12 @@ void sub_02004F68(int param0, u16 param1, int param2);
 void sub_02004F7C(u16 param0, u16 param1, int param2);
 void sub_02004F94(int param0, u16 param1, int param2);
 void sub_02004FA8(int param0, int param1);
-void sub_0200500C(int param0);
+void Sound_SetMasterVolume(int param0);
 void *sub_02005014(void);
 static void Sound_Impl_FadeToBGM(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
 static void Sound_SetBGMAllocatableChannels(u16 param0);
 void sub_020053CC(int param0);
-static void sub_0200540C(void);
+static void Sound_Impl_PauseOrStopFieldBGM(void);
 const u8 *sub_020050E0(const SNDWaveData *param0);
 const u32 sub_020050EC(const SNDWaveData *param0);
 const SNDWaveData *sub_020050F8(int param0);
@@ -296,13 +296,13 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int param2)
         (*v2) = 0;
         break;
     case SOUND_SCENE_BATTLE:
-        sub_02004874(bgmID, param2);
+        Sound_Impl_PlayBattleBGM(bgmID, param2);
         break;
     case 11:
         sub_020048AC(bgmID, param2);
         break;
     case SOUND_SCENE_CONTEST:
-        sub_020048CC(bgmID, param2);
+        Sound_Impl_PlayContestBGM(bgmID, param2);
         break;
     case 7:
         sub_020048F0(bgmID, param2);
@@ -325,19 +325,19 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int param2)
     case 66:
     case 67:
     case 68:
-        sub_02004914(scene);
+        Sound_Impl_LoadSubSceneSoundData(scene);
         break;
     case 1:
         sub_020053CC(1);
-        sub_02004930(scene, bgmID, param2);
+        Sound_Impl_PlayCutsceneBGM(scene, bgmID, param2);
         break;
     case 14:
         sub_020053CC(2);
-        sub_02004930(scene, bgmID, param2);
+        Sound_Impl_PlayCutsceneBGM(scene, bgmID, param2);
         break;
     case 2:
         sub_020053CC(0);
-        sub_02004930(scene, bgmID, param2);
+        Sound_Impl_PlayCutsceneBGM(scene, bgmID, param2);
         break;
     case 3:
     case 8:
@@ -353,10 +353,10 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int param2)
     case 20:
     case 21:
     case 23:
-        sub_02004930(scene, bgmID, param2);
+        Sound_Impl_PlayCutsceneBGM(scene, bgmID, param2);
         break;
     case 22:
-        sub_02004930(scene, bgmID, param2);
+        Sound_Impl_PlayCutsceneBGM(scene, bgmID, param2);
         break;
     }
 
@@ -427,7 +427,7 @@ static void Sound_Impl_ResumeAndSwitchFieldBGM(u16 bgmID, u16 unused)
 
     SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_BGM));
     Sound_SetBGMPlayerPaused(PLAYER_FIELD, FALSE);
-    Sound_FadeInBGM(MAX_BGM_VOLUME, 40, BGM_FADE_IN_TYPE_FROM_ZERO);
+    Sound_FadeInBGM(SOUND_VOLUME_MAX, 40, BGM_FADE_IN_TYPE_FROM_ZERO);
     Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_IDLE);
 }
 
@@ -456,74 +456,62 @@ void Sound_LoadSoundDataForFieldBGM(u16 seqID, u16 currentBankID)
     }
 }
 
-static void sub_02004874(u16 param0, int param1)
+static void Sound_Impl_PlayBattleBGM(u16 bgmID, int unused)
 {
-    int *v0 = SoundSystem_GetParam(24);
+    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
 
-    sub_0200540C();
+    Sound_Impl_PauseOrStopFieldBGM();
     SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_BGM_BANK));
-    Sound_LoadSoundEffectsForScene(5);
-    SoundSystem_SaveHeapState(SoundSystem_GetParam(26));
+    Sound_LoadSoundEffectsForScene(SOUND_SCENE_BATTLE);
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_SFX));
     Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_SWITCH);
-    Sound_PlayBGM(param0);
-
-    return;
+    Sound_PlayBGM(bgmID);
 }
 
 static void sub_020048AC(u16 param0, int param1)
 {
-    int *v0 = SoundSystem_GetParam(24);
+    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
 
     Sound_StopWaveOutAndSequences();
     Sound_ClearBGMPauseFlags();
     Sound_LoadSoundEffectsForSceneWithState(SOUND_SCENE_FIELD);
     Sound_PlayBGM(param0);
-
-    return;
 }
 
-void sub_020048CC(u16 param0, int param1)
+void Sound_Impl_PlayContestBGM(u16 bgmID, int unused)
 {
-    int *v0 = SoundSystem_GetParam(24);
+    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
 
     Sound_StopWaveOutAndSequences();
-    Sound_LoadSoundEffectsForSceneWithState(6);
+    Sound_LoadSoundEffectsForSceneWithState(SOUND_SCENE_CONTEST);
     Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_SWITCH);
-    Sound_PlayBGM(param0);
-
-    return;
+    Sound_PlayBGM(bgmID);
 }
 
-void sub_020048F0(u16 param0, int param1)
+void sub_020048F0(u16 bgmID, int unused)
 {
-    int *v0 = SoundSystem_GetParam(24);
+    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
 
     Sound_StopWaveOutAndSequences();
     Sound_LoadSoundEffectsForSceneWithState(7);
     Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_SWITCH);
-    Sound_PlayBGM(param0);
-
-    return;
+    Sound_PlayBGM(bgmID);
 }
 
-static void sub_02004914(u8 param0)
+static void Sound_Impl_LoadSubSceneSoundData(u8 scene)
 {
     Sound_LoadHeapStateBGM();
-    Sound_LoadSoundEffectsForScene(param0);
-    SoundSystem_SaveHeapState(SoundSystem_GetParam(28));
-
-    return;
+    Sound_LoadSoundEffectsForScene(scene);
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_SUB_SFX));
 }
 
-static void sub_02004930(u8 param0, u16 param1, int param2)
+static void Sound_Impl_PlayCutsceneBGM(u8 scene, u16 bgmID, int unused)
 {
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT); // Required to match
+    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
 
     Sound_StopWaveOutAndSequences();
-    Sound_LoadSoundEffectsForSceneWithState(param0);
-    Sound_PlayBGM(param1);
-
-    return;
+    Sound_LoadSoundEffectsForSceneWithState(scene);
+    Sound_PlayBGM(bgmID);
 }
 
 void sub_02004950(u16 param0)
@@ -531,7 +519,7 @@ void sub_02004950(u16 param0)
     int v0;
     SoundSystem *v1 = SoundSystem_Get();
 
-    sub_0200540C();
+    Sound_Impl_PauseOrStopFieldBGM();
 
     v0 = Sound_PlayBGM(param0);
     return;
@@ -549,7 +537,7 @@ int Sound_GetHeapState(enum SoundHeapState state)
 
     if (state >= SOUND_HEAP_STATE_COUNT) {
         GF_ASSERT(FALSE);
-        param = SoundSystem_GetParam(27);
+        param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_BGM);
         return *param;
     }
 
@@ -569,8 +557,8 @@ int Sound_GetHeapState(enum SoundHeapState state)
     case SOUND_HEAP_STATE_BGM:
         param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_BGM);
         break;
-    case 5:
-        param = SoundSystem_GetParam(28);
+    case SOUND_HEAP_STATE_SUB_SFX:
+        param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_SUB_SFX);
         break;
     case 6:
         param = SoundSystem_GetParam(29);
@@ -619,12 +607,12 @@ void Sound_FadeVolumeForHandle(enum SoundHandleType handleType, int targetVolume
 
 void Sound_SetInitialVolumeForHandle(enum SoundHandleType handleType, int volume)
 {
-    if (volume < 0) {
-        volume = 0;
+    if (volume < SOUND_VOLUME_MIN) {
+        volume = SOUND_VOLUME_MIN;
     }
 
-    if (volume > 127) {
-        volume = 127;
+    if (volume > SOUND_VOLUME_MAX) {
+        volume = SOUND_VOLUME_MAX;
     }
 
     NNS_SndPlayerSetInitialVolume(SoundSystem_GetSoundHandle(handleType), volume);
@@ -646,7 +634,7 @@ void Sound_AdjustVolumeForVoiceChatEx(int seqID, enum SoundHandleType handleType
     switch (handleType) {
     case SOUND_HANDLE_TYPE_POKEMON_CRY:
     case 8:
-        volume = 127;
+        volume = SOUND_VOLUME_MAX;
         break;
 
     default:
@@ -663,13 +651,12 @@ void Sound_AdjustVolumeForVoiceChatEx(int seqID, enum SoundHandleType handleType
     }
 }
 
-void sub_02004AD4(u16 param0, int param1)
+void Sound_SetInitialVolumeForSequence(u16 seqID, int volume)
 {
-    u8 v0 = Sound_GetPlayerForSequence(param0);
-    int v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
+    u8 playerID = Sound_GetPlayerForSequence(seqID);
+    enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
 
-    Sound_SetInitialVolumeForHandle(v1, param1);
-    return;
+    Sound_SetInitialVolumeForHandle(handleType, volume);
 }
 
 BOOL Sound_PlaySequenceWithPlayer(enum SoundHandleType handleType, int playerID, u16 seqID)
@@ -1093,10 +1080,9 @@ BOOL Sound_UpdateFollowUpWaitFrames()
     return *waitFrames;
 }
 
-void sub_0200500C(int param0)
+void Sound_SetMasterVolume(int volume)
 {
-    NNS_SndSetMasterVolume(param0);
-    return;
+    NNS_SndSetMasterVolume(volume);
 }
 
 void *sub_02005014(void)
@@ -1138,7 +1124,7 @@ static void Sound_Impl_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int f
 {
     const NNSSndArcBankInfo **currentBankInfo = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO);
 
-    Sound_FadeOutBGM(MIN_BGM_VOLUME, fadeOutFrames);
+    Sound_FadeOutBGM(SOUND_VOLUME_MIN, fadeOutFrames);
     Sound_SetCurrentBGM(0);
 
     Sound_SetNextBGM(bgmID);
@@ -1421,7 +1407,7 @@ void sub_020053CC(int param0)
     return;
 }
 
-static void sub_0200540C(void)
+static void Sound_Impl_PauseOrStopFieldBGM(void)
 {
     if ((Sound_IsFadeActive() == FALSE) && 
         (Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FIELD_BGM)) != -1) && 

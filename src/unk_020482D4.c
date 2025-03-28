@@ -234,7 +234,7 @@ BOOL ScrCmd_283(ScriptContext *param0)
     u16 v0 = ScriptContext_GetVar(param0);
     u16 v1 = ScriptContext_GetVar(param0);
 
-    sub_02004AD4(v0, v1);
+    Sound_SetInitialVolumeForSequence(v0, v1);
     return 0;
 }
 

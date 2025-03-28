@@ -21,7 +21,7 @@ static void SoundSystem_InitSoundHandles(SoundSystem *soundSys);
 static void SoundSystem_LoadPersistentGroup(SoundSystem *soundSys);
 static void SoundSystem_InitMic();
 static BOOL sub_02003D28();
-static void sub_02003C64();
+static void SoundSystem_UpdateState();
 static void SoundSystem_StopBGM();
 
 static SoundSystem sSoundSystem;
@@ -60,7 +60,7 @@ void SoundSystem_Update()
             soundSys->fadeCounter--;
         }
 
-        sub_02003C64();
+        SoundSystem_UpdateState();
     }
 
     CheckMicRecordingStatus();
@@ -79,9 +79,8 @@ void SoundSystem_Update()
     return;
 }
 
-static void sub_02003C64()
+static void SoundSystem_UpdateState()
 {
-    int v0;
     SoundSystem *soundSys = SoundSystem_Get();
 
     switch (sSoundSystemState) {
@@ -115,13 +114,11 @@ static void sub_02003C64()
             if (Sound_UpdateFollowUpWaitFrames() == 0) {
                 SoundSystem_StopBGM();
                 Sound_PlayBGM(soundSys->nextBGM);
-                Sound_FadeInBGM(MAX_BGM_VOLUME, soundSys->followUpFadeFrames, BGM_FADE_IN_TYPE_FROM_ZERO);
+                Sound_FadeInBGM(SOUND_VOLUME_MAX, soundSys->followUpFadeFrames, BGM_FADE_IN_TYPE_FROM_ZERO);
             }
         }
         break;
     }
-
-    return;
 }
 
 void SoundSystem_SetState(enum SoundSystemState state)

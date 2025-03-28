@@ -18,6 +18,7 @@ enum SoundHeapState {
     SOUND_HEAP_STATE_BGM_BANK,
     SOUND_HEAP_STATE_SFX,
     SOUND_HEAP_STATE_BGM,
+    SOUND_HEAP_STATE_SUB_SFX,
     
     SOUND_HEAP_STATE_COUNT = 7
 };
@@ -83,6 +84,7 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_HEAP_STATE_BGM_BANK,             // BGM *bank* data
     SOUND_SYSTEM_PARAM_HEAP_STATE_SFX,                  // Sound Effect data
     SOUND_SYSTEM_PARAM_HEAP_STATE_BGM,                  // Actual BGM data
+    SOUND_SYSTEM_PARAM_HEAP_STATE_SUB_SFX,              // Sub screen SFX
 
     SOUND_SYSTEM_PARAM_FIELD_BGM = 32,                  // Currently active field BGM
 
