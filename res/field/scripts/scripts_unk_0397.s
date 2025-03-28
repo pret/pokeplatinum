@@ -19,11 +19,11 @@ _0022:
     End
 
 _002E:
-    ClearFlag FLAG_UNK_0x0178,
-    ClearFlag FLAG_UNK_0x0179,
+    ClearFlag FLAG_UNK_0x0178
+    ClearFlag FLAG_UNK_0x0179
     SetVar 0x4095, 1
     SetVar 0x4082, 2
-    ClearFlag FLAG_UNK_0x0195,
+    ClearFlag FLAG_UNK_0x0195
     SetVar 0x4086, 2
     SetVar 0x40A4, 3
     End
@@ -33,12 +33,12 @@ _0054:
     End
 
 _005C:
-    ClearFlag FLAG_UNK_0x0194,
-    ClearFlag FLAG_UNK_0x0175,
+    ClearFlag FLAG_UNK_0x0194
+    ClearFlag FLAG_UNK_0x0175
     SetVar 0x4095, 1
     SetFlag FLAG_UNK_0x0196
     SetFlag FLAG_UNK_0x01AE
-    ClearFlag FLAG_UNK_0x0293,
+    ClearFlag FLAG_UNK_0x0293
     End
 
 _0078:

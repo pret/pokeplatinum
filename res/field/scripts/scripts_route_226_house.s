@@ -20,7 +20,7 @@ _0014:
     GoToIfSet FLAG_UNK_0x00F6, _0046
     Message 0
     ScrCmd_22B
-    SetFlag FLAG_UNK_0x00F6,
+    SetFlag FLAG_UNK_0x00F6
     Message 1
     WaitABXPadPress
     CloseMessage
@@ -50,7 +50,7 @@ _0060:
     GoToIfNe 0x8005, 0x800C, _00C4
     ScrCmd_229 0x8004
     FinishNpcTrade
-    SetFlag FLAG_UNK_0x00F5,
+    SetFlag FLAG_UNK_0x00F5
     Message 3
     WaitABXPadPress
     CloseMessage

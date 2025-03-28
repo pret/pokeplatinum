@@ -14,7 +14,7 @@ _000A:
 _0017:
     SetFlag FLAG_UNK_0x0243
     RemoveObject 0
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     End
 
 _0025:
@@ -47,9 +47,9 @@ _0081:
     CloseMessage
     PlayCry SPECIES_REGIGIGAS
     ScrCmd_04D
-    SetFlag FLAG_UNK_0x008E,
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_REGIGIGAS, 1
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _00D1
     CheckDidNotCapture 0x800C

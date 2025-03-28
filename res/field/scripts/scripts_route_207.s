@@ -42,7 +42,7 @@ _004E:
     End
 
 _008E:
-    ClearFlag FLAG_UNK_0x01CC,
+    ClearFlag FLAG_UNK_0x01CC
     AddObject 18
     ScrCmd_062 18
     Return

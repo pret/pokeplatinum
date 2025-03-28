@@ -35,7 +35,7 @@ _0062:
     End
 
 _0082:
-    SetFlag FLAG_UNK_0x00DB,
+    SetFlag FLAG_UNK_0x00DB
     Message 2
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _00FF

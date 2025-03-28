@@ -27,7 +27,7 @@ _0024:
     GoTo _0076
 
 _0076:
-    ClearFlag FLAG_UNK_0x020B,
+    ClearFlag FLAG_UNK_0x020B
     End
 
 _007C:
@@ -47,7 +47,7 @@ _008A:
 _00AD:
     SetFlag FLAG_UNK_0x020B
     RemoveObject 4
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     End
 
 _00BB:
@@ -142,9 +142,9 @@ _01BF:
     Message 8
     CloseMessage
     ScrCmd_04D
-    SetFlag FLAG_UNK_0x008E,
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_DRIFLOON, 15
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _01FB
     SetFlag FLAG_UNK_0x0AA8

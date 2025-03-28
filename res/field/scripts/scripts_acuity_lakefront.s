@@ -33,7 +33,7 @@ _004E:
 
 _0079:
     SetFlag FLAG_UNK_0x0234
-    ClearFlag FLAG_UNK_0x0298,
+    ClearFlag FLAG_UNK_0x0298
     Return
 
 _0083:

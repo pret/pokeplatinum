@@ -120,7 +120,7 @@ _016F:
     ApplyMovement 2, _0730
     WaitMovement
     PlayMusic SEQ_OPENING2
-    ClearFlag FLAG_UNK_0x0178,
+    ClearFlag FLAG_UNK_0x0178
     AddObject 5
     ScrCmd_062 5
     ApplyMovement 5, _07C0
@@ -206,7 +206,7 @@ _030B:
     ApplyMovement 5, _07D8
     WaitMovement
     WaitTime 25, 0x800C
-    ClearFlag FLAG_UNK_0x0179,
+    ClearFlag FLAG_UNK_0x0179
     AddObject 6
     ScrCmd_062 6
     CallCommonScript 0x7F8
@@ -222,7 +222,7 @@ _036E:
     CloseMessage
     ApplyMovement 5, _07E8
     WaitMovement
-    ClearFlag FLAG_UNK_0x017D,
+    ClearFlag FLAG_UNK_0x017D
     AddObject 12
     WaitTime 15, 0x800C
     Message 23
@@ -238,7 +238,7 @@ _03A6:
     CloseMessage
     ApplyMovement 5, _07E8
     WaitMovement
-    ClearFlag FLAG_UNK_0x017D,
+    ClearFlag FLAG_UNK_0x017D
     AddObject 12
     WaitTime 15, 0x800C
     Message 25
@@ -1223,7 +1223,7 @@ _0E47:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0E97
-    SetFlag FLAG_UNK_0x006C,
+    SetFlag FLAG_UNK_0x006C
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll

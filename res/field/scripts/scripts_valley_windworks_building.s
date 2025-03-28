@@ -113,7 +113,7 @@ _0107:
     RemoveObject 3
     RemoveObject 4
     SetFlag FLAG_UNK_0x01A2
-    ClearFlag FLAG_UNK_0x017F,
+    ClearFlag FLAG_UNK_0x017F
     SetVar 0x4089, 2
     SetFlag FLAG_UNK_0x0AA8
     FadeScreen 6, 1, 1, 0
@@ -139,7 +139,7 @@ _01DB:
     Message 7
     CloseMessage
     SetFlag FLAG_UNK_0x01F8
-    ClearFlag FLAG_UNK_0x01F9,
+    ClearFlag FLAG_UNK_0x01F9
     ScrCmd_188 5, 16
     AddObject 5
     ScrCmd_062 5
@@ -188,7 +188,7 @@ _0297:
     WaitABXPadPress
     CloseMessage
     SetVar 0x411E, 1
-    ClearFlag FLAG_UNK_0x01FA,
+    ClearFlag FLAG_UNK_0x01FA
     SetVar 0x40CF, 2
     SetFlag FLAG_UNK_0x0988
     ReleaseAll

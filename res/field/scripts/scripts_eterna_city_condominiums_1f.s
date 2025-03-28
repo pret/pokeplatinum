@@ -120,7 +120,7 @@ _0168:
     GoToIfNe 0x8005, 0x800C, _01CC
     ScrCmd_229 0x8004
     FinishNpcTrade
-    SetFlag FLAG_UNK_0x0086,
+    SetFlag FLAG_UNK_0x0086
     Message 10
     WaitABXPadPress
     CloseMessage

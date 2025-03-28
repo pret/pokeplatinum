@@ -13,7 +13,7 @@ _000A:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0097, _0109
     GoToIfSet FLAG_UNK_0x00B5, _0037
-    SetFlag FLAG_UNK_0x00B5,
+    SetFlag FLAG_UNK_0x00B5
     Message 0
     GoTo _0042
     End
@@ -38,7 +38,7 @@ _005B:
     Message 3
     WaitSound
     GivePokemon SPECIES_PORYGON, 25, ITEM_NONE, 0x800C
-    SetFlag FLAG_UNK_0x0097,
+    SetFlag FLAG_UNK_0x0097
     Message 4
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _00AC

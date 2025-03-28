@@ -53,7 +53,7 @@ _009F:
     Message 4
     SetVar 0x8004, 0x1BC
     SetVar 0x8005, 1
-    SetFlag FLAG_UNK_0x00BC,
+    SetFlag FLAG_UNK_0x00BC
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll

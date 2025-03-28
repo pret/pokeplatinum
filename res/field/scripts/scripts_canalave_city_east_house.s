@@ -13,7 +13,7 @@ _0006:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0001, _0026
     Message 0
-    SetFlag FLAG_UNK_0x0001,
+    SetFlag FLAG_UNK_0x0001
     GoTo _0026
 
 _0026:

@@ -24,15 +24,15 @@ _0026:
     End
 
 _006D:
-    ClearFlag FLAG_UNK_0x026D,
-    ClearFlag FLAG_UNK_0x026F,
+    ClearFlag FLAG_UNK_0x026D
+    ClearFlag FLAG_UNK_0x026F
     SetFlag FLAG_UNK_0x026C
     SetFlag FLAG_UNK_0x026E
     End
 
 _007F:
-    ClearFlag FLAG_UNK_0x026C,
-    ClearFlag FLAG_UNK_0x026E,
+    ClearFlag FLAG_UNK_0x026C
+    ClearFlag FLAG_UNK_0x026E
     SetFlag FLAG_UNK_0x026D
     SetFlag FLAG_UNK_0x026F
     End
@@ -187,7 +187,7 @@ _0254:
     Message 11
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x00A2,
+    SetFlag FLAG_UNK_0x00A2
     GoTo _020B
 
 _0270:

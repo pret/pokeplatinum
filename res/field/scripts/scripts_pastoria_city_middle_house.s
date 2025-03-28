@@ -24,7 +24,7 @@ _001D:
     GoToIfSet FLAG_UNK_0x011C, _00BD
     GoToIfSet FLAG_UNK_0x0078, _004A
     Message 1
-    SetFlag FLAG_UNK_0x0078,
+    SetFlag FLAG_UNK_0x0078
     GoTo _00C8
     End
 

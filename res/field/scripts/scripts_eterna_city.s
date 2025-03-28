@@ -179,7 +179,7 @@ _0276:
     End
 
 _0286:
-    ClearFlag FLAG_UNK_0x0180,
+    ClearFlag FLAG_UNK_0x0180
     AddObject 12
     ScrCmd_062 12
     CallIfEq 0x8005, 0x20A, _034B
@@ -777,7 +777,7 @@ _0954:
     ScrCmd_32D
     ScrCmd_331
     SetObjectEventPos 33, 0x12B, 0x215
-    ClearFlag FLAG_UNK_0x018C,
+    ClearFlag FLAG_UNK_0x018C
     AddObject 33
     ScrCmd_062 33
     GetPlayerMapPos 0x8004, 0x8005
@@ -1128,7 +1128,7 @@ _0DD2:
     End
 
 _0DE8:
-    ClearFlag FLAG_UNK_0x0180,
+    ClearFlag FLAG_UNK_0x0180
     AddObject 12
     ScrCmd_062 12
     Return

@@ -121,8 +121,8 @@ _0164:
     EndMovement
 
 _0174:
-    ClearFlag FLAG_UNK_0x01D1,
-    ClearFlag FLAG_UNK_0x098B,
+    ClearFlag FLAG_UNK_0x01D1
+    ClearFlag FLAG_UNK_0x098B
     CallIfUnset FLAG_UNK_0x00D0, _023C
     CallIfUnset FLAG_UNK_0x00D1, _0244
     CallIfUnset FLAG_UNK_0x0120, _024C
@@ -136,10 +136,10 @@ _0174:
     CallIfEq 0x405F, 2, _02AD
     CallIfEq 0x4060, 2, _02B5
     CallIfEq 0x410F, 0, _0234
-    ClearFlag FLAG_UNK_0x0177,
+    ClearFlag FLAG_UNK_0x0177
     CallIfUnset FLAG_UNK_0x00B9, _02BD
-    ClearFlag FLAG_UNK_0x0186,
-    ClearFlag FLAG_UNK_0x0124,
+    ClearFlag FLAG_UNK_0x0186
+    ClearFlag FLAG_UNK_0x0124
     SetFlag FLAG_UNK_0x02A0
     Return
 
@@ -157,7 +157,7 @@ _0244:
 
 _024C:
     GoToIfUnset FLAG_MESPRIT_CAUGHT, _0261
-    ClearFlag FLAG_UNK_0x01DD,
+    ClearFlag FLAG_UNK_0x01DD
     SetVar 0x409E, 1
 _0261:
     Return
@@ -165,7 +165,7 @@ _0261:
 _0263:
     ScrCmd_22D 2, 0x800C
     GoToIfEq 0x800C, 0, _0279
-    ClearFlag FLAG_UNK_0x0243,
+    ClearFlag FLAG_UNK_0x0243
 _0279:
     Return
 
@@ -178,7 +178,7 @@ PokemonLeagueHallOfFame_ClearFlagUxieDisappeared:
     Return
 
 _0287:
-    ClearFlag FLAG_UNK_0x0250,
+    ClearFlag FLAG_UNK_0x0250
     Return
 
 PokemonLeagueHallOfFame_ClearFlagMespritDisappeared:
@@ -187,7 +187,7 @@ PokemonLeagueHallOfFame_ClearFlagMespritDisappeared:
     Return
 
 _0299:
-    ClearFlag FLAG_UNK_0x024F,
+    ClearFlag FLAG_UNK_0x024F
     SetVar 0x4058, 3
     Return
 
@@ -204,7 +204,7 @@ _02B5:
     Return
 
 _02BD:
-    ClearFlag FLAG_UNK_0x0185,
+    ClearFlag FLAG_UNK_0x0185
     Return
 
     .byte 0

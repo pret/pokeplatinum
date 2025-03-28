@@ -446,7 +446,7 @@ _0635:
 
 _0641:
     RemoveObject 3
-    ClearFlag FLAG_UNK_0x0177,
+    ClearFlag FLAG_UNK_0x0177
     SetVar 0x4087, 3
     ReleaseAll
     End

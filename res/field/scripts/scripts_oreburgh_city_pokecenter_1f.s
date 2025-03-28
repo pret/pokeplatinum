@@ -82,7 +82,7 @@ _00E9:
 _00F4:
     ScrCmd_344 0, 0x8005
     Message 5
-    SetFlag FLAG_UNK_0x0070,
+    SetFlag FLAG_UNK_0x0070
     ScrCmd_29C 0x8004, 0x8005
     ScrCmd_156 0x8005
     GoTo _00E9

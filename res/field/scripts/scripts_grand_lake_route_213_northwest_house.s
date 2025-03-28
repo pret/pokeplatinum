@@ -19,7 +19,7 @@ _000E:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _005E
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x00CA,
+    SetFlag FLAG_UNK_0x00CA
     GoTo _0053
 
 _0053:

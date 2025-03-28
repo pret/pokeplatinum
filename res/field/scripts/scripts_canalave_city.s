@@ -58,7 +58,7 @@ _0100:
     Return
 
 _0116:
-    ClearFlag FLAG_UNK_0x0240,
+    ClearFlag FLAG_UNK_0x0240
     Return
 
 _011C:
@@ -146,7 +146,7 @@ _027C:
 
 _028A:
     ScrCmd_188 11, 17
-    ClearFlag FLAG_UNK_0x01B2,
+    ClearFlag FLAG_UNK_0x01B2
     AddObject 11
     ApplyMovement 11, _0340
     WaitMovement
@@ -255,7 +255,7 @@ _03C8:
     WaitMovement
     Message 5
     CloseMessage
-    ClearFlag FLAG_UNK_0x01B4,
+    ClearFlag FLAG_UNK_0x01B4
     AddObject 14
     ScrCmd_062 14
     ApplyMovement 14, _04AC
@@ -299,9 +299,9 @@ _0473:
     WaitABXPadPress
     CloseMessage
     SetVar 0x4078, 5
-    ClearFlag FLAG_UNK_0x0194,
-    ClearFlag FLAG_UNK_0x0175,
-    ClearFlag FLAG_UNK_0x0293,
+    ClearFlag FLAG_UNK_0x0194
+    ClearFlag FLAG_UNK_0x0175
+    ClearFlag FLAG_UNK_0x0293
     ReleaseAll
     End
 

@@ -41,7 +41,7 @@ _0064:
     End
 
 _006F:
-    SetFlag FLAG_UNK_0x0093,
+    SetFlag FLAG_UNK_0x0093
     SetVar 0x4093, 2
     Return
 

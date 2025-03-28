@@ -34,7 +34,7 @@ _003A:
 
 _004D:
     LockAll
-    ClearFlag FLAG_UNK_0x0297,
+    ClearFlag FLAG_UNK_0x0297
     AddObject 15
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x12E, _00CA

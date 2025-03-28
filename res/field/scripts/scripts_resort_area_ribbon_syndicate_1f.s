@@ -29,7 +29,7 @@ _003F:
     ScrCmd_22F 0x8004
     GoToIfLt 0x8004, 10, _0078
     SetVar 0x40A7, 1
-    SetFlag FLAG_UNK_0x00FA,
+    SetFlag FLAG_UNK_0x00FA
     BufferPlayerName 0
     Message 1
     CloseMessage

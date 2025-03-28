@@ -194,7 +194,7 @@ _020B:
     End
 
 _0225:
-    SetFlag FLAG_UNK_0x0001,
+    SetFlag FLAG_UNK_0x0001
     Message 16
     WaitABXPadPress
     CloseMessage
@@ -587,8 +587,8 @@ _0808:
     End
 
 _0820:
-    ClearFlag FLAG_UNK_0x023C,
-    ClearFlag FLAG_UNK_0x023D,
+    ClearFlag FLAG_UNK_0x023C
+    ClearFlag FLAG_UNK_0x023D
     AddObject 32
     AddObject 31
     ApplyMovement 31, _0884

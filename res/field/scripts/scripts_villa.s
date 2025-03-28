@@ -103,30 +103,30 @@ _01FF:
     End
 
 _0201:
-    ClearFlag FLAG_UNK_0x02A7,
+    ClearFlag FLAG_UNK_0x02A7
     Return
 
 _0207:
-    ClearFlag FLAG_UNK_0x02A8,
+    ClearFlag FLAG_UNK_0x02A8
     Return
 
 _020D:
     GoToIfUnset FLAG_UNK_0x09AB, _029A
-    ClearFlag FLAG_UNK_0x02A9,
+    ClearFlag FLAG_UNK_0x02A9
     Return
 
 _021E:
-    ClearFlag FLAG_UNK_0x02AB,
+    ClearFlag FLAG_UNK_0x02AB
     Return
 
 _0224:
     GoToIfUnset FLAG_UNK_0x09AB, _029A
-    ClearFlag FLAG_UNK_0x02AC,
+    ClearFlag FLAG_UNK_0x02AC
     Return
 
 _0235:
     GoToIfUnset FLAG_UNK_0x09AB, _029A
-    ClearFlag FLAG_UNK_0x02AE,
+    ClearFlag FLAG_UNK_0x02AE
     Return
 
 _0246:
@@ -134,7 +134,7 @@ _0246:
 
 _0248:
     GoToIfUnset FLAG_UNK_0x09AB, _029A
-    ClearFlag FLAG_UNK_0x02B1,
+    ClearFlag FLAG_UNK_0x02B1
     Return
 
 _0259:
@@ -142,29 +142,29 @@ _0259:
 
 _025B:
     GoToIfUnset FLAG_UNK_0x09AB, _029A
-    ClearFlag FLAG_UNK_0x02B4,
+    ClearFlag FLAG_UNK_0x02B4
     Return
 
 _026C:
     Return
 
 _026E:
-    ClearFlag FLAG_UNK_0x02B7,
+    ClearFlag FLAG_UNK_0x02B7
     Return
 
 _0274:
     Return
 
 _0276:
-    ClearFlag FLAG_UNK_0x02B9,
-    ClearFlag FLAG_UNK_0x02B7,
+    ClearFlag FLAG_UNK_0x02B9
+    ClearFlag FLAG_UNK_0x02B7
     Return
 
 _0280:
     SetObjectEventPos 7, 6, 8
     SetObjectEventPos 10, 7, 8
-    ClearFlag FLAG_UNK_0x02B1,
-    ClearFlag FLAG_UNK_0x02B6,
+    ClearFlag FLAG_UNK_0x02B1
+    ClearFlag FLAG_UNK_0x02B6
     Return
 
 _029A:
@@ -798,7 +798,7 @@ _0AEC:
 _0AF4:
     LockAll
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ClearFlag FLAG_UNK_0x02B0,
+    ClearFlag FLAG_UNK_0x02B0
     SetObjectEventPos 6, 11, 11
     ScrCmd_188 6, 14
     ScrCmd_189 6, 0
@@ -829,7 +829,7 @@ _0B4C:
 _0B5C:
     LockAll
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ClearFlag FLAG_UNK_0x02B3,
+    ClearFlag FLAG_UNK_0x02B3
     SetObjectEventPos 9, 11, 11
     ScrCmd_188 9, 14
     ScrCmd_189 9, 0
@@ -858,7 +858,7 @@ _0BAC:
 _0BBC:
     LockAll
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ClearFlag FLAG_UNK_0x02B6,
+    ClearFlag FLAG_UNK_0x02B6
     SetObjectEventPos 10, 11, 11
     ScrCmd_188 10, 14
     ScrCmd_189 10, 0
@@ -889,7 +889,7 @@ _0C14:
 _0C24:
     LockAll
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ClearFlag FLAG_UNK_0x02B8,
+    ClearFlag FLAG_UNK_0x02B8
     SetObjectEventPos 12, 11, 11
     ScrCmd_188 12, 14
     ScrCmd_189 12, 0
@@ -1194,8 +1194,8 @@ _0F7C:
     Return
 
 _1092:
-    ClearFlag FLAG_UNK_0x02C5,
-    ClearFlag FLAG_UNK_0x02C7,
+    ClearFlag FLAG_UNK_0x02C5
+    ClearFlag FLAG_UNK_0x02C7
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 10, 6, 1
@@ -1217,7 +1217,7 @@ _1103:
     SetObjectEventPos 1, 10, 8
     ScrCmd_188 1, 14
     ScrCmd_189 1, 0
-    ClearFlag FLAG_UNK_0x02A7,
+    ClearFlag FLAG_UNK_0x02A7
     AddObject 1
     Return
 
@@ -1233,7 +1233,7 @@ _114A:
     SetObjectEventPos 0, 10, 8
     ScrCmd_188 0, 14
     ScrCmd_189 0, 0
-    ClearFlag FLAG_UNK_0x02A8,
+    ClearFlag FLAG_UNK_0x02A8
     AddObject 0
     Return
 
@@ -1254,7 +1254,7 @@ _1199:
     SetObjectEventPos 2, 10, 8
     ScrCmd_188 2, 14
     ScrCmd_189 2, 0
-    ClearFlag FLAG_UNK_0x02A9,
+    ClearFlag FLAG_UNK_0x02A9
     AddObject 2
     Return
 
@@ -1275,7 +1275,7 @@ _11F3:
     SetObjectEventPos 5, 10, 8
     ScrCmd_188 5, 14
     ScrCmd_189 5, 0
-    ClearFlag FLAG_UNK_0x02AE,
+    ClearFlag FLAG_UNK_0x02AE
     AddObject 5
     Return
 
@@ -1291,7 +1291,7 @@ _1245:
     SetObjectEventPos 12, 10, 8
     ScrCmd_188 12, 14
     ScrCmd_189 12, 0
-    ClearFlag FLAG_UNK_0x02B8,
+    ClearFlag FLAG_UNK_0x02B8
     AddObject 12
     Return
 
@@ -1312,7 +1312,7 @@ _1263:
     Return
 
 _12A3:
-    ClearFlag FLAG_UNK_0x02A7,
+    ClearFlag FLAG_UNK_0x02A7
     AddObject 1
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -1346,7 +1346,7 @@ _1312:
     Return
 
 _1316:
-    ClearFlag FLAG_UNK_0x02A8,
+    ClearFlag FLAG_UNK_0x02A8
     AddObject 0
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -1371,7 +1371,7 @@ _1367:
     Return
 
 _1374:
-    ClearFlag FLAG_UNK_0x02A9,
+    ClearFlag FLAG_UNK_0x02A9
     AddObject 2
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -1396,7 +1396,7 @@ _13C5:
     Return
 
 _13D2:
-    ClearFlag FLAG_UNK_0x02AE,
+    ClearFlag FLAG_UNK_0x02AE
     AddObject 5
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -1422,7 +1422,7 @@ _1429:
     Return
 
 _1436:
-    ClearFlag FLAG_UNK_0x02B8,
+    ClearFlag FLAG_UNK_0x02B8
     AddObject 12
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN

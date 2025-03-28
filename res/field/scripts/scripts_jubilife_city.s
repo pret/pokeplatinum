@@ -85,7 +85,7 @@ _0139:
     End
 
 _0149:
-    ClearFlag FLAG_UNK_0x017A,
+    ClearFlag FLAG_UNK_0x017A
     AddObject 7
     ScrCmd_062 7
     ApplyMovement 7, _043C
@@ -959,7 +959,7 @@ _0C52:
 _0C7C:
     RemoveObject 7
     RemoveObject 16
-    ClearFlag FLAG_UNK_0x0198,
+    ClearFlag FLAG_UNK_0x0198
     SetVar 0x4077, 4
     SetVar 0x4076, 2
     SetVar 0x4079, 3
@@ -968,7 +968,7 @@ _0C7C:
     RemoveObject 27
     SetObjectEventPos 30, 174, 0x2EE
     ScrCmd_188 30, 14
-    ClearFlag FLAG_UNK_0x018B,
+    ClearFlag FLAG_UNK_0x018B
     AddObject 30
     ScrCmd_062 30
     ApplyMovement 30, _0DC0
@@ -988,7 +988,7 @@ _0CF0:
     SetVar 0x8004, 0x1B3
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x00F2,
+    SetFlag FLAG_UNK_0x00F2
     Call _0D58
     Call _0D58
     Call _0D58
@@ -1576,8 +1576,8 @@ _12BB:
 
 _12D5:
     RemoveObject 23
-    SetFlag FLAG_UNK_0x00F3,
-    ClearFlag FLAG_UNK_0x01F7,
+    SetFlag FLAG_UNK_0x00F3
+    ClearFlag FLAG_UNK_0x01F7
     RemoveObject 31
     SetFlag FLAG_UNK_0x0181
     ReleaseAll
@@ -1625,7 +1625,7 @@ _1356:
     Message 49
     SetVar 0x8004, 0x1CC
     SetVar 0x8005, 1
-    SetFlag FLAG_UNK_0x00ED,
+    SetFlag FLAG_UNK_0x00ED
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
@@ -1664,7 +1664,7 @@ _13CD:
     Message 55
     SetVar 0x8004, 0x1CD
     SetVar 0x8005, 1
-    SetFlag FLAG_UNK_0x00EE,
+    SetFlag FLAG_UNK_0x00EE
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
@@ -1705,7 +1705,7 @@ _1451:
     ScrCmd_187 23, 174, 1, 0x303, 1
     SetVar 0x8004, 0x1CE
     SetVar 0x8005, 1
-    SetFlag FLAG_UNK_0x00EF,
+    SetFlag FLAG_UNK_0x00EF
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
@@ -1759,7 +1759,7 @@ _14CF:
     SetObjectEventPos 31, 179, 0x8005
     ScrCmd_189 31, 3
     ScrCmd_188 31, 17
-    ClearFlag FLAG_UNK_0x0181,
+    ClearFlag FLAG_UNK_0x0181
     AddObject 31
     ApplyMovement 31, _1538
     WaitMovement

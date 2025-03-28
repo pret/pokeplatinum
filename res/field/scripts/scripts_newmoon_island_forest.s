@@ -17,7 +17,7 @@ _000E:
     CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
     GoToIfEq 0x4000, FALSE, _0058
     GoToIfSet FLAG_UNK_0x0158, _0058
-    ClearFlag FLAG_UNK_0x0240,
+    ClearFlag FLAG_UNK_0x0240
     End
 
 _0058:
@@ -31,7 +31,7 @@ _005E:
 _006B:
     SetFlag FLAG_UNK_0x0240
     RemoveObject 0
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     End
 
 _0079:
@@ -40,9 +40,9 @@ _0079:
     WaitFanfare SEQ_SE_CONFIRM
     Message 0
     CloseMessage
-    SetFlag FLAG_UNK_0x008E,
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_DARKRAI, 50
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _014C
     CheckDidNotCapture 0x800C

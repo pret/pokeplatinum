@@ -81,7 +81,7 @@ _00A4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_UNK_0x00B9, _00D0
-    SetFlag FLAG_UNK_0x00B9,
+    SetFlag FLAG_UNK_0x00B9
     SetFlag FLAG_UNK_0x0185
     Message 0
     FacePlayer

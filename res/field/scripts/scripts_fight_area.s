@@ -175,7 +175,7 @@ _0198:
     WaitMovement
     BufferRivalName 0
     Message 12
-    ClearFlag FLAG_UNK_0x01E3,
+    ClearFlag FLAG_UNK_0x01E3
     AddObject 26
     ScrCmd_04A 0x5DC
     PlayFanfare SEQ_SE_DP_WALL_HIT2
@@ -547,7 +547,7 @@ _0521:
     SetVar 0x8004, 0x1BF
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x006B,
+    SetFlag FLAG_UNK_0x006B
     Message 44
     WaitABXPadPress
     CloseMessage

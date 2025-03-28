@@ -166,7 +166,7 @@ _02B5:
     ScrCmd_168 5, 26, 8, 10, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ClearFlag FLAG_UNK_0x0197,
+    ClearFlag FLAG_UNK_0x0197
     AddObject 3
     ApplyMovement 3, _0554
     WaitMovement
@@ -453,7 +453,7 @@ _057C:
     ScrCmd_168 5, 26, 8, 10, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ClearFlag FLAG_UNK_0x02C4,
+    ClearFlag FLAG_UNK_0x02C4
     AddObject 14
     ApplyMovement 14, _0798
     WaitMovement

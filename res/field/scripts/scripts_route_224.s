@@ -24,7 +24,7 @@ _001A:
     GoToIfEq 0x4000, FALSE, _0080
     CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, 0x4000
     GoToIfEq 0x4000, FALSE, _0080
-    ClearFlag FLAG_UNK_0x0252,
+    ClearFlag FLAG_UNK_0x0252
 _0080:
     End
 
@@ -340,7 +340,7 @@ _0448:
 
 _0458:
     LockAll
-    ClearFlag FLAG_UNK_0x02CA,
+    ClearFlag FLAG_UNK_0x02CA
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x1F0, _048D
     GoToIfEq 0x8005, 0x1F1, _04AF

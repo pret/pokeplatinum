@@ -28,11 +28,11 @@ _004F:
 
 _0055:
     GoToIfSet FLAG_UNK_0x0217, _0066
-    ClearFlag FLAG_UNK_0x0217,
+    ClearFlag FLAG_UNK_0x0217
     End
 
 _0066:
-    ClearFlag FLAG_UNK_0x0217,
+    ClearFlag FLAG_UNK_0x0217
     AddObject 4
     End
 

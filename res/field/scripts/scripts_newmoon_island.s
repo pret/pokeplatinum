@@ -11,7 +11,7 @@
 _000A:
     SetFlag FLAG_UNK_0x09E4
     EnableHiddenLocation HIDDEN_LOCATION_NEWMOON_ISLAND
-    ClearFlag FLAG_UNK_0x0279,
+    ClearFlag FLAG_UNK_0x0279
     CallIfUnset FLAG_UNK_0x0158, _0024
     End
 

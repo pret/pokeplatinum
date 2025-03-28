@@ -11,7 +11,7 @@ _0006:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A9, _002B
-    SetFlag FLAG_UNK_0x00A9,
+    SetFlag FLAG_UNK_0x00A9
     BufferRivalName 0
     Message 0
     WaitABXPadPress

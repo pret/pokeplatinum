@@ -245,7 +245,7 @@ _02D0:
     End
 
 _02DC:
-    ClearFlag FLAG_UNK_0x01C5,
+    ClearFlag FLAG_UNK_0x01C5
     GetPlayerMapPos 0x8004, 0x8005
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 30, _0315
@@ -475,7 +475,7 @@ _0567:
     SetFlag FLAG_UNK_0x01CA
     SetVar 0x4098, 3
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_3
-    ClearFlag FLAG_UNK_0x01C7,
+    ClearFlag FLAG_UNK_0x01C7
     SetFlag FLAG_UNK_0x0132
     SetVar 0x40C3, 1
     SetSpeciesSeen SPECIES_DIALGA

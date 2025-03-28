@@ -70,7 +70,7 @@ _00A8:
 
 _00B0:
     LockAll
-    ClearFlag FLAG_UNK_0x0996,
+    ClearFlag FLAG_UNK_0x0996
     SetVar 0x4002, 0
     ReleaseAll
     End

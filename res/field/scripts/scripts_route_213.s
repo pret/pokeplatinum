@@ -28,7 +28,7 @@ _0044:
 
 _0051:
     CallIfUnset FLAG_UNK_0x0118, _0062
-    ClearFlag FLAG_UNK_0x021A,
+    ClearFlag FLAG_UNK_0x021A
     End
 
 _0062:
@@ -80,7 +80,7 @@ _010B:
     SetObjectEventPos 30, 0x2AB, 0x341
     ScrCmd_189 30, 3
     ScrCmd_188 30, 17
-    ClearFlag FLAG_UNK_0x021A,
+    ClearFlag FLAG_UNK_0x021A
     AddObject 30
     ReleaseAll
     End
@@ -116,7 +116,7 @@ _0180:
 _019A:
     RemoveObject 30
     SetFlag FLAG_UNK_0x0104
-    ClearFlag FLAG_UNK_0x01E8,
+    ClearFlag FLAG_UNK_0x01E8
     AddObject 33
     CallCommonScript 0x807
     ScrCmd_315 0x800C
@@ -139,8 +139,8 @@ _019A:
     CallCommonScript 0x808
     ScrCmd_315 0x800C
     CallIfEq 0x800C, 2, _0261
-    ClearFlag FLAG_UNK_0x0211,
-    ClearFlag FLAG_UNK_0x021B,
+    ClearFlag FLAG_UNK_0x0211
+    ClearFlag FLAG_UNK_0x021B
     ReleaseAll
     End
 

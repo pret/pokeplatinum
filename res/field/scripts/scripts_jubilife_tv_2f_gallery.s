@@ -120,7 +120,7 @@ _01D2:
     GoTo _01EC
 
 _01EC:
-    SetFlag FLAG_UNK_0x0088,
+    SetFlag FLAG_UNK_0x0088
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A6 0x4002, 0x8005, 0x8007

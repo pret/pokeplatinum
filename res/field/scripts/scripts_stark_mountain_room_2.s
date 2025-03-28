@@ -28,7 +28,7 @@ _0031:
     PlaySound SEQ_GONIN
     Message 1
     WaitSound
-    SetFlag FLAG_UNK_0x00DD,
+    SetFlag FLAG_UNK_0x00DD
     SetVar 0x4094, 1
     Message 2
     WaitABXPadPress
@@ -46,7 +46,7 @@ _007D:
     SetObjectEventPos 14, 42, 78
     ScrCmd_189 14, 0
     ScrCmd_188 14, 14
-    ClearFlag FLAG_UNK_0x01DA,
+    ClearFlag FLAG_UNK_0x01DA
     AddObject 14
     ApplyMovement 14, _00DC
     WaitMovement

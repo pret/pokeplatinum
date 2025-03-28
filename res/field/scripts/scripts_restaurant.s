@@ -100,63 +100,63 @@ _01D2:
 
 _01D8:
     GoToIfUnset FLAG_UNK_0x0244, _02DD
-    ClearFlag FLAG_UNK_0x0244,
+    ClearFlag FLAG_UNK_0x0244
     GetRandom2 0x40FB, 3
     SubVar 0x4000, 1
     Return
 
 _01F5:
     GoToIfUnset FLAG_UNK_0x0245, _02DD
-    ClearFlag FLAG_UNK_0x0245,
+    ClearFlag FLAG_UNK_0x0245
     GetRandom2 0x40FC, 3
     SubVar 0x4000, 1
     Return
 
 _0212:
     GoToIfUnset FLAG_UNK_0x0246, _02DD
-    ClearFlag FLAG_UNK_0x0246,
+    ClearFlag FLAG_UNK_0x0246
     GetRandom2 0x40FD, 3
     SubVar 0x4000, 1
     Return
 
 _022F:
     GoToIfUnset FLAG_UNK_0x0247, _02DD
-    ClearFlag FLAG_UNK_0x0247,
+    ClearFlag FLAG_UNK_0x0247
     GetRandom2 0x40FE, 3
     SubVar 0x4000, 1
     Return
 
 _024C:
     GoToIfUnset FLAG_UNK_0x0248, _02DD
-    ClearFlag FLAG_UNK_0x0248,
+    ClearFlag FLAG_UNK_0x0248
     GetRandom2 0x40FF, 3
     SubVar 0x4000, 1
     Return
 
 _0269:
     GoToIfUnset FLAG_UNK_0x0249, _02DD
-    ClearFlag FLAG_UNK_0x0249,
+    ClearFlag FLAG_UNK_0x0249
     GetRandom2 0x4100, 3
     SubVar 0x4000, 1
     Return
 
 _0286:
     GoToIfUnset FLAG_UNK_0x024A, _02DD
-    ClearFlag FLAG_UNK_0x024A,
+    ClearFlag FLAG_UNK_0x024A
     GetRandom2 0x4101, 3
     SubVar 0x4000, 1
     Return
 
 _02A3:
     GoToIfUnset FLAG_UNK_0x024B, _02DD
-    ClearFlag FLAG_UNK_0x024B,
+    ClearFlag FLAG_UNK_0x024B
     GetRandom2 0x4102, 3
     SubVar 0x4000, 1
     Return
 
 _02C0:
     GoToIfUnset FLAG_UNK_0x024C, _02DD
-    ClearFlag FLAG_UNK_0x024C,
+    ClearFlag FLAG_UNK_0x024C
     GetRandom2 0x4103, 3
     SubVar 0x4000, 1
     Return

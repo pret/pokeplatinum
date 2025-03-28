@@ -17,7 +17,7 @@ _000A:
     GoToIfEq 0x4000, 0, _0062
     ScrCmd_238 18, 0x4000
     GoToIfEq 0x4000, 0, _0062
-    ClearFlag FLAG_UNK_0x02C2,
+    ClearFlag FLAG_UNK_0x02C2
     End
 
 _0062:

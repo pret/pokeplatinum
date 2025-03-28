@@ -20,7 +20,7 @@ _000A:
     CallIfSet FLAG_UNK_0x00D6, _00A8
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _00CC
-    SetFlag FLAG_UNK_0x00B2,
+    SetFlag FLAG_UNK_0x00B2
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     RemoveObject 1
     CallIfUnset FLAG_UNK_0x00D6, _00B0
@@ -103,7 +103,7 @@ _0138:
     ApplyMovement LOCALID_PLAYER, _015C
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    ClearFlag FLAG_UNK_0x0284,
+    ClearFlag FLAG_UNK_0x0284
     AddObject 2
     SetVar 0x4001, 1
     ReleaseAll

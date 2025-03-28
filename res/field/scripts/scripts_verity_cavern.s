@@ -77,7 +77,7 @@ VerityCavern_EnterProfessorRowanEast:
     End
 
 VerityCavern_EnterProfessorRowan:
-    ClearFlag FLAG_UNK_0x0296,
+    ClearFlag FLAG_UNK_0x0296
     AddObject LOCALID_ROWAN
     ApplyMovement LOCALID_ROWAN, _0190
     WaitMovement

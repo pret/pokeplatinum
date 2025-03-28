@@ -36,7 +36,7 @@ _0064:
     ApplyMovement LOCALID_PLAYER, _00A4
     ApplyMovement 0, _00B0
     WaitMovement
-    SetFlag FLAG_UNK_0x0087,
+    SetFlag FLAG_UNK_0x0087
     BufferPlayerName 0
     BufferRivalName 1
     Message 0
@@ -177,7 +177,7 @@ _0214:
     GoToIfSet FLAG_UNK_0x00F8, _075A
     GoToIfGe 0x40A4, 2, _0768
     GoToIfSet FLAG_UNK_0x0087, _077A
-    SetFlag FLAG_UNK_0x0087,
+    SetFlag FLAG_UNK_0x0087
     BufferPlayerName 0
     BufferRivalName 1
     Message 0
@@ -296,7 +296,7 @@ _03CA:
     Message 18
     CloseMessage
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ClearFlag FLAG_UNK_0x01F1,
+    ClearFlag FLAG_UNK_0x01F1
     AddObject 1
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0, _07B4
@@ -412,7 +412,7 @@ _05B1:
     SetVar 0x8004, 0x1CB
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x008F,
+    SetFlag FLAG_UNK_0x008F
     Message 27
     BufferRivalName 1
     Message 26
@@ -475,7 +475,7 @@ _0688:
     HealParty
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetFlag FLAG_UNK_0x0002,
+    SetFlag FLAG_UNK_0x0002
     Return
 
 _06F8:
@@ -577,7 +577,7 @@ _075A:
     End
 
 _0768:
-    SetFlag FLAG_UNK_0x00F8,
+    SetFlag FLAG_UNK_0x00F8
     BufferPlayerName 0
     Message 2
     WaitABXPadPress

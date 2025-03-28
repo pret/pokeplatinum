@@ -13,7 +13,7 @@ _000E:
     End
 
 _001B:
-    ClearFlag FLAG_UNK_0x01D1,
+    ClearFlag FLAG_UNK_0x01D1
     Return
 
 _0021:

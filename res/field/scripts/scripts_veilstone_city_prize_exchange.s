@@ -100,7 +100,7 @@ _017C:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00C4, _01AF
-    SetFlag FLAG_UNK_0x00C4,
+    SetFlag FLAG_UNK_0x00C4
     Message 8
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _0250

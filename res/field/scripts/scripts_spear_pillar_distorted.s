@@ -15,13 +15,13 @@
 
 _0022:
     LockAll
-    ClearFlag FLAG_UNK_0x02BA,
+    ClearFlag FLAG_UNK_0x02BA
     AddObject 1
     ScrCmd_1B2 1
     SetObjectEventPos 0, 32, 34
     ScrCmd_189 0, 0
     ScrCmd_188 0, 14
-    ClearFlag FLAG_UNK_0x01CD,
+    ClearFlag FLAG_UNK_0x01CD
     AddObject 0
     ScrCmd_066 30, 30
     ApplyMovement 241, _016C

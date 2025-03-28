@@ -33,7 +33,7 @@ _0044:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0076
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x00DE,
+    SetFlag FLAG_UNK_0x00DE
     GoTo _0039
 
 _0076:

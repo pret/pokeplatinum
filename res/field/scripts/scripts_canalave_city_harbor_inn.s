@@ -39,7 +39,7 @@ _006B:
 
 _0078:
     GoToIfGe 0x40F8, 2, _0091
-    ClearFlag FLAG_UNK_0x0241,
+    ClearFlag FLAG_UNK_0x0241
     SetVar 0x40F8, 1
     End
 

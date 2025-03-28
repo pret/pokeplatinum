@@ -391,7 +391,7 @@ _04D0:
     ScrCmd_168 3, 27, 9, 11, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ClearFlag FLAG_UNK_0x0174,
+    ClearFlag FLAG_UNK_0x0174
     AddObject 2
     ApplyMovement 2, _05A4
     ApplyMovement LOCALID_PLAYER, _0588

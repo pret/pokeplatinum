@@ -61,7 +61,7 @@ _00BC:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00FA
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x00B6,
+    SetFlag FLAG_UNK_0x00B6
     BufferItemName 0, 0x8004
     BufferTMHMMoveName 1, 0x8004
     Message 4

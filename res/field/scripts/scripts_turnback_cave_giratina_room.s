@@ -21,7 +21,7 @@ _001C:
 _0029:
     SetFlag FLAG_UNK_0x0250
     RemoveObject 0
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     End
 
 _0037:
@@ -31,9 +31,9 @@ _0037:
     PlayCry SPECIES_GIRATINA
     Message 0
     CloseMessage
-    SetFlag FLAG_UNK_0x008E,
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_GIRATINA, 47
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _009B
     CheckDidNotCapture 0x800C
@@ -55,7 +55,7 @@ _0090:
     End
 
 _009B:
-    ClearFlag FLAG_UNK_0x0250,
+    ClearFlag FLAG_UNK_0x0250
     BlackOutFromBattle
     ReleaseAll
     End

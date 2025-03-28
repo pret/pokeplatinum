@@ -25,10 +25,10 @@ _002A:
     End
 
 _0071:
-    ClearFlag FLAG_UNK_0x0260,
-    ClearFlag FLAG_UNK_0x0262,
-    ClearFlag FLAG_UNK_0x0264,
-    ClearFlag FLAG_UNK_0x0266,
+    ClearFlag FLAG_UNK_0x0260
+    ClearFlag FLAG_UNK_0x0262
+    ClearFlag FLAG_UNK_0x0264
+    ClearFlag FLAG_UNK_0x0266
     SetFlag FLAG_UNK_0x0261
     SetFlag FLAG_UNK_0x0263
     SetFlag FLAG_UNK_0x0265
@@ -36,10 +36,10 @@ _0071:
     End
 
 _0093:
-    ClearFlag FLAG_UNK_0x0261,
-    ClearFlag FLAG_UNK_0x0263,
-    ClearFlag FLAG_UNK_0x0265,
-    ClearFlag FLAG_UNK_0x0267,
+    ClearFlag FLAG_UNK_0x0261
+    ClearFlag FLAG_UNK_0x0263
+    ClearFlag FLAG_UNK_0x0265
+    ClearFlag FLAG_UNK_0x0267
     SetFlag FLAG_UNK_0x0260
     SetFlag FLAG_UNK_0x0262
     SetFlag FLAG_UNK_0x0264

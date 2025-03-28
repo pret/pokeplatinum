@@ -35,7 +35,7 @@ _003B:
     GoToIfNe 0x8005, 0x800C, _009F
     ScrCmd_229 0x8004
     FinishNpcTrade
-    SetFlag FLAG_UNK_0x0085,
+    SetFlag FLAG_UNK_0x0085
     Message 1
     WaitABXPadPress
     CloseMessage

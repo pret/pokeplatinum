@@ -67,7 +67,7 @@ _0096:
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 100, TRAINER_LEADER_FANTINA, 0, 0
     SetVar 0x407B, 1
     SetFlag FLAG_UNK_0x0206
-    ClearFlag FLAG_UNK_0x0207,
+    ClearFlag FLAG_UNK_0x0207
     Message 3
     GoTo _012B
 
@@ -77,7 +77,7 @@ _012B:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0169
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x007D,
+    SetFlag FLAG_UNK_0x007D
     BufferItemName 0, 0x8004
     BufferTMHMMoveName 1, 0x8004
     Message 4

@@ -56,7 +56,7 @@ _00E8:
     End
 
 _00EE:
-    SetFlag FLAG_UNK_0x00D0,
+    SetFlag FLAG_UNK_0x00D0
     Return
 
 _00F4:

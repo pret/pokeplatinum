@@ -12,7 +12,7 @@ _0006:
     FacePlayer
     ScrCmd_294 21, 1
     GoToIfSet FLAG_UNK_0x0072, _0031
-    SetFlag FLAG_UNK_0x0072,
+    SetFlag FLAG_UNK_0x0072
     BufferNumber 0, 1
     Message 15
     GoTo _0041

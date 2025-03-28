@@ -146,7 +146,7 @@ _0197:
     SetObjectEventPos 4, 8, 11
     ScrCmd_188 4, 14
     ScrCmd_189 4, 0
-    ClearFlag FLAG_UNK_0x020D,
+    ClearFlag FLAG_UNK_0x020D
     AddObject 4
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 8, _025A

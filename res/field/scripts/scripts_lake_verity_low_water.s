@@ -34,7 +34,7 @@ _005B:
     SetFlag FLAG_UNK_0x018F
     RemoveObject 3
     RemoveObject 2
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     End
     End
 
@@ -631,7 +631,7 @@ _0418:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00B8, _043D
-    SetFlag FLAG_UNK_0x00B8,
+    SetFlag FLAG_UNK_0x00B8
     BufferPlayerName 0
     Message 8
     WaitABXPadPress

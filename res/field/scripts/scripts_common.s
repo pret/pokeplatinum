@@ -167,7 +167,7 @@ _0242:
     GoTo _01E1
 
 _0259:
-    SetFlag FLAG_UNK_0x006A,
+    SetFlag FLAG_UNK_0x006A
     ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
     SetPlayerState 1
@@ -181,7 +181,7 @@ _0259:
 
 _027A:
     GoToIfSet FLAG_UNK_0x0069, _02B0
-    SetFlag FLAG_UNK_0x0069,
+    SetFlag FLAG_UNK_0x0069
     Message 4
     BufferPlayerName 0
     Message 5
@@ -327,7 +327,7 @@ _0457:
     End
 
 _0479:
-    ClearFlag FLAG_UNK_0x001F,
+    ClearFlag FLAG_UNK_0x001F
     Call _04A8
     ScrCmd_18F 0x800C
     CloseMessage
@@ -340,7 +340,7 @@ _048B:
     End
 
 _0494:
-    SetFlag FLAG_UNK_0x001F,
+    SetFlag FLAG_UNK_0x001F
     Call _04A8
     SetVar 0x4000, 0x800C
     ReturnCommonScript
@@ -423,7 +423,7 @@ _05B3:
 
 _05BE:
     ScrCmd_2D6
-    ClearFlag FLAG_UNK_0x001F,
+    ClearFlag FLAG_UNK_0x001F
     Return
 
 _05C6:
@@ -1712,7 +1712,7 @@ _16AA:
     GoToIfNe 0x4052, 4, _1706
     GoToIfNe 0x4053, 4, _1706
     GoToIfNe 0x404F, 4, _1706
-    SetFlag FLAG_UNK_0x0089,
+    SetFlag FLAG_UNK_0x0089
     ScrCmd_30A 42
     GoTo _1706
     End

@@ -28,7 +28,7 @@ _0037:
     GoToIfEq 0x4000, 0, _0083
     GoToIfUnset FLAG_MESPRIT_CAUGHT, _0083
     GoToIfNe 0x409E, 1, _0083
-    ClearFlag FLAG_UNK_0x01DD,
+    ClearFlag FLAG_UNK_0x01DD
     Return
 
 _0083:
@@ -42,7 +42,7 @@ _0089:
 _0096:
     SetFlag FLAG_UNK_0x01DD
     RemoveObject 1
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     End
 
     .byte 14
@@ -108,9 +108,9 @@ _00E6:
     PlayCry SPECIES_HEATRAN
     Message 15
     CloseMessage
-    SetFlag FLAG_UNK_0x008E,
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_HEATRAN, 50
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _0168
     CheckLostBattle 0x800C
@@ -139,7 +139,7 @@ _0168:
     End
 
 _0174:
-    SetFlag FLAG_UNK_0x00D7,
+    SetFlag FLAG_UNK_0x00D7
     Return
 
 _017A:
@@ -198,7 +198,7 @@ _019C:
     PlayCry SPECIES_CROAGUNK
     ScrCmd_04D
     CloseMessage
-    ClearFlag FLAG_UNK_0x0232,
+    ClearFlag FLAG_UNK_0x0232
     AddObject 0
     ApplyMovement 0, _0490
     WaitMovement
@@ -213,7 +213,7 @@ _019C:
     CloseMessage
     RemoveObject 0
     RemoveObject 6
-    ClearFlag FLAG_UNK_0x0231,
+    ClearFlag FLAG_UNK_0x0231
     AddObject 4
     CallCommonScript 0x807
     Message 6
@@ -246,7 +246,7 @@ _019C:
     Message 11
     Message 12
     CloseMessage
-    ClearFlag FLAG_UNK_0x0230,
+    ClearFlag FLAG_UNK_0x0230
     AddObject 7
     ApplyMovement 7, _04C8
     WaitMovement
@@ -272,13 +272,13 @@ _019C:
     SetFlag FLAG_UNK_0x01DB
     SetFlag FLAG_UNK_0x0231
     SetVar 0x409E, 1
-    SetFlag FLAG_UNK_0x00D6,
-    ClearFlag FLAG_UNK_0x01A3,
-    ClearFlag FLAG_UNK_0x01D9,
-    ClearFlag FLAG_UNK_0x01D6,
-    ClearFlag FLAG_UNK_0x022B,
-    ClearFlag FLAG_UNK_0x022D,
-    ClearFlag FLAG_UNK_0x022E,
+    SetFlag FLAG_UNK_0x00D6
+    ClearFlag FLAG_UNK_0x01A3
+    ClearFlag FLAG_UNK_0x01D9
+    ClearFlag FLAG_UNK_0x01D6
+    ClearFlag FLAG_UNK_0x022B
+    ClearFlag FLAG_UNK_0x022D
+    ClearFlag FLAG_UNK_0x022E
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_STARK_MOUNTAIN_OUTSIDE, 0, 0x2EF, 233, 0

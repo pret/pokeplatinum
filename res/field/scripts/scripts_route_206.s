@@ -31,7 +31,7 @@ _0047:
     End
 
 _008E:
-    SetFlag FLAG_UNK_0x0003,
+    SetFlag FLAG_UNK_0x0003
     SetFlag FLAG_UNK_0x0994
     ScrCmd_2BF
     ScrCmd_0C9 1

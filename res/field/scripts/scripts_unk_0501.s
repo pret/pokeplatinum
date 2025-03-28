@@ -33,7 +33,7 @@ _004A:
     Message 3
     WaitABXPadPress
     CloseMessage
-    ClearFlag FLAG_UNK_0x0073,
+    ClearFlag FLAG_UNK_0x0073
     ResetDaycarePersonalityAndStepCounter
     ReleaseAll
     End
@@ -57,7 +57,7 @@ _009F:
     WaitABXPadPress
     CloseMessage
     GiveEggFromDaycare
-    ClearFlag FLAG_UNK_0x0073,
+    ClearFlag FLAG_UNK_0x0073
     ReleaseAll
     End
 
@@ -150,7 +150,7 @@ _01DE:
     GoToIfEq 0x800C, 0, _02C8
     ScrCmd_1AF 0, 0x8000, 0x8001
     StorePartyMonIntoDaycare 0x8000
-    SetFlag FLAG_UNK_0x00FE,
+    SetFlag FLAG_UNK_0x00FE
     GetDaycareState 0x800C
     GoToIfEq 0x800C, DAYCARE_ONE_MON, _025F
     GoTo _0270

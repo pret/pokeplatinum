@@ -22,8 +22,8 @@ _001A:
     SetVar 0x8004, 0x1AC
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x0079,
-    ClearFlag FLAG_UNK_0x0111,
+    SetFlag FLAG_UNK_0x0079
+    ClearFlag FLAG_UNK_0x0111
     Message 1
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _009C
@@ -167,7 +167,7 @@ _01DF:
     GoToIfUnset FLAG_UNK_0x0111, _00BD
     GoToIfUnset FLAG_UNK_0x096E, _0122
     SetVar 0x40B6, 1
-    ClearFlag FLAG_UNK_0x0111,
+    ClearFlag FLAG_UNK_0x0111
     Message 6
     SetVar 0x8004, 1
     SetVar 0x8005, 1
@@ -188,7 +188,7 @@ _023D:
     GoToIfUnset FLAG_UNK_0x0111, _00CC
     GoToIfUnset FLAG_UNK_0x096F, _012D
     SetVar 0x40B6, 2
-    ClearFlag FLAG_UNK_0x0111,
+    ClearFlag FLAG_UNK_0x0111
     Message 10
     SetVar 0x8004, 1
     SetVar 0x8005, 1
@@ -209,7 +209,7 @@ _029B:
     GoToIfUnset FLAG_UNK_0x0111, _00DB
     GoToIfUnset FLAG_UNK_0x0970, _0138
     SetVar 0x40B6, 3
-    ClearFlag FLAG_UNK_0x0111,
+    ClearFlag FLAG_UNK_0x0111
     Message 14
     SetVar 0x8004, 33
     SetVar 0x8005, 1
@@ -224,7 +224,7 @@ _02D9:
     GoToIfUnset FLAG_UNK_0x0111, _00EA
     GoToIfUnset FLAG_UNK_0x0971, _0143
     SetVar 0x40B6, 4
-    ClearFlag FLAG_UNK_0x0111,
+    ClearFlag FLAG_UNK_0x0111
     Message 18
     SetVar 0x8004, 11
     SetVar 0x8005, 1
@@ -248,8 +248,8 @@ _0347:
     GoToIfUnset FLAG_UNK_0x0111, _00F9
     GoToIfUnset FLAG_UNK_0x0972, _014E
     SetVar 0x40B6, 5
-    ClearFlag FLAG_UNK_0x0111,
-    ClearFlag FLAG_UNK_0x00FC,
+    ClearFlag FLAG_UNK_0x0111
+    ClearFlag FLAG_UNK_0x00FC
     Message 22
     Call _037F
     Message 23
@@ -293,8 +293,8 @@ _03D9:
     GoToIfEq 0x800C, 0, _056B
     CallCommonScript 0x7FE
     SetVar 0x40B6, 6
-    ClearFlag FLAG_UNK_0x0111,
-    ClearFlag FLAG_UNK_0x00FC,
+    ClearFlag FLAG_UNK_0x0111
+    ClearFlag FLAG_UNK_0x00FC
     Message 28
     WaitABXPadPress
     CloseMessage
@@ -316,7 +316,7 @@ _0448:
     GoToIfEq 0x800C, 0, _056B
     CallCommonScript 0x7DC
     SetVar 0x40B6, 7
-    ClearFlag FLAG_UNK_0x00FC,
+    ClearFlag FLAG_UNK_0x00FC
     CloseMessage
     ReleaseAll
     End
@@ -336,7 +336,7 @@ _04A9:
     GoToIfEq 0x800C, 0, _056B
     CallCommonScript 0x7DC
     SetVar 0x40B6, 8
-    ClearFlag FLAG_UNK_0x00FC,
+    ClearFlag FLAG_UNK_0x00FC
     CloseMessage
     ReleaseAll
     End
@@ -356,7 +356,7 @@ _050A:
     GoToIfEq 0x800C, 0, _056B
     CallCommonScript 0x7DC
     SetVar 0x40B6, 9
-    ClearFlag FLAG_UNK_0x00FC,
+    ClearFlag FLAG_UNK_0x00FC
     CloseMessage
     ReleaseAll
     End
@@ -366,7 +366,7 @@ _0566:
     Return
 
 _056B:
-    SetFlag FLAG_UNK_0x00FC,
+    SetFlag FLAG_UNK_0x00FC
     Message 34
     WaitABXPadPress
     CloseMessage
@@ -451,7 +451,7 @@ _0647:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00BD, _0669
-    SetFlag FLAG_UNK_0x00BD,
+    SetFlag FLAG_UNK_0x00BD
     Message 38
     WaitABXPadPress
     CloseMessage

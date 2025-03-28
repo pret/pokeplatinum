@@ -20,7 +20,7 @@ _0006:
     GoTo _0146
 
 _004C:
-    SetFlag FLAG_UNK_0x00F7,
+    SetFlag FLAG_UNK_0x00F7
     SetFlag FLAG_UNK_0x0AA7
     Message 0
     WaitABXPadPress

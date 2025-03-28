@@ -13,7 +13,7 @@ _000A:
     End
 
 _0022:
-    ClearFlag FLAG_UNK_0x027B,
+    ClearFlag FLAG_UNK_0x027B
     SetVar 0x4110, 1
     End
 

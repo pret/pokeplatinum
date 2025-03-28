@@ -22,7 +22,7 @@ _0036:
     LockAll
     SetVar 0x800C, 7
     Call _0052
-    ClearFlag FLAG_UNK_0x0966,
+    ClearFlag FLAG_UNK_0x0966
     SetVar 0x40D5, 0
     ReleaseAll
     End
@@ -137,7 +137,7 @@ _0184:
     Call _0168
     ScrCmd_238 7, 0x4000
     GoToIfEq 0x4000, 0, _01AB
-    ClearFlag FLAG_UNK_0x0213,
+    ClearFlag FLAG_UNK_0x0213
     End
 
 _01AB:
@@ -214,7 +214,7 @@ _0253:
 _0291:
     ScrCmd_150
     SetVar 0x40D5, 0
-    ClearFlag FLAG_UNK_0x0966,
+    ClearFlag FLAG_UNK_0x0966
     Message 11
     WaitABXPadPress
     CloseMessage
@@ -228,7 +228,7 @@ _02A8:
 
 _02BD:
     HealParty
-    ClearFlag FLAG_UNK_0x0966,
+    ClearFlag FLAG_UNK_0x0966
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _02E2
@@ -630,14 +630,14 @@ _08CD:
     End
 
 _0947:
-    ClearFlag FLAG_UNK_0x0220,
+    ClearFlag FLAG_UNK_0x0220
     SetVar 0x40CC, 1
     Call _0D20
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ClearFlag FLAG_UNK_0x0201,
-    ClearFlag FLAG_UNK_0x0202,
-    ClearFlag FLAG_UNK_0x0203,
-    ClearFlag FLAG_UNK_0x0204,
+    ClearFlag FLAG_UNK_0x0201
+    ClearFlag FLAG_UNK_0x0202
+    ClearFlag FLAG_UNK_0x0203
+    ClearFlag FLAG_UNK_0x0204
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 0, 29, 7, 0
@@ -775,7 +775,7 @@ _0B50:
     WaitFadeScreen
     SetVar 0x800C, 7
     Call _0052
-    ClearFlag FLAG_UNK_0x0966,
+    ClearFlag FLAG_UNK_0x0966
     SetVar 0x40D5, 0
     GoTo _0C45
 
@@ -863,7 +863,7 @@ _0D20:
 _0D3A:
     ScrCmd_108 0x800C
     ScrCmd_10A 0x800C, 0x4024
-    ClearFlag FLAG_UNK_0x0205,
+    ClearFlag FLAG_UNK_0x0205
     AddObject 5
     ScrCmd_108 0x4000
     GoToIfEq 0x4000, 0, _0D86

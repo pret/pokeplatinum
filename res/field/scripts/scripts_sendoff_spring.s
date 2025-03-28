@@ -13,7 +13,7 @@ _000E:
     End
 
 _001B:
-    ClearFlag FLAG_UNK_0x0278,
+    ClearFlag FLAG_UNK_0x0278
     Return
 
 _0021:
@@ -37,12 +37,12 @@ _0021:
     SetVar 0x40AA, 2
     SetVar 0x40A6, 2
     SetFlag FLAG_UNK_0x01C7
-    ClearFlag FLAG_UNK_0x0132,
+    ClearFlag FLAG_UNK_0x0132
     SetFlag FLAG_UNK_0x028F
     SetFlag FLAG_UNK_0x0295
     SetFlag FLAG_UNK_0x029F
     SetFlag FLAG_UNK_0x0986
-    ClearFlag FLAG_UNK_0x0292,
+    ClearFlag FLAG_UNK_0x0292
     SetFlag FLAG_GALACTIC_LEFT_LAKE_VALOR
     SetFlag FLAG_UNK_0x0295
     ReleaseAll

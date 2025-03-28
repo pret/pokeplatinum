@@ -41,7 +41,7 @@ _0022:
     SetTrainerFlag TRAINER_BLACK_BELT_JEFFERY
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 133, TRAINER_LEADER_MAYLENE, 0, 0
     SetFlag FLAG_UNK_0x01A3
-    ClearFlag FLAG_UNK_0x01A8,
+    ClearFlag FLAG_UNK_0x01A8
     SetVar 0x407D, 1
     SetVar 0x411A, 1
     Message 3
@@ -54,7 +54,7 @@ _00B7:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00F5
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x009D,
+    SetFlag FLAG_UNK_0x009D
     BufferItemName 0, 0x8004
     BufferTMHMMoveName 1, 0x8004
     Message 4

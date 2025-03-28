@@ -43,7 +43,7 @@ _0059:
     StartTrainerBattle TRAINER_COMMANDER_SATURN_GALACTIC_HQ
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _011F
-    SetFlag FLAG_UNK_0x00AD,
+    SetFlag FLAG_UNK_0x00AD
     SetVar 0x410D, 1
     Message 1
     CloseMessage
@@ -186,7 +186,7 @@ _01FB:
     BufferPlayerName 0
     Message 11
     CloseMessage
-    ClearFlag FLAG_UNK_0x0295,
+    ClearFlag FLAG_UNK_0x0295
     SetFlag FLAG_UNK_0x097D
     ScrCmd_25F
     WaitTime 30, 0x800C
@@ -213,7 +213,7 @@ _0296:
     RemoveObject 1
     RemoveObject 3
     WaitTime 2, 0x800C
-    ClearFlag FLAG_UNK_0x0236,
+    ClearFlag FLAG_UNK_0x0236
     AddObject 2
     AddObject 1
     AddObject 3
@@ -250,7 +250,7 @@ _030E:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetFlag FLAG_UNK_0x0235
-    ClearFlag FLAG_UNK_0x0182,
+    ClearFlag FLAG_UNK_0x0182
     SetVar 0x40A9, 1
     ReleaseAll
     End

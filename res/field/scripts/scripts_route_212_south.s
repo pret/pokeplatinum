@@ -23,12 +23,12 @@ _0022:
     End
 
 _0069:
-    ClearFlag FLAG_UNK_0x0268,
+    ClearFlag FLAG_UNK_0x0268
     SetFlag FLAG_UNK_0x0269
     End
 
 _0073:
-    ClearFlag FLAG_UNK_0x0269,
+    ClearFlag FLAG_UNK_0x0269
     SetFlag FLAG_UNK_0x0268
     End
 

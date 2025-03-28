@@ -146,7 +146,7 @@ _029F:
 
 _02B1:
     RemoveObject 4
-    ClearFlag FLAG_UNK_0x0188,
+    ClearFlag FLAG_UNK_0x0188
     SetVar 0x4087, 2
     ReleaseAll
     End

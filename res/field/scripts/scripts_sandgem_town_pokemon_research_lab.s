@@ -26,11 +26,11 @@ _003E:
     End
 
 _005A:
-    ClearFlag FLAG_UNK_0x0198,
+    ClearFlag FLAG_UNK_0x0198
     SetObjectEventPos 0, 7, 14
     ScrCmd_189 0, 1
     ScrCmd_188 0, 15
-    ClearFlag FLAG_UNK_0x0199,
+    ClearFlag FLAG_UNK_0x0199
     SetObjectEventPos 3, 6, 14
     ScrCmd_189 3, 1
     ScrCmd_188 3, 15
@@ -247,7 +247,7 @@ _0375:
 _0394:
     Message 12
     GivePokedex
-    SetFlag FLAG_UNK_0x0090,
+    SetFlag FLAG_UNK_0x0090
     BufferPlayerName 0
     Message 13
     PlaySound SEQ_FANFA4
@@ -308,7 +308,7 @@ _044D:
     ApplyMovement 3, _04D8
     WaitMovement
     RemoveObject 3
-    ClearFlag FLAG_UNK_0x0177,
+    ClearFlag FLAG_UNK_0x0177
     SetVar 0x40A6, 1
     ReleaseAll
     End
@@ -556,7 +556,7 @@ _0677:
     CallIfEq 0x8007, 1, _07BB
     CallIfEq 0x8007, 2, _07CF
     CallIfEq 0x8007, 3, _07E3
-    ClearFlag FLAG_UNK_0x022A,
+    ClearFlag FLAG_UNK_0x022A
     AddObject 4
     ApplyMovement LOCALID_PLAYER, _0858
     ApplyMovement 4, _0884

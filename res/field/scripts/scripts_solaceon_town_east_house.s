@@ -43,7 +43,7 @@ _0067:
 _00B3:
     ScrCmd_094 0x8007, 0x8000
     SetVar 0x4000, 0x8006
-    SetFlag FLAG_UNK_0x0001,
+    SetFlag FLAG_UNK_0x0001
     GoToIfEq 0x8000, 1, _00DB
     ScrCmd_345 0, 0x8007
     GoTo _00E0

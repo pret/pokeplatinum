@@ -100,7 +100,7 @@ _0111:
 
 _011B:
     WaitTime 30, 0x800C
-    ClearFlag FLAG_UNK_0x01F3,
+    ClearFlag FLAG_UNK_0x01F3
     AddObject 7
     ApplyMovement 7, _016C
     WaitMovement
@@ -242,7 +242,7 @@ _0276:
     End
 
 _02A0:
-    ClearFlag FLAG_UNK_0x0256,
+    ClearFlag FLAG_UNK_0x0256
     AddObject 10
     ScrCmd_062 10
     CloseMessage

@@ -147,7 +147,7 @@ _01EA:
 _01FC:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    ClearFlag FLAG_UNK_0x025B,
+    ClearFlag FLAG_UNK_0x025B
     AddObject 2
     WaitTime 5, 0x800C
     ApplyMovement 1, _0294

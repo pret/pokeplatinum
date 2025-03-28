@@ -36,7 +36,7 @@ _005A:
     BufferPlayerName 1
     Message 0
     WaitABXPadPress
-    SetFlag FLAG_UNK_0x008A,
+    SetFlag FLAG_UNK_0x008A
     CloseMessage
     ReleaseAll
     End
@@ -78,7 +78,7 @@ _00CC:
 
 _00D7:
     LockAll
-    ClearFlag FLAG_UNK_0x017C,
+    ClearFlag FLAG_UNK_0x017C
     ScrCmd_188 3, 16
     ScrCmd_189 3, 2
     GetPlayerMapPos 0x8004, 0x8005

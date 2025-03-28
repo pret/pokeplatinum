@@ -288,8 +288,8 @@ _04C5:
     SetVar 0x4022, 0x800C
     ScrCmd_1DD 41, 1, 0x800C
     SetVar 0x4023, 0x800C
-    ClearFlag FLAG_UNK_0x01EA,
-    ClearFlag FLAG_UNK_0x01EB,
+    ClearFlag FLAG_UNK_0x01EA
+    ClearFlag FLAG_UNK_0x01EB
     AddObject 5
     AddObject 4
     ApplyMovement 5, _05D8

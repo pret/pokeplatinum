@@ -21,7 +21,7 @@ AcuityCavern_CheckShouldUxieBeRemoved:
 AcuityCavern_RemoveUxie:
     SetFlag FLAG_UXIE_DISAPPEARED
     RemoveObject LOCALID_UXIE
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     End
 
 AcuityCavern_Uxie:
@@ -31,9 +31,9 @@ AcuityCavern_Uxie:
     PlayCry SPECIES_UXIE
     Message acuity_cavern_uxie_battle_intro
     CloseMessage
-    SetFlag FLAG_UNK_0x008E,
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_UXIE, 50
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, AcuityCavern_LostBattle
     CheckDidNotCapture 0x800C

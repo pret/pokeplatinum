@@ -37,9 +37,9 @@ _000E:
     SetVar 0x4079, 2
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 47, TRAINER_LEADER_ROARK, 0, 0
     SetVar 0x4077, 3
-    ClearFlag FLAG_UNK_0x017A,
-    ClearFlag FLAG_UNK_0x019D,
-    ClearFlag FLAG_UNK_0x019C,
+    ClearFlag FLAG_UNK_0x017A
+    ClearFlag FLAG_UNK_0x019D
+    ClearFlag FLAG_UNK_0x019C
     SetFlag FLAG_UNK_0x0198
     Message 3
     GoTo _00BB
@@ -51,7 +51,7 @@ _00BB:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00F9
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x0075,
+    SetFlag FLAG_UNK_0x0075
     BufferItemName 0, 0x8004
     BufferTMHMMoveName 1, 0x8004
     Message 4

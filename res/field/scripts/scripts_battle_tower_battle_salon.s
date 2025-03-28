@@ -21,35 +21,35 @@ _002A:
     ScrCmd_1DD 55, 2, 0x4009
     GoToIfEq 0x4009, 0, _0121
 _0057:
-    ClearFlag FLAG_UNK_0x01EC,
+    ClearFlag FLAG_UNK_0x01EC
 _005B:
     GoToIfUnset FLAG_UNK_0x00E4, _012D
     GoToIfNe 0x40DF, 2, _0088
     ScrCmd_1DD 55, 2, 0x4009
     GoToIfEq 0x4009, 1, _012D
 _0088:
-    ClearFlag FLAG_UNK_0x01ED,
+    ClearFlag FLAG_UNK_0x01ED
 _008C:
     GoToIfUnset FLAG_UNK_0x00E5, _0139
     GoToIfNe 0x40DF, 2, _00B9
     ScrCmd_1DD 55, 2, 0x4009
     GoToIfEq 0x4009, 2, _0139
 _00B9:
-    ClearFlag FLAG_UNK_0x01EE,
+    ClearFlag FLAG_UNK_0x01EE
 _00BD:
     GoToIfUnset FLAG_UNK_0x00E6, _0145
     GoToIfNe 0x40DF, 2, _00EA
     ScrCmd_1DD 55, 2, 0x4009
     GoToIfEq 0x4009, 3, _0145
 _00EA:
-    ClearFlag FLAG_UNK_0x01EF,
+    ClearFlag FLAG_UNK_0x01EF
 _00EE:
     GoToIfUnset FLAG_UNK_0x00E7, _0151
     GoToIfNe 0x40DF, 2, _011B
     ScrCmd_1DD 55, 2, 0x4009
     GoToIfEq 0x4009, 4, _0151
 _011B:
-    ClearFlag FLAG_UNK_0x01F0,
+    ClearFlag FLAG_UNK_0x01F0
 _011F:
     End
 

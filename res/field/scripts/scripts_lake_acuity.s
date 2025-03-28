@@ -58,14 +58,14 @@ _0006:
     RemoveObject 2
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_UNK_0x098F
-    ClearFlag FLAG_UNK_0x0223,
+    ClearFlag FLAG_UNK_0x0223
     SetVar 0x40D3, 2
-    ClearFlag FLAG_UNK_0x0198,
+    ClearFlag FLAG_UNK_0x0198
     SetFlag FLAG_UNK_0x0194
     SetFlag FLAG_UNK_0x0175
     SetFlag FLAG_UNK_0x028D
     SetFlag FLAG_UNK_0x028C
-    ClearFlag FLAG_UNK_0x00A8,
+    ClearFlag FLAG_UNK_0x00A8
     ReleaseAll
     End
 

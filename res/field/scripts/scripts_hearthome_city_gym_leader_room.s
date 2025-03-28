@@ -19,7 +19,7 @@ _0027:
     SetFlag FLAG_UNK_0x029C
     RemoveObject 2
     RemoveObject 1
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     End
 
 _0039:
@@ -59,9 +59,9 @@ _00BB:
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 91, 0, 0, 0
     Message 0
     CloseMessage
-    SetFlag FLAG_UNK_0x008E,
+    SetFlag FLAG_UNK_0x008E
     StartTrainerBattle TRAINER_LEADER_FANTINA
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _0248
     Message 1
@@ -82,7 +82,7 @@ _00BB:
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 91, TRAINER_LEADER_FANTINA, 0, 0
     SetVar 0x407B, 1
     SetFlag FLAG_UNK_0x0206
-    ClearFlag FLAG_UNK_0x0207,
+    ClearFlag FLAG_UNK_0x0207
     Message 3
     GoTo _0158
 
@@ -92,7 +92,7 @@ _0158:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0196
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x007D,
+    SetFlag FLAG_UNK_0x007D
     BufferItemName 0, 0x8004
     BufferTMHMMoveName 1, 0x8004
     Message 4
@@ -164,7 +164,7 @@ _0224:
     EndMovement
 
 _0248:
-    ClearFlag FLAG_UNK_0x029C,
+    ClearFlag FLAG_UNK_0x029C
     BlackOutFromBattle
     ReleaseAll
     End

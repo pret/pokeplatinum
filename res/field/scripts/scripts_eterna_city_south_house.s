@@ -45,7 +45,7 @@ _009B:
     ActivateRoamingPokemon ROAMING_SLOT_MOLTRES
     ActivateRoamingPokemon ROAMING_SLOT_ZAPDOS
     ActivateRoamingPokemon ROAMING_SLOT_ARTICUNO
-    SetFlag FLAG_UNK_0x0099,
+    SetFlag FLAG_UNK_0x0099
     Message 3
     GoTo _0150
     End
@@ -75,7 +75,7 @@ _00FB:
 
 _0106:
     Message 5
-    SetFlag FLAG_UNK_0x0098,
+    SetFlag FLAG_UNK_0x0098
     CallCommonScript 0x26E1
     End
 

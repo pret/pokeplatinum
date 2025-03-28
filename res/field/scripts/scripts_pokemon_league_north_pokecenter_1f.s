@@ -19,14 +19,14 @@ _0022:
     SetFlag FLAG_UNK_0x0283
     SetFlag FLAG_UNK_0x0284
     SetFlag FLAG_UNK_0x0285
-    ClearFlag FLAG_UNK_0x0286,
-    ClearFlag FLAG_UNK_0x0287,
-    ClearFlag FLAG_UNK_0x0288,
-    ClearFlag FLAG_UNK_0x0289,
-    ClearFlag FLAG_UNK_0x00B0,
-    ClearFlag FLAG_UNK_0x00B1,
-    ClearFlag FLAG_UNK_0x00B2,
-    ClearFlag FLAG_UNK_0x00B3,
+    ClearFlag FLAG_UNK_0x0286
+    ClearFlag FLAG_UNK_0x0287
+    ClearFlag FLAG_UNK_0x0288
+    ClearFlag FLAG_UNK_0x0289
+    ClearFlag FLAG_UNK_0x00B0
+    ClearFlag FLAG_UNK_0x00B1
+    ClearFlag FLAG_UNK_0x00B2
+    ClearFlag FLAG_UNK_0x00B3
     GoToIfSet FLAG_UNK_0x00AF, _0063
     End
 
@@ -65,7 +65,7 @@ _00D8:
     GoTo _00E8
 
 _00E8:
-    SetFlag FLAG_UNK_0x00AF,
+    SetFlag FLAG_UNK_0x00AF
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -119,7 +119,7 @@ _013E:
 
 _0154:
     LockAll
-    ClearFlag FLAG_UNK_0x021D,
+    ClearFlag FLAG_UNK_0x021D
     AddObject 5
     CallCommonScript 0x7FA
     GetPlayerMapPos 0x8004, 0x8005

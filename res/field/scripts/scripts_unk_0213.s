@@ -59,7 +59,7 @@ _008F:
     ApplyMovement LOCALID_PLAYER, _0100
     WaitMovement
     Call _0513
-    ClearFlag FLAG_UNK_0x0966,
+    ClearFlag FLAG_UNK_0x0966
     SetVar 0x40D5, 0
     ReleaseAll
     End
@@ -465,7 +465,7 @@ _05CF:
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _062D
     SetVar 0x40D5, 0
-    ClearFlag FLAG_UNK_0x0966,
+    ClearFlag FLAG_UNK_0x0966
     GoTo _01D3
 
 _062D:
@@ -523,7 +523,7 @@ _06B4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetFlag FLAG_UNK_0x00AA,
+    SetFlag FLAG_UNK_0x00AA
     Message 102
     GoTo _06CB
     End

@@ -219,7 +219,7 @@ _0230:
     WaitFadeScreen
     SetFlag FLAG_UNK_0x029A
     SetFlag FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY
-    ClearFlag FLAG_UNK_0x01BA,
+    ClearFlag FLAG_UNK_0x01BA
     SetVar 0x40D3, 1
     BufferRivalName 0
     Message 13

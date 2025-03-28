@@ -65,7 +65,7 @@ _0070:
     End
 
 _00B6:
-    SetFlag FLAG_UNK_0x007F,
+    SetFlag FLAG_UNK_0x007F
     Return
 
     .balign 4, 0
@@ -139,7 +139,7 @@ _0142:
 
 _014D:
     SetFlag FLAG_UNK_0x01A1
-    SetFlag FLAG_UNK_0x0091,
+    SetFlag FLAG_UNK_0x0091
     SetVar 0x4089, 1
     Return
 

@@ -22,12 +22,12 @@ _001E:
     End
 
 _0065:
-    ClearFlag FLAG_UNK_0x0271,
+    ClearFlag FLAG_UNK_0x0271
     SetFlag FLAG_UNK_0x0270
     End
 
 _006F:
-    ClearFlag FLAG_UNK_0x0270,
+    ClearFlag FLAG_UNK_0x0270
     SetFlag FLAG_UNK_0x0271
     End
 
@@ -93,7 +93,7 @@ _016F:
     GoTo _0183
 
 _0183:
-    ClearFlag FLAG_UNK_0x01B1,
+    ClearFlag FLAG_UNK_0x01B1
     AddObject 20
     ScrCmd_062 20
     ApplyMovement 20, _02C4
@@ -267,7 +267,7 @@ _031F:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _036F
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x00C7,
+    SetFlag FLAG_UNK_0x00C7
     GoTo _0364
 
 _0364:

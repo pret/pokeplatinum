@@ -50,7 +50,7 @@ _008E:
     PlaySound SEQ_GONIN
     Message 1
     WaitSound
-    SetFlag FLAG_UNK_0x008B,
+    SetFlag FLAG_UNK_0x008B
     SetVar 0x40B1, 1
     Message 2
     WaitABXPadPress
@@ -211,7 +211,7 @@ _02CB:
     ClearHasPartner
     RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetFlag FLAG_UNK_0x00E3,
+    SetFlag FLAG_UNK_0x00E3
     SetVar 0x40B1, 2
     ReleaseAll
     End

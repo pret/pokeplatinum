@@ -39,7 +39,7 @@ _006D:
 
 _00C2:
     CallCommonScript 0x7E0
-    ClearFlag FLAG_UNK_0x0137,
+    ClearFlag FLAG_UNK_0x0137
     SetFlag FLAG_UNK_0x0AAE
     AddVar 0x4108, 1
     GoToIfLt 0x4108, 3, _00E7

@@ -14,7 +14,7 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag FLAG_UNK_0x00C8,
+    SetFlag FLAG_UNK_0x00C8
     GoToIfUnset FLAG_UNK_0x0AB7, _0039
     Call _0140
     End
@@ -23,10 +23,10 @@ _0039:
     SetFlag FLAG_UNK_0x0AB7
     ScrCmd_2F4 0x4065, 0x4066, 0x4067, 0x4068
     Call _0140
-    ClearFlag FLAG_UNK_0x02A2,
-    ClearFlag FLAG_UNK_0x02A3,
-    ClearFlag FLAG_UNK_0x02A4,
-    ClearFlag FLAG_UNK_0x02A5,
+    ClearFlag FLAG_UNK_0x02A2
+    ClearFlag FLAG_UNK_0x02A3
+    ClearFlag FLAG_UNK_0x02A4
+    ClearFlag FLAG_UNK_0x02A5
     CallIfEq 0x4022, 0xFFF, _00ED
     CallIfEq 0x4023, 0xFFF, _00F3
     CallIfEq 0x4024, 0xFFF, _00F9
@@ -35,14 +35,14 @@ _0039:
     CallIfEq 0x4024, 143, _0119
     CallIfEq 0x4024, 144, _0126
     CallIfEq 0x4024, 145, _0133
-    ClearFlag FLAG_UNK_0x0001,
-    ClearFlag FLAG_UNK_0x0002,
-    ClearFlag FLAG_UNK_0x0003,
-    ClearFlag FLAG_UNK_0x0004,
-    ClearFlag FLAG_UNK_0x0005,
-    ClearFlag FLAG_UNK_0x0006,
-    ClearFlag FLAG_UNK_0x0007,
-    ClearFlag FLAG_UNK_0x0008,
+    ClearFlag FLAG_UNK_0x0001
+    ClearFlag FLAG_UNK_0x0002
+    ClearFlag FLAG_UNK_0x0003
+    ClearFlag FLAG_UNK_0x0004
+    ClearFlag FLAG_UNK_0x0005
+    ClearFlag FLAG_UNK_0x0006
+    ClearFlag FLAG_UNK_0x0007
+    ClearFlag FLAG_UNK_0x0008
     GetRandom 0x4061, 2
     End
 
@@ -116,7 +116,7 @@ _0183:
     CallIfEq 0x8005, 9, _01FD
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
-    SetFlag FLAG_UNK_0x00E7,
+    SetFlag FLAG_UNK_0x00E7
     SetFlag FLAG_UNK_0x01D6
     ReleaseAll
     End
@@ -221,7 +221,7 @@ _02B4:
     GoToIfEq 0x800C, MENU_NO, _0386
     Call _032F
     GoToIfEq 0x8000, 0, _0398
-    SetFlag FLAG_UNK_0x0005,
+    SetFlag FLAG_UNK_0x0005
     Call _1091
     GoTo _034D
     End
@@ -257,7 +257,7 @@ _037E:
     End
 
 _0386:
-    SetFlag FLAG_UNK_0x0001,
+    SetFlag FLAG_UNK_0x0001
     Call _090A
     GoTo _037E
     End
@@ -296,13 +296,13 @@ _03CA:
     GoToIfEq 0x800C, MENU_NO, _0445
     Call _032F
     GoToIfEq 0x8000, FALSE, _0398
-    SetFlag FLAG_UNK_0x0006,
+    SetFlag FLAG_UNK_0x0006
     Call _1091
     GoTo _034D
     End
 
 _0445:
-    SetFlag FLAG_UNK_0x0002,
+    SetFlag FLAG_UNK_0x0002
     Call _090A
     GoTo _037E
     End
@@ -322,13 +322,13 @@ _0457:
     GoToIfEq 0x800C, MENU_NO, _04D2
     Call _032F
     GoToIfEq 0x8000, 0, _0398
-    SetFlag FLAG_UNK_0x0007,
+    SetFlag FLAG_UNK_0x0007
     Call _1091
     GoTo _034D
     End
 
 _04D2:
-    SetFlag FLAG_UNK_0x0003,
+    SetFlag FLAG_UNK_0x0003
     Call _090A
     GoTo _037E
     End
@@ -348,13 +348,13 @@ _04E4:
     GoToIfEq 0x800C, MENU_NO, _055F
     Call _032F
     GoToIfEq 0x8000, 0, _0398
-    SetFlag FLAG_UNK_0x0008,
+    SetFlag FLAG_UNK_0x0008
     Call _1091
     GoTo _034D
     End
 
 _055F:
-    SetFlag FLAG_UNK_0x0004,
+    SetFlag FLAG_UNK_0x0004
     Call _090A
     GoTo _037E
     End

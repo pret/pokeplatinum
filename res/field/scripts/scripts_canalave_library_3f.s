@@ -182,11 +182,11 @@ _0184:
     ScrCmd_04A 0x603
     SetVar 0x4078, 4
     SetVar 0x40B2, 2
-    SetFlag FLAG_UNK_0x00A8,
+    SetFlag FLAG_UNK_0x00A8
     SetFlag FLAG_UNK_0x01AE
-    ClearFlag FLAG_UNK_0x01B3,
-    ClearFlag FLAG_UNK_0x01B5,
-    ClearFlag FLAG_UNK_0x01B2,
+    ClearFlag FLAG_UNK_0x01B3
+    ClearFlag FLAG_UNK_0x01B5
+    ClearFlag FLAG_UNK_0x01B2
     ReleaseAll
     End
 

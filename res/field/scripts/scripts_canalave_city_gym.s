@@ -40,11 +40,11 @@ _0016:
     SetTrainerFlag TRAINER_BLACK_BELT_RICKY
     SetTrainerFlag TRAINER_WORKER_GERARDO
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 35, TRAINER_LEADER_BYRON, 0, 0
-    ClearFlag FLAG_UNK_0x01B2,
-    ClearFlag FLAG_UNK_0x02CC,
-    ClearFlag FLAG_UNK_0x01B8,
-    ClearFlag FLAG_UNK_0x01B6,
-    ClearFlag FLAG_UNK_0x01B7,
+    ClearFlag FLAG_UNK_0x01B2
+    ClearFlag FLAG_UNK_0x02CC
+    ClearFlag FLAG_UNK_0x01B8
+    ClearFlag FLAG_UNK_0x01B6
+    ClearFlag FLAG_UNK_0x01B7
     SetVar 0x4078, 2
     SetFlag FLAG_UNK_0x0198
     Message 3
@@ -56,7 +56,7 @@ _00BF:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00FD
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x0092,
+    SetFlag FLAG_UNK_0x0092
     BufferItemName 0, 0x8004
     BufferTMHMMoveName 1, 0x8004
     Message 4

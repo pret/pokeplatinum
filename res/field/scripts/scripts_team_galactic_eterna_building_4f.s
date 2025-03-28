@@ -72,10 +72,10 @@ _00E2:
     SetFlag FLAG_UNK_0x01FD
     SetFlag FLAG_UNK_0x01BB
     SetFlag FLAG_UNK_0x01C2
-    SetFlag FLAG_UNK_0x0081,
-    ClearFlag FLAG_UNK_0x0192,
-    ClearFlag FLAG_UNK_0x0200,
-    ClearFlag FLAG_UNK_0x01FE,
+    SetFlag FLAG_UNK_0x0081
+    ClearFlag FLAG_UNK_0x0192
+    ClearFlag FLAG_UNK_0x0200
+    ClearFlag FLAG_UNK_0x01FE
     RemoveObject 2
     RemoveObject 1
     RemoveObject 3

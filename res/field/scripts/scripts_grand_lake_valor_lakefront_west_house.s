@@ -27,8 +27,8 @@ _004C:
 
 _0057:
     CallIfUnset FLAG_UNK_0x00AB, _00DE
-    SetFlag FLAG_UNK_0x00AB,
-    SetFlag FLAG_UNK_0x0001,
+    SetFlag FLAG_UNK_0x00AB
+    SetFlag FLAG_UNK_0x0001
     Message 1
     PlaySound SEQ_FANFA4
     WaitSound
@@ -44,8 +44,8 @@ _0057:
 
 _0095:
     CallIfUnset FLAG_UNK_0x00AC, _00E4
-    SetFlag FLAG_UNK_0x00AC,
-    SetFlag FLAG_UNK_0x0001,
+    SetFlag FLAG_UNK_0x00AC
+    SetFlag FLAG_UNK_0x0001
     Message 2
     PlaySound SEQ_FANFA4
     WaitSound

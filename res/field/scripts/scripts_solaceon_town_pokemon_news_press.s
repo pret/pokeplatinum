@@ -19,7 +19,7 @@ _000E:
     GoTo _0081
 
 _004A:
-    SetFlag FLAG_UNK_0x00D8,
+    SetFlag FLAG_UNK_0x00D8
     Message 0
     GoTo _0060
 
@@ -122,7 +122,7 @@ _01E9:
     SetVar 0x8004, 93
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    ClearFlag FLAG_UNK_0x00DC,
+    ClearFlag FLAG_UNK_0x00DC
     SetVar 0x40E5, 0
     SetFlag FLAG_UNK_0x0AB1
     Message 5
@@ -141,7 +141,7 @@ _0216:
 
 _023F:
     SetVar 0x4117, 0x8004
-    SetFlag FLAG_UNK_0x00DC,
+    SetFlag FLAG_UNK_0x00DC
     GoTo _0251
     End
 
@@ -154,7 +154,7 @@ _0251:
 
 _025C:
     Message 7
-    ClearFlag FLAG_UNK_0x00DC,
+    ClearFlag FLAG_UNK_0x00DC
     SetVar 0x40E5, 0
     CallCommonScript 0x7FC
     SetVar 0x8004, 93

@@ -45,7 +45,7 @@ _0099:
     LockAll
     ApplyMovement 9, _04E8
     WaitMovement
-    ClearFlag FLAG_UNK_0x0255,
+    ClearFlag FLAG_UNK_0x0255
     AddObject 20
     ScrCmd_062 20
     GetPlayerMapPos 0x8004, 0x8005
@@ -442,7 +442,7 @@ _0577:
     SetVar 0x8004, 0x1AA
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x009A,
+    SetFlag FLAG_UNK_0x009A
     Message 7
     Return
 
@@ -481,7 +481,7 @@ _05D7:
     SetObjectEventPos 18, 0x34D, 0x2EC
     ScrCmd_188 18, 15
     ScrCmd_189 18, 1
-    ClearFlag FLAG_UNK_0x0239,
+    ClearFlag FLAG_UNK_0x0239
     AddObject 18
     SetVar 0x407E, 1
     ReleaseAll

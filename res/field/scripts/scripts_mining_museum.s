@@ -207,7 +207,7 @@ _03BC:
     GoTo _03D8
 
 _03D8:
-    SetFlag FLAG_UNK_0x0001,
+    SetFlag FLAG_UNK_0x0001
     Message 6
     WaitABXPadPress
     CloseMessage

@@ -89,7 +89,7 @@ _00D2:
 
 _00E0:
     LockAll
-    ClearFlag FLAG_UNK_0x0173,
+    ClearFlag FLAG_UNK_0x0173
     AddObject 0
     ApplyMovement 0, _0394
     WaitMovement

@@ -543,7 +543,7 @@ _04C0:
 
 _04C8:
     LockAll
-    ClearFlag FLAG_UNK_0x01A9,
+    ClearFlag FLAG_UNK_0x01A9
     SetObjectEventPos 26, 0x253, 0x333
     ScrCmd_188 26, 16
     ScrCmd_189 26, 2
@@ -629,7 +629,7 @@ _05D4:
 
 _05E0:
     LockAll
-    ClearFlag FLAG_UNK_0x01A9,
+    ClearFlag FLAG_UNK_0x01A9
     SetObjectEventPos 26, 0x253, 0x333
     ScrCmd_188 26, 15
     ScrCmd_189 26, 1
@@ -647,7 +647,7 @@ _05E0:
     ScrCmd_169 77
     ApplyMovement LOCALID_PLAYER, _07D8
     WaitMovement
-    ClearFlag FLAG_UNK_0x01FB,
+    ClearFlag FLAG_UNK_0x01FB
     SetObjectEventPos 27, 0x24D, 0x33B
     ScrCmd_189 27, 0
     ScrCmd_188 27, 14
@@ -689,10 +689,10 @@ _05E0:
     ApplyMovement 26, _07C0
     WaitMovement
     Call _0737
-    ClearFlag FLAG_UNK_0x01FB,
+    ClearFlag FLAG_UNK_0x01FB
     ScrCmd_187 27, 0x263, 0, 0x32A, 0
     Call _0721
-    ClearFlag FLAG_UNK_0x01A9,
+    ClearFlag FLAG_UNK_0x01A9
     ScrCmd_187 26, 0x260, 0, 0x32E, 1
     SetVar 0x407C, 4
     ReleaseAll
@@ -830,7 +830,7 @@ _086F:
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
     CloseMessage
-    ClearFlag FLAG_UNK_0x020C,
+    ClearFlag FLAG_UNK_0x020C
     SetObjectEventPos 21, 0x262, 0x328
     ScrCmd_189 21, 3
     ScrCmd_188 21, 17
@@ -851,7 +851,7 @@ _08D9:
 
 _08FA:
     RemoveObject 21
-    ClearFlag FLAG_UNK_0x020C,
+    ClearFlag FLAG_UNK_0x020C
     SetObjectEventPos 21, 0x27D, 0x32C
     ScrCmd_188 21, 17
     ScrCmd_189 21, 3
@@ -1139,7 +1139,7 @@ _0C1E:
     End
 
 _0C22:
-    ClearFlag FLAG_UNK_0x029D,
+    ClearFlag FLAG_UNK_0x029D
     AddObject 28
     ApplyMovement LOCALID_PLAYER, _0C78
     ApplyMovement 28, _0C64

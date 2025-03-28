@@ -27,7 +27,7 @@ _000C:
     RemoveObject 0
     ActivateRoamingPokemon ROAMING_SLOT_CRESSELIA
     GoToIfEq 0x4058, 3, _0074
-    ClearFlag FLAG_UNK_0x0452,
+    ClearFlag FLAG_UNK_0x0452
     AddObject 1
     SetFlag FLAG_UNK_0x011F
     Message 0

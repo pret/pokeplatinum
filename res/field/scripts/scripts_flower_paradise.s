@@ -18,7 +18,7 @@ _000E:
     CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, 0x4000
     GoToIfEq 0x4000, FALSE, _005C
     GoToIfSet FLAG_UNK_0x0123, _005C
-    ClearFlag FLAG_UNK_0x0251,
+    ClearFlag FLAG_UNK_0x0251
     End
 
 _005C:
@@ -32,7 +32,7 @@ _0062:
 _006F:
     SetFlag FLAG_UNK_0x0251
     RemoveObject 0
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     End
 
 _007D:
@@ -42,9 +42,9 @@ _007D:
     PlayCry SPECIES_SHAYMIN
     Message 0
     CloseMessage
-    SetFlag FLAG_UNK_0x008E,
+    SetFlag FLAG_UNK_0x008E
     StartFatefulEncounter SPECIES_SHAYMIN, 30
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _00D7
     CheckDidNotCapture 0x800C
@@ -57,13 +57,13 @@ _00C8:
     Message 1
     WaitABXPadPress
     CloseMessage
-    ClearFlag FLAG_UNK_0x0251,
+    ClearFlag FLAG_UNK_0x0251
     ReleaseAll
     End
 
 _00D7:
     BlackOutFromBattle
-    ClearFlag FLAG_UNK_0x0251,
+    ClearFlag FLAG_UNK_0x0251
     ReleaseAll
     End
 

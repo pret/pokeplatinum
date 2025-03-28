@@ -24,7 +24,7 @@ _0032:
     CallIfEq 0x8004, 24, _01BA
     CallIfEq 0x8004, 25, _01CC
     CallIfEq 0x8004, 26, _01DE
-    ClearFlag FLAG_UNK_0x0276,
+    ClearFlag FLAG_UNK_0x0276
     AddObject 11
     ScrCmd_062 11
     ApplyMovement 11, _02C8
@@ -52,7 +52,7 @@ _0032:
     CallIfEq 0x8004, 25, _0218
     CallIfEq 0x8004, 26, _022C
     RemoveObject 11
-    ClearFlag FLAG_UNK_0x0277,
+    ClearFlag FLAG_UNK_0x0277
     AddObject 12
     ScrCmd_062 12
     ApplyMovement 12, _02C8

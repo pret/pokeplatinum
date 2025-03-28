@@ -51,7 +51,7 @@ _009A:
     SetObjectEventPos 29, 0x4001, 0x4002
     ScrCmd_189 29, 0x4003
     ScrCmd_188 29, 0x4004
-    ClearFlag FLAG_UNK_0x02C3,
+    ClearFlag FLAG_UNK_0x02C3
     End
 
 _00D5:

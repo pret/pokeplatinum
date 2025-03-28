@@ -49,12 +49,12 @@ _00C6:
     End
 
 _00DF:
-    ClearFlag FLAG_UNK_0x01E9,
+    ClearFlag FLAG_UNK_0x01E9
     GoTo _00C6
     End
 
 _00EB:
-    ClearFlag FLAG_UNK_0x020E,
+    ClearFlag FLAG_UNK_0x020E
     End
 
 _00F1:
@@ -80,7 +80,7 @@ _0144:
     Return
 
 _014A:
-    ClearFlag FLAG_UNK_0x02C3,
+    ClearFlag FLAG_UNK_0x02C3
     Return
 
     .byte 219
@@ -1273,7 +1273,7 @@ _13E0:
     FacePlayer
     CallIfUnset FLAG_UNK_0x00FF, _1492
     CallIfSet FLAG_UNK_0x00FF, _1497
-    SetFlag FLAG_UNK_0x00FF,
+    SetFlag FLAG_UNK_0x00FF
     GoTo _140A
     End
 

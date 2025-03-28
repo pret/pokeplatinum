@@ -783,7 +783,7 @@ _0BF3:
     ScrCmd_13A
     CallIfSet FLAG_UNK_0x00BB, _0C50
     CallIfUnset FLAG_UNK_0x00BB, _0C55
-    SetFlag FLAG_UNK_0x00BB,
+    SetFlag FLAG_UNK_0x00BB
     ScrCmd_040 31, 11, 0, 1, 0x800C
     ScrCmd_33A 1
     ScrCmd_042 10, 0

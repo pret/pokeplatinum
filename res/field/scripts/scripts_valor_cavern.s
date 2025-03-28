@@ -36,7 +36,7 @@ _0042:
 ValorCavern_RemoveAzelf:
     SetFlag FLAG_AZELF_DISAPPEARED
     RemoveObject LOCALID_AZELF
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     Return
 
 ValorCavern_Azelf:
@@ -46,9 +46,9 @@ ValorCavern_Azelf:
     PlayCry SPECIES_AZELF
     Message valor_cavern_azelf_battle_intro
     CloseMessage
-    SetFlag FLAG_UNK_0x008E,
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_AZELF, 50
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, ValorCavern_LostBattleAzelf
     CheckDidNotCapture 0x800C

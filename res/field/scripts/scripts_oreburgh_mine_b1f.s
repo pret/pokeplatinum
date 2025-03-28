@@ -16,7 +16,7 @@ _0012:
     End
 
 _0029:
-    ClearFlag FLAG_UNK_0x02C8,
+    ClearFlag FLAG_UNK_0x02C8
     Return
 
 _002F:
@@ -88,7 +88,7 @@ _0102:
     End
 
 _0114:
-    SetFlag FLAG_UNK_0x00A5,
+    SetFlag FLAG_UNK_0x00A5
     Message 3
     GoTo _0123
     End

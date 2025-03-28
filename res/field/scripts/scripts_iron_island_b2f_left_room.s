@@ -48,7 +48,7 @@ _0064:
     PlaySound SEQ_GONIN
     Message 1
     WaitSound
-    SetFlag FLAG_UNK_0x00E1,
+    SetFlag FLAG_UNK_0x00E1
     SetVar 0x4092, 1
     Message 2
     WaitABXPadPress
@@ -264,7 +264,7 @@ _031C:
     Message 12
     GiveEgg SPECIES_RIOLU, SPECIAL_METLOC_NAME_RILEY
     SetFlag FLAG_UNK_0x01E5
-    ClearFlag FLAG_UNK_0x00E2,
+    ClearFlag FLAG_UNK_0x00E2
     Call _0371
     Message 15
     WaitABXPadPress
@@ -272,7 +272,7 @@ _031C:
     Return
 
 _0353:
-    SetFlag FLAG_UNK_0x00E2,
+    SetFlag FLAG_UNK_0x00E2
     SetVar 0x4092, 2
     Message 13
     WaitABXPadPress
@@ -285,7 +285,7 @@ _0366:
     End
 
 _0371:
-    SetFlag FLAG_UNK_0x00E5,
+    SetFlag FLAG_UNK_0x00E5
     SetVar 0x4092, 2
     Return
 

@@ -59,7 +59,7 @@ _0092:
 _009A:
     GoToIfUnset FLAG_UNK_0x0964, _005A
     GoToIfSet FLAG_UNK_0x00F0, _00C4
-    SetFlag FLAG_UNK_0x00F0,
+    SetFlag FLAG_UNK_0x00F0
     EnableSwarms
     BufferPlayerName 0
     Message 4

@@ -22,7 +22,7 @@ _0006:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     WaitTime 15, 0x800C
-    ClearFlag FLAG_UNK_0x0253,
+    ClearFlag FLAG_UNK_0x0253
     AddObject 2
     ApplyMovement 2, _01D8
     WaitMovement

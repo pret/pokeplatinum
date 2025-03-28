@@ -19,7 +19,7 @@ _0016:
     SetVar 0x8004, 0x1C2
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x0082,
+    SetFlag FLAG_UNK_0x0082
     SetVar 0x4114, 1
     ScrCmd_14C 9
     GoTo _0052

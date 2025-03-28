@@ -64,7 +64,7 @@ _00A7:
     Message 2
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x0084,
+    SetFlag FLAG_UNK_0x0084
     GoTo _005E
 
     .byte 0

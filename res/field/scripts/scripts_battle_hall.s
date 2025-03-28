@@ -87,7 +87,7 @@ _013F:
     End
 
 _014D:
-    ClearFlag FLAG_UNK_0x02CB,
+    ClearFlag FLAG_UNK_0x02CB
     Call _01DF
     AddObject 13
     End
@@ -98,7 +98,7 @@ _015D:
     GoToIfEq 0x4000, 0, _0196
     ScrCmd_32A 0x4000
     GoToIfEq 0x4000, 0, _0196
-    ClearFlag FLAG_UNK_0x02C1,
+    ClearFlag FLAG_UNK_0x02C1
     AddObject 10
     Return
 
@@ -788,7 +788,7 @@ _0AC9:
     End
 
 _0AD7:
-    SetFlag FLAG_UNK_0x00BE,
+    SetFlag FLAG_UNK_0x00BE
     Message 68
     GoTo _0AE6
     End

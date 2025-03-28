@@ -259,7 +259,7 @@ _0448:
 _045C:
     ScrCmd_1DD 41, 0, 0x800C
     SetVar 0x4021, 0x800C
-    ClearFlag FLAG_UNK_0x01CB,
+    ClearFlag FLAG_UNK_0x01CB
     AddObject 1
     ApplyMovement 1, _0524
     WaitMovement
@@ -292,7 +292,7 @@ _04BA:
 
 _04CE:
     SetVar 0x4021, 169
-    ClearFlag FLAG_UNK_0x01CB,
+    ClearFlag FLAG_UNK_0x01CB
     AddObject 1
     ApplyMovement 1, _05A8
     WaitMovement

@@ -118,7 +118,7 @@ _010E:
     SetVar 0x40E9, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ClearFlag FLAG_UNK_0x019E,
+    ClearFlag FLAG_UNK_0x019E
     AddObject 3
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 12, _01BA
@@ -128,7 +128,7 @@ _010E:
     SetVar 0x8004, 0x1B6
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x009F,
+    SetFlag FLAG_UNK_0x009F
     Message 8
     SetVar 0x8004, 94
     SetVar 0x8005, 10
@@ -141,7 +141,7 @@ _010E:
 _01AD:
     Message 12
 _01B0:
-    SetFlag FLAG_UNK_0x00A0,
+    SetFlag FLAG_UNK_0x00A0
     WaitABXPadPress
     CloseMessage
     Return
@@ -255,7 +255,7 @@ _0306:
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
     CloseMessage
-    SetFlag FLAG_UNK_0x009F,
+    SetFlag FLAG_UNK_0x009F
     RemoveObject 3
     ReleaseAll
     End

@@ -83,7 +83,7 @@ _00F6:
     ScrCmd_168 21, 19, 12, 3, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ClearFlag FLAG_UNK_0x0191,
+    ClearFlag FLAG_UNK_0x0191
     AddObject 25
     ApplyMovement 25, _0564
     WaitMovement
@@ -542,7 +542,7 @@ _0656:
     CallIfEq 0x8004, GENDER_FEMALE, _0A32
     CloseMessage
     WaitTime 15, 0x800C
-    ClearFlag FLAG_UNK_0x028A,
+    ClearFlag FLAG_UNK_0x028A
     SetObjectEventPos 26, 0x2B4, 0x25E
     AddObject 26
     CallCommonScript 0x807
@@ -630,7 +630,7 @@ _08C3:
 _08DD:
     SetFlag FLAG_UNK_0x01A9
     SetFlag FLAG_UNK_0x028A
-    ClearFlag FLAG_UNK_0x020D,
+    ClearFlag FLAG_UNK_0x020D
     SetVar 0x411F, 1
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
@@ -1096,7 +1096,7 @@ _0C77:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0CC7
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x00CC,
+    SetFlag FLAG_UNK_0x00CC
     GoTo _0CBC
 
 _0CBC:
@@ -1222,7 +1222,7 @@ _0DBE:
     SetObjectEventPos 26, 0x2D3, 0x259
     ScrCmd_188 26, 14
     ScrCmd_189 26, 0
-    ClearFlag FLAG_UNK_0x028A,
+    ClearFlag FLAG_UNK_0x028A
     AddObject 26
     GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _0E34
@@ -1284,7 +1284,7 @@ _0ED8:
 
 _0EF4:
     SetVar 0x411F, 3
-    SetFlag FLAG_UNK_0x009B,
+    SetFlag FLAG_UNK_0x009B
     Message 39
     CloseMessage
     CallCommonScript 0x808
@@ -1506,7 +1506,7 @@ _1184:
     WaitMovement
     RemoveObject 6
     Call _00BA
-    ClearFlag FLAG_UNK_0x01A8,
+    ClearFlag FLAG_UNK_0x01A8
     AddObject 6
     SetVar 0x411A, 2
     ReleaseAll

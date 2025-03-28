@@ -31,7 +31,7 @@ _002B:
     PlaySound SEQ_GONIN
     Message 1
     WaitSound
-    SetFlag FLAG_UNK_0x00E0,
+    SetFlag FLAG_UNK_0x00E0
     SetVar 0x4091, 1
     Message 2
     WaitABXPadPress
@@ -121,7 +121,7 @@ _016A:
 
 _0182:
     RemoveObject 4
-    SetFlag FLAG_UNK_0x00E4,
+    SetFlag FLAG_UNK_0x00E4
     SetVar 0x4091, 2
     ReleaseAll
     End

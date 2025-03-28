@@ -42,7 +42,7 @@ _0062:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _009F
-    SetFlag FLAG_UNK_0x0083,
+    SetFlag FLAG_UNK_0x0083
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll

@@ -35,7 +35,7 @@ _0036:
     SetObjectEventPos 5, 20, 25
     ScrCmd_188 5, 16
     ScrCmd_189 5, 2
-    ClearFlag FLAG_UNK_0x029F,
+    ClearFlag FLAG_UNK_0x029F
     AddObject 5
     ApplyMovement 5, _0148
     WaitMovement

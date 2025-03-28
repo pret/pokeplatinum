@@ -18,7 +18,7 @@ _0029:
     End
 
 _002F:
-    ClearFlag FLAG_UNK_0x024D,
+    ClearFlag FLAG_UNK_0x024D
     Return
 
 _0035:

@@ -14,7 +14,7 @@
 _001A:
     ScrCmd_238 4, 0x4000
     GoToIfEq 0x4000, 0, _0033
-    ClearFlag FLAG_UNK_0x0210,
+    ClearFlag FLAG_UNK_0x0210
     End
 
 _0033:
@@ -32,7 +32,7 @@ _0039:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _008E
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x008D,
+    SetFlag FLAG_UNK_0x008D
     Message 1
     WaitABXPadPress
     CloseMessage

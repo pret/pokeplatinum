@@ -98,7 +98,7 @@ _00F4:
     ScrCmd_2B7 0x800C
     GoToIfEq 0x800C, 1, _0368
     GoToIfSet FLAG_UNK_0x00C3, _02FB
-    SetFlag FLAG_UNK_0x00C3,
+    SetFlag FLAG_UNK_0x00C3
     Message 0
     GoTo _0127
     End
@@ -551,7 +551,7 @@ _06A1:
     GoToIfEq 0x800C, 0, _06D3
     AddVar 0x8004, 1
     GoToIfLe 0x8004, 13, _06A1
-    SetFlag FLAG_UNK_0x00CF,
+    SetFlag FLAG_UNK_0x00CF
     GoTo _06F2
     End
 
@@ -590,7 +590,7 @@ _071E:
     GoToIfEq 0x800C, 0, _074A
     AddVar 0x8004, 1
     GoToIfLe 0x8004, 13, _071E
-    SetFlag FLAG_UNK_0x00CF,
+    SetFlag FLAG_UNK_0x00CF
     Return
 
 _074A:

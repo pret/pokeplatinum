@@ -20,7 +20,7 @@ _001E:
     GoTo _004F
 
 _004F:
-    ClearFlag FLAG_UNK_0x028B,
+    ClearFlag FLAG_UNK_0x028B
     SetVar 0x4116, 0
     End
 
@@ -311,13 +311,13 @@ _03C2:
     DrawPokemonPreview SPECIES_MANAPHY, GENDER_MALE
     WaitABPress
     ScrCmd_209
-    SetFlag FLAG_UNK_0x00FB,
+    SetFlag FLAG_UNK_0x00FB
     Message 21
     GoTo _0416
     End
 
 _03FC:
-    SetFlag FLAG_UNK_0x00FB,
+    SetFlag FLAG_UNK_0x00FB
     GoTo _0408
     End
 

@@ -165,7 +165,7 @@ _021E:
     Message 18
     SetVar 0x8004, 22
     CallCommonScript 0x7D9
-    SetFlag FLAG_UNK_0x00A3,
+    SetFlag FLAG_UNK_0x00A3
     CloseMessage
     ReleaseAll
     End

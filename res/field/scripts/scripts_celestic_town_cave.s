@@ -28,8 +28,8 @@ _0040:
     BufferPlayerName 0
     Message 0
     CloseMessage
-    SetFlag FLAG_UNK_0x00A7,
-    ClearFlag FLAG_UNK_0x0229,
+    SetFlag FLAG_UNK_0x00A7
+    ClearFlag FLAG_UNK_0x0229
     SetObjectEventPos 0, 4, 11
     ScrCmd_189 0, 0
     ScrCmd_188 0, 14
@@ -46,7 +46,7 @@ _0040:
     Message 3
     CloseMessage
     SetFlag FLAG_UNK_0x01AC
-    ClearFlag FLAG_UNK_0x029B,
+    ClearFlag FLAG_UNK_0x029B
     SetObjectEventPos 1, 4, 11
     ScrCmd_189 1, 0
     ScrCmd_188 1, 14
@@ -110,7 +110,7 @@ _019D:
     End
 
 _01C3:
-    ClearFlag FLAG_UNK_0x01BD,
+    ClearFlag FLAG_UNK_0x01BD
     SetVar 0x4074, 1
     Message 11
     CloseMessage
@@ -130,7 +130,7 @@ _01C3:
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x01AC
-    ClearFlag FLAG_UNK_0x01C3,
+    ClearFlag FLAG_UNK_0x01C3
     SetFlag FLAG_UNK_0x098D
     Message 14
     CloseMessage
@@ -493,7 +493,7 @@ _0585:
 _0596:
     GoToIfSet FLAG_UNK_0x0124, _0027
     SetFlag FLAG_UNK_0x0124
-    ClearFlag FLAG_UNK_0x01A6,
+    ClearFlag FLAG_UNK_0x01A6
     SetObjectEventPos 2, 4, 11
     AddObject 2
     GetPlayerMapPos 0x8004, 0x8005

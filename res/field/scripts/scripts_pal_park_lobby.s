@@ -19,7 +19,7 @@
     ScriptEntryEnd
 
 _0036:
-    ClearFlag FLAG_UNK_0x0995,
+    ClearFlag FLAG_UNK_0x0995
     SetFlag FLAG_UNK_0x09F3
     GoToIfNe 0x40F3, 0, _004D
     End
@@ -50,7 +50,7 @@ _007E:
 
 _009D:
     GoToIfSet FLAG_UNK_0x00D3, _01D6
-    SetFlag FLAG_UNK_0x00D3,
+    SetFlag FLAG_UNK_0x00D3
     BufferPlayerName 0
     Message 21
     ShowYesNoMenu 0x800C
@@ -60,7 +60,7 @@ _009D:
 
 _00D2:
     GoToIfSet FLAG_UNK_0x00D3, _01E2
-    SetFlag FLAG_UNK_0x00D3,
+    SetFlag FLAG_UNK_0x00D3
     BufferPlayerName 0
     Message 22
     ShowYesNoMenu 0x800C
@@ -372,7 +372,7 @@ _049B:
 
 _04B4:
     LockAll
-    ClearFlag FLAG_UNK_0x0242,
+    ClearFlag FLAG_UNK_0x0242
     SetVar 0x40E0, 0x7D0
     ApplyMovement 1, _0548
     WaitMovement

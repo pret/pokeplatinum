@@ -981,7 +981,7 @@ _1064:
 
 _1072:
     SetVar 0x8002, 5
-    ClearFlag FLAG_UNK_0x02A1,
+    ClearFlag FLAG_UNK_0x02A1
     GoTo _02C9
     End
 

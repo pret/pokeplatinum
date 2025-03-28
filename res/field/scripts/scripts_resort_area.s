@@ -40,23 +40,23 @@ _00BA:
     End
 
 _00BC:
-    ClearFlag FLAG_UNK_0x02AA,
+    ClearFlag FLAG_UNK_0x02AA
     Return
 
 _00C2:
-    ClearFlag FLAG_UNK_0x02AD,
+    ClearFlag FLAG_UNK_0x02AD
     Return
 
 _00C8:
-    ClearFlag FLAG_UNK_0x02AF,
+    ClearFlag FLAG_UNK_0x02AF
     Return
 
 _00CE:
-    ClearFlag FLAG_UNK_0x02B2,
+    ClearFlag FLAG_UNK_0x02B2
     Return
 
 _00D4:
-    ClearFlag FLAG_UNK_0x02B5,
+    ClearFlag FLAG_UNK_0x02B5
     Return
 
 _00DA:

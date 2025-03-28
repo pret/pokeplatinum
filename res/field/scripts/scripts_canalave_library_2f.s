@@ -17,7 +17,7 @@ _001A:
     End
 
 _002D:
-    ClearFlag FLAG_UNK_0x02C9,
+    ClearFlag FLAG_UNK_0x02C9
     Return
 
 _0033:

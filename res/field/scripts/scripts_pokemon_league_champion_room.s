@@ -24,7 +24,7 @@ _000E:
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _0121
     Message 1
-    SetFlag FLAG_UNK_0x00B4,
+    SetFlag FLAG_UNK_0x00B4
     CallIfUnset FLAG_UNK_0x00D6, _0105
     CallIfSet FLAG_UNK_0x00D6, _0113
     Message 2
@@ -76,7 +76,7 @@ _0113:
     Return
 
 _0121:
-    ClearFlag FLAG_UNK_0x098B,
+    ClearFlag FLAG_UNK_0x098B
     BlackOutFromBattle
     ReleaseAll
     End

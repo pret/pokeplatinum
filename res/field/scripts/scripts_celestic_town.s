@@ -86,7 +86,7 @@ _013C:
     SetObjectEventPos 3, 0x1D2, 0x213
     ScrCmd_189 3, 0
     ScrCmd_188 3, 14
-    ClearFlag FLAG_UNK_0x01AC,
+    ClearFlag FLAG_UNK_0x01AC
     AddObject 3
     ScrCmd_062 3
     Return
@@ -99,7 +99,7 @@ _0166:
     Message 6
     WaitSound
     RemoveItem ITEM_OLD_CHARM, 1, 0x800C
-    SetFlag FLAG_UNK_0x00A6,
+    SetFlag FLAG_UNK_0x00A6
     Message 7
     WaitABXPadPress
     CloseMessage

@@ -23,12 +23,12 @@ _0022:
     End
 
 _0069:
-    ClearFlag FLAG_UNK_0x026A,
+    ClearFlag FLAG_UNK_0x026A
     SetFlag FLAG_UNK_0x026B
     End
 
 _0073:
-    ClearFlag FLAG_UNK_0x026B,
+    ClearFlag FLAG_UNK_0x026B
     SetFlag FLAG_UNK_0x026A
     End
 
@@ -43,7 +43,7 @@ _007D:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CD
     CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x00CE,
+    SetFlag FLAG_UNK_0x00CE
     GoTo _00C2
 
 _00C2:

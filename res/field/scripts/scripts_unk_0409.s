@@ -374,7 +374,7 @@ _05C3:
     End
 
 _0606:
-    SetFlag FLAG_UNK_0x007B,
+    SetFlag FLAG_UNK_0x007B
     Return
 
 _060C:

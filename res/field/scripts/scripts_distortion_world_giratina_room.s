@@ -67,9 +67,9 @@ _00C4:
     Message 2
     ScrCmd_04D
     CloseMessage
-    SetFlag FLAG_UNK_0x008E,
+    SetFlag FLAG_UNK_0x008E
     StartGiratinaOriginBattle SPECIES_GIRATINA, 47
-    ClearFlag FLAG_UNK_0x008E,
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     ScrCmd_314 0x800C
     GoToIfEq 0x800C, 2, _0204
@@ -99,7 +99,7 @@ _014E:
 _016E:
     SetFlag FLAG_UNK_0x0121
     SetFlag FLAG_UNK_0x0250
-    ClearFlag FLAG_UNK_0x0278,
+    ClearFlag FLAG_UNK_0x0278
     ScrCmd_311 130
     ScrCmd_311 129
     ApplyMovement 129, _0250

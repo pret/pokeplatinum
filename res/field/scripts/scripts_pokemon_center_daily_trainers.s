@@ -124,43 +124,43 @@ PokemonCenterDailyTrainers_SetNPCsSaturday:
     Return
 
 PokemonCenterDailyTrainers_SetNPCGrace:
-    ClearFlag FLAG_UNK_0x0183,
+    ClearFlag FLAG_UNK_0x0183
     SetVar VAR_NPC_1, GRACE
     Return
 
 PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey:
-    ClearFlag FLAG_UNK_0x0183,
-    ClearFlag FLAG_UNK_0x0184,
+    ClearFlag FLAG_UNK_0x0183
+    ClearFlag FLAG_UNK_0x0184
     SetVar VAR_NPC_1, KINSEY
     SetVar VAR_NPC_2, TEVIN
     Return
 
 PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey2:
-    ClearFlag FLAG_UNK_0x0183,
-    ClearFlag FLAG_UNK_0x0184,
+    ClearFlag FLAG_UNK_0x0183
+    ClearFlag FLAG_UNK_0x0184
     SetVar VAR_NPC_1, KINSEY
     SetVar VAR_NPC_2, TEVIN
     Return
 
 PokemonCenterDailyTrainers_SetNPCLee:
-    ClearFlag FLAG_UNK_0x0183,
+    ClearFlag FLAG_UNK_0x0183
     SetVar VAR_NPC_1, LEE
     Return
 
 PokemonCenterDailyTrainers_SetNPCsRoxyAndOli:
-    ClearFlag FLAG_UNK_0x0183,
-    ClearFlag FLAG_UNK_0x0184,
+    ClearFlag FLAG_UNK_0x0183
+    ClearFlag FLAG_UNK_0x0184
     SetVar VAR_NPC_1, ROXY_AND_OLI_1
     SetVar VAR_NPC_2, ROXY_AND_OLI_2
     Return
 
 PokemonCenterDailyTrainers_SetNPCAriel:
-    ClearFlag FLAG_UNK_0x0183,
+    ClearFlag FLAG_UNK_0x0183
     SetVar VAR_NPC_1, ARIEL
     Return
 
 PokemonCenterDailyTrainers_SetNPCArturo:
-    ClearFlag FLAG_UNK_0x0183,
+    ClearFlag FLAG_UNK_0x0183
     SetVar VAR_NPC_1, ARTURO
     Return
 

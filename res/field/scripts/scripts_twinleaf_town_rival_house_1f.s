@@ -54,7 +54,7 @@ _0090:
     End
 
 _009E:
-    SetFlag FLAG_UNK_0x006E,
+    SetFlag FLAG_UNK_0x006E
     BufferRivalName 1
     Message 2
     WaitABXPadPress
