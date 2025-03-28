@@ -799,7 +799,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     CellTransfer_Free(battleSystem->cellTransferState);
 
     if (BattleSystem_RecordingStopped(battleSystem)) {
-        sub_0200500C(127);
+        Sound_SetMasterVolume(SOUND_VOLUME_MAX);
     }
 
     if (battleSystem->playbackStopButton) {

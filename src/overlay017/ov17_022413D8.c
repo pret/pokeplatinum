@@ -1724,7 +1724,7 @@ static void ov17_022431E8(SysTask *param0, void *param1)
         }
 
         Sound_PlayEffect(SEQ_SE_DP_CON_007);
-        sub_02004AD4(1765, v0->unk_04);
+        Sound_SetInitialVolumeForSequence(1765, v0->unk_04);
         v0->unk_08++;
     case 1: {
         u32 v1;

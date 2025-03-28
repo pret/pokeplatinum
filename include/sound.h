@@ -11,8 +11,8 @@
 #define FIELD_BGM_BANK_STATE_IDLE   0
 #define FIELD_BGM_BANK_STATE_SWITCH 1
 
-#define MIN_BGM_VOLUME 0
-#define MAX_BGM_VOLUME 127
+#define SOUND_VOLUME_MIN    0
+#define SOUND_VOLUME_MAX    127
 
 #define WAVE_OUT_SPEED(SPEED) (int)((SPEED) * 32768)
 
@@ -71,7 +71,7 @@ void Sound_FadeVolumeForHandle(enum SoundHandleType handleType, int targetVolume
 void Sound_SetInitialVolumeForHandle(enum SoundHandleType handleType, int volume);
 void Sound_AdjustVolumeForVoiceChat(int seqID);
 void Sound_AdjustVolumeForVoiceChatEx(int seqID, enum SoundHandleType handleType);
-void sub_02004AD4(u16 param0, int param1);
+void Sound_SetInitialVolumeForSequence(u16 param0, int param1);
 BOOL Sound_PlaySequenceWithPlayer(enum SoundHandleType handleType, int playerID, u16 seqID);
 int Sound_GetNumberOfPlayingSequencesForPlayer(int playerID);
 u8 Sound_GetPlayerForSequence(u16 seqID);
@@ -107,7 +107,7 @@ void Sound_SetPlaybackMode(BOOL param0);
 void Sound_SetFadeCounter(int frames);
 void Sound_SetFollowUpWaitFrames(int frames);
 BOOL Sound_UpdateFollowUpWaitFrames(void);
-void sub_0200500C(int param0);
+void Sound_SetMasterVolume(int param0);
 void *sub_02005014(void);
 void Sound_SetFieldBGMBankState(int state); // See FIELD_BGM_BANK_STATE_*
 BOOL Sound_FadeOutAndPlayBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, u8 bankState, void *unused2);

@@ -3811,7 +3811,7 @@ static void ov65_02231A0C(void)
         Sound_SetScene(0);
         Sound_SetSceneAndPlayBGM(11, v0, 1);
     } else {
-        sub_02004AD4(Sound_GetCurrentBGM(), 120);
+        Sound_SetInitialVolumeForSequence(Sound_GetCurrentBGM(), 120);
     }
 }
 
