@@ -500,7 +500,7 @@ static void MapObject_Save(FieldSystem *fieldSystem, MapObject *mapObj, MapObjec
     if (v1 == 0) {
         mapObjSave->unk_2C = MapObject_GetPosY(mapObj);
     } else {
-        if (sub_02062E44(mapObj) == 1) {
+        if (MapObject_IsHeightCalculationDisabled(mapObj) == TRUE) {
             v0.y = MapObject_GetPosY(mapObj);
         }
 
@@ -562,7 +562,7 @@ static void sub_02061FA8(const MapObjectManager *mapObjMan, MapObject *mapObj)
 static void sub_02061FF0(MapObject *mapObj)
 {
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_0 | MAP_OBJ_STATUS_START_MOVEMENT);
-    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_PAUSE_MOVEMENT | MAP_OBJ_STATUS_HIDE | MAP_OBJ_STATUS_14 | MAP_OBJ_STATUS_START_JUMP | MAP_OBJ_STATUS_END_JUMP | MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_18 | MAP_OBJ_STATUS_19 | MAP_OBJ_STATUS_21 | MAP_OBJ_STATUS_22 | MAP_OBJ_STATUS_23);
+    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_PAUSE_MOVEMENT | MAP_OBJ_STATUS_HIDE | MAP_OBJ_STATUS_14 | MAP_OBJ_STATUS_START_JUMP | MAP_OBJ_STATUS_END_JUMP | MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_18 | MAP_OBJ_STATUS_19 | MAP_OBJ_STATUS_21 | MAP_OBJ_STATUS_22 | MAP_OBJ_HEIGHT_CALCULATION_DISABLED);
     sub_02062618(mapObj);
 }
 
@@ -1830,18 +1830,18 @@ int sub_02062DFC(const MapObject *mapObj)
     return TRUE;
 }
 
-void sub_02062E28(MapObject *mapObj, int param1)
+void MapObject_SetHeightCalculationDisabled(MapObject *mapObj, BOOL heightCalculationDisabled)
 {
-    if (param1 == TRUE) {
-        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_23);
+    if (heightCalculationDisabled == TRUE) {
+        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_HEIGHT_CALCULATION_DISABLED);
     } else {
-        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_23);
+        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_HEIGHT_CALCULATION_DISABLED);
     }
 }
 
-int sub_02062E44(const MapObject *mapObj)
+int MapObject_IsHeightCalculationDisabled(const MapObject *mapObj)
 {
-    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_23)) {
+    if (MapObject_CheckStatus(mapObj, MAP_OBJ_HEIGHT_CALCULATION_DISABLED)) {
         return TRUE;
     }
 

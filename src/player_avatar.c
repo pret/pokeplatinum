@@ -546,36 +546,37 @@ void sub_0205ECE0(PlayerAvatar *playerAvatar, int param1, int param2, int param3
     sub_0205EB10(playerAvatar, 0);
 }
 
-void sub_0205ED0C(PlayerAvatar *playerAvatar, fx32 param1)
-{
-    VecFx32 v0;
-    MapObject *v1 = Player_MapObject(playerAvatar);
-
-    MapObject_GetPosPtr(v1, &v0);
-    v0.y = param1;
-    MapObject_SetPos(v1, &v0);
-}
-
-void sub_0205ED2C(PlayerAvatar *playerAvatar, int param1)
+void Player_SetYPos(PlayerAvatar *playerAvatar, fx32 y)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
-    if (param1 == 1) {
-        sub_02062E28(mapObj, 0);
+    VecFx32 pos;
+    MapObject_GetPosPtr(mapObj, &pos);
+
+    pos.y = y;
+    MapObject_SetPos(mapObj, &pos);
+}
+
+void PlayerAvatar_SetHeightCalculationEnabled(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled)
+{
+    MapObject *mapObj = Player_MapObject(playerAvatar);
+
+    if (heightCalculationEnabled == TRUE) {
+        MapObject_SetHeightCalculationDisabled(mapObj, FALSE);
     } else {
-        sub_02062E28(mapObj, 1);
+        MapObject_SetHeightCalculationDisabled(mapObj, TRUE);
     }
 }
 
-void sub_0205ED48(PlayerAvatar *playerAvatar, int param1)
+void PlayerAvatar_SetHeightCalculationEnabledAndUpdate(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
-    if (param1 == 1) {
-        sub_02062E28(mapObj, 0);
+    if (heightCalculationEnabled == TRUE) {
+        MapObject_SetHeightCalculationDisabled(mapObj, FALSE);
         sub_020642F8(mapObj);
     } else {
-        sub_02062E28(mapObj, 1);
+        MapObject_SetHeightCalculationDisabled(mapObj, TRUE);
     }
 }
 

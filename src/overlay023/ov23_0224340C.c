@@ -2821,7 +2821,7 @@ static void ov23_02245AA4(int param0, BOOL param1)
         if (Unk_ov23_02257764->unk_300) {
             UnkStruct_ov23_02245AA4 *v0 = Unk_ov23_02257764->unk_300;
 
-            sub_0205ED0C(Unk_ov23_02257764->fieldSystem->playerAvatar, 0);
+            Player_SetYPos(Unk_ov23_02257764->fieldSystem->playerAvatar, 0);
             SysTask_Done(Unk_ov23_02257764->unk_2F0);
             Heap_FreeToHeap(v0);
 
@@ -2850,7 +2850,7 @@ static void ov23_02245AF4(int param0, BOOL param1)
         G2_BlendNone();
         GX_SetMasterBrightness(0);
 
-        sub_0205ED0C(Unk_ov23_02257764->fieldSystem->playerAvatar, 0);
+        Player_SetYPos(Unk_ov23_02257764->fieldSystem->playerAvatar, 0);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
         Heap_FreeToHeap(v0);
 
@@ -2935,10 +2935,10 @@ static void ov23_02245BA8(SysTask *param0, void *param1)
 
             if (!v0->unk_08) {
                 v0->unk_14 = ov5_021F4EAC(Unk_ov23_02257764->fieldSystem, v2, v3, 2, 32);
-                sub_0205ED0C(Unk_ov23_02257764->fieldSystem->playerAvatar, -2 * FX32_ONE);
+                Player_SetYPos(Unk_ov23_02257764->fieldSystem->playerAvatar, -2 * FX32_ONE);
             } else {
                 v0->unk_14 = ov5_021F4EAC(Unk_ov23_02257764->fieldSystem, v2, v3, 3, 32);
-                sub_0205ED0C(Unk_ov23_02257764->fieldSystem->playerAvatar, -3 * FX32_ONE);
+                Player_SetYPos(Unk_ov23_02257764->fieldSystem->playerAvatar, -3 * FX32_ONE);
             }
         }
         break;
@@ -2956,7 +2956,7 @@ static void ov23_02245BA8(SysTask *param0, void *param1)
     case 8:
         break;
     case 9:
-        sub_0205ED0C(Unk_ov23_02257764->fieldSystem->playerAvatar, 0);
+        Player_SetYPos(Unk_ov23_02257764->fieldSystem->playerAvatar, 0);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         Unk_ov23_02257764->unk_2F0 = NULL;
@@ -2981,7 +2981,7 @@ static void ov23_02245BA8(SysTask *param0, void *param1)
         break;
     case 14:
         if (-10 != v4[v0->unk_10]) {
-            sub_0205ED0C(Unk_ov23_02257764->fieldSystem->playerAvatar, v4[v0->unk_10] * FX32_ONE);
+            Player_SetYPos(Unk_ov23_02257764->fieldSystem->playerAvatar, v4[v0->unk_10] * FX32_ONE);
             v0->unk_10++;
 
             if (v0->unk_10 == 5) {

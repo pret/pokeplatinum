@@ -775,12 +775,12 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(fieldSystem->playerAvatar, 0);
+        PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
         (v2->unk_00)++;
         break;
     case 1: {
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT);
 
         {
             VecFx32 v3;
@@ -795,13 +795,13 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
                 (v2->unk_00)++;
             }
 
-            sub_0205ED0C(fieldSystem->playerAvatar, v3.y);
+            Player_SetYPos(fieldSystem->playerAvatar, v3.y);
             MapProp_SetPosition(v0, &v3);
         }
     } break;
     case 2:
         DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 10), fieldSystem->dynamicTerrainHeightMan);
-        sub_0205ED48(fieldSystem->playerAvatar, 1);
+        PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
@@ -821,12 +821,12 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(fieldSystem->playerAvatar, 0);
+        PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
         (v2->unk_00)++;
         break;
     case 1: {
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT);
 
         {
             VecFx32 v3;
@@ -840,13 +840,13 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
                 (v2->unk_00)++;
             }
 
-            sub_0205ED0C(fieldSystem->playerAvatar, v3.y);
+            Player_SetYPos(fieldSystem->playerAvatar, v3.y);
             MapProp_SetPosition(v0, &v3);
         }
     } break;
     case 2:
         DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 0), fieldSystem->dynamicTerrainHeightMan);
-        sub_0205ED48(fieldSystem->playerAvatar, 1);
+        PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
@@ -1336,7 +1336,7 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(fieldSystem->playerAvatar, 0);
+        PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
         (v2->unk_00)++;
         break;
@@ -1372,14 +1372,14 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
                 GF_ASSERT(FALSE);
             }
 
-            sub_0205ED0C(fieldSystem->playerAvatar, v5.y);
+            Player_SetYPos(fieldSystem->playerAvatar, v5.y);
 
             MapProp_SetPosition(v0, &v5);
             ov8_0224A434(v3, v5.y);
         }
     } break;
     case 2:
-        sub_0205ED48(fieldSystem->playerAvatar, 1);
+        PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
@@ -2543,7 +2543,7 @@ static void ov8_0224B18C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param
     sub_020642F8(param1->unk_20);
     MapObject_SetHidden(param1->unk_20, 1);
     sub_02062D80(param1->unk_20, 0);
-    sub_02062E28(param1->unk_20, 1);
+    MapObject_SetHeightCalculationDisabled(param1->unk_20, TRUE);
 
     v4 = MapObject_GetPos(param1->unk_20);
 
@@ -3552,7 +3552,7 @@ static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param
     sub_020642F8(v3->unk_30);
     MapObject_SetHidden(v3->unk_30, 1);
     sub_02062D80(v3->unk_30, 0);
-    sub_02062E28(v3->unk_30, 1);
+    MapObject_SetHeightCalculationDisabled(v3->unk_30, TRUE);
 
     v2 = MapObject_GetPos(v3->unk_30);
 

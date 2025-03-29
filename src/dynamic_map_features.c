@@ -14,8 +14,8 @@
 
 #include "field_system.h"
 #include "persisted_map_features.h"
+#include "platform_lift.h"
 #include "savedata_misc.h"
-#include "unk_0207160C.h"
 
 const static DynamicMapFeaturesInitFunc sInitFuncs[DYNAMIC_MAP_FEATURES_COUNT] = {
     NULL,

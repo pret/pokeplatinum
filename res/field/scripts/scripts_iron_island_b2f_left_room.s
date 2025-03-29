@@ -32,7 +32,7 @@ _004A:
     End
 
 _0060:
-    ScrCmd_25C
+    TriggerPlatformLift
     End
 
 _0064:
