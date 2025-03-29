@@ -10,7 +10,6 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_020708E0.h"
-#include "struct_defs/struct_020709CC.h"
 #include "struct_defs/struct_020711C8.h"
 
 #include "field/field_system.h"
@@ -65,61 +64,61 @@ typedef struct {
 } FieldMoveTaskOrError;
 
 typedef struct {
-    u32 unk_00;
+    u32 magicNumber;
     MapObject *mapObj;
-    UnkStruct_020709CC unk_08;
+    FieldMovePokemon fieldMoveMon;
 } FieldMoveTaskData;
 
 static void FieldMoves_CanUseSurfDistortionWorld(FieldSystem *fieldSystem, FieldMoveContext *param1);
 
 static int FieldMoves_GetFlyError(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetFlyTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 
 static int FieldMoves_GetTeleportError(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetTeleportTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetTeleportTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_TeleportTask(FieldTask *taskMan);
 
 static int FieldMoves_GetSurfError(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetSurfTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetSurfTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_SurfTask(FieldTask *taskMan);
 
 static int FieldMoves_GetWaterfallError(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetWaterfallTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetWaterfallTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_WaterfallTask(FieldTask *taskMan);
 
 static int FieldMoves_GetRockClimbError(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetRockClimbTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetRockClimbTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_RockClimbTask(FieldTask *taskMan);
 
 static int FieldMoves_GetFlashError(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetFlashTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetFlashTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_FlashTask(FieldTask *taskMan);
 
 static int FieldMoves_GetDefogError(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetDefogTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetDefogTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_DefogTask(FieldTask *taskMan);
 
 static int FieldMoves_GetRockSmashError(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetRockSmashTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetRockSmashTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_RockSmashTask(FieldTask *taskMan);
 
 static int FieldMoves_GetStrengthError(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetStrengthTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetStrengthTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_StrengthTask(FieldTask *taskMan);
 
 static int FieldMoves_GetDigError(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetDigTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetDigTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_DigTask(FieldTask *taskMan);
 
 static int FieldMoves_GetSweetScentError(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetSweetScentTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetSweetScentTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 
-static int sub_02071130(const FieldMoveContext *fieldMoveContext);
-static void sub_02071150(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
-static BOOL sub_0207118C(FieldTask *taskMan);
+static int FieldMoves_GetChatterError(const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetChatterTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
+static BOOL FieldMoves_ChatterTask(FieldTask *taskMan);
 
 static int FieldMoves_GetCutError(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetCutTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetCutTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_CutTask(FieldTask *taskMan);
 
 static const FieldMoveTaskOrError fieldMoveTaskOrError[] = {
@@ -135,7 +134,7 @@ static const FieldMoveTaskOrError fieldMoveTaskOrError[] = {
     { FieldMoves_SetTeleportTask, FieldMoves_GetTeleportError },
     { FieldMoves_SetDigTask, FieldMoves_GetDigError },
     { FieldMoves_SetSweetScentTask, FieldMoves_GetSweetScentError },
-    { sub_02071150, sub_02071130 } // possibly Chatter
+    { FieldMoves_SetChatterTask, FieldMoves_GetChatterError } // possibly Chatter
 };
 
 static inline BOOL FieldMoves_IsMoveUsable(const FieldMoveContext *fieldMoveContext, int fieldMove)
@@ -269,20 +268,20 @@ static void FieldMoves_CanUseSurfDistortionWorld(FieldSystem *fieldSystem, Field
     }
 }
 
-static FieldMoveTaskData *FieldMoves_AllocateTaskData(const UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static FieldMoveTaskData *FieldMoves_AllocateTaskData(const FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     FieldMoveTaskData *taskData = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(FieldMoveTaskData));
 
-    taskData->unk_00 = 0x19740205;
+    taskData->magicNumber = 0x19740205;
     taskData->mapObj = fieldMoveContext->mapObj;
-    taskData->unk_08 = *param0;
+    taskData->fieldMoveMon = *fieldMoveMon;
 
     return taskData;
 }
 
 static void FieldMoves_FreeTaskData(FieldMoveTaskData *taskData)
 {
-    GF_ASSERT(taskData->unk_00 == 0x19740205);
+    GF_ASSERT(taskData->magicNumber == 0x19740205);
     Heap_FreeToHeap(taskData);
 }
 
@@ -303,13 +302,13 @@ static int FieldMoves_GetCutError(const FieldMoveContext *fieldMoveContext)
     }
 }
 
-static void FieldMoves_SetCutTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetCutTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
     FieldMoveTaskData *taskData;
 
-    menu = FieldTask_GetEnv(param0->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
+    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -324,7 +323,7 @@ static BOOL FieldMoves_CutTask(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     ScriptManager_Change(taskMan, 10008, taskData->mapObj);
-    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
     return 0;
@@ -355,16 +354,16 @@ static int FieldMoves_GetFlyError(const FieldMoveContext *fieldMoveContext)
     return FIELD_MOVE_ERROR_NONE;
 }
 
-static void FieldMoves_SetFlyTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     FieldSystem *fieldSystem;
     StartMenu *menu;
 
-    fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
-    menu = FieldTask_GetEnv(param0->fieldTask);
+    fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
+    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
 
     u32 *v2 = (u32 *)Heap_AllocFromHeap(HEAP_ID_FIELDMAP, 4);
-    *v2 = param0->unk_04;
+    *v2 = fieldMoveMon->fieldMonId;
     menu->unk_260 = (void *)v2;
 
     menu->taskData = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
@@ -399,13 +398,13 @@ static int FieldMoves_GetSurfError(const FieldMoveContext *fieldMoveContext)
     return FIELD_MOVE_ERROR_NONE;
 }
 
-static void FieldMoves_SetSurfTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetSurfTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
     FieldMoveTaskData *taskData;
 
-    menu = FieldTask_GetEnv(param0->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
+    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -420,7 +419,7 @@ static BOOL FieldMoves_SurfTask(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     ScriptManager_Change(taskMan, 10012, NULL);
-    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
     return 0;
@@ -443,13 +442,13 @@ static int FieldMoves_GetStrengthError(const FieldMoveContext *fieldMoveContext)
     }
 }
 
-static void FieldMoves_SetStrengthTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetStrengthTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
     FieldMoveTaskData *taskData;
 
-    menu = FieldTask_GetEnv(param0->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
+    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -464,7 +463,7 @@ static BOOL FieldMoves_StrengthTask(FieldTask *param0)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
     ScriptManager_Change(param0, 10010, taskData->mapObj);
-    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
     return 0;
@@ -487,13 +486,13 @@ static int FieldMoves_GetDefogError(const FieldMoveContext *fieldMoveContext)
     }
 }
 
-static void FieldMoves_SetDefogTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetDefogTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
     FieldMoveTaskData *taskData;
 
-    menu = FieldTask_GetEnv(param0->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
+    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -508,7 +507,7 @@ static BOOL FieldMoves_DefogTask(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     ScriptManager_Change(taskMan, 10014, NULL);
-    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
     return 0;
@@ -535,13 +534,13 @@ static int FieldMoves_GetRockSmashError(const FieldMoveContext *fieldMoveContext
     }
 }
 
-static void FieldMoves_SetRockSmashTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetRockSmashTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
     FieldMoveTaskData *taskData;
 
-    menu = FieldTask_GetEnv(param0->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
+    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -556,7 +555,7 @@ static BOOL FieldMoves_RockSmashTask(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     ScriptManager_Change(taskMan, 10009, taskData->mapObj);
-    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
     return 0;
@@ -579,13 +578,13 @@ static int FieldMoves_GetWaterfallError(const FieldMoveContext *fieldMoveContext
     }
 }
 
-static void FieldMoves_SetWaterfallTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetWaterfallTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
     FieldMoveTaskData *taskData;
 
-    menu = FieldTask_GetEnv(param0->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
+    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -600,7 +599,7 @@ static BOOL FieldMoves_WaterfallTask(FieldTask *param0)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
     ScriptManager_Change(param0, 10013, NULL);
-    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
     return 0;
@@ -627,13 +626,13 @@ static int FieldMoves_GetRockClimbError(const FieldMoveContext *fieldMoveContext
     return FIELD_MOVE_ERROR_NONE;
 }
 
-static void FieldMoves_SetRockClimbTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetRockClimbTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
     FieldMoveTaskData *taskData;
 
-    menu = FieldTask_GetEnv(param0->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
+    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -648,7 +647,7 @@ static BOOL FieldMoves_RockClimbTask(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     ScriptManager_Change(taskMan, 10011, NULL);
-    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
     return 0;
@@ -667,13 +666,13 @@ static int FieldMoves_GetFlashError(const FieldMoveContext *fieldMoveContext)
     }
 }
 
-static void FieldMoves_SetFlashTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetFlashTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     StartMenu *menu;
     FieldMoveTaskData *taskData;
 
-    menu = FieldTask_GetEnv(param0->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
+    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -688,7 +687,7 @@ static BOOL FieldMoves_FlashTask(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     ScriptManager_Change(taskMan, 10015, NULL);
-    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
     return 0;
@@ -715,17 +714,17 @@ static int FieldMoves_GetTeleportError(const FieldMoveContext *fieldMoveContext)
     return FIELD_MOVE_ERROR_NONE;
 }
 
-static void FieldMoves_SetTeleportTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetTeleportTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     FieldSystem *fieldSystem;
     StartMenu *menu;
 
-    fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
-    menu = FieldTask_GetEnv(param0->fieldTask);
+    fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
+    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    UnkStruct_020711C8 *v2 = sub_020711C8(11, param0->unk_04, fieldSystem->saveData);
+    UnkStruct_020711C8 *v2 = sub_020711C8(11, fieldMoveMon->fieldMonId, fieldSystem->saveData);
 
     menu->callback = FieldMoves_TeleportTask;
     menu->taskData = v2;
@@ -761,20 +760,20 @@ static int FieldMoves_GetDigError(const FieldMoveContext *fieldMoveContext)
     return FIELD_MOVE_ERROR_NONE;
 }
 
-static void FieldMoves_SetDigTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetDigTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     FieldSystem *fieldSystem;
     StartMenu *v1;
 
-    fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
-    v1 = FieldTask_GetEnv(param0->fieldTask);
+    fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
+    v1 = FieldTask_GetEnv(fieldMoveMon->fieldTask);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
     {
         UnkStruct_020711C8 *v2;
 
-        v2 = sub_020711C8(11, param0->unk_04, fieldSystem->saveData);
+        v2 = sub_020711C8(11, fieldMoveMon->fieldMonId, fieldSystem->saveData);
 
         v1->callback = FieldMoves_DigTask;
         v1->taskData = v2;
@@ -810,7 +809,7 @@ static int FieldMoves_GetSweetScentError(const FieldMoveContext *fieldMoveContex
     return FIELD_MOVE_ERROR_NONE;
 }
 
-static void FieldMoves_SetSweetScentTask(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetSweetScentTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     FieldSystem *fieldSystem;
     StartMenu *v1;
@@ -818,10 +817,10 @@ static void FieldMoves_SetSweetScentTask(UnkStruct_020709CC *param0, const Field
     int v3;
     void *v4;
 
-    fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
-    v1 = FieldTask_GetEnv(param0->fieldTask);
+    fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
+    v1 = FieldTask_GetEnv(fieldMoveMon->fieldTask);
 
-    v2 = sub_020711C8(11, param0->unk_04, fieldSystem->saveData);
+    v2 = sub_020711C8(11, fieldMoveMon->fieldMonId, fieldSystem->saveData);
     FieldSystem_StartFieldMap(fieldSystem);
 
     v1->callback = ov5_021F101C;
@@ -832,7 +831,7 @@ static void FieldMoves_SetSweetScentTask(UnkStruct_020709CC *param0, const Field
     JournalEntry_SaveData(fieldSystem->journalEntry, v4, JOURNAL_LOCATION);
 }
 
-static int sub_02071130(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_GetChatterError(const FieldMoveContext *fieldMoveContext)
 {
     if ((PlayerOutsideLinkRoom(fieldMoveContext) == 0) || (sub_02071CB4(fieldMoveContext->fieldSystem, 9) == 1)) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -841,30 +840,30 @@ static int sub_02071130(const FieldMoveContext *fieldMoveContext)
     return FIELD_MOVE_ERROR_NONE;
 }
 
-static void sub_02071150(UnkStruct_020709CC *param0, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetChatterTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     FieldSystem *fieldSystem;
     StartMenu *menu;
     FieldMoveTaskData *taskData;
 
-    fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
-    menu = FieldTask_GetEnv(param0->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(param0, fieldMoveContext);
+    fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
+    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    menu->callback = sub_0207118C;
+    menu->callback = FieldMoves_ChatterTask;
     menu->taskData = taskData;
     menu->state = START_MENU_STATE_10;
 }
 
-static BOOL sub_0207118C(FieldTask *taskMan)
+static BOOL FieldMoves_ChatterTask(FieldTask *taskMan)
 {
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     ScriptManager_Change(taskMan, 8900, NULL);
-    FieldSystem_SetScriptParameters(fieldSystem, taskData->unk_08.unk_04, 0, 0, 0);
+    FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
     return 0;

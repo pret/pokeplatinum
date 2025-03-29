@@ -343,7 +343,7 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v2->unk_08 = sub_02028430(fieldSystem->saveData);
     v2->unk_0C = SaveData_Options(fieldSystem->saveData);
     v2->unk_10 = SaveData_TVBroadcast(fieldSystem->saveData);
-    v2->unk_18 = &menu->unk_24C;
+    v2->unk_18 = &menu->fieldMoveContext;
     v2->unk_21 = 0;
     v2->unk_20 = 5;
     v2->unk_1C = fieldSystem;
@@ -592,7 +592,7 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v2->unk_08 = sub_02028430(fieldSystem->saveData);
     v2->unk_0C = SaveData_Options(fieldSystem->saveData);
-    v2->unk_18 = &menu->unk_24C;
+    v2->unk_18 = &menu->fieldMoveContext;
     v2->unk_21 = 0;
     v2->unk_20 = 6;
     v2->unk_1C = fieldSystem;
@@ -990,7 +990,7 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v2->unk_08 = sub_02028430(fieldSystem->saveData);
     v2->unk_0C = SaveData_Options(fieldSystem->saveData);
     v2->unk_10 = SaveData_TVBroadcast(fieldSystem->saveData);
-    v2->unk_18 = &menu->unk_24C;
+    v2->unk_18 = &menu->fieldMoveContext;
     v2->unk_21 = 0;
     v2->unk_20 = 16;
     v2->unk_24 = param0->unk_04;

@@ -28,7 +28,7 @@ typedef struct {
     u32 unk_228;
     FieldTaskFunc callback;
     UnkStruct_020684D0 unk_230;
-    FieldMoveContext unk_24C;
+    FieldMoveContext fieldMoveContext;
     void *taskData;
     void *unk_260;
 } StartMenu;
