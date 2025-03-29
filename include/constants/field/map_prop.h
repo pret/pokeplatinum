@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_FIELD_MAP_PROP_H
 #define POKEPLATINUM_CONSTANTS_FIELD_MAP_PROP_H
 
-enum MapPropModelId {
+enum MapPropModelID {
     // Model name: treeeff
     MAP_PROP_MODEL_HONEY_TREE = 26,
     // Model name: c2_s03a
@@ -51,7 +51,7 @@ enum MapPropModelId {
     // Model name: table_l03
     MAP_PROP_MODEL_DESK_DRAWER_LAPTOP_FACING_LEFT = 248,
     // Model name: lift_base01
-    MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM = 258,
+    MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT = 258,
     // Model name: gym_door01
     MAP_PROP_MODEL_HEARTHOME_GYM_INSIDE_DOOR = 260,
     // Model name: gym_door00
@@ -87,7 +87,7 @@ enum MapPropModelId {
     // Model name: ev_o01
     MAP_PROP_MODEL_ELEVATOR_LIGHTS = 498,
     // Model name: leage_lift
-    MAP_PROP_MODEL_POKEMON_LEAGUE_LIFT_PLATFORM = 502,
+    MAP_PROP_MODEL_POKEMON_LEAGUE_PLATFORM_LIFT = 502,
     // Model name: leage_o03
     MAP_PROP_MODEL_POKEMON_LEAGUE_HALL_OF_FAME_MACHINE = 507,
     // Model name: pc_mb

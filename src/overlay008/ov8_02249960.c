@@ -780,7 +780,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 1: {
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT);
 
         {
             VecFx32 v3;
@@ -826,7 +826,7 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 1: {
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT);
 
         {
             VecFx32 v3;

@@ -123,6 +123,7 @@
 #include "party.h"
 #include "pc_boxes.h"
 #include "persisted_map_features_init.h"
+#include "platform_lift.h"
 #include "player_avatar.h"
 #include "poffin.h"
 #include "pokedex.h"
@@ -209,7 +210,6 @@
 #include "unk_0206CCB0.h"
 #include "unk_0206F314.h"
 #include "unk_02070428.h"
-#include "unk_0207160C.h"
 #include "unk_02071D40.h"
 #include "unk_020722AC.h"
 #include "unk_0207DA28.h"
@@ -6754,7 +6754,7 @@ static BOOL InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx)
 
 static BOOL ScrCmd_25C(ScriptContext *ctx)
 {
-    sub_0207183C(ctx->fieldSystem);
+    PlatformLift_Trigger(ctx->fieldSystem);
     return 1;
 }
 
@@ -6762,7 +6762,7 @@ static BOOL ScrCmd_25D(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    if (sub_02071818(ctx->fieldSystem)) {
+    if (PlatformLift_WasNotUsedWhenEnteredMap(ctx->fieldSystem)) {
         (*v0) = 1;
     } else {
         (*v0) = 0;
