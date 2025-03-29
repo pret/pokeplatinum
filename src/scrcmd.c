@@ -632,8 +632,8 @@ static BOOL ScrCmd_258(ScriptContext *ctx);
 static BOOL ScrCmd_259(ScriptContext *ctx);
 static BOOL ScrCmd_25A(ScriptContext *ctx);
 static BOOL InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx);
-static BOOL ScrCmd_25C(ScriptContext *ctx);
-static BOOL ScrCmd_25D(ScriptContext *ctx);
+static BOOL ScrCmd_TriggerPlatformLift(ScriptContext *ctx);
+static BOOL ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap(ScriptContext *ctx);
 static BOOL ScrCmd_25E(ScriptContext *ctx);
 static BOOL ScrCmd_25F(ScriptContext *ctx);
 static BOOL ScrCmd_260(ScriptContext *ctx);
@@ -1369,8 +1369,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_259,
     ScrCmd_25A,
     InitPersistedMapFeaturesForPlatformLift,
-    ScrCmd_25C,
-    ScrCmd_25D,
+    ScrCmd_TriggerPlatformLift,
+    ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap,
     ScrCmd_25E,
     ScrCmd_25F,
     ScrCmd_260,
@@ -6752,23 +6752,23 @@ static BOOL InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_25C(ScriptContext *ctx)
+static BOOL ScrCmd_TriggerPlatformLift(ScriptContext *ctx)
 {
     PlatformLift_Trigger(ctx->fieldSystem);
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_25D(ScriptContext *ctx)
+static BOOL ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     if (PlatformLift_WasNotUsedWhenEnteredMap(ctx->fieldSystem)) {
-        (*v0) = 1;
+        *destVar = TRUE;
     } else {
-        (*v0) = 0;
+        *destVar = FALSE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_25E(ScriptContext *ctx)
