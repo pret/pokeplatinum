@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "generated/genders.h"
-#include "generated/sdat.h"
 
 #include "field/field_system_decl.h"
 #include "overlay025/ov25_02254560.h"

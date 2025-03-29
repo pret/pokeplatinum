@@ -33,10 +33,10 @@
 
 #include "heap.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_02094EDC.h"
 
 static int ov17_02243C68(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
@@ -257,7 +257,7 @@ static void ov17_02243E2C(SysTask *param0, void *param1)
             ov17_02242E5C(v0->unk_00, v0->unk_18, &v0->unk_12, NULL);
         }
 
-        Sound_PlayEffect(1785);
+        Sound_PlayEffect(SEQ_SE_DP_CON_032);
         v0->unk_0C++;
         break;
     case 1:
@@ -336,10 +336,10 @@ static void ov17_02243F68(SysTask *param0, void *param1)
         v3 = v0->unk_15;
         v4 = Pokemon_SpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v3], 0);
 
-        sub_02007DEC(v0->unk_00->unk_0C.unk_08[v3], 37, 0);
-        sub_02007DEC(v0->unk_00->unk_0C.unk_08[v3], 6, 0);
-        sub_02007DEC(v0->unk_00->unk_0C.unk_08[v3], 0, ((256 - 40) + 40));
-        sub_02007DEC(v0->unk_00->unk_0C.unk_08[v3], 1, ((104 + 8) + 60) + v4);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_HIDE_2, 0);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_HIDE, 0);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_X_CENTER, ((256 - 40) + 40));
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_Y_CENTER, ((104 + 8) + 60) + v4);
 
         v0->unk_0C = ((256 - 40) + 40) << 8;
         v0->unk_10 = ((104 + 8) + 60) << 8;
@@ -349,7 +349,7 @@ static void ov17_02243F68(SysTask *param0, void *param1)
 
     case 2:
         if (v0->unk_15 == v0->unk_00->unk_00->unk_00.unk_113) {
-            Sound_PlayEffect(1784);
+            Sound_PlayEffect(SEQ_SE_DP_CON_031);
         }
 
         v0->unk_14++;
@@ -364,8 +364,8 @@ static void ov17_02243F68(SysTask *param0, void *param1)
             v0->unk_14++;
         }
 
-        sub_02007DEC(v0->unk_00->unk_0C.unk_08[v0->unk_15], 0, v0->unk_0C >> 8);
-        sub_02007DEC(v0->unk_00->unk_0C.unk_08[v0->unk_15], 1, (v0->unk_10 >> 8) + v2);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_15], MON_SPRITE_X_CENTER, v0->unk_0C >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_15], MON_SPRITE_Y_CENTER, (v0->unk_10 >> 8) + v2);
         break;
     default:
         if (v0->unk_16 == 1) {
@@ -422,13 +422,13 @@ static void ov17_0224413C(SysTask *param0, void *param1)
         v0->unk_10 += (((((104 + 8) + 60) - (104 + 8)) << 8) / 7);
 
         if (((v0->unk_0C >> 8) >= ((256 - 40) + 40)) || ((v0->unk_10 >> 8) >= ((104 + 8) + 60))) {
-            sub_02007DEC(v0->unk_00->unk_0C.unk_08[v1], 37, 1);
-            sub_02007DEC(v0->unk_00->unk_0C.unk_08[v1], 6, 1);
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_HIDE_2, 1);
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_HIDE, 1);
             v0->unk_14++;
         }
 
-        sub_02007DEC(v0->unk_00->unk_0C.unk_08[v0->unk_15], 0, v0->unk_0C >> 8);
-        sub_02007DEC(v0->unk_00->unk_0C.unk_08[v0->unk_15], 1, (v0->unk_10 >> 8) + v2);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_15], MON_SPRITE_X_CENTER, v0->unk_0C >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_15], MON_SPRITE_Y_CENTER, (v0->unk_10 >> 8) + v2);
         break;
     case 1:
         if (v0->unk_00->unk_1616[v0->unk_15] == 1) {
@@ -727,16 +727,16 @@ static void ov17_022444BC(SysTask *param0, void *param1)
             v17 = Pokemon_SpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 0);
 
             if (v0->unk_104.unk_00 != ((0x40 ^ 0xffffffff) & (0x80 ^ 0xffffffff) & (0x40000 ^ 0xffffffff) & (0x20000000 ^ 0xffffffff))) {
-                sub_02007DEC(v0->unk_00->unk_0C.unk_08[v0->unk_0D], 6, 0);
+                PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_0D], MON_SPRITE_HIDE, 0);
             }
 
-            sub_02007DEC(v0->unk_00->unk_0C.unk_08[v0->unk_0D], 37, 0);
-            sub_02007DEC(v0->unk_00->unk_0C.unk_08[v0->unk_0D], 0, (256 - 40));
-            sub_02007DEC(v0->unk_00->unk_0C.unk_08[v0->unk_0D], 1, (104 + 8) + v17);
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_0D], MON_SPRITE_HIDE_2, 0);
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_0D], MON_SPRITE_X_CENTER, (256 - 40));
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_0D], MON_SPRITE_Y_CENTER, (104 + 8) + v17);
 
-            sub_02007DEC(v0->unk_00->unk_0C.unk_08[v1], 37, 1);
-            sub_02007DEC(v0->unk_00->unk_0C.unk_08[v1], 0, 80);
-            sub_02007DEC(v0->unk_00->unk_0C.unk_08[v1], 1, (50 - 8));
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_HIDE_2, 1);
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_X_CENTER, 80);
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_Y_CENTER, (50 - 8));
         }
 
         v0->unk_0C++;
@@ -839,7 +839,7 @@ static void ov17_022449B8(SysTask *param0, void *param1)
         }
 
         if ((v0->unk_00->unk_220.unk_00 + 1 == 4) && (v0->unk_0E == 0)) {
-            Sound_PlayEffect(1782);
+            Sound_PlayEffect(SEQ_SE_DP_CON_029);
             v0->unk_0E++;
         }
 
@@ -857,7 +857,7 @@ static void ov17_022449B8(SysTask *param0, void *param1)
 
         if (v1 != 0xffffffff) {
             v0->unk_10.unk_00 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_MOVE1 + v1, NULL);
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             v0->unk_0C++;
         }
         break;
@@ -894,7 +894,7 @@ static void ov17_022449B8(SysTask *param0, void *param1)
 
         if (v1 != 0xffffffff) {
             v0->unk_10.unk_02 = v1;
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             v0->unk_0C++;
         }
         break;
@@ -1103,7 +1103,7 @@ static void ov17_02244D98(SysTask *param0, void *param1)
             if (v0->unk_14.unk_10.unk_B3[v4] <= v3) {
                 v2++;
                 ov17_022424D4(&v0->unk_00->unk_0C, v4, v3);
-                Sound_PlayEffect(1759);
+                Sound_PlayEffect(SEQ_SE_DP_CON_001);
             }
         }
 
@@ -1133,7 +1133,7 @@ static void ov17_02244D98(SysTask *param0, void *param1)
 
             if ((v0->unk_14.unk_10.unk_00[v6].unk_28_4 != v0->unk_14.unk_10.unk_00[v6].unk_28_8) || (v0->unk_14.unk_10.unk_00[v6].unk_28_6 != v0->unk_14.unk_10.unk_00[v6].unk_28_10)) {
                 ov17_022430AC(&v0->unk_00->unk_0C, v5, v0->unk_14.unk_10.unk_00[v6].unk_28_6);
-                Sound_PlayEffect(1762);
+                Sound_PlayEffect(SEQ_SE_DP_CON_004);
             }
         }
     }
@@ -1334,7 +1334,7 @@ static void ov17_0224519C(SysTask *param0, void *param1)
             } else {
                 v0->unk_F4 -= 10;
                 ov17_022424D4(&v0->unk_00->unk_0C, v1->unk_03, v0->unk_F4);
-                Sound_PlayEffect(1759);
+                Sound_PlayEffect(SEQ_SE_DP_CON_001);
             }
 
             v0->unk_0C++;
@@ -1569,16 +1569,16 @@ static void ov17_022456E8(SysTask *param0, void *param1)
 
         if (v1->unk_09 == 0) {
             v5 = 4;
-            Sound_PlayEffect(1776);
+            Sound_PlayEffect(SEQ_SE_DP_CON_023);
         } else if (v1->unk_09 == 1) {
             v5 = 5;
-            Sound_PlayEffect(1775);
+            Sound_PlayEffect(SEQ_SE_DP_CON_022);
         } else if (v1->unk_09 == 2) {
             v5 = 6;
-            Sound_PlayEffect(1774);
+            Sound_PlayEffect(SEQ_SE_DP_CON_021);
         } else {
             v0->unk_0C = 3;
-            Sound_PlayEffect(1759);
+            Sound_PlayEffect(SEQ_SE_DP_CON_001);
             break;
         }
 

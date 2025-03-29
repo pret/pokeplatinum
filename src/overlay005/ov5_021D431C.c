@@ -3,10 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/map_prop.h"
+#include "constants/field/map_prop.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02055130.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
@@ -19,15 +18,15 @@
 #include "heap.h"
 #include "map_object.h"
 #include "player_avatar.h"
+#include "terrain_collision_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02054D00.h"
 #include "unk_02056B30.h"
 #include "unk_020655F4.h"
 
 typedef struct UnkStruct_ov5_021D432C_t {
     int unk_00;
-    UnkStruct_02055130 unk_04;
+    TerrainCollisionHitbox unk_04;
     int unk_14;
     int unk_18;
     u8 unk_1C;
@@ -75,7 +74,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     case 0: {
         BOOL v1;
         MapProp *v2;
-        UnkStruct_02055130 v3;
+        TerrainCollisionHitbox v3;
         int v4;
         int v5[] = {
             MAP_PROP_MODEL_DOOR01,
@@ -103,11 +102,11 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         param1->unk_20 = 0;
         param1->unk_1D = 0;
 
-        sub_020550F4(param1->unk_14, param1->unk_18, -1, -1, 3, 1, &v3);
+        TerrainCollisionHitbox_Init(param1->unk_14, param1->unk_18, -1, -1, 3, 1, &v3);
 
         param1->unk_1C = 1;
 
-        v1 = sub_02055208(fieldSystem, v5, NELEMS(v5), &v3, &v2, &v4);
+        v1 = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, v5, NELEMS(v5), &v3, &v2, &v4);
 
         if (v1) {
             u8 v6;
@@ -234,7 +233,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     case 0: {
         BOOL v1;
         MapProp *v2;
-        UnkStruct_02055130 v3;
+        TerrainCollisionHitbox v3;
         int v4;
         int v5[] = {
             MAP_PROP_MODEL_DOOR01,
@@ -261,10 +260,10 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
 
         param1->unk_20 = 0;
         param1->unk_1D = 0;
-        sub_020550F4(param1->unk_14, param1->unk_18, -1, 0, 3, 1, &v3);
+        TerrainCollisionHitbox_Init(param1->unk_14, param1->unk_18, -1, 0, 3, 1, &v3);
         param1->unk_1C = 1;
 
-        v1 = sub_02055208(fieldSystem, v5, NELEMS(v5), &v3, &v2, &v4);
+        v1 = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, v5, NELEMS(v5), &v3, &v2, &v4);
 
         if (v1) {
             u8 v6;
@@ -483,7 +482,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
     case 0: {
         BOOL v1;
         MapProp *v2;
-        UnkStruct_02055130 v3;
+        TerrainCollisionHitbox v3;
         int v4;
         int v5[] = {
             MAP_PROP_MODEL_POKECENTER_STAIR_UP_LEFT,
@@ -493,13 +492,13 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         };
 
         if (param2 == 2) {
-            sub_020550F4(param1->unk_14, param1->unk_18, -1, 0, 2, 1, &v3);
+            TerrainCollisionHitbox_Init(param1->unk_14, param1->unk_18, -1, 0, 2, 1, &v3);
         } else {
-            sub_020550F4(param1->unk_14, param1->unk_18, 0, 0, 2, 1, &v3);
+            TerrainCollisionHitbox_Init(param1->unk_14, param1->unk_18, 0, 0, 2, 1, &v3);
         }
 
         param1->unk_1C = 2;
-        v1 = sub_02055208(fieldSystem, v5, NELEMS(v5), &v3, &v2, &v4);
+        v1 = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, v5, NELEMS(v5), &v3, &v2, &v4);
 
         if (v1) {
             u8 v6;
@@ -600,7 +599,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
     case 0: {
         BOOL v1;
         MapProp *v2;
-        UnkStruct_02055130 v3;
+        TerrainCollisionHitbox v3;
         int v4;
         int v5[] = {
             MAP_PROP_MODEL_POKECENTER_STAIR_UP_LEFT,
@@ -610,13 +609,13 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         };
 
         if (param2 == 2) {
-            sub_020550F4(param1->unk_14, param1->unk_18, -1, 0, 2, 1, &v3);
+            TerrainCollisionHitbox_Init(param1->unk_14, param1->unk_18, -1, 0, 2, 1, &v3);
         } else {
-            sub_020550F4(param1->unk_14, param1->unk_18, 0, 0, 2, 1, &v3);
+            TerrainCollisionHitbox_Init(param1->unk_14, param1->unk_18, 0, 0, 2, 1, &v3);
         }
 
         param1->unk_1C = 2;
-        v1 = sub_02055208(fieldSystem, v5, NELEMS(v5), &v3, &v2, &v4);
+        v1 = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, v5, NELEMS(v5), &v3, &v2, &v4);
 
         if (v1) {
             u8 v6;
@@ -714,7 +713,7 @@ void ov5_021D4BF4(FieldSystem *fieldSystem, const int param1, const int param2, 
 {
     BOOL v0;
     MapProp *v1;
-    UnkStruct_02055130 v2;
+    TerrainCollisionHitbox v2;
     int v3;
     int v4[] = {
         MAP_PROP_MODEL_DOOR01,
@@ -739,8 +738,8 @@ void ov5_021D4BF4(FieldSystem *fieldSystem, const int param1, const int param2, 
         MAP_PROP_MODEL_ELEVATOR_DOOR
     };
 
-    sub_020550F4(param1, param2, -1, 0, 3, 1, &v2);
-    v0 = sub_02055208(fieldSystem, v4, NELEMS(v4), &v2, &v1, &v3);
+    TerrainCollisionHitbox_Init(param1, param2, -1, 0, 3, 1, &v2);
+    v0 = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, v4, NELEMS(v4), &v2, &v1, &v3);
 
     if (v0) {
         u8 v5;
@@ -833,13 +832,16 @@ void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSys
 {
     BOOL v0;
     MapProp *v1;
-    UnkStruct_02055130 v2;
+    TerrainCollisionHitbox v2;
     int v3;
-    int v4[] = { 303, 304 };
+    int v4[] = {
+        MAP_PROP_MODEL_BIKE_MUDDY_SLOPE,
+        MAP_PROP_MODEL_BIKE_DUNGEON_MUDDY_SLOPE
+    };
 
-    sub_020550F4(param0, param1, 0, -1, 1, 3, &v2);
+    TerrainCollisionHitbox_Init(param0, param1, 0, -1, 1, 3, &v2);
 
-    v0 = sub_02055208(fieldSystem, v4, NELEMS(v4), &v2, &v1, &v3);
+    v0 = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, v4, NELEMS(v4), &v2, &v1, &v3);
     GF_ASSERT(v0);
 
     {
@@ -942,7 +944,7 @@ BOOL ov5_021D4F14(FieldTask *param0)
         v1->unk_08 = 0;
         v1->unk_04 = 0;
 
-        Sound_PlayEffect(1539);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, HEAP_ID_FIELDMAP);
 
         v1->unk_08 = 1;
@@ -973,7 +975,7 @@ BOOL ov5_021D4FA0(FieldTask *param0)
         v1->unk_08 = 0;
         v1->unk_04 = 0;
 
-        Sound_PlayEffect(1539);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         sub_02056B30(param0, 0, 16, 0, 0x0, 6, 1, HEAP_ID_FIELDMAP);
 
         v1->unk_08 = 1;

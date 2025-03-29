@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "constants/field/map_load.h"
 #include "generated/journal_location_events.h"
 #include "generated/object_events.h"
@@ -25,19 +26,19 @@
 #include "map_header.h"
 #include "map_object.h"
 #include "map_tile_behavior.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "save_player.h"
 #include "script_manager.h"
 #include "start_menu.h"
 #include "system_flags.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
-#include "unk_02054D00.h"
 #include "unk_0205F180.h"
 #include "unk_0206B70C.h"
 #include "unk_020711C8.h"
-#include "unk_02071B10.h"
 #include "vars_flags.h"
 
 #define FIELD_MOVE_FLAG(move) (1 << (move))
@@ -227,10 +228,10 @@ void FieldMoves_SetUsableMoves(FieldSystem *fieldSystem, FieldMoveContext *field
 
     playerX = Player_GetXPos(fieldSystem->playerAvatar);
     playerY = Player_GetZPos(fieldSystem->playerAvatar);
-    currTileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerY);
+    currTileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerY);
 
     PlayerAvatar_GetFacingTileCoords(fieldSystem->playerAvatar, &playerX, &playerY);
-    nextTileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerY);
+    nextTileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerY);
 
     if (PlayerAvatar_CanUseSurf(fieldSystem->playerAvatar, currTileBehavior, nextTileBehavior)) {
         fieldMoveContext->usableMoves |= FIELD_MOVE_FLAG(FIELD_MOVE_SURF);
@@ -833,7 +834,7 @@ static void FieldMoves_SetSweetScentTask(FieldMovePokemon *fieldMoveMon, const F
 
 static int FieldMoves_GetChatterError(const FieldMoveContext *fieldMoveContext)
 {
-    if ((PlayerOutsideLinkRoom(fieldMoveContext) == 0) || (sub_02071CB4(fieldMoveContext->fieldSystem, 9) == 1)) {
+    if ((PlayerOutsideLinkRoom(fieldMoveContext) == 0) || (PersistedMapFeatures_IsCurrentDynamicMap(fieldMoveContext->fieldSystem, 9) == 1)) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 

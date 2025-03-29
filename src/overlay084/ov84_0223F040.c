@@ -74,7 +74,7 @@ void ov84_0223F1F8(UnkStruct_ov84_0223B5A0 *param0)
     MessageLoader *v0;
     u16 v1;
 
-    v0 = MessageLoader_Init(1, 26, 395, HEAP_ID_6);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0395, HEAP_ID_6);
 
     for (v1 = 0; v1 < 8; v1++) {
         param0->unk_404[v1] = MessageLoader_GetNewStrbuf(v0, v1);
@@ -593,7 +593,7 @@ static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1)
     case 2:
         return sub_020061E4();
     case 3:
-        Sound_PlayEffect(1549);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         break;
     case 4:
         return Sound_IsEffectPlaying(1549);

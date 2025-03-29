@@ -434,7 +434,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     CommMan_SetErrorHandling(1, 1);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    ResetLock(2);
+    ResetLock(RESET_LOCK_0x2);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_95, 0x80000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D0F70), HEAP_ID_95);
@@ -510,7 +510,7 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
     NARC_dtor(v0->unk_D80);
     OverlayManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_95);
-    ResetUnlock(2);
+    ResetUnlock(RESET_LOCK_0x2);
 
     return 1;
 }
@@ -1072,7 +1072,7 @@ static int ov109_021D1648(UnkStruct_ov109_021D0F70 *param0)
         param0->unk_00 = 31;
     }
 
-    Sound_PlayEffect(1521);
+    Sound_PlayEffect(SEQ_SE_DP_PINPON);
     return 1;
 }
 
@@ -2007,7 +2007,7 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 38, GetMessageBoxPaletteNARCMember(param0->unk_CC->unk_14.unk_04), 95, 0, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
 
-    v1->unk_04 = MessageLoader_Init(0, 26, 376, HEAP_ID_95);
+    v1->unk_04 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0376, HEAP_ID_95);
     v1->unk_08 = StringTemplate_Default(HEAP_ID_95);
 
     for (v0 = 0; v0 < 1; v0++) {
@@ -2641,7 +2641,7 @@ static int ov109_021D308C(UnkStruct_ov109_021D2FE0 *param0)
     if (param0->unk_08 == 0) {
         if (v0->unk_50.y <= (FX32_ONE * 104)) {
             param0->unk_08 = 1;
-            Sound_PlayEffect(1616);
+            Sound_PlayEffect(SEQ_SE_DP_FW104);
         }
     }
 
@@ -2977,7 +2977,7 @@ static void ov109_021D34A8(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
             ov109_021D3218(param0);
             param1->unk_04 = 1;
             param1->unk_00++;
-            Sound_PlayEffect(1623);
+            Sound_PlayEffect(SEQ_SE_DP_DANSA5);
         }
         break;
     case 4:
@@ -2999,7 +2999,7 @@ static void ov109_021D34A8(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
             param1->unk_08 = 0;
             param1->unk_04 = 0;
             param1->unk_00 = 0;
-            Sound_PlayEffect(1585);
+            Sound_PlayEffect(SEQ_SE_DP_SUTYA);
         }
         break;
     }
@@ -3121,7 +3121,7 @@ static void ov109_021D3700(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
         break;
     case 1:
         ov109_021D228C(param0);
-        Sound_PlayEffect(1508);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         param1->unk_04 = 0;
         param1->unk_00++;
     case 2:
@@ -3467,7 +3467,7 @@ static void ov109_021D3B70(UnkStruct_ov109_021D0F70 *param0, int param1)
     v4 = Party_GetPokemonBySlotIndex(v2, v0);
     v5 = Party_GetPokemonBySlotIndex(v3, v1);
 
-    sub_0209304C(v5, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, 11);
+    UpdateMonStatusAndTrainerInfo(v5, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELDMAP);
     Pokemon_Copy(v5, v4);
 }
 

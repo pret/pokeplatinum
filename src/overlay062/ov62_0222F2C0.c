@@ -19,6 +19,7 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "render_text.h"
 #include "savedata_misc.h"
 #include "sprite_system.h"
@@ -26,7 +27,6 @@
 #include "sys_task.h"
 #include "system.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_02012744.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"
@@ -56,7 +56,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     param0->unk_14.unk_10 = BgConfig_New(HEAP_ID_102);
     param0->unk_14.unk_14 = PaletteData_New(HEAP_ID_102);
     param0->unk_14.unk_4C = sub_02024220(HEAP_ID_102, 0, 1, 0, 4, NULL);
-    param0->unk_14.unk_50 = sub_0200762C(HEAP_ID_102);
+    param0->unk_14.unk_50 = PokemonSpriteManager_New(HEAP_ID_102);
 
     NNS_G2dSetupSoftwareSpriteCamera();
 
@@ -125,8 +125,8 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
 
     {
         param0->unk_14.unk_3C = sub_02012744((5 * 2) + 10, HEAP_ID_102);
-        param0->unk_14.unk_34 = MessageLoader_Init(0, 26, 10, HEAP_ID_102);
-        param0->unk_14.unk_38 = MessageLoader_Init(0, 26, 20, HEAP_ID_102);
+        param0->unk_14.unk_34 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, HEAP_ID_102);
+        param0->unk_14.unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0020, HEAP_ID_102);
     }
 
     ov62_022338A8(param0);
@@ -200,7 +200,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
     }
 
     sub_020242C4(param0->unk_14.unk_4C);
-    sub_02007B6C(param0->unk_14.unk_50);
+    PokemonSpriteManager_Free(param0->unk_14.unk_50);
 
     ov62_022411EC(param0);
 
@@ -451,7 +451,7 @@ BOOL ov62_0222F910(UnkStruct_0208C06C *param0, int *param1)
     }
 
     sub_020241B4();
-    sub_02007768(param0->unk_14.unk_50);
+    PokemonSpriteManager_DrawSprites(param0->unk_14.unk_50);
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
     ov62_022411D4(param0);
@@ -623,9 +623,9 @@ BOOL ov62_0222FD3C(UnkStruct_0208C06C *param0)
     }
 
     if (v1 == 0) {
-        Sound_PlayEffect(1380);
+        Sound_PlayEffect(SEQ_SE_PL_BREC58);
     } else {
-        Sound_PlayEffect(1379);
+        Sound_PlayEffect(SEQ_SE_PL_BREC57);
     }
 
     return v1;

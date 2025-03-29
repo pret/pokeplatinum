@@ -249,7 +249,7 @@ void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1)
     int v0;
     TextColor v1 = TEXT_COLOR(1, 2, 0);
 
-    Sound_PlayEffect(1508);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
 
     if (param0->unk_14 != 0xFFFF) {
         if (param1 == param0->unk_1B) {
@@ -320,7 +320,7 @@ static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
     v1 = TEXT_COLOR(1, 2, 0);
 
     if (!param2) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     ListMenu_GetListAndCursorPos(param0, &v2, &v3);
@@ -402,7 +402,7 @@ void ov79_021D1F60(UnkStruct_ov79_021D0E1C *param0)
 static void ov79_021D1FA8(ListMenu *param0, u32 param1, u8 param2)
 {
     if (!param2) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 

@@ -50,6 +50,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_flags.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -57,7 +58,6 @@
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
-#include "unk_02054D00.h"
 #include "unk_020573FC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
@@ -1583,7 +1583,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         sub_0200F2C0();
         StartScreenTransition(2, 16, 18, 0x0, 6, 1, HEAP_ID_FIELD);
         ov23_0224942C(fieldSystem->unk_6C);
-        Sound_PlayEffect(1539);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         v1->unk_0C++;
         break;
     case 2:
@@ -1667,7 +1667,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         PlayerAvatar_SetAnimationCode(fieldSystem->playerAvatar, sub_02065838(1, 0x24), 1);
         CommPlayer_SetDir(1);
         ov23_02253F40(ov23_0224219C(), 68, 0, NULL);
-        Sound_PlayEffect(1540);
+        Sound_PlayEffect(SEQ_SE_DP_DOOR);
         v1->unk_0C = 12;
         break;
     case 12:
@@ -1752,7 +1752,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
     }
         sub_020594FC();
         ov23_02254098(ov23_0224219C(), 33);
-        Sound_PlayEffect(1566);
+        Sound_PlayEffect(SEQ_SE_DP_DORIRU);
 
         ov5_021F58FC(Player_MapObject(fieldSystem->playerAvatar), 0, 0, 0);
         ov23_02253F40(ov23_0224219C(), 33, 0, NULL);
@@ -1913,7 +1913,7 @@ void ov23_0224CD80(int param0, int param1, void *param2, void *param3)
         (void)0;
     } else if (ov23_02242E58(v1, v2)) {
         v8.unk_01 = 6;
-    } else if (FieldSystem_CheckCollision(Unk_ov23_022577AC->fieldSystem, v1, v2) && FieldSystem_CheckCollision(Unk_ov23_022577AC->fieldSystem, v3, v4) && FieldSystem_CheckCollision(Unk_ov23_022577AC->fieldSystem, v5, v6)) {
+    } else if (TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v1, v2) && TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v3, v4) && TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v5, v6)) {
         if (v0[0] == 0) {
             v8.unk_01 = 1;
         } else {
@@ -2354,7 +2354,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
     case 0:
         sub_020594FC();
         ov23_02253F40(ov23_022421AC(), 7, 0, NULL);
-        Sound_PlayEffect(1507);
+        Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
         v0->unk_00 = 1;
         break;
     case 1:
@@ -2677,7 +2677,7 @@ void ov23_0224DAD0(int param0)
     v0 = sub_02058EA0(v3);
     v1 = sub_02058EC0(v3);
 
-    if (!FieldSystem_CheckCollision(Unk_ov23_022577AC->fieldSystem, v0, v1)) {
+    if (!TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v0, v1)) {
         if (param0 == 0) {
             return;
         }
@@ -2689,7 +2689,7 @@ void ov23_0224DAD0(int param0)
 
     if ((v0 == 0xffff) && (v1 == 0xffff)) {
         ov23_0224B844(v3, v3, 1);
-    } else if (ov23_02242E58(v0, v1) || FieldSystem_CheckCollision(Unk_ov23_022577AC->fieldSystem, v0, v1)) {
+    } else if (ov23_02242E58(v0, v1) || TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v0, v1)) {
         ov23_0224B844(v3, v3, 1);
     }
 }

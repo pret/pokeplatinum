@@ -3,13 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/map_prop.h"
+#include "constants/field/dynamic_map_features.h"
+#include "constants/field/map.h"
+#include "constants/field/map_prop.h"
 
-#include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02055130.h"
 #include "struct_defs/struct_02071B10.h"
 #include "struct_defs/struct_02071B30.h"
 #include "struct_defs/struct_02071B6C.h"
@@ -19,12 +19,12 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/dynamic_terrain_height.h"
 #include "overlay005/land_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021DF440.h"
-#include "overlay005/ov5_021EF250.h"
 #include "overlay005/ov5_021F4018.h"
 #include "overlay005/ov5_021F428C.h"
 #include "overlay005/ov5_021F47B0.h"
@@ -45,6 +45,7 @@
 #include "map_tile_behavior.h"
 #include "math.h"
 #include "message.h"
+#include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
@@ -55,10 +56,9 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_vars.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_02027F50.h"
-#include "unk_02054D00.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
@@ -338,26 +338,30 @@ static void ov8_0224996C(const u8 param0, int *param1)
 
 void ov8_0224997C(FieldSystem *fieldSystem)
 {
-    UnkStruct_02055130 v0;
+    TerrainCollisionHitbox v0;
     int v1, v2;
     BOOL v3;
     int v4;
-    int v5[] = { 239, 240, 241 };
+    int v5[] = {
+        MAP_PROP_MODEL_PASTORIA_GYM_BLUE_BUTTON,
+        MAP_PROP_MODEL_PASTORIA_GYM_GREEN_BUTTON,
+        MAP_PROP_MODEL_PASTORIA_GYM_ORANGE_BUTTON
+    };
 
     v1 = Player_GetXPos(fieldSystem->playerAvatar);
     v2 = Player_GetZPos(fieldSystem->playerAvatar);
 
-    sub_020550F4(v1, v2, 0, 0, 1, 1, &v0);
+    TerrainCollisionHitbox_Init(v1, v2, 0, 0, 1, 1, &v0);
 
-    v3 = sub_02055208(fieldSystem, v5, NELEMS(v5), &v0, NULL, &v4);
+    v3 = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, v5, NELEMS(v5), &v0, NULL, &v4);
 
     if (v3) {
         UnkStruct_ov8_0224997C *v6;
-        UnkStruct_02027860 *v7;
+        PersistedMapFeatures *v7;
         UnkStruct_02071B10 *v8;
 
-        v7 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-        v8 = (UnkStruct_02071B10 *)sub_02027F6C(v7, 1);
+        v7 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+        v8 = (UnkStruct_02071B10 *)PersistedMapFeatures_GetBuffer(v7, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
 
         v6 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
         v6->unk_00 = 0;
@@ -377,29 +381,29 @@ void ov8_0224997C(FieldSystem *fieldSystem)
     }
 }
 
-BOOL ov8_02249A40(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
+BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
 {
-    u8 v0 = FieldSystem_GetTileBehavior(fieldSystem, param1, param2);
+    u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileY);
 
-    if (TileBehavior_IsPastoriaGymHighGround(v0)) {
-        if (param3 != 0) {
-            (*param4) = 1;
-            return 1;
+    if (TileBehavior_IsPastoriaGymHighGround(tileBehavior)) {
+        if (height != MAP_OBJECT_TILE_SIZE * 0) {
+            *isColliding = TRUE;
+            return TRUE;
         }
-    } else if (TileBehavior_IsPastoriaGymMiddleGround(v0)) {
-        if (param3 != FX32_ONE * 16 * 2) {
-            (*param4) = 1;
-            return 1;
+    } else if (TileBehavior_IsPastoriaGymMiddleGround(tileBehavior)) {
+        if (height != MAP_OBJECT_TILE_SIZE * 2) {
+            *isColliding = TRUE;
+            return TRUE;
         }
-    } else if (TileBehavior_IsPastoriaGymLowGround(v0)) {
-        if (param3 != FX32_ONE * 16 * 4) {
-            (*param4) = 1;
-            return 1;
+    } else if (TileBehavior_IsPastoriaGymLowGround(tileBehavior)) {
+        if (height != MAP_OBJECT_TILE_SIZE * 4) {
+            *isColliding = TRUE;
+            return TRUE;
         }
     }
 
-    (*param4) = 0;
-    return 0;
+    *isColliding = FALSE;
+    return FALSE;
 }
 
 static BOOL ov8_02249A94(FieldTask *taskMan)
@@ -442,7 +446,7 @@ static BOOL ov8_02249A94(FieldTask *taskMan)
         }
     } break;
     case 2:
-        ov5_021EF388(0, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 0), fieldSystem->dynamicTerrainHeightMan);
         Sound_StopEffect(1626, 0);
         (v2->unk_00)++;
         break;
@@ -529,7 +533,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
         }
         break;
     case 4:
-        ov5_021EF388(0, (FX32_ONE * 16 * 2), fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 2), fieldSystem->dynamicTerrainHeightMan);
         Sound_StopEffect(1626, 0);
         (v2->unk_00)++;
         break;
@@ -580,7 +584,7 @@ static BOOL ov8_02249CD8(FieldTask *taskMan)
         }
     } break;
     case 2:
-        ov5_021EF388(0, (FX32_ONE * 16 * 4), fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 4), fieldSystem->dynamicTerrainHeightMan);
         Sound_StopEffect(1626, 0);
         (v2->unk_00)++;
         break;
@@ -592,25 +596,25 @@ static BOOL ov8_02249CD8(FieldTask *taskMan)
     return 0;
 }
 
-void ov8_02249DBC(FieldSystem *fieldSystem)
+void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     u8 v0;
     MapProp *v1;
     fx32 v2;
     fx32 v3;
     BOOL v4, v5, v6;
-    UnkStruct_02027860 *v7;
+    PersistedMapFeatures *v7;
     UnkStruct_02071B10 *v8;
 
-    v7 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v8 = (UnkStruct_02071B10 *)sub_02027F6C(v7, 1);
+    v7 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v8 = (UnkStruct_02071B10 *)PersistedMapFeatures_GetBuffer(v7, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
 
     {
         VecFx32 v9 = { FX32_ONE * 16 * 16, 0, FX32_ONE * 16 * 16 };
         MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 242, &v9, NULL, fieldSystem->mapPropAnimMan);
     }
 
-    ov5_021EF2CC(0, 1, 2, 25, 38, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
+    DynamicTerrainHeightManager_SetPlate(0, 1, 2, 25, 38, (FX32_ONE * 16 * 0), fieldSystem->dynamicTerrainHeightMan);
 
     v0 = v8->unk_00;
 
@@ -656,7 +660,7 @@ void ov8_02249DBC(FieldSystem *fieldSystem)
         MapProp_SetPosition(v1, &v10);
     }
 
-    ov5_021EF388(0, v3, fieldSystem->unk_A0);
+    DynamicTerrainHeightManager_SetHeight(0, v3, fieldSystem->dynamicTerrainHeightMan);
 
     {
         MapPropAnimation *v11;
@@ -729,7 +733,7 @@ static void ov8_02249F14(const u8 param0, MapPropAnimationManager *param1)
     MapPropAnimation_SetAnimationPaused(v0, 0);
     MapPropAnimation_StartLoop(v0);
 
-    Sound_PlayEffect(1626);
+    Sound_PlayEffect(SEQ_SE_DP_FW056);
 }
 
 void include_ov8_02249960(void)
@@ -745,11 +749,11 @@ void ov8_02249FB8(FieldSystem *fieldSystem)
 
     {
         VecFx32 v1;
-        UnkStruct_02027860 *v2;
+        PersistedMapFeatures *v2;
         UnkStruct_ov8_02249FB8 *v3;
 
-        v2 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-        v3 = (UnkStruct_ov8_02249FB8 *)sub_02027F6C(v2, 2);
+        v2 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+        v3 = (UnkStruct_ov8_02249FB8 *)PersistedMapFeatures_GetBuffer(v2, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
 
         PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v1);
 
@@ -772,7 +776,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
     switch (v2->unk_00) {
     case 0:
         sub_0205ED2C(fieldSystem->playerAvatar, 0);
-        Sound_PlayEffect(1553);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
         (v2->unk_00)++;
         break;
     case 1: {
@@ -796,9 +800,9 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
         }
     } break;
     case 2:
-        ov5_021EF388(0, (FX32_ONE * 16 * 10), fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 10), fieldSystem->dynamicTerrainHeightMan);
         sub_0205ED48(fieldSystem->playerAvatar, 1);
-        Sound_PlayEffect(1562);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
     case 3:
@@ -818,7 +822,7 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
     switch (v2->unk_00) {
     case 0:
         sub_0205ED2C(fieldSystem->playerAvatar, 0);
-        Sound_PlayEffect(1553);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
         (v2->unk_00)++;
         break;
     case 1: {
@@ -841,9 +845,9 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
         }
     } break;
     case 2:
-        ov5_021EF388(0, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 0), fieldSystem->dynamicTerrainHeightMan);
         sub_0205ED48(fieldSystem->playerAvatar, 1);
-        Sound_PlayEffect(1562);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
     case 3:
@@ -1233,11 +1237,11 @@ static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1)
     int v0;
     u8 v1;
     UnkStruct_ov8_0224997C *v2;
-    UnkStruct_02027860 *v3;
+    PersistedMapFeatures *v3;
     UnkStruct_02071B30 *v4;
 
-    v3 = sub_02027860(FieldSystem_GetSaveData(param0->fieldSystem));
-    v4 = (UnkStruct_02071B30 *)sub_02027F6C(v3, 3);
+    v3 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(param0->fieldSystem));
+    v4 = (UnkStruct_02071B30 *)PersistedMapFeatures_GetBuffer(v3, DYNAMIC_MAP_FEATURES_CANALAVE_GYM);
     v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
 
     v2->unk_00 = 0;
@@ -1328,12 +1332,12 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
     MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
-    UnkStruct_ov8_0224A1E4 *v3 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224A1E4 *v3 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
 
     switch (v2->unk_00) {
     case 0:
         sub_0205ED2C(fieldSystem->playerAvatar, 0);
-        Sound_PlayEffect(1553);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
         (v2->unk_00)++;
         break;
     case 1: {
@@ -1376,7 +1380,7 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
     } break;
     case 2:
         sub_0205ED48(fieldSystem->playerAvatar, 1);
-        Sound_PlayEffect(1562);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
     case 3:
@@ -1393,7 +1397,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
     MapObject *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v3 = FieldTask_GetEnv(taskMan);
-    UnkStruct_ov8_0224A1E4 *v4 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224A1E4 *v4 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
     v1 = Player_MapObject(fieldSystem->playerAvatar);
 
     switch (v3->unk_00) {
@@ -1401,7 +1405,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
         if (LocalMapObj_IsAnimationSet(v1) == 1) {
             LocalMapObj_SetAnimationCode(v1, 0x49);
 
-            Sound_PlayEffect(1553);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
             (v3->unk_00)++;
         }
         break;
@@ -1455,7 +1459,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
     case 3:
         if (LocalMapObj_CheckAnimationFinished(v1) == 1) {
             sub_020656AC(v1);
-            Sound_PlayEffect(1562);
+            Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
             (v3->unk_00)++;
         }
         break;
@@ -1473,7 +1477,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
     MapObject *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v3 = FieldTask_GetEnv(taskMan);
-    UnkStruct_ov8_0224A1E4 *v4 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224A1E4 *v4 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
     v1 = Player_MapObject(fieldSystem->playerAvatar);
 
     switch (v3->unk_00) {
@@ -1481,7 +1485,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
         if (LocalMapObj_IsAnimationSet(v1) == 1) {
             LocalMapObj_SetAnimationCode(v1, 0x49);
 
-            Sound_PlayEffect(1553);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
             (v3->unk_00)++;
         }
         break;
@@ -1540,7 +1544,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
 
         if (LocalMapObj_CheckAnimationFinished(v8) == 1) {
             sub_020656AC(v8);
-            Sound_PlayEffect(1562);
+            Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
             (v3->unk_00)++;
         }
     } break;
@@ -1552,18 +1556,18 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
     return 0;
 }
 
-void ov8_0224A8C8(FieldSystem *fieldSystem)
+void CanalaveGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     UnkStruct_ov8_0224A1E4 *v0;
-    UnkStruct_02027860 *v1;
+    PersistedMapFeatures *v1;
     UnkStruct_02071B30 *v2;
 
-    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v2 = (UnkStruct_02071B30 *)sub_02027F6C(v1, 3);
+    v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v2 = (UnkStruct_02071B30 *)PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_CANALAVE_GYM);
 
-    fieldSystem->unk_04->unk_24 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224A1E4));
+    fieldSystem->unk_04->dynamicMapFeaturesData = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224A1E4));
 
-    v0 = fieldSystem->unk_04->unk_24;
+    v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     v0->fieldSystem = fieldSystem;
 
     {
@@ -1639,17 +1643,17 @@ BOOL ov8_0224AAA8(FieldSystem *fieldSystem)
 
     {
         int v2;
-        UnkStruct_02027860 *v3;
+        PersistedMapFeatures *v3;
 
-        v3 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-        v2 = sub_02027F80(v3);
+        v3 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+        v2 = PersistedMapFeatures_GetID(v3);
 
-        if (v2 != 3) {
+        if (v2 != DYNAMIC_MAP_FEATURES_CANALAVE_GYM) {
             return 0;
         }
     }
 
-    v1 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
+    v1 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
 
     if (v1 == NULL) {
         return 0;
@@ -1665,27 +1669,27 @@ BOOL ov8_0224AAA8(FieldSystem *fieldSystem)
     return 0;
 }
 
-void ov8_0224AAE8(FieldSystem *fieldSystem)
+void CanalaveGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224A1E4 *v0 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224A1E4 *v0 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
     Heap_FreeToHeap(v0);
-    fieldSystem->unk_04->unk_24 = NULL;
+    fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL ov8_0224AAFC(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
+BOOL CanalaveGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
 {
     u8 v0;
     const u8 *v1;
     int v2;
 
-    v0 = (param3 / (FX32_ONE * 16)) / 10;
+    v0 = (height / (FX32_ONE * 16)) / 10;
     GF_ASSERT(v0 <= 3);
 
     v1 = Unk_ov8_0224D035[v0];
-    v2 = param1 + param2 * 32;
+    v2 = tileX + tileY * 32;
 
     GF_ASSERT(v2 < 1024);
-    (*param4) = v1[v2];
+    (*isColliding) = v1[v2];
 
     return 1;
 }
@@ -2059,18 +2063,18 @@ static void ov8_0224AB64(const UnkStruct_ov8_0224C788 *param0, const u8 param1, 
     (*v0) = v1;
 }
 
-void ov8_0224ABD4(FieldSystem *fieldSystem)
+void SunyshoreGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     UnkStruct_ov8_0224ABD4 *v0;
-    UnkStruct_02027860 *v1;
+    PersistedMapFeatures *v1;
     UnkStruct_02071B6C *v2;
 
-    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v2 = (UnkStruct_02071B6C *)sub_02027F6C(v1, 5);
+    v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v2 = (UnkStruct_02071B6C *)PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
 
-    fieldSystem->unk_04->unk_24 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224ABD4));
+    fieldSystem->unk_04->dynamicMapFeaturesData = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224ABD4));
 
-    v0 = fieldSystem->unk_04->unk_24;
+    v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     v0->unk_11 = v2->unk_04;
     v0->unk_13 = v2->unk_00;
@@ -2112,20 +2116,20 @@ void ov8_0224ABD4(FieldSystem *fieldSystem)
     }
 }
 
-void ov8_0224ACAC(FieldSystem *fieldSystem)
+void SunyshoreGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224ABD4 *v0 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224ABD4 *v0 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
     Heap_FreeToHeap(v0);
-    fieldSystem->unk_04->unk_24 = NULL;
+    fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL ov8_0224ACC0(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
+BOOL SunyshoreGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
 {
     int v0, v1, v2;
     u8 const *v3;
     u8 v4;
     UnkStruct_ov8_0224C8A4 const *v5;
-    UnkStruct_ov8_0224ABD4 *v6 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224ABD4 *v6 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
     v1 = Unk_ov8_0224E740[v6->unk_11].unk_00;
     v2 = v6->unk_13;
     v3 = Unk_ov8_0224E740[v6->unk_11].unk_04[v2];
@@ -2134,8 +2138,8 @@ BOOL ov8_0224ACC0(FieldSystem *fieldSystem, const int param1, const int param2, 
     for (v0 = 0; v0 < v1; v0++) {
         v4 = v3[v0];
 
-        if ((v5[v4].unk_00 <= param1) && (param1 < v5[v4].unk_00 + v5[v4].unk_02) && (v5[v4].unk_01 <= param2) && (param2 < v5[v4].unk_01 + v5[v4].unk_03)) {
-            (*param4) = 1;
+        if ((v5[v4].unk_00 <= tileX) && (tileX < v5[v4].unk_00 + v5[v4].unk_02) && (v5[v4].unk_01 <= tileY) && (tileY < v5[v4].unk_01 + v5[v4].unk_03)) {
+            (*isColliding) = 1;
             return 1;
         }
     }
@@ -2147,12 +2151,12 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
 {
     UnkStruct_ov8_0224997C *v0;
     UnkStruct_ov8_0224ABD4 *v1;
-    UnkStruct_02027860 *v2;
+    PersistedMapFeatures *v2;
     UnkStruct_02071B6C *v3;
 
-    v2 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v3 = (UnkStruct_02071B6C *)sub_02027F6C(v2, 5);
-    v1 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
+    v2 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v3 = (UnkStruct_02071B6C *)PersistedMapFeatures_GetBuffer(v2, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
+    v1 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
 
     v0->unk_00 = 0;
@@ -2186,7 +2190,7 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
         v3->unk_00 = v4;
         v1->unk_13 = v4;
 
-        Sound_PlayEffect(1599);
+        Sound_PlayEffect(SEQ_SE_DP_GAGAGA);
         FieldTask_InitCall(fieldSystem->task, ov8_0224ADE8, v0);
     }
 }
@@ -2196,7 +2200,7 @@ static BOOL ov8_0224ADE8(FieldTask *param0)
     MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(param0);
-    UnkStruct_ov8_0224ABD4 *v3 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224ABD4 *v3 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
 
     switch (v2->unk_00) {
     case 0: {
@@ -2400,18 +2404,18 @@ static void ov8_0224AF84(UnkStruct_ov8_0224AF00 *param0)
     ov8_0224AF58(v2);
 }
 
-void ov8_0224B020(FieldSystem *fieldSystem)
+void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_02071BD0 *v1;
     UnkStruct_ov8_0224AF00 *v2;
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v1 = sub_02027F6C(v0, 8);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224AF00));
 
     memset(v2, 0, sizeof(UnkStruct_ov8_0224AF00));
-    fieldSystem->unk_04->unk_24 = v2;
+    fieldSystem->unk_04->dynamicMapFeaturesData = v2;
 
     {
         v2->fieldSystem = fieldSystem;
@@ -2454,40 +2458,40 @@ void ov8_0224B020(FieldSystem *fieldSystem)
     }
 }
 
-void ov8_0224B0FC(FieldSystem *fieldSystem)
+void EternaGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224AF00 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224AF00 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     Heap_FreeToHeap(v0);
-    fieldSystem->unk_04->unk_24 = NULL;
+    fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL ov8_0224B110(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
+BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
 {
     BOOL v0;
     int v1, v2, v3;
-    UnkStruct_02027860 *v4;
+    PersistedMapFeatures *v4;
     UnkStruct_02071BD0 *v5;
 
-    v4 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v5 = sub_02027F6C(v4, 8);
+    v4 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v5 = PersistedMapFeatures_GetBuffer(v4, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
     v1 = v5->unk_00;
     v0 = 0;
 
-    *param4 = 0;
+    *isColliding = 0;
 
-    if (((param2 >= 7) && (param2 <= (7 + 13 - 1))) && ((param1 >= 5) && (param1 <= (5 + 13 - 1)))) {
-        v2 = param1 - 5;
-        v3 = (param2 - 7) * 13;
+    if (((tileY >= 7) && (tileY <= (7 + 13 - 1))) && ((tileX >= 5) && (tileX <= (5 + 13 - 1)))) {
+        v2 = tileX - 5;
+        v3 = (tileY - 7) * 13;
         v0 = Unk_ov8_0224CCE8[v1][v3 + v2];
-        *param4 = v0;
+        *isColliding = v0;
     }
 
-    if ((v0 == 0) && ((param2 >= 19) && (param2 <= (19 + 1 - 1))) && ((param1 >= 1) && (param1 <= (1 + 21 - 1)))) {
-        v2 = param1 - 1;
-        v3 = (param2 - 19) * 21;
+    if ((v0 == 0) && ((tileY >= 19) && (tileY <= (19 + 1 - 1))) && ((tileX >= 1) && (tileX <= (1 + 21 - 1)))) {
+        v2 = tileX - 1;
+        v3 = (tileY - 19) * 21;
         v0 = Unk_ov8_0224CA5C[v1][v3 + v2];
-        *param4 = v0;
+        *isColliding = v0;
     }
 
     return v0;
@@ -2712,7 +2716,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
         }
 
         v2->unk_04 = 0;
-        Sound_PlayEffect(1355);
+        Sound_PlayEffect(SEQ_SE_PL_TOKEI21);
         v2->unk_00++;
     case 3:
         if (v3->unk_00 == 4) {
@@ -2741,7 +2745,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
 
         if (v0 == 1) {
             Sound_StopEffect(1355, 0);
-            Sound_PlayEffect(1507);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             v2->unk_00++;
         }
         break;
@@ -2805,7 +2809,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
                 ov5_021F416C(fieldSystem, 0);
             }
 
-            Sound_PlayEffect(1593);
+            Sound_PlayEffect(SEQ_SE_DP_T_AME);
             v2->unk_00++;
         }
         break;
@@ -2850,11 +2854,11 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
 
 BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, Strbuf *param3)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_02071BD0 *v1;
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v1 = sub_02027F6C(v0, 8);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
 
     if (v1->unk_00 >= 4) {
         return 0;
@@ -2865,7 +2869,7 @@ BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param
 
     {
         UnkStruct_ov8_0224B67C *v2;
-        UnkStruct_ov8_0224AF00 *v3 = fieldSystem->unk_04->unk_24;
+        UnkStruct_ov8_0224AF00 *v3 = fieldSystem->unk_04->dynamicMapFeaturesData;
         const UnkStruct_ov8_0224C774 *v4 = &Unk_ov8_0224C774[v1->unk_00];
 
         v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov8_0224B67C));
@@ -2886,18 +2890,18 @@ BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param
     return 1;
 }
 
-BOOL ov8_0224B714(FieldSystem *fieldSystem, int param1, int param2, int param3)
+BOOL EternaGym_IsHourHandJumpTile(FieldSystem *fieldSystem, int tileX, int tileY, int direction)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_02071BD0 *v1;
     const UnkStruct_ov8_0224C7F0 *v2;
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v1 = sub_02027F6C(v0, 8);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
     v2 = &Unk_ov8_0224C7F0[v1->unk_00];
 
-    if ((v2->unk_00 == param1) && (v2->unk_02 == param2)) {
-        if (((v2->unk_04 == 0) && ((param3 == 2) || (param3 == 3))) || ((v2->unk_04 == 1) && ((param3 == 0) || (param3 == 1)))) {
+    if ((v2->unk_00 == tileX) && (v2->unk_02 == tileY)) {
+        if (((v2->unk_04 == 0) && ((direction == 2) || (direction == 3))) || ((v2->unk_04 == 1) && ((direction == 0) || (direction == 1)))) {
             return 1;
         }
     }
@@ -2944,19 +2948,19 @@ static const int Unk_ov8_0224C764[4] = {
 
 static int (*const Unk_ov8_0224C818[11])(UnkStruct_ov8_0224C098 *);
 
-void ov8_0224B764(FieldSystem *fieldSystem)
+void VeilstoneGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_02071BF8 *v1;
     UnkStruct_ov8_0224B8D0 *v2;
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v1 = sub_02027F6C(v0, 4);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM);
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224B8D0));
 
     memset(v2, 0, sizeof(UnkStruct_ov8_0224B8D0));
 
-    fieldSystem->unk_04->unk_24 = v2;
+    fieldSystem->unk_04->dynamicMapFeaturesData = v2;
     v2->fieldSystem = fieldSystem;
 
     ov5_021DF4A8(fieldSystem->unk_40, 31);
@@ -2971,17 +2975,17 @@ void ov8_0224B764(FieldSystem *fieldSystem)
     v1->unk_00 = 1;
 }
 
-void ov8_0224B7C0(FieldSystem *fieldSystem)
+void VeilstoneGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224B8D0 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224B8D0 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     Heap_FreeToHeap(v0);
-    fieldSystem->unk_04->unk_24 = NULL;
+    fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL ov8_0224B7D4(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
+BOOL VeilstoneGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
 {
-    return 0;
+    return FALSE;
 }
 
 static MapObject *ov8_0224B7D8(FieldSystem *fieldSystem, int param1, int param2, int param3)
@@ -3199,7 +3203,7 @@ static BOOL ov8_0224BAF4(FieldTask *taskMan)
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             LocalMapObj_SetAnimationCode(v0, sub_02065838(v2->unk_08, 0x28));
             ov5_021F4698(v2->unk_34->unk_08.unk_0C, v2->unk_08, 0);
-            Sound_PlayEffect(1367);
+            Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
             v2->unk_00++;
         }
         break;
@@ -3269,7 +3273,7 @@ static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0)
         }
     }
 
-    Sound_PlayEffect(1367);
+    Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
 
     param0->unk_00 = 2;
     return 1;
@@ -3290,7 +3294,7 @@ static int ov8_0224BC48(UnkStruct_ov8_0224C098 *param0)
         v0 /= param0->unk_1C * 16 / 2;
         ov5_021F4714(param0->unk_34->unk_08.unk_0C, v0);
         param0->unk_00 = 3;
-        Sound_PlayEffect(1356);
+        Sound_PlayEffect(SEQ_SE_PL_GYM01);
     }
 
     return 0;
@@ -3337,8 +3341,8 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
             MapObject_UpdateCoords(v0->unk_08.unk_08);
             ov5_021F4714(v0->unk_08.unk_0C, FX32_ONE);
             Sound_StopEffect(1356, 0);
-            Sound_PlayEffect(1367);
-            Sound_PlayEffect(1357);
+            Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
+            Sound_PlayEffect(SEQ_SE_PL_GYM02);
 
             if ((v1 & (1 << 1)) == 0) {
                 if (param0->unk_18 == 1) {
@@ -3367,7 +3371,7 @@ static int ov8_0224BDD0(UnkStruct_ov8_0224C098 *param0)
         param0->unk_04 = 0;
         param0->unk_00 = 5;
         ov5_021F44A4(param0->unk_38->unk_08.unk_0C);
-        Sound_PlayEffect(1578);
+        Sound_PlayEffect(SEQ_SE_DP_UG_026);
     }
 
     return 0;
@@ -3486,9 +3490,9 @@ static void ov8_0224BF2C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B8D0 *param
 
 BOOL ov8_0224BF4C(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (sub_02027F80(v0) != 4) {
+    if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_VEILSTONE_GYM) {
         return 0;
     }
 
@@ -3496,7 +3500,7 @@ BOOL ov8_0224BF4C(FieldSystem *fieldSystem)
         int v1, v2, v3;
         UnkStruct_ov8_0224BCA8 *v4;
         int v5 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
-        UnkStruct_ov8_0224B8D0 *v6 = fieldSystem->unk_04->unk_24;
+        UnkStruct_ov8_0224B8D0 *v6 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
         PlayerAvatar_MoveCoordsInDirection(fieldSystem->playerAvatar, v5, &v1, &v2);
         v4 = ov8_0224B854(v6, v1, v2);
@@ -3683,20 +3687,20 @@ static const UnkStruct_ov8_0224C7D0 *const Unk_ov8_0224C708[2] = {
     Unk_ov8_0224C844
 };
 
-void ov8_0224C198(FieldSystem *fieldSystem)
+void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_02071C18 *v1;
     UnkStruct_ov8_0224C444 *v2;
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v1 = sub_02027F6C(v0, 2);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224C444));
 
     memset(v2, 0, sizeof(UnkStruct_ov8_0224C444));
 
     v2->fieldSystem = fieldSystem;
-    fieldSystem->unk_04->unk_24 = v2;
+    fieldSystem->unk_04->dynamicMapFeaturesData = v2;
 
     ov8_0224C3B4(v2);
     ov5_021DF4A8(fieldSystem->unk_40, 32);
@@ -3754,7 +3758,7 @@ void ov8_0224C198(FieldSystem *fieldSystem)
                 GF_ASSERT(v1->unk_02 < (v8->unk_04 + v8->unk_08));
                 GF_ASSERT(v1->unk_04 < (v8->unk_0C + v8->unk_14));
                 GF_ASSERT(v1->unk_06 < (v8->unk_10 + v8->unk_18));
-                GF_ASSERT(FieldSystem_CheckCollision(fieldSystem, v1->unk_04, v1->unk_06) == 0);
+                GF_ASSERT(TerrainCollisionManager_CheckCollision(fieldSystem, v1->unk_04, v1->unk_06) == 0);
             }
         }
 
@@ -3779,15 +3783,15 @@ void ov8_0224C198(FieldSystem *fieldSystem)
     v2->unk_1F4 = SysTask_Start(ov8_0224C3B0, v2, 0);
 }
 
-void ov8_0224C388(FieldSystem *fieldSystem)
+void HearthomeGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224C444 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224C444 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     SysTask_Done(v0->unk_1F4);
     ov8_0224C4F8(v0);
     Heap_FreeToHeap(v0);
 
-    fieldSystem->unk_04->unk_24 = NULL;
+    fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
 static void ov8_0224C3B0(SysTask *task, void *param1)
@@ -3882,15 +3886,15 @@ static void ov8_0224C518(SysTask *param0, void *param1)
 BOOL ov8_0224C51C(FieldSystem *fieldSystem)
 {
     int v0, v1, v2, v3;
-    UnkStruct_02027860 *v4;
+    PersistedMapFeatures *v4;
     PlayerAvatar *playerAvatar;
     MapObjectManager *mapObjMan;
     MapObject *v7;
     MapObject *v8;
 
-    v4 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    v4 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (sub_02027F80(v4) != 2) {
+    if (PersistedMapFeatures_GetID(v4) != DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) {
         return 0;
     }
 
@@ -3921,9 +3925,9 @@ BOOL ov8_0224C51C(FieldSystem *fieldSystem)
 
 BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (sub_02027F80(v0) != 2) {
+    if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) {
         return 0;
     }
 
@@ -3949,18 +3953,18 @@ BOOL ov8_0224C62C(FieldSystem *fieldSystem, int param1, int param2, int *param3)
     }
 
     {
-        UnkStruct_02027860 *v0;
+        PersistedMapFeatures *v0;
 
-        v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+        v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-        if (sub_02027F80(v0) != 2) {
+        if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) {
             return 0;
         }
 
         {
             UnkStruct_02071C18 *v1;
 
-            v1 = sub_02027F6C(v0, 2);
+            v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
 
             if (v1->unk_02 == 8) {
                 return 0;

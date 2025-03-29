@@ -146,7 +146,7 @@ BOOL ScrCmd_2DE(ScriptContext *ctx)
 
     ctx->data[0] = v13;
 
-    v6 = MessageLoader_Init(0, 26, 412, HEAP_ID_FIELD_TASK);
+    v6 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD_TASK);
     v9 = ov5_021F6704(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, v13), *v10, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), v6, FieldSystem_GetVarPointer(fieldSystem, v14), FieldSystem_GetVarPointer(fieldSystem, v15));
     v1 = sub_020308A0(fieldSystem->saveData, 11, &v0);
 
@@ -168,7 +168,7 @@ BOOL ScrCmd_2DE(ScriptContext *ctx)
         Heap_FreeToHeap(v1);
     }
 
-    v7 = MessageLoader_Init(1, 26, 361, HEAP_ID_FIELD_TASK);
+    v7 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS_2, HEAP_ID_FIELD_TASK);
 
     ov5_021F661C(v9, v7);
     ov5_021F6760(v9, 12, 0xff, 0xfffe);
@@ -387,7 +387,7 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v2->unk_23C, &v2->unk_6F4);
 
     if (v0 != v2->unk_6F4) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v1) {
@@ -395,13 +395,13 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
         break;
     case 0xfffffffe:
         if (v2->unk_207_0 == 1) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             *v2->unk_210 = 0xfffe;
             ov5_021F6AD4(param1);
         }
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         *v2->unk_210 = v1;
         ov5_021F6AD4(param1);
         break;
@@ -414,7 +414,7 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
 {
     int v0;
 
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
     ListMenu_Free(param0->unk_23C, NULL, NULL);
     Window_EraseStandardFrame(param0->unk_21C.window, 0);
     Window_Remove(&param0->unk_08);
@@ -870,7 +870,7 @@ BOOL ScrCmd_30F(ScriptContext *param0)
         }
         break;
     case 18:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_011) < 30) {
+        if (GameRecords_GetRecordValue(v1, RECORD_EGGS_HATCHED) < 30) {
             *v4 = 0;
         }
         break;
@@ -933,7 +933,7 @@ BOOL ScrCmd_32C(ScriptContext *param0)
 
         for (v0 = 0; v0 < (NELEMS(Unk_ov5_02200C90)); v0++) {
             if ((v4 == Unk_ov5_02200C90[v0].unk_00) && (v5 == Unk_ov5_02200C90[v0].unk_02)) {
-                Sound_PlayEffect(1487);
+                Sound_PlayEffect(SEQ_SE_PL_JUMP2);
                 *v2 |= (1 << v0);
                 break;
             }
@@ -944,7 +944,7 @@ BOOL ScrCmd_32C(ScriptContext *param0)
 
         for (v0 = 0; v0 < (NELEMS(Unk_ov5_02200CAC)); v0++) {
             if ((v4 == Unk_ov5_02200CAC[v0].unk_00) && (v5 == Unk_ov5_02200CAC[v0].unk_02)) {
-                Sound_PlayEffect(1487);
+                Sound_PlayEffect(SEQ_SE_PL_JUMP2);
                 *v2 |= (1 << v0);
                 break;
             }
@@ -955,7 +955,7 @@ BOOL ScrCmd_32C(ScriptContext *param0)
 
         for (v0 = 0; v0 < (NELEMS(Unk_ov5_02200CC8)); v0++) {
             if ((v4 == Unk_ov5_02200CC8[v0].unk_00) && (v5 == Unk_ov5_02200CC8[v0].unk_02)) {
-                Sound_PlayEffect(1487);
+                Sound_PlayEffect(SEQ_SE_PL_JUMP2);
                 *v2 |= (1 << v0);
                 break;
             }

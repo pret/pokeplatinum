@@ -195,7 +195,7 @@ int ov80_021D1550(UnkStruct_ov80_021D2A08 *param0)
     param0->unk_14 = 0;
 
     StartScreenTransition(1, 17, 37, 0x0, 6, 1, param0->heapID);
-    Sound_PlayEffect(1679);
+    Sound_PlayEffect(SEQ_SE_DP_MEKURU);
     sub_0200F338(0);
     sub_0200F338(1);
 
@@ -207,7 +207,7 @@ int ov80_021D159C(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
     StartScreenTransition(2, 16, 36, 0x0, 6, 1, param0->heapID);
-    Sound_PlayEffect(1680);
+    Sound_PlayEffect(SEQ_SE_DP_MEKURU2);
     return 0;
 }
 
@@ -216,7 +216,7 @@ int ov80_021D15C8(UnkStruct_ov80_021D2A08 *param0)
     param0->unk_14 = 0;
 
     StartScreenTransition(3, 17, 17, 0x0, 6, 1, param0->heapID);
-    Sound_PlayEffect(1679);
+    Sound_PlayEffect(SEQ_SE_DP_MEKURU);
     sub_0200F338(0);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 28, 4);
@@ -228,7 +228,7 @@ int ov80_021D1610(UnkStruct_ov80_021D2A08 *param0)
     param0->unk_14 = 0;
 
     StartScreenTransition(3, 16, 16, 0x0, 6, 1, param0->heapID);
-    Sound_PlayEffect(1680);
+    Sound_PlayEffect(SEQ_SE_DP_MEKURU2);
 
     return 0;
 }
@@ -238,7 +238,7 @@ int ov80_021D163C(UnkStruct_ov80_021D2A08 *param0)
     UnkStruct_ov80_021D1478 *v0 = param0->unk_34;
 
     if ((v0->unk_14 <= 1) && gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return 1;
     }
 
@@ -258,13 +258,13 @@ int ov80_021D1678(UnkStruct_ov80_021D2A08 *param0)
     if (v0->unk_14 <= 1) {
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov80_021D29BC(param0)) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 return 1;
             }
 
             return 0;
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             return 1;
         }
     }
@@ -282,7 +282,7 @@ int ov80_021D16D0(UnkStruct_ov80_021D2A08 *param0)
     UnkStruct_ov80_021D1478 *v0 = param0->unk_34;
 
     if (gSystem.pressedKeys & (PAD_BUTTON_B)) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return 1;
     }
 
@@ -1088,7 +1088,7 @@ static void ov80_021D2774(SysTask *param0, void *param1)
         Sprite_SetDrawFlag(v1->unk_100, 1);
         Sprite_SetAnimateFlag(v1->unk_100, 1);
         Sprite_SetAnimFrame(v1->unk_100, 1);
-        Sound_PlayEffect(1508);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         v1->unk_04++;
         break;
     case 1:
@@ -1153,7 +1153,7 @@ static void ov80_021D28EC(SysTask *param0, void *param1)
     case 0:
         v0->unk_14 = 0;
         StartScreenTransition(4, 13, 2, 0x0, 8, 1, v0->heapID);
-        Sound_PlayEffect(1681);
+        Sound_PlayEffect(SEQ_SE_DP_MEKURU3);
         v1->unk_04++;
         break;
     case 1:

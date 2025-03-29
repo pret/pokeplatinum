@@ -305,7 +305,7 @@ static void ov116_02260A2C(UnkStruct_ov116_02262A8C *param0, u32 param1, u32 par
         }
 
         if (Sound_IsEffectPlaying(1394) == 0) {
-            Sound_PlayEffect(1394);
+            Sound_PlayEffect(SEQ_SE_PL_KIRAKIRA);
         }
 
         param0->unk_1FBC.unk_00 = param1;

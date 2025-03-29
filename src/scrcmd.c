@@ -5,6 +5,8 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/daycare.h"
+#include "constants/field/dynamic_map_features.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/overworld_weather.h"
@@ -18,8 +20,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02026218_decl.h"
-#include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -34,6 +34,7 @@
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/daycare.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -47,6 +48,7 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_menu.h"
+#include "overlay005/footprint_type.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/land_data.h"
 #include "overlay005/map_object_anim_cmd.h"
@@ -58,7 +60,6 @@
 #include "overlay005/ov5_021EA874.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021EE7D4.h"
-#include "overlay005/ov5_021F0E84.h"
 #include "overlay005/ov5_021F6454.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/scrcmd_move_tutor.h"
@@ -95,6 +96,7 @@
 #include "camera.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
+#include "daycare_save.h"
 #include "encounter.h"
 #include "field_comm_manager.h"
 #include "field_map_change.h"
@@ -120,6 +122,7 @@
 #include "message_util.h"
 #include "party.h"
 #include "pc_boxes.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "poffin.h"
 #include "pokedex.h"
@@ -151,7 +154,6 @@
 #include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02014D38.h"
-#include "unk_020261E4.h"
 #include "unk_02028124.h"
 #include "unk_0202854C.h"
 #include "unk_020298BC.h"
@@ -208,8 +210,6 @@
 #include "unk_0206F314.h"
 #include "unk_02070428.h"
 #include "unk_0207160C.h"
-#include "unk_02071B10.h"
-#include "unk_02071CD0.h"
 #include "unk_02071D40.h"
 #include "unk_020722AC.h"
 #include "unk_0207DA28.h"
@@ -507,17 +507,17 @@ static BOOL ScrCmd_169(ScriptContext *ctx);
 static BOOL ScrCmd_16A(ScriptContext *ctx);
 static BOOL ScrCmd_16B(ScriptContext *ctx);
 static BOOL ScrCmd_16C(ScriptContext *ctx);
-static BOOL ScrCmd_16F(ScriptContext *ctx);
+static BOOL InitPersistedMapFeaturesForPastoriaGym(ScriptContext *ctx);
 static BOOL ScrCmd_170(ScriptContext *ctx);
-static BOOL ScrCmd_171(ScriptContext *ctx);
+static BOOL InitPersistedMapFeaturesForHearthomeGym(ScriptContext *ctx);
 static BOOL ScrCmd_172(ScriptContext *ctx);
-static BOOL ScrCmd_173(ScriptContext *ctx);
-static BOOL ScrCmd_174(ScriptContext *ctx);
-static BOOL ScrCmd_175(ScriptContext *ctx);
+static BOOL InitPersistedMapFeaturesForCanalaveGym(ScriptContext *ctx);
+static BOOL InitPersistedMapFeaturesForVeilstoneGym(ScriptContext *ctx);
+static BOOL InitPersistedMapFeaturesForSunyshoreGym(ScriptContext *ctx);
 static BOOL ScrCmd_176(ScriptContext *ctx);
-static BOOL ScrCmd_2C9(ScriptContext *ctx);
-static BOOL ScrCmd_2F0(ScriptContext *ctx);
-static BOOL ScrCmd_2F2(ScriptContext *ctx);
+static BOOL InitPersistedMapFeaturesForEternaGym(ScriptContext *ctx);
+static BOOL InitPersistedMapFeaturesForVilla(ScriptContext *ctx);
+static BOOL InitPersistedMapFeaturesForDistortionWorld(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx);
 static BOOL ScrCmd_178(ScriptContext *ctx);
 static BOOL ScrCmd_179(ScriptContext *ctx);
@@ -592,7 +592,7 @@ static BOOL ScrCmd_310(ScriptContext *ctx);
 static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx);
 static BOOL ScrCmd_20C(ScriptContext *ctx);
 static BOOL ScrCmd_20D(ScriptContext *ctx);
-static BOOL ScrCmd_20E(ScriptContext *ctx);
+static BOOL InitPersistedMapFeaturesForGreatMarsh(ScriptContext *ctx);
 static BOOL ScrCmd_20F(ScriptContext *ctx);
 static BOOL ScrCmd_210(ScriptContext *ctx);
 static BOOL ScrCmd_211(ScriptContext *ctx);
@@ -614,7 +614,7 @@ static BOOL ScrCmd_22D(ScriptContext *ctx);
 static BOOL ScrCmd_233(ScriptContext *ctx);
 static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx);
 static BOOL ScrCmd_239(ScriptContext *ctx);
-static BOOL ScrCmd_23A(ScriptContext *ctx);
+static BOOL ScrCmd_GetSpeciesFootprintType(ScriptContext *ctx);
 static BOOL ScrCmd_23B(ScriptContext *ctx);
 static BOOL ScrCmd_23C(ScriptContext *ctx);
 static BOOL ScrCmd_23D(ScriptContext *ctx);
@@ -631,7 +631,7 @@ static BOOL ScrCmd_252(ScriptContext *ctx);
 static BOOL ScrCmd_258(ScriptContext *ctx);
 static BOOL ScrCmd_259(ScriptContext *ctx);
 static BOOL ScrCmd_25A(ScriptContext *ctx);
-static BOOL ScrCmd_25B(ScriptContext *ctx);
+static BOOL InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx);
 static BOOL ScrCmd_25C(ScriptContext *ctx);
 static BOOL ScrCmd_25D(ScriptContext *ctx);
 static BOOL ScrCmd_25E(ScriptContext *ctx);
@@ -1131,14 +1131,14 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_16B,
     ScrCmd_16C,
     ScrCmd_16D,
-    ScrCmd_16E,
-    ScrCmd_16F,
+    ScrCmd_GetDaycareState,
+    InitPersistedMapFeaturesForPastoriaGym,
     ScrCmd_170,
-    ScrCmd_171,
+    InitPersistedMapFeaturesForHearthomeGym,
     ScrCmd_172,
-    ScrCmd_173,
-    ScrCmd_174,
-    ScrCmd_175,
+    InitPersistedMapFeaturesForCanalaveGym,
+    InitPersistedMapFeaturesForVeilstoneGym,
+    InitPersistedMapFeaturesForSunyshoreGym,
     ScrCmd_176,
     ScrCmd_GetPartyCount,
     ScrCmd_178,
@@ -1185,19 +1185,19 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1A1,
     ScrCmd_1A2,
     ScrCmd_1A3,
-    ScrCmd_1A4,
+    ScrCmd_MoveMonToPartyFromDaycareSlot,
     ScrCmd_1A5,
     ScrCmd_1A6,
     ScrCmd_1A7,
-    ScrCmd_1A8,
-    ScrCmd_1A9,
-    ScrCmd_1AA,
+    ScrCmd_ResetDaycarePersonalityAndStepCounter,
+    ScrCmd_GiveEggFromDaycare,
+    ScrCmd_BufferDaycarePriceBySlot,
     ScrCmd_1AB,
     ScrCmd_1AC,
     ScrCmd_Dummy1AD,
-    ScrCmd_1AE,
+    ScrCmd_BufferDaycareGainedLevelsBySlot,
     ScrCmd_1AF,
-    ScrCmd_1B0,
+    ScrCmd_StorePartyMonIntoDaycare,
     ScrCmd_1B1,
     ScrCmd_1B2,
     ScrCmd_1B3,
@@ -1206,13 +1206,13 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetTimeOfDay,
     ScrCmd_GetRandom,
     ScrCmd_GetRandom2,
-    ScrCmd_1B9,
+    ScrCmd_GetFriendshipByPartySlot,
     ScrCmd_1BA,
     ScrCmd_1BB,
     ScrCmd_1BC,
     ScrCmd_GetPlayerDir,
-    ScrCmd_1BE,
-    ScrCmd_1BF,
+    ScrCmd_GetDaycareCompatibilityLevel,
+    ScrCmd_CheckDaycareHasEgg,
     ScrCmd_1C0,
     ScrCmd_1C1,
     ScrCmd_1C2,
@@ -1291,7 +1291,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_20B,
     ScrCmd_20C,
     ScrCmd_20D,
-    ScrCmd_20E,
+    InitPersistedMapFeaturesForGreatMarsh,
     ScrCmd_20F,
     ScrCmd_210,
     ScrCmd_211,
@@ -1325,8 +1325,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_22D,
     ScrCmd_22E,
     ScrCmd_22F,
-    ScrCmd_230,
-    ScrCmd_231,
+    ScrCmd_GetPartyMonRibbon,
+    ScrCmd_SetPartyMonRibbon,
     ScrCmd_232,
     ScrCmd_233,
     ScrCmd_GetDayOfWeek,
@@ -1335,7 +1335,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_237,
     ScrCmd_238,
     ScrCmd_239,
-    ScrCmd_23A,
+    ScrCmd_GetSpeciesFootprintType,
     ScrCmd_23B,
     ScrCmd_23C,
     ScrCmd_23D,
@@ -1348,7 +1348,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_244,
     ScrCmd_245,
     ScrCmd_246,
-    ScrCmd_247,
+    ScrCmd_GetFirstNonEggInParty,
     ScrCmd_248,
     ScrCmd_249,
     ScrCmd_24A,
@@ -1368,7 +1368,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_258,
     ScrCmd_259,
     ScrCmd_25A,
-    ScrCmd_25B,
+    InitPersistedMapFeaturesForPlatformLift,
     ScrCmd_25C,
     ScrCmd_25D,
     ScrCmd_25E,
@@ -1478,7 +1478,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2C6,
     ScrCmd_2C7,
     ScrCmd_2C8,
-    ScrCmd_2C9,
+    InitPersistedMapFeaturesForEternaGym,
     ScrCmd_2CA,
     ScrCmd_2CB,
     ScrCmd_2CC,
@@ -1517,9 +1517,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CloseShardCostWindow,
     ScrCmd_JudgeStats,
     ScrCmd_2EF,
-    ScrCmd_2F0,
+    InitPersistedMapFeaturesForVilla,
     ScrCmd_2F1,
-    ScrCmd_2F2,
+    InitPersistedMapFeaturesForDistortionWorld,
     ScrCmd_2F3,
     ScrCmd_2F4,
     ScrCmd_2F5,
@@ -2064,7 +2064,7 @@ static BOOL ScrCmd_1FA(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    msgLoader = MessageLoader_Init(1, 26, v1, HEAP_ID_FIELD_TASK);
+    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1, HEAP_ID_FIELD_TASK);
 
     ov5_021DD498(ctx, msgLoader, v2);
     MessageLoader_Free(msgLoader);
@@ -2078,7 +2078,7 @@ static BOOL ScrCmd_1FB(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    msgLoader = MessageLoader_Init(1, 26, v1, HEAP_ID_FIELD_TASK);
+    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1, HEAP_ID_FIELD_TASK);
     ov5_021DD444(ctx, msgLoader, v2, 1, NULL);
 
     MessageLoader_Free(msgLoader);
@@ -2127,7 +2127,7 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
     v0 = v1->unk_78[v3].unk_00.unk_18;
 
     if (v0[0] == 0xFFFF) {
-        v2 = MessageLoader_Init(1, 26, 613, HEAP_ID_FIELD_TASK);
+        v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD_TASK);
         ov5_021DD444(ctx, v2, v0[1], 1, NULL);
         MessageLoader_Free(v2);
     } else {
@@ -4053,7 +4053,7 @@ static BOOL ScrCmd_20B(ScriptContext *ctx)
     MapObject **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
 
     if (*v0 != NULL) {
-        if ((sub_02071CB4(ctx->fieldSystem, 2) == 0) || (ov8_0224C5DC(ctx->fieldSystem, *v0) == 0)) {
+        if ((PersistedMapFeatures_IsCurrentDynamicMap(ctx->fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 0) || (ov8_0224C5DC(ctx->fieldSystem, *v0) == 0)) {
             VsSeeker_SetMoveCodeForFacingDirection(ctx->fieldSystem, *v0);
         }
     }
@@ -5726,12 +5726,10 @@ static BOOL ScrCmd_16C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_16F(ScriptContext *ctx)
+static BOOL InitPersistedMapFeaturesForPastoriaGym(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = ctx->fieldSystem;
-
-    sub_02071B10(fieldSystem);
-    return 0;
+    PersistedMapFeatures_InitForPastoriaGym(ctx->fieldSystem);
+    return FALSE;
 }
 
 static BOOL ScrCmd_170(ScriptContext *ctx)
@@ -5742,12 +5740,10 @@ static BOOL ScrCmd_170(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_171(ScriptContext *ctx)
+static BOOL InitPersistedMapFeaturesForHearthomeGym(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = ctx->fieldSystem;
-
-    sub_02071C18(fieldSystem);
-    return 0;
+    PersistedMapFeatures_InitForHearthomeGym(ctx->fieldSystem);
+    return FALSE;
 }
 
 static BOOL ScrCmd_172(ScriptContext *ctx)
@@ -5758,29 +5754,25 @@ static BOOL ScrCmd_172(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_173(ScriptContext *ctx)
+static BOOL InitPersistedMapFeaturesForCanalaveGym(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = ctx->fieldSystem;
-
-    sub_02071B30(fieldSystem);
-    return 0;
+    PersistedMapFeatures_InitForCanalaveGym(ctx->fieldSystem);
+    return FALSE;
 }
 
-static BOOL ScrCmd_174(ScriptContext *ctx)
+static BOOL InitPersistedMapFeaturesForVeilstoneGym(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = ctx->fieldSystem;
-
-    sub_02071BF8(fieldSystem);
-    return 0;
+    PersistedMapFeatures_InitForVeilstoneGym(ctx->fieldSystem);
+    return FALSE;
 }
 
-static BOOL ScrCmd_175(ScriptContext *ctx)
+static BOOL InitPersistedMapFeaturesForSunyshoreGym(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 v1 = ScriptContext_ReadByte(ctx);
+    u8 floorID = ScriptContext_ReadByte(ctx);
 
-    sub_02071B6C(fieldSystem, v1);
-    return 0;
+    PersistedMapFeatures_InitForSunyshoreGym(fieldSystem, floorID);
+    return FALSE;
 }
 
 static BOOL ScrCmd_176(ScriptContext *ctx)
@@ -5792,28 +5784,22 @@ static BOOL ScrCmd_176(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_2C9(ScriptContext *ctx)
+static BOOL InitPersistedMapFeaturesForEternaGym(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = ctx->fieldSystem;
-
-    sub_02071BD0(fieldSystem);
-    return 0;
+    PersistedMapFeatures_InitForEternaGym(ctx->fieldSystem);
+    return FALSE;
 }
 
-static BOOL ScrCmd_2F0(ScriptContext *ctx)
+static BOOL InitPersistedMapFeaturesForVilla(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = ctx->fieldSystem;
-
-    sub_02071C34(fieldSystem);
-    return 0;
+    PersistedMapFeatures_InitForVilla(ctx->fieldSystem);
+    return FALSE;
 }
 
-static BOOL ScrCmd_2F2(ScriptContext *ctx)
+static BOOL InitPersistedMapFeaturesForDistortionWorld(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = ctx->fieldSystem;
-
-    sub_02071C5C(fieldSystem);
-    return 0;
+    PersistedMapFeatures_InitForDistortionWorld(ctx->fieldSystem);
+    return FALSE;
 }
 
 static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx)
@@ -6371,10 +6357,10 @@ static BOOL ScrCmd_20D(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_20E(ScriptContext *ctx)
+static BOOL InitPersistedMapFeaturesForGreatMarsh(ScriptContext *ctx)
 {
-    sub_02071CD0(ctx->fieldSystem);
-    return 0;
+    PersistedMapFeatures_InitForGreatMarsh(ctx->fieldSystem);
+    return FALSE;
 }
 
 static BOOL ScrCmd_20F(ScriptContext *ctx)
@@ -6573,21 +6559,21 @@ static BOOL ScrCmd_239(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_23A(ScriptContext *ctx)
+static BOOL ScrCmd_GetSpeciesFootprintType(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 v4, v5;
+    Pokemon *mon;
+    u16 *hasPrintVar = ScriptContext_GetVarPointer(ctx);
+    u16 *typeVar = ScriptContext_GetVarPointer(ctx);
+    u16 slot = ScriptContext_GetVar(ctx);
+    u16 species, form;
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), v3);
-    v4 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
-    v5 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
-    *v1 = ov5_021F0E90(v4, v5);
-    *v2 = ov5_021F0E84(v4);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
+    species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    *hasPrintVar = FootprintType_SpeciesHasPrint(species, form);
+    *typeVar = FootprintType_GetTypeFromSpecies(species);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_23B(ScriptContext *ctx)
@@ -6760,10 +6746,10 @@ static BOOL ScrCmd_25A(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_25B(ScriptContext *ctx)
+static BOOL InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx)
 {
-    sub_020716D4(ctx->fieldSystem);
-    return 0;
+    PersistedMapFeatures_InitForPlatformLift(ctx->fieldSystem);
+    return FALSE;
 }
 
 static BOOL ScrCmd_25C(ScriptContext *ctx)
@@ -6904,7 +6890,7 @@ static BOOL ScrCmd_268(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_02055BDC(ctx->fieldSystem);
+    *v0 = FieldSystem_GetHour(ctx->fieldSystem);
     return 0;
 }
 
@@ -7149,7 +7135,7 @@ static BOOL ScrCmd_282(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SystemData *v2 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
-    if ((SystemData_GetOwnerBirthMonth(v2) == sub_02055BB8(fieldSystem)) && (SystemData_GetOwnerBirthDayOfMonth(v2) == sub_02055BC4(fieldSystem))) {
+    if ((SystemData_GetOwnerBirthMonth(v2) == FieldSystem_GetMonth(fieldSystem)) && (SystemData_GetOwnerBirthDayOfMonth(v2) == FieldSystem_GetDayOfMonth(fieldSystem))) {
         *v0 = 1;
     } else {
         *v0 = 0;
@@ -7538,7 +7524,7 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
     u16 v4 = ScriptContext_GetVar(ctx);
     u16 v5 = ScriptContext_GetVar(ctx);
     StringTemplate *v6 = StringTemplate_Default(HEAP_ID_FIELD_TASK);
-    MessageLoader *v7 = MessageLoader_Init(0, 26, 372, HEAP_ID_FIELD_TASK);
+    MessageLoader *v7 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0372, HEAP_ID_FIELD_TASK);
     Strbuf *v8;
     Strbuf *v9;
 
@@ -7547,7 +7533,7 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
     StringTemplate_SetCustomMessageWord(v6, 2, v4);
     StringTemplate_SetCustomMessageWord(v6, 3, v5);
 
-    v8 = MessageUtil_ExpandedStrbuf(v6, v7, 1, 32);
+    v8 = MessageUtil_ExpandedStrbuf(v6, v7, 1, HEAP_ID_FIELD_TASK);
     v9 = MessageLoader_GetNewStrbuf(v7, 0);
     *v1 = (Strbuf_Compare(v8, v9) == 0);
 
@@ -8052,56 +8038,44 @@ static BOOL ScrCmd_302(ScriptContext *ctx)
 
 static u32 sub_0204676C(SaveData *saveData)
 {
-    int v0;
-    Pokemon *v1;
-    BoxPokemon *v2;
+    int i;
+    Pokemon *mon;
+    BoxPokemon *boxMon;
     u32 v3 = 0;
 
-    {
-        Party *v4;
-        int v5;
+    Party *party = Party_GetFromSavedata(saveData);
+    int partyCount = Party_GetCurrentCount(party);
 
-        v4 = Party_GetFromSavedata(saveData);
-        v5 = Party_GetCurrentCount(v4);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(party, i);
 
-        for (v0 = 0; v0 < v5; v0++) {
-            v1 = Party_GetPokemonBySlotIndex(v4, v0);
-
-            if ((Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0)) {
-                v3 |= 1 << Pokemon_GetValue(v1, MON_DATA_FORM, NULL);
-            }
+        if ((Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0)) {
+            v3 |= 1 << Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         }
     }
 
-    {
-        UnkStruct_02026310 *v6;
-        UnkStruct_02026218 *v7;
+    Daycare *daycare = SaveData_GetDaycare(saveData);
 
-        v6 = sub_02026310(saveData);
+    for (i = 0; i < NUM_DAYCARE_MONS; i++) {
+        DaycareMon *daycareMon = Daycare_GetDaycareMon(daycare, i);
+        boxMon = DaycareMon_GetBoxMon(daycareMon);
 
-        for (v0 = 0; v0 < 2; v0++) {
-            v7 = sub_02026218(v6, v0);
-            v2 = sub_02026220(v7);
-
-            if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
-                v3 |= 1 << BoxPokemon_GetValue(v2, MON_DATA_FORM, NULL);
-            }
+        if ((BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0)) {
+            v3 |= 1 << BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
         }
     }
 
-    {
-        PCBoxes *v8;
-        u32 v9;
+    PCBoxes *pcBoxes;
+    u32 boxID;
 
-        v8 = SaveData_PCBoxes(saveData);
+    pcBoxes = SaveData_PCBoxes(saveData);
 
-        for (v9 = 0; v9 < 18; v9++) {
-            for (v0 = 0; v0 < (5 * 6); v0++) {
-                v2 = PCBoxes_GetBoxMonAt(v8, v9, v0);
+    for (boxID = 0; boxID < MAX_PC_BOXES; boxID++) {
+        for (i = 0; i < MAX_MONS_PER_BOX; i++) {
+            boxMon = PCBoxes_GetBoxMonAt(pcBoxes, boxID, i);
 
-                if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
-                    v3 |= 1 << BoxPokemon_GetValue(v2, MON_DATA_FORM, NULL);
-                }
+            if ((BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0)) {
+                v3 |= 1 << BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
             }
         }
     }

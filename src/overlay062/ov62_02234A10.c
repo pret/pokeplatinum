@@ -88,7 +88,7 @@ static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0)
         sub_0208B8B8(param0->unk_6F4, 256 / 2, 192 + 24);
         sub_0208B9E0(param0->unk_6F4, 1);
         sub_0208B8B0(param0->unk_6F4, 1);
-        Sound_PlayEffect(1374);
+        Sound_PlayEffect(SEQ_SE_PL_BREC11_2);
         param0->unk_08++;
         break;
     case 2:
@@ -176,7 +176,7 @@ static BOOL ov62_02234CDC(UnkStruct_0208C06C *param0)
             break;
         }
 
-        Sound_PlayEffect(1371);
+        Sound_PlayEffect(SEQ_SE_PL_BREC03);
 
         param0->unk_0C = 16;
         param0->unk_08++;

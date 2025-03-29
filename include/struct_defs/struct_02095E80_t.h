@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_sub1.h"
@@ -102,7 +101,7 @@ struct UnkStruct_02095E80_t {
     void *unk_7E8[12];
     NNSG2dCharacterData *unk_818[12];
     u8 unk_848[2][3200];
-    ArchivedSprite unk_2148[2];
+    PokemonSpriteTemplate unk_2148[2];
     int unk_2168;
     u8 unk_216C[256];
     int (*unk_226C)(UnkStruct_02095E80 *);

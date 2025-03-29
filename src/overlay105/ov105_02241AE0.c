@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02007768_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -41,6 +39,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
@@ -54,7 +53,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
@@ -103,7 +101,7 @@ struct UnkStruct_ov105_02241FF4_t {
     StringList unk_100[4];
     PaletteData *unk_120;
     GenericPointerData *unk_124;
-    UnkStruct_02007768 *unk_128;
+    PokemonSpriteManager *unk_128;
     PokemonSprite *unk_12C[3];
     Options *unk_138;
     SaveData *unk_13C;
@@ -638,7 +636,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
         }
 
         Bg_SetOffset(param0->unk_4C, 2, 0, (33 * 8));
-        sub_02007DEC(param0->unk_12C[0], 6, 1);
+        PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
         StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_93);
         param0->unk_08++;
         break;
@@ -647,14 +645,14 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
             break;
         }
 
-        Sound_PlayEffect(1554);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
         param0->unk_19 = 0;
         param0->unk_08++;
         break;
     case 4:
         if (ov105_02244780(param0) == 1) {
             Sound_StopEffect(1554, 0);
-            Sound_PlayEffect(1657);
+            Sound_PlayEffect(SEQ_SE_DP_KASYA);
 
             for (v0 = 0; v0 < param0->unk_12; v0++) {
                 ov105_02245F90(param0->unk_2F4[v0], 10);
@@ -681,11 +679,11 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
             ov105_02244B90(param0, 3);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 0), 21, 11);
-            sub_02007DEC(param0->unk_12C[0], 6, 0);
-            sub_0200872C(param0->unk_128, 16, 0, 1, 0xffff);
+            PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 0);
+            PokemonSpriteManager_StartFadeAll(param0->unk_128, 16, 0, 1, 0xffff);
         }
 
-        if (sub_020087B4(param0->unk_12C[0])) {
+        if (PokemonSprite_IsFadeActive(param0->unk_12C[0])) {
             (void)0;
         }
 
@@ -892,12 +890,12 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         ov105_02246080(param0->unk_30C);
 
         if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov105_022453F8(param0, param0->unk_11, ov105_022461A0(param0->unk_30C), 0, param0->unk_31C);
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov105_022461A4(param0->unk_30C, 1);
             ov105_02244DF0(param0);
 
@@ -905,7 +903,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
             param0->unk_08++;
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             if (param0->unk_11 > 0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov105_0224296C(param0);
 
                 if (ov104_0223AED4(param0->unk_09) == 1) {
@@ -1049,7 +1047,7 @@ static void ov105_02242B54(UnkStruct_ov105_02241FF4 *param0)
     if (param0->unk_11 >= 2) {
         if (param0->unk_324[0] == ov105_022461A0(param0->unk_30C)) {
             param0->unk_324[0] = param0->unk_324[1];
-            sub_02007DC8(param0->unk_12C[0]);
+            PokemonSprite_Delete(param0->unk_12C[0]);
             ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_31C, ov105_022461A0(param0->unk_30C)), 120, 43, 0);
         }
     }
@@ -1109,7 +1107,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
         Window_ScheduleCopyToVRAM(&param0->unk_50[0]);
 
         ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 0), 21, 11);
-        sub_0200872C(param0->unk_128, 0, 16, 0, 0xffff);
+        PokemonSpriteManager_StartFadeAll(param0->unk_128, 0, 16, 0, 0xffff);
 
         param0->unk_19 = 0;
         param0->unk_08++;
@@ -1121,7 +1119,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
             break;
         }
 
-        sub_02007DEC(param0->unk_12C[0], 6, 1);
+        PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
 
         ov105_02244924(param0, 1);
         ov105_022448F4(param0, 3, ov105_02245538(param0, 0, 0), 21, 11);
@@ -1130,7 +1128,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
         param0->unk_08++;
         break;
     case 2:
-        if (sub_020087B4(param0->unk_12C[0])) {
+        if (PokemonSprite_IsFadeActive(param0->unk_12C[0])) {
             (void)0;
         }
 
@@ -1139,7 +1137,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
         }
 
         ov105_02245A30(param0);
-        sub_02007DC8(param0->unk_12C[0]);
+        PokemonSprite_Delete(param0->unk_12C[0]);
 
         v3[0] = 44;
         v3[1] = 128;
@@ -1147,7 +1145,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
 
         for (v2 = 0; v2 < v0; v2++) {
             ov105_022455C4(param0, v2, Party_GetPokemonBySlotIndex(param0->unk_31C, param0->unk_324[v2]), v3[v2], 43, 0);
-            sub_02007DEC(param0->unk_12C[v2], 6, 1);
+            PokemonSprite_SetAttribute(param0->unk_12C[v2], MON_SPRITE_HIDE, 1);
         }
 
         ov105_02244924(param0, 4);
@@ -1168,7 +1166,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
             ov105_02244C0C(param0, 3);
 
             for (v2 = 0; v2 < v0; v2++) {
-                sub_02007DEC(param0->unk_12C[v2], 6, 0);
+                PokemonSprite_SetAttribute(param0->unk_12C[v2], MON_SPRITE_HIDE, 0);
             }
 
             if (ov104_0223AED4(param0->unk_09) == 0) {
@@ -1177,10 +1175,10 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
                 ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 21, 11);
             }
 
-            sub_0200872C(param0->unk_128, 16, 0, 1, 0xffff);
+            PokemonSpriteManager_StartFadeAll(param0->unk_128, 16, 0, 1, 0xffff);
         }
 
-        if (sub_020087B4(param0->unk_12C[0])) {
+        if (PokemonSprite_IsFadeActive(param0->unk_12C[0])) {
             (void)0;
         }
 
@@ -1290,7 +1288,7 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 21, 11);
         }
 
-        sub_0200872C(param0->unk_128, 0, 16, 0, 0xffff);
+        PokemonSpriteManager_StartFadeAll(param0->unk_128, 0, 16, 0, 0xffff);
 
         param0->unk_19 = 0;
         param0->unk_08++;
@@ -1303,7 +1301,7 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
         }
 
         for (v1 = 0; v1 < v0; v1++) {
-            sub_02007DC8(param0->unk_12C[v1]);
+            PokemonSprite_Delete(param0->unk_12C[v1]);
         }
 
         ov105_02244924(param0, 5);
@@ -1321,7 +1319,7 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
 
         break;
     case 2:
-        if (sub_020087B4(param0->unk_12C[0])) {
+        if (PokemonSprite_IsFadeActive(param0->unk_12C[0])) {
             (void)0;
         }
 
@@ -1332,7 +1330,7 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
         ov105_02245A30(param0);
         ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_31C, ov105_022461A0(param0->unk_30C)), 120, 43, 0);
 
-        sub_02007DEC(param0->unk_12C[0], 6, 1);
+        PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
         ov105_02244924(param0, 0);
 
         param0->unk_08++;
@@ -1349,12 +1347,12 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
     case 4:
         if (param0->unk_19 == 0) {
             ov105_02244B90(param0, 3);
-            sub_02007DEC(param0->unk_12C[0], 6, 0);
+            PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 0);
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 0), 21, 11);
-            sub_0200872C(param0->unk_128, 16, 0, 1, 0xffff);
+            PokemonSpriteManager_StartFadeAll(param0->unk_128, 16, 0, 1, 0xffff);
         }
 
-        if (sub_020087B4(param0->unk_12C[0])) {
+        if (PokemonSprite_IsFadeActive(param0->unk_12C[0])) {
             (void)0;
         }
 
@@ -1421,12 +1419,12 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
         ov105_02246080(param0->unk_30C);
 
         if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_KEY_UP | PAD_KEY_DOWN)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov105_022453F8(param0, param0->unk_11, ov105_022461A0(param0->unk_30C), 1, param0->unk_31C);
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (ov105_022461A0(param0->unk_30C) == (param0->unk_1A - 1)) {
                 ov105_02245528(param0, 1);
@@ -1439,7 +1437,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
                 param0->unk_08++;
             }
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov105_02245528(param0, 1);
             return 1;
         }
@@ -1537,7 +1535,7 @@ static BOOL ov105_02243818(UnkStruct_ov105_02241FF4 *param0)
 
         Window_FillTilemap(&param0->unk_50[2], 0);
         Window_ScheduleCopyToVRAM(&param0->unk_50[2 + param0->unk_11]);
-        sub_02007DC8(param0->unk_12C[0]);
+        PokemonSprite_Delete(param0->unk_12C[0]);
 
         param0->unk_10 = ov105_02244D14(param0, 10);
 
@@ -1637,17 +1635,17 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
         ov105_02246080(param0->unk_30C);
 
         if (gSystem.pressedKeys & (PAD_KEY_UP | PAD_KEY_DOWN)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov105_022453F8(param0, 0, ov105_022461A0(param0->unk_30C), 0, param0->unk_320);
         }
 
         if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov105_022453F8(param0, 0, ov105_022461A0(param0->unk_30C), 0, param0->unk_320);
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (ov105_022461A0(param0->unk_30C) == (param0->unk_1B - 1)) {
                 ov105_02245528(param0, 1);
@@ -1664,7 +1662,7 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
                 param0->unk_08++;
             }
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov105_02245528(param0, 1);
             return 1;
         }
@@ -1714,7 +1712,7 @@ static void ov105_02243D20(UnkStruct_ov105_02241FF4 *param0)
 
     Window_FillTilemap(&param0->unk_50[2], 0);
     Window_ScheduleCopyToVRAM(&param0->unk_50[2]);
-    sub_02007DC8(param0->unk_12C[0]);
+    PokemonSprite_Delete(param0->unk_12C[0]);
 
     Window_FillTilemap(&param0->unk_50[7], 15);
     Window_EraseMessageBox(&param0->unk_50[7], 1);
@@ -1738,7 +1736,7 @@ static void ov105_02243D84(UnkStruct_ov105_02241FF4 *param0)
 
     Window_FillTilemap(&param0->unk_50[2], 0);
     Window_ScheduleCopyToVRAM(&param0->unk_50[2]);
-    sub_02007DC8(param0->unk_12C[0]);
+    PokemonSprite_Delete(param0->unk_12C[0]);
 
     return;
 }
@@ -1765,7 +1763,7 @@ static BOOL ov105_02243E84(UnkStruct_ov105_02241FF4 *param0)
     case 0:
         Window_FillTilemap(&param0->unk_50[2], 0);
         Window_ScheduleCopyToVRAM(&param0->unk_50[2]);
-        sub_02007DC8(param0->unk_12C[0]);
+        PokemonSprite_Delete(param0->unk_12C[0]);
 
         ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
         param0->unk_10 = ov105_02244D14(param0, 10);
@@ -1855,7 +1853,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
         ov105_02246244(param0->unk_50);
         ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 0), 21, 11);
 
-        sub_0200872C(param0->unk_128, 0, 16, 0, 0xffff);
+        PokemonSpriteManager_StartFadeAll(param0->unk_128, 0, 16, 0, 0xffff);
 
         param0->unk_19 = 0;
         param0->unk_08++;
@@ -1867,7 +1865,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
             break;
         }
 
-        sub_02007DC8(param0->unk_12C[0]);
+        PokemonSprite_Delete(param0->unk_12C[0]);
 
         ov105_02244924(param0, 1);
         ov105_022448F4(param0, 3, ov105_02245538(param0, 0, 0), 21, 11);
@@ -1877,7 +1875,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
         param0->unk_08++;
         break;
     case 2:
-        if (sub_020087B4(param0->unk_12C[0])) {
+        if (PokemonSprite_IsFadeActive(param0->unk_12C[0])) {
             (void)0;
         }
 
@@ -1891,7 +1889,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
         ov105_02244A18(param0, 3);
 
         Bg_SetOffset(param0->unk_4C, 2, 0, param0->unk_0C);
-        Sound_PlayEffect(1554);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
 
         param0->unk_19 = 0;
         param0->unk_08++;
@@ -1899,7 +1897,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
     case 3:
         if (ov105_02244830(param0) == 1) {
             Sound_StopEffect(1554, 0);
-            Sound_PlayEffect(1657);
+            Sound_PlayEffect(SEQ_SE_DP_KASYA);
 
             param0->unk_14 = (4 * 2);
 
@@ -1922,7 +1920,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
                 ov105_02245F5C(param0->unk_2F4[v1]);
             }
 
-            Sound_PlayEffect(1554);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
 
             param0->unk_19 = 0;
             param0->unk_08++;
@@ -1931,7 +1929,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
     case 4:
         if (ov105_02244780(param0) == 1) {
             Sound_StopEffect(1554, 0);
-            Sound_PlayEffect(1657);
+            Sound_PlayEffect(SEQ_SE_DP_KASYA);
 
             for (v1 = 0; v1 < param0->unk_12; v1++) {
                 ov105_02245F90(param0->unk_2F4[v1], 10);
@@ -1966,13 +1964,13 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
                 ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_320, 0), 120, 43, 0);
             }
 
-            sub_02007DEC(param0->unk_12C[0], 6, 0);
-            sub_0200872C(param0->unk_128, 16, 0, 1, 0xffff);
+            PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 0);
+            PokemonSpriteManager_StartFadeAll(param0->unk_128, 16, 0, 1, 0xffff);
 
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 21, 11);
         }
 
-        if (sub_020087B4(param0->unk_12C[0])) {
+        if (PokemonSprite_IsFadeActive(param0->unk_12C[0])) {
             (void)0;
         }
 
@@ -2120,7 +2118,7 @@ static void ov105_0224451C(void *param0)
         return;
     }
 
-    sub_02008A94(v0->unk_128);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_128);
 
     if (v0->unk_120 != NULL) {
         PaletteData_CommitFadedBuffers(v0->unk_120);
@@ -2407,19 +2405,19 @@ static void ov105_02244924(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 
     switch (param1) {
     case 0:
-        Sound_PlayEffect(1518);
+        Sound_PlayEffect(SEQ_SE_DP_OPEN2);
         v0 = 2;
         break;
     case 1:
-        Sound_PlayEffect(1519);
+        Sound_PlayEffect(SEQ_SE_DP_CLOSE2);
         v0 = 3;
         break;
     case 4:
-        Sound_PlayEffect(1518);
+        Sound_PlayEffect(SEQ_SE_DP_OPEN2);
         v0 = 2;
         break;
     case 5:
-        Sound_PlayEffect(1519);
+        Sound_PlayEffect(SEQ_SE_DP_CLOSE2);
         v0 = 3;
         break;
     }
@@ -2721,7 +2719,7 @@ static void ov105_022450DC(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
 
     Window_FillTilemap(param1, param6);
 
-    v3 = MessageLoader_Init(1, 26, 412, HEAP_ID_93);
+    v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_93);
     v4 = MessageLoader_GetNewStrbuf(v3, param8);
 
     MessageLoader_Free(v3);
@@ -2770,11 +2768,11 @@ static void ov105_022451B4(UnkStruct_ov105_02241FF4 *param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_12C[v0] != NULL) {
-            sub_02007DC8(param0->unk_12C[v0]);
+            PokemonSprite_Delete(param0->unk_12C[v0]);
         }
     }
 
-    sub_02007B6C(param0->unk_128);
+    PokemonSpriteManager_Free(param0->unk_128);
     MessageLoader_Free(param0->unk_1C);
     StringTemplate_Free(param0->unk_20);
     Strbuf_Free(param0->unk_24);
@@ -2831,7 +2829,7 @@ static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
     ov105_02244678(param0);
     ov105_0224472C(param0);
 
-    param0->unk_1C = MessageLoader_Init(1, 26, 364, HEAP_ID_93);
+    param0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0364, HEAP_ID_93);
     param0->unk_20 = StringTemplate_Default(HEAP_ID_93);
     param0->unk_24 = Strbuf_Init(800, HEAP_ID_93);
     param0->unk_28 = Strbuf_Init(800, HEAP_ID_93);
@@ -2843,7 +2841,7 @@ static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_93);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_93);
 
-    param0->unk_128 = sub_0200762C(HEAP_ID_93);
+    param0->unk_128 = PokemonSpriteManager_New(HEAP_ID_93);
 
     if (CommSys_IsInitialized()) {
         ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
@@ -2870,7 +2868,7 @@ static void ov105_022453F8(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param
     int v0 = param2;
 
     if (ov105_022461A0(param0->unk_30C) < param0->unk_12) {
-        sub_02007DC8(param0->unk_12C[0]);
+        PokemonSprite_Delete(param0->unk_12C[0]);
         ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param4, v0), 120, 43, param3);
         ov105_02244FF8(param0, &param0->unk_50[2 + param1], v0, 0, 0, 15, 2, 0, 0, param4);
     }
@@ -2999,7 +2997,7 @@ static void ov105_022455C4(UnkStruct_ov105_02241FF4 *param0, u8 param1, Pokemon 
 
     param0->unk_12C[param1] = ov105_02245D88(param0->unk_128, 0, param2, param3, param4, 0);
 
-    sub_02007DEC(param0->unk_12C[param1], 6, 0);
+    PokemonSprite_SetAttribute(param0->unk_12C[param1], MON_SPRITE_HIDE, 0);
 
     v0 = Pokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
     v1 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);

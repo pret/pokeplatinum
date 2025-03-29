@@ -253,7 +253,7 @@ static BOOL ov23_02254AD4(FieldTask *param0)
         }
         break;
     case 9:
-        Sound_PlayEffect(1550);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
         StartScreenTransition(2, 40, 40, 0x0, 6, 1, HEAP_ID_FIELD);
         ov23_02255EBC(10, v1);
         break;
@@ -474,7 +474,7 @@ static BOOL ov23_02254DF8(FieldTask *param0)
                 v16 = ov23_022545D8(v6->unk_508);
 
                 sub_02028ACC(v18, v16, v17);
-                Sound_PlayEffect(1534);
+                Sound_PlayEffect(SEQ_SE_DP_BOWA);
 
                 ov23_0224D3BC(v6->unk_3C.unk_14);
                 v6->unk_08 = ov23_0224D39C(11);
@@ -485,7 +485,7 @@ static BOOL ov23_02254DF8(FieldTask *param0)
                 v6->unk_04 = 4;
                 break;
             } else {
-                Sound_PlayEffect(1538);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT2);
 
                 v6->unk_08 = ov23_0224D39C(12);
                 v6->unk_51E = 0;
@@ -567,22 +567,22 @@ static BOOL ov23_02255100(FieldTask *param0)
 
         if (!v4) {
             if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                 v2 -= (FX32_ONE * 16);
                 v1.unk_00--;
                 v1.unk_08--;
             } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                 v2 += (FX32_ONE * 16);
                 v1.unk_00++;
                 v1.unk_08++;
             } else if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                 v3 -= (FX32_ONE * 16);
                 v1.unk_04--;
                 v1.unk_0C--;
             } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                 v3 += (FX32_ONE * 16);
                 v1.unk_04++;
                 v1.unk_0C++;
@@ -656,7 +656,7 @@ static BOOL ov23_02255100(FieldTask *param0)
                             v7->unk_04 = 4;
                             break;
                         } else {
-                            Sound_PlayEffect(1600);
+                            Sound_PlayEffect(SEQ_SE_DP_F017);
 
                             v7->unk_08 = ov23_0224D39C(14);
                             GF_ASSERT(v7->unk_520 > 0);
@@ -669,7 +669,7 @@ static BOOL ov23_02255100(FieldTask *param0)
 
                         v17 = sub_020298B0(v7->fieldSystem->saveData);
 
-                        Sound_PlayEffect(1515);
+                        Sound_PlayEffect(SEQ_SE_DP_BOX02);
                         sub_02028B20(v17, v16);
 
                         v7->unk_08 = ov23_0224D39C(13);
@@ -802,22 +802,22 @@ static BOOL ov23_02255580(FieldTask *param0)
 
         if (!v4) {
             if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                 v2 -= (FX32_ONE * 16);
                 v1.unk_00--;
                 v1.unk_08--;
             } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                 v2 += (FX32_ONE * 16);
                 v1.unk_00++;
                 v1.unk_08++;
             } else if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                 v3 -= (FX32_ONE * 16);
                 v1.unk_04--;
                 v1.unk_0C--;
             } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                 v3 += (FX32_ONE * 16);
                 v1.unk_04++;
                 v1.unk_0C++;
@@ -885,7 +885,7 @@ static BOOL ov23_02255580(FieldTask *param0)
                         ov23_02254AA4(v16, v7);
                         ov23_02255E2C(v16, v7);
                         ov23_02255BF4(v16, v7->unk_5C);
-                        Sound_PlayEffect(1515);
+                        Sound_PlayEffect(SEQ_SE_DP_BOX02);
                         ov23_02255F20(v7->unk_4FC);
                         ov23_02255EBC(7, v7);
                         return 1;
@@ -996,14 +996,14 @@ static BOOL ov23_02255850(FieldTask *param0)
 
             if (v10) {
                 ov23_02255BB8(&v6->unk_3C, v6->unk_0C.unk_00, v6->unk_5C);
-                Sound_PlayEffect(1534);
+                Sound_PlayEffect(SEQ_SE_DP_BOWA);
                 ov23_02255F04(v6->unk_3C.unk_00.unk_00, v6->unk_3C.unk_00.unk_04, v6->unk_4FC);
                 ov23_0225628C(fieldSystem, &v6->unk_4DC);
                 v6->unk_51E = 0;
                 v6->unk_04 = 3;
                 break;
             } else {
-                Sound_PlayEffect(1538);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT2);
 
                 v6->unk_08 = ov23_0224D39C(12);
                 v6->unk_51E = 0;

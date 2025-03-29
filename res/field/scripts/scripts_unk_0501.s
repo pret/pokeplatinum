@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0547.h"
+#include "constants/daycare.h"
 
     .data
 
@@ -12,10 +13,10 @@ _000A:
     LockAll
     FacePlayer
     ScrCmd_16D
-    ScrCmd_16E 0x800C
-    GoToIfEq 0x800C, 1, _004A
-    GoToIfEq 0x800C, 2, _00BE
-    GoToIfEq 0x800C, 3, _00CB
+    GetDaycareState 0x800C
+    GoToIfEq 0x800C, DAYCARE_EGG_WAITING, _004A
+    GoToIfEq 0x800C, DAYCARE_ONE_MON, _00BE
+    GoToIfEq 0x800C, DAYCARE_TWO_MONS, _00CB
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -33,7 +34,7 @@ _004A:
     WaitABXPadPress
     CloseMessage
     ClearFlag 115
-    ScrCmd_1A8
+    ResetDaycarePersonalityAndStepCounter
     ReleaseAll
     End
 
@@ -55,7 +56,7 @@ _009F:
     Message 6
     WaitABXPadPress
     CloseMessage
-    ScrCmd_1A9
+    GiveEggFromDaycare
     ClearFlag 115
     ReleaseAll
     End
@@ -71,7 +72,7 @@ _00BE:
 _00CB:
     ScrCmd_16D
     Message 9
-    ScrCmd_1BE 0x800C
+    GetDaycareCompatibilityLevel 0x800C
     CallIfEq 0x800C, 0, _0110
     CallIfEq 0x800C, 1, _0115
     CallIfEq 0x800C, 2, _011A
@@ -102,10 +103,10 @@ _0124:
     LockAll
     FacePlayer
     ScrCmd_072 20, 2
-    ScrCmd_16E 0x800C
-    GoToIfEq 0x800C, 1, _02E2
-    GoToIfEq 0x800C, 2, _0309
-    GoToIfEq 0x800C, 3, _04A0
+    GetDaycareState 0x800C
+    GoToIfEq 0x800C, DAYCARE_EGG_WAITING, _02E2
+    GoToIfEq 0x800C, DAYCARE_ONE_MON, _0309
+    GoToIfEq 0x800C, DAYCARE_TWO_MONS, _04A0
     Message 15
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _017E
@@ -148,10 +149,10 @@ _01DE:
     CountAliveMonsExcept 0x800C, 0x8000
     GoToIfEq 0x800C, 0, _02C8
     ScrCmd_1AF 0, 0x8000, 0x8001
-    ScrCmd_1B0 0x8000
+    StorePartyMonIntoDaycare 0x8000
     SetFlag 254
-    ScrCmd_16E 0x800C
-    GoToIfEq 0x800C, 2, _025F
+    GetDaycareState 0x800C
+    GoToIfEq 0x800C, DAYCARE_ONE_MON, _025F
     GoTo _0270
 
 _025F:
@@ -230,7 +231,7 @@ _02EF:
     Return
 
 _02F4:
-    ScrCmd_1AE 0x800C, 0x8000
+    BufferDaycareGainedLevelsBySlot 0x800C, 0x8000
     CallIfNe 0x800C, 0, _02EF
     Return
 
@@ -249,9 +250,9 @@ _0309:
 _0346:
     GetPartyCount 0x800C
     GoToIfEq 0x800C, 6, _045E
-    ScrCmd_16E 0x800C
+    GetDaycareState 0x800C
     SetVar 0x8001, 0
-    GoToIfEq 0x800C, 2, _03BE
+    GoToIfEq 0x800C, DAYCARE_ONE_MON, _03BE
     ScrCmd_040 1, 1, 0, 1, 0x8001
     ScrCmd_1BC 0, 1, 2, 0
     ScrCmd_042 134, 0
@@ -265,7 +266,7 @@ _0346:
     GoTo _0292
 
 _03BE:
-    ScrCmd_1AA 0x8004, 0x8001
+    BufferDaycarePriceBySlot 0x8004, 0x8001
     Message 28
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _03DE
@@ -284,7 +285,7 @@ _03DE:
 _03FE:
     ApplyMovement 0, _046C
     WaitMovement
-    ScrCmd_1A4 0x8002, 0x8001
+    MoveMonToPartyFromDaycareSlot 0x8002, 0x8001
     ScrCmd_1A3 0x8004
     ScrCmd_074
     PlayFanfare SEQ_SE_DP_REGI
@@ -294,8 +295,8 @@ _03FE:
     BufferPlayerName 1
     Message 30
     ScrCmd_04D
-    ScrCmd_16E 0x800C
-    GoToIfEq 0x800C, 2, _0444
+    GetDaycareState 0x800C
+    GoToIfEq 0x800C, DAYCARE_ONE_MON, _0444
     GoTo _0292
 
 _0444:

@@ -198,7 +198,7 @@ void sub_0205CBFC(SysTask *param0, void *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
         sub_0205D274(v0, &v0->unk_1C0[0], 2);
         StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
-        Sound_PlayEffect(1583);
+        Sound_PlayEffect(SEQ_SE_DP_PYUU);
         v0->unk_1E0 = 1;
         v0->unk_1E4++;
         break;
@@ -206,7 +206,7 @@ void sub_0205CBFC(SysTask *param0, void *param1)
         v1 = v0->unk_1C0[0].unk_0C(&v0->unk_1C0[0]);
 
         if ((v1 == 0) && (IsScreenTransitionDone())) {
-            Sound_PlayEffect(1585);
+            Sound_PlayEffect(SEQ_SE_DP_SUTYA);
             v0->unk_1E4++;
             v0->unk_1E8 = -255;
         }
@@ -247,7 +247,7 @@ void sub_0205CD3C(SysTask *param0, void *param1)
         break;
     case 1:
         sub_0205D274(v0, &v0->unk_1C0[0], 3);
-        Sound_PlayEffect(1584);
+        Sound_PlayEffect(SEQ_SE_DP_PYUU2);
         v0->unk_1E0 = 1;
         v0->unk_1E4++;
         break;
@@ -315,7 +315,7 @@ void sub_0205CE7C(SysTask *param0, void *param1)
         break;
     case 2:
         if (IsScreenTransitionDone()) {
-            Sound_PlayEffect(1586);
+            Sound_PlayEffect(SEQ_SE_DP_GYURU);
             v0->unk_1E4++;
         }
         break;

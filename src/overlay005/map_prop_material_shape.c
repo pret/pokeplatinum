@@ -18,24 +18,19 @@ MapPropMaterialShape *MapPropMaterialShape_Alloc(void)
 void MapPropMaterialShape_Load(const char *path, MapPropMaterialShape *propMatShp)
 {
     FSFile file;
-    u16 idsLocatorsCount;
-    u16 idsCount;
-    int idsLocatorsSize;
-    int idsSize;
-
     FS_InitFile(&file);
 
     if (FS_OpenFile(&file, path)) {
-        int readLength;
-
-        readLength = FS_ReadFile(&file, &idsLocatorsCount, 2);
+        u16 idsLocatorsCount;
+        int readLength = FS_ReadFile(&file, &idsLocatorsCount, 2);
         GF_ASSERT(readLength >= 0);
 
+        u16 idsCount;
         readLength = FS_ReadFile(&file, &idsCount, 2);
         GF_ASSERT(readLength >= 0);
 
-        idsLocatorsSize = sizeof(MapPropMaterialShapeIDsLocator) * idsLocatorsCount;
-        idsSize = sizeof(MapPropMaterialShapeIDs) * idsCount;
+        int idsLocatorsSize = sizeof(MapPropMaterialShapeIDsLocator) * idsLocatorsCount;
+        int idsSize = sizeof(MapPropMaterialShapeIDs) * idsCount;
 
         propMatShp->idsLocators = Heap_AllocFromHeap(HEAP_ID_FIELD, idsLocatorsSize);
         GF_ASSERT(propMatShp->idsLocators != NULL);

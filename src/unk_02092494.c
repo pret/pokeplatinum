@@ -34,7 +34,7 @@ PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
 {
     PokemonInfoDisplayStruct *v0 = Heap_AllocFromHeap(heapID, sizeof(PokemonInfoDisplayStruct));
     v0->unk_00 = heapID;
-    v0->unk_04 = MessageLoader_Init(1, 26, 455, v0->unk_00);
+    v0->unk_04 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, v0->unk_00);
     v0->unk_08 = StringTemplate_New(9, 32, v0->unk_00);
     v0->unk_0C = param0;
     v0->unk_10 = param1;
@@ -362,25 +362,25 @@ static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, i
     default:
         StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 7)));
         break;
-    case FIRERED:
-    case LEAFGREEN:
+    case VERSION_FIRERED:
+    case VERSION_LEAFGREEN:
         StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 3)));
         break;
-    case HEARTGOLD:
-    case SOULSILVER:
+    case VERSION_HEARTGOLD:
+    case VERSION_SOULSILVER:
         StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 4)));
         break;
-    case RUBY:
-    case SAPPHIRE:
-    case EMERALD:
+    case VERSION_RUBY:
+    case VERSION_SAPPHIRE:
+    case VERSION_EMERALD:
         StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 5)));
         break;
-    case COLOSSEUM:
+    case VERSION_GAMECUBE:
         StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 8)));
         break;
-    case DIAMOND:
-    case PEARL:
-    case PLATINUM:
+    case VERSION_DIAMOND:
+    case VERSION_PEARL:
+    case VERSION_PLATINUM:
         StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 7)));
         break;
     }
@@ -747,9 +747,9 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
     return v0;
 }
 
-void sub_0209304C(Pokemon *param0, TrainerInfo *param1, int param2, int param3, int param4)
+void UpdateMonStatusAndTrainerInfo(Pokemon *mon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID)
 {
-    UpdateBoxMonStatusAndTrainerInfo(&param0->box, param1, param2, param3, param4);
+    UpdateBoxMonStatusAndTrainerInfo(&mon->box, trainerInfo, sel, metLocation, heapID);
 }
 
 void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID)

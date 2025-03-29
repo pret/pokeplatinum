@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_MESSAGE_H
 #define POKEPLATINUM_MESSAGE_H
 
+#include "generated/text_banks.h"
+
 #include "narc.h"
 #include "strbuf.h"
 

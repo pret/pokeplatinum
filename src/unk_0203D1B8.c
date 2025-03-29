@@ -46,7 +46,7 @@
 #include "dw_warp/dw_warp.h"
 #include "field/field_system.h"
 #include "library_tv/library_tv.h"
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay007/accessory_shop.h"
 #include "overlay019/ov19_021D0D80.h"
@@ -1506,7 +1506,7 @@ void sub_0203E2FC(FieldSystem *fieldSystem)
 {
     UnkStruct_0203E2FC v0;
     Party *v1 = Party_GetFromSavedata(fieldSystem->saveData);
-    Pokemon *v2 = ov5_021E7278(v1);
+    Pokemon *v2 = Party_GetFirstEgg(v1);
 
     GF_ASSERT(v2 != NULL);
     sub_0206D578(fieldSystem, v2);

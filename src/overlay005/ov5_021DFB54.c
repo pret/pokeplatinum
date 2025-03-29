@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
@@ -35,6 +36,7 @@
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
 #include "party.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "pokemon.h"
 #include "sys_task.h"
@@ -44,7 +46,6 @@
 #include "unk_020553DC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "unk_02071B10.h"
 
 typedef struct {
     u32 unk_00;
@@ -206,7 +207,7 @@ static void PlayerAvatar_RequestStateWalking(PlayerAvatar *playerAvatar)
         MapObject *mapObj = Player_MapObject(playerAvatar);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 2) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 1) {
             v1 = 0x1c;
         }
     }
@@ -246,7 +247,7 @@ static void PlayerAvatar_RequestStateCycle(PlayerAvatar *playerAvatar)
         sub_0205EC00(playerAvatar, NULL);
     }
 
-    Sound_PlayEffect(1560);
+    Sound_PlayEffect(SEQ_SE_DP_JITENSYA);
 }
 
 static void PlayerAvatar_RequestStateSurf(PlayerAvatar *playerAvatar)
@@ -314,7 +315,7 @@ static void PlayerAvatar_RequestStatePoketch(PlayerAvatar *playerAvatar)
         MapObject *mapObj = Player_MapObject(playerAvatar);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 2) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 1) {
             v1 = 0x1e;
         }
     }
@@ -334,7 +335,7 @@ static void PlayerAvatar_RequestStateSave(PlayerAvatar *playerAvatar)
         MapObject *mapObj = Player_MapObject(playerAvatar);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 2) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 1) {
             v1 = 0x1d;
         }
     }
@@ -476,7 +477,7 @@ static int ov5_021DFF1C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
             v2 &= ~(1 << 0);
 
             if (v2 != 0) {
-                if (sub_02071CB4(fieldSystem, 9) == 1) {
+                if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
                     if (ov9_0224F240(mapObj, param2) == 0) {
                         return 0;
                     }
@@ -529,7 +530,7 @@ static BOOL ov5_021DFFBC(FieldTask *param0)
 
             v3 = sub_02065838(v0->unk_04, 0x20);
             LocalMapObj_SetAnimationCode(v1, v3);
-            Sound_PlayEffect(1575);
+            Sound_PlayEffect(SEQ_SE_DP_UG_023);
         }
 
         v0->unk_00++;
@@ -543,7 +544,7 @@ static BOOL ov5_021DFFBC(FieldTask *param0)
             break;
         }
 
-        if (sub_02071CB4(v0->fieldSystem, 9) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(v0->fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
             if (ov9_0224F2B0(v2) == 1) {
                 v0->unk_14 = ov9_0224F2BC(v0->fieldSystem, param0, v2);
                 v0->unk_00 = 3;
@@ -845,7 +846,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
 
     switch (v0->unk_00) {
     case 0:
-        Sound_PlayEffect(1617);
+        Sound_PlayEffect(SEQ_SE_DP_ZUPO);
         v0->unk_00++;
     case 1:
         if (LocalMapObj_IsAnimationSet(v1) == 0) {
@@ -855,7 +856,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
         }
 
         if (v0->unk_04 >= 5) {
-            Sound_PlayEffect(1618);
+            Sound_PlayEffect(SEQ_SE_DP_ZUPO2);
             PlayerAvatar_SetInDeepSwamp(v0->playerAvatar, 1);
             ov5_021E1134(v0);
             return 1;
@@ -944,7 +945,7 @@ static int ov5_021E06A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar)
 
         ov5_021EC7F0(v1);
         MapObject_Delete(v1);
-        Sound_PlayEffect(1627);
+        Sound_PlayEffect(SEQ_SE_DP_FW291);
     }
 
     return 0;
@@ -1034,7 +1035,7 @@ static int ov5_021E07FC(UnkStruct_ov5_021F9B54 *param0)
     param0->unk_18 = ov5_021F28F4(param0->unk_14, v0, v1, param0->unk_04, 0);
     param0->unk_2C = ov6_0224892C(param0->fieldSystem);
 
-    Sound_PlayEffect(1575);
+    Sound_PlayEffect(SEQ_SE_DP_UG_023);
     param0->unk_00++;
 
     return 0;
@@ -1199,7 +1200,7 @@ static int ov5_021E0A1C(UnkStruct_ov5_021F9B10 *param0)
 static int ov5_021E0A44(UnkStruct_ov5_021F9B10 *param0)
 {
     if (ov5_021E1050(&param0->unk_40) == 1) {
-        Sound_PlayEffect(1613);
+        Sound_PlayEffect(SEQ_SE_DP_FW463);
         param0->unk_00++;
     }
 
@@ -1324,7 +1325,7 @@ static int ov5_021E0BEC(UnkStruct_ov5_021F9B10 *param0)
 static int ov5_021E0C10(UnkStruct_ov5_021F9B10 *param0)
 {
     if (ov5_021E1050(&param0->unk_40) == 1) {
-        Sound_PlayEffect(1613);
+        Sound_PlayEffect(SEQ_SE_DP_FW463);
         param0->unk_00++;
     }
 

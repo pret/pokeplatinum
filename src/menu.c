@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/sdat.h"
-#include "generated/text_banks.h"
-
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "font.h"

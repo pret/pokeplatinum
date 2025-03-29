@@ -63,10 +63,10 @@ _007D:
     GoToIfEq 0x4002, 1, _00F4
     CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, 0x800C
     GoToIfEq 0x800C, 0, _00D9
-    ScrCmd_247 0x8000
+    GetFirstNonEggInParty 0x8000
     BufferPartyMonSpecies 0, 0x8000
     Message 6
-    ScrCmd_1B9 0x800C, 0x8000
+    GetPartyMonFriendship 0x800C, 0x8000
     GoToIfGe 0x800C, 120, _00FF
     GoToIfGe 0x800C, 70, _010A
     GoTo _0115

@@ -10,7 +10,7 @@ u16 sub_0205DFC4(u32 param0);
 u16 sub_0205E060(u16 param0);
 u16 sub_0205E078(u16 param0, u16 param1);
 u16 sub_0205E0E4(u16 param0, u16 param1);
-u16 sub_0205E1B4(SaveData *param0);
+u16 SaveData_GetFirstNonEggInParty(SaveData *saveData);
 BOOL HasAllLegendaryTitansInParty(SaveData *param0);
 void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5);
 void sub_0205E3F4(FieldTask *param0, MapObject *param1, u16 param2, u16 param3);

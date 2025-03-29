@@ -120,7 +120,7 @@ void ov19_021DFAD0(UnkStruct_ov19_021D4DF0 *param0)
 void ov19_021DFB50(UnkStruct_ov19_021D4DF0 *param0)
 {
     UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
-    const PCBoxes *v1 = ov19_021D5E90(param0);
+    const PCBoxes *v1 = ov19_GetPCBoxes(param0);
 
     ov19_021DFCF8(v0);
     ov19_021DFD08(v0, UnkEnum_021DFB94_00);
@@ -138,7 +138,7 @@ void ov19_021DFB50(UnkStruct_ov19_021D4DF0 *param0)
 void ov19_021DFB94(UnkStruct_ov19_021D4DF0 *param0, UnkEnum_021DFB94 param1)
 {
     UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
-    const PCBoxes *v1 = ov19_021D5E90(param0);
+    const PCBoxes *v1 = ov19_GetPCBoxes(param0);
     u32 v2;
 
     ov19_021DFCF8(v0);
@@ -175,7 +175,7 @@ void ov19_021DFC04(UnkStruct_ov19_021D4DF0 *param0, UnkEnum_021DFB94 param1)
         { UnkEnum_021DFB94_22, UnkEnum_021DFB94_23, UnkEnum_021DFB94_24, UnkEnum_021DFB94_25 },
     };
     UnkStruct_ov19_021DF964 *v1 = &(param0->unk_74);
-    const PCBoxes *v2 = ov19_021D5E90(param0);
+    const PCBoxes *v2 = ov19_GetPCBoxes(param0);
     int v3;
 
     ov19_021DFCF8(v1);
@@ -275,12 +275,12 @@ int ov19_021DFD2C(UnkStruct_ov19_021D4DF0 *param0)
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return -1;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return v0->unk_00[v0->unk_20];
     }
 

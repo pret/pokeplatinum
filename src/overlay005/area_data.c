@@ -57,7 +57,6 @@ AreaDataManager *AreaDataManager_Alloc(const int areaDataArchiveID, MapPropAnima
 
 void AreaDataManager_Load(AreaDataManager *areaDataManager)
 {
-    NARC *narc;
     AreaDataManagerLoadData *loadData = areaDataManager->loadData;
 
     NARC_ReadWholeMemberByIndexPair(&areaDataManager->areaData, NARC_INDEX_FIELDDATA__AREADATA__AREA_DATA, loadData->areaDataArchiveID);
@@ -96,14 +95,13 @@ void AreaDataManager_Load(AreaDataManager *areaDataManager)
 
     areaDataManager->mapPropMatShp = NULL;
 
-    narc = NARC_ctor(NARC_INDEX_FIELDDATA__BUILD_MODEL__BUILD_MODEL, HEAP_ID_FIELD);
+    NARC *narc = NARC_ctor(NARC_INDEX_FIELDDATA__BUILD_MODEL__BUILD_MODEL, HEAP_ID_FIELD);
 
     int i;
-    u16 mapPropModelID;
     int mapPropModelAnimeListNARCFileCount = MapPropAnimationManager_GetAnimeListNARCFileCount(loadData->mapPropAnimMan);
 
     for (i = 0; i < loadData->mapPropModelIDsCount; i++) {
-        mapPropModelID = areaDataManager->mapPropModelIDs[i + 1];
+        u16 mapPropModelID = areaDataManager->mapPropModelIDs[i + 1];
 
         GF_ASSERT(areaDataManager->mapPropModelFiles[mapPropModelID] == NULL);
         areaDataManager->mapPropModelFiles[mapPropModelID] = NARC_AllocAndReadWholeMember(narc, mapPropModelID, HEAP_ID_FIELD);
@@ -119,14 +117,11 @@ void AreaDataManager_Load(AreaDataManager *areaDataManager)
 
     // Make sure the dummy box ("dmybox00") model is always loaded
     if (areaDataManager->mapPropModelFiles[0] == NULL) {
-        BOOL res;
-        NNSG3dResTex *texture;
-
         areaDataManager->mapPropModelFiles[0] = NARC_AllocAndReadWholeMember(narc, 0, HEAP_ID_FIELD);
-        texture = NNS_G3dGetTex(areaDataManager->mapPropModelFiles[0]);
+        NNSG3dResTex *texture = NNS_G3dGetTex(areaDataManager->mapPropModelFiles[0]);
 
         if (texture != NULL) {
-            res = Easy3D_UploadTextureToVRAM(texture);
+            BOOL res = Easy3D_UploadTextureToVRAM(texture);
             GF_ASSERT(res);
 
             res = Easy3D_BindTextureToResource(areaDataManager->mapPropModelFiles[0], texture);

@@ -2,8 +2,6 @@
 
 #include <nitro.h>
 
-#include "generated/text_banks.h"
-
 #include "font.h"
 #include "map_header.h"
 #include "message.h"

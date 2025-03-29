@@ -7,8 +7,6 @@
 #include "constants/palette.h"
 #include "constants/scrcmd.h"
 #include "generated/map_headers.h"
-#include "generated/sdat.h"
-#include "generated/text_banks.h"
 
 #include "field/field_system.h"
 

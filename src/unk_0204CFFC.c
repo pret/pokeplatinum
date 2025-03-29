@@ -8,7 +8,7 @@
 #include "struct_decls/pc_boxes_decl.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 #include "savedata/save_table.h"
 
 #include "field_script_context.h"
@@ -277,17 +277,17 @@ BOOL ScrCmd_213(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1B9(ScriptContext *param0)
+BOOL ScrCmd_GetFriendshipByPartySlot(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    Pokemon *v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    Pokemon *mon;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 slot = ScriptContext_GetVar(ctx);
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
-    *v2 = Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), slot);
+    *destVar = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1BA(ScriptContext *param0)
@@ -360,12 +360,12 @@ BOOL ScrCmd_281(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_247(ScriptContext *param0)
+BOOL ScrCmd_GetFirstNonEggInParty(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(param0);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_0205E1B4(param0->fieldSystem->saveData);
-    return 0;
+    *destVar = SaveData_GetFirstNonEggInParty(ctx->fieldSystem->saveData);
+    return FALSE;
 }
 
 BOOL ScrCmd_248(ScriptContext *param0)
@@ -725,7 +725,7 @@ BOOL ScrCmd_22E(ScriptContext *param0)
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v2);
 
     for (v3 = 0, v4 = 0; v3 < 80; v3++) {
-        if (Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_RIBBON_ID), NULL) != 0) {
+        if (Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_MON_DATA_PARAM), NULL) != 0) {
             v4++;
         }
     }
@@ -750,7 +750,7 @@ BOOL ScrCmd_22F(ScriptContext *param0)
             v0 = Party_GetPokemonBySlotIndex(v1, v4);
 
             if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) == 0) {
-                if (Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_RIBBON_ID), NULL) != 0) {
+                if (Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_MON_DATA_PARAM), NULL) != 0) {
                     v5++;
                     break;
                 }
@@ -763,33 +763,33 @@ BOOL ScrCmd_22F(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_230(ScriptContext *param0)
+BOOL ScrCmd_GetPartyMonRibbon(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
-    u8 v4 = 1;
+    Pokemon *mon;
+    u16 *hasRibbonVar = ScriptContext_GetVarPointer(ctx);
+    u16 slot = ScriptContext_GetVar(ctx);
+    u16 ribbonID = ScriptContext_GetVar(ctx);
+    u8 unused = 1;
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v2);
-    *v1 = Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_RIBBON_ID), NULL);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
+    *hasRibbonVar = Pokemon_GetValue(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), NULL);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_231(ScriptContext *param0)
+BOOL ScrCmd_SetPartyMonRibbon(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
-    u8 v3 = 1;
+    Pokemon *mon;
+    u16 slot = ScriptContext_GetVar(ctx);
+    u16 ribbonID = ScriptContext_GetVar(ctx);
+    u8 value = TRUE;
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
 
-    Pokemon_SetValue(v0, Ribbon_GetData(v2, RIBBON_DATA_RIBBON_ID), &v3);
-    sub_0206DDB8(param0->fieldSystem->saveData, v0, Ribbon_GetData(v2, RIBBON_DATA_RIBBON_ID));
+    Pokemon_SetValue(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), &value);
+    sub_0206DDB8(ctx->fieldSystem->saveData, mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM));
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_2B7(ScriptContext *param0)

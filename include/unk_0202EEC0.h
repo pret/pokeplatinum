@@ -7,14 +7,14 @@
 
 int PalParkTransfer_SaveSize(void);
 void PalParkTransfer_Init(PalParkTransfer *transferData);
-void sub_0202EF04(PalParkTransfer *transferData);
+void ClearPalParkTransferPokemonData(PalParkTransfer *transferData);
 void BoxMonToTransferData(PalParkTransfer *transfer, BoxPokemon *boxMon, int param2);
-void sub_0202EFB8(PalParkTransfer *transferData, u32 param1);
-void TransferDataToMon(const PalParkTransfer *transferData, int param1, Pokemon *param2);
+void PalParkTransfer_SaveTransferHistory(PalParkTransfer *transferData, u32 gbaTrainerId);
+void TransferDataToMon(const PalParkTransfer *transferData, int slot, Pokemon *param2);
 int GetPalParkTransferMonCount(const PalParkTransfer *transferData);
-int sub_0202F050(const PalParkTransfer *transferData, u32 param1);
-BOOL sub_0202F088(const PalParkTransfer *transferData);
-BOOL sub_0202F0BC(const PalParkTransfer *transferData);
-BOOL sub_0202F0E0(const PalParkTransfer *transferData);
+int PalParkTransfer_GetSecondsSinceLastTransfer(const PalParkTransfer *transferData, u32 gbaTrainerId);
+BOOL MacAddressMatchesLastPalParkTransfer(const PalParkTransfer *transferData);
+BOOL RtcOffsetMatchesLastPalParkTransfer(const PalParkTransfer *transferData);
+BOOL IsPalParkTransferMacAddressUnset(const PalParkTransfer *transferData);
 
 #endif // POKEPLATINUM_UNK_0202EEC0_H

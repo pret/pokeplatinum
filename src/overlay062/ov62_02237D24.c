@@ -414,7 +414,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         ov62_02231AAC(param0, 286);
         v0->unk_2DC = sub_02030A80(HEAP_ID_102);
         sub_02030AA0(v0->unk_2DC, param0->unk_830);
-        Sound_PlayEffect(1381);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80);
         param0->unk_08++;
         break;
     case 3:
@@ -433,7 +433,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         } else {
             Sound_StopEffect(1381, 0);
             ov62_02233704(param0, 47);
-            Sound_PlayEffect(1375);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12);
 
             param0->unk_08++;
         }
@@ -844,7 +844,7 @@ static BOOL ov62_02238B70(UnkStruct_0208C06C *param0)
         sub_0208B9E0(param0->unk_6F0, 1);
         sub_0208BA08(param0->unk_6F0, 24, 24);
         ov62_02231AAC(param0, 287);
-        Sound_PlayEffect(1381);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80);
         param0->unk_08++;
         break;
     case 1:
@@ -864,7 +864,7 @@ static BOOL ov62_02238B70(UnkStruct_0208C06C *param0)
             ov62_0222FB60(param0, 3);
         } else {
             Sound_StopEffect(1381, 0);
-            Sound_PlayEffect(1375);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12);
             param0->unk_08++;
         }
         break;
@@ -1555,7 +1555,7 @@ static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
             v4->unk_1E8[v5].unk_04 = v4->unk_1D4.unk_08[v5];
         }
     }
-    v4->unk_1D4.unk_0C = MessageLoader_Init(0, 26, 412, HEAP_ID_102);
+    v4->unk_1D4.unk_0C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_102);
     v4->unk_1D4.unk_10 = 1;
 }
 
@@ -1579,7 +1579,7 @@ static void ov62_02239BAC(u32 param0, u32 param1, void *param2)
         return;
     }
     if (ov62_02239984(v0, param0) == 0) {
-        Sound_PlayEffect(1380);
+        Sound_PlayEffect(SEQ_SE_PL_BREC58);
         return;
     }
 

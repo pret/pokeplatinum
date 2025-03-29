@@ -30,12 +30,14 @@ enum {
 #define MAX_POKEMON_SHEEN    255
 #define MAX_POKEMON_MARKINGS 6
 #define MAX_POKEMON_LEVEL    100
+#define EGG_POKEMON_LEVEL    1
 
 #define EVOLVE_FRIENDSHIP_THRESHOLD 220
 
 #define BASE_FRIENDSHIP_VALUE 70
 
-#define CATCHING_SHOW_MONS 6
+#define CATCHING_SHOW_MONS       6
+#define MAX_GBA_TRANSFER_HISTORY 20
 
 /**
  * @brief Pokemon Data Parameters
@@ -211,7 +213,7 @@ enum PokemonDataParam {
     MON_DATA_SPEED,
     MON_DATA_SP_ATK,
     MON_DATA_SP_DEF,
-    MON_DATA_170,
+    MON_DATA_MAIL,
     MON_DATA_171,
     MON_DATA_SPECIES_EXISTS, //!< possible data sanity check
     MON_DATA_EGG_EXISTS,

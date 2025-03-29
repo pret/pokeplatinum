@@ -11,7 +11,6 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0207A778.h"
 #include "struct_defs/struct_0207C690.h"
@@ -57,6 +56,7 @@
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "sprite_system.h"
@@ -70,7 +70,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
@@ -519,7 +518,7 @@ static void ov16_0223B790(OverlayManager *param0)
 {
     BattleSystem *battleSys = OverlayManager_Data(param0);
     FieldBattleDTO *v1 = OverlayManager_Args(param0);
-    ArchivedSprite v2;
+    PokemonSpriteTemplate v2;
     int v3;
     RTCDate v4;
     RTCTime v5;
@@ -600,8 +599,8 @@ static void ov16_0223B790(OverlayManager *param0)
         NARC_dtor(v9);
     }
 
-    battleSys->unk_88 = sub_0200762C(HEAP_ID_BATTLE);
-    sub_02008A84(battleSys->unk_88, 0, (0x20 * 6));
+    battleSys->unk_88 = PokemonSpriteManager_New(HEAP_ID_BATTLE);
+    PokemonSpriteManager_SetPlttBaseAddrAndSize(battleSys->unk_88, 0, (0x20 * 6));
 
     ov16_0223F36C(battleSys);
     ov16_0223CE28();
@@ -613,8 +612,8 @@ static void ov16_0223B790(OverlayManager *param0)
     sub_0201E3D8();
     sub_0201E450(4);
 
-    battleSys->unk_0C = MessageLoader_Init(1, 26, 368, HEAP_ID_BATTLE);
-    battleSys->unk_10 = MessageLoader_Init(1, 26, 0, HEAP_ID_BATTLE);
+    battleSys->unk_0C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
+    battleSys->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVES_USED_IN_BATTLE, HEAP_ID_BATTLE);
     battleSys->strFormatter = StringTemplate_Default(HEAP_ID_BATTLE);
     battleSys->msgBuffer = Strbuf_Init((2 * 160), HEAP_ID_BATTLE);
 
@@ -770,7 +769,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
         ov16_0225C104(battleSystem, battleSystem->battlers[battlerId], battleSystem->unk_23F9);
     }
 
-    sub_02007B6C(battleSystem->unk_88);
+    PokemonSpriteManager_Free(battleSystem->unk_88);
 
     if (battleSystem->unk_23F9 != 2) {
         ov16_0223B3E4(battleSystem);
@@ -1515,7 +1514,7 @@ static void ov16_0223CE68(void *param0)
         }
     }
 
-    sub_02008A94(v0->unk_88);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_88);
     VramTransfer_Process();
     SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_28);
@@ -1546,7 +1545,7 @@ static void ov16_0223CF48(SysTask *param0, void *param1)
             ov11_0221F8F0();
         }
 
-        sub_02007768(v0->unk_88);
+        PokemonSpriteManager_DrawSprites(v0->unk_88);
         SpriteSystem_DrawSprites(v0->unk_94);
         SpriteSystem_UpdateTransfer();
         G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
@@ -1596,7 +1595,7 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
     }
 
     if ((v5) && (ov16_0223F450(v0) == 0)) {
-        Sound_PlayEffect(1796);
+        Sound_PlayEffect(SEQ_SE_DP_HINSI);
         BattleSystem_SetRedHPSoundFlag(v0, 1);
         ov16_0223F48C(v0, 4);
     } else if ((v5 == 0) && (ov16_0223F450(v0))) {
@@ -1609,7 +1608,7 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
 
         if (Sound_IsEffectPlaying(1796) == 0) {
             if (--v7 == 0) {
-                Sound_PlayEffect(1796);
+                Sound_PlayEffect(SEQ_SE_DP_HINSI);
                 ov16_0223F48C(v0, 4);
             } else {
                 ov16_0223F48C(v0, v7);
@@ -1733,7 +1732,7 @@ static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
         MessageLoader *v5;
         Strbuf *v6;
 
-        v5 = MessageLoader_Init(1, 26, 368, HEAP_ID_BATTLE);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
         v6 = Strbuf_Init(0x100, HEAP_ID_BATTLE);
 
         MessageLoader_GetStrbuf(v5, 923, v6);

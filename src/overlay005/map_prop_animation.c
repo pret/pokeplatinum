@@ -139,15 +139,13 @@ static int MapPropAnimation_IsLooping(const MapPropAnimation *animation)
 
 MapPropAnimation *MapPropAnimationManager_LoadPropAnimationForOneShot(const int mapPropModelID, const int mapPropAnimIndex, const int animationLoopCount, const int pastoriaGymButtonGroup, const BOOL animationReversed, const BOOL animationPaused, const BOOL isDeferredLoading, NNSG3dResMdl *mapPropModel, NNSG3dResTex *mapPropTexture, MapPropAnimationManager *manager)
 {
-    MapPropAnimation *animation;
     int i;
-    int animeArchiveID;
-    MapPropAnimeListFile animeListFile;
 
+    MapPropAnimeListFile animeListFile;
     NARC_ReadWholeMember(manager->animeListNARC, mapPropModelID, &animeListFile);
     GF_ASSERT(mapPropAnimIndex < MAP_PROP_ANIME_LIST_FILE_ARCHIVE_IDS_COUNT);
 
-    animeArchiveID = animeListFile.animeArchiveIDs[mapPropAnimIndex];
+    int animeArchiveID = animeListFile.animeArchiveIDs[mapPropAnimIndex];
 
     if (animeArchiveID == ANIME_ARCHIVE_ID_NONE) {
         return NULL;
@@ -174,9 +172,9 @@ MapPropAnimation *MapPropAnimationManager_LoadPropAnimationForOneShot(const int 
             manager->animations[i].loopCount = animationLoopCount;
             manager->animations[i].looping = TRUE;
 
-            animation = &manager->animations[i];
+            MapPropAnimation *animation = &manager->animations[i];
+            MapPropAnimation_GoToFirstFrame(animation);
 
-            MapPropAnimation_GoToFirstFrame(&manager->animations[i]);
             return animation;
         }
     }
@@ -188,10 +186,9 @@ MapPropAnimation *MapPropAnimationManager_LoadPropAnimationForOneShot(const int 
 void MapPropAnimationManager_LoadPropAnimations(const int mapPropModelID, NNSG3dResMdl *mapPropModel, NNSG3dResTex *mapPropTexture, MapPropAnimationManager *manager)
 {
     int animeArchiveID;
-    int i;
-    int j;
-    MapPropAnimeListFile animeListFile;
+    int i, j;
 
+    MapPropAnimeListFile animeListFile;
     NARC_ReadWholeMember(manager->animeListNARC, mapPropModelID, &animeListFile);
 
     // BUG: The generated NARC contains 0xFF instead of 0x00,
@@ -200,7 +197,7 @@ void MapPropAnimationManager_LoadPropAnimations(const int mapPropModelID, NNSG3d
         return;
     }
 
-    for (i = 0; i < MAP_PROP_ANIME_LIST_FILE_ARCHIVE_IDS_COUNT; i++) {
+    for (int i = 0; i < MAP_PROP_ANIME_LIST_FILE_ARCHIVE_IDS_COUNT; i++) {
         animeArchiveID = animeListFile.animeArchiveIDs[i];
 
         if (animeArchiveID == ANIME_ARCHIVE_ID_NONE || MapPropAnimation_CheckDeferredLoadingFlag(animeListFile.flags)) {
@@ -238,8 +235,6 @@ void MapPropAnimationManager_LoadPropAnimations(const int mapPropModelID, NNSG3d
 BOOL MapPropAnimationManager_AddAnimationToRenderObj(const int mapPropModelID, const int mapPropAnimIndex, const BOOL isDeferredAddToRenderObj, NNSG3dRenderObj *mapPropRenderObj, MapPropAnimationManager *manager)
 {
     int i;
-    int animeArchiveID;
-    MapPropAnimeListFile animeListFile;
     BOOL addAnimationObj;
 
     if (manager == NULL) {
@@ -249,10 +244,11 @@ BOOL MapPropAnimationManager_AddAnimationToRenderObj(const int mapPropModelID, c
         return FALSE;
     }
 
+    MapPropAnimeListFile animeListFile;
     NARC_ReadWholeMember(manager->animeListNARC, mapPropModelID, &animeListFile);
     GF_ASSERT(mapPropAnimIndex < MAP_PROP_ANIME_LIST_FILE_ARCHIVE_IDS_COUNT);
 
-    animeArchiveID = animeListFile.animeArchiveIDs[mapPropAnimIndex];
+    int animeArchiveID = animeListFile.animeArchiveIDs[mapPropAnimIndex];
 
     if (animeArchiveID == ANIME_ARCHIVE_ID_NONE) {
         return FALSE;
@@ -281,10 +277,8 @@ BOOL MapPropAnimationManager_AddAnimationToRenderObj(const int mapPropModelID, c
 
 BOOL MapPropAnimationManager_AddAllAnimationsToRenderObj(const int mapPropModelID, NNSG3dRenderObj *mapPropRenderObj, MapPropAnimationManager *manager)
 {
-    int i;
-    int j;
+    int i, j;
     int animeArchiveID;
-    MapPropAnimeListFile animeListFile;
     BOOL res = FALSE;
     BOOL addAnimationObj;
 
@@ -296,6 +290,7 @@ BOOL MapPropAnimationManager_AddAllAnimationsToRenderObj(const int mapPropModelI
         return FALSE;
     }
 
+    MapPropAnimeListFile animeListFile;
     NARC_ReadWholeMember(manager->animeListNARC, mapPropModelID, &animeListFile);
 
     if (MapPropAnimation_CheckDeferredAddToRenderObjFlag(animeListFile.flags)) {
@@ -372,17 +367,14 @@ void MapPropAnimationManager_UnloadAnimation(MapPropAnimation *animation, MapPro
 
 void MapPropAnimationManager_RemoveAnimationFromRenderObj(MapPropAnimationManager *manager, NNSG3dRenderObj *mapPropRenderObj, const int mapPropModelID, const int mapPropAnimIndex)
 {
-    u8 i;
-    int animeArchiveID;
     MapPropAnimeListFile animeListFile;
-
     NARC_ReadWholeMember(manager->animeListNARC, mapPropModelID, &animeListFile);
 
     GF_ASSERT(mapPropAnimIndex < MAP_PROP_ANIME_LIST_FILE_ARCHIVE_IDS_COUNT);
-    animeArchiveID = animeListFile.animeArchiveIDs[mapPropAnimIndex];
+    int animeArchiveID = animeListFile.animeArchiveIDs[mapPropAnimIndex];
     GF_ASSERT(animeArchiveID != ANIME_ARCHIVE_ID_NONE);
 
-    for (i = 0; i < MAP_PROP_ANIMATION_MANAGER_MAX_ANIMATIONS; i++) {
+    for (u8 i = 0; i < MAP_PROP_ANIMATION_MANAGER_MAX_ANIMATIONS; i++) {
         if (manager->animations[i].loaded == TRUE && manager->animations[i].animeArchiveID == animeArchiveID) {
             MapPropAnimation_RemoveAnimationObjFromRenderObj(mapPropRenderObj, manager->animations[i].animationObj);
             return;
@@ -422,19 +414,15 @@ MapPropAnimation *MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(c
 
 MapPropAnimation *MapPropAnimationManager_GetAnimation(const int mapPropModelID, const int mapPropAnimIndex, MapPropAnimationManager *manager)
 {
-    MapPropAnimation *animation;
-    int animeArchiveID;
-    int i;
     MapPropAnimeListFile animeListFile;
-
     NARC_ReadWholeMember(manager->animeListNARC, mapPropModelID, &animeListFile);
 
     GF_ASSERT(mapPropAnimIndex < MAP_PROP_ANIME_LIST_FILE_ARCHIVE_IDS_COUNT);
 
-    animeArchiveID = animeListFile.animeArchiveIDs[mapPropAnimIndex];
-    animation = NULL;
+    int animeArchiveID = animeListFile.animeArchiveIDs[mapPropAnimIndex];
+    MapPropAnimation *animation = NULL;
 
-    for (i = 0; i < MAP_PROP_ANIMATION_MANAGER_MAX_ANIMATIONS; i++) {
+    for (int i = 0; i < MAP_PROP_ANIMATION_MANAGER_MAX_ANIMATIONS; i++) {
         if (manager->animations[i].animeArchiveID == animeArchiveID) {
             animation = &manager->animations[i];
             GF_ASSERT(animation->loaded);
@@ -529,15 +517,12 @@ void MapPropAnimation_SetPastoriaGymButtonGroup(MapPropAnimation *animation, con
 
 void MapPropAnimationManager_AdvanceAnimations(MapPropAnimationManager *manager)
 {
-    int i;
-    MapPropAnimation *animation;
-
     if (manager == NULL) {
         return;
     }
 
-    for (i = 0; i < MAP_PROP_ANIMATION_MANAGER_MAX_ANIMATIONS; i++) {
-        animation = &manager->animations[i];
+    for (int i = 0; i < MAP_PROP_ANIMATION_MANAGER_MAX_ANIMATIONS; i++) {
+        MapPropAnimation *animation = &manager->animations[i];
 
         if (animation->loaded == TRUE) {
             if (animation->paused == TRUE || animation->looping == FALSE) {
@@ -572,8 +557,8 @@ u16 MapPropAnimationManager_GetAnimeListNARCFileCount(MapPropAnimationManager *m
 const u8 MapPropAnimationManager_GetPropAnimationCount(MapPropAnimationManager *manager, const int mapPropModelID)
 {
     u8 i;
-    MapPropAnimeListFile animeListFile;
 
+    MapPropAnimeListFile animeListFile;
     NARC_ReadWholeMember(manager->animeListNARC, mapPropModelID, &animeListFile);
 
     // BUG: The generated NARC contains 0xFF instead of 0x00,
@@ -594,11 +579,9 @@ const u8 MapPropAnimationManager_GetPropAnimationCount(MapPropAnimationManager *
 static MapPropOneShotAnimation *MapPropOneShotAnimationManager_AllocateAnimation(MapPropOneShotAnimationManager *oneShotAnimMan, const u8 tag)
 {
     u8 i;
-    u8 itemIndex;
-    MapPropOneShotAnimation *item = NULL;
 
     GF_ASSERT(tag != 0);
-    itemIndex = MAP_PROP_ONE_SHOT_ANIMATION_MANAGER_MAX_ITEMS;
+    u8 itemIndex = MAP_PROP_ONE_SHOT_ANIMATION_MANAGER_MAX_ITEMS;
 
     for (i = 0; i < MAP_PROP_ONE_SHOT_ANIMATION_MANAGER_MAX_ITEMS; i++) {
         if (itemIndex == MAP_PROP_ONE_SHOT_ANIMATION_MANAGER_MAX_ITEMS && oneShotAnimMan->items[i].tag == 0) {
@@ -661,18 +644,13 @@ static void MapPropOneShotAnimation_SetAnimation(MapPropOneShotAnimation *oneSho
 
 static MapPropAnimation *MapPropOneShotAnimation_SwitchAnimation(MapPropOneShotAnimation *oneShotAnimation, const int mapPropAnimIndex)
 {
-    u8 i;
-    MapPropAnimation *newAnimation;
-    NNSG3dAnmObj *newAnimationObj;
-    NNSG3dAnmObj *currentAnimationObj;
-
     GF_ASSERT(mapPropAnimIndex < oneShotAnimation->animations.count);
 
-    newAnimation = oneShotAnimation->animations.list[mapPropAnimIndex];
-    newAnimationObj = MapPropAnimation_GetAnimationObj(newAnimation);
-    currentAnimationObj = MapPropAnimation_GetAnimationObj(oneShotAnimation->currentAnimation);
+    MapPropAnimation *newAnimation = oneShotAnimation->animations.list[mapPropAnimIndex];
+    NNSG3dAnmObj *newAnimationObj = MapPropAnimation_GetAnimationObj(newAnimation);
+    NNSG3dAnmObj *currentAnimationObj = MapPropAnimation_GetAnimationObj(oneShotAnimation->currentAnimation);
 
-    for (i = 0; i < MAP_PROP_ONE_SHOT_ANIMATION_MAX_RENDER_OBJS; i++) {
+    for (u8 i = 0; i < MAP_PROP_ONE_SHOT_ANIMATION_MAX_RENDER_OBJS; i++) {
         if (oneShotAnimation->mapPropRenderObjs[i] != NULL) {
             MapPropAnimation_RemoveAnimationObjFromRenderObj(oneShotAnimation->mapPropRenderObjs[i], currentAnimationObj);
             NNS_G3dRenderObjAddAnmObj(oneShotAnimation->mapPropRenderObjs[i], newAnimationObj);

@@ -127,7 +127,7 @@ void ov104_0222DCF4(UnkStruct_0204B1E8 *param0, int param1, int param2)
 UnkStruct_0204B184 *ov104_0222DD04(UnkStruct_ov104_0223A348_sub1 *param0, int param1, int param2, int param3)
 {
     UnkStruct_0204B184 *v0;
-    MessageLoader *v1 = MessageLoader_Init(1, 26, 21, param2);
+    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, param2);
     Strbuf *v2;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348_sub1));
@@ -318,7 +318,7 @@ void ov104_0222DF40(const UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1
         MessageLoader *v7;
         Strbuf *v8;
 
-        v7 = MessageLoader_Init(1, 26, 412, HEAP_ID_FIELD);
+        v7 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD);
         v8 = MessageLoader_GetNewStrbuf(v7, param0->unk_00_val1_0);
 
         Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRBUF, v8);
@@ -360,9 +360,9 @@ void ov104_0222E134(SaveData *param0, Pokemon *param1)
     Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0), 4, 0, 0, 11);
 
     v3 = MapHeader_GetMapLabelTextID(562);
-    sub_0209304C(param1, v5, v4, v3, 11);
+    UpdateMonStatusAndTrainerInfo(param1, v5, v4, v3, HEAP_ID_FIELDMAP);
 
-    v2 = MessageLoader_Init(0, 26, 363, HEAP_ID_FIELDMAP);
+    v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0363, HEAP_ID_FIELDMAP);
     v1 = MessageLoader_GetNewStrbuf(v2, 0);
 
     Pokemon_SetValue(param1, MON_DATA_OTNAME_STRBUF, v1);

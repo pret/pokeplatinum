@@ -194,7 +194,7 @@ static int ov95_0224A464(UnkStruct_ov95_0224A42C *param0, int *param1)
         break;
     case 1:
         if (Sprite_IsAnimated(param0->unk_20[0]) == 0) {
-            Sound_PlayEffect(1707);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN05);
             ov95_0224A864(param0, &(param0->unk_34));
             ov95_022479A8(param0->unk_2C, 1);
             (*param1)++;

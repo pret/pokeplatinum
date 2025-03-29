@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/ov21_021E4CA4.h"
@@ -21,13 +19,13 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     int *unk_00;
@@ -375,7 +373,7 @@ static void ov21_021E4328(UnkStruct_ov21_021E4108 *param0, const UnkStruct_ov21_
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
     PokedexMain_DisplayPokemonSprite(param0->unk_00, param1->unk_04, species, 2, 48, 64);
-    sub_02007DEC(v0, 6, 0);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 0);
 }
 
 static void ov21_021E4360(UnkStruct_ov21_021E4360 *param0)

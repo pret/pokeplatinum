@@ -2008,12 +2008,12 @@
     .short 365
     .endm
 
-    .macro ScrCmd_16E arg0
+    .macro GetDaycareState destVar
     .short 366
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_16F
+    .macro InitPersistedMapFeaturesForPastoriaGym
     .short 367
     .endm
 
@@ -2021,7 +2021,7 @@
     .short 368
     .endm
 
-    .macro ScrCmd_171
+    .macro InitPersistedMapFeaturesForHearthomeGym
     .short 369
     .endm
 
@@ -2029,17 +2029,17 @@
     .short 370
     .endm
 
-    .macro ScrCmd_173
+    .macro InitPersistedMapFeaturesForCanalaveGym
     .short 371
     .endm
 
-    .macro ScrCmd_174
+    .macro InitPersistedMapFeaturesForVeilstoneGym
     .short 372
     .endm
 
-    .macro ScrCmd_175 arg0
+    .macro InitPersistedMapFeaturesForSunyshoreGym floorID
     .short 373
-    .byte \arg0
+    .byte \floorID
     .endm
 
     .macro ScrCmd_176 arg0
@@ -2295,10 +2295,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1A4 arg0, arg1
+    .macro MoveMonToPartyFromDaycareSlot destVarSpecies, daycareSlot
     .short 420
-    .short \arg0
-    .short \arg1
+    .short \destVarSpecies
+    .short \daycareSlot
     .endm
 
     .macro ScrCmd_1A5 arg0
@@ -2314,18 +2314,18 @@
     .short 423
     .endm
 
-    .macro ScrCmd_1A8
+    .macro ResetDaycarePersonalityAndStepCounter
     .short 424
     .endm
 
-    .macro ScrCmd_1A9
+    .macro GiveEggFromDaycare
     .short 425
     .endm
 
-    .macro ScrCmd_1AA arg0, arg1
+    .macro BufferDaycarePriceBySlot destVar, daycareSlot
     .short 426
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \daycareSlot
     .endm
 
     .macro ScrCmd_1AB arg0, arg1
@@ -2343,10 +2343,10 @@
     .short \dummy
     .endm
 
-    .macro ScrCmd_1AE arg0, arg1
+    .macro BufferDaycareGainedLevelsBySlot destVar, daycareSlot
     .short 430
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \daycareSlot
     .endm
 
     .macro ScrCmd_1AF arg0, arg1, arg2
@@ -2356,9 +2356,9 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_1B0 arg0
+    .macro StorePartyMonIntoDaycare partySlot
     .short 432
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_1B1 arg0
@@ -2408,10 +2408,10 @@
     .short \upperBound
     .endm
 
-    .macro ScrCmd_1B9 arg0, arg1
+    .macro GetPartyMonFriendship destVar, partySlot
     .short 441
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \partySlot
     .endm
 
     .macro ScrCmd_1BA arg0, arg1
@@ -2439,14 +2439,14 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_1BE arg0
+    .macro GetDaycareCompatibilityLevel destVar
     .short 446
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_1BF arg0
+    .macro CheckDaycareHasEgg destVar
     .short 447
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_1C0 destVarID, species
@@ -2893,7 +2893,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_20E
+    .macro InitPersistedMapFeaturesForGreatMarsh
     .short 526
     .endm
 
@@ -3071,17 +3071,17 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_230 arg0, arg1, arg2
+    .macro GetPartyMonRibbon destVar, partySlot, ribbonID
     .short 560
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \destVar
+    .short \partySlot
+    .short \ribbonID
     .endm
 
-    .macro ScrCmd_231 arg0, arg1
+    .macro SetPartyMonRibbon partySlot, ribbonID
     .short 561
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \ribbonID
     .endm
 
     .macro ScrCmd_232 arg0, arg1
@@ -3144,11 +3144,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_23A arg0, arg1, arg2
+    .macro GetPartyMonFootprintType hasPrintVar, printTypeVar, partySlot
     .short 570
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \hasPrintVar
+    .short \printTypeVar
+    .short \partySlot
     .endm
 
     .macro ScrCmd_23B arg0
@@ -3226,9 +3226,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_247 arg0
+    .macro GetFirstNonEggInParty partySlot
     .short 583
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_248 arg0, arg1, arg2
@@ -3332,7 +3332,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_25B
+    .macro InitPersistedMapFeaturesForPlatformLift
     .short 603
     .endm
 
@@ -3932,7 +3932,7 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_2C9
+    .macro InitPersistedMapFeaturesForEternaGym
     .short 713
     .endm
 
@@ -4162,7 +4162,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_2F0
+    .macro InitPersistedMapFeaturesForVilla
     .short 752
     .endm
 
@@ -4172,7 +4172,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_2F2
+    .macro InitPersistedMapFeaturesForDistortionWorld
     .short 754
     .endm
 

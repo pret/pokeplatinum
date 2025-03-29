@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -25,6 +24,7 @@
 #include "message.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
 #include "spl.h"
 #include "sprite.h"
@@ -33,7 +33,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_0202419C.h"
@@ -232,7 +231,7 @@ void ov119_021D0FD0(void *param0)
 {
     UnkStruct_ov119_021D0FD0 *v0 = (UnkStruct_ov119_021D0FD0 *)param0;
 
-    sub_02008A94(v0->unk_04.unk_38);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_04.unk_38);
     VramTransfer_Process();
     SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_04.unk_04);
@@ -300,7 +299,7 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
 
     Window_FillTilemap(param0, 15);
 
-    v5 = MessageLoader_Init(0, 26, 357, HEAP_ID_71);
+    v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0357, HEAP_ID_71);
     v3 = StringTemplate_Default(HEAP_ID_71);
     v1 = MessageLoader_GetNewStrbuf(v5, param1);
     v2 = Strbuf_Init(255, HEAP_ID_71);
@@ -331,7 +330,7 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
     {
         int v1;
         Strbuf *v2;
-        MessageLoader *v3 = MessageLoader_Init(0, 26, 357, HEAP_ID_71);
+        MessageLoader *v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0357, HEAP_ID_71);
 
         for (v1 = 0; v1 < 2; v1++) {
             v2 = MessageLoader_GetNewStrbuf(v3, 2 + v1);
@@ -736,7 +735,7 @@ void ov119_021D1844(UnkStruct_ov119_021D17B8 *param0)
 
 void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     SpriteAnimationFrame v1[10];
     Pokemon *v2;
     int v3;
@@ -752,10 +751,10 @@ void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0)
         Pokemon_SetValue(v2, MON_DATA_IS_EGG, &v5);
     }
 
-    Pokemon_BuildArchivedSprite(&v0, v2, 2);
+    Pokemon_BuildSpriteTemplate(&v0, v2, 2);
     PokeSprite_LoadAnimationFrames(param0->unk_04.unk_3C, &v1[0], v3, 1);
 
-    param0->unk_70 = sub_02007C34(param0->unk_04.unk_38, &v0, 128, 96 + v4, 0, 0, &v1[0], NULL);
+    param0->unk_70 = PokemonSpriteManager_CreateSprite(param0->unk_04.unk_38, &v0, 128, 96 + v4, 0, 0, &v1[0], NULL);
 }
 
 void ov119_021D18C0(UnkStruct_ov119_021D0FD0 *param0)
@@ -766,16 +765,16 @@ void ov119_021D18C0(UnkStruct_ov119_021D0FD0 *param0)
     v0 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
     v1 = Pokemon_GetNature(param0->unk_00->unk_0C.unk_00);
 
-    sub_02007B98(param0->unk_70, 1);
+    PokemonSprite_InitAnim(param0->unk_70, 1);
     PokeSprite_LoadAnimation(param0->unk_04.unk_3C, param0->unk_04.unk_54, param0->unk_70, v0, 2, 0, 0);
 }
 
 void ov119_021D1900(UnkStruct_ov119_021D0FD0 *param0)
 {
-    sub_02007DC8(param0->unk_70);
+    PokemonSprite_Delete(param0->unk_70);
 }
 
 void ov119_021D190C(UnkStruct_ov119_021D0FD0 *param0, int param1)
 {
-    sub_02007DEC(param0->unk_70, 6, param1);
+    PokemonSprite_SetAttribute(param0->unk_70, MON_SPRITE_HIDE, param1);
 }

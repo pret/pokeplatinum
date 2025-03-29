@@ -86,7 +86,7 @@ void ov94_02243FA8(UnkStruct_ov94_0223FD4C *param0, int param1)
         v0->unk_0C = param0;
 
         ov94_02243FF0(v0, 0);
-        Sound_PlayEffect(1583);
+        Sound_PlayEffect(SEQ_SE_DP_PYUU);
     }
 }
 
@@ -131,7 +131,7 @@ static void ov94_0224400C(SysTask *param0, void *param1)
         ov94_022441A0(v2->unk_F34[0], 128, v1->unk_04);
         break;
     case 3:
-        Sound_PlayEffect(1549);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         v1->unk_0C->unk_10F0 = 1;
         SysTask_FinishAndFreeParam(param0);
         break;
@@ -152,7 +152,7 @@ void ov94_022440B8(UnkStruct_ov94_0223FD4C *param0, int param1)
         v0->unk_0C = param0;
 
         ov94_02243FF0(v0, 5);
-        Sound_PlayEffect(1550);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
     }
 }
 
@@ -178,7 +178,7 @@ static void ov94_022440FC(SysTask *param0, void *param1)
         if (!Sprite_IsAnimated(v2->unk_F34[0])) {
             ov94_02243FF0(v1, 0);
             v1->unk_00 = 2;
-            Sound_PlayEffect(1584);
+            Sound_PlayEffect(SEQ_SE_DP_PYUU2);
         }
         break;
     case 2:
@@ -238,7 +238,7 @@ void ov94_02244234(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
     int v0;
 
     if ((param1 != 0) && (param2 == 1)) {
-        Sound_PlayEffect(1615);
+        Sound_PlayEffect(SEQ_SE_DP_TELE2);
     }
 
     for (v0 = 0; v0 < 7; v0++) {

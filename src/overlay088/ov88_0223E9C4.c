@@ -129,7 +129,7 @@ int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3,
     Strbuf *v0;
     int v1;
 
-    v0 = MessageUtil_ExpandedStrbuf(param4, param3, param1, 26);
+    v0 = MessageUtil_ExpandedStrbuf(param4, param3, param1, HEAP_ID_26);
 
     if (param2 == 1) {
         Window_DrawMessageBoxWithScrollCursor(param0, 0, (512 - (9 + (18 + 12))), 10);
@@ -224,6 +224,6 @@ ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig
 static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }

@@ -414,7 +414,7 @@ static void ov97_0222D614(void *param0)
         if (ov97_0222D5C8(&v1->unk_8C.unk_50.val1) == 1) {
             (void)0;
         } else {
-            Sound_PlayEffect(1563);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE);
         }
 
         v1->unk_2A48 = NULL;
@@ -784,7 +784,7 @@ static void ov97_0222DD1C(OverlayManager *param0, UnkStruct_ov97_0223E5B8 *param
     }
 
     v2->unk_7C = StringList_New(param2, 86);
-    v2->unk_10 = MessageLoader_Init(0, 26, 421, HEAP_ID_86);
+    v2->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_86);
 
     for (v0 = 0; v0 < param2; v0++) {
         StringList_AddFromMessageBank(v2->unk_7C, v2->unk_10, param1[v0].unk_00, param1[v0].unk_04);
@@ -839,7 +839,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
     Strbuf *v0;
     UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
 
-    v1->unk_10 = MessageLoader_Init(1, 26, 421, HEAP_ID_86);
+    v1->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_86);
     v1->unk_0C = StringTemplate_Default(HEAP_ID_86);
 
     Window_FillTilemap(param1, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
@@ -847,7 +847,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
     if (v1->unk_14) {
         v0 = v1->unk_14;
     } else {
-        v0 = MessageUtil_ExpandedStrbuf(v1->unk_0C, v1->unk_10, param2, 86);
+        v0 = MessageUtil_ExpandedStrbuf(v1->unk_0C, v1->unk_10, param2, HEAP_ID_86);
     }
 
     v1->unk_6C = Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, v1->unk_68, TEXT_COLOR(1, 2, 15), NULL);
@@ -890,7 +890,7 @@ static void ov97_0222DF70(OverlayManager *param0, int *param1, int (*param2)(Ove
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (param2) {
             v1 = param2(param0);
@@ -901,7 +901,7 @@ static void ov97_0222DF70(OverlayManager *param0, int *param1, int (*param2)(Ove
         }
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (v0) {
             v3 = (static int (*)(OverlayManager *))v0;
@@ -965,7 +965,7 @@ static void ov97_0222E080(OverlayManager *param0, int *param1)
         Window_ClearAndCopyToVRAM(&v0->unk_26E0);
         Window_Remove(&v0->unk_26E0);
         Bg_ClearTilemap(v0->unk_00, 0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
         *param1 = 3;
@@ -1030,9 +1030,9 @@ static int ov97_0222E228(OverlayManager *param0, Window *param1, int param2, int
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
 
     if (param1 && param2) {
-        v1 = MessageLoader_Init(1, 26, 421, HEAP_ID_86);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_86);
         v0 = StringTemplate_Default(HEAP_ID_86);
-        v2->unk_14 = MessageUtil_ExpandedStrbuf(v0, v1, param2, 86);
+        v2->unk_14 = MessageUtil_ExpandedStrbuf(v0, v1, param2, HEAP_ID_86);
         v2->unk_68 = 1;
 
         ov97_0222DE78(param0, param1, param2);
@@ -1862,7 +1862,7 @@ static void ov97_0222F4BC(SysTask *param0, void *param1)
         ov97_0222F410(v0, 2, 2);
 
         if (v1 || (v5 == ((80 / 4) - 1))) {
-            Sound_PlayEffect(1563);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE);
             v0->unk_00 = 5;
             ov97_0222E7B4(v0);
             ov97_0222E60C(v0);
@@ -2101,7 +2101,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
                 ov97_02238194(v3->unk_00, v2);
                 v3->unk_2A54 = 2;
             } else {
-                Sound_PlayEffect(1572);
+                Sound_PlayEffect(SEQ_SE_DP_UG_020);
             }
 
             *param1 = 35;
@@ -2248,13 +2248,13 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             ov97_0222D30C(v3, 0);
             ov97_0222D2DC();
             sub_02039794();
-            Sound_PlayEffect(1572);
+            Sound_PlayEffect(SEQ_SE_DP_UG_020);
             ov97_0222D40C(v3, -1);
             *param1 = ov97_0222E228(param0, &v3->unk_18, 8, 55);
         }
         break;
     case 16:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov97_0222DE78(param0, &v3->unk_18, 24);
         ov97_0222D444(&v3->unk_58, 0);
         *param1 = 18;
@@ -2266,14 +2266,14 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         }
 
         ov97_0222D30C(v3, 0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov97_0222DE78(param0, &v3->unk_18, 23);
         ov97_0222D444(&v3->unk_58, 0);
         *param1 = 18;
         break;
     case 18:
         if (gSystem.pressedKeys) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
             *param1 = 3;
         }
@@ -2335,7 +2335,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             v3->unk_43C = 1;
             ov97_0222D30C(v3, 0);
             ov97_0222D40C(v3, -1);
-            Sound_PlayEffect(1572);
+            Sound_PlayEffect(SEQ_SE_DP_UG_020);
             *param1 = ov97_0222E228(param0, &v3->unk_18, 8, 25);
         } else if (ov97_02238528() == 3) {
             ov97_0222D40C(v3, -1);
@@ -2383,7 +2383,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         break;
     case 55:
         if (gSystem.pressedKeys) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (v3->unk_8C.unk_00.unk_4E_2 == 1) {
                 ov97_02237790(0, 56, v3->unk_163C, 2);
@@ -2444,7 +2444,7 @@ static int ov97_022301BC(OverlayManager *param0, int *param1)
     Heap_Destroy(HEAP_ID_86);
 
     if (v0->unk_1638 == 2) {
-        SetGBACartridgeVersion(NULL);
+        SetGBACartridgeVersion(VERSION_NONE);
     }
 
     ov97_02238400(0);

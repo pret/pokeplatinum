@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/screen.h"
-#include "generated/sdat.h"
 
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"

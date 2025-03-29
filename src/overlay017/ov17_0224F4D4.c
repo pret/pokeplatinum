@@ -22,6 +22,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -31,7 +32,6 @@
 #include "system.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -185,11 +185,11 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     v0->unk_10.unk_1C = SpriteManager_New(v0->unk_10.unk_18);
     SpriteSystem_InitSprites(v0->unk_10.unk_18, v0->unk_10.unk_1C, (64 + 64));
     SpriteSystem_InitManagerWithCapacities(v0->unk_10.unk_18, v0->unk_10.unk_1C, &Unk_ov17_02254AD8);
-    v0->unk_10.unk_04 = sub_0200762C(HEAP_ID_24);
+    v0->unk_10.unk_04 = PokemonSpriteManager_New(HEAP_ID_24);
 
     ov17_0224FDDC();
 
-    v0->unk_10.unk_B4 = MessageLoader_Init(0, 26, 218, HEAP_ID_24);
+    v0->unk_10.unk_B4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0218, HEAP_ID_24);
     v0->unk_10.unk_B8 = StringTemplate_Default(HEAP_ID_24);
     v0->unk_10.unk_BC = Strbuf_Init((2 * 160), HEAP_ID_24);
     v0->unk_10.unk_C4 = sub_02012744(10, HEAP_ID_24);
@@ -215,7 +215,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     SetVBlankCallback(ov17_0224FA24, v0);
 
     v0->unk_08 = SysTask_ExecuteOnVBlank(ov17_0224FAE4, v0, 10);
-    Sound_PlayEffect(1765);
+    Sound_PlayEffect(SEQ_SE_DP_CON_007);
 
     return 1;
 }
@@ -301,7 +301,7 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
 
     ov17_022507C4(&v0->unk_10);
 
-    sub_02007B6C(v0->unk_10.unk_04);
+    PokemonSpriteManager_Free(v0->unk_10.unk_04);
     sub_020127BC(v0->unk_10.unk_C4);
     Font_Free(FONT_SUBSCREEN);
 
@@ -355,7 +355,7 @@ static void ov17_0224FA24(void *param0)
         G2_SetWnd1Position(v0->unk_855, v0->unk_856, v0->unk_857, v0->unk_858);
     }
 
-    sub_02008A94(v0->unk_10.unk_04);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_10.unk_04);
     VramTransfer_Process();
     SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_10.unk_C0);
@@ -394,7 +394,7 @@ static void ov17_0224FAFC(SysTask *param0, void *param1)
     UnkStruct_ov17_0224FCA0 *v0 = param1;
 
     if (v0->unk_850 == 1) {
-        sub_02007768(v0->unk_10.unk_04);
+        PokemonSpriteManager_DrawSprites(v0->unk_10.unk_04);
         ov11_0221F8F0();
         SpriteSystem_DrawSprites(v0->unk_10.unk_1C);
         SpriteSystem_UpdateTransfer();

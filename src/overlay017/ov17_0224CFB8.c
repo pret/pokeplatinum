@@ -399,7 +399,7 @@ static void ov17_0224D41C(SysTask *param0, void *param1)
         G2_BlendNone();
         ov17_0224C84C();
         ov17_0224ABDC(&v0->unk_00->unk_14, 1);
-        Sound_PlayEffect(1772);
+        Sound_PlayEffect(SEQ_SE_DP_CON_019);
         v0->unk_10++;
         break;
     case 3:
@@ -1083,7 +1083,7 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
             }
         }
 
-        Sound_PlayEffect(1783);
+        Sound_PlayEffect(SEQ_SE_DP_CON_030);
         v0->unk_10++;
         break;
     case 3:
@@ -1489,7 +1489,7 @@ static void ov17_0224E86C(SysTask *param0, void *param1)
         break;
     case 4:
         Sound_PlayBGM(1135);
-        Sound_PlayEffect(1765);
+        Sound_PlayEffect(SEQ_SE_DP_CON_007);
         v0->unk_4C++;
         break;
     default:

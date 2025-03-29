@@ -12,12 +12,12 @@
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 
@@ -161,7 +161,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
             break;
         }
 
-        if (sub_02007C24(param0->unk_70) != 0) {
+        if (PokemonSprite_IsAnimActive(param0->unk_70) != 0) {
             break;
         }
 
@@ -311,7 +311,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
             break;
         }
 
-        if (sub_02007C24(param0->unk_70) != 0) {
+        if (PokemonSprite_IsAnimActive(param0->unk_70) != 0) {
             break;
         }
 
@@ -379,7 +379,7 @@ static BOOL ov119_021D1E38(UnkStruct_ov119_021D0FD0 *param0)
         break;
     case 1:
         if ((++param0->unk_64) >= 25) {
-            Sound_PlayEffect(1812);
+            Sound_PlayEffect(SEQ_SE_DP_EGG01);
 
             param0->unk_68++;
         }
@@ -410,7 +410,7 @@ static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0)
         v0 = ov119_021D176C(param0, 0);
 
         if (v0 == 2) {
-            Sound_PlayEffect(1812);
+            Sound_PlayEffect(SEQ_SE_DP_EGG01);
 
             ManagedSprite_SetAnimationFrame(param0->unk_74, 2);
             param0->unk_68++;
@@ -446,7 +446,7 @@ static BOOL ov119_021D1EF0(UnkStruct_ov119_021D0FD0 *param0)
         v0 = ov119_021D176C(param0, 1);
 
         if (v0 == 1) {
-            Sound_PlayEffect(1812);
+            Sound_PlayEffect(SEQ_SE_DP_EGG01);
             ManagedSprite_SetAnimationFrame(param0->unk_74, 3);
             ov119_021D14DC(param0->unk_04.unk_40, 0);
         }
@@ -481,7 +481,7 @@ static BOOL ov119_021D1F48(UnkStruct_ov119_021D0FD0 *param0)
         v0 = ov119_021D176C(param0, 2);
 
         if (v0 == 1) {
-            Sound_PlayEffect(1812);
+            Sound_PlayEffect(SEQ_SE_DP_EGG01);
 
             ManagedSprite_SetAnimationFrame(param0->unk_74, 4);
             ov119_021D14DC(param0->unk_04.unk_40, 1);
@@ -520,7 +520,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
 
         if (v0 == 1) {
             ManagedSprite_SetAnimationFrame(param0->unk_74, 5);
-            Sound_PlayEffect(1799);
+            Sound_PlayEffect(SEQ_SE_DP_BOWA3);
             ov119_021D14DC(param0->unk_04.unk_40, 2);
             ov119_021D14DC(param0->unk_04.unk_40, 3);
         }
@@ -547,7 +547,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
                 PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v2), 0, 0, 16, 0xFFFF);
             }
 
-            sub_020086FC(param0->unk_70, 0, 16, 0, 0xFFFF);
+            PokemonSprite_StartFade(param0->unk_70, 0, 16, 0, 0xFFFF);
             param0->unk_68++;
         }
         break;
@@ -571,7 +571,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
             v5++;
         }
 
-        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (v5 != 2) || (sub_020087B4(param0->unk_70) != 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (v5 != 2) || (PokemonSprite_IsFadeActive(param0->unk_70) != 0)) {
             break;
         }
 
@@ -587,7 +587,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
         if ((++param0->unk_64) >= 25) {
             param0->unk_64 = 0;
 
-            sub_020086FC(param0->unk_70, 16, 0, 0, 0xFFFF);
+            PokemonSprite_StartFade(param0->unk_70, 16, 0, 0, 0xFFFF);
             PaletteData_StartFade(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 16, 0, 0xFFFF);
             PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF, 0, 16, 0, 0xFFFF);
 
@@ -595,7 +595,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
         }
         break;
     case 5:
-        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (sub_020087B4(param0->unk_70) != 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (PokemonSprite_IsFadeActive(param0->unk_70) != 0)) {
             break;
         }
 
@@ -629,13 +629,13 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
     case 1:
         switch (param0->unk_64) {
         case 25:
-            Sound_PlayEffect(2054);
+            Sound_PlayEffect(SEQ_SE_DP_W278);
             break;
         case 80:
-            Sound_PlayEffect(1962);
+            Sound_PlayEffect(SEQ_SE_DP_W080C);
             break;
         case 142:
-            Sound_PlayEffect(2069);
+            Sound_PlayEffect(SEQ_SE_DP_W361);
             break;
         }
 
@@ -653,7 +653,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
                 PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v1), 0, 0, 16, 0xFFFF);
             }
 
-            sub_020086FC(param0->unk_70, 0, 16, 0, 0xFFFF);
+            PokemonSprite_StartFade(param0->unk_70, 0, 16, 0, 0xFFFF);
             param0->unk_68++;
         }
         break;
@@ -677,7 +677,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
             v4++;
         }
 
-        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (v4 != 2) || (sub_020087B4(param0->unk_70) != 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (v4 != 2) || (PokemonSprite_IsFadeActive(param0->unk_70) != 0)) {
             break;
         }
 
@@ -694,7 +694,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
         if ((++param0->unk_64) >= 25) {
             param0->unk_64 = 0;
 
-            sub_020086FC(param0->unk_70, 16, 0, 0, 0xFFFF);
+            PokemonSprite_StartFade(param0->unk_70, 16, 0, 0, 0xFFFF);
             PaletteData_StartFade(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 16, 0, 0xFFFF);
             PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF, 0, 16, 0, 0xFFFF);
 
@@ -702,7 +702,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
         }
         break;
     case 4:
-        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (sub_020087B4(param0->unk_70) != 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (PokemonSprite_IsFadeActive(param0->unk_70) != 0)) {
             break;
         }
 

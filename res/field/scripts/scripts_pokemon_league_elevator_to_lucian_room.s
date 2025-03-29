@@ -9,7 +9,7 @@
 
 _000E:
     SetVar 0x4000, 0
-    ScrCmd_25B
+    InitPersistedMapFeaturesForPlatformLift
     ScrCmd_25D 0x4001
     GoToIfEq 0x4001, 0, _0029
     End

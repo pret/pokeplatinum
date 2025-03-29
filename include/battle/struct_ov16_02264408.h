@@ -2,13 +2,13 @@
 #define POKEPLATINUM_STRUCT_OV16_02264408_H
 
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/struct_ov16_0223E0C8.h"
 #include "battle/struct_ov16_02264408_sub1.h"
 
 #include "bg_window.h"
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 
 typedef struct {

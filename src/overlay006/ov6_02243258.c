@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
-#include "struct_defs/archived_sprite.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F0EB0.h"
@@ -77,7 +76,7 @@ typedef struct {
     Sprite *unk_24C;
     UnkStruct_ov101_021D5D90 *unk_250;
     UnkStruct_ov101_021D5D90 *unk_254;
-    ArchivedSprite unk_258;
+    PokemonSpriteTemplate unk_258;
     int unk_268;
     int unk_26C;
     void *unk_270;
@@ -281,9 +280,9 @@ static void ov6_02244F80(UnkStruct_ov6_02243FFC *param0, fx32 param1, fx32 param
 static void ov6_02244F8C(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244FB4(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244FE4(SysTask *param0, void *param1);
-static void ov6_0224508C(UnkStruct_ov6_02243FFC *param0, ArchivedSprite *param1);
-static void *ov6_0224509C(Pokemon *param0, ArchivedSprite *param1, u32 heapID);
-static void *ov6_022450E4(ArchivedSprite *param0, u32 heapID);
+static void ov6_0224508C(UnkStruct_ov6_02243FFC *param0, PokemonSpriteTemplate *param1);
+static void *ov6_0224509C(Pokemon *param0, PokemonSpriteTemplate *param1, u32 heapID);
+static void *ov6_022450E4(PokemonSpriteTemplate *param0, u32 heapID);
 static SpriteResource *ov6_022450F4(UnkStruct_ov6_02243FFC *param0, NARC *param1);
 static void ov6_02245118(UnkStruct_ov6_02243FFC *param0, void *param1);
 static SpriteResource *ov6_0224514C(UnkStruct_ov6_02243FFC *param0, NARC *param1);
@@ -1455,7 +1454,7 @@ static int ov6_02244518(UnkStruct_ov6_02243FFC *param0)
         return 0;
     }
 
-    Sound_PlayEffect(1609);
+    Sound_PlayEffect(SEQ_SE_DP_FW019);
 
     param0->unk_54 = 0x800;
     param0->unk_14 = 2;
@@ -2045,12 +2044,12 @@ static void ov6_02244FE4(SysTask *param0, void *param1)
     G2_SetWnd0Position(v0->unk_44 / FX32_ONE, v0->unk_4C / FX32_ONE, v0->unk_48 / FX32_ONE, v0->unk_50 / FX32_ONE);
 }
 
-static void ov6_0224508C(UnkStruct_ov6_02243FFC *param0, ArchivedSprite *param1)
+static void ov6_0224508C(UnkStruct_ov6_02243FFC *param0, PokemonSpriteTemplate *param1)
 {
-    Pokemon_BuildArchivedSprite(param1, param0->unk_5C, 2);
+    Pokemon_BuildSpriteTemplate(param1, param0->unk_5C, 2);
 }
 
-static void *ov6_0224509C(Pokemon *param0, ArchivedSprite *param1, u32 heapID)
+static void *ov6_0224509C(Pokemon *param0, PokemonSpriteTemplate *param1, u32 heapID)
 {
     void *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, (32 * 10) * 10);
 
@@ -2064,7 +2063,7 @@ static void *ov6_0224509C(Pokemon *param0, ArchivedSprite *param1, u32 heapID)
     return v0;
 }
 
-static void *ov6_022450E4(ArchivedSprite *param0, u32 heapID)
+static void *ov6_022450E4(PokemonSpriteTemplate *param0, u32 heapID)
 {
     void *v0 = sub_02013660(param0->archive, param0->palette, heapID);
     return v0;

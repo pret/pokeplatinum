@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/map_prop.h"
+#include "constants/field/map_prop.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
@@ -13,7 +13,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_matrix.h"
-#include "unk_02054D00.h"
+#include "terrain_collision_manager.h"
 
 typedef struct {
     VecFx32 unk_00;
@@ -40,9 +40,9 @@ void ov6_02247D30(FieldSystem *fieldSystem, const u8 param1)
     BOOL v0;
     MapProp *v1;
     int v2;
-    int v3 = 507;
+    int v3 = MAP_PROP_MODEL_POKEMON_LEAGUE_HALL_OF_FAME_MACHINE;
 
-    v0 = sub_020552B4(fieldSystem, v3, &v1, &v2);
+    v0 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, v3, &v1, &v2);
 
     if (v0) {
         UnkStruct_ov6_02247D30 *v4 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02247D30));
@@ -55,7 +55,7 @@ void ov6_02247D30(FieldSystem *fieldSystem, const u8 param1)
         {
             VecFx32 v5;
 
-            sub_020553A4(v2, MapMatrix_GetWidth(fieldSystem->mapMatrix), &v5);
+            TerrainCollisionManager_GetMapAbsoluteOrigin(v2, MapMatrix_GetWidth(fieldSystem->mapMatrix), &v5);
             v4->unk_00 = MapProp_GetPosition(v1);
             v4->unk_00.x += v5.x;
             v4->unk_00.z += v5.z;

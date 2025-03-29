@@ -3,12 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
-#include "struct_decls/struct_02007768_decl.h"
-#include "struct_defs/archived_sprite.h"
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D1F90.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
@@ -31,6 +25,7 @@
 #include "palette.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -40,7 +35,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"
@@ -103,7 +97,7 @@ static void ov21_021E9208(SpriteResourceCollection **param0, int param1);
 static void ov21_021E9228(SpriteResourceCollection **param0);
 static void ov21_021E9240(UnkStruct_ov21_021D22F8 *param0, UnkStruct_ov21_021D4C0C *param1, int param2, int param3, int param4);
 static void ov21_021E92B0(UnkStruct_ov21_021D22F8 *param0);
-static PokemonSprite *ov21_021E99E0(UnkStruct_02007768 *param0, Pokemon *param1, int param2, int param3, int param4);
+static PokemonSprite *ov21_021E99E0(PokemonSpriteManager *param0, Pokemon *param1, int param2, int param3, int param4);
 static void ov21_021E92C4(SpriteResource **param0, SpriteResourceCollection **param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov21_021E9344(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov21_021E93C4(SpriteResource **param0, SpriteResourceCollection **param1);
@@ -716,7 +710,7 @@ static void ov21_021E98D8(PaletteData *param0, PokemonSprite *param1)
 
 static void ov21_021E98F8(PaletteData *param0, PokemonSprite *param1, int param2, int param3, int param4, int param5, int param6)
 {
-    sub_020086FC(param1, param2, param4, param5, param6);
+    PokemonSprite_StartFade(param1, param2, param4, param5, param6);
     PaletteData_StartFade(param0, 0x1 | 0x4, 0xffff, param5, param3, param4, param6);
     PaletteData_SetAutoTransparent(param0, 0);
 }
@@ -726,7 +720,7 @@ static BOOL ov21_021E9948(PaletteData *param0, PokemonSprite *param1)
     BOOL v0[2];
 
     v0[0] = PaletteData_GetSelectedBuffersMask(param0);
-    v0[1] = sub_020087B4(param1);
+    v0[1] = PokemonSprite_IsFadeActive(param1);
 
     if ((v0[0] == 0) && (v0[1] == 0)) {
         return 1;
@@ -753,12 +747,12 @@ static void ov21_021E998C(Window *param0, enum HeapId heapID)
     MessageLoader_Free(pokedexMessageBank);
 }
 
-static PokemonSprite *ov21_021E99E0(UnkStruct_02007768 *param0, Pokemon *param1, int param2, int param3, int param4)
+static PokemonSprite *ov21_021E99E0(PokemonSpriteManager *param0, Pokemon *param1, int param2, int param3, int param4)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
 
-    Pokemon_BuildArchivedSprite(&v0, param1, 2);
-    return sub_02007C34(param0, &v0, param2, param3, 0, 0, NULL, NULL);
+    Pokemon_BuildSpriteTemplate(&v0, param1, 2);
+    return PokemonSpriteManager_CreateSprite(param0, &v0, param2, param3, 0, 0, NULL, NULL);
 }
 
 static void ov21_021E9A0C(int param0)

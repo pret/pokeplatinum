@@ -169,7 +169,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     sub_0201E450(4);
     sub_02004550(56, 0, 0);
     ov71_0223D324(&v0->unk_3354);
-    Sound_PlayEffect(1685);
+    Sound_PlayEffect(SEQ_SE_DP_CARD3);
     ov71_0223CF0C(&v0->unk_30E4, v1);
 
     {
@@ -313,7 +313,7 @@ int ov71_0223B388(OverlayManager *param0, int *param1)
                 v0->unk_337E = 0;
                 *param1 = 3;
             } else if (v1 == 4) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 StartScreenTransition(1, 4, 4, 0x0, 6, 1, HEAP_ID_25);
                 *param1 = 2;
@@ -406,7 +406,7 @@ static void ov71_0223B620(UnkStruct_ov71_0223B620 *param0)
     {
         MessageLoader *v0;
 
-        v0 = MessageLoader_Init(0, 26, 616, HEAP_ID_25);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0616, HEAP_ID_25);
 
         MessageLoader_GetStrbuf(v0, 11, param0->unk_3370);
         MessageLoader_Free(v0);
@@ -777,7 +777,7 @@ static BOOL ov71_0223BC20(UnkStruct_ov71_0223B620 *param0)
         param0->unk_30C8 += 2 << (FX32_SHIFT - 6);
         param0->unk_30CC += 2 << (FX32_SHIFT - 6);
 
-        Sound_PlayEffect(1686);
+        Sound_PlayEffect(SEQ_SE_DP_CARD5);
 
         param0->unk_337E++;
         break;
@@ -1233,7 +1233,7 @@ static void ov71_0223C45C(UnkStruct_ov71_0223C444 *param0)
     };
 
     if ((param0->unk_00 == 0) && (param0->unk_01 == 0)) {
-        Sound_PlayEffect(1682);
+        Sound_PlayEffect(SEQ_SE_DP_MIGAKU01);
     }
 
     if ((param0->unk_00 * param0->unk_02 < 0) || (param0->unk_01 * param0->unk_03 < 0)) {
@@ -1286,9 +1286,9 @@ static void ov71_0223C530(BgConfig *param0, const int param1, const u8 *param2)
 static void ov71_0223C594(const int param0)
 {
     if (param0 == 1) {
-        Sound_PlayEffect(1689);
+        Sound_PlayEffect(SEQ_SE_DP_CARD11);
     } else {
-        Sound_PlayEffect(1689);
+        Sound_PlayEffect(SEQ_SE_DP_CARD11);
     }
 }
 

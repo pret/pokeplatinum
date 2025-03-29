@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02013610.h"
 
 #include "overlay006/struct_ov6_02246254.h"
@@ -141,7 +140,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
             v0->unk_04 = 0;
             v0->unk_08 = BgConfig_New(HEAP_ID_57);
             v0->unk_14 = Strbuf_Init(400, HEAP_ID_57);
-            v0->unk_10 = MessageLoader_Init(0, 26, 350, HEAP_ID_57);
+            v0->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0350, HEAP_ID_57);
             v0->unk_0C = StringTemplate_Default(HEAP_ID_57);
 
             switch (v0->unk_00->unk_10) {
@@ -337,7 +336,7 @@ static void ov95_02247060(SysTask *param0, void *param1)
 
     if (v0->unk_E8 == 0) {
         if (--(v0->unk_F0) <= 0) {
-            Sound_PlayEffect(1710);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN08);
             v0->unk_F0 = 30;
             ov95_02247170(v0);
         }
@@ -546,7 +545,7 @@ static void ov95_022473A0(UnkStruct_ov95_022472C4 *param0)
 
 void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 param3, BOOL param4)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     u32 v1;
     u32 v2;
     void *v3;
@@ -569,7 +568,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
         v5 = (BoxPokemon *)((param1 == 0) ? param0->unk_00->unk_00 : param0->unk_00->unk_04);
         v6 = BoxPokemon_EnterDecryptionContext(v5);
 
-        BoxPokemon_BuildArchivedSprite(&v0, v5, 2, 0);
+        BoxPokemon_BuildSpriteTemplate(&v0, v5, 2, 0);
 
         v7 = BoxPokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL);
         v8 = BoxPokemon_GetValue(v5, MON_DATA_SPECIES, NULL);

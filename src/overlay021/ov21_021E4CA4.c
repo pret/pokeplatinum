@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "overlay021/ov21_021D1FA4.h"
@@ -602,7 +600,7 @@ static void ov21_021E5268(u32 param0, u32 param1, void *param2)
             case 1:
                 v2->unk_28 = 2;
                 ov21_021E5E78(v2, v2->unk_64 ^ 1);
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 break;
             default:
                 break;
@@ -664,13 +662,13 @@ static void ov21_021E537C(u32 param0, UnkStruct_ov21_021E4D90 *param1, UnkStruct
                 if (12 <= v0) {
                     param2->unk_34 = 1;
                     param2->unk_38 = gSystem.touchX;
-                    Sound_PlayEffect(1527);
+                    Sound_PlayEffect(SEQ_SE_DP_KATI);
                 }
             } else {
                 if (-12 >= v0) {
                     param2->unk_34 = 0;
                     param2->unk_38 = gSystem.touchX;
-                    Sound_PlayEffect(1527);
+                    Sound_PlayEffect(SEQ_SE_DP_KATI);
                 }
             }
         }
@@ -1045,7 +1043,7 @@ static void ov21_021E5A44(UnkStruct_ov21_021E51DC *param0)
 static void ov21_021E5AAC(UnkStruct_ov21_021E51DC *param0)
 {
     if ((param0->unk_5C / (32 / 8)) != param0->unk_60) {
-        Sound_PlayEffect(1527);
+        Sound_PlayEffect(SEQ_SE_DP_KATI);
         param0->unk_60 = param0->unk_5C / (32 / 8);
     }
 }

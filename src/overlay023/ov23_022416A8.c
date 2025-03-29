@@ -28,9 +28,9 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_flags.h"
+#include "terrain_collision_manager.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
-#include "unk_02054D00.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -272,7 +272,7 @@ void ov23_022419B4(int param0, int param1, void *param2, void *param3)
 
             if (ov23_0224F6E0(v5->unk_06, v5->unk_04 + v5->unk_05)) {
                 Unk_ov23_02257744->unk_468[v1] = v5->unk_06;
-                Sound_PlayEffect(1507);
+                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
                 v4 = 99;
 
                 if (v5->unk_04 + v5->unk_05 < 99) {
@@ -366,7 +366,7 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
         return;
     }
 
-    if (FieldSystem_CheckCollision(Unk_ov23_02257744->fieldSystem, param2, param3)) {
+    if (TerrainCollisionManager_CheckCollision(Unk_ov23_02257744->fieldSystem, param2, param3)) {
         ov23_02253F40(ov23_0224219C(), 60, 0, NULL);
         return;
     }
@@ -400,7 +400,7 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
         ov23_02253F40(ov23_0224219C(), 58, 0, NULL);
         ov23_02250128(param0);
 
-        Sound_PlayEffect(1585);
+        Sound_PlayEffect(SEQ_SE_DP_SUTYA);
         SystemFlag_SetSphereAcquired(SaveData_GetVarsFlags(Unk_ov23_02257744->fieldSystem->saveData));
         GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(Unk_ov23_02257744->fieldSystem->saveData), RECORD_UNK_047);
 
@@ -548,7 +548,7 @@ static void ov23_02241E4C(SysTask *param0, void *param1)
     v0->unk_02++;
 
     if (100 < v0->unk_02) {
-        Sound_PlayEffect(1354);
+        Sound_PlayEffect(SEQ_SE_PL_UG_006);
         v0->unk_02 = 0;
     }
 }

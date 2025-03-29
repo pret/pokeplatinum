@@ -6,6 +6,7 @@
 #include "constants/battle.h"
 #include "constants/field/map.h"
 #include "constants/heap.h"
+#include "constants/quadrant.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
@@ -35,17 +36,6 @@
 #define MAP_LAZY_LOADER_SLOT_COUNT            2
 #define MAP_LAZY_LOADER_MANAGER_COUNT         2
 #define MAP_MODEL_LAZY_LOADER_DATA_CHUNK_SIZE 0xE000
-
-#define QUADRANT_COUNT 4
-
-#define QUADRANT_GO_TOP(quadrant)          ((quadrant) - 2)
-#define QUADRANT_GO_BOTTOM(quadrant)       ((quadrant) + 2)
-#define QUADRANT_GO_RIGHT(quadrant)        ((quadrant) + 1)
-#define QUADRANT_GO_LEFT(quadrant)         ((quadrant) - 1)
-#define QUADRANT_GO_BOTTOM_RIGHT(quadrant) ((quadrant) + 3)
-#define QUADRANT_GO_TOP_LEFT(quadrant)     ((quadrant) - 3)
-#define QUADRANT_GO_BOTTOM_LEFT(quadrant)  ((quadrant) + 1)
-#define QUADRANT_GO_TOP_RIGHT(quadrant)    ((quadrant) - 1)
 
 #define LAND_DATA_LOADER_ASSERT_MAP_MATRIX_INDEX(index, matrixWidth, matrixHeight) \
     if (index < 0 || index >= matrixWidth * matrixHeight) {                        \
@@ -191,14 +181,6 @@ enum Direction {
     DIRECTION_SOUTH,
     DIRECTION_WEST,
     DIRECTION_NORTH
-};
-
-enum Quadrant {
-    QUADRANT_TOP_LEFT,
-    QUADRANT_TOP_RIGHT,
-    QUADRANT_BOTTOM_LEFT,
-    QUADRANT_BOTTOM_RIGHT,
-    QUADRANT_INVALID
 };
 
 static SysTask *LandDataManager_LazyLoadMapModel(NARC *landDataNARC, const int mapModelDataSize, NNSG3dRenderObj *mapRenderObj, NNSG3dResFileHeader **mapModelFile, NNSG3dResTex *mapTexture, BOOL *loadedMapValid, BOOL *loadTaskRunning);
@@ -506,7 +488,7 @@ static void LandDataManager_LazyLoad(const u8 index, AreaDataManager *const area
     int mapMatrixIndex = loader->mapMatrixIndexes[index];
     LAND_DATA_LOADER_ASSERT_MAP_MATRIX_INDEX(mapMatrixIndex, mapMatrixWidth, mapMatrixHeight);
 
-    int landDataID = MapMatrix_GetLandDataIdByIndex(mapMatrixIndex, mapMatrix);
+    int landDataID = MapMatrix_GetLandDataIDByIndex(mapMatrixIndex, mapMatrix);
     LAND_DATA_LOADER_ASSERT_LAND_DATA_ID(landDataID);
 
     LandDataHeader landDataHeader;
@@ -531,7 +513,7 @@ static void LandDataManager_LazyLoadWithoutAttributes(const u8 index, AreaDataMa
     int mapMatrixIndex = loader->mapMatrixIndexes[index];
     LAND_DATA_LOADER_ASSERT_MAP_MATRIX_INDEX(mapMatrixIndex, mapMatrixWidth, mapMatrixHeight);
 
-    int landDataID = MapMatrix_GetLandDataIdByIndex(mapMatrixIndex, mapMatrix);
+    int landDataID = MapMatrix_GetLandDataIDByIndex(mapMatrixIndex, mapMatrix);
     LAND_DATA_LOADER_ASSERT_LAND_DATA_ID(landDataID);
 
     LandDataHeader landDataHeader;
@@ -553,7 +535,7 @@ static void LandDataManager_LazyLoadWithoutAttributesAndProps(const u8 index, co
     int mapMatrixIndex = loader->mapMatrixIndexes[index];
     LAND_DATA_LOADER_ASSERT_MAP_MATRIX_INDEX(mapMatrixIndex, mapMatrixWidth, mapMatrixHeight);
 
-    int landDataID = MapMatrix_GetLandDataIdByIndex(mapMatrixIndex, mapMatrix);
+    int landDataID = MapMatrix_GetLandDataIDByIndex(mapMatrixIndex, mapMatrix);
     LAND_DATA_LOADER_ASSERT_LAND_DATA_ID(landDataID);
 
     LandDataHeader landDataHeader;
@@ -570,7 +552,7 @@ static void LandDataManager_Load(const int mapMatrixIndex, const u8 loadedMapInd
 {
     LAND_DATA_LOADER_ASSERT_MAP_MATRIX_INDEX(mapMatrixIndex, mapMatrixWidth, mapMatrixHeight);
 
-    int landDataID = MapMatrix_GetLandDataIdByIndex(mapMatrixIndex, mapMatrix);
+    int landDataID = MapMatrix_GetLandDataIDByIndex(mapMatrixIndex, mapMatrix);
     LAND_DATA_LOADER_ASSERT_LAND_DATA_ID(landDataID);
 
     LandDataHeader landDataHeader;
@@ -604,7 +586,7 @@ static void LandDataManager_LoadWithoutAttributes(const int mapMatrixIndex, cons
 {
     LAND_DATA_LOADER_ASSERT_MAP_MATRIX_INDEX(mapMatrixIndex, mapMatrixWidth, mapMatrixHeight);
 
-    int landDataID = MapMatrix_GetLandDataIdByIndex(mapMatrixIndex, mapMatrix);
+    int landDataID = MapMatrix_GetLandDataIDByIndex(mapMatrixIndex, mapMatrix);
     LAND_DATA_LOADER_ASSERT_LAND_DATA_ID(landDataID);
 
     LandDataHeader landDataHeader;
@@ -631,7 +613,7 @@ static void LandDataManager_LoadWithoutModel(const int mapMatrixIndex, const u8 
 {
     LAND_DATA_LOADER_ASSERT_MAP_MATRIX_INDEX(mapMatrixIndex, mapMatrixWidth, mapMatrixHeight);
 
-    int landDataID = MapMatrix_GetLandDataIdByIndex(mapMatrixIndex, mapMatrix);
+    int landDataID = MapMatrix_GetLandDataIDByIndex(mapMatrixIndex, mapMatrix);
     LAND_DATA_LOADER_ASSERT_LAND_DATA_ID(landDataID);
 
     LandDataHeader landDataHeader;
@@ -2145,7 +2127,7 @@ static void LandDataManager_DistortionWorldLoad(const int mapMatrixIndex, const 
 {
     LAND_DATA_LOADER_ASSERT_MAP_MATRIX_INDEX(mapMatrixIndex, mapMatrixWidth, mapMatrixHeight);
 
-    int landDataID = MapMatrix_GetLandDataIdByIndex(mapMatrixIndex, mapMatrix);
+    int landDataID = MapMatrix_GetLandDataIDByIndex(mapMatrixIndex, mapMatrix);
 
     LandDataHeader landDataHeader;
     LandDataHeader_Load(landDataMan->landDataNARC, landDataID, &landDataHeader);

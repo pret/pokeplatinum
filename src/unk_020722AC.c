@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02028430_decl.h"
-#include "struct_defs/struct_0202818C.h"
+#include "struct_defs/mail.h"
 #include "struct_defs/struct_0206A844.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
@@ -253,12 +253,12 @@ static void sub_02072390(SysTask *param0, void *param1)
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072518, sub_02072364);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         return;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         switch (v1) {
         case 0xffffffff:
@@ -307,12 +307,12 @@ static void sub_02072470(SysTask *param0, void *param1)
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072534, sub_02072370);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         return;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         switch (v1) {
         case 0xffffffff:
@@ -752,7 +752,7 @@ static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2)
     v2 = ListMenu_GetAttribute(param0, 2);
 
     if (!param2) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     if (v0 == 0) {
@@ -811,7 +811,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
 static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2)
 {
     if (!param2) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
@@ -900,7 +900,7 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int param
     u8 v0 = 0, v1 = 0, v2 = 0xFF, v3 = 0;
     int v4;
     UnkStruct_02028430 *v5;
-    UnkStruct_0202818C *v6;
+    Mail *v6;
     UnkStruct_02072EB8 *v7, *v8;
 
     v5 = sub_02028430(param1);
@@ -1010,7 +1010,7 @@ static void sub_02073130(UnkStruct_02072334 *param0)
     int v1;
     Strbuf *v2;
 
-    param0->unk_10C = MessageLoader_Init(1, 26, 408, param0->heapID);
+    param0->unk_10C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0408, param0->heapID);
     param0->unk_110.unk_00 = StringTemplate_New(1, 128, param0->heapID);
     param0->unk_110.unk_04 = Strbuf_Init(128, param0->heapID);
     param0->unk_110.unk_08 = MessageLoader_GetNewStrbuf(param0->unk_10C, 4);

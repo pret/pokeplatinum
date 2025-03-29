@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/sdat.h"
-
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"

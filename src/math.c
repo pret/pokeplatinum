@@ -65,8 +65,6 @@ fx32 CalcCosineDegrees_FX32(fx32 degrees)
     return CalcCosineDegrees_Wraparound(degreesUnshifted);
 }
 
-#define LCRNG_INCREMENT 24691
-
 static u32 sLCRNGState;
 
 u32 LCRNG_GetSeed()

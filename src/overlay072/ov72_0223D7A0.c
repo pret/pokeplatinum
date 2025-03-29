@@ -128,7 +128,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         v0->unk_00 = BgConfig_New(HEAP_ID_39);
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__MYSIGN, HEAP_ID_39);
         v0->unk_10 = StringTemplate_Default(HEAP_ID_39);
-        v0->unk_14 = MessageLoader_Init(0, 26, 425, HEAP_ID_39);
+        v0->unk_14 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0425, HEAP_ID_39);
 
         SetAutorepeat(4, 8);
         ov72_0223DA70();
@@ -656,7 +656,7 @@ static void ov72_0223E2A8(UnkStruct_ov72_0223DB98 *param0)
                 ov72_0223E930(param0, 10);
                 param0->unk_370 = 2;
                 ov72_0223E3A8(param0->unk_2B4, 1);
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             }
         } else {
             param0->unk_437E = v0;
@@ -1211,13 +1211,13 @@ static void ov72_0223EAD8(UnkStruct_ov72_0223EAD8 *param0)
 {
     if ((param0->unk_00 == 0) && (param0->unk_01 == 0)) {
         if (!Sound_IsEffectPlaying(1690)) {
-            Sound_PlayEffect(1690);
+            Sound_PlayEffect(SEQ_SE_DP_KYU01);
         }
     }
 
     if ((param0->unk_00 * param0->unk_02 < 0) || (param0->unk_01 * param0->unk_03 < 0)) {
         if (!Sound_IsEffectPlaying(1690)) {
-            Sound_PlayEffect(1690);
+            Sound_PlayEffect(SEQ_SE_DP_KYU01);
         }
     }
 

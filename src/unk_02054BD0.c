@@ -65,7 +65,7 @@ static void sub_02054C18(MapMatrix *param0, UnkStruct_02054C18 *param1, const u8
     for (v5 = 0; v5 < v6; v5++) {
         for (v4 = 0; v4 < v7; v4++) {
             v3 = v5 * v7 + v4;
-            v1 = MapMatrix_GetLandDataIdByIndex2(v3, param0);
+            v1 = MapMatrix_GetLandDataIDByIndex2(v3, param0);
             v2 = sub_02054CC4(v1, v8, &v0);
             param1->unk_00[v3] = v2;
         }

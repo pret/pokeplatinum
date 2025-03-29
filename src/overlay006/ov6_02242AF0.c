@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/map_prop.h"
+#include "constants/field/dynamic_map_features.h"
+#include "constants/field/map_prop.h"
 
-#include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -17,10 +17,10 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
+#include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "savedata_misc.h"
 #include "unk_02005474.h"
-#include "unk_02027F50.h"
 #include "unk_020655F4.h"
 
 typedef struct UnkStruct_ov6_02242B58_t UnkStruct_ov6_02242B58;
@@ -82,14 +82,14 @@ static const fx32 Unk_ov6_02249074[] = {
     FX32_ONE / 2
 };
 
-void ov6_02242AF0(FieldSystem *fieldSystem)
+void GreatMarsh_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_ov6_02242AF0 *v1;
     VecFx32 v2;
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
 
     v2.x = ((FX32_ONE * 16) * (32 * 2 + 2));
     v2.y = (FX32_ONE * 16);
@@ -111,12 +111,12 @@ void ov6_02242AF0(FieldSystem *fieldSystem)
 
 void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_ov6_02242AF0 *v1;
     UnkStruct_ov6_02242B58 *v2;
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
     v2 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02242B58));
 
     memset(v2, 0, sizeof(UnkStruct_ov6_02242B58));
@@ -181,11 +181,11 @@ void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
 
 u32 ov6_02242C3C(FieldSystem *fieldSystem, const u16 param1)
 {
-    UnkStruct_02027860 *v0;
+    PersistedMapFeatures *v0;
     UnkStruct_ov6_02242AF0 *v1;
 
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
+    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
 
     if (v1->unk_00 == param1) {
         return 5;
@@ -220,7 +220,7 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
         break;
     case 1:
         if (v1->unk_08 == 4) {
-            Sound_PlayEffect(1755);
+            Sound_PlayEffect(SEQ_SE_DP_TRAIN04);
         }
 
         (v1->unk_05)++;
@@ -264,7 +264,7 @@ static BOOL ov6_02242D94(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param
         if ((param1->unk_06 < 7 - 1) && ((param3->z - ((FX32_ONE * 16) / 2)) / (FX32_ONE * 16) <= param1->unk_10)) {
             if (++(param1->unk_07) >= Unk_ov6_02249034[param1->unk_06]) {
                 if (param1->unk_06 == 0) {
-                    Sound_PlayEffect(1754);
+                    Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
                 }
 
                 param1->unk_06++;
@@ -277,7 +277,7 @@ static BOOL ov6_02242D94(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param
         if ((param1->unk_06 < 7 - 1) && ((param3->z - ((FX32_ONE * 16) / 2)) / (FX32_ONE * 16) >= param1->unk_10)) {
             if (++(param1->unk_07) >= Unk_ov6_02249034[param1->unk_06]) {
                 if (param1->unk_06 == 0) {
-                    Sound_PlayEffect(1754);
+                    Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
                 }
 
                 param1->unk_06++;
@@ -312,14 +312,14 @@ static BOOL ov6_02242E60(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param
 
                 if ((param1->unk_06 < 7 - 1) && (Player_GetZPos(fieldSystem->playerAvatar) > param1->unk_10)) {
                     if (param1->unk_06 == 0) {
-                        Sound_PlayEffect(1753);
+                        Sound_PlayEffect(SEQ_SE_DP_TRAIN02);
                     }
 
                     param1->unk_06++;
                 } else if (Player_GetZPos(fieldSystem->playerAvatar) <= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
-                            Sound_PlayEffect(1754);
+                            Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
                         }
 
                         param1->unk_06--;
@@ -332,14 +332,14 @@ static BOOL ov6_02242E60(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param
 
                 if ((param1->unk_06 < 7 - 1) && (Player_GetZPos(fieldSystem->playerAvatar) < param1->unk_10)) {
                     if (param1->unk_06 == 0) {
-                        Sound_PlayEffect(1753);
+                        Sound_PlayEffect(SEQ_SE_DP_TRAIN02);
                     }
 
                     param1->unk_06++;
                 } else if (Player_GetZPos(fieldSystem->playerAvatar) >= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
-                            Sound_PlayEffect(1754);
+                            Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
                         }
 
                         param1->unk_06--;

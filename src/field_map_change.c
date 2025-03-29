@@ -41,6 +41,7 @@
 #include "map_object.h"
 #include "menu.h"
 #include "message.h"
+#include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "pokeradar.h"
 #include "render_window.h"
@@ -53,17 +54,16 @@
 #include "system.h"
 #include "system_flags.h"
 #include "system_vars.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02027F50.h"
 #include "unk_0202854C.h"
 #include "unk_0203A7D8.h"
 #include "unk_0203A944.h"
 #include "unk_0203D1B8.h"
 #include "unk_02054BD0.h"
-#include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
@@ -156,11 +156,11 @@ static void sub_02053E5C(FieldTask *task);
 static BOOL sub_0205444C(FieldTask *task, int param1);
 
 static const MapLoadMode sMapLoadMode[] = {
-    { 0x1, FALSE, 0x0, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
-    { 0x2, TRUE, 0x1, 0x1, 0x1, 0x0, 0x10, 0xC4000 },
-    { 0x3, FALSE, 0x0, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
-    { 0x4, TRUE, 0x1, 0x0, 0x1, 0x1, 0x1, 0xC4000 },
-    { 0x1, TRUE, 0x1, 0x0, 0x1, 0x1, 0x1, 0xA0000 }
+    { 0x1, FALSE, FALSE, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
+    { 0x2, TRUE, TRUE, 0x1, 0x1, 0x0, 0x10, 0xC4000 },
+    { 0x3, FALSE, FALSE, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
+    { 0x4, TRUE, TRUE, 0x0, 0x1, 0x1, 0x1, 0xC4000 },
+    { 0x1, TRUE, TRUE, 0x0, 0x1, 0x1, 0x1, 0xA0000 }
 };
 
 static const WindowTemplate Unk_020EC3A0 = {
@@ -255,7 +255,7 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
     }
 
     if (!noWarp) {
-        sub_02027F50(sub_02027860(fieldSystem->saveData));
+        PersistedMapFeatures_Init(MiscSaveBlock_GetPersistedMapFeatures(fieldSystem->saveData));
     }
 
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
@@ -312,7 +312,7 @@ void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL
     }
 
     if (!param1) {
-        sub_02027F50(sub_02027860(fieldSystem->saveData));
+        PersistedMapFeatures_Init(MiscSaveBlock_GetPersistedMapFeatures(fieldSystem->saveData));
     }
 
     if (!param1) {
@@ -386,7 +386,7 @@ static void FieldMapChange_InitTerrainCollisionManager(FieldSystem *fieldSystem)
     fieldSystem->skipMapAttributes = fieldSystem->mapLoadMode->skipMapAttributes;
     fieldSystem->bottomScreen = fieldSystem->mapLoadMode->fieldBottomScreen;
 
-    sub_02054F44(&fieldSystem->terrainCollisionMan, fieldSystem->mapLoadMode->unk_00_8);
+    TerrainCollisionManager_Init(&fieldSystem->terrainCollisionMan, fieldSystem->mapLoadMode->useSimpleTerrainCollisions);
 
     if (fieldSystem->mapLoadMode->unk_00_16) {
         sub_02054BD0(fieldSystem, fieldSystem->mapLoadMode->unk_00_24);
@@ -623,7 +623,7 @@ static BOOL FieldTask_ChangeMap(FieldTask *task)
 
     switch (mapChangeData->state) {
     case 0:
-        Sound_PlayEffect(1539);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         Sound_TryFadeInBGM(fieldSystem, location->mapId);
         FieldTransition_FadeOutAndFinishMap(task);
         mapChangeData->state++;
@@ -1142,7 +1142,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
 
     switch (mapChangeUndergroundData->state) {
     case 0:
-        MessageLoader *msgLoader = MessageLoader_Init(1, 26, 221, HEAP_ID_FIELDMAP);
+        MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELDMAP);
 
         mapChangeUndergroundData->unk_34 = MessageLoader_GetNewStrbuf(msgLoader, 124);
         MessageLoader_Free(msgLoader);
@@ -1524,7 +1524,7 @@ static BOOL FieldTask_ChangeMapColosseum(FieldTask *task)
 
     switch (mapChangeData->state) {
     case 0:
-        Sound_PlayEffect(1539);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         Sound_TryFadeInBGM(fieldSystem, location->mapId);
         FieldTransition_FadeOutAndFinishMap(task);
         mapChangeData->state++;
