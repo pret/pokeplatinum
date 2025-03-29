@@ -386,7 +386,7 @@ static BOOL FieldTask_PlatformLiftGoUp(FieldTask *taskMan)
             taskEnv->state++;
         }
 
-        sub_0205ED0C(fieldSystem->playerAvatar, platformLiftPosition.y);
+        Player_SetYPos(fieldSystem->playerAvatar, platformLiftPosition.y);
         MapProp_SetPosition(platformLiftMapProp, &platformLiftPosition);
 
         break;
@@ -448,7 +448,7 @@ static BOOL FieldTask_PlatformLiftGoDown(FieldTask *taskMan)
             taskEnv->state++;
         }
 
-        sub_0205ED0C(fieldSystem->playerAvatar, platformLiftPosition.y);
+        Player_SetYPos(fieldSystem->playerAvatar, platformLiftPosition.y);
         MapProp_SetPosition(platformLiftMapProp, &platformLiftPosition);
 
         break;
