@@ -546,14 +546,15 @@ void sub_0205ECE0(PlayerAvatar *playerAvatar, int param1, int param2, int param3
     sub_0205EB10(playerAvatar, 0);
 }
 
-void sub_0205ED0C(PlayerAvatar *playerAvatar, fx32 param1)
+void Player_SetYPos(PlayerAvatar *playerAvatar, fx32 y)
 {
-    VecFx32 v0;
-    MapObject *v1 = Player_MapObject(playerAvatar);
+    MapObject *mapObj = Player_MapObject(playerAvatar);
 
-    MapObject_GetPosPtr(v1, &v0);
-    v0.y = param1;
-    MapObject_SetPos(v1, &v0);
+    VecFx32 pos;
+    MapObject_GetPosPtr(mapObj, &pos);
+
+    pos.y = y;
+    MapObject_SetPos(mapObj, &pos);
 }
 
 void PlayerAvatar_SetHeightCalculationEnabled(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled)

@@ -795,7 +795,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
                 (v2->unk_00)++;
             }
 
-            sub_0205ED0C(fieldSystem->playerAvatar, v3.y);
+            Player_SetYPos(fieldSystem->playerAvatar, v3.y);
             MapProp_SetPosition(v0, &v3);
         }
     } break;
@@ -840,7 +840,7 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
                 (v2->unk_00)++;
             }
 
-            sub_0205ED0C(fieldSystem->playerAvatar, v3.y);
+            Player_SetYPos(fieldSystem->playerAvatar, v3.y);
             MapProp_SetPosition(v0, &v3);
         }
     } break;
@@ -1372,7 +1372,7 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
                 GF_ASSERT(FALSE);
             }
 
-            sub_0205ED0C(fieldSystem->playerAvatar, v5.y);
+            Player_SetYPos(fieldSystem->playerAvatar, v5.y);
 
             MapProp_SetPosition(v0, &v5);
             ov8_0224A434(v3, v5.y);
