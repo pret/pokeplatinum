@@ -909,7 +909,7 @@ int sub_020642F8(MapObject *mapObj)
     MapObject_GetPosPtr(mapObj, &pos);
     v1 = pos;
 
-    if (sub_02062E44(mapObj) == 1) {
+    if (MapObject_IsHeightCalculationDisabled(mapObj) == TRUE) {
         MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_12);
         return 0;
     }

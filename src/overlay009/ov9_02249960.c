@@ -2233,9 +2233,9 @@ static void ov9_0224A8C0(UnkStruct_ov9_02249B04 *param0)
     v0 = ov9_022510D8(v0);
 
     if (v0 == 1) {
-        sub_02062E28(v8, 0);
+        MapObject_SetHeightCalculationDisabled(v8, FALSE);
     } else {
-        sub_02062E28(v8, 1);
+        MapObject_SetHeightCalculationDisabled(v8, TRUE);
     }
 
     PlayerAvatar_SetDistortionState(playerAvatar, v0);
@@ -2270,7 +2270,7 @@ static void ov9_0224A8C0(UnkStruct_ov9_02249B04 *param0)
     sub_02061AD4(v8, v1);
 
     if (v0 != 1) {
-        GF_ASSERT(sub_02062E44(v8) == 1);
+        GF_ASSERT(MapObject_IsHeightCalculationDisabled(v8) == TRUE);
     }
 
     if (v5 == 0x2) {
@@ -2404,9 +2404,9 @@ static BOOL ov9_0224AAD4(FieldTask *param0)
             PlayerAvatar_ClearSpeed(playerAvatar);
 
             if (v2->unk_34.unk_26 < 0) {
-                sub_02062E28(v13, 0);
+                MapObject_SetHeightCalculationDisabled(v13, FALSE);
             } else {
-                sub_02062E28(v13, 1);
+                MapObject_SetHeightCalculationDisabled(v13, TRUE);
             }
 
             switch (v2->unk_34.unk_24) {
@@ -4961,7 +4961,7 @@ static int ov9_0224D0C8(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224D078 *
     v1 = Player_MapObject(param0->fieldSystem->playerAvatar);
 
     MapObject_GetPosPtr(v1, &param1->unk_14);
-    sub_02062E28(v1, 1);
+    MapObject_SetHeightCalculationDisabled(v1, TRUE);
 
     param1->unk_44.x = 0;
     param1->unk_44.y = 0;
@@ -5230,7 +5230,7 @@ static int ov9_0224D5E8(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224D078 *
         MapObject_SetY(v0, param1->unk_0C);
         MapObject_SetZ(v0, param1->unk_0E);
         MapObject_UpdateCoords(v0);
-        sub_0205ED48(param0->fieldSystem->playerAvatar, 1);
+        PlayerAvatar_SetHeightCalculationEnabledAndUpdate(param0->fieldSystem->playerAvatar, TRUE);
 
         if (param1->unk_68 != NULL) {
             MapObject_SetY(param1->unk_68, param1->unk_0C);
@@ -5821,7 +5821,7 @@ static MapObject *ov9_0224DE94(UnkStruct_ov9_02249B04 *param0, int param1, int p
     MapObject_SetDataAt(v0, param5, 2);
     sub_02062E5C(v0, 1);
     sub_02062D80(v0, 0);
-    sub_02062E28(v0, 1);
+    MapObject_SetHeightCalculationDisabled(v0, TRUE);
     sub_02062FC4(v0, 1);
 
     return v0;
@@ -5849,7 +5849,7 @@ static void ov9_0224DF10(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224E0DC 
 
     sub_02062E5C(param2, 1);
     sub_02062D80(param2, 0);
-    sub_02062E28(param2, 1);
+    MapObject_SetHeightCalculationDisabled(param2, TRUE);
     sub_02062FC4(param2, 1);
 }
 
@@ -6338,7 +6338,7 @@ static int ov9_0224E550(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         VecFx32 v3;
         MapObject *v4 = Player_MapObject(param0->fieldSystem->playerAvatar);
 
-        sub_02062E28(v4, 1);
+        MapObject_SetHeightCalculationDisabled(v4, TRUE);
         sub_0206309C(v4, &v3);
 
         v1->unk_28 = v3.y;
@@ -6488,9 +6488,9 @@ static int ov9_0224E798(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
             PlayerAvatar_SetDistortionState(playerAvatar, v5);
 
             if (v5 == 1) {
-                sub_02062E28(v1, 0);
+                MapObject_SetHeightCalculationDisabled(v1, FALSE);
             } else {
-                sub_02062E28(v1, 1);
+                MapObject_SetHeightCalculationDisabled(v1, TRUE);
             }
         }
     }
@@ -7153,7 +7153,7 @@ static BOOL ov9_0224EF64(UnkStruct_ov9_02249B04 *param0, MapObject **param1, con
 
     sub_02062FC4(*param1, 1);
     sub_02062E5C(*param1, 1);
-    sub_02062E28(*param1, 1);
+    MapObject_SetHeightCalculationDisabled(*param1, TRUE);
     MapObject_SetStatusFlagOn(*param1, MAP_OBJ_STATUS_13);
 
     if (v0 == NULL) {
@@ -8253,7 +8253,7 @@ static int ov9_0224FEDC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         sub_020630AC(v2, &v13);
         ov9_0224C378(param0, v8, ((v9) / 2), v10, 4);
         PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_ACTIVE);
-        sub_02062E28(v2, 0);
+        MapObject_SetHeightCalculationDisabled(v2, FALSE);
 
         {
             {
@@ -8569,7 +8569,7 @@ static int ov9_02250468(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         sub_020630AC(v2, &v13);
         ov9_0224C378(param0, v8, ((v9) / 2), v10, 4);
         PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_CEILING);
-        sub_02062E28(v2, 1);
+        MapObject_SetHeightCalculationDisabled(v2, TRUE);
 
         {
             {
