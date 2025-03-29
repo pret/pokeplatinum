@@ -2,11 +2,11 @@
 #define POKEPLATINUM_STRUCT_020708E0_H
 
 #include "struct_defs/struct_020684D0.h"
-#include "struct_defs/struct_02070950.h"
 
 #include "overlay005/struct_ov5_021D30A8.h"
 
 #include "bg_window.h"
+#include "field_move_tasks.h"
 #include "field_task.h"
 #include "menu.h"
 #include "sprite_system.h"
@@ -26,10 +26,10 @@ typedef struct {
     u32 unk_220;
     u32 unk_224;
     u32 unk_228;
-    FieldTaskFunc unk_22C;
+    FieldTaskFunc callback;
     UnkStruct_020684D0 unk_230;
-    UnkStruct_02070950 unk_24C;
-    void *unk_25C;
+    FieldMoveContext fieldMoveContext;
+    void *taskData;
     void *unk_260;
 } StartMenu;
 

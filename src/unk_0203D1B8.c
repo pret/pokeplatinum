@@ -32,7 +32,6 @@
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_defs/struct_02070950.h"
 #include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02097728.h"
@@ -88,6 +87,7 @@
 #include "coins.h"
 #include "dexmode_checker.h"
 #include "field_battle_data_transfer.h"
+#include "field_move_tasks.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -115,7 +115,6 @@
 #include "unk_02017498.h"
 #include "unk_02028124.h"
 #include "unk_020298BC.h"
-#include "unk_0202ACE0.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
@@ -393,7 +392,7 @@ static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, i
     return v0;
 }
 
-void *sub_0203D390(FieldSystem *fieldSystem, UnkStruct_02070950 *param1, u8 param2)
+void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2)
 {
     PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 0);
 
