@@ -3336,13 +3336,13 @@
     .short 603
     .endm
 
-    .macro ScrCmd_25C
+    .macro TriggerPlatformLift
     .short 604
     .endm
 
-    .macro ScrCmd_25D arg0
+    .macro CheckPlatformLiftNotUsedWhenEnteredMap destVarID
     .short 605
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_25E
