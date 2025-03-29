@@ -3749,7 +3749,7 @@
     .short 677
     .endm
 
-    .macro ScrCmd_2A6 arg0, arg1, arg2
+    .macro ScrCmd_GetGameCornerPrizeData arg0, arg1, arg2
     .short 678
     .short \arg0
     .short \arg1
