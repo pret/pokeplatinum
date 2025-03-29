@@ -356,7 +356,7 @@ static BOOL FieldTask_PlatformLiftGoUp(FieldTask *taskMan)
 
     switch (taskEnv->state) {
     case PLATFORM_LIFT_STATE_START_MOVING:
-        sub_0205ED2C(fieldSystem->playerAvatar, 0);
+        PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
         PlatformLift_PlaySoundEffect(taskEnv->kind);
 
         taskEnv->state++;
@@ -404,7 +404,7 @@ static BOOL FieldTask_PlatformLiftGoUp(FieldTask *taskMan)
 
     case PLATFORM_LIFT_STATE_FINISH_MOVING:
         DynamicTerrainHeightManager_SetHeight(PLATFORM_LIFT_DYNAMIC_HEIGHT_PLATE_ID, taskEnv->targetHeight, fieldSystem->dynamicTerrainHeightMan);
-        sub_0205ED48(fieldSystem->playerAvatar, 1);
+        PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
 
         taskEnv->state++;
@@ -425,7 +425,7 @@ static BOOL FieldTask_PlatformLiftGoDown(FieldTask *taskMan)
 
     switch (taskEnv->state) {
     case PLATFORM_LIFT_STATE_START_MOVING:
-        sub_0205ED2C(fieldSystem->playerAvatar, 0);
+        PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
         PlatformLift_PlaySoundEffect(taskEnv->kind);
 
         taskEnv->state++;
@@ -466,7 +466,7 @@ static BOOL FieldTask_PlatformLiftGoDown(FieldTask *taskMan)
 
     case PLATFORM_LIFT_STATE_FINISH_MOVING:
         DynamicTerrainHeightManager_SetHeight(PLATFORM_LIFT_DYNAMIC_HEIGHT_PLATE_ID, taskEnv->targetHeight, fieldSystem->dynamicTerrainHeightMan);
-        sub_0205ED48(fieldSystem->playerAvatar, 1);
+        PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
 
         taskEnv->state++;

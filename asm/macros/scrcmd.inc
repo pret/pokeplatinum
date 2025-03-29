@@ -2909,9 +2909,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_211 arg0
+    .macro SetPlayerHeightCalculationEnabled heightCalculationEnabled
     .short 529
-    .byte \arg0
+    .byte \heightCalculationEnabled
     .endm
 
     .macro ScrCmd_212 arg0, arg1

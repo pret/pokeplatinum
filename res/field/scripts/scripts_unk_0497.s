@@ -123,7 +123,7 @@ _0178:
     ScrCmd_210 0, 0x8004
     SetVar 0x8005, 0
     CallIfEq 0x8004, 6, _0634
-    ScrCmd_211 0
+    SetPlayerHeightCalculationEnabled FALSE
     CallIfEq 0x800C, 0, _06D0
     CallIfEq 0x800C, 1, _06DC
     CallIfEq 0x800C, 2, _06D0
@@ -132,7 +132,7 @@ _0178:
     CallIfEq 0x800C, 1, _0698
     CallIfEq 0x800C, 2, _06A6
     CallIfEq 0x800C, 3, _06B4
-    ScrCmd_211 1
+    SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 
@@ -152,7 +152,7 @@ _0242:
     ScrCmd_210 0, 0x8004
     SetVar 0x8005, 0
     CallIfEq 0x8004, 6, _0634
-    ScrCmd_211 0
+    SetPlayerHeightCalculationEnabled FALSE
     CallIfEq 0x800C, 0, _06F4
     CallIfEq 0x800C, 1, _06E8
     CallIfEq 0x800C, 2, _06F4
@@ -161,7 +161,7 @@ _0242:
     CallIfEq 0x800C, 1, _0698
     CallIfEq 0x800C, 2, _06A6
     CallIfEq 0x800C, 3, _06B4
-    ScrCmd_211 1
+    SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 
@@ -181,7 +181,7 @@ _030C:
     ScrCmd_210 1, 0x8004
     SetVar 0x8005, 1
     CallIfEq 0x8004, 6, _0634
-    ScrCmd_211 0
+    SetPlayerHeightCalculationEnabled FALSE
     CallIfEq 0x800C, 0, _06D0
     CallIfEq 0x800C, 1, _06DC
     CallIfEq 0x800C, 2, _06D0
@@ -190,7 +190,7 @@ _030C:
     CallIfEq 0x800C, 1, _067C
     CallIfEq 0x800C, 2, _06A6
     CallIfEq 0x800C, 3, _06B4
-    ScrCmd_211 1
+    SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 
@@ -210,7 +210,7 @@ _03D6:
     ScrCmd_210 1, 0x8004
     SetVar 0x8005, 1
     CallIfEq 0x8004, 6, _0634
-    ScrCmd_211 0
+    SetPlayerHeightCalculationEnabled FALSE
     CallIfEq 0x800C, 0, _06F4
     CallIfEq 0x800C, 1, _06E8
     CallIfEq 0x800C, 2, _06F4
@@ -219,7 +219,7 @@ _03D6:
     CallIfEq 0x800C, 1, _067C
     CallIfEq 0x800C, 2, _06A6
     CallIfEq 0x800C, 3, _06B4
-    ScrCmd_211 1
+    SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 
@@ -239,7 +239,7 @@ _04A0:
     ScrCmd_210 2, 0x8004
     SetVar 0x8005, 2
     CallIfEq 0x8004, 6, _0634
-    ScrCmd_211 0
+    SetPlayerHeightCalculationEnabled FALSE
     CallIfEq 0x800C, 0, _06D0
     CallIfEq 0x800C, 1, _06DC
     CallIfEq 0x800C, 2, _06D0
@@ -248,7 +248,7 @@ _04A0:
     CallIfEq 0x800C, 1, _067C
     CallIfEq 0x800C, 2, _068A
     CallIfEq 0x800C, 3, _0698
-    ScrCmd_211 1
+    SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 
@@ -268,7 +268,7 @@ _056A:
     ScrCmd_210 2, 0x8004
     SetVar 0x8005, 2
     CallIfEq 0x8004, 6, _0634
-    ScrCmd_211 0
+    SetPlayerHeightCalculationEnabled FALSE
     CallIfEq 0x800C, 0, _06F4
     CallIfEq 0x800C, 1, _06E8
     CallIfEq 0x800C, 2, _06F4
@@ -277,7 +277,7 @@ _056A:
     CallIfEq 0x800C, 1, _067C
     CallIfEq 0x800C, 2, _068A
     CallIfEq 0x800C, 3, _0698
-    ScrCmd_211 1
+    SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 

@@ -595,7 +595,7 @@ static BOOL ScrCmd_20D(ScriptContext *ctx);
 static BOOL InitPersistedMapFeaturesForGreatMarsh(ScriptContext *ctx);
 static BOOL ScrCmd_20F(ScriptContext *ctx);
 static BOOL ScrCmd_210(ScriptContext *ctx);
-static BOOL ScrCmd_211(ScriptContext *ctx);
+static BOOL ScrCmd_SetPlayerHeightCalculationEnabled(ScriptContext *ctx);
 static BOOL ScrCmd_GetSpiritombCounter(ScriptContext *ctx);
 static BOOL ScrCmd_ClearSpiritombCounter(ScriptContext *ctx);
 static BOOL ScrCmd_218(ScriptContext *ctx);
@@ -1294,7 +1294,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     InitPersistedMapFeaturesForGreatMarsh,
     ScrCmd_20F,
     ScrCmd_210,
-    ScrCmd_211,
+    ScrCmd_SetPlayerHeightCalculationEnabled,
     ScrCmd_212,
     ScrCmd_213,
     ScrCmd_GetSpiritombCounter,
@@ -6383,12 +6383,12 @@ static BOOL ScrCmd_210(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_211(ScriptContext *ctx)
+static BOOL ScrCmd_SetPlayerHeightCalculationEnabled(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
+    u8 heightCalculationEnabled = ScriptContext_ReadByte(ctx);
 
-    sub_0205ED2C(ctx->fieldSystem->playerAvatar, v0);
-    return 1;
+    PlayerAvatar_SetHeightCalculationEnabled(ctx->fieldSystem->playerAvatar, heightCalculationEnabled);
+    return TRUE;
 }
 
 static BOOL ScrCmd_GetSpiritombCounter(ScriptContext *ctx)
