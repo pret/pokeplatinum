@@ -82,7 +82,7 @@ _0104:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 5
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetFlag FLAG_UNK_0x0978
+    SetFlag FLAG_CONTEST_HALL_VISITED
     ReleaseAll
     End
 

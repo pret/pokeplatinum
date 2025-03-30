@@ -190,7 +190,7 @@ _0297:
     SetVar 0x411E, 1
     ClearFlag FLAG_UNK_0x01FA
     SetVar 0x40CF, 2
-    SetFlag FLAG_UNK_0x0988
+    SetFlag FLAG_ALT_MUSIC_VALLEY_WINDWORKS_BUILDING
     ReleaseAll
     End
 

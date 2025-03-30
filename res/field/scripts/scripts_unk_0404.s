@@ -2421,7 +2421,7 @@ _20A8:
     End
 
 _20C0:
-    SetFlag FLAG_UNK_0x0986
+    SetFlag FLAG_ALT_MUSIC_GALACTIC_HQ_1F
     Return
 
 _20C6:

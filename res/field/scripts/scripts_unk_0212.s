@@ -22,7 +22,7 @@ _0036:
     LockAll
     SetVar 0x800C, 7
     Call _0052
-    ClearFlag FLAG_UNK_0x0966
+    ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     SetVar 0x40D5, 0
     ReleaseAll
     End
@@ -214,7 +214,7 @@ _0253:
 _0291:
     ScrCmd_150
     SetVar 0x40D5, 0
-    ClearFlag FLAG_UNK_0x0966
+    ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Message 11
     WaitABXPadPress
     CloseMessage
@@ -228,7 +228,7 @@ _02A8:
 
 _02BD:
     HealParty
-    ClearFlag FLAG_UNK_0x0966
+    ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _02E2
@@ -547,7 +547,7 @@ _07BC:
     End
 
 _07F1:
-    SetFlag FLAG_UNK_0x0966
+    SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     SetVar 0x40D5, 5
     ScrCmd_168 0, 0, 7, 5, 77
     Call _010D
@@ -775,7 +775,7 @@ _0B50:
     WaitFadeScreen
     SetVar 0x800C, 7
     Call _0052
-    ClearFlag FLAG_UNK_0x0966
+    ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     SetVar 0x40D5, 0
     GoTo _0C45
 

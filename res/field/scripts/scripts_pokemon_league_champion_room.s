@@ -15,10 +15,10 @@ _000E:
     ApplyMovement LOCALID_PLAYER, _012C
     WaitMovement
     ScrCmd_0EA TRAINER_CHAMPION_CYNTHIA
-    CallIfUnset FLAG_UNK_0x0964, _00EB
-    CallIfSet FLAG_UNK_0x0964, _00F0
+    CallIfUnset FLAG_GAME_COMPLETED, _00EB
+    CallIfSet FLAG_GAME_COMPLETED, _00F0
     CloseMessage
-    SetFlag FLAG_UNK_0x098B
+    SetFlag FLAG_ALT_MUSIC_CHAMPION_ROOM
     CallIfUnset FLAG_UNK_0x00D6, _00F5
     CallIfSet FLAG_UNK_0x00D6, _00FD
     CheckWonBattle 0x800C
@@ -76,7 +76,7 @@ _0113:
     Return
 
 _0121:
-    ClearFlag FLAG_UNK_0x098B
+    ClearFlag FLAG_ALT_MUSIC_CHAMPION_ROOM
     BlackOutFromBattle
     ReleaseAll
     End

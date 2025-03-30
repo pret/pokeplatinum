@@ -928,14 +928,14 @@ _0C1C:
     BufferPlayerName 0
     Message 33
     ScrCmd_040 1, 1, 0, 1, 0x8006
-    CallIfUnset FLAG_UNK_0x097E, _0C7B
-    CallIfSet FLAG_UNK_0x097E, _0C81
+    CallIfUnset FLAG_MET_BEBE, _0C7B
+    CallIfSet FLAG_MET_BEBE, _0C81
     ScrCmd_042 60, 1
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 0, _0C87
     CallIfEq 0x800C, 1, _0C8D
-    GoToIfSet FLAG_UNK_0x0964, _0C93
-    GoToIfUnset FLAG_UNK_0x0964, _0CDD
+    GoToIfSet FLAG_GAME_COMPLETED, _0C93
+    GoToIfUnset FLAG_GAME_COMPLETED, _0CDD
     End
 
 _0C7B:
@@ -987,7 +987,7 @@ _0D2C:
     ScrCmd_046 66, 75, 1
     ScrCmd_046 67, 76, 2
     ScrCmd_046 68, 77, 3
-    CallIfSet FLAG_UNK_0x0978, _0D69
+    CallIfSet FLAG_CONTEST_HALL_VISITED, _0D69
     ScrCmd_046 70, 79, 5
     Return
 

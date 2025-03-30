@@ -59,7 +59,7 @@ _008F:
     ApplyMovement LOCALID_PLAYER, _0100
     WaitMovement
     Call _0513
-    ClearFlag FLAG_UNK_0x0966
+    ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     SetVar 0x40D5, 0
     ReleaseAll
     End
@@ -359,7 +359,7 @@ _045D:
 
 _046A:
     SetVar 0x40D5, 1
-    SetFlag FLAG_UNK_0x0966
+    SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     ScrCmd_02E 52
     WaitABPressTime 45
     ScrCmd_135 96
@@ -460,17 +460,17 @@ _05CF:
     ScrCmd_31D 0x800C
     GoToIfEq 0x800C, 0xFF, _068E
     SetVar 0x40D5, 2
-    SetFlag FLAG_UNK_0x0966
+    SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _062D
     SetVar 0x40D5, 0
-    ClearFlag FLAG_UNK_0x0966
+    ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     GoTo _01D3
 
 _062D:
     SetVar 0x40D5, 2
-    SetFlag FLAG_UNK_0x0966
+    SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Message 63
     CloseMessage
     ScrCmd_168 0, 0, 8, 5, 77

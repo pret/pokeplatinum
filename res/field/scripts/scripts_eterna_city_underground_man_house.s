@@ -165,7 +165,7 @@ _0164:
 
 _01DF:
     GoToIfUnset FLAG_UNK_0x0111, _00BD
-    GoToIfUnset FLAG_UNK_0x096E, _0122
+    GoToIfUnset FLAG_ENTERED_UNDERGROUND, _0122
     SetVar 0x40B6, 1
     ClearFlag FLAG_UNK_0x0111
     Message 6
@@ -186,7 +186,7 @@ _01DF:
 
 _023D:
     GoToIfUnset FLAG_UNK_0x0111, _00CC
-    GoToIfUnset FLAG_UNK_0x096F, _012D
+    GoToIfUnset FLAG_DIGGING_FOR_FOSSILS, _012D
     SetVar 0x40B6, 2
     ClearFlag FLAG_UNK_0x0111
     Message 10
@@ -207,7 +207,7 @@ _023D:
 
 _029B:
     GoToIfUnset FLAG_UNK_0x0111, _00DB
-    GoToIfUnset FLAG_UNK_0x0970, _0138
+    GoToIfUnset FLAG_SPHERE_ACQUIRED, _0138
     SetVar 0x40B6, 3
     ClearFlag FLAG_UNK_0x0111
     Message 14
@@ -222,7 +222,7 @@ _029B:
 
 _02D9:
     GoToIfUnset FLAG_UNK_0x0111, _00EA
-    GoToIfUnset FLAG_UNK_0x0971, _0143
+    GoToIfUnset FLAG_CREATED_SECRET_BASE, _0143
     SetVar 0x40B6, 4
     ClearFlag FLAG_UNK_0x0111
     Message 18
@@ -246,7 +246,7 @@ _02D9:
 
 _0347:
     GoToIfUnset FLAG_UNK_0x0111, _00F9
-    GoToIfUnset FLAG_UNK_0x0972, _014E
+    GoToIfUnset FLAG_DECORATED_SECRET_BASE, _014E
     SetVar 0x40B6, 5
     ClearFlag FLAG_UNK_0x0111
     ClearFlag FLAG_UNK_0x00FC
@@ -284,7 +284,7 @@ _03C7:
 
 _03D9:
     GoToIfUnset FLAG_UNK_0x0111, _0108
-    GoToIfUnset FLAG_UNK_0x0973, _0159
+    GoToIfUnset FLAG_DELIVERED_STOLEN_FLAG, _0159
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0443
     SetVar 0x8004, 81

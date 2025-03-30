@@ -11,8 +11,8 @@ _0006:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0131, _0105
-    GoToIfSet FLAG_UNK_0x097E, _0033
-    SetFlag FLAG_UNK_0x097E
+    GoToIfSet FLAG_MET_BEBE, _0033
+    SetFlag FLAG_MET_BEBE
     Message 0
     GoTo _003E
     End

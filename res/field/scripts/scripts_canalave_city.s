@@ -89,7 +89,7 @@ _0158:
 
 _0168:
     GoToIfSet FLAG_UNK_0x0158, _01CA
-    GoToIfUnset FLAG_UNK_0x0964, _01CA
+    GoToIfUnset FLAG_GAME_COMPLETED, _01CA
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _01CA
     CheckItem ITEM_MEMBER_CARD, 1, 0x4000

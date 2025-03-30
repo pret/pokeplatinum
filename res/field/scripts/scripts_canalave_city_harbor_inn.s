@@ -15,7 +15,7 @@ _000E:
     End
 
 _001F:
-    GoToIfSet FLAG_UNK_0x0964, _002C
+    GoToIfSet FLAG_GAME_COMPLETED, _002C
     End
 
 _002C:

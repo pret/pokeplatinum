@@ -91,7 +91,7 @@ _0110:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0964, _012E
+    GoToIfSet FLAG_GAME_COMPLETED, _012E
     Message 8
     WaitABXPadPress
     CloseMessage

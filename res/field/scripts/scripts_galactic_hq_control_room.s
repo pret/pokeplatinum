@@ -21,7 +21,7 @@
     ScriptEntryEnd
 
 _003E:
-    GoToIfSet FLAG_UNK_0x097D, _004B
+    GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _004B
     End
 
 _004B:
@@ -36,7 +36,7 @@ _0059:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x097D, _0109
+    GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _0109
     GoToIfSet FLAG_UNK_0x00AD, _0114
     Message 0
     CloseMessage
@@ -113,7 +113,7 @@ _0140:
 _014C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_UNK_0x097D, _0168
+    GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _0168
     Message 13
     WaitABXPadPress
     CloseMessage
@@ -130,7 +130,7 @@ _0168:
 _0173:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_UNK_0x097D, _018F
+    GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _018F
     Message 14
     WaitABXPadPress
     CloseMessage
@@ -147,7 +147,7 @@ _018F:
 _019A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_UNK_0x097D, _01B6
+    GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _01B6
     Message 15
     WaitABXPadPress
     CloseMessage
@@ -173,7 +173,7 @@ _01C5:
 _01C7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_UNK_0x097D, _0347
+    GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _0347
     Message 10
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _01FB
@@ -187,7 +187,7 @@ _01FB:
     Message 11
     CloseMessage
     ClearFlag FLAG_UNK_0x0295
-    SetFlag FLAG_UNK_0x097D
+    SetFlag FLAG_FREED_GALACTIC_HQ_POKEMON
     ScrCmd_25F
     WaitTime 30, 0x800C
     ApplyMovement 2, _036C

@@ -27,7 +27,7 @@ _0024:
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _006E
     Call _010E
-    SetFlag FLAG_UNK_0x0989
+    SetFlag FLAG_ALT_MUSIC_FLOAROMA_MEADOW
     ReleaseAll
     End
 

@@ -44,7 +44,7 @@ _0072:
     End
 
 _0088:
-    GoToIfUnset FLAG_UNK_0x0964, _0072
+    GoToIfUnset FLAG_GAME_COMPLETED, _0072
     GoTo _0111
 
     .balign 4, 0
@@ -78,7 +78,7 @@ _00D4:
     End
 
 _00DF:
-    GoToIfUnset FLAG_UNK_0x0964, _00D4
+    GoToIfUnset FLAG_GAME_COMPLETED, _00D4
     GoToIfEq 0x407F, 0, _0102
     Message 2
     WaitABXPadPress
@@ -210,7 +210,7 @@ _022A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset FLAG_UNK_0x0964, _0260
+    GoToIfUnset FLAG_GAME_COMPLETED, _0260
     Message 10
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _0276

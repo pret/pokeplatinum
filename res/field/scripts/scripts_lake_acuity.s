@@ -57,7 +57,7 @@ _0006:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 2
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetFlag FLAG_UNK_0x098F
+    SetFlag FLAG_ALT_MUSIC_LAKE_ACUITY
     ClearFlag FLAG_UNK_0x0223
     SetVar 0x40D3, 2
     ClearFlag FLAG_UNK_0x0198

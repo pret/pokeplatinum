@@ -210,7 +210,7 @@ _0230:
     RemoveObject 1
     RemoveObject 2
     RemoveObject 3
-    SetFlag FLAG_UNK_0x098E
+    SetFlag FLAG_ALT_MUSIC_LAKE_VERITY
     ApplyMovement 6, _02FC
     ApplyMovement LOCALID_PLAYER, _0304
     WaitMovement

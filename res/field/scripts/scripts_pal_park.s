@@ -34,7 +34,7 @@ _0020:
     WaitTime 30, 0x800C
     ScrCmd_253 0
     SetVar 0x40F3, 1
-    SetFlag FLAG_UNK_0x0995
+    SetFlag FLAG_ALT_MUSIC_PAL_PARK
     PlayMusic SEQ_D_SAFARI
     CloseMessage
     ReleaseAll

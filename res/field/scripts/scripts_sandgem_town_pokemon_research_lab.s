@@ -227,7 +227,7 @@ _0330:
     ApplyMovement LOCALID_PLAYER, _04B4
     WaitMovement
     WaitTime 35, 0x800C
-    SetFlag FLAG_UNK_0x0993
+    SetFlag FLAG_ALT_MUSIC_ROWANS_LAB
     PlayMusic SEQ_OPENING2
     Message 9
     Message 10
@@ -574,7 +574,7 @@ _0677:
     ApplyMovement LOCALID_PLAYER, _086C
     WaitMovement
     Message 35
-    CallIfSet FLAG_UNK_0x0964, _07A2
+    CallIfSet FLAG_GAME_COMPLETED, _07A2
     CallIfGe 0x4081, 2, _079C
     ScrCmd_22D 1, 0x800C
     BufferPlayerName 0

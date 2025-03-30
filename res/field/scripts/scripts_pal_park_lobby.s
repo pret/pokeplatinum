@@ -19,7 +19,7 @@
     ScriptEntryEnd
 
 _0036:
-    ClearFlag FLAG_UNK_0x0995
+    ClearFlag FLAG_ALT_MUSIC_PAL_PARK
     SetFlag FLAG_UNK_0x09F3
     GoToIfNe 0x40F3, 0, _004D
     End

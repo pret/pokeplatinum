@@ -21,7 +21,7 @@ _001C:
     End
 
 _0037:
-    SetFlag FLAG_UNK_0x0996
+    SetFlag FLAG_FORCE_BIKING_IN_GATE
     Return
 
 _003D:
@@ -48,7 +48,7 @@ _0050:
     End
 
 _0080:
-    SetFlag FLAG_UNK_0x0996
+    SetFlag FLAG_FORCE_BIKING_IN_GATE
     SetVar 0x4002, 1
     ReleaseAll
     End
@@ -65,7 +65,7 @@ _0098:
 
 _00A0:
     LockAll
-    ClearFlag FLAG_UNK_0x0996
+    ClearFlag FLAG_FORCE_BIKING_IN_GATE
     SetVar 0x4002, 0
     ReleaseAll
     End

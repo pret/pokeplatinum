@@ -40,7 +40,7 @@ _0056:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0964, _007F
+    GoToIfSet FLAG_GAME_COMPLETED, _007F
     GoToIfSet FLAG_UNK_0x09B8, _008E
     Message 3
     GoTo _0099

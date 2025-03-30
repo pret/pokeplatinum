@@ -82,7 +82,7 @@ _00E2:
     SetVar 0x407A, 3
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetFlag FLAG_UNK_0x0987
+    SetFlag FLAG_ALT_MUSIC_GALACTIC_ETERNA_BUILDING
     ReleaseAll
     End
 

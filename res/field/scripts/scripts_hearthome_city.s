@@ -324,7 +324,7 @@ _031B:
 
 _03AC:
     GoToIfSet FLAG_UNK_0x014A, _03F4
-    GoToIfUnset FLAG_UNK_0x098C, _03F4
+    GoToIfUnset FLAG_CONNECTED_TO_WIFI, _03F4
     Message 33
     SetVar 0x8004, 46
     SetVar 0x8005, 1
@@ -353,7 +353,7 @@ _03F4:
 
 _0442:
     GoToIfSet FLAG_UNK_0x014C, _048A
-    GoToIfUnset FLAG_UNK_0x096A, _048A
+    GoToIfUnset FLAG_CONTEST_MASTER_BEAUTY, _048A
     Message 35
     SetVar 0x8004, 72
     SetVar 0x8005, 1
@@ -367,7 +367,7 @@ _0442:
 
 _048A:
     GoToIfSet FLAG_UNK_0x014D, _04D2
-    GoToIfUnset FLAG_UNK_0x0968, _04D2
+    GoToIfUnset FLAG_CONTEST_MASTER_COOL, _04D2
     Message 36
     SetVar 0x8004, 73
     SetVar 0x8005, 1
@@ -381,7 +381,7 @@ _048A:
 
 _04D2:
     GoToIfSet FLAG_UNK_0x014E, _051A
-    GoToIfUnset FLAG_UNK_0x0969, _051A
+    GoToIfUnset FLAG_CONTEST_MASTER_CUTE, _051A
     Message 37
     SetVar 0x8004, 74
     SetVar 0x8005, 1
@@ -395,7 +395,7 @@ _04D2:
 
 _051A:
     GoToIfSet FLAG_UNK_0x014F, _0562
-    GoToIfUnset FLAG_UNK_0x096C, _0562
+    GoToIfUnset FLAG_CONTEST_MASTER_TOUGH, _0562
     Message 38
     SetVar 0x8004, 75
     SetVar 0x8005, 1
@@ -409,7 +409,7 @@ _051A:
 
 _0562:
     GoToIfSet FLAG_UNK_0x0150, _05AA
-    GoToIfUnset FLAG_UNK_0x096B, _05AA
+    GoToIfUnset FLAG_CONTEST_MASTER_SMART, _05AA
     Message 39
     SetVar 0x8004, 76
     SetVar 0x8005, 1

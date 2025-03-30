@@ -131,7 +131,7 @@ _01C3:
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x01AC
     ClearFlag FLAG_UNK_0x01C3
-    SetFlag FLAG_UNK_0x098D
+    SetFlag FLAG_DUMMY_2445
     Message 14
     CloseMessage
     GetPlayerMapPos 0x8004, 0x8005

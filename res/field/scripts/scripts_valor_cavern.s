@@ -89,7 +89,7 @@ ValorCavern_CommanderSaturn:
     WaitFadeScreen
     RemoveObject LOCALID_SATURN
     SetFlag FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN
-    SetFlag FLAG_UNK_0x0984
+    SetFlag FLAG_ALT_MUSIC_LAKE_VALOR
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

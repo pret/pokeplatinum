@@ -122,7 +122,7 @@ _0164:
 
 _0174:
     ClearFlag FLAG_UNK_0x01D1
-    ClearFlag FLAG_UNK_0x098B
+    ClearFlag FLAG_ALT_MUSIC_CHAMPION_ROOM
     CallIfUnset FLAG_UNK_0x00D0, _023C
     CallIfUnset FLAG_UNK_0x00D1, _0244
     CallIfUnset FLAG_UNK_0x0120, _024C

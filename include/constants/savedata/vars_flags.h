@@ -2405,84 +2405,91 @@
 #define FLAG_UNK_0x095D                             0x095D
 #define FLAG_UNK_0x095E                             0x095E
 #define FLAG_UNK_0x095F                             0x095F
-#define FLAG_UNK_0x0960                             0x0960
-#define FLAG_UNK_0x0961                             0x0961
-#define FLAG_UNK_0x0962                             0x0962
-#define FLAG_UNK_0x0963                             0x0963
-#define FLAG_UNK_0x0964                             0x0964
-#define FLAG_UNK_0x0965                             0x0965
-#define FLAG_UNK_0x0966                             0x0966
-#define FLAG_UNK_0x0967                             0x0967
-#define FLAG_UNK_0x0968                             0x0968
-#define FLAG_UNK_0x0969                             0x0969
-#define FLAG_UNK_0x096A                             0x096A
-#define FLAG_UNK_0x096B                             0x096B
-#define FLAG_UNK_0x096C                             0x096C
-#define FLAG_UNK_0x096D                             0x096D
-#define FLAG_UNK_0x096E                             0x096E
-#define FLAG_UNK_0x096F                             0x096F
-#define FLAG_UNK_0x0970                             0x0970
-#define FLAG_UNK_0x0971                             0x0971
-#define FLAG_UNK_0x0972                             0x0972
-#define FLAG_UNK_0x0973                             0x0973
-#define FLAG_UNK_0x0974                             0x0974
-#define FLAG_UNK_0x0975                             0x0975
-#define FLAG_UNK_0x0976                             0x0976
-#define FLAG_UNK_0x0977                             0x0977
-#define FLAG_UNK_0x0978                             0x0978
-#define FLAG_UNK_0x0979                             0x0979
-#define FLAG_UNK_0x097A                             0x097A
-#define FLAG_UNK_0x097B                             0x097B
-#define FLAG_UNK_0x097C                             0x097C
-#define FLAG_UNK_0x097D                             0x097D
-#define FLAG_UNK_0x097E                             0x097E
-#define FLAG_UNK_0x097F                             0x097F
-#define FLAG_UNK_0x0980                             0x0980
-#define FLAG_UNK_0x0981                             0x0981
-#define FLAG_UNK_0x0982                             0x0982
-#define FLAG_UNK_0x0983                             0x0983
-#define FLAG_UNK_0x0984                             0x0984
-#define FLAG_UNK_0x0985                             0x0985
-#define FLAG_UNK_0x0986                             0x0986
-#define FLAG_UNK_0x0987                             0x0987
-#define FLAG_UNK_0x0988                             0x0988
-#define FLAG_UNK_0x0989                             0x0989
-#define FLAG_UNK_0x098A                             0x098A
-#define FLAG_UNK_0x098B                             0x098B
-#define FLAG_UNK_0x098C                             0x098C
-#define FLAG_UNK_0x098D                             0x098D
-#define FLAG_UNK_0x098E                             0x098E
-#define FLAG_UNK_0x098F                             0x098F
-#define FLAG_UNK_0x0990                             0x0990
-#define FLAG_UNK_0x0991                             0x0991
-#define FLAG_UNK_0x0992                             0x0992
-#define FLAG_UNK_0x0993                             0x0993
-#define FLAG_UNK_0x0994                             0x0994
-#define FLAG_UNK_0x0995                             0x0995
-#define FLAG_UNK_0x0996                             0x0996
-#define FLAG_UNK_0x0997                             0x0997
-#define FLAG_UNK_0x0998                             0x0998
-#define FLAG_UNK_0x0999                             0x0999
-#define FLAG_UNK_0x099A                             0x099A
-#define FLAG_UNK_0x099B                             0x099B
-#define FLAG_UNK_0x099C                             0x099C
-#define FLAG_UNK_0x099D                             0x099D
-#define FLAG_UNK_0x099E                             0x099E
-#define FLAG_UNK_0x099F                             0x099F
-#define FLAG_UNK_0x09A0                             0x09A0
-#define FLAG_UNK_0x09A1                             0x09A1
-#define FLAG_UNK_0x09A2                             0x09A2
-#define FLAG_UNK_0x09A3                             0x09A3
-#define FLAG_UNK_0x09A4                             0x09A4
-#define FLAG_UNK_0x09A5                             0x09A5
-#define FLAG_UNK_0x09A6                             0x09A6
-#define FLAG_UNK_0x09A7                             0x09A7
-#define FLAG_UNK_0x09A8                             0x09A8
-#define FLAG_UNK_0x09A9                             0x09A9
-#define FLAG_UNK_0x09AA                             0x09AA
-#define FLAG_UNK_0x09AB                             0x09AB
-#define FLAG_UNK_0x09AC                             0x09AC
-#define FLAG_UNK_0x09AD                             0x09AD
+#define SYSTEM_FLAGS_START                          (FLAG_UNK_0x095F + 1)
+#define FLAG_BAG_ACQUIRED                           (SYSTEM_FLAGS_START + 0)
+#define FLAG_HAS_PARTNER                            (SYSTEM_FLAGS_START + 1)
+#define FLAG_STRENGTH_ACTIVE                        (SYSTEM_FLAGS_START + 2)
+#define FLAG_JOURNAL_ACQUIRED                       (SYSTEM_FLAGS_START + 3)
+#define FLAG_GAME_COMPLETED                         (SYSTEM_FLAGS_START + 4)
+#define FLAG_STEP                                   (SYSTEM_FLAGS_START + 5)
+#define FLAG_COMMUNICATION_CLUB_ACCESSIBLE          (SYSTEM_FLAGS_START + 6)
+#define FLAG_SAFARI_GAME_ACTIVE                     (SYSTEM_FLAGS_START + 7)
+#define FLAG_CONTEST_MASTER_COOL                    (SYSTEM_FLAGS_START + 8)
+#define FLAG_CONTEST_MASTER_CUTE                    (SYSTEM_FLAGS_START + 9)
+#define FLAG_CONTEST_MASTER_BEAUTY                  (SYSTEM_FLAGS_START + 10)
+#define FLAG_CONTEST_MASTER_SMART                   (SYSTEM_FLAGS_START + 11)
+#define FLAG_CONTEST_MASTER_TOUGH                   (SYSTEM_FLAGS_START + 12)
+#define FLAG_VS_SEEKER_USED                         (SYSTEM_FLAGS_START + 13)
+#define FLAG_ENTERED_UNDERGROUND                    (SYSTEM_FLAGS_START + 14)
+#define FLAG_DIGGING_FOR_FOSSILS                    (SYSTEM_FLAGS_START + 15)
+#define FLAG_SPHERE_ACQUIRED                        (SYSTEM_FLAGS_START + 16)
+#define FLAG_CREATED_SECRET_BASE                    (SYSTEM_FLAGS_START + 17)
+#define FLAG_DECORATED_SECRET_BASE                  (SYSTEM_FLAGS_START + 18)
+#define FLAG_DELIVERED_STOLEN_FLAG                  (SYSTEM_FLAGS_START + 19)
+#define FLAG_UNUSED_2420                            (SYSTEM_FLAGS_START + 20)
+#define FLAG_UNUSED_2421                            (SYSTEM_FLAGS_START + 21)
+#define FLAG_UNUSED_2422                            (SYSTEM_FLAGS_START + 22)
+#define FLAG_DISTORTION_WORLD_STEPPING_STONES       (SYSTEM_FLAGS_START + 23)
+#define FLAG_CONTEST_HALL_VISITED                   (SYSTEM_FLAGS_START + 24)
+#define FLAG_IN_PAL_PARK                            (SYSTEM_FLAGS_START + 25)
+#define FLAG_FLASH_ACTIVE                           (SYSTEM_FLAGS_START + 26)
+#define FLAG_DEFOG_ACTIVE                           (SYSTEM_FLAGS_START + 27)
+#define FLAG_POKETCH_HIDDEN                         (SYSTEM_FLAGS_START + 28)
+#define FLAG_FREED_GALACTIC_HQ_POKEMON              (SYSTEM_FLAGS_START + 29)
+#define FLAG_MET_BEBE                               (SYSTEM_FLAGS_START + 30)
+#define FLAG_UNLOCKED_VS_SEEKER_LVL_1               (SYSTEM_FLAGS_START + 31)
+#define FLAG_UNLOCKED_VS_SEEKER_LVL_2               (SYSTEM_FLAGS_START + 32)
+#define FLAG_UNLOCKED_VS_SEEKER_LVL_3               (SYSTEM_FLAGS_START + 33)
+#define FLAG_UNLOCKED_VS_SEEKER_LVL_4               (SYSTEM_FLAGS_START + 34)
+#define FLAG_UNLOCKED_VS_SEEKER_LVL_5               (SYSTEM_FLAGS_START + 35)
+#define FLAG_ALT_MUSIC_LAKE_VALOR                   (SYSTEM_FLAGS_START + 36)
+#define FLAG_ALT_MUSIC_GALACTIC_HQ                  (SYSTEM_FLAGS_START + 37)
+#define FLAG_ALT_MUSIC_GALACTIC_HQ_1F               (SYSTEM_FLAGS_START + 38)
+#define FLAG_ALT_MUSIC_GALACTIC_ETERNA_BUILDING     (SYSTEM_FLAGS_START + 39)
+#define FLAG_ALT_MUSIC_VALLEY_WINDWORKS_BUILDING    (SYSTEM_FLAGS_START + 40)
+#define FLAG_ALT_MUSIC_FLOAROMA_MEADOW              (SYSTEM_FLAGS_START + 41)
+#define FLAG_ALT_MUSIC_ROUTE_224                    (SYSTEM_FLAGS_START + 42)
+#define FLAG_ALT_MUSIC_CHAMPION_ROOM                (SYSTEM_FLAGS_START + 43)
+#define FLAG_CONNECTED_TO_WIFI                      (SYSTEM_FLAGS_START + 44)
+#define FLAG_DUMMY_2445                             (SYSTEM_FLAGS_START + 45)
+#define FLAG_ALT_MUSIC_LAKE_VERITY                  (SYSTEM_FLAGS_START + 46)
+#define FLAG_ALT_MUSIC_LAKE_ACUITY                  (SYSTEM_FLAGS_START + 47)
+#define FLAG_UNUSED_2448                            (SYSTEM_FLAGS_START + 48)
+#define FLAG_UNUSED_2449                            (SYSTEM_FLAGS_START + 49)
+#define FLAG_UNDERGROUND_FIRST_ENTERED              (SYSTEM_FLAGS_START + 50)
+#define FLAG_ALT_MUSIC_ROWANS_LAB                   (SYSTEM_FLAGS_START + 51)
+#define FLAG_ON_CYCLING_ROAD                        (SYSTEM_FLAGS_START + 52)
+#define FLAG_ALT_MUSIC_PAL_PARK                     (SYSTEM_FLAGS_START + 53)
+#define FLAG_FORCE_BIKING_IN_GATE                   (SYSTEM_FLAGS_START + 54)
+#define SYSTEM_FLAGS_VILLA_FURNITURE_START          (SYSTEM_FLAGS_START + 55)
+#define FLAG_VILLA_FURNITURE_UNK_00                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_00)
+#define FLAG_VILLA_FURNITURE_UNK_01                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_01)
+#define FLAG_VILLA_FURNITURE_UNK_02                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_02)
+#define FLAG_VILLA_FURNITURE_UNK_03                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_03)
+#define FLAG_VILLA_FURNITURE_UNK_04                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_04)
+#define FLAG_VILLA_FURNITURE_UNK_05                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_05)
+#define FLAG_VILLA_FURNITURE_UNK_06                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_06)
+#define FLAG_VILLA_FURNITURE_UNK_07                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_07)
+#define FLAG_VILLA_FURNITURE_UNK_08                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_08)
+#define FLAG_VILLA_FURNITURE_UNK_09                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_09)
+#define FLAG_VILLA_FURNITURE_UNK_10                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_10)
+#define FLAG_VILLA_FURNITURE_UNK_11                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_11)
+#define FLAG_VILLA_FURNITURE_UNK_12                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_12)
+#define FLAG_VILLA_FURNITURE_UNK_13                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_13)
+#define FLAG_VILLA_FURNITURE_UNK_14                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_14)
+#define FLAG_VILLA_FURNITURE_UNK_15                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_15)
+#define FLAG_VILLA_FURNITURE_UNK_16                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_16)
+#define FLAG_VILLA_FURNITURE_UNK_17                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_17)
+#define FLAG_VILLA_FURNITURE_UNK_18                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_18)
+#define FLAG_VILLA_FURNITURE_UNK_19                 (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_UNK_19)
+#define SYSTEM_FLAGS_VILLA_VISITOR_START            (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_MAX)
+#define FLAG_VILLA_VISITOR_INSIDE                   (SYSTEM_FLAGS_VILLA_VISITOR_START + 0)
+#define FLAG_VILLA_VISITOR_OUTSIDE                  (SYSTEM_FLAGS_VILLA_VISITOR_START + 1)
+#define FLAG_DISTORTION_WORLD_PUZZLE_FINISHED       (SYSTEM_FLAGS_VILLA_VISITOR_START + 2)
+#define SYSTEM_FLAGS_GIRATINA_ANIM_START            (FLAG_DISTORTION_WORLD_PUZZLE_FINISHED + 1)
+#define FLAG_DISTORSION_WORLD_GIRATINA_SHADOW_1     (SYSTEM_FLAGS_GIRATINA_ANIM_START + GIRATINA_SHADOW_ANIM_LEFT_TO_RIGHT)
+#define FLAG_DISTORSION_WORLD_GIRATINA_SHADOW_2     (SYSTEM_FLAGS_GIRATINA_ANIM_START + GIRATINA_SHADOW_ANIM_BOTTOM_TO_TOP)
+#define SYSTEM_FLAGS_FIRST_ARRIVAL_TO_ZONE          (SYSTEM_FLAGS_GIRATINA_ANIM_START + GIRATINA_SHADOW_ANIM_MAX)
 #define FLAG_UNK_0x09AE                             0x09AE
 #define FLAG_UNK_0x09AF                             0x09AF
 #define FLAG_UNK_0x09B0                             0x09B0
@@ -2753,13 +2760,13 @@
 #define FLAG_UNK_0x0AB9                             0x0AB9
 #define FLAG_UNK_0x0ABA                             0x0ABA
 #define FLAG_UNK_0x0ABB                             0x0ABB
-#define FLAG_UNK_0x0ABC                             0x0ABC
-#define FLAG_UNK_0x0ABD                             0x0ABD
-#define FLAG_UNK_0x0ABE                             0x0ABE
-#define FLAG_UNK_0x0ABF                             0x0ABF
-#define FLAG_UNK_0x0AC0                             0x0AC0
-#define FLAG_UNK_0x0AC1                             0x0AC1
-#define FLAG_UNK_0x0AC2                             0x0AC2
+#define FLAG_DEFEATED_IDOL_GRACE                    0x0ABC
+#define FLAG_DEFEATED_REPORTER_KINSEY               0x0ABD
+#define FLAG_DEFEATED_CAMERAMAN_TEVIN               0x0ABE
+#define FLAG_DEFEATED_CLOWN_LEE                     0x0ABF
+#define FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI     0x0AC0
+#define FLAG_DEFEATED_POKE_KID_ARIEL                0x0AC1
+#define FLAG_DEFEATED_GUITARIST_ARTURO              0x0AC2
 #define FLAG_UNK_0x0AC3                             0x0AC3
 #define FLAG_UNK_0x0AC4                             0x0AC4
 #define FLAG_UNK_0x0AC5                             0x0AC5
@@ -4172,81 +4179,5 @@
 #define VAR_UNUSED_0x406F                     (SYSTEM_VARS_START + 63)
 
 #define SPECIAL_VARS_START 0x8000
-
-#define SYSTEM_FLAGS_START                       2400
-#define FLAG_BAG_ACQUIRED                        (SYSTEM_FLAGS_START + 0)
-#define FLAG_HAS_PARTNER                         (SYSTEM_FLAGS_START + 1)
-#define FLAG_STRENGTH_ACTIVE                     (SYSTEM_FLAGS_START + 2)
-#define FLAG_JOURNAL_ACQUIRED                    (SYSTEM_FLAGS_START + 3)
-#define FLAG_GAME_COMPLETED                      (SYSTEM_FLAGS_START + 4)
-#define FLAG_STEP                                (SYSTEM_FLAGS_START + 5)
-#define FLAG_COMMUNICATION_CLUB_ACCESSIBLE       (SYSTEM_FLAGS_START + 6)
-#define FLAG_SAFARI_GAME_ACTIVE                  (SYSTEM_FLAGS_START + 7)
-#define FLAG_CONTEST_MASTER_COOL                 (SYSTEM_FLAGS_START + 8)
-#define FLAG_CONTEST_MASTER_CUTE                 (SYSTEM_FLAGS_START + 9)
-#define FLAG_CONTEST_MASTER_BEAUTY               (SYSTEM_FLAGS_START + 10)
-#define FLAG_CONTEST_MASTER_SMART                (SYSTEM_FLAGS_START + 11)
-#define FLAG_CONTEST_MASTER_TOUGH                (SYSTEM_FLAGS_START + 12)
-#define FLAG_VS_SEEKER_USED                      (SYSTEM_FLAGS_START + 13)
-#define FLAG_ENTERED_UNDERGROUND                 (SYSTEM_FLAGS_START + 14)
-#define FLAG_DIGGING_FOR_FOSSILS                 (SYSTEM_FLAGS_START + 15)
-#define FLAG_SPHERE_ACQUIRED                     (SYSTEM_FLAGS_START + 16)
-#define FLAG_CREATED_SECRET_BASE                 (SYSTEM_FLAGS_START + 17)
-#define FLAG_DECORATED_SECRET_BASE               (SYSTEM_FLAGS_START + 18)
-#define FLAG_DELIVERED_STOLEN_FLAG               (SYSTEM_FLAGS_START + 19)
-#define FLAG_UNUSED_2420                         (SYSTEM_FLAGS_START + 20)
-#define FLAG_UNUSED_2421                         (SYSTEM_FLAGS_START + 21)
-#define FLAG_UNUSED_2422                         (SYSTEM_FLAGS_START + 22)
-#define FLAG_DISTORTION_WORLD_STEPPING_STONES    (SYSTEM_FLAGS_START + 23)
-#define FLAG_CONTEST_HALL_VISITED                (SYSTEM_FLAGS_START + 24)
-#define FLAG_IN_PAL_PARK                         (SYSTEM_FLAGS_START + 25)
-#define FLAG_FLASH_ACTIVE                        (SYSTEM_FLAGS_START + 26)
-#define FLAG_DEFOG_ACTIVE                        (SYSTEM_FLAGS_START + 27)
-#define FLAG_POKETCH_HIDDEN                      (SYSTEM_FLAGS_START + 28)
-#define FLAG_FREED_GALACTIC_HQ_POKEMON           (SYSTEM_FLAGS_START + 29)
-#define FLAG_MET_BEBE                            (SYSTEM_FLAGS_START + 30)
-#define FLAG_UNLOCKED_VS_SEEKER_LVL_1            (SYSTEM_FLAGS_START + 31)
-#define FLAG_UNLOCKED_VS_SEEKER_LVL_2            (SYSTEM_FLAGS_START + 32)
-#define FLAG_UNLOCKED_VS_SEEKER_LVL_3            (SYSTEM_FLAGS_START + 33)
-#define FLAG_UNLOCKED_VS_SEEKER_LVL_4            (SYSTEM_FLAGS_START + 34)
-#define FLAG_UNLOCKED_VS_SEEKER_LVL_5            (SYSTEM_FLAGS_START + 35)
-#define FLAG_ALT_MUSIC_LAKE_VALOR                (SYSTEM_FLAGS_START + 36)
-#define FLAG_ALT_MUSIC_GALACTIC_HQ               (SYSTEM_FLAGS_START + 37)
-#define FLAG_ALT_MUSIC_GALACTIC_HQ_1F            (SYSTEM_FLAGS_START + 38)
-#define FLAG_ALT_MUSIC_GALACTIC_ETERNA_BUILDING  (SYSTEM_FLAGS_START + 39)
-#define FLAG_ALT_MUSIC_VALLEY_WINDWORKS_BUILDING (SYSTEM_FLAGS_START + 40)
-#define FLAG_ALT_MUSIC_FLOAROMA_MEADOW           (SYSTEM_FLAGS_START + 41)
-#define FLAG_ALT_MUSIC_ROUTE_224                 (SYSTEM_FLAGS_START + 42)
-#define FLAG_ALT_MUSIC_CHAMPION_ROOM             (SYSTEM_FLAGS_START + 43)
-#define FLAG_CONNECTED_TO_WIFI                   (SYSTEM_FLAGS_START + 44)
-#define FLAG_DUMMY_2445                          (SYSTEM_FLAGS_START + 45)
-#define FLAG_ALT_MUSIC_LAKE_VERITY               (SYSTEM_FLAGS_START + 46)
-#define FLAG_ALT_MUSIC_LAKE_ACUITY               (SYSTEM_FLAGS_START + 47)
-#define FLAG_UNUSED_2448                         (SYSTEM_FLAGS_START + 48)
-#define FLAG_UNUSED_2449                         (SYSTEM_FLAGS_START + 49)
-#define FLAG_UNDERGROUND_FIRST_ENTERED           (SYSTEM_FLAGS_START + 50)
-#define FLAG_ALT_MUSIC_ROWANS_LAB                (SYSTEM_FLAGS_START + 51)
-#define FLAG_ON_CYCLING_ROAD                     (SYSTEM_FLAGS_START + 52)
-#define FLAG_ALT_MUSIC_PAL_PARK                  (SYSTEM_FLAGS_START + 53)
-#define FLAG_FORCE_BIKING_IN_GATE                (SYSTEM_FLAGS_START + 54)
-
-#define SYSTEM_FLAGS_VILLA_FURNITURE_START (SYSTEM_FLAGS_START + 55)
-
-#define SYSTEM_FLAGS_VILLA_VISITOR_START      (SYSTEM_FLAGS_VILLA_FURNITURE_START + VILLA_FURNITURE_MAX)
-#define FLAG_VILLA_VISITOR_INSIDE             (SYSTEM_FLAGS_VILLA_VISITOR_START + 0)
-#define FLAG_VILLA_VISITOR_OUTSIDE            (SYSTEM_FLAGS_VILLA_VISITOR_START + 1)
-#define FLAG_DISTORTION_WORLD_PUZZLE_FINISHED (SYSTEM_FLAGS_VILLA_VISITOR_START + 2)
-
-#define SYSTEM_FLAGS_GIRATINA_ANIM_START (FLAG_DISTORTION_WORLD_PUZZLE_FINISHED + 1)
-
-#define SYSTEM_FLAGS_FIRST_ARRIVAL_TO_ZONE (SYSTEM_FLAGS_GIRATINA_ANIM_START + GIRATINA_SHADOW_ANIM_MAX)
-
-#define FLAG_DEFEATED_IDOL_GRACE                0x0ABC
-#define FLAG_DEFEATED_REPORTER_KINSEY           0x0ABD
-#define FLAG_DEFEATED_CAMERAMAN_TEVIN           0x0ABE
-#define FLAG_DEFEATED_CLOWN_LEE                 0x0ABF
-#define FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI 0x0AC0
-#define FLAG_DEFEATED_POKE_KID_ARIEL            0x0AC1
-#define FLAG_DEFEATED_GUITARIST_ARTURO          0x0AC2
 
 #endif // POKEPLATINUM_CONSTANTS_VARS_AND_FLAGS_H

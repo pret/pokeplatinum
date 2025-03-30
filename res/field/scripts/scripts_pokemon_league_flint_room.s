@@ -13,8 +13,8 @@ _000A:
     FacePlayer
     GoToIfSet FLAG_UNK_0x00B2, _00D2
     ScrCmd_0EA TRAINER_ELITE_FOUR_FLINT
-    CallIfUnset FLAG_UNK_0x0964, _00F0
-    CallIfSet FLAG_UNK_0x0964, _0104
+    CallIfUnset FLAG_GAME_COMPLETED, _00F0
+    CallIfSet FLAG_GAME_COMPLETED, _0104
     CloseMessage
     CallIfUnset FLAG_UNK_0x00D6, _00A0
     CallIfSet FLAG_UNK_0x00D6, _00A8
@@ -25,8 +25,8 @@ _000A:
     RemoveObject 1
     CallIfUnset FLAG_UNK_0x00D6, _00B0
     CallIfSet FLAG_UNK_0x00D6, _00BE
-    CallIfUnset FLAG_UNK_0x0964, _0109
-    CallIfSet FLAG_UNK_0x0964, _010E
+    CallIfUnset FLAG_GAME_COMPLETED, _0109
+    CallIfSet FLAG_GAME_COMPLETED, _010E
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -54,8 +54,8 @@ _00CC:
     End
 
 _00D2:
-    CallIfUnset FLAG_UNK_0x0964, _0113
-    CallIfSet FLAG_UNK_0x0964, _0118
+    CallIfUnset FLAG_GAME_COMPLETED, _0113
+    CallIfSet FLAG_GAME_COMPLETED, _0118
     WaitABXPadPress
     CloseMessage
     ReleaseAll
