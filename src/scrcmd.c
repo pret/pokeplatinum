@@ -183,7 +183,7 @@
 #include "unk_0204CDDC.h"
 #include "unk_0204CFFC.h"
 #include "unk_0204E240.h"
-#include "game_corner_prize.h"
+#include "scrcmd_game_corner_prize.h"
 #include "unk_0204E75C.h"
 #include "unk_0204E974.h"
 #include "unk_0204EDA4.h"

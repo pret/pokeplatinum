@@ -25,7 +25,7 @@ _0039:
     Call _0119
     GoToIfEq 0x800C, -2, _00D8
     GoToIfEq 0x800C, 0x4001, _00D8
-    ScrCmd_GetGameCornerPrizeData 0x800C, 0x8000, 0x8001
+    GetGameCornerPrizeData 0x800C, 0x8000, 0x8001
     CallIfLt 0x8000, 0x148, _0100
     CallIfGe 0x8000, 0x148, _010A
     ShowYesNoMenu 0x800C
@@ -81,7 +81,7 @@ _0119:
     End
 
 _0135:
-    ScrCmd_GetGameCornerPrizeData 0x8008, 0x8000, 0x8001
+    GetGameCornerPrizeData 0x8008, 0x8000, 0x8001
     BufferItemName 0, 0x8000
     ScrCmd_280 1, 0x8001, 1, 5
     ScrCmd_046 168, 0xFF, 0x8008
