@@ -11,8 +11,8 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x137, _0114
-    GoToIfSet 0xAAE, _016F
+    GoToIfSet FLAG_UNK_0x0137, _0114
+    GoToIfSet FLAG_UNK_0x0AAE, _016F
     GetDailyRandomLevel 0x8000
     BufferNumber 0, 0x8000
     GetPartyCount 0x8002
@@ -39,8 +39,8 @@ _006D:
 
 _00C2:
     CallCommonScript 0x7E0
-    ClearFlag 0x137
-    SetFlag 0xAAE
+    ClearFlag FLAG_UNK_0x0137
+    SetFlag FLAG_UNK_0x0AAE
     AddVar 0x4108, 1
     GoToIfLt 0x4108, 3, _00E7
     SetVar 0x4108, 0
@@ -62,7 +62,7 @@ _00FD:
     Return
 
 _0105:
-    SetFlag 0x137
+    SetFlag FLAG_UNK_0x0137
     Message 2
     WaitABXPadPress
     CloseMessage

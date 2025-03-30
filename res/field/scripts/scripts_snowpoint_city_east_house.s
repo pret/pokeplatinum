@@ -12,7 +12,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0xAAD, _0064
+    GoToIfSet FLAG_UNK_0x0AAD, _0064
     ScrCmd_27F 0x800C
     GoToIfEq 0x800C, 1, _007A
     Message 0
@@ -20,7 +20,7 @@ _000A:
     GoToIfEq 0x800C, MENU_NO, _006F
     ScrCmd_27D 0x800C, 0
     GoToIfEq 0x800C, -1, _007A
-    SetFlag 0xAAD
+    SetFlag FLAG_UNK_0x0AAD
     Message 1
     WaitABXPadPress
     CloseMessage

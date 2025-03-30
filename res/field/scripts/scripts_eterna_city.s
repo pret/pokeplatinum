@@ -77,7 +77,7 @@ _00E5:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 129, _0103
+    GoToIfSet FLAG_UNK_0x0081, _0103
     Message 21
     WaitABXPadPress
     CloseMessage
@@ -95,7 +95,7 @@ _010E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 129, _012C
+    GoToIfSet FLAG_UNK_0x0081, _012C
     Message 23
     WaitABXPadPress
     CloseMessage
@@ -179,7 +179,7 @@ _0276:
     End
 
 _0286:
-    ClearFlag 0x180
+    ClearFlag FLAG_UNK_0x0180
     AddObject 12
     ScrCmd_062 12
     CallIfEq 0x8005, 0x20A, _034B
@@ -440,7 +440,7 @@ _056E:
     End
 
 _057F:
-    GoToIfSet 121, _059D
+    GoToIfSet FLAG_UNK_0x0079, _059D
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -616,7 +616,7 @@ _0770:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset 130, _07A5
+    GoToIfUnset FLAG_UNK_0x0082, _07A5
     GoToIfGe 0x408C, 1, _07A5
     Message 34
     WaitABXPadPress
@@ -777,7 +777,7 @@ _0954:
     ScrCmd_32D
     ScrCmd_331
     SetObjectEventPos 33, 0x12B, 0x215
-    ClearFlag 0x18C
+    ClearFlag FLAG_UNK_0x018C
     AddObject 33
     ScrCmd_062 33
     GetPlayerMapPos 0x8004, 0x8005
@@ -1128,7 +1128,7 @@ _0DD2:
     End
 
 _0DE8:
-    ClearFlag 0x180
+    ClearFlag FLAG_UNK_0x0180
     AddObject 12
     ScrCmd_062 12
     Return

@@ -24,17 +24,17 @@ _0026:
     End
 
 _006D:
-    ClearFlag 0x26D
-    ClearFlag 0x26F
-    SetFlag 0x26C
-    SetFlag 0x26E
+    ClearFlag FLAG_UNK_0x026D
+    ClearFlag FLAG_UNK_0x026F
+    SetFlag FLAG_UNK_0x026C
+    SetFlag FLAG_UNK_0x026E
     End
 
 _007F:
-    ClearFlag 0x26C
-    ClearFlag 0x26E
-    SetFlag 0x26D
-    SetFlag 0x26F
+    ClearFlag FLAG_UNK_0x026C
+    ClearFlag FLAG_UNK_0x026E
+    SetFlag FLAG_UNK_0x026D
+    SetFlag FLAG_UNK_0x026F
     End
 
 _0091:
@@ -146,7 +146,7 @@ _01C7:
     SetVar 0x8004, 0x1BE
     ScrCmd_33C 0, 0x8004
     ScrCmd_346 0
-    GoToIfSet 162, _020B
+    GoToIfSet FLAG_UNK_0x00A2, _020B
     Message 10
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _0254
@@ -187,7 +187,7 @@ _0254:
     Message 11
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 162
+    SetFlag FLAG_UNK_0x00A2
     GoTo _020B
 
 _0270:

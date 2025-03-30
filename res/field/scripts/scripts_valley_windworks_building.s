@@ -14,7 +14,7 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag 0x9C3
+    SetFlag FLAG_UNK_0x09C3
     GoToIfGe 0x4089, 2, _0035
     End
 
@@ -112,10 +112,10 @@ _0107:
     RemoveObject 6
     RemoveObject 3
     RemoveObject 4
-    SetFlag 0x1A2
-    ClearFlag 0x17F
+    SetFlag FLAG_UNK_0x01A2
+    ClearFlag FLAG_UNK_0x017F
     SetVar 0x4089, 2
-    SetFlag 0xAA8
+    SetFlag FLAG_UNK_0x0AA8
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GetPlayerMapPos 0x8004, 0x8005
@@ -138,8 +138,8 @@ _01C9:
 _01DB:
     Message 7
     CloseMessage
-    SetFlag 0x1F8
-    ClearFlag 0x1F9
+    SetFlag FLAG_UNK_0x01F8
+    ClearFlag FLAG_UNK_0x01F9
     ScrCmd_188 5, 16
     AddObject 5
     ScrCmd_062 5
@@ -188,9 +188,9 @@ _0297:
     WaitABXPadPress
     CloseMessage
     SetVar 0x411E, 1
-    ClearFlag 0x1FA
+    ClearFlag FLAG_UNK_0x01FA
     SetVar 0x40CF, 2
-    SetFlag 0x988
+    SetFlag FLAG_ALT_MUSIC_VALLEY_WINDWORKS_BUILDING
     ReleaseAll
     End
 

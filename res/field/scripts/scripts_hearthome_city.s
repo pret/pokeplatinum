@@ -137,7 +137,7 @@ _013B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 1, _01A7
+    GoToIfSet FLAG_UNK_0x0001, _01A7
     Message 14
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _01B2
@@ -194,7 +194,7 @@ _020B:
     End
 
 _0225:
-    SetFlag 1
+    SetFlag FLAG_UNK_0x0001
     Message 16
     WaitABXPadPress
     CloseMessage
@@ -308,36 +308,36 @@ _031B:
     FacePlayer
     Message 24
     Message 25
-    GoToIfUnset 0x14A, _03AC
-    GoToIfUnset 0x14B, _03AC
-    GoToIfUnset 0x14C, _03AC
-    GoToIfUnset 0x14D, _03AC
-    GoToIfUnset 0x14E, _03AC
-    GoToIfUnset 0x14F, _03AC
-    GoToIfUnset 0x150, _03AC
-    GoToIfUnset 0x151, _03AC
-    GoToIfUnset 0x152, _03AC
-    GoToIfUnset 0x153, _03AC
-    GoToIfUnset 0x154, _03AC
-    SetFlag 0x15B
+    GoToIfUnset FLAG_UNK_0x014A, _03AC
+    GoToIfUnset FLAG_UNK_0x014B, _03AC
+    GoToIfUnset FLAG_UNK_0x014C, _03AC
+    GoToIfUnset FLAG_UNK_0x014D, _03AC
+    GoToIfUnset FLAG_UNK_0x014E, _03AC
+    GoToIfUnset FLAG_UNK_0x014F, _03AC
+    GoToIfUnset FLAG_UNK_0x0150, _03AC
+    GoToIfUnset FLAG_UNK_0x0151, _03AC
+    GoToIfUnset FLAG_UNK_0x0152, _03AC
+    GoToIfUnset FLAG_UNK_0x0153, _03AC
+    GoToIfUnset FLAG_UNK_0x0154, _03AC
+    SetFlag FLAG_UNK_0x015B
     GoTo _06E8
 
 _03AC:
-    GoToIfSet 0x14A, _03F4
-    GoToIfUnset 0x98C, _03F4
+    GoToIfSet FLAG_UNK_0x014A, _03F4
+    GoToIfUnset FLAG_CONNECTED_TO_WIFI, _03F4
     Message 33
     SetVar 0x8004, 46
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
     CallCommonScript 0x7DC
-    SetFlag 0x14A
+    SetFlag FLAG_UNK_0x014A
     CloseMessage
     ReleaseAll
     End
 
 _03F4:
-    GoToIfSet 0x14B, _0442
+    GoToIfSet FLAG_UNK_0x014B, _0442
     CountBadgesAcquired 0x800C
     GoToIfLt 0x800C, 8, _0442
     Message 34
@@ -346,83 +346,83 @@ _03F4:
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
     CallCommonScript 0x7DC
-    SetFlag 0x14B
+    SetFlag FLAG_UNK_0x014B
     CloseMessage
     ReleaseAll
     End
 
 _0442:
-    GoToIfSet 0x14C, _048A
-    GoToIfUnset 0x96A, _048A
+    GoToIfSet FLAG_UNK_0x014C, _048A
+    GoToIfUnset FLAG_CONTEST_MASTER_BEAUTY, _048A
     Message 35
     SetVar 0x8004, 72
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
     CallCommonScript 0x7DC
-    SetFlag 0x14C
+    SetFlag FLAG_UNK_0x014C
     CloseMessage
     ReleaseAll
     End
 
 _048A:
-    GoToIfSet 0x14D, _04D2
-    GoToIfUnset 0x968, _04D2
+    GoToIfSet FLAG_UNK_0x014D, _04D2
+    GoToIfUnset FLAG_CONTEST_MASTER_COOL, _04D2
     Message 36
     SetVar 0x8004, 73
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
     CallCommonScript 0x7DC
-    SetFlag 0x14D
+    SetFlag FLAG_UNK_0x014D
     CloseMessage
     ReleaseAll
     End
 
 _04D2:
-    GoToIfSet 0x14E, _051A
-    GoToIfUnset 0x969, _051A
+    GoToIfSet FLAG_UNK_0x014E, _051A
+    GoToIfUnset FLAG_CONTEST_MASTER_CUTE, _051A
     Message 37
     SetVar 0x8004, 74
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
     CallCommonScript 0x7DC
-    SetFlag 0x14E
+    SetFlag FLAG_UNK_0x014E
     CloseMessage
     ReleaseAll
     End
 
 _051A:
-    GoToIfSet 0x14F, _0562
-    GoToIfUnset 0x96C, _0562
+    GoToIfSet FLAG_UNK_0x014F, _0562
+    GoToIfUnset FLAG_CONTEST_MASTER_TOUGH, _0562
     Message 38
     SetVar 0x8004, 75
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
     CallCommonScript 0x7DC
-    SetFlag 0x14F
+    SetFlag FLAG_UNK_0x014F
     CloseMessage
     ReleaseAll
     End
 
 _0562:
-    GoToIfSet 0x150, _05AA
-    GoToIfUnset 0x96B, _05AA
+    GoToIfSet FLAG_UNK_0x0150, _05AA
+    GoToIfUnset FLAG_CONTEST_MASTER_SMART, _05AA
     Message 39
     SetVar 0x8004, 76
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
     CallCommonScript 0x7DC
-    SetFlag 0x150
+    SetFlag FLAG_UNK_0x0150
     CloseMessage
     ReleaseAll
     End
 
 _05AA:
-    GoToIfSet 0x151, _05F8
+    GoToIfSet FLAG_UNK_0x0151, _05F8
     GetUndergroundTalkCounter 0x800C
     GoToIfLt 0x800C, 100, _05F8
     Message 40
@@ -431,13 +431,13 @@ _05AA:
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
     CallCommonScript 0x7DC
-    SetFlag 0x151
+    SetFlag FLAG_UNK_0x0151
     CloseMessage
     ReleaseAll
     End
 
 _05F8:
-    GoToIfSet 0x152, _0646
+    GoToIfSet FLAG_UNK_0x0152, _0646
     GetUndergroundItemsGivenAway 0x800C
     GoToIfLt 0x800C, 100, _0646
     Message 41
@@ -446,13 +446,13 @@ _05F8:
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
     CallCommonScript 0x7DC
-    SetFlag 0x152
+    SetFlag FLAG_UNK_0x0152
     CloseMessage
     ReleaseAll
     End
 
 _0646:
-    GoToIfSet 0x153, _0694
+    GoToIfSet FLAG_UNK_0x0153, _0694
     GetUndergroundFossilsUnearthed 0x800C
     GoToIfLt 0x800C, 100, _0694
     Message 42
@@ -461,13 +461,13 @@ _0646:
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
     CallCommonScript 0x7DC
-    SetFlag 0x153
+    SetFlag FLAG_UNK_0x0153
     CloseMessage
     ReleaseAll
     End
 
 _0694:
-    GoToIfSet 0x154, _06E2
+    GoToIfSet FLAG_UNK_0x0154, _06E2
     GetUndergroundTrapsSet 0x800C
     GoToIfLt 0x800C, 100, _06E2
     Message 43
@@ -476,7 +476,7 @@ _0694:
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
     CallCommonScript 0x7DC
-    SetFlag 0x154
+    SetFlag FLAG_UNK_0x0154
     CloseMessage
     ReleaseAll
     End
@@ -587,8 +587,8 @@ _0808:
     End
 
 _0820:
-    ClearFlag 0x23C
-    ClearFlag 0x23D
+    ClearFlag FLAG_UNK_0x023C
+    ClearFlag FLAG_UNK_0x023D
     AddObject 32
     AddObject 31
     ApplyMovement 31, _0884

@@ -61,7 +61,7 @@ _00BC:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00FA
     CallCommonScript 0x7FC
-    SetFlag 182
+    SetFlag FLAG_UNK_0x00B6
     BufferItemName 0, 0x8004
     BufferTMHMMoveName 1, 0x8004
     Message 4
@@ -77,7 +77,7 @@ _00FA:
     End
 
 _0104:
-    GoToIfUnset 182, _00BC
+    GoToIfUnset FLAG_UNK_0x00B6, _00BC
     Message 5
     WaitABXPadPress
     CloseMessage

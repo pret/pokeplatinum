@@ -14,7 +14,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag 0x9ED
+    SetFlag FLAG_UNK_0x09ED
     End
 
 FootstepHouse_DrFootstep:

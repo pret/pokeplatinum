@@ -11,12 +11,12 @@
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 214, _0596
+    GoToIfSet FLAG_UNK_0x00D6, _0596
     GoTo _0027
     End
 
 _0027:
-    GoToIfUnset 167, _0040
+    GoToIfUnset FLAG_UNK_0x00A7, _0040
     BufferPlayerName 0
     Message 15
     WaitABXPadPress
@@ -28,8 +28,8 @@ _0040:
     BufferPlayerName 0
     Message 0
     CloseMessage
-    SetFlag 167
-    ClearFlag 0x229
+    SetFlag FLAG_UNK_0x00A7
+    ClearFlag FLAG_UNK_0x0229
     SetObjectEventPos 0, 4, 11
     ScrCmd_189 0, 0
     ScrCmd_188 0, 14
@@ -45,8 +45,8 @@ _0040:
     WaitMovement
     Message 3
     CloseMessage
-    SetFlag 0x1AC
-    ClearFlag 0x29B
+    SetFlag FLAG_UNK_0x01AC
+    ClearFlag FLAG_UNK_0x029B
     SetObjectEventPos 1, 4, 11
     ScrCmd_189 1, 0
     ScrCmd_188 1, 14
@@ -110,7 +110,7 @@ _019D:
     End
 
 _01C3:
-    ClearFlag 0x1BD
+    ClearFlag FLAG_UNK_0x01BD
     SetVar 0x4074, 1
     Message 11
     CloseMessage
@@ -129,9 +129,9 @@ _01C3:
     SetVar 0x8004, 0x1A6
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 0x1AC
-    ClearFlag 0x1C3
-    SetFlag 0x98D
+    SetFlag FLAG_UNK_0x01AC
+    ClearFlag FLAG_UNK_0x01C3
+    SetFlag FLAG_DUMMY_2445
     Message 14
     CloseMessage
     GetPlayerMapPos 0x8004, 0x8005
@@ -491,9 +491,9 @@ _0585:
     End
 
 _0596:
-    GoToIfSet 0x124, _0027
-    SetFlag 0x124
-    ClearFlag 0x1A6
+    GoToIfSet FLAG_UNK_0x0124, _0027
+    SetFlag FLAG_UNK_0x0124
+    ClearFlag FLAG_UNK_0x01A6
     SetObjectEventPos 2, 4, 11
     AddObject 2
     GetPlayerMapPos 0x8004, 0x8005

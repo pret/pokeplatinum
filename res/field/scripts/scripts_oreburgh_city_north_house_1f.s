@@ -12,7 +12,7 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 133, _00B7
+    GoToIfSet FLAG_UNK_0x0085, _00B7
     Message 0
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _003B
@@ -35,7 +35,7 @@ _003B:
     GoToIfNe 0x8005, 0x800C, _009F
     ScrCmd_229 0x8004
     FinishNpcTrade
-    SetFlag 133
+    SetFlag FLAG_UNK_0x0085
     Message 1
     WaitABXPadPress
     CloseMessage

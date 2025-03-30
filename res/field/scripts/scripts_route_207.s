@@ -42,7 +42,7 @@ _004E:
     End
 
 _008E:
-    ClearFlag 0x1CC
+    ClearFlag FLAG_UNK_0x01CC
     AddObject 18
     ScrCmd_062 18
     Return
@@ -165,7 +165,7 @@ _01C3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 130, _01E1
+    GoToIfSet FLAG_UNK_0x0082, _01E1
     Message 9
     WaitABXPadPress
     CloseMessage

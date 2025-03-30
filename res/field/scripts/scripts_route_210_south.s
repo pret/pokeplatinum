@@ -22,13 +22,13 @@ _001E:
     End
 
 _0065:
-    ClearFlag 0x271
-    SetFlag 0x270
+    ClearFlag FLAG_UNK_0x0271
+    SetFlag FLAG_UNK_0x0270
     End
 
 _006F:
-    ClearFlag 0x270
-    SetFlag 0x271
+    ClearFlag FLAG_UNK_0x0270
+    SetFlag FLAG_UNK_0x0271
     End
 
 _0079:
@@ -93,7 +93,7 @@ _016F:
     GoTo _0183
 
 _0183:
-    ClearFlag 0x1B1
+    ClearFlag FLAG_UNK_0x01B1
     AddObject 20
     ScrCmd_062 20
     ApplyMovement 20, _02C4
@@ -136,7 +136,7 @@ _0230:
 
 _0240:
     RemoveObject 20
-    SetFlag 0x107
+    SetFlag FLAG_UNK_0x0107
     ReleaseAll
     End
 
@@ -260,14 +260,14 @@ _031F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 199, _0364
+    GoToIfSet FLAG_UNK_0x00C7, _0364
     Message 7
     SetVar 0x8004, 0x17A
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _036F
     CallCommonScript 0x7FC
-    SetFlag 199
+    SetFlag FLAG_UNK_0x00C7
     GoTo _0364
 
 _0364:
