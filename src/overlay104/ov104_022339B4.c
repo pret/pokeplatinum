@@ -567,7 +567,7 @@ void ov104_022346A4(UnkStruct_ov104_0223ADA0 *param0)
         (void)0;
     } else {
         v0 = Party_GetPokemonBySlotIndex(param0->unk_4D8, param0->unk_4DC[1]);
-        sub_0207A128(param0->unk_4D4, param0->unk_4DC[0], v0);
+        Party_AddPokemonBySlotIndex(param0->unk_4D4, param0->unk_4DC[0], v0);
 
         param0->unk_4E8[param0->unk_4DC[0]] = param0->unk_254[param0->unk_4DC[1]];
 

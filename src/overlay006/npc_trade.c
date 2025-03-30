@@ -70,7 +70,7 @@ u32 NpcTrade_GetRequestedSpecies(const NpcTradeData *data)
 
 void NpcTrade_ReceiveMon(FieldSystem *fieldSystem, NpcTradeData *data, int slot)
 {
-    sub_0207A128(Party_GetFromSavedata(fieldSystem->saveData), slot, data->mon);
+    Party_AddPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), slot, data->mon);
     sub_0202F180(fieldSystem->saveData, data->mon);
 }
 
