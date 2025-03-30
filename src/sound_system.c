@@ -190,8 +190,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->waveOutPrimaryAllocated;
     case SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED:
         return &soundSys->waveOutSecondaryAllocated;
-    case 18:
-        return &soundSys->unk_BCD63;
+    case SOUND_SYSTEM_PARAM_ECHO_ENABLED:
+        return &soundSys->echoEnabled;
     case SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE:
         return &soundSys->fieldBGMBankState;
     case 20:

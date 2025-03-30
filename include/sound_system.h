@@ -43,7 +43,7 @@ enum SoundHandleType {
     SOUND_HANDLE_TYPE_SFX_3,
     SOUND_HANDLE_TYPE_SFX_4,
     SOUND_HANDLE_TYPE_BGM,
-    // Unknown (8)
+    SOUND_HANDLE_TYPE_ECHO,
 
     SOUND_HANDLE_TYPE_COUNT = 9
 };
@@ -59,8 +59,7 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_FADE_COUNTER = 7,                // A counter used to track how many frames are left in a fade operation
     SOUND_SYSTEM_PARAM_FOLLOW_UP_WAIT_FRAMES,           // Keeps track of how many frames are let until the next BGM is played
     SOUND_SYSTEM_PARAM_FOLLOW_UP_FADE_FRAMES,           // Keeps track of how many frames the next BGM should be faded in for
-
-    SOUND_SYSTEM_PARAM_CURRENT_BGM = 10,                // The current BGM ID
+    SOUND_SYSTEM_PARAM_CURRENT_BGM,                     // The current BGM ID
     SOUND_SYSTEM_PARAM_NEXT_BGM,                        // The next BGM ID
     SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED,                // Whether field BGM is paused
     SOUND_SYSTEM_PARAM_BGM_PAUSED,                      // Whether non-field BGM is paused
@@ -68,8 +67,8 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK,      // Whether reversed waveform playback is enabled
     SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED,      // Whether the primary waveform channel is currently allocated
     SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED,    // Whether the secondary waveform channel is currently allocated
-
-    SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE = 19,       // Whether the field BGM bank needs to be swapped or not. See FIELD_BGM_BANK_STATE_*
+    SOUND_SYSTEM_PARAM_ECHO_ENABLED,                    // Whether pokemon cry echo is enabled
+    SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE,            // Whether the field BGM bank needs to be swapped or not. See FIELD_BGM_BANK_STATE_*
 
     // A sound scene refers to a specific set of sound data and
     // parameters. They're an easy way to switch the sound system
@@ -120,7 +119,7 @@ typedef struct SoundSystem {
     u8 waveOutReversedPlayback;
     u8 waveOutPrimaryAllocated;
     u8 waveOutSecondaryAllocated;
-    u8 unk_BCD63;
+    u8 echoEnabled;
     u8 fieldBGMBankState;
     u8 unk_BCD65;
     u8 mainScene;

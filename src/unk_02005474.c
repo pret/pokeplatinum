@@ -31,7 +31,7 @@ static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType
 BOOL sub_02005588(u8 param0, u16 param1);
 static void Sound_Impl_ResetBGM(void);
 void Sound_StopAll(void);
-static void sub_02005E4C(u16 param0, int param1, int param2);
+static void Sound_Impl_SetPokemonCryVolume(u16 param0, enum SoundHandleType param1, int param2);
 void Sound_StopPokemonCries(int param0);
 int sub_0200598C(void);
 void sub_02005E64(int param0, int heapID);
@@ -39,8 +39,8 @@ static void sub_02005EB0(SysTask *param0, void *param1);
 void sub_02005F24(void);
 static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form);
 void sub_0200605C(void);
-static BOOL sub_020060EC(u16 species, s8 pitch, u8 form);
-static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int heapID);
+static BOOL Sound_Impl_PlayPokemonCryEcho(u16 species, s8 pitch, u8 form);
+static BOOL Sound_PlayPokemonCryReversedEcho(u16 param0, s8 param1, int param2, int param3, int heapID);
 BOOL Sound_PlayFanfare(u16 param0);
 BOOL Sound_UpdateFanfareDelay(void);
 static void Sound_Impl_StopFanfare(int param0);
@@ -257,7 +257,7 @@ void Sound_StopAll(void)
 BOOL Sound_PlayPannedEffect(u16 seqID, int pan)
 {
     int result = Sound_PlayEffect(seqID);
-    Sound_PanEffect(seqID, SOUND_EFFECT_TRACK_ALL, pan);
+    Sound_PanEffect(seqID, SOUND_PLAYBACK_TRACK_ALL, pan);
 
     return result;
 }
@@ -326,7 +326,7 @@ void Sound_PanAllEffects(int pan)
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(PLAYER_SE_1);
 
     for (int i = 0; i < 4; i++) {
-        NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(handleType + i), SOUND_EFFECT_TRACK_ALL, pan);
+        NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(handleType + i), SOUND_PLAYBACK_TRACK_ALL, pan);
     }
 }
 
@@ -423,53 +423,52 @@ int sub_0200598C(void)
     return Sound_GetNumberOfPlayingSequencesForPlayer(0);
 }
 
-BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 form)
+BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int volume, int heapID, u8 form)
 {
-    int v0, v1;
+    int waveOutPan, echoVolume;
     u16 v3;
-    int v4, v5, v6, v7;
-    u8 *v8 = SoundSystem_GetParam(16);
-    u8 *v9 = SoundSystem_GetParam(17);
-    u8 *v10 = SoundSystem_GetParam(18);
+    BOOL result1, v5, result3, v7;
+    u8 *wavePrimaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
+    u8 *waveSecondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
+    u8 *echoEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ECHO_ENABLED);
     u8 *v11 = SoundSystem_GetParam(30);
     ChatotCry **v12 = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY);
 
-    v4 = 0;
+    result1 = 0;
     v5 = 0;
-    v6 = 0;
+    result3 = 0;
     v7 = 0;
 
-    if (Sound_Impl_IsShayminSkyForm(species, form) == 1) {
-        species = SPECIES_EGG;
+    if (Sound_Impl_IsShayminSkyForm(species, form) == TRUE) {
+        species = WAVE_ARC_PV516_SKY;
     }
 
-    if (species != SPECIES_EGG) {
+    if (species != WAVE_ARC_PV516_SKY) {
         if ((species > MAX_SPECIES) || (species == SPECIES_NONE)) {
             species = SPECIES_BULBASAUR;
         }
     }
 
-    if (param2 < 0) {
-        v0 = WAVE_OUT_PAN_CENTER + (param2 / 2);
+    if (pan < 0) {
+        waveOutPan = WAVE_OUT_PAN_CENTER + (pan / 2);
     } else {
-        v0 = WAVE_OUT_PAN_CENTER + (param2 / 2);
+        waveOutPan = WAVE_OUT_PAN_CENTER + (pan / 2);
     }
 
-    v1 = volume - 30;
-
-    if (v1 <= 0) {
-        v1 = 1;
+    echoVolume = volume - 30;
+    if (echoVolume <= 0) {
+        echoVolume = 1;
     }
 
     v3 = 0;
-    *v10 = 0;
+    *echoEnabled = FALSE;
 
-    if (*v8 == 1) {
+    if (*wavePrimaryAllocated == TRUE) {
         Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_PRIMARY);
         Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
-    if (*v9 == 1) {
+    if (*waveSecondaryAllocated == TRUE) {
         Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_SECONDARY);
         Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
     }
@@ -485,19 +484,19 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
             Sound_PlayPokemonCry(SPECIES_CHATOT, form);
 
             if (*v11 == 0) {
-                sub_02004F94(1, 0xffff, param2);
-                sub_02005E4C(species, 1, volume);
+                Sound_SetPanForHandle(SOUND_HANDLE_TYPE_POKEMON_CRY, SOUND_PLAYBACK_TRACK_ALL, pan);
+                Sound_Impl_SetPokemonCryVolume(species, SOUND_HANDLE_TYPE_POKEMON_CRY, volume);
             } else {
-                if (*v8 == 1) {
-                    Sound_SetWaveOutPan(WAVE_OUT_CHANNEL_PRIMARY, v0);
+                if (*wavePrimaryAllocated == TRUE) {
+                    Sound_SetWaveOutPan(WAVE_OUT_CHANNEL_PRIMARY, waveOutPan);
                     Sound_SetWaveOutVolume(WAVE_OUT_CHANNEL_PRIMARY, volume);
                 } else {
-                    sub_02004F94(1, 0xffff, param2);
-                    sub_02005E4C(species, 1, volume);
+                    Sound_SetPanForHandle(SOUND_HANDLE_TYPE_POKEMON_CRY, SOUND_PLAYBACK_TRACK_ALL, pan);
+                    Sound_Impl_SetPokemonCryVolume(species, SOUND_HANDLE_TYPE_POKEMON_CRY, volume);
                 }
             }
 
-            return 1;
+            return TRUE;
         default:
             Sound_FlagDefaultChatotCry(TRUE);
             break;
@@ -506,121 +505,119 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, 
 
     switch (cryMod) {
     case POKECRY_NORMAL:
-        v4 = Sound_PlayPokemonCry(species, form);
-        sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(species, 1, volume);
+        result1 = Sound_PlayPokemonCry(species, form);
+        Sound_SetPanForHandle(1, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, SOUND_HANDLE_TYPE_POKEMON_CRY, volume);
         break;
     case POKECRY_HALF_DURATION:
-        v4 = Sound_PlayPokemonCry(species, form);
-        sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(species, 1, volume);
+        result1 = Sound_PlayPokemonCry(species, form);
+        Sound_SetPanForHandle(1, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, SOUND_HANDLE_TYPE_POKEMON_CRY, volume);
         sub_02005E64(20, heapID);
         break;
     case POKECRY_FIELD_EVENT:
-        v4 = Sound_PlayPokemonCry(species, form);
-        sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(species, 1, volume);
-        sub_02004F68(1, 0xffff, 64);
-        v6 = sub_020060EC(species, 20, form);
-        sub_02004F94(8, 0xffff, param2);
-        sub_02005E4C(species, 8, v1);
+        result1 = Sound_PlayPokemonCry(species, form);
+        Sound_SetPanForHandle(SOUND_HANDLE_TYPE_POKEMON_CRY, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, SOUND_HANDLE_TYPE_POKEMON_CRY, volume);
+        Sound_SetPitchForHandle(SOUND_HANDLE_TYPE_POKEMON_CRY, SOUND_PLAYBACK_TRACK_ALL, 64);
+        result3 = Sound_Impl_PlayPokemonCryEcho(species, 20, form);
+        Sound_SetPanForHandle(SOUND_HANDLE_TYPE_ECHO, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, SOUND_HANDLE_TYPE_ECHO, echoVolume);
         break;
     case POKECRY_MID_MOVE:
-        v4 = Sound_PlayPokemonCry(species, form);
-        sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(species, 1, volume);
+        result1 = Sound_PlayPokemonCry(species, form);
+        Sound_SetPanForHandle(1, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, 1, volume);
         sub_02005E64(30, heapID);
-        sub_02004F68(1, 0xffff, 192);
-        v6 = sub_020060EC(species, 16, form);
-        sub_02004F94(8, 0xffff, param2);
-        sub_02005E4C(species, 8, v1);
+        Sound_SetPitchForHandle(1, SOUND_PLAYBACK_TRACK_ALL, 192);
+        result3 = Sound_Impl_PlayPokemonCryEcho(species, 16, form);
+        Sound_SetPanForHandle(8, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, 8, echoVolume);
         break;
     case POKECRY_HYPERVOICE_1:
         v5 = Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
-        v5 = Sound_PlayWaveOutReversed(species, volume, v0, WAVE_OUT_CHANNEL_PRIMARY, heapID);
-        Sound_SetWaveOutPan(WAVE_OUT_CHANNEL_PRIMARY, v0);
+        v5 = Sound_PlayWaveOutReversed(species, volume, waveOutPan, WAVE_OUT_CHANNEL_PRIMARY, heapID);
+        Sound_SetWaveOutPan(WAVE_OUT_CHANNEL_PRIMARY, waveOutPan);
         sub_02005E64(15, heapID);
         Sound_SetWaveOutSpeed(WAVE_OUT_CHANNEL_PRIMARY, WAVE_OUT_SPEED_HYPERVOICE_1);
-        v7 = sub_02006120(species, -64, v1, v0, heapID);
+        v7 = Sound_PlayPokemonCryReversedEcho(species, -64, echoVolume, waveOutPan, heapID);
         Sound_SetWaveOutSpeed(WAVE_OUT_CHANNEL_SECONDARY, WAVE_OUT_SPEED_HYPERVOICE_1);
         break;
     case POKECRY_FAINT:
-        v4 = Sound_PlayPokemonCry(species, form);
-        sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(species, 1, volume);
-        sub_02004F68(1, 0xffff, -224);
+        result1 = Sound_PlayPokemonCry(species, form);
+        Sound_SetPanForHandle(1, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, 1, volume);
+        Sound_SetPitchForHandle(1, SOUND_PLAYBACK_TRACK_ALL, -224);
         break;
     case POKECRY_HYPERVOICE_2:
-        v4 = Sound_PlayPokemonCry(species, form);
-        sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(species, 1, volume);
-        sub_02004F68(1, 0xffff, 44);
-        v6 = sub_020060EC(species, -64, form);
-        sub_02004F94(8, 0xffff, param2);
-        sub_02005E4C(species, 8, v1);
+        result1 = Sound_PlayPokemonCry(species, form);
+        Sound_SetPanForHandle(1, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, 1, volume);
+        Sound_SetPitchForHandle(1, SOUND_PLAYBACK_TRACK_ALL, 44);
+        result3 = Sound_Impl_PlayPokemonCryEcho(species, -64, form);
+        Sound_SetPanForHandle(8, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, 8, echoVolume);
         break;
     case POKECRY_HOWL_1:
-        v4 = Sound_PlayPokemonCry(species, form);
-        sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(species, 1, volume);
+        result1 = Sound_PlayPokemonCry(species, form);
+        Sound_SetPanForHandle(1, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, 1, volume);
         sub_02005E64(11, heapID);
-        sub_02004F68(1, 0xffff, -128);
+        Sound_SetPitchForHandle(1, SOUND_PLAYBACK_TRACK_ALL, -128);
         break;
     case POKECRY_HOWL_2:
-        v4 = Sound_PlayPokemonCry(species, form);
-        sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(species, 1, volume);
+        result1 = Sound_PlayPokemonCry(species, form);
+        Sound_SetPanForHandle(1, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, 1, volume);
         sub_02005E64(60, heapID);
-        sub_02004F68(1, 0xffff, 60);
+        Sound_SetPitchForHandle(1, SOUND_PLAYBACK_TRACK_ALL, 60);
         break;
     case POKECRY_UPROAR_1:
         v5 = Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
-        v5 = Sound_PlayWaveOutReversed(species, volume, v0, WAVE_OUT_CHANNEL_PRIMARY, heapID);
-        Sound_SetWaveOutPan(WAVE_OUT_CHANNEL_PRIMARY, v0);
+        v5 = Sound_PlayWaveOutReversed(species, volume, waveOutPan, WAVE_OUT_CHANNEL_PRIMARY, heapID);
+        Sound_SetWaveOutPan(WAVE_OUT_CHANNEL_PRIMARY, waveOutPan);
         sub_02005E64(13, heapID);
         Sound_SetWaveOutSpeed(WAVE_OUT_CHANNEL_PRIMARY, WAVE_OUT_SPEED_UPROAR_1);
         break;
     case POKECRY_UPROAR_2:
-        v4 = Sound_PlayPokemonCry(species, form);
-        sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(species, 1, volume);
+        result1 = Sound_PlayPokemonCry(species, form);
+        Sound_SetPanForHandle(1, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, 1, volume);
         sub_02005E64(100, heapID);
-        sub_02004F68(1, 0xffff, -44);
+        Sound_SetPitchForHandle(1, SOUND_PLAYBACK_TRACK_ALL, -44);
         break;
     case POKECRY_PINCH_NORMAL:
-        v4 = Sound_PlayPokemonCry(species, form);
-        sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(species, 1, volume);
-        sub_02004F68(1, 0xffff, -96);
+        result1 = Sound_PlayPokemonCry(species, form);
+        Sound_SetPanForHandle(1, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, 1, volume);
+        Sound_SetPitchForHandle(1, SOUND_PLAYBACK_TRACK_ALL, -96);
         break;
     case POKECRY_PINCH_HALF_DURATION:
-        v4 = Sound_PlayPokemonCry(species, form);
-        sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(species, 1, volume);
+        result1 = Sound_PlayPokemonCry(species, form);
+        Sound_SetPanForHandle(1, SOUND_PLAYBACK_TRACK_ALL, pan);
+        Sound_Impl_SetPokemonCryVolume(species, 1, volume);
         sub_02005E64(20, heapID);
-        sub_02004F68(1, 0xffff, -96);
+        Sound_SetPitchForHandle(1, SOUND_PLAYBACK_TRACK_ALL, -96);
         break;
     case POKECRY_POKEDEX_CHORUS:
         Sound_PlayPokemonCry(species, form);
-        sub_02005E4C(species, 1, 127);
-        sub_020060EC(species, 20, form);
-        sub_02004F94(8, 0xffff, param2);
+        Sound_Impl_SetPokemonCryVolume(species, 1, 127);
+        Sound_Impl_PlayPokemonCryEcho(species, 20, form);
+        Sound_SetPanForHandle(8, SOUND_PLAYBACK_TRACK_ALL, pan);
         Sound_FadeVolumeForHandle(8, volume, 0);
         break;
     case POKECRY_POKEDEX:
-        v4 = Sound_PlayPokemonCry(species, form);
+        result1 = Sound_PlayPokemonCry(species, form);
         break;
     }
 
     return 1;
 }
 
-static void sub_02005E4C(u16 param0, int param1, int param2)
+static void Sound_Impl_SetPokemonCryVolume(u16 species, enum SoundHandleType handleType, int volume)
 {
-    Sound_SetInitialVolumeForHandle(param1, param2);
-    Sound_AdjustVolumeForVoiceChatEx(param0, param1);
-
-    return;
+    Sound_SetInitialVolumeForHandle(handleType, volume);
+    Sound_AdjustVolumeForVoiceChatEx(species, handleType);
 }
 
 void sub_02005E64(int param0, int heapID)
@@ -802,31 +799,27 @@ void sub_0200605C(void)
     return;
 }
 
-static BOOL sub_020060EC(u16 species, s8 pitch, u8 form)
+static BOOL Sound_Impl_PlayPokemonCryEcho(u16 species, s8 pitch, u8 form)
 {
-    int v0;
-    u8 *v1 = SoundSystem_GetParam(18);
-
-    *v1 = 1;
+    u8 *echoEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ECHO_ENABLED);
+    *echoEnabled = TRUE;
 
     Sound_FlagDefaultChatotCry(TRUE);
-    v0 = Sound_PlayPokemonCry(species, form);
-    sub_02004F68(8, 0xffff, pitch);
+    BOOL success = Sound_PlayPokemonCry(species, form);
+    Sound_SetPitchForHandle(SOUND_HANDLE_TYPE_ECHO, SOUND_PLAYBACK_TRACK_ALL, pitch);
 
-    return v0;
+    return success;
 }
 
-static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int heapID)
+static BOOL Sound_PlayPokemonCryReversedEcho(u16 species, s8 unused, int volume, int pan, int heapID)
 {
-    int v0;
-    u8 *v1 = SoundSystem_GetParam(18);
+    u8 *echoEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ECHO_ENABLED);
+    *echoEnabled = TRUE;
 
-    *v1 = 1;
+    BOOL success = Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
+    success = Sound_PlayWaveOutReversed(species, volume, pan, WAVE_OUT_CHANNEL_SECONDARY, heapID);
 
-    v0 = Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
-    v0 = Sound_PlayWaveOutReversed(param0, param2, param3, WAVE_OUT_CHANNEL_SECONDARY, heapID);
-
-    return v0;
+    return success;
 }
 
 BOOL Sound_PlayFanfare(u16 seqID)
@@ -835,8 +828,7 @@ BOOL Sound_PlayFanfare(u16 seqID)
 
     Sound_Impl_SetFanfareDelay(seqID);
 
-    u16 seqID = Sound_GetCurrentBGM();
-    u8 playerID = Sound_GetPlayerForSequence(seqID);
+    u8 playerID = Sound_GetPlayerForSequence(Sound_GetCurrentBGM());
     if (playerID != 0xff) {
         Sound_SetBGMPlayerPaused(playerID, TRUE);
     }
