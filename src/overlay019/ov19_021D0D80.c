@@ -16,6 +16,7 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay019/box_cursor.h"
 #include "overlay019/box_customization.h"
+#include "overlay019/box_mon_selection.h"
 #include "overlay019/box_settings.h"
 #include "overlay019/ov19_021D603C.h"
 #include "overlay019/ov19_021D61B0.h"
@@ -25,7 +26,6 @@
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D4EE4.h"
 #include "overlay019/struct_ov19_021D4F34.h"
-#include "overlay019/struct_ov19_021D5594.h"
 #include "overlay019/struct_ov19_021D5D20.h"
 #include "overlay019/struct_ov19_021D6104.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
@@ -98,7 +98,7 @@ static const u16 Unk_ov19_021DFDF0[] = {
 typedef struct {
     u32 unk_00;
     u8 unk_04;
-    s8 unk_05; // boxID
+    s8 unk_05;
     u16 unk_06;
 } UnkStruct_ov19_021D4468;
 
@@ -182,13 +182,13 @@ static void ov19_021D27E8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2890(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2A5C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static BOOL ov19_021D2DD0(const UnkStruct_ov19_021D4DF0 *param0);
+static BOOL ov19_IsBoxUnderSelectedMonsEmpty(const UnkStruct_ov19_021D4DF0 *param0);
 static void ov19_021D2E1C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2F14(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D3010(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D30D0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static BOOL ov19_021D34E4(UnkStruct_ov19_021D5DF8 *param0);
+static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0);
 static BOOL ov19_021D357C(UnkStruct_ov19_021D5DF8 *param0, int *param1);
 static void ov19_021D35F8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D38E0(UnkStruct_ov19_021D5DF8 *param0);
@@ -213,8 +213,8 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
 static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0);
 static void BoxSettings_Init(BoxSettings *param0, enum BoxMode boxMode);
 static void ov19_InitCursor(UnkStruct_ov19_021D5DF8 *param0);
-static void ov19_021D4E30(UnkStruct_ov19_021D5594 *param0);
-static void ov19_021D4E50(UnkStruct_ov19_021D5594 *param0);
+static void ov19_InitMonSelection(BoxMonSelection *selection);
+static void ov19_MonSelectionFree(BoxMonSelection *selection);
 static void PCBoxes_InitCustomization(PCBoxes *pcBoxes, BoxCustomization *customization);
 static void Customization_Free(BoxCustomization *customization);
 static void PCMonPreviewInit(PCMonPreview *param0);
@@ -226,8 +226,8 @@ static void PCBoxes_LoadCustomization(const PCBoxes *pcBoxes, BoxCustomization *
 static void ov19_LoadWallpaper(UnkStruct_ov19_021D4DF0 *param0, PCBoxes *pcBoxes);
 static BOOL ov19_TryMoveCursorFromUserInput(u32 heldKeys, UnkStruct_ov19_021D5DF8 *param1);
 static BOOL ov19_TryMoveCursor(UnkStruct_ov19_021D4DF0 *param0, int colChange, int rowChange);
-static int ov19_021D5150(u32 param0, UnkStruct_ov19_021D5DF8 *param1);
-static int ov19_021D51CC(UnkStruct_ov19_021D4DF0 *param0, int param1, int param2);
+static enum CursorMovementState ov19_TryMoveSelectionFromUserInput(u32 heldKeys, UnkStruct_ov19_021D5DF8 *param1);
+static enum CursorMovementState ov19_TryMoveSelection(UnkStruct_ov19_021D4DF0 *param0, int colChange, int rowChange);
 static void ov19_MoveCursorToParty(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_ReturnCursorToBox(UnkStruct_ov19_021D5DF8 *param0);
 static BOOL ov19_TryPreviewCursorMon(UnkStruct_ov19_021D5DF8 *param0);
@@ -236,13 +236,13 @@ static void ov19_021D53B8(u32 param0, u32 param1, void *param2);
 static void ov19_021D5408(UnkStruct_ov19_021D4DF0 *param0, u32 param1);
 static void ov19_SetCursorBoxLocation(UnkStruct_ov19_021D4DF0 *param0, u32 col, u32 row);
 static void ov19_PickUpMon(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
-static void ov19_021D54A4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
-static void ov19_021D5594(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
-static void ov19_021D55B0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
-static void ov19_021D55C4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
-static void ov19_021D56AC(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
+static void ov19_PickUpMultiSelectedMons(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
+static void ov19_ResetMultiSelectLocation(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
+static void ov19_SetMultiSelectionEndLocation(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
+static void ov19_PutDownCursorMon(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
+static void ov19_PutDownSelectedMons(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
 static void ov19_SwapMonInCursor(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
-static BOOL ov19_021D57D8(UnkStruct_ov19_021D5DF8 *param0, u32 param1);
+static BOOL ov19_TryStoreCursorMonInBox(UnkStruct_ov19_021D5DF8 *param0, u32 boxID);
 static BOOL ov19_TryStoreSelectedMonInBox(UnkStruct_ov19_021D5DF8 *param0, u32 boxID);
 static void ov19_021D5834(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_RemoveMonUnderCursor(UnkStruct_ov19_021D5DF8 *param0);
@@ -479,7 +479,7 @@ static int ov19_021D0FF0(UnkStruct_ov19_021D5DF8 *param0)
 {
     switch (param0->unk_1B0) {
     case 0:
-        if (gSystem.pressedKeys & PAD_BUTTON_A) {
+        if (JOY_NEW(PAD_BUTTON_A)) {
             if (ov19_021D5E4C(&param0->unk_00)) {
                 if (ov19_GetBoxMode(&param0->unk_00) != PC_MODE_MOVE_ITEMS) {
                     ov19_021D0EB0(param0, ov19_021D20A4);
@@ -490,18 +490,18 @@ static int ov19_021D0FF0(UnkStruct_ov19_021D5DF8 *param0)
             }
         }
 
-        if (gSystem.pressedKeys & PAD_BUTTON_B) {
+        if (JOY_NEW(PAD_BUTTON_B)) {
             ov19_021D0EB0(param0, ov19_021D1F5C);
             break;
         }
 
-        if (gSystem.heldKeys & PAD_BUTTON_L) {
+        if (JOY_HELD(PAD_BUTTON_L)) {
             ov19_LoadLeftBoxCustomization(&param0->unk_00);
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
-        if (gSystem.heldKeys & PAD_BUTTON_R) {
+        if (JOY_HELD(PAD_BUTTON_R)) {
             ov19_LoadRightBoxCustomization(&(param0->unk_00));
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
@@ -557,7 +557,7 @@ static int ov19_021D1270(UnkStruct_ov19_021D5DF8 *param0)
 {
     switch (param0->unk_1B0) {
     case 0:
-        if (gSystem.pressedKeys & PAD_BUTTON_A) {
+        if (JOY_NEW(PAD_BUTTON_A)) {
             if (ov19_GetCursorPartyPosition(&param0->unk_00) == 6) {
                 param0->unk_1B0 = 2;
                 break;
@@ -574,7 +574,7 @@ static int ov19_021D1270(UnkStruct_ov19_021D5DF8 *param0)
             break;
         }
 
-        if ((gSystem.pressedKeys & PAD_BUTTON_B) || ((gSystem.pressedKeys & PAD_KEY_RIGHT) && (ov19_GetCursorPartyPosition(&param0->unk_00) & 1)) || ((gSystem.pressedKeys & PAD_KEY_RIGHT) && (ov19_GetCursorPartyPosition(&param0->unk_00) == 6))) {
+        if ((JOY_NEW(PAD_BUTTON_B)) || ((JOY_NEW(PAD_KEY_RIGHT)) && (ov19_GetCursorPartyPosition(&param0->unk_00) & 1)) || ((JOY_NEW(PAD_KEY_RIGHT)) && (ov19_GetCursorPartyPosition(&param0->unk_00) == 6))) {
             param0->unk_1B0 = 2;
             break;
         }
@@ -640,7 +640,7 @@ static int ov19_021D1270(UnkStruct_ov19_021D5DF8 *param0)
             break;
         }
 
-        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             param0->unk_1B0 = 0;
         }
@@ -671,12 +671,12 @@ static int ov19_021D15C0(UnkStruct_ov19_021D5DF8 *param0)
             break;
         }
 
-        if (gSystem.pressedKeys & PAD_BUTTON_A) {
+        if (JOY_NEW(PAD_BUTTON_A)) {
             ov19_021D0EB0(param0, ov19_021D2694);
             break;
         }
 
-        if (gSystem.pressedKeys & PAD_BUTTON_B) {
+        if (JOY_NEW(PAD_BUTTON_B)) {
             ov19_021D0EB0(param0, ov19_021D1F5C);
             break;
         }
@@ -708,23 +708,23 @@ static int ov19_021D17AC(UnkStruct_ov19_021D5DF8 *param0)
 {
     switch (param0->unk_1B0) {
     case 0:
-        if (gSystem.pressedKeys & PAD_BUTTON_A) {
+        if (JOY_NEW(PAD_BUTTON_A)) {
             ov19_021D0EB0(param0, ov19_021D1DEC);
             break;
         }
 
-        if (gSystem.pressedKeys & PAD_BUTTON_B) {
+        if (JOY_NEW(PAD_BUTTON_B)) {
             ov19_021D0EB0(param0, ov19_021D1F5C);
             break;
         }
 
-        if (gSystem.heldKeys & PAD_BUTTON_L) {
+        if (JOY_HELD(PAD_BUTTON_L)) {
             ov19_LoadLeftBoxCustomization(&param0->unk_00);
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
-        if (gSystem.heldKeys & PAD_BUTTON_R) {
+        if (JOY_HELD(PAD_BUTTON_R)) {
             ov19_LoadRightBoxCustomization(&(param0->unk_00));
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
@@ -762,7 +762,7 @@ static int ov19_021D19B8(UnkStruct_ov19_021D5DF8 *param0)
 {
     switch (param0->unk_1B0) {
     case 0:
-        if (gSystem.pressedKeys & PAD_BUTTON_A) {
+        if (JOY_NEW(PAD_BUTTON_A)) {
             if (ov19_GetBoxMode(&param0->unk_00) != PC_MODE_WITHDRAW) {
                 ov19_021D6594(param0->unk_114, 34);
                 param0->unk_1B0 = 1;
@@ -775,18 +775,18 @@ static int ov19_021D19B8(UnkStruct_ov19_021D5DF8 *param0)
             break;
         }
 
-        if (gSystem.pressedKeys & PAD_BUTTON_B) {
+        if (JOY_NEW(PAD_BUTTON_B)) {
             ov19_021D0EB0(param0, ov19_021D1F5C);
             break;
         }
 
-        if (gSystem.heldKeys & PAD_BUTTON_L) {
+        if (JOY_HELD(PAD_BUTTON_L)) {
             ov19_LoadLeftBoxCustomization(&param0->unk_00);
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
-        if (gSystem.heldKeys & PAD_BUTTON_R) {
+        if (JOY_HELD(PAD_BUTTON_R)) {
             ov19_LoadRightBoxCustomization(&(param0->unk_00));
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
@@ -835,7 +835,7 @@ static int ov19_021D19B8(UnkStruct_ov19_021D5DF8 *param0)
         }
         break;
     case 5:
-        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             param0->unk_1B0 = 0;
         }
@@ -852,10 +852,10 @@ static void ov19_021D1C84(UnkStruct_ov19_021D5DF8 *param0)
     };
 
     if (ov19_021D5E38(&param0->unk_00) == 2) {
-        UnkStruct_ov19_021D5594 *v1 = &param0->unk_00.unk_14;
+        BoxMonSelection *selection = &param0->unk_00.selection;
 
-        param0->monSummary.monData = param0->unk_00.unk_14.boxMon;
-        param0->monSummary.dataType = (v1->unk_0B) ? SUMMARY_DATA_MON : SUMMARY_DATA_BOX_MON;
+        param0->monSummary.monData = param0->unk_00.selection.boxMon;
+        param0->monSummary.dataType = (selection->cursorMonIsPartyMon) ? SUMMARY_DATA_MON : SUMMARY_DATA_BOX_MON;
         param0->monSummary.monMax = 1;
         param0->monSummary.monIndex = 0;
         param0->monSummary.mode = SUMMARY_MODE_NORMAL;
@@ -1529,8 +1529,8 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
     switch (*param1) {
     case 0:
-        if (gSystem.heldKeys & PAD_BUTTON_A) {
-            ov19_021D5594(param0, &param0->unk_00);
+        if (JOY_HELD(PAD_BUTTON_A)) {
+            ov19_ResetMultiSelectLocation(param0, &param0->unk_00);
             ov19_021D6594(param0->unk_114, 44);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             *param1 = 1;
@@ -1540,16 +1540,16 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
 
     case 1:
-        if (gSystem.heldKeys & PAD_BUTTON_A) {
-            switch (ov19_021D5150(gSystem.heldKeys, param0)) {
-            case 2:
-                if ((gSystem.heldKeys & PAD_PLUS_KEY_MASK) == (gSystem.pressedKeys & PAD_PLUS_KEY_MASK)) {
+        if (JOY_HELD(PAD_BUTTON_A)) {
+            switch (ov19_TryMoveSelectionFromUserInput(gSystem.heldKeys, param0)) {
+            case CURSOR_STOP:
+                if ((JOY_HELD(PAD_PLUS_KEY_MASK)) == (JOY_NEW(PAD_PLUS_KEY_MASK))) {
                     Sound_PlayEffect(SEQ_SE_DP_BOX03);
                 }
                 break;
 
-            case 1:
-                ov19_021D55B0(param0, &param0->unk_00);
+            case CURSOR_MOVE:
+                ov19_SetMultiSelectionEndLocation(param0, &param0->unk_00);
                 ov19_021D6594(param0->unk_114, 46);
                 ov19_021D6594(param0->unk_114, 5);
                 ov19_021D6594(param0->unk_114, 6);
@@ -1557,11 +1557,11 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 break;
             }
         } else {
-            if (ov19_021D5F20(&param0->unk_00)) {
+            if (ov19_IsMultiSelectSingleSelect(&param0->unk_00)) {
                 ov19_021D6594(param0->unk_114, 45);
                 ov19_021D0EB0(param0, ov19_021D2E1C);
             } else {
-                ov19_021D54A4(param0, &param0->unk_00);
+                ov19_PickUpMultiSelectedMons(param0, &param0->unk_00);
                 ov19_021D6594(param0->unk_114, 47);
                 Sound_PlayEffect(SEQ_SE_DP_BOX02);
                 *param1 = 2;
@@ -1574,38 +1574,38 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        switch (ov19_021D5150(gSystem.heldKeys, param0)) {
-        case 2:
-            if ((gSystem.heldKeys & PAD_PLUS_KEY_MASK) == (gSystem.pressedKeys & PAD_PLUS_KEY_MASK)) {
+        switch (ov19_TryMoveSelectionFromUserInput(gSystem.heldKeys, param0)) {
+        case CURSOR_STOP:
+            if ((JOY_HELD(PAD_PLUS_KEY_MASK)) == (JOY_NEW(PAD_PLUS_KEY_MASK))) {
                 Sound_PlayEffect(SEQ_SE_DP_BOX03);
             }
             break;
 
-        case 1:
+        case CURSOR_MOVE:
             ov19_021D6594(param0->unk_114, 5);
             if ((ov19_021D5E38(&param0->unk_00) & 6) == 0) {
                 ov19_021D6594(param0->unk_114, 6);
             }
             break;
 
-        case 3:
+        case CURSOR_MOVE_TO_LEFT_BOX:
             ov19_LoadLeftBoxCustomization(&param0->unk_00);
             PCBoxes_SetCurrentBox(param0->pcBoxes, ov19_GetCurrentBox(&param0->unk_00));
             ov19_021D6594(param0->unk_114, 4);
             *param1 = 5;
             break;
 
-        case 4:
+        case CURSOR_MOVE_TO_RIGHT_BOX:
             ov19_LoadRightBoxCustomization(&(param0->unk_00));
             PCBoxes_SetCurrentBox(param0->pcBoxes, ov19_GetCurrentBox(&param0->unk_00));
             ov19_021D6594(param0->unk_114, 4);
             *param1 = 5;
             break;
 
-        case 0:
-            if (gSystem.pressedKeys & PAD_BUTTON_A) {
-                if (ov19_021D2DD0(&param0->unk_00)) {
-                    ov19_021D56AC(param0, &param0->unk_00);
+        case CURSOR_NO_MOVEMENT:
+            if (JOY_NEW(PAD_BUTTON_A)) {
+                if (ov19_IsBoxUnderSelectedMonsEmpty(&param0->unk_00)) {
+                    ov19_PutDownSelectedMons(param0, &param0->unk_00);
                     ov19_021D6594(param0->unk_114, 10);
                     Sound_PlayEffect(SEQ_SE_DP_BOX01);
                     *param1 = 4;
@@ -1614,7 +1614,7 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 }
                 break;
             }
-            if (gSystem.pressedKeys & PAD_BUTTON_B) {
+            if (JOY_NEW(PAD_BUTTON_B)) {
                 Sound_PlayEffect(SEQ_SE_DP_BOX03);
             }
             break;
@@ -1645,19 +1645,19 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
-static BOOL ov19_021D2DD0(const UnkStruct_ov19_021D4DF0 *param0)
+static BOOL ov19_IsBoxUnderSelectedMonsEmpty(const UnkStruct_ov19_021D4DF0 *param0)
 {
     BoxPokemon *boxMon;
-    int i, v2, v3, v4;
+    int i, origSelectionTopLeftPos, selectionTopLeftPos, posInBox;
     const BoxCursor *cursor = &param0->cursor;
-    const UnkStruct_ov19_021D5594 *v6 = &param0->unk_14;
+    const BoxMonSelection *selection = &param0->selection;
 
-    v3 = ov19_021D5F3C(param0);
-    v2 = v6->unk_09;
+    selectionTopLeftPos = ov19_GetMultiSelectTopLeftPos(param0);
+    origSelectionTopLeftPos = selection->origSelectionTopLeftPos;
 
-    for (i = 0; i < v6->unk_08; i++) {
-        v4 = v3 + (v6->unk_0C[i] - v2);
-        boxMon = PCBoxes_GetBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, v4);
+    for (i = 0; i < selection->selectedMonCount; i++) {
+        posInBox = selectionTopLeftPos + (selection->selectedMonsOrigBoxPos[i] - origSelectionTopLeftPos);
+        boxMon = PCBoxes_GetBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, posInBox);
 
         if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
             return FALSE;
@@ -1672,7 +1672,7 @@ static void ov19_021D2E1C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     switch (*param1) {
     case 0:
         if (ov19_GetCursorLocation(&param0->unk_00) == CURSOR_IN_PARTY) {
-            if (ov19_021D34E4(param0) == 0) {
+            if (ov19_OnLastAliveMon(param0) == FALSE) {
                 Sound_PlayEffect(SEQ_SE_DP_BOX02);
                 ov19_PickUpMon(param0, &param0->unk_00);
                 ov19_021D6594(param0->unk_114, 9);
@@ -1715,7 +1715,7 @@ static void ov19_021D2F14(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
     switch (*param1) {
     case 0:
-        ov19_021D55C4(param0, &param0->unk_00);
+        ov19_PutDownCursorMon(param0, &param0->unk_00);
         ov19_021D6594(param0->unk_114, 10);
         Sound_PlayEffect(SEQ_SE_DP_BOX01);
 
@@ -1752,7 +1752,7 @@ static void ov19_021D2F14(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 
 static BOOL ov19_021D2FC8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
-    if (ov19_021D34E4(param0)) {
+    if (ov19_OnLastAliveMon(param0)) {
         if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_EGG_EXISTS, NULL)) {
             *param1 = 6;
             return TRUE;
@@ -1845,7 +1845,7 @@ static void ov19_021D30D0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
     case 3:
         if (ov19_021D6600(param0->unk_114, 5)) {
-            ov19_021D55C4(param0, &param0->unk_00);
+            ov19_PutDownCursorMon(param0, &param0->unk_00);
             ov19_021D0F14(param0);
             ov19_021D6594(param0->unk_114, 10);
             (*param1) = 4;
@@ -1888,7 +1888,7 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
     switch (*param1) {
     case 0:
-        if ((ov19_021D5E38(&param0->unk_00) == 1) && (ov19_021D34E4(param0) == 1)) {
+        if ((ov19_021D5E38(&param0->unk_00) == 1) && (ov19_OnLastAliveMon(param0) == 1)) {
             Sound_PlayEffect(SEQ_SE_DP_BOX03);
             ov19_021D5408(&param0->unk_00, 6);
             ov19_021D6594(param0->unk_114, 27);
@@ -1925,7 +1925,7 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         param0->unk_00.unk_110 = param0->unk_1BC.unk_05;
 
         if (ov19_021D5E38(&param0->unk_00) == 2) {
-            if (ov19_021D57D8(param0, param0->unk_1BC.unk_05)) {
+            if (ov19_TryStoreCursorMonInBox(param0, param0->unk_1BC.unk_05)) {
                 ov19_021D0F14(param0);
                 ov19_021D6594(param0->unk_114, 26);
                 ov19_021D6594(param0->unk_114, 32);
@@ -1989,8 +1989,7 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
-// party on last alive mon?
-static BOOL ov19_021D34E4(UnkStruct_ov19_021D5DF8 *param0)
+static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0)
 {
     Pokemon *mon;
     int i, count, partyCount;
@@ -2023,7 +2022,6 @@ static BOOL ov19_021D34E4(UnkStruct_ov19_021D5DF8 *param0)
     return TRUE;
 }
 
-// what?
 static BOOL ov19_021D357C(UnkStruct_ov19_021D5DF8 *param0, int *param1)
 {
     if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_EGG_EXISTS, NULL)) {
@@ -2047,7 +2045,7 @@ static BOOL ov19_021D357C(UnkStruct_ov19_021D5DF8 *param0, int *param1)
 
     if (ov19_021D5E38(&param0->unk_00) == 1) {
         if (ov19_GetCursorLocation(&param0->unk_00) == CURSOR_IN_PARTY) {
-            if (ov19_021D34E4(param0)) {
+            if (ov19_OnLastAliveMon(param0)) {
                 *param1 = 6;
                 return FALSE;
             }
@@ -3160,7 +3158,7 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     PCBoxes_InitCustomization(param0->pcBoxes, &(param0->unk_00.customization));
     ov19_PCCompareMonsInit(&(param0->unk_00.unk_A4));
     ov19_InitCursor(param0);
-    ov19_021D4E30(&(param0->unk_00.unk_14));
+    ov19_InitMonSelection(&(param0->unk_00.selection));
     ov19_021D4F34(&(param0->unk_00.unk_9C));
 }
 
@@ -3181,7 +3179,7 @@ static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0)
     sub_0208716C(param0->unk_128);
 
     PCMonPreviewFree(&(param0->unk_00.pcMonPreview));
-    ov19_021D4E50(&(param0->unk_00.unk_14));
+    ov19_MonSelectionFree(&(param0->unk_00.selection));
     Customization_Free(&(param0->unk_00.customization));
     ov19_PCCompareMonsFree(&(param0->unk_00.unk_A4));
 
@@ -3203,7 +3201,7 @@ static void ov19_InitCursor(UnkStruct_ov19_021D5DF8 *param0)
     ov19_SetCursorBoxLocation(v0, 0, 0);
 
     cursor->posInParty = 0;
-    cursor->prevCursorState = CURSOR_IN_PARTY;
+    cursor->prevCursorLocation = CURSOR_IN_PARTY;
 
     switch (v0->boxSettings.boxMode) {
     case PC_MODE_DEPOSIT:
@@ -3221,16 +3219,16 @@ static void ov19_InitCursor(UnkStruct_ov19_021D5DF8 *param0)
     ov19_TryPreviewCursorMon(param0);
 }
 
-static void ov19_021D4E30(UnkStruct_ov19_021D5594 *param0)
+static void ov19_InitMonSelection(BoxMonSelection *selection)
 {
-    param0->boxMon = Heap_AllocFromHeap(HEAP_ID_9, MAX_MONS_PER_BOX * BoxPokemon_GetStructSize());
-    param0->unk_08 = 0;
-    param0->unk_0B = 0;
+    selection->boxMon = Heap_AllocFromHeap(HEAP_ID_9, MAX_MONS_PER_BOX * BoxPokemon_GetStructSize());
+    selection->selectedMonCount = 0;
+    selection->cursorMonIsPartyMon = FALSE;
 }
 
-static void ov19_021D4E50(UnkStruct_ov19_021D5594 *param0)
+static void ov19_MonSelectionFree(BoxMonSelection *selection)
 {
-    Heap_FreeToHeap(param0->boxMon);
+    Heap_FreeToHeap(selection->boxMon);
 }
 
 static void PCBoxes_InitCustomization(PCBoxes *pcBoxes, BoxCustomization *customization)
@@ -3456,121 +3454,116 @@ static BOOL ov19_TryMoveCursor(UnkStruct_ov19_021D4DF0 *param0, int colChange, i
     return FALSE;
 }
 
-static int ov19_021D5150(u32 param0, UnkStruct_ov19_021D5DF8 *param1)
+static enum CursorMovementState ov19_TryMoveSelectionFromUserInput(u32 heldKeys, UnkStruct_ov19_021D5DF8 *param1)
 {
-    int v0 = 0;
+    enum CursorMovementState cursorMovement = CURSOR_NO_MOVEMENT;
 
     do {
-        if (param0 & PAD_KEY_LEFT) {
-            v0 = ov19_021D51CC(&(param1->unk_00), -1, 0);
+        if (heldKeys & PAD_KEY_LEFT) {
+            cursorMovement = ov19_TryMoveSelection(&(param1->unk_00), -1, 0);
             break;
         }
 
-        if (param0 & PAD_KEY_RIGHT) {
-            v0 = ov19_021D51CC(&(param1->unk_00), 1, 0);
+        if (heldKeys & PAD_KEY_RIGHT) {
+            cursorMovement = ov19_TryMoveSelection(&(param1->unk_00), 1, 0);
             break;
         }
 
-        if (param0 & PAD_KEY_UP) {
-            v0 = ov19_021D51CC(&(param1->unk_00), 0, -1);
+        if (heldKeys & PAD_KEY_UP) {
+            cursorMovement = ov19_TryMoveSelection(&(param1->unk_00), 0, -1);
             break;
         }
 
-        if (param0 & PAD_KEY_DOWN) {
-            v0 = ov19_021D51CC(&(param1->unk_00), 0, 1);
+        if (heldKeys & PAD_KEY_DOWN) {
+            cursorMovement = ov19_TryMoveSelection(&(param1->unk_00), 0, 1);
             break;
         }
 
-        if (param0 & PAD_BUTTON_L) {
-            v0 = 3;
+        if (heldKeys & PAD_BUTTON_L) {
+            cursorMovement = CURSOR_MOVE_TO_LEFT_BOX;
             break;
         }
 
-        if (param0 & PAD_BUTTON_R) {
-            v0 = 4;
+        if (heldKeys & PAD_BUTTON_R) {
+            cursorMovement = CURSOR_MOVE_TO_RIGHT_BOX;
             break;
         }
-    } while (0);
+    } while (FALSE);
 
-    if (v0 == 1) {
+    if (cursorMovement == CURSOR_MOVE) {
         ov19_TryPreviewCursorMon(param1);
     }
 
-    return v0;
+    return cursorMovement;
 }
 
-// I have no idea when this is used or what this does differently from ov19_TryMoveCursor
-// does some sort of bounds check
-// returns unknown enum
-static int ov19_021D51CC(UnkStruct_ov19_021D4DF0 *param0, int colChange, int rowChange)
+static enum CursorMovementState ov19_TryMoveSelection(UnkStruct_ov19_021D4DF0 *param0, int colChange, int rowChange)
 {
     BoxCursor *cursor = &param0->cursor;
-    const UnkStruct_ov19_021D5594 *v1 = &param0->unk_14;
+    const BoxMonSelection *selection = &param0->selection;
 
     if (cursor->cursorLocation == CURSOR_IN_BOX) {
         if (colChange != 0) {
             int newCol = cursor->boxCol + colChange;
 
             if (ov19_021D5E38(param0) & 12) {
-                int v3, v4;
+                int selectionLeftCol, selectionRightCol;
 
-                v3 = v4 = newCol;
+                selectionLeftCol = selectionRightCol = newCol;
 
-                if (v1->unk_06 > v1->unk_04) {
-                    v3 -= (v1->unk_06 - v1->unk_04);
+                if (selection->selectionEndCol > selection->selectionStartCol) {
+                    selectionLeftCol -= (selection->selectionEndCol - selection->selectionStartCol);
                 } else {
-                    v4 += (v1->unk_04 - v1->unk_06);
+                    selectionRightCol += (selection->selectionStartCol - selection->selectionEndCol);
                 }
 
-                if (v3 < 0) {
-                    return 3;
+                if (selectionLeftCol < 0) {
+                    return CURSOR_MOVE_TO_LEFT_BOX;
                 }
 
-                if (v4 >= MAX_PC_COLS) {
-                    return 4;
+                if (selectionRightCol >= MAX_PC_COLS) {
+                    return CURSOR_MOVE_TO_RIGHT_BOX;
                 }
             } else {
                 if ((newCol < 0) || (newCol >= MAX_PC_COLS)) {
-                    return 2;
+                    return CURSOR_STOP;
                 }
             }
 
             ov19_SetCursorBoxLocation(param0, newCol, cursor->boxRow);
-            return 1;
+            return CURSOR_MOVE;
         }
 
         if (rowChange != 0) {
-            int newRow;
-
-            newRow = cursor->boxRow + rowChange;
+            int newRow = cursor->boxRow + rowChange;
 
             if (ov19_021D5E38(param0) & 12) {
-                int v6, v7;
+                int selectionTopRow, selectionBottomRow;
 
-                v6 = v7 = newRow;
+                selectionTopRow = selectionBottomRow = newRow;
 
-                if (v1->unk_07 > v1->unk_05) {
-                    v6 -= (v1->unk_07 - v1->unk_05);
+                if (selection->selectionEndRow > selection->selectionStartRow) {
+                    selectionTopRow -= selection->selectionEndRow - selection->selectionStartRow;
                 } else {
-                    v7 += (v1->unk_05 - v1->unk_07);
+                    selectionBottomRow += selection->selectionStartRow - selection->selectionEndRow;
                 }
 
-                if ((v6 < 0) || (v7 >= 5)) {
-                    return 2;
+                if ((selectionTopRow < 0) || (selectionBottomRow >= MAX_PC_ROWS)) {
+                    return CURSOR_STOP;
                 }
             } else {
-                if ((newRow < 0) || (newRow >= 5)) {
-                    return 2;
+                if ((newRow < 0) || (newRow >= MAX_PC_ROWS)) {
+                    return CURSOR_STOP;
                 }
             }
 
             ov19_SetCursorBoxLocation(param0, cursor->boxCol, newRow);
-            return 1;
+            return CURSOR_MOVE;
         }
     }
 
-    GF_ASSERT(0);
-    return 0;
+    GF_ASSERT(FALSE);
+    return CURSOR_NO_MOVEMENT;
 }
 
 static void ov19_MoveCursorToParty(UnkStruct_ov19_021D5DF8 *param0)
@@ -3589,7 +3582,7 @@ static void ov19_MoveCursorToParty(UnkStruct_ov19_021D5DF8 *param0)
         cursor->posInParty = 0;
     }
 
-    cursor->prevCursorState = cursor->cursorLocation;
+    cursor->prevCursorLocation = cursor->cursorLocation;
     cursor->cursorLocation = CURSOR_IN_PARTY;
 
     ov19_TryPreviewCursorMon(param0);
@@ -3600,12 +3593,13 @@ static void ov19_ReturnCursorToBox(UnkStruct_ov19_021D5DF8 *param0)
     BoxCursor *cursor = &(param0->unk_00.cursor);
     cursor->cursorLocation = CURSOR_IN_BOX;
 
-    if (cursor->prevCursorState != CURSOR_IN_BOX) {
+    if (cursor->prevCursorLocation != CURSOR_IN_BOX) {
         ov19_SetCursorBoxLocation(&param0->unk_00, 0, 0);
     }
 
     ov19_TryPreviewCursorMon(param0);
 }
+
 static BOOL ov19_TryPreviewCursorMon(UnkStruct_ov19_021D5DF8 *param0)
 {
     UnkStruct_ov19_021D4DF0 *v0 = &param0->unk_00;
@@ -3696,60 +3690,59 @@ static void ov19_SetCursorBoxLocation(UnkStruct_ov19_021D4DF0 *param0, u32 col, 
 
 static void ov19_PickUpMon(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1)
 {
-    UnkStruct_ov19_021D5594 *v0 = &param1->unk_14;
+    BoxMonSelection *selection = &param1->selection;
     BoxCursor *cursor = &param1->cursor;
 
     if (ov19_GetCursorLocation(param1) == CURSOR_IN_BOX) {
-        MI_CpuCopy32(cursor->mon, v0->boxMon, BoxPokemon_GetStructSize());
-        PCBoxes_InitBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, cursor->posInBox); // zeroes out the boxMon
-        v0->unk_0B = 0;
+        MI_CpuCopy32(cursor->mon, selection->boxMon, BoxPokemon_GetStructSize());
+        PCBoxes_InitBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, cursor->posInBox);
+        selection->cursorMonIsPartyMon = FALSE;
     } else {
-        MI_CpuCopy32(cursor->mon, v0->boxMon, Pokemon_GetStructSize());
+        MI_CpuCopy32(cursor->mon, selection->boxMon, Pokemon_GetStructSize());
         Party_RemovePokemonBySlotIndex(param0->party, cursor->posInParty);
-        v0->unk_0B = 1;
+        selection->cursorMonIsPartyMon = TRUE;
     }
 
-    ov19_SetPreviewedBoxMon(param1, v0->boxMon);
+    ov19_SetPreviewedBoxMon(param1, selection->boxMon);
 
-    v0->unk_04 = v0->unk_06 = cursor->boxCol;
-    v0->unk_05 = v0->unk_07 = cursor->boxRow;
+    selection->selectionStartCol = selection->selectionEndCol = cursor->boxCol;
+    selection->selectionStartRow = selection->selectionEndRow = cursor->boxRow;
 
     param1->cursor.unk_0B = 2;
     param1->cursor.isMonUnderCursor = FALSE;
 }
 
-// I have no idea what this is doing, or when
-static void ov19_021D54A4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1)
+static void ov19_PickUpMultiSelectedMons(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1)
 {
-    u32 col, row, colInitial, colLimit, rowInitial, rowLimit, monPosInBox, cursorPosInBox, v8, boxMonSize;
+    u32 col, row, selectionLeftCol, selectionRightCol, selectionTopRow, selectionBottomRow, monPosInBox, cursorPosInBox, processedMonCount, boxMonSize;
     BoxPokemon *boxMon;
-    UnkStruct_ov19_021D5594 *v11;
-    void *monBuffer;
+    BoxMonSelection *selection;
+    void *cursorMonBuffer;
 
-    v11 = &param1->unk_14;
+    selection = &param1->selection;
 
-    v11->unk_0A = 1;
+    selection->unused = 1;
     cursorPosInBox = ov19_GetCursorBoxPosition(param1);
     boxMonSize = BoxPokemon_GetStructSize();
-    v8 = 0;
-    monBuffer = (void *)(v11->boxMon);
+    processedMonCount = 0;
+    cursorMonBuffer = selection->boxMon;
 
-    ov19_021D5EE8(param1, &colInitial, &colLimit, &rowInitial, &rowLimit);
+    ov19_GetMultiSelectBoundingBox(param1, &selectionLeftCol, &selectionRightCol, &selectionTopRow, &selectionBottomRow);
 
-    for (row = rowInitial; row <= rowLimit; row++) {
-        monPosInBox = row * MAX_PC_COLS + colInitial;
+    for (row = selectionTopRow; row <= selectionBottomRow; row++) {
+        monPosInBox = row * MAX_PC_COLS + selectionLeftCol;
 
-        for (col = colInitial; col <= colLimit; col++) {
+        for (col = selectionLeftCol; col <= selectionRightCol; col++) {
             boxMon = PCBoxes_GetBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, monPosInBox);
 
             if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
-                MI_CpuCopy32(boxMon, monBuffer, boxMonSize);
+                MI_CpuCopy32(boxMon, cursorMonBuffer, boxMonSize);
                 PCBoxes_InitBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, monPosInBox);
-                (u8 *)monBuffer += boxMonSize;
-                v11->unk_0C[v8++] = monPosInBox;
+                cursorMonBuffer += boxMonSize;
+                selection->selectedMonsOrigBoxPos[processedMonCount++] = monPosInBox;
 
                 if (monPosInBox == cursorPosInBox) {
-                    v11->unk_0A = 0;
+                    selection->unused = 0;
                 }
             }
 
@@ -3757,54 +3750,53 @@ static void ov19_021D54A4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
         }
     }
 
-    v11->unk_08 = v8;
-    v11->unk_09 = rowInitial * MAX_PC_COLS + colInitial;
+    selection->selectedMonCount = processedMonCount;
+    selection->origSelectionTopLeftPos = selectionTopRow * MAX_PC_COLS + selectionLeftCol;
 
     param1->cursor.unk_0B = param1->cursor.isMonUnderCursor ? 4 : 8;
     param1->cursor.isMonUnderCursor = FALSE;
 }
 
-static void ov19_021D5594(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1)
+static void ov19_ResetMultiSelectLocation(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1)
 {
-    UnkStruct_ov19_021D5594 *v0 = &param1->unk_14;
+    BoxMonSelection *selection = &param1->selection;
     BoxCursor *cursor = &param1->cursor;
 
-    v0->unk_04 = v0->unk_06 = cursor->boxCol;
-    v0->unk_05 = v0->unk_07 = cursor->boxRow;
+    selection->selectionStartCol = selection->selectionEndCol = cursor->boxCol;
+    selection->selectionStartRow = selection->selectionEndRow = cursor->boxRow;
 }
 
-static void ov19_021D55B0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1)
+static void ov19_SetMultiSelectionEndLocation(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1)
 {
-    UnkStruct_ov19_021D5594 *v0 = &param1->unk_14;
+    BoxMonSelection *selection = &param1->selection;
     BoxCursor *cursor = &param1->cursor;
 
-    v0->unk_06 = cursor->boxCol;
-    v0->unk_07 = cursor->boxRow;
+    selection->selectionEndCol = cursor->boxCol;
+    selection->selectionEndRow = cursor->boxRow;
 }
 
-// place mon down from cursor?
-static void ov19_021D55C4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1)
+static void ov19_PutDownCursorMon(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1)
 {
-    UnkStruct_ov19_021D5594 *v0 = &param1->unk_14;
+    BoxMonSelection *selection = &param1->selection;
     BoxCursor *cursor = &param1->cursor;
     BoxPokemon *boxMon;
     BOOL shayminIsForm1 = FALSE;
     int monForm;
-    BOOL hasPreviewMon;
+    BOOL isMonInPreview;
 
     if (ov19_GetCursorLocation(param1) == CURSOR_IN_BOX) {
-        monForm = BoxPokemon_GetValue(v0->boxMon, MON_DATA_FORM, NULL);
-        PCBoxes_TryStoreBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, cursor->posInBox, v0->boxMon);
+        monForm = BoxPokemon_GetValue(selection->boxMon, MON_DATA_FORM, NULL);
+        PCBoxes_TryStoreBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, cursor->posInBox, selection->boxMon);
         boxMon = PCBoxes_GetBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, cursor->posInBox);
 
         if ((BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_SHAYMIN) && (monForm == 1)) {
             shayminIsForm1 = TRUE;
         }
     } else {
-        if (v0->unk_0B) {
-            Party_AddPokemon(param0->party, (Pokemon *)v0->boxMon);
+        if (selection->cursorMonIsPartyMon) {
+            Party_AddPokemon(param0->party, (Pokemon *)selection->boxMon);
         } else {
-            Pokemon_FromBoxPokemon(v0->boxMon, param0->mon);
+            Pokemon_FromBoxPokemon(selection->boxMon, param0->mon);
             Party_AddPokemon(param0->party, param0->mon);
         }
 
@@ -3812,9 +3804,9 @@ static void ov19_021D55C4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
     }
 
     ov19_SetPreviewedBoxMon(param1, boxMon);
-    hasPreviewMon = ov19_TryPreviewCursorMon(param0);
+    isMonInPreview = ov19_TryPreviewCursorMon(param0);
 
-    if ((hasPreviewMon == FALSE) && (shayminIsForm1 == TRUE)) {
+    if ((isMonInPreview == FALSE) && (shayminIsForm1 == TRUE)) {
         ov19_LoadBoxMonIntoPreview(param1, boxMon, param0);
         ov19_021D6594(param0->unk_114, 6);
     }
@@ -3823,20 +3815,20 @@ static void ov19_021D55C4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
     param1->cursor.isMonUnderCursor = TRUE;
 }
 
-static void ov19_021D56AC(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1)
+static void ov19_PutDownSelectedMons(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1)
 {
     BoxPokemon *boxMon;
-    int i, v2, v3, posInBox, boxMonStructSize;
+    int i, origSelectionTopLeftPos, selectionTopLeftPos, posInBox, boxMonStructSize;
     BoxCursor *cursor = &param1->cursor;
-    UnkStruct_ov19_021D5594 *v7 = &param1->unk_14;
+    BoxMonSelection *selection = &param1->selection;
 
-    v3 = ov19_021D5F3C(param1);
-    v2 = v7->unk_09;
+    selectionTopLeftPos = ov19_GetMultiSelectTopLeftPos(param1);
+    origSelectionTopLeftPos = selection->origSelectionTopLeftPos;
     boxMonStructSize = BoxPokemon_GetStructSize();
-    boxMon = v7->boxMon;
+    boxMon = selection->boxMon;
 
-    for (i = 0; i < v7->unk_08; i++) {
-        posInBox = v3 + (v7->unk_0C[i] - v2);
+    for (i = 0; i < selection->selectedMonCount; i++) {
+        posInBox = selectionTopLeftPos + (selection->selectedMonsOrigBoxPos[i] - origSelectionTopLeftPos);
         PCBoxes_TryStoreBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, posInBox, boxMon);
         (u8 *)boxMon += boxMonStructSize;
     }
@@ -3844,7 +3836,7 @@ static void ov19_021D56AC(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
     ov19_SetPreviewedBoxMon(param1, PCBoxes_GetBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, ov19_GetCursorBoxPosition(param1)));
     ov19_TryPreviewCursorMon(param0);
 
-    v7->unk_08 = 0;
+    selection->selectedMonCount = 0;
     param1->cursor.unk_0B = 1;
 }
 
@@ -3852,45 +3844,45 @@ static void ov19_SwapMonInCursor(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19
 {
     u32 monStructSize;
     void *monBuffer;
-    UnkStruct_ov19_021D5594 *v2;
+    BoxMonSelection *selection;
     BoxCursor *cursor;
 
-    v2 = &param1->unk_14;
+    selection = &param1->selection;
     monStructSize = Pokemon_GetStructSize();
-    monBuffer = (u8 *)(v2->boxMon) + monStructSize;
+    monBuffer = (u8 *)(selection->boxMon) + monStructSize;
     cursor = &param1->cursor;
 
-    MI_CpuCopy32(v2->boxMon, monBuffer, monStructSize);
-    MI_CpuCopy32(cursor->mon, v2->boxMon, monStructSize);
+    MI_CpuCopy32(selection->boxMon, monBuffer, monStructSize);
+    MI_CpuCopy32(cursor->mon, selection->boxMon, monStructSize);
 
     if (ov19_GetCursorLocation(param1) == CURSOR_IN_BOX) {
         PCBoxes_TryStoreBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, cursor->posInBox, monBuffer);
-        v2->unk_0B = 0;
+        selection->cursorMonIsPartyMon = 0;
     } else {
-        if (v2->unk_0B == 0) {
+        if (selection->cursorMonIsPartyMon == 0) {
             Pokemon_FromBoxPokemon(monBuffer, param0->mon);
         } else {
             MI_CpuCopy32(monBuffer, param0->mon, monStructSize);
         }
 
-        sub_0207A128(param0->party, cursor->posInParty, param0->mon); // ???
-        v2->unk_0B = 1;
+        Party_AddPokemonBySlotIndex(param0->party, cursor->posInParty, param0->mon);
+        selection->cursorMonIsPartyMon = 1;
     }
 
-    ov19_PreviewBoxMon(param1, v2->boxMon, param0);
+    ov19_PreviewBoxMon(param1, selection->boxMon, param0);
 }
 
-static BOOL ov19_021D57D8(UnkStruct_ov19_021D5DF8 *param0, u32 boxID)
+static BOOL ov19_TryStoreCursorMonInBox(UnkStruct_ov19_021D5DF8 *param0, u32 boxID)
 {
     UnkStruct_ov19_021D4DF0 *v0;
     BoxCursor *cursor;
-    UnkStruct_ov19_021D5594 *v2;
+    BoxMonSelection *selection;
 
     v0 = &(param0->unk_00);
     cursor = &v0->cursor;
-    v2 = &v0->unk_14;
+    selection = &v0->selection;
 
-    if (PCBoxes_TryStoreBoxMonInBox(param0->pcBoxes, boxID, v2->boxMon)) {
+    if (PCBoxes_TryStoreBoxMonInBox(param0->pcBoxes, boxID, selection->boxMon)) {
         v0->cursor.unk_0B = 1;
         ov19_TryPreviewCursorMon(param0);
         return TRUE;
@@ -3920,13 +3912,13 @@ static void ov19_021D5834(UnkStruct_ov19_021D5DF8 *param0)
 {
     UnkStruct_ov19_021D4DF0 *v0;
     BoxCursor *cursor;
-    UnkStruct_ov19_021D5594 *v2;
+    BoxMonSelection *selection;
 
     v0 = &(param0->unk_00);
     cursor = &v0->cursor;
-    v2 = &v0->unk_14;
+    selection = &v0->selection;
 
-    BoxPokemon_Init(v2->boxMon);
+    BoxPokemon_Init(selection->boxMon);
     cursor->unk_0B = 1;
     ov19_TryPreviewCursorMon(param0);
 }
@@ -4282,7 +4274,7 @@ u32 ov19_021D5E38(const UnkStruct_ov19_021D4DF0 *param0)
 BOOL ov19_021D5E3C(const UnkStruct_ov19_021D4DF0 *param0)
 {
     if (param0->cursor.unk_0B) {
-        return param0->unk_14.unk_0B;
+        return param0->selection.cursorMonIsPartyMon;
     }
 
     return FALSE;
@@ -4291,10 +4283,10 @@ BOOL ov19_021D5E3C(const UnkStruct_ov19_021D4DF0 *param0)
 // Need to know what the bit flag is checking
 BOOL ov19_021D5E4C(const UnkStruct_ov19_021D4DF0 *param0)
 {
-    const UnkStruct_ov19_021D5594 *unused;
+    const BoxMonSelection *unused;
     const BoxCursor *cursor;
 
-    unused = &param0->unk_14;
+    unused = &param0->selection;
     cursor = &param0->cursor;
 
     if ((cursor->unk_0B == 2) || (cursor->unk_0B == 4)) {
@@ -4386,62 +4378,62 @@ BOOL ov19_IsCursorFastMode(const UnkStruct_ov19_021D4DF0 *param0)
     return param0->boxSettings.isCursorFastMode;
 }
 
-void ov19_021D5EE8(const UnkStruct_ov19_021D4DF0 *param0, u32 *param1, u32 *param2, u32 *param3, u32 *param4)
+void ov19_GetMultiSelectBoundingBox(const UnkStruct_ov19_021D4DF0 *param0, u32 *leftCol, u32 *rightCol, u32 *topCol, u32 *bottomCol)
 {
-    const UnkStruct_ov19_021D5594 *v0 = &param0->unk_14;
+    const BoxMonSelection *selection = &param0->selection;
 
-    if (v0->unk_04 <= v0->unk_06) {
-        *param1 = v0->unk_04;
-        *param2 = v0->unk_06;
+    if (selection->selectionStartCol <= selection->selectionEndCol) {
+        *leftCol = selection->selectionStartCol;
+        *rightCol = selection->selectionEndCol;
     } else {
-        *param1 = v0->unk_06;
-        *param2 = v0->unk_04;
+        *leftCol = selection->selectionEndCol;
+        *rightCol = selection->selectionStartCol;
     }
 
-    if (v0->unk_05 <= v0->unk_07) {
-        *param3 = v0->unk_05;
-        *param4 = v0->unk_07;
+    if (selection->selectionStartRow <= selection->selectionEndRow) {
+        *topCol = selection->selectionStartRow;
+        *bottomCol = selection->selectionEndRow;
     } else {
-        *param3 = v0->unk_07;
-        *param4 = v0->unk_05;
+        *topCol = selection->selectionEndRow;
+        *bottomCol = selection->selectionStartRow;
     }
 }
 
-BOOL ov19_021D5F20(const UnkStruct_ov19_021D4DF0 *param0)
+BOOL ov19_IsMultiSelectSingleSelect(const UnkStruct_ov19_021D4DF0 *param0)
 {
-    const UnkStruct_ov19_021D5594 *v0 = &param0->unk_14;
+    const BoxMonSelection *selection = &param0->selection;
 
-    if ((v0->unk_04 == v0->unk_06) && (v0->unk_05 == v0->unk_07)) {
-        return 1;
+    if ((selection->selectionStartCol == selection->selectionEndCol) && (selection->selectionStartRow == selection->selectionEndRow)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-u32 ov19_021D5F3C(const UnkStruct_ov19_021D4DF0 *param0)
+u32 ov19_GetMultiSelectTopLeftPos(const UnkStruct_ov19_021D4DF0 *param0)
 {
-    const UnkStruct_ov19_021D5594 *v0;
-    int cursorCol, cursorRow;
+    const BoxMonSelection *selection;
+    int col, row;
 
-    v0 = &param0->unk_14;
-    cursorCol = param0->cursor.boxCol;
-    cursorRow = param0->cursor.boxRow;
+    selection = &param0->selection;
+    col = param0->cursor.boxCol;
+    row = param0->cursor.boxRow;
 
-    if (v0->unk_06 > v0->unk_04) {
-        cursorCol -= (v0->unk_06 - v0->unk_04);
+    if (selection->selectionEndCol > selection->selectionStartCol) {
+        col -= (selection->selectionEndCol - selection->selectionStartCol);
     }
 
-    if (v0->unk_07 > v0->unk_05) {
-        cursorRow -= (v0->unk_07 - v0->unk_05);
+    if (selection->selectionEndRow > selection->selectionStartRow) {
+        row -= (selection->selectionEndRow - selection->selectionStartRow);
     }
 
-    return cursorRow * MAX_PC_COLS + cursorCol;
+    return row * MAX_PC_COLS + col;
 }
 
-u32 ov19_021D5F6C(const UnkStruct_ov19_021D4DF0 *param0, u32 param1)
+u32 ov19_GetRelativeMonPosInMultiSelection(const UnkStruct_ov19_021D4DF0 *param0, u32 param1)
 {
-    const UnkStruct_ov19_021D5594 *v0 = &param0->unk_14;
-    return v0->unk_0C[param1] - v0->unk_09;
+    const BoxMonSelection *selection = &param0->selection;
+    return selection->selectedMonsOrigBoxPos[param1] - selection->origSelectionTopLeftPos;
 }
 
 u32 ov19_GetCursorItem(const UnkStruct_ov19_021D4DF0 *param0)
@@ -4497,9 +4489,9 @@ static u32 ov19_GetPreviewedMonValue(UnkStruct_ov19_021D4DF0 *param0, enum Pokem
             return BoxPokemon_GetValue(param0->pcMonPreview.mon, value, dest);
         }
     } else {
-        UnkStruct_ov19_021D5594 *v0 = &param0->unk_14;
+        BoxMonSelection *selection = &param0->selection;
 
-        if (v0->unk_0B == 0) {
+        if (selection->cursorMonIsPartyMon == FALSE) {
             return BoxPokemon_GetValue(param0->pcMonPreview.mon, value, dest);
         }
     }

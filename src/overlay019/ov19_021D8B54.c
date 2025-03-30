@@ -1024,7 +1024,7 @@ static void ov19_021D9E04(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1)
 static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 *param0)
 {
     if (ov19_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
-        if (ov19_021D5F20(param0->unk_790)) {
+        if (ov19_IsMultiSelectSingleSelect(param0->unk_790)) {
             u32 posInBox = ov19_GetCursorBoxPosition(param0->unk_790);
             ov19_021D8408(param0->unk_758, posInBox, 1240, param0->unk_4C);
             param0->unk_754 = 1;
@@ -1033,7 +1033,7 @@ static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 *param0)
         } else {
             u32 v1, v2, v3, v4, v5, v6, v7, col, row;
 
-            ov19_021D5EE8(param0->unk_790, &v4, &v5, &v6, &v7);
+            ov19_GetMultiSelectBoundingBox(param0->unk_790, &v4, &v5, &v6, &v7);
 
             col = ov19_GetCursorBoxCol(param0->unk_790);
             row = ov19_GetCursorBoxRow(param0->unk_790);
@@ -1078,16 +1078,16 @@ static void ov19_021DA038(UnkStruct_ov19_021D8E00 *param0)
 static void ov19_021DA06C(UnkStruct_ov19_021D8E00 *param0)
 {
     if (ov19_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
-        if (ov19_021D5F20(param0->unk_790)) {
+        if (ov19_IsMultiSelectSingleSelect(param0->unk_790)) {
             u32 posInBox = ov19_GetCursorBoxPosition(param0->unk_790);
             ov19_021D845C(param0->unk_758, posInBox, param0->unk_4C);
         } else {
             int v1, v2, v3;
 
-            v2 = ov19_021D5F3C(param0->unk_790);
+            v2 = ov19_GetMultiSelectTopLeftPos(param0->unk_790);
 
             for (v1 = 0; v1 < param0->unk_754; v1++) {
-                v3 = v2 + ov19_021D5F6C(param0->unk_790, v1);
+                v3 = v2 + ov19_GetRelativeMonPosInMultiSelection(param0->unk_790, v1);
                 ov19_021D845C(param0->unk_758, v3, &param0->unk_4C[v1]);
             }
         }
