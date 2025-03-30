@@ -11,7 +11,7 @@
 
 void DistortionWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void DistortionWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
-BOOL DistortionWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding);
+BOOL DistortionWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
 void ov9_02249F9C(FieldSystem *fieldSystem);
 void ov9_02249FD0(FieldSystem *fieldSystem);
 int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1);

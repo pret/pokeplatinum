@@ -1476,18 +1476,18 @@ static u32 ov9_02249E44(UnkStruct_ov9_02249B04 *param0)
     return v0->unk_00_25;
 }
 
-BOOL DistortionWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
+BOOL DistortionWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
     UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     u32 v1 = ov9_022510D0(v0);
 
     if (v1 == 582) {
-        if ((tileX == 15) && (tileY == 26)) {
+        if ((tileX == 15) && (tileZ == 26)) {
             *isColliding = 1;
             return 1;
         }
     } else if (v1 == 581) {
-        if ((tileX == 89) && (tileY == 56)) {
+        if ((tileX == 89) && (tileZ == 56)) {
             *isColliding = 1;
             return 1;
         }

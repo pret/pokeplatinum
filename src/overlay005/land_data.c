@@ -129,7 +129,7 @@ struct LandDataManager {
     BOOL skipMapProps;
     int offsetTileX;
     int offsetAltitude;
-    int offsetTileY;
+    int offsetTileZ;
     VecFx32 offset;
 };
 
@@ -180,8 +180,8 @@ static SysTask *LandDataManager_LazyLoadMapModel(NARC *landDataNARC, const int m
 static NNSG3dResMdl *LandDataManager_LoadMapModel(NARC *landDataNARC, const int mapModelFileSize, NNSG3dRenderObj *mapRenderObj, NNSG3dResFileHeader **mapModelFile, NNSG3dResTex *mapTexture);
 static void LandDataManager_KillLoadMapModel(SysTask *sysTask);
 static void LandDataManager_InitMapLazyLoader(LandDataManager *landDataMan);
-static void LandDataManager_InitAndLoad(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileY, const int offsetTileX, const int offsetTileY, const int mapMatrixWidthTiles);
-static void LandDataManager_InitAndLoadWithoutAttributes(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileY, const int offsetTileX, const int offsetTileY, const int mapMatrixWidthTiles);
+static void LandDataManager_InitAndLoad(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileZ, const int offsetTileX, const int offsetTileZ, const int mapMatrixWidthTiles);
+static void LandDataManager_InitAndLoadWithoutAttributes(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileZ, const int offsetTileX, const int offsetTileZ, const int mapMatrixWidthTiles);
 static void LandDataManager_NewLoadedMaps(LandDataManager *landDataMan);
 static void LandDataManager_NewLoadedMapsWithoutAttributes(LandDataManager *landDataMan);
 static void LandDataManager_KillLoadTasks(LandDataManager *landDataMan, const u8 index);
@@ -206,11 +206,11 @@ static u32 LandData_CalculateNextTileIndex(const u8 trackedTargetDirection, cons
 static u8 LandData_CalculateNextQuadrant(const u8 direction, const int quadrant);
 static void LandData_CalculateNextOppositeQuadrant(const u8 direction, const int quadrant, u8 *oppositeQuadrant);
 static void LandDataManager_QueueLazyLoadMapPair(const int firstMapMatrixIndex, const int secondMapMatrixIndex, const u8 firstQuadrantToLoad, const u8 secondQuadrantToLoad, const u8 trackedTargetDirection, LandDataManager *landDataMan);
-static int LandData_CalculateTileIndex(const int tileX, const int tileY, const int offsetTileX, const int offsetTileY, const int mapMatrixWidthTiles);
+static int LandData_CalculateTileIndex(const int tileX, const int tileZ, const int offsetTileX, const int offsetTileZ, const int mapMatrixWidthTiles);
 static void LandDataManager_QueueLazyLoadPendingMaps(LandDataManager *landDataMan);
-static void LandDataManager_UpdateTrackedTargetValues(const int trackedTargetTileX, const int trackedTargetTileY, const int offsetTileX, const int offsetTileY, LandDataManager *landDataMan);
+static void LandDataManager_UpdateTrackedTargetValues(const int trackedTargetTileX, const int trackedTargetTileZ, const int offsetTileX, const int offsetTileZ, LandDataManager *landDataMan);
 static void LandDataManager_CalculateRenderingPosition(const int mapMatrixIndex, const int mapMatrixWidth, const MapMatrix *mapMatrix, VecFx32 *position);
-static void LandDataManager_DistortionWorldInitAndLoad(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileY, const int unused3, const int unused4, const int mapMatrixWidthTiles);
+static void LandDataManager_DistortionWorldInitAndLoad(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileZ, const int unused3, const int unused4, const int mapMatrixWidthTiles);
 static void LandDataManager_DistortionWorldLoad(const int mapMatrixIndex, const u8 loadedMapIndex, const AreaDataManager *areaDataMan, const MapMatrix *mapMatrix, const int mapMatrixWidth, const int mapMatrixHeight, const BOOL isOutdoorsLighting, LandDataManager *landDataMan);
 static void LandDataManager_DistortionWorldRenderNextFloorMap(const u8 index, const LandDataManager *landDataMan, const ModelAttributes *modelAttrs);
 
@@ -261,7 +261,7 @@ static void MapLazyLoader_KillTasks(MapLazyLoader *loader)
     loader->mapLoadTasksState.bdhcTaskRunning = FALSE;
 }
 
-static void LandData_CalculateLoadedMapMatrixIndexes(const BOOL inDistortionWorld, const int trackedTargetTileX, const int trackedTargetTileY, const int offsetTileX, const int offsetTileY, const int mapMatrixWidth, const int mapMatrixHeight, const int mapMatrixWidthTiles, int *loadedMapMatrixIndexes)
+static void LandData_CalculateLoadedMapMatrixIndexes(const BOOL inDistortionWorld, const int trackedTargetTileX, const int trackedTargetTileZ, const int offsetTileX, const int offsetTileZ, const int mapMatrixWidth, const int mapMatrixHeight, const int mapMatrixWidthTiles, int *loadedMapMatrixIndexes)
 {
     if (inDistortionWorld == TRUE) {
         for (int i = 0; i < QUADRANT_COUNT; i++) {
@@ -300,13 +300,13 @@ static void LandData_CalculateLoadedMapMatrixIndexes(const BOOL inDistortionWorl
     }
 
     GF_ASSERT(trackedTargetTileX >= offsetTileX);
-    GF_ASSERT(trackedTargetTileY >= offsetTileY);
+    GF_ASSERT(trackedTargetTileZ >= offsetTileZ);
 
     int mapMatrixX = (trackedTargetTileX - offsetTileX) / MAP_TILES_COUNT_X;
-    int mapMatrixY = (trackedTargetTileY - offsetTileY) / MAP_TILES_COUNT_Y;
-    int trackedTargetTileIndex = LandData_CalculateTileIndex(trackedTargetTileX, trackedTargetTileY, offsetTileX, offsetTileY, mapMatrixWidthTiles);
+    int mapMatrixZ = (trackedTargetTileZ - offsetTileZ) / MAP_TILES_COUNT_Z;
+    int trackedTargetTileIndex = LandData_CalculateTileIndex(trackedTargetTileX, trackedTargetTileZ, offsetTileX, offsetTileZ, mapMatrixWidthTiles);
     u8 trackedTargetMapQuadrant = LandDataManager_CalculateMapQuadrantOfTile(trackedTargetTileIndex, mapMatrixWidthTiles);
-    int mapMatrixIndex = (mapMatrixY * mapMatrixWidth) + mapMatrixX;
+    int mapMatrixIndex = (mapMatrixZ * mapMatrixWidth) + mapMatrixX;
 
     switch (trackedTargetMapQuadrant) {
     case QUADRANT_TOP_LEFT:
@@ -320,7 +320,7 @@ static void LandData_CalculateLoadedMapMatrixIndexes(const BOOL inDistortionWorl
             loadedMapMatrixIndexes[QUADRANT_BOTTOM_LEFT] = INVALID_MAP_MATRIX_INDEX;
         }
 
-        if (mapMatrixY - 1 < 0) {
+        if (mapMatrixZ - 1 < 0) {
             loadedMapMatrixIndexes[QUADRANT_TOP_RIGHT] = INVALID_MAP_MATRIX_INDEX;
         }
 
@@ -337,7 +337,7 @@ static void LandData_CalculateLoadedMapMatrixIndexes(const BOOL inDistortionWorl
             loadedMapMatrixIndexes[QUADRANT_BOTTOM_RIGHT] = INVALID_MAP_MATRIX_INDEX;
         }
 
-        if (mapMatrixY - 1 < 0) {
+        if (mapMatrixZ - 1 < 0) {
             loadedMapMatrixIndexes[QUADRANT_TOP_LEFT] = INVALID_MAP_MATRIX_INDEX;
         }
 
@@ -354,7 +354,7 @@ static void LandData_CalculateLoadedMapMatrixIndexes(const BOOL inDistortionWorl
             loadedMapMatrixIndexes[QUADRANT_BOTTOM_LEFT] = INVALID_MAP_MATRIX_INDEX;
         }
 
-        if (mapMatrixY + 1 > mapMatrixHeight) {
+        if (mapMatrixZ + 1 > mapMatrixHeight) {
             loadedMapMatrixIndexes[QUADRANT_BOTTOM_RIGHT] = INVALID_MAP_MATRIX_INDEX;
         }
 
@@ -371,7 +371,7 @@ static void LandData_CalculateLoadedMapMatrixIndexes(const BOOL inDistortionWorl
             loadedMapMatrixIndexes[QUADRANT_BOTTOM_RIGHT] = INVALID_MAP_MATRIX_INDEX;
         }
 
-        if (mapMatrixY + 1 > mapMatrixHeight) {
+        if (mapMatrixZ + 1 > mapMatrixHeight) {
             loadedMapMatrixIndexes[QUADRANT_TOP_LEFT] = INVALID_MAP_MATRIX_INDEX;
         }
 
@@ -399,7 +399,7 @@ static void LandDataManager_NewLoadedMaps(LandDataManager *landDataMan)
         }
 
         landDataMan->loadedMaps[i]->mapMatrixIndex = INVALID_MAP_MATRIX_INDEX;
-        MI_CpuFillFast(landDataMan->loadedMaps[i]->terrainAttributes, INVALID_TERRAIN_ATTRIBUTES, sizeof(u16) * MAP_TILES_COUNT_X * MAP_TILES_COUNT_Y);
+        MI_CpuFillFast(landDataMan->loadedMaps[i]->terrainAttributes, INVALID_TERRAIN_ATTRIBUTES, sizeof(u16) * MAP_TILES_COUNT_X * MAP_TILES_COUNT_Z);
     }
 }
 
@@ -674,10 +674,10 @@ void LandDataManager_Tick(FieldSystem *fieldSystem, LandDataManager *landDataMan
 
             if (*trackedTarget->higherMovementCoord - *trackedTarget->lowerMovementCoord >= MAP_OBJECT_TILE_SIZE) {
                 // The tracked target has finished moving a tile.
-                int trackedTargetTileX, trackedTargetTileY;
+                int trackedTargetTileX, trackedTargetTileZ;
 
-                LandData_ObjectPosToTilePos(trackedTarget->position->x, trackedTarget->position->z, &trackedTargetTileX, &trackedTargetTileY);
-                LandDataManager_UpdateTrackedTargetValues(trackedTargetTileX, trackedTargetTileY, landDataMan->offsetTileX, landDataMan->offsetTileY, landDataMan);
+                LandData_ObjectPosToTilePos(trackedTarget->position->x, trackedTarget->position->z, &trackedTargetTileX, &trackedTargetTileZ);
+                LandDataManager_UpdateTrackedTargetValues(trackedTargetTileX, trackedTargetTileZ, landDataMan->offsetTileX, landDataMan->offsetTileZ, landDataMan);
 
                 trackedTarget->prevPosition = *trackedTarget->position;
 
@@ -871,7 +871,7 @@ static void LandDataManager_ResetLoadedMap(const u8 index, LandDataManager *land
     }
 
     landDataMan->loadedMaps[index]->mapMatrixIndex = INVALID_MAP_MATRIX_INDEX;
-    MI_CpuFillFast(landDataMan->loadedMaps[index]->terrainAttributes, INVALID_TERRAIN_ATTRIBUTES, sizeof(u16) * MAP_TILES_COUNT_X * MAP_TILES_COUNT_Y);
+    MI_CpuFillFast(landDataMan->loadedMaps[index]->terrainAttributes, INVALID_TERRAIN_ATTRIBUTES, sizeof(u16) * MAP_TILES_COUNT_X * MAP_TILES_COUNT_Z);
     landDataMan->mapQuadrantsToCancelLazyLoad[index] = TRUE;
 }
 
@@ -1226,26 +1226,26 @@ static void LandDataManager_RenderLoadedMap(const u8 index, const LandDataManage
 static int LandData_CalculateMapMatrixIndex(const u32 tileIndex, const int mapMatrixWidth, const int mapMatrixWidthTiles)
 {
     u32 tileX = tileIndex % mapMatrixWidthTiles;
-    u32 tileY = tileIndex / mapMatrixWidthTiles;
+    u32 tileZ = tileIndex / mapMatrixWidthTiles;
     u32 mapMatrixX = tileX / MAP_TILES_COUNT_X;
-    u32 mapMatrixY = tileY / MAP_TILES_COUNT_Y;
+    u32 mapMatrixZ = tileZ / MAP_TILES_COUNT_Z;
 
-    return mapMatrixX + mapMatrixY * mapMatrixWidth;
+    return mapMatrixX + mapMatrixZ * mapMatrixWidth;
 }
 
-static int LandData_CalculateTileIndex(const int tileX, const int tileY, const int offsetTileX, const int offsetTileY, const int mapMatrixWidthTiles)
+static int LandData_CalculateTileIndex(const int tileX, const int tileZ, const int offsetTileX, const int offsetTileZ, const int mapMatrixWidthTiles)
 {
-    return (tileX - offsetTileX) + ((tileY - offsetTileY) * mapMatrixWidthTiles);
+    return (tileX - offsetTileX) + ((tileZ - offsetTileZ) * mapMatrixWidthTiles);
 }
 
 static u32 LandData_CalculateMapMatrixIndexU32(const u32 tileIndex, const int mapMatrixWidth, const int mapMatrixWidthTiles)
 {
     u32 tileX = tileIndex % mapMatrixWidthTiles;
-    u32 tileY = tileIndex / mapMatrixWidthTiles;
+    u32 tileZ = tileIndex / mapMatrixWidthTiles;
     u32 mapMatrixX = tileX / MAP_TILES_COUNT_X;
-    u32 mapMatrixY = tileY / MAP_TILES_COUNT_Y;
+    u32 mapMatrixZ = tileZ / MAP_TILES_COUNT_Z;
 
-    return mapMatrixX + mapMatrixY * mapMatrixWidth;
+    return mapMatrixX + mapMatrixZ * mapMatrixWidth;
 }
 
 static u8 LandData_GetOppositeQuadrant(const u8 quadrant)
@@ -1284,7 +1284,7 @@ static u32 LandData_CalculateNextTileIndex(const u8 trackedTargetDirection, cons
     case DIRECTION_SOUTH:
         nextTileIndexCandidate = trackedTargetTileIndex + mapMatrixWidthTiles;
 
-        if (nextTileIndexCandidate >= mapMatrixHeight * MAP_TILES_COUNT_Y * mapMatrixWidthTiles) {
+        if (nextTileIndexCandidate >= mapMatrixHeight * MAP_TILES_COUNT_Z * mapMatrixWidthTiles) {
             return trackedTargetTileIndex;
         }
 
@@ -1486,12 +1486,12 @@ static void LandDataManager_CancelMapQuadrantsToLazyLoad(const u8 trackedTargetD
     }
 }
 
-static void LandDataManager_InitAndLoad(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileY, const int offsetTileX, const int offsetTileY, const int mapMatrixWidthTiles)
+static void LandDataManager_InitAndLoad(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileZ, const int offsetTileX, const int offsetTileZ, const int mapMatrixWidthTiles)
 {
     int loadedMapMatrixIndexes[QUADRANT_COUNT];
 
     LandDataManager_NewLoadedMaps(landDataMan);
-    LandData_CalculateLoadedMapMatrixIndexes(landDataMan->inDistortionWorld, trackedTargetTileX, trackedTargetTileY, offsetTileX, offsetTileY, landDataMan->mapMatrixWidth, landDataMan->mapMatrixHeight, mapMatrixWidthTiles, loadedMapMatrixIndexes);
+    LandData_CalculateLoadedMapMatrixIndexes(landDataMan->inDistortionWorld, trackedTargetTileX, trackedTargetTileZ, offsetTileX, offsetTileZ, landDataMan->mapMatrixWidth, landDataMan->mapMatrixHeight, mapMatrixWidthTiles, loadedMapMatrixIndexes);
 
     for (u8 i = 0; i < QUADRANT_COUNT; i++) {
         landDataMan->loadedMaps[i]->bdhc = BDHC_New();
@@ -1501,12 +1501,12 @@ static void LandDataManager_InitAndLoad(LandDataManager *landDataMan, const int 
     }
 }
 
-static void LandDataManager_InitAndLoadWithoutAttributes(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileY, const int offsetTileX, const int offsetTileY, const int mapMatrixWidthTiles)
+static void LandDataManager_InitAndLoadWithoutAttributes(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileZ, const int offsetTileX, const int offsetTileZ, const int mapMatrixWidthTiles)
 {
     int loadedMapMatrixIndexes[QUADRANT_COUNT];
 
     LandDataManager_NewLoadedMapsWithoutAttributes(landDataMan);
-    LandData_CalculateLoadedMapMatrixIndexes(landDataMan->inDistortionWorld, trackedTargetTileX, trackedTargetTileY, offsetTileX, offsetTileY, landDataMan->mapMatrixWidth, landDataMan->mapMatrixHeight, mapMatrixWidthTiles, loadedMapMatrixIndexes);
+    LandData_CalculateLoadedMapMatrixIndexes(landDataMan->inDistortionWorld, trackedTargetTileX, trackedTargetTileZ, offsetTileX, offsetTileZ, landDataMan->mapMatrixWidth, landDataMan->mapMatrixHeight, mapMatrixWidthTiles, loadedMapMatrixIndexes);
 
     for (u8 i = 0; i < QUADRANT_COUNT; i++) {
         landDataMan->loadedMaps[i]->bdhc = NULL;
@@ -1528,9 +1528,9 @@ static void LandDataManager_InitMapLazyLoader(LandDataManager *landDataMan)
     LandDataManager_ResetMapQuadrantsToCancelLazyLoad(landDataMan);
 }
 
-static void LandDataManager_UpdateTrackedTargetValues(const int trackedTargetTileX, const int trackedTargetTileY, const int offsetTileX, const int offsetTileY, LandDataManager *landDataMan)
+static void LandDataManager_UpdateTrackedTargetValues(const int trackedTargetTileX, const int trackedTargetTileZ, const int offsetTileX, const int offsetTileZ, LandDataManager *landDataMan)
 {
-    int fixedTrackedTargetTileX = trackedTargetTileX, fixedTrackedTargetTileY = trackedTargetTileY;
+    int fixedTrackedTargetTileX = trackedTargetTileX, fixedTrackedTargetTileZ = trackedTargetTileZ;
 
     if (landDataMan->inDistortionWorld == TRUE) {
         if (landDataMan->mapMatrixWidth > 1) {
@@ -1540,13 +1540,13 @@ static void LandDataManager_UpdateTrackedTargetValues(const int trackedTargetTil
         }
 
         if (landDataMan->mapMatrixHeight > 1) {
-            fixedTrackedTargetTileY = offsetTileY + 31;
+            fixedTrackedTargetTileZ = offsetTileZ + 31;
         } else {
-            fixedTrackedTargetTileY = offsetTileY + 16;
+            fixedTrackedTargetTileZ = offsetTileZ + 16;
         }
     }
 
-    landDataMan->trackedTargetTileIndex = LandData_CalculateTileIndex(fixedTrackedTargetTileX, fixedTrackedTargetTileY, offsetTileX, offsetTileY, landDataMan->mapMatrixWidthTiles);
+    landDataMan->trackedTargetTileIndex = LandData_CalculateTileIndex(fixedTrackedTargetTileX, fixedTrackedTargetTileZ, offsetTileX, offsetTileZ, landDataMan->mapMatrixWidthTiles);
     landDataMan->trackedTargetMapQuadrant = LandDataManager_CalculateMapQuadrantOfTile(landDataMan->trackedTargetTileIndex, landDataMan->mapMatrixWidthTiles);
     landDataMan->trackedTargetLoadedMapsQuadrant = LandData_GetOppositeQuadrant(landDataMan->trackedTargetMapQuadrant);
     landDataMan->trackedTargetMapMatrixIndex = LandData_CalculateMapMatrixIndexU32(landDataMan->trackedTargetTileIndex, landDataMan->mapMatrixWidth, landDataMan->mapMatrixWidthTiles);
@@ -1555,22 +1555,22 @@ static void LandDataManager_UpdateTrackedTargetValues(const int trackedTargetTil
 static void LandDataManager_CalculateRenderingPosition(const int mapMatrixIndex, const int mapMatrixWidth, const MapMatrix *mapMatrix, VecFx32 *position)
 {
     position->x = (MAP_TILES_COUNT_X / 2) * MAP_OBJECT_TILE_SIZE;
-    position->z = (MAP_TILES_COUNT_Y / 2) * MAP_OBJECT_TILE_SIZE;
+    position->z = (MAP_TILES_COUNT_Z / 2) * MAP_OBJECT_TILE_SIZE;
 
     if (mapMatrixIndex == INVALID_MAP_MATRIX_INDEX) {
         return;
     }
 
     u16 mapMatrixX = mapMatrixIndex % mapMatrixWidth;
-    u16 mapMatrixY = mapMatrixIndex / mapMatrixWidth;
+    u16 mapMatrixZ = mapMatrixIndex / mapMatrixWidth;
 
     int mapMatrixWidth2 = MapMatrix_GetWidth(mapMatrix);
     u16 mapMatrixID = MapMatrix_GetMatrixID(mapMatrix);
-    int altitude = MapMatrix_GetAltitudeAtCoords(mapMatrix, mapMatrixID, mapMatrixX, mapMatrixY, mapMatrixWidth2);
+    int altitude = MapMatrix_GetAltitudeAtCoords(mapMatrix, mapMatrixID, mapMatrixX, mapMatrixZ, mapMatrixWidth2);
     position->y = altitude * (MAP_OBJECT_TILE_SIZE / 2);
 
     position->x += mapMatrixX * MAP_TILES_COUNT_X * MAP_OBJECT_TILE_SIZE;
-    position->z += mapMatrixY * MAP_TILES_COUNT_Y * MAP_OBJECT_TILE_SIZE;
+    position->z += mapMatrixZ * MAP_TILES_COUNT_Z * MAP_OBJECT_TILE_SIZE;
 }
 
 LandDataManager *LandDataManager_New(MapMatrix *mapMatrix, AreaDataManager *areaDataMan, MapPropAnimationManager *mapPropAnimMan, const BOOL skipAttributes)
@@ -1609,10 +1609,10 @@ LandDataManager *LandDataManager_New(MapMatrix *mapMatrix, AreaDataManager *area
     return landDataMan;
 }
 
-void LandDataManager_InitialLoad(LandDataManager *landDataMan, const int playerTileX, const int playerTileY)
+void LandDataManager_InitialLoad(LandDataManager *landDataMan, const int playerTileX, const int playerTileZ)
 {
-    landDataMan->mapLoadFns->initialLoad(landDataMan, playerTileX, playerTileY, landDataMan->offsetTileX, landDataMan->offsetTileY, landDataMan->mapMatrixWidthTiles);
-    LandDataManager_UpdateTrackedTargetValues(playerTileX, playerTileY, landDataMan->offsetTileX, landDataMan->offsetTileY, landDataMan);
+    landDataMan->mapLoadFns->initialLoad(landDataMan, playerTileX, playerTileZ, landDataMan->offsetTileX, landDataMan->offsetTileZ, landDataMan->mapMatrixWidthTiles);
+    LandDataManager_UpdateTrackedTargetValues(playerTileX, playerTileZ, landDataMan->offsetTileX, landDataMan->offsetTileZ, landDataMan);
 }
 
 void LandDataManager_CheckLazyLoadNextMapPair(const u8 trackedTargetDirection, LandDataManager *landDataMan)
@@ -1642,10 +1642,10 @@ void LandDataManager_RenderLoadedMaps(const LandDataManager *landDataMan, ModelA
     }
 }
 
-void LandData_ObjectPosToTilePos(fx32 objectPositionX, fx32 objectPositionZ, int *tileX, int *tileY)
+void LandData_ObjectPosToTilePos(fx32 objectPositionX, fx32 objectPositionZ, int *tileX, int *tileZ)
 {
     *tileX = objectPositionX / MAP_OBJECT_TILE_SIZE;
-    *tileY = objectPositionZ / MAP_OBJECT_TILE_SIZE;
+    *tileZ = objectPositionZ / MAP_OBJECT_TILE_SIZE;
 }
 
 void LandDataManager_End(LandDataManager *landDataMan)
@@ -1715,17 +1715,17 @@ u8 LandDataManager_CalculateMapQuadrantOfTile(const u32 tileIndex, const int map
     u8 mapQuadrant;
 
     int tileX = tileIndex % MAP_TILES_COUNT_X;
-    int tileY = tileIndex / mapMatrixWidthTiles;
-    int tileYMod = tileY % MAP_TILES_COUNT_Y;
+    int tileZ = tileIndex / mapMatrixWidthTiles;
+    int tileZMod = tileZ % MAP_TILES_COUNT_Z;
 
     if (tileX < MAP_TILES_COUNT_X / 2) {
-        if (tileYMod < MAP_TILES_COUNT_Y / 2) {
+        if (tileZMod < MAP_TILES_COUNT_Z / 2) {
             mapQuadrant = QUADRANT_TOP_LEFT;
         } else {
             mapQuadrant = QUADRANT_BOTTOM_LEFT;
         }
     } else {
-        if (tileYMod < MAP_TILES_COUNT_Y / 2) {
+        if (tileZMod < MAP_TILES_COUNT_Z / 2) {
             mapQuadrant = QUADRANT_TOP_RIGHT;
         } else {
             mapQuadrant = QUADRANT_BOTTOM_RIGHT;
@@ -1811,13 +1811,13 @@ int LandDataManager_GetLoadedMapMatrixIndex(const LandDataManager *landDataMan, 
     return landDataMan->loadedMaps[loadedMapIndex]->mapMatrixIndex;
 }
 
-BOOL LandDataManager_GetRelativeLoadedMapsQuadrantOfTile(const LandDataManager *landDataMan, const int tileX, const int tileY, u8 *result)
+BOOL LandDataManager_GetRelativeLoadedMapsQuadrantOfTile(const LandDataManager *landDataMan, const int tileX, const int tileZ, u8 *result)
 {
     int fixedTileX = tileX - landDataMan->offsetTileX;
-    int fixedTileY = tileY - landDataMan->offsetTileY;
+    int fixedTileZ = tileZ - landDataMan->offsetTileZ;
     u32 mapMatrixX = fixedTileX / MAP_TILES_COUNT_X;
-    u32 mapMatrixY = fixedTileY / MAP_TILES_COUNT_Y;
-    u32 mapMatrixIndex = mapMatrixX + (mapMatrixY * landDataMan->mapMatrixWidth);
+    u32 mapMatrixZ = fixedTileZ / MAP_TILES_COUNT_Z;
+    u32 mapMatrixIndex = mapMatrixX + (mapMatrixZ * landDataMan->mapMatrixWidth);
 
     if (mapMatrixIndex >= landDataMan->mapMatrixWidth * landDataMan->mapMatrixHeight) {
         if (Link_SetErrorState(LINK_BATTLE_RESET_SAVEPOINT)) {
@@ -1827,7 +1827,7 @@ BOOL LandDataManager_GetRelativeLoadedMapsQuadrantOfTile(const LandDataManager *
 
     GF_ASSERT(mapMatrixIndex < landDataMan->mapMatrixWidth * landDataMan->mapMatrixHeight);
 
-    u32 tileIndex = fixedTileX + (fixedTileY * landDataMan->mapMatrixWidthTiles);
+    u32 tileIndex = fixedTileX + (fixedTileZ * landDataMan->mapMatrixWidthTiles);
     u8 tileMapQuadrant = LandDataManager_CalculateMapQuadrantOfTile(tileIndex, landDataMan->mapMatrixWidthTiles);
     u32 loadedMapsQuadrant = LandDataManager_GetRelativeLoadedMapsQuadrant(mapMatrixIndex, tileMapQuadrant, landDataMan);
 
@@ -2080,18 +2080,18 @@ void LandDataManager_DistortionWorldFreeLoadedMapBuffers(LandDataManager *landDa
     Heap_FreeToHeap(&landDataMan->loadedMapBufs);
 }
 
-void LandDataManager_DistortionWorldInitialLoad(LandDataManager *landDataMan, const int playerTileX, const int playerTileY)
+void LandDataManager_DistortionWorldInitialLoad(LandDataManager *landDataMan, const int playerTileX, const int playerTileZ)
 {
-    LandDataManager_DistortionWorldInitAndLoad(landDataMan, playerTileX, playerTileY, landDataMan->offsetTileX, landDataMan->offsetTileY, landDataMan->mapMatrixWidthTiles);
-    LandDataManager_UpdateTrackedTargetValues(playerTileX, playerTileY, landDataMan->offsetTileX, landDataMan->offsetTileY, landDataMan);
+    LandDataManager_DistortionWorldInitAndLoad(landDataMan, playerTileX, playerTileZ, landDataMan->offsetTileX, landDataMan->offsetTileZ, landDataMan->mapMatrixWidthTiles);
+    LandDataManager_UpdateTrackedTargetValues(playerTileX, playerTileZ, landDataMan->offsetTileX, landDataMan->offsetTileZ, landDataMan);
 }
 
-static void LandDataManager_DistortionWorldInitAndLoad(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileY, const int unused3, const int unused4, const int mapMatrixWidthTiles)
+static void LandDataManager_DistortionWorldInitAndLoad(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileZ, const int unused3, const int unused4, const int mapMatrixWidthTiles)
 {
     int loadedMapMatrixIndexes[QUADRANT_COUNT];
 
     LandDataManager_NewLoadedMapsWithoutAttributes(landDataMan);
-    LandData_CalculateLoadedMapMatrixIndexes(landDataMan->inDistortionWorld, trackedTargetTileX, trackedTargetTileY, landDataMan->offsetTileX, landDataMan->offsetTileY, landDataMan->mapMatrixWidth, landDataMan->mapMatrixHeight, mapMatrixWidthTiles, loadedMapMatrixIndexes);
+    LandData_CalculateLoadedMapMatrixIndexes(landDataMan->inDistortionWorld, trackedTargetTileX, trackedTargetTileZ, landDataMan->offsetTileX, landDataMan->offsetTileZ, landDataMan->mapMatrixWidth, landDataMan->mapMatrixHeight, mapMatrixWidthTiles, loadedMapMatrixIndexes);
 
     for (u8 i = 0; i < QUADRANT_COUNT; i++) {
         landDataMan->loadedMaps[i]->bdhc = NULL;
@@ -2099,10 +2099,10 @@ static void LandDataManager_DistortionWorldInitAndLoad(LandDataManager *landData
     }
 }
 
-void LandDataManager_DistortionWorldInitLoadedMaps(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileY, int *loadedMapMatrixIndexes)
+void LandDataManager_DistortionWorldInitLoadedMaps(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileZ, int *loadedMapMatrixIndexes)
 {
     LandDataManager_InitLoadedMapsWithoutAttributes(landDataMan);
-    LandData_CalculateLoadedMapMatrixIndexes(landDataMan->inDistortionWorld, trackedTargetTileX, trackedTargetTileY, landDataMan->offsetTileX, landDataMan->offsetTileY, landDataMan->mapMatrixWidth, landDataMan->mapMatrixHeight, landDataMan->mapMatrixWidthTiles, loadedMapMatrixIndexes);
+    LandData_CalculateLoadedMapMatrixIndexes(landDataMan->inDistortionWorld, trackedTargetTileX, trackedTargetTileZ, landDataMan->offsetTileX, landDataMan->offsetTileZ, landDataMan->mapMatrixWidth, landDataMan->mapMatrixHeight, landDataMan->mapMatrixWidthTiles, loadedMapMatrixIndexes);
 
     for (int i = 0; i < QUADRANT_COUNT; i++) {
         landDataMan->loadedMaps[i]->valid = FALSE;
@@ -2182,11 +2182,11 @@ void LandDataManager_DistortionWorldEndWithoutFreeing(LandDataManager *landDataM
     landDataMan->lazyLoaderTrackedTarget.tracking = FALSE;
 
     for (i = 0; i < QUADRANT_COUNT; i++) {
-        MI_CpuFillFast(landDataMan->loadedMaps[i]->terrainAttributes, INVALID_TERRAIN_ATTRIBUTES, sizeof(u16) * MAP_TILES_COUNT_X * MAP_TILES_COUNT_Y);
+        MI_CpuFillFast(landDataMan->loadedMaps[i]->terrainAttributes, INVALID_TERRAIN_ATTRIBUTES, sizeof(u16) * MAP_TILES_COUNT_X * MAP_TILES_COUNT_Z);
     }
 }
 
-void LandDataManager_DistortionWorldPrepareNextFloor(MapMatrix *mapMatrix, AreaDataManager *areaDataMan, LandDataManager *src, LandDataManager *dest, const int trackedTargetTileX, const int trackedTargetTileY)
+void LandDataManager_DistortionWorldPrepareNextFloor(MapMatrix *mapMatrix, AreaDataManager *areaDataMan, LandDataManager *src, LandDataManager *dest, const int trackedTargetTileX, const int trackedTargetTileZ)
 {
     int i;
     int mapMatrixIndexes[QUADRANT_COUNT];
@@ -2225,10 +2225,10 @@ void LandDataManager_DistortionWorldPrepareNextFloor(MapMatrix *mapMatrix, AreaD
     dest->inDistortionWorld = src->inDistortionWorld;
     dest->offsetTileX = src->offsetTileX;
     dest->offsetAltitude = src->offsetAltitude;
-    dest->offsetTileY = src->offsetTileY;
+    dest->offsetTileZ = src->offsetTileZ;
     dest->offset = src->offset;
 
-    LandDataManager_UpdateTrackedTargetValues(trackedTargetTileX, trackedTargetTileY, dest->offsetTileX, dest->offsetTileY, dest);
+    LandDataManager_UpdateTrackedTargetValues(trackedTargetTileX, trackedTargetTileZ, dest->offsetTileX, dest->offsetTileZ, dest);
 
     dest->ending = FALSE;
     dest->lazyLoaderSubTask = src->lazyLoaderSubTask;
@@ -2281,7 +2281,7 @@ void LandDataManager_DistortionWorldPreparePreviousFloor(LandDataManager *dest, 
     dest->inDistortionWorld = src->inDistortionWorld;
     dest->offsetTileX = src->offsetTileX;
     dest->offsetAltitude = src->offsetAltitude;
-    dest->offsetTileY = src->offsetTileY;
+    dest->offsetTileZ = src->offsetTileZ;
     dest->offset = src->offset;
     dest->ending = FALSE;
     dest->lazyLoaderSubTask = src->lazyLoaderSubTask;
@@ -2297,10 +2297,10 @@ void LandDataManager_DistortionWorldTick(FieldSystem *fieldSystem, LandDataManag
             GF_ASSERT(*trackedTarget->lowerMovementCoord <= *trackedTarget->higherMovementCoord);
 
             if (*trackedTarget->higherMovementCoord - *trackedTarget->lowerMovementCoord >= MAP_OBJECT_TILE_SIZE) {
-                int trackedTargetTileX, trackedTargetTileY;
+                int trackedTargetTileX, trackedTargetTileZ;
 
-                LandData_ObjectPosToTilePos(trackedTarget->position->x, trackedTarget->position->z, &trackedTargetTileX, &trackedTargetTileY);
-                LandDataManager_UpdateTrackedTargetValues(trackedTargetTileX, trackedTargetTileY, landDataMan->offsetTileX, landDataMan->offsetTileY, landDataMan);
+                LandData_ObjectPosToTilePos(trackedTarget->position->x, trackedTarget->position->z, &trackedTargetTileX, &trackedTargetTileZ);
+                LandDataManager_UpdateTrackedTargetValues(trackedTargetTileX, trackedTargetTileZ, landDataMan->offsetTileX, landDataMan->offsetTileZ, landDataMan);
 
                 trackedTarget->prevPosition = *trackedTarget->position;
 
@@ -2466,9 +2466,9 @@ void LandDataManager_DistortionWorldInitWithoutNARC(LandDataManager *landDataMan
     landDataMan->lazyLoaderSubTask = LAZY_LOADER_SUBTASK_IDLE;
 }
 
-void LandDataManager_DistortionWorldInvalidateLoadedMaps(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileY, int *loadedMapMatrixIndexes)
+void LandDataManager_DistortionWorldInvalidateLoadedMaps(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileZ, int *loadedMapMatrixIndexes)
 {
-    LandData_CalculateLoadedMapMatrixIndexes(landDataMan->inDistortionWorld, trackedTargetTileX, trackedTargetTileY, landDataMan->offsetTileX, landDataMan->offsetTileY, landDataMan->mapMatrixWidth, landDataMan->mapMatrixHeight, landDataMan->mapMatrixWidthTiles, loadedMapMatrixIndexes);
+    LandData_CalculateLoadedMapMatrixIndexes(landDataMan->inDistortionWorld, trackedTargetTileX, trackedTargetTileZ, landDataMan->offsetTileX, landDataMan->offsetTileZ, landDataMan->mapMatrixWidth, landDataMan->mapMatrixHeight, landDataMan->mapMatrixWidthTiles, loadedMapMatrixIndexes);
 
     for (int i = 0; i < QUADRANT_COUNT; i++) {
         landDataMan->loadedMaps[i]->valid = FALSE;
@@ -2482,20 +2482,20 @@ void LandDataManager_DistortionWorldLoadEntire(LandDataManager *landDataMan, int
     LoadedMapBuffers_GetBDHCFileBufPtr(loadedMapIndex, landDataMan->loadedMapBufs, (void **)&landDataMan->loadedMaps[loadedMapIndex]->bdhcFile);
     landDataMan->loadedMaps[loadedMapIndex]->mapMatrixIndex = INVALID_MAP_MATRIX_INDEX;
 
-    MI_CpuFillFast(landDataMan->loadedMaps[loadedMapIndex]->terrainAttributes, INVALID_TERRAIN_ATTRIBUTES, sizeof(u16) * MAP_TILES_COUNT_X * MAP_TILES_COUNT_Y);
+    MI_CpuFillFast(landDataMan->loadedMaps[loadedMapIndex]->terrainAttributes, INVALID_TERRAIN_ATTRIBUTES, sizeof(u16) * MAP_TILES_COUNT_X * MAP_TILES_COUNT_Z);
 
     BDHC_MarkNotLoaded(landDataMan->loadedMaps[loadedMapIndex]->bdhc);
     LandDataManager_Load(mapMatrixIndex, loadedMapIndex, landDataMan->areaDataMan, landDataMan->mapMatrix, landDataMan->mapMatrixWidth, landDataMan->mapMatrixHeight, AreaDataManager_IsOutdoorsLighting(landDataMan->areaDataMan), landDataMan);
 }
 
-void LandDataManager_DistortionWorldSetOffsets(LandDataManager *landDataMan, int offsetTileX, int offsetAltitude, int offsetTileY)
+void LandDataManager_DistortionWorldSetOffsets(LandDataManager *landDataMan, int offsetTileX, int offsetAltitude, int offsetTileZ)
 {
     landDataMan->offsetTileX = offsetTileX;
     landDataMan->offsetAltitude = offsetAltitude;
-    landDataMan->offsetTileY = offsetTileY;
+    landDataMan->offsetTileZ = offsetTileZ;
     landDataMan->offset.x = offsetTileX * MAP_OBJECT_TILE_SIZE;
     landDataMan->offset.y = offsetAltitude * MAP_OBJECT_TILE_SIZE;
-    landDataMan->offset.z = offsetTileY * MAP_OBJECT_TILE_SIZE;
+    landDataMan->offset.z = offsetTileZ * MAP_OBJECT_TILE_SIZE;
 }
 
 void LandDataManager_SetInDistortionWorld(LandDataManager *landDataMan, BOOL inDistortionWorld)
@@ -2508,9 +2508,9 @@ int LandDataManager_GetOffsetTileX(const LandDataManager *landDataMan)
     return landDataMan->offsetTileX;
 }
 
-int LandDataManager_GetOffsetTileY(const LandDataManager *landDataMan)
+int LandDataManager_GetOffsetTileZ(const LandDataManager *landDataMan)
 {
-    return landDataMan->offsetTileY;
+    return landDataMan->offsetTileZ;
 }
 
 void LandDataManager_GetOffset(const LandDataManager *landDataMan, VecFx32 *offset)
@@ -2533,7 +2533,7 @@ void LandDataManager_SetLoadedMapValid(LandDataManager *landDataMan, int index, 
     landDataMan->loadedMaps[index]->valid = valid;
 }
 
-void LandDataManager_DistortionWorldUpdateTrackedTargetValues(LandDataManager *landDataMan, int trackedTargetTileX, int trackedTargetTileY)
+void LandDataManager_DistortionWorldUpdateTrackedTargetValues(LandDataManager *landDataMan, int trackedTargetTileX, int trackedTargetTileZ)
 {
-    LandDataManager_UpdateTrackedTargetValues(trackedTargetTileX, trackedTargetTileY, landDataMan->offsetTileX, landDataMan->offsetTileY, landDataMan);
+    LandDataManager_UpdateTrackedTargetValues(trackedTargetTileX, trackedTargetTileZ, landDataMan->offsetTileX, landDataMan->offsetTileZ, landDataMan);
 }

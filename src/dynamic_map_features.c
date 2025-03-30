@@ -85,7 +85,7 @@ void DynamicMapFeatures_Free(FieldSystem *fieldSystem)
     }
 }
 
-BOOL DynamicMapFeatures_CheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
+BOOL DynamicMapFeatures_CheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     int id = PersistedMapFeatures_GetID(persistedMapFeatures);
@@ -95,15 +95,15 @@ BOOL DynamicMapFeatures_CheckCollision(FieldSystem *fieldSystem, const int tileX
     }
 
     if (sCheckCollisionFuncs[id] != NULL) {
-        BOOL hasCollision = sCheckCollisionFuncs[id](fieldSystem, tileX, tileY, height, isColliding);
+        BOOL hasCollision = sCheckCollisionFuncs[id](fieldSystem, tileX, tileZ, height, isColliding);
         return hasCollision;
     }
 
     return FALSE;
 }
 
-BOOL DynamicMapFeatures_WillPlayerJumpEternaGymClock(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 unused3, int direction)
+BOOL DynamicMapFeatures_WillPlayerJumpEternaGymClock(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 unused3, int direction)
 {
     return fieldSystem->location->mapId == MAP_HEADER_ETERNA_CITY_GYM
-        && EternaGym_IsHourHandJumpTile(fieldSystem, tileX, tileY, direction);
+        && EternaGym_IsHourHandJumpTile(fieldSystem, tileX, tileZ, direction);
 }

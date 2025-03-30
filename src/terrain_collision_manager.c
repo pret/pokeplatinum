@@ -34,8 +34,8 @@ enum VerticalDirection {
 
 static const fx32 GetHeight(const FieldSystem *fieldSystem, const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, u8 *newObjectHeightSourceOut);
 static const fx32 GetSimpleHeight(const FieldSystem *fieldSystem, const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, u8 *newObjectHeightSourceOut);
-static BOOL GetTileAttributes(const FieldSystem *fieldSystem, const int tileX, const int tileY, u16 *attributes);
-static BOOL GetSimpleTileAttributes(const FieldSystem *fieldSystem, const int tileX, const int tileY, u16 *attributes);
+static BOOL GetTileAttributes(const FieldSystem *fieldSystem, const int tileX, const int tileZ, u16 *attributes);
+static BOOL GetSimpleTileAttributes(const FieldSystem *fieldSystem, const int tileX, const int tileZ, u16 *attributes);
 static int GetVerticalDirection(const FieldSystem *fieldSystem, const VecFx32 *param1, const int param2, const int param3, u8 *param4);
 
 static const TerrainCollisionManager sTerrainCollisionManagerFuncs = {
@@ -58,8 +58,8 @@ static fx32 CalculateDistance(const fx32 lhs, const fx32 rhs)
 static const fx32 GetHeight(const FieldSystem *fieldSystem, const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, u8 *newObjectHeightSourceOut)
 {
     BOOL dynHeightPlateFound;
-    u32 tileX, tileY;
-    u32 mapMatrixX, mapMatrixY;
+    u32 tileX, tileZ;
+    u32 mapMatrixX, mapMatrixZ;
     VecFx32 objectPosition;
     fx32 fixedObjectHeight;
 
@@ -79,22 +79,22 @@ static const fx32 GetHeight(const FieldSystem *fieldSystem, const fx32 objectHei
     int mapMatrixWidthTiles = mapMatrixWidth * MAP_TILES_COUNT_X;
 
     tileX = (objectX - offset.x) / MAP_OBJECT_TILE_SIZE;
-    tileY = (objectZ - offset.z) / MAP_OBJECT_TILE_SIZE;
+    tileZ = (objectZ - offset.z) / MAP_OBJECT_TILE_SIZE;
 
     u8 dynHeightPlateIndex;
-    dynHeightPlateFound = DynamicTerrainHeightManager_GetPlateIndexOfTile(tileX, tileY, fieldSystem->dynamicTerrainHeightMan, &dynHeightPlateIndex);
+    dynHeightPlateFound = DynamicTerrainHeightManager_GetPlateIndexOfTile(tileX, tileZ, fieldSystem->dynamicTerrainHeightMan, &dynHeightPlateIndex);
 
     mapMatrixX = tileX / MAP_TILES_COUNT_X;
-    mapMatrixY = tileY / MAP_TILES_COUNT_Y;
-    u32 mapMatrixIndex = mapMatrixX + mapMatrixY * mapMatrixWidth;
+    mapMatrixZ = tileZ / MAP_TILES_COUNT_Z;
+    u32 mapMatrixIndex = mapMatrixX + mapMatrixZ * mapMatrixWidth;
 
     fx32 currentMapOriginX = (mapMatrixX * MAP_TILES_COUNT_X + MAP_TILES_COUNT_X / 2) * MAP_OBJECT_TILE_SIZE;
-    fx32 currentMapOriginZ = (mapMatrixY * MAP_TILES_COUNT_Y + MAP_TILES_COUNT_Y / 2) * MAP_OBJECT_TILE_SIZE;
+    fx32 currentMapOriginZ = (mapMatrixZ * MAP_TILES_COUNT_Z + MAP_TILES_COUNT_Z / 2) * MAP_OBJECT_TILE_SIZE;
 
     objectPosition.x = objectX - currentMapOriginX - offset.x;
     objectPosition.z = objectZ - currentMapOriginZ - offset.z;
 
-    u32 tileIndex = tileX + tileY * mapMatrixWidthTiles;
+    u32 tileIndex = tileX + tileZ * mapMatrixWidthTiles;
     u8 tileMapQuadrant = LandDataManager_CalculateMapQuadrantOfTile(tileIndex, mapMatrixWidthTiles);
     u32 loadedMapIndex = LandDataManager_GetRelativeLoadedMapsQuadrant(mapMatrixIndex, tileMapQuadrant, landDataMan);
 
@@ -150,9 +150,9 @@ static const fx32 GetHeight(const FieldSystem *fieldSystem, const fx32 objectHei
 static const fx32 GetSimpleHeight(const FieldSystem *fieldSystem, const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, u8 *newObjectHeightSourceOut)
 {
     int tileX = objectX / MAP_OBJECT_TILE_SIZE;
-    int tileY = objectZ / MAP_OBJECT_TILE_SIZE;
+    int tileZ = objectZ / MAP_OBJECT_TILE_SIZE;
 
-    BOOL loadedMapIndexValid = LandDataManager_GetRelativeLoadedMapsQuadrantOfTile(fieldSystem->landDataMan, tileX, tileY, NULL);
+    BOOL loadedMapIndexValid = LandDataManager_GetRelativeLoadedMapsQuadrantOfTile(fieldSystem->landDataMan, tileX, tileZ, NULL);
     u8 newObjectHeightSource;
 
     if (loadedMapIndexValid) {
@@ -168,30 +168,30 @@ static const fx32 GetSimpleHeight(const FieldSystem *fieldSystem, const fx32 obj
     return 0;
 }
 
-static BOOL GetTileAttributes(const FieldSystem *fieldSystem, const int tileX, const int tileY, u16 *attributes)
+static BOOL GetTileAttributes(const FieldSystem *fieldSystem, const int tileX, const int tileZ, u16 *attributes)
 {
-    int fixedTileX, fixedTileY;
+    int fixedTileX, fixedTileZ;
     const LandDataManager *landDataMan = fieldSystem->landDataMan;
 
     fixedTileX = tileX - LandDataManager_GetOffsetTileX(landDataMan);
-    fixedTileY = tileY - LandDataManager_GetOffsetTileY(landDataMan);
+    fixedTileZ = tileZ - LandDataManager_GetOffsetTileZ(landDataMan);
 
     u8 loadedMapIndex;
-    BOOL loadedMapIndexValid = LandDataManager_GetRelativeLoadedMapsQuadrantOfTile(landDataMan, tileX, tileY, &loadedMapIndex);
+    BOOL loadedMapIndexValid = LandDataManager_GetRelativeLoadedMapsQuadrantOfTile(landDataMan, tileX, tileZ, &loadedMapIndex);
 
     if (loadedMapIndexValid == FALSE) {
         (*attributes) = INVALID_TILE_ATTRIBUTES;
         return FALSE;
     }
 
-    u32 fixedTileIndex = (fixedTileY % MAP_TILES_COUNT_Y) * MAP_TILES_COUNT_X + (fixedTileX % MAP_TILES_COUNT_X);
+    u32 fixedTileIndex = (fixedTileZ % MAP_TILES_COUNT_Z) * MAP_TILES_COUNT_X + (fixedTileX % MAP_TILES_COUNT_X);
     u16 const *terrainAttributes = LandDataManager_GetLoadedMapTerrainAttributes(landDataMan, loadedMapIndex);
     *attributes = terrainAttributes[fixedTileIndex];
 
     return TRUE;
 }
 
-static BOOL GetSimpleTileAttributes(const FieldSystem *fieldSystem, const int tileX, const int tileY, u16 *attributes)
+static BOOL GetSimpleTileAttributes(const FieldSystem *fieldSystem, const int tileX, const int tileZ, u16 *attributes)
 {
     const LandDataManager *landDataMan = fieldSystem->landDataMan;
 
@@ -199,10 +199,10 @@ static BOOL GetSimpleTileAttributes(const FieldSystem *fieldSystem, const int ti
     int mapMatrixWidthTiles = mapMatrixWidth * MAP_TILES_COUNT_X;
 
     u32 mapMatrixX = tileX / MAP_TILES_COUNT_X;
-    u32 mapMatrixY = tileY / MAP_TILES_COUNT_Y;
-    u32 mapMatrixIndex = mapMatrixX + mapMatrixY * mapMatrixWidth;
+    u32 mapMatrixZ = tileZ / MAP_TILES_COUNT_Z;
+    u32 mapMatrixIndex = mapMatrixX + mapMatrixZ * mapMatrixWidth;
 
-    u32 tileIndex = (tileY % MAP_TILES_COUNT_Y) * MAP_TILES_COUNT_X + (tileX % MAP_TILES_COUNT_X);
+    u32 tileIndex = (tileZ % MAP_TILES_COUNT_Z) * MAP_TILES_COUNT_X + (tileX % MAP_TILES_COUNT_X);
     u16 const *terrainAttributes = TerrainAttributes_Get(mapMatrixIndex, fieldSystem->terrainAttributes);
     *attributes = terrainAttributes[tileIndex];
 
@@ -220,10 +220,10 @@ void TerrainCollisionManager_Init(const TerrainCollisionManager **terrainCollisi
     }
 }
 
-BOOL TerrainCollisionManager_CheckCollision(const FieldSystem *fieldSystem, const int tileX, const int tileY)
+BOOL TerrainCollisionManager_CheckCollision(const FieldSystem *fieldSystem, const int tileX, const int tileZ)
 {
     u16 attributes;
-    BOOL attributesValid = fieldSystem->terrainCollisionMan->getTileAttributes(fieldSystem, tileX, tileY, &attributes);
+    BOOL attributesValid = fieldSystem->terrainCollisionMan->getTileAttributes(fieldSystem, tileX, tileZ, &attributes);
 
     if (attributesValid) {
         u8 hasCollision = attributes >> TERRAIN_ATTRIBUTES_COLLISION_SHIFT;
@@ -237,11 +237,11 @@ BOOL TerrainCollisionManager_CheckCollision(const FieldSystem *fieldSystem, cons
     return FALSE;
 }
 
-u8 TerrainCollisionManager_GetTileBehavior(const FieldSystem *fieldSystem, const int tileX, const int tileY)
+u8 TerrainCollisionManager_GetTileBehavior(const FieldSystem *fieldSystem, const int tileX, const int tileZ)
 {
     u16 attributes;
 
-    if (fieldSystem->terrainCollisionMan->getTileAttributes(fieldSystem, tileX, tileY, &attributes)) {
+    if (fieldSystem->terrainCollisionMan->getTileAttributes(fieldSystem, tileX, tileZ, &attributes)) {
         u8 behavior = attributes;
         behavior &= TERRAIN_ATTRIBUTES_TILE_BEHAVIOR_MASK;
 
@@ -256,10 +256,10 @@ const fx32 TerrainCollisionManager_GetHeight(const FieldSystem *fieldSystem, con
     return fieldSystem->terrainCollisionMan->getHeight(fieldSystem, objectHeight, objectX, objectZ, newObjectHeightSource);
 }
 
-static int GetVerticalDirection(const FieldSystem *fieldSystem, const VecFx32 *objectPosition, const int tileX, const int tileY, u8 *newObjectHeightSource)
+static int GetVerticalDirection(const FieldSystem *fieldSystem, const VecFx32 *objectPosition, const int tileX, const int tileZ, u8 *newObjectHeightSource)
 {
     fx32 objectX = tileX * MAP_OBJECT_TILE_SIZE + MAP_OBJECT_TILE_SIZE / 2;
-    fx32 objectZ = tileY * MAP_OBJECT_TILE_SIZE + MAP_OBJECT_TILE_SIZE / 2;
+    fx32 objectZ = tileZ * MAP_OBJECT_TILE_SIZE + MAP_OBJECT_TILE_SIZE / 2;
     fx32 objectHeight = TerrainCollisionManager_GetHeight(fieldSystem, objectPosition->y, objectX, objectZ, newObjectHeightSource);
 
     int direction;
@@ -287,20 +287,20 @@ static int GetVerticalDirection(const FieldSystem *fieldSystem, const VecFx32 *o
     return direction;
 }
 
-BOOL TerrainCollisionManager_WillMapObjectCollide(const FieldSystem *fieldSystem, const VecFx32 *objectPosition, const int tileX, const int tileY, s8 *verticalDirection)
+BOOL TerrainCollisionManager_WillMapObjectCollide(const FieldSystem *fieldSystem, const VecFx32 *objectPosition, const int tileX, const int tileZ, s8 *verticalDirection)
 {
     u8 newObjectHeightSource;
-    int direction = GetVerticalDirection(fieldSystem, objectPosition, tileX, tileY, &newObjectHeightSource);
+    int direction = GetVerticalDirection(fieldSystem, objectPosition, tileX, tileZ, &newObjectHeightSource);
 
     if (verticalDirection != NULL) {
         *verticalDirection = direction;
     }
 
     if (direction == VERTICAL_DIRECTION_NONE) {
-        BOOL isColliding = TerrainCollisionManager_CheckCollision(fieldSystem, tileX, tileY);
+        BOOL isColliding = TerrainCollisionManager_CheckCollision(fieldSystem, tileX, tileZ);
 
         if (!isColliding && newObjectHeightSource == CALCULATED_HEIGHT_SOURCE_DYNAMIC) {
-            u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileY);
+            u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileZ);
 
             if (TileBehavior_IsPastoriaGymWater(tileBehavior)) {
                 return TRUE;
@@ -313,10 +313,10 @@ BOOL TerrainCollisionManager_WillMapObjectCollide(const FieldSystem *fieldSystem
     }
 }
 
-BOOL TerrainCollisionManager_WillPlayerCollide(FieldSystem *fieldSystem, const VecFx32 *objectPosition, const int tileX, const int tileY, s8 *verticalDirection)
+BOOL TerrainCollisionManager_WillPlayerCollide(FieldSystem *fieldSystem, const VecFx32 *objectPosition, const int tileX, const int tileZ, s8 *verticalDirection)
 {
     u8 newObjectHeightSource;
-    int direction = GetVerticalDirection(fieldSystem, objectPosition, tileX, tileY, &newObjectHeightSource);
+    int direction = GetVerticalDirection(fieldSystem, objectPosition, tileX, tileZ, &newObjectHeightSource);
 
     if (verticalDirection != NULL) {
         *verticalDirection = direction;
@@ -324,13 +324,13 @@ BOOL TerrainCollisionManager_WillPlayerCollide(FieldSystem *fieldSystem, const V
 
     if (direction == VERTICAL_DIRECTION_NONE) {
         BOOL isColliding;
-        BOOL hasDynamicCollision = DynamicMapFeatures_CheckCollision(fieldSystem, tileX, tileY, objectPosition->y, &isColliding);
+        BOOL hasDynamicCollision = DynamicMapFeatures_CheckCollision(fieldSystem, tileX, tileZ, objectPosition->y, &isColliding);
 
         if (!hasDynamicCollision) {
-            isColliding = TerrainCollisionManager_CheckCollision(fieldSystem, tileX, tileY);
+            isColliding = TerrainCollisionManager_CheckCollision(fieldSystem, tileX, tileZ);
 
             if (!isColliding && newObjectHeightSource == CALCULATED_HEIGHT_SOURCE_DYNAMIC) {
-                u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileY);
+                u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileZ);
 
                 if (TileBehavior_IsPastoriaGymWater(tileBehavior)) {
                     return TRUE;
@@ -346,22 +346,22 @@ BOOL TerrainCollisionManager_WillPlayerCollide(FieldSystem *fieldSystem, const V
     }
 }
 
-void TerrainCollisionHitbox_Init(const int tileX, const int tileY, const int offsetTileX, const int offsetTileY, const u32 sizeX, const u32 sizeY, TerrainCollisionHitbox *hitbox)
+void TerrainCollisionHitbox_Init(const int tileX, const int tileZ, const int offsetTileX, const int offsetTileZ, const u32 sizeX, const u32 sizeZ, TerrainCollisionHitbox *hitbox)
 {
     int startTileX = tileX + offsetTileX;
-    int startTileY = tileY + offsetTileY;
+    int startTileZ = tileZ + offsetTileZ;
 
     int endTileX = startTileX + sizeX;
-    int endTileY = startTileY + sizeY;
+    int endTileZ = startTileZ + sizeZ;
 
-    if (startTileX < 0 || startTileY < 0 || endTileX < 0 || endTileY < 0) {
+    if (startTileX < 0 || startTileZ < 0 || endTileX < 0 || endTileZ < 0) {
         GF_ASSERT(FALSE);
     }
 
     hitbox->startX = startTileX * MAP_OBJECT_TILE_SIZE;
-    hitbox->startZ = startTileY * MAP_OBJECT_TILE_SIZE;
+    hitbox->startZ = startTileZ * MAP_OBJECT_TILE_SIZE;
     hitbox->endX = endTileX * MAP_OBJECT_TILE_SIZE;
-    hitbox->endZ = endTileY * MAP_OBJECT_TILE_SIZE;
+    hitbox->endZ = endTileZ * MAP_OBJECT_TILE_SIZE;
 }
 
 BOOL TerrainCollisionHitbox_CollidesWithMapProp(const MapProp *mapProp, const TerrainCollisionHitbox *hitbox, const VecFx32 *mapAbsoluteOrigin)
@@ -526,11 +526,11 @@ BOOL FieldSystem_FindLoadedMapPropByModelIDs(const FieldSystem *fieldSystem, con
 void TerrainCollisionManager_GetMapAbsoluteOrigin(const int mapMatrixIndex, const int mapMatrixWidth, VecFx32 *mapAbsoluteOrigin)
 {
     mapAbsoluteOrigin->x = (MAP_TILES_COUNT_X / 2) * MAP_OBJECT_TILE_SIZE;
-    mapAbsoluteOrigin->z = (MAP_TILES_COUNT_Y / 2) * MAP_OBJECT_TILE_SIZE;
+    mapAbsoluteOrigin->z = (MAP_TILES_COUNT_Z / 2) * MAP_OBJECT_TILE_SIZE;
 
     u16 mapMatrixX = mapMatrixIndex % mapMatrixWidth;
-    u16 mapMatrixY = mapMatrixIndex / mapMatrixWidth;
+    u16 mapMatrixZ = mapMatrixIndex / mapMatrixWidth;
 
     mapAbsoluteOrigin->x += mapMatrixX * MAP_TILES_COUNT_X * MAP_OBJECT_TILE_SIZE;
-    mapAbsoluteOrigin->z += mapMatrixY * MAP_TILES_COUNT_Y * MAP_OBJECT_TILE_SIZE;
+    mapAbsoluteOrigin->z += mapMatrixZ * MAP_TILES_COUNT_Z * MAP_OBJECT_TILE_SIZE;
 }
