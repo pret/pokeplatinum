@@ -39,6 +39,14 @@
 
 #define GENDER_INVALID -1
 
+enum CursorMovementState {
+    CURSOR_NO_MOVEMENT = 0,
+    CURSOR_MOVE,
+    CURSOR_STOP,
+    CURSOR_MOVE_TO_LEFT_BOX,
+    CURSOR_MOVE_TO_RIGHT_BOX
+};
+
 int ov19_021D0D80(OverlayManager *param0, int *param1);
 int ov19_021D0DEC(OverlayManager *param0, int *param1);
 int ov19_021D0E58(OverlayManager *param0, int *param1);
@@ -71,10 +79,10 @@ u32 ov19_021D5EB8(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5EC0(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetMonSpriteTransparencyMask(const UnkStruct_ov19_021D4DF0 *param0);
 BOOL ov19_IsCursorFastMode(const UnkStruct_ov19_021D4DF0 *param0);
-void ov19_021D5EE8(const UnkStruct_ov19_021D4DF0 *param0, u32 *param1, u32 *param2, u32 *param3, u32 *param4);
-BOOL ov19_021D5F20(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5F3C(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5F6C(const UnkStruct_ov19_021D4DF0 *param0, u32 param1);
+void ov19_GetMultiSelectBoundingBox(const UnkStruct_ov19_021D4DF0 *param0, u32 *leftCol, u32 *rightCol, u32 *topCol, u32 *bottomCol);
+BOOL ov19_IsMultiSelectSingleSelect(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetMultiSelectTopLeftPos(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetRelativeMonPosInMultiSelection(const UnkStruct_ov19_021D4DF0 *param0, u32 param1);
 u32 ov19_GetCursorItem(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetCursorOrPreviewedItem(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5F9C(const UnkStruct_ov19_021D4DF0 *param0);

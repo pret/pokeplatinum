@@ -43,13 +43,13 @@ typedef struct {
     s32 unk_77C;
     s32 unk_780;
     u8 unk_784;
-    u8 unk_785; // cursorLocation
+    u8 unk_785;
     u8 unk_786;
     u8 unk_787;
     u8 unk_788;
-    s8 unk_789; // box col
-    s8 unk_78A; // box row
-    s8 unk_78B; // cursor party position
+    s8 unk_789;
+    s8 unk_78A;
+    s8 unk_78B;
     u8 unk_78C;
     u8 unk_78D;
     u8 unk_78E;

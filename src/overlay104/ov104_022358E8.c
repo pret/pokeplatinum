@@ -168,20 +168,20 @@ BOOL ov104_02235A24(UnkStruct_ov104_0222E930 *param0)
     v2 = v1->unk_0C;
 
     v3 = Party_GetPokemonBySlotIndex(v2->parties[0], 0);
-    sub_0207A128(v1->unk_28, 0, v3);
+    Party_AddPokemonBySlotIndex(v1->unk_28, 0, v3);
 
     v3 = Party_GetPokemonBySlotIndex(v2->parties[0], 1);
-    sub_0207A128(v1->unk_28, 1, v3);
+    Party_AddPokemonBySlotIndex(v1->unk_28, 1, v3);
 
     if (ov104_0223BA14(v1->unk_10) == 0) {
         v3 = Party_GetPokemonBySlotIndex(v2->parties[0], 2);
-        sub_0207A128(v1->unk_28, 2, v3);
+        Party_AddPokemonBySlotIndex(v1->unk_28, 2, v3);
     } else {
         v3 = Party_GetPokemonBySlotIndex(v2->parties[2], 0);
-        sub_0207A128(v1->unk_28, 2, v3);
+        Party_AddPokemonBySlotIndex(v1->unk_28, 2, v3);
 
         v3 = Party_GetPokemonBySlotIndex(v2->parties[2], 1);
-        sub_0207A128(v1->unk_28, 3, v3);
+        Party_AddPokemonBySlotIndex(v1->unk_28, 3, v3);
     }
 
     v1->unk_1C = CheckPlayerWonBattle(v2->resultMask);
