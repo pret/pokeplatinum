@@ -866,7 +866,7 @@ void ov19_021D8A6C(UnkStruct_ov19_021D8318 *param0)
 {
     u32 v0, v1, v2, v3, v4, v5, v6;
 
-    ov19_021D5EE8(param0->unk_58F8, &v0, &v1, &v2, &v3);
+    ov19_GetMultiSelectBoundingBox(param0->unk_58F8, &v0, &v1, &v2, &v3);
 
     v6 = 0;
 

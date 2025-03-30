@@ -5,11 +5,11 @@
 
 #include "overlay019/box_cursor.h"
 #include "overlay019/box_customization.h"
+#include "overlay019/box_mon_selection.h"
 #include "overlay019/box_settings.h"
 #include "overlay019/pc_mon_preview.h"
 #include "overlay019/struct_ov19_021D4EE4.h"
 #include "overlay019/struct_ov19_021D4F34.h"
-#include "overlay019/struct_ov19_021D5594.h"
 #include "overlay019/struct_ov19_021D5D20.h"
 #include "overlay019/struct_ov19_021DF964.h"
 
@@ -19,7 +19,7 @@ typedef struct {
     const PCBoxes *pcBoxes;
     const Party *party;
     BoxCursor cursor;
-    UnkStruct_ov19_021D5594 unk_14;
+    BoxMonSelection selection;
     BoxCustomization customization;
     BoxSettings boxSettings;
     PCMonPreview pcMonPreview;
