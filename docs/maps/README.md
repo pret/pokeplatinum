@@ -44,6 +44,8 @@ in which the player moves.
 - [file_format_specifications.md](file_format_specifications.md): a more technical
   description of the different files and their data structures that are used to
   store map data
+- [dynamic_map_features.md](dynamic_map_features.md): a description of the dynamic map
+  features system used to make dynamic maps
 
 ## Credits
 
