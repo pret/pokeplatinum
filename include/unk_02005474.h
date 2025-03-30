@@ -4,8 +4,6 @@
 #include "constants/sound.h"
 #include "sound_system.h"
 
-#include "generated/sdat.h"
-
 #define SOUND_EFFECT_TRACK(TRACK)   (1 << (TRACK))
 #define SOUND_EFFECT_TRACK_ALL      0xFFFF
 
@@ -34,7 +32,7 @@ BOOL Sound_IsEffectPlaying(u16 seqID);
 BOOL Sound_IsAnyEffectPlaying();
 
 // Pans the given sound effect sequence either to the left (pan < 0) or to the right (pan > 0)
-// tracks is for example (SOUND_EFFECT_TRACK(10) | SOUND_EFFECT_TRACK(2)) or SOUND_EFFECT_TRACK_ALL
+// tracks is for example (SOUND_PLAYBACK_TRACK(10) | SOUND_PLAYBACK_TRACK(2)) or SOUND_PLAYBACK_TRACK_ALL
 void Sound_PanEffect(u16 seqID, u16 tracks, int pan);
 void Sound_PanAllEffects(int pan);
 BOOL Sound_PlayPokemonCry(u16 species, u8 form);

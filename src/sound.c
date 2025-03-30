@@ -43,9 +43,9 @@ BOOL sub_02004EFC(void);
 void sub_02004F44(void);
 void sub_02004F4C(int param0);
 void sub_020052C8(void *param0, void *param1, u32 param2, NNSSndCaptureFormat param3, void *param4);
-void sub_02004F68(int param0, u16 param1, int param2);
+void Sound_SetPitchForHandle(enum SoundHandleType param0, u16 param1, int param2);
 void sub_02004F7C(u16 param0, u16 param1, int param2);
-void sub_02004F94(int param0, u16 param1, int param2);
+void Sound_SetPanForHandle(enum SoundHandleType param0, u16 param1, int param2);
 void sub_02004FA8(int param0, int param1);
 void Sound_SetMasterVolume(int param0);
 void *sub_02005014(void);
@@ -1022,10 +1022,9 @@ void sub_02004F4C(int param0)
     return;
 }
 
-void sub_02004F68(int param0, u16 param1, int pitch)
+void Sound_SetPitchForHandle(enum SoundHandleType handleType, u16 tracks, int pitch)
 {
-    NNS_SndPlayerSetTrackPitch(SoundSystem_GetSoundHandle(param0), param1, pitch);
-    return;
+    NNS_SndPlayerSetTrackPitch(SoundSystem_GetSoundHandle(handleType), tracks, pitch);
 }
 
 void sub_02004F7C(u16 param0, u16 param1, int param2)
@@ -1033,14 +1032,13 @@ void sub_02004F7C(u16 param0, u16 param1, int param2)
     u8 v0 = Sound_GetPlayerForSequence(param0);
     int v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
 
-    sub_02004F68(v1, param1, param2);
+    Sound_SetPitchForHandle(v1, param1, param2);
     return;
 }
 
-void sub_02004F94(int param0, u16 param1, int param2)
+void Sound_SetPanForHandle(enum SoundHandleType param0, u16 param1, int param2)
 {
     NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(param0), param1, param2);
-    return;
 }
 
 void sub_02004FA8(int param0, int param1)

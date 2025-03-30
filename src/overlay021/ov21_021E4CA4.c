@@ -1347,7 +1347,7 @@ static void ov21_021E5F00(UnkStruct_ov21_021E51DC *param0)
 {
     if (param0->unk_2C) {
         ov21_021E5FF4(param0->unk_3C);
-        sub_02004F94(1, 0xffff, param0->unk_40);
+        Sound_SetPanForHandle(1, 0xffff, param0->unk_40);
         ov21_021E5F28(param0->unk_44);
     }
 }
@@ -1412,6 +1412,6 @@ static void ov21_021E5FD0(UnkStruct_ov21_021E4DA4 *param0, const UnkStruct_ov21_
 
 static void ov21_021E5FF4(int param0)
 {
-    sub_02004F68(1, 0xffff, param0);
-    sub_02004F68(8, 0xffff, 20 + param0);
+    Sound_SetPitchForHandle(1, 0xffff, param0);
+    Sound_SetPitchForHandle(8, 0xffff, 20 + param0);
 }

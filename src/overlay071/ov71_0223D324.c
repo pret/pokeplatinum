@@ -150,7 +150,7 @@ static void ov71_0223D470(int param0, const int param1, const u8 param2)
     int v0 = 152 * (4 - param2);
 
     Sound_PlaySequenceWithPlayer((3 + param0), (3 + param0), 1684);
-    sub_02004F68((3 + param0), 0xffff, (Unk_ov71_0223D77C[param1] - v0));
+    Sound_SetPitchForHandle((3 + param0), 0xffff, (Unk_ov71_0223D77C[param1] - v0));
 
     return;
 }
