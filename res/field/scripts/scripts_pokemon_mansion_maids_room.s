@@ -12,13 +12,13 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x139, _005D
+    GoToIfSet FLAG_UNK_0x0139, _005D
     Message 0
     SetVar 0x8004, 218
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0053
-    SetFlag 0x139
+    SetFlag FLAG_UNK_0x0139
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll

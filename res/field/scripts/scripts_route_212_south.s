@@ -23,13 +23,13 @@ _0022:
     End
 
 _0069:
-    ClearFlag 0x268
-    SetFlag 0x269
+    ClearFlag FLAG_UNK_0x0268
+    SetFlag FLAG_UNK_0x0269
     End
 
 _0073:
-    ClearFlag 0x269
-    SetFlag 0x268
+    ClearFlag FLAG_UNK_0x0269
+    SetFlag FLAG_UNK_0x0268
     End
 
 _007D:

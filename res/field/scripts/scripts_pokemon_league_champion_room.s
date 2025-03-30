@@ -15,18 +15,18 @@ _000E:
     ApplyMovement LOCALID_PLAYER, _012C
     WaitMovement
     ScrCmd_0EA TRAINER_CHAMPION_CYNTHIA
-    CallIfUnset 0x964, _00EB
-    CallIfSet 0x964, _00F0
+    CallIfUnset FLAG_GAME_COMPLETED, _00EB
+    CallIfSet FLAG_GAME_COMPLETED, _00F0
     CloseMessage
-    SetFlag 0x98B
-    CallIfUnset 214, _00F5
-    CallIfSet 214, _00FD
+    SetFlag FLAG_ALT_MUSIC_CHAMPION_ROOM
+    CallIfUnset FLAG_UNK_0x00D6, _00F5
+    CallIfSet FLAG_UNK_0x00D6, _00FD
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _0121
     Message 1
-    SetFlag 180
-    CallIfUnset 214, _0105
-    CallIfSet 214, _0113
+    SetFlag FLAG_UNK_0x00B4
+    CallIfUnset FLAG_UNK_0x00D6, _0105
+    CallIfSet FLAG_UNK_0x00D6, _0113
     Message 2
     CloseMessage
     ApplyMovement 0, _0144
@@ -38,8 +38,8 @@ _000E:
     WaitTime 30, 0x800C
     ScrCmd_25C
     WaitTime 30, 0x800C
-    SetFlag 0x23A
-    SetFlag 0x23B
+    SetFlag FLAG_UNK_0x023A
+    SetFlag FLAG_UNK_0x023B
     ApplyMovement LOCALID_PLAYER, _013C
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
@@ -76,7 +76,7 @@ _0113:
     Return
 
 _0121:
-    ClearFlag 0x98B
+    ClearFlag FLAG_ALT_MUSIC_CHAMPION_ROOM
     BlackOutFromBattle
     ReleaseAll
     End

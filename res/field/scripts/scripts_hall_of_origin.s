@@ -13,22 +13,22 @@
 _0012:
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
     GoToIfEq 0x4000, FALSE, _0035
-    GoToIfSet 0x11E, _0035
-    ClearFlag 0x24E
+    GoToIfSet FLAG_UNK_0x011E, _0035
+    ClearFlag FLAG_UNK_0x024E
     End
 
 _0035:
-    SetFlag 0x24E
+    SetFlag FLAG_UNK_0x024E
     End
 
 _003B:
-    GoToIfSet 142, _0048
+    GoToIfSet FLAG_UNK_0x008E, _0048
     End
 
 _0048:
-    SetFlag 0x24E
+    SetFlag FLAG_UNK_0x024E
     RemoveObject 0
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E
     End
 
 _0056:
@@ -42,15 +42,15 @@ _0056:
     PlayCry SPECIES_ARCEUS
     Message 0
     CloseMessage
-    SetFlag 142
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_ARCEUS, 80
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _00DF
     CheckDidNotCapture 0x800C
     GoToIfEq 0x800C, TRUE, _00D0
     CallIfEq 0x4056, 0, _00C8
-    SetFlag 0x11E
+    SetFlag FLAG_UNK_0x011E
     ReleaseAll
     End
 
@@ -62,12 +62,12 @@ _00D0:
     Message 1
     WaitABXPadPress
     CloseMessage
-    ClearFlag 0x24E
+    ClearFlag FLAG_UNK_0x024E
     ReleaseAll
     End
 
 _00DF:
-    ClearFlag 0x24E
+    ClearFlag FLAG_UNK_0x024E
     BlackOutFromBattle
     ReleaseAll
     End

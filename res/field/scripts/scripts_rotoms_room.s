@@ -357,7 +357,7 @@ RotomsRoom_SetRotomForm:
     CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_RemoveRefrigerator
     CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_RemoveWashingMachine
     CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_RemoveLawnMower
-    GoToIfUnset 119, _080C
+    GoToIfUnset FLAG_UNK_0x0077, _080C
     GoTo _0325
     End
 
@@ -518,14 +518,14 @@ _0801:
     End
 
 _080C:
-    SetFlag 119
+    SetFlag FLAG_UNK_0x0077
     SetVar 0x411B, 1
     GoTo _0325
     End
 
 RotomsRoom_ProfessorRowan:
     LockAll
-    ClearFlag 0x2C0
+    ClearFlag FLAG_UNK_0x02C0
     PlayFanfare SEQ_SE_DP_KAIDAN2
     AddObject 6
     WaitFanfare SEQ_SE_DP_KAIDAN2

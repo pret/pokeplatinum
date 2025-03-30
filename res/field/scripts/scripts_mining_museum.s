@@ -35,9 +35,9 @@ _0055:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 1, _03D8
+    GoToIfSet FLAG_UNK_0x0001, _03D8
     Message 1
-    GoToIfUnset 121, _04B6
+    GoToIfUnset FLAG_UNK_0x0079, _04B6
     GoToIfNe 0x40B4, 0, _03F2
     ScrCmd_1F1 0x8000
     GoToIfEq 0x8000, 0, _04AB
@@ -207,7 +207,7 @@ _03BC:
     GoTo _03D8
 
 _03D8:
-    SetFlag 1
+    SetFlag FLAG_UNK_0x0001
     Message 6
     WaitABXPadPress
     CloseMessage

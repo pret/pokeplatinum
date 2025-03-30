@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag 0x9E9
+    SetFlag FLAG_UNK_0x09E9
     End
 
 _0018:
@@ -115,7 +115,7 @@ _016A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x107, _0188
+    GoToIfSet FLAG_UNK_0x0107, _0188
     Message 10
     WaitABXPadPress
     CloseMessage

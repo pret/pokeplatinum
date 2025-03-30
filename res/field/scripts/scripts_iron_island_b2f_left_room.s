@@ -17,7 +17,7 @@
 
 _0026:
     InitPersistedMapFeaturesForPlatformLift
-    GoToIfUnset 229, _0035
+    GoToIfUnset FLAG_UNK_0x00E5, _0035
     End
 
 _0035:
@@ -42,13 +42,13 @@ _0064:
     CallIfEq 0x8005, 2, _00D1
     CallIfEq 0x8005, 3, _00DD
     BufferPlayerName 0
-    CallIfUnset 225, _00E9
-    CallIfSet 225, _00EE
+    CallIfUnset FLAG_UNK_0x00E1, _00E9
+    CallIfSet FLAG_UNK_0x00E1, _00EE
     BufferPlayerName 0
     PlaySound SEQ_GONIN
     Message 1
     WaitSound
-    SetFlag 225
+    SetFlag FLAG_UNK_0x00E1
     SetVar 0x4092, 1
     Message 2
     WaitABXPadPress
@@ -263,8 +263,8 @@ _031C:
     WaitSound
     Message 12
     GiveEgg SPECIES_RIOLU, SPECIAL_METLOC_NAME_RILEY
-    SetFlag 0x1E5
-    ClearFlag 226
+    SetFlag FLAG_UNK_0x01E5
+    ClearFlag FLAG_UNK_0x00E2
     Call _0371
     Message 15
     WaitABXPadPress
@@ -272,7 +272,7 @@ _031C:
     Return
 
 _0353:
-    SetFlag 226
+    SetFlag FLAG_UNK_0x00E2
     SetVar 0x4092, 2
     Message 13
     WaitABXPadPress
@@ -285,7 +285,7 @@ _0366:
     End
 
 _0371:
-    SetFlag 229
+    SetFlag FLAG_UNK_0x00E5
     SetVar 0x4092, 2
     Return
 
@@ -455,7 +455,7 @@ _0468:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 226, _0504
+    GoToIfSet FLAG_UNK_0x00E2, _0504
     GoToIfEq 0x4092, 2, _0513
     GoToIfGe 0x40E3, 4, _04EB
     GoToIfEq 0x40E3, 3, _04E0

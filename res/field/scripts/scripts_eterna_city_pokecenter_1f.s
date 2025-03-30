@@ -29,7 +29,7 @@ _0035:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 129, _0053
+    GoToIfSet FLAG_UNK_0x0081, _0053
     Message 1
     WaitABXPadPress
     CloseMessage

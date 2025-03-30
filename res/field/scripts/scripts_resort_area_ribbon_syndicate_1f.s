@@ -15,7 +15,7 @@
     ScriptEntryEnd
 
 _0022:
-    GoToIfSet 250, _002F
+    GoToIfSet FLAG_UNK_0x00FA, _002F
     End
 
 _002F:
@@ -29,7 +29,7 @@ _003F:
     ScrCmd_22F 0x8004
     GoToIfLt 0x8004, 10, _0078
     SetVar 0x40A7, 1
-    SetFlag 250
+    SetFlag FLAG_UNK_0x00FA
     BufferPlayerName 0
     Message 1
     CloseMessage

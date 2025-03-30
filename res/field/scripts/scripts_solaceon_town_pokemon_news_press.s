@@ -12,14 +12,14 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 220, _0216
-    GoToIfSet 0xAB1, _02B0
-    GoToIfUnset 216, _004A
+    GoToIfSet FLAG_UNK_0x00DC, _0216
+    GoToIfSet FLAG_UNK_0x0AB1, _02B0
+    GoToIfUnset FLAG_UNK_0x00D8, _004A
     GoToIfEq 0x40E5, 0, _0057
     GoTo _0081
 
 _004A:
-    SetFlag 216
+    SetFlag FLAG_UNK_0x00D8
     Message 0
     GoTo _0060
 
@@ -65,7 +65,7 @@ _00AE:
     SetVar 0x8005, 3
     ScrCmd_07D 93, 1, 0x800C
     GoToIfNe 0x800C, 0, _01E9
-    SetFlag 0xAB1
+    SetFlag FLAG_UNK_0x0AB1
     GoToIfEq 0x800C, 0, _023F
     End
 
@@ -122,9 +122,9 @@ _01E9:
     SetVar 0x8004, 93
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    ClearFlag 220
+    ClearFlag FLAG_UNK_0x00DC
     SetVar 0x40E5, 0
-    SetFlag 0xAB1
+    SetFlag FLAG_UNK_0x0AB1
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -141,7 +141,7 @@ _0216:
 
 _023F:
     SetVar 0x4117, 0x8004
-    SetFlag 220
+    SetFlag FLAG_UNK_0x00DC
     GoTo _0251
     End
 
@@ -154,7 +154,7 @@ _0251:
 
 _025C:
     Message 7
-    ClearFlag 220
+    ClearFlag FLAG_UNK_0x00DC
     SetVar 0x40E5, 0
     CallCommonScript 0x7FC
     SetVar 0x8004, 93

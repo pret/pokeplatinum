@@ -44,8 +44,8 @@ _004C:
 _005F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 253, _0081
-    SetFlag 253
+    GoToIfSet FLAG_UNK_0x00FD, _0081
+    SetFlag FLAG_UNK_0x00FD
     FacePlayer
     Message 3
     WaitABXPadPress

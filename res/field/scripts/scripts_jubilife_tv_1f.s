@@ -38,8 +38,8 @@ _003F:
     LockAll
     FacePlayer
     GoToIfNe 0x40F2, 0, _0257
-    GoToIfSet 0xAB3, _00A0
-    GoToIfSet 0xAA9, _0084
+    GoToIfSet FLAG_UNK_0x0AB3, _00A0
+    GoToIfSet FLAG_UNK_0x0AA9, _0084
     Message 1
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _00B6
@@ -67,7 +67,7 @@ _00AB:
     End
 
 _00B6:
-    SetFlag 0xAA9
+    SetFlag FLAG_UNK_0x0AA9
     Message 4
     GetJubilifeLotteryTrainerID 0x8000
     ScrCmd_280 0, 0x8000, 2, 5
@@ -178,7 +178,7 @@ _0257:
 
 _0269:
     SetVar 0x40F2, 0
-    SetFlag 0xAB3
+    SetFlag FLAG_UNK_0x0AB3
     Message 17
     WaitABXPadPress
     CloseMessage

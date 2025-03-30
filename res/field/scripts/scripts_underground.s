@@ -182,7 +182,7 @@ _0289:
     WaitMovement
     RemoveObject 16
     SetVar 0x40D0, 1
-    SetFlag 0x992
+    SetFlag FLAG_UNDERGROUND_FIRST_ENTERED
     End
 
     .byte 0

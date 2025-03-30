@@ -9,11 +9,11 @@
     ScriptEntryEnd
 
 _000E:
-    CallIfSet 254, _001B
+    CallIfSet FLAG_UNK_0x00FE, _001B
     End
 
 _001B:
-    ClearFlag 0x1D1
+    ClearFlag FLAG_UNK_0x01D1
     Return
 
 _0021:

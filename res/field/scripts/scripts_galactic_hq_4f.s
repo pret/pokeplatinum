@@ -128,7 +128,7 @@ _0177:
     ApplyMovement 1, _01B4
     ApplyMovement 2, _01BC
     WaitMovement
-    SetFlag 0x226
+    SetFlag FLAG_UNK_0x0226
     RemoveObject 1
     RemoveObject 2
     CloseMessage

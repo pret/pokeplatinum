@@ -10,7 +10,7 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x107, _0024
+    GoToIfSet FLAG_UNK_0x0107, _0024
     Message 0
     WaitABXPadPress
     CloseMessage

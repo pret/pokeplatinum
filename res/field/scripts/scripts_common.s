@@ -109,7 +109,7 @@ _0172:
     CallIfGe 0x800C, 4, _01BC
     CallIfLt 0x800C, 4, _01B7
     Call _01C1
-    GoToIfUnset 106, _0242
+    GoToIfUnset FLAG_UNK_0x006A, _0242
     GoTo _01E1
 
 _01B7:
@@ -167,7 +167,7 @@ _0242:
     GoTo _01E1
 
 _0259:
-    SetFlag 106
+    SetFlag FLAG_UNK_0x006A
     ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
     SetPlayerState 1
@@ -180,8 +180,8 @@ _0259:
     End
 
 _027A:
-    GoToIfSet 105, _02B0
-    SetFlag 105
+    GoToIfSet FLAG_UNK_0x0069, _02B0
+    SetFlag FLAG_UNK_0x0069
     Message 4
     BufferPlayerName 0
     Message 5
@@ -327,7 +327,7 @@ _0457:
     End
 
 _0479:
-    ClearFlag 31
+    ClearFlag FLAG_UNK_0x001F
     Call _04A8
     ScrCmd_18F 0x800C
     CloseMessage
@@ -340,7 +340,7 @@ _048B:
     End
 
 _0494:
-    SetFlag 31
+    SetFlag FLAG_UNK_0x001F
     Call _04A8
     SetVar 0x4000, 0x800C
     ReturnCommonScript
@@ -377,8 +377,8 @@ _0526:
     Message 14
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _05A0
-    GoToIfUnset 31, _05C6
-    GoToIfSet 31, _05D1
+    GoToIfUnset FLAG_UNK_0x001F, _05C6
+    GoToIfSet FLAG_UNK_0x001F, _05D1
     End
 
 _0552:
@@ -390,7 +390,7 @@ _0552:
 
 _0568:
     ScrCmd_18D
-    CallIfSet 31, _05BE
+    CallIfSet FLAG_UNK_0x001F, _05BE
     ScrCmd_12D 0x800C
     ScrCmd_18E
     Return
@@ -423,7 +423,7 @@ _05B3:
 
 _05BE:
     ScrCmd_2D6
-    ClearFlag 31
+    ClearFlag FLAG_UNK_0x001F
     Return
 
 _05C6:
@@ -928,14 +928,14 @@ _0C1C:
     BufferPlayerName 0
     Message 33
     ScrCmd_040 1, 1, 0, 1, 0x8006
-    CallIfUnset 0x97E, _0C7B
-    CallIfSet 0x97E, _0C81
+    CallIfUnset FLAG_MET_BEBE, _0C7B
+    CallIfSet FLAG_MET_BEBE, _0C81
     ScrCmd_042 60, 1
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 0, _0C87
     CallIfEq 0x800C, 1, _0C8D
-    GoToIfSet 0x964, _0C93
-    GoToIfUnset 0x964, _0CDD
+    GoToIfSet FLAG_GAME_COMPLETED, _0C93
+    GoToIfUnset FLAG_GAME_COMPLETED, _0CDD
     End
 
 _0C7B:
@@ -987,7 +987,7 @@ _0D2C:
     ScrCmd_046 66, 75, 1
     ScrCmd_046 67, 76, 2
     ScrCmd_046 68, 77, 3
-    CallIfSet 0x978, _0D69
+    CallIfSet FLAG_CONTEST_HALL_VISITED, _0D69
     ScrCmd_046 70, 79, 5
     Return
 
@@ -1182,8 +1182,8 @@ _0FCA:
     HealParty
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    CallIfSet 144, _1030
-    CallIfUnset 144, _1035
+    CallIfSet FLAG_UNK_0x0090, _1030
+    CallIfUnset FLAG_UNK_0x0090, _1035
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1572,7 +1572,7 @@ _14AC:
     GoToIfEq 0x4000, 0, _1570
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
     GoToIfEq 0x4000, FALSE, _1570
-    GoToIfSet 0x11E, _1570
+    GoToIfSet FLAG_UNK_0x011E, _1570
     BufferPlayerName 0
     Message 122
     ShowYesNoMenu 0x800C
@@ -1706,13 +1706,13 @@ _16A4:
     End
 
 _16AA:
-    GoToIfSet 137, _1706
+    GoToIfSet FLAG_UNK_0x0089, _1706
     GoToIfNe 0x4050, 4, _1706
     GoToIfNe 0x4051, 4, _1706
     GoToIfNe 0x4052, 4, _1706
     GoToIfNe 0x4053, 4, _1706
     GoToIfNe 0x404F, 4, _1706
-    SetFlag 137
+    SetFlag FLAG_UNK_0x0089
     ScrCmd_30A 42
     GoTo _1706
     End
