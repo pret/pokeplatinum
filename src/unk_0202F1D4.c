@@ -491,7 +491,7 @@ void sub_0202F8AC(FieldBattleDTO *param0)
         sub_0202FCE8(param0->parties[v0], &v1->unk_1150[v0]);
         TrainerInfo_Copy(param0->trainerInfo[v0], &v1->unk_1B68[v0]);
 
-        v2->unk_14C[v0] = Sound_Chatter(param0->chatotCries[v0]);
+        v2->unk_14C[v0] = Sound_GetChatterActivationParameter(param0->chatotCries[v0]);
     }
 
     Options_Copy(param0->options, &v1->unk_1BE8);

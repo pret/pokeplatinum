@@ -8624,7 +8624,7 @@ static BOOL BtlCmd_CheckChatterActivation(BattleSystem *battleSys, BattleContext
         && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
         int chatter;
         if ((BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_RECORDING) == FALSE) {
-            chatter = Sound_Chatter(BattleSystem_ChatotVoice(battleSys, battleCtx->attacker));
+            chatter = Sound_GetChatterActivationParameter(BattleSystem_ChatotVoice(battleSys, battleCtx->attacker));
         } else {
             chatter = BattleSystem_RecordedChatter(battleSys, battleCtx->attacker);
         }

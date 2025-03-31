@@ -199,7 +199,7 @@ static BOOL ov87_021D12C0(UnkStruct_ov87_021D106C *param0, int *param1)
         if (v1 == v0->unk_18) {
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
             Sprite_SetPriority(param0->unk_1C4[v1], 0);
-            Sound_FlagDefaultChatotCry(TRUE);
+            Sound_SetUsingDefaultChatotCry(TRUE);
 
             Sound_PlayPokemonCry(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
         } else {
@@ -549,7 +549,7 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
         Graphics_LoadPalette(v1.archive, v1.palette, 1, v3 * 0x20, 0x20, HEAP_ID_61);
 
         if (v3 == v2->unk_18) {
-            Sound_FlagDefaultChatotCry(TRUE);
+            Sound_SetUsingDefaultChatotCry(TRUE);
             Sound_PlayPokemonCry(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
         } else {

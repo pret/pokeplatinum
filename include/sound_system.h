@@ -92,8 +92,10 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_HEAP_STATE_BGM,                  // Actual BGM data
     SOUND_SYSTEM_PARAM_HEAP_STATE_SUB_SFX,              // Sub screen SFX
     SOUND_SYSTEM_PARAM_HEAP_STATE_FANFARE,              // Fanfare data
-
-    SOUND_SYSTEM_PARAM_FIELD_BGM = 32,                  // Currently active field BGM
+    
+    SOUND_SYSTEM_PARAM_CHATOT_CRY_PLAYING,              // Whether the chatot cry is currently playing
+    SOUND_SYSTEM_PARAM_DEFAULT_CHATOT_CRY,              // Whether the default chatot cry is being used
+    SOUND_SYSTEM_PARAM_FIELD_BGM,                       // Currently active field BGM
     SOUND_SYSTEM_PARAM_CURRENT_WAVE_DATA,               // Wave data currently in use (for pokedex)
     SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER,         // The buffer used for reversed waveform playback
     SOUND_SYSTEM_PARAM_CRY_DURATION_TASK,               // SysTask used to limit the duration of pokemon cries
@@ -149,8 +151,8 @@ typedef struct SoundSystem {
     u8 mainScene;
     u8 subScene;
     int heapStates[SOUND_HEAP_STATE_COUNT];
-    u8 unk_BCD84;
-    u8 unk_BCD85;
+    u8 chatotCryPlaying;
+    u8 usingDefaultChatotCry;
     u16 currentFieldBGM;
     const SNDWaveData *currentWaveData;
     void *waveOutReverseBuffer;
