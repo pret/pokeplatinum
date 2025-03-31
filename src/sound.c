@@ -17,54 +17,21 @@
 #define WAVEFORM_SAMPLE_WINDOW      100     // Used to generate amplitude graphs from waveform data
 #define WAVEFORM_MAX_AMPLITUDE      9
 
-static void Sound_LoadSoundEffectsForSceneWithState(u8 param0);
-static void Sound_Impl_PlayFieldBGM(u16 param0, int param1);
-static void Sound_Impl_ResumeAndSwitchFieldBGM(u16 param0, u16 param1);
-static void Sound_Impl_PlayBattleBGM(u16 param0, int param1);
-static void sub_020048AC(u16 param0, int param1);
-static void Sound_Impl_PlayContestBGM(u16 param0, int param1);
-static void sub_020048F0(u16 param0, int param1);
-static void Sound_Impl_LoadSubSceneSoundData(u8 param0);
-static void Sound_Impl_PlayCutsceneBGM(u8 param0, u16 param1, int param2);
-void sub_02004950(u16 param0);
-void sub_02004A54(int param0, int param1, int param2);
-void Sound_SetInitialVolumeForSequence(u16 param0, int param1);
-NNSSndWaveOutHandle *Sound_GetWaveOutHandle(enum WaveOutChannel channel);
-BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel param0);
-void Sound_FreeWaveOutChannel(enum WaveOutChannel param0);
-void Sound_SetWaveOutPan(enum WaveOutChannel param0, u8 param1);
-void Sound_SetWaveOutSpeed(enum WaveOutChannel param0, u32 param1);
-void Sound_SetWaveOutVolume(enum WaveOutChannel param0, int param1);
-BOOL Sound_PlayWaveOut(WaveOutParam *param0, enum WaveOutChannel param1);
-void Sound_StopWaveOut(enum WaveOutChannel param0);
-BOOL Sound_IsWaveOutPlaying(enum WaveOutChannel param0);
-void Sound_StopWaveOutReversed(enum WaveOutChannel param0);
-static void Sound_Impl_ReverseBuffer(u8 *param0, u32 param1);
-BOOL Sound_IsCaptureActive(void);
-BOOL Sound_StartReverb(int param0);
-void Sound_StopReverb(int param0);
-void Sound_SetReverbVolume(int param0, int param1);
-BOOL Sound_StartFilter(void);
-void Sound_StopFilter(void);
-void Sound_SetFilterSize(int param0);
-void Sound_Impl_FilterCallback(void *param0, void *param1, u32 param2, NNSSndCaptureFormat param3, void *param4);
-void Sound_SetPitchForHandle(enum SoundHandleType param0, u16 param1, int param2);
-void Sound_SetPitchForSequence(u16 param0, u16 param1, int param2);
-void Sound_SetPanForHandle(enum SoundHandleType param0, u16 param1, int param2);
-void Sound_SetTempoRatioForHandle(enum SoundHandleType param0, int param1);
-void Sound_SetMasterVolume(int param0);
-void *Sound_GetWaveBuffer(void);
-static void Sound_Impl_FadeToBGM(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5);
-static void Sound_SetBGMAllocatableChannels(u16 param0);
-void Sound_ConfigureBGMChannelsAndReverb(enum SoundChannelConfig param0);
+static void Sound_LoadSoundEffectsForSceneWithState(u8 scene);
+static void Sound_Impl_PlayFieldBGM(u16 bgmID, int unused);
+static void Sound_Impl_ResumeAndSwitchFieldBGM(u16 bgmID, u16 unused);
+static void Sound_Impl_PlayBattleBGM(u16 bgmID, int unused);
+static void sub_020048AC(u16 bgmID, int unused);
+static void Sound_Impl_PlayContestBGM(u16 bgmID, int unused);
+static void sub_020048F0(u16 bgmID, int unused);
+static void Sound_Impl_LoadSubSceneSoundData(u8 scene);
+static void Sound_Impl_PlayCutsceneBGM(u8 scene, u16 bgmID, int unused);
+static void Sound_Impl_ReverseBuffer(u8 *buffer, u32 size);
+static void Sound_Impl_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int fadeInFrames, u8 bankState, void *unused2);
+static void Sound_SetBGMAllocatableChannels(u16 channels);
 static void Sound_Impl_PauseOrStopFieldBGM(void);
-const u8 *Sound_WaveData_GetSamples(const SNDWaveData *param0);
-const u32 Sound_WaveData_GetLoopLength(const SNDWaveData *param0);
-const SNDWaveData *Sound_LoadPokedexDataForSpecies(int param0);
-static const SNDWaveData *Sound_Impl_GetWaveDataForSpecies(int param0);
-u32 Sound_GetNumberOfPlayedCrySamples(int param0, const SNDWaveData *param1, int param2);
-u32 Sound_GetTicksForHandle(enum SoundHandleType param0);
-void Sound_WaveData_AccumulateAmplitudes(const SNDWaveData *param0, u8 *param1, int param2, int param3);
+static void Sound_Impl_FilterCallback(void *bufferL, void *bufferR, u32 length, NNSSndCaptureFormat format, void *arg);
+static const SNDWaveData *Sound_Impl_GetWaveDataForSpecies(int species);
 
 static s8 sWaveBuffer[SOUND_WAVE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
 static int sPlaybackMode;
@@ -276,11 +243,11 @@ int Sound_LoadSoundEffectsForScene(u8 scene)
     return result;
 }
 
-BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int param2)
+BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int unused)
 {
     u8 *mainScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_MAIN_SCENE);
     u8 *subScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_SUB_SCENE);
-    u16 *v2 = SoundSystem_GetParam(14);
+    u16 *fanfareDelay = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FANFARE_DELAY);
 
     if (scene < SOUND_SCENE_MAX) {
         if (*mainScene == scene) {
@@ -297,20 +264,20 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int param2)
     switch (scene) {
     case SOUND_SCENE_FIELD:
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
-        Sound_Impl_PlayFieldBGM(bgmID, param2);
-        (*v2) = 0;
+        Sound_Impl_PlayFieldBGM(bgmID, unused);
+        *fanfareDelay = 0;
         break;
     case SOUND_SCENE_BATTLE:
-        Sound_Impl_PlayBattleBGM(bgmID, param2);
+        Sound_Impl_PlayBattleBGM(bgmID, unused);
         break;
     case 11:
-        sub_020048AC(bgmID, param2);
+        sub_020048AC(bgmID, unused);
         break;
     case SOUND_SCENE_CONTEST:
-        Sound_Impl_PlayContestBGM(bgmID, param2);
+        Sound_Impl_PlayContestBGM(bgmID, unused);
         break;
     case 7:
-        sub_020048F0(bgmID, param2);
+        sub_020048F0(bgmID, unused);
         break;
     case SOUND_SCENE_SUB_BAG:
     case 52:
@@ -334,15 +301,15 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int param2)
         break;
     case 1:
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_TITLE);
-        Sound_Impl_PlayCutsceneBGM(scene, bgmID, param2);
+        Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
     case 14:
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_ENDING);
-        Sound_Impl_PlayCutsceneBGM(scene, bgmID, param2);
+        Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
     case 2:
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
-        Sound_Impl_PlayCutsceneBGM(scene, bgmID, param2);
+        Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
     case 3:
     case 8:
@@ -358,10 +325,10 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int param2)
     case 20:
     case 21:
     case 23:
-        Sound_Impl_PlayCutsceneBGM(scene, bgmID, param2);
+        Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
     case 22:
-        Sound_Impl_PlayCutsceneBGM(scene, bgmID, param2);
+        Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
     }
 
@@ -565,8 +532,8 @@ int Sound_GetHeapState(enum SoundHeapState state)
     case SOUND_HEAP_STATE_SUB_SFX:
         param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_SUB_SFX);
         break;
-    case 6:
-        param = SoundSystem_GetParam(29);
+    case SOUND_HEAP_STATE_FANFARE:
+        param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_FANFARE);
         break;
     }
 
@@ -1404,7 +1371,7 @@ void Sound_Set2PokemonCriesAllowed(BOOL allowed)
 
 void sub_02005464(BOOL param0)
 {
-    u8 *v0 = SoundSystem_GetParam(54);
+    u8 *v0 = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_54);
 
     *v0 = param0;
     return;

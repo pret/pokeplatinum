@@ -14,7 +14,6 @@
 #include "sound_chatot.h"
 
 
-
 static void SoundSystem_InitHeapStates(SoundSystem *soundSys);
 static void SoundSystem_InitSoundHandles(SoundSystem *soundSys);
 static void SoundSystem_LoadPersistentGroup(SoundSystem *soundSys);
@@ -82,7 +81,6 @@ void SoundSystem_Update()
     }
 
     NNS_SndMain();
-    return;
 }
 
 static void SoundSystem_UpdateState()
@@ -109,7 +107,7 @@ static void SoundSystem_UpdateState()
         break;
     case SOUND_SYSTEM_STATE_FADE_OUT_PLAY:
         if (Sound_IsFadeActive() == FALSE) {
-            if (Sound_UpdateFollowUpWaitFrames() == 0) {
+            if (Sound_UpdateFollowUpWaitFrames() == FALSE) {
                 SoundSystem_StopBGM();
                 Sound_PlayBGM(soundSys->nextBGM);
             }
@@ -117,7 +115,7 @@ static void SoundSystem_UpdateState()
         break;
     case SOUND_SYSTEM_STATE_FADE_OUT_FADE_IN:
         if (Sound_IsFadeActive() == FALSE) {
-            if (Sound_UpdateFollowUpWaitFrames() == 0) {
+            if (Sound_UpdateFollowUpWaitFrames() == FALSE) {
                 SoundSystem_StopBGM();
                 Sound_PlayBGM(soundSys->nextBGM);
                 Sound_FadeInBGM(SOUND_VOLUME_MAX, soundSys->followUpFadeFrames, BGM_FADE_IN_TYPE_FROM_ZERO);
@@ -131,7 +129,7 @@ void SoundSystem_SetState(enum SoundSystemState state)
 {
     SoundSystem *soundSys = SoundSystem_Get();
 
-    soundSys->unk_BCD48 = 0;
+    soundSys->unused1 = 0;
     sSoundSystemState = state;
 }
 
@@ -234,14 +232,14 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->pokemonCryDurationTask;
     case SOUND_SYSTEM_PARAM_CHATOT_CRY:
         return &soundSys->chatotCry;
-    case 37:
-        return &soundSys->unk_BCD9C[0];
-    case 38:
-        return &soundSys->unk_BCD9C[1];
-    case 39:
-        return &soundSys->unk_BCD9C[2];
-    case 40:
-        return &soundSys->unk_BCD9C[3];
+    case SOUND_SYSTEM_PARAM_UNUSED_37:
+        return &soundSys->chatotCryUnused[0];
+    case SOUND_SYSTEM_PARAM_UNUSED_38:
+        return &soundSys->chatotCryUnused[1];
+    case SOUND_SYSTEM_PARAM_UNUSED_39:
+        return &soundSys->chatotCryUnused[2];
+    case SOUND_SYSTEM_PARAM_UNUSED_40:
+        return &soundSys->chatotCryUnused[3];
     case SOUND_SYSTEM_PARAM_CRY_A_MOD:
         return &soundSys->pokemonCryMod[0];
     case SOUND_SYSTEM_PARAM_CRY_A_PAN:
@@ -268,7 +266,7 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->pokemonCryDelay[1];
     case SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES:
         return &soundSys->allowTwoPokemonCries;
-    case 54:
+    case SOUND_SYSTEM_PARAM_54:
         return &soundSys->unk_BCDD3;
     }
 

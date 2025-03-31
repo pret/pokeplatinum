@@ -40,7 +40,7 @@ BOOL Sound_UpdateChatotCry(void)
 BOOL Sound_IsRecordedChatotCryPlayable(const ChatotCry *cry)
 {
     u8 *usingDefaultCry = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_DEFAULT_CHATOT_CRY);
-    u8 *v1 = SoundSystem_GetParam(54);
+    u8 *v1 = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_54);
 
     if (IsChatotCryDataValid(cry) == FALSE) {
         return FALSE;
