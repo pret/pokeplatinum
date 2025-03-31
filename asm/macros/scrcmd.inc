@@ -2911,9 +2911,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_211 arg0
+    .macro SetPlayerHeightCalculationEnabled heightCalculationEnabled
     .short 529
-    .byte \arg0
+    .byte \heightCalculationEnabled
     .endm
 
     .macro ScrCmd_212 arg0, arg1
@@ -3338,13 +3338,13 @@
     .short 603
     .endm
 
-    .macro ScrCmd_25C
+    .macro TriggerPlatformLift
     .short 604
     .endm
 
-    .macro ScrCmd_25D arg0
+    .macro CheckPlatformLiftNotUsedWhenEnteredMap destVarID
     .short 605
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_25E

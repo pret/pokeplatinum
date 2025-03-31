@@ -123,6 +123,7 @@
 #include "party.h"
 #include "pc_boxes.h"
 #include "persisted_map_features_init.h"
+#include "platform_lift.h"
 #include "player_avatar.h"
 #include "poffin.h"
 #include "pokedex.h"
@@ -209,7 +210,6 @@
 #include "unk_0206CCB0.h"
 #include "unk_0206F314.h"
 #include "unk_02070428.h"
-#include "unk_0207160C.h"
 #include "unk_02071D40.h"
 #include "unk_020722AC.h"
 #include "unk_0207DA28.h"
@@ -595,7 +595,7 @@ static BOOL ScrCmd_20D(ScriptContext *ctx);
 static BOOL InitPersistedMapFeaturesForGreatMarsh(ScriptContext *ctx);
 static BOOL ScrCmd_20F(ScriptContext *ctx);
 static BOOL ScrCmd_210(ScriptContext *ctx);
-static BOOL ScrCmd_211(ScriptContext *ctx);
+static BOOL ScrCmd_SetPlayerHeightCalculationEnabled(ScriptContext *ctx);
 static BOOL ScrCmd_GetSpiritombCounter(ScriptContext *ctx);
 static BOOL ScrCmd_ClearSpiritombCounter(ScriptContext *ctx);
 static BOOL ScrCmd_218(ScriptContext *ctx);
@@ -632,8 +632,8 @@ static BOOL ScrCmd_258(ScriptContext *ctx);
 static BOOL ScrCmd_259(ScriptContext *ctx);
 static BOOL ScrCmd_25A(ScriptContext *ctx);
 static BOOL InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx);
-static BOOL ScrCmd_25C(ScriptContext *ctx);
-static BOOL ScrCmd_25D(ScriptContext *ctx);
+static BOOL ScrCmd_TriggerPlatformLift(ScriptContext *ctx);
+static BOOL ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap(ScriptContext *ctx);
 static BOOL ScrCmd_25E(ScriptContext *ctx);
 static BOOL ScrCmd_25F(ScriptContext *ctx);
 static BOOL ScrCmd_260(ScriptContext *ctx);
@@ -1294,7 +1294,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     InitPersistedMapFeaturesForGreatMarsh,
     ScrCmd_20F,
     ScrCmd_210,
-    ScrCmd_211,
+    ScrCmd_SetPlayerHeightCalculationEnabled,
     ScrCmd_212,
     ScrCmd_213,
     ScrCmd_GetSpiritombCounter,
@@ -1369,8 +1369,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_259,
     ScrCmd_25A,
     InitPersistedMapFeaturesForPlatformLift,
-    ScrCmd_25C,
-    ScrCmd_25D,
+    ScrCmd_TriggerPlatformLift,
+    ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap,
     ScrCmd_25E,
     ScrCmd_25F,
     ScrCmd_260,
@@ -6383,12 +6383,12 @@ static BOOL ScrCmd_210(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_211(ScriptContext *ctx)
+static BOOL ScrCmd_SetPlayerHeightCalculationEnabled(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
+    u8 heightCalculationEnabled = ScriptContext_ReadByte(ctx);
 
-    sub_0205ED2C(ctx->fieldSystem->playerAvatar, v0);
-    return 1;
+    PlayerAvatar_SetHeightCalculationEnabled(ctx->fieldSystem->playerAvatar, heightCalculationEnabled);
+    return TRUE;
 }
 
 static BOOL ScrCmd_GetSpiritombCounter(ScriptContext *ctx)
@@ -6752,23 +6752,23 @@ static BOOL InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_25C(ScriptContext *ctx)
+static BOOL ScrCmd_TriggerPlatformLift(ScriptContext *ctx)
 {
-    sub_0207183C(ctx->fieldSystem);
-    return 1;
+    PlatformLift_Trigger(ctx->fieldSystem);
+    return TRUE;
 }
 
-static BOOL ScrCmd_25D(ScriptContext *ctx)
+static BOOL ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    if (sub_02071818(ctx->fieldSystem)) {
-        (*v0) = 1;
+    if (PlatformLift_WasNotUsedWhenEnteredMap(ctx->fieldSystem)) {
+        *destVar = TRUE;
     } else {
-        (*v0) = 0;
+        *destVar = FALSE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_25E(ScriptContext *ctx)
