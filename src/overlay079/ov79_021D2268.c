@@ -694,7 +694,7 @@ static int ov79_021D2AF0(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
 static int ov79_021D2B3C(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B4 *param1)
 {
-    if (sub_0200598C()) {
+    if (Sound_IsPokemonCryPlaying()) {
         return 3;
     }
 

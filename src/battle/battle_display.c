@@ -4770,7 +4770,7 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
         v0->unk_66++;
     }
     case 5:
-        if (sub_0200598C() == 0) {
+        if (Sound_IsPokemonCryPlaying() == 0) {
             v0->unk_66++;
         }
         break;

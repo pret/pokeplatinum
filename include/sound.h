@@ -14,6 +14,9 @@
 #define SOUND_VOLUME_MIN    0
 #define SOUND_VOLUME_MAX    127
 
+// Used to set pitch
+#define SOUND_SEMITONES(STEPS)  ((int)((STEPS) * 64))
+
 #define WAVE_OUT_SPEED(SPEED) (int)((SPEED) * 32768)
 
 #define WAVE_OUT_PAN_LEFT   0

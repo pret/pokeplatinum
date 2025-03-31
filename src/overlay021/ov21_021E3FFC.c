@@ -822,7 +822,7 @@ static void ov21_021E4C68(UnkStruct_ov21_021E4898 *param0, UnkStruct_ov21_021E40
 
     memset(param0->unk_0C, 0, sizeof(u8) * 9);
 
-    if (sub_0200598C() != 0) {
+    if (Sound_IsPokemonCryPlaying() != 0) {
         sub_020051D0(param0->unk_00, param0->unk_0C, 9, v0);
     }
 }

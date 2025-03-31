@@ -66,11 +66,11 @@ void SoundSystem_Update()
     CheckMicRecordingStatus();
 
     for (int i = 0; i < 2; i++) {
-        if (soundSys->unk_BCDD0[i] != 0) {
-            soundSys->unk_BCDD0[i]--;
+        if (soundSys->pokemonCryDelay[i] != 0) {
+            soundSys->pokemonCryDelay[i]--;
 
-            if (soundSys->unk_BCDD0[i] == 0) {
-                Sound_PlayPokemonCryEx(soundSys->unk_BCDAC[i], soundSys->unk_BCDCC[i], soundSys->unk_BCDB4[i], soundSys->unk_BCDBC[i], soundSys->unk_BCDC4[i], 0);
+            if (soundSys->pokemonCryDelay[i] == 0) {
+                Sound_PlayPokemonCryEx(soundSys->pokemonCryMod[i], soundSys->pokemonCryWaveID[i], soundSys->pokemonCryPan[i], soundSys->pokemonCryVolume[i], soundSys->pokemonCryHeapID[i], 0);
             }
         }
     }
@@ -156,8 +156,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
     switch (param) {
     case SOUND_SYSTEM_PARAM_BGM_FIXED:
         return &soundSys->bgmFixed;
-    case 6:
-        return &soundSys->unk_BCD4B;
+    case SOUND_SYSTEM_PARAM_ACTIVE_CRY:
+        return &soundSys->activePokemonCry;
     case SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_HANDLE:
         return &soundSys->waveOutHandles[0];
     case SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_HANDLE:
@@ -224,8 +224,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->unk_BCD88;
     case SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER:
         return &soundSys->waveOutReverseBuffer;
-    case 35:
-        return &soundSys->unk_BCD94;
+    case SOUND_SYSTEM_PARAM_CRY_DURATION_TASK:
+        return &soundSys->pokemonCryDurationTask;
     case SOUND_SYSTEM_PARAM_CHATOT_CRY:
         return &soundSys->chatotCry;
     case 37:
@@ -236,30 +236,30 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->unk_BCD9C[2];
     case 40:
         return &soundSys->unk_BCD9C[3];
-    case 41:
-        return &soundSys->unk_BCDAC[0];
-    case 42:
-        return &soundSys->unk_BCDB4[0];
-    case 43:
-        return &soundSys->unk_BCDBC[0];
-    case 44:
-        return &soundSys->unk_BCDC4[0];
-    case 45:
-        return &soundSys->unk_BCDCC[0];
-    case 46:
-        return &soundSys->unk_BCDD0[0];
-    case 47:
-        return &soundSys->unk_BCDAC[1];
-    case 48:
-        return &soundSys->unk_BCDB4[1];
-    case 49:
-        return &soundSys->unk_BCDBC[1];
-    case 50:
-        return &soundSys->unk_BCDC4[1];
-    case 51:
-        return &soundSys->unk_BCDCC[1];
-    case 52:
-        return &soundSys->unk_BCDD0[1];
+    case SOUND_SYSTEM_PARAM_CRY_A_MOD:
+        return &soundSys->pokemonCryMod[0];
+    case SOUND_SYSTEM_PARAM_CRY_A_PAN:
+        return &soundSys->pokemonCryPan[0];
+    case SOUND_SYSTEM_PARAM_CRY_A_VOLUME:
+        return &soundSys->pokemonCryVolume[0];
+    case SOUND_SYSTEM_PARAM_CRY_A_HEAP_ID:
+        return &soundSys->pokemonCryHeapID[0];
+    case SOUND_SYSTEM_PARAM_CRY_A_WAVE_ID:
+        return &soundSys->pokemonCryWaveID[0];
+    case SOUND_SYSTEM_PARAM_CRY_A_DELAY:
+        return &soundSys->pokemonCryDelay[0];
+    case SOUND_SYSTEM_PARAM_CRY_B_MOD:
+        return &soundSys->pokemonCryMod[1];
+    case SOUND_SYSTEM_PARAM_CRY_B_PAN:
+        return &soundSys->pokemonCryPan[1];
+    case SOUND_SYSTEM_PARAM_CRY_B_VOLUME:
+        return &soundSys->pokemonCryVolume[1];
+    case SOUND_SYSTEM_PARAM_CRY_B_HEAP_ID:
+        return &soundSys->pokemonCryHeapID[1];
+    case SOUND_SYSTEM_PARAM_CRY_B_WAVE_ID:
+        return &soundSys->pokemonCryWaveID[1];
+    case SOUND_SYSTEM_PARAM_CRY_B_DELAY:
+        return &soundSys->pokemonCryDelay[1];
     case SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES:
         return &soundSys->allowTwoPokemonCries;
     case 54:

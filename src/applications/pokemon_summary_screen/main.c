@@ -1189,7 +1189,7 @@ static void PlayMonCry(PokemonSummaryScreen *summaryScreen)
     if (summaryScreen->monData.species == SPECIES_CHATOT) {
         Sound_PlayDelayedChatotCry(summaryScreen->data->chatotCry, 0, 100, 0, cryDelay);
     } else {
-        sub_0200590C(summaryScreen->monData.species, cryDelay, summaryScreen->monData.form);
+        Sound_PlayDelayedPokemonCry(summaryScreen->monData.species, cryDelay, summaryScreen->monData.form);
     }
 }
 

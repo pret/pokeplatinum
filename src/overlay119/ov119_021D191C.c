@@ -133,7 +133,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
         }
     } break;
     case 8:
-        if (sub_0200598C() != 0) {
+        if (Sound_IsPokemonCryPlaying() != 0) {
             break;
         }
 
@@ -283,7 +283,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         GF_ASSERT(0);
         break;
     case 8:
-        if (sub_0200598C() != 0) {
+        if (Sound_IsPokemonCryPlaying() != 0) {
             break;
         }
 

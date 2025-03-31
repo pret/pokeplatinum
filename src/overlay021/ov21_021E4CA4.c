@@ -312,7 +312,7 @@ static int ov21_021E4E00(UnkStruct_ov21_021E6A68 *param0, void *param1)
     v0->unk_0C = v1->unk_3C;
 
     if (ov21_021E33AC(v0->unk_08)) {
-        if (sub_0200598C() == 0) {
+        if (Sound_IsPokemonCryPlaying() == 0) {
             if (v1->unk_64 == 0) {
                 ov21_021E5E18(v1);
             }
@@ -1284,7 +1284,7 @@ static void ov21_021E5E48(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D
 {
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
-    if (sub_0200598C() == 0) {
+    if (Sound_IsPokemonCryPlaying() == 0) {
         param0->unk_68--;
 
         if (param0->unk_68 == 0) {

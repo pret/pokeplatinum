@@ -4339,7 +4339,7 @@ void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16
     if (species == SPECIES_CHATOT) {
         if (Sound_CanPlayChatotCry(cryMod) == FALSE) {
             Sound_FlagDefaultChatotCry(TRUE);
-            Sound_PlayDelayedPokemonCry(cryMod, species, pan, volume, heapID, delay, form);
+            Sound_PlayDelayedPokemonCryEx(cryMod, species, pan, volume, heapID, delay, form);
         } else {
             if (forceDefaultChatot) {
                 Sound_FlagDefaultChatotCry(TRUE);
@@ -4351,7 +4351,7 @@ void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16
         return;
     }
 
-    Sound_PlayDelayedPokemonCry(cryMod, species, pan, volume, heapID, delay, form);
+    Sound_PlayDelayedPokemonCryEx(cryMod, species, pan, volume, heapID, delay, form);
 }
 
 BOOL Pokemon_IsEligibleForAction(Pokemon *mon)

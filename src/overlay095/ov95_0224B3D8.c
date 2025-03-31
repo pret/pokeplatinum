@@ -362,7 +362,7 @@ static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
                 u8 delay;
 
                 PokeSprite_LoadCryDelay(param0->unk_84, &delay, ov95_02247660(param0->unk_00), 1);
-                sub_0200590C(ov95_02247660(param0->unk_00), delay, ov95_02247668(param0->unk_00));
+                Sound_PlayDelayedPokemonCry(ov95_02247660(param0->unk_00), delay, ov95_02247668(param0->unk_00));
                 PokemonSprite_InitAnim(param0->unk_14, 1);
             }
 

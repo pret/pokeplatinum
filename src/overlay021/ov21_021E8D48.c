@@ -685,7 +685,7 @@ static void ov21_021E9828(SysTask *param0, void *param1)
         v0->unk_21C++;
         break;
     case 3:
-        if (sub_0200598C() == 0) {
+        if (Sound_IsPokemonCryPlaying() == 0) {
             v0->unk_21C++;
         }
         break;

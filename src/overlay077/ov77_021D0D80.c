@@ -277,7 +277,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
             StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, v0->heapID);
         }
 
-        if ((sub_0200598C() == 0) && (IsScreenTransitionDone() == 1) && (v0->unk_4FC >= 10)) {
+        if ((Sound_IsPokemonCryPlaying() == 0) && (IsScreenTransitionDone() == 1) && (v0->unk_4FC >= 10)) {
             Sound_StopBGM(1173, 0);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);

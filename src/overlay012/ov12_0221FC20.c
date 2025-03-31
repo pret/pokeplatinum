@@ -3799,7 +3799,7 @@ static void ov12_02223134(UnkStruct_ov12_0221FCDC *param0)
 {
     int v0;
 
-    if (sub_0200598C() == 0) {
+    if (Sound_IsPokemonCryPlaying() == 0) {
         param0->unk_18 += 1;
         v0 = inline_ov12_022204C4(param0->unk_18);
         param0->unk_18 += 1;
