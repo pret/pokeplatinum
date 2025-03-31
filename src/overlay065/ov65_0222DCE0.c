@@ -758,7 +758,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_0222EBE0), HEAP_ID_54);
 
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov65_0222EBE0));
-        VramTransfer_New(32, 54);
+        VramTransfer_New(32, HEAP_ID_54);
 
         v0->unk_180 = 8;
         v0->unk_160 = v1->unk_00;
@@ -1477,7 +1477,7 @@ static void ov65_0222EDD0(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    PlttTransfer_Init(20, 54);
+    PlttTransfer_Init(20, HEAP_ID_54);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
@@ -1491,12 +1491,12 @@ static void ov65_0222EE18(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 54);
 
-    param0->unk_18C = SpriteList_InitRendering(8, &param0->unk_190, 54);
+    param0->unk_18C = SpriteList_InitRendering(8, &param0->unk_190, HEAP_ID_54);
 
     SetSubScreenViewRect(&param0->unk_190, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_31C[v0] = SpriteResourceCollection_New(1, v0, 54);
+        param0->unk_31C[v0] = SpriteResourceCollection_New(1, v0, HEAP_ID_54);
     }
 
     param0->unk_32C = sub_02012744(1, HEAP_ID_54);

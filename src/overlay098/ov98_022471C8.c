@@ -303,7 +303,7 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_04 = BgConfig_New(HEAP_ID_109);
 
-    VramTransfer_New(64, 109);
+    VramTransfer_New(64, HEAP_ID_109);
     SetAutorepeat(4, 8);
     ov98_02247510(v0->unk_04);
     sub_0201E3D8();

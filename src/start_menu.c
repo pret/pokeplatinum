@@ -1130,7 +1130,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         v11 = SaveData_GetBag(fieldSystem->saveData);
         v12 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        menu->unk_25C = sub_0207D824(v11, Unk_020EA020, 11);
+        menu->unk_25C = sub_0207D824(v11, Unk_020EA020, HEAP_ID_FIELDMAP);
 
         sub_0207CB2C(menu->unk_25C, fieldSystem->saveData, 1, fieldSystem->unk_98);
 

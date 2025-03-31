@@ -142,7 +142,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
         v0->unk_40 = 0;
         memset(v0->unk_84, 0, sizeof(u8) * 4);
 
-        VramTransfer_New(32, 99);
+        VramTransfer_New(32, HEAP_ID_99);
         ov115_02265A24(v0);
 
         v0->unk_80 = 1;

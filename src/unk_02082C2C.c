@@ -26,7 +26,7 @@ void sub_02082C2C(GameWindowLayout *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    VramTransfer_New(32, 12);
+    VramTransfer_New(32, HEAP_ID_12);
 
     param0->unk_5A8 = SpriteSystem_Alloc(12);
     param0->unk_5AC = SpriteManager_New(param0->unk_5A8);

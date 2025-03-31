@@ -290,7 +290,7 @@ void *sub_0203D20C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
     void *v1;
 
     v0 = SaveData_GetBag(fieldSystem->saveData);
-    v1 = sub_0207D824(v0, Unk_020EA164, 11);
+    v1 = sub_0207D824(v0, Unk_020EA164, HEAP_ID_FIELDMAP);
 
     sub_0207CB2C(v1, fieldSystem->saveData, 0, fieldSystem->unk_98);
     sub_0207CB78(v1, fieldSystem->mapLoadType);
@@ -324,7 +324,7 @@ void *sub_0203D264(FieldSystem *fieldSystem, int param1)
         GF_ASSERT(0);
     }
 
-    v0 = sub_0207D824(v4, v1, 32);
+    v0 = sub_0207D824(v4, v1, HEAP_ID_FIELD_TASK);
 
     sub_0207CB2C(v0, fieldSystem->saveData, 3, fieldSystem->unk_98);
     sub_0203D1E4(fieldSystem, v0);

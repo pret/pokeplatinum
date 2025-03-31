@@ -142,7 +142,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     }
 
     v0->unk_D4.unk_10 = BgConfig_New(HEAP_ID_53);
-    VramTransfer_New(64, 53);
+    VramTransfer_New(64, HEAP_ID_53);
     v0->unk_D4.unk_14 = PaletteData_New(HEAP_ID_53);
     PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, 1);
     PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, HEAP_ID_53);
