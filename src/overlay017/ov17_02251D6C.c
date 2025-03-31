@@ -657,7 +657,7 @@ static void ov17_0225266C(SysTask *param0, void *param1)
         v0->unk_10++;
         break;
     case 5:
-        if (sub_0200598C() == 0) {
+        if (Sound_IsPokemonCryPlaying() == 0) {
             v0->unk_10++;
         }
         break;

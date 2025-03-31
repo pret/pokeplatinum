@@ -55,8 +55,8 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_REVERB_BUFFER,                   // The buffer used for reverb
 
     SOUND_SYSTEM_PARAM_BGM_FIXED = 5,                   // Determines if the BGM can be changed right now
-
-    SOUND_SYSTEM_PARAM_FADE_COUNTER = 7,                // A counter used to track how many frames are left in a fade operation
+    SOUND_SYSTEM_PARAM_ACTIVE_CRY,                      // Whether CRY_A or CRY_B params should be used for new cries
+    SOUND_SYSTEM_PARAM_FADE_COUNTER,                    // A counter used to track how many frames are left in a fade operation
     SOUND_SYSTEM_PARAM_FOLLOW_UP_WAIT_FRAMES,           // Keeps track of how many frames are let until the next BGM is played
     SOUND_SYSTEM_PARAM_FOLLOW_UP_FADE_FRAMES,           // Keeps track of how many frames the next BGM should be faded in for
     SOUND_SYSTEM_PARAM_CURRENT_BGM,                     // The current BGM ID
@@ -90,10 +90,24 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_FIELD_BGM = 32,                  // Currently active field BGM
 
     SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER = 34,    // The buffer used for reversed waveform playback
+    SOUND_SYSTEM_PARAM_CRY_DURATION_TASK,               // SysTask used to limit the duration of pokemon cries
+    SOUND_SYSTEM_PARAM_CHATOT_CRY,                      // The users ChatotCry structure
 
-    SOUND_SYSTEM_PARAM_CHATOT_CRY = 36,                 // The users ChatotCry structure
+    SOUND_SYSTEM_PARAM_CRY_A_MOD = 41,
+    SOUND_SYSTEM_PARAM_CRY_A_PAN,
+    SOUND_SYSTEM_PARAM_CRY_A_VOLUME,
+    SOUND_SYSTEM_PARAM_CRY_A_HEAP_ID,
+    SOUND_SYSTEM_PARAM_CRY_A_WAVE_ID,
+    SOUND_SYSTEM_PARAM_CRY_A_DELAY,
 
-    SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES = 53,      // Whether to allow 2 simultaneous pokemon cries playing
+    SOUND_SYSTEM_PARAM_CRY_B_MOD,
+    SOUND_SYSTEM_PARAM_CRY_B_PAN,
+    SOUND_SYSTEM_PARAM_CRY_B_VOLUME,
+    SOUND_SYSTEM_PARAM_CRY_B_HEAP_ID,
+    SOUND_SYSTEM_PARAM_CRY_B_WAVE_ID,
+    SOUND_SYSTEM_PARAM_CRY_B_DELAY,
+
+    SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES,           // Whether to allow 2 simultaneous pokemon cries playing
 };
 
 typedef struct SoundSystem {
@@ -107,7 +121,7 @@ typedef struct SoundSystem {
     UnkStruct_020052C8 unk_BCD2C;
     u16 unk_BCD48;
     u8 bgmFixed; // BGM can't change if this is set
-    u8 unk_BCD4B;
+    u8 activePokemonCry;
     int fadeCounter;
     int followUpWaitFrames;
     int followUpFadeFrames;
@@ -131,15 +145,15 @@ typedef struct SoundSystem {
     const SNDWaveData *unk_BCD88;
     void *waveOutReverseBuffer;
     int unk_BCD90;
-    SysTask *unk_BCD94;
+    SysTask *pokemonCryDurationTask;
     ChatotCry *chatotCry;
     ChatotCry *unk_BCD9C[4];
-    int unk_BCDAC[2];
-    int unk_BCDB4[2];
-    int unk_BCDBC[2];
-    int unk_BCDC4[2];
-    u16 unk_BCDCC[2];
-    u8 unk_BCDD0[2];
+    int pokemonCryMod[2];
+    int pokemonCryPan[2];
+    int pokemonCryVolume[2];
+    int pokemonCryHeapID[2];
+    u16 pokemonCryWaveID[2];
+    u8 pokemonCryDelay[2];
     u8 allowTwoPokemonCries; // Whether to allow 2 simultaneous pokemon cries or not
     u8 unk_BCDD3;
 } SoundSystem;

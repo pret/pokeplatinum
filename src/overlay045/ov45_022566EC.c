@@ -408,7 +408,7 @@ static void ov45_02256B78(SysTask *param0, void *param1)
             return;
         }
 
-        if (sub_0200598C() == 0) {
+        if (Sound_IsPokemonCryPlaying() == 0) {
             PoketchSystem_PlayCry(294, 0);
         }
 

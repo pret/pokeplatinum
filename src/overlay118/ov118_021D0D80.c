@@ -132,7 +132,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
         v0->unk_00++;
         break;
     case 8:
-        if (sub_0200598C() == 0) {
+        if (Sound_IsPokemonCryPlaying() == 0) {
             v0->unk_00++;
         }
         break;

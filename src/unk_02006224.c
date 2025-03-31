@@ -194,7 +194,7 @@ BOOL Sound_PlayDelayedChatotCry(ChatotCry *param0, u32 param1, int volume, int p
 
     if (v0 == 0) {
         Sound_FlagDefaultChatotCry(TRUE);
-        Sound_PlayDelayedPokemonCry(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELDMAP, delay, 0);
+        Sound_PlayDelayedPokemonCryEx(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELDMAP, delay, 0);
         v0 = 1;
     }
 

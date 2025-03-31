@@ -108,7 +108,7 @@ BOOL ScrCmd_056(ScriptContext *param0)
 
 BOOL ScrCmd_057(ScriptContext *param0)
 {
-    sub_02005588(4, ScriptContext_ReadHalfWord(param0));
+    sub_02005588(SOUND_SCENE_FIELD, ScriptContext_ReadHalfWord(param0));
     return 0;
 }
 
@@ -161,7 +161,7 @@ BOOL ScrCmd_04D(ScriptContext *param0)
 
 static BOOL sub_020484B0(ScriptContext *param0)
 {
-    if (sub_0200598C() == 0) {
+    if (Sound_IsPokemonCryPlaying() == 0) {
         return 1;
     }
 
