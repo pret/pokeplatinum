@@ -461,7 +461,7 @@ static void ov17_0223E09C(void *param0)
         u32 v1, v2;
 
         v0->unk_107C++;
-        v1 = sub_020051C4(7);
+        v1 = Sound_GetTicksForHandle(7);
         v2 = v0->unk_A3C.unk_28 * v1;
         v2 += 10000 / 2;
         v2 /= 10000;

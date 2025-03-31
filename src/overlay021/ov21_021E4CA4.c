@@ -287,7 +287,7 @@ static int ov21_021E4DC0(UnkStruct_ov21_021E6A68 *param0, void *param1)
     ov21_021E5128(v1, v0, param0->heapID);
     ov21_021E51DC(v1, v0);
 
-    v1->unk_6C = sub_020050F8(species);
+    v1->unk_6C = Sound_LoadPokedexDataForSpecies(species);
 
     param0->unk_08 = v1;
 
@@ -1063,7 +1063,7 @@ static void ov21_021E5AD8(UnkStruct_ov21_021E51DC *param0)
         }
 
         if (param0->unk_50 != 2) {
-            sub_02004EFC();
+            Sound_StartFilter();
             param0->unk_50 = 2;
         }
 
@@ -1073,10 +1073,10 @@ static void ov21_021E5AD8(UnkStruct_ov21_021E51DC *param0)
             v0 = 1;
         }
 
-        sub_02004F4C(v0);
+        Sound_SetFilterSize(v0);
     } else {
         if (param0->unk_50 == 2) {
-            sub_02004F44();
+            Sound_StopFilter();
         }
 
         if (param0->unk_50 != 1) {
@@ -1106,7 +1106,7 @@ static void ov21_021E5B50(UnkStruct_ov21_021E5004 *param0, const UnkStruct_ov21_
 
 static void ov21_021E5B6C(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4DA4 *param1, const UnkStruct_ov21_021E51DC *param2)
 {
-    int v0 = sub_02005188(1, param2->unk_6C, param2->unk_3C);
+    int v0 = Sound_GetNumberOfPlayedCrySamples(1, param2->unk_6C, param2->unk_3C);
 
     if (v0 == 0) {
         param0->unk_48 = 0;
@@ -1274,7 +1274,7 @@ static void ov21_021E5E28(UnkStruct_ov21_021E51DC *param0)
     }
 
     if (param0->unk_50 == 2) {
-        sub_02004F44();
+        Sound_StopFilter();
     }
 
     param0->unk_50 = 0;

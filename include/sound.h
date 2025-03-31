@@ -15,9 +15,12 @@
 #define SOUND_VOLUME_MAX    127
 
 // Used to set pitch
-#define SOUND_SEMITONES(STEPS)  ((int)((STEPS) * 64))
+#define SOUND_SEMITONE          64
+#define SOUND_SEMITONES(STEPS)  ((int)((STEPS) * SOUND_SEMITONE))
 
 #define WAVE_OUT_SPEED(SPEED) (int)((SPEED) * 32768)
+
+#define SOUND_TEMPO_RATIO(RATIO) (int)((RATIO) * 256)
 
 #define WAVE_OUT_PAN_LEFT   0
 #define WAVE_OUT_PAN_CENTER 64
@@ -38,6 +41,12 @@ enum SoundScene {
 enum WaveOutChannel {
     WAVE_OUT_CHANNEL_PRIMARY = 14,
     WAVE_OUT_CHANNEL_SECONDARY = 15,
+};
+
+enum SoundChannelConfig {
+    SOUND_CHANNEL_CONFIG_DEFAULT = 0,   // Default channel allocation, no reverb
+    SOUND_CHANNEL_CONFIG_TITLE,         // Extra BGM channels allocated, reverb at ~25% volume
+    SOUND_CHANNEL_CONFIG_ENDING,        // Extra BGM channels allocated, reverb at ~12% volume
 };
 
 typedef struct WaveOutParam {
@@ -99,29 +108,29 @@ BOOL Sound_IsCaptureActive(void);
 BOOL Sound_StartReverb(int param0);
 void Sound_StopReverb(int param0);
 void Sound_SetReverbVolume(int param0, int param1);
-BOOL sub_02004EFC(void);
-void sub_02004F44(void);
-void sub_02004F4C(int param0);
+BOOL Sound_StartFilter(void);
+void Sound_StopFilter(void);
+void Sound_SetFilterSize(int param0);
 void Sound_SetPitchForHandle(enum SoundHandleType param0, u16 param1, int param2);
-void sub_02004F7C(u16 param0, u16 param1, int param2);
+void Sound_SetPitchForSequence(u16 param0, u16 param1, int param2);
 void Sound_SetPanForHandle(enum SoundHandleType param0, u16 param1, int param2);
-void sub_02004FA8(int param0, int param1);
-void Sound_SetPlaybackMode(BOOL param0);
+void Sound_SetTempoRatioForHandle(enum SoundHandleType param0, int param1);
+void Sound_SetPlaybackMode(int mode); // See SOUND_PLAYBACK_MODE_*
 void Sound_SetFadeCounter(int frames);
 void Sound_SetFollowUpWaitFrames(int frames);
 BOOL Sound_UpdateFollowUpWaitFrames(void);
 void Sound_SetMasterVolume(int param0);
-void *sub_02005014(void);
+void *Sound_GetWaveBuffer(void);
 void Sound_SetFieldBGMBankState(int state); // See FIELD_BGM_BANK_STATE_*
 BOOL Sound_FadeOutAndPlayBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, u8 bankState, void *unused2);
 BOOL Sound_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, int fadeInFrames, u8 bankState, void *unused2);
-const u8 *sub_020050E0(const SNDWaveData *param0);
-const u32 sub_020050EC(const SNDWaveData *param0);
-const SNDWaveData *sub_020050F8(int param0);
-u32 sub_02005188(int param0, const SNDWaveData *param1, int param2);
-u32 sub_020051C4(int param0);
-void sub_020051D0(const SNDWaveData *param0, u8 *param1, int param2, int param3);
-void sub_020053CC(int param0);
+const u8 *Sound_WaveData_GetSamples(const SNDWaveData *param0);
+const u32 Sound_WaveData_GetLoopLength(const SNDWaveData *param0);
+const SNDWaveData *Sound_LoadPokedexDataForSpecies(int param0);
+u32 Sound_GetNumberOfPlayedCrySamples(int param0, const SNDWaveData *param1, int param2);
+u32 Sound_GetTicksForHandle(enum SoundHandleType param0);
+void Sound_WaveData_AccumulateAmplitudes(const SNDWaveData *param0, u8 *param1, int param2, int param3);
+void Sound_ConfigureBGMChannelsAndReverb(enum SoundChannelConfig param0);
 void Sound_SetPlayerVolume(int playerID, int volume);
 void Sound_Set2PokemonCriesAllowed(BOOL allowed);
 void sub_02005464(BOOL param0);

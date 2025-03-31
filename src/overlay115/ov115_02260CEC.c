@@ -4596,7 +4596,7 @@ static void ov115_022658F8(UnkStruct_ov115_022658E0 *param0, UnkStruct_ov115_022
         v1 = (param0->unk_03 * 150) / 58;
         v1 += 256;
 
-        sub_02004FA8(7, v1);
+        Sound_SetTempoRatioForHandle(7, v1);
 
         if (12 == param0->unk_03) {
             Sound_PlayEffect(SEQ_SE_PL_BALLOON05_2);
@@ -4636,5 +4636,5 @@ static void ov115_022658F8(UnkStruct_ov115_022658E0 *param0, UnkStruct_ov115_022
 
 static void ov115_02265A08(UnkStruct_ov115_022658E0 *param0)
 {
-    sub_02004FA8(7, 256);
+    Sound_SetTempoRatioForHandle(7, 256);
 }

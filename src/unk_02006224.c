@@ -65,7 +65,7 @@ BOOL ProcessAudioInput(const ChatotCry *cry, u32 param1, int volume, int pan)
 {
     u16 v0;
     int v1, v2;
-    s8 *v3 = sub_02005014();
+    s8 *v3 = Sound_GetWaveBuffer();
     u8 *v4 = SoundSystem_GetParam(30);
 
     if (IsChatotCryStructReadyForProcessing(cry) == FALSE) {
@@ -90,7 +90,7 @@ BOOL ProcessAudioInput(const ChatotCry *cry, u32 param1, int volume, int pan)
 
         v5.handle = Sound_GetWaveOutHandle(WAVE_OUT_CHANNEL_PRIMARY);
         v5.format = NNS_SND_WAVE_FORMAT_PCM8;
-        v5.data = sub_02005014();
+        v5.data = Sound_GetWaveBuffer();
         v5.loop = FALSE;
         v5.loopStartSample = 0;
         v5.samples = (2000 * 1);
@@ -128,7 +128,7 @@ MICResult StartMicSampling(void)
     MICAutoParam v0;
 
     v0.type = MIC_SAMPLING_TYPE_SIGNED_8BIT;
-    v0.buffer = sub_02005014();
+    v0.buffer = Sound_GetWaveBuffer();
     v0.size = (2000 * 1);
 
     if ((v0.size & 0x1f) != 0) {
@@ -150,7 +150,7 @@ MICResult StopMicSampling(void)
 
 void StoreMicDataInChatotCryStruct(ChatotCry *param0)
 {
-    StoreProcessedAudioInChatotCryData(param0, (const s8 *)sub_02005014());
+    StoreProcessedAudioInChatotCryData(param0, (const s8 *)Sound_GetWaveBuffer());
     return;
 }
 

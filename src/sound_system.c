@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_020052C8.h"
 
 #include "generated/sdat.h"
 
@@ -26,7 +25,7 @@ static void SoundSystem_StopBGM();
 
 static SoundSystem sSoundSystem;
 static int sSoundSystemState;
-static NNSSndCaptureOutputEffectType Unk_02101DF4;
+static NNSSndCaptureOutputEffectType sOutputEffectType;
 
 void SoundSystem_Init(ChatotCry *chatotCry, Options *options)
 {
@@ -45,7 +44,7 @@ void SoundSystem_Init(ChatotCry *chatotCry, Options *options)
     SoundSystem_InitSoundHandles(soundSys);
     SoundSystem_LoadPersistentGroup(soundSys);
 
-    Unk_02101DF4 = NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL;
+    sOutputEffectType = NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL;
     soundSys->chatotCry = chatotCry;
 
     Sound_SetPlaybackMode(options->soundMode);
@@ -70,7 +69,14 @@ void SoundSystem_Update()
             soundSys->pokemonCryDelay[i]--;
 
             if (soundSys->pokemonCryDelay[i] == 0) {
-                Sound_PlayPokemonCryEx(soundSys->pokemonCryMod[i], soundSys->pokemonCryWaveID[i], soundSys->pokemonCryPan[i], soundSys->pokemonCryVolume[i], soundSys->pokemonCryHeapID[i], 0);
+                Sound_PlayPokemonCryEx(
+                    soundSys->pokemonCryMod[i], 
+                    soundSys->pokemonCryWaveID[i], 
+                    soundSys->pokemonCryPan[i], 
+                    soundSys->pokemonCryVolume[i], 
+                    soundSys->pokemonCryHeapID[i], 
+                    0
+                );
             }
         }
     }
@@ -164,10 +170,10 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->waveOutHandles[1];
     case SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO:
         return &soundSys->currentBankInfo;
-    case SOUND_SYSTEM_PARAM_REVERB_BUFFER:
-        return &soundSys->reverbBuffer;
-    case 4:
-        return &soundSys->unk_BCD2C;
+    case SOUND_SYSTEM_PARAM_CAPTURE_BUFFER:
+        return &soundSys->captureBuffer;
+    case SOUND_SYSTEM_PARAM_FILTER_CALLBACK_PARAM:
+        return &soundSys->filterCallbackParam;
     case SOUND_SYSTEM_PARAM_FADE_COUNTER:
         return &soundSys->fadeCounter;
     case SOUND_SYSTEM_PARAM_FOLLOW_UP_WAIT_FRAMES:
@@ -194,8 +200,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->echoEnabled;
     case SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE:
         return &soundSys->fieldBGMBankState;
-    case 20:
-        return &soundSys->unk_BCD65;
+    case SOUND_SYSTEM_PARAM_FILTER_SIZE:
+        return &soundSys->filterSize;
     case SOUND_SYSTEM_PARAM_MAIN_SCENE:
         return &soundSys->mainScene;
     case SOUND_SYSTEM_PARAM_SUB_SCENE:
@@ -220,8 +226,8 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->unk_BCD85;
     case SOUND_SYSTEM_PARAM_FIELD_BGM:
         return &soundSys->currentFieldBGM;
-    case 33:
-        return &soundSys->unk_BCD88;
+    case SOUND_SYSTEM_PARAM_CURRENT_WAVE_DATA:
+        return &soundSys->currentWaveData;
     case SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER:
         return &soundSys->waveOutReverseBuffer;
     case SOUND_SYSTEM_PARAM_CRY_DURATION_TASK:

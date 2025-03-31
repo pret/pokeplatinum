@@ -994,7 +994,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
         v0->unk_14C = 1;
     }
 
-    sub_020053CC(0);
+    Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
     Sound_SetScene(0);
 
     return 1;

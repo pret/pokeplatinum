@@ -466,7 +466,7 @@ BOOL ov100_021D2428(void *param0)
 
         if ((v0->unk_04 == 15) || (v0->unk_04 == 45) || (v0->unk_04 == 75) || (v0->unk_04 == 95) || (v0->unk_04 == 115) || (v0->unk_04 == 130) || (v0->unk_04 == 145)) {
             Sound_PlayEffect(SEQ_SE_PL_W060);
-            sub_02004F7C(1477, 0xffff, (v0->unk_04 / 30 * 32) + (v0->unk_04 % 32 * 10));
+            Sound_SetPitchForSequence(1477, 0xffff, (v0->unk_04 / 30 * 32) + (v0->unk_04 % 32 * 10));
         }
 
         if (v0->unk_1A0.unk_10DC[0].unk_160 == 0) {

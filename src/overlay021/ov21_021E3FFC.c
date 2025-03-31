@@ -224,8 +224,8 @@ static int ov21_021E4120(UnkStruct_ov21_021E6A68 *param0, void *param1)
 
     param0->unk_08 = v1;
 
-    v1->unk_00 = sub_020050F8(species);
-    v1->unk_08 = sub_020050EC(v1->unk_00);
+    v1->unk_00 = Sound_LoadPokedexDataForSpecies(species);
+    v1->unk_08 = Sound_WaveData_GetLoopLength(v1->unk_00);
 
     ov21_021E4898(v1, v0);
 
@@ -616,12 +616,12 @@ static void ov21_021E4894(UnkStruct_ov21_021E4360 *param0)
 static void ov21_021E4898(UnkStruct_ov21_021E4898 *param0, UnkStruct_ov21_021E40F4 *param1)
 {
     int v0 = ov21_021E4D1C(param1->unk_0C);
-    param0->unk_04 = sub_02005188(1, param0->unk_00, v0);
+    param0->unk_04 = Sound_GetNumberOfPlayedCrySamples(1, param0->unk_00, v0);
 }
 
 static void ov21_021E48B0(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E4108 *param1, const SNDWaveData *param2, int param3, int param4, int param5, int param6, int param7, int *param8)
 {
-    const u8 *v0 = sub_020050E0(param2);
+    const u8 *v0 = Sound_WaveData_GetSamples(param2);
     int v1;
     int v2;
     int v3;
@@ -823,6 +823,6 @@ static void ov21_021E4C68(UnkStruct_ov21_021E4898 *param0, UnkStruct_ov21_021E40
     memset(param0->unk_0C, 0, sizeof(u8) * 9);
 
     if (Sound_IsPokemonCryPlaying() != 0) {
-        sub_020051D0(param0->unk_00, param0->unk_0C, 9, v0);
+        Sound_WaveData_AccumulateAmplitudes(param0->unk_00, param0->unk_0C, 9, v0);
     }
 }

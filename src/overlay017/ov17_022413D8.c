@@ -958,7 +958,7 @@ void ov17_02241F34(UnkStruct_ov17_0223F88C *param0, int param1, int param2, int 
     }
 
     Sound_PlayEffect(SEQ_SE_DP_CON_003);
-    sub_02004F7C(1761, 0xffff, 64 * (v0 - 1));
+    Sound_SetPitchForSequence(1761, 0xffff, 64 * (v0 - 1));
 }
 
 static void ov17_02242048(ManagedSprite *param0)

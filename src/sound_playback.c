@@ -427,7 +427,7 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int
     }
 
     if (species != WAVE_ARC_PV516_SKY) {
-        if ((species > MAX_SPECIES) || (species == SPECIES_NONE)) {
+        if (species > MAX_SPECIES || species == SPECIES_NONE) {
             species = SPECIES_BULBASAUR;
         }
     }
