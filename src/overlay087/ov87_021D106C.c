@@ -27,7 +27,7 @@
 #include "system.h"
 #include "text.h"
 #include "sound_playback.h"
-#include "unk_02006224.h"
+#include "sound_chatot.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 

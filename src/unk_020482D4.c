@@ -8,7 +8,7 @@
 #include "system.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "unk_02006224.h"
+#include "sound_chatot.h"
 #include "unk_0202CC64.h"
 #include "unk_020553DC.h"
 

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02006224_H
-#define POKEPLATINUM_UNK_02006224_H
+#ifndef POKEPLATINUM_SOUND_CHATOT_H
+#define POKEPLATINUM_SOUND_CHATOT_H
 
 #include "constants/sound.h"
 
@@ -18,4 +18,4 @@ BOOL Sound_PlayDelayedChatotCry(ChatotCry *cry, u32 unused, int volume, int pan,
 int Sound_GetChatterActivationParameter(ChatotCry *cry);
 BOOL Sound_CanPlayChatotCry(enum PokemonCryMod cryMod);
 
-#endif // POKEPLATINUM_UNK_02006224_H
+#endif // POKEPLATINUM_SOUND_CHATOT_H
