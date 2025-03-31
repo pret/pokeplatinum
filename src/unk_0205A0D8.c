@@ -169,7 +169,7 @@ static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
     }
 
     v1->unk_33 = 100;
-    v1->unk_22 = param0->unk_3C;
+    v1->selectedMonSlot = param0->unk_3C;
 
     for (v0 = 0; v0 < 6; v0++) {
         v1->unk_2C[v0] = param0->unk_3D[v0];
@@ -189,7 +189,7 @@ static BOOL sub_0205A258(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 
     MI_CpuCopy8(param0->unk_04->unk_2C, param0->unk_3D, 6);
 
-    switch (param0->unk_04->unk_22) {
+    switch (param0->unk_04->selectedMonSlot) {
     case 7:
         param0->unk_38 = 0;
         break;
@@ -201,7 +201,7 @@ static BOOL sub_0205A258(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
         break;
     }
 
-    param0->unk_3C = param0->unk_04->unk_22;
+    param0->unk_3C = param0->unk_04->selectedMonSlot;
     Heap_FreeToHeap(param0->unk_04);
     param0->unk_04 = NULL;
 

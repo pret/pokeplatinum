@@ -131,7 +131,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     }
 
     param1->unk_A8->unk_1C = fieldSystem;
-    param1->unk_A8->unk_22 = param1->unk_9F;
+    param1->unk_A8->selectedMonSlot = param1->unk_9F;
 
     for (v0 = 0; v0 < 2; v0++) {
         param1->unk_A8->unk_2C[v0] = param1->unk_A1[v0];
@@ -165,7 +165,7 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 {
     int v0;
 
-    switch (param1->unk_A8->unk_22) {
+    switch (param1->unk_A8->selectedMonSlot) {
     case 7:
         *param1->unk_B0 = 4;
         param1->unk_9D = 4;
@@ -179,7 +179,7 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     }
 
     MI_CpuCopy8(param1->unk_A8->unk_2C, param1->unk_A1, 2);
-    param1->unk_9F = param1->unk_A8->unk_22;
+    param1->unk_9F = param1->unk_A8->selectedMonSlot;
     Heap_FreeToHeap(param1->unk_A8);
 
     param1->unk_A8 = NULL;

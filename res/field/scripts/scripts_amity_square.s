@@ -133,8 +133,8 @@ _01B6:
     End
 
 _01CE:
-    ScrCmd_198 0x400A, 0x800C
-    GoToIfEq 0x800C, 0, _026D
+    GetPartyMonSpecies 0x400A, 0x800C
+    GoToIfEq 0x800C, SPECIES_NONE, _026D
     CallIfEq 0x4000, 0, _0C50
     CallIfEq 0x4000, 1, _0D36
     GoToIfEq 0x800C, 0, _026D
@@ -175,7 +175,7 @@ _0299:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     SetVar 0x409D, 0x400A
-    ScrCmd_198 0x400A, 0x409A
+    GetPartyMonSpecies 0x400A, 0x409A
     GoTo _0E48
     End
 
@@ -725,87 +725,87 @@ _0975:
     End
 
 _0994:
-    ScrCmd_1C0 0x800C, 25
+    CheckPartyHasSpecies 0x800C, SPECIES_PIKACHU
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 35
+    CheckPartyHasSpecies 0x800C, SPECIES_CLEFAIRY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 54
+    CheckPartyHasSpecies 0x800C, SPECIES_PSYDUCK
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1A1
+    CheckPartyHasSpecies 0x800C, SPECIES_PACHIRISU
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1A9
+    CheckPartyHasSpecies 0x800C, SPECIES_DRIFLOON
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1AB
+    CheckPartyHasSpecies 0x800C, SPECIES_BUNEARY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1B8
+    CheckPartyHasSpecies 0x800C, SPECIES_HAPPINY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x183
+    CheckPartyHasSpecies 0x800C, SPECIES_TURTWIG
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x184
+    CheckPartyHasSpecies 0x800C, SPECIES_GROTLE
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x185
+    CheckPartyHasSpecies 0x800C, SPECIES_TORTERRA
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x186
+    CheckPartyHasSpecies 0x800C, SPECIES_CHIMCHAR
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x187
+    CheckPartyHasSpecies 0x800C, SPECIES_MONFERNO
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x188
+    CheckPartyHasSpecies 0x800C, SPECIES_INFERNAPE
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x189
+    CheckPartyHasSpecies 0x800C, SPECIES_PIPLUP
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x18A
+    CheckPartyHasSpecies 0x800C, SPECIES_PRINPLUP
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x18B
+    CheckPartyHasSpecies 0x800C, SPECIES_EMPOLEON
     GoToIfEq 0x800C, 1, _01B6
     GoTo _0182
     End
 
 _0ACC:
-    ScrCmd_1C0 0x800C, 25
+    CheckPartyHasSpecies 0x800C, SPECIES_PIKACHU
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 35
+    CheckPartyHasSpecies 0x800C, SPECIES_CLEFAIRY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 54
+    CheckPartyHasSpecies 0x800C, SPECIES_PSYDUCK
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1A1
+    CheckPartyHasSpecies 0x800C, SPECIES_PACHIRISU
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1A9
+    CheckPartyHasSpecies 0x800C, SPECIES_DRIFLOON
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1AB
+    CheckPartyHasSpecies 0x800C, SPECIES_BUNEARY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1B8
+    CheckPartyHasSpecies 0x800C, SPECIES_HAPPINY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 39
+    CheckPartyHasSpecies 0x800C, SPECIES_JIGGLYPUFF
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0xFF
+    CheckPartyHasSpecies 0x800C, SPECIES_TORCHIC
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x12C
+    CheckPartyHasSpecies 0x800C, SPECIES_SKITTY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x11D
+    CheckPartyHasSpecies 0x800C, SPECIES_SHROOMISH
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x183
+    CheckPartyHasSpecies 0x800C, SPECIES_TURTWIG
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x184
+    CheckPartyHasSpecies 0x800C, SPECIES_GROTLE
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x185
+    CheckPartyHasSpecies 0x800C, SPECIES_TORTERRA
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x186
+    CheckPartyHasSpecies 0x800C, SPECIES_CHIMCHAR
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x187
+    CheckPartyHasSpecies 0x800C, SPECIES_MONFERNO
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x188
+    CheckPartyHasSpecies 0x800C, SPECIES_INFERNAPE
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x189
+    CheckPartyHasSpecies 0x800C, SPECIES_PIPLUP
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x18A
+    CheckPartyHasSpecies 0x800C, SPECIES_PRINPLUP
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x18B
+    CheckPartyHasSpecies 0x800C, SPECIES_EMPOLEON
     GoToIfEq 0x800C, 1, _01B6
     GoTo _01A3
     End
 
 _0C50:
-    ScrCmd_198 0x400A, 0x800C
+    GetPartyMonSpecies 0x400A, 0x800C
     GoToIfEq 0x800C, 25, _0D2E
     GoToIfEq 0x800C, 35, _0D2E
     GoToIfEq 0x800C, 54, _0D2E
@@ -830,7 +830,7 @@ _0D2E:
     Return
 
 _0D36:
-    ScrCmd_198 0x400A, 0x800C
+    GetPartyMonSpecies 0x400A, 0x800C
     GoToIfEq 0x800C, 25, _0D2E
     GoToIfEq 0x800C, 35, _0D2E
     GoToIfEq 0x800C, 54, _0D2E

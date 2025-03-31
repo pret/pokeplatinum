@@ -14,7 +14,7 @@ _000C:
     FacePlayer
     GoToIfUnset FLAG_UNK_0x0117, _00FE
     CallIfUnset FLAG_UNK_0x0001, _00F6
-    ScrCmd_1C0 0x800C, 201
+    CheckPartyHasSpecies 0x800C, SPECIES_UNOWN
     GoToIfEq 0x800C, 1, _0048
     Message 0
     WaitABXPadPress
@@ -23,8 +23,8 @@ _000C:
     End
 
 _0048:
-    ScrCmd_2DD 0x8004, 201
-    ScrCmd_095 0x8004, 0x8006
+    FindPartySlotWithSpecies 0x8004, SPECIES_UNOWN
+    GetPartyMonForm 0x8004, 0x8006
     GoToIfEq 0x4000, 0x8006, _00EB
     GoTo _0067
 

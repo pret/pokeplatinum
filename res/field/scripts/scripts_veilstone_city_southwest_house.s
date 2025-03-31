@@ -21,13 +21,13 @@ _000E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    ScrCmd_193 0x4000
+    GetSelectedPartySlot 0x4000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x4000, 0xFF, _00EB
-    ScrCmd_198 0x4000, 0x800C
-    GoToIfEq 0x800C, 0, _00E0
+    GetPartyMonSpecies 0x4000, 0x800C
+    GoToIfEq 0x800C, SPECIES_NONE, _00E0
     Message 3
     CloseMessage
     FadeScreen 6, 1, 0, 0

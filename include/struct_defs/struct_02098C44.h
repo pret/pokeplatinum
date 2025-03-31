@@ -15,7 +15,7 @@ typedef struct {
     void *unk_1C;
     u8 unk_20;
     u8 unk_21;
-    u8 unk_22;
+    u8 selectedMonSlot;
     u8 unk_23;
     u16 unk_24;
     u16 unk_26;

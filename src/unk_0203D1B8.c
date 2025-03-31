@@ -398,7 +398,7 @@ void *sub_0203D390(FieldSystem *fieldSystem, UnkStruct_02070950 *param1, u8 para
     PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 0);
 
     v0->unk_18 = param1;
-    v0->unk_22 = param2;
+    v0->selectedMonSlot = param2;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
 
@@ -421,20 +421,19 @@ void *sub_0203D3E4(int param0, FieldSystem *fieldSystem)
     return v0;
 }
 
-int sub_0203D408(void *param0)
+int PartyManagementData_GetSelectedSlot(PartyManagementData *partyMan)
 {
-    PartyManagementData *v0 = param0;
-    return v0->unk_22;
+    return partyMan->selectedMonSlot;
 }
 
 void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2)
 {
-    PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 18);
+    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 18);
 
-    v0->unk_22 = param2;
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
+    partyMan->selectedMonSlot = param2;
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    return v0;
+    return partyMan;
 }
 
 int sub_0203D438(void *param0)
@@ -466,7 +465,7 @@ static BOOL sub_0203D444(FieldTask *param0)
         break;
     case 1:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            switch (v1->unk_04->unk_22) {
+            switch (v1->unk_04->selectedMonSlot) {
             case 7:
                 sub_0205BAAC(2);
                 *v2 = 4;
@@ -482,7 +481,7 @@ static BOOL sub_0203D444(FieldTask *param0)
         break;
     case 2:
         v1->unk_08 = sub_0203D670(fieldSystem, v1->heapID, 0);
-        v1->unk_08->monIndex = v1->unk_04->unk_22;
+        v1->unk_08->monIndex = v1->unk_04->selectedMonSlot;
         FieldSystem_OpenSummaryScreen(fieldSystem, v1->unk_08);
         *v2 = 3;
         break;
@@ -524,7 +523,7 @@ void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3,
 {
     PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 13);
 
-    v0->unk_22 = param5;
+    v0->selectedMonSlot = param5;
     v0->unk_29 = 2;
     v0->unk_2A = param2;
 
@@ -566,7 +565,7 @@ void *sub_0203D644(FieldSystem *fieldSystem, int param1)
 {
     PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 21);
 
-    v0->unk_22 = param1;
+    v0->selectedMonSlot = param1;
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
 
     return v0;
@@ -1709,7 +1708,7 @@ PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int para
     v0->unk_21 = 0;
     v0->unk_20 = 5;
     v0->unk_24 = param2;
-    v0->unk_22 = 0;
+    v0->selectedMonSlot = 0;
     v0->unk_1C = fieldSystem;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
@@ -1739,33 +1738,33 @@ void *sub_0203E608(FieldSystem *fieldSystem, int heapID)
     return v0;
 }
 
-static const u8 Unk_020EA15C[] = {
-    0x3,
-    0x5,
-    0x8
+static const u8 sTeachMoveSummaryPages[] = {
+    SUMMARY_PAGE_BATTLE_MOVES,
+    SUMMARY_PAGE_CONTEST_MOVES,
+    SUMMARY_PAGE_MAX
 };
 
-void *sub_0203E63C(int param0, FieldSystem *fieldSystem, u16 param2, u16 param3)
+void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSystem, u16 partySlot, u16 move)
 {
-    PokemonSummary *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
+    PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
-    v0->monData = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), param2);
-    v0->options = SaveData_Options(fieldSystem->saveData);
-    v0->dataType = SUMMARY_DATA_MON;
-    v0->monIndex = 0;
-    v0->monMax = 1;
-    v0->move = param3;
-    v0->mode = SUMMARY_MODE_SELECT_MOVE;
-    v0->specialRibbons = sub_0202D79C(fieldSystem->saveData);
-    v0->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
-    v0->showContest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
-    v0->chatotCry = NULL;
+    summary->monData = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
+    summary->options = SaveData_Options(fieldSystem->saveData);
+    summary->dataType = SUMMARY_DATA_MON;
+    summary->monIndex = 0;
+    summary->monMax = 1;
+    summary->move = move;
+    summary->mode = SUMMARY_MODE_SELECT_MOVE;
+    summary->specialRibbons = sub_0202D79C(fieldSystem->saveData);
+    summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
+    summary->showContest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
+    summary->chatotCry = NULL;
 
-    PokemonSummaryScreen_FlagVisiblePages(v0, Unk_020EA15C);
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
+    PokemonSummaryScreen_FlagVisiblePages(summary, sTeachMoveSummaryPages);
+    PokemonSummaryScreen_SetPlayerProfile(summary, SaveData_GetTrainerInfo(fieldSystem->saveData));
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, summary);
 
-    return v0;
+    return summary;
 }
 
 void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2)

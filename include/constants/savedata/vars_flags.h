@@ -4109,6 +4109,12 @@
 #define FLAG_UNK_0x0FFE                             0x0FFE
 #define FLAG_UNK_0x0FFF                             0x0FFF
 
+#define FLAG_ROTOM_ROOM_HIDE_MICROWAVE_OVEN  0x02BB
+#define FLAG_ROTOM_ROOM_HIDE_WASHING_MACHINE 0x02BC
+#define FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR    0x02BD
+#define FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN      0x02BE
+#define FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER      0x02BF
+
 #define VARS_START 0x4000
 
 #define SYSTEM_VARS_START                     (VARS_START + 0x0030)

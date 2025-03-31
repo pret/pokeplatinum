@@ -265,7 +265,7 @@ _03F5:
     GoToIfEq 0x800C, 0xFF, _07C8
     ScrCmd_31E 0x4005, 0x800C
     GoToIfEq 0x800C, 0xFF, _07C8
-    ScrCmd_198 0x4002, 0x4001
+    GetPartyMonSpecies 0x4002, 0x4001
     GoToIfEq 0x4001, 0, _034D
     ScrCmd_2CC 1, 0x40BB, 0x800C
     GoToIfEq 0x800C, 0, _04F4

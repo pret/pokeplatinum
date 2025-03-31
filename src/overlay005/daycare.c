@@ -108,7 +108,7 @@ static void Daycare_MoveToDaycareMonFromParty(Party *party, int partySlot, Dayca
     }
 
     BoxPokemon_FromPokemon(mon, daycareBoxMon);
-    BoxPokemon_SetShayminForm(daycareBoxMon, 0);
+    BoxPokemon_SetShayminForm(daycareBoxMon, SHAYMIN_FORM_LAND);
     DaycareMon_SetSteps(daycareMon, 0);
     Party_RemovePokemonBySlotIndex(party, partySlot);
 
