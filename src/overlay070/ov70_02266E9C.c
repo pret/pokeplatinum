@@ -22,7 +22,7 @@
 #include "list_menu.h"
 #include "math.h"
 #include "strbuf.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 typedef struct {
     ListMenuTemplate unk_00;

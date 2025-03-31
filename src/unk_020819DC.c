@@ -18,7 +18,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0200C440.h"
 #include "unk_0207E0B8.h"
 #include "unk_02083370.h"

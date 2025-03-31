@@ -12,7 +12,7 @@
 
 #include "field_task.h"
 #include "heap.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02054D00.h"
 
 typedef struct {

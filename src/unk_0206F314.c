@@ -30,7 +30,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0202E840.h"
 
 typedef struct {

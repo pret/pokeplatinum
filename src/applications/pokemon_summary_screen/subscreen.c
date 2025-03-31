@@ -11,7 +11,7 @@
 #include "bg_window.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 #define MAX_BUTTON_ANIM_FRAMES 3
 #define BUTTON_TILE_COUNT      5

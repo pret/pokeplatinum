@@ -15,7 +15,7 @@
 #include "overlay070/struct_ov70_02263344_decl.h"
 
 #include "strbuf.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 typedef struct {
     u32 unk_00;

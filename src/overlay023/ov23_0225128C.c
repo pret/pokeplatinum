@@ -45,7 +45,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_flags.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"

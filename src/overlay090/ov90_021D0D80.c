@@ -30,7 +30,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"

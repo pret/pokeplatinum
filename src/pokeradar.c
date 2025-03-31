@@ -25,7 +25,7 @@
 #include "scrcmd.h"
 #include "script_manager.h"
 #include "special_encounter.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0201CED8.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"

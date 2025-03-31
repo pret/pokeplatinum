@@ -7,7 +7,7 @@
 #include "inlines.h"
 #include "system.h"
 #include "sound.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02006224.h"
 #include "unk_0202CC64.h"
 #include "unk_020553DC.h"

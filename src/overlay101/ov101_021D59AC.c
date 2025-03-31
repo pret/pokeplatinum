@@ -19,7 +19,7 @@
 #include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_020711EC.h"
 
 typedef struct {

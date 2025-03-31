@@ -13,7 +13,7 @@
 
 #include "enums.h"
 #include "heap.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 typedef struct {
     UnkStruct_ov70_022610B8 *unk_00;

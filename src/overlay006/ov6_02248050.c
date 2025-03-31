@@ -19,7 +19,7 @@
 #include "map_object.h"
 #include "narc.h"
 #include "player_avatar.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 typedef struct {
     Easy3DObject unk_00;

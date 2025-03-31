@@ -52,7 +52,7 @@
 #include "system.h"
 #include "text.h"
 #include "sound.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02015064.h"

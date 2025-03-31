@@ -20,7 +20,7 @@
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
 #include "player_avatar.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02054D00.h"
 #include "unk_020655F4.h"
 #include "unk_02068344.h"

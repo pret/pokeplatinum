@@ -27,7 +27,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02014A84.h"
 #include "unk_02027F84.h"
 #include "unk_020366A0.h"

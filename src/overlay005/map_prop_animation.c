@@ -7,7 +7,7 @@
 
 #include "heap.h"
 #include "narc.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 #define ANIME_ARCHIVE_ID_NONE -1
 

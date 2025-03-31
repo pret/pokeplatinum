@@ -58,7 +58,7 @@
 #include "system_data.h"
 #include "trainer_info.h"
 #include "sound.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02014D38.h"
 #include "unk_0202C858.h"
 #include "unk_02030EA4.h"

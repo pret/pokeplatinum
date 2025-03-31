@@ -50,7 +50,7 @@
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02006224.h"
 #include "unk_02015F84.h"
 #include "unk_02017038.h"

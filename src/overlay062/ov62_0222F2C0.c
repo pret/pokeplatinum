@@ -25,7 +25,7 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "system.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0200762C.h"
 #include "unk_02012744.h"
 #include "unk_0201E3D8.h"

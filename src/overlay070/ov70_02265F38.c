@@ -23,7 +23,7 @@
 #include "list_menu.h"
 #include "strbuf.h"
 #include "system.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 

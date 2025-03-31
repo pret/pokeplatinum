@@ -7,7 +7,7 @@
 #include "overlay104/struct_ov104_0222E930_t.h"
 
 #include "sound.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 static BOOL ov104_022390C0(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_022390F8(UnkStruct_ov104_0222E930 *param0);

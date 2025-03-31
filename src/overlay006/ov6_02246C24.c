@@ -13,7 +13,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_matrix.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02054D00.h"
 
 typedef struct {

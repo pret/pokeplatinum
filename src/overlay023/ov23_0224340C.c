@@ -50,7 +50,7 @@
 #include "system_vars.h"
 #include "trainer_info.h"
 #include "sound.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
 #include "unk_02054D00.h"

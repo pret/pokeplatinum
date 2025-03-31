@@ -21,7 +21,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02014000.h"
 #include "unk_0202419C.h"
 #include "unk_0207E0B8.h"

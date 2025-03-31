@@ -29,7 +29,7 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0200C440.h"
 
 static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1);

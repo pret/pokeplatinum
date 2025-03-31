@@ -55,7 +55,7 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_020261E4.h"
 #include "unk_02030EE0.h"
 #include "unk_020366A0.h"

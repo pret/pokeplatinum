@@ -36,7 +36,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
 

@@ -15,7 +15,7 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "map_object.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02020AEC.h"
 #include "unk_020711EC.h"
 

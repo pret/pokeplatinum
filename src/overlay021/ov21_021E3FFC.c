@@ -26,7 +26,7 @@
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "sound.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0200762C.h"
 
 typedef struct {

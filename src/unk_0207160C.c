@@ -17,7 +17,7 @@
 #include "heap.h"
 #include "player_avatar.h"
 #include "savedata_misc.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02027F50.h"
 #include "unk_02054D00.h"
 

@@ -25,7 +25,7 @@ Static main
 	Object main.nef.p/src_palette.c.o
 	Object main.nef.p/src_sound_system.c.o
 	Object main.nef.p/src_sound.c.o
-	Object main.nef.p/src_unk_02005474.c.o
+	Object main.nef.p/src_sound_playback.c.o
 	Object main.nef.p/src_unk_02006224.c.o
 	Object main.nef.p/src_game_overlay.c.o
 	Object main.nef.p/src_unk_0200679C.c.o

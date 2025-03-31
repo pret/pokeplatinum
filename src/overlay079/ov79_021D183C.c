@@ -20,7 +20,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_020158A8.h"
 #include "unk_02098FFC.h"
 

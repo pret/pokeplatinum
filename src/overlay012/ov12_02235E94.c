@@ -32,7 +32,7 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02014000.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
