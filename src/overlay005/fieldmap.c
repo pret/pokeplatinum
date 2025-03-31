@@ -406,7 +406,7 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     }
 
     x = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
-    y = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileY(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Y;
+    y = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
     v0 = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x, y);
     mapId = fieldSystem->location->mapId;
 
@@ -520,7 +520,7 @@ static void ov5_021D13B4(FieldSystem *fieldSystem)
 
     v0 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     v1 = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
-    v2 = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileY(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Y;
+    v2 = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
     v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
     sub_02055740(v0, v1, v2, v3);

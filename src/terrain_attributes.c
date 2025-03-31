@@ -34,7 +34,7 @@ void TerrainAttributes_Free(FieldSystem *fieldSystem)
 const u16 *TerrainAttributes_Get(const u32 mapMatrixIndex, const TerrainAttributes *terrainAttributes)
 {
     u8 blockIndex = terrainAttributes->mapMatrixIndexToBlockIndex[mapMatrixIndex];
-    return &terrainAttributes->terrainAttributes[MAP_TILES_COUNT_X * MAP_TILES_COUNT_Y * blockIndex];
+    return &terrainAttributes->terrainAttributes[MAP_TILES_COUNT_X * MAP_TILES_COUNT_Z * blockIndex];
 }
 
 static void TerrainAttributes_Load(MapMatrix *mapMatrix, TerrainAttributes *terrainAttributes, const u8 blockCount)
@@ -62,7 +62,7 @@ static void TerrainAttributes_Load(MapMatrix *mapMatrix, TerrainAttributes *terr
 
     for (i = 0; i < blockCount; i++) {
         landDataID = blockIndexToLandDataID[i];
-        void *terrainAttributesBlock = &terrainAttributes->terrainAttributes[MAP_TILES_COUNT_X * MAP_TILES_COUNT_Y * i];
+        void *terrainAttributesBlock = &terrainAttributes->terrainAttributes[MAP_TILES_COUNT_X * MAP_TILES_COUNT_Z * i];
 
         NARC_ReadFromMember(landDataNARC, landDataID, TERRAIN_ATTRIBUTES_OFFSET, TERRAIN_ATTRIBUTES_SIZE, terrainAttributesBlock);
     }

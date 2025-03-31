@@ -6,9 +6,9 @@
 
 typedef struct {
     int startTileX;
-    int startTileY;
+    int startTileZ;
     int sizeX;
-    int sizeY;
+    int sizeZ;
     fx32 height;
     BOOL valid;
 } DynamicTerrainHeightPlate;
@@ -19,9 +19,9 @@ typedef struct DynamicTerrainHeightManager {
 } DynamicTerrainHeightManager;
 
 DynamicTerrainHeightManager *DynamicTerrainHeightManager_New(const u8 platesCount, const u8 heapID);
-void DynamicTerrainHeightManager_SetPlate(const u8 index, const int startTileX, const int startTileY, const int sizeX, const int sizeY, const fx32 height, DynamicTerrainHeightManager *dynamicTerrainHeightMan);
+void DynamicTerrainHeightManager_SetPlate(const u8 index, const int startTileX, const int startTileZ, const int sizeX, const int sizeZ, const fx32 height, DynamicTerrainHeightManager *dynamicTerrainHeightMan);
 void DynamicTerrainHeightManager_Free(DynamicTerrainHeightManager *dynamicTerrainHeightMan);
-BOOL DynamicTerrainHeightManager_GetPlateIndexOfTile(const int tileX, const int tileY, const DynamicTerrainHeightManager *dynamicTerrainHeightMan, u8 *index);
+BOOL DynamicTerrainHeightManager_GetPlateIndexOfTile(const int tileX, const int tileZ, const DynamicTerrainHeightManager *dynamicTerrainHeightMan, u8 *index);
 fx32 DynamicTerrainHeightManager_GetHeight(const u8 index, const DynamicTerrainHeightManager *dynamicTerrainHeightMan);
 void DynamicTerrainHeightManager_SetHeight(const u8 index, const fx32 height, DynamicTerrainHeightManager *dynamicTerrainHeightMan);
 
