@@ -24,7 +24,7 @@ void ov97_02237808(UnkStruct_ov97_02237808 *param0, Window *param1, int param2, 
 void ov97_02237858(UnkStruct_ov97_02237808 *param0, int param1, int param2, int param3);
 void ov97_02237860(UnkStruct_ov97_02237808 *param0, int param1, int param2);
 void ov97_02237868(UnkStruct_ov97_02237808 *param0, int param1, int param2);
-int ov97_0223795C(BgConfig *param0, UnkStruct_ov97_02237808 *param1, int param2, int param3, int param4);
+int ov97_0223795C(BgConfig *bgConfig, UnkStruct_ov97_02237808 *param1, int x, int y, int msgEntry);
 int ov97_02237A18(UnkStruct_ov97_02237808 *param0);
 void ov97_02237A20(void);
 BOOL ov97_02237A60(void);

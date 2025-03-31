@@ -52,15 +52,18 @@ FS_EXTERN_OVERLAY(overlay77);
 FS_EXTERN_OVERLAY(overlay97);
 FS_EXTERN_OVERLAY(overlay98);
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-
-    // clang-format off
-    BOOL (* unk_0C)(void *, int, UnkStruct_ov97_02237808 *, int);
-    // clang-format on
-} UnkStruct_ov97_0223E014;
+enum MainMenuOptions {
+    MAIN_MENU_OPTION_RETURN_TO_TITLE = 0,
+    MAIN_MENU_OPTION_CONTINUE,
+    MAIN_MENU_OPTION_NEW_GAME,
+    MAIN_MENU_OPTION_MYSTERY_GIFT,
+    MAIN_MENU_OPTION_LINK_WITH_POKEMON_RANGER,
+    MAIN_MENU_OPTION_GBA_MIGRATOR,
+    MAIN_MENU_OPTION_CONNECT_TO_WII,
+    MAIN_MENU_OPTION_NINTENDO_WFC_SETTINGS,
+    MAIN_MENU_OPTION_WII_MESSAGE_SETTINGS,
+    MAIN_MENU_OPTION_MAX
+};
 
 typedef struct {
     int unk_00;
@@ -81,7 +84,7 @@ typedef struct {
 } UnkStruct_ov97_0223DFB0;
 
 typedef struct {
-    BgConfig *unk_00;
+    BgConfig *bgConfig;
     SaveData *saveData;
     Pokedex *pokedex;
     TrainerInfo *trainerInfo;
@@ -103,10 +106,10 @@ typedef struct {
     BOOL hasPokedex;
     int badgeCount;
     int unk_54;
-    int unk_58;
-    Window unk_5C[8];
-    int unk_DC[8];
-    int unk_FC[8];
+    int selectedOption;
+    Window loadedOptionWindows[MAIN_MENU_OPTION_MAX - 1];
+    int loadedOptionIDs[MAIN_MENU_OPTION_MAX - 1];
+    int unk_FC[MAIN_MENU_OPTION_MAX - 1];
     fx32 unk_11C;
     fx32 unk_120;
     int unk_124;
@@ -116,7 +119,7 @@ typedef struct {
     int unk_134;
     int unk_138;
     Window unk_13C;
-    int unk_14C;
+    BOOL noSaveData;
     int unk_150;
     BOOL unk_154[1];
     Window unk_158;
@@ -124,14 +127,24 @@ typedef struct {
     int unk_170;
 } MainMenu;
 
-static BOOL ov97_0222B768(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-static BOOL ov97_0222B888(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-static BOOL ov97_0222B8E4(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-static BOOL ov97_0222B934(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-static BOOL ov97_0222B978(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-MysteryGift *SaveData_MysteryGift(SaveData *param0);
+typedef struct {
+    int optionID;
+    int height;
+    int messageEntry;
+
+    // clang-format off
+    BOOL (* displayFunc)(MainMenu *, int, UnkStruct_ov97_02237808 *, int); // Function to determine if the option will be displayed
+    // clang-format on
+} MainMenuOptionsData;
+
+static BOOL MainMenu_IsGBAGameConnected(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos);
+static BOOL ov97_0222B7DC(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos);
+static BOOL ov97_0222B888(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos);
+static BOOL ov97_0222B8E4(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos);
+static BOOL MainMenu_LoadText_WFCSettings(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos);
+static BOOL MainMenu_LoadText_WiiMessageSettings(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos);
+static BOOL MainMenu_LoadText_Continue(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos);
+MysteryGift *SaveData_MysteryGift(SaveData *saveData);
 int ov23_0224AC0C(void);
 int TrainerInfo_Size(void);
 
@@ -139,23 +152,23 @@ static UnkStruct_ov97_0223DF54 Unk_ov97_0223DF54[] = {
     { 0x5, 0x5, 0x16, 0xE, 0x2B7, 0x10, NULL }
 };
 
-UnkStruct_ov97_0223E014 Unk_ov97_0223E014[] = {
-    { 0x1, 0xA, 0x0, ov97_0222B5C0 },
-    { 0x2, 0x2, 0x1, NULL },
-    { 0x3, 0x2, 0x2, ov97_0222B7DC },
-    { 0x4, 0x2, 0x3, ov97_0222B888 },
-    { 0x5, 0x2, NULL, ov97_0222B768 },
-    { 0x6, 0x2, 0xA, ov97_0222B8E4 },
-    { 0x7, 0x2, 0xB, ov97_0222B934 },
-    { 0x8, 0x2, 0x14, ov97_0222B978 }
+MainMenuOptionsData sMainMenuOptionsData[] = {
+    { MAIN_MENU_OPTION_CONTINUE, 10, main_menu_continue, MainMenu_LoadText_Continue },
+    { MAIN_MENU_OPTION_NEW_GAME, 2, main_menu_new_game, NULL },
+    { MAIN_MENU_OPTION_MYSTERY_GIFT, 2, main_menu_mystery_gift, ov97_0222B7DC },
+    { MAIN_MENU_OPTION_LINK_WITH_POKEMON_RANGER, 2, main_menu_link_with_pokemon_ranger, ov97_0222B888 },
+    { MAIN_MENU_OPTION_GBA_MIGRATOR, 2, NULL, MainMenu_IsGBAGameConnected },
+    { MAIN_MENU_OPTION_CONNECT_TO_WII, 2, main_menu_connect_to_wii, ov97_0222B8E4 },
+    { MAIN_MENU_OPTION_NINTENDO_WFC_SETTINGS, 2, main_menu_nintendo_wfc_settings, MainMenu_LoadText_WFCSettings },
+    { MAIN_MENU_OPTION_WII_MESSAGE_SETTINGS, 2, main_menu_wii_message_settings, MainMenu_LoadText_WiiMessageSettings }
 };
 
-static u32 Unk_ov97_0223DF40[] = {
-    0x0,
-    0xC,
-    0xD,
-    0xF,
-    0xE
+static u32 sContinueOptionTextEntries[] = {
+    NULL,
+    main_menu_player,
+    main_menu_time,
+    main_menu_badges,
+    main_menu_pokedex,
 };
 
 UnkStruct_ov97_0223DFB0 Unk_ov97_0223DFB0[] = {
@@ -174,33 +187,32 @@ static int ov97_0222AE60(MainMenu *menu)
 
 static BOOL ov97_0222AE64(MainMenu *menu)
 {
-    int v0;
     UnkStruct_ov97_0223DF54 *v1;
     UnkStruct_ov97_02237808 v2;
 
-    if (Window_IsInUse(&menu->unk_158) == 0) {
-        for (v0 = 0; v0 < 1; v0++) {
-            if (menu->unk_154[v0] == 1) {
-                menu->unk_154[v0] = 0;
-                v1 = &Unk_ov97_0223DF54[v0];
+    if (Window_IsInUse(&menu->unk_158) == FALSE) {
+        for (int i = 0; i < 1; i++) {
+            if (menu->unk_154[i] == 1) {
+                menu->unk_154[i] = 0;
+                v1 = &Unk_ov97_0223DF54[i];
 
                 ov97_02237808(&v2, &menu->unk_158, 0, v1->unk_10, 1, 2);
                 ov97_02237858(&v2, v1->unk_08, v1->unk_0C, ((1 + 9) + 9));
-                ov97_0223795C(menu->unk_00, &v2, v1->unk_00, v1->unk_04, v1->unk_14);
-                return 1;
+                ov97_0223795C(menu->bgConfig, &v2, v1->unk_00, v1->unk_04, v1->unk_14);
+                return TRUE;
             }
         }
     } else {
-        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             Window_EraseStandardFrame(&menu->unk_158, 0);
             Window_Remove(&menu->unk_158);
         }
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void ov97_0222AF1C(MainMenu *menu)
@@ -266,7 +278,7 @@ static void ov97_0222AF8C(MainMenu *menu)
         menu->unk_124 = 13;
         menu->unk_40 = 0;
 
-        if (sub_0202DEC4(menu->mysteryGift) == 1) {
+        if (sub_0202DEC4(menu->mysteryGift) == TRUE) {
             menu->unk_40 |= 0x1;
             menu->unk_44 |= 0x1;
         }
@@ -331,8 +343,8 @@ static BOOL ov97_0222B07C(MainMenu *menu)
 
         return 1;
     case 16:
-        LoadStandardWindowGraphics(menu->unk_00, 1, 1, 2, 0, HEAP_ID_MAIN_MENU);
-        Bg_ClearTilemap(menu->unk_00, 1);
+        LoadStandardWindowGraphics(menu->bgConfig, 1, 1, 2, 0, HEAP_ID_MAIN_MENU);
+        Bg_ClearTilemap(menu->bgConfig, 1);
         *((u16 *)HW_BG_PLTT + 33) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
         menu->unk_12C = 17;
         break;
@@ -362,9 +374,9 @@ static BOOL ov97_0222B07C(MainMenu *menu)
         ov97_02237858(&v0, v1->unk_08, v1->unk_0C, ((1 + 9) + 9));
 
         v0.unk_2C = 1;
-        ov97_0223795C(menu->unk_00, &v0, v1->unk_00, v1->unk_04, v1->unk_10);
+        ov97_0223795C(menu->bgConfig, &v0, v1->unk_00, v1->unk_04, v1->unk_10);
 
-        Bg_ChangeTilemapRectPalette(menu->unk_00, 1, Window_GetXPos(v0.unk_10), Window_GetYPos(v0.unk_10), Window_GetWidth(v0.unk_10), Window_GetHeight(v0.unk_10), 0);
+        Bg_ChangeTilemapRectPalette(menu->bgConfig, 1, Window_GetXPos(v0.window), Window_GetYPos(v0.window), Window_GetWidth(v0.window), Window_GetHeight(v0.window), 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
@@ -376,7 +388,7 @@ static BOOL ov97_0222B07C(MainMenu *menu)
         if (menu->unk_134) {
             menu->unk_134--;
         } else {
-            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Window_Remove(&menu->unk_13C);
                 menu->unk_12C = 19;
                 menu->unk_138 = gSystem.pressedKeys;
@@ -417,8 +429,8 @@ static void ov97_0222B25C(MainMenu *menu)
             menu->unk_11C = menu->unk_120;
         }
 
-        Bg_ScheduleScroll(menu->unk_00, 0, 3, menu->unk_11C / FX32_ONE);
-        Bg_ScheduleScroll(menu->unk_00, 2, 3, menu->unk_11C / FX32_ONE);
+        Bg_ScheduleScroll(menu->bgConfig, 0, 3, menu->unk_11C / FX32_ONE);
+        Bg_ScheduleScroll(menu->bgConfig, 2, 3, menu->unk_11C / FX32_ONE);
     }
 }
 
@@ -446,15 +458,15 @@ static void ov97_0222B2EC(MainMenu *menu)
     GXLayers_SetBanks(&v0);
     SetAllGraphicsModes(&v1);
 
-    ov97_022376FC(menu->unk_00, 0, 2, 0xF000, 0x0);
+    ov97_022376FC(menu->bgConfig, 0, 2, 0xF000, 0x0);
     G2_SetBG0Priority(2);
     Bg_ClearTilesRange(0, 32, 0, HEAP_ID_MAIN_MENU);
 
-    ov97_022376FC(menu->unk_00, 1, 1, 0xD800, 0x8000);
+    ov97_022376FC(menu->bgConfig, 1, 1, 0xD800, 0x8000);
     G2_SetBG1Priority(1);
     Bg_ClearTilesRange(1, 32, 0, HEAP_ID_MAIN_MENU);
 
-    ov97_022376FC(menu->unk_00, 2, 2, 0xE000, 0x0);
+    ov97_022376FC(menu->bgConfig, 2, 2, 0xE000, 0x0);
     G2_SetBG2Priority(0);
     Bg_ClearTilesRange(2, 32, 0, HEAP_ID_MAIN_MENU);
 
@@ -465,8 +477,8 @@ static void ov97_0222B2EC(MainMenu *menu)
     *((u16 *)HW_BG_PLTT + 0) = ((0 & 31) << 10 | (0 & 31) << 5 | (0 & 31));
     *((u16 *)HW_BG_PLTT + 31) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
 
-    LoadStandardWindowGraphics(menu->unk_00, 0, 1, 2, 0, HEAP_ID_MAIN_MENU);
-    LoadStandardWindowGraphics(menu->unk_00, 0, (1 + 9), 3, 1, HEAP_ID_MAIN_MENU);
+    LoadStandardWindowGraphics(menu->bgConfig, 0, 1, 2, 0, HEAP_ID_MAIN_MENU);
+    LoadStandardWindowGraphics(menu->bgConfig, 0, (1 + 9), 3, 1, HEAP_ID_MAIN_MENU);
 
     *((u16 *)HW_BG_PLTT + 33) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
 }
@@ -487,12 +499,12 @@ static void ov97_0222B404(MainMenu *menu)
 static void ov97_0222B46C(MainMenu *menu)
 {
     Graphics_LoadPalette(116, 45, 0, 4 * 32, 32 * 1, HEAP_ID_MAIN_MENU);
-    Graphics_LoadTilesToBgLayer(116, 44, menu->unk_00, 2, 0x380, 2 * 32 * 0x20, 0, HEAP_ID_MAIN_MENU);
+    Graphics_LoadTilesToBgLayer(116, 44, menu->bgConfig, 2, 0x380, 2 * 32 * 0x20, 0, HEAP_ID_MAIN_MENU);
 }
 
 static void ov97_0222B4AC(MainMenu *menu, int param1, int param2, int param3)
 {
-    u16 *v0 = (u16 *)Bg_GetTilemapBuffer(menu->unk_00, 2);
+    u16 *v0 = (u16 *)Bg_GetTilemapBuffer(menu->bgConfig, 2);
     int v1 = ((4 << 12) + 0x380 + 0);
 
     if (param3 == 2) {
@@ -507,12 +519,12 @@ static void ov97_0222B4AC(MainMenu *menu, int param1, int param2, int param3)
     v0[param2 * 32 + param1 + 0] = v1 + 8;
     v0[param2 * 32 + param1 + 1] = v1 + 9;
 
-    Bg_CopyTilemapBufferToVRAM(menu->unk_00, 2);
+    Bg_CopyTilemapBufferToVRAM(menu->bgConfig, 2);
 }
 
 static void ov97_0222B4FC(MainMenu *menu, int param1, int param2)
 {
-    u16 *v0 = (u16 *)Bg_GetTilemapBuffer(menu->unk_00, 2);
+    u16 *v0 = (u16 *)Bg_GetTilemapBuffer(menu->bgConfig, 2);
 
     v0[param2 * 32 + param1 + 0] = ((4 << 12) + 0x380 + 0) + 4;
     v0[param2 * 32 + param1 + 1] = ((4 << 12) + 0x380 + 0) + 4;
@@ -522,138 +534,133 @@ static void ov97_0222B4FC(MainMenu *menu, int param1, int param2)
     v0[param2 * 32 + param1 + 0] = ((4 << 12) + 0x380 + 0) + 4;
     v0[param2 * 32 + param1 + 1] = ((4 << 12) + 0x380 + 0) + 4;
 
-    Bg_CopyTilemapBufferToVRAM(menu->unk_00, 2);
+    Bg_CopyTilemapBufferToVRAM(menu->bgConfig, 2);
 }
 
-static void ov97_0222B53C(Window *param0, MessageLoader *param1, StringTemplate *param2, TextColor param3, u32 param4, int param5)
+static void MainMenu_PrintContinueRightSideInfo(Window *window, MessageLoader *msgLoader, StringTemplate *template, TextColor color, u32 entryID, int yOffset)
 {
-    int v0, v1;
-    Strbuf *v2 = MessageUtil_ExpandedStrbuf(param2, param1, param4, HEAP_ID_MAIN_MENU);
-    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
-    v1 = Window_GetWidth(param0) * 8 - (v0 + 32);
+    int textWidth, xOffset;
+    Strbuf *strBuf = MessageUtil_ExpandedStrbuf(template, msgLoader, entryID, HEAP_ID_MAIN_MENU);
+    textWidth = Font_CalcStrbufWidth(FONT_SYSTEM, strBuf, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
+    xOffset = Window_GetWidth(window) * 8 - (textWidth + 32);
 
-    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v2, v1, param5, TEXT_SPEED_NO_TRANSFER, param3, NULL);
-    Strbuf_Free(v2);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    Strbuf_Free(strBuf);
 }
 
-static void ov97_0222B590(StringTemplate *param0, int param1)
+static void MainMenu_SetNumberPadding(StringTemplate *template, int value)
 {
-    int v0, v1;
+    int maxDigits, paddingMode;
 
-    if (param1 >= 100) {
-        v0 = 3;
-        v1 = 0;
-    } else if (param1 >= 10) {
-        v0 = 3;
-        v1 = 1;
+    if (value >= 100) {
+        maxDigits = 3;
+        paddingMode = PADDING_MODE_NONE;
+    } else if (value >= 10) {
+        maxDigits = 3;
+        paddingMode = PADDING_MODE_SPACES;
     } else {
-        v0 = 3 - 1;
-        v1 = 1;
+        maxDigits = 3 - 1;
+        paddingMode = PADDING_MODE_SPACES;
     }
 
-    StringTemplate_SetNumber(param0, 0, param1, v0, v1, 1);
+    StringTemplate_SetNumber(template, 0, value, maxDigits, paddingMode, CHARSET_MODE_EN);
 }
 
-static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
+static BOOL MainMenu_LoadText_Continue(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos)
 {
-    int v0, v1, v2;
-    Strbuf *v3;
-    StringTemplate *v4;
-    MessageLoader *v5;
-    MainMenu *menu = (MainMenu *)param0;
-    TextColor v7;
+    Strbuf *strBuf;
+    StringTemplate *template;
+    MessageLoader *msgLoader;
+    TextColor color;
 
-    v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU, HEAP_ID_MAIN_MENU);
-    v4 = StringTemplate_Default(HEAP_ID_MAIN_MENU);
+    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU, HEAP_ID_MAIN_MENU);
+    template = StringTemplate_Default(HEAP_ID_MAIN_MENU);
 
-    if (TrainerInfo_Gender(menu->trainerInfo) == 1) {
-        v7 = TEXT_COLOR(3, 4, 15);
+    if (TrainerInfo_Gender(menu->trainerInfo) == GENDER_FEMALE) {
+        color = TEXT_COLOR(3, 4, 15);
     } else {
-        v7 = TEXT_COLOR(7, 8, 15);
+        color = TEXT_COLOR(7, 8, 15);
     }
 
-    ov97_0223795C(menu->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
+    ov97_0223795C(menu->bgConfig, param2, 3, yPos, sMainMenuOptionsData[option].messageEntry);
 
-    for (v0 = 1; v0 < sizeof(Unk_ov97_0223DF40) / sizeof(u32); v0++) {
-        if ((v0 == 4) && menu->hasPokedex == FALSE) {
+    for (int i = 1; i < sizeof(sContinueOptionTextEntries) / sizeof(u32); i++) {
+        if ((i == 4) && menu->hasPokedex == FALSE) {
             continue;
         }
 
-        v3 = MessageUtil_ExpandedStrbuf(v4, v5, Unk_ov97_0223DF40[v0], HEAP_ID_MAIN_MENU);
-        Text_AddPrinterWithParamsAndColor(param2->unk_10, FONT_SYSTEM, v3, 32, v0 * 16, TEXT_SPEED_NO_TRANSFER, v7, NULL);
-        Strbuf_Free(v3);
+        strBuf = MessageUtil_ExpandedStrbuf(template, msgLoader, sContinueOptionTextEntries[i], HEAP_ID_MAIN_MENU);
+        Text_AddPrinterWithParamsAndColor(param2->window, FONT_SYSTEM, strBuf, 32, i * 16, TEXT_SPEED_NO_TRANSFER, color, NULL);
+        Strbuf_Free(strBuf);
     }
 
-    StringTemplate_SetPlayerName(v4, 0, menu->trainerInfo);
-    ov97_0222B53C(param2->unk_10, v5, v4, v7, 16, 16 * 1);
-    ov97_0222B590(v4, PlayTime_GetHours(menu->playTime));
+    StringTemplate_SetPlayerName(template, 0, menu->trainerInfo);
+    MainMenu_PrintContinueRightSideInfo(param2->window, msgLoader, template, color, main_menu_player_name, 16 * 1);
 
-    StringTemplate_SetNumber(v4, 1, PlayTime_GetMinutes(menu->playTime), 2, 2, 1);
-    ov97_0222B53C(param2->unk_10, v5, v4, v7, 17, 16 * 2);
+    MainMenu_SetNumberPadding(template, PlayTime_GetHours(menu->playTime));
+    StringTemplate_SetNumber(template, 1, PlayTime_GetMinutes(menu->playTime), 2, 2, 1);
+    MainMenu_PrintContinueRightSideInfo(param2->window, msgLoader, template, color, main_menu_playtime_hours_minutes, 16 * 2);
 
-    StringTemplate_SetNumber(v4, 0, menu->badgeCount, 1, 0, 1);
-    ov97_0222B53C(param2->unk_10, v5, v4, v7, 19, 16 * 3);
+    StringTemplate_SetNumber(template, 0, menu->badgeCount, 1, 0, 1);
+    MainMenu_PrintContinueRightSideInfo(param2->window, msgLoader, template, color, main_menu_badge_count, 16 * 3);
 
     if (menu->hasPokedex) {
-        ov97_0222B590(v4, Pokedex_CountSeen(menu->pokedex));
-        ov97_0222B53C(param2->unk_10, v5, v4, v7, 18, 16 * 4);
+        MainMenu_SetNumberPadding(template, Pokedex_CountSeen(menu->pokedex));
+        MainMenu_PrintContinueRightSideInfo(param2->window, msgLoader, template, color, main_menu_pokedex_seen_count, 16 * 4);
     }
 
-    Window_DrawStandardFrame(param2->unk_10, 0, param2->unk_38, param2->unk_3C);
+    Window_DrawStandardFrame(param2->window, 0, param2->unk_38, param2->unk_3C);
 
-    menu->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
+    menu->loadedOptionIDs[option] = sMainMenuOptionsData[option].optionID;
 
-    StringTemplate_Free(v4);
-    MessageLoader_Free(v5);
-
-    return 1;
-}
-
-static BOOL ov97_0222B768(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
-{
-    int v0;
-    MainMenu *v1 = (MainMenu *)param0;
-
-    if (v1->agbGameType == 0) {
-        return FALSE;
-    }
-
-    switch (v1->agbGameType - 1) {
-    case AGB_TYPE_RUBY:
-        v0 = main_menu_migrate_from_ruby;
-        break;
-    case AGB_TYPE_SAPPHIRE:
-        v0 = main_menu_migrate_from_sapphire;
-        break;
-    case AGB_TYPE_LEAFGREEN:
-        v0 = main_menu_migrate_from_leafgreen;
-        break;
-    case AGB_TYPE_FIRERED:
-        v0 = main_menu_migrate_from_firered;
-        break;
-    case AGB_TYPE_EMERALD:
-        v0 = main_menu_migrate_from_emerald;
-        break;
-    }
-
-    ov97_0223795C(v1->unk_00, param2, 3, param3, v0);
-    ov97_0222B4FC(v1, 26, param3);
-
-    v1->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
+    StringTemplate_Free(template);
+    MessageLoader_Free(msgLoader);
 
     return TRUE;
 }
 
-static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
+static BOOL MainMenu_IsGBAGameConnected(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int param3)
 {
-    MainMenu *menu = (MainMenu *)param0;
+    int msgEntry;
 
+    if (menu->agbGameType == 0) {
+        return FALSE;
+    }
+
+    switch (menu->agbGameType - 1) {
+    case AGB_TYPE_RUBY:
+        msgEntry = main_menu_migrate_from_ruby;
+        break;
+    case AGB_TYPE_SAPPHIRE:
+        msgEntry = main_menu_migrate_from_sapphire;
+        break;
+    case AGB_TYPE_LEAFGREEN:
+        msgEntry = main_menu_migrate_from_leafgreen;
+        break;
+    case AGB_TYPE_FIRERED:
+        msgEntry = main_menu_migrate_from_firered;
+        break;
+    case AGB_TYPE_EMERALD:
+        msgEntry = main_menu_migrate_from_emerald;
+        break;
+    }
+
+    ov97_0223795C(menu->bgConfig, param2, 3, param3, msgEntry);
+    ov97_0222B4FC(menu, 26, param3);
+
+    menu->loadedOptionIDs[option] = sMainMenuOptionsData[option].optionID;
+
+    return TRUE;
+}
+
+static BOOL ov97_0222B7DC(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int param3)
+{
     if (menu->unk_34 == 0) {
-        if (sub_0202DEC4(menu->mysteryGift) == 1) {
+        if (sub_0202DEC4(menu->mysteryGift) == TRUE) {
             menu->unk_34 = 1;
         }
 
-        if (sub_02025D64(SaveData_GetSystemData(menu->saveData)) == 1) {
+        if (SystemData_GetMysteryGiftState(SaveData_GetSystemData(menu->saveData)) == TRUE) {
             menu->unk_34 = 1;
         }
 
@@ -672,29 +679,27 @@ static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *par
     }
 
     if (menu->unk_34 == 1) {
-        ov97_0223795C(menu->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
+        ov97_0223795C(menu->bgConfig, param2, 3, param3, sMainMenuOptionsData[option].messageEntry);
         ov97_0222B4FC(menu, 26, param3);
 
-        menu->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
+        menu->loadedOptionIDs[option] = sMainMenuOptionsData[option].optionID;
         menu->unk_38 |= 0x1;
 
         sub_0202DED4(menu->mysteryGift);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov97_0222B888(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
+static BOOL ov97_0222B888(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos)
 {
-    MainMenu *menu = (MainMenu *)param0;
-
     if ((menu->unk_2C == 1) && menu->hasPokedex == TRUE) {
-        ov97_0223795C(menu->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
-        ov97_0222B4AC(menu, 26, param3, 1);
+        ov97_0223795C(menu->bgConfig, param2, 3, yPos, sMainMenuOptionsData[option].messageEntry);
+        ov97_0222B4AC(menu, 26, yPos, 1);
 
-        menu->unk_FC[param1] = 1;
-        menu->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
+        menu->unk_FC[option] = 1;
+        menu->loadedOptionIDs[option] = sMainMenuOptionsData[option].optionID;
         menu->unk_38 |= 0x2;
 
         return 1;
@@ -703,90 +708,84 @@ static BOOL ov97_0222B888(void *param0, int param1, UnkStruct_ov97_02237808 *par
     return 0;
 }
 
-static BOOL ov97_0222B8E4(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
+static BOOL ov97_0222B8E4(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos)
 {
-    MainMenu *v0 = (MainMenu *)param0;
+    if (menu->unk_30 == 1) {
+        ov97_0223795C(menu->bgConfig, param2, 3, yPos, sMainMenuOptionsData[option].messageEntry);
+        menu->unk_FC[option] = 1;
 
-    if (v0->unk_30 == 1) {
-        ov97_0223795C(v0->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
-        v0->unk_FC[param1] = 1;
-
-        ov97_0222B4AC(v0, 26, param3, 1);
-        v0->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
-        return 1;
+        ov97_0222B4AC(menu, 26, yPos, 1);
+        menu->loadedOptionIDs[option] = sMainMenuOptionsData[option].optionID;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov97_0222B934(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
+static BOOL MainMenu_LoadText_WFCSettings(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos)
 {
-    MainMenu *v0 = (MainMenu *)param0;
+    ov97_0223795C(menu->bgConfig, param2, 3, yPos, sMainMenuOptionsData[option].messageEntry);
+    menu->unk_FC[option] = 2;
 
-    ov97_0223795C(v0->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
-    v0->unk_FC[param1] = 2;
-
-    ov97_0222B4AC(v0, 26, param3, 2);
-    v0->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
+    ov97_0222B4AC(menu, 26, yPos, 2);
+    menu->loadedOptionIDs[option] = sMainMenuOptionsData[option].optionID;
 
     return 1;
 }
 
-static BOOL ov97_0222B978(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
+static BOOL MainMenu_LoadText_WiiMessageSettings(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos)
 {
-    MainMenu *v0 = (MainMenu *)param0;
+    ov97_0223795C(menu->bgConfig, param2, 3, yPos, sMainMenuOptionsData[option].messageEntry);
+    menu->unk_FC[option] = 0;
 
-    ov97_0223795C(v0->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
-    v0->unk_FC[param1] = 0;
+    ov97_0222B4FC(menu, 26, yPos);
+    menu->loadedOptionIDs[option] = sMainMenuOptionsData[option].optionID;
 
-    ov97_0222B4FC(v0, 26, param3);
-    v0->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
-
-    return 1;
+    return TRUE;
 }
 
 static BOOL ov97_0222B9BC(MainMenu *menu)
 {
-    UnkStruct_ov97_0223E014 *v0;
+    MainMenuOptionsData *optionsData;
     UnkStruct_ov97_02237808 v1;
-    int v2, v3, v4;
+    int i, v3, v4;
 
     v4 = 0;
     v3 = 1;
 
     menu->unk_20 = ((1 + 9) + 9);
 
-    for (v2 = 0; v2 < (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014)); v2++) {
-        v0 = &Unk_ov97_0223E014[v2];
+    for (i = 0; i < (sizeof(sMainMenuOptionsData) / sizeof(MainMenuOptionsData)); i++) {
+        optionsData = &sMainMenuOptionsData[i];
 
-        ov97_02237808(&v1, &menu->unk_5C[v2], 1, 550, 1, 2);
-        ov97_02237858(&v1, 26, v0->unk_04, menu->unk_20);
+        ov97_02237808(&v1, &menu->loadedOptionWindows[i], 1, 550, 1, 2);
+        ov97_02237858(&v1, 26, optionsData->height, menu->unk_20);
 
-        if (v0->unk_0C) {
-            if (menu->unk_DC[v2]) {
-                Window_SetXPos(v1.unk_10, 3);
-                Window_SetYPos(v1.unk_10, v3);
-                Window_DrawStandardFrame(v1.unk_10, 0, v1.unk_38, v1.unk_3C);
+        if (optionsData->displayFunc != NULL) {
+            if (menu->loadedOptionIDs[i]) {
+                Window_SetXPos(v1.window, 3);
+                Window_SetYPos(v1.window, v3);
+                Window_DrawStandardFrame(v1.window, 0, v1.unk_38, v1.unk_3C);
 
-                if (menu->unk_FC[v2]) {
-                    ov97_0222B4AC(menu, 26, v3, menu->unk_FC[v2]);
+                if (menu->unk_FC[i]) {
+                    ov97_0222B4AC(menu, 26, v3, menu->unk_FC[i]);
                 } else {
                     ov97_0222B4FC(menu, 26, v3);
                 }
 
-                v3 += v0->unk_04 + 2;
+                v3 += optionsData->height + 2;
                 v4 = 1;
-            } else if (v0->unk_0C(menu, v2, &v1, v3) == 1) {
-                v3 += v0->unk_04 + 2;
+            } else if (optionsData->displayFunc(menu, i, &v1, v3) == TRUE) {
+                v3 += optionsData->height + 2;
                 v4 = 1;
             }
         } else {
-            ov97_0223795C(menu->unk_00, &v1, 3, v3, v0->unk_08);
-            menu->unk_DC[v2] = v0->unk_00;
-            v3 += v0->unk_04 + 2;
+            ov97_0223795C(menu->bgConfig, &v1, 3, v3, optionsData->messageEntry);
+            menu->loadedOptionIDs[i] = optionsData->optionID;
+            v3 += optionsData->height + 2;
         }
 
-        menu->unk_20 += 26 * v0->unk_04;
+        menu->unk_20 += 26 * optionsData->height;
     }
 
     return v4;
@@ -794,23 +793,21 @@ static BOOL ov97_0222B9BC(MainMenu *menu)
 
 static void ov97_0222BAD8(MainMenu *menu, int param1)
 {
-    int v0;
-
-    for (v0 = 0; v0 < sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014); v0++) {
-        if (Window_IsInUse(&menu->unk_5C[v0]) == 0) {
+    for (int i = 0; i < sizeof(sMainMenuOptionsData) / sizeof(MainMenuOptionsData); i++) {
+        if (Window_IsInUse(&menu->loadedOptionWindows[i]) == FALSE) {
             continue;
         }
 
-        if (v0 == param1) {
-            Window_DrawStandardFrame(&menu->unk_5C[v0], 1, (1 + 9), 3);
-            Bg_ChangeTilemapRectPalette(menu->unk_00, 0, Window_GetXPos(&menu->unk_5C[v0]), Window_GetYPos(&menu->unk_5C[v0]), Window_GetWidth(&menu->unk_5C[v0]), Window_GetHeight(&menu->unk_5C[v0]), 0);
+        if (i == param1) {
+            Window_DrawStandardFrame(&menu->loadedOptionWindows[i], 1, (1 + 9), 3);
+            Bg_ChangeTilemapRectPalette(menu->bgConfig, 0, Window_GetXPos(&menu->loadedOptionWindows[i]), Window_GetYPos(&menu->loadedOptionWindows[i]), Window_GetWidth(&menu->loadedOptionWindows[i]), Window_GetHeight(&menu->loadedOptionWindows[i]), 0);
         } else {
-            Window_DrawStandardFrame(&menu->unk_5C[v0], 1, 1, 2);
-            Bg_ChangeTilemapRectPalette(menu->unk_00, 0, Window_GetXPos(&menu->unk_5C[v0]), Window_GetYPos(&menu->unk_5C[v0]), Window_GetWidth(&menu->unk_5C[v0]), Window_GetHeight(&menu->unk_5C[v0]), 1);
+            Window_DrawStandardFrame(&menu->loadedOptionWindows[i], 1, 1, 2);
+            Bg_ChangeTilemapRectPalette(menu->bgConfig, 0, Window_GetXPos(&menu->loadedOptionWindows[i]), Window_GetYPos(&menu->loadedOptionWindows[i]), Window_GetWidth(&menu->loadedOptionWindows[i]), Window_GetHeight(&menu->loadedOptionWindows[i]), 1);
         }
     }
 
-    Bg_CopyTilemapBufferToVRAM(menu->unk_00, 0);
+    Bg_CopyTilemapBufferToVRAM(menu->bgConfig, 0);
 }
 
 static void ov97_0222BB88(MainMenu *menu, int param1)
@@ -824,15 +821,15 @@ static void ov97_0222BB88(MainMenu *menu, int param1)
             v0 = 0;
         }
 
-        if (v0 == (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014))) {
-            v0 = (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014)) - 1;
+        if (v0 == (sizeof(sMainMenuOptionsData) / sizeof(MainMenuOptionsData))) {
+            v0 = (sizeof(sMainMenuOptionsData) / sizeof(MainMenuOptionsData)) - 1;
         }
 
         if (v0 == menu->unk_54) {
             break;
         }
 
-        if (menu->unk_DC[v0]) {
+        if (menu->loadedOptionIDs[v0]) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         }
@@ -843,8 +840,8 @@ static void ov97_0222BB88(MainMenu *menu, int param1)
 
 static void ov97_0222BBC8(MainMenu *menu)
 {
-    int v0 = (Window_GetYPos(&menu->unk_5C[menu->unk_54]) - 1) * 8;
-    int v1 = (Window_GetHeight(&menu->unk_5C[menu->unk_54]) + 2) * 8;
+    int v0 = (Window_GetYPos(&menu->loadedOptionWindows[menu->unk_54]) - 1) * 8;
+    int v1 = (Window_GetHeight(&menu->loadedOptionWindows[menu->unk_54]) + 2) * 8;
     int v2 = menu->unk_120 / FX32_ONE;
 
     if (v2 > v0) {
@@ -858,19 +855,19 @@ static void ov97_0222BBC8(MainMenu *menu)
 
 static void ov97_0222BC1C(MainMenu *menu)
 {
-    int v0, v1, v2;
+    int v1, v2;
     int v3, v4, v5;
 
     v1 = v2 = 0;
     v5 = menu->unk_120 / FX32_ONE;
 
-    for (v0 = 0; v0 < (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014)); v0++) {
-        if (Window_IsInUse(&menu->unk_5C[v0]) == 0) {
+    for (int i = 0; i < (sizeof(sMainMenuOptionsData) / sizeof(MainMenuOptionsData)); i++) {
+        if (Window_IsInUse(&menu->loadedOptionWindows[i]) == FALSE) {
             continue;
         }
 
-        v3 = (Window_GetYPos(&menu->unk_5C[v0]) - 1) * 8;
-        v4 = (Window_GetHeight(&menu->unk_5C[v0]) + 2) * 8;
+        v3 = (Window_GetYPos(&menu->loadedOptionWindows[i]) - 1) * 8;
+        v4 = (Window_GetHeight(&menu->loadedOptionWindows[i]) + 2) * 8;
 
         if (v5 > v3) {
             v1 = 1;
@@ -885,28 +882,27 @@ static void ov97_0222BC1C(MainMenu *menu)
     Sprite_SetDrawFlag(menu->unk_168[1], v2);
 }
 
-static void ov97_0222BC9C(OverlayManager *param0)
+static void ov97_0222BC9C(OverlayManager *overlayMan)
 {
-    int v0;
-    MainMenu *v1 = OverlayManager_Data(param0);
+    MainMenu *menu = OverlayManager_Data(overlayMan);
 
-    if (v1->unk_168[0] || v1->unk_168[1]) {
-        Sprite_Delete(v1->unk_168[0]);
-        Sprite_Delete(v1->unk_168[1]);
+    if (menu->unk_168[0] || menu->unk_168[1]) {
+        Sprite_Delete(menu->unk_168[0]);
+        Sprite_Delete(menu->unk_168[1]);
         ov97_02237DA0();
     }
 
-    for (v0 = 0; v0 < (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014)); v0++) {
-        if (v1->unk_5C[v0].bgConfig) {
-            Window_ClearAndCopyToVRAM(&v1->unk_5C[v0]);
-            Window_Remove(&v1->unk_5C[v0]);
+    for (int i = 0; i < (sizeof(sMainMenuOptionsData) / sizeof(MainMenuOptionsData)); i++) {
+        if (menu->loadedOptionWindows[i].bgConfig) {
+            Window_ClearAndCopyToVRAM(&menu->loadedOptionWindows[i]);
+            Window_Remove(&menu->loadedOptionWindows[i]);
         }
     }
 
-    Bg_FreeTilemapBuffer(v1->unk_00, 0);
-    Bg_FreeTilemapBuffer(v1->unk_00, 1);
-    Bg_FreeTilemapBuffer(v1->unk_00, 2);
-    Heap_FreeToHeap(v1->unk_00);
+    Bg_FreeTilemapBuffer(menu->bgConfig, 0);
+    Bg_FreeTilemapBuffer(menu->bgConfig, 1);
+    Bg_FreeTilemapBuffer(menu->bgConfig, 2);
+    Heap_FreeToHeap(menu->bgConfig);
     SetVBlankCallback(NULL, NULL);
 }
 
@@ -964,18 +960,18 @@ static void ov97_0222BD48(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static int ov97_0222BD70(OverlayManager *param0, int *param1)
+static int MainMenu_Init(OverlayManager *overlayMan, int *param1)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_MAIN_MENU, 0x40000);
 
-    MainMenu *menu = OverlayManager_NewData(param0, sizeof(MainMenu), HEAP_ID_MAIN_MENU);
+    MainMenu *menu = OverlayManager_NewData(overlayMan, sizeof(MainMenu), HEAP_ID_MAIN_MENU);
     memset(menu, 0, sizeof(MainMenu));
-    menu->unk_00 = BgConfig_New(HEAP_ID_MAIN_MENU);
+    menu->bgConfig = BgConfig_New(HEAP_ID_MAIN_MENU);
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    menu->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    menu->saveData = ((ApplicationArgs *)OverlayManager_Args(overlayMan))->saveData;
     menu->mysteryGift = SaveData_MysteryGift(menu->saveData);
     menu->unk_11C = FX32_ONE * 0;
     menu->unk_120 = FX32_ONE * 0;
@@ -989,7 +985,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     ov97_02237694(HEAP_ID_MAIN_MENU);
 
     if (!SaveData_DataExists(menu->saveData)) {
-        menu->unk_14C = 1;
+        menu->noSaveData = TRUE;
     }
 
     sub_020053CC(0);
@@ -998,29 +994,29 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int ov97_0222BE24(OverlayManager *param0, int *param1)
+static int MainMenu_Main(OverlayManager *overlayMan, int *param1)
 {
     int v0;
-    MainMenu *v1 = OverlayManager_Data(param0);
+    MainMenu *menu = OverlayManager_Data(overlayMan);
 
-    v1->unk_18++;
+    menu->unk_18++;
     CTRDG_IsExisting();
 
-    if (ov97_0222B07C(v1) == 1) {
-        ov97_0222AF8C(v1);
-        ov97_0222B25C(v1);
+    if (ov97_0222B07C(menu) == 1) {
+        ov97_0222AF8C(menu);
+        ov97_0222B25C(menu);
         return 0;
     }
 
-    ov97_0222BD14(v1);
+    ov97_0222BD14(menu);
 
     switch (*param1) {
     case 0:
-        ov97_0222B2EC(v1);
+        ov97_0222B2EC(menu);
         *param1 = 1;
         break;
     case 1:
-        if (ov97_0222AE60(v1) == 0) {
+        if (ov97_0222AE60(menu) == 0) {
             *param1 = 3;
         } else {
             ov97_02237790(1, 2, param1, 8);
@@ -1028,43 +1024,43 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (ov97_0222AE64(v1) == 0) {
+        if (ov97_0222AE64(menu) == 0) {
             ov97_02237790(0, 3, param1, 8);
         }
         break;
     case 3:
-        v1->unk_124 = 12;
+        menu->unk_124 = 12;
 
-        if (v1->unk_14C == 1) {
-            v1->unk_58 = 2;
+        if (menu->noSaveData == TRUE) {
+            menu->selectedOption = MAIN_MENU_OPTION_NEW_GAME;
             ov97_02237790(0, 7, param1, 8);
         } else {
-            ov97_0222AF1C(v1);
+            ov97_0222AF1C(menu);
             *param1 = 4;
         }
         break;
     case 4:
-        ov97_0222B404(v1);
-        ov97_0222B46C(v1);
+        ov97_0222B404(menu);
+        ov97_0222B46C(menu);
 
-        SetVBlankCallback(ov97_0222BD48, v1->unk_00);
+        SetVBlankCallback(ov97_0222BD48, menu->bgConfig);
 
-        ov97_0222B9BC(v1);
-        ov97_0222BAD8(v1, v1->unk_54);
+        ov97_0222B9BC(menu);
+        ov97_0222BAD8(menu, menu->unk_54);
         ov97_02237790(1, 5, param1, 8);
 
         *((u16 *)HW_BG_PLTT + 0) = ((31 & 31) << 10 | (12 & 31) << 5 | (12 & 31));
-        v1->unk_124 = 10;
+        menu->unk_124 = 10;
         break;
     case 5:
-        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            if (gSystem.pressedKeys & PAD_BUTTON_A) {
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (JOY_NEW(PAD_BUTTON_A)) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                v1->unk_58 = v1->unk_DC[v1->unk_54];
+                menu->selectedOption = menu->loadedOptionIDs[menu->unk_54];
 
-                if (v1->unk_58 == 5) {
+                if (menu->selectedOption == MAIN_MENU_OPTION_GBA_MIGRATOR) {
                     if (CTRDG_IsPulledOut() == TRUE) {
-                        if (v1->unk_124 != 12) {
+                        if (menu->unk_124 != 12) {
                             sub_02037D84();
                         }
 
@@ -1073,54 +1069,54 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
                 }
             } else {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                v1->unk_58 = 0;
+                menu->selectedOption = MAIN_MENU_OPTION_RETURN_TO_TITLE;
                 ov97_02237784(1);
             }
 
-            if (v1->unk_58 == 2) {
-                v1->unk_40 |= 0x80;
-                v1->unk_130 = 1;
+            if (menu->selectedOption == MAIN_MENU_OPTION_NEW_GAME) {
+                menu->unk_40 |= 0x80;
+                menu->unk_130 = 1;
                 *param1 = 6;
             } else {
-                if ((v1->unk_58 == 6) || (v1->unk_58 == 7)) {
+                if (menu->selectedOption == MAIN_MENU_OPTION_CONNECT_TO_WII || menu->selectedOption == MAIN_MENU_OPTION_NINTENDO_WFC_SETTINGS) {
                     ov97_02237784(1);
                 }
 
                 ov97_02237790(0, 7, param1, 8);
             }
 
-            if (v1->unk_124 == 13) {
-                v1->unk_124 = 14;
+            if (menu->unk_124 == 13) {
+                menu->unk_124 = 14;
             }
             break;
         }
 
-        if (v1->unk_48 == 1) {
-            ov97_0222B9BC(v1);
-            v1->unk_48 = 0;
+        if (menu->unk_48 == 1) {
+            ov97_0222B9BC(menu);
+            menu->unk_48 = 0;
             break;
         }
 
-        if (gSystem.pressedKeys & PAD_KEY_UP) {
-            ov97_0222BB88(v1, -1);
+        if (JOY_NEW(PAD_KEY_UP)) {
+            ov97_0222BB88(menu, -1);
         }
 
-        if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-            ov97_0222BB88(v1, 1);
+        if (JOY_NEW(PAD_KEY_DOWN)) {
+            ov97_0222BB88(menu, 1);
         }
 
-        ov97_0222BAD8(v1, v1->unk_54);
-        ov97_0222BBC8(v1);
-        ov97_0222BC1C(v1);
+        ov97_0222BAD8(menu, menu->unk_54);
+        ov97_0222BBC8(menu);
+        ov97_0222BC1C(menu);
 
-        if ((*param1 == 5) && (v1->unk_150 == 1)) {
-            v1->unk_150 = 0;
-            v1->unk_130 = 1;
+        if ((*param1 == 5) && (menu->unk_150 == 1)) {
+            menu->unk_150 = 0;
+            menu->unk_130 = 1;
         }
         break;
     case 6:
-        if (v1->unk_12C == 15) {
-            if (v1->unk_138 & PAD_BUTTON_B) {
+        if (menu->unk_12C == 15) {
+            if (menu->unk_138 & PAD_BUTTON_B) {
                 *param1 = 5;
             } else {
                 ov97_02237790(0, 7, param1, 8);
@@ -1128,7 +1124,7 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
         }
         break;
     case 7:
-        ov97_0222BC9C(param0);
+        ov97_0222BC9C(overlayMan);
         return 1;
         break;
     case 8:
@@ -1139,8 +1135,8 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
         break;
     }
 
-    ov97_0222AF8C(v1);
-    ov97_0222B25C(v1);
+    ov97_0222AF8C(menu);
+    ov97_0222B25C(menu);
     ov97_02237CA0();
 
     return 0;
@@ -1152,48 +1148,48 @@ extern const OverlayManagerTemplate Unk_ov97_0223D6BC;
 extern const OverlayManagerTemplate Unk_020F6DF0;
 extern const OverlayManagerTemplate Unk_ov98_02249BAC;
 
-static void ov97_0222C094(MainMenu *menu)
+static void MainMenu_LoadSelectedOption(MainMenu *menu)
 {
-    switch (menu->unk_58) {
-    case 1:
+    switch (menu->selectedOption) {
+    case MAIN_MENU_OPTION_CONTINUE:
         EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveOverlayTemplate);
         break;
-    case 2:
+    case MAIN_MENU_OPTION_NEW_GAME:
         EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartRowanIntroOverlayTemplate);
         break;
-    case 3:
+    case MAIN_MENU_OPTION_MYSTERY_GIFT:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
         break;
-    case 5:
+    case MAIN_MENU_OPTION_GBA_MIGRATOR:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &gGBAMigratorOverlayTemplate);
         break;
-    case 4:
+    case MAIN_MENU_OPTION_LINK_WITH_POKEMON_RANGER:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D6BC);
         break;
-    case 6:
+    case MAIN_MENU_OPTION_CONNECT_TO_WII:
         RebootAndLoadROM("data/eoo.dat");
         break;
-    case 7:
+    case MAIN_MENU_OPTION_NINTENDO_WFC_SETTINGS:
         sub_0200569C();
-        EnqueueApplication(0xffffffff, &Unk_020F6DF0);
+        EnqueueApplication(FS_OVERLAY_ID_NONE, &Unk_020F6DF0);
         break;
-    case 8:
+    case MAIN_MENU_OPTION_WII_MESSAGE_SETTINGS:
         sub_0200569C();
         EnqueueApplication(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
         break;
-    case 0:
+    case MAIN_MENU_OPTION_RETURN_TO_TITLE:
         EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
         break;
     }
 }
 
-static int ov97_0222C150(OverlayManager *param0, int *param1)
+static int MainMenu_Exit(OverlayManager *overlayMan, int *unused)
 {
-    MainMenu *v0 = OverlayManager_Data(param0);
+    MainMenu *menu = OverlayManager_Data(overlayMan);
 
-    ov97_0222C094(v0);
+    MainMenu_LoadSelectedOption(menu);
 
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_MAIN_MENU);
 
     ov97_02238400(0);
@@ -1201,9 +1197,9 @@ static int ov97_0222C150(OverlayManager *param0, int *param1)
     return 1;
 }
 
-const OverlayManagerTemplate Unk_ov97_0223D674 = {
-    ov97_0222BD70,
-    ov97_0222BE24,
-    ov97_0222C150,
-    0xffffffff
+const OverlayManagerTemplate gMainMenuOverlayTemplate = {
+    .init = MainMenu_Init,
+    .main = MainMenu_Main,
+    .exit = MainMenu_Exit,
+    .overlayID = FS_OVERLAY_ID_NONE
 };

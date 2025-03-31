@@ -27,7 +27,7 @@ void sub_0202DDE8(const MysteryGift *param0, int param1);
 BOOL sub_0202DE2C(MysteryGift *param0, int param1);
 void sub_0202DE5C(MysteryGift *param0, int param1);
 void sub_0202DE8C(MysteryGift *param0, int param1);
-BOOL sub_0202DEC4(MysteryGift *param0);
+BOOL sub_0202DEC4(MysteryGift *mysteryGift);
 void sub_0202DED4(MysteryGift *param0);
 void sub_0202DEE4(SaveData *param0, int param1);
 void sub_0202DF04(SaveData *param0, int param1);

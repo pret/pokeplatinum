@@ -687,7 +687,7 @@ static BOOL ScrCmd_2A4(ScriptContext *ctx);
 static BOOL ScrCmd_2A7(ScriptContext *ctx);
 static BOOL ScrCmd_2AA(ScriptContext *ctx);
 static BOOL ScrCmd_2AB(ScriptContext *ctx);
-static BOOL ScrCmd_2AC(ScriptContext *ctx);
+static BOOL ScrCmd_EnableMysteryGift(ScriptContext *ctx);
 static BOOL ScrCmd_2AF(ScriptContext *ctx);
 static BOOL ScrCmd_2B0(ScriptContext *ctx);
 static BOOL ScrCmd_2B1(ScriptContext *ctx);
@@ -1449,7 +1449,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2A9,
     ScrCmd_2AA,
     ScrCmd_2AB,
-    ScrCmd_2AC,
+    ScrCmd_EnableMysteryGift,
     ScrCmd_2AD,
     ScrCmd_2AE,
     ScrCmd_2AF,
@@ -7545,13 +7545,13 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_2AC(ScriptContext *ctx)
+static BOOL ScrCmd_EnableMysteryGift(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    SystemData *v1 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
+    SystemData *systemData = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
-    sub_02025D6C(v1, 1);
-    return 0;
+    SystemData_SetMysteryGiftState(systemData, TRUE);
+    return FALSE;
 }
 
 static BOOL ScrCmd_2AF(ScriptContext *ctx)

@@ -10,7 +10,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    Window *unk_10;
+    Window *window;
     StringTemplate *unk_14;
     int unk_18;
     int unk_1C;

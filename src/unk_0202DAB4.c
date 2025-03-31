@@ -264,9 +264,9 @@ void sub_0202DE8C(MysteryGift *param0, int param1)
     SaveData_SetChecksum(31);
 }
 
-BOOL sub_0202DEC4(MysteryGift *param0)
+BOOL sub_0202DEC4(MysteryGift *mysteryGift)
 {
-    return sub_0202DE2C(param0, (2048 - 1));
+    return sub_0202DE2C(mysteryGift, (2048 - 1));
 }
 
 void sub_0202DED4(MysteryGift *param0)

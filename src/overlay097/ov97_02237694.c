@@ -175,7 +175,7 @@ void ov97_02237808(UnkStruct_ov97_02237808 *param0, Window *param1, int param2, 
     param0->unk_04 = 1;
     param0->unk_08 = 1;
     param0->unk_4C = -1;
-    param0->unk_10 = param1;
+    param0->window = param1;
     param0->unk_30 = param2;
     param0->unk_34 = param3;
     param0->unk_38 = param4;
@@ -209,51 +209,51 @@ void ov97_02237868(UnkStruct_ov97_02237808 *param0, int param1, int param2)
     param0->unk_24 = param2;
 }
 
-static int ov97_02237870(UnkStruct_ov97_02237808 *param0, int param1)
+static int ov97_02237870(UnkStruct_ov97_02237808 *param0, int msgEntry)
 {
     int v0;
-    Strbuf *v1;
-    StringTemplate *v2;
-    MessageLoader *v3;
+    Strbuf *strBuf;
+    StringTemplate *template;
+    MessageLoader *msgLoader;
     UnkStruct_ov97_0223F550 *v4 = &Unk_ov97_0223F550;
 
-    if ((param1 != -1) && (param0->unk_4C != param1)) {
-        param0->unk_4C = param1;
+    if ((msgEntry != -1) && (param0->unk_4C != msgEntry)) {
+        param0->unk_4C = msgEntry;
 
         if (param0->unk_08 == 1) {
-            Window_FillTilemap(param0->unk_10, param0->unk_48);
+            Window_FillTilemap(param0->window, param0->unk_48);
         }
 
         if (param0->unk_4C != -1) {
-            v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param0->unk_34, v4->heapID);
+            msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param0->unk_34, v4->heapID);
 
             if (param0->unk_14 == NULL) {
-                v2 = StringTemplate_Default(v4->heapID);
+                template = StringTemplate_Default(v4->heapID);
             } else {
-                v2 = param0->unk_14;
+                template = param0->unk_14;
             }
 
-            v1 = MessageUtil_ExpandedStrbuf(v2, v3, param0->unk_4C, v4->heapID);
+            strBuf = MessageUtil_ExpandedStrbuf(template, msgLoader, param0->unk_4C, v4->heapID);
 
             if (param0->unk_0C == 0) {
-                v0 = Text_AddPrinterWithParamsAndColor(param0->unk_10, param0->unk_40, v1, param0->unk_20, param0->unk_24, param0->unk_50, param0->unk_44, NULL);
+                v0 = Text_AddPrinterWithParamsAndColor(param0->window, param0->unk_40, strBuf, param0->unk_20, param0->unk_24, param0->unk_50, param0->unk_44, NULL);
             } else {
                 int v5, v6;
 
-                v5 = Font_CalcStrbufWidth(param0->unk_40, v1, Font_GetAttribute(param0->unk_40, 2));
-                v6 = Window_GetWidth(param0->unk_10) * 8 - v5;
-                v0 = Text_AddPrinterWithParamsAndColor(param0->unk_10, param0->unk_40, v1, v6, param0->unk_24, param0->unk_50, param0->unk_44, NULL);
+                v5 = Font_CalcStrbufWidth(param0->unk_40, strBuf, Font_GetAttribute(param0->unk_40, 2));
+                v6 = Window_GetWidth(param0->window) * 8 - v5;
+                v0 = Text_AddPrinterWithParamsAndColor(param0->window, param0->unk_40, strBuf, v6, param0->unk_24, param0->unk_50, param0->unk_44, NULL);
 
                 param0->unk_0C = 0;
             }
 
-            Strbuf_Free(v1);
+            Strbuf_Free(strBuf);
 
             if (param0->unk_14 == NULL) {
-                StringTemplate_Free(v2);
+                StringTemplate_Free(template);
             }
 
-            MessageLoader_Free(v3);
+            MessageLoader_Free(msgLoader);
         }
     }
 
@@ -261,30 +261,30 @@ static int ov97_02237870(UnkStruct_ov97_02237808 *param0, int param1)
     return v0;
 }
 
-int ov97_0223795C(BgConfig *param0, UnkStruct_ov97_02237808 *param1, int param2, int param3, int param4)
+int ov97_0223795C(BgConfig *bgConfig, UnkStruct_ov97_02237808 *param1, int x, int y, int msgEntry)
 {
     int v0;
 
-    if (param1->unk_10->bgConfig == NULL) {
-        Window_Add(param0, param1->unk_10, param1->unk_2C, param2, param3, param1->unk_18, param1->unk_1C, param1->unk_30, param1->unk_28);
-        v0 = ov97_02237870(param1, param4);
+    if (param1->window->bgConfig == NULL) {
+        Window_Add(bgConfig, param1->window, param1->unk_2C, x, y, param1->unk_18, param1->unk_1C, param1->unk_30, param1->unk_28);
+        v0 = ov97_02237870(param1, msgEntry);
     } else {
-        if (param2 != -1) {
-            Window_SetXPos(param1->unk_10, param2);
+        if (x != -1) {
+            Window_SetXPos(param1->window, x);
         }
 
-        if (param3 != -1) {
-            Window_SetYPos(param1->unk_10, param3);
+        if (y != -1) {
+            Window_SetYPos(param1->window, y);
         }
 
-        v0 = ov97_02237870(param1, param4);
+        v0 = ov97_02237870(param1, msgEntry);
     }
 
     if (param1->unk_04 == 1) {
         if (param1->unk_00 == 0) {
-            Window_DrawStandardFrame(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
+            Window_DrawStandardFrame(param1->window, 0, param1->unk_38, param1->unk_3C);
         } else {
-            Window_DrawMessageBoxWithScrollCursor(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
+            Window_DrawMessageBoxWithScrollCursor(param1->window, 0, param1->unk_38, param1->unk_3C);
         }
     }
 

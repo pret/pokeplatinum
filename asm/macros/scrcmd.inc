@@ -3787,7 +3787,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2AC
+    .macro EnableMysteryGift
     .short 684
     .endm
 
