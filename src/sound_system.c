@@ -62,7 +62,7 @@ void SoundSystem_Update()
         SoundSystem_UpdateState();
     }
 
-    CheckMicRecordingStatus();
+    Sound_UpdateChatotCry();
 
     for (int i = 0; i < 2; i++) {
         if (soundSys->pokemonCryDelay[i] != 0) {
@@ -220,10 +220,10 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->heapStates[SOUND_HEAP_STATE_SUB_SFX];
     case SOUND_SYSTEM_PARAM_HEAP_STATE_FANFARE:
         return &soundSys->heapStates[SOUND_HEAP_STATE_FANFARE];
-    case 30:
-        return &soundSys->unk_BCD84;
-    case 31:
-        return &soundSys->unk_BCD85;
+    case SOUND_SYSTEM_PARAM_CHATOT_CRY_PLAYING:
+        return &soundSys->chatotCryPlaying;
+    case SOUND_SYSTEM_PARAM_DEFAULT_CHATOT_CRY:
+        return &soundSys->usingDefaultChatotCry;
     case SOUND_SYSTEM_PARAM_FIELD_BGM:
         return &soundSys->currentFieldBGM;
     case SOUND_SYSTEM_PARAM_CURRENT_WAVE_DATA:

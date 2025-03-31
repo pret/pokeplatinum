@@ -13,211 +13,200 @@
 #include "sound_playback.h"
 #include "unk_0202CC64.h"
 
-BOOL CheckMicRecordingStatus(void);
-void ResetMicStatusFlags(void);
-MICResult StartMicSampling(void);
-MICResult StopMicSampling(void);
-void StoreMicDataInChatotCryStruct(ChatotCry *param0);
-BOOL Sound_PlayChatotCry(ChatotCry *param0, u32 param1, int param2, int param3);
-int Sound_Chatter(ChatotCry *param0);
+#define CHATOT_CRY_SPEED_VARIANCE   8192
+#define CHATOT_CRY_WAVE_BUFFER_SIZE SOUND_WAVE_BUFFER_SIZE
+#define CHATOT_CRY_SAMPLING_RATE    2000
 
-BOOL CheckMicRecordingStatus(void)
+BOOL Sound_UpdateChatotCry(void)
 {
-    u8 *v0 = SoundSystem_GetParam(16);
-    u8 *v1 = SoundSystem_GetParam(30);
+    u8 *wavePrimaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
+    u8 *chatotCryPlaying = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY_PLAYING);
 
-    if (*v1 == 1) {
-        if (*v0 == 1) {
-            if (Sound_IsWaveOutPlaying(WAVE_OUT_CHANNEL_PRIMARY) == 0) {
-                ResetMicStatusFlags();
-                return 1;
+    if (*chatotCryPlaying == TRUE) {
+        if (*wavePrimaryAllocated == TRUE) {
+            if (Sound_IsWaveOutPlaying(WAVE_OUT_CHANNEL_PRIMARY) == FALSE) {
+                Sound_StopChatotCry();
+                return TRUE;
             }
         } else {
-            ResetMicStatusFlags();
-            return 1;
+            Sound_StopChatotCry();
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL IsChatotCryStructReadyForProcessing(const ChatotCry *cry)
+BOOL Sound_IsRecordedChatotCryPlayable(const ChatotCry *cry)
 {
-    u8 *v0 = SoundSystem_GetParam(31);
+    u8 *usingDefaultCry = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_DEFAULT_CHATOT_CRY);
     u8 *v1 = SoundSystem_GetParam(54);
 
     if (IsChatotCryDataValid(cry) == FALSE) {
         return FALSE;
     }
 
-    if (*v1 == 1) {
+    if (*v1 == TRUE) {
         return FALSE;
     }
 
-    if (*v0 == 1) {
+    if (*usingDefaultCry == TRUE) {
         return FALSE;
     }
 
     return TRUE;
 }
 
-BOOL ProcessAudioInput(const ChatotCry *cry, u32 param1, int volume, int pan)
+BOOL Sound_Impl_PlayChatotCry(const ChatotCry *cry, u32 unused, int volume, int pan)
 {
-    u16 v0;
-    int v1, v2;
-    s8 *v3 = Sound_GetWaveBuffer();
-    u8 *v4 = SoundSystem_GetParam(30);
+    s8 *waveBuffer = Sound_GetWaveBuffer();
+    u8 *chatotCryPlaying = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY_PLAYING);
 
-    if (IsChatotCryStructReadyForProcessing(cry) == FALSE) {
+    if (Sound_IsRecordedChatotCryPlayable(cry) == FALSE) {
         return FALSE;
     }
 
+    int wavePan;
     if (pan < 0) {
-        v2 = 64 + (pan / 2);
+        wavePan = WAVE_OUT_PAN_CENTER + (pan / 2);
     } else {
-        v2 = 64 + (pan / 2);
+        wavePan = WAVE_OUT_PAN_CENTER + (pan / 2);
     }
 
     Sound_StopPokemonCries(0);
-    ResetMicStatusFlags();
+    Sound_StopChatotCry();
     Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
 
-    v0 = (LCRNG_Next() % 8192);
-    ProcessChatotCryAudioData(v3, GetChatotCryAudioBuffer(cry));
+    u16 speedVariance = LCRNG_Next() % CHATOT_CRY_SPEED_VARIANCE;
+    ProcessChatotCryAudioData(waveBuffer, GetChatotCryAudioBuffer(cry));
 
-    {
-        WaveOutParam v5;
+    WaveOutParam param;
+    param.handle = Sound_GetWaveOutHandle(WAVE_OUT_CHANNEL_PRIMARY);
+    param.format = NNS_SND_WAVE_FORMAT_PCM8;
+    param.data = Sound_GetWaveBuffer();
+    param.loop = FALSE;
+    param.loopStartSample = 0;
+    param.samples = CHATOT_CRY_WAVE_BUFFER_SIZE;
+    param.sampleRate = CHATOT_CRY_SAMPLING_RATE;
+    param.volume = volume;
+    param.speed = WAVE_OUT_SPEED(1.0) + speedVariance;
+    param.pan = wavePan;
 
-        v5.handle = Sound_GetWaveOutHandle(WAVE_OUT_CHANNEL_PRIMARY);
-        v5.format = NNS_SND_WAVE_FORMAT_PCM8;
-        v5.data = Sound_GetWaveBuffer();
-        v5.loop = FALSE;
-        v5.loopStartSample = 0;
-        v5.samples = (2000 * 1);
-        v5.sampleRate = 2000;
-        v5.volume = volume;
-        v5.speed = WAVE_OUT_SPEED(1.0) + v0;
-        v5.pan = v2;
+    BOOL success = Sound_PlayWaveOut(&param, WAVE_OUT_CHANNEL_PRIMARY);
+    Sound_SetWaveOutVolume(WAVE_OUT_CHANNEL_PRIMARY, volume);
 
-        v1 = Sound_PlayWaveOut(&v5, WAVE_OUT_CHANNEL_PRIMARY);
-        Sound_SetWaveOutVolume(WAVE_OUT_CHANNEL_PRIMARY, volume);
-    }
+    *chatotCryPlaying = TRUE;
+    Sound_SetUsingDefaultChatotCry(FALSE);
 
-    *v4 = 1;
-    Sound_FlagDefaultChatotCry(FALSE);
-
-    return v1;
+    return success;
 }
 
-void ResetMicStatusFlags(void)
+void Sound_StopChatotCry(void)
 {
-    u8 *v0 = SoundSystem_GetParam(16);
-    u8 *v1 = SoundSystem_GetParam(30);
+    u8 *wavePrimaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
+    u8 *chatotCryPlaying = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY_PLAYING);
 
-    if (*v0 == 1) {
+    if (*wavePrimaryAllocated == TRUE) {
         Sound_StopWaveOutReversed(WAVE_OUT_CHANNEL_PRIMARY);
         Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
     }
 
-    *v1 = 0;
-    return;
+    *chatotCryPlaying = FALSE;
 }
 
-MICResult StartMicSampling(void)
+MICResult Sound_StartRecordingChatotCry(void)
 {
-    MICAutoParam v0;
+    MICAutoParam param;
 
-    v0.type = MIC_SAMPLING_TYPE_SIGNED_8BIT;
-    v0.buffer = Sound_GetWaveBuffer();
-    v0.size = (2000 * 1);
+    param.type = MIC_SAMPLING_TYPE_SIGNED_8BIT;
+    param.buffer = Sound_GetWaveBuffer();
+    param.size = CHATOT_CRY_WAVE_BUFFER_SIZE;
 
-    if ((v0.size & 0x1f) != 0) {
-        v0.size &= 0xffffffe0;
+    // The size must be 32 byte aligned
+    if ((param.size & 0x1f) != 0) {
+        param.size &= 0xffffffe0;
     }
 
-    v0.rate = HW_CPU_CLOCK_ARM7 / 2000;
-    v0.loop_enable = 0;
-    v0.full_callback = NULL;
-    v0.full_arg = NULL;
+    param.rate = HW_CPU_CLOCK_ARM7 / CHATOT_CRY_WAVE_BUFFER_SIZE;
+    param.loop_enable = FALSE;
+    param.full_callback = NULL;
+    param.full_arg = NULL;
 
-    return Sound_StartMicAutoSampling(&v0);
+    return Sound_StartMicAutoSampling(&param);
 }
 
-MICResult StopMicSampling(void)
+MICResult Sound_StopRecordingChatotCry(void)
 {
     return Sound_StopMicAutoSampling();
 }
 
-void StoreMicDataInChatotCryStruct(ChatotCry *param0)
+void Sound_StoreRecordedChatotCry(ChatotCry *cry)
 {
-    StoreProcessedAudioInChatotCryData(param0, (const s8 *)Sound_GetWaveBuffer());
-    return;
+    StoreProcessedAudioInChatotCryData(cry, (const s8 *)Sound_GetWaveBuffer());
 }
 
-void Sound_FlagDefaultChatotCry(u8 value)
+void Sound_SetUsingDefaultChatotCry(u8 value)
 {
-    u8 *v0 = SoundSystem_GetParam(31);
-
-    *v0 = value;
-    return;
+    u8 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_DEFAULT_CHATOT_CRY);
+    *param = value;
 }
 
-BOOL Sound_PlayChatotCry(ChatotCry *param0, u32 param1, int volume, int pan)
+BOOL Sound_PlayChatotCry(ChatotCry *cry, u32 unused, int volume, int pan)
 {
-    int v0;
-    ChatotCry **v1 = SoundSystem_GetParam(36);
+    BOOL success;
+    ChatotCry **storedCry = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY);
 
-    if (param0 == NULL) {
-        v0 = ProcessAudioInput(*v1, param1, volume, pan);
+    if (cry == NULL) {
+        success = Sound_Impl_PlayChatotCry(*storedCry, unused, volume, pan);
     } else {
-        v0 = ProcessAudioInput(param0, param1, volume, pan);
+        success = Sound_Impl_PlayChatotCry(cry, unused, volume, pan);
     }
 
-    if (v0 == FALSE) {
-        Sound_FlagDefaultChatotCry(TRUE);
-        v0 = Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELDMAP, 0);
+    if (success == FALSE) {
+        Sound_SetUsingDefaultChatotCry(TRUE);
+        success = Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELDMAP, 0);
     }
 
-    return v0;
+    return success;
 }
 
-BOOL Sound_PlayDelayedChatotCry(ChatotCry *param0, u32 param1, int volume, int pan, u8 delay)
+BOOL Sound_PlayDelayedChatotCry(ChatotCry *cry, u32 unused, int volume, int pan, u8 delay)
 {
-    int v0;
-    ChatotCry **v1 = SoundSystem_GetParam(36);
+    BOOL success;
+    ChatotCry **storedCry = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY);
 
-    if (param0 == NULL) {
-        v0 = ProcessAudioInput(*v1, param1, volume, pan);
+    if (cry == NULL) {
+        success = Sound_Impl_PlayChatotCry(*storedCry, unused, volume, pan);
     } else {
-        v0 = ProcessAudioInput(param0, param1, volume, pan);
+        success = Sound_Impl_PlayChatotCry(cry, unused, volume, pan);
     }
 
-    if (v0 == 0) {
-        Sound_FlagDefaultChatotCry(TRUE);
+    if (success == FALSE) {
+        Sound_SetUsingDefaultChatotCry(TRUE);
         Sound_PlayDelayedPokemonCryEx(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELDMAP, delay, 0);
-        v0 = 1;
+        success = TRUE;
     }
 
-    return v0;
+    return success;
 }
 
-int Sound_Chatter(ChatotCry *param0)
+int Sound_GetChatterActivationParameter(ChatotCry *chatotCry)
 {
-    const s8 *v0;
-    s8 v1;
+    const s8 *buffer;
+    s8 val;
 
-    if (IsChatotCryDataValid(param0) == 0) {
+    if (IsChatotCryDataValid(chatotCry) == FALSE) {
         return 0;
     }
 
-    v0 = GetChatotCryAudioBuffer(param0);
-    v1 = v0[15];
+    buffer = GetChatotCryAudioBuffer(chatotCry);
+    val = buffer[15];
 
-    if ((-128 <= v1) && (v1 < -30)) {
+    if (-128 <= val && val < -30) {
         return 1;
     }
 
-    if ((30 <= v1) && (v1 < 128)) {
+    if (30 <= val && val < 128) {
         return 2;
     }
 

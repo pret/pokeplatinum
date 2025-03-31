@@ -14,7 +14,6 @@
 #define BGM_PLAYER_NORMAL_CHANNELS  0x7FF
 #define BGM_PLAYER_EXTRA_CHANNELS   0x7FFF
 
-#define WAVE_BUFFER_SIZE            2000
 #define WAVEFORM_SAMPLE_WINDOW      100     // Used to generate amplitude graphs from waveform data
 #define WAVEFORM_MAX_AMPLITUDE      9
 
@@ -67,7 +66,7 @@ u32 Sound_GetNumberOfPlayedCrySamples(int param0, const SNDWaveData *param1, int
 u32 Sound_GetTicksForHandle(enum SoundHandleType param0);
 void Sound_WaveData_AccumulateAmplitudes(const SNDWaveData *param0, u8 *param1, int param2, int param3);
 
-static s8 sWaveBuffer[WAVE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
+static s8 sWaveBuffer[SOUND_WAVE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
 static int sPlaybackMode;
 
 void Sound_SetBGMFixed(u8 fixed)
@@ -1087,7 +1086,7 @@ void Sound_SetMasterVolume(int volume)
 
 void *Sound_GetWaveBuffer(void)
 {
-    return &sWaveBuffer[0];
+    return sWaveBuffer;
 }
 
 // Needs to be set to FIELD_BGM_BANK_STATE_SWITCH before calling

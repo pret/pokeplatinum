@@ -11,8 +11,10 @@
 #define FIELD_BGM_BANK_STATE_IDLE   0
 #define FIELD_BGM_BANK_STATE_SWITCH 1
 
-#define SOUND_VOLUME_MIN    0
-#define SOUND_VOLUME_MAX    127
+#define SOUND_VOLUME_MIN            0
+#define SOUND_VOLUME_MAX            127
+
+#define SOUND_WAVE_BUFFER_SIZE      2000
 
 // Used to set pitch
 #define SOUND_SEMITONE          64

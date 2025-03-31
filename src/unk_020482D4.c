@@ -189,7 +189,7 @@ BOOL ScrCmd_059(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    if (IsChatotCryStructReadyForProcessing(GetChatotCryDataFromSave(ctx->fieldSystem->saveData)) == TRUE) {
+    if (Sound_IsRecordedChatotCryPlayable(GetChatotCryDataFromSave(ctx->fieldSystem->saveData)) == TRUE) {
         *v0 = 1;
         return FALSE;
     }
@@ -202,7 +202,7 @@ BOOL ScrCmd_05A(ScriptContext *param0)
 {
     u16 *v0 = ScriptContext_GetVarPointer(param0);
 
-    if (StartMicSampling() == MIC_RESULT_SUCCESS) {
+    if (Sound_StartRecordingChatotCry() == MIC_RESULT_SUCCESS) {
         *v0 = 1;
         return 0;
     }
@@ -213,13 +213,13 @@ BOOL ScrCmd_05A(ScriptContext *param0)
 
 BOOL ScrCmd_05B(ScriptContext *param0)
 {
-    StopMicSampling();
+    Sound_StopRecordingChatotCry();
     return 1;
 }
 
 BOOL ScrCmd_05C(ScriptContext *param0)
 {
-    StoreMicDataInChatotCryStruct(GetChatotCryDataFromSave(param0->fieldSystem->saveData));
+    Sound_StoreRecordedChatotCry(GetChatotCryDataFromSave(param0->fieldSystem->saveData));
     return 1;
 }
 

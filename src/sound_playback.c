@@ -343,8 +343,8 @@ BOOL Sound_PlayPokemonCry(u16 species, u8 form)
     }
 
     if (waveID == SPECIES_CHATOT) {
-        if (ProcessAudioInput(*chatotCry, 0, SOUND_VOLUME_MAX, 0) == TRUE) {
-            Sound_FlagDefaultChatotCry(FALSE);
+        if (Sound_Impl_PlayChatotCry(*chatotCry, 0, SOUND_VOLUME_MAX, 0) == TRUE) {
+            Sound_SetUsingDefaultChatotCry(FALSE);
             return TRUE;
         }
     }
@@ -361,7 +361,7 @@ BOOL Sound_PlayPokemonCry(u16 species, u8 form)
         Sound_AdjustVolumeForVoiceChatEx(waveID, SOUND_HANDLE_TYPE_ECHO);
     }
 
-    Sound_FlagDefaultChatotCry(FALSE);
+    Sound_SetUsingDefaultChatotCry(FALSE);
 
     return success;
 }
@@ -391,7 +391,7 @@ void Sound_StopPokemonCries(int fadeOutFrames)
         Sound_FreeWaveOutChannel(WAVE_OUT_CHANNEL_SECONDARY);
     }
 
-    ResetMicStatusFlags();
+    Sound_StopChatotCry();
     Sound_ClearPokemonCryParams();
 }
 
@@ -476,7 +476,7 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int
 
             return TRUE;
         default:
-            Sound_FlagDefaultChatotCry(TRUE);
+            Sound_SetUsingDefaultChatotCry(TRUE);
             break;
         }
     }
@@ -772,7 +772,7 @@ static BOOL Sound_Impl_PlayPokemonCryEcho(u16 species, s8 pitch, u8 form)
     u8 *echoEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ECHO_ENABLED);
     *echoEnabled = TRUE;
 
-    Sound_FlagDefaultChatotCry(TRUE);
+    Sound_SetUsingDefaultChatotCry(TRUE);
     BOOL success = Sound_PlayPokemonCry(species, form);
     Sound_SetPitchForHandle(SOUND_HANDLE_TYPE_ECHO, SOUND_PLAYBACK_TRACK_ALL, pitch);
 
