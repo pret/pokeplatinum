@@ -11,7 +11,7 @@
 #include "sys_task_manager.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "unk_02006224.h"
+#include "sound_chatot.h"
 
 
 

@@ -13,7 +13,7 @@
 #include "sys_task_manager.h"
 #include "sound_system.h"
 #include "sound.h"
-#include "unk_02006224.h"
+#include "sound_chatot.h"
 
 #define WAVE_OUT_SPEED_HYPERVOICE_1 (WAVE_OUT_SPEED(1.046875))
 #define WAVE_OUT_SPEED_UPROAR_1     (WAVE_OUT_SPEED(0.8125))

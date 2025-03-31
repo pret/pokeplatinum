@@ -29,7 +29,7 @@
 #include "savedata.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02006224.h"
+#include "sound_chatot.h"
 #include "unk_02026150.h"
 
 BattleRecording *Unk_021C07A4 = NULL;

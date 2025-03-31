@@ -1,4 +1,4 @@
-#include "unk_02006224.h"
+#include "sound_chatot.h"
 
 #include <nitro.h>
 #include <string.h>

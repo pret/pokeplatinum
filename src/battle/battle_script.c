@@ -67,7 +67,7 @@
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "sound_playback.h"
-#include "unk_02006224.h"
+#include "sound_chatot.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
