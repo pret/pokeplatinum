@@ -890,7 +890,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_07A,
     ScrCmd_AddItem,
     ScrCmd_RemoveItem,
-    ScrCmd_07D,
+    ScrCmd_CanFitItem,
     ScrCmd_CheckItem,
     ScrCmd_07F,
     ScrCmd_GetItemPocket,

@@ -22,28 +22,28 @@ _000A:
     End
 
 _005B:
-    SetVar 0x8004, 72
+    SetVar 0x8004, ITEM_RED_SHARD
     GoTo _0093
     End
 
 _0069:
-    SetVar 0x8004, 73
+    SetVar 0x8004, ITEM_BLUE_SHARD
     GoTo _0093
     End
 
 _0077:
-    SetVar 0x8004, 74
+    SetVar 0x8004, ITEM_YELLOW_SHARD
     GoTo _0093
     End
 
 _0085:
-    SetVar 0x8004, 75
+    SetVar 0x8004, ITEM_GREEN_SHARD
     GoTo _0093
     End
 
 _0093:
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00C7
     SetFlag FLAG_UNK_0x0AB4
     CallCommonScript 0x7E0

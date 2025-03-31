@@ -14,9 +14,9 @@ _000A:
     GoToIfUnset FLAG_UNK_0x007B, _0067
     GoToIfSet FLAG_UNK_0x00A1, _005C
     Message 0
-    SetVar 0x8004, 247
+    SetVar 0x8004, ITEM_SPELL_TAG
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CF
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00A1
@@ -44,9 +44,9 @@ _0072:
     GoToIfUnset FLAG_UNK_0x007B, _00D9
     GoToIfSet FLAG_UNK_0x0116, _00C4
     Message 3
-    SetVar 0x8004, 224
+    SetVar 0x8004, ITEM_CLEANSE_TAG
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CF
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0116

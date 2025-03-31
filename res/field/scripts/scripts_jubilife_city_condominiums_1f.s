@@ -50,11 +50,11 @@ _0063:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00BF, _00B7
-    BufferItemName 0, 217
+    BufferItemName 0, ITEM_QUICK_CLAW
     Message 3
-    SetVar 0x8004, 217
+    SetVar 0x8004, ITEM_QUICK_CLAW
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00AD
     SetFlag FLAG_UNK_0x00BF
     CallCommonScript 0x7E0

@@ -130,9 +130,9 @@ _010E:
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x009F
     Message 8
-    SetVar 0x8004, 94
+    SetVar 0x8004, ITEM_HONEY
     SetVar 0x8005, 10
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _01AD
     CallCommonScript 0x7FC
     Message 9
@@ -206,8 +206,8 @@ _026A:
     End
 
 _0293:
-    SetVar 0x8004, 94
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    SetVar 0x8004, ITEM_HONEY
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _02D5
     ScrCmd_1A3 0x8006
     ScrCmd_074

@@ -140,9 +140,9 @@ _0198:
     WaitMovement
     BufferPlayerName 0
     Message 5
-    SetVar 0x8004, 218
+    SetVar 0x8004, ITEM_SOOTHE_BELL
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _01EA
     GoTo _01DB
     End

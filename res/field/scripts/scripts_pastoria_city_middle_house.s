@@ -33,9 +33,9 @@ _004A:
     GoToIfEq 0x800C, 0, _009C
     GoToIfEq 0x800C, 1, _00A7
     Message 4
-    SetVar 0x8004, 215
+    SetVar 0x8004, ITEM_MACHO_BRACE
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00B2
     SetFlag FLAG_UNK_0x011C
     CallCommonScript 0x7FC

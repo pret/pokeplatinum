@@ -87,9 +87,9 @@ _00BB:
     GoTo _0158
 
 _0158:
-    SetVar 0x8004, 0x188
+    SetVar 0x8004, ITEM_TM65
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0196
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x007D

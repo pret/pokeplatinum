@@ -33,7 +33,7 @@ _006D:
     BufferItemName 2, 0x8004
     Message 1
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0105
     GoTo _00C2
 
@@ -50,15 +50,15 @@ _00E7:
     End
 
 _00ED:
-    SetVar 0x8004, 241
+    SetVar 0x8004, ITEM_BLACK_BELT
     Return
 
 _00F5:
-    SetVar 0x8004, 0x10C
+    SetVar 0x8004, ITEM_EXPERT_BELT
     Return
 
 _00FD:
-    SetVar 0x8004, 0x113
+    SetVar 0x8004, ITEM_FOCUS_SASH
     Return
 
 _0105:
@@ -76,7 +76,7 @@ _0114:
     BufferItemName 2, 0x8004
     Message 3
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0105
     GoTo _00C2
 

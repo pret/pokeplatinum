@@ -54,9 +54,9 @@ _0057:
 _0093:
     GoToIfSet FLAG_UNK_0x0134, _0153
     Message 2
-    SetVar 0x8004, 0x129
+    SetVar 0x8004, ITEM_CHOICE_SPECS
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0174
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0134
@@ -66,9 +66,9 @@ _0093:
 _00D3:
     GoToIfSet FLAG_UNK_0x0135, _015E
     Message 2
-    SetVar 0x8004, 240
+    SetVar 0x8004, ITEM_BLACKGLASSES
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0174
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0135
@@ -78,9 +78,9 @@ _00D3:
 _0113:
     GoToIfSet FLAG_UNK_0x0136, _0169
     Message 2
-    SetVar 0x8004, 0x10B
+    SetVar 0x8004, ITEM_WISE_GLASSES
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0174
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0136

@@ -48,9 +48,9 @@ _0025:
     GoTo _00B0
 
 _00B0:
-    SetVar 0x8004, 0x18F
+    SetVar 0x8004, ITEM_TM72
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00EE
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x009E

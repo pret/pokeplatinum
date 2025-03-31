@@ -46,9 +46,9 @@ _000E:
     End
 
 _00BB:
-    SetVar 0x8004, 0x193
+    SetVar 0x8004, ITEM_TM76
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00F9
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0075

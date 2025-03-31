@@ -65,10 +65,10 @@ _00A5:
     LockAll
     GoToIfEq 0x410C, 3, _00F4
     GoToIfLt 0x410C, 15, _0100
-    SetVar 0x8004, 90
+    SetVar 0x8004, ITEM_STARDUST
 _00CB:
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _010C
     CallCommonScript 0x7E0
     CloseMessage
@@ -77,11 +77,11 @@ _00CB:
     End
 
 _00F4:
-    SetVar 0x8004, 0x145
+    SetVar 0x8004, ITEM_REAPER_CLOTH
     GoTo _00CB
 
 _0100:
-    SetVar 0x8004, 106
+    SetVar 0x8004, ITEM_RARE_BONE
     GoTo _00CB
 
 _010C:

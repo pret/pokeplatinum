@@ -18,9 +18,9 @@ _0010:
     GoToIfSet FLAG_UNK_0x00DB, _00A9
     GoToIfSet FLAG_UNK_0x0138, _0062
     Message 0
-    SetVar 0x8004, 91
+    SetVar 0x8004, ITEM_STAR_PIECE
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _01F3
     SetFlag FLAG_UNK_0x0138
     CallCommonScript 0x7FC

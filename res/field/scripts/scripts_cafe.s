@@ -63,9 +63,9 @@ _00BB:
     End
 
 _00E4:
-    SetVar 0x8004, 33
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0143
+    SetVar 0x8004, ITEM_MOOMOO_MILK
+    CanFitItem 0x8004, 0x8005, 0x800C
+    GoToIfEq 0x800C, FALSE, _0143
     ScrCmd_334 35, 0x8006
     ScrCmd_1A3 0x8006
     ScrCmd_074

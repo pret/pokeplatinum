@@ -99,9 +99,9 @@ _0102:
     BufferNumber 1, 0x8004
     GoToIfLt 0x8004, 35, _015F
     Message 5
-    SetVar 0x8004, 216
+    SetVar 0x8004, ITEM_EXP_SHARE
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _014A
     SetFlag FLAG_UNK_0x010B
     CallCommonScript 0x7E0

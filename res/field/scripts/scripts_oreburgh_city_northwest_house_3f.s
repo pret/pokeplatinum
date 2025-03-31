@@ -12,11 +12,11 @@ _000A:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x007C, _0054
-    BufferItemName 0, 238
+    BufferItemName 0, ITEM_HARD_STONE
     Message 0
-    SetVar 0x8004, 238
+    SetVar 0x8004, ITEM_HARD_STONE
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0064
     SetFlag FLAG_UNK_0x007C
     CallCommonScript 0x7E0
@@ -25,7 +25,7 @@ _000A:
     End
 
 _0054:
-    BufferItemName 0, 238
+    BufferItemName 0, ITEM_HARD_STONE
     Message 1
     WaitABXPadPress
     CloseMessage

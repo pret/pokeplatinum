@@ -51,12 +51,12 @@ _00CC:
     End
 
 _00D7:
-    SetVar 0x8004, 0x104
+    SetVar 0x8004, ITEM_RED_SCARF
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CC
     BufferPartyMonSpecies 0, 0x8000
-    BufferItemName 1, 0x104
+    BufferItemName 1, ITEM_RED_SCARF
     Message 4
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0140
@@ -67,12 +67,12 @@ _00D7:
     End
 
 _0118:
-    SetVar 0x8004, 0x105
+    SetVar 0x8004, ITEM_BLUE_SCARF
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CC
     BufferPartyMonSpecies 0, 0x8000
-    BufferItemName 1, 0x105
+    BufferItemName 1, ITEM_BLUE_SCARF
     Message 4
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0141
@@ -83,12 +83,12 @@ _0118:
     End
 
 _0159:
-    SetVar 0x8004, 0x106
+    SetVar 0x8004, ITEM_PINK_SCARF
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CC
     BufferPartyMonSpecies 0, 0x8000
-    BufferItemName 1, 0x106
+    BufferItemName 1, ITEM_PINK_SCARF
     Message 4
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0142
@@ -99,12 +99,12 @@ _0159:
     End
 
 _019A:
-    SetVar 0x8004, 0x107
+    SetVar 0x8004, ITEM_GREEN_SCARF
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CC
     BufferPartyMonSpecies 0, 0x8000
-    BufferItemName 1, 0x107
+    BufferItemName 1, ITEM_GREEN_SCARF
     Message 4
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0143
@@ -115,12 +115,12 @@ _019A:
     End
 
 _01DB:
-    SetVar 0x8004, 0x108
+    SetVar 0x8004, ITEM_YELLOW_SCARF
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CC
     BufferPartyMonSpecies 0, 0x8000
-    BufferItemName 1, 0x108
+    BufferItemName 1, ITEM_YELLOW_SCARF
     Message 4
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0144

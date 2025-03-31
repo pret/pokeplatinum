@@ -642,7 +642,7 @@ _0928:
     Return
 
 _0984:
-    ScrCmd_07D 0x8006, 1, 0x8007
+    CanFitItem 0x8006, 1, 0x8007
     CallIfNe 0x8007, 0, _09A1
     SetVar 0x800C, 0x2710
     Return
@@ -655,107 +655,107 @@ _09A1:
     Return
 
 _09B6:
-    SetVar 0x8006, 149
+    SetVar 0x8006, ITEM_CHERI_BERRY
     Return
 
 _09BE:
-    SetVar 0x8006, 150
+    SetVar 0x8006, ITEM_CHESTO_BERRY
     Return
 
 _09C6:
-    SetVar 0x8006, 151
+    SetVar 0x8006, ITEM_PECHA_BERRY
     Return
 
 _09CE:
-    SetVar 0x8006, 152
+    SetVar 0x8006, ITEM_RAWST_BERRY
     Return
 
 _09D6:
-    SetVar 0x8006, 153
+    SetVar 0x8006, ITEM_ASPEAR_BERRY
     Return
 
 _09DE:
-    SetVar 0x8006, 154
+    SetVar 0x8006, ITEM_LEPPA_BERRY
     Return
 
 _09E6:
-    SetVar 0x8006, 155
+    SetVar 0x8006, ITEM_ORAN_BERRY
     Return
 
 _09EE:
-    SetVar 0x8006, 156
+    SetVar 0x8006, ITEM_PERSIM_BERRY
     Return
 
 _09F6:
-    SetVar 0x8006, 159
+    SetVar 0x8006, ITEM_FIGY_BERRY
     Return
 
 _09FE:
-    SetVar 0x8006, 160
+    SetVar 0x8006, ITEM_WIKI_BERRY
     Return
 
 _0A06:
-    SetVar 0x8006, 161
+    SetVar 0x8006, ITEM_MAGO_BERRY
     Return
 
 _0A0E:
-    SetVar 0x8006, 162
+    SetVar 0x8006, ITEM_AGUAV_BERRY
     Return
 
 _0A16:
-    SetVar 0x8006, 163
+    SetVar 0x8006, ITEM_IAPAPA_BERRY
     Return
 
 _0A1E:
-    SetVar 0x8006, 164
+    SetVar 0x8006, ITEM_RAZZ_BERRY
     Return
 
 _0A26:
-    SetVar 0x8006, 165
+    SetVar 0x8006, ITEM_BLUK_BERRY
     Return
 
 _0A2E:
-    SetVar 0x8006, 166
+    SetVar 0x8006, ITEM_NANAB_BERRY
     Return
 
 _0A36:
-    SetVar 0x8006, 167
+    SetVar 0x8006, ITEM_WEPEAR_BERRY
     Return
 
 _0A3E:
-    SetVar 0x8006, 168
+    SetVar 0x8006, ITEM_PINAP_BERRY
     Return
 
 _0A46:
-    SetVar 0x8006, 157
+    SetVar 0x8006, ITEM_LUM_BERRY
     Return
 
 _0A4E:
-    SetVar 0x8006, 158
+    SetVar 0x8006, ITEM_SITRUS_BERRY
     Return
 
 _0A56:
-    SetVar 0x8006, 169
+    SetVar 0x8006, ITEM_POMEG_BERRY
     Return
 
 _0A5E:
-    SetVar 0x8006, 170
+    SetVar 0x8006, ITEM_KELPSY_BERRY
     Return
 
 _0A66:
-    SetVar 0x8006, 171
+    SetVar 0x8006, ITEM_QUALOT_BERRY
     Return
 
 _0A6E:
-    SetVar 0x8006, 172
+    SetVar 0x8006, ITEM_HONDEW_BERRY
     Return
 
 _0A76:
-    SetVar 0x8006, 173
+    SetVar 0x8006, ITEM_GREPA_BERRY
     Return
 
 _0A7E:
-    SetVar 0x8006, 174
+    SetVar 0x8006, ITEM_TAMATO_BERRY
     Return
 
     .byte 0

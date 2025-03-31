@@ -89,9 +89,9 @@ _0094:
     End
 
 _0119:
-    SetVar 0x8004, 0x19D
+    SetVar 0x8004, ITEM_TM86
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0157
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0074
@@ -118,9 +118,9 @@ _0161:
     End
 
 _0177:
-    SetVar 0x8004, 0x19D
+    SetVar 0x8004, ITEM_TM86
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _01B7
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0074
