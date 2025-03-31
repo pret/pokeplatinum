@@ -419,8 +419,8 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int
     u8 *wavePrimaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *waveSecondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
     u8 *echoEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ECHO_ENABLED);
-    u8 *v11 = SoundSystem_GetParam(30);
-    ChatotCry **v12 = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY);
+    u8 *chatotCryPlaying = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY_PLAYING);
+    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY);
 
     if (Sound_Impl_IsShayminSkyForm(species, form) == TRUE) {
         species = WAVE_ARC_PV516_SKY;
@@ -461,7 +461,7 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int
         case POKECRY_PINCH_HALF_DURATION:
             Sound_PlayPokemonCry(SPECIES_CHATOT, form);
 
-            if (*v11 == 0) {
+            if (*chatotCryPlaying == FALSE) {
                 Sound_SetPanForHandle(SOUND_HANDLE_TYPE_POKEMON_CRY, SOUND_PLAYBACK_TRACK_ALL, pan);
                 Sound_Impl_SetPokemonCryVolume(species, SOUND_HANDLE_TYPE_POKEMON_CRY, volume);
             } else {

@@ -14,8 +14,6 @@
 #define SOUND_FILTER_SAMPLE_RATE            22000
 #define SOUND_FILTER_INTERVAL               2
 
-#define SOUND_PLAYBACK_MODE_STEREO          0
-#define SOUND_PLAYBACK_MODE_MONO            1
 
 enum SoundHeapState {
     SOUND_HEAP_STATE_EMPTY = 0,
@@ -31,24 +29,24 @@ enum SoundHeapState {
 
 enum SoundSystemState {
     SOUND_SYSTEM_STATE_IDLE = 0,
-    SOUND_SYSTEM_STATE_PLAY, // Start playing a sound
-    SOUND_SYSTEM_STATE_PLAYING, // Sound is playing
-    SOUND_SYSTEM_STATE_FADE_IN, // Fade in sound
-    SOUND_SYSTEM_STATE_FADE_OUT, // Fade out sound
-    SOUND_SYSTEM_STATE_FADE_OUT_PLAY, // Fade out sound then play another sound
-    SOUND_SYSTEM_STATE_FADE_OUT_FADE_IN, // Fade out sound then fade in another sound
+    SOUND_SYSTEM_STATE_PLAY,                            // Start playing a sound
+    SOUND_SYSTEM_STATE_PLAYING,                         // Sound is playing
+    SOUND_SYSTEM_STATE_FADE_IN,                         // Fade in sound
+    SOUND_SYSTEM_STATE_FADE_OUT,                        // Fade out sound
+    SOUND_SYSTEM_STATE_FADE_OUT_PLAY,                   // Fade out sound then play another sound
+    SOUND_SYSTEM_STATE_FADE_OUT_FADE_IN,                // Fade out sound then fade in another sound
 };
 
 enum SoundHandleType {
-    SOUND_HANDLE_TYPE_FIELD_BGM = 0,
-    SOUND_HANDLE_TYPE_POKEMON_CRY,
-    SOUND_HANDLE_TYPE_FANFARE,
-    SOUND_HANDLE_TYPE_SFX_1,
-    SOUND_HANDLE_TYPE_SFX_2,
-    SOUND_HANDLE_TYPE_SFX_3,
-    SOUND_HANDLE_TYPE_SFX_4,
-    SOUND_HANDLE_TYPE_BGM,
-    SOUND_HANDLE_TYPE_ECHO,
+    SOUND_HANDLE_TYPE_FIELD_BGM = 0,                    // All field BGM
+    SOUND_HANDLE_TYPE_POKEMON_CRY,                      // Pokemon cries
+    SOUND_HANDLE_TYPE_FANFARE,                          // Fanfares
+    SOUND_HANDLE_TYPE_SFX_1,                            // Sound Effects 1
+    SOUND_HANDLE_TYPE_SFX_2,                            // Sound Effects 2
+    SOUND_HANDLE_TYPE_SFX_3,                            // Sound Effects 3
+    SOUND_HANDLE_TYPE_SFX_4,                            // Sound Effects 4
+    SOUND_HANDLE_TYPE_BGM,                              // Non-field BGM
+    SOUND_HANDLE_TYPE_ECHO,                             // Pokemon cry echo/reverb/chorus
 
     SOUND_HANDLE_TYPE_COUNT = 9
 };
@@ -92,7 +90,7 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_HEAP_STATE_BGM,                  // Actual BGM data
     SOUND_SYSTEM_PARAM_HEAP_STATE_SUB_SFX,              // Sub screen SFX
     SOUND_SYSTEM_PARAM_HEAP_STATE_FANFARE,              // Fanfare data
-    
+
     SOUND_SYSTEM_PARAM_CHATOT_CRY_PLAYING,              // Whether the chatot cry is currently playing
     SOUND_SYSTEM_PARAM_DEFAULT_CHATOT_CRY,              // Whether the default chatot cry is being used
     SOUND_SYSTEM_PARAM_FIELD_BGM,                       // Currently active field BGM
@@ -101,21 +99,32 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_CRY_DURATION_TASK,               // SysTask used to limit the duration of pokemon cries
     SOUND_SYSTEM_PARAM_CHATOT_CRY,                      // The users ChatotCry structure
 
-    SOUND_SYSTEM_PARAM_CRY_A_MOD = 41,
-    SOUND_SYSTEM_PARAM_CRY_A_PAN,
-    SOUND_SYSTEM_PARAM_CRY_A_VOLUME,
-    SOUND_SYSTEM_PARAM_CRY_A_HEAP_ID,
-    SOUND_SYSTEM_PARAM_CRY_A_WAVE_ID,
-    SOUND_SYSTEM_PARAM_CRY_A_DELAY,
+    // Unused parameters
+    SOUND_SYSTEM_PARAM_UNUSED_37,
+    SOUND_SYSTEM_PARAM_UNUSED_38,
+    SOUND_SYSTEM_PARAM_UNUSED_39,
+    SOUND_SYSTEM_PARAM_UNUSED_40,
 
-    SOUND_SYSTEM_PARAM_CRY_B_MOD,
-    SOUND_SYSTEM_PARAM_CRY_B_PAN,
-    SOUND_SYSTEM_PARAM_CRY_B_VOLUME,
-    SOUND_SYSTEM_PARAM_CRY_B_HEAP_ID,
-    SOUND_SYSTEM_PARAM_CRY_B_WAVE_ID,
-    SOUND_SYSTEM_PARAM_CRY_B_DELAY,
+    // The following are parameters for delayed pokemon cries.
+    // CRY_B is only used if SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES
+    // is enabled, and two pokemon cries are scheduled
+    SOUND_SYSTEM_PARAM_CRY_A_MOD,                       // Cry 1 Mod
+    SOUND_SYSTEM_PARAM_CRY_A_PAN,                       // Cry 1 Pan
+    SOUND_SYSTEM_PARAM_CRY_A_VOLUME,                    // Cry 1 Volume
+    SOUND_SYSTEM_PARAM_CRY_A_HEAP_ID,                   // Cry 1 Heap (used to allocate the duration param structure, if needed)
+    SOUND_SYSTEM_PARAM_CRY_A_WAVE_ID,                   // Cry 1 Wave ID
+    SOUND_SYSTEM_PARAM_CRY_A_DELAY,                     // Cry 1 Delay (in frames)
+
+    SOUND_SYSTEM_PARAM_CRY_B_MOD,                       // Cry 2 Mod
+    SOUND_SYSTEM_PARAM_CRY_B_PAN,                       // Cry 2 Pan
+    SOUND_SYSTEM_PARAM_CRY_B_VOLUME,                    // Cry 2 Volume
+    SOUND_SYSTEM_PARAM_CRY_B_HEAP_ID,                   // Cry 2 Heap (used to allocate the duration param structure, if needed)
+    SOUND_SYSTEM_PARAM_CRY_B_WAVE_ID,                   // Cry 2 Wave ID
+    SOUND_SYSTEM_PARAM_CRY_B_DELAY,                     // Cry 2 Delay (in frames)
 
     SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES,           // Whether to allow 2 simultaneous pokemon cries playing
+
+    SOUND_SYSTEM_PARAM_54,
 };
 
 typedef struct SoundFilterCallbackParam {
@@ -131,7 +140,7 @@ typedef struct SoundSystem {
     const NNSSndArcBankInfo *currentBankInfo;
     u8 captureBuffer[SOUND_SYSTEM_CAPTURE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
     SoundFilterCallbackParam filterCallbackParam;
-    u16 unk_BCD48;
+    u16 unused1;
     u8 bgmFixed; // BGM can't change if this is set
     u8 activePokemonCry;
     int fadeCounter;
@@ -156,17 +165,17 @@ typedef struct SoundSystem {
     u16 currentFieldBGM;
     const SNDWaveData *currentWaveData;
     void *waveOutReverseBuffer;
-    int unk_BCD90;
+    int unused2;
     SysTask *pokemonCryDurationTask;
     ChatotCry *chatotCry;
-    ChatotCry *unk_BCD9C[4];
+    ChatotCry *chatotCryUnused[4];
     int pokemonCryMod[2];
     int pokemonCryPan[2];
     int pokemonCryVolume[2];
     int pokemonCryHeapID[2];
     u16 pokemonCryWaveID[2];
     u8 pokemonCryDelay[2];
-    u8 allowTwoPokemonCries; // Whether to allow 2 simultaneous pokemon cries or not
+    u8 allowTwoPokemonCries;
     u8 unk_BCDD3;
 } SoundSystem;
 

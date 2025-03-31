@@ -8,13 +8,13 @@
 #define SOUND_EFFECT_TRACK_ALL      0xFFFF
 
 enum BGMFadeInType {
-    BGM_FADE_IN_TYPE_FROM_ZERO = 0, // Fade in from volume 0
+    BGM_FADE_IN_TYPE_FROM_ZERO = 0,    // Fade in from volume 0
     BGM_FADE_IN_TYPE_FROM_CURRENT = 1, // Fade in from the current volume
 };
 
 BOOL Sound_PlayBasicBGM(u16 bgmID);
 BOOL Sound_PlayBGM(u16 bgmID);
-BOOL sub_02005588(u8 param0, u16 param1);
+BOOL sub_02005588(u8 scene, u16 seqID);
 void Sound_StopBGM(u16 bgmID, int fadeOutFrames);
 void Sound_FadeInBGM(int targetVolume, int frames, enum BGMFadeInType fadeInType);
 void Sound_FadeOutBGM(int targetVolume, int frames);
@@ -37,12 +37,12 @@ void Sound_PanEffect(u16 seqID, u16 tracks, int pan);
 void Sound_PanAllEffects(int pan);
 BOOL Sound_PlayPokemonCry(u16 species, u8 form);
 BOOL Sound_PlayDelayedPokemonCry(u16 species, u8 delay, u8 form);
-void Sound_StopPokemonCries(int param0);
+void Sound_StopPokemonCries(int fadeOutFrames);
 BOOL Sound_IsPokemonCryPlaying(void);
-BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 form);
-void Sound_PlayDelayedPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 delay, u8 form);
+BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int volume, int heapID, u8 form);
+void Sound_PlayDelayedPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int volume, int heapID, u8 delay, u8 form);
 void Sound_ClearPokemonCryParams(void);
-BOOL Sound_PlayFanfare(u16 param0);
+BOOL Sound_PlayFanfare(u16 seqID);
 BOOL Sound_UpdateFanfareDelay(void);
 BOOL Sound_IsBGMPausedByFanfare(void);
 
