@@ -3753,11 +3753,11 @@
     .short 677
     .endm
 
-    .macro ScrCmd_2A6 arg0, arg1, arg2
+    .macro GetGameCornerPrizeData index, item, price
     .short 678
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \index
+    .short \item
+    .short \price
     .endm
 
     .macro ScrCmd_2A7 arg0, arg1

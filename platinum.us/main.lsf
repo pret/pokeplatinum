@@ -203,7 +203,7 @@ Static main
 	Object main.nef.p/src_unk_0204CDDC.c.o
 	Object main.nef.p/src_unk_0204CFFC.c.o
 	Object main.nef.p/src_unk_0204E240.c.o
-	Object main.nef.p/src_unk_0204E378.c.o
+	Object main.nef.p/src_scrcmd_game_corner_prize.c.o
 	Object main.nef.p/src_scrcmd_system_flags.c.o
 	Object main.nef.p/src_unk_0204E75C.c.o
 	Object main.nef.p/src_unk_0204E974.c.o

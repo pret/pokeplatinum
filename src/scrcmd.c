@@ -136,6 +136,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "scrcmd_dummy_23F_242.h"
+#include "scrcmd_game_corner_prize.h"
 #include "scrcmd_jubilife_lottery.h"
 #include "scrcmd_shop.h"
 #include "scrcmd_system_flags.h"
@@ -184,7 +185,6 @@
 #include "unk_0204CDDC.h"
 #include "unk_0204CFFC.h"
 #include "unk_0204E240.h"
-#include "unk_0204E378.h"
 #include "unk_0204E75C.h"
 #include "unk_0204E974.h"
 #include "unk_0204EDA4.h"
@@ -1443,7 +1443,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2A3,
     ScrCmd_2A4,
     ScrCmd_2A5,
-    ScrCmd_2A6,
+    ScrCmd_GetGameCornerPrizeData,
     ScrCmd_2A7,
     ScrCmd_2A8,
     ScrCmd_2A9,
