@@ -14,7 +14,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2);
 

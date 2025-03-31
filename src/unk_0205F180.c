@@ -24,7 +24,7 @@
 #include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "terrain_collision_manager.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_020655F4.h"
 
 typedef BOOL (*UnkFuncPtr_020EDB84)(u8);

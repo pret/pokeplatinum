@@ -15,7 +15,7 @@
 #include "palette.h"
 #include "sprite_system.h"
 #include "system.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 typedef struct {
     fx32 unk_00;

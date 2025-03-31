@@ -25,7 +25,7 @@
 #include "script_manager.h"
 #include "special_encounter.h"
 #include "terrain_collision_manager.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0201CED8.h"
 #include "unk_020553DC.h"
 #include "unk_020711EC.h"

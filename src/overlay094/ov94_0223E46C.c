@@ -34,7 +34,7 @@
 #include "string_list.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0200F174.h"
 #include "unk_0202DA40.h"
 #include "unk_020366A0.h"

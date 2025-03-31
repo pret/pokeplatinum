@@ -15,7 +15,7 @@
 
 #include "heap.h"
 #include "math.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 typedef struct {
     u16 unk_00;

@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "map_matrix.h"
 #include "terrain_collision_manager.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 typedef struct {
     VecFx32 unk_00;

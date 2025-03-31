@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02005474_H
-#define POKEPLATINUM_UNK_02005474_H
+#ifndef POKEPLATINUM_SOUND_PLAYBACK_H
+#define POKEPLATINUM_SOUND_PLAYBACK_H
 
 #include "constants/sound.h"
 #include "sound_system.h"
@@ -46,4 +46,4 @@ BOOL Sound_PlayFanfare(u16 param0);
 BOOL Sound_UpdateFanfareDelay(void);
 BOOL Sound_IsBGMPausedByFanfare(void);
 
-#endif // POKEPLATINUM_UNK_02005474_H
+#endif // POKEPLATINUM_SOUND_PLAYBACK_H

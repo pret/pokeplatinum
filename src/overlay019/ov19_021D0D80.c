@@ -53,7 +53,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02023FCC.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"

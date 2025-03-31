@@ -55,7 +55,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02015064.h"
 #include "unk_02015920.h"
 #include "unk_02098FFC.h"

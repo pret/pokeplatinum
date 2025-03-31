@@ -35,7 +35,7 @@
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02012744.h"
 
 #include "res/text/bank/pokedex.h"

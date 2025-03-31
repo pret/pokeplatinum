@@ -37,7 +37,7 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
 #include "unk_0208C098.h"

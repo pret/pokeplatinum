@@ -64,7 +64,7 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "system_vars.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0201CED8.h"
 #include "unk_02020AEC.h"
 #include "unk_0205F180.h"

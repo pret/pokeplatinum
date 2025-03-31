@@ -13,7 +13,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "terrain_collision_manager.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 typedef struct {
     u8 unk_00;

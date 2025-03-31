@@ -34,7 +34,7 @@
 #include "string_template.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0200F174.h"
 #include "unk_0202DF8C.h"
 #include "unk_0203D1B8.h"

@@ -22,7 +22,7 @@
 #include "player_avatar.h"
 #include "system.h"
 #include "system_flags.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02056B30.h"
 #include "unk_02070428.h"
 #include "vars_flags.h"

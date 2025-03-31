@@ -36,7 +36,7 @@
 #include "pokemon_sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02094EDC.h"
 
 static int ov17_02243C68(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);

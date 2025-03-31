@@ -13,7 +13,7 @@
 #include "enums.h"
 #include "pc_boxes.h"
 #include "system.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 static void ov19_021DFCF8(UnkStruct_ov19_021DF964 *param0);
 static void ov19_021DFD08(UnkStruct_ov19_021DF964 *param0, UnkEnum_021DFB94 param1);

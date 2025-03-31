@@ -17,7 +17,7 @@
 #include "system_flags.h"
 #include "trainer_data.h"
 #include "sound.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "vars_flags.h"
 
 const static u16 Unk_020EC3E0[][2] = {

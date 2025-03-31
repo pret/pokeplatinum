@@ -23,7 +23,7 @@
 #include "sys_task.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0201E3D8.h"
 
 FS_EXTERN_OVERLAY(poketch_digital_watch);

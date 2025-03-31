@@ -22,7 +22,7 @@
 #include "string_list.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_020298BC.h"
 
 #include "res/graphics/shop_menu/shop_gra.naix"

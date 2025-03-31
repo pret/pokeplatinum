@@ -29,7 +29,7 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "terrain_collision_manager.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0202854C.h"
 #include "vars_flags.h"
 

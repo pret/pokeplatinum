@@ -50,7 +50,7 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02012744.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"

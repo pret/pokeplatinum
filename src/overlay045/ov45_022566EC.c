@@ -18,7 +18,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 struct UnkStruct_ov45_022566EC_t {
     const UnkStruct_ov45_022566EC_1 *unk_00;

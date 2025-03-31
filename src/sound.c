@@ -8,7 +8,7 @@
 #include "communication_system.h"
 #include "heap.h"
 #include "sound_system.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "generated/sdat.h"
 
 

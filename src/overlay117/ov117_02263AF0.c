@@ -41,7 +41,7 @@
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02012744.h"
 
 typedef struct {

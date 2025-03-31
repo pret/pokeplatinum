@@ -23,7 +23,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0202854C.h"
 #include "unk_0206A780.h"
 

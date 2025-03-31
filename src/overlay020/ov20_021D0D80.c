@@ -18,7 +18,7 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "sound.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_02014A84.h"
 #include "unk_02023FCC.h"
 #include "unk_0209747C.h"
