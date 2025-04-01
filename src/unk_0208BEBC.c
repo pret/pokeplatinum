@@ -13,8 +13,8 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "savedata_misc.h"
-#include "system.h"
 #include "sound.h"
+#include "system.h"
 #include "unk_0208B284.h"
 #include "unk_0208BA78.h"
 

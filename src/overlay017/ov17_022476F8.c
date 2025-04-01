@@ -15,6 +15,7 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "sound_playback.h"
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -22,7 +23,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "sound_playback.h"
 
 typedef struct {
     u8 *unk_00;

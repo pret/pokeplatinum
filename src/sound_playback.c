@@ -9,16 +9,16 @@
 #include "struct_defs/chatot_cry.h"
 
 #include "heap.h"
-#include "sys_task.h"
-#include "sys_task_manager.h"
-#include "sound_system.h"
 #include "sound.h"
 #include "sound_chatot.h"
+#include "sound_system.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
 
 #define WAVE_OUT_SPEED_HYPERVOICE_1 (WAVE_OUT_SPEED(1.046875))
 #define WAVE_OUT_SPEED_UPROAR_1     (WAVE_OUT_SPEED(0.8125))
 
-#define DEFAULT_FANFARE_DELAY 15 
+#define DEFAULT_FANFARE_DELAY 15
 
 typedef struct PokemonCryDurationParam {
     int remainingFrames;
@@ -106,12 +106,11 @@ static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType
     Sound_LoadSoundDataForFieldBGM(seqID, Sound_GetBankIDFromSequenceID(currentSeqID));
 
     return NNS_SndArcPlayerStartSeqEx(
-        SoundSystem_GetSoundHandle(handleType), 
-        -1, 
-        Sound_GetBankIDFromSequenceID(*newFieldBGM), 
-        -1, 
-        seqID
-    );
+        SoundSystem_GetSoundHandle(handleType),
+        -1,
+        Sound_GetBankIDFromSequenceID(*newFieldBGM),
+        -1,
+        seqID);
 }
 
 BOOL sub_02005588(u8 scene, u16 seqID)

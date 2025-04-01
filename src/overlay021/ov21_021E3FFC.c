@@ -19,13 +19,13 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "narc.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "sound.h"
-#include "sound_playback.h"
 
 typedef struct {
     int *unk_00;

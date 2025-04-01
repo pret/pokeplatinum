@@ -33,10 +33,10 @@
 #include "math.h"
 #include "narc.h"
 #include "player_avatar.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "sound_playback.h"
 #include "unk_020655F4.h"
 
 void include_unk_ov6_02248F30();

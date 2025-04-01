@@ -16,6 +16,7 @@
 #include "map_matrix.h"
 #include "message.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -24,7 +25,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "sound_playback.h"
 #include "unk_0200F174.h"
 
 typedef struct {

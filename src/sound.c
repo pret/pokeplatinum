@@ -3,19 +3,19 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+#include "generated/sdat.h"
 
 #include "communication_system.h"
 #include "heap.h"
-#include "sound_system.h"
 #include "sound_playback.h"
-#include "generated/sdat.h"
-#include "constants/species.h"
+#include "sound_system.h"
 
-#define BGM_PLAYER_NORMAL_CHANNELS  0x7FF
-#define BGM_PLAYER_EXTRA_CHANNELS   0x7FFF
+#define BGM_PLAYER_NORMAL_CHANNELS 0x7FF
+#define BGM_PLAYER_EXTRA_CHANNELS  0x7FFF
 
-#define WAVEFORM_SAMPLE_WINDOW      100     // Used to generate amplitude graphs from waveform data
-#define WAVEFORM_MAX_AMPLITUDE      9
+#define WAVEFORM_SAMPLE_WINDOW 100 // Used to generate amplitude graphs from waveform data
+#define WAVEFORM_MAX_AMPLITUDE 9
 
 static void Sound_LoadSoundEffectsForSceneWithState(u8 scene);
 static void Sound_Impl_PlayFieldBGM(u16 bgmID, int unused);
@@ -723,7 +723,7 @@ NNSSndWaveOutHandle *Sound_GetWaveOutHandle(enum WaveOutChannel channel)
 BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel channel)
 {
     NNSSndWaveOutHandle *handle;
-    
+
     (void)SoundSystem_Get();
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
@@ -766,7 +766,7 @@ BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel channel)
 void Sound_FreeWaveOutChannel(enum WaveOutChannel channel)
 {
     (void)SoundSystem_Get();
-    
+
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
 
@@ -795,17 +795,16 @@ void Sound_FreeWaveOutChannel(enum WaveOutChannel channel)
 BOOL Sound_PlayWaveOut(WaveOutParam *param, enum WaveOutChannel channel)
 {
     BOOL success = NNS_SndWaveOutStart(
-        *param->handle, 
-        param->format, 
-        param->data, 
-        param->loop, 
-        param->loopStartSample, 
-        param->samples, 
-        param->sampleRate, 
-        param->volume, 
-        param->speed, 
-        param->pan
-    );
+        *param->handle,
+        param->format,
+        param->data,
+        param->loop,
+        param->loopStartSample,
+        param->samples,
+        param->sampleRate,
+        param->volume,
+        param->speed,
+        param->pan);
 
     if (success == FALSE) {
         Sound_FreeWaveOutChannel(channel);
@@ -965,14 +964,13 @@ BOOL Sound_StartFilter(void)
 
     MI_CpuClear8(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FILTER_CALLBACK_PARAM), sizeof(SoundFilterCallbackParam));
     return NNS_SndCaptureStartEffect(
-        SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CAPTURE_BUFFER), 
-        SOUND_SYSTEM_CAPTURE_BUFFER_SIZE, 
-        NNS_SND_CAPTURE_FORMAT_PCM16, 
-        SOUND_FILTER_SAMPLE_RATE, 
-        SOUND_FILTER_INTERVAL, 
-        Sound_Impl_FilterCallback, 
-        SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FILTER_CALLBACK_PARAM)
-    );
+        SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CAPTURE_BUFFER),
+        SOUND_SYSTEM_CAPTURE_BUFFER_SIZE,
+        NNS_SND_CAPTURE_FORMAT_PCM16,
+        SOUND_FILTER_SAMPLE_RATE,
+        SOUND_FILTER_INTERVAL,
+        Sound_Impl_FilterCallback,
+        SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FILTER_CALLBACK_PARAM));
 }
 
 void Sound_StopFilter(void)
@@ -1279,7 +1277,10 @@ void Sound_WaveData_AccumulateAmplitudes(const SNDWaveData *data, u8 *amplitudes
 
 static void Sound_Impl_FilterCallback(void *bufferL, void *bufferR, u32 length, NNSSndCaptureFormat format, void *arg)
 {
-    enum { L, R };
+    enum {
+        L,
+        R
+    };
 
     s16 originalSamples[SOUND_FILTER_MAX_SIZE][2];
     s16 *bufL = (s16 *)bufferL;
@@ -1348,9 +1349,7 @@ void Sound_ConfigureBGMChannelsAndReverb(enum SoundChannelConfig config)
 
 static void Sound_Impl_PauseOrStopFieldBGM(void)
 {
-    if ((Sound_IsFadeActive() == FALSE) && 
-        (Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FIELD_BGM)) != -1) && 
-        (Sound_GetCurrentBGM() != SEQ_POKERADAR)) {
+    if ((Sound_IsFadeActive() == FALSE) && (Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FIELD_BGM)) != -1) && (Sound_GetCurrentBGM() != SEQ_POKERADAR)) {
         Sound_StopAll();
         Sound_SetBGMPlayerPaused(PLAYER_FIELD, TRUE);
     } else {

@@ -14,11 +14,11 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "sound_playback.h"
 
 typedef struct {
     ManagedSprite *managedSprite;

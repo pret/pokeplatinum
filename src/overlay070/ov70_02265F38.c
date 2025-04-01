@@ -21,9 +21,9 @@
 #include "communication_system.h"
 #include "enums.h"
 #include "list_menu.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "system.h"
-#include "sound_playback.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 

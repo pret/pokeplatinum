@@ -18,8 +18,8 @@
 #include "graphics.h"
 #include "heap.h"
 #include "narc.h"
-#include "system.h"
 #include "sound_playback.h"
+#include "system.h"
 
 typedef struct {
     u16 unk_00;

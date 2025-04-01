@@ -38,10 +38,10 @@
 #include "enums.h"
 #include "heap.h"
 #include "math.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "sound_playback.h"
 #include "unk_020711EC.h"
 
 typedef struct {

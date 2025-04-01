@@ -20,10 +20,10 @@
 #include "poketch_memory.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "sound_playback.h"
 #include "unk_0201E3D8.h"
 
 FS_EXTERN_OVERLAY(poketch_digital_watch);

@@ -16,10 +16,10 @@
 
 #include "enums.h"
 #include "math.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "sound_playback.h"
 #include "unk_020711EC.h"
 
 typedef struct {

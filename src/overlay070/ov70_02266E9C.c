@@ -21,8 +21,8 @@
 #include "enums.h"
 #include "list_menu.h"
 #include "math.h"
-#include "strbuf.h"
 #include "sound_playback.h"
+#include "strbuf.h"
 
 typedef struct {
     ListMenuTemplate unk_00;

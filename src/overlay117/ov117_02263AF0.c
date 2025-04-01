@@ -37,11 +37,11 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "text.h"
-#include "sound_playback.h"
 #include "unk_02012744.h"
 
 typedef struct {

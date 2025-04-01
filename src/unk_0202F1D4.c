@@ -27,9 +27,9 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_chatot.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "sound_chatot.h"
 #include "unk_02026150.h"
 
 BattleRecording *Unk_021C07A4 = NULL;

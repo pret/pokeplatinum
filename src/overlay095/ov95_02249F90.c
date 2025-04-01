@@ -13,9 +13,9 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "sound_playback.h"
 #include "unk_0200F174.h"
 
 enum {

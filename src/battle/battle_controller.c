@@ -40,8 +40,8 @@
 #include "move_table.h"
 #include "party.h"
 #include "pokemon.h"
-#include "trainer_info.h"
 #include "sound_playback.h"
+#include "trainer_info.h"
 #include "unk_0200F174.h"
 
 enum {

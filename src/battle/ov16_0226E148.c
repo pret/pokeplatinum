@@ -11,9 +11,9 @@
 
 #include "heap.h"
 #include "narc.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "sound_playback.h"
 
 typedef struct {
     BattleSystem *unk_00;

@@ -28,6 +28,7 @@
 #include "narc.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
+#include "sound_playback.h"
 #include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -35,7 +36,6 @@
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "text.h"
-#include "sound_playback.h"
 #include "unk_02012744.h"
 
 #include "res/text/bank/pokedex.h"

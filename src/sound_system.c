@@ -3,16 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/chatot_cry.h"
-
 #include "generated/sdat.h"
 
-#include "game_options.h"
-#include "sys_task_manager.h"
-#include "sound.h"
-#include "sound_playback.h"
-#include "sound_chatot.h"
+#include "struct_defs/chatot_cry.h"
 
+#include "game_options.h"
+#include "sound.h"
+#include "sound_chatot.h"
+#include "sound_playback.h"
+#include "sys_task_manager.h"
 
 static void SoundSystem_InitHeapStates(SoundSystem *soundSys);
 static void SoundSystem_InitSoundHandles(SoundSystem *soundSys);
@@ -69,13 +68,12 @@ void SoundSystem_Tick()
 
             if (soundSys->pokemonCryDelay[i] == 0) {
                 Sound_PlayPokemonCryEx(
-                    soundSys->pokemonCryMod[i], 
-                    soundSys->pokemonCryWaveID[i], 
-                    soundSys->pokemonCryPan[i], 
-                    soundSys->pokemonCryVolume[i], 
-                    soundSys->pokemonCryHeapID[i], 
-                    0
-                );
+                    soundSys->pokemonCryMod[i],
+                    soundSys->pokemonCryWaveID[i],
+                    soundSys->pokemonCryPan[i],
+                    soundSys->pokemonCryVolume[i],
+                    soundSys->pokemonCryHeapID[i],
+                    0);
             }
         }
     }

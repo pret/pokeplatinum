@@ -19,10 +19,10 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "string_list.h"
 #include "system.h"
 #include "text.h"
-#include "sound_playback.h"
 #include "unk_020298BC.h"
 
 #include "res/graphics/shop_menu/shop_gra.naix"

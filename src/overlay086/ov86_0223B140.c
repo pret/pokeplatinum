@@ -28,6 +28,8 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_oam.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -37,8 +39,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "sound.h"
-#include "sound_playback.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 
