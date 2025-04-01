@@ -14,6 +14,8 @@
 #define SOUND_FILTER_SAMPLE_RATE            22000
 #define SOUND_FILTER_INTERVAL               2
 
+#define SOUND_PLAYER_INVALID                0xFF
+
 
 enum SoundHeapState {
     SOUND_HEAP_STATE_EMPTY = 0,
@@ -24,7 +26,7 @@ enum SoundHeapState {
     SOUND_HEAP_STATE_SUB_SFX,
     SOUND_HEAP_STATE_FANFARE,
     
-    SOUND_HEAP_STATE_COUNT = 7
+    SOUND_HEAP_STATE_COUNT
 };
 
 enum SoundSystemState {
@@ -48,7 +50,9 @@ enum SoundHandleType {
     SOUND_HANDLE_TYPE_BGM,                              // Non-field BGM
     SOUND_HANDLE_TYPE_ECHO,                             // Pokemon cry echo/reverb/chorus
 
-    SOUND_HANDLE_TYPE_COUNT = 9
+    SOUND_HANDLE_TYPE_COUNT,
+
+    NUM_SFX_HANDLES = SOUND_HANDLE_TYPE_SFX_4 - SOUND_HANDLE_TYPE_SFX_1 + 1,
 };
 
 enum SoundSystemParam {
@@ -180,7 +184,7 @@ typedef struct SoundSystem {
 } SoundSystem;
 
 void SoundSystem_Init(ChatotCry *chatotCry, Options *options);
-void SoundSystem_Update();
+void SoundSystem_Tick();
 void SoundSystem_SetState(enum SoundSystemState status);
 SoundSystem *SoundSystem_Get();
 void *SoundSystem_GetParam(enum SoundSystemParam param);
