@@ -141,7 +141,7 @@ void Sound_StopBGM(u16 bgmID, int fadeOutFrames)
 
     u8 playerID = Sound_GetPlayerForSequence(bgmID);
 
-    if (playerID != 0xff) {
+    if (playerID != SOUND_PLAYER_INVALID) {
         enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
         NNS_SndHandleReleaseSeq(SoundSystem_GetSoundHandle(handleType));
     }
@@ -160,7 +160,7 @@ void Sound_FadeInBGM(int targetVolume, int frames, enum BGMFadeInType fadeInType
 {
     u16 currentBGM = Sound_GetCurrentBGM();
     u8 playerID = Sound_GetPlayerForSequence(currentBGM);
-    if (playerID == 0xff) {
+    if (playerID == SOUND_PLAYER_INVALID) {
         return;
     }
 
@@ -179,7 +179,7 @@ void Sound_FadeOutBGM(int targetVolume, int frames)
 {
     u16 currentBGM = Sound_GetCurrentBGM();
     u8 playerID = Sound_GetPlayerForSequence(currentBGM);
-    if (playerID == 0xff) {
+    if (playerID == SOUND_PLAYER_INVALID) {
         return;
     }
 
@@ -233,7 +233,7 @@ void Sound_StopAll(void)
     NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_BGM), 0);
     Sound_Impl_ResetBGM();
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < NUM_SFX_HANDLES; i++) {
         Sound_StopEffectFromHandle(SOUND_HANDLE_TYPE_SFX_1 + i, 0);
     }
 
@@ -288,7 +288,7 @@ void Sound_StopEffectFromHandle(enum SoundHandleType handleType, int fadeOutFram
 
 void Sound_StopAllEffects(int fadeOutFrames)
 {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < NUM_SFX_HANDLES; i++) {
         Sound_StopEffectFromHandle(SOUND_HANDLE_TYPE_SFX_1 + i, 0);
     }
 }
@@ -300,7 +300,7 @@ BOOL Sound_IsEffectPlaying(u16 seqID)
 
 BOOL Sound_IsAnyEffectPlaying()
 {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < NUM_SFX_HANDLES; i++) {
         if (Sound_GetNumberOfPlayingSequencesForPlayer(PLAYER_SE_1 + i) == 1) {
             return TRUE;
         }
@@ -319,7 +319,7 @@ void Sound_PanAllEffects(int pan)
 {
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(PLAYER_SE_1);
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < NUM_SFX_HANDLES; i++) {
         NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(handleType + i), SOUND_PLAYBACK_TRACK_ALL, pan);
     }
 }
@@ -797,7 +797,7 @@ BOOL Sound_PlayFanfare(u16 seqID)
     Sound_Impl_SetFanfareDelay(seqID);
 
     u8 playerID = Sound_GetPlayerForSequence(Sound_GetCurrentBGM());
-    if (playerID != 0xff) {
+    if (playerID != SOUND_PLAYER_INVALID) {
         Sound_SetBGMPlayerPaused(playerID, TRUE);
     }
 
@@ -845,7 +845,7 @@ BOOL Sound_IsBGMPausedByFanfare(void)
 
     u16 currentBGM = Sound_GetCurrentBGM();
     u8 playerID = Sound_GetPlayerForSequence(currentBGM);
-    if (playerID != 0xff) {
+    if (playerID != SOUND_PLAYER_INVALID) {
         Sound_SetBGMPlayerPaused(playerID, FALSE);
     }
 

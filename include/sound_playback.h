@@ -29,7 +29,7 @@ void Sound_StopEffect(u16 seqID, int fadeOutFrames);
 void Sound_StopEffectFromHandle(enum SoundHandleType handleType, int fadeOutFrames);
 void Sound_StopAllEffects(int fadeOutFrames); // Fade parameter is not actually used
 BOOL Sound_IsEffectPlaying(u16 seqID);
-BOOL Sound_IsAnyEffectPlaying();
+BOOL Sound_IsAnyEffectPlaying(void);
 
 // Pans the given sound effect sequence either to the left (pan < 0) or to the right (pan > 0)
 // tracks is for example (SOUND_PLAYBACK_TRACK(10) | SOUND_PLAYBACK_TRACK(2)) or SOUND_PLAYBACK_TRACK_ALL

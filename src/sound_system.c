@@ -49,7 +49,7 @@ void SoundSystem_Init(ChatotCry *chatotCry, Options *options)
     Sound_SetPlaybackMode(options->soundMode);
 }
 
-void SoundSystem_Update()
+void SoundSystem_Tick()
 {
     SoundSystem *soundSys = SoundSystem_Get();
 

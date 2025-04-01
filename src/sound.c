@@ -605,7 +605,7 @@ void Sound_AdjustVolumeForVoiceChatEx(int seqID, enum SoundHandleType handleType
 
     switch (handleType) {
     case SOUND_HANDLE_TYPE_POKEMON_CRY:
-    case 8:
+    case SOUND_HANDLE_TYPE_ECHO:
         volume = SOUND_VOLUME_MAX;
         break;
 
@@ -638,7 +638,7 @@ BOOL Sound_PlaySequenceWithPlayer(enum SoundHandleType handleType, int playerID,
 
 int Sound_GetNumberOfPlayingSequencesForPlayer(int playerID)
 {
-    if (playerID < 0) {
+    if (playerID < PLAYER_PV) {
         GF_ASSERT(FALSE);
     }
 
