@@ -8,9 +8,9 @@
 #include "struct_defs/chatot_cry.h"
 
 #include "math.h"
-#include "sound_system.h"
 #include "sound.h"
 #include "sound_playback.h"
+#include "sound_system.h"
 #include "unk_0202CC64.h"
 
 #define CHATOT_CRY_SPEED_VARIANCE   8192

@@ -11,8 +11,8 @@
 #include "overlay019/struct_ov19_021DF964.h"
 
 #include "enums.h"
-#include "system.h"
 #include "sound_playback.h"
+#include "system.h"
 #include "unk_020797C8.h"
 
 static void ov19_021DFCF8(UnkStruct_ov19_021DF964 *param0);

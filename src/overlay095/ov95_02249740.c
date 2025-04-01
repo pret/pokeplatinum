@@ -19,11 +19,11 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "math.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "sound_playback.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 

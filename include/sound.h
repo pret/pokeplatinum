@@ -7,18 +7,17 @@
 
 #include "sound_system.h"
 
-
 #define FIELD_BGM_BANK_STATE_IDLE   0
 #define FIELD_BGM_BANK_STATE_SWITCH 1
 
-#define SOUND_VOLUME_MIN            0
-#define SOUND_VOLUME_MAX            127
+#define SOUND_VOLUME_MIN 0
+#define SOUND_VOLUME_MAX 127
 
-#define SOUND_WAVE_BUFFER_SIZE      2000
+#define SOUND_WAVE_BUFFER_SIZE 2000
 
 // Used to set pitch
-#define SOUND_SEMITONE          64
-#define SOUND_SEMITONES(STEPS)  ((int)((STEPS) * SOUND_SEMITONE))
+#define SOUND_SEMITONE         64
+#define SOUND_SEMITONES(STEPS) ((int)((STEPS) * SOUND_SEMITONE))
 
 #define WAVE_OUT_SPEED(SPEED) (int)((SPEED) * 32768)
 
@@ -46,9 +45,9 @@ enum WaveOutChannel {
 };
 
 enum SoundChannelConfig {
-    SOUND_CHANNEL_CONFIG_DEFAULT = 0,   // Default channel allocation, no reverb
-    SOUND_CHANNEL_CONFIG_TITLE,         // Extra BGM channels allocated, reverb at ~25% volume
-    SOUND_CHANNEL_CONFIG_ENDING,        // Extra BGM channels allocated, reverb at ~12% volume
+    SOUND_CHANNEL_CONFIG_DEFAULT = 0, // Default channel allocation, no reverb
+    SOUND_CHANNEL_CONFIG_TITLE, // Extra BGM channels allocated, reverb at ~25% volume
+    SOUND_CHANNEL_CONFIG_ENDING, // Extra BGM channels allocated, reverb at ~12% volume
 };
 
 typedef struct WaveOutParam {

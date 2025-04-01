@@ -21,6 +21,7 @@
 #include "message.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -29,7 +30,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "sound_playback.h"
 #include "unk_0200F174.h"
 #include "unk_0202D05C.h"
 

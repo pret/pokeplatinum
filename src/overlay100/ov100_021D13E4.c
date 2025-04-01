@@ -20,10 +20,10 @@
 #include "math.h"
 #include "narc.h"
 #include "palette.h"
-#include "sprite_system.h"
-#include "sys_task.h"
 #include "sound.h"
 #include "sound_playback.h"
+#include "sprite_system.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 

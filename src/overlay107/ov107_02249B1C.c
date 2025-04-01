@@ -11,8 +11,8 @@
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "sprite.h"
 #include "sound_playback.h"
+#include "sprite.h"
 
 struct UnkStruct_ov107_02249B8C_t {
     s16 unk_00;

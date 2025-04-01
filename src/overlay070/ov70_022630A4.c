@@ -36,9 +36,9 @@
 #include "enums.h"
 #include "list_menu.h"
 #include "math.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "system.h"
-#include "sound_playback.h"
 
 typedef struct {
     fx32 unk_00;

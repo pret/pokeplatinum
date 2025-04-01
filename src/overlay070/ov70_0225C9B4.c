@@ -22,8 +22,8 @@
 
 #include "heap.h"
 #include "math.h"
-#include "system.h"
 #include "sound_playback.h"
+#include "system.h"
 
 typedef struct {
     fx32 unk_00;

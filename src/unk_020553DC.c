@@ -14,10 +14,10 @@
 #include "player_avatar.h"
 #include "pokeradar.h"
 #include "rtc.h"
-#include "system_flags.h"
-#include "trainer_data.h"
 #include "sound.h"
 #include "sound_playback.h"
+#include "system_flags.h"
+#include "trainer_data.h"
 #include "vars_flags.h"
 
 const static u16 Unk_020EC3E0[][2] = {

@@ -12,9 +12,9 @@
 #include "heap.h"
 #include "map_object.h"
 #include "player_avatar.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "sound_playback.h"
 #include "unk_0200F174.h"
 
 typedef struct {

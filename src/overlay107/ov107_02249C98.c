@@ -6,9 +6,9 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "sound_playback.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 

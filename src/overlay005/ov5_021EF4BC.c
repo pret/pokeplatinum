@@ -7,9 +7,9 @@
 
 #include "buffer_manager.h"
 #include "heap.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "sound_playback.h"
 
 typedef struct UnkStruct_ov5_021EF4F8_t {
     u32 unk_00;

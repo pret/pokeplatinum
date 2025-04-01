@@ -11,10 +11,10 @@
 #include "message.h"
 #include "message_util.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "text.h"
-#include "sound_playback.h"
 
 static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2);
 

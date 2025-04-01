@@ -29,6 +29,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -36,7 +37,6 @@
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "sound_playback.h"
 #include "unk_0200762C.h"
 #include "unk_02012744.h"
 

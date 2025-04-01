@@ -31,6 +31,7 @@
 #include "palette.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -39,7 +40,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "sound_playback.h"
 #include "unk_0200762C.h"
 #include "vram_transfer.h"
 

@@ -5,10 +5,10 @@
 
 #include "field_script_context.h"
 #include "inlines.h"
-#include "system.h"
 #include "sound.h"
-#include "sound_playback.h"
 #include "sound_chatot.h"
+#include "sound_playback.h"
+#include "system.h"
 #include "unk_0202CC64.h"
 #include "unk_020553DC.h"
 

@@ -13,11 +13,11 @@
 #include "overlay_manager.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "sound.h"
-#include "sound_playback.h"
 #include "unk_0200F174.h"
 
 FS_EXTERN_OVERLAY(overlay77);

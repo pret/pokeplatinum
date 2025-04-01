@@ -42,12 +42,12 @@
 #include "heap.h"
 #include "narc.h"
 #include "render_oam.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "sound_playback.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 
