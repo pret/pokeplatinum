@@ -14,7 +14,7 @@ _000A:
     GoToIfSet FLAG_UNK_0x0AA3, _0055
     Message 0
     GetRandom 0x8004, 17
-    AddVar 0x8004, ITEM_OCCA_BERRY @ Random type berry
+    AddVar 0x8004, ITEM_OCCA_BERRY /* Random type berry */
     SetVar 0x8005, 1
     CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0060

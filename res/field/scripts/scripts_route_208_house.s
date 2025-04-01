@@ -21,7 +21,7 @@ _001C:
     GoToIfSet FLAG_UNK_0x0AA0, _0067
     Message 0
     GetRandom 0x8004, 26
-    AddVar 0x8004, ITEM_CHERI_BERRY @ Random berry from Cheri to Tamato
+    AddVar 0x8004, ITEM_CHERI_BERRY /* Random berry from Cheri to Tamato */
     SetVar 0x8005, 1
     CanFitItem 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0072
