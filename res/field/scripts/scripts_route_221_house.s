@@ -33,8 +33,7 @@ _006D:
     BufferItemName 2, 0x8004
     Message 1
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0105
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0105
     GoTo _00C2
 
 _00C2:
@@ -76,8 +75,7 @@ _0114:
     BufferItemName 2, 0x8004
     Message 3
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0105
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0105
     GoTo _00C2
 
 _0164:

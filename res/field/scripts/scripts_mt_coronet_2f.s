@@ -52,8 +52,7 @@ _0036:
     Message 2
     SetVar 0x8004, ITEM_BLACK_FLUTE
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00F2
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00F2
     CallCommonScript 0x7FC
     Call _00E5
     CallCommonScript 0x808
@@ -155,8 +154,7 @@ _01BE:
     Message 5
     SetVar 0x8004, ITEM_BLACK_FLUTE
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _01F0
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _01F0
     CallCommonScript 0x7FC
     Call _00E5
     ReleaseAll

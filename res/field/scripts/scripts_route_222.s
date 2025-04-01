@@ -40,8 +40,7 @@ _007D:
     Message 0
     SetVar 0x8004, ITEM_TM56
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CD
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00CD
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00CE
     GoTo _00C2

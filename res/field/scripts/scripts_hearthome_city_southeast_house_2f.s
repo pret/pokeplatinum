@@ -16,8 +16,7 @@ _000A:
     Message 0
     SetVar 0x8004, ITEM_SHELL_BELL
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0064
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0064
     SetFlag FLAG_UNK_0x008C
     CallCommonScript 0x7E0
     CloseMessage

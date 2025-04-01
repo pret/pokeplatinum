@@ -101,8 +101,7 @@ _0102:
     Message 5
     SetVar 0x8004, ITEM_EXP_SHARE
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _014A
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _014A
     SetFlag FLAG_UNK_0x010B
     CallCommonScript 0x7E0
     CloseMessage

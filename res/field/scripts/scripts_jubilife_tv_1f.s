@@ -157,8 +157,7 @@ _020F:
 _021B:
     SetVar 0x8004, 0x8003
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0246
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0246
     CallCommonScript 0x7FC
     GoTo _0269
 

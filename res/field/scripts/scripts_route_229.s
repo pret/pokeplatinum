@@ -15,14 +15,12 @@ _000A:
     Message 0
     SetVar 0x8004, ITEM_NUGGET
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0084
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0084
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00DA
     SetVar 0x8004, ITEM_NUGGET
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0079
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0079
     Message 1
     CallCommonScript 0x7FC
     GoTo _0079

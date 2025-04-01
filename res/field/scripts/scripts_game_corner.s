@@ -201,8 +201,7 @@ _02BB:
 GameCorner_GiveTM64:
     SetVar 0x8004, ITEM_TM64
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0327
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0327
     GoTo _02F3
     End
 

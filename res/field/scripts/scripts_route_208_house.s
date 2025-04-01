@@ -23,8 +23,7 @@ _001C:
     GetRandom 0x8004, 26
     AddVar 0x8004, ITEM_CHERI_BERRY /* Random berry from Cheri to Tamato */
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0072
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0072
     SetFlag FLAG_UNK_0x0AA0
     CallCommonScript 0x7E0
     CloseMessage
@@ -117,8 +116,7 @@ _0180:
     CallIfEq 0x8000, 2, _0289
     CallIfEq 0x8000, 3, _0293
     GoToIfEq 0x800C, 0, _023C
-    CanFitItem 0x8001, 1, 0x800C
-    GoToIfEq 0x800C, 0, _0233
+    GoToIfCannotFitItem 0x8001, 1, 0x800C, _0233
     CallIfEq 0x8000, 0, _029D
     CallIfEq 0x8000, 1, _02AB
     CallIfEq 0x8000, 2, _02B9

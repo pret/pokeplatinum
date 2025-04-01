@@ -142,8 +142,7 @@ _0198:
     Message 5
     SetVar 0x8004, ITEM_SOOTHE_BELL
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _01EA
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _01EA
     GoTo _01DB
     End
 

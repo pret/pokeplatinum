@@ -68,8 +68,7 @@ _00A5:
     SetVar 0x8004, ITEM_STARDUST
 _00CB:
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _010C
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _010C
     CallCommonScript 0x7E0
     CloseMessage
     RemoveObject 1

@@ -50,8 +50,7 @@ _0084:
     Message 3
     SetVar 0x8004, ITEM_GREAT_BALL
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00B6
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00B6
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0AA1
     GoTo _00C0

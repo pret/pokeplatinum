@@ -16,8 +16,7 @@ _000E:
     Message 0
     SetVar 0x8004, ITEM_SOOTHE_BELL
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0053
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0053
     SetFlag FLAG_UNK_0x0139
     CallCommonScript 0x7E0
     CloseMessage

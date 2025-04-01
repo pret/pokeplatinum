@@ -4754,3 +4754,8 @@
     .set F_ACCEPT_SCRIPT_ENTRIES, FALSE
     .short 0xFD13
     .endm
+
+    .macro GoToIfCannotFitItem item, count, destVarID, offset
+    CanFitItem \item, \count, \destVarID
+    GoToIfEq \destVarID, FALSE, \offset
+    .endm

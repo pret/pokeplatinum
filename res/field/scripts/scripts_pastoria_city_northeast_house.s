@@ -53,8 +53,7 @@ _00CC:
 _00D7:
     SetVar 0x8004, ITEM_RED_SCARF
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CC
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00CC
     BufferPartyMonSpecies 0, 0x8000
     BufferItemName 1, ITEM_RED_SCARF
     Message 4
@@ -69,8 +68,7 @@ _00D7:
 _0118:
     SetVar 0x8004, ITEM_BLUE_SCARF
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CC
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00CC
     BufferPartyMonSpecies 0, 0x8000
     BufferItemName 1, ITEM_BLUE_SCARF
     Message 4
@@ -85,8 +83,7 @@ _0118:
 _0159:
     SetVar 0x8004, ITEM_PINK_SCARF
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CC
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00CC
     BufferPartyMonSpecies 0, 0x8000
     BufferItemName 1, ITEM_PINK_SCARF
     Message 4
@@ -101,8 +98,7 @@ _0159:
 _019A:
     SetVar 0x8004, ITEM_GREEN_SCARF
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CC
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00CC
     BufferPartyMonSpecies 0, 0x8000
     BufferItemName 1, ITEM_GREEN_SCARF
     Message 4
@@ -117,8 +113,7 @@ _019A:
 _01DB:
     SetVar 0x8004, ITEM_YELLOW_SCARF
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CC
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00CC
     BufferPartyMonSpecies 0, 0x8000
     BufferItemName 1, ITEM_YELLOW_SCARF
     Message 4

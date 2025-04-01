@@ -20,8 +20,7 @@ _0010:
     Message 0
     SetVar 0x8004, ITEM_STAR_PIECE
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _01F3
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _01F3
     SetFlag FLAG_UNK_0x0138
     CallCommonScript 0x7FC
     GoTo _0062

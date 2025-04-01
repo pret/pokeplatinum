@@ -51,8 +51,7 @@ _0055:
 _0073:
     SetVar 0x8004, ITEM_FLAME_PLATE
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0114
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0114
     CallCommonScript 0x7FC
     Message 5
     CloseMessage

@@ -209,8 +209,7 @@ _0274:
     Message 13
     SetVar 0x8004, ITEM_POTION
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _02B3
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _02B3
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0112
     GoTo _02A8

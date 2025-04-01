@@ -56,8 +56,7 @@ _0093:
     Message 2
     SetVar 0x8004, ITEM_CHOICE_SPECS
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0174
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0174
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0134
     Message 3
@@ -68,8 +67,7 @@ _00D3:
     Message 2
     SetVar 0x8004, ITEM_BLACKGLASSES
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0174
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0174
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0135
     Message 4
@@ -80,8 +78,7 @@ _0113:
     Message 2
     SetVar 0x8004, ITEM_WISE_GLASSES
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0174
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0174
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0136
     Message 5

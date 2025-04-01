@@ -36,8 +36,7 @@ _0010:
     Message 2
     SetVar 0x8004, ITEM_NET_BALL
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0113
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0113
     CallCommonScript 0x7FC
     ScrCmd_1C2 0x8002
     Message 3

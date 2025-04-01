@@ -291,8 +291,7 @@ _0376:
     Message 17
     SetVar 0x8004, ITEM_SUPER_POTION
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _03C8
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _03C8
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0109
     GoTo _03BD

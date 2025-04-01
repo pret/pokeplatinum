@@ -132,8 +132,7 @@ _01E9:
     End
 
 _0216:
-    CanFitItem ITEM_HEART_SCALE, 1, 0x800C
-    GoToIfEq 0x800C, 0, _0251
+    GoToIfCannotFitItem ITEM_HEART_SCALE, 1, 0x800C, _0251
     SetVar 0x8004, 0x4117
     SetVar 0x8005, 3
     GoTo _025C

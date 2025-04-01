@@ -377,16 +377,14 @@ _04D8:
 _04FB:
     SetVar 0x8004, 0x409F
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, FALSE, _0595
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0595
     GoTo _054D
     End
 
 _0524:
     SetVar 0x8004, 0x409F
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, FALSE, _05DD
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _05DD
     GoTo _054D
     End
 
@@ -1013,8 +1011,7 @@ _10E1:
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _1161
     SetVar 0x8005, 5
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, FALSE, _1172
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _1172
     BufferPlayerName 0
     ScrCmd_33D 1, 0x8004
     PlaySound SEQ_FANFA4

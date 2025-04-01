@@ -17,8 +17,7 @@ _000E:
     GetRandom 0x8004, 5
     AddVar 0x8004, ITEM_CHERI_BERRY /* Cheri, Chesto, Pecha, Rawst or Aspear */
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0064
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0064
     SetFlag FLAG_UNK_0x0AAA
     CallCommonScript 0x7E0
     CloseMessage

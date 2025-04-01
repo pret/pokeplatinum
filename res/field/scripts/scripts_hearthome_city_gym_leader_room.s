@@ -89,8 +89,7 @@ _00BB:
 _0158:
     SetVar 0x8004, ITEM_TM65
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0196
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0196
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x007D
     BufferItemName 0, 0x8004

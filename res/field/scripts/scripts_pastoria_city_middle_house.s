@@ -35,8 +35,7 @@ _004A:
     Message 4
     SetVar 0x8004, ITEM_MACHO_BRACE
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00B2
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00B2
     SetFlag FLAG_UNK_0x011C
     CallCommonScript 0x7FC
     GoTo _00BD

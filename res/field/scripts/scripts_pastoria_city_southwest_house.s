@@ -16,8 +16,7 @@ _000A:
     GetRandom 0x8004, 17
     AddVar 0x8004, ITEM_OCCA_BERRY /* Random type berry */
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0060
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0060
     SetFlag FLAG_UNK_0x0AA3
     CallCommonScript 0x7E0
     CloseMessage

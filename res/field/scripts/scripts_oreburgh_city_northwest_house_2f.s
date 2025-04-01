@@ -38,8 +38,7 @@ _0038:
     Message 2
     SetVar 0x8004, ITEM_DUSK_BALL
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0082
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0082
     SetFlag FLAG_UNK_0x00C0
     CallCommonScript 0x7E0
     CloseMessage

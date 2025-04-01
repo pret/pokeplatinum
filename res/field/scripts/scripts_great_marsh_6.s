@@ -43,8 +43,7 @@ _0085:
 
 _0093:
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00C7
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00C7
     SetFlag FLAG_UNK_0x0AB4
     CallCommonScript 0x7E0
     CloseMessage

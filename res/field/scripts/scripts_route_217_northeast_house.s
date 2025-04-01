@@ -14,8 +14,7 @@ _0006:
     Message 0
     SetVar 0x8004, ITEM_SPELL_TAG
     SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _004F
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _004F
     SetFlag FLAG_UNK_0x013B
     SetFlag FLAG_UNK_0x025F
     CallCommonScript 0x7E0
