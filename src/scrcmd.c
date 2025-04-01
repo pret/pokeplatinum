@@ -507,17 +507,17 @@ static BOOL ScrCmd_169(ScriptContext *ctx);
 static BOOL ScrCmd_16A(ScriptContext *ctx);
 static BOOL ScrCmd_16B(ScriptContext *ctx);
 static BOOL ScrCmd_16C(ScriptContext *ctx);
-static BOOL InitPersistedMapFeaturesForPastoriaGym(ScriptContext *ctx);
+static BOOL ScrCmd_InitPersistedMapFeaturesForPastoriaGym(ScriptContext *ctx);
 static BOOL ScrCmd_170(ScriptContext *ctx);
-static BOOL InitPersistedMapFeaturesForHearthomeGym(ScriptContext *ctx);
+static BOOL ScrCmd_InitPersistedMapFeaturesForHearthomeGym(ScriptContext *ctx);
 static BOOL ScrCmd_172(ScriptContext *ctx);
-static BOOL InitPersistedMapFeaturesForCanalaveGym(ScriptContext *ctx);
-static BOOL InitPersistedMapFeaturesForVeilstoneGym(ScriptContext *ctx);
-static BOOL InitPersistedMapFeaturesForSunyshoreGym(ScriptContext *ctx);
+static BOOL ScrCmd_InitPersistedMapFeaturesForCanalaveGym(ScriptContext *ctx);
+static BOOL ScrCmd_InitPersistedMapFeaturesForVeilstoneGym(ScriptContext *ctx);
+static BOOL ScrCmd_InitPersistedMapFeaturesForSunyshoreGym(ScriptContext *ctx);
 static BOOL ScrCmd_176(ScriptContext *ctx);
-static BOOL InitPersistedMapFeaturesForEternaGym(ScriptContext *ctx);
-static BOOL InitPersistedMapFeaturesForVilla(ScriptContext *ctx);
-static BOOL InitPersistedMapFeaturesForDistortionWorld(ScriptContext *ctx);
+static BOOL ScrCmd_InitPersistedMapFeaturesForEternaGym(ScriptContext *ctx);
+static BOOL ScrCmd_InitPersistedMapFeaturesForVilla(ScriptContext *ctx);
+static BOOL ScrCmd_InitPersistedMapFeaturesForDistortionWorld(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx);
 static BOOL ScrCmd_178(ScriptContext *ctx);
 static BOOL ScrCmd_179(ScriptContext *ctx);
@@ -592,7 +592,7 @@ static BOOL ScrCmd_310(ScriptContext *ctx);
 static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx);
 static BOOL ScrCmd_20C(ScriptContext *ctx);
 static BOOL ScrCmd_20D(ScriptContext *ctx);
-static BOOL InitPersistedMapFeaturesForGreatMarsh(ScriptContext *ctx);
+static BOOL ScrCmd_InitPersistedMapFeaturesForGreatMarsh(ScriptContext *ctx);
 static BOOL ScrCmd_20F(ScriptContext *ctx);
 static BOOL ScrCmd_210(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerHeightCalculationEnabled(ScriptContext *ctx);
@@ -631,7 +631,7 @@ static BOOL ScrCmd_252(ScriptContext *ctx);
 static BOOL ScrCmd_258(ScriptContext *ctx);
 static BOOL ScrCmd_259(ScriptContext *ctx);
 static BOOL ScrCmd_25A(ScriptContext *ctx);
-static BOOL InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx);
+static BOOL ScrCmd_InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx);
 static BOOL ScrCmd_TriggerPlatformLift(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap(ScriptContext *ctx);
 static BOOL ScrCmd_25E(ScriptContext *ctx);
@@ -1132,13 +1132,13 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_16C,
     ScrCmd_16D,
     ScrCmd_GetDaycareState,
-    InitPersistedMapFeaturesForPastoriaGym,
+    ScrCmd_InitPersistedMapFeaturesForPastoriaGym,
     ScrCmd_170,
-    InitPersistedMapFeaturesForHearthomeGym,
+    ScrCmd_InitPersistedMapFeaturesForHearthomeGym,
     ScrCmd_172,
-    InitPersistedMapFeaturesForCanalaveGym,
-    InitPersistedMapFeaturesForVeilstoneGym,
-    InitPersistedMapFeaturesForSunyshoreGym,
+    ScrCmd_InitPersistedMapFeaturesForCanalaveGym,
+    ScrCmd_InitPersistedMapFeaturesForVeilstoneGym,
+    ScrCmd_InitPersistedMapFeaturesForSunyshoreGym,
     ScrCmd_176,
     ScrCmd_GetPartyCount,
     ScrCmd_178,
@@ -1291,7 +1291,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_20B,
     ScrCmd_20C,
     ScrCmd_20D,
-    InitPersistedMapFeaturesForGreatMarsh,
+    ScrCmd_InitPersistedMapFeaturesForGreatMarsh,
     ScrCmd_20F,
     ScrCmd_210,
     ScrCmd_SetPlayerHeightCalculationEnabled,
@@ -1368,7 +1368,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_258,
     ScrCmd_259,
     ScrCmd_25A,
-    InitPersistedMapFeaturesForPlatformLift,
+    ScrCmd_InitPersistedMapFeaturesForPlatformLift,
     ScrCmd_TriggerPlatformLift,
     ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap,
     ScrCmd_25E,
@@ -1478,7 +1478,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2C6,
     ScrCmd_2C7,
     ScrCmd_2C8,
-    InitPersistedMapFeaturesForEternaGym,
+    ScrCmd_InitPersistedMapFeaturesForEternaGym,
     ScrCmd_2CA,
     ScrCmd_CountRepeatedSpeciesInParty,
     ScrCmd_2CC,
@@ -1517,9 +1517,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CloseShardCostWindow,
     ScrCmd_JudgeStats,
     ScrCmd_2EF,
-    InitPersistedMapFeaturesForVilla,
+    ScrCmd_InitPersistedMapFeaturesForVilla,
     ScrCmd_2F1,
-    InitPersistedMapFeaturesForDistortionWorld,
+    ScrCmd_InitPersistedMapFeaturesForDistortionWorld,
     ScrCmd_2F3,
     ScrCmd_2F4,
     ScrCmd_2F5,
@@ -5726,7 +5726,7 @@ static BOOL ScrCmd_16C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL InitPersistedMapFeaturesForPastoriaGym(ScriptContext *ctx)
+static BOOL ScrCmd_InitPersistedMapFeaturesForPastoriaGym(ScriptContext *ctx)
 {
     PersistedMapFeatures_InitForPastoriaGym(ctx->fieldSystem);
     return FALSE;
@@ -5740,7 +5740,7 @@ static BOOL ScrCmd_170(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL InitPersistedMapFeaturesForHearthomeGym(ScriptContext *ctx)
+static BOOL ScrCmd_InitPersistedMapFeaturesForHearthomeGym(ScriptContext *ctx)
 {
     PersistedMapFeatures_InitForHearthomeGym(ctx->fieldSystem);
     return FALSE;
@@ -5754,19 +5754,19 @@ static BOOL ScrCmd_172(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL InitPersistedMapFeaturesForCanalaveGym(ScriptContext *ctx)
+static BOOL ScrCmd_InitPersistedMapFeaturesForCanalaveGym(ScriptContext *ctx)
 {
     PersistedMapFeatures_InitForCanalaveGym(ctx->fieldSystem);
     return FALSE;
 }
 
-static BOOL InitPersistedMapFeaturesForVeilstoneGym(ScriptContext *ctx)
+static BOOL ScrCmd_InitPersistedMapFeaturesForVeilstoneGym(ScriptContext *ctx)
 {
     PersistedMapFeatures_InitForVeilstoneGym(ctx->fieldSystem);
     return FALSE;
 }
 
-static BOOL InitPersistedMapFeaturesForSunyshoreGym(ScriptContext *ctx)
+static BOOL ScrCmd_InitPersistedMapFeaturesForSunyshoreGym(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 floorID = ScriptContext_ReadByte(ctx);
@@ -5784,19 +5784,19 @@ static BOOL ScrCmd_176(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL InitPersistedMapFeaturesForEternaGym(ScriptContext *ctx)
+static BOOL ScrCmd_InitPersistedMapFeaturesForEternaGym(ScriptContext *ctx)
 {
     PersistedMapFeatures_InitForEternaGym(ctx->fieldSystem);
     return FALSE;
 }
 
-static BOOL InitPersistedMapFeaturesForVilla(ScriptContext *ctx)
+static BOOL ScrCmd_InitPersistedMapFeaturesForVilla(ScriptContext *ctx)
 {
     PersistedMapFeatures_InitForVilla(ctx->fieldSystem);
     return FALSE;
 }
 
-static BOOL InitPersistedMapFeaturesForDistortionWorld(ScriptContext *ctx)
+static BOOL ScrCmd_InitPersistedMapFeaturesForDistortionWorld(ScriptContext *ctx)
 {
     PersistedMapFeatures_InitForDistortionWorld(ctx->fieldSystem);
     return FALSE;
@@ -6357,7 +6357,7 @@ static BOOL ScrCmd_20D(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL InitPersistedMapFeaturesForGreatMarsh(ScriptContext *ctx)
+static BOOL ScrCmd_InitPersistedMapFeaturesForGreatMarsh(ScriptContext *ctx)
 {
     PersistedMapFeatures_InitForGreatMarsh(ctx->fieldSystem);
     return FALSE;
@@ -6746,7 +6746,7 @@ static BOOL ScrCmd_25A(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx)
+static BOOL ScrCmd_InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx)
 {
     PersistedMapFeatures_InitForPlatformLift(ctx->fieldSystem);
     return FALSE;
