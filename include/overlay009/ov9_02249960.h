@@ -9,11 +9,24 @@
 
 #include "field_task.h"
 
-void DistortionWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
-void DistortionWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
-BOOL DistortionWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
-void ov9_02249F9C(FieldSystem *fieldSystem);
-void ov9_02249FD0(FieldSystem *fieldSystem);
+typedef struct DistWorldPersistedData {
+    u32 valid : 1;
+    u32 unk_00_1 : 24;
+    u32 unk_00_25 : 4;
+    u32 padding : 3;
+    u16 cameraAngleX;
+    u16 cameraAngleY;
+    u16 cameraAngleZ;
+    u16 unk_0A;
+    u32 unk_0C;
+    u8 reserved_10[16];
+} DistWorldPersistedData;
+
+void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
+void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
+BOOL DistWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
+void DistWorld_UpdateCameraAngle(FieldSystem *fieldSystem);
+void DistWorld_ResetPersistedCameraAngles(FieldSystem *fieldSystem);
 int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1);
 void ov9_0224A558(FieldSystem *fieldSystem, UnkStruct_020216E0 *param1, int param2);
 void ov9_0224A564(FieldSystem *fieldSystem, const UnkStruct_020216E0 *param1);

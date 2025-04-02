@@ -12,11 +12,11 @@
 #include "struct_defs/struct_02071BF8.h"
 #include "struct_defs/struct_02071C18.h"
 #include "struct_defs/struct_02071C34.h"
-#include "struct_defs/struct_02071C5C.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay006/struct_ov6_02242AF0.h"
+#include "overlay009/ov9_02249960.h"
 
 #include "field_system.h"
 #include "persisted_map_features.h"
@@ -146,8 +146,8 @@ void PersistedMapFeatures_InitForDistortionWorld(FieldSystem *fieldSystem)
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD);
 
-    UnkStruct_02071C5C *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD);
-    memset(data, 0, sizeof(UnkStruct_02071C5C));
+    DistWorldPersistedData *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD);
+    memset(data, 0, sizeof(DistWorldPersistedData));
 }
 
 static void sub_02071C80(const u8 param0, const u8 param1, int *param2)
