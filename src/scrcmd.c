@@ -7873,7 +7873,7 @@ static BOOL ScrCmd_31F(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov9_02249FD0(fieldSystem);
+    DistWorld_ResetPersistedCameraAngles(fieldSystem);
     return FALSE;
 }
 
