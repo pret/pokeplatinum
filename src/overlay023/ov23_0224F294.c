@@ -1310,12 +1310,12 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
         ov23_0224FCF4(v0);
 
         if (v1 == 3) {
-            int v3 = sub_02028938(Unk_ov23_022577B8->unk_05);
+            int item = sub_02028938(Unk_ov23_022577B8->unk_05);
             Bag *v4 = SaveData_GetBag(v0->fieldSystem->saveData);
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-            if (Bag_TryAddItem(v4, v3, 1, HEAP_ID_FIELD)) {
+            if (Bag_TryAddItem(v4, item, 1, HEAP_ID_FIELD)) {
                 sub_02028D80(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
                 ov23_022541A0(ov23_0224219C(), 0, Unk_ov23_022577B8->unk_05);
 

@@ -2370,7 +2370,7 @@ static int ov84_0223DEB8(UnkStruct_ov84_0223B5A0 *param0)
 {
     ov84_0223FD84(param0);
     param0->unk_488 = 1;
-    if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, 6) == 1) {
+    if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, HEAP_ID_6) == 1) {
         ov84_0223FFF0(param0);
         return 8;
     }

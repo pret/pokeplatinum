@@ -1217,7 +1217,7 @@ static int sub_0206DAFC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206DB08(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 428, 1, HEAP_ID_FIELD_TASK);
+    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_EXPLORER_KIT, 1, HEAP_ID_FIELD_TASK);
 }
 
 void sub_0206DB20(FieldSystem *fieldSystem)
@@ -1539,7 +1539,7 @@ static int sub_0206DF88(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206DFC8(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 428, 1, HEAP_ID_FIELD_TASK);
+    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_EXPLORER_KIT, 1, HEAP_ID_FIELD_TASK);
 }
 
 void sub_0206DFE0(SaveData *param0)

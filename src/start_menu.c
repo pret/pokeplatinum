@@ -1120,19 +1120,15 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         sub_0203B674(menu, sub_0203C558);
     } break;
     case 3: {
-        Bag *v11;
-        void *v12;
-        u32 *v13;
-
-        v13 = (u32 *)Heap_AllocFromHeap(HEAP_ID_FIELDMAP, 4);
+        u32 *v13 = (u32 *)Heap_AllocFromHeap(HEAP_ID_FIELDMAP, 4);
         *v13 = partyMan->selectedMonSlot;
         menu->unk_260 = (void *)v13;
 
-        v11 = SaveData_GetBag(fieldSystem->saveData);
-        v12 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        menu->unk_25C = sub_0207D824(v11, Unk_020EA020, HEAP_ID_FIELDMAP);
+        Bag *bag = SaveData_GetBag(fieldSystem->saveData);
+        TrainerInfo *v12 = SaveData_GetTrainerInfo(fieldSystem->saveData);
+        menu->unk_25C = sub_0207D824(bag, Unk_020EA020, HEAP_ID_FIELDMAP);
 
-        sub_0207CB2C(menu->unk_25C, fieldSystem->saveData, 1, fieldSystem->unk_98);
+        sub_0207CB2C(menu->unk_25C, fieldSystem->saveData, 1, fieldSystem->bagCursor);
 
         sub_0203D1E4(fieldSystem, menu->unk_25C);
         sub_0203B674(menu, sub_0203BC5C);
@@ -1631,32 +1627,29 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
     return 0;
 }
 
-static void sub_0203C2D8(FieldTask *taskMan, u16 param1)
+static void sub_0203C2D8(FieldTask *taskMan, u16 item)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *menu;
-    Bag *v2;
-    u8 v3;
+    u8 i;
     u8 v4, v5, v6;
 
-    fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    menu = FieldTask_GetEnv(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     menu->unk_25C = sub_020972FC(HEAP_ID_FIELDMAP);
-    v2 = SaveData_GetBag(fieldSystem->saveData);
-    sub_02097320(menu->unk_25C, param1, 1);
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
+    sub_02097320(menu->unk_25C, item, 1);
     v6 = 0;
 
-    for (v3 = 0; v3 < 64; v3++) {
-        param1 = Item_ForBerryNumber(v3);
+    for (i = 0; i < NUM_BERRIES; i++) {
+        item = Item_ForBerryNumber(i);
 
-        if (Bag_CanRemoveItem(v2, param1, 1, 11) == 1) {
-            sub_02097320(menu->unk_25C, param1, 0);
+        if (Bag_CanRemoveItem(bag, item, 1, HEAP_ID_FIELDMAP) == TRUE) {
+            sub_02097320(menu->unk_25C, item, 0);
             v6++;
         }
     }
 
-    BagCursor_GetFieldPocketPosition(fieldSystem->unk_98, 4, &v5, &v4);
+    BagCursor_GetFieldPocketPosition(fieldSystem->bagCursor, 4, &v5, &v4);
     sub_0209733C(menu->unk_25C, v4, v5, v6 + 3);
 
     sub_0203D2E4(fieldSystem, menu->unk_25C);
@@ -1673,7 +1666,7 @@ static BOOL sub_0203C390(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
 
     sub_02097390(menu->unk_25C, &v2, &v3);
-    BagCursor_SetFieldPocketPosition(fieldSystem->unk_98, 4, v3, v2);
+    BagCursor_SetFieldPocketPosition(fieldSystem->bagCursor, 4, v3, v2);
     Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);

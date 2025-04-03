@@ -54,14 +54,14 @@ void BattleRecording_Init(BattleRecording *param0)
     param0->unk_00 = 0xffffffff;
 }
 
-void sub_0202F1F8(SaveData *param0, int param1, int *param2)
+void sub_0202F1F8(SaveData *saveData, int heapID, int *param2)
 {
     if (Unk_021C07A4 != NULL) {
         Heap_FreeToHeap(Unk_021C07A4);
         Unk_021C07A4 = NULL;
     }
 
-    Unk_021C07A4 = SaveData_BattleRecording(param0, param1, param2, 0);
+    Unk_021C07A4 = SaveData_BattleRecording(saveData, heapID, param2, 0);
     BattleRecording_Init(Unk_021C07A4);
 }
 

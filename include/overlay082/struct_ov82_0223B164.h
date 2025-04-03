@@ -11,12 +11,12 @@
 typedef struct {
     u8 padding_00[4];
     int unk_04;
-    PoffinCase *unk_08;
-    SaveData *unk_0C;
-    TrainerInfo *unk_10;
-    Bag *unk_14;
-    Options *unk_18;
-    JournalEntry *unk_1C;
+    PoffinCase *poffinCase;
+    SaveData *saveData;
+    TrainerInfo *trainerInfo;
+    Bag *bag;
+    Options *options;
+    JournalEntry *journalEntry;
     BOOL unk_20;
     BOOL unk_24;
 } UnkStruct_ov82_0223B164;

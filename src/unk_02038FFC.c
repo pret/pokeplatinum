@@ -50,9 +50,9 @@ int sub_02039058(UnkStruct_0202B370 *param0)
     return DWC_GetGsProfileId(v0, &v1);
 }
 
-BOOL sub_02039074(SaveData *param0)
+BOOL sub_02039074(SaveData *saveData)
 {
-    UnkStruct_0202B370 *v0 = sub_0202B370(param0);
+    UnkStruct_0202B370 *v0 = sub_0202B370(saveData);
     DWCUserData *v1 = sub_0202AD28(v0);
 
     if (DWC_CheckHasProfile(v1)
