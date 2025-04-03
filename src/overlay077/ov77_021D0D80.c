@@ -331,10 +331,10 @@ static int ov77_021D10FC(OverlayManager *param0, int *param1)
     switch (v2) {
     default:
     case 1:
-        EnqueueApplication(0xffffffff, &Unk_020F8AB4);
+        EnqueueApplication(FS_OVERLAY_ID_NONE, &Unk_020F8AB4);
         break;
     case 2:
-        EnqueueApplication(0xffffffff, &Unk_020F8A48);
+        EnqueueApplication(FS_OVERLAY_ID_NONE, &Unk_020F8A48);
         break;
     case 3:
         sub_02004234(0);

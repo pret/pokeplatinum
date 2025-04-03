@@ -65,19 +65,19 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">BADGES</language>
 	</row>
-	<row id="main_menu_00016" index="16">
+	<row id="main_menu_player_name" index="16">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 3, 0, 0}</language>
 	</row>
-	<row id="main_menu_00017" index="17">
+	<row id="main_menu_playtime_hours_minutes" index="17">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}:{STRVAR_1 51, 1, 0}</language>
 	</row>
-	<row id="main_menu_00018" index="18">
+	<row id="main_menu_pokedex_seen_count" index="18">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="main_menu_00019" index="19">
+	<row id="main_menu_badge_count" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 50, 0, 0}</language>
 	</row>

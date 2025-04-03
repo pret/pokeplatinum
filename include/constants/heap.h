@@ -83,7 +83,7 @@ enum HeapId {
     HEAP_ID_MIGRATE_FROM_GBA,
     HEAP_ID_79,
     HEAP_ID_80,
-    HEAP_ID_81,
+    HEAP_ID_MAIN_MENU,
     HEAP_ID_82,
     HEAP_ID_83,
     HEAP_ID_84,
