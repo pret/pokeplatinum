@@ -5,6 +5,7 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map_load.h"
+#include "generated/badges.h"
 #include "generated/journal_location_events.h"
 #include "generated/object_events.h"
 
@@ -43,22 +44,6 @@
 
 #define FIELD_MOVE_FLAG(move) (1 << (move))
 
-#define FIELD_MOVE_CUT        0
-#define FIELD_MOVE_FLY        1 // unused
-#define FIELD_MOVE_SURF       2
-#define FIELD_MOVE_STRENGTH   3
-#define FIELD_MOVE_DEFOG      4
-#define FIELD_MOVE_ROCK_SMASH 5
-#define FIELD_MOVE_WATERFALL  6
-#define FIELD_MOVE_ROCK_CLIMB 7
-#define FIELD_MOVE_FLASH      8
-
-#define FIELD_MOVE_ERROR_NONE     0
-#define FIELD_MOVE_ERROR_LOCATION 1
-#define FIELD_MOVE_ERROR_BADGE    2
-#define FIELD_MOVE_ERROR_PARTNER  3
-#define FIELD_MOVE_ERROR_STATE    4
-
 typedef struct {
     FieldMoveTaskContext task;
     FieldMoveErrContext error;
@@ -72,79 +57,79 @@ typedef struct {
 
 static void FieldMoves_CanUseSurfDistortionWorld(FieldSystem *fieldSystem, FieldMoveContext *param1);
 
-static int FieldMoves_GetFlyError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckFly(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 
-static int FieldMoves_GetTeleportError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckTeleport(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetTeleportTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_TeleportTask(FieldTask *taskMan);
 
-static int FieldMoves_GetSurfError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckSurf(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetSurfTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_SurfTask(FieldTask *taskMan);
 
-static int FieldMoves_GetWaterfallError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckWaterfall(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetWaterfallTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_WaterfallTask(FieldTask *taskMan);
 
-static int FieldMoves_GetRockClimbError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckRockClimb(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetRockClimbTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_RockClimbTask(FieldTask *taskMan);
 
-static int FieldMoves_GetFlashError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckFlash(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetFlashTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_FlashTask(FieldTask *taskMan);
 
-static int FieldMoves_GetDefogError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckDefog(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetDefogTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_DefogTask(FieldTask *taskMan);
 
-static int FieldMoves_GetRockSmashError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckRockSmash(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetRockSmashTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_RockSmashTask(FieldTask *taskMan);
 
-static int FieldMoves_GetStrengthError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckStrength(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetStrengthTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_StrengthTask(FieldTask *taskMan);
 
-static int FieldMoves_GetDigError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckDig(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetDigTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_DigTask(FieldTask *taskMan);
 
-static int FieldMoves_GetSweetScentError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckSweetScent(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetSweetScentTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 
-static int FieldMoves_GetChatterError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckChatter(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetChatterTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_ChatterTask(FieldTask *taskMan);
 
-static int FieldMoves_GetCutError(const FieldMoveContext *fieldMoveContext);
+static int FieldMoves_CheckCut(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetCutTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_CutTask(FieldTask *taskMan);
 
 static const FieldMoveTaskOrError fieldMoveTaskOrError[] = {
-    { FieldMoves_SetCutTask, FieldMoves_GetCutError },
-    { FieldMoves_SetFlyTask, FieldMoves_GetFlyError },
-    { FieldMoves_SetSurfTask, FieldMoves_GetSurfError },
-    { FieldMoves_SetStrengthTask, FieldMoves_GetStrengthError },
-    { FieldMoves_SetDefogTask, FieldMoves_GetDefogError },
-    { FieldMoves_SetRockSmashTask, FieldMoves_GetRockSmashError },
-    { FieldMoves_SetWaterfallTask, FieldMoves_GetWaterfallError },
-    { FieldMoves_SetRockClimbTask, FieldMoves_GetRockClimbError },
-    { FieldMoves_SetFlashTask, FieldMoves_GetFlashError },
-    { FieldMoves_SetTeleportTask, FieldMoves_GetTeleportError },
-    { FieldMoves_SetDigTask, FieldMoves_GetDigError },
-    { FieldMoves_SetSweetScentTask, FieldMoves_GetSweetScentError },
-    { FieldMoves_SetChatterTask, FieldMoves_GetChatterError } // possibly Chatter
+    { FieldMoves_SetCutTask, FieldMoves_CheckCut },
+    { FieldMoves_SetFlyTask, FieldMoves_CheckFly },
+    { FieldMoves_SetSurfTask, FieldMoves_CheckSurf },
+    { FieldMoves_SetStrengthTask, FieldMoves_CheckStrength },
+    { FieldMoves_SetDefogTask, FieldMoves_CheckDefog },
+    { FieldMoves_SetRockSmashTask, FieldMoves_CheckRockSmash },
+    { FieldMoves_SetWaterfallTask, FieldMoves_CheckWaterfall },
+    { FieldMoves_SetRockClimbTask, FieldMoves_CheckRockClimb },
+    { FieldMoves_SetFlashTask, FieldMoves_CheckFlash },
+    { FieldMoves_SetTeleportTask, FieldMoves_CheckTeleport },
+    { FieldMoves_SetDigTask, FieldMoves_CheckDig },
+    { FieldMoves_SetSweetScentTask, FieldMoves_CheckSweetScent },
+    { FieldMoves_SetChatterTask, FieldMoves_CheckChatter },
 };
 
-static inline BOOL FieldMoves_IsMoveUsable(const FieldMoveContext *fieldMoveContext, int fieldMove)
+static inline BOOL FieldMoves_IsMoveUsable(const FieldMoveContext *fieldMoveContext, enum FieldMoveList fieldMove)
 {
     if ((fieldMoveContext->usableMoves & FIELD_MOVE_FLAG(fieldMove)) != 0) {
         return TRUE;
-    } else {
-        return FALSE;
     }
+
+    return FALSE;
 }
 
 static inline BOOL PlayerHasRequiredBadge(const FieldMoveContext *fieldMoveContext, int param1)
@@ -286,30 +271,27 @@ static void FieldMoves_FreeTaskData(FieldMoveTaskData *taskData)
     Heap_FreeToHeap(taskData);
 }
 
-static int FieldMoves_GetCutError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckCut(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, 1) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_FOREST) == 0) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
     if (FieldMoves_IsMoveUsable(fieldMoveContext, FIELD_MOVE_CUT)) {
         return FIELD_MOVE_ERROR_NONE;
-    } else {
-        return FIELD_MOVE_ERROR_LOCATION;
     }
+
+    return FIELD_MOVE_ERROR_LOCATION;
 }
 
 static void FieldMoves_SetCutTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    StartMenu *menu;
-    FieldMoveTaskData *taskData;
-
-    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
+    StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    FieldMoveTaskData *taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -330,13 +312,13 @@ static BOOL FieldMoves_CutTask(FieldTask *taskMan)
     return 0;
 }
 
-static int FieldMoves_GetFlyError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckFly(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, 2) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_COBBLE) == 0) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
@@ -357,15 +339,12 @@ static int FieldMoves_GetFlyError(const FieldMoveContext *fieldMoveContext)
 
 static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *menu;
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
+    StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
 
-    fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
-    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
-
-    u32 *v2 = (u32 *)Heap_AllocFromHeap(HEAP_ID_FIELDMAP, 4);
-    *v2 = fieldMoveMon->fieldMonId;
-    menu->unk_260 = (void *)v2;
+    u32 *fieldMonID = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(u32));
+    *fieldMonID = fieldMoveMon->fieldMonId;
+    menu->unk_260 = fieldMonID;
 
     menu->taskData = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
 
@@ -374,13 +353,13 @@ static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMov
     sub_0203B674(menu, sub_0203C434);
 }
 
-static int FieldMoves_GetSurfError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckSurf(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, 3) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_FEN) == 0) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
@@ -401,11 +380,8 @@ static int FieldMoves_GetSurfError(const FieldMoveContext *fieldMoveContext)
 
 static void FieldMoves_SetSurfTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    StartMenu *menu;
-    FieldMoveTaskData *taskData;
-
-    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
+    StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    FieldMoveTaskData *taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -426,30 +402,27 @@ static BOOL FieldMoves_SurfTask(FieldTask *taskMan)
     return 0;
 }
 
-static int FieldMoves_GetStrengthError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckStrength(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, 5) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_MINE) == 0) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
     if (FieldMoves_IsMoveUsable(fieldMoveContext, FIELD_MOVE_STRENGTH)) {
         return FIELD_MOVE_ERROR_NONE;
-    } else {
-        return FIELD_MOVE_ERROR_LOCATION;
     }
+
+    return FIELD_MOVE_ERROR_LOCATION;
 }
 
 static void FieldMoves_SetStrengthTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    StartMenu *menu;
-    FieldMoveTaskData *taskData;
-
-    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
+    StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    FieldMoveTaskData *taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -470,30 +443,27 @@ static BOOL FieldMoves_StrengthTask(FieldTask *param0)
     return 0;
 }
 
-static int FieldMoves_GetDefogError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckDefog(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, 4) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_RELIC) == 0) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
     if (FieldMoves_IsMoveUsable(fieldMoveContext, FIELD_MOVE_DEFOG)) {
         return FIELD_MOVE_ERROR_NONE;
-    } else {
-        return FIELD_MOVE_ERROR_LOCATION;
     }
+
+    return FIELD_MOVE_ERROR_LOCATION;
 }
 
 static void FieldMoves_SetDefogTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    StartMenu *menu;
-    FieldMoveTaskData *taskData;
-
-    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
+    StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    FieldMoveTaskData *taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -514,13 +484,13 @@ static BOOL FieldMoves_DefogTask(FieldTask *taskMan)
     return 0;
 }
 
-static int FieldMoves_GetRockSmashError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckRockSmash(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, 0) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_COAL) == 0) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
@@ -530,18 +500,15 @@ static int FieldMoves_GetRockSmashError(const FieldMoveContext *fieldMoveContext
 
     if (FieldMoves_IsMoveUsable(fieldMoveContext, FIELD_MOVE_ROCK_SMASH)) {
         return FIELD_MOVE_ERROR_NONE;
-    } else {
-        return FIELD_MOVE_ERROR_LOCATION;
     }
+
+    return FIELD_MOVE_ERROR_LOCATION;
 }
 
 static void FieldMoves_SetRockSmashTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    StartMenu *menu;
-    FieldMoveTaskData *taskData;
-
-    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
+    StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    FieldMoveTaskData *taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -562,30 +529,27 @@ static BOOL FieldMoves_RockSmashTask(FieldTask *taskMan)
     return 0;
 }
 
-static int FieldMoves_GetWaterfallError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckWaterfall(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, 7) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_BEACON) == 0) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
     if (FieldMoves_IsMoveUsable(fieldMoveContext, FIELD_MOVE_WATERFALL)) {
         return FIELD_MOVE_ERROR_NONE;
-    } else {
-        return FIELD_MOVE_ERROR_LOCATION;
     }
+
+    return FIELD_MOVE_ERROR_LOCATION;
 }
 
 static void FieldMoves_SetWaterfallTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    StartMenu *menu;
-    FieldMoveTaskData *taskData;
-
-    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
+    StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    FieldMoveTaskData *taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -606,13 +570,13 @@ static BOOL FieldMoves_WaterfallTask(FieldTask *param0)
     return 0;
 }
 
-static int FieldMoves_GetRockClimbError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckRockClimb(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, 6) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_ICICLE) == 0) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
@@ -629,11 +593,8 @@ static int FieldMoves_GetRockClimbError(const FieldMoveContext *fieldMoveContext
 
 static void FieldMoves_SetRockClimbTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    StartMenu *menu;
-    FieldMoveTaskData *taskData;
-
-    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
+    StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    FieldMoveTaskData *taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -654,7 +615,7 @@ static BOOL FieldMoves_RockClimbTask(FieldTask *taskMan)
     return 0;
 }
 
-static int FieldMoves_GetFlashError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckFlash(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -662,18 +623,15 @@ static int FieldMoves_GetFlashError(const FieldMoveContext *fieldMoveContext)
 
     if (FieldMoves_IsMoveUsable(fieldMoveContext, FIELD_MOVE_FLASH)) {
         return FIELD_MOVE_ERROR_NONE;
-    } else {
-        return FIELD_MOVE_ERROR_LOCATION;
     }
+
+    return FIELD_MOVE_ERROR_LOCATION;
 }
 
 static void FieldMoves_SetFlashTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    StartMenu *menu;
-    FieldMoveTaskData *taskData;
-
-    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
+    StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    FieldMoveTaskData *taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldMoveContext->fieldSystem);
 
@@ -694,7 +652,7 @@ static BOOL FieldMoves_FlashTask(FieldTask *taskMan)
     return 0;
 }
 
-static int FieldMoves_GetTeleportError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckTeleport(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -717,11 +675,8 @@ static int FieldMoves_GetTeleportError(const FieldMoveContext *fieldMoveContext)
 
 static void FieldMoves_SetTeleportTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *menu;
-
-    fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
-    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
+    StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
@@ -744,7 +699,7 @@ static BOOL FieldMoves_TeleportTask(FieldTask *param0)
     return 0;
 }
 
-static int FieldMoves_GetDigError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckDig(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -763,23 +718,16 @@ static int FieldMoves_GetDigError(const FieldMoveContext *fieldMoveContext)
 
 static void FieldMoves_SetDigTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *v1;
-
-    fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
-    v1 = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
+    StartMenu *v1 = FieldTask_GetEnv(fieldMoveMon->fieldTask);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    {
-        UnkStruct_020711C8 *v2;
+    UnkStruct_020711C8 *v2 = sub_020711C8(11, fieldMoveMon->fieldMonId, fieldSystem->saveData);
 
-        v2 = sub_020711C8(11, fieldMoveMon->fieldMonId, fieldSystem->saveData);
-
-        v1->callback = FieldMoves_DigTask;
-        v1->taskData = v2;
-        v1->state = START_MENU_STATE_10;
-    }
+    v1->callback = FieldMoves_DigTask;
+    v1->taskData = v2;
+    v1->state = START_MENU_STATE_10;
 }
 
 static BOOL FieldMoves_DigTask(FieldTask *param0)
@@ -797,7 +745,7 @@ static BOOL FieldMoves_DigTask(FieldTask *param0)
     return FALSE;
 }
 
-static int FieldMoves_GetSweetScentError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckSweetScent(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -812,27 +760,23 @@ static int FieldMoves_GetSweetScentError(const FieldMoveContext *fieldMoveContex
 
 static void FieldMoves_SetSweetScentTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *v1;
-    UnkStruct_020711C8 *v2;
-    int v3;
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
+    StartMenu *startMenu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    UnkStruct_020711C8 *v2 = sub_020711C8(11, fieldMoveMon->fieldMonId, fieldSystem->saveData);
+    int unused;
     void *v4;
 
-    fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
-    v1 = FieldTask_GetEnv(fieldMoveMon->fieldTask);
-
-    v2 = sub_020711C8(11, fieldMoveMon->fieldMonId, fieldSystem->saveData);
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->callback = ov5_021F101C;
-    v1->taskData = v2;
-    v1->state = START_MENU_STATE_10;
+    startMenu->callback = ov5_021F101C;
+    startMenu->taskData = v2;
+    startMenu->state = START_MENU_STATE_10;
 
     v4 = JournalEntry_CreateEventUsedMove((LOCATION_EVENT_LURED_POKEMON - LOCATION_EVENT_USED_CUT), fieldSystem->location->mapId, HEAP_ID_FIELDMAP);
     JournalEntry_SaveData(fieldSystem->journalEntry, v4, JOURNAL_LOCATION);
 }
 
-static int FieldMoves_GetChatterError(const FieldMoveContext *fieldMoveContext)
+static int FieldMoves_CheckChatter(const FieldMoveContext *fieldMoveContext)
 {
     if ((PlayerOutsideLinkRoom(fieldMoveContext) == 0) || (PersistedMapFeatures_IsCurrentDynamicMap(fieldMoveContext->fieldSystem, 9) == 1)) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -843,13 +787,9 @@ static int FieldMoves_GetChatterError(const FieldMoveContext *fieldMoveContext)
 
 static void FieldMoves_SetChatterTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *menu;
-    FieldMoveTaskData *taskData;
-
-    fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
-    menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
-    taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
+    StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
+    FieldMoveTaskData *taskData = FieldMoves_AllocateTaskData(fieldMoveMon, fieldMoveContext);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
