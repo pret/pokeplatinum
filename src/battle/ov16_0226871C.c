@@ -2620,7 +2620,7 @@ static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A9
     v0.unk_20 = 0;
     v0.unk_24 = 100;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v0.unk_2C = 5;
+    v0.heapID = HEAP_ID_BATTLE;
 
     v4 = sub_020127E8(&v0);
 

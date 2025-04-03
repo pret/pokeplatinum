@@ -463,7 +463,7 @@ static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
     v0.unk_20 = 0;
     v0.unk_24 = 11;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_2C = 94;
+    v0.heapID = HEAP_ID_94;
 
     v4 = sub_020127E8(&v0);
 

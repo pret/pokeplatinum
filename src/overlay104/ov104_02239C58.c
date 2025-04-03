@@ -189,13 +189,13 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     return;
 }
 
-static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
+static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int heapID)
 {
     static const u8 v0[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    param1->unk_AC = Heap_AllocFromHeapAtEnd(param3, sizeof(PokemonSummary));
+    param1->unk_AC = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
     MI_CpuClear8(param1->unk_AC, sizeof(PokemonSummary));
 
     param1->unk_AC->options = SaveData_GetOptions(param1->unk_00);

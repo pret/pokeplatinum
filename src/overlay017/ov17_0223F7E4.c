@@ -982,7 +982,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     v0.unk_20 = 0;
     v0.unk_24 = 100;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v0.unk_2C = 21;
+    v0.heapID = HEAP_ID_21;
 
     v4 = sub_020127E8(&v0);
 

@@ -332,15 +332,15 @@ static void sub_0202EAEC(UnkStruct_0202E8C0 *param0, UnkStruct_0202EABC *param1,
     }
 }
 
-static void sub_0202ECB0(UnkStruct_0202E8C0 *param0, u32 param1, u8 param2, UnkStruct_0202E91C **param3, u8 param4, int param5)
+static void sub_0202ECB0(UnkStruct_0202E8C0 *param0, u32 param1, u8 param2, UnkStruct_0202E91C **param3, u8 param4, int heapID)
 {
     int v0, v1;
-    UnkStruct_0202EABC *v2 = Heap_AllocFromHeapAtEnd(param5, sizeof(UnkStruct_0202EABC));
+    UnkStruct_0202EABC *v2 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_0202EABC));
 
-    sub_0202EAEC(param0, v2, param1, param2, 0, param3, param4, param5);
+    sub_0202EAEC(param0, v2, param1, param2, 0, param3, param4, heapID);
 
     if (param1 != 0) {
-        sub_0202EAEC(param0, v2, param1, param2, 1, param3, param4, param5);
+        sub_0202EAEC(param0, v2, param1, param2, 1, param3, param4, heapID);
     }
 
     Heap_FreeToHeap(v2);

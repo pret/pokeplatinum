@@ -50,10 +50,10 @@ static u32 ov59_021D2F88(SaveData *param0)
     return ov59_021D2A2C(v0);
 }
 
-static void *ov59_021D2F94(SaveData *param0, int param1, u32 param2)
+static void *ov59_021D2F94(SaveData *param0, int heapID, u32 param2)
 {
     RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(param0);
-    void *v1 = Heap_AllocFromHeapAtEnd(param1, param2);
+    void *v1 = Heap_AllocFromHeapAtEnd(heapID, param2);
 
     MI_CpuCopyFast(ov59_021D2A30(v0), v1, param2);
 
@@ -72,11 +72,11 @@ static u32 ov59_021D2FD4(SaveData *param0)
     return sub_02029C60();
 }
 
-static void *ov59_021D2FE0(SaveData *param0, int param1, u32 param2)
+static void *ov59_021D2FE0(SaveData *param0, int heapID, u32 param2)
 {
     UnkStruct_02029C68 *v0;
     UnkStruct_0202A750 *v1 = sub_0202A750(param0);
-    void *v2 = Heap_AllocFromHeapAtEnd(param1, param2);
+    void *v2 = Heap_AllocFromHeapAtEnd(heapID, param2);
 
     v0 = sub_02029CA8(v1, 0);
     MI_CpuCopyFast(v0, v2, param2);
@@ -120,9 +120,9 @@ static void ov59_021D3090(const UnkStruct_ov59_021D2FBC *param0)
     sub_0202ED0C(param0->unk_04, param0->unk_0C, param0->unk_08, param0->unk_10, param0->unk_00);
 }
 
-static void *ov59_021D30B4(SaveData *param0, int param1, u32 param2)
+static void *ov59_021D30B4(SaveData *param0, int heapID, u32 param2)
 {
-    UnkStruct_ov96_0223B450_sub1 *v0 = Heap_AllocFromHeapAtEnd(param1, param2);
+    UnkStruct_ov96_0223B450_sub1 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
     MI_CpuClear8(v0, param2);
     sub_02073700(param0, 0, v0);
 

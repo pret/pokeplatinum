@@ -12261,7 +12261,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     v12.unk_20 = 0;
     v12.unk_24 = 100;
     v12.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v12.unk_2C = 5;
+    v12.heapID = HEAP_ID_BATTLE;
 
     param1->fontOAM = sub_020127E8(&v12);
     param1->charTransferAllocation = v11;

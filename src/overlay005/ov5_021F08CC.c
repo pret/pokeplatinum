@@ -81,9 +81,9 @@ static u16 ov5_021F0E58(int param0);
 int (*const Unk_ov5_021FFA0C[])(UnkStruct_ov5_021F0D6C *, PlayerAvatar *, MapObject *);
 const int Unk_ov5_021FFA00[];
 
-void *ov5_021F08CC(FieldSystem *fieldSystem, u32 param1, int param2)
+void *ov5_021F08CC(FieldSystem *fieldSystem, u32 heapID, int param2)
 {
-    UnkStruct_ov5_021F08CC *v0 = Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_ov5_021F08CC));
+    UnkStruct_ov5_021F08CC *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_ov5_021F08CC));
 
     memset(v0, 0, sizeof(UnkStruct_ov5_021F08CC));
 

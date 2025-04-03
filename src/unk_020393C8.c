@@ -35,14 +35,14 @@ static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 param3);
 static void sub_02039530(int param0, BOOL param1, u32 param2);
 static void sub_02039614(UnkStruct_020393C8 *param0);
 
-UnkStruct_020393C8 *sub_020393C8(u32 param0, u32 param1, int param2, int param3, BOOL param4, const UnkStruct_020E5EB4 *param5[], int param6)
+UnkStruct_020393C8 *sub_020393C8(u32 param0, u32 heapID, int param2, int param3, BOOL param4, const UnkStruct_020E5EB4 *param5[], int param6)
 {
     UnkStruct_020393C8 *v0;
 
-    sub_020394D0(param6, param4, (16 * 2 * 14), param1);
-    sub_02039530(param6, param4, param1);
+    sub_020394D0(param6, param4, (16 * 2 * 14), heapID);
+    sub_02039530(param6, param4, heapID);
 
-    v0 = (UnkStruct_020393C8 *)Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_020393C8));
+    v0 = (UnkStruct_020393C8 *)Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_020393C8));
 
     v0->unk_18 = SysTask_ExecuteAfterVBlank(sub_02039428, v0, 5);
     v0->unk_0C = param2;
@@ -143,9 +143,9 @@ void sub_02039474(UnkStruct_020393C8 *param0, BOOL param1, u32 param2)
     param0->unk_12 = 1;
 }
 
-void *sub_020394A8(u32 param0)
+void *sub_020394A8(u32 heapID)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(param0, 600);
+    void *v0 = Heap_AllocFromHeapAtEnd(heapID, 600);
 
     ReadFileToBuffer("data/pl_wm.NCLR", &v0);
     DC_FlushRange(v0, 600);
@@ -153,9 +153,9 @@ void *sub_020394A8(u32 param0)
     return v0;
 }
 
-static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 param3)
+static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 heapID)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(param3, 600);
+    void *v0 = Heap_AllocFromHeapAtEnd(heapID, 600);
 
     if (v0) {
         NNSG2dPaletteData *v1;
@@ -174,9 +174,9 @@ static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 param3)
     }
 }
 
-static void sub_02039530(int param0, BOOL param1, u32 param2)
+static void sub_02039530(int param0, BOOL param1, u32 heapID)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(param2, 600);
+    void *v0 = Heap_AllocFromHeapAtEnd(heapID, 600);
 
     if (v0) {
         NNSG2dCharacterData *v1;

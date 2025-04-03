@@ -3025,9 +3025,9 @@ static int (*const Unk_ov6_02249270[])(UnkStruct_ov6_02249270 *) = {
     ov6_02245F40
 };
 
-static void *ov6_02245F44(u32 param0, int param1)
+static void *ov6_02245F44(u32 heapID, int param1)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(param0, param1);
+    void *v0 = Heap_AllocFromHeapAtEnd(heapID, param1);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param1);

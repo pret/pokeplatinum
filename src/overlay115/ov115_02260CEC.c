@@ -4434,7 +4434,7 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         v4.unk_20 = 0;
         v4.unk_24 = 0;
         v4.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v4.unk_2C = heapID;
+        v4.heapID = heapID;
 
         param0->unk_48 = sub_02012B60(&v4, param0->unk_4C);
 

@@ -326,7 +326,7 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *param0, u16 param1, u16 param2)
     v3 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204AFC4));
     MI_CpuClear8(v3, sizeof(UnkStruct_0204AFC4));
 
-    v3->unk_04 = 11;
+    v3->heapID = HEAP_ID_FIELDMAP;
     v3->unk_70 = sub_0202D740(param0);
     v3->unk_74 = sub_0202D750(param0);
     v3->unk_00 = 0x12345678;
@@ -365,7 +365,7 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *param0, u16 param1, u16 param2)
             v3->unk_10_5 = (u8)sub_0202D0BC(v3->unk_70, 9, NULL);
 
             sub_0202D0BC(v3->unk_70, 6, &(v3->unk_7E8[v3->unk_10_5]));
-            sub_0204B404(v3, &v3->unk_298[v3->unk_10_5], 300 + v3->unk_10_5, sub_0202D0BC(v3->unk_70, 7, NULL), &(v3->unk_7E8[v3->unk_10_5]), v3->unk_04);
+            sub_0204B404(v3, &v3->unk_298[v3->unk_10_5], 300 + v3->unk_10_5, sub_0202D0BC(v3->unk_70, 7, NULL), &(v3->unk_7E8[v3->unk_10_5]), v3->heapID);
         }
     }
 
@@ -412,7 +412,7 @@ void sub_0204A32C(UnkStruct_0204AFC4 *param0)
     }
 
     GF_ASSERT(param0->unk_00 == 0x12345678);
-    v0 = param0->unk_04;
+    v0 = param0->heapID;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_0204AFC4));
     Heap_FreeToHeap(param0);
@@ -701,7 +701,7 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *param1, JournalEntry *jo
     sub_0204A5EC(param0, param1, 1, v0);
 
     if (param0->unk_0F == HEAP_ID_FIELD) {
-        journalEntryOnlineEvent = JournalEntry_CreateEventBattleRoom(param0->unk_04);
+        journalEntryOnlineEvent = JournalEntry_CreateEventBattleRoom(param0->heapID);
         JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     }
 }
@@ -739,7 +739,7 @@ void sub_0204A97C(UnkStruct_0204AFC4 *param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_838[v0] = (u8)sub_0204B3B8(param0, &(param0->unk_298[v0]), 300 + v0, param0->unk_0E, param0->unk_2E, param0->unk_36, &(param0->unk_7E8[v0]), param0->unk_04);
+        param0->unk_838[v0] = (u8)sub_0204B3B8(param0, &(param0->unk_298[v0]), 300 + v0, param0->unk_0E, param0->unk_2E, param0->unk_36, &(param0->unk_7E8[v0]), param0->heapID);
     }
 }
 
@@ -1034,7 +1034,7 @@ static void sub_0204AE20(UnkStruct_0204AFC4 *param0, SaveData *param1, int param
     Party *v2;
     Pokemon *v3;
 
-    v1 = Heap_AllocFromHeapAtEnd(param0->unk_04, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
+    v1 = Heap_AllocFromHeapAtEnd(param0->heapID, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
     v2 = SaveData_GetParty(param1);
 

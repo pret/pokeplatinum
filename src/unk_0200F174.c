@@ -450,9 +450,9 @@ void sub_0200F6AC(UnkStruct_0200F600 *param0, int param1)
     param0->unk_00[param1] = NULL;
 }
 
-void sub_0200F6D8(UnkStruct_0200F600 *param0, void *param1, UnkFuncPtr_0200F634 param2, int param3, int param4)
+void sub_0200F6D8(UnkStruct_0200F600 *param0, void *param1, UnkFuncPtr_0200F634 param2, int param3, int heapID)
 {
-    UnkStruct_0200F6D8 *v0 = Heap_AllocFromHeapAtEnd(param4, sizeof(UnkStruct_0200F6D8));
+    UnkStruct_0200F6D8 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_0200F6D8));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -462,9 +462,9 @@ void sub_0200F6D8(UnkStruct_0200F600 *param0, void *param1, UnkFuncPtr_0200F634 
     SysTask_ExecuteAfterVBlank(sub_0200F728, v0, 1024);
 }
 
-void sub_0200F704(UnkStruct_0200F600 *param0, int param1, int param2)
+void sub_0200F704(UnkStruct_0200F600 *param0, int param1, int heapID)
 {
-    UnkStruct_0200F704 *v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(UnkStruct_0200F704));
+    UnkStruct_0200F704 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_0200F704));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;

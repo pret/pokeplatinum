@@ -2043,7 +2043,7 @@ void ov117_02265DB8(BgConfig *param0, SpriteManager *param1, UnkStruct_02012744 
     v0.unk_20 = param12;
     v0.unk_24 = param13;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_2C = 110;
+    v0.heapID = HEAP_ID_110;
 
     v4 = sub_020127E8(&v0);
 

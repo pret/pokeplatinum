@@ -70,9 +70,9 @@ BOOL sub_0202817C(Mail *param0)
     return 0;
 }
 
-Mail *sub_0202818C(int param0)
+Mail *sub_0202818C(int heapID)
 {
-    Mail *v0 = Heap_AllocFromHeapAtEnd(param0, sizeof(Mail));
+    Mail *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(Mail));
     sub_02028124(v0);
 
     return v0;

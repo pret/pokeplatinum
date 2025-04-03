@@ -571,7 +571,7 @@ void *sub_0203D644(FieldSystem *fieldSystem, int param1)
     return v0;
 }
 
-PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int param1, int param2)
+PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int param2)
 {
     PokemonSummary *v0;
     SaveData *v1;
@@ -580,7 +580,7 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int param1, int param2)
     };
 
     v1 = fieldSystem->saveData;
-    v0 = Heap_AllocFromHeapAtEnd(param1, sizeof(PokemonSummary));
+    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 

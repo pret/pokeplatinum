@@ -6708,7 +6708,7 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 hea
     v7.unk_20 = 0;
     v7.unk_24 = 0;
     v7.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v7.unk_2C = heapID;
+    v7.heapID = heapID;
 
     param0->unk_BE0.unk_234 = sub_02012B60(&v7, v5);
 

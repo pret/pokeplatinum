@@ -300,7 +300,7 @@ static int sub_02050448(UnkStruct_0205037C *param0, FieldSystem *fieldSystem)
     return 2;
 }
 
-static int sub_02050498(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, int param2)
+static int sub_02050498(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, int heapID)
 {
     PokemonSummary *v0;
     SaveData *v1;
@@ -309,7 +309,7 @@ static int sub_02050498(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, in
     };
 
     v1 = fieldSystem->saveData;
-    v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
+    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 

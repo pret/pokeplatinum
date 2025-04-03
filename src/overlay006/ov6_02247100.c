@@ -377,9 +377,9 @@ BOOL ov6_02247554(FieldTask *task)
     return 0;
 }
 
-static void *ov6_02247590(u32 param0, u32 param1)
+static void *ov6_02247590(u32 heapID, u32 param1)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(param0, param1);
+    void *v0 = Heap_AllocFromHeapAtEnd(heapID, param1);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param1);

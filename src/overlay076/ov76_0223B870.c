@@ -167,7 +167,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     v0.unk_20 = 1;
     v0.unk_24 = 40;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v0.unk_2C = 53;
+    v0.heapID = HEAP_ID_53;
     param0->unk_D4.unk_164[param1] = sub_020127E8(&v0);
 
     sub_02012AC0(param0->unk_D4.unk_164[param1], param4);

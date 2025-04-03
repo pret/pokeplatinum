@@ -1529,7 +1529,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     v0.unk_20 = 0;
     v0.unk_24 = 51;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_2C = 118;
+    v0.heapID = HEAP_ID_118;
 
     v4 = sub_020127E8(&v0);
 

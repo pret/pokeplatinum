@@ -409,15 +409,15 @@ BOOL sub_0204B3B8(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, 
     return v0;
 }
 
-void sub_0204B404(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, BOOL param3, const UnkStruct_0204B404 *param4, int param5)
+void sub_0204B404(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, BOOL param3, const UnkStruct_0204B404 *param4, int heapID)
 {
     int v0;
     u8 v1 = 0;
-    UnkStruct_0204B184 *v2 = sub_0204B184(param1, param2, param5);
+    UnkStruct_0204B184 *v2 = sub_0204B184(param1, param2, heapID);
     v1 = sub_0204AE84(param2);
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_0204B1E8(param0, &(param1->unk_30[v0]), param4->unk_04[v0], param4->unk_00, param4->unk_08[v0], v1, v0, param3, param5);
+        sub_0204B1E8(param0, &(param1->unk_30[v0]), param4->unk_04[v0], param4->unk_00, param4->unk_08[v0], v1, v0, param3, heapID);
     }
 
     Heap_FreeToHeap(v2);

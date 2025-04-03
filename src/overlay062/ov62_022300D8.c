@@ -676,7 +676,7 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
             v2.unk_20 = 3;
             v2.unk_24 = Unk_ov62_022488A8[v11][v10] - 1;
             v2.unk_28 = v8[v11];
-            v2.unk_2C = 102;
+            v2.heapID = HEAP_ID_102;
             v7[v11]->unk_14 = sub_02012B60(&v2, v7[v11]->unk_18);
 
             sub_02012AC0(v7[v11]->unk_14, (2 - 1));
@@ -792,7 +792,7 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     v2.unk_20 = 3;
     v2.unk_24 = 0;
     v2.unk_28 = param2;
-    v2.unk_2C = 102;
+    v2.heapID = HEAP_ID_102;
 
     param0->unk_0C = sub_02012B60(&v2, param0->unk_10);
 

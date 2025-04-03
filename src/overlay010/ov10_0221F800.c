@@ -1568,7 +1568,7 @@ static void ov10_0222130C(UnkStruct_ov10_0221FB28 *param0, u32 param1, Strbuf *p
     v1.unk_20 = 2;
     v1.unk_24 = 0;
     v1.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_2C = param0->unk_00->heapId;
+    v1.heapID = param0->unk_00->heapId;
 
     param0->unk_B3C[param1] = sub_020127E8(&v1);
 
