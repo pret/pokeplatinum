@@ -483,14 +483,14 @@ _0685:
 
 _0696:
     Message 42
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 180, 0
-    ScrCmd_042 181, 1
-    ScrCmd_042 182, 2
-    ScrCmd_042 183, 3
-    ScrCmd_042 184, 4
-    ScrCmd_042 12, 5
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 180, 0
+    AddMenuEntryImm 181, 1
+    AddMenuEntryImm 182, 2
+    AddMenuEntryImm 183, 3
+    AddMenuEntryImm 184, 4
+    AddMenuEntryImm 12, 5
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _070A
     GoToIfEq 0x8008, 1, _0715

@@ -14,7 +14,7 @@ _000E:
     FacePlayer
     SetVar 0x4001, 19
     Message 0
-    ScrCmd_075 21, 1
+    ShowCoins 21, 1
     SetVar 0x8005, 0
     SetVar 0x8006, 0
     GoTo _0039
@@ -37,7 +37,7 @@ _0039:
     Message 4
     AddItem 0x8000, 1, 0x800C
     ScrCmd_2A8 0x8001
-    ScrCmd_077
+    UpdateCoinDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     GoTo _0039
@@ -47,7 +47,7 @@ _00D8:
     Message 7
     WaitABXPadPress
     CloseMessage
-    ScrCmd_076
+    HideCoins
     ReleaseAll
     End
 
@@ -76,7 +76,7 @@ _010A:
 _0119:
     SetVar 0x8008, 0
     SetVar 0x8009, 0
-    ScrCmd_044 1, 1, 0, 1, 0x800C
+    InitGlobalTextListMenu 1, 1, 0, 0x800C
     GoTo _0135
     End
 
@@ -84,15 +84,15 @@ _0135:
     GetGameCornerPrizeData 0x8008, 0x8000, 0x8001
     BufferItemName 0, 0x8000
     ScrCmd_280 1, 0x8001, 1, 5
-    ScrCmd_046 168, 0xFF, 0x8008
+    AddListMenuEntry 168, 0x8008
     AddVar 0x8008, 1
     GoToIfLt 0x8008, 0x4001, _0135
     GoTo _016C
     End
 
 _016C:
-    ScrCmd_046 169, 0xFF, 0x8008
-    ScrCmd_306 0x8005, 0x8006
+    AddListMenuEntry 169, 0x8008
+    ShowListMenuRememberCursor 0x8005, 0x8006
     Return
 
 _017C:

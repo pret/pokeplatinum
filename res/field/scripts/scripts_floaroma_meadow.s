@@ -171,17 +171,17 @@ _01DA:
     LockAll
     FacePlayer
     Message 10
-    ScrCmd_072 20, 2
+    ShowMoney 20, 2
     GoTo _01F3
     End
 
 _01F3:
-    ScrCmd_041 30, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 15, 0
-    ScrCmd_042 16, 1
-    ScrCmd_042 17, 2
-    ScrCmd_043
+    InitLocalTextMenu 30, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 15, 0
+    AddMenuEntryImm 16, 1
+    AddMenuEntryImm 17, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0241
     GoToIfEq 0x8008, 1, _026A
@@ -210,11 +210,11 @@ _0293:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _02D5
     ScrCmd_1A3 0x8006
-    ScrCmd_074
+    UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     CallCommonScript 0x7E0
-    ScrCmd_073
+    HideMoney
     CloseMessage
     ReleaseAll
     End
@@ -222,7 +222,7 @@ _0293:
 _02C8:
     Message 14
     WaitABXPadPress
-    ScrCmd_073
+    HideMoney
     CloseMessage
     ReleaseAll
     End
@@ -230,7 +230,7 @@ _02C8:
 _02D5:
     Message 12
     WaitABXPadPress
-    ScrCmd_073
+    HideMoney
     CloseMessage
     ReleaseAll
     End
@@ -238,7 +238,7 @@ _02D5:
 _02E2:
     Message 13
     WaitABXPadPress
-    ScrCmd_073
+    HideMoney
     CloseMessage
     ReleaseAll
     End

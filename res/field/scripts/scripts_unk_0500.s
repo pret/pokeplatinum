@@ -152,28 +152,28 @@ _0299:
     Return
 
 _029E:
-    ScrCmd_041 31, 9, 0, 1, 0x8001
-    ScrCmd_33A 1
-    ScrCmd_042 1, 0
-    ScrCmd_042 2, 1
-    ScrCmd_042 3, 2
-    ScrCmd_042 4, 3
-    ScrCmd_043
+    InitLocalTextMenu 31, 9, 0, 0x8001
+    SetMenuXOriginToRight
+    AddMenuEntryImm 1, 0
+    AddMenuEntryImm 2, 1
+    AddMenuEntryImm 3, 2
+    AddMenuEntryImm 4, 3
+    ShowMenu
     Return
 
 _02BD:
-    ScrCmd_045 25, 1, 0, 1, 0x8002
-    ScrCmd_046 8, 0xFF, 0
-    ScrCmd_046 9, 0xFF, 1
-    ScrCmd_046 10, 0xFF, 2
-    ScrCmd_046 11, 0xFF, 3
-    ScrCmd_046 12, 0xFF, 4
-    ScrCmd_046 13, 0xFF, 5
-    ScrCmd_046 14, 0xFF, 6
-    ScrCmd_046 15, 0xFF, 7
-    ScrCmd_046 16, 0xFF, 8
-    ScrCmd_046 5, 0xFF, 9
-    ScrCmd_306 0x8004, 0x8005
+    InitLocalTextListMenu 25, 1, 0, 0x8002
+    AddListMenuEntry 8, 0
+    AddListMenuEntry 9, 1
+    AddListMenuEntry 10, 2
+    AddListMenuEntry 11, 3
+    AddListMenuEntry 12, 4
+    AddListMenuEntry 13, 5
+    AddListMenuEntry 14, 6
+    AddListMenuEntry 15, 7
+    AddListMenuEntry 16, 8
+    AddListMenuEntry 5, 9
+    ShowListMenuRememberCursor 0x8004, 0x8005
     Return
 
 _031D:

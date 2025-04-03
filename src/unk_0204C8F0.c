@@ -79,33 +79,31 @@ BOOL ScrCmd_1AB(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_072(ScriptContext *param0)
+BOOL ScrCmd_ShowMoney(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
-    Window **v3;
+    u16 tilemapLeft = ScriptContext_GetVar(param0);
+    u16 tilemapTop = ScriptContext_GetVar(param0);
+    Window **moneyWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
+    *moneyWindow = FieldMenu_CreateMoneyWindow(param0->fieldSystem, tilemapLeft, tilemapTop);
 
-    v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
-    *v3 = FieldMenu_CreateMoneyWindow(param0->fieldSystem, v1, v2);
-
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_073(ScriptContext *param0)
+BOOL ScrCmd_HideMoney(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    Window **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
+    Window **moneyWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
 
-    FieldMenu_DeleteMoneyWindow(*v1);
-    return 0;
+    FieldMenu_DeleteMoneyWindow(*moneyWindow);
+    return FALSE;
 }
 
-BOOL ScrCmd_074(ScriptContext *param0)
+BOOL ScrCmd_UpdateMoneyDisplay(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    Window **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
+    Window **moneyWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
 
-    FieldMenu_PrintMoneyToWindow(param0->fieldSystem, *v1);
-    return 0;
+    FieldMenu_PrintMoneyToWindow(param0->fieldSystem, *moneyWindow);
+    return FALSE;
 }

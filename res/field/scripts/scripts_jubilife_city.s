@@ -1308,12 +1308,12 @@ _0F3C:
     LockAll
     FacePlayer
     Message 80
-    ScrCmd_044 29, 11, 0, 0, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_046 45, 0xFF, 0
-    ScrCmd_046 46, 0xFF, 1
-    ScrCmd_046 47, 0xFF, 2
-    ScrCmd_047
+    InitGlobalTextListMenu 29, 11, 0, 0x800C, NO_EXIT_ON_B
+    SetMenuXOriginToRight
+    AddListMenuEntry 45, 0
+    AddListMenuEntry 46, 1
+    AddListMenuEntry 47, 2
+    ShowListMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0F97
     GoToIfEq 0x8008, 1, _0FA2

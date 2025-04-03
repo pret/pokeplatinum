@@ -85,12 +85,12 @@ _0122:
     GoTo _012B
 
 _012B:
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 198, 0
-    ScrCmd_042 199, 1
-    ScrCmd_042 200, 2
-    ScrCmd_042 202, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 198, 0
+    AddMenuEntryImm 199, 1
+    AddMenuEntryImm 200, 2
+    AddMenuEntryImm 202, 4
+    ShowMenu
     GoToIfEq 0x800C, 0, _0110
     GoToIfEq 0x800C, 1, _0119
     GoToIfEq 0x800C, 2, _0122
@@ -129,11 +129,11 @@ _01E2:
     GoTo _01EE
 
 _01EE:
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 203, 0
-    ScrCmd_042 204, 1
-    ScrCmd_042 205, 2
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 203, 0
+    AddMenuEntryImm 204, 1
+    AddMenuEntryImm 205, 2
+    ShowMenu
     GoToIfEq 0x800C, 0, _0186
     GoToIfEq 0x800C, 1, _02A4
     GoToIfEq 0x800C, 2, _01CB

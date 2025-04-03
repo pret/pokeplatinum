@@ -110,13 +110,13 @@ _0174:
 _0178:
     LockAll
     Message 3
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 188, 0
-    ScrCmd_042 189, 1
-    ScrCmd_042 190, 2
-    ScrCmd_042 191, 3
-    ScrCmd_042 192, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 188, 0
+    AddMenuEntryImm 189, 1
+    AddMenuEntryImm 190, 2
+    AddMenuEntryImm 191, 3
+    AddMenuEntryImm 192, 4
+    ShowMenu
     CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
@@ -139,13 +139,13 @@ _0178:
 _0242:
     LockAll
     Message 3
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 188, 0
-    ScrCmd_042 189, 1
-    ScrCmd_042 190, 2
-    ScrCmd_042 191, 3
-    ScrCmd_042 192, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 188, 0
+    AddMenuEntryImm 189, 1
+    AddMenuEntryImm 190, 2
+    AddMenuEntryImm 191, 3
+    AddMenuEntryImm 192, 4
+    ShowMenu
     CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
@@ -168,13 +168,13 @@ _0242:
 _030C:
     LockAll
     Message 3
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 186, 0
-    ScrCmd_042 187, 1
-    ScrCmd_042 190, 2
-    ScrCmd_042 191, 3
-    ScrCmd_042 192, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 186, 0
+    AddMenuEntryImm 187, 1
+    AddMenuEntryImm 190, 2
+    AddMenuEntryImm 191, 3
+    AddMenuEntryImm 192, 4
+    ShowMenu
     CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
@@ -197,13 +197,13 @@ _030C:
 _03D6:
     LockAll
     Message 3
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 186, 0
-    ScrCmd_042 187, 1
-    ScrCmd_042 190, 2
-    ScrCmd_042 191, 3
-    ScrCmd_042 192, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 186, 0
+    AddMenuEntryImm 187, 1
+    AddMenuEntryImm 190, 2
+    AddMenuEntryImm 191, 3
+    AddMenuEntryImm 192, 4
+    ShowMenu
     CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
@@ -226,13 +226,13 @@ _03D6:
 _04A0:
     LockAll
     Message 3
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 186, 0
-    ScrCmd_042 187, 1
-    ScrCmd_042 188, 2
-    ScrCmd_042 189, 3
-    ScrCmd_042 192, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 186, 0
+    AddMenuEntryImm 187, 1
+    AddMenuEntryImm 188, 2
+    AddMenuEntryImm 189, 3
+    AddMenuEntryImm 192, 4
+    ShowMenu
     CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
@@ -255,13 +255,13 @@ _04A0:
 _056A:
     LockAll
     Message 3
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 186, 0
-    ScrCmd_042 187, 1
-    ScrCmd_042 188, 2
-    ScrCmd_042 189, 3
-    ScrCmd_042 192, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 186, 0
+    AddMenuEntryImm 187, 1
+    AddMenuEntryImm 188, 2
+    AddMenuEntryImm 189, 3
+    AddMenuEntryImm 192, 4
+    ShowMenu
     CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2

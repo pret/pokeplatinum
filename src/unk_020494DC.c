@@ -385,35 +385,33 @@ static u16 sub_02049AE0(UnkStruct_0204AFC4 *param0, u8 param1)
     }
 }
 
-BOOL ScrCmd_294(ScriptContext *param0)
+BOOL ScrCmd_ShowBattlePoints(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    u8 v1 = ScriptContext_ReadByte(param0);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    Window **v3;
+    u8 tilemapLeft = ScriptContext_ReadByte(param0);
+    u8 tilemapTop = ScriptContext_ReadByte(param0);
+    Window **bpWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SPECIAL_CURRENCY_WINDOW);
+    *bpWindow = FieldMenu_DrawBPWindow(param0->fieldSystem, tilemapLeft, tilemapTop);
 
-    v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
-    *v3 = FieldMenu_CreateBPWindow(param0->fieldSystem, v1, v2);
-
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_295(ScriptContext *param0)
+BOOL ScrCmd_HideBattlePoints(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    Window **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
+    Window **bpWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SPECIAL_CURRENCY_WINDOW);
 
-    FieldMenu_DeleteCoinsBPWindow(*v1);
-    return 0;
+    FieldMenu_DeleteSpecialCurrencyWindow(*bpWindow);
+    return FALSE;
 }
 
-BOOL ScrCmd_296(ScriptContext *param0)
+BOOL ScrCmd_UpdateBPDisplay(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    Window **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
+    Window **bpWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SPECIAL_CURRENCY_WINDOW);
 
-    FieldMenu_PrintBPToWindow(param0->fieldSystem, *v1);
-    return 0;
+    FieldMenu_PrintBPToWindow(param0->fieldSystem, *bpWindow);
+    return FALSE;
 }
 
 BOOL ScrCmd_297(ScriptContext *param0)

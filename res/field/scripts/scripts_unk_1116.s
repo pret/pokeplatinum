@@ -132,25 +132,25 @@ _0190:
     End
 
 _01F0:
-    ScrCmd_045 1, 1, 0, 1, 0x8004
-    ScrCmd_046 22, 0xFF, 1
-    ScrCmd_046 23, 0xFF, 2
-    ScrCmd_046 24, 0xFF, 3
-    ScrCmd_046 25, 0xFF, 4
-    ScrCmd_046 26, 0xFF, 5
-    ScrCmd_046 27, 0xFF, 6
-    ScrCmd_046 28, 0xFF, 7
-    ScrCmd_046 29, 0xFF, 8
-    ScrCmd_046 30, 0xFF, 9
-    ScrCmd_046 31, 0xFF, 10
-    ScrCmd_046 32, 0xFF, 11
-    ScrCmd_046 33, 0xFF, 12
-    ScrCmd_046 34, 0xFF, 13
-    ScrCmd_046 35, 0xFF, 14
-    ScrCmd_046 36, 0xFF, 15
-    ScrCmd_046 37, 0xFF, 16
-    ScrCmd_046 38, 0xFF, 17
-    ScrCmd_047
+    InitLocalTextListMenu 1, 1, 0, 0x8004
+    AddListMenuEntry 22, 1
+    AddListMenuEntry 23, 2
+    AddListMenuEntry 24, 3
+    AddListMenuEntry 25, 4
+    AddListMenuEntry 26, 5
+    AddListMenuEntry 27, 6
+    AddListMenuEntry 28, 7
+    AddListMenuEntry 29, 8
+    AddListMenuEntry 30, 9
+    AddListMenuEntry 31, 10
+    AddListMenuEntry 32, 11
+    AddListMenuEntry 33, 12
+    AddListMenuEntry 34, 13
+    AddListMenuEntry 35, 14
+    AddListMenuEntry 36, 15
+    AddListMenuEntry 37, 16
+    AddListMenuEntry 38, 17
+    ShowListMenu
     GoToIfEq 0x8004, -2, _02AE
     ScrCmd_237 1, 0x8000, 0x8004, 0x8005
     GoTo _02A1

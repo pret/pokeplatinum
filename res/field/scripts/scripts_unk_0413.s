@@ -216,11 +216,11 @@ _03B4:
     Message 0
     ScrCmd_17A 4, 0x800C
     GoToIfEq 0x800C, 0, _0413
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 2, 0
-    ScrCmd_042 3, 1
-    ScrCmd_042 4, 2
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 2, 0
+    AddMenuEntryImm 3, 1
+    AddMenuEntryImm 4, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _042D
     GoToIfEq 0x8008, 1, _04EE

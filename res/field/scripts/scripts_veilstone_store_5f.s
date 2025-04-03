@@ -82,16 +82,16 @@ _00C0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 6
-    ScrCmd_072 20, 2
+    ShowMoney 20, 2
     GoTo _00D5
 
 _00D5:
-    ScrCmd_040 1, 1, 0, 1, 0x8000
-    ScrCmd_042 219, 0
-    ScrCmd_042 220, 1
-    ScrCmd_042 221, 2
-    ScrCmd_042 222, 3
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x8000
+    AddMenuEntryImm 219, 0
+    AddMenuEntryImm 220, 1
+    AddMenuEntryImm 221, 2
+    AddMenuEntryImm 222, 3
+    ShowMenu
     SetVar 0x8008, 0x8000
     GoToIfEq 0x8008, 0, _0125
     GoToIfEq 0x8008, 1, _0131
@@ -148,7 +148,7 @@ _0191:
     CallIfEq 0x8000, 0, _0167
     CallIfEq 0x8000, 1, _0175
     CallIfEq 0x8000, 2, _0183
-    ScrCmd_074
+    UpdateMoneyDisplay
     BufferItemName 0, 0x8001
     PlayFanfare SEQ_SE_DP_JIHANKI
     BufferItemName 0, 0x8001
@@ -179,14 +179,14 @@ _0277:
 _0280:
     CallCommonScript 0x7E1
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
 _028C:
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 

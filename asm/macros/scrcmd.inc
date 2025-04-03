@@ -406,66 +406,91 @@
     .short 63
     .endm
 
-    .macro ScrCmd_040 arg0, arg1, arg2, arg3, arg4
+    /*
+     * selectedOptionVar is set to 0xeeee as part of initializing a FieldMenuManager.
+     * Once ShowMenu or one of its variants is used, selectedOptionVar is set to the
+     * entryIndex of the option the player selected.
+     */
+    .macro InitGlobalTextMenu originX, originY, initialCursorPos, selectedOptionVar, canExitWithB=TRUE
     .short 64
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
+    .byte \originX
+    .byte \originY
+    .byte \initialCursorPos
+    .byte \canExitWithB
+    .short \selectedOptionVar
     .endm
 
-    .macro ScrCmd_041 arg0, arg1, arg2, arg3, arg4
+    /*
+     * selectedOptionVar is set to 0xeeee as part of initializing a FieldMenuManager.
+     * Once ShowMenu or one of its variants is used, selectedOptionVar is set to the
+     * entryIndex of the option the player selected.
+     */
+    .macro InitLocalTextMenu originX, originY, initialCursorPos, selectedOptionVar, canExitWithB=TRUE
     .short 65
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
+    .byte \originX
+    .byte \originY
+    .byte \initialCursorPos
+    .byte \canExitWithB
+    .short \selectedOptionVar
     .endm
 
-    .macro ScrCmd_042 arg0, arg1
+    /*
+     * AddMenuEntry variant that only accepts single-byte values,
+     * and therefore can't use variables or string IDs larger than 0xff,
+     * unlike the regular AddMenuEntry.
+     */
+    .macro AddMenuEntryImm entryStringID, entryIndex
     .short 66
-    .byte \arg0
-    .byte \arg1
+    .byte \entryStringID
+    .byte \entryIndex
     .endm
 
-    .macro ScrCmd_043
+    .macro ShowMenu
     .short 67
     .endm
 
-    .macro ScrCmd_044 arg0, arg1, arg2, arg3, arg4
+    /*
+     * selectedOptionVar is set to 0xeeee as part of initializing a FieldMenuManager.
+     * Once ShowListMenu or one of its variants is used, selectedOptionVar is set to the
+     * entryIndex of the option the player selected.
+     */
+    .macro InitGlobalTextListMenu originX, originY, initialCursorPos, selectedOptionVar, canExitWithB=TRUE
     .short 68
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
+    .byte \originX
+    .byte \originY
+    .byte \initialCursorPos
+    .byte \canExitWithB
+    .short \selectedOptionVar
     .endm
 
-    .macro ScrCmd_045 arg0, arg1, arg2, arg3, arg4
+    /*
+     * selectedOptionVar is set to 0xeeee as part of initializing a FieldMenuManager.
+     * Once ShowListMenu or one of its variants is used, selectedOptionVar is set to the
+     * entryIndex of the option the player selected.
+     */
+    .macro InitLocalTextListMenu originX, originY, initialCursorPos, selectedOptionVar, canExitWithB=TRUE
     .short 69
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
+    .byte \originX
+    .byte \originY
+    .byte \initialCursorPos
+    .byte \canExitWithB
+    .short \selectedOptionVar
     .endm
 
-    .macro ScrCmd_046 arg0, arg1, arg2
+    .macro AddListMenuEntry entryStringID, entryIndex, altTextStringID=LIST_MENU_ENTRY_NO_ALT_TEXT
     .short 70
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \entryStringID
+    .short \altTextStringID
+    .short \entryIndex
     .endm
 
-    .macro ScrCmd_047
+    .macro ShowListMenu
     .short 71
     .endm
 
-    .macro ScrCmd_048 arg0
+    .macro ShowMenuMultiColumn columnCount
     .short 72
-    .byte \arg0
+    .byte \columnCount
     .endm
 
     // Plays a sound effect without interrupting the current music
@@ -677,31 +702,31 @@
     .long \arg1
     .endm
 
-    .macro ScrCmd_072 arg0, arg1
+    .macro ShowMoney tilemapLeft, tilemapTop
     .short 114
-    .short \arg0
-    .short \arg1
+    .short \tilemapLeft
+    .short \tilemapTop
     .endm
 
-    .macro ScrCmd_073
+    .macro HideMoney
     .short 115
     .endm
 
-    .macro ScrCmd_074
+    .macro UpdateMoneyDisplay
     .short 116
     .endm
 
-    .macro ScrCmd_075 arg0, arg1
+    .macro ShowCoins tilemapLeft, tilemapTop
     .short 117
-    .short \arg0
-    .short \arg1
+    .short \tilemapLeft
+    .short \tilemapTop
     .endm
 
-    .macro ScrCmd_076
+    .macro HideCoins
     .short 118
     .endm
 
-    .macro ScrCmd_077
+    .macro UpdateCoinDisplay
     .short 119
     .endm
 
@@ -1610,17 +1635,22 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_11C arg0
+    /*
+     * destVar will be set to the number of floors above the current floor for maps where there's an elevator, or 1 when there isn't
+     * The result is hardcoded per-map ID in FieldMenu_GetFloorsAbove
+     */
+    .macro GetFloorsAbove destVarID
     .short 284
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_11D arg0, arg1, arg2, arg3
+    /* destVar is used to initialize a FieldMenuManager, setting it to 0xeeee, but is otherwise left without a meaningful value */
+    .macro ShowCurrentFloor tilemapLeft, tilemapTop, destVarID
     .short 285
-    .byte \arg0
-    .byte \arg1
-    .short \arg2
-    .short \arg3
+    .byte \tilemapLeft
+    .byte \tilemapTop
+    .short \destVarID
+    .short \destVarID    /* unused */
     .endm
 
     .macro ScrCmd_11E arg0
@@ -3654,17 +3684,17 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_294 arg0, arg1
+    .macro ShowBattlePoints tilemapLeft, tilemapTop
     .short 660
-    .byte \arg0
-    .byte \arg1
+    .byte \tilemapLeft
+    .byte \tilemapTop
     .endm
 
-    .macro ScrCmd_295
+    .macro HideBattlePoints
     .short 661
     .endm
 
-    .macro ScrCmd_296
+    .macro UpdateBPDisplay
     .short 662
     .endm
 
@@ -3703,10 +3733,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_29D arg0, arg1
+    .macro AddMenuEntry entryStringID, entryIndex
     .short 669
-    .short \arg0
-    .short \arg1
+    .short \entryStringID
+    .short \entryIndex
     .endm
 
     .macro ScrCmd_29E arg0, arg1
@@ -3858,7 +3888,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2B9
+    .macro ShowUnionRoomMenu
     .short 697
     .endm
 
@@ -4295,10 +4325,10 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_306 arg0, arg1
+    .macro ShowListMenuRememberCursor listOffsetVar, cursorPosVar
     .short 774
-    .short \arg0
-    .short \arg1
+    .short \listOffsetVar
+    .short \cursorPosVar
     .endm
 
     .macro ScrCmd_307 arg0
@@ -4466,9 +4496,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_327 arg0
+    .macro ShowListMenuSetWidth width
     .short 807
-    .short \arg0
+    .short \width
     .endm
 
     .macro ScrCmd_328 arg0
@@ -4564,14 +4594,30 @@
     .short 825
     .endm
 
-    .macro ScrCmd_33A arg0
+    .macro SetMenuXOriginSide rightSide
     .short 826
-    .byte \arg0
+    .byte \rightSide
     .endm
 
-    .macro ScrCmd_33B arg0
-    .short 827
-    .byte \arg0
+    .macro SetMenuXOriginToLeft
+    SetMenuXOriginSide FALSE
+    .endm
+
+    .macro SetMenuXOriginToRight
+    SetMenuXOriginSide TRUE
+    .endm
+
+    .macro SetMenuYOriginSide bottomSide
+    .short 826
+    .byte \bottomSide
+    .endm
+
+    .macro SetMenuYOriginToTop
+    SetMenuYOriginSide FALSE
+    .endm
+
+    .macro SetMenuYOriginToBottom
+    SetMenuYOriginSide TRUE
     .endm
 
     .macro ScrCmd_33C arg0, arg1
