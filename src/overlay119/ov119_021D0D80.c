@@ -468,12 +468,12 @@ UnkStruct_ov119_021D14DC *ov119_021D14AC(UnkStruct_ov119_021D1930 *param0)
     int v1;
     int v2;
     int v3;
-    UnkStruct_ov119_021D14DC *v4 = Heap_AllocFromHeap(param0->heapId, sizeof(UnkStruct_ov119_021D14DC));
+    UnkStruct_ov119_021D14DC *v4 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov119_021D14DC));
 
     GF_ASSERT(v4 != NULL);
 
     v4->unk_00 = *param0;
-    v4->unk_0C = ov119_021D1434(v4->unk_00.heapId, 119, v4->unk_00.unk_04);
+    v4->unk_0C = ov119_021D1434(v4->unk_00.heapID, 119, v4->unk_00.unk_04);
 
     sub_02014788(v4->unk_0C, 1);
 

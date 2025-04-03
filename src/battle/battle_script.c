@@ -10759,7 +10759,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v12.unk_00 = BattleSystem_BGL(v2->battleSys);
                 v12.unk_04 = BattleSystem_PaletteSys(v2->battleSys);
                 v12.unk_08 = v5;
-                v12.heapId = HEAP_ID_BATTLE;
+                v12.heapID = HEAP_ID_BATTLE;
                 v12.unk_10 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                 v12.unk_14 = IsNationalDexObtained(BattleSystem_GetPokedex(v2->battleSys));
                 v2->tmpPtr[1] = CharTransfer_PopTaskManager();

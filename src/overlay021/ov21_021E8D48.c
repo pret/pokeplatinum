@@ -128,7 +128,7 @@ static void ov21_021E9B08(UnkStruct_ov21_021E9A9C *param0, int param1);
 
 UnkStruct_ov21_021E8D48 *ov21_021E8D48(const UnkStruct_ov21_021E8E0C *param0)
 {
-    UnkStruct_ov21_021E8D48 *v0 = Heap_AllocFromHeap(param0->heapId, sizeof(UnkStruct_ov21_021E8D48));
+    UnkStruct_ov21_021E8D48 *v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021E8D48));
 
     memset(v0, 0, sizeof(UnkStruct_ov21_021E8D48));
 
@@ -185,37 +185,37 @@ void ov21_021E8E04(UnkStruct_ov21_021E8D48 *param0, BOOL param1)
 static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_021E8E0C *param1)
 {
     UnkStruct_ov21_021D1FA4 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, param1->heapId);
+    NARC *v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, param1->heapID);
     int v2;
 
     param0->unk_220 = Pokemon_GetValue(param1->unk_10, MON_DATA_SPECIES, NULL);
     v2 = Pokemon_GetValue(param1->unk_10, MON_DATA_FORM, NULL);
 
     param0->unk_00 = param1->unk_00;
-    param0->unk_19C = SpriteList_InitRendering(32, &param0->unk_10, param1->heapId);
+    param0->unk_19C = SpriteList_InitRendering(32, &param0->unk_10, param1->heapID);
 
-    Utility_Clear2DMainOAM(param1->heapId);
-    ov21_021E9A0C(param1->heapId);
+    Utility_Clear2DMainOAM(param1->heapID);
+    ov21_021E9A0C(param1->heapID);
 
-    param0->unk_0C = ov21_021E99E0(param1->unk_08, param1->unk_10, 48, 72, param1->heapId);
+    param0->unk_0C = ov21_021E99E0(param1->unk_08, param1->unk_10, 48, 72, param1->heapID);
     param0->unk_08 = param1->unk_04;
 
     v0.unk_00 = param0->unk_19C;
     v0.unk_04 = param0->unk_00;
     v0.unk_08 = 3;
-    v0.heapId = param1->heapId;
+    v0.heapID = param1->heapID;
 
     param0->unk_1B0 = ov21_021D4C0C(&v0);
 
-    ov21_021E90B0(param0->unk_00, param1->heapId);
+    ov21_021E90B0(param0->unk_00, param1->heapID);
     G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), -16);
 
-    param0->unk_04 = ov21_021E91B0(param0->unk_00, param1->heapId);
+    param0->unk_04 = ov21_021E91B0(param0->unk_00, param1->heapID);
 
-    ov21_021E9208(param0->unk_1A0, param1->heapId);
-    ov21_021D2B88(&param0->unk_1B4, param0->unk_1A0, param1->heapId, v1);
-    ov21_021D2D88(&param0->unk_1B4, param0->unk_19C, param0->unk_1A0, param1->heapId, 2);
-    ov21_021E9240(&param0->unk_1B4, param0->unk_1B0, param1->heapId, param0->unk_220, param1->unk_14);
+    ov21_021E9208(param0->unk_1A0, param1->heapID);
+    ov21_021D2B88(&param0->unk_1B4, param0->unk_1A0, param1->heapID, v1);
+    ov21_021D2D88(&param0->unk_1B4, param0->unk_19C, param0->unk_1A0, param1->heapID, 2);
+    ov21_021E9240(&param0->unk_1B4, param0->unk_1B0, param1->heapID, param0->unk_220, param1->unk_14);
     ov21_021D1858(&param0->unk_1B4, 172, 32);
     ov21_021D2E44(&param0->unk_1B4, 1);
 
@@ -228,18 +228,18 @@ static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_
             v3 = param0->unk_220;
         }
 
-        ov21_021E9458(&param0->unk_1E4, param0->unk_1A0, v3, param1->heapId);
-        ov21_021E94B0(&param0->unk_1E4, param0->unk_19C, param0->unk_1A0, param1->heapId);
+        ov21_021E9458(&param0->unk_1E4, param0->unk_1A0, v3, param1->heapID);
+        ov21_021E94B0(&param0->unk_1E4, param0->unk_19C, param0->unk_1A0, param1->heapID);
     }
 
-    ov21_021E95BC(&param0->unk_200, param0->unk_1A0, param0->unk_220, param1->heapId, v1);
-    ov21_021E95F8(&param0->unk_200, param0->unk_19C, param0->unk_1A0, param1->heapId, param0->unk_220);
-    ov21_021E9504(&param0->unk_1F8, param0->unk_19C, param0->unk_1A0, param1->heapId, param0->unk_200.unk_08);
-    ov21_021E9560(&param0->unk_1F8, param0->unk_1B0, param1->heapId, param0->unk_220, param0->unk_1B4.unk_0C[1]);
-    ov21_021E96A8(param0->unk_00, param1->heapId, v1);
-    ov21_021E97C4(param0->unk_00, param1->heapId, v1);
-    ov21_021E9968(param0->unk_04, param1->heapId, param0->unk_220);
-    ov21_021E9A40(&param0->unk_228, param1->heapId, param1->unk_14, v1);
+    ov21_021E95BC(&param0->unk_200, param0->unk_1A0, param0->unk_220, param1->heapID, v1);
+    ov21_021E95F8(&param0->unk_200, param0->unk_19C, param0->unk_1A0, param1->heapID, param0->unk_220);
+    ov21_021E9504(&param0->unk_1F8, param0->unk_19C, param0->unk_1A0, param1->heapID, param0->unk_200.unk_08);
+    ov21_021E9560(&param0->unk_1F8, param0->unk_1B0, param1->heapID, param0->unk_220, param0->unk_1B4.unk_0C[1]);
+    ov21_021E96A8(param0->unk_00, param1->heapID, v1);
+    ov21_021E97C4(param0->unk_00, param1->heapID, v1);
+    ov21_021E9968(param0->unk_04, param1->heapID, param0->unk_220);
+    ov21_021E9A40(&param0->unk_228, param1->heapID, param1->unk_14, v1);
 
     param0->unk_248 = 1;
 

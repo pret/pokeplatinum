@@ -55,7 +55,7 @@ static void DWWarp_DeleteCamera(DistortionWorldWarp *warp);
 static void DWWarp_InitModel(DistortionWorldWarp *warp);
 static void DWWarp_DeleteModel(DistortionWorldWarp *warp);
 static void Model3D_Update(DistortionWorldWarp *warp);
-static GenericPointerData *DWWarp_Init3D(int heapId);
+static GenericPointerData *DWWarp_Init3D(int heapID);
 static void DWWarp_Setup3D(void);
 static void DWWarp_Exit3D(GenericPointerData *param0);
 static void DWWarp_CameraMove(DistortionWorldWarp *warp);

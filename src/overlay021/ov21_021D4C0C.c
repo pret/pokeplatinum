@@ -26,7 +26,7 @@ typedef struct UnkStruct_ov21_021D4C0C_t {
     BgConfig *unk_08;
     UnkStruct_ov21_021D4CA0 *unk_0C;
     int unk_10;
-    int heapId;
+    int heapID;
 } UnkStruct_ov21_021D4C0C;
 
 static BOOL ov21_021D4EA4(UnkStruct_ov21_021D4CA0 *param0);
@@ -34,13 +34,13 @@ static UnkStruct_ov21_021D4CA0 *ov21_021D4EB4(UnkStruct_ov21_021D4C0C *param0);
 
 UnkStruct_ov21_021D4C0C *ov21_021D4C0C(const UnkStruct_ov21_021D1FA4 *param0)
 {
-    UnkStruct_ov21_021D4C0C *v0 = Heap_AllocFromHeap(param0->heapId, sizeof(UnkStruct_ov21_021D4C0C));
+    UnkStruct_ov21_021D4C0C *v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021D4C0C));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D4C0C));
 
-    v0->unk_00 = sub_02012744(param0->unk_08, param0->heapId);
-    v0->unk_0C = Heap_AllocFromHeap(param0->heapId, sizeof(UnkStruct_ov21_021D4CA0) * param0->unk_08);
+    v0->unk_00 = sub_02012744(param0->unk_08, param0->heapID);
+    v0->unk_0C = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021D4CA0) * param0->unk_08);
 
     GF_ASSERT(v0->unk_0C);
     memset(v0->unk_0C, 0, sizeof(UnkStruct_ov21_021D4CA0) * param0->unk_08);
@@ -48,7 +48,7 @@ UnkStruct_ov21_021D4C0C *ov21_021D4C0C(const UnkStruct_ov21_021D1FA4 *param0)
     v0->unk_10 = param0->unk_08;
     v0->unk_04 = param0->unk_00;
     v0->unk_08 = param0->unk_04;
-    v0->heapId = param0->heapId;
+    v0->heapID = param0->heapID;
 
     return v0;
 }
@@ -119,7 +119,7 @@ void ov21_021D4D3C(UnkStruct_ov21_021D4C0C *param0)
 
 Window *ov21_021D4D6C(UnkStruct_ov21_021D4C0C *param0, int param1, int param2)
 {
-    Window *v0 = Window_New(param0->heapId, 1);
+    Window *v0 = Window_New(param0->heapID, 1);
 
     Window_Init(v0);
     Window_AddToTopLeftCorner(param0->unk_08, v0, param1, param2, 0, 0);
@@ -138,7 +138,7 @@ u32 Pokedex_DisplayMessage(UnkStruct_ov21_021D4C0C *param0, Window *window, u32 
     Strbuf *strbuf;
     u32 strWidth;
 
-    messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, param0->heapId);
+    messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, param0->heapID);
     GF_ASSERT(messageLoader);
 
     strbuf = MessageLoader_GetNewStrbuf(messageLoader, entryID);
@@ -158,7 +158,7 @@ void ov21_021D4E10(UnkStruct_ov21_021D4C0C *param0, Window *param1, u32 param2, 
     int v2;
     int v3;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, param0->heapId);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, param0->heapID);
     GF_ASSERT(v0);
 
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
