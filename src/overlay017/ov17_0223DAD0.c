@@ -255,7 +255,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     ov17_0224CDB4(v0, 1);
     v0->unk_14.unk_60 = BgConfig_New(HEAP_ID_23);
 
-    VramTransfer_New(64, 23);
+    VramTransfer_New(64, HEAP_ID_23);
     SetAutorepeat(4, 8);
 
     v0->unk_1074 = ov17_02249380(v0->unk_00, &v0->unk_14);

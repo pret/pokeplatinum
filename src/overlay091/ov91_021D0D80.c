@@ -1268,7 +1268,7 @@ static void ov91_021D2014(UnkStruct_ov91_021D0ED8 *param0)
         11, 2, 4, 4, 0, 0
     };
 
-    VramTransfer_New(64, 67);
+    VramTransfer_New(64, HEAP_ID_67);
 
     param0->unk_110 = SpriteSystem_Alloc(67);
     param0->unk_114 = SpriteManager_New(param0->unk_110);

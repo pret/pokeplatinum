@@ -2575,7 +2575,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
     }
 
     if (CheckItemEffectsOnPartyMember(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
-        Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
+        Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, HEAP_ID_12);
 
         if (Item_Get(v0, 26) != 0) {
             Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
@@ -2679,11 +2679,11 @@ static int ProcessItemApplication(GameWindowLayout *param0)
 
 static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *mon, int *param2)
 {
-    u32 v0 = param0->unk_5A4->unk_24;
+    u32 item = param0->unk_5A4->unk_24;
     FieldSystem *fieldSystem = param0->unk_5A4->unk_1C;
 
-    Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
-    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &v0);
+    Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, HEAP_ID_12);
+    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
     Pokemon_SetArceusForm(mon);
 
     if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
@@ -2695,7 +2695,7 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *mon, int *pa
     param0->unk_704[param0->unk_B11].unk_0C = param0->unk_5A4->unk_24;
     sub_02083040(param0, param0->unk_B11, param0->unk_704[param0->unk_B11].unk_0C);
 
-    if ((v0 == ITEM_GRISEOUS_ORB) && ((*param2) != -1)) {
+    if (item == ITEM_GRISEOUS_ORB && ((*param2) != -1)) {
         return 12;
     }
 
@@ -2704,7 +2704,7 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *mon, int *pa
 
 static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *mon, u32 param2, u32 param3)
 {
-    Bag_TryAddItem(param0->unk_5A4->unk_04, (u16)param2, 1, 12);
+    Bag_TryAddItem(param0->unk_5A4->unk_04, (u16)param2, 1, HEAP_ID_12);
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &param3);
     Pokemon_SetArceusForm(mon);
     Pokemon_SetGiratinaFormByHeldItem(mon);
@@ -2774,13 +2774,13 @@ static int ProcessPokemonItemSwap(GameWindowLayout *param0)
         v5 = param0->unk_704[param0->unk_B11].unk_0C;
         v0 = UpdatePokemonWithItem(param0, v2, &v1);
 
-        if (Bag_TryAddItem(param0->unk_5A4->unk_04, (u16)v5, 1, 12) == 0) {
+        if (Bag_TryAddItem(param0->unk_5A4->unk_04, (u16)v5, 1, HEAP_ID_12) == FALSE) {
             SwapPokemonItem(param0, v2, v4, v5);
             MessageLoader_GetStrbuf(param0->unk_69C, 83, param0->unk_6A4);
             v0 = 11;
         } else {
             if (Item_IsMail(param0->unk_5A4->unk_24) == 1) {
-                Bag_TryRemoveItem(param0->unk_5A4->unk_04, (u16)v5, 1, 12);
+                Bag_TryRemoveItem(param0->unk_5A4->unk_04, (u16)v5, 1, HEAP_ID_12);
                 SwapPokemonItem(param0, v2, v4, v5);
                 param0->unk_5A4->unk_23 = 6;
                 return 32;
@@ -2828,28 +2828,28 @@ static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
     Pokemon *v0;
     Window *v1;
     u32 v2;
-    u32 v3;
+    u32 item;
     int v4, v5;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
     v1 = &param0->unk_04[34];
     v2 = param0->unk_5A4->unk_24;
-    v3 = param0->unk_704[param0->unk_B11].unk_0C;
+    item = param0->unk_704[param0->unk_B11].unk_0C;
     v4 = UpdatePokemonWithItem(param0, v0, &v5);
 
-    if ((v3 == 112) && (v4 == 11) && (v5 == 0)) {
+    if ((item == ITEM_GRISEOUS_ORB) && (v4 == 11) && (v5 == 0)) {
         v4 = 12;
     }
 
-    if (v3 == 0) {
+    if (item == ITEM_NONE) {
         MessageLoader_GetStrbuf(param0->unk_69C, 118, param0->unk_6A8);
         StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
         StringTemplate_SetItemName(param0->unk_6A0, 1, param0->unk_5A4->unk_24);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     } else {
-        Bag_TryAddItem(param0->unk_5A4->unk_04, (u16)v3, 1, 12);
+        Bag_TryAddItem(param0->unk_5A4->unk_04, (u16)item, 1, HEAP_ID_12);
         MessageLoader_GetStrbuf(param0->unk_69C, 84, param0->unk_6A8);
-        StringTemplate_SetItemName(param0->unk_6A0, 1, v3);
+        StringTemplate_SetItemName(param0->unk_6A0, 1, item);
         StringTemplate_SetItemName(param0->unk_6A0, 2, v2);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     }

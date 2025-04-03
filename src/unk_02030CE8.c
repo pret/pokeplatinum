@@ -37,9 +37,9 @@ void sub_02030D10(SaveData *param0)
     Email_Init(SaveData_SaveTable(param0, 35));
 }
 
-BOOL sub_02030D20(SaveData *param0)
+BOOL sub_02030D20(SaveData *saveData)
 {
-    UnkStruct_02030CEC *v0 = SaveData_SaveTable(param0, 35);
+    UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, 35);
 
     if (v0->unk_00[0] == '\0') {
         return 0;

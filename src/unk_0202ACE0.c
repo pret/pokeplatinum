@@ -374,8 +374,8 @@ void sub_0202B270(UnkStruct_0202B370 *param0, int param1, int param2)
     param0->unk_1C0[param1].unk_2E = 2;
 }
 
-UnkStruct_0202B370 *sub_0202B370(SaveData *param0)
+UnkStruct_0202B370 *sub_0202B370(SaveData *saveData)
 {
-    UnkStruct_0202B370 *v0 = SaveData_SaveTable(param0, 29);
+    UnkStruct_0202B370 *v0 = SaveData_SaveTable(saveData, 29);
     return v0;
 }

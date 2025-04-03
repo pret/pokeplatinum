@@ -485,7 +485,7 @@ static void ov101_021D150C(void)
     };
 
     CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
-    PlttTransfer_Init(16, 79);
+    PlttTransfer_Init(16, HEAP_ID_79);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }

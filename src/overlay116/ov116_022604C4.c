@@ -62,7 +62,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     ov116_022612CC(param0);
     SetVBlankCallback(ov116_02261794, param0);
     DisableHBlank();
-    VramTransfer_New(32, 106);
+    VramTransfer_New(32, HEAP_ID_106);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
     sub_02039734();

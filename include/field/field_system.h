@@ -105,7 +105,7 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021EB0E0 *unk_8C;
     int unk_90;
     RadarChain *chain;
-    BagCursor *unk_98;
+    BagCursor *bagCursor;
     JournalEntry *journalEntry;
     DynamicTerrainHeightManager *dynamicTerrainHeightMan;
     MapPropManager *mapPropManager;

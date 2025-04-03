@@ -678,7 +678,7 @@ void ov5_021D15B4(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    PlttTransfer_Init(20, 4);
+    PlttTransfer_Init(20, HEAP_ID_FIELD);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }

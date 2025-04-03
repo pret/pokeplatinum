@@ -2443,7 +2443,7 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             Heap_Destroy(HEAP_ID_10);
 
             v2 = SaveData_GetBag(param0->unk_11C);
-            param0->unk_214 = sub_0207D824(v2, v0, 9);
+            param0->unk_214 = sub_0207D824(v2, v0, HEAP_ID_9);
             sub_0207CB2C(param0->unk_214, param0->unk_11C, 1, NULL);
             Overlay_LoadByID(FS_OVERLAY_ID(overlay84), 2);
             param0->unk_210 = OverlayManager_New(&Unk_ov84_02241130, param0->unk_214, 9);
@@ -2461,7 +2461,7 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             if ((item == ITEM_GRISEOUS_ORB) && (BoxPokemon_GetValue(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
                 (void)0;
             } else if (item != ITEM_NONE) {
-                Bag_TryRemoveItem(SaveData_GetBag(param0->unk_11C), item, 1, 9);
+                Bag_TryRemoveItem(SaveData_GetBag(param0->unk_11C), item, 1, HEAP_ID_9);
                 ov19_021D5BE8(&param0->unk_00, item, param0);
                 ov19_021D0F14(param0);
             }
@@ -2514,19 +2514,19 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 
 static void ov19_021D3FB0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
-    static u32 v0;
+    static u32 item;
 
     switch (*param1) {
     case 0:
-        v0 = ov19_GetPreviewedMonHeldItem(&param0->unk_00);
+        item = ov19_GetPreviewedMonHeldItem(&param0->unk_00);
 
-        if (Item_IsMail(v0)) {
+        if (Item_IsMail(item)) {
             Sound_PlayEffect(SEQ_SE_DP_BOX03);
             ov19_021D5408(&param0->unk_00, 24);
             ov19_021D6594(param0->unk_114, 24);
             (*param1) = 4;
         } else {
-            StringTemplate_SetItemName(param0->unk_19C, 0, v0);
+            StringTemplate_SetItemName(param0->unk_19C, 0, item);
             ov19_021DF964(&(param0->unk_00), 0);
             ov19_021D5408(&param0->unk_00, 23);
             ov19_021D6594(param0->unk_114, 25);
@@ -2554,7 +2554,7 @@ static void ov19_021D3FB0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         break;
     case 2:
-        if (Bag_TryAddItem(SaveData_GetBag(param0->unk_11C), v0, 1, 9)) {
+        if (Bag_TryAddItem(SaveData_GetBag(param0->unk_11C), item, 1, HEAP_ID_9)) {
             ov19_021D5BE8(&param0->unk_00, ITEM_NONE, param0);
             ov19_021D6594(param0->unk_114, 22);
             ov19_021D6594(param0->unk_114, 6);
@@ -2591,19 +2591,19 @@ static void ov19_021D3FB0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 
 static void ov19_021D4184(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
-    static u32 v0;
+    static u32 item;
 
     switch (*param1) {
     case 0:
-        v0 = ov19_021D5F88(&param0->unk_00);
+        item = ov19_021D5F88(&param0->unk_00);
 
-        if (Item_IsMail(v0)) {
+        if (Item_IsMail(item)) {
             Sound_PlayEffect(SEQ_SE_DP_BOX03);
             ov19_021D5408(&param0->unk_00, 24);
             ov19_021D6594(param0->unk_114, 24);
             (*param1) = 5;
         } else {
-            StringTemplate_SetItemName(param0->unk_19C, 0, v0);
+            StringTemplate_SetItemName(param0->unk_19C, 0, item);
             ov19_021D5408(&param0->unk_00, 26);
             ov19_021DF964(&(param0->unk_00), 0);
             ov19_021D6594(param0->unk_114, 25);
@@ -2631,7 +2631,7 @@ static void ov19_021D4184(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         break;
     case 2:
-        if (Bag_TryAddItem(SaveData_GetBag(param0->unk_11C), v0, 1, 9)) {
+        if (Bag_TryAddItem(SaveData_GetBag(param0->unk_11C), item, 1, HEAP_ID_9)) {
             if (ov19_021D5F7C(&param0->unk_00) != 0) {
                 ov19_021D5D54(&param0->unk_00);
                 *param1 = 4;
@@ -4437,10 +4437,10 @@ u32 ov19_021D5F7C(const UnkStruct_ov19_021D4DF0 *param0)
 
 u32 ov19_021D5F88(const UnkStruct_ov19_021D4DF0 *param0)
 {
-    u32 v0 = ov19_021D5F7C(param0);
+    u32 item = ov19_021D5F7C(param0);
 
-    if (v0 != 0) {
-        return v0;
+    if (item != ITEM_NONE) {
+        return item;
     }
 
     return ov19_GetPreviewedMonHeldItem(param0);

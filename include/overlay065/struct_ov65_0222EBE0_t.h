@@ -37,7 +37,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     StringList *unk_154;
     ListMenu *unk_158;
     BgConfig *unk_15C;
-    SaveData *unk_160;
+    SaveData *saveData;
     StringTemplate *unk_164;
     MessageLoader *unk_168;
     MessageLoader *unk_16C;

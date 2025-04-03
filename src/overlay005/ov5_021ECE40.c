@@ -506,7 +506,7 @@ static void ov5_021ED224(UnkStruct_ov5_021ED0A4 *param0, int param1, int param2,
     {
         TextureResourceManager *v0;
 
-        v0 = TextureResourceManager_New(param5, 4);
+        v0 = TextureResourceManager_New(param5, HEAP_ID_FIELD);
 
         ov5_021EDCA8(param0, v0);
         ov5_021ED7D0(param0);
@@ -1624,7 +1624,7 @@ static void ov5_021EE030(SysTask *param0, void *param1)
 
 static void ov5_021EE0E8(UnkStruct_ov5_021ED0A4 *param0, int param1, void *param2, int param3)
 {
-    TextureResource *v0 = TextureResourceManager_AddTextureAndAllocVRam(param0->unk_F0, param2, param1, 1, 4);
+    TextureResource *v0 = TextureResourceManager_AddTextureAndAllocVRam(param0->unk_F0, param2, param1, 1, HEAP_ID_FIELD);
 
     GF_ASSERT(v0 != NULL);
     ov5_021EE134(param0, param1);

@@ -17,7 +17,7 @@ typedef struct {
     u16 unk_1C;
     u8 unk_1E;
     u8 unk_1F;
-    u16 unk_20;
+    u16 unk_20; // Item?
     u8 unk_22;
     u8 unk_23;
     u8 unk_24;

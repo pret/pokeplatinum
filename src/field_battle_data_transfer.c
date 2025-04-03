@@ -175,7 +175,7 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const Fie
     Heap_FreeToHeap(mon);
 
     dto->pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
-    dto->bagCursor = fieldSystem->unk_98;
+    dto->bagCursor = fieldSystem->bagCursor;
     dto->subscreenCursorOn = NULL;
     dto->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
@@ -282,7 +282,7 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
 
 void FieldBattleDTO_Init(FieldBattleDTO *dto, const FieldSystem *fieldSystem)
 {
-    FieldBattleDTO_InitFromGameState(dto, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->journalEntry, fieldSystem->unk_98, fieldSystem->battleSubscreenCursorOn);
+    FieldBattleDTO_InitFromGameState(dto, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->journalEntry, fieldSystem->bagCursor, fieldSystem->battleSubscreenCursorOn);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(dto);
 }
 
@@ -324,7 +324,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
 
     dto->pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
     dto->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
-    dto->bagCursor = fieldSystem->unk_98;
+    dto->bagCursor = fieldSystem->bagCursor;
     dto->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
     dto->poketch = SaveData_PoketchData(fieldSystem->saveData);
     dto->unk_104 = sub_0202C878(fieldSystem->saveData);
@@ -390,7 +390,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
 
     dto->pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
     dto->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
-    dto->bagCursor = fieldSystem->unk_98;
+    dto->bagCursor = fieldSystem->bagCursor;
     dto->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
     dto->unk_104 = sub_0202C878(fieldSystem->saveData);
     dto->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);

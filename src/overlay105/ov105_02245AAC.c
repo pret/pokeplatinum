@@ -34,16 +34,16 @@ void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 93);
 
-    param0->unk_00 = SpriteList_InitRendering((6 + 2 + 1), &param0->unk_04, 93);
+    param0->unk_00 = SpriteList_InitRendering((6 + 2 + 1), &param0->unk_04, HEAP_ID_93);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov105_02246444[v0], v0, 93);
+        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov105_02246444[v0], v0, HEAP_ID_93);
     }
 
-    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 151, 0, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 93);
-    param0->unk_1A0[0][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 36, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 8, 93);
-    param0->unk_1A0[0][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 2, 1, 0, 2, 93);
-    param0->unk_1A0[0][3] = SpriteResourceCollection_Add(param0->unk_190[3], 151, 1, 1, 0, 3, 93);
+    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 151, 0, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_93);
+    param0->unk_1A0[0][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 36, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 8, HEAP_ID_93);
+    param0->unk_1A0[0][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 2, 1, 0, 2, HEAP_ID_93);
+    param0->unk_1A0[0][3] = SpriteResourceCollection_Add(param0->unk_190[3], 151, 1, 1, 0, 3, HEAP_ID_93);
 
     for (v0 = 0; v0 < 1; v0++) {
         SpriteTransfer_RequestChar(param0->unk_1A0[v0][0]);
@@ -130,7 +130,7 @@ static void ov105_02245C98(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_64K);
     }
 
-    PlttTransfer_Init(8, 93);
+    PlttTransfer_Init(8, HEAP_ID_93);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 

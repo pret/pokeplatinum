@@ -18,12 +18,12 @@ typedef struct {
     u8 unk_15;
     u32 unk_18[2];
     u16 unk_20;
-    u16 unk_22;
+    u16 unk_22; // Item?
     u16 unk_24;
     s32 unk_28;
     u8 unk_2C[6];
     u8 unk_32;
-    u8 unk_33;
+    u8 unk_33; // Item Category?
     u8 unk_34;
     u8 unk_35;
     u8 unk_36;

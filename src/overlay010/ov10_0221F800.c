@@ -387,7 +387,7 @@ void ov10_0221F800(UnkStruct_ov10_0221F800 *param0)
 
     if (v0->unk_BBC == 1) {
         if ((v0->unk_00->unk_00 != NULL) && (v0->unk_00->unk_00->saveData != NULL)) {
-            v0->unk_BBC = Bag_CanRemoveItem(SaveData_GetBag(v0->unk_00->unk_00->saveData), 465, 1, param0->heapId);
+            v0->unk_BBC = Bag_CanRemoveItem(SaveData_GetBag(v0->unk_00->unk_00->saveData), ITEM_VS_RECORDER, 1, param0->heapId);
         }
     }
 }

@@ -122,14 +122,14 @@ int ov83_0223B5B0(OverlayManager *param0, int *param1)
         v1->unk_1490 = 0;
     }
 
-    ov83_0223D150(v1, v0->unk_10->unk_10);
+    ov83_0223D150(v1, v0->unk_10->trainerInfo);
 
     if (v0->unk_26) {
         sub_0203632C(1);
     }
 
-    v1->unk_24 = Options_Frame(v0->unk_10->unk_18);
-    v1->unk_28 = Options_TextFrameDelay(v0->unk_10->unk_18);
+    v1->unk_24 = Options_Frame(v0->unk_10->options);
+    v1->unk_28 = Options_TextFrameDelay(v0->unk_10->options);
     v1->unk_31C = 1;
 
     SetVBlankCallback(ov83_0223B5A0, v0);
@@ -559,7 +559,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         }
         break;
     case 3: {
-        GameRecords *v2 = SaveData_GetGameRecordsPtr(param0->unk_10->unk_0C);
+        GameRecords *v2 = SaveData_GetGameRecordsPtr(param0->unk_10->saveData);
 
         if (param1->unk_1490 == 0) {
             GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_12);
@@ -571,7 +571,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     }
 
         if (param1->unk_1490 != 0) {
-            UnkStruct_0202B370 *v3 = sub_0202B370(param0->unk_10->unk_0C);
+            UnkStruct_0202B370 *v3 = sub_0202B370(param0->unk_10->saveData);
             int v4;
             int v5, v6;
             int v7;
@@ -580,7 +580,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
             for (v4 = 0; v4 < param1->unk_1488; v4++) {
                 v5 = param1->unk_1494.unk_130[v4];
                 v8 = CommInfo_DWCFriendData(v5);
-                v6 = sub_0203909C(param0->unk_10->unk_0C, v8, &v7);
+                v6 = sub_0203909C(param0->unk_10->saveData, v8, &v7);
 
                 switch (v6) {
                 case 0:
@@ -712,14 +712,14 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
 
         if ((v0 == 1) || (v0 == 2)) {
             if (v0 == 1) {
-                if (Poffin_GetNumberOfFilledSlots(param0->unk_10->unk_08) >= MAX_POFFINS) {
+                if (Poffin_GetNumberOfFilledSlots(param0->unk_10->poffinCase) >= MAX_POFFINS) {
                     ov83_0223EC8C(&param1->unk_6A0, 2);
                     (*param2) = 10;
                     param1->unk_1C = (30 * 5);
                     break;
                 }
 
-                if (Bag_HasItemsInPocket(param0->unk_10->unk_14, 4) == 0) {
+                if (Bag_HasItemsInPocket(param0->unk_10->bag, POCKET_BERRIES) == FALSE) {
                     ov83_0223EC8C(&param1->unk_6A0, 5);
                     (*param2) = 10;
                     param1->unk_1C = (30 * 5);
@@ -798,7 +798,7 @@ static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
 
             if (param1->unk_1490 == 1) {
                 journalEntryOnlineEvent = JournalEntry_CreateEventMadePoffins(param1->heapID);
-                JournalEntry_SaveData(param0->unk_10->unk_1C, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
+                JournalEntry_SaveData(param0->unk_10->journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
             }
         }
 
@@ -1088,10 +1088,10 @@ static BOOL ov83_0223C8B0(UnkStruct_ov83_0223C344 *param0, Poffin *param1, int p
     u16 v1;
     int v2;
     BOOL v3 = 1;
-    TVBroadcast *v4 = SaveData_TVBroadcast(param0->unk_10->unk_0C);
+    TVBroadcast *v4 = SaveData_TVBroadcast(param0->unk_10->saveData);
 
     for (v0 = 0; v0 < param2; v0++) {
-        v1 = Poffin_AddToCase(param0->unk_10->unk_08, param1);
+        v1 = Poffin_AddToCase(param0->unk_10->poffinCase, param1);
 
         if (v1 == POFFIN_NONE) {
             v3 = 0;

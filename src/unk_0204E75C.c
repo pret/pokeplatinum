@@ -51,7 +51,7 @@ BOOL ScrCmd_CheckItem(ScriptContext *ctx)
     u16 count = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), item, count, 11);
+    *destVar = Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), item, count, HEAP_ID_FIELDMAP);
     return FALSE;
 }
 
@@ -61,7 +61,7 @@ BOOL ScrCmd_2FE(ScriptContext *param0)
     u16 v1 = ScriptContext_GetVar(param0);
     u16 *v2 = ScriptContext_GetVarPointer(param0);
 
-    *v2 = Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), v1, 11);
+    *v2 = Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), v1, HEAP_ID_FIELDMAP);
     return 0;
 }
 

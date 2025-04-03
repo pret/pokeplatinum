@@ -46,7 +46,7 @@ struct UnkStruct_0207AE68_t {
     GameRecords *records;
     Poketch *poketch;
     void *unk_58;
-    int unk_5C;
+    int heapID;
     u16 unk_60;
     u16 unk_62;
     u8 unk_64;

@@ -14,7 +14,7 @@
 
 typedef struct {
     OverlayManager *unk_00;
-    SaveData *unk_04;
+    SaveData *saveData;
     Options *unk_08;
     void *unk_0C;
     NNSFndHeapHandle unk_10;

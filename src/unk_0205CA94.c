@@ -414,7 +414,7 @@ void sub_0205D0AC(UnkStruct_0205D094 *param0)
 
 static void sub_0205D0B4(UnkStruct_0205D094 *param0)
 {
-    param0->unk_00 = SpriteList_InitRendering(2, &param0->unk_30, 4);
+    param0->unk_00 = SpriteList_InitRendering(2, &param0->unk_30, HEAP_ID_FIELD);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -426,7 +426,7 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
     void *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_08[v0] = SpriteResourceCollection_New(2, v0, 4);
+        param0->unk_08[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_FIELD);
     }
 
     param0->unk_20[0] = sub_0205D1C4(param0->unk_08[0], &param0->unk_18[0], Unk_020ED8B4[0][param1]);
@@ -463,18 +463,18 @@ static int sub_0205D1C4(SpriteResourceCollection *param0, SpriteResourceList **p
     v0 = Heap_AllocFromHeapAtEnd(4, SpriteResourceTable_Size());
     v3 = LoadMemberFromNARC(177, param2, 0, 4, 0);
 
-    SpriteResourceTable_LoadFromBinary(v3, v0, 4);
+    SpriteResourceTable_LoadFromBinary(v3, v0, HEAP_ID_FIELD);
     Heap_FreeToHeap(v3);
 
     if (param1 != NULL) {
         v2 = SpriteResourceTable_GetCount(v0);
-        *param1 = SpriteResourceList_New(v2, 4);
+        *param1 = SpriteResourceList_New(v2, HEAP_ID_FIELD);
         v1 = *param1;
     } else {
         v1 = NULL;
     }
 
-    v2 = SpriteResourceCollection_Extend(param0, v0, v1, 4);
+    v2 = SpriteResourceCollection_Extend(param0, v0, v1, HEAP_ID_FIELD);
 
     SpriteResourceTable_Clear(v0);
     Heap_FreeToHeap(v0);

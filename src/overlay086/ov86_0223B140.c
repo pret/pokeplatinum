@@ -773,7 +773,7 @@ static void ov86_0223BA44(UnkStruct_ov86_0223B3C8 *param0)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 63);
 
-    param0->unk_24 = SpriteList_InitRendering(64, &param0->unk_28, 63);
+    param0->unk_24 = SpriteList_InitRendering(64, &param0->unk_28, HEAP_ID_63);
     param0->unk_1D0 = Graphics_GetCellBankFromOpenNARC(v2, 77, 0, &v0, HEAP_ID_63);
     param0->unk_1D4 = Graphics_GetAnimBankFromOpenNARC(v2, 78, 0, &v1, HEAP_ID_63);
 

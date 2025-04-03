@@ -4,7 +4,7 @@
 #include "savedata.h"
 
 typedef struct {
-    SaveData *unk_00;
+    SaveData *saveData;
     int unk_04;
     int unk_08;
 } UnkStruct_ov98_02247168;

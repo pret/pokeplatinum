@@ -10,10 +10,10 @@
 
 typedef struct {
     void *unk_00;
-    const Options *unk_04;
-    SaveData *unk_08;
-    JournalEntry *unk_0C;
-    BagCursor *unk_10;
+    const Options *options;
+    SaveData *saveData;
+    JournalEntry *journalEntry;
+    BagCursor *bagCursor;
     int unk_14;
     int unk_18;
     int unk_1C;

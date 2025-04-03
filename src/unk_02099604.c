@@ -15,17 +15,17 @@
 
 FS_EXTERN_OVERLAY(overlay82);
 
-static UnkStruct_ov82_0223B164 *sub_02099604(int param0, SaveData *param1, int heapID, JournalEntry *param3)
+static UnkStruct_ov82_0223B164 *sub_02099604(int param0, SaveData *saveData, int heapID, JournalEntry *journalEntry)
 {
     UnkStruct_ov82_0223B164 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov82_0223B164));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov82_0223B164));
 
-    v0->unk_0C = param1;
-    v0->unk_08 = Poffin_GetSavedataBlock(param1);
-    v0->unk_10 = SaveData_GetTrainerInfo(param1);
-    v0->unk_14 = SaveData_GetBag(param1);
-    v0->unk_18 = SaveData_Options(param1);
-    v0->unk_1C = param3;
+    v0->saveData = saveData;
+    v0->poffinCase = Poffin_GetSavedataBlock(saveData);
+    v0->trainerInfo = SaveData_GetTrainerInfo(saveData);
+    v0->bag = SaveData_GetBag(saveData);
+    v0->options = SaveData_Options(saveData);
+    v0->journalEntry = journalEntry;
     v0->unk_20 = 0;
     v0->unk_04 = param0;
 

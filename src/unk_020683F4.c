@@ -805,7 +805,7 @@ static void sub_02068CF0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v1->unk_25C = v2;
     v1->state = START_MENU_STATE_10;
 
-    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, 11);
+    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, HEAP_ID_FIELDMAP);
 }
 
 static void sub_02068D48(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
@@ -1015,7 +1015,7 @@ static void sub_02069080(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     menu->unk_25C = NULL;
     menu->state = START_MENU_STATE_10;
 
-    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, 11);
+    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, HEAP_ID_FIELDMAP);
 }
 
 static u32 sub_020690C4(const UnkStruct_020684D0 *param0)
