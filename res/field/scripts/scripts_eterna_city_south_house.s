@@ -21,10 +21,9 @@ _0006:
     ApplyMovement 0, _0158
     WaitMovement
     Message 1
-    SetVar 0x8004, 252
+    SetVar 0x8004, ITEM_UPGRADE
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0091
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0091
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0119
     Message 2

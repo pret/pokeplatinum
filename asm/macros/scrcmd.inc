@@ -761,11 +761,12 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_07D arg0, arg1, arg2
+    // destVarID will be set to TRUE if the player has space for at least 'count' items of the specified type in their bag
+    .macro CanFitItem item, count, destVarID
     .short 125
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \item
+    .short \count
+    .short \destVarID
     .endm
 
     // destVarID will be set to TRUE if the player has at least 'count' items of the specified type in their bag
@@ -4802,4 +4803,9 @@
     .macro ScriptEntryEnd
     .set F_ACCEPT_SCRIPT_ENTRIES, FALSE
     .short 0xFD13
+    .endm
+
+    .macro GoToIfCannotFitItem item, count, destVarID, offset
+    CanFitItem \item, \count, \destVarID
+    GoToIfEq \destVarID, FALSE, \offset
     .endm

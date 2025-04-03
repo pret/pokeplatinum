@@ -124,8 +124,7 @@ _01CE:
     ScrCmd_33D 0, 0x4000
 _01D3:
     BufferNumber 1, 0x4001
-    ScrCmd_07D 0x4000, 0x4001, 0x800C
-    GoToIfEq 0x800C, 0, _0294
+    GoToIfCannotFitItem 0x4000, 0x4001, 0x800C, _0294
     PlaySound SEQ_FANFA4
     Message 13
     AddItem 0x4000, 0x4001, 0x800C
@@ -141,8 +140,7 @@ _0218:
     ScrCmd_33D 0, 0x4002
 _021D:
     BufferNumber 1, 0x4003
-    ScrCmd_07D 0x4002, 0x4003, 0x800C
-    GoToIfEq 0x800C, 0, _0294
+    GoToIfCannotFitItem 0x4002, 0x4003, 0x800C, _0294
     PlaySound SEQ_FANFA4
     Message 13
     AddItem 0x4002, 0x4003, 0x800C
@@ -158,8 +156,7 @@ _0262:
     ScrCmd_33D 0, 0x4004
 _0267:
     BufferNumber 1, 0x4005
-    ScrCmd_07D 0x4004, 0x4005, 0x800C
-    GoToIfEq 0x800C, 0, _0294
+    GoToIfCannotFitItem 0x4004, 0x4005, 0x800C, _0294
     PlaySound SEQ_FANFA4
     Message 13
     AddItem 0x4004, 0x4005, 0x800C

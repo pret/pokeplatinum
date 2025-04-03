@@ -351,26 +351,26 @@ static void sub_0204BE44(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 
 static BOOL sub_0204BE84(FieldSystem *fieldSystem, void *param1)
 {
-    Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
 
-    return Bag_CanFitItem(v0, v1->val3.unk_00, 1, 32);
+    return Bag_CanFitItem(bag, v1->val3.item, 1, HEAP_ID_FIELD_TASK);
 }
 
 static void sub_0204BEAC(FieldSystem *fieldSystem, void *param1)
 {
-    Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
     u16 v2;
-    u16 v3 = v1->val3.unk_00;
+    u16 v3 = v1->val3.item;
 
-    Bag_TryAddItem(v0, v3, 1, 32);
+    Bag_TryAddItem(bag, v3, 1, HEAP_ID_FIELD_TASK);
 }
 
 static void sub_0204BED4(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
     UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
-    u16 v1 = v0->val3.unk_00;
+    u16 v1 = v0->val3.item;
 
     *param1 = 379;
     *param2 = 9;
@@ -381,9 +381,9 @@ static void sub_0204BED4(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 
 static void sub_0204BF14(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    Bag *v0 = SaveData_GetBag(param0->fieldSystem->saveData);
+    Bag *bag = SaveData_GetBag(param0->fieldSystem->saveData);
     UnkUnion_0204C4D0 *v1 = sub_0204B844(param0->fieldSystem);
-    u16 v2 = v1->val3.unk_00;
+    u16 v2 = v1->val3.item;
 
     *param1 = 379;
     *param2 = 5;
@@ -393,7 +393,7 @@ static void sub_0204BF14(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 
 static BOOL sub_0204BF48(FieldSystem *fieldSystem, void *param1)
 {
-    return 1;
+    return TRUE;
 }
 
 static void sub_0204BF4C(FieldSystem *fieldSystem, void *param1)
@@ -532,10 +532,10 @@ static void sub_0204C128(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 
 static BOOL sub_0204C138(FieldSystem *fieldSystem, void *param1)
 {
-    Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
 
-    return Bag_CanFitItem(v0, 454, 1, 32);
+    return Bag_CanFitItem(bag, ITEM_MEMBER_CARD, 1, HEAP_ID_FIELD_TASK);
 }
 
 static void InitDarkraiEvent(FieldSystem *fieldSystem, void *dummy)
@@ -574,10 +574,10 @@ static void sub_0204C1CC(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 
 static BOOL sub_0204C1FC(FieldSystem *fieldSystem, void *param1)
 {
-    Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
 
-    return Bag_CanFitItem(v0, 452, 1, 32);
+    return Bag_CanFitItem(bag, ITEM_OAKS_LETTER, 1, HEAP_ID_FIELD_TASK);
 }
 
 static void InitShayminEvent(FieldSystem *fieldSystem, void *dummy)
@@ -620,10 +620,10 @@ static void sub_0204C2A0(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 
 static BOOL sub_0204C2D0(FieldSystem *fieldSystem, void *param1)
 {
-    Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
 
-    return Bag_CanFitItem(v0, 467, 1, 32);
+    return Bag_CanFitItem(bag, ITEM_SECRET_KEY, 1, HEAP_ID_FIELD_TASK);
 }
 
 static void InitRotomEvent(FieldSystem *fieldSystem, void *dummy)
@@ -662,10 +662,10 @@ static void sub_0204C364(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 
 static BOOL sub_0204C394(FieldSystem *fieldSystem, void *param1)
 {
-    Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
 
-    return Bag_CanFitItem(v0, 455, 1, 32);
+    return Bag_CanFitItem(bag, ITEM_AZURE_FLUTE, 1, HEAP_ID_FIELD_TASK);
 }
 
 static void InitArceusEvent(FieldSystem *fieldSystem, void *dummy)

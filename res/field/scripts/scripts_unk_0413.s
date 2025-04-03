@@ -132,8 +132,7 @@ _023B:
 _0243:
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _02F7
-    ScrCmd_07D 0x8000, 0x8001, 0x800C
-    GoToIfEq 0x800C, 0, _02CF
+    GoToIfCannotFitItem 0x8000, 0x8001, 0x800C, _02CF
     BufferNumber 1, 0x8001
     GoToIfGt 0x8001, 1, _0289
     BufferItemName 0, 0x8000

@@ -38,10 +38,9 @@ _0057:
 
 _0062:
     Message 2
-    SetVar 0x8004, 0x19F
+    SetVar 0x8004, ITEM_TM88
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _009F
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _009F
     SetFlag FLAG_UNK_0x0083
     CallCommonScript 0x7E0
     CloseMessage

@@ -289,10 +289,9 @@ _0376:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0109, _03BD
     Message 17
-    SetVar 0x8004, 26
+    SetVar 0x8004, ITEM_SUPER_POTION
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _03C8
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _03C8
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0109
     GoTo _03BD

@@ -32,8 +32,7 @@ _0039:
     GoToIfEq 0x800C, MENU_NO, _0039
     ScrCmd_2A9 0x800C, 0x8001
     GoToIfEq 0x800C, 0, _00F5
-    ScrCmd_07D 0x8000, 1, 0x800C
-    GoToIfEq 0x800C, 0, _00E5
+    GoToIfCannotFitItem 0x8000, 1, 0x800C, _00E5
     Message 4
     AddItem 0x8000, 1, 0x800C
     ScrCmd_2A8 0x8001

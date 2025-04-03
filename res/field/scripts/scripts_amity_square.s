@@ -331,39 +331,39 @@ _041A:
     End
 
 _0490:
-    SetVar 0x409F, 176
+    SetVar 0x409F, ITEM_MAGOST_BERRY
     Return
 
 _0498:
-    SetVar 0x409F, 175
+    SetVar 0x409F, ITEM_CORNN_BERRY
     Return
 
 _04A0:
-    SetVar 0x409F, 177
+    SetVar 0x409F, ITEM_RABUTA_BERRY
     Return
 
 _04A8:
-    SetVar 0x409F, 178
+    SetVar 0x409F, ITEM_NOMEL_BERRY
     Return
 
 _04B0:
-    SetVar 0x409F, 179
+    SetVar 0x409F, ITEM_SPELON_BERRY
     Return
 
 _04B8:
-    SetVar 0x409F, 180
+    SetVar 0x409F, ITEM_PAMTRE_BERRY
     Return
 
 _04C0:
-    SetVar 0x409F, 181
+    SetVar 0x409F, ITEM_WATMEL_BERRY
     Return
 
 _04C8:
-    SetVar 0x409F, 182
+    SetVar 0x409F, ITEM_DURIN_BERRY
     Return
 
 _04D0:
-    SetVar 0x409F, 183
+    SetVar 0x409F, ITEM_BELUE_BERRY
     Return
 
 _04D8:
@@ -377,16 +377,14 @@ _04D8:
 _04FB:
     SetVar 0x8004, 0x409F
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0595
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0595
     GoTo _054D
     End
 
 _0524:
     SetVar 0x8004, 0x409F
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _05DD
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _05DD
     GoTo _054D
     End
 
@@ -1013,8 +1011,7 @@ _10E1:
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _1161
     SetVar 0x8005, 5
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _1172
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _1172
     BufferPlayerName 0
     ScrCmd_33D 1, 0x8004
     PlaySound SEQ_FANFA4

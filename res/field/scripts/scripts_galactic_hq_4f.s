@@ -39,9 +39,9 @@ _0074:
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _00E1
     Message 2
-    SetVar 0x8004, 1
+    SetVar 0x8004, ITEM_MASTER_BALL
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     CallIfEq 0x800C, 1, _00DB
     Message 3
     CloseMessage

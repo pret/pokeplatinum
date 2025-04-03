@@ -134,8 +134,7 @@ _00FE:
 _0150:
     SetVar 0x8004, 1
     SetVar 0x8005, 200
-    ScrCmd_07D 42, 0x8004, 0x800C
-    GoToIfEq 0x800C, 0, _01FF
+    GoToIfCannotFitItem ITEM_LAVA_COOKIE, 0x8004, 0x800C, _01FF
     ScrCmd_1AB 0x800C, 200
     GoToIfEq 0x800C, 0, _020A
     Message 9
@@ -145,8 +144,7 @@ _0150:
 _018F:
     SetVar 0x8004, 10
     SetVar 0x8005, 0x7D0
-    ScrCmd_07D 42, 0x8004, 0x800C
-    GoToIfEq 0x800C, 0, _01FF
+    GoToIfCannotFitItem ITEM_LAVA_COOKIE, 0x8004, 0x800C, _01FF
     ScrCmd_1AB 0x800C, 0x7D0
     GoToIfEq 0x800C, 0, _020A
     Message 10

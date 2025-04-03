@@ -63,7 +63,7 @@ _00AE:
     CallIfEq 0x800C, 10, _01D9
     CallIfEq 0x800C, 11, _01E1
     SetVar 0x8005, 3
-    ScrCmd_07D 93, 1, 0x800C
+    CanFitItem ITEM_HEART_SCALE, 1, 0x800C
     GoToIfNe 0x800C, 0, _01E9
     SetFlag FLAG_UNK_0x0AB1
     GoToIfEq 0x800C, 0, _023F
@@ -132,8 +132,7 @@ _01E9:
     End
 
 _0216:
-    ScrCmd_07D 93, 1, 0x800C
-    GoToIfEq 0x800C, 0, _0251
+    GoToIfCannotFitItem ITEM_HEART_SCALE, 1, 0x800C, _0251
     SetVar 0x8004, 0x4117
     SetVar 0x8005, 3
     GoTo _025C

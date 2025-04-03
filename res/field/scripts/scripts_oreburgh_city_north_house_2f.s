@@ -36,10 +36,9 @@ _0034:
     CheckPartyHasSpecies 0x800C, SPECIES_GEODUDE
     GoToIfEq 0x800C, 0, _0096
     Message 3
-    SetVar 0x8004, 14
+    SetVar 0x8004, ITEM_HEAL_BALL
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _008C
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _008C
     SetFlag FLAG_UNK_0x00C1
     CallCommonScript 0x7E0
     CloseMessage

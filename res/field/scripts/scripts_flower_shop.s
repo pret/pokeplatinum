@@ -15,10 +15,9 @@ _000E:
     GoToIfSet FLAG_UNK_0x0AAA, _0059
     Message 0
     GetRandom 0x8004, 5
-    AddVar 0x8004, 149
+    AddVar 0x8004, ITEM_CHERI_BERRY /* Cheri, Chesto, Pecha, Rawst or Aspear */
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0064
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0064
     SetFlag FLAG_UNK_0x0AAA
     CallCommonScript 0x7E0
     CloseMessage

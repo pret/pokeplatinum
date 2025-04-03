@@ -28,10 +28,9 @@ _0039:
 
 _0044:
     Message 1
-    SetVar 0x8004, 0x12E
+    SetVar 0x8004, ITEM_ICICLE_PLATE
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0076
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0076
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00DE
     GoTo _0039

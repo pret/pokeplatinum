@@ -51,10 +51,9 @@ _0016:
     GoTo _00BF
 
 _00BF:
-    SetVar 0x8004, 0x1A2
+    SetVar 0x8004, ITEM_TM91
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00FD
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00FD
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0092
     BufferItemName 0, 0x8004

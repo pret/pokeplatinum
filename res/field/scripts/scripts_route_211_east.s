@@ -19,10 +19,9 @@ _0012:
     ApplyMovement 0x800D, _0080
     WaitMovement
     Message 1
-    SetVar 0x8004, 0x194
+    SetVar 0x8004, ITEM_TM77
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0073
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0073
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00C6
     GoTo _0066
