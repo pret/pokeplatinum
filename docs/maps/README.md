@@ -25,7 +25,7 @@ in which the player moves.
   trees, etc.
 - **NARC**: Nitro ARChive, a file format used by Nintendo DS games to store files.
   (think archive as in a `.tar` file, a file that contains files)
-- **NSBCA/NSBTA**: a file format used to store animations for 3D models for the
+- **NSBCA/NSBTP/NSBTA**: file formats used to store animations for 3D models for the
   Nintendo DS. See [apicula's documentation](https://raw.githubusercontent.com/scurest/nsbmd_docs/master/nsbmd_docs.txt)
   for more information.
 - **NSBMD**: a file format used to store 3D models, textures and palettes for the
@@ -44,6 +44,8 @@ in which the player moves.
 - [file_format_specifications.md](file_format_specifications.md): a more technical
   description of the different files and their data structures that are used to
   store map data
+- [dynamic_map_features.md](dynamic_map_features.md): a description of the dynamic map
+  features system used to make dynamic maps
 
 ## Credits
 
