@@ -5,6 +5,7 @@
 
 #include "constants/species.h"
 #include "generated/sdat.h"
+#include "global/utility.h"
 
 #include "struct_defs/chatot_cry.h"
 
@@ -99,7 +100,7 @@ static BOOL Sound_Impl_PlayBGM(u16 seqID, u8 playerID, enum SoundHandleType hand
 
 static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType)
 {
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE);
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE));
     u16 *newFieldBGM = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM);
 
     int currentSeqID = Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FIELD_BGM));
@@ -375,7 +376,7 @@ void Sound_StopPokemonCries(int fadeOutFrames)
 {
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK);
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK));
 
     NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_POKEMON_CRY), fadeOutFrames);
     NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_ECHO), fadeOutFrames);
@@ -398,8 +399,8 @@ BOOL Sound_IsPokemonCryPlaying(void)
 {
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK);
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CRY_A_DELAY);
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK));
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CRY_A_DELAY));
 
     if (*primaryAllocated == TRUE) {
         return Sound_IsWaveOutPlaying(WAVE_OUT_CHANNEL_PRIMARY);
@@ -419,7 +420,7 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int
     u8 *waveSecondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
     u8 *echoEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ECHO_ENABLED);
     u8 *chatotCryPlaying = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY_PLAYING);
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY);
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY));
 
     if (Sound_Impl_IsShayminSkyForm(species, form) == TRUE) {
         species = WAVE_ARC_PV516_SKY;
@@ -834,7 +835,7 @@ static void Sound_Impl_StopFanfare(int frames)
 
 BOOL Sound_IsBGMPausedByFanfare(void)
 {
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FANFARE_DELAY);
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FANFARE_DELAY));
 
     if (Sound_UpdateFanfareDelay() == TRUE) {
         return TRUE;
