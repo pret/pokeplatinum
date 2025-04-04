@@ -31,7 +31,7 @@ _004E:
     End
 
 _0077:
-    SetFlag 0x199
+    SetFlag FLAG_UNK_0x0199
     SetVar 0x40A6, 4
     Return
 
@@ -45,7 +45,7 @@ _0099:
     LockAll
     ApplyMovement 9, _04E8
     WaitMovement
-    ClearFlag 0x255
+    ClearFlag FLAG_UNK_0x0255
     AddObject 20
     ScrCmd_062 20
     GetPlayerMapPos 0x8004, 0x8005
@@ -416,7 +416,7 @@ _0530:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 154, _056C
+    GoToIfSet FLAG_UNK_0x009A, _056C
     Message 8
     CheckBadgeAcquired BADGE_ID_BEACON, 0x800C
     GoToIfEq 0x800C, 0, _0561
@@ -442,7 +442,7 @@ _0577:
     SetVar 0x8004, 0x1AA
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 154
+    SetFlag FLAG_UNK_0x009A
     Message 7
     Return
 
@@ -481,7 +481,7 @@ _05D7:
     SetObjectEventPos 18, 0x34D, 0x2EC
     ScrCmd_188 18, 15
     ScrCmd_189 18, 1
-    ClearFlag 0x239
+    ClearFlag FLAG_UNK_0x0239
     AddObject 18
     SetVar 0x407E, 1
     ReleaseAll
@@ -660,7 +660,7 @@ _0850:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x162, _086E
+    GoToIfSet FLAG_UNK_0x0162, _086E
     Message 2
     WaitABXPadPress
     CloseMessage

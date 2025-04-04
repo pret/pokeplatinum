@@ -38,23 +38,23 @@ _0062:
     CallIfNe 0x4000, 0, _014A
     ScrCmd_1E0 0x4000
     GoToIfNe 0x4000, 0, _00DF
-    SetFlag 0x1E9
+    SetFlag FLAG_UNK_0x01E9
     GoTo _00C6
     End
 
 _00C6:
     ScrCmd_238 2, 0x4000
     GoToIfNe 0x4000, 0, _00EB
-    SetFlag 0x20E
+    SetFlag FLAG_UNK_0x020E
     End
 
 _00DF:
-    ClearFlag 0x1E9
+    ClearFlag FLAG_UNK_0x01E9
     GoTo _00C6
     End
 
 _00EB:
-    ClearFlag 0x20E
+    ClearFlag FLAG_UNK_0x020E
     End
 
 _00F1:
@@ -76,11 +76,11 @@ _013C:
     End
 
 _0144:
-    SetFlag 0x2C3
+    SetFlag FLAG_UNK_0x02C3
     Return
 
 _014A:
-    ClearFlag 0x2C3
+    ClearFlag FLAG_UNK_0x02C3
     Return
 
     .byte 219
@@ -200,22 +200,22 @@ _02DB:
     End
 
 _02E6:
-    ScrCmd_040 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 141, 0
-    ScrCmd_042 142, 1
-    ScrCmd_042 143, 2
-    ScrCmd_043
+    InitGlobalTextMenu 31, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 141, 0
+    AddMenuEntryImm 142, 1
+    AddMenuEntryImm 143, 2
+    ShowMenu
     Return
 
 _0301:
     Message 4
-    ScrCmd_040 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 6, 0
-    ScrCmd_042 7, 1
-    ScrCmd_042 94, 2
-    ScrCmd_043
+    InitGlobalTextMenu 31, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 6, 0
+    AddMenuEntryImm 7, 1
+    AddMenuEntryImm 94, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0352
     GoToIfEq 0x8008, 1, _0385
@@ -523,13 +523,13 @@ _0832:
     End
 
 _087D:
-    ScrCmd_040 31, 9, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 141, 0
-    ScrCmd_042 151, 1
-    ScrCmd_042 142, 2
-    ScrCmd_042 143, 3
-    ScrCmd_043
+    InitGlobalTextMenu 31, 9, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 141, 0
+    AddMenuEntryImm 151, 1
+    AddMenuEntryImm 142, 2
+    AddMenuEntryImm 143, 3
+    ShowMenu
     Return
 
 _089C:
@@ -550,14 +550,14 @@ _08A7:
     End
 
 _08FF:
-    ScrCmd_040 31, 7, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 141, 0
-    ScrCmd_042 151, 1
-    ScrCmd_042 152, 2
-    ScrCmd_042 142, 3
-    ScrCmd_042 143, 4
-    ScrCmd_043
+    InitGlobalTextMenu 31, 7, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 141, 0
+    AddMenuEntryImm 151, 1
+    AddMenuEntryImm 152, 2
+    AddMenuEntryImm 142, 3
+    AddMenuEntryImm 143, 4
+    ShowMenu
     Return
 
 _0922:
@@ -742,12 +742,12 @@ _0C53:
 
 _0C70:
     Message 27
-    ScrCmd_040 30, 1, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 5, 2
-    ScrCmd_043
+    InitGlobalTextMenu 30, 1, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 13, 0
+    AddMenuEntryImm 14, 1
+    AddMenuEntryImm 5, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0CB4
     GoToIfEq 0x8008, 1, _0D08
@@ -1271,9 +1271,9 @@ _13E0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfUnset 0xFF, _1492
-    CallIfSet 0xFF, _1497
-    SetFlag 0xFF
+    CallIfUnset FLAG_UNK_0x00FF, _1492
+    CallIfSet FLAG_UNK_0x00FF, _1497
+    SetFlag FLAG_UNK_0x00FF
     GoTo _140A
     End
 
@@ -1282,13 +1282,13 @@ _140A:
     WaitFadeScreen
     CloseMessage
     ScrCmd_191
-    ScrCmd_193 0x800C
+    GetSelectedPartySlot 0x800C
     ReturnToField
     SetVar 0x8000, 0x800C
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _1549
-    ScrCmd_198 0x8000, 0x8004
+    GetPartyMonSpecies 0x8000, 0x8004
     GoToIfEq 0x8004, 0, _149C
     JudgeStats 0x8000, 0x8001, 0x8002, 0x8003
     GoToIfLe 0x8001, 90, _14E9

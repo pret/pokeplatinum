@@ -37,20 +37,20 @@ _0073:
     GoTo _008C
 
 _008C:
-    ScrCmd_041 1, 1, 0, 1, 0x8004
-    ScrCmd_042 11, 1
-    ScrCmd_042 13, 3
-    ScrCmd_042 14, 4
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x8004
+    AddMenuEntryImm 11, 1
+    AddMenuEntryImm 13, 3
+    AddMenuEntryImm 14, 4
+    ShowMenu
     GoTo _00C2
 
 _00A8:
-    ScrCmd_041 1, 1, 0, 1, 0x8004
-    ScrCmd_042 11, 1
-    ScrCmd_042 12, 2
-    ScrCmd_042 13, 3
-    ScrCmd_042 14, 4
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x8004
+    AddMenuEntryImm 11, 1
+    AddMenuEntryImm 12, 2
+    AddMenuEntryImm 13, 3
+    AddMenuEntryImm 14, 4
+    ShowMenu
 _00C2:
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 1, _01CF
@@ -121,44 +121,44 @@ _0256:
 
 _0261:
     Message 3
-    ScrCmd_041 1, 1, 0, 1, 0x8004
+    InitLocalTextMenu 1, 1, 0, 0x8004
     ScrCmd_21D 0, 0, 0x800C
     GoToIfEq 0x800C, 0, _02A2
     ScrCmd_21D 1, 0, 0x800C
     GoToIfEq 0x800C, 1, _02A2
     ScrCmd_21D 2, 0, 0
-    ScrCmd_042 15, 0
+    AddMenuEntryImm 15, 0
 _02A2:
     ScrCmd_21D 0, 2, 0x800C
     GoToIfEq 0x800C, 0, _02D8
     ScrCmd_21D 1, 2, 0x800C
     GoToIfEq 0x800C, 1, _02D8
     ScrCmd_21D 2, 2, 1
-    ScrCmd_042 16, 2
+    AddMenuEntryImm 16, 2
 _02D8:
     ScrCmd_21D 0, 3, 0x800C
     GoToIfEq 0x800C, 0, _030E
     ScrCmd_21D 1, 3, 0x800C
     GoToIfEq 0x800C, 1, _030E
     ScrCmd_21D 2, 3, 2
-    ScrCmd_042 17, 3
+    AddMenuEntryImm 17, 3
 _030E:
     ScrCmd_21D 0, 4, 0x800C
     GoToIfEq 0x800C, 0, _0344
     ScrCmd_21D 1, 4, 0x800C
     GoToIfEq 0x800C, 1, _0344
     ScrCmd_21D 2, 4, 3
-    ScrCmd_042 18, 4
+    AddMenuEntryImm 18, 4
 _0344:
     ScrCmd_21D 0, 5, 0x800C
     GoToIfEq 0x800C, 0, _037A
     ScrCmd_21D 1, 5, 0x800C
     GoToIfEq 0x800C, 1, _037A
     ScrCmd_21D 2, 5, 4
-    ScrCmd_042 19, 5
+    AddMenuEntryImm 19, 5
 _037A:
-    ScrCmd_042 20, 6
-    ScrCmd_043
+    AddMenuEntryImm 20, 6
+    ShowMenu
     GoToIfEq 0x8004, 6, _03E5
     GoToIfEq 0x8004, -2, _03E5
     ScrCmd_21D 2, 0x8004, 0

@@ -12,9 +12,9 @@ _000C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset 0x117, _00FE
-    CallIfUnset 1, _00F6
-    ScrCmd_1C0 0x800C, 201
+    GoToIfUnset FLAG_UNK_0x0117, _00FE
+    CallIfUnset FLAG_UNK_0x0001, _00F6
+    CheckPartyHasSpecies 0x800C, SPECIES_UNOWN
     GoToIfEq 0x800C, 1, _0048
     Message 0
     WaitABXPadPress
@@ -23,8 +23,8 @@ _000C:
     End
 
 _0048:
-    ScrCmd_2DD 0x8004, 201
-    ScrCmd_095 0x8004, 0x8006
+    FindPartySlotWithSpecies 0x8004, SPECIES_UNOWN
+    GetPartyMonForm 0x8004, 0x8006
     GoToIfEq 0x4000, 0x8006, _00EB
     GoTo _0067
 
@@ -43,7 +43,7 @@ _0067:
 _00B3:
     ScrCmd_094 0x8007, 0x8000
     SetVar 0x4000, 0x8006
-    SetFlag 1
+    SetFlag FLAG_UNK_0x0001
     GoToIfEq 0x8000, 1, _00DB
     ScrCmd_345 0, 0x8007
     GoTo _00E0
@@ -79,12 +79,12 @@ _0109:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x117, _0144
+    GoToIfSet FLAG_UNK_0x0117, _0144
     Message 5
     SetVar 0x8004, 0x1B2
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 0x117
+    SetFlag FLAG_UNK_0x0117
     Call _014F
     Message 7
     WaitABXPadPress

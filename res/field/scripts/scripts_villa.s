@@ -54,21 +54,21 @@ _00B2:
     GetPlayerGender 0x4000
     CallIfEq 0x4000, GENDER_MALE, _01EF
     CallIfEq 0x4000, GENDER_FEMALE, _01F7
-    GoToIfSet 0x9AC, _01ED
-    SetFlag 0x2A7
-    SetFlag 0x2A8
-    SetFlag 0x2A9
-    SetFlag 0x2AB
-    SetFlag 0x2AC
-    SetFlag 0x2AE
-    SetFlag 0x2B0
-    SetFlag 0x2B1
-    SetFlag 0x2B3
-    SetFlag 0x2B4
-    SetFlag 0x2B6
-    SetFlag 0x2B7
-    SetFlag 0x2B8
-    SetFlag 0x2B9
+    GoToIfSet FLAG_VILLA_VISITOR_OUTSIDE, _01ED
+    SetFlag FLAG_UNK_0x02A7
+    SetFlag FLAG_UNK_0x02A8
+    SetFlag FLAG_UNK_0x02A9
+    SetFlag FLAG_UNK_0x02AB
+    SetFlag FLAG_UNK_0x02AC
+    SetFlag FLAG_UNK_0x02AE
+    SetFlag FLAG_UNK_0x02B0
+    SetFlag FLAG_UNK_0x02B1
+    SetFlag FLAG_UNK_0x02B3
+    SetFlag FLAG_UNK_0x02B4
+    SetFlag FLAG_UNK_0x02B6
+    SetFlag FLAG_UNK_0x02B7
+    SetFlag FLAG_UNK_0x02B8
+    SetFlag FLAG_UNK_0x02B9
     GoToIfEq 0x404E, 0xFF, _01FF
     SetVar 0x400F, 0x404E
     CallIfEq 0x404E, 0, _0201
@@ -103,68 +103,68 @@ _01FF:
     End
 
 _0201:
-    ClearFlag 0x2A7
+    ClearFlag FLAG_UNK_0x02A7
     Return
 
 _0207:
-    ClearFlag 0x2A8
+    ClearFlag FLAG_UNK_0x02A8
     Return
 
 _020D:
-    GoToIfUnset 0x9AB, _029A
-    ClearFlag 0x2A9
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _029A
+    ClearFlag FLAG_UNK_0x02A9
     Return
 
 _021E:
-    ClearFlag 0x2AB
+    ClearFlag FLAG_UNK_0x02AB
     Return
 
 _0224:
-    GoToIfUnset 0x9AB, _029A
-    ClearFlag 0x2AC
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _029A
+    ClearFlag FLAG_UNK_0x02AC
     Return
 
 _0235:
-    GoToIfUnset 0x9AB, _029A
-    ClearFlag 0x2AE
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _029A
+    ClearFlag FLAG_UNK_0x02AE
     Return
 
 _0246:
     Return
 
 _0248:
-    GoToIfUnset 0x9AB, _029A
-    ClearFlag 0x2B1
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _029A
+    ClearFlag FLAG_UNK_0x02B1
     Return
 
 _0259:
     Return
 
 _025B:
-    GoToIfUnset 0x9AB, _029A
-    ClearFlag 0x2B4
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _029A
+    ClearFlag FLAG_UNK_0x02B4
     Return
 
 _026C:
     Return
 
 _026E:
-    ClearFlag 0x2B7
+    ClearFlag FLAG_UNK_0x02B7
     Return
 
 _0274:
     Return
 
 _0276:
-    ClearFlag 0x2B9
-    ClearFlag 0x2B7
+    ClearFlag FLAG_UNK_0x02B9
+    ClearFlag FLAG_UNK_0x02B7
     Return
 
 _0280:
     SetObjectEventPos 7, 6, 8
     SetObjectEventPos 10, 7, 8
-    ClearFlag 0x2B1
-    ClearFlag 0x2B6
+    ClearFlag FLAG_UNK_0x02B1
+    ClearFlag FLAG_UNK_0x02B6
     Return
 
 _029A:
@@ -774,7 +774,7 @@ _0AC3:
     Return
 
 _0AC8:
-    GoToIfUnset 0x9A9, _0AB4
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_18, _0AB4
     Message 96
     Return
 
@@ -798,7 +798,7 @@ _0AEC:
 _0AF4:
     LockAll
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ClearFlag 0x2B0
+    ClearFlag FLAG_UNK_0x02B0
     SetObjectEventPos 6, 11, 11
     ScrCmd_188 6, 14
     ScrCmd_189 6, 0
@@ -807,7 +807,7 @@ _0AF4:
     ApplyMovement LOCALID_PLAYER, _0B3C
     ApplyMovement 6, _0B4C
     WaitMovement
-    SetFlag 0x9AC
+    SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     SetVar 0x400F, 0
     ReleaseAll
     End
@@ -829,7 +829,7 @@ _0B4C:
 _0B5C:
     LockAll
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ClearFlag 0x2B3
+    ClearFlag FLAG_UNK_0x02B3
     SetObjectEventPos 9, 11, 11
     ScrCmd_188 9, 14
     ScrCmd_189 9, 0
@@ -838,7 +838,7 @@ _0B5C:
     ApplyMovement LOCALID_PLAYER, _0BAC
     ApplyMovement 9, _0BA4
     WaitMovement
-    SetFlag 0x9AC
+    SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     SetVar 0x400F, 0
     ReleaseAll
     End
@@ -858,7 +858,7 @@ _0BAC:
 _0BBC:
     LockAll
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ClearFlag 0x2B6
+    ClearFlag FLAG_UNK_0x02B6
     SetObjectEventPos 10, 11, 11
     ScrCmd_188 10, 14
     ScrCmd_189 10, 0
@@ -867,7 +867,7 @@ _0BBC:
     ApplyMovement LOCALID_PLAYER, _0C14
     ApplyMovement 10, _0C04
     WaitMovement
-    SetFlag 0x9AC
+    SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     SetVar 0x400F, 0
     ReleaseAll
     End
@@ -889,7 +889,7 @@ _0C14:
 _0C24:
     LockAll
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ClearFlag 0x2B8
+    ClearFlag FLAG_UNK_0x02B8
     SetObjectEventPos 12, 11, 11
     ScrCmd_188 12, 14
     ScrCmd_189 12, 0
@@ -898,7 +898,7 @@ _0C24:
     ApplyMovement LOCALID_PLAYER, _0C78
     ApplyMovement 12, _0C6C
     WaitMovement
-    SetFlag 0x9AC
+    SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     SetVar 0x400F, 0
     ReleaseAll
     End
@@ -976,7 +976,7 @@ _0D03:
 _0D14:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 0x9A2, _0D63
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_11, _0D63
     Message 107
     GoTo _0E5D
     End
@@ -1104,11 +1104,11 @@ _0E5D:
 _0E65:
     LockAll
     SetVar 0x40A1, 1
-    ScrCmd_072 21, 1
+    ShowMoney 21, 1
     Message 0
-    ScrCmd_045 1, 1, 0, 1, 0x8002
-    ScrCmd_046 189, 0xFF, 0
-    ScrCmd_047
+    InitLocalTextListMenu 1, 1, 0, 0x8002
+    AddListMenuEntry 189, 0
+    ShowListMenu
     GoToIfNe 0x8002, 0, _0EA7
     Call _0F7C
     CloseMessage
@@ -1120,7 +1120,7 @@ _0EA7:
     Message 1
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -1128,11 +1128,11 @@ _0EB4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_072 21, 1
+    ShowMoney 21, 1
     Message 1
-    ScrCmd_045 1, 1, 0, 1, 0x8002
-    ScrCmd_046 189, 0xFF, 0
-    ScrCmd_047
+    InitLocalTextListMenu 1, 1, 0, 0x8002
+    AddListMenuEntry 189, 0
+    ShowListMenu
     GoToIfNe 0x8002, 0, _1478
     Call _0F7C
     CloseMessage
@@ -1141,7 +1141,7 @@ _0EB4:
     End
 
 _0EF6:
-    ScrCmd_045 1, 1, 0, 1, 0x8002
+    InitLocalTextListMenu 1, 1, 0, 0x8002
     Call _19E4
     Call _1A05
     Call _1A26
@@ -1162,7 +1162,7 @@ _0EF6:
     Call _1C7F
     Call _1CB3
     Call _1CDF
-    ScrCmd_327 18
+    ShowListMenuSetWidth 18
     Return
 
 _0F7C:
@@ -1187,15 +1187,15 @@ _0F7C:
     CallIfEq 0x8002, 17, _21CD
     CallIfEq 0x8002, 18, _21E1
     CallIfEq 0x8002, 19, _21F5
-    ScrCmd_074
+    UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
-    ScrCmd_073
+    HideMoney
     ScrCmd_30D 0x8002
     Return
 
 _1092:
-    ClearFlag 0x2C5
-    ClearFlag 0x2C7
+    ClearFlag FLAG_UNK_0x02C5
+    ClearFlag FLAG_UNK_0x02C7
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 10, 6, 1
@@ -1217,7 +1217,7 @@ _1103:
     SetObjectEventPos 1, 10, 8
     ScrCmd_188 1, 14
     ScrCmd_189 1, 0
-    ClearFlag 0x2A7
+    ClearFlag FLAG_UNK_0x02A7
     AddObject 1
     Return
 
@@ -1233,7 +1233,7 @@ _114A:
     SetObjectEventPos 0, 10, 8
     ScrCmd_188 0, 14
     ScrCmd_189 0, 0
-    ClearFlag 0x2A8
+    ClearFlag FLAG_UNK_0x02A8
     AddObject 0
     Return
 
@@ -1250,11 +1250,11 @@ _1183:
     Return
 
 _1199:
-    GoToIfUnset 0x9AB, _1183
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _1183
     SetObjectEventPos 2, 10, 8
     ScrCmd_188 2, 14
     ScrCmd_189 2, 0
-    ClearFlag 0x2A9
+    ClearFlag FLAG_UNK_0x02A9
     AddObject 2
     Return
 
@@ -1271,11 +1271,11 @@ _11DD:
     Return
 
 _11F3:
-    GoToIfUnset 0x9AB, _11DD
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _11DD
     SetObjectEventPos 5, 10, 8
     ScrCmd_188 5, 14
     ScrCmd_189 5, 0
-    ClearFlag 0x2AE
+    ClearFlag FLAG_UNK_0x02AE
     AddObject 5
     Return
 
@@ -1291,13 +1291,13 @@ _1245:
     SetObjectEventPos 12, 10, 8
     ScrCmd_188 12, 14
     ScrCmd_189 12, 0
-    ClearFlag 0x2B8
+    ClearFlag FLAG_UNK_0x02B8
     AddObject 12
     Return
 
 _1263:
     CallIfNe 0x404E, 0, _12A3
-    SetFlag 0x9AB
+    SetFlag FLAG_VILLA_VISITOR_INSIDE
     SetVar 0x404E, 0xFF
     ApplyMovement LOCALID_PLAYER, _1454
     WaitMovement
@@ -1312,7 +1312,7 @@ _1263:
     Return
 
 _12A3:
-    ClearFlag 0x2A7
+    ClearFlag FLAG_UNK_0x02A7
     AddObject 1
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -1322,7 +1322,7 @@ _12A3:
 
 _12BF:
     CallIfNe 0x404E, 1, _1316
-    SetFlag 0x9AB
+    SetFlag FLAG_VILLA_VISITOR_INSIDE
     SetVar 0x404E, 1
     BufferRivalName 0
     BufferPlayerName 1
@@ -1346,7 +1346,7 @@ _1312:
     Return
 
 _1316:
-    ClearFlag 0x2A8
+    ClearFlag FLAG_UNK_0x02A8
     AddObject 0
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -1357,8 +1357,8 @@ _1316:
 _1332:
     CallIfNe 0x404E, 2, _1374
     CallIfEq 0x404E, 2, _1367
-    SetFlag 0x9AB
-    SetFlag 0x2AA
+    SetFlag FLAG_VILLA_VISITOR_INSIDE
+    SetFlag FLAG_UNK_0x02AA
     SetVar 0x404E, 2
     BufferRivalName 0
     BufferPlayerName 1
@@ -1367,11 +1367,11 @@ _1332:
     Return
 
 _1367:
-    GoToIfUnset 0x9AB, _1374
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _1374
     Return
 
 _1374:
-    ClearFlag 0x2A9
+    ClearFlag FLAG_UNK_0x02A9
     AddObject 2
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -1382,8 +1382,8 @@ _1374:
 _1390:
     CallIfNe 0x404E, 5, _13D2
     CallIfEq 0x404E, 5, _13C5
-    SetFlag 0x9AB
-    SetFlag 0x2B2
+    SetFlag FLAG_VILLA_VISITOR_INSIDE
+    SetFlag FLAG_UNK_0x02B2
     SetVar 0x404E, 5
     BufferRivalName 0
     BufferPlayerName 1
@@ -1392,11 +1392,11 @@ _1390:
     Return
 
 _13C5:
-    GoToIfUnset 0x9AB, _13D2
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _13D2
     Return
 
 _13D2:
-    ClearFlag 0x2AE
+    ClearFlag FLAG_UNK_0x02AE
     AddObject 5
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -1407,10 +1407,10 @@ _13D2:
 _13EE:
     CallIfNe 0x404E, 12, _1436
     CallIfEq 0x404E, 12, _1429
-    SetFlag 0x9AB
+    SetFlag FLAG_VILLA_VISITOR_INSIDE
     SetVar 0x404E, 12
     SetVar 0x400F, 0
-    SetFlag 0x9AC
+    SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     BufferRivalName 0
     BufferPlayerName 1
     Message 14
@@ -1418,11 +1418,11 @@ _13EE:
     Return
 
 _1429:
-    GoToIfUnset 0x9AC, _1436
+    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, _1436
     Return
 
 _1436:
-    ClearFlag 0x2B8
+    ClearFlag FLAG_UNK_0x02B8
     AddObject 12
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -1452,7 +1452,7 @@ _1478:
     Message 1
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -1571,7 +1571,7 @@ _161C:
 _1624:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_072 21, 1
+    ShowMoney 21, 1
     BufferPlayerName 1
     Message 119
     Call _18F8
@@ -1665,31 +1665,31 @@ _18E6:
 
 _18F0:
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
 _18F8:
-    GoToIfUnset 0x997, _19DC
-    GoToIfUnset 0x998, _19DC
-    GoToIfUnset 0x999, _19DC
-    GoToIfUnset 0x99A, _19DC
-    GoToIfUnset 0x99B, _19DC
-    GoToIfUnset 0x99C, _19DC
-    GoToIfUnset 0x99D, _19DC
-    GoToIfUnset 0x99E, _19DC
-    GoToIfUnset 0x99F, _19DC
-    GoToIfUnset 0x9A0, _19DC
-    GoToIfUnset 0x9A1, _19DC
-    GoToIfUnset 0x9A2, _19DC
-    GoToIfUnset 0x9A3, _19DC
-    GoToIfUnset 0x9A4, _19DC
-    GoToIfUnset 0x9A5, _19DC
-    GoToIfUnset 0x9A6, _19DC
-    GoToIfUnset 0x9A7, _19DC
-    GoToIfUnset 0x9A8, _19DC
-    GoToIfUnset 0x9A9, _19DC
-    GoToIfUnset 0x9AA, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_00, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_01, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_02, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_03, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_04, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_05, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_06, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_07, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_08, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_09, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_10, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_11, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_12, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_13, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_14, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_15, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_16, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_17, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_18, _19DC
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_19, _19DC
     SetVar 0x800C, 1
     Return
 
@@ -1699,381 +1699,381 @@ _19DC:
 
 _19E4:
     ScrCmd_2F5 0, 0, 1, 6
-    CallIfUnset 0x997, _1D15
-    CallIfSet 0x997, _1D1F
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_00, _1D15
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_00, _1D1F
     Return
 
 _1A05:
     ScrCmd_2F5 0, 0x1D4C0, 1, 6
-    CallIfUnset 0x998, _1D29
-    CallIfSet 0x998, _1D33
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_01, _1D29
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_01, _1D33
     Return
 
 _1A26:
     ScrCmd_2F5 0, 0x15F90, 1, 6
-    CallIfUnset 0x999, _1D3D
-    CallIfSet 0x999, _1D47
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_02, _1D3D
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_02, _1D47
     Return
 
 _1A47:
     ScrCmd_2F5 0, 0x2DA78, 1, 6
-    CallIfUnset 0x99A, _1D51
-    CallIfSet 0x99A, _1D5B
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_03, _1D51
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_03, _1D5B
     Return
 
 _1A68:
     ScrCmd_2F5 0, 0xE290, 1, 6
-    CallIfUnset 0x99B, _1D65
-    CallIfSet 0x99B, _1D6F
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_04, _1D65
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_04, _1D6F
     Return
 
 _1A89:
     ScrCmd_2F5 0, 0x35B60, 1, 6
-    CallIfUnset 0x99C, _1D79
-    CallIfSet 0x99C, _1D83
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_05, _1D79
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_05, _1D83
     Return
 
 _1AAA:
     ScrCmd_2F5 0, 0x27100, 1, 6
-    CallIfUnset 0x99D, _1D8D
-    CallIfSet 0x99D, _1D97
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_06, _1D8D
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_06, _1D97
     Return
 
 _1ACB:
     ScrCmd_2F5 0, 0x249F0, 1, 6
-    CallIfUnset 0x99E, _1DA1
-    CallIfSet 0x99E, _1DAB
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_07, _1DA1
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_07, _1DAB
     Return
 
 _1AEC:
     ScrCmd_2F5 0, 0x1F018, 1, 6
-    CallIfUnset 0x99F, _1DB5
-    CallIfSet 0x99F, _1DBF
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_08, _1DB5
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_08, _1DBF
     Return
 
 _1B0D:
     ScrCmd_2F5 0, 0x1D4C0, 1, 6
-    CallIfUnset 0x9A0, _1DC9
-    CallIfSet 0x9A0, _1DD3
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_09, _1DC9
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_09, _1DD3
     Return
 
 _1B2E:
     ScrCmd_2F5 0, 0x29040, 1, 6
-    CallIfUnset 0x9A1, _1DDD
-    CallIfSet 0x9A1, _1DE7
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_10, _1DDD
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_10, _1DE7
     Return
 
 _1B4F:
-    GoToIfUnset 0x99F, _1D13
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_08, _1D13
     ScrCmd_2F5 0, 0x62D4, 1, 6
-    CallIfUnset 0x9A2, _1DF1
-    CallIfSet 0x9A2, _1DFB
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_11, _1DF1
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_11, _1DFB
     Return
 
 _1B7B:
     ScrCmd_30F 13, 0x800C
     GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0x249F0, 1, 6
-    CallIfUnset 0x9A3, _1E05
-    CallIfSet 0x9A3, _1E0F
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_12, _1E05
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_12, _1E0F
     Return
 
 _1BAF:
     ScrCmd_30F 14, 0x800C
     GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0x249F0, 1, 6
-    CallIfUnset 0x9A4, _1E19
-    CallIfSet 0x9A4, _1E23
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_13, _1E19
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_13, _1E23
     Return
 
 _1BE3:
     ScrCmd_30F 15, 0x800C
     GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0x23D0C, 1, 6
-    CallIfUnset 0x9A5, _1E2D
-    CallIfSet 0x9A5, _1E37
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_14, _1E2D
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_14, _1E37
     Return
 
 _1C17:
     ScrCmd_30F 16, 0x800C
     GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0x32C80, 1, 6
-    CallIfUnset 0x9A6, _1E41
-    CallIfSet 0x9A6, _1E4B
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_15, _1E41
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_15, _1E4B
     Return
 
 _1C4B:
     ScrCmd_30F 17, 0x800C
     GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0xCB20, 1, 6
-    CallIfUnset 0x9A7, _1E55
-    CallIfSet 0x9A7, _1E5F
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_16, _1E55
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_16, _1E5F
     Return
 
 _1C7F:
     ScrCmd_30F 18, 0x800C
     GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0x222E0, 1, 6
-    CallIfUnset 0x9A8, _1E69
-    CallIfSet 0x9A8, _1E73
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_17, _1E69
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_17, _1E73
     Return
 
 _1CB3:
-    GoToIfUnset 0x9A6, _1D13
+    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_15, _1D13
     ScrCmd_2F5 0, 0x1A5E0, 1, 6
-    CallIfUnset 0x9A9, _1E7D
-    CallIfSet 0x9A9, _1E87
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_18, _1E7D
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_18, _1E87
     Return
 
 _1CDF:
     ScrCmd_30F 20, 0x800C
     GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0x1D4C0, 1, 6
-    CallIfUnset 0x9AA, _1E91
-    CallIfSet 0x9AA, _1E9B
+    CallIfUnset FLAG_VILLA_FURNITURE_UNK_19, _1E91
+    CallIfSet FLAG_VILLA_FURNITURE_UNK_19, _1E9B
     Return
 
 _1D13:
     Return
 
 _1D15:
-    ScrCmd_046 149, 0xFF, 0
+    AddListMenuEntry 149, 0
     Return
 
 _1D1F:
-    ScrCmd_046 169, 0xFF, 0
+    AddListMenuEntry 169, 0
     Return
 
 _1D29:
-    ScrCmd_046 150, 0xFF, 1
+    AddListMenuEntry 150, 1
     Return
 
 _1D33:
-    ScrCmd_046 170, 0xFF, 1
+    AddListMenuEntry 170, 1
     Return
 
 _1D3D:
-    ScrCmd_046 151, 0xFF, 2
+    AddListMenuEntry 151, 2
     Return
 
 _1D47:
-    ScrCmd_046 171, 0xFF, 2
+    AddListMenuEntry 171, 2
     Return
 
 _1D51:
-    ScrCmd_046 152, 0xFF, 3
+    AddListMenuEntry 152, 3
     Return
 
 _1D5B:
-    ScrCmd_046 172, 0xFF, 3
+    AddListMenuEntry 172, 3
     Return
 
 _1D65:
-    ScrCmd_046 153, 0xFF, 4
+    AddListMenuEntry 153, 4
     Return
 
 _1D6F:
-    ScrCmd_046 173, 0xFF, 4
+    AddListMenuEntry 173, 4
     Return
 
 _1D79:
-    ScrCmd_046 154, 0xFF, 5
+    AddListMenuEntry 154, 5
     Return
 
 _1D83:
-    ScrCmd_046 174, 0xFF, 5
+    AddListMenuEntry 174, 5
     Return
 
 _1D8D:
-    ScrCmd_046 155, 0xFF, 6
+    AddListMenuEntry 155, 6
     Return
 
 _1D97:
-    ScrCmd_046 175, 0xFF, 6
+    AddListMenuEntry 175, 6
     Return
 
 _1DA1:
-    ScrCmd_046 156, 0xFF, 7
+    AddListMenuEntry 156, 7
     Return
 
 _1DAB:
-    ScrCmd_046 176, 0xFF, 7
+    AddListMenuEntry 176, 7
     Return
 
 _1DB5:
-    ScrCmd_046 157, 0xFF, 8
+    AddListMenuEntry 157, 8
     Return
 
 _1DBF:
-    ScrCmd_046 177, 0xFF, 8
+    AddListMenuEntry 177, 8
     Return
 
 _1DC9:
-    ScrCmd_046 158, 0xFF, 9
+    AddListMenuEntry 158, 9
     Return
 
 _1DD3:
-    ScrCmd_046 178, 0xFF, 9
+    AddListMenuEntry 178, 9
     Return
 
 _1DDD:
-    ScrCmd_046 159, 0xFF, 10
+    AddListMenuEntry 159, 10
     Return
 
 _1DE7:
-    ScrCmd_046 179, 0xFF, 10
+    AddListMenuEntry 179, 10
     Return
 
 _1DF1:
-    ScrCmd_046 160, 0xFF, 11
+    AddListMenuEntry 160, 11
     Return
 
 _1DFB:
-    ScrCmd_046 180, 0xFF, 11
+    AddListMenuEntry 180, 11
     Return
 
 _1E05:
-    ScrCmd_046 161, 0xFF, 12
+    AddListMenuEntry 161, 12
     Return
 
 _1E0F:
-    ScrCmd_046 181, 0xFF, 12
+    AddListMenuEntry 181, 12
     Return
 
 _1E19:
-    ScrCmd_046 162, 0xFF, 13
+    AddListMenuEntry 162, 13
     Return
 
 _1E23:
-    ScrCmd_046 182, 0xFF, 13
+    AddListMenuEntry 182, 13
     Return
 
 _1E2D:
-    ScrCmd_046 163, 0xFF, 14
+    AddListMenuEntry 163, 14
     Return
 
 _1E37:
-    ScrCmd_046 183, 0xFF, 14
+    AddListMenuEntry 183, 14
     Return
 
 _1E41:
-    ScrCmd_046 164, 0xFF, 15
+    AddListMenuEntry 164, 15
     Return
 
 _1E4B:
-    ScrCmd_046 184, 0xFF, 15
+    AddListMenuEntry 184, 15
     Return
 
 _1E55:
-    ScrCmd_046 165, 0xFF, 16
+    AddListMenuEntry 165, 16
     Return
 
 _1E5F:
-    ScrCmd_046 185, 0xFF, 16
+    AddListMenuEntry 185, 16
     Return
 
 _1E69:
-    ScrCmd_046 166, 0xFF, 17
+    AddListMenuEntry 166, 17
     Return
 
 _1E73:
-    ScrCmd_046 186, 0xFF, 17
+    AddListMenuEntry 186, 17
     Return
 
 _1E7D:
-    ScrCmd_046 167, 0xFF, 18
+    AddListMenuEntry 167, 18
     Return
 
 _1E87:
-    ScrCmd_046 187, 0xFF, 18
+    AddListMenuEntry 187, 18
     Return
 
 _1E91:
-    ScrCmd_046 168, 0xFF, 19
+    AddListMenuEntry 168, 19
     Return
 
 _1E9B:
-    ScrCmd_046 188, 0xFF, 19
+    AddListMenuEntry 188, 19
     Return
 
 _1EA5:
-    GoToIfSet 0x997, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_00, _1FA9
     Return
 
 _1EB2:
-    GoToIfSet 0x998, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_01, _1FA9
     Return
 
 _1EBF:
-    GoToIfSet 0x999, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_02, _1FA9
     Return
 
 _1ECC:
-    GoToIfSet 0x99A, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_03, _1FA9
     Return
 
 _1ED9:
-    GoToIfSet 0x99B, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_04, _1FA9
     Return
 
 _1EE6:
-    GoToIfSet 0x99C, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_05, _1FA9
     Return
 
 _1EF3:
-    GoToIfSet 0x99D, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_06, _1FA9
     Return
 
 _1F00:
-    GoToIfSet 0x99E, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_07, _1FA9
     Return
 
 _1F0D:
-    GoToIfSet 0x99F, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_08, _1FA9
     Return
 
 _1F1A:
-    GoToIfSet 0x9A0, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_09, _1FA9
     Return
 
 _1F27:
-    GoToIfSet 0x9A1, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_10, _1FA9
     Return
 
 _1F34:
-    GoToIfSet 0x9A2, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_11, _1FA9
     Return
 
 _1F41:
-    GoToIfSet 0x9A3, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_12, _1FA9
     Return
 
 _1F4E:
-    GoToIfSet 0x9A4, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_13, _1FA9
     Return
 
 _1F5B:
-    GoToIfSet 0x9A5, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_14, _1FA9
     Return
 
 _1F68:
-    GoToIfSet 0x9A6, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_15, _1FA9
     Return
 
 _1F75:
-    GoToIfSet 0x9A7, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_16, _1FA9
     Return
 
 _1F82:
-    GoToIfSet 0x9A8, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_17, _1FA9
     Return
 
 _1F8F:
-    GoToIfSet 0x9A9, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_18, _1FA9
     Return
 
 _1F9C:
-    GoToIfSet 0x9AA, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_UNK_19, _1FA9
     Return
 
 _1FA9:
@@ -2163,121 +2163,121 @@ _206F:
 _2079:
     ScrCmd_335 35, 0
     ScrCmd_070 0
-    SetFlag 0x997
+    SetFlag FLAG_VILLA_FURNITURE_UNK_00
     Return
 
 _208D:
     ScrCmd_335 35, 0x1D4C0
     ScrCmd_070 0x1D4C0
-    SetFlag 0x998
+    SetFlag FLAG_VILLA_FURNITURE_UNK_01
     Return
 
 _20A1:
     ScrCmd_335 35, 0x15F90
     ScrCmd_070 0x15F90
-    SetFlag 0x999
+    SetFlag FLAG_VILLA_FURNITURE_UNK_02
     Return
 
 _20B5:
     ScrCmd_335 35, 0x2DA78
     ScrCmd_070 0x2DA78
-    SetFlag 0x99A
+    SetFlag FLAG_VILLA_FURNITURE_UNK_03
     Return
 
 _20C9:
     ScrCmd_335 35, 0xE290
     ScrCmd_070 0xE290
-    SetFlag 0x99B
+    SetFlag FLAG_VILLA_FURNITURE_UNK_04
     Return
 
 _20DD:
     ScrCmd_335 35, 0x35B60
     ScrCmd_070 0x35B60
-    SetFlag 0x99C
+    SetFlag FLAG_VILLA_FURNITURE_UNK_05
     Return
 
 _20F1:
     ScrCmd_335 35, 0x27100
     ScrCmd_070 0x27100
-    SetFlag 0x99D
+    SetFlag FLAG_VILLA_FURNITURE_UNK_06
     Return
 
 _2105:
     ScrCmd_335 35, 0x249F0
     ScrCmd_070 0x249F0
-    SetFlag 0x99E
+    SetFlag FLAG_VILLA_FURNITURE_UNK_07
     Return
 
 _2119:
     ScrCmd_335 35, 0x1F018
     ScrCmd_070 0x1F018
-    SetFlag 0x99F
+    SetFlag FLAG_VILLA_FURNITURE_UNK_08
     Return
 
 _212D:
     ScrCmd_335 35, 0x1D4C0
     ScrCmd_070 0x1D4C0
-    SetFlag 0x9A0
+    SetFlag FLAG_VILLA_FURNITURE_UNK_09
     Return
 
 _2141:
     ScrCmd_335 35, 0x29040
     ScrCmd_070 0x29040
-    SetFlag 0x9A1
+    SetFlag FLAG_VILLA_FURNITURE_UNK_10
     Return
 
 _2155:
     ScrCmd_335 35, 0x62D4
     ScrCmd_070 0x62D4
-    SetFlag 0x9A2
+    SetFlag FLAG_VILLA_FURNITURE_UNK_11
     Return
 
 _2169:
     ScrCmd_335 35, 0x249F0
     ScrCmd_070 0x249F0
-    SetFlag 0x9A3
+    SetFlag FLAG_VILLA_FURNITURE_UNK_12
     Return
 
 _217D:
     ScrCmd_335 35, 0x249F0
     ScrCmd_070 0x249F0
-    SetFlag 0x9A4
+    SetFlag FLAG_VILLA_FURNITURE_UNK_13
     Return
 
 _2191:
     ScrCmd_335 35, 0x23D0C
     ScrCmd_070 0x23D0C
-    SetFlag 0x9A5
+    SetFlag FLAG_VILLA_FURNITURE_UNK_14
     Return
 
 _21A5:
     ScrCmd_335 35, 0x32C80
     ScrCmd_070 0x32C80
-    SetFlag 0x9A6
+    SetFlag FLAG_VILLA_FURNITURE_UNK_15
     Return
 
 _21B9:
     ScrCmd_335 35, 0xCB20
     ScrCmd_070 0xCB20
-    SetFlag 0x9A7
+    SetFlag FLAG_VILLA_FURNITURE_UNK_16
     Return
 
 _21CD:
     ScrCmd_335 35, 0x222E0
     ScrCmd_070 0x222E0
-    SetFlag 0x9A8
+    SetFlag FLAG_VILLA_FURNITURE_UNK_17
     Return
 
 _21E1:
     ScrCmd_335 35, 0x1A5E0
     ScrCmd_070 0x1A5E0
-    SetFlag 0x9A9
+    SetFlag FLAG_VILLA_FURNITURE_UNK_18
     Return
 
 _21F5:
     ScrCmd_335 35, 0x1D4C0
     ScrCmd_070 0x1D4C0
-    SetFlag 0x9AA
+    SetFlag FLAG_VILLA_FURNITURE_UNK_19
     Return
 
 _2209:
@@ -2307,7 +2307,7 @@ _22D4:
     Return
 
 _22DA:
-    GoToIfUnset 0x9AB, _2395
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _2395
     RemoveObject 2
     Return
 
@@ -2316,37 +2316,37 @@ _22EB:
     Return
 
 _22F1:
-    GoToIfUnset 0x9AB, _2395
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _2395
     RemoveObject 4
     Return
 
 _2302:
-    GoToIfUnset 0x9AB, _2395
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _2395
     RemoveObject 5
     Return
 
 _2313:
-    GoToIfUnset 0x9AC, _2393
+    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, _2393
     RemoveObject 6
     Return
 
 _2324:
-    GoToIfUnset 0x9AB, _2395
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _2395
     RemoveObject 7
     Return
 
 _2335:
-    GoToIfUnset 0x9AC, _2393
+    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, _2393
     RemoveObject 9
     Return
 
 _2346:
-    GoToIfUnset 0x9AB, _2395
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _2395
     RemoveObject 8
     Return
 
 _2357:
-    GoToIfUnset 0x9AC, _2393
+    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, _2393
     RemoveObject 10
     Return
 
@@ -2355,7 +2355,7 @@ _2368:
     Return
 
 _236E:
-    GoToIfUnset 0x9AC, _2393
+    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, _2393
     RemoveObject 12
     Return
 
@@ -2373,11 +2373,11 @@ _2393:
     Return
 
 _2395:
-    SetFlag 0x2AA
-    SetFlag 0x2AD
-    SetFlag 0x2AF
-    SetFlag 0x2B2
-    SetFlag 0x2B5
+    SetFlag FLAG_UNK_0x02AA
+    SetFlag FLAG_UNK_0x02AD
+    SetFlag FLAG_UNK_0x02AF
+    SetFlag FLAG_UNK_0x02B2
+    SetFlag FLAG_UNK_0x02B5
     Return
 
     .byte 0

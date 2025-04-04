@@ -10,12 +10,12 @@
     ScriptEntryEnd
 
 _000E:
-    SetFlag 0x241
-    GoToIfUnset 0x158, _001F
+    SetFlag FLAG_UNK_0x0241
+    GoToIfUnset FLAG_UNK_0x0158, _001F
     End
 
 _001F:
-    GoToIfSet 0x964, _002C
+    GoToIfSet FLAG_GAME_COMPLETED, _002C
     End
 
 _002C:
@@ -34,12 +34,12 @@ _0057:
     End
 
 _006B:
-    GoToIfSet 0x12C, _0078
+    GoToIfSet FLAG_UNK_0x012C, _0078
     End
 
 _0078:
     GoToIfGe 0x40F8, 2, _0091
-    ClearFlag 0x241
+    ClearFlag FLAG_UNK_0x0241
     SetVar 0x40F8, 1
     End
 
@@ -59,8 +59,8 @@ _0093:
     Message 1
     CloseMessage
     PlayFanfare SEQ_SE_DP_MAZYO2
-    SetFlag 0x13C
-    SetFlag 0x241
+    SetFlag FLAG_UNK_0x013C
+    SetFlag FLAG_UNK_0x0241
     SetVar 0x40F8, 2
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
@@ -111,7 +111,7 @@ _0160:
     End
 
 _0184:
-    GoToIfSet 0x158, _0197
+    GoToIfSet FLAG_UNK_0x0158, _0197
     SetVar 0x40F8, 0
     Return
 

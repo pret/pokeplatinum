@@ -35,9 +35,9 @@ _0055:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 1, _03D8
+    GoToIfSet FLAG_UNK_0x0001, _03D8
     Message 1
-    GoToIfUnset 121, _04B6
+    GoToIfUnset FLAG_UNK_0x0079, _04B6
     GoToIfNe 0x40B4, 0, _03F2
     ScrCmd_1F1 0x8000
     GoToIfEq 0x8000, 0, _04AB
@@ -63,7 +63,7 @@ _0055:
     GoToIfEq 0x8001, 1, _03BC
     SetVar 0x8004, 0
     SetVar 0x8005, 0
-    ScrCmd_040 1, 1, 0, 1, 0x8003
+    InitGlobalTextMenu 1, 1, 0, 0x8003
 _013E:
     CallIfEq 0x8005, 0, _02DC
     CallIfEq 0x8005, 1, _02EC
@@ -82,7 +82,7 @@ _013E:
     CallIfEq 0x8004, 6, _037C
     SetVar 0x8006, 0x8005
     AddVar 0x8006, 156
-    ScrCmd_29D 0x8006, 0x8004
+    AddMenuEntry 0x8006, 0x8004
     GoTo _0225
 
 _0219:
@@ -93,8 +93,8 @@ _0225:
     AddVar 0x8004, 1
     AddVar 0x8005, 1
     GoToIfNe 0x8004, 0x8001, _013E
-    ScrCmd_29D 44, 0x8004
-    ScrCmd_043
+    AddMenuEntry 44, 0x8004
+    ShowMenu
     GoToIfEq 0x8003, 0xFF, _03E7
     GoToIfEq 0x8003, 0x4000, _03E7
     CallIfEq 0x8003, 0, _0384
@@ -207,7 +207,7 @@ _03BC:
     GoTo _03D8
 
 _03D8:
-    SetFlag 1
+    SetFlag FLAG_UNK_0x0001
     Message 6
     WaitABXPadPress
     CloseMessage

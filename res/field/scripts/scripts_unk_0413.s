@@ -132,8 +132,7 @@ _023B:
 _0243:
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _02F7
-    ScrCmd_07D 0x8000, 0x8001, 0x800C
-    GoToIfEq 0x800C, 0, _02CF
+    GoToIfCannotFitItem 0x8000, 0x8001, 0x800C, _02CF
     BufferNumber 1, 0x8001
     GoToIfGt 0x8001, 1, _0289
     BufferItemName 0, 0x8000
@@ -216,11 +215,11 @@ _03B4:
     Message 0
     ScrCmd_17A 4, 0x800C
     GoToIfEq 0x800C, 0, _0413
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 2, 0
-    ScrCmd_042 3, 1
-    ScrCmd_042 4, 2
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 2, 0
+    AddMenuEntryImm 3, 1
+    AddMenuEntryImm 4, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _042D
     GoToIfEq 0x8008, 1, _04EE

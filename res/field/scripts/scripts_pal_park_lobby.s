@@ -19,8 +19,8 @@
     ScriptEntryEnd
 
 _0036:
-    ClearFlag 0x995
-    SetFlag 0x9F3
+    ClearFlag FLAG_ALT_MUSIC_PAL_PARK
+    SetFlag FLAG_UNK_0x09F3
     GoToIfNe 0x40F3, 0, _004D
     End
 
@@ -49,8 +49,8 @@ _007E:
     GoTo _00D2
 
 _009D:
-    GoToIfSet 211, _01D6
-    SetFlag 211
+    GoToIfSet FLAG_UNK_0x00D3, _01D6
+    SetFlag FLAG_UNK_0x00D3
     BufferPlayerName 0
     Message 21
     ShowYesNoMenu 0x800C
@@ -59,8 +59,8 @@ _009D:
     End
 
 _00D2:
-    GoToIfSet 211, _01E2
-    SetFlag 211
+    GoToIfSet FLAG_UNK_0x00D3, _01E2
+    SetFlag FLAG_UNK_0x00D3
     BufferPlayerName 0
     Message 22
     ShowYesNoMenu 0x800C
@@ -85,12 +85,12 @@ _0122:
     GoTo _012B
 
 _012B:
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 198, 0
-    ScrCmd_042 199, 1
-    ScrCmd_042 200, 2
-    ScrCmd_042 202, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 198, 0
+    AddMenuEntryImm 199, 1
+    AddMenuEntryImm 200, 2
+    AddMenuEntryImm 202, 4
+    ShowMenu
     GoToIfEq 0x800C, 0, _0110
     GoToIfEq 0x800C, 1, _0119
     GoToIfEq 0x800C, 2, _0122
@@ -129,11 +129,11 @@ _01E2:
     GoTo _01EE
 
 _01EE:
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 203, 0
-    ScrCmd_042 204, 1
-    ScrCmd_042 205, 2
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 203, 0
+    AddMenuEntryImm 204, 1
+    AddMenuEntryImm 205, 2
+    ShowMenu
     GoToIfEq 0x800C, 0, _0186
     GoToIfEq 0x800C, 1, _02A4
     GoToIfEq 0x800C, 2, _01CB
@@ -372,7 +372,7 @@ _049B:
 
 _04B4:
     LockAll
-    ClearFlag 0x242
+    ClearFlag FLAG_UNK_0x0242
     SetVar 0x40E0, 0x7D0
     ApplyMovement 1, _0548
     WaitMovement
@@ -449,7 +449,7 @@ _057C:
     CheckPoketchAppRegistered POKETCH_APPID_KITCHENTIMER, 0x800C
     GoToIfEq 0x800C, 1, _05FB
     Message 10
-    ScrCmd_1C0 0x800C, 143
+    CheckPartyHasSpecies 0x800C, SPECIES_SNORLAX
     GoToIfEq 0x800C, 0, _064C
     Message 11
     SetVar 0x8004, 20
@@ -462,7 +462,7 @@ _057C:
 
 _05FB:
     Message 13
-    ScrCmd_1C0 0x800C, 0x160
+    CheckPartyHasSpecies 0x800C, SPECIES_KECLEON
     GoToIfEq 0x800C, 0, _064C
     Message 14
     SetVar 0x8004, 21
@@ -642,7 +642,7 @@ _0928:
     Return
 
 _0984:
-    ScrCmd_07D 0x8006, 1, 0x8007
+    CanFitItem 0x8006, 1, 0x8007
     CallIfNe 0x8007, 0, _09A1
     SetVar 0x800C, 0x2710
     Return
@@ -655,107 +655,107 @@ _09A1:
     Return
 
 _09B6:
-    SetVar 0x8006, 149
+    SetVar 0x8006, ITEM_CHERI_BERRY
     Return
 
 _09BE:
-    SetVar 0x8006, 150
+    SetVar 0x8006, ITEM_CHESTO_BERRY
     Return
 
 _09C6:
-    SetVar 0x8006, 151
+    SetVar 0x8006, ITEM_PECHA_BERRY
     Return
 
 _09CE:
-    SetVar 0x8006, 152
+    SetVar 0x8006, ITEM_RAWST_BERRY
     Return
 
 _09D6:
-    SetVar 0x8006, 153
+    SetVar 0x8006, ITEM_ASPEAR_BERRY
     Return
 
 _09DE:
-    SetVar 0x8006, 154
+    SetVar 0x8006, ITEM_LEPPA_BERRY
     Return
 
 _09E6:
-    SetVar 0x8006, 155
+    SetVar 0x8006, ITEM_ORAN_BERRY
     Return
 
 _09EE:
-    SetVar 0x8006, 156
+    SetVar 0x8006, ITEM_PERSIM_BERRY
     Return
 
 _09F6:
-    SetVar 0x8006, 159
+    SetVar 0x8006, ITEM_FIGY_BERRY
     Return
 
 _09FE:
-    SetVar 0x8006, 160
+    SetVar 0x8006, ITEM_WIKI_BERRY
     Return
 
 _0A06:
-    SetVar 0x8006, 161
+    SetVar 0x8006, ITEM_MAGO_BERRY
     Return
 
 _0A0E:
-    SetVar 0x8006, 162
+    SetVar 0x8006, ITEM_AGUAV_BERRY
     Return
 
 _0A16:
-    SetVar 0x8006, 163
+    SetVar 0x8006, ITEM_IAPAPA_BERRY
     Return
 
 _0A1E:
-    SetVar 0x8006, 164
+    SetVar 0x8006, ITEM_RAZZ_BERRY
     Return
 
 _0A26:
-    SetVar 0x8006, 165
+    SetVar 0x8006, ITEM_BLUK_BERRY
     Return
 
 _0A2E:
-    SetVar 0x8006, 166
+    SetVar 0x8006, ITEM_NANAB_BERRY
     Return
 
 _0A36:
-    SetVar 0x8006, 167
+    SetVar 0x8006, ITEM_WEPEAR_BERRY
     Return
 
 _0A3E:
-    SetVar 0x8006, 168
+    SetVar 0x8006, ITEM_PINAP_BERRY
     Return
 
 _0A46:
-    SetVar 0x8006, 157
+    SetVar 0x8006, ITEM_LUM_BERRY
     Return
 
 _0A4E:
-    SetVar 0x8006, 158
+    SetVar 0x8006, ITEM_SITRUS_BERRY
     Return
 
 _0A56:
-    SetVar 0x8006, 169
+    SetVar 0x8006, ITEM_POMEG_BERRY
     Return
 
 _0A5E:
-    SetVar 0x8006, 170
+    SetVar 0x8006, ITEM_KELPSY_BERRY
     Return
 
 _0A66:
-    SetVar 0x8006, 171
+    SetVar 0x8006, ITEM_QUALOT_BERRY
     Return
 
 _0A6E:
-    SetVar 0x8006, 172
+    SetVar 0x8006, ITEM_HONDEW_BERRY
     Return
 
 _0A76:
-    SetVar 0x8006, 173
+    SetVar 0x8006, ITEM_GREPA_BERRY
     Return
 
 _0A7E:
-    SetVar 0x8006, 174
+    SetVar 0x8006, ITEM_TAMATO_BERRY
     Return
 
     .byte 0

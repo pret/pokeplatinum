@@ -182,11 +182,11 @@ _0184:
     ScrCmd_04A 0x603
     SetVar 0x4078, 4
     SetVar 0x40B2, 2
-    SetFlag 168
-    SetFlag 0x1AE
-    ClearFlag 0x1B3
-    ClearFlag 0x1B5
-    ClearFlag 0x1B2
+    SetFlag FLAG_UNK_0x00A8
+    SetFlag FLAG_UNK_0x01AE
+    ClearFlag FLAG_UNK_0x01B3
+    ClearFlag FLAG_UNK_0x01B5
+    ClearFlag FLAG_UNK_0x01B2
     ReleaseAll
     End
 
@@ -337,7 +337,7 @@ _03E8:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _0406
+    GoToIfSet FLAG_UNK_0x00A8, _0406
     Message 26
     WaitABXPadPress
     CloseMessage
@@ -355,7 +355,7 @@ _0411:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _042F
+    GoToIfSet FLAG_UNK_0x00A8, _042F
     Message 28
     WaitABXPadPress
     CloseMessage
@@ -530,12 +530,12 @@ _0616:
     LockAll
     Message 52
     Message 53
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_29D 0x103, 0
-    ScrCmd_29D 0x104, 1
-    ScrCmd_29D 0x105, 2
-    ScrCmd_29D 0x106, 3
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntry 0x103, 0
+    AddMenuEntry 0x104, 1
+    AddMenuEntry 0x105, 2
+    AddMenuEntry 0x106, 3
+    ShowMenu
     GoToIfEq 0x800C, 0, _0673
     GoToIfEq 0x800C, 1, _067E
     GoToIfEq 0x800C, 2, _0689

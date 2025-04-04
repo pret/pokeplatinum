@@ -65,10 +65,10 @@ void FieldMenuManager_ShowMultiColumnMenu(FieldMenuManager *menuManager, u8 colu
 Window *FieldMenu_CreateMoneyWindow(FieldSystem *fieldSystem, u8 tilemapTop, u8 tilemapLeft);
 void FieldMenu_DeleteMoneyWindow(Window *window);
 void FieldMenu_PrintMoneyToWindow(FieldSystem *fieldSystem, Window *window);
-Window *FieldMenu_CreateCoinsWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop);
-void FieldMenu_DeleteCoinsBPWindow(Window *window);
+Window *FieldMenu_DrawCoinWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop);
+void FieldMenu_DeleteSpecialCurrencyWindow(Window *window);
 void FieldMenu_PrintCoinsToWindow(FieldSystem *fieldSystem, Window *window);
-Window *FieldMenu_CreateBPWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop);
+Window *FieldMenu_DrawBPWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop);
 void FieldMenu_PrintBPToWindow(FieldSystem *fieldSystem, Window *window);
 FieldMenuManager *FieldMenuManager_NewMoveTutorCostWindow(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u16 *selectedOptionPtr, StringTemplate *stringTemplate, u8 redCost, u8 blueCost, u8 yellowCost, u8 greenCost);
 void FieldMenuManager_DeleteMoveTutorCost(FieldMenuManager *menuManager);

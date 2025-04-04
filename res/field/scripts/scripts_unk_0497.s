@@ -110,20 +110,20 @@ _0174:
 _0178:
     LockAll
     Message 3
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 188, 0
-    ScrCmd_042 189, 1
-    ScrCmd_042 190, 2
-    ScrCmd_042 191, 3
-    ScrCmd_042 192, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 188, 0
+    AddMenuEntryImm 189, 1
+    AddMenuEntryImm 190, 2
+    AddMenuEntryImm 191, 3
+    AddMenuEntryImm 192, 4
+    ShowMenu
     CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 0, 0x8004
     SetVar 0x8005, 0
     CallIfEq 0x8004, 6, _0634
-    ScrCmd_211 0
+    SetPlayerHeightCalculationEnabled FALSE
     CallIfEq 0x800C, 0, _06D0
     CallIfEq 0x800C, 1, _06DC
     CallIfEq 0x800C, 2, _06D0
@@ -132,27 +132,27 @@ _0178:
     CallIfEq 0x800C, 1, _0698
     CallIfEq 0x800C, 2, _06A6
     CallIfEq 0x800C, 3, _06B4
-    ScrCmd_211 1
+    SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 
 _0242:
     LockAll
     Message 3
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 188, 0
-    ScrCmd_042 189, 1
-    ScrCmd_042 190, 2
-    ScrCmd_042 191, 3
-    ScrCmd_042 192, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 188, 0
+    AddMenuEntryImm 189, 1
+    AddMenuEntryImm 190, 2
+    AddMenuEntryImm 191, 3
+    AddMenuEntryImm 192, 4
+    ShowMenu
     CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 0, 0x8004
     SetVar 0x8005, 0
     CallIfEq 0x8004, 6, _0634
-    ScrCmd_211 0
+    SetPlayerHeightCalculationEnabled FALSE
     CallIfEq 0x800C, 0, _06F4
     CallIfEq 0x800C, 1, _06E8
     CallIfEq 0x800C, 2, _06F4
@@ -161,27 +161,27 @@ _0242:
     CallIfEq 0x800C, 1, _0698
     CallIfEq 0x800C, 2, _06A6
     CallIfEq 0x800C, 3, _06B4
-    ScrCmd_211 1
+    SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 
 _030C:
     LockAll
     Message 3
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 186, 0
-    ScrCmd_042 187, 1
-    ScrCmd_042 190, 2
-    ScrCmd_042 191, 3
-    ScrCmd_042 192, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 186, 0
+    AddMenuEntryImm 187, 1
+    AddMenuEntryImm 190, 2
+    AddMenuEntryImm 191, 3
+    AddMenuEntryImm 192, 4
+    ShowMenu
     CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 1, 0x8004
     SetVar 0x8005, 1
     CallIfEq 0x8004, 6, _0634
-    ScrCmd_211 0
+    SetPlayerHeightCalculationEnabled FALSE
     CallIfEq 0x800C, 0, _06D0
     CallIfEq 0x800C, 1, _06DC
     CallIfEq 0x800C, 2, _06D0
@@ -190,27 +190,27 @@ _030C:
     CallIfEq 0x800C, 1, _067C
     CallIfEq 0x800C, 2, _06A6
     CallIfEq 0x800C, 3, _06B4
-    ScrCmd_211 1
+    SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 
 _03D6:
     LockAll
     Message 3
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 186, 0
-    ScrCmd_042 187, 1
-    ScrCmd_042 190, 2
-    ScrCmd_042 191, 3
-    ScrCmd_042 192, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 186, 0
+    AddMenuEntryImm 187, 1
+    AddMenuEntryImm 190, 2
+    AddMenuEntryImm 191, 3
+    AddMenuEntryImm 192, 4
+    ShowMenu
     CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 1, 0x8004
     SetVar 0x8005, 1
     CallIfEq 0x8004, 6, _0634
-    ScrCmd_211 0
+    SetPlayerHeightCalculationEnabled FALSE
     CallIfEq 0x800C, 0, _06F4
     CallIfEq 0x800C, 1, _06E8
     CallIfEq 0x800C, 2, _06F4
@@ -219,27 +219,27 @@ _03D6:
     CallIfEq 0x800C, 1, _067C
     CallIfEq 0x800C, 2, _06A6
     CallIfEq 0x800C, 3, _06B4
-    ScrCmd_211 1
+    SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 
 _04A0:
     LockAll
     Message 3
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 186, 0
-    ScrCmd_042 187, 1
-    ScrCmd_042 188, 2
-    ScrCmd_042 189, 3
-    ScrCmd_042 192, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 186, 0
+    AddMenuEntryImm 187, 1
+    AddMenuEntryImm 188, 2
+    AddMenuEntryImm 189, 3
+    AddMenuEntryImm 192, 4
+    ShowMenu
     CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 2, 0x8004
     SetVar 0x8005, 2
     CallIfEq 0x8004, 6, _0634
-    ScrCmd_211 0
+    SetPlayerHeightCalculationEnabled FALSE
     CallIfEq 0x800C, 0, _06D0
     CallIfEq 0x800C, 1, _06DC
     CallIfEq 0x800C, 2, _06D0
@@ -248,27 +248,27 @@ _04A0:
     CallIfEq 0x800C, 1, _067C
     CallIfEq 0x800C, 2, _068A
     CallIfEq 0x800C, 3, _0698
-    ScrCmd_211 1
+    SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 
 _056A:
     LockAll
     Message 3
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 186, 0
-    ScrCmd_042 187, 1
-    ScrCmd_042 188, 2
-    ScrCmd_042 189, 3
-    ScrCmd_042 192, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 186, 0
+    AddMenuEntryImm 187, 1
+    AddMenuEntryImm 188, 2
+    AddMenuEntryImm 189, 3
+    AddMenuEntryImm 192, 4
+    ShowMenu
     CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 2, 0x8004
     SetVar 0x8005, 2
     CallIfEq 0x8004, 6, _0634
-    ScrCmd_211 0
+    SetPlayerHeightCalculationEnabled FALSE
     CallIfEq 0x800C, 0, _06F4
     CallIfEq 0x800C, 1, _06E8
     CallIfEq 0x800C, 2, _06F4
@@ -277,7 +277,7 @@ _056A:
     CallIfEq 0x800C, 1, _067C
     CallIfEq 0x800C, 2, _068A
     CallIfEq 0x800C, 3, _0698
-    ScrCmd_211 1
+    SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 

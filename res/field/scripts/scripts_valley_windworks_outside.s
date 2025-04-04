@@ -18,20 +18,20 @@ _0022:
 
 _0024:
     CallIfEq 0x40CF, 2, _0082
-    CallIfSet 0x10F, _00BB
-    CallIfUnset 0x10F, _00C5
+    CallIfSet FLAG_UNK_0x010F, _00BB
+    CallIfUnset FLAG_UNK_0x010F, _00C5
     GoToIfLt 0x4089, 2, _007C
-    GoToIfSet 0xAA8, _007C
+    GoToIfSet FLAG_UNK_0x0AA8, _007C
     GetDayOfWeek 0x4000
     GoToIfNe 0x4000, 5, _007C
     GoTo _0076
 
 _0076:
-    ClearFlag 0x20B
+    ClearFlag FLAG_UNK_0x020B
     End
 
 _007C:
-    SetFlag 0x20B
+    SetFlag FLAG_UNK_0x020B
     End
 
 _0082:
@@ -39,15 +39,15 @@ _0082:
     Return
 
 _008A:
-    CallIfSet 0x10F, _00BB
-    CallIfUnset 0x10F, _00C5
-    GoToIfSet 142, _00AD
+    CallIfSet FLAG_UNK_0x010F, _00BB
+    CallIfUnset FLAG_UNK_0x010F, _00C5
+    GoToIfSet FLAG_UNK_0x008E, _00AD
     End
 
 _00AD:
-    SetFlag 0x20B
+    SetFlag FLAG_UNK_0x020B
     RemoveObject 4
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E
     End
 
 _00BB:
@@ -104,7 +104,7 @@ _0144:
 _0150:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 159, _016C
+    GoToIfSet FLAG_UNK_0x009F, _016C
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -116,7 +116,7 @@ _016C:
     Message 6
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _01A2
-    SetFlag 0x10F
+    SetFlag FLAG_UNK_0x010F
     Call _00BB
     SetWarpEventPos 0, 243, 0x28E
     Message 7
@@ -142,12 +142,12 @@ _01BF:
     Message 8
     CloseMessage
     ScrCmd_04D
-    SetFlag 142
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_DRIFLOON, 15
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _01FB
-    SetFlag 0xAA8
+    SetFlag FLAG_UNK_0x0AA8
     ReleaseAll
     End
 

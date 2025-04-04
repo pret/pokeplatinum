@@ -24,7 +24,7 @@ _0022:
     WaitMovement
     GetPlayerMapPos 0x4000, 0x4001
     CallIfEq 0x4000, 5, _017D
-    ScrCmd_072 20, 2
+    ShowMoney 20, 2
     Message 0
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _006A
@@ -42,13 +42,13 @@ _008C:
     GoToIfEq 0x800C, 0, _0141
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_070 0x1F4
-    ScrCmd_074
+    UpdateMoneyDisplay
     Message 2
     BufferPlayerName 0
     Message 3
     Message 4
     CloseMessage
-    ScrCmd_073
+    HideMoney
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 4, _00E2
     GoToIfEq 0x8004, 5, _00F2
@@ -79,7 +79,7 @@ _0102:
 _0141:
     Message 6
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ApplyMovement LOCALID_PLAYER, _01C4
     WaitMovement
     ReleaseAll
@@ -87,14 +87,14 @@ _0141:
 
 _0156:
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ApplyMovement LOCALID_PLAYER, _01C4
     WaitMovement
     ReleaseAll
     End
 
 _0168:
-    ScrCmd_073
+    HideMoney
     Message 7
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _01C4
@@ -159,13 +159,13 @@ _01F1:
     End
 
 _021E:
-    GoToIfSet 163, _024A
+    GoToIfSet FLAG_UNK_0x00A3, _024A
     ApplyMovement 2, _0334
     WaitMovement
     Message 18
     SetVar 0x8004, 22
     CallCommonScript 0x7D9
-    SetFlag 163
+    SetFlag FLAG_UNK_0x00A3
     CloseMessage
     ReleaseAll
     End
@@ -235,7 +235,7 @@ _0300:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 163, _031E
+    GoToIfSet FLAG_UNK_0x00A3, _031E
     Message 15
     GoTo _0329
     End

@@ -23,14 +23,13 @@ _0025:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x10A, _006C
+    GoToIfSet FLAG_UNK_0x010A, _006C
     Message 1
-    SetVar 0x8004, 3
+    SetVar 0x8004, ITEM_GREAT_BALL
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0077
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0077
     CallCommonScript 0x7FC
-    SetFlag 0x10A
+    SetFlag FLAG_UNK_0x010A
     GoTo _006C
     End
 

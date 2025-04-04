@@ -14,16 +14,16 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag 0x1A7
+    SetFlag FLAG_UNK_0x01A7
     SetVar 0x40D0, 1
     End
 
 _002E:
-    ClearFlag 0x178
-    ClearFlag 0x179
+    ClearFlag FLAG_UNK_0x0178
+    ClearFlag FLAG_UNK_0x0179
     SetVar 0x4095, 1
     SetVar 0x4082, 2
-    ClearFlag 0x195
+    ClearFlag FLAG_UNK_0x0195
     SetVar 0x4086, 2
     SetVar 0x40A4, 3
     End
@@ -33,16 +33,16 @@ _0054:
     End
 
 _005C:
-    ClearFlag 0x194
-    ClearFlag 0x175
+    ClearFlag FLAG_UNK_0x0194
+    ClearFlag FLAG_UNK_0x0175
     SetVar 0x4095, 1
-    SetFlag 0x196
-    SetFlag 0x1AE
-    ClearFlag 0x293
+    SetFlag FLAG_UNK_0x0196
+    SetFlag FLAG_UNK_0x01AE
+    ClearFlag FLAG_UNK_0x0293
     End
 
 _0078:
-    SetFlag 0x23F
+    SetFlag FLAG_UNK_0x023F
     SetVar 0x40F0, 1
     SetVar 0x40D4, 1
     End
@@ -77,11 +77,11 @@ _00E7:
     CallIfEq 0x8005, 0, _0260
     CallIfEq 0x8005, 1, _0265
     CallIfEq 0x8005, 2, _0267
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 14, 0
-    ScrCmd_042 15, 1
-    ScrCmd_042 16, 2
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 14, 0
+    AddMenuEntryImm 15, 1
+    AddMenuEntryImm 16, 2
+    ShowMenu
     GoToIfEq 0x800C, 0, _0188
     GoToIfEq 0x800C, 1, _0146
     GoTo _0175
@@ -107,11 +107,11 @@ _017D:
 
 _0188:
     Message 7
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 17, 0
-    ScrCmd_042 18, 1
-    ScrCmd_042 19, 2
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 17, 0
+    AddMenuEntryImm 18, 1
+    AddMenuEntryImm 19, 2
+    ShowMenu
     GoToIfEq 0x800C, 0, _01C3
     GoToIfEq 0x800C, 1, _01D1
     GoTo _0175

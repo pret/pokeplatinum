@@ -8,21 +8,20 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag 0x9C5
+    SetFlag FLAG_UNK_0x09C5
     End
 
 _0010:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 219, _00A9
-    GoToIfSet 0x138, _0062
+    GoToIfSet FLAG_UNK_0x00DB, _00A9
+    GoToIfSet FLAG_UNK_0x0138, _0062
     Message 0
-    SetVar 0x8004, 91
+    SetVar 0x8004, ITEM_STAR_PIECE
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _01F3
-    SetFlag 0x138
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _01F3
+    SetFlag FLAG_UNK_0x0138
     CallCommonScript 0x7FC
     GoTo _0062
     End
@@ -35,7 +34,7 @@ _0062:
     End
 
 _0082:
-    SetFlag 219
+    SetFlag FLAG_UNK_0x00DB
     Message 2
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _00FF
@@ -85,12 +84,12 @@ _011A:
 
 _014E:
     Message 5
-    ScrCmd_040 31, 11, 0, 1, 0x8001
-    ScrCmd_33A 1
-    ScrCmd_29D 0x116, 0
-    ScrCmd_29D 0x117, 1
-    ScrCmd_29D 11, 2
-    ScrCmd_043
+    InitGlobalTextMenu 31, 11, 0, 0x8001
+    SetMenuXOriginToRight
+    AddMenuEntry 0x116, 0
+    AddMenuEntry 0x117, 1
+    AddMenuEntry 11, 2
+    ShowMenu
     SetVar 0x8007, 10
     SetVar 0x8008, 0x8001
     GoToIfEq 0x8008, 0, _011A

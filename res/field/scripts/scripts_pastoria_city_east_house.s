@@ -12,13 +12,13 @@ _000A:
     LockAll
     FacePlayer
     ScrCmd_33C 4, 93
-    GoToIfUnset 233, _003D
+    GoToIfUnset FLAG_UNK_0x00E9, _003D
     CheckItem ITEM_HEART_SCALE, 1, 0x800C
     GoToIfEq 0x800C, 0, _005F
     GoTo _006A
 
 _003D:
-    SetFlag 233
+    SetFlag FLAG_UNK_0x00E9
     Message 0
     CheckItem ITEM_HEART_SCALE, 1, 0x800C
     GoToIfEq 0x800C, 0, _005F
@@ -38,12 +38,12 @@ _006A:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    ScrCmd_193 0x8005
+    GetSelectedPartySlot 0x8005
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8005, 0xFF, _005F
-    ScrCmd_198 0x8005, 0x800C
+    GetPartyMonSpecies 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _011A
     ScrCmd_21F 0x800C, 0x8005
     GoToIfEq 0x800C, 0, _010F

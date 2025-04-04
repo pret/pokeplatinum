@@ -23,17 +23,17 @@ _0022:
     End
 
 _0069:
-    ClearFlag 0x273
-    ClearFlag 0x275
-    SetFlag 0x272
-    SetFlag 0x274
+    ClearFlag FLAG_UNK_0x0273
+    ClearFlag FLAG_UNK_0x0275
+    SetFlag FLAG_UNK_0x0272
+    SetFlag FLAG_UNK_0x0274
     End
 
 _007B:
-    ClearFlag 0x272
-    ClearFlag 0x274
-    SetFlag 0x273
-    SetFlag 0x275
+    ClearFlag FLAG_UNK_0x0272
+    ClearFlag FLAG_UNK_0x0274
+    SetFlag FLAG_UNK_0x0273
+    SetFlag FLAG_UNK_0x0275
     End
 
 _008D:
@@ -50,14 +50,13 @@ _00A0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 205, _00E5
+    GoToIfSet FLAG_UNK_0x00CD, _00E5
     Message 1
-    SetVar 0x8004, 0x189
+    SetVar 0x8004, ITEM_TM66
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00F0
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00F0
     CallCommonScript 0x7FC
-    SetFlag 205
+    SetFlag FLAG_UNK_0x00CD
     GoTo _00E5
 
 _00E5:

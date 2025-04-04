@@ -5,19 +5,19 @@
 
 #include "heap.h"
 
-static BOOL DynamicTerrainHeightPlate_IsTileInPlate(const int tileX, const int tileY, const DynamicTerrainHeightPlate *plate)
+static BOOL DynamicTerrainHeightPlate_IsTileInPlate(const int tileX, const int tileZ, const DynamicTerrainHeightPlate *plate)
 {
     if (!plate->valid) {
         return FALSE;
     }
 
     int startTileX = plate->startTileX;
-    int startTileY = plate->startTileY;
+    int startTileZ = plate->startTileZ;
     int endTileX = startTileX + plate->sizeX - 1;
-    int endTileY = startTileY + plate->sizeY - 1;
+    int endTileZ = startTileZ + plate->sizeZ - 1;
 
     return startTileX <= tileX && tileX <= endTileX
-        && startTileY <= tileY && tileY <= endTileY;
+        && startTileZ <= tileZ && tileZ <= endTileZ;
 }
 
 DynamicTerrainHeightManager *DynamicTerrainHeightManager_New(const u8 platesCount, const u8 heapID)
@@ -34,12 +34,12 @@ DynamicTerrainHeightManager *DynamicTerrainHeightManager_New(const u8 platesCoun
     return dynamicTerrainHeightMan;
 }
 
-void DynamicTerrainHeightManager_SetPlate(const u8 index, const int startTileX, const int startTileY, const int sizeX, const int sizeY, const fx32 height, DynamicTerrainHeightManager *dynamicTerrainHeightMan)
+void DynamicTerrainHeightManager_SetPlate(const u8 index, const int startTileX, const int startTileZ, const int sizeX, const int sizeZ, const fx32 height, DynamicTerrainHeightManager *dynamicTerrainHeightMan)
 {
     dynamicTerrainHeightMan->plates[index].startTileX = startTileX;
-    dynamicTerrainHeightMan->plates[index].startTileY = startTileY;
+    dynamicTerrainHeightMan->plates[index].startTileZ = startTileZ;
     dynamicTerrainHeightMan->plates[index].sizeX = sizeX;
-    dynamicTerrainHeightMan->plates[index].sizeY = sizeY;
+    dynamicTerrainHeightMan->plates[index].sizeZ = sizeZ;
     dynamicTerrainHeightMan->plates[index].height = height;
     dynamicTerrainHeightMan->plates[index].valid = TRUE;
 }
@@ -50,14 +50,14 @@ void DynamicTerrainHeightManager_Free(DynamicTerrainHeightManager *dynamicTerrai
     Heap_FreeToHeap(dynamicTerrainHeightMan);
 }
 
-BOOL DynamicTerrainHeightManager_GetPlateIndexOfTile(const int tileX, const int tileY, const DynamicTerrainHeightManager *dynamicTerrainHeightMan, u8 *index)
+BOOL DynamicTerrainHeightManager_GetPlateIndexOfTile(const int tileX, const int tileZ, const DynamicTerrainHeightManager *dynamicTerrainHeightMan, u8 *index)
 {
     GF_ASSERT(index != NULL);
 
     for (u8 i = 0; i < dynamicTerrainHeightMan->platesCount; i++) {
         DynamicTerrainHeightPlate *plate = &dynamicTerrainHeightMan->plates[i];
 
-        if (DynamicTerrainHeightPlate_IsTileInPlate(tileX, tileY, plate)) {
+        if (DynamicTerrainHeightPlate_IsTileInPlate(tileX, tileZ, plate)) {
             *index = i;
             return TRUE;
         }

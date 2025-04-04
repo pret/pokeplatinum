@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag 0x9E9
+    SetFlag FLAG_UNK_0x09E9
     End
 
 _0018:
@@ -27,18 +27,18 @@ _002B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_072 20, 2
+    ShowMoney 20, 2
     Message 1
     GoTo _0044
     End
 
 _0044:
-    ScrCmd_041 30, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 7, 0
-    ScrCmd_042 8, 1
-    ScrCmd_042 9, 2
-    ScrCmd_043
+    InitLocalTextMenu 30, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 7, 0
+    AddMenuEntryImm 8, 1
+    AddMenuEntryImm 9, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0092
     GoToIfEq 0x8008, 1, _00BB
@@ -63,19 +63,18 @@ _00BB:
     End
 
 _00E4:
-    SetVar 0x8004, 33
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0143
+    SetVar 0x8004, ITEM_MOOMOO_MILK
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0143
     ScrCmd_334 35, 0x8006
     ScrCmd_1A3 0x8006
-    ScrCmd_074
+    UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     CallIfEq 0x8006, 0x1F4, _0139
     CallIfEq 0x8006, 0x1770, _013E
     CallCommonScript 0x7E0
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -91,7 +90,7 @@ _0143:
     Message 3
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -99,7 +98,7 @@ _0150:
     Message 4
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -107,7 +106,7 @@ _015D:
     Message 5
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -115,7 +114,7 @@ _016A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x107, _0188
+    GoToIfSet FLAG_UNK_0x0107, _0188
     Message 10
     WaitABXPadPress
     CloseMessage

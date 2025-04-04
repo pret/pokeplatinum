@@ -11,21 +11,20 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 140, _0054
-    BufferItemName 0, 253
+    GoToIfSet FLAG_UNK_0x008C, _0054
+    BufferItemName 0, ITEM_SHELL_BELL
     Message 0
-    SetVar 0x8004, 253
+    SetVar 0x8004, ITEM_SHELL_BELL
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0064
-    SetFlag 140
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0064
+    SetFlag FLAG_UNK_0x008C
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
 
 _0054:
-    BufferItemName 0, 253
+    BufferItemName 0, ITEM_SHELL_BELL
     Message 1
     WaitABXPadPress
     CloseMessage

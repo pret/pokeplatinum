@@ -15,13 +15,13 @@ _001A:
     End
 
 _001C:
-    GoToIfSet 142, _0029
+    GoToIfSet FLAG_UNK_0x008E, _0029
     End
 
 _0029:
-    SetFlag 0x250
+    SetFlag FLAG_UNK_0x0250
     RemoveObject 0
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E
     End
 
 _0037:
@@ -31,9 +31,9 @@ _0037:
     PlayCry SPECIES_GIRATINA
     Message 0
     CloseMessage
-    SetFlag 142
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_GIRATINA, 47
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _009B
     CheckDidNotCapture 0x800C
@@ -42,8 +42,8 @@ _0037:
     End
 
 _0084:
-    SetFlag 0x121
-    SetFlag 0x250
+    SetFlag FLAG_UNK_0x0121
+    SetFlag FLAG_UNK_0x0250
     ReleaseAll
     End
 
@@ -55,7 +55,7 @@ _0090:
     End
 
 _009B:
-    ClearFlag 0x250
+    ClearFlag FLAG_UNK_0x0250
     BlackOutFromBattle
     ReleaseAll
     End
@@ -65,11 +65,10 @@ _00A5:
     LockAll
     GoToIfEq 0x410C, 3, _00F4
     GoToIfLt 0x410C, 15, _0100
-    SetVar 0x8004, 90
+    SetVar 0x8004, ITEM_STARDUST
 _00CB:
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _010C
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _010C
     CallCommonScript 0x7E0
     CloseMessage
     RemoveObject 1
@@ -77,11 +76,11 @@ _00CB:
     End
 
 _00F4:
-    SetVar 0x8004, 0x145
+    SetVar 0x8004, ITEM_REAPER_CLOTH
     GoTo _00CB
 
 _0100:
-    SetVar 0x8004, 106
+    SetVar 0x8004, ITEM_RARE_BONE
     GoTo _00CB
 
 _010C:

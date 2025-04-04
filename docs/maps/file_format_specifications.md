@@ -307,9 +307,9 @@ This NARC contains 98 files.
 
 Here's the structure of each file:
 
-| Name               | Offset   | Size       | Type        | Description                                     |
-| ------------------ | -------- | ---------- | ----------- | ----------------------------------------------- |
-| `mapPropAnimation` | `0x0000` | Whole file | NSBCA/NSBTA | The skeletal/material animation for a map prop. |
+| Name               | Offset   | Size       | Type              | Description                                             |
+| ------------------ | -------- | ---------- | ----------------- | ------------------------------------------------------- |
+| `mapPropAnimation` | `0x0000` | Whole file | NSBCA/NSBTP/NSBTA | The skeletal/texture/material animation for a map prop. |
 
 ## Map prop animations list (`bm_anime_list.narc`)
 

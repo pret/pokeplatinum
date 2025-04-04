@@ -32,7 +32,7 @@
     ScriptEntryEnd
 
 _0066:
-    SetFlag 0x1BD
+    SetFlag FLAG_UNK_0x01BD
     CallIfEq 0x40F8, 2, _00F8
     CallIfEq 0x40F8, 3, _0100
     Call _0168
@@ -58,7 +58,7 @@ _0100:
     Return
 
 _0116:
-    ClearFlag 0x240
+    ClearFlag FLAG_UNK_0x0240
     Return
 
 _011C:
@@ -82,21 +82,21 @@ _0150:
     End
 
 _0158:
-    SetFlag 0x1B3
-    SetFlag 0x1B5
+    SetFlag FLAG_UNK_0x01B3
+    SetFlag FLAG_UNK_0x01B5
     SetVar 0x4078, 6
     Return
 
 _0168:
-    GoToIfSet 0x158, _01CA
-    GoToIfUnset 0x964, _01CA
+    GoToIfSet FLAG_UNK_0x0158, _01CA
+    GoToIfUnset FLAG_GAME_COMPLETED, _01CA
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _01CA
     CheckItem ITEM_MEMBER_CARD, 1, 0x4000
     GoToIfEq 0x4000, FALSE, _01CA
     CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
     GoToIfEq 0x4000, FALSE, _01CA
-    GoToIfUnset 0x12C, _01CA
+    GoToIfUnset FLAG_UNK_0x012C, _01CA
     SetVar 0x4000, 1
     Return
 
@@ -146,7 +146,7 @@ _027C:
 
 _028A:
     ScrCmd_188 11, 17
-    ClearFlag 0x1B2
+    ClearFlag FLAG_UNK_0x01B2
     AddObject 11
     ApplyMovement 11, _0340
     WaitMovement
@@ -188,7 +188,7 @@ _0303:
     End
 
 _0334:
-    SetFlag 0x1B2
+    SetFlag FLAG_UNK_0x01B2
     BlackOutFromBattle
     ReleaseAll
     End
@@ -255,7 +255,7 @@ _03C8:
     WaitMovement
     Message 5
     CloseMessage
-    ClearFlag 0x1B4
+    ClearFlag FLAG_UNK_0x01B4
     AddObject 14
     ScrCmd_062 14
     ApplyMovement 14, _04AC
@@ -299,9 +299,9 @@ _0473:
     WaitABXPadPress
     CloseMessage
     SetVar 0x4078, 5
-    ClearFlag 0x194
-    ClearFlag 0x175
-    ClearFlag 0x293
+    ClearFlag FLAG_UNK_0x0194
+    ClearFlag FLAG_UNK_0x0175
+    ClearFlag FLAG_UNK_0x0293
     ReleaseAll
     End
 
@@ -379,7 +379,7 @@ _0520:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _053C
+    GoToIfSet FLAG_UNK_0x00A8, _053C
     Message 14
     GoTo _0545
 
@@ -397,7 +397,7 @@ _054D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _0586
+    GoToIfSet FLAG_UNK_0x00A8, _0586
     CheckBadgeAcquired BADGE_ID_MINE, 0x800C
     GoToIfEq 0x800C, 1, _0591
     GoTo _057B
@@ -423,7 +423,7 @@ _05A9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _05C5
+    GoToIfSet FLAG_UNK_0x00A8, _05C5
     Message 19
     GoTo _0545
 
@@ -435,7 +435,7 @@ _05CE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _05EA
+    GoToIfSet FLAG_UNK_0x00A8, _05EA
     Message 21
     GoTo _0545
 
@@ -447,7 +447,7 @@ _05F3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _0615
+    GoToIfSet FLAG_UNK_0x00A8, _0615
     PlayCry SPECIES_PSYDUCK
     Message 23
     GoTo _0545
@@ -461,7 +461,7 @@ _0624:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _0640
+    GoToIfSet FLAG_UNK_0x00A8, _0640
     Message 25
     GoTo _0545
 
@@ -516,12 +516,12 @@ _0708:
     FacePlayer
     GoToIfEq 0x4106, 2, _0900
     Message 27
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 213, 0
-    CallIfSet 0x133, _0790
-    CallIfSet 0x13C, _078A
-    ScrCmd_042 218, 4
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 213, 0
+    CallIfSet FLAG_UNK_0x0133, _0790
+    CallIfSet FLAG_UNK_0x013C, _078A
+    AddMenuEntryImm 218, 4
+    ShowMenu
     GoToIfEq 0x800C, 0, _0796
     GoToIfEq 0x800C, 1, _07D1
     GoToIfEq 0x800C, 2, _080C
@@ -530,11 +530,11 @@ _0708:
     End
 
 _078A:
-    ScrCmd_042 215, 2
+    AddMenuEntryImm 215, 2
     Return
 
 _0790:
-    ScrCmd_042 214, 1
+    AddMenuEntryImm 214, 1
     Return
 
 _0796:

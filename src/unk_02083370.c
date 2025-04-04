@@ -162,7 +162,7 @@ static void sub_0208347C(GameWindowLayout *param0, int *param1)
 
 static void sub_020834B0(GameWindowLayout *param0, int *param1)
 {
-    Pokemon *v0;
+    Pokemon *mon;
     int v1;
     int v2 = 17;
     FieldSystem *fieldSystem;
@@ -174,21 +174,21 @@ static void sub_020834B0(GameWindowLayout *param0, int *param1)
     fieldSystem = param0->unk_5A4->unk_1C;
 
     if (param0->unk_704[param0->unk_B11].unk_0C == 0) {
-        v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+        mon = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
         MessageLoader_GetStrbuf(param0->unk_69C, 81, param0->unk_6A8);
-        StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+        StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     } else if (Bag_TryAddItem(param0->unk_5A4->unk_04, param0->unk_704[param0->unk_B11].unk_0C, 1, 12) == 1) {
         u32 v4;
 
-        v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+        mon = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
         v4 = 0;
 
-        Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &v4);
-        Pokemon_SetArceusForm(v0);
+        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &v4);
+        Pokemon_SetArceusForm(mon);
 
         if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
-            v1 = Pokemon_SetGiratinaForm(v0);
+            v1 = Pokemon_SetGiratinaFormByHeldItem(mon);
 
             if ((param0->unk_704[param0->unk_B11].unk_0C == ITEM_GRISEOUS_ORB) && (v1 == 0)) {
                 v2 = 18;
@@ -196,7 +196,7 @@ static void sub_020834B0(GameWindowLayout *param0, int *param1)
         }
 
         MessageLoader_GetStrbuf(param0->unk_69C, 82, param0->unk_6A8);
-        StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+        StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_SetItemName(param0->unk_6A0, 1, param0->unk_704[param0->unk_B11].unk_0C);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
 
@@ -340,15 +340,15 @@ static int sub_020838F4(void *param0)
     GameWindowLayout *v0 = param0;
 
     if (Bag_TryAddItem(v0->unk_5A4->unk_04, v0->unk_704[v0->unk_B11].unk_0C, 1, 12) == 1) {
-        Pokemon *v1;
-        u32 v2;
+        Pokemon *mon;
+        u32 item;
 
-        v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
-        v2 = 0;
+        mon = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
+        item = 0;
 
-        Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v2);
-        Pokemon_SetArceusForm(v1);
-        Pokemon_SetGiratinaForm(v1);
+        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
+        Pokemon_SetArceusForm(mon);
+        Pokemon_SetGiratinaFormByHeldItem(mon);
 
         v0->unk_704[v0->unk_B11].unk_0C = 0;
 

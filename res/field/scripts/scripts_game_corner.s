@@ -104,8 +104,8 @@ _013E:
     Message 0
     CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _018D
-    GoToIfSet 0x130, _0198
-    GoToIfSet 0x165, GameCorner_GiveTM64
+    GoToIfSet FLAG_UNK_0x0130, _0198
+    GoToIfSet FLAG_UNK_0x0165, GameCorner_GiveTM64
     CheckBonusRoundStreak 0x800C
     GoToIfEq 0x800C, FALSE, _0198
     GoTo GameCorner_GiveTM64
@@ -119,15 +119,15 @@ _018D:
     End
 
 _0198:
-    ScrCmd_075 20, 2
-    ScrCmd_072 20, 7
+    ShowCoins 20, 2
+    ShowMoney 20, 7
 _01A4:
     Message 2
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 125, 0
-    ScrCmd_042 126, 1
-    ScrCmd_042 127, 2
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 125, 0
+    AddMenuEntryImm 126, 1
+    AddMenuEntryImm 127, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _01E3
     GoToIfEq 0x8008, 1, _0240
@@ -142,11 +142,11 @@ _01E3:
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x3E8
     ScrCmd_070 0x3E8
-    ScrCmd_074
+    UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     PlayFanfare SEQ_SE_PL_COIN
     ScrCmd_079 50
-    ScrCmd_077
+    UpdateCoinDisplay
     WaitFanfare SEQ_SE_PL_COIN
     Message 3
     WaitTime 30, 0x800C
@@ -161,11 +161,11 @@ _0240:
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x2710
     ScrCmd_070 0x2710
-    ScrCmd_074
+    UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     PlayFanfare SEQ_SE_PL_COIN
     ScrCmd_079 0x1F4
-    ScrCmd_077
+    UpdateCoinDisplay
     WaitFanfare SEQ_SE_PL_COIN
     Message 3
     WaitTime 30, 0x800C
@@ -175,8 +175,8 @@ _029D:
     Message 4
     WaitABXPadPress
     CloseMessage
-    ScrCmd_076
-    ScrCmd_073
+    HideCoins
+    HideMoney
     ReleaseAll
     End
 
@@ -184,8 +184,8 @@ _02AC:
     Message 5
     WaitABXPadPress
     CloseMessage
-    ScrCmd_076
-    ScrCmd_073
+    HideCoins
+    HideMoney
     ReleaseAll
     End
 
@@ -193,21 +193,20 @@ _02BB:
     Message 6
     WaitABXPadPress
     CloseMessage
-    ScrCmd_076
-    ScrCmd_073
+    HideCoins
+    HideMoney
     ReleaseAll
     End
 
 GameCorner_GiveTM64:
     SetVar 0x8004, ITEM_TM64
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0327
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0327
     GoTo _02F3
     End
 
 _02F3:
-    GoToIfSet 0x165, _0309
+    GoToIfSet FLAG_UNK_0x0165, _0309
     Message 7
     GoTo _0314
     End
@@ -219,7 +218,7 @@ _0309:
 
 _0314:
     CallCommonScript 0x7FC
-    SetFlag 0x130
+    SetFlag FLAG_UNK_0x0130
     Message 8
     WaitABXPadPress
     CloseMessage
@@ -227,7 +226,7 @@ _0314:
     End
 
 _0327:
-    SetFlag 0x165
+    SetFlag FLAG_UNK_0x0165
     GoTo _0198
     End
 
@@ -247,11 +246,11 @@ _0346:
     FacePlayer
     CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _03A1
-    GoToIfSet 0x12E, _03AC
+    GoToIfSet FLAG_UNK_0x012E, _03AC
     ScrCmd_276 0x800C, 20
     Noop
     GoToIfEq 0x800C, 0, _03AC
-    SetFlag 0x12E
+    SetFlag FLAG_UNK_0x012E
     BufferPlayerName 0
     Message 14
     WaitABXPadPress
@@ -282,11 +281,11 @@ _03B7:
     FacePlayer
     CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0412
-    GoToIfSet 0x12F, _041D
+    GoToIfSet FLAG_UNK_0x012F, _041D
     ScrCmd_276 0x800C, 50
     Noop
     GoToIfEq 0x800C, 0, _041D
-    SetFlag 0x12F
+    SetFlag FLAG_UNK_0x012F
     BufferPlayerName 0
     Message 17
     WaitABXPadPress
@@ -376,7 +375,7 @@ _04AD:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 214, _04CB
+    GoToIfSet FLAG_UNK_0x00D6, _04CB
     Message 23
     GoTo _04D6
     End

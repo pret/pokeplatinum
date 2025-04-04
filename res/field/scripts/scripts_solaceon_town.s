@@ -137,7 +137,7 @@ _0168:
     CallCommonScript 0x7FA
     GetPlayerMapPos 0x8004, 0x8005
     SetObjectEventPos 18, 0x8004, 0x295
-    ClearFlag 0x21E
+    ClearFlag FLAG_UNK_0x021E
     AddObject 18
     ScrCmd_062 18
     ApplyMovement LOCALID_PLAYER, _0228

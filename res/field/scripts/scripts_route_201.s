@@ -120,7 +120,7 @@ _016F:
     ApplyMovement 2, _0730
     WaitMovement
     PlayMusic SEQ_OPENING2
-    ClearFlag 0x178
+    ClearFlag FLAG_UNK_0x0178
     AddObject 5
     ScrCmd_062 5
     ApplyMovement 5, _07C0
@@ -206,7 +206,7 @@ _030B:
     ApplyMovement 5, _07D8
     WaitMovement
     WaitTime 25, 0x800C
-    ClearFlag 0x179
+    ClearFlag FLAG_UNK_0x0179
     AddObject 6
     ScrCmd_062 6
     CallCommonScript 0x7F8
@@ -222,7 +222,7 @@ _036E:
     CloseMessage
     ApplyMovement 5, _07E8
     WaitMovement
-    ClearFlag 0x17D
+    ClearFlag FLAG_UNK_0x017D
     AddObject 12
     WaitTime 15, 0x800C
     Message 23
@@ -238,7 +238,7 @@ _03A6:
     CloseMessage
     ApplyMovement 5, _07E8
     WaitMovement
-    ClearFlag 0x17D
+    ClearFlag FLAG_UNK_0x017D
     AddObject 12
     WaitTime 15, 0x800C
     Message 25
@@ -276,7 +276,7 @@ _042E:
     LockAll
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    SetFlag 0x17D
+    SetFlag FLAG_UNK_0x017D
     RemoveObject 12
     StartChooseStarterScene
     SaveChosenStarter
@@ -299,7 +299,7 @@ _042E:
     ApplyMovement 2, _0788
     ApplyMovement LOCALID_PLAYER, _089C
     WaitMovement
-    SetFlag 0x178
+    SetFlag FLAG_UNK_0x0178
     RemoveObject 5
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, GENDER_MALE, _04CA
@@ -332,7 +332,7 @@ _0512:
     ApplyMovement LOCALID_PLAYER, _08B0
     ApplyMovement 6, _08E0
     WaitMovement
-    SetFlag 0x179
+    SetFlag FLAG_UNK_0x0179
     RemoveObject 6
     BufferRivalName 0
     Message 43
@@ -1076,10 +1076,10 @@ _0CF1:
     SetVar 0x4086, 3
     ScrCmd_06C 254, 0
     ClearHasPartner
-    SetFlag 0x172
-    SetFlag 0x195
+    SetFlag FLAG_UNK_0x0172
+    SetFlag FLAG_UNK_0x0195
     SetVar 0x4082, 4
-    SetFlag 0x196
+    SetFlag FLAG_UNK_0x0196
     WaitTime 30, 0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
@@ -1199,7 +1199,7 @@ _0E1A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 144, _0E3E
+    GoToIfSet FLAG_UNK_0x0090, _0E3E
     Message 58
     GoTo _0E36
 
@@ -1217,13 +1217,12 @@ _0E47:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 108, _0E8C
+    GoToIfSet FLAG_UNK_0x006C, _0E8C
     Message 55
-    SetVar 0x8004, 17
+    SetVar 0x8004, ITEM_POTION
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0E97
-    SetFlag 108
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0E97
+    SetFlag FLAG_UNK_0x006C
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
@@ -1301,7 +1300,7 @@ _0F4F:
     SetHasPartner
     ScrCmd_06D 2, 48
     ScrCmd_06C 2, 1
-    SetFlag 0x172
+    SetFlag FLAG_UNK_0x0172
     ReleaseAll
     End
 

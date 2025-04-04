@@ -38,8 +38,8 @@ _003F:
     LockAll
     FacePlayer
     GoToIfNe 0x40F2, 0, _0257
-    GoToIfSet 0xAB3, _00A0
-    GoToIfSet 0xAA9, _0084
+    GoToIfSet FLAG_UNK_0x0AB3, _00A0
+    GoToIfSet FLAG_UNK_0x0AA9, _0084
     Message 1
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _00B6
@@ -67,7 +67,7 @@ _00AB:
     End
 
 _00B6:
-    SetFlag 0xAA9
+    SetFlag FLAG_UNK_0x0AA9
     Message 4
     GetJubilifeLotteryTrainerID 0x8000
     ScrCmd_280 0, 0x8000, 2, 5
@@ -134,31 +134,30 @@ _0194:
     End
 
 _01DD:
-    SetVar 0x8003, 2
+    SetVar 0x8003, ITEM_ULTRA_BALL
     GoTo _021B
     End
 
 _01EB:
-    SetVar 0x8003, 51
+    SetVar 0x8003, ITEM_PP_UP
     GoTo _021B
 
 _01F7:
-    SetVar 0x8003, 216
+    SetVar 0x8003, ITEM_EXP_SHARE
     GoTo _021B
 
 _0203:
-    SetVar 0x8003, 29
+    SetVar 0x8003, ITEM_MAX_REVIVE
     GoTo _021B
 
 _020F:
-    SetVar 0x8003, 1
+    SetVar 0x8003, ITEM_MASTER_BALL
     GoTo _021B
 
 _021B:
     SetVar 0x8004, 0x8003
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0246
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0246
     CallCommonScript 0x7FC
     GoTo _0269
 
@@ -178,7 +177,7 @@ _0257:
 
 _0269:
     SetVar 0x40F2, 0
-    SetFlag 0xAB3
+    SetFlag FLAG_UNK_0x0AB3
     Message 17
     WaitABXPadPress
     CloseMessage

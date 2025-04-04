@@ -14,25 +14,24 @@
 _001A:
     ScrCmd_238 4, 0x4000
     GoToIfEq 0x4000, 0, _0033
-    ClearFlag 0x210
+    ClearFlag FLAG_UNK_0x0210
     End
 
 _0033:
-    SetFlag 0x210
+    SetFlag FLAG_UNK_0x0210
     End
 
 _0039:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 141, _0083
+    GoToIfSet FLAG_UNK_0x008D, _0083
     Message 0
-    SetVar 0x8004, 0x1C1
+    SetVar 0x8004, ITEM_POFFIN_CASE
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _008E
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _008E
     CallCommonScript 0x7FC
-    SetFlag 141
+    SetFlag FLAG_UNK_0x008D
     Message 1
     WaitABXPadPress
     CloseMessage

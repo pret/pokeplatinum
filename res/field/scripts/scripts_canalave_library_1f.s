@@ -14,7 +14,7 @@ _0016:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _0034
+    GoToIfSet FLAG_UNK_0x00A8, _0034
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -31,7 +31,7 @@ _0034:
 _003F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 168, _0068
+    GoToIfSet FLAG_UNK_0x00A8, _0068
     Message 2
     FacePlayer
     Message 3

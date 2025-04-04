@@ -59,7 +59,7 @@ _008F:
     ApplyMovement LOCALID_PLAYER, _0100
     WaitMovement
     Call _0513
-    ClearFlag 0x966
+    ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     SetVar 0x40D5, 0
     ReleaseAll
     End
@@ -91,16 +91,16 @@ _0108:
 
 _012C:
     Message 1
-    ScrCmd_044 1, 1, 1, 1, 0x800C
-    ScrCmd_046 163, 0xFF, 250
-    ScrCmd_046 6, 0xFF, 0
-    ScrCmd_046 7, 0xFF, 1
-    ScrCmd_046 8, 0xFF, 2
-    ScrCmd_046 164, 0xFF, 250
-    ScrCmd_046 9, 0xFF, 3
-    ScrCmd_046 10, 0xFF, 4
-    ScrCmd_046 11, 0xFF, 5
-    ScrCmd_047
+    InitGlobalTextListMenu 1, 1, 1, 0x800C
+    AddListMenuEntry 163, LIST_MENU_BUILDER_HEADER
+    AddListMenuEntry 6, 0
+    AddListMenuEntry 7, 1
+    AddListMenuEntry 8, 2
+    AddListMenuEntry 164, LIST_MENU_BUILDER_HEADER
+    AddListMenuEntry 9, 3
+    AddListMenuEntry 10, 4
+    AddListMenuEntry 11, 5
+    ShowListMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _01DE
     GoToIfEq 0x8008, 1, _01F2
@@ -271,12 +271,12 @@ _0305:
     CallIfEq 0x8004, 2, _037A
     CallIfEq 0x8004, 3, _037A
     CallIfEq 0x8004, 4, _037F
-    ScrCmd_040 30, 1, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 5, 2
-    ScrCmd_043
+    InitGlobalTextMenu 30, 1, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 13, 0
+    AddMenuEntryImm 14, 1
+    AddMenuEntryImm 5, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0384
     GoToIfEq 0x8008, 1, _03F7
@@ -359,7 +359,7 @@ _045D:
 
 _046A:
     SetVar 0x40D5, 1
-    SetFlag 0x966
+    SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     ScrCmd_02E 52
     WaitABPressTime 45
     ScrCmd_135 96
@@ -432,11 +432,11 @@ _0544:
 
 _0565:
     Message 57
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 41, 0
-    ScrCmd_042 42, 1
-    ScrCmd_042 10, 2
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 41, 0
+    AddMenuEntryImm 42, 1
+    AddMenuEntryImm 10, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _05CF
     GoToIfEq 0x8008, 1, _01D3
@@ -460,17 +460,17 @@ _05CF:
     ScrCmd_31D 0x800C
     GoToIfEq 0x800C, 0xFF, _068E
     SetVar 0x40D5, 2
-    SetFlag 0x966
+    SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _062D
     SetVar 0x40D5, 0
-    ClearFlag 0x966
+    ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     GoTo _01D3
 
 _062D:
     SetVar 0x40D5, 2
-    SetFlag 0x966
+    SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Message 63
     CloseMessage
     ScrCmd_168 0, 0, 8, 5, 77
@@ -523,18 +523,18 @@ _06B4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetFlag 170
+    SetFlag FLAG_UNK_0x00AA
     Message 102
     GoTo _06CB
     End
 
 _06CB:
     Message 103
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 41, 0
-    ScrCmd_042 42, 1
-    ScrCmd_042 10, 2
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 41, 0
+    AddMenuEntryImm 42, 1
+    AddMenuEntryImm 10, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0724
     GoToIfEq 0x8008, 1, _074A

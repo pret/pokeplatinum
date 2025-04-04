@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag 0x9E1
+    SetFlag FLAG_UNK_0x09E1
     GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithGalactic
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithWater
     End
@@ -27,8 +27,8 @@ ValorCavern_SetWarpEventPosLakeWithWater:
     End
 
 _0042:
-    SetFlag 0x9E1
-    CallIfSet 142, ValorCavern_RemoveAzelf
+    SetFlag FLAG_UNK_0x09E1
+    CallIfSet FLAG_UNK_0x008E, ValorCavern_RemoveAzelf
     GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithGalactic
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithWater
     End
@@ -36,7 +36,7 @@ _0042:
 ValorCavern_RemoveAzelf:
     SetFlag FLAG_AZELF_DISAPPEARED
     RemoveObject LOCALID_AZELF
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E
     Return
 
 ValorCavern_Azelf:
@@ -46,9 +46,9 @@ ValorCavern_Azelf:
     PlayCry SPECIES_AZELF
     Message valor_cavern_azelf_battle_intro
     CloseMessage
-    SetFlag 142
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_AZELF, 50
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, ValorCavern_LostBattleAzelf
     CheckDidNotCapture 0x800C
@@ -89,7 +89,7 @@ ValorCavern_CommanderSaturn:
     WaitFadeScreen
     RemoveObject LOCALID_SATURN
     SetFlag FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN
-    SetFlag 0x984
+    SetFlag FLAG_ALT_MUSIC_LAKE_VALOR
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

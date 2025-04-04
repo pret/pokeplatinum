@@ -12,7 +12,7 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0xAAC, _00D5
+    GoToIfSet FLAG_UNK_0x0AAC, _00D5
     Message 0
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _00EB
@@ -21,13 +21,13 @@ _000E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    ScrCmd_193 0x4000
+    GetSelectedPartySlot 0x4000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x4000, 0xFF, _00EB
-    ScrCmd_198 0x4000, 0x800C
-    GoToIfEq 0x800C, 0, _00E0
+    GetPartyMonSpecies 0x4000, 0x800C
+    GoToIfEq 0x800C, SPECIES_NONE, _00E0
     Message 3
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -38,7 +38,7 @@ _000E:
     WaitFadeScreen
     BufferPartyMonNickname 0, 0x4000
     Message 4
-    SetFlag 0xAAC
+    SetFlag FLAG_UNK_0x0AAC
     ScrCmd_1BA 3, 0x4000
     ScrCmd_26C 0x8004
     GoToIfEq 0x8004, -1, _00F6

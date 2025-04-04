@@ -5,7 +5,7 @@
 
 BOOL ScrCmd_AddItem(ScriptContext *ctx);
 BOOL ScrCmd_RemoveItem(ScriptContext *ctx);
-BOOL ScrCmd_07D(ScriptContext *param0);
+BOOL ScrCmd_CanFitItem(ScriptContext *ctx);
 BOOL ScrCmd_CheckItem(ScriptContext *ctx);
 BOOL ScrCmd_2FE(ScriptContext *param0);
 BOOL ScrCmd_07F(ScriptContext *param0);

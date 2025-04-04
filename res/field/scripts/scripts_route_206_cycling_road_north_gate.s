@@ -18,15 +18,15 @@ _001A:
     End
 
 _0035:
-    SetFlag 0x996
+    SetFlag FLAG_FORCE_BIKING_IN_GATE
     Return
 
 _003B:
-    CallIfSet 0x10B, _0048
+    CallIfSet FLAG_UNK_0x010B, _0048
     End
 
 _0048:
-    SetFlag 0x222
+    SetFlag FLAG_UNK_0x0222
     Return
 
 _004E:
@@ -53,7 +53,7 @@ _0061:
     End
 
 _0091:
-    SetFlag 0x996
+    SetFlag FLAG_FORCE_BIKING_IN_GATE
     SetVar 0x4002, 1
     ReleaseAll
     End
@@ -70,7 +70,7 @@ _00A8:
 
 _00B0:
     LockAll
-    ClearFlag 0x996
+    ClearFlag FLAG_FORCE_BIKING_IN_GATE
     SetVar 0x4002, 0
     ReleaseAll
     End
@@ -79,7 +79,7 @@ _00C0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x10B, _0154
+    GoToIfSet FLAG_UNK_0x010B, _0154
     BufferPlayerName 0
     BufferCounterpartName 1
     GetPlayerGender 0x4000
@@ -99,11 +99,10 @@ _0102:
     BufferNumber 1, 0x8004
     GoToIfLt 0x8004, 35, _015F
     Message 5
-    SetVar 0x8004, 216
+    SetVar 0x8004, ITEM_EXP_SHARE
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _014A
-    SetFlag 0x10B
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _014A
+    SetFlag FLAG_UNK_0x010B
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll

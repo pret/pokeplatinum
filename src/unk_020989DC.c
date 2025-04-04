@@ -311,7 +311,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     }
 
     v1 = (PartyManagementData *)param0->unk_10;
-    v0 = v1->unk_22;
+    v0 = v1->selectedMonSlot;
     param0->unk_08 = v0;
     Heap_FreeToHeap(param0->unk_10);
 

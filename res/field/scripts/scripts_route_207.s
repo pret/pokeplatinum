@@ -42,7 +42,7 @@ _004E:
     End
 
 _008E:
-    ClearFlag 0x1CC
+    ClearFlag FLAG_UNK_0x01CC
     AddObject 18
     ScrCmd_062 18
     Return
@@ -55,11 +55,11 @@ _009C:
 _00B3:
     BufferPlayerName 0
     Message 0
-    ScrCmd_044 30, 13, 0, 0, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_046 137, 0xFF, 0
-    ScrCmd_046 138, 0xFF, 1
-    ScrCmd_047
+    InitGlobalTextListMenu 30, 13, 0, 0x800C, NO_EXIT_ON_B
+    SetMenuXOriginToRight
+    AddListMenuEntry 137, 0
+    AddListMenuEntry 138, 1
+    ShowListMenu
     Message 1
     Call _012F
     Message 2
@@ -70,11 +70,11 @@ _00B3:
 _00F1:
     BufferPlayerName 0
     Message 4
-    ScrCmd_044 30, 13, 0, 0, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_046 137, 0xFF, 0
-    ScrCmd_046 138, 0xFF, 1
-    ScrCmd_047
+    InitGlobalTextListMenu 30, 13, 0, 0x800C, NO_EXIT_ON_B
+    SetMenuXOriginToRight
+    AddListMenuEntry 137, 0
+    AddListMenuEntry 138, 1
+    ShowListMenu
     Message 5
     Call _012F
     Message 6
@@ -165,7 +165,7 @@ _01C3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 130, _01E1
+    GoToIfSet FLAG_UNK_0x0082, _01E1
     Message 9
     WaitABXPadPress
     CloseMessage

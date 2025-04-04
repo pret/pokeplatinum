@@ -21,11 +21,11 @@ _002A:
 
 _0032:
     GetRandom 0x40C2, 3
-    GoToIfUnset 214, _0052
+    GoToIfUnset FLAG_UNK_0x00D6, _0052
     End
 
 _0045:
-    GoToIfUnset 214, _0052
+    GoToIfUnset FLAG_UNK_0x00D6, _0052
     End
 
 _0052:
@@ -66,7 +66,7 @@ _0095:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 215, _00B3
+    GoToIfSet FLAG_UNK_0x00D7, _00B3
     Message 10
     WaitABXPadPress
     CloseMessage
@@ -162,7 +162,7 @@ _01B6:
     End
 
 _01BE:
-    GoToIfSet 0xAB2, _02CB
+    GoToIfSet FLAG_UNK_0x0AB2, _02CB
     BufferRivalName 0
     BufferPlayerName 1
     Message 2
@@ -224,7 +224,7 @@ _02A0:
 _02AE:
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _02DC
-    SetFlag 0xAB2
+    SetFlag FLAG_UNK_0x0AB2
     GoTo _02CB
     End
 

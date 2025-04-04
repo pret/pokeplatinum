@@ -66,18 +66,17 @@ _0096:
     SetTrainerFlag TRAINER_YOUNGSTER_DONNY
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 100, TRAINER_LEADER_FANTINA, 0, 0
     SetVar 0x407B, 1
-    SetFlag 0x206
-    ClearFlag 0x207
+    SetFlag FLAG_UNK_0x0206
+    ClearFlag FLAG_UNK_0x0207
     Message 3
     GoTo _012B
 
 _012B:
-    SetVar 0x8004, 0x188
+    SetVar 0x8004, ITEM_TM65
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0169
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0169
     CallCommonScript 0x7FC
-    SetFlag 125
+    SetFlag FLAG_UNK_0x007D
     BufferItemName 0, 0x8004
     BufferTMHMMoveName 1, 0x8004
     Message 4
@@ -93,7 +92,7 @@ _0169:
     End
 
 _0173:
-    GoToIfUnset 125, _012B
+    GoToIfUnset FLAG_UNK_0x007D, _012B
     Message 5
     WaitABXPadPress
     CloseMessage

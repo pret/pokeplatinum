@@ -11,8 +11,8 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x137, _0114
-    GoToIfSet 0xAAE, _016F
+    GoToIfSet FLAG_UNK_0x0137, _0114
+    GoToIfSet FLAG_UNK_0x0AAE, _016F
     GetDailyRandomLevel 0x8000
     BufferNumber 0, 0x8000
     GetPartyCount 0x8002
@@ -33,14 +33,13 @@ _006D:
     BufferItemName 2, 0x8004
     Message 1
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0105
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0105
     GoTo _00C2
 
 _00C2:
     CallCommonScript 0x7E0
-    ClearFlag 0x137
-    SetFlag 0xAAE
+    ClearFlag FLAG_UNK_0x0137
+    SetFlag FLAG_UNK_0x0AAE
     AddVar 0x4108, 1
     GoToIfLt 0x4108, 3, _00E7
     SetVar 0x4108, 0
@@ -50,19 +49,19 @@ _00E7:
     End
 
 _00ED:
-    SetVar 0x8004, 241
+    SetVar 0x8004, ITEM_BLACK_BELT
     Return
 
 _00F5:
-    SetVar 0x8004, 0x10C
+    SetVar 0x8004, ITEM_EXPERT_BELT
     Return
 
 _00FD:
-    SetVar 0x8004, 0x113
+    SetVar 0x8004, ITEM_FOCUS_SASH
     Return
 
 _0105:
-    SetFlag 0x137
+    SetFlag FLAG_UNK_0x0137
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -76,8 +75,7 @@ _0114:
     BufferItemName 2, 0x8004
     Message 3
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0105
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0105
     GoTo _00C2
 
 _0164:

@@ -85,7 +85,7 @@ _00A9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x129, _0109
+    GoToIfSet FLAG_UNK_0x0129, _0109
     GetPlayerStarterSpecies 0x800C
     CallIfEq 0x800C, SPECIES_TURTWIG, _0119
     CallIfEq 0x800C, SPECIES_CHIMCHAR, _0121
@@ -95,7 +95,7 @@ _00A9:
     Message 3
     SetVar 0x8005, 1
     CallCommonScript 0x7DF
-    SetFlag 0x129
+    SetFlag FLAG_UNK_0x0129
     CloseMessage
     ReleaseAll
     End

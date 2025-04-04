@@ -205,7 +205,7 @@ BOOL sub_02052B2C(FieldTask *task)
     switch (*state) {
     case 0: {
         if ((fieldSystem != NULL) && (fieldSystem->saveData != NULL)) {
-            Party_SetGiratinaForm(Party_GetFromSavedata(fieldSystem->saveData), 0);
+            Party_SetGiratinaForm(Party_GetFromSavedata(fieldSystem->saveData), GIRATINA_FORM_ALTERED);
         }
     }
 

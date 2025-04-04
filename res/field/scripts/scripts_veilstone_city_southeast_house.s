@@ -11,7 +11,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 188, _00EF
+    GoToIfSet FLAG_UNK_0x00BC, _00EF
     Message 0
     Message 1
     CloseMessage
@@ -44,16 +44,16 @@ _008F:
 
 _009F:
     Message 2
-    ScrCmd_040 1, 1, 0, 0, 0x8000
-    ScrCmd_042 174, 0
-    ScrCmd_042 175, 1
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x8000, NO_EXIT_ON_B
+    AddMenuEntryImm 174, 0
+    AddMenuEntryImm 175, 1
+    ShowMenu
     GetRandom 0x800C, 2
     GoToIfEq 0x800C, 0, _00E4
     Message 4
     SetVar 0x8004, 0x1BC
     SetVar 0x8005, 1
-    SetFlag 188
+    SetFlag FLAG_UNK_0x00BC
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll

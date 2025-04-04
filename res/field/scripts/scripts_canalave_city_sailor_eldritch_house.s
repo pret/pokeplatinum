@@ -16,7 +16,7 @@ _0035:
     End
 
 _0037:
-    GoToIfSet 0x12C, _0035
+    GoToIfSet FLAG_UNK_0x012C, _0035
     CheckGameCompleted 0x4000
     GoToIfEq 0x4000, 0, _0035
     ScrCmd_22D 2, 0x4000
@@ -102,13 +102,13 @@ _0145:
     End
 
 _0158:
-    GoToIfUnset 0x133, _01EA
-    GoToIfUnset 0x11F, _01D9
+    GoToIfUnset FLAG_UNK_0x0133, _01EA
+    GoToIfUnset FLAG_UNK_0x011F, _01D9
     CheckItem ITEM_LUNAR_WING, 1, 0x800C
     GoToIfEq 0x800C, 0, _01D9
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    SetFlag 0x12C
+    SetFlag FLAG_UNK_0x012C
     SetVar 0x4106, 3
     RemoveItem ITEM_LUNAR_WING, 1, 0x800C
     BufferPlayerName 0
@@ -139,7 +139,7 @@ _01D9:
     End
 
 _01EA:
-    SetFlag 0x133
+    SetFlag FLAG_UNK_0x0133
     SetVar 0x4106, 2
     GoTo _01D9
     End
@@ -147,7 +147,7 @@ _01EA:
 _01FC:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    ClearFlag 0x25B
+    ClearFlag FLAG_UNK_0x025B
     AddObject 2
     WaitTime 5, 0x800C
     ApplyMovement 1, _0294
@@ -178,7 +178,7 @@ _026E:
     ApplyMovement LOCALID_PLAYER, _0294
     ApplyMovement 2, _02DC
     WaitMovement
-    SetFlag 0x25B
+    SetFlag FLAG_UNK_0x025B
     RemoveObject 2
     PlayFanfare SEQ_SE_DP_KAIDAN2
     WaitFanfare SEQ_SE_DP_KAIDAN2

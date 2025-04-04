@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city.h"
+#include "constants/forms.h"
 
     .data
 
@@ -27,10 +28,10 @@
     ScriptEntry _1074
     ScriptEntry _108B
     ScriptEntry _10A2
-    ScriptEntry _10B9
-    ScriptEntry _10E9
-    ScriptEntry _1119
-    ScriptEntry _1149
+    ScriptEntry VeilstoneCity_DeoxysMeteoriteSpeed
+    ScriptEntry VeilstoneCity_DeoxysMeteoriteDefense
+    ScriptEntry VeilstoneCity_DeoxysMeteoriteAttack
+    ScriptEntry VeilstoneCity_DeoxysMeteoriteNormal
     ScriptEntry _1184
     ScriptEntry _0FB0
     ScriptEntry _1204
@@ -38,7 +39,7 @@
     ScriptEntryEnd
 
 _0082:
-    CallIfSet 0x155, _00E0
+    CallIfSet FLAG_UNK_0x0155, _00E0
     CallIfGe 0x411A, 2, _00BA
     GetPlayerGender 0x4000
     GoToIfEq 0x4000, GENDER_MALE, _00D0
@@ -83,7 +84,7 @@ _00F6:
     ScrCmd_168 21, 19, 12, 3, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ClearFlag 0x191
+    ClearFlag FLAG_UNK_0x0191
     AddObject 25
     ApplyMovement 25, _0564
     WaitMovement
@@ -542,7 +543,7 @@ _0656:
     CallIfEq 0x8004, GENDER_FEMALE, _0A32
     CloseMessage
     WaitTime 15, 0x800C
-    ClearFlag 0x28A
+    ClearFlag FLAG_UNK_0x028A
     SetObjectEventPos 26, 0x2B4, 0x25E
     AddObject 26
     CallCommonScript 0x807
@@ -628,9 +629,9 @@ _08C3:
     End
 
 _08DD:
-    SetFlag 0x1A9
-    SetFlag 0x28A
-    ClearFlag 0x20D
+    SetFlag FLAG_UNK_0x01A9
+    SetFlag FLAG_UNK_0x028A
+    ClearFlag FLAG_UNK_0x020D
     SetVar 0x411F, 1
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
@@ -1089,14 +1090,13 @@ _0C77:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 204, _0CBC
+    GoToIfSet FLAG_UNK_0x00CC, _0CBC
     Message 50
-    SetVar 0x8004, 0x186
+    SetVar 0x8004, ITEM_TM63
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0CC7
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0CC7
     CallCommonScript 0x7FC
-    SetFlag 204
+    SetFlag FLAG_UNK_0x00CC
     GoTo _0CBC
 
 _0CBC:
@@ -1218,11 +1218,11 @@ _0DBE:
     WaitMovement
     Message 37
     CloseMessage
-    SetFlag 0x155
+    SetFlag FLAG_UNK_0x0155
     SetObjectEventPos 26, 0x2D3, 0x259
     ScrCmd_188 26, 14
     ScrCmd_189 26, 0
-    ClearFlag 0x28A
+    ClearFlag FLAG_UNK_0x028A
     AddObject 26
     GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _0E34
@@ -1284,7 +1284,7 @@ _0ED8:
 
 _0EF4:
     SetVar 0x411F, 3
-    SetFlag 155
+    SetFlag FLAG_UNK_0x009B
     Message 39
     CloseMessage
     CallCommonScript 0x808
@@ -1375,7 +1375,7 @@ _0FB0:
     BufferPlayerName 0
     Message 41
     CallCommonScript 0x807
-    GoToIfSet 155, _0EF4
+    GoToIfSet FLAG_UNK_0x009B, _0EF4
     GoTo _0ED8
 
     .byte 2
@@ -1431,64 +1431,64 @@ _10A2:
     ShowLandmarkSign 68
     End
 
-_10B9:
+VeilstoneCity_DeoxysMeteoriteSpeed:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_262 0x182, 0x800C
-    GoToIfEq 0x800C, 0, _1179
-    ScrCmd_263 3
+    CheckPartyHasSpecies2 SPECIES_DEOXYS, 0x800C
+    GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
+    ChangeDeoxysForm DEOXYS_FORM_SPEED
     PlayCry SPECIES_DEOXYS
-    Message 57
+    Message veilstone_city_meteorite_speed
     WaitABXPadPress
     ScrCmd_04D
     CloseMessage
     ReleaseAll
     End
 
-_10E9:
+VeilstoneCity_DeoxysMeteoriteDefense:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_262 0x182, 0x800C
-    GoToIfEq 0x800C, 0, _1179
-    ScrCmd_263 2
+    CheckPartyHasSpecies2 SPECIES_DEOXYS, 0x800C
+    GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
+    ChangeDeoxysForm DEOXYS_FORM_DEFENSE
     PlayCry SPECIES_DEOXYS
-    Message 58
+    Message veilstone_city_meteorite_defense
     WaitABXPadPress
     ScrCmd_04D
     CloseMessage
     ReleaseAll
     End
 
-_1119:
+VeilstoneCity_DeoxysMeteoriteAttack:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_262 0x182, 0x800C
-    GoToIfEq 0x800C, 0, _1179
-    ScrCmd_263 1
+    CheckPartyHasSpecies2 SPECIES_DEOXYS, 0x800C
+    GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
+    ChangeDeoxysForm DEOXYS_FORM_ATTACK
     PlayCry SPECIES_DEOXYS
-    Message 59
+    Message veilstone_city_meteorite_attack
     WaitABXPadPress
     ScrCmd_04D
     CloseMessage
     ReleaseAll
     End
 
-_1149:
+VeilstoneCity_DeoxysMeteoriteNormal:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_262 0x182, 0x800C
-    GoToIfEq 0x800C, 0, _1179
-    ScrCmd_263 0
+    CheckPartyHasSpecies2 SPECIES_DEOXYS, 0x800C
+    GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
+    ChangeDeoxysForm DEOXYS_FORM_NORMAL
     PlayCry SPECIES_DEOXYS
-    Message 60
+    Message veilstone_city_meteorite_normal
     WaitABXPadPress
     ScrCmd_04D
     CloseMessage
     ReleaseAll
     End
 
-_1179:
-    Message 56
+VeilstoneCity_MeteoriteFromTheStars:
+    Message veilstone_city_meteorite_from_the_stars
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1506,7 +1506,7 @@ _1184:
     WaitMovement
     RemoveObject 6
     Call _00BA
-    ClearFlag 0x1A8
+    ClearFlag FLAG_UNK_0x01A8
     AddObject 6
     SetVar 0x411A, 2
     ReleaseAll

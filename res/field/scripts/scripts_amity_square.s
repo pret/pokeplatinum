@@ -51,8 +51,8 @@
     ScriptEntryEnd
 
 _00B6:
-    SetFlag 0x9CC
-    SetFlag 0x2A1
+    SetFlag FLAG_UNK_0x09CC
+    SetFlag FLAG_UNK_0x02A1
     ScrCmd_2DF 0x40AB
     GetRandom 0x4002, 5
     GoToIfEq 0x4002, 0, _00FE
@@ -133,8 +133,8 @@ _01B6:
     End
 
 _01CE:
-    ScrCmd_198 0x400A, 0x800C
-    GoToIfEq 0x800C, 0, _026D
+    GetPartyMonSpecies 0x400A, 0x800C
+    GoToIfEq 0x800C, SPECIES_NONE, _026D
     CallIfEq 0x4000, 0, _0C50
     CallIfEq 0x4000, 1, _0D36
     GoToIfEq 0x800C, 0, _026D
@@ -175,7 +175,7 @@ _0299:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     SetVar 0x409D, 0x400A
-    ScrCmd_198 0x400A, 0x409A
+    GetPartyMonSpecies 0x400A, 0x409A
     GoTo _0E48
     End
 
@@ -331,39 +331,39 @@ _041A:
     End
 
 _0490:
-    SetVar 0x409F, 176
+    SetVar 0x409F, ITEM_MAGOST_BERRY
     Return
 
 _0498:
-    SetVar 0x409F, 175
+    SetVar 0x409F, ITEM_CORNN_BERRY
     Return
 
 _04A0:
-    SetVar 0x409F, 177
+    SetVar 0x409F, ITEM_RABUTA_BERRY
     Return
 
 _04A8:
-    SetVar 0x409F, 178
+    SetVar 0x409F, ITEM_NOMEL_BERRY
     Return
 
 _04B0:
-    SetVar 0x409F, 179
+    SetVar 0x409F, ITEM_SPELON_BERRY
     Return
 
 _04B8:
-    SetVar 0x409F, 180
+    SetVar 0x409F, ITEM_PAMTRE_BERRY
     Return
 
 _04C0:
-    SetVar 0x409F, 181
+    SetVar 0x409F, ITEM_WATMEL_BERRY
     Return
 
 _04C8:
-    SetVar 0x409F, 182
+    SetVar 0x409F, ITEM_DURIN_BERRY
     Return
 
 _04D0:
-    SetVar 0x409F, 183
+    SetVar 0x409F, ITEM_BELUE_BERRY
     Return
 
 _04D8:
@@ -377,16 +377,14 @@ _04D8:
 _04FB:
     SetVar 0x8004, 0x409F
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0595
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0595
     GoTo _054D
     End
 
 _0524:
     SetVar 0x8004, 0x409F
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _05DD
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _05DD
     GoTo _054D
     End
 
@@ -725,87 +723,87 @@ _0975:
     End
 
 _0994:
-    ScrCmd_1C0 0x800C, 25
+    CheckPartyHasSpecies 0x800C, SPECIES_PIKACHU
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 35
+    CheckPartyHasSpecies 0x800C, SPECIES_CLEFAIRY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 54
+    CheckPartyHasSpecies 0x800C, SPECIES_PSYDUCK
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1A1
+    CheckPartyHasSpecies 0x800C, SPECIES_PACHIRISU
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1A9
+    CheckPartyHasSpecies 0x800C, SPECIES_DRIFLOON
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1AB
+    CheckPartyHasSpecies 0x800C, SPECIES_BUNEARY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1B8
+    CheckPartyHasSpecies 0x800C, SPECIES_HAPPINY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x183
+    CheckPartyHasSpecies 0x800C, SPECIES_TURTWIG
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x184
+    CheckPartyHasSpecies 0x800C, SPECIES_GROTLE
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x185
+    CheckPartyHasSpecies 0x800C, SPECIES_TORTERRA
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x186
+    CheckPartyHasSpecies 0x800C, SPECIES_CHIMCHAR
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x187
+    CheckPartyHasSpecies 0x800C, SPECIES_MONFERNO
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x188
+    CheckPartyHasSpecies 0x800C, SPECIES_INFERNAPE
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x189
+    CheckPartyHasSpecies 0x800C, SPECIES_PIPLUP
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x18A
+    CheckPartyHasSpecies 0x800C, SPECIES_PRINPLUP
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x18B
+    CheckPartyHasSpecies 0x800C, SPECIES_EMPOLEON
     GoToIfEq 0x800C, 1, _01B6
     GoTo _0182
     End
 
 _0ACC:
-    ScrCmd_1C0 0x800C, 25
+    CheckPartyHasSpecies 0x800C, SPECIES_PIKACHU
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 35
+    CheckPartyHasSpecies 0x800C, SPECIES_CLEFAIRY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 54
+    CheckPartyHasSpecies 0x800C, SPECIES_PSYDUCK
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1A1
+    CheckPartyHasSpecies 0x800C, SPECIES_PACHIRISU
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1A9
+    CheckPartyHasSpecies 0x800C, SPECIES_DRIFLOON
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1AB
+    CheckPartyHasSpecies 0x800C, SPECIES_BUNEARY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x1B8
+    CheckPartyHasSpecies 0x800C, SPECIES_HAPPINY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 39
+    CheckPartyHasSpecies 0x800C, SPECIES_JIGGLYPUFF
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0xFF
+    CheckPartyHasSpecies 0x800C, SPECIES_TORCHIC
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x12C
+    CheckPartyHasSpecies 0x800C, SPECIES_SKITTY
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x11D
+    CheckPartyHasSpecies 0x800C, SPECIES_SHROOMISH
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x183
+    CheckPartyHasSpecies 0x800C, SPECIES_TURTWIG
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x184
+    CheckPartyHasSpecies 0x800C, SPECIES_GROTLE
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x185
+    CheckPartyHasSpecies 0x800C, SPECIES_TORTERRA
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x186
+    CheckPartyHasSpecies 0x800C, SPECIES_CHIMCHAR
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x187
+    CheckPartyHasSpecies 0x800C, SPECIES_MONFERNO
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x188
+    CheckPartyHasSpecies 0x800C, SPECIES_INFERNAPE
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x189
+    CheckPartyHasSpecies 0x800C, SPECIES_PIPLUP
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x18A
+    CheckPartyHasSpecies 0x800C, SPECIES_PRINPLUP
     GoToIfEq 0x800C, 1, _01B6
-    ScrCmd_1C0 0x800C, 0x18B
+    CheckPartyHasSpecies 0x800C, SPECIES_EMPOLEON
     GoToIfEq 0x800C, 1, _01B6
     GoTo _01A3
     End
 
 _0C50:
-    ScrCmd_198 0x400A, 0x800C
+    GetPartyMonSpecies 0x400A, 0x800C
     GoToIfEq 0x800C, 25, _0D2E
     GoToIfEq 0x800C, 35, _0D2E
     GoToIfEq 0x800C, 54, _0D2E
@@ -830,7 +828,7 @@ _0D2E:
     Return
 
 _0D36:
-    ScrCmd_198 0x400A, 0x800C
+    GetPartyMonSpecies 0x400A, 0x800C
     GoToIfEq 0x800C, 25, _0D2E
     GoToIfEq 0x800C, 35, _0D2E
     GoToIfEq 0x800C, 54, _0D2E
@@ -981,7 +979,7 @@ _1064:
 
 _1072:
     SetVar 0x8002, 5
-    ClearFlag 0x2A1
+    ClearFlag FLAG_UNK_0x02A1
     GoTo _02C9
     End
 
@@ -999,7 +997,7 @@ _10AA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0xAB5, _117C
+    GoToIfSet FLAG_UNK_0x0AB5, _117C
     Message 36
     ScrCmd_2E1 0x40AB, 0x8004
     ScrCmd_2E0 0x40AB, 0x800C
@@ -1013,8 +1011,7 @@ _10E1:
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _1161
     SetVar 0x8005, 5
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _1172
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _1172
     BufferPlayerName 0
     ScrCmd_33D 1, 0x8004
     PlaySound SEQ_FANFA4
@@ -1055,7 +1052,7 @@ _1172:
     End
 
 _117C:
-    SetFlag 0xAB5
+    SetFlag FLAG_UNK_0x0AB5
     Message 39
     WaitABXPadPress
     CloseMessage

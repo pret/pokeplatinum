@@ -348,7 +348,7 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v2->unk_20 = 5;
     v2->unk_1C = fieldSystem;
     v2->unk_24 = param0->unk_04;
-    v2->unk_22 = param0->unk_06;
+    v2->selectedMonSlot = param0->unk_06;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
     menu->taskData = v2;
@@ -597,7 +597,7 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v2->unk_20 = 6;
     v2->unk_1C = fieldSystem;
     v2->unk_24 = param0->unk_04;
-    v2->unk_22 = param0->unk_06;
+    v2->selectedMonSlot = param0->unk_06;
     v2->unk_26 = Item_MoveForTMHM(param0->unk_04);
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
@@ -994,7 +994,7 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v2->unk_21 = 0;
     v2->unk_20 = 16;
     v2->unk_24 = param0->unk_04;
-    v2->unk_22 = param0->unk_06;
+    v2->selectedMonSlot = param0->unk_06;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
     menu->taskData = v2;

@@ -559,21 +559,18 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         ResetLock(RESET_LOCK_0x2);
         ov88_0223E894(param0);
 
-        {
-            int v0, v1, v2;
-            Pokemon *v3;
+        int i, form, species;
 
-            for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_08->unk_08); v0++) {
-                Pokemon *v4 = Party_GetPokemonBySlotIndex(param0->unk_08->unk_08, v0);
+        for (i = 0; i < Party_GetCurrentCount(param0->unk_08->unk_08); i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_08->unk_08, i);
 
-                v2 = Pokemon_GetValue(v4, MON_DATA_SPECIES_EGG, NULL);
+            species = Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL);
 
-                if (v2 == 492) {
-                    v1 = Pokemon_GetValue(v4, MON_DATA_FORM, NULL);
+            if (species == SPECIES_SHAYMIN) {
+                form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-                    if (v1 != 0) {
-                        Pokemon_SetShayminForm(v4, 0);
-                    }
+                if (form != SHAYMIN_FORM_LAND) {
+                    Pokemon_SetShayminForm(mon, SHAYMIN_FORM_LAND);
                 }
             }
         }

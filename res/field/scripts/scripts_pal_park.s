@@ -12,7 +12,7 @@
     ScriptEntryEnd
 
 _001A:
-    SetFlag 0x9CB
+    SetFlag FLAG_UNK_0x09CB
     End
 
 _0020:
@@ -34,7 +34,7 @@ _0020:
     WaitTime 30, 0x800C
     ScrCmd_253 0
     SetVar 0x40F3, 1
-    SetFlag 0x995
+    SetFlag FLAG_ALT_MUSIC_PAL_PARK
     PlayMusic SEQ_D_SAFARI
     CloseMessage
     ReleaseAll

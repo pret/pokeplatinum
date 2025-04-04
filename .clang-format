@@ -1,6 +1,5 @@
 ---
 BasedOnStyle: WebKit
-Language: Cpp
 LineEnding: LF
 ColumnLimit: 0
 
@@ -69,7 +68,7 @@ IncludeCategories:
     Priority: 4
   - Regex: '"[[:alnum:]_]+\.(h|naix)"'
     Priority: 5
-  - Regex: '.*'
+  - Regex: ".*"
     Priority: 7
 
 InsertTrailingCommas: Wrapped
@@ -78,9 +77,6 @@ KeepEmptyLinesAtEOF: false
 MaxEmptyLinesToKeep: 1
 RemoveParentheses: ReturnStatement
 RemoveSemicolon: true
-
-# QualifierAlignment: Custom
-# QualifierOrder: [static, inline, const, volatile, type]
 
 SpaceAfterCStyleCast: false
 SpaceAfterLogicalNot: false

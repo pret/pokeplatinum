@@ -35,14 +35,13 @@ _0040:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x105, _0087
+    GoToIfSet FLAG_UNK_0x0105, _0087
     Message 2
-    SetVar 0x8004, 0x120
+    SetVar 0x8004, ITEM_STICKY_BARB
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0092
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0092
     CallCommonScript 0x7FC
-    SetFlag 0x105
+    SetFlag FLAG_UNK_0x0105
     GoTo _0087
     End
 
@@ -82,16 +81,16 @@ _00C0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 6
-    ScrCmd_072 20, 2
+    ShowMoney 20, 2
     GoTo _00D5
 
 _00D5:
-    ScrCmd_040 1, 1, 0, 1, 0x8000
-    ScrCmd_042 219, 0
-    ScrCmd_042 220, 1
-    ScrCmd_042 221, 2
-    ScrCmd_042 222, 3
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x8000
+    AddMenuEntryImm 219, 0
+    AddMenuEntryImm 220, 1
+    AddMenuEntryImm 221, 2
+    AddMenuEntryImm 222, 3
+    ShowMenu
     SetVar 0x8008, 0x8000
     GoToIfEq 0x8008, 0, _0125
     GoToIfEq 0x8008, 1, _0131
@@ -100,15 +99,15 @@ _00D5:
     GoTo _028C
 
 _0125:
-    SetVar 0x8001, 30
+    SetVar 0x8001, ITEM_FRESH_WATER
     GoTo _0191
 
 _0131:
-    SetVar 0x8001, 31
+    SetVar 0x8001, ITEM_SODA_POP
     GoTo _0191
 
 _013D:
-    SetVar 0x8001, 32
+    SetVar 0x8001, ITEM_LEMONADE
     GoTo _0191
 
 _0149:
@@ -143,12 +142,11 @@ _0191:
     CallIfEq 0x8000, 1, _0153
     CallIfEq 0x8000, 2, _015D
     GoToIfEq 0x800C, 0, _0277
-    ScrCmd_07D 0x8001, 1, 0x800C
-    GoToIfEq 0x800C, 0, _0280
+    GoToIfCannotFitItem 0x8001, 1, 0x800C, _0280
     CallIfEq 0x8000, 0, _0167
     CallIfEq 0x8000, 1, _0175
     CallIfEq 0x8000, 2, _0183
-    ScrCmd_074
+    UpdateMoneyDisplay
     BufferItemName 0, 0x8001
     PlayFanfare SEQ_SE_DP_JIHANKI
     BufferItemName 0, 0x8001
@@ -158,8 +156,7 @@ _0191:
     CallCommonScript 0x7FC
     GetRandom 0x800C, 64
     GoToIfNe 0x800C, 0, _026E
-    ScrCmd_07D 0x8001, 1, 0x800C
-    GoToIfEq 0x800C, 0, _0280
+    GoToIfCannotFitItem 0x8001, 1, 0x800C, _0280
     PlayFanfare SEQ_SE_DP_JIHANKI
     BufferItemName 0, 0x8001
     Message 8
@@ -179,14 +176,14 @@ _0277:
 _0280:
     CallCommonScript 0x7E1
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
 _028C:
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 

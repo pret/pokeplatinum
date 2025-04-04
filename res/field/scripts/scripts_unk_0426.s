@@ -17,12 +17,12 @@ _0008:
 
 _001B:
     Message 1
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 9, 0
-    ScrCmd_042 10, 1
-    ScrCmd_042 11, 2
-    ScrCmd_042 12, 3
-    ScrCmd_043
+    InitLocalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 9, 0
+    AddMenuEntryImm 10, 1
+    AddMenuEntryImm 11, 2
+    AddMenuEntryImm 12, 3
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _00D0
     GoToIfEq 0x8008, 1, _0121
@@ -103,12 +103,12 @@ _0121:
 
 _0173:
     Message 13
-    ScrCmd_040 30, 1, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 5, 2
-    ScrCmd_043
+    InitGlobalTextMenu 30, 1, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 13, 0
+    AddMenuEntryImm 14, 1
+    AddMenuEntryImm 5, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _01B7
     GoToIfEq 0x8008, 1, _020D

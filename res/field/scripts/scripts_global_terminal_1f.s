@@ -97,18 +97,18 @@ _00F4:
     FacePlayer
     ScrCmd_2B7 0x800C
     GoToIfEq 0x800C, 1, _0368
-    GoToIfSet 195, _02FB
-    SetFlag 195
+    GoToIfSet FLAG_UNK_0x00C3, _02FB
+    SetFlag FLAG_UNK_0x00C3
     Message 0
     GoTo _0127
     End
 
 _0127:
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 129, 0
-    ScrCmd_042 128, 1
-    ScrCmd_042 130, 2
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 129, 0
+    AddMenuEntryImm 128, 1
+    AddMenuEntryImm 130, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _01E9
     GoToIfEq 0x8008, 1, _0172
@@ -122,11 +122,11 @@ _0172:
     End
 
 _017D:
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 131, 0
-    ScrCmd_042 132, 1
-    ScrCmd_042 133, 2
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntryImm 131, 0
+    AddMenuEntryImm 132, 1
+    AddMenuEntryImm 133, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _01C8
     GoToIfEq 0x8008, 1, _01D3
@@ -356,12 +356,12 @@ _040C:
 
 _0420:
     Message 36
-    ScrCmd_041 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 38, 0
-    ScrCmd_042 39, 1
-    ScrCmd_042 40, 2
-    ScrCmd_043
+    InitLocalTextMenu 31, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 38, 0
+    AddMenuEntryImm 39, 1
+    AddMenuEntryImm 40, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _046A
     GoToIfEq 0x8008, 1, _048B
@@ -396,12 +396,12 @@ _0496:
 
 _04AA:
     Message 34
-    ScrCmd_041 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 38, 0
-    ScrCmd_042 39, 1
-    ScrCmd_042 40, 2
-    ScrCmd_043
+    InitLocalTextMenu 31, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 38, 0
+    AddMenuEntryImm 39, 1
+    AddMenuEntryImm 40, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _04F4
     GoToIfEq 0x8008, 1, _0515
@@ -454,7 +454,7 @@ _0546:
     ScrCmd_2B7 0x800C
     GoToIfEq 0x800C, 1, _05A0
     SetVar 0x8000, 0
-    ScrCmd_198 0x8000, 0x800C
+    GetPartyMonSpecies 0x8000, 0x800C
     GoToIfEq 0x800C, 0, _05CB
     BufferPartyMonSpecies 0, 0
     Message 18
@@ -534,8 +534,8 @@ _0652:
     FacePlayer
     CheckItem ITEM_FASHION_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0696
-    GoToIfSet 0xAC3, _06FD
-    GoToIfSet 207, _06F2
+    GoToIfSet FLAG_UNK_0x0AC3, _06FD
+    GoToIfSet FLAG_UNK_0x00CF, _06F2
     Message 24
     SetVar 0x8004, 1
     GoTo _06A1
@@ -551,7 +551,7 @@ _06A1:
     GoToIfEq 0x800C, 0, _06D3
     AddVar 0x8004, 1
     GoToIfLe 0x8004, 13, _06A1
-    SetFlag 207
+    SetFlag FLAG_UNK_0x00CF
     GoTo _06F2
     End
 
@@ -560,7 +560,7 @@ _06D3:
     CallCommonScript 0x7FD
     Message 28
     Call _0710
-    SetFlag 0xAC3
+    SetFlag FLAG_UNK_0x0AC3
     GoTo _0708
     End
 
@@ -590,7 +590,7 @@ _071E:
     GoToIfEq 0x800C, 0, _074A
     AddVar 0x8004, 1
     GoToIfLe 0x8004, 13, _071E
-    SetFlag 207
+    SetFlag FLAG_UNK_0x00CF
     Return
 
 _074A:

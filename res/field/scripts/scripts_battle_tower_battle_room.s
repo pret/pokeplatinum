@@ -12,7 +12,7 @@
 
 _0016:
     GoToIfEq 0x40D9, 0, _0035
-    SetFlag 0x1CB
+    SetFlag FLAG_UNK_0x01CB
     ScrCmd_1DD 55, 0, 0x4000
     SetVar 0x4020, 0x4000
 _0035:
@@ -148,12 +148,12 @@ _0241:
     ScrCmd_1DD 33, 0, 0x8004
     BufferNumber 0, 0x8004
     Message 1
-    ScrCmd_044 31, 11, 0, 0, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_046 146, 0xFF, 0
-    ScrCmd_046 147, 0xFF, 1
-    ScrCmd_046 148, 0xFF, 2
-    ScrCmd_047
+    InitGlobalTextListMenu 31, 11, 0, 0x800C, NO_EXIT_ON_B
+    SetMenuXOriginToRight
+    AddListMenuEntry 146, 0
+    AddListMenuEntry 147, 1
+    AddListMenuEntry 148, 2
+    ShowListMenu
     CloseMessage
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _02AD
@@ -194,12 +194,12 @@ _02F7:
 
 _0336:
     Message 14
-    ScrCmd_044 31, 11, 0, 0, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_046 146, 0xFF, 0
-    ScrCmd_046 147, 0xFF, 1
-    ScrCmd_046 148, 0xFF, 2
-    ScrCmd_047
+    InitGlobalTextListMenu 31, 11, 0, 0x800C, NO_EXIT_ON_B
+    SetMenuXOriginToRight
+    AddListMenuEntry 146, 0
+    AddListMenuEntry 147, 1
+    AddListMenuEntry 148, 2
+    ShowListMenu
     CloseMessage
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0395
@@ -259,7 +259,7 @@ _0448:
 _045C:
     ScrCmd_1DD 41, 0, 0x800C
     SetVar 0x4021, 0x800C
-    ClearFlag 0x1CB
+    ClearFlag FLAG_UNK_0x01CB
     AddObject 1
     ApplyMovement 1, _0524
     WaitMovement
@@ -274,7 +274,7 @@ _047E:
 _0492:
     ApplyMovement 1, _0550
     WaitMovement
-    SetFlag 0x1CB
+    SetFlag FLAG_UNK_0x01CB
     RemoveObject 1
     Return
 
@@ -292,7 +292,7 @@ _04BA:
 
 _04CE:
     SetVar 0x4021, 169
-    ClearFlag 0x1CB
+    ClearFlag FLAG_UNK_0x01CB
     AddObject 1
     ApplyMovement 1, _05A8
     WaitMovement

@@ -18,7 +18,7 @@
     ScriptEntryEnd
 
 _0032:
-    GoToIfUnset 227, _003F
+    GoToIfUnset FLAG_UNK_0x00E3, _003F
     End
 
 _003F:
@@ -44,13 +44,13 @@ _007E:
     GoTo _008E
 
 _008E:
-    CallIfUnset 139, _00D8
-    CallIfSet 139, _00E0
+    CallIfUnset FLAG_UNK_0x008B, _00D8
+    CallIfSet FLAG_UNK_0x008B, _00E0
     BufferPlayerName 0
     PlaySound SEQ_GONIN
     Message 1
     WaitSound
-    SetFlag 139
+    SetFlag FLAG_UNK_0x008B
     SetVar 0x40B1, 1
     Message 2
     WaitABXPadPress
@@ -140,10 +140,9 @@ _0198:
     WaitMovement
     BufferPlayerName 0
     Message 5
-    SetVar 0x8004, 218
+    SetVar 0x8004, ITEM_SOOTHE_BELL
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _01EA
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _01EA
     GoTo _01DB
     End
 
@@ -211,7 +210,7 @@ _02CB:
     ClearHasPartner
     RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetFlag 227
+    SetFlag FLAG_UNK_0x00E3
     SetVar 0x40B1, 2
     ReleaseAll
     End
