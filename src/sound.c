@@ -5,6 +5,7 @@
 
 #include "constants/species.h"
 #include "generated/sdat.h"
+#include "global/utility.h"
 
 #include "communication_system.h"
 #include "heap.h"
@@ -348,8 +349,8 @@ static void Sound_LoadSoundEffectsForSceneWithState(u8 scene)
 static void Sound_Impl_PlayFieldBGM(u16 bgmID, int unused)
 {
     u8 *fieldBGMPaused = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED);
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM);
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT));
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM));
 
     int currentFieldBGM = Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FIELD_BGM));
 
@@ -430,7 +431,7 @@ void Sound_LoadSoundDataForFieldBGM(u16 seqID, u16 currentBankID)
 
 static void Sound_Impl_PlayBattleBGM(u16 bgmID, int unused)
 {
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT));
 
     Sound_Impl_PauseOrStopFieldBGM();
     SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_BGM_BANK));
@@ -442,7 +443,7 @@ static void Sound_Impl_PlayBattleBGM(u16 bgmID, int unused)
 
 static void sub_020048AC(u16 param0, int param1)
 {
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT));
 
     Sound_StopWaveOutAndSequences();
     Sound_ClearBGMPauseFlags();
@@ -452,7 +453,7 @@ static void sub_020048AC(u16 param0, int param1)
 
 void Sound_Impl_PlayContestBGM(u16 bgmID, int unused)
 {
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT));
 
     Sound_StopWaveOutAndSequences();
     Sound_LoadSoundEffectsForSceneWithState(SOUND_SCENE_CONTEST);
@@ -462,7 +463,7 @@ void Sound_Impl_PlayContestBGM(u16 bgmID, int unused)
 
 void sub_020048F0(u16 bgmID, int unused)
 {
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT));
 
     Sound_StopWaveOutAndSequences();
     Sound_LoadSoundEffectsForSceneWithState(7);
@@ -479,7 +480,7 @@ static void Sound_Impl_LoadSubSceneSoundData(u8 scene)
 
 static void Sound_Impl_PlayCutsceneBGM(u8 scene, u16 bgmID, int unused)
 {
-    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
+    UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT));
 
     Sound_StopWaveOutAndSequences();
     Sound_LoadSoundEffectsForSceneWithState(scene);
@@ -686,7 +687,7 @@ MICResult Sound_StartMicAutoSampling(MICAutoParam *param)
 
 MICResult Sound_StopMicAutoSampling(void)
 {
-    (void)SoundSystem_Get();
+    UNUSED(SoundSystem_Get());
     return MIC_StopAutoSampling();
 }
 
@@ -697,7 +698,7 @@ MICResult Sound_StartMicManualSampling(MICSamplingType type, void *buffer, MICCa
 
 NNSSndWaveOutHandle *Sound_GetWaveOutHandle(enum WaveOutChannel channel)
 {
-    (void)SoundSystem_Get();
+    UNUSED(SoundSystem_Get());
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
 
@@ -724,7 +725,7 @@ BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel channel)
 {
     NNSSndWaveOutHandle *handle;
 
-    (void)SoundSystem_Get();
+    UNUSED(SoundSystem_Get());
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
 
@@ -765,7 +766,7 @@ BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel channel)
 
 void Sound_FreeWaveOutChannel(enum WaveOutChannel channel)
 {
-    (void)SoundSystem_Get();
+    UNUSED(SoundSystem_Get());
 
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
@@ -851,7 +852,7 @@ void Sound_SetWaveOutVolume(enum WaveOutChannel channel, int volume)
 
 BOOL Sound_PlayWaveOutReversed(u16 waveArcID, int volume, int pan, enum WaveOutChannel channel, int heapID)
 {
-    (void)SoundSystem_Get();
+    UNUSED(SoundSystem_Get());
     void **reverseBuffer = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER);
 
     if (channel != WAVE_OUT_CHANNEL_PRIMARY && channel != WAVE_OUT_CHANNEL_SECONDARY) {
@@ -920,7 +921,7 @@ static void Sound_Impl_ReverseBuffer(u8 *buffer, u32 size)
 
 void Sound_StopWaveOutReversed(enum WaveOutChannel channel)
 {
-    (void)SoundSystem_Get();
+    UNUSED(SoundSystem_Get());
     u8 *reversedPlaybackEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK);
     void **reverseBuffer = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER);
 
@@ -943,7 +944,7 @@ BOOL Sound_IsCaptureActive(void)
 
 BOOL Sound_StartReverb(int volume)
 {
-    (void)SoundSystem_Get();
+    UNUSED(SoundSystem_Get());
     void *buffer = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CAPTURE_BUFFER);
     return NNS_SndCaptureStartReverb(buffer, 0x1000, (NNS_SND_CAPTURE_FORMAT_PCM16), 16000, volume);
 }
@@ -960,7 +961,7 @@ void Sound_SetReverbVolume(int targetVolume, int frames)
 
 BOOL Sound_StartFilter(void)
 {
-    (void)SoundSystem_Get();
+    UNUSED(SoundSystem_Get());
 
     MI_CpuClear8(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FILTER_CALLBACK_PARAM), sizeof(SoundFilterCallbackParam));
     return NNS_SndCaptureStartEffect(
@@ -1344,7 +1345,7 @@ void Sound_ConfigureBGMChannelsAndReverb(enum SoundChannelConfig config)
         Sound_StartReverb(15);
     }
 
-    (void)Sound_IsCaptureActive();
+    UNUSED(Sound_IsCaptureActive());
 }
 
 static void Sound_Impl_PauseOrStopFieldBGM(void)
