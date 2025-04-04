@@ -4,13 +4,13 @@
 #include "constants/savedata/save_table.h"
 
 #include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/struct_0202442C_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_defs/struct_0202440C.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0202F264.h"
 
+#include "mystery_gift.h"
 #include "savedata.h"
 
 typedef int (*SaveEntrySizeFunc)(void);

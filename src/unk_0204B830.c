@@ -8,7 +8,6 @@
 #include "generated/items.h"
 
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/union_0204C4D0.h"
 
 #include "field/field_system.h"
 
@@ -17,6 +16,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "math.h"
+#include "mystery_gift.h"
 #include "party.h"
 #include "pokemon.h"
 #include "poketch.h"
@@ -33,7 +33,6 @@
 #include "unk_020298BC.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D778.h"
-#include "unk_0202DAB4.h"
 #include "unk_0202F180.h"
 #include "unk_02054884.h"
 #include "unk_02092494.h"
@@ -68,30 +67,30 @@ static void sub_0204B830(UnkStruct_0204B830 *param0, FieldSystem *fieldSystem, S
 
 static int sub_0204B838(FieldSystem *fieldSystem)
 {
-    return sub_0202DF40(sub_0202DF18());
+    return MysteryGift_TryGetPgtType(MysteryGift_TryGetFirstValidPgtSlot());
 }
 
 static void *sub_0204B844(FieldSystem *fieldSystem)
 {
-    return sub_0202DF5C(sub_0202DF18());
+    return MysteryGift_TryGetPgtData(MysteryGift_TryGetFirstValidPgtSlot());
 }
 
 static void sub_0204B850(FieldSystem *fieldSystem)
 {
-    sub_0202DF78(sub_0202DF18());
+    MysteryGift_FreePgtSlot(MysteryGift_TryGetFirstValidPgtSlot());
 }
 
 BOOL ScrCmd_23E(ScriptContext *param0)
 {
     switch (ScriptContext_ReadHalfWord(param0)) {
     case 0:
-        sub_0202DEE4(param0->fieldSystem->saveData, 32);
+        MysteryGift_Load(param0->fieldSystem->saveData, 32);
         break;
     case 7:
-        sub_0202DF04(param0->fieldSystem->saveData, 0);
+        MysteryGift_Unload(param0->fieldSystem->saveData, 0);
         break;
     case 8:
-        sub_0202DF04(param0->fieldSystem->saveData, 1);
+        MysteryGift_Unload(param0->fieldSystem->saveData, 1);
         break;
     case 1: {
         u16 *v0 = ScriptContext_GetVarPointer(param0);
@@ -169,7 +168,7 @@ static void sub_0204BA88(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 
 static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(fieldSystem);
+    GiftData *v0 = sub_0204B844(fieldSystem);
     TrainerInfo *v1 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     VarsFlags *v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
     Party *v3;
@@ -182,8 +181,8 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
     u8 *v13;
     u8 *v14;
 
-    v4 = (Pokemon *)&v0->val1.unk_04;
-    v14 = (u8 *)&v0->val1.unk_F0;
+    v4 = &v0->pokemonGiftData.pokemon;
+    v14 = (u8 *)&v0->pokemonGiftData.specialRibbonsDescIDs;
     v12 = Pokemon_GetValue(v4, MON_DATA_MET_LOCATION, NULL);
     v8 = Pokemon_GetValue(v4, MON_DATA_PERSONALITY, NULL);
     v7 = Pokemon_GetValue(v4, MON_DATA_OT_ID, NULL);
@@ -270,7 +269,7 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
         v13[Ribbon_TryGetSpecialDescriptionID(RIBBON_HOENN_SKY)] = v14[9];
     }
 
-    if (v0->val1.unk_00 == 0) {
+    if (v0->pokemonGiftData.hasCustomOT == 0) {
         Strbuf *v15 = TrainerInfo_NameNewStrbuf(v1, 32);
         u32 v16 = TrainerInfo_ID(v1);
         u32 v17 = TrainerInfo_Gender(v1);
@@ -312,13 +311,13 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
 
 static void sub_0204BDEC(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
+    GiftData *v0 = sub_0204B844(param0->fieldSystem);
     Pokemon *v1;
 
     *param1 = 379;
     *param2 = 7;
 
-    v1 = (Pokemon *)&v0->val1.unk_04;
+    v1 = &v0->pokemonGiftData.pokemon;
 
     StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->fieldSystem->saveData));
     StringTemplate_SetSpeciesNameWithArticle(param0->unk_04, 1, Pokemon_GetBoxPokemon(v1));
@@ -337,13 +336,13 @@ static void sub_0204BE3C(FieldSystem *fieldSystem, void *param1)
 
 static void sub_0204BE44(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
+    GiftData *v0 = sub_0204B844(param0->fieldSystem);
     Pokemon *v1;
 
     *param1 = 379;
     *param2 = 8;
 
-    v1 = (Pokemon *)v0->val2.unk_04;
+    v1 = &v0->pokemonGiftData.pokemon;
 
     StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->fieldSystem->saveData));
     StringTemplate_SetSpeciesName(param0->unk_04, 1, Pokemon_GetBoxPokemon(v1));
@@ -352,25 +351,25 @@ static void sub_0204BE44(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 static BOOL sub_0204BE84(FieldSystem *fieldSystem, void *param1)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
+    GiftData *v1 = sub_0204B844(fieldSystem);
 
-    return Bag_CanFitItem(bag, v1->val3.item, 1, HEAP_ID_FIELD_TASK);
+    return Bag_CanFitItem(bag, v1->itemGiftData.item, 1, HEAP_ID_FIELD_TASK);
 }
 
 static void sub_0204BEAC(FieldSystem *fieldSystem, void *param1)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
+    GiftData *v1 = sub_0204B844(fieldSystem);
     u16 v2;
-    u16 v3 = v1->val3.item;
+    u16 v3 = v1->itemGiftData.item;
 
     Bag_TryAddItem(bag, v3, 1, HEAP_ID_FIELD_TASK);
 }
 
 static void sub_0204BED4(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
-    u16 v1 = v0->val3.item;
+    GiftData *v0 = sub_0204B844(param0->fieldSystem);
+    u16 v1 = v0->itemGiftData.item;
 
     *param1 = 379;
     *param2 = 9;
@@ -382,8 +381,8 @@ static void sub_0204BED4(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 static void sub_0204BF14(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
     Bag *bag = SaveData_GetBag(param0->fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(param0->fieldSystem);
-    u16 v2 = v1->val3.item;
+    GiftData *v1 = sub_0204B844(param0->fieldSystem);
+    u16 v2 = v1->itemGiftData.item;
 
     *param1 = 379;
     *param2 = 5;
@@ -398,7 +397,7 @@ static BOOL sub_0204BF48(FieldSystem *fieldSystem, void *param1)
 
 static void sub_0204BF4C(FieldSystem *fieldSystem, void *param1)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(fieldSystem);
+    GiftData *v0 = sub_0204B844(fieldSystem);
     const BattleRegulation *v1 = (const BattleRegulation *)v0;
 
     sub_0202613C(fieldSystem->saveData, v1);
@@ -406,7 +405,7 @@ static void sub_0204BF4C(FieldSystem *fieldSystem, void *param1)
 
 static void sub_0204BF60(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
+    GiftData *v0 = sub_0204B844(param0->fieldSystem);
     const BattleRegulation *v1 = (const BattleRegulation *)v0;
     Strbuf *v2;
 
@@ -439,16 +438,16 @@ static BOOL sub_0204BFC8(FieldSystem *fieldSystem, void *param1)
 
 static void sub_0204BFE0(FieldSystem *fieldSystem, void *param1)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(fieldSystem);
-    int v1 = v0->val4.unk_00;
+    GiftData *v0 = sub_0204B844(fieldSystem);
+    int v1 = v0->decorationGoodID;
 
     sub_0202895C(SaveData_GetUndergroundData(fieldSystem->saveData), v1);
 }
 
 static void sub_0204BFF8(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
-    int v1 = v0->val4.unk_00;
+    GiftData *v0 = sub_0204B844(param0->fieldSystem);
+    int v1 = v0->decorationGoodID;
 
     *param1 = 379;
     *param2 = 11;
@@ -465,9 +464,9 @@ static void sub_0204C034(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 
 static BOOL sub_0204C044(FieldSystem *fieldSystem, void *param1)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(fieldSystem);
-    int v1 = v0->val5.unk_00;
-    int v2 = v0->val5.unk_04;
+    GiftData *v0 = sub_0204B844(fieldSystem);
+    int v1 = v0->cosmeticGiftData.type;
+    int v2 = v0->cosmeticGiftData.id;
 
     switch (v1) {
     case 1:
@@ -483,9 +482,9 @@ static BOOL sub_0204C044(FieldSystem *fieldSystem, void *param1)
 
 static void sub_0204C07C(FieldSystem *fieldSystem, void *param1)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(fieldSystem);
-    int v1 = v0->val5.unk_00;
-    int v2 = v0->val5.unk_04;
+    GiftData *v0 = sub_0204B844(fieldSystem);
+    int v1 = v0->cosmeticGiftData.type;
+    int v2 = v0->cosmeticGiftData.id;
 
     switch (v1) {
     case 1:
@@ -502,9 +501,9 @@ static void sub_0204C07C(FieldSystem *fieldSystem, void *param1)
 
 static void sub_0204C0CC(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
-    int v1 = v0->val5.unk_00;
-    int v2 = v0->val5.unk_04;
+    GiftData *v0 = sub_0204B844(param0->fieldSystem);
+    int v1 = v0->cosmeticGiftData.type;
+    int v2 = v0->cosmeticGiftData.id;
 
     switch (v1) {
     case 1:
@@ -533,7 +532,7 @@ static void sub_0204C128(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 static BOOL sub_0204C138(FieldSystem *fieldSystem, void *param1)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
+    GiftData *v1 = sub_0204B844(fieldSystem);
 
     return Bag_CanFitItem(bag, ITEM_MEMBER_CARD, 1, HEAP_ID_FIELD_TASK);
 }
@@ -541,7 +540,7 @@ static BOOL sub_0204C138(FieldSystem *fieldSystem, void *param1)
 static void InitDarkraiEvent(FieldSystem *fieldSystem, void *dummy)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    UnkUnion_0204C4D0 *unused = sub_0204B844(fieldSystem);
+    GiftData *unused = sub_0204B844(fieldSystem);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     Bag_TryAddItem(bag, ITEM_MEMBER_CARD, 1, HEAP_ID_FIELD_TASK);
@@ -550,7 +549,7 @@ static void InitDarkraiEvent(FieldSystem *fieldSystem, void *dummy)
 
 static void sub_0204C190(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
+    GiftData *v0 = sub_0204B844(param0->fieldSystem);
     u16 v1 = 454;
 
     *param1 = 379;
@@ -563,7 +562,7 @@ static void sub_0204C190(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 static void sub_0204C1CC(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
     Bag *v0 = SaveData_GetBag(param0->fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(param0->fieldSystem);
+    GiftData *v1 = sub_0204B844(param0->fieldSystem);
     u16 v2 = 454;
 
     *param1 = 379;
@@ -575,7 +574,7 @@ static void sub_0204C1CC(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 static BOOL sub_0204C1FC(FieldSystem *fieldSystem, void *param1)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
+    GiftData *v1 = sub_0204B844(fieldSystem);
 
     return Bag_CanFitItem(bag, ITEM_OAKS_LETTER, 1, HEAP_ID_FIELD_TASK);
 }
@@ -583,7 +582,7 @@ static BOOL sub_0204C1FC(FieldSystem *fieldSystem, void *param1)
 static void InitShayminEvent(FieldSystem *fieldSystem, void *dummy)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    UnkUnion_0204C4D0 *unused = sub_0204B844(fieldSystem);
+    GiftData *unused = sub_0204B844(fieldSystem);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     Bag_TryAddItem(bag, ITEM_OAKS_LETTER, 1, HEAP_ID_FIELD_TASK);
@@ -596,7 +595,7 @@ static void InitShayminEvent(FieldSystem *fieldSystem, void *dummy)
 
 static void sub_0204C264(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
+    GiftData *v0 = sub_0204B844(param0->fieldSystem);
     u16 v1 = 452;
 
     *param1 = 379;
@@ -609,7 +608,7 @@ static void sub_0204C264(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 static void sub_0204C2A0(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
     Bag *v0 = SaveData_GetBag(param0->fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(param0->fieldSystem);
+    GiftData *v1 = sub_0204B844(param0->fieldSystem);
     u16 v2 = 452;
 
     *param1 = 379;
@@ -621,7 +620,7 @@ static void sub_0204C2A0(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 static BOOL sub_0204C2D0(FieldSystem *fieldSystem, void *param1)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
+    GiftData *v1 = sub_0204B844(fieldSystem);
 
     return Bag_CanFitItem(bag, ITEM_SECRET_KEY, 1, HEAP_ID_FIELD_TASK);
 }
@@ -629,7 +628,7 @@ static BOOL sub_0204C2D0(FieldSystem *fieldSystem, void *param1)
 static void InitRotomEvent(FieldSystem *fieldSystem, void *dummy)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    UnkUnion_0204C4D0 *unused = sub_0204B844(fieldSystem);
+    GiftData *unused = sub_0204B844(fieldSystem);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     Bag_TryAddItem(bag, ITEM_SECRET_KEY, 1, HEAP_ID_FIELD_TASK);
@@ -638,7 +637,7 @@ static void InitRotomEvent(FieldSystem *fieldSystem, void *dummy)
 
 static void sub_0204C328(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
+    GiftData *v0 = sub_0204B844(param0->fieldSystem);
     u16 v1 = 467;
 
     *param1 = 379;
@@ -651,7 +650,7 @@ static void sub_0204C328(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 static void sub_0204C364(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
     Bag *v0 = SaveData_GetBag(param0->fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(param0->fieldSystem);
+    GiftData *v1 = sub_0204B844(param0->fieldSystem);
     u16 v2 = 467;
 
     *param1 = 379;
@@ -663,7 +662,7 @@ static void sub_0204C364(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 static BOOL sub_0204C394(FieldSystem *fieldSystem, void *param1)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
+    GiftData *v1 = sub_0204B844(fieldSystem);
 
     return Bag_CanFitItem(bag, ITEM_AZURE_FLUTE, 1, HEAP_ID_FIELD_TASK);
 }
@@ -671,7 +670,7 @@ static BOOL sub_0204C394(FieldSystem *fieldSystem, void *param1)
 static void InitArceusEvent(FieldSystem *fieldSystem, void *dummy)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    UnkUnion_0204C4D0 *unused = sub_0204B844(fieldSystem);
+    GiftData *unused = sub_0204B844(fieldSystem);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     Bag_TryAddItem(bag, ITEM_AZURE_FLUTE, 1, HEAP_ID_FIELD_TASK);
@@ -680,7 +679,7 @@ static void InitArceusEvent(FieldSystem *fieldSystem, void *dummy)
 
 static void sub_0204C3EC(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
+    GiftData *v0 = sub_0204B844(param0->fieldSystem);
     u16 v1 = 455;
 
     *param1 = 379;
@@ -693,7 +692,7 @@ static void sub_0204C3EC(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 static void sub_0204C428(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
     Bag *v0 = SaveData_GetBag(param0->fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(param0->fieldSystem);
+    GiftData *v1 = sub_0204B844(param0->fieldSystem);
     u16 v2 = 455;
 
     *param1 = 379;
@@ -705,7 +704,7 @@ static void sub_0204C428(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 static BOOL sub_0204C458(FieldSystem *fieldSystem, void *param1)
 {
     Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
+    GiftData *v1 = sub_0204B844(fieldSystem);
 
     return Poketch_IsEnabled(poketch);
 }
@@ -713,25 +712,25 @@ static BOOL sub_0204C458(FieldSystem *fieldSystem, void *param1)
 static void sub_0204C474(FieldSystem *fieldSystem, void *param1)
 {
     Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
-    UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
+    GiftData *v1 = sub_0204B844(fieldSystem);
 
-    Poketch_RegisterApp(poketch, v1->val6.unk_00);
+    Poketch_RegisterApp(poketch, v1->poketchAppID);
 }
 
 static void sub_0204C494(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
+    GiftData *v0 = sub_0204B844(param0->fieldSystem);
 
     *param1 = 379;
     *param2 = 19;
 
     StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->fieldSystem->saveData));
-    StringTemplate_SetPoketchAppName(param0->unk_04, 1, v0->val6.unk_00);
+    StringTemplate_SetPoketchAppName(param0->unk_04, 1, v0->poketchAppID);
 }
 
 static void sub_0204C4D0(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 {
-    UnkUnion_0204C4D0 *v0 = sub_0204B844(param0->fieldSystem);
+    GiftData *v0 = sub_0204B844(param0->fieldSystem);
 
     *param1 = 379;
     *param2 = 20;
