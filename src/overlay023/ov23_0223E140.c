@@ -2730,7 +2730,7 @@ static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
 
     if (ov23_02240934(param0)) {
         sub_02029220(v2);
-        GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_02257740->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_30);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_02257740->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_30);
         param0->unk_00 = 14;
         param0->unk_08 = 25;
         param0->unk_50 = 1;

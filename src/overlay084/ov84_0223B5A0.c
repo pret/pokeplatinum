@@ -598,7 +598,7 @@ static void ov84_0223B9AC(UnkStruct_ov84_0223B5A0 *param0)
 {
     param0->unk_C8 = SaveData_GetBag(param0->unk_C4->unk_00);
     param0->unk_CC = SaveData_GetTrainerInfo(param0->unk_C4->unk_00);
-    param0->unk_D0 = SaveData_Options(param0->unk_C4->unk_00);
+    param0->unk_D0 = SaveData_GetOptions(param0->unk_C4->unk_00);
 }
 
 static SpecialEncounter *ov84_0223B9E4(UnkStruct_ov84_0223B5A0 *param0)

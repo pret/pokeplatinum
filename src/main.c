@@ -85,7 +85,7 @@ void NitroMain(void)
     sApplication.args.unk_00 = -1;
     sApplication.args.saveData = SaveData_Init();
 
-    sub_02003B60(GetChatotCryDataFromSave(sApplication.args.saveData), SaveData_Options(sApplication.args.saveData));
+    sub_02003B60(SaveData_GetChatotCry(sApplication.args.saveData), SaveData_GetOptions(sApplication.args.saveData));
     sub_02022844();
 
     if (sub_02038FFC(HEAP_ID_APPLICATION) == DWC_INIT_RESULT_DESTROY_OTHER_SETTING) {

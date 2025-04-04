@@ -180,7 +180,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 
     // dummy5 will always be false, so this branch will always be taken, but it doesn't match without the condition
     if (input->dummy5 == FALSE) {
-        BOOL hasTwoAliveMons = Party_HasTwoAliveMons(Party_GetFromSavedata(fieldSystem->saveData));
+        BOOL hasTwoAliveMons = Party_HasTwoAliveMons(SaveData_GetParty(fieldSystem->saveData));
 
         if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
             hasTwoAliveMons = TRUE;
@@ -212,7 +212,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;
         }
 
-        if (Party_HasMonWithMove(Party_GetFromSavedata(fieldSystem->saveData), MOVE_WATERFALL) != PARTY_SLOT_NONE) {
+        if (Party_HasMonWithMove(SaveData_GetParty(fieldSystem->saveData), MOVE_WATERFALL) != PARTY_SLOT_NONE) {
             playerEvent |= PLAYER_EVENT_USED_WATERFALL;
         }
 
@@ -689,7 +689,7 @@ u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
         u32 distortionBehavior = sub_02061760(fieldSystem->playerAvatar);
 
         if (ov5_021E0118(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, 3)) {
-            if (Party_HasMonWithMove(Party_GetFromSavedata(fieldSystem->saveData), MOVE_SURF) != PARTY_SLOT_NONE) {
+            if (Party_HasMonWithMove(SaveData_GetParty(fieldSystem->saveData), MOVE_SURF) != PARTY_SLOT_NONE) {
                 return 10004;
             }
         }
@@ -826,11 +826,11 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
 
 static BOOL Field_UpdateDaycare(FieldSystem *fieldSystem)
 {
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     Daycare *daycare = SaveData_GetDaycare(fieldSystem->saveData);
 
     if (Daycare_Update(daycare, party, fieldSystem) == TRUE) {
-        GameRecords *records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+        GameRecords *records = SaveData_GetGameRecords(fieldSystem->saveData);
 
         GameRecords_IncrementRecordValue(records, RECORD_EGGS_HATCHED);
         GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_UNK_15);
@@ -883,7 +883,7 @@ static void Field_CalculateFriendship(FieldSystem *fieldSystem)
 {
     // C99-style declarations don't match
     int i, partyCount;
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     u16 mapID = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
 
     partyCount = Party_GetCurrentCount(party);
@@ -896,7 +896,7 @@ static void Field_CalculateFriendship(FieldSystem *fieldSystem)
 
 static BOOL Field_UpdatePoison(FieldSystem *fieldSystem)
 {
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     u16 *poisonSteps = FieldOverworldState_GetPoisonStepCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     (*poisonSteps)++;

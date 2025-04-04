@@ -37,7 +37,7 @@ void Options_Init(Options *options)
 void Options_SetSystemButtonMode(SaveData *saveData, enum OptionsButtonMode mode)
 {
     if (saveData != NULL) {
-        mode = Options_ButtonMode(SaveData_Options(saveData));
+        mode = Options_ButtonMode(SaveData_GetOptions(saveData));
     }
 
     switch (mode) {

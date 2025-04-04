@@ -132,11 +132,11 @@ UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *param0, u16 param1, u8 param2
     }
 
     for (v7 = 0; v7 < 3; v7++) {
-        v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v9->unk_04), v9->unk_24[v7]);
+        v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(v9->unk_04), v9->unk_24[v7]);
         v9->unk_36A[v7] = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
     }
 
-    v2 = Party_GetFromSavedata(v9->unk_04);
+    v2 = SaveData_GetParty(v9->unk_04);
     v6 = ov104_0223B7A8(v9->unk_10, 0);
 
     for (v7 = 0; v7 < v6; v7++) {
@@ -661,7 +661,7 @@ void ov104_02236ED8(SaveData *param0, u8 param1, int param2)
         sub_02030804(sub_0203068C(param0), sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)), param2);
     }
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(param0), RECORD_UNK_065, param2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(param0), RECORD_UNK_065, param2);
     return;
 }
 

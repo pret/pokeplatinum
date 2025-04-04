@@ -207,8 +207,8 @@ void sub_020722AC(void *param0, int *param1)
     v0->heapID = HEAP_ID_43;
     v0->unk_19 = 0;
     v0->unk_1A = 0xFF;
-    v0->unk_16 = Options_TextFrameDelay(SaveData_Options(v1));
-    v0->unk_14 = Options_Frame(SaveData_Options(v1));
+    v0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(v1));
+    v0->unk_14 = Options_Frame(SaveData_GetOptions(v1));
 
     sub_02072ED0(v0->unk_1C, 20, v0->heapID);
     sub_02072F30(v0, v1, v0->heapID);
@@ -989,7 +989,7 @@ static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2)
         return;
     }
 
-    v1 = Party_GetFromSavedata(FieldSystem_GetSaveData(param0->fieldSystem));
+    v1 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
     v2 = Party_GetPokemonBySlotIndex(v1, param1);
 
     sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->heapID);
@@ -1202,9 +1202,9 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
         v0 = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
         MI_CpuClear8(v0, sizeof(PartyManagementData));
 
-        v0->unk_00 = Party_GetFromSavedata(FieldSystem_GetSaveData(param0->fieldSystem));
+        v0->unk_00 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
         v0->unk_04 = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_0C = SaveData_Options(FieldSystem_GetSaveData(param0->fieldSystem));
+        v0->unk_0C = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
         v0->unk_08 = sub_02028430(param0->fieldSystem->saveData);
         v0->unk_21 = 0;
         v0->unk_20 = param1;

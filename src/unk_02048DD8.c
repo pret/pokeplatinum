@@ -112,7 +112,7 @@ BOOL ScrCmd_236(ScriptContext *param0)
 
 BOOL ScrCmd_2B8(ScriptContext *param0)
 {
-    Party *v0 = Party_GetFromSavedata(param0->fieldSystem->saveData);
+    Party *v0 = SaveData_GetParty(param0->fieldSystem->saveData);
     Pokemon *v1 = Party_GetPokemonBySlotIndex(v0, ScriptContext_GetVar(param0));
 
     sub_0206D60C(param0->fieldSystem, v1);
@@ -162,7 +162,7 @@ BOOL ScrCmd_237(ScriptContext *param0)
     case 1: {
         u16 v4;
         u16 v5, v6;
-        GameRecords *v7 = SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData);
+        GameRecords *v7 = SaveData_GetGameRecords(param0->fieldSystem->saveData);
 
         v4 = ScriptContext_GetVar(param0);
         v5 = ScriptContext_GetVar(param0);
@@ -190,11 +190,11 @@ BOOL ScrCmd_238(ScriptContext *param0)
 
 BOOL ScrCmd_27C(ScriptContext *param0)
 {
-    TVBroadcast *v0 = SaveData_TVBroadcast(param0->fieldSystem->saveData);
+    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
 
     switch (ScriptContext_ReadHalfWord(param0)) {
     case 0: {
-        Party *v1 = Party_GetFromSavedata(param0->fieldSystem->saveData);
+        Party *v1 = SaveData_GetParty(param0->fieldSystem->saveData);
         Pokemon *v2 = Party_GetPokemonBySlotIndex(v1, ScriptContext_GetVar(param0));
 
         sub_0206CF48(v0, v2, 4);
@@ -237,7 +237,7 @@ static int sub_020491D0(int param0, FieldSystem *fieldSystem, StringTemplate *pa
 static BOOL sub_020491F4(FieldSystem *fieldSystem, int param1)
 {
     UnkFuncPtr_020EBB48_2 v0;
-    TVBroadcast *v1 = SaveData_TVBroadcast(fieldSystem->saveData);
+    TVBroadcast *v1 = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
     if (sub_0202E6B0(v1, 1, param1) == 0) {
         return 0;
@@ -263,7 +263,7 @@ static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, 
 
 static void sub_02049268(FieldSystem *fieldSystem, StringTemplate *param1)
 {
-    Party *v0 = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *v0 = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *v1 = Party_FindFirstHatchedMon(v0);
 
     StringTemplate_SetSpeciesName(param1, 0, Pokemon_GetBoxPokemon(v1));
@@ -278,7 +278,7 @@ static void sub_02049288(FieldSystem *fieldSystem, StringTemplate *param1)
 static void sub_020492A0(FieldSystem *fieldSystem, StringTemplate *param1)
 {
     u16 v0[10 + 1];
-    TVBroadcast *v1 = SaveData_TVBroadcast(fieldSystem->saveData);
+    TVBroadcast *v1 = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E7E4 *v2 = sub_0202E7E4(v1);
 
     MessageLoader_GetSpeciesName(v2->unk_02, 4, v0);
@@ -288,7 +288,7 @@ static void sub_020492A0(FieldSystem *fieldSystem, StringTemplate *param1)
 static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *param1)
 {
     u16 v0[10 + 1];
-    TVBroadcast *v1 = SaveData_TVBroadcast(fieldSystem->saveData);
+    TVBroadcast *v1 = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E810 *v2 = sub_0202E810(v1);
 
     MessageLoader_GetSpeciesName(v2->unk_02, 4, v0);
@@ -298,7 +298,7 @@ static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *param1)
 static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1)
 {
     Strbuf *v0;
-    TVBroadcast *v1 = SaveData_TVBroadcast(fieldSystem->saveData);
+    TVBroadcast *v1 = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E81C *v2 = sub_0202E81C(v1);
 
     v0 = Strbuf_Init(64, HEAP_ID_FIELD);
@@ -310,19 +310,19 @@ static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1)
 
 static BOOL sub_02049348(FieldSystem *fieldSystem)
 {
-    UnkStruct_0202E7FC *v0 = sub_0202E7FC(SaveData_TVBroadcast(fieldSystem->saveData));
+    UnkStruct_0202E7FC *v0 = sub_0202E7FC(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 
 static BOOL sub_02049358(FieldSystem *fieldSystem)
 {
-    Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
+    Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
     return Poketch_IsEnabled(poketch);
 }
 
 static BOOL sub_02049368(FieldSystem *fieldSystem)
 {
-    UnkStruct_0202E7D8 *v0 = sub_0202E7D8(SaveData_TVBroadcast(fieldSystem->saveData));
+    UnkStruct_0202E7D8 *v0 = sub_0202E7D8(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 
@@ -334,25 +334,25 @@ static BOOL sub_02049378(FieldSystem *fieldSystem)
 
 static BOOL sub_02049388(FieldSystem *fieldSystem)
 {
-    UnkStruct_0202E7F0 *v0 = sub_0202E7F0(SaveData_TVBroadcast(fieldSystem->saveData));
+    UnkStruct_0202E7F0 *v0 = sub_0202E7F0(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 
 static BOOL sub_02049398(FieldSystem *fieldSystem)
 {
-    UnkStruct_0202E7E4 *v0 = sub_0202E7E4(SaveData_TVBroadcast(fieldSystem->saveData));
+    UnkStruct_0202E7E4 *v0 = sub_0202E7E4(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 
 static BOOL sub_020493A8(FieldSystem *fieldSystem)
 {
-    UnkStruct_0202E810 *v0 = sub_0202E810(SaveData_TVBroadcast(fieldSystem->saveData));
+    UnkStruct_0202E810 *v0 = sub_0202E810(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 
 static BOOL sub_020493B8(FieldSystem *fieldSystem)
 {
-    UnkStruct_0202E81C *v0 = sub_0202E81C(SaveData_TVBroadcast(fieldSystem->saveData));
+    UnkStruct_0202E81C *v0 = sub_0202E81C(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 
@@ -384,7 +384,7 @@ BOOL ScrCmd_31B(ScriptContext *param0)
     UnkStruct_0202E808 *v1;
     u16 *v2 = ScriptContext_GetVarPointer(param0);
 
-    v0 = SaveData_TVBroadcast(param0->fieldSystem->saveData);
+    v0 = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
     v1 = sub_0202E808(v0);
     *v2 = v1->unk_07;
 
@@ -400,7 +400,7 @@ BOOL ScrCmd_329(ScriptContext *param0)
     u16 *v4 = ScriptContext_GetVarPointer(param0);
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
-    v0 = SaveData_TVBroadcast(param0->fieldSystem->saveData);
+    v0 = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
     v1 = sub_0202E81C(v0);
 
     switch (v1->unk_01) {

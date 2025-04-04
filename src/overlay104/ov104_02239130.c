@@ -63,9 +63,9 @@ BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
         break;
     case (30 + 16):
         *v7 = sub_0204AA04(v2);
-        v0 = SaveData_TVBroadcast(v8->unk_08);
+        v0 = SaveData_GetTVBroadcast(v8->unk_08);
         sub_0206D0C8(v0, *v7);
-        GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v8->unk_08), RECORD_UNK_068, *v7);
+        GameRecords_AddToRecordValue(SaveData_GetGameRecords(v8->unk_08), RECORD_UNK_068, *v7);
         break;
     case (30 + 25):
         *v7 = ov104_0223927C(v2, v6);

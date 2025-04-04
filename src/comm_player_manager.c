@@ -926,7 +926,7 @@ static void sub_02058644(int netId)
             sub_0202929C(underground);
 
             if (sub_020292B4(underground) == 50) {
-                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(sCommPlayerManager->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_37);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(sCommPlayerManager->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_37);
             }
         }
     }

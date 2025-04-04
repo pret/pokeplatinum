@@ -125,7 +125,7 @@ static CommManUnderground *sCommManUnderground = NULL;
 
 static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fieldSystem)
 {
-    u8 v0 = Options_TextFrameDelay(SaveData_Options(fieldSystem->saveData));
+    u8 v0 = Options_TextFrameDelay(SaveData_GetOptions(fieldSystem->saveData));
     int v1;
 
     sCommManUnderground = param0;

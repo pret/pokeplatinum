@@ -502,7 +502,7 @@ static void ov5_021DFF88(int param0, FieldSystem *fieldSystem, PlayerAvatar *pla
     v0->playerAvatar = playerAvatar;
 
     FieldSystem_CreateTask(fieldSystem, ov5_021DFFBC, v0);
-    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_055);
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_UNK_055);
 }
 
 static BOOL ov5_021DFFBC(FieldTask *param0)
@@ -836,7 +836,7 @@ static void ov5_021E0534(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar)
     v0->playerAvatar = playerAvatar;
 
     FieldSystem_CreateTask(fieldSystem, ov5_021E0560, v0);
-    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_056);
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_UNK_056);
 }
 
 static BOOL ov5_021E0560(FieldTask *param0)
@@ -1767,6 +1767,6 @@ static void ov5_021E1134(void *param0)
 
 static Pokemon *ov5_021E1140(FieldSystem *fieldSystem, int param1)
 {
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), param1);
+    Pokemon *v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), param1);
     return v0;
 }

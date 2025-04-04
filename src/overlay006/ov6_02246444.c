@@ -136,7 +136,7 @@ static UnkStruct_ov6_022465F4 *ov6_02246550(FieldSystem *fieldSystem, int param1
 
 UnkStruct_ov6_022465F4 *ov6_022465A0(FieldSystem *fieldSystem, int param1, int param2)
 {
-    TVBroadcast *v0 = SaveData_TVBroadcast(fieldSystem->saveData);
+    TVBroadcast *v0 = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
     if ((param1 == 4) || (param1 == 5)) {
         return ov6_02246550(fieldSystem, param2);

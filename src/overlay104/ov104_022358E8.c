@@ -335,7 +335,7 @@ BOOL ov104_02235BC0(UnkStruct_ov104_0222E930 *param0)
         *v17 = v3->unk_288[v15].unk_04[v16];
         break;
     case 18:
-        v2 = Party_GetFromSavedata(v11->unk_08);
+        v2 = SaveData_GetParty(v11->unk_08);
 
         for (v8 = 0; v8 < 3; v8++) {
             v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_24[v8]);

@@ -46,7 +46,7 @@ u8 Poffin_GetAttribute(Poffin *poffin, PoffinAttributeID attributeID);
 int sub_0202A9E4(Poffin *poffin, u8 *param1, u8 param2, BOOL isFoul);
 void Poffin_StoreAttributesToArray(Poffin *poffin, u8 *dest);
 u8 Poffin_CalcLevel(Poffin *poffin);
-PoffinCase *Poffin_GetSavedataBlock(SaveData *savedata);
+PoffinCase *SaveData_GetPoffinCase(SaveData *savedata);
 int Poffin_SaveSize(void);
 void Poffin_Init(PoffinCase *poffinCase);
 u16 Poffin_GetEmptyCaseSlot(PoffinCase *poffinCase);

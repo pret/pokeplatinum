@@ -315,7 +315,7 @@ static int ov97_02233B8C(GBAMigrator *migrator)
     switch (v4->unk_00) {
     case 0:
         CopySelectedMonToPalParkTransfer(migrator);
-        transferData = SaveData_PalParkTransfer(migrator->saveData);
+        transferData = SaveData_GetPalParkTransfer(migrator->saveData);
         PalParkTransfer_SaveTransferHistory(transferData, GetGBAPlayerTrainerId());
         v4->unk_00++;
         break;
@@ -407,7 +407,7 @@ static int ov97_02233B8C(GBAMigrator *migrator)
 static void ov97_02233CE4(GBAMigrator *migrator)
 {
     enum SaveResult result;
-    PalParkTransfer *transferData = SaveData_PalParkTransfer(migrator->saveData);
+    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(migrator->saveData);
 
     PalParkTransfer_SaveTransferHistory(transferData, GetGBAPlayerTrainerId());
     ResetLock(RESET_LOCK_SOFT_RESET);
@@ -422,7 +422,7 @@ static void CopySelectedMonToPalParkTransfer(GBAMigrator *migrator)
     u16 species;
     BoxPokemonGBA *boxMonGBA;
     Pokemon mon;
-    PalParkTransfer *transfer = SaveData_PalParkTransfer(migrator->saveData);
+    PalParkTransfer *transfer = SaveData_GetPalParkTransfer(migrator->saveData);
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(&mon);
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
@@ -1699,7 +1699,7 @@ static int GetCanMigrateStatus(GBAMigrator *migrator)
 {
     int timeDiff;
     u32 gbaTrainerId;
-    PalParkTransfer *transferData = SaveData_PalParkTransfer(migrator->saveData);
+    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(migrator->saveData);
 
     if (IsPalParkTransferMacAddressUnset(transferData) == FALSE) {
         if (MacAddressMatchesLastPalParkTransfer(transferData) == FALSE) {
@@ -1832,7 +1832,7 @@ static int GBAMigrator_Init(OverlayManager *param0, int *state)
 
     migrator->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     migrator->unk_14 = SaveData_GetTrainerInfo(migrator->saveData);
-    migrator->options = SaveData_Options(migrator->saveData);
+    migrator->options = SaveData_GetOptions(migrator->saveData);
     migrator->messageBoxFrame = Options_Frame(migrator->options);
     migrator->unk_12668 = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
     migrator->unk_1266C = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);

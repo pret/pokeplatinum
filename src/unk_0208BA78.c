@@ -266,7 +266,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
         }
 
         param0->unk_10->bagCursor = BagCursor_New(heapID);
-        param0->unk_10->records = SaveData_GetGameRecordsPtr(param0->saveData);
+        param0->unk_10->records = SaveData_GetGameRecords(param0->saveData);
 
         if (Overlay_LoadByID(FS_OVERLAY_ID(overlay62), 2) == 1) {
             ov62_02248408(sub_0202F264(), param0->unk_10, heapID);
