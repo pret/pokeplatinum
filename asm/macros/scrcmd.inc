@@ -12,6 +12,7 @@
 #include "generated/mart_seal_id.h"
 #include "generated/mart_specialties_id.h"
 #include "generated/moves.h"
+#include "generated/mystery_gift_delivery_stages.h"
 #include "generated/npc_trades.h"
 #include "generated/poketch_apps.h"
 #include "generated/roaming_slots.h"
@@ -3204,17 +3205,64 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_23E arg0, arg1=0, arg2=0
+    /* See the convenience macro below for the uses of destVar1 & destVar2 */
+    .macro MysteryGiftGive stage, destVar1ID=0, destVar2ID=0
     .short 574
-    .short \arg0
-    .if \arg0 == 1 || \arg0 == 2 || \arg0 == 3
-        .short \arg1
+    .short \stage
+    .if \stage == MYSTERY_GIFT_CHECK_AVAILABLE_PGT || \stage == MYSTERY_GIFT_GET_PGT_TYPE || \stage == MYSTERY_GIFT_CHECK_CAN_RECEIVE
+        .short \destVar1ID
     .else
-        .if \arg0 == 5 || \arg0 == 6
-            .short \arg1
-            .short \arg2
+        .if \stage == MYSTERY_GIFT_RECEIVED || \stage == MYSTERY_GIFT_CANT_RECEIVE
+            .short \destVar1ID
+            .short \destVar2ID
         .endif
     .endif
+    .endm
+
+    .macro LoadMysteryGift
+    MysteryGiftGive MYSTERY_GIFT_LOAD
+    .endm
+
+    .macro CheckAvailableMysteryGift destVarID
+    MysteryGiftGive MYSTERY_GIFT_CHECK_AVAILABLE_PGT, \destVarID
+    .endm
+
+    .macro GetMysteryGiftType destVarID
+    MysteryGiftGive MYSTERY_GIFT_GET_PGT_TYPE, \destVarID
+    .endm
+
+    .macro CheckCanReceiveMysteryGift destVarID
+    MysteryGiftGive MYSTERY_GIFT_CHECK_CAN_RECEIVE, \destVarID
+    .endm
+
+    .macro GiveMysteryGift
+    MysteryGiftGive MYSTERY_GIFT_GIVE
+    .endm
+
+    /*
+     * Loads necessary information about the mystery gift into the script's
+     * string loader and returns the text bank and entry ID of the message
+     * to be displayed after the player receives the mystery gift.
+     */
+    .macro PrepareMysteryGiftReceivedMsg destTextBank, destStringID
+    MysteryGiftGive MYSTERY_GIFT_RECEIVED, \destTextBank, \destStringID
+    .endm
+
+    /*
+     * Loads necessary information about the mystery gift into the script's
+     * string loader and returns the text bank and entry ID of the message
+     * to be displayed if the player can't receive the mystery gift.
+     */
+    .macro PrepareMysterGiftCantReceiveMsg destTextBank, destStringID
+    MysteryGiftGive MYSTERY_GIFT_CANT_RECEIVE, \destTextBank, \destStringID
+    .endm
+
+    .macro UnloadMysteryGift
+    MysteryGiftGive MYSTERY_GIFT_UNLOAD_RECEIVED
+    .endm
+
+    .macro UnloadMysteryGift2
+    MysteryGiftGive MYSTERY_GIFT_UNLOAD_NOT_RECEIVED
     .endm
 
     .macro Dummy23F
