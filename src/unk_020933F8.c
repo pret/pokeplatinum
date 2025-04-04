@@ -430,7 +430,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
         v0->unk_00.unk_E8[v2] = sub_02029C88(HEAP_ID_20);
     }
 
-    sub_020954F0(v0, 11, v0->unk_00.unk_10E, v0->unk_00.unk_10F, v0->unk_00.unk_110);
+    sub_020954F0(v0, HEAP_ID_FIELDMAP, v0->unk_00.unk_10E, v0->unk_00.unk_10F, v0->unk_00.unk_110);
     v0->unk_148 = Party_New(HEAP_ID_20);
 
     for (v2 = 0; v2 < 4; v2++) {
@@ -487,7 +487,7 @@ static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2)
     int v0 = 4 - 1;
     int v1;
 
-    sub_02094F04(param0, 11, v0, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_111, param1, param2);
+    sub_02094F04(param0, HEAP_ID_FIELDMAP, v0, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_111, param1, param2);
 
     for (v1 = 1; v1 < 4; v1++) {
         sub_02095380(&param0->unk_00.unk_10[v1], param0->unk_00.unk_00[v1], 20);

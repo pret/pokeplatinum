@@ -637,13 +637,13 @@ void ov17_0224A674(UnkStruct_ov17_0224A1EC *param0)
     v3 = MessageLoader_GetNewStrbuf(param0->unk_84, 7);
 
     for (v0 = 0; v0 < 3; v0++) {
-        ov17_0223F1E8(23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[0][v0], v1, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
+        ov17_0223F1E8(HEAP_ID_23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[0][v0], v1, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
         sub_020129D0(param0->unk_96C[0][v0].unk_00, 0);
 
-        ov17_0223F1E8(23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[1][v0], v2, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
+        ov17_0223F1E8(HEAP_ID_23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[1][v0], v2, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
         sub_020129D0(param0->unk_96C[1][v0].unk_00, 0);
 
-        ov17_0223F1E8(23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[2][v0], v3, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
+        ov17_0223F1E8(HEAP_ID_23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[2][v0], v3, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
         sub_020129D0(param0->unk_96C[2][v0].unk_00, 0);
     }
 

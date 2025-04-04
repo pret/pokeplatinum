@@ -1568,8 +1568,8 @@ void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1)
         v1 = TEXT_COLOR(5, 6, 0);
     }
 
-    ov17_0223F1E8(21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_1C8[param1], v0, FONT_SYSTEM, v1, 0, 33005, 0, 0, 0, 0, 15);
-    ov17_0223F1E8(21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_180[param1], param0->unk_00->unk_00.unk_D8[param1], FONT_SYSTEM, v1, 0, 33005, 0, 0, 0, 0, 15);
+    ov17_0223F1E8(HEAP_ID_21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_1C8[param1], v0, FONT_SYSTEM, v1, 0, 33005, 0, 0, 0, 0, 15);
+    ov17_0223F1E8(HEAP_ID_21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_180[param1], param0->unk_00->unk_00.unk_D8[param1], FONT_SYSTEM, v1, 0, 33005, 0, 0, 0, 0, 15);
 
     Strbuf_Free(v0);
 }

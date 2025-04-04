@@ -306,7 +306,7 @@ static void ov6_02245FDC(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02246018(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02243F2C(void);
 static void ov6_02243F50(void);
-static void *ov6_02245F44(u32 param0, int param1);
+static void *ov6_02245F44(u32 heapID, int param1);
 static void ov6_02243F74(FieldSystem *fieldSystem, int param1);
 static void ov6_02245D10(SysTask *param0, void *param1);
 
@@ -343,10 +343,10 @@ static void ov6_02243258(UnkStruct_ov6_02243258 *param0, int param1, int param2,
     param0->unk_19C = SpriteResourceCollection_New(param3, 1, HEAP_ID_FIELD);
     param0->unk_1A0 = SpriteResourceCollection_New(param4, 2, HEAP_ID_FIELD);
     param0->unk_1A4 = SpriteResourceCollection_New(param5, 3, HEAP_ID_FIELD);
-    param0->unk_1A8 = ov6_02245F44(4, (sizeof(UnkStruct_ov6_02243258_sub1)) * param2);
-    param0->unk_1AC = ov6_02245F44(4, (sizeof(UnkStruct_ov6_02243258_sub1)) * param3);
-    param0->unk_1B0 = ov6_02245F44(4, (sizeof(UnkStruct_ov6_02243258_sub1)) * param4);
-    param0->unk_1B4 = ov6_02245F44(4, (sizeof(UnkStruct_ov6_02243258_sub1)) * param5);
+    param0->unk_1A8 = ov6_02245F44(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02243258_sub1)) * param2);
+    param0->unk_1AC = ov6_02245F44(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02243258_sub1)) * param3);
+    param0->unk_1B0 = ov6_02245F44(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02243258_sub1)) * param4);
+    param0->unk_1B4 = ov6_02245F44(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02243258_sub1)) * param5);
 
     for (v0 = 0; v0 < param2; param0->unk_1A8[v0].unk_00 = param6, v0++) {
         (void)0;
@@ -715,7 +715,7 @@ static void ov6_02243950(UnkStruct_ov101_021D5D90 *param0)
     Sprite_SetDrawFlag(v2->unk_68, 1);
 
     v2->unk_6C = ov6_02245B4C(v2->unk_58.unk_00, v2->unk_58.unk_08);
-    v2->unk_70 = ov5_021F0EB0(v2->unk_58.fieldSystem, 4);
+    v2->unk_70 = ov5_021F0EB0(v2->unk_58.fieldSystem, HEAP_ID_FIELD);
 
     ov5_021F0F10(v2->unk_70, 1, -(FX32_ONE * 120), 12);
 
@@ -2497,7 +2497,7 @@ static void ov6_022456D4(UnkStruct_ov6_02243FFC *param0)
 
     v2->unk_60 = ov6_02245B4C(param0->unk_244, param0->unk_248);
     param0->unk_1C = 1;
-    v2->unk_64 = ov5_021F0EB0(param0->fieldSystem, 4);
+    v2->unk_64 = ov5_021F0EB0(param0->fieldSystem, HEAP_ID_FIELD);
 
     ov5_021F0F10(v2->unk_64, 1, -(FX32_ONE * 120), 12);
 
@@ -2878,7 +2878,7 @@ int (*const Unk_ov6_02249270[])(UnkStruct_ov6_02249270 *);
 
 SysTask *FieldTask_InitFlyLandingTask(FieldSystem *fieldSystem, int param1)
 {
-    UnkStruct_ov6_02249270 *v0 = ov6_02245F44(4, (sizeof(UnkStruct_ov6_02249270)));
+    UnkStruct_ov6_02249270 *v0 = ov6_02245F44(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02249270)));
 
     v0->unk_0C = param1;
     v0->fieldSystem = fieldSystem;

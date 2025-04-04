@@ -1509,7 +1509,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     Window_AddToTopLeftCorner(v5, &v1, v8, 16 / 8, 0, 0);
     Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
 
-    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 118);
+    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_118);
     CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
     if (param9 == 1) {

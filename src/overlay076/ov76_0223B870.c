@@ -153,7 +153,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     }
 
     v2 = 30000;
-    v3 = sub_02012898(&v5, NNS_G2D_VRAM_TYPE_2DSUB, 53);
+    v3 = sub_02012898(&v5, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_53);
     CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &param0->unk_D4.unk_16C[param1]);
 
     v0.unk_00 = param0->unk_D4.unk_160;

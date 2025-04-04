@@ -2600,7 +2600,7 @@ static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A9
         v1 = param10->unk_00;
     }
 
-    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, 5);
+    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_BATTLE);
     CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &v2);
 
     if (param9 == 1) {

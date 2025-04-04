@@ -12247,7 +12247,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     Window_AddToTopLeftCorner(v8, &v9, 12, 4, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v9, FONT_SYSTEM, v7, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
-    v10 = sub_02012898(&v9, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
+    v10 = sub_02012898(&v9, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_BATTLE);
     CharTransfer_AllocRange(v10, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v11);
 
     v12.unk_00 = param1->tmpPtr[0];

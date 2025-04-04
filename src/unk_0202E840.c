@@ -346,7 +346,7 @@ static void sub_0202ECB0(UnkStruct_0202E8C0 *param0, u32 param1, u8 param2, UnkS
     Heap_FreeToHeap(v2);
 }
 
-void sub_0202ED0C(SaveData *param0, int param1, u8 param2, const void **param3, int param4)
+void sub_0202ED0C(SaveData *param0, int param1, u8 param2, const void **param3, int heapID)
 {
     u8 v0, v1;
     u32 v2;
@@ -375,7 +375,7 @@ void sub_0202ED0C(SaveData *param0, int param1, u8 param2, const void **param3, 
     }
 
     for (v0 = 0; v0 < 13; v0++) {
-        sub_0202ECB0(v4, v2, v0, v3, v1, param4);
+        sub_0202ECB0(v4, v2, v0, v3, v1, heapID);
     }
 
     SaveData_SetChecksum(28);

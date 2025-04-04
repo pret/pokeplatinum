@@ -697,7 +697,7 @@ static void sub_02070F54(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    UnkStruct_020711C8 *v2 = sub_020711C8(11, param0->unk_04, fieldSystem->saveData);
+    UnkStruct_020711C8 *v2 = sub_020711C8(HEAP_ID_FIELDMAP, param0->unk_04, fieldSystem->saveData);
 
     menu->unk_22C = sub_02070F94;
     menu->unk_25C = v2;
@@ -708,7 +708,7 @@ static BOOL sub_02070F94(FieldTask *param0)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
-    void *v2 = ov6_02247530(fieldSystem, v1->unk_00, 4);
+    void *v2 = ov6_02247530(fieldSystem, v1->unk_00, HEAP_ID_FIELD);
 
     Heap_FreeToHeap(v1);
     FieldTask_InitJump(param0, ov6_02247554, v2);
@@ -746,7 +746,7 @@ static void sub_02071010(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     {
         UnkStruct_020711C8 *v2;
 
-        v2 = sub_020711C8(11, param0->unk_04, fieldSystem->saveData);
+        v2 = sub_020711C8(HEAP_ID_FIELDMAP, param0->unk_04, fieldSystem->saveData);
 
         v1->unk_22C = sub_02071050;
         v1->unk_25C = v2;
@@ -758,7 +758,7 @@ static BOOL sub_02071050(FieldTask *param0)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
-    void *v2 = ov6_02247488(fieldSystem, v1->unk_00, 11);
+    void *v2 = ov6_02247488(fieldSystem, v1->unk_00, HEAP_ID_FIELDMAP);
 
     void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove((LOCATION_EVENT_USED_DIG - LOCATION_EVENT_USED_CUT), fieldSystem->location->mapId, HEAP_ID_FIELD);
     JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
@@ -793,7 +793,7 @@ static void sub_020710D4(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     v1 = FieldTask_GetEnv(param0->unk_00);
 
-    v2 = sub_020711C8(11, param0->unk_04, fieldSystem->saveData);
+    v2 = sub_020711C8(HEAP_ID_FIELDMAP, param0->unk_04, fieldSystem->saveData);
     FieldSystem_StartFieldMap(fieldSystem);
 
     v1->unk_22C = ov5_021F101C;

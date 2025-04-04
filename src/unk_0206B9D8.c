@@ -179,13 +179,13 @@ static BOOL sub_0206BB94(FieldTask *param0)
 
     switch (v1->unk_04) {
     case 0:
-        v1->unk_04 = sub_0206B9D8(v1, v0, 11);
+        v1->unk_04 = sub_0206B9D8(v1, v0, HEAP_ID_FIELDMAP);
         break;
     case 1:
         v1->unk_04 = sub_0206BA84(v1, v0);
         break;
     case 2:
-        v1->unk_04 = sub_0206BAE0(v1, v0, 11);
+        v1->unk_04 = sub_0206BAE0(v1, v0, HEAP_ID_FIELDMAP);
         break;
     case 3:
         v1->unk_04 = sub_0206BB6C(v1, v0);

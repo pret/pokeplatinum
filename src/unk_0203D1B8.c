@@ -480,7 +480,7 @@ static BOOL sub_0203D444(FieldTask *param0)
         }
         break;
     case 2:
-        v1->unk_08 = sub_0203D670(fieldSystem, v1->heapID, 0);
+        v1->unk_08 = sub_0203D670(fieldSystem, v1->heapID, SUMMARY_MODE_NORMAL);
         v1->unk_08->monIndex = v1->unk_04->selectedMonSlot;
         FieldSystem_OpenSummaryScreen(fieldSystem, v1->unk_08);
         *v2 = 3;
@@ -571,7 +571,7 @@ void *sub_0203D644(FieldSystem *fieldSystem, int param1)
     return v0;
 }
 
-PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int param2)
+PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode)
 {
     PokemonSummary *v0;
     SaveData *v1;
@@ -590,7 +590,7 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int param2)
     v0->monIndex = 0;
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
-    v0->mode = param2;
+    v0->mode = mode;
     v0->dexMode = SaveData_GetDexMode(v1);
     v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->specialRibbons = sub_0202D79C(v1);
@@ -787,20 +787,20 @@ static void sub_0203D910(FieldSystem *fieldSystem, UnkStruct_02097728 *param1)
 
 UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 param3, int param4)
 {
-    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3, 11);
+    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3, HEAP_ID_FIELDMAP);
     sub_0203D910(fieldSystem, v0);
 
     return v0;
 }
 
-UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, int param3)
+UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, int heapID)
 {
     UnkStruct_02097728 *v0;
 
     if (param1 == 3) {
-        v0 = sub_020976F4(FieldSystem_GetSaveData(fieldSystem), param2, param3);
+        v0 = sub_020976F4(FieldSystem_GetSaveData(fieldSystem), param2, heapID);
     } else {
-        v0 = sub_0209767C(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3);
+        v0 = sub_0209767C(FieldSystem_GetSaveData(fieldSystem), param1, param2, heapID);
     }
 
     sub_0203D910(fieldSystem, v0);
@@ -808,9 +808,9 @@ UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2
     return v0;
 }
 
-UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int param2)
+UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int heapID)
 {
-    UnkStruct_02097728 *v0 = sub_020976BC(FieldSystem_GetSaveData(fieldSystem), param1, param2);
+    UnkStruct_02097728 *v0 = sub_020976BC(FieldSystem_GetSaveData(fieldSystem), param1, heapID);
     sub_0203D910(fieldSystem, v0);
 
     return v0;

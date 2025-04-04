@@ -962,7 +962,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
         v1 = param10->unk_00;
     }
 
-    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, 21);
+    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_21);
     CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &v2);
 
     if (param9 == 1) {

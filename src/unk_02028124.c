@@ -38,26 +38,26 @@ static const struct {
     { 0x1E6, 0x222, 0x1DF, 0x5 }
 };
 
-void sub_02028124(Mail *param0)
+void sub_02028124(Mail *mail)
 {
     int v0;
 
-    param0->unk_00 = 0;
-    param0->unk_04 = 0;
-    param0->unk_05 = gGameLanguage;
-    param0->unk_06 = gGameVersion;
-    param0->unk_07 = 0xFFFF;
+    mail->unk_00 = 0;
+    mail->unk_04 = 0;
+    mail->unk_05 = gGameLanguage;
+    mail->unk_06 = gGameVersion;
+    mail->unk_07 = 0xFFFF;
 
-    CharCode_FillWithEOS(param0->unk_08, 8);
+    CharCode_FillWithEOS(mail->unk_08, 8);
 
     for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_18[v0].val2 = 0xFFFF;
+        mail->unk_18[v0].val2 = 0xFFFF;
     }
 
-    param0->unk_1E = 0;
+    mail->unk_1E = 0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02014A84(&param0->unk_20[v0]);
+        sub_02014A84(&mail->unk_20[v0]);
     }
 }
 
@@ -72,10 +72,10 @@ BOOL sub_0202817C(Mail *param0)
 
 Mail *sub_0202818C(int heapID)
 {
-    Mail *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(Mail));
-    sub_02028124(v0);
+    Mail *mail = Heap_AllocFromHeapAtEnd(heapID, sizeof(Mail));
+    sub_02028124(mail);
 
-    return v0;
+    return mail;
 }
 
 void sub_020281A0(Mail *param0, Mail *param1)
@@ -295,13 +295,13 @@ int sub_02028494(UnkStruct_02028430 *param0, int param1)
     return 0;
 }
 
-Mail *sub_020284A8(UnkStruct_02028430 *param0, int param1, int param2, int param3)
+Mail *sub_020284A8(UnkStruct_02028430 *param0, int param1, int param2, int heapID)
 {
     Mail *v0 = NULL;
     Mail *v1;
 
     v0 = sub_02028538(param0, param1, param2);
-    v1 = sub_0202818C(param3);
+    v1 = sub_0202818C(heapID);
 
     if (v0 != NULL) {
         sub_020281A0(v0, v1);

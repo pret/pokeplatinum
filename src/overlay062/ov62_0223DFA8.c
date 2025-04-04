@@ -503,7 +503,7 @@ static BOOL ov62_0223E510 (UnkStruct_0208C06C * param0)
         ov62_02234540(param0, 1);
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
-        sub_020397C8(1, 102);
+        sub_020397C8(1, HEAP_ID_102);
         ov62_0223376C(param0, 1);
         param0->unk_08++;
         break;
@@ -844,7 +844,7 @@ static void ov62_0223EE88 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
     Window_Init(&v2);
     Window_AddToTopLeftCorner(param1->unk_14.unk_10, &v2, 20, 2, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
-    sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
+    sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, HEAP_ID_102);
     Strbuf_Free(v0);
     Window_Remove(&v2);
 }
@@ -1119,7 +1119,7 @@ static BOOL ov62_0223F348 (UnkStruct_0208C06C * param0)
         ov62_0223F06C(param0);
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
-        sub_020397C8(1, 102);
+        sub_020397C8(1, HEAP_ID_102);
         ov62_0223376C(param0, 1);
         param0->unk_08++;
         break;

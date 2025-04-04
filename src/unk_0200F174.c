@@ -60,7 +60,7 @@ static BOOL sub_0200F4C4(UnkStruct_0200F4C4 *param0, UnkStruct_0200F7A0 *param1,
 static void sub_0200F534(BOOL *param0, UnkStruct_0200F7A0 *param1);
 static BOOL sub_0200F550(UnkStruct_0200F7A0 *param0);
 static void sub_0200F564(int param0, UnkStruct_0200F4C4 *param1);
-static void sub_0200F5D4(UnkStruct_0200F7A0 *param0, int param1, int param2, int param3, int param4, void *param5, int param6, UnkStruct_02010658 *param7, UnkStruct_0200F600 *param8, int param9, u16 param10);
+static void sub_0200F5D4(UnkStruct_0200F7A0 *param0, int param1, int param2, int param3, int param4, void *param5, int param6, UnkStruct_02010658 *param7, UnkStruct_0200F600 *param8, int heapID, u16 param10);
 static void sub_0200F5C8(UnkStruct_0200F4C4 *param0, int param1, BOOL param2, BOOL param3);
 static u16 sub_0200F768(UnkStruct_0200F46C *param0, u16 param1);
 static u16 sub_0200F77C(const UnkStruct_0200F46C *param0);
@@ -379,7 +379,7 @@ static void sub_0200F5C8(UnkStruct_0200F4C4 *param0, int param1, BOOL param2, BO
     param0->unk_10 = param3;
 }
 
-static void sub_0200F5D4(UnkStruct_0200F7A0 *param0, int param1, int param2, int param3, int param4, void *param5, int param6, UnkStruct_02010658 *param7, UnkStruct_0200F600 *param8, int param9, u16 param10)
+static void sub_0200F5D4(UnkStruct_0200F7A0 *param0, int param1, int param2, int param3, int param4, void *param5, int param6, UnkStruct_02010658 *param7, UnkStruct_0200F600 *param8, int heapID, u16 param10)
 {
     param0->unk_00 = param1;
     param0->unk_04 = param2;
@@ -389,7 +389,7 @@ static void sub_0200F5D4(UnkStruct_0200F7A0 *param0, int param1, int param2, int
     param0->unk_10 = param6;
     param0->unk_18 = param7;
     param0->unk_1C = param8;
-    param0->unk_20 = param9;
+    param0->heapID = heapID;
     param0->unk_24 = param10;
 }
 

@@ -31,8 +31,8 @@ typedef struct UnkStruct_020393C8_t {
 static int inline inline_02039614(UnkStruct_020393C8 *param0);
 static int inline inline_02039614_1(int param0, int param1);
 static void sub_02039428(SysTask *param0, void *param1);
-static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 param3);
-static void sub_02039530(int param0, BOOL param1, u32 param2);
+static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 heapID);
+static void sub_02039530(int param0, BOOL param1, u32 heapID);
 static void sub_02039614(UnkStruct_020393C8 *param0);
 
 UnkStruct_020393C8 *sub_020393C8(u32 param0, u32 heapID, int param2, int param3, BOOL param4, const UnkStruct_020E5EB4 *param5[], int param6)
@@ -134,10 +134,10 @@ void sub_02039440(UnkStruct_020393C8 *param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02039474(UnkStruct_020393C8 *param0, BOOL param1, u32 param2)
+void sub_02039474(UnkStruct_020393C8 *param0, BOOL param1, u32 heapID)
 {
-    sub_020394D0(NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_10, (16 * 2 * 14), param2);
-    sub_02039530(NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_10, param2);
+    sub_020394D0(NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_10, (16 * 2 * 14), heapID);
+    sub_02039530(NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_10, heapID);
 
     param0->unk_11 = (param1) ? 1 : 2;
     param0->unk_12 = 1;
@@ -319,7 +319,7 @@ void sub_02039750(int param0, int param1, BOOL param2, int param3)
         sub_02039794();
     }
 
-    Unk_021C07D8 = sub_020393C8(0, 91, param0, param1, param2, Unk_02100A38, param3);
+    Unk_021C07D8 = sub_020393C8(0, HEAP_ID_91, param0, param1, param2, Unk_02100A38, param3);
 }
 
 void sub_02039794(void)
@@ -337,10 +337,10 @@ void sub_020397B0(int param0)
     }
 }
 
-void sub_020397C8(BOOL param0, u32 param1)
+void sub_020397C8(BOOL param0, u32 heapID)
 {
     if (Unk_021C07D8) {
-        sub_02039474(Unk_021C07D8, param0, param1);
+        sub_02039474(Unk_021C07D8, param0, heapID);
     }
 }
 

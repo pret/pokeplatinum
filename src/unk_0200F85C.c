@@ -88,7 +88,7 @@ typedef struct {
     int unk_1C;
     int unk_20;
     int unk_24;
-    int unk_28;
+    int heapID;
     int unk_2C;
     UnkStruct_02010658 *unk_30;
     UnkStruct_0200F600 *unk_34;
@@ -115,7 +115,7 @@ typedef struct {
     int unk_20;
     UnkStruct_02010658 *unk_24;
     UnkStruct_0200F600 *unk_28;
-    int unk_2C;
+    int heapID;
 } UnkStruct_02011360;
 
 typedef struct {
@@ -138,7 +138,7 @@ typedef struct {
     int unk_24;
     UnkStruct_02010658 *unk_28;
     UnkStruct_0200F600 *unk_2C;
-    int unk_30;
+    int heapID;
 } UnkStruct_02011568;
 
 typedef struct {
@@ -166,7 +166,7 @@ typedef struct {
     int unk_20;
     UnkStruct_02010658 *unk_24;
     UnkStruct_0200F600 *unk_28;
-    int unk_2C;
+    int heapID;
 } UnkStruct_0201184C;
 
 typedef struct {
@@ -193,7 +193,7 @@ typedef struct {
     int unk_20;
     int unk_24;
     int unk_28;
-    int unk_2C;
+    int heapID;
     UnkStruct_02010658 *unk_30;
     UnkStruct_0200F600 *unk_34;
 } UnkStruct_02011AFC;
@@ -220,7 +220,7 @@ typedef struct {
     int unk_20;
     int unk_24;
     int unk_28;
-    int unk_2C;
+    int heapID;
     UnkStruct_02010658 *unk_30;
     UnkStruct_0200F600 *unk_34;
 } UnkStruct_02011E04;
@@ -306,7 +306,7 @@ static void sub_020106A8(UnkStruct_02010658 *param0, int param1, int param2, int
 static void sub_02010710(UnkStruct_02010658 *param0, int param1, int param2, int param3);
 static void sub_02010728(UnkStruct_0201076C *param0, int param1, int param2, int param3, int param4);
 static void sub_0201076C(UnkStruct_0201076C *param0);
-static void sub_02010784(UnkStruct_0200F600 *param0, UnkStruct_0201076C *param1, u32 param2);
+static void sub_02010784(UnkStruct_0200F600 *param0, UnkStruct_0201076C *param1, u32 heapID);
 static void sub_0201079C(UnkStruct_0200F600 *param0, UnkStruct_0201076C *param1, u32 param2);
 static void sub_020107AC(SysTask *param0, void *param1);
 static void sub_020107D8(void *param0);
@@ -358,7 +358,7 @@ static void sub_02011E60(UnkStruct_02011E04 *param0);
 static void sub_02011F2C(UnkStruct_02011F2C *param0, int param1, int param2);
 static void sub_02011F44(UnkStruct_0200F7A0 *param0, UnkStruct_0200FE6C *param1);
 static BOOL sub_02011F88(UnkStruct_0200F7A0 *param0);
-static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int param7);
+static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID);
 static BOOL sub_020120D4(UnkStruct_020120D4 *param0);
 static void sub_02012134(UnkStruct_020120D4 *param0);
 static void sub_02012138(UnkStruct_020120D4 *param0);
@@ -367,7 +367,7 @@ static void sub_020121C4(UnkStruct_0200F7A0 *param0, UnkStruct_0201006C *param1)
 static BOOL sub_02012228(UnkStruct_0200F7A0 *param0);
 static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int param7);
 static BOOL sub_02012310(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1);
-static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int param7);
+static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID);
 static BOOL sub_020123F4(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1);
 
 BOOL sub_0200F85C(UnkStruct_0200F7A0 *param0)
@@ -1478,7 +1478,7 @@ static void sub_02010238(UnkStruct_0200F7A0 *param0, int param1)
     int v0, v1;
     UnkStruct_02010318 *v2;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->unk_20, sizeof(UnkStruct_02010318));
+    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010318));
     memset(param0->unk_14, 0, sizeof(UnkStruct_02010318));
     v2 = param0->unk_14;
 
@@ -1746,14 +1746,14 @@ static void sub_0201076C(UnkStruct_0201076C *param0)
     SysTask_ExecuteAfterVBlank(sub_020107AC, param0, 1023);
 }
 
-static void sub_02010784(UnkStruct_0200F600 *param0, UnkStruct_0201076C *param1, u32 param2)
+static void sub_02010784(UnkStruct_0200F600 *param0, UnkStruct_0201076C *param1, u32 heapID)
 {
-    sub_0200F6D8(param0, param1, sub_020107D8, param1->unk_309, param2);
+    sub_0200F6D8(param0, param1, sub_020107D8, param1->unk_309, heapID);
 }
 
-static void sub_0201079C(UnkStruct_0200F600 *param0, UnkStruct_0201076C *param1, u32 param2)
+static void sub_0201079C(UnkStruct_0200F600 *param0, UnkStruct_0201076C *param1, u32 heapID)
 {
-    sub_0200F704(param0, param1->unk_309, param2);
+    sub_0200F704(param0, param1->unk_309, heapID);
 }
 
 static void sub_020107AC(SysTask *param0, void *param1)
@@ -1849,7 +1849,7 @@ static void sub_02010CF4(UnkStruct_0200F7A0 *param0, const UnkStruct_0200F980 *p
 {
     UnkStruct_02010EA4 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->unk_20, sizeof(UnkStruct_02010EA4));
+    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010EA4));
 
     v0 = (UnkStruct_02010EA4 *)param0->unk_14;
 
@@ -1903,7 +1903,7 @@ static void sub_02010D94(UnkStruct_0200F7A0 *param0, const UnkStruct_0200F980 *p
 {
     UnkStruct_02010D94 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->unk_20, sizeof(UnkStruct_02010D94));
+    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010D94));
     v0 = (UnkStruct_02010D94 *)param0->unk_14;
 
     sub_02010E48(&v0->unk_00, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18);
@@ -1986,10 +1986,10 @@ static void sub_02010F2C(UnkStruct_0200F7A0 *param0, const UnkStruct_0200FB7C *p
 {
     UnkStruct_0201109C *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->unk_20, sizeof(UnkStruct_0201109C));
+    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0201109C));
     v0 = (UnkStruct_0201109C *)param0->unk_14;
 
-    sub_02010FC0(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->unk_20);
+    sub_02010FC0(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
 
     param0->unk_0C++;
 }
@@ -2046,7 +2046,7 @@ static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *p
     param0->unk_24 = 0;
     param0->unk_30 = param5;
     param0->unk_34 = param6;
-    param0->unk_28 = heapID;
+    param0->heapID = heapID;
     param0->unk_2C = param1->unk_0B;
 
     sub_02011180(param0);
@@ -2077,7 +2077,7 @@ static BOOL sub_0201109C(UnkStruct_0201109C *param0)
             sub_02011180(param0);
             SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
         } else {
-            sub_0200F704(param0->unk_34, param0->unk_00.unk_08, param0->unk_28);
+            sub_0200F704(param0->unk_34, param0->unk_00.unk_08, param0->heapID);
             return 1;
         }
     }
@@ -2151,10 +2151,10 @@ static void sub_02011204(UnkStruct_0200F7A0 *param0, const UnkStruct_0200FC2C *p
 {
     UnkStruct_02011360 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->unk_20, sizeof(UnkStruct_02011360));
+    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011360));
     v0 = (UnkStruct_02011360 *)param0->unk_14;
 
-    sub_02011298(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->unk_20);
+    sub_02011298(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
     param0->unk_0C++;
 }
 
@@ -2206,7 +2206,7 @@ static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *p
     param0->unk_1C = 0;
     param0->unk_24 = param5;
     param0->unk_28 = param6;
-    param0->unk_2C = heapID;
+    param0->heapID = heapID;
     param0->unk_20 = param1->unk_07;
 
     sub_020113B0(param0);
@@ -2237,7 +2237,7 @@ static BOOL sub_02011360(UnkStruct_02011360 *param0)
             sub_020113B0(param0);
             SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
         } else {
-            sub_0200F704(param0->unk_28, param0->unk_00.unk_08, param0->unk_2C);
+            sub_0200F704(param0->unk_28, param0->unk_00.unk_08, param0->heapID);
             return 1;
         }
     }
@@ -2263,10 +2263,10 @@ static void sub_02011408(UnkStruct_0200F7A0 *param0, const UnkStruct_0200FD34 *p
 {
     UnkStruct_02011568 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->unk_20, sizeof(UnkStruct_02011568));
+    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011568));
     v0 = (UnkStruct_02011568 *)param0->unk_14;
 
-    sub_02011494(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->unk_20);
+    sub_02011494(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
     param0->unk_0C++;
 }
 
@@ -2320,7 +2320,7 @@ static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *p
     param0->unk_20 = 0;
     param0->unk_28 = param5;
     param0->unk_2C = param6;
-    param0->unk_30 = heapID;
+    param0->heapID = heapID;
     param0->unk_24 = param1->unk_07;
 
     sub_020115B8(param0);
@@ -2351,7 +2351,7 @@ static BOOL sub_02011568(UnkStruct_02011568 *param0)
             sub_020115B8(param0);
             SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
         } else {
-            sub_0200F704(param0->unk_2C, param0->unk_00.unk_08, param0->unk_30);
+            sub_0200F704(param0->unk_2C, param0->unk_00.unk_08, param0->heapID);
             return 1;
         }
     }
@@ -2411,10 +2411,10 @@ static void sub_020116A0(UnkStruct_0200F7A0 *param0, const UnkStruct_02011738 *p
 {
     UnkStruct_0201184C *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->unk_20, sizeof(UnkStruct_0201184C));
+    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0201184C));
     v0 = (UnkStruct_0201184C *)param0->unk_14;
 
-    sub_02011738(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->unk_20);
+    sub_02011738(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
     param0->unk_0C++;
 }
 
@@ -2474,7 +2474,7 @@ static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *p
     param0->unk_1C = 0;
     param0->unk_24 = param5;
     param0->unk_28 = param6;
-    param0->unk_2C = heapID;
+    param0->heapID = heapID;
     param0->unk_20 = param1->unk_0E;
 
     sub_020118AC(param0);
@@ -2505,7 +2505,7 @@ static BOOL sub_0201184C(UnkStruct_0201184C *param0)
             sub_020118AC(param0);
             SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
         } else {
-            sub_0200F704(param0->unk_28, param0->unk_00.unk_08, param0->unk_2C);
+            sub_0200F704(param0->unk_28, param0->unk_00.unk_08, param0->heapID);
             return 1;
         }
     }
@@ -2562,11 +2562,11 @@ static void sub_02011960(UnkStruct_0200F7A0 *param0, UnkStruct_0200FEA4 *param1)
 {
     UnkStruct_02011AFC *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->unk_20, sizeof(UnkStruct_02011AFC));
+    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011AFC));
     memset(param0->unk_14, 0, sizeof(UnkStruct_02011AFC));
 
     v0 = param0->unk_14;
-    sub_02011A00(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->unk_20);
+    sub_02011A00(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
 
     param0->unk_0C++;
 }
@@ -2624,7 +2624,7 @@ static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1,
     param0->unk_24 = 0;
     param0->unk_30 = param5;
     param0->unk_34 = param6;
-    param0->unk_2C = heapID;
+    param0->heapID = heapID;
     param0->unk_28 = param1->unk_06;
 
     sub_02011C7C(&param0->unk_0C, param0->unk_1C, param0->unk_18);
@@ -2654,7 +2654,7 @@ static BOOL sub_02011AFC(UnkStruct_02011AFC *param0)
             sub_02011B58(param0);
             SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
         } else {
-            sub_0200F704(param0->unk_34, param0->unk_00.unk_08, param0->unk_2C);
+            sub_0200F704(param0->unk_34, param0->unk_00.unk_08, param0->heapID);
             return 1;
         }
     }
@@ -2737,11 +2737,11 @@ static void sub_02011C94(UnkStruct_0200F7A0 *param0, UnkStruct_0200FF30 *param1)
 {
     UnkStruct_02011E04 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->unk_20, sizeof(UnkStruct_02011E04));
+    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011E04));
     memset(param0->unk_14, 0, sizeof(UnkStruct_02011E04));
 
     v0 = param0->unk_14;
-    sub_02011D34(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->unk_20);
+    sub_02011D34(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
 
     param0->unk_0C++;
 }
@@ -2799,7 +2799,7 @@ static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1,
     param0->unk_24 = 0;
     param0->unk_30 = param5;
     param0->unk_34 = param6;
-    param0->unk_2C = heapID;
+    param0->heapID = heapID;
     param0->unk_28 = param1->unk_06;
 
     sub_02011E60(param0);
@@ -2828,7 +2828,7 @@ static BOOL sub_02011E04(UnkStruct_02011E04 *param0)
             sub_02011E60(param0);
             SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
         } else {
-            sub_0200F704(param0->unk_34, param0->unk_00.unk_08, param0->unk_2C);
+            sub_0200F704(param0->unk_34, param0->unk_00.unk_08, param0->heapID);
             return 1;
         }
     }
@@ -2891,11 +2891,11 @@ static void sub_02011F44(UnkStruct_0200F7A0 *param0, UnkStruct_0200FE6C *param1)
 {
     UnkStruct_020120D4 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->unk_20, sizeof(UnkStruct_020120D4));
+    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_020120D4));
     memset(param0->unk_14, 0, sizeof(UnkStruct_020120D4));
 
     v0 = param0->unk_14;
-    sub_02011FE8(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->unk_20);
+    sub_02011FE8(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
 
     param0->unk_0C++;
 }
@@ -2935,7 +2935,7 @@ static BOOL sub_02011F88(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int param7)
+static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID)
 {
     sub_02010728(&param0->unk_00, param4, 1, 0, 0);
 
@@ -2950,7 +2950,7 @@ static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1,
     param0->unk_30C = param1->unk_00;
     param0->unk_310 = param1->unk_04;
     param0->unk_324 = param1->unk_06;
-    param0->unk_328 = param7;
+    param0->unk_328 = heapID;
     param0->unk_314 = param2;
     param0->unk_318 = 0;
     param0->unk_31C = param3;
@@ -2958,7 +2958,7 @@ static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1,
     param0->unk_32C = param5;
     param0->unk_330 = param6;
 
-    sub_02010784(param6, &param0->unk_00, param7);
+    sub_02010784(param6, &param0->unk_00, heapID);
 
     if (param1->unk_06 == 1) {
         sub_020106A8(param5, GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 0, param4, 0, 0, 0, 0, param1->unk_06);
@@ -3055,15 +3055,15 @@ static void sub_020121C4(UnkStruct_0200F7A0 *param0, UnkStruct_0201006C *param1)
 {
     UnkStruct_02012290 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->unk_20, sizeof(UnkStruct_02012290));
+    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02012290));
     memset(param0->unk_14, 0, sizeof(UnkStruct_02012290));
 
     v0 = param0->unk_14;
 
     if (param1->unk_00.unk_0B == 0) {
-        sub_02012290(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->unk_20);
+        sub_02012290(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
     } else {
-        sub_02012384(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->unk_20);
+        sub_02012384(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
     }
 
     param0->unk_0C++;
@@ -3138,7 +3138,7 @@ static BOOL sub_02012310(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1)
         if (v0 == 1) {
             param0->unk_385++;
 
-            sub_02011FE8(&param0->unk_4C, &param0->unk_380->unk_0C, param0->unk_384, param1->unk_08, param1->unk_10, param1->unk_18, param1->unk_1C, param1->unk_20);
+            sub_02011FE8(&param0->unk_4C, &param0->unk_380->unk_0C, param0->unk_384, param1->unk_08, param1->unk_10, param1->unk_18, param1->unk_1C, param1->heapID);
         }
         break;
     case 1:
@@ -3157,7 +3157,7 @@ static BOOL sub_02012310(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1)
     return v1;
 }
 
-static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int param7)
+static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID)
 {
     int v0;
 
@@ -3168,7 +3168,7 @@ static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1,
     param0->unk_380 = param1;
     param0->unk_386 = param1->unk_00.unk_0B;
 
-    sub_02011FE8(&param0->unk_4C, &param0->unk_380->unk_0C, v0, param3, param4, param5, param6, param7);
+    sub_02011FE8(&param0->unk_4C, &param0->unk_380->unk_0C, v0, param3, param4, param5, param6, heapID);
 
     param0->unk_385 = 0;
 }

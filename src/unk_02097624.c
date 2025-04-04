@@ -49,8 +49,6 @@ BOOL sub_02097728(UnkStruct_02097728 *param0);
 int sub_0209772C(UnkStruct_02097728 *param0, int param1, u8 param2);
 int sub_02097750(UnkStruct_02097728 *param0, Pokemon *param1);
 void sub_02097770(UnkStruct_02097728 *param0);
-int sub_02097788(UnkStruct_02028430 *param0, Pokemon *param1, int param2);
-int sub_020977E4(UnkStruct_02028430 *param0, u16 param1, Pokemon *param2, int param3);
 void sub_020978D8(UnkStruct_020978D8 *param0);
 void sub_020978F0(Mail *param0, UnkStruct_020978D8 *param1);
 
@@ -168,7 +166,7 @@ void sub_02097770(UnkStruct_02097728 *param0)
     Heap_FreeToHeap(param0);
 }
 
-int sub_02097788(UnkStruct_02028430 *param0, Pokemon *param1, int param2)
+int sub_02097788(UnkStruct_02028430 *param0, Pokemon *param1, int heapID)
 {
     int v0;
     int v1 = 0;
@@ -180,7 +178,7 @@ int sub_02097788(UnkStruct_02028430 *param0, Pokemon *param1, int param2)
         return 0xFFFFFFFF;
     }
 
-    v2 = sub_0202818C(param2);
+    v2 = sub_0202818C(heapID);
 
     Pokemon_GetValue(param1, MON_DATA_MAIL, v2);
     sub_02028480(param0, 0, v0, v2);
@@ -192,12 +190,12 @@ int sub_02097788(UnkStruct_02028430 *param0, Pokemon *param1, int param2)
     return v0;
 }
 
-int sub_020977E4(UnkStruct_02028430 *param0, u16 param1, Pokemon *param2, int param3)
+int sub_020977E4(UnkStruct_02028430 *param0, u16 param1, Pokemon *param2, int heapID)
 {
     int v0 = 0;
     Mail *v1 = NULL;
 
-    v1 = sub_020284A8(param0, 0, param1, param3);
+    v1 = sub_020284A8(param0, 0, param1, heapID);
 
     if (v1 == NULL) {
         return 0xFFFFFFFF;

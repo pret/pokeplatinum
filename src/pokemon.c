@@ -231,7 +231,7 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
     Pokemon_SetValue(mon, MON_DATA_LEVEL, &monLevel);
 
-    Mail *v1 = sub_0202818C(0);
+    Mail *v1 = sub_0202818C(HEAP_ID_SYSTEM);
 
     Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
     Heap_FreeToHeap(v1);
@@ -3753,7 +3753,7 @@ void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
     Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &zero);
     Pokemon_SetValue(mon, MON_DATA_MAX_HP, &zero);
 
-    Mail *v1 = sub_0202818C(0);
+    Mail *v1 = sub_0202818C(HEAP_ID_SYSTEM);
     Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
     Heap_FreeToHeap(v1);
 

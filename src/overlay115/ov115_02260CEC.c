@@ -259,7 +259,7 @@ typedef struct {
     s16 unk_96;
     u16 unk_98;
     s16 unk_9A;
-    u32 unk_9C;
+    u32 heapID;
 } UnkStruct_ov115_02265788;
 
 typedef struct {
@@ -4369,7 +4369,7 @@ static void ov115_022653F4(UnkStruct_ov115_02261ADC *param0, s16 param1, u16 par
 
 static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, u32 heapID)
 {
-    param0->unk_9C = heapID;
+    param0->heapID = heapID;
 
     {
         BOOL v0;
@@ -4478,7 +4478,7 @@ static void ov115_02265700(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         Strbuf_FormatInt(param0->unk_5C, param2, 2, 2, 1);
         Window_AddToTopLeftCorner(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
         Text_AddPrinterWithParamsAndColor(&param0->unk_38, FONT_SYSTEM, param0->unk_5C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-        sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->unk_9C);
+        sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->heapID);
         Window_Remove(&param0->unk_38);
     }
 
@@ -4507,7 +4507,7 @@ static void ov115_022657A8(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
             Strbuf_FormatInt(param0->unk_5C, param2, 2, 2, 1);
             Window_AddToTopLeftCorner(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
             Text_AddPrinterWithParamsAndColor(&param0->unk_38, FONT_SYSTEM, param0->unk_5C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-            sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->unk_9C);
+            sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->heapID);
             Window_Remove(&param0->unk_38);
         }
 

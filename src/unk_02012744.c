@@ -61,15 +61,14 @@ typedef struct UnkStruct_02012B20_t {
 static void sub_02012CD0(FontOAM *param0);
 static FontOAM *sub_02012CE0(const UnkStruct_02012744 *param0);
 static int sub_02012D08(int param0, int param1);
-static BOOL sub_02012D34(UnkStruct_02012D34 *param0, UnkStruct_02013034 *param1, int param2);
-static int sub_02012DE4(int param0, int param1, int param2, UnkStruct_02013034 *param3);
-static void sub_02012E6C(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int param5);
-static int sub_02012EE0(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int param5, int param6, int param7);
+static int sub_02012DE4(int param0, int param1, int heapID, UnkStruct_02013034 *param3);
+static void sub_02012E6C(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int heapID);
+static int sub_02012EE0(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int param5, int param6, int heapID);
 static int sub_02013034(const UnkStruct_02013034 *param0, int param1);
 static void sub_02013088(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2, FontOAM *param3);
 static Sprite *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2);
 static void sub_020130DC(FontOAM *param0);
-static UnkStruct_02013034 *sub_02013188(int param0);
+static UnkStruct_02013034 *sub_02013188(int heapID);
 static void sub_020131A4(UnkStruct_02013034 *param0);
 static void sub_020131B8(UnkStruct_02013034 *param0);
 static void sub_020131D0(UnkStruct_02013034 *param0, UnkStruct_02013034 *param1);
@@ -171,7 +170,7 @@ void sub_02012870(FontOAM *param0)
     sub_02012CD0(param0);
 }
 
-int sub_02012898(const Window *param0, int param1, int param2)
+int sub_02012898(const Window *param0, int param1, int heapID)
 {
     UnkStruct_02013034 v0;
     int v1;
@@ -179,7 +178,7 @@ int sub_02012898(const Window *param0, int param1, int param2)
     v0.unk_0C = &v0;
     v0.unk_10 = &v0;
 
-    sub_02012DE4(param0->width, param0->height, param2, &v0);
+    sub_02012DE4(param0->width, param0->height, heapID, &v0);
     v1 = sub_02013034(&v0, param1);
     sub_020131B8(&v0);
 
@@ -462,13 +461,13 @@ static int sub_02012D08(int param0, int param1)
     return 12;
 }
 
-static BOOL sub_02012D34(UnkStruct_02012D34 *param0, UnkStruct_02013034 *param1, int param2)
+static BOOL sub_02012D34(UnkStruct_02012D34 *param0, UnkStruct_02013034 *param1, int heapID)
 {
     UnkStruct_02013034 *v0;
     int v1;
     int v2;
 
-    v0 = sub_02013188(param2);
+    v0 = sub_02013188(heapID);
     sub_020131D0(v0, param1->unk_10);
 
     v0->unk_08 = sub_02012D08(param0->unk_00.unk_08, param0->unk_00.unk_0C);
@@ -503,7 +502,7 @@ static BOOL sub_02012D34(UnkStruct_02012D34 *param0, UnkStruct_02013034 *param1,
     return 0;
 }
 
-static int sub_02012DE4(int param0, int param1, int param2, UnkStruct_02013034 *param3)
+static int sub_02012DE4(int param0, int param1, int heapID, UnkStruct_02013034 *param3)
 {
     UnkStruct_02012DE4 v0;
     UnkStruct_02012D34 v1;
@@ -533,7 +532,7 @@ static int sub_02012DE4(int param0, int param1, int param2, UnkStruct_02013034 *
 
         do {
             v3++;
-        } while (sub_02012D34(&v1, param3, param2) == 0);
+        } while (sub_02012D34(&v1, param3, heapID) == 0);
 
         v1.unk_00 = v0;
     }
@@ -541,7 +540,7 @@ static int sub_02012DE4(int param0, int param1, int param2, UnkStruct_02013034 *
     return v3;
 }
 
-static void sub_02012E6C(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int param5)
+static void sub_02012E6C(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int heapID)
 {
     UnkStruct_02013034 *v0;
     int v1;
@@ -560,7 +559,7 @@ static void sub_02012E6C(const Window *param0, const UnkStruct_02013034 *param1,
 
     while (v0 != param1) {
         NNS_G2dInitImageProxy(param2 + v1);
-        param3 = sub_02012EE0(param0, v0, param2 + v1, v2, v3, param3, param4, param5);
+        param3 = sub_02012EE0(param0, v0, param2 + v1, v2, v3, param3, param4, heapID);
         v0 = v0->unk_0C;
         v1++;
     }
