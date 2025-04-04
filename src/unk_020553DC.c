@@ -243,7 +243,7 @@ BOOL sub_02055554(FieldSystem *fieldSystem, u16 param1, int param2)
         return 0;
     }
 
-    if (param1 == Sound_GetCurrentBGM(fieldSystem)) {
+    if (param1 == Sound_GetCurrentBGM1(fieldSystem)) {
         return 0;
     }
 

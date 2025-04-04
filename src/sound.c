@@ -56,7 +56,7 @@ void Sound_SetCurrentBGM(u16 bgmID)
     Sound_SetNextBGM(0);
 }
 
-u16 Sound_GetCurrentBGM(void)
+u16 Sound_Impl_GetCurrentBGM(void)
 {
     u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_BGM);
     return *param;
