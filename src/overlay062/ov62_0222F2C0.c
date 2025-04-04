@@ -104,7 +104,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
         UnkStruct_0208B284 v2;
 
         v2.unk_00 = 12;
-        v2.unk_04 = 102;
+        v2.heapID = HEAP_ID_102;
         v2.unk_08 = 1;
         v2.unk_0C = param0->unk_00;
         v2.unk_10 = (256 * FX32_ONE);

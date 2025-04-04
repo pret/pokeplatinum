@@ -1737,7 +1737,7 @@ static void ov9_0224A1E4(UnkStruct_ov9_02249B04 *param0, int param1)
     v0->unk_04 = Heap_AllocFromHeap(HEAP_ID_FIELD, param1);
 
     memset(v0->unk_04, 0, param1);
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_10, 4, 4);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_10, HEAP_ID_FIELD, 4);
 
     v0->unk_08 = ov5_021DF5C0(param0->fieldSystem->unk_40, 197, 1);
     v0->unk_0C = NNS_G3dGetAnmByIdx(v0->unk_08, 0);

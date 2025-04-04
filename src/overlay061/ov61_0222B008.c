@@ -82,7 +82,7 @@ int ov61_0222B008(UnkStruct_ov62_022349A8 *param0, const UnkStruct_ov62_02241130
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov62_022349A8));
 
-    param0->unk_144 = param1->unk_04;
+    param0->unk_144 = param1->heapID;
     param0->unk_00 = param1->unk_08;
     param0->unk_150 = param1->unk_0C;
     param0->unk_08 = param1->unk_3C;
@@ -90,14 +90,14 @@ int ov61_0222B008(UnkStruct_ov62_022349A8 *param0, const UnkStruct_ov62_02241130
     param0->unk_14C = -1;
     param0->unk_3E8 = 23004;
     param0->unk_3EC = 23004;
-    param0->unk_3B4 = Heap_AllocFromHeap(param1->unk_04, ov61_0222DE8C(-1));
+    param0->unk_3B4 = Heap_AllocFromHeap(param1->heapID, ov61_0222DE8C(-1));
 
     MI_CpuClear8(param0->unk_3B4, ov61_0222DE8C(-1));
 
-    param0->unk_3F4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, param1->unk_04);
-    param0->unk_3F8 = StringTemplate_Default(param1->unk_04);
-    param0->unk_3FC = Strbuf_Init((16 * 8 * 2), param1->unk_04);
-    param0->unk_18C = ov61_0222BBF0(param1->unk_04);
+    param0->unk_3F4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, param1->heapID);
+    param0->unk_3F8 = StringTemplate_Default(param1->heapID);
+    param0->unk_3FC = Strbuf_Init((16 * 8 * 2), param1->heapID);
+    param0->unk_18C = ov61_0222BBF0(param1->heapID);
     param0->unk_0C.unk_00 = param1->unk_00;
     param0->unk_0C.unk_04 = GAME_VERSION;
     param0->unk_0C.unk_05 = GAME_LANGUAGE;

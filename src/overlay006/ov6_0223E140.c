@@ -1076,7 +1076,7 @@ static void ov6_0223EB4C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     v0->unk_10C = MapObjMan_LocalMapObjByIndex(v0->fieldSystem->mapObjMan, 0);
     v0->unk_110 = Player_MapObject(sub_0205EF3C(v0->fieldSystem));
 
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_C0, 4, 32);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_C0, HEAP_ID_FIELD, 32);
     ov6_0223EA98(v0);
     GX_SetMasterBrightness(v0->unk_0C);
 
@@ -2003,7 +2003,7 @@ UnkStruct_ov6_022400A8 *ov6_02240074(FieldSystem *fieldSystem)
     v0->fieldSystem = fieldSystem;
     v0->unk_12C = 5;
 
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_11C, 4, 32);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_11C, HEAP_ID_FIELD, 32);
 
     return v0;
 }
