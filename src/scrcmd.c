@@ -138,6 +138,7 @@
 #include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_game_corner_prize.h"
 #include "scrcmd_jubilife_lottery.h"
+#include "scrcmd_mystery_gift.h"
 #include "scrcmd_shop.h"
 #include "scrcmd_system_flags.h"
 #include "script_manager.h"
@@ -177,7 +178,6 @@
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
 #include "unk_0204B64C.h"
-#include "unk_0204B830.h"
 #include "unk_0204C500.h"
 #include "unk_0204C6C8.h"
 #include "unk_0204C8F0.h"
@@ -1339,7 +1339,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_23B,
     ScrCmd_23C,
     ScrCmd_23D,
-    ScrCmd_23E,
+    ScrCmd_MysteryGiftGive,
     ScrCmd_Dummy23F,
     ScrCmd_Dummy240,
     ScrCmd_Dummy241,

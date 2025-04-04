@@ -8,6 +8,8 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
+#define NUM_MAX_DECORATION_GOODS 200
+
 int Underground_SaveSize(void);
 int sub_02028554(void);
 int sub_02028558(void);

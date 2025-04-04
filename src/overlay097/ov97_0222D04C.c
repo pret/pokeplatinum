@@ -6,13 +6,12 @@
 #include "overlay097/ov97_0222D2F8.h"
 #include "overlay097/ov97_0222D30C.h"
 #include "overlay097/struct_ov97_0222D04C.h"
-#include "overlay097/struct_ov97_0222D250.h"
-#include "overlay097/union_ov97_0222D2B0.h"
 
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "main.h"
+#include "mystery_gift.h"
 #include "overlay_manager.h"
 #include "savedata.h"
 #include "sys_task.h"
@@ -33,7 +32,7 @@ typedef struct {
     u8 unk_26;
     u8 unk_27;
     TrainerInfo *unk_28[16];
-    UnkUnion_ov97_0222D2B0 unk_68;
+    WonderCard unk_68;
     u8 unk_3C0;
     u8 unk_3C1[16];
 } UnkStruct_ov97_0223F1A4;
@@ -201,14 +200,14 @@ void ov97_0222D234(int param0)
 int ov97_0222D250(UnkStruct_ov97_0222D04C *param0)
 {
     int v0;
-    UnkStruct_ov97_0222D250 *v1;
+    WonderCardMetadata *v1;
 
     for (v0 = 0; v0 < 16; v0++) {
-        v1 = (UnkStruct_ov97_0222D250 *)sub_02034168(v0);
+        v1 = (WonderCardMetadata *)sub_02034168(v0);
 
         if (v1) {
-            if (v1->unk_4C) {
-                memcpy(&param0->unk_8C.unk_00, v1, sizeof(UnkStruct_ov97_0222D250));
+            if (v1->id) {
+                memcpy(&param0->unk_8C.unk_00, v1, sizeof(WonderCardMetadata));
                 return v0;
             }
         }
@@ -233,7 +232,7 @@ int ov97_0222D2A0(void)
 
 int ov97_0222D2B0(void)
 {
-    return sizeof(UnkUnion_ov97_0222D2B0);
+    return sizeof(WonderCard);
 }
 
 u8 *ov97_0222D2B8(int param0, void *param1, int param2)
