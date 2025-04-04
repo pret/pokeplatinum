@@ -4,7 +4,6 @@
 #include <dwc.h>
 
 #include "overlay097/struct_ov97_0223829C.h"
-#include "overlay097/union_ov97_0222D2B0.h"
 
 #include "bg_window.h"
 #include "game_options.h"
@@ -77,7 +76,7 @@ typedef struct {
     // clang-format on
 
     Window unk_26E0;
-    UnkUnion_ov97_0222D2B0 unk_26F0;
+    WonderCard unk_26F0;
     void (*unk_2A48)(void *);
     int unk_2A4C;
     void *unk_2A50;
