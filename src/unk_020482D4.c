@@ -189,7 +189,7 @@ BOOL ScrCmd_059(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    if (IsChatotCryStructReadyForProcessing(GetChatotCryDataFromSave(ctx->fieldSystem->saveData)) == TRUE) {
+    if (IsChatotCryStructReadyForProcessing(SaveData_GetChatotCry(ctx->fieldSystem->saveData)) == TRUE) {
         *v0 = 1;
         return FALSE;
     }
@@ -219,7 +219,7 @@ BOOL ScrCmd_05B(ScriptContext *param0)
 
 BOOL ScrCmd_05C(ScriptContext *param0)
 {
-    StoreMicDataInChatotCryStruct(GetChatotCryDataFromSave(param0->fieldSystem->saveData));
+    StoreMicDataInChatotCryStruct(SaveData_GetChatotCry(param0->fieldSystem->saveData));
     return 1;
 }
 

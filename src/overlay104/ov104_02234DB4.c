@@ -113,7 +113,7 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *param0, u16 param1, u8 param2
     }
 
     for (v5 = 0; v5 < v4; v5++) {
-        v9 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v10->unk_6FC), v10->unk_260[v5]);
+        v9 = Party_GetPokemonBySlotIndex(SaveData_GetParty(v10->unk_6FC), v10->unk_260[v5]);
         v10->unk_728[v5] = Pokemon_GetValue(v9, MON_DATA_HELD_ITEM, NULL);
     }
 
@@ -266,7 +266,7 @@ void ov104_0223526C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
     sub_02030140(param0->unk_6F8, 0, 0, 0, v1);
     sub_0203012C(param0->unk_6F8, 1);
 
-    v10 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_6FC), param0->unk_260[0]);
+    v10 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->unk_6FC), param0->unk_260[0]);
     v9 = Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL);
     v8 = sub_02030698(v4, sub_0205E55C(param0->unk_04), sub_0205E6A8(sub_0205E55C(param0->unk_04)));
     v1[0] = param0->unk_05;

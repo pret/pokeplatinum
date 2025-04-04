@@ -911,7 +911,7 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
 
     v3 = FieldBattleDTO_New(param0->unk_04, ov104_0223A700(param0->unk_0F));
     v4 = param1->unk_08;
-    v5 = Party_GetFromSavedata(v4);
+    v5 = SaveData_GetParty(v4);
 
     FieldBattleDTO_InitFromGameState(v3, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
 

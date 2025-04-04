@@ -449,7 +449,7 @@ BOOL ScrCmd_JudgeStats(ScriptContext *ctx)
     u16 *highestIVIndex = ScriptContext_GetVarPointer(ctx);
     u16 *highestIVValue = ScriptContext_GetVarPointer(ctx);
 
-    Pokemon *targetPokemon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), selectedIndex);
+    Pokemon *targetPokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), selectedIndex);
 
     u32 pokemonIVs[6];
     pokemonIVs[0] = Pokemon_GetValue(targetPokemon, MON_DATA_HP_IV, NULL);
@@ -497,7 +497,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 *v11 = ScriptContext_GetVarPointer(param0);
 
-    v1 = Party_GetFromSavedata(fieldSystem->saveData);
+    v1 = SaveData_GetParty(fieldSystem->saveData);
     v2 = Party_GetCurrentCount(v1);
     *v11 = 0;
 
@@ -564,7 +564,7 @@ BOOL ScrCmd_31E(ScriptContext *param0)
     u16 v8 = ScriptContext_GetVar(param0);
     u16 *v9 = ScriptContext_GetVarPointer(param0);
 
-    v1 = Party_GetFromSavedata(fieldSystem->saveData);
+    v1 = SaveData_GetParty(fieldSystem->saveData);
     v0 = Party_GetPokemonBySlotIndex(v1, v8);
 
     *v9 = 0;
@@ -615,7 +615,7 @@ BOOL ScrCmd_2F1(ScriptContext *param0)
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v2);
+    v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2);
     Pokemon_SetValue(v0, MON_DATA_FORM, &v3);
 
     return 0;
@@ -630,7 +630,7 @@ BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
 
     count = 0;
     *destVarPartySlot = 0xff;
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     partyCount = Party_GetCurrentCount(party);
 
     for (i = 0; i < partyCount; i++) {
@@ -660,7 +660,7 @@ BOOL ScrCmd_SetRotomForm(ScriptContext *ctx)
     u16 v9 = ScriptContext_GetVar(ctx);
     u16 form = ScriptContext_GetVar(ctx);
 
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
     Pokemon_SetRotomForm(mon, form, moveSlot);
@@ -678,7 +678,7 @@ BOOL ScrCmd_2FF(ScriptContext *param0)
     u16 v5 = ScriptContext_GetVar(param0);
     u16 *v6 = ScriptContext_GetVarPointer(param0);
 
-    v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v5);
+    v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v5);
     v0 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
 
     if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
@@ -747,7 +747,7 @@ BOOL ScrCmd_300(ScriptContext *param0)
     Pokemon *v1;
     FieldSystem *fieldSystem = param0->fieldSystem;
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), 0);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
     v0 = SaveData_MiscSaveBlock(fieldSystem->saveData);
 
     MiscSaveBlock_SetFavoriteMon(v0, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v1, MON_DATA_FORM, NULL), Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL));
@@ -779,7 +779,7 @@ BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 partySlot = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
     *destVar = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
@@ -796,7 +796,7 @@ BOOL ScrCmd_30F(ScriptContext *param0)
     u16 *v4 = ScriptContext_GetVarPointer(param0);
 
     v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    v1 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    v1 = SaveData_GetGameRecords(fieldSystem->saveData);
     *v4 = 1;
 
     switch (v3) {

@@ -1282,7 +1282,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
         Options *v1;
         u8 v2;
 
-        v1 = SaveData_Options(param1);
+        v1 = SaveData_GetOptions(param1);
         v2 = Options_Frame(v1);
 
         Font_LoadTextPalette(0, 5 * 32, heapID);
@@ -1514,7 +1514,7 @@ static void ov70_0225E9C8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4
     {
         Options *v0;
 
-        v0 = SaveData_Options(param2);
+        v0 = SaveData_GetOptions(param2);
         param0->unk_14 = Options_TextFrameDelay(v0);
     }
 }

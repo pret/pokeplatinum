@@ -68,7 +68,7 @@ static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0)
 
     param0->unk_8C = 0;
 
-    LoadMessageBoxGraphics(param0->fieldSystem->bgConfig, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_Options(param0->unk_34)), HEAP_ID_FIELD);
+    LoadMessageBoxGraphics(param0->fieldSystem->bgConfig, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_GetOptions(param0->unk_34)), HEAP_ID_FIELD);
     LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD);
 
     param0->unk_48 = 1;
@@ -433,9 +433,9 @@ static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1)
     MessageLoader_GetStrbuf(param0->unk_3C, param1, param0->unk_08);
     StringTemplate_Format(param0->unk_38, param0->unk_0C, param0->unk_08);
     FieldMessage_AddWindow(param0->fieldSystem->bgConfig, &param0->unk_10, 3);
-    FieldMessage_DrawWindow(&param0->unk_10, SaveData_Options(param0->fieldSystem->saveData));
+    FieldMessage_DrawWindow(&param0->unk_10, SaveData_GetOptions(param0->fieldSystem->saveData));
 
-    param0->unk_40 = FieldMessage_Print(&param0->unk_10, param0->unk_0C, SaveData_Options(param0->fieldSystem->saveData), 1);
+    param0->unk_40 = FieldMessage_Print(&param0->unk_10, param0->unk_0C, SaveData_GetOptions(param0->fieldSystem->saveData), 1);
 }
 
 static void ov5_021EAEE0(UnkStruct_ov5_021EAE78 *param0)

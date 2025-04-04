@@ -204,7 +204,7 @@ void sub_0204B060(UnkStruct_0204AFC4 *param0, SaveData *param1)
     TrainerInfo *v3 = SaveData_GetTrainerInfo(param1);
 
     param0->unk_83E[0] = TrainerInfo_Gender(v3);
-    v1 = Party_GetFromSavedata(param1);
+    v1 = SaveData_GetParty(param1);
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_83E[1 + v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), MON_DATA_SPECIES, NULL);

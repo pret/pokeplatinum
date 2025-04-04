@@ -139,7 +139,7 @@ BOOL Party_HasSpecies(const Party *party, int species)
     return i != party->currentCount;
 }
 
-Party *Party_GetFromSavedata(SaveData *saveData)
+Party *SaveData_GetParty(SaveData *saveData)
 {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PARTY);
 }

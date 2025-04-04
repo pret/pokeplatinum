@@ -16,7 +16,7 @@ typedef struct PlayerSave {
 int Player_SaveSize(void);
 void Player_Init(PlayerSave *player);
 TrainerInfo *SaveData_GetTrainerInfo(SaveData *saveData);
-Options *SaveData_Options(SaveData *saveData);
+Options *SaveData_GetOptions(SaveData *saveData);
 u16 *SaveData_GetCoins(SaveData *saveData);
 PlayTime *SaveData_GetPlayTime(SaveData *saveData);
 

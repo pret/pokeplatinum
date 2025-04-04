@@ -40,7 +40,7 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
         break;
     case 2:
         if (PrePoketchSubscreen_IsDone(fieldSystem->bgConfig)) {
-            Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
+            Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
 
             Overlay_UnloadByID(FS_OVERLAY_ID(pre_poketch_subscreen));
             Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);

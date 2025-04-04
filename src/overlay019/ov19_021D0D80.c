@@ -324,7 +324,7 @@ int ov19_021D0E58(OverlayManager *param0, int *param1)
     UnkStruct_ov19_021D5DF8 *v0 = OverlayManager_Data(param0);
 
     if (Party_HasSpecies(v0->unk_124, 441) == 0) {
-        ChatotCry *v1 = GetChatotCryDataFromSave(v0->unk_11C);
+        ChatotCry *v1 = SaveData_GetChatotCry(v0->unk_11C);
 
         ResetChatotCryDataStatus(v1);
     }
@@ -3118,10 +3118,10 @@ static void ov19_021D4BB0(u32 param0, u32 param1, void *param2)
 
 static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *param1)
 {
-    param0->pcBoxes = SaveData_PCBoxes(param1->unk_00);
+    param0->pcBoxes = SaveData_GetPCBoxes(param1->unk_00);
     param0->unk_11C = param1->unk_00;
-    param0->unk_124 = Party_GetFromSavedata(param1->unk_00);
-    param0->unk_1A4 = SaveData_Options(param1->unk_00);
+    param0->unk_124 = SaveData_GetParty(param1->unk_00);
+    param0->unk_1A4 = SaveData_GetOptions(param1->unk_00);
     param0->unk_118 = param1;
     param1->unk_08 = 0;
     param0->boxMessagesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BOX_MESSAGES, HEAP_ID_9);

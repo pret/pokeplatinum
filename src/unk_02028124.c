@@ -95,7 +95,7 @@ void sub_020281AC(Mail *param0, u8 param1, u8 param2, SaveData *param3)
     sub_02028124(param0);
 
     param0->unk_07 = param1;
-    v9 = Party_GetFromSavedata(param3);
+    v9 = SaveData_GetParty(param3);
     v8 = SaveData_GetTrainerInfo(param3);
 
     CharCode_Copy(param0->unk_08, TrainerInfo_Name(v8));

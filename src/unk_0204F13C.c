@@ -156,7 +156,7 @@ static BOOL sub_0204F268(u16 param0, SaveData *param1)
     Pokemon *v7;
     u16 v8[6];
 
-    v6 = Party_GetFromSavedata(param1);
+    v6 = SaveData_GetParty(param1);
     v3 = Party_GetCurrentCount(v6);
 
     if (v3 < param0) {
@@ -332,10 +332,10 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
     PartyManagementData *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
     MI_CpuClearFast(v1, sizeof(PartyManagementData));
 
-    v1->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
+    v1->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v1->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v1->unk_08 = sub_02028430(fieldSystem->saveData);
-    v1->unk_0C = SaveData_Options(fieldSystem->saveData);
+    v1->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
 
     v1->unk_21 = 0;
 
@@ -418,8 +418,8 @@ static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
     v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
-    v0->options = SaveData_Options(v1);
-    v0->monData = Party_GetFromSavedata(v1);
+    v0->options = SaveData_GetOptions(v1);
+    v0->monData = SaveData_GetParty(v1);
     v0->dexMode = SaveData_GetDexMode(v1);
     v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->dataType = SUMMARY_DATA_PARTY_MON;
@@ -570,7 +570,7 @@ BOOL ScrCmd_324(ScriptContext *param0)
         }
     }
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData), RECORD_UNK_068, v7);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(param0->fieldSystem->saveData), RECORD_UNK_068, v7);
 
     if (v7 != 0) {
         sub_0202D230(

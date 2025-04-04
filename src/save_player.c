@@ -30,7 +30,7 @@ TrainerInfo *SaveData_GetTrainerInfo(SaveData *saveData)
     return &state->info;
 }
 
-Options *SaveData_Options(SaveData *saveData)
+Options *SaveData_GetOptions(SaveData *saveData)
 {
     PlayerSave *state = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PLAYER);
     return &state->options;

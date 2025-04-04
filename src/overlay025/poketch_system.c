@@ -128,7 +128,7 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
 
         new_system->fieldSystem = fieldSystem;
         new_system->saveData = saveData;
-        new_system->poketch = SaveData_PoketchData(saveData);
+        new_system->poketch = SaveData_GetPoketch(saveData);
         new_system->bgl = bgl;
         new_system->oamManager = oamManager;
 

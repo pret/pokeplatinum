@@ -975,7 +975,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
         ov76_0223C7E0(param0);
         {
             GameRecords *v7;
-            v7 = SaveData_GetGameRecordsPtr(param0->unk_00->unk_28);
+            v7 = SaveData_GetGameRecords(param0->unk_00->unk_28);
 
             GameRecords_IncrementTrainerScore(v7, TRAINER_SCORE_EVENT_UNK_06);
         }

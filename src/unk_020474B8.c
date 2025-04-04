@@ -83,7 +83,7 @@ BOOL ScrCmd_BufferPartyMonSpecies(ScriptContext *ctx)
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 partySlot = ScriptContext_GetVar(ctx);
 
-    Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     StringTemplate_SetSpeciesName(*strTemplate, templateArg, (BoxPokemon *)mon);
     return FALSE;
 }
@@ -196,7 +196,7 @@ BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx)
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 partySlot = ScriptContext_GetVar(ctx);
 
-    Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     StringTemplate_SetNickname(*strTemplate, templateArg, (BoxPokemon *)mon);
 
     return FALSE;
@@ -206,7 +206,7 @@ BOOL ScrCmd_251(ScriptContext *param0)
 {
     BoxPokemon *v0;
     FieldSystem *fieldSystem = param0->fieldSystem;
-    PCBoxes *v2 = SaveData_PCBoxes(fieldSystem->saveData);
+    PCBoxes *v2 = SaveData_GetPCBoxes(fieldSystem->saveData);
     StringTemplate **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v4 = ScriptContext_ReadByte(param0);
     u16 v5 = ScriptContext_GetVar(param0);
@@ -429,7 +429,7 @@ BOOL ScrCmd_1CB(ScriptContext *param0)
     u16 v5 = ScriptContext_GetVar(param0);
     u16 v6;
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v4);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v4);
     v6 = Pokemon_GetValue(v1, MON_DATA_MOVE1 + v5, NULL);
 
     StringTemplate_SetMoveName(*v2, v3, v6);

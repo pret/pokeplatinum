@@ -133,7 +133,7 @@ void ov97_02232074(BgConfig *param0)
 int ov97_02232148(SaveData *param0, UnkStruct_ov97_0223829C *param1)
 {
     u32 v0;
-    MysteryGift *v1 = SaveData_MysteryGift(param0);
+    MysteryGift *v1 = SaveData_GetMysteryGift(param0);
 
     v0 = param1->unk_00.unk_48;
 

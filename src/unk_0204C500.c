@@ -46,7 +46,7 @@ BOOL ScrCmd_253(ScriptContext *param0)
 
 BOOL ScrCmd_254(ScriptContext *ctx)
 {
-    PalParkTransfer *transferData = SaveData_PalParkTransfer(ctx->fieldSystem->saveData);
+    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
     Pokemon *v1 = Pokemon_New(HEAP_ID_FIELD_TASK);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
@@ -62,8 +62,8 @@ BOOL ScrCmd_254(ScriptContext *ctx)
 
 BOOL ScrCmd_255(ScriptContext *ctx)
 {
-    PalParkTransfer *transferData = SaveData_PalParkTransfer(ctx->fieldSystem->saveData);
-    PCBoxes *boxes = SaveData_PCBoxes(ctx->fieldSystem->saveData);
+    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
+    PCBoxes *boxes = SaveData_GetPCBoxes(ctx->fieldSystem->saveData);
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(ctx->fieldSystem->saveData);
     Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);

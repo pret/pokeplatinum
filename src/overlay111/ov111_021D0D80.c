@@ -336,7 +336,7 @@ int ov111_021D0D80(OverlayManager *param0, int *param1)
     v1->unk_168 = v2->unk_00;
     v1->unk_09 = v2->unk_04;
     v1->unk_3D8 = &v2->unk_14;
-    v1->unk_164 = SaveData_Options(v1->unk_168);
+    v1->unk_164 = SaveData_GetOptions(v1->unk_168);
     v1->unk_3DC = &v2->unk_08[0];
     v1->unk_3E0 = &v2->unk_0E[0];
 

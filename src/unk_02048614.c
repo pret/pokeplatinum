@@ -301,7 +301,7 @@ BOOL ScrCmd_CheckHasTwoAliveMons(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = Party_HasTwoAliveMons(Party_GetFromSavedata(ctx->fieldSystem->saveData));
+    *destVar = Party_HasTwoAliveMons(SaveData_GetParty(ctx->fieldSystem->saveData));
     return FALSE;
 }
 

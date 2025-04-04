@@ -92,19 +92,19 @@ static void ov59_021D300C(const UnkStruct_ov59_021D2FBC *param0)
 
 static void ov59_021D3028(const UnkStruct_ov59_021D2FBC *param0)
 {
-    TVBroadcast *v0 = SaveData_TVBroadcast(param0->unk_04);
+    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0->unk_04);
     ov59_021D2F10(v0, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
 static void ov59_021D3048(const UnkStruct_ov59_021D2FBC *param0)
 {
-    TVBroadcast *v0 = SaveData_TVBroadcast(param0->unk_04);
+    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0->unk_04);
     ov59_021D2F38(v0, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
 static void ov59_021D3068(const UnkStruct_ov59_021D2FBC *param0)
 {
-    TVBroadcast *v0 = SaveData_TVBroadcast(param0->unk_04);
+    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0->unk_04);
     ov59_021D2F60(v0, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
@@ -241,7 +241,7 @@ void ov59_021D313C(SaveData *param0, const UnkStruct_ov59_021D30E0 *param1)
     }
 
     {
-        TVBroadcast *v10 = SaveData_TVBroadcast(param0);
+        TVBroadcast *v10 = SaveData_GetTVBroadcast(param0);
         sub_0202E2EC(v10);
         sub_0202E35C(v10);
     }

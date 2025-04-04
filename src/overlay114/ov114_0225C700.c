@@ -1515,7 +1515,7 @@ static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
 
 static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *param2, BOOL param3, u32 param4)
 {
-    u32 v0 = Options_Frame(SaveData_Options(param2));
+    u32 v0 = Options_Frame(SaveData_GetOptions(param2));
     u32 v1;
     int v2;
     u8 v3;

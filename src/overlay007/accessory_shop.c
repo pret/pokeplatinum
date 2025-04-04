@@ -269,7 +269,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
 
 static void AccessoryShop_LoadOptions(AccessoryShop *shop)
 {
-    Options *options = SaveData_Options(shop->saveData);
+    Options *options = SaveData_GetOptions(shop->saveData);
 
     shop->msgBoxFrame = Options_Frame(options);
     shop->renderDelay = Options_TextFrameDelay(options);

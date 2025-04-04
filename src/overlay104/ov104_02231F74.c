@@ -1076,7 +1076,7 @@ void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2)
         ov104_02231F74(param0->unk_00, v1, param1[1], 1, NULL);
         MessageLoader_Free(v1);
     } else {
-        v0 = Options_TextFrameDelay(SaveData_Options(v2->unk_08));
+        v0 = Options_TextFrameDelay(SaveData_GetOptions(v2->unk_08));
         ov104_022320B4(param0->unk_00, v0, param1[0], param1[1], param1[2], param1[3], 1);
     }
 

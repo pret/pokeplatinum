@@ -60,7 +60,7 @@ BOOL ScrCmd_21F(ScriptContext *param0)
     u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
-    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v3);
+    mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v3);
     v1 = sub_020997D8(mon, HEAP_ID_FIELD_TASK);
     *v2 = sub_020998D8(v1);
 
@@ -76,7 +76,7 @@ static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16
 
     v1->unk_00 = param2;
     v1->unk_04 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
-    v1->unk_08 = SaveData_Options(param0->fieldSystem->saveData);
+    v1->unk_08 = SaveData_GetOptions(param0->fieldSystem->saveData);
     v1->unk_0C = param3;
     v1->unk_15 = param1;
 
@@ -96,7 +96,7 @@ BOOL ScrCmd_221(ScriptContext *param0)
     u16 v1 = ScriptContext_GetVar(param0);
     u16 *v2;
 
-    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
+    mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v1);
     v2 = sub_020997D8(mon, HEAP_ID_FIELD_TASK);
 
     sub_0204EE90(param0, 1, mon, v2);
@@ -111,7 +111,7 @@ BOOL ScrCmd_224(ScriptContext *param0)
     u16 v2 = ScriptContext_GetVar(param0);
     u16 *v3;
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
+    v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v1);
     v3 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, (1 + 1) * 2);
 
     *(v3 + 0) = v2;

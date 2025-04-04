@@ -631,7 +631,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
     case 10:
         break;
     case 11:
-        GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_32);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_32);
         ov23_022539E8();
         ov23_0224DC68(v0, 9);
         v0->unk_37 = 12;
@@ -727,7 +727,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
             SystemVars_SetUndergroundItemsGivenAway(v2, SystemVars_GetUndergroundItemsGivenAway(v2) + 1);
         }
 
-        GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_31);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_31);
         v0->unk_37 = 25;
         break;
     case 25:
@@ -795,7 +795,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
         break;
     case 36:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_33);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_33);
             ov23_0224DC68(v0, 142);
             v0->unk_37 = 37;
         }

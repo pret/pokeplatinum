@@ -661,7 +661,7 @@ static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
             {
                 TVBroadcast *v2;
 
-                v2 = SaveData_TVBroadcast(param0->unk_00->unk_20);
+                v2 = SaveData_GetTVBroadcast(param0->unk_00->unk_20);
                 sub_0206D104(v2);
             }
             break;
@@ -940,7 +940,7 @@ static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0)
     {
         TVBroadcast *v0;
 
-        v0 = SaveData_TVBroadcast(param0->unk_00->unk_20);
+        v0 = SaveData_GetTVBroadcast(param0->unk_00->unk_20);
         sub_0206D104(v0);
     }
 
@@ -1262,7 +1262,7 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
         Party_RemovePokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
         if (Party_HasSpecies(param0->unk_00->unk_08, 441) == 0) {
-            ChatotCry *v2 = GetChatotCryDataFromSave(param0->unk_00->unk_20);
+            ChatotCry *v2 = SaveData_GetChatotCry(param0->unk_00->unk_20);
             ResetChatotCryDataStatus(v2);
         }
     }

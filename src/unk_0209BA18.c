@@ -28,7 +28,7 @@ UnkStruct_ov104_02230BE4 *sub_0209BA18(FieldSystem *fieldSystem, void *param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_02230BE4));
 
     v0->unk_00 = param1;
-    v0->unk_04 = SaveData_Options(fieldSystem->saveData);
+    v0->unk_04 = SaveData_GetOptions(fieldSystem->saveData);
     v0->unk_08 = fieldSystem->saveData;
     v0->unk_0C = fieldSystem->journalEntry;
     v0->unk_10 = fieldSystem->unk_98;

@@ -177,7 +177,7 @@ UnkStruct_0202E794 *ov59_021D2C28(SaveData *param0, int param1, u32 param2)
     TVBroadcast *v1;
 
     v0 = Heap_AllocFromHeapAtEnd(param1, param2);
-    v1 = SaveData_TVBroadcast(param0);
+    v1 = SaveData_GetTVBroadcast(param0);
 
     GF_ASSERT(param2 == ov59_021D2B44(param0));
     ov59_021D2B90(param0, v0, v1->unk_17C, 4, 1, 3);
@@ -191,7 +191,7 @@ UnkStruct_0202E794 *ov59_021D2C70(SaveData *param0, int param1, u32 param2)
     TVBroadcast *v1;
 
     v0 = Heap_AllocFromHeapAtEnd(param1, param2);
-    v1 = SaveData_TVBroadcast(param0);
+    v1 = SaveData_GetTVBroadcast(param0);
 
     GF_ASSERT(param2 == ov59_021D2B4C(param0));
     ov59_021D2B90(param0, v0, v1->unk_0C, 4, 1, 4);
@@ -205,7 +205,7 @@ UnkStruct_0202E794 *ov59_021D2CB4(SaveData *param0, int param1, u32 param2)
     TVBroadcast *v1;
 
     v0 = Heap_AllocFromHeapAtEnd(param1, param2);
-    v1 = SaveData_TVBroadcast(param0);
+    v1 = SaveData_GetTVBroadcast(param0);
 
     GF_ASSERT(param2 == ov59_021D2B54(param0));
     ov59_021D2B90(param0, v0, v1->unk_C4, 4, 1, 5);
@@ -219,7 +219,7 @@ UnkStruct_0202E794 *ov59_021D2CF8(SaveData *param0, int param1, u32 param2)
     TVBroadcast *v1;
 
     v0 = Heap_AllocFromHeapAtEnd(param1, param2);
-    v1 = SaveData_TVBroadcast(param0);
+    v1 = SaveData_GetTVBroadcast(param0);
 
     GF_ASSERT(param2 == ov59_021D2B44(param0));
     ov59_021D2B90(param0, v0, v1->unk_17C, 4, 0, 0);
@@ -233,7 +233,7 @@ UnkStruct_0202E794 *ov59_021D2D3C(SaveData *param0, int param1, u32 param2)
     TVBroadcast *v1;
 
     v0 = Heap_AllocFromHeapAtEnd(param1, param2);
-    v1 = SaveData_TVBroadcast(param0);
+    v1 = SaveData_GetTVBroadcast(param0);
 
     GF_ASSERT(param2 == ov59_021D2B4C(param0));
     ov59_021D2B90(param0, v0, v1->unk_0C, 4, 0, 1);
@@ -247,7 +247,7 @@ UnkStruct_0202E794 *ov59_021D2D80(SaveData *param0, int param1, u32 param2)
     TVBroadcast *v1;
 
     v0 = Heap_AllocFromHeapAtEnd(param1, param2);
-    v1 = SaveData_TVBroadcast(param0);
+    v1 = SaveData_GetTVBroadcast(param0);
 
     GF_ASSERT(param2 == ov59_021D2B54(param0));
     ov59_021D2B90(param0, v0, v1->unk_C4, 4, 0, 2);

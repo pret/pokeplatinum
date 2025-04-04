@@ -139,7 +139,7 @@ static u32 *sub_0202E924(SaveData *param0, int param1)
         0x5E
     };
 
-    v2 = SaveData_GetGameRecordsPtr(param0);
+    v2 = SaveData_GetGameRecords(param0);
     v3 = sub_0203068C(param0);
     v4 = Heap_AllocFromHeapAtEnd(param1, 4 * 13);
 

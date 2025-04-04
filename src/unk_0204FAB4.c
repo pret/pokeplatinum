@@ -254,10 +254,10 @@ static int sub_0204FE50(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, in
 
     MI_CpuClearFast(v1, sizeof(PartyManagementData));
 
-    v1->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
+    v1->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v1->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v1->unk_08 = sub_02028430(fieldSystem->saveData);
-    v1->unk_0C = SaveData_Options(fieldSystem->saveData);
+    v1->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
 
     v1->unk_21 = 0;
     v1->unk_20 = 23;
@@ -325,8 +325,8 @@ static int sub_0204FF6C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, in
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
-    v0->options = SaveData_Options(v1);
-    v0->monData = Party_GetFromSavedata(v1);
+    v0->options = SaveData_GetOptions(v1);
+    v0->monData = SaveData_GetParty(v1);
     v0->dexMode = SaveData_GetDexMode(v1);
     v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->dataType = SUMMARY_DATA_PARTY_MON;

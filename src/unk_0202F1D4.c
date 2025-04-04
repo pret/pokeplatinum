@@ -572,7 +572,7 @@ void sub_0202FAFC(FieldBattleDTO *param0, SaveData *saveData)
         param0->unk_194[v0] = v1->unk_00.unk_14C[v0];
     }
 
-    Options_Copy(SaveData_Options(saveData), param0->options);
+    Options_Copy(SaveData_GetOptions(saveData), param0->options);
     param0->options->frame = v1->unk_1BE8.frame;
 
     if (param0->options->frame >= 20) {

@@ -163,8 +163,8 @@ static void CommClubMan_PrintMessage(int msgId, BOOL format)
         FieldMessage_AddWindow(sCommClubMan->fieldSystem->bgConfig, &sCommClubMan->msgWindow, 3);
     }
 
-    FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_Options(sCommClubMan->fieldSystem->saveData));
-    sCommClubMan->printMsgIndex = FieldMessage_Print(&sCommClubMan->msgWindow, sCommClubMan->strBuff[5], SaveData_Options(sCommClubMan->fieldSystem->saveData), 1);
+    FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_GetOptions(sCommClubMan->fieldSystem->saveData));
+    sCommClubMan->printMsgIndex = FieldMessage_Print(&sCommClubMan->msgWindow, sCommClubMan->strBuff[5], SaveData_GetOptions(sCommClubMan->fieldSystem->saveData), 1);
 }
 
 static inline void CommClubMan_PrintMessageFastSpeed(int msgId, BOOL format)
@@ -184,7 +184,7 @@ static inline void CommClubMan_PrintMessageFastSpeed(int msgId, BOOL format)
         FieldMessage_AddWindow(sCommClubMan->fieldSystem->bgConfig, &sCommClubMan->msgWindow, 3);
     }
 
-    FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_Options(sCommClubMan->fieldSystem->saveData));
+    FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_GetOptions(sCommClubMan->fieldSystem->saveData));
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);

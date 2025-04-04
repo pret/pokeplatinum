@@ -559,7 +559,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         }
         break;
     case 3: {
-        GameRecords *v2 = SaveData_GetGameRecordsPtr(param0->unk_10->unk_0C);
+        GameRecords *v2 = SaveData_GetGameRecords(param0->unk_10->unk_0C);
 
         if (param1->unk_1490 == 0) {
             GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_12);
@@ -1088,7 +1088,7 @@ static BOOL ov83_0223C8B0(UnkStruct_ov83_0223C344 *param0, Poffin *param1, int p
     u16 v1;
     int v2;
     BOOL v3 = 1;
-    TVBroadcast *v4 = SaveData_TVBroadcast(param0->unk_10->unk_0C);
+    TVBroadcast *v4 = SaveData_GetTVBroadcast(param0->unk_10->unk_0C);
 
     for (v0 = 0; v0 < param2; v0++) {
         v1 = Poffin_AddToCase(param0->unk_10->unk_08, param1);

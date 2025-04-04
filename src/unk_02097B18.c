@@ -321,7 +321,7 @@ static BOOL sub_02097F38(FieldTask *param0)
             int v3;
             int v4;
 
-            v1->unk_1C = Party_GetFromSavedata(v0->unk_10);
+            v1->unk_1C = SaveData_GetParty(v0->unk_10);
             v4 = Party_GetCurrentCount(v1->unk_1C);
             v1->unk_00 = v4;
 
@@ -391,7 +391,7 @@ static BOOL sub_02097F38(FieldTask *param0)
             v10 = sub_0202CA64(v9, 0);
             v12 = sub_0202CA7C(v10);
             v12 = sub_02098164(v12);
-            v11 = SaveData_TVBroadcast(fieldSystem->saveData);
+            v11 = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
             sub_0206D9B4(v11, v8, v12);
         }
@@ -420,7 +420,7 @@ void sub_020980DC(FieldTask *param0, SaveData *param1)
     v0->unk_10 = param1;
     v0->unk_08 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02097F18));
     memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
-    v0->unk_08->unk_24 = SaveData_Options(param1);
+    v0->unk_08->unk_24 = SaveData_GetOptions(param1);
     v0->unk_08->unk_28 = param1;
     v0->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
     memset(v0->unk_0C, 0, sizeof(PartyManagementData));

@@ -100,7 +100,7 @@ BOOL ScrCmd_0FA(ScriptContext *param0)
     u16 v7 = ScriptContext_GetVar(param0);
     UnkStruct_02093800 v8;
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v7);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v7);
     v0 = TrainerInfo_NameNewStrbuf(v3, 4);
 
     v8.unk_00 = v5;
@@ -113,9 +113,9 @@ BOOL ScrCmd_0FA(ScriptContext *param0)
     v8.unk_0C = v0;
     v8.unk_10 = v3;
     v8.unk_14 = sub_0202A750(param0->fieldSystem->saveData);
-    v8.unk_18 = SaveData_Options(param0->fieldSystem->saveData);
+    v8.unk_18 = SaveData_GetOptions(param0->fieldSystem->saveData);
     v8.unk_1C = param0->fieldSystem->saveData;
-    v8.unk_20 = GetChatotCryDataFromSave(param0->fieldSystem->saveData);
+    v8.unk_20 = SaveData_GetChatotCry(param0->fieldSystem->saveData);
 
     *v2 = sub_02093800(&v8);
 

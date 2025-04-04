@@ -145,7 +145,7 @@ BOOL ScrCmd_23E(ScriptContext *param0)
 
 static BOOL sub_0204BA50(FieldSystem *fieldSystem, void *param1)
 {
-    Party *v0 = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *v0 = SaveData_GetParty(fieldSystem->saveData);
 
     if (Party_GetCurrentCount(v0) < 6) {
         return 1;
@@ -298,7 +298,7 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
 
     Pokemon_CalcLevelAndStats(v4);
 
-    v3 = Party_GetFromSavedata(fieldSystem->saveData);
+    v3 = SaveData_GetParty(fieldSystem->saveData);
     v5 = Party_AddPokemon(v3, v4);
 
     if (v5) {
@@ -704,7 +704,7 @@ static void sub_0204C428(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 
 static BOOL sub_0204C458(FieldSystem *fieldSystem, void *param1)
 {
-    Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
+    Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
     UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
 
     return Poketch_IsEnabled(poketch);
@@ -712,7 +712,7 @@ static BOOL sub_0204C458(FieldSystem *fieldSystem, void *param1)
 
 static void sub_0204C474(FieldSystem *fieldSystem, void *param1)
 {
-    Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
+    Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
     UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
 
     Poketch_RegisterApp(poketch, v1->val6.unk_00);

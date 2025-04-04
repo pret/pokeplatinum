@@ -113,7 +113,7 @@ static void Daycare_MoveToDaycareMonFromParty(Party *party, int partySlot, Dayca
     Party_RemovePokemonBySlotIndex(party, partySlot);
 
     if (Party_HasSpecies(party, SPECIES_CHATOT) == FALSE) {
-        ChatotCry *cry = GetChatotCryDataFromSave(saveData);
+        ChatotCry *cry = SaveData_GetChatotCry(saveData);
         ResetChatotCryDataStatus(cry);
     }
 }
@@ -121,7 +121,7 @@ static void Daycare_MoveToDaycareMonFromParty(Party *party, int partySlot, Dayca
 void Daycare_MoveToEmptySlotFromParty(Party *party, int partySlot, Daycare *daycare, SaveData *saveData)
 {
     int daycareSlot;
-    GameRecords *records = SaveData_GetGameRecordsPtr(saveData);
+    GameRecords *records = SaveData_GetGameRecords(saveData);
 
     GameRecords_IncrementRecordValue(records, RECORD_DEPOSITED_IN_DAYCARE);
     daycareSlot = Daycare_FindFirstEmptySlot(daycare);

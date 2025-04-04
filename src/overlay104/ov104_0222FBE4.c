@@ -1874,10 +1874,10 @@ static BOOL ov104_02230F28(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
     u16 v2 = ov104_0222FC00(param0);
 
-    v0 = SaveData_TVBroadcast(v1->unk_08);
+    v0 = SaveData_GetTVBroadcast(v1->unk_08);
 
     sub_0206D0C8(v0, v2);
-    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v1->unk_08), RECORD_UNK_068, v2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(v1->unk_08), RECORD_UNK_068, v2);
     sub_0202D230(sub_0202D750(v1->unk_08), v2, 5);
 
     return 0;
@@ -1888,7 +1888,7 @@ static BOOL ov104_02230F6C(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
     u16 v1 = ov104_0222FC00(param0);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v0->unk_08), RECORD_UNK_069, v1);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(v0->unk_08), RECORD_UNK_069, v1);
     sub_0202D230(sub_0202D750(v0->unk_08), v1, 6);
 
     return 0;
@@ -1957,7 +1957,7 @@ static BOOL ov104_02231050(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
 
-    HealAllPokemonInParty(Party_GetFromSavedata(v0->unk_08));
+    HealAllPokemonInParty(SaveData_GetParty(v0->unk_08));
     return 0;
 }
 
@@ -2694,7 +2694,7 @@ static BOOL ov104_02231D1C(UnkStruct_ov104_0222E930 *param0)
     u16 v9 = ov104_0222EA48(param0);
 
     v2 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = Party_GetFromSavedata(v2->unk_08);
+    v0 = SaveData_GetParty(v2->unk_08);
     v1 = Party_GetPokemonBySlotIndex(v0, v4);
     v8 = 8;
     v9 = (GX_RGB(0, 0, 0));
@@ -2744,7 +2744,7 @@ static BOOL ov104_02231E30(UnkStruct_ov104_0222E930 *param0)
     u16 v1 = ov104_0222EA48(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
-    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(v0->unk_08), v1);
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecords(v0->unk_08), v1);
 
     return 0;
 }
@@ -2756,7 +2756,7 @@ static BOOL ov104_02231E54(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222FC00(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
-    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v0->unk_08), v1, v2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(v0->unk_08), v1, v2);
 
     return 0;
 }
@@ -2767,7 +2767,7 @@ static BOOL ov104_02231E80(UnkStruct_ov104_0222E930 *param0)
     u16 v1 = ov104_0222EA48(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
-    GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->unk_08), v1);
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->unk_08), v1);
 
     return 0;
 }
@@ -2807,7 +2807,7 @@ static BOOL ov104_02231EFC(UnkStruct_ov104_0222E930 *param0)
     TVBroadcast *v1;
     TrainerInfo *v2;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
-    v1 = SaveData_TVBroadcast(v3->unk_08);
+    v1 = SaveData_GetTVBroadcast(v3->unk_08);
     v0 = ov104_0222FC00(param0);
     v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
 

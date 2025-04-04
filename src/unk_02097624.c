@@ -284,7 +284,7 @@ static int sub_02097944(OverlayManager *param0, int *param1)
 
     v0->heapId = HEAP_ID_40;
     v0->unk_10 = sub_02097834(v1->unk_14, v0->heapId);
-    v0->unk_10->unk_04 = SaveData_Options(v1->unk_10);
+    v0->unk_10->unk_04 = SaveData_GetOptions(v1->unk_10);
 
     if (v1->unk_00 == 1) {
         v0->unk_10->unk_0F = v1->unk_0F;
@@ -348,8 +348,8 @@ static int sub_020979A8(OverlayManager *param0, int *param1)
             if (v0->unk_10->unk_00 == 3) {
                 sub_020978F0(v1->unk_14, v0->unk_10);
 
-                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v1->unk_10), TRAINER_SCORE_EVENT_UNK_02);
-                GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(v1->unk_10), RECORD_UNK_045);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v1->unk_10), TRAINER_SCORE_EVENT_UNK_02);
+                GameRecords_IncrementRecordValue(SaveData_GetGameRecords(v1->unk_10), RECORD_UNK_045);
                 v1->unk_04 = 1;
             } else {
                 v1->unk_04 = 0;

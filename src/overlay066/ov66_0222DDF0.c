@@ -1792,13 +1792,13 @@ void ov66_0222F000(UnkStruct_ov66_0222DFF8 *param0)
 
 void ov66_0222F020(UnkStruct_ov66_0222DFF8 *param0)
 {
-    GameRecords *v0 = SaveData_GetGameRecordsPtr(param0->unk_00);
+    GameRecords *v0 = SaveData_GetGameRecords(param0->unk_00);
     GameRecords_IncrementRecordValue(v0, RECORD_UNK_046);
 }
 
 void ov66_0222F030(UnkStruct_ov66_0222DFF8 *param0)
 {
-    GameRecords *v0 = SaveData_GetGameRecordsPtr(param0->unk_00);
+    GameRecords *v0 = SaveData_GetGameRecords(param0->unk_00);
     GameRecords_IncrementRecordValue(v0, RECORD_UNK_118);
 }
 
@@ -2283,7 +2283,7 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *param1, u32
 
     {
         v0 = SaveData_GetTrainerInfo(param1);
-        v1 = Party_GetFromSavedata(param1);
+        v1 = SaveData_GetParty(param1);
         v3 = SaveData_GetPokedex(param1);
         v2 = sub_0202C878(param1);
         v4 = SaveData_GetGameTime(param1);

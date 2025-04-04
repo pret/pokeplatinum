@@ -131,7 +131,7 @@ static BOOL ov97_0222B8E4(void *param0, int param1, UnkStruct_ov97_02237808 *par
 static BOOL ov97_0222B934(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
 static BOOL ov97_0222B978(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
 static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-MysteryGift *SaveData_MysteryGift(SaveData *param0);
+MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
 int ov23_0224AC0C(void);
 int TrainerInfo_Size(void);
 
@@ -978,7 +978,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     sub_0200F344(1, 0x0);
 
     v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_14 = SaveData_MysteryGift(v0->unk_04);
+    v0->unk_14 = SaveData_GetMysteryGift(v0->unk_04);
     v0->unk_11C = FX32_ONE * 0;
     v0->unk_120 = FX32_ONE * 0;
     v0->unk_0C = SaveData_GetTrainerInfo(v0->unk_04);

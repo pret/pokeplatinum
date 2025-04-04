@@ -640,7 +640,7 @@ static int ov65_0222DED4(int param0)
 
 static int ov65_0222DF88(UnkStruct_ov65_0222EBE0 *param0)
 {
-    Party *v0 = Party_GetFromSavedata(param0->unk_160);
+    Party *v0 = SaveData_GetParty(param0->unk_160);
     Pokemon *v1;
     int v2 = Party_GetCurrentCount(v0);
     int v3, v4 = 0;
@@ -1459,7 +1459,7 @@ static void ov65_0222ECA8(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, v0, 4, 0, 0, 0, HEAP_ID_54);
 
     {
-        int v1 = Options_Frame(SaveData_Options(param0->unk_160));
+        int v1 = Options_Frame(SaveData_GetOptions(param0->unk_160));
 
         LoadMessageBoxGraphics(v0, 2, (512 - (18 + 12)), 10, v1, HEAP_ID_54);
         LoadStandardWindowGraphics(v0, 2, ((512 - (18 + 12)) - 9), 11, 0, HEAP_ID_54);
@@ -1789,7 +1789,7 @@ static void ov65_0222F4C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(param0->unk_160);
     Pokedex *v1 = SaveData_GetPokedex(param0->unk_160);
-    Party *v2 = Party_GetFromSavedata(param0->unk_160);
+    Party *v2 = SaveData_GetParty(param0->unk_160);
     UnkStruct_0202C878 *v3 = sub_0202C878(param0->unk_160);
     int v4, v5;
 
@@ -3788,7 +3788,7 @@ static u32 ov65_022319B8(UnkStruct_ov65_0222EBE0 *param0)
         return 3;
     }
 
-    if (Poffin_GetNumberOfFilledSlots(Poffin_GetSavedataBlock(param0->unk_160)) >= MAX_POFFINS) {
+    if (Poffin_GetNumberOfFilledSlots(SaveData_GetPoffinCase(param0->unk_160)) >= MAX_POFFINS) {
         return 2;
     }
 
@@ -4714,7 +4714,7 @@ static int ov65_02232B28(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
 static void ov65_02232B58(UnkStruct_ov65_0222EBE0 *param0, int param1, BOOL param2)
 {
-    u8 v0 = Options_TextFrameDelay(SaveData_Options(param0->unk_160));
+    u8 v0 = Options_TextFrameDelay(SaveData_GetOptions(param0->unk_160));
 
     ov65_02232F50(param0);
 

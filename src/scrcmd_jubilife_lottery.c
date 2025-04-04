@@ -32,7 +32,7 @@ BOOL ScrCmd_GetJubilifeLotteryTrainerID(ScriptContext *ctx)
 BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
 {
     FieldSystem *fieldSystem = context->fieldSystem;
-    PCBoxes *pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
+    PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
     u16 *winningPokemonIndex = ScriptContext_GetVarPointer(context);
     u16 *highestMatchedDigits = ScriptContext_GetVarPointer(context);
     u16 *isResultInBox = ScriptContext_GetVarPointer(context);
@@ -43,10 +43,10 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
 
     Pokemon *partyPokemon;
     u16 highestPartyMatchedDigits, winningPartyIndex;
-    u16 currentPartyCount = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    u16 currentPartyCount = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
     highestPartyMatchedDigits = 0, winningPartyIndex = 0;
     for (u16 i = 0; i < currentPartyCount; i++) {
-        partyPokemon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
+        partyPokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
         if (Pokemon_GetValue(partyPokemon, MON_DATA_IS_EGG, NULL) == 0) {
             pokemonOtId = Pokemon_GetValue(partyPokemon, MON_DATA_OT_ID, NULL) & 0xffff;

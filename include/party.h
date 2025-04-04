@@ -24,6 +24,6 @@ void sub_0207A128(Party *party, int slot, Pokemon *pokemon);
 BOOL Party_SwapSlots(Party *party, int slotA, int slotB);
 void Party_Copy(const Party *src, Party *dest);
 BOOL Party_HasSpecies(const Party *party, int species);
-Party *Party_GetFromSavedata(SaveData *saveData);
+Party *SaveData_GetParty(SaveData *saveData);
 
 #endif // POKEPLATINUM_PARTY_H

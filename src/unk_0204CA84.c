@@ -58,7 +58,7 @@ BOOL ScrCmd_GiveEggFromDaycare(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     Daycare *daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
 
     Daycare_GiveEggFromDaycare(daycare, party, trainerInfo);
@@ -76,7 +76,7 @@ BOOL ScrCmd_MoveMonToPartyFromDaycareSlot(ScriptContext *ctx)
     u8 daycareSlot = ScriptContext_GetVar(ctx);
 
     daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
-    party = Party_GetFromSavedata(fieldSystem->saveData);
+    party = SaveData_GetParty(fieldSystem->saveData);
     *destVar = Daycare_MoveToPartyFromDaycareSlot(party, *template, daycare, daycareSlot);
 
     return FALSE;
@@ -121,7 +121,7 @@ BOOL ScrCmd_1AF(ScriptContext *param0)
     u16 v4 = ScriptContext_GetVar(param0);
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
-    v1 = Party_GetFromSavedata(fieldSystem->saveData);
+    v1 = SaveData_GetParty(fieldSystem->saveData);
     *v5 = ov5_021E73A0(v1, v4, *v2);
 
     return 0;
@@ -135,7 +135,7 @@ BOOL ScrCmd_StorePartyMonIntoDaycare(ScriptContext *ctx)
     Party *party;
     u8 partySlot = ScriptContext_GetVar(ctx);
 
-    party = Party_GetFromSavedata(fieldSystem->saveData);
+    party = SaveData_GetParty(fieldSystem->saveData);
     daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
 
     Daycare_MoveToEmptySlotFromParty(party, partySlot, daycare, saveData);

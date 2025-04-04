@@ -744,7 +744,7 @@ static void ov65_02236A28(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
     Font_LoadScreenIndicatorsPalette(0, 1 * 0x20, param2);
 
-    v0 = Options_Frame(SaveData_Options(param1->unk_08));
+    v0 = Options_Frame(SaveData_GetOptions(param1->unk_08));
 
     LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v0, param2);
     LoadStandardWindowGraphics(param0->unk_00, 1, (1 + (18 + 12)), 3, 0, param2);
@@ -790,7 +790,7 @@ static void ov65_02236C10(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     param0->unk_0C = Strbuf_Init(256, param2);
     param0->unk_10 = Strbuf_Init(256, param2);
     param0->unk_14 = 0xff;
-    param0->unk_16 = Options_TextFrameDelay(SaveData_Options(param1->unk_08));
+    param0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(param1->unk_08));
 }
 
 static void ov65_02236C5C(UnkStruct_ov65_02236840 *param0)
@@ -906,7 +906,7 @@ static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     Window_ScheduleCopyToVRAM(&param0->unk_1F0);
     Strbuf_Free(v0);
 
-    v1 = Options_Frame(SaveData_Options(param1->unk_08));
+    v1 = Options_Frame(SaveData_GetOptions(param1->unk_08));
 
     LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v1, param4);
 
@@ -1500,7 +1500,7 @@ static void ov65_022378C4(UnkStruct_ov65_022367A8 *param0, const UnkStruct_0207D
     DestroyWaitDial(param0->unk_30.unk_24C);
 
     param0->unk_30.unk_24C = NULL;
-    v0 = Options_Frame(SaveData_Options(param1->unk_08));
+    v0 = Options_Frame(SaveData_GetOptions(param1->unk_08));
 
     LoadMessageBoxGraphics(param0->unk_30.unk_00, 1, 1, 2, v0, param2);
 }

@@ -88,24 +88,24 @@ const SaveTableEntry gSaveTable[] = {
 
 const int gSaveTableSize = NELEMS(gSaveTable);
 
-TVBroadcast *SaveData_TVBroadcast(SaveData *save)
+TVBroadcast *SaveData_GetTVBroadcast(SaveData *save)
 {
     SaveData_Checksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
     return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-PCBoxes *SaveData_PCBoxes(SaveData *save)
+PCBoxes *SaveData_GetPCBoxes(SaveData *save)
 {
     return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_PC_BOXES);
 }
 
-MysteryGift *SaveData_MysteryGift(SaveData *save)
+MysteryGift *SaveData_GetMysteryGift(SaveData *save)
 {
     SaveData_Checksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
     return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 }
 
-PalParkTransfer *SaveData_PalParkTransfer(SaveData *save)
+PalParkTransfer *SaveData_GetPalParkTransfer(SaveData *save)
 {
     return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER);
 }
