@@ -66,7 +66,9 @@ typedef struct WaveOutParam {
 void Sound_SetBGMFixed(u8 fixed);
 u8 Sound_IsBGMFixed(void);
 void Sound_SetCurrentBGM(u16 bgmID);
-u16 Sound_GetCurrentBGM();
+u16 Sound_Impl_GetCurrentBGM();
+static inline u16 Sound_GetCurrentBGM1(void* p) { return Sound_Impl_GetCurrentBGM(p); }
+static inline u16 Sound_GetCurrentBGM(void) { return Sound_Impl_GetCurrentBGM(); }
 void Sound_SetNextBGM(u16 bgmID);
 u16 Sound_GetNextBGM(void);
 void Sound_SetFieldBGM(u16 bgmID);
@@ -79,7 +81,7 @@ void sub_02004950(u16 param0);
 void Sound_LoadHeapStateBGM(void);
 int Sound_GetHeapState(enum SoundHeapState state);
 void Sound_SetBGMPlayerPaused(u8 playerID, BOOL paused); // playerID can be either PLAYER_FIELD or PLAYER_BGM
-void Sound_ClearBGMPauseFlags();
+void Sound_ClearBGMPauseFlags(void);
 void Sound_FadeVolumeForHandle(enum SoundHandleType handleType, int targetVolume, int frames);
 void Sound_SetInitialVolumeForHandle(enum SoundHandleType handleType, int volume);
 void Sound_AdjustVolumeForVoiceChat(int seqID);

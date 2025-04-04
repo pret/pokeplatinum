@@ -1455,7 +1455,7 @@ static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 {
     StartScreenTransition(2, 0, 0, 0x0, 8, 1, 95);
 
-    if (param0->unk_1C != Sound_GetCurrentBGM()) {
+    if (param0->unk_1C != Sound_Impl_GetCurrentBGM()) {
         Sound_SetSceneAndPlayBGM(4, param0->unk_1C, 1);
     }
 
