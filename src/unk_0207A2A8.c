@@ -11,11 +11,11 @@
 #include "pokemon.h"
 #include "unk_0202602C.h"
 
-HeightWeightData *sub_0207A2A8(int param0)
+HeightWeightData *sub_0207A2A8(int heapID)
 {
-    HeightWeightData *v0 = Pokedex_HeightWeightData(param0);
+    HeightWeightData *v0 = Pokedex_HeightWeightData(heapID);
 
-    Pokedex_HeightWeightData_Load(v0, 0, param0);
+    Pokedex_HeightWeightData_Load(v0, 0, heapID);
     return v0;
 }
 

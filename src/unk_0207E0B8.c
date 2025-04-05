@@ -948,7 +948,7 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
     v0->unk_00 = BgConfig_New(HEAP_ID_12);
 
     if ((v0->unk_5A4->unk_20 == 2) && (v0->unk_5A4->unk_14 != NULL)) {
-        v0->unk_B20 = sub_0207A2A8(12);
+        v0->unk_B20 = sub_0207A2A8(HEAP_ID_12);
     } else {
         v0->unk_B20 = NULL;
     }

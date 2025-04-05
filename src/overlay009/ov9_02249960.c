@@ -5520,7 +5520,7 @@ static void ov9_0224D9BC(UnkStruct_ov9_02249B04 *param0, u32 param1, u32 param2,
         }
 
         sub_02073994(param4, v0->unk_258[param2].unk_04, 0);
-        sub_02073A3C(param4, &v0->unk_00[param1].unk_04, 4);
+        sub_02073A3C(param4, &v0->unk_00[param1].unk_04, HEAP_ID_FIELD);
         sub_02073A5C(param4, &v0->unk_00[param1].unk_04);
         sub_02073B84(param3, param4);
     }

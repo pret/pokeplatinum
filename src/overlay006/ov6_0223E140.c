@@ -289,7 +289,7 @@ static BOOL ov6_0223FFC8(UnkStruct_ov6_0223FDE4 *param0);
 static void ov6_0223FFE4(UnkStruct_ov6_0223FDE4 *param0, fx32 param1, fx32 param2);
 static void ov6_02240064(SysTask *param0, void *param1);
 static void ov6_02240240(UnkStruct_ov6_02240240 *param0, FieldSystem *fieldSystem, u32 param2);
-static void ov6_02240260(UnkStruct_ov6_02240260 *param0, u32 param1, NNSFndAllocator *param2);
+static void ov6_02240260(UnkStruct_ov6_02240260 *param0, u32 heapID, NNSFndAllocator *param2);
 static void ov6_022402E4(UnkStruct_ov6_02240260 *param0, fx32 param1, fx32 param2, fx32 param3);
 static void ov6_02240340(UnkStruct_ov6_02240260 *param0, NNSFndAllocator *param1);
 static void ov6_02240600(UnkStruct_ov6_02240260 *param0);
@@ -2103,15 +2103,15 @@ static void ov6_02240240(UnkStruct_ov6_02240240 *param0, FieldSystem *fieldSyste
     param0->unk_28 = 0;
 }
 
-static void ov6_02240260(UnkStruct_ov6_02240260 *param0, u32 param1, NNSFndAllocator *param2)
+static void ov6_02240260(UnkStruct_ov6_02240260 *param0, u32 heapID, NNSFndAllocator *param2)
 {
     int v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, param1);
+    NARC *v1 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, heapID);
 
-    ov6_0223FD60(&param0->unk_80, v1, 6, param1);
+    ov6_0223FD60(&param0->unk_80, v1, 6, heapID);
 
     for (v0 = 0; v0 < 2; v0++) {
-        ov6_0223FD70(&param0->unk_90[v0], &param0->unk_80, v1, 4 + v0, param1, param2);
+        ov6_0223FD70(&param0->unk_90[v0], &param0->unk_80, v1, 4 + v0, heapID, param2);
     }
 
     ov6_0223FDAC(&param0->unk_08, &param0->unk_80);

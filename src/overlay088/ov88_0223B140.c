@@ -161,7 +161,6 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0);
 static int ov88_0223D69C(UnkStruct_02095E80 *param0);
 static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1);
 static void ov88_0223D0D4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkStruct_02027F8C *param2);
-static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 
 static const int Unk_ov88_0223EF9C[][2] = {
     { 0x0, 0x20 },
@@ -1161,9 +1160,9 @@ static void ov88_0223C44C(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, 0);
 }
 
-static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 heapID)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, param7, 1);
+    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, heapID, 1);
 
     if (v0 != NULL) {
         NNSG2dScreenData *v1;
@@ -1199,7 +1198,7 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, HEAP_ID_26);
 
-    ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, 26);
+    ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_26);
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, HEAP_ID_26);
     Font_LoadScreenIndicatorsPalette(0, 2 * 32, HEAP_ID_26);
