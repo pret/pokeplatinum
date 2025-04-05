@@ -99,7 +99,7 @@ BOOL ScrCmd_CheckHasLearnableTutorMoves(ScriptContext *ctx)
     u16 location = ScriptContext_GetVar(ctx);
     u16 *hasLearnableMoves = ScriptContext_GetVarPointer(ctx);
 
-    Pokemon *pokemon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), partySlot);
+    Pokemon *pokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
     *hasLearnableMoves = Pokemon_HasLearnableMovesAt(pokemon, location);
 
     return FALSE;
@@ -111,7 +111,7 @@ BOOL ScrCmd_ResetMoveSlot(ScriptContext *ctx)
     u16 moveID = ScriptContext_GetVar(ctx);
     u16 moveSlot = ScriptContext_GetVar(ctx);
 
-    sub_02054988(Party_GetFromSavedata(ctx->fieldSystem->saveData), partySlot, moveID, moveSlot);
+    sub_02054988(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot, moveID, moveSlot);
     return FALSE;
 }
 
@@ -315,7 +315,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
     scriptContext->data[0] = selectedOptionVar;
 
     if (partySlot != 0xff) {
-        pokemon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(scriptContext->fieldSystem->saveData), partySlot);
+        pokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(scriptContext->fieldSystem->saveData), partySlot);
     }
 
     moveNamesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_FIELD_TASK);

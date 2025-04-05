@@ -136,7 +136,7 @@ int ov73_021D0D80(OverlayManager *param0, int *param1)
 
     v0->heapId = childHeapID;
     v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_08 = SaveData_Options(v0->unk_04);
+    v0->unk_08 = SaveData_GetOptions(v0->unk_04);
     v0->unk_0C = 0;
     v0->unk_10 = 0;
     v0->unk_14 = NULL;

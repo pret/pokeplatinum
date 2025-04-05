@@ -458,7 +458,7 @@ static BOOL ov62_0223A17C(UnkStruct_0208C06C *param0)
     Bg_ClearTilemap(param0->unk_14.unk_10, 6);
     Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
-    v0->unk_00 = SaveData_PCBoxes(param0->unk_830);
+    v0->unk_00 = SaveData_GetPCBoxes(param0->unk_830);
     ov62_0223A154(param0->unk_830, v0->unk_00, v0->unk_1A0, &v0->unk_04);
     ov62_0223A138(v0);
     ov62_022315C8(&v0->unk_1A4, &v0->unk_1A8, 0);
@@ -1228,7 +1228,7 @@ static void ov62_0223B158(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     {
-        PCBoxes *v1 = SaveData_PCBoxes(param0->unk_830);
+        PCBoxes *v1 = SaveData_GetPCBoxes(param0->unk_830);
 
         if ((v0->unk_04.unk_176 >= 16) && (v0->unk_04.unk_176 < (16 + 8))) {
             v0->unk_04.unk_176 = 0;
@@ -1260,7 +1260,7 @@ static void ov62_0223B230(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     {
-        PCBoxes *v1 = SaveData_PCBoxes(param0->unk_830);
+        PCBoxes *v1 = SaveData_GetPCBoxes(param0->unk_830);
 
         if ((v0->unk_04.unk_176 >= 16) && (v0->unk_04.unk_176 < (16 + 8))) {
             v0->unk_04.unk_176 = 0;

@@ -402,7 +402,7 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
 
         Sound_PlayEffect(SEQ_SE_DP_SUTYA);
         SystemFlag_SetSphereAcquired(SaveData_GetVarsFlags(Unk_ov23_02257744->fieldSystem->saveData));
-        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(Unk_ov23_02257744->fieldSystem->saveData), RECORD_UNK_047);
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecords(Unk_ov23_02257744->fieldSystem->saveData), RECORD_UNK_047);
 
         ov5_021F57C8(Unk_ov23_02257744->fieldSystem, param2, param3);
     }

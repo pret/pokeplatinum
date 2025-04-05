@@ -104,7 +104,7 @@ int ov98_02246C20(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02246E88), HEAP_ID_108);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
     v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_08 = SaveData_Options(v0->saveData);
+    v0->unk_08 = SaveData_GetOptions(v0->saveData);
     v0->unk_114 = Strbuf_Init(100, HEAP_ID_108);
     v0->unk_118 = Strbuf_Init(100, HEAP_ID_108);
     sub_02004550(17, 1175, 1);
@@ -348,7 +348,7 @@ void *ov98_02246FC4(UnkStruct_ov98_02246E88 *param0)
     v0[2] = 4;
     v0[3] = 4;
 
-    param0->unk_98 = sub_02089400(HEAP_ID_108, 16, v0, SaveData_Options(param0->saveData), 4, 0);
+    param0->unk_98 = sub_02089400(HEAP_ID_108, 16, v0, SaveData_GetOptions(param0->saveData), 4, 0);
     return param0->unk_98;
 }
 
@@ -381,7 +381,7 @@ void *ov98_02247070(UnkStruct_ov98_02246E88 *param0)
     v0[2] = 0;
     v0[3] = 0;
 
-    param0->unk_98 = sub_0208941C(HEAP_ID_108, 7, v0, SaveData_Options(param0->saveData), 5, 1, 1, param0->unk_7C);
+    param0->unk_98 = sub_0208941C(HEAP_ID_108, 7, v0, SaveData_GetOptions(param0->saveData), 5, 1, 1, param0->unk_7C);
     return param0->unk_98;
 }
 
@@ -404,7 +404,7 @@ void *ov98_022470F8(UnkStruct_ov98_02246E88 *param0)
     v0[2] = 0;
     v0[3] = 0;
 
-    param0->unk_98 = sub_02089400(HEAP_ID_108, 4, v0, SaveData_Options(param0->saveData), 6, 0);
+    param0->unk_98 = sub_02089400(HEAP_ID_108, 4, v0, SaveData_GetOptions(param0->saveData), 6, 0);
     return param0->unk_98;
 }
 

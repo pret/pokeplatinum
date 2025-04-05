@@ -139,8 +139,8 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
             SaveData *v2 = (SaveData *)OverlayManager_Args(param0);
 
             v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(v2));
-            v0->records = (GameRecords *)SaveData_GetGameRecordsPtr((SaveData *)OverlayManager_Args(param0));
-            v0->unk_0C = (Options *)SaveData_Options((SaveData *)OverlayManager_Args(param0));
+            v0->records = (GameRecords *)SaveData_GetGameRecords((SaveData *)OverlayManager_Args(param0));
+            v0->unk_0C = (Options *)SaveData_GetOptions((SaveData *)OverlayManager_Args(param0));
         }
 
         ov72_0223DCA8(v0, v1);

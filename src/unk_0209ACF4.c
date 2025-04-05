@@ -266,13 +266,13 @@ static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2)
 
     if (Window_IsInUse(v0) == 0) {
         FieldMessage_AddWindow(param0->fieldSystem->bgConfig, v0, 3);
-        FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
+        FieldMessage_DrawWindow(v0, SaveData_GetOptions(param0->fieldSystem->saveData));
     } else {
         FieldMessage_ClearWindow(v0);
         Window_DrawMessageBoxWithScrollCursor(v0, 0, 1024 - (18 + 12), 10);
     }
 
-    param0->unk_58 = FieldMessage_Print(v0, param0->unk_08, SaveData_Options(param0->fieldSystem->saveData), 1);
+    param0->unk_58 = FieldMessage_Print(v0, param0->unk_08, SaveData_GetOptions(param0->fieldSystem->saveData), 1);
 }
 
 static BOOL sub_0209B100(UnkStruct_0209AD84 *param0)

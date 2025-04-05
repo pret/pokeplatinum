@@ -16,8 +16,8 @@ void sub_0202F180(SaveData *saveData, const Pokemon *mon)
     if (Pokemon_GetValue((Pokemon *)mon, MON_DATA_IS_EGG, NULL) == FALSE) {
         Pokedex *pokedex = SaveData_GetPokedex(saveData);
 
-        GameRecords_IncrementTrainerScoreOnCatch(SaveData_GetGameRecordsPtr(saveData), pokedex, Pokemon_GetValue((Pokemon *)mon, MON_DATA_SPECIES, NULL));
+        GameRecords_IncrementTrainerScoreOnCatch(SaveData_GetGameRecords(saveData), pokedex, Pokemon_GetValue((Pokemon *)mon, MON_DATA_SPECIES, NULL));
         Pokedex_Capture(pokedex, (Pokemon *)mon);
-        Poketch_PokemonHistoryEnqueue(SaveData_PoketchData(saveData), (const BoxPokemon *)mon);
+        Poketch_PokemonHistoryEnqueue(SaveData_GetPoketch(saveData), (const BoxPokemon *)mon);
     }
 }

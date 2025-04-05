@@ -40,7 +40,7 @@ BOOL ScrCmd_GivePokemon(ScriptContext *ctx)
     u16 heldItem = ScriptContext_GetVar(ctx);
     u16 *partyHasRoom = ScriptContext_GetVarPointer(ctx);
 
-    playerParty = Party_GetFromSavedata(fieldSystem->saveData);
+    playerParty = SaveData_GetParty(fieldSystem->saveData);
     *partyHasRoom = Pokemon_GiveMonFromScript(HEAP_ID_FIELDMAP, fieldSystem->saveData, species, level, heldItem, metLocation, metTerrain);
 
     return FALSE;
@@ -53,7 +53,7 @@ BOOL ScrCmd_GetPartyMonSpecies(ScriptContext *ctx)
     u16 *partySlot = ScriptContext_GetVarPointer(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), *partySlot);
+    mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), *partySlot);
 
     if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
         *destVar = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -73,7 +73,7 @@ BOOL ScrCmd_199(ScriptContext *param0)
     u16 *v4 = ScriptContext_GetVarPointer(param0);
     u16 v5, v6;
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), *v3);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), *v3);
     v5 = Pokemon_GetValue(v1, MON_DATA_OT_ID, NULL);
     v6 = TrainerInfo_ID(v2);
 
@@ -98,7 +98,7 @@ BOOL ScrCmd_GiveEgg(ScriptContext *ctx)
     u16 species = ScriptContext_GetVar(ctx);
     u16 eggGiver = ScriptContext_GetVar(ctx);
 
-    playerParty = Party_GetFromSavedata(fieldSystem->saveData);
+    playerParty = SaveData_GetParty(fieldSystem->saveData);
     partyCount = Party_GetCurrentCount(playerParty);
 
     if (partyCount < 6) {
@@ -121,7 +121,7 @@ BOOL ScrCmd_098(ScriptContext *param0)
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
 
-    sub_02054988(Party_GetFromSavedata(param0->fieldSystem->saveData), v0, v1, v2);
+    sub_02054988(SaveData_GetParty(param0->fieldSystem->saveData), v0, v1, v2);
     return 0;
 }
 
@@ -134,7 +134,7 @@ BOOL ScrCmd_CheckPartyMonHasMove(ScriptContext *ctx)
     u16 partySlot = ScriptContext_GetVar(ctx);
     u16 v5;
 
-    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
+    mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     *destVar = FALSE;
 
     if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
@@ -160,10 +160,10 @@ BOOL ScrCmd_09A(ScriptContext *param0)
     u16 v4;
     u8 v5, v6;
 
-    v6 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    v6 = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
 
     for (v5 = 0, *v2 = 6; v5 < v6; v5++) {
-        v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v5);
+        v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v5);
 
         if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) != 0) {
             continue;
@@ -182,7 +182,7 @@ BOOL ScrCmd_SurvivePoison(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     u16 partySlot = ScriptContext_GetVar(ctx);
-    Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), partySlot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
     *destVar = Pokemon_TrySurvivePoison(mon);
 
     return FALSE;
@@ -196,11 +196,11 @@ BOOL ScrCmd_1F6(ScriptContext *param0)
     u16 v3 = ScriptContext_GetVar(param0);
     u8 v4, v5, v6;
 
-    v5 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    v5 = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
     *v2 = 0;
 
     for (v4 = 0, v6 = 0; v4 < v5; v4++) {
-        v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v4);
+        v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v4);
 
         if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
             if (Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL) <= v3) {
@@ -221,7 +221,7 @@ BOOL ScrCmd_278(ScriptContext *param0)
     u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v3);
     *v2 = 0;
 
     if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
@@ -237,14 +237,14 @@ BOOL ScrCmd_212(ScriptContext *param0)
     Pokemon *v1;
     u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
-    u8 v4 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    u8 v4 = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
 
     if (v3 >= v4) {
         *v2 = 0;
         return 0;
     }
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v3);
 
     if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) != 0) {
         *v2 = 0;
@@ -264,11 +264,11 @@ BOOL ScrCmd_213(ScriptContext *param0)
     u16 v3 = ScriptContext_GetVar(param0);
     u8 v4, v5;
 
-    v4 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    v4 = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
     *v2 = 0xff;
 
     for (v5 = 0; v5 < v4; v5++) {
-        v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v5);
+        v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v5);
 
         if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
             if (Pokemon_GetNature(v1) == v3) {
@@ -288,7 +288,7 @@ BOOL ScrCmd_GetFriendshipByPartySlot(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     u16 slot = ScriptContext_GetVar(ctx);
 
-    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), slot);
+    mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
     *destVar = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
     return FALSE;
@@ -303,7 +303,7 @@ BOOL ScrCmd_1BA(ScriptContext *param0)
     u16 v4;
     u32 v5 = MapHeader_GetMapLabelTextID(param0->fieldSystem->location->mapId);
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v3);
     v4 = Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL);
 
     if (v2 > 0) {
@@ -338,7 +338,7 @@ BOOL ScrCmd_1BB(ScriptContext *param0)
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4;
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v3);
     v4 = Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL);
 
     if (v2 > v4) {
@@ -358,7 +358,7 @@ BOOL ScrCmd_281(ScriptContext *param0)
     u16 v2 = ScriptContext_GetVar(param0);
     u16 *v3 = ScriptContext_GetVarPointer(param0);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
+    v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v1);
     *v3 = Pokemon_GetValue(v0, MON_DATA_COOL + v2, NULL);
 
     return 0;
@@ -380,7 +380,7 @@ BOOL ScrCmd_248(ScriptContext *param0)
     u16 *v3 = ScriptContext_GetVarPointer(param0);
     u16 v4 = ScriptContext_GetVar(param0);
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v4);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v4);
     *v2 = Pokemon_GetValue(v1, MON_DATA_TYPE_1, NULL);
     *v3 = Pokemon_GetValue(v1, MON_DATA_TYPE_2, NULL);
 
@@ -392,7 +392,7 @@ BOOL ScrCmd_GetPartyCount(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    *destVar = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
     return FALSE;
 }
 
@@ -401,10 +401,10 @@ BOOL ScrCmd_GetPartyCountHatched(ScriptContext *ctx)
     int hatchedCount, i;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
-    int partyCount = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    int partyCount = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
 
     for (i = 0, hatchedCount = 0; i < partyCount; i++) {
-        Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
         if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
             hatchedCount++;
@@ -421,14 +421,14 @@ BOOL ScrCmd_CountAliveMonsExcept(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     u16 partySlot = ScriptContext_GetVar(ctx);
-    partyCount = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    partyCount = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
 
     for (i = 0, aliveCount = 0; i < partyCount; i++) {
         if (i == partySlot) {
             continue;
         }
 
-        Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
         if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
             && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != 0) {
@@ -446,12 +446,12 @@ BOOL ScrCmd_19C(ScriptContext *param0)
     Pokemon *partyMon;
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 *v5 = ScriptContext_GetVarPointer(param0);
-    PCBoxes *pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
+    PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
 
-    currentPartyCount = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    currentPartyCount = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
 
     for (i = 0, count = 0; i < currentPartyCount; i++) {
-        partyMon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
+        partyMon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
         if (Pokemon_GetValue(partyMon, MON_DATA_IS_EGG, NULL) == FALSE) {
             if (Pokemon_GetValue(partyMon, MON_DATA_CURRENT_HP, NULL)) {
@@ -473,10 +473,10 @@ BOOL ScrCmd_19D(ScriptContext *param0)
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
-    v0 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    v0 = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
 
     for (v2 = 0, v1 = 0; v2 < v0; v2++) {
-        v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v2);
+        v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2);
 
         if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL)) {
             v1++;
@@ -493,11 +493,11 @@ BOOL ScrCmd_CheckPartyPokerus(ScriptContext *ctx)
     u16 i, partyCount;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
-    partyCount = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    partyCount = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
     *destVar = FALSE;
 
     for (i = 0; i < partyCount; i++) {
-        Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
         if (Pokemon_GetValue(mon, MON_DATA_POKERUS, NULL) != FALSE) {
             *destVar = TRUE;
@@ -514,7 +514,7 @@ BOOL ScrCmd_11A(ScriptContext *param0)
     u16 v1 = ScriptContext_GetVar(param0);
     u16 *v2 = ScriptContext_GetVarPointer(param0);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
+    v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v1);
     *v2 = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
 
     return 0;
@@ -527,7 +527,7 @@ BOOL ScrCmd_GetPartyMonMoveCount(ScriptContext *ctx)
     u16 partySlot = ScriptContext_GetVar(ctx);
     u8 count;
 
-    Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
 
     if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
         *destVar = 0;
@@ -565,7 +565,7 @@ BOOL ScrCmd_1C9(ScriptContext *param0)
     u16 v4 = ScriptContext_GetVar(param0);
     u16 v5 = ScriptContext_GetVar(param0);
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v4);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v4);
     Pokemon_ClearMoveSlot(v1, v5);
 
     return 0;
@@ -578,7 +578,7 @@ BOOL ScrCmd_1CA(ScriptContext *ctx)
     u16 partySlot = ScriptContext_GetVar(ctx);
     u16 moveSlot = ScriptContext_GetVar(ctx);
 
-    Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     *destVar = Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
 
     return 0;
@@ -591,7 +591,7 @@ BOOL ScrCmd_1EE(ScriptContext *param0)
     u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v3);
     *v2 = Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL);
 
     return 0;
@@ -604,7 +604,7 @@ BOOL ScrCmd_1F0(ScriptContext *param0)
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3;
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v2);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2);
     v3 = 0;
 
     Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v3);
@@ -622,12 +622,12 @@ BOOL ScrCmd_CheckPartyHasSpecies(ScriptContext *ctx)
     u8 i, partyCount;
     u16 partySpecies;
 
-    party = Party_GetFromSavedata(fieldSystem->saveData);
+    party = SaveData_GetParty(fieldSystem->saveData);
     partyCount = Party_GetCurrentCount(party);
     *destVar = FALSE;
 
     for (i = 0; i < partyCount; i++) {
-        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
+        mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
         if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
             partySpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -659,12 +659,12 @@ BOOL ScrCmd_CountRepeatedSpeciesInParty(ScriptContext *ctx)
         partySpeciesArray[i] = SPECIES_NONE;
     }
 
-    party = Party_GetFromSavedata(fieldSystem->saveData);
+    party = SaveData_GetParty(fieldSystem->saveData);
     partyCount = Party_GetCurrentCount(party);
     *destVar = 0;
 
     for (i = 0; i < partyCount; i++) {
-        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
+        mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
         if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
             partySpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -699,12 +699,12 @@ BOOL ScrCmd_FindPartySlotWithSpecies(ScriptContext *ctx)
     u8 i, partyCount;
     u16 partySpecies;
 
-    party = Party_GetFromSavedata(fieldSystem->saveData);
+    party = SaveData_GetParty(fieldSystem->saveData);
     partyCount = Party_GetCurrentCount(party);
     *destVar = 0xff;
 
     for (i = 0; i < partyCount; i++) {
-        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
+        mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
         if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
             partySpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -726,7 +726,7 @@ BOOL ScrCmd_22E(ScriptContext *param0)
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3, v4;
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v2);
+    v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v2);
 
     for (v3 = 0, v4 = 0; v3 < 80; v3++) {
         if (Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_MON_DATA_PARAM), NULL) != 0) {
@@ -746,8 +746,8 @@ BOOL ScrCmd_22F(ScriptContext *param0)
     u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3, v4, v5, v6;
 
-    v6 = Party_GetCurrentCount(Party_GetFromSavedata(param0->fieldSystem->saveData));
-    v1 = Party_GetFromSavedata(param0->fieldSystem->saveData);
+    v6 = Party_GetCurrentCount(SaveData_GetParty(param0->fieldSystem->saveData));
+    v1 = SaveData_GetParty(param0->fieldSystem->saveData);
 
     for (v3 = 0, v5 = 0; v3 < 80; v3++) {
         for (v4 = 0; v4 < v6; v4++) {
@@ -775,7 +775,7 @@ BOOL ScrCmd_GetPartyMonRibbon(ScriptContext *ctx)
     u16 ribbonID = ScriptContext_GetVar(ctx);
     u8 unused = 1;
 
-    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
+    mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), slot);
     *hasRibbonVar = Pokemon_GetValue(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), NULL);
 
     return FALSE;
@@ -788,7 +788,7 @@ BOOL ScrCmd_SetPartyMonRibbon(ScriptContext *ctx)
     u16 ribbonID = ScriptContext_GetVar(ctx);
     u8 value = TRUE;
 
-    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
+    mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), slot);
 
     Pokemon_SetValue(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), &value);
     sub_0206DDB8(ctx->fieldSystem->saveData, mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM));
@@ -803,8 +803,8 @@ BOOL ScrCmd_2B7(ScriptContext *param0)
     u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3, v4, v5;
 
-    v5 = Party_GetCurrentCount(Party_GetFromSavedata(param0->fieldSystem->saveData));
-    v1 = Party_GetFromSavedata(param0->fieldSystem->saveData);
+    v5 = Party_GetCurrentCount(SaveData_GetParty(param0->fieldSystem->saveData));
+    v1 = SaveData_GetParty(param0->fieldSystem->saveData);
 
     for (v3 = 0; v3 < 80; v3++) {
         for (v4 = 0; v4 < v5; v4++) {
@@ -839,12 +839,12 @@ BOOL ScrCmd_CheckPartyHasFatefulEncounter(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     u16 species = ScriptContext_GetVar(ctx);
 
-    party = Party_GetFromSavedata(fieldSystem->saveData);
+    party = SaveData_GetParty(fieldSystem->saveData);
     partyCount = Party_GetCurrentCount(party);
     *destVar = 0xff;
 
     for (i = 0; i < partyCount; i++) {
-        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
+        mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
         if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
             partySpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -870,12 +870,12 @@ BOOL ScrCmd_CheckPartyHasHeldItem(ScriptContext *ctx)
     u16 item = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    party = Party_GetFromSavedata(fieldSystem->saveData);
+    party = SaveData_GetParty(fieldSystem->saveData);
     partyCount = Party_GetCurrentCount(party);
     *destVar = FALSE;
 
     for (i = 0; i < partyCount; i++) {
-        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
+        mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
         if (Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL) == item) {
             *destVar = TRUE;

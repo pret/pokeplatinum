@@ -277,7 +277,7 @@ BOOL ov104_0222EE60(UnkStruct_ov104_0223B5C0 *param0)
     v1 = 0;
     v3 = 512;
     v4 = Pokemon_StructSize();
-    v6 = Party_GetFromSavedata(param0->unk_6FC);
+    v6 = SaveData_GetParty(param0->unk_6FC);
     v5 = Party_GetPokemonBySlotIndex(v6, param0->unk_260[0]);
 
     MI_CpuCopy8(v5, &param0->unk_784[0], v4);

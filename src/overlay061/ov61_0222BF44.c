@@ -433,7 +433,7 @@ static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_117);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_117);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_117);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(SaveData_Options(param0->unk_00->unk_00->unk_04)), HEAP_ID_117);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(SaveData_GetOptions(param0->unk_00->unk_00->unk_04)), HEAP_ID_117);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_117);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_117);

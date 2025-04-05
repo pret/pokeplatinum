@@ -150,7 +150,7 @@ FieldBattleDTO *FieldBattleDTO_NewPalPark(enum HeapId heapID, int countParkBalls
 FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const FieldSystem *fieldSystem)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    Options *options = SaveData_Options(fieldSystem->saveData);
+    Options *options = SaveData_GetOptions(fieldSystem->saveData);
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_CATCH_TUTORIAL);
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTERPART_NAMES, heapID);
     Strbuf *strbuf = Strbuf_Init(TRAINER_NAME_LEN + 1, heapID);
@@ -174,10 +174,10 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const Fie
     Party_AddPokemon(dto->parties[BATTLER_ENEMY_1], mon);
     Heap_FreeToHeap(mon);
 
-    dto->pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
+    dto->pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
     dto->bagCursor = fieldSystem->bagCursor;
     dto->subscreenCursorOn = NULL;
-    dto->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
     dto->mapHeaderID = fieldSystem->location->mapId;
 
@@ -238,11 +238,11 @@ void FieldBattleDTO_CopyChatotCryToBattler(FieldBattleDTO *dto, const ChatotCry 
 void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *save, enum MapHeader mapHeaderID, JournalEntry *journalEntry, BagCursor *bagCursor, u8 *subscreenCursorOn)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(save);
-    Party *party = Party_GetFromSavedata(save);
+    Party *party = SaveData_GetParty(save);
     Bag *bag = SaveData_GetBag(save);
     Pokedex *pokedex = SaveData_GetPokedex(save);
-    ChatotCry *chatotCry = GetChatotCryDataFromSave(save);
-    Options *options = SaveData_Options(save);
+    ChatotCry *chatotCry = SaveData_GetChatotCry(save);
+    Options *options = SaveData_GetOptions(save);
     FieldOverworldState *fieldOverworldState = SaveData_GetFieldOverworldState(save);
 
     if (fieldSystem != NULL) {
@@ -263,7 +263,7 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
     Options_Copy(options, dto->options);
     FieldBattleDTO_CopyChatotCryToBattler(dto, chatotCry, BATTLER_PLAYER_1);
 
-    dto->pcBoxes = SaveData_PCBoxes(save);
+    dto->pcBoxes = SaveData_GetPCBoxes(save);
     dto->mapLabelTextID = MapHeader_GetMapLabelTextID(mapHeaderID);
     dto->mapEvolutionMethod = MapHeader_GetMapEvolutionMethod(mapHeaderID);
     dto->visitedContestHall = PokemonSummaryScreen_ShowContestData(save);
@@ -271,9 +271,9 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
     dto->fieldWeather = FieldOverworldState_GetWeather(fieldOverworldState);
     dto->bagCursor = bagCursor;
     dto->subscreenCursorOn = subscreenCursorOn;
-    dto->poketch = SaveData_PoketchData(save);
+    dto->poketch = SaveData_GetPoketch(save);
     dto->unk_104 = sub_0202C878(save);
-    dto->records = SaveData_GetGameRecordsPtr(save);
+    dto->records = SaveData_GetGameRecords(save);
     dto->journalEntry = journalEntry;
     dto->unk_124 = sub_02027F8C(save);
     dto->mapHeaderID = mapHeaderID;
@@ -291,11 +291,11 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
     int i;
     u32 levelBaseExp;
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
-    ChatotCry *chatotCry = GetChatotCryDataFromSave(fieldSystem->saveData);
-    Options *options = SaveData_Options(fieldSystem->saveData);
+    ChatotCry *chatotCry = SaveData_GetChatotCry(fieldSystem->saveData);
+    Options *options = SaveData_GetOptions(fieldSystem->saveData);
 
     dto->background = BACKGROUND_INDOORS_1;
     dto->terrain = TERRAIN_BUILDING;
@@ -322,13 +322,13 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
     Options_Copy(options, dto->options);
     FieldBattleDTO_CopyChatotCryToBattler(dto, chatotCry, BATTLER_PLAYER_1);
 
-    dto->pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
+    dto->pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
     dto->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     dto->bagCursor = fieldSystem->bagCursor;
     dto->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
-    dto->poketch = SaveData_PoketchData(fieldSystem->saveData);
+    dto->poketch = SaveData_GetPoketch(fieldSystem->saveData);
     dto->unk_104 = sub_0202C878(fieldSystem->saveData);
-    dto->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
     dto->unk_124 = sub_02027F8C(fieldSystem->saveData);
     dto->mapHeaderID = fieldSystem->location->mapId;
@@ -342,8 +342,8 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
-    ChatotCry *chatotCry = GetChatotCryDataFromSave(fieldSystem->saveData);
-    Options *options = SaveData_Options(fieldSystem->saveData);
+    ChatotCry *chatotCry = SaveData_GetChatotCry(fieldSystem->saveData);
+    Options *options = SaveData_GetOptions(fieldSystem->saveData);
     const BattleRegulation *regulation = fieldSystem->unk_B0;
     int i;
     Pokemon *mon;
@@ -388,12 +388,12 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     Options_Copy(options, dto->options);
     FieldBattleDTO_CopyChatotCryToBattler(dto, chatotCry, BATTLER_PLAYER_1);
 
-    dto->pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
+    dto->pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
     dto->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     dto->bagCursor = fieldSystem->bagCursor;
     dto->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
     dto->unk_104 = sub_0202C878(fieldSystem->saveData);
-    dto->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
     dto->mapHeaderID = fieldSystem->location->mapId;
     dto->unk_124 = sub_02027F8C(fieldSystem->saveData);
@@ -413,13 +413,13 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
 
 void FieldBattleDTO_InitWithPartyOrderFromSave(FieldBattleDTO *dto, const FieldSystem *fieldSystem, const u8 *partyOrder)
 {
-    FieldBattleDTO_InitWithPartyOrder(dto, fieldSystem, Party_GetFromSavedata(fieldSystem->saveData), partyOrder);
+    FieldBattleDTO_InitWithPartyOrder(dto, fieldSystem, SaveData_GetParty(fieldSystem->saveData), partyOrder);
 }
 
 void FieldBattleDTO_UpdateFieldSystem(const FieldBattleDTO *dto, FieldSystem *fieldSystem)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
     u16 *fieldSysSafariBalls = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
@@ -435,7 +435,7 @@ void FieldBattleDTO_UpdateFieldSystem(const FieldBattleDTO *dto, FieldSystem *fi
 void FieldBattleDTO_UpdatePokedex(const FieldBattleDTO *dto, FieldSystem *fieldSystem)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
 

@@ -479,6 +479,6 @@ static void sub_0207DF88(UnkStruct_ov115_02260440 *param0)
 
 static void sub_0207DF9C(FieldSystem *fieldSystem)
 {
-    GameRecords *v0 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    GameRecords *v0 = SaveData_GetGameRecords(fieldSystem->saveData);
     GameRecords_IncrementTrainerScore(v0, TRAINER_SCORE_EVENT_UNK_50);
 }

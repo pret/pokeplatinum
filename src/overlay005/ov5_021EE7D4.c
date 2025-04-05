@@ -105,7 +105,7 @@ u8 ov5_021EE920(FieldSystem *fieldSystem, u16 param1)
     u32 v4;
     u32 v5;
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), param1);
+    v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), param1);
     v3 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
     v1 = ov5_021EE7D4(v0);
     v4 = ov5_021EE8A8(v3, v1);
@@ -134,7 +134,7 @@ void ov5_021EE9BC(FieldSystem *fieldSystem, u16 param1)
     Pokemon *v0;
     vu16 v1;
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), param1);
+    v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), param1);
     v1 = ov5_021EE7D4(v0);
 
     SystemVars_SetSizeContestRecord(SaveData_GetVarsFlags(fieldSystem->saveData), v1);
@@ -170,7 +170,7 @@ void ov5_021EEA84(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3)
     u16 v1;
     vu16 v2;
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), param3);
+    v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), param3);
     v1 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
     v2 = ov5_021EE7D4(v0);
 

@@ -36,7 +36,7 @@ extern const int gExtraSaveTableSize;
  * @param save
  * @return Address of the TVBroadcast sector of the save data.
  */
-TVBroadcast *SaveData_TVBroadcast(SaveData *save);
+TVBroadcast *SaveData_GetTVBroadcast(SaveData *save);
 
 /**
  * @brief Loads the PCBoxes sector of the save data.
@@ -46,7 +46,7 @@ TVBroadcast *SaveData_TVBroadcast(SaveData *save);
  * @param save
  * @return Address of the PCBoxes sector of the save data.
  */
-PCBoxes *SaveData_PCBoxes(SaveData *save);
+PCBoxes *SaveData_GetPCBoxes(SaveData *save);
 
 /**
  * @brief Loads the MysteryGift sector of the save data.
@@ -56,7 +56,7 @@ PCBoxes *SaveData_PCBoxes(SaveData *save);
  * @param save
  * @return Address of the MysteryGift sector of the save data.
  */
-MysteryGift *SaveData_MysteryGift(SaveData *save);
+MysteryGift *SaveData_GetMysteryGift(SaveData *save);
 
 /**
  * @brief Loads the PalParkTransfer sector of the save data.
@@ -66,7 +66,7 @@ MysteryGift *SaveData_MysteryGift(SaveData *save);
  * @param save
  * @return Address of the PalParkTransfer sector of the save data.
  */
-PalParkTransfer *SaveData_PalParkTransfer(SaveData *save);
+PalParkTransfer *SaveData_GetPalParkTransfer(SaveData *save);
 
 /**
  * @brief Loads the HallOfFame sector from the extended save data.

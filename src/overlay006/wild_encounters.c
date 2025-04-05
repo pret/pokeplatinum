@@ -252,7 +252,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
         return FALSE;
     }
 
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     WildEncounters *encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
     firstPartyMon = Party_GetPokemonBySlotIndex(party, 0);
 
@@ -387,7 +387,7 @@ BOOL WildEncounters_TryFishingEncounter(FieldSystem *fieldSystem, const int fish
         return FALSE;
     }
 
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *firstPartyMon = Party_GetPokemonBySlotIndex(party, 0);
     WildEncounters_FieldParams encounterFieldParams;
     InitEncounterFieldParams(fieldSystem, firstPartyMon, NULL, &encounterFieldParams);
@@ -469,7 +469,7 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
         return FALSE;
     }
 
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     WildEncounters *encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
     firstPartyMon = Party_GetPokemonBySlotIndex(party, 0);
 
@@ -580,7 +580,7 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
         return FALSE;
     }
 
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     WildEncounters *encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
     firstPartyMon = Party_GetPokemonBySlotIndex(party, 0);
 
@@ -1199,7 +1199,7 @@ void CreateWildMon_HoneyTree(FieldSystem *fieldSystem, FieldBattleDTO *battlePar
 
     int species = HoneyTree_GetSpecies(fieldSystem);
 
-    Party *playerParty = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *playerParty = SaveData_GetParty(fieldSystem->saveData);
     firstPartyMon = Party_GetPokemonBySlotIndex(playerParty, 0);
 
     WildEncounters_FieldParams encounterFieldParams;
@@ -1226,7 +1226,7 @@ void CreateWildMon_HoneyTree(FieldSystem *fieldSystem, FieldBattleDTO *battlePar
 
 void CreateWildMon_Scripted(FieldSystem *fieldSystem, u16 species, u8 level, FieldBattleDTO *battleParams)
 {
-    Party *playerParty = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *playerParty = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *firstPartyMon = Party_GetPokemonBySlotIndex(playerParty, 0);
 
     WildEncounters_FieldParams encounterFieldParams;

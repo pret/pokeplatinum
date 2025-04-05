@@ -71,7 +71,7 @@ static BOOL ov33_0225621C(UnkStruct_ov33_0225621C *param0, PoketchSystem *poketc
         param0->poketchSys = poketchSys;
 
         {
-            Party *v0 = Party_GetFromSavedata(SaveData_Ptr());
+            Party *v0 = SaveData_GetParty(SaveData_Ptr());
             Pokemon *v1;
             int v2;
             int v3;

@@ -469,7 +469,7 @@ int ov107_02241AE0 (OverlayManager * param0, int * param1)
     v1->unk_1D4 = sub_0203041C(v1->unk_1CC);
     v1->unk_09 = v2->unk_04;
     v1->unk_438 = &v2->unk_20;
-    v1->unk_1C8 = SaveData_Options(v1->unk_1CC);
+    v1->unk_1C8 = SaveData_GetOptions(v1->unk_1CC);
     v1->unk_43C = v2->unk_18;
     v1->unk_12 = 0xff;
     v1->unk_49A = v2->unk_28;

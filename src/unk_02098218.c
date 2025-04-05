@@ -236,7 +236,7 @@ static BOOL sub_0209843C(FieldTask *param0)
 
         v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
 
-        v0->unk_08 = sub_0208712C(HEAP_ID_FIELDMAP, 1, v9, 10, SaveData_Options(FieldSystem_GetSaveData(fieldSystem)));
+        v0->unk_08 = sub_0208712C(HEAP_ID_FIELDMAP, 1, v9, 10, SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem)));
         v0->unk_08->unk_10 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
         v0->unk_08->unk_08 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
         FieldTask_RunApplication(param0, &Unk_020F2DAC, v0->unk_08);
@@ -248,7 +248,7 @@ static BOOL sub_0209843C(FieldTask *param0)
 
             {
                 FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-                GameRecords *v11 = SaveData_GetGameRecordsPtr(FieldSystem_GetSaveData(fieldSystem));
+                GameRecords *v11 = SaveData_GetGameRecords(FieldSystem_GetSaveData(fieldSystem));
 
                 GameRecords_IncrementRecordValue(v11, RECORD_UNK_049);
             }

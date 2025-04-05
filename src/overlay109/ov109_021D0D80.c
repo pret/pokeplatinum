@@ -443,7 +443,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     v1->unk_38 = v0;
     v0->unk_CC = v1;
     v0->unk_D0 = v1->unk_34;
-    v0->unk_24 = Party_GetFromSavedata(v0->unk_CC->unk_14.unk_08);
+    v0->unk_24 = SaveData_GetParty(v0->unk_CC->unk_14.unk_08);
     v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, HEAP_ID_95);
 
     VramTransfer_New(8, HEAP_ID_95);

@@ -266,7 +266,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
             {
                 GameRecords *v4;
 
-                v4 = SaveData_GetGameRecordsPtr(v0->unk_00);
+                v4 = SaveData_GetGameRecords(v0->unk_00);
                 GameRecords_IncrementTrainerScore(v4, TRAINER_SCORE_EVENT_UNK_44);
             }
 
@@ -571,7 +571,7 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
         Options *v1;
         u8 v2;
 
-        v1 = SaveData_Options(param0->unk_00);
+        v1 = SaveData_GetOptions(param0->unk_00);
         v2 = Options_Frame(v1);
 
         Font_LoadTextPalette(0, 12 * 32, param1);
@@ -627,7 +627,7 @@ static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32
     param0->unk_18 = Strbuf_Init(256, param10);
     param0->unk_1C = Strbuf_Init(256, param10);
     param0->unk_20 = param2;
-    param0->unk_28 = Options_TextFrameDelay(SaveData_Options(param9));
+    param0->unk_28 = Options_TextFrameDelay(SaveData_GetOptions(param9));
     param0->unk_2C = 0;
 
     Window_Add(param1, &param0->unk_08, Unk_ov67_0225D3F4[1], param4, param5, param6, param7, 11, param8);
