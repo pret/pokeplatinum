@@ -446,7 +446,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_24 = Party_GetFromSavedata(v0->unk_CC->unk_14.unk_08);
     v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, HEAP_ID_95);
 
-    VramTransfer_New(8, 95);
+    VramTransfer_New(8, HEAP_ID_95);
     sub_0201E3D8();
     sub_0201E450(4);
     ov109_021D1C28(v0);
@@ -1275,7 +1275,6 @@ static int ov109_021D1918(UnkStruct_ov109_021D0F70 *param0)
 
     {
         u32 v0;
-        BOOL v1;
 
         v0 = Unk_ov109_021D5BE4[param0->unk_2C.unk_04][0];
         v0 += LCRNG_Next() % (Unk_ov109_021D5BE4[param0->unk_2C.unk_04][1] - v0 + 1);
@@ -1288,10 +1287,10 @@ static int ov109_021D1918(UnkStruct_ov109_021D0F70 *param0)
 
         ov109_021D2714(param0, 3, v0);
 
-        v1 = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, 95);
+        BOOL removedItem = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, HEAP_ID_95);
         sub_02006150(1158);
 
-        if (v1 == 1) {
+        if (removedItem == TRUE) {
             param0->unk_00 = 40;
         } else {
             param0->unk_00 = 41;

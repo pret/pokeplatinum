@@ -173,24 +173,24 @@ Sprite *ov22_022551E4(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2, i
 
 void ov22_02255248(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5)
 {
-    SpriteResource *v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_48[0], param1, param2, param3, param5, param4, 14);
+    SpriteResource *v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_48[0], param1, param2, param3, param5, param4, HEAP_ID_14);
     SpriteTransfer_RequestCharAtEnd(v0);
 }
 
 void ov22_02255268(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5, int param6)
 {
-    SpriteResource *v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_48[1], param1, param2, param3, param6, param4, param5, 14);
+    SpriteResource *v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_48[1], param1, param2, param3, param6, param4, param5, HEAP_ID_14);
     SpriteTransfer_RequestPlttFreeSpace(v0);
 }
 
 void ov22_0225528C(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4)
 {
-    SpriteResourceCollection_AddFrom(param0->unk_48[2], param1, param2, param3, param4, 2, 14);
+    SpriteResourceCollection_AddFrom(param0->unk_48[2], param1, param2, param3, param4, 2, HEAP_ID_14);
 }
 
 void ov22_022552A8(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4)
 {
-    SpriteResourceCollection_AddFrom(param0->unk_48[3], param1, param2, param3, param4, 3, 14);
+    SpriteResourceCollection_AddFrom(param0->unk_48[3], param1, param2, param3, param4, 3, HEAP_ID_14);
 }
 
 void ov22_022552C4(UnkStruct_ov22_0225A0E4 *param0, int param1)
@@ -666,7 +666,7 @@ static void ov22_02255984(UnkStruct_ov22_0225A0E4 *param0)
 
 static void ov22_022559B4(UnkStruct_ov22_0225A0E4 *param0)
 {
-    param0->unk_34 = ResourceCollection_New(((100 + 18) + 1), 14);
+    param0->unk_34 = ResourceCollection_New(((100 + 18) + 1), HEAP_ID_14);
     param0->unk_38 = Heap_AllocFromHeap(HEAP_ID_14, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
     memset(param0->unk_38, 0, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
     param0->unk_3C = ((100 + 18) + 1);
@@ -692,20 +692,20 @@ static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    PlttTransfer_Init(5, 14);
+    PlttTransfer_Init(5, HEAP_ID_14);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 
     NNS_G2dInitOamManagerModule();
 
     RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 14);
-    param0->unk_44 = SpriteList_InitRendering(48, &param0->unk_58, 14);
+    param0->unk_44 = SpriteList_InitRendering(48, &param0->unk_58, HEAP_ID_14);
     SetSubScreenViewRect(&param0->unk_58, 0, (512 * FX32_ONE));
 
-    param0->unk_48[0] = SpriteResourceCollection_New(8, 0, 14);
-    param0->unk_48[1] = SpriteResourceCollection_New(5, 1, 14);
-    param0->unk_48[2] = SpriteResourceCollection_New(48, 2, 14);
-    param0->unk_48[3] = SpriteResourceCollection_New(48, 3, 14);
+    param0->unk_48[0] = SpriteResourceCollection_New(8, 0, HEAP_ID_14);
+    param0->unk_48[1] = SpriteResourceCollection_New(5, 1, HEAP_ID_14);
+    param0->unk_48[2] = SpriteResourceCollection_New(48, 2, HEAP_ID_14);
+    param0->unk_48[3] = SpriteResourceCollection_New(48, 3, HEAP_ID_14);
 }
 
 static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0)

@@ -94,7 +94,7 @@ static BOOL ov5_021EA8F0(UnkStruct_ov5_021EAE78 *param0)
         return 1;
     }
 
-    if (Bag_CanRemoveItem(SaveData_GetBag(param0->unk_34), 437, 1, 4) == 1) {
+    if (Bag_CanRemoveItem(SaveData_GetBag(param0->unk_34), ITEM_PAL_PAD, 1, HEAP_ID_FIELD) == TRUE) {
         v1 = CommInfo_TrainerInfo(param0->unk_8C);
         StringTemplate_SetPlayerName(param0->unk_38, 0, v1);
         ov5_021EAE78(param0, 57);
