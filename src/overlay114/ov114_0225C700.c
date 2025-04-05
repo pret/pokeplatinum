@@ -153,7 +153,7 @@ typedef struct {
 typedef struct UnkStruct_ov114_0225D678_t {
     u8 unk_00;
     u8 unk_01;
-    u16 unk_02;
+    u16 heapID;
     u16 unk_04;
     u8 unk_06;
     u8 unk_07;
@@ -199,7 +199,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov114_0225E854_t {
     u16 unk_00;
-    u16 unk_02;
+    u16 heapID;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;
@@ -1410,15 +1410,15 @@ static void ov114_0225D07C(UnkStruct_ov114_0225CFCC *param0)
     RenderOam_Transfer();
 }
 
-static void ov114_0225D084(UnkStruct_ov114_0225D084 *param0, u32 param1)
+static void ov114_0225D084(UnkStruct_ov114_0225D084 *param0, u32 heapID)
 {
-    param0->unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0411, param1);
-    param0->unk_04 = StringTemplate_New(8, 64, param1);
-    param0->unk_08 = Strbuf_Init(128, param1);
-    param0->unk_0C = Strbuf_Init(128, param1);
+    param0->unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0411, heapID);
+    param0->unk_04 = StringTemplate_New(8, 64, heapID);
+    param0->unk_08 = Strbuf_Init(128, heapID);
+    param0->unk_0C = Strbuf_Init(128, heapID);
 
-    Font_LoadScreenIndicatorsPalette(0, 12 * 0x20, param1);
-    Font_LoadScreenIndicatorsPalette(4, 12 * 0x20, param1);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 0x20, heapID);
+    Font_LoadScreenIndicatorsPalette(4, 12 * 0x20, heapID);
 }
 
 static void ov114_0225D0D8(UnkStruct_ov114_0225D084 *param0)
@@ -1636,7 +1636,7 @@ static UnkStruct_ov114_0225D678 *ov114_0225D48C(const UnkStruct_ov114_0225C76C *
 
     GXLayers_SetBanks(&Unk_ov114_022601B4);
 
-    v0->unk_02 = heapID;
+    v0->heapID = heapID;
 
     ov114_02260060(v0);
     ov114_0225E0F8(&v0->unk_18, &v0->unk_08);
@@ -1696,8 +1696,8 @@ static void ov114_0225D688(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        StartScreenTransition(3, 1, 1, 0xffff, 6, 1, v0->unk_02);
-        ov114_0225E244(&v0->unk_230, &v0->unk_30, v0->unk_02);
+        StartScreenTransition(3, 1, 1, 0xffff, 6, 1, v0->heapID);
+        ov114_0225E244(&v0->unk_230, &v0->unk_30, v0->heapID);
         v0->unk_00++;
         break;
     case 1:
@@ -1751,12 +1751,12 @@ static void ov114_0225D688(SysTask *param0, void *param1)
         BOOL v4;
         u32 v5;
 
-        ov114_0225DF7C(&v0->unk_348, &v0->unk_30, v0->unk_02);
+        ov114_0225DF7C(&v0->unk_348, &v0->unk_30, v0->heapID);
 
         v3 = ov114_0225E14C(&v0->unk_08, &v0->unk_18);
 
         for (v2 = 0; v2 < v0->unk_08.unk_08; v2++) {
-            ov114_0225DAC0(&v0->unk_268[v2], v0->unk_08.unk_08, v0->unk_04, v0->unk_264, &v0->unk_30, v2, v0->unk_08.unk_09, &v0->unk_84, v0->unk_22C, v0->unk_02);
+            ov114_0225DAC0(&v0->unk_268[v2], v0->unk_08.unk_08, v0->unk_04, v0->unk_264, &v0->unk_30, v2, v0->unk_08.unk_09, &v0->unk_84, v0->unk_22C, v0->heapID);
 
             v5 = ov114_0225C78C(&v0->unk_08, v2);
             v4 = ov114_0225C7A4(&v0->unk_08, v5);
@@ -1820,7 +1820,7 @@ static void ov114_0225D688(SysTask *param0, void *param1)
         }
         break;
     case 13:
-        StartScreenTransition(3, 0, 1, 0x0, 6, 1, v0->unk_02);
+        StartScreenTransition(3, 0, 1, 0x0, 6, 1, v0->heapID);
         ov114_0225DA5C(v0);
 
         if (v0->unk_08.unk_09 == 0) {
@@ -2479,7 +2479,7 @@ static UnkStruct_ov114_0225E854 *ov114_0225E5A8(const UnkStruct_ov114_0225C76C *
 
     GXLayers_SetBanks(&Unk_ov114_022601DC);
 
-    v0->unk_02 = heapID;
+    v0->heapID = heapID;
 
     ov114_0225E0F8(&v0->unk_34, &v0->unk_0C);
     VramTransfer_New(16, heapID);
@@ -2604,7 +2604,7 @@ static void ov114_0225E874(SysTask *param0, void *param1)
             }
         }
 
-        StartScreenTransition(3, 1, 1, 0xffff, 6, 1, v0->unk_02);
+        StartScreenTransition(3, 1, 1, 0xffff, 6, 1, v0->heapID);
         v0->unk_04++;
         break;
     case 1:
@@ -2636,7 +2636,7 @@ static void ov114_0225E874(SysTask *param0, void *param1)
                 u32 v5;
 
                 ov114_0225D400(&v0->unk_68, 0);
-                ov114_0225DF7C(&v0->unk_3A0, &v0->unk_4C, v0->unk_02);
+                ov114_0225DF7C(&v0->unk_3A0, &v0->unk_4C, v0->heapID);
 
                 v5 = ov114_0225F8FC(v0);
 
@@ -2841,7 +2841,7 @@ static void ov114_0225E874(SysTask *param0, void *param1)
         }
         break;
     case 17:
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v0->unk_02);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v0->heapID);
         v0->unk_04++;
         break;
     case 18:
@@ -2856,7 +2856,7 @@ static void ov114_0225E874(SysTask *param0, void *param1)
         v0->unk_04++;
         break;
     case 20:
-        v1 = ov114_0225F27C(&v0->unk_24C, &v0->unk_68, &v0->unk_58, v0->unk_07, v0->unk_02);
+        v1 = ov114_0225F27C(&v0->unk_24C, &v0->unk_68, &v0->unk_58, v0->unk_07, v0->heapID);
 
         if (v1) {
             v0->unk_08 = ov114_0225F420(&v0->unk_24C);
@@ -2915,7 +2915,7 @@ static void ov114_0225ED40(SysTask *param0, void *param1)
             }
         }
 
-        StartScreenTransition(3, 1, 1, 0xffff, 6, 1, v0->unk_02);
+        StartScreenTransition(3, 1, 1, 0xffff, 6, 1, v0->heapID);
         v0->unk_04++;
         break;
     case 1:
@@ -2954,10 +2954,10 @@ static void ov114_0225ED40(SysTask *param0, void *param1)
         BOOL v3;
         u32 v4;
 
-        ov114_0225DF7C(&v0->unk_3A0, &v0->unk_4C, v0->unk_02);
+        ov114_0225DF7C(&v0->unk_3A0, &v0->unk_4C, v0->heapID);
 
         for (v2 = 0; v2 < v0->unk_0C.unk_08; v2++) {
-            ov114_0225DAC0(&v0->unk_2C0[v2], v0->unk_0C.unk_08, v0->unk_07, v0->unk_2BC[0], &v0->unk_4C, v2, v0->unk_0C.unk_09, &v0->unk_A0, v0->unk_248, v0->unk_02);
+            ov114_0225DAC0(&v0->unk_2C0[v2], v0->unk_0C.unk_08, v0->unk_07, v0->unk_2BC[0], &v0->unk_4C, v2, v0->unk_0C.unk_09, &v0->unk_A0, v0->unk_248, v0->heapID);
 
             v4 = ov114_0225C78C(&v0->unk_0C, v2);
             v3 = ov114_0225C7A4(&v0->unk_0C, v4);
@@ -3081,7 +3081,7 @@ static void ov114_0225ED40(SysTask *param0, void *param1)
         }
         break;
     case 16:
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v0->unk_02);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v0->heapID);
         v0->unk_04++;
         break;
     case 17:
@@ -3096,7 +3096,7 @@ static void ov114_0225ED40(SysTask *param0, void *param1)
         v0->unk_04++;
         break;
     case 19:
-        v1 = ov114_0225F27C(&v0->unk_24C, &v0->unk_68, &v0->unk_58, v0->unk_07, v0->unk_02);
+        v1 = ov114_0225F27C(&v0->unk_24C, &v0->unk_68, &v0->unk_58, v0->unk_07, v0->heapID);
 
         if (v1) {
             v0->unk_08 = ov114_0225F420(&v0->unk_24C);
@@ -3465,7 +3465,7 @@ static void ov114_0225F6E4(UnkStruct_ov114_0225E854 *param0, u32 param1, u32 par
     u32 v1;
     u32 v2;
 
-    ov114_0225DAC0(&param0->unk_2C0[param1], param0->unk_0C.unk_08, param0->unk_07, param0->unk_2BC[0], &param0->unk_4C, param1, param0->unk_0C.unk_09, &param0->unk_A0, param0->unk_248, param0->unk_02);
+    ov114_0225DAC0(&param0->unk_2C0[param1], param0->unk_0C.unk_08, param0->unk_07, param0->unk_2BC[0], &param0->unk_4C, param1, param0->unk_0C.unk_09, &param0->unk_A0, param0->unk_248, param0->heapID);
 
     v2 = ov114_0225C78C(&param0->unk_0C, param1);
     v0 = ov114_0225C7A4(&param0->unk_0C, v2);

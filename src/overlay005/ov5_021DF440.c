@@ -57,7 +57,7 @@ typedef struct UnkStruct_ov5_021DF6AC_t {
 } UnkStruct_ov5_021DF6AC;
 
 typedef struct UnkStruct_ov5_021DF8FC_t {
-    u32 unk_00;
+    u32 heapID;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;
@@ -425,7 +425,7 @@ static void ov5_021DF754(UnkStruct_ov5_021DF47C *param0, u32 heapID, u32 param2,
     v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021DF8FC)), 0, 0);
     param0->unk_20 = v0;
 
-    v0->unk_00 = heapID;
+    v0->heapID = heapID;
     v0->unk_04 = param2;
     v0->unk_06 = param3;
     v0->unk_08 = param4;

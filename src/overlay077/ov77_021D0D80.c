@@ -431,20 +431,20 @@ static void ov77_021D1208(UnkStruct_ov77_021D1208 *param0, int param1, int param
     ov77_021D1300(param0, heapID);
 }
 
-static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int param1)
+static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int heapID)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param1);
+    NARC *v0 = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, heapID);
 
     {
-        Easy3DModel_LoadFrom(&param0->unk_150, v0, 19, param1);
+        Easy3DModel_LoadFrom(&param0->unk_150, v0, 19, heapID);
 
         NNS_G3dMdlUseMdlAlpha(param0->unk_150.model);
         NNS_G3dMdlUseMdlPolygonID(param0->unk_150.model);
 
-        Easy3DAnim_LoadFrom(&param0->unk_128, &param0->unk_150, v0, 21, param1, &param0->unk_70);
+        Easy3DAnim_LoadFrom(&param0->unk_128, &param0->unk_150, v0, 21, heapID, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_128, 0);
 
-        Easy3DAnim_LoadFrom(&param0->unk_13C, &param0->unk_150, v0, 20, param1, &param0->unk_70);
+        Easy3DAnim_LoadFrom(&param0->unk_13C, &param0->unk_150, v0, 20, heapID, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_13C, 0);
 
         Easy3DObject_Init(&param0->unk_B0, &param0->unk_150);
@@ -458,14 +458,14 @@ static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int param1)
     }
 
     {
-        Easy3DModel_LoadFrom(&param0->unk_200, v0, 16, param1);
+        Easy3DModel_LoadFrom(&param0->unk_200, v0, 16, heapID);
         NNS_G3dMdlUseMdlAlpha(param0->unk_200.model);
         NNS_G3dMdlUseMdlPolygonID(param0->unk_200.model);
 
-        Easy3DAnim_LoadFrom(&param0->unk_1D8, &param0->unk_200, v0, 18, param1, &param0->unk_70);
+        Easy3DAnim_LoadFrom(&param0->unk_1D8, &param0->unk_200, v0, 18, heapID, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_1D8, 0);
 
-        Easy3DAnim_LoadFrom(&param0->unk_1EC, &param0->unk_200, v0, 17, param1, &param0->unk_70);
+        Easy3DAnim_LoadFrom(&param0->unk_1EC, &param0->unk_200, v0, 17, heapID, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_1EC, 0);
 
         Easy3DObject_Init(&param0->unk_160, &param0->unk_200);

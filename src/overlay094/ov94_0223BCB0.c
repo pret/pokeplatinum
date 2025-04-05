@@ -115,7 +115,7 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
             SetAllGraphicsModes(&v1);
         }
 
-        v0->unk_B8C = StringTemplate_New(11, 64, 62);
+        v0->unk_B8C = StringTemplate_New(11, 64, HEAP_ID_62);
         v0->unk_B90 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0671, HEAP_ID_62);
         v0->unk_B98 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_62);
         v0->unk_B9C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_62);

@@ -211,7 +211,7 @@ typedef struct UnkStruct_ov6_022401B8_t {
     UnkStruct_ov6_02240240 unk_08;
     UnkStruct_ov6_02240260 unk_34;
     NNSFndAllocator unk_10C;
-    u32 unk_11C;
+    u32 heapID;
 } UnkStruct_ov6_022401B8;
 
 typedef struct {
@@ -1043,7 +1043,7 @@ static void ov6_0223EA98(UnkStruct_ov6_0223EA98 *param0)
     v0 = v3[param0->unk_10][0];
     v1 = v3[param0->unk_10][1];
 
-    Easy3DModel_LoadFrom(&param0->unk_9C, v2, v0, 4);
+    Easy3DModel_LoadFrom(&param0->unk_9C, v2, v0, HEAP_ID_FIELD);
     Easy3DObject_Init(&param0->unk_24, &param0->unk_9C);
     Easy3DObject_SetPosition(&param0->unk_24, 0, 0, 0);
     Easy3DObject_SetScale(&param0->unk_24, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
@@ -1748,9 +1748,9 @@ static void ov6_0223FD58(Easy3DModel *param0, u32 param1, u32 param2, u32 param3
     Easy3DModel_Load(param0, param1, param2, param3);
 }
 
-static void ov6_0223FD60(Easy3DModel *param0, NARC *param1, u32 param2, u32 param3)
+static void ov6_0223FD60(Easy3DModel *param0, NARC *param1, u32 param2, u32 heapID)
 {
-    Easy3DModel_LoadFrom(param0, param1, param2, param3);
+    Easy3DModel_LoadFrom(param0, param1, param2, heapID);
 }
 
 static void ov6_0223FD68(Easy3DModel *param0)
@@ -2036,10 +2036,10 @@ UnkStruct_ov6_022401B8 *ov6_02240104(u32 heapID, FieldSystem *fieldSystem)
     memset(v0, 0, sizeof(UnkStruct_ov6_022401B8));
     v0->fieldSystem = fieldSystem;
     v0->unk_00 = 0;
-    v0->unk_11C = heapID;
+    v0->heapID = heapID;
 
     Heap_FndInitAllocatorForExpHeap(&v0->unk_10C, heapID, 32);
-    ov6_02240260(&v0->unk_34, v0->unk_11C, &v0->unk_10C);
+    ov6_02240260(&v0->unk_34, v0->heapID, &v0->unk_10C);
 
     {
         BgConfig *v1 = FieldSystem_GetBgConfig(v0->fieldSystem);

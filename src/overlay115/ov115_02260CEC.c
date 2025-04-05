@@ -3311,7 +3311,7 @@ static void ov115_02263DF4(UnkStruct_ov115_02261ADC *param0)
     return;
 }
 
-static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 param2, NNSFndAllocator *param3)
+static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 heapID, NNSFndAllocator *param3)
 {
     static const u16 v0[6] = {
         26,
@@ -3335,7 +3335,7 @@ static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 p
     memset(param0, 0, sizeof(UnkStruct_ov115_02263DF8));
 
     for (v2 = 0; v2 < 3; v2++) {
-        Easy3DModel_LoadFrom(&param0->unk_168[v2], param1, v1[v2], param2);
+        Easy3DModel_LoadFrom(&param0->unk_168[v2], param1, v1[v2], heapID);
         Easy3DObject_Init(&param0->unk_00[v2], &param0->unk_168[v2]);
         Easy3DObject_SetVisibility(&param0->unk_00[v2], 0);
         Easy3DObject_SetPosition(&param0->unk_00[v2], Unk_ov115_02265B20.x, Unk_ov115_02265B20.y + (-FX32_CONST(200)), Unk_ov115_02265B20.z);
@@ -3343,7 +3343,7 @@ static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 p
     }
 
     for (v2 = 0; v2 < 6; v2++) {
-        Easy3DAnim_LoadFrom(&param0->unk_198[v2], &param0->unk_168[Unk_ov115_02266644[v2]], param1, v0[v2], param2, param3);
+        Easy3DAnim_LoadFrom(&param0->unk_198[v2], &param0->unk_168[Unk_ov115_02266644[v2]], param1, v0[v2], heapID, param3);
         Easy3DAnim_SetFrame(&param0->unk_198[v2], 0);
 
         v3 = 0;
@@ -3364,7 +3364,7 @@ static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 p
     }
 
     for (v2 = 0; v2 < 1; v2++) {
-        Easy3DAnim_LoadFrom(&param0->unk_214[v2], &param0->unk_168[Unk_ov115_02265AE0[v2]], param1, 32, param2, param3);
+        Easy3DAnim_LoadFrom(&param0->unk_214[v2], &param0->unk_168[Unk_ov115_02265AE0[v2]], param1, 32, heapID, param3);
         Easy3DObject_AddAnim(&param0->unk_00[Unk_ov115_02265AE0[v2]], &param0->unk_214[v2]);
     }
 
@@ -3582,7 +3582,7 @@ static void ov115_0226439C(const VecFx32 *param0, VecFx32 *param1, u32 param2, u
     MTX_MultVec33(param0, &v0, param1);
 }
 
-static void ov115_022643EC(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 param2)
+static void ov115_022643EC(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 heapID)
 {
     BOOL v0;
     int v1;
@@ -3595,17 +3595,17 @@ static void ov115_022643EC(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 p
     };
 
     for (v1 = 0; v1 < 5; v1++) {
-        Easy3DModel_LoadFrom(&param0->unk_760.unk_00[v1], param1, v2[v1], param2);
+        Easy3DModel_LoadFrom(&param0->unk_760.unk_00[v1], param1, v2[v1], heapID);
     }
 
-    Easy3DModel_LoadFrom(&param0->unk_760.unk_50, param1, 46, param2);
+    Easy3DModel_LoadFrom(&param0->unk_760.unk_50, param1, 46, heapID);
     NNS_G3dMdlUseGlbAlpha(param0->unk_760.unk_50.model);
 
     {
-        param0->unk_760.unk_60[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1AC[0], param1, 7, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, param2);
-        param0->unk_760.unk_60[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1AC[1], param1, 4, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, 4, param2);
-        param0->unk_760.unk_60[2] = SpriteResourceCollection_AddFrom(param0->unk_1AC[2], param1, 6, 0, 100, 2, param2);
-        param0->unk_760.unk_60[3] = SpriteResourceCollection_AddFrom(param0->unk_1AC[3], param1, 5, 0, 100, 3, param2);
+        param0->unk_760.unk_60[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1AC[0], param1, 7, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, heapID);
+        param0->unk_760.unk_60[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1AC[1], param1, 4, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, 4, heapID);
+        param0->unk_760.unk_60[2] = SpriteResourceCollection_AddFrom(param0->unk_1AC[2], param1, 6, 0, 100, 2, heapID);
+        param0->unk_760.unk_60[3] = SpriteResourceCollection_AddFrom(param0->unk_1AC[3], param1, 5, 0, 100, 3, heapID);
 
         v0 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_760.unk_60[0]);
         GF_ASSERT(v0);
@@ -3619,7 +3619,7 @@ static void ov115_022643EC(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 p
     SpriteResourcesHeader_Init(&param0->unk_760.unk_70, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1AC[0], param0->unk_1AC[1], param0->unk_1AC[2], param0->unk_1AC[3], NULL, NULL);
 
     for (v1 = 0; v1 < 96; v1++) {
-        ov115_022646BC(param0, &param0->unk_7F4[v1], param2);
+        ov115_022646BC(param0, &param0->unk_7F4[v1], heapID);
     }
 }
 
@@ -4089,7 +4089,7 @@ static void ov115_02264DD8(int param0, int param1, int param2, int param3, int p
     *param6 = FX_Mul(CalcSineDegrees(v0), param2 << FX32_SHIFT) >> FX32_SHIFT;
 }
 
-static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, int param3, u32 param4, u32 param5, NNSFndAllocator *param6)
+static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, int param3, u32 param4, u32 heapID, NNSFndAllocator *param6)
 {
     static const u16 v0[4] = {
         35,
@@ -4119,7 +4119,7 @@ static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_022
             v3 = v0[param3 - 1];
         }
 
-        Easy3DModel_LoadFrom(&param0->unk_168[v4], param2, v3, param5);
+        Easy3DModel_LoadFrom(&param0->unk_168[v4], param2, v3, heapID);
         Easy3DObject_Init(&param0->unk_00[v4], &param0->unk_168[v4]);
         Easy3DObject_SetPosition(&param0->unk_00[v4], 0, (FX32_CONST(-90) - FX32_CONST(8)), 0);
         Easy3DObject_SetScale(&param0->unk_00[v4], (FX32_CONST(1.50f)), (FX32_CONST(1.50f)), (FX32_CONST(1.50f)));
@@ -4136,7 +4136,7 @@ static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_022
     }
 
     for (v4 = 0; v4 < 3; v4++) {
-        Easy3DAnim_LoadFrom(&param0->unk_198[v4], &param0->unk_168[v2[v4]], param2, v1[v4], param5, param6);
+        Easy3DAnim_LoadFrom(&param0->unk_198[v4], &param0->unk_168[v2[v4]], param2, v1[v4], heapID, param6);
         Easy3DObject_AddAnim(&param0->unk_00[v2[v4]], &param0->unk_198[v4]);
     }
 

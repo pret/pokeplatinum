@@ -260,7 +260,7 @@ typedef struct {
     int unk_31C;
     int unk_320;
     int unk_324;
-    int unk_328;
+    int heapID;
     UnkStruct_02010658 *unk_32C;
     UnkStruct_0200F600 *unk_330;
 } UnkStruct_020120D4;
@@ -2950,7 +2950,7 @@ static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1,
     param0->unk_30C = param1->unk_00;
     param0->unk_310 = param1->unk_04;
     param0->unk_324 = param1->unk_06;
-    param0->unk_328 = heapID;
+    param0->heapID = heapID;
     param0->unk_314 = param2;
     param0->unk_318 = 0;
     param0->unk_31C = param3;
@@ -2982,7 +2982,7 @@ static BOOL sub_020120D4(UnkStruct_020120D4 *param0)
             sub_02012138(param0);
             sub_0201076C(&param0->unk_00);
         } else {
-            sub_0201079C(param0->unk_330, &param0->unk_00, param0->unk_328);
+            sub_0201079C(param0->unk_330, &param0->unk_00, param0->heapID);
             return 1;
         }
     }

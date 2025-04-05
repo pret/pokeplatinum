@@ -504,7 +504,7 @@ static void ov5_021F0D6C(UnkStruct_ov5_021F0D6C *param0)
     param0->unk_48 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD);
     param0->unk_2C = Strbuf_Init(0x400, HEAP_ID_FIELD);
     param0->unk_30 = Strbuf_Init(0x400, HEAP_ID_FIELD);
-    param0->unk_34 = StringTemplate_New(8, 64, 4);
+    param0->unk_34 = StringTemplate_New(8, 64, HEAP_ID_FIELD);
 }
 
 static void ov5_021F0DA4(UnkStruct_ov5_021F0D6C *param0)

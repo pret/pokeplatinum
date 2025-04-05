@@ -290,7 +290,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     MI_CpuClearFast(v0, sizeof(UnkStruct_02095E80));
 
     v0->unk_174 = BgConfig_New(HEAP_ID_26);
-    v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, 26);
+    v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, HEAP_ID_26);
     v0->unk_17C = StringTemplate_Default(HEAP_ID_26);
     v0->unk_180 = StringTemplate_Default(HEAP_ID_26);
     v0->unk_184 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);

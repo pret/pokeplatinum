@@ -45,7 +45,7 @@ struct UnkStruct_ov25_022555E8_t {
     u16 unk_10;
     u16 unk_12;
     GXOamAttr *unk_14;
-    u32 unk_18;
+    u32 heapID;
 };
 
 static void ov25_022559D8(UnkStruct_ov25_022558C4 **param0, UnkStruct_ov25_022558C4 *param1, u32 param2);
@@ -71,7 +71,7 @@ UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *param0, u32 hea
         v0->unk_0C = NULL;
         v0->unk_04 = NULL;
         v0->unk_00 = param0;
-        v0->unk_18 = heapID;
+        v0->heapID = heapID;
         v0->unk_10 = NNS_G2dGetOamManagerOamCapacity(param0);
         v0->unk_14 = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * v0->unk_10);
 

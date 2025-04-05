@@ -1376,7 +1376,7 @@ static void ov62_02239724(UnkStruct_0208C06C *param0)
     Window_Add(param0->unk_14.unk_10, v0, 2, 16, 19, 16, 4, 14, 300);
     Window_FillTilemap(v0, 0x00);
 
-    v4 = ov62_02231690(102);
+    v4 = ov62_02231690(HEAP_ID_102);
     v3 = Strbuf_Init(255, HEAP_ID_102);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 56);
 
@@ -1425,7 +1425,7 @@ static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
     Window_Add(param0->unk_14.unk_10, v0, 2, 16, 19, 16, 4, 14, 300);
     Window_FillTilemap(v0, 0x00);
 
-    v4 = ov62_02231690(102);
+    v4 = ov62_02231690(HEAP_ID_102);
     v3 = Strbuf_Init(255, HEAP_ID_102);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 56);
 

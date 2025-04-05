@@ -973,7 +973,7 @@ static void ov62_0223AC58(UnkStruct_0208C06C *param0, int param1)
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, v6);
     v3 = Strbuf_Init(255, HEAP_ID_102);
     v4 = Strbuf_Init(255, HEAP_ID_102);
-    v5 = ov62_02231690(102);
+    v5 = ov62_02231690(HEAP_ID_102);
 
     Strbuf_CopyChars(v3, v0->unk_38C[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00.unk_00);
     ov62_022349A8(param0, v3);

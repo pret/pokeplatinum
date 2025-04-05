@@ -146,7 +146,7 @@ static void ov6_02248140(UnkStruct_ov6_02248140 *param0, NARC *param1, u32 param
 
     memset(param0, 0, sizeof(UnkStruct_ov6_02248140));
 
-    Easy3DModel_LoadFrom(&param0->unk_78, param1, param2, 4);
+    Easy3DModel_LoadFrom(&param0->unk_78, param1, param2, HEAP_ID_FIELD);
     Easy3DObject_Init(&param0->unk_00, &param0->unk_78);
 
     param0->unk_D8 = param4;
@@ -604,10 +604,10 @@ static void ov6_022487F8(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD);
 
-    Easy3DModel_LoadFrom(&v0->unk_00, v2, 8, 4);
+    Easy3DModel_LoadFrom(&v0->unk_00, v2, 8, HEAP_ID_FIELD);
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0->unk_CD0[v1] = LoadMemberFromOpenNARC(v2, 4 + v1, 0, 4, 0);
+        v0->unk_CD0[v1] = LoadMemberFromOpenNARC(v2, 4 + v1, 0, HEAP_ID_FIELD, 0);
     }
 
     for (v1 = 0; v1 < 16; v1++) {

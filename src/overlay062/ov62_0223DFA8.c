@@ -245,7 +245,7 @@ static void ov62_0223E0FC (UnkStruct_0208C06C * param0, int param1, int param2)
         Strbuf* v5;
         UnkStruct_02030A80 * v6 = v2->unk_194.unk_00;
 
-        v3 = ov62_02231690(102);
+        v3 = ov62_02231690(HEAP_ID_102);
         v0 = Strbuf_Init(255, HEAP_ID_102);
         v4 = sub_02030B94(v6, 102);
         ov62_022349A8(param0, v4);
@@ -261,7 +261,7 @@ static void ov62_0223E0FC (UnkStruct_0208C06C * param0, int param1, int param2)
         Strbuf* v9;
         UnkStruct_02030A80 * v10 = param0->unk_88C[param2];
 
-        v7 = ov62_02231690(102);
+        v7 = ov62_02231690(HEAP_ID_102);
         v0 = Strbuf_Init(255, HEAP_ID_102);
         v8 = sub_02030B94(v10, 102);
         ov62_022349A8(param0, v8);
@@ -828,7 +828,7 @@ static void ov62_0223EE88 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
     if (param1->unk_88C[param2] == NULL) {
         v0 = MessageLoader_GetNewStrbuf(v1, 8);
     } else {
-        v3 = ov62_02231690(102);
+        v3 = ov62_02231690(HEAP_ID_102);
         v4 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 7);
         v5 = sub_02030B94(param1->unk_88C[param2], 102);
         ov62_022349A8(param1, v5);
@@ -1771,7 +1771,7 @@ static void ov62_022402FC (UnkStruct_0208C06C * param0, int param1, BOOL param2)
         Strbuf* v5;
         UnkStruct_02030A80 * v6 = v2->unk_194.unk_00;
 
-        v3 = ov62_02231690(102);
+        v3 = ov62_02231690(HEAP_ID_102);
         v0 = Strbuf_Init(255, HEAP_ID_102);
         v4 = sub_02030B94(v6, 102);
         ov62_022349A8(param0, v4);
