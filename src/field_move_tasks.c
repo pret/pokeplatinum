@@ -57,53 +57,53 @@ typedef struct {
 
 static void FieldMoves_CanUseSurfDistortionWorld(FieldSystem *fieldSystem, FieldMoveContext *param1);
 
-static int FieldMoves_CheckFly(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckFly(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 
-static int FieldMoves_CheckTeleport(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckTeleport(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetTeleportTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_TeleportTask(FieldTask *taskMan);
 
-static int FieldMoves_CheckSurf(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckSurf(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetSurfTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_SurfTask(FieldTask *taskMan);
 
-static int FieldMoves_CheckWaterfall(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckWaterfall(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetWaterfallTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_WaterfallTask(FieldTask *taskMan);
 
-static int FieldMoves_CheckRockClimb(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckRockClimb(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetRockClimbTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_RockClimbTask(FieldTask *taskMan);
 
-static int FieldMoves_CheckFlash(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckFlash(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetFlashTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_FlashTask(FieldTask *taskMan);
 
-static int FieldMoves_CheckDefog(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckDefog(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetDefogTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_DefogTask(FieldTask *taskMan);
 
-static int FieldMoves_CheckRockSmash(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckRockSmash(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetRockSmashTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_RockSmashTask(FieldTask *taskMan);
 
-static int FieldMoves_CheckStrength(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckStrength(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetStrengthTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_StrengthTask(FieldTask *taskMan);
 
-static int FieldMoves_CheckDig(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckDig(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetDigTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_DigTask(FieldTask *taskMan);
 
-static int FieldMoves_CheckSweetScent(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckSweetScent(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetSweetScentTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 
-static int FieldMoves_CheckChatter(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckChatter(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetChatterTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_ChatterTask(FieldTask *taskMan);
 
-static int FieldMoves_CheckCut(const FieldMoveContext *fieldMoveContext);
+static enum FieldMoveError FieldMoves_CheckCut(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetCutTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 static BOOL FieldMoves_CutTask(FieldTask *taskMan);
 
@@ -271,7 +271,7 @@ static void FieldMoves_FreeTaskData(FieldMoveTaskData *taskData)
     Heap_FreeToHeap(taskData);
 }
 
-static int FieldMoves_CheckCut(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckCut(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -312,7 +312,7 @@ static BOOL FieldMoves_CutTask(FieldTask *taskMan)
     return 0;
 }
 
-static int FieldMoves_CheckFly(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckFly(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -353,7 +353,7 @@ static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMov
     sub_0203B674(menu, sub_0203C434);
 }
 
-static int FieldMoves_CheckSurf(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckSurf(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -402,7 +402,7 @@ static BOOL FieldMoves_SurfTask(FieldTask *taskMan)
     return 0;
 }
 
-static int FieldMoves_CheckStrength(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckStrength(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -443,7 +443,7 @@ static BOOL FieldMoves_StrengthTask(FieldTask *param0)
     return 0;
 }
 
-static int FieldMoves_CheckDefog(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckDefog(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -484,7 +484,7 @@ static BOOL FieldMoves_DefogTask(FieldTask *taskMan)
     return 0;
 }
 
-static int FieldMoves_CheckRockSmash(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckRockSmash(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -529,7 +529,7 @@ static BOOL FieldMoves_RockSmashTask(FieldTask *taskMan)
     return 0;
 }
 
-static int FieldMoves_CheckWaterfall(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckWaterfall(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -570,7 +570,7 @@ static BOOL FieldMoves_WaterfallTask(FieldTask *param0)
     return 0;
 }
 
-static int FieldMoves_CheckRockClimb(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckRockClimb(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -615,7 +615,7 @@ static BOOL FieldMoves_RockClimbTask(FieldTask *taskMan)
     return 0;
 }
 
-static int FieldMoves_CheckFlash(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckFlash(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -652,7 +652,7 @@ static BOOL FieldMoves_FlashTask(FieldTask *taskMan)
     return 0;
 }
 
-static int FieldMoves_CheckTeleport(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckTeleport(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -699,7 +699,7 @@ static BOOL FieldMoves_TeleportTask(FieldTask *param0)
     return 0;
 }
 
-static int FieldMoves_CheckDig(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckDig(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -736,7 +736,7 @@ static BOOL FieldMoves_DigTask(FieldTask *param0)
     UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
     void *v2 = ov6_02247488(fieldSystem, v1->unk_00, 11);
 
-    void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove((LOCATION_EVENT_USED_DIG - LOCATION_EVENT_USED_CUT), fieldSystem->location->mapId, HEAP_ID_FIELD);
+    void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_USED_DIG - LOCATION_EVENT_USED_CUT, fieldSystem->location->mapId, HEAP_ID_FIELD);
     JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
 
     Heap_FreeToHeap(v1);
@@ -745,7 +745,7 @@ static BOOL FieldMoves_DigTask(FieldTask *param0)
     return FALSE;
 }
 
-static int FieldMoves_CheckSweetScent(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckSweetScent(const FieldMoveContext *fieldMoveContext)
 {
     if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
         return FIELD_MOVE_ERROR_LOCATION;
@@ -772,11 +772,11 @@ static void FieldMoves_SetSweetScentTask(FieldMovePokemon *fieldMoveMon, const F
     startMenu->taskData = v2;
     startMenu->state = START_MENU_STATE_10;
 
-    v4 = JournalEntry_CreateEventUsedMove((LOCATION_EVENT_LURED_POKEMON - LOCATION_EVENT_USED_CUT), fieldSystem->location->mapId, HEAP_ID_FIELDMAP);
+    v4 = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_LURED_POKEMON - LOCATION_EVENT_USED_CUT, fieldSystem->location->mapId, HEAP_ID_FIELDMAP);
     JournalEntry_SaveData(fieldSystem->journalEntry, v4, JOURNAL_LOCATION);
 }
 
-static int FieldMoves_CheckChatter(const FieldMoveContext *fieldMoveContext)
+static enum FieldMoveError FieldMoves_CheckChatter(const FieldMoveContext *fieldMoveContext)
 {
     if ((PlayerOutsideLinkRoom(fieldMoveContext) == 0) || (PersistedMapFeatures_IsCurrentDynamicMap(fieldMoveContext->fieldSystem, 9) == 1)) {
         return FIELD_MOVE_ERROR_LOCATION;

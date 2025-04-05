@@ -46,7 +46,7 @@ enum TaskOrError {
 };
 
 typedef void (*FieldMoveTaskContext)(FieldMovePokemon *, const FieldMoveContext *);
-typedef int (*FieldMoveErrContext)(const FieldMoveContext *);
+typedef enum FieldMoveError (*FieldMoveErrContext)(const FieldMoveContext *);
 
 void *FieldMove_GetTaskOrError(u16 taskOrError, u16 fieldMove);
 void FieldMoves_SetUsableMoves(FieldSystem *fieldSystem, FieldMoveContext *fieldMoveContext);
