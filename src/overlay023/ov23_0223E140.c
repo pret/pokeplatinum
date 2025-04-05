@@ -2765,12 +2765,12 @@ static void ov23_02240E88(void)
     RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 29);
     ov23_0224119C();
 
-    Unk_ov23_02257740->unk_20 = SpriteList_InitRendering(26, &Unk_ov23_02257740->unk_24, 29);
+    Unk_ov23_02257740->unk_20 = SpriteList_InitRendering(26, &Unk_ov23_02257740->unk_24, HEAP_ID_29);
 
     SetSubScreenViewRect(&Unk_ov23_02257740->unk_24, 0, (192 << FX32_SHIFT) * 2);
 
     for (v0 = 0; v0 < 4; v0++) {
-        Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, 29);
+        Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_29);
     }
 
     v1 = NARC_ctor(NARC_INDEX_DATA__UG_ANIM, HEAP_ID_29);
@@ -2842,7 +2842,7 @@ static void ov23_0224119C(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     }
 
-    PlttTransfer_Init(20, 29);
+    PlttTransfer_Init(20, HEAP_ID_29);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);

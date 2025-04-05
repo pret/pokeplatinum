@@ -172,7 +172,7 @@ FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104
 
     HealAllPokemonInParty(param0->unk_2C);
     v5 = FieldBattleDTO_New(11, ov104_0223B9E4(param0->unk_10));
-    FieldBattleDTO_InitFromGameState(v5, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
+    FieldBattleDTO_InitFromGameState(v5, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
     v5->background = 21;
     v5->terrain = TERRAIN_BATTLE_CASTLE;

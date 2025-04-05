@@ -103,8 +103,8 @@ int ov98_02246C20(OverlayManager *param0, int *param1)
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02246E88), HEAP_ID_108);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
-    v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_08 = SaveData_GetOptions(v0->unk_04);
+    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->unk_08 = SaveData_GetOptions(v0->saveData);
     v0->unk_114 = Strbuf_Init(100, HEAP_ID_108);
     v0->unk_118 = Strbuf_Init(100, HEAP_ID_108);
     sub_02004550(17, 1175, 1);
@@ -273,24 +273,24 @@ void ov98_02246EF8(UnkStruct_ov98_02246E88 *param0)
     char *v0 = Heap_AllocFromHeap(HEAP_ID_108, sizeof(char) * 100);
 
     ov98_022499C8(param0->unk_114, v0, HEAP_ID_108);
-    sub_02030D38(param0->unk_04, v0);
+    sub_02030D38(param0->saveData, v0);
     Heap_FreeToHeap(v0);
 }
 
 void ov98_02246F24(UnkStruct_ov98_02246E88 *param0)
 {
-    sub_02030D5C(param0->unk_04, 1, param0->unk_7C);
-    sub_02030D5C(param0->unk_04, 2, param0->unk_10C);
+    sub_02030D5C(param0->saveData, 1, param0->unk_7C);
+    sub_02030D5C(param0->saveData, 2, param0->unk_10C);
 }
 
 void ov98_02246F48(UnkStruct_ov98_02246E88 *param0)
 {
-    sub_02030D5C(param0->unk_04, 3, param0->unk_108);
+    sub_02030D5C(param0->saveData, 3, param0->unk_108);
 }
 
 void ov98_02246F5C(UnkStruct_ov98_02246E88 *param0)
 {
-    u32 v0 = sub_02030E48(param0->unk_04, &param0->unk_9C);
+    u32 v0 = sub_02030E48(param0->saveData, &param0->unk_9C);
     ov98_02246F94(param0, v0);
 }
 
@@ -348,7 +348,7 @@ void *ov98_02246FC4(UnkStruct_ov98_02246E88 *param0)
     v0[2] = 4;
     v0[3] = 4;
 
-    param0->unk_98 = sub_02089400(HEAP_ID_108, 16, v0, SaveData_GetOptions(param0->unk_04), 4, 0);
+    param0->unk_98 = sub_02089400(HEAP_ID_108, 16, v0, SaveData_GetOptions(param0->saveData), 4, 0);
     return param0->unk_98;
 }
 
@@ -381,7 +381,7 @@ void *ov98_02247070(UnkStruct_ov98_02246E88 *param0)
     v0[2] = 0;
     v0[3] = 0;
 
-    param0->unk_98 = sub_0208941C(HEAP_ID_108, 7, v0, SaveData_GetOptions(param0->unk_04), 5, 1, 1, param0->unk_7C);
+    param0->unk_98 = sub_0208941C(HEAP_ID_108, 7, v0, SaveData_GetOptions(param0->saveData), 5, 1, 1, param0->unk_7C);
     return param0->unk_98;
 }
 
@@ -404,7 +404,7 @@ void *ov98_022470F8(UnkStruct_ov98_02246E88 *param0)
     v0[2] = 0;
     v0[3] = 0;
 
-    param0->unk_98 = sub_02089400(HEAP_ID_108, 4, v0, SaveData_GetOptions(param0->unk_04), 6, 0);
+    param0->unk_98 = sub_02089400(HEAP_ID_108, 4, v0, SaveData_GetOptions(param0->saveData), 6, 0);
     return param0->unk_98;
 }
 
@@ -423,7 +423,7 @@ static void *ov98_02247168(UnkStruct_ov98_02246E88 *param0)
     UnkStruct_ov98_02247168 *v0 = Heap_AllocFromHeap(HEAP_ID_108, sizeof(UnkStruct_ov98_02247168));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02247168));
 
-    v0->unk_00 = param0->unk_04;
+    v0->saveData = param0->saveData;
     v0->unk_04 = 1;
 
     param0->unk_80 = 0;
@@ -436,8 +436,8 @@ static void ov98_02247198(UnkStruct_ov98_02246E88 *param0)
 {
     UnkStruct_ov98_02247168 *v0 = param0->unk_98;
 
-    if (sub_02039074(param0->unk_04)) {
-        SystemFlag_SetConnectedToWiFi(SaveData_GetVarsFlags(param0->unk_04));
+    if (sub_02039074(param0->saveData)) {
+        SystemFlag_SetConnectedToWiFi(SaveData_GetVarsFlags(param0->saveData));
     }
 
     Heap_FreeToHeap(param0->unk_98);

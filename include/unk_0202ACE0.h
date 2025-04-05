@@ -30,6 +30,6 @@ void sub_0202B1F8(UnkStruct_0202B370 *param0, int param1, int param2);
 void sub_0202B220(UnkStruct_0202B370 *param0, int param1, int param2);
 void sub_0202B248(UnkStruct_0202B370 *param0, int param1, int param2);
 void sub_0202B270(UnkStruct_0202B370 *param0, int param1, int param2);
-UnkStruct_0202B370 *sub_0202B370(SaveData *param0);
+UnkStruct_0202B370 *sub_0202B370(SaveData *saveData);
 
 #endif // POKEPLATINUM_UNK_0202ACE0_H

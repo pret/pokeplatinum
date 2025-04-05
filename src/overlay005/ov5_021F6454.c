@@ -511,7 +511,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
     }
 
     if (v9 > 0) {
-        v4 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, v9, 4);
+        v4 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, v9, HEAP_ID_FIELD);
 
         if (v4 == 0) {
             *v11 = 0xff;
@@ -576,7 +576,7 @@ BOOL ScrCmd_31E(ScriptContext *param0)
     v5 = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
 
     if (v5 == ITEM_GRISEOUS_ORB) {
-        v6 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, 1, 4);
+        v6 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, 1, HEAP_ID_FIELD);
 
         if (v6 == 0) {
             *v9 = 0xff;

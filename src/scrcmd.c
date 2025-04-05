@@ -7670,12 +7670,12 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
         v2->unk_00 = NULL;
     }
 
-    v2->unk_04 = SaveData_GetOptions(ctx->fieldSystem->saveData);
+    v2->options = SaveData_GetOptions(ctx->fieldSystem->saveData);
     v2->unk_24 = v1;
-    v2->unk_08 = ctx->fieldSystem->saveData;
+    v2->saveData = ctx->fieldSystem->saveData;
     v2->unk_1C = ctx->fieldSystem->location->mapId;
-    v2->unk_0C = ctx->fieldSystem->journalEntry;
-    v2->unk_10 = ctx->fieldSystem->unk_98;
+    v2->journalEntry = ctx->fieldSystem->journalEntry;
+    v2->bagCursor = ctx->fieldSystem->bagCursor;
     v2->unk_20 = ctx->fieldSystem->battleSubscreenCursorOn;
 
     FieldTask_RunApplication(ctx->task, &Unk_020F8BE0, v2);

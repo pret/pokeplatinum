@@ -75,7 +75,7 @@ BOOL ov104_022358E8(UnkStruct_ov104_0222E930 *param0)
     u16 *v7 = ov104_0222FBE4(param0);
 
     v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = ov104_022361B4(v1->unk_08, v2, v3, v4, v5, v6, v7);
+    v0 = ov104_022361B4(v1->saveData, v2, v3, v4, v5, v6, v7);
 
     sub_0209B980(param0->unk_00->unk_00, v0);
 
@@ -121,7 +121,7 @@ BOOL ov104_0223597C(UnkStruct_ov104_0222E930 *param0)
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223597C));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_0223597C));
-    v2->unk_00 = v3->unk_08;
+    v2->unk_00 = v3->saveData;
 
     ov104_02235B3C(v2, v1);
     sub_0209B988(param0->unk_00->unk_00, &v4, v2, 0, ov104_02235B84);
@@ -149,7 +149,7 @@ BOOL ov104_022359D0(UnkStruct_ov104_0222E930 *param0)
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223597C));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_0223597C));
-    v2->unk_00 = v3->unk_08;
+    v2->unk_00 = v3->saveData;
 
     ov104_02235B3C(v2, v1);
     sub_0209B988(param0->unk_00->unk_00, &v4, v2, 0, ov104_02235B84);
@@ -225,7 +225,7 @@ BOOL ov104_02235AE8(UnkStruct_ov104_0222E930 *param0)
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223597C));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_0223597C));
-    v2->unk_00 = v3->unk_08;
+    v2->unk_00 = v3->saveData;
 
     ov104_02235B3C(v2, v1);
     sub_0209B988(param0->unk_00->unk_00, &v4, v2, 0, ov104_02235B84);
@@ -335,7 +335,7 @@ BOOL ov104_02235BC0(UnkStruct_ov104_0222E930 *param0)
         *v17 = v3->unk_288[v15].unk_04[v16];
         break;
     case 18:
-        v2 = SaveData_GetParty(v11->unk_08);
+        v2 = SaveData_GetParty(v11->saveData);
 
         for (v8 = 0; v8 < 3; v8++) {
             v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_24[v8]);
@@ -402,7 +402,7 @@ BOOL ov104_02235BC0(UnkStruct_ov104_0222E930 *param0)
         }
 
         if (v10 == 1) {
-            ov104_0223BC2C(sub_0203068C(v11->unk_08), v3->unk_10, 50);
+            ov104_0223BC2C(sub_0203068C(v11->saveData), v3->unk_10, 50);
         } else {
             v3->unk_A1C -= 50;
         }
@@ -443,9 +443,9 @@ BOOL ov104_02235BC0(UnkStruct_ov104_0222E930 *param0)
         *v17 = ov104_02237338(v3);
         break;
     case 39:
-        *v17 = (u16)sub_02030470(sub_0203041C(v11->unk_08), 10, 0, 0, NULL);
+        *v17 = (u16)sub_02030470(sub_0203041C(v11->saveData), 10, 0, 0, NULL);
         v13[0] = 1;
-        sub_02030430(sub_0203041C(v11->unk_08), 10, 0, 0, v13);
+        sub_02030430(sub_0203041C(v11->saveData), 10, 0, 0, v13);
         break;
     case 40:
         *v17 = 0;
@@ -471,10 +471,10 @@ BOOL ov104_02235BC0(UnkStruct_ov104_0222E930 *param0)
     case 44:
         if (v3->unk_10 == 3) {
             if (v15 == 0) {
-                v3->unk_22 = sub_02030698(sub_0203068C(v11->unk_08), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)));
-                sub_020306E4(sub_0203068C(v11->unk_08), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)), v3->unk_20);
+                v3->unk_22 = sub_02030698(sub_0203068C(v11->saveData), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)));
+                sub_020306E4(sub_0203068C(v11->saveData), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)), v3->unk_20);
             } else {
-                sub_020306E4(sub_0203068C(v11->unk_08), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)), v3->unk_22);
+                sub_020306E4(sub_0203068C(v11->saveData), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)), v3->unk_22);
             }
         }
         break;
@@ -590,7 +590,7 @@ BOOL ov104_022360D8(UnkStruct_ov104_0222E930 *param0)
     u16 *v2 = ov104_0222FBE4(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
-    *v2 = sub_02030698(sub_0203068C(v0->unk_08), sub_0205E630(v1), sub_0205E6A8(sub_0205E630(v1)));
+    *v2 = sub_02030698(sub_0203068C(v0->saveData), sub_0205E630(v1), sub_0205E6A8(sub_0205E630(v1)));
 
     return 0;
 }
@@ -602,7 +602,7 @@ BOOL ov104_02236120(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222FC00(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
-    ov104_0223BC2C(sub_0203068C(v0->unk_08), v1, v2);
+    ov104_0223BC2C(sub_0203068C(v0->saveData), v1, v2);
 
     return 0;
 }
@@ -615,7 +615,7 @@ BOOL ov104_02236150(UnkStruct_ov104_0222E930 *param0)
     u16 v3 = ov104_0222FC00(param0);
 
     v1 = sub_0209B970(param0->unk_00->unk_00);
-    ov104_02236ED8(v1->unk_08, v2, v3);
+    ov104_02236ED8(v1->saveData, v2, v3);
 
     return 0;
 }

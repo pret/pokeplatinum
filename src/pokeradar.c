@@ -500,7 +500,7 @@ void RadarChargeStep(FieldSystem *fieldSystem)
 {
     u8 *v0;
 
-    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 431, 1, 4) == 1) {
+    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_POKE_RADAR, 1, HEAP_ID_FIELD) == TRUE) {
         v0 = SpecialEncounter_GetRadarCharge(SaveData_GetSpecialEncounters(fieldSystem->saveData));
         if ((*v0) < RADAR_BATTERY_STEPS) {
             (*v0)++;

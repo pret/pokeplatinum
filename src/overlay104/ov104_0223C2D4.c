@@ -119,7 +119,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     UnkStruct_ov104_0223C4CC *v0;
     int v1, v2;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0);
-    const TrainerInfo *v4 = SaveData_GetTrainerInfo(v3->unk_08);
+    const TrainerInfo *v4 = SaveData_GetTrainerInfo(v3->saveData);
     v2 = v3->unk_24;
 
     SetVBlankCallback(NULL, NULL);
@@ -613,7 +613,7 @@ static void ov104_0223CB80(UnkStruct_ov104_0223C4CC *param0)
 
         v0 = sub_0209B970(param0->unk_08);
 
-        LoadMessageBoxGraphics(param0->unk_00, 1, (1024 - (18 + 12)), 11, Options_Frame(v0->unk_04), HEAP_ID_94);
+        LoadMessageBoxGraphics(param0->unk_00, 1, (1024 - (18 + 12)), 11, Options_Frame(v0->options), HEAP_ID_94);
         PaletteData_LoadBufferFromHardware(param0->unk_04, 0, 11 * 16, 0x20);
     }
 

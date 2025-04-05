@@ -302,7 +302,7 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
         encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(WaterEncounterEffect));
         memset(encEffect->param, 0, sizeof(WaterEncounterEffect));
         waterEffect = encEffect->param;
-        ScreenShakeEffect_Init(&waterEffect->screenShakeEfx, 4);
+        ScreenShakeEffect_Init(&waterEffect->screenShakeEfx, HEAP_ID_FIELD);
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
         encEffect->state++;
         break;
@@ -360,7 +360,7 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
         encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(WaterEncounterEffect));
         memset(encEffect->param, 0, sizeof(WaterEncounterEffect));
         waterEffect = encEffect->param;
-        ScreenShakeEffect_Init(&waterEffect->screenShakeEfx, 4);
+        ScreenShakeEffect_Init(&waterEffect->screenShakeEfx, HEAP_ID_FIELD);
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
         encEffect->state++;
         break;
@@ -984,7 +984,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
 
         v1->camera = v0->fieldSystem->camera;
 
-        ScreenShakeEffect_Init(&v1->unk_40, 4);
+        ScreenShakeEffect_Init(&v1->unk_40, HEAP_ID_FIELD);
         v1->unk_248 = 12;
 
         ov5_021DE47C(&v1->unk_50, 2, 1);
@@ -1155,7 +1155,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
 
         v1->camera = v0->fieldSystem->camera;
 
-        ScreenShakeEffect_Init(&v1->unk_274, 4);
+        ScreenShakeEffect_Init(&v1->unk_274, HEAP_ID_FIELD);
         v1->unk_2A0 = 14;
 
         ov5_021DE47C(&v1->unk_00, 3, 1);

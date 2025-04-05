@@ -63,9 +63,9 @@ BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
         break;
     case (30 + 16):
         *v7 = sub_0204AA04(v2);
-        v0 = SaveData_GetTVBroadcast(v8->unk_08);
+        v0 = SaveData_GetTVBroadcast(v8->saveData);
         sub_0206D0C8(v0, *v7);
-        GameRecords_AddToRecordValue(SaveData_GetGameRecords(v8->unk_08), RECORD_UNK_068, *v7);
+        GameRecords_AddToRecordValue(SaveData_GetGameRecords(v8->saveData), RECORD_UNK_068, *v7);
         break;
     case (30 + 25):
         *v7 = ov104_0223927C(v2, v6);
@@ -86,7 +86,7 @@ BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
         *v7 = (u16)sub_0204A9F8(v2);
         break;
     case (30 + 10):
-        ov104_022394A4(v2, v8->unk_08);
+        ov104_022394A4(v2, v8->saveData);
         break;
     case (30 + 11):
         *v7 = ov104_02239588(v2, v6);
@@ -95,10 +95,10 @@ BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
         ov104_022395A0(v2, v6);
         break;
     case (30 + 7):
-        sub_0204A660(v2, v8->unk_08);
+        sub_0204A660(v2, v8->saveData);
         break;
     case (30 + 8):
-        sub_0204A7A4(v2, v8->unk_08, v8->unk_0C);
+        sub_0204A7A4(v2, v8->saveData, v8->journalEntry);
         break;
     case (30 + 9):
         sub_0204A8C8(v2);
@@ -267,7 +267,7 @@ static BOOL ov104_0223942C(UnkStruct_ov104_0222E930 *param0)
 
     v0 = sub_0209B978(param0->unk_00->unk_00);
 
-    if (ov104_02239464(param0, v0, v1->unk_08, param0->unk_78[0], param0->unk_78[1]) == 1) {
+    if (ov104_02239464(param0, v0, v1->saveData, param0->unk_78[0], param0->unk_78[1]) == 1) {
         return 1;
     }
 

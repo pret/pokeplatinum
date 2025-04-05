@@ -101,7 +101,7 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
         4, 0xff
     };
 
-    v0 = sub_0207D824(param0->unk_10->unk_14, v3, param0->heapID);
+    v0 = sub_0207D824(param0->unk_10->bag, v3, param0->heapID);
 
     if (param0->unk_06_0 == 1) {
         v1 = 5;
@@ -109,7 +109,7 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
         v1 = 4;
     }
 
-    sub_0207CB2C(v0, param0->unk_10->unk_0C, v1, param0->unk_0C);
+    sub_0207CB2C(v0, param0->unk_10->saveData, v1, param0->unk_0C);
 
     param0->unk_1C = OverlayManager_New(&Unk_ov84_02241130, v0, param0->heapID);
     param0->unk_18 = v0;
@@ -151,7 +151,7 @@ static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
         break;
     }
 
-    v1 = Bag_TryRemoveItem(param0->unk_10->unk_14, param0->unk_08, 1, param0->heapID);
+    v1 = Bag_TryRemoveItem(param0->unk_10->bag, param0->unk_08, 1, param0->heapID);
     GF_ASSERT(v1);
 
     return 4;
@@ -159,9 +159,9 @@ static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
 
 static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0)
 {
-    u8 v0;
-    u8 v1, v2, v3, v4;
-    Bag *v5 = param0->unk_10->unk_14;
+    u8 i;
+    u8 v1, v2, v3, item;
+    Bag *bag = param0->unk_10->bag;
 
     FS_EXTERN_OVERLAY(overlay85);
 
@@ -174,11 +174,11 @@ static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0)
 
     v3 = 0;
 
-    for (v0 = 0; v0 < 64; v0++) {
-        v4 = Item_ForBerryNumber(v0);
+    for (i = 0; i < NUM_BERRIES; i++) {
+        item = Item_ForBerryNumber(i);
 
-        if (Bag_CanRemoveItem(v5, v4, 1, param0->heapID) == 1) {
-            sub_02097320(param0->unk_18, v4, 0);
+        if (Bag_CanRemoveItem(bag, item, 1, param0->heapID) == TRUE) {
+            sub_02097320(param0->unk_18, item, 0);
             v3++;
         }
     }

@@ -223,7 +223,7 @@ u8 Poffin_CalcLevel(Poffin *poffin)
 
 PoffinCase *SaveData_GetPoffinCase(SaveData *savedata)
 {
-    return SaveData_SaveTable(savedata, 16);
+    return SaveData_SaveTable(savedata, SAVE_TABLE_ENTRY_POFFINS);
 }
 
 int Poffin_SaveSize(void)
