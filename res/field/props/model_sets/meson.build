@@ -86,7 +86,7 @@ prop_model_set_narc = custom_target('area_build.narc',
         'area_build.naix',
     ],
     input: [
-        prop_model_set_bin_gen.process(prop_model_set_data_srcs, env: json2bin_env),
+        prop_model_set_bin_gen.process(prop_model_set_data_srcs, env: jsoncnv_env),
         prop_model_set_data_order
     ],
     depends: [ py_consts_generators ],

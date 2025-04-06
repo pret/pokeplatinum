@@ -9,7 +9,7 @@ from generated.moves import Move
 from generated.pokemon_contest_types import PokemonContestType
 from generated.pokemon_types import PokemonType
 
-import json2bin as j2b
+import jsoncnv as j2b
 
 
 SCHEMA = j2b.Parser() \
@@ -37,7 +37,7 @@ def indexer(file_path: pathlib.Path) -> int:
 
 
 args = j2b.ARGPARSER.parse_args()
-j2b.json2bin(args.source_dir,
+j2b.jsoncnv(args.source_dir,
              SCHEMA,
              args.private_dir,
              args.output_dir,

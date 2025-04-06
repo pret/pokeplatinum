@@ -16,7 +16,7 @@ endforeach
 npc_trades_order = files('npc_trades.order')
 npc_trades_narc = custom_target('fld_trade.narc',
     output: 'fld_trade.narc',
-    input: npc_trades_bin_gen.process(npc_trades_files, env: json2bin_env),
+    input: npc_trades_bin_gen.process(npc_trades_files, env: jsoncnv_env),
     depends: [ py_consts_generators ],
     command: [
         narc_exe, 'create',

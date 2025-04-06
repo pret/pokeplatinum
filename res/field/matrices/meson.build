@@ -301,7 +301,7 @@ matrix_data_order = files('map_matrices.order')
 map_matrix_narc = custom_target('map_matrix.narc',
     output: 'map_matrix.narc',
     input: [
-        matrix_bin_gen.process(matrix_data_srcs, env: json2bin_env),
+        matrix_bin_gen.process(matrix_data_srcs, env: jsoncnv_env),
         matrix_data_order
     ],
     depends: [ py_consts_generators ],
