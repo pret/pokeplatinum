@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import collections
 import functools
+import math
 import pathlib
 import re
 
@@ -35,6 +36,12 @@ def u32(i: int) -> bytes:
 
 def ascii(i: str) -> bytes:
     return str.encode(i, 'ascii')
+
+def float_to_fx16(f: float) -> int:
+    if (f > 0):
+        return math.ceil(f * (1 << 12))
+    else:
+        return math.floor(f * (1 << 12))
 
 def from_item(s: str) -> int:
     return items.Item[s].value

@@ -1,6 +1,7 @@
 subdir('encounters')
 subdir('events')
 subdir('frontier_scripts')
+subdir('lighting')
 subdir('maps')
 subdir('matrices')
 subdir('props')
