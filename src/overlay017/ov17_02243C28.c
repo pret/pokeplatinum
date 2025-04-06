@@ -33,8 +33,8 @@
 
 #include "heap.h"
 #include "pokemon.h"
-#include "sound_playback.h"
 #include "pokemon_sprite.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02094EDC.h"

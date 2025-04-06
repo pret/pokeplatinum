@@ -5,6 +5,7 @@
 
 #include "constants/species.h"
 #include "generated/sdat.h"
+
 #include "global/utility.h"
 
 #include "communication_system.h"

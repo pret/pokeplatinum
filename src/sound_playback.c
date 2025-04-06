@@ -5,9 +5,10 @@
 
 #include "constants/species.h"
 #include "generated/sdat.h"
-#include "global/utility.h"
 
 #include "struct_defs/chatot_cry.h"
+
+#include "global/utility.h"
 
 #include "heap.h"
 #include "sound.h"

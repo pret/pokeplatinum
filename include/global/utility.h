@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_UTILITY_H
 #define POKEPLATINUM_UTILITY_H
 
-#define UNUSED(EXPR)    (void)(EXPR)
+#define UNUSED(EXPR) (void)(EXPR)
 
 #endif // POKEPLATINUM_UTILITY_H

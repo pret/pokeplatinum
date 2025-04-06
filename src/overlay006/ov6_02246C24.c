@@ -13,8 +13,8 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_matrix.h"
-#include "terrain_collision_manager.h"
 #include "sound_playback.h"
+#include "terrain_collision_manager.h"
 
 typedef struct {
     VecFx32 unk_00;

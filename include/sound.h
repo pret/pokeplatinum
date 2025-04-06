@@ -67,8 +67,6 @@ void Sound_SetBGMFixed(u8 fixed);
 u8 Sound_IsBGMFixed(void);
 void Sound_SetCurrentBGM(u16 bgmID);
 u16 Sound_Impl_GetCurrentBGM();
-static inline u16 Sound_GetCurrentBGM1(void* p) { return Sound_Impl_GetCurrentBGM(p); }
-static inline u16 Sound_GetCurrentBGM(void) { return Sound_Impl_GetCurrentBGM(); }
 void Sound_SetNextBGM(u16 bgmID);
 u16 Sound_GetNextBGM(void);
 void Sound_SetFieldBGM(u16 bgmID);
@@ -137,5 +135,14 @@ void Sound_ConfigureBGMChannelsAndReverb(enum SoundChannelConfig config);
 void Sound_SetPlayerVolume(int playerID, int volume);
 void Sound_Set2PokemonCriesAllowed(BOOL allowed);
 void sub_02005464(BOOL param0);
+
+static inline u16 Sound_GetCurrentBGM1(void *p)
+{
+    return Sound_Impl_GetCurrentBGM(p);
+}
+static inline u16 Sound_GetCurrentBGM(void)
+{
+    return Sound_Impl_GetCurrentBGM();
+}
 
 #endif // POKEPLATINUM_SOUND_H
