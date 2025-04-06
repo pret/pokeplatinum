@@ -1,6 +1,6 @@
 Source File,Target File
 res/prebuilt/data/UTF16.dat,/data/UTF16.dat
-res/prebuilt/data/arealight.narc,/data/arealight.narc
+res/field/lighting/arealight.narc,/data/arealight.narc
 res/prebuilt/data/battle_win.NSCR,/data/battle_win.NSCR
 res/prebuilt/data/btower_canm.resdat,/data/btower_canm.resdat
 res/prebuilt/data/btower_celact.cldat,/data/btower_celact.cldat
