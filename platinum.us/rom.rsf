@@ -32,7 +32,13 @@ RomSpec
 	HostRoot res/prebuilt  # Directory in source
 
 	File data/UTF16.dat
-	File data/arealight.narc
+
+	Root /data
+	HostRoot res/field/lighting
+	File arealight.narc
+	
+	Root /
+	HostRoot res/prebuilt
 	File data/battle_win.NSCR
 	File data/btower_canm.resdat
 	File data/btower_celact.cldat

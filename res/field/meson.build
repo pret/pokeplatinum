@@ -1,5 +1,6 @@
 subdir('encounters')
 subdir('events')
+subdir('lighting')
 subdir('maps')
 subdir('matrices')
 subdir('props')
