@@ -1,5 +1,5 @@
-json2bin_env = environment()
-json2bin_env.set('PYTHONPATH', meson.project_build_root()) # access to constants geneated by constgen
+jsoncnv_env = environment()
+jsoncnv_env.set('PYTHONPATH', meson.project_build_root()) # access to constants geneated by constgen
 
 # Old combined parser + packer scripts
 movedata_py = find_program('movedata.py', native: true)

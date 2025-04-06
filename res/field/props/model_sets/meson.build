@@ -87,7 +87,7 @@ prop_model_set_narc = custom_target('prop_model_sets.narc',
     ],
     input: [
         prop_model_set_bin_gen.process(prop_model_set_data_srcs, 
-            env: json2bin_env,
+            env: jsoncnv_env,
             extra_args: [
                 '--map-prop-model-naix', map_prop_model_narc[1].full_path() + '.h',
             ],

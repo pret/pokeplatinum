@@ -8,13 +8,13 @@ lighting_txt_gen = generator(
 lighting_data_srcs = lighting_txt_gen.process(files(
     'lighting_set_000.json',
     'lighting_set_002.json'),
-    env: json2bin_env,
+    env: jsoncnv_env,
 )
 
 lighting_data_newline_srcs = lighting_txt_gen.process(files(
     'lighting_set_001.json',
     'lighting_set_003.json'),
-    env: json2bin_env,
+    env: jsoncnv_env,
     extra_args: [
         '--eofnewline',
     ],
