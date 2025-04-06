@@ -11,7 +11,7 @@ from types import FunctionType, LambdaType
 
 
 ARGPARSER = ArgumentParser(
-    prog='json2bin.py',
+    prog='jsoncnv.py',
     description='Tool for converting a collection of JSON documents into\na NARC via a constructed parsing schema'
 )
 ARGPARSER.add_argument('--narc', required=True,
@@ -200,7 +200,7 @@ def _process(fname_in: str,
     return (output_idx, output_bin)
 
 
-def json2bin(target: str,
+def jsoncnv(target: str,
              schema: Parser,
              private_dir: Optional[str],
              output_dir: Optional[str],
