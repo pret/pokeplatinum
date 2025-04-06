@@ -5,7 +5,7 @@
 
 #include "overlay071/struct_ov71_0223D324.h"
 
-#include "unk_020041CC.h"
+#include "sound.h"
 
 static void ov71_0223D370(UnkStruct_ov71_0223D324 *param0);
 static BOOL ov71_0223D3A0(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2);
@@ -65,7 +65,7 @@ static void ov71_0223D370(UnkStruct_ov71_0223D324 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_00[v0][1] != 0xff) {
-            if (sub_02004B04(3 + param0->unk_00[v0][0]) == 0) {
+            if (Sound_GetNumberOfPlayingSequencesForPlayer(3 + param0->unk_00[v0][0]) == 0) {
                 param0->unk_00[v0][1] = 0xff;
             }
         }
@@ -149,8 +149,8 @@ static void ov71_0223D470(int param0, const int param1, const u8 param2)
 {
     int v0 = 152 * (4 - param2);
 
-    sub_02004AE8((3 + param0), (3 + param0), 1684);
-    sub_02004F68((3 + param0), 0xffff, (Unk_ov71_0223D77C[param1] - v0));
+    Sound_PlaySequenceWithPlayer((3 + param0), (3 + param0), 1684);
+    Sound_SetPitchForHandle((3 + param0), 0xffff, (Unk_ov71_0223D77C[param1] - v0));
 
     return;
 }

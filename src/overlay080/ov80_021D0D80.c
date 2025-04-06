@@ -19,9 +19,9 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "sound.h"
 #include "strbuf.h"
 #include "system.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
 #include "unk_0208C098.h"
@@ -113,7 +113,7 @@ int ov80_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_02 = v1->unk_13C;
     v0->heapID = HEAP_ID_17;
 
-    sub_02004550(55, 0, 0);
+    Sound_SetSceneAndPlayBGM(55, 0, 0);
 
     return 1;
 }

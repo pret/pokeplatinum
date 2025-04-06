@@ -16,10 +16,10 @@
 
 #include "enums.h"
 #include "math.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 #include "unk_020711EC.h"
 
 typedef struct {
@@ -1160,7 +1160,7 @@ static int ov101_021D6908(UnkStruct_ov101_021D66D0 *param0)
         param0->unk_14 = 0;
         param0->unk_08++;
 
-        sub_02005844(SPECIES_CLEFAIRY, 0);
+        Sound_PlayPokemonCry(SPECIES_CLEFAIRY, 0);
     }
 
     Sprite_SetAffineScale(param0->unk_24.unk_04, &v1);

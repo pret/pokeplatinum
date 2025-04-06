@@ -28,6 +28,8 @@
 #include "pokemon_icon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -37,8 +39,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
@@ -909,7 +909,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         sub_02087A10(v0);
         sub_02087FC0(v0, param0, v1);
         sub_02088754(&v0->unk_41C[4], v0->unk_D8, v0->unk_158, v0->unk_15A, v0->unk_528, v0->unk_17C);
-        sub_02004550(52, 0, 0);
+        Sound_SetSceneAndPlayBGM(52, 0, 0);
         StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_18);
         sub_0208732C(1);
 

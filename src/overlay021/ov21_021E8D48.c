@@ -26,6 +26,7 @@
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -34,7 +35,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"
@@ -680,12 +680,12 @@ static void ov21_021E9828(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        v1 = Sound_PlayPokemonCry(POKECRY_POKEDEX, v0->unk_220, 0x1ff, 0x1ff, 0x1ff, 0);
+        v1 = Sound_PlayPokemonCryEx(POKECRY_POKEDEX, v0->unk_220, 0x1ff, 0x1ff, 0x1ff, 0);
         GF_ASSERT(v1);
         v0->unk_21C++;
         break;
     case 3:
-        if (sub_0200598C() == 0) {
+        if (Sound_IsPokemonCryPlaying() == 0) {
             v0->unk_21C++;
         }
         break;

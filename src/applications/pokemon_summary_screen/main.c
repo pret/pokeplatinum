@@ -36,6 +36,9 @@
 #include "render_window.h"
 #include "ribbon.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_chatot.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -43,9 +46,6 @@
 #include "system.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
-#include "unk_02006224.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
@@ -254,7 +254,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     PokemonSummaryScreen_SetupCamera(summaryScreen);
     SetVBlankCallback(PokemonSummaryScreenVBlank, summaryScreen);
     GXLayers_TurnBothDispOn();
-    sub_02004550(61, 0, 0);
+    Sound_SetSceneAndPlayBGM(61, 0, 0);
     DrawWifiConnectionIcon();
     NARC_dtor(narc);
 
@@ -1189,7 +1189,7 @@ static void PlayMonCry(PokemonSummaryScreen *summaryScreen)
     if (summaryScreen->monData.species == SPECIES_CHATOT) {
         Sound_PlayDelayedChatotCry(summaryScreen->data->chatotCry, 0, 100, 0, cryDelay);
     } else {
-        sub_0200590C(summaryScreen->monData.species, cryDelay, summaryScreen->monData.form);
+        Sound_PlayDelayedPokemonCry(summaryScreen->monData.species, cryDelay, summaryScreen->monData.form);
     }
 }
 

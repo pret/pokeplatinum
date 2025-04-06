@@ -21,12 +21,12 @@
 #include "overlay_manager.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -104,7 +104,7 @@ int JournalController_Init(OverlayManager *ovyManager, int *state)
     GXLayers_TurnBothDispOn();
     sub_02039734();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02004550(67, 0, 0);
+    Sound_SetSceneAndPlayBGM(67, 0, 0);
 
     return TRUE;
 }

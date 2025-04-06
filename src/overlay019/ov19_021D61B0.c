@@ -42,12 +42,12 @@
 #include "narc.h"
 #include "pokemon_sprite.h"
 #include "render_oam.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 
 struct UnkStruct_ov19_021D61B0_t {

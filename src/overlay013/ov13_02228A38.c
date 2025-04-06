@@ -10,8 +10,8 @@
 #include "overlay013/struct_ov13_02228A50_decl.h"
 
 #include "heap.h"
+#include "sound_playback.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_0201E010.h"
 
 struct UnkStruct_ov13_02228A50_t {

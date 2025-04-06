@@ -32,11 +32,11 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -175,7 +175,7 @@ int ov67_0225C700(OverlayManager *param0, int *param1)
     v1 = OverlayManager_Args(param0);
 
     v0->unk_00 = v1->unk_00;
-    sub_02004550(11, 1175, 0);
+    Sound_SetSceneAndPlayBGM(11, 1175, 0);
     v1->unk_10 = 0;
 
     ov67_0225CE30(v0, 112);

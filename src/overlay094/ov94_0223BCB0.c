@@ -39,6 +39,7 @@
 #include "pokemon_icon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sound.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -46,7 +47,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02033200.h"
 #include "unk_02099550.h"
@@ -127,7 +127,7 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
         ov94_0223C03C(v0, param0);
         ov94_0223C4E0(v0);
 
-        sub_02004550(11, 1175, 1);
+        Sound_SetSceneAndPlayBGM(11, 1175, 1);
 
         v0->unk_4C = Heap_AllocFromHeap(HEAP_ID_62, 0x20000 + 32);
         v0->unk_50 = NNS_FndCreateExpHeap((void *)(((u32)v0->unk_4C + 31) / 32 * 32), 0x20000);

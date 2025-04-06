@@ -38,14 +38,14 @@
 #include "render_window.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_vars.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02020AEC.h"
 #include "unk_0202C858.h"
@@ -1131,6 +1131,6 @@ BOOL ScrCmd_333(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
 
-    sub_0200544C(1, v0);
+    Sound_SetPlayerVolume(1, v0);
     return 0;
 }

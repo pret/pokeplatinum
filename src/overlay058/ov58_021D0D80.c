@@ -31,6 +31,8 @@
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -41,8 +43,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_0201E3D8.h"
@@ -203,7 +203,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
         ov58_021D16D8(v0);
         ov58_021D18AC(v0, param0);
 
-        sub_02004550(52, 0, 0);
+        Sound_SetSceneAndPlayBGM(52, 0, 0);
 
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 

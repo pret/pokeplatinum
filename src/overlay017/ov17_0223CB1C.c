@@ -27,6 +27,8 @@
 #include "palette.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -34,8 +36,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_0201E3D8.h"
@@ -213,8 +213,8 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02004234(0);
-    sub_02004550(6, 1135, 1);
+    Sound_SetScene(0);
+    Sound_SetSceneAndPlayBGM(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
     SetVBlankCallback(ov17_0223D0C8, v0);
     Sound_PlayEffect(SEQ_SE_DP_DOOR_OPEN);

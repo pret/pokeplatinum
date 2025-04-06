@@ -34,6 +34,8 @@
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -45,8 +47,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02030EE0.h"
 #include "unk_020363E8.h"
@@ -204,7 +204,7 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
         ov59_021D1598(v0);
         ov59_021D16A0(v0, param0);
 
-        sub_02004550(52, 0, 0);
+        Sound_SetSceneAndPlayBGM(52, 0, 0);
         sub_020961E8(v0);
         sub_02037878();
         sub_02037B58(3);

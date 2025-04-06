@@ -44,6 +44,8 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -54,8 +56,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_0202EEC0.h"
@@ -1308,7 +1308,7 @@ static void ov97_02234B0C(GBAMigrator *migrator, BoxPokemonGBA *boxMonGBA)
     ov97_02233DD0(migrator, &v4, 0x2);
 
     Strbuf_Free(strBuf);
-    sub_02005844(species, 0);
+    Sound_PlayPokemonCry(species, 0);
 }
 
 static void ov97_02234CC4(GBAMigrator *migrator, int param1, int param2, int *state)
@@ -1837,7 +1837,7 @@ static int GBAMigrator_Init(OverlayManager *param0, int *state)
     migrator->unk_12668 = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
     migrator->unk_1266C = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
 
-    sub_02004550(9, 1174, 1);
+    Sound_SetSceneAndPlayBGM(9, 1174, 1);
 
     if (OS_IsTickAvailable() == 0) {
         OS_InitTick();

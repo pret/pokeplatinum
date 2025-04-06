@@ -22,13 +22,13 @@
 #include "heap.h"
 #include "narc.h"
 #include "pokemon_sprite.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02005474.h"
 
 #include "res/text/bank/pokedex.h"
 

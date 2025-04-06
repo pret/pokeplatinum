@@ -26,6 +26,7 @@
 #include "pokemon_sprite.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -34,7 +35,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -682,10 +682,10 @@ static int ov79_021D2AF0(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
     switch (param0->unk_30.unk_09) {
     case 1:
-        Sound_PlayPokemonCry(POKECRY_PINCH_NORMAL, param0->unk_30.unk_04, 0, 127, param0->heapID, form);
+        Sound_PlayPokemonCryEx(POKECRY_PINCH_NORMAL, param0->unk_30.unk_04, 0, 127, param0->heapID, form);
         break;
     default:
-        Sound_PlayPokemonCry(POKECRY_NORMAL, param0->unk_30.unk_04, 0, 127, param0->heapID, form);
+        Sound_PlayPokemonCryEx(POKECRY_NORMAL, param0->unk_30.unk_04, 0, 127, param0->heapID, form);
         break;
     }
 
@@ -694,11 +694,11 @@ static int ov79_021D2AF0(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
 static int ov79_021D2B3C(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B4 *param1)
 {
-    if (sub_0200598C()) {
+    if (Sound_IsPokemonCryPlaying()) {
         return 3;
     }
 
-    sub_0200592C(0);
+    Sound_StopPokemonCries(0);
     return 4;
 }
 

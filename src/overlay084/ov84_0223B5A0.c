@@ -35,6 +35,8 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "special_encounter.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -44,8 +46,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
@@ -442,7 +442,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     }
 
     SetVBlankCallback(ov84_0223BA14, v0);
-    sub_02004550(51, 0, 0);
+    Sound_SetSceneAndPlayBGM(51, 0, 0);
     DrawWifiConnectionIcon();
 
     return 1;

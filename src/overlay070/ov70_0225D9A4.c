@@ -57,6 +57,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -70,7 +71,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
@@ -807,8 +807,8 @@ int ov70_0225DDF8(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0);
     Heap_Destroy(HEAP_ID_112);
     Heap_Destroy(HEAP_ID_113);
-    sub_020057BC(0);
-    sub_0200592C(0);
+    Sound_StopAllEffects(0);
+    Sound_StopPokemonCries(0);
 
     return 1;
 }

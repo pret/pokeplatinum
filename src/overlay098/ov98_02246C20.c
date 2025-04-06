@@ -20,10 +20,10 @@
 #include "main.h"
 #include "overlay_manager.h"
 #include "save_player.h"
+#include "sound.h"
 #include "strbuf.h"
 #include "system.h"
 #include "system_flags.h"
-#include "unk_020041CC.h"
 #include "unk_02030CE8.h"
 #include "unk_02033200.h"
 #include "unk_02038FFC.h"
@@ -107,7 +107,7 @@ int ov98_02246C20(OverlayManager *param0, int *param1)
     v0->unk_08 = SaveData_GetOptions(v0->saveData);
     v0->unk_114 = Strbuf_Init(100, HEAP_ID_108);
     v0->unk_118 = Strbuf_Init(100, HEAP_ID_108);
-    sub_02004550(17, 1175, 1);
+    Sound_SetSceneAndPlayBGM(17, 1175, 1);
     v0->unk_8C = 0;
 
     return 1;

@@ -17,11 +17,11 @@
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "sound_playback.h"
 #include "spl.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_02014000.h"
 #include "unk_0202419C.h"
 #include "unk_0207E0B8.h"
@@ -132,7 +132,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
         v0->unk_00++;
         break;
     case 8:
-        if (sub_0200598C() == 0) {
+        if (Sound_IsPokemonCryPlaying() == 0) {
             v0->unk_00++;
         }
         break;

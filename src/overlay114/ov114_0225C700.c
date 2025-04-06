@@ -36,6 +36,8 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -47,8 +49,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_0202ACE0.h"
@@ -1621,7 +1621,7 @@ static UnkStruct_ov114_0225D678 *ov114_0225D48C(const UnkStruct_ov114_0225C76C *
     UnkStruct_ov114_0225D678 *v0;
     int v1;
 
-    sub_02004550(19, 1211, 0);
+    Sound_SetSceneAndPlayBGM(19, 1211, 0);
 
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov114_0225D678));
     memset(v0, 0, sizeof(UnkStruct_ov114_0225D678));
@@ -3510,7 +3510,7 @@ static BOOL ov114_0225F7D8(UnkStruct_ov114_0225E854 *param0)
 static void ov114_0225F83C(UnkStruct_ov114_0225E854 *param0)
 {
     if (param0->unk_6C4 == 0) {
-        sub_02006150(1222);
+        Sound_PlayFanfare(1222);
         param0->unk_6C4 = 1;
     }
 }
@@ -3518,7 +3518,7 @@ static void ov114_0225F83C(UnkStruct_ov114_0225E854 *param0)
 static BOOL ov114_0225F860(UnkStruct_ov114_0225E854 *param0)
 {
     if (param0->unk_6C4 == 1) {
-        if (sub_020061E4() == 0) {
+        if (Sound_IsBGMPausedByFanfare() == 0) {
             param0->unk_6C4 = 0;
         }
     }

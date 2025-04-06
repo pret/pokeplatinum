@@ -43,6 +43,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -52,7 +53,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_0206A780.h"
 

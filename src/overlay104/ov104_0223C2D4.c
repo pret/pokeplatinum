@@ -43,13 +43,13 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -180,7 +180,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02004550(4, ov104_0222EA90(v2, 3), 1);
+    Sound_SetSceneAndPlayBGM(4, ov104_0222EA90(v2, 3), 1);
 
     RenderControlFlags_SetAutoScrollFlags(1);
     RenderControlFlags_SetCanABSpeedUpPrint(0);

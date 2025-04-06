@@ -20,14 +20,14 @@
 #include "pokemon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sound_chatot.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
-#include "unk_02006224.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 
@@ -199,9 +199,9 @@ static BOOL ov87_021D12C0(UnkStruct_ov87_021D106C *param0, int *param1)
         if (v1 == v0->unk_18) {
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
             Sprite_SetPriority(param0->unk_1C4[v1], 0);
-            Sound_FlagDefaultChatotCry(TRUE);
+            Sound_SetUsingDefaultChatotCry(TRUE);
 
-            sub_02005844(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
+            Sound_PlayPokemonCry(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
         } else {
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
             Sprite_SetPriority(param0->unk_1C4[v1], v1 + 1);
@@ -549,8 +549,8 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
         Graphics_LoadPalette(v1.archive, v1.palette, 1, v3 * 0x20, 0x20, HEAP_ID_61);
 
         if (v3 == v2->unk_18) {
-            Sound_FlagDefaultChatotCry(TRUE);
-            sub_02005844(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
+            Sound_SetUsingDefaultChatotCry(TRUE);
+            Sound_PlayPokemonCry(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
         } else {
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_XLU);
