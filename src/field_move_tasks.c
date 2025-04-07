@@ -132,9 +132,9 @@ static inline BOOL FieldMoves_IsMoveUsable(const FieldMoveContext *fieldMoveCont
     return FALSE;
 }
 
-static inline BOOL PlayerHasRequiredBadge(const FieldMoveContext *fieldMoveContext, int param1)
+static inline BOOL PlayerHasRequiredBadge(const FieldMoveContext *fieldMoveContext, enum Badge badge)
 {
-    return TrainerInfo_HasBadge(SaveData_GetTrainerInfo(fieldMoveContext->fieldSystem->saveData), param1);
+    return TrainerInfo_HasBadge(SaveData_GetTrainerInfo(fieldMoveContext->fieldSystem->saveData), badge);
 }
 
 static inline BOOL PlayerTravellingWithPartner(const FieldMoveContext *fieldMoveContext)
@@ -144,7 +144,7 @@ static inline BOOL PlayerTravellingWithPartner(const FieldMoveContext *fieldMove
 
 static inline BOOL PlayerInSafariZoneOrPalPark(const FieldMoveContext *fieldMoveContext)
 {
-    if ((SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldMoveContext->fieldSystem->saveData)) == 1) || (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldMoveContext->fieldSystem->saveData)) == 1)) {
+    if ((SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldMoveContext->fieldSystem->saveData)) == TRUE) || (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldMoveContext->fieldSystem->saveData)) == TRUE)) {
         return TRUE;
     }
 
@@ -153,7 +153,7 @@ static inline BOOL PlayerInSafariZoneOrPalPark(const FieldMoveContext *fieldMove
 
 static inline BOOL PlayerInPalPark(const FieldMoveContext *fieldMoveContext)
 {
-    if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldMoveContext->fieldSystem->saveData)) == 1) {
+    if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldMoveContext->fieldSystem->saveData)) == TRUE) {
         return TRUE;
     }
 
@@ -249,7 +249,7 @@ static void FieldMoves_CanUseSurfDistortionWorld(FieldSystem *fieldSystem, Field
     nextTileBehavior = PlayerAvatar_GetDistortionTileBehaviour(fieldSystem->playerAvatar, distortionDir);
     currTileBehavior = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
 
-    if (PlayerAvatar_CanUseSurf(fieldSystem->playerAvatar, currTileBehavior, nextTileBehavior) == 1) {
+    if (PlayerAvatar_CanUseSurf(fieldSystem->playerAvatar, currTileBehavior, nextTileBehavior) == TRUE) {
         fieldMoveContext->usableMoves |= FIELD_MOVE_FLAG(FIELD_MOVE_SURF);
     }
 }
@@ -273,11 +273,11 @@ static void FieldMoves_FreeTaskData(FieldMoveTaskData *taskData)
 
 static enum FieldMoveError FieldMoves_CheckCut(const FieldMoveContext *fieldMoveContext)
 {
-    if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_FOREST) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_FOREST) == FALSE) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
@@ -314,23 +314,23 @@ static BOOL FieldMoves_CutTask(FieldTask *taskMan)
 
 static enum FieldMoveError FieldMoves_CheckFly(const FieldMoveContext *fieldMoveContext)
 {
-    if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_COBBLE) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_COBBLE) == FALSE) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
-    if (MapHeader_IsFlyAllowed(fieldMoveContext->mapId) == 0) {
+    if (MapHeader_IsFlyAllowed(fieldMoveContext->mapId) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerTravellingWithPartner(fieldMoveContext) == 1) {
+    if (PlayerTravellingWithPartner(fieldMoveContext) == TRUE) {
         return FIELD_MOVE_ERROR_PARTNER;
     }
 
-    if (PlayerInSafariZoneOrPalPark(fieldMoveContext) == 1) {
+    if (PlayerInSafariZoneOrPalPark(fieldMoveContext) == TRUE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
@@ -355,11 +355,11 @@ static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMov
 
 static enum FieldMoveError FieldMoves_CheckSurf(const FieldMoveContext *fieldMoveContext)
 {
-    if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_FEN) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_FEN) == FALSE) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
@@ -371,7 +371,7 @@ static enum FieldMoveError FieldMoves_CheckSurf(const FieldMoveContext *fieldMov
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerTravellingWithPartner(fieldMoveContext) == 1) {
+    if (PlayerTravellingWithPartner(fieldMoveContext) == TRUE) {
         return FIELD_MOVE_ERROR_PARTNER;
     }
 
@@ -404,11 +404,11 @@ static BOOL FieldMoves_SurfTask(FieldTask *taskMan)
 
 static enum FieldMoveError FieldMoves_CheckStrength(const FieldMoveContext *fieldMoveContext)
 {
-    if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_MINE) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_MINE) == FALSE) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
@@ -445,11 +445,11 @@ static BOOL FieldMoves_StrengthTask(FieldTask *param0)
 
 static enum FieldMoveError FieldMoves_CheckDefog(const FieldMoveContext *fieldMoveContext)
 {
-    if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_RELIC) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_RELIC) == FALSE) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
@@ -486,11 +486,11 @@ static BOOL FieldMoves_DefogTask(FieldTask *taskMan)
 
 static enum FieldMoveError FieldMoves_CheckRockSmash(const FieldMoveContext *fieldMoveContext)
 {
-    if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_COAL) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_COAL) == FALSE) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
@@ -531,11 +531,11 @@ static BOOL FieldMoves_RockSmashTask(FieldTask *taskMan)
 
 static enum FieldMoveError FieldMoves_CheckWaterfall(const FieldMoveContext *fieldMoveContext)
 {
-    if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_BEACON) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_BEACON) == FALSE) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
@@ -572,11 +572,11 @@ static BOOL FieldMoves_WaterfallTask(FieldTask *param0)
 
 static enum FieldMoveError FieldMoves_CheckRockClimb(const FieldMoveContext *fieldMoveContext)
 {
-    if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_ICICLE) == 0) {
+    if (PlayerHasRequiredBadge(fieldMoveContext, BADGE_ID_ICICLE) == FALSE) {
         return FIELD_MOVE_ERROR_BADGE;
     }
 
@@ -584,7 +584,7 @@ static enum FieldMoveError FieldMoves_CheckRockClimb(const FieldMoveContext *fie
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerTravellingWithPartner(fieldMoveContext) == 1) {
+    if (PlayerTravellingWithPartner(fieldMoveContext) == TRUE) {
         return FIELD_MOVE_ERROR_PARTNER;
     }
 
@@ -617,7 +617,7 @@ static BOOL FieldMoves_RockClimbTask(FieldTask *taskMan)
 
 static enum FieldMoveError FieldMoves_CheckFlash(const FieldMoveContext *fieldMoveContext)
 {
-    if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
@@ -654,19 +654,19 @@ static BOOL FieldMoves_FlashTask(FieldTask *taskMan)
 
 static enum FieldMoveError FieldMoves_CheckTeleport(const FieldMoveContext *fieldMoveContext)
 {
-    if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (MapHeader_IsTeleportAllowed(fieldMoveContext->mapId) == 0) {
+    if (MapHeader_IsTeleportAllowed(fieldMoveContext->mapId) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerTravellingWithPartner(fieldMoveContext) == 1) {
+    if (PlayerTravellingWithPartner(fieldMoveContext) == TRUE) {
         return FIELD_MOVE_ERROR_PARTNER;
     }
 
-    if (PlayerInSafariZoneOrPalPark(fieldMoveContext) == 1) {
+    if (PlayerInSafariZoneOrPalPark(fieldMoveContext) == TRUE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
@@ -701,15 +701,15 @@ static BOOL FieldMoves_TeleportTask(FieldTask *param0)
 
 static enum FieldMoveError FieldMoves_CheckDig(const FieldMoveContext *fieldMoveContext)
 {
-    if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (!((MapHeader_IsCave(fieldMoveContext->mapId) == 1) && (MapHeader_IsEscapeRopeAllowed(fieldMoveContext->mapId) == 1))) {
+    if (!((MapHeader_IsCave(fieldMoveContext->mapId) == TRUE) && (MapHeader_IsEscapeRopeAllowed(fieldMoveContext->mapId) == TRUE))) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerTravellingWithPartner(fieldMoveContext) == 1) {
+    if (PlayerTravellingWithPartner(fieldMoveContext) == TRUE) {
         return FIELD_MOVE_ERROR_PARTNER;
     }
 
@@ -747,11 +747,11 @@ static BOOL FieldMoves_DigTask(FieldTask *param0)
 
 static enum FieldMoveError FieldMoves_CheckSweetScent(const FieldMoveContext *fieldMoveContext)
 {
-    if (PlayerOutsideLinkRoom(fieldMoveContext) == 0) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (PlayerInPalPark(fieldMoveContext) == 1) {
+    if (PlayerInPalPark(fieldMoveContext) == TRUE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
@@ -778,7 +778,7 @@ static void FieldMoves_SetSweetScentTask(FieldMovePokemon *fieldMoveMon, const F
 
 static enum FieldMoveError FieldMoves_CheckChatter(const FieldMoveContext *fieldMoveContext)
 {
-    if ((PlayerOutsideLinkRoom(fieldMoveContext) == 0) || (PersistedMapFeatures_IsCurrentDynamicMap(fieldMoveContext->fieldSystem, 9) == 1)) {
+    if ((PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) || (PersistedMapFeatures_IsCurrentDynamicMap(fieldMoveContext->fieldSystem, 9) == TRUE)) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
