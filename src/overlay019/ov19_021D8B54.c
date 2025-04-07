@@ -143,7 +143,7 @@ void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
     }
 
     if (pcMode != PC_MODE_MOVE_ITEMS) {
-        if (ov19_021D5E38(param0->unk_790) == 1) {
+        if (ov19_GetPreviewMonSource(param0->unk_790) == PREVIEW_MON_UNDER_CURSOR) {
             Sprite_SetAnim(param0->unk_04, 0);
             ov19_021DA3CC(param0->unk_48, param0->unk_4C, (5 * 6));
             param0->unk_78C = 0;

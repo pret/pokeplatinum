@@ -1,6 +1,14 @@
 #ifndef POKEPLATINUM_STRUCT_BOX_CURSOR_H
 #define POKEPLATINUM_STRUCT_BOX_CURSOR_H
 
+#define PREVIEW_MON_UNDER_CURSOR    1
+#define PREVIEW_MON_IN_CURSOR       2
+#define PREVIEW_MON_FROM_SELECTION  4
+#define PREVIEW_MON_UNDER_SELECTION 8
+
+#define PREVIEW_MON_HELD      6
+#define PREVIEW_MON_SELECTION 12
+
 enum CursorLocation {
     CURSOR_IN_BOX = 0,
     CURSOR_IN_PARTY,
@@ -18,7 +26,7 @@ typedef struct {
     s8 posInParty;
     s8 prevCursorLocation;
     u8 isMonUnderCursor;
-    u8 unk_0B; // bit flag, can be set to 1, 2, 4, 8; 1 is default, 2 is mon held in cursor, 4 and 8 are related in some way to multi-select
+    u8 previewMonSource;
 } BoxCursor;
 
 #endif // POKEPLATINUM_STRUCT_BOX_CURSOR_H
