@@ -166,7 +166,7 @@ Sprite *ov22_022551E4(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2, i
     v1.position.z = 0;
     v1.priority = param4;
     v1.vramType = param5;
-    v1.heapID = 14;
+    v1.heapID = HEAP_ID_14;
 
     return SpriteList_Add(&v1);
 }

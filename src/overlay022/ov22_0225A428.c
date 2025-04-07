@@ -289,7 +289,7 @@ static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, SpriteList *param1, S
     v1.resourceData = &v0;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v1.priority = 0;
-    v1.heapID = 14;
+    v1.heapID = HEAP_ID_14;
 
     for (v2 = 0; v2 < (20 / 10); v2++) {
         v1.position.y = 104 + (18 * v2);
@@ -382,7 +382,7 @@ static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, SpriteList *param1, S
     v1.resourceData = &v0;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v1.priority = 0;
-    v1.heapID = 14;
+    v1.heapID = HEAP_ID_14;
     v1.position.y = 58 * FX32_ONE;
     v1.position.y += (512 * FX32_ONE);
 

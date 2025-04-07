@@ -289,7 +289,7 @@ void ov96_0223BAE0(AffineSpriteListTemplate *param0, UnkStruct_ov96_0223BF40 *pa
     param0->affineZRotation = 0;
     param0->priority = 1;
     param0->vramType = param3;
-    param0->heapID = 68;
+    param0->heapID = HEAP_ID_68;
 }
 
 static void ov96_0223BB0C(UnkStruct_ov96_0223BF40 *param0)

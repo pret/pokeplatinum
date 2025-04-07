@@ -413,7 +413,7 @@ static void ov56_02256704(UnkStruct_ov56_02256468 *param0)
         v1.affineZRotation = 0;
         v1.priority = 0;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-        v1.heapID = 4;
+        v1.heapID = HEAP_ID_FIELD;
 
         for (v0 = 0; v0 < 3; v0++) {
             v1.position.x = FX32_CONST(256 - 24);

@@ -616,11 +616,11 @@ static void ov65_02236820(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 param1)
+static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 heapID)
 {
     NARC *v0;
 
-    param0->unk_00 = BgConfig_New(param1);
+    param0->unk_00 = BgConfig_New(heapID);
 
     {
         GraphicsModes v1 = {
@@ -651,7 +651,7 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 param1)
         };
 
         Bg_InitFromTemplate(param0->unk_00, 0, &v2, 0);
-        Bg_ClearTilesRange(0, 32, 0, param1);
+        Bg_ClearTilesRange(0, 32, 0, heapID);
         Bg_ClearTilemap(param0->unk_00, 0);
     }
 
@@ -673,7 +673,7 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 param1)
         };
 
         Bg_InitFromTemplate(param0->unk_00, 1, &v3, 0);
-        Bg_ClearTilesRange(1, 32, 0, param1);
+        Bg_ClearTilesRange(1, 32, 0, heapID);
         Bg_ClearTilemap(param0->unk_00, 1);
     }
 
@@ -695,7 +695,7 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 param1)
         };
 
         Bg_InitFromTemplate(param0->unk_00, 2, &v4, 0);
-        Bg_ClearTilesRange(2, 32, 0, param1);
+        Bg_ClearTilesRange(2, 32, 0, heapID);
         Bg_ClearTilemap(param0->unk_00, 2);
     }
 
@@ -707,18 +707,18 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
 
-    v0 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, param1);
+    v0 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, heapID);
 
-    Graphics_LoadPaletteFromOpenNARC(v0, 13, 0, 5 * 32, 1 * 32, param1);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 12, param0->unk_00, 2, 0 * 32, (24 * 2) * 32, 0, param1);
+    Graphics_LoadPaletteFromOpenNARC(v0, 13, 0, 5 * 32, 1 * 32, heapID);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 12, param0->unk_00, 2, 0 * 32, (24 * 2) * 32, 0, heapID);
 
-    param0->unk_244 = Graphics_GetScrnDataFromOpenNARC(v0, 14, 0, &param0->unk_248, param1);
+    param0->unk_244 = Graphics_GetScrnDataFromOpenNARC(v0, 14, 0, &param0->unk_248, heapID);
 
     {
-        param0->unk_250 = Graphics_GetPlttDataFromOpenNARC(v0, 44, &param0->unk_254, param1);
+        param0->unk_250 = Graphics_GetPlttDataFromOpenNARC(v0, 44, &param0->unk_254, heapID);
 
-        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 45, param0->unk_00, 0, 0, 0, 0, param1);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 46, param0->unk_00, 0, 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 45, param0->unk_00, 0, 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 46, param0->unk_00, 0, 0, 0, 0, heapID);
         ov65_022372EC(param0, 0);
 
         param0->unk_258 = 3;

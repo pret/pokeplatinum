@@ -2744,7 +2744,7 @@ static Sprite *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *param
     v1.position = *param1;
     v1.priority = param7;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.heapID = 4;
+    v1.heapID = HEAP_ID_FIELD;
 
     v2 = SpriteList_Add(&v1);
     GF_ASSERT(v2 != NULL);

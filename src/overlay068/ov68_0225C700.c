@@ -429,15 +429,15 @@ static void ov68_0225C914(void *param0)
     ov68_0225C98C(&v0->unk_00);
 }
 
-static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *param1, u32 param2)
+static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *param1, u32 heapID)
 {
     Options *v0 = SaveData_GetOptions(param1);
-    param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
+    param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, heapID);
 
-    VramTransfer_New(32, param2);
+    VramTransfer_New(32, heapID);
     GXLayers_SetBanks(&Unk_ov68_0225DDC0);
-    ov68_0225C9A0(param0, v0, param2);
-    ov68_0225CAB4(param0, param2);
+    ov68_0225C9A0(param0, v0, heapID);
+    ov68_0225CAB4(param0, heapID);
 }
 
 static void ov68_0225C960(UnkStruct_ov68_0225C91C *param0)

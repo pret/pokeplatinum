@@ -309,7 +309,7 @@ static void ov22_0225A0E4(UnkStruct_ov22_02259C58 *param0, int param1, UnkStruct
     v2.position.z = 0;
     v2.priority = 2;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.heapID = 14;
+    v2.heapID = HEAP_ID_14;
 
     v0.unk_00 = &v2;
     v0.unk_04 = NULL;
@@ -335,7 +335,7 @@ static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct
     v2.position.z = 0;
     v2.priority = 2;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.heapID = 14;
+    v2.heapID = HEAP_ID_14;
 
     v0.unk_00.unk_00 = &v2;
     v0.unk_00.unk_04 = NULL;

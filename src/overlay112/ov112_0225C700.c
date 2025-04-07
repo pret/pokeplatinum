@@ -452,15 +452,15 @@ static void ov112_0225C970(UnkStruct_ov112_0225C970 *param0, const UnkStruct_ov6
     ov112_0225CA14(&param0->unk_08);
 }
 
-static void ov112_0225C9BC(UnkStruct_ov112_0225C9BC *param0, u32 param1)
+static void ov112_0225C9BC(UnkStruct_ov112_0225C9BC *param0, u32 heapID)
 {
-    param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__LOBBY_NEWS, param1);
+    param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__LOBBY_NEWS, heapID);
 
-    VramTransfer_New(48, param1);
+    VramTransfer_New(48, heapID);
     GXLayers_SetBanks(&Unk_ov112_0225D858);
 
-    ov112_0225CA34(param0, param1);
-    ov112_0225CB98(param0, param1);
+    ov112_0225CA34(param0, heapID);
+    ov112_0225CB98(param0, heapID);
 }
 
 static void ov112_0225C9F4(UnkStruct_ov112_0225C9BC *param0)

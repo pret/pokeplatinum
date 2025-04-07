@@ -1888,7 +1888,7 @@ Sprite *ov19_021D785C(SpriteList *param0, SpriteResourcesHeader *param1, u32 par
     v0.position.z = 0;
     v0.priority = param4;
     v0.vramType = param5;
-    v0.heapID = 10;
+    v0.heapID = HEAP_ID_10;
 
     {
         OSIntrMode v2 = OS_DisableInterrupts();

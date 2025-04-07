@@ -830,19 +830,19 @@ static void ov64_0222E164(UnkStruct_ov64_0222E060 *param0)
     }
 }
 
-static void ov64_0222E1A4(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_0222E060 *param1, u32 param2)
+static void ov64_0222E1A4(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_0222E060 *param1, u32 heapID)
 {
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
-    param0->unk_21C = NARC_ctor(NARC_INDEX_GRAPHIC__PL_WIFINOTE, param2);
+    param0->unk_21C = NARC_ctor(NARC_INDEX_GRAPHIC__PL_WIFINOTE, heapID);
 
     ov64_0222E270();
-    ov64_0222E290(param0, param2);
-    ov64_0222E3D8(param0, param2);
-    ov64_0222E5D8(param0, param2);
-    ov64_0222E620(param0, param1, param2);
-    ov64_0222E9A4(param0, param2);
-    ov64_0222E6D8(param0, param2);
+    ov64_0222E290(param0, heapID);
+    ov64_0222E3D8(param0, heapID);
+    ov64_0222E5D8(param0, heapID);
+    ov64_0222E620(param0, param1, heapID);
+    ov64_0222E9A4(param0, heapID);
+    ov64_0222E6D8(param0, heapID);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     RenderControlFlags_SetCanABSpeedUpPrint(1);

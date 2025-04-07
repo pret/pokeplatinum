@@ -543,7 +543,7 @@ static void ov67_0225CE28(void *param0)
     inline_ov61_0222C1FC(&v0->unk_D4);
 }
 
-static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
+static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 heapID)
 {
     G2_BlendNone();
     G2S_BlendNone();
@@ -558,11 +558,11 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
         int v0;
 
         SetAllGraphicsModes(&Unk_ov67_0225D400);
-        param0->unk_0C = BgConfig_New(param1);
+        param0->unk_0C = BgConfig_New(heapID);
 
         for (v0 = 0; v0 < 3; v0++) {
             Bg_InitFromTemplate(param0->unk_0C, Unk_ov67_0225D3F4[v0], &Unk_ov67_0225D438[v0], 0);
-            Bg_ClearTilesRange(Unk_ov67_0225D3F4[v0], 32, 0, param1);
+            Bg_ClearTilesRange(Unk_ov67_0225D3F4[v0], 32, 0, heapID);
             Bg_ClearTilemap(param0->unk_0C, Unk_ov67_0225D3F4[v0]);
         }
     }
@@ -574,19 +574,19 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
         v1 = SaveData_GetOptions(param0->unk_00);
         v2 = Options_Frame(v1);
 
-        Font_LoadTextPalette(0, 12 * 32, param1);
-        Font_LoadScreenIndicatorsPalette(0, 11 * 32, param1);
-        LoadStandardWindowGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], (1 + (18 + 12)), 14, 0, param1);
-        LoadMessageBoxGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], 1, 13, v2, param1);
+        Font_LoadTextPalette(0, 12 * 32, heapID);
+        Font_LoadScreenIndicatorsPalette(0, 11 * 32, heapID);
+        LoadStandardWindowGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], (1 + (18 + 12)), 14, 0, heapID);
+        LoadMessageBoxGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], 1, 13, v2, heapID);
     }
 
     {
-        Graphics_LoadPalette(92, 3, 0, 0, 11 * 32, param1);
-        Graphics_LoadPalette(92, 3, 4, 0, 11 * 32, param1);
-        Graphics_LoadTilesToBgLayer(92, 2, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, param1);
-        Graphics_LoadTilesToBgLayer(92, 10, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
-        Graphics_LoadTilemapToBgLayer(92, 5, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, param1);
-        Graphics_LoadTilemapToBgLayer(92, 11, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
+        Graphics_LoadPalette(92, 3, 0, 0, 11 * 32, heapID);
+        Graphics_LoadPalette(92, 3, 4, 0, 11 * 32, heapID);
+        Graphics_LoadTilesToBgLayer(92, 2, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, heapID);
+        Graphics_LoadTilesToBgLayer(92, 10, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(92, 5, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(92, 11, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, heapID);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -594,9 +594,9 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
     {
         NARC *v3;
 
-        v3 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, param1);
+        v3 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, heapID);
 
-        inline_ov61_0222C3B0(&param0->unk_D4, v3, 4, param1);
+        inline_ov61_0222C3B0(&param0->unk_D4, v3, 4, heapID);
 
         NARC_dtor(v3);
     }

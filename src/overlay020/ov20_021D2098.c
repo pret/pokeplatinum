@@ -987,7 +987,7 @@ Sprite *ov20_021D2E50(UnkStruct_ov20_021D2128 *param0, SpriteResourcesHeader *pa
     v0.position.z = 0;
     v0.priority = param4;
     v0.vramType = param5;
-    v0.heapID = 35;
+    v0.heapID = HEAP_ID_35;
 
     v2 = OS_DisableInterrupts();
     v1 = SpriteList_Add(&v0);

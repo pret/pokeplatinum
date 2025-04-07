@@ -1394,7 +1394,7 @@ static void ov88_0223CBA0(UnkStruct_02095E80 *param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.heapID = 26;
+        v0.heapID = HEAP_ID_26;
 
         for (v1 = 0; v1 < 2; v1++) {
             v0.position.x = FX32_ONE * Unk_ov88_0223EF9C[v1][0];

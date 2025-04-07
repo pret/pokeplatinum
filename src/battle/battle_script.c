@@ -10559,7 +10559,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 BallThrow v7;
 
                 v7.mode = 3;
-                v7.heapID = 5;
+                v7.heapID = HEAP_ID_BATTLE;
                 v7.target = v1 + 20000;
                 v7.ballID = v2->ball;
                 v7.cellActorSys = ov16_0223E010(v2->battleSys);
