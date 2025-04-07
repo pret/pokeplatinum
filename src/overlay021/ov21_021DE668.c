@@ -82,9 +82,9 @@ static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
 static void ov21_021DEA0C(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1);
 static void ov21_021DEA44(UnkStruct_ov21_021DE760 *param0, int heapID);
 static void ov21_021DEB58(UnkStruct_ov21_021DE760 *param0, const UnkStruct_ov21_021DE6D4 *param1, int param2);
-static void ov21_021DEC2C(Window *param0, int param1, int param2, u32 param3);
-static void ov21_021DEC80(Window *param0, int param1, int param2, u32 param3);
-static void ov21_021DECD4(Window *param0, int param1, int param2, int param3, u32 param4);
+static void ov21_021DEC2C(Window *param0, int heapID, int param2, u32 param3);
+static void ov21_021DEC80(Window *param0, int heapID, int param2, u32 param3);
+static void ov21_021DECD4(Window *param0, int heapID, int param2, int param3, u32 param4);
 static void ov21_021DED24(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int param3);
 static void ov21_021DED68(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1);
 static void ov21_021DED7C(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, int param2, int param3);
@@ -467,9 +467,9 @@ static void ov21_021DEC80(Window *param0, int heapID, int param2, u32 param3)
     MessageLoader_Free(v1);
 }
 
-static void ov21_021DECD4(Window *param0, int param1, int param2, int param3, u32 param4)
+static void ov21_021DECD4(Window *param0, int heapID, int param2, int param3, u32 param4)
 {
-    Strbuf *v0 = PokedexText_DexEntry(param2, GAME_LANGUAGE, param3, param1);
+    Strbuf *v0 = PokedexText_DexEntry(param2, GAME_LANGUAGE, param3, heapID);
     u32 v1 = Font_CalcMaxLineWidth(FONT_SYSTEM, v0, 0);
     u32 v2 = (v1 < 240) ? 128 - v1 / 2 : 8;
 

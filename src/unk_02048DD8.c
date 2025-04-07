@@ -197,7 +197,7 @@ BOOL ScrCmd_27C(ScriptContext *param0)
         Party *v1 = SaveData_GetParty(param0->fieldSystem->saveData);
         Pokemon *v2 = Party_GetPokemonBySlotIndex(v1, ScriptContext_GetVar(param0));
 
-        sub_0206CF48(v0, v2, 4);
+        sub_0206CF48(v0, v2, HEAP_ID_FIELD);
     } break;
     case 1:
         sub_0206CFB4(v0, ScriptContext_GetVar(param0));

@@ -133,7 +133,7 @@ static void sub_020727F8(SysTask *param0, void *param1);
 static void sub_02072878(SysTask *param0, void *param1);
 static void sub_02072EA4(UnkStruct_02072334 *param0, SysTaskFunc param1, SysTaskFunc param2);
 static void sub_02072EB8(UnkStruct_02072EB8 *param0, u8 param1);
-static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int param2);
+static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int heapID);
 static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1);
 static void sub_020729B4(UnkStruct_02072334 *param0);
 static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2);

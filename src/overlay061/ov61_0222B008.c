@@ -82,7 +82,7 @@ int ov61_0222B008(UnkStruct_ov62_022349A8 *param0, const UnkStruct_ov62_02241130
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov62_022349A8));
 
-    param0->unk_144 = param1->heapID;
+    param0->heapID = param1->heapID;
     param0->unk_00 = param1->unk_08;
     param0->unk_150 = param1->unk_0C;
     param0->unk_08 = param1->unk_3C;
@@ -200,7 +200,7 @@ int ov61_0222B224(UnkStruct_ov62_022349A8 *param0, int param1, UnkStruct_02030A8
     param0->unk_190.unk_21C.val1.unk_01 = param4;
 
     ov61_0222AFA4(param0->unk_00, param2, &param0->unk_190.unk_00_val2.unk_00);
-    ov61_0222AE88(param0->unk_00, param3, param4, &param0->unk_190.unk_00_val2.unk_80, param0->unk_144);
+    ov61_0222AE88(param0->unk_00, param3, param4, &param0->unk_190.unk_00_val2.unk_80, param0->heapID);
     ov61_0222AF88(param0->unk_00, &param0->unk_190.unk_00_val2.unk_80, param1);
 
     param0->unk_40E = 60;

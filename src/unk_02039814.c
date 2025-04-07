@@ -20,8 +20,6 @@
 #include "text.h"
 #include "unk_0200F174.h"
 
-void sub_02039834(int param0, int param1, int param2);
-
 static const UnkStruct_02099F80 Unk_020E5EFC = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,

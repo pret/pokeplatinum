@@ -415,7 +415,7 @@ static void sub_0204BF60(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
 
     StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->fieldSystem->saveData));
 
-    v2 = sub_0202605C(v1, 32);
+    v2 = sub_0202605C(v1, HEAP_ID_FIELD_TASK);
     StringTemplate_SetStrbuf(param0->unk_04, 1, v2, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v2);
 }

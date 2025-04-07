@@ -412,7 +412,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
         v9 = ov62_02231690(HEAP_ID_102);
 
         v10 = &param0->unk_0C[0];
-        v6 = sub_02030B94(v11, 102);
+        v6 = sub_02030B94(v11, HEAP_ID_102);
         ov62_022349A8(param1, v6);
         v7 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 13);
         v8 = Strbuf_Init(255, HEAP_ID_102);
@@ -434,7 +434,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
 
             v10 = &param0->unk_0C[2];
             v6 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 15);
-            v7 = sub_02030B94(v11, 102);
+            v7 = sub_02030B94(v11, HEAP_ID_102);
             ov62_022349A8(param1, v7);
             v8 = Strbuf_Init(255, HEAP_ID_102);
 
@@ -513,7 +513,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
 
                 v10 = &param0->unk_0C[7];
 
-                v8 = sub_02030C28(v11, &v15, 102);
+                v8 = sub_02030C28(v11, &v15, HEAP_ID_102);
                 if (v8 == NULL) {
                     v8 = sub_02014B34(&v15, HEAP_ID_102);
                 }
@@ -2297,7 +2297,7 @@ static void ov62_02233B50(UnkStruct_ov62_02233F74 *param0, UnkStruct_0208C06C *p
         v9 = ov62_02231690(HEAP_ID_102);
 
         v10 = &param0->unk_3C[0];
-        v6 = sub_02030B94(v11, 102);
+        v6 = sub_02030B94(v11, HEAP_ID_102);
         ov62_022349A8(param1, v6);
         v7 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 7);
         v8 = Strbuf_Init(255, HEAP_ID_102);
@@ -3178,10 +3178,10 @@ void ov62_022349A8(UnkStruct_0208C06C *param0, Strbuf *param1)
     Strbuf *v1;
     int v2 = 64;
 
-    v1 = Strbuf_Init(v2, v0->unk_144);
+    v1 = Strbuf_Init(v2, v0->heapID);
 
     if (Font_AreAllCharsValid(FONT_SYSTEM, param1, v1) == 0) {
-        ov62_022349E4(param1, v0->unk_144);
+        ov62_022349E4(param1, v0->heapID);
     }
 
     Strbuf_Free(v1);

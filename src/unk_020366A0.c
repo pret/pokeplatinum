@@ -2429,7 +2429,7 @@ void sub_020389FC(int param0)
 {
     int v0 = 0;
 
-    sub_02039834(0, 1, param0);
+    sub_02039834(HEAP_ID_SYSTEM, 1, param0);
 
     while (TRUE) {
         v0++;
@@ -2440,7 +2440,7 @@ void sub_02038A0C(void)
 {
     int v0 = 0;
 
-    sub_02039834(0, 4, 0);
+    sub_02039834(HEAP_ID_SYSTEM, 4, 0);
 
     while (TRUE) {
         v0++;

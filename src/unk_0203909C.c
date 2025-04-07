@@ -72,7 +72,7 @@ int sub_02039140(SaveData *param0, u64 param1, int *param2)
     return 2;
 }
 
-BOOL sub_020391DC(SaveData *param0, int *param1, int param2)
+BOOL sub_020391DC(SaveData *param0, int *param1, int heapID)
 {
     int v0, v1 = 0, v2;
     DWCFriendData *v3 = sub_0202AED8(sub_0202B370(param0), 0);
@@ -94,11 +94,11 @@ BOOL sub_020391DC(SaveData *param0, int *param1, int param2)
         GF_ASSERT(param1[v0] != 3);
 
         if (param1[v0] == 0) {
-            sub_02039298(param0, v0, v2, param2, 2);
+            sub_02039298(param0, v0, v2, heapID, 2);
             CommInfo_SavePlayerRecord(param0);
         } else if (param1[v0] == 1) {
             if (!sub_020389B8()) {
-                sub_02039298(param0, v0, v2, param2, 1);
+                sub_02039298(param0, v0, v2, heapID, 1);
                 MI_CpuCopy8(v4, &v3[v2], sizeof(DWCFriendData));
 
                 CommInfo_SavePlayerRecord(param0);

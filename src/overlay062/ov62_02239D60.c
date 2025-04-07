@@ -442,7 +442,7 @@ static void ov62_0223A138(UnkStruct_ov62_02239DBC *param0)
 static void ov62_0223A154(SaveData *param0, const PCBoxes *param1, int param2, UnkStruct_ov62_02239DA4 *param3)
 {
     memset(param3, 0, sizeof(UnkStruct_ov62_02239DA4));
-    ov61_0222AE88(param0, param1, param2, param3, 102);
+    ov61_0222AE88(param0, param1, param2, param3, HEAP_ID_102);
 }
 
 static BOOL ov62_0223A17C(UnkStruct_0208C06C *param0)

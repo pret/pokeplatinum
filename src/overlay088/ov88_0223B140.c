@@ -1825,7 +1825,7 @@ static int ov88_0223D514(UnkStruct_02095E80 *param0)
     case 0:
         sub_02030788(sub_0203068C(param0->unk_04), param0->unk_36C8);
         sub_0202AFD4(param0->unk_36EC, param0->unk_36C8);
-        sub_02039298(param0->unk_04, param0->unk_36C4, 32 - 1, 26, 0);
+        sub_02039298(param0->unk_04, param0->unk_36C4, 32 - 1, HEAP_ID_26, 0);
         param0->unk_226C = ov88_0223D854;
         break;
     case 0xfffffffe:
@@ -1945,7 +1945,7 @@ static int ov88_0223D7AC(UnkStruct_02095E80 *param0)
 
         for (v0 = 0; v0 < 32; v0++) {
             if (!sub_0202AF78(param0->unk_36EC, v0)) {
-                sub_02039298(param0->unk_04, param0->unk_36C4, v0, 26, 0);
+                sub_02039298(param0->unk_04, param0->unk_36C4, v0, HEAP_ID_26, 0);
                 break;
             }
         }
@@ -2013,7 +2013,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
 
         for (v0 = 0; v0 < 32; v0++) {
             if (!sub_0202AF78(v2, v0)) {
-                sub_02039298(param0->unk_04, param0->unk_36C4, v0, 26, 0);
+                sub_02039298(param0->unk_04, param0->unk_36C4, v0, HEAP_ID_26, 0);
                 break;
             }
         }
@@ -2025,7 +2025,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
 
 static int ov88_0223D96C(UnkStruct_02095E80 *param0)
 {
-    if (0 == sub_020391DC(param0->unk_04, param0->unk_3644, 26)) {
+    if (0 == sub_020391DC(param0->unk_04, param0->unk_3644, HEAP_ID_26)) {
         CommTiming_StartSync(19);
         ov88_0223ECBC(&param0->unk_49C[23], 28, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D840;
