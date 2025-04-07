@@ -30,6 +30,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -37,7 +38,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
 #include "unk_0208C098.h"
@@ -95,7 +95,7 @@ static u8 ov13_022219DC(UnkStruct_ov13_022213F0 *param0);
 static void ov13_02221A04(UnkStruct_ov13_022213F0 *param0);
 static void ov13_02221A3C(UnkStruct_ov13_022213F0 *param0);
 static u8 ov13_0222194C(UnkStruct_ov13_022213F0 *param0);
-static void ov13_02221A54(BattleSystem *battleSys, u16 param1, u16 param2, u32 param3);
+static void ov13_02221A54(BattleSystem *battleSys, u16 item, u16 category, u32 heapID);
 
 static const TouchScreenRect Unk_ov13_02228DEC[] = {
     { 0x0, 0x2F, 0x0, 0x7F },
@@ -1729,11 +1729,11 @@ static void ov13_02221A3C(UnkStruct_ov13_022213F0 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_1E0, 7);
 }
 
-static void ov13_02221A54(BattleSystem *battleSys, u16 param1, u16 param2, u32 param3)
+static void ov13_02221A54(BattleSystem *battleSys, u16 item, u16 category, u32 heapID)
 {
-    if ((param1 != 65) && (param1 != 67) && (param1 != 66)) {
-        Bag_TryRemoveItem(BattleSystem_Bag(battleSys), param1, 1, param3);
+    if (item != ITEM_BLUE_FLUTE && item != ITEM_RED_FLUTE && item != ITEM_YELLOW_FLUTE) {
+        Bag_TryRemoveItem(BattleSystem_Bag(battleSys), item, 1, heapID);
     }
 
-    Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(battleSys), param1, param2);
+    Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(battleSys), item, category);
 }

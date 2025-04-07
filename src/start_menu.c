@@ -55,6 +55,8 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -64,8 +66,6 @@
 #include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02028124.h"
@@ -1016,8 +1016,8 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     case 1: {
         PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
-        summary->monData = Party_GetFromSavedata(fieldSystem->saveData);
-        summary->options = SaveData_Options(fieldSystem->saveData);
+        summary->monData = SaveData_GetParty(fieldSystem->saveData);
+        summary->options = SaveData_GetOptions(fieldSystem->saveData);
         summary->dataType = SUMMARY_DATA_PARTY_MON;
         summary->monIndex = partyMan->selectedMonSlot;
         summary->monMax = Party_GetCurrentCount(summary->monData);
@@ -1038,8 +1038,8 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     case 4: {
         PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
-        summary->monData = Party_GetFromSavedata(fieldSystem->saveData);
-        summary->options = SaveData_Options(fieldSystem->saveData);
+        summary->monData = SaveData_GetParty(fieldSystem->saveData);
+        summary->options = SaveData_GetOptions(fieldSystem->saveData);
         summary->dataType = SUMMARY_DATA_PARTY_MON;
         summary->monIndex = partyMan->selectedMonSlot;
         summary->monMax = 1;
@@ -1065,8 +1065,8 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     case 5: {
         PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
-        summary->monData = Party_GetFromSavedata(fieldSystem->saveData);
-        summary->options = SaveData_Options(fieldSystem->saveData);
+        summary->monData = SaveData_GetParty(fieldSystem->saveData);
+        summary->options = SaveData_GetOptions(fieldSystem->saveData);
         summary->dataType = SUMMARY_DATA_PARTY_MON;
         summary->monIndex = partyMan->selectedMonSlot;
         summary->monMax = 1;
@@ -1109,7 +1109,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         UnkStruct_02097728 *v9;
         Pokemon *v10;
 
-        v10 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partyMan->selectedMonSlot);
+        v10 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partyMan->selectedMonSlot);
         v9 = sub_0203D984(fieldSystem, v10, 11);
 
         menu->taskData = v9;
@@ -1118,19 +1118,15 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         sub_0203B674(menu, sub_0203C558);
     } break;
     case 3: {
-        Bag *v11;
-        void *v12;
-        u32 *v13;
-
-        v13 = (u32 *)Heap_AllocFromHeap(HEAP_ID_FIELDMAP, 4);
+        u32 *v13 = (u32 *)Heap_AllocFromHeap(HEAP_ID_FIELDMAP, 4);
         *v13 = partyMan->selectedMonSlot;
         menu->unk_260 = (void *)v13;
 
-        v11 = SaveData_GetBag(fieldSystem->saveData);
-        v12 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        menu->taskData = sub_0207D824(v11, Unk_020EA020, 11);
+        Bag *bag = SaveData_GetBag(fieldSystem->saveData);
+        TrainerInfo *v12 = SaveData_GetTrainerInfo(fieldSystem->saveData);
+        menu->taskData = sub_0207D824(bag, Unk_020EA020, HEAP_ID_FIELDMAP);
 
-        sub_0207CB2C(menu->taskData, fieldSystem->saveData, 1, fieldSystem->unk_98);
+        sub_0207CB2C(menu->taskData, fieldSystem->saveData, 1, fieldSystem->bagCursor);
 
         sub_0203D1E4(fieldSystem, menu->taskData);
         sub_0203B674(menu, sub_0203BC5C);
@@ -1271,10 +1267,10 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         v6 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
         memset(v6, 0, sizeof(PartyManagementData));
 
-        v6->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
+        v6->unk_00 = SaveData_GetParty(fieldSystem->saveData);
         v6->unk_04 = SaveData_GetBag(fieldSystem->saveData);
         v6->unk_08 = sub_02028430(fieldSystem->saveData);
-        v6->unk_0C = SaveData_Options(fieldSystem->saveData);
+        v6->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
         v6->unk_18 = &menu->fieldMoveContext;
         v6->unk_21 = 0;
         v6->unk_20 = 9;
@@ -1291,7 +1287,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         u32 v9;
         u16 v10;
 
-        v7 = Party_GetFromSavedata(fieldSystem->saveData);
+        v7 = SaveData_GetParty(fieldSystem->saveData);
         v9 = *(u32 *)menu->unk_260;
         v10 = sub_0207CB94(v2);
         v8 = Party_GetPokemonBySlotIndex(v7, v9);
@@ -1315,7 +1311,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             v13->unk_00 = v7;
             v13->unk_04 = SaveData_GetBag(fieldSystem->saveData);
             v13->unk_08 = sub_02028430(fieldSystem->saveData);
-            v13->unk_0C = SaveData_Options(fieldSystem->saveData);
+            v13->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
             v13->unk_18 = &menu->fieldMoveContext;
             v13->unk_21 = 0;
             v13->unk_24 = sub_0207CB94(v2);
@@ -1593,10 +1589,10 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
 
         memset(v3, 0, sizeof(PartyManagementData));
 
-        v3->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
+        v3->unk_00 = SaveData_GetParty(fieldSystem->saveData);
         v3->unk_04 = SaveData_GetBag(fieldSystem->saveData);
         v3->unk_08 = sub_02028430(fieldSystem->saveData);
-        v3->unk_0C = SaveData_Options(fieldSystem->saveData);
+        v3->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
         v3->unk_18 = &menu->fieldMoveContext;
         v3->unk_21 = 0;
         v3->unk_1C = fieldSystem;
@@ -1629,32 +1625,29 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
     return 0;
 }
 
-static void sub_0203C2D8(FieldTask *taskMan, u16 param1)
+static void sub_0203C2D8(FieldTask *taskMan, u16 item)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *menu;
-    Bag *v2;
-    u8 v3;
+    u8 i;
     u8 v4, v5, v6;
 
-    fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    menu = FieldTask_GetEnv(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     menu->taskData = sub_020972FC(HEAP_ID_FIELDMAP);
-    v2 = SaveData_GetBag(fieldSystem->saveData);
-    sub_02097320(menu->taskData, param1, 1);
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
+    sub_02097320(menu->taskData, item, 1);
     v6 = 0;
 
-    for (v3 = 0; v3 < 64; v3++) {
-        param1 = Item_ForBerryNumber(v3);
+    for (i = 0; i < NUM_BERRIES; i++) {
+        item = Item_ForBerryNumber(i);
 
-        if (Bag_CanRemoveItem(v2, param1, 1, 11) == 1) {
-            sub_02097320(menu->taskData, param1, 0);
+        if (Bag_CanRemoveItem(bag, item, 1, HEAP_ID_FIELDMAP) == TRUE) {
+            sub_02097320(menu->taskData, item, 0);
             v6++;
         }
     }
 
-    BagCursor_GetFieldPocketPosition(fieldSystem->unk_98, 4, &v5, &v4);
+    BagCursor_GetFieldPocketPosition(fieldSystem->bagCursor, 4, &v5, &v4);
     sub_0209733C(menu->taskData, v4, v5, v6 + 3);
 
     sub_0203D2E4(fieldSystem, menu->taskData);
@@ -1671,7 +1664,7 @@ static BOOL sub_0203C390(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
 
     sub_02097390(menu->taskData, &v2, &v3);
-    BagCursor_SetFieldPocketPosition(fieldSystem->unk_98, 4, v3, v2);
+    BagCursor_SetFieldPocketPosition(fieldSystem->bagCursor, 4, v3, v2);
     Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->taskData);
 
     menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
@@ -1719,7 +1712,7 @@ BOOL sub_0203C434(FieldTask *taskMan)
         void *v5;
         void *journalEntryLocationEvent;
 
-        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
+        mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v3);
         v5 = sub_0207064C(HEAP_ID_FIELDMAP, fieldSystem, mon, v2->unk_1C, v2->unk_14 * 32 + 16, v2->unk_18 * 32 + 16);
         journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_FLEW_TO_LOCATION - LOCATION_EVENT_USED_CUT, v2->unk_1C, HEAP_ID_FIELDMAP);
 
@@ -1816,10 +1809,10 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 param2)
     partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memset(partyMan, 0, sizeof(PartyManagementData));
-    partyMan->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
+    partyMan->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     partyMan->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     partyMan->unk_08 = sub_02028430(fieldSystem->saveData);
-    partyMan->unk_0C = SaveData_Options(fieldSystem->saveData);
+    partyMan->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->unk_18 = &menu->fieldMoveContext;
     partyMan->unk_21 = 0;
     partyMan->unk_24 = v0->unk_00;
@@ -1892,16 +1885,16 @@ static void StartMenu_EvolveInit(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
     v2 = menu->taskData;
 
-    sub_0200569C();
+    Sound_StopWaveOutAndSequences();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_73, 0x30000);
 
-    v3 = Party_GetFromSavedata(fieldSystem->saveData);
+    v3 = SaveData_GetParty(fieldSystem->saveData);
     v4 = Party_GetPokemonBySlotIndex(v3, v2->unk_00);
 
     if (v2->unk_01 == 0) {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, 0x1, HEAP_ID_73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v2->unk_08, 0x1, HEAP_ID_73);
     } else {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, NULL, HEAP_ID_73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v2->unk_08, NULL, HEAP_ID_73);
     }
 
     {
@@ -1928,8 +1921,8 @@ static void StartMenu_Evolve(FieldTask *taskMan)
     if (sub_0207B0D0(menu->taskData) == 1) {
         sub_0207B0E0(menu->taskData);
         Heap_Destroy(HEAP_ID_73);
-        sub_020055D0(1141, 0);
-        sub_02004234(0);
+        Sound_StopBGM(1141, 0);
+        Sound_SetScene(0);
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
 
         menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);

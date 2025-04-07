@@ -28,14 +28,14 @@
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020711EC.h"
 #include "vram_transfer.h"
@@ -103,7 +103,7 @@ int ov101_021D0D80(OverlayManager *param0, int *param1)
     ov101_021D59AC(v1);
     ov101_021D5AF0(v1);
     ov101_021D5C28(v1);
-    sub_02004550(66, 0, 0);
+    Sound_SetSceneAndPlayBGM(66, 0, 0);
     ov101_021D18C0(v1);
     StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_79);
 
@@ -485,7 +485,7 @@ static void ov101_021D150C(void)
     };
 
     CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
-    PlttTransfer_Init(16, 79);
+    PlttTransfer_Init(16, HEAP_ID_79);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -622,13 +622,13 @@ static void ov101_021D18F4(SysTask *param0, void *param1)
     case 1:
         switch (v1->unk_08) {
         case UnkEnum_ov101_021D1894_00:
-            sub_020049F4(1, 1);
+            Sound_SetBGMPlayerPaused(1, 1);
             break;
         case UnkEnum_ov101_021D1894_01:
-            sub_020055D0(1184, 0);
+            Sound_StopBGM(1184, 0);
             break;
         case UnkEnum_ov101_021D1894_02:
-            sub_020055D0(1185, 0);
+            Sound_StopBGM(1185, 0);
             break;
         }
 
@@ -637,13 +637,13 @@ static void ov101_021D18F4(SysTask *param0, void *param1)
     case 2:
         switch (v1->unk_0C) {
         case UnkEnum_ov101_021D1894_00:
-            sub_020049F4(1, 0);
+            Sound_SetBGMPlayerPaused(1, 0);
             break;
         case UnkEnum_ov101_021D1894_01:
-            sub_02005474(1184);
+            Sound_PlayBasicBGM(1184);
             break;
         case UnkEnum_ov101_021D1894_02:
-            sub_02005474(1185);
+            Sound_PlayBasicBGM(1185);
             break;
         }
 

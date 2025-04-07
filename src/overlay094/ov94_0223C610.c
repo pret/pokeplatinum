@@ -18,13 +18,13 @@
 #include "message.h"
 #include "narc.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020393C8.h"
 
@@ -83,7 +83,7 @@ int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_02245934(param0);
     ov94_0223CF3C(param0);
 
-    sub_02004550(23, 1097, 1);
+    Sound_SetSceneAndPlayBGM(23, 1097, 1);
 
     if (param0->unk_34 == 0) {
         ov94_0223C85C(param0);

@@ -26,13 +26,13 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sound_playback.h"
 #include "spl.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 #include "unk_02014000.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
@@ -1326,7 +1326,7 @@ static BOOL ov12_02236B98(BallRotation *param0)
 
             for (v3 = 0; v3 < 5; v3++) {
                 if (Unk_ov12_0223ABE4[v3][0] == param0->unk_0C) {
-                    sub_02005728(Unk_ov12_0223ABE4[v3][1], 117);
+                    Sound_PlayPannedEffect(Unk_ov12_0223ABE4[v3][1], 117);
                 }
             }
         }
@@ -1395,7 +1395,7 @@ static BOOL ov12_02236C64(BallRotation *param0)
             return 1;
         } else {
             if (param0->unk_0C == 5) {
-                sub_02005728(1534, 117);
+                Sound_PlayPannedEffect(1534, 117);
             }
 
             ManagedSprite_OffsetPositionXY(param0->unk_30, v0, 0);
@@ -1660,7 +1660,7 @@ static BOOL ov12_02236F24(BallRotation *param0)
             }
 
             if (param0->unk_90.ballID == (0xFF + 18)) {
-                sub_02005728(2024, 117);
+                Sound_PlayPannedEffect(2024, 117);
             }
 
             param0->unk_08++;

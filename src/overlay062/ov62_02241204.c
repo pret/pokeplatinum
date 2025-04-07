@@ -45,7 +45,7 @@
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
@@ -2704,7 +2704,7 @@ static BOOL ov62_02243FA8 (UnkStruct_0208C06C * param0)
         v2[0] = 2;
         v2[1] = 5;
         v2[2] = 5;
-        v0->unk_4AC = ov62_02246B00(HEAP_ID_102, 12, v2, SaveData_Options(param0->unk_830));
+        v0->unk_4AC = ov62_02246B00(HEAP_ID_102, 12, v2, SaveData_GetOptions(param0->unk_830));
         v1->unk_220.unk_00 = param0->unk_14.unk_00;
         v1->unk_220.unk_04 = param0->unk_14.unk_04;
         v1->unk_220.unk_08 = param0->unk_14.unk_08;

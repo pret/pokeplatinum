@@ -35,6 +35,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -44,7 +45,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02030EA4.h"
 #include "unk_020393C8.h"
@@ -418,7 +418,7 @@ int ov68_0225C8A8(OverlayManager *param0, int *param1)
 
     OverlayManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_122);
-    sub_020057BC(0);
+    Sound_StopAllEffects(0);
 
     return 1;
 }
@@ -431,7 +431,7 @@ static void ov68_0225C914(void *param0)
 
 static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *param1, u32 param2)
 {
-    Options *v0 = SaveData_Options(param1);
+    Options *v0 = SaveData_GetOptions(param1);
     param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
 
     VramTransfer_New(32, param2);
@@ -903,7 +903,7 @@ static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C9
     {
         Options *v0;
 
-        v0 = SaveData_Options(param2);
+        v0 = SaveData_GetOptions(param2);
         param0->unk_04 = Options_TextFrameDelay(v0);
     }
 }

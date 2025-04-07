@@ -173,7 +173,7 @@ void ov84_022403F4(UnkStruct_ov84_0223B5A0 *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    VramTransfer_New(32, 6);
+    VramTransfer_New(32, HEAP_ID_6);
     ov84_02240424(param0);
     ov84_022404C0(param0);
     ov84_02240950(param0);

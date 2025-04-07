@@ -23,8 +23,8 @@
 #include "map_tile_behavior.h"
 #include "persisted_map_features_init.h"
 #include "player_avatar.h"
+#include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_02005474.h"
 #include "unk_020655F4.h"
 
 typedef BOOL (*UnkFuncPtr_020EDB84)(u8);
@@ -2345,7 +2345,7 @@ static void sub_020615C8(PlayerAvatar *playerAvatar)
 {
     MapObject *v0 = Player_MapObject(playerAvatar);
     FieldSystem *fieldSystem = MapObject_FieldSystem(v0);
-    GameRecords *v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    GameRecords *v2 = SaveData_GetGameRecords(fieldSystem->saveData);
 
     GameRecords_IncrementRecordValue(v2, RECORD_UNK_000);
 }

@@ -905,15 +905,15 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
     u8 v1;
     u32 v2;
     FieldBattleDTO *v3;
-    SaveData *v4;
+    SaveData *saveData;
     Party *v5;
     Pokemon *v6;
 
     v3 = FieldBattleDTO_New(param0->unk_04, ov104_0223A700(param0->unk_0F));
-    v4 = param1->unk_08;
-    v5 = Party_GetFromSavedata(v4);
+    saveData = param1->saveData;
+    v5 = SaveData_GetParty(saveData);
 
-    FieldBattleDTO_InitFromGameState(v3, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
+    FieldBattleDTO_InitFromGameState(v3, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
     v3->background = 18;
     v3->terrain = TERRAIN_BATTLE_TOWER;

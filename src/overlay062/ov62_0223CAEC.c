@@ -35,7 +35,7 @@
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
@@ -528,7 +528,7 @@ static u32 ov62_0223D124 (UnkStruct_0208C06C * param0, int param1)
 
     GF_ASSERT(Unk_ov62_022497E8[v1] != 0xFFFF);
 
-    v0 = GameRecords_GetRecordValue(SaveData_GetGameRecordsPtr(param0->unk_830), Unk_ov62_022497E8[v1]);
+    v0 = GameRecords_GetRecordValue(SaveData_GetGameRecords(param0->unk_830), Unk_ov62_022497E8[v1]);
 
     return v0;
 }

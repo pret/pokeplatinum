@@ -22,13 +22,13 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
@@ -178,7 +178,7 @@ static void sub_020834B0(GameWindowLayout *param0, int *param1)
         MessageLoader_GetStrbuf(param0->unk_69C, 81, param0->unk_6A8);
         StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
-    } else if (Bag_TryAddItem(param0->unk_5A4->unk_04, param0->unk_704[param0->unk_B11].unk_0C, 1, 12) == 1) {
+    } else if (Bag_TryAddItem(param0->unk_5A4->unk_04, param0->unk_704[param0->unk_B11].unk_0C, 1, HEAP_ID_12) == TRUE) {
         u32 v4;
 
         mon = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
@@ -339,7 +339,7 @@ static int sub_020838F4(void *param0)
 {
     GameWindowLayout *v0 = param0;
 
-    if (Bag_TryAddItem(v0->unk_5A4->unk_04, v0->unk_704[v0->unk_B11].unk_0C, 1, 12) == 1) {
+    if (Bag_TryAddItem(v0->unk_5A4->unk_04, v0->unk_704[v0->unk_B11].unk_0C, 1, HEAP_ID_12) == TRUE) {
         Pokemon *mon;
         u32 item;
 

@@ -20,8 +20,8 @@
 #include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "savedata_misc.h"
+#include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_02005474.h"
 
 #define PLATFORM_LIFT_SIZE_X 3
 #define PLATFORM_LIFT_SIZE_Y 2

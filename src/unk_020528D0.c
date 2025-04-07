@@ -26,11 +26,11 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "script_manager.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0203A7D8.h"
 #include "unk_020553DC.h"
@@ -205,7 +205,7 @@ BOOL sub_02052B2C(FieldTask *task)
     switch (*state) {
     case 0: {
         if ((fieldSystem != NULL) && (fieldSystem->saveData != NULL)) {
-            Party_SetGiratinaForm(Party_GetFromSavedata(fieldSystem->saveData), GIRATINA_FORM_ALTERED);
+            Party_SetGiratinaForm(SaveData_GetParty(fieldSystem->saveData), GIRATINA_FORM_ALTERED);
         }
     }
 
@@ -222,11 +222,11 @@ BOOL sub_02052B2C(FieldTask *task)
         (*state)++;
         break;
     case 1:
-        sub_0200564C(0, 20);
+        Sound_FadeOutBGM(0, 20);
         (*state)++;
         break;
     case 2:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             sub_020553DC();
             (*state)++;
         }

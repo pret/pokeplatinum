@@ -428,7 +428,7 @@ BOOL sub_0206CD2C(int param0, FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *
 
 static void sub_0206CD58(SaveData *param0, int param1, int param2, const void *param3)
 {
-    TVBroadcast *v0 = SaveData_TVBroadcast(param0);
+    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0);
 
     GF_ASSERT(sizeof(UnkUnion_0206D1B8) == 40);
     sub_0202E43C(v0, param1, param2, (const u8 *)param3);
@@ -441,7 +441,7 @@ static void sub_0206CD70(FieldSystem *fieldSystem, int param1, int param2, const
 
 static void sub_0206CD7C(SaveData *param0, int param1, int param2, const void *param3)
 {
-    TVBroadcast *v0 = SaveData_TVBroadcast(param0);
+    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0);
 
     GF_ASSERT(sizeof(UnkUnion_0206D1B8) == 40);
     sub_0202E43C(v0, param1, param2, (const u8 *)param3);
@@ -987,7 +987,7 @@ void sub_0206D720(FieldSystem *fieldSystem)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D75C *v1 = &v0.val10;
-    TVBroadcast *v2 = SaveData_TVBroadcast(fieldSystem->saveData);
+    TVBroadcast *v2 = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E808 *v3 = sub_0202E808(v2);
 
     if (v3->unk_07 == 0) {
@@ -1034,7 +1034,7 @@ void sub_0206D7C4(FieldSystem *fieldSystem)
     v0 = 0;
     v1 = 0;
     v2 = 0;
-    v8 = Party_GetFromSavedata(fieldSystem->saveData);
+    v8 = SaveData_GetParty(fieldSystem->saveData);
     v4 = Party_GetCurrentCount(v8);
 
     for (v5 = 0; v5 < v4; v5++) {
@@ -1055,11 +1055,11 @@ void sub_0206D7C4(FieldSystem *fieldSystem)
 
     if (v2 == 0) {
         if ((v0 == 1) && (v1 == 0)) {
-            pokemon = Party_FindFirstHatchedMon(Party_GetFromSavedata(fieldSystem->saveData));
+            pokemon = Party_FindFirstHatchedMon(SaveData_GetParty(fieldSystem->saveData));
             sub_0206CE38(pokemon, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
             sub_0206CD70(fieldSystem, 2, 16, v9);
         } else if ((v0 == 0) && (v1 == 1)) {
-            pokemon = Party_FindFirstHatchedMon(Party_GetFromSavedata(fieldSystem->saveData));
+            pokemon = Party_FindFirstHatchedMon(SaveData_GetParty(fieldSystem->saveData));
             sub_0206CE38(pokemon, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
             sub_0206CD70(fieldSystem, 2, 16, v9);
         }
@@ -1217,7 +1217,7 @@ static int sub_0206DAFC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206DB08(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 428, 1, 32);
+    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_EXPLORER_KIT, 1, HEAP_ID_FIELD_TASK);
 }
 
 void sub_0206DB20(FieldSystem *fieldSystem)
@@ -1539,14 +1539,14 @@ static int sub_0206DF88(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206DFC8(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 428, 1, 32);
+    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_EXPLORER_KIT, 1, HEAP_ID_FIELD_TASK);
 }
 
 void sub_0206DFE0(SaveData *param0)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E018 *v1 = &v0.val24;
-    UnkStruct_0202E828 *v2 = sub_0202E828(SaveData_TVBroadcast(param0));
+    UnkStruct_0202E828 *v2 = sub_0202E828(SaveData_GetTVBroadcast(param0));
 
     if (v2->unk_04 >= 30) {
         v1->unk_00 = *v2;
@@ -1576,7 +1576,7 @@ void sub_0206E060(SaveData *param0)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E098 *v1 = &v0.val25;
-    UnkStruct_0202E834 *v2 = sub_0202E834(SaveData_TVBroadcast(param0));
+    UnkStruct_0202E834 *v2 = sub_0202E834(SaveData_GetTVBroadcast(param0));
 
     if (v2->unk_02 >= 10) {
         v1->unk_00 = *v2;
@@ -1606,7 +1606,7 @@ void sub_0206E0E0(FieldSystem *fieldSystem, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E118 *v1 = &v0.val26;
-    UnkStruct_0202E7FC *v2 = sub_0202E7FC(SaveData_TVBroadcast(fieldSystem->saveData));
+    UnkStruct_0202E7FC *v2 = sub_0202E7FC(SaveData_GetTVBroadcast(fieldSystem->saveData));
 
     v1->unk_00 = *v2;
     v2->unk_00 = 0;
@@ -1640,7 +1640,7 @@ void sub_0206E174(FieldSystem *fieldSystem, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E1C0 *v1 = &v0.val27;
-    Pokemon *v2 = Party_FindFirstHatchedMon(Party_GetFromSavedata(fieldSystem->saveData));
+    Pokemon *v2 = Party_FindFirstHatchedMon(SaveData_GetParty(fieldSystem->saveData));
 
     sub_0206CE38(v2, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
     sub_0206CED0(32, v2, &v1->unk_05, v1->unk_06);
@@ -1701,7 +1701,7 @@ void sub_0206E2BC(FieldSystem *fieldSystem, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E300 *v1 = &v0.val29;
-    UnkStruct_0202E7D8 *v2 = sub_0202E7D8(SaveData_TVBroadcast(fieldSystem->saveData));
+    UnkStruct_0202E7D8 *v2 = sub_0202E7D8(SaveData_GetTVBroadcast(fieldSystem->saveData));
 
     v1->unk_00 = *v2;
     v2->unk_00 = 0;
@@ -1790,7 +1790,7 @@ void sub_0206E448(FieldSystem *fieldSystem, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E480 *v1 = &v0.val32;
-    UnkStruct_0202E7F0 *v2 = sub_0202E7F0(SaveData_TVBroadcast(fieldSystem->saveData));
+    UnkStruct_0202E7F0 *v2 = sub_0202E7F0(SaveData_GetTVBroadcast(fieldSystem->saveData));
 
     v1->unk_00 = *v2;
     v1->unk_02 = param1;
@@ -1827,7 +1827,7 @@ void sub_0206E4DC(FieldSystem *fieldSystem, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E520 *v1 = &v0.val33;
-    UnkStruct_0202E7E4 *v2 = sub_0202E7E4(SaveData_TVBroadcast(fieldSystem->saveData));
+    UnkStruct_0202E7E4 *v2 = sub_0202E7E4(SaveData_GetTVBroadcast(fieldSystem->saveData));
 
     v1->unk_00 = *v2;
     v1->unk_24 = param1;
@@ -1864,7 +1864,7 @@ void sub_0206E5A0(FieldSystem *fieldSystem, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E5E4 *v1 = &v0.val34;
-    UnkStruct_0202E810 *v2 = sub_0202E810(SaveData_TVBroadcast(fieldSystem->saveData));
+    UnkStruct_0202E810 *v2 = sub_0202E810(SaveData_GetTVBroadcast(fieldSystem->saveData));
 
     v1->unk_00 = *v2;
     v1->unk_1E = param1;
@@ -1976,7 +1976,7 @@ void sub_0206E768(FieldSystem *fieldSystem, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E768 *v1 = &v0.val39;
-    UnkStruct_0202E81C *v2 = sub_0202E81C(SaveData_TVBroadcast(fieldSystem->saveData));
+    UnkStruct_0202E81C *v2 = sub_0202E81C(SaveData_GetTVBroadcast(fieldSystem->saveData));
 
     v1->unk_00 = *v2;
     v1->unk_16 = param1;
@@ -2827,7 +2827,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
 
-    party = Party_GetFromSavedata(fieldSystem->saveData);
+    party = SaveData_GetParty(fieldSystem->saveData);
     pokemon = Party_GetPokemonBySlotIndex(party, SaveData_GetFirstNonEggInParty(fieldSystem->saveData));
 
     sub_0206CE74(param1, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
@@ -3008,7 +3008,7 @@ static const UnkStruct_020EFFA4 Unk_020EFD9C[8] = {
 
 void sub_0206F2F0(SaveData *param0)
 {
-    TVBroadcast *v0 = SaveData_TVBroadcast(param0);
+    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0);
 
     sub_0206DFE0(param0);
     sub_0206E060(param0);

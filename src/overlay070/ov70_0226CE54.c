@@ -15,7 +15,7 @@
 
 #include "heap.h"
 #include "math.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 typedef struct {
     u16 unk_00;
@@ -280,7 +280,7 @@ static void ov70_0226D24C(BOOL param0, BOOL param1, BOOL param2, u32 param3)
     if (param0) {
         if (param1) {
             if (param2) {
-                sub_02005770(param3, 5);
+                Sound_PlayEffectOnPlayer(param3, 5);
             } else {
                 Sound_PlayEffect(param3);
             }
@@ -294,10 +294,10 @@ static void ov70_0226D27C(BOOL param0, BOOL param1, BOOL param2, u32 species)
 {
     if (param0) {
         if (param1) {
-            sub_02005844(species, 0);
+            Sound_PlayPokemonCry(species, 0);
         }
     } else {
-        sub_02005844(species, 0);
+        Sound_PlayPokemonCry(species, 0);
     }
 }
 

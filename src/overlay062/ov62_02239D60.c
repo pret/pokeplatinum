@@ -39,13 +39,13 @@
 #include "pokemon_icon.h"
 #include "pokemon_sprite.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 #include "unk_02030A80.h"
@@ -397,7 +397,7 @@ static void ov62_02239F98(u32 param0, u32 param1, void *param2)
         ov62_0223ADC0(v0, v1->unk_1B0);
 
         if ((v1->unk_04.unk_28[v1->unk_1B0] != 0) && (ov62_0223ADB0(v1->unk_04.unk_154, (1 << v1->unk_1B0)) != 1)) {
-            sub_02005844(v1->unk_04.unk_28[v1->unk_1B0], v1->unk_04.unk_158[v1->unk_1B0]);
+            Sound_PlayPokemonCry(v1->unk_04.unk_28[v1->unk_1B0], v1->unk_04.unk_158[v1->unk_1B0]);
         }
         break;
     case 1:
@@ -458,7 +458,7 @@ static BOOL ov62_0223A17C(UnkStruct_0208C06C *param0)
     Bg_ClearTilemap(param0->unk_14.unk_10, 6);
     Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
-    v0->unk_00 = SaveData_PCBoxes(param0->unk_830);
+    v0->unk_00 = SaveData_GetPCBoxes(param0->unk_830);
     ov62_0223A154(param0->unk_830, v0->unk_00, v0->unk_1A0, &v0->unk_04);
     ov62_0223A138(v0);
     ov62_022315C8(&v0->unk_1A4, &v0->unk_1A8, 0);
@@ -1228,7 +1228,7 @@ static void ov62_0223B158(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     {
-        PCBoxes *v1 = SaveData_PCBoxes(param0->unk_830);
+        PCBoxes *v1 = SaveData_GetPCBoxes(param0->unk_830);
 
         if ((v0->unk_04.unk_176 >= 16) && (v0->unk_04.unk_176 < (16 + 8))) {
             v0->unk_04.unk_176 = 0;
@@ -1260,7 +1260,7 @@ static void ov62_0223B230(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     {
-        PCBoxes *v1 = SaveData_PCBoxes(param0->unk_830);
+        PCBoxes *v1 = SaveData_GetPCBoxes(param0->unk_830);
 
         if ((v0->unk_04.unk_176 >= 16) && (v0->unk_04.unk_176 < (16 + 8))) {
             v0->unk_04.unk_176 = 0;
@@ -1971,7 +1971,7 @@ static BOOL ov62_0223C138(UnkStruct_0208C06C *param0)
             sub_0208BA08(param0->unk_6F0, 12, 12);
 
             if ((v0->unk_04.unk_28[v0->unk_1B0] != 0) && (ov62_0223ADB0(v0->unk_04.unk_154, (1 << v0->unk_1B0)) != 1)) {
-                sub_02005844(v0->unk_04.unk_28[v0->unk_1B0], v0->unk_04.unk_158[v0->unk_1B0]);
+                Sound_PlayPokemonCry(v0->unk_04.unk_28[v0->unk_1B0], v0->unk_04.unk_158[v0->unk_1B0]);
             }
 
             ov62_0222FB60(param0, 10);

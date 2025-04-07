@@ -304,7 +304,7 @@ u32 Poketch_PokemonHistoryForm(const Poketch *poketch, int index)
     return poketch->pokemonHistoryQueue[index].form;
 }
 
-Poketch *SaveData_PoketchData(SaveData *saveData)
+Poketch *SaveData_GetPoketch(SaveData *saveData)
 {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_POKETCH);
 }

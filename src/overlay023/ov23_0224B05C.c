@@ -44,6 +44,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "sys_task.h"
@@ -52,7 +53,6 @@
 #include "system_flags.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
@@ -379,7 +379,7 @@ void ov23_0224B2C8(FieldSystem *fieldSystem)
     v0 = sub_02029894(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_020298AC(v0);
 
-    sub_020294D4(v1, GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData)));
+    sub_020294D4(v1, GameRecords_GetTrainerScore(SaveData_GetGameRecords(fieldSystem->saveData)));
 
     MI_CpuCopy8(v0, Unk_ov23_022577AC->unk_08[16].unk_02, 148);
     ov23_0224B39C(v0, Unk_ov23_022577AC->unk_A04[16]);
@@ -2014,7 +2014,7 @@ void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
             void *journalEntryLocationEvent = JournalEntry_CreateEventBuiltSecretBase(HEAP_ID_FIELDMAP);
 
             JournalEntry_SaveData(Unk_ov23_022577AC->fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
-            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577AC->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_35);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577AC->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_35);
         }
     }
 }

@@ -44,6 +44,8 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -54,8 +56,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_0202EEC0.h"
@@ -315,7 +315,7 @@ static int ov97_02233B8C(GBAMigrator *migrator)
     switch (v4->unk_00) {
     case 0:
         CopySelectedMonToPalParkTransfer(migrator);
-        transferData = SaveData_PalParkTransfer(migrator->saveData);
+        transferData = SaveData_GetPalParkTransfer(migrator->saveData);
         PalParkTransfer_SaveTransferHistory(transferData, GetGBAPlayerTrainerId());
         v4->unk_00++;
         break;
@@ -407,7 +407,7 @@ static int ov97_02233B8C(GBAMigrator *migrator)
 static void ov97_02233CE4(GBAMigrator *migrator)
 {
     enum SaveResult result;
-    PalParkTransfer *transferData = SaveData_PalParkTransfer(migrator->saveData);
+    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(migrator->saveData);
 
     PalParkTransfer_SaveTransferHistory(transferData, GetGBAPlayerTrainerId());
     ResetLock(RESET_LOCK_SOFT_RESET);
@@ -422,7 +422,7 @@ static void CopySelectedMonToPalParkTransfer(GBAMigrator *migrator)
     u16 species;
     BoxPokemonGBA *boxMonGBA;
     Pokemon mon;
-    PalParkTransfer *transfer = SaveData_PalParkTransfer(migrator->saveData);
+    PalParkTransfer *transfer = SaveData_GetPalParkTransfer(migrator->saveData);
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(&mon);
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
@@ -1308,7 +1308,7 @@ static void ov97_02234B0C(GBAMigrator *migrator, BoxPokemonGBA *boxMonGBA)
     ov97_02233DD0(migrator, &v4, 0x2);
 
     Strbuf_Free(strBuf);
-    sub_02005844(species, 0);
+    Sound_PlayPokemonCry(species, 0);
 }
 
 static void ov97_02234CC4(GBAMigrator *migrator, int param1, int param2, int *state)
@@ -1699,7 +1699,7 @@ static int GetCanMigrateStatus(GBAMigrator *migrator)
 {
     int timeDiff;
     u32 gbaTrainerId;
-    PalParkTransfer *transferData = SaveData_PalParkTransfer(migrator->saveData);
+    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(migrator->saveData);
 
     if (IsPalParkTransferMacAddressUnset(transferData) == FALSE) {
         if (MacAddressMatchesLastPalParkTransfer(transferData) == FALSE) {
@@ -1832,12 +1832,12 @@ static int GBAMigrator_Init(OverlayManager *param0, int *state)
 
     migrator->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     migrator->unk_14 = SaveData_GetTrainerInfo(migrator->saveData);
-    migrator->options = SaveData_Options(migrator->saveData);
+    migrator->options = SaveData_GetOptions(migrator->saveData);
     migrator->messageBoxFrame = Options_Frame(migrator->options);
     migrator->unk_12668 = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
     migrator->unk_1266C = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
 
-    sub_02004550(9, 1174, 1);
+    Sound_SetSceneAndPlayBGM(9, 1174, 1);
 
     if (OS_IsTickAvailable() == 0) {
         OS_InitTick();

@@ -20,10 +20,10 @@
 #include "poketch_memory.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0201E3D8.h"
 
 FS_EXTERN_OVERLAY(poketch_digital_watch);
@@ -128,7 +128,7 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
 
         new_system->fieldSystem = fieldSystem;
         new_system->saveData = saveData;
-        new_system->poketch = SaveData_PoketchData(saveData);
+        new_system->poketch = SaveData_GetPoketch(saveData);
         new_system->bgl = bgl;
         new_system->oamManager = oamManager;
 
@@ -674,7 +674,7 @@ void PoketchSystem_PlayCry(u32 species, u32 form)
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     if (poketchSys->appChanging == FALSE && PoketechSystem_IsRunningTask(poketchSys) == 0) {
-        sub_02005844(species, form);
+        Sound_PlayPokemonCry(species, form);
     }
 }
 

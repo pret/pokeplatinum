@@ -22,12 +22,12 @@
 #include "math.h"
 #include "narc.h"
 #include "palette.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
@@ -378,7 +378,7 @@ BOOL ov100_021D2428(void *param0)
 
         ov100_021D4788(v0->unk_1EBC);
         ov100_021D46C8(v0->unk_1EBC, v0->unk_1EC0, 22);
-        sub_0200564C(0, 10);
+        Sound_FadeOutBGM(0, 10);
         v0->unk_00++;
         break;
     case 8:
@@ -456,7 +456,7 @@ BOOL ov100_021D2428(void *param0)
         v0->unk_1A0.unk_10DC[0].unk_160 = 1;
         Easy3DObject_SetVisibility(&v0->unk_1A0.unk_10DC[0].unk_00, 1);
         Sound_PlayBGM(1214);
-        sub_02004550(63, 0, 0);
+        Sound_SetSceneAndPlayBGM(63, 0, 0);
         v0->unk_00++;
         break;
     case 12:
@@ -466,7 +466,7 @@ BOOL ov100_021D2428(void *param0)
 
         if ((v0->unk_04 == 15) || (v0->unk_04 == 45) || (v0->unk_04 == 75) || (v0->unk_04 == 95) || (v0->unk_04 == 115) || (v0->unk_04 == 130) || (v0->unk_04 == 145)) {
             Sound_PlayEffect(SEQ_SE_PL_W060);
-            sub_02004F7C(1477, 0xffff, (v0->unk_04 / 30 * 32) + (v0->unk_04 % 32 * 10));
+            Sound_SetPitchForSequence(1477, 0xffff, (v0->unk_04 / 30 * 32) + (v0->unk_04 % 32 * 10));
         }
 
         if (v0->unk_1A0.unk_10DC[0].unk_160 == 0) {
@@ -515,11 +515,11 @@ BOOL ov100_021D2428(void *param0)
         }
 
         if (v0->unk_04 == 15 + 25) {
-            Sound_PlayPokemonCry(POKECRY_NORMAL, SPECIES_DIALGA, -80, 40, HEAP_ID_111, 0);
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_DIALGA, -80, 40, HEAP_ID_111, 0);
         }
 
         if (v0->unk_04 == 40 + 25) {
-            Sound_PlayPokemonCry(POKECRY_NORMAL, SPECIES_PALKIA, +80, 40, HEAP_ID_111, 0);
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_PALKIA, +80, 40, HEAP_ID_111, 0);
         }
 
         if (v0->unk_04 < 15 + 25) {
@@ -557,7 +557,7 @@ BOOL ov100_021D2428(void *param0)
 
         Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[1].unk_00, 0);
         Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[2].unk_00, 1);
-        Sound_PlayPokemonCry(POKECRY_FIELD_EVENT, SPECIES_GIRATINA, 0, 127, HEAP_ID_111, 0);
+        Sound_PlayPokemonCryEx(POKECRY_FIELD_EVENT, SPECIES_GIRATINA, 0, 127, HEAP_ID_111, 0);
 
         v0->unk_04 = 0;
         v0->unk_00++;
@@ -597,7 +597,7 @@ BOOL ov100_021D2428(void *param0)
         break;
     case 19:
         if ((++v0->unk_04) == 238) {
-            Sound_PlayPokemonCry(POKECRY_FIELD_EVENT, SPECIES_GIRATINA, 0, 127, HEAP_ID_111, 0);
+            Sound_PlayPokemonCryEx(POKECRY_FIELD_EVENT, SPECIES_GIRATINA, 0, 127, HEAP_ID_111, 0);
         }
 
         if (v0->unk_04 == 170) {
@@ -631,9 +631,9 @@ BOOL ov100_021D2428(void *param0)
             G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
 
             {
-                u16 v2 = sub_020041FC();
+                u16 v2 = Sound_GetCurrentBGM();
 
-                sub_020055D0(v2, 0);
+                Sound_StopBGM(v2, 0);
             }
 
             ov100_021D4788(v0->unk_1EBC);

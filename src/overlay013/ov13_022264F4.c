@@ -31,6 +31,7 @@
 #include "pc_boxes.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -38,7 +39,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
 
@@ -67,7 +67,7 @@ static u8 ov13_02226A5C(UnkStruct_ov13_02227244 *param0);
 static void ov13_02227118(UnkStruct_ov13_02227244 *param0, u8 param1);
 static void ov13_022271D0(UnkStruct_ov13_02227244 *param0, u8 param1);
 static int ov13_02227238(UnkStruct_ov13_02227244 *param0, const TouchScreenRect *rect);
-static void ov13_02227260(BattleSystem *battleSys, u16 param1, u16 param2, u32 param3);
+static void ov13_02227260(BattleSystem *battleSys, u16 item, u16 category, u32 heapID);
 
 static const TouchScreenRect Unk_ov13_02229A1C[] = {
     { 0x8, 0x4F, 0x0, 0x7F },
@@ -824,8 +824,8 @@ int ov13_02227244(UnkStruct_ov13_02227244 *param0)
     return v0;
 }
 
-static void ov13_02227260(BattleSystem *battleSys, u16 param1, u16 param2, u32 param3)
+static void ov13_02227260(BattleSystem *battleSys, u16 item, u16 category, u32 heapID)
 {
-    Bag_TryRemoveItem(BattleSystem_Bag(battleSys), param1, 1, param3);
-    Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(battleSys), param1, param2);
+    Bag_TryRemoveItem(BattleSystem_Bag(battleSys), item, 1, heapID);
+    Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(battleSys), item, category);
 }

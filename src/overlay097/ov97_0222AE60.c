@@ -30,6 +30,8 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -37,8 +39,6 @@
 #include "system_data.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202DAB4.h"
 #include "unk_020366A0.h"
@@ -131,7 +131,7 @@ static BOOL ov97_0222B8E4(void *param0, int param1, UnkStruct_ov97_02237808 *par
 static BOOL ov97_0222B934(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
 static BOOL ov97_0222B978(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
 static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-MysteryGift *SaveData_MysteryGift(SaveData *param0);
+MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
 int ov23_0224AC0C(void);
 int TrainerInfo_Size(void);
 
@@ -978,7 +978,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     sub_0200F344(1, 0x0);
 
     v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_14 = SaveData_MysteryGift(v0->unk_04);
+    v0->unk_14 = SaveData_GetMysteryGift(v0->unk_04);
     v0->unk_11C = FX32_ONE * 0;
     v0->unk_120 = FX32_ONE * 0;
     v0->unk_0C = SaveData_GetTrainerInfo(v0->unk_04);
@@ -994,8 +994,8 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
         v0->unk_14C = 1;
     }
 
-    sub_020053CC(0);
-    sub_02004234(0);
+    Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
+    Sound_SetScene(0);
 
     return 1;
 }
@@ -1176,11 +1176,11 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         RebootAndLoadROM("data/eoo.dat");
         break;
     case 7:
-        sub_0200569C();
+        Sound_StopWaveOutAndSequences();
         EnqueueApplication(0xffffffff, &Unk_020F6DF0);
         break;
     case 8:
-        sub_0200569C();
+        Sound_StopWaveOutAndSequences();
         EnqueueApplication(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
         break;
     case 0:

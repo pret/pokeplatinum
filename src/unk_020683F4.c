@@ -338,11 +338,11 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     memset(v2, 0, sizeof(PartyManagementData));
 
-    v2->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
+    v2->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v2->unk_08 = sub_02028430(fieldSystem->saveData);
-    v2->unk_0C = SaveData_Options(fieldSystem->saveData);
-    v2->unk_10 = SaveData_TVBroadcast(fieldSystem->saveData);
+    v2->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
+    v2->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
     v2->unk_18 = &menu->fieldMoveContext;
     v2->unk_21 = 0;
     v2->unk_20 = 5;
@@ -588,10 +588,10 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     memset(v2, 0, sizeof(PartyManagementData));
 
-    v2->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
+    v2->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v2->unk_08 = sub_02028430(fieldSystem->saveData);
-    v2->unk_0C = SaveData_Options(fieldSystem->saveData);
+    v2->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     v2->unk_18 = &menu->fieldMoveContext;
     v2->unk_21 = 0;
     v2->unk_20 = 6;
@@ -805,7 +805,7 @@ static void sub_02068CF0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     menu->taskData = v2;
     menu->state = START_MENU_STATE_10;
 
-    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, 11);
+    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, HEAP_ID_FIELDMAP);
 }
 
 static void sub_02068D48(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
@@ -946,7 +946,7 @@ static BOOL sub_02068F48(FieldTask *task)
         FieldMessage_AddWindow(fieldSystem->bgConfig, &v1->unk_00, 3);
 
         {
-            const Options *v2 = SaveData_Options(fieldSystem->saveData);
+            const Options *v2 = SaveData_GetOptions(fieldSystem->saveData);
 
             FieldMessage_DrawWindow(&v1->unk_00, v2);
             v1->unk_14 = FieldMessage_Print(&v1->unk_00, v1->unk_10, v2, 1);
@@ -985,11 +985,11 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     memset(v2, 0, sizeof(PartyManagementData));
 
-    v2->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
+    v2->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v2->unk_08 = sub_02028430(fieldSystem->saveData);
-    v2->unk_0C = SaveData_Options(fieldSystem->saveData);
-    v2->unk_10 = SaveData_TVBroadcast(fieldSystem->saveData);
+    v2->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
+    v2->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
     v2->unk_18 = &menu->fieldMoveContext;
     v2->unk_21 = 0;
     v2->unk_20 = 16;
@@ -1015,7 +1015,7 @@ static void sub_02069080(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     menu->taskData = NULL;
     menu->state = START_MENU_STATE_10;
 
-    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, 11);
+    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, HEAP_ID_FIELDMAP);
 }
 
 static u32 sub_020690C4(const UnkStruct_020684D0 *param0)

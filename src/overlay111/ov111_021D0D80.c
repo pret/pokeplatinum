@@ -33,14 +33,14 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_0201567C.h"
@@ -336,7 +336,7 @@ int ov111_021D0D80(OverlayManager *param0, int *param1)
     v1->unk_168 = v2->unk_00;
     v1->unk_09 = v2->unk_04;
     v1->unk_3D8 = &v2->unk_14;
-    v1->unk_164 = SaveData_Options(v1->unk_168);
+    v1->unk_164 = SaveData_GetOptions(v1->unk_168);
     v1->unk_3DC = &v2->unk_08[0];
     v1->unk_3E0 = &v2->unk_0E[0];
 
@@ -351,7 +351,7 @@ int ov111_021D0D80(OverlayManager *param0, int *param1)
 
     ov111_021D1D68(v1);
     (*param1) = 0;
-    sub_02004550(68, 0, 0);
+    Sound_SetSceneAndPlayBGM(68, 0, 0);
 
     return 1;
 }

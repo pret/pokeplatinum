@@ -27,8 +27,8 @@
 #include "map_object.h"
 #include "map_tile_behavior.h"
 #include "player_avatar.h"
+#include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020553DC.h"
 #include "unk_020655F4.h"
@@ -234,7 +234,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
         (v1->unk_00)++;
         break;
     case 5:
-        if (Sound_CheckFade() != 0) {
+        if (Sound_IsFadeActive()) {
             break;
         }
 

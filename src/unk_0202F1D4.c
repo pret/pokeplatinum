@@ -27,9 +27,9 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_chatot.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02006224.h"
 #include "unk_02026150.h"
 
 BattleRecording *Unk_021C07A4 = NULL;
@@ -54,14 +54,14 @@ void BattleRecording_Init(BattleRecording *param0)
     param0->unk_00 = 0xffffffff;
 }
 
-void sub_0202F1F8(SaveData *param0, int param1, int *param2)
+void sub_0202F1F8(SaveData *saveData, int heapID, int *param2)
 {
     if (Unk_021C07A4 != NULL) {
         Heap_FreeToHeap(Unk_021C07A4);
         Unk_021C07A4 = NULL;
     }
 
-    Unk_021C07A4 = SaveData_BattleRecording(param0, param1, param2, 0);
+    Unk_021C07A4 = SaveData_BattleRecording(saveData, heapID, param2, 0);
     BattleRecording_Init(Unk_021C07A4);
 }
 
@@ -491,7 +491,7 @@ void sub_0202F8AC(FieldBattleDTO *param0)
         sub_0202FCE8(param0->parties[v0], &v1->unk_1150[v0]);
         TrainerInfo_Copy(param0->trainerInfo[v0], &v1->unk_1B68[v0]);
 
-        v2->unk_14C[v0] = Sound_Chatter(param0->chatotCries[v0]);
+        v2->unk_14C[v0] = Sound_GetChatterActivationParameter(param0->chatotCries[v0]);
     }
 
     Options_Copy(param0->options, &v1->unk_1BE8);
@@ -572,7 +572,7 @@ void sub_0202FAFC(FieldBattleDTO *param0, SaveData *saveData)
         param0->unk_194[v0] = v1->unk_00.unk_14C[v0];
     }
 
-    Options_Copy(SaveData_Options(saveData), param0->options);
+    Options_Copy(SaveData_GetOptions(saveData), param0->options);
     param0->options->frame = v1->unk_1BE8.frame;
 
     if (param0->options->frame >= 20) {

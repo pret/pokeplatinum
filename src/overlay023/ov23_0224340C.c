@@ -39,6 +39,8 @@
 #include "narc.h"
 #include "player_avatar.h"
 #include "pltt_transfer.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -50,8 +52,6 @@
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
 #include "unk_0206CCB0.h"
@@ -778,7 +778,7 @@ static void ov23_02243754(void)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        Unk_ov23_02257764->unk_1D4[1][v0] = SpriteResourceCollection_New(1, v0, 4);
+        Unk_ov23_02257764->unk_1D4[1][v0] = SpriteResourceCollection_New(1, v0, HEAP_ID_FIELD);
     }
 
     {
@@ -786,10 +786,10 @@ static void ov23_02243754(void)
 
         v1 = NARC_ctor(NARC_INDEX_DATA__UG_TRAP, HEAP_ID_FIELD);
 
-        Unk_ov23_02257764->unk_1F4[1][0] = SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257764->unk_1D4[1][0], v1, 17, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
-        Unk_ov23_02257764->unk_1F4[1][1] = SpriteResourceCollection_AddPaletteFrom(Unk_ov23_02257764->unk_1D4[1][1], v1, 18, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, 4);
-        Unk_ov23_02257764->unk_1F4[1][2] = SpriteResourceCollection_AddFrom(Unk_ov23_02257764->unk_1D4[1][2], v1, 16, 0, 0, 2, 4);
-        Unk_ov23_02257764->unk_1F4[1][3] = SpriteResourceCollection_AddFrom(Unk_ov23_02257764->unk_1D4[1][3], v1, 15, 0, 0, 3, 4);
+        Unk_ov23_02257764->unk_1F4[1][0] = SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257764->unk_1D4[1][0], v1, 17, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+        Unk_ov23_02257764->unk_1F4[1][1] = SpriteResourceCollection_AddPaletteFrom(Unk_ov23_02257764->unk_1D4[1][1], v1, 18, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD);
+        Unk_ov23_02257764->unk_1F4[1][2] = SpriteResourceCollection_AddFrom(Unk_ov23_02257764->unk_1D4[1][2], v1, 16, 0, 0, 2, HEAP_ID_FIELD);
+        Unk_ov23_02257764->unk_1F4[1][3] = SpriteResourceCollection_AddFrom(Unk_ov23_02257764->unk_1D4[1][3], v1, 15, 0, 0, 3, HEAP_ID_FIELD);
 
         NARC_dtor(v1);
     }
@@ -2548,7 +2548,7 @@ void ov23_022455B4(int param0, int param1, void *param2, void *param3)
 
     if (v0->unk_00 == CommSys_CurNetId()) {
         sub_02029744(v1);
-        GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_02257764->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_34);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_02257764->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_34);
         sub_020594FC();
 
         ov23_02254068(ov23_0224219C(), CommInfo_TrainerInfo(v0->unk_01));
@@ -3095,7 +3095,7 @@ static void ov23_02245F94(SysTask *param0, void *param1)
             v2 = 28;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 2:
@@ -3105,7 +3105,7 @@ static void ov23_02245F94(SysTask *param0, void *param1)
             v2 = 29;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, 4);
+        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 3:
@@ -3117,7 +3117,7 @@ static void ov23_02245F94(SysTask *param0, void *param1)
             v2 = 27;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, v2, 0, 0, 2, 4);
+        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, v2, 0, 0, 2, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 4:
@@ -3127,7 +3127,7 @@ static void ov23_02245F94(SysTask *param0, void *param1)
             v2 = 26;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], 50, v2, 0, 0, 3, 4);
+        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], 50, v2, 0, 0, 3, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 5:
@@ -3240,11 +3240,11 @@ static void ov23_02246324(void)
 {
     int v0;
 
-    Unk_ov23_02257764->unk_44 = SpriteList_InitRendering(32, &Unk_ov23_02257764->unk_48, 4);
+    Unk_ov23_02257764->unk_44 = SpriteList_InitRendering(32, &Unk_ov23_02257764->unk_48, HEAP_ID_FIELD);
     SetSubScreenViewRect(&Unk_ov23_02257764->unk_48, 0, (192 << FX32_SHIFT) * 2);
 
     for (v0 = 0; v0 < 4; v0++) {
-        Unk_ov23_02257764->unk_1D4[0][v0] = SpriteResourceCollection_New(2, v0, 4);
+        Unk_ov23_02257764->unk_1D4[0][v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_FIELD);
     }
 }
 
@@ -3375,7 +3375,7 @@ static BOOL ov23_02246640(BgConfig *param0, UnkStruct_ov23_02245ED4 *param1)
     int v1 = 0, v2, v3, v4, v5;
     fx32 v6, v7, v8;
 
-    sub_02004B70(MIC_SAMPLING_TYPE_SIGNED_8BIT, &Unk_ov23_02257760, ov23_02246624, NULL);
+    Sound_StartMicManualSampling(MIC_SAMPLING_TYPE_SIGNED_8BIT, &Unk_ov23_02257760, ov23_02246624, NULL);
 
     {
         if (Unk_ov23_02257764->unk_B9F == 29) {
@@ -3540,21 +3540,21 @@ static void ov23_02246A80(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
         BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
         v0->unk_00++;
         break;
     case 2:
-        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], 50, 7, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, 4);
+        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], 50, 7, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 3:
         BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, 5, 0, 0, 2, 4);
+        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, 5, 0, 0, 2, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 4:
-        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], 50, 4, 0, 0, 3, 4);
+        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], 50, 4, 0, 0, 3, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 5:
@@ -4112,7 +4112,7 @@ static void ov23_022479F4(UnkStruct_ov23_022471D8 *param0)
         v2 = NARC_ctor(NARC_INDEX_DATA__UG_TRAP, HEAP_ID_FIELD);
 
         if (v1 < (7 - 1)) {
-            param0->unk_F8[v1 + 1] = SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257764->unk_1D4[0][0], v2, v0[v1], 0, v1 + 1, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+            param0->unk_F8[v1 + 1] = SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257764->unk_1D4[0][0], v2, v0[v1], 0, v1 + 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
         }
 
         NARC_dtor(v2);
@@ -4143,32 +4143,32 @@ static void ov23_02247A8C(SysTask *param0, void *param1)
         {
             int v2;
 
-            Unk_ov23_02257764->unk_44 = SpriteList_InitRendering(32, &Unk_ov23_02257764->unk_48, 4);
+            Unk_ov23_02257764->unk_44 = SpriteList_InitRendering(32, &Unk_ov23_02257764->unk_48, HEAP_ID_FIELD);
             SetSubScreenViewRect(&Unk_ov23_02257764->unk_48, 0, (192 << FX32_SHIFT) * 2);
 
             for (v2 = 0; v2 < 4; v2++) {
-                Unk_ov23_02257764->unk_1D4[0][v2] = SpriteResourceCollection_New(7 + 1, v2, 4);
+                Unk_ov23_02257764->unk_1D4[0][v2] = SpriteResourceCollection_New(7 + 1, v2, HEAP_ID_FIELD);
             }
         }
         v0->unk_00++;
         break;
     case 1:
         BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, 32, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, 32, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
         v0->unk_F8[0] = Unk_ov23_02257764->unk_1F4[0][0];
         v0->unk_00++;
         break;
     case 2:
-        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], 50, 51, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, 4);
+        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], 50, 51, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 3:
         BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, 31, 0, 0, 2, 4);
+        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, 31, 0, 0, 2, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 4:
-        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], 50, 30, 0, 0, 3, 4);
+        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], 50, 30, 0, 0, 3, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 5:
@@ -4345,7 +4345,7 @@ static BOOL ov23_02247F4C(BgConfig *param0, UnkStruct_ov23_02247E38 *param1)
         param1->unk_24 = 0;
         param1->unk_28 = 1;
     case 1:
-        sub_02004B70(MIC_SAMPLING_TYPE_SIGNED_8BIT, &Unk_ov23_02257760, ov23_02246624, NULL);
+        Sound_StartMicManualSampling(MIC_SAMPLING_TYPE_SIGNED_8BIT, &Unk_ov23_02257760, ov23_02246624, NULL);
 
         param1->unk_14++;
         param1->unk_08[param1->unk_14 % 10] = abs(Unk_ov23_02257764->unk_B9E);
@@ -4438,11 +4438,11 @@ static void ov23_022480C4(SysTask *param0, void *param1)
             v2 = 25;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 2:
-        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], 50, 19, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, 4);
+        Unk_ov23_02257764->unk_1F4[0][1] = SpriteResourceCollection_AddPalette(Unk_ov23_02257764->unk_1D4[0][1], 50, 19, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 3:
@@ -4454,7 +4454,7 @@ static void ov23_022480C4(SysTask *param0, void *param1)
             v2 = 24;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, v2, 0, 0, 2, 4);
+        Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, v2, 0, 0, 2, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 4:
@@ -4464,7 +4464,7 @@ static void ov23_022480C4(SysTask *param0, void *param1)
             v2 = 23;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], 50, v2, 0, 0, 3, 4);
+        Unk_ov23_02257764->unk_1F4[0][3] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][3], 50, v2, 0, 0, 3, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 5:
@@ -4805,7 +4805,7 @@ static void ov23_02248884(SysTask *param0, void *param1)
         sub_020594FC();
         Sound_PlayEffect(SEQ_SE_PL_UG_006);
 
-        Unk_ov23_02257764->unk_44 = SpriteList_InitRendering(32, &Unk_ov23_02257764->unk_48, 4);
+        Unk_ov23_02257764->unk_44 = SpriteList_InitRendering(32, &Unk_ov23_02257764->unk_48, HEAP_ID_FIELD);
         SetSubScreenViewRect(&Unk_ov23_02257764->unk_48, 0, (192 << FX32_SHIFT) * 2);
         v0->unk_00 = 5;
         break;

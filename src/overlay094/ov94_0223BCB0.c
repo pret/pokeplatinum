@@ -39,6 +39,7 @@
 #include "pokemon_icon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sound.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -46,7 +47,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02033200.h"
 #include "unk_02099550.h"
@@ -127,7 +127,7 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
         ov94_0223C03C(v0, param0);
         ov94_0223C4E0(v0);
 
-        sub_02004550(11, 1175, 1);
+        Sound_SetSceneAndPlayBGM(11, 1175, 1);
 
         v0->unk_4C = Heap_AllocFromHeap(HEAP_ID_62, 0x20000 + 32);
         v0->unk_50 = NNS_FndCreateExpHeap((void *)(((u32)v0->unk_4C + 31) / 32 * 32), 0x20000);
@@ -304,7 +304,7 @@ static void ov94_0223C0A4(void)
         CharTransfer_Init(&v0);
     }
 
-    PlttTransfer_Init(20, 62);
+    PlttTransfer_Init(20, HEAP_ID_62);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -317,22 +317,22 @@ static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 62);
 
-    param0->unk_BE4 = SpriteList_InitRendering(72 + 6, &param0->unk_BE8, 62);
+    param0->unk_BE4 = SpriteList_InitRendering(72 + 6, &param0->unk_BE8, HEAP_ID_62);
 
     SetSubScreenViewRect(&param0->unk_BE8, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_D74[v0] = SpriteResourceCollection_New(3, v0, 62);
+        param0->unk_D74[v0] = SpriteResourceCollection_New(3, v0, HEAP_ID_62);
     }
 
-    param0->unk_D84[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_D74[0], v1, 18, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 62);
-    param0->unk_D84[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_D74[1], v1, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 62);
-    param0->unk_D84[0][2] = SpriteResourceCollection_AddFrom(param0->unk_D74[2], v1, 19, 1, 0, 2, 62);
-    param0->unk_D84[0][3] = SpriteResourceCollection_AddFrom(param0->unk_D74[3], v1, 20, 1, 0, 3, 62);
-    param0->unk_D84[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_D74[0], v1, 32, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, 62);
-    param0->unk_D84[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_D74[1], v1, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 9, 62);
-    param0->unk_D84[1][2] = SpriteResourceCollection_AddFrom(param0->unk_D74[2], v1, 33, 1, 1, 2, 62);
-    param0->unk_D84[1][3] = SpriteResourceCollection_AddFrom(param0->unk_D74[3], v1, 34, 1, 1, 3, 62);
+    param0->unk_D84[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_D74[0], v1, 18, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_62);
+    param0->unk_D84[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_D74[1], v1, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_62);
+    param0->unk_D84[0][2] = SpriteResourceCollection_AddFrom(param0->unk_D74[2], v1, 19, 1, 0, 2, HEAP_ID_62);
+    param0->unk_D84[0][3] = SpriteResourceCollection_AddFrom(param0->unk_D74[3], v1, 20, 1, 0, 3, HEAP_ID_62);
+    param0->unk_D84[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_D74[0], v1, 32, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_62);
+    param0->unk_D84[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_D74[1], v1, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 9, HEAP_ID_62);
+    param0->unk_D84[1][2] = SpriteResourceCollection_AddFrom(param0->unk_D74[2], v1, 33, 1, 1, 2, HEAP_ID_62);
+    param0->unk_D84[1][3] = SpriteResourceCollection_AddFrom(param0->unk_D74[3], v1, 34, 1, 1, 3, HEAP_ID_62);
 
     SpriteTransfer_RequestChar(param0->unk_D84[0][0]);
     SpriteTransfer_RequestChar(param0->unk_D84[1][0]);

@@ -39,6 +39,8 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -48,8 +50,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -443,10 +443,10 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     v1->unk_38 = v0;
     v0->unk_CC = v1;
     v0->unk_D0 = v1->unk_34;
-    v0->unk_24 = Party_GetFromSavedata(v0->unk_CC->unk_14.unk_08);
+    v0->unk_24 = SaveData_GetParty(v0->unk_CC->unk_14.unk_08);
     v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, HEAP_ID_95);
 
-    VramTransfer_New(8, 95);
+    VramTransfer_New(8, HEAP_ID_95);
     sub_0201E3D8();
     sub_0201E450(4);
     ov109_021D1C28(v0);
@@ -474,7 +474,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
         v5->unk_40 = (FX32_ONE * (Unk_ov109_021D5C44[v0->unk_CC->unk_08][v3]));
     }
 
-    v0->unk_1C = sub_020041FC();
+    v0->unk_1C = Sound_GetCurrentBGM();
 
     ov109_021D31A8(v0);
     ov109_021D32DC(v0);
@@ -785,7 +785,7 @@ static int ov109_021D122C(UnkStruct_ov109_021D0F70 *param0)
     param0->unk_D4.unk_40 = (FX32_ONE * (v1->unk_04));
     param0->unk_00 = 17;
 
-    sub_02004550(15, 1210, 1);
+    Sound_SetSceneAndPlayBGM(15, 1210, 1);
     ov109_021D2788(param0);
 
     return 1;
@@ -1245,7 +1245,7 @@ static int ov109_021D18A0(UnkStruct_ov109_021D0F70 *param0)
     }
 
     {
-        sub_02006150(1158);
+        Sound_PlayFanfare(1158);
     }
 
     param0->unk_00 = 38;
@@ -1256,7 +1256,7 @@ static int ov109_021D18F4(UnkStruct_ov109_021D0F70 *param0)
 {
     if (param0->unk_0C < (30 * 4)) {
         param0->unk_0C++;
-    } else if (sub_020061E4() == 0) {
+    } else if (Sound_IsBGMPausedByFanfare() == 0) {
         param0->unk_0C = 0;
         param0->unk_00 = 39;
     }
@@ -1275,7 +1275,6 @@ static int ov109_021D1918(UnkStruct_ov109_021D0F70 *param0)
 
     {
         u32 v0;
-        BOOL v1;
 
         v0 = Unk_ov109_021D5BE4[param0->unk_2C.unk_04][0];
         v0 += LCRNG_Next() % (Unk_ov109_021D5BE4[param0->unk_2C.unk_04][1] - v0 + 1);
@@ -1288,10 +1287,10 @@ static int ov109_021D1918(UnkStruct_ov109_021D0F70 *param0)
 
         ov109_021D2714(param0, 3, v0);
 
-        v1 = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, 95);
-        sub_02006150(1158);
+        BOOL removedItem = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, HEAP_ID_95);
+        Sound_PlayFanfare(1158);
 
-        if (v1 == 1) {
+        if (removedItem == TRUE) {
             param0->unk_00 = 40;
         } else {
             param0->unk_00 = 41;
@@ -1305,7 +1304,7 @@ static int ov109_021D19AC(UnkStruct_ov109_021D0F70 *param0)
 {
     if (param0->unk_0C < (30 * 4)) {
         param0->unk_0C++;
-    } else if (sub_020061E4() == 0) {
+    } else if (Sound_IsBGMPausedByFanfare() == 0) {
         param0->unk_0C = 0;
         param0->unk_00 = 43;
     }
@@ -1317,7 +1316,7 @@ static int ov109_021D19D0(UnkStruct_ov109_021D0F70 *param0)
 {
     if (param0->unk_0C < (30 * 4)) {
         param0->unk_0C++;
-    } else if (sub_020061E4() == 0) {
+    } else if (Sound_IsBGMPausedByFanfare() == 0) {
         param0->unk_0C = 0;
         param0->unk_00 = 40;
         ov109_021D2634(param0, 4);
@@ -1455,8 +1454,8 @@ static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 {
     StartScreenTransition(2, 0, 0, 0x0, 8, 1, HEAP_ID_95);
 
-    if (param0->unk_1C != sub_020041FC()) {
-        sub_02004550(4, param0->unk_1C, 1);
+    if (param0->unk_1C != Sound_Impl_GetCurrentBGM()) {
+        Sound_SetSceneAndPlayBGM(4, param0->unk_1C, 1);
     }
 
     param0->unk_00 = 52;

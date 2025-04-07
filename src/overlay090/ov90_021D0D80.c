@@ -24,13 +24,13 @@
 #include "overlay_manager.h"
 #include "render_oam.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
@@ -126,7 +126,7 @@ int ov90_021D0D80(OverlayManager *param0, int *param1)
 
     v0->unk_08 = v1->unk_04;
     v0->unk_0A = v1->unk_06;
-    v0->unk_18 = SaveData_Options(v1->unk_00);
+    v0->unk_18 = SaveData_GetOptions(v1->unk_00);
     v0->unk_1C = sub_0203068C(v1->unk_00);
     v0->unk_20 = sub_0202D750(v1->unk_00);
     v0->unk_24 = sub_0202D764(v1->unk_00);

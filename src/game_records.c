@@ -31,7 +31,7 @@ void GameRecords_Init(GameRecords *records)
     EncodeGameRecords(records, START_ENCODED_RECORDS);
 }
 
-GameRecords *SaveData_GetGameRecordsPtr(SaveData *savedata)
+GameRecords *SaveData_GetGameRecords(SaveData *savedata)
 {
     return SaveData_SaveTable(savedata, SAVE_TABLE_ENTRY_GAME_RECORDS);
 }

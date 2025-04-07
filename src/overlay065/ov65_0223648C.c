@@ -42,6 +42,8 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
@@ -50,8 +52,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -405,7 +405,7 @@ int ov65_0223648C(OverlayManager *param0, int *param1)
     MI_CpuFill8(v0->unk_00.unk_1C, 1, sizeof(u8) * 4);
     MI_CpuFill8(v0->unk_00.unk_20, 1, sizeof(u8) * 4);
 
-    VramTransfer_New(16, 96);
+    VramTransfer_New(16, HEAP_ID_96);
 
     v0->unk_00.unk_00 = sub_020388E8();
     v0->unk_00.unk_00->unk_00.unk_21 = v0->unk_00.unk_00->unk_00.unk_22;
@@ -744,7 +744,7 @@ static void ov65_02236A28(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
     Font_LoadScreenIndicatorsPalette(0, 1 * 0x20, param2);
 
-    v0 = Options_Frame(SaveData_Options(param1->unk_08));
+    v0 = Options_Frame(SaveData_GetOptions(param1->unk_08));
 
     LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v0, param2);
     LoadStandardWindowGraphics(param0->unk_00, 1, (1 + (18 + 12)), 3, 0, param2);
@@ -790,7 +790,7 @@ static void ov65_02236C10(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     param0->unk_0C = Strbuf_Init(256, param2);
     param0->unk_10 = Strbuf_Init(256, param2);
     param0->unk_14 = 0xff;
-    param0->unk_16 = Options_TextFrameDelay(SaveData_Options(param1->unk_08));
+    param0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(param1->unk_08));
 }
 
 static void ov65_02236C5C(UnkStruct_ov65_02236840 *param0)
@@ -906,7 +906,7 @@ static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     Window_ScheduleCopyToVRAM(&param0->unk_1F0);
     Strbuf_Free(v0);
 
-    v1 = Options_Frame(SaveData_Options(param1->unk_08));
+    v1 = Options_Frame(SaveData_GetOptions(param1->unk_08));
 
     LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v1, param4);
 
@@ -1239,14 +1239,14 @@ static BOOL ov65_02237504(UnkStruct_ov65_022367A8 *param0)
 static void ov65_02237520(UnkStruct_ov65_022367A8 *param0)
 {
     if (ov65_022374DC(param0)) {
-        sub_02004A84(sub_020041FC());
+        Sound_AdjustVolumeForVoiceChat(Sound_GetCurrentBGM());
     }
 }
 
 static void ov65_02237534(UnkStruct_ov65_022367A8 *param0)
 {
     if (ov65_02237504(param0)) {
-        sub_02004A68(0, 120);
+        Sound_SetInitialVolumeForHandle(SOUND_HANDLE_TYPE_FIELD_BGM, 120);
     }
 }
 
@@ -1500,7 +1500,7 @@ static void ov65_022378C4(UnkStruct_ov65_022367A8 *param0, const UnkStruct_0207D
     DestroyWaitDial(param0->unk_30.unk_24C);
 
     param0->unk_30.unk_24C = NULL;
-    v0 = Options_Frame(SaveData_Options(param1->unk_08));
+    v0 = Options_Frame(SaveData_GetOptions(param1->unk_08));
 
     LoadMessageBoxGraphics(param0->unk_30.unk_00, 1, 1, 2, v0, param2);
 }

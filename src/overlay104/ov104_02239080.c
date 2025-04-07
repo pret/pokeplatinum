@@ -6,8 +6,8 @@
 #include "overlay104/struct_ov104_0222E930_decl.h"
 #include "overlay104/struct_ov104_0222E930_t.h"
 
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
+#include "sound.h"
+#include "sound_playback.h"
 
 static BOOL ov104_022390C0(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_022390F8(UnkStruct_ov104_0222E930 *param0);
@@ -50,7 +50,7 @@ static BOOL ov104_022390C0(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_022390D8(UnkStruct_ov104_0222E930 *param0)
 {
-    sub_02006150(ov104_0222EA48(param0));
+    Sound_PlayFanfare(ov104_0222EA48(param0));
     return 0;
 }
 
@@ -62,7 +62,7 @@ BOOL ov104_022390E8(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_022390F8(UnkStruct_ov104_0222E930 *param0)
 {
-    if (sub_020061E4() == 0) {
+    if (Sound_IsBGMPausedByFanfare() == 0) {
         return 1;
     }
 
@@ -79,6 +79,6 @@ BOOL ov104_0223911C(UnkStruct_ov104_0222E930 *param0)
 {
     u16 v0 = ov104_0222EA48(param0);
 
-    sub_020055D0(sub_020041FC(), 0);
+    Sound_StopBGM(Sound_GetCurrentBGM(), 0);
     return 0;
 }

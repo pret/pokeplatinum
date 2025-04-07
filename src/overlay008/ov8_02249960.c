@@ -51,6 +51,7 @@
 #include "save_player.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -58,7 +59,6 @@
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
@@ -2824,9 +2824,9 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
             MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
             FieldMessage_AddWindow(fieldSystem->bgConfig, v2->unk_44, 3);
             Window_EraseMessageBox(v2->unk_44, 0);
-            FieldMessage_DrawWindow(v2->unk_44, SaveData_Options(fieldSystem->saveData));
+            FieldMessage_DrawWindow(v2->unk_44, SaveData_GetOptions(fieldSystem->saveData));
 
-            v2->unk_40 = FieldMessage_Print(v2->unk_44, v2->unk_4C, SaveData_Options(fieldSystem->saveData), 1);
+            v2->unk_40 = FieldMessage_Print(v2->unk_44, v2->unk_4C, SaveData_GetOptions(fieldSystem->saveData), 1);
         }
         break;
     case 11:

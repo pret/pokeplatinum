@@ -23,6 +23,7 @@
 #include "message.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -31,7 +32,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0202854C.h"
 
 typedef int (*UnkFuncPtr_ov23_022576EC)(const SecretBaseRecord *);
@@ -247,7 +247,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
 void ov23_022538FC(int param0)
 {
     int v0 = sub_02028558();
-    int v1 = GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577BC->unk_08));
+    int v1 = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->unk_08));
     u8 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0 + 1);
 
     MI_CpuClear8(v2, v0 + 1);
@@ -267,7 +267,7 @@ void ov23_022538FC(int param0)
 
 void ov23_02253968(void)
 {
-    int v0 = GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577BC->unk_08));
+    int v0 = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->unk_08));
 
     if (v0 >= 999999) {
         v0 = 999999;

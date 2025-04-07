@@ -9,10 +9,10 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02023FCC.h"
 
 typedef struct {

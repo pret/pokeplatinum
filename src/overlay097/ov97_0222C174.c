@@ -32,14 +32,14 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
@@ -433,7 +433,7 @@ enum {
 
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0);
-MysteryGift *SaveData_MysteryGift(SaveData *param0);
+MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
 void ov97_02231FFC(BgConfig *param0, void *, int heapID);
 
 static u16 ov97_0222C174(u16 param0)
@@ -676,11 +676,11 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
     v0->unk_08 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
     v0->unk_0C = SaveData_GetPokedex(v0->unk_08);
-    v0->unk_14 = SaveData_Options(v0->unk_08);
+    v0->unk_14 = SaveData_GetOptions(v0->unk_08);
 
     ov97_02237694(v0->heapID);
 
-    v0->unk_3174 = SaveData_MysteryGift(v0->unk_08);
+    v0->unk_3174 = SaveData_GetMysteryGift(v0->unk_08);
     v0->unk_14C = UnkEnum_ov97_0222C78C_09;
     v0->unk_144 = ((1 + 9) + (18 + 12));
     v0->unk_154 = 0;
@@ -688,7 +688,7 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
     v0->unk_158 = 0;
 
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
-    sub_02004550(9, 1174, 1);
+    Sound_SetSceneAndPlayBGM(9, 1174, 1);
 
     return 1;
 }

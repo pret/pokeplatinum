@@ -29,12 +29,12 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_020655F4.h"
 #include "unk_0206CCB0.h"
 #include "unk_020711EC.h"
@@ -119,7 +119,7 @@ BOOL ov5_021F08F8(FieldTask *taskMan)
                 }
 
                 {
-                    GameRecords *v4 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+                    GameRecords *v4 = SaveData_GetGameRecords(fieldSystem->saveData);
                     GameRecords_IncrementRecordValue(v4, RECORD_UNK_010);
                 }
 
@@ -348,7 +348,7 @@ static int ov5_021F0BF4(UnkStruct_ov5_021F0D6C *param0, PlayerAvatar *playerAvat
     param0->unk_0C = 14;
 
     {
-        GameRecords *v0 = SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData);
+        GameRecords *v0 = SaveData_GetGameRecords(param0->fieldSystem->saveData);
         GameRecords_IncrementRecordValue(v0, RECORD_UNK_100);
     }
 
@@ -520,7 +520,7 @@ static void ov5_021F0DC4(UnkStruct_ov5_021F0D6C *param0)
     FieldSystem *fieldSystem = param0->fieldSystem;
 
     FieldMessage_AddWindow(fieldSystem->bgConfig, &param0->window, 3);
-    FieldMessage_DrawWindow(&param0->window, SaveData_Options(fieldSystem->saveData));
+    FieldMessage_DrawWindow(&param0->window, SaveData_GetOptions(fieldSystem->saveData));
 }
 
 static void ov5_021F0DE8(UnkStruct_ov5_021F0D6C *param0, u32 param1)
@@ -533,7 +533,7 @@ static void ov5_021F0DE8(UnkStruct_ov5_021F0D6C *param0, u32 param1)
         MessageLoader_GetStrbuf(param0->unk_48, param1, param0->unk_30);
         StringTemplate_Format(param0->unk_34, param0->unk_2C, param0->unk_30);
 
-        param0->unk_28 = FieldMessage_Print(&param0->window, param0->unk_2C, SaveData_Options(fieldSystem->saveData), 1);
+        param0->unk_28 = FieldMessage_Print(&param0->window, param0->unk_2C, SaveData_GetOptions(fieldSystem->saveData), 1);
     }
 }
 

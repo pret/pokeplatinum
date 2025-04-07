@@ -18,12 +18,12 @@
 #include "party.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0202602C.h"
 #include "unk_02026150.h"
 #include "unk_0207A2A8.h"
@@ -86,7 +86,7 @@ static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
     if (Window_IsInUse(&param0->unk_54) == 0) {
         Window_Init(&param0->unk_54);
         FieldMessage_AddWindow(param0->fieldSystem->bgConfig, &param0->unk_54, 3);
-        FieldMessage_DrawWindow(&param0->unk_54, SaveData_Options(param0->fieldSystem->saveData));
+        FieldMessage_DrawWindow(&param0->unk_54, SaveData_GetOptions(param0->fieldSystem->saveData));
     } else {
         FieldMessage_ClearWindow(&param0->unk_54);
     }
@@ -94,7 +94,7 @@ static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
     MessageLoader_GetStrbuf(param0->unk_68, param1, param0->unk_14);
     StringTemplate_Format(param0->unk_64, param0->unk_18, param0->unk_14);
 
-    param0->unk_74 = FieldMessage_Print(&param0->unk_54, param0->unk_18, SaveData_Options(param0->fieldSystem->saveData), 1);
+    param0->unk_74 = FieldMessage_Print(&param0->unk_54, param0->unk_18, SaveData_GetOptions(param0->fieldSystem->saveData), 1);
 }
 
 static void ov7_0224B558(UnkStruct_ov7_0224B4E8 *param0, BOOL param1)
@@ -421,7 +421,7 @@ static void ov7_0224BBA0(UnkStruct_ov7_0224B4E8 *param0)
 
 static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
 {
-    Party *v0 = Party_GetFromSavedata(param0->fieldSystem->saveData);
+    Party *v0 = SaveData_GetParty(param0->fieldSystem->saveData);
     int v1 = sub_0207A594(param0->fieldSystem->unk_B0, v0, param0->unk_6C);
     int v2;
 

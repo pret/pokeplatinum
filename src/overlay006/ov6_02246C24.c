@@ -13,8 +13,8 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_matrix.h"
+#include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_02005474.h"
 
 typedef struct {
     VecFx32 unk_00;
@@ -138,11 +138,11 @@ static BOOL ov6_02246C9C(FieldTask *param0)
     case 3:
         MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 0x10, 0);
         MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 0x20, 0);
-        sub_02006150(1166);
+        Sound_PlayFanfare(1166);
         (v1->unk_0F)++;
         break;
     case 4:
-        if ((MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 0x10)) && (MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 0x20)) && (sub_020061E4() == 0)) {
+        if ((MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 0x10)) && (MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 0x20)) && (Sound_IsBGMPausedByFanfare() == 0)) {
             u8 v13;
 
             MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 0x20);

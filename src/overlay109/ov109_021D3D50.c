@@ -35,6 +35,8 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -46,8 +48,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02030EE0.h"
 #include "unk_020363E8.h"
@@ -204,7 +204,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
         ov109_021D441C(v0, v1);
         ov109_021D4518(v0);
         ov109_021D45F4(v0);
-        sub_02004550(52, 0, 0);
+        Sound_SetSceneAndPlayBGM(52, 0, 0);
         sub_0209BE50(v2->unk_34);
         sub_020378B8();
         sub_02037B58(3);
@@ -587,7 +587,7 @@ static void ov109_021D43EC(void)
         CharTransfer_Init(&v0);
     }
 
-    PlttTransfer_Init(20, 95);
+    PlttTransfer_Init(20, HEAP_ID_95);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -599,19 +599,19 @@ static void ov109_021D441C(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 95);
 
-    param0->unk_60 = SpriteList_InitRendering(30, &param0->unk_64, 95);
+    param0->unk_60 = SpriteList_InitRendering(30, &param0->unk_64, HEAP_ID_95);
     GF_ASSERT(param0->unk_60);
 
     SetSubScreenViewRect(&param0->unk_64, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1F0[v0] = SpriteResourceCollection_New(3, v0, 95);
+        param0->unk_1F0[v0] = SpriteResourceCollection_New(3, v0, HEAP_ID_95);
     }
 
-    param0->unk_200[2][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1F0[0], param1, 12, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 95);
-    param0->unk_200[2][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1F0[1], param1, 1, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 15, 95);
-    param0->unk_200[2][2] = SpriteResourceCollection_AddFrom(param0->unk_1F0[2], param1, 13, 1, 2, 2, 95);
-    param0->unk_200[2][3] = SpriteResourceCollection_AddFrom(param0->unk_1F0[3], param1, 14, 1, 2, 3, 95);
+    param0->unk_200[2][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1F0[0], param1, 12, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_95);
+    param0->unk_200[2][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1F0[1], param1, 1, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 15, HEAP_ID_95);
+    param0->unk_200[2][2] = SpriteResourceCollection_AddFrom(param0->unk_1F0[2], param1, 13, 1, 2, 2, HEAP_ID_95);
+    param0->unk_200[2][3] = SpriteResourceCollection_AddFrom(param0->unk_1F0[3], param1, 14, 1, 2, 3, HEAP_ID_95);
 
     SpriteTransfer_RequestChar(param0->unk_200[2][0]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_200[2][1]);

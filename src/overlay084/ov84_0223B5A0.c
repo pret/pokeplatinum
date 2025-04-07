@@ -35,6 +35,8 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "special_encounter.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -44,8 +46,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
@@ -442,7 +442,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     }
 
     SetVBlankCallback(ov84_0223BA14, v0);
-    sub_02004550(51, 0, 0);
+    Sound_SetSceneAndPlayBGM(51, 0, 0);
     DrawWifiConnectionIcon();
 
     return 1;
@@ -598,7 +598,7 @@ static void ov84_0223B9AC(UnkStruct_ov84_0223B5A0 *param0)
 {
     param0->unk_C8 = SaveData_GetBag(param0->unk_C4->unk_00);
     param0->unk_CC = SaveData_GetTrainerInfo(param0->unk_C4->unk_00);
-    param0->unk_D0 = SaveData_Options(param0->unk_C4->unk_00);
+    param0->unk_D0 = SaveData_GetOptions(param0->unk_C4->unk_00);
 }
 
 static SpecialEncounter *ov84_0223B9E4(UnkStruct_ov84_0223B5A0 *param0)
@@ -2304,7 +2304,7 @@ static Strbuf *ov84_0223DC9C(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 
 static void ov84_0223DCF8(UnkStruct_ov84_0223B5A0 *param0)
 {
-    Pocket_TryRemoveItem(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, param0->unk_488, 6);
+    Pocket_TryRemoveItem(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, param0->unk_488, HEAP_ID_6);
     ListMenu_Free(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
     StringList_Free(param0->unk_160);
 
@@ -2370,7 +2370,7 @@ static int ov84_0223DEB8(UnkStruct_ov84_0223B5A0 *param0)
 {
     ov84_0223FD84(param0);
     param0->unk_488 = 1;
-    if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, 6) == 1) {
+    if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, HEAP_ID_6) == 1) {
         ov84_0223FFF0(param0);
         return 8;
     }

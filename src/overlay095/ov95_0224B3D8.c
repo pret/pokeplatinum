@@ -23,13 +23,13 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
@@ -362,7 +362,7 @@ static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
                 u8 delay;
 
                 PokeSprite_LoadCryDelay(param0->unk_84, &delay, ov95_02247660(param0->unk_00), 1);
-                sub_0200590C(ov95_02247660(param0->unk_00), delay, ov95_02247668(param0->unk_00));
+                Sound_PlayDelayedPokemonCry(ov95_02247660(param0->unk_00), delay, ov95_02247668(param0->unk_00));
                 PokemonSprite_InitAnim(param0->unk_14, 1);
             }
 
@@ -406,7 +406,7 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 
             Window_DrawMessageBox(&(param0->unk_5C), 109, 2);
             Window_CopyToVRAM(&(param0->unk_5C));
-            sub_02006150(1156);
+            Sound_PlayFanfare(1156);
 
             param0->unk_08 = 0;
             param0->unk_0C = 1;
@@ -453,7 +453,7 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 static BOOL ov95_0224B990(UnkStruct_ov95_0224B4D4 *param0, int param1)
 {
     if (param0->unk_0C) {
-        param0->unk_0C = sub_020061E4();
+        param0->unk_0C = Sound_IsBGMPausedByFanfare();
     }
 
     if (param0->unk_08 < param1) {

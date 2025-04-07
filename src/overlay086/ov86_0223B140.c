@@ -28,6 +28,8 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_oam.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -37,8 +39,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 
@@ -334,7 +334,7 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
     v0->unk_00 = 0;
     v0->unk_1C28 = ov86_0223B744(ov86_0223B6CC, v0, 6);
 
-    sub_02004550(8, 1171, 1);
+    Sound_SetSceneAndPlayBGM(8, 1171, 1);
 
     return 1;
 }
@@ -418,11 +418,11 @@ static BOOL ov86_0223B40C(UnkStruct_ov86_0223B3C8 *param0)
     switch (param0->unk_00) {
     case 0:
         StartScreenTransition(3, 0, 0, 0x0, 2, 1, HEAP_ID_63);
-        sub_0200564C(0, 30);
+        Sound_FadeOutBGM(0, 30);
         param0->unk_00++;
         break;
     case 1:
-        if (IsScreenTransitionDone() && (Sound_CheckFade() == 0)) {
+        if (IsScreenTransitionDone() && (Sound_IsFadeActive() == FALSE)) {
             return 1;
         }
     }
@@ -773,7 +773,7 @@ static void ov86_0223BA44(UnkStruct_ov86_0223B3C8 *param0)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 63);
 
-    param0->unk_24 = SpriteList_InitRendering(64, &param0->unk_28, 63);
+    param0->unk_24 = SpriteList_InitRendering(64, &param0->unk_28, HEAP_ID_63);
     param0->unk_1D0 = Graphics_GetCellBankFromOpenNARC(v2, 77, 0, &v0, HEAP_ID_63);
     param0->unk_1D4 = Graphics_GetAnimBankFromOpenNARC(v2, 78, 0, &v1, HEAP_ID_63);
 
@@ -1210,7 +1210,7 @@ static void ov86_0223C398(SysTask *param0, void *param1)
     int v1;
 
     if (v0->unk_6C) {
-        sub_02005844(v0->unk_70, v0->unk_74);
+        Sound_PlayPokemonCry(v0->unk_70, v0->unk_74);
         v0->unk_6C = 0;
     }
 

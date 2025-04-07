@@ -19,13 +19,13 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
@@ -277,7 +277,7 @@ void *ov100_021D3620(UnkStruct_ov100_021D4DD8 *param0)
     v0->unk_1D28->unk_44.z = FX32_CONST(34);
 
     ov100_021D3504(v0->unk_1D28->camera, &v0->unk_1D28->unk_44);
-    sub_02004550(63, 0, 0);
+    Sound_SetSceneAndPlayBGM(63, 0, 0);
 
     return v0;
 }
@@ -373,7 +373,7 @@ static void ov100_021D37F4(SysTask *param0, void *param1)
         break;
     case 1:
         if ((++v0->unk_04) >= NELEMS(v1)) {
-            Sound_PlayPokemonCry(POKECRY_NORMAL, v0->unk_08, v0->unk_0C, 80, HEAP_ID_111, 0);
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, v0->unk_08, v0->unk_0C, 80, HEAP_ID_111, 0);
             v0->unk_00++;
         } else {
             Easy3DObject_SetScale(&v0->unk_10->unk_00, FX32_CONST(v1[v0->unk_04]), FX32_CONST(1.00f), FX32_CONST(1.00f));
@@ -485,11 +485,11 @@ BOOL ov100_021D39E4(void *param0)
         v0->unk_04++;
 
         if (v0->unk_04 == 80) {
-            sub_02005728(1746, -70);
+            Sound_PlayPannedEffect(1746, -70);
         }
 
         if (v0->unk_04 == 135) {
-            sub_02005728(1746, +70);
+            Sound_PlayPannedEffect(1746, +70);
         }
 
         if ((v0->unk_04 == 310) || (v0->unk_04 == 375) || (v0->unk_04 == 432)) {
@@ -501,19 +501,19 @@ BOOL ov100_021D39E4(void *param0)
         }
 
         if (v0->unk_04 == 165) {
-            sub_02005728(1747, -70);
+            Sound_PlayPannedEffect(1747, -70);
         }
 
         if (v0->unk_04 == 220) {
-            sub_02005728(1747, +70);
+            Sound_PlayPannedEffect(1747, +70);
         }
 
         if (v0->unk_04 == 470) {
-            sub_02005728(1750, -70);
+            Sound_PlayPannedEffect(1750, -70);
         }
 
         if (v0->unk_04 == 520) {
-            sub_02005728(1750, +70);
+            Sound_PlayPannedEffect(1750, +70);
         }
 
         if (v0->unk_04 == 120) {
@@ -527,7 +527,7 @@ BOOL ov100_021D39E4(void *param0)
         if (v0->unk_0C.unk_10DC[0].unk_160 == 0) {
             v0->unk_1D28->unk_AC.unk_00 = 6;
             ov100_021D398C(v0, 0, 483);
-            sub_02005728(1751, -70);
+            Sound_PlayPannedEffect(1751, -70);
             v0->unk_00++;
         }
         break;
@@ -535,7 +535,7 @@ BOOL ov100_021D39E4(void *param0)
         if (v0->unk_0C.unk_10DC[1].unk_160 == 0) {
             v0->unk_1D28->unk_AC.unk_00 = 7;
             ov100_021D398C(v0, 1, 484);
-            sub_02005728(1751, +70);
+            Sound_PlayPannedEffect(1751, +70);
             v0->unk_00++;
             v0->unk_04 = 0;
         }

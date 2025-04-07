@@ -40,13 +40,13 @@
 #include "poketch.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
@@ -106,7 +106,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     v0->unk_60 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     v0->unk_86 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
     v0->unk_62 = param2;
-    v0->unk_5C = heapID;
+    v0->heapID = heapID;
     v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, heapID);
 
     PokeSprite_LoadCryDelay(v0->unk_80, &(v0->unk_84), v0->unk_60, 1);
@@ -285,7 +285,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
                 PokemonSprite_InitAnim(param0->unk_1C[0], NULL);
             }
 
-            sub_0200590C(param0->unk_60, param0->unk_84, param0->unk_86);
+            Sound_PlayDelayedPokemonCry(param0->unk_60, param0->unk_84, param0->unk_86);
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
 
             if (param0->unk_7C & 0x2) {
@@ -298,9 +298,9 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 5:
-        if ((Text_IsPrinterActive(param0->unk_65) == 0) && (sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
+        if ((Text_IsPrinterActive(param0->unk_65) == 0) && (Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
             sub_02015738(param0->unk_58, 1);
-            sub_02005474(1141);
+            Sound_PlayBasicBGM(1141);
             param0->unk_66 = 20;
             param0->unk_64 = 6;
         }
@@ -310,7 +310,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             {
                 UnkStruct_0207C894 v1;
 
-                v1.heapID = param0->unk_5C;
+                v1.heapID = param0->heapID;
                 v1.unk_04 = 0;
                 param0->unk_30 = sub_0207C894(&v1);
 
@@ -318,7 +318,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
                 PokemonSprite_StartFade(param0->unk_1C[0], 0, 16, 4, 0x7fff);
                 PokemonSprite_StartFade(param0->unk_1C[1], 0, 16, 4, 0x7fff);
 
-                GF_ASSERT(Heap_FndGetTotalFreeSizeForExpHeap(param0->unk_5C) > 0x8000);
+                GF_ASSERT(Heap_FndGetTotalFreeSizeForExpHeap(param0->heapID) > 0x8000);
                 Sound_PlayEffect(SEQ_SE_DP_W025);
             }
             param0->unk_66 = 40;
@@ -389,12 +389,12 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
                 PokemonSprite_InitAnim(param0->unk_1C[1], NULL);
             }
 
-            sub_0200590C(param0->unk_62, param0->unk_85, param0->unk_86);
+            Sound_PlayDelayedPokemonCry(param0->unk_62, param0->unk_85, param0->unk_86);
             param0->unk_64++;
         }
         break;
     case 11:
-        if ((sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[1]) == 0)) {
+        if ((Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[1]) == 0)) {
             Pokemon_SetValue(param0->unk_28, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
             Pokemon_CalcAbility(param0->unk_28);
             Pokemon_CalcLevelAndStats(param0->unk_28);
@@ -475,11 +475,11 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 20:
-        param0->unk_40 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_020F0A30, 1, 8, param0->unk_5C);
+        param0->unk_40 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_020F0A30, 1, 8, param0->heapID);
         param0->unk_64++;
         break;
     case 21:
-        switch (Menu_ProcessInputAndHandleExit(param0->unk_40, param0->unk_5C)) {
+        switch (Menu_ProcessInputAndHandleExit(param0->unk_40, param0->heapID)) {
         case 0:
             param0->unk_64 = 22;
             PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
@@ -545,11 +545,11 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         param0->unk_64++;
         break;
     case 34:
-        param0->unk_40 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_020F0A30, 1, 8, param0->unk_5C);
+        param0->unk_40 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_020F0A30, 1, 8, param0->heapID);
         param0->unk_64++;
         break;
     case 35:
-        switch (Menu_ProcessInputAndHandleExit(param0->unk_40, param0->unk_5C)) {
+        switch (Menu_ProcessInputAndHandleExit(param0->unk_40, param0->heapID)) {
         case 0:
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
@@ -603,7 +603,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 38:
-        if (sub_020061E4() == 0) {
+        if (Sound_IsBGMPausedByFanfare() == 0) {
             if (--param0->unk_66 == 0) {
                 param0->unk_64 = 13;
             }
@@ -635,7 +635,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             param0->unk_74 = 0xff;
             param0->unk_75 = 0xa0;
             param0->unk_70 = 0;
-            sub_020055D0(1141, 0);
+            Sound_StopBGM(1141, 0);
             sub_0207C8F4(param0->unk_30);
             param0->unk_64++;
         }
@@ -651,12 +651,12 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
                 PokemonSprite_InitAnim(param0->unk_1C[0], NULL);
             }
 
-            sub_0200590C(param0->unk_60, param0->unk_84, param0->unk_86);
+            Sound_PlayDelayedPokemonCry(param0->unk_60, param0->unk_84, param0->unk_86);
             param0->unk_64++;
         }
         break;
     case 43:
-        if ((sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
+        if ((Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, 919);
             param0->unk_66 = 20;
@@ -687,14 +687,14 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
     switch (param0->unk_78) {
     case 13:
     case 14:
-        if (Bag_GetItemQuantity(param0->unk_4C, ITEM_POKE_BALL, param0->unk_5C) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
+        if (Bag_GetItemQuantity(param0->unk_4C, ITEM_POKE_BALL, param0->heapID) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
             {
                 Pokemon *v1;
                 int v2;
                 Mail *v3;
                 UnkStruct_0202CA28 v4;
 
-                v1 = Pokemon_New(param0->unk_5C);
+                v1 = Pokemon_New(param0->heapID);
                 Pokemon_Copy(param0->unk_28, v1);
 
                 v2 = SPECIES_SHEDINJA;
@@ -723,7 +723,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 Pokemon_SetValue(v1, MON_DATA_HAS_NICKNAME, &v2);
                 Pokemon_SetValue(v1, MON_DATA_STATUS_CONDITION, &v2);
 
-                v3 = sub_0202818C(param0->unk_5C);
+                v3 = sub_0202818C(param0->heapID);
                 Pokemon_SetValue(v1, MON_DATA_MAIL, v3);
                 Heap_FreeToHeap(v3);
                 Pokemon_SetValue(v1, MON_DATA_MAIL_ID, &v2);
@@ -743,7 +743,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(v1));
                 Heap_FreeToHeap(v1);
-                Bag_TryRemoveItem(param0->unk_4C, ITEM_POKE_BALL, 1, param0->unk_5C);
+                Bag_TryRemoveItem(param0->unk_4C, ITEM_POKE_BALL, 1, param0->heapID);
             }
         }
         break;
@@ -886,14 +886,14 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
 
         v4 = Options_Frame(param0->unk_2C);
 
-        ReplaceTransparentTiles(param1, 1, 1, 10, v4, param0->unk_5C);
-        Graphics_LoadTilesToBgLayer(v5, v6, param1, v9, 0, 0, 1, param0->unk_5C);
-        Graphics_LoadTilemapToBgLayer(v5, v7, param1, v9, 0, 0, 1, param0->unk_5C);
-        PaletteData_LoadBufferFromFileStart(param0->unk_14, v5, v8, param0->unk_5C, 0, 0x20 * 2, 0);
-        PaletteData_LoadBufferFromFileStart(param0->unk_14, 38, GetMessageBoxPaletteNARCMember(v4), param0->unk_5C, 0, 0x20, 10 * 0x10);
-        PaletteData_LoadBufferFromFileStart(param0->unk_14, 14, 7, param0->unk_5C, 0, 0x20, 0xb * 0x10);
-        LoadStandardWindowTiles(param0->unk_00, 2, 1, 0, param0->unk_5C);
-        PaletteData_LoadBufferFromFileStart(param0->unk_14, 38, GetStandardWindowPaletteNARCMember(), param0->unk_5C, 0, 0x20, 8 * 0x10);
+        ReplaceTransparentTiles(param1, 1, 1, 10, v4, param0->heapID);
+        Graphics_LoadTilesToBgLayer(v5, v6, param1, v9, 0, 0, 1, param0->heapID);
+        Graphics_LoadTilemapToBgLayer(v5, v7, param1, v9, 0, 0, 1, param0->heapID);
+        PaletteData_LoadBufferFromFileStart(param0->unk_14, v5, v8, param0->heapID, 0, 0x20 * 2, 0);
+        PaletteData_LoadBufferFromFileStart(param0->unk_14, 38, GetMessageBoxPaletteNARCMember(v4), param0->heapID, 0, 0x20, 10 * 0x10);
+        PaletteData_LoadBufferFromFileStart(param0->unk_14, 14, 7, param0->heapID, 0, 0x20, 0xb * 0x10);
+        LoadStandardWindowTiles(param0->unk_00, 2, 1, 0, param0->heapID);
+        PaletteData_LoadBufferFromFileStart(param0->unk_14, 38, GetStandardWindowPaletteNARCMember(), param0->heapID, 0, 0x20, 8 * 0x10);
     }
 
     {
@@ -903,9 +903,9 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
         int v13 = 12;
         int v14 = 4;
 
-        Graphics_LoadTilesToBgLayer(v10, v11, param1, v14, 0, 0, 1, param0->unk_5C);
-        Graphics_LoadTilemapToBgLayer(v10, v12, param1, v14, 0, 0, 1, param0->unk_5C);
-        PaletteData_LoadBufferFromFileStart(param0->unk_14, v10, v13, param0->unk_5C, 1, 0x20 * 1, 0);
+        Graphics_LoadTilesToBgLayer(v10, v11, param1, v14, 0, 0, 1, param0->heapID);
+        Graphics_LoadTilemapToBgLayer(v10, v12, param1, v14, 0, 0, 1, param0->heapID);
+        PaletteData_LoadBufferFromFileStart(param0->unk_14, v10, v13, param0->heapID, 1, 0x20 * 1, 0);
     }
 
     GX_SetVisibleWnd(GX_WNDMASK_W0);
@@ -941,7 +941,7 @@ static void sub_0207C498(UnkStruct_0207AE68 *param0)
     Pokemon_BuildSpriteTemplate(&v0, param0->unk_28, 2);
 
     param0->unk_1C[0] = PokemonSpriteManager_CreateSprite(param0->unk_18, &v0, 128, 80, 0, 0, NULL, NULL);
-    v1 = Pokemon_New(param0->unk_5C);
+    v1 = Pokemon_New(param0->heapID);
 
     Pokemon_Copy(param0->unk_28, v1);
     Pokemon_SetValue(v1, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
@@ -986,19 +986,19 @@ static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
 
     switch (param1) {
     case 1:
-        v0 = sub_020057E0();
+        v0 = Sound_IsAnyEffectPlaying();
         break;
     case 2:
-        v0 = sub_020061E4();
+        v0 = Sound_IsBGMPausedByFanfare();
         break;
     case 3:
-        sub_02006150(1156);
+        Sound_PlayFanfare(1156);
         break;
     case 4:
         Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 5:
-        sub_02006150(1155);
+        Sound_PlayFanfare(1155);
         break;
     default:
         break;
@@ -1009,5 +1009,5 @@ static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
 
 static void sub_0207C624(UnkStruct_0207AE68 *param0)
 {
-    param0->unk_38 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_3C, param0->unk_5C);
+    param0->unk_38 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_3C, param0->heapID);
 }

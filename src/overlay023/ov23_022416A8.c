@@ -23,13 +23,13 @@
 #include "game_records.h"
 #include "heap.h"
 #include "message.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "terrain_collision_manager.h"
-#include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "vars_flags.h"
 
@@ -402,7 +402,7 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
 
         Sound_PlayEffect(SEQ_SE_DP_SUTYA);
         SystemFlag_SetSphereAcquired(SaveData_GetVarsFlags(Unk_ov23_02257744->fieldSystem->saveData));
-        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(Unk_ov23_02257744->fieldSystem->saveData), RECORD_UNK_047);
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecords(Unk_ov23_02257744->fieldSystem->saveData), RECORD_UNK_047);
 
         ov5_021F57C8(Unk_ov23_02257744->fieldSystem, param2, param3);
     }
