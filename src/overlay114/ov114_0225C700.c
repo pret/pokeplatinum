@@ -1513,7 +1513,7 @@ static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
     Text_AddPrinterWithParamsAndColor(param2, FONT_SYSTEM, param0->unk_08, param3, param4, TEXT_SPEED_NO_TRANSFER, param5, NULL);
 }
 
-static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *param2, BOOL param3, u32 param4)
+static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *param2, BOOL param3, u32 heapID)
 {
     u32 v0 = Options_Frame(SaveData_GetOptions(param2));
     u32 v1;
@@ -1521,8 +1521,8 @@ static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_022
     u8 v3;
 
     sub_020959F4(1);
-    LoadMessageBoxGraphics(param1->unk_00, 2, 1, 13, v0, param4);
-    LoadMessageBoxGraphics(param1->unk_00, 4, 1, 13, v0, param4);
+    LoadMessageBoxGraphics(param1->unk_00, 2, 1, 13, v0, heapID);
+    LoadMessageBoxGraphics(param1->unk_00, 4, 1, 13, v0, heapID);
 
     for (v2 = 0; v2 < 2; v2++) {
         if (v2 == 0) {
@@ -1536,7 +1536,7 @@ static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_022
         Window_Add(param1->unk_00, &param0->unk_00[v2], v1, 2, v3, 27, 4, 12, (1 + (18 + 12)));
         Window_FillTilemap(&param0->unk_00[v2], 0);
 
-        param0->unk_24[v2] = Strbuf_Init(128, param4);
+        param0->unk_24[v2] = Strbuf_Init(128, heapID);
     }
 
     param0->unk_34 = param3;
@@ -2275,19 +2275,19 @@ u32 ov114_0225E180(u32 param0)
     return v2;
 }
 
-static void ov114_0225E1A4(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_0225CEF0 *param1, UnkStruct_ov114_0225D084 *param2, u32 param3, NARC *param4, u32 param5)
+static void ov114_0225E1A4(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_0225CEF0 *param1, UnkStruct_ov114_0225D084 *param2, u32 param3, NARC *param4, u32 heapID)
 {
     Window_Add(param1->unk_00, &param0->unk_00, 1, 6, 11, 20, 10, 8, 513);
     Window_FillTilemap(&param0->unk_00, 0);
 
-    param0->unk_14 = Strbuf_Init(128, param5);
+    param0->unk_14 = Strbuf_Init(128, heapID);
     ov114_0225D180(param2, param3);
     ov114_0225D190(param2, param0->unk_14, 16);
     param0->unk_10 = param3;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param4, 7, param1->unk_00, 0, 0, 0, 0, param5);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param4, 10, param1->unk_00, 0, 0, 0, 0, param5);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param4, 7, param1->unk_00, 0, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param4, 10, param1->unk_00, 0, 0, 0, 0, heapID);
 }
 
 static void ov114_0225E234(UnkStruct_ov114_0225E1A4 *param0)

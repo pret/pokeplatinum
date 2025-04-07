@@ -718,11 +718,11 @@ static void ov64_0222DFD0(UnkStruct_ov64_0222DFD0 *param0)
     ov64_0222E23C(&param0->unk_04);
 }
 
-static void ov64_0222E040(UnkStruct_ov64_0222E060 *param0, void *param1, u32 param2)
+static void ov64_0222E040(UnkStruct_ov64_0222E060 *param0, void *param1, u32 heapID)
 {
     param0->saveData = param1;
-    param0->unk_2C.unk_00 = Strbuf_Init(128, param2);
-    param0->unk_2C.unk_04 = Strbuf_Init(128, param2);
+    param0->unk_2C.unk_00 = Strbuf_Init(128, heapID);
+    param0->unk_2C.unk_04 = Strbuf_Init(128, heapID);
 }
 
 static void ov64_0222E060(UnkStruct_ov64_0222E060 *param0)
@@ -1019,18 +1019,18 @@ static void ov64_0222E604(UnkStruct_ov64_0222E21C *param0)
     StringTemplate_Free(param0->unk_214);
 }
 
-static void ov64_0222E620(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_0222E060 *param1, u32 param2)
+static void ov64_0222E620(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_0222E060 *param1, u32 heapID)
 {
     int v0 = Options_Frame(SaveData_GetOptions(param1->saveData));
 
-    Font_LoadScreenIndicatorsPalette(0, 7 * 0x20, param2);
-    LoadMessageBoxGraphics(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, param2);
-    LoadStandardWindowGraphics(param0->unk_00, Unk_ov64_02232258[1], 1, 9, 0, param2);
+    Font_LoadScreenIndicatorsPalette(0, 7 * 0x20, heapID);
+    LoadMessageBoxGraphics(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, heapID);
+    LoadStandardWindowGraphics(param0->unk_00, Unk_ov64_02232258[1], 1, 9, 0, heapID);
     Window_Init(&param0->unk_220);
     Window_Add(param0->unk_00, &param0->unk_220, Unk_ov64_02232258[1], 1, 0, 24, 3, 7, ((1 + 9) + (18 + 12)));
 
-    param0->unk_230 = Strbuf_Init(128, param2);
-    param0->unk_234 = Strbuf_Init(128, param2);
+    param0->unk_230 = Strbuf_Init(128, heapID);
+    param0->unk_234 = Strbuf_Init(128, heapID);
 }
 
 static void ov64_0222E6B4(UnkStruct_ov64_0222E21C *param0)
@@ -1642,9 +1642,9 @@ static void ov64_0222EF64(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E2
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_04);
 }
 
-static void ov64_0222EFBC(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E21C *param1, u32 param2, u32 param3)
+static void ov64_0222EFBC(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E21C *param1, u32 param2, u32 heapID)
 {
-    Strbuf *v0 = Strbuf_Init(128, param3);
+    Strbuf *v0 = Strbuf_Init(128, heapID);
 
     Window_FillTilemap(&param0->unk_1C, 15);
     MessageLoader_GetStrbuf(param1->unk_218, param2, v0);
@@ -2530,13 +2530,13 @@ static void ov64_0222FE5C (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
     param0->unk_AA = 0;
 }
 
-static void ov64_0222FE70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E21C * param1, u32 param2, u32 param3)
+static void ov64_0222FE70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E21C * param1, u32 param2, u32 heapID)
 {
     Strbuf* v0;
 
     Window_FillTilemap(&param0->unk_C4, 15);
 
-    v0 = Strbuf_Init(128, param3);
+    v0 = Strbuf_Init(128, heapID);
 
     MessageLoader_GetStrbuf(param1->unk_218, param2, v0);
     StringTemplate_Format(param1->unk_214, param0->unk_D4, v0);
@@ -2719,7 +2719,7 @@ static void ov64_022302CC (UnkStruct_ov64_02230074 * param0, UnkStruct_ov64_0222
     }
 }
 
-static void ov64_022302EC (UnkStruct_ov64_02230074 * param0, UnkStruct_ov63_0222AE60 * param1, UnkStruct_ov64_0222E21C * param2, const UnkStruct_ov64_022300E4 * param3, u32 param4, UnkStruct_0202B370 * param5, u32 param6, u32 param7)
+static void ov64_022302EC (UnkStruct_ov64_02230074 * param0, UnkStruct_ov63_0222AE60 * param1, UnkStruct_ov64_0222E21C * param2, const UnkStruct_ov64_022300E4 * param3, u32 param4, UnkStruct_0202B370 * param5, u32 param6, u32 heapID)
 {
     int v0;
     int v1;
@@ -2738,12 +2738,12 @@ static void ov64_022302EC (UnkStruct_ov64_02230074 * param0, UnkStruct_ov63_0222
         v2.unk_02 = ((param0->unk_00.unk_02 + Unk_ov64_02232324[param4].unk_00.unk_02) * 8) + (6 + 256);
         v2.unk_04 = 8;
         v2.unk_06 = 1;
-        param0->unk_18[param4] = ov63_0222B0C0(param1, &v2, v1, param7);
+        param0->unk_18[param4] = ov63_0222B0C0(param1, &v2, v1, heapID);
     }
 
     v4 = ((Unk_ov64_02232324[param4].unk_00.unk_00) * 8) + 0;
     v5 = ((Unk_ov64_02232324[param4].unk_00.unk_02) * 8) + -24;
-    v3 = Strbuf_Init(128, param7);
+    v3 = Strbuf_Init(128, heapID);
 
     Strbuf_CopyChars(v3, sub_0202AEF0(param5, param6));
     Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_SYSTEM, v3, v4, v5, TEXT_SPEED_NO_TRANSFER, v6[v0], NULL);

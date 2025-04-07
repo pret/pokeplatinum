@@ -783,12 +783,12 @@ static void ov65_02236B90(UnkStruct_ov65_02236840 *param0, u32 param1)
     }
 }
 
-static void ov65_02236C10(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 param2)
+static void ov65_02236C10(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 heapID)
 {
-    param0->unk_04 = StringTemplate_Default(param2);
-    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, param2);
-    param0->unk_0C = Strbuf_Init(256, param2);
-    param0->unk_10 = Strbuf_Init(256, param2);
+    param0->unk_04 = StringTemplate_Default(heapID);
+    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, heapID);
+    param0->unk_0C = Strbuf_Init(256, heapID);
+    param0->unk_10 = Strbuf_Init(256, heapID);
     param0->unk_14 = 0xff;
     param0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(param1->unk_08));
 }
@@ -883,7 +883,7 @@ static void ov65_02236E44(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     ov65_02236E50(param0, param1, param2, 0, param3);
 }
 
-static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 param2, u8 param3, u32 param4)
+static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 param2, u8 param3, u32 heapID)
 {
     Strbuf *v0;
     int v1;
@@ -896,7 +896,7 @@ static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     }
 
     Window_FillTilemap(&param0->unk_1F0, 15);
-    v0 = Strbuf_Init(256, param4);
+    v0 = Strbuf_Init(256, heapID);
 
     MessageLoader_GetStrbuf(param0->unk_08, param2, v0);
     StringTemplate_Format(param0->unk_04, param0->unk_0C, v0);
@@ -908,7 +908,7 @@ static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
     v1 = Options_Frame(SaveData_GetOptions(param1->unk_08));
 
-    LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v1, param4);
+    LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v1, heapID);
 
     param0->unk_15 = param3;
 }
@@ -951,16 +951,16 @@ static void ov65_02236F38(UnkStruct_ov65_02236840 *param0)
     param0->unk_15 = 0;
 }
 
-static void ov65_02236F70(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, int param2, u32 param3)
+static void ov65_02236F70(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, int param2, u32 heapID)
 {
     Strbuf *v0;
     Strbuf *v1;
 
-    v0 = Strbuf_Init(256, param3);
-    v1 = Strbuf_Init(256, param3);
+    v0 = Strbuf_Init(256, heapID);
+    v1 = Strbuf_Init(256, heapID);
 
-    ov65_0223726C(param0, param1, param2, 0, param3);
-    ov65_02237284(param0, param1, param2, 1, param3);
+    ov65_0223726C(param0, param1, param2, 0, heapID);
+    ov65_02237284(param0, param1, param2, 1, heapID);
 
     MessageLoader_GetStrbuf(param0->unk_08, 131, v0);
     StringTemplate_Format(param0->unk_04, v1, v0);
@@ -1002,24 +1002,24 @@ static void ov65_02237034(UnkStruct_ov65_022367A8 *param0, const UnkStruct_0207D
     }
 }
 
-static void ov65_0223709C(UnkStruct_ov65_022367A8 *param0, UnkStruct_ov65_02236840 *param1, const UnkStruct_0207DE04 *param2, int param3, u32 param4)
+static void ov65_0223709C(UnkStruct_ov65_022367A8 *param0, UnkStruct_ov65_02236840 *param1, const UnkStruct_0207DE04 *param2, int param3, u32 heapID)
 {
     Strbuf *v0;
     Strbuf *v1;
     u8 v2;
     u8 v3;
 
-    v0 = Strbuf_Init(256, param4);
-    v1 = Strbuf_Init(256, param4);
+    v0 = Strbuf_Init(256, heapID);
+    v1 = Strbuf_Init(256, heapID);
 
-    ov65_0223726C(param1, param2, param3, 0, param4);
+    ov65_0223726C(param1, param2, param3, 0, heapID);
 
     MessageLoader_GetStrbuf(param1->unk_08, 129, v0);
     StringTemplate_Format(param1->unk_04, v1, v0);
     Window_FillRectWithColor(&param1->unk_220, 15, 0, param3 * (2 * 8), (20 * 8), (2 * 8));
     Text_AddPrinterWithParamsAndColor(&param1->unk_220, FONT_SYSTEM, v1, 0, param3 * (2 * 8), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
 
-    ov65_02237284(param1, param2, param3, 0, param4);
+    ov65_02237284(param1, param2, param3, 0, heapID);
 
     MessageLoader_GetStrbuf(param1->unk_08, 130, v0);
     StringTemplate_Format(param1->unk_04, v1, v0);

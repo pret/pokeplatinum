@@ -874,12 +874,12 @@ static void sub_02072EB8(UnkStruct_02072EB8 *param0, u8 param1)
     }
 }
 
-static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int param2)
+static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int heapID)
 {
     u8 v0 = 0;
 
     for (v0 = 0; v0 < param1; v0++) {
-        param0[v0].unk_08 = Strbuf_Init(8, param2);
+        param0[v0].unk_08 = Strbuf_Init(8, heapID);
         sub_02072EB8(param0, v0);
     }
 }

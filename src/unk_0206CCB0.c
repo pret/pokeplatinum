@@ -461,13 +461,13 @@ static void sub_0206CDD0(StringTemplate *param0, int param1, const UnkStruct_ov6
     sub_0206CD94(param0, param1, ov6_02246494(param2), ov6_0224648C(param2), ov6_02246490(param2), 1);
 }
 
-static void sub_0206CE08(int param0, u16 *param1, Pokemon *param2)
+static void sub_0206CE08(int heapID, u16 *param1, Pokemon *mon)
 {
-    Strbuf *v0 = Strbuf_Init(64, param0);
+    Strbuf *strBuf = Strbuf_Init(64, heapID);
 
-    Pokemon_GetValue(param2, MON_DATA_NICKNAME_STRBUF, v0);
-    Strbuf_ToChars(v0, param1, 10 + 1);
-    Strbuf_Free(v0);
+    Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRBUF, strBuf);
+    Strbuf_ToChars(strBuf, param1, 10 + 1);
+    Strbuf_Free(strBuf);
 }
 
 static void sub_0206CE38(Pokemon *param0, u16 *param1, u8 *param2, u8 *param3, u8 *param4)
@@ -494,16 +494,16 @@ static void sub_0206CEA4(StringTemplate *param0, int param1, u16 param2)
     sub_0206CD94(param0, param1, v0, 0, GAME_LANGUAGE, 1);
 }
 
-static void sub_0206CED0(int param0, Pokemon *param1, u8 *param2, u16 *param3)
+static void sub_0206CED0(int heapID, Pokemon *mon, u8 *param2, u16 *param3)
 {
-    *param2 = Pokemon_GetValue(param1, MON_DATA_HAS_NICKNAME, NULL);
+    *param2 = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
 
     if (*param2) {
-        Strbuf *v0 = Strbuf_Init(64, param0);
+        Strbuf *strBuf = Strbuf_Init(64, heapID);
 
-        Pokemon_GetValue(param1, MON_DATA_NICKNAME_STRBUF, v0);
-        Strbuf_ToChars(v0, param3, 10 + 1);
-        Strbuf_Free(v0);
+        Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRBUF, strBuf);
+        Strbuf_ToChars(strBuf, param3, 10 + 1);
+        Strbuf_Free(strBuf);
     }
 }
 

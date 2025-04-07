@@ -111,7 +111,7 @@ BOOL sub_020391DC(SaveData *param0, int *param1, int param2)
     return v1;
 }
 
-void sub_02039298(SaveData *param0, int param1, int param2, int param3, int param4)
+void sub_02039298(SaveData *param0, int param1, int param2, int heapID, int param4)
 {
     UnkStruct_0202B370 *v0 = sub_0202B370(param0);
     DWCFriendData *v1 = sub_0202AED8(v0, param2);
@@ -125,7 +125,7 @@ void sub_02039298(SaveData *param0, int param1, int param2, int param3, int para
     }
 
     if (param4 == 0) {
-        v4 = TrainerInfo_NameNewStrbuf(v2, param3);
+        v4 = TrainerInfo_NameNewStrbuf(v2, heapID);
         sub_0202AF0C(v0, param2, v4);
         Strbuf_Free(v4);
         sub_0202AE2C(v0, param2, 8, TrainerInfo_Gender(v2));
@@ -137,7 +137,7 @@ void sub_02039298(SaveData *param0, int param1, int param2, int param3, int para
         }
     }
 
-    v4 = Strbuf_Init(120, param3);
+    v4 = Strbuf_Init(120, heapID);
 
     Strbuf_CopyChars(v4, sub_02032F54(param1));
     sub_0202AF50(v0, param2, v4);

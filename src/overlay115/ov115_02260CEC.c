@@ -1410,7 +1410,7 @@ static void ov115_022617D8(UnkStruct_ov115_022615B0 *param0, u32 param1)
     Sprite_SetDrawFlag(param0->unk_00[param1], 0);
 }
 
-static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1, const UnkStruct_ov115_02262F50 *param2, u32 param3, u32 param4, NARC *param5, u32 param6)
+static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1, const UnkStruct_ov115_02262F50 *param2, u32 param3, u32 param4, NARC *param5, u32 heapID)
 {
     Strbuf *v0;
     AffineSpriteListTemplate v1;
@@ -1420,14 +1420,14 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
     Window_Add(param1->unk_00, &param0->unk_0C, 1, 2, 19, 28, 4, 5, (1 + 9));
     Window_FillRectWithColor(&param0->unk_0C, 15, 0, 0, 28 * 8, 4 * 8);
 
-    v0 = Strbuf_Init(128, param6);
+    v0 = Strbuf_Init(128, heapID);
 
     MessageLoader_GetStrbuf(param1->unk_08, 0, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_0C, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     Strbuf_Free(v0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param5, 18, param1->unk_00, 2, 0, 0, 0, param6);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param5, 20 + (param3 - 2), param1->unk_00, 2, 0, 0, 0, param6);
-    Graphics_LoadPaletteFromOpenNARC(param5, 19, 0, 0 * 32, (3 + 1) * 32, param6);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param5, 18, param1->unk_00, 2, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param5, 20 + (param3 - 2), param1->unk_00, 2, 0, 0, 0, heapID);
+    Graphics_LoadPaletteFromOpenNARC(param5, 19, 0, 0 * 32, (3 + 1) * 32, heapID);
 
     {
         int v2;
@@ -1443,7 +1443,7 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
         Window_Add(param1->unk_00, &v5, 2, 0, 0, 8, 2, 5, 256);
 
         v6 = 256;
-        v7 = Strbuf_Init(128, param6);
+        v7 = Strbuf_Init(128, heapID);
 
         for (v2 = 0; v2 < param3; v2++) {
             if (v2 != param4) {
@@ -3229,12 +3229,12 @@ static void ov115_02263B78(UnkStruct_ov115_02261ADC *param0)
     }
 }
 
-static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 param1)
+static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 {
-    param0->unk_04 = StringTemplate_Default(param1);
-    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0407, param1);
-    param0->unk_0C = Strbuf_Init(128, param1);
-    param0->unk_10 = Strbuf_Init(128, param1);
+    param0->unk_04 = StringTemplate_Default(heapID);
+    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0407, heapID);
+    param0->unk_0C = Strbuf_Init(128, heapID);
+    param0->unk_10 = Strbuf_Init(128, heapID);
 }
 
 static void ov115_02263C04(UnkStruct_ov115_02261ADC *param0)
