@@ -293,7 +293,7 @@ static void ov19_021DACF8(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        if (ov19_021D5E4C(v1->unk_10) == FALSE) {
+        if (ov19_IsMonAvailableToCursor(v1->unk_10) == FALSE) {
             break;
         }
 
@@ -450,7 +450,7 @@ void ov19_021DAF98(UnkStruct_ov19_021DA9E0 *param0)
     Window_FillTilemap(&param0->unk_04[2], 15);
     Window_FillTilemap(&param0->unk_04[3], 0);
 
-    if (ov19_021D5E4C(param0->unk_10)) {
+    if (ov19_IsMonAvailableToCursor(param0->unk_10)) {
         ov19_021DB0E4(param0);
     }
 
@@ -476,7 +476,7 @@ void ov19_021DAFF8(UnkStruct_ov19_021DA9E0 *param0)
         param0->unk_24 = NULL;
     }
 
-    if (ov19_021D5E4C(param0->unk_10)) {
+    if (ov19_IsMonAvailableToCursor(param0->unk_10)) {
         ov19_021DB0E4(param0);
     } else {
         ov19_021DB24C(param0, 0);
@@ -564,7 +564,7 @@ void ov19_021DB224(UnkStruct_ov19_021DA9E0 *param0)
         return;
     }
 
-    if (ov19_021D5E4C(param0->unk_10)) {
+    if (ov19_IsMonAvailableToCursor(param0->unk_10)) {
         const PCMonPreview *preview;
 
         preview = ov19_GetPCMonPreview(param0->unk_10);

@@ -611,7 +611,7 @@ static void ov19_021D69BC(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    if (ov19_021D5E38(v1) == 2) {
+    if (ov19_GetPreviewMonSource(v1) == PREVIEW_MON_IN_CURSOR) {
         ov19_021D9A64(&v0->unk_5E24);
     } else {
         switch (ov19_GetCursorLocation(v1)) {
@@ -930,7 +930,7 @@ static void ov19_021D6D88(SysTask *param0, void *param1)
     v1 = v0->unk_1C4;
     item = ov19_GetPreviewedMonHeldItem(v1);
 
-    if (ov19_021D5E38(v1) == 2) {
+    if (ov19_GetPreviewMonSource(v1) == PREVIEW_MON_IN_CURSOR) {
         ov19_021D9AB0(&v0->unk_5E24, item);
     } else {
         switch (ov19_GetCursorLocation(v1)) {

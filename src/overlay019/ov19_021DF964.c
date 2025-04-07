@@ -40,7 +40,7 @@ void ov19_021DF990(UnkStruct_ov19_021D4DF0 *param0)
     switch (ov19_GetBoxMode(param0)) {
     case PC_MODE_MOVE_MONS:
     default:
-        if (ov19_021D5E38(param0) == 2) {
+        if (ov19_GetPreviewMonSource(param0) == PREVIEW_MON_IN_CURSOR) {
             ov19_021DFD08(v0, ov19_IsMonUnderCursor(param0) ? UnkEnum_021DFB94_36 : UnkEnum_021DFB94_35);
         } else {
             ov19_021DFD08(v0, UnkEnum_021DFB94_34);
