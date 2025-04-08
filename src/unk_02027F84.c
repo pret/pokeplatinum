@@ -14,9 +14,9 @@ int PalPad_SaveSize(void)
     return sizeof(UnkStruct_02027F8C) * 16;
 }
 
-UnkStruct_02027F8C *sub_02027F8C(SaveData *param0)
+UnkStruct_02027F8C *sub_02027F8C(SaveData *saveData)
 {
-    return SaveData_SaveTable(param0, 9);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PAL_PAD);
 }
 
 void PalPad_Init(UnkStruct_02027F8C *param0)

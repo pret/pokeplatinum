@@ -26,12 +26,9 @@ void sub_0202CA10(const UnkStruct_0202CA28 *param0, UnkStruct_0202CA28 *param1)
     MI_CpuCopy8(param0, param1, sizeof(UnkStruct_0202CA28));
 }
 
-UnkStruct_0202CA1C *sub_0202CA1C(SaveData *param0)
+UnkStruct_0202CA1C *sub_0202CA1C(SaveData *saveData)
 {
-    UnkStruct_0202CA1C *v0 = NULL;
-
-    v0 = SaveData_SaveTable(param0, 21);
-    return v0;
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_BALL_SEALS);
 }
 
 UnkStruct_0202CA28 *sub_0202CA28(UnkStruct_0202CA1C *param0, int param1)

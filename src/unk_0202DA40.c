@@ -14,9 +14,9 @@ typedef struct UnkStruct_0202DA40_t {
     u32 unk_F4;
 } UnkStruct_0202DA40;
 
-UnkStruct_0202DA40 *sub_0202DA40(SaveData *param0)
+UnkStruct_0202DA40 *sub_0202DA40(SaveData *saveData)
 {
-    return SaveData_SaveTable(param0, 26);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_GLOBAL_TRADE);
 }
 
 int GlobalTrade_SaveSize(void)

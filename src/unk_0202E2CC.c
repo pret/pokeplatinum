@@ -32,7 +32,7 @@ int TVBroadcast_SaveSize(void)
 void TVBroadcast_Init(TVBroadcast *param0)
 {
     MI_CpuClearFast(param0, sizeof(TVBroadcast));
-    SaveData_SetChecksum(27);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
 void sub_0202E2EC(TVBroadcast *param0)
@@ -42,7 +42,7 @@ void sub_0202E2EC(TVBroadcast *param0)
     MI_CpuClearFast(param0->unk_17C, sizeof(UnkStruct_0202E768) * 4);
 
     sub_0202E35C(param0);
-    SaveData_SetChecksum(27);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
 void sub_0202E324(TVBroadcast *param0, int param1, int param2)
@@ -65,20 +65,20 @@ void sub_0202E324(TVBroadcast *param0, int param1, int param2)
         }
     }
 
-    SaveData_SetChecksum(27);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
 void sub_0202E35C(TVBroadcast *param0)
 {
     sub_0202E374(param0, 0);
     sub_0202E3AC(param0);
-    SaveData_SetChecksum(27);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
 void sub_0202E374(TVBroadcast *param0, BOOL param1)
 {
     param0->unk_08 = param1;
-    SaveData_SetChecksum(27);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
 BOOL sub_0202E380(const TVBroadcast *param0)
@@ -93,14 +93,14 @@ void sub_0202E384(TVBroadcast *param0, int param1)
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_00[v0] == 0) {
             param0->unk_00[v0] = param1;
-            SaveData_SetChecksum(27);
+            SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
             return;
         }
     }
 
     GF_ASSERT(0);
 
-    SaveData_SetChecksum(27);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
 static void sub_0202E3AC(TVBroadcast *param0)
@@ -111,7 +111,7 @@ static void sub_0202E3AC(TVBroadcast *param0)
         param0->unk_00[v0] = 0;
     }
 
-    SaveData_SetChecksum(27);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
 BOOL sub_0202E3C4(const TVBroadcast *param0, int param1)
@@ -151,7 +151,7 @@ static void sub_0202E3F4(UnkStruct_0202E4D4 *param0, int param1, const u8 *param
     param0->unk_01 = 0;
 
     MI_CpuCopyFast(param2, param0->unk_08, 40);
-    SaveData_SetChecksum(27);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
 BOOL sub_0202E43C(TVBroadcast *param0, int param1, int param2, const u8 *param3)
@@ -184,7 +184,7 @@ BOOL sub_0202E43C(TVBroadcast *param0, int param1, int param2, const u8 *param3)
         }
     }
 
-    SaveData_SetChecksum(27);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 
     return 0;
 }
@@ -269,7 +269,7 @@ void sub_0202E560(UnkStruct_0202E4D4 *param0)
         param0->unk_01++;
     }
 
-    SaveData_SetChecksum(27);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
 void *sub_0202E574(UnkStruct_0202E4D4 *param0)

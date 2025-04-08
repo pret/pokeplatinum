@@ -23,7 +23,7 @@ u16 sub_02028328(const Mail *param0, u8 param1, u8 param2, u16 param3);
 u16 sub_02028408(const Mail *param0);
 Sentence *sub_0202840C(Mail *param0, u8 param1);
 void sub_0202841C(Mail *param0, Sentence *param1, u8 param2);
-UnkStruct_02028430 *sub_02028430(SaveData *param0);
+UnkStruct_02028430 *sub_02028430(SaveData *saveData);
 int Mail_SaveSize(void);
 void Mail_Init(UnkStruct_02028430 *param0);
 int sub_0202845C(UnkStruct_02028430 *param0, int param1);

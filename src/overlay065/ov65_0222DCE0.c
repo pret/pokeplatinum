@@ -1729,7 +1729,7 @@ static int ov65_0222F304(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
         if (v1 == 0) {
             WiFiList_Init(param0->unk_00);
-            Email_Init(SaveData_SaveTable(param0->saveData, 35));
+            Email_Init(SaveData_SaveTable(param0->saveData, SAVE_TABLE_ENTRY_EMAIL));
             sub_02030764(sub_0203068C(param0->saveData));
             param0->unk_3A8 = 14;
             param0->unk_04 = sub_0203871C(param0->saveData, sizeof(UnkStruct_0207DFAC));

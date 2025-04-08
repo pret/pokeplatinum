@@ -156,14 +156,12 @@ u16 *FieldOverworldState_GetPoisonStepCount(FieldOverworldState *fieldState)
 
 FieldOverworldState *SaveData_GetFieldOverworldState(SaveData *saveData)
 {
-    FieldOverworldState *fieldState = SaveData_SaveTable(saveData, 6);
-    return fieldState;
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FIELD_PLAYER_STATE);
 }
 
 FieldOverworldSave *SaveData_GetFieldOverworldSave(SaveData *saveData)
 {
-    FieldOverworldSave *fieldSave = SaveData_SaveTable(saveData, 11);
-    return fieldSave;
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FIELD_OVERWORLD_STATE);
 }
 
 void FieldSystem_SaveObjects(FieldSystem *fieldSystem)

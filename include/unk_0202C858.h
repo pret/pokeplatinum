@@ -7,7 +7,7 @@
 
 int WiFiHistory_SaveSize(void);
 void WiFiHistory_Init(UnkStruct_0202C878 *param0);
-UnkStruct_0202C878 *sub_0202C878(SaveData *param0);
+UnkStruct_0202C878 *sub_0202C878(SaveData *saveData);
 void sub_0202C88C(UnkStruct_0202C878 *param0, int param1, int param2);
 int sub_0202C8C0(const UnkStruct_0202C878 *param0);
 int sub_0202C8C4(const UnkStruct_0202C878 *param0);

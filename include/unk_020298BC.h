@@ -86,7 +86,7 @@ u8 sub_0202A628(const UnkStruct_0202A150 *param0);
 u8 sub_0202A62C(const UnkStruct_0202A150 *param0);
 s8 sub_0202A630(const UnkStruct_0202A150 *param0);
 void sub_0202A6A8(u8 param0, int param1, UnkStruct_0202A750 *param2, const void **param3);
-UnkStruct_0202A750 *sub_0202A750(SaveData *param0);
+UnkStruct_0202A750 *sub_0202A750(SaveData *saveData);
 void sub_0202A75C(const UnkStruct_02029C68 *param0, UnkStruct_ov61_0222AE80 *param1);
 void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, UnkStruct_02029C68 *param1);
 
