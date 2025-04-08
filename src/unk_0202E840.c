@@ -121,7 +121,7 @@ static u32 *sub_0202E924(SaveData *param0, int param1)
     int v0;
     u32 v1;
     GameRecords *v2;
-    UnkStruct_0203068C *v3;
+    BattleFrontier *v3;
     u32 *v4;
     static const int v5[] = {
         0x0,
@@ -140,7 +140,7 @@ static u32 *sub_0202E924(SaveData *param0, int param1)
     };
 
     v2 = SaveData_GetGameRecords(param0);
-    v3 = sub_0203068C(param0);
+    v3 = SaveData_GetBattleFrontier(param0);
     v4 = Heap_AllocFromHeapAtEnd(param1, 4 * 13);
 
     for (v0 = 0; v0 < 13; v0++) {

@@ -326,13 +326,13 @@ void sub_0206BD88(FieldTask *param0, u16 param1, u16 param2)
 
 u16 sub_0206BDBC(SaveData *param0)
 {
-    UnkStruct_0203068C *v0;
+    BattleFrontier *v0;
     UnkStruct_0202D750 *v1;
     UndergroundData *v2;
     u16 v3;
     u8 v4, v5, v6, v7, v8, v9;
 
-    v0 = sub_0203068C(param0);
+    v0 = SaveData_GetBattleFrontier(param0);
     v3 = sub_02030698(v0, 0, 0xff);
 
     if (v3 < 20) {
@@ -401,12 +401,12 @@ u16 sub_0206BDBC(SaveData *param0)
 
 u16 sub_0206BF04(SaveData *param0)
 {
-    UnkStruct_0203068C *v0;
+    BattleFrontier *v0;
     UnkStruct_0202D750 *v1;
     u16 v2;
     u8 v3, v4, v5, v6, v7, v8;
 
-    v0 = sub_0203068C(param0);
+    v0 = SaveData_GetBattleFrontier(param0);
     v2 = sub_02030698(v0, 0, 0xff);
 
     if (v2 < 20) {

@@ -1849,7 +1849,7 @@ static int ov64_0222F0C4(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E06
             v2 = ov64_0222FF38(param0);
 
             sub_0202AFD4(v1, param1->unk_08.unk_04[v2]);
-            sub_02030788(sub_0203068C(param1->saveData), param1->unk_08.unk_04[v2]);
+            sub_02030788(SaveData_GetBattleFrontier(param1->saveData), param1->unk_08.unk_04[v2]);
             ov64_0222E164(param1);
             ov64_0222FC80(param0, param1, param2, param0->unk_00, param0->unk_04, 0, heapID);
             ov64_0222EA28(param2, 1);
@@ -4003,7 +4003,7 @@ asm static void ov64_02231528 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     ldr r0, [r5, #0]
     add r6, r3, #0
     add r4, r2, #0
-    bl sub_0203068C
+    bl SaveData_GetBattleFrontier
     str r0, [sp, #0x24]
     mov r0, #0x80
     add r1, r6, #0
@@ -4151,7 +4151,7 @@ asm static void ov64_02231664 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     ldr r0, [r5, #0]
     add r6, r3, #0
     add r4, r2, #0
-    bl sub_0203068C
+    bl SaveData_GetBattleFrontier
     str r0, [sp, #0x24]
     mov r0, #0x80
     add r1, r6, #0
@@ -4580,7 +4580,7 @@ asm static void ov64_02231A00 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     ldr r0, [r5, #0]
     add r6, r3, #0
     add r4, r2, #0
-    bl sub_0203068C
+    bl SaveData_GetBattleFrontier
     str r0, [sp, #0x24]
     mov r0, #0x80
     add r1, r6, #0
@@ -4803,7 +4803,7 @@ asm static void ov64_02231BE0 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     ldr r0, [r5, #0]
     str r3, [sp, #0x24]
     add r4, r2, #0
-    bl sub_0203068C
+    bl SaveData_GetBattleFrontier
     str r0, [sp, #0x28]
     ldr r1, [sp, #0x24]
     mov r0, #0x80
@@ -4977,7 +4977,7 @@ asm static void ov64_02231D58 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     ldr r0, [r5, #0]
     add r6, r3, #0
     add r4, r2, #0
-    bl sub_0203068C
+    bl SaveData_GetBattleFrontier
     str r0, [sp, #0x24]
     mov r0, #0x80
     add r1, r6, #0
@@ -5125,7 +5125,7 @@ asm static void ov64_02231E94 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     ldr r0, [r5, #0]
     add r4, r2, #0
     add r7, r3, #0
-    bl sub_0203068C
+    bl SaveData_GetBattleFrontier
     ldr r0, [r5, #0]
     bl SaveData_GetWiFiList
     str r0, [sp, #0x24]

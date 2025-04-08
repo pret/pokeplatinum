@@ -374,13 +374,13 @@ u32 sub_0202D474(UnkStruct_0202D750 *param0)
 
 void sub_0202D478(SaveData *saveData, int param1, Sentence *param2)
 {
-    UnkStruct_0203068C *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     sub_02014CC0(&(v0->unk_950.unk_168.unk_00[param1]), param2);
 }
 
 Sentence *sub_0202D498(SaveData *saveData, int param1)
 {
-    UnkStruct_0203068C *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
 
     return &(v0->unk_950.unk_168.unk_00[param1]);
 }
@@ -542,18 +542,18 @@ UnkStruct_ov90_021D1750 *sub_0202D71C(UnkStruct_0202D764 *param0, int heapID)
 
 UnkStruct_0202D060 *sub_0202D740(SaveData *saveData)
 {
-    UnkStruct_0203068C *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &v0->unk_8E0_val1;
 }
 
 UnkStruct_0202D750 *sub_0202D750(SaveData *saveData)
 {
-    UnkStruct_0203068C *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &v0->unk_950.unk_00;
 }
 
 UnkStruct_0202D764 *sub_0202D764(SaveData *saveData)
 {
-    UnkStruct_0203068C *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &v0->unk_950.unk_188;
 }

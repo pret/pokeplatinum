@@ -83,7 +83,7 @@ BOOL ScrCmd_2D9(ScriptContext *param0)
         break;
     case 1:
         if (v4 == 3) {
-            *v6 = sub_02030698(sub_0203068C(param0->fieldSystem->saveData), 110, sub_0205E6A8(110));
+            *v6 = sub_02030698(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), 110, sub_0205E6A8(110));
         } else {
             *v6 = (u16)sub_02030600(v11, 8, v4, 0, NULL);
         }
@@ -134,10 +134,10 @@ static void sub_02050174(SaveData *param0, UnkStruct_020305B8 *param1, u8 param2
     sub_020305CC(param1, 8, param2, 0, v2);
 
     if (param2 == 3) {
-        sub_020306E4(sub_0203068C(param0), 110, sub_0205E6A8(110), 0);
+        sub_020306E4(SaveData_GetBattleFrontier(param0), 110, sub_0205E6A8(110), 0);
     }
 
-    sub_020306E4(sub_0203068C(param0), sub_0205E700(param2), sub_0205E6A8(sub_0205E700(param2)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E700(param2), sub_0205E6A8(sub_0205E700(param2)), 0);
     return;
 }
 

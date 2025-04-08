@@ -557,7 +557,7 @@ static void ov4_021D1744(int param0, int param1, void *param2)
     MI_CpuCopy8(Unk_ov4_0221A400->unk_100, sub_0202AED8(SaveData_GetWiFiList(Unk_ov4_0221A400->unk_F6C), 0), 32 * sizeof(DWCFriendData));
 
     sub_0202B270(SaveData_GetWiFiList(Unk_ov4_0221A400->unk_F6C), param0, param1);
-    sub_020307F0(sub_0203068C(Unk_ov4_0221A400->unk_F6C), param0, param1);
+    sub_020307F0(SaveData_GetBattleFrontier(Unk_ov4_0221A400->unk_F6C), param0, param1);
 }
 
 static void ov4_021D17A0(int param0, void *param1)
