@@ -176,7 +176,7 @@ void ManagedSprite_SetAffineTranslation(ManagedSprite *managedSprite, s16 x, s16
 void ManagedSprite_SetMosaicFlag(ManagedSprite *managedSprite, BOOL mosaic);
 void Sprite_SetExplicitOamMode2(Sprite *sprite, GXOamMode mode);
 void ManagedSprite_SetExplicitOamMode(ManagedSprite *managedSprite, GXOamMode mode);
-u32 ManagedSprite_SetUserAttrForCurrentAnimFrame(ManagedSprite *managedSprite);
+u32 ManagedSprite_GetUserAttrForCurrentAnimFrame(ManagedSprite *managedSprite);
 BOOL SpriteSystem_LoadCharResObjWithHardwareMappingType(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID);
 BOOL SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID);
 BOOL SpriteSystem_LoadCharResObjFromOpenNarcWithHardwareMappingType(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID);
