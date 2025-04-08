@@ -131,6 +131,6 @@ BOOL sub_0202988C(const UnkStruct_02029894 *param0);
 UnkStruct_02029894 *sub_02029894(SaveData *saveData);
 SecretBaseRecord *SaveData_SecretBaseRecord(SaveData *saveData);
 SecretBaseRecord *sub_020298AC(UnkStruct_02029894 *param0);
-UndergroundData *sub_020298B0(SaveData *param0);
+UndergroundData *SaveData_GetUndergroundData(SaveData *saveData);
 
 #endif // POKEPLATINUM_UNK_0202854C_H

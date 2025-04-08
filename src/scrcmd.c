@@ -7490,7 +7490,7 @@ static BOOL ScrCmd_2A4(ScriptContext *ctx)
 static BOOL ScrCmd_2A2(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
-    UndergroundData *v1 = sub_020298B0(ctx->fieldSystem->saveData);
+    UndergroundData *v1 = SaveData_GetUndergroundData(ctx->fieldSystem->saveData);
 
     if ((v0 == 135) || (v0 == 136)) {
         sub_02028828(v1);
