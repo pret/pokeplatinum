@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/species.h"
-#include "generated/sdat.h"
 
 #include "global/utility.h"
 
@@ -55,7 +54,7 @@ void Sound_SetCurrentBGM(u16 bgmID)
     u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_BGM);
     *param = bgmID;
 
-    Sound_SetNextBGM(0);
+    Sound_SetNextBGM(SEQ_NONE);
 }
 
 u16 Sound_Impl_GetCurrentBGM(void)
@@ -1091,7 +1090,7 @@ static void Sound_Impl_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int f
     const NNSSndArcBankInfo **currentBankInfo = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO);
 
     Sound_FadeOutBGM(SOUND_VOLUME_MIN, fadeOutFrames);
-    Sound_SetCurrentBGM(0);
+    Sound_SetCurrentBGM(SEQ_NONE);
 
     Sound_SetNextBGM(bgmID);
     Sound_SetFollowUpWaitFrames(fadeInFrames);

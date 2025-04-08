@@ -5,6 +5,8 @@
 #include <nitro/spi.h>
 #include <nnsys.h>
 
+#include "generated/sdat.h"
+
 #include "sound_system.h"
 
 #define FIELD_BGM_BANK_STATE_IDLE   0

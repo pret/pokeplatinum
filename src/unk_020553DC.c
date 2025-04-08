@@ -104,8 +104,7 @@ const static u16 Unk_020EC3E0[][2] = {
 
 void sub_020553DC(void);
 u16 sub_02055428(FieldSystem *fieldSystem, int param1);
-u16 sub_020554A4(FieldSystem *fieldSystem, int param1);
-static u16 sub_020554E8(FieldSystem *fieldSystem, int param1);
+static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID);
 BOOL sub_02055554(FieldSystem *fieldSystem, u16 param1, int param2);
 static void sub_020555CC(FieldSystem *fieldSystem, int param1, int *param2, int *param3);
 u16 sub_0205560C(int param0);
@@ -186,22 +185,22 @@ u16 sub_020554A4(FieldSystem *fieldSystem, int headerID)
         sdatID = MapHeader_GetNightMusicID(headerID);
     }
 
-    u16 v1 = SystemFlag_GetAltMusicForHeader(SaveData_GetVarsFlags(fieldSystem->saveData), headerID);
+    u16 altSdatID = SystemFlag_GetAltMusicForHeader(SaveData_GetVarsFlags(fieldSystem->saveData), headerID);
 
-    if (v1 != 0) {
-        sdatID = v1;
+    if (altSdatID != SEQ_NONE) {
+        sdatID = altSdatID;
     }
 
-    v1 = sub_020554E8(fieldSystem, headerID);
+    altSdatID = FieldSystem_GetAltMusicForCyclingRoad(fieldSystem, headerID);
 
-    if (v1 != 0) {
-        sdatID = v1;
+    if (altSdatID != SEQ_NONE) {
+        sdatID = altSdatID;
     }
 
     return sdatID;
 }
 
-static u16 sub_020554E8(FieldSystem *fieldSystem, int param1)
+static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID)
 {
     int x, y;
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
@@ -210,8 +209,8 @@ static u16 sub_020554E8(FieldSystem *fieldSystem, int param1)
     x = Player_GetXPos(fieldSystem->playerAvatar);
     y = Player_GetZPos(fieldSystem->playerAvatar);
 
-    if (param1 != 350) {
-        return 0;
+    if (headerID != MAP_HEADER_ROUTE_206) {
+        return SEQ_NONE;
     }
 
     if ((location->mapId == 80) || (location->mapId == 351)) {
@@ -224,7 +223,7 @@ static u16 sub_020554E8(FieldSystem *fieldSystem, int param1)
         }
 
         if ((y == 576) || (y == 681)) {
-            return 1189;
+            return SEQ_PL_BICYCLE;
         }
     }
 

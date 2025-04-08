@@ -300,7 +300,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
     case 5:
         if ((Text_IsPrinterActive(param0->unk_65) == 0) && (Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
             sub_02015738(param0->unk_58, 1);
-            Sound_PlayBasicBGM(1141);
+            Sound_PlayBasicBGM(SEQ_SHINKA);
             param0->unk_66 = 20;
             param0->unk_64 = 6;
         }
