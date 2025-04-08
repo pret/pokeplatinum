@@ -1348,7 +1348,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203E0FC));
 
-    v0->unk_00 = sub_0202DA40(fieldSystem->saveData);
+    v0->unk_00 = SaveData_GetGlobalTrade(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
     v0->unk_0C = SaveData_GetPCBoxes(fieldSystem->saveData);
