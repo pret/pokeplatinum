@@ -999,7 +999,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0E7,
     ScrCmd_0E8,
     ScrCmd_0E9,
-    ScrCmd_0EA,
+    ScrCmd_PlayTrainerEncounterBGM,
     ScrCmd_BlackOutFromBattle,
     ScrCmd_CheckWonBattle,
     ScrCmd_CheckLostBattle,
@@ -6366,7 +6366,7 @@ static BOOL ScrCmd_20F(ScriptContext *ctx)
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
 
-    Sound_SetSceneAndPlayBGM(65, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_65, SEQ_NONE, 0);
     ov6_02242B58(ctx->fieldSystem, *v0, v1);
 
     return 1;

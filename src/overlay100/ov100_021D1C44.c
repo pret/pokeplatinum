@@ -455,8 +455,8 @@ BOOL ov100_021D2428(void *param0)
     case 11:
         v0->unk_1A0.unk_10DC[0].unk_160 = 1;
         Easy3DObject_SetVisibility(&v0->unk_1A0.unk_10DC[0].unk_00, 1);
-        Sound_PlayBGM(1214);
-        Sound_SetSceneAndPlayBGM(63, 0, 0);
+        Sound_PlayBGM(SEQ_PL_EV_GIRA);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
         v0->unk_00++;
         break;
     case 12:
@@ -586,7 +586,7 @@ BOOL ov100_021D2428(void *param0)
             ov100_021D4788(v0->unk_1EBC);
         }
 
-        Sound_PlayBGM(1215);
+        Sound_PlayBGM(SEQ_PL_EV_GIRA2);
 
         v0->unk_1A0.unk_934[4].unk_160 = 1;
 
@@ -631,9 +631,9 @@ BOOL ov100_021D2428(void *param0)
             G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
 
             {
-                u16 v2 = Sound_GetCurrentBGM();
+                u16 currentBGM = Sound_GetCurrentBGM();
 
-                Sound_StopBGM(v2, 0);
+                Sound_StopBGM(currentBGM, 0);
             }
 
             ov100_021D4788(v0->unk_1EBC);

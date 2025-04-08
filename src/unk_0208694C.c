@@ -909,7 +909,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         sub_02087A10(v0);
         sub_02087FC0(v0, param0, v1);
         sub_02088754(&v0->unk_41C[4], v0->unk_D8, v0->unk_158, v0->unk_15A, v0->unk_528, v0->unk_17C);
-        Sound_SetSceneAndPlayBGM(52, 0, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
         StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_18);
         sub_0208732C(1);
 

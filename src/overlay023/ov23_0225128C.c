@@ -941,7 +941,7 @@ void ov23_02252178(int param0, int param1, void *param2, void *param3)
     if (CommSys_CurNetId() == v1->unk_00) {
         ov23_02254068(ov23_022421AC(), CommInfo_TrainerInfo(v1->unk_01));
         ov23_02253F40(ov23_022421AC(), 8, 1, ov23_022513A4);
-        Sound_PlayBGM(1061);
+        Sound_PlayBGM(SEQ_HATANIGE);
     }
 
     ov23_0224AEC4(v1->unk_00, v1->unk_01);

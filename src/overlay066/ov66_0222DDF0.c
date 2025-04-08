@@ -771,10 +771,10 @@ void ov66_0222E2C4(UnkStruct_ov66_0222DFF8 *param0, BOOL param1)
 void ov66_0222E2CC(const UnkStruct_ov66_0222DFF8 *param0)
 {
     if ((param0->unk_1FC.unk_00_4 == 1) && (param0->unk_1FC.unk_0A <= 0)) {
-        Sound_SetSceneAndPlayBGM(21, 1213, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_21, SEQ_PL_WIFIPARADE, 0);
         ov66_0222FBAC(&param0->unk_1FC);
     } else {
-        Sound_SetSceneAndPlayBGM(21, 1212, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_21, SEQ_PL_WIFIUNION, 0);
         ov66_0222FBAC(&param0->unk_1FC);
     }
 }
@@ -2453,7 +2453,7 @@ static void ov66_0222FA88(UnkStruct_ov66_0222FB64 *param0, UnkStruct_ov66_0222FA
         ov66_022302D0(param2);
 
         if (param0->unk_0C == 0) {
-            Sound_PlayBGM(1213);
+            Sound_PlayBGM(SEQ_PL_WIFIPARADE);
         }
 
         param0->unk_00_4 = 1;

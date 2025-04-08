@@ -156,7 +156,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         ov72_0223DF58(v0);
         ov72_0223E0A0(v0, param0);
 
-        Sound_SetSceneAndPlayBGM(56, 0, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_56, SEQ_NONE, 0);
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
         NARC_dtor(v1);
         (*param1)++;

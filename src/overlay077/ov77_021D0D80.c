@@ -224,8 +224,8 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        Sound_SetScene(0);
-        Sound_SetSceneAndPlayBGM(1, 1173, 1);
+        Sound_SetScene(SOUND_SCENE_NONE);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_1, SEQ_TITLE01, 1);
         *param1 = 3;
         break;
     case 3:
@@ -278,7 +278,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
         }
 
         if ((Sound_IsPokemonCryPlaying() == 0) && (IsScreenTransitionDone() == 1) && (v0->unk_4FC >= 10)) {
-            Sound_StopBGM(1173, 0);
+            Sound_StopBGM(SEQ_TITLE01, 0);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -297,7 +297,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
         ov77_021D20E4(&v0->unk_238, v0->unk_04, v0->heapID);
 
         if (Sound_IsFadeActive() == FALSE) {
-            Sound_StopBGM(1173, 0);
+            Sound_StopBGM(SEQ_TITLE01, 0);
             StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, v0->heapID);
             *param1 = 6;
         }
@@ -337,7 +337,7 @@ static int ov77_021D10FC(OverlayManager *param0, int *param1)
         EnqueueApplication(0xffffffff, &Unk_020F8A48);
         break;
     case 3:
-        Sound_SetScene(0);
+        Sound_SetScene(SOUND_SCENE_NONE);
         EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneOverlayTemplate);
         break;
     }

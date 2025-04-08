@@ -13,7 +13,7 @@ BOOL ScrCmd_StartTagBattle(ScriptContext *ctx);
 BOOL ScrCmd_0E7(ScriptContext *param0);
 BOOL ScrCmd_0E8(ScriptContext *param0);
 BOOL ScrCmd_0E9(ScriptContext *param0);
-BOOL ScrCmd_0EA(ScriptContext *param0);
+BOOL ScrCmd_PlayTrainerEncounterBGM(ScriptContext *ctx);
 BOOL ScrCmd_BlackOutFromBattle(ScriptContext *param0);
 BOOL ScrCmd_CheckWonBattle(ScriptContext *ctx);
 BOOL ScrCmd_CheckLostBattle(ScriptContext *ctx);

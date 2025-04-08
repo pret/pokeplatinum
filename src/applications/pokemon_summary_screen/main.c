@@ -254,7 +254,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     PokemonSummaryScreen_SetupCamera(summaryScreen);
     SetVBlankCallback(PokemonSummaryScreenVBlank, summaryScreen);
     GXLayers_TurnBothDispOn();
-    Sound_SetSceneAndPlayBGM(61, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_61, SEQ_NONE, 0);
     DrawWifiConnectionIcon();
     NARC_dtor(narc);
 

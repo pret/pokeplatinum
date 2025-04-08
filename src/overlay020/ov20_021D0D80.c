@@ -125,7 +125,7 @@ int ov20_021D0D80(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        Sound_SetSceneAndPlayBGM(62, 0, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_62, SEQ_NONE, 0);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_34, 32768);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_35, 163840);
         v0 = ov20_021D0EC8(param0);

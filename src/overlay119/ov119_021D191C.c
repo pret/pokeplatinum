@@ -76,7 +76,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
     case 2:
         if (IsScreenTransitionDone() == 1) {
             Sound_StopWaveOutAndSequences();
-            Sound_SetSceneAndPlayBGM(13, 1141, 1);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_13, SEQ_SHINKA, 1);
             param0->unk_60++;
         }
         break;
@@ -255,7 +255,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         param0->unk_60++;
     case 2:
         if (IsScreenTransitionDone() == 1) {
-            Sound_SetSceneAndPlayBGM(13, 1141, 1);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_13, SEQ_SHINKA, 1);
             param0->unk_60++;
         }
         break;

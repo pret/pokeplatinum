@@ -229,7 +229,7 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
     v0->unk_718 = Window_New(HEAP_ID_13, 1);
     v0->unk_70C = 0;
 
-    Sound_SetSceneAndPlayBGM(53, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_53, SEQ_NONE, 0);
 
     return 1;
 }
@@ -554,7 +554,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         break;
     case 12:
         if (IsScreenTransitionDone()) {
-            Sound_SetSceneAndPlayBGM(7, 1169, 0);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_7, SEQ_CO_DRESS, 0);
             (*param1)++;
         }
         break;

@@ -204,7 +204,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
         ov109_021D441C(v0, v1);
         ov109_021D4518(v0);
         ov109_021D45F4(v0);
-        Sound_SetSceneAndPlayBGM(52, 0, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
         sub_0209BE50(v2->unk_34);
         sub_020378B8();
         sub_02037B58(3);

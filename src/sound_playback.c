@@ -152,8 +152,8 @@ void Sound_StopBGM(u16 bgmID, int fadeOutFrames)
 
 static void Sound_Impl_ResetBGM(void)
 {
-    Sound_SetCurrentBGM(0);
-    Sound_SetNextBGM(0);
+    Sound_SetCurrentBGM(SEQ_NONE);
+    Sound_SetNextBGM(SEQ_NONE);
     SoundSystem_SetState(SOUND_SYSTEM_STATE_IDLE);
 }
 

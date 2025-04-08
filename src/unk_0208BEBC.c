@@ -53,7 +53,7 @@ static int sub_0208BEBC(OverlayManager *param0, int *param1, int param2)
     Sound_SetPlayerVolume(1, (127 / 3));
 
     if (param2 != 0) {
-        Sound_SetSceneAndPlayBGM(4, 1196, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PL_WIFITOWER, 1);
     }
 
     if (param2 == 0) {

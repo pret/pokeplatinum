@@ -14,7 +14,7 @@ _000A:
 _000E:
     ApplyMovement LOCALID_PLAYER, _012C
     WaitMovement
-    ScrCmd_0EA TRAINER_CHAMPION_CYNTHIA
+    PlayTrainerEncounterBGM TRAINER_CHAMPION_CYNTHIA
     CallIfUnset FLAG_GAME_COMPLETED, _00EB
     CallIfSet FLAG_GAME_COMPLETED, _00F0
     CloseMessage

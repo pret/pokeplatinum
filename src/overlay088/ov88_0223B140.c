@@ -318,11 +318,11 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     sub_02038A1C(26, v0->unk_174);
     sub_02039734();
 
-    if (IsNight() == 0) {
-        Sound_SetSceneAndPlayBGM(4, 1085, 1);
+    if (IsNight() == FALSE) {
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PC_01, 1);
         Sound_AdjustVolumeForVoiceChat(1085);
     } else {
-        Sound_SetSceneAndPlayBGM(4, 1086, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PC_02, 1);
         Sound_AdjustVolumeForVoiceChat(1086);
     }
 
