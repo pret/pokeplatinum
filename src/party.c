@@ -94,11 +94,10 @@ Pokemon *Party_GetPokemonBySlotIndex(const Party *party, int slot)
 
 void Party_AddPokemonBySlotIndex(Party *party, int slot, Pokemon *pokemon)
 {
-    int addOrRemoveSlots;
 
     PARTY_ASSERT_SLOT(party, slot);
 
-    addOrRemoveSlots = Pokemon_GetValue(&(party->pokemon[slot]), MON_DATA_SPECIES_EXISTS, NULL) - Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EXISTS, NULL);
+    int addOrRemoveSlots = Pokemon_GetValue(&(party->pokemon[slot]), MON_DATA_SPECIES_EXISTS, NULL) - Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EXISTS, NULL);
     party->pokemon[slot] = *pokemon;
     party->currentCount += addOrRemoveSlots;
 }
