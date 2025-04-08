@@ -1376,9 +1376,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_0EA arg0
+    .macro PlayTrainerEncounterBGM trainerID
     .short 234
-    .short \arg0
+    .short \trainerID
     .endm
 
     .macro BlackOutFromBattle

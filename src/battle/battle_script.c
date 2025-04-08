@@ -10688,7 +10688,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v2->tmpData[1] = 30;
                 v2->seqNum = 9;
 
-                Sound_PlayBGM(1127);
+                Sound_PlayBGM(SEQ_VICTORY_WILD_POKEMON);
                 BattleSystem_SetRedHPSoundFlag(v2->battleSys, 2);
             }
         }

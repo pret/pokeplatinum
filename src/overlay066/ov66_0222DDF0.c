@@ -2453,7 +2453,7 @@ static void ov66_0222FA88(UnkStruct_ov66_0222FB64 *param0, UnkStruct_ov66_0222FA
         ov66_022302D0(param2);
 
         if (param0->unk_0C == 0) {
-            Sound_PlayBGM(1213);
+            Sound_PlayBGM(SEQ_PL_WIFIPARADE);
         }
 
         param0->unk_00_4 = 1;

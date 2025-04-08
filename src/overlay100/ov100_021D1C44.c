@@ -455,7 +455,7 @@ BOOL ov100_021D2428(void *param0)
     case 11:
         v0->unk_1A0.unk_10DC[0].unk_160 = 1;
         Easy3DObject_SetVisibility(&v0->unk_1A0.unk_10DC[0].unk_00, 1);
-        Sound_PlayBGM(1214);
+        Sound_PlayBGM(SEQ_PL_EV_GIRA);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
         v0->unk_00++;
         break;
@@ -586,7 +586,7 @@ BOOL ov100_021D2428(void *param0)
             ov100_021D4788(v0->unk_1EBC);
         }
 
-        Sound_PlayBGM(1215);
+        Sound_PlayBGM(SEQ_PL_EV_GIRA2);
 
         v0->unk_1A0.unk_934[4].unk_160 = 1;
 

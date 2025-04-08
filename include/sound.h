@@ -139,7 +139,7 @@ void Sound_SetSubScene(u8 scene);
 int Sound_LoadSoundEffectsForScene(u8 scene);
 BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int unused);
 void Sound_LoadSoundDataForFieldBGM(u16 seqID, u16 currentBankID);
-void sub_02004950(u16 param0);
+void Sound_PauseOrStopFieldBGMAndPlayNewBGM(u16 bgmID);
 void Sound_LoadHeapStateBGM(void);
 int Sound_GetHeapState(enum SoundHeapState state);
 void Sound_SetBGMPlayerPaused(u8 playerID, BOOL paused); // playerID can be either PLAYER_FIELD or PLAYER_BGM

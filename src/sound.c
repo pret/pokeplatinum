@@ -487,14 +487,14 @@ static void Sound_Impl_PlayCutsceneBGM(u8 scene, u16 bgmID, int unused)
     Sound_PlayBGM(bgmID);
 }
 
-void sub_02004950(u16 param0)
+void Sound_PauseOrStopFieldBGMAndPlayNewBGM(u16 bgmID)
 {
-    int v0;
+    BOOL v0;
     SoundSystem *v1 = SoundSystem_Get();
 
     Sound_Impl_PauseOrStopFieldBGM();
 
-    v0 = Sound_PlayBGM(param0);
+    v0 = Sound_PlayBGM(bgmID);
     return;
 }
 

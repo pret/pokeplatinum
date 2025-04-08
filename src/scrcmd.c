@@ -999,7 +999,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0E7,
     ScrCmd_0E8,
     ScrCmd_0E9,
-    ScrCmd_0EA,
+    ScrCmd_PlayTrainerEncounterBGM,
     ScrCmd_BlackOutFromBattle,
     ScrCmd_CheckWonBattle,
     ScrCmd_CheckLostBattle,
