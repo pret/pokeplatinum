@@ -2793,9 +2793,9 @@ static BOOL ov104_02231EC4(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02231ED8(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_0202B370 *v0;
+    WiFiList *v0;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = sub_0202B370(v1->saveData);
+    v0 = SaveData_GetWiFiList(v1->saveData);
 
     sub_0202B13C(v0, ov4_021D2388());
     return 0;

@@ -22,7 +22,7 @@ typedef struct {
     Party *unk_08;
     PCBoxes *unk_0C;
     Pokedex *unk_10;
-    UnkStruct_0202B370 *unk_14;
+    WiFiList *unk_14;
     UnkStruct_0202C878 *unk_18;
     TrainerInfo *unk_1C;
     SaveData *unk_20;

@@ -118,7 +118,7 @@ void CommInfo_SendBattleRegulation(void)
     TrainerInfo *trainerInfo;
     const u16 *v2;
     RecordMixedRNG *v3 = SaveData_GetRecordMixedRNG(sCommInfo->saveData);
-    UnkStruct_0202B370 *v4 = sub_0202B370(sCommInfo->saveData);
+    WiFiList *v4 = SaveData_GetWiFiList(sCommInfo->saveData);
     UnkStruct_0202C878 *v5 = sub_0202C878(sCommInfo->saveData);
 
     if (sCommInfo->personalTrainerInfo) {
@@ -453,7 +453,7 @@ static void CommInfo_UpdatePlayerRecord(int param0, int val)
 
 void CommInfo_SavePlayerRecord(SaveData *saveData)
 {
-    UnkStruct_0202B370 *v0 = sub_0202B370(saveData);
+    WiFiList *v0 = SaveData_GetWiFiList(saveData);
     int netId, v2, v3;
 
     for (netId = 0; netId < CommSys_ConnectedCount(); netId++) {

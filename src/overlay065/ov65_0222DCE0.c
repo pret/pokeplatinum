@@ -762,7 +762,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
 
         v0->unk_180 = 8;
         v0->saveData = v1->saveData;
-        v0->unk_00 = sub_0202B370(v0->saveData);
+        v0->unk_00 = SaveData_GetWiFiList(v0->saveData);
         v0->unk_3B4 = v1->unk_04;
         v0->unk_3AC = 8;
         v0->unk_3D0 = -1;
@@ -6327,7 +6327,7 @@ static void ov65_022343CC(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 static void ov65_0223449C(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 {
     int v0;
-    UnkStruct_0202B370 *v1 = sub_0202B370(param0->saveData);
+    WiFiList *v1 = SaveData_GetWiFiList(param0->saveData);
 
     v0 = param0->unk_BE0.unk_71 - 1;
 

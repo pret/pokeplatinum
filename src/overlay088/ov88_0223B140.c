@@ -2010,7 +2010,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
     }
 
     {
-        UnkStruct_0202B370 *v2 = sub_0202B370(param0->unk_04);
+        WiFiList *v2 = SaveData_GetWiFiList(param0->unk_04);
 
         for (v0 = 0; v0 < 32; v0++) {
             if (!sub_0202AF78(v2, v0)) {
@@ -2035,7 +2035,7 @@ static int ov88_0223D96C(UnkStruct_02095E80 *param0)
 
     param0->unk_36CC = StringTemplate_Default(HEAP_ID_26);
     param0->unk_36D0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_26);
-    param0->unk_36EC = sub_0202B370(param0->unk_04);
+    param0->unk_36EC = SaveData_GetWiFiList(param0->unk_04);
     param0->unk_226C = ov88_0223D854;
 
     return 0;
