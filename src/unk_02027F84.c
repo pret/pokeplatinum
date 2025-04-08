@@ -14,7 +14,7 @@ int PalPad_SaveSize(void)
     return sizeof(PalPad) * 16;
 }
 
-PalPad *SaveData_PalPad(SaveData *saveData)
+PalPad *SaveData_GetPalPad(SaveData *saveData)
 {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PAL_PAD);
 }
