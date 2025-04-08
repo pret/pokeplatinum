@@ -314,7 +314,7 @@ static BOOL sub_02097F38(FieldTask *param0)
     case 0:
 
         FieldTransition_FinishMap(param0);
-        v1->unk_20 = sub_0202CA1C(v0->unk_10);
+        v1->unk_20 = SaveData_GetBallSeals(v0->unk_10);
         sub_02097F20(v1, 0);
 
         {

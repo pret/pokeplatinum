@@ -4,9 +4,9 @@
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA88.h"
 
-typedef struct UnkStruct_0202CA1C_t {
+typedef struct BallSeals_t {
     UnkStruct_0202CA28 unk_00[12];
     UnkStruct_0202CA88 unk_120;
-} UnkStruct_0202CA1C;
+} BallSeals;
 
 #endif // POKEPLATINUM_STRUCT_0202CA1C_H
