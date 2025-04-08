@@ -25,7 +25,7 @@
 #include "trainer_info.h"
 
 struct UnkStruct_ov65_0222EBE0_t {
-    UnkStruct_0202B370 *unk_00;
+    WiFiList *unk_00;
     UnkStruct_0207DFAC *unk_04;
     int unk_08;
     u8 unk_0C[32];

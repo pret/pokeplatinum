@@ -35,9 +35,9 @@ void TrainerCard_Init(UnkStruct_0202C834 *param0)
     }
 }
 
-UnkStruct_0202C834 *sub_0202C834(SaveData *param0)
+UnkStruct_0202C834 *sub_0202C834(SaveData *saveData)
 {
-    return SaveData_SaveTable(param0, 19);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_TRAINER_CARD);
 }
 
 u8 *sub_0202C840(UnkStruct_0202C834 *param0)

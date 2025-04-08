@@ -78,7 +78,7 @@ struct BattleSystem {
     UnkStruct_0200C440 *unk_1A8;
     void *unk_1AC;
     Options *unk_1B0;
-    UnkStruct_02027F8C *unk_1B4;
+    PalPad *unk_1B4;
     void *unk_1B8;
     u8 *unk_1BC;
     UnkStruct_ov10_0221F800 *unk_1C0;

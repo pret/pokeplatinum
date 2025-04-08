@@ -2147,7 +2147,7 @@ BOOL ov23_0224D1A0(int param0, int param1)
 static void ov23_0224D238(void)
 {
     UnkStruct_02029894 *v0 = sub_02029894(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
     int v2 = CommPlayer_AddXServer(0);
     int v3 = CommPlayer_AddZServer(0);
     int v4 = CommPlayer_DirServer(0);

@@ -42,10 +42,10 @@ void sub_0204FA50(SaveData *param0, UnkStruct_0203026C *param1, u8 param2)
     sub_02030280(param1, 5, param2, 0, v1);
 
     if (param2 == 3) {
-        sub_020306E4(sub_0203068C(param0), 106, sub_0205E6A8(106), 0);
+        sub_020306E4(SaveData_GetBattleFrontier(param0), 106, sub_0205E6A8(106), 0);
     }
 
-    sub_020306E4(sub_0203068C(param0), sub_0205E50C(param2), sub_0205E6A8(sub_0205E50C(param2)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E50C(param2), sub_0205E6A8(sub_0205E50C(param2)), 0);
 
     return;
 }

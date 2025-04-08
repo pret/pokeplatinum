@@ -233,10 +233,10 @@ BOOL ov104_022397B0(UnkStruct_ov104_0222E930 *param0)
         break;
 
     case 3:
-        *v9 = (u16)sub_02030698(sub_0203068C(v5->saveData), 106, sub_0205E6A8(106));
+        *v9 = (u16)sub_02030698(SaveData_GetBattleFrontier(v5->saveData), 106, sub_0205E6A8(106));
         break;
     case 4:
-        *v9 = sub_02030698(sub_0203068C(v5->saveData), sub_0205E55C(3), sub_0205E6A8(sub_0205E55C(3)));
+        *v9 = sub_02030698(SaveData_GetBattleFrontier(v5->saveData), sub_0205E55C(3), sub_0205E6A8(sub_0205E55C(3)));
         break;
     case 5:
         *v9 = v4->unk_76[v7];
@@ -259,24 +259,24 @@ BOOL ov104_022397B0(UnkStruct_ov104_0222E930 *param0)
     case 11:
         *v9 = 1;
         v1 = ov104_0223C264(v4->unk_A0);
-        v2 = sub_02030698(sub_0203068C(v4->unk_00), v1, sub_0205E6A8(v1));
+        v2 = sub_02030698(SaveData_GetBattleFrontier(v4->unk_00), v1, sub_0205E6A8(v1));
 
         if (v2 != v4->unk_72) {
-            sub_020306E4(sub_0203068C(v4->unk_00), v1, sub_0205E6A8(v1), 0);
+            sub_020306E4(SaveData_GetBattleFrontier(v4->unk_00), v1, sub_0205E6A8(v1), 0);
 
             v1 = ov104_0223C29C(v4->unk_A0);
-            sub_020306E4(sub_0203068C(v4->unk_00), v1, sub_0205E6A8(v1), 0);
+            sub_020306E4(SaveData_GetBattleFrontier(v4->unk_00), v1, sub_0205E6A8(v1), 0);
 
             *v9 = 0;
         }
         break;
     case 12:
         v1 = ov104_0223C29C(v4->unk_A0);
-        *v9 = sub_02030698(sub_0203068C(v4->unk_00), v1, sub_0205E6A8(v1));
+        *v9 = sub_02030698(SaveData_GetBattleFrontier(v4->unk_00), v1, sub_0205E6A8(v1));
 
         if (*v9 == 0) {
             v1 = ov104_0223C264(v4->unk_A0);
-            sub_020306E4(sub_0203068C(v4->unk_00), v1, sub_0205E6A8(v1), 0);
+            sub_020306E4(SaveData_GetBattleFrontier(v4->unk_00), v1, sub_0205E6A8(v1), 0);
 
             if (v4->unk_A0 == 1) {
                 v3 = sub_0202D750(v4->unk_00);
@@ -284,19 +284,19 @@ BOOL ov104_022397B0(UnkStruct_ov104_0222E930 *param0)
             }
 
             if (v4->unk_A0 == 4) {
-                sub_020306E4(sub_0203068C(v4->unk_00), 136, sub_0205E6A8(v1), 0);
-                sub_020306E4(sub_0203068C(v4->unk_00), 137, sub_0205E6A8(v1), 0);
+                sub_020306E4(SaveData_GetBattleFrontier(v4->unk_00), 136, sub_0205E6A8(v1), 0);
+                sub_020306E4(SaveData_GetBattleFrontier(v4->unk_00), 137, sub_0205E6A8(v1), 0);
             }
 
             if (v4->unk_A0 == 2) {
-                sub_020306E4(sub_0203068C(v4->unk_00), sub_0205E488(0, 3), sub_0205E6A8(sub_0205E488(0, 3)), 0);
+                sub_020306E4(SaveData_GetBattleFrontier(v4->unk_00), sub_0205E488(0, 3), sub_0205E6A8(sub_0205E488(0, 3)), 0);
             }
 
             if (v4->unk_A0 == 3) {
-                sub_020306E4(sub_0203068C(v4->unk_00), sub_0205E488(1, 3), sub_0205E6A8(sub_0205E488(1, 3)), 0);
+                sub_020306E4(SaveData_GetBattleFrontier(v4->unk_00), sub_0205E488(1, 3), sub_0205E6A8(sub_0205E488(1, 3)), 0);
             }
         } else {
-            sub_020306E4(sub_0203068C(v4->unk_00), v1, sub_0205E6A8(v1), 0);
+            sub_020306E4(SaveData_GetBattleFrontier(v4->unk_00), v1, sub_0205E6A8(v1), 0);
         }
         break;
     case 13:

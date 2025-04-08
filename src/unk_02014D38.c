@@ -257,13 +257,13 @@ void Sentence_Init(void *param0)
         }
     }
 
-    SaveData_SetChecksum(34);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_SENTENCE);
 }
 
-UnkStruct_02014EC4 *sub_02014EC4(SaveData *param0)
+UnkStruct_02014EC4 *sub_02014EC4(SaveData *saveData)
 {
-    SaveData_Checksum(34);
-    return SaveData_SaveTable(param0, 34);
+    SaveData_Checksum(SAVE_TABLE_ENTRY_SENTENCE);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_SENTENCE);
 }
 
 BOOL sub_02014ED8(const UnkStruct_02014EC4 *param0, u32 param1)
@@ -289,7 +289,7 @@ u32 sub_02014EE4(UnkStruct_02014EC4 *param0)
                 if (v2 == 0) {
                     param0->unk_04 |= (1 << v0);
 
-                    SaveData_SetChecksum(34);
+                    SaveData_SetChecksum(SAVE_TABLE_ENTRY_SENTENCE);
 
                     return v0;
                 } else {
@@ -299,7 +299,7 @@ u32 sub_02014EE4(UnkStruct_02014EC4 *param0)
         }
     }
 
-    SaveData_SetChecksum(34);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_SENTENCE);
 
     return 32;
 }
@@ -338,7 +338,7 @@ void sub_02014F98(UnkStruct_02014EC4 *param0, int param1)
 {
     param0->unk_00 |= (1 << param1);
 
-    SaveData_SetChecksum(34);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_SENTENCE);
 }
 
 UnkStruct_02014FB0 *sub_02014FB0(u32 heapID)

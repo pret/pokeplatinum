@@ -120,7 +120,7 @@ static u16 sub_02030954(SaveData *param0, BattleFrontierStage *param1, int param
 
 BOOL sub_020309A0(SaveData *param0, int param1, int param2, int param3, int param4, int param5, int *param6, int *param7)
 {
-    UnkStruct_0203068C *v0;
+    BattleFrontier *v0;
     BattleFrontierStage *v1;
     u16 v2, v3, v4;
     int v5;
@@ -140,7 +140,7 @@ BOOL sub_020309A0(SaveData *param0, int param1, int param2, int param3, int para
         return v6;
     }
 
-    v0 = sub_0203068C(param0);
+    v0 = SaveData_GetBattleFrontier(param0);
     v3 = sub_02030698(v0, param1, param3);
     v5 = sub_02030698(v0, param2, param3);
     v1 = sub_020308A0(param0, param5, param6);

@@ -26,7 +26,7 @@ int MysteryGift_SaveSize(void)
 
 void MysteryGift_Init(MysteryGift *param0)
 {
-    SaveData_SetChecksum(31);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 }
 
 static BOOL sub_0202DAC8(u16 param0)
@@ -78,7 +78,7 @@ BOOL sub_0202DB2C(MysteryGift *param0, const void *param1, int param2)
         }
     }
 
-    SaveData_SetChecksum(31);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 
     return v1;
 }
@@ -110,7 +110,7 @@ BOOL sub_0202DBAC(MysteryGift *param0, const void *param1)
         }
     }
 
-    SaveData_SetChecksum(31);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 
     return v2;
 }
@@ -122,7 +122,7 @@ BOOL sub_0202DC48(MysteryGift *param0, int param1)
     param0->unk_100[param1].unk_00 = 0;
     param0->unk_100[param1].unk_02_0 = 0;
 
-    SaveData_SetChecksum(31);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 
     return 1;
 }
@@ -135,7 +135,7 @@ BOOL sub_0202DC7C(MysteryGift *param0, int param1)
 
     sub_0202DE8C(param0, param0->unk_920[param1].unk_104.unk_4C);
     sub_0202DDE8(param0, param1);
-    SaveData_SetChecksum(31);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 
     return 1;
 }
@@ -145,7 +145,7 @@ BOOL sub_0202DCB8(MysteryGift *param0, int param1)
     GF_ASSERT(param1 < 3);
 
     param0->unk_920[param1].unk_00 = 0;
-    SaveData_SetChecksum(31);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 
     return 1;
 }
@@ -251,7 +251,7 @@ void sub_0202DE5C(MysteryGift *param0, int param1)
     GF_ASSERT(param1 < 2048);
 
     param0->unk_00[param1 / 8] |= (1 << (param1 & 7));
-    SaveData_SetChecksum(31);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 }
 
 void sub_0202DE8C(MysteryGift *param0, int param1)
@@ -261,7 +261,7 @@ void sub_0202DE8C(MysteryGift *param0, int param1)
     GF_ASSERT(param1 < 2048);
 
     param0->unk_00[param1 / 8] &= v0;
-    SaveData_SetChecksum(31);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 }
 
 BOOL sub_0202DEC4(MysteryGift *param0)
@@ -284,7 +284,7 @@ void sub_0202DEE4(SaveData *param0, int param1)
         Unk_021C07A0 = SaveData_GetMysteryGift(param0);
     }
 
-    SaveData_SetChecksum(31);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 }
 
 void sub_0202DF04(SaveData *param0, int param1)

@@ -16,7 +16,7 @@ u16 sub_02014DFC(u32 param0, u32 param1);
 BOOL sub_02014E4C(u16 param0, u32 *param1, u32 *param2);
 u32 Sentence_SaveSize(void);
 void Sentence_Init(void *param0);
-UnkStruct_02014EC4 *sub_02014EC4(SaveData *param0);
+UnkStruct_02014EC4 *sub_02014EC4(SaveData *saveData);
 BOOL sub_02014ED8(const UnkStruct_02014EC4 *param0, u32 param1);
 u32 sub_02014EE4(UnkStruct_02014EC4 *param0);
 BOOL sub_02014F48(UnkStruct_02014EC4 *param0);

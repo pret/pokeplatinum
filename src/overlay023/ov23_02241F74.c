@@ -575,7 +575,7 @@ void ov23_02242830(u8 param0)
     u8 v0 = param0;
     UnkStruct_ov23_02242830 v1;
     int v2, v3;
-    UndergroundData *v4 = sub_020298B0(sCommManUnderground->fieldSystem->saveData);
+    UndergroundData *v4 = SaveData_GetUndergroundData(sCommManUnderground->fieldSystem->saveData);
 
     if ((sCommManUnderground->unk_146 != 0) && (sCommManUnderground->unk_134 != 0)) {
         return;
@@ -788,7 +788,7 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
 
         v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_02253608());
         ov23_02253598(v0, SaveData_SecretBaseRecord(FieldSystem_GetSaveData(fieldSystem)), FieldSystem_GetSaveData(fieldSystem));
-        ov23_0224F588(sub_020298B0(FieldSystem_GetSaveData(fieldSystem)));
+        ov23_0224F588(SaveData_GetUndergroundData(FieldSystem_GetSaveData(fieldSystem)));
     }
 }
 

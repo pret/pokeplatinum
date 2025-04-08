@@ -336,7 +336,7 @@ static void ov59_021D2E60(UnkStruct_0202E794 *param0, int param1, int param2, in
         }
     }
 
-    SaveData_SetChecksum(27);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
 void ov59_021D2F10(TVBroadcast *param0, int param1, int param2, const void **param3, const void **param4)

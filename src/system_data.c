@@ -16,9 +16,9 @@ void SystemData_Clear(SystemData *systemData)
     GameTime_Clear(&systemData->gameTime);
 }
 
-SystemData *SaveData_GetSystemData(SaveData *systemData)
+SystemData *SaveData_GetSystemData(SaveData *saveData)
 {
-    return SaveData_SaveTable(systemData, SAVE_TABLE_ENTRY_SYSTEM);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_SYSTEM);
 }
 
 GameTime *SaveData_GetGameTime(SaveData *saveData)

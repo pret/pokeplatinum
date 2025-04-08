@@ -103,10 +103,10 @@ static u32 sub_0207CBB4(SaveData *param0)
 
 static u32 sub_0207CBC0(SaveData *param0)
 {
-    UnkStruct_0202CA1C *v0;
+    BallSeals *v0;
     u32 v1, v2;
 
-    v0 = sub_0202CA1C(param0);
+    v0 = SaveData_GetBallSeals(param0);
     v2 = 0;
 
     for (v1 = 1; v1 <= 80; v1++) {

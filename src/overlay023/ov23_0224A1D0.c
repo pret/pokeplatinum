@@ -93,7 +93,7 @@ static void ov23_0224A204(int param0)
             }
 
             commPlayerMan->unk_27C[0] = commPlayerMan->unk_290[param0];
-            sub_02028830(sub_020298B0(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), commPlayerMan->unk_290[param0]);
+            sub_02028830(SaveData_GetUndergroundData(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), commPlayerMan->unk_290[param0]);
 
             commPlayerMan->unk_290[param0] = NULL;
             commPlayerMan->unk_14A[param0].unk_20 = 0xff;

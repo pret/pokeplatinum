@@ -15,7 +15,7 @@ void Ribbons_Init(u8 *param0)
     memset(param0, 0, 14);
 }
 
-u8 *sub_0202D79C(SaveData *param0)
+u8 *sub_0202D79C(SaveData *saveData)
 {
-    return SaveData_SaveTable(param0, 24);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_RIBBONS);
 }

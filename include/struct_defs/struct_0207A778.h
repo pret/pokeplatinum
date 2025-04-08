@@ -12,7 +12,7 @@ typedef struct {
     BgConfig *unk_04;
     Window *unk_08;
     PaletteData *unk_0C;
-    UnkStruct_02027F8C *unk_10[4];
+    PalPad *unk_10[4];
     u8 unk_20[0x1000];
     u8 unk_1020;
     u8 unk_1021;

@@ -15,7 +15,7 @@ BOOL sub_02097728(UnkStruct_02097728 *param0);
 int sub_0209772C(UnkStruct_02097728 *param0, int param1, u8 param2);
 int sub_02097750(UnkStruct_02097728 *param0, Pokemon *param1);
 void sub_02097770(UnkStruct_02097728 *param0);
-int sub_02097788(UnkStruct_02028430 *param0, Pokemon *param1, int param2);
-int sub_020977E4(UnkStruct_02028430 *param0, u16 param1, Pokemon *param2, int param3);
+int sub_02097788(MailBox *param0, Pokemon *param1, int param2);
+int sub_020977E4(MailBox *param0, u16 param1, Pokemon *param2, int param3);
 
 #endif // POKEPLATINUM_UNK_02097624_H

@@ -918,7 +918,7 @@ void CommPlayer_RecvLocationAndInit(int netId, int size, void *src, void *unused
 
 static void sub_02058644(int netId)
 {
-    UndergroundData *underground = sub_020298B0(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
+    UndergroundData *underground = SaveData_GetUndergroundData(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
     SaveData_SecretBaseRecord(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
 
     if (sCommPlayerManager->isUnderground) {
