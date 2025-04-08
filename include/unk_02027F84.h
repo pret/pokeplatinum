@@ -6,7 +6,7 @@
 #include "savedata.h"
 
 int PalPad_SaveSize(void);
-PalPad *SaveData_PalPad(SaveData *saveData);
+PalPad *SaveData_GetPalPad(SaveData *saveData);
 void PalPad_Init(PalPad *param0);
 const u16 *sub_02027FBC(const PalPad *param0, int param1);
 u8 sub_02027FC4(const PalPad *param0, int param1);
