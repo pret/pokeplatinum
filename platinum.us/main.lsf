@@ -276,7 +276,7 @@ Static main
 	Object main.nef.p/src_unk_0206F314.c.o
 	Object main.nef.p/src_unk_02070428.c.o
 	Object main.nef.p/src_unk_0207064C.c.o
-	Object main.nef.p/src_unk_0207070C.c.o
+	Object main.nef.p/src_field_move_tasks.c.o
 	Object main.nef.p/src_unk_020711C8.c.o
 	Object main.nef.p/src_unk_020711EC.c.o
 	Object main.nef.p/src_platform_lift.c.o
