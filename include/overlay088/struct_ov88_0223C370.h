@@ -19,7 +19,7 @@ typedef struct {
     FieldSystem *fieldSystem;
     TrainerInfo *unk_04;
     Party *unk_08;
-    UnkStruct_02027F8C *unk_0C;
+    PalPad *unk_0C;
     SaveData *unk_10;
     UnkStruct_0202C878 *unk_14;
     Options *unk_18;

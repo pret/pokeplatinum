@@ -160,7 +160,7 @@ static int ov88_0223D7AC(UnkStruct_02095E80 *param0);
 static int ov88_0223D854(UnkStruct_02095E80 *param0);
 static int ov88_0223D69C(UnkStruct_02095E80 *param0);
 static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1);
-static void ov88_0223D0D4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkStruct_02027F8C *param2);
+static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2);
 static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 
 static const int Unk_ov88_0223EF9C[][2] = {
@@ -1646,7 +1646,7 @@ static void ov88_0223D0C0(SaveData *param0)
     CommSys_SendData(32, v0, 14);
 }
 
-static void ov88_0223D0D4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkStruct_02027F8C *param2)
+static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
 {
     int v0;
 
@@ -1664,7 +1664,7 @@ static void ov88_0223D0D4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkSt
         param2->unk_78[v0] = param1[v0].unk_16;
     }
 
-    CommSys_SendDataHuge(28, param2, sizeof(UnkStruct_02027F8C));
+    CommSys_SendDataHuge(28, param2, sizeof(PalPad));
 }
 
 static void ov88_0223D140(ChatotCry *param0)
