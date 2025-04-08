@@ -5936,7 +5936,7 @@ static BOOL ScrCmd_1B4(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    UnkStruct_02028430 *v2 = sub_02028430(fieldSystem->saveData);
+    MailBox *v2 = SaveData_GetMailBox(fieldSystem->saveData);
 
     *v1 = (u16)sub_02028494(v2, 0);
     return 0;

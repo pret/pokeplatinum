@@ -334,7 +334,7 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
 
     v1->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v1->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v1->unk_08 = sub_02028430(fieldSystem->saveData);
+    v1->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v1->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
 
     v1->unk_21 = 0;

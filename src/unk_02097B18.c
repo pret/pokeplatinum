@@ -361,7 +361,7 @@ static BOOL sub_02097F38(FieldTask *param0)
 
         v6->unk_00 = v1->unk_1C;
         v6->unk_04 = SaveData_GetBag(v0->unk_10);
-        v6->unk_08 = sub_02028430(v0->unk_10);
+        v6->unk_08 = SaveData_GetMailBox(v0->unk_10);
         v6->selectedMonSlot = 0;
         v6->unk_21 = 0;
         v6->unk_20 = 15;

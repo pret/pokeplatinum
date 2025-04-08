@@ -105,7 +105,7 @@ typedef struct {
     Window unk_194;
     UnkStruct_0206A844 *unk_1A4;
     UnkStruct_02097728 *unk_1A8;
-    UnkStruct_02028430 *unk_1AC;
+    MailBox *unk_1AC;
     Bag *bag;
     PartyManagementData *unk_1B4;
 } UnkStruct_02072334;
@@ -899,11 +899,11 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int param
 {
     u8 v0 = 0, v1 = 0, v2 = 0xFF, v3 = 0;
     int v4;
-    UnkStruct_02028430 *v5;
+    MailBox *v5;
     Mail *v6;
     UnkStruct_02072EB8 *v7, *v8;
 
-    v5 = sub_02028430(param1);
+    v5 = SaveData_GetMailBox(param1);
 
     param0->unk_1AC = v5;
     param0->bag = SaveData_GetBag(param1);
@@ -1205,7 +1205,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
         v0->unk_00 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
         v0->unk_04 = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
         v0->unk_0C = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_08 = sub_02028430(param0->fieldSystem->saveData);
+        v0->unk_08 = SaveData_GetMailBox(param0->fieldSystem->saveData);
         v0->unk_21 = 0;
         v0->unk_20 = param1;
         v0->unk_24 = param0->unk_1C[param0->unk_18].item;
