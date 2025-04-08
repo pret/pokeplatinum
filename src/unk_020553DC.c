@@ -103,7 +103,6 @@ const static u16 Unk_020EC3E0[][2] = {
 };
 
 void sub_020553DC(void);
-u16 sub_02055428(FieldSystem *fieldSystem, int param1);
 static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID);
 BOOL sub_02055554(FieldSystem *fieldSystem, u16 param1, int param2);
 static void sub_020555CC(FieldSystem *fieldSystem, int param1, int *param2, int *param3);
@@ -136,62 +135,59 @@ void Sound_ClearSpecialBGM(FieldSystem *fieldSystem)
     *bgm = 0;
 }
 
-u16 sub_02055428(FieldSystem *fieldSystem, int param1)
+u16 sub_02055428(FieldSystem *fieldSystem, int mapID)
 {
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
-    int v1;
-    u16 v2, v3;
+    int playerState = PlayerAvatar_GetPlayerState(playerAvatar);
 
-    v1 = PlayerAvatar_GetPlayerState(playerAvatar);
-
-    if (v1 == 0x2) {
-        switch (param1) {
-        case 573:
-        case 574:
-        case 575:
-        case 576:
-        case 577:
-        case 579:
-        case 580:
-        case 581:
-        case 582:
-        case 583:
+    if (playerState == PLAYER_STATE_SURFING) {
+        switch (mapID) {
+        case MAP_HEADER_DISTORTION_WORLD_1F:
+        case MAP_HEADER_DISTORTION_WORLD_B1F:
+        case MAP_HEADER_DISTORTION_WORLD_B2F:
+        case MAP_HEADER_DISTORTION_WORLD_B3F:
+        case MAP_HEADER_DISTORTION_WORLD_B4F:
+        case MAP_HEADER_DISTORTION_WORLD_B5F:
+        case MAP_HEADER_DISTORTION_WORLD_B6F:
+        case MAP_HEADER_DISTORTION_WORLD_B7F:
+        case MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM:
+        case MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM:
             break;
         default:
-            return 1151;
+            return SEQ_SURFING;
         }
     }
 
-    if (GetRadarChainActive(fieldSystem->chain) == 1) {
-        return 1150;
+    if (GetRadarChainActive(fieldSystem->chain) == TRUE) {
+        return SEQ_POKERADAR;
     }
 
-    v2 = sub_020554A4(fieldSystem, param1);
+    u16 bgmID = Sound_GetBGMByMapID(fieldSystem, mapID);
 
-    if (Sound_GetSpecialBGM(fieldSystem) != 0) {
-        v2 = Sound_GetSpecialBGM(fieldSystem);
+    if (Sound_GetSpecialBGM(fieldSystem) != SEQ_NONE) {
+        bgmID = Sound_GetSpecialBGM(fieldSystem);
     }
 
-    return v2;
+    return bgmID;
 }
 
-u16 sub_020554A4(FieldSystem *fieldSystem, int headerID)
+u16 Sound_GetBGMByMapID(FieldSystem *fieldSystem, int mapID)
 {
     u16 sdatID;
 
     if (IsNight() == FALSE) {
-        sdatID = MapHeader_GetDayMusicID(headerID);
+        sdatID = MapHeader_GetDayMusicID(mapID);
     } else {
-        sdatID = MapHeader_GetNightMusicID(headerID);
+        sdatID = MapHeader_GetNightMusicID(mapID);
     }
 
-    u16 altSdatID = SystemFlag_GetAltMusicForHeader(SaveData_GetVarsFlags(fieldSystem->saveData), headerID);
+    u16 altSdatID = SystemFlag_GetAltMusicForHeader(SaveData_GetVarsFlags(fieldSystem->saveData), mapID);
 
     if (altSdatID != SEQ_NONE) {
         sdatID = altSdatID;
     }
 
-    altSdatID = FieldSystem_GetAltMusicForCyclingRoad(fieldSystem, headerID);
+    altSdatID = FieldSystem_GetAltMusicForCyclingRoad(fieldSystem, mapID);
 
     if (altSdatID != SEQ_NONE) {
         sdatID = altSdatID;
@@ -295,37 +291,37 @@ u16 sub_0205560C(int param0)
     return v1;
 }
 
-void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int param1)
+void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int mapID)
 {
     if (Sound_IsBGMFixed() == 1) {
         return;
     }
 
-    if (Sound_GetCurrentBGM() != sub_020554A4(fieldSystem, param1)) {
+    if (Sound_GetCurrentBGM() != Sound_GetBGMByMapID(fieldSystem, mapID)) {
         Sound_FadeOutBGM(0, 40);
     }
 }
 
-void Sound_PlayMapBGM(FieldSystem *fieldSystem, int param1)
+void Sound_PlayMapBGM(FieldSystem *fieldSystem, int mapID)
 {
-    u16 v0;
+    u16 bgmID;
 
     if (Sound_IsBGMFixed() == 1) {
         return;
     }
 
-    Sound_SetScene(0);
+    Sound_SetScene(SOUND_SCENE_NONE);
 
-    v0 = sub_020554A4(fieldSystem, param1);
+    bgmID = Sound_GetBGMByMapID(fieldSystem, mapID);
 
-    Sound_SetFieldBGM(v0);
-    Sound_SetSceneAndPlayBGM(4, v0, 1);
+    Sound_SetFieldBGM(bgmID);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
 }
 
-void sub_020556A0(FieldSystem *fieldSystem, int param1)
+void sub_020556A0(FieldSystem *fieldSystem, int mapID)
 {
-    u16 v0 = sub_02055428(fieldSystem, param1);
+    u16 bgmID = sub_02055428(fieldSystem, mapID);
 
-    Sound_SetFieldBGM(sub_020554A4(fieldSystem, param1));
-    Sound_SetSceneAndPlayBGM(4, v0, 1);
+    Sound_SetFieldBGM(Sound_GetBGMByMapID(fieldSystem, mapID));
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
 }

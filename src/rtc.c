@@ -125,10 +125,10 @@ BOOL IsNight(void)
     switch (GetTimeOfDay()) {
     case TIMEOFDAY_LATE_NIGHT:
     case TIMEOFDAY_NIGHT:
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 enum TimeOfDay GetTimeOfDay(void)

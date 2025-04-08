@@ -39,7 +39,7 @@ typedef struct {
     int unk_0C;
     fx32 unk_10;
     fx32 unk_14;
-    int unk_18;
+    int mapID;
     int unk_1C;
     int unk_20;
     VecFx32 unk_24;
@@ -69,7 +69,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
 
     v0->unk_01 = param1;
     v0->unk_04 = param2;
-    v0->unk_18 = param3;
+    v0->mapID = param3;
     v0->unk_1C = param4;
     v0->unk_20 = param5;
     v0->unk_34 = *(fieldSystem->areaModelAttrs);
@@ -221,11 +221,11 @@ static BOOL sub_0206C964(FieldTask *taskMan)
         v1->unk_00 = 5;
         break;
     case 5:
-        FieldTask_ChangeMapToLocation(taskMan, v1->unk_18, -1, v1->unk_1C, v1->unk_20, v1->unk_04);
+        FieldTask_ChangeMapToLocation(taskMan, v1->mapID, -1, v1->unk_1C, v1->unk_20, v1->unk_04);
         v1->unk_00 = 6;
         break;
     case 6:
-        Sound_PlayMapBGM(fieldSystem, v1->unk_18);
+        Sound_PlayMapBGM(fieldSystem, v1->mapID);
         FieldTransition_StartMapAndFadeIn(taskMan);
         v1->unk_00 = 7;
         break;
