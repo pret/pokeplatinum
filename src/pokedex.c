@@ -1145,8 +1145,7 @@ void Pokedex_ObtainPokedex(Pokedex *pokedex)
 
 Pokedex *SaveData_GetPokedex(SaveData *saveData)
 {
-    Pokedex *pokedex = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_POKEDEX);
-    return pokedex;
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_POKEDEX);
 }
 
 u32 Pokedex_GetDisplayForm(const Pokedex *pokedexData, int species, int formIndex)
