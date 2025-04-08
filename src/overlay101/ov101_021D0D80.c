@@ -625,10 +625,10 @@ static void ov101_021D18F4(SysTask *param0, void *param1)
             Sound_SetBGMPlayerPaused(1, 1);
             break;
         case UnkEnum_ov101_021D1894_01:
-            Sound_StopBGM(1184, 0);
+            Sound_StopBGM(SEQ_SLOT_ATARI, 0);
             break;
         case UnkEnum_ov101_021D1894_02:
-            Sound_StopBGM(1185, 0);
+            Sound_StopBGM(SEQ_SLOT_OOATARI, 0);
             break;
         }
 

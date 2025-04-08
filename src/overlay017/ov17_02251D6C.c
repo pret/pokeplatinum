@@ -481,7 +481,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         break;
     case 2:
         StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_24);
-        Sound_StopBGM(1135, 30);
+        Sound_StopBGM(SEQ_CONTEST_DRESSING_ROOM, 30);
         v0->unk_10++;
         break;
     case 3:
@@ -822,7 +822,7 @@ static void ov17_022529C8(SysTask *param0, void *param1)
     switch (v0->unk_10) {
     case 0:
         BrightnessController_StartTransition(90, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
-        Sound_StopBGM(1182, 90);
+        Sound_StopBGM(SEQ_CO_FANFA, 90);
         v0->unk_10++;
         break;
     case 1:

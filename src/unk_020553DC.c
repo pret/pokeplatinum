@@ -156,7 +156,7 @@ u16 sub_02055428(FieldSystem *fieldSystem, int mapID)
         case MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM:
             break;
         default:
-            return SEQ_SURFING;
+            return SEQ_NAMINORI;
         }
     }
 

@@ -635,7 +635,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             param0->unk_74 = 0xff;
             param0->unk_75 = 0xa0;
             param0->unk_70 = 0;
-            Sound_StopBGM(1141, 0);
+            Sound_StopBGM(SEQ_SHINKA, 0);
             sub_0207C8F4(param0->unk_30);
             param0->unk_64++;
         }

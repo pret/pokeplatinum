@@ -1417,7 +1417,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
     switch (param0->unk_0C) {
     case 0:
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_2, SEQ_OPENING, 1);
-        Sound_StopBGM(1029, 0);
+        Sound_StopBGM(SEQ_OPENING, 0);
         Bg_ToggleLayer(0, 1);
         Bg_ToggleLayer(7, 1);
         StartScreenTransition(0, 1, 1, 0x0, 6, 1, param0->heapId);

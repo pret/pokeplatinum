@@ -101,7 +101,7 @@ int sub_02099E38(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        Sound_StopBGM(1173, 0);
+        Sound_StopBGM(SEQ_TITLE01, 0);
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
         Sound_SetScene(SOUND_SCENE_NONE);
         sub_0200F344(0, 0x0);
