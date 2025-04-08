@@ -260,10 +260,10 @@ void Sentence_Init(void *param0)
     SaveData_SetChecksum(34);
 }
 
-UnkStruct_02014EC4 *sub_02014EC4(SaveData *param0)
+UnkStruct_02014EC4 *sub_02014EC4(SaveData *saveData)
 {
-    SaveData_Checksum(34);
-    return SaveData_SaveTable(param0, 34);
+    SaveData_Checksum(SAVE_TABLE_ENTRY_SENTENCE);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_SENTENCE);
 }
 
 BOOL sub_02014ED8(const UnkStruct_02014EC4 *param0, u32 param1)

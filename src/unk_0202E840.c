@@ -85,10 +85,10 @@ void Rankings_Init(UnkStruct_0202E8C0 *param0)
     SaveData_SetChecksum(28);
 }
 
-UnkStruct_0202E8C0 *sub_0202E8C0(SaveData *param0)
+UnkStruct_0202E8C0 *sub_0202E8C0(SaveData *saveData)
 {
     SaveData_Checksum(28);
-    return SaveData_SaveTable(param0, 28);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_RANKINGS);
 }
 
 void sub_0202E8D4(UnkStruct_0202E8C0 *param0, int param1, u8 param2)

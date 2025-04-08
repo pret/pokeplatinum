@@ -1356,15 +1356,15 @@ BOOL sub_0202988C(const UnkStruct_02029894 *param0)
     return param0->unk_91;
 }
 
-UnkStruct_02029894 *sub_02029894(SaveData *param0)
+UnkStruct_02029894 *sub_02029894(SaveData *saveData)
 {
-    UndergroundData *v0 = SaveData_SaveTable(param0, 12);
+    UndergroundData *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_UNDERGROUND);
     return &v0->unk_00;
 }
 
-SecretBaseRecord *SaveData_SecretBaseRecord(SaveData *param0)
+SecretBaseRecord *SaveData_SecretBaseRecord(SaveData *saveData)
 {
-    UndergroundData *v0 = SaveData_SaveTable(param0, 12);
+    UndergroundData *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_UNDERGROUND);
     return &v0->unk_00.unk_50;
 }
 
@@ -1373,8 +1373,7 @@ SecretBaseRecord *sub_020298AC(UnkStruct_02029894 *param0)
     return &param0->unk_50;
 }
 
-UndergroundData *sub_020298B0(SaveData *param0)
+UndergroundData *sub_020298B0(SaveData *saveData)
 {
-    UndergroundData *v0 = SaveData_SaveTable(param0, 12);
-    return v0;
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_UNDERGROUND);
 }

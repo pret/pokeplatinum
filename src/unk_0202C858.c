@@ -18,10 +18,10 @@ void WiFiHistory_Init(UnkStruct_0202C878 *param0)
     SaveData_SetChecksum(30);
 }
 
-UnkStruct_0202C878 *sub_0202C878(SaveData *param0)
+UnkStruct_0202C878 *sub_0202C878(SaveData *saveData)
 {
     SaveData_Checksum(30);
-    return (UnkStruct_0202C878 *)SaveData_SaveTable(param0, 30);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_WIFI_HISTORY);
 }
 
 void sub_0202C88C(UnkStruct_0202C878 *param0, int param1, int param2)

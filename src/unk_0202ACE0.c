@@ -376,6 +376,5 @@ void sub_0202B270(UnkStruct_0202B370 *param0, int param1, int param2)
 
 UnkStruct_0202B370 *sub_0202B370(SaveData *saveData)
 {
-    UnkStruct_0202B370 *v0 = SaveData_SaveTable(saveData, 29);
-    return v0;
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_WIFI_LIST);
 }
