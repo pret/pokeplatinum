@@ -203,7 +203,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
         ov58_021D16D8(v0);
         ov58_021D18AC(v0, param0);
 
-        Sound_SetSceneAndPlayBGM(52, 0, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
 
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 

@@ -225,7 +225,7 @@ BOOL ScrCmd_05C(ScriptContext *param0)
 
 BOOL ScrCmd_05D(ScriptContext *param0)
 {
-    Sound_SetSceneAndPlayBGM(63, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
     return 1;
 }
 
@@ -241,9 +241,9 @@ BOOL ScrCmd_283(ScriptContext *param0)
 BOOL ScrCmd_2F8(ScriptContext *param0)
 {
     if (gSystem.heldKeys & PAD_KEY_UP) {
-        Sound_SetSceneAndPlayBGM(22, 1218, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_22, SEQ_PL_TOWN02, 1);
     } else {
-        Sound_SetSceneAndPlayBGM(22, 1218, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_22, SEQ_PL_TOWN02, 1);
     }
 
     return 1;
@@ -251,9 +251,9 @@ BOOL ScrCmd_2F8(ScriptContext *param0)
 
 BOOL ScrCmd_2F9(ScriptContext *param0)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
+    u16 bgmID = ScriptContext_GetVar(param0);
 
-    Sound_SetSceneAndPlayBGM(4, v0, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
     return 1;
 }
 

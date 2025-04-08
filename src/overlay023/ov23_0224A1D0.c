@@ -385,7 +385,7 @@ static void ov23_0224A6E4(UnkStruct_ov23_0224A570 *param0, BOOL param1, SecretBa
         ov23_02253F40(ov23_022421AC(), 11, 1, ov23_0224A5B0);
     }
 
-    Sound_FadeOutAndPlayBGM(4, 1060, 60, 0, 0xff, NULL);
+    Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xff, NULL);
     Sound_PlayEffect(SEQ_SE_DP_CARD10);
 }
 
@@ -406,7 +406,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             if (v1->unk_01 == CommSys_CurNetId()) {
                 sub_020594FC();
                 ov23_02253F40(ov23_022421AC(), 2, 1, ov23_0224A308);
-                Sound_FadeOutAndPlayBGM(4, 1060, 60, 0, 0xff, NULL);
+                Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xff, NULL);
             }
         }
         break;

@@ -1616,7 +1616,7 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
             param0->unk_3A8 = 61;
         }
     } else {
-        Sound_SetSceneAndPlayBGM(11, 1175, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
         ov65_0222EE98(param0);
 
         if (!DWC_CheckHasProfile(sub_0202AD28(param0->unk_00))) {
@@ -3797,19 +3797,19 @@ static u32 ov65_022319B8(UnkStruct_ov65_0222EBE0 *param0)
 
 static void ov65_02231A0C(void)
 {
-    u32 v0;
+    u32 bgmID;
 
     ov4_021D2584(0);
 
     if (ov65_02231A54() == 0) {
-        if (IsNight() == 0) {
-            v0 = 1085;
+        if (IsNight() == FALSE) {
+            bgmID = SEQ_PC_01;
         } else {
-            v0 = 1086;
+            bgmID = SEQ_PC_02;
         }
 
-        Sound_SetScene(0);
-        Sound_SetSceneAndPlayBGM(11, v0, 1);
+        Sound_SetScene(SOUND_SCENE_NONE);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, bgmID, 1);
     } else {
         Sound_SetInitialVolumeForSequence(Sound_GetCurrentBGM(), 120);
     }

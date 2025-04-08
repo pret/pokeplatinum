@@ -103,7 +103,7 @@ int ov101_021D0D80(OverlayManager *param0, int *param1)
     ov101_021D59AC(v1);
     ov101_021D5AF0(v1);
     ov101_021D5C28(v1);
-    Sound_SetSceneAndPlayBGM(66, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_66, SEQ_NONE, 0);
     ov101_021D18C0(v1);
     StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_79);
 

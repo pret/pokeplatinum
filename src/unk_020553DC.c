@@ -113,7 +113,7 @@ void sub_020553DC()
 {
     Sound_StopWaveOutAndSequences();
     Sound_ClearBGMPauseFlags();
-    Sound_SetScene(0);
+    Sound_SetScene(SOUND_SCENE_NONE);
 }
 
 void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 sdatID)

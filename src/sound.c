@@ -277,7 +277,7 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int unused)
     case SOUND_SCENE_CONTEST:
         Sound_Impl_PlayContestBGM(bgmID, unused);
         break;
-    case 7:
+    case SOUND_SCENE_7:
         sub_020048F0(bgmID, unused);
         break;
     case SOUND_SCENE_SUB_BAG:
@@ -300,35 +300,35 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int unused)
     case 68:
         Sound_Impl_LoadSubSceneSoundData(scene);
         break;
-    case 1:
+    case SOUND_SCENE_1:
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_TITLE);
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
-    case 14:
+    case SOUND_SCENE_14:
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_ENDING);
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
-    case 2:
+    case SOUND_SCENE_2:
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
-    case 3:
-    case 8:
-    case 9:
-    case 10:
-    case 12:
-    case 13:
-    case 15:
-    case 16:
-    case 17:
-    case 18:
-    case 19:
-    case 20:
-    case 21:
-    case 23:
+    case SOUND_SCENE_3:
+    case SOUND_SCENE_8:
+    case SOUND_SCENE_9:
+    case SOUND_SCENE_10:
+    case SOUND_SCENE_12:
+    case SOUND_SCENE_13:
+    case SOUND_SCENE_15:
+    case SOUND_SCENE_16:
+    case SOUND_SCENE_17:
+    case SOUND_SCENE_18:
+    case SOUND_SCENE_19:
+    case SOUND_SCENE_20:
+    case SOUND_SCENE_21:
+    case SOUND_SCENE_23:
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
-    case 22:
+    case SOUND_SCENE_22:
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
     }

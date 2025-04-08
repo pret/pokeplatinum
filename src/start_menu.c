@@ -1924,7 +1924,7 @@ static void StartMenu_Evolve(FieldTask *taskMan)
         sub_0207B0E0(menu->unk_25C);
         Heap_Destroy(HEAP_ID_73);
         Sound_StopBGM(1141, 0);
-        Sound_SetScene(0);
+        Sound_SetScene(SOUND_SCENE_NONE);
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
 
         menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
