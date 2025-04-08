@@ -6,11 +6,11 @@
 #include "savedata.h"
 
 int WiFiQuestion_SaveSize(void);
-void WiFiQuestion_Init(UnkStruct_02030EC4 *param0);
-UnkStruct_02030EC4 *sub_02030EC4(SaveData *saveData);
-u32 sub_02030ED0(const UnkStruct_02030EC4 *param0);
-u32 sub_02030ED4(const UnkStruct_02030EC4 *param0);
-void sub_02030ED8(UnkStruct_02030EC4 *param0, u32 param1);
-void sub_02030EDC(UnkStruct_02030EC4 *param0, u32 param1);
+void WiFiQuestion_Init(WiFiQuestions *param0);
+WiFiQuestions *SaveData_GetWiFiQuestions(SaveData *saveData);
+u32 sub_02030ED0(const WiFiQuestions *param0);
+u32 sub_02030ED4(const WiFiQuestions *param0);
+void sub_02030ED8(WiFiQuestions *param0, u32 param1);
+void sub_02030EDC(WiFiQuestions *param0, u32 param1);
 
 #endif // POKEPLATINUM_UNK_02030EA4_H
