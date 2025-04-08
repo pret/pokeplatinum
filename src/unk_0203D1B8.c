@@ -383,7 +383,7 @@ static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, i
 
     v0->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_08 = sub_02028430(fieldSystem->saveData);
+    v0->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v0->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     v0->unk_21 = param2;
     v0->unk_20 = param3;
@@ -1700,7 +1700,7 @@ PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int para
 
     v0->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_08 = sub_02028430(fieldSystem->saveData);
+    v0->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v0->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
     v0->unk_18 = NULL;
