@@ -22,7 +22,7 @@ void Contest_Init(UnkStruct_0202F10C *param0)
         }
     }
 
-    SaveData_SetChecksum(33);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_CONTESTS);
 }
 
 void sub_0202F134(SaveData *saveData, int param1, int param2)
@@ -33,13 +33,13 @@ void sub_0202F134(SaveData *saveData, int param1, int param2)
         v0->unk_00[param1][param2]++;
     }
 
-    SaveData_SetChecksum(33);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_CONTESTS);
 }
 
 u16 sub_0202F160(SaveData *saveData, int param1, int param2)
 {
     UnkStruct_0202F10C *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_CONTESTS);
-    SaveData_Checksum(33);
+    SaveData_Checksum(SAVE_TABLE_ENTRY_CONTESTS);
 
     return v0->unk_00[param1][param2];
 }

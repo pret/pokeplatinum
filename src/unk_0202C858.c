@@ -15,12 +15,12 @@ int WiFiHistory_SaveSize(void)
 void WiFiHistory_Init(UnkStruct_0202C878 *param0)
 {
     MI_CpuClear32(param0, sizeof(UnkStruct_0202C878));
-    SaveData_SetChecksum(30);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_WIFI_HISTORY);
 }
 
 UnkStruct_0202C878 *sub_0202C878(SaveData *saveData)
 {
-    SaveData_Checksum(30);
+    SaveData_Checksum(SAVE_TABLE_ENTRY_WIFI_HISTORY);
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_WIFI_HISTORY);
 }
 
@@ -33,7 +33,7 @@ void sub_0202C88C(UnkStruct_0202C878 *param0, int param1, int param2)
     param0->unk_06 = param2;
 
     sub_0202C918(param0, param1, param2, 3);
-    SaveData_SetChecksum(30);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_WIFI_HISTORY);
 }
 
 int sub_0202C8C0(const UnkStruct_0202C878 *param0)
@@ -85,7 +85,7 @@ void sub_0202C918(UnkStruct_0202C878 *param0, int param1, int param2, int param3
         sub_0202C994(param0, 1);
     }
 
-    SaveData_SetChecksum(30);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_WIFI_HISTORY);
 }
 
 BOOL sub_0202C990(const UnkStruct_0202C878 *param0)
@@ -96,7 +96,7 @@ BOOL sub_0202C990(const UnkStruct_0202C878 *param0)
 void sub_0202C994(UnkStruct_0202C878 *param0, BOOL param1)
 {
     param0->unk_04 = param1;
-    SaveData_SetChecksum(30);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_WIFI_HISTORY);
 }
 
 void sub_0202C9A0(UnkStruct_0202C878 *param0)
@@ -117,5 +117,5 @@ void sub_0202C9A0(UnkStruct_0202C878 *param0)
         param0->unk_07[v0] = v2;
     }
 
-    SaveData_SetChecksum(30);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_WIFI_HISTORY);
 }
