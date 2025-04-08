@@ -124,7 +124,7 @@ sdat_resources = files([
     seq_folder / 'SEQ_KINOMI.mid',
     seq_folder / 'SEQ_KOUKAN.mid',
     seq_folder / 'SEQ_KUSAGASA.mid',
-    seq_folder / 'SEQ_NAMINORI.mid',
+    seq_folder / 'SEQ_SURFING.mid',
     seq_folder / 'SEQ_OPENING.mid',
     seq_folder / 'SEQ_PC_01.mid',
     seq_folder / 'SEQ_PC_02.mid',
