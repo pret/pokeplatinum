@@ -108,8 +108,8 @@ struct UnkStruct_02095E80_t {
     Party *unk_2270;
     Party *unk_2274;
     ChatotCry *unk_2278;
-    UnkStruct_02027F8C *unk_227C;
-    UnkStruct_02027F8C unk_2280;
+    PalPad *unk_227C;
+    PalPad unk_2280;
     int unk_2308;
     int unk_230C;
     int unk_2310;
