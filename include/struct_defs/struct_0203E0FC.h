@@ -17,7 +17,7 @@
 #include "trainer_info.h"
 
 typedef struct {
-    UnkStruct_0202DA40 *unk_00;
+    GlobalTrade *unk_00;
     SystemData *unk_04;
     Party *unk_08;
     PCBoxes *unk_0C;
