@@ -127,7 +127,7 @@ struct UnkStruct_02095E80_t {
     StringList *unk_36D4;
     ListMenu *unk_36D8;
     Window unk_36DC;
-    UnkStruct_0202B370 *unk_36EC;
+    WiFiList *unk_36EC;
     int unk_36F0;
     int unk_36F4;
     int unk_36F8;

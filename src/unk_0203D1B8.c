@@ -1353,7 +1353,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
     v0->unk_0C = SaveData_GetPCBoxes(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetPokedex(fieldSystem->saveData);
-    v0->unk_14 = sub_0202B370(fieldSystem->saveData);
+    v0->unk_14 = SaveData_GetWiFiList(fieldSystem->saveData);
     v0->unk_18 = sub_0202C878(fieldSystem->saveData);
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_24 = SaveData_GetOptions(fieldSystem->saveData);
@@ -1388,9 +1388,9 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
     v0->unk_04 = sub_0202D764(fieldSystem->saveData);
     v0->unk_08 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetOptions(fieldSystem->saveData);
-    v0->unk_14 = sub_0202AD28(sub_0202B370(fieldSystem->saveData));
+    v0->unk_14 = sub_0202AD28(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->unk_0C = fieldSystem->saveData;
-    v0->unk_1C = sub_02039058(sub_0202B370(fieldSystem->saveData));
+    v0->unk_1C = sub_02039058(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->unk_18 = param1;
     v0->unk_24 = param2;
     v0->unk_20 = 1;
