@@ -10559,7 +10559,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 BallThrow v7;
 
                 v7.mode = 3;
-                v7.heapID = 5;
+                v7.heapID = HEAP_ID_BATTLE;
                 v7.target = v1 + 20000;
                 v7.ballID = v2->ball;
                 v7.cellActorSys = ov16_0223E010(v2->battleSys);
@@ -10759,7 +10759,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v12.unk_00 = BattleSystem_BGL(v2->battleSys);
                 v12.unk_04 = BattleSystem_PaletteSys(v2->battleSys);
                 v12.unk_08 = v5;
-                v12.heapId = HEAP_ID_BATTLE;
+                v12.heapID = HEAP_ID_BATTLE;
                 v12.unk_10 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                 v12.unk_14 = IsNationalDexObtained(BattleSystem_GetPokedex(v2->battleSys));
                 v2->tmpPtr[1] = CharTransfer_PopTaskManager();
@@ -12247,7 +12247,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     Window_AddToTopLeftCorner(v8, &v9, 12, 4, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v9, FONT_SYSTEM, v7, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
-    v10 = sub_02012898(&v9, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
+    v10 = sub_02012898(&v9, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_BATTLE);
     CharTransfer_AllocRange(v10, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v11);
 
     v12.unk_00 = param1->tmpPtr[0];
@@ -12261,7 +12261,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     v12.unk_20 = 0;
     v12.unk_24 = 100;
     v12.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v12.unk_2C = 5;
+    v12.heapID = HEAP_ID_BATTLE;
 
     param1->fontOAM = sub_020127E8(&v12);
     param1->charTransferAllocation = v11;

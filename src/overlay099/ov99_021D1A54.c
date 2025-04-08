@@ -539,14 +539,14 @@ static void ov99_021D1FD8(UnkStruct_ov99_021D2CB0 *param0)
 {
     int v0;
 
-    Easy3DModel_LoadFrom(&param0->unk_2C[0], param0->unk_10F8, 80, 75);
+    Easy3DModel_LoadFrom(&param0->unk_2C[0], param0->unk_10F8, 80, HEAP_ID_75);
 
     NNS_G3dMdlUseGlbDiff(param0->unk_2C[0].model);
     NNS_G3dMdlUseGlbAmb(param0->unk_2C[0].model);
     NNS_G3dMdlUseGlbSpec(param0->unk_2C[0].model);
     NNS_G3dMdlUseGlbEmi(param0->unk_2C[0].model);
 
-    Easy3DModel_LoadFrom(&param0->unk_2C[1], param0->unk_10F8, 81, 75);
+    Easy3DModel_LoadFrom(&param0->unk_2C[1], param0->unk_10F8, 81, HEAP_ID_75);
 
     NNS_G3dMdlUseGlbDiff(param0->unk_2C[1].model);
     NNS_G3dMdlUseGlbAmb(param0->unk_2C[1].model);
@@ -755,7 +755,7 @@ static void ov99_021D2410(UnkStruct_ov99_021D2CB0 *param0)
 {
     int v0;
 
-    Easy3DModel_LoadFrom(&param0->unk_2C[0], param0->unk_10F8, 78, 75);
+    Easy3DModel_LoadFrom(&param0->unk_2C[0], param0->unk_10F8, 78, HEAP_ID_75);
 
     NNS_G3dMdlUseGlbDiff(param0->unk_2C[0].model);
     NNS_G3dMdlUseGlbAmb(param0->unk_2C[0].model);
@@ -923,28 +923,28 @@ static void ov99_021D28AC(UnkStruct_ov99_021D2CB0 *param0)
 {
     int v0;
 
-    Easy3DModel_LoadFrom(&param0->unk_2C[0], param0->unk_10F8, 82, 75);
+    Easy3DModel_LoadFrom(&param0->unk_2C[0], param0->unk_10F8, 82, HEAP_ID_75);
 
     NNS_G3dMdlUseGlbDiff(param0->unk_2C[0].model);
     NNS_G3dMdlUseGlbAmb(param0->unk_2C[0].model);
     NNS_G3dMdlUseGlbSpec(param0->unk_2C[0].model);
     NNS_G3dMdlUseGlbEmi(param0->unk_2C[0].model);
 
-    Easy3DModel_LoadFrom(&param0->unk_2C[1], param0->unk_10F8, 83, 75);
+    Easy3DModel_LoadFrom(&param0->unk_2C[1], param0->unk_10F8, 83, HEAP_ID_75);
 
     NNS_G3dMdlUseGlbDiff(param0->unk_2C[1].model);
     NNS_G3dMdlUseGlbAmb(param0->unk_2C[1].model);
     NNS_G3dMdlUseGlbSpec(param0->unk_2C[1].model);
     NNS_G3dMdlUseGlbEmi(param0->unk_2C[1].model);
 
-    Easy3DModel_LoadFrom(&param0->unk_2C[2], param0->unk_10F8, 84, 75);
+    Easy3DModel_LoadFrom(&param0->unk_2C[2], param0->unk_10F8, 84, HEAP_ID_75);
 
     NNS_G3dMdlUseGlbDiff(param0->unk_2C[2].model);
     NNS_G3dMdlUseGlbAmb(param0->unk_2C[2].model);
     NNS_G3dMdlUseGlbSpec(param0->unk_2C[2].model);
     NNS_G3dMdlUseGlbEmi(param0->unk_2C[2].model);
 
-    Easy3DModel_LoadFrom(&param0->unk_2C[3], param0->unk_10F8, 79, 75);
+    Easy3DModel_LoadFrom(&param0->unk_2C[3], param0->unk_10F8, 79, HEAP_ID_75);
 
     for (v0 = 0; v0 < 16; v0++) {
         Easy3DObject_Init(&param0->unk_6C[0][v0], &param0->unk_2C[0]);

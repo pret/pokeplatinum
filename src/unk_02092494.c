@@ -33,9 +33,9 @@ static void BoxPokemon_SetFatefulEncounterFlag(BoxPokemon *boxMon);
 PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
 {
     PokemonInfoDisplayStruct *v0 = Heap_AllocFromHeap(heapID, sizeof(PokemonInfoDisplayStruct));
-    v0->unk_00 = heapID;
-    v0->unk_04 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, v0->unk_00);
-    v0->unk_08 = StringTemplate_New(9, 32, v0->unk_00);
+    v0->heapID = heapID;
+    v0->unk_04 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, v0->heapID);
+    v0->unk_08 = StringTemplate_New(9, 32, v0->heapID);
     v0->unk_0C = param0;
     v0->unk_10 = param1;
 
@@ -56,7 +56,7 @@ PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
         v0->unk_34.unk_04 = NULL;
     }
 
-    switch (DeterminePokemonStatus(v0->unk_0C, v0->unk_10, v0->unk_00)) {
+    switch (DeterminePokemonStatus(v0->unk_0C, v0->unk_10, v0->heapID)) {
     case 0:
         v0->unk_14.unk_00 = 1;
         InitializeNatureRelatedStrBuf(v0);
@@ -322,15 +322,15 @@ static void InitializeNatureRelatedStrBuf(PokemonInfoDisplayStruct *param0)
         return;
     }
 
-    param0->unk_14.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->unk_00);
+    param0->unk_14.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
     MessageLoader_GetStrbuf(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
 }
 
 static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1)
 {
-    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 8), param0->unk_00);
+    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 8), param0->heapID);
 
-    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 8), param0->unk_00);
+    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 8), param0->heapID);
 
     MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
     StringTemplate_SetNumber(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
@@ -348,9 +348,9 @@ static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int
 
 static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1)
 {
-    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
+    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
 
-    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
+    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
 
     MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
     StringTemplate_SetNumber(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
@@ -391,9 +391,9 @@ static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, i
 
 static void InitializeSpecialMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1, int param2)
 {
-    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 5), param0->unk_00);
+    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 5), param0->heapID);
 
-    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 5), param0->unk_00);
+    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 5), param0->heapID);
 
     MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
 
@@ -427,7 +427,7 @@ static void InitializeIVsStrBuf(PokemonInfoDisplayStruct *param0)
     int v0[6], v1, v2;
     int v3, v4;
 
-    param0->unk_24.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->unk_00);
+    param0->unk_24.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
 
     v0[0] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_HP_IV, NULL));
     v0[1] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_ATK_IV, NULL));
@@ -631,7 +631,7 @@ static void InitializeFlavorAffinityStrBuf(PokemonInfoDisplayStruct *param0)
 {
     int v0, v1, v2;
 
-    param0->unk_2C.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->unk_00);
+    param0->unk_2C.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
     v1 = 0;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -649,7 +649,7 @@ static void InitializeFriendshipLevelStrBuf(PokemonInfoDisplayStruct *param0)
     int v0 = Pokemon_GetValue(param0->unk_0C, MON_DATA_FRIENDSHIP, NULL);
     int v1;
 
-    param0->unk_34.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
+    param0->unk_34.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
 
     if (v0 <= 5) {
         v1 = 105;

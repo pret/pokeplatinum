@@ -15,17 +15,17 @@
 
 static void ov66_02234F2C(NARC *param0, u32 param1, u16 param2, u8 param3, fx32 *param4);
 
-UnkStruct_ov66_02231428 ov66_02234EA8(u16 param0, u8 param1, UnkStruct_ov66_02231428 param2, u32 param3)
+UnkStruct_ov66_02231428 ov66_02234EA8(u16 param0, u8 param1, UnkStruct_ov66_02231428 param2, u32 heapID)
 {
     fx32 v0;
     fx32 v1;
     u16 v2;
     s32 v3;
     UnkStruct_ov66_02231428 v4;
-    NARC *v5 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH_PLACE, param3);
+    NARC *v5 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH_PLACE, heapID);
 
-    ov66_02234F2C(v5, param3, 219, 3, &v0);
-    ov66_02234F2C(v5, param3, param0, param1, &v1);
+    ov66_02234F2C(v5, heapID, 219, 3, &v0);
+    ov66_02234F2C(v5, heapID, param0, param1, &v1);
 
     v2 = v0 - v1;
     v3 = (v2 * 24) / 0xffff;

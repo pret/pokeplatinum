@@ -43,7 +43,7 @@ static void ov22_02255784(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255794(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255C24(UnkStruct_ov22_0225A0E4 *param0, int heapID, int param2, int param3);
 static void ov22_02255C90(UnkStruct_ov22_0225A0E4 *param0);
-static void ov22_02255BF4(UnkStruct_ov22_0225A0E4 *param0, int param1);
+static void ov22_02255BF4(UnkStruct_ov22_0225A0E4 *param0, int heapID);
 static void ov22_02255C14(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0);
@@ -95,7 +95,7 @@ void ov22_022550D4(UnkStruct_ov22_0225A0E4 *param0)
     ov22_02255748(param0, &v0);
     ov22_02255C24(param0, HEAP_ID_14, 0x2800, 0x20);
     ov22_022559B4(param0);
-    ov22_02255BF4(param0, 13);
+    ov22_02255BF4(param0, HEAP_ID_13);
     ov22_022559F8(param0);
 
     param0->unk_40 = BgConfig_New(HEAP_ID_14);
@@ -166,7 +166,7 @@ Sprite *ov22_022551E4(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2, i
     v1.position.z = 0;
     v1.priority = param4;
     v1.vramType = param5;
-    v1.heapID = 14;
+    v1.heapID = HEAP_ID_14;
 
     return SpriteList_Add(&v1);
 }
@@ -737,7 +737,7 @@ static void ov22_02255ACC(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
     void *v2;
 
     for (v0 = 0; v0 < 100; v0++) {
-        v2 = LoadMemberFromOpenNARC(param0->unk_5C, v0 + 1, 0, 14, 1);
+        v2 = LoadMemberFromOpenNARC(param0->unk_5C, v0 + 1, 0, HEAP_ID_14, 1);
 
         GF_ASSERT(v2);
 
@@ -747,7 +747,7 @@ static void ov22_02255ACC(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
         param1->unk_00[v1].unk_00 = param0->unk_00;
     }
 
-    v2 = LoadMemberFromOpenNARC(param0->unk_5C, 0, 0, 14, 1);
+    v2 = LoadMemberFromOpenNARC(param0->unk_5C, 0, 0, HEAP_ID_14, 1);
 
     ResourceCollection_Add(param1->unk_14, v2, 0);
     NNS_G2dGetUnpackedPaletteData(v2, &param1->unk_08[0].unk_04);
@@ -763,14 +763,14 @@ static void ov22_02255B50(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
     int v2;
 
     for (v0 = 0; v0 < 18; v0++) {
-        v1 = LoadMemberFromOpenNARC(param0->unk_5C, v0 + 206, 0, 14, 1);
+        v1 = LoadMemberFromOpenNARC(param0->unk_5C, v0 + 206, 0, HEAP_ID_14, 1);
         v2 = v0 + 100;
 
         param1->unk_00[v2].unk_04 = ov22_02255340(param0, v1, v2);
         param1->unk_00[v2].unk_00 = param0->unk_00;
 
         v2 = v0 + 1;
-        v1 = LoadMemberFromOpenNARC(param0->unk_5C, (v0) * 4 + 134 + 1, 0, 14, 1);
+        v1 = LoadMemberFromOpenNARC(param0->unk_5C, (v0) * 4 + 134 + 1, 0, HEAP_ID_14, 1);
 
         ResourceCollection_Add(param1->unk_14, v1, v2);
         NNS_G2dGetUnpackedPaletteData(v1, &param1->unk_08[v2].unk_04);
@@ -781,9 +781,9 @@ static void ov22_02255B50(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
     }
 }
 
-static void ov22_02255BF4(UnkStruct_ov22_0225A0E4 *param0, int param1)
+static void ov22_02255BF4(UnkStruct_ov22_0225A0E4 *param0, int heapID)
 {
-    param0->unk_30 = LoadMemberFromOpenNARC(param0->unk_5C, 235, 0, param1, 0);
+    param0->unk_30 = LoadMemberFromOpenNARC(param0->unk_5C, 235, 0, heapID, 0);
 }
 
 static void ov22_02255C14(UnkStruct_ov22_0225A0E4 *param0)

@@ -792,7 +792,7 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0)
 
         v3.maxElements = 96;
         v3.renderer = &param0->unk_14;
-        v3.heapID = 4;
+        v3.heapID = HEAP_ID_FIELD;
 
         param0->unk_130 = SpriteList_New(&v3);
         param0->unk_134 = SysTask_Start(ov5_021D6284, param0, 10);

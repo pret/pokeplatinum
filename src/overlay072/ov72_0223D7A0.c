@@ -522,7 +522,7 @@ static void ov72_0223DF58(UnkStruct_ov72_0223DB98 *param0)
         v1.affineZRotation = 0;
         v1.priority = 1;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.heapID = 39;
+        v1.heapID = HEAP_ID_39;
 
         for (v0 = 0; v0 < 1; v0++) {
             v1.resourceData = &param0->unk_220;

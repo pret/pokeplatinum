@@ -700,7 +700,7 @@ static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *param1)
         {
             BOOL v7;
 
-            param0->unk_30B8 = LoadMemberFromOpenNARC(param1, v4, 0, 25, 0);
+            param0->unk_30B8 = LoadMemberFromOpenNARC(param1, v4, 0, HEAP_ID_25, 0);
             GF_ASSERT(param0->unk_30B8 != NULL);
 
             v7 = NNS_G2dGetUnpackedBGCharacterData(param0->unk_30B8, &param0->unk_30BC);
@@ -720,7 +720,7 @@ static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *param1)
         {
             BOOL v8;
 
-            param0->unk_30B8 = LoadMemberFromOpenNARC(param1, Unk_ov71_0223D604[param0->unk_B4->unk_05], 0, 25, 0);
+            param0->unk_30B8 = LoadMemberFromOpenNARC(param1, Unk_ov71_0223D604[param0->unk_B4->unk_05], 0, HEAP_ID_25, 0);
             GF_ASSERT(param0->unk_30B8 != NULL);
 
             v8 = NNS_G2dGetUnpackedBGCharacterData(param0->unk_30B8, &param0->unk_30BC);

@@ -1008,7 +1008,7 @@ static void sub_02053E5C(FieldTask *task)
         return;
     }
 
-    void *v2 = ov6_022472C8(fieldSystem, 4, mapChangeData->unk_04);
+    void *v2 = ov6_022472C8(fieldSystem, HEAP_ID_FIELD, mapChangeData->unk_04);
     FieldTask_InitCall(task, ov6_022472E8, v2);
 }
 

@@ -123,7 +123,7 @@ static void ov77_021D54E8(const int param0, UnkStruct_ov77_021D5564 *param1, con
         param3->affineZRotation = 0;
         param3->priority = 1;
         param3->vramType = param6;
-        param3->heapID = 76;
+        param3->heapID = HEAP_ID_76;
     }
 }
 

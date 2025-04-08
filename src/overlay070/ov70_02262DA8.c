@@ -17,7 +17,7 @@ typedef struct {
 } UnkStruct_ov70_0226308C;
 
 typedef struct UnkStruct_ov70_02263344_t {
-    u16 unk_00;
+    u16 heapID;
     u8 unk_02;
     u8 unk_03;
     UnkStruct_ov70_0226308C unk_04;
@@ -32,7 +32,7 @@ typedef struct UnkStruct_ov70_022630A4_t {
 } UnkStruct_ov70_022630A4;
 
 static void ov70_02262F14(UnkStruct_ov70_022630A4 *param0, u32 param1);
-static void ov70_02262F64(UnkStruct_ov70_02263344 *param0, u32 param1, u32 param2);
+static void ov70_02262F64(UnkStruct_ov70_02263344 *param0, u32 param1, u32 heapID);
 static void ov70_02262F70(UnkStruct_ov70_02263344 *param0);
 static void ov70_02262F94(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_022630A4 *param1, u32 param2, u32 param3);
 static void ov70_02262FD4(UnkStruct_ov70_02263344 *param0, const UnkStruct_ov70_0226DA18 *param1, void *param2);
@@ -98,7 +98,7 @@ void *ov70_02262E3C(UnkStruct_ov70_02263344 *param0, u32 param1)
 {
     GF_ASSERT(param0->unk_04.unk_04 == NULL);
 
-    param0->unk_04.unk_04 = Heap_AllocFromHeap(param0->unk_00, param1);
+    param0->unk_04.unk_04 = Heap_AllocFromHeap(param0->heapID, param1);
     memset(param0->unk_04.unk_04, 0, param1);
 
     return param0->unk_04.unk_04;
@@ -173,9 +173,9 @@ static void ov70_02262F14(UnkStruct_ov70_022630A4 *param0, u32 param1)
     }
 }
 
-static void ov70_02262F64(UnkStruct_ov70_02263344 *param0, u32 param1, u32 param2)
+static void ov70_02262F64(UnkStruct_ov70_02263344 *param0, u32 param1, u32 heapID)
 {
-    param0->unk_00 = param2;
+    param0->heapID = heapID;
     param0->unk_02 = 1;
     param0->unk_03 = param1;
 }

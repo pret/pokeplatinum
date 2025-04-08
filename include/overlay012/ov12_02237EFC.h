@@ -6,7 +6,7 @@
 #include "overlay012/struct_ov12_02237F98_decl.h"
 #include "overlay012/struct_ov12_02238004_decl.h"
 
-UnkStruct_ov12_02237F98 *ov12_02237EFC(int heapId, UnkStruct_ov12_02237EFC *param1);
+UnkStruct_ov12_02237F98 *ov12_02237EFC(int heapID, UnkStruct_ov12_02237EFC *param1);
 UnkStruct_ov12_02238004 *ov12_02237F38(UnkStruct_ov12_02237F98 *param0, UnkStruct_ov12_02237F38 *param1);
 void ov12_02237F74(UnkStruct_ov12_02237F98 *param0);
 void ov12_02237F98(UnkStruct_ov12_02237F98 *param0);

@@ -309,7 +309,7 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     sub_0201E3D8();
     sub_0201E450(4);
 
-    v0->unk_20 = StringTemplate_New(11, 64, 109);
+    v0->unk_20 = StringTemplate_New(11, 64, HEAP_ID_109);
     v0->unk_24 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0671, HEAP_ID_109);
     v0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_109);
     v0->unk_30 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_109);

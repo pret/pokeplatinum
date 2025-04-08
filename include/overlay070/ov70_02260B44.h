@@ -14,7 +14,7 @@ void ov70_02260BB8(UnkStruct_ov70_02260BB8 *param0);
 void ov70_02260BE8(UnkStruct_ov70_02260BB8 *param0);
 void ov70_02260C50(UnkStruct_ov70_02260BB8 *param0);
 void ov70_02260CE0(UnkStruct_ov70_02260BB8 *param0);
-void ov70_02260CE4(UnkStruct_ov70_02260BB8 *param0, int param1, int param2, u32 param3, u32 heapID);
+void ov70_02260CE4(UnkStruct_ov70_02260BB8 *param0, int param1, int param2, u32 heapID, u32 heapID2);
 void ov70_02260D80(UnkStruct_ov70_02260BB8 *param0);
 void ov70_02260DC8(UnkStruct_ov70_02260BB8 *param0);
 void ov70_02260DF4(UnkStruct_ov70_02260BB8 *param0);

@@ -654,7 +654,7 @@ Sprite *ov95_022475E4(UnkStruct_ov95_02247628 *param0, SpriteResourcesHeader *pa
     v1.position.z = 0;
     v1.priority = param4;
     v1.vramType = param5;
-    v1.heapID = 57;
+    v1.heapID = HEAP_ID_57;
 
     v0 = SpriteList_Add(&v1);
 

@@ -93,7 +93,7 @@ void NitroMain(void)
     }
 
     if (SaveData_BackupExists(sApplication.args.saveData) == FALSE) {
-        sub_0209A74C(0);
+        sub_0209A74C(HEAP_ID_SYSTEM);
     } else {
         switch (OS_GetResetParameter()) {
         case RESET_CLEAN:
@@ -268,18 +268,18 @@ static void HeapCanaryFailed(int resetParam, int param1)
     int elapsed;
 
     if (param1 == 3) {
-        sub_02039834(0, 3, 0);
+        sub_02039834(HEAP_ID_SYSTEM, 3, 0);
     } else if (resetParam == RESET_CLEAN) {
         if (sub_020389B8() == TRUE) {
-            sub_02039834(0, 6, 0);
+            sub_02039834(HEAP_ID_SYSTEM, 6, 0);
         } else {
-            sub_02039834(0, 2, 0);
+            sub_02039834(HEAP_ID_SYSTEM, 2, 0);
         }
     } else {
         if (sub_020389B8() == TRUE) {
-            sub_02039834(0, 5, 0);
+            sub_02039834(HEAP_ID_SYSTEM, 5, 0);
         } else {
-            sub_02039834(0, 0, 0);
+            sub_02039834(HEAP_ID_SYSTEM, 0, 0);
         }
     }
 

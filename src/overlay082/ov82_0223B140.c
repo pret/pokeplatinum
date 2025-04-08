@@ -90,7 +90,7 @@ int ov82_0223B1D4(OverlayManager *param0, int *param1)
 
 int ov82_0223B24C(OverlayManager *param0, int *param1)
 {
-    int heapID = 0;
+    int heapID = HEAP_ID_SYSTEM;
     UnkStruct_ov83_0223C344 *v1 = OverlayManager_Data(param0);
     UnkStruct_ov82_0223B164 *v2 = (UnkStruct_ov82_0223B164 *)OverlayManager_Args(param0);
 

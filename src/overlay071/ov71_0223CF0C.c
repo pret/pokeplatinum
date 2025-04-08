@@ -119,7 +119,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
         v3.affineZRotation = 0;
         v3.priority = 2;
         v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v3.heapID = 25;
+        v3.heapID = HEAP_ID_25;
 
         for (v0 = 0; v0 < 8; v0++) {
             v3.position.x = FX32_ONE * Unk_ov71_0223D73C[v0].unk_00;

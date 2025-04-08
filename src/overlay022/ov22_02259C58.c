@@ -82,7 +82,7 @@ void ov22_02259C9C(UnkStruct_ov22_0225A154 *param0, UnkStruct_ov22_02259C9C *par
     v0.unk_20 = 0;
     v0.unk_24 = 0;
     v0.unk_28 = param1->unk_00.unk_00->vramType;
-    v0.unk_2C = param1->unk_00.unk_00->heapID;
+    v0.heapID = param1->unk_00.unk_00->heapID;
 
     param0->unk_10 = sub_020127E8(&v0);
 }
@@ -309,7 +309,7 @@ static void ov22_0225A0E4(UnkStruct_ov22_02259C58 *param0, int param1, UnkStruct
     v2.position.z = 0;
     v2.priority = 2;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.heapID = 14;
+    v2.heapID = HEAP_ID_14;
 
     v0.unk_00 = &v2;
     v0.unk_04 = NULL;
@@ -335,7 +335,7 @@ static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct
     v2.position.z = 0;
     v2.priority = 2;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.heapID = 14;
+    v2.heapID = HEAP_ID_14;
 
     v0.unk_00.unk_00 = &v2;
     v0.unk_00.unk_04 = NULL;
@@ -349,7 +349,7 @@ static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct
     v3 = SpriteResourceCollection_Find(param2->unk_48[1], 1);
     v0.unk_18 = SpriteTransfer_GetPaletteProxy(v3, NULL);
 
-    GF_ASSERT(CharTransfer_AllocRange(sub_02012898(param4, NNS_G2D_VRAM_TYPE_2DMAIN, 13), 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_14));
+    GF_ASSERT(CharTransfer_AllocRange(sub_02012898(param4, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_13), 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_14));
 
     v0.unk_24 = param0->unk_14.offset;
 

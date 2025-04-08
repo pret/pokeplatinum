@@ -12,7 +12,7 @@
 
 typedef struct UnkStruct_ov104_0223D5F0_t {
     UnkStruct_02014014 *unk_00[8];
-    u16 heapId;
+    u16 heapID;
 } UnkStruct_ov104_0223D5F0;
 
 static u32 ov104_0223D720(u32 param0, BOOL param1);
@@ -24,7 +24,7 @@ UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(int heapID)
     UnkStruct_ov104_0223D5F0 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov104_0223D5F0));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223D5F0));
 
-    v0->heapId = heapID;
+    v0->heapID = heapID;
     sub_02014000();
 
     return v0;
@@ -53,14 +53,14 @@ UnkStruct_02014014 *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1,
 
     GF_ASSERT(param0->unk_00[param1] == NULL);
 
-    v1 = Heap_AllocFromHeap(param0->heapId, 0x4800);
-    v0 = sub_02014014(ov104_0223D720, ov104_0223D744, v1, 0x4800, 1, param0->heapId);
+    v1 = Heap_AllocFromHeap(param0->heapID, 0x4800);
+    v0 = sub_02014014(ov104_0223D720, ov104_0223D744, v1, 0x4800, 1, param0->heapID);
     camera = sub_02014784(v0);
 
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
     sub_02014788(v0, param3);
 
-    v3 = sub_020144C4(157, param2, param0->heapId);
+    v3 = sub_020144C4(157, param2, param0->heapID);
     sub_020144CC(v0, v3, (1 << 1) | (1 << 3), 1);
 
     param0->unk_00[param1] = v0;

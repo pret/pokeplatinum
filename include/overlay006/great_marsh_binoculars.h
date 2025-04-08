@@ -20,7 +20,7 @@ typedef struct GreatMarshBinoculars {
 } GreatMarshBinoculars;
 
 int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem);
-GreatMarshBinoculars *GreatMarshBinoculars_InitData(const int heapId, FieldSystem *fieldSystem);
+GreatMarshBinoculars *GreatMarshBinoculars_InitData(const int heapID, FieldSystem *fieldSystem);
 void GreatMarshBinoculars_FreeData(GreatMarshBinoculars *data);
 void GreatMarshBinoculars_SetNextLocationWithCoords(const u8 cycleNum, GreatMarshBinoculars *binocularsData);
 Location *GreatMarshBinoculars_GetLocation(GreatMarshBinoculars *binocData);

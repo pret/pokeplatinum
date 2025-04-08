@@ -714,7 +714,7 @@ void sub_0208B090(UnkStruct_02089688 *param0, int param1, int param2, int param3
     }
 
     v4 = 1003;
-    v5 = sub_02012898(&v7, NNS_G2D_VRAM_TYPE_2DMAIN, 101);
+    v5 = sub_02012898(&v7, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_101);
 
     CharTransfer_AllocRange(v5, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_2C0.unk_98[param1]);
 
@@ -734,7 +734,7 @@ void sub_0208B090(UnkStruct_02089688 *param0, int param1, int param2, int param3
     v2.unk_20 = 0;
     v2.unk_24 = 0;
     v2.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.unk_2C = 101;
+    v2.heapID = HEAP_ID_101;
 
     param0->unk_2C0.unk_90[param1] = sub_020127E8(&v2);
 

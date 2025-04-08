@@ -3,7 +3,7 @@
 
 typedef struct {
     int unk_00;
-    int unk_04;
+    int heapID;
     int unk_08;
     int unk_0C;
     fx32 unk_10;

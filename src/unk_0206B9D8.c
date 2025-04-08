@@ -66,11 +66,11 @@ typedef struct {
     u16 unk_02;
 } UnkStruct_0206BD88;
 
-static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int param2)
+static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int heapID)
 {
     u8 v0;
     SaveData *v1;
-    PartyManagementData *v2 = Heap_AllocFromHeapAtEnd(param2, sizeof(PartyManagementData));
+    PartyManagementData *v2 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PartyManagementData));
 
     v1 = fieldSystem->saveData;
     MI_CpuClear8(v2, sizeof(PartyManagementData));
@@ -125,7 +125,7 @@ static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
     return 2;
 }
 
-static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int param2)
+static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int heapID)
 {
     PokemonSummary *v0;
     SaveData *v1;
@@ -134,7 +134,7 @@ static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
     };
 
     v1 = fieldSystem->saveData;
-    v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
+    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
     v0->options = SaveData_GetOptions(v1);
@@ -179,13 +179,13 @@ static BOOL sub_0206BB94(FieldTask *param0)
 
     switch (v1->unk_04) {
     case 0:
-        v1->unk_04 = sub_0206B9D8(v1, v0, 11);
+        v1->unk_04 = sub_0206B9D8(v1, v0, HEAP_ID_FIELDMAP);
         break;
     case 1:
         v1->unk_04 = sub_0206BA84(v1, v0);
         break;
     case 2:
-        v1->unk_04 = sub_0206BAE0(v1, v0, 11);
+        v1->unk_04 = sub_0206BAE0(v1, v0, HEAP_ID_FIELDMAP);
         break;
     case 3:
         v1->unk_04 = sub_0206BB6C(v1, v0);

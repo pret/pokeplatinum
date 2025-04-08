@@ -11,7 +11,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    u32 unk_00;
+    u32 heapID;
     int unk_04;
     int unk_08;
     int unk_0C;
@@ -34,14 +34,14 @@ static int ov5_021F0FF8(UnkStruct_ov5_021F0FB8 *param0);
 
 static void (*const Unk_ov5_0220020C[4])(UnkStruct_ov5_021F0FB8 *);
 
-SysTask *ov5_021F0EB0(FieldSystem *fieldSystem, u32 param1)
+SysTask *ov5_021F0EB0(FieldSystem *fieldSystem, u32 heapID)
 {
     SysTask *v0;
-    UnkStruct_ov5_021F0FB8 *v1 = Heap_AllocFromHeapAtEnd(param1, (sizeof(UnkStruct_ov5_021F0FB8)));
+    UnkStruct_ov5_021F0FB8 *v1 = Heap_AllocFromHeapAtEnd(heapID, (sizeof(UnkStruct_ov5_021F0FB8)));
 
     memset(v1, 0, (sizeof(UnkStruct_ov5_021F0FB8)));
 
-    v1->unk_00 = param1;
+    v1->heapID = heapID;
     v1->unk_0C = 0;
     v1->fieldSystem = fieldSystem;
     v1->camera = fieldSystem->camera;

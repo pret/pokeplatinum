@@ -1178,7 +1178,7 @@ static Sprite *ov97_0222E538(UnkStruct_ov97_0222E398 *param0, int param1)
         v1.position.y = FX32_ONE * 32;
         v1.priority = 10;
         v1.vramType = param1;
-        v1.heapID = 86;
+        v1.heapID = HEAP_ID_86;
 
         if (v1.vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
             v1.position.y += FX32_CONST(256);

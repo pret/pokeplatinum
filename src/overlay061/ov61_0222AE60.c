@@ -31,14 +31,14 @@ void ov61_0222AE80(const UnkStruct_ov61_0222AE80 *param0, UnkStruct_02029C68 *pa
     sub_0202A824(param0, param1);
 }
 
-void ov61_0222AE88(SaveData *param0, const PCBoxes *param1, int param2, UnkStruct_ov62_02239DA4 *param3, int param4)
+void ov61_0222AE88(SaveData *param0, const PCBoxes *param1, int param2, UnkStruct_ov62_02239DA4 *param3, int heapID)
 {
     Strbuf *v0;
     int v1;
 
     MI_CpuClear8(param3, sizeof(UnkStruct_ov62_02239DA4));
 
-    v0 = Strbuf_Init(20 * 3, param4);
+    v0 = Strbuf_Init(20 * 3, heapID);
     PCBoxes_BufferBoxName(param1, param2, v0);
     Strbuf_ToChars(v0, param3->unk_00, 20);
     Strbuf_Free(v0);

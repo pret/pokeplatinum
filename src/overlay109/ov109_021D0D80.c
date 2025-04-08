@@ -1976,7 +1976,7 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
 
     {
         NNSG2dPaletteData *v5;
-        void *v6 = sub_020394A8(95);
+        void *v6 = sub_020394A8(HEAP_ID_95);
 
         NNS_G2dGetUnpackedPaletteData(v6, &v5);
         PaletteData_LoadBuffer(v2, v5->pRawData, 2, 14 * 16, 32);
@@ -2259,7 +2259,7 @@ static void ov109_021D29CC(UnkStruct_ov109_021D0F70 *param0)
     v0 = param0->unk_CC->unk_08;
     v1 = Unk_ov109_021D5A80[v0];
 
-    sub_0207389C(&v2->unk_54, 0, v3, v1, 95, 0);
+    sub_0207389C(&v2->unk_54, 0, v3, v1, HEAP_ID_95, 0);
     sub_020738EC(&v2->unk_54);
     sub_02073B70(&v2->unk_68, &v2->unk_54);
 
@@ -2349,19 +2349,19 @@ static void ov109_021D2B00(UnkStruct_ov109_021D0F70 *param0)
     const u32 *v1, *v2;
     UnkStruct_ov109_021D1334 *v3 = &param0->unk_190;
 
-    sub_0207389C(&v3->unk_00, 0, param0->unk_D80, 0, 95, 0);
+    sub_0207389C(&v3->unk_00, 0, param0->unk_D80, 0, HEAP_ID_95, 0);
     sub_020738EC(&v3->unk_00);
-    sub_0207389C(&v3->unk_14, 0, param0->unk_D80, 5, 95, 0);
+    sub_0207389C(&v3->unk_14, 0, param0->unk_D80, 5, HEAP_ID_95, 0);
     sub_020738EC(&v3->unk_14);
 
     v1 = Unk_ov109_021D5A14;
     v2 = Unk_ov109_021D5A3C;
 
     for (v0 = 0; v0 < 5; v0++, v1++, v2++) {
-        sub_0207389C(&v3->unk_28[v0], 0, param0->unk_D80, *v1, 95, 0);
+        sub_0207389C(&v3->unk_28[v0], 0, param0->unk_D80, *v1, HEAP_ID_95, 0);
         sub_020738EC(&v3->unk_28[v0]);
-        sub_020739B4(&v3->unk_8C[v0], 0, param0->unk_D80, *v2, 95, 0);
-        sub_02073A3C(&v3->unk_8C[v0], &v3->unk_28[v0], 95);
+        sub_020739B4(&v3->unk_8C[v0], 0, param0->unk_D80, *v2, HEAP_ID_95, 0);
+        sub_02073A3C(&v3->unk_8C[v0], &v3->unk_28[v0], HEAP_ID_95);
         sub_02073A5C(&v3->unk_8C[v0], &v3->unk_28[v0]);
     }
 }

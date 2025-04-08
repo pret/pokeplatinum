@@ -310,7 +310,7 @@ static int sub_0208384C(void *param0)
     v0 = param0;
     v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
 
-    if (sub_02097788(v0->unk_5A4->unk_08, v1, 12) != 0xFFFFFFFF) {
+    if (sub_02097788(v0->unk_5A4->unk_08, v1, HEAP_ID_12) != 0xFFFFFFFF) {
         v0->unk_704[v0->unk_B11].unk_0C = 0;
         sub_02083040(v0, v0->unk_B11, v0->unk_704[v0->unk_B11].unk_0C);
         sub_02082708(v0, 46, 0);

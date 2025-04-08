@@ -30,7 +30,7 @@
 #include "unk_0206CCB0.h"
 
 struct UnkStruct_02055CBC_t {
-    int unk_00;
+    int heapID;
     BerryGrowthData *unk_04;
     NNSG3dRenderObj unk_08;
     NNSG3dResMdl *unk_5C;
@@ -88,7 +88,7 @@ UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int heapID)
     UnkStruct_02055CBC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02055CBC));
     MI_CpuClear8(v0, sizeof(UnkStruct_02055CBC));
 
-    v0->unk_00 = heapID;
+    v0->heapID = heapID;
     v0->unk_04 = BerryGrowthData_Init(heapID);
 
     sub_02055D14(fieldSystem, v0);
@@ -124,7 +124,7 @@ static void sub_02055D14(FieldSystem *fieldSystem, UnkStruct_02055CBC *param1)
     UnkStruct_ov5_021DF47C *v0 = fieldSystem->unk_40;
     u32 v1 = ov5_021DF5A8(v0, 17);
 
-    param1->unk_60 = Heap_AllocFromHeap(param1->unk_00, v1);
+    param1->unk_60 = Heap_AllocFromHeap(param1->heapID, v1);
 
     ov5_021DF5B4(v0, 17, param1->unk_60);
     Easy3D_InitRenderObjFromResource(&param1->unk_08, &param1->unk_5C, &param1->unk_60);

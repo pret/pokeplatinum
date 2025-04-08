@@ -442,7 +442,7 @@ static void ov62_0223A138(UnkStruct_ov62_02239DBC *param0)
 static void ov62_0223A154(SaveData *param0, const PCBoxes *param1, int param2, UnkStruct_ov62_02239DA4 *param3)
 {
     memset(param3, 0, sizeof(UnkStruct_ov62_02239DA4));
-    ov61_0222AE88(param0, param1, param2, param3, 102);
+    ov61_0222AE88(param0, param1, param2, param3, HEAP_ID_102);
 }
 
 static BOOL ov62_0223A17C(UnkStruct_0208C06C *param0)
@@ -973,7 +973,7 @@ static void ov62_0223AC58(UnkStruct_0208C06C *param0, int param1)
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, v6);
     v3 = Strbuf_Init(255, HEAP_ID_102);
     v4 = Strbuf_Init(255, HEAP_ID_102);
-    v5 = ov62_02231690(102);
+    v5 = ov62_02231690(HEAP_ID_102);
 
     Strbuf_CopyChars(v3, v0->unk_38C[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00.unk_00);
     ov62_022349A8(param0, v3);

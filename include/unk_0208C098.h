@@ -49,7 +49,7 @@ u8 App_BarColor(u32 cur, u32 max);
 u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize);
 void sub_0208C120(u8 param0, u32 heapID);
 u8 sub_0208C15C(s16 *param0, u16 param1);
-void sub_0208C210(BgConfig *param0, int param1, NARC *param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8);
+void sub_0208C210(BgConfig *param0, int heapID, NARC *param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8);
 void *sub_0208C2F4(NARC *param0, int param1, int param2, NNSG2dScreenData **param3, int heapID);
 
 #endif // POKEPLATINUM_UNK_0208C098_H

@@ -35,9 +35,9 @@ void sub_0202604C(const BattleRegulation *param0, Strbuf *param1)
     Strbuf_CopyNumChars(param1, param0->unk_00, (11 + 1));
 }
 
-Strbuf *sub_0202605C(const BattleRegulation *param0, int param1)
+Strbuf *sub_0202605C(const BattleRegulation *param0, int heapID)
 {
-    Strbuf *v0 = Strbuf_Init((11 + 1) * 2, param1);
+    Strbuf *v0 = Strbuf_Init((11 + 1) * 2, heapID);
 
     Strbuf_CopyChars(v0, param0->unk_00);
     return v0;

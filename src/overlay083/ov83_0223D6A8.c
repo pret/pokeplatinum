@@ -388,21 +388,21 @@ void ov83_0223DB30(UnkStruct_ov83_0223DB30 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223DB30));
 }
 
-void ov83_0223DB4C(UnkStruct_ov83_0223DB30 *param0, UnkStruct_ov83_0223DB4C *param1, UnkStruct_ov83_0223D784 *param2, UnkStruct_ov83_0223D95C *param3, u32 param4)
+void ov83_0223DB4C(UnkStruct_ov83_0223DB30 *param0, UnkStruct_ov83_0223DB4C *param1, UnkStruct_ov83_0223D784 *param2, UnkStruct_ov83_0223D95C *param3, u32 heapID)
 {
     int v0;
     int v1;
-    NARC *v2 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, param4);
+    NARC *v2 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, heapID);
     v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param1->unk_00[v0].unk_00 != 0) {
-            ov83_0223D7A8(param2, &param0->unk_28[v1], v2, (70 + ((param1->unk_00[v0].unk_00) - 149)), 1, (6 + ((param1->unk_00[v0].unk_00) - 149)), 5, 4, 1000 + v0, param4);
+            ov83_0223D7A8(param2, &param0->unk_28[v1], v2, (70 + ((param1->unk_00[v0].unk_00) - 149)), 1, (6 + ((param1->unk_00[v0].unk_00) - 149)), 5, 4, 1000 + v0, heapID);
 
-            param0->unk_08[v1] = ov83_0223D9A8(param2, &param0->unk_28[v1], 0, 0, 0, 0, param4);
+            param0->unk_08[v1] = ov83_0223D9A8(param2, &param0->unk_28[v1], 0, 0, 0, 0, heapID);
             Sprite_SetDrawFlag(param0->unk_08[v1], 0);
 
-            param0->unk_18[v1] = ov83_0223D9A8(param2, &param3[0], 0, 0, 0, 0, param4);
+            param0->unk_18[v1] = ov83_0223D9A8(param2, &param3[0], 0, 0, 0, 0, heapID);
             Sprite_SetDrawFlag(param0->unk_18[v1], 0);
             Sprite_SetAnim(param0->unk_18[v1], 1);
             v1++;
