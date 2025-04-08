@@ -137,7 +137,7 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 param1);
 static void ov65_022369F0(UnkStruct_ov65_02236840 *param0);
 static void ov65_02236A28(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 param2);
 static void ov65_02236B90(UnkStruct_ov65_02236840 *param0, u32 param1);
-static void ov65_02236C10(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 param2);
+static void ov65_02236C10(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 heapID);
 static void ov65_02236C5C(UnkStruct_ov65_02236840 *param0);
 static void ov65_02236C7C(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 param2);
 static void ov65_02236D50(UnkStruct_ov65_02236840 *param0, u32 heapID);
