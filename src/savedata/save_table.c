@@ -69,7 +69,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_GAME_RECORDS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GameRecords_SaveSize, (SaveEntryInitFunc)GameRecords_Init },
     { SAVE_TABLE_ENTRY_BALL_SEALS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BallSeal_SaveSize, (SaveEntryInitFunc)BallSeal_Init },
     { SAVE_TABLE_ENTRY_CHATOT, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ChatotCry_SaveSize, (SaveEntryInitFunc)ChatotCry_Init },
-    { SAVE_TABLE_ENTRY_FRONTIER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Frontier_SaveSize, (SaveEntryInitFunc)Frontier_Init },
+    { SAVE_TABLE_ENTRY_FRONTIER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BattleFrontier_SaveSize, (SaveEntryInitFunc)BattleFrontier_Init },
     { SAVE_TABLE_ENTRY_RIBBONS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Ribbons_SaveSize, (SaveEntryInitFunc)Ribbons_Init },
     { SAVE_TABLE_ENTRY_ENCOUNTERS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SpecialEncounter_SaveSize, (SaveEntryInitFunc)SpecialEncounter_Init },
     { SAVE_TABLE_ENTRY_GLOBAL_TRADE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GlobalTrade_SaveSize, (SaveEntryInitFunc)GlobalTrade_Init },

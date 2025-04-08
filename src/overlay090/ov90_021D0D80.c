@@ -74,7 +74,7 @@ typedef struct {
     BgConfig *unk_10;
     UnkStruct_ov90_021D0D80 *unk_14;
     Options *unk_18;
-    UnkStruct_0203068C *unk_1C;
+    BattleFrontier *unk_1C;
     UnkStruct_0202D750 *unk_20;
     UnkStruct_0202D764 *unk_24;
     UnkStruct_ov90_021D0ECC_sub1 unk_28;
@@ -127,7 +127,7 @@ int ov90_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_08 = v1->unk_04;
     v0->unk_0A = v1->unk_06;
     v0->unk_18 = SaveData_GetOptions(v1->unk_00);
-    v0->unk_1C = sub_0203068C(v1->unk_00);
+    v0->unk_1C = SaveData_GetBattleFrontier(v1->unk_00);
     v0->unk_20 = sub_0202D750(v1->unk_00);
     v0->unk_24 = sub_0202D764(v1->unk_00);
     v0->heapID = HEAP_ID_74;

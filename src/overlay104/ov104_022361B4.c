@@ -100,15 +100,15 @@ UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *param0, u16 param1, u8 param2
         }
 
         if (v5 == 1) {
-            v9->unk_14 = sub_02030698(sub_0203068C(v9->unk_04), sub_0205E5E0(v9->unk_10), sub_0205E6A8(sub_0205E5E0(v9->unk_10)));
+            v9->unk_14 = sub_02030698(SaveData_GetBattleFrontier(v9->unk_04), sub_0205E5E0(v9->unk_10), sub_0205E6A8(sub_0205E5E0(v9->unk_10)));
         } else {
             v9->unk_14 = 0;
 
-            sub_020306E4(sub_0203068C(v9->unk_04), sub_0205E630(v9->unk_10), sub_0205E6A8(sub_0205E630(v9->unk_10)), 0);
-            sub_020306E4(sub_0203068C(v9->unk_04), sub_0205E658(param2), sub_0205E6A8(sub_0205E658(param2)), 0);
+            sub_020306E4(SaveData_GetBattleFrontier(v9->unk_04), sub_0205E630(v9->unk_10), sub_0205E6A8(sub_0205E630(v9->unk_10)), 0);
+            sub_020306E4(SaveData_GetBattleFrontier(v9->unk_04), sub_0205E658(param2), sub_0205E6A8(sub_0205E658(param2)), 0);
 
             for (v7 = 0; v7 < 3; v7++) {
-                sub_020306E4(sub_0203068C(v9->unk_04), sub_0205E5B4(v9->unk_10, v7), sub_0205E6A8(sub_0205E5B4(v9->unk_10, v7)), 1);
+                sub_020306E4(SaveData_GetBattleFrontier(v9->unk_04), sub_0205E5B4(v9->unk_10, v7), sub_0205E6A8(sub_0205E5B4(v9->unk_10, v7)), 1);
             }
         }
 
@@ -117,13 +117,13 @@ UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *param0, u16 param1, u8 param2
         v9->unk_24[0] = param3;
         v9->unk_24[1] = param4;
         v9->unk_24[2] = param5;
-        v9->unk_20 = sub_02030698(sub_0203068C(v9->unk_04), sub_0205E630(v9->unk_10), sub_0205E6A8(sub_0205E630(v9->unk_10)));
+        v9->unk_20 = sub_02030698(SaveData_GetBattleFrontier(v9->unk_04), sub_0205E630(v9->unk_10), sub_0205E6A8(sub_0205E630(v9->unk_10)));
 
-        sub_02030804(sub_0203068C(v9->unk_04), sub_0205E630(v9->unk_10), sub_0205E6A8(sub_0205E630(v9->unk_10)), 10);
+        sub_02030804(SaveData_GetBattleFrontier(v9->unk_04), sub_0205E630(v9->unk_10), sub_0205E6A8(sub_0205E630(v9->unk_10)), 10);
     } else {
         v9->unk_10 = (u8)sub_02030398(v4, 0, 0, 0, NULL);
         v9->unk_11 = (u8)sub_02030398(v4, 1, 0, 0, NULL);
-        v9->unk_14 = sub_02030698(sub_0203068C(v9->unk_04), sub_0205E5E0(v9->unk_10), sub_0205E6A8(sub_0205E5E0(v9->unk_10)));
+        v9->unk_14 = sub_02030698(SaveData_GetBattleFrontier(v9->unk_04), sub_0205E5E0(v9->unk_10), sub_0205E6A8(sub_0205E5E0(v9->unk_10)));
         v9->unk_16 = (u16)(v9->unk_14 / 7);
 
         for (v7 = 0; v7 < 3; v7++) {
@@ -354,12 +354,12 @@ void ov104_02236848(UnkStruct_ov104_0223BA10 *param0, u8 param1)
     u16 v5[4];
     u32 v6[4];
     u32 v7, v8, v9;
-    UnkStruct_0203068C *v10;
+    BattleFrontier *v10;
     Pokemon *v11;
     UnkStruct_020302DC *v12 = param0->unk_08;
     UnkStruct_0203041C *v13 = sub_0203041C(param0->unk_04);
 
-    v10 = sub_0203068C(param0->unk_04);
+    v10 = SaveData_GetBattleFrontier(param0->unk_04);
     v3 = ov104_0223B7DC(param0->unk_10, 1);
     v4[0] = param0->unk_10;
 
@@ -471,7 +471,7 @@ void ov104_02236B8C(UnkStruct_ov104_0223BA10 *param0)
     v0[0] = 1;
 
     for (v1 = 0; v1 < 3; v1++) {
-        sub_020306E4(sub_0203068C(param0->unk_04), sub_0205E5B4(param0->unk_10, v1), sub_0205E6A8(sub_0205E5B4(param0->unk_10, v1)), 1);
+        sub_020306E4(SaveData_GetBattleFrontier(param0->unk_04), sub_0205E5B4(param0->unk_10, v1), sub_0205E6A8(sub_0205E5B4(param0->unk_10, v1)), 1);
     }
 
     ov104_02236848(param0, 1);
@@ -653,12 +653,12 @@ int ov104_02236D10(UnkStruct_ov104_0223BA10 *param0)
 
 void ov104_02236ED8(SaveData *param0, u8 param1, int param2)
 {
-    u16 v0 = sub_02030698(sub_0203068C(param0), sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)));
+    u16 v0 = sub_02030698(SaveData_GetBattleFrontier(param0), sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)));
 
     if (v0 + param2 > 9999) {
-        sub_020306E4(sub_0203068C(param0), sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)), 9999);
+        sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)), 9999);
     } else {
-        sub_02030804(sub_0203068C(param0), sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)), param2);
+        sub_02030804(SaveData_GetBattleFrontier(param0), sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)), param2);
     }
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(param0), RECORD_UNK_065, param2);
@@ -770,18 +770,18 @@ void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
 
     if (ov104_0223BA14(param1->unk_10) == 0) {
         GF_ASSERT(param0->unk_A8 != NULL);
-        v0 = sub_02030698(sub_0203068C(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
+        v0 = sub_02030698(SaveData_GetBattleFrontier(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
         ov104_02237284(param0, param0->unk_A8, SaveData_GetTrainerInfo(param1->unk_04), v0);
     } else {
         GF_ASSERT(param0->unk_A8 != NULL);
         GF_ASSERT(param0->unk_AC != NULL);
 
         if (CommSys_CurNetId() == 0) {
-            v0 = sub_02030698(sub_0203068C(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
+            v0 = sub_02030698(SaveData_GetBattleFrontier(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
             v1 = param1->unk_A1C;
         } else {
             v0 = param1->unk_A1C;
-            v1 = sub_02030698(sub_0203068C(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
+            v1 = sub_02030698(SaveData_GetBattleFrontier(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
         }
 
         ov104_02237284(param0, param0->unk_A8, CommInfo_TrainerInfo(0), v0);

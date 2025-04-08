@@ -427,7 +427,7 @@ u16 ov104_0223BC24(u16 param0)
     return param0;
 }
 
-void ov104_0223BC2C(UnkStruct_0203068C *param0, u8 param1, int param2)
+void ov104_0223BC2C(BattleFrontier *param0, u8 param1, int param2)
 {
     u16 v0;
 

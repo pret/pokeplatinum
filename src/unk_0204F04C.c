@@ -33,11 +33,11 @@ BOOL ScrCmd_2C5(ScriptContext *param0)
             v0 = 104;
         }
 
-        sub_020306E4(sub_0203068C(param0->fieldSystem->saveData), v0, sub_0205E6A8(v0), 0);
+        sub_020306E4(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), v0, sub_0205E6A8(v0), 0);
     }
 
-    sub_020306E4(sub_0203068C(param0->fieldSystem->saveData), sub_0205E430(v4, v3), sub_0205E6A8(sub_0205E430(v4, v3)), 0);
-    sub_020306E4(sub_0203068C(param0->fieldSystem->saveData), sub_0205E488(v4, v3), sub_0205E6A8(sub_0205E488(v4, v3)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), sub_0205E430(v4, v3), sub_0205E6A8(sub_0205E430(v4, v3)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), sub_0205E488(v4, v3), sub_0205E6A8(sub_0205E488(v4, v3)), 0);
 
     return 0;
 }

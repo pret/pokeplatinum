@@ -15,7 +15,7 @@
 #include "struct_defs/struct_020305B8.h"
 #include "struct_defs/struct_02030698.h"
 
-typedef struct UnkStruct_0203068C_t {
+typedef struct BattleFrontier_t {
     UnkStruct_02030698 unk_00;
     union {
         UnkStruct_0202D060 unk_8E0_val1;
@@ -41,6 +41,6 @@ typedef struct UnkStruct_0203068C_t {
     struct {
         UnkStruct_020305B8 unk_00;
     } unk_1620;
-} UnkStruct_0203068C;
+} BattleFrontier;
 
 #endif // POKEPLATINUM_STRUCT_0203068C_H

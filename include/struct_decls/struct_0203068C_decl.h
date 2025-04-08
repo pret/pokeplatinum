@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0203068C_DECL_H
 #define POKEPLATINUM_STRUCT_0203068C_DECL_H
 
-typedef struct UnkStruct_0203068C_t UnkStruct_0203068C;
+typedef struct BattleFrontier_t BattleFrontier;
 
 #endif // POKEPLATINUM_STRUCT_0203068C_DECL_H

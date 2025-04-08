@@ -1824,7 +1824,7 @@ static int ov88_0223D514(UnkStruct_02095E80 *param0)
 
     switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
     case 0:
-        sub_02030788(sub_0203068C(param0->unk_04), param0->unk_36C8);
+        sub_02030788(SaveData_GetBattleFrontier(param0->unk_04), param0->unk_36C8);
         sub_0202AFD4(param0->unk_36EC, param0->unk_36C8);
         sub_02039298(param0->unk_04, param0->unk_36C4, 32 - 1, 26, 0);
         param0->unk_226C = ov88_0223D854;

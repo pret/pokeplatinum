@@ -82,7 +82,7 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *param0, u16 param1, u8 param2
         }
 
         if (v2 == 1) {
-            v10->unk_08 = sub_02030698(sub_0203068C(v10->unk_6FC), sub_0205E50C(v10->unk_04), sub_0205E6A8(sub_0205E50C(v10->unk_04)));
+            v10->unk_08 = sub_02030698(SaveData_GetBattleFrontier(v10->unk_6FC), sub_0205E50C(v10->unk_04), sub_0205E6A8(sub_0205E50C(v10->unk_04)));
         } else {
             v10->unk_08 = 0;
 
@@ -97,7 +97,7 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *param0, u16 param1, u8 param2
         v10->unk_04 = (u8)sub_02030198(v0, 0, 0, 0, NULL);
         v4 = ov104_0223B500(v10->unk_04);
         v10->unk_05 = (u8)sub_02030198(v0, 1, 0, 0, NULL);
-        v10->unk_08 = sub_02030698(sub_0203068C(v10->unk_6FC), sub_0205E50C(v10->unk_04), sub_0205E6A8(sub_0205E50C(v10->unk_04)));
+        v10->unk_08 = sub_02030698(SaveData_GetBattleFrontier(v10->unk_6FC), sub_0205E50C(v10->unk_04), sub_0205E6A8(sub_0205E50C(v10->unk_04)));
 
         for (v5 = 0; v5 < v4; v5++) {
             v10->unk_260[v5] = (u8)sub_02030198(v0, 3, v5, 0, NULL);
@@ -254,13 +254,13 @@ void ov104_0223526C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
     u8 v1[4];
     u16 v2[4];
     u32 v3[4];
-    UnkStruct_0203068C *v4;
+    BattleFrontier *v4;
     u16 v5, v6, v7, v8, v9;
     Pokemon *v10;
     UnkStruct_02030114 *v11 = param0->unk_6F8;
     UnkStruct_0203026C *v12 = sub_0203026C(param0->unk_6FC);
 
-    v4 = sub_0203068C(param0->unk_6FC);
+    v4 = SaveData_GetBattleFrontier(param0->unk_6FC);
     v1[0] = param0->unk_04;
 
     sub_02030140(param0->unk_6F8, 0, 0, 0, v1);
@@ -424,7 +424,7 @@ u16 ov104_02235578(UnkStruct_ov104_0223B5C0 *param0)
 
 static u16 ov104_022355C0(SaveData *param0, u8 param1, u8 param2, u16 *param3, u16 *param4)
 {
-    u16 v0 = sub_02030698(sub_0203068C(param0), sub_0205E4E0(param1, param2), sub_0205E6A8(sub_0205E4E0(param1, param2)));
+    u16 v0 = sub_02030698(SaveData_GetBattleFrontier(param0), sub_0205E4E0(param1, param2), sub_0205E6A8(sub_0205E4E0(param1, param2)));
     v0 &= 0xff;
 
     *param3 = (v0 & 0xf);
@@ -459,7 +459,7 @@ static void ov104_02235620(SaveData *param0, u8 param1, u8 param2, u8 param3)
     v2 = (param3 << (4 * v1));
     v3 |= v2;
 
-    sub_020306E4(sub_0203068C(param0), sub_0205E4E0(param1, param2), sub_0205E6A8(sub_0205E4E0(param1, param2)), v3);
+    sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E4E0(param1, param2), sub_0205E6A8(sub_0205E4E0(param1, param2)), v3);
     return;
 }
 

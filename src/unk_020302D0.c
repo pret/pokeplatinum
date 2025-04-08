@@ -26,7 +26,7 @@ void sub_020302D0(UnkStruct_020302DC *param0)
 
 UnkStruct_020302DC *sub_020302DC(SaveData *saveData)
 {
-    UnkStruct_0203068C *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &v0->unk_8E0_val4;
 }
 
@@ -123,7 +123,7 @@ void sub_02030410(UnkStruct_0203041C *param0)
 
 UnkStruct_0203041C *sub_0203041C(SaveData *saveData)
 {
-    UnkStruct_0203068C *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &v0->unk_161C.unk_00;
 }
 

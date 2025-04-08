@@ -105,7 +105,7 @@ BOOL ScrCmd_2CC(ScriptContext *param0)
     case 1:
 
         if (v4 == 3) {
-            *v6 = sub_02030698(sub_0203068C(param0->fieldSystem->saveData),
+            *v6 = sub_02030698(SaveData_GetBattleFrontier(param0->fieldSystem->saveData),
                 106,
                 sub_0205E6A8(106));
         } else {
@@ -114,7 +114,7 @@ BOOL ScrCmd_2CC(ScriptContext *param0)
         break;
 
     case 2:
-        *v6 = sub_02030698(sub_0203068C(param0->fieldSystem->saveData),
+        *v6 = sub_02030698(SaveData_GetBattleFrontier(param0->fieldSystem->saveData),
             sub_0205E55C(v4),
             sub_0205E6A8(sub_0205E55C(v4)));
         break;
@@ -518,7 +518,7 @@ BOOL ScrCmd_324(ScriptContext *param0)
     int v0;
     int v1;
     BattleFrontierStage *v2;
-    UnkStruct_0203068C *v3;
+    BattleFrontier *v3;
     u32 v4, v5, v6;
     u16 v7, v8;
     FieldSystem *fieldSystem = param0->fieldSystem;
@@ -653,7 +653,7 @@ BOOL ScrCmd_326(ScriptContext *param0)
     int v0;
     int v1;
     BattleFrontierStage *v2;
-    UnkStruct_0203068C *v3;
+    BattleFrontier *v3;
     u32 v4, v5;
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 *v7 = ScriptContext_GetVarPointer(param0);
@@ -698,11 +698,11 @@ BOOL ScrCmd_32A(ScriptContext *param0)
 
     u16 *v2 = ScriptContext_GetVarPointer(param0);
 
-    v0 = sub_02030698(sub_0203068C(param0->fieldSystem->saveData),
+    v0 = sub_02030698(SaveData_GetBattleFrontier(param0->fieldSystem->saveData),
         sub_0205E55C(0),
         0xff);
 
-    v1 = sub_02030698(sub_0203068C(param0->fieldSystem->saveData),
+    v1 = sub_02030698(SaveData_GetBattleFrontier(param0->fieldSystem->saveData),
         sub_0205E50C(0),
         0xff);
 
