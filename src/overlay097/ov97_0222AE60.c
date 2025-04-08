@@ -30,6 +30,8 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -37,8 +39,6 @@
 #include "system_data.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202DAB4.h"
 #include "unk_020366A0.h"
@@ -994,8 +994,8 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
         v0->unk_14C = 1;
     }
 
-    sub_020053CC(0);
-    sub_02004234(0);
+    Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
+    Sound_SetScene(0);
 
     return 1;
 }
@@ -1176,11 +1176,11 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         RebootAndLoadROM("data/eoo.dat");
         break;
     case 7:
-        sub_0200569C();
+        Sound_StopWaveOutAndSequences();
         EnqueueApplication(0xffffffff, &Unk_020F6DF0);
         break;
     case 8:
-        sub_0200569C();
+        Sound_StopWaveOutAndSequences();
         EnqueueApplication(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
         break;
     case 0:

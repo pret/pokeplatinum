@@ -71,8 +71,8 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201E3D8.h"
@@ -916,7 +916,7 @@ int ov65_0222E548(OverlayManager *param0, int *param1)
     }
 
     if (ov65_02231A54() == 1) {
-        sub_02004A68(0, 120);
+        Sound_SetInitialVolumeForHandle(SOUND_HANDLE_TYPE_FIELD_BGM, 120);
     }
 
     return 1;
@@ -1616,7 +1616,7 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
             param0->unk_3A8 = 61;
         }
     } else {
-        sub_02004550(11, 1175, 1);
+        Sound_SetSceneAndPlayBGM(11, 1175, 1);
         ov65_0222EE98(param0);
 
         if (!DWC_CheckHasProfile(sub_0202AD28(param0->unk_00))) {
@@ -3808,16 +3808,16 @@ static void ov65_02231A0C(void)
             v0 = 1086;
         }
 
-        sub_02004234(0);
-        sub_02004550(11, v0, 1);
+        Sound_SetScene(0);
+        Sound_SetSceneAndPlayBGM(11, v0, 1);
     } else {
-        sub_02004AD4(sub_020041FC(), 120);
+        Sound_SetInitialVolumeForSequence(Sound_GetCurrentBGM(), 120);
     }
 }
 
 static BOOL ov65_02231A54(void)
 {
-    u32 v0 = sub_020041FC();
+    u32 v0 = Sound_GetCurrentBGM();
 
     if ((v0 != 1085) && (v0 != 1086)) {
         return 0;
@@ -4840,12 +4840,12 @@ static void ov65_02232E70(UnkStruct_ov65_0222EBE0 *param0, int param1)
         if (ov65_0222DE40(param1) || (param1 == 8) || (param1 == 20) || (param1 == 22) || (param1 == 24) || (param1 == 26) || (param1 == 18)) {
             (void)0;
         } else if (param1 == 1) {
-            sub_0200564C(0, 30);
+            Sound_FadeOutBGM(0, 30);
         } else if (param1 == 16) {
             ov4_021D2584(0);
 
             if (ov65_02231A54() == 1) {
-                sub_0200560C(120, 30, 1);
+                Sound_FadeInBGM(120, 30, 1);
             }
         }
     }

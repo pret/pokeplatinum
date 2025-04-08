@@ -37,6 +37,8 @@
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -46,8 +48,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -4596,7 +4596,7 @@ static void ov115_022658F8(UnkStruct_ov115_022658E0 *param0, UnkStruct_ov115_022
         v1 = (param0->unk_03 * 150) / 58;
         v1 += 256;
 
-        sub_02004FA8(7, v1);
+        Sound_SetTempoRatioForHandle(7, v1);
 
         if (12 == param0->unk_03) {
             Sound_PlayEffect(SEQ_SE_PL_BALLOON05_2);
@@ -4636,5 +4636,5 @@ static void ov115_022658F8(UnkStruct_ov115_022658E0 *param0, UnkStruct_ov115_022
 
 static void ov115_02265A08(UnkStruct_ov115_022658E0 *param0)
 {
-    sub_02004FA8(7, 256);
+    Sound_SetTempoRatioForHandle(7, 256);
 }

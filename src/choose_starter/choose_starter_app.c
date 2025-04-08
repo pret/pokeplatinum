@@ -40,6 +40,8 @@
 #include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -49,8 +51,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02015064.h"
 #include "unk_0201E3D8.h"
@@ -366,7 +366,7 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     StartCursorMovement(&app->unk_658);
     MakePreviewWindow(&app->unk_6A8, app, HEAP_ID_CHOOSE_STARTER_APP);
 
-    sub_02004550(60, 0, 0);
+    Sound_SetSceneAndPlayBGM(60, 0, 0);
 
     return TRUE;
 }
@@ -1241,7 +1241,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
         PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, FALSE);
 
         if (ov78_021D26A4(param0)) {
-            sub_02005844(GetSelectedSpecies(param0->cursorPosition), 0);
+            Sound_PlayPokemonCry(GetSelectedSpecies(param0->cursorPosition), 0);
 
             param0->unk_04++;
         }

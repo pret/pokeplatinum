@@ -55,6 +55,8 @@
 #include "pokemon_icon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "sound_chatot.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -65,8 +67,6 @@
 #include "touch_screen.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
-#include "unk_02006224.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
@@ -8624,7 +8624,7 @@ static BOOL BtlCmd_CheckChatterActivation(BattleSystem *battleSys, BattleContext
         && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
         int chatter;
         if ((BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_RECORDING) == FALSE) {
-            chatter = Sound_Chatter(BattleSystem_ChatotVoice(battleSys, battleCtx->attacker));
+            chatter = Sound_GetChatterActivationParameter(BattleSystem_ChatotVoice(battleSys, battleCtx->attacker));
         } else {
             chatter = BattleSystem_RecordedChatter(battleSys, battleCtx->attacker);
         }
@@ -10609,11 +10609,11 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 u32 battleType = BattleSystem_BattleType(v2->battleSys);
 
                 if (battleType & BATTLE_TYPE_TRAINER) {
-                    sub_02005728(1510, 117);
+                    Sound_PlayPannedEffect(1510, 117);
                     ov12_022368C8(v2->ballRotation, 2);
                     v2->seqNum = 25;
                 } else {
-                    sub_02005728(1800, 117);
+                    Sound_PlayPannedEffect(1800, 117);
                     ov12_022368C8(v2->ballRotation, 1);
 
                     v2->seqNum = 2;
@@ -10672,7 +10672,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 7:
         if (--v2->tmpData[1] == 0) {
             ov12_022368C8(v2->ballRotation, 6);
-            sub_02005728(1801, 117);
+            Sound_PlayPannedEffect(1801, 117);
             v2->seqNum = 8;
         }
         break;

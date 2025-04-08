@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_02030108.h"
 #include "unk_0206CCB0.h"
 #include "unk_0209B6F8.h"
@@ -162,7 +162,7 @@ BOOL ov104_022349B8(UnkStruct_ov104_0222E930 *param0)
 
     v1->unk_700 = v0;
 
-    sub_02004550(5, 1119, 1);
+    Sound_SetSceneAndPlayBGM(5, 1119, 1);
     sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v0, 0, NULL);
 
     return 1;

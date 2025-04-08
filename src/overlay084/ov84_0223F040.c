@@ -24,12 +24,12 @@
 #include "poffin.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200C440.h"
 
 static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1);
@@ -589,9 +589,9 @@ static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1)
 {
     switch (param1) {
     case 1:
-        return sub_020057E0();
+        return Sound_IsAnyEffectPlaying();
     case 2:
-        return sub_020061E4();
+        return Sound_IsBGMPausedByFanfare();
     case 3:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         break;

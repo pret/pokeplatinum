@@ -39,6 +39,8 @@
 #include "narc.h"
 #include "player_avatar.h"
 #include "pltt_transfer.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -50,8 +52,6 @@
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
 #include "unk_0206CCB0.h"
@@ -3375,7 +3375,7 @@ static BOOL ov23_02246640(BgConfig *param0, UnkStruct_ov23_02245ED4 *param1)
     int v1 = 0, v2, v3, v4, v5;
     fx32 v6, v7, v8;
 
-    sub_02004B70(MIC_SAMPLING_TYPE_SIGNED_8BIT, &Unk_ov23_02257760, ov23_02246624, NULL);
+    Sound_StartMicManualSampling(MIC_SAMPLING_TYPE_SIGNED_8BIT, &Unk_ov23_02257760, ov23_02246624, NULL);
 
     {
         if (Unk_ov23_02257764->unk_B9F == 29) {
@@ -4345,7 +4345,7 @@ static BOOL ov23_02247F4C(BgConfig *param0, UnkStruct_ov23_02247E38 *param1)
         param1->unk_24 = 0;
         param1->unk_28 = 1;
     case 1:
-        sub_02004B70(MIC_SAMPLING_TYPE_SIGNED_8BIT, &Unk_ov23_02257760, ov23_02246624, NULL);
+        Sound_StartMicManualSampling(MIC_SAMPLING_TYPE_SIGNED_8BIT, &Unk_ov23_02257760, ov23_02246624, NULL);
 
         param1->unk_14++;
         param1->unk_08[param1->unk_14 % 10] = abs(Unk_ov23_02257764->unk_B9E);

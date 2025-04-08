@@ -56,6 +56,8 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -65,8 +67,6 @@
 #include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02028124.h"
@@ -1887,7 +1887,7 @@ static void StartMenu_EvolveInit(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
     v2 = menu->unk_25C;
 
-    sub_0200569C();
+    Sound_StopWaveOutAndSequences();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_73, 0x30000);
 
     v3 = SaveData_GetParty(fieldSystem->saveData);
@@ -1923,8 +1923,8 @@ static void StartMenu_Evolve(FieldTask *taskMan)
     if (sub_0207B0D0(menu->unk_25C) == 1) {
         sub_0207B0E0(menu->unk_25C);
         Heap_Destroy(HEAP_ID_73);
-        sub_020055D0(1141, 0);
-        sub_02004234(0);
+        Sound_StopBGM(1141, 0);
+        Sound_SetScene(0);
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
 
         menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);

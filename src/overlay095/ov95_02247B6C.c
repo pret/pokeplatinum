@@ -22,13 +22,13 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
@@ -351,7 +351,7 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
 
                     PokemonSprite_InitAnim(param0->unk_10, 1);
                     PokeSprite_LoadCryDelay(param0->unk_80, &delay, ov95_0224764C(param0->unk_00), 1);
-                    sub_0200590C(ov95_0224764C(param0->unk_00), delay, ov95_02247654(param0->unk_00));
+                    Sound_PlayDelayedPokemonCry(ov95_0224764C(param0->unk_00), delay, ov95_02247654(param0->unk_00));
                 }
 
                 Window_FillTilemap(&(param0->unk_58), 0xf);

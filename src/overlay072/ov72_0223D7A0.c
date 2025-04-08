@@ -36,6 +36,8 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -45,8 +47,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
@@ -156,7 +156,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         ov72_0223DF58(v0);
         ov72_0223E0A0(v0, param0);
 
-        sub_02004550(56, 0, 0);
+        Sound_SetSceneAndPlayBGM(56, 0, 0);
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
         NARC_dtor(v1);
         (*param1)++;

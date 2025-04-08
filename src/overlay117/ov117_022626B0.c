@@ -13,9 +13,9 @@
 #include "inlines.h"
 #include "narc.h"
 #include "palette.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "system.h"
-#include "unk_02005474.h"
 
 typedef struct {
     fx32 unk_00;

@@ -30,10 +30,10 @@
 #include "journal.h"
 #include "overlay_manager.h"
 #include "poffin.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "system.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202ACE0.h"
 #include "unk_020363E8.h"
@@ -134,7 +134,7 @@ int ov83_0223B5B0(OverlayManager *param0, int *param1)
 
     SetVBlankCallback(ov83_0223B5A0, v0);
     DisableHBlank();
-    sub_02004550(12, 1183, 1);
+    Sound_SetSceneAndPlayBGM(12, 1183, 1);
 
     return 1;
 }

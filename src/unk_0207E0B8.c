@@ -32,6 +32,8 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -40,8 +42,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_0201E010.h"
@@ -269,7 +269,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     sub_0207EB6C(v0, v1);
     sub_0201E3D8();
     sub_0201E450(4);
-    sub_02004550(57, 0, 0);
+    Sound_SetSceneAndPlayBGM(57, 0, 0);
     sub_02081A24(v0);
     sub_02082C2C(v0);
     sub_02082E58(v0);

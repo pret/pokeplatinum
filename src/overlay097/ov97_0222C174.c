@@ -32,14 +32,14 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
@@ -688,7 +688,7 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
     v0->unk_158 = 0;
 
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
-    sub_02004550(9, 1174, 1);
+    Sound_SetSceneAndPlayBGM(9, 1174, 1);
 
     return 1;
 }

@@ -38,10 +38,10 @@
 #include "enums.h"
 #include "heap.h"
 #include "math.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_020711EC.h"
 
 typedef struct {
@@ -1348,7 +1348,7 @@ static int ov101_021D2A78(UnkStruct_ov101_021D13C8 *param0)
         return 0;
     }
 
-    sub_02005844(SPECIES_CLEFAIRY, 0);
+    Sound_PlayPokemonCry(SPECIES_CLEFAIRY, 0);
     param0->unk_00 = 42;
     return 0;
 }
@@ -3439,7 +3439,7 @@ static int ov101_021D4A30(UnkStruct_ov101_021D4764 *param0)
     if (param0->unk_10 >= 48) {
         param0->unk_10 = 0;
         param0->unk_04++;
-        sub_02005844(SPECIES_CLEFAIRY, 0);
+        Sound_PlayPokemonCry(SPECIES_CLEFAIRY, 0);
         ov101_021D679C(param0->unk_30, UnkEnum_ov101_021D679C_04);
     }
 

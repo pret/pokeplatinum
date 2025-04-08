@@ -49,6 +49,9 @@
 #include "render_window.h"
 #include "rtc.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_chatot.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -61,9 +64,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
-#include "unk_02006224.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_0202ACE0.h"
@@ -318,11 +318,11 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     sub_02039734();
 
     if (IsNight() == 0) {
-        sub_02004550(4, 1085, 1);
-        sub_02004A84(1085);
+        Sound_SetSceneAndPlayBGM(4, 1085, 1);
+        Sound_AdjustVolumeForVoiceChat(1085);
     } else {
-        sub_02004550(4, 1086, 1);
-        sub_02004A84(1086);
+        Sound_SetSceneAndPlayBGM(4, 1086, 1);
+        Sound_AdjustVolumeForVoiceChat(1086);
     }
 
     NARC_dtor(v1);
@@ -1511,7 +1511,7 @@ static void ov88_0223CE74(UnkStruct_02095E80 *param0)
         if (species == SPECIES_CHATOT) {
             Sound_PlayChatotCry(SaveData_GetChatotCry(param0->unk_04), 0, 100, 0);
         } else {
-            sub_02005844(species, form);
+            Sound_PlayPokemonCry(species, form);
         }
 
         Sprite_SetAnimateFlag(param0->unk_464[v2], 1);

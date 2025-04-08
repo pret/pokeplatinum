@@ -12,9 +12,9 @@
 #include "colored_arrow.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "sound_playback.h"
 #include "string_list.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_0202854C.h"
 
 UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 heapID, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6)

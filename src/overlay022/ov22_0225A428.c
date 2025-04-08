@@ -21,6 +21,7 @@
 #include "message.h"
 #include "narc.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -28,7 +29,6 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_02095AF0.h"
 
 static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1);

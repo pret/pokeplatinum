@@ -59,6 +59,8 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -67,8 +69,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
@@ -229,7 +229,7 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
     v0->unk_718 = Window_New(HEAP_ID_13, 1);
     v0->unk_70C = 0;
 
-    sub_02004550(53, 0, 0);
+    Sound_SetSceneAndPlayBGM(53, 0, 0);
 
     return 1;
 }
@@ -476,11 +476,11 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200564C((127 / 3), 30);
+        Sound_FadeOutBGM((127 / 3), 30);
         (*param1)++;
         break;
     case 1:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             (*param1)++;
         }
         break;
@@ -554,7 +554,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         break;
     case 12:
         if (IsScreenTransitionDone()) {
-            sub_02004550(7, 1169, 0);
+            Sound_SetSceneAndPlayBGM(7, 1169, 0);
             (*param1)++;
         }
         break;

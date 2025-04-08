@@ -37,6 +37,7 @@
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
+#include "sound_playback.h"
 #include "spl.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -45,7 +46,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_02014000.h"
 #include "vram_transfer.h"
 
@@ -844,7 +844,7 @@ static BOOL ov12_022203A0(UnkStruct_ov12_02220314 *param0)
         }
     }
 
-    sub_02005818(param0->unk_14);
+    Sound_PanAllEffects(param0->unk_14);
 
     if (Sound_IsEffectPlaying(param0->unk_1A) == 0) {
         if (v0 == 1) {
@@ -881,7 +881,7 @@ static BOOL ov12_0222040C(UnkStruct_ov12_02220314 *param0)
     param0->unk_18--;
 
     Sound_PlayEffect(param0->unk_1A);
-    sub_020057FC(param0->unk_1A, 0xffff, param0->unk_14);
+    Sound_PanEffect(param0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, param0->unk_14);
 
     if (param0->unk_18 == 0) {
         v0 = 0;
@@ -896,7 +896,7 @@ static BOOL ov12_0222044C(UnkStruct_ov12_02220314 *param0)
 
     if ((param0->unk_03--) == 0) {
         Sound_PlayEffect(param0->unk_1A);
-        sub_020057FC(param0->unk_1A, 0xffff, param0->unk_14);
+        Sound_PanEffect(param0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, param0->unk_14);
 
         v0 = 0;
     }
@@ -1250,7 +1250,7 @@ static void ov12_02220798(UnkStruct_ov12_0221FCDC *param0)
         return;
     }
 
-    if (sub_020057E0()) {
+    if (Sound_IsAnyEffectPlaying()) {
         param0->unk_179++;
 
         if (param0->unk_179 > 90) {
@@ -3302,7 +3302,7 @@ static void ov12_02222984(UnkStruct_ov12_0221FCDC *param0)
     v1 = ov12_0222317C(param0, v1);
 
     Sound_PlayEffect(v0);
-    sub_020057FC(v0, 0xffff, v1);
+    Sound_PanEffect(v0, SOUND_PLAYBACK_TRACK_ALL, v1);
 }
 
 static void ov12_022229BC(UnkStruct_ov12_0221FCDC *param0)
@@ -3315,7 +3315,7 @@ static void ov12_022229BC(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_18 += 1;
 
     v0 = ov12_0222317C(param0, v0);
-    sub_02005818(v0);
+    Sound_PanAllEffects(v0);
 }
 
 static void ov12_022229D8(UnkStruct_ov12_0221FCDC *param0)
@@ -3348,7 +3348,7 @@ static void ov12_022229D8(UnkStruct_ov12_0221FCDC *param0)
     v0->unk_10 = ov12_02223234(v0->unk_08, v0->unk_0C, v0->unk_10);
 
     Sound_PlayEffect(v0->unk_1A);
-    sub_020057FC(v0->unk_1A, 0xffff, v0->unk_08);
+    Sound_PanEffect(v0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, v0->unk_08);
 
     ov12_02220344(param0, v0);
 }
@@ -3379,7 +3379,7 @@ static void ov12_02222A78(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_18 += 1;
 
     Sound_PlayEffect(v0->unk_1A);
-    sub_020057FC(v0->unk_1A, 0xffff, v0->unk_08);
+    Sound_PanEffect(v0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, v0->unk_08);
 
     ov12_02220344(param0, v0);
 }
@@ -3414,7 +3414,7 @@ static void ov12_02222AF0(UnkStruct_ov12_0221FCDC *param0)
     v0->unk_10 = ov12_0222317C(param0, v0->unk_10);
 
     Sound_PlayEffect(v0->unk_1A);
-    sub_020057FC(v0->unk_1A, 0xffff, v0->unk_08);
+    Sound_PanEffect(v0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, v0->unk_08);
 
     ov12_02220344(param0, v0);
 }
@@ -3485,7 +3485,7 @@ static void ov12_02222C54(UnkStruct_ov12_0221FCDC *param0)
         return;
     }
 
-    if (sub_020057E0()) {
+    if (Sound_IsAnyEffectPlaying()) {
         param0->unk_179++;
 
         if (param0->unk_179 > 90) {
@@ -3799,12 +3799,12 @@ static void ov12_02223134(UnkStruct_ov12_0221FCDC *param0)
 {
     int v0;
 
-    if (sub_0200598C() == 0) {
+    if (Sound_IsPokemonCryPlaying() == 0) {
         param0->unk_18 += 1;
         v0 = inline_ov12_022204C4(param0->unk_18);
         param0->unk_18 += 1;
         param0->unk_89 = 0;
-        sub_0200592C(v0);
+        Sound_StopPokemonCries(v0);
     } else {
         param0->unk_89 = 1;
     }

@@ -19,9 +19,9 @@
 #include "heap.h"
 #include "palette.h"
 #include "poketch.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 
 #define POKETCH_PALETTE_NARC_IDX 0
 

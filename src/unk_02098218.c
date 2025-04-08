@@ -30,9 +30,9 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_02024220.h"
@@ -97,7 +97,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     ov119_021D0EB8(v1->unk_04.unk_00);
     ov119_021D17B8(&v1->unk_04);
 
-    sub_0200569C();
+    Sound_StopWaveOutAndSequences();
     SetVBlankCallback(ov119_021D0FD0, v1);
 
     return 1;

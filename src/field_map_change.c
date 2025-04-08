@@ -49,6 +49,8 @@
 #include "savedata.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -57,8 +59,6 @@
 #include "terrain_attributes.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_0203A7D8.h"
@@ -633,7 +633,7 @@ static BOOL FieldTask_ChangeMap(FieldTask *task)
         mapChangeData->state++;
         break;
     case 2:
-        if (Sound_CheckFade() != 0) {
+        if (Sound_IsFadeActive()) {
             break;
         }
 
@@ -727,7 +727,7 @@ static BOOL FieldTask_ChangeMapFull(FieldTask *task)
         mapChangeSub->state++;
         break;
     case 2:
-        if (Sound_CheckFade() != 0) {
+        if (Sound_IsFadeActive()) {
             break;
         }
 
@@ -801,7 +801,7 @@ static BOOL FieldTask_MapChangeFly(FieldTask *task)
         mapChangeData->state++;
         break;
     case 2:
-        if (Sound_CheckFade() != 0) {
+        if (Sound_IsFadeActive()) {
             break;
         }
 
@@ -923,7 +923,7 @@ static BOOL FieldTask_MapChangeByDig(FieldTask *task)
         mapChangeData->state++;
         break;
     case 2:
-        if (Sound_CheckFade() != 0) {
+        if (Sound_IsFadeActive()) {
             break;
         }
 
@@ -1035,7 +1035,7 @@ static BOOL FieldTask_MapChangeWarp(FieldTask *task)
         mapChangeWarpData->state++;
         break;
     case 3:
-        if (Sound_CheckFade() != 0) {
+        if (Sound_IsFadeActive()) {
             break;
         }
 
@@ -1205,7 +1205,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
         Heap_FreeToHeap(mapChangeUndergroundData);
         return 1;
     case 6:
-        sub_0200564C(0, 30);
+        Sound_FadeOutBGM(0, 30);
         mapChangeUndergroundData->state++;
         break;
     case 7:
@@ -1225,11 +1225,11 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
         mapChangeUndergroundData->state++;
         break;
     case 10:
-        if (Sound_CheckFade() != 0) {
+        if (Sound_IsFadeActive()) {
             break;
         }
 
-        sub_02004234(0);
+        Sound_SetScene(0);
         Sound_ClearSpecialBGM(fieldSystem);
         FieldTransition_StartMap(task);
         mapChangeUndergroundData->state++;
@@ -1271,7 +1271,7 @@ BOOL FieldTask_MapChangeFromUnderground(FieldTask *task)
     case 1:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
             if ((fieldSystem->unk_6C == NULL) && !CommSys_IsInitialized()) {
-                sub_0200564C(0, 30);
+                Sound_FadeOutBGM(0, 30);
                 mapChangeUndergroundData->state++;
             }
         }
@@ -1292,11 +1292,11 @@ BOOL FieldTask_MapChangeFromUnderground(FieldTask *task)
         mapChangeUndergroundData->state++;
         break;
     case 5:
-        if (Sound_CheckFade() != 0) {
+        if (Sound_IsFadeActive()) {
             break;
         }
 
-        sub_02004234(0);
+        Sound_SetScene(0);
         Sound_ClearSpecialBGM(fieldSystem);
         FieldTransition_StartMap(task);
         mapChangeUndergroundData->state++;
@@ -1414,7 +1414,7 @@ static BOOL sub_02054538(FieldTask *task)
         (*state)++;
         break;
     case 3:
-        if (Sound_CheckFade() != 0) {
+        if (Sound_IsFadeActive()) {
             break;
         }
 
@@ -1472,7 +1472,7 @@ static BOOL sub_02054648(FieldTask *task)
         (*state)++;
         break;
     case 3:
-        if (Sound_CheckFade() != 0) {
+        if (Sound_IsFadeActive()) {
             break;
         }
 
@@ -1534,7 +1534,7 @@ static BOOL FieldTask_ChangeMapColosseum(FieldTask *task)
         mapChangeData->state++;
         break;
     case 2:
-        if (Sound_CheckFade() != 0) {
+        if (Sound_IsFadeActive()) {
             break;
         }
 

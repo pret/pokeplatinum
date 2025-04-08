@@ -33,10 +33,10 @@
 #include "math.h"
 #include "narc.h"
 #include "player_avatar.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_020655F4.h"
 
 void include_unk_ov6_02248F30();
@@ -554,11 +554,11 @@ static BOOL ov6_0223E408(FieldTask *param0)
 
     switch (v1->unk_0C) {
     case 0:
-        sub_0200564C(0, 1);
+        Sound_FadeOutBGM(0, 1);
         v1->unk_0C++;
         break;
     case 1:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             v1->unk_0C++;
             v1->unk_04 = 16;
         }
@@ -589,11 +589,11 @@ static BOOL ov6_0223E408(FieldTask *param0)
         }
         break;
     case 5:
-        sub_0200560C(127, 16, 0);
+        Sound_FadeInBGM(127, 16, 0);
         v1->unk_0C++;
         break;
     case 6:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             v1->unk_0C++;
         }
         break;
@@ -1118,7 +1118,7 @@ static BOOL ov6_0223EBDC(UnkStruct_ov6_0223EA98 *param0)
         Easy3DObject_SetPosition(&param0->unk_24, param0->unk_E4.unk_00, v2, param0->unk_F4.unk_00);
 
         if (v0[0] && v0[1]) {
-            Sound_PlayPokemonCry(POKECRY_NORMAL, SPECIES_UXIE, 0, 100, HEAP_ID_FIELD, 0);
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_UXIE, 0, 100, HEAP_ID_FIELD, 0);
             param0->unk_18++;
         }
         break;
@@ -1341,7 +1341,7 @@ static BOOL ov6_0223EE5C(UnkStruct_ov6_0223EA98 *param0)
         }
 
         param0->unk_D0 = 0;
-        Sound_PlayPokemonCry(POKECRY_NORMAL, SPECIES_MESPRIT, 0, 100, HEAP_ID_FIELD, 0);
+        Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_MESPRIT, 0, 100, HEAP_ID_FIELD, 0);
         param0->unk_18++;
         break;
     case 16:
@@ -1482,7 +1482,7 @@ static BOOL ov6_0223F744(UnkStruct_ov6_0223EA98 *param0)
         Easy3DObject_SetPosition(&param0->unk_24, param0->unk_E4.unk_00, v2, param0->unk_F4.unk_00);
 
         if (v0[0] && v0[1]) {
-            Sound_PlayPokemonCry(POKECRY_NORMAL, SPECIES_AZELF, 0, 100, HEAP_ID_FIELD, 0);
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_AZELF, 0, 100, HEAP_ID_FIELD, 0);
             param0->unk_18++;
         }
 

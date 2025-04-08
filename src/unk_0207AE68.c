@@ -40,13 +40,13 @@
 #include "poketch.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
@@ -285,7 +285,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
                 PokemonSprite_InitAnim(param0->unk_1C[0], NULL);
             }
 
-            sub_0200590C(param0->unk_60, param0->unk_84, param0->unk_86);
+            Sound_PlayDelayedPokemonCry(param0->unk_60, param0->unk_84, param0->unk_86);
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
 
             if (param0->unk_7C & 0x2) {
@@ -298,9 +298,9 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 5:
-        if ((Text_IsPrinterActive(param0->unk_65) == 0) && (sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
+        if ((Text_IsPrinterActive(param0->unk_65) == 0) && (Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
             sub_02015738(param0->unk_58, 1);
-            sub_02005474(1141);
+            Sound_PlayBasicBGM(1141);
             param0->unk_66 = 20;
             param0->unk_64 = 6;
         }
@@ -389,12 +389,12 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
                 PokemonSprite_InitAnim(param0->unk_1C[1], NULL);
             }
 
-            sub_0200590C(param0->unk_62, param0->unk_85, param0->unk_86);
+            Sound_PlayDelayedPokemonCry(param0->unk_62, param0->unk_85, param0->unk_86);
             param0->unk_64++;
         }
         break;
     case 11:
-        if ((sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[1]) == 0)) {
+        if ((Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[1]) == 0)) {
             Pokemon_SetValue(param0->unk_28, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
             Pokemon_CalcAbility(param0->unk_28);
             Pokemon_CalcLevelAndStats(param0->unk_28);
@@ -603,7 +603,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 38:
-        if (sub_020061E4() == 0) {
+        if (Sound_IsBGMPausedByFanfare() == 0) {
             if (--param0->unk_66 == 0) {
                 param0->unk_64 = 13;
             }
@@ -635,7 +635,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             param0->unk_74 = 0xff;
             param0->unk_75 = 0xa0;
             param0->unk_70 = 0;
-            sub_020055D0(1141, 0);
+            Sound_StopBGM(1141, 0);
             sub_0207C8F4(param0->unk_30);
             param0->unk_64++;
         }
@@ -651,12 +651,12 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
                 PokemonSprite_InitAnim(param0->unk_1C[0], NULL);
             }
 
-            sub_0200590C(param0->unk_60, param0->unk_84, param0->unk_86);
+            Sound_PlayDelayedPokemonCry(param0->unk_60, param0->unk_84, param0->unk_86);
             param0->unk_64++;
         }
         break;
     case 43:
-        if ((sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
+        if ((Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, 919);
             param0->unk_66 = 20;
@@ -986,19 +986,19 @@ static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
 
     switch (param1) {
     case 1:
-        v0 = sub_020057E0();
+        v0 = Sound_IsAnyEffectPlaying();
         break;
     case 2:
-        v0 = sub_020061E4();
+        v0 = Sound_IsBGMPausedByFanfare();
         break;
     case 3:
-        sub_02006150(1156);
+        Sound_PlayFanfare(1156);
         break;
     case 4:
         Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 5:
-        sub_02006150(1155);
+        Sound_PlayFanfare(1155);
         break;
     default:
         break;

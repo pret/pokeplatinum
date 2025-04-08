@@ -20,9 +20,9 @@
 #include "field_transition.h"
 #include "heap.h"
 #include "player_avatar.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
@@ -80,7 +80,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
     v0->unk_05 = 0;
     v0->unk_08 = 0;
 
-    sub_02004550(64, 0, 0);
+    Sound_SetSceneAndPlayBGM(64, 0, 0);
 
     if (param1 == 3) {
         v4 = MAP_PROP_MODEL_REGULAR_SHIP;
@@ -200,11 +200,11 @@ static BOOL sub_0206C964(FieldTask *taskMan)
     } break;
     case 2:
         StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELDMAP);
-        sub_0200564C(0, 6);
+        Sound_FadeOutBGM(0, 6);
         v1->unk_00 = 3;
         break;
     case 3:
-        if (!IsScreenTransitionDone() || (Sound_CheckFade() != 0)) {
+        if (!IsScreenTransitionDone() || (Sound_IsFadeActive())) {
             return 0;
         }
 

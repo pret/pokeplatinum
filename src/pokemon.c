@@ -44,13 +44,13 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "rtc.h"
+#include "sound_chatot.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
-#include "unk_02006224.h"
 #include "unk_02015F84.h"
 #include "unk_02017038.h"
 #include "unk_02028124.h"
@@ -4318,11 +4318,11 @@ void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 specie
 {
     if (species == SPECIES_CHATOT) {
         if (Sound_CanPlayChatotCry(cryMod) == FALSE) {
-            Sound_FlagDefaultChatotCry(TRUE);
-            Sound_PlayPokemonCry(cryMod, species, pan, volume, heapID, form);
+            Sound_SetUsingDefaultChatotCry(TRUE);
+            Sound_PlayPokemonCryEx(cryMod, species, pan, volume, heapID, form);
         } else {
             if (forceDefaultChatot) {
-                Sound_FlagDefaultChatotCry(TRUE);
+                Sound_SetUsingDefaultChatotCry(TRUE);
             }
 
             Sound_PlayChatotCry(chatotCry, NULL, volume, pan);
@@ -4331,18 +4331,18 @@ void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 specie
         return;
     }
 
-    Sound_PlayPokemonCry(cryMod, species, pan, volume, heapID, form);
+    Sound_PlayPokemonCryEx(cryMod, species, pan, volume, heapID, form);
 }
 
 void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID, u8 delay)
 {
     if (species == SPECIES_CHATOT) {
         if (Sound_CanPlayChatotCry(cryMod) == FALSE) {
-            Sound_FlagDefaultChatotCry(TRUE);
-            Sound_PlayDelayedPokemonCry(cryMod, species, pan, volume, heapID, delay, form);
+            Sound_SetUsingDefaultChatotCry(TRUE);
+            Sound_PlayDelayedPokemonCryEx(cryMod, species, pan, volume, heapID, delay, form);
         } else {
             if (forceDefaultChatot) {
-                Sound_FlagDefaultChatotCry(TRUE);
+                Sound_SetUsingDefaultChatotCry(TRUE);
             }
 
             Sound_PlayDelayedChatotCry(chatotCry, NULL, volume, pan, delay);
@@ -4351,7 +4351,7 @@ void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16
         return;
     }
 
-    Sound_PlayDelayedPokemonCry(cryMod, species, pan, volume, heapID, delay, form);
+    Sound_PlayDelayedPokemonCryEx(cryMod, species, pan, volume, heapID, delay, form);
 }
 
 BOOL Pokemon_IsEligibleForAction(Pokemon *mon)
@@ -4359,7 +4359,7 @@ BOOL Pokemon_IsEligibleForAction(Pokemon *mon)
     int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-    return sub_02005844(species, form);
+    return Sound_PlayPokemonCry(species, form);
 }
 
 void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapID)

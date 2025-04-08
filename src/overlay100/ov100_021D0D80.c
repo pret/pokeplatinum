@@ -24,9 +24,9 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "render_window.h"
+#include "sound.h"
 #include "sprite_system.h"
 #include "system.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"
@@ -62,7 +62,7 @@ int ov100_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_0C.unk_50.unk_02 = 31;
     v0->unk_0C.unk_C1 = 31;
 
-    sub_02005454(1);
+    Sound_Set2PokemonCriesAllowed(1);
 
     {
         Window *v1 = &v0->unk_0C.unk_30;
@@ -150,7 +150,7 @@ int ov100_021D0F44(OverlayManager *param0, int *param1)
     GXLayers_SwapDisplay();
     OverlayManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_111);
-    sub_02005454(0);
+    Sound_Set2PokemonCriesAllowed(0);
 
     return 1;
 }

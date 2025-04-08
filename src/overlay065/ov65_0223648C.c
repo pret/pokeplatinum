@@ -42,6 +42,8 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
@@ -50,8 +52,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -1239,14 +1239,14 @@ static BOOL ov65_02237504(UnkStruct_ov65_022367A8 *param0)
 static void ov65_02237520(UnkStruct_ov65_022367A8 *param0)
 {
     if (ov65_022374DC(param0)) {
-        sub_02004A84(sub_020041FC());
+        Sound_AdjustVolumeForVoiceChat(Sound_GetCurrentBGM());
     }
 }
 
 static void ov65_02237534(UnkStruct_ov65_022367A8 *param0)
 {
     if (ov65_02237504(param0)) {
-        sub_02004A68(0, 120);
+        Sound_SetInitialVolumeForHandle(SOUND_HANDLE_TYPE_FIELD_BGM, 120);
     }
 }
 

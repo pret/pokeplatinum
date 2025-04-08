@@ -32,6 +32,8 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -39,8 +41,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
@@ -958,7 +958,7 @@ void ov17_02241F34(UnkStruct_ov17_0223F88C *param0, int param1, int param2, int 
     }
 
     Sound_PlayEffect(SEQ_SE_DP_CON_003);
-    sub_02004F7C(1761, 0xffff, 64 * (v0 - 1));
+    Sound_SetPitchForSequence(1761, 0xffff, 64 * (v0 - 1));
 }
 
 static void ov17_02242048(ManagedSprite *param0)
@@ -1724,7 +1724,7 @@ static void ov17_022431E8(SysTask *param0, void *param1)
         }
 
         Sound_PlayEffect(SEQ_SE_DP_CON_007);
-        sub_02004AD4(1765, v0->unk_04);
+        Sound_SetInitialVolumeForSequence(1765, v0->unk_04);
         v0->unk_08++;
     case 1: {
         u32 v1;

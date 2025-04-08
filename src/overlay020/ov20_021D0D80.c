@@ -14,11 +14,11 @@
 
 #include "heap.h"
 #include "overlay_manager.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_02014A84.h"
 #include "unk_02023FCC.h"
 #include "unk_0209747C.h"
@@ -125,7 +125,7 @@ int ov20_021D0D80(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_02004550(62, 0, 0);
+        Sound_SetSceneAndPlayBGM(62, 0, 0);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_34, 32768);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_35, 163840);
         v0 = ov20_021D0EC8(param0);

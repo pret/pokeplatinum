@@ -38,6 +38,8 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -50,8 +52,6 @@
 #include "system.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
@@ -1090,7 +1090,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    sub_02004550(10, 1174, 1);
+    Sound_SetSceneAndPlayBGM(10, 1174, 1);
     ov97_02237520(86);
 
     if (ov97_02237624()) {

@@ -141,6 +141,7 @@
 #include "scrcmd_shop.h"
 #include "scrcmd_system_flags.h"
 #include "script_manager.h"
+#include "sound.h"
 #include "special_encounter.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -153,7 +154,6 @@
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02014D38.h"
 #include "unk_02028124.h"
@@ -6366,7 +6366,7 @@ static BOOL ScrCmd_20F(ScriptContext *ctx)
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
 
-    sub_02004550(65, 0, 0);
+    Sound_SetSceneAndPlayBGM(65, 0, 0);
     ov6_02242B58(ctx->fieldSystem, *v0, v1);
 
     return 1;

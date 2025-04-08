@@ -46,6 +46,8 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -59,8 +61,6 @@
 #include "terrain_collision_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
@@ -1292,7 +1292,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     void *v4;
     int v5;
 
-    sub_02004550(58, 0, 0);
+    Sound_SetSceneAndPlayBGM(58, 0, 0);
     ov23_0223E140();
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);

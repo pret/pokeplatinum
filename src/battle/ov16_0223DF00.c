@@ -54,6 +54,8 @@
 #include "pokemon_sprite.h"
 #include "poketch.h"
 #include "render_text.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -61,8 +63,6 @@
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0202F1D4.h"
@@ -1561,8 +1561,8 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
     ov16_0226CEB0(battleSys->unk_198, flag);
 
     StartScreenTransition(3, 0, 0, 0, 16, 2, HEAP_ID_BATTLE);
-    sub_0200569C();
-    sub_0200500C(0);
+    Sound_StopWaveOutAndSequences();
+    Sound_SetMasterVolume(0);
 
     battleSys->unk_2474_0 = 1;
 
@@ -2428,19 +2428,19 @@ static BOOL BattleMessage_Callback(TextPrinterTemplate *param0, u16 param1)
 
     switch (param1) {
     case 1:
-        v0 = sub_020057E0();
+        v0 = Sound_IsAnyEffectPlaying();
         break;
     case 2:
-        v0 = sub_020061E4();
+        v0 = Sound_IsBGMPausedByFanfare();
         break;
     case 3:
-        sub_02006150(1156);
+        Sound_PlayFanfare(1156);
         break;
     case 4:
         Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 5:
-        sub_02006150(1155);
+        Sound_PlayFanfare(1155);
         break;
     default:
         break;
