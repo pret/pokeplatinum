@@ -29,7 +29,7 @@ _003D:
     GoToIfEq 0x406B, 0x122, _00ED
     GoToIfEq 0x406B, 0x118, _00F8
     GoToIfUnset FLAG_GAME_COMPLETED, _010F
-    ScrCmd_32B 0x800C
+    CheckPartyHasFatefulEncounterRegigigas 0x800C
     GoToIfEq 0x800C, 0, _011A
     GoToIfEq 0x406B, 0x10E, _00AE
     GoToIfLt 0x406B, 0x104, _011A

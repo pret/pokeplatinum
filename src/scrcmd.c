@@ -738,7 +738,7 @@ static BOOL ScrCmd_321(ScriptContext *ctx);
 static BOOL ScrCmd_322(ScriptContext *ctx);
 static BOOL ScrCmd_323(ScriptContext *ctx);
 static BOOL ScrCmd_328(ScriptContext *ctx);
-static BOOL ScrCmd_32B(ScriptContext *ctx);
+static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx);
 static BOOL sub_02040F0C(ScriptContext *ctx);
 static void sub_02040F28(FieldSystem *fieldSystem, SysTask *param1, MapObjectAnimCmd *param2);
 static void sub_02040F5C(SysTask *param0, void *param1);
@@ -1576,7 +1576,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_328,
     ScrCmd_329,
     ScrCmd_32A,
-    ScrCmd_32B,
+    ScrCmd_CheckPartyHasFatefulEncounterRegigigas,
     ScrCmd_32C,
     ScrCmd_32D,
     ScrCmd_32E,
@@ -8216,32 +8216,32 @@ static BOOL ScrCmd_328(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_32B(ScriptContext *ctx)
+static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx)
 {
-    u32 v0, v1;
-    int v2, v3;
-    Pokemon *v4;
-    u16 *v5 = ScriptContext_GetVarPointer(ctx);
+    u32 species, fatefulEncounter;
+    int partyCount, i;
+    Pokemon *mon;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v5 = 0;
-    v2 = Party_GetCurrentCount(SaveData_GetParty(ctx->fieldSystem->saveData));
+    *destVar = FALSE;
+    partyCount = Party_GetCurrentCount(SaveData_GetParty(ctx->fieldSystem->saveData));
 
-    for (v3 = 0; v3 < v2; v3++) {
-        v4 = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), v3);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), i);
 
-        if (Pokemon_GetValue(v4, MON_DATA_IS_EGG, NULL) == 0) {
-            v0 = Pokemon_GetValue(v4, MON_DATA_SPECIES, NULL);
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
-            if (v0 == SPECIES_REGIGIGAS) {
-                v1 = Pokemon_GetValue(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL);
+            if (species == SPECIES_REGIGIGAS) {
+                fatefulEncounter = Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
-                if (v1 == 1) {
-                    *v5 = 1;
-                    return 0;
+                if (fatefulEncounter == TRUE) {
+                    *destVar = TRUE;
+                    return FALSE;
                 }
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }

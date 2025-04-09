@@ -4520,9 +4520,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_32B arg0
+    .macro CheckPartyHasFatefulEncounterRegigigas destVar
     .short 811
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_32C arg0, arg1, arg2, arg3
