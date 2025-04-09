@@ -639,7 +639,7 @@ static BOOL ScrCmd_25F(ScriptContext *ctx);
 static BOOL ScrCmd_260(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyHasSpecies2(ScriptContext *ctx);
 static BOOL ScrCmd_ChangeDeoxysForm(ScriptContext *ctx);
-static BOOL ScrCmd_264(ScriptContext *ctx);
+static BOOL ScrCmd_CheckPartyCombeeGenderCount(ScriptContext *ctx);
 static BOOL ScrCmd_HidePoketch(ScriptContext *ctx);
 static BOOL ScrCmd_ShowPoketch(ScriptContext *ctx);
 static BOOL ScrCmd_267(ScriptContext *ctx);
@@ -1377,7 +1377,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_261,
     ScrCmd_CheckPartyHasSpecies2,
     ScrCmd_ChangeDeoxysForm,
-    ScrCmd_264,
+    ScrCmd_CheckPartyCombeeGenderCount,
     ScrCmd_HidePoketch,
     ScrCmd_ShowPoketch,
     ScrCmd_267,
@@ -6823,43 +6823,43 @@ static BOOL ScrCmd_ChangeDeoxysForm(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_264(ScriptContext *ctx)
+static BOOL ScrCmd_CheckPartyCombeeGenderCount(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    int v1, v2, v3, v4, v5, v6;
-    u16 *v7 = ScriptContext_GetVarPointer(ctx);
-    Party *v8 = SaveData_GetParty(ctx->fieldSystem->saveData);
-    int v9 = Party_GetCurrentCount(v8);
+    Pokemon *mon;
+    int i, species, hasMale, hasFemale, isEgg, gender;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    Party *party = SaveData_GetParty(ctx->fieldSystem->saveData);
+    int partyCount = Party_GetCurrentCount(party);
 
-    v3 = 0;
-    v4 = 0;
+    hasMale = 0;
+    hasFemale = 0;
 
-    for (v1 = 0; v1 < v9; v1++) {
-        v0 = Party_GetPokemonBySlotIndex(v8, v1);
-        v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
-        v6 = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
-        v5 = Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(party, i);
+        species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
+        isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
-        if ((v2 == SPECIES_COMBEE) && (v5 == 0)) {
-            if (v6 == 0) {
-                v3 = 1;
+        if (species == SPECIES_COMBEE && isEgg == FALSE) {
+            if (gender == GENDER_MALE) {
+                hasMale = TRUE;
             }
 
-            if (v6 == 1) {
-                v4 = 1;
+            if (gender == GENDER_FEMALE) {
+                hasFemale = TRUE;
             }
         }
     }
 
-    if ((v3 == 1) && (v4 == 1)) {
-        *v7 = 2;
-    } else if ((v3 == 0) && (v4 == 0)) {
-        *v7 = 0;
+    if (hasMale == TRUE && hasFemale == TRUE) {
+        *destVar = 2;
+    } else if ((hasMale == FALSE) && (hasFemale == FALSE)) {
+        *destVar = 0;
     } else {
-        *v7 = 1;
+        *destVar = 1;
     }
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ScrCmd_HidePoketch(ScriptContext *ctx)

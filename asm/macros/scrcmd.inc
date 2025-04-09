@@ -3410,9 +3410,9 @@
     .short \form
     .endm
 
-    .macro ScrCmd_264 arg0
+    .macro CheckPartyCombeeGenderCount destVar
     .short 612
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro HidePoketch

@@ -29,7 +29,7 @@ _001D:
     End
 
 _004A:
-    ScrCmd_264 0x800C
+    CheckPartyCombeeGenderCount 0x800C
     GoToIfEq 0x800C, 0, _009C
     GoToIfEq 0x800C, 1, _00A7
     Message 4
