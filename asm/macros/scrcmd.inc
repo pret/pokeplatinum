@@ -3595,9 +3595,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_284 arg0
+    .macro GetUnownFormsSeenCount destVar
     .short 644
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_285 arg0, arg1

@@ -660,7 +660,7 @@ static BOOL ScrCmd_27D(ScriptContext *ctx);
 static BOOL ScrCmd_CheckIsDepartmentStoreRegular(ScriptContext *ctx);
 static BOOL ScrCmd_27F(ScriptContext *ctx);
 static BOOL ScrCmd_282(ScriptContext *ctx);
-static BOOL ScrCmd_284(ScriptContext *ctx);
+static BOOL ScrCmd_GetUnownFormsSeenCount(ScriptContext *ctx);
 static BOOL ScrCmd_285(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundItemsGivenAway(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundFossilsUnearthed(ScriptContext *ctx);
@@ -1409,7 +1409,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_281,
     ScrCmd_282,
     ScrCmd_283,
-    ScrCmd_284,
+    ScrCmd_GetUnownFormsSeenCount,
     ScrCmd_285,
     ScrCmd_GetUndergroundItemsGivenAway,
     ScrCmd_GetUndergroundFossilsUnearthed,
@@ -7142,13 +7142,13 @@ static BOOL ScrCmd_282(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_284(ScriptContext *ctx)
+static BOOL ScrCmd_GetUnownFormsSeenCount(ScriptContext *ctx)
 {
-    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    const Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = Pokedex_NumFormsSeen_Unown(v0);
-    return 0;
+    *destVar = Pokedex_NumFormsSeen_Unown(pokedex);
+    return FALSE;
 }
 
 static BOOL ScrCmd_285(ScriptContext *ctx)
