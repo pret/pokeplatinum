@@ -100,7 +100,7 @@ _00BC:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
     Message 8
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

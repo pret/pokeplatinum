@@ -59,7 +59,7 @@ _0093:
     PlayCry SPECIES_MESPRIT
     Message 0
     CloseMessage
-    ScrCmd_04D
+    WaitCry
     ApplyMovement 131, _0130
     WaitMovement
     ScrCmd_312 131
@@ -71,7 +71,7 @@ _00B4:
     PlayCry SPECIES_UXIE
     Message 1
     CloseMessage
-    ScrCmd_04D
+    WaitCry
     ApplyMovement 132, _0130
     WaitMovement
     ScrCmd_312 132
@@ -83,7 +83,7 @@ _00D5:
     PlayCry SPECIES_AZELF
     Message 2
     CloseMessage
-    ScrCmd_04D
+    WaitCry
     ApplyMovement 133, _0130
     WaitMovement
     ScrCmd_312 133

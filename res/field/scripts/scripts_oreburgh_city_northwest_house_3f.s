@@ -44,7 +44,7 @@ _006E:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PSYDUCK
     Message 2
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

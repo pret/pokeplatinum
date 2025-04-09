@@ -83,7 +83,7 @@ _014D:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_SPIRITOMB
     Message 9
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     StartWildBattle SPECIES_SPIRITOMB, 25
     CheckWonBattle 0x800C

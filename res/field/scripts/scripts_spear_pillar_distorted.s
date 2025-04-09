@@ -68,7 +68,7 @@ _00FD:
     WaitFadeScreen
     ScrCmd_320
     ReturnToField
-    ScrCmd_328 1
+    SetPartyGiratinaForm GIRATINA_FORM_ORIGIN
     Warp MAP_HEADER_DISTORTION_WORLD_1F, 0, 55, 40, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen

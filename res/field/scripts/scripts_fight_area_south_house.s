@@ -36,7 +36,7 @@ _0038:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_TORCHIC
     Message 2
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

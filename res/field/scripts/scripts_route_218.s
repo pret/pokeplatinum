@@ -44,7 +44,7 @@ _006E:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_CLEFAIRY
     Message 1
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -56,7 +56,7 @@ _008B:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_CLEFAIRY
     Message 2
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -68,7 +68,7 @@ _00A8:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
     Message 3
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

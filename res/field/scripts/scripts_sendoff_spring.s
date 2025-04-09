@@ -18,7 +18,7 @@ _001B:
 
 _0021:
     LockAll
-    ScrCmd_328 0
+    SetPartyGiratinaForm GIRATINA_FORM_ALTERED
     ScrCmd_2B5 0x10A, 0x2FA, 0x2CA
     Message 0
     CloseMessage

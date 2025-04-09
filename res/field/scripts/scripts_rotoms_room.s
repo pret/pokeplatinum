@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
-#include "constants/forms.h"
 #include "constants/moves.h"
 #include "res/text/bank/rotoms_room.h"
 

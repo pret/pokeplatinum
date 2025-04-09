@@ -196,7 +196,7 @@ _019C:
     Message 2
     Message 3
     PlayCry SPECIES_CROAGUNK
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ClearFlag FLAG_UNK_0x0232
     AddObject 0

@@ -168,7 +168,7 @@ _0198:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_CLEFAIRY
     Message 2
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -181,7 +181,7 @@ _01B7:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_BUNEARY
     Message 5
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

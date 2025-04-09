@@ -65,7 +65,7 @@ _00C4:
     LockAll
     PlayCry SPECIES_GIRATINA
     Message 2
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     SetFlag FLAG_UNK_0x008E
     StartGiratinaOriginBattle SPECIES_GIRATINA, 47
@@ -155,7 +155,7 @@ _021D:
     LockAll
     PlayCry SPECIES_GIRATINA
     Message 0
-    ScrCmd_04D
+    WaitCry
     WaitABPadPress
     CloseMessage
     ReleaseAll

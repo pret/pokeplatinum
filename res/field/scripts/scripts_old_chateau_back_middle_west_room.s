@@ -20,7 +20,7 @@ _0006:
     Message 2
     CloseMessage
     PlayCry SPECIES_ROTOM
-    ScrCmd_04D
+    WaitCry
     SetFlag FLAG_UNK_0x0AB0
     StartWildBattle SPECIES_ROTOM, 20
     CheckWonBattle 0x800C

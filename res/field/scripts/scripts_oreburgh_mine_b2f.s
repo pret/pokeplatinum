@@ -162,7 +162,7 @@ _00FC:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
     Message 2
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -175,7 +175,7 @@ _011B:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
     Message 3
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -188,7 +188,7 @@ _013A:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
     Message 4
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

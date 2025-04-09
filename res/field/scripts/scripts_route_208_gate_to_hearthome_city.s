@@ -35,7 +35,7 @@ _0034:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_CLEFAIRY
     Message 2
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

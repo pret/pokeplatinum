@@ -1255,7 +1255,7 @@ _13AF:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
     Message 81
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

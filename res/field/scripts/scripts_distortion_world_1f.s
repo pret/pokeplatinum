@@ -29,7 +29,7 @@ _003A:
     Message 8
     CloseMessage
     PlayFanfare SEQ_SE_PL_SYUWA
-    ScrCmd_328 0
+    SetPartyGiratinaForm GIRATINA_FORM_ALTERED
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 31, 33, 1

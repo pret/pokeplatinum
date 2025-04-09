@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 _001E:
-    ScrCmd_268 0x4000
+    GetHour 0x4000
     GoToIfEq 0x4000, 0, _004F
     GoToIfEq 0x4000, 1, _004F
     GoToIfLe 0x4000, 5, _005B

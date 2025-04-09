@@ -23,7 +23,7 @@ _0024:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
     Message 0
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -36,7 +36,7 @@ _0043:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
     Message 1
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -49,7 +49,7 @@ _0062:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
     Message 2
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -62,7 +62,7 @@ _0081:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
     Message 3
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -75,7 +75,7 @@ _00A0:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
     Message 4
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

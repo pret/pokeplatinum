@@ -46,7 +46,7 @@ _004B:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_SHROOMISH
     Message 3
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

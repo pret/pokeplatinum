@@ -82,7 +82,7 @@ _006F:
     Message 4
     PlayCry SPECIES_MESPRIT
     Message 5
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ApplyMovement 5, _02C0
     ApplyMovement LOCALID_PLAYER, _0388

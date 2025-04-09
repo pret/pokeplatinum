@@ -194,7 +194,7 @@ _02B8:
     ApplyMovement 16, _0440
     WaitMovement
     PlayCry SPECIES_SHAYMIN
-    ScrCmd_04D
+    WaitCry
     CallIfEq 0x4057, 2, _02AE
     ApplyMovement 3, _038C
     ApplyMovement 16, _03B0
@@ -205,7 +205,7 @@ _02B8:
     SetFlag FLAG_UNK_0x025C
     RemoveObject 16
     PlayCry SPECIES_SHAYMIN
-    ScrCmd_04D
+    WaitCry
     ApplyMovement 3, _03C0
     WaitMovement
     Return

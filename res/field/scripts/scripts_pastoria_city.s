@@ -176,7 +176,7 @@ _01E5:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_CLEFAIRY
     Message 36
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1145,7 +1145,7 @@ _0C22:
     ApplyMovement 28, _0C64
     WaitMovement
     PlayCry SPECIES_CROAGUNK
-    ScrCmd_04D
+    WaitCry
     WaitTime 30, 0x800C
     ApplyMovement 28, _0C70
     WaitMovement
