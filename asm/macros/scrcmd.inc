@@ -19,8 +19,8 @@
 #include "generated/sdat.h"
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
-#include "generated/species.h"
 #include "generated/trainers.h"
+#include "constants/forms.h"
 #include "constants/honey_tree.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
@@ -4502,9 +4502,9 @@
     .short \width
     .endm
 
-    .macro ScrCmd_328 arg0
+    .macro SetPartyGiratinaForm form
     .short 808
-    .short \arg0
+    .short \form
     .endm
 
     .macro ScrCmd_329 arg0, arg1, arg2, arg3

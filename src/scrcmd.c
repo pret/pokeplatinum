@@ -737,7 +737,7 @@ static BOOL ScrCmd_320(ScriptContext *ctx);
 static BOOL ScrCmd_321(ScriptContext *ctx);
 static BOOL ScrCmd_322(ScriptContext *ctx);
 static BOOL ScrCmd_323(ScriptContext *ctx);
-static BOOL ScrCmd_328(ScriptContext *ctx);
+static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx);
 static BOOL sub_02040F0C(ScriptContext *ctx);
 static void sub_02040F28(FieldSystem *fieldSystem, SysTask *param1, MapObjectAnimCmd *param2);
@@ -1573,7 +1573,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_325,
     ScrCmd_326,
     ScrCmd_ShowListMenuSetWidth,
-    ScrCmd_328,
+    ScrCmd_SetPartyGiratinaForm,
     ScrCmd_329,
     ScrCmd_32A,
     ScrCmd_CheckPartyHasFatefulEncounterRegigigas,
@@ -8191,29 +8191,30 @@ static BOOL ScrCmd_323(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_328(ScriptContext *ctx)
+static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Party *v1;
-    u16 v2 = ScriptContext_GetVar(ctx);
+    Party *party;
+    u16 form = ScriptContext_GetVar(ctx);
 
-    v1 = SaveData_GetParty(ctx->fieldSystem->saveData);
-    Party_SetGiratinaForm(v1, v2);
+    party = SaveData_GetParty(ctx->fieldSystem->saveData);
+    Party_SetGiratinaForm(party, form);
     {
-        int v3, v4;
-        Pokemon *v5;
+        int i, partyCount;
+        Pokemon *mon;
 
-        v4 = Party_GetCurrentCount(v1);
+        partyCount = Party_GetCurrentCount(party);
 
-        for (v3 = 0; v3 < v4; v3++) {
-            v5 = Party_GetPokemonBySlotIndex(v1, v3);
+        for (i = 0; i < partyCount; i++) {
+            mon = Party_GetPokemonBySlotIndex(party, i);
 
-            if ((Pokemon_GetValue(v5, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA)) {
-                Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), v5);
+            if ((Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE)
+                && (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA)) {
+                Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), mon);
             }
         }
     }
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx)

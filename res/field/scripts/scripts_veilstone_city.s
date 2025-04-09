@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city.h"
-#include "constants/forms.h"
 
     .data
 
