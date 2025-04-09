@@ -22,9 +22,9 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_system.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02003B60.h"
 #include "unk_0200F174.h"
 #include "unk_02017428.h"
 #include "unk_0201E3D8.h"
@@ -85,7 +85,7 @@ void NitroMain(void)
     sApplication.args.unk_00 = -1;
     sApplication.args.saveData = SaveData_Init();
 
-    sub_02003B60(GetChatotCryDataFromSave(sApplication.args.saveData), SaveData_Options(sApplication.args.saveData));
+    SoundSystem_Init(SaveData_GetChatotCry(sApplication.args.saveData), SaveData_GetOptions(sApplication.args.saveData));
     sub_02022844();
 
     if (sub_02038FFC(HEAP_ID_APPLICATION) == DWC_INIT_RESULT_DESTROY_OTHER_SETTING) {
@@ -160,7 +160,7 @@ void NitroMain(void)
             gSystem.vblankCallback(gSystem.vblankCallbackData);
         }
 
-        UpdateSound();
+        SoundSystem_Tick();
         SysTaskManager_ExecuteTasks(gSystem.postVBlankTaskMgr);
     }
 }
@@ -285,7 +285,7 @@ static void HeapCanaryFailed(int resetParam, int param1)
 
     sub_02037DB0();
     WaitFrame();
-    UpdateSound();
+    SoundSystem_Tick();
 
     elapsed = 0;
 

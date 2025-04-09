@@ -36,6 +36,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "shop_misc.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_system.h"
@@ -47,7 +48,6 @@
 #include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
@@ -242,8 +242,8 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
 
     shopMenu->strbuf = Strbuf_Init(96, HEAP_ID_FIELDMAP);
     shopMenu->trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    shopMenu->options = SaveData_Options(fieldSystem->saveData);
-    shopMenu->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    shopMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    shopMenu->records = SaveData_GetGameRecords(fieldSystem->saveData);
     shopMenu->varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
     shopMenu->incBuyCount = incBuyCount;
     shopMenu->cameraPosDest = Shop_GetCameraPosDest(fieldSystem);
@@ -1268,7 +1268,7 @@ static u8 Shop_FinishPurchase(ShopMenu *shopMenu)
 
                 shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->strbuf, shopMenu->options, TRUE);
 
-                GameRecords *records = SaveData_GetGameRecordsPtr(shopMenu->saveData);
+                GameRecords *records = SaveData_GetGameRecords(shopMenu->saveData);
                 GameRecords_IncrementRecordValue(records, RECORD_UNK_050);
 
                 return SHOP_STATE_FINISH_FREE_PREMIER;
@@ -1620,7 +1620,7 @@ static void Shop_FinishScreenTransition(FieldTask *task)
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     shopMenu->unk_04 = sub_0207D824(bag, sShop_BagPockets, HEAP_ID_FIELDMAP);
 
-    sub_0207CB2C(shopMenu->unk_04, fieldSystem->saveData, 2, fieldSystem->unk_98);
+    sub_0207CB2C(shopMenu->unk_04, fieldSystem->saveData, 2, fieldSystem->bagCursor);
     sub_0203D1E4(fieldSystem, shopMenu->unk_04);
     FieldTask_InitJump(task, FieldTask_ShopMisc, shopMenu);
 

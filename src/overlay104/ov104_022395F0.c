@@ -49,7 +49,7 @@ BOOL ov104_022395F0(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_0209BBA4 *v0;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = ov104_02239C58(v1->unk_08);
+    v0 = ov104_02239C58(v1->saveData);
 
     sub_0209B980(param0->unk_00->unk_00, v0);
     return 0;
@@ -145,13 +145,13 @@ BOOL ov104_0223971C(UnkStruct_ov104_0222E930 *param0)
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
 
-    if (v1->unk_A8->unk_22 == 7) {
+    if (v1->unk_A8->selectedMonSlot == 7) {
         *v3 = 0xff;
 
         for (v0 = 0; v0 < 2; v0++) {
             v1->unk_A1[v0] = 0;
         }
-    } else if (v1->unk_A8->unk_22 == 6) {
+    } else if (v1->unk_A8->selectedMonSlot == 6) {
         *v3 = v1->unk_A8->unk_2C[0];
         *v3 -= 1;
 
@@ -233,16 +233,16 @@ BOOL ov104_022397B0(UnkStruct_ov104_0222E930 *param0)
         break;
 
     case 3:
-        *v9 = (u16)sub_02030698(sub_0203068C(v5->unk_08), 106, sub_0205E6A8(106));
+        *v9 = (u16)sub_02030698(sub_0203068C(v5->saveData), 106, sub_0205E6A8(106));
         break;
     case 4:
-        *v9 = sub_02030698(sub_0203068C(v5->unk_08), sub_0205E55C(3), sub_0205E6A8(sub_0205E55C(3)));
+        *v9 = sub_02030698(sub_0203068C(v5->saveData), sub_0205E55C(3), sub_0205E6A8(sub_0205E55C(3)));
         break;
     case 5:
         *v9 = v4->unk_76[v7];
         break;
     case 6:
-        sub_0204FA50(v5->unk_08, sub_0203026C(v5->unk_08), 3);
+        sub_0204FA50(v5->saveData, sub_0203026C(v5->saveData), 3);
         break;
     case 7:
         v4->unk_A0 = v7;
@@ -325,11 +325,11 @@ BOOL ov104_02239B14(UnkStruct_ov104_0222E930 *param0)
     v4 = *v3;
     ov104_02239C7C(v3);
 
-    v1 = sub_0204A124(v2->unk_08, 0, 6);
+    v1 = sub_0204A124(v2->saveData, 0, 6);
     sub_0209B980(param0->unk_00->unk_00, v1);
 
     if (v1->unk_0F == 6) {
-        ov104_0222E630(v2->unk_08);
+        ov104_0222E630(v2->saveData);
     }
 
     for (v0 = 0; v0 < v1->unk_0E; v0++) {
@@ -344,10 +344,10 @@ BOOL ov104_02239B14(UnkStruct_ov104_0222E930 *param0)
     v1->unk_10_5 = 5 + v1->unk_12;
 
     if (CommSys_CurNetId() == 0) {
-        sub_0204A4C8(v1, v2->unk_08);
+        sub_0204A4C8(v1, v2->saveData);
     }
 
-    HealAllPokemonInParty(Party_GetFromSavedata(v2->unk_08));
+    HealAllPokemonInParty(SaveData_GetParty(v2->saveData));
     sub_0209BA80(v1);
 
     v1->unk_8D4 = 0;

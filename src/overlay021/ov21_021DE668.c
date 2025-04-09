@@ -29,13 +29,13 @@
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 
 #include "res/text/bank/pokedex.h"
@@ -221,7 +221,7 @@ static int ov21_021DE79C(UnkStruct_ov21_021E6A68 *param0, void *param1)
     switch (param0->unk_00) {
     case 0:
         if (v0->unk_1C == 1) {
-            Sound_PlayPokemonCry(POKECRY_POKEDEX, PokedexSort_CurrentSpecies(v0->unk_04), 0x1ff, 0x1ff, 0x1ff, 0);
+            Sound_PlayPokemonCryEx(POKECRY_POKEDEX, PokedexSort_CurrentSpecies(v0->unk_04), 0x1ff, 0x1ff, 0x1ff, 0);
             v0->unk_1C = 0;
         }
 
@@ -236,7 +236,7 @@ static int ov21_021DE79C(UnkStruct_ov21_021E6A68 *param0, void *param1)
 
 static int ov21_021DE7F8(UnkStruct_ov21_021E6A68 *param0, void *param1)
 {
-    sub_0200592C(0);
+    Sound_StopPokemonCries(0);
     return 1;
 }
 
@@ -480,9 +480,9 @@ static void ov21_021DECD4(Window *param0, int param1, int param2, int param3, u3
 static void ov21_021DED24(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int param3)
 {
     int species = PokedexSort_CurrentSpecies(param2->unk_04);
-    int v1 = PokedexSort_DefaultForm(param2->unk_04, species);
+    int form = PokedexSort_DefaultForm(param2->unk_04, species);
 
-    if ((species == 487) && (v1 > 0)) {
+    if ((species == SPECIES_GIRATINA) && (form > 0)) {
         species = 11;
     }
 

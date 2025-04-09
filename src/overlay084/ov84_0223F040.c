@@ -24,12 +24,12 @@
 #include "poffin.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200C440.h"
 
 static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1);
@@ -589,9 +589,9 @@ static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1)
 {
     switch (param1) {
     case 1:
-        return sub_020057E0();
+        return Sound_IsAnyEffectPlaying();
     case 2:
-        return sub_020061E4();
+        return Sound_IsBGMPausedByFanfare();
     case 3:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         break;
@@ -687,7 +687,7 @@ void ov84_02240328(UnkStruct_ov84_0223B5A0 *param0)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 109);
-    StringTemplate_SetNumber(param0->unk_118, 0, Poffin_GetNumberOfFilledSlots(Poffin_GetSavedataBlock(param0->unk_C4->unk_00)), 3, 1, 1);
+    StringTemplate_SetNumber(param0->unk_118, 0, Poffin_GetNumberOfFilledSlots(SaveData_GetPoffinCase(param0->unk_C4->unk_00)), 3, 1, 1);
     StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
     Strbuf_Free(v1);
 

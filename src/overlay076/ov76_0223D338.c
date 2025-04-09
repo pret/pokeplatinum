@@ -32,13 +32,13 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
@@ -975,7 +975,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
         ov76_0223C7E0(param0);
         {
             GameRecords *v7;
-            v7 = SaveData_GetGameRecordsPtr(param0->unk_00->unk_28);
+            v7 = SaveData_GetGameRecords(param0->unk_00->unk_28);
 
             GameRecords_IncrementTrainerScore(v7, TRAINER_SCORE_EVENT_UNK_06);
         }

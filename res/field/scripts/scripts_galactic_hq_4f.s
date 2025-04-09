@@ -39,9 +39,9 @@ _0074:
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _00E1
     Message 2
-    SetVar 0x8004, 1
+    SetVar 0x8004, ITEM_MASTER_BALL
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    CanFitItem 0x8004, 0x8005, 0x800C
     CallIfEq 0x800C, 1, _00DB
     Message 3
     CloseMessage
@@ -168,12 +168,12 @@ _01D5:
 
 _01E6:
     Message 10
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_29D 0x10C, 0
-    ScrCmd_29D 0x10D, 1
-    ScrCmd_29D 0x10E, 2
-    ScrCmd_29D 0x10F, 3
-    ScrCmd_043
+    InitGlobalTextMenu 1, 1, 0, 0x800C
+    AddMenuEntry 0x10C, 0
+    AddMenuEntry 0x10D, 1
+    AddMenuEntry 0x10E, 2
+    AddMenuEntry 0x10F, 3
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0240
     GoToIfEq 0x8008, 1, _024B

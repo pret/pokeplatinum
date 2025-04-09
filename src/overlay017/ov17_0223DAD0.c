@@ -35,6 +35,8 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -42,8 +44,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -255,7 +255,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     ov17_0224CDB4(v0, 1);
     v0->unk_14.unk_60 = BgConfig_New(HEAP_ID_23);
 
-    VramTransfer_New(64, 23);
+    VramTransfer_New(64, HEAP_ID_23);
     SetAutorepeat(4, 8);
 
     v0->unk_1074 = ov17_02249380(v0->unk_00, &v0->unk_14);
@@ -319,7 +319,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02004550(6, 1135, 1);
+    Sound_SetSceneAndPlayBGM(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
 
     G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ), -6);
@@ -461,7 +461,7 @@ static void ov17_0223E09C(void *param0)
         u32 v1, v2;
 
         v0->unk_107C++;
-        v1 = sub_020051C4(7);
+        v1 = Sound_GetTicksForHandle(7);
         v2 = v0->unk_A3C.unk_28 * v1;
         v2 += 10000 / 2;
         v2 /= 10000;

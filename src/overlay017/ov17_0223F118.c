@@ -27,12 +27,12 @@
 #include "message.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02024220.h"
 

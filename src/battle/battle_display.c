@@ -126,14 +126,14 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
@@ -324,7 +324,7 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         SysTask_Start(ov16_0225E4E8, v4, 0);
     }
 
-    sub_02005454(1);
+    Sound_Set2PokemonCriesAllowed(1);
 }
 
 void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C17C *param2)
@@ -371,7 +371,7 @@ void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v1->unk_92 = param2->unk_01_2;
     v1->unk_94 = 0;
 
-    sub_02005454(1);
+    Sound_Set2PokemonCriesAllowed(1);
     SysTask_Start(ov16_0225EA80, v1, 0);
 }
 
@@ -990,7 +990,7 @@ void ov16_0225DC4C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     }
 
     ClearCommand(battleSys, param1->battler, param2->unk_00);
-    sub_02005728(param2->unk_04, v0);
+    Sound_PlayPannedEffect(param2->unk_04, v0);
 }
 
 void ov16_0225DC7C(BattleSystem *battleSys, BattlerData *param1)
@@ -1435,13 +1435,13 @@ void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 
     switch (param2->unk_01) {
     case 0:
-        sub_02005728(1790, v0);
+        Sound_PlayPannedEffect(1790, v0);
         break;
     case 2:
-        sub_02005728(1788, v0);
+        Sound_PlayPannedEffect(1788, v0);
         break;
     case 1:
-        sub_02005728(1789, v0);
+        Sound_PlayPannedEffect(1789, v0);
         break;
     }
 
@@ -1586,7 +1586,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
         }
         break;
     default:
-        sub_02005454(0);
+        Sound_Set2PokemonCriesAllowed(0);
         ClearCommand(v0->unk_00, v0->unk_11, v0->unk_10);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
@@ -1668,7 +1668,7 @@ static void ov16_0225E894(SysTask *param0, void *param1)
         }
         break;
     default:
-        sub_02005454(0);
+        Sound_Set2PokemonCriesAllowed(0);
         ClearCommand(v0->unk_00, v0->unk_11, v0->unk_10);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
@@ -1768,9 +1768,9 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
             ov12_022363B4(v0->unk_08);
 
             if (v0->unk_84 == 2) {
-                sub_02005728(1798, 117);
+                Sound_PlayPannedEffect(1798, 117);
             } else {
-                sub_02005728(1798, -117);
+                Sound_PlayPannedEffect(1798, -117);
             }
 
             if (v0->unk_10) {
@@ -1882,7 +1882,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
         }
         break;
     default:
-        sub_02005454(0);
+        Sound_Set2PokemonCriesAllowed(0);
         ClearCommand(v0->unk_00, v0->unk_81, v0->unk_80);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
@@ -1967,9 +1967,9 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
             ov12_022363B4(v0->unk_08);
 
             if (v0->unk_84 == 2) {
-                sub_02005728(1798, 117);
+                Sound_PlayPannedEffect(1798, 117);
             } else {
-                sub_02005728(1798, -117);
+                Sound_PlayPannedEffect(1798, -117);
             }
 
             v0->unk_83++;
@@ -2187,12 +2187,12 @@ static void ov16_0225F764(SysTask *param0, void *param1)
         case 0:
         case 2:
         case 4:
-            sub_02005728(1798, -117);
+            Sound_PlayPannedEffect(1798, -117);
             break;
         case 1:
         case 3:
         case 5:
-            sub_02005728(1798, 117);
+            Sound_PlayPannedEffect(1798, 117);
             break;
         }
         break;
@@ -3667,14 +3667,14 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 17;
                             } else {
-                                sub_02005728(1516, -117);
+                                Sound_PlayPannedEffect(1516, -117);
                                 v0->unk_12 = 21;
                             }
                         } else {
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 25;
                             } else {
-                                sub_02005728(1516, -117);
+                                Sound_PlayPannedEffect(1516, -117);
                                 v0->unk_12 = 29;
                             }
                         }
@@ -3687,7 +3687,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                         if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                             v0->unk_12 = 17;
                         } else {
-                            sub_02005728(1516, -117);
+                            Sound_PlayPannedEffect(1516, -117);
                             v0->unk_12 = 21;
                         }
                     } else {
@@ -3702,14 +3702,14 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 13;
                             } else {
-                                sub_02005728(1516, -117);
+                                Sound_PlayPannedEffect(1516, -117);
                                 v0->unk_12 = 15;
                             }
                         } else {
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 11;
                             } else {
-                                sub_02005728(1516, -117);
+                                Sound_PlayPannedEffect(1516, -117);
                                 v0->unk_12 = 15;
                             }
                         }
@@ -4770,15 +4770,15 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
         v0->unk_66++;
     }
     case 5:
-        if (sub_0200598C() == 0) {
+        if (Sound_IsPokemonCryPlaying() == 0) {
             v0->unk_66++;
         }
         break;
     case 6:
         if (v0->unk_67 == 2) {
-            sub_02005728(1795, 117);
+            Sound_PlayPannedEffect(1795, 117);
         } else {
-            sub_02005728(1795, -117);
+            Sound_PlayPannedEffect(1795, -117);
         }
 
         if (PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_SHADOW_HEIGHT) > 0) {
@@ -4848,7 +4848,7 @@ static void ov16_02262D28(SysTask *param0, void *param1)
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
         PaletteData_StartFade(v1, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
         PokemonSpriteManager_StartFadeAll(v2, 0, 16, 0, 0x0);
-        sub_0200564C(0, 16);
+        Sound_FadeOutBGM(0, 16);
         v0->unk_06++;
     case 1:
         if (PaletteData_GetSelectedBuffersMask(v1) == 0) {
@@ -6202,7 +6202,7 @@ static BOOL ov16_02264650(UnkStruct_ov16_02264650_1 *param0, ManagedSprite *para
     int v1;
     BOOL v2 = 0;
 
-    v1 = ManagedSprite_SetUserAttrForCurrentAnimFrame(param0->unk_08);
+    v1 = ManagedSprite_GetUserAttrForCurrentAnimFrame(param0->unk_08);
 
     switch (v1) {
     case 1:

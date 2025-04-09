@@ -3,9 +3,9 @@
 
 #include "field_script_context.h"
 
-BOOL ScrCmd_075(ScriptContext *param0);
-BOOL ScrCmd_076(ScriptContext *param0);
-BOOL ScrCmd_077(ScriptContext *param0);
+BOOL ScrCmd_ShowCoins(ScriptContext *param0);
+BOOL ScrCmd_HideCoins(ScriptContext *param0);
+BOOL ScrCmd_UpdateCoinDisplay(ScriptContext *param0);
 BOOL ScrCmd_078(ScriptContext *param0);
 BOOL ScrCmd_079(ScriptContext *param0);
 BOOL ScrCmd_07A(ScriptContext *param0);

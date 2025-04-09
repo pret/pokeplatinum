@@ -29,6 +29,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -36,7 +37,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02028124.h"
 #include "unk_0203D1B8.h"
@@ -52,7 +52,7 @@ typedef struct {
     u8 unk_03;
     u8 unk_04;
     u8 unk_05;
-    u16 unk_06;
+    u16 item;
     Strbuf *unk_08;
 } UnkStruct_02072EB8;
 
@@ -106,7 +106,7 @@ typedef struct {
     UnkStruct_0206A844 *unk_1A4;
     UnkStruct_02097728 *unk_1A8;
     UnkStruct_02028430 *unk_1AC;
-    Bag *unk_1B0;
+    Bag *bag;
     PartyManagementData *unk_1B4;
 } UnkStruct_02072334;
 
@@ -207,8 +207,8 @@ void sub_020722AC(void *param0, int *param1)
     v0->heapID = HEAP_ID_43;
     v0->unk_19 = 0;
     v0->unk_1A = 0xFF;
-    v0->unk_16 = Options_TextFrameDelay(SaveData_Options(v1));
-    v0->unk_14 = Options_Frame(SaveData_Options(v1));
+    v0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(v1));
+    v0->unk_14 = Options_Frame(SaveData_GetOptions(v1));
 
     sub_02072ED0(v0->unk_1C, 20, v0->heapID);
     sub_02072F30(v0, v1, v0->heapID);
@@ -527,7 +527,7 @@ static void sub_02072754(SysTask *param0, void *param1)
             return;
         }
 
-        v0 = v2->unk_1B4->unk_22;
+        v0 = v2->unk_1B4->selectedMonSlot;
         Heap_FreeToHeap(v2->unk_1B4);
 
         if (v0 == 7) {
@@ -592,7 +592,7 @@ static void sub_02072878(SysTask *param0, void *param1)
 
         sub_020734F4(v4, 1);
 
-        if (Bag_GetItemQuantity(v4->unk_1B0, v4->unk_1C[v4->unk_18].unk_06, v4->heapID) > 0) {
+        if (Bag_GetItemQuantity(v4->bag, v4->unk_1C[v4->unk_18].item, v4->heapID) > 0) {
             v4->unk_13B_6 = 1;
         } else {
             v4->unk_13B_6 = 0;
@@ -604,7 +604,7 @@ static void sub_02072878(SysTask *param0, void *param1)
             return;
         }
 
-        v1 = v4->unk_1B4->unk_22;
+        v1 = v4->unk_1B4->selectedMonSlot;
         v2 = v4->unk_1B4->unk_23;
 
         Heap_FreeToHeap(v4->unk_1B4);
@@ -906,7 +906,7 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int param
     v5 = sub_02028430(param1);
 
     param0->unk_1AC = v5;
-    param0->unk_1B0 = SaveData_GetBag(param1);
+    param0->bag = SaveData_GetBag(param1);
 
     v6 = sub_0202818C(param2);
 
@@ -927,7 +927,7 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int param
         v7->unk_01 = 1;
         v7->unk_04 = sub_02028310(v6);
         v7->unk_05 = sub_02028314(v6);
-        v7->unk_06 = Item_ForMailNumber(v7->unk_05);
+        v7->item = Item_ForMailNumber(v7->unk_05);
 
         Strbuf_CopyChars(v7->unk_08, sub_0202830C(v6));
 
@@ -961,20 +961,20 @@ static void sub_02073020(UnkStruct_02072334 *param0, u8 param1)
 static BOOL sub_02073060(UnkStruct_02072334 *param0)
 {
     UnkStruct_02072EB8 *v0;
-    BOOL v1;
+    BOOL canFitItem;
 
     v0 = &(param0->unk_1C[param0->unk_18]);
-    v1 = Bag_CanFitItem(param0->unk_1B0, v0->unk_06, 1, param0->heapID);
+    canFitItem = Bag_CanFitItem(param0->bag, v0->item, 1, param0->heapID);
 
-    if (v1) {
-        Bag_TryAddItem(param0->unk_1B0, v0->unk_06, 1, param0->heapID);
+    if (canFitItem) {
+        Bag_TryAddItem(param0->bag, v0->item, 1, param0->heapID);
     }
 
     sub_02028470(param0->unk_1AC, 0, param0->unk_18);
     sub_02073020(param0, param0->unk_18);
     sub_02072EB8(v0, param0->unk_18);
 
-    return v1;
+    return canFitItem;
 }
 
 static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2)
@@ -989,14 +989,14 @@ static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2)
         return;
     }
 
-    v1 = Party_GetFromSavedata(FieldSystem_GetSaveData(param0->fieldSystem));
+    v1 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
     v2 = Party_GetPokemonBySlotIndex(v1, param1);
 
     sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->heapID);
 
     if (param2) {
-        if (Bag_CanFitItem(param0->unk_1B0, v0->unk_06, 1, param0->heapID)) {
-            Bag_TryAddItem(param0->unk_1B0, v0->unk_06, 1, param0->heapID);
+        if (Bag_CanFitItem(param0->bag, v0->item, 1, param0->heapID)) {
+            Bag_TryAddItem(param0->bag, v0->item, 1, param0->heapID);
         }
     }
 
@@ -1202,16 +1202,16 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
         v0 = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
         MI_CpuClear8(v0, sizeof(PartyManagementData));
 
-        v0->unk_00 = Party_GetFromSavedata(FieldSystem_GetSaveData(param0->fieldSystem));
+        v0->unk_00 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
         v0->unk_04 = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_0C = SaveData_Options(FieldSystem_GetSaveData(param0->fieldSystem));
+        v0->unk_0C = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
         v0->unk_08 = sub_02028430(param0->fieldSystem->saveData);
         v0->unk_21 = 0;
         v0->unk_20 = param1;
-        v0->unk_24 = param0->unk_1C[param0->unk_18].unk_06;
+        v0->unk_24 = param0->unk_1C[param0->unk_18].item;
 
         if (param1 == 11) {
-            v0->unk_22 = param0->unk_17;
+            v0->selectedMonSlot = param0->unk_17;
         }
 
         FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, v0);

@@ -35,6 +35,7 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
+#include "sound.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -42,7 +43,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -175,7 +175,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     v0->unk_0C.unk_24 = BgConfig_New(HEAP_ID_21);
 
-    VramTransfer_New(64, 21);
+    VramTransfer_New(64, HEAP_ID_21);
     SetAutorepeat(4, 8);
 
     v0->unk_7E4 = ov17_0223F88C(v0->unk_00, &v0->unk_0C, &v0->unk_220);
@@ -252,7 +252,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02004550(6, 1135, 1);
+    Sound_SetSceneAndPlayBGM(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
     SetVBlankCallback(ov17_0223B6BC, v0);
 

@@ -16,9 +16,9 @@
 #include "heap.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_02030EE0.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
@@ -2459,7 +2459,7 @@ void sub_02038A20(int param0)
             || (Unk_021C07D4->unk_59 != 0) || sub_0203881C()) {
             if (!HeapCanaryOK()) {
                 if (!sub_020389D8()) {
-                    sub_0200569C();
+                    Sound_StopWaveOutAndSequences();
                     SaveData_SaveStateCancel(Unk_021C07D4->unk_28);
                     gSystem.touchAutoSampling = TRUE;
 

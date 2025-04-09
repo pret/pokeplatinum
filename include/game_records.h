@@ -26,7 +26,7 @@ typedef struct GameRecords {
     EncodingSeed seed;
 } GameRecords;
 
-GameRecords *SaveData_GetGameRecordsPtr(SaveData *savedata);
+GameRecords *SaveData_GetGameRecords(SaveData *savedata);
 
 int GameRecords_SaveSize(void);
 void GameRecords_Init(GameRecords *records);

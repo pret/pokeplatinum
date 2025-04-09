@@ -10,7 +10,7 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_294 21, 1
+    ShowBattlePoints 21, 1
     GoToIfSet FLAG_UNK_0x0072, _0031
     SetFlag FLAG_UNK_0x0072
     BufferNumber 0, 1
@@ -26,12 +26,12 @@ _0031:
 
 _0041:
     Message 1
-    ScrCmd_041 30, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 2, 0
-    ScrCmd_042 3, 1
-    ScrCmd_042 4, 2
-    ScrCmd_043
+    InitLocalTextMenu 30, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 2, 0
+    AddMenuEntryImm 3, 1
+    AddMenuEntryImm 4, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0085
     GoToIfEq 0x8008, 1, _015D
@@ -46,11 +46,11 @@ _0085:
     ScrCmd_29A 1, 0x800C
     GoToIfEq 0x800C, 0, _0147
     ScrCmd_299 1
-    ScrCmd_296
+    UpdateBPDisplay
     Message 10
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_295
+    HideBattlePoints
     CloseMessage
     ScrCmd_2E2
     ScrCmd_2E4 0, 0x4000, 0x4001
@@ -90,7 +90,7 @@ _015D:
 _0168:
     WaitABXPadPress
     CloseMessage
-    ScrCmd_295
+    HideBattlePoints
     ReleaseAll
     End
 
@@ -124,8 +124,7 @@ _01CE:
     ScrCmd_33D 0, 0x4000
 _01D3:
     BufferNumber 1, 0x4001
-    ScrCmd_07D 0x4000, 0x4001, 0x800C
-    GoToIfEq 0x800C, 0, _0294
+    GoToIfCannotFitItem 0x4000, 0x4001, 0x800C, _0294
     PlaySound SEQ_FANFA4
     Message 13
     AddItem 0x4000, 0x4001, 0x800C
@@ -141,8 +140,7 @@ _0218:
     ScrCmd_33D 0, 0x4002
 _021D:
     BufferNumber 1, 0x4003
-    ScrCmd_07D 0x4002, 0x4003, 0x800C
-    GoToIfEq 0x800C, 0, _0294
+    GoToIfCannotFitItem 0x4002, 0x4003, 0x800C, _0294
     PlaySound SEQ_FANFA4
     Message 13
     AddItem 0x4002, 0x4003, 0x800C
@@ -158,8 +156,7 @@ _0262:
     ScrCmd_33D 0, 0x4004
 _0267:
     BufferNumber 1, 0x4005
-    ScrCmd_07D 0x4004, 0x4005, 0x800C
-    GoToIfEq 0x800C, 0, _0294
+    GoToIfCannotFitItem 0x4004, 0x4005, 0x800C, _0294
     PlaySound SEQ_FANFA4
     Message 13
     AddItem 0x4004, 0x4005, 0x800C

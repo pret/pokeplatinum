@@ -5,10 +5,10 @@
 
 #include "field_script_context.h"
 #include "inlines.h"
+#include "sound.h"
+#include "sound_chatot.h"
+#include "sound_playback.h"
 #include "system.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
-#include "unk_02006224.h"
 #include "unk_0202CC64.h"
 #include "unk_020553DC.h"
 
@@ -42,7 +42,7 @@ BOOL ScrCmd_2AE(ScriptContext *param0)
     u16 v0 = ScriptContext_ReadHalfWord(param0);
     u16 *v1 = ScriptContext_GetVarPointer(param0);
 
-    *v1 = sub_02005690(v0);
+    *v1 = Sound_IsSequencePlaying(v0);
     return 0;
 }
 
@@ -56,7 +56,7 @@ BOOL ScrCmd_StopMusic(ScriptContext *ctx)
 {
     u16 dummy = ScriptContext_ReadHalfWord(ctx);
 
-    sub_020055D0(sub_020041FC(), 0);
+    Sound_StopBGM(Sound_GetCurrentBGM(), 0);
     return FALSE;
 }
 
@@ -77,21 +77,21 @@ BOOL ScrCmd_FadeOutMusic(ScriptContext *ctx)
     u16 targetVolume = ScriptContext_ReadHalfWord(ctx);
     u16 frames = ScriptContext_ReadHalfWord(ctx);
 
-    sub_0200564C(targetVolume, frames);
+    Sound_FadeOutBGM(targetVolume, frames);
     ScriptContext_Pause(ctx, ScriptContext_IsSoundFadeFinished);
     return TRUE;
 }
 
 static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx)
 {
-    return Sound_CheckFade() == 0;
+    return Sound_IsFadeActive() == FALSE;
 }
 
 BOOL ScrCmd_055(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_ReadHalfWord(param0);
 
-    sub_0200560C(127, v0, 0);
+    Sound_FadeInBGM(127, v0, 0);
     ScriptContext_Pause(param0, ScriptContext_IsSoundFadeFinished);
 
     return 1;
@@ -102,19 +102,19 @@ BOOL ScrCmd_056(ScriptContext *param0)
     u8 v0 = ScriptContext_ReadByte(param0);
     BOOL v1 = ScriptContext_ReadByte(param0);
 
-    sub_020049F4(v0, v1);
+    Sound_SetBGMPlayerPaused(v0, v1);
     return 0;
 }
 
 BOOL ScrCmd_057(ScriptContext *param0)
 {
-    sub_02005588(4, ScriptContext_ReadHalfWord(param0));
+    sub_02005588(SOUND_SCENE_FIELD, ScriptContext_ReadHalfWord(param0));
     return 0;
 }
 
 BOOL ScrCmd_058(ScriptContext *param0)
 {
-    sub_020041CC(ScriptContext_ReadByte(param0));
+    Sound_SetBGMFixed(ScriptContext_ReadByte(param0));
     return 0;
 }
 
@@ -148,7 +148,7 @@ BOOL ScrCmd_PlayCry(ScriptContext *ctx)
     u16 species = ScriptContext_GetVar(ctx);
     u16 unused = ScriptContext_GetVar(ctx);
 
-    sub_02005844(species, 0);
+    Sound_PlayPokemonCry(species, 0);
 
     return FALSE;
 }
@@ -161,7 +161,7 @@ BOOL ScrCmd_04D(ScriptContext *param0)
 
 static BOOL sub_020484B0(ScriptContext *param0)
 {
-    if (sub_0200598C() == 0) {
+    if (Sound_IsPokemonCryPlaying() == 0) {
         return 1;
     }
 
@@ -170,7 +170,7 @@ static BOOL sub_020484B0(ScriptContext *param0)
 
 BOOL ScrCmd_PlaySound(ScriptContext *ctx)
 {
-    sub_02006150(ScriptContext_ReadHalfWord(ctx));
+    Sound_PlayFanfare(ScriptContext_ReadHalfWord(ctx));
     return FALSE;
 }
 
@@ -182,14 +182,14 @@ BOOL ScrCmd_WaitSound(ScriptContext *ctx)
 
 static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx)
 {
-    return sub_020061E4() == FALSE;
+    return Sound_IsBGMPausedByFanfare() == FALSE;
 }
 
 BOOL ScrCmd_059(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    if (IsChatotCryStructReadyForProcessing(GetChatotCryDataFromSave(ctx->fieldSystem->saveData)) == TRUE) {
+    if (Sound_IsRecordedChatotCryPlayable(SaveData_GetChatotCry(ctx->fieldSystem->saveData)) == TRUE) {
         *v0 = 1;
         return FALSE;
     }
@@ -202,7 +202,7 @@ BOOL ScrCmd_05A(ScriptContext *param0)
 {
     u16 *v0 = ScriptContext_GetVarPointer(param0);
 
-    if (StartMicSampling() == MIC_RESULT_SUCCESS) {
+    if (Sound_StartRecordingChatotCry() == MIC_RESULT_SUCCESS) {
         *v0 = 1;
         return 0;
     }
@@ -213,19 +213,19 @@ BOOL ScrCmd_05A(ScriptContext *param0)
 
 BOOL ScrCmd_05B(ScriptContext *param0)
 {
-    StopMicSampling();
+    Sound_StopRecordingChatotCry();
     return 1;
 }
 
 BOOL ScrCmd_05C(ScriptContext *param0)
 {
-    StoreMicDataInChatotCryStruct(GetChatotCryDataFromSave(param0->fieldSystem->saveData));
+    Sound_StoreRecordedChatotCry(SaveData_GetChatotCry(param0->fieldSystem->saveData));
     return 1;
 }
 
 BOOL ScrCmd_05D(ScriptContext *param0)
 {
-    sub_02004550(63, 0, 0);
+    Sound_SetSceneAndPlayBGM(63, 0, 0);
     return 1;
 }
 
@@ -234,16 +234,16 @@ BOOL ScrCmd_283(ScriptContext *param0)
     u16 v0 = ScriptContext_GetVar(param0);
     u16 v1 = ScriptContext_GetVar(param0);
 
-    sub_02004AD4(v0, v1);
+    Sound_SetInitialVolumeForSequence(v0, v1);
     return 0;
 }
 
 BOOL ScrCmd_2F8(ScriptContext *param0)
 {
     if (gSystem.heldKeys & PAD_KEY_UP) {
-        sub_02004550(22, 1218, 1);
+        Sound_SetSceneAndPlayBGM(22, 1218, 1);
     } else {
-        sub_02004550(22, 1218, 1);
+        Sound_SetSceneAndPlayBGM(22, 1218, 1);
     }
 
     return 1;
@@ -253,7 +253,7 @@ BOOL ScrCmd_2F9(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
 
-    sub_02004550(4, v0, 1);
+    Sound_SetSceneAndPlayBGM(4, v0, 1);
     return 1;
 }
 
@@ -261,6 +261,6 @@ BOOL ScrCmd_2FA(ScriptContext *param0)
 {
     u16 *v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_020041FC();
+    *v0 = Sound_GetCurrentBGM();
     return 0;
 }

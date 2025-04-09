@@ -97,14 +97,14 @@ void Villa_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL Villa_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
+BOOL Villa_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
     int v0;
     const UnkStruct_ov5_021F83D4 *v1;
     const UnkStruct_ov5_0220192C *v2 = Unk_ov5_0220192C;
 
     for (v0 = 0; v0 < 23; v0++, v2++) {
-        if (ov5_021F851C(tileX, tileY, v2, fieldSystem) == 1) {
+        if (ov5_021F851C(tileX, tileZ, v2, fieldSystem) == 1) {
             *isColliding = 1;
             return 1;
         }

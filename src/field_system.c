@@ -165,7 +165,7 @@ static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
 
     MapHeaderData_Init(fieldSystem, HEAP_ID_FIELDMAP);
 
-    fieldSystem->unk_98 = BagCursor_New(HEAP_ID_FIELDMAP);
+    fieldSystem->bagCursor = BagCursor_New(HEAP_ID_FIELDMAP);
 
     fieldSystem->chain = RadarChain_Init(HEAP_ID_FIELDMAP);
     RadarChain_Clear(fieldSystem->chain);
@@ -182,7 +182,7 @@ static void TeardownFieldSystem(OverlayManager *ovyManager)
 
     MapMatrix_Free(fieldSystem->mapMatrix);
     MapHeaderData_Free(fieldSystem);
-    Heap_FreeToHeap(fieldSystem->unk_98);
+    Heap_FreeToHeap(fieldSystem->bagCursor);
     RadarChain_Free(fieldSystem->chain);
     PokedexMemory_Free(fieldSystem->pokedexMemory);
     sub_0209C388(fieldSystem->battleSubscreenCursorOn);

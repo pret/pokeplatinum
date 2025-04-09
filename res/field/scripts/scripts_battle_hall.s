@@ -189,9 +189,9 @@ _02A5:
 _02CB:
     CallIfEq 0x4004, 0, _087E
     CallIfEq 0x4004, 1, _0896
-    ScrCmd_042 19, 2
-    ScrCmd_042 20, 3
-    ScrCmd_043
+    AddMenuEntryImm 19, 2
+    AddMenuEntryImm 20, 3
+    ShowMenu
     GoToIfEq 0x800C, 0, _0366
     GoToIfEq 0x800C, 1, _0389
     GoToIfEq 0x800C, 2, _032B
@@ -265,7 +265,7 @@ _03F5:
     GoToIfEq 0x800C, 0xFF, _07C8
     ScrCmd_31E 0x4005, 0x800C
     GoToIfEq 0x800C, 0xFF, _07C8
-    ScrCmd_198 0x4002, 0x4001
+    GetPartyMonSpecies 0x4002, 0x4001
     GoToIfEq 0x4001, 0, _034D
     ScrCmd_2CC 1, 0x40BB, 0x800C
     GoToIfEq 0x800C, 0, _04F4
@@ -278,10 +278,10 @@ _03F5:
 _04A2:
     BufferSpeciesNameFromVar 1, 0x4001, 0, 0
     Message 34
-    ScrCmd_044 25, 13, 1, 1, 0x800C
-    ScrCmd_046 41, 0xFF, 0
-    ScrCmd_046 42, 0xFF, 1
-    ScrCmd_327 6
+    InitGlobalTextListMenu 25, 13, 1, 0x800C
+    AddListMenuEntry 41, 0
+    AddListMenuEntry 42, 1
+    ShowListMenuSetWidth 6
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _04E4
     GoTo _034D
@@ -310,12 +310,12 @@ _04FC:
 
 _054A:
     Message 30
-    ScrCmd_040 30, 1, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 5, 2
-    ScrCmd_043
+    InitGlobalTextMenu 30, 1, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 13, 0
+    AddMenuEntryImm 14, 1
+    AddMenuEntryImm 5, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _058E
     GoToIfEq 0x8008, 1, _05E2
@@ -543,17 +543,17 @@ _0879:
     Return
 
 _087E:
-    ScrCmd_041 31, 9, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 16, 0
-    ScrCmd_042 17, 1
+    InitLocalTextMenu 31, 9, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 16, 0
+    AddMenuEntryImm 17, 1
     Message 1
     Return
 
 _0896:
-    ScrCmd_041 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 18, 4
+    InitLocalTextMenu 31, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 18, 4
     Message 4
     Return
 

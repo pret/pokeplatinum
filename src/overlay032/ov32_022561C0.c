@@ -65,7 +65,7 @@ static BOOL PoketchPartyStatus_Init(PoketchPartyStatus *partyStatus, PoketchSyst
         partyStatus->taskFuncState = 0;
         partyStatus->shouldExit = 0;
 
-        InitPlayerPartyMons(&partyStatus->playerParty, Party_GetFromSavedata(PoketchSystem_GetSaveData(poketchSys)));
+        InitPlayerPartyMons(&partyStatus->playerParty, SaveData_GetParty(PoketchSystem_GetSaveData(poketchSys)));
 
         partyStatus->playerParty.isTouchingPoketch = 0;
         partyStatus->playerParty.screenTapped = 0;
@@ -155,7 +155,7 @@ static BOOL Task_PartyStatusTryUpdateOnTap(PoketchPartyStatus *appData)
                 u32 touchedSlot = PoketchPartyStatus_CheckTouchingPartySlot(appData->playerParty.touchX, appData->playerParty.touchY, appData->playerParty.partyCount);
 
                 if (touchedSlot >= appData->playerParty.partyCount) { // Tapped the screen but not any mon icons
-                    InitPlayerPartyMons(&appData->playerParty, Party_GetFromSavedata(PoketchSystem_GetSaveData(appData->poketchSys)));
+                    InitPlayerPartyMons(&appData->playerParty, SaveData_GetParty(PoketchSystem_GetSaveData(appData->poketchSys)));
                     PartyStatus_StartTaskById(appData->graphicsData, TASK_REDRAW_ON_TAP);
                 }
             }

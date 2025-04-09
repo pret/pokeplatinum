@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
+
 #include "struct_defs/struct_020972FC.h"
 
 #include "heap.h"
@@ -16,9 +18,9 @@ UnkStruct_020972FC *sub_020972FC(u8 heapID)
     return v0;
 }
 
-void sub_02097320(UnkStruct_020972FC *param0, u16 param1, u16 param2)
+void sub_02097320(UnkStruct_020972FC *param0, u16 item, u16 param2)
 {
-    u16 v0 = param1 - 149;
+    u16 v0 = item - FIRST_BERRY_IDX;
 
     sub_02097344(param0->unk_00, v0);
 

@@ -75,15 +75,15 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
     v1 = fieldSystem->saveData;
     MI_CpuClear8(v2, sizeof(PartyManagementData));
 
-    v2->unk_0C = SaveData_Options(v1);
-    v2->unk_00 = Party_GetFromSavedata(v1);
+    v2->unk_0C = SaveData_GetOptions(v1);
+    v2->unk_00 = SaveData_GetParty(v1);
     v2->unk_04 = SaveData_GetBag(v1);
     v2->unk_21 = 0;
     v2->unk_20 = param0->unk_08;
     v2->unk_32_0 = param0->unk_0A;
     v2->unk_32_4 = param0->unk_0B;
     v2->unk_33 = param0->unk_0C;
-    v2->unk_22 = param0->unk_0D;
+    v2->selectedMonSlot = param0->unk_0D;
 
     for (v0 = 0; v0 < 6; v0++) {
         v2->unk_2C[v0] = param0->unk_0E[v0];
@@ -106,7 +106,7 @@ static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
 
     v1 = *(param0->unk_14);
 
-    switch (v1->unk_22) {
+    switch (v1->selectedMonSlot) {
     case 7:
         param0->unk_00 = 0;
         return 4;
@@ -118,7 +118,7 @@ static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
     }
 
     MI_CpuCopy8(v1->unk_2C, param0->unk_0E, 6);
-    param0->unk_0D = v1->unk_22;
+    param0->unk_0D = v1->selectedMonSlot;
     Heap_FreeToHeap(v1);
     *(param0->unk_14) = NULL;
 
@@ -137,8 +137,8 @@ static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
     v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
-    v0->options = SaveData_Options(v1);
-    v0->monData = Party_GetFromSavedata(v1);
+    v0->options = SaveData_GetOptions(v1);
+    v0->monData = SaveData_GetParty(v1);
     v0->dexMode = SaveData_GetDexMode(v1);
     v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->dataType = SUMMARY_DATA_PARTY_MON;

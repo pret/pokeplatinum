@@ -36,6 +36,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -45,7 +46,6 @@
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
@@ -387,7 +387,7 @@ void ov10_0221F800(UnkStruct_ov10_0221F800 *param0)
 
     if (v0->unk_BBC == 1) {
         if ((v0->unk_00->unk_00 != NULL) && (v0->unk_00->unk_00->saveData != NULL)) {
-            v0->unk_BBC = Bag_CanRemoveItem(SaveData_GetBag(v0->unk_00->unk_00->saveData), 465, 1, param0->heapId);
+            v0->unk_BBC = Bag_CanRemoveItem(SaveData_GetBag(v0->unk_00->unk_00->saveData), ITEM_VS_RECORDER, 1, param0->heapId);
         }
     }
 }

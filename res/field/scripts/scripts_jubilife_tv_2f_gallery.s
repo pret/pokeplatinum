@@ -80,12 +80,12 @@ _0121:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    ScrCmd_193 0x4002
+    GetSelectedPartySlot 0x4002
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x4002, 0xFF, _02B3
-    ScrCmd_198 0x4002, 0x800C
+    GetPartyMonSpecies 0x4002, 0x800C
     GoToIfEq 0x800C, 0, _02BE
     GoTo _016C
 

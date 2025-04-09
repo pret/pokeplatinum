@@ -14,10 +14,10 @@
 #include "player_avatar.h"
 #include "pokeradar.h"
 #include "rtc.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "system_flags.h"
 #include "trainer_data.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "vars_flags.h"
 
 const static u16 Unk_020EC3E0[][2] = {
@@ -112,9 +112,9 @@ u16 sub_0205560C(int param0);
 
 void sub_020553DC()
 {
-    sub_0200569C();
-    sub_02004A3C();
-    sub_02004234(0);
+    Sound_StopWaveOutAndSequences();
+    Sound_ClearBGMPauseFlags();
+    Sound_SetScene(0);
 }
 
 void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 sdatID)
@@ -239,21 +239,21 @@ BOOL sub_02055554(FieldSystem *fieldSystem, u16 param1, int param2)
     playerAvatar = fieldSystem->playerAvatar;
     v3 = PlayerAvatar_GetPlayerState(playerAvatar);
 
-    if (sub_020041DC() == 1) {
+    if (Sound_IsBGMFixed() == 1) {
         return 0;
     }
 
-    if (param1 == sub_020041FC(fieldSystem)) {
+    if (param1 == Sound_GetCurrentBGM1(fieldSystem)) {
         return 0;
     }
 
-    sub_02004A3C();
+    Sound_ClearBGMPauseFlags();
     sub_020555CC(fieldSystem, param2, &v1, &v2);
 
     if ((v3 == 0x1) || (v3 == 0x1)) {
-        sub_02005068(4, param1, v1, v2, 30, 0, NULL);
+        Sound_FadeToBGM(4, param1, v1, v2, 30, 0, NULL);
     } else {
-        sub_0200502C(4, param1, v1, v2, 0, NULL);
+        Sound_FadeOutAndPlayBGM(4, param1, v1, v2, 0, NULL);
     }
 
     return 1;
@@ -298,12 +298,12 @@ u16 sub_0205560C(int param0)
 
 void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int param1)
 {
-    if (sub_020041DC() == 1) {
+    if (Sound_IsBGMFixed() == 1) {
         return;
     }
 
-    if (sub_020041FC() != sub_020554A4(fieldSystem, param1)) {
-        sub_0200564C(0, 40);
+    if (Sound_GetCurrentBGM() != sub_020554A4(fieldSystem, param1)) {
+        Sound_FadeOutBGM(0, 40);
     }
 }
 
@@ -311,22 +311,22 @@ void Sound_PlayMapBGM(FieldSystem *fieldSystem, int param1)
 {
     u16 v0;
 
-    if (sub_020041DC() == 1) {
+    if (Sound_IsBGMFixed() == 1) {
         return;
     }
 
-    sub_02004234(0);
+    Sound_SetScene(0);
 
     v0 = sub_020554A4(fieldSystem, param1);
 
-    sub_02004224(v0);
-    sub_02004550(4, v0, 1);
+    Sound_SetFieldBGM(v0);
+    Sound_SetSceneAndPlayBGM(4, v0, 1);
 }
 
 void sub_020556A0(FieldSystem *fieldSystem, int param1)
 {
     u16 v0 = sub_02055428(fieldSystem, param1);
 
-    sub_02004224(sub_020554A4(fieldSystem, param1));
-    sub_02004550(4, v0, 1);
+    Sound_SetFieldBGM(sub_020554A4(fieldSystem, param1));
+    Sound_SetSceneAndPlayBGM(4, v0, 1);
 }

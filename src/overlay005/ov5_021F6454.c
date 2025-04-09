@@ -38,14 +38,14 @@
 #include "render_window.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_vars.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02020AEC.h"
 #include "unk_0202C858.h"
@@ -100,7 +100,6 @@ static void ov5_021F70CC(Pokemon *param0, int *param1, int *param2);
 BOOL ScrCmd_300(ScriptContext *ctx);
 BOOL ScrCmd_301(ScriptContext *ctx);
 BOOL ScrCmd_30F(ScriptContext *ctx);
-BOOL ScrCmd_JudgeStats(ScriptContext *ctx);
 BOOL ScrCmd_2F1(ScriptContext *ctx);
 static void ov5_021F661C(UnkStruct_ov5_021F6704 *param0, MessageLoader *param1);
 static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, Window *param8, MessageLoader *param9, u16 *param10, u16 *param11);
@@ -450,7 +449,7 @@ BOOL ScrCmd_JudgeStats(ScriptContext *ctx)
     u16 *highestIVIndex = ScriptContext_GetVarPointer(ctx);
     u16 *highestIVValue = ScriptContext_GetVarPointer(ctx);
 
-    Pokemon *targetPokemon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), selectedIndex);
+    Pokemon *targetPokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), selectedIndex);
 
     u32 pokemonIVs[6];
     pokemonIVs[0] = Pokemon_GetValue(targetPokemon, MON_DATA_HP_IV, NULL);
@@ -498,7 +497,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 *v11 = ScriptContext_GetVarPointer(param0);
 
-    v1 = Party_GetFromSavedata(fieldSystem->saveData);
+    v1 = SaveData_GetParty(fieldSystem->saveData);
     v2 = Party_GetCurrentCount(v1);
     *v11 = 0;
 
@@ -512,7 +511,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
     }
 
     if (v9 > 0) {
-        v4 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, v9, 4);
+        v4 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, v9, HEAP_ID_FIELD);
 
         if (v4 == 0) {
             *v11 = 0xff;
@@ -538,13 +537,13 @@ BOOL ScrCmd_31D(ScriptContext *param0)
 
             switch (v5) {
             case SPECIES_GIRATINA:
-                Pokemon_SetGiratinaForm(v0);
+                Pokemon_SetGiratinaFormByHeldItem(v0);
                 break;
             case SPECIES_ROTOM:
-                Pokemon_SetRotomForm(v0, 0, 0);
+                Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
                 break;
             case SPECIES_SHAYMIN:
-                Pokemon_SetShayminForm(v0, 0);
+                Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
                 break;
             }
         }
@@ -565,7 +564,7 @@ BOOL ScrCmd_31E(ScriptContext *param0)
     u16 v8 = ScriptContext_GetVar(param0);
     u16 *v9 = ScriptContext_GetVarPointer(param0);
 
-    v1 = Party_GetFromSavedata(fieldSystem->saveData);
+    v1 = SaveData_GetParty(fieldSystem->saveData);
     v0 = Party_GetPokemonBySlotIndex(v1, v8);
 
     *v9 = 0;
@@ -577,7 +576,7 @@ BOOL ScrCmd_31E(ScriptContext *param0)
     v5 = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
 
     if (v5 == ITEM_GRISEOUS_ORB) {
-        v6 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, 1, 4);
+        v6 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, 1, HEAP_ID_FIELD);
 
         if (v6 == 0) {
             *v9 = 0xff;
@@ -595,13 +594,13 @@ BOOL ScrCmd_31E(ScriptContext *param0)
 
         switch (v2) {
         case SPECIES_GIRATINA:
-            Pokemon_SetGiratinaForm(v0);
+            Pokemon_SetGiratinaFormByHeldItem(v0);
             break;
         case SPECIES_ROTOM:
-            Pokemon_SetRotomForm(v0, 0, 0);
+            Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
             break;
         case SPECIES_SHAYMIN:
-            Pokemon_SetShayminForm(v0, 0);
+            Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
             break;
         }
     }
@@ -616,65 +615,58 @@ BOOL ScrCmd_2F1(ScriptContext *param0)
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v2);
+    v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2);
     Pokemon_SetValue(v0, MON_DATA_FORM, &v3);
 
     return 0;
 }
 
-BOOL ScrCmd_303(ScriptContext *param0)
+BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
 {
-    u32 v0, v1, v2;
-    int v3, v4, v5;
-    Pokemon *v6;
-    Party *v7;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v9 = ScriptContext_GetVarPointer(param0);
-    u16 *v10 = ScriptContext_GetVarPointer(param0);
+    int partyCount, i, count;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVarCount = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarPartySlot = ScriptContext_GetVarPointer(ctx);
 
-    v5 = 0;
-    *v10 = 0xff;
-    v7 = Party_GetFromSavedata(fieldSystem->saveData);
-    v3 = Party_GetCurrentCount(v7);
+    count = 0;
+    *destVarPartySlot = 0xff;
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    partyCount = Party_GetCurrentCount(party);
 
-    for (v4 = 0; v4 < v3; v4++) {
-        v6 = Party_GetPokemonBySlotIndex(v7, v4);
-        v0 = Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL);
-        v1 = Pokemon_GetValue(v6, MON_DATA_FORM, NULL);
-        v2 = Pokemon_GetValue(v6, MON_DATA_IS_EGG, NULL);
+    for (i = 0; i < partyCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+        u32 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        u32 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        u32 isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
-        if ((v0 == SPECIES_ROTOM) && (v1 != 0) && (v2 == 0)) {
-            if (*v10 == 0xff) {
-                *v10 = v4;
+        if (species == SPECIES_ROTOM && form != ROTOM_FORM_BASE && isEgg == FALSE) {
+            if (*destVarPartySlot == 0xff) {
+                *destVarPartySlot = i;
             }
 
-            v5++;
+            count++;
         }
     }
 
-    *v9 = v5;
+    *destVarCount = count;
     return 0;
 }
 
-BOOL ScrCmd_304(ScriptContext *param0)
+BOOL ScrCmd_SetRotomForm(ScriptContext *ctx)
 {
-    u32 v0, v1;
-    u16 v2, v3;
-    Pokemon *v4;
-    Party *v5;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v7 = ScriptContext_GetVar(param0);
-    u16 v8 = ScriptContext_GetVar(param0);
-    u16 v9 = ScriptContext_GetVar(param0);
-    u16 v10 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 moveSlot = ScriptContext_GetVar(ctx);
+    u16 v9 = ScriptContext_GetVar(ctx);
+    u16 form = ScriptContext_GetVar(ctx);
 
-    v5 = Party_GetFromSavedata(fieldSystem->saveData);
-    v4 = Party_GetPokemonBySlotIndex(v5, v7);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
-    Pokemon_SetRotomForm(v4, v10, v8);
-    Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), v4);
+    Pokemon_SetRotomForm(mon, form, moveSlot);
+    Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), mon);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_2FF(ScriptContext *param0)
@@ -686,7 +678,7 @@ BOOL ScrCmd_2FF(ScriptContext *param0)
     u16 v5 = ScriptContext_GetVar(param0);
     u16 *v6 = ScriptContext_GetVarPointer(param0);
 
-    v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v5);
+    v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v5);
     v0 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
 
     if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
@@ -755,7 +747,7 @@ BOOL ScrCmd_300(ScriptContext *param0)
     Pokemon *v1;
     FieldSystem *fieldSystem = param0->fieldSystem;
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), 0);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
     v0 = SaveData_MiscSaveBlock(fieldSystem->saveData);
 
     MiscSaveBlock_SetFavoriteMon(v0, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v1, MON_DATA_FORM, NULL), Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL));
@@ -782,19 +774,17 @@ BOOL ScrCmd_301(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_305(ScriptContext *param0)
+BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    Party *v1;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
-    v1 = Party_GetFromSavedata(fieldSystem->saveData);
-    v0 = Party_GetPokemonBySlotIndex(v1, v3);
-    *v4 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+    *destVar = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_30F(ScriptContext *param0)
@@ -806,7 +796,7 @@ BOOL ScrCmd_30F(ScriptContext *param0)
     u16 *v4 = ScriptContext_GetVarPointer(param0);
 
     v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    v1 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    v1 = SaveData_GetGameRecords(fieldSystem->saveData);
     *v4 = 1;
 
     switch (v3) {
@@ -1141,6 +1131,6 @@ BOOL ScrCmd_333(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
 
-    sub_0200544C(1, v0);
+    Sound_SetPlayerVolume(1, v0);
     return 0;
 }

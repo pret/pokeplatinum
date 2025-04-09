@@ -36,7 +36,7 @@ _000E:
     ApplyMovement 0, _0150
     WaitMovement
     WaitTime 30, 0x800C
-    ScrCmd_25C
+    TriggerPlatformLift
     WaitTime 30, 0x800C
     SetFlag FLAG_UNK_0x023A
     SetFlag FLAG_UNK_0x023B

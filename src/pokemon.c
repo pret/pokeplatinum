@@ -4,12 +4,12 @@
 #include <string.h>
 
 #include "constants/charcode.h"
+#include "constants/forms.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/narc.h"
 #include "constants/sound.h"
-#include "constants/species.h"
 #include "generated/abilities.h"
 #include "generated/evolution_methods.h"
 #include "generated/exp_rates.h"
@@ -44,13 +44,13 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "rtc.h"
+#include "sound_chatot.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
-#include "unk_02006224.h"
 #include "unk_02015F84.h"
 #include "unk_02017038.h"
 #include "unk_02028124.h"
@@ -2122,7 +2122,7 @@ u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam 
 {
     monSpecies = Pokemon_GetFormNarcIndex(monSpecies, monForm);
 
-    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, 0);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, HEAP_ID_SYSTEM);
     u32 result = SpeciesData_GetValue(speciesData, param);
 
     SpeciesData_Free(speciesData);
@@ -2132,7 +2132,7 @@ u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam 
 
 u32 SpeciesData_GetSpeciesValue(int monSpecies, enum SpeciesDataParam param)
 {
-    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, 0);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, HEAP_ID_SYSTEM);
     u32 result = SpeciesData_GetValue(speciesData, param);
 
     SpeciesData_Free(speciesData);
@@ -2219,7 +2219,7 @@ u32 BoxPokemon_GetLevel(BoxPokemon *boxMon)
 
 u32 Pokemon_GetSpeciesLevelAt(u16 monSpecies, u32 monExp)
 {
-    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, 0);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, HEAP_ID_SYSTEM);
 
     u32 monLevel = SpeciesData_GetLevelAt(speciesData, monSpecies, monExp);
     SpeciesData_Free(speciesData);
@@ -2412,7 +2412,7 @@ u8 BoxPokemon_GetGender(BoxPokemon *boxMon)
 
 u8 Pokemon_GetGenderOf(u16 monSpecies, u32 monPersonality)
 {
-    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, 0);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, HEAP_ID_SYSTEM);
     u8 monGender = SpeciesData_GetGenderOf(speciesData, monSpecies, monPersonality);
 
     SpeciesData_Free(speciesData);
@@ -2684,12 +2684,12 @@ u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm)
         }
         break;
     case SPECIES_DEOXYS:
-        if (monForm > 3) {
+        if (monForm > DEOXYS_FORM_COUNT - 1) {
             monForm = 0;
         }
         break;
     case SPECIES_UNOWN:
-        if (monForm >= 28) {
+        if (monForm >= UNOWN_FORM_COUNT) {
             monForm = 0;
         }
         break;
@@ -4095,11 +4095,10 @@ u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect)
     return type;
 }
 
-int Pokemon_SetGiratinaForm(Pokemon *mon)
+int Pokemon_SetGiratinaFormByHeldItem(Pokemon *mon)
 {
     int result = BoxPokemon_SetGiratinaForm(&mon->box);
 
-    // TODO enum value?
     if (result != -1) {
         Pokemon_CalcLevelAndStats(mon);
     }
@@ -4109,17 +4108,16 @@ int Pokemon_SetGiratinaForm(Pokemon *mon)
 
 int BoxPokemon_SetGiratinaForm(BoxPokemon *boxMon)
 {
-    int monSpecies = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    int monHeldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    int species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    int item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
 
-    // TODO enum?
-    if (monSpecies == SPECIES_GIRATINA) {
-        int monForm = (monHeldItem == ITEM_GRISEOUS_ORB) ? 1 : 0;
+    if (species == SPECIES_GIRATINA) {
+        int form = (item == ITEM_GRISEOUS_ORB) ? GIRATINA_FORM_ORIGIN : GIRATINA_FORM_ALTERED;
 
-        BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &monForm);
+        BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &form);
         BoxPokemon_CalcAbility(boxMon);
 
-        return monForm;
+        return form;
     }
 
     return -1;
@@ -4127,66 +4125,64 @@ int BoxPokemon_SetGiratinaForm(BoxPokemon *boxMon)
 
 void Pokemon_SetGiratinaOriginForm(Pokemon *mon)
 {
-    // TODO enum?
-    int monForm = 1;
+    int form = GIRATINA_FORM_ORIGIN;
 
     if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA) {
-        BoxPokemon_SetValue(&mon->box, MON_DATA_FORM, &monForm);
+        BoxPokemon_SetValue(&mon->box, MON_DATA_FORM, &form);
         BoxPokemon_CalcAbility(&mon->box);
         Pokemon_CalcLevelAndStats(mon);
     }
 }
 
-void Party_SetGiratinaForm(Party *party, int param1)
+void Party_SetGiratinaForm(Party *party, int form)
 {
     int currentPartyCount = Party_GetCurrentCount(party);
 
     for (int i = 0; i < currentPartyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (param1) {
+        if (form) {
             Pokemon_SetGiratinaOriginForm(mon);
         } else {
-            Pokemon_SetGiratinaForm(mon);
+            Pokemon_SetGiratinaFormByHeldItem(mon);
         }
     }
 }
 
-void Pokemon_SetShayminForm(Pokemon *mon, int monForm)
+void Pokemon_SetShayminForm(Pokemon *mon, int form)
 {
-    BoxPokemon_SetShayminForm(&mon->box, monForm);
+    BoxPokemon_SetShayminForm(&mon->box, form);
     Pokemon_CalcLevelAndStats(mon);
 }
 
-void BoxPokemon_SetShayminForm(BoxPokemon *boxMon, int monForm)
+void BoxPokemon_SetShayminForm(BoxPokemon *boxMon, int form)
 {
-    int monSpecies = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    int species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
 
-    if (monSpecies == SPECIES_SHAYMIN) {
-        // TODO enum?
-        GF_ASSERT(monForm <= 1);
+    if (species == SPECIES_SHAYMIN) {
+        GF_ASSERT(form <= SHAYMIN_FORM_COUNT - 1);
 
-        BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &monForm);
+        BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &form);
         BoxPokemon_CalcAbility(boxMon);
     }
 }
 
 BOOL Pokemon_CanShayminSkyForm(Pokemon *mon)
 {
-    u32 monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    u32 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     u32 monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-    u32 v2 = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
-    u32 monCurrentHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
-    u32 monFatefulEncounter = Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL);
+    u32 condition = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+    u32 currentHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+    u32 fatefulEncounter = Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
     RTCTime rtcTime;
     GetCurrentTime(&rtcTime);
 
-    return monSpecies == SPECIES_SHAYMIN
-        && monForm == 0
-        && monCurrentHP > 0
-        && monFatefulEncounter == TRUE
-        && (v2 & 0x20) == 0
+    return species == SPECIES_SHAYMIN
+        && monForm == SHAYMIN_FORM_LAND
+        && currentHP > 0
+        && fatefulEncounter == TRUE
+        && (condition & MON_CONDITION_FREEZE) == FALSE
         && rtcTime.hour >= 4
         && rtcTime.hour < 20;
 }
@@ -4197,13 +4193,12 @@ void Party_SetShayminLandForm(Party *party)
 
     for (int i = 0; i < currentPartyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
-        int monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-        int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-        if (monSpecies == SPECIES_SHAYMIN && monForm == 1) {
-            // TODO enum?
-            int zero = 0;
-            Pokemon_SetShayminForm(mon, zero);
+        if (species == SPECIES_SHAYMIN && form == SHAYMIN_FORM_SKY) {
+            int newForm = SHAYMIN_FORM_LAND;
+            Pokemon_SetShayminForm(mon, newForm);
         }
     }
 }
@@ -4240,7 +4235,7 @@ BOOL Party_SetShayminForm(Party *party, int param1, const RTCTime *rtcTime)
     }
 }
 
-BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot)
+BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot)
 {
     int monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
@@ -4259,7 +4254,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot)
         MOVE_LEAF_STORM
     };
 
-    int newFormMoveID = rotomFormMoves[monForm];
+    int newFormMoveID = rotomFormMoves[form];
 
     int i;
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
@@ -4298,7 +4293,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot)
         Pokemon_ResetMoveSlot(mon, MOVE_THUNDER_SHOCK, 0);
     }
 
-    Pokemon_SetValue(mon, MON_DATA_FORM, &monForm);
+    Pokemon_SetValue(mon, MON_DATA_FORM, &form);
     Pokemon_CalcAbility(mon);
     Pokemon_CalcLevelAndStats(mon);
 
@@ -4323,11 +4318,11 @@ void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 specie
 {
     if (species == SPECIES_CHATOT) {
         if (Sound_CanPlayChatotCry(cryMod) == FALSE) {
-            Sound_FlagDefaultChatotCry(TRUE);
-            Sound_PlayPokemonCry(cryMod, species, pan, volume, heapID, form);
+            Sound_SetUsingDefaultChatotCry(TRUE);
+            Sound_PlayPokemonCryEx(cryMod, species, pan, volume, heapID, form);
         } else {
             if (forceDefaultChatot) {
-                Sound_FlagDefaultChatotCry(TRUE);
+                Sound_SetUsingDefaultChatotCry(TRUE);
             }
 
             Sound_PlayChatotCry(chatotCry, NULL, volume, pan);
@@ -4336,18 +4331,18 @@ void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 specie
         return;
     }
 
-    Sound_PlayPokemonCry(cryMod, species, pan, volume, heapID, form);
+    Sound_PlayPokemonCryEx(cryMod, species, pan, volume, heapID, form);
 }
 
 void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID, u8 delay)
 {
     if (species == SPECIES_CHATOT) {
         if (Sound_CanPlayChatotCry(cryMod) == FALSE) {
-            Sound_FlagDefaultChatotCry(TRUE);
-            Sound_PlayDelayedPokemonCry(cryMod, species, pan, volume, heapID, delay, form);
+            Sound_SetUsingDefaultChatotCry(TRUE);
+            Sound_PlayDelayedPokemonCryEx(cryMod, species, pan, volume, heapID, delay, form);
         } else {
             if (forceDefaultChatot) {
-                Sound_FlagDefaultChatotCry(TRUE);
+                Sound_SetUsingDefaultChatotCry(TRUE);
             }
 
             Sound_PlayDelayedChatotCry(chatotCry, NULL, volume, pan, delay);
@@ -4356,7 +4351,7 @@ void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16
         return;
     }
 
-    Sound_PlayDelayedPokemonCry(cryMod, species, pan, volume, heapID, delay, form);
+    Sound_PlayDelayedPokemonCryEx(cryMod, species, pan, volume, heapID, delay, form);
 }
 
 BOOL Pokemon_IsEligibleForAction(Pokemon *mon)
@@ -4364,7 +4359,7 @@ BOOL Pokemon_IsEligibleForAction(Pokemon *mon)
     int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-    return sub_02005844(species, form);
+    return Sound_PlayPokemonCry(species, form);
 }
 
 void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapId)
@@ -4663,27 +4658,27 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
     // TODO enum values?
     switch (monSpecies) {
     case SPECIES_DEOXYS:
-        if (monForm && monForm <= 3) {
+        if (monForm && monForm <= DEOXYS_FORM_COUNT - 1) {
             monSpecies = (496 - 1) + monForm;
         }
         break;
     case SPECIES_WORMADAM:
-        if (monForm && monForm <= 2) {
+        if (monForm && monForm <= WORMADAM_FORM_COUNT - 1) {
             monSpecies = (499 - 1) + monForm;
         }
         break;
     case SPECIES_GIRATINA:
-        if (monForm && monForm <= 1) {
+        if (monForm && monForm <= GIRATINA_FORM_COUNT - 1) {
             monSpecies = (501 - 1) + monForm;
         }
         break;
     case SPECIES_SHAYMIN:
-        if (monForm && monForm <= 1) {
+        if (monForm && monForm <= SHAYMIN_FORM_COUNT - 1) {
             monSpecies = (502 - 1) + monForm;
         }
         break;
     case SPECIES_ROTOM:
-        if (monForm && monForm <= 5) {
+        if (monForm && monForm <= ROTOM_FORM_COUNT - 1) {
             monSpecies = (503 - 1) + monForm;
         }
         break;

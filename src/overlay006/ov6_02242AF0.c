@@ -20,7 +20,7 @@
 #include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "savedata_misc.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_020655F4.h"
 
 typedef struct UnkStruct_ov6_02242B58_t UnkStruct_ov6_02242B58;

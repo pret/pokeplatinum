@@ -36,6 +36,7 @@
 #include "render_oam.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -44,7 +45,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
@@ -298,7 +298,7 @@ int ov108_02241AE0(OverlayManager *param0, int *param1)
     v1->unk_426 = v2->unk_18;
     v1->unk_12 = v2->unk_07;
     v1->unk_3C4 = &v2->unk_38;
-    v1->unk_D8 = SaveData_Options(v1->unk_DC);
+    v1->unk_D8 = SaveData_GetOptions(v1->unk_DC);
     v1->unk_3C8 = v2->unk_30;
     v1->unk_3CC = v2->unk_34;
     v1->unk_0E = 0xff;

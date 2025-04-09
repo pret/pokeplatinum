@@ -13,11 +13,11 @@
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "text.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 
@@ -75,8 +75,8 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
         param0->unk_60++;
     case 2:
         if (IsScreenTransitionDone() == 1) {
-            sub_0200569C();
-            sub_02004550(13, 1141, 1);
+            Sound_StopWaveOutAndSequences();
+            Sound_SetSceneAndPlayBGM(13, 1141, 1);
             param0->unk_60++;
         }
         break;
@@ -126,21 +126,21 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
             {
                 int species = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
                 int form = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_FORM, NULL);
-                sub_02005844(species, form);
+                Sound_PlayPokemonCry(species, form);
                 param0->unk_04.unk_08 = ov119_021D1158(&param0->unk_04.unk_14[0], 0, param0->unk_00->unk_0C.unk_00, param0->unk_04.unk_0C);
             }
             param0->unk_60++;
         }
     } break;
     case 8:
-        if (sub_0200598C() != 0) {
+        if (Sound_IsPokemonCryPlaying() != 0) {
             break;
         }
 
-        sub_02006150(1156);
+        Sound_PlayFanfare(1156);
         param0->unk_60++;
     case 9:
-        if (sub_020061E4() != 0) {
+        if (Sound_IsBGMPausedByFanfare() != 0) {
             break;
         }
 
@@ -255,7 +255,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         param0->unk_60++;
     case 2:
         if (IsScreenTransitionDone() == 1) {
-            sub_02004550(13, 1141, 1);
+            Sound_SetSceneAndPlayBGM(13, 1141, 1);
             param0->unk_60++;
         }
         break;
@@ -269,7 +269,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
             {
                 int species = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
                 int form = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_FORM, NULL);
-                sub_02005844(species, form);
+                Sound_PlayPokemonCry(species, form);
                 param0->unk_04.unk_08 = ov119_021D1158(&param0->unk_04.unk_14[0], 0, param0->unk_00->unk_0C.unk_00, param0->unk_04.unk_0C);
             }
 
@@ -283,14 +283,14 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         GF_ASSERT(0);
         break;
     case 8:
-        if (sub_0200598C() != 0) {
+        if (Sound_IsPokemonCryPlaying() != 0) {
             break;
         }
 
-        sub_02006150(1156);
+        Sound_PlayFanfare(1156);
         param0->unk_60++;
     case 9:
-        if (sub_020061E4() != 0) {
+        if (Sound_IsBGMPausedByFanfare() != 0) {
             break;
         }
 

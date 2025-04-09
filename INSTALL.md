@@ -118,7 +118,7 @@ install to a more recent version of `Ubuntu`:
 registry:
 
     ```bash
-    apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3
+    sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3
     ```
 
 2. [Download the repository](#2-downloading-the-repository).
@@ -140,7 +140,7 @@ and install it on your system.
 To update your package registry, enter the following command:
 
     ```bash
-    pacman -Syu
+    sudo pacman -Syu
     ```
 
     Press 'Y' when prompted to confirm the update. This process may take a few
@@ -152,7 +152,7 @@ the following commands to install necessary build dependencies:
     ```bash
     echo 'export PATH=${PATH}:/mingw64/bin' >> ~/.bashrc
     source ~/.bashrc
-    pacman -S bison flex gcc git make ninja python mingw-w64-x86_64-arm-none-eabi-gcc
+    sudo pacman -S bison flex gcc git make ninja python mingw-w64-x86_64-arm-none-eabi-gcc
     ```
 
     Press 'Y' when prompted to confirm the installation.

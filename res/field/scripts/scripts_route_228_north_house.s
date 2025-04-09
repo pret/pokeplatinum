@@ -30,12 +30,12 @@ _0055:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    ScrCmd_193 0x8000
+    GetSelectedPartySlot 0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _028F
-    ScrCmd_198 0x8000, 0x8001
+    GetPartyMonSpecies 0x8000, 0x8001
     GoToIfEq 0x8001, 0, _02A5
     Call _0195
     GoToIfEq 0x800C, 0, _029A
@@ -117,15 +117,15 @@ _0251:
     GoTo _0285
 
 _0271:
-    ScrCmd_099 0x800C, 0x133, 0x8000
+    CheckPartyMonHasMove 0x800C, MOVE_BLAST_BURN, 0x8000
     Return
 
 _027B:
-    ScrCmd_099 0x800C, 0x134, 0x8000
+    CheckPartyMonHasMove 0x800C, MOVE_HYDRO_CANNON, 0x8000
     Return
 
 _0285:
-    ScrCmd_099 0x800C, 0x152, 0x8000
+    CheckPartyMonHasMove 0x800C, MOVE_FRENZY_PLANT, 0x8000
     Return
 
 _028F:

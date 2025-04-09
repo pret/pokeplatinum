@@ -4,16 +4,16 @@
 #include "field_script_context.h"
 
 BOOL ScrCmd_2DE(ScriptContext *param0);
-BOOL ScrCmd_JudgeStats(ScriptContext *param0);
+BOOL ScrCmd_JudgeStats(ScriptContext *ctx);
 BOOL ScrCmd_31D(ScriptContext *param0);
 BOOL ScrCmd_31E(ScriptContext *param0);
 BOOL ScrCmd_2F1(ScriptContext *param0);
-BOOL ScrCmd_303(ScriptContext *param0);
-BOOL ScrCmd_304(ScriptContext *param0);
+BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx);
+BOOL ScrCmd_SetRotomForm(ScriptContext *ctx);
 BOOL ScrCmd_2FF(ScriptContext *param0);
 BOOL ScrCmd_300(ScriptContext *param0);
 BOOL ScrCmd_301(ScriptContext *param0);
-BOOL ScrCmd_305(ScriptContext *param0);
+BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx);
 BOOL ScrCmd_30F(ScriptContext *param0);
 BOOL ScrCmd_316(ScriptContext *param0);
 BOOL ScrCmd_32C(ScriptContext *param0);

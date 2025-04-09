@@ -117,14 +117,14 @@ _00FE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_072 20, 2
+    ShowMoney 20, 2
     Message 8
-    ScrCmd_041 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 14, 0
-    ScrCmd_042 15, 1
-    ScrCmd_042 16, 2
-    ScrCmd_043
+    InitLocalTextMenu 31, 11, 0, 0x800C
+    SetMenuXOriginToRight
+    AddMenuEntryImm 14, 0
+    AddMenuEntryImm 15, 1
+    AddMenuEntryImm 16, 2
+    ShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0150
     GoToIfEq 0x8008, 1, _018F
@@ -134,8 +134,7 @@ _00FE:
 _0150:
     SetVar 0x8004, 1
     SetVar 0x8005, 200
-    ScrCmd_07D 42, 0x8004, 0x800C
-    GoToIfEq 0x800C, 0, _01FF
+    GoToIfCannotFitItem ITEM_LAVA_COOKIE, 0x8004, 0x800C, _01FF
     ScrCmd_1AB 0x800C, 200
     GoToIfEq 0x800C, 0, _020A
     Message 9
@@ -145,8 +144,7 @@ _0150:
 _018F:
     SetVar 0x8004, 10
     SetVar 0x8005, 0x7D0
-    ScrCmd_07D 42, 0x8004, 0x800C
-    GoToIfEq 0x800C, 0, _01FF
+    GoToIfCannotFitItem ITEM_LAVA_COOKIE, 0x8004, 0x800C, _01FF
     ScrCmd_1AB 0x800C, 0x7D0
     GoToIfEq 0x800C, 0, _020A
     Message 10
@@ -158,7 +156,7 @@ _01CE:
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x8005
     ScrCmd_1A3 0x8005
-    ScrCmd_074
+    UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     CallIfLt 0x4042, 0x2710, _0700
     GoTo _0220
@@ -182,7 +180,7 @@ _0215:
 _0220:
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -190,7 +188,7 @@ _022A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_072 20, 2
+    ShowMoney 20, 2
     Message 17
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _025B
@@ -223,7 +221,7 @@ _0306:
 _0311:
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -324,7 +322,7 @@ _04CE:
 
 _0503:
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_074
+    UpdateMoneyDisplay
     CallIfLt 0x4042, 0x2710, _0700
     Message 20
     GoTo _054D
@@ -361,7 +359,7 @@ _0537:
 _054D:
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -447,19 +445,19 @@ _0677:
 
 _0697:
     Message 18
-    ScrCmd_045 1, 1, 0, 1, 0x800C
-    ScrCmd_046 25, 0xFF, 0
-    ScrCmd_046 26, 0xFF, 1
-    ScrCmd_046 27, 0xFF, 2
-    ScrCmd_046 28, 0xFF, 3
-    ScrCmd_046 29, 0xFF, 4
-    ScrCmd_046 30, 0xFF, 5
-    ScrCmd_046 31, 0xFF, 6
-    ScrCmd_046 32, 0xFF, 7
-    ScrCmd_046 33, 0xFF, 8
-    ScrCmd_046 34, 0xFF, 9
-    ScrCmd_046 35, 0xFF, 10
-    ScrCmd_047
+    InitLocalTextListMenu 1, 1, 0, 0x800C
+    AddListMenuEntry 25, 0
+    AddListMenuEntry 26, 1
+    AddListMenuEntry 27, 2
+    AddListMenuEntry 28, 3
+    AddListMenuEntry 29, 4
+    AddListMenuEntry 30, 5
+    AddListMenuEntry 31, 6
+    AddListMenuEntry 32, 7
+    AddListMenuEntry 33, 8
+    AddListMenuEntry 34, 9
+    AddListMenuEntry 35, 10
+    ShowListMenu
     Return
 
 _06FE:

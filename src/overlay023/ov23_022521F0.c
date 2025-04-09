@@ -29,6 +29,7 @@
 #include "pokedex.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -36,7 +37,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
 

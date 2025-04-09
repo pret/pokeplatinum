@@ -51,6 +51,7 @@
 #include "save_player.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -58,7 +59,6 @@
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
@@ -381,9 +381,9 @@ void ov8_0224997C(FieldSystem *fieldSystem)
     }
 }
 
-BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
+BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
-    u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileY);
+    u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileZ);
 
     if (TileBehavior_IsPastoriaGymHighGround(tileBehavior)) {
         if (height != MAP_OBJECT_TILE_SIZE * 0) {
@@ -775,12 +775,12 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(fieldSystem->playerAvatar, 0);
+        PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
         (v2->unk_00)++;
         break;
     case 1: {
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT);
 
         {
             VecFx32 v3;
@@ -795,13 +795,13 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
                 (v2->unk_00)++;
             }
 
-            sub_0205ED0C(fieldSystem->playerAvatar, v3.y);
+            Player_SetYPos(fieldSystem->playerAvatar, v3.y);
             MapProp_SetPosition(v0, &v3);
         }
     } break;
     case 2:
         DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 10), fieldSystem->dynamicTerrainHeightMan);
-        sub_0205ED48(fieldSystem->playerAvatar, 1);
+        PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
@@ -821,12 +821,12 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(fieldSystem->playerAvatar, 0);
+        PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
         (v2->unk_00)++;
         break;
     case 1: {
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_LIFT_PLATFORM);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT);
 
         {
             VecFx32 v3;
@@ -840,13 +840,13 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
                 (v2->unk_00)++;
             }
 
-            sub_0205ED0C(fieldSystem->playerAvatar, v3.y);
+            Player_SetYPos(fieldSystem->playerAvatar, v3.y);
             MapProp_SetPosition(v0, &v3);
         }
     } break;
     case 2:
         DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 0), fieldSystem->dynamicTerrainHeightMan);
-        sub_0205ED48(fieldSystem->playerAvatar, 1);
+        PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
@@ -1336,7 +1336,7 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(fieldSystem->playerAvatar, 0);
+        PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
         (v2->unk_00)++;
         break;
@@ -1372,14 +1372,14 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
                 GF_ASSERT(FALSE);
             }
 
-            sub_0205ED0C(fieldSystem->playerAvatar, v5.y);
+            Player_SetYPos(fieldSystem->playerAvatar, v5.y);
 
             MapProp_SetPosition(v0, &v5);
             ov8_0224A434(v3, v5.y);
         }
     } break;
     case 2:
-        sub_0205ED48(fieldSystem->playerAvatar, 1);
+        PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
@@ -1676,7 +1676,7 @@ void CanalaveGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL CanalaveGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
+BOOL CanalaveGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
     u8 v0;
     const u8 *v1;
@@ -1686,7 +1686,7 @@ BOOL CanalaveGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, cons
     GF_ASSERT(v0 <= 3);
 
     v1 = Unk_ov8_0224D035[v0];
-    v2 = tileX + tileY * 32;
+    v2 = tileX + tileZ * 32;
 
     GF_ASSERT(v2 < 1024);
     (*isColliding) = v1[v2];
@@ -2123,7 +2123,7 @@ void SunyshoreGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL SunyshoreGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
+BOOL SunyshoreGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
     int v0, v1, v2;
     u8 const *v3;
@@ -2138,7 +2138,7 @@ BOOL SunyshoreGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, con
     for (v0 = 0; v0 < v1; v0++) {
         v4 = v3[v0];
 
-        if ((v5[v4].unk_00 <= tileX) && (tileX < v5[v4].unk_00 + v5[v4].unk_02) && (v5[v4].unk_01 <= tileY) && (tileY < v5[v4].unk_01 + v5[v4].unk_03)) {
+        if ((v5[v4].unk_00 <= tileX) && (tileX < v5[v4].unk_00 + v5[v4].unk_02) && (v5[v4].unk_01 <= tileZ) && (tileZ < v5[v4].unk_01 + v5[v4].unk_03)) {
             (*isColliding) = 1;
             return 1;
         }
@@ -2466,7 +2466,7 @@ void EternaGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
+BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
     BOOL v0;
     int v1, v2, v3;
@@ -2480,16 +2480,16 @@ BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const 
 
     *isColliding = 0;
 
-    if (((tileY >= 7) && (tileY <= (7 + 13 - 1))) && ((tileX >= 5) && (tileX <= (5 + 13 - 1)))) {
+    if (((tileZ >= 7) && (tileZ <= (7 + 13 - 1))) && ((tileX >= 5) && (tileX <= (5 + 13 - 1)))) {
         v2 = tileX - 5;
-        v3 = (tileY - 7) * 13;
+        v3 = (tileZ - 7) * 13;
         v0 = Unk_ov8_0224CCE8[v1][v3 + v2];
         *isColliding = v0;
     }
 
-    if ((v0 == 0) && ((tileY >= 19) && (tileY <= (19 + 1 - 1))) && ((tileX >= 1) && (tileX <= (1 + 21 - 1)))) {
+    if ((v0 == 0) && ((tileZ >= 19) && (tileZ <= (19 + 1 - 1))) && ((tileX >= 1) && (tileX <= (1 + 21 - 1)))) {
         v2 = tileX - 1;
-        v3 = (tileY - 19) * 21;
+        v3 = (tileZ - 19) * 21;
         v0 = Unk_ov8_0224CA5C[v1][v3 + v2];
         *isColliding = v0;
     }
@@ -2543,7 +2543,7 @@ static void ov8_0224B18C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param
     sub_020642F8(param1->unk_20);
     MapObject_SetHidden(param1->unk_20, 1);
     sub_02062D80(param1->unk_20, 0);
-    sub_02062E28(param1->unk_20, 1);
+    MapObject_SetHeightCalculationDisabled(param1->unk_20, TRUE);
 
     v4 = MapObject_GetPos(param1->unk_20);
 
@@ -2824,9 +2824,9 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
             MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
             FieldMessage_AddWindow(fieldSystem->bgConfig, v2->unk_44, 3);
             Window_EraseMessageBox(v2->unk_44, 0);
-            FieldMessage_DrawWindow(v2->unk_44, SaveData_Options(fieldSystem->saveData));
+            FieldMessage_DrawWindow(v2->unk_44, SaveData_GetOptions(fieldSystem->saveData));
 
-            v2->unk_40 = FieldMessage_Print(v2->unk_44, v2->unk_4C, SaveData_Options(fieldSystem->saveData), 1);
+            v2->unk_40 = FieldMessage_Print(v2->unk_44, v2->unk_4C, SaveData_GetOptions(fieldSystem->saveData), 1);
         }
         break;
     case 11:
@@ -2890,7 +2890,7 @@ BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param
     return 1;
 }
 
-BOOL EternaGym_IsHourHandJumpTile(FieldSystem *fieldSystem, int tileX, int tileY, int direction)
+BOOL EternaGym_IsHourHandJumpTile(FieldSystem *fieldSystem, int tileX, int tileZ, int direction)
 {
     PersistedMapFeatures *v0;
     UnkStruct_02071BD0 *v1;
@@ -2900,7 +2900,7 @@ BOOL EternaGym_IsHourHandJumpTile(FieldSystem *fieldSystem, int tileX, int tileY
     v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
     v2 = &Unk_ov8_0224C7F0[v1->unk_00];
 
-    if ((v2->unk_00 == tileX) && (v2->unk_02 == tileY)) {
+    if ((v2->unk_00 == tileX) && (v2->unk_02 == tileZ)) {
         if (((v2->unk_04 == 0) && ((direction == 2) || (direction == 3))) || ((v2->unk_04 == 1) && ((direction == 0) || (direction == 1)))) {
             return 1;
         }
@@ -2983,7 +2983,7 @@ void VeilstoneGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL VeilstoneGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
+BOOL VeilstoneGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
     return FALSE;
 }
@@ -3552,7 +3552,7 @@ static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param
     sub_020642F8(v3->unk_30);
     MapObject_SetHidden(v3->unk_30, 1);
     sub_02062D80(v3->unk_30, 0);
-    sub_02062E28(v3->unk_30, 1);
+    MapObject_SetHeightCalculationDisabled(v3->unk_30, TRUE);
 
     v2 = MapObject_GetPos(v3->unk_30);
 

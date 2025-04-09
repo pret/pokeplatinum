@@ -54,11 +54,11 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "system_data.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_02014D38.h"
 #include "unk_0202C858.h"
 #include "unk_02030EA4.h"
@@ -771,10 +771,10 @@ void ov66_0222E2C4(UnkStruct_ov66_0222DFF8 *param0, BOOL param1)
 void ov66_0222E2CC(const UnkStruct_ov66_0222DFF8 *param0)
 {
     if ((param0->unk_1FC.unk_00_4 == 1) && (param0->unk_1FC.unk_0A <= 0)) {
-        sub_02004550(21, 1213, 0);
+        Sound_SetSceneAndPlayBGM(21, 1213, 0);
         ov66_0222FBAC(&param0->unk_1FC);
     } else {
-        sub_02004550(21, 1212, 0);
+        Sound_SetSceneAndPlayBGM(21, 1212, 0);
         ov66_0222FBAC(&param0->unk_1FC);
     }
 }
@@ -1792,13 +1792,13 @@ void ov66_0222F000(UnkStruct_ov66_0222DFF8 *param0)
 
 void ov66_0222F020(UnkStruct_ov66_0222DFF8 *param0)
 {
-    GameRecords *v0 = SaveData_GetGameRecordsPtr(param0->unk_00);
+    GameRecords *v0 = SaveData_GetGameRecords(param0->unk_00);
     GameRecords_IncrementRecordValue(v0, RECORD_UNK_046);
 }
 
 void ov66_0222F030(UnkStruct_ov66_0222DFF8 *param0)
 {
-    GameRecords *v0 = SaveData_GetGameRecordsPtr(param0->unk_00);
+    GameRecords *v0 = SaveData_GetGameRecords(param0->unk_00);
     GameRecords_IncrementRecordValue(v0, RECORD_UNK_118);
 }
 
@@ -2283,7 +2283,7 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *param1, u32
 
     {
         v0 = SaveData_GetTrainerInfo(param1);
-        v1 = Party_GetFromSavedata(param1);
+        v1 = SaveData_GetParty(param1);
         v3 = SaveData_GetPokedex(param1);
         v2 = sub_0202C878(param1);
         v4 = SaveData_GetGameTime(param1);
@@ -2420,7 +2420,7 @@ static void ov66_0222FA88(UnkStruct_ov66_0222FB64 *param0, UnkStruct_ov66_0222FA
         param0->unk_04--;
 
         if (param0->unk_04 == (28 * 30)) {
-            sub_0200564C(0, 127);
+            Sound_FadeOutBGM(0, 127);
             param0->unk_0E = 1;
         }
     } else if (param0->unk_04 == 0) {
@@ -2482,9 +2482,9 @@ static void ov66_0222FB64(UnkStruct_ov66_0222FB64 *param0)
 static void ov66_0222FBAC(const UnkStruct_ov66_0222FB64 *param0)
 {
     if (param0->unk_0D == 1) {
-        sub_0200544C(7, (127 / 3));
+        Sound_SetPlayerVolume(7, (127 / 3));
     } else {
-        sub_0200544C(7, 127);
+        Sound_SetPlayerVolume(7, 127);
     }
 }
 

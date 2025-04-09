@@ -30,6 +30,8 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -37,8 +39,6 @@
 #include "system_data.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202DAB4.h"
 #include "unk_020366A0.h"
@@ -144,7 +144,7 @@ static BOOL ov97_0222B8E4(MainMenu *menu, int option, UnkStruct_ov97_02237808 *p
 static BOOL MainMenu_LoadText_WFCSettings(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos);
 static BOOL MainMenu_LoadText_WiiMessageSettings(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos);
 static BOOL MainMenu_LoadText_Continue(MainMenu *menu, int option, UnkStruct_ov97_02237808 *param2, int yPos);
-MysteryGift *SaveData_MysteryGift(SaveData *saveData);
+MysteryGift *SaveData_GetMysteryGift(SaveData *saveData);
 int ov23_0224AC0C(void);
 int TrainerInfo_Size(void);
 
@@ -972,7 +972,7 @@ static int MainMenu_Init(OverlayManager *overlayMan, int *param1)
     sub_0200F344(1, 0x0);
 
     menu->saveData = ((ApplicationArgs *)OverlayManager_Args(overlayMan))->saveData;
-    menu->mysteryGift = SaveData_MysteryGift(menu->saveData);
+    menu->mysteryGift = SaveData_GetMysteryGift(menu->saveData);
     menu->unk_11C = FX32_ONE * 0;
     menu->unk_120 = FX32_ONE * 0;
     menu->trainerInfo = SaveData_GetTrainerInfo(menu->saveData);
@@ -988,8 +988,8 @@ static int MainMenu_Init(OverlayManager *overlayMan, int *param1)
         menu->noSaveData = TRUE;
     }
 
-    sub_020053CC(0);
-    sub_02004234(0);
+    Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
+    Sound_SetScene(0);
 
     return 1;
 }
@@ -1170,11 +1170,11 @@ static void MainMenu_LoadSelectedOption(MainMenu *menu)
         RebootAndLoadROM("data/eoo.dat");
         break;
     case MAIN_MENU_OPTION_NINTENDO_WFC_SETTINGS:
-        sub_0200569C();
-        EnqueueApplication(FS_OVERLAY_ID_NONE, &Unk_020F6DF0);
+        Sound_StopWaveOutAndSequences();
+        EnqueueApplication(0xffffffff, &Unk_020F6DF0);
         break;
     case MAIN_MENU_OPTION_WII_MESSAGE_SETTINGS:
-        sub_0200569C();
+        Sound_StopWaveOutAndSequences();
         EnqueueApplication(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
         break;
     case MAIN_MENU_OPTION_RETURN_TO_TITLE:

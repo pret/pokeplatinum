@@ -30,6 +30,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
@@ -41,7 +42,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
@@ -132,7 +132,7 @@ typedef struct {
 } UnkStruct_ov97_0223E680;
 
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
-MysteryGift *SaveData_MysteryGift(SaveData *param0);
+MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
 static int ov97_02230728(OverlayManager *param0);
 static int ov97_022306F4(OverlayManager *param0);
 static int ov97_02230834(OverlayManager *param0);
@@ -1028,8 +1028,8 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
         v4->unk_2C04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-        v4->unk_2C00 = SaveData_MysteryGift(v4->unk_2C04);
-        v4->unk_2C08 = SaveData_Options(v4->unk_2C04);
+        v4->unk_2C00 = SaveData_GetMysteryGift(v4->unk_2C04);
+        v4->unk_2C08 = SaveData_GetOptions(v4->unk_2C04);
         v4->unk_2C0C = Options_Frame(v4->unk_2C08);
 
         v4->unk_2C14[0] = sub_0202DB00(v4->unk_2C00, 0);

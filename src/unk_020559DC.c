@@ -95,7 +95,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
     {
         Party *v0;
 
-        v0 = Party_GetFromSavedata(fieldSystem->saveData);
+        v0 = SaveData_GetParty(fieldSystem->saveData);
         Party_UpdatePokerusStatus(v0, param1);
     }
 
@@ -127,22 +127,20 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
     sub_0206F2F0(fieldSystem->saveData);
 }
 
-static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *param2)
+static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *rtcTime)
 {
     sub_02055CD4(fieldSystem, param1);
     SpecialEncounter_DecrementHoneyTreeTimers(fieldSystem->saveData, param1);
     sub_02028758(fieldSystem->saveData, param1, FieldSystem_HasPenalty(fieldSystem));
 
     {
-        TVBroadcast *v0 = SaveData_TVBroadcast(fieldSystem->saveData);
-        sub_0202E324(v0, param1, param2->minute);
+        TVBroadcast *v0 = SaveData_GetTVBroadcast(fieldSystem->saveData);
+        sub_0202E324(v0, param1, rtcTime->minute);
     }
 
     {
-        Party *v1;
-
-        v1 = Party_GetFromSavedata(fieldSystem->saveData);
-        Party_SetShayminForm(v1, param1, param2);
+        Party *party = SaveData_GetParty(fieldSystem->saveData);
+        Party_SetShayminForm(party, param1, rtcTime);
     }
 }
 

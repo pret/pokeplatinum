@@ -9,7 +9,7 @@
 #include "overlay070/struct_ov70_02261E10_decl.h"
 
 #include "heap.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 typedef struct {
     u32 unk_00;

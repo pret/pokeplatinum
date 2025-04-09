@@ -134,31 +134,30 @@ _0194:
     End
 
 _01DD:
-    SetVar 0x8003, 2
+    SetVar 0x8003, ITEM_ULTRA_BALL
     GoTo _021B
     End
 
 _01EB:
-    SetVar 0x8003, 51
+    SetVar 0x8003, ITEM_PP_UP
     GoTo _021B
 
 _01F7:
-    SetVar 0x8003, 216
+    SetVar 0x8003, ITEM_EXP_SHARE
     GoTo _021B
 
 _0203:
-    SetVar 0x8003, 29
+    SetVar 0x8003, ITEM_MAX_REVIVE
     GoTo _021B
 
 _020F:
-    SetVar 0x8003, 1
+    SetVar 0x8003, ITEM_MASTER_BALL
     GoTo _021B
 
 _021B:
     SetVar 0x8004, 0x8003
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0246
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0246
     CallCommonScript 0x7FC
     GoTo _0269
 

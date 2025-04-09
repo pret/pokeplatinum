@@ -17,7 +17,7 @@ typedef struct MysteryGift {
     UnkStruct_0202DBAC unk_920[3];
 } MysteryGift;
 
-MysteryGift *SaveData_MysteryGift(SaveData *param0);
+MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
 
 int MysteryGift_SaveSize(void)
 {
@@ -281,7 +281,7 @@ void sub_0202DEE4(SaveData *param0, int param1)
     int v0;
 
     if (Unk_021C07A0 == NULL) {
-        Unk_021C07A0 = SaveData_MysteryGift(param0);
+        Unk_021C07A0 = SaveData_GetMysteryGift(param0);
     }
 
     SaveData_SetChecksum(31);

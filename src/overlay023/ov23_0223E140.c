@@ -46,6 +46,8 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -59,8 +61,6 @@
 #include "terrain_collision_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
@@ -1292,7 +1292,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     void *v4;
     int v5;
 
-    sub_02004550(58, 0, 0);
+    Sound_SetSceneAndPlayBGM(58, 0, 0);
     ov23_0223E140();
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
@@ -2730,7 +2730,7 @@ static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
 
     if (ov23_02240934(param0)) {
         sub_02029220(v2);
-        GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_02257740->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_30);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_02257740->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_30);
         param0->unk_00 = 14;
         param0->unk_08 = 25;
         param0->unk_50 = 1;
@@ -2765,12 +2765,12 @@ static void ov23_02240E88(void)
     RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 29);
     ov23_0224119C();
 
-    Unk_ov23_02257740->unk_20 = SpriteList_InitRendering(26, &Unk_ov23_02257740->unk_24, 29);
+    Unk_ov23_02257740->unk_20 = SpriteList_InitRendering(26, &Unk_ov23_02257740->unk_24, HEAP_ID_29);
 
     SetSubScreenViewRect(&Unk_ov23_02257740->unk_24, 0, (192 << FX32_SHIFT) * 2);
 
     for (v0 = 0; v0 < 4; v0++) {
-        Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, 29);
+        Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_29);
     }
 
     v1 = NARC_ctor(NARC_INDEX_DATA__UG_ANIM, HEAP_ID_29);
@@ -2842,7 +2842,7 @@ static void ov23_0224119C(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     }
 
-    PlttTransfer_Init(20, 29);
+    PlttTransfer_Init(20, HEAP_ID_29);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);

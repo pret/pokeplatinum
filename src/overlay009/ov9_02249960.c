@@ -56,6 +56,7 @@
 #include "resource_collection.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -64,7 +65,6 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "system_vars.h"
-#include "unk_02005474.h"
 #include "unk_0201CED8.h"
 #include "unk_02020AEC.h"
 #include "unk_0205F180.h"
@@ -1476,18 +1476,18 @@ static u32 ov9_02249E44(UnkStruct_ov9_02249B04 *param0)
     return v0->unk_00_25;
 }
 
-BOOL DistortionWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileY, const fx32 height, BOOL *isColliding)
+BOOL DistortionWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
     UnkStruct_ov9_02249B04 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     u32 v1 = ov9_022510D0(v0);
 
     if (v1 == 582) {
-        if ((tileX == 15) && (tileY == 26)) {
+        if ((tileX == 15) && (tileZ == 26)) {
             *isColliding = 1;
             return 1;
         }
     } else if (v1 == 581) {
-        if ((tileX == 89) && (tileY == 56)) {
+        if ((tileX == 89) && (tileZ == 56)) {
             *isColliding = 1;
             return 1;
         }
@@ -2233,9 +2233,9 @@ static void ov9_0224A8C0(UnkStruct_ov9_02249B04 *param0)
     v0 = ov9_022510D8(v0);
 
     if (v0 == 1) {
-        sub_02062E28(v8, 0);
+        MapObject_SetHeightCalculationDisabled(v8, FALSE);
     } else {
-        sub_02062E28(v8, 1);
+        MapObject_SetHeightCalculationDisabled(v8, TRUE);
     }
 
     PlayerAvatar_SetDistortionState(playerAvatar, v0);
@@ -2270,7 +2270,7 @@ static void ov9_0224A8C0(UnkStruct_ov9_02249B04 *param0)
     sub_02061AD4(v8, v1);
 
     if (v0 != 1) {
-        GF_ASSERT(sub_02062E44(v8) == 1);
+        GF_ASSERT(MapObject_IsHeightCalculationDisabled(v8) == TRUE);
     }
 
     if (v5 == 0x2) {
@@ -2404,9 +2404,9 @@ static BOOL ov9_0224AAD4(FieldTask *param0)
             PlayerAvatar_ClearSpeed(playerAvatar);
 
             if (v2->unk_34.unk_26 < 0) {
-                sub_02062E28(v13, 0);
+                MapObject_SetHeightCalculationDisabled(v13, FALSE);
             } else {
-                sub_02062E28(v13, 1);
+                MapObject_SetHeightCalculationDisabled(v13, TRUE);
             }
 
             switch (v2->unk_34.unk_24) {
@@ -2631,22 +2631,22 @@ static void ov9_0224AED8(UnkStruct_ov9_02249B04 *param0)
 
 static void ov9_0224AEE4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224B064 *param1, NARC *param2)
 {
-    param1->unk_00 = SpriteList_InitRendering(16, &param1->unk_04, 4);
+    param1->unk_00 = SpriteList_InitRendering(16, &param1->unk_04, HEAP_ID_FIELD);
     SetMainScreenViewRect(&param1->unk_04, (FX32_ONE * 0), (FX32_ONE * -512));
-    param1->unk_190 = SpriteResourceCollection_New(7, 0, 4);
-    param1->unk_194 = SpriteResourceCollection_New(1, 1, 4);
-    param1->unk_198 = SpriteResourceCollection_New(7, 2, 4);
-    param1->unk_19C = SpriteResourceCollection_New(7, 3, 4);
+    param1->unk_190 = SpriteResourceCollection_New(7, 0, HEAP_ID_FIELD);
+    param1->unk_194 = SpriteResourceCollection_New(1, 1, HEAP_ID_FIELD);
+    param1->unk_198 = SpriteResourceCollection_New(7, 2, HEAP_ID_FIELD);
+    param1->unk_19C = SpriteResourceCollection_New(7, 3, HEAP_ID_FIELD);
 
     {
         int v0;
 
         for (v0 = 0; v0 < 7; v0++) {
-            param1->unk_1A0[v0] = SpriteResourceCollection_AddTilesFrom(param1->unk_190, param2, Unk_ov9_02251E58[v0], 0, ((v0) + 0xff), NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+            param1->unk_1A0[v0] = SpriteResourceCollection_AddTilesFrom(param1->unk_190, param2, Unk_ov9_02251E58[v0], 0, ((v0) + 0xff), NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
             SpriteTransfer_RequestCharAtEnd(param1->unk_1A0[v0]);
         }
 
-        param1->unk_1BC[0] = SpriteResourceCollection_AddPaletteFrom(param1->unk_194, param2, Unk_ov9_02251210[0], 0, (0 + 0xff), NNS_G2D_VRAM_TYPE_2DMAIN, 5, 4);
+        param1->unk_1BC[0] = SpriteResourceCollection_AddPaletteFrom(param1->unk_194, param2, Unk_ov9_02251210[0], 0, (0 + 0xff), NNS_G2D_VRAM_TYPE_2DMAIN, 5, HEAP_ID_FIELD);
 
         {
             NNSG2dPaletteData *v1;
@@ -2669,11 +2669,11 @@ static void ov9_0224AEE4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224B064 
         SpriteTransfer_RequestPlttFreeSpace(param1->unk_1BC[0]);
 
         for (v0 = 0; v0 < 7; v0++) {
-            param1->unk_1C0[v0] = SpriteResourceCollection_AddFrom(param1->unk_198, param2, Unk_ov9_02251E90[v0], 0, ((v0) + 0xff), 2, 4);
+            param1->unk_1C0[v0] = SpriteResourceCollection_AddFrom(param1->unk_198, param2, Unk_ov9_02251E90[v0], 0, ((v0) + 0xff), 2, HEAP_ID_FIELD);
         }
 
         for (v0 = 0; v0 < 7; v0++) {
-            param1->unk_1DC[v0] = SpriteResourceCollection_AddFrom(param1->unk_19C, param2, Unk_ov9_02251EAC[v0], 0, ((v0) + 0xff), 3, 4);
+            param1->unk_1DC[v0] = SpriteResourceCollection_AddFrom(param1->unk_19C, param2, Unk_ov9_02251EAC[v0], 0, ((v0) + 0xff), 3, HEAP_ID_FIELD);
         }
     }
 
@@ -4961,7 +4961,7 @@ static int ov9_0224D0C8(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224D078 *
     v1 = Player_MapObject(param0->fieldSystem->playerAvatar);
 
     MapObject_GetPosPtr(v1, &param1->unk_14);
-    sub_02062E28(v1, 1);
+    MapObject_SetHeightCalculationDisabled(v1, TRUE);
 
     param1->unk_44.x = 0;
     param1->unk_44.y = 0;
@@ -5230,7 +5230,7 @@ static int ov9_0224D5E8(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224D078 *
         MapObject_SetY(v0, param1->unk_0C);
         MapObject_SetZ(v0, param1->unk_0E);
         MapObject_UpdateCoords(v0);
-        sub_0205ED48(param0->fieldSystem->playerAvatar, 1);
+        PlayerAvatar_SetHeightCalculationEnabledAndUpdate(param0->fieldSystem->playerAvatar, TRUE);
 
         if (param1->unk_68 != NULL) {
             MapObject_SetY(param1->unk_68, param1->unk_0C);
@@ -5821,7 +5821,7 @@ static MapObject *ov9_0224DE94(UnkStruct_ov9_02249B04 *param0, int param1, int p
     MapObject_SetDataAt(v0, param5, 2);
     sub_02062E5C(v0, 1);
     sub_02062D80(v0, 0);
-    sub_02062E28(v0, 1);
+    MapObject_SetHeightCalculationDisabled(v0, TRUE);
     sub_02062FC4(v0, 1);
 
     return v0;
@@ -5849,7 +5849,7 @@ static void ov9_0224DF10(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224E0DC 
 
     sub_02062E5C(param2, 1);
     sub_02062D80(param2, 0);
-    sub_02062E28(param2, 1);
+    MapObject_SetHeightCalculationDisabled(param2, TRUE);
     sub_02062FC4(param2, 1);
 }
 
@@ -6338,7 +6338,7 @@ static int ov9_0224E550(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         VecFx32 v3;
         MapObject *v4 = Player_MapObject(param0->fieldSystem->playerAvatar);
 
-        sub_02062E28(v4, 1);
+        MapObject_SetHeightCalculationDisabled(v4, TRUE);
         sub_0206309C(v4, &v3);
 
         v1->unk_28 = v3.y;
@@ -6488,9 +6488,9 @@ static int ov9_0224E798(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
             PlayerAvatar_SetDistortionState(playerAvatar, v5);
 
             if (v5 == 1) {
-                sub_02062E28(v1, 0);
+                MapObject_SetHeightCalculationDisabled(v1, FALSE);
             } else {
-                sub_02062E28(v1, 1);
+                MapObject_SetHeightCalculationDisabled(v1, TRUE);
             }
         }
     }
@@ -6721,7 +6721,7 @@ static void ov9_0224EA94(UnkStruct_ov101_021D5D90 *param0, void *param1)
     switch (v1->unk_2C) {
     case 0:
         if (v2->unk_07 == 1) {
-            sub_02005844(SPECIES_GIRATINA, 0);
+            Sound_PlayPokemonCry(SPECIES_GIRATINA, 0);
         } else if (v2->unk_07 == 2) {
             Sound_PlayEffect(SEQ_SE_DP_FW019);
         }
@@ -7153,7 +7153,7 @@ static BOOL ov9_0224EF64(UnkStruct_ov9_02249B04 *param0, MapObject **param1, con
 
     sub_02062FC4(*param1, 1);
     sub_02062E5C(*param1, 1);
-    sub_02062E28(*param1, 1);
+    MapObject_SetHeightCalculationDisabled(*param1, TRUE);
     MapObject_SetStatusFlagOn(*param1, MAP_OBJ_STATUS_13);
 
     if (v0 == NULL) {
@@ -8253,7 +8253,7 @@ static int ov9_0224FEDC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         sub_020630AC(v2, &v13);
         ov9_0224C378(param0, v8, ((v9) / 2), v10, 4);
         PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_ACTIVE);
-        sub_02062E28(v2, 0);
+        MapObject_SetHeightCalculationDisabled(v2, FALSE);
 
         {
             {
@@ -8569,7 +8569,7 @@ static int ov9_02250468(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         sub_020630AC(v2, &v13);
         ov9_0224C378(param0, v8, ((v9) / 2), v10, 4);
         PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_CEILING);
-        sub_02062E28(v2, 1);
+        MapObject_SetHeightCalculationDisabled(v2, TRUE);
 
         {
             {
@@ -8862,7 +8862,7 @@ static int ov9_02250918(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
     UnkStruct_ov9_02250918 *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250918));
     v0->unk_20 = ov9_0224F0D4(param0, 579, (0x80 + 3));
 
-    sub_02005844(SPECIES_UXIE, 0);
+    Sound_PlayPokemonCry(SPECIES_UXIE, 0);
 
     v0->unk_04 = 1;
     *param2 = 1;
@@ -8991,7 +8991,7 @@ static int ov9_02250AFC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
     UnkStruct_ov9_02250AFC *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250AFC));
     v0->unk_14 = ov9_0224F0D4(param0, 579, (0x80 + 4));
 
-    sub_02005844(SPECIES_AZELF, 0);
+    Sound_PlayPokemonCry(SPECIES_AZELF, 0);
 
     *param2 = 1;
     return 0;
@@ -9156,7 +9156,7 @@ static int ov9_02250C14(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
     UnkStruct_ov9_02250C14 *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250AFC));
     v0->unk_18 = ov9_0224F0D4(param0, 579, (0x80 + 5));
 
-    sub_02005844(SPECIES_MESPRIT, 0);
+    Sound_PlayPokemonCry(SPECIES_MESPRIT, 0);
     *param2 = 1;
     return 0;
 }

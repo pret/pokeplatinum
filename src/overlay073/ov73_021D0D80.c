@@ -27,6 +27,8 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -34,8 +36,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
@@ -136,7 +136,7 @@ int ov73_021D0D80(OverlayManager *param0, int *param1)
 
     v0->heapId = childHeapID;
     v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_08 = SaveData_Options(v0->unk_04);
+    v0->unk_08 = SaveData_GetOptions(v0->unk_04);
     v0->unk_0C = 0;
     v0->unk_10 = 0;
     v0->unk_14 = NULL;
@@ -1395,7 +1395,7 @@ static BOOL ov73_021D200C(UnkStruct_ov73_021D1058 *param0, int *param1)
         }
     } break;
     case 6:
-        sub_02005844(SPECIES_BUNEARY, 0);
+        Sound_PlayPokemonCry(SPECIES_BUNEARY, 0);
         v0 = 1;
         break;
     }
@@ -1416,8 +1416,8 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
 
     switch (param0->unk_0C) {
     case 0:
-        sub_02004550(2, 1029, 1);
-        sub_020055D0(1029, 0);
+        Sound_SetSceneAndPlayBGM(2, 1029, 1);
+        Sound_StopBGM(1029, 0);
         Bg_ToggleLayer(0, 1);
         Bg_ToggleLayer(7, 1);
         StartScreenTransition(0, 1, 1, 0x0, 6, 1, param0->heapId);
@@ -2186,7 +2186,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         break;
     case 101:
         if (ov73_021D1510(param0, 30, 1) == 1) {
-            sub_0200564C(0, 50);
+            Sound_FadeOutBGM(0, 50);
             param0->unk_0C = 102;
         }
         break;

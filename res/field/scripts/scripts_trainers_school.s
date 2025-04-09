@@ -207,10 +207,9 @@ _0269:
 
 _0274:
     Message 13
-    SetVar 0x8004, 17
+    SetVar 0x8004, ITEM_POTION
     SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _02B3
+    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _02B3
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0112
     GoTo _02A8
@@ -335,14 +334,14 @@ _03D9:
 
 _03EA:
     Message 21
-    ScrCmd_040 7, 2, 0, 1, 0x800C
-    ScrCmd_042 0, 0
-    ScrCmd_042 1, 1
-    ScrCmd_042 2, 2
-    ScrCmd_042 3, 3
-    ScrCmd_042 4, 4
-    ScrCmd_042 5, 5
-    ScrCmd_048 2
+    InitGlobalTextMenu 7, 2, 0, 0x800C
+    AddMenuEntryImm 0, 0
+    AddMenuEntryImm 1, 1
+    AddMenuEntryImm 2, 2
+    AddMenuEntryImm 3, 3
+    AddMenuEntryImm 4, 4
+    AddMenuEntryImm 5, 5
+    ShowMenuMultiColumn 2
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _045F
     GoToIfEq 0x8008, 1, _046A

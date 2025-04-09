@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_0204C4D0_SUB3_H
 
 typedef struct {
-    int unk_00;
+    int item;
     int unk_04;
 } UnkStruct_0204C4D0_sub3;
 

@@ -88,7 +88,7 @@ BOOL PCBoxes_TryStoreBoxMonInBox(PCBoxes *pcBoxes, u32 boxID, BoxPokemon *boxMon
     u32 monPosInBox;
 
     BoxPokemon_RestorePP(boxMon);
-    BoxPokemon_SetShayminForm(boxMon, 0);
+    BoxPokemon_SetShayminForm(boxMon, SHAYMIN_FORM_LAND);
 
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;
@@ -108,7 +108,7 @@ BOOL PCBoxes_TryStoreBoxMonInBox(PCBoxes *pcBoxes, u32 boxID, BoxPokemon *boxMon
 BOOL PCBoxes_TryStoreBoxMonAt(PCBoxes *pcBoxes, u32 boxID, u32 monPosInBox, BoxPokemon *boxMon)
 {
     BoxPokemon_RestorePP(boxMon);
-    BoxPokemon_SetShayminForm(boxMon, 0);
+    BoxPokemon_SetShayminForm(boxMon, SHAYMIN_FORM_LAND);
 
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;

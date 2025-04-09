@@ -36,13 +36,13 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
@@ -1037,11 +1037,11 @@ void ov94_022425A8(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD4C *par
     u16 *v0;
 
     if (ov94_022411D0(param1->unk_110)) {
-        Pokemon_SetShayminForm((Pokemon *)(param1->unk_114), 0);
+        Pokemon_SetShayminForm((Pokemon *)(param1->unk_114), SHAYMIN_FORM_LAND);
 
         MI_CpuCopyFast(param1->unk_114, param0->unk_00.unk_00, Pokemon_StructSize());
     } else {
-        BoxPokemon_SetShayminForm(param1->unk_114, 0);
+        BoxPokemon_SetShayminForm(param1->unk_114, SHAYMIN_FORM_LAND);
         Pokemon_FromBoxPokemon(param1->unk_114, (Pokemon *)param0->unk_00.unk_00);
     }
 

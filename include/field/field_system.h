@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 #define POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 
-#include "struct_decls/struct_02054C18_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -40,6 +39,7 @@
 #include "pokedex_memory.h"
 #include "pokeradar.h"
 #include "savedata.h"
+#include "terrain_attributes.h"
 #include "terrain_collision_manager.h"
 
 #define NUM_HONEY_TREES 21
@@ -89,7 +89,7 @@ typedef struct FieldSystem_t {
     AreaLightManager *areaLightMan;
     MapPropAnimationManager *mapPropAnimMan;
     MapPropOneShotAnimationManager *mapPropOneShotAnimMan;
-    UnkStruct_02054C18 *unk_58;
+    TerrainAttributes *terrainAttributes;
     const TerrainCollisionManager *terrainCollisionMan;
     BOOL skipMapAttributes;
     Signpost *signpost;
@@ -105,7 +105,7 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021EB0E0 *unk_8C;
     int unk_90;
     RadarChain *chain;
-    BagCursor *unk_98;
+    BagCursor *bagCursor;
     JournalEntry *journalEntry;
     DynamicTerrainHeightManager *dynamicTerrainHeightMan;
     MapPropManager *mapPropManager;

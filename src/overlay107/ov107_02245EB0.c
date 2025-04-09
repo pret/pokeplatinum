@@ -48,7 +48,7 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "sprite_util.h"
 #include "render_oam.h"
 #include "unk_0200C440.h"
@@ -258,7 +258,7 @@ int ov107_02245EB0 (OverlayManager * param0, int * param1)
     v1->unk_154 = sub_0203041C(v1->unk_14C);
     v1->unk_09 = v2->unk_04;
     v1->unk_3C8 = &v2->unk_20;
-    v1->unk_148 = SaveData_Options(v1->unk_14C);
+    v1->unk_148 = SaveData_GetOptions(v1->unk_14C);
     v1->unk_3DC = v2->unk_1C;
     v1->unk_3CC = &v2->unk_08[0];
     v1->unk_3D0 = &v2->unk_0C[0];

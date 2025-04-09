@@ -23,10 +23,10 @@ Static main
 	Object main.nef.p/src_render_text.c.o
 	Object main.nef.p/src_font.c.o
 	Object main.nef.p/src_palette.c.o
-	Object main.nef.p/src_unk_02003B60.c.o
-	Object main.nef.p/src_unk_020041CC.c.o
-	Object main.nef.p/src_unk_02005474.c.o
-	Object main.nef.p/src_unk_02006224.c.o
+	Object main.nef.p/src_sound_system.c.o
+	Object main.nef.p/src_sound.c.o
+	Object main.nef.p/src_sound_playback.c.o
+	Object main.nef.p/src_sound_chatot.c.o
 	Object main.nef.p/src_game_overlay.c.o
 	Object main.nef.p/src_unk_0200679C.c.o
 	Object main.nef.p/src_overlay_manager.c.o
@@ -203,7 +203,7 @@ Static main
 	Object main.nef.p/src_unk_0204CDDC.c.o
 	Object main.nef.p/src_unk_0204CFFC.c.o
 	Object main.nef.p/src_unk_0204E240.c.o
-	Object main.nef.p/src_unk_0204E378.c.o
+	Object main.nef.p/src_scrcmd_game_corner_prize.c.o
 	Object main.nef.p/src_scrcmd_system_flags.c.o
 	Object main.nef.p/src_unk_0204E75C.c.o
 	Object main.nef.p/src_unk_0204E974.c.o
@@ -226,7 +226,7 @@ Static main
 	Object main.nef.p/src_unk_02052C6C.c.o
 	Object main.nef.p/src_field_map_change.c.o
 	Object main.nef.p/src_unk_02054884.c.o
-	Object main.nef.p/src_unk_02054BD0.c.o
+	Object main.nef.p/src_terrain_attributes.c.o
 	Object main.nef.p/src_terrain_collision_manager.c.o
 	Object main.nef.p/src_unk_020553DC.c.o
 	Object main.nef.p/src_unk_020556C4.c.o
@@ -279,7 +279,7 @@ Static main
 	Object main.nef.p/src_unk_0207070C.c.o
 	Object main.nef.p/src_unk_020711C8.c.o
 	Object main.nef.p/src_unk_020711EC.c.o
-	Object main.nef.p/src_unk_0207160C.c.o
+	Object main.nef.p/src_platform_lift.c.o
 	Object main.nef.p/src_persisted_map_features_init.c.o
 	Object main.nef.p/src_map_header_util.c.o
 	Object main.nef.p/src_unk_02071D40.c.o

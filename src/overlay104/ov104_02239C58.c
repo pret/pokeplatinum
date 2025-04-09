@@ -112,10 +112,10 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->unk_A8 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
     MI_CpuClearFast(param1->unk_A8, sizeof(PartyManagementData));
 
-    param1->unk_A8->unk_00 = Party_GetFromSavedata(param1->unk_00);
+    param1->unk_A8->unk_00 = SaveData_GetParty(param1->unk_00);
     param1->unk_A8->unk_04 = SaveData_GetBag(param1->unk_00);
     param1->unk_A8->unk_08 = sub_02028430(param1->unk_00);
-    param1->unk_A8->unk_0C = SaveData_Options(param1->unk_00);
+    param1->unk_A8->unk_0C = SaveData_GetOptions(param1->unk_00);
     param1->unk_A8->unk_21 = 0;
 
     if (param1->unk_A0 == 1) {
@@ -131,7 +131,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     }
 
     param1->unk_A8->unk_1C = fieldSystem;
-    param1->unk_A8->unk_22 = param1->unk_9F;
+    param1->unk_A8->selectedMonSlot = param1->unk_9F;
 
     for (v0 = 0; v0 < 2; v0++) {
         param1->unk_A8->unk_2C[v0] = param1->unk_A1[v0];
@@ -165,7 +165,7 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 {
     int v0;
 
-    switch (param1->unk_A8->unk_22) {
+    switch (param1->unk_A8->selectedMonSlot) {
     case 7:
         *param1->unk_B0 = 4;
         param1->unk_9D = 4;
@@ -179,7 +179,7 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     }
 
     MI_CpuCopy8(param1->unk_A8->unk_2C, param1->unk_A1, 2);
-    param1->unk_9F = param1->unk_A8->unk_22;
+    param1->unk_9F = param1->unk_A8->selectedMonSlot;
     Heap_FreeToHeap(param1->unk_A8);
 
     param1->unk_A8 = NULL;
@@ -198,8 +198,8 @@ static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->unk_AC = Heap_AllocFromHeapAtEnd(param3, sizeof(PokemonSummary));
     MI_CpuClear8(param1->unk_AC, sizeof(PokemonSummary));
 
-    param1->unk_AC->options = SaveData_Options(param1->unk_00);
-    param1->unk_AC->monData = Party_GetFromSavedata(param1->unk_00);
+    param1->unk_AC->options = SaveData_GetOptions(param1->unk_00);
+    param1->unk_AC->monData = SaveData_GetParty(param1->unk_00);
     param1->unk_AC->dexMode = SaveData_GetDexMode(param1->unk_00);
     param1->unk_AC->showContest = PokemonSummaryScreen_ShowContestData(param1->unk_00);
     param1->unk_AC->dataType = SUMMARY_DATA_PARTY_MON;

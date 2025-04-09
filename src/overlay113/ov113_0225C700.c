@@ -50,6 +50,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
@@ -59,7 +60,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
@@ -499,7 +499,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         Window_FillTilemap(&v0->unk_B4, 0xf);
         Window_DrawMessageBoxWithScrollCursor(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 2, v0->unk_C4);
-        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 4:
@@ -549,7 +549,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         Window_FillTilemap(&v0->unk_B4, 0xf);
         Window_DrawMessageBoxWithScrollCursor(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 3, v0->unk_C4);
-        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 7:
@@ -900,7 +900,7 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
 
     {
         int v2;
-        v2 = Options_Frame(SaveData_Options(param0->unk_04));
+        v2 = Options_Frame(SaveData_GetOptions(param0->unk_04));
 
         PaletteData_LoadBufferFromFileStart(param0->unk_0C, 38, GetMessageBoxPaletteNARCMember(v2), 118, 0, 0x20, 14 * 16);
         LoadMessageBoxGraphics(param0->unk_08, 1, 1, 14, v2, HEAP_ID_118);
@@ -1320,7 +1320,7 @@ static void ov113_0225DD4C(int param0, SaveData *param1, UnkStruct_ov113_0226081
 
     MI_CpuClear8(param2, sizeof(UnkStruct_ov113_02260818) * 6);
 
-    v0 = Party_GetFromSavedata(param1);
+    v0 = SaveData_GetParty(param1);
     v1 = Party_GetCurrentCount(v0);
 
     for (v3 = 0; v3 < v1; v3++) {

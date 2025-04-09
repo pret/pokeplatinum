@@ -178,7 +178,7 @@ BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1)
     BerryPatches_HarvestPatch(v3, v0);
     sub_02067834(param1);
 
-    return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), sub_02055C50(v2), v1, 4);
+    return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), sub_02055C50(v2), v1, HEAP_ID_FIELD);
 }
 
 void sub_02055E80(FieldSystem *fieldSystem, MapObject *param1, u16 param2)

@@ -167,6 +167,6 @@ void Poketch_PokemonHistorySpeciesAndIcon(const Poketch *poketch, int index, int
  */
 u32 Poketch_PokemonHistoryForm(const Poketch *poketch, int index);
 
-Poketch *SaveData_PoketchData(SaveData *saveData);
+Poketch *SaveData_GetPoketch(SaveData *saveData);
 
 #endif // POKEPLATINUM_POKETCH_H

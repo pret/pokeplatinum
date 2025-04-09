@@ -59,6 +59,8 @@
 #include "pokemon_sprite.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -68,8 +70,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
@@ -713,7 +713,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
-    ov16_0223EE70(battleSystem);
+    BattleSystem_SetBurmyForm(battleSystem);
 
     if (battleSystem->resultMask != 0x4) {
         ov16_0223EF68(battleSystem, Party_GetPokemonBySlotIndex(battleSystem->parties[1], 0));
@@ -799,7 +799,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     CellTransfer_Free(battleSystem->cellTransferState);
 
     if (BattleSystem_RecordingStopped(battleSystem)) {
-        sub_0200500C(127);
+        Sound_SetMasterVolume(SOUND_VOLUME_MAX);
     }
 
     if (battleSystem->playbackStopButton) {

@@ -35,13 +35,13 @@ _004C:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    ScrCmd_193 0x8000
+    GetSelectedPartySlot 0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _0232
-    ScrCmd_198 0x8000, 0x8001
-    GoToIfEq 0x8001, 0, _0227
+    GetPartyMonSpecies 0x8000, 0x8001
+    GoToIfEq 0x8001, SPECIES_NONE, _0227
     CheckHasLearnableTutorMoves 0x8000, TUTOR_LOCATION_SURVIVAL_AREA, 0x800C
     GoToIfEq 0x800C, 0, _023D
     BufferPartyMonNickname 0, 0x8000
@@ -51,7 +51,7 @@ _004C:
     GoToIfEq 0x8003, -2, _0232
     CheckCanAffordMove 0x8003, 0x800C
     GoToIfEq 0x800C, 0, _0248
-    ScrCmd_1C8 0x800C, 0x8000
+    GetPartyMonMoveCount 0x800C, 0x8000
     SetVar 0x8002, 0x800C
     GoToIfEq 0x800C, 4, _00FD
     GoTo _01F2
@@ -66,19 +66,19 @@ _00FD:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
-    ScrCmd_2E7 0x8000, 0x8003
-    ScrCmd_2E8 0x8002
+    OpenSummaryScreenTeachMove 0x8000, 0x8003
+    GetSummarySelectedMoveSlot 0x8002
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8002, 4, _01B7
-    ScrCmd_1CA 0x800C, 0x8000, 0x8002
+    GetPartyMonMove 0x800C, 0x8000, 0x8002
     BufferMoveName 1, 0x800C
     Message 12
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _01B7
     BufferPartyMonNickname 0, 0x8000
-    ScrCmd_1CA 0x800C, 0x8000, 0x8002
+    GetPartyMonMove 0x800C, 0x8000, 0x8002
     BufferMoveName 1, 0x800C
     Message 13
     PlayFanfare SEQ_SE_DP_KON

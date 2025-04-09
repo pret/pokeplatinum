@@ -43,6 +43,7 @@
 #include "pokemon_icon.h"
 #include "pokemon_sprite.h"
 #include "savedata_misc.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -51,7 +52,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02014A84.h"
 #include "unk_0202F1D4.h"
@@ -1964,7 +1964,7 @@ void ov62_02233664(UnkStruct_ov62_0223359C *param0)
 
 void ov62_02233704(UnkStruct_0208C06C *param0, u32 param1)
 {
-    GameRecords *v0 = SaveData_GetGameRecordsPtr(param0->unk_830);
+    GameRecords *v0 = SaveData_GetGameRecords(param0->unk_830);
     GameRecords_IncrementTrainerScore(v0, param1);
 }
 
@@ -1972,7 +1972,7 @@ void ov62_0223371C(UnkStruct_0208C06C *param0)
 {
     int v0;
 
-    sub_0202F1F8(param0->unk_830, 119, &v0);
+    sub_0202F1F8(param0->unk_830, HEAP_ID_119, &v0);
 
     {
         UnkStruct_02030A80 *v1 = (UnkStruct_02030A80 *)(&param0->unk_8B4.unk_00->unk_00);

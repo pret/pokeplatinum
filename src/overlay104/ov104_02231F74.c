@@ -40,6 +40,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -49,7 +50,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02014A84.h"
@@ -144,7 +144,7 @@ void ov104_02231F74(UnkStruct_ov104_022320B4 *param0, const MessageLoader *param
 
         v4 = sub_0209B970(v3->unk_08);
 
-        v0 = Options_TextFrameDelay(v4->unk_04);
+        v0 = Options_TextFrameDelay(v4->options);
         v1 = 0;
         v2 = FONT_MESSAGE;
     } else {
@@ -1076,7 +1076,7 @@ void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2)
         ov104_02231F74(param0->unk_00, v1, param1[1], 1, NULL);
         MessageLoader_Free(v1);
     } else {
-        v0 = Options_TextFrameDelay(SaveData_Options(v2->unk_08));
+        v0 = Options_TextFrameDelay(SaveData_GetOptions(v2->saveData));
         ov104_022320B4(param0->unk_00, v0, param1[0], param1[1], param1[2], param1[3], 1);
     }
 

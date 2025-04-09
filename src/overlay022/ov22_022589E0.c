@@ -20,9 +20,9 @@
 
 #include "heap.h"
 #include "math.h"
+#include "sound_playback.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_0200679C.h"
 
 typedef struct {

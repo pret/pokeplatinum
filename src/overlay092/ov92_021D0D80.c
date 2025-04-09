@@ -29,12 +29,12 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_0202C858.h"
@@ -331,7 +331,7 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
         v0->unk_BB14 = sub_0202C8C0(v0->unk_04);
         v0->unk_BB18 = sub_0202C8C4(v0->unk_04);
         v0->unk_BB24 = sub_0202C990(v0->unk_04);
-        v0->unk_08 = SaveData_Options(v2);
+        v0->unk_08 = SaveData_GetOptions(v2);
     }
 
     ov92_021D14F0();

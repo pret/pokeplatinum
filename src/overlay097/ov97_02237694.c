@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/species.h"
+#include "generated/items.h"
 
 #include "struct_defs/struct_0202DF40.h"
 
@@ -31,6 +32,7 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -39,7 +41,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02033200.h"
@@ -628,27 +629,27 @@ static void ov97_02237FF4(UnkStruct_ov97_0223F550 *param0, int param1, UnkStruct
 
 static void ov97_022380C8(UnkStruct_ov97_0223F550 *param0, int param1, UnkStruct_0202DF40 *param2)
 {
-    int v0;
+    int item;
 
     switch (param1) {
     case 3:
-        v0 = param2->unk_04.val3.unk_00;
+        item = param2->unk_04.val3.item;
         break;
     case 8:
-        v0 = 454;
+        item = ITEM_MEMBER_CARD;
         break;
     case 9:
-        v0 = 452;
+        item = ITEM_OAKS_LETTER;
         break;
     case 10:
-        v0 = 455;
+        item = ITEM_AZURE_FLUTE;
         break;
     case 12:
-        v0 = 467;
+        item = ITEM_SECRET_KEY;
         break;
     }
 
-    ov97_02237B0C(16, Item_FileID(v0, 1), Item_FileID(v0, 2), Item_IconNCERFile(), Item_IconNANRFile(), 1);
+    ov97_02237B0C(16, Item_FileID(item, ITEM_FILE_TYPE_ICON), Item_FileID(item, ITEM_FILE_TYPE_PALETTE), Item_IconNCERFile(), Item_IconNANRFile(), 1);
     ov97_02237C80((0 * FX32_ONE), (256 * FX32_ONE));
 
     param0->unk_26C = ov97_02237D14(1, param0->unk_26C, HW_LCD_WIDTH / 2, 0, 0);

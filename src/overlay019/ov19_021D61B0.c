@@ -42,12 +42,12 @@
 #include "narc.h"
 #include "pokemon_sprite.h"
 #include "render_oam.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 
 struct UnkStruct_ov19_021D61B0_t {
@@ -174,7 +174,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             NNS_G2dInitOamManagerModule();
 
             RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 10);
-            v0->unk_18 = SpriteList_InitRendering(128, &v0->unk_1C, 10);
+            v0->unk_18 = SpriteList_InitRendering(128, &v0->unk_1C, HEAP_ID_10);
             SetSubScreenViewRect(&(v0->unk_1C), 0, (384 << FX32_SHIFT));
 
             NNS_G2dInitImagePaletteProxy(&(v0->unk_1A8));

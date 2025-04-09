@@ -23,9 +23,9 @@
 #include "player_avatar.h"
 #include "scrcmd.h"
 #include "script_manager.h"
+#include "sound_playback.h"
 #include "special_encounter.h"
 #include "terrain_collision_manager.h"
-#include "unk_02005474.h"
 #include "unk_0201CED8.h"
 #include "unk_020553DC.h"
 #include "unk_020711EC.h"
@@ -500,7 +500,7 @@ void RadarChargeStep(FieldSystem *fieldSystem)
 {
     u8 *v0;
 
-    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 431, 1, 4) == 1) {
+    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_POKE_RADAR, 1, HEAP_ID_FIELD) == TRUE) {
         v0 = SpecialEncounter_GetRadarCharge(SaveData_GetSpecialEncounters(fieldSystem->saveData));
         if ((*v0) < RADAR_BATTERY_STEPS) {
             (*v0)++;
