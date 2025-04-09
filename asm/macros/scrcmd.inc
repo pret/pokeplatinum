@@ -3428,9 +3428,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_268 arg0
+    .macro GetHour destVar
     .short 616
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_269 arg0, arg1, arg2, arg3, arg4

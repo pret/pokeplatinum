@@ -643,7 +643,7 @@ static BOOL ScrCmd_CheckPartyCombeeGenderCount(ScriptContext *ctx);
 static BOOL ScrCmd_HidePoketch(ScriptContext *ctx);
 static BOOL ScrCmd_ShowPoketch(ScriptContext *ctx);
 static BOOL ScrCmd_267(ScriptContext *ctx);
-static BOOL ScrCmd_268(ScriptContext *ctx);
+static BOOL ScrCmd_GetHour(ScriptContext *ctx);
 static BOOL ScrCmd_269(ScriptContext *ctx);
 static BOOL ScrCmd_26A(ScriptContext *ctx);
 static BOOL ScrCmd_26B(ScriptContext *ctx);
@@ -1381,7 +1381,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_HidePoketch,
     ScrCmd_ShowPoketch,
     ScrCmd_267,
-    ScrCmd_268,
+    ScrCmd_GetHour,
     ScrCmd_269,
     ScrCmd_26A,
     ScrCmd_26B,
@@ -6884,7 +6884,7 @@ static BOOL ScrCmd_267(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_268(ScriptContext *ctx)
+static BOOL ScrCmd_GetHour(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
