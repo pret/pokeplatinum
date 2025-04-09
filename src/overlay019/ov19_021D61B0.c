@@ -196,7 +196,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             v2 &= ov19_021D8B54(&(v0->unk_5E24), v0, v0->unk_1C4, v0->unk_18, v3);
             v2 &= ov19_021DA814(&(v0->unk_65BC), v0, v0->unk_1C4, v0->unk_18, v3);
             v2 &= ov19_021DA92C(&(v0->unk_6604), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), v3);
-            v2 &= ov19_021DB2FC(&(v0->unk_6658), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), ov19_021D5DF0(param2), ov19_021D5DF8(param2), v3);
+            v2 &= ov19_021DB2FC(&(v0->unk_6658), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), ov19_021D5DF0(param2), ov19_GetOptionsFrame(param2), v3);
             v2 &= ov19_021DB8E4(&(v0->unk_6690), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, v3);
             v2 &= ov19_021DC5F0(&(v0->unk_B290), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, v3);
             v2 &= ov19_021DCF88(&(v0->unk_B408), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
@@ -419,7 +419,7 @@ static void ov19_021D6694(SysTask *param0, void *param1)
         NARC_dtor(v3);
     }
 
-        if (ov19_021D5E08(v1) != 4) {
+        if (ov19_GetBoxMode(v1) != PC_MODE_COMPARE) {
             ov19_021DAA90(&v0->unk_6604);
             v2->unk_06++;
         } else {
@@ -576,7 +576,7 @@ static void ov19_021D6940(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    if (ov19_021D5E08(v1) != 4) {
+    if (ov19_GetBoxMode(v1) != PC_MODE_COMPARE) {
         switch (v2->unk_06) {
         case 0:
             ov19_021DAFF8(&(v0->unk_6604));
@@ -611,14 +611,14 @@ static void ov19_021D69BC(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    if (ov19_021D5E38(v1) == 2) {
+    if (ov19_GetPreviewMonSource(v1) == PREVIEW_MON_IN_CURSOR) {
         ov19_021D9A64(&v0->unk_5E24);
     } else {
-        switch (ov19_021D5E10(v1)) {
-        case 0:
+        switch (ov19_GetCursorLocation(v1)) {
+        case CURSOR_IN_BOX:
             ov19_021D8A24(&v0->unk_494);
             break;
-        case 1:
+        case CURSOR_IN_PARTY:
             ov19_021DCC14(&v0->unk_B290);
             break;
         }
@@ -778,7 +778,7 @@ static void ov19_021D6BA8(SysTask *param0, void *param1)
 
     switch (v2->unk_06) {
     case 0:
-        ov19_021D8860(&(v0->unk_494), ov19_021D5E24(v1));
+        ov19_021D8860(&(v0->unk_494), ov19_GetCursorBoxPosition(v1));
         v2->unk_06++;
         break;
     case 1:
@@ -799,7 +799,7 @@ static void ov19_021D6BF0(SysTask *param0, void *param1)
 
     switch (v2->unk_06) {
     case 0:
-        ov19_021DCAFC(&(v0->unk_B290), ov19_021D5E2C(v1));
+        ov19_021DCAFC(&(v0->unk_B290), ov19_GetCursorPartyPosition(v1));
         v2->unk_06++;
         break;
     case 1:
@@ -923,22 +923,22 @@ static void ov19_021D6D88(SysTask *param0, void *param1)
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
     UnkStruct_ov19_021D6640 *v2;
-    u32 v3;
+    u32 item;
 
     v2 = (UnkStruct_ov19_021D6640 *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
-    v3 = ov19_GetPreviewedMonHeldItem(v1);
+    item = ov19_GetPreviewedMonHeldItem(v1);
 
-    if (ov19_021D5E38(v1) == 2) {
-        ov19_021D9AB0(&v0->unk_5E24, v3);
+    if (ov19_GetPreviewMonSource(v1) == PREVIEW_MON_IN_CURSOR) {
+        ov19_021D9AB0(&v0->unk_5E24, item);
     } else {
-        switch (ov19_021D5E10(v1)) {
-        case 1:
-            ov19_021DCBDC(&v0->unk_B290, ov19_021D5E2C(v1), v3);
+        switch (ov19_GetCursorLocation(v1)) {
+        case CURSOR_IN_PARTY:
+            ov19_021DCBDC(&v0->unk_B290, ov19_GetCursorPartyPosition(v1), item);
             break;
-        case 0:
-            ov19_021D8988(&v0->unk_494, ov19_021D5E24(v1), v3);
+        case CURSOR_IN_BOX:
+            ov19_021D8988(&v0->unk_494, ov19_GetCursorBoxPosition(v1), item);
             break;
         }
     }
@@ -1157,11 +1157,11 @@ static void ov19_021D7028(SysTask *param0, void *param1)
         break;
     case 1:
         if (ov19_021D9704(&(v0->unk_5E24))) {
-            switch (ov19_021D5E10(v2)) {
-            case 3:
+            switch (ov19_GetCursorLocation(v2)) {
+            case CURSOR_ON_PARTY_BUTTON:
                 ov19_021DA8FC(&(v0->unk_65BC), 1);
                 break;
-            case 4:
+            case CURSOR_ON_CLOSE_BUTTON:
                 ov19_021DA8FC(&(v0->unk_65BC), 2);
                 break;
             }
@@ -1279,7 +1279,7 @@ static void ov19_021D71F8(SysTask *param0, void *param1)
 
     switch (v1->unk_06) {
     case 0:
-        if (ov19_021D5E10(v2) == 1) {
+        if (ov19_GetCursorLocation(v2) == CURSOR_IN_PARTY) {
             ov19_021DC96C(&v0->unk_B290);
             v1->unk_06++;
             break;
@@ -1726,7 +1726,7 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
     Bg_InitFromTemplate(param0->unk_1C0, 2, &v4, 0);
     Bg_InitFromTemplate(param0->unk_1C0, 3, &v5, 0);
 
-    if (ov19_021D5E08(param1) != 4) {
+    if (ov19_GetBoxMode(param1) != PC_MODE_COMPARE) {
         Bg_InitFromTemplate(param0->unk_1C0, 4, &v6, 0);
         Bg_InitFromTemplate(param0->unk_1C0, 5, &v7, 0);
         Bg_InitFromTemplate(param0->unk_1C0, 6, &v8, 0);
@@ -1749,7 +1749,7 @@ static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
     Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 1, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_10);
     Graphics_LoadPaletteFromOpenNARC(param2, 5, 0, 0, 0x20 * 7, HEAP_ID_10);
 
-    if (ov19_021D5E08(param1) != 4) {
+    if (ov19_GetBoxMode(param1) != PC_MODE_COMPARE) {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 0, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_10);
     }
 
@@ -1761,7 +1761,7 @@ static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
     ov19_021DD114(param0->unk_B408, param2);
     ov19_021DECE8(param0->unk_B410, param2);
 
-    if (ov19_021D5E10(param1) == 1) {
+    if (ov19_GetCursorLocation(param1) == CURSOR_IN_PARTY) {
         ov19_021DC6A0(&(param0->unk_B290));
     }
 
@@ -1856,7 +1856,7 @@ PokemonSpriteManager *ov19_021D7818(UnkStruct_ov19_021D61B0 *param0)
 
 int ov19_021D7820(UnkStruct_ov19_021D61B0 *param0)
 {
-    if (ov19_021D5E08(param0->unk_1C4) != 4) {
+    if (ov19_GetBoxMode(param0->unk_1C4) != PC_MODE_COMPARE) {
         return 0;
     } else {
         return -44;
