@@ -1439,7 +1439,7 @@ VeilstoneCity_DeoxysMeteoriteSpeed:
     PlayCry SPECIES_DEOXYS
     Message veilstone_city_meteorite_speed
     WaitABXPadPress
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ReleaseAll
     End
@@ -1453,7 +1453,7 @@ VeilstoneCity_DeoxysMeteoriteDefense:
     PlayCry SPECIES_DEOXYS
     Message veilstone_city_meteorite_defense
     WaitABXPadPress
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ReleaseAll
     End
@@ -1467,7 +1467,7 @@ VeilstoneCity_DeoxysMeteoriteAttack:
     PlayCry SPECIES_DEOXYS
     Message veilstone_city_meteorite_attack
     WaitABXPadPress
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ReleaseAll
     End
@@ -1481,7 +1481,7 @@ VeilstoneCity_DeoxysMeteoriteNormal:
     PlayCry SPECIES_DEOXYS
     Message veilstone_city_meteorite_normal
     WaitABXPadPress
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ReleaseAll
     End

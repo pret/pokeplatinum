@@ -158,7 +158,7 @@ _01DE:
 _025F:
     PlayCry 0x8001
     Message 17
-    ScrCmd_04D
+    WaitCry
     GoTo _029F
 
 _0270:
@@ -166,7 +166,7 @@ _0270:
     Message 36
     WaitABXPadPress
     CloseMessage
-    ScrCmd_04D
+    WaitCry
     HideMoney
     ReleaseAll
     End
@@ -294,7 +294,7 @@ _03FE:
     PlayCry 0x8002
     BufferPlayerName 1
     Message 30
-    ScrCmd_04D
+    WaitCry
     GetDaycareState 0x800C
     GoToIfEq 0x800C, DAYCARE_ONE_MON, _0444
     GoTo _0292

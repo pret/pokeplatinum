@@ -391,7 +391,7 @@ _0524:
 _054D:
     PlayCry 0x409A
     Message 22
-    ScrCmd_04D
+    WaitCry
     ScrCmd_27C 1, 0x8004
     IncrementGameRecord RECORD_UNK_051
     CallCommonScript 0x7E0
@@ -418,7 +418,7 @@ _0595:
 _05BE:
     PlayCry 0x409A
     Message 22
-    ScrCmd_04D
+    WaitCry
     ScrCmd_27C 2, 0x8004
     IncrementGameRecord RECORD_UNK_051
     CallCommonScript 0x7DF
@@ -493,7 +493,7 @@ _0704:
     End
 
 _070F:
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -650,7 +650,7 @@ _08EB:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_DRIFLOON
     Message 29
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -693,7 +693,7 @@ _0943:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
     Message 33
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -716,7 +716,7 @@ _0975:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_CLEFAIRY
     Message 35
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

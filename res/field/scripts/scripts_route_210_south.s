@@ -61,7 +61,7 @@ _00CA:
     Message 2
     CloseMessage
     PlayCry SPECIES_PSYDUCK
-    ScrCmd_04D
+    WaitCry
     ApplyMovement 27, _024C
     ApplyMovement 28, _024C
     ApplyMovement 26, _024C

@@ -43,7 +43,7 @@ _003D:
 _00AE:
     PlayCry SPECIES_REGIROCK
     Message 2
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_REGIROCK, 30
     CheckWonBattle 0x800C

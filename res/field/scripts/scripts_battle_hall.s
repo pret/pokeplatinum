@@ -695,7 +695,7 @@ _09D1:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PACHIRISU
     Message 62
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

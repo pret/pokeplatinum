@@ -515,7 +515,7 @@
     .short \unused
     .endm
 
-    .macro ScrCmd_04D
+    .macro WaitCry
     .short 77
     .endm
 

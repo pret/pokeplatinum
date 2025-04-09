@@ -842,7 +842,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_04A,
     ScrCmd_WaitFanfare,
     ScrCmd_PlayCry,
-    ScrCmd_04D,
+    ScrCmd_WaitCry,
     ScrCmd_PlaySound,
     ScrCmd_WaitSound,
     ScrCmd_PlayMusic,

@@ -43,7 +43,7 @@ _003D:
 _00AE:
     PlayCry SPECIES_REGISTEEL
     Message 2
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_REGISTEEL, 30
     CheckWonBattle 0x800C
