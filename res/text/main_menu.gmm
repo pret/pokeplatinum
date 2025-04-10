@@ -1,67 +1,67 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="38756" />
-	<row id="main_menu_continue" index="0">
+	<row id="MainMenu_Text_Continue" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CONTINUE</language>
 	</row>
-	<row id="main_menu_new_game" index="1">
+	<row id="MainMenu_Text_NewGame" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">NEW GAME</language>
 	</row>
-	<row id="main_menu_mystery_gift" index="2">
+	<row id="MainMenu_Text_MysteryGift" index="2">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">MYSTERY GIFT</language>
 	</row>
-	<row id="main_menu_link_with_pokemon_ranger" index="3">
+	<row id="MainMenu_Text_LinkWithPokemonRanger" index="3">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">LINK WITH POKéMON RANGER</language>
 	</row>
-	<row id="main_menu_migrate_from_ruby" index="4">
+	<row id="MainMenu_Text_MigrateFromRuby" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">MIGRATE FROM RUBY</language>
 	</row>
-	<row id="main_menu_migrate_from_sapphire" index="5">
+	<row id="MainMenu_Text_MigrateFromSapphire" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">MIGRATE FROM SAPPHIRE</language>
 	</row>
-	<row id="main_menu_migrate_from_leafgreen" index="6">
+	<row id="MainMenu_Text_MigrateFromLeafgreen" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">MIGRATE FROM LEAFGREEN</language>
 	</row>
-	<row id="main_menu_migrate_from_firered" index="7">
+	<row id="MainMenu_Text_MigrateFromFirered" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">MIGRATE FROM FIRERED</language>
 	</row>
-	<row id="main_menu_migrate_from_emerald" index="8">
+	<row id="MainMenu_Text_MigrateFromEmerald" index="8">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">MIGRATE FROM EMERALD</language>
 	</row>
-	<row id="main_menu_pedometer" index="9">
+	<row id="MainMenu_Text_Pedometer" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">PEDOMETER</language>
 	</row>
-	<row id="main_menu_connect_to_wii" index="10">
+	<row id="MainMenu_Text_ConnectToWii" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CONNECT TO Wii</language>
 	</row>
-	<row id="main_menu_nintendo_wfc_settings" index="11">
+	<row id="MainMenu_Text_NintendoWfcSettings" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">NINTENDO WFC SETTINGS</language>
 	</row>
-	<row id="main_menu_player" index="12">
+	<row id="MainMenu_Text_Player" index="12">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">PLAYER</language>
 	</row>
-	<row id="main_menu_time" index="13">
+	<row id="MainMenu_Text_Time" index="13">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">TIME</language>
 	</row>
-	<row id="main_menu_pokedex" index="14">
+	<row id="MainMenu_Text_Pokedex" index="14">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">POKéDEX</language>
 	</row>
-	<row id="main_menu_badges" index="15">
+	<row id="MainMenu_Text_Badges" index="15">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">BADGES</language>
 	</row>
@@ -81,7 +81,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 50, 0, 0}</language>
 	</row>
-	<row id="main_menu_wii_message_settings" index="20">
+	<row id="MainMenu_Text_WiiMessageSettings" index="20">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Wii MESSAGE SETTINGS</language>
 	</row>
