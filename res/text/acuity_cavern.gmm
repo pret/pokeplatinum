@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="9291" />
-	<row id="acuity_cavern_uxie_battle_intro" index="0">
+	<row id="AcuityCavern_Text_UxieCry" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Kyouuuun!\r</language>
 	</row>
-	<row id="acuity_cavern_uxie_disappeared" index="1">
+	<row id="AcuityCavern_Text_UxieDisappeared" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">UXIE disappeared deep into its\ncavern...</language>
 	</row>

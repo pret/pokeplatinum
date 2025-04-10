@@ -1438,7 +1438,7 @@ VeilstoneCity_DeoxysMeteoriteSpeed:
     GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_SPEED
     PlayCry SPECIES_DEOXYS
-    Message veilstone_city_meteorite_speed
+    Message VeilstoneCity_Text_MeteoriteSpeed
     WaitABXPadPress
     ScrCmd_04D
     CloseMessage
@@ -1452,7 +1452,7 @@ VeilstoneCity_DeoxysMeteoriteDefense:
     GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_DEFENSE
     PlayCry SPECIES_DEOXYS
-    Message veilstone_city_meteorite_defense
+    Message VeilstoneCity_Text_MeteoriteDefense
     WaitABXPadPress
     ScrCmd_04D
     CloseMessage
@@ -1466,7 +1466,7 @@ VeilstoneCity_DeoxysMeteoriteAttack:
     GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_ATTACK
     PlayCry SPECIES_DEOXYS
-    Message veilstone_city_meteorite_attack
+    Message VeilstoneCity_Text_MeteoriteAttack
     WaitABXPadPress
     ScrCmd_04D
     CloseMessage
@@ -1480,7 +1480,7 @@ VeilstoneCity_DeoxysMeteoriteNormal:
     GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_NORMAL
     PlayCry SPECIES_DEOXYS
-    Message veilstone_city_meteorite_normal
+    Message VeilstoneCity_Text_MeteoriteNormal
     WaitABXPadPress
     ScrCmd_04D
     CloseMessage
@@ -1488,7 +1488,7 @@ VeilstoneCity_DeoxysMeteoriteNormal:
     End
 
 VeilstoneCity_MeteoriteFromTheStars:
-    Message veilstone_city_meteorite_from_the_stars
+    Message VeilstoneCity_Text_MeteoriteFromTheStars
     WaitABXPadPress
     CloseMessage
     ReleaseAll

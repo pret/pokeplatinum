@@ -30,7 +30,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 11, 0, 0}</language>
 	</row>
-	<row id="box1_name" index="6">
+	<row id="PokemonStorageSystem_Text_Box1" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">BOX 1</language>
 	</row>

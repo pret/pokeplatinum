@@ -1,587 +1,587 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="53609" />
-	<row id="ribbon_name_hoenn_champion" index="0">
+	<row id="RibbonName_Text_HoennChampion" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Champion Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_cool" index="1">
+	<row id="RibbonName_Text_HoennCool" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_cool_super" index="2">
+	<row id="RibbonName_Text_HoennCoolSuper" index="2">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon Super</language>
 	</row>
-	<row id="ribbon_name_hoenn_cool_hyper" index="3">
+	<row id="RibbonName_Text_HoennCoolHyper" index="3">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon Hyper</language>
 	</row>
-	<row id="ribbon_name_hoenn_cool_master" index="4">
+	<row id="RibbonName_Text_HoennCoolMaster" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon Master</language>
 	</row>
-	<row id="ribbon_name_hoenn_beauty" index="5">
+	<row id="RibbonName_Text_HoennBeauty" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_beauty_super" index="6">
+	<row id="RibbonName_Text_HoennBeautySuper" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon Super</language>
 	</row>
-	<row id="ribbon_name_hoenn_beauty_hyper" index="7">
+	<row id="RibbonName_Text_HoennBeautyHyper" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon Hyper</language>
 	</row>
-	<row id="ribbon_name_hoenn_beauty_master" index="8">
+	<row id="RibbonName_Text_HoennBeautyMaster" index="8">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon Master</language>
 	</row>
-	<row id="ribbon_name_hoenn_cute" index="9">
+	<row id="RibbonName_Text_HoennCute" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_cute_super" index="10">
+	<row id="RibbonName_Text_HoennCuteSuper" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon Super</language>
 	</row>
-	<row id="ribbon_name_hoenn_cute_hyper" index="11">
+	<row id="RibbonName_Text_HoennCuteHyper" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon Hyper</language>
 	</row>
-	<row id="ribbon_name_hoenn_cute_master" index="12">
+	<row id="RibbonName_Text_HoennCuteMaster" index="12">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon Master</language>
 	</row>
-	<row id="ribbon_name_hoenn_smart" index="13">
+	<row id="RibbonName_Text_HoennSmart" index="13">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_smart_super" index="14">
+	<row id="RibbonName_Text_HoennSmartSuper" index="14">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon Super</language>
 	</row>
-	<row id="ribbon_name_hoenn_smart_hyper" index="15">
+	<row id="RibbonName_Text_HoennSmartHyper" index="15">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon Hyper</language>
 	</row>
-	<row id="ribbon_name_hoenn_smart_master" index="16">
+	<row id="RibbonName_Text_HoennSmartMaster" index="16">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon Master</language>
 	</row>
-	<row id="ribbon_name_hoenn_tough" index="17">
+	<row id="RibbonName_Text_HoennTough" index="17">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_tough_super" index="18">
+	<row id="RibbonName_Text_HoennToughSuper" index="18">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon Super</language>
 	</row>
-	<row id="ribbon_name_hoenn_tough_hyper" index="19">
+	<row id="RibbonName_Text_HoennToughHyper" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon Hyper</language>
 	</row>
-	<row id="ribbon_name_hoenn_tough_master" index="20">
+	<row id="RibbonName_Text_HoennToughMaster" index="20">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon Master</language>
 	</row>
-	<row id="ribbon_name_hoenn_winning" index="21">
+	<row id="RibbonName_Text_HoennWinning" index="21">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Winning Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_victory" index="22">
+	<row id="RibbonName_Text_HoennVictory" index="22">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Victory Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_artist" index="23">
+	<row id="RibbonName_Text_HoennArtist" index="23">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Artist Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_effort" index="24">
+	<row id="RibbonName_Text_HoennEffort" index="24">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Effort Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_marine" index="25">
+	<row id="RibbonName_Text_HoennMarine" index="25">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Marine Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_land" index="26">
+	<row id="RibbonName_Text_HoennLand" index="26">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Land Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_sky" index="27">
+	<row id="RibbonName_Text_HoennSky" index="27">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sky Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_country" index="28">
+	<row id="RibbonName_Text_HoennCountry" index="28">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Country Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_national" index="29">
+	<row id="RibbonName_Text_HoennNational" index="29">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">National Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_earth" index="30">
+	<row id="RibbonName_Text_HoennEarth" index="30">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Earth Ribbon</language>
 	</row>
-	<row id="ribbon_name_hoenn_world" index="31">
+	<row id="RibbonName_Text_HoennWorld" index="31">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">World Ribbon</language>
 	</row>
-	<row id="ribbon_name_sinnoh_champ" index="32">
+	<row id="RibbonName_Text_SinnohChamp" index="32">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sinnoh Champ Ribbon</language>
 	</row>
-	<row id="ribbon_name_cool" index="33">
+	<row id="RibbonName_Text_Cool" index="33">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon</language>
 	</row>
-	<row id="ribbon_name_cool_great" index="34">
+	<row id="RibbonName_Text_CoolGreat" index="34">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon Great</language>
 	</row>
-	<row id="ribbon_name_cool_ultra" index="35">
+	<row id="RibbonName_Text_CoolUltra" index="35">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon Ultra</language>
 	</row>
-	<row id="ribbon_name_cool_master" index="36">
+	<row id="RibbonName_Text_CoolMaster" index="36">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon Master</language>
 	</row>
-	<row id="ribbon_name_beauty" index="37">
+	<row id="RibbonName_Text_Beauty" index="37">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon</language>
 	</row>
-	<row id="ribbon_name_beauty_great" index="38">
+	<row id="RibbonName_Text_BeautyGreat" index="38">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon Great</language>
 	</row>
-	<row id="ribbon_name_beauty_ultra" index="39">
+	<row id="RibbonName_Text_BeautyUltra" index="39">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon Ultra</language>
 	</row>
-	<row id="ribbon_name_beauty_master" index="40">
+	<row id="RibbonName_Text_BeautyMaster" index="40">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon Master</language>
 	</row>
-	<row id="ribbon_name_cute" index="41">
+	<row id="RibbonName_Text_Cute" index="41">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon</language>
 	</row>
-	<row id="ribbon_name_cute_great" index="42">
+	<row id="RibbonName_Text_CuteGreat" index="42">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon Great</language>
 	</row>
-	<row id="ribbon_name_cute_ultra" index="43">
+	<row id="RibbonName_Text_CuteUltra" index="43">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon Ultra</language>
 	</row>
-	<row id="ribbon_name_cute_master" index="44">
+	<row id="RibbonName_Text_CuteMaster" index="44">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon Master</language>
 	</row>
-	<row id="ribbon_name_smart" index="45">
+	<row id="RibbonName_Text_Smart" index="45">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon</language>
 	</row>
-	<row id="ribbon_name_smart_great" index="46">
+	<row id="RibbonName_Text_SmartGreat" index="46">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon Great</language>
 	</row>
-	<row id="ribbon_name_smart_ultra" index="47">
+	<row id="RibbonName_Text_SmartUltra" index="47">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon Ultra</language>
 	</row>
-	<row id="ribbon_name_smart_master" index="48">
+	<row id="RibbonName_Text_SmartMaster" index="48">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon Master</language>
 	</row>
-	<row id="ribbon_name_tough" index="49">
+	<row id="RibbonName_Text_Tough" index="49">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon</language>
 	</row>
-	<row id="ribbon_name_tough_great" index="50">
+	<row id="RibbonName_Text_ToughGreat" index="50">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon Great</language>
 	</row>
-	<row id="ribbon_name_tough_ultra" index="51">
+	<row id="RibbonName_Text_ToughUltra" index="51">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon Ultra</language>
 	</row>
-	<row id="ribbon_name_tough_master" index="52">
+	<row id="RibbonName_Text_ToughMaster" index="52">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon Master</language>
 	</row>
-	<row id="ribbon_name_ability" index="53">
+	<row id="RibbonName_Text_Ability" index="53">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ability Ribbon</language>
 	</row>
-	<row id="ribbon_name_great_ability" index="54">
+	<row id="RibbonName_Text_GreatAbility" index="54">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Great Ability Ribbon</language>
 	</row>
-	<row id="ribbon_name_double_ability" index="55">
+	<row id="RibbonName_Text_DoubleAbility" index="55">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Double Ability Ribbon</language>
 	</row>
-	<row id="ribbon_name_multi_ability" index="56">
+	<row id="RibbonName_Text_MultiAbility" index="56">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Multi Ability Ribbon</language>
 	</row>
-	<row id="ribbon_name_pair_ability" index="57">
+	<row id="RibbonName_Text_PairAbility" index="57">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pair Ability Ribbon</language>
 	</row>
-	<row id="ribbon_name_world_ability" index="58">
+	<row id="RibbonName_Text_WorldAbility" index="58">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">World Ability Ribbon</language>
 	</row>
-	<row id="ribbon_name_alert" index="59">
+	<row id="RibbonName_Text_Alert" index="59">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Alert Ribbon</language>
 	</row>
-	<row id="ribbon_name_shock" index="60">
+	<row id="RibbonName_Text_Shock" index="60">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Shock Ribbon</language>
 	</row>
-	<row id="ribbon_name_downcast" index="61">
+	<row id="RibbonName_Text_Downcast" index="61">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Downcast Ribbon</language>
 	</row>
-	<row id="ribbon_name_careless" index="62">
+	<row id="RibbonName_Text_Careless" index="62">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Careless Ribbon</language>
 	</row>
-	<row id="ribbon_name_relax" index="63">
+	<row id="RibbonName_Text_Relax" index="63">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Relax Ribbon</language>
 	</row>
-	<row id="ribbon_name_snooze" index="64">
+	<row id="RibbonName_Text_Snooze" index="64">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Snooze Ribbon</language>
 	</row>
-	<row id="ribbon_name_smile" index="65">
+	<row id="RibbonName_Text_Smile" index="65">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smile Ribbon</language>
 	</row>
-	<row id="ribbon_name_gorgeous" index="66">
+	<row id="RibbonName_Text_Gorgeous" index="66">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Gorgeous Ribbon</language>
 	</row>
-	<row id="ribbon_name_royal" index="67">
+	<row id="RibbonName_Text_Royal" index="67">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Royal Ribbon</language>
 	</row>
-	<row id="ribbon_name_gorgeous_royal" index="68">
+	<row id="RibbonName_Text_GorgeousRoyal" index="68">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Gorgeous Royal Ribbon</language>
 	</row>
-	<row id="ribbon_name_footprint" index="69">
+	<row id="RibbonName_Text_Footprint" index="69">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Footprint Ribbon</language>
 	</row>
-	<row id="ribbon_name_record" index="70">
+	<row id="RibbonName_Text_Record" index="70">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Record Ribbon</language>
 	</row>
-	<row id="ribbon_name_history" index="71">
+	<row id="RibbonName_Text_History" index="71">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">History Ribbon</language>
 	</row>
-	<row id="ribbon_name_legend" index="72">
+	<row id="RibbonName_Text_Legend" index="72">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Legend Ribbon</language>
 	</row>
-	<row id="ribbon_name_red" index="73">
+	<row id="RibbonName_Text_Red" index="73">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Red Ribbon</language>
 	</row>
-	<row id="ribbon_name_green" index="74">
+	<row id="RibbonName_Text_Green" index="74">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Green Ribbon</language>
 	</row>
-	<row id="ribbon_name_blue" index="75">
+	<row id="RibbonName_Text_Blue" index="75">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Blue Ribbon</language>
 	</row>
-	<row id="ribbon_name_festival" index="76">
+	<row id="RibbonName_Text_Festival" index="76">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Festival Ribbon</language>
 	</row>
-	<row id="ribbon_name_carnival" index="77">
+	<row id="RibbonName_Text_Carnival" index="77">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Carnival Ribbon</language>
 	</row>
-	<row id="ribbon_name_classic" index="78">
+	<row id="RibbonName_Text_Classic" index="78">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Classic Ribbon</language>
 	</row>
-	<row id="ribbon_name_premier" index="79">
+	<row id="RibbonName_Text_Premier" index="79">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Premier Ribbon</language>
 	</row>
-	<row id="ribbon_desc_hoenn_champion" index="80">
+	<row id="RibbonDesc_Text_HoennChampion" index="80">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ribbon for clearing the Pokémon League and\nentering the Hall of Fame in another region.</language>
 	</row>
-	<row id="ribbon_desc_hoenn_cool" index="81">
+	<row id="RibbonDesc_Text_HoennCool" index="81">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Cool Contest\nNormal Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_cool_super" index="82">
+	<row id="RibbonDesc_Text_HoennCoolSuper" index="82">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Cool Contest\nSuper Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_cool_hyper" index="83">
+	<row id="RibbonDesc_Text_HoennCoolHyper" index="83">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Cool Contest\nHyper Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_cool_master" index="84">
+	<row id="RibbonDesc_Text_HoennCoolMaster" index="84">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Cool Contest\nMaster Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_beauty" index="85">
+	<row id="RibbonDesc_Text_HoennBeauty" index="85">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Beauty Contest\nNormal Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_beauty_super" index="86">
+	<row id="RibbonDesc_Text_HoennBeautySuper" index="86">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Beauty Contest\nSuper Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_beauty_hyper" index="87">
+	<row id="RibbonDesc_Text_HoennBeautyHyper" index="87">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Beauty Contest\nHyper Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_beauty_master" index="88">
+	<row id="RibbonDesc_Text_HoennBeautyMaster" index="88">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Beauty Contest\nMaster Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_cute" index="89">
+	<row id="RibbonDesc_Text_HoennCute" index="89">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Cute Contest\nNormal Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_cute_super" index="90">
+	<row id="RibbonDesc_Text_HoennCuteSuper" index="90">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Cute Contest\nSuper Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_cute_hyper" index="91">
+	<row id="RibbonDesc_Text_HoennCuteHyper" index="91">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Cute Contest\nHyper Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_cute_master" index="92">
+	<row id="RibbonDesc_Text_HoennCuteMaster" index="92">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Cute Contest\nMaster Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_smart" index="93">
+	<row id="RibbonDesc_Text_HoennSmart" index="93">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Smart Contest\nNormal Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_smart_super" index="94">
+	<row id="RibbonDesc_Text_HoennSmartSuper" index="94">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Smart Contest\nSuper Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_smart_hyper" index="95">
+	<row id="RibbonDesc_Text_HoennSmartHyper" index="95">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Smart Contest\nHyper Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_smart_master" index="96">
+	<row id="RibbonDesc_Text_HoennSmartMaster" index="96">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Smart Contest\nMaster Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_tough" index="97">
+	<row id="RibbonDesc_Text_HoennTough" index="97">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Tough Contest\nNormal Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_tough_super" index="98">
+	<row id="RibbonDesc_Text_HoennToughSuper" index="98">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Tough Contest\nSuper Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_tough_hyper" index="99">
+	<row id="RibbonDesc_Text_HoennToughHyper" index="99">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Tough Contest\nHyper Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_tough_master" index="100">
+	<row id="RibbonDesc_Text_HoennToughMaster" index="100">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hoenn Tough Contest\nMaster Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_hoenn_winning" index="101">
+	<row id="RibbonDesc_Text_HoennWinning" index="101">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ribbon awarded for clearing the Hoenn\nBattle Tower’s Lv. 50 challenge.</language>
 	</row>
-	<row id="ribbon_desc_hoenn_victory" index="102">
+	<row id="RibbonDesc_Text_HoennVictory" index="102">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ribbon awarded for clearing the Hoenn\nBattle Tower’s Lv. 100 challenge.</language>
 	</row>
-	<row id="ribbon_desc_hoenn_artist" index="103">
+	<row id="RibbonDesc_Text_HoennArtist" index="103">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ribbon awarded for being chosen as\na super sketch model in Hoenn.</language>
 	</row>
-	<row id="ribbon_desc_hoenn_effort" index="104">
+	<row id="RibbonDesc_Text_HoennEffort" index="104">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ribbon awarded for being an exceptionally\nhard worker.</language>
 	</row>
-	<row id="ribbon_desc_sinnoh_champ" index="105">
+	<row id="RibbonDesc_Text_SinnohChamp" index="105">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ribbon awarded for beating the Sinnoh\nChampion and entering the Hall of Fame.</language>
 	</row>
-	<row id="ribbon_desc_cool" index="106">
+	<row id="RibbonDesc_Text_Cool" index="106">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Cool Category\nNormal Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_cool_great" index="107">
+	<row id="RibbonDesc_Text_CoolGreat" index="107">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Cool Category\nGreat Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_cool_ultra" index="108">
+	<row id="RibbonDesc_Text_CoolUltra" index="108">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Cool Category\nUltra Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_cool_master" index="109">
+	<row id="RibbonDesc_Text_CoolMaster" index="109">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Cool Category\nMaster Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_beauty" index="110">
+	<row id="RibbonDesc_Text_Beauty" index="110">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Beauty Category\nNormal Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_beauty_great" index="111">
+	<row id="RibbonDesc_Text_BeautyGreat" index="111">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Beauty Category\nGreat Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_beauty_ultra" index="112">
+	<row id="RibbonDesc_Text_BeautyUltra" index="112">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Beauty Category\nUltra Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_beauty_master" index="113">
+	<row id="RibbonDesc_Text_BeautyMaster" index="113">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Beauty Category\nMaster Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_cute" index="114">
+	<row id="RibbonDesc_Text_Cute" index="114">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Cute Category\nNormal Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_cute_great" index="115">
+	<row id="RibbonDesc_Text_CuteGreat" index="115">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Cute Category\nGreat Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_cute_ultra" index="116">
+	<row id="RibbonDesc_Text_CuteUltra" index="116">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Cute Category\nUltra Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_cute_master" index="117">
+	<row id="RibbonDesc_Text_CuteMaster" index="117">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Cute Category\nMaster Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_smart" index="118">
+	<row id="RibbonDesc_Text_Smart" index="118">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Smart Category\nNormal Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_smart_great" index="119">
+	<row id="RibbonDesc_Text_SmartGreat" index="119">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Smart Category\nGreat Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_smart_ultra" index="120">
+	<row id="RibbonDesc_Text_SmartUltra" index="120">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Smart Category\nUltra Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_smart_master" index="121">
+	<row id="RibbonDesc_Text_SmartMaster" index="121">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Smart Category\nMaster Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_tough" index="122">
+	<row id="RibbonDesc_Text_Tough" index="122">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Tough Category\nNormal Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_tough_great" index="123">
+	<row id="RibbonDesc_Text_ToughGreat" index="123">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Tough Category\nGreat Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_tough_ultra" index="124">
+	<row id="RibbonDesc_Text_ToughUltra" index="124">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Tough Category\nUltra Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_tough_master" index="125">
+	<row id="RibbonDesc_Text_ToughMaster" index="125">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Super Contest Tough Category\nMaster Rank winner!</language>
 	</row>
-	<row id="ribbon_desc_ability" index="126">
+	<row id="RibbonDesc_Text_Ability" index="126">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded for defeating the\nTower Tycoon at the Battle Tower.</language>
 	</row>
-	<row id="ribbon_desc_great_ability" index="127">
+	<row id="RibbonDesc_Text_GreatAbility" index="127">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded for defeating the\nTower Tycoon at the Battle Tower.</language>
 	</row>
-	<row id="ribbon_desc_double_ability" index="128">
+	<row id="RibbonDesc_Text_DoubleAbility" index="128">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded for completing the\nSinnoh Battle Tower Double challenge.</language>
 	</row>
-	<row id="ribbon_desc_multi_ability" index="129">
+	<row id="RibbonDesc_Text_MultiAbility" index="129">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded for completing the\nSinnoh Battle Tower Multi challenge.</language>
 	</row>
-	<row id="ribbon_desc_pair_ability" index="130">
+	<row id="RibbonDesc_Text_PairAbility" index="130">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded for completing the\nSinnoh Battle Tower Link Multi challenge.</language>
 	</row>
-	<row id="ribbon_desc_world_ability" index="131">
+	<row id="RibbonDesc_Text_WorldAbility" index="131">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded for completing the\nSinnoh Wi-Fi Battle Tower challenge.</language>
 	</row>
-	<row id="ribbon_desc_alert" index="132">
+	<row id="RibbonDesc_Text_Alert" index="132">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon for recalling an invigorating\nevent that created life energy.</language>
 	</row>
-	<row id="ribbon_desc_shock" index="133">
+	<row id="RibbonDesc_Text_Shock" index="133">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon for recalling a thrilling event\nthat made life more exciting.</language>
 	</row>
-	<row id="ribbon_desc_downcast" index="134">
+	<row id="RibbonDesc_Text_Downcast" index="134">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon for recalling feelings of sadness\nthat added spice to life.</language>
 	</row>
-	<row id="ribbon_desc_careless" index="135">
+	<row id="RibbonDesc_Text_Careless" index="135">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon for recalling a careless error\nthat helped steer life decisions.</language>
 	</row>
-	<row id="ribbon_desc_relax" index="136">
+	<row id="RibbonDesc_Text_Relax" index="136">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon for recalling a refreshing\nevent that added sparkle to life.</language>
 	</row>
-	<row id="ribbon_desc_snooze" index="137">
+	<row id="RibbonDesc_Text_Snooze" index="137">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon for recalling a deep slumber\nthat made life soothing.</language>
 	</row>
-	<row id="ribbon_desc_smile" index="138">
+	<row id="RibbonDesc_Text_Smile" index="138">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon for recalling that smiles\nenrich the quality of life.</language>
 	</row>
-	<row id="ribbon_desc_gorgeous" index="139">
+	<row id="RibbonDesc_Text_Gorgeous" index="139">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">An extraordinarily gorgeous and\nextravagant Ribbon.</language>
 	</row>
-	<row id="ribbon_desc_royal" index="140">
+	<row id="RibbonDesc_Text_Royal" index="140">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">An incredibly regal Ribbon with an air\nof nobility.</language>
 	</row>
-	<row id="ribbon_desc_gorgeous_royal" index="141">
+	<row id="RibbonDesc_Text_GorgeousRoyal" index="141">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A gorgeous and regal Ribbon that\nis the peak of fabulous.</language>
 	</row>
-	<row id="ribbon_desc_footprint" index="142">
+	<row id="RibbonDesc_Text_Footprint" index="142">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded to a Pokémon deemed\nto have a top-quality footprint.</language>
 	</row>
-	<row id="ribbon_desc_record" index="143">
+	<row id="RibbonDesc_Text_Record" index="143">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded for setting an\nincredible record.</language>
 	</row>
-	<row id="ribbon_desc_history" index="144">
+	<row id="RibbonDesc_Text_History" index="144">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded for setting a historical\nrecord.</language>
 	</row>
-	<row id="ribbon_desc_legend" index="145">
+	<row id="RibbonDesc_Text_Legend" index="145">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded for setting a legendary\nrecord.</language>
 	</row>
@@ -713,7 +713,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon Battle Cup\nParticipation Ribbon</language>
 	</row>
-	<row id="ribbon_desc_hoenn_country_world" index="178">
+	<row id="RibbonDesc_Text_HoennCountryWorld" index="178">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon League\nChampion Ribbon</language>
 	</row>
@@ -761,11 +761,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded for overcoming\ndifficult challenges.</language>
 	</row>
-	<row id="ribbon_desc_hoenn_national" index="190">
+	<row id="RibbonDesc_Text_HoennNational" index="190">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded for overcoming all\ndifficult challenges.</language>
 	</row>
-	<row id="ribbon_desc_hoenn_earth" index="191">
+	<row id="RibbonDesc_Text_HoennEarth" index="191">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Ribbon awarded for winning 100\nmatches in a row.</language>
 	</row>

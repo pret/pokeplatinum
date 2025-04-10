@@ -17,67 +17,67 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Use that Sprayduck to water the soil\nwhere you’ve planted Berries.\rYou should also water Berry plants\nwhile they are growing.</language>
 	</row>
-	<row id="flower_shop_greet" index="4">
+	<row id="FlowerShop_Text_Greet" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hello!\rWould you like to exchange your\nBerries for some Accessories?</language>
 	</row>
-	<row id="flower_shop_thanks" index="5">
+	<row id="FlowerShop_Text_Thanks" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Thank you so much for trading us so\nmany Berries!</language>
 	</row>
-	<row id="flower_shop_purchase" index="6">
+	<row id="FlowerShop_Text_Purchase" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Which Accessory would you like?</language>
 	</row>
-	<row id="flower_shop_confirm_purchase" index="7">
+	<row id="FlowerShop_Text_ConfirmPurchase" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Exchange {STRVAR_1 52, 1, 0} {STRVAR_1 8, 0, 0}\nfor the {STRVAR_1 31, 2, 0}?</language>
 	</row>
-	<row id="flower_shop_purchase_success" index="8">
+	<row id="FlowerShop_Text_PurchaseSuccess" index="8">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Thank you!</language>
 	</row>
-	<row id="flower_shop_not_enough_berries" index="9">
+	<row id="FlowerShop_Text_NotEnoughBerries" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You don’t have enough Berries.</language>
 	</row>
-	<row id="flower_shop_cant_carry_more_accessories" index="10">
+	<row id="FlowerShop_Text_CantCarryMoreAccessories" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, you can’t carry any more\nthan that.</language>
 	</row>
-	<row id="flower_shop_please_come_again" index="11">
+	<row id="FlowerShop_Text_PleaseComeAgain" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Please come again!</language>
 	</row>
-	<row id="flower_shop_purchase_post_success" index="12">
+	<row id="FlowerShop_Text_PurchasePostSuccess" index="12">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You got the {STRVAR_1 31, 2, 0} in return\nfor {STRVAR_1 52, 1, 0} {STRVAR_1 8, 0, 0}.</language>
 	</row>
-	<row id="flower_shop_traded_all_accessories" index="13">
+	<row id="FlowerShop_Text_TradedAllAccessories" index="13">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Wow! I traded away every single\nAccessory I had!</language>
 	</row>
-	<row id="flower_shop_yes" index="14">
+	<row id="FlowerShop_Text_Yes" index="14">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">YES</language>
 	</row>
-	<row id="flower_shop_no" index="15">
+	<row id="FlowerShop_Text_No" index="15">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">NO</language>
 	</row>
-	<row id="flower_shop_berry_name_format" index="16">
+	<row id="FlowerShop_Text_BerryNameFormat" index="16">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 8, 0, 0}</language>
 	</row>
-	<row id="flower_shop_needed_berries" index="17">
+	<row id="FlowerShop_Text_NeededBerries" index="17">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Needed: {STRVAR_1 52, 1, 0} </language>
 	</row>
-	<row id="flower_shop_berries_in_bag" index="18">
+	<row id="FlowerShop_Text_BerriesInBag" index="18">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">In Bag: {STRVAR_1 52, 2, 0}</language>
 	</row>
-	<row id="flower_shop_exit" index="19">
+	<row id="FlowerShop_Text_Exit" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">EXIT</language>
 	</row>
