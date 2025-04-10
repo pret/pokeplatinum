@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="9291" />
-	<row id="AcuityCavern_Text_UxieBattleIntro" index="0">
+	<row id="AcuityCavern_Text_UxieCry" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Kyouuuun!\r</language>
 	</row>

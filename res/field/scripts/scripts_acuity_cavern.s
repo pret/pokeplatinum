@@ -29,7 +29,7 @@ AcuityCavern_Uxie:
     LockAll
     FacePlayer
     PlayCry SPECIES_UXIE
-    Message AcuityCavern_Text_UxieBattleIntro
+    Message AcuityCavern_Text_UxieCry
     CloseMessage
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_UXIE, 50

@@ -44,7 +44,7 @@ ValorCavern_Azelf:
     LockAll
     FacePlayer
     PlayCry SPECIES_AZELF
-    Message ValorCavern_Text_AzelfBattleIntro
+    Message ValorCavern_Text_AzelfCry
     CloseMessage
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_AZELF, 50
