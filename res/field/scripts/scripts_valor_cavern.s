@@ -44,7 +44,7 @@ ValorCavern_Azelf:
     LockAll
     FacePlayer
     PlayCry SPECIES_AZELF
-    Message valor_cavern_azelf_battle_intro
+    Message ValorCavern_Text_AzelfBattleIntro
     CloseMessage
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_AZELF, 50
@@ -58,7 +58,7 @@ ValorCavern_Azelf:
     End
 
 ValorCavern_AzelfDisappeared:
-    Message valor_cavern_azelf_disappeared
+    Message ValorCavern_Text_AzelfDisappeared
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -72,18 +72,18 @@ ValorCavern_LostBattleAzelf:
 ValorCavern_CommanderSaturn:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message valor_cavern_saturn_mission_is_proceeding
+    Message ValorCavern_Text_SaturnMissionIsProceeding
     CloseMessage
     FacePlayer
     ApplyMovement LOCALID_SATURN, _013C
     WaitMovement
     WaitTime 30, 0x800C
-    Message valor_cavern_saturn_battle_intro
+    Message ValorCavern_Text_SaturnBattleIntro
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_SATURN_VALOR_CAVERN
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, ValorCavern_LostBattleCommanderSaturn
-    Message valor_cavern_saturn_post_battle
+    Message ValorCavern_Text_SaturnPostBattle
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
