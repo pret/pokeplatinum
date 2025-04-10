@@ -119,7 +119,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saving data on Pokémon LeafGreen\nand Pokémon Pearl...</language>
 	</row>
-	<row id="migrate_from_gba_00028" index="28">
+	<row id="MigrateFromGBA_Text_Unused_00028" index="28">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXX</language>

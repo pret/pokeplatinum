@@ -3977,7 +3977,7 @@ static void ov19_LoadBoxMonIntoPreview(UnkStruct_ov19_021D4DF0 *param0, BoxPokem
     if (preview->heldItem != ITEM_NONE) {
         Item_LoadName(preview->heldItemName, preview->heldItem, 9);
     } else {
-        MessageLoader_GetStrbuf(param2->boxMessagesLoader, box_message_no_item, preview->heldItemName);
+        MessageLoader_GetStrbuf(param2->boxMessagesLoader, BoxMessages_Text_NoItem, preview->heldItemName);
     }
 
     {
@@ -4082,7 +4082,7 @@ static void ov19_021D5BE8(UnkStruct_ov19_021D4DF0 *param0, u16 item, UnkStruct_o
     if (preview->heldItem != 0) {
         Item_LoadName(preview->heldItemName, preview->heldItem, 9);
     } else {
-        MessageLoader_GetStrbuf(param2->boxMessagesLoader, box_message_no_item, preview->heldItemName);
+        MessageLoader_GetStrbuf(param2->boxMessagesLoader, BoxMessages_Text_NoItem, preview->heldItemName);
     }
 
     if ((ov19_021D5E10(param0) == 0) && (ov19_021D5E38(param0) == 1)) {
@@ -4150,7 +4150,7 @@ static void ov19_021D5D28(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5D
 
     param0->unk_112 = preview->heldItem;
 
-    MessageLoader_GetStrbuf(param1->boxMessagesLoader, box_message_no_item, preview->heldItemName);
+    MessageLoader_GetStrbuf(param1->boxMessagesLoader, BoxMessages_Text_NoItem, preview->heldItemName);
     ov19_021D5BE8(param0, item, param1);
 }
 
