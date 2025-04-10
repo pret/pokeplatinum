@@ -35,7 +35,7 @@
 
 typedef struct {
     u32 mapLabelTextID;
-    u32 unk_04;
+    u32 useExited;
 } MapInfo;
 
 typedef struct {
@@ -82,46 +82,49 @@ static void JournalEntry_GetOnlineEventMinigame(u8 *onlineEvent, JournalEntryOnl
 static u8 JournalEntry_GetGymTooTough(TrainerInfo *trainerInfo, u32 mapID);
 static u8 JournalEntry_TrainerType(u32 trainerID);
 
+// clang-format off
 static const MapInfo sMapsInfo[] = {
-    { location_names_00090, 0x1 },
-    { location_names_00091, 0x0 },
-    { location_names_00092, 0x1 },
-    { location_names_00093, 0x1 },
-    { location_names_00094, 0x0 },
-    { location_names_00095, 0x1 },
-    { location_names_00096, 0x1 },
-    { location_names_00097, 0x1 },
-    { location_names_00098, 0x1 },
-    { location_names_00099, 0x0 },
-    { location_names_00100, 0x1 },
-    { location_names_00101, 0x0 },
-    { location_names_00102, 0x1 },
-    { location_names_00071, 0x0 },
-    { location_names_00103, 0x0 },
-    { location_names_00064, 0x0 },
-    { location_names_00104, 0x0 },
-    { location_names_00105, 0x1 },
-    { location_names_00080, 0x1 },
-    { location_names_00106, 0x0 },
-    { location_names_00107, 0x1 },
-    { location_names_00108, 0x0 },
-    { location_names_00109, 0x0 },
-    { location_names_00110, 0x0 },
-    { location_names_00047, 0x0 },
-    { location_names_00049, 0x0 },
-    { location_names_00070, 0x0 }
+    // Message ID,                      // Use "Exited" instead of "Departed"
+    { LocationNames_Text_JubilifeTV,      TRUE },
+    { LocationNames_Text_PoketchCo,       FALSE },
+    { LocationNames_Text_GTS,             TRUE },
+    { LocationNames_Text_TrainersSchool,  TRUE },
+    { LocationNames_Text_MiningMuseum,    FALSE },
+    { LocationNames_Text_FlowerShop,      TRUE },
+    { LocationNames_Text_CycleShop,       TRUE },
+    { LocationNames_Text_ContestHall,     TRUE },
+    { LocationNames_Text_PoffinHouse,     TRUE },
+    { LocationNames_Text_ForeignBuilding, FALSE },
+    { LocationNames_Text_PokemonDayCare,  TRUE },
+    { LocationNames_Text_VeilstoneStore,  FALSE },
+    { LocationNames_Text_GameCorner,      TRUE },
+    { LocationNames_Text_GalacticHQ,      FALSE },
+    { LocationNames_Text_CanalaveLibrary, FALSE },
+    { LocationNames_Text_SnowpointTemple, FALSE },
+    { LocationNames_Text_VistaLighthouse, FALSE },
+    { LocationNames_Text_SunyshoreMarket, TRUE },
+    { LocationNames_Text_BattleTower,     TRUE },
+    { LocationNames_Text_PokemonMansion,  FALSE },
+    { LocationNames_Text_FootstepHouse,   TRUE },
+    { LocationNames_Text_Cafe,            FALSE },
+    { LocationNames_Text_GrandLake,       FALSE },
+    { LocationNames_Text_Restaurant,      FALSE },
+    { LocationNames_Text_ValleyWindworks, FALSE },
+    { LocationNames_Text_FuegoIronworks,  FALSE },
+    { LocationNames_Text_OldChateau,      FALSE },
 };
 
 static const GymInfo sGymsInfo[] = {
-    { TRAINER_LEADER_ROARK, MAP_HEADER_OREBURGH_CITY_GYM, BADGE_ID_COAL },
-    { TRAINER_LEADER_GARDENIA, MAP_HEADER_ETERNA_CITY_GYM, BADGE_ID_FOREST },
-    { TRAINER_LEADER_WAKE, MAP_HEADER_PASTORIA_CITY_GYM, BADGE_ID_FEN },
-    { TRAINER_LEADER_MAYLENE, MAP_HEADER_VEILSTONE_CITY_GYM, BADGE_ID_COBBLE },
-    { TRAINER_LEADER_FANTINA, MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM, BADGE_ID_RELIC },
-    { TRAINER_LEADER_CANDICE, MAP_HEADER_SNOWPOINT_CITY_GYM, BADGE_ID_ICICLE },
-    { TRAINER_LEADER_BYRON, MAP_HEADER_CANALAVE_CITY_GYM, BADGE_ID_MINE },
-    { TRAINER_LEADER_VOLKNER, MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1, BADGE_ID_BEACON }
+    { TRAINER_LEADER_ROARK,    MAP_HEADER_OREBURGH_CITY_GYM,                BADGE_ID_COAL },
+    { TRAINER_LEADER_GARDENIA, MAP_HEADER_ETERNA_CITY_GYM,                  BADGE_ID_FOREST },
+    { TRAINER_LEADER_WAKE,     MAP_HEADER_PASTORIA_CITY_GYM,                BADGE_ID_FEN },
+    { TRAINER_LEADER_MAYLENE,  MAP_HEADER_VEILSTONE_CITY_GYM,               BADGE_ID_COBBLE },
+    { TRAINER_LEADER_FANTINA,  MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM, BADGE_ID_RELIC },
+    { TRAINER_LEADER_CANDICE,  MAP_HEADER_SNOWPOINT_CITY_GYM,               BADGE_ID_ICICLE },
+    { TRAINER_LEADER_BYRON,    MAP_HEADER_CANALAVE_CITY_GYM,                BADGE_ID_MINE },
+    { TRAINER_LEADER_VOLKNER,  MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1,        BADGE_ID_BEACON }
 };
+// clang-format on
 
 int Journal_SaveSize(void)
 {
@@ -1317,7 +1320,7 @@ void JournalEntry_CreateAndSaveEventMapTransition(TrainerInfo *trainerInfo, Jour
     }
 }
 
-u32 sub_0202C6A4(u32 mapLabelTextID)
+u32 Journal_DoesBuildingUseExitedMessage(u32 mapLabelTextID)
 {
     u32 i;
 
@@ -1326,10 +1329,10 @@ u32 sub_0202C6A4(u32 mapLabelTextID)
             continue;
         }
 
-        return sMapsInfo[i].unk_04;
+        return sMapsInfo[i].useExited;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static u8 JournalEntry_GetGymTooTough(TrainerInfo *trainerInfo, u32 mapID)
