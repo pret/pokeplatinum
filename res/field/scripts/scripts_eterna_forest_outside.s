@@ -18,7 +18,7 @@ _0018:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x012A, _004D
-    SetVar 0x8004, 95
+    SetVar 0x8004, ACCESSORY_BIG_TREE
     ScrCmd_261 0, 0x8004
     Message 0
     SetVar 0x8005, 1

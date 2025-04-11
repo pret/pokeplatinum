@@ -12,6 +12,7 @@
 #include "constants/overworld_weather.h"
 #include "constants/scrcmd.h"
 #include "constants/species.h"
+#include "generated/accessories.h"
 #include "generated/journal_location_events.h"
 #include "generated/save_types.h"
 #include "generated/signpost_commands.h"
@@ -6942,28 +6943,28 @@ static BOOL ScrCmd_26C(ScriptContext *ctx)
     UnkStruct_02029D04 *v1;
     u16 v2[16];
     int v3, v4, v5, v6;
-    u16 *v7 = ScriptContext_GetVarPointer(ctx);
+    u16 *accessoryID = ScriptContext_GetVarPointer(ctx);
 
     v0 = sub_0202A750(ctx->fieldSystem->saveData);
     v1 = sub_02029D04(v0);
 
     v4 = 0;
 
-    for (v3 = 0; v3 < (49 - 34 + 1); v3++) {
-        if (sub_02029D50(v1, 34 + v3, 1) == 1) {
+    for (v3 = 0; v3 < (ACCESSORY_GLITTER_POWDER - ACCESSORY_PRETTY_DEWDROP + 1); v3++) {
+        if (sub_02029D50(v1, ACCESSORY_PRETTY_DEWDROP + v3, 1) == 1) {
             v2[v3] = 1;
             v4++;
         }
     }
 
     if (v4 == 0) {
-        *v7 = 0xffff;
+        *accessoryID = -1;
         return 0;
     }
 
     v5 = LCRNG_Next() % v4;
 
-    for (v3 = 0; v3 < (49 - 34 + 1); v3++) {
+    for (v3 = 0; v3 < (ACCESSORY_GLITTER_POWDER - ACCESSORY_PRETTY_DEWDROP + 1); v3++) {
         if (v2[v3] == 1) {
             if (v5 == 0) {
                 break;
@@ -6973,10 +6974,10 @@ static BOOL ScrCmd_26C(ScriptContext *ctx)
         }
     }
 
-    GF_ASSERT(v3 < (49 - 34 + 1));
+    GF_ASSERT(v3 < (ACCESSORY_GLITTER_POWDER - ACCESSORY_PRETTY_DEWDROP + 1));
 
-    v6 = 34 + v3;
-    *v7 = v6;
+    v6 = ACCESSORY_PRETTY_DEWDROP + v3;
+    *accessoryID = v6;
 
     return 0;
 }

@@ -532,7 +532,7 @@ _06CF:
     End
 
 _06DA:
-    SetVar 0x8004, 97
+    SetVar 0x8004, ACCESSORY_CROWN
     SetVar 0x8005, 1
     ScrCmd_1D3 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06C4
@@ -541,7 +541,7 @@ _06DA:
     End
 
 _0706:
-    SetVar 0x8004, 98
+    SetVar 0x8004, ACCESSORY_TIARA
     SetVar 0x8005, 1
     ScrCmd_1D3 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06C4

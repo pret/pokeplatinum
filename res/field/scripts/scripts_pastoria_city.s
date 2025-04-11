@@ -128,15 +128,15 @@ _0189:
     End
 
 _0194:
-    SetVar 0x8004, 93
+    SetVar 0x8004, ACCESSORY_CHIMCHAR_MASK
     Return
 
 _019C:
-    SetVar 0x8004, 94
+    SetVar 0x8004, ACCESSORY_PIPLUP_MASK
     Return
 
 _01A4:
-    SetVar 0x8004, 92
+    SetVar 0x8004, ACCESSORY_TURTWIG_MASK
     Return
 
 _01AC:

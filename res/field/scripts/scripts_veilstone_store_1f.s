@@ -109,15 +109,15 @@ _0109:
     End
 
 _0119:
-    SetVar 0x8004, 94
+    SetVar 0x8004, ACCESSORY_PIPLUP_MASK
     Return
 
 _0121:
-    SetVar 0x8004, 92
+    SetVar 0x8004, ACCESSORY_TURTWIG_MASK
     Return
 
 _0129:
-    SetVar 0x8004, 93
+    SetVar 0x8004, ACCESSORY_CHIMCHAR_MASK
     Return
 
     .byte 0
