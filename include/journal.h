@@ -120,7 +120,7 @@ void *JournalEntry_CreateEventInteraction(const u16 *playerName, u8 playerGender
 void *JournalEntry_CreateEventPlazaMinigame(int minigame, u32 heapID, u32 eventType);
 void JournalEntry_GetData(JournalEntry *journalEntry, void *dest, u8 dataType, u8 page);
 void JournalEntry_CreateAndSaveEventMapTransition(TrainerInfo *trainerInfo, JournalEntry *journalEntry, u32 currMapID, u32 prevMapID, u32 heapID);
-u32 sub_0202C6A4(u32 mapLabelTextID);
+u32 Journal_DoesBuildingUseExitedMessage(u32 mapLabelTextID);
 void JournalEntry_CreateAndSaveEventArrivedInLocation(JournalEntry *journalEntry, u32 mapID, u32 heapID);
 void JournalEntry_CreateAndSaveEventTrainer(JournalEntry *journalEntry, u16 mapID, u16 trainerID, u32 heapID);
 
