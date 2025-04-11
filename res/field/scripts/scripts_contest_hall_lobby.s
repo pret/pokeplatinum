@@ -35,7 +35,7 @@ _002E:
     BufferPlayerName 0
     Message 3
     Message 4
-    SetVar 0x8004, 49
+    SetVar 0x8004, ACCESSORY_GLITTER_POWDER
     SetVar 0x8005, 1
     CallCommonScript 0x7FF
     Message 5

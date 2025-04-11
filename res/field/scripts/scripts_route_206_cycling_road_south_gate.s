@@ -75,7 +75,7 @@ _00B0:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x012B, _00E5
-    SetVar 0x8004, 96
+    SetVar 0x8004, ACCESSORY_FLAG
     ScrCmd_261 0, 0x8004
     Message 3
     SetVar 0x8005, 1
