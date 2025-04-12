@@ -278,7 +278,7 @@ static void sub_020555CC(FieldSystem *fieldSystem, int param1, int *param2, int 
     }
 }
 
-u16 Trainer_GetEncounterBGM(enum TrainerId trainerID)
+u16 Trainer_GetEncounterBGM(enum TrainerID trainerID)
 {
     u8 class = (u8)Trainer_LoadParam(trainerID, TRDATA_CLASS);
     u16 i, bgmID = SEQ_EYE_KID;
