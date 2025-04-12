@@ -235,12 +235,12 @@ MailBox *SaveData_GetMailBox(SaveData *saveData)
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_MAILBOX);
 }
 
-int Mail_SaveSize(void)
+int MailBox_SaveSize(void)
 {
     return sizeof(Mail) * 20;
 }
 
-void Mail_Init(MailBox *param0)
+void MailBox_Init(MailBox *param0)
 {
     int v0 = 0;
 

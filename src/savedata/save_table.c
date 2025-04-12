@@ -61,7 +61,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_UNDERGROUND, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Underground_SaveSize, (SaveEntryInitFunc)Underground_Init },
     { SAVE_TABLE_ENTRY_REGULATION_BATTLES, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RegulationBattles_SaveSize, (SaveEntryInitFunc)RegulationBattles_Init },
     { SAVE_TABLE_ENTRY_IMAGE_CLIPS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ImageClip_SaveSize, (SaveEntryInitFunc)ImageClip_Init },
-    { SAVE_TABLE_ENTRY_MAILBOX, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Mail_SaveSize, (SaveEntryInitFunc)Mail_Init },
+    { SAVE_TABLE_ENTRY_MAILBOX, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MailBox_SaveSize, (SaveEntryInitFunc)MailBox_Init },
     { SAVE_TABLE_ENTRY_POFFINS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Poffin_SaveSize, (SaveEntryInitFunc)Poffin_Init },
     { SAVE_TABLE_ENTRY_RECORD_MIXED_RNG, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RecordMixedRNG_SaveSize, (SaveEntryInitFunc)RecordMixedRNG_Init },
     { SAVE_TABLE_ENTRY_JOURNAL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Journal_SaveSize, (SaveEntryInitFunc)Journal_Init10 },
