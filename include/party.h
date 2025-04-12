@@ -20,7 +20,7 @@ BOOL Party_RemovePokemonBySlotIndex(Party *party, int slot);
 int Party_GetCapacity(const Party *party);
 int Party_GetCurrentCount(const Party *party);
 Pokemon *Party_GetPokemonBySlotIndex(const Party *party, int slot);
-void sub_0207A128(Party *party, int slot, Pokemon *pokemon);
+void Party_AddPokemonBySlotIndex(Party *party, int slot, Pokemon *pokemon);
 BOOL Party_SwapSlots(Party *party, int slotA, int slotB);
 void Party_Copy(const Party *src, Party *dest);
 BOOL Party_HasSpecies(const Party *party, int species);

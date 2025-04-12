@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
+
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D8B54.h"
@@ -80,7 +82,7 @@ BOOL ov19_021DE3E8(UnkStruct_ov19_021DE3E8 **param0, UnkStruct_ov19_021D61B0 *pa
         v0->unk_14 = ov19_021D77D8(param1);
         v0->unk_18 = ov19_021D77F4(param1);
         v0->unk_34 = 0;
-        v0->unk_00 = (ov19_021D5E08(param2) == 3);
+        v0->unk_00 = (ov19_GetBoxMode(param2) == PC_MODE_MOVE_ITEMS);
 
         ov19_021DE450(v0);
         *param0 = v0;
@@ -207,9 +209,9 @@ static void ov19_021DE59C(UnkStruct_ov19_021DE3E8 *param0)
 
 static void ov19_021DE5D4(UnkStruct_ov19_021DE3E8 *param0)
 {
-    u32 v0 = ov19_021D5F7C(param0->unk_08);
+    u32 item = ov19_GetCursorItem(param0->unk_08);
 
-    if (v0 != 0) {
+    if (item != ITEM_NONE) {
         VecFx32 v1;
         u32 v2;
         int v3 = ov19_021DE538(param0, 3);
@@ -219,14 +221,14 @@ static void ov19_021DE5D4(UnkStruct_ov19_021DE3E8 *param0)
         v1.x += (0 << FX32_SHIFT);
         v1.y += (8 << FX32_SHIFT);
 
-        if (ov19_021D5E10(param0->unk_08) == 1) {
+        if (ov19_GetCursorLocation(param0->unk_08) == CURSOR_IN_PARTY) {
             v2 = 1;
         } else {
             v2 = 2;
         }
 
-        Graphics_LoadObjectTiles(16, Item_FileID(v0, 1), 0, Unk_ov19_021E04CC[v3].unk_00, 0, 0, HEAP_ID_10);
-        Graphics_LoadPalette(16, Item_FileID(v0, 2), 1, Unk_ov19_021E04CC[v3].unk_04 * 0x20, 0x20, HEAP_ID_10);
+        Graphics_LoadObjectTiles(16, Item_FileID(item, 1), 0, Unk_ov19_021E04CC[v3].unk_00, 0, 0, HEAP_ID_10);
+        Graphics_LoadPalette(16, Item_FileID(item, 2), 1, Unk_ov19_021E04CC[v3].unk_04 * 0x20, 0x20, HEAP_ID_10);
         Sprite_SetExplicitPriority(param0->unk_1C[v3], v2);
 
         ov19_021D78AC(param0->unk_1C[v3], 2);
@@ -241,17 +243,17 @@ static void ov19_021DE694(UnkStruct_ov19_021DE3E8 *param0, VecFx32 *param1, u32 
 {
     param1->z = 0;
 
-    if (ov19_021D5E10(param0->unk_08) == 1) {
+    if (ov19_GetCursorLocation(param0->unk_08) == CURSOR_IN_PARTY) {
         s32 v0, v1;
 
-        ov19_021DCD30(ov19_021D77E8(param0->unk_04), ov19_021D5E2C(param0->unk_08), &v0, &v1);
+        ov19_021DCD30(ov19_021D77E8(param0->unk_04), ov19_GetCursorPartyPosition(param0->unk_08), &v0, &v1);
 
         param1->x = (v0 + 10) << FX32_SHIFT;
         param1->y = (v1 + 8) << FX32_SHIFT;
         *param2 = 1;
     } else {
-        param1->x = 112 + ov19_021D7820(param0->unk_04) + ov19_021D5E14(param0->unk_08) * 24 + 10;
-        param1->y = 40 + ov19_021D5E1C(param0->unk_08) * 24 + 8;
+        param1->x = 112 + ov19_021D7820(param0->unk_04) + ov19_GetCursorBoxCol(param0->unk_08) * 24 + 10;
+        param1->y = 40 + ov19_GetCursorBoxRow(param0->unk_08) * 24 + 8;
         param1->x <<= FX32_SHIFT;
         param1->y <<= FX32_SHIFT;
         *param2 = 2;

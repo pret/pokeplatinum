@@ -39,6 +39,14 @@
 
 #define GENDER_INVALID -1
 
+enum CursorMovementState {
+    CURSOR_NO_MOVEMENT = 0,
+    CURSOR_MOVE,
+    CURSOR_STOP,
+    CURSOR_MOVE_TO_LEFT_BOX,
+    CURSOR_MOVE_TO_RIGHT_BOX
+};
+
 int ov19_021D0D80(OverlayManager *param0, int *param1);
 int ov19_021D0DEC(OverlayManager *param0, int *param1);
 int ov19_021D0E58(OverlayManager *param0, int *param1);
@@ -46,17 +54,17 @@ BOOL ov19_021D3B18(const UnkStruct_ov19_021D5DF8 *param0);
 BOOL ov19_021D3B20(const UnkStruct_ov19_021D5DF8 *param0);
 MessageLoader *ov19_GetBoxMessagesLoader(const UnkStruct_ov19_021D5DF8 *param0);
 const StringTemplate *ov19_021D5DF0(const UnkStruct_ov19_021D5DF8 *param0);
-int ov19_021D5DF8(const UnkStruct_ov19_021D5DF8 *param0);
-u32 ov19_021D5E08(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5E10(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5E14(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5E1C(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5E24(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5E2C(const UnkStruct_ov19_021D4DF0 *param0);
-BOOL ov19_021D5E34(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5E38(const UnkStruct_ov19_021D4DF0 *param0);
-BOOL ov19_021D5E3C(const UnkStruct_ov19_021D4DF0 *param0);
-BOOL ov19_021D5E4C(const UnkStruct_ov19_021D4DF0 *param0);
+int ov19_GetOptionsFrame(const UnkStruct_ov19_021D5DF8 *param0);
+enum BoxMode ov19_GetBoxMode(const UnkStruct_ov19_021D4DF0 *param0);
+enum CursorLocation ov19_GetCursorLocation(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetCursorBoxCol(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetCursorBoxRow(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetCursorBoxPosition(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetCursorPartyPosition(const UnkStruct_ov19_021D4DF0 *param0);
+BOOL ov19_IsMonUnderCursor(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetPreviewMonSource(const UnkStruct_ov19_021D4DF0 *param0);
+BOOL ov19_GetCursorMonIsPartyMon(const UnkStruct_ov19_021D4DF0 *param0);
+BOOL ov19_IsMonAvailableToCursor(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetCurrentBox(const UnkStruct_ov19_021D4DF0 *param0);
 const PCMonPreview *ov19_GetPCMonPreview(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetPreviewedMonHeldItem(const UnkStruct_ov19_021D4DF0 *param0);
@@ -69,14 +77,14 @@ u32 ov19_021D5EA8(const UnkStruct_ov19_021D4DF0 *param0);
 s32 ov19_021D5EB0(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5EB8(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5EC0(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5EC8(const UnkStruct_ov19_021D4DF0 *param0);
-BOOL ov19_021D5EE0(const UnkStruct_ov19_021D4DF0 *param0);
-void ov19_021D5EE8(const UnkStruct_ov19_021D4DF0 *param0, u32 *param1, u32 *param2, u32 *param3, u32 *param4);
-BOOL ov19_021D5F20(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5F3C(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5F6C(const UnkStruct_ov19_021D4DF0 *param0, u32 param1);
-u32 ov19_021D5F7C(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5F88(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetMonSpriteTransparencyMask(const UnkStruct_ov19_021D4DF0 *param0);
+BOOL ov19_IsCursorFastMode(const UnkStruct_ov19_021D4DF0 *param0);
+void ov19_GetMultiSelectBoundingBox(const UnkStruct_ov19_021D4DF0 *param0, u32 *leftCol, u32 *rightCol, u32 *topCol, u32 *bottomCol);
+BOOL ov19_IsMultiSelectSingleSelect(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetMultiSelectTopLeftPos(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetRelativeMonPosInMultiSelection(const UnkStruct_ov19_021D4DF0 *param0, u32 param1);
+u32 ov19_GetCursorItem(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetCursorOrPreviewedItem(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5F9C(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5FA4(const UnkStruct_ov19_021D4DF0 *param0);
 const PCCompareMon *GetCompareMonFrom(const UnkStruct_ov19_021D4DF0 *param0, int compareSlot);
