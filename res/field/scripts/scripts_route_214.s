@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    ScrCmd_284 0x4000
+    GetUnownFormsSeenCount 0x4000
     GoToIfGe 0x4000, 26, _003F
     GoToIfGe 0x4000, 10, _0051
     GoToIfLt 0x4000, 10, _0063
@@ -31,7 +31,7 @@ _0063:
     End
 
 _0075:
-    ScrCmd_284 0x4000
+    GetUnownFormsSeenCount 0x4000
     GoToIfGe 0x4000, 26, _003F
     GoToIfGe 0x4000, 10, _0051
     GoToIfLt 0x4000, 10, _0063

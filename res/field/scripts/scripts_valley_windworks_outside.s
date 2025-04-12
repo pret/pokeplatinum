@@ -141,7 +141,7 @@ _01BF:
     PlayCry SPECIES_DRIFLOON
     Message 8
     CloseMessage
-    ScrCmd_04D
+    WaitCry
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_DRIFLOON, 15
     ClearFlag FLAG_UNK_0x008E

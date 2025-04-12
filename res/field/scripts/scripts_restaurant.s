@@ -29,7 +29,7 @@
 
 _0058:
     SetFlag FLAG_UNK_0x09EE
-    ScrCmd_268 0x4000
+    GetHour 0x4000
     GoToIfLt 0x4000, 9, _0087
     GoToIfGe 0x4000, 23, _0087
     GoToIfUnset FLAG_UNK_0x0AAB, _00B3

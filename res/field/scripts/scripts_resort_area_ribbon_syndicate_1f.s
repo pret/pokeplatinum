@@ -210,7 +210,7 @@ _02BA:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_SKITTY
     Message 18
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -223,7 +223,7 @@ _02D9:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PSYDUCK
     Message 19
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

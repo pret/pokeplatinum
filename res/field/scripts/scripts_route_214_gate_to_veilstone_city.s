@@ -28,7 +28,7 @@ _0068:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_284 0x4000
+    GetUnownFormsSeenCount 0x4000
     GoToIfGe 0x4000, 26, _008C
     Message 1
     WaitABXPadPress

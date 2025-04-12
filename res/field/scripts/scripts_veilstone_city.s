@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city.h"
-#include "constants/forms.h"
 
     .data
 
@@ -1440,7 +1439,7 @@ VeilstoneCity_DeoxysMeteoriteSpeed:
     PlayCry SPECIES_DEOXYS
     Message VeilstoneCity_Text_MeteoriteSpeed
     WaitABXPadPress
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ReleaseAll
     End
@@ -1454,7 +1453,7 @@ VeilstoneCity_DeoxysMeteoriteDefense:
     PlayCry SPECIES_DEOXYS
     Message VeilstoneCity_Text_MeteoriteDefense
     WaitABXPadPress
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ReleaseAll
     End
@@ -1468,7 +1467,7 @@ VeilstoneCity_DeoxysMeteoriteAttack:
     PlayCry SPECIES_DEOXYS
     Message VeilstoneCity_Text_MeteoriteAttack
     WaitABXPadPress
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ReleaseAll
     End
@@ -1482,7 +1481,7 @@ VeilstoneCity_DeoxysMeteoriteNormal:
     PlayCry SPECIES_DEOXYS
     Message VeilstoneCity_Text_MeteoriteNormal
     WaitABXPadPress
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ReleaseAll
     End

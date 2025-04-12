@@ -46,7 +46,7 @@ _0081:
     Message 2
     CloseMessage
     PlayCry SPECIES_REGIGIGAS
-    ScrCmd_04D
+    WaitCry
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_REGIGIGAS, 1
     ClearFlag FLAG_UNK_0x008E

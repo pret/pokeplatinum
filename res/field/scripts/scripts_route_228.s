@@ -10,7 +10,7 @@
 
 _0012:
     CallIfNe 0x406B, 0x122, _003F
-    ScrCmd_32B 0x4001
+    CheckPartyHasFatefulEncounterRegigigas 0x4001
     GoToIfEq 0x4001, 0, _0067
     GoToIfEq 0x4001, 1, _0071
     End
@@ -20,7 +20,7 @@ _003F:
     Return
 
 _0047:
-    ScrCmd_32B 0x4001
+    CheckPartyHasFatefulEncounterRegigigas 0x4001
     GoToIfEq 0x4001, 0, _0067
     GoToIfEq 0x4001, 1, _0071
     End

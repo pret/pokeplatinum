@@ -127,7 +127,7 @@ _011C:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PACHIRISU
     Message 22
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -594,13 +594,13 @@ _0820:
     ApplyMovement 31, _0884
     WaitMovement
     PlayCry SPECIES_BUNEARY
-    ScrCmd_04D
+    WaitCry
     ApplyMovement 32, _0894
     WaitMovement
     Message 0
     Message 1
     PlayCry SPECIES_BUNEARY
-    ScrCmd_04D
+    WaitCry
     RemoveObject 31
     Message 2
     CloseMessage

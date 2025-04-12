@@ -35,7 +35,6 @@ static void Sound_Impl_ResetBGM(void);
 void Sound_StopAll(void);
 static void Sound_Impl_SetPokemonCryVolume(u16 param0, enum SoundHandleType param1, int param2);
 void Sound_StopPokemonCries(int param0);
-BOOL Sound_IsPokemonCryPlaying(void);
 void Sound_SetPokemonCryDuration(int param0, int heapID);
 static void Sound_Impl_CryDurationTask(SysTask *param0, void *param1);
 void Sound_Impl_DestroyCryDurationTask(void);

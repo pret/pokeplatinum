@@ -37,7 +37,7 @@ _0056:
     Call _00E9
     Call _0104
     PlayCry SPECIES_ARCEUS
-    ScrCmd_04D
+    WaitCry
     Call _016F
     PlayCry SPECIES_ARCEUS
     Message 0
