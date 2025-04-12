@@ -593,12 +593,12 @@ void ov5_021E00EC(FieldTask *taskMan, int param1, int param2)
     ov5_021E00B0(fieldSystem, param1, &v0);
 }
 
-int ov5_021E0118(PlayerAvatar *playerAvatar, u32 param1, u32 param2)
+int PlayerAvatar_CanUseSurf(PlayerAvatar *playerAvatar, u32 currTileBehavior, u32 nextTileBehavior)
 {
     MapObject *v0 = Player_MapObject(playerAvatar);
 
-    if (TileBehavior_IsSurfable(param2) == 1) {
-        if ((TileBehavior_IsBridge(param1) == 1) || (TileBehavior_IsBridgeStart(param1) == 1)) {
+    if (TileBehavior_IsSurfable(nextTileBehavior) == TRUE) {
+        if ((TileBehavior_IsBridge(currTileBehavior) == TRUE) || (TileBehavior_IsBridgeStart(currTileBehavior) == TRUE)) {
             if (sub_02062F30(v0) == 1) {
                 return 0;
             }
@@ -974,24 +974,24 @@ void ov5_021E0734(FieldTask *param0, int param1, int param2)
     ov5_021E06F8(fieldSystem, param1, &v0);
 }
 
-int ov5_021E0760(u32 param0, int param1)
+BOOL PlayerAvatar_CanUseRockClimb(u32 metatileBehavior, int facingDir)
 {
-    switch (param1) {
-    case 0:
-    case 1:
-        if (TileBehavior_IsRockClimbNorthSouth(param0) == 1) {
-            return 1;
+    switch (facingDir) {
+    case DIR_NORTH:
+    case DIR_SOUTH:
+        if (TileBehavior_IsRockClimbNorthSouth(metatileBehavior) == 1) {
+            return TRUE;
         }
         break;
-    case 2:
-    case 3:
-        if (TileBehavior_IsRockClimbEastWest(param0) == 1) {
-            return 1;
+    case DIR_WEST:
+    case DIR_EAST:
+        if (TileBehavior_IsRockClimbEastWest(metatileBehavior) == 1) {
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov5_021E07A0(FieldTask *param0)
@@ -1082,10 +1082,10 @@ static int ov5_021E08C0(UnkStruct_ov5_021F9B54 *param0)
     }
 
     {
-        int v0 = MapObject_GetMovingDir(param0->unk_14);
-        u8 v1 = MapObject_GetTileBehaviorFromDir(param0->unk_14, v0);
+        int facingDir = MapObject_GetMovingDir(param0->unk_14);
+        u8 metatileBehaviour = MapObject_GetTileBehaviorFromDir(param0->unk_14, facingDir);
 
-        if (ov5_021E0760(v1, v0) == 1) {
+        if (PlayerAvatar_CanUseRockClimb(metatileBehaviour, facingDir) == TRUE) {
             param0->unk_00 = 5;
             return 1 + 1;
         }
