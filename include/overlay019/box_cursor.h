@@ -17,7 +17,7 @@ enum CursorLocation {
     CURSOR_ON_CLOSE_BUTTON
 };
 
-typedef struct {
+typedef struct BoxCursor {
     void *mon;
     u8 cursorLocation;
     s8 boxCol;

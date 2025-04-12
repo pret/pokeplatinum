@@ -1,9 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_BOX_MON_SELECTION_H
 #define POKEPLATINUM_STRUCT_BOX_MON_SELECTION_H
 
+#include "pc_boxes.h"
 #include "pokemon.h"
 
-typedef struct {
+typedef struct BoxMonSelection {
     BoxPokemon *boxMon;
     u8 selectionStartCol;
     u8 selectionStartRow;
@@ -13,7 +14,7 @@ typedef struct {
     u8 origSelectionTopLeftPos;
     u8 unused;
     u8 cursorMonIsPartyMon;
-    s8 selectedMonsOrigBoxPos[30];
+    s8 selectedMonsOrigBoxPos[MAX_MONS_PER_BOX];
     u8 padding_2A[2];
 } BoxMonSelection;
 

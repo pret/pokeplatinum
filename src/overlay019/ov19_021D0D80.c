@@ -2431,7 +2431,7 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         POCKET_BERRIES,
         POCKET_BATTLE_ITEMS,
         POCKET_KEY_ITEMS,
-        ITEM_RETURN_ID
+        -1
     };
     static u32 item;
 

@@ -9,7 +9,7 @@ enum BoxMode {
     PC_MODE_COMPARE
 };
 
-typedef struct {
+typedef struct BoxSettings {
     u8 boxMode;
     u8 isCursorFastMode;
     u16 monSpriteTransparencyMask;
