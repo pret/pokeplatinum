@@ -2974,10 +2974,10 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_217 arg0, arg1
+    .macro CalcAmitySquareFoundAccessory destFoundAccessoryID, followerSpecies
     .short 535
-    .short \arg0
-    .short \arg1
+    .short \destFoundAccessoryID
+    .short \followerSpecies
     .endm
 
     .macro ScrCmd_218 arg0
@@ -3455,9 +3455,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_26C arg0
+    .macro TryGetRandomMassageGirlAccessory destAccessoryID
     .short 620
-    .short \arg0
+    .short \destAccessoryID
     .endm
 
     .macro ScrCmd_26D arg0
@@ -4095,9 +4095,9 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_2DF arg0
+    .macro CalcAmitySquareBerryAndAccessoryManOptionID destBerryAndAccessoryManOptionID
     .short 735
-    .short \arg0
+    .short \destBerryAndAccessoryManOptionID
     .endm
 
     .macro ScrCmd_2E0 arg0, arg1
@@ -4106,10 +4106,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_2E1 arg0, arg1
+    .macro GetAmitySquareBerryOrAccessoryIDFromMan berryAndAccessoryManOptionID, destBerryOrAccessoryID
     .short 737
-    .short \arg0
-    .short \arg1
+    .short \berryAndAccessoryManOptionID
+    .short \destBerryOrAccessoryID
     .endm
 
     .macro ScrCmd_2E2

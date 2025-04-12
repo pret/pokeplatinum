@@ -53,7 +53,7 @@
 _00B6:
     SetFlag FLAG_UNK_0x09CC
     SetFlag FLAG_UNK_0x02A1
-    ScrCmd_2DF 0x40AB
+    CalcAmitySquareBerryAndAccessoryManOptionID 0x40AB
     GetRandom 0x4002, 5
     GoToIfEq 0x4002, 0, _00FE
     GoToIfEq 0x4002, 1, _0108
@@ -305,7 +305,7 @@ _03DC:
     GetRandom 0x800C, 5
     CallIfEq 0x800C, 0, _040A
     CallIfNe 0x800C, 0, _0412
-    ScrCmd_217 0x409C, 0x409A
+    CalcAmitySquareFoundAccessory 0x409C, 0x409A
     GoTo _041A
     End
 
@@ -999,7 +999,7 @@ _10AA:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AB5, _117C
     Message 36
-    ScrCmd_2E1 0x40AB, 0x8004
+    GetAmitySquareBerryOrAccessoryIDFromMan 0x40AB, 0x8004
     ScrCmd_2E0 0x40AB, 0x800C
     GoToIfEq 0x800C, 0, _10E1
     GoTo _1136
