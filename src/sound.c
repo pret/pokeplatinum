@@ -487,7 +487,7 @@ static void Sound_Impl_PlayCutsceneBGM(u8 scene, u16 bgmID, int unused)
     Sound_PlayBGM(bgmID);
 }
 
-void Sound_PauseOrStopFieldBGMAndPlayNewBGM(u16 bgmID)
+void Sound_SwapBGM(u16 bgmID)
 {
     BOOL v0;
     SoundSystem *v1 = SoundSystem_Get();

@@ -320,7 +320,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
             sub_02005464(0);
             Sound_SetScene(SOUND_SCENE_NONE);
 
-            bgmID = sub_02055428(param0->fieldSystem, param0->fieldSystem->location->mapId);
+            bgmID = Sound_GetOverrideBGM(param0->fieldSystem, param0->fieldSystem->location->mapId);
 
             Sound_SetFieldBGM(Sound_GetBGMByMapID(param0->fieldSystem, param0->fieldSystem->location->mapId));
             Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);

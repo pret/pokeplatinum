@@ -84,7 +84,7 @@ metang_generators = {
     'species': { 'type': 'enum', 'tag': 'Species' },
     'species_data_params': { 'type': 'enum', 'tag': 'SpeciesDataParam' },
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
-    'trainers': { 'type': 'enum', 'tag': 'Trainer' },
+    'trainers': { 'type': 'enum', 'tag': 'TrainerId' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
     'trainer_types': { 'type': 'enum', 'tag': 'TrainerType' },

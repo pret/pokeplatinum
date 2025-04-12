@@ -259,7 +259,7 @@ BOOL ScrCmd_PlayTrainerEncounterBGM(ScriptContext *ctx)
 {
     u16 trainerID = ScriptContext_GetVar(ctx);
 
-    Sound_PauseOrStopFieldBGMAndPlayNewBGM(Trainer_GetEncounterBGM(trainerID));
+    Sound_SwapBGM(Trainer_GetEncounterBGM(trainerID));
     return TRUE;
 }
 

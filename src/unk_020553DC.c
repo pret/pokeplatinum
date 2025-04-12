@@ -137,7 +137,7 @@ void Sound_ClearSpecialBGM(FieldSystem *fieldSystem)
     *bgm = 0;
 }
 
-u16 sub_02055428(FieldSystem *fieldSystem, int mapID)
+u16 Sound_GetOverrideBGM(FieldSystem *fieldSystem, enum MapHeader mapID)
 {
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
     int playerState = PlayerAvatar_GetPlayerState(playerAvatar);
@@ -278,7 +278,7 @@ static void sub_020555CC(FieldSystem *fieldSystem, int param1, int *param2, int 
     }
 }
 
-u16 Trainer_GetEncounterBGM(int trainerID)
+u16 Trainer_GetEncounterBGM(enum TrainerId trainerID)
 {
     u8 class = (u8)Trainer_LoadParam(trainerID, TRDATA_CLASS);
     u16 i, bgmID = SEQ_EYE_KID;
@@ -322,7 +322,7 @@ void Sound_PlayMapBGM(FieldSystem *fieldSystem, int mapID)
 
 void sub_020556A0(FieldSystem *fieldSystem, int mapID)
 {
-    u16 bgmID = sub_02055428(fieldSystem, mapID);
+    u16 bgmID = Sound_GetOverrideBGM(fieldSystem, mapID);
 
     Sound_SetFieldBGM(Sound_GetBGMByMapID(fieldSystem, mapID));
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);

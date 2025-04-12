@@ -4712,7 +4712,7 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 0));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
         Sound_SetSpecialBGM(ctx->fieldSystem, 0);
-        sub_02055554(ctx->fieldSystem, sub_02055428(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
+        sub_02055554(ctx->fieldSystem, Sound_GetOverrideBGM(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
     }
 
     return FALSE;
