@@ -285,7 +285,7 @@ static BOOL ov23_02254C84(FieldTask *param0)
             UndergroundData *v3;
             int v4;
 
-            v3 = sub_020298B0(fieldSystem->saveData);
+            v3 = SaveData_GetUndergroundData(fieldSystem->saveData);
             v4 = sub_020289A0(v3);
 
             if (v4 == 0) {
@@ -366,7 +366,7 @@ static BOOL ov23_02254DF8(FieldTask *param0)
             int v9;
             UndergroundData *v10;
 
-            v10 = sub_020298B0(v6->fieldSystem->saveData);
+            v10 = SaveData_GetUndergroundData(v6->fieldSystem->saveData);
             v8 = ov23_022545D8(v6->unk_508);
 
             if (v8 == 0xfffffffe) {
@@ -469,7 +469,7 @@ static BOOL ov23_02254DF8(FieldTask *param0)
                 int v17;
                 UndergroundData *v18;
 
-                v18 = sub_020298B0(v6->fieldSystem->saveData);
+                v18 = SaveData_GetUndergroundData(v6->fieldSystem->saveData);
                 v17 = ov23_02255B78(&v6->unk_3C, v6->unk_5C);
                 v16 = ov23_022545D8(v6->unk_508);
 
@@ -667,7 +667,7 @@ static BOOL ov23_02255100(FieldTask *param0)
                     } else {
                         UndergroundData *v17;
 
-                        v17 = sub_020298B0(v7->fieldSystem->saveData);
+                        v17 = SaveData_GetUndergroundData(v7->fieldSystem->saveData);
 
                         Sound_PlayEffect(SEQ_SE_DP_BOX02);
                         sub_02028B20(v17, v16);

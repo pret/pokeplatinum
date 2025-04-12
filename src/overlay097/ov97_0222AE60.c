@@ -620,19 +620,19 @@ static BOOL ov97_0222B768(void *param0, int param1, UnkStruct_ov97_02237808 *par
 
     switch (v1->agbGameType - 1) {
     case AGB_TYPE_RUBY:
-        v0 = main_menu_migrate_from_ruby;
+        v0 = MainMenu_Text_MigrateFromRuby;
         break;
     case AGB_TYPE_SAPPHIRE:
-        v0 = main_menu_migrate_from_sapphire;
+        v0 = MainMenu_Text_MigrateFromSapphire;
         break;
     case AGB_TYPE_LEAFGREEN:
-        v0 = main_menu_migrate_from_leafgreen;
+        v0 = MainMenu_Text_MigrateFromLeafgreen;
         break;
     case AGB_TYPE_FIRERED:
-        v0 = main_menu_migrate_from_firered;
+        v0 = MainMenu_Text_MigrateFromFirered;
         break;
     case AGB_TYPE_EMERALD:
-        v0 = main_menu_migrate_from_emerald;
+        v0 = MainMenu_Text_MigrateFromEmerald;
         break;
     }
 

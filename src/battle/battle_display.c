@@ -6202,7 +6202,7 @@ static BOOL ov16_02264650(UnkStruct_ov16_02264650_1 *param0, ManagedSprite *para
     int v1;
     BOOL v2 = 0;
 
-    v1 = ManagedSprite_SetUserAttrForCurrentAnimFrame(param0->unk_08);
+    v1 = ManagedSprite_GetUserAttrForCurrentAnimFrame(param0->unk_08);
 
     switch (v1) {
     case 1:

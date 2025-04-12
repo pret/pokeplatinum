@@ -14,7 +14,7 @@ void RegulationBattles_Init(UnkStruct_02026030 *param0);
 void sub_0202604C(const BattleRegulation *param0, Strbuf *param1);
 Strbuf *sub_0202605C(const BattleRegulation *param0, int heapID);
 int sub_02026074(const BattleRegulation *param0, int param1);
-BattleRegulation *sub_0202610C(SaveData *param0, int param1);
-void sub_0202613C(SaveData *param0, const BattleRegulation *param1);
+BattleRegulation *sub_0202610C(SaveData *saveData, int param1);
+void sub_0202613C(SaveData *saveData, const BattleRegulation *param1);
 
 #endif // POKEPLATINUM_UNK_0202602C_H

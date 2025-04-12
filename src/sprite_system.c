@@ -1133,7 +1133,7 @@ void ManagedSprite_SetExplicitOamMode(ManagedSprite *managedSprite, GXOamMode mo
     Sprite_SetExplicitOamMode2(managedSprite->sprite, mode);
 }
 
-u32 ManagedSprite_SetUserAttrForCurrentAnimFrame(ManagedSprite *managedSprite)
+u32 ManagedSprite_GetUserAttrForCurrentAnimFrame(ManagedSprite *managedSprite)
 {
     return Sprite_GetUserAttrForCurrentAnimFrame(managedSprite->sprite);
 }

@@ -21,10 +21,9 @@ void WiFiQuestion_Init(UnkStruct_02030EC4 *param0)
     param0->unk_00 = 0xffffffff;
 }
 
-UnkStruct_02030EC4 *sub_02030EC4(SaveData *param0)
+UnkStruct_02030EC4 *sub_02030EC4(SaveData *saveData)
 {
-    UnkStruct_02030EC4 *v0 = SaveData_SaveTable(param0, 36);
-    return v0;
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_WIFI_QUESTIONS);
 }
 
 u32 sub_02030ED0(const UnkStruct_02030EC4 *param0)

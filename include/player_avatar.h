@@ -28,7 +28,7 @@ MapObject *sub_0205EA24(const MapObjectManager *param0);
 int PlayerAvatar_GetDir(PlayerAvatar *const playerAvatar);
 void Player_SetDir(PlayerAvatar *playerAvatar, int param1);
 int PlayerAvatar_GetMoveDir(PlayerAvatar *const playerAvatar);
-int sub_0205EAA0(PlayerAvatar *const playerAvatar);
+int PlayerAvatar_GetDistortionDir(PlayerAvatar *const playerAvatar);
 int Player_GetXPos(PlayerAvatar *const playerAvatar);
 int Player_GetZPos(PlayerAvatar *const playerAvatar);
 int PlayerAvatar_XPosPrev(PlayerAvatar *const playerAvatar);

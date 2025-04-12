@@ -13,7 +13,7 @@ void sub_0202E858(UnkStruct_0202E858 *param0);
 BOOL sub_0202E870(UnkStruct_0202E858 *param0);
 int Rankings_SaveSize(void);
 void Rankings_Init(UnkStruct_0202E8C0 *param0);
-UnkStruct_0202E8C0 *sub_0202E8C0(SaveData *param0);
+UnkStruct_0202E8C0 *sub_0202E8C0(SaveData *saveData);
 void sub_0202E8D4(UnkStruct_0202E8C0 *param0, int param1, u8 param2);
 int sub_0202E91C(void);
 void *sub_0202E9FC(SaveData *param0, int heapID);

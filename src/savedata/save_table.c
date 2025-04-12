@@ -88,26 +88,26 @@ const SaveTableEntry gSaveTable[] = {
 
 const int gSaveTableSize = NELEMS(gSaveTable);
 
-TVBroadcast *SaveData_GetTVBroadcast(SaveData *save)
+TVBroadcast *SaveData_GetTVBroadcast(SaveData *saveData)
 {
     SaveData_Checksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
-    return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_TV_BROADCAST);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-PCBoxes *SaveData_GetPCBoxes(SaveData *save)
+PCBoxes *SaveData_GetPCBoxes(SaveData *saveData)
 {
-    return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_PC_BOXES);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PC_BOXES);
 }
 
-MysteryGift *SaveData_GetMysteryGift(SaveData *save)
+MysteryGift *SaveData_GetMysteryGift(SaveData *saveData)
 {
     SaveData_Checksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
-    return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_MYSTERY_GIFT);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 }
 
-PalParkTransfer *SaveData_GetPalParkTransfer(SaveData *save)
+PalParkTransfer *SaveData_GetPalParkTransfer(SaveData *saveData)
 {
-    return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER);
 }
 
 const SaveTableEntry gExtraSaveTable[] = {
@@ -121,34 +121,34 @@ const SaveTableEntry gExtraSaveTable[] = {
 
 const int gExtraSaveTableSize = NELEMS(gExtraSaveTable);
 
-HallOfFame *SaveData_HallOfFame(SaveData *save, int heapID, int *resultCode)
+HallOfFame *SaveData_HallOfFame(SaveData *saveData, int heapID, int *resultCode)
 {
-    return SaveDataExtra_Get(save, heapID, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, resultCode);
+    return SaveDataExtra_Get(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, resultCode);
 }
 
-int SaveData_SaveHallOfFame(SaveData *save, HallOfFame *hof)
+int SaveData_SaveHallOfFame(SaveData *saveData, HallOfFame *hof)
 {
-    return SaveDataExtra_Save(save, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, hof);
+    return SaveDataExtra_Save(saveData, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, hof);
 }
 
-BattleRecording *SaveData_BattleRecording(SaveData *save, int heapID, int *resultCode, int recNum)
+BattleRecording *SaveData_BattleRecording(SaveData *saveData, int heapID, int *resultCode, int recNum)
 {
     BOOL tmp;
-    return SaveDataExtra_Mirror(save, heapID, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, resultCode, &tmp);
+    return SaveDataExtra_Mirror(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, resultCode, &tmp);
 }
 
-int SaveData_SaveBattleRecording(SaveData *save, BattleRecording *rec, int recNum)
+int SaveData_SaveBattleRecording(SaveData *saveData, BattleRecording *rec, int recNum)
 {
-    return SaveDataExtra_SaveMirror(save, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, rec);
+    return SaveDataExtra_SaveMirror(saveData, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, rec);
 }
 
-BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *save, int heapID, int *resultCode)
+BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *saveData, int heapID, int *resultCode)
 {
     BOOL tmp;
-    return SaveDataExtra_Mirror(save, heapID, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, resultCode, &tmp);
+    return SaveDataExtra_Mirror(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, resultCode, &tmp);
 }
 
-int SaveData_SaveBattleFrontierStage(SaveData *save, BattleFrontierStage *frontier)
+int SaveData_SaveBattleFrontierStage(SaveData *saveData, BattleFrontierStage *frontier)
 {
-    return SaveDataExtra_SaveMirror(save, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, frontier);
+    return SaveDataExtra_SaveMirror(saveData, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, frontier);
 }

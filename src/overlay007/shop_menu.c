@@ -257,7 +257,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         shopMenu->destInventory = SaveData_GetBag(fieldSystem->saveData);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
-        shopMenu->destInventory = sub_020298B0(fieldSystem->saveData);
+        shopMenu->destInventory = SaveData_GetUndergroundData(fieldSystem->saveData);
     } else {
         shopMenu->destInventory = sub_0202CA1C(fieldSystem->saveData);
     }

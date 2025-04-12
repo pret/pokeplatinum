@@ -351,7 +351,7 @@ u16 sub_0206BDBC(SaveData *param0)
         return 0;
     }
 
-    v2 = sub_020298B0(param0);
+    v2 = SaveData_GetUndergroundData(param0);
 
     if (!v4) {
         if (sub_02028984(v2, 85)) {
