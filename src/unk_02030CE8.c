@@ -29,17 +29,17 @@ void Email_Init(UnkStruct_02030CEC *param0)
     memset(param0->unk_00, '\0', (50 + 1));
     param0->unk_34 = 1;
 
-    SaveData_SetChecksum(35);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 }
 
-void sub_02030D10(SaveData *param0)
+void sub_02030D10(SaveData *saveData)
 {
-    Email_Init(SaveData_SaveTable(param0, 35));
+    Email_Init(SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL));
 }
 
 BOOL sub_02030D20(SaveData *saveData)
 {
-    UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, 35);
+    UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
 
     if (v0->unk_00[0] == '\0') {
         return 0;
@@ -48,23 +48,23 @@ BOOL sub_02030D20(SaveData *saveData)
     return 1;
 }
 
-void sub_02030D38(SaveData *param0, const char *param1)
+void sub_02030D38(SaveData *saveData, const char *param1)
 {
-    UnkStruct_02030CEC *v0 = SaveData_SaveTable(param0, 35);
+    UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
 
     strcpy(v0->unk_00, param1);
-    SaveData_SetChecksum(35);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 }
 
-char *sub_02030D50(SaveData *param0)
+char *sub_02030D50(SaveData *saveData)
 {
-    UnkStruct_02030CEC *v0 = SaveData_SaveTable(param0, 35);
+    UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
     return v0->unk_00;
 }
 
-void sub_02030D5C(SaveData *param0, int param1, u32 param2)
+void sub_02030D5C(SaveData *saveData, int param1, u32 param2)
 {
-    UnkStruct_02030CEC *v0 = SaveData_SaveTable(param0, 35);
+    UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
 
     switch (param1) {
     case 0:
@@ -81,12 +81,12 @@ void sub_02030D5C(SaveData *param0, int param1, u32 param2)
         break;
     }
 
-    SaveData_SetChecksum(35);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 }
 
-u32 sub_02030D98(SaveData *param0, int param1)
+u32 sub_02030D98(SaveData *saveData, int param1)
 {
-    UnkStruct_02030CEC *v0 = SaveData_SaveTable(param0, 35);
+    UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
 
     switch (param1) {
     case 0:
@@ -122,7 +122,7 @@ static void sub_02030DD0(SaveData *param0, UnkStruct_ov96_0223B574 *param1)
     strcpy(param1->unk_1C, v2);
     param1->unk_54 = sub_02030D98(param0, 0);
 
-    SaveData_SetChecksum(35);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 }
 
 u32 sub_02030E48(SaveData *param0, UnkStruct_ov96_0223B574 *param1)
@@ -136,19 +136,19 @@ u32 sub_02030E48(SaveData *param0, UnkStruct_ov96_0223B574 *param1)
     param1->unk_58 = v0;
     param1->unk_5A = 0xffff;
 
-    SaveData_SetChecksum(35);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 
     return v0;
 }
 
-void sub_02030E78(SaveData *param0, UnkStruct_ov96_0223B574 *param1)
+void sub_02030E78(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
 {
-    UnkStruct_02030CEC *v0 = SaveData_SaveTable(param0, 35);
+    UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
 
-    sub_02030DD0(param0, param1);
+    sub_02030DD0(saveData, param1);
 
     param1->unk_58 = v0->unk_38;
     param1->unk_5A = v0->unk_3A;
 
-    SaveData_SetChecksum(35);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 }

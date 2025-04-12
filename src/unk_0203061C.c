@@ -33,9 +33,9 @@ void Frontier_Init(UnkStruct_0203068C *param0)
     return;
 }
 
-UnkStruct_0203068C *sub_0203068C(SaveData *param0)
+UnkStruct_0203068C *sub_0203068C(SaveData *saveData)
 {
-    return SaveData_SaveTable(param0, 23);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
 }
 
 u16 sub_02030698(UnkStruct_0203068C *param0, int param1, int param2)

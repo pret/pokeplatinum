@@ -230,9 +230,9 @@ void sub_0202841C(Mail *param0, Sentence *param1, u8 param2)
     sub_02014CC0(&param0->unk_20[param2], param1);
 }
 
-UnkStruct_02028430 *sub_02028430(SaveData *param0)
+UnkStruct_02028430 *sub_02028430(SaveData *saveData)
 {
-    return SaveData_SaveTable(param0, 15);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_MAIL);
 }
 
 int Mail_SaveSize(void)

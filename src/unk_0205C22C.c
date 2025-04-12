@@ -65,7 +65,7 @@ UnkStruct_0205C22C *sub_0205C22C(UnkStruct_0205B43C *param0)
     v0->unk_47C = 1;
     v0->unk_04 = SysTask_Start(sub_0205C304, v0, 11);
     v0->fieldSystem = sub_0205B770(param0);
-    v0->unk_474 = SaveData_SaveTable(v0->fieldSystem->saveData, 9);
+    v0->unk_474 = SaveData_SaveTable(v0->fieldSystem->saveData, SAVE_TABLE_ENTRY_PAL_PAD);
     v0->playerAvatar = v0->fieldSystem->playerAvatar;
 
     Heap_CreateAtEnd(HEAP_ID_FIELDMAP, HEAP_ID_89, 10000);

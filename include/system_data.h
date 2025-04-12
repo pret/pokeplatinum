@@ -29,7 +29,7 @@ typedef struct SystemData {
 
 int SystemData_SaveSize(void);
 void SystemData_Clear(SystemData *systemData);
-SystemData *SaveData_GetSystemData(SaveData *systemData);
+SystemData *SaveData_GetSystemData(SaveData *saveData);
 GameTime *SaveData_GetGameTime(SaveData *saveData);
 void SystemData_Init(SystemData *systemData);
 BOOL SystemData_MatchesCurrentSystem(const SystemData *systemData);

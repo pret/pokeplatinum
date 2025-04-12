@@ -8,7 +8,7 @@
 
 int TrainerCard_SaveSize(void);
 void TrainerCard_Init(UnkStruct_0202C834 *param0);
-UnkStruct_0202C834 *sub_0202C834(SaveData *param0);
+UnkStruct_0202C834 *sub_0202C834(SaveData *saveData);
 u8 *sub_0202C840(UnkStruct_0202C834 *param0);
 UnkStruct_0202C844 *sub_0202C844(UnkStruct_0202C834 *param0);
 int sub_0202C848(const u8 param0, UnkStruct_0202C844 *param1);

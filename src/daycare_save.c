@@ -129,6 +129,5 @@ void DaycareMon_Init(DaycareMon *daycareMon)
 
 Daycare *SaveData_GetDaycare(SaveData *saveData)
 {
-    Daycare *daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
-    return daycare;
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
 }

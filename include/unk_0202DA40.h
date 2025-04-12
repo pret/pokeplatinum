@@ -6,7 +6,7 @@
 #include "pokemon.h"
 #include "savedata.h"
 
-UnkStruct_0202DA40 *sub_0202DA40(SaveData *param0);
+UnkStruct_0202DA40 *sub_0202DA40(SaveData *saveData);
 int GlobalTrade_SaveSize(void);
 void GlobalTrade_Init(UnkStruct_0202DA40 *param0);
 int sub_0202DA60(UnkStruct_0202DA40 *param0);

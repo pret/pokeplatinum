@@ -962,7 +962,7 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
 {
     param0->unk_04 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     param0->unk_08 = SaveData_GetParty(fieldSystem->saveData);
-    param0->unk_0C = SaveData_SaveTable(fieldSystem->saveData, 9);
+    param0->unk_0C = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PAL_PAD);
     param0->unk_14 = sub_0202C878(fieldSystem->saveData);
     param0->unk_18 = SaveData_GetOptions(fieldSystem->saveData);
     param0->unk_24 = SaveData_GetPokedex(fieldSystem->saveData);
@@ -1350,7 +1350,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
 
     v0->unk_00 = sub_0202DA40(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
-    v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, 2);
+    v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
     v0->unk_0C = SaveData_GetPCBoxes(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetPokedex(fieldSystem->saveData);
     v0->unk_14 = sub_0202B370(fieldSystem->saveData);
