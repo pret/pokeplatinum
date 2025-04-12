@@ -2108,9 +2108,9 @@ static u16 Unk_02100BA4[] = {
 
 static int sub_0206E940(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    int v0 = Unk_02100BA4[LCRNG_RandMod(NELEMS(Unk_02100BA4))];
-    int weather = FieldSystem_GetWeather(fieldSystem, v0);
-    StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v0));
+    int mapHeaderID = Unk_02100BA4[LCRNG_RandMod(NELEMS(Unk_02100BA4))];
+    int weather = FieldSystem_GetWeather(fieldSystem, mapHeaderID);
+    StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(mapHeaderID));
 
     switch (weather) {
     case OVERWORLD_WEATHER_CLEAR:

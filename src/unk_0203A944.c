@@ -1846,31 +1846,28 @@ static const u8 Unk_020E98F4[] = {
     OVERWORLD_WEATHER_SNOWING
 };
 
-int FieldSystem_GetWeather(FieldSystem *fieldSystem, int param1)
+int FieldSystem_GetWeather(FieldSystem *fieldSystem, int mapHeaderID)
 {
-    int v0 = MapHeader_GetWeatherType(param1);
+    int weather = MapHeader_GetWeatherType(mapHeaderID);
 
-    if (v0 < 32) {
-        return v0;
+    if (weather < OVERWORLD_WEATHER_32) {
+        return weather;
     }
 
-    {
-        int v1;
-        GameTime *v2 = SaveData_GetGameTime(fieldSystem->saveData);
+    GameTime *v2 = SaveData_GetGameTime(fieldSystem->saveData);
+    int dayOfYear = DayNumberForDate(&v2->date) - 1;
 
-        v1 = DayNumberForDate(&v2->date) - 1;
-        GF_ASSERT(v1 >= 0 && v1 < 366);
+    GF_ASSERT(dayOfYear >= 0 && dayOfYear < 366);
 
-        if ((v2->date.month > 2) && !inline_0203A944(v2->date.year)) {
-            v1++;
-        }
-
-        if (FieldSystem_HasPenalty(fieldSystem)) {
-            v1 = 1;
-        }
-
-        v0 = Unk_020E98F4[5 * v1 + (v0 - 32)];
+    if ((v2->date.month > 2) && !inline_0203A944(v2->date.year)) {
+        dayOfYear++;
     }
 
-    return v0;
+    if (FieldSystem_HasPenalty(fieldSystem)) {
+        dayOfYear = 1;
+    }
+
+    weather = Unk_020E98F4[5 * dayOfYear + (weather - OVERWORLD_WEATHER_32)];
+
+    return weather;
 }
