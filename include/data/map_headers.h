@@ -1,8 +1,8 @@
+#include "constants/overworld_weather.h"
 #include "generated/battle_backgrounds.h"
 #include "generated/map_headers.h"
 #include "generated/sdat.h"
 #include "generated/text_banks.h"
-#include "constants/overworld_weather.h"
 
 #include "map_header.h" // Only for Intellisense/LSPs
 
