@@ -6886,10 +6886,10 @@ static BOOL ScrCmd_267(ScriptContext *ctx)
 
 static BOOL ScrCmd_GetHour(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = FieldSystem_GetHour(ctx->fieldSystem);
-    return 0;
+    *destVar = FieldSystem_GetHour(ctx->fieldSystem);
+    return FALSE;
 }
 
 static BOOL ScrCmd_269(ScriptContext *ctx)
@@ -8194,24 +8194,19 @@ static BOOL ScrCmd_323(ScriptContext *ctx)
 static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Party *party;
     u16 form = ScriptContext_GetVar(ctx);
+    Party *party = SaveData_GetParty(ctx->fieldSystem->saveData);
 
-    party = SaveData_GetParty(ctx->fieldSystem->saveData);
     Party_SetGiratinaForm(party, form);
-    {
-        int i, partyCount;
-        Pokemon *mon;
 
-        partyCount = Party_GetCurrentCount(party);
+    int partyCount = Party_GetCurrentCount(party);
 
-        for (i = 0; i < partyCount; i++) {
-            mon = Party_GetPokemonBySlotIndex(party, i);
+    for (int i = 0; i < partyCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-            if ((Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE)
-                && (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA)) {
-                Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), mon);
-            }
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+            && Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA) {
+            Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), mon);
         }
     }
     return FALSE;

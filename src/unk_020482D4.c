@@ -159,11 +159,7 @@ BOOL ScrCmd_WaitCry(ScriptContext *ctx)
 
 static BOOL ScrCmd_IsPokemonCryPlaying(ScriptContext *ctx)
 {
-    if (Sound_IsPokemonCryPlaying() == FALSE) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return Sound_IsPokemonCryPlaying() == FALSE;
 }
 
 BOOL ScrCmd_PlaySound(ScriptContext *ctx)
