@@ -1846,6 +1846,15 @@ static const u8 Unk_020E98F4[] = {
     OVERWORLD_WEATHER_SNOWING
 };
 
+static inline BOOL IsLeapYear(u32 year)
+{
+    if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
+}
+
 int FieldSystem_GetWeather(FieldSystem *fieldSystem, int mapHeaderID)
 {
     int weather = MapHeader_GetWeatherType(mapHeaderID);
@@ -1859,7 +1868,7 @@ int FieldSystem_GetWeather(FieldSystem *fieldSystem, int mapHeaderID)
 
     GF_ASSERT(dayOfYear >= 0 && dayOfYear < 366);
 
-    if ((v2->date.month > 2) && !inline_0203A944(v2->date.year)) {
+    if ((v2->date.month > 2) && !IsLeapYear(v2->date.year)) {
         dayOfYear++;
     }
 
