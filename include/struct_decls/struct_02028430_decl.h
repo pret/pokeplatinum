@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02028430_DECL_H
 #define POKEPLATINUM_STRUCT_02028430_DECL_H
 
-typedef struct UnkStruct_02028430_t UnkStruct_02028430;
+typedef struct MailBox_t MailBox;
 
 #endif // POKEPLATINUM_STRUCT_02028430_DECL_H

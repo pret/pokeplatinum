@@ -383,7 +383,7 @@ static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, i
 
     v0->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_08 = sub_02028430(fieldSystem->saveData);
+    v0->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v0->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     v0->unk_21 = param2;
     v0->unk_20 = param3;
@@ -1348,12 +1348,12 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203E0FC));
 
-    v0->unk_00 = sub_0202DA40(fieldSystem->saveData);
+    v0->unk_00 = SaveData_GetGlobalTrade(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
     v0->unk_0C = SaveData_GetPCBoxes(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetPokedex(fieldSystem->saveData);
-    v0->unk_14 = sub_0202B370(fieldSystem->saveData);
+    v0->unk_14 = SaveData_GetWiFiList(fieldSystem->saveData);
     v0->unk_18 = sub_0202C878(fieldSystem->saveData);
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_24 = SaveData_GetOptions(fieldSystem->saveData);
@@ -1388,9 +1388,9 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
     v0->unk_04 = sub_0202D764(fieldSystem->saveData);
     v0->unk_08 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetOptions(fieldSystem->saveData);
-    v0->unk_14 = sub_0202AD28(sub_0202B370(fieldSystem->saveData));
+    v0->unk_14 = sub_0202AD28(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->unk_0C = fieldSystem->saveData;
-    v0->unk_1C = sub_02039058(sub_0202B370(fieldSystem->saveData));
+    v0->unk_1C = sub_02039058(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->unk_18 = param1;
     v0->unk_24 = param2;
     v0->unk_20 = 1;
@@ -1700,7 +1700,7 @@ PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int para
 
     v0->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_08 = sub_02028430(fieldSystem->saveData);
+    v0->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v0->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
     v0->unk_18 = NULL;

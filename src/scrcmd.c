@@ -3454,10 +3454,10 @@ static BOOL ScrCmd_06E(ScriptContext *ctx)
 
 static BOOL ScrCmd_2AB(ScriptContext *ctx)
 {
-    UnkStruct_0202CA1C *v0;
+    BallSeals *v0;
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    v0 = sub_0202CA1C(ctx->fieldSystem->saveData);
+    v0 = SaveData_GetBallSeals(ctx->fieldSystem->saveData);
     *v1 = sub_0202CBA8(v0);
 
     return 0;
@@ -3465,11 +3465,11 @@ static BOOL ScrCmd_2AB(ScriptContext *ctx)
 
 static BOOL ScrCmd_093(ScriptContext *ctx)
 {
-    UnkStruct_0202CA1C *v0;
+    BallSeals *v0;
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    v0 = sub_0202CA1C(ctx->fieldSystem->saveData);
+    v0 = SaveData_GetBallSeals(ctx->fieldSystem->saveData);
     *v2 = sub_0202CBC8(v0, v1);
 
     return 0;
@@ -3480,7 +3480,7 @@ static BOOL ScrCmd_094(ScriptContext *ctx)
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    sub_0202CAE0(sub_0202CA1C(ctx->fieldSystem->saveData), v0, v1);
+    sub_0202CAE0(SaveData_GetBallSeals(ctx->fieldSystem->saveData), v0, v1);
     return 0;
 }
 
@@ -5936,7 +5936,7 @@ static BOOL ScrCmd_1B4(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    UnkStruct_02028430 *v2 = sub_02028430(fieldSystem->saveData);
+    MailBox *v2 = SaveData_GetMailBox(fieldSystem->saveData);
 
     *v1 = (u16)sub_02028494(v2, 0);
     return 0;
@@ -7483,7 +7483,7 @@ static BOOL ScrCmd_2A4(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_0202AF94(sub_0202B370(ctx->fieldSystem->saveData));
+    *v0 = sub_0202AF94(SaveData_GetWiFiList(ctx->fieldSystem->saveData));
     return 0;
 }
 

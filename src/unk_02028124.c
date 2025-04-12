@@ -20,7 +20,7 @@
 
 static int sub_020284E8(Mail *param0, int param1);
 static int sub_02028510(Mail *param0, int param1);
-static Mail *sub_02028538(UnkStruct_02028430 *param0, int param1, int param2);
+static Mail *sub_02028538(MailBox *param0, int param1, int param2);
 
 static const struct {
     u16 unk_00;
@@ -230,17 +230,17 @@ void sub_0202841C(Mail *param0, Sentence *param1, u8 param2)
     sub_02014CC0(&param0->unk_20[param2], param1);
 }
 
-UnkStruct_02028430 *sub_02028430(SaveData *saveData)
+MailBox *SaveData_GetMailBox(SaveData *saveData)
 {
-    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_MAIL);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_MAILBOX);
 }
 
-int Mail_SaveSize(void)
+int MailBox_SaveSize(void)
 {
     return sizeof(Mail) * 20;
 }
 
-void Mail_Init(UnkStruct_02028430 *param0)
+void MailBox_Init(MailBox *param0)
 {
     int v0 = 0;
 
@@ -249,7 +249,7 @@ void Mail_Init(UnkStruct_02028430 *param0)
     }
 }
 
-int sub_0202845C(UnkStruct_02028430 *param0, int param1)
+int sub_0202845C(MailBox *param0, int param1)
 {
     switch (param1) {
     case 0:
@@ -261,7 +261,7 @@ int sub_0202845C(UnkStruct_02028430 *param0, int param1)
     return 0xFFFFFFFF;
 }
 
-void sub_02028470(UnkStruct_02028430 *param0, int param1, int param2)
+void sub_02028470(MailBox *param0, int param1, int param2)
 {
     Mail *v0 = NULL;
 
@@ -272,7 +272,7 @@ void sub_02028470(UnkStruct_02028430 *param0, int param1, int param2)
     }
 }
 
-void sub_02028480(UnkStruct_02028430 *param0, int param1, int param2, Mail *param3)
+void sub_02028480(MailBox *param0, int param1, int param2, Mail *param3)
 {
     Mail *v0 = NULL;
 
@@ -283,7 +283,7 @@ void sub_02028480(UnkStruct_02028430 *param0, int param1, int param2, Mail *para
     }
 }
 
-int sub_02028494(UnkStruct_02028430 *param0, int param1)
+int sub_02028494(MailBox *param0, int param1)
 {
     switch (param1) {
     case 0:
@@ -295,7 +295,7 @@ int sub_02028494(UnkStruct_02028430 *param0, int param1)
     return 0;
 }
 
-Mail *sub_020284A8(UnkStruct_02028430 *param0, int param1, int param2, int param3)
+Mail *sub_020284A8(MailBox *param0, int param1, int param2, int param3)
 {
     Mail *v0 = NULL;
     Mail *v1;
@@ -310,7 +310,7 @@ Mail *sub_020284A8(UnkStruct_02028430 *param0, int param1, int param2, int param
     return v1;
 }
 
-void sub_020284CC(UnkStruct_02028430 *param0, int param1, int param2, Mail *param3)
+void sub_020284CC(MailBox *param0, int param1, int param2, Mail *param3)
 {
     Mail *v0 = NULL;
 
@@ -350,7 +350,7 @@ static int sub_02028510(Mail *param0, int param1)
     return v1;
 }
 
-static Mail *sub_02028538(UnkStruct_02028430 *param0, int param1, int param2)
+static Mail *sub_02028538(MailBox *param0, int param1, int param2)
 {
     Mail *v0 = NULL;
 

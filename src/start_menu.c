@@ -1269,7 +1269,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
 
         v6->unk_00 = SaveData_GetParty(fieldSystem->saveData);
         v6->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-        v6->unk_08 = sub_02028430(fieldSystem->saveData);
+        v6->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
         v6->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
         v6->unk_18 = &menu->fieldMoveContext;
         v6->unk_21 = 0;
@@ -1310,7 +1310,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
 
             v13->unk_00 = v7;
             v13->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-            v13->unk_08 = sub_02028430(fieldSystem->saveData);
+            v13->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
             v13->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
             v13->unk_18 = &menu->fieldMoveContext;
             v13->unk_21 = 0;
@@ -1591,7 +1591,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
 
         v3->unk_00 = SaveData_GetParty(fieldSystem->saveData);
         v3->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-        v3->unk_08 = sub_02028430(fieldSystem->saveData);
+        v3->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
         v3->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
         v3->unk_18 = &menu->fieldMoveContext;
         v3->unk_21 = 0;
@@ -1811,7 +1811,7 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 param2)
     memset(partyMan, 0, sizeof(PartyManagementData));
     partyMan->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     partyMan->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->unk_08 = sub_02028430(fieldSystem->saveData);
+    partyMan->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     partyMan->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->unk_18 = &menu->fieldMoveContext;
     partyMan->unk_21 = 0;
