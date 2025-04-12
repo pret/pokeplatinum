@@ -341,7 +341,7 @@ static void JournalPrinter_PrintTrainerEvent(JournalManager *journalManager, Win
         return;
     }
 
-    Strbuf *name = MessageBank_GetNewStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, MapHeader_GetMapLabelTextID(journalEntryTrainer.mapID), LocationNames_Text_00042);
+    Strbuf *name = MessageBank_GetNewStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, MapHeader_GetMapLabelTextID(journalEntryTrainer.mapID), LocationNames_Text_Route227);
     strLength = Strbuf_Length(name);
     Strbuf_Free(name);
 

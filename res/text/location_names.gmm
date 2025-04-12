@@ -5,187 +5,187 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Mystery Zone</language>
 	</row>
-	<row id="LocationNames_Text_00001" index="1">
+	<row id="LocationNames_Text_TwinleafTown" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Twinleaf Town</language>
 	</row>
-	<row id="LocationNames_Text_00002" index="2">
+	<row id="LocationNames_Text_SandgemTown" index="2">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sandgem Town</language>
 	</row>
-	<row id="LocationNames_Text_00003" index="3">
+	<row id="LocationNames_Text_FloaromaTown" index="3">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Floaroma Town</language>
 	</row>
-	<row id="LocationNames_Text_00004" index="4">
+	<row id="LocationNames_Text_SolaceonTown" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Solaceon Town</language>
 	</row>
-	<row id="LocationNames_Text_00005" index="5">
+	<row id="LocationNames_Text_CelesticTown" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Celestic Town</language>
 	</row>
-	<row id="LocationNames_Text_00006" index="6">
+	<row id="LocationNames_Text_JubilifeCity" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Jubilife City</language>
 	</row>
-	<row id="LocationNames_Text_00007" index="7">
+	<row id="LocationNames_Text_CanalaveCity" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Canalave City</language>
 	</row>
-	<row id="LocationNames_Text_00008" index="8">
+	<row id="LocationNames_Text_OreburghCity" index="8">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oreburgh City</language>
 	</row>
-	<row id="LocationNames_Text_00009" index="9">
+	<row id="LocationNames_Text_EternaCity" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Eterna City</language>
 	</row>
-	<row id="LocationNames_Text_00010" index="10">
+	<row id="LocationNames_Text_HearthomeCity" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hearthome City</language>
 	</row>
-	<row id="LocationNames_Text_00011" index="11">
+	<row id="LocationNames_Text_PastoriaCity" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pastoria City</language>
 	</row>
-	<row id="LocationNames_Text_00012" index="12">
+	<row id="LocationNames_Text_VeilstoneCity" index="12">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Veilstone City</language>
 	</row>
-	<row id="LocationNames_Text_00013" index="13">
+	<row id="LocationNames_Text_SunyshoreCity" index="13">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sunyshore City</language>
 	</row>
-	<row id="LocationNames_Text_00014" index="14">
+	<row id="LocationNames_Text_SnowpointCity" index="14">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Snowpoint City</language>
 	</row>
-	<row id="LocationNames_Text_00015" index="15">
+	<row id="LocationNames_Text_PokemonLeague" index="15">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon League</language>
 	</row>
-	<row id="LocationNames_Text_00016" index="16">
+	<row id="LocationNames_Text_Route201" index="16">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 201</language>
 	</row>
-	<row id="LocationNames_Text_00017" index="17">
+	<row id="LocationNames_Text_Route202" index="17">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 202</language>
 	</row>
-	<row id="LocationNames_Text_00018" index="18">
+	<row id="LocationNames_Text_Route203" index="18">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 203</language>
 	</row>
-	<row id="LocationNames_Text_00019" index="19">
+	<row id="LocationNames_Text_Route204" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 204</language>
 	</row>
-	<row id="LocationNames_Text_00020" index="20">
+	<row id="LocationNames_Text_Route205" index="20">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 205</language>
 	</row>
-	<row id="LocationNames_Text_00021" index="21">
+	<row id="LocationNames_Text_Route206" index="21">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 206</language>
 	</row>
-	<row id="LocationNames_Text_00022" index="22">
+	<row id="LocationNames_Text_Route207" index="22">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 207</language>
 	</row>
-	<row id="LocationNames_Text_00023" index="23">
+	<row id="LocationNames_Text_Route208" index="23">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 208</language>
 	</row>
-	<row id="LocationNames_Text_00024" index="24">
+	<row id="LocationNames_Text_Route209" index="24">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 209</language>
 	</row>
-	<row id="LocationNames_Text_00025" index="25">
+	<row id="LocationNames_Text_Route210" index="25">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 210</language>
 	</row>
-	<row id="LocationNames_Text_00026" index="26">
+	<row id="LocationNames_Text_Route211" index="26">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 211</language>
 	</row>
-	<row id="LocationNames_Text_00027" index="27">
+	<row id="LocationNames_Text_Route212" index="27">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 212</language>
 	</row>
-	<row id="LocationNames_Text_00028" index="28">
+	<row id="LocationNames_Text_Route213" index="28">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 213</language>
 	</row>
-	<row id="LocationNames_Text_00029" index="29">
+	<row id="LocationNames_Text_Route214" index="29">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 214</language>
 	</row>
-	<row id="LocationNames_Text_00030" index="30">
+	<row id="LocationNames_Text_Route215" index="30">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 215</language>
 	</row>
-	<row id="LocationNames_Text_00031" index="31">
+	<row id="LocationNames_Text_Route216" index="31">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 216</language>
 	</row>
-	<row id="LocationNames_Text_00032" index="32">
+	<row id="LocationNames_Text_Route217" index="32">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 217</language>
 	</row>
-	<row id="LocationNames_Text_00033" index="33">
+	<row id="LocationNames_Text_Route218" index="33">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 218</language>
 	</row>
-	<row id="LocationNames_Text_00034" index="34">
+	<row id="LocationNames_Text_Route219" index="34">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 219</language>
 	</row>
-	<row id="LocationNames_Text_00035" index="35">
+	<row id="LocationNames_Text_Route220" index="35">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 220</language>
 	</row>
-	<row id="LocationNames_Text_00036" index="36">
+	<row id="LocationNames_Text_Route221" index="36">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 221</language>
 	</row>
-	<row id="LocationNames_Text_00037" index="37">
+	<row id="LocationNames_Text_Route222" index="37">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 222</language>
 	</row>
-	<row id="LocationNames_Text_00038" index="38">
+	<row id="LocationNames_Text_Route223" index="38">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 223</language>
 	</row>
-	<row id="LocationNames_Text_00039" index="39">
+	<row id="LocationNames_Text_Route224" index="39">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 224</language>
 	</row>
-	<row id="LocationNames_Text_00040" index="40">
+	<row id="LocationNames_Text_Route225" index="40">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 225</language>
 	</row>
-	<row id="LocationNames_Text_00041" index="41">
+	<row id="LocationNames_Text_Route226" index="41">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 226</language>
 	</row>
-	<row id="LocationNames_Text_00042" index="42">
+	<row id="LocationNames_Text_Route227" index="42">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 227</language>
 	</row>
-	<row id="LocationNames_Text_00043" index="43">
+	<row id="LocationNames_Text_Route228" index="43">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 228</language>
 	</row>
-	<row id="LocationNames_Text_00044" index="44">
+	<row id="LocationNames_Text_Route229" index="44">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 229</language>
 	</row>
-	<row id="LocationNames_Text_00045" index="45">
+	<row id="LocationNames_Text_Route230" index="45">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Route 230</language>
 	</row>
-	<row id="LocationNames_Text_00046" index="46">
+	<row id="LocationNames_Text_OreburghMine" index="46">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oreburgh Mine</language>
 	</row>
@@ -193,7 +193,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Valley Windworks</language>
 	</row>
-	<row id="LocationNames_Text_00048" index="48">
+	<row id="LocationNames_Text_EternaForest" index="48">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Eterna Forest</language>
 	</row>
@@ -201,59 +201,59 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Fuego Ironworks</language>
 	</row>
-	<row id="LocationNames_Text_00050" index="50">
+	<row id="LocationNames_Text_MtCoronet" index="50">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Mt. Coronet</language>
 	</row>
-	<row id="LocationNames_Text_00051" index="51">
+	<row id="LocationNames_Text_SpearPillar" index="51">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Spear Pillar</language>
 	</row>
-	<row id="LocationNames_Text_00052" index="52">
+	<row id="LocationNames_Text_GreatMarsh" index="52">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Great Marsh</language>
 	</row>
-	<row id="LocationNames_Text_00053" index="53">
+	<row id="LocationNames_Text_SolaceonRuins" index="53">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Solaceon Ruins</language>
 	</row>
-	<row id="LocationNames_Text_00054" index="54">
+	<row id="LocationNames_Text_VictoryRoad" index="54">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Victory Road</language>
 	</row>
-	<row id="LocationNames_Text_00055" index="55">
+	<row id="LocationNames_Text_PalPark" index="55">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pal Park</language>
 	</row>
-	<row id="LocationNames_Text_00056" index="56">
+	<row id="LocationNames_Text_AmitySquare" index="56">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Amity Square</language>
 	</row>
-	<row id="LocationNames_Text_00057" index="57">
+	<row id="LocationNames_Text_RavagedPath" index="57">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ravaged Path</language>
 	</row>
-	<row id="LocationNames_Text_00058" index="58">
+	<row id="LocationNames_Text_FloaromaMeadow" index="58">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Floaroma Meadow</language>
 	</row>
-	<row id="LocationNames_Text_00059" index="59">
+	<row id="LocationNames_Text_OreburghGate" index="59">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oreburgh Gate</language>
 	</row>
-	<row id="LocationNames_Text_00060" index="60">
+	<row id="LocationNames_Text_FullmoonIsland" index="60">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Fullmoon Island</language>
 	</row>
-	<row id="LocationNames_Text_00061" index="61">
+	<row id="LocationNames_Text_SendoffSpring" index="61">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sendoff Spring</language>
 	</row>
-	<row id="LocationNames_Text_00062" index="62">
+	<row id="LocationNames_Text_TurnbackCave" index="62">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Turnback Cave</language>
 	</row>
-	<row id="LocationNames_Text_00063" index="63">
+	<row id="LocationNames_Text_FlowerParadise" index="63">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Flower Paradise</language>
 	</row>
@@ -261,23 +261,23 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Snowpoint Temple</language>
 	</row>
-	<row id="LocationNames_Text_00065" index="65">
+	<row id="LocationNames_Text_WaywardCave" index="65">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Wayward Cave</language>
 	</row>
-	<row id="LocationNames_Text_00066" index="66">
+	<row id="LocationNames_Text_RuinManiacCave" index="66">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ruin Maniac Cave</language>
 	</row>
-	<row id="LocationNames_Text_00067" index="67">
+	<row id="LocationNames_Text_ManiacTunnel" index="67">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Maniac Tunnel</language>
 	</row>
-	<row id="LocationNames_Text_00068" index="68">
+	<row id="LocationNames_Text_TrophyGarden" index="68">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Trophy Garden</language>
 	</row>
-	<row id="LocationNames_Text_00069" index="69">
+	<row id="LocationNames_Text_IronIsland" index="69">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Iron Island</language>
 	</row>
@@ -289,35 +289,35 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Galactic HQ</language>
 	</row>
-	<row id="LocationNames_Text_00072" index="72">
+	<row id="LocationNames_Text_VerityLakefront" index="72">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Verity Lakefront</language>
 	</row>
-	<row id="LocationNames_Text_00073" index="73">
+	<row id="LocationNames_Text_ValorLakefront" index="73">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Valor Lakefront</language>
 	</row>
-	<row id="LocationNames_Text_00074" index="74">
+	<row id="LocationNames_Text_AcuityLakefront" index="74">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Acuity Lakefront</language>
 	</row>
-	<row id="LocationNames_Text_00075" index="75">
+	<row id="LocationNames_Text_SpringPath" index="75">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Spring Path</language>
 	</row>
-	<row id="LocationNames_Text_00076" index="76">
+	<row id="LocationNames_Text_LakeVerity" index="76">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lake Verity</language>
 	</row>
-	<row id="LocationNames_Text_00077" index="77">
+	<row id="LocationNames_Text_LakeValor" index="77">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lake Valor</language>
 	</row>
-	<row id="LocationNames_Text_00078" index="78">
+	<row id="LocationNames_Text_LakeAcuity" index="78">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lake Acuity</language>
 	</row>
-	<row id="LocationNames_Text_00079" index="79">
+	<row id="LocationNames_Text_NewmoonIsland" index="79">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Newmoon Island</language>
 	</row>
@@ -325,39 +325,39 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Battle Tower</language>
 	</row>
-	<row id="LocationNames_Text_00081" index="81">
+	<row id="LocationNames_Text_FightArea" index="81">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Fight Area</language>
 	</row>
-	<row id="LocationNames_Text_00082" index="82">
+	<row id="LocationNames_Text_SurvivalArea" index="82">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Survival Area</language>
 	</row>
-	<row id="LocationNames_Text_00083" index="83">
+	<row id="LocationNames_Text_ResortArea" index="83">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Resort Area</language>
 	</row>
-	<row id="LocationNames_Text_00084" index="84">
+	<row id="LocationNames_Text_StarkMountain" index="84">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Stark Mountain</language>
 	</row>
-	<row id="LocationNames_Text_00085" index="85">
+	<row id="LocationNames_Text_SeabreakPath" index="85">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Seabreak Path</language>
 	</row>
-	<row id="LocationNames_Text_00086" index="86">
+	<row id="LocationNames_Text_HallOfOrigin" index="86">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hall of Origin</language>
 	</row>
-	<row id="LocationNames_Text_00087" index="87">
+	<row id="LocationNames_Text_VerityCavern" index="87">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Verity Cavern</language>
 	</row>
-	<row id="LocationNames_Text_00088" index="88">
+	<row id="LocationNames_Text_ValorCavern" index="88">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Valor Cavern</language>
 	</row>
-	<row id="LocationNames_Text_00089" index="89">
+	<row id="LocationNames_Text_AcuityCavern" index="89">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Acuity Cavern</language>
 	</row>
@@ -445,63 +445,63 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Restaurant</language>
 	</row>
-	<row id="LocationNames_Text_00111" index="111">
+	<row id="LocationNames_Text_BattlePark" index="111">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Battle Park</language>
 	</row>
-	<row id="LocationNames_Text_00112" index="112">
+	<row id="LocationNames_Text_BattleFrontier" index="112">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Battle Frontier</language>
 	</row>
-	<row id="LocationNames_Text_00113" index="113">
+	<row id="LocationNames_Text_BattleFactory" index="113">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Battle Factory</language>
 	</row>
-	<row id="LocationNames_Text_00114" index="114">
+	<row id="LocationNames_Text_BattleCastle" index="114">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Battle Castle</language>
 	</row>
-	<row id="LocationNames_Text_00115" index="115">
+	<row id="LocationNames_Text_BattleArcade" index="115">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Battle Arcade</language>
 	</row>
-	<row id="LocationNames_Text_00116" index="116">
+	<row id="LocationNames_Text_BattleHall" index="116">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Battle Hall</language>
 	</row>
-	<row id="LocationNames_Text_00117" index="117">
+	<row id="LocationNames_Text_DistortionWorld" index="117">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Distortion World</language>
 	</row>
-	<row id="LocationNames_Text_00118" index="118">
+	<row id="LocationNames_Text_GlobalTerminal" index="118">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Global Terminal</language>
 	</row>
-	<row id="LocationNames_Text_00119" index="119">
+	<row id="LocationNames_Text_Villa" index="119">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Villa</language>
 	</row>
-	<row id="LocationNames_Text_00120" index="120">
+	<row id="LocationNames_Text_Battleground" index="120">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Battleground</language>
 	</row>
-	<row id="LocationNames_Text_00121" index="121">
+	<row id="LocationNames_Text_RotomsRoom" index="121">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ROTOM’s Room</language>
 	</row>
-	<row id="LocationNames_Text_00122" index="122">
+	<row id="LocationNames_Text_TeamGalacticEternaBuilding" index="122">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">T.G. Eterna Bldg</language>
 	</row>
-	<row id="LocationNames_Text_00123" index="123">
+	<row id="LocationNames_Text_IronRuins" index="123">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Iron Ruins</language>
 	</row>
-	<row id="LocationNames_Text_00124" index="124">
+	<row id="LocationNames_Text_IcebergRuins" index="124">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Iceberg Ruins</language>
 	</row>
-	<row id="LocationNames_Text_00125" index="125">
+	<row id="LocationNames_Text_RockPeakRuins" index="125">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Rock Peak Ruins</language>
 	</row>
