@@ -471,7 +471,7 @@ static BOOL sub_0204C044(FieldSystem *fieldSystem, void *param1)
 
     switch (v1) {
     case 1:
-        return sub_0202CB70(sub_0202CA1C(fieldSystem->saveData), v2, 1);
+        return sub_0202CB70(SaveData_GetBallSeals(fieldSystem->saveData), v2, 1);
     case 2:
         return 1;
     case 3:
@@ -489,7 +489,7 @@ static void sub_0204C07C(FieldSystem *fieldSystem, void *param1)
 
     switch (v1) {
     case 1:
-        sub_0202CAE0(sub_0202CA1C(fieldSystem->saveData), v2, 1);
+        sub_0202CAE0(SaveData_GetBallSeals(fieldSystem->saveData), v2, 1);
         break;
     case 2:
         sub_02029E2C(sub_02029D04(sub_0202A750(fieldSystem->saveData)), v2, 1);

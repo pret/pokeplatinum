@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0202B370_DECL_H
 #define POKEPLATINUM_STRUCT_0202B370_DECL_H
 
-typedef struct UnkStruct_0202B370_t UnkStruct_0202B370;
+typedef struct WiFiList_t WiFiList;
 
 #endif // POKEPLATINUM_STRUCT_0202B370_DECL_H

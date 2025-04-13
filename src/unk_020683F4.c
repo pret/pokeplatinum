@@ -340,7 +340,7 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     v2->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v2->unk_08 = sub_02028430(fieldSystem->saveData);
+    v2->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v2->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     v2->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
     v2->unk_18 = &menu->fieldMoveContext;
@@ -590,7 +590,7 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     v2->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v2->unk_08 = sub_02028430(fieldSystem->saveData);
+    v2->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v2->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     v2->unk_18 = &menu->fieldMoveContext;
     v2->unk_21 = 0;
@@ -978,7 +978,7 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     v2->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v2->unk_08 = sub_02028430(fieldSystem->saveData);
+    v2->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v2->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     v2->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
     v2->unk_18 = &menu->fieldMoveContext;

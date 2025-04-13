@@ -19,8 +19,8 @@
 #include "generated/sdat.h"
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
-#include "generated/species.h"
 #include "generated/trainers.h"
+#include "constants/forms.h"
 #include "constants/honey_tree.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
@@ -515,7 +515,7 @@
     .short \unused
     .endm
 
-    .macro ScrCmd_04D
+    .macro WaitCry
     .short 77
     .endm
 
@@ -3410,9 +3410,9 @@
     .short \form
     .endm
 
-    .macro ScrCmd_264 arg0
+    .macro CheckPartyCombeeGenderCount destVar
     .short 612
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro HidePoketch
@@ -3428,9 +3428,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_268 arg0
+    .macro GetHour destVar
     .short 616
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_269 arg0, arg1, arg2, arg3, arg4
@@ -3595,9 +3595,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_284 arg0
+    .macro GetUnownFormsSeenCount destVar
     .short 644
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_285 arg0, arg1
@@ -4502,9 +4502,9 @@
     .short \width
     .endm
 
-    .macro ScrCmd_328 arg0
+    .macro SetPartyGiratinaForm form
     .short 808
-    .short \arg0
+    .short \form
     .endm
 
     .macro ScrCmd_329 arg0, arg1, arg2, arg3
@@ -4520,9 +4520,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_32B arg0
+    .macro CheckPartyHasFatefulEncounterRegigigas destVar
     .short 811
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_32C arg0, arg1, arg2, arg3

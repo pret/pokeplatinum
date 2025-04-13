@@ -458,12 +458,12 @@ UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *param0, u32 heapID)
 void ov66_0222DEEC(UnkStruct_ov66_0222DFF8 *param0)
 {
     {
-        UnkStruct_02030EC4 *v0;
+        WiFiQuestions *v0;
         UnkStruct_ov66_0222E908 v1;
 
         ov66_0222E908(&param0->unk_108.unk_20, &v1);
 
-        v0 = sub_02030EC4(param0->unk_00);
+        v0 = SaveData_GetWiFiQuestions(param0->unk_00);
 
         sub_02030ED8(v0, v1.unk_00);
         sub_02030EDC(v0, v1.unk_04);

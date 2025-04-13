@@ -83,7 +83,7 @@ BOOL ScrCmd_2D2(ScriptContext *param0)
         break;
     case 1:
         if (v4 == 3) {
-            *v6 = sub_02030698(sub_0203068C(param0->fieldSystem->saveData), 108, sub_0205E6A8(108));
+            *v6 = sub_02030698(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), 108, sub_0205E6A8(108));
         } else {
             *v6 = (u16)sub_02030470(v11, 9, v4, 0, NULL);
         }
@@ -134,16 +134,16 @@ static void sub_0204FBEC(SaveData *param0, UnkStruct_0203041C *param1, u8 param2
     sub_02030430(param1, 9, param2, 0, v2);
 
     if (param2 == 3) {
-        sub_020306E4(sub_0203068C(param0), 108, sub_0205E6A8(108), 0);
+        sub_020306E4(SaveData_GetBattleFrontier(param0), 108, sub_0205E6A8(108), 0);
     }
 
-    sub_020306E4(sub_0203068C(param0), sub_0205E5E0(param2), sub_0205E6A8(sub_0205E5E0(param2)), 0);
-    sub_020306E4(sub_0203068C(param0), sub_0205E630(param2), sub_0205E6A8(sub_0205E630(param2)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E5E0(param2), sub_0205E6A8(sub_0205E5E0(param2)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E630(param2), sub_0205E6A8(sub_0205E630(param2)), 0);
 
     v1[0] = 1;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_020306E4(sub_0203068C(param0), sub_0205E5B4(param2, v0), sub_0205E6A8(sub_0205E5B4(param2, v0)), 1);
+        sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E5B4(param2, v0), sub_0205E6A8(sub_0205E5B4(param2, v0)), 1);
     }
 
     return;
@@ -256,7 +256,7 @@ static int sub_0204FE50(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, in
 
     v1->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v1->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v1->unk_08 = sub_02028430(fieldSystem->saveData);
+    v1->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v1->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
 
     v1->unk_21 = 0;

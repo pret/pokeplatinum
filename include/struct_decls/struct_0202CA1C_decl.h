@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0202CA1C_DECL_H
 #define POKEPLATINUM_STRUCT_0202CA1C_DECL_H
 
-typedef struct UnkStruct_0202CA1C_t UnkStruct_0202CA1C;
+typedef struct BallSeals_t BallSeals;
 
 #endif // POKEPLATINUM_STRUCT_0202CA1C_DECL_H

@@ -39,7 +39,7 @@ _0077:
     GoToIfEq 0x800C, MENU_NO, _0101
     PlayCry SPECIES_DIALGA
     Message 1
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_DIALGA, 70
     CheckWonBattle 0x800C

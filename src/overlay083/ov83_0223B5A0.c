@@ -571,7 +571,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     }
 
         if (param1->unk_1490 != 0) {
-            UnkStruct_0202B370 *v3 = sub_0202B370(param0->unk_10->saveData);
+            WiFiList *v3 = SaveData_GetWiFiList(param0->unk_10->saveData);
             int v4;
             int v5, v6;
             int v7;

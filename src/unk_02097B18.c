@@ -314,7 +314,7 @@ static BOOL sub_02097F38(FieldTask *param0)
     case 0:
 
         FieldTransition_FinishMap(param0);
-        v1->unk_20 = sub_0202CA1C(v0->unk_10);
+        v1->unk_20 = SaveData_GetBallSeals(v0->unk_10);
         sub_02097F20(v1, 0);
 
         {
@@ -361,7 +361,7 @@ static BOOL sub_02097F38(FieldTask *param0)
 
         v6->unk_00 = v1->unk_1C;
         v6->unk_04 = SaveData_GetBag(v0->unk_10);
-        v6->unk_08 = sub_02028430(v0->unk_10);
+        v6->unk_08 = SaveData_GetMailBox(v0->unk_10);
         v6->selectedMonSlot = 0;
         v6->unk_21 = 0;
         v6->unk_20 = 15;

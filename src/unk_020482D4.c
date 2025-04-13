@@ -14,7 +14,7 @@
 
 static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);
-static BOOL sub_020484B0(ScriptContext *param0);
+static BOOL ScrCmd_IsPokemonCryPlaying(ScriptContext *param0);
 static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx);
 BOOL ScrCmd_053(ScriptContext *param0);
 BOOL ScrCmd_FadeOutMusic(ScriptContext *ctx);
@@ -24,8 +24,6 @@ BOOL ScrCmd_056(ScriptContext *param0);
 BOOL ScrCmd_057(ScriptContext *param0);
 BOOL ScrCmd_058(ScriptContext *param0);
 BOOL ScrCmd_04A(ScriptContext *param0);
-BOOL ScrCmd_PlayCry(ScriptContext *ctx);
-BOOL ScrCmd_04D(ScriptContext *param0);
 BOOL ScrCmd_059(ScriptContext *param0);
 BOOL ScrCmd_05A(ScriptContext *param0);
 BOOL ScrCmd_05B(ScriptContext *param0);
@@ -153,19 +151,15 @@ BOOL ScrCmd_PlayCry(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_04D(ScriptContext *param0)
+BOOL ScrCmd_WaitCry(ScriptContext *ctx)
 {
-    ScriptContext_Pause(param0, sub_020484B0);
-    return 1;
+    ScriptContext_Pause(ctx, ScrCmd_IsPokemonCryPlaying);
+    return TRUE;
 }
 
-static BOOL sub_020484B0(ScriptContext *param0)
+static BOOL ScrCmd_IsPokemonCryPlaying(ScriptContext *ctx)
 {
-    if (Sound_IsPokemonCryPlaying() == 0) {
-        return 1;
-    }
-
-    return 0;
+    return Sound_IsPokemonCryPlaying() == FALSE;
 }
 
 BOOL ScrCmd_PlaySound(ScriptContext *ctx)

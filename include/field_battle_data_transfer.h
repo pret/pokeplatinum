@@ -49,7 +49,7 @@ typedef struct FieldBattleDTO {
     BattleRecords battleRecords;
     GameRecords *records;
     JournalEntry *journalEntry;
-    UnkStruct_02027F8C *unk_124;
+    PalPad *unk_124;
     int background;
     enum BattleTerrain terrain;
     int mapLabelTextID;

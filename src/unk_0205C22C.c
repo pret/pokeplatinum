@@ -38,8 +38,8 @@
 #include "constdata/const_020ED570.h"
 
 static void sub_0205C304(SysTask *param0, void *param1);
-static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1, MapObjectManager *param2, UnkStruct_02027F8C *param3);
-static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param2, UnkStruct_02027F8C *param3);
+static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1, MapObjectManager *param2, PalPad *param3);
+static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param2, PalPad *param3);
 static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1);
 static void sub_0205C680(UnkStruct_0205C680 *param0, int param1);
 static void sub_0205C6BC(UnkStruct_0205C680 *param0);
@@ -118,7 +118,7 @@ static void sub_0205C304(SysTask *task, void *param1)
     }
 }
 
-static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param2, UnkStruct_02027F8C *param3)
+static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param2, PalPad *param3)
 {
     int v0, v1, v2 = 0;
     UnkStruct_0203330C *v3;
@@ -186,7 +186,7 @@ static void sub_0205C444(UnkStruct_0205C680 param0[], int param1, int param2)
     param0[param1].unk_00 = param2;
 }
 
-static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1, MapObjectManager *param2, UnkStruct_02027F8C *param3)
+static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1, MapObjectManager *param2, PalPad *param3)
 {
     WMBssDesc *v0;
     int v1;

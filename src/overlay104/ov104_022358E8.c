@@ -168,20 +168,20 @@ BOOL ov104_02235A24(UnkStruct_ov104_0222E930 *param0)
     v2 = v1->unk_0C;
 
     v3 = Party_GetPokemonBySlotIndex(v2->parties[0], 0);
-    sub_0207A128(v1->unk_28, 0, v3);
+    Party_AddPokemonBySlotIndex(v1->unk_28, 0, v3);
 
     v3 = Party_GetPokemonBySlotIndex(v2->parties[0], 1);
-    sub_0207A128(v1->unk_28, 1, v3);
+    Party_AddPokemonBySlotIndex(v1->unk_28, 1, v3);
 
     if (ov104_0223BA14(v1->unk_10) == 0) {
         v3 = Party_GetPokemonBySlotIndex(v2->parties[0], 2);
-        sub_0207A128(v1->unk_28, 2, v3);
+        Party_AddPokemonBySlotIndex(v1->unk_28, 2, v3);
     } else {
         v3 = Party_GetPokemonBySlotIndex(v2->parties[2], 0);
-        sub_0207A128(v1->unk_28, 2, v3);
+        Party_AddPokemonBySlotIndex(v1->unk_28, 2, v3);
 
         v3 = Party_GetPokemonBySlotIndex(v2->parties[2], 1);
-        sub_0207A128(v1->unk_28, 3, v3);
+        Party_AddPokemonBySlotIndex(v1->unk_28, 3, v3);
     }
 
     v1->unk_1C = CheckPlayerWonBattle(v2->resultMask);
@@ -402,7 +402,7 @@ BOOL ov104_02235BC0(UnkStruct_ov104_0222E930 *param0)
         }
 
         if (v10 == 1) {
-            ov104_0223BC2C(sub_0203068C(v11->saveData), v3->unk_10, 50);
+            ov104_0223BC2C(SaveData_GetBattleFrontier(v11->saveData), v3->unk_10, 50);
         } else {
             v3->unk_A1C -= 50;
         }
@@ -471,10 +471,10 @@ BOOL ov104_02235BC0(UnkStruct_ov104_0222E930 *param0)
     case 44:
         if (v3->unk_10 == 3) {
             if (v15 == 0) {
-                v3->unk_22 = sub_02030698(sub_0203068C(v11->saveData), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)));
-                sub_020306E4(sub_0203068C(v11->saveData), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)), v3->unk_20);
+                v3->unk_22 = sub_02030698(SaveData_GetBattleFrontier(v11->saveData), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)));
+                sub_020306E4(SaveData_GetBattleFrontier(v11->saveData), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)), v3->unk_20);
             } else {
-                sub_020306E4(sub_0203068C(v11->saveData), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)), v3->unk_22);
+                sub_020306E4(SaveData_GetBattleFrontier(v11->saveData), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)), v3->unk_22);
             }
         }
         break;
@@ -590,7 +590,7 @@ BOOL ov104_022360D8(UnkStruct_ov104_0222E930 *param0)
     u16 *v2 = ov104_0222FBE4(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
-    *v2 = sub_02030698(sub_0203068C(v0->saveData), sub_0205E630(v1), sub_0205E6A8(sub_0205E630(v1)));
+    *v2 = sub_02030698(SaveData_GetBattleFrontier(v0->saveData), sub_0205E630(v1), sub_0205E6A8(sub_0205E630(v1)));
 
     return 0;
 }
@@ -602,7 +602,7 @@ BOOL ov104_02236120(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222FC00(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
-    ov104_0223BC2C(sub_0203068C(v0->saveData), v1, v2);
+    ov104_0223BC2C(SaveData_GetBattleFrontier(v0->saveData), v1, v2);
 
     return 0;
 }

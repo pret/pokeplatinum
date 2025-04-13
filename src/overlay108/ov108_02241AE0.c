@@ -150,7 +150,7 @@ static const u8 Unk_ov108_0224367C[] = {
 
 struct UnkStruct_ov108_02241DB0_t {
     OverlayManager *unk_00;
-    UnkStruct_0203068C *unk_04;
+    BattleFrontier *unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -302,7 +302,7 @@ int ov108_02241AE0(OverlayManager *param0, int *param1)
     v1->unk_3C8 = v2->unk_30;
     v1->unk_3CC = v2->unk_34;
     v1->unk_0E = 0xff;
-    v1->unk_04 = sub_0203068C(v1->unk_DC);
+    v1->unk_04 = SaveData_GetBattleFrontier(v1->unk_DC);
     v1->unk_3C0 = v2->unk_08;
     v1->unk_1C = v2->unk_0C;
     v1->unk_20 = v2->unk_10;

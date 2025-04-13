@@ -62,10 +62,10 @@ const OverlayManagerTemplate Unk_020F64B0 = {
 UnkStruct_02097728 *sub_02097624(SaveData *param0, int param1, u8 param2, u8 param3, int heapID)
 {
     UnkStruct_02097728 *v0;
-    UnkStruct_02028430 *v1;
+    MailBox *v1;
     int v2;
 
-    v1 = sub_02028430(param0);
+    v1 = SaveData_GetMailBox(param0);
     v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
@@ -88,7 +88,7 @@ UnkStruct_02097728 *sub_02097624(SaveData *param0, int param1, u8 param2, u8 par
 UnkStruct_02097728 *sub_0209767C(SaveData *param0, int param1, u16 param2, int heapID)
 {
     UnkStruct_02097728 *v0;
-    UnkStruct_02028430 *v1;
+    MailBox *v1;
 
     v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
@@ -98,7 +98,7 @@ UnkStruct_02097728 *sub_0209767C(SaveData *param0, int param1, u16 param2, int h
     v0->unk_0C = param2;
     v0->unk_10 = param0;
 
-    v1 = sub_02028430(param0);
+    v1 = SaveData_GetMailBox(param0);
 
     v0->unk_18 = v1;
     v0->unk_14 = sub_020284A8(v1, param1, param2, heapID);
@@ -166,7 +166,7 @@ void sub_02097770(UnkStruct_02097728 *param0)
     Heap_FreeToHeap(param0);
 }
 
-int sub_02097788(UnkStruct_02028430 *param0, Pokemon *param1, int heapID)
+int sub_02097788(MailBox *param0, Pokemon *param1, int heapID)
 {
     int v0;
     int v1 = 0;
@@ -190,7 +190,7 @@ int sub_02097788(UnkStruct_02028430 *param0, Pokemon *param1, int heapID)
     return v0;
 }
 
-int sub_020977E4(UnkStruct_02028430 *param0, u16 param1, Pokemon *param2, int heapID)
+int sub_020977E4(MailBox *param0, u16 param1, Pokemon *param2, int heapID)
 {
     int v0 = 0;
     Mail *v1 = NULL;

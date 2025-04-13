@@ -1218,10 +1218,10 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         break;
     case 17: {
         UnkStruct_ov66_0222E908 v7;
-        UnkStruct_02030EC4 *v8;
+        WiFiQuestions *v8;
         BOOL v9;
 
-        v8 = sub_02030EC4(param4->unk_00);
+        v8 = SaveData_GetWiFiQuestions(param4->unk_00);
         v7.unk_00 = sub_02030ED0(v8);
         v7.unk_04 = sub_02030ED4(v8);
         v9 = ov66_0222E924(param4->unk_04, ov66_0222E338(param4->unk_04));

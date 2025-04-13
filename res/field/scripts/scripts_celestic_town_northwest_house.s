@@ -45,7 +45,7 @@ _0057:
     LockAll
     FacePlayer
     Message 1
-    ScrCmd_268 0x800C
+    GetHour 0x800C
     GoToIfLt 0x800C, 4, _0113
     GoToIfLt 0x800C, 10, _0093
     GoToIfLt 0x800C, 20, _00D3

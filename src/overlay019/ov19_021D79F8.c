@@ -825,23 +825,23 @@ BOOL ov19_021D8898(UnkStruct_ov19_021D8318 *param0)
 void ov19_021D8938(UnkStruct_ov19_021D8318 *param0)
 {
     u32 v0;
-    int v1;
+    int monPosInBox;
 
-    v0 = ov19_021D5EC8(param0->unk_58F8);
+    v0 = ov19_GetMonSpriteTransparencyMask(param0->unk_58F8);
 
-    for (v1 = 0; v1 < (5 * 6); v1++) {
-        if (param0->unk_A8[param0->unk_02][v1].unk_00 != NULL) {
-            ov19_021DA63C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][v1]), v0);
+    for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
+        if (param0->unk_A8[param0->unk_02][monPosInBox].unk_00 != NULL) {
+            ov19_021DA63C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][monPosInBox]), v0);
         }
     }
 }
 
-void ov19_021D8988(UnkStruct_ov19_021D8318 *param0, u32 param1, u32 param2)
+void ov19_021D8988(UnkStruct_ov19_021D8318 *param0, u32 posInBox, u32 item)
 {
-    if (param0->unk_A8[param0->unk_02][param1].unk_00 != NULL) {
-        ov19_021DA690(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][param1]), param2);
-        ov19_021DA63C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][param1]), ov19_021D5EC8(param0->unk_58F8));
-        ov19_021DA694(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][param1]), 1);
+    if (param0->unk_A8[param0->unk_02][posInBox].unk_00 != NULL) {
+        ov19_021DA690(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), item);
+        ov19_021DA63C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), ov19_GetMonSpriteTransparencyMask(param0->unk_58F8));
+        ov19_021DA694(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), 1);
     }
 }
 
@@ -854,11 +854,11 @@ void ov19_021D89F4(UnkStruct_ov19_021D8318 *param0, u32 param1)
 
 void ov19_021D8A24(UnkStruct_ov19_021D8318 *param0)
 {
-    u32 v0 = ov19_021D5E24(param0->unk_58F8);
-    u32 v1 = ov19_GetPreviewedMonMarkings(param0->unk_58F8);
+    u32 posInBox = ov19_GetCursorBoxPosition(param0->unk_58F8);
+    u32 monMarkings = ov19_GetPreviewedMonMarkings(param0->unk_58F8);
 
-    if (param0->unk_A8[param0->unk_02][v0].unk_00 != NULL) {
-        ov19_021DA68C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][v0]), v1);
+    if (param0->unk_A8[param0->unk_02][posInBox].unk_00 != NULL) {
+        ov19_021DA68C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), monMarkings);
     }
 }
 
@@ -866,7 +866,7 @@ void ov19_021D8A6C(UnkStruct_ov19_021D8318 *param0)
 {
     u32 v0, v1, v2, v3, v4, v5, v6;
 
-    ov19_021D5EE8(param0->unk_58F8, &v0, &v1, &v2, &v3);
+    ov19_GetMultiSelectBoundingBox(param0->unk_58F8, &v0, &v1, &v2, &v3);
 
     v6 = 0;
 

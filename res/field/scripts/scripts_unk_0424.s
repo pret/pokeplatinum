@@ -41,7 +41,7 @@ _0054:
     Message 2
     ScrCmd_28E 0x800C
     PlayCry SPECIES_CHATOT
-    ScrCmd_04D
+    WaitCry
     GoTo _00B2
     End
 
