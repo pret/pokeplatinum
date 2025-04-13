@@ -65,6 +65,7 @@
 #include "vars_flags.h"
 
 #include "constdata/const_020F1E88.h"
+#include "res/text/bank/location_names.h"
 
 typedef void *(*UnkFuncPtr_02068870)(void *);
 
@@ -408,7 +409,7 @@ static BOOL sub_02068750(UnkStruct_02068870 *param0)
 
 static u32 sub_0206877C(const UnkStruct_020684D0 *param0)
 {
-    if (MapHeader_GetMapLabelTextID(param0->unk_00) == 0) {
+    if (MapHeader_GetMapLabelTextID(param0->unk_00) == LocationNames_Text_MysteryZone) {
         return -1;
     }
 
