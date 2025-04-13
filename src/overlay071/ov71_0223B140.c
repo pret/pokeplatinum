@@ -167,7 +167,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
 
     sub_0201E3D8();
     sub_0201E450(4);
-    Sound_SetSceneAndPlayBGM(56, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_56, SEQ_NONE, 0);
     ov71_0223D324(&v0->unk_3354);
     Sound_PlayEffect(SEQ_SE_DP_CARD3);
     ov71_0223CF0C(&v0->unk_30E4, v1);

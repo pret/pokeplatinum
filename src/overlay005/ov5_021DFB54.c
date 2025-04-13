@@ -783,7 +783,7 @@ static BOOL ov5_021E03C8(FieldTask *param0)
 
         sub_0205EC00(v0->playerAvatar, NULL);
         PlayerAvatar_SetPlayerState(v0->playerAvatar, 0x0);
-        sub_02055554(v0->fieldSystem, sub_020554A4(v0->fieldSystem, v0->fieldSystem->location->mapId), 1);
+        sub_02055554(v0->fieldSystem, Sound_GetBGMByMapID(v0->fieldSystem, v0->fieldSystem->location->mapId), 1);
         ov5_021E1134(v0);
         return 1;
     }

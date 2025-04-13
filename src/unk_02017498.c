@@ -54,7 +54,7 @@ int sub_02017498(OverlayManager *param0, int *param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_02017498));
     v0->unk_00 = OverlayManager_Args(param0);
 
-    Sound_SetSceneAndPlayBGM(11, 1175, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
 
     return 1;
 }

@@ -1090,7 +1090,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    Sound_SetSceneAndPlayBGM(10, 1174, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_10, SEQ_PRESENT, 1);
     ov97_02237520(86);
 
     if (ov97_02237624()) {

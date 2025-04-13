@@ -488,7 +488,7 @@ static BOOL sub_02068884(FieldTask *task)
 
             Sound_SetSpecialBGM(fieldSystem, 0);
             sub_02055554(
-                fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
+                fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
         } else {
             Sound_SetSpecialBGM(fieldSystem, 1152);
             sub_02055554(fieldSystem, 1152, 1);

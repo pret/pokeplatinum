@@ -148,7 +148,7 @@ _01C9:
     LockAll
     FacePlayer
     GoToIfGe 0x40AE, 1, _0211
-    ScrCmd_0EA TRAINER_LASS_CAROLINE
+    PlayTrainerEncounterBGM TRAINER_LASS_CAROLINE
     Message 6
     CloseMessage
     StartTrainerBattle TRAINER_LASS_CAROLINE
@@ -174,7 +174,7 @@ _021C:
     LockAll
     FacePlayer
     GoToIfGe 0x40AE, 2, _0270
-    ScrCmd_0EA TRAINER_AROMA_LADY_JENNA
+    PlayTrainerEncounterBGM TRAINER_AROMA_LADY_JENNA
     SetVar 0x8007, 3
     Call _02DA
     Message 8
@@ -202,7 +202,7 @@ _027B:
     LockAll
     FacePlayer
     GoToIfGe 0x40AE, 3, _02CF
-    ScrCmd_0EA TRAINER_AROMA_LADY_ANGELA
+    PlayTrainerEncounterBGM TRAINER_AROMA_LADY_ANGELA
     SetVar 0x8007, 4
     Call _02DA
     Message 10

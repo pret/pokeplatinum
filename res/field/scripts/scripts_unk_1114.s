@@ -953,7 +953,7 @@ _0E86:
     End
 
 _0F01:
-    ScrCmd_0EA 0x8004
+    PlayTrainerEncounterBGM 0x8004
     OpenMessage
     ScrCmd_0E7 0x8000, 0x8001, 0x8002
     ScrCmd_0E6 0x8004, 0x8000
@@ -995,7 +995,7 @@ _0F73:
     End
 
 _0FA3:
-    ScrCmd_0EA 0x8004
+    PlayTrainerEncounterBGM 0x8004
     OpenMessage
     ScrCmd_0E8 0x8000, 0x8001, 0x8002
     ScrCmd_0E6 0x8004, 0x8000
@@ -1060,7 +1060,7 @@ _1054:
 _1083:
     ScrCmd_0B9 0, 0x800C
     SetVar 0x8004, 0x800C
-    ScrCmd_0EA 0x8004
+    PlayTrainerEncounterBGM 0x8004
     ScrCmd_0B6 0
     Call _10DE
     ScrCmd_0B9 0, 0x800C
@@ -1085,7 +1085,7 @@ _10DE:
 _10F3:
     ScrCmd_0B9 0, 0x800C
     SetVar 0x8004, 0x800C
-    ScrCmd_0EA 0x8004
+    PlayTrainerEncounterBGM 0x8004
     ScrCmd_0B6 0
     ScrCmd_0B6 1
     Call _1178
@@ -1121,7 +1121,7 @@ _1178:
 _11A0:
     ScrCmd_0B9 0, 0x800C
     SetVar 0x8004, 0x800C
-    ScrCmd_0EA 0x8004
+    PlayTrainerEncounterBGM 0x8004
     ScrCmd_0B6 0
     Call _123B
     ScrCmd_0B9 0, 0x800C
@@ -1131,7 +1131,7 @@ _11A0:
     CloseMessage
     ScrCmd_0B9 1, 0x800C
     SetVar 0x8005, 0x800C
-    ScrCmd_0EA 0x8005
+    PlayTrainerEncounterBGM 0x8005
     ScrCmd_0B6 1
     Call _1250
     ScrCmd_0B9 1, 0x800C

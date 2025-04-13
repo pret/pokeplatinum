@@ -90,7 +90,7 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
 {
     PokedexOverlayArgs pokedexOverlayArgs;
 
-    Sound_SetSceneAndPlayBGM(54, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_54, SEQ_NONE, 0);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKEDEX, 0x40000);
 
     PokedexApp **appPtr = OverlayManager_NewData(overlayMan, sizeof(PokedexApp **), HEAP_ID_POKEDEX);

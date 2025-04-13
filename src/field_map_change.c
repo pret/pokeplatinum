@@ -5,7 +5,6 @@
 
 #include "constants/field/map_load.h"
 #include "constants/overworld_weather.h"
-#include "generated/map_headers.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/map_load_mode.h"
@@ -1229,7 +1228,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
             break;
         }
 
-        Sound_SetScene(0);
+        Sound_SetScene(SOUND_SCENE_NONE);
         Sound_ClearSpecialBGM(fieldSystem);
         FieldTransition_StartMap(task);
         mapChangeUndergroundData->state++;
@@ -1296,7 +1295,7 @@ BOOL FieldTask_MapChangeFromUnderground(FieldTask *task)
             break;
         }
 
-        Sound_SetScene(0);
+        Sound_SetScene(SOUND_SCENE_NONE);
         Sound_ClearSpecialBGM(fieldSystem);
         FieldTransition_StartMap(task);
         mapChangeUndergroundData->state++;

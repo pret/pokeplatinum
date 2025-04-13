@@ -269,7 +269,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     sub_0207EB6C(v0, v1);
     sub_0201E3D8();
     sub_0201E450(4);
-    Sound_SetSceneAndPlayBGM(57, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_57, SEQ_NONE, 0);
     sub_02081A24(v0);
     sub_02082C2C(v0);
     sub_02082E58(v0);

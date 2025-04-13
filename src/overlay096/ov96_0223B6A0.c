@@ -96,12 +96,12 @@ int ov96_0223B6A0(OverlayManager *param0, int *param1)
         SetAutorepeat(4, 8);
         ov96_0223B980(v0, param0);
         ov96_0223BC64(v0);
-        Sound_SetSceneAndPlayBGM(52, 0, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
 
         v0->unk_24 = Heap_AllocFromHeap(HEAP_ID_68, 0x20000 + 32);
         v0->unk_28 = NNS_FndCreateExpHeap((void *)(((u32)v0->unk_24 + 31) / 32 * 32), 0x20000);
 
-        Sound_SetSceneAndPlayBGM(11, 1175, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
 
         *param1 = 1;
         break;
