@@ -94,6 +94,7 @@ metang_generators = {
     'mart_decor_id': {'type': 'enum', 'tag': 'MartDecorID'},
     'mart_seal_id': {'type': 'enum', 'tag': 'MartSealID'},
     'mart_frontier_id': {'type': 'enum', 'tag': 'MartFrontierId'},
+    'mystery_gift_delivery_stages': {'type': 'enum', 'tag': 'MysteryGiftDeliveryStage'},
 }
 
 c_consts_generators = []
