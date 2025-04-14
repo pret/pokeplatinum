@@ -4402,6 +4402,8 @@
 #define VAR_UNK_0x411D                        (SYSTEM_VARS_START + 237)
 #define VAR_UNK_0x411E                        (SYSTEM_VARS_START + 238)
 #define VAR_UNK_0x411F                        (SYSTEM_VARS_START + 239)
+#define VARS_END                              (SYSTEM_VARS_START + 240)
+#define NUM_VARS                              (VARS_END - VARS_START)
 
 #define SPECIAL_VARS_START 0x8000
 #define VAR_0x8000         (SPECIAL_VARS_START + 0)
