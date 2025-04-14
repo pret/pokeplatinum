@@ -86,7 +86,7 @@ _00E7:
     CheckPartyMonHasMove 0x800C, MOVE_DRACO_METEOR, 0x4000
     GoToIfEq 0x800C, 0, _010F
 _00FC:
-    GoToIfNe 0x4000, 0, _00A6
+    GoToIfNe VAR_0x4000, 0, _00A6
     GoTo _0066
 
 _010F:

@@ -25,7 +25,7 @@ _000E:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x4000, 0xFF, _00EB
+    GoToIfEq VAR_0x4000, 0xFF, _00EB
     GetPartyMonSpecies 0x4000, 0x800C
     GoToIfEq 0x800C, SPECIES_NONE, _00E0
     Message 3

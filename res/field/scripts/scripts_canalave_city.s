@@ -36,15 +36,15 @@ _0066:
     CallIfEq 0x40F8, 2, _00F8
     CallIfEq 0x40F8, 3, _0100
     Call _0168
-    CallIfEq 0x4000, 0, _01E7
-    CallIfEq 0x4000, 1, _0116
+    CallIfEq VAR_0x4000, 0, _01E7
+    CallIfEq VAR_0x4000, 1, _0116
     CallIfEq 0x4078, 1, _0132
     CallIfEq 0x4078, 2, _0132
     CallIfEq 0x4078, 4, _011C
     CallIfEq 0x4078, 5, _0158
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _0148
-    GoToIfEq 0x4000, GENDER_FEMALE, _0150
+    GoToIfEq VAR_0x4000, GENDER_MALE, _0148
+    GoToIfEq VAR_0x4000, GENDER_FEMALE, _0150
     End
 
 _00F8:
@@ -74,11 +74,11 @@ _0132:
     Return
 
 _0148:
-    SetVar 0x4020, 97
+    SetVar VAR_0x4020, 97
     End
 
 _0150:
-    SetVar 0x4020, 0
+    SetVar VAR_0x4020, 0
     End
 
 _0158:
@@ -91,22 +91,22 @@ _0168:
     GoToIfSet FLAG_UNK_0x0158, _01CA
     GoToIfUnset FLAG_GAME_COMPLETED, _01CA
     ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _01CA
+    GoToIfEq VAR_0x4000, 0, _01CA
     CheckItem ITEM_MEMBER_CARD, 1, 0x4000
-    GoToIfEq 0x4000, FALSE, _01CA
+    GoToIfEq VAR_0x4000, FALSE, _01CA
     CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
-    GoToIfEq 0x4000, FALSE, _01CA
+    GoToIfEq VAR_0x4000, FALSE, _01CA
     GoToIfUnset FLAG_UNK_0x012C, _01CA
-    SetVar 0x4000, 1
+    SetVar VAR_0x4000, 1
     Return
 
 _01CA:
-    SetVar 0x4000, 0
+    SetVar VAR_0x4000, 0
     Return
 
 _01D2:
     Call _0168
-    CallIfEq 0x4000, 0, _01E7
+    CallIfEq VAR_0x4000, 0, _01E7
     End
 
 _01E7:
@@ -491,7 +491,7 @@ _06A3:
 
 _06BA:
     Call _0168
-    GoToIfEq 0x4000, 0, _06E2
+    GoToIfEq VAR_0x4000, 0, _06E2
     ShowScrollingSign 42
     End
 

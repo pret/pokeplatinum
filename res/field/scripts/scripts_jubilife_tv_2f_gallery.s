@@ -25,8 +25,8 @@ _003A:
     FacePlayer
     SetVar 0x8007, 0
     CallIfUnset FLAG_UNK_0x0088, _006F
-    GoToIfEq 0x4001, 0, _0077
-    GoToIfEq 0x4001, 1, _0080
+    GoToIfEq VAR_0x4001, 0, _0077
+    GoToIfEq VAR_0x4001, 1, _0080
     End
 
 _006F:
@@ -71,7 +71,7 @@ _00F5:
     End
 
 _0115:
-    SetVar 0x4002, 0
+    SetVar VAR_0x4002, 0
     GoTo _016C
 
 _0121:
@@ -84,7 +84,7 @@ _0121:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x4002, 0xFF, _02B3
+    GoToIfEq VAR_0x4002, 0xFF, _02B3
     GetPartyMonSpecies 0x4002, 0x800C
     GoToIfEq 0x800C, 0, _02BE
     GoTo _016C
@@ -157,7 +157,7 @@ _0279:
 
 _0293:
     GoToIfEq 0x8005, 0, _0335
-    SetVar 0x4001, 1
+    SetVar VAR_0x4001, 1
     Message 7
     WaitABXPadPress
     CloseMessage

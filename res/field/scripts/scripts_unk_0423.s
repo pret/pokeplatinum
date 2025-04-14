@@ -407,7 +407,7 @@ _0526:
     ApplyMovement 0x800D, _0424
     WaitMovement
     Call _0328
-    SetVar 0x4003, 0
+    SetVar VAR_0x4003, 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_WIFI_PLAZA_ENTRANCE, 0, 20, 11, 0

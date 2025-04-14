@@ -15,11 +15,11 @@
 
 _0022:
     GetTimeOfDay 0x4000
-    GoToIfEq 0x4000, 0, _0069
-    GoToIfEq 0x4000, 1, _007B
-    GoToIfEq 0x4000, 2, _007B
-    GoToIfEq 0x4000, 3, _007B
-    GoToIfEq 0x4000, 4, _007B
+    GoToIfEq VAR_0x4000, 0, _0069
+    GoToIfEq VAR_0x4000, 1, _007B
+    GoToIfEq VAR_0x4000, 2, _007B
+    GoToIfEq VAR_0x4000, 3, _007B
+    GoToIfEq VAR_0x4000, 4, _007B
     End
 
 _0069:

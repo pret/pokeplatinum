@@ -27,14 +27,14 @@ _0039:
     ClearFlag FLAG_UNK_0x02A3
     ClearFlag FLAG_UNK_0x02A4
     ClearFlag FLAG_UNK_0x02A5
-    CallIfEq 0x4022, 0xFFF, _00ED
-    CallIfEq 0x4023, 0xFFF, _00F3
-    CallIfEq 0x4024, 0xFFF, _00F9
-    CallIfEq 0x4024, 141, _00FF
-    CallIfEq 0x4024, 142, _010C
-    CallIfEq 0x4024, 143, _0119
-    CallIfEq 0x4024, 144, _0126
-    CallIfEq 0x4024, 145, _0133
+    CallIfEq VAR_0x4022, 0xFFF, _00ED
+    CallIfEq VAR_0x4023, 0xFFF, _00F3
+    CallIfEq VAR_0x4024, 0xFFF, _00F9
+    CallIfEq VAR_0x4024, 141, _00FF
+    CallIfEq VAR_0x4024, 142, _010C
+    CallIfEq VAR_0x4024, 143, _0119
+    CallIfEq VAR_0x4024, 144, _0126
+    CallIfEq VAR_0x4024, 145, _0133
     ClearFlag FLAG_UNK_0x0001
     ClearFlag FLAG_UNK_0x0002
     ClearFlag FLAG_UNK_0x0003
@@ -79,10 +79,10 @@ _0133:
     Return
 
 _0140:
-    SetVar 0x4021, 0x4065
-    SetVar 0x4022, 0x4066
-    SetVar 0x4023, 0x4067
-    SetVar 0x4024, 0x4068
+    SetVar VAR_0x4021, 0x4065
+    SetVar VAR_0x4022, 0x4066
+    SetVar VAR_0x4023, 0x4067
+    SetVar VAR_0x4024, 0x4068
     Return
 
 _015A:
@@ -211,7 +211,7 @@ _02B4:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar 0x4001, 0x4021
+    SetVar VAR_0x4001, 0x4021
     GoToIfSet FLAG_UNK_0x0005, _034D
     Call _118A
     GoToIfEq 0x800C, 1, _034D
@@ -268,8 +268,8 @@ _0398:
     End
 
 _039E:
-    CallIfEq 0x4001, 126, _03C0
-    CallIfEq 0x4001, 132, _03C5
+    CallIfEq VAR_0x4001, 126, _03C0
+    CallIfEq VAR_0x4001, 132, _03C5
     GoTo _037E
     End
 
@@ -286,7 +286,7 @@ _03CA:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar 0x4001, 0x4022
+    SetVar VAR_0x4001, 0x4022
     GoToIfSet FLAG_UNK_0x0006, _034D
     Call _118A
     GoToIfEq 0x800C, 1, _034D
@@ -312,7 +312,7 @@ _0457:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar 0x4001, 0x4023
+    SetVar VAR_0x4001, 0x4023
     GoToIfSet FLAG_UNK_0x0007, _034D
     Call _118A
     GoToIfEq 0x800C, 1, _034D
@@ -338,7 +338,7 @@ _04E4:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar 0x4001, 0x4024
+    SetVar VAR_0x4001, 0x4024
     GoToIfSet FLAG_UNK_0x0008, _034D
     Call _118A
     GoToIfEq 0x800C, 1, _034D
@@ -361,19 +361,19 @@ _055F:
 
 _0571:
     SetVar 0x8001, 0
-    GoToIfEq 0x4001, 126, _0593
-    GoToIfEq 0x4001, 132, _0593
+    GoToIfEq VAR_0x4001, 126, _0593
+    GoToIfEq VAR_0x4001, 132, _0593
     Return
 
 _0593:
-    CallIfEq 0x4021, 126, _05FD
-    CallIfEq 0x4022, 126, _05FD
-    CallIfEq 0x4023, 126, _05FD
-    CallIfEq 0x4024, 126, _05FD
-    CallIfEq 0x4021, 132, _05FD
-    CallIfEq 0x4022, 132, _05FD
-    CallIfEq 0x4023, 132, _05FD
-    CallIfEq 0x4024, 132, _05FD
+    CallIfEq VAR_0x4021, 126, _05FD
+    CallIfEq VAR_0x4022, 126, _05FD
+    CallIfEq VAR_0x4023, 126, _05FD
+    CallIfEq VAR_0x4024, 126, _05FD
+    CallIfEq VAR_0x4021, 132, _05FD
+    CallIfEq VAR_0x4022, 132, _05FD
+    CallIfEq VAR_0x4023, 132, _05FD
+    CallIfEq VAR_0x4024, 132, _05FD
     Return
 
 _05FD:
@@ -381,88 +381,88 @@ _05FD:
     Return
 
 _0605:
-    CallIfEq 0x4001, 126, _06B0
-    CallIfEq 0x4001, 127, _06B8
-    CallIfEq 0x4001, 128, _06C0
-    CallIfEq 0x4001, 129, _06C8
-    CallIfEq 0x4001, 130, _06D0
-    CallIfEq 0x4001, 131, _06D8
-    CallIfEq 0x4001, 132, _06E0
-    CallIfEq 0x4001, 133, _06E8
-    CallIfEq 0x4001, 141, _06F0
-    CallIfEq 0x4001, 142, _06F8
-    CallIfEq 0x4001, 143, _0700
-    CallIfEq 0x4001, 144, _0708
-    CallIfEq 0x4001, 145, _0710
+    CallIfEq VAR_0x4001, 126, _06B0
+    CallIfEq VAR_0x4001, 127, _06B8
+    CallIfEq VAR_0x4001, 128, _06C0
+    CallIfEq VAR_0x4001, 129, _06C8
+    CallIfEq VAR_0x4001, 130, _06D0
+    CallIfEq VAR_0x4001, 131, _06D8
+    CallIfEq VAR_0x4001, 132, _06E0
+    CallIfEq VAR_0x4001, 133, _06E8
+    CallIfEq VAR_0x4001, 141, _06F0
+    CallIfEq VAR_0x4001, 142, _06F8
+    CallIfEq VAR_0x4001, 143, _0700
+    CallIfEq VAR_0x4001, 144, _0708
+    CallIfEq VAR_0x4001, 145, _0710
     Return
 
 _06B0:
-    SetVar 0x4005, TRAINER_LEADER_ROARK_REMATCH 
+    SetVar VAR_0x4005, TRAINER_LEADER_ROARK_REMATCH 
     Return
 
 _06B8:
-    SetVar 0x4005, TRAINER_LEADER_GARDENIA_REMATCH
+    SetVar VAR_0x4005, TRAINER_LEADER_GARDENIA_REMATCH
     Return
 
 _06C0:
-    SetVar 0x4005, TRAINER_LEADER_WAKE_REMATCH
+    SetVar VAR_0x4005, TRAINER_LEADER_WAKE_REMATCH
     Return
 
 _06C8:
-    SetVar 0x4005, TRAINER_LEADER_MAYLENE_REMATCH
+    SetVar VAR_0x4005, TRAINER_LEADER_MAYLENE_REMATCH
     Return
 
 _06D0:
-    SetVar 0x4005, TRAINER_LEADER_FANTINA_REMATCH
+    SetVar VAR_0x4005, TRAINER_LEADER_FANTINA_REMATCH
     Return
 
 _06D8:
-    SetVar 0x4005, TRAINER_LEADER_CANDICE_REMATCH
+    SetVar VAR_0x4005, TRAINER_LEADER_CANDICE_REMATCH
     Return
 
 _06E0:
-    SetVar 0x4005, TRAINER_LEADER_BYRON_REMATCH
+    SetVar VAR_0x4005, TRAINER_LEADER_BYRON_REMATCH
     Return
 
 _06E8:
-    SetVar 0x4005, TRAINER_LEADER_VOLKNER_REMATCH
+    SetVar VAR_0x4005, TRAINER_LEADER_VOLKNER_REMATCH
     Return
 
 _06F0:
-    SetVar 0x4005, TRAINER_CHERYL_BATTLEGROUND
+    SetVar VAR_0x4005, TRAINER_CHERYL_BATTLEGROUND
     Return
 
 _06F8:
-    SetVar 0x4005, TRAINER_RILEY_BATTLEGROUND
+    SetVar VAR_0x4005, TRAINER_RILEY_BATTLEGROUND
     Return
 
 _0700:
-    SetVar 0x4005, TRAINER_MARLEY_BATTLEGROUND
+    SetVar VAR_0x4005, TRAINER_MARLEY_BATTLEGROUND
     Return
 
 _0708:
-    SetVar 0x4005, TRAINER_BUCK_BATTLEGROUND
+    SetVar VAR_0x4005, TRAINER_BUCK_BATTLEGROUND
     Return
 
 _0710:
-    SetVar 0x4005, TRAINER_MIRA_BATTLEGROUND
+    SetVar VAR_0x4005, TRAINER_MIRA_BATTLEGROUND
     Return
 
 _0718:
     GoToIfEq 0x4061, 1, _0BF5
-    CallIfEq 0x4001, 126, _07D0
-    CallIfEq 0x4001, 127, _07D5
-    CallIfEq 0x4001, 128, _07DA
-    CallIfEq 0x4001, 129, _07DF
-    CallIfEq 0x4001, 130, _07E4
-    CallIfEq 0x4001, 131, _07E9
-    CallIfEq 0x4001, 132, _07EE
-    CallIfEq 0x4001, 133, _07F3
-    CallIfEq 0x4001, 141, _07F8
-    CallIfEq 0x4001, 142, _07FD
-    CallIfEq 0x4001, 143, _0802
-    CallIfEq 0x4001, 144, _0807
-    CallIfEq 0x4001, 145, _080C
+    CallIfEq VAR_0x4001, 126, _07D0
+    CallIfEq VAR_0x4001, 127, _07D5
+    CallIfEq VAR_0x4001, 128, _07DA
+    CallIfEq VAR_0x4001, 129, _07DF
+    CallIfEq VAR_0x4001, 130, _07E4
+    CallIfEq VAR_0x4001, 131, _07E9
+    CallIfEq VAR_0x4001, 132, _07EE
+    CallIfEq VAR_0x4001, 133, _07F3
+    CallIfEq VAR_0x4001, 141, _07F8
+    CallIfEq VAR_0x4001, 142, _07FD
+    CallIfEq VAR_0x4001, 143, _0802
+    CallIfEq VAR_0x4001, 144, _0807
+    CallIfEq VAR_0x4001, 145, _080C
     Return
 
 _07D0:
@@ -519,19 +519,19 @@ _080C:
 
 _0811:
     GoToIfEq 0x4061, 1, _0CE1
-    CallIfEq 0x4001, 126, _08C9
-    CallIfEq 0x4001, 127, _08CE
-    CallIfEq 0x4001, 128, _08D3
-    CallIfEq 0x4001, 129, _08D8
-    CallIfEq 0x4001, 130, _08DD
-    CallIfEq 0x4001, 131, _08E2
-    CallIfEq 0x4001, 132, _08E7
-    CallIfEq 0x4001, 133, _08EC
-    CallIfEq 0x4001, 141, _08F1
-    CallIfEq 0x4001, 142, _08F6
-    CallIfEq 0x4001, 143, _08FB
-    CallIfEq 0x4001, 144, _0900
-    CallIfEq 0x4001, 145, _0905
+    CallIfEq VAR_0x4001, 126, _08C9
+    CallIfEq VAR_0x4001, 127, _08CE
+    CallIfEq VAR_0x4001, 128, _08D3
+    CallIfEq VAR_0x4001, 129, _08D8
+    CallIfEq VAR_0x4001, 130, _08DD
+    CallIfEq VAR_0x4001, 131, _08E2
+    CallIfEq VAR_0x4001, 132, _08E7
+    CallIfEq VAR_0x4001, 133, _08EC
+    CallIfEq VAR_0x4001, 141, _08F1
+    CallIfEq VAR_0x4001, 142, _08F6
+    CallIfEq VAR_0x4001, 143, _08FB
+    CallIfEq VAR_0x4001, 144, _0900
+    CallIfEq VAR_0x4001, 145, _0905
     Return
 
 _08C9:
@@ -588,19 +588,19 @@ _0905:
 
 _090A:
     GoToIfEq 0x4061, 1, _0DCD
-    CallIfEq 0x4001, 126, _09C2
-    CallIfEq 0x4001, 127, _09C7
-    CallIfEq 0x4001, 128, _09CC
-    CallIfEq 0x4001, 129, _09D1
-    CallIfEq 0x4001, 130, _09D6
-    CallIfEq 0x4001, 131, _09DB
-    CallIfEq 0x4001, 132, _09E0
-    CallIfEq 0x4001, 133, _09E5
-    CallIfEq 0x4001, 141, _09EA
-    CallIfEq 0x4001, 142, _09EF
-    CallIfEq 0x4001, 143, _09F4
-    CallIfEq 0x4001, 144, _09F9
-    CallIfEq 0x4001, 145, _09FE
+    CallIfEq VAR_0x4001, 126, _09C2
+    CallIfEq VAR_0x4001, 127, _09C7
+    CallIfEq VAR_0x4001, 128, _09CC
+    CallIfEq VAR_0x4001, 129, _09D1
+    CallIfEq VAR_0x4001, 130, _09D6
+    CallIfEq VAR_0x4001, 131, _09DB
+    CallIfEq VAR_0x4001, 132, _09E0
+    CallIfEq VAR_0x4001, 133, _09E5
+    CallIfEq VAR_0x4001, 141, _09EA
+    CallIfEq VAR_0x4001, 142, _09EF
+    CallIfEq VAR_0x4001, 143, _09F4
+    CallIfEq VAR_0x4001, 144, _09F9
+    CallIfEq VAR_0x4001, 145, _09FE
     Return
 
 _09C2:
@@ -657,19 +657,19 @@ _09FE:
 
 _0A03:
     GoToIfEq 0x4061, 1, _0EB9
-    CallIfEq 0x4001, 126, _0ABB
-    CallIfEq 0x4001, 127, _0AC0
-    CallIfEq 0x4001, 128, _0AC5
-    CallIfEq 0x4001, 129, _0ACA
-    CallIfEq 0x4001, 130, _0ACF
-    CallIfEq 0x4001, 131, _0AD4
-    CallIfEq 0x4001, 132, _0AD9
-    CallIfEq 0x4001, 133, _0ADE
-    CallIfEq 0x4001, 141, _0AE3
-    CallIfEq 0x4001, 142, _0AE8
-    CallIfEq 0x4001, 143, _0AED
-    CallIfEq 0x4001, 144, _0AF2
-    CallIfEq 0x4001, 145, _0AF7
+    CallIfEq VAR_0x4001, 126, _0ABB
+    CallIfEq VAR_0x4001, 127, _0AC0
+    CallIfEq VAR_0x4001, 128, _0AC5
+    CallIfEq VAR_0x4001, 129, _0ACA
+    CallIfEq VAR_0x4001, 130, _0ACF
+    CallIfEq VAR_0x4001, 131, _0AD4
+    CallIfEq VAR_0x4001, 132, _0AD9
+    CallIfEq VAR_0x4001, 133, _0ADE
+    CallIfEq VAR_0x4001, 141, _0AE3
+    CallIfEq VAR_0x4001, 142, _0AE8
+    CallIfEq VAR_0x4001, 143, _0AED
+    CallIfEq VAR_0x4001, 144, _0AF2
+    CallIfEq VAR_0x4001, 145, _0AF7
     Return
 
 _0ABB:
@@ -726,19 +726,19 @@ _0AF7:
 
 _0AFC:
     GoToIfEq 0x4061, 1, _0FA5
-    CallIfEq 0x4001, 126, _0BB4
-    CallIfEq 0x4001, 127, _0BB9
-    CallIfEq 0x4001, 128, _0BBE
-    CallIfEq 0x4001, 129, _0BC3
-    CallIfEq 0x4001, 130, _0BC8
-    CallIfEq 0x4001, 131, _0BCD
-    CallIfEq 0x4001, 132, _0BD2
-    CallIfEq 0x4001, 133, _0BD7
-    CallIfEq 0x4001, 141, _0BDC
-    CallIfEq 0x4001, 142, _0BE1
-    CallIfEq 0x4001, 143, _0BE6
-    CallIfEq 0x4001, 144, _0BEB
-    CallIfEq 0x4001, 145, _0BF0
+    CallIfEq VAR_0x4001, 126, _0BB4
+    CallIfEq VAR_0x4001, 127, _0BB9
+    CallIfEq VAR_0x4001, 128, _0BBE
+    CallIfEq VAR_0x4001, 129, _0BC3
+    CallIfEq VAR_0x4001, 130, _0BC8
+    CallIfEq VAR_0x4001, 131, _0BCD
+    CallIfEq VAR_0x4001, 132, _0BD2
+    CallIfEq VAR_0x4001, 133, _0BD7
+    CallIfEq VAR_0x4001, 141, _0BDC
+    CallIfEq VAR_0x4001, 142, _0BE1
+    CallIfEq VAR_0x4001, 143, _0BE6
+    CallIfEq VAR_0x4001, 144, _0BEB
+    CallIfEq VAR_0x4001, 145, _0BF0
     Return
 
 _0BB4:
@@ -794,19 +794,19 @@ _0BF0:
     Return
 
 _0BF5:
-    CallIfEq 0x4001, 126, _0CA0
-    CallIfEq 0x4001, 127, _0CA5
-    CallIfEq 0x4001, 128, _0CAA
-    CallIfEq 0x4001, 129, _0CAF
-    CallIfEq 0x4001, 130, _0CB4
-    CallIfEq 0x4001, 131, _0CB9
-    CallIfEq 0x4001, 132, _0CBE
-    CallIfEq 0x4001, 133, _0CC3
-    CallIfEq 0x4001, 141, _0CC8
-    CallIfEq 0x4001, 142, _0CCD
-    CallIfEq 0x4001, 143, _0CD2
-    CallIfEq 0x4001, 144, _0CD7
-    CallIfEq 0x4001, 145, _0CDC
+    CallIfEq VAR_0x4001, 126, _0CA0
+    CallIfEq VAR_0x4001, 127, _0CA5
+    CallIfEq VAR_0x4001, 128, _0CAA
+    CallIfEq VAR_0x4001, 129, _0CAF
+    CallIfEq VAR_0x4001, 130, _0CB4
+    CallIfEq VAR_0x4001, 131, _0CB9
+    CallIfEq VAR_0x4001, 132, _0CBE
+    CallIfEq VAR_0x4001, 133, _0CC3
+    CallIfEq VAR_0x4001, 141, _0CC8
+    CallIfEq VAR_0x4001, 142, _0CCD
+    CallIfEq VAR_0x4001, 143, _0CD2
+    CallIfEq VAR_0x4001, 144, _0CD7
+    CallIfEq VAR_0x4001, 145, _0CDC
     Return
 
 _0CA0:
@@ -862,19 +862,19 @@ _0CDC:
     Return
 
 _0CE1:
-    CallIfEq 0x4001, 126, _0D8C
-    CallIfEq 0x4001, 127, _0D91
-    CallIfEq 0x4001, 128, _0D96
-    CallIfEq 0x4001, 129, _0D9B
-    CallIfEq 0x4001, 130, _0DA0
-    CallIfEq 0x4001, 131, _0DA5
-    CallIfEq 0x4001, 132, _0DAA
-    CallIfEq 0x4001, 133, _0DAF
-    CallIfEq 0x4001, 141, _0DB4
-    CallIfEq 0x4001, 142, _0DB9
-    CallIfEq 0x4001, 143, _0DBE
-    CallIfEq 0x4001, 144, _0DC3
-    CallIfEq 0x4001, 145, _0DC8
+    CallIfEq VAR_0x4001, 126, _0D8C
+    CallIfEq VAR_0x4001, 127, _0D91
+    CallIfEq VAR_0x4001, 128, _0D96
+    CallIfEq VAR_0x4001, 129, _0D9B
+    CallIfEq VAR_0x4001, 130, _0DA0
+    CallIfEq VAR_0x4001, 131, _0DA5
+    CallIfEq VAR_0x4001, 132, _0DAA
+    CallIfEq VAR_0x4001, 133, _0DAF
+    CallIfEq VAR_0x4001, 141, _0DB4
+    CallIfEq VAR_0x4001, 142, _0DB9
+    CallIfEq VAR_0x4001, 143, _0DBE
+    CallIfEq VAR_0x4001, 144, _0DC3
+    CallIfEq VAR_0x4001, 145, _0DC8
     Return
 
 _0D8C:
@@ -930,19 +930,19 @@ _0DC8:
     Return
 
 _0DCD:
-    CallIfEq 0x4001, 126, _0E78
-    CallIfEq 0x4001, 127, _0E7D
-    CallIfEq 0x4001, 128, _0E82
-    CallIfEq 0x4001, 129, _0E87
-    CallIfEq 0x4001, 130, _0E8C
-    CallIfEq 0x4001, 131, _0E91
-    CallIfEq 0x4001, 132, _0E96
-    CallIfEq 0x4001, 133, _0E9B
-    CallIfEq 0x4001, 141, _0EA0
-    CallIfEq 0x4001, 142, _0EA5
-    CallIfEq 0x4001, 143, _0EAA
-    CallIfEq 0x4001, 144, _0EAF
-    CallIfEq 0x4001, 145, _0EB4
+    CallIfEq VAR_0x4001, 126, _0E78
+    CallIfEq VAR_0x4001, 127, _0E7D
+    CallIfEq VAR_0x4001, 128, _0E82
+    CallIfEq VAR_0x4001, 129, _0E87
+    CallIfEq VAR_0x4001, 130, _0E8C
+    CallIfEq VAR_0x4001, 131, _0E91
+    CallIfEq VAR_0x4001, 132, _0E96
+    CallIfEq VAR_0x4001, 133, _0E9B
+    CallIfEq VAR_0x4001, 141, _0EA0
+    CallIfEq VAR_0x4001, 142, _0EA5
+    CallIfEq VAR_0x4001, 143, _0EAA
+    CallIfEq VAR_0x4001, 144, _0EAF
+    CallIfEq VAR_0x4001, 145, _0EB4
     Return
 
 _0E78:
@@ -998,19 +998,19 @@ _0EB4:
     Return
 
 _0EB9:
-    CallIfEq 0x4001, 126, _0F64
-    CallIfEq 0x4001, 127, _0F69
-    CallIfEq 0x4001, 128, _0F6E
-    CallIfEq 0x4001, 129, _0F73
-    CallIfEq 0x4001, 130, _0F78
-    CallIfEq 0x4001, 131, _0F7D
-    CallIfEq 0x4001, 132, _0F82
-    CallIfEq 0x4001, 133, _0F87
-    CallIfEq 0x4001, 141, _0F8C
-    CallIfEq 0x4001, 142, _0F91
-    CallIfEq 0x4001, 143, _0F96
-    CallIfEq 0x4001, 144, _0F9B
-    CallIfEq 0x4001, 145, _0FA0
+    CallIfEq VAR_0x4001, 126, _0F64
+    CallIfEq VAR_0x4001, 127, _0F69
+    CallIfEq VAR_0x4001, 128, _0F6E
+    CallIfEq VAR_0x4001, 129, _0F73
+    CallIfEq VAR_0x4001, 130, _0F78
+    CallIfEq VAR_0x4001, 131, _0F7D
+    CallIfEq VAR_0x4001, 132, _0F82
+    CallIfEq VAR_0x4001, 133, _0F87
+    CallIfEq VAR_0x4001, 141, _0F8C
+    CallIfEq VAR_0x4001, 142, _0F91
+    CallIfEq VAR_0x4001, 143, _0F96
+    CallIfEq VAR_0x4001, 144, _0F9B
+    CallIfEq VAR_0x4001, 145, _0FA0
     Return
 
 _0F64:
@@ -1066,19 +1066,19 @@ _0FA0:
     Return
 
 _0FA5:
-    CallIfEq 0x4001, 126, _1050
-    CallIfEq 0x4001, 127, _1055
-    CallIfEq 0x4001, 128, _105A
-    CallIfEq 0x4001, 129, _105F
-    CallIfEq 0x4001, 130, _1064
-    CallIfEq 0x4001, 131, _1069
-    CallIfEq 0x4001, 132, _106E
-    CallIfEq 0x4001, 133, _1073
-    CallIfEq 0x4001, 141, _1078
-    CallIfEq 0x4001, 142, _107D
-    CallIfEq 0x4001, 143, _1082
-    CallIfEq 0x4001, 144, _1087
-    CallIfEq 0x4001, 145, _108C
+    CallIfEq VAR_0x4001, 126, _1050
+    CallIfEq VAR_0x4001, 127, _1055
+    CallIfEq VAR_0x4001, 128, _105A
+    CallIfEq VAR_0x4001, 129, _105F
+    CallIfEq VAR_0x4001, 130, _1064
+    CallIfEq VAR_0x4001, 131, _1069
+    CallIfEq VAR_0x4001, 132, _106E
+    CallIfEq VAR_0x4001, 133, _1073
+    CallIfEq VAR_0x4001, 141, _1078
+    CallIfEq VAR_0x4001, 142, _107D
+    CallIfEq VAR_0x4001, 143, _1082
+    CallIfEq VAR_0x4001, 144, _1087
+    CallIfEq VAR_0x4001, 145, _108C
     Return
 
 _1050:
@@ -1134,19 +1134,19 @@ _108C:
     Return
 
 _1091:
-    CallIfEq 0x4001, 126, _113C
-    CallIfEq 0x4001, 127, _1142
-    CallIfEq 0x4001, 128, _1148
-    CallIfEq 0x4001, 129, _114E
-    CallIfEq 0x4001, 130, _1154
-    CallIfEq 0x4001, 131, _115A
-    CallIfEq 0x4001, 132, _1160
-    CallIfEq 0x4001, 133, _1166
-    CallIfEq 0x4001, 141, _116C
-    CallIfEq 0x4001, 142, _1172
-    CallIfEq 0x4001, 143, _1178
-    CallIfEq 0x4001, 144, _117E
-    CallIfEq 0x4001, 145, _1184
+    CallIfEq VAR_0x4001, 126, _113C
+    CallIfEq VAR_0x4001, 127, _1142
+    CallIfEq VAR_0x4001, 128, _1148
+    CallIfEq VAR_0x4001, 129, _114E
+    CallIfEq VAR_0x4001, 130, _1154
+    CallIfEq VAR_0x4001, 131, _115A
+    CallIfEq VAR_0x4001, 132, _1160
+    CallIfEq VAR_0x4001, 133, _1166
+    CallIfEq VAR_0x4001, 141, _116C
+    CallIfEq VAR_0x4001, 142, _1172
+    CallIfEq VAR_0x4001, 143, _1178
+    CallIfEq VAR_0x4001, 144, _117E
+    CallIfEq VAR_0x4001, 145, _1184
     Return
 
 _113C:
@@ -1203,19 +1203,19 @@ _1184:
 
 _118A:
     SetVar 0x800C, 0
-    GoToIfEq 0x4001, 126, _123B
-    GoToIfEq 0x4001, 127, _1248
-    GoToIfEq 0x4001, 128, _1255
-    GoToIfEq 0x4001, 129, _1262
-    GoToIfEq 0x4001, 130, _126F
-    GoToIfEq 0x4001, 131, _127C
-    GoToIfEq 0x4001, 132, _1289
-    GoToIfEq 0x4001, 133, _1296
-    GoToIfEq 0x4001, 141, _12A3
-    GoToIfEq 0x4001, 142, _12B0
-    GoToIfEq 0x4001, 143, _12BD
-    GoToIfEq 0x4001, 144, _12CA
-    GoToIfEq 0x4001, 145, _12D7
+    GoToIfEq VAR_0x4001, 126, _123B
+    GoToIfEq VAR_0x4001, 127, _1248
+    GoToIfEq VAR_0x4001, 128, _1255
+    GoToIfEq VAR_0x4001, 129, _1262
+    GoToIfEq VAR_0x4001, 130, _126F
+    GoToIfEq VAR_0x4001, 131, _127C
+    GoToIfEq VAR_0x4001, 132, _1289
+    GoToIfEq VAR_0x4001, 133, _1296
+    GoToIfEq VAR_0x4001, 141, _12A3
+    GoToIfEq VAR_0x4001, 142, _12B0
+    GoToIfEq VAR_0x4001, 143, _12BD
+    GoToIfEq VAR_0x4001, 144, _12CA
+    GoToIfEq VAR_0x4001, 145, _12D7
     Return
 
 _123B:

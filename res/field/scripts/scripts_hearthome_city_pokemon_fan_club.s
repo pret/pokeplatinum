@@ -13,7 +13,7 @@
 
 _001A:
     ScrCmd_238 4, 0x4000
-    GoToIfEq 0x4000, 0, _0033
+    GoToIfEq VAR_0x4000, 0, _0033
     ClearFlag FLAG_UNK_0x0210
     End
 

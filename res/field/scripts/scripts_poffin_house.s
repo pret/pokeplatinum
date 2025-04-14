@@ -13,12 +13,12 @@
 
 _001A:
     ScrCmd_238 11, 0x4000
-    CallIfEq 0x4000, 0, _004F
+    CallIfEq VAR_0x4000, 0, _004F
     End
 
 _002F:
     ScrCmd_238 11, 0x4000
-    GoToIfNe 0x4000, 0, _0055
+    GoToIfNe VAR_0x4000, 0, _0055
     CallIfUnset FLAG_UNK_0x0217, _004F
     End
 

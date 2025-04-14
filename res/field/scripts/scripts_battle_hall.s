@@ -29,8 +29,8 @@
 
 _005A:
     ScrCmd_325 0x4000
-    CallIfGe 0x4000, 11, _0090
-    CallIfGe 0x4000, 101, _007A
+    CallIfGe VAR_0x4000, 11, _0090
+    CallIfGe VAR_0x4000, 101, _007A
     End
 
 _007A:
@@ -51,7 +51,7 @@ _00B5:
     Call _015D
     GetRandom 0x4007, 100
     CallIfUnset FLAG_UNK_0x02CB, _00DB
-    GoToIfLt 0x4007, 30, _00E5
+    GoToIfLt VAR_0x4007, 30, _00E5
     End
 
 _00DB:
@@ -66,9 +66,9 @@ _00E5:
 _00F2:
     SetFlag FLAG_UNK_0x0AC4
     ScrCmd_326 0x4008
-    GoToIfGe 0x4008, 0x2710, _0123
-    GoToIfGe 0x4008, 0x3E8, _0131
-    GoToIfGe 0x4008, 0x1F4, _013F
+    GoToIfGe VAR_0x4008, 0x2710, _0123
+    GoToIfGe VAR_0x4008, 0x3E8, _0131
+    GoToIfGe VAR_0x4008, 0x1F4, _013F
     End
 
 _0123:
@@ -95,9 +95,9 @@ _014D:
 _015D:
     CallIfUnset FLAG_UNK_0x02C1, _019C
     ScrCmd_238 14, 0x4000
-    GoToIfEq 0x4000, 0, _0196
+    GoToIfEq VAR_0x4000, 0, _0196
     ScrCmd_32A 0x4000
-    GoToIfEq 0x4000, 0, _0196
+    GoToIfEq VAR_0x4000, 0, _0196
     ClearFlag FLAG_UNK_0x02C1
     AddObject 10
     Return
@@ -113,11 +113,11 @@ _019C:
 
 _01A6:
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _025D
-    CallIfEq 0x4000, GENDER_FEMALE, _0265
+    CallIfEq VAR_0x4000, GENDER_MALE, _025D
+    CallIfEq VAR_0x4000, GENDER_FEMALE, _0265
     Call _01DF
     ScrCmd_238 14, 0x4000
-    CallIfEq 0x4000, 0, _0196
+    CallIfEq VAR_0x4000, 0, _0196
     End
 
 _01DF:
@@ -129,44 +129,44 @@ _01DF:
 
 _0215:
     GetPlayerGender 0x4009
-    GoToIfEq 0x4009, GENDER_MALE, _0235
-    GoToIfEq 0x4009, GENDER_FEMALE, _023D
+    GoToIfEq VAR_0x4009, GENDER_MALE, _0235
+    GoToIfEq VAR_0x4009, GENDER_FEMALE, _023D
     Return
 
 _0235:
-    SetVar 0x4021, 97
+    SetVar VAR_0x4021, 97
     Return
 
 _023D:
-    SetVar 0x4021, 0
+    SetVar VAR_0x4021, 0
     Return
 
 _0245:
-    SetVar 0x4021, 140
+    SetVar VAR_0x4021, 140
     Return
 
 _024D:
-    SetVar 0x4021, 166
+    SetVar VAR_0x4021, 166
     Return
 
 _0255:
-    SetVar 0x4021, 167
+    SetVar VAR_0x4021, 167
     Return
 
 _025D:
-    SetVar 0x4023, 7
+    SetVar VAR_0x4023, 7
     Return
 
 _0265:
-    SetVar 0x4023, 4
+    SetVar VAR_0x4023, 4
     Return
 
 _026D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x4003, 0
-    SetVar 0x4004, 0
+    SetVar VAR_0x4003, 0
+    SetVar VAR_0x4004, 0
     GoTo _02A5
     End
 
@@ -174,21 +174,21 @@ _0289:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x4003, 0
-    SetVar 0x4004, 1
+    SetVar VAR_0x4003, 0
+    SetVar VAR_0x4004, 1
     GoTo _02A5
     End
 
 _02A5:
     ScrCmd_313 0
-    CallIfEq 0x4004, 0, _0874
-    CallIfEq 0x4004, 1, _0879
+    CallIfEq VAR_0x4004, 0, _0874
+    CallIfEq VAR_0x4004, 1, _0879
     GoTo _02CB
     End
 
 _02CB:
-    CallIfEq 0x4004, 0, _087E
-    CallIfEq 0x4004, 1, _0896
+    CallIfEq VAR_0x4004, 0, _087E
+    CallIfEq VAR_0x4004, 1, _0896
     AddMenuEntryImm 19, 2
     AddMenuEntryImm 20, 3
     ShowMenu
@@ -200,8 +200,8 @@ _02CB:
     End
 
 _032B:
-    CallIfEq 0x4004, 0, _08AA
-    CallIfEq 0x4004, 1, _08AF
+    CallIfEq VAR_0x4004, 0, _08AA
+    CallIfEq VAR_0x4004, 1, _08AF
     GoTo _02CB
     End
 
@@ -260,13 +260,13 @@ _03F5:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x4002, 0xFF, _034D
+    GoToIfEq VAR_0x4002, 0xFF, _034D
     ScrCmd_31E 0x4002, 0x800C
     GoToIfEq 0x800C, 0xFF, _07C8
     ScrCmd_31E 0x4005, 0x800C
     GoToIfEq 0x800C, 0xFF, _07C8
     GetPartyMonSpecies 0x4002, 0x4001
-    GoToIfEq 0x4001, 0, _034D
+    GoToIfEq VAR_0x4001, 0, _034D
     ScrCmd_2CC 1, 0x40BB, 0x800C
     GoToIfEq 0x800C, 0, _04F4
     ScrCmd_2CC 2, 0x40BB, 0x800C
@@ -299,7 +299,7 @@ _04F4:
 _04FC:
     CallIfEq 0x40BB, 0, _0673
     CallIfEq 0x40BB, 1, _0673
-    SetVar 0x4000, 0
+    SetVar VAR_0x4000, 0
     HealParty
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
@@ -567,7 +567,7 @@ _08AF:
 
 _08B4:
     ScrCmd_313 0
-    SetVar 0x4003, 1
+    SetVar VAR_0x4003, 1
     SetVar 0x40BA, 0
     Message 11
     Call _0673
@@ -956,12 +956,12 @@ _0D14:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar 0x4001, 0x4021
-    GoToIfEq 0x4001, 0, _0D68
-    GoToIfEq 0x4001, 97, _0D73
-    GoToIfEq 0x4001, 140, _0D7E
-    GoToIfEq 0x4001, 166, _0D89
-    GoToIfEq 0x4001, 167, _0D94
+    SetVar VAR_0x4001, 0x4021
+    GoToIfEq VAR_0x4001, 0, _0D68
+    GoToIfEq VAR_0x4001, 97, _0D73
+    GoToIfEq VAR_0x4001, 140, _0D7E
+    GoToIfEq VAR_0x4001, 166, _0D89
+    GoToIfEq VAR_0x4001, 167, _0D94
     End
 
 _0D68:

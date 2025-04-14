@@ -31,16 +31,16 @@ _0055:
     Return
 
 _005B:
-    SetVar 0x4000, 13
-    SetVar 0x4001, 5
-    SetVar 0x4002, 2
+    SetVar VAR_0x4000, 13
+    SetVar VAR_0x4001, 5
+    SetVar VAR_0x4002, 2
     GoTo _008F
     End
 
 _0075:
-    SetVar 0x4000, 8
-    SetVar 0x4001, 5
-    SetVar 0x4002, 2
+    SetVar VAR_0x4000, 8
+    SetVar VAR_0x4001, 5
+    SetVar VAR_0x4002, 2
     GoTo _008F
     End
 

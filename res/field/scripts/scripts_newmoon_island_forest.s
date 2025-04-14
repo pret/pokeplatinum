@@ -11,11 +11,11 @@
 
 _000E:
     ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _0058
+    GoToIfEq VAR_0x4000, 0, _0058
     CheckItem ITEM_MEMBER_CARD, 1, 0x4000
-    GoToIfEq 0x4000, FALSE, _0058
+    GoToIfEq VAR_0x4000, FALSE, _0058
     CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
-    GoToIfEq 0x4000, FALSE, _0058
+    GoToIfEq VAR_0x4000, FALSE, _0058
     GoToIfSet FLAG_UNK_0x0158, _0058
     ClearFlag FLAG_UNK_0x0240
     End

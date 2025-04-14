@@ -131,7 +131,7 @@
     .endm
 
     .macro CompareVar varID, valueOrVarID
-    .if \valueOrVarID < 0x4000
+    .if \valueOrVarID < VARS_START
         .short 17 /* CompareVarToValue */
     .else
         .short 18 /* CompareVarToVar */
@@ -252,7 +252,7 @@
     .endm
 
     .macro SetVar destVarID, valueOrVarID
-    .if \valueOrVarID < 0x4000
+    .if \valueOrVarID < VARS_START
         .short 40 /* SetVarFromValue */
     .else
         .short 41 /* SetVarFromVar */

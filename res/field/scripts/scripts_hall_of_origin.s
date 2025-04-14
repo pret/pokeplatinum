@@ -12,7 +12,7 @@
 
 _0012:
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
-    GoToIfEq 0x4000, FALSE, _0035
+    GoToIfEq VAR_0x4000, FALSE, _0035
     GoToIfSet FLAG_UNK_0x011E, _0035
     ClearFlag FLAG_UNK_0x024E
     End

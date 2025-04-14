@@ -25,7 +25,7 @@ _000C:
 _0048:
     FindPartySlotWithSpecies 0x8004, SPECIES_UNOWN
     GetPartyMonForm 0x8004, 0x8006
-    GoToIfEq 0x4000, 0x8006, _00EB
+    GoToIfEq VAR_0x4000, 0x8006, _00EB
     GoTo _0067
 
 _0067:
@@ -42,7 +42,7 @@ _0067:
     SubVar 0x8000, 0x800C
 _00B3:
     ScrCmd_094 0x8007, 0x8000
-    SetVar 0x4000, 0x8006
+    SetVar VAR_0x4000, 0x8006
     SetFlag FLAG_UNK_0x0001
     GoToIfEq 0x8000, 1, _00DB
     ScrCmd_345 0, 0x8007
@@ -65,7 +65,7 @@ _00EB:
     End
 
 _00F6:
-    SetVar 0x4000, -1
+    SetVar VAR_0x4000, -1
     Return
 
 _00FE:

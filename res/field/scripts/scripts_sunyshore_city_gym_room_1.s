@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetVar 0x4000, 0
+    SetVar VAR_0x4000, 0
     InitPersistedMapFeaturesForSunyshoreGym 0
     End
 

@@ -110,66 +110,66 @@ _0225:
     GoTo _03D8
 
 _02DC:
-    SetVar 0x4000, 103
+    SetVar VAR_0x4000, 103
     CheckItem 0x4000, 1, 0x800C
     Return
 
 _02EC:
-    SetVar 0x4000, 101
+    SetVar VAR_0x4000, 101
     CheckItem 0x4000, 1, 0x800C
     Return
 
 _02FC:
-    SetVar 0x4000, 102
+    SetVar VAR_0x4000, 102
     CheckItem 0x4000, 1, 0x800C
     Return
 
 _030C:
-    SetVar 0x4000, 99
+    SetVar VAR_0x4000, 99
     CheckItem 0x4000, 1, 0x800C
     Return
 
 _031C:
-    SetVar 0x4000, 100
+    SetVar VAR_0x4000, 100
     CheckItem 0x4000, 1, 0x800C
     Return
 
 _032C:
-    SetVar 0x4000, 104
+    SetVar VAR_0x4000, 104
     CheckItem 0x4000, 1, 0x800C
     Return
 
 _033C:
-    SetVar 0x4000, 105
+    SetVar VAR_0x4000, 105
     CheckItem 0x4000, 1, 0x800C
     Return
 
 _034C:
-    SetVar 0x4001, 0x4000
+    SetVar VAR_0x4001, 0x4000
     Return
 
 _0354:
-    SetVar 0x4002, 0x4000
+    SetVar VAR_0x4002, 0x4000
     Return
 
 _035C:
-    SetVar 0x4003, 0x4000
+    SetVar VAR_0x4003, 0x4000
     Return
 
 _0364:
-    SetVar 0x4004, 0x4000
+    SetVar VAR_0x4004, 0x4000
     Return
 
 _036C:
-    SetVar 0x4005, 0x4000
+    SetVar VAR_0x4005, 0x4000
     Return
 
 _0374:
-    SetVar 0x4006, 0x4000
+    SetVar VAR_0x4006, 0x4000
     Return
 
 _037C:
-    SetVar 0x4007, 0x4000
+    SetVar VAR_0x4007, 0x4000
     Return
 
 _0384:

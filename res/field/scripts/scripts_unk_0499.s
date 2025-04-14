@@ -65,9 +65,9 @@ _0085:
     GoToIfEq 0x8000, 0, _01AB
     BufferNumber 0, 0x8000
     Message 11
-    CallIfNe 0x4001, 0, _01B6
-    CallIfNe 0x4003, 0, _0200
-    CallIfNe 0x4005, 0, _024A
+    CallIfNe VAR_0x4001, 0, _01B6
+    CallIfNe VAR_0x4003, 0, _0200
+    CallIfNe VAR_0x4005, 0, _024A
     Message 5
     GoTo _0172
     End
@@ -101,9 +101,9 @@ _0172:
     End
 
 _017A:
-    CallIfNe 0x4001, 0, _01A3
-    CallIfNe 0x4003, 0, _01A3
-    CallIfNe 0x4005, 0, _01A3
+    CallIfNe VAR_0x4001, 0, _01A3
+    CallIfNe VAR_0x4003, 0, _01A3
+    CallIfNe VAR_0x4005, 0, _01A3
     Return
 
 _01A3:
@@ -116,7 +116,7 @@ _01AB:
     End
 
 _01B6:
-    GoToIfGt 0x4001, 1, _01CE
+    GoToIfGt VAR_0x4001, 1, _01CE
     BufferItemName 0, 0x4000
     GoTo _01D3
 
@@ -132,7 +132,7 @@ _01D3:
     Return
 
 _0200:
-    GoToIfGt 0x4003, 1, _0218
+    GoToIfGt VAR_0x4003, 1, _0218
     BufferItemName 0, 0x4002
     GoTo _021D
 
@@ -148,7 +148,7 @@ _021D:
     Return
 
 _024A:
-    GoToIfGt 0x4005, 1, _0262
+    GoToIfGt VAR_0x4005, 1, _0262
     BufferItemName 0, 0x4004
     GoTo _0267
 

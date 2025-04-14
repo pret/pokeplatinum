@@ -68,22 +68,22 @@ _0097:
     End
 
 _00A8:
-    SetVar 0x4000, 0
+    SetVar VAR_0x4000, 0
     GoTo _00E0
     End
 
 _00B6:
-    SetVar 0x4000, 1
+    SetVar VAR_0x4000, 1
     GoTo _00E0
     End
 
 _00C4:
-    SetVar 0x4000, 2
+    SetVar VAR_0x4000, 2
     GoTo _00E0
     End
 
 _00D2:
-    SetVar 0x4000, 3
+    SetVar VAR_0x4000, 3
     GoTo _00E0
     End
 
@@ -97,39 +97,39 @@ _00E0:
     BufferRivalName 0
     Message 6
     CloseMessage
-    CallIfEq 0x4000, 0, _0249
-    CallIfEq 0x4000, 1, _025D
-    CallIfEq 0x4000, 2, _0271
-    CallIfEq 0x4000, 3, _027D
+    CallIfEq VAR_0x4000, 0, _0249
+    CallIfEq VAR_0x4000, 1, _025D
+    CallIfEq VAR_0x4000, 2, _0271
+    CallIfEq VAR_0x4000, 3, _027D
     BufferPlayerName 1
     Message 7
     CloseMessage
     ApplyMovement 0, _03E0
     WaitMovement
-    CallIfEq 0x4000, 0, _0291
-    CallIfEq 0x4000, 1, _02A5
-    CallIfEq 0x4000, 2, _02B9
-    CallIfEq 0x4000, 3, _02CD
+    CallIfEq VAR_0x4000, 0, _0291
+    CallIfEq VAR_0x4000, 1, _02A5
+    CallIfEq VAR_0x4000, 2, _02B9
+    CallIfEq VAR_0x4000, 3, _02CD
     Message 8
     CloseMessage
-    CallIfEq 0x4000, 0, _02E1
-    CallIfEq 0x4000, 1, _02ED
-    CallIfEq 0x4000, 2, _02F9
-    CallIfEq 0x4000, 3, _0305
+    CallIfEq VAR_0x4000, 0, _02E1
+    CallIfEq VAR_0x4000, 1, _02ED
+    CallIfEq VAR_0x4000, 2, _02F9
+    CallIfEq VAR_0x4000, 3, _0305
     BufferRivalName 0
     Message 9
     CloseMessage
-    CallIfEq 0x4000, 0, _0311
-    CallIfEq 0x4000, 1, _031D
-    CallIfEq 0x4000, 2, _0329
-    CallIfEq 0x4000, 3, _0335
+    CallIfEq VAR_0x4000, 0, _0311
+    CallIfEq VAR_0x4000, 1, _031D
+    CallIfEq VAR_0x4000, 2, _0329
+    CallIfEq VAR_0x4000, 3, _0335
     BufferPlayerName 1
     Message 10
     CloseMessage
-    CallIfEq 0x4000, 0, _0341
-    CallIfEq 0x4000, 1, _0355
-    CallIfEq 0x4000, 2, _0369
-    CallIfEq 0x4000, 3, _037D
+    CallIfEq VAR_0x4000, 0, _0341
+    CallIfEq VAR_0x4000, 1, _0355
+    CallIfEq VAR_0x4000, 2, _0369
+    CallIfEq VAR_0x4000, 3, _037D
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 0
     CallCommonScript 0x7FB

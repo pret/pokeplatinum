@@ -23,7 +23,7 @@ _0024:
     GoToIfLt 0x4089, 2, _007C
     GoToIfSet FLAG_UNK_0x0AA8, _007C
     GetDayOfWeek 0x4000
-    GoToIfNe 0x4000, 5, _007C
+    GoToIfNe VAR_0x4000, 5, _007C
     GoTo _0076
 
 _0076:
