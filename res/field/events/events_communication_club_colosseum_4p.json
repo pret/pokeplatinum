@@ -5,7 +5,7 @@
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": 0,
+            "flag": "0",
             "script": 9100,
             "initial_dir": 2,
             "data": [],

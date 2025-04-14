@@ -14,7 +14,7 @@
             "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 3357,
             "initial_dir": 3,
             "data": [
@@ -30,7 +30,7 @@
             "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 3359,
             "initial_dir": 2,
             "data": [
@@ -46,7 +46,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": 0,
+            "flag": "0",
             "script": 1,
             "initial_dir": 0,
             "data": [
@@ -62,7 +62,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": 1138,
+            "flag": "1138",
             "script": 7124,
             "initial_dir": 0,
             "data": [],

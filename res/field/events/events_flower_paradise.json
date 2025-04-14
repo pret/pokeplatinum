@@ -5,7 +5,7 @@
             "graphics_id": "OBJ_EVENT_GFX_SHAYMIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": 593,
+            "flag": "593",
             "script": 3,
             "initial_dir": 1,
             "data": [],

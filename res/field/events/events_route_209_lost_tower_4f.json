@@ -14,7 +14,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": 1108,
+            "flag": "1108",
             "script": 7094,
             "initial_dir": 0,
             "data": [],
@@ -28,7 +28,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 3530,
             "initial_dir": 3,
             "data": [
@@ -44,7 +44,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 3533,
             "initial_dir": 0,
             "data": [
@@ -60,7 +60,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 5533,
             "initial_dir": 0,
             "data": [
@@ -76,7 +76,7 @@
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 3532,
             "initial_dir": 2,
             "data": [
@@ -92,7 +92,7 @@
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 5532,
             "initial_dir": 2,
             "data": [
