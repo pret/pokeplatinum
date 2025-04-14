@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 _001E:
-    GetHour 0x4000
+    GetHour VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _004F
     GoToIfEq VAR_0x4000, 1, _004F
     GoToIfLe VAR_0x4000, 5, _005B

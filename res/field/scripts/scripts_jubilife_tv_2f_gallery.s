@@ -80,12 +80,12 @@ _0121:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    GetSelectedPartySlot 0x4002
+    GetSelectedPartySlot VAR_0x4002
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_0x4002, 0xFF, _02B3
-    GetPartyMonSpecies 0x4002, 0x800C
+    GetPartyMonSpecies VAR_0x4002, 0x800C
     GoToIfEq 0x800C, 0, _02BE
     GoTo _016C
 
@@ -123,7 +123,7 @@ _01EC:
     SetFlag FLAG_UNK_0x0088
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0A6 0x4002, 0x8005, 0x8007
+    ScrCmd_0A6 VAR_0x4002, 0x8005, 0x8007
     ReturnToField
     ApplyMovement LOCALID_PLAYER, _0360
     WaitMovement

@@ -135,7 +135,7 @@ _0184:
     ShowPoketch
     Call _01B1
     Call _0168
-    ScrCmd_238 7, 0x4000
+    ScrCmd_238 7, VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _01AB
     ClearFlag FLAG_UNK_0x0213
     End
@@ -230,7 +230,7 @@ _02BD:
     HealParty
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 1, _02E2
     GoTo _0291
     End
@@ -408,10 +408,10 @@ _0562:
     CallIfEq VAR_0x4003, 1, _0608
     SetVar 0x800C, 0
 _0596:
-    ScrCmd_194 0x800C, 0x8004, 0x8005, 0x4004
-    ScrCmd_195 0x4002, 0x800C
+    ScrCmd_194 0x800C, 0x8004, 0x8005, VAR_0x4004
+    ScrCmd_195 VAR_0x4002, 0x800C
     GoToIfEq 0x800C, 0, _05C1
-    ScrCmd_196 0x4002
+    ScrCmd_196 VAR_0x4002
     ScrCmd_197 0x800C
     GoTo _0596
 
@@ -498,7 +498,7 @@ _0705:
     End
 
 _070D:
-    ScrCmd_0FA 0x8004, 0x8005, 0x8007, 0x4002
+    ScrCmd_0FA 0x8004, 0x8005, 0x8007, VAR_0x4002
     CallIfEq VAR_0x4003, 1, _07B5
     GoToIfEq VAR_0x4003, 2, _078A
     ScrCmd_109 0x800C
@@ -608,17 +608,17 @@ _08CD:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_101
-    ScrCmd_110 0x8004, 0x8005, 0x8007, 0x4002
+    ScrCmd_110 0x8004, 0x8005, 0x8007, VAR_0x4002
     SetVar 0x40CC, 0
     Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 28, 3, 1
     LockAll
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_10C 0x4003
-    ScrCmd_110 0x8004, 0x8005, 0x8007, 0x4002
+    ScrCmd_10C VAR_0x4003
+    ScrCmd_110 0x8004, 0x8005, 0x8007, VAR_0x4002
     ScrCmd_107 0x8004
     ScrCmd_118
-    ScrCmd_0FB 0x4002
+    ScrCmd_0FB VAR_0x4002
     SetVar 0x800C, 28
     Call _0052
     Call _008B
@@ -642,7 +642,7 @@ _0947:
     WaitFadeScreen
     Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 0, 29, 7, 0
     ScrCmd_117
-    ScrCmd_10C 0x4003
+    ScrCmd_10C VAR_0x4003
     ScrCmd_113
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -711,8 +711,8 @@ _0947:
     ScrCmd_2B1
     ScrCmd_101
     ScrCmd_117
-    ScrCmd_110 0x8004, 0x8005, 0x8007, 0x4002
-    ScrCmd_10C 0x4003
+    ScrCmd_110 0x8004, 0x8005, 0x8007, VAR_0x4002
+    ScrCmd_10C VAR_0x4003
     Call _0D3A
     ScrCmd_2B0
     FadeScreen 6, 1, 1, 0x7FFF
@@ -764,10 +764,10 @@ _0B50:
     FadeScreen 6, 1, 20, 0
     WaitFadeScreen
     ScrCmd_114
-    ScrCmd_110 0x8004, 0x8005, 0x8007, 0x4002
+    ScrCmd_110 0x8004, 0x8005, 0x8007, VAR_0x4002
     ScrCmd_10F 0x8004
     ScrCmd_118
-    ScrCmd_0FB 0x4002
+    ScrCmd_0FB VAR_0x4002
     SetVar 0x40CC, 0
     GoToIfEq VAR_0x4003, 0, _0BF2
     Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 7, 3, 1
@@ -854,18 +854,18 @@ _0CEE:
     Return
 
 _0D20:
-    ScrCmd_10A 0, 0x4020
-    ScrCmd_10A 1, 0x4021
-    ScrCmd_10A 2, 0x4022
-    ScrCmd_10A 3, 0x4023
+    ScrCmd_10A 0, VAR_0x4020
+    ScrCmd_10A 1, VAR_0x4021
+    ScrCmd_10A 2, VAR_0x4022
+    ScrCmd_10A 3, VAR_0x4023
     Return
 
 _0D3A:
     ScrCmd_108 0x800C
-    ScrCmd_10A 0x800C, 0x4024
+    ScrCmd_10A 0x800C, VAR_0x4024
     ClearFlag FLAG_UNK_0x0205
     AddObject 5
-    ScrCmd_108 0x4000
+    ScrCmd_108 VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _0D86
     GoToIfEq VAR_0x4000, 1, _0D8C
     GoToIfEq VAR_0x4000, 2, _0D92
@@ -1313,9 +1313,9 @@ _1101:
     SetVar 0x800C, 0
 _111B:
     ScrCmd_194 0x800C, 0x8004, 0x8005, 0
-    ScrCmd_195 0x4002, 0x800C
+    ScrCmd_195 VAR_0x4002, 0x800C
     GoToIfEq 0x800C, 0, _1146
-    ScrCmd_196 0x4002
+    ScrCmd_196 VAR_0x4002
     ScrCmd_197 0x800C
     GoTo _111B
 

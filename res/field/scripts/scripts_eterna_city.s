@@ -36,12 +36,12 @@
 
 _0072:
     CallIfEq 0x407A, 4, _00B5
-    CheckItem ITEM_BICYCLE, 1, 0x4000
+    CheckItem ITEM_BICYCLE, 1, VAR_0x4000
     GoToIfEq VAR_0x4000, 1, _0096
     End
 
 _0096:
-    CheckItem ITEM_EXPLORER_KIT, 1, 0x4000
+    CheckItem ITEM_EXPLORER_KIT, 1, VAR_0x4000
     GoToIfEq VAR_0x4000, 1, _00AD
     End
 

@@ -45,12 +45,12 @@
 
 _009A:
     SetFlag FLAG_UNK_0x02CB
-    ScrCmd_238 19, 0x4000
+    ScrCmd_238 19, VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _00D5
-    ScrCmd_329 0x4001, 0x4002, 0x4003, 0x4004
-    SetObjectEventPos 29, 0x4001, 0x4002
-    ScrCmd_189 29, 0x4003
-    ScrCmd_188 29, 0x4004
+    ScrCmd_329 VAR_0x4001, VAR_0x4002, VAR_0x4003, VAR_0x4004
+    SetObjectEventPos 29, VAR_0x4001, VAR_0x4002
+    ScrCmd_189 29, VAR_0x4003
+    ScrCmd_188 29, VAR_0x4004
     ClearFlag FLAG_UNK_0x02C3
     End
 

@@ -11,11 +11,11 @@
 
 _000E:
     SetFlag FLAG_UNK_0x09D5
-    ScrCmd_22D 2, 0x4000
+    ScrCmd_22D 2, VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _005C
-    CheckItem ITEM_OAKS_LETTER, 1, 0x4000
+    CheckItem ITEM_OAKS_LETTER, 1, VAR_0x4000
     GoToIfEq VAR_0x4000, FALSE, _005C
-    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, VAR_0x4000
     GoToIfEq VAR_0x4000, FALSE, _005C
     GoToIfSet FLAG_UNK_0x0123, _005C
     ClearFlag FLAG_UNK_0x0251

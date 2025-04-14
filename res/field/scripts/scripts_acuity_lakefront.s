@@ -25,7 +25,7 @@ AcuityLakefront_SetWarpsLakeAcuityLowWater:
     End
 
 _004E:
-    CheckBadgeAcquired BADGE_ID_ICICLE, 0x4000
+    CheckBadgeAcquired BADGE_ID_ICICLE, VAR_0x4000
     CallIfEq VAR_0x4000, TRUE, _0079
     GoToIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_SetWarpsLakeAcuityNormal
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_SetWarpsLakeAcuityLowWater

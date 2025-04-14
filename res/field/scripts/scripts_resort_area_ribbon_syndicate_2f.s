@@ -15,9 +15,9 @@ _0012:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AA5, _00E2
     GoToIfEq VAR_0x400A, 1, _00E2
-    GetFirstNonEggInParty 0x4000
+    GetFirstNonEggInParty VAR_0x4000
     BufferPlayerName 0
-    BufferPartyMonNickname 1, 0x4000
+    BufferPartyMonNickname 1, VAR_0x4000
     Message 0
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _0058
@@ -83,19 +83,19 @@ _00ED:
     GoTo _0135
 
 _0113:
-    ScrCmd_1BA 30, 0x4000
+    ScrCmd_1BA 30, VAR_0x4000
     Call _0146
     Message 8
     Return
 
 _0124:
-    ScrCmd_1BA 10, 0x4000
+    ScrCmd_1BA 10, VAR_0x4000
     Call _0146
     Message 10
     Return
 
 _0135:
-    ScrCmd_1BA 5, 0x4000
+    ScrCmd_1BA 5, VAR_0x4000
     Call _0146
     Message 11
     Return

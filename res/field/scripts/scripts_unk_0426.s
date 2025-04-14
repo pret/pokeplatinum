@@ -96,7 +96,7 @@ _0121:
     GoToIfEq 0x800C, 1, _00BA
     GoToIfEq 0x800C, 2, _00C5
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 1, _0173
     GoTo _006D
     End

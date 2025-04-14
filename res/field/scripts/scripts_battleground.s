@@ -211,7 +211,7 @@ _02B4:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_0x4001, 0x4021
+    SetVar VAR_0x4001, VAR_0x4021
     GoToIfSet FLAG_UNK_0x0005, _034D
     Call _118A
     GoToIfEq 0x800C, 1, _034D
@@ -231,7 +231,7 @@ _032F:
     CloseMessage
     IncrementGameRecord RECORD_UNK_057
     Call _0605
-    StartTrainerBattle 0x4005
+    StartTrainerBattle VAR_0x4005
     CheckWonBattle 0x8000
     Return
 
@@ -286,7 +286,7 @@ _03CA:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_0x4001, 0x4022
+    SetVar VAR_0x4001, VAR_0x4022
     GoToIfSet FLAG_UNK_0x0006, _034D
     Call _118A
     GoToIfEq 0x800C, 1, _034D
@@ -312,7 +312,7 @@ _0457:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_0x4001, 0x4023
+    SetVar VAR_0x4001, VAR_0x4023
     GoToIfSet FLAG_UNK_0x0007, _034D
     Call _118A
     GoToIfEq 0x800C, 1, _034D
@@ -338,7 +338,7 @@ _04E4:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_0x4001, 0x4024
+    SetVar VAR_0x4001, VAR_0x4024
     GoToIfSet FLAG_UNK_0x0008, _034D
     Call _118A
     GoToIfEq 0x800C, 1, _034D

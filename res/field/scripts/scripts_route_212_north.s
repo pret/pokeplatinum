@@ -16,7 +16,7 @@
     ScriptEntryEnd
 
 _002A:
-    GetTimeOfDay 0x4000
+    GetTimeOfDay VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _0071
     GoToIfEq VAR_0x4000, 1, _0071
     GoToIfEq VAR_0x4000, 2, _0071

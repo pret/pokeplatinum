@@ -96,7 +96,7 @@ _0225:
     AddMenuEntry 44, 0x8004
     ShowMenu
     GoToIfEq 0x8003, 0xFF, _03E7
-    GoToIfEq 0x8003, 0x4000, _03E7
+    GoToIfEq 0x8003, VAR_0x4000, _03E7
     CallIfEq 0x8003, 0, _0384
     CallIfEq 0x8003, 1, _038C
     CallIfEq 0x8003, 2, _0394
@@ -111,93 +111,93 @@ _0225:
 
 _02DC:
     SetVar VAR_0x4000, 103
-    CheckItem 0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, 0x800C
     Return
 
 _02EC:
     SetVar VAR_0x4000, 101
-    CheckItem 0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, 0x800C
     Return
 
 _02FC:
     SetVar VAR_0x4000, 102
-    CheckItem 0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, 0x800C
     Return
 
 _030C:
     SetVar VAR_0x4000, 99
-    CheckItem 0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, 0x800C
     Return
 
 _031C:
     SetVar VAR_0x4000, 100
-    CheckItem 0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, 0x800C
     Return
 
 _032C:
     SetVar VAR_0x4000, 104
-    CheckItem 0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, 0x800C
     Return
 
 _033C:
     SetVar VAR_0x4000, 105
-    CheckItem 0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, 0x800C
     Return
 
 _034C:
-    SetVar VAR_0x4001, 0x4000
+    SetVar VAR_0x4001, VAR_0x4000
     Return
 
 _0354:
-    SetVar VAR_0x4002, 0x4000
+    SetVar VAR_0x4002, VAR_0x4000
     Return
 
 _035C:
-    SetVar VAR_0x4003, 0x4000
+    SetVar VAR_0x4003, VAR_0x4000
     Return
 
 _0364:
-    SetVar VAR_0x4004, 0x4000
+    SetVar VAR_0x4004, VAR_0x4000
     Return
 
 _036C:
-    SetVar VAR_0x4005, 0x4000
+    SetVar VAR_0x4005, VAR_0x4000
     Return
 
 _0374:
-    SetVar VAR_0x4006, 0x4000
+    SetVar VAR_0x4006, VAR_0x4000
     Return
 
 _037C:
-    SetVar VAR_0x4007, 0x4000
+    SetVar VAR_0x4007, VAR_0x4000
     Return
 
 _0384:
-    SetVar 0x8002, 0x4001
+    SetVar 0x8002, VAR_0x4001
     Return
 
 _038C:
-    SetVar 0x8002, 0x4002
+    SetVar 0x8002, VAR_0x4002
     Return
 
 _0394:
-    SetVar 0x8002, 0x4003
+    SetVar 0x8002, VAR_0x4003
     Return
 
 _039C:
-    SetVar 0x8002, 0x4004
+    SetVar 0x8002, VAR_0x4004
     Return
 
 _03A4:
-    SetVar 0x8002, 0x4005
+    SetVar 0x8002, VAR_0x4005
     Return
 
 _03AC:
-    SetVar 0x8002, 0x4006
+    SetVar 0x8002, VAR_0x4006
     Return
 
 _03B4:
-    SetVar 0x8002, 0x4007
+    SetVar 0x8002, VAR_0x4007
     Return
 
 _03BC:
@@ -242,11 +242,11 @@ _03F2:
 
 _0459:
     CloseMessage
-    GetPartyCount 0x4000
-    SubVar 0x4000, 1
+    GetPartyCount VAR_0x4000
+    SubVar VAR_0x4000, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BB 0x4000, 0x800C
+    ScrCmd_0BB VAR_0x4000, 0x800C
     CallIfNe 0x800C, 1, _0494
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen

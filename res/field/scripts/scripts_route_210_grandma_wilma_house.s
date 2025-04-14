@@ -72,18 +72,18 @@ _0097:
     End
 
 _00A2:
-    GetPartyCount 0x4000
+    GetPartyCount VAR_0x4000
 _00A6:
-    SubVar 0x4000, 1
-    GetPartyMonSpecies 0x4000, 0x800C
+    SubVar VAR_0x4000, 1
+    GetPartyMonSpecies VAR_0x4000, 0x800C
     GoToIfEq 0x800C, 0, _00FC
-    ScrCmd_248 0x8004, 0x8005, 0x4000
+    ScrCmd_248 0x8004, 0x8005, VAR_0x4000
     GoToIfEq 0x8004, 16, _00E7
     GoToIfEq 0x8005, 16, _00E7
     GoTo _00FC
 
 _00E7:
-    CheckPartyMonHasMove 0x800C, MOVE_DRACO_METEOR, 0x4000
+    CheckPartyMonHasMove 0x800C, MOVE_DRACO_METEOR, VAR_0x4000
     GoToIfEq 0x800C, 0, _010F
 _00FC:
     GoToIfNe VAR_0x4000, 0, _00A6

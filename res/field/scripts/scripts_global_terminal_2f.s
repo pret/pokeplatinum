@@ -158,7 +158,7 @@ _0161:
 
 _0167:
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 0, _0161
     CloseMessage
     CallCommonScript 0x802
@@ -198,7 +198,7 @@ _01EB:
 
 _01F1:
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 0, _01EB
     CloseMessage
     CallCommonScript 0x802

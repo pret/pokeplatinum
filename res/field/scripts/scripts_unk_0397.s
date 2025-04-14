@@ -137,7 +137,7 @@ _01DF:
 _01FB:
     SetVar VAR_0x4000, 0
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 0, _0175
     GoTo _0220
     End

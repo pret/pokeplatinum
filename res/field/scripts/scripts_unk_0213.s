@@ -46,7 +46,7 @@ _0075:
 
 _008F:
     LockAll
-    ScrCmd_168 0, 0, 0x4000, 0x4002, 77
+    ScrCmd_168 0, 0, VAR_0x4000, VAR_0x4002, 77
     Call _050B
     ScrCmd_1B1 0xFF
     ApplyMovement LOCALID_PLAYER, _00F0
@@ -54,7 +54,7 @@ _008F:
     Call _0513
     ApplyMovement LOCALID_PLAYER, _00F8
     WaitMovement
-    ScrCmd_168 0, 0, 0x4000, 0x4001, 77
+    ScrCmd_168 0, 0, VAR_0x4000, VAR_0x4001, 77
     Call _050B
     ApplyMovement LOCALID_PLAYER, _0100
     WaitMovement
@@ -261,7 +261,7 @@ _0290:
 _02E4:
     HealParty
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 1, _0305
     GoTo _01D3
     End
@@ -462,7 +462,7 @@ _05CF:
     SetVar 0x40D5, 2
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 1, _062D
     SetVar 0x40D5, 0
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE

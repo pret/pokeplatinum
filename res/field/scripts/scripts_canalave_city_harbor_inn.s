@@ -19,17 +19,17 @@ _001F:
     End
 
 _002C:
-    ScrCmd_22D 2, 0x4000
+    ScrCmd_22D 2, VAR_0x4000
     GoToIfEq VAR_0x4000, 1, _0040
     End
 
 _0040:
-    CheckItem ITEM_MEMBER_CARD, 1, 0x4000
+    CheckItem ITEM_MEMBER_CARD, 1, VAR_0x4000
     GoToIfEq VAR_0x4000, 1, _0057
     End
 
 _0057:
-    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_0x4000
     GoToIfEq VAR_0x4000, TRUE, _006B
     End
 

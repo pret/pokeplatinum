@@ -18,35 +18,35 @@
 _002A:
     GoToIfUnset FLAG_UNK_0x00E3, _0121
     GoToIfNe 0x40DF, 2, _0057
-    ScrCmd_1DD 55, 2, 0x4009
+    ScrCmd_1DD 55, 2, VAR_0x4009
     GoToIfEq VAR_0x4009, 0, _0121
 _0057:
     ClearFlag FLAG_UNK_0x01EC
 _005B:
     GoToIfUnset FLAG_UNK_0x00E4, _012D
     GoToIfNe 0x40DF, 2, _0088
-    ScrCmd_1DD 55, 2, 0x4009
+    ScrCmd_1DD 55, 2, VAR_0x4009
     GoToIfEq VAR_0x4009, 1, _012D
 _0088:
     ClearFlag FLAG_UNK_0x01ED
 _008C:
     GoToIfUnset FLAG_UNK_0x00E5, _0139
     GoToIfNe 0x40DF, 2, _00B9
-    ScrCmd_1DD 55, 2, 0x4009
+    ScrCmd_1DD 55, 2, VAR_0x4009
     GoToIfEq VAR_0x4009, 2, _0139
 _00B9:
     ClearFlag FLAG_UNK_0x01EE
 _00BD:
     GoToIfUnset FLAG_UNK_0x00E6, _0145
     GoToIfNe 0x40DF, 2, _00EA
-    ScrCmd_1DD 55, 2, 0x4009
+    ScrCmd_1DD 55, 2, VAR_0x4009
     GoToIfEq VAR_0x4009, 3, _0145
 _00EA:
     ClearFlag FLAG_UNK_0x01EF
 _00EE:
     GoToIfUnset FLAG_UNK_0x00E7, _0151
     GoToIfNe 0x40DF, 2, _011B
-    ScrCmd_1DD 55, 2, 0x4009
+    ScrCmd_1DD 55, 2, VAR_0x4009
     GoToIfEq VAR_0x4009, 4, _0151
 _011B:
     ClearFlag FLAG_UNK_0x01F0
@@ -141,10 +141,10 @@ _0204:
     End
 
 _0245:
-    ScrCmd_1DE 0x4009, 0, 0x8004, 0x8005
+    ScrCmd_1DE VAR_0x4009, 0, 0x8004, 0x8005
     BufferSpeciesNameFromVar 0, 0x8004, 0, 0
     BufferMoveName 1, 0x8005
-    ScrCmd_1DE 0x4009, 1, 0x8004, 0x8005
+    ScrCmd_1DE VAR_0x4009, 1, 0x8004, 0x8005
     BufferSpeciesNameFromVar 2, 0x8004, 0, 0
     BufferMoveName 3, 0x8005
     Return
@@ -155,10 +155,10 @@ _0275:
     FacePlayer
     GoToIfEq 0x40DF, 2, _02D2
     SetVar VAR_0x4009, 0
-    ScrCmd_1DE 0x4009, 0, 0x8004, 0x8005
+    ScrCmd_1DE VAR_0x4009, 0, 0x8004, 0x8005
     ScrCmd_341 0, 0x8004, 0, 0
     BufferMoveName 1, 0x8005
-    ScrCmd_1DE 0x4009, 1, 0x8004, 0x8005
+    ScrCmd_1DE VAR_0x4009, 1, 0x8004, 0x8005
     ScrCmd_341 2, 0x8004, 0, 0
     BufferMoveName 3, 0x8005
     Message 6
@@ -172,7 +172,7 @@ _02D2:
     End
 
 _02DD:
-    ScrCmd_1DD 50, 0x4009, 0
+    ScrCmd_1DD 50, VAR_0x4009, 0
     SetVar 0x40DF, 2
     Message 8
     CloseMessage
@@ -200,7 +200,7 @@ _0336:
     End
 
 _0341:
-    ScrCmd_1DD 50, 0x4009, 0
+    ScrCmd_1DD 50, VAR_0x4009, 0
     SetVar 0x40DF, 2
     BufferPlayerName 0
     Message 17
@@ -228,7 +228,7 @@ _039A:
     End
 
 _03A5:
-    ScrCmd_1DD 50, 0x4009, 0
+    ScrCmd_1DD 50, VAR_0x4009, 0
     SetVar 0x40DF, 2
     Message 5
     CloseMessage
@@ -255,7 +255,7 @@ _03FB:
     End
 
 _0406:
-    ScrCmd_1DD 50, 0x4009, 0
+    ScrCmd_1DD 50, VAR_0x4009, 0
     SetVar 0x40DF, 2
     Message 14
     CloseMessage
@@ -282,7 +282,7 @@ _045C:
     End
 
 _0467:
-    ScrCmd_1DD 50, 0x4009, 0
+    ScrCmd_1DD 50, VAR_0x4009, 0
     SetVar 0x40DF, 2
     Message 11
     CloseMessage
@@ -326,12 +326,12 @@ _04E0:
     Return
 
 _0500:
-    ApplyMovement 0x4000, _0718
+    ApplyMovement VAR_0x4000, _0718
     WaitMovement
     ApplyMovement 0, _06E4
     WaitMovement
     Call _0488
-    ApplyMovement 0x4000, _0720
+    ApplyMovement VAR_0x4000, _0720
     WaitMovement
     Call _049B
     ApplyMovement 0, _06F4
