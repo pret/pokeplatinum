@@ -5,7 +5,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": 1256,
+            "flag": "1256",
             "script": 7242,
             "initial_dir": 0,
             "data": [],

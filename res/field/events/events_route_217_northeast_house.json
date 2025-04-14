@@ -5,7 +5,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": 607,
+            "flag": "607",
             "script": 1,
             "initial_dir": 1,
             "data": [],

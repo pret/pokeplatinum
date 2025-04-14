@@ -5,7 +5,7 @@
             "graphics_id": "OBJ_EVENT_GFX_REGIGIGAS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": 579,
+            "flag": "579",
             "script": 2,
             "initial_dir": 1,
             "data": [],
