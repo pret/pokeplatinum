@@ -32,7 +32,7 @@ _0044:
     CloseMessage
     ApplyMovement 128, _029C
     WaitMovement
-    SetVar 0x4055, 8
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 8
     End
 
 _006F:
@@ -58,7 +58,7 @@ _0096:
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _01CE
-    SetVar 0x4055, 10
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 10
     Message 6
     CloseMessage
     GetPlayerMapPos 0x8004, 0x8005
@@ -120,7 +120,7 @@ _01C3:
     End
 
 _01CE:
-    SetVar 0x4055, 9
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 9
     BlackOutFromBattle
     ReleaseAll
     End
@@ -128,7 +128,7 @@ _01CE:
 _01DA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe 0x4055, 10, _01F8
+    GoToIfGe VAR_DISTORTION_WORLD_PROGRESS, 10, _01F8
     Message 3
     WaitABXPadPress
     CloseMessage

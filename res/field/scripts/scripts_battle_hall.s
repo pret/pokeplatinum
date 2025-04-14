@@ -592,8 +592,8 @@ _08ED:
 _08FC:
     CallIfEq 0x40BB, 0, _0938
     CallIfEq 0x40BB, 1, _0938
-    CallIfEq 0x4051, 1, _093E
-    CallIfEq 0x4051, 3, _0955
+    CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 1, _093E
+    CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 3, _0955
     GoTo _034D
     End
 
@@ -607,7 +607,7 @@ _093E:
     Message 15
     PlaySound SEQ_FANFA4
     WaitSound
-    SetVar 0x4051, 2
+    SetVar VAR_BATTLE_HALL_PRINT_STATE, 2
     Return
 
 _0955:
@@ -616,7 +616,7 @@ _0955:
     Message 14
     PlaySound SEQ_FANFA4
     WaitSound
-    SetVar 0x4051, 4
+    SetVar VAR_BATTLE_HALL_PRINT_STATE, 4
     CallCommonScript 0x806
     Return
 

@@ -158,7 +158,7 @@ _01CE:
     RemoveMoney2 0x8005
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
-    CallIfLt 0x4042, 0x2710, _0700
+    CallIfLt VAR_DEPARTMENT_STORE_REGULAR_COUNTER, 0x2710, _0700
     GoTo _0220
     End
 
@@ -313,7 +313,7 @@ _04CE:
 _0503:
     PlayFanfare SEQ_SE_DP_REGI
     UpdateMoneyDisplay
-    CallIfLt 0x4042, 0x2710, _0700
+    CallIfLt VAR_DEPARTMENT_STORE_REGULAR_COUNTER, 0x2710, _0700
     Message 20
     GoTo _054D
     End

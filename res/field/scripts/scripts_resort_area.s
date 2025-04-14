@@ -26,14 +26,14 @@ _003E:
     SetFlag FLAG_UNK_0x02AF
     SetFlag FLAG_UNK_0x02B2
     SetFlag FLAG_UNK_0x02B5
-    GoToIfEq 0x404E, 0xFF, _00BA
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, 0xFF, _00BA
     GoToIfEq 0x40C8, 0, _00BA
     GoToIfSet FLAG_VILLA_VISITOR_INSIDE, _00BA
-    CallIfEq 0x404E, 2, _00BC
-    CallIfEq 0x404E, 4, _00C2
-    CallIfEq 0x404E, 5, _00C8
-    CallIfEq 0x404E, 7, _00CE
-    CallIfEq 0x404E, 9, _00D4
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 2, _00BC
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 4, _00C2
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 5, _00C8
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 7, _00CE
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 9, _00D4
     End
 
 _00BA:
@@ -156,7 +156,7 @@ _0184:
     ScrCmd_16A 77
     RemoveObject 13
     SetVar 0x40C8, 1
-    SetVar 0x404E, 0xFF
+    SetVar VAR_RESORT_VILLA_VISITOR, 0xFF
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 10, 6, 2
@@ -317,7 +317,7 @@ _03D4:
     Message 11
     CloseMessage
     SetFlag FLAG_UNK_0x02AA
-    SetVar 0x404E, 2
+    SetVar VAR_RESORT_VILLA_VISITOR, 2
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -347,7 +347,7 @@ _043C:
     Message 14
     CloseMessage
     SetFlag FLAG_UNK_0x02AD
-    SetVar 0x404E, 4
+    SetVar VAR_RESORT_VILLA_VISITOR, 4
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -371,7 +371,7 @@ _049C:
     Message 17
     CloseMessage
     SetFlag FLAG_UNK_0x02AF
-    SetVar 0x404E, 5
+    SetVar VAR_RESORT_VILLA_VISITOR, 5
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -395,7 +395,7 @@ _04FC:
     Message 20
     CloseMessage
     SetFlag FLAG_UNK_0x02B2
-    SetVar 0x404E, 7
+    SetVar VAR_RESORT_VILLA_VISITOR, 7
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -419,7 +419,7 @@ _055C:
     Message 23
     CloseMessage
     SetFlag FLAG_UNK_0x02B5
-    SetVar 0x404E, 9
+    SetVar VAR_RESORT_VILLA_VISITOR, 9
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

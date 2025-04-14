@@ -465,8 +465,8 @@ _06DD:
 _06EC:
     CallIfEq 0x40BD, 0, _0728
     CallIfEq 0x40BD, 1, _0728
-    CallIfEq 0x4052, 1, _072E
-    CallIfEq 0x4052, 3, _0745
+    CallIfEq VAR_BATTLE_CASTLE_PRINT_STATE, 1, _072E
+    CallIfEq VAR_BATTLE_CASTLE_PRINT_STATE, 3, _0745
     GoTo _0139
     End
 
@@ -480,7 +480,7 @@ _072E:
     Message 37
     PlaySound SEQ_FANFA4
     WaitSound
-    SetVar 0x4052, 2
+    SetVar VAR_BATTLE_CASTLE_PRINT_STATE, 2
     Return
 
 _0745:
@@ -489,7 +489,7 @@ _0745:
     Message 36
     PlaySound SEQ_FANFA4
     WaitSound
-    SetVar 0x4052, 4
+    SetVar VAR_BATTLE_CASTLE_PRINT_STATE, 4
     CallCommonScript 0x806
     Return
 

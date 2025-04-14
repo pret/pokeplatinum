@@ -1003,8 +1003,8 @@ _10BC:
     End
 
 _10F5:
-    CallIfEq 0x404F, 1, _1135
-    CallIfEq 0x404F, 3, _114C
+    CallIfEq VAR_BATTLE_TOWER_PRINT_STATE, 1, _1135
+    CallIfEq VAR_BATTLE_TOWER_PRINT_STATE, 3, _114C
     ScrCmd_1DD 48, 0, 0x800C
     GoToIfEq 0x800C, 0, _10BC
     Message 84
@@ -1019,7 +1019,7 @@ _1135:
     Message 87
     PlaySound SEQ_FANFA4
     WaitSound
-    SetVar 0x404F, 2
+    SetVar VAR_BATTLE_TOWER_PRINT_STATE, 2
     Return
 
 _114C:
@@ -1028,7 +1028,7 @@ _114C:
     Message 86
     PlaySound SEQ_FANFA4
     WaitSound
-    SetVar 0x404F, 4
+    SetVar VAR_BATTLE_TOWER_PRINT_STATE, 4
     CallCommonScript 0x806
     Return
 

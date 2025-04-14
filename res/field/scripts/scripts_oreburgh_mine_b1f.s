@@ -12,7 +12,7 @@
 _0012:
     SetFlag FLAG_UNK_0x09C2
     SetFlag FLAG_UNK_0x02C8
-    CallIfEq 0x4056, 1, _0029
+    CallIfEq VAR_ARCEUS_EVENT_STATE, 1, _0029
     End
 
 _0029:
@@ -82,7 +82,7 @@ _00F0:
 _0102:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 3
-    SetVar 0x4056, 2
+    SetVar VAR_ARCEUS_EVENT_STATE, 2
     ReleaseAll
     End
 
