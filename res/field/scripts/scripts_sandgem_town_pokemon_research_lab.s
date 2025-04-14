@@ -108,7 +108,7 @@ _016A:
     WaitABXPadPress
     CloseMessage
     SetFlag FLAG_UNK_0x027D
-    SetVar 0x4112, 1
+    SetVar VAR_UNK_0x4112, 1
     ClearFlag FLAG_MESPRIT_DISAPPEARED
     ClearFlag FLAG_AZELF_DISAPPEARED
     ClearFlag FLAG_UXIE_DISAPPEARED

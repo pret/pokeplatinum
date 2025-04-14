@@ -129,7 +129,7 @@ _01FF:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_2D2 4, 0x40BD, VAR_0x800C
+    ScrCmd_2D2 4, VAR_UNK_0x40BD, VAR_0x800C
     ScrCmd_2D4 VAR_0x4002, VAR_0x4005, VAR_0x4006
     ReturnToField
     FadeScreen 6, 1, 1, 0
@@ -304,7 +304,7 @@ _053D:
     WaitABPress
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _05E4
-    ApplyMovement 0x800D, _0604
+    ApplyMovement VAR_0x800D, _0604
     WaitMovement
     Return
 
@@ -313,7 +313,7 @@ _0558:
     WaitABPress
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _05E4
-    ApplyMovement 0x800D, _0604
+    ApplyMovement VAR_0x800D, _0604
     WaitMovement
     Return
 
@@ -324,25 +324,25 @@ _0573:
     ScrCmd_135 137
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _05F0
-    ApplyMovement 0x800D, _0610
+    ApplyMovement VAR_0x800D, _0610
     WaitMovement
     Return
 
 _0599:
     ApplyMovement LOCALID_PLAYER, _0624
-    ApplyMovement 0x800D, _0648
+    ApplyMovement VAR_0x800D, _0648
     WaitMovement
     Return
 
 _05AD:
     ApplyMovement LOCALID_PLAYER, _0624
-    ApplyMovement 0x800D, _0648
+    ApplyMovement VAR_0x800D, _0648
     WaitMovement
     Return
 
 _05C1:
     ApplyMovement LOCALID_PLAYER, _0634
-    ApplyMovement 0x800D, _0654
+    ApplyMovement VAR_0x800D, _0654
     WaitMovement
     Return
 
@@ -458,7 +458,7 @@ _06CB:
 
 _06DD:
     Message 34
-    ScrCmd_2D5 0x40BD
+    ScrCmd_2D5 VAR_UNK_0x40BD
     GoTo _0139
     End
 

@@ -21,7 +21,7 @@ _0022:
 
 _0039:
     SetFlag FLAG_UNK_0x0AB7
-    ScrCmd_2F4 0x4065, 0x4066, 0x4067, 0x4068
+    ScrCmd_2F4 VAR_UNK_0x4065, VAR_UNK_0x4066, VAR_UNK_0x4067, VAR_UNK_0x4068
     Call _0140
     ClearFlag FLAG_UNK_0x02A2
     ClearFlag FLAG_UNK_0x02A3
@@ -43,7 +43,7 @@ _0039:
     ClearFlag FLAG_UNK_0x0006
     ClearFlag FLAG_UNK_0x0007
     ClearFlag FLAG_UNK_0x0008
-    GetRandom 0x4061, 2
+    GetRandom VAR_UNK_0x4061, 2
     End
 
 _00ED:
@@ -79,10 +79,10 @@ _0133:
     Return
 
 _0140:
-    SetVar VAR_0x4021, 0x4065
-    SetVar VAR_0x4022, 0x4066
-    SetVar VAR_0x4023, 0x4067
-    SetVar VAR_0x4024, 0x4068
+    SetVar VAR_0x4021, VAR_UNK_0x4065
+    SetVar VAR_0x4022, VAR_UNK_0x4066
+    SetVar VAR_0x4023, VAR_UNK_0x4067
+    SetVar VAR_0x4024, VAR_UNK_0x4068
     Return
 
 _015A:

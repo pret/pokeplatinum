@@ -63,8 +63,8 @@ _009B:
 _00A5:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfEq 0x410C, 3, _00F4
-    GoToIfLt 0x410C, 15, _0100
+    GoToIfEq VAR_UNK_0x410C, 3, _00F4
+    GoToIfLt VAR_UNK_0x410C, 15, _0100
     SetVar VAR_0x8004, ITEM_STARDUST
 _00CB:
     SetVar VAR_0x8005, 1

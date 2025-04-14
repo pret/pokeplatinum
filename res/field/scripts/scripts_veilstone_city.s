@@ -39,7 +39,7 @@
 
 _0082:
     CallIfSet FLAG_UNK_0x0155, _00E0
-    CallIfGe 0x411A, 2, _00BA
+    CallIfGe VAR_UNK_0x411A, 2, _00BA
     GetPlayerGender VAR_0x4000
     GoToIfEq VAR_0x4000, GENDER_MALE, _00D0
     GoToIfEq VAR_0x4000, GENDER_FEMALE, _00D8
@@ -631,7 +631,7 @@ _08DD:
     SetFlag FLAG_UNK_0x01A9
     SetFlag FLAG_UNK_0x028A
     ClearFlag FLAG_UNK_0x020D
-    SetVar 0x411F, 1
+    SetVar VAR_UNK_0x411F, 1
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -1282,7 +1282,7 @@ _0ED8:
     End
 
 _0EF4:
-    SetVar 0x411F, 3
+    SetVar VAR_UNK_0x411F, 3
     SetFlag FLAG_UNK_0x009B
     Message 39
     CloseMessage
@@ -1507,7 +1507,7 @@ _1184:
     Call _00BA
     ClearFlag FLAG_UNK_0x01A8
     AddObject 6
-    SetVar 0x411A, 2
+    SetVar VAR_UNK_0x411A, 2
     ReleaseAll
     End
 

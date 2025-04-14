@@ -518,7 +518,7 @@ _0801:
 
 _080C:
     SetFlag FLAG_UNK_0x0077
-    SetVar 0x411B, 1
+    SetVar VAR_UNK_0x411B, 1
     GoTo _0325
     End
 
@@ -550,7 +550,7 @@ RotomsRoom_ProfessorRowan:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 6
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar 0x411B, 2
+    SetVar VAR_UNK_0x411B, 2
     ReleaseAll
     End
 

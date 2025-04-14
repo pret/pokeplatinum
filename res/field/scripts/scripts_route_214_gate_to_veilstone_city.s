@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000A:
-    GetRandom 0x4032, 4
+    GetRandom VAR_UNK_0x4032, 4
     ScrCmd_238 15, VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _0062
     ScrCmd_238 16, VAR_0x4000

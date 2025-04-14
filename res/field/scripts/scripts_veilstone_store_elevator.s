@@ -10,8 +10,8 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetFloorsAbove 0x40CE
-    SetVar VAR_0x8008, 0x40CE
+    GetFloorsAbove VAR_UNK_0x40CE
+    SetVar VAR_0x8008, VAR_UNK_0x40CE
     GoToIfEq VAR_0x8008, 0, _0068
     GoToIfEq VAR_0x8008, 1, _0072
     GoToIfEq VAR_0x8008, 2, _007C
@@ -46,7 +46,7 @@ _009A:
     End
 
 _00A6:
-    ShowCurrentFloor 20, 1, 0x40CE
+    ShowCurrentFloor 20, 1, VAR_UNK_0x40CE
     Message 0
     InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 120, 0
@@ -68,7 +68,7 @@ _00A6:
 
 _0131:
     WaitTime 1, VAR_0x800C
-    GetFloorsAbove 0x40CE
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 0x236, 1, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 5, _03DF
     CallIfGt VAR_UNK_0x40CE, 5, _030B
@@ -79,7 +79,7 @@ _0131:
 
 _0180:
     WaitTime 1, VAR_0x800C
-    GetFloorsAbove 0x40CE
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 137, 2, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 4, _03DF
     CallIfGt VAR_UNK_0x40CE, 4, _030B
@@ -90,7 +90,7 @@ _0180:
 
 _01CF:
     WaitTime 1, VAR_0x800C
-    GetFloorsAbove 0x40CE
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 138, 2, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 3, _03DF
     CallIfGt VAR_UNK_0x40CE, 3, _030B
@@ -101,7 +101,7 @@ _01CF:
 
 _021E:
     WaitTime 1, VAR_0x800C
-    GetFloorsAbove 0x40CE
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 139, 2, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 2, _03DF
     CallIfGt VAR_UNK_0x40CE, 2, _030B
@@ -112,7 +112,7 @@ _021E:
 
 _026D:
     WaitTime 1, VAR_0x800C
-    GetFloorsAbove 0x40CE
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 140, 2, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 1, _03DF
     CallIfGt VAR_UNK_0x40CE, 1, _030B
@@ -123,7 +123,7 @@ _026D:
 
 _02BC:
     WaitTime 1, VAR_0x800C
-    GetFloorsAbove 0x40CE
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 141, 1, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 0, _03DF
     CallIfGt VAR_UNK_0x40CE, 0, _030B
@@ -152,7 +152,7 @@ _0321:
     Return
 
 _033F:
-    SetVar VAR_0x8008, 0x40CE
+    SetVar VAR_0x8008, VAR_UNK_0x40CE
     GoToIfEq VAR_0x8008, 0, _0395
     GoToIfEq VAR_0x8008, 1, _03A0
     GoToIfEq VAR_0x8008, 2, _03AB

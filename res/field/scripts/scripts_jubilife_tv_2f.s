@@ -38,7 +38,7 @@ _0044:
     CallIfEq VAR_0x800C, SPECIES_TURTWIG, _00B4
     CallIfEq VAR_0x800C, SPECIES_CHIMCHAR, _00BC
     CallIfEq VAR_0x800C, SPECIES_PIPLUP, _00C4
-    SetVar 0x410A, VAR_0x8004
+    SetVar VAR_UNK_0x410A, VAR_0x8004
     ScrCmd_343 0, VAR_0x8004
     Message 1
     SetVar VAR_0x8005, 1
@@ -49,7 +49,7 @@ _0044:
     End
 
 _00A4:
-    ScrCmd_261 0, 0x410A
+    ScrCmd_261 0, VAR_UNK_0x410A
     Message 2
     WaitABXPadPress
     CloseMessage

@@ -1502,20 +1502,20 @@ _13BE:
     End
 
 _13C8:
-    AddVar 0x4115, 1
-    CallIfGe 0x4115, 9, _1445
-    CallIfEq 0x4115, 1, _144D
-    CallIfEq 0x4115, 2, _1452
-    CallIfEq 0x4115, 3, _1457
-    CallIfEq 0x4115, 4, _145C
-    CallIfEq 0x4115, 5, _1461
-    CallIfEq 0x4115, 6, _1466
-    CallIfEq 0x4115, 7, _146B
-    CallIfEq 0x4115, 8, _1470
+    AddVar VAR_UNK_0x4115, 1
+    CallIfGe VAR_UNK_0x4115, 9, _1445
+    CallIfEq VAR_UNK_0x4115, 1, _144D
+    CallIfEq VAR_UNK_0x4115, 2, _1452
+    CallIfEq VAR_UNK_0x4115, 3, _1457
+    CallIfEq VAR_UNK_0x4115, 4, _145C
+    CallIfEq VAR_UNK_0x4115, 5, _1461
+    CallIfEq VAR_UNK_0x4115, 6, _1466
+    CallIfEq VAR_UNK_0x4115, 7, _146B
+    CallIfEq VAR_UNK_0x4115, 8, _1470
     Return
 
 _1445:
-    SetVar 0x4115, 1
+    SetVar VAR_UNK_0x4115, 1
     Return
 
 _144D:

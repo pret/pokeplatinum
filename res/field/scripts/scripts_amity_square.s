@@ -53,7 +53,7 @@
 _00B6:
     SetFlag FLAG_UNK_0x09CC
     SetFlag FLAG_UNK_0x02A1
-    CalcAmitySquareBerryAndAccessoryManOptionID 0x40AB
+    CalcAmitySquareBerryAndAccessoryManOptionID VAR_UNK_0x40AB
     GetRandom VAR_0x4002, 5
     GoToIfEq VAR_0x4002, 0, _00FE
     GoToIfEq VAR_0x4002, 1, _0108
@@ -175,7 +175,7 @@ _0299:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     SetVar VAR_UNK_0x409D, VAR_0x400A
-    GetPartyMonSpecies VAR_0x400A, 0x409A
+    GetPartyMonSpecies VAR_0x400A, VAR_UNK_0x409A
     GoTo _0E48
     End
 
@@ -193,7 +193,7 @@ _02C9:
     SetVar VAR_UNK_0x4099, 1
     ClearAmitySquareStepCount
     Call _03DC
-    ScrCmd_27C 0, 0x409D
+    ScrCmd_27C 0, VAR_UNK_0x409D
     Message 3
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C8
@@ -305,7 +305,7 @@ _03DC:
     GetRandom VAR_0x800C, 5
     CallIfEq VAR_0x800C, 0, _040A
     CallIfNe VAR_0x800C, 0, _0412
-    CalcAmitySquareFoundAccessory 0x409C, 0x409A
+    CalcAmitySquareFoundAccessory VAR_UNK_0x409C, VAR_UNK_0x409A
     GoTo _041A
     End
 
@@ -367,7 +367,7 @@ _04D0:
     Return
 
 _04D8:
-    SetVar VAR_0x8000, 0x409B
+    SetVar VAR_0x8000, VAR_UNK_0x409B
     ClearAmitySquareStepCount
     Call _03DC
     GoToIfEq VAR_0x8000, 0, _04FB
@@ -375,21 +375,21 @@ _04D8:
     End
 
 _04FB:
-    SetVar VAR_0x8004, 0x409F
+    SetVar VAR_0x8004, VAR_UNK_0x409F
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0595
     GoTo _054D
     End
 
 _0524:
-    SetVar VAR_0x8004, 0x409F
+    SetVar VAR_0x8004, VAR_UNK_0x409F
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _05DD
     GoTo _054D
     End
 
 _054D:
-    PlayCry 0x409A
+    PlayCry VAR_UNK_0x409A
     Message 22
     WaitCry
     ScrCmd_27C 1, VAR_0x8004
@@ -400,7 +400,7 @@ _054D:
     End
 
 _056C:
-    SetVar VAR_0x8004, 0x409C
+    SetVar VAR_0x8004, VAR_UNK_0x409C
     SetVar VAR_0x8005, 1
     ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_0x800C
     GoToIfEq VAR_0x800C, 0, _0524
@@ -408,7 +408,7 @@ _056C:
     End
 
 _0595:
-    SetVar VAR_0x8004, 0x409C
+    SetVar VAR_0x8004, VAR_UNK_0x409C
     SetVar VAR_0x8005, 1
     ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_0x800C
     GoToIfEq VAR_0x800C, 0, _05DD
@@ -416,7 +416,7 @@ _0595:
     End
 
 _05BE:
-    PlayCry 0x409A
+    PlayCry VAR_UNK_0x409A
     Message 22
     WaitCry
     ScrCmd_27C 2, VAR_0x8004
@@ -427,8 +427,8 @@ _05BE:
     End
 
 _05DD:
-    BufferPartyMonNickname 0, 0x409D
-    PlayCry 0x409A
+    BufferPartyMonNickname 0, VAR_UNK_0x409D
+    PlayCry VAR_UNK_0x409A
     GoToIfEq VAR_UNK_0x409A, SPECIES_GROTLE, _0719
     GoToIfEq VAR_UNK_0x409A, SPECIES_TORTERRA, _0719
     GoToIfEq VAR_UNK_0x409A, SPECIES_MONFERNO, _0719
@@ -571,7 +571,7 @@ _080E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    BufferPartyMonNickname 0, 0x409D
+    BufferPartyMonNickname 0, VAR_UNK_0x409D
     GetRandom VAR_0x800C, 6
     CallIfEq VAR_0x800C, 0, _0884
     CallIfEq VAR_0x800C, 1, _0889
@@ -853,7 +853,7 @@ _0D36:
     Return
 
 _0E48:
-    SetVar VAR_0x8008, 0x409A
+    SetVar VAR_0x8008, VAR_UNK_0x409A
     GoToIfEq VAR_0x8008, 25, _0F5A
     GoToIfEq VAR_0x8008, 0xFF, _0F68
     GoToIfEq VAR_0x8008, 35, _0F76
@@ -987,7 +987,7 @@ _1084:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    BufferPartyMonNickname 0, 0x409D
+    BufferPartyMonNickname 0, VAR_UNK_0x409D
     GetAmitySquareStepCount VAR_0x800C
     GoToIfGe VAR_0x800C, 200, _04D8
     GoTo _05DD
@@ -999,8 +999,8 @@ _10AA:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AB5, _117C
     Message 36
-    GetAmitySquareBerryOrAccessoryIDFromMan 0x40AB, VAR_0x8004
-    ScrCmd_2E0 0x40AB, VAR_0x800C
+    GetAmitySquareBerryOrAccessoryIDFromMan VAR_UNK_0x40AB, VAR_0x8004
+    ScrCmd_2E0 VAR_UNK_0x40AB, VAR_0x800C
     GoToIfEq VAR_0x800C, 0, _10E1
     GoTo _1136
     End

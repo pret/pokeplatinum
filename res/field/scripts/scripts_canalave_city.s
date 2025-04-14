@@ -514,7 +514,7 @@ _0708:
     FacePlayer
     GetPlayerDir VAR_0x8004
     FacePlayer
-    GoToIfEq 0x4106, 2, _0900
+    GoToIfEq VAR_UNK_0x4106, 2, _0900
     Message 27
     InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 213, 0

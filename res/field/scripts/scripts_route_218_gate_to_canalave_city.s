@@ -35,7 +35,7 @@ _0047:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_UNK_0x021C
     RemoveObject 1
-    SetVar 0x4105, 1
+    SetVar VAR_UNK_0x4105, 1
     ReleaseAll
     End
 

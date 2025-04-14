@@ -22,7 +22,7 @@ _0012:
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_0x4000
     GoToIfEq VAR_0x4000, FALSE, _0075
     GoToIfSet FLAG_UNK_0x011E, _0075
-    SetVar 0x4118, 1
+    SetVar VAR_UNK_0x4118, 1
     GoTo _0075
     End
 

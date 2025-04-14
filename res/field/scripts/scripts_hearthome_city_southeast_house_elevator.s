@@ -9,8 +9,8 @@ _0006:
     LockAll
     ApplyMovement LOCALID_PLAYER, _00B8
     WaitMovement
-    GetFloorsAbove 0x40CE
-    SetVar VAR_0x8008, 0x40CE
+    GetFloorsAbove VAR_UNK_0x40CE
+    SetVar VAR_0x8008, VAR_UNK_0x40CE
     GoToIfEq VAR_0x8008, 1, _0038
     GoToIfEq VAR_0x8008, 0, _006A
     End

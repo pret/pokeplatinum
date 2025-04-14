@@ -73,7 +73,7 @@ _0032:
     CallIfEq VAR_0x8004, 25, _0268
     CallIfEq VAR_0x8004, 26, _027C
     RemoveObject 12
-    SetVar 0x410E, 1
+    SetVar VAR_UNK_0x410E, 1
     ReleaseAll
     End
 

@@ -322,7 +322,7 @@ _0430:
     End
 
 _043C:
-    Dummy1F9 0x40B8
+    Dummy1F9 VAR_UNK_0x40B8
     SetVar VAR_UNK_0x40DD, 0
     SetVar VAR_UNK_0x40DE, 0
     SetVar VAR_UNK_0x40B8, 0
@@ -335,7 +335,7 @@ _043C:
     SetVar VAR_UNK_0x40BC, 0
     SetVar VAR_UNK_0x40BA, 0
     SetVar VAR_UNK_0x40BF, 0
-    Dummy1F9 0x40B8
+    Dummy1F9 VAR_UNK_0x40B8
     End
 
 _048E:
@@ -345,7 +345,7 @@ _048E:
     ScrCmd_323 VAR_0x800C
     GoToIfEq VAR_0x800C, 0, _04BC
     GetCurrentMapID 0x405C
-    SetVar VAR_UNK_0x405D, 0x800D
+    SetVar VAR_UNK_0x405D, VAR_0x800D
     Message 17
     GoTo _04C7
     End
@@ -395,16 +395,16 @@ _0526:
     WaitMovement
     ScrCmd_168 0, 0, 5, 5, 77
     Call _0320
-    ApplyMovement 0x800D, _040C
+    ApplyMovement VAR_0x800D, _040C
     ApplyMovement LOCALID_PLAYER, _03C4
     WaitMovement
     Call _0328
-    ApplyMovement 0x800D, _0414
+    ApplyMovement VAR_0x800D, _0414
     WaitMovement
     ScrCmd_168 0, 0, 5, 2, 77
     Call _0320
     ApplyMovement LOCALID_PLAYER, _03E0
-    ApplyMovement 0x800D, _0424
+    ApplyMovement VAR_0x800D, _0424
     WaitMovement
     Call _0328
     SetVar VAR_0x4003, 0

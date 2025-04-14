@@ -74,7 +74,7 @@ _00CC:
 
 _00E0:
     LockAll
-    SetVar 0x410F, 2
+    SetVar VAR_UNK_0x410F, 2
     GoToIfSet FLAG_UNK_0x015C, _014B
     GoToIfUnset FLAG_UNK_0x015D, _0110
     ScrCmd_22D 2, VAR_0x800C

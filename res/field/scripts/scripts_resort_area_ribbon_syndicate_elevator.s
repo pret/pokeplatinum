@@ -10,8 +10,8 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetFloorsAbove 0x40CE
-    SetVar VAR_0x8008, 0x40CE
+    GetFloorsAbove VAR_UNK_0x40CE
+    SetVar VAR_0x8008, VAR_UNK_0x40CE
     GoToIfEq VAR_0x8008, 0, _0034
     GoToIfEq VAR_0x8008, 1, _003E
     End
@@ -25,7 +25,7 @@ _003E:
     GoTo _0048
 
 _0048:
-    ShowCurrentFloor 20, 1, 0x40CE
+    ShowCurrentFloor 20, 1, VAR_UNK_0x40CE
     Message 0
     InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 117, 0
@@ -39,7 +39,7 @@ _0048:
 
 _008F:
     WaitTime 1, VAR_0x800C
-    GetFloorsAbove 0x40CE
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 0x1CE, 0, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 0, _0164
     SetVar VAR_0x8004, 0
@@ -49,7 +49,7 @@ _008F:
 
 _00CA:
     WaitTime 1, VAR_0x800C
-    GetFloorsAbove 0x40CE
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 0x1CD, 1, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 1, _0164
     SetVar VAR_0x8004, 1

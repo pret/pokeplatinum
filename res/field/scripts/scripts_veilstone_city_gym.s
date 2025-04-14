@@ -43,7 +43,7 @@ _0022:
     SetFlag FLAG_UNK_0x01A3
     ClearFlag FLAG_UNK_0x01A8
     SetVar VAR_UNK_0x407D, 1
-    SetVar 0x411A, 1
+    SetVar VAR_UNK_0x411A, 1
     Message 3
     GoTo _00B7
     End

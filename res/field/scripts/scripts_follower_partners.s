@@ -119,7 +119,7 @@ _0131:
 _013C:
     WaitABXPadPress
     CloseMessage
-    AddVar 0x40CB, 1
+    AddVar VAR_UNK_0x40CB, 1
     ReleaseAll
     End
 

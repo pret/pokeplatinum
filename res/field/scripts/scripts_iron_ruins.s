@@ -131,7 +131,7 @@ _01CF:
 _01EA:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    ScrCmd_32C 0x4069, 0x24C, VAR_0x8004, VAR_0x8005
+    ScrCmd_32C VAR_UNK_0x4069, 0x24C, VAR_0x8004, VAR_0x8005
     GoToIfGe VAR_UNK_0x4069, 0x104, _020F
     ReleaseAll
     End

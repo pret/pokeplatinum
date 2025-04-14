@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _0016:
-    SetVar VAR_0x4000, 0x409E
+    SetVar VAR_0x4000, VAR_UNK_0x409E
     CallIfGe VAR_UNK_0x409E, 1, _0031
     Call _0037
     End

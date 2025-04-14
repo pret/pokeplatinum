@@ -254,7 +254,7 @@ _0243:
     WaitMovement
     Message 2
     CloseMessage
-    SetVar 0x4119, 1
+    SetVar VAR_UNK_0x4119, 1
     ReleaseAll
     End
 

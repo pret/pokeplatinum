@@ -41,7 +41,7 @@ _0062:
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_0x4000
     GoToIfEq VAR_0x4000, FALSE, _00C5
     GoToIfSet FLAG_UNK_0x011E, _00C5
-    SetVar 0x4118, 1
+    SetVar VAR_UNK_0x4118, 1
     GoTo _00C5
     End
 
@@ -49,7 +49,7 @@ _00C5:
     Return
 
 _00C7:
-    Dummy1F9 0x4098
+    Dummy1F9 VAR_UNK_0x4098
     GoToIfEq VAR_UNK_0x4098, 0, _0101
     GoToIfEq VAR_UNK_0x4098, 1, _0101
     GoToIfEq VAR_UNK_0x4098, 2, _0101

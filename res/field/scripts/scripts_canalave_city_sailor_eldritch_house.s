@@ -9,9 +9,9 @@
     ScriptEntryEnd
 
 _000E:
-    GoToIfEq 0x4106, 0, _0037
-    CallIfEq 0x4106, 3, _0073
-    CallIfGe 0x4106, 1, _007B
+    GoToIfEq VAR_UNK_0x4106, 0, _0037
+    CallIfEq VAR_UNK_0x4106, 3, _0073
+    CallIfGe VAR_UNK_0x4106, 1, _007B
 _0035:
     End
 
@@ -21,12 +21,12 @@ _0037:
     GoToIfEq VAR_0x4000, 0, _0035
     ScrCmd_22D 2, VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _0035
-    SetVar 0x4106, 1
+    SetVar VAR_UNK_0x4106, 1
     Call _007B
     End
 
 _0073:
-    SetVar 0x4106, 0
+    SetVar VAR_UNK_0x4106, 0
     Return
 
 _007B:
@@ -45,7 +45,7 @@ _007B:
     .byte 0
 
 _00A5:
-    SetVar VAR_0x8008, 0x4106
+    SetVar VAR_0x8008, VAR_UNK_0x4106
     GoToIfEq VAR_0x8008, 1, _00E5
     GoToIfEq VAR_0x8008, 2, _00E5
     GoToIfEq VAR_0x8008, 3, _00F8
@@ -79,9 +79,9 @@ _00F8:
     End
 
 _010B:
-    GoToIfEq 0x4106, 1, _0158
-    GoToIfEq 0x4106, 2, _0158
-    GoToIfEq 0x4106, 3, _0145
+    GoToIfEq VAR_UNK_0x4106, 1, _0158
+    GoToIfEq VAR_UNK_0x4106, 2, _0158
+    GoToIfEq VAR_UNK_0x4106, 3, _0145
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -109,7 +109,7 @@ _0158:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetFlag FLAG_UNK_0x012C
-    SetVar 0x4106, 3
+    SetVar VAR_UNK_0x4106, 3
     RemoveItem ITEM_LUNAR_WING, 1, VAR_0x800C
     BufferPlayerName 0
     Message 2
@@ -140,7 +140,7 @@ _01D9:
 
 _01EA:
     SetFlag FLAG_UNK_0x0133
-    SetVar 0x4106, 2
+    SetVar VAR_UNK_0x4106, 2
     GoTo _01D9
     End
 

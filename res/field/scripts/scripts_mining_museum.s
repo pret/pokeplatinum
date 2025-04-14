@@ -104,7 +104,7 @@ _0225:
     CallIfEq VAR_0x8003, 4, _03A4
     CallIfEq VAR_0x8003, 5, _03AC
     CallIfEq VAR_0x8003, 6, _03B4
-    ScrCmd_1F4 0x40B4, VAR_0x8002
+    ScrCmd_1F4 VAR_UNK_0x40B4, VAR_0x8002
     GoToIfEq VAR_UNK_0x40B4, 0, _03E7
     RemoveItem VAR_0x8002, 1, VAR_0x800C
     GoTo _03D8
@@ -202,7 +202,7 @@ _03B4:
 
 _03BC:
     ScrCmd_1F5 VAR_0x8002, VAR_0x8004, 1
-    ScrCmd_1F4 0x40B4, VAR_0x8002
+    ScrCmd_1F4 VAR_UNK_0x40B4, VAR_0x8002
     RemoveItem VAR_0x8002, 1, VAR_0x800C
     GoTo _03D8
 
@@ -222,16 +222,16 @@ _03E7:
     End
 
 _03F2:
-    BufferSpeciesNameFromVar 0, 0x40B4, 0, 0
+    BufferSpeciesNameFromVar 0, VAR_UNK_0x40B4, 0, 0
     Message 7
     GetPartyCount VAR_0x800C
     GoToIfEq VAR_0x800C, 6, _04A0
-    BufferSpeciesNameFromVar 1, 0x40B4, 0, 0
+    BufferSpeciesNameFromVar 1, VAR_UNK_0x40B4, 0, 0
     BufferPlayerName 0
     PlaySound SEQ_FANFA4
     Message 8
     WaitSound
-    GivePokemon 0x40B4, 20, ITEM_NONE, VAR_0x800C
+    GivePokemon VAR_UNK_0x40B4, 20, ITEM_NONE, VAR_0x800C
     IncrementGameRecord RECORD_UNK_115
     SetVar VAR_UNK_0x40B4, 0
     Message 9

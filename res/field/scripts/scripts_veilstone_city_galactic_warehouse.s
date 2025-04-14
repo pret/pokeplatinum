@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _0016:
-    CallIfLt 0x411F, 2, _0025
+    CallIfLt VAR_UNK_0x411F, 2, _0025
     End
 
 _0025:
@@ -87,7 +87,7 @@ _00D8:
     ApplyMovement 4, _015C
     WaitMovement
     SetVar VAR_UNK_0x407C, 1
-    SetVar 0x411F, 2
+    SetVar VAR_UNK_0x411F, 2
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -173,7 +173,7 @@ _0197:
     CallIfEq VAR_0x8004, 9, _02AE
     RemoveObject 4
     SetFlag FLAG_UNK_0x028A
-    SetVar 0x411F, 4
+    SetVar VAR_UNK_0x411F, 4
     ReleaseAll
     End
 

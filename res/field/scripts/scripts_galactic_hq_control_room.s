@@ -44,7 +44,7 @@ _0059:
     CheckWonBattle VAR_0x800C
     GoToIfEq VAR_0x800C, FALSE, _011F
     SetFlag FLAG_UNK_0x00AD
-    SetVar 0x410D, 1
+    SetVar VAR_UNK_0x410D, 1
     Message 1
     CloseMessage
     GetPlayerDir VAR_0x8004
@@ -181,7 +181,7 @@ _01C7:
     End
 
 _01FB:
-    SetVar 0x410D, 0
+    SetVar VAR_UNK_0x410D, 0
     PlayFanfare SEQ_SE_DP_BUTTON3
     BufferPlayerName 0
     Message 11

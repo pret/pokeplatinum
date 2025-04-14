@@ -90,7 +90,7 @@ _00A9:
     CallIfEq VAR_0x800C, SPECIES_TURTWIG, _0119
     CallIfEq VAR_0x800C, SPECIES_CHIMCHAR, _0121
     CallIfEq VAR_0x800C, SPECIES_PIPLUP, _0129
-    SetVar 0x4107, VAR_0x8004
+    SetVar VAR_UNK_0x4107, VAR_0x8004
     ScrCmd_343 0, VAR_0x8004
     Message 3
     SetVar VAR_0x8005, 1
@@ -101,7 +101,7 @@ _00A9:
     End
 
 _0109:
-    ScrCmd_261 0, 0x4107
+    ScrCmd_261 0, VAR_UNK_0x4107
     Message 4
     WaitABXPadPress
     CloseMessage
