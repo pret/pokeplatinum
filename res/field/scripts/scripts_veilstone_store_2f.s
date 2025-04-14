@@ -17,28 +17,28 @@ _0022:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckIsDepartmentStoreRegular 0x800C
-    GoToIfEq 0x800C, TRUE, _0063
+    CheckIsDepartmentStoreRegular VAR_0x800C
+    GoToIfEq VAR_0x800C, TRUE, _0063
     Message 0
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 229, 1
     AddMenuEntryImm 228, 0
     ShowMenu
-    GoToIfEq 0x800C, 1, _00C6
+    GoToIfEq VAR_0x800C, 1, _00C6
     GoTo _00BB
 
 _0063:
     BufferPlayerName 0
     Message 1
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 229, 0
     AddMenuEntryImm 228, 1
     ShowMenu
-    GoToIfNe 0x800C, 0, _00BB
-    GetRandom 0x800C, 4
-    GoToIfEq 0x800C, 0, _00C6
-    GoToIfEq 0x800C, 1, _00D1
-    GoToIfEq 0x800C, 2, _00DC
+    GoToIfNe VAR_0x800C, 0, _00BB
+    GetRandom VAR_0x800C, 4
+    GoToIfEq VAR_0x800C, 0, _00C6
+    GoToIfEq VAR_0x800C, 1, _00D1
+    GoToIfEq VAR_0x800C, 2, _00DC
     GoTo _00E7
 
 _00BB:
@@ -110,13 +110,13 @@ _012B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckPoketchAppRegistered POKETCH_APPID_COUNTER, 0x800C
-    GoToIfEq 0x800C, 1, _016F
+    CheckPoketchAppRegistered POKETCH_APPID_COUNTER, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _016F
     Message 10
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _017A
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _017A
     Message 11
-    SetVar 0x8004, 10
+    SetVar VAR_0x8004, 10
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage

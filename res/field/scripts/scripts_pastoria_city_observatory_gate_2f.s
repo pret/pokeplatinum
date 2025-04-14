@@ -15,16 +15,16 @@ _0016:
     LockAll
     ShowMoney 20, 2
     Message 0
-    ShowYesNoMenu 0x800C
+    ShowYesNoMenu VAR_0x800C
     CloseMessage
-    GoToIfEq 0x800C, MENU_YES, _003E
+    GoToIfEq VAR_0x800C, MENU_YES, _003E
     HideMoney
     ReleaseAll
     End
 
 _003E:
-    ScrCmd_071 0x800C, 100
-    GoToIfEq 0x800C, 0, _006B
+    ScrCmd_071 VAR_0x800C, 100
+    GoToIfEq VAR_0x800C, 0, _006B
     ScrCmd_070 100
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI

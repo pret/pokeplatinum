@@ -29,8 +29,8 @@ _003D:
     GoToIfEq VAR_UNK_0x406A, 0x122, _00ED
     GoToIfEq VAR_UNK_0x406A, 0x118, _00F8
     GoToIfUnset FLAG_GAME_COMPLETED, _010F
-    CheckPartyHasFatefulEncounterRegigigas 0x800C
-    GoToIfEq 0x800C, 0, _011A
+    CheckPartyHasFatefulEncounterRegigigas VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _011A
     GoToIfEq VAR_UNK_0x406A, 0x10E, _00AE
     GoToIfLt VAR_UNK_0x406A, 0x104, _011A
     WaitFanfare SEQ_SE_CONFIRM
@@ -46,10 +46,10 @@ _00AE:
     WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_REGICE, 30
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0109
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _00F8
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _0109
+    CheckDidNotCapture VAR_0x800C
+    GoToIfEq VAR_0x800C, TRUE, _00F8
     SetVar VAR_UNK_0x406A, 0x122
     ReleaseAll
     End
@@ -130,8 +130,8 @@ _01CF:
 
 _01EA:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    ScrCmd_32C 0x406A, 0x24E, 0x8004, 0x8005
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    ScrCmd_32C 0x406A, 0x24E, VAR_0x8004, VAR_0x8005
     GoToIfGe VAR_UNK_0x406A, 0x104, _020F
     ReleaseAll
     End

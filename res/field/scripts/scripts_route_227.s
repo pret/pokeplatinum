@@ -11,8 +11,8 @@
 
 _0012:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x2E3, _00E7
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x2E3, _00E7
     ApplyMovement 4, _0188
     ApplyMovement 3, _0154
     ApplyMovement LOCALID_PLAYER, _0100
@@ -22,7 +22,7 @@ _0012:
     CloseMessage
     ApplyMovement 3, _0160
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     BufferRivalName 1
     Message 6
     CloseMessage
@@ -44,7 +44,7 @@ _0012:
     ApplyMovement 3, _0170
     ApplyMovement LOCALID_PLAYER, _0108
     WaitMovement
-    WaitTime 5, 0x800C
+    WaitTime 5, VAR_0x800C
     BufferRivalName 1
     Message 10
     Message 11
@@ -236,9 +236,9 @@ _01F6:
 _0212:
     BufferPlayerName 0
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0243
-    GoToIfEq 0x800C, MENU_NO, _0238
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0243
+    GoToIfEq VAR_0x800C, MENU_NO, _0238
     End
 
 _0238:

@@ -11,11 +11,11 @@ _0006:
     LockAll
     FacePlayer
     GetFloorsAbove 0x40CE
-    SetVar 0x8008, 0x40CE
-    GoToIfEq 0x8008, 0, _004E
-    GoToIfEq 0x8008, 1, _005A
-    GoToIfEq 0x8008, 2, _0066
-    GoToIfEq 0x8008, 3, _0072
+    SetVar VAR_0x8008, 0x40CE
+    GoToIfEq VAR_0x8008, 0, _004E
+    GoToIfEq VAR_0x8008, 1, _005A
+    GoToIfEq VAR_0x8008, 2, _0066
+    GoToIfEq VAR_0x8008, 3, _0072
     End
 
 _004E:
@@ -41,23 +41,23 @@ _0072:
 _007E:
     ShowCurrentFloor 20, 1, 0x40CE
     Message 0
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 119, 0
     AddMenuEntryImm 118, 1
     AddMenuEntryImm 117, 2
     AddMenuEntryImm 116, 3
     AddMenuEntryImm 124, 4
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _01DC
-    GoToIfEq 0x8008, 1, _018B
-    GoToIfEq 0x8008, 2, _013A
-    GoToIfEq 0x8008, 3, _00E9
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _01DC
+    GoToIfEq VAR_0x8008, 1, _018B
+    GoToIfEq VAR_0x8008, 2, _013A
+    GoToIfEq VAR_0x8008, 3, _00E9
     GoTo _0283
     End
 
 _00E9:
-    WaitTime 1, 0x800C
+    WaitTime 1, VAR_0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 11, 2, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 3, _026C
@@ -69,7 +69,7 @@ _00E9:
     End
 
 _013A:
-    WaitTime 1, 0x800C
+    WaitTime 1, VAR_0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 12, 3, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 2, _026C
@@ -81,7 +81,7 @@ _013A:
     End
 
 _018B:
-    WaitTime 1, 0x800C
+    WaitTime 1, VAR_0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 13, 4, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 1, _026C
@@ -93,7 +93,7 @@ _018B:
     End
 
 _01DC:
-    WaitTime 1, 0x800C
+    WaitTime 1, VAR_0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 14, 1, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 0, _026C
@@ -106,12 +106,12 @@ _01DC:
 
 _022D:
     Message 2
-    SetVar 0x8004, 0
+    SetVar VAR_0x8004, 0
     Return
 
 _0238:
     Message 3
-    SetVar 0x8004, 1
+    SetVar VAR_0x8004, 1
     Return
 
 _0243:
@@ -120,7 +120,7 @@ _0243:
     ApplyMovement 0, _029C
     WaitMovement
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_23C 0x8004, 4
+    ScrCmd_23C VAR_0x8004, 4
     Return
 
 _0261:
@@ -132,7 +132,7 @@ _0261:
 
 _026C:
     SetVar VAR_UNK_0x40CE, -1
-    WaitTime 1, 0x800C
+    WaitTime 1, VAR_0x800C
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -141,7 +141,7 @@ _026C:
 
 _0283:
     SetVar VAR_UNK_0x40CE, -1
-    WaitTime 1, 0x800C
+    WaitTime 1, VAR_0x800C
     Message 1
     WaitABXPadPress
     CloseMessage

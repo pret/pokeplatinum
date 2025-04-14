@@ -16,8 +16,8 @@ _0014:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COAL, 0x800C
-    GoToIfEq 0x800C, 0, _003A
+    CheckBadgeAcquired BADGE_ID_COAL, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _003A
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -27,8 +27,8 @@ _0014:
 _003A:
     GoToIfSet FLAG_UNK_0x0093, _0064
     Message 0
-    SetVar 0x8004, 0x1A9
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1A9
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Call _006F
     GoTo _0064
@@ -51,8 +51,8 @@ _007B:
     ApplyMovement LOCALID_PLAYER, _00B4
     WaitMovement
     Message 0
-    SetVar 0x8004, 0x1A9
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1A9
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Call _006F
     Message 1

@@ -107,8 +107,8 @@ _01AC:
     FacePlayer
     BufferPlayerName 0
     Message 1
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _01D4
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _01D4
     Message 0
     CloseMessage
     ReleaseAll
@@ -141,12 +141,12 @@ _0204:
     End
 
 _0245:
-    ScrCmd_1DE VAR_0x4009, 0, 0x8004, 0x8005
-    BufferSpeciesNameFromVar 0, 0x8004, 0, 0
-    BufferMoveName 1, 0x8005
-    ScrCmd_1DE VAR_0x4009, 1, 0x8004, 0x8005
-    BufferSpeciesNameFromVar 2, 0x8004, 0, 0
-    BufferMoveName 3, 0x8005
+    ScrCmd_1DE VAR_0x4009, 0, VAR_0x8004, VAR_0x8005
+    BufferSpeciesNameFromVar 0, VAR_0x8004, 0, 0
+    BufferMoveName 1, VAR_0x8005
+    ScrCmd_1DE VAR_0x4009, 1, VAR_0x8004, VAR_0x8005
+    BufferSpeciesNameFromVar 2, VAR_0x8004, 0, 0
+    BufferMoveName 3, VAR_0x8005
     Return
 
 _0275:
@@ -155,15 +155,15 @@ _0275:
     FacePlayer
     GoToIfEq VAR_UNK_0x40DF, 2, _02D2
     SetVar VAR_0x4009, 0
-    ScrCmd_1DE VAR_0x4009, 0, 0x8004, 0x8005
-    ScrCmd_341 0, 0x8004, 0, 0
-    BufferMoveName 1, 0x8005
-    ScrCmd_1DE VAR_0x4009, 1, 0x8004, 0x8005
-    ScrCmd_341 2, 0x8004, 0, 0
-    BufferMoveName 3, 0x8005
+    ScrCmd_1DE VAR_0x4009, 0, VAR_0x8004, VAR_0x8005
+    ScrCmd_341 0, VAR_0x8004, 0, 0
+    BufferMoveName 1, VAR_0x8005
+    ScrCmd_1DE VAR_0x4009, 1, VAR_0x8004, VAR_0x8005
+    ScrCmd_341 2, VAR_0x8004, 0, 0
+    BufferMoveName 3, VAR_0x8005
     Message 6
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _02DD
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _02DD
 _02D2:
     Message 7
     WaitABXPadPress
@@ -190,8 +190,8 @@ _02FE:
     Call _0245
     BufferPlayerName 4
     Message 15
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0341
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0341
 _0336:
     Message 16
     WaitABXPadPress
@@ -218,8 +218,8 @@ _0365:
     SetVar VAR_0x4009, 2
     Call _0245
     Message 3
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _03A5
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _03A5
 _039A:
     Message 4
     WaitABXPadPress
@@ -245,8 +245,8 @@ _03C6:
     SetVar VAR_0x4009, 3
     Call _0245
     Message 12
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0406
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0406
 _03FB:
     Message 13
     WaitABXPadPress
@@ -272,8 +272,8 @@ _0427:
     SetVar VAR_0x4009, 4
     Call _0245
     Message 9
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0467
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0467
 _045C:
     Message 10
     WaitABXPadPress
@@ -346,8 +346,8 @@ _0500:
 
 _055C:
     SetVar VAR_0x4000, 1
-    GetPlayerMapPos 0x8000, 0x8001
-    GoToIfEq 0x8000, 12, _057D
+    GetPlayerMapPos VAR_0x8000, VAR_0x8001
+    GoToIfEq VAR_0x8000, 12, _057D
     GoTo _058F
     End
 
@@ -365,8 +365,8 @@ _058F:
 
 _05A1:
     SetVar VAR_0x4000, 2
-    GetPlayerMapPos 0x8000, 0x8001
-    GoToIfEq 0x8000, 4, _05C2
+    GetPlayerMapPos VAR_0x8000, VAR_0x8001
+    GoToIfEq VAR_0x8000, 4, _05C2
     GoTo _05D4
     End
 
@@ -384,8 +384,8 @@ _05D4:
 
 _05E6:
     SetVar VAR_0x4000, 3
-    GetPlayerMapPos 0x8000, 0x8001
-    GoToIfEq 0x8001, 7, _0607
+    GetPlayerMapPos VAR_0x8000, VAR_0x8001
+    GoToIfEq VAR_0x8001, 7, _0607
     GoTo _0619
     End
 
@@ -403,8 +403,8 @@ _0619:
 
 _062B:
     SetVar VAR_0x4000, 4
-    GetPlayerMapPos 0x8000, 0x8001
-    GoToIfEq 0x8001, 9, _064C
+    GetPlayerMapPos VAR_0x8000, VAR_0x8001
+    GoToIfEq VAR_0x8001, 9, _064C
     GoTo _065E
     End
 
@@ -422,8 +422,8 @@ _065E:
 
 _0670:
     SetVar VAR_0x4000, 5
-    GetPlayerMapPos 0x8000, 0x8001
-    GoToIfEq 0x8000, 8, _0691
+    GetPlayerMapPos VAR_0x8000, VAR_0x8001
+    GoToIfEq VAR_0x8000, 8, _0691
     GoTo _06A3
     End
 

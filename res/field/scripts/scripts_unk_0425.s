@@ -9,7 +9,7 @@
 
 _000A:
     LockAll
-    BufferNumber 0, 0x8000
+    BufferNumber 0, VAR_0x8000
     Message 106
     WaitABXPadPress
     CloseMessage

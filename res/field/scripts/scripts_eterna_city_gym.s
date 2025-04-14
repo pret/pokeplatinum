@@ -20,8 +20,8 @@ _0022:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FOREST, 0x800C
-    GoToIfEq 0x800C, 1, _0048
+    CheckBadgeAcquired BADGE_ID_FOREST, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0048
     Message 13
     WaitABXPadPress
     CloseMessage
@@ -39,8 +39,8 @@ _0048:
 _0056:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_FOREST, 0x800C
-    GoToIfEq 0x800C, 1, _0080
+    CheckBadgeAcquired BADGE_ID_FOREST, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0080
     BufferRivalName 0
     BufferRivalName 1
     Message 15
@@ -63,14 +63,14 @@ _0094:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FOREST, 0x800C
-    GoToIfEq 0x800C, 1, _0161
+    CheckBadgeAcquired BADGE_ID_FOREST, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0161
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 67, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_GARDENIA
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _01C3
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _01C3
     Message 1
     BufferPlayerName 0
     Message 2
@@ -89,13 +89,13 @@ _0094:
     End
 
 _0119:
-    SetVar 0x8004, ITEM_TM86
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0157
+    SetVar VAR_0x8004, ITEM_TM86
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0157
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0074
-    BufferItemName 0, 0x8004
-    BufferTMHMMoveName 1, 0x8004
+    BufferItemName 0, VAR_0x8004
+    BufferTMHMMoveName 1, VAR_0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -117,13 +117,13 @@ _0161:
     End
 
 _0177:
-    SetVar 0x8004, ITEM_TM86
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _01B7
+    SetVar VAR_0x8004, ITEM_TM86
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _01B7
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0074
-    BufferItemName 0, 0x8004
-    BufferTMHMMoveName 1, 0x8004
+    BufferItemName 0, VAR_0x8004
+    BufferTMHMMoveName 1, VAR_0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -152,8 +152,8 @@ _01C9:
     Message 6
     CloseMessage
     StartTrainerBattle TRAINER_LASS_CAROLINE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _01C3
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _01C3
     Message 7
     WaitABXPadPress
     SetVar VAR_UNK_0x40AE, 1
@@ -175,13 +175,13 @@ _021C:
     FacePlayer
     GoToIfGe VAR_UNK_0x40AE, 2, _0270
     PlayTrainerEncounterBGM TRAINER_AROMA_LADY_JENNA
-    SetVar 0x8007, 3
+    SetVar VAR_0x8007, 3
     Call _02DA
     Message 8
     CloseMessage
     StartTrainerBattle TRAINER_AROMA_LADY_JENNA
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _01C3
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _01C3
     Message 9
     WaitABXPadPress
     SetVar VAR_UNK_0x40AE, 2
@@ -203,13 +203,13 @@ _027B:
     FacePlayer
     GoToIfGe VAR_UNK_0x40AE, 3, _02CF
     PlayTrainerEncounterBGM TRAINER_AROMA_LADY_ANGELA
-    SetVar 0x8007, 4
+    SetVar VAR_0x8007, 4
     Call _02DA
     Message 10
     CloseMessage
     StartTrainerBattle TRAINER_AROMA_LADY_ANGELA
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _01C3
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _01C3
     Message 11
     WaitABXPadPress
     SetVar VAR_UNK_0x40AE, 3
@@ -226,29 +226,29 @@ _02CF:
     End
 
 _02DA:
-    GetPlayerDir 0x800C
-    CallIfEq 0x800C, 0, _0314
-    CallIfEq 0x800C, 1, _0322
-    CallIfEq 0x800C, 2, _0330
-    CallIfEq 0x800C, 3, _033E
+    GetPlayerDir VAR_0x800C
+    CallIfEq VAR_0x800C, 0, _0314
+    CallIfEq VAR_0x800C, 1, _0322
+    CallIfEq VAR_0x800C, 2, _0330
+    CallIfEq VAR_0x800C, 3, _033E
     Return
 
 _0314:
-    ScrCmd_188 0x8007, 15
-    ScrCmd_189 0x8007, 1
+    ScrCmd_188 VAR_0x8007, 15
+    ScrCmd_189 VAR_0x8007, 1
     Return
 
 _0322:
-    ScrCmd_188 0x8007, 14
-    ScrCmd_189 0x8007, 0
+    ScrCmd_188 VAR_0x8007, 14
+    ScrCmd_189 VAR_0x8007, 0
     Return
 
 _0330:
-    ScrCmd_188 0x8007, 17
-    ScrCmd_189 0x8007, 3
+    ScrCmd_188 VAR_0x8007, 17
+    ScrCmd_189 VAR_0x8007, 3
     Return
 
 _033E:
-    ScrCmd_188 0x8007, 16
-    ScrCmd_189 0x8007, 2
+    ScrCmd_188 VAR_0x8007, 16
+    ScrCmd_189 VAR_0x8007, 2
     Return

@@ -41,17 +41,17 @@ _0059:
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_SATURN_GALACTIC_HQ
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _011F
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _011F
     SetFlag FLAG_UNK_0x00AD
     SetVar 0x410D, 1
     Message 1
     CloseMessage
-    GetPlayerDir 0x8004
-    SetVar VAR_0x4002, 0x8004
-    GoToIfEq 0x8004, 0, _00D5
-    GoToIfEq 0x8004, 2, _00E5
-    GoToIfEq 0x8004, 3, _00F5
+    GetPlayerDir VAR_0x8004
+    SetVar VAR_0x4002, VAR_0x8004
+    GoToIfEq VAR_0x8004, 0, _00D5
+    GoToIfEq VAR_0x8004, 2, _00E5
+    GoToIfEq VAR_0x8004, 3, _00F5
     End
 
 _00D5:
@@ -175,9 +175,9 @@ _01C7:
     LockAll
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _0347
     Message 10
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _01FB
-    GoToIfEq 0x800C, MENU_NO, _0341
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _01FB
+    GoToIfEq VAR_0x800C, MENU_NO, _0341
     End
 
 _01FB:
@@ -189,7 +189,7 @@ _01FB:
     ClearFlag FLAG_UNK_0x0295
     SetFlag FLAG_FREED_GALACTIC_HQ_POKEMON
     ScrCmd_25F
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     ApplyMovement 2, _036C
     ApplyMovement 1, _0374
     ApplyMovement 3, _037C
@@ -212,12 +212,12 @@ _0296:
     RemoveObject 2
     RemoveObject 1
     RemoveObject 3
-    WaitTime 2, 0x800C
+    WaitTime 2, VAR_0x800C
     ClearFlag FLAG_UNK_0x0236
     AddObject 2
     AddObject 1
     AddObject 3
-    WaitTime 2, 0x800C
+    WaitTime 2, VAR_0x800C
     Return
 
 _02C0:
@@ -365,11 +365,11 @@ _03FD:
     CloseMessage
     ApplyMovement 0, _0460
     WaitMovement
-    WaitTime 20, 0x800C
+    WaitTime 20, VAR_0x800C
     Message 6
     Message 7
     CloseMessage
-    WaitTime 20, 0x800C
+    WaitTime 20, VAR_0x800C
     ApplyMovement 0, _0468
     WaitMovement
     Message 8

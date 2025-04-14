@@ -11,10 +11,10 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckPoketchAppRegistered POKETCH_APPID_ANALOGWATCH, 0x800C
-    GoToIfEq 0x800C, 1, _003A
+    CheckPoketchAppRegistered POKETCH_APPID_ANALOGWATCH, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _003A
     Message 0
-    SetVar 0x8004, 11
+    SetVar VAR_0x8004, 11
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage

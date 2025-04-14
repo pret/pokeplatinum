@@ -18,35 +18,35 @@ _001A:
     ApplyMovement LOCALID_PLAYER, _00D8
     WaitMovement
     Message 1
-    SetVar 0x8004, 0x1B5
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1B5
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     GoTo _0046
     End
 
 _0046:
     Message 2
-    InitGlobalTextMenu 31, 13, 0, 0x800C
+    InitGlobalTextMenu 31, 13, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 153, 0
     AddMenuEntryImm 154, 1
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0086
-    GoToIfEq 0x8008, 1, _00C6
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _0086
+    GoToIfEq VAR_0x8008, 1, _00C6
     GoTo _00C6
     End
 
 _0086:
     Message 3
-    InitGlobalTextMenu 31, 13, 0, 0x800C
+    InitGlobalTextMenu 31, 13, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 155, 0
     AddMenuEntryImm 154, 1
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0086
-    GoToIfEq 0x8008, 1, _00C6
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _0086
+    GoToIfEq VAR_0x8008, 1, _00C6
     GoTo _00C6
     End
 
@@ -73,8 +73,8 @@ _00F4:
     LockAll
     FacePlayer
     Message 5
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0123
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0123
     GoTo _0118
     End
 
@@ -87,27 +87,27 @@ _0118:
 
 _0123:
     Message 6
-    InitGlobalTextMenu 31, 13, 0, 0x800C
+    InitGlobalTextMenu 31, 13, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 153, 0
     AddMenuEntryImm 154, 1
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0163
-    GoToIfEq 0x8008, 1, _0118
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _0163
+    GoToIfEq VAR_0x8008, 1, _0118
     GoTo _0118
     End
 
 _0163:
     Message 3
-    InitGlobalTextMenu 31, 13, 0, 0x800C
+    InitGlobalTextMenu 31, 13, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 155, 0
     AddMenuEntryImm 154, 1
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0163
-    GoToIfEq 0x8008, 1, _0118
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _0163
+    GoToIfEq VAR_0x8008, 1, _0118
     GoTo _0118
     End
 
@@ -115,22 +115,22 @@ _01A3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2B7 0x800C
-    GoToIfEq 0x800C, 1, _0430
+    ScrCmd_2B7 VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0430
     GoTo _01C4
     End
 
 _01C4:
     Message 7
-    InitLocalTextMenu 31, 11, 0, 0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 14, 0
     AddMenuEntryImm 15, 1
     AddMenuEntryImm 16, 2
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0213
-    GoToIfEq 0x8008, 1, _0208
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _0213
+    GoToIfEq VAR_0x8008, 1, _0208
     GoTo _026C
     End
 
@@ -140,21 +140,21 @@ _0208:
     End
 
 _0213:
-    ScrCmd_2A4 0x800C
-    GoToIfEq 0x800C, 0, _022C
+    ScrCmd_2A4 VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _022C
     GoTo _0277
     End
 
 _022C:
-    ScrCmd_2A3 0x800C
-    GoToIfEq 0x800C, 1, _0261
+    ScrCmd_2A3 VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0261
     GoTo _0245
     End
 
 _0245:
     Message 11
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0277
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0277
     GoTo _026C
     End
 
@@ -173,12 +173,12 @@ _026C:
     End
 
 _0277:
-    ScrCmd_31D 0x800C
-    GoToIfEq 0x800C, 0xFF, _02A9
+    ScrCmd_31D VAR_0x800C
+    GoToIfEq VAR_0x800C, 0xFF, _02A9
     HealParty
     CallCommonScript 0x7D6
-    SetVar 0x800C, VAR_0x4000
-    GoToIfEq 0x800C, 1, _02AF
+    SetVar VAR_0x800C, VAR_0x4000
+    GoToIfEq VAR_0x800C, 1, _02AF
     GoTo _026C
     End
 
@@ -189,7 +189,7 @@ _02A9:
 _02AF:
     Message 10
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
     ApplyMovement LOCALID_PLAYER, _03B8
     WaitMovement
     GoTo _02CC
@@ -226,8 +226,8 @@ _0333:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_1F8
-    ScrCmd_2A4 0x800C
-    GoToIfEq 0x800C, 0, _035A
+    ScrCmd_2A4 VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _035A
     ScrCmd_0A3
     GoTo _035C
 
@@ -342,8 +342,8 @@ _048E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_323 0x800C
-    GoToIfEq 0x800C, 0, _04BC
+    ScrCmd_323 VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _04BC
     GetCurrentMapID 0x405C
     SetVar VAR_UNK_0x405D, 0x800D
     Message 17
@@ -356,15 +356,15 @@ _04BC:
     End
 
 _04C7:
-    InitLocalTextMenu 31, 11, 0, 0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 22, 0
     AddMenuEntryImm 23, 1
     AddMenuEntryImm 24, 2
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0526
-    GoToIfEq 0x8008, 1, _051B
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _0526
+    GoToIfEq VAR_0x8008, 1, _051B
     GoTo _0508
     End
 
@@ -387,8 +387,8 @@ _051B:
 _0526:
     HealParty
     CallCommonScript 0x7D6
-    SetVar 0x800C, VAR_0x4000
-    GoToIfEq 0x800C, 0, _0508
+    SetVar VAR_0x800C, VAR_0x4000
+    GoToIfEq VAR_0x800C, 0, _0508
     Message 19
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03B8

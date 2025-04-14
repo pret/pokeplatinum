@@ -26,25 +26,25 @@ _0031:
 
 _0041:
     Message 1
-    InitLocalTextMenu 30, 11, 0, 0x800C
+    InitLocalTextMenu 30, 11, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 2, 0
     AddMenuEntryImm 3, 1
     AddMenuEntryImm 4, 2
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0085
-    GoToIfEq 0x8008, 1, _015D
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _0085
+    GoToIfEq VAR_0x8008, 1, _015D
     GoTo _0152
     End
 
 _0085:
     BufferNumber 2, 1
     Message 7
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0152
-    ScrCmd_29A 1, 0x800C
-    GoToIfEq 0x800C, 0, _0147
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _0152
+    ScrCmd_29A 1, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _0147
     ScrCmd_299 1
     UpdateBPDisplay
     Message 10
@@ -60,10 +60,10 @@ _0085:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x8000, 0
+    SetVar VAR_0x8000, 0
     Call _017A
-    GoToIfEq 0x8000, 0, _01AB
-    BufferNumber 0, 0x8000
+    GoToIfEq VAR_0x8000, 0, _01AB
+    BufferNumber 0, VAR_0x8000
     Message 11
     CallIfNe VAR_0x4001, 0, _01B6
     CallIfNe VAR_0x4003, 0, _0200
@@ -107,7 +107,7 @@ _017A:
     Return
 
 _01A3:
-    AddVar 0x8000, 1
+    AddVar VAR_0x8000, 1
     Return
 
 _01AB:
@@ -124,10 +124,10 @@ _01CE:
     ScrCmd_33D 0, VAR_0x4000
 _01D3:
     BufferNumber 1, VAR_0x4001
-    GoToIfCannotFitItem VAR_0x4000, VAR_0x4001, 0x800C, _0294
+    GoToIfCannotFitItem VAR_0x4000, VAR_0x4001, VAR_0x800C, _0294
     PlaySound SEQ_FANFA4
     Message 13
-    AddItem VAR_0x4000, VAR_0x4001, 0x800C
+    AddItem VAR_0x4000, VAR_0x4001, VAR_0x800C
     WaitSound
     Return
 
@@ -140,10 +140,10 @@ _0218:
     ScrCmd_33D 0, VAR_0x4002
 _021D:
     BufferNumber 1, VAR_0x4003
-    GoToIfCannotFitItem VAR_0x4002, VAR_0x4003, 0x800C, _0294
+    GoToIfCannotFitItem VAR_0x4002, VAR_0x4003, VAR_0x800C, _0294
     PlaySound SEQ_FANFA4
     Message 13
-    AddItem VAR_0x4002, VAR_0x4003, 0x800C
+    AddItem VAR_0x4002, VAR_0x4003, VAR_0x800C
     WaitSound
     Return
 
@@ -156,10 +156,10 @@ _0262:
     ScrCmd_33D 0, VAR_0x4004
 _0267:
     BufferNumber 1, VAR_0x4005
-    GoToIfCannotFitItem VAR_0x4004, VAR_0x4005, 0x800C, _0294
+    GoToIfCannotFitItem VAR_0x4004, VAR_0x4005, VAR_0x800C, _0294
     PlaySound SEQ_FANFA4
     Message 13
-    AddItem VAR_0x4004, VAR_0x4005, 0x800C
+    AddItem VAR_0x4004, VAR_0x4005, VAR_0x800C
     WaitSound
     Return
 

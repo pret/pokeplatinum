@@ -14,8 +14,8 @@ _000E:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AAC, _00D5
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _00EB
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _00EB
     Message 1
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -26,8 +26,8 @@ _000E:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_0x4000, 0xFF, _00EB
-    GetPartyMonSpecies VAR_0x4000, 0x800C
-    GoToIfEq 0x800C, SPECIES_NONE, _00E0
+    GetPartyMonSpecies VAR_0x4000, VAR_0x800C
+    GoToIfEq VAR_0x800C, SPECIES_NONE, _00E0
     Message 3
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -40,10 +40,10 @@ _000E:
     Message 4
     SetFlag FLAG_UNK_0x0AAC
     ScrCmd_1BA 3, VAR_0x4000
-    TryGetRandomMassageGirlAccessory 0x8004
-    GoToIfEq 0x8004, -1, _00F6
+    TryGetRandomMassageGirlAccessory VAR_0x8004
+    GoToIfEq VAR_0x8004, -1, _00F6
     Message 7
-    SetVar 0x8005, 1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FF
     GoTo _00F6
 

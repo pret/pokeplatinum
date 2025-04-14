@@ -30,7 +30,7 @@ _0023:
 
 _0036:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetVar VAR_UNK_0x40A9, 2
     SetObjectEventPos 5, 20, 25
     ScrCmd_188 5, 16
@@ -40,9 +40,9 @@ _0036:
     ApplyMovement 5, _0148
     WaitMovement
     CallCommonScript 0x807
-    CallIfEq 0x8005, 24, _0109
-    CallIfEq 0x8005, 25, _011D
-    CallIfEq 0x8005, 26, _0131
+    CallIfEq VAR_0x8005, 24, _0109
+    CallIfEq VAR_0x8005, 25, _011D
+    CallIfEq VAR_0x8005, 26, _0131
     Message 0
     ApplyMovement 5, _0184
     WaitMovement
@@ -50,9 +50,9 @@ _0036:
     ApplyMovement 5, _018C
     WaitMovement
     Message 2
-    SetVar 0x8004, ITEM_BLACK_FLUTE
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00F2
+    SetVar VAR_0x8004, ITEM_BLACK_FLUTE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00F2
     CallCommonScript 0x7FC
     Call _00E5
     CallCommonScript 0x808
@@ -152,9 +152,9 @@ _01A0:
 
 _01BE:
     Message 5
-    SetVar 0x8004, ITEM_BLACK_FLUTE
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _01F0
+    SetVar VAR_0x8004, ITEM_BLACK_FLUTE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _01F0
     CallCommonScript 0x7FC
     Call _00E5
     ReleaseAll

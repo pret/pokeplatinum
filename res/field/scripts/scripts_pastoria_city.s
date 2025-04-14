@@ -87,8 +87,8 @@ _00FE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FEN, 0x800C
-    GoToIfEq 0x800C, 1, _0124
+    CheckBadgeAcquired BADGE_ID_FEN, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0124
     Message 33
     WaitABXPadPress
     CloseMessage
@@ -107,13 +107,13 @@ _012F:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0128, _0189
-    GetPlayerStarterSpecies 0x800C
-    CallIfEq 0x800C, SPECIES_TURTWIG, _0194
-    CallIfEq 0x800C, SPECIES_CHIMCHAR, _019C
-    CallIfEq 0x800C, SPECIES_PIPLUP, _01A4
-    ScrCmd_261 0, 0x8004
+    GetPlayerStarterSpecies VAR_0x800C
+    CallIfEq VAR_0x800C, SPECIES_TURTWIG, _0194
+    CallIfEq VAR_0x800C, SPECIES_CHIMCHAR, _019C
+    CallIfEq VAR_0x800C, SPECIES_PIPLUP, _01A4
+    ScrCmd_261 0, VAR_0x8004
     Message 37
-    SetVar 0x8005, 1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DF
     SetFlag FLAG_UNK_0x0128
     CloseMessage
@@ -128,15 +128,15 @@ _0189:
     End
 
 _0194:
-    SetVar 0x8004, ACCESSORY_CHIMCHAR_MASK
+    SetVar VAR_0x8004, ACCESSORY_CHIMCHAR_MASK
     Return
 
 _019C:
-    SetVar 0x8004, ACCESSORY_PIPLUP_MASK
+    SetVar VAR_0x8004, ACCESSORY_PIPLUP_MASK
     Return
 
 _01A4:
-    SetVar 0x8004, ACCESSORY_TURTWIG_MASK
+    SetVar VAR_0x8004, ACCESSORY_TURTWIG_MASK
     Return
 
 _01AC:
@@ -196,15 +196,15 @@ _0220:
     FacePlayer
     Message 28
     CloseMessage
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 2, _025A
-    GoToIfEq 0x800C, 3, _027A
-    GoToIfEq 0x800C, 0, _0292
+    GetPlayerDir VAR_0x800C
+    GoToIfEq VAR_0x800C, 2, _025A
+    GoToIfEq VAR_0x800C, 3, _027A
+    GoToIfEq VAR_0x800C, 0, _0292
     GoTo _02B2
     End
 
 _025A:
-    SetVar 0x8007, 2
+    SetVar VAR_0x8007, 2
     ApplyMovement 21, _0388
     ApplyMovement LOCALID_PLAYER, _02EC
     WaitMovement
@@ -212,14 +212,14 @@ _025A:
     End
 
 _027A:
-    SetVar 0x8007, 3
+    SetVar VAR_0x8007, 3
     ApplyMovement 21, _0398
     WaitMovement
     GoTo _02D2
     End
 
 _0292:
-    SetVar 0x8007, 0
+    SetVar VAR_0x8007, 0
     ApplyMovement 21, _0398
     ApplyMovement LOCALID_PLAYER, _030C
     WaitMovement
@@ -227,7 +227,7 @@ _0292:
     End
 
 _02B2:
-    SetVar 0x8007, 1
+    SetVar VAR_0x8007, 1
     ApplyMovement 21, _0398
     ApplyMovement LOCALID_PLAYER, _0304
     WaitMovement
@@ -505,8 +505,8 @@ _043E:
     End
 
 _0471:
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _0498
+    GetPlayerDir VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _0498
     BufferRivalName 0
     Message 16
     CloseMessage
@@ -560,9 +560,9 @@ _04C8:
     CloseMessage
     ApplyMovement 26, _05CC
     WaitMovement
-    GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, SPECIES_TURTWIG, _054B
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0557
+    GetPlayerStarterSpecies VAR_0x800C
+    GoToIfEq VAR_0x800C, SPECIES_TURTWIG, _054B
+    GoToIfEq VAR_0x800C, SPECIES_CHIMCHAR, _0557
     GoTo _053F
 
 _053F:
@@ -578,8 +578,8 @@ _0557:
     GoTo _0563
 
 _0563:
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0597
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _0597
     BufferRivalName 0
     BufferPlayerName 1
     Message 6
@@ -825,7 +825,7 @@ _086F:
     ApplyMovement 26, _0AF0
     WaitMovement
     PlayFanfare SEQ_SE_DP_FW291
-    WaitTime 4, 0x800C
+    WaitTime 4, VAR_0x800C
     Message 19
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
@@ -865,10 +865,10 @@ _091C:
     ApplyMovement LOCALID_PLAYER, _099C
     WaitMovement
     RemoveObject 27
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x261, _0981
-    CallIfEq 0x8004, 0x263, _098D
-    CallIfEq 0x8004, 0x264, _0981
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x261, _0981
+    CallIfEq VAR_0x8004, 0x263, _098D
+    CallIfEq VAR_0x8004, 0x264, _0981
     SetFlag FLAG_UNK_0x020D
     SetVar VAR_UNK_0x407C, 5
     SetFlag FLAG_UNK_0x0102
@@ -900,9 +900,9 @@ _09A8:
     LockAll
     FacePlayer
     Call _086F
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x263, _0A31
-    CallIfEq 0x8004, 0x264, _0A55
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x263, _0A31
+    CallIfEq VAR_0x8004, 0x264, _0A55
     Call _08D9
     ApplyMovement LOCALID_PLAYER, _0AC8
     ApplyMovement 27, _0B74
@@ -911,9 +911,9 @@ _09A8:
     WaitMovement
     Call _08FA
     Message 23
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x263, _0A79
-    CallIfEq 0x8004, 0x264, _0A8D
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x263, _0A79
+    CallIfEq VAR_0x8004, 0x264, _0A8D
     Call _091C
     ReleaseAll
     End
@@ -1129,8 +1129,8 @@ _0BF0:
     LockAll
     GoToIfSet FLAG_UNK_0x0156, _0C1E
     SetVar VAR_UNK_0x40C7, 1
-    GetRandom 0x800C, 100
-    GoToIfGe 0x800C, 90, _0C22
+    GetRandom VAR_0x800C, 100
+    GoToIfGe VAR_0x800C, 90, _0C22
     GoTo _0C1E
     End
 
@@ -1146,7 +1146,7 @@ _0C22:
     WaitMovement
     PlayCry SPECIES_CROAGUNK
     WaitCry
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     ApplyMovement 28, _0C70
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2

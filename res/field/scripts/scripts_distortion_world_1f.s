@@ -18,8 +18,8 @@ _001A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 7
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _003A
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _003A
     CloseMessage
     ReleaseAll
     End
@@ -63,7 +63,7 @@ _0070:
     ApplyMovement LOCALID_PLAYER, _0160
     ApplyMovement 128, _01B4
     WaitMovement
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     ScrCmd_322
     Message 3
     WaitABXPadPress

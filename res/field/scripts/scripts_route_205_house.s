@@ -12,9 +12,9 @@ _000A:
     LockAll
     FacePlayer
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0035
-    GoToIfEq 0x800C, MENU_NO, _0062
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0035
+    GoToIfEq VAR_0x800C, MENU_NO, _0062
     End
 
 _0035:

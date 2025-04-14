@@ -21,14 +21,14 @@ _0025:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_ICICLE, 0x800C
-    GoToIfEq 0x800C, 1, _00F8
+    CheckBadgeAcquired BADGE_ID_ICICLE, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _00F8
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 167, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_CANDICE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _010E
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _010E
     Message 1
     BufferPlayerName 0
     Message 2
@@ -48,13 +48,13 @@ _0025:
     GoTo _00B0
 
 _00B0:
-    SetVar 0x8004, ITEM_TM72
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00EE
+    SetVar VAR_0x8004, ITEM_TM72
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00EE
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x009E
-    BufferItemName 0, 0x8004
-    BufferTMHMMoveName 1, 0x8004
+    BufferItemName 0, VAR_0x8004
+    BufferTMHMMoveName 1, VAR_0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -84,8 +84,8 @@ _0114:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_ICICLE, 0x800C
-    GoToIfEq 0x800C, 1, _013A
+    CheckBadgeAcquired BADGE_ID_ICICLE, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _013A
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -103,8 +103,8 @@ _013A:
 _0148:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_ICICLE, 0x800C
-    GoToIfEq 0x800C, 1, _0172
+    CheckBadgeAcquired BADGE_ID_ICICLE, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0172
     BufferRivalName 0
     BufferRivalName 1
     Message 8

@@ -39,109 +39,109 @@ _0055:
     Message 1
     GoToIfUnset FLAG_UNK_0x0079, _04B6
     GoToIfNe VAR_UNK_0x40B4, 0, _03F2
-    ScrCmd_1F1 0x8000
-    GoToIfEq 0x8000, 0, _04AB
+    ScrCmd_1F1 VAR_0x8000
+    GoToIfEq VAR_0x8000, 0, _04AB
     Message 2
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _03E7
-    GoToIfEq 0x8000, 1, _03BC
-    SetVar 0x8001, 0
-    CheckItem ITEM_OLD_AMBER, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    CheckItem ITEM_HELIX_FOSSIL, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    CheckItem ITEM_DOME_FOSSIL, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    CheckItem ITEM_ROOT_FOSSIL, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    CheckItem ITEM_CLAW_FOSSIL, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    CheckItem ITEM_ARMOR_FOSSIL, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    CheckItem ITEM_SKULL_FOSSIL, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    GoToIfEq 0x8001, 1, _03BC
-    SetVar 0x8004, 0
-    SetVar 0x8005, 0
-    InitGlobalTextMenu 1, 1, 0, 0x8003
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _03E7
+    GoToIfEq VAR_0x8000, 1, _03BC
+    SetVar VAR_0x8001, 0
+    CheckItem ITEM_OLD_AMBER, 1, VAR_0x800C
+    AddVar VAR_0x8001, VAR_0x800C
+    CheckItem ITEM_HELIX_FOSSIL, 1, VAR_0x800C
+    AddVar VAR_0x8001, VAR_0x800C
+    CheckItem ITEM_DOME_FOSSIL, 1, VAR_0x800C
+    AddVar VAR_0x8001, VAR_0x800C
+    CheckItem ITEM_ROOT_FOSSIL, 1, VAR_0x800C
+    AddVar VAR_0x8001, VAR_0x800C
+    CheckItem ITEM_CLAW_FOSSIL, 1, VAR_0x800C
+    AddVar VAR_0x8001, VAR_0x800C
+    CheckItem ITEM_ARMOR_FOSSIL, 1, VAR_0x800C
+    AddVar VAR_0x8001, VAR_0x800C
+    CheckItem ITEM_SKULL_FOSSIL, 1, VAR_0x800C
+    AddVar VAR_0x8001, VAR_0x800C
+    GoToIfEq VAR_0x8001, 1, _03BC
+    SetVar VAR_0x8004, 0
+    SetVar VAR_0x8005, 0
+    InitGlobalTextMenu 1, 1, 0, VAR_0x8003
 _013E:
-    CallIfEq 0x8005, 0, _02DC
-    CallIfEq 0x8005, 1, _02EC
-    CallIfEq 0x8005, 2, _02FC
-    CallIfEq 0x8005, 3, _030C
-    CallIfEq 0x8005, 4, _031C
-    CallIfEq 0x8005, 5, _032C
-    CallIfEq 0x8005, 6, _033C
-    GoToIfEq 0x800C, 0, _0219
-    CallIfEq 0x8004, 0, _034C
-    CallIfEq 0x8004, 1, _0354
-    CallIfEq 0x8004, 2, _035C
-    CallIfEq 0x8004, 3, _0364
-    CallIfEq 0x8004, 4, _036C
-    CallIfEq 0x8004, 5, _0374
-    CallIfEq 0x8004, 6, _037C
-    SetVar 0x8006, 0x8005
-    AddVar 0x8006, 156
-    AddMenuEntry 0x8006, 0x8004
+    CallIfEq VAR_0x8005, 0, _02DC
+    CallIfEq VAR_0x8005, 1, _02EC
+    CallIfEq VAR_0x8005, 2, _02FC
+    CallIfEq VAR_0x8005, 3, _030C
+    CallIfEq VAR_0x8005, 4, _031C
+    CallIfEq VAR_0x8005, 5, _032C
+    CallIfEq VAR_0x8005, 6, _033C
+    GoToIfEq VAR_0x800C, 0, _0219
+    CallIfEq VAR_0x8004, 0, _034C
+    CallIfEq VAR_0x8004, 1, _0354
+    CallIfEq VAR_0x8004, 2, _035C
+    CallIfEq VAR_0x8004, 3, _0364
+    CallIfEq VAR_0x8004, 4, _036C
+    CallIfEq VAR_0x8004, 5, _0374
+    CallIfEq VAR_0x8004, 6, _037C
+    SetVar VAR_0x8006, VAR_0x8005
+    AddVar VAR_0x8006, 156
+    AddMenuEntry VAR_0x8006, VAR_0x8004
     GoTo _0225
 
 _0219:
-    AddVar 0x8005, 1
+    AddVar VAR_0x8005, 1
     GoTo _013E
 
 _0225:
-    AddVar 0x8004, 1
-    AddVar 0x8005, 1
-    GoToIfNe 0x8004, 0x8001, _013E
-    AddMenuEntry 44, 0x8004
+    AddVar VAR_0x8004, 1
+    AddVar VAR_0x8005, 1
+    GoToIfNe VAR_0x8004, VAR_0x8001, _013E
+    AddMenuEntry 44, VAR_0x8004
     ShowMenu
-    GoToIfEq 0x8003, 0xFF, _03E7
-    GoToIfEq 0x8003, VAR_0x4000, _03E7
-    CallIfEq 0x8003, 0, _0384
-    CallIfEq 0x8003, 1, _038C
-    CallIfEq 0x8003, 2, _0394
-    CallIfEq 0x8003, 3, _039C
-    CallIfEq 0x8003, 4, _03A4
-    CallIfEq 0x8003, 5, _03AC
-    CallIfEq 0x8003, 6, _03B4
-    ScrCmd_1F4 0x40B4, 0x8002
+    GoToIfEq VAR_0x8003, 0xFF, _03E7
+    GoToIfEq VAR_0x8003, VAR_0x4000, _03E7
+    CallIfEq VAR_0x8003, 0, _0384
+    CallIfEq VAR_0x8003, 1, _038C
+    CallIfEq VAR_0x8003, 2, _0394
+    CallIfEq VAR_0x8003, 3, _039C
+    CallIfEq VAR_0x8003, 4, _03A4
+    CallIfEq VAR_0x8003, 5, _03AC
+    CallIfEq VAR_0x8003, 6, _03B4
+    ScrCmd_1F4 0x40B4, VAR_0x8002
     GoToIfEq VAR_UNK_0x40B4, 0, _03E7
-    RemoveItem 0x8002, 1, 0x800C
+    RemoveItem VAR_0x8002, 1, VAR_0x800C
     GoTo _03D8
 
 _02DC:
     SetVar VAR_0x4000, 103
-    CheckItem VAR_0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, VAR_0x800C
     Return
 
 _02EC:
     SetVar VAR_0x4000, 101
-    CheckItem VAR_0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, VAR_0x800C
     Return
 
 _02FC:
     SetVar VAR_0x4000, 102
-    CheckItem VAR_0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, VAR_0x800C
     Return
 
 _030C:
     SetVar VAR_0x4000, 99
-    CheckItem VAR_0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, VAR_0x800C
     Return
 
 _031C:
     SetVar VAR_0x4000, 100
-    CheckItem VAR_0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, VAR_0x800C
     Return
 
 _032C:
     SetVar VAR_0x4000, 104
-    CheckItem VAR_0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, VAR_0x800C
     Return
 
 _033C:
     SetVar VAR_0x4000, 105
-    CheckItem VAR_0x4000, 1, 0x800C
+    CheckItem VAR_0x4000, 1, VAR_0x800C
     Return
 
 _034C:
@@ -173,37 +173,37 @@ _037C:
     Return
 
 _0384:
-    SetVar 0x8002, VAR_0x4001
+    SetVar VAR_0x8002, VAR_0x4001
     Return
 
 _038C:
-    SetVar 0x8002, VAR_0x4002
+    SetVar VAR_0x8002, VAR_0x4002
     Return
 
 _0394:
-    SetVar 0x8002, VAR_0x4003
+    SetVar VAR_0x8002, VAR_0x4003
     Return
 
 _039C:
-    SetVar 0x8002, VAR_0x4004
+    SetVar VAR_0x8002, VAR_0x4004
     Return
 
 _03A4:
-    SetVar 0x8002, VAR_0x4005
+    SetVar VAR_0x8002, VAR_0x4005
     Return
 
 _03AC:
-    SetVar 0x8002, VAR_0x4006
+    SetVar VAR_0x8002, VAR_0x4006
     Return
 
 _03B4:
-    SetVar 0x8002, VAR_0x4007
+    SetVar VAR_0x8002, VAR_0x4007
     Return
 
 _03BC:
-    ScrCmd_1F5 0x8002, 0x8004, 1
-    ScrCmd_1F4 0x40B4, 0x8002
-    RemoveItem 0x8002, 1, 0x800C
+    ScrCmd_1F5 VAR_0x8002, VAR_0x8004, 1
+    ScrCmd_1F4 0x40B4, VAR_0x8002
+    RemoveItem VAR_0x8002, 1, VAR_0x800C
     GoTo _03D8
 
 _03D8:
@@ -224,20 +224,20 @@ _03E7:
 _03F2:
     BufferSpeciesNameFromVar 0, 0x40B4, 0, 0
     Message 7
-    GetPartyCount 0x800C
-    GoToIfEq 0x800C, 6, _04A0
+    GetPartyCount VAR_0x800C
+    GoToIfEq VAR_0x800C, 6, _04A0
     BufferSpeciesNameFromVar 1, 0x40B4, 0, 0
     BufferPlayerName 0
     PlaySound SEQ_FANFA4
     Message 8
     WaitSound
-    GivePokemon 0x40B4, 20, ITEM_NONE, 0x800C
+    GivePokemon 0x40B4, 20, ITEM_NONE, VAR_0x800C
     IncrementGameRecord RECORD_UNK_115
     SetVar VAR_UNK_0x40B4, 0
     Message 9
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0459
-    GoToIfEq 0x800C, MENU_NO, _049A
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0459
+    GoToIfEq VAR_0x800C, MENU_NO, _049A
     End
 
 _0459:
@@ -246,8 +246,8 @@ _0459:
     SubVar VAR_0x4000, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BB VAR_0x4000, 0x800C
-    CallIfNe 0x800C, 1, _0494
+    ScrCmd_0BB VAR_0x4000, VAR_0x800C
+    CallIfNe VAR_0x800C, 1, _0494
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

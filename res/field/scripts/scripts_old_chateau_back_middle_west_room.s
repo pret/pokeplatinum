@@ -11,11 +11,11 @@ _0006:
     LockAll
     GoToIfSet FLAG_UNK_0x0149, _009C
     GoToIfSet FLAG_UNK_0x0AB0, _009C
-    GetTimeOfDay 0x800C
-    GoToIfLt 0x800C, 3, _009C
+    GetTimeOfDay VAR_0x800C
+    GoToIfLt VAR_0x800C, 3, _009C
     Message 1
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0096
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _0096
     BufferPlayerName 0
     Message 2
     CloseMessage
@@ -23,10 +23,10 @@ _0006:
     WaitCry
     SetFlag FLAG_UNK_0x0AB0
     StartWildBattle SPECIES_ROTOM, 20
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00A7
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _008B
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _00A7
+    CheckDidNotCapture VAR_0x800C
+    GoToIfEq VAR_0x800C, TRUE, _008B
     SetFlag FLAG_UNK_0x0149
     ReleaseAll
     End

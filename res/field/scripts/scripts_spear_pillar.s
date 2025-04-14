@@ -64,11 +64,11 @@ _0107:
     End
 
 _0109:
-    ScrCmd_246 0x800C
-    SetVar 0x8004, 0x8005
-    GoToIfEq 0x800C, 10, _0133
-    GoToIfEq 0x800C, 12, _0133
-    SetVar 0x8004, 0x8006
+    ScrCmd_246 VAR_0x800C
+    SetVar VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x800C, 10, _0133
+    GoToIfEq VAR_0x800C, 12, _0133
+    SetVar VAR_0x8004, VAR_0x8006
 _0133:
     Return
 
@@ -109,8 +109,8 @@ _0154:
     ApplyMovement 0, _01E4
     ApplyMovement 3, _01F4
     WaitMovement
-    CheckHasTwoAliveMons 0x800C
-    GoToIfNe 0x800C, 0, _01A6
+    CheckHasTwoAliveMons VAR_0x800C
+    GoToIfNe VAR_0x800C, 0, _01A6
     GoTo _0181
     End
 
@@ -127,7 +127,7 @@ _0181:
 
 _01A6:
     Call _01CA
-    GoToIfEq 0x800C, FALSE, _01DB
+    GoToIfEq VAR_0x800C, FALSE, _01DB
     SetVar VAR_UNK_0x4098, 1
     Message 2
     WaitABXPadPress
@@ -139,7 +139,7 @@ _01CA:
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_1, TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_2
-    CheckWonBattle 0x800C
+    CheckWonBattle VAR_0x800C
     Return
 
 _01DB:
@@ -217,9 +217,9 @@ _0249:
     Message 9
     CloseMessage
     Call SpearPillar_SetRivalPartnerTeam
-    StartTagBattle 0x8004, TRAINER_COMMANDER_MARS_SPEAR_PILLAR, TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _02D0
+    StartTagBattle VAR_0x8004, TRAINER_COMMANDER_MARS_SPEAR_PILLAR, TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _02D0
     Call _0456
     BufferRivalName 0
     BufferPlayerName 1
@@ -246,11 +246,11 @@ _02D0:
 
 _02DC:
     ClearFlag FLAG_UNK_0x01C5
-    GetPlayerMapPos 0x8004, 0x8005
-    SetVar 0x8008, 0x8004
-    GoToIfEq 0x8008, 30, _0315
-    GoToIfEq 0x8008, 31, _0333
-    GoToIfEq 0x8008, 32, _0351
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    SetVar VAR_0x8008, VAR_0x8004
+    GoToIfEq VAR_0x8008, 30, _0315
+    GoToIfEq VAR_0x8008, 31, _0333
+    GoToIfEq VAR_0x8008, 32, _0351
     Return
 
 _0315:
@@ -278,11 +278,11 @@ _0351:
     Return
 
 _036F:
-    GetPlayerMapPos 0x8004, 0x8005
-    SetVar 0x8008, 0x8004
-    GoToIfEq 0x8008, 30, _03A4
-    GoToIfEq 0x8008, 31, _03BE
-    GoToIfEq 0x8008, 32, _03D8
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    SetVar VAR_0x8008, VAR_0x8004
+    GoToIfEq VAR_0x8008, 30, _03A4
+    GoToIfEq VAR_0x8008, 31, _03BE
+    GoToIfEq VAR_0x8008, 32, _03D8
     Return
 
 _03A4:
@@ -337,21 +337,21 @@ _041C:
     EndMovement
 
 SpearPillar_SetRivalPartnerTeam:
-    GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, SpearPillar_Return
-    SetVar 0x8004, TRAINER_RIVAL_SPEAR_PILLAR_TURTWIG
-    GoToIfEq 0x800C, SPECIES_TURTWIG, SpearPillar_Return
-    SetVar 0x8004, TRAINER_RIVAL_SPEAR_PILLAR_PIPLUP
+    GetPlayerStarterSpecies VAR_0x800C
+    SetVar VAR_0x8004, TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR
+    GoToIfEq VAR_0x800C, SPECIES_CHIMCHAR, SpearPillar_Return
+    SetVar VAR_0x8004, TRAINER_RIVAL_SPEAR_PILLAR_TURTWIG
+    GoToIfEq VAR_0x800C, SPECIES_TURTWIG, SpearPillar_Return
+    SetVar VAR_0x8004, TRAINER_RIVAL_SPEAR_PILLAR_PIPLUP
 SpearPillar_Return:
     Return
 
 _0456:
-    GetPlayerMapPos 0x8004, 0x8005
-    SetVar 0x8008, 0x8004
-    GoToIfEq 0x8008, 30, _048B
-    GoToIfEq 0x8008, 31, _0499
-    GoToIfEq 0x8008, 32, _04A7
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    SetVar VAR_0x8008, VAR_0x8004
+    GoToIfEq VAR_0x8008, 30, _048B
+    GoToIfEq VAR_0x8008, 31, _0499
+    GoToIfEq VAR_0x8008, 32, _04A7
     Return
 
 _048B:
@@ -447,28 +447,28 @@ _0500:
 _0508:
     ApplyMovement LOCALID_PLAYER, _05B8
     WaitMovement
-    GetPlayerMapPos 0x8000, 0x8001
-    ScrCmd_066 0x8000, 0x8001
+    GetPlayerMapPos VAR_0x8000, VAR_0x8001
+    ScrCmd_066 VAR_0x8000, VAR_0x8001
     Call _05C0
     WaitMovement
-    SetVar 0x8005, 13
-    SetVar 0x8006, 68
+    SetVar VAR_0x8005, 13
+    SetVar VAR_0x8006, 68
     Call _0109
-    MessageVar 0x8004
+    MessageVar VAR_0x8004
     CloseMessage
     FadeOutMusic 0, 30
-    ScrCmd_20D 0, 0x800C
-    WaitTime 10, 0x800C
+    ScrCmd_20D 0, VAR_0x800C
+    WaitTime 10, VAR_0x800C
     PlayFanfare SEQ_SE_PL_KUSARI
-    WaitTime 20, 0x800C
+    WaitTime 20, VAR_0x800C
     PlayMusic SEQ_THE_EVENT02
     ScrCmd_05D
     GoTo _0567
     End
 
 _0567:
-    ScrCmd_20D 1, 0x800C
-    GoToIfEq 0x800C, 0, _0567
+    ScrCmd_20D 1, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _0567
     ScrCmd_2FB
     SetFlag FLAG_UNK_0x01C8
     SetFlag FLAG_UNK_0x01C9
@@ -490,13 +490,13 @@ _05B8:
     EndMovement
 
 _05C0:
-    GetPlayerMapPos 0x8004, 0x8005
-    SetVar 0x8008, 0x8004
-    GoToIfEq 0x8008, 29, _060F
-    GoToIfEq 0x8008, 30, _0619
-    GoToIfEq 0x8008, 31, _0623
-    GoToIfEq 0x8008, 32, _062D
-    GoToIfEq 0x8008, 33, _0637
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    SetVar VAR_0x8008, VAR_0x8004
+    GoToIfEq VAR_0x8008, 29, _060F
+    GoToIfEq VAR_0x8008, 30, _0619
+    GoToIfEq VAR_0x8008, 31, _0623
+    GoToIfEq VAR_0x8008, 32, _062D
+    GoToIfEq VAR_0x8008, 33, _0637
     Return
 
 _060F:

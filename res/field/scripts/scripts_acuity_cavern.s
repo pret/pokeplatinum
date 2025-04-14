@@ -34,10 +34,10 @@ AcuityCavern_Uxie:
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_UXIE, 50
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, AcuityCavern_LostBattle
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, AcuityCavern_UxieDisappeared
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, AcuityCavern_LostBattle
+    CheckDidNotCapture VAR_0x800C
+    GoToIfEq VAR_0x800C, TRUE, AcuityCavern_UxieDisappeared
     SetFlag FLAG_UXIE_CAUGHT
     ReleaseAll
     End

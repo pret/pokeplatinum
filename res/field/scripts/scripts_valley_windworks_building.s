@@ -69,9 +69,9 @@ _00AC:
 
 _00BF:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 6, _00E3
-    GoToIfEq 0x8005, 7, _00F5
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 6, _00E3
+    GoToIfEq VAR_0x8005, 7, _00F5
     End
 
 _00E3:
@@ -90,13 +90,13 @@ _0107:
     Message 2
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _02B9
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _02B9
     Message 3
     CloseMessage
     ApplyMovement 7, _0374
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     Message 4
     ApplyMovement 1, _0364
     WaitMovement
@@ -118,9 +118,9 @@ _0107:
     SetFlag FLAG_UNK_0x0AA8
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 6, _01B7
-    GoToIfEq 0x8005, 7, _01C9
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 6, _01B7
+    GoToIfEq VAR_0x8005, 7, _01C9
     End
 
 _01B7:
@@ -143,9 +143,9 @@ _01DB:
     ScrCmd_188 5, 16
     AddObject 5
     ScrCmd_062 5
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 6, _0218
-    GoToIfEq 0x8005, 7, _0232
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 6, _0218
+    GoToIfEq VAR_0x8005, 7, _0232
     End
 
 _0218:
@@ -165,9 +165,9 @@ _0232:
 _024C:
     Message 8
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 6, _0273
-    GoToIfEq 0x8005, 7, _0285
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 6, _0273
+    GoToIfEq VAR_0x8005, 7, _0285
     End
 
 _0273:

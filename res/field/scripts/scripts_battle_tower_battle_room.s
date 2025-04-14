@@ -44,12 +44,12 @@ _0070:
     Return
 
 _007D:
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     SetVar VAR_UNK_0x40D8, 1
-    ScrCmd_1DD 43, 0, 0x800C
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 4, _00D9
-    GoToIfEq 0x8008, 5, _00D9
+    ScrCmd_1DD 43, 0, VAR_0x800C
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 4, _00D9
+    GoToIfEq VAR_0x8008, 5, _00D9
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
@@ -70,8 +70,8 @@ _00D9:
 _0101:
     LockAll
     SetVar VAR_UNK_0x40D9, 3
-    ScrCmd_1DD 100, 0, 0x800C
-    GoToIfEq 0x800C, 1, _007D
+    ScrCmd_1DD 100, 0, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _007D
     Call _043C
     GoTo _0201
     End
@@ -79,8 +79,8 @@ _0101:
 _012C:
     LockAll
     SetVar VAR_UNK_0x40D9, 3
-    ScrCmd_1DD 100, 0, 0x800C
-    GoToIfEq 0x800C, 1, _007D
+    ScrCmd_1DD 100, 0, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _007D
     Call _043C
     Call _0448
     GoTo _02F7
@@ -94,8 +94,8 @@ _015D:
     CloseMessage
     Call _047E
     ScrCmd_1DD 42, 0, 0
-    CheckWonBattle 0x800C
-    SetVar 0x8004, 0x800C
+    CheckWonBattle VAR_0x800C
+    SetVar VAR_0x8004, VAR_0x800C
     Return
 
 _018C:
@@ -114,7 +114,7 @@ _01AC:
     ScrCmd_1DC
     Message 4
     ScrCmd_18D
-    ScrCmd_12D 0x800C
+    ScrCmd_12D VAR_0x800C
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
@@ -129,15 +129,15 @@ _01E7:
     End
 
 _01EF:
-    ScrCmd_1DD 34, 0, 0x800C
-    ScrCmd_1DD 35, 0, 0x800C
+    ScrCmd_1DD 34, 0, VAR_0x800C
+    ScrCmd_1DD 35, 0, VAR_0x800C
     Return
 
 _0201:
     Call _015D
-    GoToIfEq 0x8004, FALSE, _018C
+    GoToIfEq VAR_0x8004, FALSE, _018C
     Call _01EF
-    GoToIfEq 0x800C, 1, _019C
+    GoToIfEq VAR_0x800C, 1, _019C
     Call _0492
     Call _04A6
     Call _0070
@@ -145,20 +145,20 @@ _0201:
     End
 
 _0241:
-    ScrCmd_1DD 33, 0, 0x8004
-    BufferNumber 0, 0x8004
+    ScrCmd_1DD 33, 0, VAR_0x8004
+    BufferNumber 0, VAR_0x8004
     Message 1
-    InitGlobalTextListMenu 31, 11, 0, 0x800C, NO_EXIT_ON_B
+    InitGlobalTextListMenu 31, 11, 0, VAR_0x800C, NO_EXIT_ON_B
     SetMenuXOriginToRight
     AddListMenuEntry 146, 0
     AddListMenuEntry 147, 1
     AddListMenuEntry 148, 2
     ShowListMenu
     CloseMessage
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _02AD
-    GoToIfEq 0x8008, 1, _02BB
-    GoToIfEq 0x8008, 2, _02D9
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _02AD
+    GoToIfEq VAR_0x8008, 1, _02BB
+    GoToIfEq VAR_0x8008, 2, _02D9
     GoTo _02AD
     End
 
@@ -169,42 +169,42 @@ _02AD:
 
 _02BB:
     Message 2
-    ShowYesNoMenu 0x800C
+    ShowYesNoMenu VAR_0x800C
     CloseMessage
-    GoToIfEq 0x800C, MENU_YES, _01AC
+    GoToIfEq VAR_0x800C, MENU_YES, _01AC
     GoTo _0241
     End
 
 _02D9:
     Message 3
-    ShowYesNoMenu 0x800C
+    ShowYesNoMenu VAR_0x800C
     CloseMessage
-    GoToIfEq 0x800C, MENU_YES, _01E7
+    GoToIfEq VAR_0x800C, MENU_YES, _01E7
     GoTo _0241
     End
 
 _02F7:
-    ScrCmd_1DD 43, 0, 0x800C
-    GoToIfNe 0x800C, 0, _0241
-    ScrCmd_1DD 36, 0, 0x800C
-    GoToIfEq 0x800C, 20, _0336
-    GoToIfEq 0x800C, 48, _0336
+    ScrCmd_1DD 43, 0, VAR_0x800C
+    GoToIfNe VAR_0x800C, 0, _0241
+    ScrCmd_1DD 36, 0, VAR_0x800C
+    GoToIfEq VAR_0x800C, 20, _0336
+    GoToIfEq VAR_0x800C, 48, _0336
     GoTo _0241
     End
 
 _0336:
     Message 14
-    InitGlobalTextListMenu 31, 11, 0, 0x800C, NO_EXIT_ON_B
+    InitGlobalTextListMenu 31, 11, 0, VAR_0x800C, NO_EXIT_ON_B
     SetMenuXOriginToRight
     AddListMenuEntry 146, 0
     AddListMenuEntry 147, 1
     AddListMenuEntry 148, 2
     ShowListMenu
     CloseMessage
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0395
-    GoToIfEq 0x8008, 1, _02BB
-    GoToIfEq 0x8008, 2, _02D9
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _0395
+    GoToIfEq VAR_0x8008, 1, _02BB
+    GoToIfEq VAR_0x8008, 2, _02D9
     GoTo _0395
     End
 
@@ -212,8 +212,8 @@ _0395:
     Call _04BA
     ScrCmd_1DD 40, 0, 0
     Call _04CE
-    ScrCmd_1DD 36, 0, 0x800C
-    GoToIfEq 0x800C, 48, _041E
+    ScrCmd_1DD 36, 0, VAR_0x800C
+    GoToIfEq VAR_0x800C, 48, _041E
     BufferPlayerName 0
     BufferRivalName 1
     Message 15
@@ -221,11 +221,11 @@ _03C7:
     CloseMessage
     Call _047E
     ScrCmd_1DD 42, 0, 0
-    CheckWonBattle 0x800C
-    SetVar 0x8004, 0x800C
-    GoToIfEq 0x8004, FALSE, _018C
-    ScrCmd_1DD 36, 0, 0x800C
-    GoToIfEq 0x800C, 48, _0429
+    CheckWonBattle VAR_0x800C
+    SetVar VAR_0x8004, VAR_0x800C
+    GoToIfEq VAR_0x8004, FALSE, _018C
+    ScrCmd_1DD 36, 0, VAR_0x800C
+    GoToIfEq VAR_0x800C, 48, _0429
     Message 17
     ScrCmd_1DD 44, 1, 0
 _040E:
@@ -257,8 +257,8 @@ _0448:
     Return
 
 _045C:
-    ScrCmd_1DD 41, 0, 0x800C
-    SetVar VAR_0x4021, 0x800C
+    ScrCmd_1DD 41, 0, VAR_0x800C
+    SetVar VAR_0x4021, VAR_0x800C
     ClearFlag FLAG_UNK_0x01CB
     AddObject 1
     ApplyMovement 1, _0524

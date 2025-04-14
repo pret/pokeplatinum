@@ -20,10 +20,10 @@ _0018:
 _0026:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    SetVar 0x8004, 0x410B
-    SetVar 0x8005, 0x410C
-    BufferNumber 0, 0x8004
-    BufferNumber 1, 0x8005
+    SetVar VAR_0x8004, 0x410B
+    SetVar VAR_0x8005, 0x410C
+    BufferNumber 0, VAR_0x8004
+    BufferNumber 1, VAR_0x8005
     Message 0
     WaitABXPadPress
     CloseMessage

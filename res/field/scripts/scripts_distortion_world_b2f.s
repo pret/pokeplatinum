@@ -16,8 +16,8 @@ _0012:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, 5, _0084
-    GetPlayer3DPos 0x8004, 0x8005, 0x8006
-    GoToIfEq 0x8005, 232, _0059
+    GetPlayer3DPos VAR_0x8004, VAR_0x8005, VAR_0x8006
+    GoToIfEq VAR_0x8005, 232, _0059
     ApplyMovement 128, _00DC
     WaitMovement
     Message 0
@@ -40,9 +40,9 @@ _007A:
     End
 
 _0084:
-    GetPlayer3DPos 0x8004, 0x8005, 0x8006
-    GoToIfEq 0x8005, 231, _00B6
-    GoToIfEq 0x8005, 232, _00C6
+    GetPlayer3DPos VAR_0x8004, VAR_0x8005, VAR_0x8006
+    GoToIfEq VAR_0x8005, 231, _00B6
+    GoToIfEq VAR_0x8005, 232, _00C6
     ApplyMovement 128, _0104
     WaitMovement
     GoTo _00D0

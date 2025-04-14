@@ -75,14 +75,14 @@ _00CD:
     LockAll
     ApplyMovement 3, _03B0
     WaitMovement
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 108, _0140
-    GoToIfEq 0x8004, 109, _0158
-    GoToIfEq 0x8004, 110, _0170
-    GoToIfEq 0x8004, 111, _0188
-    GoToIfEq 0x8004, 112, _01A0
-    GoToIfEq 0x8004, 113, _01B8
-    GoToIfEq 0x8004, 114, _01D0
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 108, _0140
+    GoToIfEq VAR_0x8004, 109, _0158
+    GoToIfEq VAR_0x8004, 110, _0170
+    GoToIfEq VAR_0x8004, 111, _0188
+    GoToIfEq VAR_0x8004, 112, _01A0
+    GoToIfEq VAR_0x8004, 113, _01B8
+    GoToIfEq VAR_0x8004, 114, _01D0
     GoTo _01E8
 
 _0140:
@@ -138,13 +138,13 @@ _0200:
     BufferRivalName 1
     Message 3
     CloseMessage
-    GoToIfEq 0x8004, 108, _026C
-    GoToIfEq 0x8004, 109, _027C
-    GoToIfEq 0x8004, 110, _028C
-    GoToIfEq 0x8004, 111, _029C
-    GoToIfEq 0x8004, 112, _02AC
-    GoToIfEq 0x8004, 113, _02BC
-    GoToIfEq 0x8004, 114, _02CC
+    GoToIfEq VAR_0x8004, 108, _026C
+    GoToIfEq VAR_0x8004, 109, _027C
+    GoToIfEq VAR_0x8004, 110, _028C
+    GoToIfEq VAR_0x8004, 111, _029C
+    GoToIfEq VAR_0x8004, 112, _02AC
+    GoToIfEq VAR_0x8004, 113, _02BC
+    GoToIfEq VAR_0x8004, 114, _02CC
     GoTo _02DC
 
 _026C:
@@ -398,7 +398,7 @@ _04D0:
     WaitMovement
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 0
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     CallCommonScript 0x7FA
     ApplyMovement 2, _059C
     WaitMovement
@@ -409,7 +409,7 @@ _04D0:
     ApplyMovement LOCALID_PLAYER, _0570
     ApplyMovement 2, _05B0
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     BufferRivalName 0
     Message 2
     CloseMessage

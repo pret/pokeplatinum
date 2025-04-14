@@ -14,9 +14,9 @@ _0006:
     GoToIfGe VAR_UNK_0x4095, 1, _0082
     GoToIfSet FLAG_UNK_0x006E, _0090
     GoToIfSet FLAG_UNK_0x00EA, _009E
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _005C
-    GoToIfEq 0x800C, GENDER_FEMALE, _006B
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _005C
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _006B
     End
 
 _005C:

@@ -8,41 +8,41 @@
 
 _0006:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
     ApplyMovement 3, _0234
     WaitMovement
     Message 0
     CloseMessage
-    CallIfEq 0x8005, 12, _01AD
-    CallIfEq 0x8005, 13, _01C1
-    ScrCmd_066 0x8004, 0x8005
+    CallIfEq VAR_0x8005, 12, _01AD
+    CallIfEq VAR_0x8005, 13, _01C1
+    ScrCmd_066 VAR_0x8004, VAR_0x8005
     FadeScreen 6, 3, 0, 0
     ApplyMovement 241, _01F8
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     ClearFlag FLAG_UNK_0x0253
     AddObject 2
     ApplyMovement 2, _01D8
     WaitMovement
     PlayFanfare SEQ_SE_DP_DENDOU
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     Message 1
     CloseMessage
     PlayFanfare SEQ_SE_DP_DENDOU
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     Message 2
     CloseMessage
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     Message 3
     CloseMessage
     PlayFanfare SEQ_SE_DP_DENDOU
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     Message 4
     Message 5
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     ApplyMovement 2, _01E8
     WaitMovement
     RemoveObject 2
@@ -90,7 +90,7 @@ _0006:
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     Message 6
     CloseMessage
     ApplyMovement 3, _0250

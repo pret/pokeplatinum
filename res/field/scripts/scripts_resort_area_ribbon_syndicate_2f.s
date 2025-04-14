@@ -19,8 +19,8 @@ _0012:
     BufferPlayerName 0
     BufferPartyMonNickname 1, VAR_0x4000
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0058
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _0058
     GoTo _0063
 
 _0058:
@@ -38,10 +38,10 @@ _0063:
 
 _0074:
     Message 3
-    GetRandom 0x800C, 4
-    GoToIfEq 0x800C, 0, _00AA
-    GoToIfEq 0x800C, 1, _00B3
-    GoToIfEq 0x800C, 2, _00BC
+    GetRandom VAR_0x800C, 4
+    GoToIfEq VAR_0x800C, 0, _00AA
+    GoToIfEq VAR_0x800C, 1, _00B3
+    GoToIfEq VAR_0x800C, 2, _00BC
     GoTo _00C5
 
 _00AA:
@@ -77,9 +77,9 @@ _00E2:
     End
 
 _00ED:
-    GetRandom 0x800C, 100
-    GoToIfLt 0x800C, 5, _0113
-    GoToIfLt 0x800C, 30, _0124
+    GetRandom VAR_0x800C, 100
+    GoToIfLt VAR_0x800C, 5, _0113
+    GoToIfLt VAR_0x800C, 30, _0124
     GoTo _0135
 
 _0113:
@@ -109,10 +109,10 @@ _0146:
     Return
 
 _0160:
-    GetPlayerMapPos 0x8005, 0x8006
-    GoToIfEq 0x8005, 11, _0193
-    GoToIfEq 0x8005, 13, _01AB
-    GoToIfEq 0x8006, 4, _01C3
+    GetPlayerMapPos VAR_0x8005, VAR_0x8006
+    GoToIfEq VAR_0x8005, 11, _0193
+    GoToIfEq VAR_0x8005, 13, _01AB
+    GoToIfEq VAR_0x8006, 4, _01C3
     GoTo _01DB
 
 _0193:

@@ -110,10 +110,10 @@ _0183:
     SetFlag FLAG_MESPRIT_CAUGHT
     Message 5
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8005, 7, _01D5
-    CallIfEq 0x8005, 8, _01E9
-    CallIfEq 0x8005, 9, _01FD
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 7, _01D5
+    CallIfEq VAR_0x8005, 8, _01E9
+    CallIfEq VAR_0x8005, 9, _01FD
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
     SetFlag FLAG_UNK_0x00E7
@@ -214,13 +214,13 @@ _02B4:
     SetVar VAR_0x4001, VAR_0x4021
     GoToIfSet FLAG_UNK_0x0005, _034D
     Call _118A
-    GoToIfEq 0x800C, 1, _034D
+    GoToIfEq VAR_0x800C, 1, _034D
     CallIfUnset FLAG_UNK_0x0001, _036E
     CallIfSet FLAG_UNK_0x0001, _0376
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0386
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _0386
     Call _032F
-    GoToIfEq 0x8000, 0, _0398
+    GoToIfEq VAR_0x8000, 0, _0398
     SetFlag FLAG_UNK_0x0005
     Call _1091
     GoTo _034D
@@ -232,12 +232,12 @@ _032F:
     IncrementGameRecord RECORD_UNK_057
     Call _0605
     StartTrainerBattle VAR_0x4005
-    CheckWonBattle 0x8000
+    CheckWonBattle VAR_0x8000
     Return
 
 _034D:
     Call _0571
-    GoToIfEq 0x8001, 2, _039E
+    GoToIfEq VAR_0x8001, 2, _039E
     Call _0AFC
     GoTo _037E
     End
@@ -289,13 +289,13 @@ _03CA:
     SetVar VAR_0x4001, VAR_0x4022
     GoToIfSet FLAG_UNK_0x0006, _034D
     Call _118A
-    GoToIfEq 0x800C, 1, _034D
+    GoToIfEq VAR_0x800C, 1, _034D
     CallIfUnset FLAG_UNK_0x0002, _036E
     CallIfSet FLAG_UNK_0x0002, _0376
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0445
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _0445
     Call _032F
-    GoToIfEq 0x8000, FALSE, _0398
+    GoToIfEq VAR_0x8000, FALSE, _0398
     SetFlag FLAG_UNK_0x0006
     Call _1091
     GoTo _034D
@@ -315,13 +315,13 @@ _0457:
     SetVar VAR_0x4001, VAR_0x4023
     GoToIfSet FLAG_UNK_0x0007, _034D
     Call _118A
-    GoToIfEq 0x800C, 1, _034D
+    GoToIfEq VAR_0x800C, 1, _034D
     CallIfUnset FLAG_UNK_0x0003, _036E
     CallIfSet FLAG_UNK_0x0003, _0376
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _04D2
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _04D2
     Call _032F
-    GoToIfEq 0x8000, 0, _0398
+    GoToIfEq VAR_0x8000, 0, _0398
     SetFlag FLAG_UNK_0x0007
     Call _1091
     GoTo _034D
@@ -341,13 +341,13 @@ _04E4:
     SetVar VAR_0x4001, VAR_0x4024
     GoToIfSet FLAG_UNK_0x0008, _034D
     Call _118A
-    GoToIfEq 0x800C, 1, _034D
+    GoToIfEq VAR_0x800C, 1, _034D
     CallIfUnset FLAG_UNK_0x0004, _036E
     CallIfSet FLAG_UNK_0x0004, _0376
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _055F
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _055F
     Call _032F
-    GoToIfEq 0x8000, 0, _0398
+    GoToIfEq VAR_0x8000, 0, _0398
     SetFlag FLAG_UNK_0x0008
     Call _1091
     GoTo _034D
@@ -360,7 +360,7 @@ _055F:
     End
 
 _0571:
-    SetVar 0x8001, 0
+    SetVar VAR_0x8001, 0
     GoToIfEq VAR_0x4001, 126, _0593
     GoToIfEq VAR_0x4001, 132, _0593
     Return
@@ -377,7 +377,7 @@ _0593:
     Return
 
 _05FD:
-    AddVar 0x8001, 1
+    AddVar VAR_0x8001, 1
     Return
 
 _0605:
@@ -1202,7 +1202,7 @@ _1184:
     Return
 
 _118A:
-    SetVar 0x800C, 0
+    SetVar VAR_0x800C, 0
     GoToIfEq VAR_0x4001, 126, _123B
     GoToIfEq VAR_0x4001, 127, _1248
     GoToIfEq VAR_0x4001, 128, _1255
@@ -1271,5 +1271,5 @@ _12D7:
     Return
 
 _12E4:
-    SetVar 0x800C, 1
+    SetVar VAR_0x800C, 1
     Return

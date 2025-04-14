@@ -18,8 +18,8 @@ _000A:
     CloseMessage
     CallIfUnset FLAG_UNK_0x00D6, _00A0
     CallIfSet FLAG_UNK_0x00D6, _00A8
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00CC
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _00CC
     SetFlag FLAG_UNK_0x00B2
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     RemoveObject 1

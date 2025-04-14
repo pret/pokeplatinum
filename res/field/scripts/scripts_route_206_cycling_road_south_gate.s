@@ -36,8 +36,8 @@ _003D:
 
 _0050:
     LockAll
-    CheckPlayerOnBike 0x800C
-    GoToIfEq 0x800C, TRUE, _0080
+    CheckPlayerOnBike VAR_0x800C
+    GoToIfEq VAR_0x800C, TRUE, _0080
     ApplyMovement 0, _0090
     WaitMovement
     Message 1
@@ -75,10 +75,10 @@ _00B0:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x012B, _00E5
-    SetVar 0x8004, ACCESSORY_FLAG
-    ScrCmd_261 0, 0x8004
+    SetVar VAR_0x8004, ACCESSORY_FLAG
+    ScrCmd_261 0, VAR_0x8004
     Message 3
-    SetVar 0x8005, 1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DF
     SetFlag FLAG_UNK_0x012B
     CloseMessage

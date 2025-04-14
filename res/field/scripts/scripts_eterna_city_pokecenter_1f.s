@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _0016:
-    SetVar 0x8007, 3
+    SetVar VAR_0x8007, 3
     CallCommonScript 0x7D2
     End
 
@@ -61,21 +61,21 @@ _007D:
     LockAll
     FacePlayer
     GoToIfEq VAR_0x4002, 1, _00F4
-    CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, 0x800C
-    GoToIfEq 0x800C, 0, _00D9
-    GetFirstNonEggInParty 0x8000
-    BufferPartyMonSpecies 0, 0x8000
+    CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _00D9
+    GetFirstNonEggInParty VAR_0x8000
+    BufferPartyMonSpecies 0, VAR_0x8000
     Message 6
-    GetPartyMonFriendship 0x800C, 0x8000
-    GoToIfGe 0x800C, 120, _00FF
-    GoToIfGe 0x800C, 70, _010A
+    GetPartyMonFriendship VAR_0x800C, VAR_0x8000
+    GoToIfGe VAR_0x800C, 120, _00FF
+    GoToIfGe VAR_0x800C, 70, _010A
     GoTo _0115
     End
 
 _00D9:
     Message 4
     SetVar VAR_0x4002, 1
-    SetVar 0x8004, 5
+    SetVar VAR_0x8004, 5
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage

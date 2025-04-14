@@ -48,9 +48,9 @@ _0078:
     WaitMovement
     Message 1
     CloseMessage
-    GetPlayerDir 0x8004
-    GoToIfEq 0x8004, 2, _00F1
-    GoToIfEq 0x8004, 3, _00DF
+    GetPlayerDir VAR_0x8004
+    GoToIfEq VAR_0x8004, 2, _00F1
+    GoToIfEq VAR_0x8004, 3, _00DF
     GoTo _00C5
     End
 
@@ -86,7 +86,7 @@ _010B:
     End
 
 _0133:
-    GetPlayerDir 0x8004
+    GetPlayerDir VAR_0x8004
     Message 2
     CloseMessage
     FacePlayer
@@ -94,8 +94,8 @@ _0133:
     WaitMovement
     Message 3
     CloseMessage
-    GetPlayerDir 0x8004
-    GoToIfEq 0x8004, 2, _0180
+    GetPlayerDir VAR_0x8004
+    GoToIfEq VAR_0x8004, 2, _0180
     GoTo _0166
     End
 
@@ -119,26 +119,26 @@ _019A:
     ClearFlag FLAG_UNK_0x01E8
     AddObject 33
     CallCommonScript 0x807
-    ScrCmd_315 0x800C
-    CallIfEq 0x800C, 2, _0261
-    CallIfEq 0x8004, 2, _0267
-    CallIfEq 0x8004, 3, _027B
-    CallIfEq 0x8004, 0, _028F
-    CallIfEq 0x8004, 1, _02A3
+    ScrCmd_315 VAR_0x800C
+    CallIfEq VAR_0x800C, 2, _0261
+    CallIfEq VAR_0x8004, 2, _0267
+    CallIfEq VAR_0x8004, 3, _027B
+    CallIfEq VAR_0x8004, 0, _028F
+    CallIfEq VAR_0x8004, 1, _02A3
     Message 4
     ApplyMovement 33, _0348
     WaitMovement
     Message 5
     Message 6
     CloseMessage
-    CallIfEq 0x8004, 2, _02B7
-    CallIfEq 0x8004, 3, _02CB
-    CallIfEq 0x8004, 0, _02DF
-    CallIfEq 0x8004, 1, _02F3
+    CallIfEq VAR_0x8004, 2, _02B7
+    CallIfEq VAR_0x8004, 3, _02CB
+    CallIfEq VAR_0x8004, 0, _02DF
+    CallIfEq VAR_0x8004, 1, _02F3
     RemoveObject 33
     CallCommonScript 0x808
-    ScrCmd_315 0x800C
-    CallIfEq 0x800C, 2, _0261
+    ScrCmd_315 VAR_0x800C
+    CallIfEq VAR_0x800C, 2, _0261
     ClearFlag FLAG_UNK_0x0211
     ClearFlag FLAG_UNK_0x021B
     ReleaseAll

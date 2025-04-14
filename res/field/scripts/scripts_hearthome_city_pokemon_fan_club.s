@@ -27,9 +27,9 @@ _0039:
     FacePlayer
     GoToIfSet FLAG_UNK_0x008D, _0083
     Message 0
-    SetVar 0x8004, ITEM_POFFIN_CASE
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _008E
+    SetVar VAR_0x8004, ITEM_POFFIN_CASE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _008E
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x008D
     Message 1
@@ -55,16 +55,16 @@ _0098:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetFirstNonEggInParty 0x8000
-    BufferPartyMonNickname 0, 0x8000
+    GetFirstNonEggInParty VAR_0x8000
+    BufferPartyMonNickname 0, VAR_0x8000
     Message 3
-    GetPartyMonFriendship 0x800C, 0x8000
-    GoToIfGe 0x800C, 0xFF, _0108
-    GoToIfGe 0x800C, 200, _0113
-    GoToIfGe 0x800C, 150, _011E
-    GoToIfGe 0x800C, 100, _0129
-    GoToIfGe 0x800C, 50, _0134
-    GoToIfGe 0x800C, 1, _013F
+    GetPartyMonFriendship VAR_0x800C, VAR_0x8000
+    GoToIfGe VAR_0x800C, 0xFF, _0108
+    GoToIfGe VAR_0x800C, 200, _0113
+    GoToIfGe VAR_0x800C, 150, _011E
+    GoToIfGe VAR_0x800C, 100, _0129
+    GoToIfGe VAR_0x800C, 50, _0134
+    GoToIfGe VAR_0x800C, 1, _013F
     GoTo _014A
     End
 

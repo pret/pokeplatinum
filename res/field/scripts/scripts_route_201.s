@@ -41,11 +41,11 @@ _0072:
     WaitMovement
     Message 0
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 110, _00BF
-    GoToIfEq 0x8004, 111, _00EB
-    GoToIfEq 0x8004, 112, _0117
-    GoToIfEq 0x8004, 113, _0143
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 110, _00BF
+    GoToIfEq VAR_0x8004, 111, _00EB
+    GoToIfEq VAR_0x8004, 112, _0117
+    GoToIfEq VAR_0x8004, 113, _0143
     End
 
 _00BF:
@@ -110,7 +110,7 @@ _016F:
     WaitMovement
     Message 4
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     ApplyMovement 2, _0728
     ApplyMovement LOCALID_PLAYER, _0878
     WaitMovement
@@ -140,13 +140,13 @@ _016F:
     WaitMovement
     Message 10
     CloseMessage
-    WaitTime 20, 0x800C
+    WaitTime 20, VAR_0x800C
     ApplyMovement 5, _07D0
     WaitMovement
     Message 11
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0298
-    GoToIfEq 0x800C, MENU_NO, _0259
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0298
+    GoToIfEq VAR_0x800C, MENU_NO, _0259
     End
 
 _0259:
@@ -158,9 +158,9 @@ _0259:
     ApplyMovement 2, _0758
     WaitMovement
     Message 13
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0298
-    GoToIfEq 0x800C, MENU_NO, _0259
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0298
+    GoToIfEq VAR_0x800C, MENU_NO, _0259
     End
 
 _0298:
@@ -183,9 +183,9 @@ _02B3:
     WaitMovement
     BufferPlayerName 1
     Message 17
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _030B
-    GoToIfEq 0x800C, MENU_NO, _02FD
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _030B
+    GoToIfEq VAR_0x800C, MENU_NO, _02FD
     End
 
 _02FD:
@@ -205,15 +205,15 @@ _030B:
     CloseMessage
     ApplyMovement 5, _07D8
     WaitMovement
-    WaitTime 25, 0x800C
+    WaitTime 25, VAR_0x800C
     ClearFlag FLAG_UNK_0x0179
     AddObject 6
     ScrCmd_062 6
     CallCommonScript 0x7F8
     ApplyMovement 6, _08C8
     WaitMovement
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _036E
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _036E
     GoTo _03A6
     End
 
@@ -224,7 +224,7 @@ _036E:
     WaitMovement
     ClearFlag FLAG_UNK_0x017D
     AddObject 12
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     Message 23
     Message 26
     ApplyMovement 6, _08D0
@@ -240,7 +240,7 @@ _03A6:
     WaitMovement
     ClearFlag FLAG_UNK_0x017D
     AddObject 12
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     Message 25
     Message 27
     ApplyMovement 6, _08D0
@@ -254,7 +254,7 @@ _03DE:
     CloseMessage
     ApplyMovement 5, _07F0
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     Message 31
     ApplyMovement 2, _0778
     WaitMovement
@@ -283,8 +283,8 @@ _042E:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GetPlayerStarterSpecies 0x8000
-    GivePokemon 0x8000, 5, ITEM_NONE, 0x800C
+    GetPlayerStarterSpecies VAR_0x8000
+    GivePokemon VAR_0x8000, 5, ITEM_NONE, VAR_0x800C
     ApplyMovement 5, _07F8
     ApplyMovement 2, _0760
     ApplyMovement LOCALID_PLAYER, _0884
@@ -301,8 +301,8 @@ _042E:
     WaitMovement
     SetFlag FLAG_UNK_0x0178
     RemoveObject 5
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _04CA
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _04CA
     GoTo _04EE
     End
 
@@ -337,7 +337,7 @@ _0512:
     BufferRivalName 0
     Message 43
     CloseMessage
-    WaitTime 40, 0x800C
+    WaitTime 40, VAR_0x800C
     ApplyMovement 2, _07A8
     ApplyMovement LOCALID_PLAYER, _08BC
     WaitMovement
@@ -347,9 +347,9 @@ _0512:
 _0554:
     BufferPlayerName 1
     Message 44
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _057A
-    GoToIfEq 0x800C, MENU_NO, _0656
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _057A
+    GoToIfEq VAR_0x800C, MENU_NO, _0656
     End
 
 _057A:
@@ -358,9 +358,9 @@ _057A:
     Message 47
     CloseMessage
     ScrCmd_06D 2, 15
-    GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, SPECIES_TURTWIG, Route201_StartFirstBattleTurtwig
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, Route201_StartFirstBattleChimchar
+    GetPlayerStarterSpecies VAR_0x800C
+    GoToIfEq VAR_0x800C, SPECIES_TURTWIG, Route201_StartFirstBattleTurtwig
+    GoToIfEq VAR_0x800C, SPECIES_CHIMCHAR, Route201_StartFirstBattleChimchar
     GoTo Route201_StartFirstBattlePiplup
     End
 
@@ -377,8 +377,8 @@ Route201_StartFirstBattleChimchar:
     GoTo _05CF
 
 _05CF:
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _05F5
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _05F5
     ScrCmd_062 2
     BufferRivalName 0
     BufferPlayerName 1
@@ -401,7 +401,7 @@ _0618:
     CloseMessage
     SetVar VAR_FOLLOWER_RIVAL_STATE, 2
     SetVar VAR_UNK_0x40A4, 3
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     HealParty
@@ -747,8 +747,8 @@ _08E0:
 
 _08E8:
     LockAll
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 3, _0903
+    GetPlayerDir VAR_0x800C
+    GoToIfEq VAR_0x800C, 3, _0903
     GoTo _0935
     End
 
@@ -845,11 +845,11 @@ _09E0:
     BufferPlayerName 1
     Message 52
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 110, _0A3B
-    GoToIfEq 0x8004, 111, _0A3B
-    GoToIfEq 0x8004, 112, _0A3B
-    GoToIfEq 0x8004, 113, _0A3B
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 110, _0A3B
+    GoToIfEq VAR_0x8004, 111, _0A3B
+    GoToIfEq VAR_0x8004, 112, _0A3B
+    GoToIfEq VAR_0x8004, 113, _0A3B
     End
 
 _0A3B:
@@ -893,8 +893,8 @@ _0A8C:
     BufferRivalName 0
     Message 35
     CloseMessage
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 3, _0AB9
+    GetPlayerDir VAR_0x800C
+    GoToIfEq VAR_0x800C, 3, _0AB9
     GoTo _0ACB
     End
 
@@ -972,10 +972,10 @@ _0AF4:
 
 _0B24:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x355, _0B55
-    GoToIfEq 0x8005, 0x356, _0B89
-    GoToIfEq 0x8005, 0x357, _0BBB
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x355, _0B55
+    GoToIfEq VAR_0x8005, 0x356, _0B89
+    GoToIfEq VAR_0x8005, 0x357, _0BBB
     End
 
 _0B55:
@@ -1022,10 +1022,10 @@ _0BF5:
     BufferRivalStarterSpeciesName 2
     ApplyMovement 5, _0D70
     WaitMovement
-    GoToIfEq 0x8005, 0x355, _0C3E
-    GoToIfEq 0x8005, 0x356, _0C56
-    GoToIfEq 0x8005, 0x357, _0C6E
-    GoToIfEq 0x8005, 0x358, _0C6E
+    GoToIfEq VAR_0x8005, 0x355, _0C3E
+    GoToIfEq VAR_0x8005, 0x356, _0C56
+    GoToIfEq VAR_0x8005, 0x357, _0C6E
+    GoToIfEq VAR_0x8005, 0x358, _0C6E
     End
 
 _0C3E:
@@ -1047,8 +1047,8 @@ _0C6E:
     GoTo _0C86
 
 _0C86:
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0C9D
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _0C9D
     GoTo _0CA3
 
 _0C9D:
@@ -1059,10 +1059,10 @@ _0CA3:
 
 _0CA9:
     CloseMessage
-    GoToIfEq 0x8005, 0x355, _0CE1
-    GoToIfEq 0x8005, 0x356, _0CE1
-    GoToIfEq 0x8005, 0x357, _0CE1
-    GoToIfEq 0x8005, 0x358, _0CE1
+    GoToIfEq VAR_0x8005, 0x355, _0CE1
+    GoToIfEq VAR_0x8005, 0x356, _0CE1
+    GoToIfEq VAR_0x8005, 0x357, _0CE1
+    GoToIfEq VAR_0x8005, 0x358, _0CE1
     End
 
 _0CE1:
@@ -1080,7 +1080,7 @@ _0CF1:
     SetFlag FLAG_UNK_0x0195
     SetVar VAR_UNK_0x4082, 4
     SetFlag FLAG_UNK_0x0196
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F, 0, 2, 6, 0
@@ -1219,9 +1219,9 @@ _0E47:
     FacePlayer
     GoToIfSet FLAG_UNK_0x006C, _0E8C
     Message 55
-    SetVar 0x8004, ITEM_POTION
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0E97
+    SetVar VAR_0x8004, ITEM_POTION
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0E97
     SetFlag FLAG_UNK_0x006C
     CallCommonScript 0x7E0
     CloseMessage
@@ -1259,11 +1259,11 @@ _0EB4:
     BufferPlayerName 1
     Message 50
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 110, _0F07
-    GoToIfEq 0x8004, 111, _0F19
-    GoToIfEq 0x8004, 112, _0F2B
-    GoToIfEq 0x8004, 113, _0F3D
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 110, _0F07
+    GoToIfEq VAR_0x8004, 111, _0F19
+    GoToIfEq VAR_0x8004, 112, _0F2B
+    GoToIfEq VAR_0x8004, 113, _0F3D
     End
 
 _0F07:

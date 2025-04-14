@@ -35,18 +35,18 @@ _0077:
     GoToIfGe VAR_UNK_0x40C4, 1, _00F4
     GoToIfSet FLAG_UNK_0x00D0, _00F4
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0101
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _0101
     PlayCry SPECIES_DIALGA
     Message 1
     WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_DIALGA, 70
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00E8
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _00E8
     SetVar VAR_UNK_0x40C4, 1
-    CheckDidNotCapture 0x800C
-    CallIfEq 0x800C, FALSE, _00EE
+    CheckDidNotCapture VAR_0x800C
+    CallIfEq VAR_0x800C, FALSE, _00EE
     ReleaseAll
     End
 

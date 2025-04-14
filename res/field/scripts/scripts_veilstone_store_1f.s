@@ -86,14 +86,14 @@ _00A9:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0129, _0109
-    GetPlayerStarterSpecies 0x800C
-    CallIfEq 0x800C, SPECIES_TURTWIG, _0119
-    CallIfEq 0x800C, SPECIES_CHIMCHAR, _0121
-    CallIfEq 0x800C, SPECIES_PIPLUP, _0129
-    SetVar 0x4107, 0x8004
-    ScrCmd_343 0, 0x8004
+    GetPlayerStarterSpecies VAR_0x800C
+    CallIfEq VAR_0x800C, SPECIES_TURTWIG, _0119
+    CallIfEq VAR_0x800C, SPECIES_CHIMCHAR, _0121
+    CallIfEq VAR_0x800C, SPECIES_PIPLUP, _0129
+    SetVar 0x4107, VAR_0x8004
+    ScrCmd_343 0, VAR_0x8004
     Message 3
-    SetVar 0x8005, 1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DF
     SetFlag FLAG_UNK_0x0129
     CloseMessage
@@ -109,15 +109,15 @@ _0109:
     End
 
 _0119:
-    SetVar 0x8004, ACCESSORY_PIPLUP_MASK
+    SetVar VAR_0x8004, ACCESSORY_PIPLUP_MASK
     Return
 
 _0121:
-    SetVar 0x8004, ACCESSORY_TURTWIG_MASK
+    SetVar VAR_0x8004, ACCESSORY_TURTWIG_MASK
     Return
 
 _0129:
-    SetVar 0x8004, ACCESSORY_CHIMCHAR_MASK
+    SetVar VAR_0x8004, ACCESSORY_CHIMCHAR_MASK
     Return
 
     .byte 0
