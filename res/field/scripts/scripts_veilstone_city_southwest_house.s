@@ -40,7 +40,7 @@ _000E:
     Message 4
     SetFlag FLAG_UNK_0x0AAC
     ScrCmd_1BA 3, 0x4000
-    ScrCmd_26C 0x8004
+    TryGetRandomMassageGirlAccessory 0x8004
     GoToIfEq 0x8004, -1, _00F6
     Message 7
     SetVar 0x8005, 1

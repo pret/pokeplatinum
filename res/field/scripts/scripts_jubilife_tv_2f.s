@@ -57,15 +57,15 @@ _00A4:
     End
 
 _00B4:
-    SetVar 0x8004, 92
+    SetVar 0x8004, ACCESSORY_TURTWIG_MASK
     Return
 
 _00BC:
-    SetVar 0x8004, 93
+    SetVar 0x8004, ACCESSORY_CHIMCHAR_MASK
     Return
 
 _00C4:
-    SetVar 0x8004, 94
+    SetVar 0x8004, ACCESSORY_PIPLUP_MASK
     Return
 
 _00CC:

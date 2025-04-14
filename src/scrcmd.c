@@ -12,6 +12,7 @@
 #include "constants/overworld_weather.h"
 #include "constants/scrcmd.h"
 #include "constants/species.h"
+#include "generated/accessories.h"
 #include "generated/journal_location_events.h"
 #include "generated/save_types.h"
 #include "generated/signpost_commands.h"
@@ -647,7 +648,7 @@ static BOOL ScrCmd_GetHour(ScriptContext *ctx);
 static BOOL ScrCmd_269(ScriptContext *ctx);
 static BOOL ScrCmd_26A(ScriptContext *ctx);
 static BOOL ScrCmd_26B(ScriptContext *ctx);
-static BOOL ScrCmd_26C(ScriptContext *ctx);
+static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx);
 static BOOL ScrCmd_SetHiddenLocation(ScriptContext *ctx);
 static BOOL ScrCmd_273(ScriptContext *ctx);
@@ -1300,7 +1301,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetSpiritombCounter,
     ScrCmd_ClearAmitySquareStepCount,
     ScrCmd_GetAmitySquareStepCount,
-    ScrCmd_217,
+    ScrCmd_CalcAmitySquareFoundAccessory,
     ScrCmd_218,
     ScrCmd_SetNewsPressDeadline,
     ScrCmd_GetNewsPressDeadline,
@@ -1385,7 +1386,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_269,
     ScrCmd_26A,
     ScrCmd_26B,
-    ScrCmd_26C,
+    ScrCmd_TryGetRandomMassageGirlAccessory,
     ScrCmd_26D,
     ScrCmd_GetGBACartridgeVersion,
     ScrCmd_ClearSpiritombCounter,
@@ -1500,9 +1501,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2DC,
     ScrCmd_FindPartySlotWithSpecies,
     ScrCmd_2DE,
-    ScrCmd_2DF,
+    ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID,
     ScrCmd_2E0,
-    ScrCmd_2E1,
+    ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan,
     ScrCmd_2E2,
     ScrCmd_2E3,
     ScrCmd_2E4,
@@ -6936,49 +6937,48 @@ static BOOL ScrCmd_26B(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_26C(ScriptContext *ctx)
+static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx)
 {
     UnkStruct_0202A750 *v0;
     UnkStruct_02029D04 *v1;
-    u16 v2[16];
-    int v3, v4, v5, v6;
-    u16 *v7 = ScriptContext_GetVarPointer(ctx);
+    u16 hasAccessory[NUM_MASSAGE_GIRL_ACCESSORIES];
+    int i;
+    u16 *destAccessoryID = ScriptContext_GetVarPointer(ctx);
 
     v0 = sub_0202A750(ctx->fieldSystem->saveData);
     v1 = sub_02029D04(v0);
 
-    v4 = 0;
+    int unobtainedAccessoryCount = 0;
 
-    for (v3 = 0; v3 < (49 - 34 + 1); v3++) {
-        if (sub_02029D50(v1, 34 + v3, 1) == 1) {
-            v2[v3] = 1;
-            v4++;
+    for (i = 0; i < NUM_MASSAGE_GIRL_ACCESSORIES; i++) {
+        if (sub_02029D50(v1, ACCESSORY_PRETTY_DEWDROP + i, 1) == 1) {
+            hasAccessory[i] = TRUE;
+            unobtainedAccessoryCount++;
         }
     }
 
-    if (v4 == 0) {
-        *v7 = 0xffff;
-        return 0;
+    if (unobtainedAccessoryCount == 0) {
+        *destAccessoryID = -1;
+        return FALSE;
     }
 
-    v5 = LCRNG_Next() % v4;
+    int rand = LCRNG_Next() % unobtainedAccessoryCount;
 
-    for (v3 = 0; v3 < (49 - 34 + 1); v3++) {
-        if (v2[v3] == 1) {
-            if (v5 == 0) {
+    for (i = 0; i < NUM_MASSAGE_GIRL_ACCESSORIES; i++) {
+        if (hasAccessory[i] == TRUE) {
+            if (rand == 0) {
                 break;
             } else {
-                v5--;
+                rand--;
             }
         }
     }
 
-    GF_ASSERT(v3 < (49 - 34 + 1));
+    GF_ASSERT(i < NUM_MASSAGE_GIRL_ACCESSORIES);
 
-    v6 = 34 + v3;
-    *v7 = v6;
+    *destAccessoryID = ACCESSORY_PRETTY_DEWDROP + i;
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx)
