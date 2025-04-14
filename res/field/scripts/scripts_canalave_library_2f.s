@@ -13,7 +13,7 @@
 
 _001A:
     SetFlag FLAG_UNK_0x02C9
-    CallIfEq 0x4056, 2, _002D
+    CallIfEq VAR_ARCEUS_EVENT_STATE, 2, _002D
     End
 
 _002D:
@@ -41,7 +41,7 @@ _0051:
 _005C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe 0x4056, 3, _0082
+    GoToIfGe VAR_ARCEUS_EVENT_STATE, 3, _0082
     Message 2
     GoTo _007A
     End
@@ -126,7 +126,7 @@ _0159:
     ApplyMovement 1, _01D4
     WaitMovement
     RemoveObject 1
-    SetVar 0x4056, 3
+    SetVar VAR_ARCEUS_EVENT_STATE, 3
     ReleaseAll
     End
 

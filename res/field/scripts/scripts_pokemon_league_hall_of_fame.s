@@ -131,10 +131,10 @@ _0174:
     CallIfUnset FLAG_UXIE_CAUGHT, PokemonLeagueHallOfFame_ClearFlagUxieDisappeared
     CallIfUnset FLAG_UNK_0x0121, _0287
     CallIfEq VAR_ROAMING_MESPRIT_STATE, 2, PokemonLeagueHallOfFame_ClearFlagMespritDisappeared
-    CallIfEq 0x4058, 2, _0299
-    CallIfEq 0x405E, 2, _02A5
-    CallIfEq 0x405F, 2, _02AD
-    CallIfEq 0x4060, 2, _02B5
+    CallIfEq VAR_ROAMING_CRESSELIA_STATE, 2, _0299
+    CallIfEq VAR_ROAMING_MOLTRES_STATE, 2, _02A5
+    CallIfEq VAR_ROAMING_ZAPDOS_STATE, 2, _02AD
+    CallIfEq VAR_ROAMING_ARTICUNO_STATE, 2, _02B5
     CallIfEq 0x410F, 0, _0234
     ClearFlag FLAG_UNK_0x0177
     CallIfUnset FLAG_UNK_0x00B9, _02BD
@@ -188,19 +188,19 @@ PokemonLeagueHallOfFame_ClearFlagMespritDisappeared:
 
 _0299:
     ClearFlag FLAG_UNK_0x024F
-    SetVar 0x4058, 3
+    SetVar VAR_ROAMING_CRESSELIA_STATE, 3
     Return
 
 _02A5:
-    SetVar 0x405E, 3
+    SetVar VAR_ROAMING_MOLTRES_STATE, 3
     Return
 
 _02AD:
-    SetVar 0x405F, 3
+    SetVar VAR_ROAMING_ZAPDOS_STATE, 3
     Return
 
 _02B5:
-    SetVar 0x4060, 3
+    SetVar VAR_ROAMING_ARTICUNO_STATE, 3
     Return
 
 _02BD:

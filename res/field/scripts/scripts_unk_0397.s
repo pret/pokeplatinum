@@ -29,7 +29,7 @@ _002E:
     End
 
 _0054:
-    SetVar 0x4057, 1
+    SetVar VAR_SHAYMIN_EVENT_STATE, 1
     End
 
 _005C:

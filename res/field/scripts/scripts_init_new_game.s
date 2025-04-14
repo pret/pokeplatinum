@@ -110,7 +110,7 @@ _0006:
     SetFlag FLAG_UNK_0x0252
     SetFlag FLAG_UNK_0x02CA
     SetFlag FLAG_UNK_0x0452
-    SetVar 0x4040, 9
+    SetVar VAR_CONSECUTIVE_BONUS_ROUND_WINS, 9
     SetFlag FLAG_UNK_0x0278
     SetFlag FLAG_UNK_0x0217
     SetFlag FLAG_UNK_0x0182

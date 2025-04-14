@@ -31,7 +31,7 @@ _003E:
     ApplyMovement 128, _0068
     WaitMovement
     ScrCmd_312 128
-    SetVar 0x4055, 6
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 6
     ReleaseAll
     End
 

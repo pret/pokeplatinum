@@ -49,13 +49,13 @@ _0056:
     GoToIfEq 0x800C, FALSE, _00DF
     CheckDidNotCapture 0x800C
     GoToIfEq 0x800C, TRUE, _00D0
-    CallIfEq 0x4056, 0, _00C8
+    CallIfEq VAR_ARCEUS_EVENT_STATE, 0, _00C8
     SetFlag FLAG_UNK_0x011E
     ReleaseAll
     End
 
 _00C8:
-    SetVar 0x4056, 1
+    SetVar VAR_ARCEUS_EVENT_STATE, 1
     Return
 
 _00D0:

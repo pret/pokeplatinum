@@ -14,7 +14,7 @@
     ScriptEntryEnd
 
 _001A:
-    CallIfEq 0x4057, 1, _00AA
+    CallIfEq VAR_SHAYMIN_EVENT_STATE, 1, _00AA
     GoToIfSet FLAG_UNK_0x012D, _0080
     CheckGameCompleted 0x4000
     GoToIfEq 0x4000, 0, _0080
@@ -46,7 +46,7 @@ _009C:
     .byte 0
 
 _00AA:
-    SetVar 0x4057, 2
+    SetVar VAR_SHAYMIN_EVENT_STATE, 2
     SetVar 0x4085, 1
     Return
 
@@ -110,8 +110,8 @@ _0124:
     FadeScreen 6, 6, 1, 0x7FFF
     WaitFadeScreen
     Call _02B8
-    CallIfNe 0x4057, 2, _01F0
-    CallIfEq 0x4057, 2, _01F5
+    CallIfNe VAR_SHAYMIN_EVENT_STATE, 2, _01F0
+    CallIfEq VAR_SHAYMIN_EVENT_STATE, 2, _01F5
     WaitABXPadPress
     CloseMessage
     ScrCmd_333 127
@@ -195,7 +195,7 @@ _02B8:
     WaitMovement
     PlayCry SPECIES_SHAYMIN
     WaitCry
-    CallIfEq 0x4057, 2, _02AE
+    CallIfEq VAR_SHAYMIN_EVENT_STATE, 2, _02AE
     ApplyMovement 3, _038C
     ApplyMovement 16, _03B0
     ApplyMovement LOCALID_PLAYER, _039C
@@ -407,7 +407,7 @@ _0565:
     End
 
 _057F:
-    SetVar 0x4057, 2
+    SetVar VAR_SHAYMIN_EVENT_STATE, 2
     SetVar 0x4085, 2
     Message 10
     WaitABXPadPress

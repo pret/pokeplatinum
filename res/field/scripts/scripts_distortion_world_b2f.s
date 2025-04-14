@@ -15,7 +15,7 @@ _000E:
 _0012:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfEq 0x4055, 5, _0084
+    GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, 5, _0084
     GetPlayer3DPos 0x8004, 0x8005, 0x8006
     GoToIfEq 0x8005, 232, _0059
     ApplyMovement 128, _00DC
@@ -35,7 +35,7 @@ _0059:
     ApplyMovement LOCALID_PLAYER, _011C
     WaitMovement
 _007A:
-    SetVar 0x4055, 5
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 5
     ReleaseAll
     End
 

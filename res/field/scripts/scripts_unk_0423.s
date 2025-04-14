@@ -345,7 +345,7 @@ _048E:
     ScrCmd_323 0x800C
     GoToIfEq 0x800C, 0, _04BC
     GetCurrentMapID 0x405C
-    SetVar 0x405D, 0x800D
+    SetVar VAR_UNK_0x405D, 0x800D
     Message 17
     GoTo _04C7
     End

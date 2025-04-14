@@ -88,7 +88,7 @@ _00FF:
     CloseMessage
     ApplyMovement 2, _03FC
     WaitMovement
-    SetVar 0x404D, 0
+    SetVar VAR_TOTAL_TURNS_LAST_BATTLE, 0
     SetVar 0x8005, 0
     ClearFlag FLAG_UNK_0x0257
     AddObject 5

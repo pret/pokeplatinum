@@ -81,9 +81,9 @@ _00EA:
     GoTo _0159
 
 _00F6:
-    GoToIfEq 0x4032, 1, _0129
-    GoToIfEq 0x4032, 2, _0135
-    GoToIfEq 0x4032, 3, _0141
+    GoToIfEq VAR_UNK_0x4032, 1, _0129
+    GoToIfEq VAR_UNK_0x4032, 2, _0135
+    GoToIfEq VAR_UNK_0x4032, 3, _0141
     SetVar 0x8000, 15
     GoTo _0159
 

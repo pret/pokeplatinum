@@ -351,7 +351,7 @@ _0461:
     End
 
 _0474:
-    GoToIfGt 0x4040, 0x3E7, _0497
+    GoToIfGt VAR_CONSECUTIVE_BONUS_ROUND_WINS, 0x3E7, _0497
     BufferNumber 0, 0x4040
     PlayFanfare SEQ_SE_CONFIRM
     LockAll

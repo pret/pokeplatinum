@@ -470,8 +470,8 @@ _06F1:
 _0700:
     CallIfEq 0x40BE, 0, _073C
     CallIfEq 0x40BE, 1, _073C
-    CallIfEq 0x4053, 1, _0742
-    CallIfEq 0x4053, 3, _0759
+    CallIfEq VAR_BATTLE_ARCADE_PRINT_STATE, 1, _0742
+    CallIfEq VAR_BATTLE_ARCADE_PRINT_STATE, 3, _0759
     GoTo _0145
     End
 
@@ -485,7 +485,7 @@ _0742:
     Message 37
     PlaySound SEQ_FANFA4
     WaitSound
-    SetVar 0x4053, 2
+    SetVar VAR_BATTLE_ARCADE_PRINT_STATE, 2
     Return
 
 _0759:
@@ -494,7 +494,7 @@ _0759:
     Message 36
     PlaySound SEQ_FANFA4
     WaitSound
-    SetVar 0x4053, 4
+    SetVar VAR_BATTLE_ARCADE_PRINT_STATE, 4
     CallCommonScript 0x806
     Return
 
