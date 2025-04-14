@@ -17,16 +17,16 @@ _001E:
     CallIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, _0087
     CallIfEq 0x4097, 0, _0071
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _0061
-    GoToIfEq 0x4000, GENDER_FEMALE, _0069
+    GoToIfEq VAR_0x4000, GENDER_MALE, _0061
+    GoToIfEq VAR_0x4000, GENDER_FEMALE, _0069
     End
 
 _0061:
-    SetVar 0x4020, 97
+    SetVar VAR_0x4020, 97
     End
 
 _0069:
-    SetVar 0x4020, 0
+    SetVar VAR_0x4020, 0
     End
 
 _0071:

@@ -12,13 +12,13 @@ _0012:
     CallIfNe 0x40DB, 0, _008A
     ScrCmd_1DD 43, 0, 0x400A
     Call _008E
-    CallIfEq 0x400A, 2, _009E
-    CallIfEq 0x400A, 3, _009E
-    CallIfEq 0x400A, 0, _008E
-    CallIfEq 0x400A, 1, _008E
-    CallIfEq 0x400A, 4, _0096
-    CallIfEq 0x400A, 5, _0096
-    CallIfEq 0x400A, 6, _0096
+    CallIfEq VAR_0x400A, 2, _009E
+    CallIfEq VAR_0x400A, 3, _009E
+    CallIfEq VAR_0x400A, 0, _008E
+    CallIfEq VAR_0x400A, 1, _008E
+    CallIfEq VAR_0x400A, 4, _0096
+    CallIfEq VAR_0x400A, 5, _0096
+    CallIfEq VAR_0x400A, 6, _0096
     End
 
 _008A:
@@ -26,15 +26,15 @@ _008A:
     Return
 
 _008E:
-    SetVar 0x402A, 231
+    SetVar VAR_0x402A, 231
     Return
 
 _0096:
-    SetVar 0x402A, 235
+    SetVar VAR_0x402A, 235
     Return
 
 _009E:
-    SetVar 0x402A, 232
+    SetVar VAR_0x402A, 232
     Return
 
 _00A6:
@@ -75,21 +75,21 @@ _0132:
 
 _0146:
     LockAll
-    SetVar 0x4000, 0
+    SetVar VAR_0x4000, 0
     Call _0132
     GoTo _00A6
     End
 
 _015C:
     LockAll
-    SetVar 0x4000, 0
+    SetVar VAR_0x4000, 0
     Call _0132
     GoTo _00E9
     End
 
 _0172:
     LockAll
-    SetVar 0x4000, 1
+    SetVar VAR_0x4000, 1
     Call _0132
     GoTo _010A
     End

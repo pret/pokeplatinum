@@ -205,14 +205,14 @@ _0396:
 
 _03A1:
     SetVar 0x8007, TRAINER_RICH_BOY_LIAM
-    SetVar 0x4020, 62
+    SetVar VAR_0x4020, 62
     ScrCmd_2F3 2, 0x8007
     Message 8
     Return
 
 _03B7:
     SetVar 0x8007, TRAINER_LADY_CELESTE
-    SetVar 0x4020, 63
+    SetVar VAR_0x4020, 63
     ScrCmd_2F3 2, 0x8007
     Message 9
     Return

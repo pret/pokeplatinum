@@ -46,7 +46,7 @@
 _009A:
     SetFlag FLAG_UNK_0x02CB
     ScrCmd_238 19, 0x4000
-    GoToIfEq 0x4000, 0, _00D5
+    GoToIfEq VAR_0x4000, 0, _00D5
     ScrCmd_329 0x4001, 0x4002, 0x4003, 0x4004
     SetObjectEventPos 29, 0x4001, 0x4002
     ScrCmd_189 29, 0x4003

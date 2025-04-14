@@ -34,17 +34,17 @@ _0062:
     CallIfEq 0x40D8, 3, _00F1
     CallIfEq 0x40D8, 0xFF, _00F1
     ScrCmd_238 19, 0x4000
-    CallIfEq 0x4000, 0, _0144
-    CallIfNe 0x4000, 0, _014A
+    CallIfEq VAR_0x4000, 0, _0144
+    CallIfNe VAR_0x4000, 0, _014A
     ScrCmd_1E0 0x4000
-    GoToIfNe 0x4000, 0, _00DF
+    GoToIfNe VAR_0x4000, 0, _00DF
     SetFlag FLAG_UNK_0x01E9
     GoTo _00C6
     End
 
 _00C6:
     ScrCmd_238 2, 0x4000
-    GoToIfNe 0x4000, 0, _00EB
+    GoToIfNe VAR_0x4000, 0, _00EB
     SetFlag FLAG_UNK_0x020E
     End
 
@@ -64,10 +64,10 @@ _00F1:
 _00F5:
     GoToIfNe 0x40D8, 1, _013A
     ScrCmd_1E0 0x4000
-    GoToIfNe 0x4000, 0, _013C
-    GoToIfEq 0x4000, 1, _013C
-    GoToIfEq 0x4000, 2, _013C
-    GoToIfEq 0x4000, 3, _013C
+    GoToIfNe VAR_0x4000, 0, _013C
+    GoToIfEq VAR_0x4000, 1, _013C
+    GoToIfEq VAR_0x4000, 2, _013C
+    GoToIfEq VAR_0x4000, 3, _013C
 _013A:
     End
 
@@ -118,7 +118,7 @@ _01AC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x4001, 0
+    SetVar VAR_0x4001, 0
     ScrCmd_1DF 0x4002
     GoTo _01C6
     End
@@ -135,7 +135,7 @@ _01C6:
 
 _020B:
     WaitABPress
-    GoToIfEq 0x4001, 1, _0220
+    GoToIfEq VAR_0x4001, 1, _0220
     CloseMessage
     ReleaseAll
     End
@@ -326,7 +326,7 @@ _0548:
     ScrCmd_1DD 5, 0, 0
     Call _0734
     ScrCmd_1DD 51, 0, 0x800C
-    SetVar 0x4009, 0x800C
+    SetVar VAR_0x4009, 0x800C
     Message 32
     WaitABPress
     GoTo _05EC
@@ -370,29 +370,29 @@ _05EC:
     End
 
 _0638:
-    SetVar 0x4002, 0
-    SetVar 0x4003, 15
+    SetVar VAR_0x4002, 0
+    SetVar VAR_0x4003, 15
     Call _06AE
     GoTo _0746
     End
 
 _0652:
-    SetVar 0x4002, 2
-    SetVar 0x4003, 19
+    SetVar VAR_0x4002, 2
+    SetVar VAR_0x4003, 19
     Call _06AE
     GoTo _0746
     End
 
 _066C:
-    SetVar 0x4002, 1
-    SetVar 0x4003, 11
+    SetVar VAR_0x4002, 1
+    SetVar VAR_0x4003, 11
     Call _06AE
     GoTo _06EE
     End
 
 _0686:
-    SetVar 0x4002, 1
-    SetVar 0x4003, 11
+    SetVar VAR_0x4002, 1
+    SetVar VAR_0x4003, 11
     Call _06AE
     GoTo _06A0
     End
@@ -578,7 +578,7 @@ _0967:
 
 _096F:
     CloseMessage
-    SetVar 0x4001, 1
+    SetVar VAR_0x4001, 1
     Call _097F
     Return
 
@@ -587,7 +587,7 @@ _097F:
     WaitFadeScreen
     ScrCmd_0B3 0x4000
     ScrCmd_1DD 16, 0x4001, 0x4000
-    SetVar 0x4001, 0x4000
+    SetVar VAR_0x4001, 0x4000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -602,7 +602,7 @@ _09B3:
     ScrCmd_1DD 5, 0, 0
     HealParty
     CloseMessage
-    SetVar 0x4001, 0
+    SetVar VAR_0x4001, 0
     Call _097F
     GoToIfNe 0x800C, 0, _077E
     GoTo _09FB
@@ -632,7 +632,7 @@ _0A5A:
     Call _049C
     GoToIfEq 0x800C, 0, _0784
     CloseMessage
-    SetVar 0x4001, 2
+    SetVar VAR_0x4001, 2
     Call _097F
     GoToIfNe 0x800C, 0, _0784
     ScrCmd_1E3 0x8004, 0x8005
@@ -697,13 +697,13 @@ _0B50:
 
 _0B6C:
     ScrCmd_1DB 0, 2
-    SetVar 0x4001, 0
+    SetVar VAR_0x4001, 0
     GoTo _0B94
     End
 
 _0B80:
     ScrCmd_1DB 0, 3
-    SetVar 0x4001, 1
+    SetVar VAR_0x4001, 1
     GoTo _0B94
     End
 
@@ -721,7 +721,7 @@ _0B94:
     ScrCmd_1DD 53, 1, 0x800C
     ScrCmd_31E 0x800C, 0x800C
     GoToIfEq 0x800C, 0xFF, _13CE
-    GoToIfEq 0x4001, 1, _0C53
+    GoToIfEq VAR_0x4001, 1, _0C53
     Call _0172
     ScrCmd_1DD 5, 0, 0
     HealParty
@@ -891,7 +891,7 @@ _0EBF:
 _0F05:
     Message 53
     ScrCmd_1DD 43, 0, 0x800C
-    SetVar 0x4000, 0x800C
+    SetVar VAR_0x4000, 0x800C
     SetVar 0x8008, 0x4000
     GoToIfEq 0x8008, 5, _0F53
     GoToIfEq 0x8008, 4, _11BA
@@ -904,7 +904,7 @@ _0F53:
     Message 56
     Call _0734
     CloseMessage
-    GoToIfEq 0x4000, 0, _118A
+    GoToIfEq VAR_0x4000, 0, _118A
     GoTo _077E
     End
 
@@ -916,10 +916,10 @@ _0F73:
 
 _0F7E:
     ScrCmd_1DD 43, 0, 0x800C
-    SetVar 0x4000, 0x800C
-    GoToIfEq 0x4000, 5, _116C
-    GoToIfEq 0x4000, 0, _1091
-    GoToIfEq 0x4000, 4, _0FEA
+    SetVar VAR_0x4000, 0x800C
+    GoToIfEq VAR_0x4000, 5, _116C
+    GoToIfEq VAR_0x4000, 0, _1091
+    GoToIfEq VAR_0x4000, 4, _0FEA
     ScrCmd_1DD 49, 0, 0x800C
     GoToIfNe 0x800C, 0, _0FD6
     Call _1167
@@ -943,7 +943,7 @@ _0FEA:
 
 _100A:
     ScrCmd_1DD 10, 0, 0x800C
-    SetVar 0x4000, 0x800C
+    SetVar VAR_0x4000, 0x800C
     BufferPlayerName 0
     BufferNumber 1, 0x4000
     Message 55
@@ -996,8 +996,8 @@ _10BC:
     GoToIfEq 0x800C, 0, _077E
     Message 113
     CloseMessage
-    SetVar 0x4002, 0x800C
-    SetVar 0x4001, 1
+    SetVar VAR_0x4002, 0x800C
+    SetVar VAR_0x4001, 1
     Call _0AC3
     GoTo _01C6
     End
@@ -1053,8 +1053,8 @@ _118A:
     GoToIfEq 0x800C, 0, _077E
     Message 113
     CloseMessage
-    SetVar 0x4002, 0x800C
-    SetVar 0x4001, 1
+    SetVar VAR_0x4002, 0x800C
+    SetVar VAR_0x4001, 1
     Call _0AC3
     GoTo _01C6
     End

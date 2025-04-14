@@ -17,13 +17,13 @@ _001A:
     CallIfEq VAR_SHAYMIN_EVENT_STATE, 1, _00AA
     GoToIfSet FLAG_UNK_0x012D, _0080
     CheckGameCompleted 0x4000
-    GoToIfEq 0x4000, 0, _0080
+    GoToIfEq VAR_0x4000, 0, _0080
     ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _0080
+    GoToIfEq VAR_0x4000, 0, _0080
     CheckItem ITEM_OAKS_LETTER, 1, 0x4000
-    GoToIfEq 0x4000, FALSE, _0080
+    GoToIfEq VAR_0x4000, FALSE, _0080
     CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, 0x4000
-    GoToIfEq 0x4000, FALSE, _0080
+    GoToIfEq VAR_0x4000, FALSE, _0080
     ClearFlag FLAG_UNK_0x0252
 _0080:
     End

@@ -105,7 +105,7 @@ _0138:
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     ClearFlag FLAG_UNK_0x0284
     AddObject 2
-    SetVar 0x4001, 1
+    SetVar VAR_0x4001, 1
     ReleaseAll
     End
 

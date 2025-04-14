@@ -11,7 +11,7 @@ _000A:
     SetFlag FLAG_UNK_0x09CA
     GoToIfUnset FLAG_GAME_COMPLETED, _002F
     ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _002F
+    GoToIfEq VAR_0x4000, 0, _002F
     SetFlag FLAG_UNK_0x027E
 _002F:
     End

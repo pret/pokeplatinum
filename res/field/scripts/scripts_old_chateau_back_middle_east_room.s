@@ -8,7 +8,7 @@
 
 _000A:
     ScrCmd_292 25, 0x4000
-    GoToIfEq 0x4000, 1, _0022
+    GoToIfEq VAR_0x4000, 1, _0022
     SetFlag FLAG_UNK_0x027C
     End
 

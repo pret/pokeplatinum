@@ -10,16 +10,16 @@
 
 _0012:
     CheckPartyHasFatefulEncounterRegigigas 0x4004
-    GoToIfEq 0x4004, 0, _0061
-    GoToIfEq 0x4004, 1, _006B
+    GoToIfEq VAR_0x4004, 0, _0061
+    GoToIfEq VAR_0x4004, 1, _006B
     End
 
 _0032:
     InitPersistedMapFeaturesForPlatformLift
     CallIfNe 0x4069, 0x122, _0079
     CheckPartyHasFatefulEncounterRegigigas 0x4004
-    GoToIfEq 0x4004, 0, _0061
-    GoToIfEq 0x4004, 1, _006B
+    GoToIfEq VAR_0x4004, 0, _0061
+    GoToIfEq VAR_0x4004, 1, _006B
     End
 
 _0061:

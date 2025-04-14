@@ -55,10 +55,10 @@ _00B6:
     SetFlag FLAG_UNK_0x02A1
     CalcAmitySquareBerryAndAccessoryManOptionID 0x40AB
     GetRandom 0x4002, 5
-    GoToIfEq 0x4002, 0, _00FE
-    GoToIfEq 0x4002, 1, _0108
-    GoToIfEq 0x4002, 2, _0112
-    GoToIfEq 0x4002, 3, _011C
+    GoToIfEq VAR_0x4002, 0, _00FE
+    GoToIfEq VAR_0x4002, 1, _0108
+    GoToIfEq VAR_0x4002, 2, _0112
+    GoToIfEq VAR_0x4002, 3, _011C
     End
 
 _00FE:
@@ -100,7 +100,7 @@ _015A:
     End
 
 _0174:
-    SetVar 0x4000, 0
+    SetVar VAR_0x4000, 0
     GoTo _0994
     End
 
@@ -113,7 +113,7 @@ _0182:
     End
 
 _0195:
-    SetVar 0x4000, 1
+    SetVar VAR_0x4000, 1
     GoTo _0ACC
     End
 
@@ -126,21 +126,21 @@ _01A3:
     End
 
 _01B6:
-    SetVar 0x400A, 0
+    SetVar VAR_0x400A, 0
     GetPartyCount 0x400B
-    SetVar 0x400C, 0
+    SetVar VAR_0x400C, 0
     GoTo _01CE
     End
 
 _01CE:
     GetPartyMonSpecies 0x400A, 0x800C
     GoToIfEq 0x800C, SPECIES_NONE, _026D
-    CallIfEq 0x4000, 0, _0C50
-    CallIfEq 0x4000, 1, _0D36
+    CallIfEq VAR_0x4000, 0, _0C50
+    CallIfEq VAR_0x4000, 1, _0D36
     GoToIfEq 0x800C, 0, _026D
     BufferPartyMonNickname 0, 0x400A
-    GoToIfEq 0x400C, 0, _0229
-    GoToIfNe 0x400C, 0, _024B
+    GoToIfEq VAR_0x400C, 0, _0229
+    GoToIfNe VAR_0x400C, 0, _024B
     End
 
 _0229:
@@ -162,7 +162,7 @@ _024B:
 _026D:
     AddVar 0x400A, 1
     SubVar 0x400B, 1
-    GoToIfNe 0x400B, 0, _01CE
+    GoToIfNe VAR_0x400B, 0, _01CE
     Message 5
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
@@ -558,12 +558,12 @@ _07E7:
     End
 
 _07F2:
-    SetVar 0x400A, 0
+    SetVar VAR_0x400A, 0
     GoTo _080E
     End
 
 _0800:
-    SetVar 0x400A, 1
+    SetVar VAR_0x400A, 1
     GoTo _080E
     End
 
@@ -579,7 +579,7 @@ _080E:
     CallIfEq 0x800C, 3, _0893
     CallIfEq 0x800C, 4, _0898
     CallIfEq 0x800C, 5, _089D
-    GoToIfEq 0x400A, 0, _08A2
+    GoToIfEq VAR_0x400A, 0, _08A2
     GoTo _08B4
     End
 
@@ -878,102 +878,102 @@ _0E48:
     End
 
 _0F5A:
-    SetVar 0x4020, 71
+    SetVar VAR_0x4020, 71
     GoTo _1072
     End
 
 _0F68:
-    SetVar 0x4020, 78
+    SetVar VAR_0x4020, 78
     GoTo _1072
     End
 
 _0F76:
-    SetVar 0x4020, 72
+    SetVar VAR_0x4020, 72
     GoTo _1072
     End
 
 _0F84:
-    SetVar 0x4020, 74
+    SetVar VAR_0x4020, 74
     GoTo _1072
     End
 
 _0F92:
-    SetVar 0x4020, 204
+    SetVar VAR_0x4020, 204
     GoTo _1072
     End
 
 _0FA0:
-    SetVar 0x4020, 185
+    SetVar VAR_0x4020, 185
     GoTo _1072
     End
 
 _0FAE:
-    SetVar 0x4020, 206
+    SetVar VAR_0x4020, 206
     GoTo _1072
     End
 
 _0FBC:
-    SetVar 0x4020, 207
+    SetVar VAR_0x4020, 207
     GoTo _1072
     End
 
 _0FCA:
-    SetVar 0x4020, 73
+    SetVar VAR_0x4020, 73
     GoTo _1072
     End
 
 _0FD8:
-    SetVar 0x4020, 79
+    SetVar VAR_0x4020, 79
     GoTo _1072
     End
 
 _0FE6:
-    SetVar 0x4020, 205
+    SetVar VAR_0x4020, 205
     GoTo _1072
     End
 
 _0FF4:
-    SetVar 0x4020, 220
+    SetVar VAR_0x4020, 220
     GoTo _1072
     End
 
 _1002:
-    SetVar 0x4020, 221
+    SetVar VAR_0x4020, 221
     GoTo _1072
     End
 
 _1010:
-    SetVar 0x4020, 222
+    SetVar VAR_0x4020, 222
     GoTo _1072
     End
 
 _101E:
-    SetVar 0x4020, 223
+    SetVar VAR_0x4020, 223
     GoTo _1072
     End
 
 _102C:
-    SetVar 0x4020, 224
+    SetVar VAR_0x4020, 224
     GoTo _1072
     End
 
 _103A:
-    SetVar 0x4020, 225
+    SetVar VAR_0x4020, 225
     GoTo _1072
     End
 
 _1048:
-    SetVar 0x4020, 226
+    SetVar VAR_0x4020, 226
     GoTo _1072
     End
 
 _1056:
-    SetVar 0x4020, 227
+    SetVar VAR_0x4020, 227
     GoTo _1072
     End
 
 _1064:
-    SetVar 0x4020, 228
+    SetVar VAR_0x4020, 228
     GoTo _1072
     End
 

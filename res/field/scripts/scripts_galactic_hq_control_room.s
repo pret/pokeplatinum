@@ -48,7 +48,7 @@ _0059:
     Message 1
     CloseMessage
     GetPlayerDir 0x8004
-    SetVar 0x4002, 0x8004
+    SetVar VAR_0x4002, 0x8004
     GoToIfEq 0x8004, 0, _00D5
     GoToIfEq 0x8004, 2, _00E5
     GoToIfEq 0x8004, 3, _00F5
@@ -203,9 +203,9 @@ _01FB:
     RemoveObject 2
     RemoveObject 1
     RemoveObject 3
-    GoToIfEq 0x4002, 0, _02C0
-    GoToIfEq 0x4002, 2, _02DA
-    GoToIfEq 0x4002, 3, _02F4
+    GoToIfEq VAR_0x4002, 0, _02C0
+    GoToIfEq VAR_0x4002, 2, _02DA
+    GoToIfEq VAR_0x4002, 3, _02F4
     End
 
 _0296:

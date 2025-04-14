@@ -37,8 +37,8 @@ _0072:
     CallIfEq 0x4077, 0, _00AC
     CallIfGe 0x4077, 3, _00C2
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _00D8
-    GoToIfEq 0x4000, GENDER_FEMALE, _00E0
+    GoToIfEq VAR_0x4000, GENDER_MALE, _00D8
+    GoToIfEq VAR_0x4000, GENDER_FEMALE, _00E0
     End
 
 _00AC:
@@ -54,11 +54,11 @@ _00C2:
     Return
 
 _00D8:
-    SetVar 0x4020, 97
+    SetVar VAR_0x4020, 97
     End
 
 _00E0:
-    SetVar 0x4020, 0
+    SetVar VAR_0x4020, 0
     End
 
 _00E8:
@@ -1000,7 +1000,7 @@ _0CF0:
     Call _0D72
     Call _0D72
     ScrCmd_1D5 0
-    SetVar 0x4001, 0x270F
+    SetVar VAR_0x4001, 0x270F
     Call _0D8C
     Call _0D8C
     Return
@@ -1021,8 +1021,8 @@ _0D72:
 
 _0D8C:
     GetRandom 0x800C, 8
-    GoToIfEq 0x4001, 0x800C, _0D8C
-    SetVar 0x4001, 0x800C
+    GoToIfEq VAR_0x4001, 0x800C, _0D8C
+    SetVar VAR_0x4001, 0x800C
     SetVar 0x8004, 1
     AddVar 0x8004, 0x800C
     ScrCmd_1D5 0x8004

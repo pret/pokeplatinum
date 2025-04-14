@@ -10,9 +10,9 @@
 
 _0012:
     GetUnownFormsSeenCount 0x4000
-    GoToIfGe 0x4000, 26, _003F
-    GoToIfGe 0x4000, 10, _0051
-    GoToIfLt 0x4000, 10, _0063
+    GoToIfGe VAR_0x4000, 26, _003F
+    GoToIfGe VAR_0x4000, 10, _0051
+    GoToIfLt VAR_0x4000, 10, _0063
     End
 
 _003F:
@@ -32,9 +32,9 @@ _0063:
 
 _0075:
     GetUnownFormsSeenCount 0x4000
-    GoToIfGe 0x4000, 26, _003F
-    GoToIfGe 0x4000, 10, _0051
-    GoToIfLt 0x4000, 10, _0063
+    GoToIfGe VAR_0x4000, 26, _003F
+    GoToIfGe VAR_0x4000, 10, _0051
+    GoToIfLt VAR_0x4000, 10, _0063
     End
 
 _00A2:

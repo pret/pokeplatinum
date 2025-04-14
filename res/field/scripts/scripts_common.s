@@ -342,7 +342,7 @@ _048B:
 _0494:
     SetFlag FLAG_UNK_0x001F
     Call _04A8
-    SetVar 0x4000, 0x800C
+    SetVar VAR_0x4000, 0x800C
     ReturnCommonScript
     End
 
@@ -1567,11 +1567,11 @@ _14AC:
     GoToIfNe 0x8004, 31, _1570
     GoToIfNe 0x8005, 52, _1570
     CheckGameCompleted 0x4000
-    GoToIfEq 0x4000, FALSE, _1570
+    GoToIfEq VAR_0x4000, FALSE, _1570
     ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _1570
+    GoToIfEq VAR_0x4000, 0, _1570
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
-    GoToIfEq 0x4000, FALSE, _1570
+    GoToIfEq VAR_0x4000, FALSE, _1570
     GoToIfSet FLAG_UNK_0x011E, _1570
     BufferPlayerName 0
     Message 122

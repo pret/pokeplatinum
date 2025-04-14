@@ -30,8 +30,8 @@
 _0058:
     SetFlag FLAG_UNK_0x09EE
     GetHour 0x4000
-    GoToIfLt 0x4000, 9, _0087
-    GoToIfGe 0x4000, 23, _0087
+    GoToIfLt VAR_0x4000, 9, _0087
+    GoToIfGe VAR_0x4000, 23, _0087
     GoToIfUnset FLAG_UNK_0x0AAB, _00B3
     End
 
@@ -78,22 +78,22 @@ _00B3:
     ClearTrainerFlag TRAINER_BREEDER_KAYLEE
     SetVar 0x4104, 0
     GetRandom 0x4001, 1
-    SetVar 0x4000, 5
-    SetVar 0x400A, 0x2710
+    SetVar VAR_0x4000, 5
+    SetVar VAR_0x400A, 0x2710
 _0137:
     GetRandom2 0x4001, 9
-    CallIfEq 0x4001, 0, _01D8
-    CallIfEq 0x4001, 1, _01F5
-    CallIfEq 0x4001, 2, _0212
-    CallIfEq 0x4001, 3, _022F
-    CallIfEq 0x4001, 4, _024C
-    CallIfEq 0x4001, 5, _0269
-    CallIfEq 0x4001, 6, _0286
-    CallIfEq 0x4001, 7, _02A3
-    CallIfEq 0x4001, 8, _02C0
+    CallIfEq VAR_0x4001, 0, _01D8
+    CallIfEq VAR_0x4001, 1, _01F5
+    CallIfEq VAR_0x4001, 2, _0212
+    CallIfEq VAR_0x4001, 3, _022F
+    CallIfEq VAR_0x4001, 4, _024C
+    CallIfEq VAR_0x4001, 5, _0269
+    CallIfEq VAR_0x4001, 6, _0286
+    CallIfEq VAR_0x4001, 7, _02A3
+    CallIfEq VAR_0x4001, 8, _02C0
     SubVar 0x400A, 1
-    GoToIfEq 0x400A, 0, _01D2
-    GoToIfNe 0x4000, 0, _0137
+    GoToIfEq VAR_0x400A, 0, _01D2
+    GoToIfNe VAR_0x4000, 0, _0137
 _01D2:
     SetFlag FLAG_UNK_0x0AAB
     End

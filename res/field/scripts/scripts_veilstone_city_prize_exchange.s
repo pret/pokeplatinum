@@ -12,7 +12,7 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x4001, 19
+    SetVar VAR_0x4001, 19
     Message 0
     ShowCoins 21, 1
     SetVar 0x8005, 0

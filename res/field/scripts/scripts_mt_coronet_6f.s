@@ -35,9 +35,9 @@ _0069:
     GoToIfSet FLAG_UNK_0x00D0, _00BC
     GoToIfGe 0x40C4, 1, _00BC
     CheckItem ITEM_ADAMANT_ORB, 1, 0x4001
-    GoToIfEq 0x4001, 1, _0104
+    GoToIfEq VAR_0x4001, 1, _0104
     CheckPartyHasHeldItem ITEM_ADAMANT_ORB, 0x4001
-    GoToIfEq 0x4001, 1, _0104
+    GoToIfEq VAR_0x4001, 1, _0104
     GoTo _00BC
     End
 
@@ -45,9 +45,9 @@ _00BC:
     GoToIfSet FLAG_UNK_0x00D1, _005F
     GoToIfGe 0x40C5, 1, _005F
     CheckItem ITEM_LUSTROUS_ORB, 1, 0x4001
-    GoToIfEq 0x4001, 1, _010E
+    GoToIfEq VAR_0x4001, 1, _010E
     CheckPartyHasHeldItem ITEM_LUSTROUS_ORB, 0x4001
-    GoToIfEq 0x4001, 1, _010E
+    GoToIfEq VAR_0x4001, 1, _010E
     GoTo _005F
     End
 

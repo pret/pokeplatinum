@@ -19,35 +19,35 @@ _002A:
     GoToIfUnset FLAG_UNK_0x00E3, _0121
     GoToIfNe 0x40DF, 2, _0057
     ScrCmd_1DD 55, 2, 0x4009
-    GoToIfEq 0x4009, 0, _0121
+    GoToIfEq VAR_0x4009, 0, _0121
 _0057:
     ClearFlag FLAG_UNK_0x01EC
 _005B:
     GoToIfUnset FLAG_UNK_0x00E4, _012D
     GoToIfNe 0x40DF, 2, _0088
     ScrCmd_1DD 55, 2, 0x4009
-    GoToIfEq 0x4009, 1, _012D
+    GoToIfEq VAR_0x4009, 1, _012D
 _0088:
     ClearFlag FLAG_UNK_0x01ED
 _008C:
     GoToIfUnset FLAG_UNK_0x00E5, _0139
     GoToIfNe 0x40DF, 2, _00B9
     ScrCmd_1DD 55, 2, 0x4009
-    GoToIfEq 0x4009, 2, _0139
+    GoToIfEq VAR_0x4009, 2, _0139
 _00B9:
     ClearFlag FLAG_UNK_0x01EE
 _00BD:
     GoToIfUnset FLAG_UNK_0x00E6, _0145
     GoToIfNe 0x40DF, 2, _00EA
     ScrCmd_1DD 55, 2, 0x4009
-    GoToIfEq 0x4009, 3, _0145
+    GoToIfEq VAR_0x4009, 3, _0145
 _00EA:
     ClearFlag FLAG_UNK_0x01EF
 _00EE:
     GoToIfUnset FLAG_UNK_0x00E7, _0151
     GoToIfNe 0x40DF, 2, _011B
     ScrCmd_1DD 55, 2, 0x4009
-    GoToIfEq 0x4009, 4, _0151
+    GoToIfEq VAR_0x4009, 4, _0151
 _011B:
     ClearFlag FLAG_UNK_0x01F0
 _011F:
@@ -154,7 +154,7 @@ _0275:
     LockAll
     FacePlayer
     GoToIfEq 0x40DF, 2, _02D2
-    SetVar 0x4009, 0
+    SetVar VAR_0x4009, 0
     ScrCmd_1DE 0x4009, 0, 0x8004, 0x8005
     ScrCmd_341 0, 0x8004, 0, 0
     BufferMoveName 1, 0x8005
@@ -186,7 +186,7 @@ _02FE:
     LockAll
     FacePlayer
     GoToIfEq 0x40DF, 2, _0336
-    SetVar 0x4009, 1
+    SetVar VAR_0x4009, 1
     Call _0245
     BufferPlayerName 4
     Message 15
@@ -215,7 +215,7 @@ _0365:
     LockAll
     FacePlayer
     GoToIfEq 0x40DF, 2, _039A
-    SetVar 0x4009, 2
+    SetVar VAR_0x4009, 2
     Call _0245
     Message 3
     ShowYesNoMenu 0x800C
@@ -242,7 +242,7 @@ _03C6:
     LockAll
     FacePlayer
     GoToIfEq 0x40DF, 2, _03FB
-    SetVar 0x4009, 3
+    SetVar VAR_0x4009, 3
     Call _0245
     Message 12
     ShowYesNoMenu 0x800C
@@ -269,7 +269,7 @@ _0427:
     LockAll
     FacePlayer
     GoToIfEq 0x40DF, 2, _045C
-    SetVar 0x4009, 4
+    SetVar VAR_0x4009, 4
     Call _0245
     Message 9
     ShowYesNoMenu 0x800C
@@ -345,7 +345,7 @@ _0500:
     End
 
 _055C:
-    SetVar 0x4000, 1
+    SetVar VAR_0x4000, 1
     GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8000, 12, _057D
     GoTo _058F
@@ -364,7 +364,7 @@ _058F:
     End
 
 _05A1:
-    SetVar 0x4000, 2
+    SetVar VAR_0x4000, 2
     GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8000, 4, _05C2
     GoTo _05D4
@@ -383,7 +383,7 @@ _05D4:
     End
 
 _05E6:
-    SetVar 0x4000, 3
+    SetVar VAR_0x4000, 3
     GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8001, 7, _0607
     GoTo _0619
@@ -402,7 +402,7 @@ _0619:
     End
 
 _062B:
-    SetVar 0x4000, 4
+    SetVar VAR_0x4000, 4
     GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8001, 9, _064C
     GoTo _065E
@@ -421,7 +421,7 @@ _065E:
     End
 
 _0670:
-    SetVar 0x4000, 5
+    SetVar VAR_0x4000, 5
     GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8000, 8, _0691
     GoTo _06A3

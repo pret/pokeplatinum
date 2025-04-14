@@ -14,7 +14,7 @@ _0012:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AA5, _00E2
-    GoToIfEq 0x400A, 1, _00E2
+    GoToIfEq VAR_0x400A, 1, _00E2
     GetFirstNonEggInParty 0x4000
     BufferPlayerName 0
     BufferPartyMonNickname 1, 0x4000
@@ -103,7 +103,7 @@ _0135:
 _0146:
     WaitFanfare SEQ_SE_DP_FW367
     SetFlag FLAG_UNK_0x0AA5
-    SetVar 0x400A, 1
+    SetVar VAR_0x400A, 1
     ApplyMovement 1, _02DC
     WaitMovement
     Return

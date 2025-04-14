@@ -13,31 +13,31 @@
     ScriptEntryEnd
 
 _001E:
-    SetVar 0x4001, 0
-    SetVar 0x4002, 1
-    SetVar 0x4003, 0
+    SetVar VAR_0x4001, 0
+    SetVar VAR_0x4002, 1
+    SetVar VAR_0x4003, 0
     InitPersistedMapFeaturesForPastoriaGym
     End
 
 _0034:
     ScrCmd_170
-    SetVar 0x4001, 1
-    SetVar 0x4002, 0
-    SetVar 0x4003, 0
+    SetVar VAR_0x4001, 1
+    SetVar VAR_0x4002, 0
+    SetVar VAR_0x4003, 0
     End
 
 _004A:
     ScrCmd_170
-    SetVar 0x4001, 0
-    SetVar 0x4002, 1
-    SetVar 0x4003, 0
+    SetVar VAR_0x4001, 0
+    SetVar VAR_0x4002, 1
+    SetVar VAR_0x4003, 0
     End
 
 _0060:
     ScrCmd_170
-    SetVar 0x4001, 0
-    SetVar 0x4002, 0
-    SetVar 0x4003, 1
+    SetVar VAR_0x4001, 0
+    SetVar VAR_0x4002, 0
+    SetVar VAR_0x4003, 1
     End
 
 _0076:

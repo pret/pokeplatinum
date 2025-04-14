@@ -87,43 +87,43 @@ _0125:
     End
 
 _012D:
-    SetVar 0x4001, 1
+    SetVar VAR_0x4001, 1
     GoToIfGe 0x406A, 0x104, _020D
     GoTo _01EA
     End
 
 _0148:
-    SetVar 0x4002, 1
+    SetVar VAR_0x4002, 1
     GoToIfGe 0x406A, 0x104, _020D
     GoTo _01EA
     End
 
 _0163:
-    SetVar 0x4003, 1
+    SetVar VAR_0x4003, 1
     GoToIfGe 0x406A, 0x104, _020D
     GoTo _01EA
     End
 
 _017E:
-    SetVar 0x4004, 1
+    SetVar VAR_0x4004, 1
     GoToIfGe 0x406A, 0x104, _020D
     GoTo _01EA
     End
 
 _0199:
-    SetVar 0x4005, 1
+    SetVar VAR_0x4005, 1
     GoToIfGe 0x406A, 0x104, _020D
     GoTo _01EA
     End
 
 _01B4:
-    SetVar 0x4006, 1
+    SetVar VAR_0x4006, 1
     GoToIfGe 0x406A, 0x104, _020D
     GoTo _01EA
     End
 
 _01CF:
-    SetVar 0x4007, 1
+    SetVar VAR_0x4007, 1
     GoToIfGe 0x406A, 0x104, _020D
     GoTo _01EA
     End

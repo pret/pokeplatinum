@@ -41,8 +41,8 @@ _0082:
     CallIfSet FLAG_UNK_0x0155, _00E0
     CallIfGe 0x411A, 2, _00BA
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _00D0
-    GoToIfEq 0x4000, GENDER_FEMALE, _00D8
+    GoToIfEq VAR_0x4000, GENDER_MALE, _00D0
+    GoToIfEq VAR_0x4000, GENDER_FEMALE, _00D8
     End
 
 _00BA:
@@ -52,11 +52,11 @@ _00BA:
     Return
 
 _00D0:
-    SetVar 0x4020, 97
+    SetVar VAR_0x4020, 97
     End
 
 _00D8:
-    SetVar 0x4020, 0
+    SetVar VAR_0x4020, 0
     End
 
 _00E0:

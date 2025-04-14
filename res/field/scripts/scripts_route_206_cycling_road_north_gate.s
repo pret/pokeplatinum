@@ -13,8 +13,8 @@
 
 _001A:
     GetPlayerMapPos 0x4004, 0x4005
-    CallIfGe 0x4005, 12, _0035
-    SetVar 0x4003, 1
+    CallIfGe VAR_0x4005, 12, _0035
+    SetVar VAR_0x4003, 1
     End
 
 _0035:
@@ -54,7 +54,7 @@ _0061:
 
 _0091:
     SetFlag FLAG_FORCE_BIKING_IN_GATE
-    SetVar 0x4002, 1
+    SetVar VAR_0x4002, 1
     ReleaseAll
     End
 
@@ -71,7 +71,7 @@ _00A8:
 _00B0:
     LockAll
     ClearFlag FLAG_FORCE_BIKING_IN_GATE
-    SetVar 0x4002, 0
+    SetVar VAR_0x4002, 0
     ReleaseAll
     End
 
@@ -83,7 +83,7 @@ _00C0:
     BufferPlayerName 0
     BufferCounterpartName 1
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _00F0
+    GoToIfEq VAR_0x4000, GENDER_MALE, _00F0
     GoTo _00F9
 
 _00F0:

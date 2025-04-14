@@ -52,8 +52,8 @@
 _00B2:
     InitPersistedMapFeaturesForVilla
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _01EF
-    CallIfEq 0x4000, GENDER_FEMALE, _01F7
+    CallIfEq VAR_0x4000, GENDER_MALE, _01EF
+    CallIfEq VAR_0x4000, GENDER_FEMALE, _01F7
     GoToIfSet FLAG_VILLA_VISITOR_OUTSIDE, _01ED
     SetFlag FLAG_UNK_0x02A7
     SetFlag FLAG_UNK_0x02A8
@@ -70,7 +70,7 @@ _00B2:
     SetFlag FLAG_UNK_0x02B8
     SetFlag FLAG_UNK_0x02B9
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 0xFF, _01FF
-    SetVar 0x400F, 0x404E
+    SetVar VAR_0x400F, 0x404E
     CallIfEq VAR_RESORT_VILLA_VISITOR, 0, _0201
     CallIfEq VAR_RESORT_VILLA_VISITOR, 1, _0207
     CallIfEq VAR_RESORT_VILLA_VISITOR, 2, _020D
@@ -92,11 +92,11 @@ _01ED:
     End
 
 _01EF:
-    SetVar 0x4021, 97
+    SetVar VAR_0x4021, 97
     Return
 
 _01F7:
-    SetVar 0x4021, 0
+    SetVar VAR_0x4021, 0
     Return
 
 _01FF:
@@ -219,32 +219,32 @@ _030C:
 
 _0360:
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _0400
-    CallIfEq 0x4000, GENDER_FEMALE, _0405
+    CallIfEq VAR_0x4000, GENDER_MALE, _0400
+    CallIfEq VAR_0x4000, GENDER_FEMALE, _0405
     Return
 
 _0380:
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _040A
-    CallIfEq 0x4000, GENDER_FEMALE, _040F
+    CallIfEq VAR_0x4000, GENDER_MALE, _040A
+    CallIfEq VAR_0x4000, GENDER_FEMALE, _040F
     Return
 
 _03A0:
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _0414
-    CallIfEq 0x4000, GENDER_FEMALE, _0419
+    CallIfEq VAR_0x4000, GENDER_MALE, _0414
+    CallIfEq VAR_0x4000, GENDER_FEMALE, _0419
     Return
 
 _03C0:
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _041E
-    CallIfEq 0x4000, GENDER_FEMALE, _0423
+    CallIfEq VAR_0x4000, GENDER_MALE, _041E
+    CallIfEq VAR_0x4000, GENDER_FEMALE, _0423
     Return
 
 _03E0:
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _0428
-    CallIfEq 0x4000, GENDER_FEMALE, _042D
+    CallIfEq VAR_0x4000, GENDER_MALE, _0428
+    CallIfEq VAR_0x4000, GENDER_FEMALE, _042D
     Return
 
 _0400:
@@ -808,7 +808,7 @@ _0AF4:
     ApplyMovement 6, _0B4C
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
-    SetVar 0x400F, 0
+    SetVar VAR_0x400F, 0
     ReleaseAll
     End
 
@@ -839,7 +839,7 @@ _0B5C:
     ApplyMovement 9, _0BA4
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
-    SetVar 0x400F, 0
+    SetVar VAR_0x400F, 0
     ReleaseAll
     End
 
@@ -868,7 +868,7 @@ _0BBC:
     ApplyMovement 10, _0C04
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
-    SetVar 0x400F, 0
+    SetVar VAR_0x400F, 0
     ReleaseAll
     End
 
@@ -899,7 +899,7 @@ _0C24:
     ApplyMovement 12, _0C6C
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
-    SetVar 0x400F, 0
+    SetVar VAR_0x400F, 0
     ReleaseAll
     End
 
@@ -1409,7 +1409,7 @@ _13EE:
     CallIfEq VAR_RESORT_VILLA_VISITOR, 12, _1429
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     SetVar VAR_RESORT_VILLA_VISITOR, 12
-    SetVar 0x400F, 0
+    SetVar VAR_0x400F, 0
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     BufferRivalName 0
     BufferPlayerName 1

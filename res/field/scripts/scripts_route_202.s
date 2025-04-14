@@ -15,16 +15,16 @@
 _001E:
     CallIfGe 0x4087, 2, _005B
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _004B
-    GoToIfEq 0x4000, GENDER_FEMALE, _0053
+    GoToIfEq VAR_0x4000, GENDER_MALE, _004B
+    GoToIfEq VAR_0x4000, GENDER_FEMALE, _0053
     End
 
 _004B:
-    SetVar 0x4020, 97
+    SetVar VAR_0x4020, 97
     End
 
 _0053:
-    SetVar 0x4020, 0
+    SetVar VAR_0x4020, 0
     End
 
 _005B:

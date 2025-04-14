@@ -10,19 +10,19 @@
 _000E:
     GoToIfEq 0x40DD, 0, _0048
     ScrCmd_207 0x4000
-    GoToIfEq 0x4000, 1, _004A
+    GoToIfEq VAR_0x4000, 1, _004A
     ScrCmd_1DD 55, 0, 0x4000
-    SetVar 0x4020, 0x4000
+    SetVar VAR_0x4020, 0x4000
     ScrCmd_1DD 55, 1, 0x4000
-    SetVar 0x4021, 0x4000
+    SetVar VAR_0x4021, 0x4000
 _0048:
     End
 
 _004A:
     ScrCmd_1DD 55, 0, 0x4000
-    SetVar 0x4021, 0x4000
+    SetVar VAR_0x4021, 0x4000
     ScrCmd_1DD 55, 1, 0x4000
-    SetVar 0x4020, 0x4000
+    SetVar VAR_0x4020, 0x4000
     End
 
 _0068:

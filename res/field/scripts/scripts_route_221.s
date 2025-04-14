@@ -11,7 +11,7 @@
 
 _0012:
     ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _002C
+    GoToIfEq VAR_0x4000, 0, _002C
     SetFlag FLAG_UNK_0x027F
     SetFlag FLAG_UNK_0x0280
 _002C:

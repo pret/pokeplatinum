@@ -19,16 +19,16 @@
 
 _0032:
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _0052
-    GoToIfEq 0x4000, GENDER_FEMALE, _005A
+    GoToIfEq VAR_0x4000, GENDER_MALE, _0052
+    GoToIfEq VAR_0x4000, GENDER_FEMALE, _005A
     End
 
 _0052:
-    SetVar 0x4020, 97
+    SetVar VAR_0x4020, 97
     End
 
 _005A:
-    SetVar 0x4020, 0
+    SetVar VAR_0x4020, 0
     End
 
 _0062:

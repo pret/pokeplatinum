@@ -14,9 +14,9 @@
 
 _001E:
     GetHour 0x4000
-    GoToIfEq 0x4000, 0, _004F
-    GoToIfEq 0x4000, 1, _004F
-    GoToIfLe 0x4000, 5, _005B
+    GoToIfEq VAR_0x4000, 0, _004F
+    GoToIfEq VAR_0x4000, 1, _004F
+    GoToIfLe VAR_0x4000, 5, _005B
     GoTo _004F
 
 _004F:
@@ -34,7 +34,7 @@ _0067:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AA2, _0155
-    GoToIfEq 0x400B, 1, _0155
+    GoToIfEq VAR_0x400B, 1, _0155
     ScrCmd_22D 2, 0x800C
     GoToIfEq 0x800C, 1, _00AA
     GoTo _009F
@@ -84,7 +84,7 @@ _00FB:
     ApplyMovement 2, _01F0
     WaitMovement
     RemoveObject 2
-    SetVar 0x400B, 1
+    SetVar VAR_0x400B, 1
     Call _016C
     SetFlag FLAG_UNK_0x0AA2
     GoTo _0155

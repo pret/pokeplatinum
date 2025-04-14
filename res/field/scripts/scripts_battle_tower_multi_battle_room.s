@@ -14,19 +14,19 @@ _0012:
     SetFlag FLAG_UNK_0x01EA
     SetFlag FLAG_UNK_0x01EB
     ScrCmd_207 0x4000
-    GoToIfEq 0x4000, 1, _0056
+    GoToIfEq VAR_0x4000, 1, _0056
     ScrCmd_1DD 55, 0, 0x4000
-    SetVar 0x4020, 0x4000
+    SetVar VAR_0x4020, 0x4000
     ScrCmd_1DD 55, 1, 0x4000
-    SetVar 0x4021, 0x4000
+    SetVar VAR_0x4021, 0x4000
 _0054:
     End
 
 _0056:
     ScrCmd_1DD 55, 0, 0x4000
-    SetVar 0x4021, 0x4000
+    SetVar VAR_0x4021, 0x4000
     ScrCmd_1DD 55, 1, 0x4000
-    SetVar 0x4020, 0x4000
+    SetVar VAR_0x4020, 0x4000
     End
 
 _0074:
@@ -137,13 +137,13 @@ _01DF:
 
 _022F:
     ScrCmd_1DD 37, 0, 0
-    SetVar 0x4000, 0
+    SetVar VAR_0x4000, 0
     GoTo _00CB
     End
 
 _0245:
     ScrCmd_1DD 38, 0, 0
-    SetVar 0x4000, 1
+    SetVar VAR_0x4000, 1
     GoTo _00CB
     End
 
@@ -237,7 +237,7 @@ _03D6:
     AddListMenuEntry 148, 1
     ShowListMenu
     CloseMessage
-    SetVar 0x4000, 0
+    SetVar VAR_0x4000, 0
     GoToIfEq 0x800C, 1, _0452
 _0418:
     Message 12
@@ -256,7 +256,7 @@ _0452:
     Message 5
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _03D6
-    SetVar 0x4000, 1
+    SetVar VAR_0x4000, 1
     GoTo _0418
     End
 
@@ -285,9 +285,9 @@ _04A1:
 
 _04C5:
     ScrCmd_1DD 41, 0, 0x800C
-    SetVar 0x4022, 0x800C
+    SetVar VAR_0x4022, 0x800C
     ScrCmd_1DD 41, 1, 0x800C
-    SetVar 0x4023, 0x800C
+    SetVar VAR_0x4023, 0x800C
     ClearFlag FLAG_UNK_0x01EA
     ClearFlag FLAG_UNK_0x01EB
     AddObject 5

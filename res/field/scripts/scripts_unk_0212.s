@@ -136,7 +136,7 @@ _0184:
     Call _01B1
     Call _0168
     ScrCmd_238 7, 0x4000
-    GoToIfEq 0x4000, 0, _01AB
+    GoToIfEq VAR_0x4000, 0, _01AB
     ClearFlag FLAG_UNK_0x0213
     End
 
@@ -176,7 +176,7 @@ _01FC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x4003, 0
+    SetVar VAR_0x4003, 0
     SetVar 0x8007, 2
     Message 3
     GoTo _023A
@@ -186,14 +186,14 @@ _021B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x4003, 1
+    SetVar VAR_0x4003, 1
     SetVar 0x8007, 2
     Message 7
     GoTo _023A
     End
 
 _023A:
-    GoToIfEq 0x4003, 1, _0250
+    GoToIfEq VAR_0x4003, 1, _0250
     Message 4
     GoTo _0253
 
@@ -222,7 +222,7 @@ _0291:
     End
 
 _02A8:
-    GoToIfEq 0x4003, 1, _02BD
+    GoToIfEq VAR_0x4003, 1, _02BD
     GoTo _040D
     End
 
@@ -241,7 +241,7 @@ _02E2:
     End
 
 _02F0:
-    GoToIfEq 0x4003, 1, _0305
+    GoToIfEq VAR_0x4003, 1, _0305
     GoTo _030E
     End
 
@@ -404,8 +404,8 @@ _0562:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    CallIfEq 0x4003, 0, _0600
-    CallIfEq 0x4003, 1, _0608
+    CallIfEq VAR_0x4003, 0, _0600
+    CallIfEq VAR_0x4003, 1, _0608
     SetVar 0x800C, 0
 _0596:
     ScrCmd_194 0x800C, 0x8004, 0x8005, 0x4004
@@ -419,7 +419,7 @@ _05C1:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x4002, 0xFF, _05E4
+    GoToIfEq VAR_0x4002, 0xFF, _05E4
     GoTo _0610
     End
 
@@ -431,15 +431,15 @@ _05E4:
     End
 
 _0600:
-    SetVar 0x4004, 0
+    SetVar VAR_0x4004, 0
     Return
 
 _0608:
-    SetVar 0x4004, 1
+    SetVar VAR_0x4004, 1
     Return
 
 _0610:
-    GoToIfEq 0x4003, 1, _0625
+    GoToIfEq VAR_0x4003, 1, _0625
     GoTo _070D
     End
 
@@ -499,8 +499,8 @@ _0705:
 
 _070D:
     ScrCmd_0FA 0x8004, 0x8005, 0x8007, 0x4002
-    CallIfEq 0x4003, 1, _07B5
-    GoToIfEq 0x4003, 2, _078A
+    CallIfEq VAR_0x4003, 1, _07B5
+    GoToIfEq VAR_0x4003, 2, _078A
     ScrCmd_109 0x800C
     AddVar 0x800C, 1
     ScrCmd_0FF 0x800C, 0
@@ -513,9 +513,9 @@ _070D:
     ScrCmd_0F9 25
     CloseMessage
 _0761:
-    GoToIfEq 0x4003, 0, _07BC
-    GoToIfEq 0x4003, 1, _07F1
-    GoToIfEq 0x4003, 2, _0830
+    GoToIfEq VAR_0x4003, 0, _07BC
+    GoToIfEq VAR_0x4003, 1, _07F1
+    GoToIfEq VAR_0x4003, 2, _0830
     End
 
 _078A:
@@ -575,7 +575,7 @@ _0830:
     End
 
 _086A:
-    GoToIfEq 0x4003, 2, _08CD
+    GoToIfEq VAR_0x4003, 2, _08CD
     ScrCmd_0C6
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, GENDER_MALE, _0892
@@ -769,7 +769,7 @@ _0B50:
     ScrCmd_118
     ScrCmd_0FB 0x4002
     SetVar 0x40CC, 0
-    GoToIfEq 0x4003, 0, _0BF2
+    GoToIfEq VAR_0x4003, 0, _0BF2
     Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 7, 3, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -866,10 +866,10 @@ _0D3A:
     ClearFlag FLAG_UNK_0x0205
     AddObject 5
     ScrCmd_108 0x4000
-    GoToIfEq 0x4000, 0, _0D86
-    GoToIfEq 0x4000, 1, _0D8C
-    GoToIfEq 0x4000, 2, _0D92
-    GoToIfEq 0x4000, 3, _0D98
+    GoToIfEq VAR_0x4000, 0, _0D86
+    GoToIfEq VAR_0x4000, 1, _0D8C
+    GoToIfEq VAR_0x4000, 2, _0D92
+    GoToIfEq VAR_0x4000, 3, _0D98
     Return
 
 _0D86:
@@ -1021,7 +1021,7 @@ _0E74:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x4003, 2
+    SetVar VAR_0x4003, 2
     SetVar 0x8004, 0
     Message 111
     GoTo _0E93
@@ -1056,20 +1056,20 @@ _0EE1:
     End
 
 _0F30:
-    SetVar 0x4004, 0
+    SetVar VAR_0x4004, 0
     SetVar 0x8007, 3
     GoTo _1027
     End
 
 _0F44:
-    SetVar 0x4004, 1
+    SetVar VAR_0x4004, 1
     SetVar 0x8005, 0
     SetVar 0x8007, 5
     GoTo _1027
     End
 
 _0F5E:
-    SetVar 0x4004, 0
+    SetVar VAR_0x4004, 0
     SetVar 0x8007, 7
     GoTo _1027
     End
@@ -1251,7 +1251,7 @@ _0F72:
     .byte 0
 
 _1027:
-    GoToIfEq 0x4004, 1, _1101
+    GoToIfEq VAR_0x4004, 1, _1101
     GoTo _103A
 
 _103A:
@@ -1323,7 +1323,7 @@ _1146:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x4002, 0xFF, _10F4
+    GoToIfEq VAR_0x4002, 0xFF, _10F4
     GoTo _070D
     End
 

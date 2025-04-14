@@ -64,7 +64,7 @@ _00D9:
     WaitMovement
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    SetVar 0x4003, 1
+    SetVar VAR_0x4003, 1
     Warp 0x405C, 0, 5, 2, 1
     ScrCmd_1F8
     ScrCmd_0B3 0x800C

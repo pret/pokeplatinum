@@ -24,7 +24,7 @@
 
 _0046:
     ScrCmd_238 19, 0x4000
-    GoToIfEq 0x4000, 0, _005F
+    GoToIfEq VAR_0x4000, 0, _005F
     ClearFlag FLAG_UNK_0x02C3
     End
 
@@ -36,8 +36,8 @@ _0065:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x4003, 0
-    SetVar 0x4004, 0
+    SetVar VAR_0x4003, 0
+    SetVar VAR_0x4004, 0
     GoTo _009D
     End
 
@@ -45,21 +45,21 @@ _0081:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x4003, 0
-    SetVar 0x4004, 1
+    SetVar VAR_0x4003, 0
+    SetVar VAR_0x4004, 1
     GoTo _009D
     End
 
 _009D:
     ScrCmd_313 0
-    CallIfEq 0x4004, 0, _0678
-    CallIfEq 0x4004, 1, _067D
+    CallIfEq VAR_0x4004, 0, _0678
+    CallIfEq VAR_0x4004, 1, _067D
     GoTo _00C3
     End
 
 _00C3:
-    CallIfEq 0x4004, 0, _0682
-    CallIfEq 0x4004, 1, _069A
+    CallIfEq VAR_0x4004, 0, _0682
+    CallIfEq VAR_0x4004, 1, _069A
     AddMenuEntryImm 41, 2
     AddMenuEntryImm 42, 3
     ShowMenu
@@ -71,8 +71,8 @@ _00C3:
     End
 
 _0123:
-    CallIfEq 0x4004, 0, _06AE
-    CallIfEq 0x4004, 1, _06B3
+    CallIfEq VAR_0x4004, 0, _06AE
+    CallIfEq VAR_0x4004, 1, _06B3
     GoTo _00C3
     End
 
@@ -137,7 +137,7 @@ _020B:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x4002, 0xFF, _0145
+    GoToIfEq VAR_0x4002, 0xFF, _0145
     ScrCmd_31E 0x4002, 0x800C
     GoToIfEq 0x800C, 0xFF, _05E1
     ScrCmd_31E 0x4005, 0x800C
@@ -145,7 +145,7 @@ _020B:
     ScrCmd_31E 0x4006, 0x800C
     GoToIfEq 0x800C, 0xFF, _05E1
     GetPartyMonSpecies 0x4002, 0x4001
-    GoToIfEq 0x4001, 0, _0145
+    GoToIfEq VAR_0x4001, 0, _0145
     GoTo _029B
     End
 
@@ -156,7 +156,7 @@ _029B:
 _02A3:
     CallIfEq 0x40BE, 0, _0448
     CallIfEq 0x40BE, 1, _0448
-    SetVar 0x4000, 0
+    SetVar VAR_0x4000, 0
     HealParty
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
@@ -445,7 +445,7 @@ _06B3:
 
 _06B8:
     ScrCmd_313 0
-    SetVar 0x4003, 1
+    SetVar VAR_0x4003, 1
     SetVar 0x40BF, 0
     Message 33
     Call _0448

@@ -130,8 +130,8 @@ _0141:
     LockAll
     FacePlayer
     GetDayOfWeek 0x4000
-    GoToIfEq 0x4000, DAY_OF_WEEK_SUNDAY, _01BE
-    GoToIfEq 0x4000, DAY_OF_WEEK_SATURDAY, _01BE
+    GoToIfEq VAR_0x4000, DAY_OF_WEEK_SUNDAY, _01BE
+    GoToIfEq VAR_0x4000, DAY_OF_WEEK_SATURDAY, _01BE
     BufferRivalName 0
     BufferPlayerName 1
     SetVar 0x8008, 0x40C2
