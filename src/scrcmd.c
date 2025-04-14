@@ -138,6 +138,7 @@
 #include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_game_corner_prize.h"
 #include "scrcmd_jubilife_lottery.h"
+#include "scrcmd_mystery_gift.h"
 #include "scrcmd_shop.h"
 #include "scrcmd_system_flags.h"
 #include "script_manager.h"
@@ -177,7 +178,6 @@
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
 #include "unk_0204B64C.h"
-#include "unk_0204B830.h"
 #include "unk_0204C500.h"
 #include "unk_0204C6C8.h"
 #include "unk_0204C8F0.h"
@@ -999,7 +999,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0E7,
     ScrCmd_0E8,
     ScrCmd_0E9,
-    ScrCmd_0EA,
+    ScrCmd_PlayTrainerEncounterBGM,
     ScrCmd_BlackOutFromBattle,
     ScrCmd_CheckWonBattle,
     ScrCmd_CheckLostBattle,
@@ -1339,7 +1339,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_23B,
     ScrCmd_23C,
     ScrCmd_23D,
-    ScrCmd_23E,
+    ScrCmd_MysteryGiftGive,
     ScrCmd_Dummy23F,
     ScrCmd_Dummy240,
     ScrCmd_Dummy241,
@@ -4712,7 +4712,7 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 0));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
         Sound_SetSpecialBGM(ctx->fieldSystem, 0);
-        sub_02055554(ctx->fieldSystem, sub_02055428(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
+        sub_02055554(ctx->fieldSystem, Sound_GetOverrideBGM(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
     }
 
     return FALSE;
@@ -6366,7 +6366,7 @@ static BOOL ScrCmd_20F(ScriptContext *ctx)
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
 
-    Sound_SetSceneAndPlayBGM(65, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_65, SEQ_NONE, 0);
     ov6_02242B58(ctx->fieldSystem, *v0, v1);
 
     return 1;

@@ -179,7 +179,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
 
     FieldBattleDTO_InitFromGameState(v5, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
-    v5->background = 20;
+    v5->background = BACKGROUND_BATTLE_ARCADE;
     v5->terrain = TERRAIN_BATTLE_ARCADE;
     v5->fieldWeather = param0->unk_14;
 

@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0202442C_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay077/const_ov77_021D742C.h"
@@ -23,6 +22,7 @@
 #include "main.h"
 #include "message.h"
 #include "message_util.h"
+#include "mystery_gift.h"
 #include "overlay_manager.h"
 #include "play_time.h"
 #include "pokedex.h"
@@ -40,7 +40,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200F174.h"
-#include "unk_0202DAB4.h"
 #include "unk_020366A0.h"
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
@@ -266,7 +265,7 @@ static void ov97_0222AF8C(UnkStruct_0222AE60 *param0)
         param0->unk_124 = 13;
         param0->unk_40 = 0;
 
-        if (sub_0202DEC4(param0->unk_14) == 1) {
+        if (MysteryGift_GetLastWcIDReceived(param0->unk_14) == 1) {
             param0->unk_40 |= 0x1;
             param0->unk_44 |= 0x1;
         }
@@ -649,7 +648,7 @@ static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *par
     UnkStruct_0222AE60 *v0 = (UnkStruct_0222AE60 *)param0;
 
     if (v0->unk_34 == 0) {
-        if (sub_0202DEC4(v0->unk_14) == 1) {
+        if (MysteryGift_GetLastWcIDReceived(v0->unk_14) == 1) {
             v0->unk_34 = 1;
         }
 
@@ -678,7 +677,7 @@ static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *par
         v0->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
         v0->unk_38 |= 0x1;
 
-        sub_0202DED4(v0->unk_14);
+        MysteryGift_SetLastWcIDReceived(v0->unk_14);
         return 1;
     }
 
@@ -995,7 +994,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     }
 
     Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
-    Sound_SetScene(0);
+    Sound_SetScene(SOUND_SCENE_NONE);
 
     return 1;
 }

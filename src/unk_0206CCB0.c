@@ -33,6 +33,7 @@
 #include "bag.h"
 #include "berry_patches.h"
 #include "charcode_util.h"
+#include "field_overworld_weather.h"
 #include "field_system.h"
 #include "heap.h"
 #include "inlines.h"
@@ -56,7 +57,6 @@
 #include "trainer_info.h"
 #include "unk_020298BC.h"
 #include "unk_0202E2CC.h"
-#include "unk_0203A944.h"
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"
 #include "unk_02094EDC.h"
@@ -2108,9 +2108,9 @@ static u16 Unk_02100BA4[] = {
 
 static int sub_0206E940(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    int v0 = Unk_02100BA4[LCRNG_RandMod(NELEMS(Unk_02100BA4))];
-    int weather = FieldSystem_GetWeather(fieldSystem, v0);
-    StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v0));
+    int mapHeaderID = Unk_02100BA4[LCRNG_RandMod(NELEMS(Unk_02100BA4))];
+    int weather = FieldSystem_GetWeather(fieldSystem, mapHeaderID);
+    StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(mapHeaderID));
 
     switch (weather) {
     case OVERWORLD_WEATHER_CLEAR:

@@ -276,7 +276,7 @@ static void ov17_0224D1E8(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 
     SysTask_Start(ov17_0224D240, v1, 30000);
     v0->unk_1078 = 0;
-    Sound_PlayBGM(1135);
+    Sound_PlayBGM(SEQ_CONTEST_DRESSING_ROOM);
 }
 
 static void ov17_0224D240(SysTask *param0, void *param1)
@@ -1488,7 +1488,7 @@ static void ov17_0224E86C(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        Sound_PlayBGM(1135);
+        Sound_PlayBGM(SEQ_CONTEST_DRESSING_ROOM);
         Sound_PlayEffect(SEQ_SE_DP_CON_007);
         v0->unk_4C++;
         break;

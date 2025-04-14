@@ -1292,7 +1292,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     void *v4;
     int v5;
 
-    Sound_SetSceneAndPlayBGM(58, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_58, SEQ_NONE, 0);
     ov23_0223E140();
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);

@@ -341,7 +341,7 @@ static void JournalPrinter_PrintTrainerEvent(JournalManager *journalManager, Win
         return;
     }
 
-    Strbuf *name = MessageBank_GetNewStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, MapHeader_GetMapLabelTextID(journalEntryTrainer.mapID), location_names_00042);
+    Strbuf *name = MessageBank_GetNewStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, MapHeader_GetMapLabelTextID(journalEntryTrainer.mapID), LocationNames_Text_Route227);
     strLength = Strbuf_Length(name);
     Strbuf_Free(name);
 
@@ -584,7 +584,7 @@ static void JournalPrinter_PrintLeftCave(JournalManager *journalManager, Window 
     Strbuf *strbuf;
     u32 mapLabelTextID = journalEntryLocationEvent->locationID;
 
-    if (mapLabelTextID == location_names_00047 || mapLabelTextID == location_names_00064 || mapLabelTextID == location_names_00049) {
+    if (mapLabelTextID == LocationNames_Text_ValleyWindworks || mapLabelTextID == LocationNames_Text_SnowpointTemple || mapLabelTextID == LocationNames_Text_FuegoIronworks) {
         strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_DepartedFromLocation);
     } else {
         strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_GotThroughLocation);
@@ -601,7 +601,7 @@ static void JournalPrinter_PrintLeftBuilding(JournalManager *journalManager, Win
     Strbuf *strbuf;
     u32 mapLabelTextID = journalEntryLocationEvent->locationID;
 
-    if (sub_0202C6A4(mapLabelTextID) == 0) {
+    if (Journal_DoesBuildingUseExitedMessage(mapLabelTextID) == FALSE) {
         strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_DepartedFromLocation);
     } else {
         strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_ExitedFromLocation);

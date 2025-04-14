@@ -35,7 +35,6 @@ BOOL ScrCmd_StartTagBattle(ScriptContext *ctx);
 BOOL ScrCmd_0E7(ScriptContext *param0);
 BOOL ScrCmd_0E8(ScriptContext *param0);
 BOOL ScrCmd_0E9(ScriptContext *param0);
-BOOL ScrCmd_0EA(ScriptContext *param0);
 BOOL ScrCmd_BlackOutFromBattle(ScriptContext *param0);
 BOOL ScrCmd_CheckHasTwoAliveMons(ScriptContext *param0);
 BOOL ScrCmd_StartDummyTrainerBattle(ScriptContext *ctx);
@@ -256,12 +255,12 @@ BOOL ScrCmd_0E9(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0EA(ScriptContext *param0)
+BOOL ScrCmd_PlayTrainerEncounterBGM(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
+    u16 trainerID = ScriptContext_GetVar(ctx);
 
-    sub_02004950(sub_0205560C(v0));
-    return 1;
+    Sound_SwapBGM(Trainer_GetEncounterBGM(trainerID));
+    return TRUE;
 }
 
 BOOL ScrCmd_BlackOutFromBattle(ScriptContext *param0)

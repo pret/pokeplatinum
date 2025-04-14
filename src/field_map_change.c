@@ -5,7 +5,6 @@
 
 #include "constants/field/map_load.h"
 #include "constants/overworld_weather.h"
-#include "generated/map_headers.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/map_load_mode.h"
@@ -27,6 +26,7 @@
 #include "communication_system.h"
 #include "field_message.h"
 #include "field_overworld_state.h"
+#include "field_overworld_weather.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "field_transition.h"
@@ -62,7 +62,6 @@
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_0203A7D8.h"
-#include "unk_0203A944.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
@@ -1229,7 +1228,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
             break;
         }
 
-        Sound_SetScene(0);
+        Sound_SetScene(SOUND_SCENE_NONE);
         Sound_ClearSpecialBGM(fieldSystem);
         FieldTransition_StartMap(task);
         mapChangeUndergroundData->state++;
@@ -1296,7 +1295,7 @@ BOOL FieldTask_MapChangeFromUnderground(FieldTask *task)
             break;
         }
 
-        Sound_SetScene(0);
+        Sound_SetScene(SOUND_SCENE_NONE);
         Sound_ClearSpecialBGM(fieldSystem);
         FieldTransition_StartMap(task);
         mapChangeUndergroundData->state++;

@@ -915,7 +915,7 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
 
     FieldBattleDTO_InitFromGameState(v3, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
-    v3->background = 18;
+    v3->background = BACKGROUND_BATTLE_TOWER;
     v3->terrain = TERRAIN_BATTLE_TOWER;
 
     v6 = Pokemon_New(param0->heapID);

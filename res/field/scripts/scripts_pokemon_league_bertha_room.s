@@ -12,7 +12,7 @@ _000A:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00B1, _00AC
-    ScrCmd_0EA TRAINER_ELITE_FOUR_BERTHA
+    PlayTrainerEncounterBGM TRAINER_ELITE_FOUR_BERTHA
     Message 0
     CloseMessage
     CallIfUnset FLAG_UNK_0x00D6, _007A

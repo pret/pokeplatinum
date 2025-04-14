@@ -12,7 +12,7 @@ _000A:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00B0, _00AC
-    ScrCmd_0EA TRAINER_ELITE_FOUR_AARON
+    PlayTrainerEncounterBGM TRAINER_ELITE_FOUR_AARON
     Message 0
     CloseMessage
     CallIfUnset FLAG_UNK_0x00D6, _007A

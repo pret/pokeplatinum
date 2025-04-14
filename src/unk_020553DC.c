@@ -20,101 +20,101 @@
 #include "trainer_data.h"
 #include "vars_flags.h"
 
-const static u16 Unk_020EC3E0[][2] = {
-    { 0x7, 0x450 },
-    { 0x30, 0x451 },
-    { 0x52, 0x458 },
-    { 0x2D, 0x44D },
-    { 0x2C, 0x44D },
-    { 0x2F, 0x457 },
-    { 0x19, 0x455 },
-    { 0x18, 0x455 },
-    { 0x21, 0x452 },
-    { 0x24, 0x450 },
-    { 0x20, 0x452 },
-    { 0x2A, 0x457 },
-    { 0xE, 0x44E },
-    { 0x34, 0x44E },
-    { 0x4, 0x44C },
-    { 0x32, 0x44E },
-    { 0x31, 0x44E },
-    { 0x22, 0x452 },
-    { 0x3D, 0x456 },
-    { 0x3C, 0x44C },
-    { 0x15, 0x458 },
-    { 0x14, 0x458 },
-    { 0x2, 0x44C },
-    { 0xB, 0x453 },
-    { 0x1D, 0x455 },
-    { 0x1E, 0x457 },
-    { 0x1C, 0x44D },
-    { 0xA, 0x44E },
-    { 0x50, 0x450 },
-    { 0x2B, 0x450 },
-    { 0x5, 0x456 },
-    { 0x8, 0x44D },
-    { 0x2E, 0x453 },
-    { 0x25, 0x454 },
-    { 0x11, 0x450 },
-    { 0x10, 0x44C },
-    { 0x28, 0x455 },
-    { 0x27, 0x455 },
-    { 0x3, 0x456 },
-    { 0x6, 0x44C },
-    { 0x9, 0x451 },
-    { 0x17, 0x458 },
-    { 0xC, 0x457 },
-    { 0xD, 0x457 },
-    { 0x49, 0x44F },
-    { 0x59, 0x44F },
-    { 0x48, 0x44F },
-    { 0x57, 0x44F },
-    { 0x58, 0x44F },
-    { 0x23, 0x452 },
-    { 0x51, 0x458 },
-    { 0x1A, 0x458 },
-    { 0x3B, 0x458 },
-    { 0x47, 0x451 },
-    { 0x12, 0x451 },
-    { 0x46, 0x451 },
-    { 0x3A, 0x458 },
-    { 0x55, 0x456 },
-    { 0xF, 0x458 },
-    { 0x16, 0x44D },
-    { 0x26, 0x44E },
-    { 0x1F, 0x455 },
-    { 0x37, 0x457 },
-    { 0x38, 0x457 },
-    { 0x39, 0x44E },
-    { 0x29, 0x454 },
-    { 0x13, 0x457 },
-    { 0x1B, 0x455 },
-    { 0x53, 0x458 },
-    { 0x54, 0x458 },
-    { 0x33, 0x452 },
-    { 0x36, 0x455 },
-    { 0x35, 0x455 },
-    { 0x41, 0x459 },
-    { 0x42, 0x459 },
-    { 0x43, 0x459 },
-    { 0x44, 0x459 },
-    { 0x45, 0x45A },
-    { 0x62, 0x458 }
+// clang-format off
+// Class, Eyes meet theme
+const static u16 sTrainerEncounterBGMs[][2] = {
+    { TRAINER_CLASS_AROMA_LADY,              SEQ_EYE_LADY },
+    { TRAINER_CLASS_RUIN_MANIAC,             SEQ_EYE_MOUNT },
+    { TRAINER_CLASS_INTERVIEWERS,            SEQ_EYE_FUN },
+    { TRAINER_CLASS_TUBER_FEMALE,            SEQ_EYE_KID },
+    { TRAINER_CLASS_TUBER_MALE,              SEQ_EYE_KID },
+    { TRAINER_CLASS_SIS_AND_BRO,             SEQ_EYE_SPORT },
+    { TRAINER_CLASS_ACE_TRAINER_FEMALE,      SEQ_EYE_ELITE },
+    { TRAINER_CLASS_ACE_TRAINER_MALE,        SEQ_EYE_ELITE },
+    { TRAINER_CLASS_LADY,                    SEQ_EYE_RICH },
+    { TRAINER_CLASS_BEAUTY,                  SEQ_EYE_LADY },
+    { TRAINER_CLASS_RICH_BOY,                SEQ_EYE_RICH },
+    { TRAINER_CLASS_SWIMMER_MALE,            SEQ_EYE_SPORT },
+    { TRAINER_CLASS_BLACK_BELT,              SEQ_EYE_FIGHT },
+    { TRAINER_CLASS_GUITARIST,               SEQ_EYE_FIGHT },
+    { TRAINER_CLASS_CAMPER,                  SEQ_EYE_BOY },
+    { TRAINER_CLASS_PSYCHIC_FEMALE,          SEQ_EYE_FIGHT },
+    { TRAINER_CLASS_PSYCHIC_MALE,            SEQ_EYE_FIGHT },
+    { TRAINER_CLASS_GENTLEMAN,               SEQ_EYE_RICH },
+    { TRAINER_CLASS_SCHOOL_KID_FEMALE,       SEQ_EYE_GIRL },
+    { TRAINER_CLASS_SCHOOL_KID_MALE,         SEQ_EYE_BOY },
+    { TRAINER_CLASS_POKEFAN_FEMALE,          SEQ_EYE_FUN },
+    { TRAINER_CLASS_POKEFAN_MALE,            SEQ_EYE_FUN },
+    { TRAINER_CLASS_YOUNGSTER,               SEQ_EYE_BOY },
+    { TRAINER_CLASS_FISHERMAN,               SEQ_EYE_ENKA },
+    { TRAINER_CLASS_DRAGON_TAMER,            SEQ_EYE_ELITE },
+    { TRAINER_CLASS_BIRD_KEEPER,             SEQ_EYE_SPORT },
+    { TRAINER_CLASS_NINJA_BOY,               SEQ_EYE_KID },
+    { TRAINER_CLASS_BATTLE_GIRL,             SEQ_EYE_FIGHT },
+    { TRAINER_CLASS_PARASOL_LADY,            SEQ_EYE_LADY },
+    { TRAINER_CLASS_SWIMMER_FEMALE,          SEQ_EYE_LADY },
+    { TRAINER_CLASS_PICNICKER,               SEQ_EYE_GIRL },
+    { TRAINER_CLASS_TWINS,                   SEQ_EYE_KID },
+    { TRAINER_CLASS_SAILOR,                  SEQ_EYE_ENKA },
+    { TRAINER_CLASS_COLLECTOR,               SEQ_EYE_MYS },
+    { TRAINER_CLASS_BREEDER_FEMALE,          SEQ_EYE_LADY },
+    { TRAINER_CLASS_BREEDER_MALE,            SEQ_EYE_BOY },
+    { TRAINER_CLASS_RANGER_FEMALE,           SEQ_EYE_ELITE },
+    { TRAINER_CLASS_RANGER_MALE,             SEQ_EYE_ELITE },
+    { TRAINER_CLASS_LASS,                    SEQ_EYE_GIRL },
+    { TRAINER_CLASS_BUG_CATCHER,             SEQ_EYE_BOY },
+    { TRAINER_CLASS_HIKER,                   SEQ_EYE_MOUNT },
+    { TRAINER_CLASS_YOUNG_COUPLE,            SEQ_EYE_FUN },
+    { TRAINER_CLASS_CYCLIST_MALE,            SEQ_EYE_SPORT },
+    { TRAINER_CLASS_CYCLIST_FEMALE,          SEQ_EYE_SPORT },
+    { TRAINER_CLASS_GALACTIC_GRUNT_MALE,     SEQ_EYE_GINGA },
+    { TRAINER_CLASS_GALACTIC_GRUNT_FEMALE,   SEQ_EYE_GINGA },
+    { TRAINER_CLASS_COMMANDER_MARS,          SEQ_EYE_GINGA },
+    { TRAINER_CLASS_COMMANDER_JUPITER,       SEQ_EYE_GINGA },
+    { TRAINER_CLASS_COMMANDER_SATURN,        SEQ_EYE_GINGA },
+    { TRAINER_CLASS_SOCIALITE,               SEQ_EYE_RICH },
+    { TRAINER_CLASS_WAITER,                  SEQ_EYE_FUN },
+    { TRAINER_CLASS_WAITRESS,                SEQ_EYE_FUN },
+    { TRAINER_CLASS_WORKER,                  SEQ_EYE_FUN },
+    { TRAINER_CLASS_RANCHER,                 SEQ_EYE_MOUNT },
+    { TRAINER_CLASS_COWGIRL,                 SEQ_EYE_MOUNT },
+    { TRAINER_CLASS_BELLE_AND_PA,            SEQ_EYE_MOUNT },
+    { TRAINER_CLASS_CLOWN,                   SEQ_EYE_FUN },
+    { TRAINER_CLASS_IDOL,                    SEQ_EYE_GIRL },
+    { TRAINER_CLASS_ARTIST,                  SEQ_EYE_FUN },
+    { TRAINER_CLASS_POKE_KID,                SEQ_EYE_KID },
+    { TRAINER_CLASS_POLICEMAN,               SEQ_EYE_FIGHT },
+    { TRAINER_CLASS_DOUBLE_TEAM,             SEQ_EYE_ELITE },
+    { TRAINER_CLASS_SKIER_MALE,              SEQ_EYE_SPORT },
+    { TRAINER_CLASS_SKIER_FEMALE,            SEQ_EYE_SPORT },
+    { TRAINER_CLASS_ROUGHNECK,               SEQ_EYE_FIGHT },
+    { TRAINER_CLASS_SCIENTIST,               SEQ_EYE_MYS },
+    { TRAINER_CLASS_JOGGER,                  SEQ_EYE_SPORT },
+    { TRAINER_CLASS_VETERAN,                 SEQ_EYE_ELITE },
+    { TRAINER_CLASS_CAMERAMAN,               SEQ_EYE_FUN },
+    { TRAINER_CLASS_REPORTER,                SEQ_EYE_FUN },
+    { TRAINER_CLASS_PI,                      SEQ_EYE_RICH },
+    { TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE, SEQ_EYE_ELITE },
+    { TRAINER_CLASS_ACE_TRAINER_SNOW_MALE,   SEQ_EYE_ELITE },
+    { TRAINER_CLASS_ELITE_FOUR_AARON,        SEQ_EYE_TENNO },
+    { TRAINER_CLASS_ELITE_FOUR_BERTHA,       SEQ_EYE_TENNO },
+    { TRAINER_CLASS_ELITE_FOUR_FLINT,        SEQ_EYE_TENNO },
+    { TRAINER_CLASS_ELITE_FOUR_LUCIAN,       SEQ_EYE_TENNO },
+    { TRAINER_CLASS_CHAMPION_CYNTHIA,        SEQ_EYE_CHAMP },
+    { TRAINER_CLASS_MAID,                    SEQ_EYE_FUN }
 };
+// clang-format on
 
 void sub_020553DC(void);
-u16 sub_02055428(FieldSystem *fieldSystem, int param1);
-u16 sub_020554A4(FieldSystem *fieldSystem, int param1);
-static u16 sub_020554E8(FieldSystem *fieldSystem, int param1);
+static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID);
 BOOL sub_02055554(FieldSystem *fieldSystem, u16 param1, int param2);
 static void sub_020555CC(FieldSystem *fieldSystem, int param1, int *param2, int *param3);
-u16 sub_0205560C(int param0);
 
 void sub_020553DC()
 {
     Sound_StopWaveOutAndSequences();
     Sound_ClearBGMPauseFlags();
-    Sound_SetScene(0);
+    Sound_SetScene(SOUND_SCENE_NONE);
 }
 
 void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 sdatID)
@@ -137,71 +137,68 @@ void Sound_ClearSpecialBGM(FieldSystem *fieldSystem)
     *bgm = 0;
 }
 
-u16 sub_02055428(FieldSystem *fieldSystem, int param1)
+u16 Sound_GetOverrideBGM(FieldSystem *fieldSystem, enum MapHeader mapID)
 {
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
-    int v1;
-    u16 v2, v3;
+    int playerState = PlayerAvatar_GetPlayerState(playerAvatar);
 
-    v1 = PlayerAvatar_GetPlayerState(playerAvatar);
-
-    if (v1 == 0x2) {
-        switch (param1) {
-        case 573:
-        case 574:
-        case 575:
-        case 576:
-        case 577:
-        case 579:
-        case 580:
-        case 581:
-        case 582:
-        case 583:
+    if (playerState == PLAYER_STATE_SURFING) {
+        switch (mapID) {
+        case MAP_HEADER_DISTORTION_WORLD_1F:
+        case MAP_HEADER_DISTORTION_WORLD_B1F:
+        case MAP_HEADER_DISTORTION_WORLD_B2F:
+        case MAP_HEADER_DISTORTION_WORLD_B3F:
+        case MAP_HEADER_DISTORTION_WORLD_B4F:
+        case MAP_HEADER_DISTORTION_WORLD_B5F:
+        case MAP_HEADER_DISTORTION_WORLD_B6F:
+        case MAP_HEADER_DISTORTION_WORLD_B7F:
+        case MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM:
+        case MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM:
             break;
         default:
-            return 1151;
+            return SEQ_NAMINORI;
         }
     }
 
-    if (GetRadarChainActive(fieldSystem->chain) == 1) {
-        return 1150;
+    if (GetRadarChainActive(fieldSystem->chain) == TRUE) {
+        return SEQ_POKERADAR;
     }
 
-    v2 = sub_020554A4(fieldSystem, param1);
+    u16 bgmID = Sound_GetBGMByMapID(fieldSystem, mapID);
 
-    if (Sound_GetSpecialBGM(fieldSystem) != 0) {
-        v2 = Sound_GetSpecialBGM(fieldSystem);
+    if (Sound_GetSpecialBGM(fieldSystem) != SEQ_NONE) {
+        bgmID = Sound_GetSpecialBGM(fieldSystem);
     }
 
-    return v2;
+    return bgmID;
 }
 
-u16 sub_020554A4(FieldSystem *fieldSystem, int headerID)
+u16 Sound_GetBGMByMapID(FieldSystem *fieldSystem, int mapID)
 {
     u16 sdatID;
 
     if (IsNight() == FALSE) {
-        sdatID = MapHeader_GetDayMusicID(headerID);
+        sdatID = MapHeader_GetDayMusicID(mapID);
     } else {
-        sdatID = MapHeader_GetNightMusicID(headerID);
+        sdatID = MapHeader_GetNightMusicID(mapID);
     }
 
-    u16 v1 = SystemFlag_GetAltMusicForHeader(SaveData_GetVarsFlags(fieldSystem->saveData), headerID);
+    u16 altSdatID = SystemFlag_GetAltMusicForHeader(SaveData_GetVarsFlags(fieldSystem->saveData), mapID);
 
-    if (v1 != 0) {
-        sdatID = v1;
+    if (altSdatID != SEQ_NONE) {
+        sdatID = altSdatID;
     }
 
-    v1 = sub_020554E8(fieldSystem, headerID);
+    altSdatID = FieldSystem_GetAltMusicForCyclingRoad(fieldSystem, mapID);
 
-    if (v1 != 0) {
-        sdatID = v1;
+    if (altSdatID != SEQ_NONE) {
+        sdatID = altSdatID;
     }
 
     return sdatID;
 }
 
-static u16 sub_020554E8(FieldSystem *fieldSystem, int param1)
+static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID)
 {
     int x, y;
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
@@ -210,8 +207,8 @@ static u16 sub_020554E8(FieldSystem *fieldSystem, int param1)
     x = Player_GetXPos(fieldSystem->playerAvatar);
     y = Player_GetZPos(fieldSystem->playerAvatar);
 
-    if (param1 != 350) {
-        return 0;
+    if (headerID != MAP_HEADER_ROUTE_206) {
+        return SEQ_NONE;
     }
 
     if ((location->mapId == 80) || (location->mapId == 351)) {
@@ -224,36 +221,36 @@ static u16 sub_020554E8(FieldSystem *fieldSystem, int param1)
         }
 
         if ((y == 576) || (y == 681)) {
-            return 1189;
+            return SEQ_PL_BICYCLE;
         }
     }
 
     return 0;
 }
 
-BOOL sub_02055554(FieldSystem *fieldSystem, u16 param1, int param2)
+BOOL sub_02055554(FieldSystem *fieldSystem, u16 bgmID, int param2)
 {
     PlayerAvatar *playerAvatar;
-    int v1, v2, v3;
+    int v1, v2, playerState;
 
     playerAvatar = fieldSystem->playerAvatar;
-    v3 = PlayerAvatar_GetPlayerState(playerAvatar);
+    playerState = PlayerAvatar_GetPlayerState(playerAvatar);
 
     if (Sound_IsBGMFixed() == 1) {
         return 0;
     }
 
-    if (param1 == Sound_GetCurrentBGM1(fieldSystem)) {
+    if (bgmID == Sound_GetCurrentBGM1(fieldSystem)) {
         return 0;
     }
 
     Sound_ClearBGMPauseFlags();
     sub_020555CC(fieldSystem, param2, &v1, &v2);
 
-    if ((v3 == 0x1) || (v3 == 0x1)) {
-        Sound_FadeToBGM(4, param1, v1, v2, 30, 0, NULL);
+    if ((playerState == PLAYER_STATE_CYCLING) || (playerState == PLAYER_STATE_CYCLING)) { // Yes, it's checking bike twice. Maybe there was a point were Acro and Mach Bikes were still a thing?
+        Sound_FadeToBGM(4, bgmID, v1, v2, 30, 0, NULL);
     } else {
-        Sound_FadeOutAndPlayBGM(4, param1, v1, v2, 0, NULL);
+        Sound_FadeOutAndPlayBGM(4, bgmID, v1, v2, 0, NULL);
     }
 
     return 1;
@@ -281,52 +278,52 @@ static void sub_020555CC(FieldSystem *fieldSystem, int param1, int *param2, int 
     }
 }
 
-u16 sub_0205560C(int param0)
+u16 Trainer_GetEncounterBGM(enum TrainerID trainerID)
 {
-    u8 v0 = (u8)Trainer_LoadParam(param0, 1);
-    u16 i, v1 = 1101;
+    u8 class = (u8)Trainer_LoadParam(trainerID, TRDATA_CLASS);
+    u16 i, bgmID = SEQ_EYE_KID;
 
-    for (i = 0; i < 79; i++) {
-        if (Unk_020EC3E0[i][0] == v0) {
-            v1 = Unk_020EC3E0[i][1];
+    for (i = 0; i < NELEMS(sTrainerEncounterBGMs); i++) {
+        if (sTrainerEncounterBGMs[i][0] == class) {
+            bgmID = sTrainerEncounterBGMs[i][1];
             break;
         }
     }
 
-    return v1;
+    return bgmID;
 }
 
-void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int param1)
+void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int mapID)
 {
     if (Sound_IsBGMFixed() == 1) {
         return;
     }
 
-    if (Sound_GetCurrentBGM() != sub_020554A4(fieldSystem, param1)) {
+    if (Sound_GetCurrentBGM() != Sound_GetBGMByMapID(fieldSystem, mapID)) {
         Sound_FadeOutBGM(0, 40);
     }
 }
 
-void Sound_PlayMapBGM(FieldSystem *fieldSystem, int param1)
+void Sound_PlayMapBGM(FieldSystem *fieldSystem, int mapID)
 {
-    u16 v0;
+    u16 bgmID;
 
     if (Sound_IsBGMFixed() == 1) {
         return;
     }
 
-    Sound_SetScene(0);
+    Sound_SetScene(SOUND_SCENE_NONE);
 
-    v0 = sub_020554A4(fieldSystem, param1);
+    bgmID = Sound_GetBGMByMapID(fieldSystem, mapID);
 
-    Sound_SetFieldBGM(v0);
-    Sound_SetSceneAndPlayBGM(4, v0, 1);
+    Sound_SetFieldBGM(bgmID);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
 }
 
-void sub_020556A0(FieldSystem *fieldSystem, int param1)
+void sub_020556A0(FieldSystem *fieldSystem, int mapID)
 {
-    u16 v0 = sub_02055428(fieldSystem, param1);
+    u16 bgmID = Sound_GetOverrideBGM(fieldSystem, mapID);
 
-    Sound_SetFieldBGM(sub_020554A4(fieldSystem, param1));
-    Sound_SetSceneAndPlayBGM(4, v0, 1);
+    Sound_SetFieldBGM(Sound_GetBGMByMapID(fieldSystem, mapID));
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
 }

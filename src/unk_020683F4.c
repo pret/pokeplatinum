@@ -65,6 +65,7 @@
 #include "vars_flags.h"
 
 #include "constdata/const_020F1E88.h"
+#include "res/text/bank/location_names.h"
 
 typedef void *(*UnkFuncPtr_02068870)(void *);
 
@@ -408,7 +409,7 @@ static BOOL sub_02068750(UnkStruct_02068870 *param0)
 
 static u32 sub_0206877C(const UnkStruct_020684D0 *param0)
 {
-    if (MapHeader_GetMapLabelTextID(param0->unk_00) == 0) {
+    if (MapHeader_GetMapLabelTextID(param0->unk_00) == LocationNames_Text_MysteryZone) {
         return -1;
     }
 
@@ -488,7 +489,7 @@ static BOOL sub_02068884(FieldTask *task)
 
             Sound_SetSpecialBGM(fieldSystem, 0);
             sub_02055554(
-                fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
+                fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
         } else {
             Sound_SetSpecialBGM(fieldSystem, 1152);
             sub_02055554(fieldSystem, 1152, 1);

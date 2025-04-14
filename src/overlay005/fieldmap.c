@@ -427,7 +427,7 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     sub_0206184C(fieldSystem->mapObjMan, mapId, v0, objEventCount, objEventList);
 
     RadarChain_Clear(fieldSystem->chain);
-    sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
+    sub_02055554(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
     sub_0203A418(fieldSystem);
 
     if (fieldSystem->unk_04->unk_0C != NULL) {
@@ -471,7 +471,7 @@ void ov5_021D12D0(FieldSystem *fieldSystem, u32 param1)
 
     sub_0206184C(fieldSystem->mapObjMan, mapId, param1, objEventCount, objEventList);
 
-    sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
+    sub_02055554(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
     sub_0203A418(fieldSystem);
 
     if (fieldSystem->unk_04->unk_0C != NULL) {
