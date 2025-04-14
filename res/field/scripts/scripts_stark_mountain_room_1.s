@@ -79,7 +79,7 @@ _0014:
     RemoveObject 4
     RemoveObject 15
     RemoveObject 16
-    SetVar 0x40AD, 1
+    SetVar VAR_UNK_0x40AD, 1
     ReleaseAll
     End
 

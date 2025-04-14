@@ -15,7 +15,7 @@ _001A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40B6, 9, _00B2
+    GoToIfGe VAR_UNK_0x40B6, 9, _00B2
     GoToIfSet FLAG_UNK_0x0113, _0164
     GoToIfSet FLAG_UNK_0x0079, _007E
     Message 0
@@ -152,21 +152,21 @@ _0159:
     End
 
 _0164:
-    GoToIfEq 0x40B6, 0, _01DF
-    GoToIfEq 0x40B6, 1, _023D
-    GoToIfEq 0x40B6, 2, _029B
-    GoToIfEq 0x40B6, 3, _02D9
-    GoToIfEq 0x40B6, 4, _0347
-    GoToIfEq 0x40B6, 5, _03D9
-    GoToIfEq 0x40B6, 6, _0448
-    GoToIfEq 0x40B6, 7, _04A9
-    GoToIfEq 0x40B6, 8, _050A
+    GoToIfEq VAR_UNK_0x40B6, 0, _01DF
+    GoToIfEq VAR_UNK_0x40B6, 1, _023D
+    GoToIfEq VAR_UNK_0x40B6, 2, _029B
+    GoToIfEq VAR_UNK_0x40B6, 3, _02D9
+    GoToIfEq VAR_UNK_0x40B6, 4, _0347
+    GoToIfEq VAR_UNK_0x40B6, 5, _03D9
+    GoToIfEq VAR_UNK_0x40B6, 6, _0448
+    GoToIfEq VAR_UNK_0x40B6, 7, _04A9
+    GoToIfEq VAR_UNK_0x40B6, 8, _050A
     GoTo _00B2
 
 _01DF:
     GoToIfUnset FLAG_UNK_0x0111, _00BD
     GoToIfUnset FLAG_ENTERED_UNDERGROUND, _0122
-    SetVar 0x40B6, 1
+    SetVar VAR_UNK_0x40B6, 1
     ClearFlag FLAG_UNK_0x0111
     Message 6
     SetVar 0x8004, 1
@@ -187,7 +187,7 @@ _01DF:
 _023D:
     GoToIfUnset FLAG_UNK_0x0111, _00CC
     GoToIfUnset FLAG_DIGGING_FOR_FOSSILS, _012D
-    SetVar 0x40B6, 2
+    SetVar VAR_UNK_0x40B6, 2
     ClearFlag FLAG_UNK_0x0111
     Message 10
     SetVar 0x8004, 1
@@ -208,7 +208,7 @@ _023D:
 _029B:
     GoToIfUnset FLAG_UNK_0x0111, _00DB
     GoToIfUnset FLAG_SPHERE_ACQUIRED, _0138
-    SetVar 0x40B6, 3
+    SetVar VAR_UNK_0x40B6, 3
     ClearFlag FLAG_UNK_0x0111
     Message 14
     SetVar 0x8004, 33
@@ -223,7 +223,7 @@ _029B:
 _02D9:
     GoToIfUnset FLAG_UNK_0x0111, _00EA
     GoToIfUnset FLAG_CREATED_SECRET_BASE, _0143
-    SetVar 0x40B6, 4
+    SetVar VAR_UNK_0x40B6, 4
     ClearFlag FLAG_UNK_0x0111
     Message 18
     SetVar 0x8004, 11
@@ -247,7 +247,7 @@ _02D9:
 _0347:
     GoToIfUnset FLAG_UNK_0x0111, _00F9
     GoToIfUnset FLAG_DECORATED_SECRET_BASE, _014E
-    SetVar 0x40B6, 5
+    SetVar VAR_UNK_0x40B6, 5
     ClearFlag FLAG_UNK_0x0111
     ClearFlag FLAG_UNK_0x00FC
     Message 22
@@ -292,7 +292,7 @@ _03D9:
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _056B
     CallCommonScript 0x7FE
-    SetVar 0x40B6, 6
+    SetVar VAR_UNK_0x40B6, 6
     ClearFlag FLAG_UNK_0x0111
     ClearFlag FLAG_UNK_0x00FC
     Message 28
@@ -315,7 +315,7 @@ _0448:
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _056B
     CallCommonScript 0x7DC
-    SetVar 0x40B6, 7
+    SetVar VAR_UNK_0x40B6, 7
     ClearFlag FLAG_UNK_0x00FC
     CloseMessage
     ReleaseAll
@@ -335,7 +335,7 @@ _04A9:
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _056B
     CallCommonScript 0x7DC
-    SetVar 0x40B6, 8
+    SetVar VAR_UNK_0x40B6, 8
     ClearFlag FLAG_UNK_0x00FC
     CloseMessage
     ReleaseAll
@@ -355,7 +355,7 @@ _050A:
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _056B
     CallCommonScript 0x7DC
-    SetVar 0x40B6, 9
+    SetVar VAR_UNK_0x40B6, 9
     ClearFlag FLAG_UNK_0x00FC
     CloseMessage
     ReleaseAll

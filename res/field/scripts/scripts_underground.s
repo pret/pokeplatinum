@@ -35,7 +35,7 @@ _001A:
     End
 
 _00BE:
-    GoToIfEq 0x40D0, 0, _00CD
+    GoToIfEq VAR_UNK_0x40D0, 0, _00CD
     End
 
 _00CD:
@@ -181,7 +181,7 @@ _0289:
     ApplyMovement 16, _02F0
     WaitMovement
     RemoveObject 16
-    SetVar 0x40D0, 1
+    SetVar VAR_UNK_0x40D0, 1
     SetFlag FLAG_UNDERGROUND_FIRST_ENTERED
     End
 

@@ -12,7 +12,7 @@
 
 _0016:
     SetVar VAR_0x4000, 0x409E
-    CallIfGe 0x409E, 1, _0031
+    CallIfGe VAR_UNK_0x409E, 1, _0031
     Call _0037
     End
 
@@ -27,7 +27,7 @@ _0037:
     ScrCmd_22D 2, VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _0083
     GoToIfUnset FLAG_MESPRIT_CAUGHT, _0083
-    GoToIfNe 0x409E, 1, _0083
+    GoToIfNe VAR_UNK_0x409E, 1, _0083
     ClearFlag FLAG_UNK_0x01DD
     Return
 
@@ -104,7 +104,7 @@ _00E6:
     PlayFanfare SEQ_SE_CONFIRM
     WaitFanfare SEQ_SE_CONFIRM
     CallIfUnset FLAG_UNK_0x00D7, _0174
-    SetVar 0x409E, 2
+    SetVar VAR_UNK_0x409E, 2
     PlayCry SPECIES_HEATRAN
     Message 15
     CloseMessage
@@ -133,7 +133,7 @@ _015D:
     End
 
 _0168:
-    SetVar 0x409E, 1
+    SetVar VAR_UNK_0x409E, 1
     BlackOutFromBattle
     ReleaseAll
     End
@@ -268,10 +268,10 @@ _019C:
     BufferPlayerName 0
     Message 14
     CloseMessage
-    SetVar 0x40A0, 2
+    SetVar VAR_UNK_0x40A0, 2
     SetFlag FLAG_UNK_0x01DB
     SetFlag FLAG_UNK_0x0231
-    SetVar 0x409E, 1
+    SetVar VAR_UNK_0x409E, 1
     SetFlag FLAG_ARRESTED_CHARON_STARK_MOUNTAIN
     ClearFlag FLAG_UNK_0x01A3
     ClearFlag FLAG_UNK_0x01D9

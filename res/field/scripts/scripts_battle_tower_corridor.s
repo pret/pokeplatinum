@@ -11,7 +11,7 @@ _000E:
     End
 
 _0010:
-    CallIfNe 0x40DC, 0, _001F
+    CallIfNe VAR_UNK_0x40DC, 0, _001F
     End
 
 _001F:

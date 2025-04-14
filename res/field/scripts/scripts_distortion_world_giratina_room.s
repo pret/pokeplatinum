@@ -43,7 +43,7 @@ _0061:
     Message 14
     CloseMessage
     EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
-    SetVar 0x40AA, 1
+    SetVar VAR_UNK_0x40AA, 1
     PlayFanfare SEQ_SE_PL_SYUWA
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

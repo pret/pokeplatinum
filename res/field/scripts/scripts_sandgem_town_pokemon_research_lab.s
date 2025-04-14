@@ -21,8 +21,8 @@
     ScriptEntryEnd
 
 _003E:
-    CallIfEq 0x40A6, 2, _005A
-    CallIfEq 0x40A6, 3, _005A
+    CallIfEq VAR_UNK_0x40A6, 2, _005A
+    CallIfEq VAR_UNK_0x40A6, 3, _005A
     End
 
 _005A:
@@ -46,7 +46,7 @@ _008C:
     End
 
 _00AF:
-    SetVar 0x40AA, 3
+    SetVar VAR_UNK_0x40AA, 3
     Return
 
 _00B7:
@@ -56,7 +56,7 @@ _00B7:
     ScrCmd_1E8 0x800C
     GoToIfEq 0x800C, 1, _060E
 _00E5:
-    GoToIfGe 0x4071, 2, _0100
+    GoToIfGe VAR_UNK_0x4071, 2, _0100
     BufferPlayerName 0
     Message 18
     WaitABXPadPress
@@ -78,7 +78,7 @@ _0106:
 
 _0114:
     LockAll
-    CallIfEq 0x40AA, 2, _00AF
+    CallIfEq VAR_UNK_0x40AA, 2, _00AF
     BufferPlayerName 1
     Message 51
     CloseMessage
@@ -112,7 +112,7 @@ _016A:
     ClearFlag FLAG_MESPRIT_DISAPPEARED
     ClearFlag FLAG_AZELF_DISAPPEARED
     ClearFlag FLAG_UXIE_DISAPPEARED
-    SetVar 0x40A6, 3
+    SetVar VAR_UNK_0x40A6, 3
     ReleaseAll
     End
 
@@ -309,7 +309,7 @@ _044D:
     WaitMovement
     RemoveObject 3
     ClearFlag FLAG_UNK_0x0177
-    SetVar 0x40A6, 1
+    SetVar VAR_UNK_0x40A6, 1
     ReleaseAll
     End
 
@@ -575,7 +575,7 @@ _0677:
     WaitMovement
     Message 35
     CallIfSet FLAG_GAME_COMPLETED, _07A2
-    CallIfGe 0x4081, 2, _079C
+    CallIfGe VAR_UNK_0x4081, 2, _079C
     ScrCmd_22D 1, 0x800C
     BufferPlayerName 0
     PlaySound SEQ_FANFA4
@@ -738,7 +738,7 @@ _0898:
 
 _08A0:
     SetVar 0x8006, 0
-    GoToIfEq 0x40A6, 3, _08B5
+    GoToIfEq VAR_UNK_0x40A6, 3, _08B5
     Return
 
 _08B5:

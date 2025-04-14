@@ -73,7 +73,7 @@ _00B6:
     CloseMessage
     ApplyMovement 0, _00F0
     WaitMovement
-    SetVar 0x40D1, 1
+    SetVar VAR_UNK_0x40D1, 1
     ReleaseAll
     End
 

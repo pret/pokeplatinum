@@ -15,7 +15,7 @@
 
 _0022:
     SetFlag FLAG_UNK_0x09C3
-    GoToIfGe 0x4089, 2, _0035
+    GoToIfGe VAR_UNK_0x4089, 2, _0035
     End
 
 _0035:
@@ -37,7 +37,7 @@ _005F:
     ApplyMovement LOCALID_PLAYER, _00A0
     WaitMovement
     RemoveObject 0
-    SetVar 0x40CF, 1
+    SetVar VAR_UNK_0x40CF, 1
     ReleaseAll
     End
 
@@ -114,7 +114,7 @@ _0107:
     RemoveObject 4
     SetFlag FLAG_UNK_0x01A2
     ClearFlag FLAG_UNK_0x017F
-    SetVar 0x4089, 2
+    SetVar VAR_UNK_0x4089, 2
     SetFlag FLAG_UNK_0x0AA8
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -189,7 +189,7 @@ _0297:
     CloseMessage
     SetVar 0x411E, 1
     ClearFlag FLAG_UNK_0x01FA
-    SetVar 0x40CF, 2
+    SetVar VAR_UNK_0x40CF, 2
     SetFlag FLAG_ALT_MUSIC_VALLEY_WINDWORKS_BUILDING
     ReleaseAll
     End
@@ -289,7 +289,7 @@ _037C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40CF, 3, _039C
+    GoToIfGe VAR_UNK_0x40CF, 3, _039C
     Message 11
     WaitABXPadPress
     CloseMessage
@@ -307,7 +307,7 @@ _03A7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40CF, 3, _03C7
+    GoToIfGe VAR_UNK_0x40CF, 3, _03C7
     Message 10
     WaitABXPadPress
     CloseMessage
@@ -332,7 +332,7 @@ _03DA:
 _03E2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe 0x40AA, 2, _0400
+    GoToIfGe VAR_UNK_0x40AA, 2, _0400
     Message 14
     GoTo _040B
     End

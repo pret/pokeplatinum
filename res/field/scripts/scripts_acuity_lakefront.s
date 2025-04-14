@@ -57,7 +57,7 @@ _009A:
     ApplyMovement 241, _00F0
     WaitMovement
     ScrCmd_067
-    SetVar 0x4084, 1
+    SetVar VAR_UNK_0x4084, 1
     ReleaseAll
     End
 

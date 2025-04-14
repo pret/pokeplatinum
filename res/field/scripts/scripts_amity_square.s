@@ -174,7 +174,7 @@ _0299:
     HealParty
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    SetVar 0x409D, VAR_0x400A
+    SetVar VAR_UNK_0x409D, VAR_0x400A
     GetPartyMonSpecies VAR_0x400A, 0x409A
     GoTo _0E48
     End
@@ -190,7 +190,7 @@ _02C9:
     CallIfEq 0x8001, 2, _0338
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x4099, 1
+    SetVar VAR_UNK_0x4099, 1
     ClearAmitySquareStepCount
     Call _03DC
     ScrCmd_27C 0, 0x409D
@@ -260,7 +260,7 @@ _037D:
 _0389:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x4099, 0
+    SetVar VAR_UNK_0x4099, 0
     Message 6
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
@@ -310,11 +310,11 @@ _03DC:
     End
 
 _040A:
-    SetVar 0x409B, 0
+    SetVar VAR_UNK_0x409B, 0
     Return
 
 _0412:
-    SetVar 0x409B, 1
+    SetVar VAR_UNK_0x409B, 1
     Return
 
 _041A:
@@ -331,39 +331,39 @@ _041A:
     End
 
 _0490:
-    SetVar 0x409F, ITEM_MAGOST_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_MAGOST_BERRY
     Return
 
 _0498:
-    SetVar 0x409F, ITEM_CORNN_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_CORNN_BERRY
     Return
 
 _04A0:
-    SetVar 0x409F, ITEM_RABUTA_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_RABUTA_BERRY
     Return
 
 _04A8:
-    SetVar 0x409F, ITEM_NOMEL_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_NOMEL_BERRY
     Return
 
 _04B0:
-    SetVar 0x409F, ITEM_SPELON_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_SPELON_BERRY
     Return
 
 _04B8:
-    SetVar 0x409F, ITEM_PAMTRE_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_PAMTRE_BERRY
     Return
 
 _04C0:
-    SetVar 0x409F, ITEM_WATMEL_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_WATMEL_BERRY
     Return
 
 _04C8:
-    SetVar 0x409F, ITEM_DURIN_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_DURIN_BERRY
     Return
 
 _04D0:
-    SetVar 0x409F, ITEM_BELUE_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_BELUE_BERRY
     Return
 
 _04D8:
@@ -429,12 +429,12 @@ _05BE:
 _05DD:
     BufferPartyMonNickname 0, 0x409D
     PlayCry 0x409A
-    GoToIfEq 0x409A, SPECIES_GROTLE, _0719
-    GoToIfEq 0x409A, SPECIES_TORTERRA, _0719
-    GoToIfEq 0x409A, SPECIES_MONFERNO, _0719
-    GoToIfEq 0x409A, SPECIES_INFERNAPE, _0719
-    GoToIfEq 0x409A, SPECIES_PRINPLUP, _0719
-    GoToIfEq 0x409A, SPECIES_EMPOLEON, _0719
+    GoToIfEq VAR_UNK_0x409A, SPECIES_GROTLE, _0719
+    GoToIfEq VAR_UNK_0x409A, SPECIES_TORTERRA, _0719
+    GoToIfEq VAR_UNK_0x409A, SPECIES_MONFERNO, _0719
+    GoToIfEq VAR_UNK_0x409A, SPECIES_INFERNAPE, _0719
+    GoToIfEq VAR_UNK_0x409A, SPECIES_PRINPLUP, _0719
+    GoToIfEq VAR_UNK_0x409A, SPECIES_EMPOLEON, _0719
     GetRandom 0x800C, 9
     GoToIfEq 0x800C, 0, _06AC
     GoToIfEq 0x800C, 1, _06B7
@@ -1409,7 +1409,7 @@ _1732:
 
 _174A:
     LockAll
-    SetVar 0x40AC, 0
+    SetVar VAR_UNK_0x40AC, 0
     ReleaseAll
     End
 

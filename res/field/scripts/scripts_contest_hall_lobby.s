@@ -48,7 +48,7 @@ _002E:
     ApplyMovement LOCALID_PLAYER, _01DC
     WaitMovement
     RemoveObject 6
-    SetVar 0x40F7, 1
+    SetVar VAR_UNK_0x40F7, 1
     ApplyMovement 5, _0190
     ApplyMovement LOCALID_PLAYER, _01E4
     WaitMovement

@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    CallIfNe 0x40DB, 0, _008A
+    CallIfNe VAR_UNK_0x40DB, 0, _008A
     ScrCmd_1DD 43, 0, VAR_0x400A
     Call _008E
     CallIfEq VAR_0x400A, 2, _009E

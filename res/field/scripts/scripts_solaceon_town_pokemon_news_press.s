@@ -15,7 +15,7 @@ _000E:
     GoToIfSet FLAG_UNK_0x00DC, _0216
     GoToIfSet FLAG_UNK_0x0AB1, _02B0
     GoToIfUnset FLAG_UNK_0x00D8, _004A
-    GoToIfEq 0x40E5, 0, _0057
+    GoToIfEq VAR_UNK_0x40E5, 0, _0057
     GoTo _0081
 
 _004A:
@@ -29,7 +29,7 @@ _0057:
 
 _0060:
     ScrCmd_218 0x800C
-    SetVar 0x40E5, 0x800C
+    SetVar VAR_UNK_0x40E5, 0x800C
     SetNewsPressDeadline 1
     BufferSpeciesNameFromVar 0, 0x40E5, 0, 0
     Message 2
@@ -123,7 +123,7 @@ _01E9:
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
     ClearFlag FLAG_UNK_0x00DC
-    SetVar 0x40E5, 0
+    SetVar VAR_UNK_0x40E5, 0
     SetFlag FLAG_UNK_0x0AB1
     Message 5
     WaitABXPadPress
@@ -154,7 +154,7 @@ _0251:
 _025C:
     Message 7
     ClearFlag FLAG_UNK_0x00DC
-    SetVar 0x40E5, 0
+    SetVar VAR_UNK_0x40E5, 0
     CallCommonScript 0x7FC
     SetVar 0x8004, 93
     SetVar 0x8005, 1
@@ -175,7 +175,7 @@ _0283:
 
 _029F:
     Message 9
-    SetVar 0x40E5, 0
+    SetVar VAR_UNK_0x40E5, 0
     WaitABXPadPress
     CloseMessage
     ReleaseAll

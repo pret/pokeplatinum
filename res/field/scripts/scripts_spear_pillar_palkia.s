@@ -32,7 +32,7 @@ _0075:
 _0077:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe 0x40C5, 1, _00F4
+    GoToIfGe VAR_UNK_0x40C5, 1, _00F4
     GoToIfSet FLAG_UNK_0x00D1, _00F4
     Message 0
     ShowYesNoMenu 0x800C
@@ -44,7 +44,7 @@ _0077:
     StartLegendaryBattle SPECIES_PALKIA, 70
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _00E8
-    SetVar 0x40C5, 1
+    SetVar VAR_UNK_0x40C5, 1
     CheckDidNotCapture 0x800C
     CallIfEq 0x800C, FALSE, _00EE
     ReleaseAll

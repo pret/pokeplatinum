@@ -180,8 +180,8 @@ _0184:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 2
     ScrCmd_04A 0x603
-    SetVar 0x4078, 4
-    SetVar 0x40B2, 2
+    SetVar VAR_UNK_0x4078, 4
+    SetVar VAR_UNK_0x40B2, 2
     SetFlag FLAG_UNK_0x00A8
     SetFlag FLAG_UNK_0x01AE
     ClearFlag FLAG_UNK_0x01B3

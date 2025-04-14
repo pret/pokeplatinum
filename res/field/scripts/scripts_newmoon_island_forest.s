@@ -50,7 +50,7 @@ _0079:
     SetFlag FLAG_UNK_0x0158
 _00BC:
     SetFlag FLAG_UNK_0x0241
-    GoToIfEq 0x40F8, 2, _00E3
+    GoToIfEq VAR_UNK_0x40F8, 2, _00E3
     Message 3
     WaitABXPadPress
     CloseMessage

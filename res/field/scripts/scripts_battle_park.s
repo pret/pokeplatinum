@@ -64,8 +64,8 @@ _0032:
     Message 4
     CloseMessage
     WaitTime 30, 0x800C
-    CallIfLt 0x409E, 1, _019E
-    CallIfGe 0x409E, 1, _01A3
+    CallIfLt VAR_UNK_0x409E, 1, _019E
+    CallIfGe VAR_UNK_0x409E, 1, _01A3
     CloseMessage
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 23, _0240

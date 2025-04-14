@@ -50,7 +50,7 @@ _0056:
     End
 
 _007A:
-    GoToIfGe 0x40EF, 1, _0098
+    GoToIfGe VAR_UNK_0x40EF, 1, _0098
     BufferPlayerName 0
     BufferRivalName 1
     Message 3

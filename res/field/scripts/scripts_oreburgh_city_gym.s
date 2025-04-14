@@ -32,11 +32,11 @@ _000E:
     SetTrainerFlag TRAINER_YOUNGSTER_JONATHON
     SetTrainerFlag TRAINER_YOUNGSTER_DARIUS
     SetFlag FLAG_UNK_0x023F
-    SetVar 0x40F0, 1
-    SetVar 0x4076, 1
-    SetVar 0x4079, 2
+    SetVar VAR_UNK_0x40F0, 1
+    SetVar VAR_UNK_0x4076, 1
+    SetVar VAR_UNK_0x4079, 2
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 47, TRAINER_LEADER_ROARK, 0, 0
-    SetVar 0x4077, 3
+    SetVar VAR_UNK_0x4077, 3
     ClearFlag FLAG_UNK_0x017A
     ClearFlag FLAG_UNK_0x019D
     ClearFlag FLAG_UNK_0x019C

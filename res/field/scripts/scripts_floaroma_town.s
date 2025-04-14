@@ -48,7 +48,7 @@ _006C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40CF, 2, _0099
+    GoToIfGe VAR_UNK_0x40CF, 2, _0099
     Message 2
     ApplyMovement 2, _00A4
     WaitMovement

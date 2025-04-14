@@ -30,9 +30,9 @@
     ScriptEntryEnd
 
 _0062:
-    CallIfEq 0x40D8, 1, _00F1
-    CallIfEq 0x40D8, 3, _00F1
-    CallIfEq 0x40D8, 0xFF, _00F1
+    CallIfEq VAR_UNK_0x40D8, 1, _00F1
+    CallIfEq VAR_UNK_0x40D8, 3, _00F1
+    CallIfEq VAR_UNK_0x40D8, 0xFF, _00F1
     ScrCmd_238 19, VAR_0x4000
     CallIfEq VAR_0x4000, 0, _0144
     CallIfNe VAR_0x4000, 0, _014A
@@ -62,7 +62,7 @@ _00F1:
     Return
 
 _00F5:
-    GoToIfNe 0x40D8, 1, _013A
+    GoToIfNe VAR_UNK_0x40D8, 1, _013A
     ScrCmd_1E0 VAR_0x4000
     GoToIfNe VAR_0x4000, 0, _013C
     GoToIfEq VAR_0x4000, 1, _013C
@@ -93,25 +93,25 @@ _014A:
     .byte 0
 
 _0158:
-    SetVar 0x40D8, 0xFF
-    SetVar 0x40DB, 1
-    SetVar 0x40DC, 1
-    SetVar 0x40D9, 1
+    SetVar VAR_UNK_0x40D8, 0xFF
+    SetVar VAR_UNK_0x40DB, 1
+    SetVar VAR_UNK_0x40DC, 1
+    SetVar VAR_UNK_0x40D9, 1
     Return
 
 _0172:
-    SetVar 0x40D8, 0xFF
-    SetVar 0x40DB, 3
-    SetVar 0x40DD, 1
-    SetVar 0x40DE, 1
-    SetVar 0x40DF, 1
+    SetVar VAR_UNK_0x40D8, 0xFF
+    SetVar VAR_UNK_0x40DB, 3
+    SetVar VAR_UNK_0x40DD, 1
+    SetVar VAR_UNK_0x40DE, 1
+    SetVar VAR_UNK_0x40DF, 1
     Return
 
 _0192:
-    SetVar 0x40D8, 0xFF
-    SetVar 0x40DB, 1
-    SetVar 0x40DC, 1
-    SetVar 0x40D9, 2
+    SetVar VAR_UNK_0x40D8, 0xFF
+    SetVar VAR_UNK_0x40DB, 1
+    SetVar VAR_UNK_0x40DC, 1
+    SetVar VAR_UNK_0x40D9, 2
     Return
 
 _01AC:
@@ -306,7 +306,7 @@ _04BE:
 
 _04EC:
     LockAll
-    SetVar 0x40D8, 0
+    SetVar VAR_UNK_0x40D8, 0
     ScrCmd_1DD 4, 0, 0x800C
     GoToIfEq 0x800C, 0, _0597
     Message 16
@@ -333,11 +333,11 @@ _0548:
     End
 
 _0577:
-    SetVar 0x40D8, 0xFF
-    SetVar 0x40DB, 2
-    SetVar 0x40DD, 1
-    SetVar 0x40DE, 2
-    SetVar 0x40DF, 0
+    SetVar VAR_UNK_0x40D8, 0xFF
+    SetVar VAR_UNK_0x40DB, 2
+    SetVar VAR_UNK_0x40DD, 1
+    SetVar VAR_UNK_0x40DE, 2
+    SetVar VAR_UNK_0x40DF, 0
     Return
 
 _0597:
@@ -398,7 +398,7 @@ _0686:
     End
 
 _06A0:
-    SetVar 0x40DB, 2
+    SetVar VAR_UNK_0x40DB, 2
     GoTo _0746
     End
 
@@ -482,13 +482,13 @@ _07B5:
     Return
 
 _07B9:
-    SetVar 0x40D8, 0
-    SetVar 0x40DB, 0
-    SetVar 0x40DC, 0
-    SetVar 0x40DD, 0
-    SetVar 0x40D9, 0
-    SetVar 0x40DE, 0
-    SetVar 0x40DF, 0
+    SetVar VAR_UNK_0x40D8, 0
+    SetVar VAR_UNK_0x40DB, 0
+    SetVar VAR_UNK_0x40DC, 0
+    SetVar VAR_UNK_0x40DD, 0
+    SetVar VAR_UNK_0x40D9, 0
+    SetVar VAR_UNK_0x40DE, 0
+    SetVar VAR_UNK_0x40DF, 0
     Return
 
 _07E5:
@@ -615,7 +615,7 @@ _09FB:
     Message 48
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _09FB
-    SetVar 0x40D8, 2
+    SetVar VAR_UNK_0x40D8, 2
     ScrCmd_1DD 39, 0, 0
     ScrCmd_1DC
     Message 56

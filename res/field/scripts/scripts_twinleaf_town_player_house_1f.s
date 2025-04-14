@@ -17,7 +17,7 @@
     ScriptEntryEnd
 
 _002E:
-    CallIfEq 0x40A4, 3, _0048
+    CallIfEq VAR_UNK_0x40A4, 3, _0048
     CallIfSet FLAG_UNK_0x008F, _005E
     End
 
@@ -44,7 +44,7 @@ _0064:
     WaitTime 15, 0x800C
     ApplyMovement 0, _00CC
     WaitMovement
-    SetVar 0x40A4, 1
+    SetVar VAR_UNK_0x40A4, 1
     ReleaseAll
     End
 
@@ -138,7 +138,7 @@ _017C:
     Message 9
     WaitABXPadPress
     CloseMessage
-    SetVar 0x40A4, 4
+    SetVar VAR_UNK_0x40A4, 4
     ReleaseAll
     End
 
@@ -169,13 +169,13 @@ _0214:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0002, _02AF
-    GoToIfGe 0x40A4, 7, _0792
-    GoToIfEq 0x40A4, 6, _035E
+    GoToIfGe VAR_UNK_0x40A4, 7, _0792
+    GoToIfEq VAR_UNK_0x40A4, 6, _035E
     GoToIfSet FLAG_UNK_0x0090, _036C
-    GoToIfGe 0x40A4, 5, _0788
-    GoToIfGe 0x40A4, 4, _0711
+    GoToIfGe VAR_UNK_0x40A4, 5, _0788
+    GoToIfGe VAR_UNK_0x40A4, 4, _0711
     GoToIfSet FLAG_UNK_0x00F8, _075A
-    GoToIfGe 0x40A4, 2, _0768
+    GoToIfGe VAR_UNK_0x40A4, 2, _0768
     GoToIfSet FLAG_UNK_0x0087, _077A
     SetFlag FLAG_UNK_0x0087
     BufferPlayerName 0
@@ -205,7 +205,7 @@ _0214:
     .byte 0
 
 _02AF:
-    GoToIfGe 0x40B2, 2, _0300
+    GoToIfGe VAR_UNK_0x40B2, 2, _0300
     GoTo _02C4
     End
 
@@ -218,7 +218,7 @@ _02C4:
     End
 
 _0300:
-    GoToIfGe 0x40AA, 2, _02C4
+    GoToIfGe VAR_UNK_0x40AA, 2, _02C4
     BufferPlayerName 0
     Message 41
     GoTo _0356
@@ -455,7 +455,7 @@ _065C:
 _0676:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
-    SetVar 0x40A4, 6
+    SetVar VAR_UNK_0x40A4, 6
     ReleaseAll
     End
 
@@ -810,7 +810,7 @@ _08EA:
     End
 
 _0904:
-    SetVar 0x40A4, 2
+    SetVar VAR_UNK_0x40A4, 2
     BufferPlayerName 0
     Message 4
     WaitABXPadPress

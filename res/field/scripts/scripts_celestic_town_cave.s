@@ -111,7 +111,7 @@ _019D:
 
 _01C3:
     ClearFlag FLAG_UNK_0x01BD
-    SetVar 0x4074, 1
+    SetVar VAR_UNK_0x4074, 1
     Message 11
     CloseMessage
     WaitTime 15, 0x800C

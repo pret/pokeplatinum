@@ -35,7 +35,7 @@
     ScriptEntryEnd
 
 _0072:
-    CallIfEq 0x407A, 4, _00B5
+    CallIfEq VAR_UNK_0x407A, 4, _00B5
     CheckItem ITEM_BICYCLE, 1, VAR_0x4000
     GoToIfEq VAR_0x4000, 1, _0096
     End
@@ -276,7 +276,7 @@ _0411:
 
 _042B:
     RemoveObject 12
-    SetVar 0x407A, 2
+    SetVar VAR_UNK_0x407A, 2
     ReleaseAll
     End
 
@@ -617,7 +617,7 @@ _0770:
     LockAll
     FacePlayer
     GoToIfUnset FLAG_UNK_0x0082, _07A5
-    GoToIfGe 0x408C, 1, _07A5
+    GoToIfGe VAR_UNK_0x408C, 1, _07A5
     Message 34
     WaitABXPadPress
     CloseMessage
@@ -887,7 +887,7 @@ _0AB6:
     ApplyMovement LOCALID_PLAYER, _0CC8
     WaitMovement
     RemoveObject 33
-    SetVar 0x407A, 1
+    SetVar VAR_UNK_0x407A, 1
     ReleaseAll
     End
 
@@ -1157,7 +1157,7 @@ _0E4B:
     Message 16
     CloseMessage
     GiveEgg SPECIES_TOGEPI, SPECIAL_METLOC_NAME_CYNTHIA
-    SetVar 0x407A, 5
+    SetVar VAR_UNK_0x407A, 5
     Return
 
 _0E67:
@@ -1198,7 +1198,7 @@ _0EB4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq 0x407A, 4, _0ECD
+    GoToIfEq VAR_UNK_0x407A, 4, _0ECD
     ReleaseAll
     End
 
@@ -1263,7 +1263,7 @@ _0FBA:
     End
 
 _0FBE:
-    SetVar 0x407A, 4
+    SetVar VAR_UNK_0x407A, 4
     Message 11
     WaitABXPadPress
     CloseMessage
@@ -1273,7 +1273,7 @@ _0FCD:
     Message 12
     WaitABXPadPress
     CloseMessage
-    SetVar 0x407A, 4
+    SetVar VAR_UNK_0x407A, 4
     Return
 
 _0FDC:

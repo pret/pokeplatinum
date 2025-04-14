@@ -251,7 +251,7 @@ _030E:
     WaitFadeScreen
     SetFlag FLAG_UNK_0x0235
     ClearFlag FLAG_UNK_0x0182
-    SetVar 0x40A9, 1
+    SetVar VAR_UNK_0x40A9, 1
     ReleaseAll
     End
 

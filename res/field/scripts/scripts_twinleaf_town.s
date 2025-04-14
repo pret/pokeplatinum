@@ -15,21 +15,21 @@
     ScriptEntryEnd
 
 _0026:
-    CallIfEq 0x40F4, 1, _004F
-    CallIfEq 0x40A4, 4, _005F
-    CallIfEq 0x40A4, 6, _0057
+    CallIfEq VAR_UNK_0x40F4, 1, _004F
+    CallIfEq VAR_UNK_0x40A4, 4, _005F
+    CallIfEq VAR_UNK_0x40A4, 6, _0057
     End
 
 _004F:
-    SetVar 0x40F4, 2
+    SetVar VAR_UNK_0x40F4, 2
     Return
 
 _0057:
-    SetVar 0x40A4, 7
+    SetVar VAR_UNK_0x40A4, 7
     Return
 
 _005F:
-    SetVar 0x40A4, 5
+    SetVar VAR_UNK_0x40A4, 5
     Return
 
 _0067:
@@ -37,7 +37,7 @@ _0067:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0090, _00A3
-    GoToIfGe 0x4095, 1, _00AE
+    GoToIfGe VAR_UNK_0x4095, 1, _00AE
     GoToIfSet FLAG_UNK_0x00EA, _00BC
     BufferPlayerName 0
     BufferRivalName 1
@@ -420,8 +420,8 @@ _04D0:
     ScrCmd_16A 77
     RemoveObject 2
     CallCommonScript 0x7FB
-    SetVar 0x4070, 1
-    SetVar 0x40E6, 1
+    SetVar VAR_UNK_0x4070, 1
+    SetVar VAR_UNK_0x40E6, 1
     ReleaseAll
     End
 
@@ -483,7 +483,7 @@ _05E7:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0090, _0612
-    GoToIfGe 0x4095, 1, _061D
+    GoToIfGe VAR_UNK_0x4095, 1, _061D
     Message 8
     WaitABXPadPress
     CloseMessage

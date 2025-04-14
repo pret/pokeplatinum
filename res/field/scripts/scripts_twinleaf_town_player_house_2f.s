@@ -16,7 +16,7 @@
     ScriptEntryEnd
 
 _002A:
-    GoToIfEq 0x40F9, 0, _0039
+    GoToIfEq VAR_UNK_0x40F9, 0, _0039
     End
 
 _0039:
@@ -25,7 +25,7 @@ _0039:
 
 _0041:
     LockAll
-    SetVar 0x40F9, 1
+    SetVar VAR_UNK_0x40F9, 1
     Message 0
     PlaySound SEQ_TV_END
     Message 1
@@ -135,7 +135,7 @@ _00E0:
     CallCommonScript 0x7FB
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_UNK_0x0173
-    SetVar 0x40A5, 1
+    SetVar VAR_UNK_0x40A5, 1
     ReleaseAll
     End
 

@@ -44,7 +44,7 @@ _0090:
     Return
 
 _00A6:
-    GoToIfEq 0x40BA, 1, _00B5
+    GoToIfEq VAR_UNK_0x40BA, 1, _00B5
     End
 
 _00B5:
@@ -82,7 +82,7 @@ _0131:
     End
 
 _013F:
-    SetVar 0x4063, 0
+    SetVar VAR_UNK_0x4063, 0
     GoTo _014D
     End
 
@@ -121,10 +121,10 @@ _01A6:
     End
 
 _01DF:
-    CallIfEq 0x4063, 0, _0215
-    CallIfEq 0x4063, 1, _0245
-    CallIfEq 0x4063, 2, _024D
-    CallIfEq 0x4063, 3, _0255
+    CallIfEq VAR_UNK_0x4063, 0, _0215
+    CallIfEq VAR_UNK_0x4063, 1, _0245
+    CallIfEq VAR_UNK_0x4063, 2, _024D
+    CallIfEq VAR_UNK_0x4063, 3, _0255
     Return
 
 _0215:
@@ -210,7 +210,7 @@ _034D:
     End
 
 _0355:
-    SetVar 0x40BA, 0
+    SetVar VAR_UNK_0x40BA, 0
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -218,21 +218,21 @@ _0355:
     End
 
 _0366:
-    SetVar 0x40BB, 0
+    SetVar VAR_UNK_0x40BB, 0
     ScrCmd_2CC 0, 1, 0x800C
     GoToIfEq 0x800C, 0, _03CF
     GoTo _03F5
     End
 
 _0389:
-    SetVar 0x40BB, 1
+    SetVar VAR_UNK_0x40BB, 1
     ScrCmd_2CC 0, 2, 0x800C
     GoToIfEq 0x800C, 0, _03E2
     GoTo _03F5
     End
 
 _03AC:
-    SetVar 0x40BB, 2
+    SetVar VAR_UNK_0x40BB, 2
     ScrCmd_2CC 0, 1, 0x800C
     GoToIfEq 0x800C, 0, _03CF
     GoTo _03F5
@@ -297,14 +297,14 @@ _04F4:
     End
 
 _04FC:
-    CallIfEq 0x40BB, 0, _0673
-    CallIfEq 0x40BB, 1, _0673
+    CallIfEq VAR_UNK_0x40BB, 0, _0673
+    CallIfEq VAR_UNK_0x40BB, 1, _0673
     SetVar VAR_0x4000, 0
     HealParty
     CallCommonScript 0x7D6
     SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 0, _034D
-    GoToIfEq 0x40BB, 2, _054A
+    GoToIfEq VAR_UNK_0x40BB, 2, _054A
     GoTo _0690
     End
 
@@ -370,13 +370,13 @@ _0636:
     ScrCmd_136
     ScrCmd_135 110
     Message 32
-    CallIfEq 0x40BB, 2, _0673
+    CallIfEq VAR_UNK_0x40BB, 2, _0673
     Call _08DB
     GoTo _0690
     End
 
 _0673:
-    SetVar 0x40BA, 0xFF
+    SetVar VAR_UNK_0x40BA, 0xFF
     Return
 
 _067B:
@@ -390,9 +390,9 @@ _068C:
     Return
 
 _0690:
-    CallIfEq 0x40BB, 0, _0730
-    CallIfEq 0x40BB, 1, _074B
-    CallIfEq 0x40BB, 2, _0766
+    CallIfEq VAR_UNK_0x40BB, 0, _0730
+    CallIfEq VAR_UNK_0x40BB, 1, _074B
+    CallIfEq VAR_UNK_0x40BB, 2, _0766
     PlayFanfare SEQ_SE_DP_KAIDAN2
     GoTo _06C3
     End
@@ -400,14 +400,14 @@ _0690:
 _06C3:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    CallIfEq 0x40BB, 0, _078C
-    CallIfEq 0x40BB, 1, _07A0
-    CallIfEq 0x40BB, 2, _07B4
+    CallIfEq VAR_UNK_0x40BB, 0, _078C
+    CallIfEq VAR_UNK_0x40BB, 1, _07A0
+    CallIfEq VAR_UNK_0x40BB, 2, _07B4
     IncrementGameRecord RECORD_UNK_058
     CreateJournalEvent LOCATION_EVENT_BATTLE_HALL, 0, 0, 0, 0
     ScrCmd_1F8
     ScrCmd_2C4 9
-    CallIfEq 0x40BB, 2, _072C
+    CallIfEq VAR_UNK_0x40BB, 2, _072C
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -466,7 +466,7 @@ _07B4:
     Return
 
 _07C8:
-    SetVar 0x40BA, 0
+    SetVar VAR_UNK_0x40BA, 0
     CallCommonScript 0x809
     End
 
@@ -568,7 +568,7 @@ _08AF:
 _08B4:
     ScrCmd_313 0
     SetVar VAR_0x4003, 1
-    SetVar 0x40BA, 0
+    SetVar VAR_UNK_0x40BA, 0
     Message 11
     Call _0673
     Call _08DB
@@ -590,8 +590,8 @@ _08ED:
     End
 
 _08FC:
-    CallIfEq 0x40BB, 0, _0938
-    CallIfEq 0x40BB, 1, _0938
+    CallIfEq VAR_UNK_0x40BB, 0, _0938
+    CallIfEq VAR_UNK_0x40BB, 1, _0938
     CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 1, _093E
     CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 3, _0955
     GoTo _034D

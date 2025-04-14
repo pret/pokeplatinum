@@ -400,7 +400,7 @@ _05F5:
 _0618:
     CloseMessage
     SetVar VAR_FOLLOWER_RIVAL_STATE, 2
-    SetVar 0x40A4, 3
+    SetVar VAR_UNK_0x40A4, 3
     WaitTime 30, 0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
@@ -1078,7 +1078,7 @@ _0CF1:
     ClearHasPartner
     SetFlag FLAG_UNK_0x0172
     SetFlag FLAG_UNK_0x0195
-    SetVar 0x4082, 4
+    SetVar VAR_UNK_0x4082, 4
     SetFlag FLAG_UNK_0x0196
     WaitTime 30, 0x800C
     FadeScreen 6, 3, 0, 0

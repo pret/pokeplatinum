@@ -198,7 +198,7 @@ _0296:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 5
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar 0x40EF, 1
+    SetVar VAR_UNK_0x40EF, 1
     ReleaseAll
     End
 

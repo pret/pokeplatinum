@@ -45,7 +45,7 @@ _0016:
     ClearFlag FLAG_UNK_0x01B8
     ClearFlag FLAG_UNK_0x01B6
     ClearFlag FLAG_UNK_0x01B7
-    SetVar 0x4078, 2
+    SetVar VAR_UNK_0x4078, 2
     SetFlag FLAG_UNK_0x0198
     Message 3
     GoTo _00BF

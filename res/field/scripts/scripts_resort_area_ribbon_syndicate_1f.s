@@ -28,7 +28,7 @@ _003F:
     WaitTime 20, 0x800C
     ScrCmd_22F 0x8004
     GoToIfLt 0x8004, 10, _0078
-    SetVar 0x40A7, 1
+    SetVar VAR_UNK_0x40A7, 1
     SetFlag FLAG_UNK_0x00FA
     BufferPlayerName 0
     Message 1

@@ -204,7 +204,7 @@ _022C:
     End
 
 _024A:
-    SetVar 0x40F1, 1
+    SetVar VAR_UNK_0x40F1, 1
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -248,7 +248,7 @@ _0294:
     CloseMessage
     ApplyMovement 4, _02FC
     WaitMovement
-    SetVar 0x4074, 2
+    SetVar VAR_UNK_0x4074, 2
     SetFlag FLAG_UNK_0x0299
     WaitTime 12, 0x800C
     Message 11

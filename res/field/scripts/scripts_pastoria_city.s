@@ -29,11 +29,11 @@
     ScriptEntryEnd
 
 _005E:
-    SetVar 0x40C7, 0
+    SetVar VAR_UNK_0x40C7, 0
     SetFlag FLAG_UNK_0x017E
-    CallIfEq 0x407C, 5, _074D
-    CallIfEq 0x407C, 4, _0721
-    CallIfEq 0x407C, 4, _0737
+    CallIfEq VAR_UNK_0x407C, 5, _074D
+    CallIfEq VAR_UNK_0x407C, 4, _0721
+    CallIfEq VAR_UNK_0x407C, 4, _0737
     GoToIfSet FLAG_UNK_0x0102, _009C
     End
 
@@ -496,8 +496,8 @@ _043E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x407C, 5, _04AE
-    GoToIfGe 0x407C, 4, _0471
+    GoToIfGe VAR_UNK_0x407C, 5, _04AE
+    GoToIfGe VAR_UNK_0x407C, 4, _0471
     BufferRivalName 0
     BufferPlayerName 1
     Message 4
@@ -587,7 +587,7 @@ _0563:
     ApplyMovement 26, _05D4
     WaitMovement
     RemoveObject 26
-    SetVar 0x407C, 2
+    SetVar VAR_UNK_0x407C, 2
     ReleaseAll
     End
 
@@ -694,7 +694,7 @@ _05E0:
     Call _0721
     ClearFlag FLAG_UNK_0x01A9
     ScrCmd_187 26, 0x260, 0, 0x32E, 1
-    SetVar 0x407C, 4
+    SetVar VAR_UNK_0x407C, 4
     ReleaseAll
     End
 
@@ -870,7 +870,7 @@ _091C:
     CallIfEq 0x8004, 0x263, _098D
     CallIfEq 0x8004, 0x264, _0981
     SetFlag FLAG_UNK_0x020D
-    SetVar 0x407C, 5
+    SetVar VAR_UNK_0x407C, 5
     SetFlag FLAG_UNK_0x0102
     BufferRivalName 0
     BufferPlayerName 1
@@ -1128,7 +1128,7 @@ _0BE0:
 _0BF0:
     LockAll
     GoToIfSet FLAG_UNK_0x0156, _0C1E
-    SetVar 0x40C7, 1
+    SetVar VAR_UNK_0x40C7, 1
     GetRandom 0x800C, 100
     GoToIfGe 0x800C, 90, _0C22
     GoTo _0C1E

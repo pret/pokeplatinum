@@ -126,7 +126,7 @@ _01E9:
 
 _01F9:
     RemoveObject 5
-    SetVar 0x4088, 1
+    SetVar VAR_UNK_0x4088, 1
     ReleaseAll
     End
 

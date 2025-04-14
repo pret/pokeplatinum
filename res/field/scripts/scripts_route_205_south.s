@@ -140,7 +140,7 @@ _0142:
 _014D:
     SetFlag FLAG_UNK_0x01A1
     SetFlag FLAG_UNK_0x0091
-    SetVar 0x4089, 1
+    SetVar VAR_UNK_0x4089, 1
     Return
 
 _015D:

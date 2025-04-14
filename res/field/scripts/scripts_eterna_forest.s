@@ -22,7 +22,7 @@ _0032:
     End
 
 _003F:
-    SetVar 0x40B1, 0
+    SetVar VAR_UNK_0x40B1, 0
     End
 
 _0047:
@@ -51,7 +51,7 @@ _008E:
     Message 1
     WaitSound
     SetFlag FLAG_UNK_0x008B
-    SetVar 0x40B1, 1
+    SetVar VAR_UNK_0x40B1, 1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -111,7 +111,7 @@ _0158:
     GoTo _0168
 
 _0168:
-    SetVar 0x40B1, 0
+    SetVar VAR_UNK_0x40B1, 0
     ReleaseAll
     End
 
@@ -211,7 +211,7 @@ _02CB:
     RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_UNK_0x00E3
-    SetVar 0x40B1, 2
+    SetVar VAR_UNK_0x40B1, 2
     ReleaseAll
     End
 
@@ -429,7 +429,7 @@ _050C:
 
 _051D:
     LockAll
-    SetVar 0x40CD, 2
+    SetVar VAR_UNK_0x40CD, 2
     ApplyMovement 0, _053C
     WaitMovement
     Message 8

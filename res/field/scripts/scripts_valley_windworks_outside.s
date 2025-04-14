@@ -17,10 +17,10 @@ _0022:
     End
 
 _0024:
-    CallIfEq 0x40CF, 2, _0082
+    CallIfEq VAR_UNK_0x40CF, 2, _0082
     CallIfSet FLAG_UNK_0x010F, _00BB
     CallIfUnset FLAG_UNK_0x010F, _00C5
-    GoToIfLt 0x4089, 2, _007C
+    GoToIfLt VAR_UNK_0x4089, 2, _007C
     GoToIfSet FLAG_UNK_0x0AA8, _007C
     GetDayOfWeek VAR_0x4000
     GoToIfNe VAR_0x4000, 5, _007C
@@ -35,7 +35,7 @@ _007C:
     End
 
 _0082:
-    SetVar 0x40CF, 3
+    SetVar VAR_UNK_0x40CF, 3
     Return
 
 _008A:

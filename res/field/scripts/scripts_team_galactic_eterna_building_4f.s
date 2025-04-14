@@ -79,7 +79,7 @@ _00E2:
     RemoveObject 2
     RemoveObject 1
     RemoveObject 3
-    SetVar 0x407A, 3
+    SetVar VAR_UNK_0x407A, 3
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetFlag FLAG_ALT_MUSIC_GALACTIC_ETERNA_BUILDING

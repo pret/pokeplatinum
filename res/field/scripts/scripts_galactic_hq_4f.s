@@ -52,7 +52,7 @@ _0074:
     ApplyMovement 0, _0124
     WaitMovement
     RemoveObject 0
-    SetVar 0x40D6, 1
+    SetVar VAR_UNK_0x40D6, 1
     ReleaseAll
     End
 

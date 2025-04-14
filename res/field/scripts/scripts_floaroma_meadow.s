@@ -115,7 +115,7 @@ _010E:
     WaitFadeScreen
     RemoveObject 0
     RemoveObject 1
-    SetVar 0x40E9, 1
+    SetVar VAR_UNK_0x40E9, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ClearFlag FLAG_UNK_0x019E

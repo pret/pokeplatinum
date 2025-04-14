@@ -18,7 +18,7 @@
     ScriptEntryEnd
 
 _0032:
-    CallIfEq 0x4071, 1, _005F
+    CallIfEq VAR_UNK_0x4071, 1, _005F
     GetPlayerGender VAR_0x4000
     GoToIfEq VAR_0x4000, GENDER_MALE, _0075
     GoToIfEq VAR_0x4000, GENDER_FEMALE, _007D
@@ -212,7 +212,7 @@ _035E:
     ScrCmd_169 77
     ScrCmd_16A 77
     RemoveObject 4
-    SetVar 0x4071, 1
+    SetVar VAR_UNK_0x4071, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB, 0, 7, 15, 0
@@ -586,7 +586,7 @@ _0772:
     WaitMovement
     CallCommonScript 0x801
     RemoveObject 4
-    SetVar 0x4071, 2
+    SetVar VAR_UNK_0x4071, 2
     ReleaseAll
     End
 

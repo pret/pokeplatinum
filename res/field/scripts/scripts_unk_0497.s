@@ -43,14 +43,14 @@ _0062:
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40DA, 2
+    SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
     ReleaseAll
     End
 
 _00A0:
     LockAll
-    SetVar 0x40DA, 2
+    SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
     ReleaseAll
     End
@@ -66,7 +66,7 @@ _00AF:
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40DA, 2
+    SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
     ReleaseAll
     End
@@ -82,7 +82,7 @@ _00ED:
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40DA, 2
+    SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
     ReleaseAll
     End
@@ -98,7 +98,7 @@ _012B:
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40DA, 2
+    SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
     ReleaseAll
     End

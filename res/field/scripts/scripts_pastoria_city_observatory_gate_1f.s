@@ -64,7 +64,7 @@ _00F2:
     GoTo _0102
 
 _0102:
-    SetVar 0x40DA, 1
+    SetVar VAR_UNK_0x40DA, 1
     ScrCmd_202 0
     ScrCmd_11B 125, 2, 5, 2, 1
     PlayFanfare SEQ_SE_DP_KAIDAN2
@@ -150,7 +150,7 @@ _01F1:
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0280
     WaitMovement
-    SetVar 0x40DA, 0
+    SetVar VAR_UNK_0x40DA, 0
     ScrCmd_202 1
     ScrCmd_31B VAR_0x4002
     GoToIfGe VAR_0x4002, 5, _021E
@@ -200,7 +200,7 @@ _0298:
     LockAll
     ApplyMovement LOCALID_PLAYER, _0280
     WaitMovement
-    SetVar 0x40DA, 0
+    SetVar VAR_UNK_0x40DA, 0
     ScrCmd_31B VAR_0x4002
     GoToIfGe VAR_0x4002, 5, _021E
     ReleaseAll

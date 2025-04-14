@@ -23,7 +23,7 @@ _0036:
     SetVar 0x800C, 7
     Call _0052
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    SetVar 0x40D5, 0
+    SetVar VAR_UNK_0x40D5, 0
     ReleaseAll
     End
 
@@ -116,14 +116,14 @@ _0148:
     End
 
 _014A:
-    CallIfEq 0x40CC, 0, _0168
-    GoToIfEq 0x40CC, 0, _0166
+    CallIfEq VAR_UNK_0x40CC, 0, _0168
+    GoToIfEq VAR_UNK_0x40CC, 0, _0166
     HidePoketch
 _0166:
     End
 
 _0168:
-    SetVar 0x40CC, 0
+    SetVar VAR_UNK_0x40CC, 0
     SetFlag FLAG_UNK_0x0201
     SetFlag FLAG_UNK_0x0202
     SetFlag FLAG_UNK_0x0203
@@ -155,7 +155,7 @@ _01BE:
     Return
 
 _01D4:
-    CallIfEq 0x40CC, 1, _01E3
+    CallIfEq VAR_UNK_0x40CC, 1, _01E3
     End
 
 _01E3:
@@ -213,7 +213,7 @@ _0253:
 
 _0291:
     ScrCmd_150
-    SetVar 0x40D5, 0
+    SetVar VAR_UNK_0x40D5, 0
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Message 11
     WaitABXPadPress
@@ -548,7 +548,7 @@ _07BC:
 
 _07F1:
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    SetVar 0x40D5, 5
+    SetVar VAR_UNK_0x40D5, 5
     ScrCmd_168 0, 0, 7, 5, 77
     Call _010D
     WaitMovement
@@ -609,7 +609,7 @@ _08CD:
     WaitFadeScreen
     ScrCmd_101
     ScrCmd_110 0x8004, 0x8005, 0x8007, VAR_0x4002
-    SetVar 0x40CC, 0
+    SetVar VAR_UNK_0x40CC, 0
     Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 28, 3, 1
     LockAll
     FadeScreen 6, 1, 1, 0
@@ -631,7 +631,7 @@ _08CD:
 
 _0947:
     ClearFlag FLAG_UNK_0x0220
-    SetVar 0x40CC, 1
+    SetVar VAR_UNK_0x40CC, 1
     Call _0D20
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ClearFlag FLAG_UNK_0x0201
@@ -768,7 +768,7 @@ _0B50:
     ScrCmd_10F 0x8004
     ScrCmd_118
     ScrCmd_0FB VAR_0x4002
-    SetVar 0x40CC, 0
+    SetVar VAR_UNK_0x40CC, 0
     GoToIfEq VAR_0x4003, 0, _0BF2
     Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 7, 3, 1
     FadeScreen 6, 1, 1, 0
@@ -776,7 +776,7 @@ _0B50:
     SetVar 0x800C, 7
     Call _0052
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    SetVar 0x40D5, 0
+    SetVar VAR_UNK_0x40D5, 0
     GoTo _0C45
 
 _0BF2:

@@ -38,9 +38,9 @@ _006B:
     End
 
 _0078:
-    GoToIfGe 0x40F8, 2, _0091
+    GoToIfGe VAR_UNK_0x40F8, 2, _0091
     ClearFlag FLAG_UNK_0x0241
-    SetVar 0x40F8, 1
+    SetVar VAR_UNK_0x40F8, 1
     End
 
 _0091:
@@ -61,7 +61,7 @@ _0093:
     PlayFanfare SEQ_SE_DP_MAZYO2
     SetFlag FLAG_UNK_0x013C
     SetFlag FLAG_UNK_0x0241
-    SetVar 0x40F8, 2
+    SetVar VAR_UNK_0x40F8, 2
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     FadeScreen 6, 3, 1, 0
@@ -112,11 +112,11 @@ _0160:
 
 _0184:
     GoToIfSet FLAG_UNK_0x0158, _0197
-    SetVar 0x40F8, 0
+    SetVar VAR_UNK_0x40F8, 0
     Return
 
 _0197:
-    SetVar 0x40F8, 3
+    SetVar VAR_UNK_0x40F8, 3
     Return
 
     .byte 0
