@@ -172,7 +172,7 @@ _0246:
 _0257:
     BufferPlayerName 0
     Message 16
-    SetVar VAR_0x8002, 0x40F2
+    SetVar VAR_0x8002, VAR_UNK_0x40F2
     GoTo _0194
 
 _0269:

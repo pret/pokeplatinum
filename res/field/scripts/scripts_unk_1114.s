@@ -939,7 +939,7 @@ _0E86:
     LockAll
     FacePlayer
     ScrCmd_0E4 VAR_0x8004
-    ScrCmd_2AD VAR_0x8001, 0x800D
+    ScrCmd_2AD VAR_0x8001, VAR_0x800D
     CallIfEq VAR_0x8001, 51, _0FE7
     CallIfEq VAR_0x8001, 52, _0FE7
     CallIfEq VAR_0x8001, 53, _0FE7
@@ -1019,7 +1019,7 @@ _0FCB:
     End
 
 _0FE7:
-    ApplyMovement 0x800D, _104C
+    ApplyMovement VAR_0x800D, _104C
     WaitMovement
     GetPlayerDir VAR_0x8000
     CallIfEq VAR_0x8000, 0, _102B
@@ -1029,19 +1029,19 @@ _0FE7:
     Return
 
 _102B:
-    ScrCmd_06D 0x800D, 15
+    ScrCmd_06D VAR_0x800D, 15
     Return
 
 _1033:
-    ScrCmd_06D 0x800D, 14
+    ScrCmd_06D VAR_0x800D, 14
     Return
 
 _103B:
-    ScrCmd_06D 0x800D, 17
+    ScrCmd_06D VAR_0x800D, 17
     Return
 
 _1043:
-    ScrCmd_06D 0x800D, 16
+    ScrCmd_06D VAR_0x800D, 16
     Return
 
     .balign 4, 0

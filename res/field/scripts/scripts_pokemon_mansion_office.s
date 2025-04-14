@@ -21,12 +21,12 @@ _001E:
 
 _004F:
     ClearFlag FLAG_UNK_0x028B
-    SetVar 0x4116, 0
+    SetVar VAR_UNK_0x4116, 0
     End
 
 _005B:
     SetFlag FLAG_UNK_0x028B
-    SetVar 0x4116, 1
+    SetVar VAR_UNK_0x4116, 1
     End
 
 _0067:

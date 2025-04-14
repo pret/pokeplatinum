@@ -23,7 +23,7 @@ _0032:
 
 _0038:
     LockAll
-    SetVar 0x4113, 1
+    SetVar VAR_UNK_0x4113, 1
     SetFlag FLAG_UNK_0x0290
     SetFlag FLAG_UNK_0x0291
     Call _02C1

@@ -72,12 +72,12 @@ _00F2:
     End
 
 _0123:
-    GetRandom 0x4063, 4
+    GetRandom VAR_UNK_0x4063, 4
     GoTo _014D
     End
 
 _0131:
-    GetRandom 0x4063, 2
+    GetRandom VAR_UNK_0x4063, 2
     GoTo _014D
     End
 
@@ -255,7 +255,7 @@ _03F5:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_2CC 4, 0x40BB, VAR_0x800C
+    ScrCmd_2CC 4, VAR_UNK_0x40BB, VAR_0x800C
     ScrCmd_2D0 VAR_0x4002, VAR_0x4005
     ReturnToField
     FadeScreen 6, 1, 1, 0
@@ -267,9 +267,9 @@ _03F5:
     GoToIfEq VAR_0x800C, 0xFF, _07C8
     GetPartyMonSpecies VAR_0x4002, VAR_0x4001
     GoToIfEq VAR_0x4001, 0, _034D
-    ScrCmd_2CC 1, 0x40BB, VAR_0x800C
+    ScrCmd_2CC 1, VAR_UNK_0x40BB, VAR_0x800C
     GoToIfEq VAR_0x800C, 0, _04F4
-    ScrCmd_2CC 2, 0x40BB, VAR_0x800C
+    ScrCmd_2CC 2, VAR_UNK_0x40BB, VAR_0x800C
     BufferSpeciesNameFromVar 0, VAR_0x800C, 0, 0
     GoToIfEq VAR_0x800C, VAR_0x4001, _04F4
     GoTo _04A2
@@ -288,7 +288,7 @@ _04A2:
     End
 
 _04E4:
-    ScrCmd_2CC 3, 0x40BB, VAR_0x800C
+    ScrCmd_2CC 3, VAR_UNK_0x40BB, VAR_0x800C
     GoTo _04F4
     End
 
@@ -423,7 +423,7 @@ _0730:
     WaitABPress
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _07D4
-    ApplyMovement 0x800D, _07FC
+    ApplyMovement VAR_0x800D, _07FC
     WaitMovement
     Return
 
@@ -432,7 +432,7 @@ _074B:
     WaitABPress
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _07D4
-    ApplyMovement 0x800D, _07FC
+    ApplyMovement VAR_0x800D, _07FC
     WaitMovement
     Return
 
@@ -443,25 +443,25 @@ _0766:
     ScrCmd_135 109
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _07E4
-    ApplyMovement 0x800D, _080C
+    ApplyMovement VAR_0x800D, _080C
     WaitMovement
     Return
 
 _078C:
     ApplyMovement LOCALID_PLAYER, _0824
-    ApplyMovement 0x800D, _0854
+    ApplyMovement VAR_0x800D, _0854
     WaitMovement
     Return
 
 _07A0:
     ApplyMovement LOCALID_PLAYER, _0824
-    ApplyMovement 0x800D, _0854
+    ApplyMovement VAR_0x800D, _0854
     WaitMovement
     Return
 
 _07B4:
     ApplyMovement LOCALID_PLAYER, _0838
-    ApplyMovement 0x800D, _0864
+    ApplyMovement VAR_0x800D, _0864
     WaitMovement
     Return
 
@@ -585,7 +585,7 @@ _08DB:
 
 _08ED:
     Message 12
-    ScrCmd_2D1 0x40BB
+    ScrCmd_2D1 VAR_UNK_0x40BB
     GoTo _034D
     End
 
@@ -756,7 +756,7 @@ _0A4F:
     LockAll
     FacePlayer
     GoToIfUnset FLAG_UNK_0x00BE, _0AD7
-    ScrCmd_324 1, 2, 3, 4, 0x4062, VAR_0x800C
+    ScrCmd_324 1, 2, 3, 4, VAR_UNK_0x4062, VAR_0x800C
     GoToIfEq VAR_0x800C, 0, _0AAD
     GoToIfEq VAR_0x800C, 2, _0AB8
     GoToIfEq VAR_0x800C, 3, _0AC9

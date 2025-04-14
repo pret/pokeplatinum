@@ -71,7 +71,7 @@ _006A:
     AddObject 5
     RemoveObject 4
     SetFlag FLAG_UNK_0x0071
-    SetVar 0x411D, 1
+    SetVar VAR_UNK_0x411D, 1
     WaitTime 30, VAR_0x800C
     Message 1
     ApplyMovement 5, _0110

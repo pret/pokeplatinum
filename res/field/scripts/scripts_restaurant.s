@@ -45,7 +45,7 @@ _0087:
     SetFlag FLAG_UNK_0x024A
     SetFlag FLAG_UNK_0x024B
     SetFlag FLAG_UNK_0x024C
-    SetVar 0x4104, 1
+    SetVar VAR_UNK_0x4104, 1
     End
 
 _00B3:
@@ -76,7 +76,7 @@ _00B3:
     ClearTrainerFlag TRAINER_BEAUTY_GABRIELLA
     ClearTrainerFlag TRAINER_SCIENTIST_EMILIO
     ClearTrainerFlag TRAINER_BREEDER_KAYLEE
-    SetVar 0x4104, 0
+    SetVar VAR_UNK_0x4104, 0
     GetRandom VAR_0x4001, 1
     SetVar VAR_0x4000, 5
     SetVar VAR_0x400A, 0x2710
@@ -101,63 +101,63 @@ _01D2:
 _01D8:
     GoToIfUnset FLAG_UNK_0x0244, _02DD
     ClearFlag FLAG_UNK_0x0244
-    GetRandom2 0x40FB, 3
+    GetRandom2 VAR_UNK_0x40FB, 3
     SubVar VAR_0x4000, 1
     Return
 
 _01F5:
     GoToIfUnset FLAG_UNK_0x0245, _02DD
     ClearFlag FLAG_UNK_0x0245
-    GetRandom2 0x40FC, 3
+    GetRandom2 VAR_UNK_0x40FC, 3
     SubVar VAR_0x4000, 1
     Return
 
 _0212:
     GoToIfUnset FLAG_UNK_0x0246, _02DD
     ClearFlag FLAG_UNK_0x0246
-    GetRandom2 0x40FD, 3
+    GetRandom2 VAR_UNK_0x40FD, 3
     SubVar VAR_0x4000, 1
     Return
 
 _022F:
     GoToIfUnset FLAG_UNK_0x0247, _02DD
     ClearFlag FLAG_UNK_0x0247
-    GetRandom2 0x40FE, 3
+    GetRandom2 VAR_UNK_0x40FE, 3
     SubVar VAR_0x4000, 1
     Return
 
 _024C:
     GoToIfUnset FLAG_UNK_0x0248, _02DD
     ClearFlag FLAG_UNK_0x0248
-    GetRandom2 0x40FF, 3
+    GetRandom2 VAR_UNK_0x40FF, 3
     SubVar VAR_0x4000, 1
     Return
 
 _0269:
     GoToIfUnset FLAG_UNK_0x0249, _02DD
     ClearFlag FLAG_UNK_0x0249
-    GetRandom2 0x4100, 3
+    GetRandom2 VAR_UNK_0x4100, 3
     SubVar VAR_0x4000, 1
     Return
 
 _0286:
     GoToIfUnset FLAG_UNK_0x024A, _02DD
     ClearFlag FLAG_UNK_0x024A
-    GetRandom2 0x4101, 3
+    GetRandom2 VAR_UNK_0x4101, 3
     SubVar VAR_0x4000, 1
     Return
 
 _02A3:
     GoToIfUnset FLAG_UNK_0x024B, _02DD
     ClearFlag FLAG_UNK_0x024B
-    GetRandom2 0x4102, 3
+    GetRandom2 VAR_UNK_0x4102, 3
     SubVar VAR_0x4000, 1
     Return
 
 _02C0:
     GoToIfUnset FLAG_UNK_0x024C, _02DD
     ClearFlag FLAG_UNK_0x024C
-    GetRandom2 0x4103, 3
+    GetRandom2 VAR_UNK_0x4103, 3
     SubVar VAR_0x4000, 1
     Return
 
@@ -196,7 +196,7 @@ _0331:
     GoToIfDefeated TRAINER_ARTIST_ISMAEL, _046C
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _04BC
-    SetVar VAR_0x8008, 0x40FB
+    SetVar VAR_0x8008, VAR_UNK_0x40FB
     GoToIfEq VAR_0x8008, 0, _038A
     GoToIfEq VAR_0x8008, 1, _03A9
     GoToIfEq VAR_0x8008, 2, _03C8
@@ -235,7 +235,7 @@ _03E7:
     SetTrainerFlag TRAINER_ARTIST_ISMAEL
     SetTrainerFlag TRAINER_BEAUTY_HARLEY
     Call _04CF
-    SetVar VAR_0x8008, 0x40FB
+    SetVar VAR_0x8008, VAR_UNK_0x40FB
     GoToIfEq VAR_0x8008, 0, _043F
     GoToIfEq VAR_0x8008, 1, _044A
     GoToIfEq VAR_0x8008, 2, _0455
@@ -270,7 +270,7 @@ _0460:
     End
 
 _046C:
-    SetVar VAR_0x8008, 0x40FB
+    SetVar VAR_0x8008, VAR_UNK_0x40FB
     GoToIfEq VAR_0x8008, 0, _049B
     GoToIfEq VAR_0x8008, 1, _04A6
     GoToIfEq VAR_0x8008, 2, _04B1
@@ -318,7 +318,7 @@ _04DB:
     GoToIfDefeated TRAINER_BEAUTY_HARLEY, _0616
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _0666
-    SetVar VAR_0x8008, 0x40FB
+    SetVar VAR_0x8008, VAR_UNK_0x40FB
     GoToIfEq VAR_0x8008, 0, _0534
     GoToIfEq VAR_0x8008, 1, _0553
     GoToIfEq VAR_0x8008, 2, _0572
@@ -357,7 +357,7 @@ _0591:
     SetTrainerFlag TRAINER_ARTIST_ISMAEL
     SetTrainerFlag TRAINER_BEAUTY_HARLEY
     Call _0679
-    SetVar VAR_0x8008, 0x40FB
+    SetVar VAR_0x8008, VAR_UNK_0x40FB
     GoToIfEq VAR_0x8008, 0, _05E9
     GoToIfEq VAR_0x8008, 1, _05F4
     GoToIfEq VAR_0x8008, 2, _05FF
@@ -392,7 +392,7 @@ _060A:
     End
 
 _0616:
-    SetVar VAR_0x8008, 0x40FB
+    SetVar VAR_0x8008, VAR_UNK_0x40FB
     GoToIfEq VAR_0x8008, 0, _0645
     GoToIfEq VAR_0x8008, 1, _0650
     GoToIfEq VAR_0x8008, 2, _065B
@@ -440,7 +440,7 @@ _0685:
     GoToIfDefeated TRAINER_RICH_BOY_ROMAN, _07C0
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _0810
-    SetVar VAR_0x8008, 0x40FC
+    SetVar VAR_0x8008, VAR_UNK_0x40FC
     GoToIfEq VAR_0x8008, 0, _06DE
     GoToIfEq VAR_0x8008, 1, _06FD
     GoToIfEq VAR_0x8008, 2, _071C
@@ -479,7 +479,7 @@ _073B:
     SetTrainerFlag TRAINER_RICH_BOY_ROMAN
     SetTrainerFlag TRAINER_LADY_KYLIE
     Call _0823
-    SetVar VAR_0x8008, 0x40FC
+    SetVar VAR_0x8008, VAR_UNK_0x40FC
     GoToIfEq VAR_0x8008, 0, _0793
     GoToIfEq VAR_0x8008, 1, _079E
     GoToIfEq VAR_0x8008, 2, _07A9
@@ -514,7 +514,7 @@ _07B4:
     End
 
 _07C0:
-    SetVar VAR_0x8008, 0x40FC
+    SetVar VAR_0x8008, VAR_UNK_0x40FC
     GoToIfEq VAR_0x8008, 0, _07EF
     GoToIfEq VAR_0x8008, 1, _07FA
     GoToIfEq VAR_0x8008, 2, _0805
@@ -562,7 +562,7 @@ _082F:
     GoToIfDefeated TRAINER_LADY_KYLIE, _096A
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _09BA
-    SetVar VAR_0x8008, 0x40FC
+    SetVar VAR_0x8008, VAR_UNK_0x40FC
     GoToIfEq VAR_0x8008, 0, _0888
     GoToIfEq VAR_0x8008, 1, _08A7
     GoToIfEq VAR_0x8008, 2, _08C6
@@ -601,7 +601,7 @@ _08E5:
     SetTrainerFlag TRAINER_RICH_BOY_ROMAN
     SetTrainerFlag TRAINER_LADY_KYLIE
     Call _09CD
-    SetVar VAR_0x8008, 0x40FC
+    SetVar VAR_0x8008, VAR_UNK_0x40FC
     GoToIfEq VAR_0x8008, 0, _093D
     GoToIfEq VAR_0x8008, 1, _0948
     GoToIfEq VAR_0x8008, 2, _0953
@@ -636,7 +636,7 @@ _095E:
     End
 
 _096A:
-    SetVar VAR_0x8008, 0x40FC
+    SetVar VAR_0x8008, VAR_UNK_0x40FC
     GoToIfEq VAR_0x8008, 0, _0999
     GoToIfEq VAR_0x8008, 1, _09A4
     GoToIfEq VAR_0x8008, 2, _09AF
@@ -684,7 +684,7 @@ _09D9:
     GoToIfDefeated TRAINER_GENTLEMAN_LEONARDO, _0B14
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _0B64
-    SetVar VAR_0x8008, 0x40FD
+    SetVar VAR_0x8008, VAR_UNK_0x40FD
     GoToIfEq VAR_0x8008, 0, _0A32
     GoToIfEq VAR_0x8008, 1, _0A51
     GoToIfEq VAR_0x8008, 2, _0A70
@@ -723,7 +723,7 @@ _0A8F:
     SetTrainerFlag TRAINER_GENTLEMAN_LEONARDO
     SetTrainerFlag TRAINER_SOCIALITE_REBECCA
     Call _0B77
-    SetVar VAR_0x8008, 0x40FD
+    SetVar VAR_0x8008, VAR_UNK_0x40FD
     GoToIfEq VAR_0x8008, 0, _0AE7
     GoToIfEq VAR_0x8008, 1, _0AF2
     GoToIfEq VAR_0x8008, 2, _0AFD
@@ -758,7 +758,7 @@ _0B08:
     End
 
 _0B14:
-    SetVar VAR_0x8008, 0x40FD
+    SetVar VAR_0x8008, VAR_UNK_0x40FD
     GoToIfEq VAR_0x8008, 0, _0B43
     GoToIfEq VAR_0x8008, 1, _0B4E
     GoToIfEq VAR_0x8008, 2, _0B59
@@ -806,7 +806,7 @@ _0B83:
     GoToIfDefeated TRAINER_SOCIALITE_REBECCA, _0CBE
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _0D0E
-    SetVar VAR_0x8008, 0x40FD
+    SetVar VAR_0x8008, VAR_UNK_0x40FD
     GoToIfEq VAR_0x8008, 0, _0BDC
     GoToIfEq VAR_0x8008, 1, _0BFB
     GoToIfEq VAR_0x8008, 2, _0C1A
@@ -845,7 +845,7 @@ _0C39:
     SetTrainerFlag TRAINER_GENTLEMAN_LEONARDO
     SetTrainerFlag TRAINER_SOCIALITE_REBECCA
     Call _0D21
-    SetVar VAR_0x8008, 0x40FD
+    SetVar VAR_0x8008, VAR_UNK_0x40FD
     GoToIfEq VAR_0x8008, 0, _0C91
     GoToIfEq VAR_0x8008, 1, _0C9C
     GoToIfEq VAR_0x8008, 2, _0CA7
@@ -880,7 +880,7 @@ _0CB2:
     End
 
 _0CBE:
-    SetVar VAR_0x8008, 0x40FD
+    SetVar VAR_0x8008, VAR_UNK_0x40FD
     GoToIfEq VAR_0x8008, 0, _0CED
     GoToIfEq VAR_0x8008, 1, _0CF8
     GoToIfEq VAR_0x8008, 2, _0D03
@@ -928,7 +928,7 @@ _0D2D:
     GoToIfDefeated TRAINER_COLLECTOR_EUGENE, _0E68
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _0EB8
-    SetVar VAR_0x8008, 0x40FE
+    SetVar VAR_0x8008, VAR_UNK_0x40FE
     GoToIfEq VAR_0x8008, 0, _0D86
     GoToIfEq VAR_0x8008, 1, _0DA5
     GoToIfEq VAR_0x8008, 2, _0DC4
@@ -967,7 +967,7 @@ _0DE3:
     SetTrainerFlag TRAINER_COLLECTOR_EUGENE
     SetTrainerFlag TRAINER_AROMA_LADY_ALISON
     Call _0ECB
-    SetVar VAR_0x8008, 0x40FE
+    SetVar VAR_0x8008, VAR_UNK_0x40FE
     GoToIfEq VAR_0x8008, 0, _0E3B
     GoToIfEq VAR_0x8008, 1, _0E46
     GoToIfEq VAR_0x8008, 2, _0E51
@@ -1002,7 +1002,7 @@ _0E5C:
     End
 
 _0E68:
-    SetVar VAR_0x8008, 0x40FE
+    SetVar VAR_0x8008, VAR_UNK_0x40FE
     GoToIfEq VAR_0x8008, 0, _0E97
     GoToIfEq VAR_0x8008, 1, _0EA2
     GoToIfEq VAR_0x8008, 2, _0EAD
@@ -1050,7 +1050,7 @@ _0ED7:
     GoToIfDefeated TRAINER_AROMA_LADY_ALISON, _1012
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _1062
-    SetVar VAR_0x8008, 0x40FE
+    SetVar VAR_0x8008, VAR_UNK_0x40FE
     GoToIfEq VAR_0x8008, 0, _0F30
     GoToIfEq VAR_0x8008, 1, _0F4F
     GoToIfEq VAR_0x8008, 2, _0F6E
@@ -1089,7 +1089,7 @@ _0F8D:
     SetTrainerFlag TRAINER_COLLECTOR_EUGENE
     SetTrainerFlag TRAINER_AROMA_LADY_ALISON
     Call _1075
-    SetVar VAR_0x8008, 0x40FE
+    SetVar VAR_0x8008, VAR_UNK_0x40FE
     GoToIfEq VAR_0x8008, 0, _0FE5
     GoToIfEq VAR_0x8008, 1, _0FF0
     GoToIfEq VAR_0x8008, 2, _0FFB
@@ -1124,7 +1124,7 @@ _1006:
     End
 
 _1012:
-    SetVar VAR_0x8008, 0x40FE
+    SetVar VAR_0x8008, VAR_UNK_0x40FE
     GoToIfEq VAR_0x8008, 0, _1041
     GoToIfEq VAR_0x8008, 1, _104C
     GoToIfEq VAR_0x8008, 2, _1057
@@ -1172,7 +1172,7 @@ _1081:
     GoToIfDefeated TRAINER_SCHOOL_KID_ESTEBAN, _11BC
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _120C
-    SetVar VAR_0x8008, 0x40FF
+    SetVar VAR_0x8008, VAR_UNK_0x40FF
     GoToIfEq VAR_0x8008, 0, _10DA
     GoToIfEq VAR_0x8008, 1, _10F9
     GoToIfEq VAR_0x8008, 2, _1118
@@ -1211,7 +1211,7 @@ _1137:
     SetTrainerFlag TRAINER_SCHOOL_KID_ESTEBAN
     SetTrainerFlag TRAINER_POKEFAN_MEREDITH
     Call _121F
-    SetVar VAR_0x8008, 0x40FF
+    SetVar VAR_0x8008, VAR_UNK_0x40FF
     GoToIfEq VAR_0x8008, 0, _118F
     GoToIfEq VAR_0x8008, 1, _119A
     GoToIfEq VAR_0x8008, 2, _11A5
@@ -1246,7 +1246,7 @@ _11B0:
     End
 
 _11BC:
-    SetVar VAR_0x8008, 0x40FF
+    SetVar VAR_0x8008, VAR_UNK_0x40FF
     GoToIfEq VAR_0x8008, 0, _11EB
     GoToIfEq VAR_0x8008, 1, _11F6
     GoToIfEq VAR_0x8008, 2, _1201
@@ -1294,7 +1294,7 @@ _122B:
     GoToIfDefeated TRAINER_POKEFAN_MEREDITH, _1366
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _13B6
-    SetVar VAR_0x8008, 0x40FF
+    SetVar VAR_0x8008, VAR_UNK_0x40FF
     GoToIfEq VAR_0x8008, 0, _1284
     GoToIfEq VAR_0x8008, 1, _12A3
     GoToIfEq VAR_0x8008, 2, _12C2
@@ -1333,7 +1333,7 @@ _12E1:
     SetTrainerFlag TRAINER_SCHOOL_KID_ESTEBAN
     SetTrainerFlag TRAINER_POKEFAN_MEREDITH
     Call _13C9
-    SetVar VAR_0x8008, 0x40FF
+    SetVar VAR_0x8008, VAR_UNK_0x40FF
     GoToIfEq VAR_0x8008, 0, _1339
     GoToIfEq VAR_0x8008, 1, _1344
     GoToIfEq VAR_0x8008, 2, _134F
@@ -1368,7 +1368,7 @@ _135A:
     End
 
 _1366:
-    SetVar VAR_0x8008, 0x40FF
+    SetVar VAR_0x8008, VAR_UNK_0x40FF
     GoToIfEq VAR_0x8008, 0, _1395
     GoToIfEq VAR_0x8008, 1, _13A0
     GoToIfEq VAR_0x8008, 2, _13AB
@@ -1416,7 +1416,7 @@ _13D5:
     GoToIfDefeated TRAINER_VETERAN_EMANUEL, _1510
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _1560
-    SetVar VAR_0x8008, 0x4100
+    SetVar VAR_0x8008, VAR_UNK_0x4100
     GoToIfEq VAR_0x8008, 0, _142E
     GoToIfEq VAR_0x8008, 1, _144D
     GoToIfEq VAR_0x8008, 2, _146C
@@ -1455,7 +1455,7 @@ _148B:
     SetTrainerFlag TRAINER_VETERAN_EMANUEL
     SetTrainerFlag TRAINER_LASS_BLYTHE
     Call _1573
-    SetVar VAR_0x8008, 0x4100
+    SetVar VAR_0x8008, VAR_UNK_0x4100
     GoToIfEq VAR_0x8008, 0, _14E3
     GoToIfEq VAR_0x8008, 1, _14EE
     GoToIfEq VAR_0x8008, 2, _14F9
@@ -1490,7 +1490,7 @@ _1504:
     End
 
 _1510:
-    SetVar VAR_0x8008, 0x4100
+    SetVar VAR_0x8008, VAR_UNK_0x4100
     GoToIfEq VAR_0x8008, 0, _153F
     GoToIfEq VAR_0x8008, 1, _154A
     GoToIfEq VAR_0x8008, 2, _1555
@@ -1538,7 +1538,7 @@ _157F:
     GoToIfDefeated TRAINER_LASS_BLYTHE, _16BA
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _170A
-    SetVar VAR_0x8008, 0x4100
+    SetVar VAR_0x8008, VAR_UNK_0x4100
     GoToIfEq VAR_0x8008, 0, _15D8
     GoToIfEq VAR_0x8008, 1, _15F7
     GoToIfEq VAR_0x8008, 2, _1616
@@ -1577,7 +1577,7 @@ _1635:
     SetTrainerFlag TRAINER_VETERAN_EMANUEL
     SetTrainerFlag TRAINER_LASS_BLYTHE
     Call _171D
-    SetVar VAR_0x8008, 0x4100
+    SetVar VAR_0x8008, VAR_UNK_0x4100
     GoToIfEq VAR_0x8008, 0, _168D
     GoToIfEq VAR_0x8008, 1, _1698
     GoToIfEq VAR_0x8008, 2, _16A3
@@ -1612,7 +1612,7 @@ _16AE:
     End
 
 _16BA:
-    SetVar VAR_0x8008, 0x4100
+    SetVar VAR_0x8008, VAR_UNK_0x4100
     GoToIfEq VAR_0x8008, 0, _16E9
     GoToIfEq VAR_0x8008, 1, _16F4
     GoToIfEq VAR_0x8008, 2, _16FF
@@ -1660,7 +1660,7 @@ _1729:
     GoToIfDefeated TRAINER_CAMERAMAN_DARRYL, _1864
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _18B4
-    SetVar VAR_0x8008, 0x4101
+    SetVar VAR_0x8008, VAR_UNK_0x4101
     GoToIfEq VAR_0x8008, 0, _1782
     GoToIfEq VAR_0x8008, 1, _17A1
     GoToIfEq VAR_0x8008, 2, _17C0
@@ -1699,7 +1699,7 @@ _17DF:
     SetTrainerFlag TRAINER_CAMERAMAN_DARRYL
     SetTrainerFlag TRAINER_REPORTER_VALERIE
     Call _18C7
-    SetVar VAR_0x8008, 0x4101
+    SetVar VAR_0x8008, VAR_UNK_0x4101
     GoToIfEq VAR_0x8008, 0, _1837
     GoToIfEq VAR_0x8008, 1, _1842
     GoToIfEq VAR_0x8008, 2, _184D
@@ -1734,7 +1734,7 @@ _1858:
     End
 
 _1864:
-    SetVar VAR_0x8008, 0x4101
+    SetVar VAR_0x8008, VAR_UNK_0x4101
     GoToIfEq VAR_0x8008, 0, _1893
     GoToIfEq VAR_0x8008, 1, _189E
     GoToIfEq VAR_0x8008, 2, _18A9
@@ -1782,7 +1782,7 @@ _18D3:
     GoToIfDefeated TRAINER_REPORTER_VALERIE, _1A0E
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _1A5E
-    SetVar VAR_0x8008, 0x4101
+    SetVar VAR_0x8008, VAR_UNK_0x4101
     GoToIfEq VAR_0x8008, 0, _192C
     GoToIfEq VAR_0x8008, 1, _194B
     GoToIfEq VAR_0x8008, 2, _196A
@@ -1821,7 +1821,7 @@ _1989:
     SetTrainerFlag TRAINER_CAMERAMAN_DARRYL
     SetTrainerFlag TRAINER_REPORTER_VALERIE
     Call _1A71
-    SetVar VAR_0x8008, 0x4101
+    SetVar VAR_0x8008, VAR_UNK_0x4101
     GoToIfEq VAR_0x8008, 0, _19E1
     GoToIfEq VAR_0x8008, 1, _19EC
     GoToIfEq VAR_0x8008, 2, _19F7
@@ -1856,7 +1856,7 @@ _1A02:
     End
 
 _1A0E:
-    SetVar VAR_0x8008, 0x4101
+    SetVar VAR_0x8008, VAR_UNK_0x4101
     GoToIfEq VAR_0x8008, 0, _1A3D
     GoToIfEq VAR_0x8008, 1, _1A48
     GoToIfEq VAR_0x8008, 2, _1A53
@@ -1904,7 +1904,7 @@ _1A7D:
     GoToIfDefeated TRAINER_PI_KENDRICK, _1BB8
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _1C08
-    SetVar VAR_0x8008, 0x4102
+    SetVar VAR_0x8008, VAR_UNK_0x4102
     GoToIfEq VAR_0x8008, 0, _1AD6
     GoToIfEq VAR_0x8008, 1, _1AF5
     GoToIfEq VAR_0x8008, 2, _1B14
@@ -1943,7 +1943,7 @@ _1B33:
     SetTrainerFlag TRAINER_PI_KENDRICK
     SetTrainerFlag TRAINER_BEAUTY_GABRIELLA
     Call _1C1B
-    SetVar VAR_0x8008, 0x4102
+    SetVar VAR_0x8008, VAR_UNK_0x4102
     GoToIfEq VAR_0x8008, 0, _1B8B
     GoToIfEq VAR_0x8008, 1, _1B96
     GoToIfEq VAR_0x8008, 2, _1BA1
@@ -1978,7 +1978,7 @@ _1BAC:
     End
 
 _1BB8:
-    SetVar VAR_0x8008, 0x4102
+    SetVar VAR_0x8008, VAR_UNK_0x4102
     GoToIfEq VAR_0x8008, 0, _1BE7
     GoToIfEq VAR_0x8008, 1, _1BF2
     GoToIfEq VAR_0x8008, 2, _1BFD
@@ -2026,7 +2026,7 @@ _1C27:
     GoToIfDefeated TRAINER_BEAUTY_GABRIELLA, _1D62
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _1DB2
-    SetVar VAR_0x8008, 0x4102
+    SetVar VAR_0x8008, VAR_UNK_0x4102
     GoToIfEq VAR_0x8008, 0, _1C80
     GoToIfEq VAR_0x8008, 1, _1C9F
     GoToIfEq VAR_0x8008, 2, _1CBE
@@ -2065,7 +2065,7 @@ _1CDD:
     SetTrainerFlag TRAINER_PI_KENDRICK
     SetTrainerFlag TRAINER_BEAUTY_GABRIELLA
     Call _1DC5
-    SetVar VAR_0x8008, 0x4102
+    SetVar VAR_0x8008, VAR_UNK_0x4102
     GoToIfEq VAR_0x8008, 0, _1D35
     GoToIfEq VAR_0x8008, 1, _1D40
     GoToIfEq VAR_0x8008, 2, _1D4B
@@ -2100,7 +2100,7 @@ _1D56:
     End
 
 _1D62:
-    SetVar VAR_0x8008, 0x4102
+    SetVar VAR_0x8008, VAR_UNK_0x4102
     GoToIfEq VAR_0x8008, 0, _1D91
     GoToIfEq VAR_0x8008, 1, _1D9C
     GoToIfEq VAR_0x8008, 2, _1DA7
@@ -2148,7 +2148,7 @@ _1DD1:
     GoToIfDefeated TRAINER_SCIENTIST_EMILIO, _1F0C
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _1F5C
-    SetVar VAR_0x8008, 0x4103
+    SetVar VAR_0x8008, VAR_UNK_0x4103
     GoToIfEq VAR_0x8008, 0, _1E2A
     GoToIfEq VAR_0x8008, 1, _1E49
     GoToIfEq VAR_0x8008, 2, _1E68
@@ -2187,7 +2187,7 @@ _1E87:
     SetTrainerFlag TRAINER_SCIENTIST_EMILIO
     SetTrainerFlag TRAINER_BREEDER_KAYLEE
     Call _1F6F
-    SetVar VAR_0x8008, 0x4103
+    SetVar VAR_0x8008, VAR_UNK_0x4103
     GoToIfEq VAR_0x8008, 0, _1EDF
     GoToIfEq VAR_0x8008, 1, _1EEA
     GoToIfEq VAR_0x8008, 2, _1EF5
@@ -2222,7 +2222,7 @@ _1F00:
     End
 
 _1F0C:
-    SetVar VAR_0x8008, 0x4103
+    SetVar VAR_0x8008, VAR_UNK_0x4103
     GoToIfEq VAR_0x8008, 0, _1F3B
     GoToIfEq VAR_0x8008, 1, _1F46
     GoToIfEq VAR_0x8008, 2, _1F51
@@ -2270,7 +2270,7 @@ _1F7B:
     GoToIfDefeated TRAINER_BREEDER_KAYLEE, _20B6
     CountAliveMonsExcept VAR_0x800C, 6
     GoToIfEq VAR_0x800C, 1, _2106
-    SetVar VAR_0x8008, 0x4103
+    SetVar VAR_0x8008, VAR_UNK_0x4103
     GoToIfEq VAR_0x8008, 0, _1FD4
     GoToIfEq VAR_0x8008, 1, _1FF3
     GoToIfEq VAR_0x8008, 2, _2012
@@ -2309,7 +2309,7 @@ _2031:
     SetTrainerFlag TRAINER_SCIENTIST_EMILIO
     SetTrainerFlag TRAINER_BREEDER_KAYLEE
     Call _2119
-    SetVar VAR_0x8008, 0x4103
+    SetVar VAR_0x8008, VAR_UNK_0x4103
     GoToIfEq VAR_0x8008, 0, _2089
     GoToIfEq VAR_0x8008, 1, _2094
     GoToIfEq VAR_0x8008, 2, _209F
@@ -2344,7 +2344,7 @@ _20AA:
     End
 
 _20B6:
-    SetVar VAR_0x8008, 0x4103
+    SetVar VAR_0x8008, VAR_UNK_0x4103
     GoToIfEq VAR_0x8008, 0, _20E5
     GoToIfEq VAR_0x8008, 1, _20F0
     GoToIfEq VAR_0x8008, 2, _20FB

@@ -14,7 +14,7 @@ _000A:
 
 _0022:
     ClearFlag FLAG_UNK_0x027B
-    SetVar 0x4110, 1
+    SetVar VAR_UNK_0x4110, 1
     End
 
 _002E:
@@ -24,7 +24,7 @@ _002E:
     WaitMovement
     SetFlag FLAG_UNK_0x027B
     RemoveObject 0
-    SetVar 0x4110, 0
+    SetVar VAR_UNK_0x4110, 0
     ReleaseAll
     End
 

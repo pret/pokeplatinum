@@ -135,7 +135,7 @@ _0174:
     CallIfEq VAR_ROAMING_MOLTRES_STATE, 2, _02A5
     CallIfEq VAR_ROAMING_ZAPDOS_STATE, 2, _02AD
     CallIfEq VAR_ROAMING_ARTICUNO_STATE, 2, _02B5
-    CallIfEq 0x410F, 0, _0234
+    CallIfEq VAR_UNK_0x410F, 0, _0234
     ClearFlag FLAG_UNK_0x0177
     CallIfUnset FLAG_UNK_0x00B9, _02BD
     ClearFlag FLAG_UNK_0x0186
@@ -144,7 +144,7 @@ _0174:
     Return
 
 _0234:
-    SetVar 0x410F, 1
+    SetVar VAR_UNK_0x410F, 1
     Return
 
 _023C:

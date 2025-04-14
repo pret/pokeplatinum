@@ -20,7 +20,7 @@ _0016:
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0082
-    SetVar 0x4114, 1
+    SetVar VAR_UNK_0x4114, 1
     ScrCmd_14C 9
     GoTo _0052
     End

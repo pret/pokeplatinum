@@ -256,7 +256,7 @@ _042E:
     WaitABPress
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _04C8
-    ApplyMovement 0x800D, _04F0
+    ApplyMovement VAR_0x800D, _04F0
     WaitMovement
     Return
 
@@ -265,7 +265,7 @@ _0449:
     WaitABPress
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _04C8
-    ApplyMovement 0x800D, _04F0
+    ApplyMovement VAR_0x800D, _04F0
     WaitMovement
     Return
 
@@ -276,25 +276,25 @@ _0464:
     ScrCmd_135 169
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _04DC
-    ApplyMovement 0x800D, _0504
+    ApplyMovement VAR_0x800D, _0504
     WaitMovement
     Return
 
 _048A:
     ApplyMovement LOCALID_PLAYER, _0518
-    ApplyMovement 0x800D, _0548
+    ApplyMovement VAR_0x800D, _0548
     WaitMovement
     Return
 
 _049E:
     ApplyMovement LOCALID_PLAYER, _0518
-    ApplyMovement 0x800D, _0548
+    ApplyMovement VAR_0x800D, _0548
     WaitMovement
     Return
 
 _04B2:
     ApplyMovement LOCALID_PLAYER, _0530
-    ApplyMovement 0x800D, _055C
+    ApplyMovement VAR_0x800D, _055C
     WaitMovement
     Return
 
@@ -415,7 +415,7 @@ _05D7:
 
 _05E9:
     Message 12
-    ScrCmd_2C5 0x40B8, 0x40B9
+    ScrCmd_2C5 VAR_UNK_0x40B8, VAR_UNK_0x40B9
     GoTo _0139
     End
 

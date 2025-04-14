@@ -20,7 +20,7 @@ _002A:
     End
 
 _0032:
-    GetRandom 0x40C2, 3
+    GetRandom VAR_UNK_0x40C2, 3
     GoToIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0052
     End
 
@@ -134,7 +134,7 @@ _0141:
     GoToIfEq VAR_0x4000, DAY_OF_WEEK_SATURDAY, _01BE
     BufferRivalName 0
     BufferPlayerName 1
-    SetVar VAR_0x8008, 0x40C2
+    SetVar VAR_0x8008, VAR_UNK_0x40C2
     GoToIfEq VAR_0x8008, 0, _0195
     GoToIfEq VAR_0x8008, 1, _01A0
     GoTo _01AB

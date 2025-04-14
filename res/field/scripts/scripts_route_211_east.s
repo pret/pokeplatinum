@@ -16,7 +16,7 @@ _0012:
     Message 0
     CloseMessage
     FacePlayer
-    ApplyMovement 0x800D, _0080
+    ApplyMovement VAR_0x800D, _0080
     WaitMovement
     Message 1
     SetVar VAR_0x8004, ITEM_TM77

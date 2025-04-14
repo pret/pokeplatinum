@@ -54,7 +54,7 @@ _00AE:
     ScrCmd_0C5 VAR_0x8004
     ScrCmd_29E 0, VAR_0x8005
     WaitTime 7, VAR_0x800C
-    RemoveObject 0x800D
+    RemoveObject VAR_0x800D
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_CUT, VAR_0x8004, 0, 0, 0
 _00E8:
@@ -71,7 +71,7 @@ _0103:
     ScrCmd_0C5 VAR_0x8000
     ScrCmd_29E 0, VAR_0x8005
     WaitTime 7, VAR_0x800C
-    RemoveObject 0x800D
+    RemoveObject VAR_0x800D
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_CUT, VAR_0x8004, 0, 0, 0
 _0133:
@@ -155,7 +155,7 @@ _0284:
     ScrCmd_0C5 VAR_0x8004
     ScrCmd_29E 1, VAR_0x8005
     WaitTime 10, VAR_0x800C
-    RemoveObject 0x800D
+    RemoveObject VAR_0x800D
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, VAR_0x8004, 0, 0, 0
 _02B2:
@@ -172,7 +172,7 @@ _02CD:
     ScrCmd_0C5 VAR_0x8000
     ScrCmd_29E 1, VAR_0x8005
     WaitTime 10, VAR_0x800C
-    RemoveObject 0x800D
+    RemoveObject VAR_0x800D
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, VAR_0x8004, 0, 0, 0
 _02FD:

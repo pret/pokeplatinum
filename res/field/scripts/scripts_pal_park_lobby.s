@@ -32,12 +32,12 @@ _004D:
 _005D:
     GoToIfEq VAR_UNK_0x40E0, 0x7D0, _0074
     BufferPlayerName 1
-    BufferNumber 2, 0x40E0
+    BufferNumber 2, VAR_UNK_0x40E0
     Return
 
 _0074:
     BufferRivalName 1
-    BufferNumber 2, 0x40E0
+    BufferNumber 2, VAR_UNK_0x40E0
     Return
 
 _007E:
@@ -224,7 +224,7 @@ _02F8:
     BufferNumber 3, VAR_0x800C
     Message 38
     CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, VAR_0x800C
-    GoToIfGt VAR_0x800C, 0x40E0, _035B
+    GoToIfGt VAR_0x800C, VAR_UNK_0x40E0, _035B
     Message 40
     Call _07BE
     GoTo _0370
@@ -232,7 +232,7 @@ _02F8:
 _035B:
     Message 39
     Call _07BE
-    CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, 0x40E0
+    CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, VAR_UNK_0x40E0
     GoTo _0370
 
 _0370:

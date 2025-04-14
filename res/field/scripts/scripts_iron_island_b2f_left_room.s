@@ -489,7 +489,7 @@ _04EB:
     End
 
 _04F6:
-    AddVar 0x40E3, 1
+    AddVar VAR_UNK_0x40E3, 1
     WaitABXPadPress
     CloseMessage
     ReleaseAll

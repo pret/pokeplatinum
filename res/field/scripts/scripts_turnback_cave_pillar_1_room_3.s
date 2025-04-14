@@ -7,9 +7,9 @@
 
 _0006:
     Call _0014
-    ScrCmd_285 0x410B, 0x410C
+    ScrCmd_285 VAR_UNK_0x410B, VAR_UNK_0x410C
     End
 
 _0014:
-    AddVar 0x410C, 1
+    AddVar VAR_UNK_0x410C, 1
     Return

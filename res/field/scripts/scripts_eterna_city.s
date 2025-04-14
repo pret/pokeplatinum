@@ -46,7 +46,7 @@ _0096:
     End
 
 _00AD:
-    SetVar 0x4114, 0
+    SetVar VAR_UNK_0x4114, 0
     End
 
 _00B5:

@@ -26,9 +26,9 @@ _003B:
     GoTo _0164
 
 _006D:
-    CallIfEq 0x4108, 0, _00ED
-    CallIfEq 0x4108, 1, _00F5
-    CallIfEq 0x4108, 2, _00FD
+    CallIfEq VAR_UNK_0x4108, 0, _00ED
+    CallIfEq VAR_UNK_0x4108, 1, _00F5
+    CallIfEq VAR_UNK_0x4108, 2, _00FD
     BufferPartyMonSpecies 1, VAR_0x8003
     BufferItemName 2, VAR_0x8004
     Message 1
@@ -40,9 +40,9 @@ _00C2:
     CallCommonScript 0x7E0
     ClearFlag FLAG_UNK_0x0137
     SetFlag FLAG_UNK_0x0AAE
-    AddVar 0x4108, 1
-    GoToIfLt 0x4108, 3, _00E7
-    SetVar 0x4108, 0
+    AddVar VAR_UNK_0x4108, 1
+    GoToIfLt VAR_UNK_0x4108, 3, _00E7
+    SetVar VAR_UNK_0x4108, 0
 _00E7:
     CloseMessage
     ReleaseAll
@@ -69,9 +69,9 @@ _0105:
     End
 
 _0114:
-    CallIfEq 0x4108, 0, _00ED
-    CallIfEq 0x4108, 1, _00F5
-    CallIfEq 0x4108, 2, _00FD
+    CallIfEq VAR_UNK_0x4108, 0, _00ED
+    CallIfEq VAR_UNK_0x4108, 1, _00F5
+    CallIfEq VAR_UNK_0x4108, 2, _00FD
     BufferItemName 2, VAR_0x8004
     Message 3
     SetVar VAR_0x8005, 1

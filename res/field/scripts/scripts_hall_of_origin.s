@@ -33,7 +33,7 @@ _0048:
 
 _0056:
     LockAll
-    SetVar 0x4118, 0
+    SetVar VAR_UNK_0x4118, 0
     Call _00E9
     Call _0104
     PlayCry SPECIES_ARCEUS

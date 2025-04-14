@@ -191,7 +191,7 @@ _0201:
     ApplyMovement 6, _0324
     WaitMovement
     RemoveObject 6
-    SetVar 0x411E, 2
+    SetVar VAR_UNK_0x411E, 2
     ReleaseAll
     End
 

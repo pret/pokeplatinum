@@ -187,7 +187,7 @@ _0297:
     Message 10
     WaitABXPadPress
     CloseMessage
-    SetVar 0x411E, 1
+    SetVar VAR_UNK_0x411E, 1
     ClearFlag FLAG_UNK_0x01FA
     SetVar VAR_UNK_0x40CF, 2
     SetFlag FLAG_ALT_MUSIC_VALLEY_WINDWORKS_BUILDING

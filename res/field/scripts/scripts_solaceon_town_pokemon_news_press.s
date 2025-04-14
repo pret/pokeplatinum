@@ -31,7 +31,7 @@ _0060:
     ScrCmd_218 VAR_0x800C
     SetVar VAR_UNK_0x40E5, VAR_0x800C
     SetNewsPressDeadline 1
-    BufferSpeciesNameFromVar 0, 0x40E5, 0, 0
+    BufferSpeciesNameFromVar 0, VAR_UNK_0x40E5, 0, 0
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -42,12 +42,12 @@ _0081:
     Message 3
     GetNewsPressDeadline VAR_0x800C
     GoToIfEq VAR_0x800C, 0, _029F
-    CheckPartyHasSpecies VAR_0x800C, 0x40E5
+    CheckPartyHasSpecies VAR_0x800C, VAR_UNK_0x40E5
     GoToIfEq VAR_0x800C, 0, _0283
     GoTo _00AE
 
 _00AE:
-    BufferSpeciesNameFromVar 0, 0x40E5, 0, 0
+    BufferSpeciesNameFromVar 0, VAR_UNK_0x40E5, 0, 0
     Message 4
     GetRandom VAR_0x800C, 12
     CallIfEq VAR_0x800C, 0, _0189
@@ -133,13 +133,13 @@ _01E9:
 
 _0216:
     GoToIfCannotFitItem ITEM_HEART_SCALE, 1, VAR_0x800C, _0251
-    SetVar VAR_0x8004, 0x4117
+    SetVar VAR_0x8004, VAR_UNK_0x4117
     SetVar VAR_0x8005, 3
     GoTo _025C
     End
 
 _023F:
-    SetVar 0x4117, VAR_0x8004
+    SetVar VAR_UNK_0x4117, VAR_0x8004
     SetFlag FLAG_UNK_0x00DC
     GoTo _0251
     End
@@ -164,7 +164,7 @@ _025C:
     End
 
 _0283:
-    BufferSpeciesNameFromVar 0, 0x40E5, 0, 0
+    BufferSpeciesNameFromVar 0, VAR_UNK_0x40E5, 0, 0
     GetNewsPressDeadline VAR_0x800C
     BufferNumber 1, VAR_0x800C
     Message 8
