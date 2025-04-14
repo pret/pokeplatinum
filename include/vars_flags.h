@@ -5,7 +5,6 @@
 
 #include "savedata.h"
 
-#define NUM_VARS  288
 #define NUM_FLAGS 2912
 
 #define NUM_UNKNOWN_FLAGS 64
