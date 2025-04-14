@@ -70,9 +70,9 @@ _009A:
 
 _00C4:
     BufferPlayerName 0
-    GetSwarmMapAndSpecies 0x4001, 0x4000
-    ScrCmd_0E2 1, 0x4001
-    BufferSpeciesNameFromVar 2, 0x4000, 0, 1
+    GetSwarmMapAndSpecies VAR_0x4001, VAR_0x4000
+    ScrCmd_0E2 1, VAR_0x4001
+    BufferSpeciesNameFromVar 2, VAR_0x4000, 0, 1
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, GENDER_MALE, _00FA
     GoToIfEq 0x800C, GENDER_FEMALE, _0103

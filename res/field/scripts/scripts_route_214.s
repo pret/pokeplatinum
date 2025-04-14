@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    GetUnownFormsSeenCount 0x4000
+    GetUnownFormsSeenCount VAR_0x4000
     GoToIfGe VAR_0x4000, 26, _003F
     GoToIfGe VAR_0x4000, 10, _0051
     GoToIfLt VAR_0x4000, 10, _0063
@@ -31,7 +31,7 @@ _0063:
     End
 
 _0075:
-    GetUnownFormsSeenCount 0x4000
+    GetUnownFormsSeenCount VAR_0x4000
     GoToIfGe VAR_0x4000, 26, _003F
     GoToIfGe VAR_0x4000, 10, _0051
     GoToIfLt VAR_0x4000, 10, _0063

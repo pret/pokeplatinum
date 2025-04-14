@@ -18,7 +18,7 @@ _0022:
     End
 
 _002F:
-    CheckBadgeAcquired BADGE_ID_FEN, 0x4000
+    CheckBadgeAcquired BADGE_ID_FEN, VAR_0x4000
     GoToIfEq VAR_0x4000, 1, _0044
     End
 

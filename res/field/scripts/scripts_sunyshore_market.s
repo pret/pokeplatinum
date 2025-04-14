@@ -128,7 +128,7 @@ _0175:
     LockAll
     FacePlayer
     Message 9
-    GetDayOfWeek 0x4000
+    GetDayOfWeek VAR_0x4000
     GoToIfEq VAR_0x4000, DAY_OF_WEEK_SUNDAY, _01BE
     GoToIfEq VAR_0x4000, DAY_OF_WEEK_MONDAY, _01BE
     GoToIfEq VAR_0x4000, DAY_OF_WEEK_TUESDAY, _01BE

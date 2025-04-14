@@ -10,7 +10,7 @@
 _000E:
     SetVar VAR_0x4000, 0
     InitPersistedMapFeaturesForPlatformLift
-    CheckPlatformLiftNotUsedWhenEnteredMap 0x4001
+    CheckPlatformLiftNotUsedWhenEnteredMap VAR_0x4001
     GoToIfEq VAR_0x4001, 0, _0029
     End
 

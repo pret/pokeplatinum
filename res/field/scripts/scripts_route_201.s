@@ -22,7 +22,7 @@
     ScriptEntryEnd
 
 _0042:
-    GetPlayerGender 0x4000
+    GetPlayerGender VAR_0x4000
     GoToIfEq VAR_0x4000, GENDER_MALE, _0062
     GoToIfEq VAR_0x4000, GENDER_FEMALE, _006A
     End

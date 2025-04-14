@@ -24,7 +24,7 @@ _0039:
     Message 1
     Call _0119
     GoToIfEq 0x800C, -2, _00D8
-    GoToIfEq 0x800C, 0x4001, _00D8
+    GoToIfEq 0x800C, VAR_0x4001, _00D8
     GetGameCornerPrizeData 0x800C, 0x8000, 0x8001
     CallIfLt 0x8000, 0x148, _0100
     CallIfGe 0x8000, 0x148, _010A
@@ -85,7 +85,7 @@ _0135:
     ScrCmd_280 1, 0x8001, 1, 5
     AddListMenuEntry 168, 0x8008
     AddVar 0x8008, 1
-    GoToIfLt 0x8008, 0x4001, _0135
+    GoToIfLt 0x8008, VAR_0x4001, _0135
     GoTo _016C
     End
 

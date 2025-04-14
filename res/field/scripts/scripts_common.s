@@ -1566,11 +1566,11 @@ _14AC:
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfNe 0x8004, 31, _1570
     GoToIfNe 0x8005, 52, _1570
-    CheckGameCompleted 0x4000
+    CheckGameCompleted VAR_0x4000
     GoToIfEq VAR_0x4000, FALSE, _1570
-    ScrCmd_22D 2, 0x4000
+    ScrCmd_22D 2, VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _1570
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_0x4000
     GoToIfEq VAR_0x4000, FALSE, _1570
     GoToIfSet FLAG_UNK_0x011E, _1570
     BufferPlayerName 0

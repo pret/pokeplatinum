@@ -47,11 +47,11 @@ _005B:
 
 _00AC:
     CloseMessage
-    GetPartyCount 0x4000
-    SubVar 0x4000, 1
+    GetPartyCount VAR_0x4000
+    SubVar VAR_0x4000, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BB 0x4000, 0x800C
+    ScrCmd_0BB VAR_0x4000, 0x800C
     CallIfNe 0x800C, 1, _00E7
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen

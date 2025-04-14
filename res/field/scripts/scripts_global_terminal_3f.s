@@ -157,7 +157,7 @@ _015D:
 
 _0163:
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 0, _015D
     CloseMessage
     CallCommonScript 0x802

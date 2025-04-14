@@ -13,13 +13,13 @@ _000A:
     End
 
 _0012:
-    CheckGameCompleted 0x4000
+    CheckGameCompleted VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _0075
-    ScrCmd_22D 2, 0x4000
+    ScrCmd_22D 2, VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _0075
-    CheckItem ITEM_AZURE_FLUTE, 1, 0x4000
+    CheckItem ITEM_AZURE_FLUTE, 1, VAR_0x4000
     GoToIfEq VAR_0x4000, FALSE, _0075
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_0x4000
     GoToIfEq VAR_0x4000, FALSE, _0075
     GoToIfSet FLAG_UNK_0x011E, _0075
     SetVar 0x4118, 1

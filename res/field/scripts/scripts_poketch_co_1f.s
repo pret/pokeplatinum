@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _0016:
-    ScrCmd_238 6, 0x4000
+    ScrCmd_238 6, VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _003C
     GoToIfLt 0x4077, 2, _003C
     ClearFlag FLAG_UNK_0x0212

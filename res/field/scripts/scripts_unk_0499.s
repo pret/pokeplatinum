@@ -53,9 +53,9 @@ _0085:
     HideBattlePoints
     CloseMessage
     ScrCmd_2E2
-    ScrCmd_2E4 0, 0x4000, 0x4001
-    ScrCmd_2E4 1, 0x4002, 0x4003
-    ScrCmd_2E4 2, 0x4004, 0x4005
+    ScrCmd_2E4 0, VAR_0x4000, VAR_0x4001
+    ScrCmd_2E4 1, VAR_0x4002, VAR_0x4003
+    ScrCmd_2E4 2, VAR_0x4004, VAR_0x4005
     ScrCmd_2E3
     ReturnToField
     FadeScreen 6, 1, 1, 0
@@ -117,49 +117,49 @@ _01AB:
 
 _01B6:
     GoToIfGt VAR_0x4001, 1, _01CE
-    BufferItemName 0, 0x4000
+    BufferItemName 0, VAR_0x4000
     GoTo _01D3
 
 _01CE:
-    ScrCmd_33D 0, 0x4000
+    ScrCmd_33D 0, VAR_0x4000
 _01D3:
-    BufferNumber 1, 0x4001
-    GoToIfCannotFitItem 0x4000, 0x4001, 0x800C, _0294
+    BufferNumber 1, VAR_0x4001
+    GoToIfCannotFitItem VAR_0x4000, VAR_0x4001, 0x800C, _0294
     PlaySound SEQ_FANFA4
     Message 13
-    AddItem 0x4000, 0x4001, 0x800C
+    AddItem VAR_0x4000, VAR_0x4001, 0x800C
     WaitSound
     Return
 
 _0200:
     GoToIfGt VAR_0x4003, 1, _0218
-    BufferItemName 0, 0x4002
+    BufferItemName 0, VAR_0x4002
     GoTo _021D
 
 _0218:
-    ScrCmd_33D 0, 0x4002
+    ScrCmd_33D 0, VAR_0x4002
 _021D:
-    BufferNumber 1, 0x4003
-    GoToIfCannotFitItem 0x4002, 0x4003, 0x800C, _0294
+    BufferNumber 1, VAR_0x4003
+    GoToIfCannotFitItem VAR_0x4002, VAR_0x4003, 0x800C, _0294
     PlaySound SEQ_FANFA4
     Message 13
-    AddItem 0x4002, 0x4003, 0x800C
+    AddItem VAR_0x4002, VAR_0x4003, 0x800C
     WaitSound
     Return
 
 _024A:
     GoToIfGt VAR_0x4005, 1, _0262
-    BufferItemName 0, 0x4004
+    BufferItemName 0, VAR_0x4004
     GoTo _0267
 
 _0262:
-    ScrCmd_33D 0, 0x4004
+    ScrCmd_33D 0, VAR_0x4004
 _0267:
-    BufferNumber 1, 0x4005
-    GoToIfCannotFitItem 0x4004, 0x4005, 0x800C, _0294
+    BufferNumber 1, VAR_0x4005
+    GoToIfCannotFitItem VAR_0x4004, VAR_0x4005, 0x800C, _0294
     PlaySound SEQ_FANFA4
     Message 13
-    AddItem 0x4004, 0x4005, 0x800C
+    AddItem VAR_0x4004, VAR_0x4005, 0x800C
     WaitSound
     Return
 

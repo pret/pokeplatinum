@@ -21,7 +21,7 @@ _0032:
     End
 
 _0034:
-    CheckDaycareHasEgg 0x4000
+    CheckDaycareHasEgg VAR_0x4000
     GoToIfNe VAR_0x4000, FALSE, _0047
     End
 

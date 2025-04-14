@@ -13,20 +13,20 @@ _0012:
     GoToIfEq 0x40DE, 0, _0054
     SetFlag FLAG_UNK_0x01EA
     SetFlag FLAG_UNK_0x01EB
-    ScrCmd_207 0x4000
+    ScrCmd_207 VAR_0x4000
     GoToIfEq VAR_0x4000, 1, _0056
-    ScrCmd_1DD 55, 0, 0x4000
-    SetVar VAR_0x4020, 0x4000
-    ScrCmd_1DD 55, 1, 0x4000
-    SetVar VAR_0x4021, 0x4000
+    ScrCmd_1DD 55, 0, VAR_0x4000
+    SetVar VAR_0x4020, VAR_0x4000
+    ScrCmd_1DD 55, 1, VAR_0x4000
+    SetVar VAR_0x4021, VAR_0x4000
 _0054:
     End
 
 _0056:
-    ScrCmd_1DD 55, 0, 0x4000
-    SetVar VAR_0x4021, 0x4000
-    ScrCmd_1DD 55, 1, 0x4000
-    SetVar VAR_0x4020, 0x4000
+    ScrCmd_1DD 55, 0, VAR_0x4000
+    SetVar VAR_0x4021, VAR_0x4000
+    ScrCmd_1DD 55, 1, VAR_0x4000
+    SetVar VAR_0x4020, VAR_0x4000
     End
 
 _0074:
@@ -243,10 +243,10 @@ _0418:
     Message 12
     ScrCmd_136
     ScrCmd_135 5
-    ScrCmd_1E1 2, 0x4000, 0x800C
-    ScrCmd_1E2 2, 0x4000
+    ScrCmd_1E1 2, VAR_0x4000, 0x800C
+    ScrCmd_1E2 2, VAR_0x4000
     CloseMessage
-    SetVar 0x8008, 0x4000
+    SetVar 0x8008, VAR_0x4000
     GoToIfEq 0x8008, 1, _0474
     Call _0589
     GoTo _039E

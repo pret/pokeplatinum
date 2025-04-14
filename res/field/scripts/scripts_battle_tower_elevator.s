@@ -10,7 +10,7 @@
 
 _0012:
     CallIfNe 0x40DB, 0, _008A
-    ScrCmd_1DD 43, 0, 0x400A
+    ScrCmd_1DD 43, 0, VAR_0x400A
     Call _008E
     CallIfEq VAR_0x400A, 2, _009E
     CallIfEq VAR_0x400A, 3, _009E
@@ -69,7 +69,7 @@ _010A:
 
 _0132:
     Call _0188
-    ScrCmd_23C 0x4000, 3
+    ScrCmd_23C VAR_0x4000, 3
     Call _0194
     Return
 

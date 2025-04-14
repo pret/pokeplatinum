@@ -177,7 +177,7 @@ _0277:
     GoToIfEq 0x800C, 0xFF, _02A9
     HealParty
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 1, _02AF
     GoTo _026C
     End
@@ -387,7 +387,7 @@ _051B:
 _0526:
     HealParty
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 0, _0508
     Message 19
     CloseMessage

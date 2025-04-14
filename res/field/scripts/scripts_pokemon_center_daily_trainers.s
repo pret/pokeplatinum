@@ -10,9 +10,9 @@
 #define LEE            43
 #define ARIEL          71
 
-#define VAR_MAP_ID     0x4001
-#define VAR_NPC_1      0x402A
-#define VAR_NPC_2      0x402B
+#define VAR_MAP_ID     VAR_0x4001
+#define VAR_NPC_1      VAR_0x402A
+#define VAR_NPC_2      VAR_0x402B
 
 #define VAR_TWO_MONS   0x8000
 #define VAR_IS_NPC_2   0x8004
@@ -37,7 +37,7 @@ PokemonCenterDailyTrainers_End:
     End
 
 PokemonCenterDailyTrainers_SetNPCs:
-    GetDayOfWeek 0x4000
+    GetDayOfWeek VAR_0x4000
     CallIfEq VAR_0x4000, DAY_OF_WEEK_SUNDAY, PokemonCenterDailyTrainers_SetNPCsSunday
     CallIfEq VAR_0x4000, DAY_OF_WEEK_MONDAY, PokemonCenterDailyTrainers_SetNPCsMonday
     CallIfEq VAR_0x4000, DAY_OF_WEEK_TUESDAY, PokemonCenterDailyTrainers_SetNPCsTuesday

@@ -28,7 +28,7 @@
     ScriptEntryEnd
 
 _005A:
-    ScrCmd_325 0x4000
+    ScrCmd_325 VAR_0x4000
     CallIfGe VAR_0x4000, 11, _0090
     CallIfGe VAR_0x4000, 101, _007A
     End
@@ -49,7 +49,7 @@ _00A6:
 
 _00B5:
     Call _015D
-    GetRandom 0x4007, 100
+    GetRandom VAR_0x4007, 100
     CallIfUnset FLAG_UNK_0x02CB, _00DB
     GoToIfLt VAR_0x4007, 30, _00E5
     End
@@ -65,7 +65,7 @@ _00E5:
 
 _00F2:
     SetFlag FLAG_UNK_0x0AC4
-    ScrCmd_326 0x4008
+    ScrCmd_326 VAR_0x4008
     GoToIfGe VAR_0x4008, 0x2710, _0123
     GoToIfGe VAR_0x4008, 0x3E8, _0131
     GoToIfGe VAR_0x4008, 0x1F4, _013F
@@ -94,9 +94,9 @@ _014D:
 
 _015D:
     CallIfUnset FLAG_UNK_0x02C1, _019C
-    ScrCmd_238 14, 0x4000
+    ScrCmd_238 14, VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _0196
-    ScrCmd_32A 0x4000
+    ScrCmd_32A VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _0196
     ClearFlag FLAG_UNK_0x02C1
     AddObject 10
@@ -112,11 +112,11 @@ _019C:
     Return
 
 _01A6:
-    GetPlayerGender 0x4000
+    GetPlayerGender VAR_0x4000
     CallIfEq VAR_0x4000, GENDER_MALE, _025D
     CallIfEq VAR_0x4000, GENDER_FEMALE, _0265
     Call _01DF
-    ScrCmd_238 14, 0x4000
+    ScrCmd_238 14, VAR_0x4000
     CallIfEq VAR_0x4000, 0, _0196
     End
 
@@ -128,7 +128,7 @@ _01DF:
     Return
 
 _0215:
-    GetPlayerGender 0x4009
+    GetPlayerGender VAR_0x4009
     GoToIfEq VAR_0x4009, GENDER_MALE, _0235
     GoToIfEq VAR_0x4009, GENDER_FEMALE, _023D
     Return
@@ -256,27 +256,27 @@ _03F5:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2CC 4, 0x40BB, 0x800C
-    ScrCmd_2D0 0x4002, 0x4005
+    ScrCmd_2D0 VAR_0x4002, VAR_0x4005
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_0x4002, 0xFF, _034D
-    ScrCmd_31E 0x4002, 0x800C
+    ScrCmd_31E VAR_0x4002, 0x800C
     GoToIfEq 0x800C, 0xFF, _07C8
-    ScrCmd_31E 0x4005, 0x800C
+    ScrCmd_31E VAR_0x4005, 0x800C
     GoToIfEq 0x800C, 0xFF, _07C8
-    GetPartyMonSpecies 0x4002, 0x4001
+    GetPartyMonSpecies VAR_0x4002, VAR_0x4001
     GoToIfEq VAR_0x4001, 0, _034D
     ScrCmd_2CC 1, 0x40BB, 0x800C
     GoToIfEq 0x800C, 0, _04F4
     ScrCmd_2CC 2, 0x40BB, 0x800C
     BufferSpeciesNameFromVar 0, 0x800C, 0, 0
-    GoToIfEq 0x800C, 0x4001, _04F4
+    GoToIfEq 0x800C, VAR_0x4001, _04F4
     GoTo _04A2
     End
 
 _04A2:
-    BufferSpeciesNameFromVar 1, 0x4001, 0, 0
+    BufferSpeciesNameFromVar 1, VAR_0x4001, 0, 0
     Message 34
     InitGlobalTextListMenu 25, 13, 1, 0x800C
     AddListMenuEntry 41, 0
@@ -302,7 +302,7 @@ _04FC:
     SetVar VAR_0x4000, 0
     HealParty
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 0, _034D
     GoToIfEq 0x40BB, 2, _054A
     GoTo _0690
@@ -365,7 +365,7 @@ _062C:
 _0636:
     ScrCmd_136
     ScrCmd_135 108
-    ScrCmd_2CF 0x4001, 0x800C
+    ScrCmd_2CF VAR_0x4001, 0x800C
     GoToIfEq 0x800C, 1, _067B
     ScrCmd_136
     ScrCmd_135 110
@@ -956,7 +956,7 @@ _0D14:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_0x4001, 0x4021
+    SetVar VAR_0x4001, VAR_0x4021
     GoToIfEq VAR_0x4001, 0, _0D68
     GoToIfEq VAR_0x4001, 97, _0D73
     GoToIfEq VAR_0x4001, 140, _0D7E

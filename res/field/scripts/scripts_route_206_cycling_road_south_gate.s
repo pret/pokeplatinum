@@ -15,7 +15,7 @@ _001A:
     End
 
 _001C:
-    GetPlayerMapPos 0x4004, 0x4005
+    GetPlayerMapPos VAR_0x4004, VAR_0x4005
     CallIfLe VAR_0x4005, 3, _0037
     SetVar VAR_0x4003, 1
     End

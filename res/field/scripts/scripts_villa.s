@@ -51,7 +51,7 @@
 
 _00B2:
     InitPersistedMapFeaturesForVilla
-    GetPlayerGender 0x4000
+    GetPlayerGender VAR_0x4000
     CallIfEq VAR_0x4000, GENDER_MALE, _01EF
     CallIfEq VAR_0x4000, GENDER_FEMALE, _01F7
     GoToIfSet FLAG_VILLA_VISITOR_OUTSIDE, _01ED
@@ -218,31 +218,31 @@ _030C:
     End
 
 _0360:
-    GetPlayerGender 0x4000
+    GetPlayerGender VAR_0x4000
     CallIfEq VAR_0x4000, GENDER_MALE, _0400
     CallIfEq VAR_0x4000, GENDER_FEMALE, _0405
     Return
 
 _0380:
-    GetPlayerGender 0x4000
+    GetPlayerGender VAR_0x4000
     CallIfEq VAR_0x4000, GENDER_MALE, _040A
     CallIfEq VAR_0x4000, GENDER_FEMALE, _040F
     Return
 
 _03A0:
-    GetPlayerGender 0x4000
+    GetPlayerGender VAR_0x4000
     CallIfEq VAR_0x4000, GENDER_MALE, _0414
     CallIfEq VAR_0x4000, GENDER_FEMALE, _0419
     Return
 
 _03C0:
-    GetPlayerGender 0x4000
+    GetPlayerGender VAR_0x4000
     CallIfEq VAR_0x4000, GENDER_MALE, _041E
     CallIfEq VAR_0x4000, GENDER_FEMALE, _0423
     Return
 
 _03E0:
-    GetPlayerGender 0x4000
+    GetPlayerGender VAR_0x4000
     CallIfEq VAR_0x4000, GENDER_MALE, _0428
     CallIfEq VAR_0x4000, GENDER_FEMALE, _042D
     Return

@@ -20,7 +20,7 @@
     ScriptEntryEnd
 
 _003A:
-    ScrCmd_238 19, 0x4000
+    ScrCmd_238 19, VAR_0x4000
     GoToIfEq VAR_0x4000, 0, _0053
     ClearFlag FLAG_UNK_0x02C3
     End
@@ -130,18 +130,18 @@ _01FF:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2D2 4, 0x40BD, 0x800C
-    ScrCmd_2D4 0x4002, 0x4005, 0x4006
+    ScrCmd_2D4 VAR_0x4002, VAR_0x4005, VAR_0x4006
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_0x4002, 0xFF, _0139
-    ScrCmd_31E 0x4002, 0x800C
+    ScrCmd_31E VAR_0x4002, 0x800C
     GoToIfEq 0x800C, 0xFF, _05D5
-    ScrCmd_31E 0x4005, 0x800C
+    ScrCmd_31E VAR_0x4005, 0x800C
     GoToIfEq 0x800C, 0xFF, _05D5
-    ScrCmd_31E 0x4006, 0x800C
+    ScrCmd_31E VAR_0x4006, 0x800C
     GoToIfEq 0x800C, 0xFF, _05D5
-    GetPartyMonSpecies 0x4002, 0x4001
+    GetPartyMonSpecies VAR_0x4002, VAR_0x4001
     GoToIfEq VAR_0x4001, 0, _0139
     GoTo _028F
     End
@@ -156,7 +156,7 @@ _0297:
     SetVar VAR_0x4000, 0
     HealParty
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 0, _0139
     GoToIfEq 0x40BD, 2, _02E5
     GoTo _049D
@@ -219,8 +219,8 @@ _03C7:
 _03D1:
     ScrCmd_136
     ScrCmd_135 136
-    GetPartyMonSpecies 0x4002, 0x8000
-    GetPartyMonSpecies 0x4005, 0x8001
+    GetPartyMonSpecies VAR_0x4002, 0x8000
+    GetPartyMonSpecies VAR_0x4005, 0x8001
     ScrCmd_2D3 0x8000, 0x8001, 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 1, _0444
@@ -240,22 +240,22 @@ _043C:
 
 _0444:
     Call _0493
-    BufferPartyMonSpecies 0, 0x4002
+    BufferPartyMonSpecies 0, VAR_0x4002
     Message 29
     GoTo _048B
     End
 
 _045A:
     Call _0493
-    BufferPartyMonSpecies 0, 0x4005
+    BufferPartyMonSpecies 0, VAR_0x4005
     Message 29
     GoTo _048B
     End
 
 _0470:
     Call _0493
-    BufferPartyMonSpecies 0, 0x4002
-    BufferPartyMonSpecies 1, 0x4005
+    BufferPartyMonSpecies 0, VAR_0x4002
+    BufferPartyMonSpecies 1, VAR_0x4005
     Message 30
     GoTo _048B
     End

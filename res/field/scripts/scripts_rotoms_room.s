@@ -31,9 +31,9 @@ RotomsRoom_InitFlags:
     SetFlag FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR
     SetFlag FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN
     SetFlag FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER
-    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, VAR_0x4000
     GoToIfEq VAR_0x4000, FALSE, _00A5
-    GetRotomFormsInSave 0x4000, 0x4001, 0x4002, 0x4003, 0x4004
+    GetRotomFormsInSave VAR_0x4000, VAR_0x4001, VAR_0x4002, VAR_0x4003, VAR_0x4004
     CallIfEq VAR_0x4000, FALSE, RotomsRoom_InitShowMicrowaveOven
     CallIfEq VAR_0x4001, FALSE, RotomsRoom_InitShowWashingMachine
     CallIfEq VAR_0x4002, FALSE, RotomsRoom_InitShowRefrigerator

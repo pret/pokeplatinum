@@ -10,7 +10,7 @@
 
 _0012:
     CallIfNe 0x406B, 0x122, _003F
-    CheckPartyHasFatefulEncounterRegigigas 0x4001
+    CheckPartyHasFatefulEncounterRegigigas VAR_0x4001
     GoToIfEq VAR_0x4001, 0, _0067
     GoToIfEq VAR_0x4001, 1, _0071
     End
@@ -20,7 +20,7 @@ _003F:
     Return
 
 _0047:
-    CheckPartyHasFatefulEncounterRegigigas 0x4001
+    CheckPartyHasFatefulEncounterRegigigas VAR_0x4001
     GoToIfEq VAR_0x4001, 0, _0067
     GoToIfEq VAR_0x4001, 1, _0071
     End

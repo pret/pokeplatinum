@@ -9,7 +9,7 @@
 
 _000A:
     GoToIfSet FLAG_UNK_0x011D, _0029
-    ScrCmd_22D 2, 0x4000
+    ScrCmd_22D 2, VAR_0x4000
     CallIfEq VAR_0x4000, 1, _002F
     End
 

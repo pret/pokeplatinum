@@ -33,17 +33,17 @@ _0062:
     CallIfEq 0x40D8, 1, _00F1
     CallIfEq 0x40D8, 3, _00F1
     CallIfEq 0x40D8, 0xFF, _00F1
-    ScrCmd_238 19, 0x4000
+    ScrCmd_238 19, VAR_0x4000
     CallIfEq VAR_0x4000, 0, _0144
     CallIfNe VAR_0x4000, 0, _014A
-    ScrCmd_1E0 0x4000
+    ScrCmd_1E0 VAR_0x4000
     GoToIfNe VAR_0x4000, 0, _00DF
     SetFlag FLAG_UNK_0x01E9
     GoTo _00C6
     End
 
 _00C6:
-    ScrCmd_238 2, 0x4000
+    ScrCmd_238 2, VAR_0x4000
     GoToIfNe VAR_0x4000, 0, _00EB
     SetFlag FLAG_UNK_0x020E
     End
@@ -63,7 +63,7 @@ _00F1:
 
 _00F5:
     GoToIfNe 0x40D8, 1, _013A
-    ScrCmd_1E0 0x4000
+    ScrCmd_1E0 VAR_0x4000
     GoToIfNe VAR_0x4000, 0, _013C
     GoToIfEq VAR_0x4000, 1, _013C
     GoToIfEq VAR_0x4000, 2, _013C
@@ -119,12 +119,12 @@ _01AC:
     LockAll
     FacePlayer
     SetVar VAR_0x4001, 0
-    ScrCmd_1DF 0x4002
+    ScrCmd_1DF VAR_0x4002
     GoTo _01C6
     End
 
 _01C6:
-    SetVar 0x8008, 0x4002
+    SetVar 0x8008, VAR_0x4002
     GoToIfEq 0x8008, 1, _0239
     GoToIfEq 0x8008, 2, _024C
     GoToIfEq 0x8008, 3, _025F
@@ -280,7 +280,7 @@ _045C:
 
 _049C:
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
+    SetVar 0x800C, VAR_0x4000
     Return
 
 _04A8:
@@ -403,13 +403,13 @@ _06A0:
     End
 
 _06AE:
-    ApplyMovement 0x4002, _1248
+    ApplyMovement VAR_0x4002, _1248
     ApplyMovement LOCALID_PLAYER, _1260
     WaitMovement
-    ScrCmd_168 0, 0, 0x4003, 2, 77
+    ScrCmd_168 0, 0, VAR_0x4003, 2, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ApplyMovement 0x4002, _1254
+    ApplyMovement VAR_0x4002, _1254
     ApplyMovement LOCALID_PLAYER, _126C
     WaitMovement
     ScrCmd_16C 77
@@ -585,13 +585,13 @@ _096F:
 _097F:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0B3 0x4000
-    ScrCmd_1DD 16, 0x4001, 0x4000
-    SetVar VAR_0x4001, 0x4000
+    ScrCmd_0B3 VAR_0x4000
+    ScrCmd_1DD 16, VAR_0x4001, VAR_0x4000
+    SetVar VAR_0x4001, VAR_0x4000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x800C, 0x4001
+    SetVar 0x800C, VAR_0x4001
     Return
 
 _09B3:
@@ -804,8 +804,8 @@ _0D5C:
 _0D72:
     ScrCmd_1E1 0, 0, 0x800C
     GoToIfEq 0x800C, 0, _0D72
-    ScrCmd_1E2 0, 0x4000
-    SetVar 0x8008, 0x4000
+    ScrCmd_1E2 0, VAR_0x4000
+    SetVar 0x8008, VAR_0x4000
     GoToIfEq 0x8008, 1, _0DE7
     GoToIfEq 0x8008, 2, _0E05
     GoToIfEq 0x8008, 3, _0E23
@@ -814,7 +814,7 @@ _0D72:
     ScrCmd_1DD 57, 0, 0x8004
     ScrCmd_207 0x800C
     GoToIfEq 0x800C, 0, _0E8A
-    ScrCmd_1E2 1, 0x4000
+    ScrCmd_1E2 1, VAR_0x4000
     GoTo _0E58
     End
 
@@ -892,7 +892,7 @@ _0F05:
     Message 53
     ScrCmd_1DD 43, 0, 0x800C
     SetVar VAR_0x4000, 0x800C
-    SetVar 0x8008, 0x4000
+    SetVar 0x8008, VAR_0x4000
     GoToIfEq 0x8008, 5, _0F53
     GoToIfEq 0x8008, 4, _11BA
     ScrCmd_1DD 49, 0, 0x800C
@@ -945,7 +945,7 @@ _100A:
     ScrCmd_1DD 10, 0, 0x800C
     SetVar VAR_0x4000, 0x800C
     BufferPlayerName 0
-    BufferNumber 1, 0x4000
+    BufferNumber 1, VAR_0x4000
     Message 55
     GoTo _102B
     End
@@ -957,7 +957,7 @@ _102B:
     End
 
 _1048:
-    BufferNumber 0, 0x4000
+    BufferNumber 0, VAR_0x4000
     Message 70
     PlaySound SEQ_FANFA1
     WaitSound
@@ -971,7 +971,7 @@ _105E:
     End
 
 _107B:
-    BufferNumber 0, 0x4000
+    BufferNumber 0, VAR_0x4000
     Message 132
     PlaySound SEQ_FANFA1
     WaitSound

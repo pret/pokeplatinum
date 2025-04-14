@@ -29,7 +29,7 @@
 
 _0058:
     SetFlag FLAG_UNK_0x09EE
-    GetHour 0x4000
+    GetHour VAR_0x4000
     GoToIfLt VAR_0x4000, 9, _0087
     GoToIfGe VAR_0x4000, 23, _0087
     GoToIfUnset FLAG_UNK_0x0AAB, _00B3
@@ -77,11 +77,11 @@ _00B3:
     ClearTrainerFlag TRAINER_SCIENTIST_EMILIO
     ClearTrainerFlag TRAINER_BREEDER_KAYLEE
     SetVar 0x4104, 0
-    GetRandom 0x4001, 1
+    GetRandom VAR_0x4001, 1
     SetVar VAR_0x4000, 5
     SetVar VAR_0x400A, 0x2710
 _0137:
-    GetRandom2 0x4001, 9
+    GetRandom2 VAR_0x4001, 9
     CallIfEq VAR_0x4001, 0, _01D8
     CallIfEq VAR_0x4001, 1, _01F5
     CallIfEq VAR_0x4001, 2, _0212
@@ -91,7 +91,7 @@ _0137:
     CallIfEq VAR_0x4001, 6, _0286
     CallIfEq VAR_0x4001, 7, _02A3
     CallIfEq VAR_0x4001, 8, _02C0
-    SubVar 0x400A, 1
+    SubVar VAR_0x400A, 1
     GoToIfEq VAR_0x400A, 0, _01D2
     GoToIfNe VAR_0x4000, 0, _0137
 _01D2:
@@ -102,63 +102,63 @@ _01D8:
     GoToIfUnset FLAG_UNK_0x0244, _02DD
     ClearFlag FLAG_UNK_0x0244
     GetRandom2 0x40FB, 3
-    SubVar 0x4000, 1
+    SubVar VAR_0x4000, 1
     Return
 
 _01F5:
     GoToIfUnset FLAG_UNK_0x0245, _02DD
     ClearFlag FLAG_UNK_0x0245
     GetRandom2 0x40FC, 3
-    SubVar 0x4000, 1
+    SubVar VAR_0x4000, 1
     Return
 
 _0212:
     GoToIfUnset FLAG_UNK_0x0246, _02DD
     ClearFlag FLAG_UNK_0x0246
     GetRandom2 0x40FD, 3
-    SubVar 0x4000, 1
+    SubVar VAR_0x4000, 1
     Return
 
 _022F:
     GoToIfUnset FLAG_UNK_0x0247, _02DD
     ClearFlag FLAG_UNK_0x0247
     GetRandom2 0x40FE, 3
-    SubVar 0x4000, 1
+    SubVar VAR_0x4000, 1
     Return
 
 _024C:
     GoToIfUnset FLAG_UNK_0x0248, _02DD
     ClearFlag FLAG_UNK_0x0248
     GetRandom2 0x40FF, 3
-    SubVar 0x4000, 1
+    SubVar VAR_0x4000, 1
     Return
 
 _0269:
     GoToIfUnset FLAG_UNK_0x0249, _02DD
     ClearFlag FLAG_UNK_0x0249
     GetRandom2 0x4100, 3
-    SubVar 0x4000, 1
+    SubVar VAR_0x4000, 1
     Return
 
 _0286:
     GoToIfUnset FLAG_UNK_0x024A, _02DD
     ClearFlag FLAG_UNK_0x024A
     GetRandom2 0x4101, 3
-    SubVar 0x4000, 1
+    SubVar VAR_0x4000, 1
     Return
 
 _02A3:
     GoToIfUnset FLAG_UNK_0x024B, _02DD
     ClearFlag FLAG_UNK_0x024B
     GetRandom2 0x4102, 3
-    SubVar 0x4000, 1
+    SubVar VAR_0x4000, 1
     Return
 
 _02C0:
     GoToIfUnset FLAG_UNK_0x024C, _02DD
     ClearFlag FLAG_UNK_0x024C
     GetRandom2 0x4103, 3
-    SubVar 0x4000, 1
+    SubVar VAR_0x4000, 1
     Return
 
 _02DD:

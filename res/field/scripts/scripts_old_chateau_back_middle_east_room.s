@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 _000A:
-    ScrCmd_292 25, 0x4000
+    ScrCmd_292 25, VAR_0x4000
     GoToIfEq VAR_0x4000, 1, _0022
     SetFlag FLAG_UNK_0x027C
     End

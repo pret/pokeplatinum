@@ -54,7 +54,7 @@ _00B6:
     SetFlag FLAG_UNK_0x09CC
     SetFlag FLAG_UNK_0x02A1
     CalcAmitySquareBerryAndAccessoryManOptionID 0x40AB
-    GetRandom 0x4002, 5
+    GetRandom VAR_0x4002, 5
     GoToIfEq VAR_0x4002, 0, _00FE
     GoToIfEq VAR_0x4002, 1, _0108
     GoToIfEq VAR_0x4002, 2, _0112
@@ -127,24 +127,24 @@ _01A3:
 
 _01B6:
     SetVar VAR_0x400A, 0
-    GetPartyCount 0x400B
+    GetPartyCount VAR_0x400B
     SetVar VAR_0x400C, 0
     GoTo _01CE
     End
 
 _01CE:
-    GetPartyMonSpecies 0x400A, 0x800C
+    GetPartyMonSpecies VAR_0x400A, 0x800C
     GoToIfEq 0x800C, SPECIES_NONE, _026D
     CallIfEq VAR_0x4000, 0, _0C50
     CallIfEq VAR_0x4000, 1, _0D36
     GoToIfEq 0x800C, 0, _026D
-    BufferPartyMonNickname 0, 0x400A
+    BufferPartyMonNickname 0, VAR_0x400A
     GoToIfEq VAR_0x400C, 0, _0229
     GoToIfNe VAR_0x400C, 0, _024B
     End
 
 _0229:
-    AddVar 0x400C, 1
+    AddVar VAR_0x400C, 1
     Message 2
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _0299
@@ -152,7 +152,7 @@ _0229:
     End
 
 _024B:
-    AddVar 0x400C, 1
+    AddVar VAR_0x400C, 1
     Message 4
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _0299
@@ -160,8 +160,8 @@ _024B:
     End
 
 _026D:
-    AddVar 0x400A, 1
-    SubVar 0x400B, 1
+    AddVar VAR_0x400A, 1
+    SubVar VAR_0x400B, 1
     GoToIfNe VAR_0x400B, 0, _01CE
     Message 5
     CloseMessage
@@ -174,8 +174,8 @@ _0299:
     HealParty
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    SetVar 0x409D, 0x400A
-    GetPartyMonSpecies 0x400A, 0x409A
+    SetVar 0x409D, VAR_0x400A
+    GetPartyMonSpecies VAR_0x400A, 0x409A
     GoTo _0E48
     End
 
@@ -803,7 +803,7 @@ _0ACC:
     End
 
 _0C50:
-    GetPartyMonSpecies 0x400A, 0x800C
+    GetPartyMonSpecies VAR_0x400A, 0x800C
     GoToIfEq 0x800C, 25, _0D2E
     GoToIfEq 0x800C, 35, _0D2E
     GoToIfEq 0x800C, 54, _0D2E
@@ -828,7 +828,7 @@ _0D2E:
     Return
 
 _0D36:
-    GetPartyMonSpecies 0x400A, 0x800C
+    GetPartyMonSpecies VAR_0x400A, 0x800C
     GoToIfEq 0x800C, 25, _0D2E
     GoToIfEq 0x800C, 35, _0D2E
     GoToIfEq 0x800C, 54, _0D2E

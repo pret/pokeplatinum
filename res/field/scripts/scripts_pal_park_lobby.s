@@ -376,7 +376,7 @@ _04B4:
     SetVar 0x40E0, 0x7D0
     ApplyMovement 1, _0548
     WaitMovement
-    GetPlayerGender 0x4000
+    GetPlayerGender VAR_0x4000
     BufferPlayerName 0
     GoToIfEq VAR_0x4000, GENDER_MALE, _04E4
     GoTo _04ED
