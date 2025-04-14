@@ -427,7 +427,7 @@ scr_seq_files = files(
     'scripts_grand_lake_valor_lakefront_west_house.s',
     'scripts_acuity_lakefront.s',
     'scripts_unk_0421.s',
-    'scripts_unk_0422.s',
+    'scripts_follower_partners.s',
     'scripts_unk_0423.s',
     'scripts_unk_0424.s',
     'scripts_unk_0425.s',

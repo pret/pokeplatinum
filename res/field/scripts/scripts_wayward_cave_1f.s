@@ -51,8 +51,8 @@ _0090:
     Return
 
 _0095:
-    GoToIfGe 0x40E2, 2, _00C4
-    GoToIfEq 0x40E2, 1, _00BB
+    GoToIfGe VAR_FOLLOWER_MIRA_TIMES_TALKED, 2, _00C4
+    GoToIfEq VAR_FOLLOWER_MIRA_TIMES_TALKED, 1, _00BB
     BufferPlayerName 0
     Message 9
     GoTo _00D2
@@ -70,7 +70,7 @@ _00C4:
     End
 
 _00D2:
-    AddVar 0x40E2, 1
+    AddVar VAR_FOLLOWER_MIRA_TIMES_TALKED, 1
     WaitABXPadPress
     CloseMessage
     ReleaseAll

@@ -24,7 +24,7 @@ _002E:
     SetVar 0x4095, 1
     SetVar 0x4082, 2
     ClearFlag FLAG_UNK_0x0195
-    SetVar 0x4086, 2
+    SetVar VAR_FOLLOWER_RIVAL_STATE, 2
     SetVar 0x40A4, 3
     End
 

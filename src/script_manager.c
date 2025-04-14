@@ -228,7 +228,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0212, TEXT_BANK_UNK_0217);
         retScriptID -= 9800;
     } else if (retScriptID >= 9700) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0422, TEXT_BANK_UNK_0429);
+        ScriptContext_Load(fieldSystem, ctx, scripts_follower_partners, TEXT_BANK_FOLLOWER_PARTNERS);
         retScriptID -= 9700;
     } else if (retScriptID >= SCRIPT_ID_OFFSET_INIT_NEW_GAME) {
         ScriptContext_Load(fieldSystem, ctx, scripts_init_new_game, TEXT_BANK_COMMON_STRINGS);
