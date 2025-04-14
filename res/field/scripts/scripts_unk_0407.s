@@ -10,7 +10,7 @@
 _000A:
     LoadMysteryGift
     CheckAvailableMysteryGift 0x40ED
-    GoToIfEq 0x40ED, 0, _002B
+    GoToIfEq VAR_UNK_0x40ED, 0, _002B
     ClearFlag FLAG_UNK_0x020A
     UnloadMysteryGift
     End

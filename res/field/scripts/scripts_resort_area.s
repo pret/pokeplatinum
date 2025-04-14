@@ -27,7 +27,7 @@ _003E:
     SetFlag FLAG_UNK_0x02B2
     SetFlag FLAG_UNK_0x02B5
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 0xFF, _00BA
-    GoToIfEq 0x40C8, 0, _00BA
+    GoToIfEq VAR_UNK_0x40C8, 0, _00BA
     GoToIfSet FLAG_VILLA_VISITOR_INSIDE, _00BA
     CallIfEq VAR_RESORT_VILLA_VISITOR, 2, _00BC
     CallIfEq VAR_RESORT_VILLA_VISITOR, 4, _00C2
@@ -155,7 +155,7 @@ _0184:
     ScrCmd_169 77
     ScrCmd_16A 77
     RemoveObject 13
-    SetVar 0x40C8, 1
+    SetVar VAR_UNK_0x40C8, 1
     SetVar VAR_RESORT_VILLA_VISITOR, 0xFF
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

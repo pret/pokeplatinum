@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _0016:
-    GoToIfEq 0x40D9, 0, _0035
+    GoToIfEq VAR_UNK_0x40D9, 0, _0035
     SetFlag FLAG_UNK_0x01CB
     ScrCmd_1DD 55, 0, VAR_0x4000
     SetVar VAR_0x4020, VAR_0x4000
@@ -20,7 +20,7 @@ _0035:
 
 _0037:
     ScrCmd_1B2 0xFF
-    GoToIfEq 0x40D9, 3, _004A
+    GoToIfEq VAR_UNK_0x40D9, 3, _004A
     End
 
 _004A:
@@ -28,7 +28,7 @@ _004A:
     End
 
 _0058:
-    SetVar 0x40D9, 0
+    SetVar VAR_UNK_0x40D9, 0
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -45,7 +45,7 @@ _0070:
 
 _007D:
     WaitTime 30, 0x800C
-    SetVar 0x40D8, 1
+    SetVar VAR_UNK_0x40D8, 1
     ScrCmd_1DD 43, 0, 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 4, _00D9
@@ -69,7 +69,7 @@ _00D9:
 
 _0101:
     LockAll
-    SetVar 0x40D9, 3
+    SetVar VAR_UNK_0x40D9, 3
     ScrCmd_1DD 100, 0, 0x800C
     GoToIfEq 0x800C, 1, _007D
     Call _043C
@@ -78,7 +78,7 @@ _0101:
 
 _012C:
     LockAll
-    SetVar 0x40D9, 3
+    SetVar VAR_UNK_0x40D9, 3
     ScrCmd_1DD 100, 0, 0x800C
     GoToIfEq 0x800C, 1, _007D
     Call _043C
@@ -109,7 +109,7 @@ _019C:
     End
 
 _01AC:
-    SetVar 0x40D8, 2
+    SetVar VAR_UNK_0x40D8, 2
     ScrCmd_1DD 39, 0, 0
     ScrCmd_1DC
     Message 4

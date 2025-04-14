@@ -184,7 +184,7 @@ _0264:
 
 _0278:
     LockAll
-    SetVar 0x40C1, 1
+    SetVar VAR_UNK_0x40C1, 1
     ApplyMovement 0, _02A0
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _02A8
@@ -449,7 +449,7 @@ _0710:
     Return
 
 _0718:
-    GoToIfEq 0x4061, 1, _0BF5
+    GoToIfEq VAR_UNK_0x4061, 1, _0BF5
     CallIfEq VAR_0x4001, 126, _07D0
     CallIfEq VAR_0x4001, 127, _07D5
     CallIfEq VAR_0x4001, 128, _07DA
@@ -518,7 +518,7 @@ _080C:
     Return
 
 _0811:
-    GoToIfEq 0x4061, 1, _0CE1
+    GoToIfEq VAR_UNK_0x4061, 1, _0CE1
     CallIfEq VAR_0x4001, 126, _08C9
     CallIfEq VAR_0x4001, 127, _08CE
     CallIfEq VAR_0x4001, 128, _08D3
@@ -587,7 +587,7 @@ _0905:
     Return
 
 _090A:
-    GoToIfEq 0x4061, 1, _0DCD
+    GoToIfEq VAR_UNK_0x4061, 1, _0DCD
     CallIfEq VAR_0x4001, 126, _09C2
     CallIfEq VAR_0x4001, 127, _09C7
     CallIfEq VAR_0x4001, 128, _09CC
@@ -656,7 +656,7 @@ _09FE:
     Return
 
 _0A03:
-    GoToIfEq 0x4061, 1, _0EB9
+    GoToIfEq VAR_UNK_0x4061, 1, _0EB9
     CallIfEq VAR_0x4001, 126, _0ABB
     CallIfEq VAR_0x4001, 127, _0AC0
     CallIfEq VAR_0x4001, 128, _0AC5
@@ -725,7 +725,7 @@ _0AF7:
     Return
 
 _0AFC:
-    GoToIfEq 0x4061, 1, _0FA5
+    GoToIfEq VAR_UNK_0x4061, 1, _0FA5
     CallIfEq VAR_0x4001, 126, _0BB4
     CallIfEq VAR_0x4001, 127, _0BB9
     CallIfEq VAR_0x4001, 128, _0BBE

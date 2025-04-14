@@ -52,7 +52,7 @@ _004D:
     CallIfEq 0x8004, 0x12E, _00E2
     CallIfEq 0x8004, 0x12F, _00F6
     RemoveObject 15
-    SetVar 0x40A8, 1
+    SetVar VAR_UNK_0x40A8, 1
     SetFlag FLAG_UNK_0x0298
     ReleaseAll
     End

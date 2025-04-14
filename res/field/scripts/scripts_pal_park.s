@@ -33,7 +33,7 @@ _0020:
     PlayFanfare SEQ_SE_DP_CON_016
     WaitTime 30, 0x800C
     ScrCmd_253 0
-    SetVar 0x40F3, 1
+    SetVar VAR_UNK_0x40F3, 1
     SetFlag FLAG_ALT_MUSIC_PAL_PARK
     PlayMusic SEQ_D_SAFARI
     CloseMessage
@@ -70,7 +70,7 @@ _008D:
     WaitSound
     CloseMessage
     ReleaseAll
-    SetVar 0x40F3, 1
+    SetVar VAR_UNK_0x40F3, 1
     Call _01C0
     End
 
@@ -85,7 +85,7 @@ _00B9:
     End
 
 _00D9:
-    SetVar 0x40F3, 2
+    SetVar VAR_UNK_0x40F3, 2
     ReleaseAll
     Call _01C0
     End
@@ -96,7 +96,7 @@ _00E9:
     Call _0170
     CloseMessage
     GoToIfEq 0x800C, 0, _0114
-    SetVar 0x40F3, 2
+    SetVar VAR_UNK_0x40F3, 2
     ReleaseAll
     Call _01C0
     End
@@ -119,7 +119,7 @@ _012C:
     Call _0170
     CloseMessage
     GoToIfEq 0x800C, 0, _0159
-    SetVar 0x40F3, 2
+    SetVar VAR_UNK_0x40F3, 2
     ReleaseAll
     Call _01C0
     End

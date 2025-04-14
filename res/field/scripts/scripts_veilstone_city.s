@@ -121,7 +121,7 @@ _00F6:
     CallIfEq 0x8004, 0x2AB, _0419
     CallIfEq 0x8004, 0x2AC, _042D
     RemoveObject 6
-    SetVar 0x40F5, 1
+    SetVar VAR_UNK_0x40F5, 1
     ReleaseAll
     End
 

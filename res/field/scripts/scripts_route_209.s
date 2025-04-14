@@ -50,7 +50,7 @@ _0091:
 _00A4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfEq 0x408A, 1, _0102
+    GoToIfEq VAR_UNK_0x408A, 1, _0102
     CheckItem ITEM_ODD_KEYSTONE, 1, 0x800C
     GoToIfEq 0x800C, 0, _01BC
     Message 2
@@ -65,7 +65,7 @@ _00E6:
     Message 3
     WaitABXPadPress
     RemoveItem ITEM_ODD_KEYSTONE, 1, 0x800C
-    SetVar 0x408A, 1
+    SetVar VAR_UNK_0x408A, 1
     CloseMessage
     ReleaseAll
     End
@@ -88,7 +88,7 @@ _014D:
     StartWildBattle SPECIES_SPIRITOMB, 25
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _017F
-    SetVar 0x408A, 0
+    SetVar VAR_UNK_0x408A, 0
     ClearSpiritombCounter
     End
 

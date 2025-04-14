@@ -21,8 +21,8 @@ _0026:
     End
 
 _0035:
-    GoToIfEq 0x4092, 2, _004A
-    SetVar 0x4092, 0
+    GoToIfEq VAR_UNK_0x4092, 2, _004A
+    SetVar VAR_UNK_0x4092, 0
     End
 
 _004A:
@@ -49,7 +49,7 @@ _0064:
     Message 1
     WaitSound
     SetFlag FLAG_UNK_0x00E1
-    SetVar 0x4092, 1
+    SetVar VAR_UNK_0x4092, 1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -84,7 +84,7 @@ _00F3:
     WaitMovement
     Message 4
     CloseMessage
-    SetVar 0x4092, 0
+    SetVar VAR_UNK_0x4092, 0
     ClearHasPartner
     ScrCmd_06D 4, 16
     GetPlayerMapPos 0x8004, 0x8005
@@ -273,7 +273,7 @@ _031C:
 
 _0353:
     SetFlag FLAG_UNK_0x00E2
-    SetVar 0x4092, 2
+    SetVar VAR_UNK_0x4092, 2
     Message 13
     WaitABXPadPress
     CloseMessage
@@ -286,7 +286,7 @@ _0366:
 
 _0371:
     SetFlag FLAG_UNK_0x00E5
-    SetVar 0x4092, 2
+    SetVar VAR_UNK_0x4092, 2
     Return
 
 _037D:
@@ -456,11 +456,11 @@ _0468:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00E2, _0504
-    GoToIfEq 0x4092, 2, _0513
-    GoToIfGe 0x40E3, 4, _04EB
-    GoToIfEq 0x40E3, 3, _04E0
-    GoToIfEq 0x40E3, 2, _04D5
-    GoToIfEq 0x40E3, 1, _04CA
+    GoToIfEq VAR_UNK_0x4092, 2, _0513
+    GoToIfGe VAR_UNK_0x40E3, 4, _04EB
+    GoToIfEq VAR_UNK_0x40E3, 3, _04E0
+    GoToIfEq VAR_UNK_0x40E3, 2, _04D5
+    GoToIfEq VAR_UNK_0x40E3, 1, _04CA
     BufferPlayerName 0
     Message 18
     GoTo _04F6

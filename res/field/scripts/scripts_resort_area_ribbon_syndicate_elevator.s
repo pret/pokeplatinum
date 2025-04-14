@@ -41,24 +41,24 @@ _008F:
     WaitTime 1, 0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 0x1CE, 0, 18, 2, 1
-    GoToIfEq 0x40CE, 0, _0164
+    GoToIfEq VAR_UNK_0x40CE, 0, _0164
     SetVar 0x8004, 0
     Call _0105
-    SetVar 0x40CE, 0
+    SetVar VAR_UNK_0x40CE, 0
     GoTo _0147
 
 _00CA:
     WaitTime 1, 0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 0x1CD, 1, 18, 2, 1
-    GoToIfEq 0x40CE, 1, _0164
+    GoToIfEq VAR_UNK_0x40CE, 1, _0164
     SetVar 0x8004, 1
     Call _0105
-    SetVar 0x40CE, 1
+    SetVar VAR_UNK_0x40CE, 1
     GoTo _0147
 
 _0105:
-    SetVar 0x40CE, -1
+    SetVar VAR_UNK_0x40CE, -1
     CallIfEq 0x8004, 1, _013D
     CallIfEq 0x8004, 0, _0142
     CloseMessage
@@ -84,14 +84,14 @@ _0147:
     End
 
 _0152:
-    SetVar 0x40CE, -1
+    SetVar VAR_UNK_0x40CE, -1
     WaitTime 1, 0x800C
     CloseMessage
     ReleaseAll
     End
 
 _0164:
-    SetVar 0x40CE, -1
+    SetVar VAR_UNK_0x40CE, -1
     WaitTime 1, 0x800C
     Message 3
     WaitABXPadPress

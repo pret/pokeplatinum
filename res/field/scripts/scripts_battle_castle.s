@@ -78,7 +78,7 @@ _0139:
     End
 
 _0141:
-    SetVar 0x40BC, 0
+    SetVar VAR_UNK_0x40BC, 0
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -86,7 +86,7 @@ _0141:
     End
 
 _0152:
-    SetVar 0x40BD, 0
+    SetVar VAR_UNK_0x40BD, 0
     ScrCmd_2D2 0, 3, 0x800C
     BufferNumber 0, 3
     BufferNumber 1, 3
@@ -95,7 +95,7 @@ _0152:
     End
 
 _017F:
-    SetVar 0x40BD, 1
+    SetVar VAR_UNK_0x40BD, 1
     ScrCmd_2D2 0, 3, 0x800C
     BufferNumber 0, 3
     BufferNumber 1, 3
@@ -104,7 +104,7 @@ _017F:
     End
 
 _01AC:
-    SetVar 0x40BD, 2
+    SetVar VAR_UNK_0x40BD, 2
     ScrCmd_2D2 0, 2, 0x800C
     BufferNumber 0, 2
     BufferNumber 1, 2
@@ -151,14 +151,14 @@ _028F:
     End
 
 _0297:
-    CallIfEq 0x40BD, 0, _043C
-    CallIfEq 0x40BD, 1, _043C
+    CallIfEq VAR_UNK_0x40BD, 0, _043C
+    CallIfEq VAR_UNK_0x40BD, 1, _043C
     SetVar VAR_0x4000, 0
     HealParty
     CallCommonScript 0x7D6
     SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 0, _0139
-    GoToIfEq 0x40BD, 2, _02E5
+    GoToIfEq VAR_UNK_0x40BD, 2, _02E5
     GoTo _049D
     End
 
@@ -229,13 +229,13 @@ _03D1:
     ScrCmd_136
     ScrCmd_135 138
     Message 45
-    CallIfEq 0x40BD, 2, _043C
+    CallIfEq VAR_UNK_0x40BD, 2, _043C
     Call _06CB
     GoTo _049D
     End
 
 _043C:
-    SetVar 0x40BC, 0xFF
+    SetVar VAR_UNK_0x40BC, 0xFF
     Return
 
 _0444:
@@ -271,9 +271,9 @@ _0493:
     Return
 
 _049D:
-    CallIfEq 0x40BD, 0, _053D
-    CallIfEq 0x40BD, 1, _0558
-    CallIfEq 0x40BD, 2, _0573
+    CallIfEq VAR_UNK_0x40BD, 0, _053D
+    CallIfEq VAR_UNK_0x40BD, 1, _0558
+    CallIfEq VAR_UNK_0x40BD, 2, _0573
     PlayFanfare SEQ_SE_DP_KAIDAN2
     GoTo _04D0
     End
@@ -281,14 +281,14 @@ _049D:
 _04D0:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    CallIfEq 0x40BD, 0, _0599
-    CallIfEq 0x40BD, 1, _05AD
-    CallIfEq 0x40BD, 2, _05C1
+    CallIfEq VAR_UNK_0x40BD, 0, _0599
+    CallIfEq VAR_UNK_0x40BD, 1, _05AD
+    CallIfEq VAR_UNK_0x40BD, 2, _05C1
     IncrementGameRecord RECORD_UNK_058
     CreateJournalEvent LOCATION_EVENT_BATTLE_CASTLE, 0, 0, 0, 0
     ScrCmd_1F8
     ScrCmd_2C4 11
-    CallIfEq 0x40BD, 2, _0539
+    CallIfEq VAR_UNK_0x40BD, 2, _0539
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -347,7 +347,7 @@ _05C1:
     Return
 
 _05D5:
-    SetVar 0x40BC, 0
+    SetVar VAR_UNK_0x40BC, 0
     CallCommonScript 0x809
     End
 
@@ -441,7 +441,7 @@ _069F:
 _06A4:
     ScrCmd_313 0
     SetVar VAR_0x4003, 1
-    SetVar 0x40BC, 0
+    SetVar VAR_UNK_0x40BC, 0
     Message 33
     Call _043C
     Call _06CB
@@ -463,8 +463,8 @@ _06DD:
     End
 
 _06EC:
-    CallIfEq 0x40BD, 0, _0728
-    CallIfEq 0x40BD, 1, _0728
+    CallIfEq VAR_UNK_0x40BD, 0, _0728
+    CallIfEq VAR_UNK_0x40BD, 1, _0728
     CallIfEq VAR_BATTLE_CASTLE_PRINT_STATE, 1, _072E
     CallIfEq VAR_BATTLE_CASTLE_PRINT_STATE, 3, _0745
     GoTo _0139

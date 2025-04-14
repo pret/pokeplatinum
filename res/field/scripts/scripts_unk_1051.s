@@ -11,7 +11,7 @@ _0006:
     LockAll
     FacePlayer
     GetPlayerGender 0x8004
-    GoToIfEq 0x40A6, 3, _0027
+    GoToIfEq VAR_UNK_0x40A6, 3, _0027
     GoTo _006C
     End
 
@@ -147,7 +147,7 @@ _029F:
 _02B1:
     RemoveObject 4
     ClearFlag FLAG_UNK_0x0188
-    SetVar 0x4087, 2
+    SetVar VAR_UNK_0x4087, 2
     ReleaseAll
     End
 
@@ -342,8 +342,8 @@ _0494:
     EndMovement
 
 _04A4:
-    GoToIfEq 0x40C4, 1, _04C6
-    GoToIfEq 0x40C5, 1, _04C6
+    GoToIfEq VAR_UNK_0x40C4, 1, _04C6
+    GoToIfEq VAR_UNK_0x40C5, 1, _04C6
     SetVar 0x800C, 1
     Return
 

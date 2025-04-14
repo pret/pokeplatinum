@@ -47,7 +47,7 @@ _008C:
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_4
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 1, _010A
-    CallIfEq 0x40F4, 0, _0102
+    CallIfEq VAR_UNK_0x40F4, 0, _0102
     GetPartyCount 0x800C
     ScrCmd_25A 0x800C
     FadeScreen 6, 3, 0, 0
@@ -62,7 +62,7 @@ _008C:
     End
 
 _0102:
-    SetVar 0x40F4, 1
+    SetVar VAR_UNK_0x40F4, 1
     Return
 
 _010A:
@@ -148,17 +148,17 @@ _0234:
     Return
 
 _023C:
-    SetVar 0x40C4, 0
+    SetVar VAR_UNK_0x40C4, 0
     Return
 
 _0244:
-    SetVar 0x40C5, 0
+    SetVar VAR_UNK_0x40C5, 0
     Return
 
 _024C:
     GoToIfUnset FLAG_MESPRIT_CAUGHT, _0261
     ClearFlag FLAG_UNK_0x01DD
-    SetVar 0x409E, 1
+    SetVar VAR_UNK_0x409E, 1
 _0261:
     Return
 

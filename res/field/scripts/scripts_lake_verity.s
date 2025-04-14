@@ -15,7 +15,7 @@
 _001E:
     CallIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, _009D
     CallIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, _0087
-    CallIfEq 0x4097, 0, _0071
+    CallIfEq VAR_UNK_0x4097, 0, _0071
     GetPlayerGender VAR_0x4000
     GoToIfEq VAR_0x4000, GENDER_MALE, _0061
     GoToIfEq VAR_0x4000, GENDER_FEMALE, _0069
@@ -174,7 +174,7 @@ _0203:
     End
 
 _0211:
-    SetVar 0x4097, 1
+    SetVar VAR_UNK_0x4097, 1
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -220,7 +220,7 @@ _0230:
     SetFlag FLAG_UNK_0x029A
     SetFlag FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY
     ClearFlag FLAG_UNK_0x01BA
-    SetVar 0x40D3, 1
+    SetVar VAR_UNK_0x40D3, 1
     BufferRivalName 0
     Message 13
     WaitABXPadPress

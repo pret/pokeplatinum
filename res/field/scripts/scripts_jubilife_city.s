@@ -34,8 +34,8 @@
     ScriptEntryEnd
 
 _0072:
-    CallIfEq 0x4077, 0, _00AC
-    CallIfGe 0x4077, 3, _00C2
+    CallIfEq VAR_UNK_0x4077, 0, _00AC
+    CallIfGe VAR_UNK_0x4077, 3, _00C2
     GetPlayerGender VAR_0x4000
     GoToIfEq VAR_0x4000, GENDER_MALE, _00D8
     GoToIfEq VAR_0x4000, GENDER_FEMALE, _00E0
@@ -187,7 +187,7 @@ _02BB:
     ApplyMovement LOCALID_PLAYER, _04F8
     WaitMovement
     RemoveObject 7
-    SetVar 0x4077, 1
+    SetVar VAR_UNK_0x4077, 1
     ReleaseAll
     End
 
@@ -960,9 +960,9 @@ _0C7C:
     RemoveObject 7
     RemoveObject 16
     ClearFlag FLAG_UNK_0x0198
-    SetVar 0x4077, 4
-    SetVar 0x4076, 2
-    SetVar 0x4079, 3
+    SetVar VAR_UNK_0x4077, 4
+    SetVar VAR_UNK_0x4076, 2
+    SetVar VAR_UNK_0x4079, 3
     RemoveObject 24
     RemoveObject 25
     RemoveObject 27
@@ -1437,7 +1437,7 @@ _10C4:
     CallIfEq 0x8004, 175, _1157
     CallIfEq 0x8004, 176, _1163
     Message 39
-    SetVar 0x40E7, 2
+    SetVar VAR_UNK_0x40E7, 2
     Message 40
     WaitABXPadPress
     CloseMessage
@@ -1542,7 +1542,7 @@ _1223:
     RemoveItem ITEM_COUPON_2, 1, 0x800C
     RemoveItem ITEM_COUPON_3, 1, 0x800C
     ScrCmd_131
-    SetVar 0x4077, 2
+    SetVar VAR_UNK_0x4077, 2
     RegisterPoketchApp POKETCH_APPID_DIGITALWATCH
     RegisterPoketchApp POKETCH_APPID_CALCULATOR
     RegisterPoketchApp POKETCH_APPID_PEDOMETER
@@ -1689,7 +1689,7 @@ _140E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfLt 0x40E7, 2, _149E
+    GoToIfLt VAR_UNK_0x40E7, 2, _149E
     GoToIfSet FLAG_UNK_0x00EF, _1493
     Message 57
     ShowYesNoMenu 0x800C
@@ -1773,7 +1773,7 @@ _14CF:
     WaitMovement
     RemoveObject 31
     CallCommonScript 0x808
-    SetVar 0x4076, 2
+    SetVar VAR_UNK_0x4076, 2
     ReleaseAll
     End
 

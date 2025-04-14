@@ -21,7 +21,7 @@
 _0036:
     ClearFlag FLAG_ALT_MUSIC_PAL_PARK
     SetFlag FLAG_UNK_0x09F3
-    GoToIfNe 0x40F3, 0, _004D
+    GoToIfNe VAR_UNK_0x40F3, 0, _004D
     End
 
 _004D:
@@ -30,7 +30,7 @@ _004D:
     End
 
 _005D:
-    GoToIfEq 0x40E0, 0x7D0, _0074
+    GoToIfEq VAR_UNK_0x40E0, 0x7D0, _0074
     BufferPlayerName 1
     BufferNumber 2, 0x40E0
     Return
@@ -201,7 +201,7 @@ _02CC:
 
 _02D8:
     LockAll
-    SetVar 0x40F3, 0
+    SetVar VAR_UNK_0x40F3, 0
     ApplyMovement LOCALID_PLAYER, _03E4
     WaitMovement
     ApplyMovement 7, _03D8
@@ -211,7 +211,7 @@ _02D8:
 
 _02F8:
     LockAll
-    SetVar 0x40F3, 0
+    SetVar VAR_UNK_0x40F3, 0
     ApplyMovement LOCALID_PLAYER, _03EC
     WaitMovement
     CalcCatchingShowPoints CATCHING_SHOW_CATCHING_POINTS, 0x800C
@@ -373,7 +373,7 @@ _049B:
 _04B4:
     LockAll
     ClearFlag FLAG_UNK_0x0242
-    SetVar 0x40E0, 0x7D0
+    SetVar VAR_UNK_0x40E0, 0x7D0
     ApplyMovement 1, _0548
     WaitMovement
     GetPlayerGender VAR_0x4000
@@ -407,7 +407,7 @@ _04F6:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar 0x40C6, 1
+    SetVar VAR_UNK_0x40C6, 1
     ReleaseAll
     End
 

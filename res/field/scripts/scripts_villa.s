@@ -1103,7 +1103,7 @@ _0E5D:
 
 _0E65:
     LockAll
-    SetVar 0x40A1, 1
+    SetVar VAR_UNK_0x40A1, 1
     ShowMoney 21, 1
     Message 0
     InitLocalTextListMenu 1, 1, 0, 0x8002
@@ -1476,7 +1476,7 @@ _1485:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Call _15B0
-    SetVar 0x40A1, 2
+    SetVar VAR_UNK_0x40A1, 2
     Return
 
     .balign 4, 0

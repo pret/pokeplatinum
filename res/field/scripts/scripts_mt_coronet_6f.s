@@ -22,7 +22,7 @@ _0040:
     End
 
 _004A:
-    GoToIfGe 0x40AA, 2, _0069
+    GoToIfGe VAR_UNK_0x40AA, 2, _0069
     GoTo _005F
     End
 
@@ -33,7 +33,7 @@ _005F:
 _0069:
     GoToIfUnset FLAG_UNK_0x0145, _005F
     GoToIfSet FLAG_UNK_0x00D0, _00BC
-    GoToIfGe 0x40C4, 1, _00BC
+    GoToIfGe VAR_UNK_0x40C4, 1, _00BC
     CheckItem ITEM_ADAMANT_ORB, 1, VAR_0x4001
     GoToIfEq VAR_0x4001, 1, _0104
     CheckPartyHasHeldItem ITEM_ADAMANT_ORB, VAR_0x4001
@@ -43,7 +43,7 @@ _0069:
 
 _00BC:
     GoToIfSet FLAG_UNK_0x00D1, _005F
-    GoToIfGe 0x40C5, 1, _005F
+    GoToIfGe VAR_UNK_0x40C5, 1, _005F
     CheckItem ITEM_LUSTROUS_ORB, 1, VAR_0x4001
     GoToIfEq VAR_0x4001, 1, _010E
     CheckPartyHasHeldItem ITEM_LUSTROUS_ORB, VAR_0x4001

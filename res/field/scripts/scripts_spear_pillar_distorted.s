@@ -28,7 +28,7 @@ _0022:
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40C3, 2
+    SetVar VAR_UNK_0x40C3, 2
     ApplyMovement 0, _0144
     WaitMovement
     Message 0

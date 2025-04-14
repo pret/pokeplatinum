@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    GoToIfEq 0x40DE, 0, _0054
+    GoToIfEq VAR_UNK_0x40DE, 0, _0054
     SetFlag FLAG_UNK_0x01EA
     SetFlag FLAG_UNK_0x01EB
     ScrCmd_207 VAR_0x4000
@@ -30,8 +30,8 @@ _0056:
     End
 
 _0074:
-    CallIfNe 0x40DE, 0, _0090
-    GoToIfEq 0x40DE, 3, _009E
+    CallIfNe VAR_UNK_0x40DE, 0, _0090
+    GoToIfEq VAR_UNK_0x40DE, 3, _009E
 _008E:
     End
 
@@ -57,7 +57,7 @@ _00CB:
     ScrCmd_1DD 43, 0, 0x800C
     GoToIfEq 0x800C, 3, _0114
     WaitTime 30, 0x800C
-    SetVar 0x40D8, 1
+    SetVar VAR_UNK_0x40D8, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER, 0, 7, 6, 0
@@ -68,7 +68,7 @@ _00CB:
 
 _0114:
     WaitTime 30, 0x800C
-    SetVar 0x40D8, 1
+    SetVar VAR_UNK_0x40D8, 1
     ScrCmd_136
     ScrCmd_135 6
     FadeScreen 6, 1, 0, 0
@@ -84,7 +84,7 @@ _0114:
 
 _0156:
     LockAll
-    SetVar 0x40DE, 3
+    SetVar VAR_UNK_0x40DE, 3
     Call _048D
     ScrCmd_1DD 43, 0, 0x800C
     GoToIfEq 0x800C, 3, _039E
@@ -93,7 +93,7 @@ _0156:
 
 _0181:
     LockAll
-    SetVar 0x40DE, 3
+    SetVar VAR_UNK_0x40DE, 3
     Call _048D
     Call _04A1
     GoTo _02E8
@@ -148,7 +148,7 @@ _0245:
     End
 
 _025B:
-    SetVar 0x40D8, 2
+    SetVar VAR_UNK_0x40D8, 2
     ScrCmd_1DD 39, 0, 0
     ScrCmd_1DC
     Message 0

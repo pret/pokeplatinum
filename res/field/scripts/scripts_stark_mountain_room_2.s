@@ -12,11 +12,11 @@
     ScriptEntryEnd
 
 _001A:
-    GoToIfLt 0x4094, 2, _0029
+    GoToIfLt VAR_UNK_0x4094, 2, _0029
     End
 
 _0029:
-    SetVar 0x4094, 0
+    SetVar VAR_UNK_0x4094, 0
     End
 
 _0031:
@@ -29,7 +29,7 @@ _0031:
     Message 1
     WaitSound
     SetFlag FLAG_UNK_0x00DD
-    SetVar 0x4094, 1
+    SetVar VAR_UNK_0x4094, 1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -101,7 +101,7 @@ _00FC:
     WaitMovement
     Message 4
     CloseMessage
-    SetVar 0x4094, 0
+    SetVar VAR_UNK_0x4094, 0
     ClearHasPartner
     ScrCmd_06D 14, 15
     ApplyMovement 14, _013C
@@ -164,7 +164,7 @@ _01AB:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 14
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar 0x4094, 2
+    SetVar VAR_UNK_0x4094, 2
     ReleaseAll
     End
 

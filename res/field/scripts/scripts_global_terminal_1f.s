@@ -27,7 +27,7 @@
     ScriptEntryEnd
 
 _0056:
-    CallIfEq 0x40D5, 6, _0065
+    CallIfEq VAR_UNK_0x40D5, 6, _0065
     End
 
 _0065:
@@ -52,7 +52,7 @@ _0077:
     ApplyMovement LOCALID_PLAYER, _00E8
     WaitMovement
     Call _00CD
-    SetVar 0x40D5, 0
+    SetVar VAR_UNK_0x40D5, 0
     Return
 
 _00C5:
@@ -167,7 +167,7 @@ _020D:
     SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 0, _02EA
     HealParty
-    SetVar 0x40D5, 6
+    SetVar VAR_UNK_0x40D5, 6
     Message 7
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0344
@@ -208,7 +208,7 @@ _02CE:
     End
 
 _02EA:
-    SetVar 0x40D5, 0
+    SetVar VAR_UNK_0x40D5, 0
     Message 6
     WaitABXPadPress
     CloseMessage

@@ -23,7 +23,7 @@
     ScriptEntryEnd
 
 _0046:
-    CallIfNe 0x40D5, 0, _0055
+    CallIfNe VAR_UNK_0x40D5, 0, _0055
     End
 
 _0055:
@@ -60,7 +60,7 @@ _008F:
     WaitMovement
     Call _0513
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    SetVar 0x40D5, 0
+    SetVar VAR_UNK_0x40D5, 0
     ReleaseAll
     End
 
@@ -358,7 +358,7 @@ _045D:
     End
 
 _046A:
-    SetVar 0x40D5, 1
+    SetVar VAR_UNK_0x40D5, 1
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     ScrCmd_02E 52
     WaitABPressTime 45
@@ -459,17 +459,17 @@ _05CF:
     GoToIfEq 0x800C, MENU_NO, _01D3
     ScrCmd_31D 0x800C
     GoToIfEq 0x800C, 0xFF, _068E
-    SetVar 0x40D5, 2
+    SetVar VAR_UNK_0x40D5, 2
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     CallCommonScript 0x7D6
     SetVar 0x800C, VAR_0x4000
     GoToIfEq 0x800C, 1, _062D
-    SetVar 0x40D5, 0
+    SetVar VAR_UNK_0x40D5, 0
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     GoTo _01D3
 
 _062D:
-    SetVar 0x40D5, 2
+    SetVar VAR_UNK_0x40D5, 2
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Message 63
     CloseMessage

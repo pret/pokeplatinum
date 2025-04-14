@@ -97,7 +97,7 @@ _0006:
     ApplyMovement LOCALID_PLAYER, _022C
     WaitMovement
     RemoveObject 3
-    SetVar 0x408E, 1
+    SetVar VAR_UNK_0x408E, 1
     ReleaseAll
     End
 

@@ -357,11 +357,11 @@ _0522:
 
 _053A:
     RemoveObject 0
-    SetVar 0x4083, 2
+    SetVar VAR_UNK_0x4083, 2
     SetFlag FLAG_UNK_0x00B7
     SetFlag FLAG_UNK_0x01A9
     ClearFlag FLAG_UNK_0x020F
-    SetVar 0x407C, 6
+    SetVar VAR_UNK_0x407C, 6
     ReleaseAll
     End
 

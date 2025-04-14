@@ -50,10 +50,10 @@ _00C5:
 
 _00C7:
     Dummy1F9 0x4098
-    GoToIfEq 0x4098, 0, _0101
-    GoToIfEq 0x4098, 1, _0101
-    GoToIfEq 0x4098, 2, _0101
-    GoToIfEq 0x4098, 3, _0101
+    GoToIfEq VAR_UNK_0x4098, 0, _0101
+    GoToIfEq VAR_UNK_0x4098, 1, _0101
+    GoToIfEq VAR_UNK_0x4098, 2, _0101
+    GoToIfEq VAR_UNK_0x4098, 3, _0101
     Return
 
 _0101:
@@ -128,7 +128,7 @@ _0181:
 _01A6:
     Call _01CA
     GoToIfEq 0x800C, FALSE, _01DB
-    SetVar 0x4098, 1
+    SetVar VAR_UNK_0x4098, 1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -234,12 +234,12 @@ _0249:
     ApplyMovement 5, _0500
     WaitMovement
     RemoveObject 5
-    SetVar 0x4098, 2
+    SetVar VAR_UNK_0x4098, 2
     GoTo _0508
     End
 
 _02D0:
-    SetVar 0x4098, 1
+    SetVar VAR_UNK_0x4098, 1
     BlackOutFromBattle
     ReleaseAll
     End
@@ -473,11 +473,11 @@ _0567:
     SetFlag FLAG_UNK_0x01C8
     SetFlag FLAG_UNK_0x01C9
     SetFlag FLAG_UNK_0x01CA
-    SetVar 0x4098, 3
+    SetVar VAR_UNK_0x4098, 3
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_3
     ClearFlag FLAG_UNK_0x01C7
     SetFlag FLAG_UNK_0x0132
-    SetVar 0x40C3, 1
+    SetVar VAR_UNK_0x40C3, 1
     SetSpeciesSeen SPECIES_DIALGA
     SetSpeciesSeen SPECIES_PALKIA
     ScrCmd_067

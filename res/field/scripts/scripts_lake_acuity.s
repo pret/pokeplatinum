@@ -59,7 +59,7 @@ _0006:
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_ALT_MUSIC_LAKE_ACUITY
     ClearFlag FLAG_UNK_0x0223
-    SetVar 0x40D3, 2
+    SetVar VAR_UNK_0x40D3, 2
     ClearFlag FLAG_UNK_0x0198
     SetFlag FLAG_UNK_0x0194
     SetFlag FLAG_UNK_0x0175

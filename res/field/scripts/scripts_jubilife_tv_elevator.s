@@ -60,11 +60,11 @@ _00E9:
     WaitTime 1, 0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 11, 2, 18, 2, 1
-    GoToIfEq 0x40CE, 3, _026C
-    CallIfGt 0x40CE, 3, _022D
-    CallIfLt 0x40CE, 3, _0238
+    GoToIfEq VAR_UNK_0x40CE, 3, _026C
+    CallIfGt VAR_UNK_0x40CE, 3, _022D
+    CallIfLt VAR_UNK_0x40CE, 3, _0238
     Call _0243
-    SetVar 0x40CE, 3
+    SetVar VAR_UNK_0x40CE, 3
     GoTo _0261
     End
 
@@ -72,11 +72,11 @@ _013A:
     WaitTime 1, 0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 12, 3, 18, 2, 1
-    GoToIfEq 0x40CE, 2, _026C
-    CallIfGt 0x40CE, 2, _022D
-    CallIfLt 0x40CE, 2, _0238
+    GoToIfEq VAR_UNK_0x40CE, 2, _026C
+    CallIfGt VAR_UNK_0x40CE, 2, _022D
+    CallIfLt VAR_UNK_0x40CE, 2, _0238
     Call _0243
-    SetVar 0x40CE, 2
+    SetVar VAR_UNK_0x40CE, 2
     GoTo _0261
     End
 
@@ -84,11 +84,11 @@ _018B:
     WaitTime 1, 0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 13, 4, 18, 2, 1
-    GoToIfEq 0x40CE, 1, _026C
-    CallIfGt 0x40CE, 1, _022D
-    CallIfLt 0x40CE, 1, _0238
+    GoToIfEq VAR_UNK_0x40CE, 1, _026C
+    CallIfGt VAR_UNK_0x40CE, 1, _022D
+    CallIfLt VAR_UNK_0x40CE, 1, _0238
     Call _0243
-    SetVar 0x40CE, 1
+    SetVar VAR_UNK_0x40CE, 1
     GoTo _0261
     End
 
@@ -96,11 +96,11 @@ _01DC:
     WaitTime 1, 0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 14, 1, 18, 2, 1
-    GoToIfEq 0x40CE, 0, _026C
-    CallIfGt 0x40CE, 0, _022D
-    CallIfLt 0x40CE, 0, _0238
+    GoToIfEq VAR_UNK_0x40CE, 0, _026C
+    CallIfGt VAR_UNK_0x40CE, 0, _022D
+    CallIfLt VAR_UNK_0x40CE, 0, _0238
     Call _0243
-    SetVar 0x40CE, 0
+    SetVar VAR_UNK_0x40CE, 0
     GoTo _0261
     End
 
@@ -115,7 +115,7 @@ _0238:
     Return
 
 _0243:
-    SetVar 0x40CE, -1
+    SetVar VAR_UNK_0x40CE, -1
     CloseMessage
     ApplyMovement 0, _029C
     WaitMovement
@@ -131,7 +131,7 @@ _0261:
     End
 
 _026C:
-    SetVar 0x40CE, -1
+    SetVar VAR_UNK_0x40CE, -1
     WaitTime 1, 0x800C
     Message 4
     WaitABXPadPress
@@ -140,7 +140,7 @@ _026C:
     End
 
 _0283:
-    SetVar 0x40CE, -1
+    SetVar VAR_UNK_0x40CE, -1
     WaitTime 1, 0x800C
     Message 1
     WaitABXPadPress

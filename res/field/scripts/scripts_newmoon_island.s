@@ -16,7 +16,7 @@ _000A:
     End
 
 _0024:
-    GoToIfNe 0x40F8, 2, _0035
+    GoToIfNe VAR_UNK_0x40F8, 2, _0035
     SetFlag FLAG_UNK_0x0279
 _0035:
     Return

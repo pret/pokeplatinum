@@ -17,35 +17,35 @@
 
 _002A:
     GoToIfUnset FLAG_UNK_0x00E3, _0121
-    GoToIfNe 0x40DF, 2, _0057
+    GoToIfNe VAR_UNK_0x40DF, 2, _0057
     ScrCmd_1DD 55, 2, VAR_0x4009
     GoToIfEq VAR_0x4009, 0, _0121
 _0057:
     ClearFlag FLAG_UNK_0x01EC
 _005B:
     GoToIfUnset FLAG_UNK_0x00E4, _012D
-    GoToIfNe 0x40DF, 2, _0088
+    GoToIfNe VAR_UNK_0x40DF, 2, _0088
     ScrCmd_1DD 55, 2, VAR_0x4009
     GoToIfEq VAR_0x4009, 1, _012D
 _0088:
     ClearFlag FLAG_UNK_0x01ED
 _008C:
     GoToIfUnset FLAG_UNK_0x00E5, _0139
-    GoToIfNe 0x40DF, 2, _00B9
+    GoToIfNe VAR_UNK_0x40DF, 2, _00B9
     ScrCmd_1DD 55, 2, VAR_0x4009
     GoToIfEq VAR_0x4009, 2, _0139
 _00B9:
     ClearFlag FLAG_UNK_0x01EE
 _00BD:
     GoToIfUnset FLAG_UNK_0x00E6, _0145
-    GoToIfNe 0x40DF, 2, _00EA
+    GoToIfNe VAR_UNK_0x40DF, 2, _00EA
     ScrCmd_1DD 55, 2, VAR_0x4009
     GoToIfEq VAR_0x4009, 3, _0145
 _00EA:
     ClearFlag FLAG_UNK_0x01EF
 _00EE:
     GoToIfUnset FLAG_UNK_0x00E7, _0151
-    GoToIfNe 0x40DF, 2, _011B
+    GoToIfNe VAR_UNK_0x40DF, 2, _011B
     ScrCmd_1DD 55, 2, VAR_0x4009
     GoToIfEq VAR_0x4009, 4, _0151
 _011B:
@@ -79,8 +79,8 @@ _0151:
     End
 
 _015D:
-    CallIfEq 0x40DF, 1, _0179
-    GoToIfEq 0x40DF, 2, _017F
+    CallIfEq VAR_UNK_0x40DF, 1, _0179
+    GoToIfEq VAR_UNK_0x40DF, 2, _017F
     End
 
 _0179:
@@ -93,7 +93,7 @@ _017F:
 
 _018D:
     LockAll
-    SetVar 0x40DF, 0
+    SetVar VAR_UNK_0x40DF, 0
     Call _04A6
     Message 0
     CloseMessage
@@ -117,7 +117,7 @@ _01AC:
 _01D4:
     CloseMessage
     ReleaseAll
-    SetVar 0x40D8, 3
+    SetVar VAR_UNK_0x40D8, 3
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
@@ -127,11 +127,11 @@ _01D4:
 
 _0204:
     LockAll
-    SetVar 0x40DF, 0
+    SetVar VAR_UNK_0x40DF, 0
     Message 2
     CloseMessage
     Call _04E0
-    SetVar 0x40DB, 2
+    SetVar VAR_UNK_0x40DB, 2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, 0
@@ -153,7 +153,7 @@ _0275:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq 0x40DF, 2, _02D2
+    GoToIfEq VAR_UNK_0x40DF, 2, _02D2
     SetVar VAR_0x4009, 0
     ScrCmd_1DE VAR_0x4009, 0, 0x8004, 0x8005
     ScrCmd_341 0, 0x8004, 0, 0
@@ -173,7 +173,7 @@ _02D2:
 
 _02DD:
     ScrCmd_1DD 50, VAR_0x4009, 0
-    SetVar 0x40DF, 2
+    SetVar VAR_UNK_0x40DF, 2
     Message 8
     CloseMessage
     ReleaseAll
@@ -185,7 +185,7 @@ _02FE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq 0x40DF, 2, _0336
+    GoToIfEq VAR_UNK_0x40DF, 2, _0336
     SetVar VAR_0x4009, 1
     Call _0245
     BufferPlayerName 4
@@ -201,7 +201,7 @@ _0336:
 
 _0341:
     ScrCmd_1DD 50, VAR_0x4009, 0
-    SetVar 0x40DF, 2
+    SetVar VAR_UNK_0x40DF, 2
     BufferPlayerName 0
     Message 17
     CloseMessage
@@ -214,7 +214,7 @@ _0365:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq 0x40DF, 2, _039A
+    GoToIfEq VAR_UNK_0x40DF, 2, _039A
     SetVar VAR_0x4009, 2
     Call _0245
     Message 3
@@ -229,7 +229,7 @@ _039A:
 
 _03A5:
     ScrCmd_1DD 50, VAR_0x4009, 0
-    SetVar 0x40DF, 2
+    SetVar VAR_UNK_0x40DF, 2
     Message 5
     CloseMessage
     ReleaseAll
@@ -241,7 +241,7 @@ _03C6:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq 0x40DF, 2, _03FB
+    GoToIfEq VAR_UNK_0x40DF, 2, _03FB
     SetVar VAR_0x4009, 3
     Call _0245
     Message 12
@@ -256,7 +256,7 @@ _03FB:
 
 _0406:
     ScrCmd_1DD 50, VAR_0x4009, 0
-    SetVar 0x40DF, 2
+    SetVar VAR_UNK_0x40DF, 2
     Message 14
     CloseMessage
     ReleaseAll
@@ -268,7 +268,7 @@ _0427:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq 0x40DF, 2, _045C
+    GoToIfEq VAR_UNK_0x40DF, 2, _045C
     SetVar VAR_0x4009, 4
     Call _0245
     Message 9
@@ -283,7 +283,7 @@ _045C:
 
 _0467:
     ScrCmd_1DD 50, VAR_0x4009, 0
-    SetVar 0x40DF, 2
+    SetVar VAR_UNK_0x40DF, 2
     Message 11
     CloseMessage
     ReleaseAll

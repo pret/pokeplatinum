@@ -71,7 +71,7 @@ _00D9:
     SetVar 0x8004, 0x800C
     ScrCmd_2F7 0x8004
     ReturnToField
-    SetVar 0x4080, 1
+    SetVar VAR_UNK_0x4080, 1
     ScrCmd_1B2 0xFF
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen

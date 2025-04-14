@@ -16,7 +16,7 @@ _0012:
 
 _0032:
     InitPersistedMapFeaturesForPlatformLift
-    CallIfNe 0x4069, 0x122, _0079
+    CallIfNe VAR_UNK_0x4069, 0x122, _0079
     CheckPartyHasFatefulEncounterRegigigas VAR_0x4004
     GoToIfEq VAR_0x4004, 0, _0061
     GoToIfEq VAR_0x4004, 1, _006B
@@ -35,7 +35,7 @@ _0075:
     End
 
 _0079:
-    SetVar 0x4069, 0
+    SetVar VAR_UNK_0x4069, 0
     Return
 
 _0081:

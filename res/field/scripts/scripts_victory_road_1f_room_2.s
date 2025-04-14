@@ -14,7 +14,7 @@ _0012:
     End
 
 _001F:
-    SetVar 0x4090, 0
+    SetVar VAR_UNK_0x4090, 0
     End
 
 _0027:
@@ -70,7 +70,7 @@ _00EC:
     Message 1
     WaitSound
     SetFlag FLAG_UNK_0x00DF
-    SetVar 0x4090, 1
+    SetVar VAR_UNK_0x4090, 1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -136,7 +136,7 @@ _0190:
     WaitMovement
     Message 4
     CloseMessage
-    SetVar 0x4090, 0
+    SetVar VAR_UNK_0x4090, 0
     ClearHasPartner
     ScrCmd_06D 28, 14
     GetPlayerMapPos 0x8004, 0x8005
@@ -284,7 +284,7 @@ _0389:
 _03A1:
     RemoveObject 28
     SetFlag FLAG_UNK_0x00E6
-    SetVar 0x4090, 2
+    SetVar VAR_UNK_0x4090, 2
     ReleaseAll
     End
 

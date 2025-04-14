@@ -51,7 +51,7 @@ _0086:
     End
 
 _00C6:
-    SetVar 0x40D4, 1
+    SetVar VAR_UNK_0x40D4, 1
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -323,18 +323,18 @@ _0430:
 
 _043C:
     Dummy1F9 0x40B8
-    SetVar 0x40DD, 0
-    SetVar 0x40DE, 0
-    SetVar 0x40B8, 0
-    SetVar 0x40B9, 0
-    SetVar 0x40BD, 0
-    SetVar 0x40BB, 0
-    SetVar 0x40BE, 0
-    SetVar 0x40D8, 0
-    SetVar 0x40B7, 0
-    SetVar 0x40BC, 0
-    SetVar 0x40BA, 0
-    SetVar 0x40BF, 0
+    SetVar VAR_UNK_0x40DD, 0
+    SetVar VAR_UNK_0x40DE, 0
+    SetVar VAR_UNK_0x40B8, 0
+    SetVar VAR_UNK_0x40B9, 0
+    SetVar VAR_UNK_0x40BD, 0
+    SetVar VAR_UNK_0x40BB, 0
+    SetVar VAR_UNK_0x40BE, 0
+    SetVar VAR_UNK_0x40D8, 0
+    SetVar VAR_UNK_0x40B7, 0
+    SetVar VAR_UNK_0x40BC, 0
+    SetVar VAR_UNK_0x40BA, 0
+    SetVar VAR_UNK_0x40BF, 0
     Dummy1F9 0x40B8
     End
 
@@ -552,6 +552,6 @@ _0650:
     ApplyMovement LOCALID_PLAYER, _0404
     WaitMovement
     Call _0328
-    SetVar 0x4080, 0
+    SetVar VAR_UNK_0x4080, 0
     ReleaseAll
     End

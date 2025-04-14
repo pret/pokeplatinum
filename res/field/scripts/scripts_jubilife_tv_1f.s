@@ -37,7 +37,7 @@ _003F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfNe 0x40F2, 0, _0257
+    GoToIfNe VAR_UNK_0x40F2, 0, _0257
     GoToIfSet FLAG_UNK_0x0AB3, _00A0
     GoToIfSet FLAG_UNK_0x0AA9, _0084
     Message 1
@@ -162,7 +162,7 @@ _021B:
     GoTo _0269
 
 _0246:
-    SetVar 0x40F2, 0x8002
+    SetVar VAR_UNK_0x40F2, 0x8002
     Message 15
     WaitABXPadPress
     CloseMessage
@@ -176,7 +176,7 @@ _0257:
     GoTo _0194
 
 _0269:
-    SetVar 0x40F2, 0
+    SetVar VAR_UNK_0x40F2, 0
     SetFlag FLAG_UNK_0x0AB3
     Message 17
     WaitABXPadPress

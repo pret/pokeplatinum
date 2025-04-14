@@ -38,7 +38,7 @@ _0055:
     GoToIfSet FLAG_UNK_0x0001, _03D8
     Message 1
     GoToIfUnset FLAG_UNK_0x0079, _04B6
-    GoToIfNe 0x40B4, 0, _03F2
+    GoToIfNe VAR_UNK_0x40B4, 0, _03F2
     ScrCmd_1F1 0x8000
     GoToIfEq 0x8000, 0, _04AB
     Message 2
@@ -105,7 +105,7 @@ _0225:
     CallIfEq 0x8003, 5, _03AC
     CallIfEq 0x8003, 6, _03B4
     ScrCmd_1F4 0x40B4, 0x8002
-    GoToIfEq 0x40B4, 0, _03E7
+    GoToIfEq VAR_UNK_0x40B4, 0, _03E7
     RemoveItem 0x8002, 1, 0x800C
     GoTo _03D8
 
@@ -233,7 +233,7 @@ _03F2:
     WaitSound
     GivePokemon 0x40B4, 20, ITEM_NONE, 0x800C
     IncrementGameRecord RECORD_UNK_115
-    SetVar 0x40B4, 0
+    SetVar VAR_UNK_0x40B4, 0
     Message 9
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _0459

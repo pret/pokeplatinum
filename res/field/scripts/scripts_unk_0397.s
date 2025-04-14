@@ -15,17 +15,17 @@
 
 _0022:
     SetFlag FLAG_UNK_0x01A7
-    SetVar 0x40D0, 1
+    SetVar VAR_UNK_0x40D0, 1
     End
 
 _002E:
     ClearFlag FLAG_UNK_0x0178
     ClearFlag FLAG_UNK_0x0179
-    SetVar 0x4095, 1
-    SetVar 0x4082, 2
+    SetVar VAR_UNK_0x4095, 1
+    SetVar VAR_UNK_0x4082, 2
     ClearFlag FLAG_UNK_0x0195
     SetVar VAR_FOLLOWER_RIVAL_STATE, 2
-    SetVar 0x40A4, 3
+    SetVar VAR_UNK_0x40A4, 3
     End
 
 _0054:
@@ -35,7 +35,7 @@ _0054:
 _005C:
     ClearFlag FLAG_UNK_0x0194
     ClearFlag FLAG_UNK_0x0175
-    SetVar 0x4095, 1
+    SetVar VAR_UNK_0x4095, 1
     SetFlag FLAG_UNK_0x0196
     SetFlag FLAG_UNK_0x01AE
     ClearFlag FLAG_UNK_0x0293
@@ -43,8 +43,8 @@ _005C:
 
 _0078:
     SetFlag FLAG_UNK_0x023F
-    SetVar 0x40F0, 1
-    SetVar 0x40D4, 1
+    SetVar VAR_UNK_0x40F0, 1
+    SetVar VAR_UNK_0x40D4, 1
     End
 
 _008A:

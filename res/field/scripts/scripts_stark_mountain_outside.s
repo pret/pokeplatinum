@@ -42,7 +42,7 @@ _002F:
     RemoveObject 6
     RemoveObject 7
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar 0x40A0, 1
+    SetVar VAR_UNK_0x40A0, 1
     ReleaseAll
     End
 
@@ -145,7 +145,7 @@ _0118:
     RemoveObject 4
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40A0, 3
+    SetVar VAR_UNK_0x40A0, 3
     ReleaseAll
     End
 

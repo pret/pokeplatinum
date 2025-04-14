@@ -179,7 +179,7 @@ _0287:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 3
     CallCommonScript 0x7FB
-    SetVar 0x4079, 3
+    SetVar VAR_UNK_0x4079, 3
     ReleaseAll
     End
 
@@ -411,7 +411,7 @@ _0544:
     WaitABXPadPress
     CloseMessage
     CallCommonScript 0x801
-    SetVar 0x4079, 1
+    SetVar VAR_UNK_0x4079, 1
     ReleaseAll
     End
 

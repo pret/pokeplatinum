@@ -607,7 +607,7 @@ _0820:
     ApplyMovement 32, _089C
     WaitMovement
     RemoveObject 32
-    SetVar 0x40F6, 1
+    SetVar VAR_UNK_0x40F6, 1
     ReleaseAll
     End
 

@@ -9,14 +9,14 @@
     ScriptEntryEnd
 
 _0012:
-    CallIfNe 0x406B, 0x122, _003F
+    CallIfNe VAR_UNK_0x406B, 0x122, _003F
     CheckPartyHasFatefulEncounterRegigigas VAR_0x4001
     GoToIfEq VAR_0x4001, 0, _0067
     GoToIfEq VAR_0x4001, 1, _0071
     End
 
 _003F:
-    SetVar 0x406B, 0
+    SetVar VAR_UNK_0x406B, 0
     Return
 
 _0047:

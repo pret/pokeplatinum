@@ -15,27 +15,27 @@
     ScriptEntryEnd
 
 _0026:
-    GoToIfLt 0x406A, 0x118, _0035
+    GoToIfLt VAR_UNK_0x406A, 0x118, _0035
     End
 
 _0035:
-    SetVar 0x406A, 0
+    SetVar VAR_UNK_0x406A, 0
     End
 
 _003D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq 0x406A, 0x122, _00ED
-    GoToIfEq 0x406A, 0x118, _00F8
+    GoToIfEq VAR_UNK_0x406A, 0x122, _00ED
+    GoToIfEq VAR_UNK_0x406A, 0x118, _00F8
     GoToIfUnset FLAG_GAME_COMPLETED, _010F
     CheckPartyHasFatefulEncounterRegigigas 0x800C
     GoToIfEq 0x800C, 0, _011A
-    GoToIfEq 0x406A, 0x10E, _00AE
-    GoToIfLt 0x406A, 0x104, _011A
+    GoToIfEq VAR_UNK_0x406A, 0x10E, _00AE
+    GoToIfLt VAR_UNK_0x406A, 0x104, _011A
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
-    SetVar 0x406A, 0x10E
+    SetVar VAR_UNK_0x406A, 0x10E
     Message 1
     GoTo _0125
     End
@@ -50,7 +50,7 @@ _00AE:
     GoToIfEq 0x800C, FALSE, _0109
     CheckDidNotCapture 0x800C
     GoToIfEq 0x800C, TRUE, _00F8
-    SetVar 0x406A, 0x122
+    SetVar VAR_UNK_0x406A, 0x122
     ReleaseAll
     End
 
@@ -60,7 +60,7 @@ _00ED:
     End
 
 _00F8:
-    SetVar 0x406A, 0x118
+    SetVar VAR_UNK_0x406A, 0x118
     Message 3
     GoTo _0125
     End
@@ -88,43 +88,43 @@ _0125:
 
 _012D:
     SetVar VAR_0x4001, 1
-    GoToIfGe 0x406A, 0x104, _020D
+    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
     GoTo _01EA
     End
 
 _0148:
     SetVar VAR_0x4002, 1
-    GoToIfGe 0x406A, 0x104, _020D
+    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
     GoTo _01EA
     End
 
 _0163:
     SetVar VAR_0x4003, 1
-    GoToIfGe 0x406A, 0x104, _020D
+    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
     GoTo _01EA
     End
 
 _017E:
     SetVar VAR_0x4004, 1
-    GoToIfGe 0x406A, 0x104, _020D
+    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
     GoTo _01EA
     End
 
 _0199:
     SetVar VAR_0x4005, 1
-    GoToIfGe 0x406A, 0x104, _020D
+    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
     GoTo _01EA
     End
 
 _01B4:
     SetVar VAR_0x4006, 1
-    GoToIfGe 0x406A, 0x104, _020D
+    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
     GoTo _01EA
     End
 
 _01CF:
     SetVar VAR_0x4007, 1
-    GoToIfGe 0x406A, 0x104, _020D
+    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
     GoTo _01EA
     End
 
@@ -132,7 +132,7 @@ _01EA:
     LockAll
     GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_32C 0x406A, 0x24E, 0x8004, 0x8005
-    GoToIfGe 0x406A, 0x104, _020F
+    GoToIfGe VAR_UNK_0x406A, 0x104, _020F
     ReleaseAll
     End
 
@@ -143,7 +143,7 @@ _020F:
     GoToIfUnset FLAG_GAME_COMPLETED, _020D
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
-    SetVar 0x406A, 0x10E
+    SetVar VAR_UNK_0x406A, 0x10E
     Message 1
     WaitABXPadPress
     CloseMessage

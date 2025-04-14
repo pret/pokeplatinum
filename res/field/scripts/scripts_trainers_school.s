@@ -70,7 +70,7 @@ _00F2:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar 0x40E7, 1
+    SetVar VAR_UNK_0x40E7, 1
     SetFlag FLAG_UNK_0x00F1
     ClearFlag FLAG_UNK_0x01F6
     ClearFlag FLAG_UNK_0x01F5

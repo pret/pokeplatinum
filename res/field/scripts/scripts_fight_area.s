@@ -31,8 +31,8 @@
     ScriptEntryEnd
 
 _0066:
-    GoToIfEq 0x4081, 1, _0082
-    GoToIfGe 0x409E, 1, _0098
+    GoToIfEq VAR_UNK_0x4081, 1, _0082
+    GoToIfGe VAR_UNK_0x409E, 1, _0098
     End
 
 _0082:
@@ -120,7 +120,7 @@ _00D8:
     ApplyMovement 7, _0354
     WaitMovement
     CallCommonScript 0x801
-    SetVar 0x4081, 1
+    SetVar VAR_UNK_0x4081, 1
     ScrCmd_32E
     Message 1
     ShowYesNoMenu 0x800C
@@ -223,7 +223,7 @@ _0198:
     RemoveObject 8
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 1, _02E0
-    SetVar 0x4081, 2
+    SetVar VAR_UNK_0x4081, 2
     Return
 
 _02E0:

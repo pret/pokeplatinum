@@ -80,7 +80,7 @@ _00BB:
     SetTrainerFlag TRAINER_SCHOOL_KID_MACKENZIE
     SetTrainerFlag TRAINER_YOUNGSTER_DONNY
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 91, TRAINER_LEADER_FANTINA, 0, 0
-    SetVar 0x407B, 1
+    SetVar VAR_UNK_0x407B, 1
     SetFlag FLAG_UNK_0x0206
     ClearFlag FLAG_UNK_0x0207
     Message 3

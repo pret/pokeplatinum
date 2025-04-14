@@ -25,14 +25,14 @@
     ScriptEntryEnd
 
 _004E:
-    CallIfEq 0x40A6, 2, _0077
-    CallIfEq 0x40A6, 3, _0077
-    GoToIfEq 0x407E, 0, _0083
+    CallIfEq VAR_UNK_0x40A6, 2, _0077
+    CallIfEq VAR_UNK_0x40A6, 3, _0077
+    GoToIfEq VAR_UNK_0x407E, 0, _0083
     End
 
 _0077:
     SetFlag FLAG_UNK_0x0199
-    SetVar 0x40A6, 4
+    SetVar VAR_UNK_0x40A6, 4
     Return
 
 _0083:
@@ -126,7 +126,7 @@ _017C:
     CallIfEq 0x8004, 0x357, _03AA
     CallIfEq 0x8004, 0x358, _03B6
     CallIfEq 0x8004, 0x359, _03C2
-    SetVar 0x407E, 3
+    SetVar VAR_UNK_0x407E, 3
     ReleaseAll
     End
 
@@ -483,7 +483,7 @@ _05D7:
     ScrCmd_189 18, 1
     ClearFlag FLAG_UNK_0x0239
     AddObject 18
-    SetVar 0x407E, 1
+    SetVar VAR_UNK_0x407E, 1
     ReleaseAll
     End
 

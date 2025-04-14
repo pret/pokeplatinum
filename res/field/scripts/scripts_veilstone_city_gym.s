@@ -42,7 +42,7 @@ _0022:
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 133, TRAINER_LEADER_MAYLENE, 0, 0
     SetFlag FLAG_UNK_0x01A3
     ClearFlag FLAG_UNK_0x01A8
-    SetVar 0x407D, 1
+    SetVar VAR_UNK_0x407D, 1
     SetVar 0x411A, 1
     Message 3
     GoTo _00B7

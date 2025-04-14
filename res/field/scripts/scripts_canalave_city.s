@@ -33,22 +33,22 @@
 
 _0066:
     SetFlag FLAG_UNK_0x01BD
-    CallIfEq 0x40F8, 2, _00F8
-    CallIfEq 0x40F8, 3, _0100
+    CallIfEq VAR_UNK_0x40F8, 2, _00F8
+    CallIfEq VAR_UNK_0x40F8, 3, _0100
     Call _0168
     CallIfEq VAR_0x4000, 0, _01E7
     CallIfEq VAR_0x4000, 1, _0116
-    CallIfEq 0x4078, 1, _0132
-    CallIfEq 0x4078, 2, _0132
-    CallIfEq 0x4078, 4, _011C
-    CallIfEq 0x4078, 5, _0158
+    CallIfEq VAR_UNK_0x4078, 1, _0132
+    CallIfEq VAR_UNK_0x4078, 2, _0132
+    CallIfEq VAR_UNK_0x4078, 4, _011C
+    CallIfEq VAR_UNK_0x4078, 5, _0158
     GetPlayerGender VAR_0x4000
     GoToIfEq VAR_0x4000, GENDER_MALE, _0148
     GoToIfEq VAR_0x4000, GENDER_FEMALE, _0150
     End
 
 _00F8:
-    SetVar 0x40F8, 0
+    SetVar VAR_UNK_0x40F8, 0
     Return
 
 _0100:
@@ -84,7 +84,7 @@ _0150:
 _0158:
     SetFlag FLAG_UNK_0x01B3
     SetFlag FLAG_UNK_0x01B5
-    SetVar 0x4078, 6
+    SetVar VAR_UNK_0x4078, 6
     Return
 
 _0168:
@@ -183,7 +183,7 @@ _0303:
     ApplyMovement 11, _035C
     WaitMovement
     RemoveObject 11
-    SetVar 0x4078, 1
+    SetVar VAR_UNK_0x4078, 1
     ReleaseAll
     End
 
@@ -231,8 +231,8 @@ _0377:
     ApplyMovement LOCALID_PLAYER, _03BC
     WaitMovement
     RemoveObject 11
-    SetVar 0x4078, 3
-    SetVar 0x40B2, 1
+    SetVar VAR_UNK_0x4078, 3
+    SetVar VAR_UNK_0x40B2, 1
     ReleaseAll
     End
 
@@ -298,7 +298,7 @@ _046A:
 _0473:
     WaitABXPadPress
     CloseMessage
-    SetVar 0x4078, 5
+    SetVar VAR_UNK_0x4078, 5
     ClearFlag FLAG_UNK_0x0194
     ClearFlag FLAG_UNK_0x0175
     ClearFlag FLAG_UNK_0x0293
@@ -414,7 +414,7 @@ _0586:
     End
 
 _0591:
-    GoToIfGe 0x4078, 5, _057B
+    GoToIfGe VAR_UNK_0x4078, 5, _057B
     Message 18
     GoTo _0545
     End
@@ -677,7 +677,7 @@ _0959:
     ScrCmd_189 16, 2
     ScrCmd_188 16, 16
     AddObject 16
-    SetVar 0x40F8, 4
+    SetVar VAR_UNK_0x40F8, 4
     ReleaseAll
     End
 

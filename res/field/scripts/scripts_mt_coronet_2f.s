@@ -31,7 +31,7 @@ _0023:
 _0036:
     LockAll
     GetPlayerMapPos 0x8004, 0x8005
-    SetVar 0x40A9, 2
+    SetVar VAR_UNK_0x40A9, 2
     SetObjectEventPos 5, 20, 25
     ScrCmd_188 5, 16
     ScrCmd_189 5, 2

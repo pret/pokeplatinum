@@ -147,7 +147,7 @@ _01C9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40AE, 1, _0211
+    GoToIfGe VAR_UNK_0x40AE, 1, _0211
     PlayTrainerEncounterBGM TRAINER_LASS_CAROLINE
     Message 6
     CloseMessage
@@ -156,7 +156,7 @@ _01C9:
     GoToIfEq 0x800C, FALSE, _01C3
     Message 7
     WaitABXPadPress
-    SetVar 0x40AE, 1
+    SetVar VAR_UNK_0x40AE, 1
     CloseMessage
     ReleaseAll
     ScrCmd_2CA
@@ -173,7 +173,7 @@ _021C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40AE, 2, _0270
+    GoToIfGe VAR_UNK_0x40AE, 2, _0270
     PlayTrainerEncounterBGM TRAINER_AROMA_LADY_JENNA
     SetVar 0x8007, 3
     Call _02DA
@@ -184,7 +184,7 @@ _021C:
     GoToIfEq 0x800C, FALSE, _01C3
     Message 9
     WaitABXPadPress
-    SetVar 0x40AE, 2
+    SetVar VAR_UNK_0x40AE, 2
     CloseMessage
     ReleaseAll
     ScrCmd_2CA
@@ -201,7 +201,7 @@ _027B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40AE, 3, _02CF
+    GoToIfGe VAR_UNK_0x40AE, 3, _02CF
     PlayTrainerEncounterBGM TRAINER_AROMA_LADY_ANGELA
     SetVar 0x8007, 4
     Call _02DA
@@ -212,7 +212,7 @@ _027B:
     GoToIfEq 0x800C, FALSE, _01C3
     Message 11
     WaitABXPadPress
-    SetVar 0x40AE, 3
+    SetVar VAR_UNK_0x40AE, 3
     CloseMessage
     ReleaseAll
     ScrCmd_2CA

@@ -30,7 +30,7 @@ _0080:
 
 _0082:
     GoToIfSet FLAG_UNK_0x012D, _009A
-    CallIfEq 0x408D, 1, _009C
+    CallIfEq VAR_UNK_0x408D, 1, _009C
 _009A:
     End
 
@@ -47,7 +47,7 @@ _009C:
 
 _00AA:
     SetVar VAR_SHAYMIN_EVENT_STATE, 2
-    SetVar 0x4085, 1
+    SetVar VAR_UNK_0x4085, 1
     Return
 
 _00B8:
@@ -74,7 +74,7 @@ _00E4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x408D, 1
+    SetVar VAR_UNK_0x408D, 1
     BufferPlayerName 0
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, GENDER_FEMALE, _0219
@@ -119,7 +119,7 @@ _0124:
     SetFlag FLAG_UNK_0x012D
     SetFlag FLAG_UNK_0x0252
     SetFlag FLAG_UNK_0x02CA
-    SetVar 0x408D, 0
+    SetVar VAR_UNK_0x408D, 0
     ReleaseAll
     End
 
@@ -408,7 +408,7 @@ _0565:
 
 _057F:
     SetVar VAR_SHAYMIN_EVENT_STATE, 2
-    SetVar 0x4085, 2
+    SetVar VAR_UNK_0x4085, 2
     Message 10
     WaitABXPadPress
     CloseMessage

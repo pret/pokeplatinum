@@ -18,7 +18,7 @@
     ScriptEntryEnd
 
 _0032:
-    GoToIfGe 0x407F, 1, _0041
+    GoToIfGe VAR_UNK_0x407F, 1, _0041
     End
 
 _0041:
@@ -79,7 +79,7 @@ _00D4:
 
 _00DF:
     GoToIfUnset FLAG_GAME_COMPLETED, _00D4
-    GoToIfEq 0x407F, 0, _0102
+    GoToIfEq VAR_UNK_0x407F, 0, _0102
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -109,7 +109,7 @@ _011B:
     ApplyMovement LOCALID_PLAYER, _0164
     ApplyMovement 6, _015C
     WaitMovement
-    SetVar 0x407F, 1
+    SetVar VAR_UNK_0x407F, 1
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -174,7 +174,7 @@ _01C0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x407F, 1, _01E0
+    GoToIfGe VAR_UNK_0x407F, 1, _01E0
     Message 7
     WaitABXPadPress
     CloseMessage

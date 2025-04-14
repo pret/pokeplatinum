@@ -10,8 +10,8 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40B5, 1, _002C
-    SetVar 0x40B5, 1
+    GoToIfGe VAR_UNK_0x40B5, 1, _002C
+    SetVar VAR_UNK_0x40B5, 1
     Message 0
     WaitABXPadPress
     CloseMessage

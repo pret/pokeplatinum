@@ -101,7 +101,7 @@ _0156:
     WaitMovement
     RemoveObject 18
     CallCommonScript 0x7F9
-    SetVar 0x408C, 1
+    SetVar VAR_UNK_0x408C, 1
     ReleaseAll
     End
 

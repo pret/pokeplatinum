@@ -81,11 +81,11 @@ _0133:
     End
 
 _014A:
-    GoToIfNe 0x40CD, 0, _0221
-    GoToIfNe 0x40B1, 1, _0221
+    GoToIfNe VAR_UNK_0x40CD, 0, _0221
+    GoToIfNe VAR_UNK_0x40B1, 1, _0221
     Call _017F
     GoToIfEq 0x800C, 0, _0221
-    SetVar 0x40CD, 1
+    SetVar VAR_UNK_0x40CD, 1
     Return
 
 _017F:

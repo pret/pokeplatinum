@@ -70,66 +70,66 @@ _0131:
     WaitTime 1, 0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 0x236, 1, 18, 2, 1
-    GoToIfEq 0x40CE, 5, _03DF
-    CallIfGt 0x40CE, 5, _030B
-    CallIfLt 0x40CE, 5, _0316
+    GoToIfEq VAR_UNK_0x40CE, 5, _03DF
+    CallIfGt VAR_UNK_0x40CE, 5, _030B
+    CallIfLt VAR_UNK_0x40CE, 5, _0316
     Call _0321
-    SetVar 0x40CE, 5
+    SetVar VAR_UNK_0x40CE, 5
     GoTo _033F
 
 _0180:
     WaitTime 1, 0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 137, 2, 18, 2, 1
-    GoToIfEq 0x40CE, 4, _03DF
-    CallIfGt 0x40CE, 4, _030B
-    CallIfLt 0x40CE, 4, _0316
+    GoToIfEq VAR_UNK_0x40CE, 4, _03DF
+    CallIfGt VAR_UNK_0x40CE, 4, _030B
+    CallIfLt VAR_UNK_0x40CE, 4, _0316
     Call _0321
-    SetVar 0x40CE, 4
+    SetVar VAR_UNK_0x40CE, 4
     GoTo _033F
 
 _01CF:
     WaitTime 1, 0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 138, 2, 18, 2, 1
-    GoToIfEq 0x40CE, 3, _03DF
-    CallIfGt 0x40CE, 3, _030B
-    CallIfLt 0x40CE, 3, _0316
+    GoToIfEq VAR_UNK_0x40CE, 3, _03DF
+    CallIfGt VAR_UNK_0x40CE, 3, _030B
+    CallIfLt VAR_UNK_0x40CE, 3, _0316
     Call _0321
-    SetVar 0x40CE, 3
+    SetVar VAR_UNK_0x40CE, 3
     GoTo _033F
 
 _021E:
     WaitTime 1, 0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 139, 2, 18, 2, 1
-    GoToIfEq 0x40CE, 2, _03DF
-    CallIfGt 0x40CE, 2, _030B
-    CallIfLt 0x40CE, 2, _0316
+    GoToIfEq VAR_UNK_0x40CE, 2, _03DF
+    CallIfGt VAR_UNK_0x40CE, 2, _030B
+    CallIfLt VAR_UNK_0x40CE, 2, _0316
     Call _0321
-    SetVar 0x40CE, 2
+    SetVar VAR_UNK_0x40CE, 2
     GoTo _033F
 
 _026D:
     WaitTime 1, 0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 140, 2, 18, 2, 1
-    GoToIfEq 0x40CE, 1, _03DF
-    CallIfGt 0x40CE, 1, _030B
-    CallIfLt 0x40CE, 1, _0316
+    GoToIfEq VAR_UNK_0x40CE, 1, _03DF
+    CallIfGt VAR_UNK_0x40CE, 1, _030B
+    CallIfLt VAR_UNK_0x40CE, 1, _0316
     Call _0321
-    SetVar 0x40CE, 1
+    SetVar VAR_UNK_0x40CE, 1
     GoTo _033F
 
 _02BC:
     WaitTime 1, 0x800C
     GetFloorsAbove 0x40CE
     ScrCmd_11B 141, 1, 18, 2, 1
-    GoToIfEq 0x40CE, 0, _03DF
-    CallIfGt 0x40CE, 0, _030B
-    CallIfLt 0x40CE, 0, _0316
+    GoToIfEq VAR_UNK_0x40CE, 0, _03DF
+    CallIfGt VAR_UNK_0x40CE, 0, _030B
+    CallIfLt VAR_UNK_0x40CE, 0, _0316
     Call _0321
-    SetVar 0x40CE, 0
+    SetVar VAR_UNK_0x40CE, 0
     GoTo _033F
 
 _030B:
@@ -143,7 +143,7 @@ _0316:
     Return
 
 _0321:
-    SetVar 0x40CE, -1
+    SetVar VAR_UNK_0x40CE, -1
     CloseMessage
     ApplyMovement 0, _0410
     WaitMovement
@@ -198,7 +198,7 @@ _03D7:
     End
 
 _03DF:
-    SetVar 0x40CE, -1
+    SetVar VAR_UNK_0x40CE, -1
     WaitTime 1, 0x800C
     Message 4
     WaitABXPadPress
@@ -207,7 +207,7 @@ _03DF:
     End
 
 _03F6:
-    SetVar 0x40CE, -1
+    SetVar VAR_UNK_0x40CE, -1
     WaitTime 1, 0x800C
     Message 1
     WaitABXPadPress

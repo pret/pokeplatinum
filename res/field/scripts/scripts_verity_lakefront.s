@@ -53,7 +53,7 @@ _00D8:
     GoTo _00F0
 
 _00F0:
-    SetVar 0x4082, 1
+    SetVar VAR_UNK_0x4082, 1
     ReleaseAll
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
