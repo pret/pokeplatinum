@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/savedata/vars_flags.h"
+#include "generated/first_arrival_to_zones.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
