@@ -95,8 +95,8 @@ _00F4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2B7 0x800C
-    GoToIfEq 0x800C, 1, _0368
+    ScrCmd_2B7 VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0368
     GoToIfSet FLAG_UNK_0x00C3, _02FB
     SetFlag FLAG_UNK_0x00C3
     Message 0
@@ -104,15 +104,15 @@ _00F4:
     End
 
 _0127:
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 129, 0
     AddMenuEntryImm 128, 1
     AddMenuEntryImm 130, 2
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _01E9
-    GoToIfEq 0x8008, 1, _0172
-    GoToIfEq 0x8008, 2, _02EA
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _01E9
+    GoToIfEq VAR_0x8008, 1, _0172
+    GoToIfEq VAR_0x8008, 2, _02EA
     GoTo _02EA
     End
 
@@ -122,15 +122,15 @@ _0172:
     End
 
 _017D:
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 131, 0
     AddMenuEntryImm 132, 1
     AddMenuEntryImm 133, 2
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _01C8
-    GoToIfEq 0x8008, 1, _01D3
-    GoToIfEq 0x8008, 2, _01DE
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _01C8
+    GoToIfEq VAR_0x8008, 1, _01D3
+    GoToIfEq VAR_0x8008, 2, _01DE
     GoTo _01DE
     End
 
@@ -150,8 +150,8 @@ _01DE:
     End
 
 _01E9:
-    GetPartyCountHatched 0x800C
-    GoToIfLt 0x800C, 2, _0202
+    GetPartyCountHatched VAR_0x800C
+    GoToIfLt VAR_0x800C, 2, _0202
     GoTo _0306
     End
 
@@ -164,8 +164,8 @@ _0202:
 
 _020D:
     CallCommonScript 0x7D6
-    SetVar 0x800C, VAR_0x4000
-    GoToIfEq 0x800C, 0, _02EA
+    SetVar VAR_0x800C, VAR_0x4000
+    GoToIfEq VAR_0x800C, 0, _02EA
     HealParty
     SetVar VAR_UNK_0x40D5, 6
     Message 7
@@ -188,10 +188,10 @@ _020D:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2B2
-    ScrCmd_0B3 0x800C
-    SetVar 0x8004, 0x800C
-    ScrCmd_0B2 0x8004, 0x800C
-    GoToIfEq 0x800C, 0, _02CE
+    ScrCmd_0B3 VAR_0x800C
+    SetVar VAR_0x8004, VAR_0x800C
+    ScrCmd_0B2 VAR_0x8004, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _02CE
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -221,14 +221,14 @@ _02FB:
     End
 
 _0306:
-    GetPartyCount 0x800C
-    GoToIfEq 0x800C, 6, _031F
+    GetPartyCount VAR_0x800C
+    GoToIfEq VAR_0x800C, 6, _031F
     GoTo _020D
     End
 
 _031F:
-    ScrCmd_252 0x800C
-    GoToIfEq 0x800C, 0, _0338
+    ScrCmd_252 VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _0338
     GoTo _020D
     End
 
@@ -350,21 +350,21 @@ _03F9:
 _040C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    SetVar 0x8005, 3
+    SetVar VAR_0x8005, 3
     GoTo _0420
     End
 
 _0420:
     Message 36
-    InitLocalTextMenu 31, 11, 0, 0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 38, 0
     AddMenuEntryImm 39, 1
     AddMenuEntryImm 40, 2
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _046A
-    GoToIfEq 0x8008, 1, _048B
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _046A
+    GoToIfEq VAR_0x8008, 1, _048B
     GoTo _0464
     End
 
@@ -375,8 +375,8 @@ _0464:
 
 _046A:
     CallCommonScript 0x7D6
-    SetVar 0x800C, VAR_0x4000
-    GoToIfEq 0x800C, 0, _0464
+    SetVar VAR_0x800C, VAR_0x4000
+    GoToIfEq VAR_0x800C, 0, _0464
     CloseMessage
     CallCommonScript 0x802
     ReleaseAll
@@ -390,21 +390,21 @@ _048B:
 _0496:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    SetVar 0x8005, 4
+    SetVar VAR_0x8005, 4
     GoTo _04AA
     End
 
 _04AA:
     Message 34
-    InitLocalTextMenu 31, 11, 0, 0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 38, 0
     AddMenuEntryImm 39, 1
     AddMenuEntryImm 40, 2
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _04F4
-    GoToIfEq 0x8008, 1, _0515
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _04F4
+    GoToIfEq VAR_0x8008, 1, _0515
     GoTo _04EE
     End
 
@@ -415,8 +415,8 @@ _04EE:
 
 _04F4:
     CallCommonScript 0x7D6
-    SetVar 0x800C, VAR_0x4000
-    GoToIfEq 0x800C, 0, _04EE
+    SetVar VAR_0x800C, VAR_0x4000
+    GoToIfEq VAR_0x800C, 0, _04EE
     CloseMessage
     CallCommonScript 0x802
     ReleaseAll
@@ -451,16 +451,16 @@ _0546:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2B7 0x800C
-    GoToIfEq 0x800C, 1, _05A0
-    SetVar 0x8000, 0
-    GetPartyMonSpecies 0x8000, 0x800C
-    GoToIfEq 0x800C, 0, _05CB
+    ScrCmd_2B7 VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _05A0
+    SetVar VAR_0x8000, 0
+    GetPartyMonSpecies VAR_0x8000, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _05CB
     BufferPartyMonSpecies 0, 0
     Message 18
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _05AB
-    GoToIfEq 0x800C, MENU_NO, _05B8
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _05AB
+    GoToIfEq VAR_0x800C, MENU_NO, _05B8
     End
 
 _05A0:
@@ -487,9 +487,9 @@ _05B8:
 
 _05CB:
     Message 19
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _05AB
-    GoToIfEq 0x800C, MENU_NO, _05EE
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _05AB
+    GoToIfEq VAR_0x800C, MENU_NO, _05EE
     End
 
 _05EE:
@@ -508,13 +508,13 @@ _0601:
     LockAll
     FacePlayer
     Message 29
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0647
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _0647
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
-    ScrCmd_30E 0x8004
-    GoToIfEq 0x8004, 0, _0647
+    ScrCmd_30E VAR_0x8004
+    GoToIfEq VAR_0x8004, 0, _0647
     Message 30
     WaitABXPadPress
     CloseMessage
@@ -532,12 +532,12 @@ _0652:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_FASHION_CASE, 1, 0x800C
-    GoToIfEq 0x800C, 0, _0696
+    CheckItem ITEM_FASHION_CASE, 1, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _0696
     GoToIfSet FLAG_UNK_0x0AC3, _06FD
     GoToIfSet FLAG_UNK_0x00CF, _06F2
     Message 24
-    SetVar 0x8004, 1
+    SetVar VAR_0x8004, 1
     GoTo _06A1
     End
 
@@ -547,16 +547,16 @@ _0696:
     End
 
 _06A1:
-    ScrCmd_1D6 0x8004, 0x800C
-    GoToIfEq 0x800C, 0, _06D3
-    AddVar 0x8004, 1
-    GoToIfLe 0x8004, 13, _06A1
+    ScrCmd_1D6 VAR_0x8004, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _06D3
+    AddVar VAR_0x8004, 1
+    GoToIfLe VAR_0x8004, 13, _06A1
     SetFlag FLAG_UNK_0x00CF
     GoTo _06F2
     End
 
 _06D3:
-    SetVar 0x8005, 1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FD
     Message 28
     Call _0710
@@ -581,15 +581,15 @@ _0708:
     End
 
 _0710:
-    SetVar 0x8004, 1
+    SetVar VAR_0x8004, 1
     GoTo _071E
     End
 
 _071E:
-    ScrCmd_1D6 0x8004, 0x800C
-    GoToIfEq 0x800C, 0, _074A
-    AddVar 0x8004, 1
-    GoToIfLe 0x8004, 13, _071E
+    ScrCmd_1D6 VAR_0x8004, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _074A
+    AddVar VAR_0x8004, 1
+    GoToIfLe VAR_0x8004, 13, _071E
     SetFlag FLAG_UNK_0x00CF
     Return
 

@@ -41,12 +41,12 @@ _0034:
 _0044:
     Message 0
     CloseMessage
-    ScrCmd_29E 2, 0x8005
-    WaitTime 10, 0x800C
+    ScrCmd_29E 2, VAR_0x8005
+    WaitTime 10, VAR_0x800C
     RemoveObject 1
 _0059:
-    WaitTime 1, 0x800C
-    GoToIfEq 0x8005, 0, _0059
+    WaitTime 1, VAR_0x800C
+    GoToIfEq VAR_0x8005, 0, _0059
     FacePlayer
     Message 1
     CloseMessage

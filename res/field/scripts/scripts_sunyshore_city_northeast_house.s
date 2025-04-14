@@ -14,9 +14,9 @@ _0006:
     GoToIfSet FLAG_UNK_0x0AA4, _006A
     GoToIfSet FLAG_UNK_0x0AA7, _005F
     GoToIfUnset FLAG_UNK_0x00F7, _004C
-    GetFirstNonEggInParty 0x8002
+    GetFirstNonEggInParty VAR_0x8002
     Call _0070
-    GoToIfEq 0x800C, 1, _0136
+    GoToIfEq VAR_0x800C, 1, _0136
     GoTo _0146
 
 _004C:
@@ -39,45 +39,45 @@ _006A:
     GoTo _012B
 
 _0070:
-    GetDayOfWeek 0x800C
-    GoToIfEq 0x800C, DAY_OF_WEEK_SUNDAY, _00C8
-    GoToIfEq 0x800C, DAY_OF_WEEK_MONDAY, _00D2
-    GoToIfEq 0x800C, DAY_OF_WEEK_TUESDAY, _00DC
-    GoToIfEq 0x800C, DAY_OF_WEEK_WEDNESDAY, _00E6
-    GoToIfEq 0x800C, DAY_OF_WEEK_THURSDAY, _00F0
-    GoToIfEq 0x800C, DAY_OF_WEEK_FRIDAY, _00FA
+    GetDayOfWeek VAR_0x800C
+    GoToIfEq VAR_0x800C, DAY_OF_WEEK_SUNDAY, _00C8
+    GoToIfEq VAR_0x800C, DAY_OF_WEEK_MONDAY, _00D2
+    GoToIfEq VAR_0x800C, DAY_OF_WEEK_TUESDAY, _00DC
+    GoToIfEq VAR_0x800C, DAY_OF_WEEK_WEDNESDAY, _00E6
+    GoToIfEq VAR_0x800C, DAY_OF_WEEK_THURSDAY, _00F0
+    GoToIfEq VAR_0x800C, DAY_OF_WEEK_FRIDAY, _00FA
     GoTo _0104
 
 _00C8:
-    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_SMILE
+    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_SMILE
     Return
 
 _00D2:
-    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_ALERT
+    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_ALERT
     Return
 
 _00DC:
-    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_SHOCK
+    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_SHOCK
     Return
 
 _00E6:
-    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_DOWNCAST
+    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_DOWNCAST
     Return
 
 _00F0:
-    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_CARELESS
+    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_CARELESS
     Return
 
 _00FA:
-    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_RELAX
+    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_RELAX
     Return
 
 _0104:
-    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_SNOOZE
+    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_SNOOZE
     Return
 
 _010E:
-    BufferPartyMonSpecies 1, 0x8002
+    BufferPartyMonSpecies 1, VAR_0x8002
     BufferPlayerName 2
     Message 4
     PlaySound SEQ_FANFA1
@@ -94,7 +94,7 @@ _012B:
     End
 
 _0136:
-    BufferPartyMonSpecies 1, 0x8002
+    BufferPartyMonSpecies 1, VAR_0x8002
     Message 8
     WaitABXPadPress
     CloseMessage
@@ -102,13 +102,13 @@ _0136:
     End
 
 _0146:
-    GetDayOfWeek 0x800C
-    GoToIfEq 0x800C, DAY_OF_WEEK_SUNDAY, _019E
-    GoToIfEq 0x800C, DAY_OF_WEEK_MONDAY, _01F2
-    GoToIfEq 0x800C, DAY_OF_WEEK_TUESDAY, _0246
-    GoToIfEq 0x800C, DAY_OF_WEEK_WEDNESDAY, _029A
-    GoToIfEq 0x800C, DAY_OF_WEEK_THURSDAY, _02EE
-    GoToIfEq 0x800C, DAY_OF_WEEK_FRIDAY, _0342
+    GetDayOfWeek VAR_0x800C
+    GoToIfEq VAR_0x800C, DAY_OF_WEEK_SUNDAY, _019E
+    GoToIfEq VAR_0x800C, DAY_OF_WEEK_MONDAY, _01F2
+    GoToIfEq VAR_0x800C, DAY_OF_WEEK_TUESDAY, _0246
+    GoToIfEq VAR_0x800C, DAY_OF_WEEK_WEDNESDAY, _029A
+    GoToIfEq VAR_0x800C, DAY_OF_WEEK_THURSDAY, _02EE
+    GoToIfEq VAR_0x800C, DAY_OF_WEEK_FRIDAY, _0342
     GoTo _0396
 
 _019E:
@@ -117,15 +117,15 @@ _019E:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, 0x800C, 0x8000
+    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x800C, 0, _03EA
-    ScrCmd_245 0, 0x8000
+    GoToIfEq VAR_0x800C, 0, _03EA
+    ScrCmd_245 0, VAR_0x8000
     Message 21
     SetFlag FLAG_UNK_0x0AA4
-    SetPartyMonRibbon 0x8002, RIBBON_SMILE
+    SetPartyMonRibbon VAR_0x8002, RIBBON_SMILE
     ScrCmd_232 3, 65
     GoTo _010E
 
@@ -135,15 +135,15 @@ _01F2:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, 0x800C, 0x8000
+    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x800C, 0, _03EA
-    ScrCmd_245 0, 0x8000
+    GoToIfEq VAR_0x800C, 0, _03EA
+    ScrCmd_245 0, VAR_0x8000
     Message 3
     SetFlag FLAG_UNK_0x0AA4
-    SetPartyMonRibbon 0x8002, RIBBON_ALERT
+    SetPartyMonRibbon VAR_0x8002, RIBBON_ALERT
     ScrCmd_232 3, 59
     GoTo _010E
 
@@ -153,15 +153,15 @@ _0246:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, 0x800C, 0x8000
+    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x800C, 0, _03EA
-    ScrCmd_245 0, 0x8000
+    GoToIfEq VAR_0x800C, 0, _03EA
+    ScrCmd_245 0, VAR_0x8000
     Message 11
     SetFlag FLAG_UNK_0x0AA4
-    SetPartyMonRibbon 0x8002, RIBBON_SHOCK
+    SetPartyMonRibbon VAR_0x8002, RIBBON_SHOCK
     ScrCmd_232 3, 60
     GoTo _010E
 
@@ -171,15 +171,15 @@ _029A:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, 0x800C, 0x8000
+    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x800C, 0, _03EA
-    ScrCmd_245 0, 0x8000
+    GoToIfEq VAR_0x800C, 0, _03EA
+    ScrCmd_245 0, VAR_0x8000
     Message 13
     SetFlag FLAG_UNK_0x0AA4
-    SetPartyMonRibbon 0x8002, RIBBON_DOWNCAST
+    SetPartyMonRibbon VAR_0x8002, RIBBON_DOWNCAST
     ScrCmd_232 3, 61
     GoTo _010E
 
@@ -189,15 +189,15 @@ _02EE:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, 0x800C, 0x8000
+    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x800C, 0, _03EA
-    ScrCmd_245 0, 0x8000
+    GoToIfEq VAR_0x800C, 0, _03EA
+    ScrCmd_245 0, VAR_0x8000
     Message 15
     SetFlag FLAG_UNK_0x0AA4
-    SetPartyMonRibbon 0x8002, RIBBON_CARELESS
+    SetPartyMonRibbon VAR_0x8002, RIBBON_CARELESS
     ScrCmd_232 3, 62
     GoTo _010E
 
@@ -207,15 +207,15 @@ _0342:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, 0x800C, 0x8000
+    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x800C, 0, _03EA
-    ScrCmd_245 0, 0x8000
+    GoToIfEq VAR_0x800C, 0, _03EA
+    ScrCmd_245 0, VAR_0x8000
     Message 17
     SetFlag FLAG_UNK_0x0AA4
-    SetPartyMonRibbon 0x8002, RIBBON_RELAX
+    SetPartyMonRibbon VAR_0x8002, RIBBON_RELAX
     ScrCmd_232 3, 63
     GoTo _010E
 
@@ -225,15 +225,15 @@ _0396:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, 0x800C, 0x8000
+    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x800C, 0, _03EA
-    ScrCmd_245 0, 0x8000
+    GoToIfEq VAR_0x800C, 0, _03EA
+    ScrCmd_245 0, VAR_0x8000
     Message 19
     SetFlag FLAG_UNK_0x0AA4
-    SetPartyMonRibbon 0x8002, RIBBON_SNOOZE
+    SetPartyMonRibbon VAR_0x8002, RIBBON_SNOOZE
     ScrCmd_232 3, 64
     GoTo _010E
 

@@ -41,8 +41,8 @@ _004E:
 
 _0061:
     LockAll
-    CheckPlayerOnBike 0x800C
-    GoToIfEq 0x800C, TRUE, _0091
+    CheckPlayerOnBike VAR_0x800C
+    GoToIfEq VAR_0x800C, TRUE, _0091
     ApplyMovement 1, _00A0
     WaitMovement
     Message 1
@@ -95,13 +95,13 @@ _00F9:
     GoTo _0102
 
 _0102:
-    ScrCmd_120 0x8004
-    BufferNumber 1, 0x8004
-    GoToIfLt 0x8004, 35, _015F
+    ScrCmd_120 VAR_0x8004
+    BufferNumber 1, VAR_0x8004
+    GoToIfLt VAR_0x8004, 35, _015F
     Message 5
-    SetVar 0x8004, ITEM_EXP_SHARE
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _014A
+    SetVar VAR_0x8004, ITEM_EXP_SHARE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _014A
     SetFlag FLAG_UNK_0x010B
     CallCommonScript 0x7E0
     CloseMessage

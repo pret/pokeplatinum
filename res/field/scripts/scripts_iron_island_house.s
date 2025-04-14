@@ -26,18 +26,18 @@ _0035:
     LockAll
     FacePlayer
     Message 0
-    SetVar 0x8004, ITEM_METAL_COAT
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00A8
+    SetVar VAR_0x8004, ITEM_METAL_COAT
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00A8
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x011D
     Message 1
     CloseMessage
-    GetPlayerDir 0x8004
-    GoToIfEq 0x8004, 2, _00B2
-    GoToIfEq 0x8004, 3, _00D0
-    GoToIfEq 0x8004, 0, _00B2
-    GoToIfEq 0x8004, 1, _00D0
+    GetPlayerDir VAR_0x8004
+    GoToIfEq VAR_0x8004, 2, _00B2
+    GoToIfEq VAR_0x8004, 3, _00D0
+    GoToIfEq VAR_0x8004, 0, _00B2
+    GoToIfEq VAR_0x8004, 1, _00D0
     End
 
 _00A8:

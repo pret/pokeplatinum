@@ -54,7 +54,7 @@ _008C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x8005, 0
+    SetVar VAR_0x8005, 0
     GoTo _00B8
     End
 
@@ -62,35 +62,35 @@ _00A2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x8005, 1
+    SetVar VAR_0x8005, 1
     GoTo _00B8
     End
 
 _00B8:
-    CallIfEq 0x8005, 0, _0254
-    CallIfEq 0x8005, 1, _0259
-    CallIfEq 0x8005, 2, _025B
+    CallIfEq VAR_0x8005, 0, _0254
+    CallIfEq VAR_0x8005, 1, _0259
+    CallIfEq VAR_0x8005, 2, _025B
     GoTo _00E7
     End
 
 _00E7:
-    CallIfEq 0x8005, 0, _0260
-    CallIfEq 0x8005, 1, _0265
-    CallIfEq 0x8005, 2, _0267
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    CallIfEq VAR_0x8005, 0, _0260
+    CallIfEq VAR_0x8005, 1, _0265
+    CallIfEq VAR_0x8005, 2, _0267
+    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 14, 0
     AddMenuEntryImm 15, 1
     AddMenuEntryImm 16, 2
     ShowMenu
-    GoToIfEq 0x800C, 0, _0188
-    GoToIfEq 0x800C, 1, _0146
+    GoToIfEq VAR_0x800C, 0, _0188
+    GoToIfEq VAR_0x800C, 1, _0146
     GoTo _0175
     End
 
 _0146:
-    CallIfEq 0x8005, 0, _026C
-    CallIfEq 0x8005, 1, _0271
-    CallIfEq 0x8005, 2, _0273
+    CallIfEq VAR_0x8005, 0, _026C
+    CallIfEq VAR_0x8005, 1, _0271
+    CallIfEq VAR_0x8005, 2, _0273
     GoTo _00E7
     End
 
@@ -107,47 +107,47 @@ _017D:
 
 _0188:
     Message 7
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 17, 0
     AddMenuEntryImm 18, 1
     AddMenuEntryImm 19, 2
     ShowMenu
-    GoToIfEq 0x800C, 0, _01C3
-    GoToIfEq 0x800C, 1, _01D1
+    GoToIfEq VAR_0x800C, 0, _01C3
+    GoToIfEq VAR_0x800C, 1, _01D1
     GoTo _0175
     End
 
 _01C3:
-    SetVar 0x8006, 0
+    SetVar VAR_0x8006, 0
     GoTo _01DF
     End
 
 _01D1:
-    SetVar 0x8006, 1
+    SetVar VAR_0x8006, 1
     GoTo _01DF
     End
 
 _01DF:
     Message 8
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0175
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _0175
     GoTo _01FB
     End
 
 _01FB:
     SetVar VAR_0x4000, 0
     CallCommonScript 0x7D6
-    SetVar 0x800C, VAR_0x4000
-    GoToIfEq 0x800C, 0, _0175
+    SetVar VAR_0x800C, VAR_0x4000
+    GoToIfEq VAR_0x800C, 0, _0175
     GoTo _0220
     End
 
 _0220:
     Message 9
     CloseMessage
-    CallIfEq 0x8005, 0, _024E
-    CallIfEq 0x8005, 1, _0250
-    CallIfEq 0x8005, 2, _0252
+    CallIfEq VAR_0x8005, 0, _024E
+    CallIfEq VAR_0x8005, 1, _0250
+    CallIfEq VAR_0x8005, 2, _0252
     End
 
 _024E:

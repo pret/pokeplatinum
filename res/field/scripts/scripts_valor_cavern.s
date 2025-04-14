@@ -49,10 +49,10 @@ ValorCavern_Azelf:
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_AZELF, 50
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, ValorCavern_LostBattleAzelf
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, ValorCavern_AzelfDisappeared
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, ValorCavern_LostBattleAzelf
+    CheckDidNotCapture VAR_0x800C
+    GoToIfEq VAR_0x800C, TRUE, ValorCavern_AzelfDisappeared
     SetFlag FLAG_AZELF_CAUGHT
     ReleaseAll
     End
@@ -77,12 +77,12 @@ ValorCavern_CommanderSaturn:
     FacePlayer
     ApplyMovement LOCALID_SATURN, _013C
     WaitMovement
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     Message ValorCavern_Text_SaturnBattleIntro
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_SATURN_VALOR_CAVERN
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, ValorCavern_LostBattleCommanderSaturn
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, ValorCavern_LostBattleCommanderSaturn
     Message ValorCavern_Text_SaturnPostBattle
     CloseMessage
     FadeScreen 6, 1, 0, 0

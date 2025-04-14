@@ -37,9 +37,9 @@ _0040:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0105, _0087
     Message 2
-    SetVar 0x8004, ITEM_STICKY_BARB
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0092
+    SetVar VAR_0x8004, ITEM_STICKY_BARB
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0092
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0105
     GoTo _0087
@@ -85,41 +85,41 @@ _00C0:
     GoTo _00D5
 
 _00D5:
-    InitGlobalTextMenu 1, 1, 0, 0x8000
+    InitGlobalTextMenu 1, 1, 0, VAR_0x8000
     AddMenuEntryImm 219, 0
     AddMenuEntryImm 220, 1
     AddMenuEntryImm 221, 2
     AddMenuEntryImm 222, 3
     ShowMenu
-    SetVar 0x8008, 0x8000
-    GoToIfEq 0x8008, 0, _0125
-    GoToIfEq 0x8008, 1, _0131
-    GoToIfEq 0x8008, 2, _013D
+    SetVar VAR_0x8008, VAR_0x8000
+    GoToIfEq VAR_0x8008, 0, _0125
+    GoToIfEq VAR_0x8008, 1, _0131
+    GoToIfEq VAR_0x8008, 2, _013D
     Message 10
     GoTo _028C
 
 _0125:
-    SetVar 0x8001, ITEM_FRESH_WATER
+    SetVar VAR_0x8001, ITEM_FRESH_WATER
     GoTo _0191
 
 _0131:
-    SetVar 0x8001, ITEM_SODA_POP
+    SetVar VAR_0x8001, ITEM_SODA_POP
     GoTo _0191
 
 _013D:
-    SetVar 0x8001, ITEM_LEMONADE
+    SetVar VAR_0x8001, ITEM_LEMONADE
     GoTo _0191
 
 _0149:
-    CheckMoney 0x800C, 200
+    CheckMoney VAR_0x800C, 200
     Return
 
 _0153:
-    CheckMoney 0x800C, 300
+    CheckMoney VAR_0x800C, 300
     Return
 
 _015D:
-    CheckMoney 0x800C, 350
+    CheckMoney VAR_0x800C, 350
     Return
 
 _0167:
@@ -138,30 +138,30 @@ _0183:
     Return
 
 _0191:
-    CallIfEq 0x8000, 0, _0149
-    CallIfEq 0x8000, 1, _0153
-    CallIfEq 0x8000, 2, _015D
-    GoToIfEq 0x800C, 0, _0277
-    GoToIfCannotFitItem 0x8001, 1, 0x800C, _0280
-    CallIfEq 0x8000, 0, _0167
-    CallIfEq 0x8000, 1, _0175
-    CallIfEq 0x8000, 2, _0183
+    CallIfEq VAR_0x8000, 0, _0149
+    CallIfEq VAR_0x8000, 1, _0153
+    CallIfEq VAR_0x8000, 2, _015D
+    GoToIfEq VAR_0x800C, 0, _0277
+    GoToIfCannotFitItem VAR_0x8001, 1, VAR_0x800C, _0280
+    CallIfEq VAR_0x8000, 0, _0167
+    CallIfEq VAR_0x8000, 1, _0175
+    CallIfEq VAR_0x8000, 2, _0183
     UpdateMoneyDisplay
-    BufferItemName 0, 0x8001
+    BufferItemName 0, VAR_0x8001
     PlayFanfare SEQ_SE_DP_JIHANKI
-    BufferItemName 0, 0x8001
+    BufferItemName 0, VAR_0x8001
     Message 7
-    SetVar 0x8004, 0x8001
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, VAR_0x8001
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
-    GetRandom 0x800C, 64
-    GoToIfNe 0x800C, 0, _026E
-    GoToIfCannotFitItem 0x8001, 1, 0x800C, _0280
+    GetRandom VAR_0x800C, 64
+    GoToIfNe VAR_0x800C, 0, _026E
+    GoToIfCannotFitItem VAR_0x8001, 1, VAR_0x800C, _0280
     PlayFanfare SEQ_SE_DP_JIHANKI
-    BufferItemName 0, 0x8001
+    BufferItemName 0, VAR_0x8001
     Message 8
-    SetVar 0x8004, 0x8001
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, VAR_0x8001
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     GoTo _026E
 

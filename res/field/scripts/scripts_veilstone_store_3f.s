@@ -16,28 +16,28 @@ _001E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckIsDepartmentStoreRegular 0x800C
-    GoToIfEq 0x800C, TRUE, _005F
+    CheckIsDepartmentStoreRegular VAR_0x800C
+    GoToIfEq VAR_0x800C, TRUE, _005F
     Message 0
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 229, 1
     AddMenuEntryImm 228, 0
     ShowMenu
-    GoToIfEq 0x800C, 1, _00C2
+    GoToIfEq VAR_0x800C, 1, _00C2
     GoTo _00B7
 
 _005F:
     BufferPlayerName 0
     Message 1
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 229, 0
     AddMenuEntryImm 228, 1
     ShowMenu
-    GoToIfNe 0x800C, 0, _00B7
-    GetRandom2 0x800C, 4
-    GoToIfEq 0x800C, 0, _00C2
-    GoToIfEq 0x800C, 1, _00CD
-    GoToIfEq 0x800C, 2, _00D8
+    GoToIfNe VAR_0x800C, 0, _00B7
+    GetRandom2 VAR_0x800C, 4
+    GoToIfEq VAR_0x800C, 0, _00C2
+    GoToIfEq VAR_0x800C, 1, _00CD
+    GoToIfEq VAR_0x800C, 2, _00D8
     GoTo _00E3
 
 _00B7:

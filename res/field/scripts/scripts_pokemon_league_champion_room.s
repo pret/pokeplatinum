@@ -21,8 +21,8 @@ _000E:
     SetFlag FLAG_ALT_MUSIC_CHAMPION_ROOM
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _00F5
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _00FD
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0121
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _0121
     Message 1
     SetFlag FLAG_UNK_0x00B4
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0105
@@ -35,9 +35,9 @@ _000E:
     WaitMovement
     ApplyMovement 0, _0150
     WaitMovement
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     TriggerPlatformLift
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     SetFlag FLAG_UNK_0x023A
     SetFlag FLAG_UNK_0x023B
     ApplyMovement LOCALID_PLAYER, _013C

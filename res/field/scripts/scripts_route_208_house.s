@@ -20,10 +20,10 @@ _001C:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AA0, _0067
     Message 0
-    GetRandom 0x8004, 26
-    AddVar 0x8004, ITEM_CHERI_BERRY /* Random berry from Cheri to Tamato */
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0072
+    GetRandom VAR_0x8004, 26
+    AddVar VAR_0x8004, ITEM_CHERI_BERRY /* Random berry from Cheri to Tamato */
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0072
     SetFlag FLAG_UNK_0x0AA0
     CallCommonScript 0x7E0
     CloseMessage
@@ -48,18 +48,18 @@ _007C:
     LockAll
     FacePlayer
     GoToIfEq VAR_0x4000, 1, _00ED
-    CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, 0x800C
-    GoToIfEq 0x800C, 1, _00FD
+    CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _00FD
     Message 2
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _00C7
-    GoToIfEq 0x800C, MENU_NO, _00E2
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _00C7
+    GoToIfEq VAR_0x800C, MENU_NO, _00E2
     End
 
 _00C7:
     Message 3
     SetVar VAR_0x4000, 1
-    SetVar 0x8004, 7
+    SetVar VAR_0x8004, 7
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
@@ -94,37 +94,37 @@ _0108:
     FacePlayer
     Message 7
     ShowMoney 20, 2
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 223, 0
     AddMenuEntryImm 224, 1
     AddMenuEntryImm 225, 2
     AddMenuEntryImm 226, 3
     AddMenuEntryImm 227, 4
     ShowMenu
-    SetVar 0x8000, 0x800C
-    SetVar 0x8008, 0x8000
-    GoToIfEq 0x8008, 0, _0245
-    GoToIfEq 0x8008, 1, _0251
-    GoToIfEq 0x8008, 2, _025D
-    GoToIfEq 0x8008, 3, _0269
+    SetVar VAR_0x8000, VAR_0x800C
+    SetVar VAR_0x8008, VAR_0x8000
+    GoToIfEq VAR_0x8008, 0, _0245
+    GoToIfEq VAR_0x8008, 1, _0251
+    GoToIfEq VAR_0x8008, 2, _025D
+    GoToIfEq VAR_0x8008, 3, _0269
     Message 9
     GoTo _0229
 
 _0180:
-    CallIfEq 0x8000, 0, _0275
-    CallIfEq 0x8000, 1, _027F
-    CallIfEq 0x8000, 2, _0289
-    CallIfEq 0x8000, 3, _0293
-    GoToIfEq 0x800C, 0, _023C
-    GoToIfCannotFitItem 0x8001, 1, 0x800C, _0233
-    CallIfEq 0x8000, 0, _029D
-    CallIfEq 0x8000, 1, _02AB
-    CallIfEq 0x8000, 2, _02B9
-    CallIfEq 0x8000, 3, _02C7
+    CallIfEq VAR_0x8000, 0, _0275
+    CallIfEq VAR_0x8000, 1, _027F
+    CallIfEq VAR_0x8000, 2, _0289
+    CallIfEq VAR_0x8000, 3, _0293
+    GoToIfEq VAR_0x800C, 0, _023C
+    GoToIfCannotFitItem VAR_0x8001, 1, VAR_0x800C, _0233
+    CallIfEq VAR_0x8000, 0, _029D
+    CallIfEq VAR_0x8000, 1, _02AB
+    CallIfEq VAR_0x8000, 2, _02B9
+    CallIfEq VAR_0x8000, 3, _02C7
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
-    AddItem 0x8001, 1, 0x800C
-    BufferItemName 0, 0x8001
+    AddItem VAR_0x8001, 1, VAR_0x800C
+    BufferItemName 0, VAR_0x8001
     Message 10
     Message 8
     GoTo _0229
@@ -145,35 +145,35 @@ _023C:
     GoTo _0229
 
 _0245:
-    SetVar 0x8001, ITEM_GROWTH_MULCH
+    SetVar VAR_0x8001, ITEM_GROWTH_MULCH
     GoTo _0180
 
 _0251:
-    SetVar 0x8001, ITEM_DAMP_MULCH
+    SetVar VAR_0x8001, ITEM_DAMP_MULCH
     GoTo _0180
 
 _025D:
-    SetVar 0x8001, ITEM_STABLE_MULCH
+    SetVar VAR_0x8001, ITEM_STABLE_MULCH
     GoTo _0180
 
 _0269:
-    SetVar 0x8001, ITEM_GOOEY_MULCH
+    SetVar VAR_0x8001, ITEM_GOOEY_MULCH
     GoTo _0180
 
 _0275:
-    CheckMoney 0x800C, 200
+    CheckMoney VAR_0x800C, 200
     Return
 
 _027F:
-    CheckMoney 0x800C, 200
+    CheckMoney VAR_0x800C, 200
     Return
 
 _0289:
-    CheckMoney 0x800C, 200
+    CheckMoney VAR_0x800C, 200
     Return
 
 _0293:
-    CheckMoney 0x800C, 200
+    CheckMoney VAR_0x800C, 200
     Return
 
 _029D:
@@ -206,7 +206,7 @@ _02D5:
 
 _02E8:
     Message 14
-    InitLocalTextMenu 30, 7, 0, 0x800C
+    InitLocalTextMenu 30, 7, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 19, 0
     AddMenuEntryImm 20, 1
@@ -214,12 +214,12 @@ _02E8:
     AddMenuEntryImm 22, 3
     AddMenuEntryImm 23, 4
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _035B
-    GoToIfEq 0x8008, 1, _0366
-    GoToIfEq 0x8008, 2, _0371
-    GoToIfEq 0x8008, 3, _037C
-    GoToIfEq 0x8008, 4, _0387
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _035B
+    GoToIfEq VAR_0x8008, 1, _0366
+    GoToIfEq VAR_0x8008, 2, _0371
+    GoToIfEq VAR_0x8008, 3, _037C
+    GoToIfEq VAR_0x8008, 4, _0387
     GoTo _0387
     End
 

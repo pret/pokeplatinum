@@ -22,8 +22,8 @@ _0022:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_BEACON, 0x800C
-    GoToIfEq 0x800C, 1, _0048
+    CheckBadgeAcquired BADGE_ID_BEACON, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0048
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -41,8 +41,8 @@ _0048:
 _0056:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_BEACON, 0x800C
-    GoToIfEq 0x800C, 1, _007A
+    CheckBadgeAcquired BADGE_ID_BEACON, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _007A
     Message 2
     WaitABXPadPress
     CloseMessage

@@ -83,8 +83,8 @@ _00E2:
     LockAll
     ClearHasPartner
     ScrCmd_06D 4, 16
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 2, _0103
+    GetPlayerDir VAR_0x800C
+    GoToIfEq VAR_0x800C, 2, _0103
     GoTo _011B
 
 _0103:
@@ -103,8 +103,8 @@ _0133:
     BufferPlayerName 0
     Message 5
     CloseMessage
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 3, _0152
+    GetPlayerDir VAR_0x800C
+    GoToIfEq VAR_0x800C, 3, _0152
     GoTo _016A
 
 _0152:

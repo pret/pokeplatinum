@@ -18,8 +18,8 @@ _000C:
     WaitABPress
     ScrCmd_209
     PlayCry SPECIES_CRESSELIA
-    GetPlayerDir 0x800C
-    CallIfEq 0x800C, 0, _007E
+    GetPlayerDir VAR_0x800C
+    CallIfEq VAR_0x800C, 0, _007E
     ScrCmd_063 0
     ScrCmd_26A 0, 6, 8
     ScrCmd_062 0

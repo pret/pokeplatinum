@@ -41,7 +41,7 @@ _0064:
     BufferRivalName 1
     Message 0
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     ApplyMovement 0, _00CC
     WaitMovement
     SetVar VAR_UNK_0x40A4, 1
@@ -77,17 +77,17 @@ _00E0:
     SetVar 0x410F, 2
     GoToIfSet FLAG_UNK_0x015C, _014B
     GoToIfUnset FLAG_UNK_0x015D, _0110
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 0, _014B
+    ScrCmd_22D 2, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _014B
 _0110:
     ApplyMovement LOCALID_PLAYER, _0164
     ApplyMovement 0, _0170
     WaitMovement
     BufferPlayerName 0
     BufferRivalName 1
-    ScrCmd_22D 2, 0x800C
-    CallIfEq 0x800C, 1, _014F
-    CallIfEq 0x800C, 0, _0158
+    ScrCmd_22D 2, VAR_0x800C
+    CallIfEq VAR_0x800C, 1, _014F
+    CallIfEq VAR_0x800C, 0, _0158
     WaitABXPadPress
     CloseMessage
 _014B:
@@ -118,16 +118,16 @@ _0170:
 
 _017C:
     LockAll
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     ApplyMovement 0, _01D4
     ApplyMovement LOCALID_PLAYER, _01F8
     WaitMovement
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     BufferRivalName 0
     BufferPlayerName 1
     Message 6
     CloseMessage
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     BufferPlayerName 0
     Message 7
     GiveRunningShoes
@@ -210,11 +210,11 @@ _02AF:
     End
 
 _02C4:
-    GetRandom 0x800C, 4
-    GoToIfEq 0x800C, 0, _031B
-    GoToIfEq 0x800C, 1, _0329
-    GoToIfEq 0x800C, 2, _0337
-    GoToIfEq 0x800C, 3, _0345
+    GetRandom VAR_0x800C, 4
+    GoToIfEq VAR_0x800C, 0, _031B
+    GoToIfEq VAR_0x800C, 1, _0329
+    GoToIfEq VAR_0x800C, 2, _0337
+    GoToIfEq VAR_0x800C, 3, _0345
     End
 
 _0300:
@@ -267,13 +267,13 @@ _036C:
     Call _0688
     BufferPlayerName 0
     Message 15
-    SetVar 0x8004, 0x1B1
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1B1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     GiveJournal
     Message 16
-    GetPlayerDir 0x8007
-    GoToIfEq 0x8007, 1, _03A6
+    GetPlayerDir VAR_0x8007
+    GoToIfEq VAR_0x8007, 1, _03A6
     GoTo _03B8
     End
 
@@ -304,7 +304,7 @@ _03CA:
     WaitMovement
     ApplyMovement 1, _07FC
     WaitMovement
-    CallIfEq 0x8007, 0, _0465
+    CallIfEq VAR_0x8007, 0, _0465
     BufferRivalName 1
     Message 19
     ApplyMovement 0, _07C0
@@ -314,10 +314,10 @@ _03CA:
     Message 21
     BufferPlayerName 0
     Message 22
-    GoToIfEq 0x8007, 0, _0471
-    GoToIfEq 0x8007, 1, _048B
-    GoToIfEq 0x8007, 2, _04A5
-    GoToIfEq 0x8007, 3, _04BF
+    GoToIfEq VAR_0x8007, 0, _0471
+    GoToIfEq VAR_0x8007, 1, _048B
+    GoToIfEq VAR_0x8007, 2, _04A5
+    GoToIfEq VAR_0x8007, 3, _04BF
     End
 
 _0465:
@@ -356,10 +356,10 @@ _04BF:
 _04D9:
     Message 23
     CloseMessage
-    GoToIfEq 0x8007, 0, _0514
-    GoToIfEq 0x8007, 1, _052E
-    GoToIfEq 0x8007, 2, _0548
-    GoToIfEq 0x8007, 3, _0562
+    GoToIfEq VAR_0x8007, 0, _0514
+    GoToIfEq VAR_0x8007, 1, _052E
+    GoToIfEq VAR_0x8007, 2, _0548
+    GoToIfEq VAR_0x8007, 3, _0562
     End
 
 _0514:
@@ -393,8 +393,8 @@ _0562:
 _057C:
     BufferPlayerName 0
     BufferRivalName 1
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _059B
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _059B
     GoTo _05A6
     End
 
@@ -409,18 +409,18 @@ _05A6:
     End
 
 _05B1:
-    SetVar 0x8004, 0x1CB
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1CB
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x008F
     Message 27
     BufferRivalName 1
     Message 26
     CloseMessage
-    GoToIfEq 0x8007, 0, _0606
-    GoToIfEq 0x8007, 1, _0620
-    GoToIfEq 0x8007, 2, _0642
-    GoToIfEq 0x8007, 3, _065C
+    GoToIfEq VAR_0x8007, 0, _0606
+    GoToIfEq VAR_0x8007, 1, _0620
+    GoToIfEq VAR_0x8007, 2, _0642
+    GoToIfEq VAR_0x8007, 3, _065C
     End
 
 _0606:
@@ -461,12 +461,12 @@ _0676:
 
 _0688:
     BufferPlayerName 0
-    GetTimeOfDay 0x800C
-    CallIfEq 0x800C, 0, _06F8
-    CallIfEq 0x800C, 1, _06FD
-    CallIfEq 0x800C, 2, _0702
-    CallIfEq 0x800C, 3, _0707
-    CallIfEq 0x800C, 4, _070C
+    GetTimeOfDay VAR_0x800C
+    CallIfEq VAR_0x800C, 0, _06F8
+    CallIfEq VAR_0x800C, 1, _06FD
+    CallIfEq VAR_0x800C, 2, _0702
+    CallIfEq VAR_0x800C, 3, _0707
+    CallIfEq VAR_0x800C, 4, _070C
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -871,12 +871,12 @@ _0948:
     End
 
 _095E:
-    GetTimeOfDay 0x800C
-    GoToIfEq 0x800C, 0, _09A5
-    GoToIfEq 0x800C, 1, _09B6
-    GoToIfEq 0x800C, 2, _09B6
-    GoToIfEq 0x800C, 3, _09C7
-    GoToIfEq 0x800C, 4, _09C7
+    GetTimeOfDay VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _09A5
+    GoToIfEq VAR_0x800C, 1, _09B6
+    GoToIfEq VAR_0x800C, 2, _09B6
+    GoToIfEq VAR_0x800C, 3, _09C7
+    GoToIfEq VAR_0x800C, 4, _09C7
     End
 
 _09A5:

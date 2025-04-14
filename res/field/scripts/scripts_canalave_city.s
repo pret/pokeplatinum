@@ -116,12 +116,12 @@ _01E7:
 
 _01F9:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2D3, _0244
-    GoToIfEq 0x8005, 0x2D4, _0252
-    GoToIfEq 0x8005, 0x2D5, _0260
-    GoToIfEq 0x8005, 0x2D6, _026E
-    GoToIfEq 0x8005, 0x2D7, _027C
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2D3, _0244
+    GoToIfEq VAR_0x8005, 0x2D4, _0252
+    GoToIfEq VAR_0x8005, 0x2D5, _0260
+    GoToIfEq VAR_0x8005, 0x2D6, _026E
+    GoToIfEq VAR_0x8005, 0x2D7, _027C
     End
 
 _0244:
@@ -157,9 +157,9 @@ _028A:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, SPECIES_TURTWIG, _02EB
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _02F7
+    GetPlayerStarterSpecies VAR_0x800C
+    GoToIfEq VAR_0x800C, SPECIES_TURTWIG, _02EB
+    GoToIfEq VAR_0x800C, SPECIES_CHIMCHAR, _02F7
     GoTo _02DF
 
 _02DF:
@@ -175,8 +175,8 @@ _02F7:
     GoTo _0303
 
 _0303:
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0334
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _0334
     BufferRivalName 0
     Message 1
     CloseMessage
@@ -281,9 +281,9 @@ _03C8:
     CloseMessage
     ApplyMovement 12, _0490
     WaitMovement
-    WaitTime 15, 0x800C
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _045E
+    WaitTime 15, VAR_0x800C
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _045E
     GoTo _046A
 
 _045E:
@@ -357,8 +357,8 @@ _04E7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0506
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _0506
     GoTo _050F
 
 _0506:
@@ -398,8 +398,8 @@ _054D:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A8, _0586
-    CheckBadgeAcquired BADGE_ID_MINE, 0x800C
-    GoToIfEq 0x800C, 1, _0591
+    CheckBadgeAcquired BADGE_ID_MINE, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0591
     GoTo _057B
     End
 
@@ -512,20 +512,20 @@ _0708:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerDir 0x8004
+    GetPlayerDir VAR_0x8004
     FacePlayer
     GoToIfEq 0x4106, 2, _0900
     Message 27
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 213, 0
     CallIfSet FLAG_UNK_0x0133, _0790
     CallIfSet FLAG_UNK_0x013C, _078A
     AddMenuEntryImm 218, 4
     ShowMenu
-    GoToIfEq 0x800C, 0, _0796
-    GoToIfEq 0x800C, 1, _07D1
-    GoToIfEq 0x800C, 2, _080C
-    GoToIfEq 0x800C, 3, _0847
+    GoToIfEq VAR_0x800C, 0, _0796
+    GoToIfEq VAR_0x800C, 1, _07D1
+    GoToIfEq VAR_0x800C, 2, _080C
+    GoToIfEq VAR_0x800C, 3, _0847
     GoTo _0847
     End
 
@@ -539,27 +539,27 @@ _0790:
 
 _0796:
     Call _0852
-    CallIfEq 0x8004, 1, _0871
-    CallIfEq 0x8004, 3, _088B
-    CallIfEq 0x8004, 0, _08A5
+    CallIfEq VAR_0x8004, 1, _0871
+    CallIfEq VAR_0x8004, 3, _088B
+    CallIfEq VAR_0x8004, 0, _08A5
     ScrCmd_23D 3, 3, 0x120, 100, 0x1F6
     ReleaseAll
     End
 
 _07D1:
     Call _0852
-    CallIfEq 0x8004, 1, _0871
-    CallIfEq 0x8004, 3, _088B
-    CallIfEq 0x8004, 0, _08A5
+    CallIfEq VAR_0x8004, 1, _0871
+    CallIfEq VAR_0x8004, 3, _088B
+    CallIfEq VAR_0x8004, 0, _08A5
     ScrCmd_23D 3, 2, 0x104, 39, 0x115
     ReleaseAll
     End
 
 _080C:
     Call _0852
-    CallIfEq 0x8004, 1, _0871
-    CallIfEq 0x8004, 3, _088B
-    CallIfEq 0x8004, 0, _08A5
+    CallIfEq VAR_0x8004, 1, _0871
+    CallIfEq VAR_0x8004, 3, _088B
+    CallIfEq VAR_0x8004, 0, _08A5
     ScrCmd_23D 3, 3, 0x140, 152, 0x115
     ReleaseAll
     End
@@ -637,12 +637,12 @@ _08F0:
     EndMovement
 
 _0900:
-    CheckItem ITEM_LUNAR_WING, 1, 0x800C
-    GoToIfEq 0x800C, 1, _094E
+    CheckItem ITEM_LUNAR_WING, 1, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _094E
     Message 31
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0938
-    GoToIfEq 0x800C, MENU_NO, _0943
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0938
+    GoToIfEq VAR_0x800C, MENU_NO, _0943
     End
 
 _0938:
@@ -699,10 +699,10 @@ _09BC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_HM04, 1, 0x800C
-    GoToIfEq 0x800C, 1, _09FA
-    ScrCmd_09A 0x800C, 70
-    GoToIfNe 0x800C, 6, _09FA
+    CheckItem ITEM_HM04, 1, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _09FA
+    ScrCmd_09A VAR_0x800C, 70
+    GoToIfNe VAR_0x800C, 6, _09FA
     BufferRivalName 0
     Message 3
     WaitABXPadPress

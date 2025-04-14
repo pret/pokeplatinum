@@ -28,8 +28,8 @@ _0046:
 
 _004E:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    SetObjectEventPos 18, 0x14B, 0x8005
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    SetObjectEventPos 18, 0x14B, VAR_0x8005
     Call _008E
     ApplyMovement 18, _0194
     WaitMovement
@@ -48,14 +48,14 @@ _008E:
     Return
 
 _009C:
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _00B3
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _00B3
     GoTo _00F1
 
 _00B3:
     BufferPlayerName 0
     Message 0
-    InitGlobalTextListMenu 30, 13, 0, 0x800C, NO_EXIT_ON_B
+    InitGlobalTextListMenu 30, 13, 0, VAR_0x800C, NO_EXIT_ON_B
     SetMenuXOriginToRight
     AddListMenuEntry 137, 0
     AddListMenuEntry 138, 1
@@ -70,7 +70,7 @@ _00B3:
 _00F1:
     BufferPlayerName 0
     Message 4
-    InitGlobalTextListMenu 30, 13, 0, 0x800C, NO_EXIT_ON_B
+    InitGlobalTextListMenu 30, 13, 0, VAR_0x800C, NO_EXIT_ON_B
     SetMenuXOriginToRight
     AddListMenuEntry 137, 0
     AddListMenuEntry 138, 1
@@ -84,13 +84,13 @@ _00F1:
 
 _012F:
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_1
-    SetVar 0x8004, 0x1BB
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1BB
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Return
 
 _0145:
-    SetVar 0x8004, 6
+    SetVar VAR_0x8004, 6
     CallCommonScript 0x7D9
     BufferPoketchAppName 1, POKETCH_APPID_DOWSINGMACHINE
     Return

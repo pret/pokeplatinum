@@ -11,8 +11,8 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 1, _002F
+    ScrCmd_22D 2, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _002F
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -30,14 +30,14 @@ _003A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 1, _009A
+    ScrCmd_22D 2, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _009A
     GoTo _005A
 
 _005A:
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _007A
-    GoToIfEq 0x800C, GENDER_FEMALE, _0086
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _007A
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _0086
     End
 
 _007A:
@@ -73,9 +73,9 @@ _00C4:
     GetSwarmMapAndSpecies VAR_0x4001, VAR_0x4000
     ScrCmd_0E2 1, VAR_0x4001
     BufferSpeciesNameFromVar 2, VAR_0x4000, 0, 1
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _00FA
-    GoToIfEq 0x800C, GENDER_FEMALE, _0103
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _00FA
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _0103
     End
 
 _00FA:

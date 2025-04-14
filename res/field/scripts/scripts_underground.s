@@ -50,13 +50,13 @@ _00E7:
     End
 
 _00F3:
-    ScrCmd_19E 1, 0x800C
-    SetVar 0x8004, 0x800C
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, -5, _0141
-    GoToIfEq 0x8008, -4, _014D
-    GoToIfEq 0x8008, -3, _0159
-    GoToIfEq 0x8008, -1, _0165
+    ScrCmd_19E 1, VAR_0x800C
+    SetVar VAR_0x8004, VAR_0x800C
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, -5, _0141
+    GoToIfEq VAR_0x8008, -4, _014D
+    GoToIfEq VAR_0x8008, -3, _0159
+    GoToIfEq VAR_0x8008, -1, _0165
     GoTo _017F
     End
 
@@ -102,13 +102,13 @@ _018F:
     End
 
 _019B:
-    ScrCmd_19E 0, 0x800C
-    SetVar 0x8004, 0x800C
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, -5, _0201
-    GoToIfEq 0x8008, -4, _01E9
-    GoToIfEq 0x8008, -3, _01F5
-    GoToIfEq 0x8008, -1, _0165
+    ScrCmd_19E 0, VAR_0x800C
+    SetVar VAR_0x8004, VAR_0x800C
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, -5, _0201
+    GoToIfEq VAR_0x8008, -4, _01E9
+    GoToIfEq VAR_0x8008, -3, _01F5
+    GoToIfEq VAR_0x8008, -1, _0165
     GoTo _020D
     End
 
@@ -144,11 +144,11 @@ _0225:
     End
 
 _0231:
-    ScrCmd_19E 2, 0x800C
-    SetVar 0x8004, 0x800C
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, -4, _0265
-    GoToIfEq 0x8008, -1, _0165
+    ScrCmd_19E 2, VAR_0x800C
+    SetVar VAR_0x8004, VAR_0x800C
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, -4, _0265
+    GoToIfEq VAR_0x8008, -1, _0165
     GoTo _0271
     End
 

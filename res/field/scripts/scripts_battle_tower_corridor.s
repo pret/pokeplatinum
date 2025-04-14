@@ -21,11 +21,11 @@ _001F:
 _0025:
     LockAll
     Call _008E
-    GetRandom 0x800C, 4
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 1, _00F0
-    GoToIfEq 0x8008, 2, _010A
-    GoToIfEq 0x8008, 3, _0124
+    GetRandom VAR_0x800C, 4
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 1, _00F0
+    GoToIfEq VAR_0x8008, 2, _010A
+    GoToIfEq VAR_0x8008, 3, _0124
     GoTo _00D6
 
 _0066:

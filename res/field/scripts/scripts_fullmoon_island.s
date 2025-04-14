@@ -17,13 +17,13 @@ _0015:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerDir 0x8004
-    CheckItem ITEM_LUNAR_WING, 1, 0x800C
-    GoToIfEq 0x800C, 1, _0052
+    GetPlayerDir VAR_0x8004
+    CheckItem ITEM_LUNAR_WING, 1, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0052
     Message 1
-    ShowYesNoMenu 0x800C
+    ShowYesNoMenu VAR_0x800C
     CloseMessage
-    GoToIfEq 0x800C, MENU_YES, _005D
+    GoToIfEq VAR_0x800C, MENU_YES, _005D
     GoTo _0098
 
 _0052:
@@ -33,9 +33,9 @@ _0052:
 
 _005D:
     Call _00A3
-    CallIfEq 0x8004, 1, _00BD
-    CallIfEq 0x8004, 3, _00D7
-    CallIfEq 0x8004, 0, _00F1
+    CallIfEq VAR_0x8004, 1, _00BD
+    CallIfEq VAR_0x8004, 3, _00D7
+    CallIfEq VAR_0x8004, 0, _00F1
     ScrCmd_23D 0, 2, 33, 44, 0x2EE
     ReleaseAll
     End

@@ -13,17 +13,17 @@ _0006:
     WaitMovement
     ApplyMovement 1, _0134
     WaitMovement
-    ScrCmd_28F 0x800C
-    CallIfEq 0x800C, 0, _0111
-    CallIfNe 0x800C, 0, _0119
+    ScrCmd_28F VAR_0x800C
+    CallIfEq VAR_0x800C, 0, _0111
+    CallIfNe VAR_0x800C, 0, _0119
     CloseMessage
     ApplyMovement 1, _0144
     ApplyMovement 0, _015C
     WaitMovement
-    WaitTime 15, 0x800C
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0074
-    GoToIfEq 0x800C, GENDER_FEMALE, _0080
+    WaitTime 15, VAR_0x800C
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _0074
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _0080
     End
 
 _0074:
@@ -45,11 +45,11 @@ _008C:
     Message 6
     CloseMessage
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_4
-    ScrCmd_22D 2, 0x800C
-    CallIfEq 0x800C, 1, _010A
+    ScrCmd_22D 2, VAR_0x800C
+    CallIfEq VAR_0x800C, 1, _010A
     CallIfEq VAR_UNK_0x40F4, 0, _0102
-    GetPartyCount 0x800C
-    ScrCmd_25A 0x800C
+    GetPartyCount VAR_0x800C
+    ScrCmd_25A VAR_0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     ScrCmd_260 24
@@ -163,8 +163,8 @@ _0261:
     Return
 
 _0263:
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 0, _0279
+    ScrCmd_22D 2, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _0279
     ClearFlag FLAG_UNK_0x0243
 _0279:
     Return

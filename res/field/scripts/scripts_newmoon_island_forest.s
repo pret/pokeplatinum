@@ -43,10 +43,10 @@ _0079:
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_DARKRAI, 50
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _014C
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _00D8
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _014C
+    CheckDidNotCapture VAR_0x800C
+    GoToIfEq VAR_0x800C, TRUE, _00D8
     SetFlag FLAG_UNK_0x0158
 _00BC:
     SetFlag FLAG_UNK_0x0241
@@ -65,7 +65,7 @@ _00D8:
 _00E3:
     Message 2
     CloseMessage
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     FadeScreen 6, 3, 1, 0
@@ -76,7 +76,7 @@ _00E3:
     WaitFadeScreen
     FadeScreen 6, 6, 0, 0
     WaitFadeScreen
-    WaitTime 120, 0x800C
+    WaitTime 120, VAR_0x800C
     Warp MAP_HEADER_CANALAVE_CITY_HARBOR_INN, 0, 8, 6, 1
     FadeScreen 6, 6, 1, 0
     WaitFadeScreen

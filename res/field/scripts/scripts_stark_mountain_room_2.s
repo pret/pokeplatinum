@@ -133,8 +133,8 @@ _0154:
     LockAll
     ClearHasPartner
     ScrCmd_06D 14, 15
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _0177
+    GetPlayerDir VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _0177
     GoTo _0191
     End
 

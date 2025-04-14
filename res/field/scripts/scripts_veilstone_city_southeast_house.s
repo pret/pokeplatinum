@@ -15,11 +15,11 @@ _000A:
     Message 0
     Message 1
     CloseMessage
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 2, _005F
-    GoToIfEq 0x800C, 0, _006F
-    GoToIfEq 0x800C, 3, _007F
-    GoToIfEq 0x800C, 1, _008F
+    GetPlayerDir VAR_0x800C
+    GoToIfEq VAR_0x800C, 2, _005F
+    GoToIfEq VAR_0x800C, 0, _006F
+    GoToIfEq VAR_0x800C, 3, _007F
+    GoToIfEq VAR_0x800C, 1, _008F
     End
 
 _005F:
@@ -44,15 +44,15 @@ _008F:
 
 _009F:
     Message 2
-    InitGlobalTextMenu 1, 1, 0, 0x8000, NO_EXIT_ON_B
+    InitGlobalTextMenu 1, 1, 0, VAR_0x8000, NO_EXIT_ON_B
     AddMenuEntryImm 174, 0
     AddMenuEntryImm 175, 1
     ShowMenu
-    GetRandom 0x800C, 2
-    GoToIfEq 0x800C, 0, _00E4
+    GetRandom VAR_0x800C, 2
+    GoToIfEq VAR_0x800C, 0, _00E4
     Message 4
-    SetVar 0x8004, 0x1BC
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1BC
+    SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x00BC
     CallCommonScript 0x7E0
     CloseMessage

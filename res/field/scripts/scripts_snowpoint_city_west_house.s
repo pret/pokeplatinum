@@ -31,8 +31,8 @@ _0033:
     FacePlayer
     GoToIfSet FLAG_UNK_0x00F4, _00DC
     Message 2
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0060
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0060
     GoTo _00D1
 
 _0060:
@@ -40,17 +40,17 @@ _0060:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2A5
-    GetSelectedPartySlot 0x800C
+    GetSelectedPartySlot VAR_0x800C
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x800C, 0xFF, _00D1
+    GoToIfEq VAR_0x800C, 0xFF, _00D1
     StartNpcTrade NPC_TRADE_GASPAR_HAUNTER
-    SetVar 0x8004, 0x800C
-    GetPartyMonSpecies 0x8004, 0x8005
-    GetNpcTradeRequestedSpecies 0x800C
-    GoToIfNe 0x8005, 0x800C, _00C4
-    ScrCmd_229 0x8004
+    SetVar VAR_0x8004, VAR_0x800C
+    GetPartyMonSpecies VAR_0x8004, VAR_0x8005
+    GetNpcTradeRequestedSpecies VAR_0x800C
+    GoToIfNe VAR_0x8005, VAR_0x800C, _00C4
+    ScrCmd_229 VAR_0x8004
     FinishNpcTrade
     SetFlag FLAG_UNK_0x00F4
     Message 3

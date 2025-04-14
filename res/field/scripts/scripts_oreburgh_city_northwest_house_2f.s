@@ -36,9 +36,9 @@ _0038:
     GoToIfSet FLAG_UNK_0x00C0, _008C
     BufferItemName 0, ITEM_DUSK_BALL
     Message 2
-    SetVar 0x8004, ITEM_DUSK_BALL
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0082
+    SetVar VAR_0x8004, ITEM_DUSK_BALL
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0082
     SetFlag FLAG_UNK_0x00C0
     CallCommonScript 0x7E0
     CloseMessage

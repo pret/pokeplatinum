@@ -34,10 +34,10 @@ _0037:
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_GIRATINA, 47
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _009B
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _0090
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _009B
+    CheckDidNotCapture VAR_0x800C
+    GoToIfEq VAR_0x800C, TRUE, _0090
     GoTo _0084
     End
 
@@ -65,10 +65,10 @@ _00A5:
     LockAll
     GoToIfEq 0x410C, 3, _00F4
     GoToIfLt 0x410C, 15, _0100
-    SetVar 0x8004, ITEM_STARDUST
+    SetVar VAR_0x8004, ITEM_STARDUST
 _00CB:
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _010C
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _010C
     CallCommonScript 0x7E0
     CloseMessage
     RemoveObject 1
@@ -76,11 +76,11 @@ _00CB:
     End
 
 _00F4:
-    SetVar 0x8004, ITEM_REAPER_CLOTH
+    SetVar VAR_0x8004, ITEM_REAPER_CLOTH
     GoTo _00CB
 
 _0100:
-    SetVar 0x8004, ITEM_RARE_BONE
+    SetVar VAR_0x8004, ITEM_RARE_BONE
     GoTo _00CB
 
 _010C:
@@ -102,8 +102,8 @@ _0127:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 2
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0149
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0149
     GoTo _017F
     End
 

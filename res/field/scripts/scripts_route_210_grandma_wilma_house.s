@@ -18,14 +18,14 @@ _0010:
     GoToIfSet FLAG_UNK_0x0100, _0041
     SetFlag FLAG_UNK_0x0100
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _005B
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _005B
     GoTo _00A2
 
 _0041:
     Message 1
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _005B
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _005B
     GoTo _00A2
 
 _005B:
@@ -75,16 +75,16 @@ _00A2:
     GetPartyCount VAR_0x4000
 _00A6:
     SubVar VAR_0x4000, 1
-    GetPartyMonSpecies VAR_0x4000, 0x800C
-    GoToIfEq 0x800C, 0, _00FC
-    ScrCmd_248 0x8004, 0x8005, VAR_0x4000
-    GoToIfEq 0x8004, 16, _00E7
-    GoToIfEq 0x8005, 16, _00E7
+    GetPartyMonSpecies VAR_0x4000, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _00FC
+    ScrCmd_248 VAR_0x8004, VAR_0x8005, VAR_0x4000
+    GoToIfEq VAR_0x8004, 16, _00E7
+    GoToIfEq VAR_0x8005, 16, _00E7
     GoTo _00FC
 
 _00E7:
-    CheckPartyMonHasMove 0x800C, MOVE_DRACO_METEOR, VAR_0x4000
-    GoToIfEq 0x800C, 0, _010F
+    CheckPartyMonHasMove VAR_0x800C, MOVE_DRACO_METEOR, VAR_0x4000
+    GoToIfEq VAR_0x800C, 0, _010F
 _00FC:
     GoToIfNe VAR_0x4000, 0, _00A6
     GoTo _0066
@@ -95,31 +95,31 @@ _010F:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    GetSelectedPartySlot 0x8000
+    GetSelectedPartySlot VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x8000, 0xFF, _005B
-    GetPartyMonSpecies 0x8000, 0x8001
-    GoToIfEq 0x8001, 0, _007C
+    GoToIfEq VAR_0x8000, 0xFF, _005B
+    GetPartyMonSpecies VAR_0x8000, VAR_0x8001
+    GoToIfEq VAR_0x8001, 0, _007C
     Call _01D7
-    GoToIfEq 0x800C, 0, _0071
-    CheckPartyMonHasMove 0x800C, MOVE_DRACO_METEOR, 0x8000
-    GoToIfEq 0x800C, 1, _0087
-    GetPartyMonFriendship 0x800C, 0x8000
-    GoToIfLt 0x800C, 0xFF, _0097
-    SetVar 0x8003, 0x1B2
+    GoToIfEq VAR_0x800C, 0, _0071
+    CheckPartyMonHasMove VAR_0x800C, MOVE_DRACO_METEOR, VAR_0x8000
+    GoToIfEq VAR_0x800C, 1, _0087
+    GetPartyMonFriendship VAR_0x800C, VAR_0x8000
+    GoToIfLt VAR_0x800C, 0xFF, _0097
+    SetVar VAR_0x8003, 0x1B2
     GoTo _019B
 
 _019B:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_224 0x8000, 0x1B2
-    ScrCmd_225 0x800C
+    ScrCmd_224 VAR_0x8000, 0x1B2
+    ScrCmd_225 VAR_0x800C
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x800C, 0xFF, _005B
+    GoToIfEq VAR_0x800C, 0xFF, _005B
     Message 16
     WaitABXPadPress
     CloseMessage
@@ -127,14 +127,14 @@ _019B:
     End
 
 _01D7:
-    ScrCmd_248 0x8004, 0x8005, 0x8000
-    GoToIfEq 0x8004, 16, _0201
-    GoToIfEq 0x8005, 16, _0201
-    SetVar 0x800C, 0
+    ScrCmd_248 VAR_0x8004, VAR_0x8005, VAR_0x8000
+    GoToIfEq VAR_0x8004, 16, _0201
+    GoToIfEq VAR_0x8005, 16, _0201
+    SetVar VAR_0x800C, 0
     Return
 
 _0201:
-    SetVar 0x800C, 1
+    SetVar VAR_0x800C, 1
     Return
 
     .byte 0

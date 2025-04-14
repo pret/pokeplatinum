@@ -60,10 +60,10 @@ _00B7:
     AddMenuEntryImm 19, 2
     AddMenuEntryImm 20, 3
     ShowMenu
-    GoToIfEq 0x800C, 0, _0152
-    GoToIfEq 0x800C, 1, _0160
-    GoToIfEq 0x800C, 2, _0117
-    GoToIfEq 0x800C, 4, _016E
+    GoToIfEq VAR_0x800C, 0, _0152
+    GoToIfEq VAR_0x800C, 1, _0160
+    GoToIfEq VAR_0x800C, 2, _0117
+    GoToIfEq VAR_0x800C, 4, _016E
     GoTo _0139
     End
 
@@ -102,14 +102,14 @@ _016E:
 
 _017C:
     Message 7
-    InitLocalTextMenu 31, 11, 0, 0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 21, 0
     AddMenuEntryImm 22, 1
     AddMenuEntryImm 23, 2
     ShowMenu
-    GoToIfEq 0x800C, 0, _01BA
-    GoToIfEq 0x800C, 1, _01C8
+    GoToIfEq VAR_0x800C, 0, _01BA
+    GoToIfEq VAR_0x800C, 1, _01C8
     GoTo _0139
     End
 
@@ -133,44 +133,44 @@ _01DE:
     SetVar VAR_0x4000, 0
     HealParty
     CallCommonScript 0x7D6
-    SetVar 0x800C, VAR_0x4000
-    GoToIfEq 0x800C, 0, _0139
+    SetVar VAR_0x800C, VAR_0x4000
+    GoToIfEq VAR_0x800C, 0, _0139
     GoToIfEq VAR_UNK_0x40B8, 2, _022C
     GoTo _038E
     End
 
 _022C:
     Message 24
-    InitGlobalTextMenu 30, 1, 0, 0x800C
+    InitGlobalTextMenu 30, 1, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 13, 0
     AddMenuEntryImm 14, 1
     AddMenuEntryImm 5, 2
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0270
-    GoToIfEq 0x8008, 1, _02EC
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 0, _0270
+    GoToIfEq VAR_0x8008, 1, _02EC
     GoTo _0139
     End
 
 _0270:
     Message 25
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _022C
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _022C
     CloseMessage
     CallIfEq VAR_UNK_0x40B9, 0, _02C2
     CallIfEq VAR_UNK_0x40B9, 1, _02CE
-    GoToIfEq 0x800C, 1, _02DA
-    GoToIfEq 0x800C, 3, _02E2
+    GoToIfEq VAR_0x800C, 1, _02DA
+    GoToIfEq VAR_0x800C, 3, _02E2
     GoTo _0368
     End
 
 _02C2:
-    ScrCmd_0F2 27, 0, 0, 0x800C
+    ScrCmd_0F2 27, 0, 0, VAR_0x800C
     Return
 
 _02CE:
-    ScrCmd_0F2 28, 0, 0, 0x800C
+    ScrCmd_0F2 28, 0, 0, VAR_0x800C
     Return
 
 _02DA:
@@ -184,22 +184,22 @@ _02E2:
 
 _02EC:
     Message 25
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _022C
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _022C
     CloseMessage
     CallIfEq VAR_UNK_0x40B9, 0, _033E
     CallIfEq VAR_UNK_0x40B9, 1, _034A
-    GoToIfEq 0x800C, 1, _0356
-    GoToIfEq 0x800C, 3, _035E
+    GoToIfEq VAR_0x800C, 1, _0356
+    GoToIfEq VAR_0x800C, 3, _035E
     GoTo _0368
     End
 
 _033E:
-    ScrCmd_0F3 27, 0, 0, 0x800C
+    ScrCmd_0F3 27, 0, 0, VAR_0x800C
     Return
 
 _034A:
-    ScrCmd_0F3 28, 0, 0, 0x800C
+    ScrCmd_0F3 28, 0, 0, VAR_0x800C
     Return
 
 _0356:
@@ -271,7 +271,7 @@ _0449:
 
 _0464:
     ScrCmd_02E 9
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     ScrCmd_136
     ScrCmd_135 169
     CloseMessage
@@ -373,7 +373,7 @@ _0575:
     Return
 
 _057A:
-    InitLocalTextMenu 31, 9, 0, 0x800C
+    InitLocalTextMenu 31, 9, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 16, 0
     AddMenuEntryImm 17, 1
@@ -381,7 +381,7 @@ _057A:
     Return
 
 _0592:
-    InitLocalTextMenu 31, 11, 0, 0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_0x800C
     SetMenuXOriginToRight
     AddMenuEntryImm 18, 4
     Message 4
@@ -407,7 +407,7 @@ _05B0:
 
 _05D7:
     ScrCmd_18D
-    ScrCmd_12D 0x800C
+    ScrCmd_12D VAR_0x800C
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE

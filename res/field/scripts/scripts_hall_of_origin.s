@@ -45,10 +45,10 @@ _0056:
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_ARCEUS, 80
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00DF
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _00D0
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _00DF
+    CheckDidNotCapture VAR_0x800C
+    GoToIfEq VAR_0x800C, TRUE, _00D0
     CallIfEq VAR_ARCEUS_EVENT_STATE, 0, _00C8
     SetFlag FLAG_UNK_0x011E
     ReleaseAll
@@ -84,11 +84,11 @@ _00F8:
     EndMovement
 
 _0104:
-    GetPlayerMapPos 0x8004, 0x8005
-    SetVar 0x8008, 0x8004
-    GoToIfEq 0x8008, 30, _0139
-    GoToIfEq 0x8008, 31, _014B
-    GoToIfEq 0x8008, 32, _015D
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    SetVar VAR_0x8008, VAR_0x8004
+    GoToIfEq VAR_0x8008, 30, _0139
+    GoToIfEq VAR_0x8008, 31, _014B
+    GoToIfEq VAR_0x8008, 32, _015D
 _0137:
     Return
 

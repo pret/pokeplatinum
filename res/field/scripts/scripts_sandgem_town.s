@@ -42,13 +42,13 @@ _0085:
     LockAll
     ApplyMovement 4, _03AC
     WaitMovement
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x34B, _00E7
-    GoToIfEq 0x8005, 0x34C, _00FF
-    GoToIfEq 0x8005, 0x34D, _010F
-    GoToIfEq 0x8005, 0x34E, _011F
-    GoToIfEq 0x8005, 0x34F, _0137
-    GoToIfEq 0x8005, 0x350, _014F
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x34B, _00E7
+    GoToIfEq VAR_0x8005, 0x34C, _00FF
+    GoToIfEq VAR_0x8005, 0x34D, _010F
+    GoToIfEq VAR_0x8005, 0x34E, _011F
+    GoToIfEq VAR_0x8005, 0x34F, _0137
+    GoToIfEq VAR_0x8005, 0x350, _014F
     End
 
 _00E7:
@@ -87,9 +87,9 @@ _014F:
     End
 
 _0169:
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0189
-    GoToIfEq 0x800C, GENDER_FEMALE, _0195
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _0189
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _0195
     End
 
 _0189:
@@ -104,12 +104,12 @@ _0195:
 
 _01A1:
     CloseMessage
-    GoToIfEq 0x8005, 0x34B, _01F3
-    GoToIfEq 0x8005, 0x34C, _020B
-    GoToIfEq 0x8005, 0x34D, _0223
-    GoToIfEq 0x8005, 0x34E, _023B
-    GoToIfEq 0x8005, 0x34F, _0253
-    GoToIfEq 0x8005, 0x350, _026B
+    GoToIfEq VAR_0x8005, 0x34B, _01F3
+    GoToIfEq VAR_0x8005, 0x34C, _020B
+    GoToIfEq VAR_0x8005, 0x34D, _0223
+    GoToIfEq VAR_0x8005, 0x34E, _023B
+    GoToIfEq VAR_0x8005, 0x34F, _0253
+    GoToIfEq VAR_0x8005, 0x350, _026B
     End
 
 _01F3:
@@ -149,9 +149,9 @@ _026B:
     GoTo _0283
 
 _0283:
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _02A3
-    GoToIfEq 0x800C, GENDER_FEMALE, _02AC
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _02A3
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _02AC
     End
 
 _02A3:
@@ -187,9 +187,9 @@ _02B5:
     WaitMovement
     RemoveObject 3
     CallCommonScript 0x7FB
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0344
-    GoToIfEq 0x800C, GENDER_FEMALE, _0352
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _0344
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _0352
     End
 
 _0344:
@@ -464,8 +464,8 @@ _057C:
     ApplyMovement 4, _07F8
     WaitMovement
     Message 9
-    SetVar 0x8004, 0x162
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x162
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Message 10
     CloseMessage
@@ -475,10 +475,10 @@ _057C:
     ScrCmd_169 77
     ScrCmd_16A 77
     RemoveObject 14
-    WaitTime 30, 0x800C
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0610
-    GoToIfEq 0x800C, GENDER_FEMALE, _061D
+    WaitTime 30, VAR_0x800C
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _0610
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _061D
     End
 
 _0610:
@@ -497,9 +497,9 @@ _062A:
     ApplyMovement LOCALID_PLAYER, _07B8
     ApplyMovement 4, _0800
     WaitMovement
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _065C
-    GoToIfEq 0x800C, GENDER_FEMALE, _066B
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _065C
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _066B
     End
 
 _065C:
@@ -520,9 +520,9 @@ _067A:
     ApplyMovement 4, _0808
     ApplyMovement LOCALID_PLAYER, _07C0
     WaitMovement
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _06B2
-    GoToIfEq 0x800C, GENDER_FEMALE, _06C1
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _06B2
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _06C1
     End
 
 _06B2:
@@ -542,9 +542,9 @@ _06D0:
     ApplyMovement 4, _0814
     ApplyMovement LOCALID_PLAYER, _07D0
     WaitMovement
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0704
-    GoToIfEq 0x800C, GENDER_FEMALE, _0710
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _0704
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _0710
     End
 
 _0704:
@@ -564,9 +564,9 @@ _071C:
     WaitMovement
     ApplyMovement 4, _0828
     WaitMovement
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _075A
-    GoToIfEq 0x800C, GENDER_FEMALE, _0766
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _075A
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _0766
     End
 
 _075A:

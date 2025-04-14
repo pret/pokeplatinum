@@ -16,20 +16,20 @@ _0014:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerDir 0x8004
+    GetPlayerDir VAR_0x8004
     FacePlayer
     Message 3
-    ShowYesNoMenu 0x800C
+    ShowYesNoMenu VAR_0x800C
     CloseMessage
-    GoToIfEq 0x800C, MENU_YES, _003E
+    GoToIfEq VAR_0x800C, MENU_YES, _003E
     GoTo _0071
 
 _003E:
     Message 4
     CloseMessage
     Call _007C
-    CallIfEq 0x8004, 1, _0096
-    CallIfEq 0x8004, 2, _00B0
+    CallIfEq VAR_0x8004, 1, _0096
+    CallIfEq VAR_0x8004, 2, _00B0
     ScrCmd_23D 0, 2, 33, 44, 0x2EE
     ReleaseAll
     End
@@ -95,11 +95,11 @@ _00FC:
     FacePlayer
     BufferPlayerName 0
     Message 0
-    SetVar 0x8004, 0x1A7
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1A7
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
-    CheckBadgeAcquired BADGE_ID_MINE, 0x800C
-    GoToIfEq 0x800C, 0, _0140
+    CheckBadgeAcquired BADGE_ID_MINE, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _0140
     GoTo _0135
     End
 

@@ -1008,26 +1008,26 @@ _0D63:
     End
 
 _0D6E:
-    ScrCmd_2FA 0x8004
+    ScrCmd_2FA VAR_0x8004
     ScrCmd_2F8
-    SetVar 0x8007, 0
-    WaitTime 1, 0x800C
+    SetVar VAR_0x8007, 0
+    WaitTime 1, VAR_0x800C
     GoTo _0D88
     End
 
 _0D88:
-    AddVar 0x8007, 1
-    WaitTime 1, 0x800C
-    Dummy1F9 0x8007
-    ScrCmd_2FC 0x800C
-    GoToIfEq 0x800C, 1, _0DC2
-    Dummy1F9 0x8007
-    GoToIfEq 0x8007, 0x258, _0DC2
+    AddVar VAR_0x8007, 1
+    WaitTime 1, VAR_0x800C
+    Dummy1F9 VAR_0x8007
+    ScrCmd_2FC VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0DC2
+    Dummy1F9 VAR_0x8007
+    GoToIfEq VAR_0x8007, 0x258, _0DC2
     GoTo _0D88
     End
 
 _0DC2:
-    ScrCmd_2F9 0x8004
+    ScrCmd_2F9 VAR_0x8004
     CloseMessage
     ReleaseAll
     End
@@ -1106,10 +1106,10 @@ _0E65:
     SetVar VAR_UNK_0x40A1, 1
     ShowMoney 21, 1
     Message 0
-    InitLocalTextListMenu 1, 1, 0, 0x8002
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8002
     AddListMenuEntry 189, 0
     ShowListMenu
-    GoToIfNe 0x8002, 0, _0EA7
+    GoToIfNe VAR_0x8002, 0, _0EA7
     Call _0F7C
     CloseMessage
     Call _1092
@@ -1130,10 +1130,10 @@ _0EB4:
     FacePlayer
     ShowMoney 21, 1
     Message 1
-    InitLocalTextListMenu 1, 1, 0, 0x8002
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8002
     AddListMenuEntry 189, 0
     ShowListMenu
-    GoToIfNe 0x8002, 0, _1478
+    GoToIfNe VAR_0x8002, 0, _1478
     Call _0F7C
     CloseMessage
     Call _1092
@@ -1141,7 +1141,7 @@ _0EB4:
     End
 
 _0EF6:
-    InitLocalTextListMenu 1, 1, 0, 0x8002
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8002
     Call _19E4
     Call _1A05
     Call _1A26
@@ -1167,30 +1167,30 @@ _0EF6:
 
 _0F7C:
     PlayFanfare SEQ_SE_DP_REGI
-    CallIfEq 0x8002, 0, _2079
-    CallIfEq 0x8002, 1, _208D
-    CallIfEq 0x8002, 2, _20A1
-    CallIfEq 0x8002, 3, _20B5
-    CallIfEq 0x8002, 4, _20C9
-    CallIfEq 0x8002, 5, _20DD
-    CallIfEq 0x8002, 6, _20F1
-    CallIfEq 0x8002, 7, _2105
-    CallIfEq 0x8002, 8, _2119
-    CallIfEq 0x8002, 9, _212D
-    CallIfEq 0x8002, 10, _2141
-    CallIfEq 0x8002, 11, _2155
-    CallIfEq 0x8002, 12, _2169
-    CallIfEq 0x8002, 13, _217D
-    CallIfEq 0x8002, 14, _2191
-    CallIfEq 0x8002, 15, _21A5
-    CallIfEq 0x8002, 16, _21B9
-    CallIfEq 0x8002, 17, _21CD
-    CallIfEq 0x8002, 18, _21E1
-    CallIfEq 0x8002, 19, _21F5
+    CallIfEq VAR_0x8002, 0, _2079
+    CallIfEq VAR_0x8002, 1, _208D
+    CallIfEq VAR_0x8002, 2, _20A1
+    CallIfEq VAR_0x8002, 3, _20B5
+    CallIfEq VAR_0x8002, 4, _20C9
+    CallIfEq VAR_0x8002, 5, _20DD
+    CallIfEq VAR_0x8002, 6, _20F1
+    CallIfEq VAR_0x8002, 7, _2105
+    CallIfEq VAR_0x8002, 8, _2119
+    CallIfEq VAR_0x8002, 9, _212D
+    CallIfEq VAR_0x8002, 10, _2141
+    CallIfEq VAR_0x8002, 11, _2155
+    CallIfEq VAR_0x8002, 12, _2169
+    CallIfEq VAR_0x8002, 13, _217D
+    CallIfEq VAR_0x8002, 14, _2191
+    CallIfEq VAR_0x8002, 15, _21A5
+    CallIfEq VAR_0x8002, 16, _21B9
+    CallIfEq VAR_0x8002, 17, _21CD
+    CallIfEq VAR_0x8002, 18, _21E1
+    CallIfEq VAR_0x8002, 19, _21F5
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     HideMoney
-    ScrCmd_30D 0x8002
+    ScrCmd_30D VAR_0x8002
     Return
 
 _1092:
@@ -1201,8 +1201,8 @@ _1092:
     Warp MAP_HEADER_VILLA, 0, 10, 6, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x8002, 0, _1485
-    GoToIfNe 0x8002, 0, _1514
+    GoToIfEq VAR_0x8002, 0, _1485
+    GoToIfNe VAR_0x8002, 0, _1514
     End
 
 _10DA:
@@ -1326,9 +1326,9 @@ _12BF:
     SetVar VAR_RESORT_VILLA_VISITOR, 1
     BufferRivalName 0
     BufferPlayerName 1
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _12FC
-    GoToIfEq 0x800C, GENDER_FEMALE, _1307
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _12FC
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _1307
     End
 
 _12FC:
@@ -1509,7 +1509,7 @@ _14FC:
 
 _1514:
     Call _18F8
-    GoToIfEq 0x800C, 1, _155E
+    GoToIfEq VAR_0x800C, 1, _155E
     Message 7
     GoTo _1532
     End
@@ -1532,19 +1532,19 @@ _155E:
     End
 
 _156D:
-    CallIfEq 0x8002, 0, _10DA
-    CallIfEq 0x8002, 2, _1121
-    CallIfEq 0x8002, 7, _1168
-    CallIfEq 0x8002, 9, _11C2
-    CallIfEq 0x8002, 14, _121C
+    CallIfEq VAR_0x8002, 0, _10DA
+    CallIfEq VAR_0x8002, 2, _1121
+    CallIfEq VAR_0x8002, 7, _1168
+    CallIfEq VAR_0x8002, 9, _11C2
+    CallIfEq VAR_0x8002, 14, _121C
     Return
 
 _15B0:
-    CallIfEq 0x8002, 0, _1263
-    CallIfEq 0x8002, 2, _12BF
-    CallIfEq 0x8002, 7, _1332
-    CallIfEq 0x8002, 9, _1390
-    CallIfEq 0x8002, 14, _13EE
+    CallIfEq VAR_0x8002, 0, _1263
+    CallIfEq VAR_0x8002, 2, _12BF
+    CallIfEq VAR_0x8002, 7, _1332
+    CallIfEq VAR_0x8002, 9, _1390
+    CallIfEq VAR_0x8002, 14, _13EE
     Return
 
 _15F3:
@@ -1575,7 +1575,7 @@ _1624:
     BufferPlayerName 1
     Message 119
     Call _18F8
-    GoToIfEq 0x800C, 1, _1651
+    GoToIfEq VAR_0x800C, 1, _1651
     GoTo _165C
     End
 
@@ -1591,53 +1591,53 @@ _165C:
 
 _1667:
     Call _0EF6
-    SetVar 0x8003, 1
-    CallIfEq 0x8002, 0, _1EA5
-    CallIfEq 0x8002, 1, _1EB2
-    CallIfEq 0x8002, 2, _1EBF
-    CallIfEq 0x8002, 3, _1ECC
-    CallIfEq 0x8002, 4, _1ED9
-    CallIfEq 0x8002, 5, _1EE6
-    CallIfEq 0x8002, 6, _1EF3
-    CallIfEq 0x8002, 7, _1F00
-    CallIfEq 0x8002, 8, _1F0D
-    CallIfEq 0x8002, 9, _1F1A
-    CallIfEq 0x8002, 10, _1F27
-    CallIfEq 0x8002, 11, _1F34
-    CallIfEq 0x8002, 12, _1F41
-    CallIfEq 0x8002, 13, _1F4E
-    CallIfEq 0x8002, 14, _1F5B
-    CallIfEq 0x8002, 15, _1F68
-    CallIfEq 0x8002, 16, _1F75
-    CallIfEq 0x8002, 17, _1F82
-    CallIfEq 0x8002, 18, _1F8F
-    CallIfEq 0x8002, 19, _1F9C
-    GoToIfEq 0x8002, -2, _18DE
-    GoToIfEq 0x8003, 0, _18C8
+    SetVar VAR_0x8003, 1
+    CallIfEq VAR_0x8002, 0, _1EA5
+    CallIfEq VAR_0x8002, 1, _1EB2
+    CallIfEq VAR_0x8002, 2, _1EBF
+    CallIfEq VAR_0x8002, 3, _1ECC
+    CallIfEq VAR_0x8002, 4, _1ED9
+    CallIfEq VAR_0x8002, 5, _1EE6
+    CallIfEq VAR_0x8002, 6, _1EF3
+    CallIfEq VAR_0x8002, 7, _1F00
+    CallIfEq VAR_0x8002, 8, _1F0D
+    CallIfEq VAR_0x8002, 9, _1F1A
+    CallIfEq VAR_0x8002, 10, _1F27
+    CallIfEq VAR_0x8002, 11, _1F34
+    CallIfEq VAR_0x8002, 12, _1F41
+    CallIfEq VAR_0x8002, 13, _1F4E
+    CallIfEq VAR_0x8002, 14, _1F5B
+    CallIfEq VAR_0x8002, 15, _1F68
+    CallIfEq VAR_0x8002, 16, _1F75
+    CallIfEq VAR_0x8002, 17, _1F82
+    CallIfEq VAR_0x8002, 18, _1F8F
+    CallIfEq VAR_0x8002, 19, _1F9C
+    GoToIfEq VAR_0x8002, -2, _18DE
+    GoToIfEq VAR_0x8003, 0, _18C8
     Message 121
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _18DE
-    CallIfEq 0x8002, 0, _1FB1
-    CallIfEq 0x8002, 1, _1FBB
-    CallIfEq 0x8002, 2, _1FC5
-    CallIfEq 0x8002, 3, _1FCF
-    CallIfEq 0x8002, 4, _1FD9
-    CallIfEq 0x8002, 5, _1FE3
-    CallIfEq 0x8002, 6, _1FED
-    CallIfEq 0x8002, 7, _1FF7
-    CallIfEq 0x8002, 8, _2001
-    CallIfEq 0x8002, 9, _200B
-    CallIfEq 0x8002, 10, _2015
-    CallIfEq 0x8002, 11, _201F
-    CallIfEq 0x8002, 12, _2029
-    CallIfEq 0x8002, 13, _2033
-    CallIfEq 0x8002, 14, _203D
-    CallIfEq 0x8002, 15, _2047
-    CallIfEq 0x8002, 16, _2051
-    CallIfEq 0x8002, 17, _205B
-    CallIfEq 0x8002, 18, _2065
-    CallIfEq 0x8002, 19, _206F
-    GoToIfEq 0x8003, 0, _18D3
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_NO, _18DE
+    CallIfEq VAR_0x8002, 0, _1FB1
+    CallIfEq VAR_0x8002, 1, _1FBB
+    CallIfEq VAR_0x8002, 2, _1FC5
+    CallIfEq VAR_0x8002, 3, _1FCF
+    CallIfEq VAR_0x8002, 4, _1FD9
+    CallIfEq VAR_0x8002, 5, _1FE3
+    CallIfEq VAR_0x8002, 6, _1FED
+    CallIfEq VAR_0x8002, 7, _1FF7
+    CallIfEq VAR_0x8002, 8, _2001
+    CallIfEq VAR_0x8002, 9, _200B
+    CallIfEq VAR_0x8002, 10, _2015
+    CallIfEq VAR_0x8002, 11, _201F
+    CallIfEq VAR_0x8002, 12, _2029
+    CallIfEq VAR_0x8002, 13, _2033
+    CallIfEq VAR_0x8002, 14, _203D
+    CallIfEq VAR_0x8002, 15, _2047
+    CallIfEq VAR_0x8002, 16, _2051
+    CallIfEq VAR_0x8002, 17, _205B
+    CallIfEq VAR_0x8002, 18, _2065
+    CallIfEq VAR_0x8002, 19, _206F
+    GoToIfEq VAR_0x8003, 0, _18D3
     Call _0F7C
     CloseMessage
     Call _1092
@@ -1690,11 +1690,11 @@ _18F8:
     GoToIfUnset FLAG_VILLA_FURNITURE_UNK_17, _19DC
     GoToIfUnset FLAG_VILLA_FURNITURE_UNK_18, _19DC
     GoToIfUnset FLAG_VILLA_FURNITURE_UNK_19, _19DC
-    SetVar 0x800C, 1
+    SetVar VAR_0x800C, 1
     Return
 
 _19DC:
-    SetVar 0x800C, 0
+    SetVar VAR_0x800C, 0
     Return
 
 _19E4:
@@ -1771,48 +1771,48 @@ _1B4F:
     Return
 
 _1B7B:
-    ScrCmd_30F 13, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 13, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _1D13
     ScrCmd_2F5 0, 150000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_12, _1E05
     CallIfSet FLAG_VILLA_FURNITURE_UNK_12, _1E0F
     Return
 
 _1BAF:
-    ScrCmd_30F 14, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 14, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _1D13
     ScrCmd_2F5 0, 150000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_13, _1E19
     CallIfSet FLAG_VILLA_FURNITURE_UNK_13, _1E23
     Return
 
 _1BE3:
-    ScrCmd_30F 15, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 15, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _1D13
     ScrCmd_2F5 0, 146700, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_14, _1E2D
     CallIfSet FLAG_VILLA_FURNITURE_UNK_14, _1E37
     Return
 
 _1C17:
-    ScrCmd_30F 16, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 16, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _1D13
     ScrCmd_2F5 0, 208000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_15, _1E41
     CallIfSet FLAG_VILLA_FURNITURE_UNK_15, _1E4B
     Return
 
 _1C4B:
-    ScrCmd_30F 17, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 17, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _1D13
     ScrCmd_2F5 0, 52000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_16, _1E55
     CallIfSet FLAG_VILLA_FURNITURE_UNK_16, _1E5F
     Return
 
 _1C7F:
-    ScrCmd_30F 18, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 18, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _1D13
     ScrCmd_2F5 0, 140000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_17, _1E69
     CallIfSet FLAG_VILLA_FURNITURE_UNK_17, _1E73
@@ -1826,8 +1826,8 @@ _1CB3:
     Return
 
 _1CDF:
-    ScrCmd_30F 20, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 20, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _1D13
     ScrCmd_2F5 0, 120000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_19, _1E91
     CallIfSet FLAG_VILLA_FURNITURE_UNK_19, _1E9B
@@ -2077,87 +2077,87 @@ _1F9C:
     Return
 
 _1FA9:
-    SetVar 0x8003, 0
+    SetVar VAR_0x8003, 0
     Return
 
 _1FB1:
-    CheckMoney 0x8003, 0
+    CheckMoney VAR_0x8003, 0
     Return
 
 _1FBB:
-    CheckMoney 0x8003, 120000
+    CheckMoney VAR_0x8003, 120000
     Return
 
 _1FC5:
-    CheckMoney 0x8003, 90000
+    CheckMoney VAR_0x8003, 90000
     Return
 
 _1FCF:
-    CheckMoney 0x8003, 187000
+    CheckMoney VAR_0x8003, 187000
     Return
 
 _1FD9:
-    CheckMoney 0x8003, 58000
+    CheckMoney VAR_0x8003, 58000
     Return
 
 _1FE3:
-    CheckMoney 0x8003, 220000
+    CheckMoney VAR_0x8003, 220000
     Return
 
 _1FED:
-    CheckMoney 0x8003, 160000
+    CheckMoney VAR_0x8003, 160000
     Return
 
 _1FF7:
-    CheckMoney 0x8003, 150000
+    CheckMoney VAR_0x8003, 150000
     Return
 
 _2001:
-    CheckMoney 0x8003, 127000
+    CheckMoney VAR_0x8003, 127000
     Return
 
 _200B:
-    CheckMoney 0x8003, 120000
+    CheckMoney VAR_0x8003, 120000
     Return
 
 _2015:
-    CheckMoney 0x8003, 168000
+    CheckMoney VAR_0x8003, 168000
     Return
 
 _201F:
-    CheckMoney 0x8003, 25300
+    CheckMoney VAR_0x8003, 25300
     Return
 
 _2029:
-    CheckMoney 0x8003, 150000
+    CheckMoney VAR_0x8003, 150000
     Return
 
 _2033:
-    CheckMoney 0x8003, 150000
+    CheckMoney VAR_0x8003, 150000
     Return
 
 _203D:
-    CheckMoney 0x8003, 146700
+    CheckMoney VAR_0x8003, 146700
     Return
 
 _2047:
-    CheckMoney 0x8003, 208000
+    CheckMoney VAR_0x8003, 208000
     Return
 
 _2051:
-    CheckMoney 0x8003, 52000
+    CheckMoney VAR_0x8003, 52000
     Return
 
 _205B:
-    CheckMoney 0x8003, 140000
+    CheckMoney VAR_0x8003, 140000
     Return
 
 _2065:
-    CheckMoney 0x8003, 108000
+    CheckMoney VAR_0x8003, 108000
     Return
 
 _206F:
-    CheckMoney 0x8003, 120000
+    CheckMoney VAR_0x8003, 120000
     Return
 
 _2079:

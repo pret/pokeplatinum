@@ -31,8 +31,8 @@ _0047:
     WaitMovement
     Message 0
     CloseMessage
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 1, _0088
+    ScrCmd_22D 2, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0088
     GoTo _0072
     End
 
@@ -66,8 +66,8 @@ _00B4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 1, _00DF
+    ScrCmd_22D 2, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _00DF
     GoTo _00D4
 
 _00D4:
@@ -99,7 +99,7 @@ _0111:
     End
 
 _011B:
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     ClearFlag FLAG_UNK_0x01F3
     AddObject 7
     ApplyMovement 7, _016C
@@ -212,9 +212,9 @@ _022A:
     FacePlayer
     GoToIfUnset FLAG_GAME_COMPLETED, _0260
     Message 10
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0276
-    GoToIfEq 0x800C, MENU_NO, _026B
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0276
+    GoToIfEq VAR_0x800C, MENU_NO, _026B
     End
 
 _0260:
@@ -254,7 +254,7 @@ _02A0:
     CloseMessage
     ApplyMovement 10, _0334
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     Message 16
     CloseMessage
     ApplyMovement 10, _033C

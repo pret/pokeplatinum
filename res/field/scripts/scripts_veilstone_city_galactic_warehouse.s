@@ -24,8 +24,8 @@ _003B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_STORAGE_KEY, 1, 0x800C
-    GoToIfEq 0x800C, 1, _0063
+    CheckItem ITEM_STORAGE_KEY, 1, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0063
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -34,14 +34,14 @@ _003B:
 
 _0063:
     Message 8
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0086
-    GoToIfEq 0x800C, MENU_NO, _00C2
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _0086
+    GoToIfEq VAR_0x800C, MENU_NO, _00C2
     End
 
 _0086:
     SetFlag FLAG_UNK_0x010E
-    RemoveItem ITEM_STORAGE_KEY, 1, 0x800C
+    RemoveItem ITEM_STORAGE_KEY, 1, VAR_0x800C
     BufferPlayerName 0
     Message 9
     WaitABXPadPress
@@ -148,9 +148,9 @@ _0197:
     ScrCmd_189 4, 0
     ClearFlag FLAG_UNK_0x020D
     AddObject 4
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 8, _025A
-    CallIfEq 0x8004, 9, _026E
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 8, _025A
+    CallIfEq VAR_0x8004, 9, _026E
     Message 4
     CloseMessage
     ApplyMovement 4, _0308
@@ -165,12 +165,12 @@ _0197:
     WaitMovement
     RemoveObject 2
     RemoveObject 3
-    CallIfEq 0x8004, 8, _0282
-    CallIfEq 0x8004, 9, _028E
+    CallIfEq VAR_0x8004, 8, _0282
+    CallIfEq VAR_0x8004, 9, _028E
     Message 6
     CloseMessage
-    CallIfEq 0x8004, 8, _029A
-    CallIfEq 0x8004, 9, _02AE
+    CallIfEq VAR_0x8004, 8, _029A
+    CallIfEq VAR_0x8004, 9, _02AE
     RemoveObject 4
     SetFlag FLAG_UNK_0x028A
     SetVar 0x411F, 4

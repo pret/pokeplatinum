@@ -13,9 +13,9 @@ _000A:
     FacePlayer
     GoToIfSet FLAG_UNK_0x00C9, _0051
     Message 0
-    SetVar 0x8004, ITEM_TM48
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _005C
+    SetVar VAR_0x8004, ITEM_TM48
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _005C
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00C9
     GoTo _0051

@@ -26,16 +26,16 @@ _0022:
     CallIfEq VAR_0x4000, 5, _017D
     ShowMoney 20, 2
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _006A
-    GoToIfEq 0x800C, MENU_NO, _0156
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _006A
+    GoToIfEq VAR_0x800C, MENU_NO, _0156
     End
 
 _006A:
-    ScrCmd_252 0x800C
-    GoToIfNe 0x800C, 0, _008C
-    GetPartyCount 0x800C
-    GoToIfEq 0x800C, 6, _0168
+    ScrCmd_252 VAR_0x800C
+    GoToIfNe VAR_0x800C, 0, _008C
+    GetPartyCount VAR_0x800C
+    GoToIfEq VAR_0x800C, 6, _0168
 _008C:
     Message 1
     GoToIfNotEnoughMoney 500, _0141
@@ -48,9 +48,9 @@ _008C:
     Message 4
     CloseMessage
     HideMoney
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 4, _00E2
-    GoToIfEq 0x8004, 5, _00F2
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 4, _00E2
+    GoToIfEq VAR_0x8004, 5, _00F2
     End
 
 _00E2:
@@ -140,9 +140,9 @@ _01C4:
 _01CC:
     LockAll
     Message 9
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _01F1
-    GoToIfEq 0x800C, MENU_NO, _024E
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _01F1
+    GoToIfEq VAR_0x800C, MENU_NO, _024E
     End
 
 _01F1:
@@ -162,7 +162,7 @@ _021E:
     ApplyMovement 2, _0334
     WaitMovement
     Message 18
-    SetVar 0x8004, 22
+    SetVar VAR_0x8004, 22
     CallCommonScript 0x7D9
     SetFlag FLAG_UNK_0x00A3
     CloseMessage
@@ -211,9 +211,9 @@ _02BF:
     LockAll
     FacePlayer
     Message 12
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _02EA
-    GoToIfEq 0x800C, MENU_NO, _02F5
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _02EA
+    GoToIfEq VAR_0x800C, MENU_NO, _02F5
     End
 
 _02EA:

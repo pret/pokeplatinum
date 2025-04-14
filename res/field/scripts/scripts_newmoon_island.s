@@ -25,19 +25,19 @@ _0037:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerDir 0x8004
+    GetPlayerDir VAR_0x8004
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _005D
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _005D
     GoTo _009D
 
 _005D:
     Message 1
     CloseMessage
     Call _00A8
-    CallIfEq 0x8004, 1, _00C2
-    CallIfEq 0x8004, 2, _00DC
-    CallIfEq 0x8004, 0, _00F6
+    CallIfEq VAR_0x8004, 1, _00C2
+    CallIfEq VAR_0x8004, 2, _00DC
+    CallIfEq VAR_0x8004, 0, _00F6
     ScrCmd_23D 0, 2, 33, 44, 0x2EE
     ReleaseAll
     End

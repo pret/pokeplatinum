@@ -39,9 +39,9 @@ _0047:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _006F
-    GoToIfEq 0x800C, GENDER_FEMALE, _007A
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _006F
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _007A
     End
 
 _006F:

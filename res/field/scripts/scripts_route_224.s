@@ -76,8 +76,8 @@ _00E4:
     FacePlayer
     SetVar VAR_UNK_0x408D, 1
     BufferPlayerName 0
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_FEMALE, _0219
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_FEMALE, _0219
     Message 0
 _0114:
     CloseMessage
@@ -88,25 +88,25 @@ _0114:
 _0124:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_271 0x800C
+    ScrCmd_271 VAR_0x800C
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x800C, 1, _0222
+    GoToIfEq VAR_0x800C, 1, _0222
     BufferPlayerName 0
     ScrCmd_272 1
     Message 3
-    ShowYesNoMenu 0x800C
+    ShowYesNoMenu VAR_0x800C
     CloseMessage
-    GoToIfEq 0x800C, MENU_NO, _0124
+    GoToIfEq VAR_0x800C, MENU_NO, _0124
     Call _029A
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     FadeOutMusic 0, 10
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen
     EnableHiddenLocation HIDDEN_LOCATION_SEABREAK_PATH
     ScrCmd_333 0
     Warp MAP_HEADER_ROUTE_224, 0, 0x38C, 0x1EC, 0
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     FadeScreen 6, 6, 1, 0x7FFF
     WaitFadeScreen
     Call _02B8
@@ -134,7 +134,7 @@ _01F5:
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _0438
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     Message 11
     Return
 
@@ -158,10 +158,10 @@ _022D:
     End
 
 _0240:
-    GetPlayerMapPos 0x8000, 0x8001
-    SetVar 0x8008, 0x8000
-    GoToIfEq 0x8008, 0x38D, _0272
-    GoToIfEq 0x8008, 0x38E, _0286
+    GetPlayerMapPos VAR_0x8000, VAR_0x8001
+    SetVar VAR_0x8008, VAR_0x8000
+    GoToIfEq VAR_0x8008, 0x38D, _0272
+    GoToIfEq VAR_0x8008, 0x38E, _0286
     ApplyMovement LOCALID_PLAYER, _0328
     WaitMovement
     Return
@@ -341,10 +341,10 @@ _0448:
 _0458:
     LockAll
     ClearFlag FLAG_UNK_0x02CA
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x1F0, _048D
-    GoToIfEq 0x8005, 0x1F1, _04AF
-    GoToIfEq 0x8005, 0x1F2, _04D1
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x1F0, _048D
+    GoToIfEq VAR_0x8005, 0x1F1, _04AF
+    GoToIfEq VAR_0x8005, 0x1F2, _04D1
     End
 
 _048D:
@@ -379,10 +379,10 @@ _04F3:
     WaitMovement
     Message 9
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x1F0, _0531
-    GoToIfEq 0x8005, 0x1F1, _054B
-    GoToIfEq 0x8005, 0x1F2, _0565
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x1F0, _0531
+    GoToIfEq VAR_0x8005, 0x1F1, _054B
+    GoToIfEq VAR_0x8005, 0x1F2, _0565
     End
 
 _0531:

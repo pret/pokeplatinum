@@ -15,9 +15,9 @@ _0016:
     LockAll
     ShowMoney 20, 2
     Message 0
-    ShowYesNoMenu 0x800C
+    ShowYesNoMenu VAR_0x800C
     CloseMessage
-    GoToIfEq 0x800C, MENU_YES, _003E
+    GoToIfEq VAR_0x800C, MENU_YES, _003E
     HideMoney
     ReleaseAll
     End

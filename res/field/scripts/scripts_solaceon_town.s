@@ -43,8 +43,8 @@ _0062:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_RELIC, 0x800C
-    GoToIfEq 0x800C, 1, _0088
+    CheckBadgeAcquired BADGE_ID_RELIC, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0088
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -92,12 +92,12 @@ _00CC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, 0x800C
-    GoToIfEq 0x800C, 1, _0118
-    ScrCmd_11E 0x800C
-    GoToIfLt 0x800C, 50, _010D
+    CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, VAR_0x800C
+    GoToIfEq VAR_0x800C, 1, _0118
+    ScrCmd_11E VAR_0x800C
+    GoToIfLt VAR_0x800C, 50, _010D
     Message 10
-    SetVar 0x8004, 9
+    SetVar VAR_0x8004, 9
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
@@ -135,8 +135,8 @@ _0168:
     ApplyMovement LOCALID_PLAYER, _0218
     WaitMovement
     CallCommonScript 0x7FA
-    GetPlayerMapPos 0x8004, 0x8005
-    SetObjectEventPos 18, 0x8004, 0x295
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    SetObjectEventPos 18, VAR_0x8004, 0x295
     ClearFlag FLAG_UNK_0x021E
     AddObject 18
     ScrCmd_062 18

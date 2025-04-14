@@ -40,9 +40,9 @@ _009E:
 _00A6:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_1DD 43, 0, 0x800C
-    GoToIfEq 0x800C, 4, _01F8
-    GoToIfEq 0x800C, 5, _01F8
+    ScrCmd_1DD 43, 0, VAR_0x800C
+    GoToIfEq VAR_0x800C, 4, _01F8
+    GoToIfEq VAR_0x800C, 5, _01F8
     ScrCmd_1F8
     ScrCmd_2C4 5
     ReturnToField

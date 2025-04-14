@@ -45,10 +45,10 @@ _007D:
     SetFlag FLAG_UNK_0x008E
     StartFatefulEncounter SPECIES_SHAYMIN, 30
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00D7
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _00C8
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, _00D7
+    CheckDidNotCapture VAR_0x800C
+    GoToIfEq VAR_0x800C, TRUE, _00C8
     SetFlag FLAG_UNK_0x0123
     ReleaseAll
     End

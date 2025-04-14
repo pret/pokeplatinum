@@ -18,20 +18,20 @@ _001A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetFirstNonEggInParty 0x8000
-    GetPartyMonRibbon 0x800C, 0x8000, RIBBON_HOENN_EFFORT
-    GoToIfEq 0x800C, 1, _0086
-    BufferPartyMonSpecies 0, 0x8000
+    GetFirstNonEggInParty VAR_0x8000
+    GetPartyMonRibbon VAR_0x800C, VAR_0x8000, RIBBON_HOENN_EFFORT
+    GoToIfEq VAR_0x800C, 1, _0086
+    BufferPartyMonSpecies 0, VAR_0x8000
     Message 0
-    ScrCmd_233 0x800C, 0x8000
-    GoToIfLt 0x800C, 0x1FE, _007B
+    ScrCmd_233 VAR_0x800C, VAR_0x8000
+    GoToIfLt VAR_0x800C, 0x1FE, _007B
     Message 1
-    SetPartyMonRibbon 0x8000, RIBBON_HOENN_EFFORT
+    SetPartyMonRibbon VAR_0x8000, RIBBON_HOENN_EFFORT
     PlaySound SEQ_FANFA1
     BufferPlayerName 1
     Message 2
     WaitSound
-    BufferPartyMonSpecies 0, 0x8000
+    BufferPartyMonSpecies 0, VAR_0x8000
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -46,7 +46,7 @@ _007B:
     End
 
 _0086:
-    BufferPartyMonSpecies 0, 0x8000
+    BufferPartyMonSpecies 0, VAR_0x8000
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -67,8 +67,8 @@ _00A9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_SEAL_CASE, 1, 0x800C
-    GoToIfEq 0x800C, 0, _00D9
+    CheckItem ITEM_SEAL_CASE, 1, VAR_0x800C
+    GoToIfEq VAR_0x800C, 0, _00D9
     Message 7
     CallCommonScript 0x7E3
     ScrCmd_035
@@ -84,15 +84,15 @@ _00D9:
     End
 
 _00E4:
-    GetDayOfWeek 0x800C
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, DAY_OF_WEEK_SUNDAY, _016F
-    GoToIfEq 0x8008, DAY_OF_WEEK_MONDAY, _014B
-    GoToIfEq 0x8008, DAY_OF_WEEK_TUESDAY, _0151
-    GoToIfEq 0x8008, DAY_OF_WEEK_WEDNESDAY, _0157
-    GoToIfEq 0x8008, DAY_OF_WEEK_THURSDAY, _015D
-    GoToIfEq 0x8008, DAY_OF_WEEK_FRIDAY, _0163
-    GoToIfEq 0x8008, DAY_OF_WEEK_SATURDAY, _0169
+    GetDayOfWeek VAR_0x800C
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SUNDAY, _016F
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_MONDAY, _014B
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_TUESDAY, _0151
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_WEDNESDAY, _0157
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_THURSDAY, _015D
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_FRIDAY, _0163
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SATURDAY, _0169
     End
 
 _014B:

@@ -14,10 +14,10 @@
 #define VAR_NPC_1      VAR_0x402A
 #define VAR_NPC_2      VAR_0x402B
 
-#define VAR_TWO_MONS   0x8000
-#define VAR_IS_NPC_2   0x8004
-#define VAR_TRAINER    0x8005
-#define VAR_DEFEATED   0x8006
+#define VAR_TWO_MONS   VAR_0x8000
+#define VAR_IS_NPC_2   VAR_0x8004
+#define VAR_TRAINER    VAR_0x8005
+#define VAR_DEFEATED   VAR_0x8006
 
     .data
 
@@ -223,9 +223,9 @@ PokemonCenterDailyTrainers_IntroMessageSecondNPC:
     End
 
 PokemonCenterDailyTrainers_AskForBattle:
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, PokemonCenterDailyTrainers_BattleAccepted
-    GoToIfEq 0x800C, MENU_NO, PokemonCenterDailyTrainers_BattleDeclined
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, PokemonCenterDailyTrainers_BattleAccepted
+    GoToIfEq VAR_0x800C, MENU_NO, PokemonCenterDailyTrainers_BattleDeclined
     End
 
 PokemonCenterDailyTrainers_NotEnoughAliveMons:
@@ -271,8 +271,8 @@ PokemonCenterDailyTrainers_BattleAcceptedSecondNPC:
 PokemonCenterDailyTrainers_Battle:
     CloseMessage
     StartTrainerBattle VAR_TRAINER
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, PokemonCenterDailyTrainers_BattleLost
+    CheckWonBattle VAR_0x800C
+    GoToIfEq VAR_0x800C, FALSE, PokemonCenterDailyTrainers_BattleLost
     GoTo PokemonCenterDailyTrainers_PostBattle
     End
 

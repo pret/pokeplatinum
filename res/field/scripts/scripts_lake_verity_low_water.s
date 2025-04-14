@@ -50,10 +50,10 @@ _006F:
     ScrCmd_066 46, 53
     ApplyMovement 241, _01B4
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     Message 1
     CloseMessage
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     ApplyMovement 4, _01E0
     ApplyMovement 241, _01C0
     WaitMovement
@@ -67,7 +67,7 @@ _006F:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 4
-    WaitTime 50, 0x800C
+    WaitTime 50, VAR_0x800C
     ApplyMovement LOCALID_PLAYER, _0378
     ApplyMovement 5, _02AC
     WaitMovement
@@ -77,7 +77,7 @@ _006F:
     ApplyMovement 5, _02B8
     ApplyMovement LOCALID_PLAYER, _0380
     WaitMovement
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_0x800C
     BufferPlayerName 1
     Message 4
     PlayCry SPECIES_MESPRIT
@@ -87,7 +87,7 @@ _006F:
     ApplyMovement 5, _02C0
     ApplyMovement LOCALID_PLAYER, _0388
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     ApplyMovement 5, _02F0
     WaitMovement
     BufferRivalName 0
@@ -96,7 +96,7 @@ _006F:
     CloseMessage
     ApplyMovement 5, _02E8
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_0x800C
     BufferPlayerName 1
     Message 7
     CloseMessage
@@ -651,8 +651,8 @@ _044B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _046A
+    GetPlayerGender VAR_0x800C
+    GoToIfEq VAR_0x800C, GENDER_MALE, _046A
     GoTo _0476
 
 _046A:

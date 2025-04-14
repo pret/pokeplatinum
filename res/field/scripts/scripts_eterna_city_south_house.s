@@ -12,7 +12,7 @@ _0006:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0098, _0113
     Call _0119
-    GoToIfEq 0x800C, 1, _0106
+    GoToIfEq VAR_0x800C, 1, _0106
     GoToIfSet FLAG_UNK_0x0099, _00B3
     GoToIfSet FLAG_UNK_0x0119, _008B
     BufferPlayerName 0
@@ -21,9 +21,9 @@ _0006:
     ApplyMovement 0, _0158
     WaitMovement
     Message 1
-    SetVar 0x8004, ITEM_UPGRADE
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0091
+    SetVar VAR_0x8004, ITEM_UPGRADE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0091
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0119
     Message 2
@@ -86,11 +86,11 @@ _0119:
     GoToIfNe VAR_ROAMING_MOLTRES_STATE, 1, _0148
     GoToIfNe VAR_ROAMING_ZAPDOS_STATE, 1, _0148
     GoToIfNe VAR_ROAMING_ARTICUNO_STATE, 1, _0148
-    SetVar 0x800C, 1
+    SetVar VAR_0x800C, 1
     Return
 
 _0148:
-    SetVar 0x800C, 0
+    SetVar VAR_0x800C, 0
     Return
 
 _0150:

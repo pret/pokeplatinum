@@ -323,7 +323,7 @@
     DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_MAP
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
-    GetSignpostInput 0x800C
+    GetSignpostInput VAR_0x800C
     CallCommonScript 0x7D0
     .endm
 
@@ -331,7 +331,7 @@
     DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_ARROW
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
-    GetSignpostInput 0x800C
+    GetSignpostInput VAR_0x800C
     CallCommonScript 0x7D0
     .endm
 
@@ -339,7 +339,7 @@
     DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_LANDMARK
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
-    GetSignpostInput 0x800C
+    GetSignpostInput VAR_0x800C
     CallCommonScript 0x7D0
     .endm
 
@@ -347,11 +347,11 @@
     DrawSignpostTextBox SIGNPOST_TYPE_SCROLLING
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
-    DrawSignpostScrollingMessage \messageID, 0x800C
+    DrawSignpostScrollingMessage \messageID, VAR_0x800C
     CallCommonScript 0x7D0
     .endm
 
-    .macro DrawSignpostInstantMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=0x800C
+    .macro DrawSignpostInstantMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=VAR_0x800C
     .short 54
     .byte \messageID
     .byte \signpostType
@@ -374,13 +374,13 @@
     .short 57
     .endm
 
-    .macro DrawSignpostScrollingMessage messageID, destVarID=0x800C
+    .macro DrawSignpostScrollingMessage messageID, destVarID=VAR_0x800C
     .short 58
     .byte \messageID
     .short \destVarID
     .endm
 
-    .macro GetSignpostInput destVarID=0x800C
+    .macro GetSignpostInput destVarID=VAR_0x800C
     .short 59
     .short \destVarID
     .endm
@@ -705,8 +705,8 @@
     .endm
 
     .macro GoToIfNotEnoughMoney value, offset
-    CheckMoney 0x800C, \value
-    GoToIfEq 0x800C, FALSE, \offset
+    CheckMoney VAR_0x800C, \value
+    GoToIfEq VAR_0x800C, FALSE, \offset
     .endm
 
     .macro ShowMoney tilemapLeft, tilemapTop
@@ -3564,10 +3564,10 @@
 
     .macro GoToIfCannotAddCoins amount, offset
     .short 630
-    .short 0x800C
+    .short VAR_0x800C
     .short \amount
     Noop
-    GoToIfEq 0x800C, FALSE, \offset
+    GoToIfEq VAR_0x800C, FALSE, \offset
     .endm
 
     .macro GetDailyRandomLevel destVarID
