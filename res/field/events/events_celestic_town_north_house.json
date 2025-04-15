@@ -28,7 +28,7 @@
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "451",
+            "flag": "FLAG_UNK_0x01C3",
             "script": 2,
             "initial_dir": 1,
             "data": [],
