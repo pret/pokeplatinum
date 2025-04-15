@@ -9,14 +9,14 @@ _0006:
     LockAll
     ApplyMovement LOCALID_PLAYER, _00B8
     WaitMovement
-    GetFloorsAbove 0x40CE
-    SetVar 0x8008, 0x40CE
-    GoToIfEq 0x8008, 1, _0038
-    GoToIfEq 0x8008, 0, _006A
+    GetFloorsAbove VAR_UNK_0x40CE
+    SetVar VAR_0x8008, VAR_UNK_0x40CE
+    GoToIfEq VAR_0x8008, 1, _0038
+    GoToIfEq VAR_0x8008, 0, _006A
     End
 
 _0038:
-    SetVar 0x8004, 0
+    SetVar VAR_0x8004, 0
     Call _009C
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -26,7 +26,7 @@ _0038:
     End
 
 _006A:
-    SetVar 0x8004, 1
+    SetVar VAR_0x8004, 1
     Call _009C
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -37,7 +37,7 @@ _006A:
 
 _009C:
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_23C 0x8004, 4
+    ScrCmd_23C VAR_0x8004, 4
     ApplyMovement LOCALID_PLAYER, _00C4
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2

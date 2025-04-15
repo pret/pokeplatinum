@@ -22,7 +22,7 @@
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 655,
+            "flag": "FLAG_UNK_0x028F",
             "script": 3524,
             "initial_dir": 2,
             "data": [
@@ -38,7 +38,7 @@
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 655,
+            "flag": "FLAG_UNK_0x028F",
             "script": 3519,
             "initial_dir": 1,
             "data": [

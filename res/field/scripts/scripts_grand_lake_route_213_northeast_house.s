@@ -11,10 +11,10 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, 0x800C
-    GoToIfNe 0x800C, 0, _003A
+    CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, VAR_0x800C
+    GoToIfNe VAR_0x800C, 0, _003A
     Message 0
-    SetVar 0x8004, 14
+    SetVar VAR_0x8004, 14
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
@@ -32,8 +32,8 @@ _0045:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, 0x800C
-    GoToIfNe 0x800C, 0, _0071
+    CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, VAR_0x800C
+    GoToIfNe VAR_0x800C, 0, _0071
     GoTo _0066
 
 _0066:

@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 _001E:
-    SetVar 0x8007, 3
+    SetVar VAR_0x8007, 3
     CallCommonScript 0x7D2
     End
 
@@ -53,23 +53,23 @@ _006C:
 _0078:
     Message 3
     ScrCmd_154
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
     AddMenuEntryImm 50, 0
     AddMenuEntryImm 51, 1
     AddMenuEntryImm 52, 2
     AddMenuEntryImm 53, 3
     AddMenuEntryImm 43, 4
     ShowMenu
-    SetVar 0x8004, 0x800C
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 4, _00E9
-    GoToIfEq 0x8008, -2, _00E9
-    ScrCmd_155 0x8004, 0x8005
-    ScrCmd_344 0, 0x8005
+    SetVar VAR_0x8004, VAR_0x800C
+    SetVar VAR_0x8008, VAR_0x800C
+    GoToIfEq VAR_0x8008, 4, _00E9
+    GoToIfEq VAR_0x8008, -2, _00E9
+    ScrCmd_155 VAR_0x8004, VAR_0x8005
+    ScrCmd_344 0, VAR_0x8005
     ScrCmd_346 0
     Message 4
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _00F4
+    ShowYesNoMenu VAR_0x800C
+    GoToIfEq VAR_0x800C, MENU_YES, _00F4
     GoTo _0078
 
 _00E9:
@@ -80,11 +80,11 @@ _00E9:
     End
 
 _00F4:
-    ScrCmd_344 0, 0x8005
+    ScrCmd_344 0, VAR_0x8005
     Message 5
     SetFlag FLAG_UNK_0x0070
-    ScrCmd_29C 0x8004, 0x8005
-    ScrCmd_156 0x8005
+    ScrCmd_29C VAR_0x8004, VAR_0x8005
+    ScrCmd_156 VAR_0x8005
     GoTo _00E9
 
 _0110:

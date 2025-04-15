@@ -53,12 +53,12 @@ u8 *VarsFlags_GetFlagChunk(VarsFlags *varsFlags, u16 flagID)
 {
     if (flagID == 0) {
         return NULL;
-    } else if (flagID < UNKNOWN_FLAGS_START) {
+    } else if (flagID < VARS_START) {
         GF_ASSERT(flagID / 8 < NUM_FLAGS / 8);
         return &varsFlags->flags[flagID / 8];
     } else {
-        GF_ASSERT((flagID - UNKNOWN_FLAGS_START) / 8 < NUM_UNKNOWN_FLAGS / 8);
-        return &(sUnknownFlags[(flagID - UNKNOWN_FLAGS_START) / 8]);
+        GF_ASSERT((flagID - VARS_START) / 8 < NUM_UNKNOWN_FLAGS / 8);
+        return &(sUnknownFlags[(flagID - VARS_START) / 8]);
     }
 }
 

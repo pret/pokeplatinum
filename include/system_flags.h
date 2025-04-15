@@ -2,8 +2,11 @@
 #define POKEPLATINUM_SYSTEM_FLAGS_H
 
 #include "constants/savedata/vars_flags.h"
+#include "generated/first_arrival_to_zones.h"
+#include "generated/giratina_shadow_animations.h"
 #include "generated/map_headers.h"
 #include "generated/pokemon_contest_types.h"
+#include "generated/villa_furnitures.h"
 
 #include "vars_flags.h"
 

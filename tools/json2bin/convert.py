@@ -14,7 +14,8 @@ from generated import (
     object_events,
     species,
     trainer_classes,
-    trainer_types
+    trainer_types,
+    vars_flags
 )
 
 def pad(len: int) -> bytes:
@@ -61,6 +62,11 @@ def from_movement_type(s: str) -> int:
 
 def from_trainer_type(s: str) -> int:
     return trainer_types.TrainerType[s].value
+
+def from_var_flag(s: str) -> int:
+    if s.isnumeric():
+        return int(s)
+    return vars_flags.VarFlag[s].value
 
 def from_map_header(s: str) -> int:
     return map_headers.MapHeader[s].value

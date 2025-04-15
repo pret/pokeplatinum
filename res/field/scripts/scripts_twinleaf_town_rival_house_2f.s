@@ -26,8 +26,8 @@ _000E:
     RemoveObject 0
     CallCommonScript 0x7FB
     SetFlag FLAG_UNK_0x00EA
-    SetVar 0x40A3, 1
-    SetVar 0x4070, 2
+    SetVar VAR_UNK_0x40A3, 1
+    SetVar VAR_UNK_0x4070, 2
     ReleaseAll
     End
 

@@ -5,7 +5,7 @@
             "graphics_id": "OBJ_EVENT_GFX_BRYON",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": 589,
+            "flag": "FLAG_UNK_0x024D",
             "script": 2,
             "initial_dir": 1,
             "data": [],

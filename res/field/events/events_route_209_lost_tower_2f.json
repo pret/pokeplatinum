@@ -14,7 +14,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": 1105,
+            "flag": "FLAG_UNK_0x0451",
             "script": 7091,
             "initial_dir": 0,
             "data": [],
@@ -28,7 +28,7 @@
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 3531,
             "initial_dir": 0,
             "data": [

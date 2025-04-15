@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetVar 0x8007, 2
+    SetVar VAR_0x8007, 2
     CallCommonScript 0x7D2
     End
 
@@ -38,7 +38,7 @@ _0044:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40CF, 2, _0064
+    GoToIfGe VAR_UNK_0x40CF, 2, _0064
     Message 2
     WaitABXPadPress
     CloseMessage

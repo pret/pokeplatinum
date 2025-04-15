@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _0016:
-    SetVar 0x8007, 1
+    SetVar VAR_0x8007, 1
     CallCommonScript 0x7D2
     End
 
