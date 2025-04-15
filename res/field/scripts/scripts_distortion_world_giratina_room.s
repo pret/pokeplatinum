@@ -23,7 +23,7 @@ _0026:
     End
 
 _0033:
-    ScrCmd_31F
+    ResetDistortionWorldPersistedCameraAngles
     SetVar 0x4055, 14
     RemoveObject 128
     End
