@@ -4,6 +4,6 @@
 #include "generated/vars_flags.h"
 
 #define NUM_SYSTEM_VARS 64
-#define NUM_VARS                              (VARS_END - VARS_START)
+#define NUM_VARS        (VARS_END - VARS_START)
 
 #endif // POKEPLATINUM_CONSTANTS_VARS_AND_FLAGS_H
