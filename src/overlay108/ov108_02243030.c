@@ -92,7 +92,7 @@ Sprite *ov108_022430F0(UnkStruct_ov108_02243030 *param0, u32 param1, u32 param2,
         v3.affineScale.z = FX32_ONE;
         v3.affineZRotation = 0;
         v3.priority = param5;
-        v3.heapID = 103;
+        v3.heapID = HEAP_ID_103;
 
         if (param7 == 0) {
             v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;

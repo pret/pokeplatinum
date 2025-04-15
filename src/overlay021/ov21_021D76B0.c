@@ -44,7 +44,7 @@ typedef struct {
     int unk_00[7];
     UnkStruct_ov21_021D5B68 *unk_1C;
     int *unk_20;
-    int unk_24;
+    int heapID;
 } UnkStruct_ov21_021D77D4;
 
 typedef struct {
@@ -170,7 +170,7 @@ static UnkStruct_ov21_021D77D4 *ov21_021D7728(enum HeapId heapID, PokedexApp *pa
     }
 
     v0->unk_20 = ov21_021D13A0(param1);
-    v0->unk_24 = heapID;
+    v0->heapID = heapID;
 
     return v0;
 }

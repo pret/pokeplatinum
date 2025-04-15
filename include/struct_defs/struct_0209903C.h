@@ -8,7 +8,7 @@
 #include "sprite_util.h"
 
 typedef struct {
-    int unk_00;
+    int heapID;
     int unk_04;
     u16 unk_08;
     u16 unk_0A;

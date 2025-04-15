@@ -1737,7 +1737,7 @@ static void ov9_0224A1E4(UnkStruct_ov9_02249B04 *param0, int param1)
     v0->unk_04 = Heap_AllocFromHeap(HEAP_ID_FIELD, param1);
 
     memset(v0->unk_04, 0, param1);
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_10, 4, 4);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_10, HEAP_ID_FIELD, 4);
 
     v0->unk_08 = ov5_021DF5C0(param0->fieldSystem->unk_40, 197, 1);
     v0->unk_0C = NNS_G3dGetAnmByIdx(v0->unk_08, 0);
@@ -2744,7 +2744,7 @@ static Sprite *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *param
     v1.position = *param1;
     v1.priority = param7;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.heapID = 4;
+    v1.heapID = HEAP_ID_FIELD;
 
     v2 = SpriteList_Add(&v1);
     GF_ASSERT(v2 != NULL);
@@ -5520,7 +5520,7 @@ static void ov9_0224D9BC(UnkStruct_ov9_02249B04 *param0, u32 param1, u32 param2,
         }
 
         sub_02073994(param4, v0->unk_258[param2].unk_04, 0);
-        sub_02073A3C(param4, &v0->unk_00[param1].unk_04, 4);
+        sub_02073A3C(param4, &v0->unk_00[param1].unk_04, HEAP_ID_FIELD);
         sub_02073A5C(param4, &v0->unk_00[param1].unk_04);
         sub_02073B84(param3, param4);
     }

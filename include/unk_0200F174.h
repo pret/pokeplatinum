@@ -18,8 +18,8 @@ void sub_0200F42C(u16 param0);
 void sub_0200F44C(int param0, int param1);
 void sub_0200F634(UnkStruct_0200F600 *param0, void *param1, UnkFuncPtr_0200F634 param2, int param3);
 void sub_0200F6AC(UnkStruct_0200F600 *param0, int param1);
-void sub_0200F6D8(UnkStruct_0200F600 *param0, void *param1, UnkFuncPtr_0200F634 param2, int param3, int param4);
-void sub_0200F704(UnkStruct_0200F600 *param0, int param1, int param2);
+void sub_0200F6D8(UnkStruct_0200F600 *param0, void *param1, UnkFuncPtr_0200F634 param2, int param3, int heapID);
+void sub_0200F704(UnkStruct_0200F600 *param0, int param1, int heapID);
 void sub_0200F764(void *param0);
 
 #endif // POKEPLATINUM_UNK_0200F174_H

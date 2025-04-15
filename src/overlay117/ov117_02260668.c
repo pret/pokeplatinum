@@ -1099,15 +1099,15 @@ static void ov117_02261C2C(UnkStruct_ov117_02261280 *param0, NARC *param1)
 
     v4 = ov117_0226235C(param0, CommSys_CurNetId());
 
-    Easy3DModel_LoadFrom(&v2->unk_00, param1, Unk_ov117_022669F0[v4].unk_00, 110);
+    Easy3DModel_LoadFrom(&v2->unk_00, param1, Unk_ov117_022669F0[v4].unk_00, HEAP_ID_110);
     Easy3DObject_Init(&v2->unk_10, &v2->unk_00);
     Easy3DObject_SetPosition(&v2->unk_10, (FX32_CONST(0)), (FX32_CONST(-25)), (FX32_CONST(0)));
     Easy3DObject_SetScale(&v2->unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
     Easy3DObject_SetVisibility(&v2->unk_10, 1);
-    Easy3DModel_LoadFrom(&v2->unk_88[0], param1, Unk_ov117_022669F0[v4].unk_04, 110);
-    Easy3DModel_LoadFrom(&v2->unk_88[1], param1, Unk_ov117_022669F0[v4].unk_08, 110);
-    Easy3DModel_LoadFrom(&v2->unk_88[2], param1, Unk_ov117_022669F0[v4].unk_0C, 110);
-    Easy3DModel_LoadFrom(&v2->unk_88[3], param1, Unk_ov117_022669F0[v4].unk_10, 110);
+    Easy3DModel_LoadFrom(&v2->unk_88[0], param1, Unk_ov117_022669F0[v4].unk_04, HEAP_ID_110);
+    Easy3DModel_LoadFrom(&v2->unk_88[1], param1, Unk_ov117_022669F0[v4].unk_08, HEAP_ID_110);
+    Easy3DModel_LoadFrom(&v2->unk_88[2], param1, Unk_ov117_022669F0[v4].unk_0C, HEAP_ID_110);
+    Easy3DModel_LoadFrom(&v2->unk_88[3], param1, Unk_ov117_022669F0[v4].unk_10, HEAP_ID_110);
 
     for (v0 = 0; v0 < 8; v0++) {
         for (v1 = 0; v1 < 4; v1++) {
@@ -1122,7 +1122,7 @@ static void ov117_02261C2C(UnkStruct_ov117_02261280 *param0, NARC *param1)
         }
     }
 
-    Easy3DModel_LoadFrom(&v3->unk_00, param1, 30, 110);
+    Easy3DModel_LoadFrom(&v3->unk_00, param1, 30, HEAP_ID_110);
     Easy3DObject_Init(&v3->unk_10, &v3->unk_00);
     Easy3DObject_SetPosition(&v3->unk_10, (FX32_CONST(0)), (FX32_CONST(-25)), (FX32_CONST(0)));
     Easy3DObject_SetScale(&v3->unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));

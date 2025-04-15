@@ -50,7 +50,7 @@ SpriteSystem *SpriteSystem_Alloc(enum HeapId heapID)
         return NULL;
     }
 
-    spriteSys->heapId = heapID;
+    spriteSys->heapID = heapID;
     spriteSys->spriteManagerCount = 0;
     spriteSys->inUse = TRUE;
 
@@ -61,7 +61,7 @@ SpriteManager *SpriteManager_New(SpriteSystem *spriteSys)
 {
     GF_ASSERT(spriteSys != NULL);
 
-    SpriteManager *spriteMan = Heap_AllocFromHeap(spriteSys->heapId, sizeof(SpriteManager));
+    SpriteManager *spriteMan = Heap_AllocFromHeap(spriteSys->heapID, sizeof(SpriteManager));
     if (spriteMan == NULL) {
         return NULL;
     }
@@ -90,16 +90,16 @@ BOOL SpriteSystem_Init(SpriteSystem *spriteSys, const RenderOamTemplate *oamTemp
     charTransferTemplate.maxTasks = transferTemplate->maxTasks;
     charTransferTemplate.sizeMain = transferTemplate->sizeMain;
     charTransferTemplate.sizeSub = transferTemplate->sizeSub;
-    charTransferTemplate.heapID = spriteSys->heapId;
+    charTransferTemplate.heapID = spriteSys->heapID;
     CharTransfer_InitWithVramModes(&charTransferTemplate, transferTemplate->modeMain, transferTemplate->modeSub);
-    PlttTransfer_Init(plttCapacity, spriteSys->heapId);
+    PlttTransfer_Init(plttCapacity, spriteSys->heapID);
     NNS_G2dInitOamManagerModule();
 
     if (spriteSys->inUse == TRUE) {
-        RenderOam_Init(oamTemplate->mainOamStart, oamTemplate->mainOamCount, oamTemplate->mainAffineOamStart, oamTemplate->mainAffineOamCount, oamTemplate->subOamStart, oamTemplate->subOamCount, oamTemplate->subAffineOamStart, oamTemplate->subAffineOamCount, spriteSys->heapId);
+        RenderOam_Init(oamTemplate->mainOamStart, oamTemplate->mainOamCount, oamTemplate->mainAffineOamStart, oamTemplate->mainAffineOamCount, oamTemplate->subOamStart, oamTemplate->subOamCount, oamTemplate->subAffineOamStart, oamTemplate->subAffineOamCount, spriteSys->heapID);
     }
 
-    spriteSys->cellTransferStates = CellTransfer_New(32, spriteSys->heapId);
+    spriteSys->cellTransferStates = CellTransfer_New(32, spriteSys->heapID);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 
@@ -112,7 +112,7 @@ BOOL SpriteSystem_InitSprites(SpriteSystem *spriteSys, SpriteManager *spriteMan,
         return FALSE;
     }
 
-    spriteMan->sprites = SpriteList_InitRendering(maxSprites, &spriteSys->renderer, spriteSys->heapId);
+    spriteMan->sprites = SpriteList_InitRendering(maxSprites, &spriteSys->renderer, spriteSys->heapID);
     return TRUE;
 }
 
@@ -214,34 +214,34 @@ BOOL SpriteSystem_LoadResourceDataFromFilepaths(SpriteSystem *spriteSys, SpriteM
 
     spriteMan->numResourceTypes = numResourceTypes;
     int resourceCount = SpriteResourceTable_Size();
-    spriteMan->resourcePaths = Heap_AllocFromHeap(spriteSys->heapId, resourceCount * numResourceTypes);
+    spriteMan->resourcePaths = Heap_AllocFromHeap(spriteSys->heapID, resourceCount * numResourceTypes);
 
     for (int i = 0; i < numResourceTypes; i++) {
         SpriteResourceTable *resourceTable = SpriteResourceTable_GetArrayElement(spriteMan->resourcePaths, i);
-        void *buf = ReadFileToHeap(spriteSys->heapId, paths->asArray[i]);
-        SpriteResourceTable_LoadFromBinary(buf, resourceTable, spriteSys->heapId);
+        void *buf = ReadFileToHeap(spriteSys->heapID, paths->asArray[i]);
+        SpriteResourceTable_LoadFromBinary(buf, resourceTable, spriteSys->heapID);
         Heap_FreeToHeap(buf);
     }
 
     for (int i = 0; i < numResourceTypes; i++) {
         SpriteResourceTable *resourceTable = SpriteResourceTable_GetArrayElement(spriteMan->resourcePaths, i);
         resourceCount = SpriteResourceTable_GetCount(resourceTable);
-        spriteMan->ownedResources[i] = SpriteResourceCollection_New(resourceCount, i, spriteSys->heapId);
+        spriteMan->ownedResources[i] = SpriteResourceCollection_New(resourceCount, i, spriteSys->heapID);
     }
 
     for (int i = 0; i < numResourceTypes; i++) {
         SpriteResourceTable *resourceTable = SpriteResourceTable_GetArrayElement(spriteMan->resourcePaths, i);
         resourceCount = SpriteResourceTable_GetCount(resourceTable);
-        spriteMan->unownedResources[i] = SpriteResourceList_New(resourceCount, spriteSys->heapId);
-        spriteMan->loadedResourceCount[i] = SpriteResourceCollection_Extend(spriteMan->ownedResources[i], resourceTable, spriteMan->unownedResources[i], spriteSys->heapId);
+        spriteMan->unownedResources[i] = SpriteResourceList_New(resourceCount, spriteSys->heapID);
+        spriteMan->loadedResourceCount[i] = SpriteResourceCollection_Extend(spriteMan->ownedResources[i], resourceTable, spriteMan->unownedResources[i], spriteSys->heapID);
     }
 
     SpriteTransfer_RequestCharList(spriteMan->unownedResources[SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_RequestPlttWholeRangeList(spriteMan->unownedResources[SPRITE_RESOURCE_PLTT]);
 
-    void *buf = ReadFileToHeap(spriteSys->heapId, paths->asStruct.spriteTable);
+    void *buf = ReadFileToHeap(spriteSys->heapID, paths->asStruct.spriteTable);
     spriteMan->resourceHeaders = SpriteResourcesHeaderList_NewFromResdat(buf,
-        spriteSys->heapId,
+        spriteSys->heapID,
         spriteMan->ownedResources[SPRITE_RESOURCE_CHAR],
         spriteMan->ownedResources[SPRITE_RESOURCE_PLTT],
         spriteMan->ownedResources[SPRITE_RESOURCE_CELL],
@@ -291,7 +291,7 @@ static Sprite *CreateSpriteFromResourceHeader(SpriteSystem *spriteSys, SpriteMan
     template.affineZRotation = 0;
     template.priority = priority;
     template.vramType = vramType;
-    template.heapID = spriteSys->heapId;
+    template.heapID = spriteSys->heapID;
 
     Sprite *sprite = SpriteList_AddAffine(&template);
     if (sprite != NULL) {
@@ -317,7 +317,7 @@ BOOL SpriteSystem_InitManagerWithCapacities(SpriteSystem *spriteSys, SpriteManag
 
     spriteMan->numResourceTypes = numResourceTypes;
     for (i = 0; i < numResourceTypes; i++) {
-        spriteMan->ownedResources[i] = SpriteResourceCollection_New(capacities->asArray[i], i, spriteSys->heapId);
+        spriteMan->ownedResources[i] = SpriteResourceCollection_New(capacities->asArray[i], i, spriteSys->heapID);
     }
 
     for (i = 0; i < numResourceTypes; i++) {
@@ -326,7 +326,7 @@ BOOL SpriteSystem_InitManagerWithCapacities(SpriteSystem *spriteSys, SpriteManag
             continue;
         }
 
-        spriteMan->unownedResources[i] = SpriteResourceList_New(capacity, spriteSys->heapId);
+        spriteMan->unownedResources[i] = SpriteResourceList_New(capacity, spriteSys->heapID);
         spriteMan->loadedResourceCount[i] = 0;
 
         for (j = 0; j < spriteMan->unownedResources[i]->capacity; j++) {
@@ -349,7 +349,7 @@ BOOL SpriteSystem_LoadCharResObj(SpriteSystem *spriteSys, SpriteManager *spriteM
         compressed,
         resourceID,
         vramType,
-        spriteSys->heapId);
+        spriteSys->heapID);
     if (resource != NULL) {
         SpriteTransfer_RequestCharAtEnd(resource);
         RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_CHAR], resource);
@@ -372,7 +372,7 @@ BOOL SpriteSystem_LoadCharResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteMana
         compressed,
         resourceID,
         vramType,
-        spriteSys->heapId);
+        spriteSys->heapID);
     if (resource != NULL) {
         SpriteTransfer_RequestCharAtEnd(resource);
         RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_CHAR], resource);
@@ -396,7 +396,7 @@ s8 SpriteSystem_LoadPlttResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan
         resourceID,
         vramType,
         paletteIdx,
-        spriteSys->heapId);
+        spriteSys->heapID);
     if (resource != NULL) {
         BOOL success = SpriteTransfer_RequestPlttFreeSpace(resource);
         GF_ASSERT(success == TRUE);
@@ -421,7 +421,7 @@ s8 SpriteSystem_LoadPlttResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteManage
         resourceID,
         vramType,
         paletteIdx,
-        spriteSys->heapId);
+        spriteSys->heapID);
     if (resource != NULL) {
         BOOL success = SpriteTransfer_RequestPlttFreeSpace(resource);
         GF_ASSERT(success == TRUE);
@@ -482,17 +482,17 @@ ManagedSprite *SpriteSystem_NewSprite(SpriteSystem *spriteSys, SpriteManager *sp
     AffineSpriteListTemplate innerTemplate;
     int resourceIDs[SPRITE_RESOURCE_MAX];
 
-    managedSprite = Heap_AllocFromHeap(spriteSys->heapId, sizeof(ManagedSprite));
+    managedSprite = Heap_AllocFromHeap(spriteSys->heapID, sizeof(ManagedSprite));
     if (managedSprite == NULL) {
         return NULL;
     }
 
-    managedSprite->resourceHeaderList = Heap_AllocFromHeap(spriteSys->heapId, sizeof(SpriteResourcesHeaderList));
+    managedSprite->resourceHeaderList = Heap_AllocFromHeap(spriteSys->heapID, sizeof(SpriteResourcesHeaderList));
     if (managedSprite->resourceHeaderList == NULL) {
         return NULL;
     }
 
-    managedSprite->resourceHeaderList->headers = Heap_AllocFromHeap(spriteSys->heapId, sizeof(SpriteResourcesHeader));
+    managedSprite->resourceHeaderList->headers = Heap_AllocFromHeap(spriteSys->heapID, sizeof(SpriteResourcesHeader));
     managedSprite->resourceHeader = managedSprite->resourceHeaderList->headers;
     if (managedSprite->resourceHeaderList->headers == NULL) {
         if (managedSprite->resourceHeaderList) {
@@ -552,7 +552,7 @@ ManagedSprite *SpriteSystem_NewSprite(SpriteSystem *spriteSys, SpriteManager *sp
     innerTemplate.affineZRotation = 0;
     innerTemplate.priority = template->priority;
     innerTemplate.vramType = template->vramType;
-    innerTemplate.heapID = spriteSys->heapId;
+    innerTemplate.heapID = spriteSys->heapID;
 
     managedSprite->sprite = SpriteList_AddAffine(&innerTemplate);
     managedSprite->vramTransfer = template->vramTransfer;
@@ -630,7 +630,7 @@ static BOOL LoadResObjInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan
         return FALSE;
     }
 
-    SpriteResource *resource = SpriteResourceCollection_Add(spriteMan->ownedResources[type], narcID, memberIdx, compressed, resourceID, type, spriteSys->heapId);
+    SpriteResource *resource = SpriteResourceCollection_Add(spriteMan->ownedResources[type], narcID, memberIdx, compressed, resourceID, type, spriteSys->heapID);
     if (resource != NULL) {
         BOOL success = RegisterLoadedResource(spriteMan->unownedResources[type], resource);
         GF_ASSERT(success == TRUE);
@@ -647,7 +647,7 @@ static BOOL LoadResObjFromNarcInternal(SpriteSystem *spriteSys, SpriteManager *s
         return FALSE;
     }
 
-    SpriteResource *resource = SpriteResourceCollection_AddFrom(spriteMan->ownedResources[type], narc, memberIdx, compressed, resourceID, type, spriteSys->heapId);
+    SpriteResource *resource = SpriteResourceCollection_AddFrom(spriteMan->ownedResources[type], narc, memberIdx, compressed, resourceID, type, spriteSys->heapID);
     if (resource != NULL) {
         BOOL success = RegisterLoadedResource(spriteMan->unownedResources[type], resource);
         GF_ASSERT(success == TRUE);
@@ -1150,7 +1150,7 @@ BOOL SpriteSystem_LoadCharResObjWithHardwareMappingType(SpriteSystem *spriteSys,
         compressed,
         resourceID,
         vramType,
-        spriteSys->heapId);
+        spriteSys->heapID);
     if (resource != NULL) {
         SpriteTransfer_RequestCharWithHardwareMappingType(resource);
         RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_CHAR], resource);
@@ -1173,7 +1173,7 @@ BOOL SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(SpriteSystem *sprit
         compressed,
         resourceID,
         vramType,
-        spriteSys->heapId);
+        spriteSys->heapID);
     if (resource != NULL) {
         SpriteTransfer_RequestCharAtEndWithHardwareMappingType(resource);
         RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_CHAR], resource);
@@ -1196,7 +1196,7 @@ BOOL SpriteSystem_LoadCharResObjFromOpenNarcWithHardwareMappingType(SpriteSystem
         compressed,
         resourceID,
         vramType,
-        spriteSys->heapId);
+        spriteSys->heapID);
     if (resource != NULL) {
         SpriteTransfer_RequestCharAtEndWithHardwareMappingType(resource);
         RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_CHAR], resource);
@@ -1215,7 +1215,7 @@ void SpriteSystem_ReplaceCharResObj(SpriteSystem *spriteSys, SpriteManager *spri
         narcID,
         memberIdx,
         compressed,
-        spriteSys->heapId);
+        spriteSys->heapID);
     SpriteTransfer_RetransferCharData(resource);
 }
 
@@ -1227,7 +1227,7 @@ void SpriteSystem_ReplacePlttResObj(SpriteSystem *spriteSys, SpriteManager *spri
         narcID,
         memberIdx,
         compressed,
-        spriteSys->heapId);
+        spriteSys->heapID);
     SpriteTransfer_ReplacePlttData(resource);
 }
 
@@ -1244,6 +1244,6 @@ void SpriteSystem_ReplaceCharResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteM
         narc,
         memberIdx,
         compressed,
-        spriteSys->heapId);
+        spriteSys->heapID);
     SpriteTransfer_RetransferCharData(resource);
 }

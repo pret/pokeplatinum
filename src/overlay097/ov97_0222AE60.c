@@ -1069,7 +1069,7 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
                             sub_02037D84();
                         }
 
-                        sub_0209A8E0(81);
+                        sub_0209A8E0(HEAP_ID_81);
                     }
                 }
             } else {

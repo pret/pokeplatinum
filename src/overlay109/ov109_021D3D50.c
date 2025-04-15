@@ -644,7 +644,7 @@ static void ov109_021D4518(UnkStruct_ov109_021D5140 *param0)
         v1.affineZRotation = 0;
         v1.priority = 1;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.heapID = 95;
+        v1.heapID = HEAP_ID_95;
 
         for (v0 = 0; v0 < 5; v0++) {
             v1.position.x = FX32_ONE * Unk_ov109_021D5DD0[v0 + 1][0];

@@ -25,7 +25,7 @@ UnkStruct_0209903C *sub_02098FFC(int heapID, u16 param1, u16 param2, u16 param3,
     UnkStruct_0209903C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0209903C));
     MI_CpuClear8(v0, sizeof(UnkStruct_0209903C));
 
-    v0->unk_00 = heapID;
+    v0->heapID = heapID;
 
     if (param1 > 16) {
         v0->unk_0A = 16;
@@ -53,13 +53,13 @@ static void sub_02099058(UnkStruct_0209903C *param0)
     u32 v0, v1;
     u8 v2[] = { 1, 1, 1, 1 };
 
-    param0->unk_10 = SpriteList_InitRendering(param0->unk_0C, &param0->unk_14, param0->unk_00);
+    param0->unk_10 = SpriteList_InitRendering(param0->unk_0C, &param0->unk_14, param0->heapID);
 
     v2[1] = param0->unk_0A;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1A4[v0] = SpriteResourceCollection_New(v2[v0], v0, param0->unk_00);
-        param0->unk_1B4[v0] = SpriteResourceList_New(v2[v0], param0->unk_00);
+        param0->unk_1A4[v0] = SpriteResourceCollection_New(v2[v0], v0, param0->heapID);
+        param0->unk_1B4[v0] = SpriteResourceList_New(v2[v0], param0->heapID);
 
         for (v1 = 0; v1 < param0->unk_1B4[v0]->capacity; v1++) {
             param0->unk_1B4[v0]->resources[v1] = NULL;
@@ -68,7 +68,7 @@ static void sub_02099058(UnkStruct_0209903C *param0)
 
     sub_020993A8(param0);
 
-    param0->unk_1C4 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_0209903C_sub1));
+    param0->unk_1C4 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0209903C_sub1));
     MI_CpuClear8(param0->unk_1C4, sizeof(UnkStruct_0209903C_sub1));
 }
 
@@ -109,7 +109,7 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
         return NULL;
     }
 
-    v3 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_0209916C));
+    v3 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0209916C));
     MI_CpuClear8(v3, sizeof(UnkStruct_0209916C));
     v3->unk_00 = v1;
 
@@ -121,13 +121,13 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
 
     v6 = param0->unk_1B4[1]->resources[v1];
 
-    SpriteResourceCollection_ModifyPalette(param0->unk_1A4[1], param0->unk_1B4[1]->resources[v1], 88, 3 + param1, 0, param0->unk_00);
+    SpriteResourceCollection_ModifyPalette(param0->unk_1A4[1], param0->unk_1B4[1]->resources[v1], 88, 3 + param1, 0, param0->heapID);
     SpriteTransfer_ReplacePlttData(param0->unk_1B4[1]->resources[v1]);
 
-    v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(ManagedSprite));
+    v4 = Heap_AllocFromHeap(param0->heapID, sizeof(ManagedSprite));
 
-    v4->resourceHeaderList = Heap_AllocFromHeap(param0->unk_00, sizeof(SpriteResourcesHeaderList));
-    v4->resourceHeaderList->headers = Heap_AllocFromHeap(param0->unk_00, sizeof(SpriteResourcesHeader));
+    v4->resourceHeaderList = Heap_AllocFromHeap(param0->heapID, sizeof(SpriteResourcesHeaderList));
+    v4->resourceHeaderList->headers = Heap_AllocFromHeap(param0->heapID, sizeof(SpriteResourcesHeader));
     v4->resourceHeader = v4->resourceHeaderList->headers;
 
     SpriteResourcesHeader_Init(v4->resourceHeader, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
@@ -148,7 +148,7 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
     v5.affineZRotation = 0;
     v5.priority = param6;
     v5.vramType = v0;
-    v5.heapID = param0->unk_00;
+    v5.heapID = param0->heapID;
 
     v4->sprite = SpriteList_AddAffine(&v5);
 
@@ -169,7 +169,7 @@ void sub_0209933C(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1, int pa
 {
     SpriteResource *v0 = param0->unk_1B4[1]->resources[param1->unk_00];
 
-    SpriteResourceCollection_ModifyPalette(param0->unk_1A4[1], v0, 88, 3 + param2, 0, param0->unk_00);
+    SpriteResourceCollection_ModifyPalette(param0->unk_1A4[1], v0, 88, 3 + param2, 0, param0->heapID);
     SpriteTransfer_ReplacePlttData(v0);
 }
 
@@ -190,10 +190,10 @@ static void sub_020993A8(UnkStruct_0209903C *param0)
     SpriteResourceCollection *v1;
     SpriteResourceList *v2;
     SpriteResource *v3;
-    NARC *v4 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUACT, param0->unk_00);
+    NARC *v4 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUACT, param0->heapID);
 
     v2 = param0->unk_1B4[0];
-    v2->resources[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1A4[0], v4, 0, 0, 0xe000, param0->unk_0E, param0->unk_00);
+    v2->resources[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1A4[0], v4, 0, 0, 0xe000, param0->unk_0E, param0->heapID);
 
     GF_ASSERT(v2->resources[0] != NULL);
 
@@ -212,7 +212,7 @@ static void sub_020993A8(UnkStruct_0209903C *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         v2 = param0->unk_1B4[2 + v0];
-        v2->resources[0] = SpriteResourceCollection_AddFrom(param0->unk_1A4[2 + v0], v4, 1 + v0, 0, 0xe000, 2 + v0, param0->unk_00);
+        v2->resources[0] = SpriteResourceCollection_AddFrom(param0->unk_1A4[2 + v0], v4, 1 + v0, 0, 0xe000, 2 + v0, param0->heapID);
 
         GF_ASSERT(v2->resources[0] != NULL);
     }
@@ -220,7 +220,7 @@ static void sub_020993A8(UnkStruct_0209903C *param0)
     v2 = param0->unk_1B4[1];
 
     for (v0 = 0; v0 < param0->unk_0A; v0++) {
-        v2->resources[v0] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1A4[1], v4, 3 + 1, 0, 0xe000 + v0, param0->unk_0E, 1, param0->unk_00);
+        v2->resources[v0] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1A4[1], v4, 3 + 1, 0, 0xe000 + v0, param0->unk_0E, 1, param0->heapID);
 
         GF_ASSERT(v2->resources[v0] != NULL);
         SpriteTransfer_RequestPlttWholeRange(v2->resources[v0]);

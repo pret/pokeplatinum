@@ -8,7 +8,7 @@
 #include "string_template.h"
 
 typedef struct {
-    int unk_00;
+    int heapID;
     MessageLoader *unk_04;
     StringTemplate *unk_08;
     Pokemon *unk_0C;

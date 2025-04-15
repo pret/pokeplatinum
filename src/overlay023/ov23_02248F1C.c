@@ -112,7 +112,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
             v3.affineZRotation = 0;
             v3.priority = 0;
             v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-            v3.heapID = 4;
+            v3.heapID = HEAP_ID_FIELD;
 
             for (v2 = 0; v2 < (7 + 1); v2++) {
                 v0->unk_390[v2] = SpriteList_AddAffine(&v3);

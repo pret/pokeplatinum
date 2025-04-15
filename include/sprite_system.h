@@ -16,7 +16,7 @@
 #define SPRITE_RESOURCE_NONE -1
 
 typedef struct SpriteSystem {
-    enum HeapId heapId;
+    enum HeapId heapID;
     int spriteManagerCount;
     BOOL inUse;
     NNSG2dCellTransferState *cellTransferStates;

@@ -832,7 +832,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
             param0->unk_2C = 38;
             break;
         case -13:
-            sub_02039834(3, 1, 0);
+            sub_02039834(HEAP_ID_APPLICATION, 1, 0);
             break;
         }
     } else {

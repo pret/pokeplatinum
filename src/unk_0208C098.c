@@ -149,7 +149,7 @@ u8 sub_0208C15C(s16 *param0, u16 param1)
     return 0;
 }
 
-void sub_0208C210(BgConfig *param0, int param1, NARC *param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8)
+void sub_0208C210(BgConfig *param0, int heapID, NARC *param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8)
 {
     u32 v0;
     void *v1;
@@ -158,7 +158,7 @@ void sub_0208C210(BgConfig *param0, int param1, NARC *param2, int param3, int pa
     NNSG2dPaletteData *v4;
 
     v0 = NARC_GetMemberSize(param2, param4);
-    v1 = Heap_AllocFromHeapAtEnd(param1, v0);
+    v1 = Heap_AllocFromHeapAtEnd(heapID, v0);
 
     NARC_ReadWholeMember(param2, param4, (void *)v1);
 

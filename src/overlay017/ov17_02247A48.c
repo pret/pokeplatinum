@@ -983,7 +983,7 @@ static void ov17_02248A24(SysTask *param0, void *param1)
         BallThrow v1;
 
         v1.type = 14;
-        v1.heapID = 22;
+        v1.heapID = HEAP_ID_22;
         v1.mode = 0;
         v1.target = 0;
         v1.cellActorSys = v0->unk_00->unk_0C.unk_1C;

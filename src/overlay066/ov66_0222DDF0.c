@@ -979,7 +979,7 @@ void ov66_0222E5D8(UnkStruct_ov66_0222DFF8 *param0, u32 param1, u32 param2)
     ov66_0222F964(param0);
 }
 
-void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u32 param2)
+void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u32 heapID)
 {
     BOOL v0;
     BOOL v1;
@@ -994,8 +994,8 @@ void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u
             Strbuf *v2;
             Strbuf *v3;
 
-            v3 = Strbuf_Init((7 + 1) * 4, param2);
-            v2 = Strbuf_Init((7 + 1) * 4, param2);
+            v3 = Strbuf_Init((7 + 1) * 4, heapID);
+            v2 = Strbuf_Init((7 + 1) * 4, heapID);
             TrainerInfo_NameStrbuf(param1, v2);
             v0 = Font_AreAllCharsValid(FONT_SYSTEM, v2, v3);
 
@@ -1014,7 +1014,7 @@ void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u
         MessageLoader *v4;
         Strbuf *v5;
 
-        v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0673, param2);
+        v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0673, heapID);
         v5 = MessageLoader_GetNewStrbuf(v4, 64);
 
         TrainerInfo_SetNameFromStrbuf(param1, v5);

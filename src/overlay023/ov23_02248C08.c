@@ -32,10 +32,10 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16
 
         ColoredArrow_SetColor(v0->unk_10, TEXT_COLOR(8, 9, 15));
 
-        v0->unk_1D = heapID;
+        v0->heapID = heapID;
 
         {
-            StringList *v1 = StringList_New(param0->count, v0->unk_1D);
+            StringList *v1 = StringList_New(param0->count, v0->heapID);
             int v2;
 
             for (v2 = 0; v2 < param0->count; v2++) {
@@ -108,7 +108,7 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
 
                 param0->unk_00(param0->unk_04, param0->unk_14 + param0->unk_16, v1 + v2);
 
-                v7 = StringList_New(v8, param0->unk_1D);
+                v7 = StringList_New(v8, param0->heapID);
                 v5 = 0;
 
                 for (v4 = 0; v4 < v8; v4++) {

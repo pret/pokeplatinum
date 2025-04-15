@@ -81,8 +81,8 @@ static u32 ov5_021EE8A8(u16 param0, u16 param1)
     u32 v3;
     u64 v4;
     u8 v5;
-    HeightWeightData *v6 = Pokedex_HeightWeightData(4);
-    Pokedex_HeightWeightData_Load(v6, 0, 4);
+    HeightWeightData *v6 = Pokedex_HeightWeightData(HEAP_ID_FIELD);
+    Pokedex_HeightWeightData_Load(v6, 0, HEAP_ID_FIELD);
 
     v3 = Pokedex_HeightWeightData_Height((const HeightWeightData *)v6, param0);
     Pokedex_HeightWeightData_Release(v6);

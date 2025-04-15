@@ -215,7 +215,7 @@ void ov100_021D4AA4(UnkStruct_ov100_021D49B4 *param0, NNSFndAllocator *param1, i
 
 void ov100_021D4AC8(UnkStruct_ov100_021D49B4 *param0, int param1, NARC *param2)
 {
-    Easy3DModel_LoadFrom(&param0->unk_78, param2, param1, 111);
+    Easy3DModel_LoadFrom(&param0->unk_78, param2, param1, HEAP_ID_111);
     Easy3DObject_Init(&param0->unk_00, &param0->unk_78);
     Easy3DObject_SetPosition(&param0->unk_00, 0, 0, 0);
     Easy3DObject_SetScale(&param0->unk_00, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
