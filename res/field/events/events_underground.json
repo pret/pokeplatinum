@@ -229,7 +229,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ROARK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "423",
+            "flag": "FLAG_UNK_0x01A7",
             "script": 6,
             "initial_dir": 1,
             "data": [],

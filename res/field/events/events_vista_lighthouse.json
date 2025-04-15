@@ -42,7 +42,7 @@
             "graphics_id": "OBJ_EVENT_GFX_VOLKNER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "641",
+            "flag": "FLAG_UNK_0x0281",
             "script": 4,
             "initial_dir": 0,
             "data": [],

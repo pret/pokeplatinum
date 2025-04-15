@@ -42,7 +42,7 @@
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "372",
+            "flag": "FLAG_UNK_0x0174",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -115,7 +115,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "342",
+            "flag": "FLAG_UNK_0x0156",
             "script": 65535,
             "initial_dir": 0,
             "data": [

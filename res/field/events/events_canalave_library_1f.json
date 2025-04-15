@@ -202,7 +202,7 @@
             "graphics_id": "OBJ_EVENT_GFX_LUCIAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "390",
+            "flag": "FLAG_UNK_0x0186",
             "script": 5,
             "initial_dir": 0,
             "data": [],

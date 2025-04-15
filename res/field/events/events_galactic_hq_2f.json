@@ -102,7 +102,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "1181",
+            "flag": "FLAG_UNK_0x049D",
             "script": 7167,
             "initial_dir": 0,
             "data": [],
@@ -116,7 +116,7 @@
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "567",
+            "flag": "FLAG_UNK_0x0237",
             "script": 3509,
             "initial_dir": 0,
             "data": [
@@ -132,7 +132,7 @@
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "567",
+            "flag": "FLAG_UNK_0x0237",
             "script": 3512,
             "initial_dir": 0,
             "data": [
@@ -148,7 +148,7 @@
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "567",
+            "flag": "FLAG_UNK_0x0237",
             "script": 3429,
             "initial_dir": 2,
             "data": [
@@ -164,7 +164,7 @@
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "567",
+            "flag": "FLAG_UNK_0x0237",
             "script": 3828,
             "initial_dir": 0,
             "data": [
@@ -180,7 +180,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "1313",
+            "flag": "FLAG_UNK_0x0521",
             "script": 7298,
             "initial_dir": 0,
             "data": [],

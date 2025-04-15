@@ -75,7 +75,7 @@
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "528",
+            "flag": "FLAG_UNK_0x0210",
             "script": 10153,
             "initial_dir": 3,
             "data": [],

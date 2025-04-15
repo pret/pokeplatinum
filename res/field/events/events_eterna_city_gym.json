@@ -36,7 +36,7 @@
             "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "545",
+            "flag": "FLAG_UNK_0x0221",
             "script": 4,
             "initial_dir": 1,
             "data": [],
