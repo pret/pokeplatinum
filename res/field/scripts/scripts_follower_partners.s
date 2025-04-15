@@ -15,7 +15,7 @@ FollowerPartners_Rival:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_FOLLOWER_RIVAL_STATE, 3, _003D
+    GoToIfGe VAR_FOLLOWER_RIVAL_STATE, 3, FollowerPartners_Rival_PostStarterMessage
     BufferPlayerName 1
     Message FollowerPartners_Text_Rival_HeyPlayerYouCanChooseFirst
     WaitABXPadPress
@@ -23,7 +23,7 @@ FollowerPartners_Rival:
     ReleaseAll
     End
 
-_003D:
+FollowerPartners_Rival_PostStarterMessage:
     GoToIfGe VAR_FOLLOWER_RIVAL_TIMES_TALKED, 5, FollowerPartners_Rival_HeyThatsEnoughTalkingAlready
     GoToIfEq VAR_FOLLOWER_RIVAL_TIMES_TALKED, 4, FollowerPartners_Rival_HeyDoYouKnowAboutTheChampion
     GoToIfEq VAR_FOLLOWER_RIVAL_TIMES_TALKED, 3, FollowerPartners_Rival_ThatLakeHasAMiragePokemonLivingInIt
