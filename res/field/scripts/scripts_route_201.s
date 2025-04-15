@@ -268,7 +268,7 @@ _03DE:
     CloseMessage
     CallCommonScript 0x7F9
     ScrCmd_188 2, 16
-    SetVar 0x4086, 1
+    SetVar VAR_FOLLOWER_RIVAL_STATE, 1
     ReleaseAll
     End
 
@@ -399,7 +399,7 @@ _05F5:
 
 _0618:
     CloseMessage
-    SetVar 0x4086, 2
+    SetVar VAR_FOLLOWER_RIVAL_STATE, 2
     SetVar 0x40A4, 3
     WaitTime 30, 0x800C
     FadeScreen 6, 3, 0, 0
@@ -1073,7 +1073,7 @@ _0CE1:
 _0CF1:
     RemoveObject 6
     RemoveObject 5
-    SetVar 0x4086, 3
+    SetVar VAR_FOLLOWER_RIVAL_STATE, 3
     ScrCmd_06C 254, 0
     ClearHasPartner
     SetFlag FLAG_UNK_0x0172
@@ -1295,7 +1295,7 @@ _0F4F:
     Message 51
     WaitABXPadPress
     CloseMessage
-    SetVar 0x4086, 3
+    SetVar VAR_FOLLOWER_RIVAL_STATE, 3
     SetStepFlag
     SetHasPartner
     ScrCmd_06D 2, 48

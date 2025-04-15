@@ -110,7 +110,7 @@ _006F:
     End
 
 _01A1:
-    SetVar 0x4086, 4
+    SetVar VAR_FOLLOWER_RIVAL_STATE, 4
     SetVar 0x4095, 1
     ReleaseAll
     End

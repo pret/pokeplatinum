@@ -227,9 +227,9 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     } else if (retScriptID >= 9800) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0212, TEXT_BANK_UNK_0217);
         retScriptID -= 9800;
-    } else if (retScriptID >= 9700) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0422, TEXT_BANK_UNK_0429);
-        retScriptID -= 9700;
+    } else if (retScriptID >= SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS) {
+        ScriptContext_Load(fieldSystem, ctx, scripts_follower_partners, TEXT_BANK_FOLLOWER_PARTNERS);
+        retScriptID -= SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS;
     } else if (retScriptID >= SCRIPT_ID_OFFSET_INIT_NEW_GAME) {
         ScriptContext_Load(fieldSystem, ctx, scripts_init_new_game, TEXT_BANK_COMMON_STRINGS);
         retScriptID -= SCRIPT_ID_OFFSET_INIT_NEW_GAME;
