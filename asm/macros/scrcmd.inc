@@ -732,20 +732,17 @@
     .short 119
     .endm
 
-    .macro ScrCmd_078 arg0
+    .macro GetCoinsAmount destVar
     .short 120
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_079 arg0
+    .macro AddCoins coins
     .short 121
-    .short \arg0
+    .short \coins
     .endm
 
-    .macro ScrCmd_07A arg0
-    .short 122
-    .short \arg0
-    .endm
+    /* See SubstractCoins for 122 */
 
     // If the player has no space left in the bag, destVarID will be set to FALSE
     .macro AddItem item, count, destVarID
@@ -3552,11 +3549,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_274 arg0, arg1
-    .short 628
-    .short \arg0
-    .long \arg1
-    .endm
+    /* See HasCoins for 628 */
 
     /* Returns TRUE in destVarID if the player has won at least 10 consecutive bonus rounds */
     .macro CheckBonusRoundStreak destVarID
@@ -3564,10 +3557,10 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_276 arg0, arg1
+    .macro CanAddCoins destVar, amount
     .short 630
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \amount
     .endm
 
     .macro GetDailyRandomLevel destVarID
@@ -3846,15 +3839,26 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_2A8 arg0
-    .short 680
-    .short \arg0
+    .macro SubstractCoins valueOrVarID
+    .if \valueOrVarID < VARS_START
+        .short 122 /* SubstractCoinsFromValue */
+        .short \valueOrVarID
+    .else
+        .short 680 /* SubstractCoinsFromVar */
+        .short \valueOrVarID
+    .endif
     .endm
 
-    .macro ScrCmd_2A9 arg0, arg1
-    .short 681
-    .short \arg0
-    .short \arg1
+    .macro HasCoins varID, valueOrVarID
+    .if \valueOrVarID < VARS_START
+        .short 628 /* HasCoinsFromValue */
+        .short \varID
+        .long \valueOrVarID
+    .else
+        .short 681 /* HasCoinsFromVar */
+        .short \varID
+        .short \valueOrVarID
+    .endif
     .endm
 
     .macro ScrCmd_2AA arg0, arg1, arg2, arg3, arg4

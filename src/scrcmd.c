@@ -180,7 +180,7 @@
 #include "unk_0204AEE8.h"
 #include "unk_0204B64C.h"
 #include "unk_0204C500.h"
-#include "unk_0204C6C8.h"
+#include "scrcmd_coins.h"
 #include "unk_0204C8F0.h"
 #include "unk_0204CA84.h"
 #include "unk_0204CDDC.h"
@@ -886,9 +886,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ShowCoins,
     ScrCmd_HideCoins,
     ScrCmd_UpdateCoinDisplay,
-    ScrCmd_078,
-    ScrCmd_079,
-    ScrCmd_07A,
+    ScrCmd_GetCoinsAmount,
+    ScrCmd_AddCoins,
+    ScrCmd_SubstractCoinsFromValue,
     ScrCmd_AddItem,
     ScrCmd_RemoveItem,
     ScrCmd_CanFitItem,
@@ -1394,9 +1394,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_271,
     ScrCmd_272,
     ScrCmd_273,
-    ScrCmd_274,
+    ScrCmd_HasCoinsFromValue,
     ScrCmd_CheckBonusRoundStreak,
-    ScrCmd_276,
+    ScrCmd_CanAddCoins,
     ScrCmd_GetDailyRandomLevel,
     ScrCmd_278,
     ScrCmd_279,
@@ -1446,8 +1446,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2A5,
     ScrCmd_GetGameCornerPrizeData,
     ScrCmd_2A7,
-    ScrCmd_2A8,
-    ScrCmd_2A9,
+    ScrCmd_SubstractCoinsFromVar,
+    ScrCmd_HasCoinsFromVar,
     ScrCmd_2AA,
     ScrCmd_2AB,
     ScrCmd_2AC,

@@ -136,16 +136,16 @@ _01A4:
 _01E3:
     ScrCmd_071 0x800C, 0x3E8
     GoToIfEq 0x800C, 0, _029D
-    ScrCmd_276 0x800C, 50
+    CanAddCoins 0x800C, 50
     Noop
-    GoToIfEq 0x800C, 0, _02AC
+    GoToIfEq 0x800C, FALSE, _02AC
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x3E8
     ScrCmd_070 0x3E8
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     PlayFanfare SEQ_SE_PL_COIN
-    ScrCmd_079 50
+    AddCoins 50
     UpdateCoinDisplay
     WaitFanfare SEQ_SE_PL_COIN
     Message 3
@@ -155,16 +155,16 @@ _01E3:
 _0240:
     ScrCmd_071 0x800C, 0x2710
     GoToIfEq 0x800C, 0, _029D
-    ScrCmd_276 0x800C, 0x1F4
+    CanAddCoins 0x800C, 500
     Noop
-    GoToIfEq 0x800C, 0, _02AC
+    GoToIfEq 0x800C, FALSE, _02AC
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x2710
     ScrCmd_070 0x2710
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     PlayFanfare SEQ_SE_PL_COIN
-    ScrCmd_079 0x1F4
+    AddCoins 500
     UpdateCoinDisplay
     WaitFanfare SEQ_SE_PL_COIN
     Message 3
@@ -247,15 +247,15 @@ _0346:
     CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _03A1
     GoToIfSet FLAG_UNK_0x012E, _03AC
-    ScrCmd_276 0x800C, 20
+    CanAddCoins 0x800C, 20
     Noop
-    GoToIfEq 0x800C, 0, _03AC
+    GoToIfEq 0x800C, FALSE, _03AC
     SetFlag FLAG_UNK_0x012E
     BufferPlayerName 0
     Message 14
     WaitABXPadPress
     PlayFanfare SEQ_SE_PL_COIN
-    ScrCmd_079 20
+    AddCoins 20
     WaitFanfare SEQ_SE_PL_COIN
     CloseMessage
     ReleaseAll
@@ -282,15 +282,15 @@ _03B7:
     CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0412
     GoToIfSet FLAG_UNK_0x012F, _041D
-    ScrCmd_276 0x800C, 50
+    CanAddCoins 0x800C, 50
     Noop
-    GoToIfEq 0x800C, 0, _041D
+    GoToIfEq 0x800C, FALSE, _041D
     SetFlag FLAG_UNK_0x012F
     BufferPlayerName 0
     Message 17
     WaitABXPadPress
     PlayFanfare SEQ_SE_PL_COIN
-    ScrCmd_079 50
+    AddCoins 50
     WaitFanfare SEQ_SE_PL_COIN
     CloseMessage
     ReleaseAll
