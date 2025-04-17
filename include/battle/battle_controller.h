@@ -56,7 +56,7 @@ enum BattleControlSequence {
     BATTLE_CONTROL_END_WAIT,
 };
 
-enum {
+enum BattleControllerPlayerInput {
     PLAYER_INPUT_FIGHT = 1,
     PLAYER_INPUT_ITEM,
     PLAYER_INPUT_PARTY,

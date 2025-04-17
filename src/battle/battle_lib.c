@@ -1854,7 +1854,7 @@ enum BattleSubAnimation Battler_StatusCondition(BattleContext *battleCtx, int ba
     return BATTLE_ANIMATION_NONE;
 }
 
-enum {
+enum CheckTrainerMessageState {
     CHECK_TRMSG_START = 0,
 
     CHECK_TRMSG_FIRST_DAMAGE = CHECK_TRMSG_START,
@@ -3613,7 +3613,7 @@ int BattleSystem_Divide(int dividend, int divisor)
     return dividend;
 }
 
-enum {
+enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_START = 0,
 
     SWITCH_IN_CHECK_STATE_FIELD_WEATHER = SWITCH_IN_CHECK_STATE_START,
@@ -3635,7 +3635,7 @@ enum {
     SWITCH_IN_CHECK_STATE_DONE,
 };
 
-enum {
+enum SwitchInCheckResult {
     SWITCH_IN_CHECK_RESULT_CONTINUE = 0,
     SWITCH_IN_CHECK_RESULT_BREAK,
     SWITCH_IN_CHECK_RESULT_DONE,

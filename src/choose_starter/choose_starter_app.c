@@ -371,7 +371,7 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     return TRUE;
 }
 
-enum {
+enum ChooseStarterAppState {
     CHOOSE_STARTER_MAIN_FADE_IN = 0,
     CHOOSE_STARTER_MAIN_WAIT_FADE_IN,
     CHOOSE_STARTER_MAIN_LOOP,

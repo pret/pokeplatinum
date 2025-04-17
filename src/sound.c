@@ -1278,7 +1278,7 @@ void Sound_WaveData_AccumulateAmplitudes(const SNDWaveData *data, u8 *amplitudes
 
 static void Sound_Impl_FilterCallback(void *bufferL, void *bufferR, u32 length, NNSSndCaptureFormat format, void *arg)
 {
-    enum {
+    enum Channel {
         L,
         R
     };
