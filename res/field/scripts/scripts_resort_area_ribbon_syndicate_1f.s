@@ -89,10 +89,10 @@ _012F:
     Message 3
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
-    ScrCmd_071 0x800C, 0x2710
+    CheckMoney 0x800C, 10000
     GoToIfEq 0x800C, 0, _024F
-    ScrCmd_334 35, 0x2710
-    ScrCmd_070 0x2710
+    ScrCmd_334 35, 10000
+    ScrCmd_070 10000
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
@@ -110,10 +110,10 @@ _018A:
     Message 4
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
-    ScrCmd_071 0x800C, 0x186A0
+    CheckMoney 0x800C, 100000
     GoToIfEq 0x800C, 0, _024F
-    ScrCmd_335 35, 0x186A0
-    ScrCmd_070 0x186A0
+    ScrCmd_335 35, 100000
+    ScrCmd_070 100000
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
@@ -131,10 +131,10 @@ _01E7:
     Message 5
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
-    ScrCmd_071 0x800C, 0xF423F
+    CheckMoney 0x800C, 999999
     GoToIfEq 0x800C, 0, _024F
-    ScrCmd_335 35, 0xF423F
-    ScrCmd_070 0xF423F
+    ScrCmd_335 35, 999999
+    ScrCmd_070 999999
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI

@@ -189,7 +189,7 @@ _01F3:
     End
 
 _0241:
-    ScrCmd_071 0x800C, 100
+    CheckMoney 0x800C, 100
     GoToIfEq 0x800C, 0, _02E2
     SetVar 0x8005, 1
     SetVar 0x8006, 100
@@ -197,10 +197,10 @@ _0241:
     End
 
 _026A:
-    ScrCmd_071 0x800C, 0x3E8
+    CheckMoney 0x800C, 1000
     GoToIfEq 0x800C, 0, _02E2
     SetVar 0x8005, 10
-    SetVar 0x8006, 0x3E8
+    SetVar 0x8006, 1000
     GoTo _0293
     End
 

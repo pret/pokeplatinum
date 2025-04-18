@@ -23,7 +23,7 @@ _0016:
     End
 
 _003E:
-    ScrCmd_071 0x800C, 100
+    CheckMoney 0x800C, 100
     GoToIfEq 0x800C, 0, _006B
     ScrCmd_070 100
     UpdateMoneyDisplay

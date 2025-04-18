@@ -161,19 +161,19 @@ _0269:
     GoTo _0180
 
 _0275:
-    ScrCmd_071 0x800C, 200
+    CheckMoney 0x800C, 200
     Return
 
 _027F:
-    ScrCmd_071 0x800C, 200
+    CheckMoney 0x800C, 200
     Return
 
 _0289:
-    ScrCmd_071 0x800C, 200
+    CheckMoney 0x800C, 200
     Return
 
 _0293:
-    ScrCmd_071 0x800C, 200
+    CheckMoney 0x800C, 200
     Return
 
 _029D:

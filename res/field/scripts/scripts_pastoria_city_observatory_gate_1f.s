@@ -38,10 +38,10 @@ _006A:
     GoToIfEq 0x800C, 6, _0168
 _008C:
     Message 1
-    ScrCmd_071 0x800C, 0x1F4
+    CheckMoney 0x800C, 500
     GoToIfEq 0x800C, 0, _0141
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_070 0x1F4
+    ScrCmd_070 500
     UpdateMoneyDisplay
     Message 2
     BufferPlayerName 0

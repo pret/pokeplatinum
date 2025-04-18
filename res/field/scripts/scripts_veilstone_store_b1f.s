@@ -226,7 +226,7 @@ _0311:
     End
 
 _031B:
-    ScrCmd_071 0x800C, 0x1900
+    CheckMoney 0x800C, 6400
     GoToIfEq 0x800C, 0, _052C
     SetVar 0x8005, 1
     Call _0557
@@ -234,7 +234,7 @@ _031B:
     End
 
 _0344:
-    ScrCmd_071 0x800C, 0x1900
+    CheckMoney 0x800C, 6400
     GoToIfEq 0x800C, 0, _052C
     SetVar 0x8005, 1
     Call _0577
@@ -242,7 +242,7 @@ _0344:
     End
 
 _036D:
-    ScrCmd_071 0x800C, 0x1900
+    CheckMoney 0x800C, 6400
     GoToIfEq 0x800C, 0, _052C
     SetVar 0x8005, 1
     Call _0597
@@ -250,7 +250,7 @@ _036D:
     End
 
 _0396:
-    ScrCmd_071 0x800C, 0x1900
+    CheckMoney 0x800C, 6400
     GoToIfEq 0x800C, 0, _052C
     SetVar 0x8005, 1
     Call _05B7
@@ -258,7 +258,7 @@ _0396:
     End
 
 _03BF:
-    ScrCmd_071 0x800C, 0x1900
+    CheckMoney 0x800C, 6400
     GoToIfEq 0x800C, 0, _052C
     SetVar 0x8005, 1
     Call _05D7
@@ -266,7 +266,7 @@ _03BF:
     End
 
 _03E8:
-    ScrCmd_071 0x800C, 0x1900
+    CheckMoney 0x800C, 6400
     GoToIfEq 0x800C, 0, _052C
     SetVar 0x8005, 1
     Call _05F7
@@ -274,7 +274,7 @@ _03E8:
     End
 
 _0411:
-    ScrCmd_071 0x800C, 0x1900
+    CheckMoney 0x800C, 6400
     GoToIfEq 0x800C, 0, _052C
     SetVar 0x8005, 1
     Call _0617
@@ -282,7 +282,7 @@ _0411:
     End
 
 _043A:
-    ScrCmd_071 0x800C, 0x1900
+    CheckMoney 0x800C, 6400
     GoToIfEq 0x800C, 0, _052C
     SetVar 0x8005, 1
     Call _0637
@@ -290,7 +290,7 @@ _043A:
     End
 
 _0463:
-    ScrCmd_071 0x800C, 0x1900
+    CheckMoney 0x800C, 6400
     GoToIfEq 0x800C, 0, _052C
     SetVar 0x8005, 1
     Call _0657
@@ -298,7 +298,7 @@ _0463:
     End
 
 _048C:
-    ScrCmd_071 0x800C, 0x1900
+    CheckMoney 0x800C, 6400
     GoToIfEq 0x800C, 0, _052C
     SetVar 0x8005, 1
     Call _0677

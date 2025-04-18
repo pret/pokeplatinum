@@ -698,10 +698,15 @@
     .long \arg0
     .endm
 
-    .macro ScrCmd_071 arg0, arg1
+    .macro CheckMoney destVar, value
     .short 113
-    .short \arg0
-    .long \arg1
+    .short \destVar
+    .long \value
+    .endm
+
+    .macro GoToIfNotEnoughMoney value, offset
+    CheckMoney 0x800C, \value
+    GoToIfEq 0x800C, FALSE, \offset
     .endm
 
     .macro ShowMoney tilemapLeft, tilemapTop

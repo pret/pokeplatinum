@@ -134,12 +134,12 @@ _01A4:
     GoTo _02BB
 
 _01E3:
-    ScrCmd_071 0x800C, 0x3E8
+    CheckMoney 0x800C, 1000
     GoToIfEq 0x800C, 0, _029D
     GoToIfCannotAddCoins 50, _02AC
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_334 35, 0x3E8
-    ScrCmd_070 0x3E8
+    ScrCmd_334 35, 1000
+    ScrCmd_070 1000
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     PlayFanfare SEQ_SE_PL_COIN
@@ -151,12 +151,12 @@ _01E3:
     GoTo _01A4
 
 _0240:
-    ScrCmd_071 0x800C, 0x2710
+    CheckMoney 0x800C, 10000
     GoToIfEq 0x800C, 0, _029D
     GoToIfCannotAddCoins 500, _02AC
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_334 35, 0x2710
-    ScrCmd_070 0x2710
+    ScrCmd_334 35, 10000
+    ScrCmd_070 10000
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     PlayFanfare SEQ_SE_PL_COIN

@@ -2081,83 +2081,83 @@ _1FA9:
     Return
 
 _1FB1:
-    ScrCmd_071 0x8003, 0
+    CheckMoney 0x8003, 0
     Return
 
 _1FBB:
-    ScrCmd_071 0x8003, 0x1D4C0
+    CheckMoney 0x8003, 120000
     Return
 
 _1FC5:
-    ScrCmd_071 0x8003, 0x15F90
+    CheckMoney 0x8003, 90000
     Return
 
 _1FCF:
-    ScrCmd_071 0x8003, 0x2DA78
+    CheckMoney 0x8003, 187000
     Return
 
 _1FD9:
-    ScrCmd_071 0x8003, 0xE290
+    CheckMoney 0x8003, 58000
     Return
 
 _1FE3:
-    ScrCmd_071 0x8003, 0x35B60
+    CheckMoney 0x8003, 220000
     Return
 
 _1FED:
-    ScrCmd_071 0x8003, 0x27100
+    CheckMoney 0x8003, 160000
     Return
 
 _1FF7:
-    ScrCmd_071 0x8003, 0x249F0
+    CheckMoney 0x8003, 150000
     Return
 
 _2001:
-    ScrCmd_071 0x8003, 0x1F018
+    CheckMoney 0x8003, 127000
     Return
 
 _200B:
-    ScrCmd_071 0x8003, 0x1D4C0
+    CheckMoney 0x8003, 120000
     Return
 
 _2015:
-    ScrCmd_071 0x8003, 0x29040
+    CheckMoney 0x8003, 168000
     Return
 
 _201F:
-    ScrCmd_071 0x8003, 0x62D4
+    CheckMoney 0x8003, 25300
     Return
 
 _2029:
-    ScrCmd_071 0x8003, 0x249F0
+    CheckMoney 0x8003, 150000
     Return
 
 _2033:
-    ScrCmd_071 0x8003, 0x249F0
+    CheckMoney 0x8003, 150000
     Return
 
 _203D:
-    ScrCmd_071 0x8003, 0x23D0C
+    CheckMoney 0x8003, 146700
     Return
 
 _2047:
-    ScrCmd_071 0x8003, 0x32C80
+    CheckMoney 0x8003, 208000
     Return
 
 _2051:
-    ScrCmd_071 0x8003, 0xCB20
+    CheckMoney 0x8003, 52000
     Return
 
 _205B:
-    ScrCmd_071 0x8003, 0x222E0
+    CheckMoney 0x8003, 140000
     Return
 
 _2065:
-    ScrCmd_071 0x8003, 0x1A5E0
+    CheckMoney 0x8003, 108000
     Return
 
 _206F:
-    ScrCmd_071 0x8003, 0x1D4C0
+    CheckMoney 0x8003, 120000
     Return
 
 _2079:

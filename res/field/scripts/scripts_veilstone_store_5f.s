@@ -111,15 +111,15 @@ _013D:
     GoTo _0191
 
 _0149:
-    ScrCmd_071 0x800C, 200
+    CheckMoney 0x800C, 200
     Return
 
 _0153:
-    ScrCmd_071 0x800C, 0x12C
+    CheckMoney 0x800C, 300
     Return
 
 _015D:
-    ScrCmd_071 0x800C, 0x15E
+    CheckMoney 0x800C, 350
     Return
 
 _0167:
