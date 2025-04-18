@@ -1587,8 +1587,7 @@ void sub_0203E414(FieldTask *task, int slotMachineID)
     FieldTask_InitCall(task, sub_0203E35C, v2);
 }
 
-enum SlotMachineID
-{
+enum SlotMachineID {
     SLOT_MACHINE_0,
     SLOT_MACHINE_1,
     SLOT_MACHINE_2,
