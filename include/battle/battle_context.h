@@ -167,11 +167,11 @@ struct BattleContext {
     int sharedExp;
     u32 sideGetExpMask[2];
 
-    int scriptNarc;
+    enum NarcID scriptNarc;
     int scriptFile;
     int scriptCursor;
     int scriptStackPointer;
-    int scriptStackNarc[BATTLE_SCRIPT_STACK_MAX];
+    enum NarcID scriptStackNarc[BATTLE_SCRIPT_STACK_MAX];
     int scriptStackFile[BATTLE_SCRIPT_STACK_MAX];
     int scriptStackCursor[BATTLE_SCRIPT_STACK_MAX];
 

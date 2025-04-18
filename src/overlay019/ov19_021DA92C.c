@@ -38,7 +38,7 @@ u32 sub_0207C920(void);
 u32 sub_0207C924(void);
 u32 sub_0207C928(void);
 u8 sub_0207C92C(int param0);
-u32 sub_0207C944(void);
+enum NarcID sub_0207C944(void);
 void Window_PutRectToTilemap(Window *param0, u32 param1, u32 param2);
 static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0);
 static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0);
@@ -211,7 +211,8 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
 {
     NNSG2dImageProxy v0;
     SpriteResourcesHeader v1;
-    u32 v2, v3, v4;
+    enum NarcID v2;
+    u32 v3, v4;
 
     v2 = sub_0207C944();
     v3 = sub_0207C908(2);

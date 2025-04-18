@@ -217,10 +217,10 @@ void MapHeaderData_LoadWildEncounters(WildEncounters *data, int headerID)
 {
     memset(data, 0, sizeof(WildEncounters));
     if (MapHeader_HasWildEncounters(headerID)) {
-        int narcIndex = (GAME_VERSION == VERSION_DIAMOND || GAME_VERSION == VERSION_PLATINUM)
+        enum NarcID narcID = (GAME_VERSION == VERSION_DIAMOND || GAME_VERSION == VERSION_PLATINUM)
             ? NARC_INDEX_FIELDDATA__ENCOUNTDATA__PL_ENC_DATA
             : NARC_INDEX_FIELDDATA__ENCOUNTDATA__P_ENC_DATA;
-        NARC_ReadWholeMemberByIndexPair(data, narcIndex, MapHeader_GetWildEncountersArchiveID(headerID));
+        NARC_ReadWholeMemberByIndexPair(data, narcID, MapHeader_GetWildEncountersArchiveID(headerID));
     }
 }
 

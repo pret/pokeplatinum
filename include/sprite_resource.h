@@ -40,7 +40,7 @@ typedef struct SpriteResourceTableEntryFile {
 } SpriteResourceTableEntryFile;
 
 typedef struct SpriteResourceTableEntryNARC {
-    int narcIndex;
+    enum NarcID narcID;
     int memberIndex;
     BOOL compressed;
     int id;
@@ -65,11 +65,11 @@ typedef struct SpriteResourceList {
 SpriteResourceCollection *SpriteResourceCollection_New(int capacity, enum SpriteResourceType type, enum HeapId heapID);
 void SpriteResourceCollection_Delete(SpriteResourceCollection *spriteResources);
 SpriteResource *SpriteResourceCollection_AddFromTable(SpriteResourceCollection *spriteResources, const SpriteResourceTable *table, int index, enum HeapId heapID);
-SpriteResource *SpriteResourceCollection_AddTiles(SpriteResourceCollection *spriteResources, int narcIdx, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID);
-SpriteResource *SpriteResourceCollection_AddPalette(SpriteResourceCollection *spriteResources, int narcIdx, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID);
-SpriteResource *SpriteResourceCollection_Add(SpriteResourceCollection *spriteResources, int narcIdx, int memberIdx, BOOL compressed, int id, enum SpriteResourceType type, enum HeapId heapID);
-void SpriteResourceCollection_ModifyTiles(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, int narcIdx, int memberIdx, BOOL compressed, enum HeapId heapID);
-void SpriteResourceCollection_ModifyPalette(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, int narcIdx, int memberIdx, BOOL compressed, enum HeapId heapID);
+SpriteResource *SpriteResourceCollection_AddTiles(SpriteResourceCollection *spriteResources, enum NarcID narcID, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID);
+SpriteResource *SpriteResourceCollection_AddPalette(SpriteResourceCollection *spriteResources, enum NarcID narcID, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID);
+SpriteResource *SpriteResourceCollection_Add(SpriteResourceCollection *spriteResources, enum NarcID narcID, int memberIdx, BOOL compressed, int id, enum SpriteResourceType type, enum HeapId heapID);
+void SpriteResourceCollection_ModifyTiles(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, enum NarcID narcID, int memberIdx, BOOL compressed, enum HeapId heapID);
+void SpriteResourceCollection_ModifyPalette(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, enum NarcID narcID, int memberIdx, BOOL compressed, enum HeapId heapID);
 SpriteResource *SpriteResourceCollection_AddTilesFrom(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID);
 SpriteResource *SpriteResourceCollection_AddTilesFromEx(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID, BOOL allocAtEnd);
 SpriteResource *SpriteResourceCollection_AddPaletteFrom(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID);

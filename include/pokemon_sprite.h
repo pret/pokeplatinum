@@ -4,6 +4,7 @@
 #include <nnsys.h>
 
 #include "constants/heap.h"
+#include "constants/narc.h"
 
 #include "struct_defs/sprite_animation_frame.h"
 
@@ -65,7 +66,7 @@ typedef struct PokemonSpriteTransforms PokemonSpriteTransforms;
 typedef void(PokemonSpriteCallback)(PokemonSprite *, PokemonSpriteTransforms *);
 
 typedef struct PokemonSpriteTemplate {
-    u16 archive; //< ID of the sprite archive
+    u16 narcID; //< ID of the sprite archive
     u16 character; //< File index to pull from the archive for the character data (tiles)
     u16 palette; //< File index to pull from the archive for the palette data
     u16 spindaSpots; //< Simple flag denoting whether the rendered sprite should be pseudo-randomized with splotches (only for Spinda's front-sprite).
@@ -222,7 +223,7 @@ void PokemonSpriteManager_ClearHideShadows(PokemonSpriteManager *monSpriteMan, u
 void PokemonSprite_DrawSpindaSpots(u8 *rawCharData, u32 personality, BOOL isAnimated);
 void PokemonSprite_DecryptPt(u8 *rawCharData);
 void PokemonSprite_DecryptDP(u8 *rawCharData);
-void PokemonSprite_Decrypt(u8 *rawCharData, int narcID);
+void PokemonSprite_Decrypt(u8 *rawCharData, enum NarcID narcID);
 
 inline void PokemonSpriteManager_HideShadows(PokemonSpriteManager *monSpriteMan)
 {

@@ -1114,8 +1114,8 @@ static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
         }
     }
 
-    v2 = sub_0201363C(v0.archive, v0.character, param0->heapID);
-    v3 = sub_02013660(v0.archive, v0.palette, param0->heapID);
+    v2 = sub_0201363C(v0.narcID, v0.character, param0->heapID);
+    v3 = sub_02013660(v0.narcID, v0.palette, param0->heapID);
 
     MI_CpuCopy32(v3, param0->unk_B8, 0x20);
 

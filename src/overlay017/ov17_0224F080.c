@@ -43,9 +43,9 @@ u8 ov17_0224F0A0(int param0)
     return Unk_ov17_02254A88[param0];
 }
 
-u32 ov17_0224F0B8(void)
+enum NarcID ov17_0224F0B8(void)
 {
-    return 46;
+    return NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ;
 }
 
 void ov17_0224F0BC(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)

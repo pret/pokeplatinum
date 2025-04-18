@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
+
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
 
@@ -38,7 +40,7 @@ static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct
 static void ov22_0225A200(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4, int param5);
 static void ov22_0225A218(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_0225A2A8(UnkStruct_ov22_0225A0E4 *param0);
-static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 param2, u32 param3, int param4, int param5);
+static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, enum NarcID narcID, u32 param2, u32 param3, int param4, int param5);
 static void ov22_0225A3D0(Window *param0);
 static void ov22_0225A2D0(UnkStruct_ov22_02259C58 *param0, int param1);
 static void ov22_0225A338(UnkStruct_ov22_02259C58 *param0, int param1, int param2, int param3);
@@ -425,7 +427,7 @@ static void ov22_0225A338(UnkStruct_ov22_02259C58 *param0, int param1, int param
     }
 }
 
-static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 narcID, u32 bankID, u32 param3, int param4, int param5)
+static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, enum NarcID narcID, u32 bankID, u32 param3, int param4, int param5)
 {
     MessageLoader *v0;
     Strbuf *v1;

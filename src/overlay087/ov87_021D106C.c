@@ -541,12 +541,12 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
         Pokemon_InitWith(param0->unk_1FC, v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_12, INIT_IVS_RANDOM, TRUE, v2->unk_20[v3].unk_08, OTID_SET, v2->unk_20[v3].unk_0C);
         Pokemon_SetValue(param0->unk_1FC, MON_DATA_FORM, (void *)(&(v2->unk_20[v3].unk_13)));
         Pokemon_BuildSpriteTemplate(&v1, param0->unk_1FC, 2);
-        sub_02013720(v1.archive, v1.character, HEAP_ID_61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, 0, 2, v2->unk_20[v3].unk_10);
+        sub_02013720(v1.narcID, v1.character, HEAP_ID_61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, 0, 2, v2->unk_20[v3].unk_10);
 
         DC_FlushRange(param0->unk_200, sizeof(param0->unk_200));
         GX_LoadOBJ(param0->unk_200, 3200 * v3, 3200);
 
-        Graphics_LoadPalette(v1.archive, v1.palette, 1, v3 * 0x20, 0x20, HEAP_ID_61);
+        Graphics_LoadPalette(v1.narcID, v1.palette, 1, v3 * 0x20, 0x20, HEAP_ID_61);
 
         if (v3 == v2->unk_18) {
             Sound_SetUsingDefaultChatotCry(TRUE);

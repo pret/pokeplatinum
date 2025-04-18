@@ -897,7 +897,7 @@ static void ov88_0223C0E0(void *param0)
         int v1 = v0->unk_2168 - 1;
 
         GXS_LoadOBJ(v0->unk_848[v1], 0 + v1 * (0x20 * 10 * 10), (0x20 * 10 * 10));
-        Graphics_LoadPalette(v0->unk_2148[v1].archive, v0->unk_2148[v1].palette, 5, 0x20 * (2 + v1), 32, HEAP_ID_26);
+        Graphics_LoadPalette(v0->unk_2148[v1].narcID, v0->unk_2148[v1].palette, 5, 0x20 * (2 + v1), 32, HEAP_ID_26);
 
         v0->unk_2168 = 0;
     }
@@ -1263,7 +1263,7 @@ static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteT
         int v0 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         int v1 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
-        sub_020136A4(param3->archive, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, v0, 0, 2, v1);
+        sub_020136A4(param3->narcID, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, v0, 0, 2, v1);
     }
 
     DC_FlushRange(param2, 0x20 * 10 * 10);

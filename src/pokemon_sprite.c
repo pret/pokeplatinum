@@ -1328,7 +1328,7 @@ static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan)
             monSpriteMan->sprites[i].needReloadChar = FALSE;
 
             needLoadChar = TRUE;
-            ncgrFile = NARC_AllocAndReadWholeMemberByIndexPair(monSpriteMan->sprites[i].template.archive, monSpriteMan->sprites[i].template.character, monSpriteMan->heapID);
+            ncgrFile = NARC_AllocAndReadWholeMemberByIndexPair(monSpriteMan->sprites[i].template.narcID, monSpriteMan->sprites[i].template.character, monSpriteMan->heapID);
 
             NNS_G2dGetUnpackedCharacterData(ncgrFile, &charData);
 
@@ -1338,7 +1338,7 @@ static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan)
 
             rawCharData = charData->pRawData;
 
-            PokemonSprite_Decrypt(rawCharData, monSpriteMan->sprites[i].template.archive);
+            PokemonSprite_Decrypt(rawCharData, monSpriteMan->sprites[i].template.narcID);
             TryDrawSpindaSpots(&monSpriteMan->sprites[i], rawCharData);
 
             if (i == 3) {
@@ -1441,7 +1441,7 @@ static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan)
             monSpriteMan->sprites[i].needReloadPltt = FALSE;
 
             needReloadPltt = TRUE;
-            nclrFile = NARC_AllocAndReadWholeMemberByIndexPair(monSpriteMan->sprites[i].template.archive, monSpriteMan->sprites[i].template.palette, monSpriteMan->heapID);
+            nclrFile = NARC_AllocAndReadWholeMemberByIndexPair(monSpriteMan->sprites[i].template.narcID, monSpriteMan->sprites[i].template.palette, monSpriteMan->heapID);
 
             NNS_G2dGetUnpackedPaletteData(nclrFile, &plttData);
 
@@ -1609,7 +1609,7 @@ void PokemonSprite_DecryptDP(u8 *rawCharData)
     }
 }
 
-void PokemonSprite_Decrypt(u8 *rawCharData, int narcID)
+void PokemonSprite_Decrypt(u8 *rawCharData, enum NarcID narcID)
 {
     if (narcID == NARC_INDEX_POKETOOL__POKEGRA__POKEGRA || narcID == NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE) {
         PokemonSprite_DecryptDP(rawCharData);

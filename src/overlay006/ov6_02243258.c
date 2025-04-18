@@ -2057,7 +2057,7 @@ static void *ov6_0224509C(Pokemon *param0, PokemonSpriteTemplate *param1, u32 he
 
     {
         int v1 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
-        sub_02013750(param1->archive, param1->character, heapID, v0, v1, 0, 2, param1->spindaSpots);
+        sub_02013750(param1->narcID, param1->character, heapID, v0, v1, 0, 2, param1->spindaSpots);
     }
 
     return v0;
@@ -2065,7 +2065,7 @@ static void *ov6_0224509C(Pokemon *param0, PokemonSpriteTemplate *param1, u32 he
 
 static void *ov6_022450E4(PokemonSpriteTemplate *param0, u32 heapID)
 {
-    void *v0 = sub_02013660(param0->archive, param0->palette, heapID);
+    void *v0 = sub_02013660(param0->narcID, param0->palette, heapID);
     return v0;
 }
 

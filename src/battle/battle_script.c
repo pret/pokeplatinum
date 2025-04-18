@@ -309,8 +309,8 @@ static BOOL BtlCmd_End(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static int BattleScript_Read(BattleContext *battleCtx);
 static void BattleScript_Iter(BattleContext *battleCtx, int i);
-static void BattleScript_Jump(BattleContext *battleCtx, int narc, int file);
-static void BattleScript_Call(BattleContext *battleCtx, int narc, int file);
+static void BattleScript_Jump(BattleContext *battleCtx, enum NarcID narcID, int file);
+static void BattleScript_Call(BattleContext *battleCtx, enum NarcID narcID, int file);
 static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *battleCtx, int var);
 static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
 static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -9714,12 +9714,12 @@ static void BattleScript_Iter(BattleContext *battleCtx, int i)
  * current execution.
  *
  * @param battleCtx
- * @param narc          Which NARC to open for the script
+ * @param narcID        Which NARC to open for the script
  * @param file          Which file in the NARC to load
  */
-static void BattleScript_Jump(BattleContext *battleCtx, int narc, int file)
+static void BattleScript_Jump(BattleContext *battleCtx, enum NarcID narcID, int file)
 {
-    BattleSystem_LoadScript(battleCtx, narc, file);
+    BattleSystem_LoadScript(battleCtx, narcID, file);
 }
 
 /**
@@ -9727,12 +9727,12 @@ static void BattleScript_Jump(BattleContext *battleCtx, int narc, int file)
  * execution once finished with the newly-loaded script.
  *
  * @param battleCtx
- * @param narc          Which NARC to open for the script
+ * @param narcID        Which NARC to open for the script
  * @param file          Which file in the NARC to load
  */
-static void BattleScript_Call(BattleContext *battleCtx, int narc, int file)
+static void BattleScript_Call(BattleContext *battleCtx, enum NarcID narcID, int file)
 {
-    BattleSystem_CallScript(battleCtx, narc, file);
+    BattleSystem_CallScript(battleCtx, narcID, file);
 }
 
 /**

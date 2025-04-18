@@ -80,8 +80,8 @@ void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources 
     resources->unk_10[1] = SpriteResourceCollection_AddPaletteFrom(resources->unk_00[1], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD);
     resources->unk_10[2] = SpriteResourceCollection_AddFrom(resources->unk_00[2], v1, 6, 0, 2, 2, HEAP_ID_FIELD);
     resources->unk_10[3] = SpriteResourceCollection_AddFrom(resources->unk_00[3], v1, 12, 0, 3, 3, HEAP_ID_FIELD);
-    resources->unk_20 = sub_0201363C(resources->unk_28.archive, resources->unk_28.character, HEAP_ID_FIELD);
-    resources->unk_24 = sub_02013660(resources->unk_28.archive, resources->unk_28.palette, HEAP_ID_FIELD);
+    resources->unk_20 = sub_0201363C(resources->unk_28.narcID, resources->unk_28.character, HEAP_ID_FIELD);
+    resources->unk_24 = sub_02013660(resources->unk_28.narcID, resources->unk_28.palette, HEAP_ID_FIELD);
 
     ov6_02242880(resources->unk_00[0], resources->unk_00[1], resources->unk_20, resources->unk_24);
 

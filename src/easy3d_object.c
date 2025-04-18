@@ -14,9 +14,9 @@ static void Easy3DModel_BindTexture(SysTask *task, void *param);
 static void Easy3DModel_LoadInternal(Easy3DModel *model);
 static void Easy3DAnim_LoadInternal(Easy3DAnim *anim, const Easy3DModel *model, void *data, NNSFndAllocator *allocator);
 
-void Easy3DModel_Load(Easy3DModel *model, u32 narcIndex, u32 memberIndex, u32 heapID)
+void Easy3DModel_Load(Easy3DModel *model, enum NarcID narcID, u32 memberIndex, u32 heapID)
 {
-    model->data = LoadMemberFromNARC(narcIndex, memberIndex, FALSE, heapID, 0);
+    model->data = LoadMemberFromNARC(narcID, memberIndex, FALSE, heapID, 0);
     Easy3DModel_LoadInternal(model);
 }
 
