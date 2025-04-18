@@ -124,17 +124,17 @@ _015D:
 
 _0167:
     AddToGameRecord RECORD_MONEY_SPENT, 200
-    ScrCmd_070 200
+    RemoveMoney 200
     Return
 
 _0175:
     AddToGameRecord RECORD_MONEY_SPENT, 300
-    ScrCmd_070 300
+    RemoveMoney 300
     Return
 
 _0183:
     AddToGameRecord RECORD_MONEY_SPENT, 350
-    ScrCmd_070 350
+    RemoveMoney 350
     Return
 
 _0191:

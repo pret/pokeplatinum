@@ -688,14 +688,14 @@
     .short 110
     .endm
 
-    .macro ScrCmd_06F arg0
+    .macro GiveMoney value
     .short 111
-    .long \arg0
+    .long \value
     .endm
 
-    .macro ScrCmd_070 arg0
+    .macro RemoveMoney value
     .short 112
-    .long \arg0
+    .long \value
     .endm
 
     .macro CheckMoney destVar, value
@@ -2325,9 +2325,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1A3 arg0
+    .macro RemoveMoney2 valueOrVarID
     .short 419
-    .short \arg0
+    .short \valueOrVarID
     .endm
 
     .macro MoveMonToPartyFromDaycareSlot destVarSpecies, daycareSlot
@@ -2363,10 +2363,10 @@
     .short \daycareSlot
     .endm
 
-    .macro ScrCmd_1AB arg0, arg1
+    .macro CheckMoney2 destVar, valueOrVarID
     .short 427
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \valueOrVarID
     .endm
 
     .macro ScrCmd_1AC

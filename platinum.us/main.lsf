@@ -198,7 +198,7 @@ Static main
 	Object main.nef.p/src_scrcmd_mystery_gift.c.o
 	Object main.nef.p/src_unk_0204C500.c.o
 	Object main.nef.p/src_scrcmd_coins.c.o
-	Object main.nef.p/src_unk_0204C8F0.c.o
+	Object main.nef.p/src_scrcmd_money.c.o
 	Object main.nef.p/src_unk_0204CA84.c.o
 	Object main.nef.p/src_unk_0204CDDC.c.o
 	Object main.nef.p/src_unk_0204CFFC.c.o

@@ -205,7 +205,7 @@ _026A:
 _0293:
     SetVar 0x8004, ITEM_HONEY
     GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _02D5
-    ScrCmd_1A3 0x8006
+    RemoveMoney2 0x8006
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI

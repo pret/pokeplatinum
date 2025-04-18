@@ -40,7 +40,7 @@ _008C:
     Message 1
     GoToIfNotEnoughMoney 500, _0141
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_070 500
+    RemoveMoney 500
     UpdateMoneyDisplay
     Message 2
     BufferPlayerName 0

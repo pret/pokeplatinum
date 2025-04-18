@@ -178,22 +178,22 @@ _0293:
 
 _029D:
     AddToGameRecord RECORD_MONEY_SPENT, 200
-    ScrCmd_070 200
+    RemoveMoney 200
     Return
 
 _02AB:
     AddToGameRecord RECORD_MONEY_SPENT, 200
-    ScrCmd_070 200
+    RemoveMoney 200
     Return
 
 _02B9:
     AddToGameRecord RECORD_MONEY_SPENT, 200
-    ScrCmd_070 200
+    RemoveMoney 200
     Return
 
 _02C7:
     AddToGameRecord RECORD_MONEY_SPENT, 200
-    ScrCmd_070 200
+    RemoveMoney 200
     Return
 
 _02D5:

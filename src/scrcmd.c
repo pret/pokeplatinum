@@ -181,7 +181,7 @@
 #include "unk_0204B64C.h"
 #include "unk_0204C500.h"
 #include "scrcmd_coins.h"
-#include "unk_0204C8F0.h"
+#include "scrcmd_money.h"
 #include "unk_0204CA84.h"
 #include "unk_0204CDDC.h"
 #include "unk_0204CFFC.h"
@@ -877,9 +877,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_06C,
     ScrCmd_06D,
     ScrCmd_06E,
-    ScrCmd_06F,
-    ScrCmd_070,
-    ScrCmd_071,
+    ScrCmd_GiveMoney,
+    ScrCmd_RemoveMoney,
+    ScrCmd_CheckMoney,
     ScrCmd_ShowMoney,
     ScrCmd_HideMoney,
     ScrCmd_UpdateMoneyDisplay,
@@ -1185,7 +1185,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1A0,
     ScrCmd_1A1,
     ScrCmd_1A2,
-    ScrCmd_1A3,
+    ScrCmd_RemoveMoney2,
     ScrCmd_MoveMonToPartyFromDaycareSlot,
     ScrCmd_1A5,
     ScrCmd_1A6,
@@ -1193,7 +1193,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ResetDaycarePersonalityAndStepCounter,
     ScrCmd_GiveEggFromDaycare,
     ScrCmd_BufferDaycarePriceBySlot,
-    ScrCmd_1AB,
+    ScrCmd_CheckMoney2,
     ScrCmd_1AC,
     ScrCmd_Dummy1AD,
     ScrCmd_BufferDaycareGainedLevelsBySlot,

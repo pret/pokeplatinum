@@ -135,7 +135,7 @@ _0150:
     SetVar 0x8004, 1
     SetVar 0x8005, 200
     GoToIfCannotFitItem ITEM_LAVA_COOKIE, 0x8004, 0x800C, _01FF
-    ScrCmd_1AB 0x800C, 200
+    CheckMoney2 0x800C, 200
     GoToIfEq 0x800C, 0, _020A
     Message 9
     GoTo _01CE
@@ -143,9 +143,9 @@ _0150:
 
 _018F:
     SetVar 0x8004, 10
-    SetVar 0x8005, 0x7D0
+    SetVar 0x8005, 2000
     GoToIfCannotFitItem ITEM_LAVA_COOKIE, 0x8004, 0x800C, _01FF
-    ScrCmd_1AB 0x800C, 0x7D0
+    CheckMoney2 0x800C, 2000
     GoToIfEq 0x800C, 0, _020A
     Message 10
     GoTo _01CE
@@ -155,7 +155,7 @@ _01CE:
     AddItem ITEM_LAVA_COOKIE, 0x8004, 0x800C
     PlayFanfare SEQ_SE_DP_REGI
     AddToGameRecord RECORD_MONEY_SPENT, 0x8005
-    ScrCmd_1A3 0x8005
+    RemoveMoney2 0x8005
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     CallIfLt 0x4042, 0x2710, _0700
@@ -305,7 +305,7 @@ _04CE:
     GoToIfEq 0x8005, 0, _0503
     ScrCmd_289 0x800C, 0x8007, 0x8000, 0x8001, 0x8002, 0x8003, 20
     AddToGameRecord RECORD_MONEY_SPENT, 6400
-    ScrCmd_1A3 6400
+    RemoveMoney2 6400
     SubVar 0x8005, 1
     GoTo _04CE
     End

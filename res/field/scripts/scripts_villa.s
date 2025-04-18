@@ -2162,121 +2162,121 @@ _206F:
 
 _2079:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 0
-    ScrCmd_070 0
+    RemoveMoney 0
     SetFlag FLAG_VILLA_FURNITURE_UNK_00
     Return
 
 _208D:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 120000
-    ScrCmd_070 120000
+    RemoveMoney 120000
     SetFlag FLAG_VILLA_FURNITURE_UNK_01
     Return
 
 _20A1:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 90000
-    ScrCmd_070 90000
+    RemoveMoney 90000
     SetFlag FLAG_VILLA_FURNITURE_UNK_02
     Return
 
 _20B5:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 187000
-    ScrCmd_070 187000
+    RemoveMoney 187000
     SetFlag FLAG_VILLA_FURNITURE_UNK_03
     Return
 
 _20C9:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 58000
-    ScrCmd_070 58000
+    RemoveMoney 58000
     SetFlag FLAG_VILLA_FURNITURE_UNK_04
     Return
 
 _20DD:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 220000
-    ScrCmd_070 220000
+    RemoveMoney 220000
     SetFlag FLAG_VILLA_FURNITURE_UNK_05
     Return
 
 _20F1:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 160000
-    ScrCmd_070 160000
+    RemoveMoney 160000
     SetFlag FLAG_VILLA_FURNITURE_UNK_06
     Return
 
 _2105:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 150000
-    ScrCmd_070 150000
+    RemoveMoney 150000
     SetFlag FLAG_VILLA_FURNITURE_UNK_07
     Return
 
 _2119:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 127000
-    ScrCmd_070 127000
+    RemoveMoney 127000
     SetFlag FLAG_VILLA_FURNITURE_UNK_08
     Return
 
 _212D:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 120000
-    ScrCmd_070 120000
+    RemoveMoney 120000
     SetFlag FLAG_VILLA_FURNITURE_UNK_09
     Return
 
 _2141:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 168000
-    ScrCmd_070 168000
+    RemoveMoney 168000
     SetFlag FLAG_VILLA_FURNITURE_UNK_10
     Return
 
 _2155:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 25300
-    ScrCmd_070 25300
+    RemoveMoney 25300
     SetFlag FLAG_VILLA_FURNITURE_UNK_11
     Return
 
 _2169:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 150000
-    ScrCmd_070 150000
+    RemoveMoney 150000
     SetFlag FLAG_VILLA_FURNITURE_UNK_12
     Return
 
 _217D:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 150000
-    ScrCmd_070 150000
+    RemoveMoney 150000
     SetFlag FLAG_VILLA_FURNITURE_UNK_13
     Return
 
 _2191:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 146700
-    ScrCmd_070 146700
+    RemoveMoney 146700
     SetFlag FLAG_VILLA_FURNITURE_UNK_14
     Return
 
 _21A5:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 208000
-    ScrCmd_070 208000
+    RemoveMoney 208000
     SetFlag FLAG_VILLA_FURNITURE_UNK_15
     Return
 
 _21B9:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 52000
-    ScrCmd_070 52000
+    RemoveMoney 52000
     SetFlag FLAG_VILLA_FURNITURE_UNK_16
     Return
 
 _21CD:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 140000
-    ScrCmd_070 140000
+    RemoveMoney 140000
     SetFlag FLAG_VILLA_FURNITURE_UNK_17
     Return
 
 _21E1:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 108000
-    ScrCmd_070 108000
+    RemoveMoney 108000
     SetFlag FLAG_VILLA_FURNITURE_UNK_18
     Return
 
 _21F5:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 120000
-    ScrCmd_070 120000
+    RemoveMoney 120000
     SetFlag FLAG_VILLA_FURNITURE_UNK_19
     Return
 
