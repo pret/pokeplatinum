@@ -136,9 +136,7 @@ _01A4:
 _01E3:
     ScrCmd_071 0x800C, 0x3E8
     GoToIfEq 0x800C, 0, _029D
-    CanAddCoins 0x800C, 50
-    Noop
-    GoToIfEq 0x800C, FALSE, _02AC
+    GoToIfCannotAddCoins 50, _02AC
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x3E8
     ScrCmd_070 0x3E8
@@ -155,9 +153,7 @@ _01E3:
 _0240:
     ScrCmd_071 0x800C, 0x2710
     GoToIfEq 0x800C, 0, _029D
-    CanAddCoins 0x800C, 500
-    Noop
-    GoToIfEq 0x800C, FALSE, _02AC
+    GoToIfCannotAddCoins 500, _02AC
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x2710
     ScrCmd_070 0x2710
@@ -247,9 +243,7 @@ _0346:
     CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _03A1
     GoToIfSet FLAG_UNK_0x012E, _03AC
-    CanAddCoins 0x800C, 20
-    Noop
-    GoToIfEq 0x800C, FALSE, _03AC
+    GoToIfCannotAddCoins 20, _03AC
     SetFlag FLAG_UNK_0x012E
     BufferPlayerName 0
     Message GameCorner_Text_IveBeenWinningATonToday
@@ -282,9 +276,7 @@ _03B7:
     CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0412
     GoToIfSet FLAG_UNK_0x012F, _041D
-    CanAddCoins 0x800C, 50
-    Noop
-    GoToIfEq 0x800C, FALSE, _041D
+    GoToIfCannotAddCoins 50, _041D
     SetFlag FLAG_UNK_0x012F
     BufferPlayerName 0
     Message GameCorner_Text_WooHooClefairyLookYeahahItsACarnival

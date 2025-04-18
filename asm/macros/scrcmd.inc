@@ -3557,10 +3557,12 @@
     .short \destVarID
     .endm
 
-    .macro CanAddCoins destVar, amount
+    .macro GoToIfCannotAddCoins amount, offset
     .short 630
-    .short \destVar
+    .short 0x800C
     .short \amount
+    Noop
+    GoToIfEq 0x800C, FALSE, \offset
     .endm
 
     .macro GetDailyRandomLevel destVarID
