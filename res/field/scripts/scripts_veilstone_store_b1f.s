@@ -154,7 +154,7 @@ _018F:
 _01CE:
     AddItem ITEM_LAVA_COOKIE, 0x8004, 0x800C
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_334 35, 0x8005
+    AddToGameRecord RECORD_MONEY_SPENT, 0x8005
     ScrCmd_1A3 0x8005
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
@@ -304,8 +304,8 @@ _04B5:
 _04CE:
     GoToIfEq 0x8005, 0, _0503
     ScrCmd_289 0x800C, 0x8007, 0x8000, 0x8001, 0x8002, 0x8003, 20
-    ScrCmd_334 35, 0x1900
-    ScrCmd_1A3 0x1900
+    AddToGameRecord RECORD_MONEY_SPENT, 6400
+    ScrCmd_1A3 6400
     SubVar 0x8005, 1
     GoTo _04CE
     End

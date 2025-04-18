@@ -177,22 +177,22 @@ _0293:
     Return
 
 _029D:
-    ScrCmd_334 35, 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
     ScrCmd_070 200
     Return
 
 _02AB:
-    ScrCmd_334 35, 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
     ScrCmd_070 200
     Return
 
 _02B9:
-    ScrCmd_334 35, 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
     ScrCmd_070 200
     Return
 
 _02C7:
-    ScrCmd_334 35, 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
     ScrCmd_070 200
     Return
 

@@ -63,7 +63,7 @@ _00BB:
 _00E4:
     SetVar 0x8004, ITEM_MOOMOO_MILK
     GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0143
-    ScrCmd_334 35, 0x8006
+    AddToGameRecord RECORD_MONEY_SPENT, 0x8006
     ScrCmd_1A3 0x8006
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI

@@ -123,18 +123,18 @@ _015D:
     Return
 
 _0167:
-    ScrCmd_334 35, 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
     ScrCmd_070 200
     Return
 
 _0175:
-    ScrCmd_334 35, 0x12C
-    ScrCmd_070 0x12C
+    AddToGameRecord RECORD_MONEY_SPENT, 300
+    ScrCmd_070 300
     Return
 
 _0183:
-    ScrCmd_334 35, 0x15E
-    ScrCmd_070 0x15E
+    AddToGameRecord RECORD_MONEY_SPENT, 350
+    ScrCmd_070 350
     Return
 
 _0191:

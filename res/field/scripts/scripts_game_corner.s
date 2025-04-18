@@ -139,7 +139,7 @@ GameCorner_CoinsClerk_Buy50Coins:
     GoToIfNotEnoughMoney 1000, GameCorner_CoinsClerk_NotEnoughMoney
     GoToIfCannotAddCoins 50, GameCorner_CoinsClerk_CoinCaseFull
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_334 35, 1000
+    AddToGameRecord RECORD_MONEY_SPENT, 1000
     ScrCmd_070 1000
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
@@ -155,7 +155,7 @@ GameCorner_CoinsClerk_Buy500Coins:
     GoToIfNotEnoughMoney 10000, GameCorner_CoinsClerk_NotEnoughMoney
     GoToIfCannotAddCoins 500, GameCorner_CoinsClerk_CoinCaseFull
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_334 35, 10000
+    AddToGameRecord RECORD_MONEY_SPENT, 10000
     ScrCmd_070 10000
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI

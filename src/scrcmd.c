@@ -580,8 +580,8 @@ static BOOL ScrCmd_1EF(ScriptContext *ctx);
 static BOOL ScrCmd_IncrementGameRecord(ScriptContext *ctx);
 static BOOL ScrCmd_1E6(ScriptContext *ctx);
 static BOOL ScrCmd_1E7(ScriptContext *ctx);
-static BOOL ScrCmd_334(ScriptContext *ctx);
-static BOOL ScrCmd_335(ScriptContext *ctx);
+static BOOL ScrCmd_AddToGameRecord(ScriptContext *ctx);
+static BOOL ScrCmd_AddToGameRecordBigValue(ScriptContext *ctx);
 static BOOL ScrCmd_Dummy1F9(ScriptContext *ctx);
 static BOOL ScrCmd_GetPreviousMapID(ScriptContext *ctx);
 static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx);
@@ -1586,8 +1586,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_331,
     ScrCmd_332,
     ScrCmd_333,
-    ScrCmd_334,
-    ScrCmd_335,
+    ScrCmd_AddToGameRecord,
+    ScrCmd_AddToGameRecordBigValue,
     ScrCmd_336,
     ScrCmd_CheckHasSeenSpecies,
     ScrCmd_338,
@@ -6290,22 +6290,22 @@ static BOOL ScrCmd_1E7(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_334(ScriptContext *ctx)
+static BOOL ScrCmd_AddToGameRecord(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 recordID = ScriptContext_ReadHalfWord(ctx);
+    u16 value = ScriptContext_GetVar(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), v0, v1);
-    return 0;
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), recordID, value);
+    return FALSE;
 }
 
-static BOOL ScrCmd_335(ScriptContext *ctx)
+static BOOL ScrCmd_AddToGameRecordBigValue(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u32 v1 = ScriptContext_ReadWord(ctx);
+    u16 recordID = ScriptContext_ReadHalfWord(ctx);
+    u32 value = ScriptContext_ReadWord(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), v0, v1);
-    return 0;
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), recordID, value);
+    return FALSE;
 }
 
 static BOOL ScrCmd_202(ScriptContext *ctx)

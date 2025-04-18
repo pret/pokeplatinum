@@ -90,7 +90,7 @@ _012F:
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
     GoToIfNotEnoughMoney 10000, _024F
-    ScrCmd_334 35, 10000
+    AddToGameRecord RECORD_MONEY_SPENT, 10000
     ScrCmd_070 10000
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
@@ -110,7 +110,7 @@ _018A:
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
     GoToIfNotEnoughMoney 100000, _024F
-    ScrCmd_335 35, 100000
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 100000
     ScrCmd_070 100000
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
@@ -130,7 +130,7 @@ _01E7:
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
     GoToIfNotEnoughMoney 999999, _024F
-    ScrCmd_335 35, 999999
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 999999
     ScrCmd_070 999999
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI

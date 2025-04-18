@@ -4624,16 +4624,17 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_334 arg0, arg1
+    .macro AddToGameRecord recordID, value
     .short 820
-    .short \arg0
-    .short \arg1
+    .short \recordID
+    .short \value
     .endm
 
-    .macro ScrCmd_335 arg0, arg1
+    // For values equals or bigger than VARS_START
+    .macro AddToGameRecordBigValue recordID, value
     .short 821
-    .short \arg0
-    .long \arg1
+    .short \recordID
+    .long \value
     .endm
 
     .macro ScrCmd_336 arg0

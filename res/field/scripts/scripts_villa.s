@@ -1704,68 +1704,68 @@ _19E4:
     Return
 
 _1A05:
-    ScrCmd_2F5 0, 0x1D4C0, 1, 6
+    ScrCmd_2F5 0, 120000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_01, _1D29
     CallIfSet FLAG_VILLA_FURNITURE_UNK_01, _1D33
     Return
 
 _1A26:
-    ScrCmd_2F5 0, 0x15F90, 1, 6
+    ScrCmd_2F5 0, 90000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_02, _1D3D
     CallIfSet FLAG_VILLA_FURNITURE_UNK_02, _1D47
     Return
 
 _1A47:
-    ScrCmd_2F5 0, 0x2DA78, 1, 6
+    ScrCmd_2F5 0, 187000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_03, _1D51
     CallIfSet FLAG_VILLA_FURNITURE_UNK_03, _1D5B
     Return
 
 _1A68:
-    ScrCmd_2F5 0, 0xE290, 1, 6
+    ScrCmd_2F5 0, 58000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_04, _1D65
     CallIfSet FLAG_VILLA_FURNITURE_UNK_04, _1D6F
     Return
 
 _1A89:
-    ScrCmd_2F5 0, 0x35B60, 1, 6
+    ScrCmd_2F5 0, 220000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_05, _1D79
     CallIfSet FLAG_VILLA_FURNITURE_UNK_05, _1D83
     Return
 
 _1AAA:
-    ScrCmd_2F5 0, 0x27100, 1, 6
+    ScrCmd_2F5 0, 160000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_06, _1D8D
     CallIfSet FLAG_VILLA_FURNITURE_UNK_06, _1D97
     Return
 
 _1ACB:
-    ScrCmd_2F5 0, 0x249F0, 1, 6
+    ScrCmd_2F5 0, 150000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_07, _1DA1
     CallIfSet FLAG_VILLA_FURNITURE_UNK_07, _1DAB
     Return
 
 _1AEC:
-    ScrCmd_2F5 0, 0x1F018, 1, 6
+    ScrCmd_2F5 0, 127000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_08, _1DB5
     CallIfSet FLAG_VILLA_FURNITURE_UNK_08, _1DBF
     Return
 
 _1B0D:
-    ScrCmd_2F5 0, 0x1D4C0, 1, 6
+    ScrCmd_2F5 0, 120000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_09, _1DC9
     CallIfSet FLAG_VILLA_FURNITURE_UNK_09, _1DD3
     Return
 
 _1B2E:
-    ScrCmd_2F5 0, 0x29040, 1, 6
+    ScrCmd_2F5 0, 168000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_10, _1DDD
     CallIfSet FLAG_VILLA_FURNITURE_UNK_10, _1DE7
     Return
 
 _1B4F:
     GoToIfUnset FLAG_VILLA_FURNITURE_UNK_08, _1D13
-    ScrCmd_2F5 0, 0x62D4, 1, 6
+    ScrCmd_2F5 0, 25300, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_11, _1DF1
     CallIfSet FLAG_VILLA_FURNITURE_UNK_11, _1DFB
     Return
@@ -1773,7 +1773,7 @@ _1B4F:
 _1B7B:
     ScrCmd_30F 13, 0x800C
     GoToIfEq 0x800C, 0, _1D13
-    ScrCmd_2F5 0, 0x249F0, 1, 6
+    ScrCmd_2F5 0, 150000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_12, _1E05
     CallIfSet FLAG_VILLA_FURNITURE_UNK_12, _1E0F
     Return
@@ -1781,7 +1781,7 @@ _1B7B:
 _1BAF:
     ScrCmd_30F 14, 0x800C
     GoToIfEq 0x800C, 0, _1D13
-    ScrCmd_2F5 0, 0x249F0, 1, 6
+    ScrCmd_2F5 0, 150000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_13, _1E19
     CallIfSet FLAG_VILLA_FURNITURE_UNK_13, _1E23
     Return
@@ -1789,7 +1789,7 @@ _1BAF:
 _1BE3:
     ScrCmd_30F 15, 0x800C
     GoToIfEq 0x800C, 0, _1D13
-    ScrCmd_2F5 0, 0x23D0C, 1, 6
+    ScrCmd_2F5 0, 146700, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_14, _1E2D
     CallIfSet FLAG_VILLA_FURNITURE_UNK_14, _1E37
     Return
@@ -1797,7 +1797,7 @@ _1BE3:
 _1C17:
     ScrCmd_30F 16, 0x800C
     GoToIfEq 0x800C, 0, _1D13
-    ScrCmd_2F5 0, 0x32C80, 1, 6
+    ScrCmd_2F5 0, 208000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_15, _1E41
     CallIfSet FLAG_VILLA_FURNITURE_UNK_15, _1E4B
     Return
@@ -1805,7 +1805,7 @@ _1C17:
 _1C4B:
     ScrCmd_30F 17, 0x800C
     GoToIfEq 0x800C, 0, _1D13
-    ScrCmd_2F5 0, 0xCB20, 1, 6
+    ScrCmd_2F5 0, 52000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_16, _1E55
     CallIfSet FLAG_VILLA_FURNITURE_UNK_16, _1E5F
     Return
@@ -1813,14 +1813,14 @@ _1C4B:
 _1C7F:
     ScrCmd_30F 18, 0x800C
     GoToIfEq 0x800C, 0, _1D13
-    ScrCmd_2F5 0, 0x222E0, 1, 6
+    ScrCmd_2F5 0, 140000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_17, _1E69
     CallIfSet FLAG_VILLA_FURNITURE_UNK_17, _1E73
     Return
 
 _1CB3:
     GoToIfUnset FLAG_VILLA_FURNITURE_UNK_15, _1D13
-    ScrCmd_2F5 0, 0x1A5E0, 1, 6
+    ScrCmd_2F5 0, 108000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_18, _1E7D
     CallIfSet FLAG_VILLA_FURNITURE_UNK_18, _1E87
     Return
@@ -1828,7 +1828,7 @@ _1CB3:
 _1CDF:
     ScrCmd_30F 20, 0x800C
     GoToIfEq 0x800C, 0, _1D13
-    ScrCmd_2F5 0, 0x1D4C0, 1, 6
+    ScrCmd_2F5 0, 120000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_19, _1E91
     CallIfSet FLAG_VILLA_FURNITURE_UNK_19, _1E9B
     Return
@@ -2161,122 +2161,122 @@ _206F:
     Return
 
 _2079:
-    ScrCmd_335 35, 0
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 0
     ScrCmd_070 0
     SetFlag FLAG_VILLA_FURNITURE_UNK_00
     Return
 
 _208D:
-    ScrCmd_335 35, 0x1D4C0
-    ScrCmd_070 0x1D4C0
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 120000
+    ScrCmd_070 120000
     SetFlag FLAG_VILLA_FURNITURE_UNK_01
     Return
 
 _20A1:
-    ScrCmd_335 35, 0x15F90
-    ScrCmd_070 0x15F90
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 90000
+    ScrCmd_070 90000
     SetFlag FLAG_VILLA_FURNITURE_UNK_02
     Return
 
 _20B5:
-    ScrCmd_335 35, 0x2DA78
-    ScrCmd_070 0x2DA78
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 187000
+    ScrCmd_070 187000
     SetFlag FLAG_VILLA_FURNITURE_UNK_03
     Return
 
 _20C9:
-    ScrCmd_335 35, 0xE290
-    ScrCmd_070 0xE290
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 58000
+    ScrCmd_070 58000
     SetFlag FLAG_VILLA_FURNITURE_UNK_04
     Return
 
 _20DD:
-    ScrCmd_335 35, 0x35B60
-    ScrCmd_070 0x35B60
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 220000
+    ScrCmd_070 220000
     SetFlag FLAG_VILLA_FURNITURE_UNK_05
     Return
 
 _20F1:
-    ScrCmd_335 35, 0x27100
-    ScrCmd_070 0x27100
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 160000
+    ScrCmd_070 160000
     SetFlag FLAG_VILLA_FURNITURE_UNK_06
     Return
 
 _2105:
-    ScrCmd_335 35, 0x249F0
-    ScrCmd_070 0x249F0
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 150000
+    ScrCmd_070 150000
     SetFlag FLAG_VILLA_FURNITURE_UNK_07
     Return
 
 _2119:
-    ScrCmd_335 35, 0x1F018
-    ScrCmd_070 0x1F018
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 127000
+    ScrCmd_070 127000
     SetFlag FLAG_VILLA_FURNITURE_UNK_08
     Return
 
 _212D:
-    ScrCmd_335 35, 0x1D4C0
-    ScrCmd_070 0x1D4C0
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 120000
+    ScrCmd_070 120000
     SetFlag FLAG_VILLA_FURNITURE_UNK_09
     Return
 
 _2141:
-    ScrCmd_335 35, 0x29040
-    ScrCmd_070 0x29040
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 168000
+    ScrCmd_070 168000
     SetFlag FLAG_VILLA_FURNITURE_UNK_10
     Return
 
 _2155:
-    ScrCmd_335 35, 0x62D4
-    ScrCmd_070 0x62D4
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 25300
+    ScrCmd_070 25300
     SetFlag FLAG_VILLA_FURNITURE_UNK_11
     Return
 
 _2169:
-    ScrCmd_335 35, 0x249F0
-    ScrCmd_070 0x249F0
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 150000
+    ScrCmd_070 150000
     SetFlag FLAG_VILLA_FURNITURE_UNK_12
     Return
 
 _217D:
-    ScrCmd_335 35, 0x249F0
-    ScrCmd_070 0x249F0
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 150000
+    ScrCmd_070 150000
     SetFlag FLAG_VILLA_FURNITURE_UNK_13
     Return
 
 _2191:
-    ScrCmd_335 35, 0x23D0C
-    ScrCmd_070 0x23D0C
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 146700
+    ScrCmd_070 146700
     SetFlag FLAG_VILLA_FURNITURE_UNK_14
     Return
 
 _21A5:
-    ScrCmd_335 35, 0x32C80
-    ScrCmd_070 0x32C80
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 208000
+    ScrCmd_070 208000
     SetFlag FLAG_VILLA_FURNITURE_UNK_15
     Return
 
 _21B9:
-    ScrCmd_335 35, 0xCB20
-    ScrCmd_070 0xCB20
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 52000
+    ScrCmd_070 52000
     SetFlag FLAG_VILLA_FURNITURE_UNK_16
     Return
 
 _21CD:
-    ScrCmd_335 35, 0x222E0
-    ScrCmd_070 0x222E0
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 140000
+    ScrCmd_070 140000
     SetFlag FLAG_VILLA_FURNITURE_UNK_17
     Return
 
 _21E1:
-    ScrCmd_335 35, 0x1A5E0
-    ScrCmd_070 0x1A5E0
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 108000
+    ScrCmd_070 108000
     SetFlag FLAG_VILLA_FURNITURE_UNK_18
     Return
 
 _21F5:
-    ScrCmd_335 35, 0x1D4C0
-    ScrCmd_070 0x1D4C0
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 120000
+    ScrCmd_070 120000
     SetFlag FLAG_VILLA_FURNITURE_UNK_19
     Return
 
