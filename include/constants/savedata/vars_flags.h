@@ -219,7 +219,7 @@
 #define FLAG_UNK_0x00D3                             0x00D3
 #define FLAG_UNK_0x00D4                             0x00D4
 #define FLAG_UNK_0x00D5                             0x00D5
-#define FLAG_UNK_0x00D6                             0x00D6
+#define FLAG_ARRESTED_CHARON_STARK_MOUNTAIN         0x00D6
 #define FLAG_UNK_0x00D7                             0x00D7
 #define FLAG_UNK_0x00D8                             0x00D8
 #define FLAG_UNK_0x00D9                             0x00D9
@@ -307,9 +307,9 @@
 #define FLAG_UNK_0x012B                             0x012B
 #define FLAG_UNK_0x012C                             0x012C
 #define FLAG_UNK_0x012D                             0x012D
-#define FLAG_UNK_0x012E                             0x012E
-#define FLAG_UNK_0x012F                             0x012F
-#define FLAG_UNK_0x0130                             0x0130
+#define FLAG_GAME_CORNER_RECEIVED_20_COINS_OLD_MAN  0x012E
+#define FLAG_GAME_CORNER_RECEIVED_50_COINS_FARMER   0x012F
+#define FLAG_GAME_CORNER_RECEIVED_TM64              0x0130
 #define FLAG_UNK_0x0131                             0x0131
 #define FLAG_UNK_0x0132                             0x0132
 #define FLAG_UNK_0x0133                             0x0133
@@ -362,7 +362,7 @@
 #define FLAG_UNK_0x0162                             0x0162
 #define FLAG_UNK_0x0163                             0x0163
 #define FLAG_UNK_0x0164                             0x0164
-#define FLAG_UNK_0x0165                             0x0165
+#define FLAG_GAME_CORNER_SAVED_TM64                 0x0165
 #define FLAG_UNK_0x0166                             0x0166
 #define FLAG_UNK_0x0167                             0x0167
 #define FLAG_UNK_0x0168                             0x0168

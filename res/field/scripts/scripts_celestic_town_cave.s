@@ -11,7 +11,7 @@
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_UNK_0x00D6, _0596
+    GoToIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0596
     GoTo _0027
     End
 
