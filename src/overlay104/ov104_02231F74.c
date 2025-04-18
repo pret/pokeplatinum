@@ -906,7 +906,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapI
         v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
         Pokemon_BuildSpriteTemplate(&v3, param1, 2);
-        sub_020136A4(v3.archive, v3.character, heapID, 0, 0, 10, 10, v4, v9, 0, 2, v10);
+        sub_020136A4(v3.narcID, v3.character, heapID, 0, 0, 10, 10, v4, v9, 0, 2, v10);
     }
 
     {
@@ -921,7 +921,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapI
         v12 = Sprite_GetPaletteProxy(v5->sprite);
         v13 = PlttTransfer_GetPlttOffset(v12, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteData_LoadBufferFromFileStart(v2, v3.archive, v3.palette, heapID, 2, 0x20, v13 * 16);
+        PaletteData_LoadBufferFromFileStart(v2, v3.narcID, v3.palette, heapID, 2, 0x20, v13 * 16);
 
         if (param8 > 0) {
             PaletteData_Blend(v2, 2, v13 * 16, 16, param8, param9);

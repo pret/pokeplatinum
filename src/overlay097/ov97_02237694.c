@@ -573,7 +573,7 @@ static void ov97_02237EF8(Sprite *param0, Pokemon *param1, int param2, int param
     BuildPokemonSpriteTemplate(param5, param2, v0, 2, v1, param3, 0);
 
     v2 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-    sub_020136A4(param5->archive, param5->character, v3->heapID, 0, 0, 10, 10, param4, v2, 0, 2, param2);
+    sub_020136A4(param5->narcID, param5->character, v3->heapID, 0, 0, 10, 10, param4, v2, 0, 2, param2);
 
     DC_FlushRange(param4, 0x20 * 10 * 10);
 
@@ -588,7 +588,7 @@ static void ov97_02237EF8(Sprite *param0, Pokemon *param1, int param2, int param
         NNSG2dImagePaletteProxy *v6 = Sprite_GetPaletteProxy(param0);
         u32 v7 = NNS_G2dGetImagePaletteLocation(v6, NNS_G2D_VRAM_TYPE_2DSUB);
 
-        Graphics_LoadPalette(param5->archive, param5->palette, 5, 0x20 * (2 + 1) + v7, 32, v3->heapID);
+        Graphics_LoadPalette(param5->narcID, param5->palette, 5, 0x20 * (2 + 1) + v7, 32, v3->heapID);
     }
 }
 

@@ -589,13 +589,13 @@ void ov94_0223DB2C(Pokemon *param0)
         int v2 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
         int v3 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
 
-        sub_020136A4(v0.archive, v0.character, HEAP_ID_62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
+        sub_020136A4(v0.narcID, v0.character, HEAP_ID_62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
     }
 
     DC_FlushRange(v1, (0x20 * 10 * 10));
     GX_LoadOBJ(v1, ((18 * 32 + 16) * 32), (0x20 * 10 * 10));
 
-    Graphics_LoadPalette(v0.archive, v0.palette, 1, 0x20 * 13, 32, HEAP_ID_62);
+    Graphics_LoadPalette(v0.narcID, v0.palette, 1, 0x20 * 13, 32, HEAP_ID_62);
     Heap_FreeToHeap(v1);
 }
 

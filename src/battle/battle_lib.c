@@ -188,31 +188,31 @@ void BattleSystem_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCt
     }
 }
 
-void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file)
+void BattleSystem_LoadScript(BattleContext *battleCtx, enum NarcID narcID, int file)
 {
-    GF_ASSERT(NARC_GetMemberSizeByIndexPair(narc, file) < BATTLE_SCRIPT_SIZE_MAX * sizeof(u32));
+    GF_ASSERT(NARC_GetMemberSizeByIndexPair(narcID, file) < BATTLE_SCRIPT_SIZE_MAX * sizeof(u32));
 
-    battleCtx->scriptNarc = narc;
+    battleCtx->scriptNarc = narcID;
     battleCtx->scriptFile = file;
     battleCtx->scriptCursor = 0;
 
-    NARC_ReadWholeMemberByIndexPair(&battleCtx->battleScript, narc, file);
+    NARC_ReadWholeMemberByIndexPair(&battleCtx->battleScript, narcID, file);
 }
 
-void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file)
+void BattleSystem_CallScript(BattleContext *battleCtx, enum NarcID narcID, int file)
 {
-    GF_ASSERT(NARC_GetMemberSizeByIndexPair(narc, file) < 400 * 4);
+    GF_ASSERT(NARC_GetMemberSizeByIndexPair(narcID, file) < 400 * 4);
     GF_ASSERT(battleCtx->scriptStackPointer < 4);
 
     battleCtx->scriptStackNarc[battleCtx->scriptStackPointer] = battleCtx->scriptNarc;
     battleCtx->scriptStackFile[battleCtx->scriptStackPointer] = battleCtx->scriptFile;
     battleCtx->scriptStackCursor[battleCtx->scriptStackPointer] = battleCtx->scriptCursor;
     battleCtx->scriptStackPointer++;
-    battleCtx->scriptNarc = narc;
+    battleCtx->scriptNarc = narcID;
     battleCtx->scriptFile = file;
     battleCtx->scriptCursor = 0;
 
-    NARC_ReadWholeMemberByIndexPair(&battleCtx->battleScript, narc, file);
+    NARC_ReadWholeMemberByIndexPair(&battleCtx->battleScript, narcID, file);
 }
 
 BOOL BattleSystem_PopScript(BattleContext *battleCtx)

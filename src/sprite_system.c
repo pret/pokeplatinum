@@ -21,7 +21,7 @@
 #include "system.h"
 
 static Sprite *CreateSpriteFromResourceHeader(SpriteSystem *spriteSys, SpriteManager *spriteMan, int resourceHeaderID, s16 x, s16 y, s16 z, u16 animIdx, int priority, int plttIdx, enum NNS_G2D_VRAM_TYPE vramType, int param10, int param11, int param12, int param13);
-static BOOL LoadResObjInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, int compressed, int type, int resourceID);
+static BOOL LoadResObjInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, int compressed, int type, int resourceID);
 static BOOL LoadResObjFromNarcInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, int type, int resourceID);
 static BOOL RegisterLoadedResource(SpriteResourceList *resourceList, SpriteResource *resource);
 static BOOL UnregisterLoadedResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int resourceID);
@@ -337,7 +337,7 @@ BOOL SpriteSystem_InitManagerWithCapacities(SpriteSystem *spriteSys, SpriteManag
     return TRUE;
 }
 
-BOOL SpriteSystem_LoadCharResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
+BOOL SpriteSystem_LoadCharResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
     if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_CHAR], resourceID) == FALSE) {
         return FALSE;
@@ -383,7 +383,7 @@ BOOL SpriteSystem_LoadCharResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteMana
     return (resource == NULL) ? FALSE : TRUE;
 }
 
-s8 SpriteSystem_LoadPlttResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
+s8 SpriteSystem_LoadPlttResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
     if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_PLTT], resourceID) == FALSE) {
         return -1;
@@ -434,7 +434,7 @@ s8 SpriteSystem_LoadPlttResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteManage
     return -1;
 }
 
-u8 SpriteSystem_LoadPaletteBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
+u8 SpriteSystem_LoadPaletteBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
     int paletteOffset = SpriteSystem_LoadPlttResObj(spriteSys, spriteMan, narcID, memberIdx, compressed, paletteIdx, vramType, resourceID);
     if (paletteOffset != -1) {
@@ -454,7 +454,7 @@ u8 SpriteSystem_LoadPaletteBufferFromOpenNarc(PaletteData *paletteData, enum Pal
     return paletteOffset;
 }
 
-BOOL SpriteSystem_LoadCellResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, int compressed, int resourceID)
+BOOL SpriteSystem_LoadCellResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, int compressed, int resourceID)
 {
     return LoadResObjInternal(spriteSys, spriteMan, narcID, memberIdx, compressed, SPRITE_RESOURCE_CELL, resourceID);
 }
@@ -464,7 +464,7 @@ BOOL SpriteSystem_LoadCellResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteMana
     return LoadResObjFromNarcInternal(spriteSys, spriteMan, narc, memberIdx, compressed, SPRITE_RESOURCE_CELL, resourceID);
 }
 
-BOOL SpriteSystem_LoadAnimResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, int compressed, int resourceID)
+BOOL SpriteSystem_LoadAnimResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, int compressed, int resourceID)
 {
     return LoadResObjInternal(spriteSys, spriteMan, narcID, memberIdx, compressed, SPRITE_RESOURCE_ANIM, resourceID);
 }
@@ -624,7 +624,7 @@ void Sprite_DeleteAndFreeResources(ManagedSprite *managedSprite)
     Heap_FreeToHeap(managedSprite);
 }
 
-static BOOL LoadResObjInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, int compressed, int type, int resourceID)
+static BOOL LoadResObjInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, int compressed, int type, int resourceID)
 {
     if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[type], resourceID) == FALSE) {
         return FALSE;
@@ -1138,7 +1138,7 @@ u32 ManagedSprite_GetUserAttrForCurrentAnimFrame(ManagedSprite *managedSprite)
     return Sprite_GetUserAttrForCurrentAnimFrame(managedSprite->sprite);
 }
 
-BOOL SpriteSystem_LoadCharResObjWithHardwareMappingType(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
+BOOL SpriteSystem_LoadCharResObjWithHardwareMappingType(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
     if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_CHAR], resourceID) == FALSE) {
         return FALSE;
@@ -1161,7 +1161,7 @@ BOOL SpriteSystem_LoadCharResObjWithHardwareMappingType(SpriteSystem *spriteSys,
     return (resource == NULL) ? FALSE : TRUE;
 }
 
-BOOL SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
+BOOL SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
     if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_CHAR], resourceID) == FALSE) {
         return FALSE;
@@ -1207,7 +1207,7 @@ BOOL SpriteSystem_LoadCharResObjFromOpenNarcWithHardwareMappingType(SpriteSystem
     return (resource == NULL) ? FALSE : TRUE;
 }
 
-void SpriteSystem_ReplaceCharResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, int resourceID)
+void SpriteSystem_ReplaceCharResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, BOOL compressed, int resourceID)
 {
     SpriteResource *resource = SpriteResourceCollection_Find(spriteMan->ownedResources[SPRITE_RESOURCE_CHAR], resourceID);
     SpriteResourceCollection_ModifyTiles(spriteMan->ownedResources[SPRITE_RESOURCE_CHAR],
@@ -1219,7 +1219,7 @@ void SpriteSystem_ReplaceCharResObj(SpriteSystem *spriteSys, SpriteManager *spri
     SpriteTransfer_RetransferCharData(resource);
 }
 
-void SpriteSystem_ReplacePlttResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, int resourceID)
+void SpriteSystem_ReplacePlttResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, BOOL compressed, int resourceID)
 {
     SpriteResource *resource = SpriteResourceCollection_Find(spriteMan->ownedResources[SPRITE_RESOURCE_PLTT], resourceID);
     SpriteResourceCollection_ModifyPalette(spriteMan->ownedResources[SPRITE_RESOURCE_PLTT],

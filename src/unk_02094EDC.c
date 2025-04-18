@@ -671,9 +671,9 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
 
     if (param4 != NULL) {
         GF_ASSERT(param4->unk_00 != NULL);
-        sub_02013610(v0.archive, v0.character, heapID, param4->unk_00);
+        sub_02013610(v0.narcID, v0.character, heapID, param4->unk_00);
         param4->unk_08 = v0.palette;
-        param4->unk_04 = v0.archive;
+        param4->unk_04 = v0.narcID;
     }
 
     v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param6, param7 + v2, param8, param1, NULL, NULL);

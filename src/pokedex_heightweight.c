@@ -46,8 +46,8 @@ void Pokedex_HeightWeightData_Load(HeightWeightData *HWData, int trainerIsGirl, 
     GF_ASSERT(HWData->height == NULL);
     GF_ASSERT(HWData->weight == NULL);
 
-    u32 pokedex_data_narc_index = Pokedex_Data_NARC_Index();
-    NARC *pokedexDataNARC = NARC_ctor(pokedex_data_narc_index, heapID);
+    enum NarcID pokedexDataNarcID = Pokedex_Data_NARC_Index();
+    NARC *pokedexDataNARC = NARC_ctor(pokedexDataNarcID, heapID);
 
     HWData->height = Pokedex_Height_Array(pokedexDataNARC, heapID);
     HWData->weight = Pokedex_Weight_Array(pokedexDataNARC, heapID);
