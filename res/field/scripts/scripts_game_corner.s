@@ -101,7 +101,7 @@ _013E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message GameCorner_Text_WelcomeToTheVeilstoneGameCorner
     CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _018D
     GoToIfSet FLAG_UNK_0x0130, _0198
@@ -112,7 +112,7 @@ _013E:
     End
 
 _018D:
-    Message 1
+    Message GameCorner_Text_DidYouWantSomeCoins_NoCoinCase
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -122,7 +122,7 @@ _0198:
     ShowCoins 20, 2
     ShowMoney 20, 7
 _01A4:
-    Message 2
+    Message GameCorner_Text_DidYouWantSomeCoins_1000For50Coins
     InitGlobalTextMenu 1, 1, 0, 0x800C
     AddMenuEntryImm 125, 0
     AddMenuEntryImm 126, 1
@@ -148,7 +148,7 @@ _01E3:
     AddCoins 50
     UpdateCoinDisplay
     WaitFanfare SEQ_SE_PL_COIN
-    Message 3
+    Message GameCorner_Text_DidYouWantSomeCoins_ThankYouVeryMuchHereAreYourCoins
     WaitTime 30, 0x800C
     GoTo _01A4
 
@@ -167,12 +167,12 @@ _0240:
     AddCoins 500
     UpdateCoinDisplay
     WaitFanfare SEQ_SE_PL_COIN
-    Message 3
+    Message GameCorner_Text_DidYouWantSomeCoins_ThankYouVeryMuchHereAreYourCoins
     WaitTime 30, 0x800C
     GoTo _01A4
 
 _029D:
-    Message 4
+    Message GameCorner_Text_UmYouDontAppearToHaveEnoughMoney
     WaitABXPadPress
     CloseMessage
     HideCoins
@@ -181,7 +181,7 @@ _029D:
     End
 
 _02AC:
-    Message 5
+    Message GameCorner_Text_OhYourCoinCaseIsFull
     WaitABXPadPress
     CloseMessage
     HideCoins
@@ -190,7 +190,7 @@ _02AC:
     End
 
 _02BB:
-    Message 6
+    Message GameCorner_Text_OhYouDontNeedCoinsThen
     WaitABXPadPress
     CloseMessage
     HideCoins
@@ -207,19 +207,19 @@ GameCorner_GiveTM64:
 
 _02F3:
     GoToIfSet FLAG_UNK_0x0165, _0309
-    Message 7
+    Message GameCorner_Text_TenStraightBonusRoundsOnTheSlots
     GoTo _0314
     End
 
 _0309:
-    Message 10
+    Message GameCorner_Text_WeReStillAmazedByYourTenStraightBonusRounds
     GoTo _0314
     End
 
 _0314:
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0130
-    Message 8
+    Message GameCorner_Text_PleaseKeepPlayingTheSlots
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -234,7 +234,7 @@ _0333:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 12
+    Message GameCorner_Text_IllEplainHowTheSlotMachinesWorkAtThisGameCorner
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -252,7 +252,7 @@ _0346:
     GoToIfEq 0x800C, FALSE, _03AC
     SetFlag FLAG_UNK_0x012E
     BufferPlayerName 0
-    Message 14
+    Message GameCorner_Text_IveBeenWinningATonToday
     WaitABXPadPress
     PlayFanfare SEQ_SE_PL_COIN
     AddCoins 20
@@ -262,14 +262,14 @@ _0346:
     End
 
 _03A1:
-    Message 13
+    Message GameCorner_Text_HeyKidIfYouWantToPlayHereYouNeedACoinCase
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _03AC:
-    Message 15
+    Message GameCorner_Text_ListenWhenClefairyAppears
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -287,7 +287,7 @@ _03B7:
     GoToIfEq 0x800C, FALSE, _041D
     SetFlag FLAG_UNK_0x012F
     BufferPlayerName 0
-    Message 17
+    Message GameCorner_Text_WooHooClefairyLookYeahahItsACarnival
     WaitABXPadPress
     PlayFanfare SEQ_SE_PL_COIN
     AddCoins 50
@@ -297,14 +297,14 @@ _03B7:
     End
 
 _0412:
-    Message 16
+    Message GameCorner_Text_WooHooClefairyLookAtItItsDrivingMeBananas
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _041D:
-    Message 18
+    Message GameCorner_Text_WooHooClefairyItsAdorable
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -314,7 +314,7 @@ _0428:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 19
+    Message GameCorner_Text_IWantCoinsOfCourse
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -324,7 +324,7 @@ _043B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 20
+    Message GameCorner_Text_WhenAPokeBallAppears
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -334,7 +334,7 @@ _044E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 21
+    Message GameCorner_Text_AFriendInMyGroupScoredATonOfCoinsHere
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -344,7 +344,7 @@ _0461:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 22
+    Message GameCorner_Text_SighNothingGoingMyWayToday
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -355,7 +355,7 @@ _0474:
     BufferNumber 0, 0x4040
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 25
+    Message GameCorner_Text_ShootFor10
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -365,7 +365,7 @@ _0497:
     BufferNumber 0, 0x3E7
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 25
+    Message GameCorner_Text_ShootFor10
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -376,12 +376,12 @@ _04AD:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00D6, _04CB
-    Message 23
+    Message GameCorner_Text_Looker
     GoTo _04D6
     End
 
 _04CB:
-    Message 24
+    Message GameCorner_Text_Looker_PostStarkMountain
     GoTo _04D6
     End
 
