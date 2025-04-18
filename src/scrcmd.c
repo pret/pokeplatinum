@@ -6879,9 +6879,9 @@ static BOOL ScrCmd_ShowPoketch(ScriptContext *ctx)
 
 static BOOL ScrCmd_267(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 slotMachineID = ScriptContext_GetVar(ctx);
 
-    sub_0203E414(ctx->fieldSystem->task, v0);
+    sub_0203E414(ctx->fieldSystem->task, slotMachineID);
     return 1;
 }
 

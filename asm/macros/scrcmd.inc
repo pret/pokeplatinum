@@ -3474,9 +3474,9 @@
     .short 614
     .endm
 
-    .macro ScrCmd_267 arg0
+    .macro ScrCmd_267 slotMachineID
     .short 615
-    .short \arg0
+    .short \slotMachineID
     .endm
 
     .macro GetHour destVar
