@@ -38,8 +38,7 @@ _006A:
     GoToIfEq 0x800C, 6, _0168
 _008C:
     Message 1
-    CheckMoney 0x800C, 500
-    GoToIfEq 0x800C, 0, _0141
+    GoToIfNotEnoughMoney 500, _0141
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_070 500
     UpdateMoneyDisplay

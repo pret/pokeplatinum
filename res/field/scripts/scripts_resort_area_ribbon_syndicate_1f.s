@@ -89,8 +89,7 @@ _012F:
     Message 3
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
-    CheckMoney 0x800C, 10000
-    GoToIfEq 0x800C, 0, _024F
+    GoToIfNotEnoughMoney 10000, _024F
     ScrCmd_334 35, 10000
     ScrCmd_070 10000
     UpdateMoneyDisplay
@@ -110,8 +109,7 @@ _018A:
     Message 4
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
-    CheckMoney 0x800C, 100000
-    GoToIfEq 0x800C, 0, _024F
+    GoToIfNotEnoughMoney 100000, _024F
     ScrCmd_335 35, 100000
     ScrCmd_070 100000
     UpdateMoneyDisplay
@@ -131,8 +129,7 @@ _01E7:
     Message 5
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
-    CheckMoney 0x800C, 999999
-    GoToIfEq 0x800C, 0, _024F
+    GoToIfNotEnoughMoney 999999, _024F
     ScrCmd_335 35, 999999
     ScrCmd_070 999999
     UpdateMoneyDisplay

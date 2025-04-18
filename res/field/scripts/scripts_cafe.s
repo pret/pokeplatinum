@@ -47,16 +47,14 @@ _0044:
     End
 
 _0092:
-    CheckMoney 0x800C, 500
-    GoToIfEq 0x800C, 0, _0150
+    GoToIfNotEnoughMoney 500, _0150
     SetVar 0x8005, 1
     SetVar 0x8006, 500
     GoTo _00E4
     End
 
 _00BB:
-    CheckMoney 0x800C, 6000
-    GoToIfEq 0x800C, 0, _0150
+    GoToIfNotEnoughMoney 6000, _0150
     SetVar 0x8005, 12
     SetVar 0x8006, 6000
     GoTo _00E4

@@ -226,80 +226,70 @@ _0311:
     End
 
 _031B:
-    CheckMoney 0x800C, 6400
-    GoToIfEq 0x800C, 0, _052C
+    GoToIfNotEnoughMoney 6400, _052C
     SetVar 0x8005, 1
     Call _0557
     GoTo _04B5
     End
 
 _0344:
-    CheckMoney 0x800C, 6400
-    GoToIfEq 0x800C, 0, _052C
+    GoToIfNotEnoughMoney 6400, _052C
     SetVar 0x8005, 1
     Call _0577
     GoTo _04B5
     End
 
 _036D:
-    CheckMoney 0x800C, 6400
-    GoToIfEq 0x800C, 0, _052C
+    GoToIfNotEnoughMoney 6400, _052C
     SetVar 0x8005, 1
     Call _0597
     GoTo _04B5
     End
 
 _0396:
-    CheckMoney 0x800C, 6400
-    GoToIfEq 0x800C, 0, _052C
+    GoToIfNotEnoughMoney 6400, _052C
     SetVar 0x8005, 1
     Call _05B7
     GoTo _04B5
     End
 
 _03BF:
-    CheckMoney 0x800C, 6400
-    GoToIfEq 0x800C, 0, _052C
+    GoToIfNotEnoughMoney 6400, _052C
     SetVar 0x8005, 1
     Call _05D7
     GoTo _04B5
     End
 
 _03E8:
-    CheckMoney 0x800C, 6400
-    GoToIfEq 0x800C, 0, _052C
+    GoToIfNotEnoughMoney 6400, _052C
     SetVar 0x8005, 1
     Call _05F7
     GoTo _04B5
     End
 
 _0411:
-    CheckMoney 0x800C, 6400
-    GoToIfEq 0x800C, 0, _052C
+    GoToIfNotEnoughMoney 6400, _052C
     SetVar 0x8005, 1
     Call _0617
     GoTo _04B5
     End
 
 _043A:
-    CheckMoney 0x800C, 6400
-    GoToIfEq 0x800C, 0, _052C
+    GoToIfNotEnoughMoney 6400, _052C
     SetVar 0x8005, 1
     Call _0637
     GoTo _04B5
     End
 
 _0463:
-    CheckMoney 0x800C, 6400
-    GoToIfEq 0x800C, 0, _052C
+    GoToIfNotEnoughMoney 6400, _052C
     SetVar 0x8005, 1
     Call _0657
     GoTo _04B5
     End
 
 _048C:
-    CheckMoney 0x800C, 6400
-    GoToIfEq 0x800C, 0, _052C
+    GoToIfNotEnoughMoney 6400, _052C
     SetVar 0x8005, 1
     Call _0677
     GoTo _04B5

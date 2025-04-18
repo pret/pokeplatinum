@@ -189,16 +189,14 @@ _01F3:
     End
 
 _0241:
-    CheckMoney 0x800C, 100
-    GoToIfEq 0x800C, 0, _02E2
+    GoToIfNotEnoughMoney 100, _02E2
     SetVar 0x8005, 1
     SetVar 0x8006, 100
     GoTo _0293
     End
 
 _026A:
-    CheckMoney 0x800C, 1000
-    GoToIfEq 0x800C, 0, _02E2
+    GoToIfNotEnoughMoney 1000, _02E2
     SetVar 0x8005, 10
     SetVar 0x8006, 1000
     GoTo _0293

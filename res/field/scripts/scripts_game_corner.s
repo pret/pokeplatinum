@@ -134,8 +134,7 @@ _01A4:
     GoTo _02BB
 
 _01E3:
-    CheckMoney 0x800C, 1000
-    GoToIfEq 0x800C, 0, _029D
+    GoToIfNotEnoughMoney 1000, _029D
     GoToIfCannotAddCoins 50, _02AC
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 1000
@@ -151,8 +150,7 @@ _01E3:
     GoTo _01A4
 
 _0240:
-    CheckMoney 0x800C, 10000
-    GoToIfEq 0x800C, 0, _029D
+    GoToIfNotEnoughMoney 10000, _029D
     GoToIfCannotAddCoins 500, _02AC
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 10000
