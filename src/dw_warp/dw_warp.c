@@ -103,7 +103,7 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
     return TRUE;
 }
 
-enum {
+enum DWWarpState {
     DWARP_SEQ_SCREENWIPE = 0,
     DWARP_SEQ_LOOP,
     DWARP_SEQ_CLEAR_SCREEN,

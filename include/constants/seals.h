@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_SEALS_H
 #define POKEPLATINUM_CONSTANTS_SEALS_H
 
-enum {
+enum Seal {
     SEAL_DUMMY,
 
     HEART_SEAL_A,

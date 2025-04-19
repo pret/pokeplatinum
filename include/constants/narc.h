@@ -2,7 +2,7 @@
 #define POKEPLATINUM_CONSTANTS_NARC_H
 
 // Indexes into the NARC path table, make sure these match the table in narc.c
-enum {
+enum NarcID {
     NARC_INDEX_BATTLE__SKILL__WAZA_SEQ = 0,
     NARC_INDEX_BATTLE__SKILL__SUB_SEQ,
     NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL,

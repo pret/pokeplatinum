@@ -2747,7 +2747,7 @@ static void ov16_02260384(SysTask *param0, void *param1)
     }
 }
 
-enum {
+enum SlideHealthbarInState {
     SLIDE_HEALTHBAR_IN_STATE_ENABLE = 0,
     SLIDE_HEALTHBAR_IN_STATE_WAIT,
     SLIDE_HEALTHBAR_IN_STATE_DONE,
@@ -2789,7 +2789,7 @@ static void SlideHealthbarInTask(SysTask *task, void *data)
     }
 }
 
-enum {
+enum SlideHealthbarOutState {
     SLIDE_HEALTHBAR_OUT_STATE_WAIT = 0,
     SLIDE_HEALTHBAR_OUT_STATE_DONE,
 };

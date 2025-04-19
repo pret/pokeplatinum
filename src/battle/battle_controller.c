@@ -44,7 +44,7 @@
 #include "trainer_info.h"
 #include "unk_0200F174.h"
 
-enum {
+enum BattleControllerState {
     STATE_PROCESSING = 0,
     STATE_BREAK_OUT,
     STATE_DONE
@@ -282,7 +282,7 @@ static void BattleController_InitCommandSelection(BattleSystem *battleSys, Battl
     battleCtx->command = BATTLE_CONTROL_COMMAND_SELECTION_INPUT;
 }
 
-enum {
+enum CommandSelectionState {
     COMMAND_SELECTION_INIT = 0,
     COMMAND_SELECTION_SELECT,
     COMMAND_SELECTION_SELECT2,
@@ -789,7 +789,7 @@ static void BattleController_CalcTurnOrder(BattleSystem *battleSys, BattleContex
     battleCtx->command = BATTLE_CONTROL_CHECK_PRE_MOVE_ACTIONS;
 }
 
-enum {
+enum PreMoveActionState {
     PRE_MOVE_ACTION_START = 0,
 
     PRE_MOVE_ACTION_STATE_TIGHTEN_FOCUS = PRE_MOVE_ACTION_START,
@@ -892,7 +892,7 @@ static void BattleController_BranchActions(BattleSystem *battleSys, BattleContex
     }
 }
 
-enum {
+enum FieldCondCheckState {
     FIELD_COND_CHECK_START = 0,
 
     FIELD_COND_CHECK_STATE_REFLECT = FIELD_COND_CHECK_START,
@@ -1251,7 +1251,7 @@ static void BattleController_CheckFieldConditions(BattleSystem *battleSys, Battl
     }
 }
 
-enum {
+enum MonCondCheckState {
     MON_COND_CHECK_START = 0,
 
     MON_COND_CHECK_STATE_INGRAIN = MON_COND_CHECK_START,
@@ -1731,7 +1731,7 @@ static void BattleController_CheckMonConditions(BattleSystem *battleSys, BattleC
     battleCtx->command = BATTLE_CONTROL_CHECK_SIDE_CONDITIONS;
 }
 
-enum {
+enum SideCondCheckState {
     SIDE_COND_CHECK_START = 0,
 
     SIDE_COND_CHECK_STATE_FUTURE_SIGHT = SIDE_COND_CHECK_START,
@@ -2371,7 +2371,7 @@ static int BattleController_CheckTypeChart(BattleSystem *battleSys, BattleContex
     return 0;
 }
 
-enum {
+enum CheckStatusState {
     CHECK_STATUS_START = 0,
 
     CHECK_STATUS_STATE_SLEEP,
@@ -2393,7 +2393,7 @@ enum {
     CHECK_STATUS_END,
 };
 
-enum {
+enum CheckStatusAction {
     CHECK_STATUS_LOOP_BACK = 0,
     CHECK_STATUS_DISRUPT_MOVE, // wholly disrupt the move; attacker does not get a turn
     CHECK_STATUS_GO_TO_SCRIPT, // execute a given script, then proceed with the chosen move
@@ -2754,7 +2754,7 @@ static BOOL BattleController_CheckStatusDisruption(BattleSystem *battleSys, Batt
     return result != CHECK_STATUS_DONE;
 }
 
-enum {
+enum ImmunityAbilityState {
     IMMUNITY_ABILITY_STATE_START = 0,
 
     IMMUNITY_ABILITY_STATE_CHECK = IMMUNITY_ABILITY_STATE_START,
@@ -3119,7 +3119,7 @@ static void BattleController_ExecScript(BattleSystem *battleSys, BattleContext *
     }
 }
 
-enum {
+enum BeforeMoveState {
     BEFORE_MOVE_START = 0,
 
     BEFORE_MOVE_STATE_QUICK_CLAW = BEFORE_MOVE_START,
@@ -3220,7 +3220,7 @@ static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *
     BattleSystem_UpdateMetronomeCount(battleSys, battleCtx);
 }
 
-enum {
+enum TryMoveState {
     TRY_MOVE_START = 0,
 
     TRY_MOVE_STATE_CHECK_VALID_TARGET = TRY_MOVE_START,
@@ -3443,7 +3443,7 @@ static void BattleController_UpdateHP(BattleSystem *battleSys, BattleContext *ba
     }
 }
 
-enum {
+enum AfterMoveMessageState {
     AFTER_MOVE_MESSAGE_START = 0,
 
     ONE_HIT_CRITICAL = 0,
@@ -3619,7 +3619,7 @@ static inline int CalcCurrentMoveType(BattleContext *battleCtx)
     return CURRENT_MOVE_DATA.type;
 }
 
-enum {
+enum AfterMoveEffectState {
     AFTER_MOVE_EFFECT_START = 0,
 
     AFTER_MOVE_EFFECT_TOGGLE_VANISH_FLAG = AFTER_MOVE_EFFECT_START,
@@ -4689,7 +4689,7 @@ static BOOL BattleController_ToggleSemiInvulnMons(BattleSystem *battleSys, Battl
     return result;
 }
 
-enum {
+enum AfterMoveHitState {
     AFTER_MOVE_HIT_START = 0,
 
     AFTER_MOVE_HIT_STATE_RAGE = AFTER_MOVE_HIT_START,

@@ -2465,7 +2465,7 @@ static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx
     return FALSE;
 }
 
-enum {
+enum GetExpTaskState {
     SEQ_GET_EXP_START = 0,
     SEQ_GET_EXP_WAIT_MESSAGE_PRINT,
     SEQ_GET_EXP_WAIT_MESSAGE_DELAY,
@@ -2511,7 +2511,7 @@ enum {
     SEQ_GET_EXP_DONE,
 };
 
-enum {
+enum GetExpTaskDataIndex {
     GET_EXP_MSG_INDEX = 0,
     GET_EXP_MSG_DELAY,
     GET_EXP_LEARNSET_INDEX,

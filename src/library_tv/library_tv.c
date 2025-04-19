@@ -53,7 +53,7 @@ BOOL LibraryTV_Init(OverlayManager *ovy, int *state)
     return TRUE;
 }
 
-enum {
+enum LibraryTVAppState {
     STATE_INIT,
     STATE_BGM_START,
     STATE_FADE_START,

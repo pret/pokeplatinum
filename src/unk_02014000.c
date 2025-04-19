@@ -615,7 +615,7 @@ void sub_020147B0(SPLEmitter *param0, fx32 param1)
     param0->resource->header->emissionCount = param1;
 }
 
-enum {
+enum SpecialFieldType {
     SPL_FLD_TYPE_GRAVITY = 0,
     SPL_FLD_TYPE_RANDOM,
     SPL_FLD_TYPE_MAGNET,

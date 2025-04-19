@@ -7,7 +7,7 @@
 /**
  * @brief Pokemon Stats
  */
-enum {
+enum PokemonStat {
     STAT_HP = 0,
     STAT_ATTACK,
     STAT_DEFENSE,

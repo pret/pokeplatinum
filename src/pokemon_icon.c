@@ -9,7 +9,7 @@
 
 #include "pokemon.h"
 
-enum {
+enum PokeIconSharedResourceIndex {
     POKEICON_SHARED_PALETTES = 0,
     POKEICON_SHARED_ANIMATION,
     POKEICON_SHARED_CELLS,
