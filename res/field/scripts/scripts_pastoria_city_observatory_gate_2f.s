@@ -23,9 +23,8 @@ _0016:
     End
 
 _003E:
-    ScrCmd_071 0x800C, 100
-    GoToIfEq 0x800C, 0, _006B
-    ScrCmd_070 100
+    GoToIfNotEnoughMoney 100, _006B
+    RemoveMoney 100
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI

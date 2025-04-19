@@ -136,9 +136,11 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "scrcmd_coins.h"
 #include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_game_corner_prize.h"
 #include "scrcmd_jubilife_lottery.h"
+#include "scrcmd_money.h"
 #include "scrcmd_mystery_gift.h"
 #include "scrcmd_shop.h"
 #include "scrcmd_system_flags.h"
@@ -180,8 +182,6 @@
 #include "unk_0204AEE8.h"
 #include "unk_0204B64C.h"
 #include "unk_0204C500.h"
-#include "unk_0204C6C8.h"
-#include "unk_0204C8F0.h"
 #include "unk_0204CA84.h"
 #include "unk_0204CDDC.h"
 #include "unk_0204CFFC.h"
@@ -580,8 +580,8 @@ static BOOL ScrCmd_1EF(ScriptContext *ctx);
 static BOOL ScrCmd_IncrementGameRecord(ScriptContext *ctx);
 static BOOL ScrCmd_1E6(ScriptContext *ctx);
 static BOOL ScrCmd_1E7(ScriptContext *ctx);
-static BOOL ScrCmd_334(ScriptContext *ctx);
-static BOOL ScrCmd_335(ScriptContext *ctx);
+static BOOL ScrCmd_AddToGameRecord(ScriptContext *ctx);
+static BOOL ScrCmd_AddToGameRecordBigValue(ScriptContext *ctx);
 static BOOL ScrCmd_Dummy1F9(ScriptContext *ctx);
 static BOOL ScrCmd_GetPreviousMapID(ScriptContext *ctx);
 static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx);
@@ -877,18 +877,18 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_06C,
     ScrCmd_06D,
     ScrCmd_06E,
-    ScrCmd_06F,
-    ScrCmd_070,
-    ScrCmd_071,
+    ScrCmd_GiveMoney,
+    ScrCmd_RemoveMoney,
+    ScrCmd_CheckMoney,
     ScrCmd_ShowMoney,
     ScrCmd_HideMoney,
     ScrCmd_UpdateMoneyDisplay,
     ScrCmd_ShowCoins,
     ScrCmd_HideCoins,
     ScrCmd_UpdateCoinDisplay,
-    ScrCmd_078,
-    ScrCmd_079,
-    ScrCmd_07A,
+    ScrCmd_GetCoinsAmount,
+    ScrCmd_AddCoins,
+    ScrCmd_SubstractCoinsFromValue,
     ScrCmd_AddItem,
     ScrCmd_RemoveItem,
     ScrCmd_CanFitItem,
@@ -1185,7 +1185,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1A0,
     ScrCmd_1A1,
     ScrCmd_1A2,
-    ScrCmd_1A3,
+    ScrCmd_RemoveMoney2,
     ScrCmd_MoveMonToPartyFromDaycareSlot,
     ScrCmd_1A5,
     ScrCmd_1A6,
@@ -1193,7 +1193,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ResetDaycarePersonalityAndStepCounter,
     ScrCmd_GiveEggFromDaycare,
     ScrCmd_BufferDaycarePriceBySlot,
-    ScrCmd_1AB,
+    ScrCmd_CheckMoney2,
     ScrCmd_1AC,
     ScrCmd_Dummy1AD,
     ScrCmd_BufferDaycareGainedLevelsBySlot,
@@ -1394,9 +1394,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_271,
     ScrCmd_272,
     ScrCmd_273,
-    ScrCmd_274,
+    ScrCmd_HasCoinsFromValue,
     ScrCmd_CheckBonusRoundStreak,
-    ScrCmd_276,
+    ScrCmd_CanAddCoins,
     ScrCmd_GetDailyRandomLevel,
     ScrCmd_278,
     ScrCmd_279,
@@ -1446,8 +1446,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2A5,
     ScrCmd_GetGameCornerPrizeData,
     ScrCmd_2A7,
-    ScrCmd_2A8,
-    ScrCmd_2A9,
+    ScrCmd_SubstractCoinsFromVar,
+    ScrCmd_HasCoinsFromVar,
     ScrCmd_2AA,
     ScrCmd_2AB,
     ScrCmd_2AC,
@@ -1586,8 +1586,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_331,
     ScrCmd_332,
     ScrCmd_333,
-    ScrCmd_334,
-    ScrCmd_335,
+    ScrCmd_AddToGameRecord,
+    ScrCmd_AddToGameRecordBigValue,
     ScrCmd_336,
     ScrCmd_CheckHasSeenSpecies,
     ScrCmd_338,
@@ -6290,22 +6290,22 @@ static BOOL ScrCmd_1E7(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_334(ScriptContext *ctx)
+static BOOL ScrCmd_AddToGameRecord(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 recordID = ScriptContext_ReadHalfWord(ctx);
+    u16 value = ScriptContext_GetVar(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), v0, v1);
-    return 0;
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), recordID, value);
+    return FALSE;
 }
 
-static BOOL ScrCmd_335(ScriptContext *ctx)
+static BOOL ScrCmd_AddToGameRecordBigValue(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u32 v1 = ScriptContext_ReadWord(ctx);
+    u16 recordID = ScriptContext_ReadHalfWord(ctx);
+    u32 value = ScriptContext_ReadWord(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), v0, v1);
-    return 0;
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), recordID, value);
+    return FALSE;
 }
 
 static BOOL ScrCmd_202(ScriptContext *ctx)
@@ -6879,9 +6879,9 @@ static BOOL ScrCmd_ShowPoketch(ScriptContext *ctx)
 
 static BOOL ScrCmd_267(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 slotMachineID = ScriptContext_GetVar(ctx);
 
-    sub_0203E414(ctx->fieldSystem->task, v0);
+    sub_0203E414(ctx->fieldSystem->task, slotMachineID);
     return 1;
 }
 

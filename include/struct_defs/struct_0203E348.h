@@ -8,7 +8,7 @@ typedef struct {
     int unk_04;
     GameRecords *records;
     int unk_0C;
-    int unk_10;
+    int msgBoxFrame;
 } UnkStruct_0203E348;
 
 #endif // POKEPLATINUM_STRUCT_0203E348_H

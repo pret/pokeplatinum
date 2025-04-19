@@ -83,7 +83,7 @@ void sub_0203E2AC(FieldSystem *fieldSystem, void *param1);
 void sub_0203E2D4(FieldSystem *fieldSystem, void *param1);
 void sub_0203E2FC(FieldSystem *fieldSystem);
 BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1);
-void sub_0203E414(FieldTask *param0, int param1);
+void sub_0203E414(FieldTask *task, int slotMachineID);
 void AccessoryShop_Init(FieldTask *task);
 void *sub_0203E53C(FieldSystem *fieldSystem, int heapID, int param2);
 void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, int heapID);

@@ -89,10 +89,9 @@ _012F:
     Message 3
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
-    ScrCmd_071 0x800C, 0x2710
-    GoToIfEq 0x800C, 0, _024F
-    ScrCmd_334 35, 0x2710
-    ScrCmd_070 0x2710
+    GoToIfNotEnoughMoney 10000, _024F
+    AddToGameRecord RECORD_MONEY_SPENT, 10000
+    RemoveMoney 10000
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
@@ -110,10 +109,9 @@ _018A:
     Message 4
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
-    ScrCmd_071 0x800C, 0x186A0
-    GoToIfEq 0x800C, 0, _024F
-    ScrCmd_335 35, 0x186A0
-    ScrCmd_070 0x186A0
+    GoToIfNotEnoughMoney 100000, _024F
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 100000
+    RemoveMoney 100000
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
@@ -131,10 +129,9 @@ _01E7:
     Message 5
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _025C
-    ScrCmd_071 0x800C, 0xF423F
-    GoToIfEq 0x800C, 0, _024F
-    ScrCmd_335 35, 0xF423F
-    ScrCmd_070 0xF423F
+    GoToIfNotEnoughMoney 999999, _024F
+    AddToGameRecordBigValue RECORD_MONEY_SPENT, 999999
+    RemoveMoney 999999
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI

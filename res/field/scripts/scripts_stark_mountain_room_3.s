@@ -272,7 +272,7 @@ _019C:
     SetFlag FLAG_UNK_0x01DB
     SetFlag FLAG_UNK_0x0231
     SetVar 0x409E, 1
-    SetFlag FLAG_UNK_0x00D6
+    SetFlag FLAG_ARRESTED_CHARON_STARK_MOUNTAIN
     ClearFlag FLAG_UNK_0x01A3
     ClearFlag FLAG_UNK_0x01D9
     ClearFlag FLAG_UNK_0x01D6

@@ -161,39 +161,39 @@ _0269:
     GoTo _0180
 
 _0275:
-    ScrCmd_071 0x800C, 200
+    CheckMoney 0x800C, 200
     Return
 
 _027F:
-    ScrCmd_071 0x800C, 200
+    CheckMoney 0x800C, 200
     Return
 
 _0289:
-    ScrCmd_071 0x800C, 200
+    CheckMoney 0x800C, 200
     Return
 
 _0293:
-    ScrCmd_071 0x800C, 200
+    CheckMoney 0x800C, 200
     Return
 
 _029D:
-    ScrCmd_334 35, 200
-    ScrCmd_070 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
+    RemoveMoney 200
     Return
 
 _02AB:
-    ScrCmd_334 35, 200
-    ScrCmd_070 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
+    RemoveMoney 200
     Return
 
 _02B9:
-    ScrCmd_334 35, 200
-    ScrCmd_070 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
+    RemoveMoney 200
     Return
 
 _02C7:
-    ScrCmd_334 35, 200
-    ScrCmd_070 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
+    RemoveMoney 200
     Return
 
 _02D5:
