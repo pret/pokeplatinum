@@ -140,17 +140,17 @@ _0142:
 _014D:
     SetFlag FLAG_UNK_0x01A1
     SetFlag FLAG_UNK_0x0091
-    SetVar 0x4089, 1
+    SetVar VAR_UNK_0x4089, 1
     Return
 
 _015D:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x293, _01A8
-    GoToIfEq 0x8005, 0x294, _01C2
-    GoToIfEq 0x8005, 0x295, _01DC
-    GoToIfEq 0x8005, 0x296, _01E2
-    GoToIfEq 0x8005, 0x297, _01FC
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x293, _01A8
+    GoToIfEq VAR_0x8005, 0x294, _01C2
+    GoToIfEq VAR_0x8005, 0x295, _01DC
+    GoToIfEq VAR_0x8005, 0x296, _01E2
+    GoToIfEq VAR_0x8005, 0x297, _01FC
     End
 
 _01A8:

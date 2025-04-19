@@ -12,7 +12,7 @@ _0006:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0098, _0113
     Call _0119
-    GoToIfEq 0x800C, 1, _0106
+    GoToIfEq VAR_RESULT, 1, _0106
     GoToIfSet FLAG_UNK_0x0099, _00B3
     GoToIfSet FLAG_UNK_0x0119, _008B
     BufferPlayerName 0
@@ -21,9 +21,9 @@ _0006:
     ApplyMovement 0, _0158
     WaitMovement
     Message 1
-    SetVar 0x8004, ITEM_UPGRADE
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0091
+    SetVar VAR_0x8004, ITEM_UPGRADE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0091
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0119
     Message 2
@@ -50,25 +50,25 @@ _009B:
     End
 
 _00B3:
-    CallIfEq 0x405E, 3, _00E5
-    CallIfEq 0x405F, 3, _00F0
-    CallIfEq 0x4060, 3, _00FB
+    CallIfEq VAR_ROAMING_MOLTRES_STATE, 3, _00E5
+    CallIfEq VAR_ROAMING_ZAPDOS_STATE, 3, _00F0
+    CallIfEq VAR_ROAMING_ARTICUNO_STATE, 3, _00FB
     Message 4
     GoTo _0150
     End
 
 _00E5:
-    SetVar 0x405E, 0
+    SetVar VAR_ROAMING_MOLTRES_STATE, 0
     ActivateRoamingPokemon ROAMING_SLOT_MOLTRES
     Return
 
 _00F0:
-    SetVar 0x405F, 0
+    SetVar VAR_ROAMING_ZAPDOS_STATE, 0
     ActivateRoamingPokemon ROAMING_SLOT_ZAPDOS
     Return
 
 _00FB:
-    SetVar 0x4060, 0
+    SetVar VAR_ROAMING_ARTICUNO_STATE, 0
     ActivateRoamingPokemon ROAMING_SLOT_ARTICUNO
     Return
 
@@ -83,14 +83,14 @@ _0113:
     End
 
 _0119:
-    GoToIfNe 0x405E, 1, _0148
-    GoToIfNe 0x405F, 1, _0148
-    GoToIfNe 0x4060, 1, _0148
-    SetVar 0x800C, 1
+    GoToIfNe VAR_ROAMING_MOLTRES_STATE, 1, _0148
+    GoToIfNe VAR_ROAMING_ZAPDOS_STATE, 1, _0148
+    GoToIfNe VAR_ROAMING_ARTICUNO_STATE, 1, _0148
+    SetVar VAR_RESULT, 1
     Return
 
 _0148:
-    SetVar 0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _0150:

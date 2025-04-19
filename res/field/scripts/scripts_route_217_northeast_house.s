@@ -12,9 +12,9 @@ _0006:
     FacePlayer
     GoToIfSet FLAG_UNK_0x013B, _0059
     Message 0
-    SetVar 0x8004, ITEM_SPELL_TAG
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _004F
+    SetVar VAR_0x8004, ITEM_SPELL_TAG
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _004F
     SetFlag FLAG_UNK_0x013B
     SetFlag FLAG_UNK_0x025F
     CallCommonScript 0x7E0

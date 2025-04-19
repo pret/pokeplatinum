@@ -22,8 +22,8 @@ _0025:
     PlayFanfare SEQ_SE_CONFIRM
     WaitFanfare SEQ_SE_CONFIRM
     GoToIfSet FLAG_UNK_0x011A, _0081
-    ScrCmd_26B 0x800C
-    GoToIfEq 0x800C, 0, _0073
+    ScrCmd_26B VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0073
     SetFlag FLAG_UNK_0x011A
     BufferPlayerName 0
     Message 1
@@ -50,10 +50,10 @@ _0081:
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_REGIGIGAS, 1
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00D1
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _00C6
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00D1
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _00C6
     SetFlag FLAG_UNK_0x011B
     ReleaseAll
     End

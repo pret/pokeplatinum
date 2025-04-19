@@ -52,9 +52,9 @@ _0063:
     GoToIfSet FLAG_UNK_0x00BF, _00B7
     BufferItemName 0, ITEM_QUICK_CLAW
     Message 3
-    SetVar 0x8004, ITEM_QUICK_CLAW
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00AD
+    SetVar VAR_0x8004, ITEM_QUICK_CLAW
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00AD
     SetFlag FLAG_UNK_0x00BF
     CallCommonScript 0x7E0
     CloseMessage

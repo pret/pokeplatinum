@@ -18,7 +18,7 @@ _0022:
     End
 
 _0026:
-    GoToIfEq 0x4055, 7, _0080
+    GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, 7, _0080
     GoToIfSet FLAG_DISTORTION_WORLD_PUZZLE_FINISHED, _0051
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
@@ -40,7 +40,7 @@ _0051:
     WaitMovement
     ApplyMovement 134, _011C
     WaitMovement
-    SetVar 0x4055, 7
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 7
     ReleaseAll
     End
 

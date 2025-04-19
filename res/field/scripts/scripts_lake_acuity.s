@@ -8,11 +8,11 @@
 
 _0006:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    ScrCmd_066 0x8004, 0x8005
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    ScrCmd_066 VAR_0x8004, VAR_0x8005
     ApplyMovement 241, _0228
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 2, _01C4
     WaitMovement
     BufferRivalName 0
@@ -22,21 +22,21 @@ _0006:
     WaitMovement
     Message 1
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 14, _0136
-    CallIfEq 0x8004, 15, _0154
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 14, _0136
+    CallIfEq VAR_0x8004, 15, _0154
     ScrCmd_067
     Message 2
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 14, _0168
-    CallIfEq 0x8004, 15, _0174
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 14, _0168
+    CallIfEq VAR_0x8004, 15, _0174
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 14, _0180
-    CallIfEq 0x8004, 15, _018C
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 14, _0180
+    CallIfEq VAR_0x8004, 15, _018C
     ApplyMovement 2, _01CC
     WaitMovement
     BufferRivalName 0
@@ -46,7 +46,7 @@ _0006:
     WaitMovement
     Message 4
     CloseMessage
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     ApplyMovement 2, _01CC
     WaitMovement
     Message 5
@@ -59,7 +59,7 @@ _0006:
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_ALT_MUSIC_LAKE_ACUITY
     ClearFlag FLAG_UNK_0x0223
-    SetVar 0x40D3, 2
+    SetVar VAR_UNK_0x40D3, 2
     ClearFlag FLAG_UNK_0x0198
     SetFlag FLAG_UNK_0x0194
     SetFlag FLAG_UNK_0x0175

@@ -14,10 +14,10 @@ _000E:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AAA, _0059
     Message 0
-    GetRandom 0x8004, 5
-    AddVar 0x8004, ITEM_CHERI_BERRY /* Cheri, Chesto, Pecha, Rawst or Aspear */
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0064
+    GetRandom VAR_0x8004, 5
+    AddVar VAR_0x8004, ITEM_CHERI_BERRY /* Cheri, Chesto, Pecha, Rawst or Aspear */
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0064
     SetFlag FLAG_UNK_0x0AAA
     CallCommonScript 0x7E0
     CloseMessage
@@ -43,8 +43,8 @@ _006E:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0080, _009E
     Message 2
-    SetVar 0x8004, 0x1C0
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1C0
+    SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x0080
     CallCommonScript 0x7E0
     CloseMessage

@@ -52,9 +52,9 @@ _009D:
     WaitMovement
     Message 1
     CloseMessage
-    GetPlayerDir 0x8004
-    GoToIfEq 0x8004, 1, _00E6
-    GoToIfEq 0x8004, 0, _00FE
+    GetPlayerDir VAR_0x8004
+    GoToIfEq VAR_0x8004, 1, _00E6
+    GoToIfEq VAR_0x8004, 0, _00FE
     GoTo _010E
 
 _00E6:
@@ -81,18 +81,18 @@ _0126:
     End
 
 _013A:
-    GetPlayerDir 0x8000
+    GetPlayerDir VAR_0x8000
     FacePlayer
     Message 2
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _01D9
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01D9
     Message 3
     CloseMessage
-    GetPlayerDir 0x8004
-    GoToIfEq 0x8004, 1, _0185
-    GoToIfEq 0x8004, 0, _019D
+    GetPlayerDir VAR_0x8004
+    GoToIfEq VAR_0x8004, 1, _0185
+    GoToIfEq VAR_0x8004, 0, _019D
     GoTo _01AD
 
 _0185:
@@ -178,10 +178,10 @@ _023C:
     EndMovement
 
 _0248:
-    CallIfEq 0x8000, 0, _03EC
-    CallIfEq 0x8000, 1, _03F6
-    CallIfEq 0x8000, 2, _0400
-    CallIfEq 0x8000, 3, _040A
+    CallIfEq VAR_0x8000, 0, _03EC
+    CallIfEq VAR_0x8000, 1, _03F6
+    CallIfEq VAR_0x8000, 2, _0400
+    CallIfEq VAR_0x8000, 3, _040A
     ClearFlag FLAG_UNK_0x01AD
     ScrCmd_189 0, 1
     ScrCmd_188 0, 15
@@ -190,29 +190,29 @@ _0248:
     WaitMovement
     Message 4
     CloseMessage
-    CallIfEq 0x8000, 0, _0444
-    CallIfEq 0x8000, 1, _044E
-    CallIfEq 0x8000, 2, _0458
-    CallIfEq 0x8000, 3, _0462
+    CallIfEq VAR_0x8000, 0, _0444
+    CallIfEq VAR_0x8000, 1, _044E
+    CallIfEq VAR_0x8000, 2, _0458
+    CallIfEq VAR_0x8000, 3, _0462
     ClearFlag FLAG_UNK_0x01D5
     ScrCmd_189 10, 0
     ScrCmd_188 10, 14
     AddObject 10
     CallCommonScript 0x7FA
-    CallIfEq 0x8000, 0, _046C
-    CallIfEq 0x8000, 1, _0480
-    CallIfEq 0x8000, 2, _0494
-    CallIfEq 0x8000, 3, _04A8
+    CallIfEq VAR_0x8000, 0, _046C
+    CallIfEq VAR_0x8000, 1, _0480
+    CallIfEq VAR_0x8000, 2, _0494
+    CallIfEq VAR_0x8000, 3, _04A8
     BufferPlayerName 0
     BufferRivalName 1
     Message 5
     ApplyMovement 10, _0574
     WaitMovement
     Message 6
-    CallIfEq 0x8000, 0, _04BC
-    CallIfEq 0x8000, 1, _04C8
-    CallIfEq 0x8000, 2, _04D4
-    CallIfEq 0x8000, 3, _04E0
+    CallIfEq VAR_0x8000, 0, _04BC
+    CallIfEq VAR_0x8000, 1, _04C8
+    CallIfEq VAR_0x8000, 2, _04D4
+    CallIfEq VAR_0x8000, 3, _04E0
     Message 7
     CloseMessage
     ApplyMovement 0, _05A8
@@ -223,14 +223,14 @@ _0248:
     CallCommonScript 0x7FB
     Message 8
     CloseMessage
-    CallIfEq 0x8000, 0, _0414
-    CallIfEq 0x8000, 1, _0420
-    CallIfEq 0x8000, 2, _042C
-    CallIfEq 0x8000, 3, _0438
+    CallIfEq VAR_0x8000, 0, _0414
+    CallIfEq VAR_0x8000, 1, _0420
+    CallIfEq VAR_0x8000, 2, _042C
+    CallIfEq VAR_0x8000, 3, _0438
     Message 9
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _04EC
-    GoToIfEq 0x800C, MENU_NO, _04F7
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _04EC
+    GoToIfEq VAR_RESULT, MENU_NO, _04F7
     End
 
 _03EC:
@@ -341,8 +341,8 @@ _04F7:
 
 _0502:
     Message 12
-    SetVar 0x8004, 0x1D0
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1D0
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Message 13
     CloseMessage
@@ -357,11 +357,11 @@ _0522:
 
 _053A:
     RemoveObject 0
-    SetVar 0x4083, 2
+    SetVar VAR_UNK_0x4083, 2
     SetFlag FLAG_UNK_0x00B7
     SetFlag FLAG_UNK_0x01A9
     ClearFlag FLAG_UNK_0x020F
-    SetVar 0x407C, 6
+    SetVar VAR_UNK_0x407C, 6
     ReleaseAll
     End
 
@@ -495,8 +495,8 @@ _0632:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_SUITE_KEY, 1, 0x800C
-    GoToIfEq 0x800C, 1, _065A
+    CheckItem ITEM_SUITE_KEY, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _065A
     Message 18
     WaitABXPadPress
     CloseMessage
@@ -506,7 +506,7 @@ _0632:
 _065A:
     Message 19
     CloseMessage
-    RemoveItem ITEM_SUITE_KEY, 1, 0x800C
+    RemoveItem ITEM_SUITE_KEY, 1, VAR_RESULT
     ApplyMovement 8, _06A8
     WaitMovement
     ScrCmd_168 22, 24, 11, 13, 77
@@ -551,18 +551,18 @@ _06E2:
     LockAll
     ApplyMovement 9, _07A8
     WaitMovement
-    GetPlayerMapPos 0x8000, 0x8001
-    CallIfEq 0x8001, 0x315, _075D
-    CallIfEq 0x8001, 0x316, _0769
-    CallIfEq 0x8001, 0x317, _0775
+    GetPlayerMapPos VAR_0x8000, VAR_0x8001
+    CallIfEq VAR_0x8001, 0x315, _075D
+    CallIfEq VAR_0x8001, 0x316, _0769
+    CallIfEq VAR_0x8001, 0x317, _0775
     ApplyMovement 9, _07FC
     ApplyMovement LOCALID_PLAYER, _0804
     WaitMovement
     Message 16
     CloseMessage
-    CallIfEq 0x8001, 0x315, _0781
-    CallIfEq 0x8001, 0x316, _078D
-    CallIfEq 0x8001, 0x317, _0799
+    CallIfEq VAR_0x8001, 0x315, _0781
+    CallIfEq VAR_0x8001, 0x316, _078D
+    CallIfEq VAR_0x8001, 0x317, _0799
     ReleaseAll
     End
 

@@ -12,7 +12,7 @@
 _0012:
     SetFlag FLAG_UNK_0x09C2
     SetFlag FLAG_UNK_0x02C8
-    CallIfEq 0x4056, 1, _0029
+    CallIfEq VAR_ARCEUS_EVENT_STATE, 1, _0029
     End
 
 _0029:
@@ -49,16 +49,16 @@ _0055:
     End
 
 _0073:
-    SetVar 0x8004, ITEM_FLAME_PLATE
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0114
+    SetVar VAR_0x8004, ITEM_FLAME_PLATE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0114
     CallCommonScript 0x7FC
     Message 5
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 3, _00CC
-    GoToIfEq 0x8005, 4, _00DE
-    GoToIfEq 0x8005, 5, _00F0
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 3, _00CC
+    GoToIfEq VAR_0x8005, 4, _00DE
+    GoToIfEq VAR_0x8005, 5, _00F0
     End
 
 _00CC:
@@ -82,7 +82,7 @@ _00F0:
 _0102:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 3
-    SetVar 0x4056, 2
+    SetVar VAR_ARCEUS_EVENT_STATE, 2
     ReleaseAll
     End
 

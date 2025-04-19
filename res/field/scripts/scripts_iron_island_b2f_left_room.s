@@ -21,8 +21,8 @@ _0026:
     End
 
 _0035:
-    GoToIfEq 0x4092, 2, _004A
-    SetVar 0x4092, 0
+    GoToIfEq VAR_UNK_0x4092, 2, _004A
+    SetVar VAR_UNK_0x4092, 0
     End
 
 _004A:
@@ -38,9 +38,9 @@ _0060:
 _0064:
     LockAll
     SetPlayerBike FALSE
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8005, 2, _00D1
-    CallIfEq 0x8005, 3, _00DD
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 2, _00D1
+    CallIfEq VAR_0x8005, 3, _00DD
     BufferPlayerName 0
     CallIfUnset FLAG_UNK_0x00E1, _00E9
     CallIfSet FLAG_UNK_0x00E1, _00EE
@@ -49,7 +49,7 @@ _0064:
     Message 1
     WaitSound
     SetFlag FLAG_UNK_0x00E1
-    SetVar 0x4092, 1
+    SetVar VAR_UNK_0x4092, 1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -84,12 +84,12 @@ _00F3:
     WaitMovement
     Message 4
     CloseMessage
-    SetVar 0x4092, 0
+    SetVar VAR_UNK_0x4092, 0
     ClearHasPartner
     ScrCmd_06D 4, 16
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8005, 2, _013E
-    CallIfEq 0x8005, 3, _014A
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 2, _013E
+    CallIfEq VAR_0x8005, 3, _014A
     ReleaseAll
     End
 
@@ -155,9 +155,9 @@ _01AA:
     LockAll
     ClearHasPartner
     ScrCmd_06D 4, 16
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8005, 40, _0291
-    CallIfEq 0x8005, 41, _02A5
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 40, _0291
+    CallIfEq VAR_0x8005, 41, _02A5
     Message 5
     CloseMessage
     ApplyMovement 5, _0384
@@ -176,8 +176,8 @@ _01AA:
     SetHasPartner
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_IRON_ISLAND_1, TRAINER_GALACTIC_GRUNT_IRON_ISLAND_2
     ClearHasPartner
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _037D
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _037D
     ApplyMovement 5, _0394
     WaitMovement
     Message 9
@@ -192,9 +192,9 @@ _01AA:
     RemoveObject 6
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8005, 40, _02D1
-    CallIfEq 0x8005, 41, _02E5
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 40, _02D1
+    CallIfEq VAR_0x8005, 41, _02E5
     Call _02F9
     ScrCmd_2B6 4, 1
     ReleaseAll
@@ -251,14 +251,14 @@ _02E5:
 
 _02F9:
     Message 11
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _031C
-    GoToIfEq 0x800C, MENU_NO, _0366
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _031C
+    GoToIfEq VAR_RESULT, MENU_NO, _0366
     End
 
 _031C:
-    GetPartyCount 0x800C
-    GoToIfEq 0x800C, 6, _0353
+    GetPartyCount VAR_RESULT
+    GoToIfEq VAR_RESULT, 6, _0353
     PlaySound SEQ_FANFA4
     WaitSound
     Message 12
@@ -273,7 +273,7 @@ _031C:
 
 _0353:
     SetFlag FLAG_UNK_0x00E2
-    SetVar 0x4092, 2
+    SetVar VAR_UNK_0x4092, 2
     Message 13
     WaitABXPadPress
     CloseMessage
@@ -286,7 +286,7 @@ _0366:
 
 _0371:
     SetFlag FLAG_UNK_0x00E5
-    SetVar 0x4092, 2
+    SetVar VAR_UNK_0x4092, 2
     Return
 
 _037D:
@@ -456,11 +456,11 @@ _0468:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00E2, _0504
-    GoToIfEq 0x4092, 2, _0513
-    GoToIfGe 0x40E3, 4, _04EB
-    GoToIfEq 0x40E3, 3, _04E0
-    GoToIfEq 0x40E3, 2, _04D5
-    GoToIfEq 0x40E3, 1, _04CA
+    GoToIfEq VAR_UNK_0x4092, 2, _0513
+    GoToIfGe VAR_UNK_0x40E3, 4, _04EB
+    GoToIfEq VAR_UNK_0x40E3, 3, _04E0
+    GoToIfEq VAR_UNK_0x40E3, 2, _04D5
+    GoToIfEq VAR_UNK_0x40E3, 1, _04CA
     BufferPlayerName 0
     Message 18
     GoTo _04F6
@@ -489,7 +489,7 @@ _04EB:
     End
 
 _04F6:
-    AddVar 0x40E3, 1
+    AddVar VAR_UNK_0x40E3, 1
     WaitABXPadPress
     CloseMessage
     ReleaseAll

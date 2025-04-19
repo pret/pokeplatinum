@@ -19,9 +19,9 @@ _0012:
     WaitMovement
     Message 1
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 8, _0054
-    GoToIfEq 0x8004, 9, _0064
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 8, _0054
+    GoToIfEq VAR_0x8004, 9, _0064
     End
 
 _0054:
@@ -36,13 +36,13 @@ _0064:
 
 _0074:
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00E1
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00E1
     Message 2
-    SetVar 0x8004, ITEM_MASTER_BALL
-    SetVar 0x8005, 1
-    CanFitItem 0x8004, 0x8005, 0x800C
-    CallIfEq 0x800C, 1, _00DB
+    SetVar VAR_0x8004, ITEM_MASTER_BALL
+    SetVar VAR_0x8005, 1
+    CanFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CallIfEq VAR_RESULT, 1, _00DB
     Message 3
     CloseMessage
     ApplyMovement 0, _0110
@@ -52,7 +52,7 @@ _0074:
     ApplyMovement 0, _0124
     WaitMovement
     RemoveObject 0
-    SetVar 0x40D6, 1
+    SetVar VAR_UNK_0x40D6, 1
     ReleaseAll
     End
 
@@ -104,8 +104,8 @@ _012C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_GALACTIC_KEY, 1, 0x800C
-    GoToIfEq 0x800C, 1, _0154
+    CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0154
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -114,9 +114,9 @@ _012C:
 
 _0154:
     Message 6
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0177
-    GoToIfEq 0x800C, MENU_NO, _01AB
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0177
+    GoToIfEq VAR_RESULT, MENU_NO, _01AB
     End
 
 _0177:
@@ -168,16 +168,16 @@ _01D5:
 
 _01E6:
     Message 10
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntry 0x10C, 0
     AddMenuEntry 0x10D, 1
     AddMenuEntry 0x10E, 2
     AddMenuEntry 0x10F, 3
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0240
-    GoToIfEq 0x8008, 1, _024B
-    GoToIfEq 0x8008, 2, _0256
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _0240
+    GoToIfEq VAR_0x8008, 1, _024B
+    GoToIfEq VAR_0x8008, 2, _0256
     GoTo _0261
     End
 

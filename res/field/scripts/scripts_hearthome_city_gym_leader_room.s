@@ -26,11 +26,11 @@ _0039:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _007B
-    GoToIfEq 0x800C, 1, _008B
-    GoToIfEq 0x800C, 2, _009B
-    GoToIfEq 0x800C, 3, _00AB
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _007B
+    GoToIfEq VAR_RESULT, 1, _008B
+    GoToIfEq VAR_RESULT, 2, _009B
+    GoToIfEq VAR_RESULT, 3, _00AB
     End
 
 _007B:
@@ -54,16 +54,16 @@ _00AB:
     GoTo _00BB
 
 _00BB:
-    CheckBadgeAcquired BADGE_ID_RELIC, 0x800C
-    GoToIfEq 0x800C, 1, _01A0
+    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _01A0
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 91, 0, 0, 0
     Message 0
     CloseMessage
     SetFlag FLAG_UNK_0x008E
     StartTrainerBattle TRAINER_LEADER_FANTINA
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0248
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0248
     Message 1
     BufferPlayerName 0
     Message 2
@@ -80,20 +80,20 @@ _00BB:
     SetTrainerFlag TRAINER_SCHOOL_KID_MACKENZIE
     SetTrainerFlag TRAINER_YOUNGSTER_DONNY
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 91, TRAINER_LEADER_FANTINA, 0, 0
-    SetVar 0x407B, 1
+    SetVar VAR_UNK_0x407B, 1
     SetFlag FLAG_UNK_0x0206
     ClearFlag FLAG_UNK_0x0207
     Message 3
     GoTo _0158
 
 _0158:
-    SetVar 0x8004, ITEM_TM65
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0196
+    SetVar VAR_0x8004, ITEM_TM65
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0196
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x007D
-    BufferItemName 0, 0x8004
-    BufferTMHMMoveName 1, 0x8004
+    BufferItemName 0, VAR_0x8004
+    BufferTMHMMoveName 1, VAR_0x8004
     Message 4
     WaitABXPadPress
     CloseMessage

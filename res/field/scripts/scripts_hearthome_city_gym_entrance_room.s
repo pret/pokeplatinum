@@ -12,12 +12,12 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_RELIC, 0x800C
-    GoToIfEq 0x800C, 1, _006A
+    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _006A
     Message 1
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _004C
-    GoToIfEq 0x800C, MENU_NO, _0057
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _004C
+    GoToIfEq VAR_RESULT, MENU_NO, _0057
     End
 
 _004C:
@@ -45,8 +45,8 @@ _006A:
 _0078:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_RELIC, 0x800C
-    GoToIfEq 0x800C, 1, _00A2
+    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00A2
     BufferRivalName 0
     BufferRivalName 1
     Message 5
@@ -73,7 +73,7 @@ _00B6:
     CloseMessage
     ApplyMovement 0, _00F0
     WaitMovement
-    SetVar 0x40D1, 1
+    SetVar VAR_UNK_0x40D1, 1
     ReleaseAll
     End
 

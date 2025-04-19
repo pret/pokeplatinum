@@ -43,10 +43,10 @@ _006D:
     CloseMessage
     PlaySound SEQ_BADGE
     WaitSound
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _00B8
-    GoToIfEq 0x800C, 2, _00C8
-    GoToIfEq 0x800C, 3, _00D8
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00B8
+    GoToIfEq VAR_RESULT, 2, _00C8
+    GoToIfEq VAR_RESULT, 3, _00D8
     End
 
 _00B8:
@@ -122,10 +122,10 @@ _0154:
     ClearFlag FLAG_UNK_0x021D
     AddObject 5
     CallCommonScript 0x7FA
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 10, _0191
-    GoToIfEq 0x8004, 11, _01A1
-    GoToIfEq 0x8004, 12, _01B1
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 10, _0191
+    GoToIfEq VAR_0x8004, 11, _01A1
+    GoToIfEq VAR_0x8004, 12, _01B1
     End
 
 _0191:
@@ -149,9 +149,9 @@ _01C1:
     BufferRivalName 0
     Message 0
     CloseMessage
-    GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, SPECIES_TURTWIG, _0203
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _020F
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _0203
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _020F
     GoTo _01F7
 
 _01F7:
@@ -167,16 +167,16 @@ _020F:
     GoTo _021B
 
 _021B:
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _02AC
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _02AC
     BufferRivalName 0
     BufferPlayerName 1
     Message 1
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 10, _0266
-    GoToIfEq 0x8004, 11, _0276
-    GoToIfEq 0x8004, 12, _0286
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 10, _0266
+    GoToIfEq VAR_0x8004, 11, _0276
+    GoToIfEq VAR_0x8004, 12, _0286
     End
 
 _0266:
@@ -198,7 +198,7 @@ _0296:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 5
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar 0x40EF, 1
+    SetVar VAR_UNK_0x40EF, 1
     ReleaseAll
     End
 
@@ -272,7 +272,7 @@ _0323:
     End
 
 _0336:
-    SetVar 0x8007, 3
+    SetVar VAR_0x8007, 3
     CallCommonScript 0x7D2
     End
 

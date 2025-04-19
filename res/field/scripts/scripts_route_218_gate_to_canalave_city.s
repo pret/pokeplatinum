@@ -12,8 +12,8 @@ _000A:
     Call _006A
     BufferPlayerName 0
     BufferCounterpartName 1
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0031
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0031
     GoTo _003C
     End
 
@@ -35,16 +35,16 @@ _0047:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_UNK_0x021C
     RemoveObject 1
-    SetVar 0x4105, 1
+    SetVar VAR_UNK_0x4105, 1
     ReleaseAll
     End
 
 _006A:
-    GetPlayerMapPos 0x8005, 0x8006
-    GoToIfEq 0x8006, 5, _00AC
-    GoToIfEq 0x8006, 6, _00B8
-    GoToIfEq 0x8006, 7, _00C4
-    GoToIfEq 0x8006, 8, _00D0
+    GetPlayerMapPos VAR_0x8005, VAR_0x8006
+    GoToIfEq VAR_0x8006, 5, _00AC
+    GoToIfEq VAR_0x8006, 6, _00B8
+    GoToIfEq VAR_0x8006, 7, _00C4
+    GoToIfEq VAR_0x8006, 8, _00D0
     GoTo _00DC
     End
 
@@ -74,11 +74,11 @@ _00DC:
     Return
 
 _00E8:
-    GetPlayerMapPos 0x8005, 0x8006
-    GoToIfEq 0x8006, 5, _012A
-    GoToIfEq 0x8006, 6, _0136
-    GoToIfEq 0x8006, 7, _0142
-    GoToIfEq 0x8006, 8, _014E
+    GetPlayerMapPos VAR_0x8005, VAR_0x8006
+    GoToIfEq VAR_0x8006, 5, _012A
+    GoToIfEq VAR_0x8006, 6, _0136
+    GoToIfEq VAR_0x8006, 7, _0142
+    GoToIfEq VAR_0x8006, 8, _014E
     GoTo _015A
     End
 

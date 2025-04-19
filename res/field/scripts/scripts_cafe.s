@@ -33,45 +33,45 @@ _002B:
     End
 
 _0044:
-    InitLocalTextMenu 30, 11, 0, 0x800C
+    InitLocalTextMenu 30, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 7, 0
     AddMenuEntryImm 8, 1
     AddMenuEntryImm 9, 2
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0092
-    GoToIfEq 0x8008, 1, _00BB
-    GoToIfEq 0x8008, 2, _015D
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _0092
+    GoToIfEq VAR_0x8008, 1, _00BB
+    GoToIfEq VAR_0x8008, 2, _015D
     GoTo _015D
     End
 
 _0092:
-    ScrCmd_071 0x800C, 0x1F4
-    GoToIfEq 0x800C, 0, _0150
-    SetVar 0x8005, 1
-    SetVar 0x8006, 0x1F4
+    ScrCmd_071 VAR_RESULT, 0x1F4
+    GoToIfEq VAR_RESULT, 0, _0150
+    SetVar VAR_0x8005, 1
+    SetVar VAR_0x8006, 0x1F4
     GoTo _00E4
     End
 
 _00BB:
-    ScrCmd_071 0x800C, 0x1770
-    GoToIfEq 0x800C, 0, _0150
-    SetVar 0x8005, 12
-    SetVar 0x8006, 0x1770
+    ScrCmd_071 VAR_RESULT, 0x1770
+    GoToIfEq VAR_RESULT, 0, _0150
+    SetVar VAR_0x8005, 12
+    SetVar VAR_0x8006, 0x1770
     GoTo _00E4
     End
 
 _00E4:
-    SetVar 0x8004, ITEM_MOOMOO_MILK
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0143
-    ScrCmd_334 35, 0x8006
-    ScrCmd_1A3 0x8006
+    SetVar VAR_0x8004, ITEM_MOOMOO_MILK
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0143
+    ScrCmd_334 35, VAR_0x8006
+    ScrCmd_1A3 VAR_0x8006
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
-    CallIfEq 0x8006, 0x1F4, _0139
-    CallIfEq 0x8006, 0x1770, _013E
+    CallIfEq VAR_0x8006, 0x1F4, _0139
+    CallIfEq VAR_0x8006, 0x1770, _013E
     CallCommonScript 0x7E0
     CloseMessage
     HideMoney

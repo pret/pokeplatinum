@@ -52,7 +52,7 @@ _0057:
 
 _006A:
     Message 4
-    InitLocalTextListMenu 1, 1, 0, 0x800C
+    InitLocalTextListMenu 1, 1, 0, VAR_RESULT
     AddListMenuEntry 14, 0
     AddListMenuEntry 15, 1
     AddListMenuEntry 16, 2
@@ -63,15 +63,15 @@ _006A:
     AddListMenuEntry 21, 7
     AddListMenuEntry 22, 8
     ShowListMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0135
-    GoToIfEq 0x8008, 1, _0140
-    GoToIfEq 0x8008, 2, _014B
-    GoToIfEq 0x8008, 3, _0156
-    GoToIfEq 0x8008, 4, _0161
-    GoToIfEq 0x8008, 5, _016C
-    GoToIfEq 0x8008, 6, _0177
-    GoToIfEq 0x8008, 7, _0182
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _0135
+    GoToIfEq VAR_0x8008, 1, _0140
+    GoToIfEq VAR_0x8008, 2, _014B
+    GoToIfEq VAR_0x8008, 3, _0156
+    GoToIfEq VAR_0x8008, 4, _0161
+    GoToIfEq VAR_0x8008, 5, _016C
+    GoToIfEq VAR_0x8008, 6, _0177
+    GoToIfEq VAR_0x8008, 7, _0182
     GoTo _018D
     End
 

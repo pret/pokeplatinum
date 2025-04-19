@@ -37,13 +37,13 @@ _0066:
     BufferRivalName 0
     Message 0
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 80, _00D8
-    GoToIfEq 0x8004, 81, _00D8
-    GoToIfEq 0x8004, 82, _00D8
-    GoToIfEq 0x8004, 83, _00D8
-    GoToIfEq 0x8004, 84, _00D8
-    GoToIfEq 0x8004, 85, _00D8
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 80, _00D8
+    GoToIfEq VAR_0x8004, 81, _00D8
+    GoToIfEq VAR_0x8004, 82, _00D8
+    GoToIfEq VAR_0x8004, 83, _00D8
+    GoToIfEq VAR_0x8004, 84, _00D8
+    GoToIfEq VAR_0x8004, 85, _00D8
     End
 
 _00D8:
@@ -53,7 +53,7 @@ _00D8:
     GoTo _00F0
 
 _00F0:
-    SetVar 0x4082, 1
+    SetVar VAR_UNK_0x4082, 1
     ReleaseAll
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0

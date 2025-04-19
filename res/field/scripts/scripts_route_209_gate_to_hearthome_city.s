@@ -22,19 +22,19 @@ _001D:
     ApplyMovement 1, _0264
     WaitMovement
     CallCommonScript 0x7FA
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8005, 5, _014E
-    CallIfEq 0x8005, 6, _015A
-    CallIfEq 0x8005, 7, _0166
-    CallIfEq 0x8005, 8, _0172
-    CallIfEq 0x8005, 9, _017E
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 5, _014E
+    CallIfEq VAR_0x8005, 6, _015A
+    CallIfEq VAR_0x8005, 7, _0166
+    CallIfEq VAR_0x8005, 8, _0172
+    CallIfEq VAR_0x8005, 9, _017E
     BufferRivalName 0
     BufferPlayerName 1
     Message 1
     CloseMessage
-    GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, SPECIES_TURTWIG, _00B3
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _00C1
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _00B3
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _00C1
     GoTo _00A5
     End
 
@@ -54,22 +54,22 @@ _00C1:
     End
 
 _00CF:
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0148
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0148
     BufferRivalName 0
     BufferPlayerName 1
     Message 2
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8005, 5, _018A
-    CallIfEq 0x8005, 6, _0196
-    CallIfEq 0x8005, 7, _01A2
-    CallIfEq 0x8005, 8, _01AE
-    CallIfEq 0x8005, 9, _01BA
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 5, _018A
+    CallIfEq VAR_0x8005, 6, _0196
+    CallIfEq VAR_0x8005, 7, _01A2
+    CallIfEq VAR_0x8005, 8, _01AE
+    CallIfEq VAR_0x8005, 9, _01BA
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar 0x407B, 2
+    SetVar VAR_UNK_0x407B, 2
     ReleaseAll
     End
 
