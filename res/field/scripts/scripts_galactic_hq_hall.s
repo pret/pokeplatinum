@@ -21,28 +21,28 @@ _0006:
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     ClearFlag FLAG_UNK_0x0253
     AddObject 2
     ApplyMovement 2, _01D8
     WaitMovement
     PlayFanfare SEQ_SE_DP_DENDOU
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     Message 1
     CloseMessage
     PlayFanfare SEQ_SE_DP_DENDOU
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     Message 2
     CloseMessage
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     Message 3
     CloseMessage
     PlayFanfare SEQ_SE_DP_DENDOU
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     Message 4
     Message 5
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 2, _01E8
     WaitMovement
     RemoveObject 2
@@ -90,7 +90,7 @@ _0006:
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     Message 6
     CloseMessage
     ApplyMovement 3, _0250

@@ -56,9 +56,9 @@ _0087:
     FacePlayer
     GoToIfDefeated 0x37C, _0396
     GoToIfDefeated 0x37D, _0396
-    GetPlayerDir VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _00CB
-    GoToIfEq VAR_0x800C, 1, _00E5
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00CB
+    GoToIfEq VAR_RESULT, 1, _00E5
     GoTo _00FF
     End
 
@@ -80,8 +80,8 @@ _00FF:
     CallIfUnset FLAG_UNK_0x0166, _045A
     CallIfSet FLAG_UNK_0x0166, _0467
     SetFlag FLAG_UNK_0x0166
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0471
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0471
     SetTrainerFlag TRAINER_RICH_BOY_LIAM
     SetTrainerFlag TRAINER_LADY_CELESTE
     Message 5
@@ -97,8 +97,8 @@ _00FF:
     Message 15
     CloseMessage
     StartTrainerBattle TRAINER_MAID_BELINDA
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0484
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0484
     AddVar VAR_0x8005, 0x404D
     Message 16
     CloseMessage
@@ -109,8 +109,8 @@ _00FF:
     Message 17
     CloseMessage
     StartTrainerBattle TRAINER_MAID_SOPHIE
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0484
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0484
     AddVar VAR_0x8005, 0x404D
     Message 18
     CloseMessage
@@ -121,8 +121,8 @@ _00FF:
     Message 19
     CloseMessage
     StartTrainerBattle TRAINER_MAID_EMILY
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0484
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0484
     AddVar VAR_0x8005, 0x404D
     Message 20
     CloseMessage
@@ -133,8 +133,8 @@ _00FF:
     Message 21
     CloseMessage
     StartTrainerBattle TRAINER_MAID_ELENA
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0484
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0484
     AddVar VAR_0x8005, 0x404D
     Message 22
     CloseMessage
@@ -153,8 +153,8 @@ _00FF:
     Message 23
     CloseMessage
     StartTrainerBattle TRAINER_MAID_CLARE
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0484
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0484
     AddVar VAR_0x8005, 0x404D
     Message 24
     CloseMessage
@@ -181,8 +181,8 @@ _00FF:
     CallIfEq VAR_0x8006, 1, _03D2
     CloseMessage
     StartTrainerBattle VAR_0x8007
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0484
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0484
     SetTrainerFlag TRAINER_RICH_BOY_LIAM
     SetTrainerFlag TRAINER_LADY_CELESTE
     CallIfEq VAR_0x8006, 0, _03D7

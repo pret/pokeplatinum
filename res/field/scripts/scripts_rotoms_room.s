@@ -105,21 +105,21 @@ RotomsRoom_LawnMower:
     End
 
 RotomsRoom_CheckAppliance:
-    CheckPartyHasSpecies VAR_0x800C, SPECIES_ROTOM
-    GoToIfEq VAR_0x800C, FALSE, RotomsRoom_ItsAnAppliance
-    CheckItem ITEM_SECRET_KEY, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, RotomsRoom_ItsAnAppliance
-    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, RotomsRoom_ItsAnAppliance
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_ROTOM
+    GoToIfEq VAR_RESULT, FALSE, RotomsRoom_ItsAnAppliance
+    CheckItem ITEM_SECRET_KEY, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, RotomsRoom_ItsAnAppliance
+    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, RotomsRoom_ItsAnAppliance
     CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_ItsAMicrowaveOvenRotomWantsToGoIntoTheMotor
     CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_ItsARefrigeratorRotomWantsToGoIntoTheMotor
     CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_ItsAWashingMachineRotomWantsToGoIntoTheMotor
     CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_ItsARotaryFanRotomWantsToGoIntoTheMotor
     CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_ItsALawnMowerRotomWantsToGoIntoTheMotor
-    GetPartyRotomCountAndFirst VAR_0x8003, VAR_0x800C
+    GetPartyRotomCountAndFirst VAR_0x8003, VAR_RESULT
     GoToIfGe VAR_0x8003, 1, _0254
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, RotomsRoom_RotomGaveUpEnteringTheMotor
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_RotomGaveUpEnteringTheMotor
     GoTo _01F8
     End
 
@@ -129,27 +129,27 @@ _01F8:
     CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_SetVarHydroPump
     CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_SetVarAirSlash
     CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_SetVarLeafStorm
-    CountRepeatedSpeciesInParty VAR_0x800C, SPECIES_ROTOM
-    GoToIfEq VAR_0x800C, 1, RotomsRoom_GetRotomPartySlot
+    CountRepeatedSpeciesInParty VAR_RESULT, SPECIES_ROTOM
+    GoToIfEq VAR_RESULT, 1, RotomsRoom_GetRotomPartySlot
     GoTo _0403
     End
 
 _0254:
-    InitLocalTextMenu 31, 11, 0, VAR_0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 15, 0
     AddMenuEntryImm 16, 1
     AddMenuEntryImm 14, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _01F8
     GoToIfEq VAR_0x8008, 2, _0295
     GoTo RotomsRoom_RotomGaveUpEnteringTheMotor
     End
 
 _0295:
-    GetPartyRotomCountAndFirst VAR_0x8003, VAR_0x800C
-    SetVar LOCALID_PARTY_SLOT, VAR_0x800C
+    GetPartyRotomCountAndFirst VAR_0x8003, VAR_RESULT
+    SetVar LOCALID_PARTY_SLOT, VAR_RESULT
     GoToIfGe VAR_0x8003, 2, RotomsRoom_ChooseARotom
     GoTo _02B6
     End
@@ -172,8 +172,8 @@ _02B6:
 
 _0325:
     GetPlayerMapPos VAR_0x8006, VAR_0x8007
-    GetPlayerDir VAR_0x800C
-    Warp MAP_HEADER_ROTOMS_ROOM, 0, VAR_0x8006, VAR_0x8007, VAR_0x800C
+    GetPlayerDir VAR_RESULT
+    Warp MAP_HEADER_ROTOMS_ROOM, 0, VAR_0x8006, VAR_0x8007, VAR_RESULT
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -214,11 +214,11 @@ RotomsRoom_ChooseARotom:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq LOCALID_PARTY_SLOT, 0xFF, RotomsRoom_End
-    GetPartyMonSpecies LOCALID_PARTY_SLOT, VAR_0x800C
-    GoToIfEq VAR_0x800C, SPECIES_NONE, RotomsRoom_AnEggCantEnterAMotor
-    GoToIfNe VAR_0x800C, SPECIES_ROTOM, RotomsRoom_ThatPokemonCantEnterAMotor
-    GetPartyMonForm2 LOCALID_PARTY_SLOT, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _03E8
+    GetPartyMonSpecies LOCALID_PARTY_SLOT, VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_NONE, RotomsRoom_AnEggCantEnterAMotor
+    GoToIfNe VAR_RESULT, SPECIES_ROTOM, RotomsRoom_ThatPokemonCantEnterAMotor
+    GetPartyMonForm2 LOCALID_PARTY_SLOT, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _03E8
     GoTo _02B6
     End
 
@@ -246,9 +246,9 @@ _0403:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq LOCALID_PARTY_SLOT, 0xFF, RotomsRoom_RotomGaveUpEnteringTheMotor
-    GetPartyMonSpecies LOCALID_PARTY_SLOT, VAR_0x800C
-    GoToIfEq VAR_0x800C, SPECIES_NONE, RotomsRoom_AnEggCantEnterAMotor
-    GoToIfNe VAR_0x800C, SPECIES_ROTOM, RotomsRoom_ThatPokemonCantEnterAMotor
+    GetPartyMonSpecies LOCALID_PARTY_SLOT, VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_NONE, RotomsRoom_AnEggCantEnterAMotor
+    GoToIfNe VAR_RESULT, SPECIES_ROTOM, RotomsRoom_ThatPokemonCantEnterAMotor
     GoTo _0473
     End
 
@@ -263,19 +263,19 @@ RotomsRoom_ThatPokemonCantEnterAMotor:
     End
 
 _0473:
-    CheckPartyMonHasMove VAR_0x800C, MOVE_OVERHEAT, LOCALID_PARTY_SLOT
-    GoToIfEq VAR_0x800C, TRUE, RotomsRoom_SetVarMoveNone
-    CheckPartyMonHasMove VAR_0x800C, MOVE_BLIZZARD, LOCALID_PARTY_SLOT
-    GoToIfEq VAR_0x800C, TRUE, RotomsRoom_SetVarMoveNone
-    CheckPartyMonHasMove VAR_0x800C, MOVE_HYDRO_PUMP, LOCALID_PARTY_SLOT
-    GoToIfEq VAR_0x800C, TRUE, RotomsRoom_SetVarMoveNone
-    CheckPartyMonHasMove VAR_0x800C, MOVE_AIR_SLASH, LOCALID_PARTY_SLOT
-    GoToIfEq VAR_0x800C, TRUE, RotomsRoom_SetVarMoveNone
-    CheckPartyMonHasMove VAR_0x800C, MOVE_LEAF_STORM, LOCALID_PARTY_SLOT
-    GoToIfEq VAR_0x800C, TRUE, RotomsRoom_SetVarMoveNone
-    GetPartyMonMoveCount VAR_0x800C, LOCALID_PARTY_SLOT
-    SetVar VAR_0x8002, VAR_0x800C
-    GoToIfEq VAR_0x800C, LEARNED_MOVES_MAX, RotomsRoom_Text_PokemonTryingToLearnMove
+    CheckPartyMonHasMove VAR_RESULT, MOVE_OVERHEAT, LOCALID_PARTY_SLOT
+    GoToIfEq VAR_RESULT, TRUE, RotomsRoom_SetVarMoveNone
+    CheckPartyMonHasMove VAR_RESULT, MOVE_BLIZZARD, LOCALID_PARTY_SLOT
+    GoToIfEq VAR_RESULT, TRUE, RotomsRoom_SetVarMoveNone
+    CheckPartyMonHasMove VAR_RESULT, MOVE_HYDRO_PUMP, LOCALID_PARTY_SLOT
+    GoToIfEq VAR_RESULT, TRUE, RotomsRoom_SetVarMoveNone
+    CheckPartyMonHasMove VAR_RESULT, MOVE_AIR_SLASH, LOCALID_PARTY_SLOT
+    GoToIfEq VAR_RESULT, TRUE, RotomsRoom_SetVarMoveNone
+    CheckPartyMonHasMove VAR_RESULT, MOVE_LEAF_STORM, LOCALID_PARTY_SLOT
+    GoToIfEq VAR_RESULT, TRUE, RotomsRoom_SetVarMoveNone
+    GetPartyMonMoveCount VAR_RESULT, LOCALID_PARTY_SLOT
+    SetVar VAR_0x8002, VAR_RESULT
+    GoToIfEq VAR_RESULT, LEARNED_MOVES_MAX, RotomsRoom_Text_PokemonTryingToLearnMove
     GoTo RotomsRoom_PokemonEnteredMotor
     End
 
@@ -294,8 +294,8 @@ RotomsRoom_Text_PokemonTryingToLearnMove:
     BufferPartyMonNickname 0, LOCALID_PARTY_SLOT
     BufferMoveName 1, LOCALID_MOVE_TO_LEARN
     Message RotomsRoom_Text_PokemonEnteredTheMotorTryingToLearnMove
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, RotomsRoom_DidNotLearnMoveEmergedFromTheMotor
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_DidNotLearnMoveEmergedFromTheMotor
     GoTo RotomsRoom_LearnMove
     End
 
@@ -309,33 +309,33 @@ RotomsRoom_LearnMove:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_0x8002, LEARNED_MOVES_MAX, RotomsRoom_GiveUpLearningMove
-    GetPartyMonMove VAR_0x800C, LOCALID_PARTY_SLOT, VAR_0x8002
-    BufferMoveName 1, VAR_0x800C
+    GetPartyMonMove VAR_RESULT, LOCALID_PARTY_SLOT, VAR_0x8002
+    BufferMoveName 1, VAR_RESULT
     Message RotomsRoom_Text_TheMoveWillBeForgotten
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, RotomsRoom_DidNotLearnMoveEmergedFromTheMotor
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_DidNotLearnMoveEmergedFromTheMotor
     BufferPartyMonNickname 0, LOCALID_PARTY_SLOT
-    GetPartyMonMove VAR_0x800C, LOCALID_PARTY_SLOT, VAR_0x8002
-    BufferMoveName 1, VAR_0x800C
+    GetPartyMonMove VAR_RESULT, LOCALID_PARTY_SLOT, VAR_0x8002
+    BufferMoveName 1, VAR_RESULT
     Message RotomsRoom_Text_12andPoof
     PlayFanfare SEQ_SE_DP_KON
     WaitFanfare SEQ_SE_DP_KON
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     Message RotomsRoom_Text_PokemonForgotHowToUseMove
-    WaitTime 32, VAR_0x800C
+    WaitTime 32, VAR_RESULT
     PlaySound SEQ_FANFA1
     BufferMoveName 1, LOCALID_MOVE_TO_LEARN
     Message RotomsRoom_Text_PokemonLearnedMove
     WaitSound
-    WaitTime 16, VAR_0x800C
+    WaitTime 16, VAR_RESULT
     GoTo RotomsRoom_SetRotomForm
     End
 
 RotomsRoom_GiveUpLearningMove:
     BufferMoveName 1, LOCALID_MOVE_TO_LEARN
     Message RotomsRoom_Text_GiveUpLearningMove
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, RotomsRoom_LearnMove
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_LearnMove
     GoTo RotomsRoom_DidNotLearnMoveEmergedFromTheMotor
     End
 
@@ -496,14 +496,14 @@ RotomsRoom_MysteriousNotebook:
 _07BB:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GetPartyRotomCountAndFirst VAR_0x8003, VAR_0x800C
+    GetPartyRotomCountAndFirst VAR_0x8003, VAR_RESULT
     GoToIfEq VAR_0x8003, 0, _0801
     Message RotomsRoom_Text_OhRotomWantsToRevertToItsOriginalForm
-    InitLocalTextMenu 31, 15, 0, VAR_0x800C
+    InitLocalTextMenu 31, 15, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 14, 0
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _0295
     CloseMessage
     ReleaseAll
@@ -625,32 +625,32 @@ RotomsRoom_OldNotebook:
     LockAll
     FacePlayer
     Message RotomsRoom_Text_ItsAnOldNotebook
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _09CF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _09CF
     Message RotomsRoom_Text_OurEncounterWasASuddenOne
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _09CF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _09CF
     Message RotomsRoom_Text_ThePokemonHoveredInTheAir
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _09CF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _09CF
     Message RotomsRoom_Text_ThePokemonOnlyWishedToBeFriends
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _09CF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _09CF
     Message RotomsRoom_Text_RotomIsAPokemonThatIsSensational
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _09CF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _09CF
     Message RotomsRoom_Text_RotomAndIBecameFastFriends
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _09CF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _09CF
     Message RotomsRoom_Text_AFeelingOfMischiefGotTheBetterOfMe
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _09CF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _09CF
     Message RotomsRoom_Text_WhenICameToRotomDisappeared
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _09CF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _09CF
     Message RotomsRoom_Text_MySearchForRotomCarriedMeFarFromHome
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _09CF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _09CF
     Message RotomsRoom_Text_TheRobotEyesLitUpHappilyAsIHeldIt
     GoTo _09D5
     End

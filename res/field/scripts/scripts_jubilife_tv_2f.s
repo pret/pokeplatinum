@@ -34,10 +34,10 @@ _0044:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x013D, _00A4
-    GetPlayerStarterSpecies VAR_0x800C
-    CallIfEq VAR_0x800C, SPECIES_TURTWIG, _00B4
-    CallIfEq VAR_0x800C, SPECIES_CHIMCHAR, _00BC
-    CallIfEq VAR_0x800C, SPECIES_PIPLUP, _00C4
+    GetPlayerStarterSpecies VAR_RESULT
+    CallIfEq VAR_RESULT, SPECIES_TURTWIG, _00B4
+    CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, _00BC
+    CallIfEq VAR_RESULT, SPECIES_PIPLUP, _00C4
     SetVar VAR_UNK_0x410A, VAR_0x8004
     ScrCmd_343 0, VAR_0x8004
     Message 1

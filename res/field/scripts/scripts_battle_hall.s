@@ -192,10 +192,10 @@ _02CB:
     AddMenuEntryImm 19, 2
     AddMenuEntryImm 20, 3
     ShowMenu
-    GoToIfEq VAR_0x800C, 0, _0366
-    GoToIfEq VAR_0x800C, 1, _0389
-    GoToIfEq VAR_0x800C, 2, _032B
-    GoToIfEq VAR_0x800C, 4, _03AC
+    GoToIfEq VAR_RESULT, 0, _0366
+    GoToIfEq VAR_RESULT, 1, _0389
+    GoToIfEq VAR_RESULT, 2, _032B
+    GoToIfEq VAR_RESULT, 4, _03AC
     GoTo _034D
     End
 
@@ -219,22 +219,22 @@ _0355:
 
 _0366:
     SetVar VAR_UNK_0x40BB, 0
-    ScrCmd_2CC 0, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _03CF
+    ScrCmd_2CC 0, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _03CF
     GoTo _03F5
     End
 
 _0389:
     SetVar VAR_UNK_0x40BB, 1
-    ScrCmd_2CC 0, 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _03E2
+    ScrCmd_2CC 0, 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _03E2
     GoTo _03F5
     End
 
 _03AC:
     SetVar VAR_UNK_0x40BB, 2
-    ScrCmd_2CC 0, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _03CF
+    ScrCmd_2CC 0, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _03CF
     GoTo _03F5
     End
 
@@ -255,40 +255,40 @@ _03F5:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_2CC 4, VAR_UNK_0x40BB, VAR_0x800C
+    ScrCmd_2CC 4, VAR_UNK_0x40BB, VAR_RESULT
     ScrCmd_2D0 VAR_0x4002, VAR_0x4005
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_0x4002, 0xFF, _034D
-    ScrCmd_31E VAR_0x4002, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0xFF, _07C8
-    ScrCmd_31E VAR_0x4005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0xFF, _07C8
+    ScrCmd_31E VAR_0x4002, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0xFF, _07C8
+    ScrCmd_31E VAR_0x4005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0xFF, _07C8
     GetPartyMonSpecies VAR_0x4002, VAR_0x4001
     GoToIfEq VAR_0x4001, 0, _034D
-    ScrCmd_2CC 1, VAR_UNK_0x40BB, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _04F4
-    ScrCmd_2CC 2, VAR_UNK_0x40BB, VAR_0x800C
-    BufferSpeciesNameFromVar 0, VAR_0x800C, 0, 0
-    GoToIfEq VAR_0x800C, VAR_0x4001, _04F4
+    ScrCmd_2CC 1, VAR_UNK_0x40BB, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _04F4
+    ScrCmd_2CC 2, VAR_UNK_0x40BB, VAR_RESULT
+    BufferSpeciesNameFromVar 0, VAR_RESULT, 0, 0
+    GoToIfEq VAR_RESULT, VAR_0x4001, _04F4
     GoTo _04A2
     End
 
 _04A2:
     BufferSpeciesNameFromVar 1, VAR_0x4001, 0, 0
     Message 34
-    InitGlobalTextListMenu 25, 13, 1, VAR_0x800C
+    InitGlobalTextListMenu 25, 13, 1, VAR_RESULT
     AddListMenuEntry 41, 0
     AddListMenuEntry 42, 1
     ShowListMenuSetWidth 6
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _04E4
     GoTo _034D
     End
 
 _04E4:
-    ScrCmd_2CC 3, VAR_UNK_0x40BB, VAR_0x800C
+    ScrCmd_2CC 3, VAR_UNK_0x40BB, VAR_RESULT
     GoTo _04F4
     End
 
@@ -302,21 +302,21 @@ _04FC:
     SetVar VAR_0x4000, 0
     HealParty
     CallCommonScript 0x7D6
-    SetVar VAR_0x800C, VAR_0x4000
-    GoToIfEq VAR_0x800C, 0, _034D
+    SetVar VAR_RESULT, VAR_0x4000
+    GoToIfEq VAR_RESULT, 0, _034D
     GoToIfEq VAR_UNK_0x40BB, 2, _054A
     GoTo _0690
     End
 
 _054A:
     Message 30
-    InitGlobalTextMenu 30, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 30, 1, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 13, 0
     AddMenuEntryImm 14, 1
     AddMenuEntryImm 5, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _058E
     GoToIfEq VAR_0x8008, 1, _05E2
     GoTo _034D
@@ -324,12 +324,12 @@ _054A:
 
 _058E:
     Message 31
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _054A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _054A
     CloseMessage
-    ScrCmd_0F2 30, 0, 0, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _05D0
-    GoToIfEq VAR_0x800C, 3, _05D8
+    ScrCmd_0F2 30, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _05D0
+    GoToIfEq VAR_RESULT, 3, _05D8
     GoTo _0636
     End
 
@@ -344,12 +344,12 @@ _05D8:
 
 _05E2:
     Message 31
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _054A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _054A
     CloseMessage
-    ScrCmd_0F3 30, 0, 0, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0624
-    GoToIfEq VAR_0x800C, 3, _062C
+    ScrCmd_0F3 30, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0624
+    GoToIfEq VAR_RESULT, 3, _062C
     GoTo _0636
     End
 
@@ -365,8 +365,8 @@ _062C:
 _0636:
     ScrCmd_136
     ScrCmd_135 108
-    ScrCmd_2CF VAR_0x4001, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _067B
+    ScrCmd_2CF VAR_0x4001, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _067B
     ScrCmd_136
     ScrCmd_135 110
     Message 32
@@ -438,7 +438,7 @@ _074B:
 
 _0766:
     ScrCmd_02E 9
-    WaitTime 10, VAR_0x800C
+    WaitTime 10, VAR_RESULT
     ScrCmd_136
     ScrCmd_135 109
     CloseMessage
@@ -543,7 +543,7 @@ _0879:
     Return
 
 _087E:
-    InitLocalTextMenu 31, 9, 0, VAR_0x800C
+    InitLocalTextMenu 31, 9, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 16, 0
     AddMenuEntryImm 17, 1
@@ -551,7 +551,7 @@ _087E:
     Return
 
 _0896:
-    InitLocalTextMenu 31, 11, 0, VAR_0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 18, 4
     Message 4
@@ -577,7 +577,7 @@ _08B4:
 
 _08DB:
     ScrCmd_18D
-    ScrCmd_12D VAR_0x800C
+    ScrCmd_12D VAR_RESULT
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
@@ -756,10 +756,10 @@ _0A4F:
     LockAll
     FacePlayer
     GoToIfUnset FLAG_UNK_0x00BE, _0AD7
-    ScrCmd_324 1, 2, 3, 4, VAR_UNK_0x4062, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0AAD
-    GoToIfEq VAR_0x800C, 2, _0AB8
-    GoToIfEq VAR_0x800C, 3, _0AC9
+    ScrCmd_324 1, 2, 3, 4, VAR_UNK_0x4062, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0AAD
+    GoToIfEq VAR_RESULT, 2, _0AB8
+    GoToIfEq VAR_RESULT, 3, _0AC9
     BufferPlayerName 0
     Message 69
     Message 70
@@ -803,8 +803,8 @@ _0AEE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _0C22
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0C22
     GoTo _0B0F
     End
 
@@ -879,8 +879,8 @@ _0C01:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_FEMALE, _0B0F
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0B0F
     GoTo _0C22
     End
 

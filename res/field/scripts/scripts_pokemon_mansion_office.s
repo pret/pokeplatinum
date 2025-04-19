@@ -35,8 +35,8 @@ _0067:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AA2, _0155
     GoToIfEq VAR_0x400B, 1, _0155
-    ScrCmd_22D 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _00AA
+    ScrCmd_22D 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00AA
     GoTo _009F
 
 _009F:
@@ -48,9 +48,9 @@ _009F:
 
 _00AA:
     Message 3
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00D8
-    GoToIfEq VAR_0x800C, MENU_NO, _00CD
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00D8
+    GoToIfEq VAR_RESULT, MENU_NO, _00CD
     End
 
 _00CD:
@@ -62,9 +62,9 @@ _00CD:
 
 _00D8:
     Message 5
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00FB
-    GoToIfEq VAR_0x800C, MENU_NO, _00CD
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00FB
+    GoToIfEq VAR_RESULT, MENU_NO, _00CD
     End
 
 _00FB:
@@ -174,8 +174,8 @@ _0224:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_22D 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0244
+    ScrCmd_22D 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0244
     GoTo _0270
 
 _0244:
@@ -195,11 +195,11 @@ _0257:
 
 _0270:
     GoToIfSet FLAG_UNK_0x0AA2, _0304
-    CheckGameCompleted VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _02C8
-    GetRandom VAR_0x800C, 2
-    CallIfEq VAR_0x800C, 0, _02BE
-    CallIfEq VAR_0x800C, 1, _02C3
+    CheckGameCompleted VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _02C8
+    GetRandom VAR_RESULT, 2
+    CallIfEq VAR_RESULT, 0, _02BE
+    CallIfEq VAR_RESULT, 1, _02C3
     WaitABXPadPress
     CloseMessage
     ApplyMovement 2, _01CC
@@ -216,9 +216,9 @@ _02C3:
     Return
 
 _02C8:
-    GetRandom VAR_0x800C, 2
-    CallIfEq VAR_0x800C, 0, _02FA
-    CallIfEq VAR_0x800C, 1, _02FF
+    GetRandom VAR_RESULT, 2
+    CallIfEq VAR_RESULT, 0, _02FA
+    CallIfEq VAR_RESULT, 1, _02FF
     WaitABXPadPress
     CloseMessage
     ApplyMovement 2, _01CC
@@ -298,16 +298,16 @@ _0399:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 19
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _03C2
-    GoToIfEq VAR_0x800C, MENU_NO, _0408
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _03C2
+    GoToIfEq VAR_RESULT, MENU_NO, _0408
     End
 
 _03C2:
     Message 20
     GoToIfSet FLAG_UNK_0x00FB, _0408
-    CheckHasSeenSpecies SPECIES_MANAPHY, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _03FC
+    CheckHasSeenSpecies SPECIES_MANAPHY, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _03FC
     DrawPokemonPreview SPECIES_MANAPHY, GENDER_MALE
     WaitABPress
     ScrCmd_209

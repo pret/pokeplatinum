@@ -19,9 +19,9 @@ _0014:
     GetPlayerDir VAR_0x8004
     FacePlayer
     Message 3
-    ShowYesNoMenu VAR_0x800C
+    ShowYesNoMenu VAR_RESULT
     CloseMessage
-    GoToIfEq VAR_0x800C, MENU_YES, _003E
+    GoToIfEq VAR_RESULT, MENU_YES, _003E
     GoTo _0071
 
 _003E:
@@ -98,8 +98,8 @@ _00FC:
     SetVar VAR_0x8004, 0x1A7
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
-    CheckBadgeAcquired BADGE_ID_MINE, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0140
+    CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0140
     GoTo _0135
     End
 

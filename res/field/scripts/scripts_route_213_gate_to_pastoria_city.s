@@ -22,8 +22,8 @@ _001D:
     LockAll
     FacePlayer
     Message 1
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0044
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0044
     Message 2
     GoTo _004F
     End

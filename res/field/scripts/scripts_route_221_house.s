@@ -33,7 +33,7 @@ _006D:
     BufferItemName 2, VAR_0x8004
     Message 1
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0105
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0105
     GoTo _00C2
 
 _00C2:
@@ -75,7 +75,7 @@ _0114:
     BufferItemName 2, VAR_0x8004
     Message 3
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0105
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0105
     GoTo _00C2
 
 _0164:

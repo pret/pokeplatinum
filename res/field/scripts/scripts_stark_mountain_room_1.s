@@ -21,8 +21,8 @@ _0014:
     ApplyMovement 0, _0160
     WaitMovement
     StartTrainerBattle TRAINER_COMMANDER_MARS_STARK_MOUNTAIN
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0150
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0150
     Message 1
     CloseMessage
     ApplyMovement 0, _0168
@@ -34,11 +34,11 @@ _0014:
     ApplyMovement 4, _01CC
     WaitMovement
     StartTrainerBattle TRAINER_COMMANDER_JUPITER_STARK_MOUNTAIN
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0150
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0150
     Message 3
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 0, _0174
     ApplyMovement 4, _01F4
     WaitMovement

@@ -14,8 +14,8 @@ _000C:
     FacePlayer
     GoToIfUnset FLAG_UNK_0x0117, _00FE
     CallIfUnset FLAG_UNK_0x0001, _00F6
-    CheckPartyHasSpecies VAR_0x800C, SPECIES_UNOWN
-    GoToIfEq VAR_0x800C, 1, _0048
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_UNOWN
+    GoToIfEq VAR_RESULT, 1, _0048
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -31,15 +31,15 @@ _0048:
 _0067:
     SetVar VAR_0x8007, 50
     AddVar VAR_0x8007, VAR_0x8006
-    ScrCmd_093 VAR_0x8007, VAR_0x800C
-    GoToIfEq VAR_0x800C, 99, _00EB
+    ScrCmd_093 VAR_0x8007, VAR_RESULT
+    GoToIfEq VAR_RESULT, 99, _00EB
     BufferPartyMonSpecies 0, VAR_0x8004
     Message 1
     SetVar VAR_0x8000, 10
-    ScrCmd_093 VAR_0x8007, VAR_0x800C
-    GoToIfLe VAR_0x800C, 89, _00B3
-    SubVar VAR_0x800C, 89
-    SubVar VAR_0x8000, VAR_0x800C
+    ScrCmd_093 VAR_0x8007, VAR_RESULT
+    GoToIfLe VAR_RESULT, 89, _00B3
+    SubVar VAR_RESULT, 89
+    SubVar VAR_0x8000, VAR_RESULT
 _00B3:
     ScrCmd_094 VAR_0x8007, VAR_0x8000
     SetVar VAR_0x4000, VAR_0x8006

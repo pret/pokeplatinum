@@ -57,9 +57,9 @@ _0040:
     Message 4
     Message 5
     Message 6
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _019D
-    GoToIfEq VAR_0x800C, MENU_NO, _013C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _019D
+    GoToIfEq VAR_RESULT, MENU_NO, _013C
     End
 
 _0110:
@@ -103,8 +103,8 @@ _019D:
     Message 8
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0393
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0393
     Call _01C3
     ReleaseAll
     End
@@ -114,7 +114,7 @@ _01C3:
     SetVar VAR_UNK_0x4074, 1
     Message 11
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     RemoveObject 1
@@ -463,13 +463,13 @@ _0538:
     LockAll
     FacePlayer
     Message 7
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _057A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _057A
     Message 8
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0393
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0393
     Call _01C3
     ReleaseAll
     End
@@ -504,21 +504,21 @@ _0596:
     CallIfEq VAR_0x8004, 9, _0713
     CallIfEq VAR_0x8004, 10, _071F
     Message 17
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0753
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0753
     CloseMessage
     ApplyMovement 2, _07F0
     ApplyMovement LOCALID_PLAYER, _0858
     WaitMovement
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     Message 18
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 9, _0713
     CallIfEq VAR_0x8004, 10, _071F
     CallIfEq VAR_0x8004, 9, _06FB
     CallIfEq VAR_0x8004, 10, _0707
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0753
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0753
     Message 19
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0864
@@ -530,8 +530,8 @@ _0596:
     CallIfEq VAR_0x8004, 9, _072B
     CallIfEq VAR_0x8004, 10, _073F
     Message 21
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0753
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0753
     Message 22
     GoTo _075E
     End

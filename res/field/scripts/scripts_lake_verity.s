@@ -62,8 +62,8 @@ _00CB:
     WaitMovement
     Message 2
     FacePlayer
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _0104
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0104
     GoTo _0112
     End
 
@@ -100,8 +100,8 @@ _013B:
     LockAll
     FacePlayer
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, _018B
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _0167
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0167
     GoTo _0175
     End
 
@@ -124,8 +124,8 @@ _0183:
     End
 
 _018B:
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _01A4
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _01A4
     GoTo _01B2
     End
 
@@ -156,8 +156,8 @@ _01D0:
     LockAll
     ApplyMovement 5, _0220
     WaitMovement
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _01F5
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _01F5
     GoTo _0203
     End
 
@@ -196,8 +196,8 @@ _0230:
     Message 9
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_MARS_LAKE_VERITY
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _02DB
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _02DB
     Message 10
     Message 11
     Message 12

@@ -119,8 +119,8 @@ _019A:
     ClearFlag FLAG_UNK_0x01E8
     AddObject 33
     CallCommonScript 0x807
-    ScrCmd_315 VAR_0x800C
-    CallIfEq VAR_0x800C, 2, _0261
+    ScrCmd_315 VAR_RESULT
+    CallIfEq VAR_RESULT, 2, _0261
     CallIfEq VAR_0x8004, 2, _0267
     CallIfEq VAR_0x8004, 3, _027B
     CallIfEq VAR_0x8004, 0, _028F
@@ -137,8 +137,8 @@ _019A:
     CallIfEq VAR_0x8004, 1, _02F3
     RemoveObject 33
     CallCommonScript 0x808
-    ScrCmd_315 VAR_0x800C
-    CallIfEq VAR_0x800C, 2, _0261
+    ScrCmd_315 VAR_RESULT
+    CallIfEq VAR_RESULT, 2, _0261
     ClearFlag FLAG_UNK_0x0211
     ClearFlag FLAG_UNK_0x021B
     ReleaseAll

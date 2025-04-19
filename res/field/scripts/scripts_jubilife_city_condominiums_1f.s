@@ -54,7 +54,7 @@ _0063:
     Message 3
     SetVar VAR_0x8004, ITEM_QUICK_CLAW
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00AD
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00AD
     SetFlag FLAG_UNK_0x00BF
     CallCommonScript 0x7E0
     CloseMessage

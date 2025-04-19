@@ -26,13 +26,13 @@ _0031:
 
 _0041:
     Message 1
-    InitLocalTextMenu 30, 11, 0, VAR_0x800C
+    InitLocalTextMenu 30, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 2, 0
     AddMenuEntryImm 3, 1
     AddMenuEntryImm 4, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _0085
     GoToIfEq VAR_0x8008, 1, _015D
     GoTo _0152
@@ -41,10 +41,10 @@ _0041:
 _0085:
     BufferNumber 2, 1
     Message 7
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0152
-    ScrCmd_29A 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0147
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0152
+    ScrCmd_29A 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0147
     ScrCmd_299 1
     UpdateBPDisplay
     Message 10
@@ -124,10 +124,10 @@ _01CE:
     ScrCmd_33D 0, VAR_0x4000
 _01D3:
     BufferNumber 1, VAR_0x4001
-    GoToIfCannotFitItem VAR_0x4000, VAR_0x4001, VAR_0x800C, _0294
+    GoToIfCannotFitItem VAR_0x4000, VAR_0x4001, VAR_RESULT, _0294
     PlaySound SEQ_FANFA4
     Message 13
-    AddItem VAR_0x4000, VAR_0x4001, VAR_0x800C
+    AddItem VAR_0x4000, VAR_0x4001, VAR_RESULT
     WaitSound
     Return
 
@@ -140,10 +140,10 @@ _0218:
     ScrCmd_33D 0, VAR_0x4002
 _021D:
     BufferNumber 1, VAR_0x4003
-    GoToIfCannotFitItem VAR_0x4002, VAR_0x4003, VAR_0x800C, _0294
+    GoToIfCannotFitItem VAR_0x4002, VAR_0x4003, VAR_RESULT, _0294
     PlaySound SEQ_FANFA4
     Message 13
-    AddItem VAR_0x4002, VAR_0x4003, VAR_0x800C
+    AddItem VAR_0x4002, VAR_0x4003, VAR_RESULT
     WaitSound
     Return
 
@@ -156,10 +156,10 @@ _0262:
     ScrCmd_33D 0, VAR_0x4004
 _0267:
     BufferNumber 1, VAR_0x4005
-    GoToIfCannotFitItem VAR_0x4004, VAR_0x4005, VAR_0x800C, _0294
+    GoToIfCannotFitItem VAR_0x4004, VAR_0x4005, VAR_RESULT, _0294
     PlaySound SEQ_FANFA4
     Message 13
-    AddItem VAR_0x4004, VAR_0x4005, VAR_0x800C
+    AddItem VAR_0x4004, VAR_0x4005, VAR_RESULT
     WaitSound
     Return
 

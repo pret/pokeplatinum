@@ -14,8 +14,8 @@ _000E:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AAC, _00D5
     Message 0
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _00EB
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _00EB
     Message 1
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -26,8 +26,8 @@ _000E:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_0x4000, 0xFF, _00EB
-    GetPartyMonSpecies VAR_0x4000, VAR_0x800C
-    GoToIfEq VAR_0x800C, SPECIES_NONE, _00E0
+    GetPartyMonSpecies VAR_0x4000, VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_NONE, _00E0
     Message 3
     CloseMessage
     FadeScreen 6, 1, 0, 0

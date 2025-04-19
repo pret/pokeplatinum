@@ -28,8 +28,8 @@ _0057:
     GoTo _0060
 
 _0060:
-    ScrCmd_218 VAR_0x800C
-    SetVar VAR_UNK_0x40E5, VAR_0x800C
+    ScrCmd_218 VAR_RESULT
+    SetVar VAR_UNK_0x40E5, VAR_RESULT
     SetNewsPressDeadline 1
     BufferSpeciesNameFromVar 0, VAR_UNK_0x40E5, 0, 0
     Message 2
@@ -40,33 +40,33 @@ _0060:
 
 _0081:
     Message 3
-    GetNewsPressDeadline VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _029F
-    CheckPartyHasSpecies VAR_0x800C, VAR_UNK_0x40E5
-    GoToIfEq VAR_0x800C, 0, _0283
+    GetNewsPressDeadline VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _029F
+    CheckPartyHasSpecies VAR_RESULT, VAR_UNK_0x40E5
+    GoToIfEq VAR_RESULT, 0, _0283
     GoTo _00AE
 
 _00AE:
     BufferSpeciesNameFromVar 0, VAR_UNK_0x40E5, 0, 0
     Message 4
-    GetRandom VAR_0x800C, 12
-    CallIfEq VAR_0x800C, 0, _0189
-    CallIfEq VAR_0x800C, 1, _0191
-    CallIfEq VAR_0x800C, 2, _0199
-    CallIfEq VAR_0x800C, 3, _01A1
-    CallIfEq VAR_0x800C, 4, _01A9
-    CallIfEq VAR_0x800C, 5, _01B1
-    CallIfEq VAR_0x800C, 6, _01B9
-    CallIfEq VAR_0x800C, 7, _01C1
-    CallIfEq VAR_0x800C, 8, _01C9
-    CallIfEq VAR_0x800C, 9, _01D1
-    CallIfEq VAR_0x800C, 10, _01D9
-    CallIfEq VAR_0x800C, 11, _01E1
+    GetRandom VAR_RESULT, 12
+    CallIfEq VAR_RESULT, 0, _0189
+    CallIfEq VAR_RESULT, 1, _0191
+    CallIfEq VAR_RESULT, 2, _0199
+    CallIfEq VAR_RESULT, 3, _01A1
+    CallIfEq VAR_RESULT, 4, _01A9
+    CallIfEq VAR_RESULT, 5, _01B1
+    CallIfEq VAR_RESULT, 6, _01B9
+    CallIfEq VAR_RESULT, 7, _01C1
+    CallIfEq VAR_RESULT, 8, _01C9
+    CallIfEq VAR_RESULT, 9, _01D1
+    CallIfEq VAR_RESULT, 10, _01D9
+    CallIfEq VAR_RESULT, 11, _01E1
     SetVar VAR_0x8005, 3
-    CanFitItem ITEM_HEART_SCALE, 1, VAR_0x800C
-    GoToIfNe VAR_0x800C, 0, _01E9
+    CanFitItem ITEM_HEART_SCALE, 1, VAR_RESULT
+    GoToIfNe VAR_RESULT, 0, _01E9
     SetFlag FLAG_UNK_0x0AB1
-    GoToIfEq VAR_0x800C, 0, _023F
+    GoToIfEq VAR_RESULT, 0, _023F
     End
 
 _0189:
@@ -132,7 +132,7 @@ _01E9:
     End
 
 _0216:
-    GoToIfCannotFitItem ITEM_HEART_SCALE, 1, VAR_0x800C, _0251
+    GoToIfCannotFitItem ITEM_HEART_SCALE, 1, VAR_RESULT, _0251
     SetVar VAR_0x8004, VAR_UNK_0x4117
     SetVar VAR_0x8005, 3
     GoTo _025C
@@ -165,8 +165,8 @@ _025C:
 
 _0283:
     BufferSpeciesNameFromVar 0, VAR_UNK_0x40E5, 0, 0
-    GetNewsPressDeadline VAR_0x800C
-    BufferNumber 1, VAR_0x800C
+    GetNewsPressDeadline VAR_RESULT
+    BufferNumber 1, VAR_RESULT
     Message 8
     WaitABXPadPress
     CloseMessage
@@ -203,14 +203,14 @@ _02CE:
     LockAll
     Message 12
     Message 13
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntry 0x107, 0
     AddMenuEntry 0x108, 1
     AddMenuEntry 0x109, 2
     AddMenuEntry 0x10B, 3
     AddMenuEntry 0x10A, 4
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _0344
     GoToIfEq VAR_0x8008, 1, _034F
     GoToIfEq VAR_0x8008, 2, _035A

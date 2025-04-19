@@ -36,13 +36,13 @@ _0064:
 
 _0074:
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _00E1
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00E1
     Message 2
     SetVar VAR_0x8004, ITEM_MASTER_BALL
     SetVar VAR_0x8005, 1
-    CanFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C
-    CallIfEq VAR_0x800C, 1, _00DB
+    CanFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CallIfEq VAR_RESULT, 1, _00DB
     Message 3
     CloseMessage
     ApplyMovement 0, _0110
@@ -104,8 +104,8 @@ _012C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_GALACTIC_KEY, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0154
+    CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0154
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -114,9 +114,9 @@ _012C:
 
 _0154:
     Message 6
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0177
-    GoToIfEq VAR_0x800C, MENU_NO, _01AB
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0177
+    GoToIfEq VAR_RESULT, MENU_NO, _01AB
     End
 
 _0177:
@@ -168,13 +168,13 @@ _01D5:
 
 _01E6:
     Message 10
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntry 0x10C, 0
     AddMenuEntry 0x10D, 1
     AddMenuEntry 0x10E, 2
     AddMenuEntry 0x10F, 3
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _0240
     GoToIfEq VAR_0x8008, 1, _024B
     GoToIfEq VAR_0x8008, 2, _0256

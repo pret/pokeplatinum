@@ -33,11 +33,11 @@ _0022:
     WaitMovement
     Message 0
     CloseMessage
-    ScrCmd_20D 4, VAR_0x800C
-    WaitTime 30, VAR_0x800C
+    ScrCmd_20D 4, VAR_RESULT
+    WaitTime 30, VAR_RESULT
 _0088:
-    ScrCmd_20D 6, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0088
+    ScrCmd_20D 6, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0088
     RemoveObject 1
     ApplyMovement 241, _0178
     WaitMovement
@@ -56,9 +56,9 @@ _0088:
 
 _00DA:
     Message 6
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00FD
-    GoToIfEq VAR_0x800C, MENU_NO, _0130
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00FD
+    GoToIfEq VAR_RESULT, MENU_NO, _0130
     End
 
 _00FD:
@@ -122,9 +122,9 @@ _0184:
     LockAll
     FacePlayer
     Message 6
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00FD
-    GoToIfEq VAR_0x800C, MENU_NO, _01AF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00FD
+    GoToIfEq VAR_RESULT, MENU_NO, _01AF
     End
 
 _01AF:

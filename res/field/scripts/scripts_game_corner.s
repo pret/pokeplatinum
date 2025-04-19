@@ -78,8 +78,8 @@ _00DE:
 _00EA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckItem ITEM_COIN_CASE, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0133
+    CheckItem ITEM_COIN_CASE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0133
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CreateJournalEvent LOCATION_EVENT_GAME_CORNER, 0, 0, 0, 0
@@ -102,12 +102,12 @@ _013E:
     LockAll
     FacePlayer
     Message 0
-    CheckItem ITEM_COIN_CASE, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _018D
+    CheckItem ITEM_COIN_CASE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _018D
     GoToIfSet FLAG_UNK_0x0130, _0198
     GoToIfSet FLAG_UNK_0x0165, GameCorner_GiveTM64
-    CheckBonusRoundStreak VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0198
+    CheckBonusRoundStreak VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0198
     GoTo GameCorner_GiveTM64
     End
 
@@ -123,22 +123,22 @@ _0198:
     ShowMoney 20, 7
 _01A4:
     Message 2
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 125, 0
     AddMenuEntryImm 126, 1
     AddMenuEntryImm 127, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _01E3
     GoToIfEq VAR_0x8008, 1, _0240
     GoTo _02BB
 
 _01E3:
-    ScrCmd_071 VAR_0x800C, 0x3E8
-    GoToIfEq VAR_0x800C, 0, _029D
-    ScrCmd_276 VAR_0x800C, 50
+    ScrCmd_071 VAR_RESULT, 0x3E8
+    GoToIfEq VAR_RESULT, 0, _029D
+    ScrCmd_276 VAR_RESULT, 50
     Noop
-    GoToIfEq VAR_0x800C, 0, _02AC
+    GoToIfEq VAR_RESULT, 0, _02AC
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x3E8
     ScrCmd_070 0x3E8
@@ -149,15 +149,15 @@ _01E3:
     UpdateCoinDisplay
     WaitFanfare SEQ_SE_PL_COIN
     Message 3
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     GoTo _01A4
 
 _0240:
-    ScrCmd_071 VAR_0x800C, 0x2710
-    GoToIfEq VAR_0x800C, 0, _029D
-    ScrCmd_276 VAR_0x800C, 0x1F4
+    ScrCmd_071 VAR_RESULT, 0x2710
+    GoToIfEq VAR_RESULT, 0, _029D
+    ScrCmd_276 VAR_RESULT, 0x1F4
     Noop
-    GoToIfEq VAR_0x800C, 0, _02AC
+    GoToIfEq VAR_RESULT, 0, _02AC
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x2710
     ScrCmd_070 0x2710
@@ -168,7 +168,7 @@ _0240:
     UpdateCoinDisplay
     WaitFanfare SEQ_SE_PL_COIN
     Message 3
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     GoTo _01A4
 
 _029D:
@@ -201,7 +201,7 @@ _02BB:
 GameCorner_GiveTM64:
     SetVar VAR_0x8004, ITEM_TM64
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0327
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0327
     GoTo _02F3
     End
 
@@ -244,12 +244,12 @@ _0346:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_COIN_CASE, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _03A1
+    CheckItem ITEM_COIN_CASE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _03A1
     GoToIfSet FLAG_UNK_0x012E, _03AC
-    ScrCmd_276 VAR_0x800C, 20
+    ScrCmd_276 VAR_RESULT, 20
     Noop
-    GoToIfEq VAR_0x800C, 0, _03AC
+    GoToIfEq VAR_RESULT, 0, _03AC
     SetFlag FLAG_UNK_0x012E
     BufferPlayerName 0
     Message 14
@@ -279,12 +279,12 @@ _03B7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_COIN_CASE, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0412
+    CheckItem ITEM_COIN_CASE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0412
     GoToIfSet FLAG_UNK_0x012F, _041D
-    ScrCmd_276 VAR_0x800C, 50
+    ScrCmd_276 VAR_RESULT, 50
     Noop
-    GoToIfEq VAR_0x800C, 0, _041D
+    GoToIfEq VAR_RESULT, 0, _041D
     SetFlag FLAG_UNK_0x012F
     BufferPlayerName 0
     Message 17

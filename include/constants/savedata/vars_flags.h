@@ -4418,7 +4418,7 @@
 #define VAR_0x8009              (SCRIPT_LOCAL_VARS_START + 9)
 #define VAR_0x800A              (SCRIPT_LOCAL_VARS_START + 10)
 #define VAR_0x800B              (SCRIPT_LOCAL_VARS_START + 11)
-#define VAR_0x800C              (SCRIPT_LOCAL_VARS_START + 12)
+#define VAR_RESULT              (SCRIPT_LOCAL_VARS_START + 12)
 #define VAR_0x800D              (SCRIPT_LOCAL_VARS_START + 13)
 
 #endif // POKEPLATINUM_CONSTANTS_VARS_AND_FLAGS_H

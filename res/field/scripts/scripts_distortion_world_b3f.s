@@ -17,8 +17,8 @@ _000E:
     ApplyMovement 128, _0060
     WaitMovement
     Message 0
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _003B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _003B
     Message 1
     GoTo _003E
 

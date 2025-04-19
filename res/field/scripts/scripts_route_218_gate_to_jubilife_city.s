@@ -25,17 +25,17 @@ _001D:
     BufferItemName 0, VAR_0x8004
     GoToIfSet FLAG_UNK_0x0084, _005E
     Message 1
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00A7
-    GoToIfEq VAR_0x800C, MENU_NO, _009C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00A7
+    GoToIfEq VAR_RESULT, MENU_NO, _009C
     End
 
 _005E:
     BufferItemName 0, VAR_0x8004
     Message 3
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0086
-    GoToIfEq VAR_0x800C, MENU_NO, _0091
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0086
+    GoToIfEq VAR_RESULT, MENU_NO, _0091
     End
 
 _0086:

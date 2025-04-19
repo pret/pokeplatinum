@@ -176,8 +176,8 @@ _01AA:
     SetHasPartner
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_IRON_ISLAND_1, TRAINER_GALACTIC_GRUNT_IRON_ISLAND_2
     ClearHasPartner
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _037D
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _037D
     ApplyMovement 5, _0394
     WaitMovement
     Message 9
@@ -251,14 +251,14 @@ _02E5:
 
 _02F9:
     Message 11
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _031C
-    GoToIfEq VAR_0x800C, MENU_NO, _0366
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _031C
+    GoToIfEq VAR_RESULT, MENU_NO, _0366
     End
 
 _031C:
-    GetPartyCount VAR_0x800C
-    GoToIfEq VAR_0x800C, 6, _0353
+    GetPartyCount VAR_RESULT
+    GoToIfEq VAR_RESULT, 6, _0353
     PlaySound SEQ_FANFA4
     WaitSound
     Message 12

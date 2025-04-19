@@ -15,8 +15,8 @@ _0010:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetUnownFormsSeenCount VAR_0x800C
-    GoToIfGe VAR_0x800C, 26, _0034
+    GetUnownFormsSeenCount VAR_RESULT
+    GoToIfGe VAR_RESULT, 26, _0034
     Message 0
     WaitABXPadPress
     CloseMessage

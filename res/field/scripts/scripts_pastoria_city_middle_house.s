@@ -29,13 +29,13 @@ _001D:
     End
 
 _004A:
-    CheckPartyCombeeGenderCount VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _009C
-    GoToIfEq VAR_0x800C, 1, _00A7
+    CheckPartyCombeeGenderCount VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _009C
+    GoToIfEq VAR_RESULT, 1, _00A7
     Message 4
     SetVar VAR_0x8004, ITEM_MACHO_BRACE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00B2
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00B2
     SetFlag FLAG_UNK_0x011C
     CallCommonScript 0x7FC
     GoTo _00BD

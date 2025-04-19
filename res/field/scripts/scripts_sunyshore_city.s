@@ -418,8 +418,8 @@ _0530:
     FacePlayer
     GoToIfSet FLAG_UNK_0x009A, _056C
     Message 8
-    CheckBadgeAcquired BADGE_ID_BEACON, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0561
+    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0561
     GoTo _056C
     End
 
@@ -468,16 +468,16 @@ _05D7:
     CloseMessage
     ApplyMovement 18, _0668
     WaitMovement
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 18, _0670
     WaitMovement
     Message 1
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 18, _0678
     WaitMovement
     RemoveObject 18
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     SetObjectEventPos 18, 0x34D, 0x2EC
     ScrCmd_188 18, 15
     ScrCmd_189 18, 1
@@ -613,8 +613,8 @@ _0791:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    GetDayOfWeek VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    GetDayOfWeek VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, DAY_OF_WEEK_SUNDAY, _0806
     GoToIfEq VAR_0x8008, DAY_OF_WEEK_MONDAY, _0810
     GoToIfEq VAR_0x8008, DAY_OF_WEEK_TUESDAY, _081A
@@ -670,11 +670,11 @@ _0850:
 _086E:
     Message 3
     CloseMessage
-    WaitTime 15, VAR_0x800C
-    GetPlayerDir VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _08A6
-    GoToIfEq VAR_0x800C, 2, _08BE
-    GoToIfEq VAR_0x800C, 3, _08D6
+    WaitTime 15, VAR_RESULT
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _08A6
+    GoToIfEq VAR_RESULT, 2, _08BE
+    GoToIfEq VAR_RESULT, 3, _08D6
     End
 
 _08A6:

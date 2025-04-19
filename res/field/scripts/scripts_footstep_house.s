@@ -40,11 +40,11 @@ FootstepHouse_CheckFeelingsAgain:
 FootstepHouse_FadeScreen:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    WaitTime 40, VAR_0x800C
+    WaitTime 40, VAR_RESULT
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Call _008A
-    WaitTime 20, VAR_0x800C
+    WaitTime 20, VAR_RESULT
     IncrementGameRecord RECORD_CHECKED_FOOTPRINTS
     GoTo FootstepHouse_CheckType
 
@@ -126,67 +126,67 @@ FootstepHouse_SlowType:
     GoTo FootstepHouse_SlowType_WithoutPrint
 
 FootstepHouse_CuteType_WithPrint:
-    GetPartyMonFriendship VAR_0x800C, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_0x800C, 0xFF, FootstepHouse_CuteType_WithPrint_Level5
-    GoToIfGe VAR_0x800C, 200, FootstepHouse_CuteType_WithPrint_Level4
-    GoToIfGe VAR_0x800C, 150, FootstepHouse_CuteType_WithPrint_Level3
-    GoToIfGe VAR_0x800C, 70, FootstepHouse_CuteType_WithPrint_Level2
+    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_CuteType_WithPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_CuteType_WithPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_CuteType_WithPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_CuteType_WithPrint_Level2
     GoTo FootstepHouse_CuteType_WithPrint_Level1
 
 FootstepHouse_CuteType_WithoutPrint:
-    GetPartyMonFriendship VAR_0x800C, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_0x800C, 0xFF, FootstepHouse_CuteType_WithoutPrint_Level5
-    GoToIfGe VAR_0x800C, 200, FootstepHouse_CuteType_WithoutPrint_Level4
-    GoToIfGe VAR_0x800C, 150, FootstepHouse_CuteType_WithoutPrint_Level3
-    GoToIfGe VAR_0x800C, 70, FootstepHouse_CuteType_WithoutPrint_Level2
+    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_CuteType_WithoutPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_CuteType_WithoutPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_CuteType_WithoutPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_CuteType_WithoutPrint_Level2
     GoTo FootstepHouse_CuteType_WithoutPrint_Level1
 
 FootstepHouse_ToughType_WithPrint:
-    GetPartyMonFriendship VAR_0x800C, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_0x800C, 0xFF, FootstepHouse_ToughType_WithPrint_Level5
-    GoToIfGe VAR_0x800C, 200, FootstepHouse_ToughType_WithPrint_Level4
-    GoToIfGe VAR_0x800C, 150, FootstepHouse_ToughType_WithPrint_Level3
-    GoToIfGe VAR_0x800C, 70, FootstepHouse_ToughType_WithPrint_Level2
+    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_ToughType_WithPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_ToughType_WithPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_ToughType_WithPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_ToughType_WithPrint_Level2
     GoTo FootstepHouse_ToughType_WithPrint_Level1
 
 FootstepHouse_ToughType_WithoutPrint:
-    GetPartyMonFriendship VAR_0x800C, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_0x800C, 0xFF, FootstepHouse_ToughType_WithoutPrint_Level5
-    GoToIfGe VAR_0x800C, 200, FootstepHouse_ToughType_WithoutPrint_Level4
-    GoToIfGe VAR_0x800C, 150, FootstepHouse_ToughType_WithoutPrint_Level3
-    GoToIfGe VAR_0x800C, 70, FootstepHouse_ToughType_WithoutPrint_Level2
+    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_ToughType_WithoutPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_ToughType_WithoutPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_ToughType_WithoutPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_ToughType_WithoutPrint_Level2
     GoTo FootstepHouse_ToughType_WithoutPrint_Level1
 
 FootstepHouse_ScaryType_WithPrint:
-    GetPartyMonFriendship VAR_0x800C, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_0x800C, 0xFF, FootstepHouse_ScaryType_WithPrint_Level5
-    GoToIfGe VAR_0x800C, 200, FootstepHouse_ScaryType_WithPrint_Level4
-    GoToIfGe VAR_0x800C, 150, FootstepHouse_ScaryType_WithPrint_Level3
-    GoToIfGe VAR_0x800C, 70, FootstepHouse_ScaryType_WithPrint_Level2
+    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_ScaryType_WithPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_ScaryType_WithPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_ScaryType_WithPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_ScaryType_WithPrint_Level2
     GoTo FootstepHouse_ScaryType_WithPrint_Level1
 
 FootstepHouse_ScaryType_WithoutPrint:
-    GetPartyMonFriendship VAR_0x800C, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_0x800C, 0xFF, FootstepHouse_ScaryType_WithoutPrint_Level5
-    GoToIfGe VAR_0x800C, 200, FootstepHouse_ScaryType_WithoutPrint_Level4
-    GoToIfGe VAR_0x800C, 150, FootstepHouse_ScaryType_WithoutPrint_Level3
-    GoToIfGe VAR_0x800C, 70, FootstepHouse_ScaryType_WithoutPrint_Level2
+    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_ScaryType_WithoutPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_ScaryType_WithoutPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_ScaryType_WithoutPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_ScaryType_WithoutPrint_Level2
     GoTo FootstepHouse_ScaryType_WithoutPrint_Level1
 
 FootstepHouse_SlowType_WithPrint:
-    GetPartyMonFriendship VAR_0x800C, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_0x800C, 0xFF, FootstepHouse_SlowType_WithPrint_Level5
-    GoToIfGe VAR_0x800C, 200, FootstepHouse_SlowType_WithPrint_Level4
-    GoToIfGe VAR_0x800C, 150, FootstepHouse_SlowType_WithPrint_Level3
-    GoToIfGe VAR_0x800C, 70, FootstepHouse_SlowType_WithPrint_Level2
+    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_SlowType_WithPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_SlowType_WithPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_SlowType_WithPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_SlowType_WithPrint_Level2
     GoTo FootstepHouse_SlowType_WithPrint_Level1
 
 FootstepHouse_SlowType_WithoutPrint:
-    GetPartyMonFriendship VAR_0x800C, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_0x800C, 0xFF, FootstepHouse_SlowType_WithoutPrint_Level5
-    GoToIfGe VAR_0x800C, 200, FootstepHouse_SlowType_WithoutPrint_Level4
-    GoToIfGe VAR_0x800C, 150, FootstepHouse_SlowType_WithoutPrint_Level3
-    GoToIfGe VAR_0x800C, 70, FootstepHouse_SlowType_WithoutPrint_Level2
+    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_SlowType_WithoutPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_SlowType_WithoutPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_SlowType_WithoutPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_SlowType_WithoutPrint_Level2
     GoTo FootstepHouse_SlowType_WithoutPrint_Level1
 
 FootstepHouse_CuteType_WithPrint_Level1:
@@ -350,28 +350,28 @@ FootstepHouse_SlowType_WithoutPrint_Level5:
     GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon
 
 FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_TryGiveRibbon:
-    GetPartyMonRibbon VAR_0x800C, LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
-    GoToIfEq VAR_0x800C, FALSE, FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_GiveRibbon
+    GetPartyMonRibbon VAR_RESULT, LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
+    GoToIfEq VAR_RESULT, FALSE, FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_GiveRibbon
     GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon:
-    GetPartyMonRibbon VAR_0x800C, LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
-    GoToIfEq VAR_0x800C, FALSE, FootstepHouse_PokemonDoesntLeaveAnyFootprints_GiveRibbon
+    GetPartyMonRibbon VAR_RESULT, LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
+    GoToIfEq VAR_RESULT, FALSE, FootstepHouse_PokemonDoesntLeaveAnyFootprints_GiveRibbon
     GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
 FootstepHouse_VoicelessType:
     Message FootstepHouse_Text_SilentType
-    GetPartyMonFriendship VAR_0x800C, LOCALID_PARTY_SLOT
-    GoToIfLt VAR_0x800C, 0xFF, FootstepHouse_PokemonSilentType_NoRibbon
-    GetPartyMonRibbon VAR_0x800C, LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
-    GoToIfEq VAR_0x800C, FALSE, FootstepHouse_PokemonSilentType_GiveRibbon
+    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
+    GoToIfLt VAR_RESULT, 0xFF, FootstepHouse_PokemonSilentType_NoRibbon
+    GetPartyMonRibbon VAR_RESULT, LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
+    GoToIfEq VAR_RESULT, FALSE, FootstepHouse_PokemonSilentType_GiveRibbon
     GoTo FootstepHouse_PokemonSilentType_NoRibbon
 
 FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon:
     CloseMessage
-    WaitTime 20, VAR_0x800C
+    WaitTime 20, VAR_RESULT
     Call _00ED
-    WaitTime 10, VAR_0x800C
+    WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_AndThatsWhatYourPokemonThinksOfYou
     WaitABXPadPress
     CloseMessage
@@ -380,9 +380,9 @@ FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon:
 
 FootstepHouse_PokemonDoesntLeaveAnyFootprints:
     CloseMessage
-    WaitTime 20, VAR_0x800C
+    WaitTime 20, VAR_RESULT
     Call _00ED
-    WaitTime 10, VAR_0x800C
+    WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_PokemonDoesntLeaveAnyFootprints
     WaitABXPadPress
     CloseMessage
@@ -391,9 +391,9 @@ FootstepHouse_PokemonDoesntLeaveAnyFootprints:
 
 FootstepHouse_PokemonSilentType_NoRibbon:
     CloseMessage
-    WaitTime 20, VAR_0x800C
+    WaitTime 20, VAR_RESULT
     Call _00ED
-    WaitTime 10, VAR_0x800C
+    WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_PokemonSilentType
     WaitABXPadPress
     CloseMessage
@@ -402,9 +402,9 @@ FootstepHouse_PokemonSilentType_NoRibbon:
 
 FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_GiveRibbon:
     CloseMessage
-    WaitTime 20, VAR_0x800C
+    WaitTime 20, VAR_RESULT
     Call _00ED
-    WaitTime 10, VAR_0x800C
+    WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_AndThatsWhatYourPokemonThinksOfYou_CloseBond
     PlaySound SEQ_FANFA1
     Message FootstepHouse_Text_PlayerReceivedFootprintRibbon
@@ -418,9 +418,9 @@ FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_GiveRibbon:
 
 FootstepHouse_PokemonDoesntLeaveAnyFootprints_GiveRibbon:
     CloseMessage
-    WaitTime 20, VAR_0x800C
+    WaitTime 20, VAR_RESULT
     Call _00ED
-    WaitTime 10, VAR_0x800C
+    WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_PokemonDoesntLeaveAnyFootprints_CloseBond
     PlaySound SEQ_FANFA1
     Message FootstepHouse_Text_PlayerReceivedFootprintRibbon
@@ -434,9 +434,9 @@ FootstepHouse_PokemonDoesntLeaveAnyFootprints_GiveRibbon:
 
 FootstepHouse_PokemonSilentType_GiveRibbon:
     CloseMessage
-    WaitTime 20, VAR_0x800C
+    WaitTime 20, VAR_RESULT
     Call _00ED
-    WaitTime 10, VAR_0x800C
+    WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_SilentType_CloseBond
     PlaySound SEQ_FANFA1
     Message FootstepHouse_Text_PlayerReceivedFootprintRibbon

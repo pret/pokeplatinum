@@ -29,7 +29,7 @@ _0039:
     Message 0
     SetVar VAR_0x8004, ITEM_POFFIN_CASE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _008E
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _008E
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x008D
     Message 1
@@ -58,13 +58,13 @@ _0098:
     GetFirstNonEggInParty VAR_0x8000
     BufferPartyMonNickname 0, VAR_0x8000
     Message 3
-    GetPartyMonFriendship VAR_0x800C, VAR_0x8000
-    GoToIfGe VAR_0x800C, 0xFF, _0108
-    GoToIfGe VAR_0x800C, 200, _0113
-    GoToIfGe VAR_0x800C, 150, _011E
-    GoToIfGe VAR_0x800C, 100, _0129
-    GoToIfGe VAR_0x800C, 50, _0134
-    GoToIfGe VAR_0x800C, 1, _013F
+    GetPartyMonFriendship VAR_RESULT, VAR_0x8000
+    GoToIfGe VAR_RESULT, 0xFF, _0108
+    GoToIfGe VAR_RESULT, 200, _0113
+    GoToIfGe VAR_RESULT, 150, _011E
+    GoToIfGe VAR_RESULT, 100, _0129
+    GoToIfGe VAR_RESULT, 50, _0134
+    GoToIfGe VAR_RESULT, 1, _013F
     GoTo _014A
     End
 

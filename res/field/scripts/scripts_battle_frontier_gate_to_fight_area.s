@@ -53,7 +53,7 @@ _007C:
     End
 
 _0095:
-    InitLocalTextMenu 31, 5, 0, VAR_0x800C
+    InitLocalTextMenu 31, 5, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 11, 0
     AddMenuEntryImm 16, 1
@@ -62,7 +62,7 @@ _0095:
     AddMenuEntryImm 14, 4
     AddMenuEntryImm 15, 5
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _010E
     GoToIfEq VAR_0x8008, 1, _0146
     GoToIfEq VAR_0x8008, 2, _011C
@@ -112,9 +112,9 @@ _0154:
     LockAll
     FacePlayer
     Message 17
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _017F
-    GoToIfEq VAR_0x800C, MENU_NO, _018A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _017F
+    GoToIfEq VAR_RESULT, MENU_NO, _018A
     End
 
 _017F:
@@ -138,9 +138,9 @@ _019D:
     LockAll
     FacePlayer
     Message 20
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _01C8
-    GoToIfEq VAR_0x800C, MENU_NO, _01D3
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _01C8
+    GoToIfEq VAR_RESULT, MENU_NO, _01D3
     End
 
 _01C8:
@@ -164,9 +164,9 @@ _01E6:
     LockAll
     FacePlayer
     Message 23
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0211
-    GoToIfEq VAR_0x800C, MENU_NO, _021C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0211
+    GoToIfEq VAR_RESULT, MENU_NO, _021C
     End
 
 _0211:
@@ -190,9 +190,9 @@ _022F:
     LockAll
     FacePlayer
     Message 26
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _025A
-    GoToIfEq VAR_0x800C, MENU_NO, _0265
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _025A
+    GoToIfEq VAR_RESULT, MENU_NO, _0265
     End
 
 _025A:
@@ -216,9 +216,9 @@ _0278:
     LockAll
     FacePlayer
     Message 29
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _02A3
-    GoToIfEq VAR_0x800C, MENU_NO, _02AE
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _02A3
+    GoToIfEq VAR_RESULT, MENU_NO, _02AE
     End
 
 _02A3:

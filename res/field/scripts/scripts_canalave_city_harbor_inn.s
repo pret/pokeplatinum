@@ -48,13 +48,13 @@ _0091:
 
 _0093:
     LockAll
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     Message 0
     CloseMessage
     ApplyMovement 0, _0148
     ApplyMovement LOCALID_PLAYER, _0130
     WaitMovement
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     BufferPlayerName 0
     Message 1
     CloseMessage
@@ -72,7 +72,7 @@ _0093:
     WaitFadeScreen
     FadeScreen 6, 6, 0, 0
     WaitFadeScreen
-    WaitTime 120, VAR_0x800C
+    WaitTime 120, VAR_RESULT
     Warp MAP_HEADER_NEWMOON_ISLAND, 0, 152, 0x115, 1
     FadeScreen 6, 6, 1, 0
     WaitFadeScreen

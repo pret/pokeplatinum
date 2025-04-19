@@ -103,8 +103,8 @@ _00DF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_GALACTIC_KEY, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0107
+    CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0107
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -113,9 +113,9 @@ _00DF:
 
 _0107:
     Message 10
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _012A
-    GoToIfEq VAR_0x800C, MENU_NO, _015E
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _012A
+    GoToIfEq VAR_RESULT, MENU_NO, _015E
     End
 
 _012A:

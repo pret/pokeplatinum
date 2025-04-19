@@ -27,7 +27,7 @@ _0025:
     Message 1
     SetVar VAR_0x8004, ITEM_GREAT_BALL
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0077
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0077
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x010A
     GoTo _006C

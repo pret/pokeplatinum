@@ -12,8 +12,8 @@ _0006:
     FacePlayer
     GoToIfSet FLAG_UNK_0x00D2, _00C7
     GoToIfSet FLAG_UNK_0x00E8, _004F
-    CheckItem ITEM_HM05, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0044
+    CheckItem ITEM_HM05, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0044
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -29,16 +29,16 @@ _004F:
     ApplyMovement 0, _00D4
     WaitMovement
     Message 2
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _007C
-    GoToIfEq VAR_0x800C, MENU_NO, _00B8
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _007C
+    GoToIfEq VAR_RESULT, MENU_NO, _00B8
     End
 
 _007C:
     Message 3
     SetVar VAR_0x8004, ITEM_GREEN_SHARD
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00AE
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00AE
     SetFlag FLAG_UNK_0x00D2
     CallCommonScript 0x7E0
     CloseMessage

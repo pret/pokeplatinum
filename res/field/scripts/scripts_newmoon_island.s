@@ -27,8 +27,8 @@ _0037:
     FacePlayer
     GetPlayerDir VAR_0x8004
     Message 0
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _005D
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _005D
     GoTo _009D
 
 _005D:

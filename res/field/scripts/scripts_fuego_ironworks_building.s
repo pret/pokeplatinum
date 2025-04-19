@@ -20,15 +20,15 @@ _0010:
     Message 0
     SetVar VAR_0x8004, ITEM_STAR_PIECE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _01F3
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01F3
     SetFlag FLAG_UNK_0x0138
     CallCommonScript 0x7FC
     GoTo _0062
     End
 
 _0062:
-    CheckItem ITEM_STAR_PIECE, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0082
+    CheckItem ITEM_STAR_PIECE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0082
     Message 1
     GoTo _00EC
     End
@@ -36,18 +36,18 @@ _0062:
 _0082:
     SetFlag FLAG_UNK_0x00DB
     Message 2
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00FF
-    GoToIfEq VAR_0x800C, MENU_NO, _00F4
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00FF
+    GoToIfEq VAR_RESULT, MENU_NO, _00F4
     End
 
 _00A9:
-    CheckItem ITEM_STAR_PIECE, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _00E1
+    CheckItem ITEM_STAR_PIECE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00E1
     Message 4
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00FF
-    GoToIfEq VAR_0x800C, MENU_NO, _00F4
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00FF
+    GoToIfEq VAR_RESULT, MENU_NO, _00F4
     End
 
 _00E1:
@@ -74,11 +74,11 @@ _00FF:
 
 _011A:
     IncrementGameRecord RECORD_UNK_070
-    RemoveItem ITEM_STAR_PIECE, 1, VAR_0x800C
-    AddItem ITEM_RED_SHARD, 1, VAR_0x800C
-    AddItem ITEM_BLUE_SHARD, 1, VAR_0x800C
-    AddItem ITEM_YELLOW_SHARD, 1, VAR_0x800C
-    AddItem ITEM_GREEN_SHARD, 1, VAR_0x800C
+    RemoveItem ITEM_STAR_PIECE, 1, VAR_RESULT
+    AddItem ITEM_RED_SHARD, 1, VAR_RESULT
+    AddItem ITEM_BLUE_SHARD, 1, VAR_RESULT
+    AddItem ITEM_YELLOW_SHARD, 1, VAR_RESULT
+    AddItem ITEM_GREEN_SHARD, 1, VAR_RESULT
     GoTo _01E5
     End
 
@@ -100,11 +100,11 @@ _014E:
 _019E:
     SubVar VAR_0x8007, 1
     IncrementGameRecord RECORD_UNK_070
-    AddItem ITEM_RED_SHARD, 1, VAR_0x800C
-    AddItem ITEM_BLUE_SHARD, 1, VAR_0x800C
-    AddItem ITEM_YELLOW_SHARD, 1, VAR_0x800C
-    AddItem ITEM_GREEN_SHARD, 1, VAR_0x800C
-    RemoveItem ITEM_STAR_PIECE, 1, VAR_0x800C
+    AddItem ITEM_RED_SHARD, 1, VAR_RESULT
+    AddItem ITEM_BLUE_SHARD, 1, VAR_RESULT
+    AddItem ITEM_YELLOW_SHARD, 1, VAR_RESULT
+    AddItem ITEM_GREEN_SHARD, 1, VAR_RESULT
+    RemoveItem ITEM_STAR_PIECE, 1, VAR_RESULT
     GoToIfEq VAR_0x8007, 0, _01E5
     GoTo _019E
     End

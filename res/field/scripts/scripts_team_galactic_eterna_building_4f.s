@@ -29,8 +29,8 @@ _0022:
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0135
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0135
     Message 1
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -38,7 +38,7 @@ _0022:
     RemoveObject 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     GetPlayerDir VAR_0x8004
     GoToIfEq VAR_0x8004, 0, _00A4
     GoToIfEq VAR_0x8004, 2, _00BE

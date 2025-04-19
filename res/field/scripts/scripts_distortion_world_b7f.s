@@ -56,8 +56,8 @@ _0096:
     Message 5
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _01CE
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01CE
     SetVar VAR_DISTORTION_WORLD_PROGRESS, 10
     Message 6
     CloseMessage

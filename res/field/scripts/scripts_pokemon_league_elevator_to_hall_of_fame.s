@@ -39,9 +39,9 @@ _000A:
     ApplyMovement 0, _0150
     WaitMovement
     Message 4
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _00B1
-    GoToIfEq VAR_0x800C, 1, _00BD
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _00B1
+    GoToIfEq VAR_RESULT, 1, _00BD
     End
 
 _00B1:

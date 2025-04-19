@@ -32,8 +32,8 @@ _0041:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 13
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0061
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0061
     CloseMessage
     ReleaseAll
     End
@@ -70,13 +70,13 @@ _00C4:
     SetFlag FLAG_UNK_0x008E
     StartGiratinaOriginBattle SPECIES_GIRATINA, 47
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle VAR_0x800C
-    ScrCmd_314 VAR_0x800C
-    GoToIfEq VAR_0x800C, 2, _0204
-    GoToIfEq VAR_0x800C, 3, _0204
-    GoToIfEq VAR_0x800C, 5, _014E
-    GoToIfEq VAR_0x800C, 6, _014E
-    GoToIfEq VAR_0x800C, 4, _016E
+    CheckWonBattle VAR_RESULT
+    ScrCmd_314 VAR_RESULT
+    GoToIfEq VAR_RESULT, 2, _0204
+    GoToIfEq VAR_RESULT, 3, _0204
+    GoToIfEq VAR_RESULT, 5, _014E
+    GoToIfEq VAR_RESULT, 6, _014E
+    GoToIfEq VAR_RESULT, 4, _016E
     ScrCmd_311 130
     ScrCmd_311 129
     ApplyMovement 129, _0250

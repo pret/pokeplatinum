@@ -28,15 +28,15 @@ _005C:
     Message 0
     Message 1
     Call _021C
-    GoToIfEq VAR_0x800C, 1, _00D7
+    GoToIfEq VAR_RESULT, 1, _00D7
     Call _024C
-    GoToIfEq VAR_0x800C, 1, _0118
+    GoToIfEq VAR_RESULT, 1, _0118
     Call _027C
-    GoToIfEq VAR_0x800C, 1, _0159
+    GoToIfEq VAR_RESULT, 1, _0159
     Call _02AC
-    GoToIfEq VAR_0x800C, 1, _019A
+    GoToIfEq VAR_RESULT, 1, _019A
     Call _02DC
-    GoToIfEq VAR_0x800C, 1, _01DB
+    GoToIfEq VAR_RESULT, 1, _01DB
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -53,7 +53,7 @@ _00CC:
 _00D7:
     SetVar VAR_0x8004, ITEM_RED_SCARF
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00CC
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CC
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_RED_SCARF
     Message 4
@@ -68,7 +68,7 @@ _00D7:
 _0118:
     SetVar VAR_0x8004, ITEM_BLUE_SCARF
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00CC
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CC
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_BLUE_SCARF
     Message 4
@@ -83,7 +83,7 @@ _0118:
 _0159:
     SetVar VAR_0x8004, ITEM_PINK_SCARF
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00CC
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CC
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_PINK_SCARF
     Message 4
@@ -98,7 +98,7 @@ _0159:
 _019A:
     SetVar VAR_0x8004, ITEM_GREEN_SCARF
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00CC
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CC
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_GREEN_SCARF
     Message 4
@@ -113,7 +113,7 @@ _019A:
 _01DB:
     SetVar VAR_0x8004, ITEM_YELLOW_SCARF
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00CC
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CC
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_YELLOW_SCARF
     Message 4
@@ -127,57 +127,57 @@ _01DB:
 
 _021C:
     GoToIfSet FLAG_UNK_0x0140, _0244
-    ScrCmd_281 VAR_0x8000, 0, VAR_0x800C
-    GoToIfLt VAR_0x800C, 200, _0244
-    SetVar VAR_0x800C, 1
+    ScrCmd_281 VAR_0x8000, 0, VAR_RESULT
+    GoToIfLt VAR_RESULT, 200, _0244
+    SetVar VAR_RESULT, 1
     Return
 
 _0244:
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _024C:
     GoToIfSet FLAG_UNK_0x0141, _0274
-    ScrCmd_281 VAR_0x8000, 1, VAR_0x800C
-    GoToIfLt VAR_0x800C, 200, _0274
-    SetVar VAR_0x800C, 1
+    ScrCmd_281 VAR_0x8000, 1, VAR_RESULT
+    GoToIfLt VAR_RESULT, 200, _0274
+    SetVar VAR_RESULT, 1
     Return
 
 _0274:
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _027C:
     GoToIfSet FLAG_UNK_0x0142, _02A4
-    ScrCmd_281 VAR_0x8000, 2, VAR_0x800C
-    GoToIfLt VAR_0x800C, 200, _02A4
-    SetVar VAR_0x800C, 1
+    ScrCmd_281 VAR_0x8000, 2, VAR_RESULT
+    GoToIfLt VAR_RESULT, 200, _02A4
+    SetVar VAR_RESULT, 1
     Return
 
 _02A4:
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _02AC:
     GoToIfSet FLAG_UNK_0x0143, _02D4
-    ScrCmd_281 VAR_0x8000, 3, VAR_0x800C
-    GoToIfLt VAR_0x800C, 200, _02D4
-    SetVar VAR_0x800C, 1
+    ScrCmd_281 VAR_0x8000, 3, VAR_RESULT
+    GoToIfLt VAR_RESULT, 200, _02D4
+    SetVar VAR_RESULT, 1
     Return
 
 _02D4:
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _02DC:
     GoToIfSet FLAG_UNK_0x0144, _0304
-    ScrCmd_281 VAR_0x8000, 4, VAR_0x800C
-    GoToIfLt VAR_0x800C, 200, _0304
-    SetVar VAR_0x800C, 1
+    ScrCmd_281 VAR_0x8000, 4, VAR_RESULT
+    GoToIfLt VAR_RESULT, 200, _0304
+    SetVar VAR_RESULT, 1
     Return
 
 _0304:
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _030C:

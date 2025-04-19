@@ -28,36 +28,36 @@ _0042:
     Message 0
     CountBadgesAcquired VAR_0x8000
     GoToIfEq VAR_0x8000, 0, _0181
-    CheckPoketchAppRegistered POKETCH_APPID_MEMOPAD, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _00C5
-    CheckPoketchAppRegistered POKETCH_APPID_MARKINGMAP, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _00DC
-    CheckPoketchAppRegistered POKETCH_APPID_LINKSEARCHER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _00F3
-    CheckPoketchAppRegistered POKETCH_APPID_MOVETESTER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _010A
-    CheckItem ITEM_POKE_RADAR, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _01B8
+    CheckPoketchAppRegistered POKETCH_APPID_MEMOPAD, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00C5
+    CheckPoketchAppRegistered POKETCH_APPID_MARKINGMAP, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00DC
+    CheckPoketchAppRegistered POKETCH_APPID_LINKSEARCHER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00F3
+    CheckPoketchAppRegistered POKETCH_APPID_MOVETESTER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _010A
+    CheckItem ITEM_POKE_RADAR, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _01B8
     GoTo _01AD
 
 _00C5:
-    CountBadgesAcquired VAR_0x800C
-    GoToIfGe VAR_0x800C, 1, _0121
+    CountBadgesAcquired VAR_RESULT
+    GoToIfGe VAR_RESULT, 1, _0121
     GoTo _0181
 
 _00DC:
-    CountBadgesAcquired VAR_0x800C
-    GoToIfGe VAR_0x800C, 3, _0139
+    CountBadgesAcquired VAR_RESULT
+    GoToIfGe VAR_RESULT, 3, _0139
     GoTo _018C
 
 _00F3:
-    CountBadgesAcquired VAR_0x800C
-    GoToIfGe VAR_0x800C, 5, _0151
+    CountBadgesAcquired VAR_RESULT
+    GoToIfGe VAR_RESULT, 5, _0151
     GoTo _0197
 
 _010A:
-    CountBadgesAcquired VAR_0x800C
-    GoToIfGe VAR_0x800C, 7, _0169
+    CountBadgesAcquired VAR_RESULT
+    GoToIfGe VAR_RESULT, 7, _0169
     GoTo _01A2
 
 _0121:

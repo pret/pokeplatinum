@@ -27,18 +27,18 @@ _003E:
 _0048:
     ShowCurrentFloor 20, 1, VAR_UNK_0x40CE
     Message 0
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 117, 0
     AddMenuEntryImm 116, 1
     AddMenuEntryImm 124, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _008F
     GoToIfEq VAR_0x8008, 1, _00CA
     GoTo _0152
 
 _008F:
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 0x1CE, 0, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 0, _0164
@@ -48,7 +48,7 @@ _008F:
     GoTo _0147
 
 _00CA:
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 0x1CD, 1, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 1, _0164
@@ -85,14 +85,14 @@ _0147:
 
 _0152:
     SetVar VAR_UNK_0x40CE, -1
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     CloseMessage
     ReleaseAll
     End
 
 _0164:
     SetVar VAR_UNK_0x40CE, -1
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     Message 3
     WaitABXPadPress
     CloseMessage

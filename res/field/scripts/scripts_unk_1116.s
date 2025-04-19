@@ -107,11 +107,11 @@ _0159:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_238 VAR_0x8000, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _02A1
+    ScrCmd_238 VAR_0x8000, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _02A1
     Message 0
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0190
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0190
     GoTo _02AE
     End
 
@@ -122,11 +122,11 @@ _0190:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
-    ScrCmd_243 0, VAR_0x800C, VAR_0x8004
+    ScrCmd_243 0, VAR_RESULT, VAR_0x8004
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 0, _02AE
+    GoToIfEq VAR_RESULT, 0, _02AE
     ScrCmd_237 1, VAR_0x8000, VAR_0x8004, VAR_0x8005
     GoTo _02A1
     End

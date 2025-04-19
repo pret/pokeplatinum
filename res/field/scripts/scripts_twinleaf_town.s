@@ -398,7 +398,7 @@ _04D0:
     WaitMovement
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 0
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     CallCommonScript 0x7FA
     ApplyMovement 2, _059C
     WaitMovement
@@ -409,7 +409,7 @@ _04D0:
     ApplyMovement LOCALID_PLAYER, _0570
     ApplyMovement 2, _05B0
     WaitMovement
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     BufferRivalName 0
     Message 2
     CloseMessage

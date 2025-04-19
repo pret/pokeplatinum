@@ -75,21 +75,21 @@ _00EE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2BE VAR_0x800C
-    GoToIfGe VAR_0x800C, 4, _027A
+    ScrCmd_2BE VAR_RESULT
+    GoToIfGe VAR_RESULT, 4, _027A
     SetVar VAR_0x8004, 0
-    GetTimeOfDay VAR_0x800C
-    Dummy1F9 VAR_0x800C
+    GetTimeOfDay VAR_RESULT
+    Dummy1F9 VAR_RESULT
     SetVar VAR_0x8004, 120
-    GoToIfEq VAR_0x800C, 0, _0141
+    GoToIfEq VAR_RESULT, 0, _0141
     SetVar VAR_0x8004, 121
-    GoToIfEq VAR_0x800C, 1, _0141
+    GoToIfEq VAR_RESULT, 1, _0141
     SetVar VAR_0x8004, 0
 _0141:
     MessageVar VAR_0x8004
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0172
-    GoToIfEq VAR_0x800C, MENU_NO, _0165
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0172
+    GoToIfEq VAR_RESULT, MENU_NO, _0165
     End
 
 _0165:
@@ -105,9 +105,9 @@ _0172:
     ChangePlayerState
     ApplyMovement LOCALID_PLAYER, _02EC
     WaitMovement
-    ScrCmd_2BE VAR_0x800C
-    CallIfGe VAR_0x800C, 4, _01BC
-    CallIfLt VAR_0x800C, 4, _01B7
+    ScrCmd_2BE VAR_RESULT
+    CallIfGe VAR_RESULT, 4, _01BC
+    CallIfLt VAR_RESULT, 4, _01B7
     Call _01C1
     GoToIfUnset FLAG_UNK_0x006A, _0242
     GoTo _01E1
@@ -185,8 +185,8 @@ _027A:
     Message 4
     BufferPlayerName 0
     Message 5
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _02D4
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _02D4
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -197,8 +197,8 @@ _027A:
 _02B0:
     BufferPlayerName 0
     Message 6
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _02D4
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _02D4
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -227,11 +227,11 @@ _02F4:
     EndMovement
 
 Common_HandleSignpostInput:
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, Common_ScrollOutSignpost
     GoToIfEq VAR_0x8008, 1, Common_RemoveSignpostOpenStartMenu
     GetSignpostInput
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 1, Common_RemoveSignpostOpenStartMenu
     SetSignpostCommand SIGNPOST_CMD_SCROLL_OUT
     ReturnCommonScript
@@ -255,8 +255,8 @@ _034C:
     End
 
 _0356:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, POCKET_KEY_ITEMS, _03D8
     GoToIfEq VAR_0x8008, POCKET_ITEMS, _03CC
     GoToIfEq VAR_0x8008, POCKET_BERRIES, _03CC
@@ -293,15 +293,15 @@ _03E8:
     GetPartyCount VAR_0x8004
     SetVar VAR_0x8005, 0
 _03F4:
-    SurvivePoison VAR_0x800C, VAR_0x8005
-    GoToIfEq VAR_0x800C, 0, _040F
+    SurvivePoison VAR_RESULT, VAR_0x8005
+    GoToIfEq VAR_RESULT, 0, _040F
     BufferPartyMonNickname 0, VAR_0x8005
     Message 66
 _040F:
     AddVar VAR_0x8005, 1
     GoToIfNe VAR_0x8004, VAR_0x8005, _03F4
-    CountAliveMonsExcept VAR_0x800C, 6
-    GoToIfEq VAR_0x800C, 0, _0457
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 0, _0457
     CloseMessage
     ReleaseAll
     End
@@ -329,7 +329,7 @@ _0457:
 _0479:
     ClearFlag FLAG_UNK_0x001F
     Call _04A8
-    ScrCmd_18F VAR_0x800C
+    ScrCmd_18F VAR_RESULT
     CloseMessage
     End
 
@@ -342,48 +342,48 @@ _048B:
 _0494:
     SetFlag FLAG_UNK_0x001F
     Call _04A8
-    SetVar VAR_0x4000, VAR_0x800C
+    SetVar VAR_0x4000, VAR_RESULT
     ReturnCommonScript
     End
 
 _04A8:
-    CheckSaveType VAR_0x800C
-    GoToIfEq VAR_0x800C, SAVE_TYPE_OVERWRITE, _04FC
+    CheckSaveType VAR_RESULT
+    GoToIfEq VAR_RESULT, SAVE_TYPE_OVERWRITE, _04FC
     ScrCmd_2C1
     Message 13
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _05A0
-    CheckSaveType VAR_0x800C
-    GoToIfEq VAR_0x800C, SAVE_TYPE_NO_DATA_EXISTS, _051D
-    GoToIfEq VAR_0x800C, SAVE_TYPE_FULL_SAVE, _0509
-    GoToIfEq VAR_0x800C, SAVE_TYPE_QUICK_SAVE, _0526
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _05A0
+    CheckSaveType VAR_RESULT
+    GoToIfEq VAR_RESULT, SAVE_TYPE_NO_DATA_EXISTS, _051D
+    GoToIfEq VAR_RESULT, SAVE_TYPE_FULL_SAVE, _0509
+    GoToIfEq VAR_RESULT, SAVE_TYPE_QUICK_SAVE, _0526
     End
 
 _04FC:
     Message 20
     WaitABPress
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _0509:
     Message 14
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _05A0
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _05A0
 _051D:
     Message 21
     GoTo _0552
 
 _0526:
     Message 14
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _05A0
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _05A0
     GoToIfUnset FLAG_UNK_0x001F, _05C6
     GoToIfSet FLAG_UNK_0x001F, _05D1
     End
 
 _0552:
     ScrCmd_258
-    WaitTime 2, VAR_0x800C
+    WaitTime 2, VAR_RESULT
     Call _0568
     ScrCmd_259
     GoTo _057D
@@ -391,12 +391,12 @@ _0552:
 _0568:
     ScrCmd_18D
     CallIfSet FLAG_UNK_0x001F, _05BE
-    ScrCmd_12D VAR_0x800C
+    ScrCmd_12D VAR_RESULT
     ScrCmd_18E
     Return
 
 _057D:
-    GoToIfEq VAR_0x800C, 0, _05AA
+    GoToIfEq VAR_RESULT, 0, _05AA
     BufferPlayerName 0
     Message 16
     PlayFanfare SEQ_SE_DP_SAVE
@@ -407,7 +407,7 @@ _057D:
 
 _05A0:
     ScrCmd_2C2
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _05AA:
@@ -432,27 +432,27 @@ _05C6:
     End
 
 _05D1:
-    ScrCmd_2D7 VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _05B3
+    ScrCmd_2D7 VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _05B3
     GoTo _05C6
     End
 
 _05EA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckItem ITEM_HONEY, 1, VAR_0x800C
-    GoToIfNe VAR_0x800C, 0, _0632
-    GetHoneyTreeStatus VAR_0x800C
-    GoToIfEq VAR_0x800C, TREE_STATUS_BARE, _065F
-    GoToIfEq VAR_0x800C, TREE_STATUS_SLATHERED, _066A
-    GoToIfEq VAR_0x800C, TREE_STATUS_ENCOUNTER, _06F4
+    CheckItem ITEM_HONEY, 1, VAR_RESULT
+    GoToIfNe VAR_RESULT, 0, _0632
+    GetHoneyTreeStatus VAR_RESULT
+    GoToIfEq VAR_RESULT, TREE_STATUS_BARE, _065F
+    GoToIfEq VAR_RESULT, TREE_STATUS_SLATHERED, _066A
+    GoToIfEq VAR_RESULT, TREE_STATUS_ENCOUNTER, _06F4
     End
 
 _0632:
-    GetHoneyTreeStatus VAR_0x800C
-    GoToIfEq VAR_0x800C, TREE_STATUS_BARE, _0675
-    GoToIfEq VAR_0x800C, TREE_STATUS_SLATHERED, _067E
-    GoToIfEq VAR_0x800C, TREE_STATUS_ENCOUNTER, _06F4
+    GetHoneyTreeStatus VAR_RESULT
+    GoToIfEq VAR_RESULT, TREE_STATUS_BARE, _0675
+    GoToIfEq VAR_RESULT, TREE_STATUS_SLATHERED, _067E
+    GoToIfEq VAR_RESULT, TREE_STATUS_ENCOUNTER, _06F4
     End
 
 _065F:
@@ -506,24 +506,24 @@ _067E:
     .byte 0
 
 _06A2:
-    CheckItem ITEM_HONEY, 1, VAR_0x800C
-    GoToIfNe VAR_0x800C, 0, _06BB
+    CheckItem ITEM_HONEY, 1, VAR_RESULT
+    GoToIfNe VAR_RESULT, 0, _06BB
     ReleaseAll
     End
 
 _06BB:
     Message 50
-    ShowYesNoMenu VAR_0x800C
+    ShowYesNoMenu VAR_RESULT
     CloseMessage
-    GoToIfEq VAR_0x800C, MENU_YES, _06D5
+    GoToIfEq VAR_RESULT, MENU_YES, _06D5
     ReleaseAll
     End
 
 _06D5:
-    RemoveItem ITEM_HONEY, 1, VAR_0x800C
+    RemoveItem ITEM_HONEY, 1, VAR_RESULT
     ScrCmd_260 1
     SlatherHoneyTree
-    WaitTime 10, VAR_0x800C
+    WaitTime 10, VAR_RESULT
     Message 51
     WaitABXPadPress
     CloseMessage
@@ -533,8 +533,8 @@ _06D5:
 _06F4:
     IncrementGameRecord RECORD_UNK_117
     StartHoneyTreeBattle
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0713
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0713
     ScrCmd_12A
     GoTo _06A2
 
@@ -701,7 +701,7 @@ _0910:
 
 _091D:
     PlaySound SEQ_FANFA4
-    ScrCmd_083 VAR_0x8004, VAR_0x8005, VAR_0x800C
+    ScrCmd_083 VAR_0x8004, VAR_0x8005, VAR_RESULT
     ScrCmd_33E 0, VAR_0x8004
     Message 108
     BufferUndergroundGoodsName 0, VAR_0x8004
@@ -715,7 +715,7 @@ _093A:
 
 _0944:
     PlaySound SEQ_FANFA4
-    ScrCmd_087 VAR_0x8004, VAR_0x8005, VAR_0x800C
+    ScrCmd_087 VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundTrapName 0, VAR_0x8004
     Message 80
     WaitSound
@@ -728,7 +728,7 @@ _095C:
 
 _0966:
     PlaySound SEQ_FANFA4
-    ScrCmd_08F VAR_0x8004, VAR_0x8005, VAR_0x800C
+    ScrCmd_08F VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundItemName 0, VAR_0x8004
     BufferNumber 1, VAR_0x8005
     Message 81
@@ -788,10 +788,10 @@ _09F5:
 
 _09FF:
     Call _0356
-    AddItem VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    CallIfEq VAR_0x800C, POCKET_KEY_ITEMS, _0A71
-    CallIfNe VAR_0x800C, POCKET_KEY_ITEMS, _0A82
+    AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, _0A71
+    CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, _0A82
     Message 30
     WaitABXPadPress
     Return
@@ -803,10 +803,10 @@ _0A34:
 
 _0A3E:
     Call _0356
-    AddItem VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    CallIfEq VAR_0x800C, POCKET_KEY_ITEMS, _0A71
-    CallIfNe VAR_0x800C, POCKET_KEY_ITEMS, _0A82
+    AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, _0A71
+    CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, _0A82
     Message 126
     Return
 
@@ -829,8 +829,8 @@ _0A9F:
 
 _0AA8:
     WaitSound
-    ScrCmd_2A7 VAR_0x8004, VAR_0x800C
-    CallIfEq VAR_0x800C, 1, _13C8
+    ScrCmd_2A7 VAR_0x8004, VAR_RESULT
+    CallIfEq VAR_RESULT, 1, _13C8
     BufferPlayerName 0
     GoToIfGt VAR_0x8005, 1, _0AD8
     BufferItemName 1, VAR_0x8004
@@ -839,8 +839,8 @@ _0AA8:
 _0AD8:
     ScrCmd_33D 1, VAR_0x8004
 _0ADD:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, POCKET_KEY_ITEMS, _0B64
     GoToIfEq VAR_0x8008, POCKET_ITEMS, _0B53
     GoToIfEq VAR_0x8008, POCKET_BERRIES, _0BA8
@@ -852,43 +852,43 @@ _0ADD:
     End
 
 _0B53:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _0BDB
 
 _0B64:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _0BDB
 
 _0B75:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _0BDB
 
 _0B86:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _0BDB
 
 _0B97:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _0BDB
 
 _0BA8:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _0BDB
 
 _0BB9:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _0BDB
 
 _0BCA:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _0BDB
 
 _0BDB:
@@ -931,9 +931,9 @@ _0C1C:
     CallIfUnset FLAG_MET_BEBE, _0C7B
     CallIfSet FLAG_MET_BEBE, _0C81
     AddMenuEntryImm 60, 1
-    ScrCmd_22D 2, VAR_0x800C
-    CallIfEq VAR_0x800C, 0, _0C87
-    CallIfEq VAR_0x800C, 1, _0C8D
+    ScrCmd_22D 2, VAR_RESULT
+    CallIfEq VAR_RESULT, 0, _0C87
+    CallIfEq VAR_RESULT, 1, _0C8D
     GoToIfSet FLAG_GAME_COMPLETED, _0C93
     GoToIfUnset FLAG_GAME_COMPLETED, _0CDD
     End
@@ -982,7 +982,7 @@ _0D16:
     GoTo _0D73
 
 _0D2C:
-    InitGlobalTextListMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextListMenu 1, 1, 0, VAR_RESULT
     AddListMenuEntry 65, 0, 74
     AddListMenuEntry 66, 1, 75
     AddListMenuEntry 67, 2, 76
@@ -997,7 +997,7 @@ _0D69:
 
 _0D73:
     ShowListMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _0DC2
     GoToIfEq VAR_0x8008, 1, _0DD5
     GoToIfEq VAR_0x8008, 2, _0DE8
@@ -1060,7 +1060,7 @@ _0E55:
     GoTo _0E83
 
 _0E61:
-    InitGlobalTextListMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextListMenu 1, 1, 0, VAR_RESULT
     AddListMenuEntry 71, 0, 80
     AddListMenuEntry 72, 1, 81
     AddListMenuEntry 73, 3, 82
@@ -1068,15 +1068,15 @@ _0E61:
 
 _0E83:
     ShowListMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _0EAB
     GoToIfEq VAR_0x8008, 1, _0EE0
     GoTo _0C1C
 
 _0EAB:
     CloseMessage
-    ScrCmd_1B4 VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0EC6
+    ScrCmd_1B4 VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0EC6
     ScrCmd_1B3
     GoTo _0ECF
 
@@ -1091,8 +1091,8 @@ _0ECF:
     GoTo _0E83
 
 _0EE0:
-    ScrCmd_2AB VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0F01
+    ScrCmd_2AB VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0F01
     CloseMessage
     Call _0F94
     OpenSealCapsuleEditor
@@ -1113,8 +1113,8 @@ _0F0A:
 _0F2C:
     PlayFanfare SEQ_SE_DP_PC_LOGIN
     CloseMessage
-    ScrCmd_336 VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0F59
+    ScrCmd_336 VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0F59
     Call _0F94
     ScrCmd_0B1
     ReturnToField
@@ -1208,8 +1208,8 @@ _103A:
     Message 43
     Call _10C7
     Call _01C1
-    CheckBadgeAcquired BADGE_ID_COAL, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _10A2
+    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _10A2
     Message 44
     ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
@@ -1424,15 +1424,15 @@ _12E0:
     End
 
 _12F3:
-    CheckItem ITEM_BICYCLE, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _135F
+    CheckItem ITEM_BICYCLE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _135F
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
-    CheckPlayerOnBike VAR_0x800C
-    GoToIfEq VAR_0x800C, TRUE, _133C
+    CheckPlayerOnBike VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _133C
     Message 73
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _1359
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _1359
     SetPlayerBike TRUE
     CloseMessage
     ReleaseAll
@@ -1440,8 +1440,8 @@ _12F3:
 
 _133C:
     Message 74
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _1359
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _1359
     SetPlayerBike FALSE
     CloseMessage
     ReleaseAll
@@ -1575,14 +1575,14 @@ _14AC:
     GoToIfSet FLAG_UNK_0x011E, _1570
     BufferPlayerName 0
     Message 122
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _157B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _157B
     BufferPlayerName 0
     Message 123
     CloseMessage
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     PlayMusic SEQ_FUE
-    WaitTime 0x21C, VAR_0x800C
+    WaitTime 0x21C, VAR_RESULT
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen
@@ -1609,9 +1609,9 @@ _157B:
 
 _1581:
     StopMusic 0
-    GetPlayerGender VAR_0x800C
-    CallIfEq VAR_0x800C, GENDER_MALE, _15A7
-    CallIfEq VAR_0x800C, GENDER_FEMALE, _15AD
+    GetPlayerGender VAR_RESULT
+    CallIfEq VAR_RESULT, GENDER_MALE, _15A7
+    CallIfEq VAR_RESULT, GENDER_FEMALE, _15AD
     ReturnCommonScript
     End
 
@@ -1651,10 +1651,10 @@ _15D7:
 _15E7:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0B3 VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
-    ScrCmd_2F6 VAR_0x8005, VAR_0x8004, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _1624
+    ScrCmd_0B3 VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
+    ScrCmd_2F6 VAR_0x8005, VAR_0x8004, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1624
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -1691,10 +1691,10 @@ _165E:
 
 _1672:
     Message 129
-    ShowMoveTutorMoveSelectionMenu 0xFF, VAR_0x8004, VAR_0x800C
-    SetVar VAR_0x8003, VAR_0x800C
+    ShowMoveTutorMoveSelectionMenu 0xFF, VAR_0x8004, VAR_RESULT
+    SetVar VAR_0x8003, VAR_RESULT
     GoToIfEq VAR_0x8003, -2, _16A4
-    ShowShardsCost 21, 1, VAR_0x8003, VAR_0x800C
+    ShowShardsCost 21, 1, VAR_0x8003, VAR_RESULT
     WaitABPress
     CloseShardsCostWindow
     GoTo _16A4

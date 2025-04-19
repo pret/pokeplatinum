@@ -90,13 +90,13 @@ _0107:
     Message 2
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _02B9
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _02B9
     Message 3
     CloseMessage
     ApplyMovement 7, _0374
     WaitMovement
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     Message 4
     ApplyMovement 1, _0364
     WaitMovement

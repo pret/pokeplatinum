@@ -133,8 +133,8 @@ _0184:
     CallIfEq VAR_0x8005, 0x1D9, _0272
     CallIfEq VAR_0x8005, 0x1DA, _0274
     Message 6
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _02BC
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _02BC
     ScrCmd_30C
     Message 7
     CloseMessage
@@ -312,8 +312,8 @@ _03D4:
     LockAll
     FacePlayer
     Message 10
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0429
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0429
     Message 11
     CloseMessage
     SetFlag FLAG_UNK_0x02AA
@@ -342,8 +342,8 @@ _043C:
     LockAll
     FacePlayer
     Message 13
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0491
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0491
     Message 14
     CloseMessage
     SetFlag FLAG_UNK_0x02AD
@@ -366,8 +366,8 @@ _049C:
     LockAll
     FacePlayer
     Message 16
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _04F1
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _04F1
     Message 17
     CloseMessage
     SetFlag FLAG_UNK_0x02AF
@@ -390,8 +390,8 @@ _04FC:
     LockAll
     FacePlayer
     Message 19
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0551
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0551
     Message 20
     CloseMessage
     SetFlag FLAG_UNK_0x02B2
@@ -414,8 +414,8 @@ _055C:
     LockAll
     FacePlayer
     Message 22
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _05B1
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _05B1
     Message 23
     CloseMessage
     SetFlag FLAG_UNK_0x02B5

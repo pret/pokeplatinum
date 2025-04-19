@@ -35,18 +35,18 @@ _0077:
     GoToIfGe VAR_UNK_0x40C5, 1, _00F4
     GoToIfSet FLAG_UNK_0x00D1, _00F4
     Message 0
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0101
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0101
     PlayCry SPECIES_PALKIA
     Message 1
     WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_PALKIA, 70
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _00E8
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00E8
     SetVar VAR_UNK_0x40C5, 1
-    CheckDidNotCapture VAR_0x800C
-    CallIfEq VAR_0x800C, FALSE, _00EE
+    CheckDidNotCapture VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, _00EE
     ReleaseAll
     End
 

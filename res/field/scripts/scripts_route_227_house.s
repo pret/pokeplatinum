@@ -11,9 +11,9 @@ _0006:
     LockAll
     FacePlayer
     Message 0
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0031
-    GoToIfEq VAR_0x800C, MENU_NO, _0079
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0031
+    GoToIfEq VAR_RESULT, MENU_NO, _0079
     End
 
 _0031:
@@ -27,9 +27,9 @@ _0031:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 2
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0031
-    GoToIfEq VAR_0x800C, MENU_NO, _0079
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0031
+    GoToIfEq VAR_RESULT, MENU_NO, _0079
     End
 
 _0079:

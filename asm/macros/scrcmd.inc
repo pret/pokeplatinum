@@ -323,7 +323,7 @@
     DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_MAP
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
-    GetSignpostInput VAR_0x800C
+    GetSignpostInput VAR_RESULT
     CallCommonScript 0x7D0
     .endm
 
@@ -331,7 +331,7 @@
     DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_ARROW
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
-    GetSignpostInput VAR_0x800C
+    GetSignpostInput VAR_RESULT
     CallCommonScript 0x7D0
     .endm
 
@@ -339,7 +339,7 @@
     DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_LANDMARK
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
-    GetSignpostInput VAR_0x800C
+    GetSignpostInput VAR_RESULT
     CallCommonScript 0x7D0
     .endm
 
@@ -347,11 +347,11 @@
     DrawSignpostTextBox SIGNPOST_TYPE_SCROLLING
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
-    DrawSignpostScrollingMessage \messageID, VAR_0x800C
+    DrawSignpostScrollingMessage \messageID, VAR_RESULT
     CallCommonScript 0x7D0
     .endm
 
-    .macro DrawSignpostInstantMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=VAR_0x800C
+    .macro DrawSignpostInstantMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=VAR_RESULT
     .short 54
     .byte \messageID
     .byte \signpostType
@@ -374,13 +374,13 @@
     .short 57
     .endm
 
-    .macro DrawSignpostScrollingMessage messageID, destVarID=VAR_0x800C
+    .macro DrawSignpostScrollingMessage messageID, destVarID=VAR_RESULT
     .short 58
     .byte \messageID
     .short \destVarID
     .endm
 
-    .macro GetSignpostInput destVarID=VAR_0x800C
+    .macro GetSignpostInput destVarID=VAR_RESULT
     .short 59
     .short \destVarID
     .endm

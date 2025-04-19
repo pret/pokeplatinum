@@ -14,7 +14,7 @@ _0006:
     Message 0
     SetVar VAR_0x8004, ITEM_FRESH_WATER
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0056
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0056
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00D9
     GoTo _004B

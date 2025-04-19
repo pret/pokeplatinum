@@ -19,12 +19,12 @@ _001A:
     LockAll
     FacePlayer
     GetFirstNonEggInParty VAR_0x8000
-    GetPartyMonRibbon VAR_0x800C, VAR_0x8000, RIBBON_HOENN_EFFORT
-    GoToIfEq VAR_0x800C, 1, _0086
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8000, RIBBON_HOENN_EFFORT
+    GoToIfEq VAR_RESULT, 1, _0086
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 0
-    ScrCmd_233 VAR_0x800C, VAR_0x8000
-    GoToIfLt VAR_0x800C, 0x1FE, _007B
+    ScrCmd_233 VAR_RESULT, VAR_0x8000
+    GoToIfLt VAR_RESULT, 0x1FE, _007B
     Message 1
     SetPartyMonRibbon VAR_0x8000, RIBBON_HOENN_EFFORT
     PlaySound SEQ_FANFA1
@@ -67,8 +67,8 @@ _00A9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_SEAL_CASE, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _00D9
+    CheckItem ITEM_SEAL_CASE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00D9
     Message 7
     CallCommonScript 0x7E3
     ScrCmd_035
@@ -84,8 +84,8 @@ _00D9:
     End
 
 _00E4:
-    GetDayOfWeek VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    GetDayOfWeek VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, DAY_OF_WEEK_SUNDAY, _016F
     GoToIfEq VAR_0x8008, DAY_OF_WEEK_MONDAY, _014B
     GoToIfEq VAR_0x8008, DAY_OF_WEEK_TUESDAY, _0151

@@ -33,13 +33,13 @@ _002B:
     End
 
 _0044:
-    InitLocalTextMenu 30, 11, 0, VAR_0x800C
+    InitLocalTextMenu 30, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 7, 0
     AddMenuEntryImm 8, 1
     AddMenuEntryImm 9, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _0092
     GoToIfEq VAR_0x8008, 1, _00BB
     GoToIfEq VAR_0x8008, 2, _015D
@@ -47,16 +47,16 @@ _0044:
     End
 
 _0092:
-    ScrCmd_071 VAR_0x800C, 0x1F4
-    GoToIfEq VAR_0x800C, 0, _0150
+    ScrCmd_071 VAR_RESULT, 0x1F4
+    GoToIfEq VAR_RESULT, 0, _0150
     SetVar VAR_0x8005, 1
     SetVar VAR_0x8006, 0x1F4
     GoTo _00E4
     End
 
 _00BB:
-    ScrCmd_071 VAR_0x800C, 0x1770
-    GoToIfEq VAR_0x800C, 0, _0150
+    ScrCmd_071 VAR_RESULT, 0x1770
+    GoToIfEq VAR_RESULT, 0, _0150
     SetVar VAR_0x8005, 12
     SetVar VAR_0x8006, 0x1770
     GoTo _00E4
@@ -64,7 +64,7 @@ _00BB:
 
 _00E4:
     SetVar VAR_0x8004, ITEM_MOOMOO_MILK
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0143
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0143
     ScrCmd_334 35, VAR_0x8006
     ScrCmd_1A3 VAR_0x8006
     UpdateMoneyDisplay

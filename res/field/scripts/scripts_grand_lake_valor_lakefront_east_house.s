@@ -14,7 +14,7 @@ _0006:
     Message 0
     SetVar VAR_0x8004, ITEM_WHITE_FLUTE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _004B
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _004B
     SetFlag FLAG_UNK_0x013A
     CallCommonScript 0x7E0
     CloseMessage

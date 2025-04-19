@@ -10,10 +10,10 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_21D 0, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0070
+    ScrCmd_21D 0, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0070
     Call _0102
-    GoToIfEq VAR_0x800C, 1, _003C
+    GoToIfEq VAR_RESULT, 1, _003C
     GoTo _0055
 
 _003C:
@@ -33,7 +33,7 @@ _0070:
     Message 2
 _0073:
     Call _0102
-    GoToIfEq VAR_0x800C, 1, _00A8
+    GoToIfEq VAR_RESULT, 1, _00A8
     GoTo _008C
 
 _008C:
@@ -60,53 +60,53 @@ _00C2:
     GoTo _03E5
 
 _0102:
-    ScrCmd_21D 0, 0, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _012C
-    ScrCmd_21D 1, 0, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01BF
+    ScrCmd_21D 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _012C
+    ScrCmd_21D 1, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01BF
 _012C:
-    ScrCmd_21D 0, 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0156
-    ScrCmd_21D 1, 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01BF
+    ScrCmd_21D 0, 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0156
+    ScrCmd_21D 1, 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01BF
 _0156:
-    ScrCmd_21D 0, 3, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0180
-    ScrCmd_21D 1, 3, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01BF
+    ScrCmd_21D 0, 3, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0180
+    ScrCmd_21D 1, 3, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01BF
 _0180:
-    ScrCmd_21D 0, 4, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01AA
-    ScrCmd_21D 1, 4, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01BF
+    ScrCmd_21D 0, 4, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01AA
+    ScrCmd_21D 1, 4, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01BF
 _01AA:
-    ScrCmd_21D 0, 5, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01C7
+    ScrCmd_21D 0, 5, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01C7
 _01BF:
-    SetVar VAR_0x800C, 1
+    SetVar VAR_RESULT, 1
     Return
 
 _01C7:
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _01CF:
-    ScrCmd_21D 0, 0, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01F8
+    ScrCmd_21D 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01F8
     Message 5
-    ShowYesNoMenu VAR_0x800C
-    GoToIfNe VAR_0x800C, MENU_YES, _03E5
+    ShowYesNoMenu VAR_RESULT
+    GoToIfNe VAR_RESULT, MENU_YES, _03E5
 _01F8:
     Message 6
     WaitABPress
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
-    ScrCmd_21D 4, VAR_0x800C
+    ScrCmd_21D 4, VAR_RESULT
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 1, _03E5
-    GoToIfEq VAR_0x800C, 2, _0256
+    GoToIfEq VAR_RESULT, 1, _03E5
+    GoToIfEq VAR_RESULT, 2, _0256
     ScrCmd_21D 6
     ScrCmd_21D 2, 0, 0
     ScrCmd_21D 3, 0, 1
@@ -122,38 +122,38 @@ _0256:
 _0261:
     Message 3
     InitLocalTextMenu 1, 1, 0, VAR_0x8004
-    ScrCmd_21D 0, 0, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _02A2
-    ScrCmd_21D 1, 0, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _02A2
+    ScrCmd_21D 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _02A2
+    ScrCmd_21D 1, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _02A2
     ScrCmd_21D 2, 0, 0
     AddMenuEntryImm 15, 0
 _02A2:
-    ScrCmd_21D 0, 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _02D8
-    ScrCmd_21D 1, 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _02D8
+    ScrCmd_21D 0, 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _02D8
+    ScrCmd_21D 1, 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _02D8
     ScrCmd_21D 2, 2, 1
     AddMenuEntryImm 16, 2
 _02D8:
-    ScrCmd_21D 0, 3, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _030E
-    ScrCmd_21D 1, 3, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _030E
+    ScrCmd_21D 0, 3, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _030E
+    ScrCmd_21D 1, 3, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _030E
     ScrCmd_21D 2, 3, 2
     AddMenuEntryImm 17, 3
 _030E:
-    ScrCmd_21D 0, 4, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0344
-    ScrCmd_21D 1, 4, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0344
+    ScrCmd_21D 0, 4, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0344
+    ScrCmd_21D 1, 4, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0344
     ScrCmd_21D 2, 4, 3
     AddMenuEntryImm 18, 4
 _0344:
-    ScrCmd_21D 0, 5, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _037A
-    ScrCmd_21D 1, 5, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _037A
+    ScrCmd_21D 0, 5, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _037A
+    ScrCmd_21D 1, 5, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _037A
     ScrCmd_21D 2, 5, 4
     AddMenuEntryImm 19, 5
 _037A:
@@ -164,8 +164,8 @@ _037A:
     ScrCmd_21D 2, VAR_0x8004, 0
     ScrCmd_21D 3, VAR_0x8004, 1
     Message 8
-    ShowYesNoMenu VAR_0x800C
-    GoToIfNe VAR_0x800C, MENU_YES, _0261
+    ShowYesNoMenu VAR_RESULT
+    GoToIfNe VAR_RESULT, MENU_YES, _0261
     ScrCmd_21D 5, VAR_0x8004
     BufferPlayerName 0
     ScrCmd_21D 2, VAR_0x8004, 1

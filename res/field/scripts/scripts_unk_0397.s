@@ -77,13 +77,13 @@ _00E7:
     CallIfEq VAR_0x8005, 0, _0260
     CallIfEq VAR_0x8005, 1, _0265
     CallIfEq VAR_0x8005, 2, _0267
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 14, 0
     AddMenuEntryImm 15, 1
     AddMenuEntryImm 16, 2
     ShowMenu
-    GoToIfEq VAR_0x800C, 0, _0188
-    GoToIfEq VAR_0x800C, 1, _0146
+    GoToIfEq VAR_RESULT, 0, _0188
+    GoToIfEq VAR_RESULT, 1, _0146
     GoTo _0175
     End
 
@@ -107,13 +107,13 @@ _017D:
 
 _0188:
     Message 7
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 17, 0
     AddMenuEntryImm 18, 1
     AddMenuEntryImm 19, 2
     ShowMenu
-    GoToIfEq VAR_0x800C, 0, _01C3
-    GoToIfEq VAR_0x800C, 1, _01D1
+    GoToIfEq VAR_RESULT, 0, _01C3
+    GoToIfEq VAR_RESULT, 1, _01D1
     GoTo _0175
     End
 
@@ -129,16 +129,16 @@ _01D1:
 
 _01DF:
     Message 8
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0175
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0175
     GoTo _01FB
     End
 
 _01FB:
     SetVar VAR_0x4000, 0
     CallCommonScript 0x7D6
-    SetVar VAR_0x800C, VAR_0x4000
-    GoToIfEq VAR_0x800C, 0, _0175
+    SetVar VAR_RESULT, VAR_0x4000
+    GoToIfEq VAR_RESULT, 0, _0175
     GoTo _0220
     End
 

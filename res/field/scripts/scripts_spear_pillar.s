@@ -64,10 +64,10 @@ _0107:
     End
 
 _0109:
-    ScrCmd_246 VAR_0x800C
+    ScrCmd_246 VAR_RESULT
     SetVar VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x800C, 10, _0133
-    GoToIfEq VAR_0x800C, 12, _0133
+    GoToIfEq VAR_RESULT, 10, _0133
+    GoToIfEq VAR_RESULT, 12, _0133
     SetVar VAR_0x8004, VAR_0x8006
 _0133:
     Return
@@ -109,8 +109,8 @@ _0154:
     ApplyMovement 0, _01E4
     ApplyMovement 3, _01F4
     WaitMovement
-    CheckHasTwoAliveMons VAR_0x800C
-    GoToIfNe VAR_0x800C, 0, _01A6
+    CheckHasTwoAliveMons VAR_RESULT
+    GoToIfNe VAR_RESULT, 0, _01A6
     GoTo _0181
     End
 
@@ -127,7 +127,7 @@ _0181:
 
 _01A6:
     Call _01CA
-    GoToIfEq VAR_0x800C, FALSE, _01DB
+    GoToIfEq VAR_RESULT, FALSE, _01DB
     SetVar VAR_UNK_0x4098, 1
     Message 2
     WaitABXPadPress
@@ -139,7 +139,7 @@ _01CA:
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_1, TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_2
-    CheckWonBattle VAR_0x800C
+    CheckWonBattle VAR_RESULT
     Return
 
 _01DB:
@@ -218,8 +218,8 @@ _0249:
     CloseMessage
     Call SpearPillar_SetRivalPartnerTeam
     StartTagBattle VAR_0x8004, TRAINER_COMMANDER_MARS_SPEAR_PILLAR, TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _02D0
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _02D0
     Call _0456
     BufferRivalName 0
     BufferPlayerName 1
@@ -337,11 +337,11 @@ _041C:
     EndMovement
 
 SpearPillar_SetRivalPartnerTeam:
-    GetPlayerStarterSpecies VAR_0x800C
+    GetPlayerStarterSpecies VAR_RESULT
     SetVar VAR_0x8004, TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR
-    GoToIfEq VAR_0x800C, SPECIES_CHIMCHAR, SpearPillar_Return
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, SpearPillar_Return
     SetVar VAR_0x8004, TRAINER_RIVAL_SPEAR_PILLAR_TURTWIG
-    GoToIfEq VAR_0x800C, SPECIES_TURTWIG, SpearPillar_Return
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, SpearPillar_Return
     SetVar VAR_0x8004, TRAINER_RIVAL_SPEAR_PILLAR_PIPLUP
 SpearPillar_Return:
     Return
@@ -457,18 +457,18 @@ _0508:
     MessageVar VAR_0x8004
     CloseMessage
     FadeOutMusic 0, 30
-    ScrCmd_20D 0, VAR_0x800C
-    WaitTime 10, VAR_0x800C
+    ScrCmd_20D 0, VAR_RESULT
+    WaitTime 10, VAR_RESULT
     PlayFanfare SEQ_SE_PL_KUSARI
-    WaitTime 20, VAR_0x800C
+    WaitTime 20, VAR_RESULT
     PlayMusic SEQ_THE_EVENT02
     ScrCmd_05D
     GoTo _0567
     End
 
 _0567:
-    ScrCmd_20D 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0567
+    ScrCmd_20D 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0567
     ScrCmd_2FB
     SetFlag FLAG_UNK_0x01C8
     SetFlag FLAG_UNK_0x01C9
