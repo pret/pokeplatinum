@@ -223,9 +223,9 @@ PokemonCenterDailyTrainers_IntroMessageSecondNPC:
     End
 
 PokemonCenterDailyTrainers_AskForBattle:
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, PokemonCenterDailyTrainers_BattleAccepted
-    GoToIfEq VAR_0x800C, MENU_NO, PokemonCenterDailyTrainers_BattleDeclined
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, PokemonCenterDailyTrainers_BattleAccepted
+    GoToIfEq VAR_RESULT, MENU_NO, PokemonCenterDailyTrainers_BattleDeclined
     End
 
 PokemonCenterDailyTrainers_NotEnoughAliveMons:
@@ -271,8 +271,8 @@ PokemonCenterDailyTrainers_BattleAcceptedSecondNPC:
 PokemonCenterDailyTrainers_Battle:
     CloseMessage
     StartTrainerBattle VAR_TRAINER
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, PokemonCenterDailyTrainers_BattleLost
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PokemonCenterDailyTrainers_BattleLost
     GoTo PokemonCenterDailyTrainers_PostBattle
     End
 

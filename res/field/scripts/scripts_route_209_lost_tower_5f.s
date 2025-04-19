@@ -16,7 +16,7 @@ _000A:
     Message 0
     SetVar VAR_0x8004, ITEM_SPELL_TAG
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00CF
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CF
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00A1
     GoTo _005C
@@ -45,7 +45,7 @@ _0072:
     Message 3
     SetVar VAR_0x8004, ITEM_CLEANSE_TAG
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00CF
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CF
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0116
     GoTo _00C4

@@ -26,11 +26,11 @@ _0039:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerDir VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _007B
-    GoToIfEq VAR_0x800C, 1, _008B
-    GoToIfEq VAR_0x800C, 2, _009B
-    GoToIfEq VAR_0x800C, 3, _00AB
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _007B
+    GoToIfEq VAR_RESULT, 1, _008B
+    GoToIfEq VAR_RESULT, 2, _009B
+    GoToIfEq VAR_RESULT, 3, _00AB
     End
 
 _007B:
@@ -54,16 +54,16 @@ _00AB:
     GoTo _00BB
 
 _00BB:
-    CheckBadgeAcquired BADGE_ID_RELIC, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _01A0
+    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _01A0
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 91, 0, 0, 0
     Message 0
     CloseMessage
     SetFlag FLAG_UNK_0x008E
     StartTrainerBattle TRAINER_LEADER_FANTINA
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0248
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0248
     Message 1
     BufferPlayerName 0
     Message 2
@@ -89,7 +89,7 @@ _00BB:
 _0158:
     SetVar VAR_0x8004, ITEM_TM65
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0196
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0196
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x007D
     BufferItemName 0, VAR_0x8004

@@ -86,10 +86,10 @@ _00A9:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0129, _0109
-    GetPlayerStarterSpecies VAR_0x800C
-    CallIfEq VAR_0x800C, SPECIES_TURTWIG, _0119
-    CallIfEq VAR_0x800C, SPECIES_CHIMCHAR, _0121
-    CallIfEq VAR_0x800C, SPECIES_PIPLUP, _0129
+    GetPlayerStarterSpecies VAR_RESULT
+    CallIfEq VAR_RESULT, SPECIES_TURTWIG, _0119
+    CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, _0121
+    CallIfEq VAR_RESULT, SPECIES_PIPLUP, _0129
     SetVar VAR_UNK_0x4107, VAR_0x8004
     ScrCmd_343 0, VAR_0x8004
     Message 3

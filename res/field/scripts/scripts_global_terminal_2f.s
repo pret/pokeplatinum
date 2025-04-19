@@ -139,13 +139,13 @@ _0109:
 
 _011D:
     Message 13
-    InitLocalTextMenu 31, 11, 0, VAR_0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 15, 0
     AddMenuEntryImm 16, 1
     AddMenuEntryImm 17, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _0167
     GoToIfEq VAR_0x8008, 1, _0188
     GoTo _0161
@@ -158,8 +158,8 @@ _0161:
 
 _0167:
     CallCommonScript 0x7D6
-    SetVar VAR_0x800C, VAR_0x4000
-    GoToIfEq VAR_0x800C, 0, _0161
+    SetVar VAR_RESULT, VAR_0x4000
+    GoToIfEq VAR_RESULT, 0, _0161
     CloseMessage
     CallCommonScript 0x802
     ReleaseAll
@@ -179,13 +179,13 @@ _0193:
 
 _01A7:
     Message 11
-    InitLocalTextMenu 31, 11, 0, VAR_0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 15, 0
     AddMenuEntryImm 16, 1
     AddMenuEntryImm 17, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _01F1
     GoToIfEq VAR_0x8008, 1, _0212
     GoTo _01EB
@@ -198,8 +198,8 @@ _01EB:
 
 _01F1:
     CallCommonScript 0x7D6
-    SetVar VAR_0x800C, VAR_0x4000
-    GoToIfEq VAR_0x800C, 0, _01EB
+    SetVar VAR_RESULT, VAR_0x4000
+    GoToIfEq VAR_RESULT, 0, _01EB
     CloseMessage
     CallCommonScript 0x802
     ReleaseAll

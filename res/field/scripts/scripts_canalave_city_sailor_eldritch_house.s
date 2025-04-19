@@ -104,20 +104,20 @@ _0145:
 _0158:
     GoToIfUnset FLAG_UNK_0x0133, _01EA
     GoToIfUnset FLAG_UNK_0x011F, _01D9
-    CheckItem ITEM_LUNAR_WING, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01D9
+    CheckItem ITEM_LUNAR_WING, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01D9
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetFlag FLAG_UNK_0x012C
     SetVar VAR_UNK_0x4106, 3
-    RemoveItem ITEM_LUNAR_WING, 1, VAR_0x800C
+    RemoveItem ITEM_LUNAR_WING, 1, VAR_RESULT
     BufferPlayerName 0
     Message 2
     Message 3
     PlaySound SEQ_ASA
     WaitSound
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     Call _01FC
     Message 5
     Call _0256
@@ -149,7 +149,7 @@ _01FC:
     WaitFanfare SEQ_SE_DP_KAIDAN2
     ClearFlag FLAG_UNK_0x025B
     AddObject 2
-    WaitTime 5, VAR_0x800C
+    WaitTime 5, VAR_RESULT
     ApplyMovement 1, _0294
     ApplyMovement 0, _0294
     ApplyMovement LOCALID_PLAYER, _0294

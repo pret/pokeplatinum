@@ -41,14 +41,14 @@ _003F:
     GoToIfSet FLAG_UNK_0x0AB3, _00A0
     GoToIfSet FLAG_UNK_0x0AA9, _0084
     Message 1
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00B6
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00B6
     GoTo _00AB
 
 _0084:
     Message 18
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00B6
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00B6
     GoTo _00AB
     End
 
@@ -157,7 +157,7 @@ _020F:
 _021B:
     SetVar VAR_0x8004, VAR_0x8003
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0246
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0246
     CallCommonScript 0x7FC
     GoTo _0269
 

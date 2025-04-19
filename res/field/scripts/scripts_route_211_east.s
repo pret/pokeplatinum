@@ -21,7 +21,7 @@ _0012:
     Message 1
     SetVar VAR_0x8004, ITEM_TM77
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0073
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0073
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00C6
     GoTo _0066

@@ -48,14 +48,14 @@ _008E:
     Return
 
 _009C:
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _00B3
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _00B3
     GoTo _00F1
 
 _00B3:
     BufferPlayerName 0
     Message 0
-    InitGlobalTextListMenu 30, 13, 0, VAR_0x800C, NO_EXIT_ON_B
+    InitGlobalTextListMenu 30, 13, 0, VAR_RESULT, NO_EXIT_ON_B
     SetMenuXOriginToRight
     AddListMenuEntry 137, 0
     AddListMenuEntry 138, 1
@@ -70,7 +70,7 @@ _00B3:
 _00F1:
     BufferPlayerName 0
     Message 4
-    InitGlobalTextListMenu 30, 13, 0, VAR_0x800C, NO_EXIT_ON_B
+    InitGlobalTextListMenu 30, 13, 0, VAR_RESULT, NO_EXIT_ON_B
     SetMenuXOriginToRight
     AddListMenuEntry 137, 0
     AddListMenuEntry 138, 1

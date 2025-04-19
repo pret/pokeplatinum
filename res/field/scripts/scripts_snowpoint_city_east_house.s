@@ -13,13 +13,13 @@ _000A:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AAD, _0064
-    ScrCmd_27F VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _007A
+    ScrCmd_27F VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _007A
     Message 0
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _006F
-    ScrCmd_27D VAR_0x800C, 0
-    GoToIfEq VAR_0x800C, -1, _007A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _006F
+    ScrCmd_27D VAR_RESULT, 0
+    GoToIfEq VAR_RESULT, -1, _007A
     SetFlag FLAG_UNK_0x0AAD
     Message 1
     WaitABXPadPress
@@ -53,9 +53,9 @@ _0085:
     LockAll
     FacePlayer
     Message 7
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00B0
-    GoToIfEq VAR_0x800C, MENU_NO, _0296
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00B0
+    GoToIfEq VAR_RESULT, MENU_NO, _0296
     End
 
 _00B0:
@@ -71,18 +71,18 @@ _00B0:
     GoToIfEq VAR_0x8000, 0xFF, _0296
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8001, 0, _028B
-    CheckHasLearnableTutorMoves VAR_0x8000, TUTOR_LOCATION_SNOWPOINT_CITY, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _02A1
+    CheckHasLearnableTutorMoves VAR_0x8000, TUTOR_LOCATION_SNOWPOINT_CITY, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _02A1
     BufferPartyMonNickname 0, VAR_0x8000
     Message 12
-    ShowMoveTutorMoveSelectionMenu VAR_0x8000, TUTOR_LOCATION_SNOWPOINT_CITY, VAR_0x800C
-    SetVar VAR_0x8003, VAR_0x800C
+    ShowMoveTutorMoveSelectionMenu VAR_0x8000, TUTOR_LOCATION_SNOWPOINT_CITY, VAR_RESULT
+    SetVar VAR_0x8003, VAR_RESULT
     GoToIfEq VAR_0x8003, -2, _0296
-    CheckCanAffordMove VAR_0x8003, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _02AC
-    GetPartyMonMoveCount VAR_0x800C, VAR_0x8000
-    SetVar VAR_0x8002, VAR_0x800C
-    GoToIfEq VAR_0x800C, 4, _0161
+    CheckCanAffordMove VAR_0x8003, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _02AC
+    GetPartyMonMoveCount VAR_RESULT, VAR_0x8000
+    SetVar VAR_0x8002, VAR_RESULT
+    GoToIfEq VAR_RESULT, 4, _0161
     GoTo _0256
     End
 
@@ -90,8 +90,8 @@ _0161:
     BufferPartyMonNickname 0, VAR_0x8000
     BufferMoveName 1, VAR_0x8003
     Message 16
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _021B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _021B
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
@@ -101,25 +101,25 @@ _0161:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_0x8002, 4, _021B
-    GetPartyMonMove VAR_0x800C, VAR_0x8000, VAR_0x8002
-    BufferMoveName 1, VAR_0x800C
+    GetPartyMonMove VAR_RESULT, VAR_0x8000, VAR_0x8002
+    BufferMoveName 1, VAR_RESULT
     Message 19
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _021B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _021B
     BufferPartyMonNickname 0, VAR_0x8000
-    GetPartyMonMove VAR_0x800C, VAR_0x8000, VAR_0x8002
-    BufferMoveName 1, VAR_0x800C
+    GetPartyMonMove VAR_RESULT, VAR_0x8000, VAR_0x8002
+    BufferMoveName 1, VAR_RESULT
     Message 20
     PlayFanfare SEQ_SE_DP_KON
     WaitFanfare SEQ_SE_DP_KON
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     Message 21
-    WaitTime 32, VAR_0x800C
+    WaitTime 32, VAR_RESULT
     PlaySound SEQ_FANFA1
     BufferMoveName 1, VAR_0x8003
     Message 22
     WaitSound
-    WaitTime 16, VAR_0x800C
+    WaitTime 16, VAR_RESULT
     GoTo _0277
     End
 
@@ -127,8 +127,8 @@ _021B:
     BufferPartyMonNickname 0, VAR_0x8000
     BufferMoveName 1, VAR_0x8003
     Message 17
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0241
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0241
     GoTo _0161
     End
 
@@ -145,7 +145,7 @@ _0256:
     Message 15
     PlaySound SEQ_FANFA1
     WaitSound
-    WaitTime 16, VAR_0x800C
+    WaitTime 16, VAR_RESULT
     GoTo _0277
     End
 

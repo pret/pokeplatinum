@@ -46,7 +46,7 @@ _009A:
     ScrCmd_066 VAR_0x8004, VAR_0x8005
     ApplyMovement 241, _00E8
     WaitMovement
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     BufferRivalName 0
     BufferPlayerName 1
     Message 0

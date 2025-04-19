@@ -123,10 +123,10 @@ _00D8:
     SetVar VAR_UNK_0x4081, 1
     ScrCmd_32E
     Message 1
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _02EE
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _02EE
     Call _014E
-    GoToIfEq VAR_0x800C, FALSE, _0306
+    GoToIfEq VAR_RESULT, FALSE, _0306
     Call _0198
     ReleaseAll
     End
@@ -147,7 +147,7 @@ _014E:
     CloseMessage
     Call FightArea_SetRivalPartnerTeam
     StartTagBattle VAR_0x8004, TRAINER_LEADER_VOLKNER_FIGHT_AREA, TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA
-    CheckWonBattle VAR_0x800C
+    CheckWonBattle VAR_RESULT
     Return
 
 _0198:
@@ -221,8 +221,8 @@ _0198:
     ApplyMovement LOCALID_PLAYER, _041C
     WaitMovement
     RemoveObject 8
-    ScrCmd_22D 2, VAR_0x800C
-    CallIfEq VAR_0x800C, 1, _02E0
+    ScrCmd_22D 2, VAR_RESULT
+    CallIfEq VAR_RESULT, 1, _02E0
     SetVar VAR_UNK_0x4081, 2
     Return
 
@@ -248,11 +248,11 @@ _0306:
     End
 
 FightArea_SetRivalPartnerTeam:
-    GetPlayerStarterSpecies VAR_0x800C
+    GetPlayerStarterSpecies VAR_RESULT
     SetVar VAR_0x8004, TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR
-    GoToIfEq VAR_0x800C, SPECIES_CHIMCHAR, _033E
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _033E
     SetVar VAR_0x8004, TRAINER_RIVAL_FIGHT_AREA_TURTWIG
-    GoToIfEq VAR_0x800C, SPECIES_TURTWIG, _033E
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _033E
     SetVar VAR_0x8004, TRAINER_RIVAL_FIGHT_AREA_PIPLUP
     Return
 
@@ -541,8 +541,8 @@ _0521:
     BufferItemName 0, 0x1BF
     GoToIfSet FLAG_UNK_0x006B, _057A
     Message 42
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _056F
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _056F
     Message 43
     SetVar VAR_0x8004, 0x1BF
     SetVar VAR_0x8005, 1
@@ -587,9 +587,9 @@ _05CA:
     FacePlayer
     GetPlayerDir VAR_0x8004
     Message 38
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0606
-    GoToIfEq VAR_0x800C, MENU_NO, _05FB
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0606
+    GoToIfEq VAR_RESULT, MENU_NO, _05FB
     End
 
 _05FB:
@@ -686,10 +686,10 @@ _06F0:
     CallIfEq VAR_0x8004, 0, _0792
     BufferRivalName 0
     Message 4
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _02EE
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _02EE
     Call _014E
-    GoToIfEq VAR_0x800C, FALSE, _0306
+    GoToIfEq VAR_RESULT, FALSE, _0306
     Call _0198
     ReleaseAll
     End

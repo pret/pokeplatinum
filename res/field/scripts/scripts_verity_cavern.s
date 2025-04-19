@@ -26,34 +26,34 @@ VerityCavern_Mesprit:
     CloseMessage
     SetFlag FLAG_MESPRIT_DISAPPEARED
     RemoveObject LOCALID_MESPRIT
-    WaitTime 8, VAR_0x800C
+    WaitTime 8, VAR_RESULT
     ClearFlag FLAG_MESPRIT_DISAPPEARED
     AddObject LOCALID_MESPRIT
-    WaitTime 8, VAR_0x800C
+    WaitTime 8, VAR_RESULT
     SetFlag FLAG_MESPRIT_DISAPPEARED
     RemoveObject LOCALID_MESPRIT
-    WaitTime 8, VAR_0x800C
+    WaitTime 8, VAR_RESULT
     ClearFlag FLAG_MESPRIT_DISAPPEARED
     AddObject LOCALID_MESPRIT
-    WaitTime 8, VAR_0x800C
+    WaitTime 8, VAR_RESULT
     SetFlag FLAG_MESPRIT_DISAPPEARED
     RemoveObject LOCALID_MESPRIT
-    WaitTime 8, VAR_0x800C
+    WaitTime 8, VAR_RESULT
     ClearFlag FLAG_MESPRIT_DISAPPEARED
     AddObject LOCALID_MESPRIT
-    WaitTime 8, VAR_0x800C
+    WaitTime 8, VAR_RESULT
     SetFlag FLAG_MESPRIT_DISAPPEARED
     RemoveObject LOCALID_MESPRIT
     ActivateRoamingPokemon ROAMING_SLOT_MESPRIT
     Message VerityCavern_Text_MespritFlewOff
     CloseMessage
     GoToIfEq VAR_ROAMING_MESPRIT_STATE, 3, VerityCavern_ResetRoamingMespritState
-    WaitTime 30, VAR_0x800C
-    GetPlayerDir VAR_0x800C
-    GoToIfEq VAR_0x800C, DIR_NORTH, VerityCavern_EnterProfessorRowanNorth
-    GoToIfEq VAR_0x800C, DIR_SOUTH, VerityCavern_EnterProfessorRowanSouth
-    GoToIfEq VAR_0x800C, DIR_WEST, VerityCavern_EnterProfessorRowanWest
-    GoToIfEq VAR_0x800C, DIR_EAST, VerityCavern_EnterProfessorRowanEast
+    WaitTime 30, VAR_RESULT
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, DIR_NORTH, VerityCavern_EnterProfessorRowanNorth
+    GoToIfEq VAR_RESULT, DIR_SOUTH, VerityCavern_EnterProfessorRowanSouth
+    GoToIfEq VAR_RESULT, DIR_WEST, VerityCavern_EnterProfessorRowanWest
+    GoToIfEq VAR_RESULT, DIR_EAST, VerityCavern_EnterProfessorRowanEast
     End
 
 VerityCavern_EnterProfessorRowanNorth:
@@ -90,8 +90,8 @@ VerityCavern_EnterProfessorRowan:
     WaitMovement
     BufferPlayerName 0
     Message VerityCavern_Text_RowanChaseAfterMesprit
-    CheckPoketchAppRegistered POKETCH_APPID_MARKINGMAP, VAR_0x800C
-    CallIfEq VAR_0x800C, 0, VerityCavern_ProfessorRowanNoMarkingMap
+    CheckPoketchAppRegistered POKETCH_APPID_MARKINGMAP, VAR_RESULT
+    CallIfEq VAR_RESULT, 0, VerityCavern_ProfessorRowanNoMarkingMap
     BufferPlayerName 0
     Message VerityCavern_Text_RowanGoOn
     CloseMessage

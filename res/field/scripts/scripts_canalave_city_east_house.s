@@ -18,9 +18,9 @@ _0006:
 
 _0026:
     Message 1
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0049
-    GoToIfEq VAR_0x800C, MENU_NO, _0130
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0049
+    GoToIfEq VAR_RESULT, MENU_NO, _0130
     End
 
 _0049:
@@ -39,8 +39,8 @@ _0054:
     GoToIfEq VAR_0x8002, 0xFF, _0130
     GetPartyMonSpecies VAR_0x8002, VAR_0x8001
     GoToIfEq VAR_0x8001, 0, _011A
-    GetPartyMonMoveCount VAR_0x800C, VAR_0x8002
-    GoToIfEq VAR_0x800C, 1, _0125
+    GetPartyMonMoveCount VAR_RESULT, VAR_0x8002
+    GoToIfEq VAR_RESULT, 1, _0125
     Message 6
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -53,9 +53,9 @@ _0054:
     GoToIfEq VAR_0x8001, MOVE_NOT_SELECTED, _0049
     ScrCmd_1CB 0, VAR_0x8002, VAR_0x8001
     Message 7
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0105
-    GoToIfEq VAR_0x800C, MENU_NO, _0049
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0105
+    GoToIfEq VAR_RESULT, MENU_NO, _0049
     End
 
 _0105:

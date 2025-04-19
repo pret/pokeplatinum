@@ -35,8 +35,8 @@ _0079:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_SECRETPOTION, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _00A1
+    CheckItem ITEM_SECRETPOTION, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00A1
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -45,9 +45,9 @@ _0079:
 
 _00A1:
     Message 1
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00CA
-    GoToIfEq VAR_0x800C, MENU_NO, _00C4
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00CA
+    GoToIfEq VAR_RESULT, MENU_NO, _00C4
     End
 
 _00C4:
@@ -76,7 +76,7 @@ _00CA:
     RemoveObject 28
     RemoveObject 26
     RemoveObject 19
-    WaitTime 45, VAR_0x800C
+    WaitTime 45, VAR_RESULT
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 0x230, _015B
     GoToIfEq VAR_0x8004, 0x231, _016F
@@ -101,16 +101,16 @@ _0183:
     ApplyMovement LOCALID_PLAYER, _02DC
     WaitMovement
     Message 3
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _01E9
-    GoToIfEq VAR_0x800C, MENU_NO, _01C6
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _01E9
+    GoToIfEq VAR_RESULT, MENU_NO, _01C6
     End
 
 _01C6:
     Message 5
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _01E9
-    GoToIfEq VAR_0x800C, MENU_NO, _01C6
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _01E9
+    GoToIfEq VAR_RESULT, MENU_NO, _01C6
     End
 
 _01E9:
@@ -264,7 +264,7 @@ _031F:
     Message 7
     SetVar VAR_0x8004, ITEM_TM51
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _036F
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _036F
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00C7
     GoTo _0364

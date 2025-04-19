@@ -36,8 +36,8 @@ _003D:
 
 _0050:
     LockAll
-    CheckPlayerOnBike VAR_0x800C
-    GoToIfEq VAR_0x800C, TRUE, _0080
+    CheckPlayerOnBike VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _0080
     ApplyMovement 0, _0090
     WaitMovement
     Message 1

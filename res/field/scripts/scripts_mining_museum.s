@@ -42,24 +42,24 @@ _0055:
     ScrCmd_1F1 VAR_0x8000
     GoToIfEq VAR_0x8000, 0, _04AB
     Message 2
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _03E7
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _03E7
     GoToIfEq VAR_0x8000, 1, _03BC
     SetVar VAR_0x8001, 0
-    CheckItem ITEM_OLD_AMBER, 1, VAR_0x800C
-    AddVar VAR_0x8001, VAR_0x800C
-    CheckItem ITEM_HELIX_FOSSIL, 1, VAR_0x800C
-    AddVar VAR_0x8001, VAR_0x800C
-    CheckItem ITEM_DOME_FOSSIL, 1, VAR_0x800C
-    AddVar VAR_0x8001, VAR_0x800C
-    CheckItem ITEM_ROOT_FOSSIL, 1, VAR_0x800C
-    AddVar VAR_0x8001, VAR_0x800C
-    CheckItem ITEM_CLAW_FOSSIL, 1, VAR_0x800C
-    AddVar VAR_0x8001, VAR_0x800C
-    CheckItem ITEM_ARMOR_FOSSIL, 1, VAR_0x800C
-    AddVar VAR_0x8001, VAR_0x800C
-    CheckItem ITEM_SKULL_FOSSIL, 1, VAR_0x800C
-    AddVar VAR_0x8001, VAR_0x800C
+    CheckItem ITEM_OLD_AMBER, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    CheckItem ITEM_HELIX_FOSSIL, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    CheckItem ITEM_DOME_FOSSIL, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    CheckItem ITEM_ROOT_FOSSIL, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    CheckItem ITEM_CLAW_FOSSIL, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    CheckItem ITEM_ARMOR_FOSSIL, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    CheckItem ITEM_SKULL_FOSSIL, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
     GoToIfEq VAR_0x8001, 1, _03BC
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8005, 0
@@ -72,7 +72,7 @@ _013E:
     CallIfEq VAR_0x8005, 4, _031C
     CallIfEq VAR_0x8005, 5, _032C
     CallIfEq VAR_0x8005, 6, _033C
-    GoToIfEq VAR_0x800C, 0, _0219
+    GoToIfEq VAR_RESULT, 0, _0219
     CallIfEq VAR_0x8004, 0, _034C
     CallIfEq VAR_0x8004, 1, _0354
     CallIfEq VAR_0x8004, 2, _035C
@@ -106,42 +106,42 @@ _0225:
     CallIfEq VAR_0x8003, 6, _03B4
     ScrCmd_1F4 VAR_UNK_0x40B4, VAR_0x8002
     GoToIfEq VAR_UNK_0x40B4, 0, _03E7
-    RemoveItem VAR_0x8002, 1, VAR_0x800C
+    RemoveItem VAR_0x8002, 1, VAR_RESULT
     GoTo _03D8
 
 _02DC:
     SetVar VAR_0x4000, 103
-    CheckItem VAR_0x4000, 1, VAR_0x800C
+    CheckItem VAR_0x4000, 1, VAR_RESULT
     Return
 
 _02EC:
     SetVar VAR_0x4000, 101
-    CheckItem VAR_0x4000, 1, VAR_0x800C
+    CheckItem VAR_0x4000, 1, VAR_RESULT
     Return
 
 _02FC:
     SetVar VAR_0x4000, 102
-    CheckItem VAR_0x4000, 1, VAR_0x800C
+    CheckItem VAR_0x4000, 1, VAR_RESULT
     Return
 
 _030C:
     SetVar VAR_0x4000, 99
-    CheckItem VAR_0x4000, 1, VAR_0x800C
+    CheckItem VAR_0x4000, 1, VAR_RESULT
     Return
 
 _031C:
     SetVar VAR_0x4000, 100
-    CheckItem VAR_0x4000, 1, VAR_0x800C
+    CheckItem VAR_0x4000, 1, VAR_RESULT
     Return
 
 _032C:
     SetVar VAR_0x4000, 104
-    CheckItem VAR_0x4000, 1, VAR_0x800C
+    CheckItem VAR_0x4000, 1, VAR_RESULT
     Return
 
 _033C:
     SetVar VAR_0x4000, 105
-    CheckItem VAR_0x4000, 1, VAR_0x800C
+    CheckItem VAR_0x4000, 1, VAR_RESULT
     Return
 
 _034C:
@@ -203,7 +203,7 @@ _03B4:
 _03BC:
     ScrCmd_1F5 VAR_0x8002, VAR_0x8004, 1
     ScrCmd_1F4 VAR_UNK_0x40B4, VAR_0x8002
-    RemoveItem VAR_0x8002, 1, VAR_0x800C
+    RemoveItem VAR_0x8002, 1, VAR_RESULT
     GoTo _03D8
 
 _03D8:
@@ -224,20 +224,20 @@ _03E7:
 _03F2:
     BufferSpeciesNameFromVar 0, VAR_UNK_0x40B4, 0, 0
     Message 7
-    GetPartyCount VAR_0x800C
-    GoToIfEq VAR_0x800C, 6, _04A0
+    GetPartyCount VAR_RESULT
+    GoToIfEq VAR_RESULT, 6, _04A0
     BufferSpeciesNameFromVar 1, VAR_UNK_0x40B4, 0, 0
     BufferPlayerName 0
     PlaySound SEQ_FANFA4
     Message 8
     WaitSound
-    GivePokemon VAR_UNK_0x40B4, 20, ITEM_NONE, VAR_0x800C
+    GivePokemon VAR_UNK_0x40B4, 20, ITEM_NONE, VAR_RESULT
     IncrementGameRecord RECORD_UNK_115
     SetVar VAR_UNK_0x40B4, 0
     Message 9
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0459
-    GoToIfEq VAR_0x800C, MENU_NO, _049A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0459
+    GoToIfEq VAR_RESULT, MENU_NO, _049A
     End
 
 _0459:
@@ -246,8 +246,8 @@ _0459:
     SubVar VAR_0x4000, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BB VAR_0x4000, VAR_0x800C
-    CallIfNe VAR_0x800C, 1, _0494
+    ScrCmd_0BB VAR_0x4000, VAR_RESULT
+    CallIfNe VAR_RESULT, 1, _0494
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

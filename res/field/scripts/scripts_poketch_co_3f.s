@@ -50,8 +50,8 @@ _0057:
 _0062:
     Message 4
     InitGlobalTextMenu 1, 1, 0, VAR_0x8004
-    ScrCmd_132 VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _00A2
+    ScrCmd_132 VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00A2
     Call _00FE
     Call _0122
     Call _0146
@@ -72,8 +72,8 @@ _00A2:
     End
 
 _00FE:
-    CheckPoketchAppRegistered POKETCH_APPID_DIGITALWATCH, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01D6
+    CheckPoketchAppRegistered POKETCH_APPID_DIGITALWATCH, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01D6
     AddMenuEntry 233, 1
     Return
 
@@ -82,8 +82,8 @@ _0119:
     GoTo _0062
 
 _0122:
-    CheckPoketchAppRegistered POKETCH_APPID_ANALOGWATCH, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01D6
+    CheckPoketchAppRegistered POKETCH_APPID_ANALOGWATCH, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01D6
     AddMenuEntry 237, 2
     Return
 
@@ -92,8 +92,8 @@ _013D:
     GoTo _0062
 
 _0146:
-    CheckPoketchAppRegistered POKETCH_APPID_UNUSED_STOPWATCH, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01D6
+    CheckPoketchAppRegistered POKETCH_APPID_UNUSED_STOPWATCH, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01D6
     AddMenuEntry 234, 3
     Return
 
@@ -102,8 +102,8 @@ _0161:
     GoTo _0062
 
 _016A:
-    CheckPoketchAppRegistered POKETCH_APPID_KITCHENTIMER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01D6
+    CheckPoketchAppRegistered POKETCH_APPID_KITCHENTIMER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01D6
     AddMenuEntry 250, 4
     Return
 
@@ -112,8 +112,8 @@ _0185:
     GoTo _0062
 
 _018E:
-    CheckPoketchAppRegistered POKETCH_APPID_UNUSED_ALARMCLOCK, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01D6
+    CheckPoketchAppRegistered POKETCH_APPID_UNUSED_ALARMCLOCK, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01D6
     AddMenuEntry 249, 5
     Return
 
@@ -122,8 +122,8 @@ _01A9:
     GoTo _0062
 
 _01B2:
-    CheckPoketchAppRegistered POKETCH_APPID_CALENDAR, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01D6
+    CheckPoketchAppRegistered POKETCH_APPID_CALENDAR, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01D6
     AddMenuEntry 254, 6
     Return
 
@@ -142,8 +142,8 @@ _01D8:
 _01E3:
     Message 6
     InitGlobalTextMenu 1, 1, 0, VAR_0x8004
-    ScrCmd_132 VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0229
+    ScrCmd_132 VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0229
     Call _0292
     Call _02B6
     Call _02DA
@@ -166,8 +166,8 @@ _0229:
     End
 
 _0292:
-    CheckPoketchAppRegistered POKETCH_APPID_CALCULATOR, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _038E
+    CheckPoketchAppRegistered POKETCH_APPID_CALCULATOR, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _038E
     AddMenuEntry 235, 1
     Return
 
@@ -176,8 +176,8 @@ _02AD:
     GoTo _01E3
 
 _02B6:
-    CheckPoketchAppRegistered POKETCH_APPID_MEMOPAD, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _038E
+    CheckPoketchAppRegistered POKETCH_APPID_MEMOPAD, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _038E
     AddMenuEntry 236, 2
     Return
 
@@ -186,8 +186,8 @@ _02D1:
     GoTo _01E3
 
 _02DA:
-    CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _038E
+    CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _038E
     AddMenuEntry 240, 3
     Return
 
@@ -196,8 +196,8 @@ _02F5:
     GoTo _01E3
 
 _02FE:
-    CheckPoketchAppRegistered POKETCH_APPID_DAYCARECHECKER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _038E
+    CheckPoketchAppRegistered POKETCH_APPID_DAYCARECHECKER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _038E
     AddMenuEntry 244, 4
     Return
 
@@ -206,8 +206,8 @@ _0319:
     GoTo _01E3
 
 _0322:
-    CheckPoketchAppRegistered POKETCH_APPID_MATCHUPCHECKER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _038E
+    CheckPoketchAppRegistered POKETCH_APPID_MATCHUPCHECKER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _038E
     AddMenuEntry 248, 5
     Return
 
@@ -216,8 +216,8 @@ _033D:
     GoTo _01E3
 
 _0346:
-    CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _038E
+    CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _038E
     AddMenuEntry 0x101, 6
     Return
 
@@ -226,8 +226,8 @@ _0361:
     GoTo _01E3
 
 _036A:
-    CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _038E
+    CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _038E
     AddMenuEntry 252, 7
     Return
 
@@ -246,8 +246,8 @@ _0390:
 _039B:
     Message 8
     InitGlobalTextMenu 1, 1, 0, VAR_0x8004
-    ScrCmd_132 VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _03DB
+    ScrCmd_132 VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _03DB
     Call _0437
     Call _045B
     Call _047F
@@ -268,8 +268,8 @@ _03DB:
     End
 
 _0437:
-    CheckPoketchAppRegistered POKETCH_APPID_PARTYSTATUS, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _050F
+    CheckPoketchAppRegistered POKETCH_APPID_PARTYSTATUS, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _050F
     AddMenuEntry 239, 1
     Return
 
@@ -278,8 +278,8 @@ _0452:
     GoTo _039B
 
 _045B:
-    CheckPoketchAppRegistered POKETCH_APPID_DOTART, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _050F
+    CheckPoketchAppRegistered POKETCH_APPID_DOTART, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _050F
     AddMenuEntry 238, 2
     Return
 
@@ -288,8 +288,8 @@ _0476:
     GoTo _039B
 
 _047F:
-    CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _050F
+    CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _050F
     AddMenuEntry 246, 3
     Return
 
@@ -298,8 +298,8 @@ _049A:
     GoTo _039B
 
 _04A3:
-    CheckPoketchAppRegistered POKETCH_APPID_ROULETTE, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _050F
+    CheckPoketchAppRegistered POKETCH_APPID_ROULETTE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _050F
     AddMenuEntry 245, 4
     Return
 
@@ -308,8 +308,8 @@ _04BE:
     GoTo _039B
 
 _04C7:
-    CheckPoketchAppRegistered POKETCH_APPID_COLORCHANGER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _050F
+    CheckPoketchAppRegistered POKETCH_APPID_COLORCHANGER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _050F
     AddMenuEntry 253, 5
     Return
 
@@ -318,8 +318,8 @@ _04E2:
     GoTo _039B
 
 _04EB:
-    CheckPoketchAppRegistered POKETCH_APPID_MARKINGMAP, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _050F
+    CheckPoketchAppRegistered POKETCH_APPID_MARKINGMAP, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _050F
     AddMenuEntry 251, 6
     Return
 
@@ -338,8 +338,8 @@ _0511:
 _051C:
     Message 10
     InitGlobalTextMenu 1, 1, 0, VAR_0x8004
-    ScrCmd_132 VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _055C
+    ScrCmd_132 VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _055C
     Call _05B8
     Call _05DC
     Call _0600
@@ -360,8 +360,8 @@ _055C:
     End
 
 _05B8:
-    CheckPoketchAppRegistered POKETCH_APPID_PEDOMETER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0690
+    CheckPoketchAppRegistered POKETCH_APPID_PEDOMETER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0690
     AddMenuEntry 243, 1
     Return
 
@@ -370,8 +370,8 @@ _05D3:
     GoTo _051C
 
 _05DC:
-    CheckPoketchAppRegistered POKETCH_APPID_COUNTER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0690
+    CheckPoketchAppRegistered POKETCH_APPID_COUNTER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0690
     AddMenuEntry 242, 2
     Return
 
@@ -380,8 +380,8 @@ _05F7:
     GoTo _051C
 
 _0600:
-    CheckPoketchAppRegistered POKETCH_APPID_RADARCHAINCOUNTER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0690
+    CheckPoketchAppRegistered POKETCH_APPID_RADARCHAINCOUNTER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0690
     AddMenuEntry 0x100, 3
     Return
 
@@ -390,8 +390,8 @@ _061B:
     GoTo _051C
 
 _0624:
-    CheckPoketchAppRegistered POKETCH_APPID_LINKSEARCHER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0690
+    CheckPoketchAppRegistered POKETCH_APPID_LINKSEARCHER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0690
     AddMenuEntry 0xFF, 4
     Return
 
@@ -400,8 +400,8 @@ _063F:
     GoTo _051C
 
 _0648:
-    CheckPoketchAppRegistered POKETCH_APPID_MOVETESTER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0690
+    CheckPoketchAppRegistered POKETCH_APPID_MOVETESTER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0690
     AddMenuEntry 247, 5
     Return
 
@@ -410,8 +410,8 @@ _0663:
     GoTo _051C
 
 _066C:
-    CheckPoketchAppRegistered POKETCH_APPID_DOWSINGMACHINE, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0690
+    CheckPoketchAppRegistered POKETCH_APPID_DOWSINGMACHINE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0690
     AddMenuEntry 241, 6
     Return
 

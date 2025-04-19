@@ -41,8 +41,8 @@ _004E:
 
 _0061:
     LockAll
-    CheckPlayerOnBike VAR_0x800C
-    GoToIfEq VAR_0x800C, TRUE, _0091
+    CheckPlayerOnBike VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _0091
     ApplyMovement 1, _00A0
     WaitMovement
     Message 1
@@ -101,7 +101,7 @@ _0102:
     Message 5
     SetVar VAR_0x8004, ITEM_EXP_SHARE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _014A
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _014A
     SetFlag FLAG_UNK_0x010B
     CallCommonScript 0x7E0
     CloseMessage

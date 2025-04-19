@@ -48,7 +48,7 @@ _009A:
 _00A6:
     ShowCurrentFloor 20, 1, VAR_UNK_0x40CE
     Message 0
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 120, 0
     AddMenuEntryImm 119, 1
     AddMenuEntryImm 118, 2
@@ -57,7 +57,7 @@ _00A6:
     AddMenuEntryImm 121, 5
     AddMenuEntryImm 124, 6
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _02BC
     GoToIfEq VAR_0x8008, 1, _026D
     GoToIfEq VAR_0x8008, 2, _021E
@@ -67,7 +67,7 @@ _00A6:
     GoTo _03F6
 
 _0131:
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 0x236, 1, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 5, _03DF
@@ -78,7 +78,7 @@ _0131:
     GoTo _033F
 
 _0180:
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 137, 2, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 4, _03DF
@@ -89,7 +89,7 @@ _0180:
     GoTo _033F
 
 _01CF:
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 138, 2, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 3, _03DF
@@ -100,7 +100,7 @@ _01CF:
     GoTo _033F
 
 _021E:
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 139, 2, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 2, _03DF
@@ -111,7 +111,7 @@ _021E:
     GoTo _033F
 
 _026D:
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 140, 2, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 1, _03DF
@@ -122,7 +122,7 @@ _026D:
     GoTo _033F
 
 _02BC:
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 141, 1, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 0, _03DF
@@ -199,7 +199,7 @@ _03D7:
 
 _03DF:
     SetVar VAR_UNK_0x40CE, -1
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -208,7 +208,7 @@ _03DF:
 
 _03F6:
     SetVar VAR_UNK_0x40CE, -1
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     Message 1
     WaitABXPadPress
     CloseMessage

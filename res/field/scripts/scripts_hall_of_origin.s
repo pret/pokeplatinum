@@ -45,10 +45,10 @@ _0056:
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_ARCEUS, 80
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _00DF
-    CheckDidNotCapture VAR_0x800C
-    GoToIfEq VAR_0x800C, TRUE, _00D0
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00DF
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _00D0
     CallIfEq VAR_ARCEUS_EVENT_STATE, 0, _00C8
     SetFlag FLAG_UNK_0x011E
     ReleaseAll

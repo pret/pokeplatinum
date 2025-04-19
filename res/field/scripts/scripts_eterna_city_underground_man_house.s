@@ -25,15 +25,15 @@ _001A:
     SetFlag FLAG_UNK_0x0079
     ClearFlag FLAG_UNK_0x0111
     Message 1
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _009C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _009C
     SetFlag FLAG_UNK_0x0113
     GoTo _0164
 
 _007E:
     Message 2
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _009C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _009C
     SetFlag FLAG_UNK_0x0113
     GoTo _0164
 
@@ -259,9 +259,9 @@ _0347:
     End
 
 _037F:
-    GetPlayerStarterSpecies VAR_0x800C
-    GoToIfEq VAR_0x800C, SPECIES_CHIMCHAR, _03A3
-    GoToIfEq VAR_0x800C, SPECIES_TURTWIG, _03B5
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _03A3
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _03B5
     GoTo _03C7
 
 _03A3:
@@ -289,8 +289,8 @@ _03D9:
     CallIfUnset FLAG_UNK_0x00FC, _0443
     SetVar VAR_0x8004, 81
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _056B
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _056B
     CallCommonScript 0x7FE
     SetVar VAR_UNK_0x40B6, 6
     ClearFlag FLAG_UNK_0x0111
@@ -306,14 +306,14 @@ _0443:
     Return
 
 _0448:
-    ScrCmd_24A VAR_0x800C
-    GoToIfLt VAR_0x800C, 3, _00A7
+    ScrCmd_24A VAR_RESULT
+    GoToIfLt VAR_RESULT, 3, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _04A4
     SetVar VAR_0x8004, 82
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _056B
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _056B
     CallCommonScript 0x7DC
     SetVar VAR_UNK_0x40B6, 7
     ClearFlag FLAG_UNK_0x00FC
@@ -326,14 +326,14 @@ _04A4:
     Return
 
 _04A9:
-    ScrCmd_24A VAR_0x800C
-    GoToIfLt VAR_0x800C, 10, _00A7
+    ScrCmd_24A VAR_RESULT
+    GoToIfLt VAR_RESULT, 10, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0505
     SetVar VAR_0x8004, 83
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _056B
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _056B
     CallCommonScript 0x7DC
     SetVar VAR_UNK_0x40B6, 8
     ClearFlag FLAG_UNK_0x00FC
@@ -346,14 +346,14 @@ _0505:
     Return
 
 _050A:
-    ScrCmd_24A VAR_0x800C
-    GoToIfLt VAR_0x800C, 50, _00A7
+    ScrCmd_24A VAR_RESULT
+    GoToIfLt VAR_RESULT, 50, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0566
     SetVar VAR_0x8004, 84
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _056B
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _056B
     CallCommonScript 0x7DC
     SetVar VAR_UNK_0x40B6, 9
     ClearFlag FLAG_UNK_0x00FC
@@ -483,7 +483,7 @@ _0685:
 
 _0696:
     Message 42
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 180, 0
     AddMenuEntryImm 181, 1
     AddMenuEntryImm 182, 2
@@ -491,7 +491,7 @@ _0696:
     AddMenuEntryImm 184, 4
     AddMenuEntryImm 12, 5
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _070A
     GoToIfEq VAR_0x8008, 1, _0715
     GoToIfEq VAR_0x8008, 2, _0720

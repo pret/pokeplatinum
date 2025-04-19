@@ -18,14 +18,14 @@ _0010:
     GoToIfSet FLAG_UNK_0x0100, _0041
     SetFlag FLAG_UNK_0x0100
     Message 0
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _005B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _005B
     GoTo _00A2
 
 _0041:
     Message 1
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _005B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _005B
     GoTo _00A2
 
 _005B:
@@ -75,16 +75,16 @@ _00A2:
     GetPartyCount VAR_0x4000
 _00A6:
     SubVar VAR_0x4000, 1
-    GetPartyMonSpecies VAR_0x4000, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _00FC
+    GetPartyMonSpecies VAR_0x4000, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00FC
     ScrCmd_248 VAR_0x8004, VAR_0x8005, VAR_0x4000
     GoToIfEq VAR_0x8004, 16, _00E7
     GoToIfEq VAR_0x8005, 16, _00E7
     GoTo _00FC
 
 _00E7:
-    CheckPartyMonHasMove VAR_0x800C, MOVE_DRACO_METEOR, VAR_0x4000
-    GoToIfEq VAR_0x800C, 0, _010F
+    CheckPartyMonHasMove VAR_RESULT, MOVE_DRACO_METEOR, VAR_0x4000
+    GoToIfEq VAR_RESULT, 0, _010F
 _00FC:
     GoToIfNe VAR_0x4000, 0, _00A6
     GoTo _0066
@@ -103,11 +103,11 @@ _010F:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8001, 0, _007C
     Call _01D7
-    GoToIfEq VAR_0x800C, 0, _0071
-    CheckPartyMonHasMove VAR_0x800C, MOVE_DRACO_METEOR, VAR_0x8000
-    GoToIfEq VAR_0x800C, 1, _0087
-    GetPartyMonFriendship VAR_0x800C, VAR_0x8000
-    GoToIfLt VAR_0x800C, 0xFF, _0097
+    GoToIfEq VAR_RESULT, 0, _0071
+    CheckPartyMonHasMove VAR_RESULT, MOVE_DRACO_METEOR, VAR_0x8000
+    GoToIfEq VAR_RESULT, 1, _0087
+    GetPartyMonFriendship VAR_RESULT, VAR_0x8000
+    GoToIfLt VAR_RESULT, 0xFF, _0097
     SetVar VAR_0x8003, 0x1B2
     GoTo _019B
 
@@ -115,11 +115,11 @@ _019B:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_224 VAR_0x8000, 0x1B2
-    ScrCmd_225 VAR_0x800C
+    ScrCmd_225 VAR_RESULT
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 0xFF, _005B
+    GoToIfEq VAR_RESULT, 0xFF, _005B
     Message 16
     WaitABXPadPress
     CloseMessage
@@ -130,11 +130,11 @@ _01D7:
     ScrCmd_248 VAR_0x8004, VAR_0x8005, VAR_0x8000
     GoToIfEq VAR_0x8004, 16, _0201
     GoToIfEq VAR_0x8005, 16, _0201
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _0201:
-    SetVar VAR_0x800C, 1
+    SetVar VAR_RESULT, 1
     Return
 
     .byte 0

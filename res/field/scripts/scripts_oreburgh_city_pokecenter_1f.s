@@ -53,23 +53,23 @@ _006C:
 _0078:
     Message 3
     ScrCmd_154
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 50, 0
     AddMenuEntryImm 51, 1
     AddMenuEntryImm 52, 2
     AddMenuEntryImm 53, 3
     AddMenuEntryImm 43, 4
     ShowMenu
-    SetVar VAR_0x8004, VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8004, VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 4, _00E9
     GoToIfEq VAR_0x8008, -2, _00E9
     ScrCmd_155 VAR_0x8004, VAR_0x8005
     ScrCmd_344 0, VAR_0x8005
     ScrCmd_346 0
     Message 4
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00F4
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00F4
     GoTo _0078
 
 _00E9:

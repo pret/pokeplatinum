@@ -81,16 +81,16 @@ _00B2:
     ApplyMovement 1, _019C
     WaitMovement
     Message 5
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0104
-    GoToIfEq VAR_0x800C, MENU_NO, _00E1
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0104
+    GoToIfEq VAR_RESULT, MENU_NO, _00E1
     End
 
 _00E1:
     Message 6
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0104
-    GoToIfEq VAR_0x800C, MENU_NO, _00E1
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0104
+    GoToIfEq VAR_RESULT, MENU_NO, _00E1
     End
 
 _0104:
@@ -99,16 +99,16 @@ _0104:
     ApplyMovement 1, _01B4
     WaitMovement
     Message 8
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0159
-    GoToIfEq VAR_0x800C, MENU_NO, _0136
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0159
+    GoToIfEq VAR_RESULT, MENU_NO, _0136
     End
 
 _0136:
     Message 9
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0159
-    GoToIfEq VAR_0x800C, MENU_NO, _0136
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0159
+    GoToIfEq VAR_RESULT, MENU_NO, _0136
     End
 
 _0159:

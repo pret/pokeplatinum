@@ -53,8 +53,8 @@ _0090:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COAL, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _00C1
+    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00C1
     GoToIfSet FLAG_UNK_0x007A, _00CC
     Message 8
     WaitABXPadPress
@@ -291,7 +291,7 @@ _0376:
     Message 17
     SetVar VAR_0x8004, ITEM_SUPER_POTION
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _03C8
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _03C8
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0109
     GoTo _03BD

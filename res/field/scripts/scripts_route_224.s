@@ -76,8 +76,8 @@ _00E4:
     FacePlayer
     SetVar VAR_UNK_0x408D, 1
     BufferPlayerName 0
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_FEMALE, _0219
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0219
     Message 0
 _0114:
     CloseMessage
@@ -88,25 +88,25 @@ _0114:
 _0124:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_271 VAR_0x800C
+    ScrCmd_271 VAR_RESULT
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 1, _0222
+    GoToIfEq VAR_RESULT, 1, _0222
     BufferPlayerName 0
     ScrCmd_272 1
     Message 3
-    ShowYesNoMenu VAR_0x800C
+    ShowYesNoMenu VAR_RESULT
     CloseMessage
-    GoToIfEq VAR_0x800C, MENU_NO, _0124
+    GoToIfEq VAR_RESULT, MENU_NO, _0124
     Call _029A
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     FadeOutMusic 0, 10
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen
     EnableHiddenLocation HIDDEN_LOCATION_SEABREAK_PATH
     ScrCmd_333 0
     Warp MAP_HEADER_ROUTE_224, 0, 0x38C, 0x1EC, 0
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     FadeScreen 6, 6, 1, 0x7FFF
     WaitFadeScreen
     Call _02B8
@@ -134,7 +134,7 @@ _01F5:
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _0438
     WaitMovement
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     Message 11
     Return
 

@@ -1011,16 +1011,16 @@ _0D6E:
     ScrCmd_2FA VAR_0x8004
     ScrCmd_2F8
     SetVar VAR_0x8007, 0
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GoTo _0D88
     End
 
 _0D88:
     AddVar VAR_0x8007, 1
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     Dummy1F9 VAR_0x8007
-    ScrCmd_2FC VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0DC2
+    ScrCmd_2FC VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0DC2
     Dummy1F9 VAR_0x8007
     GoToIfEq VAR_0x8007, 0x258, _0DC2
     GoTo _0D88
@@ -1326,9 +1326,9 @@ _12BF:
     SetVar VAR_RESORT_VILLA_VISITOR, 1
     BufferRivalName 0
     BufferPlayerName 1
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _12FC
-    GoToIfEq VAR_0x800C, GENDER_FEMALE, _1307
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _12FC
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _1307
     End
 
 _12FC:
@@ -1509,7 +1509,7 @@ _14FC:
 
 _1514:
     Call _18F8
-    GoToIfEq VAR_0x800C, 1, _155E
+    GoToIfEq VAR_RESULT, 1, _155E
     Message 7
     GoTo _1532
     End
@@ -1575,7 +1575,7 @@ _1624:
     BufferPlayerName 1
     Message 119
     Call _18F8
-    GoToIfEq VAR_0x800C, 1, _1651
+    GoToIfEq VAR_RESULT, 1, _1651
     GoTo _165C
     End
 
@@ -1615,8 +1615,8 @@ _1667:
     GoToIfEq VAR_0x8002, -2, _18DE
     GoToIfEq VAR_0x8003, 0, _18C8
     Message 121
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _18DE
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _18DE
     CallIfEq VAR_0x8002, 0, _1FB1
     CallIfEq VAR_0x8002, 1, _1FBB
     CallIfEq VAR_0x8002, 2, _1FC5
@@ -1690,11 +1690,11 @@ _18F8:
     GoToIfUnset FLAG_VILLA_FURNITURE_UNK_17, _19DC
     GoToIfUnset FLAG_VILLA_FURNITURE_UNK_18, _19DC
     GoToIfUnset FLAG_VILLA_FURNITURE_UNK_19, _19DC
-    SetVar VAR_0x800C, 1
+    SetVar VAR_RESULT, 1
     Return
 
 _19DC:
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _19E4:
@@ -1771,48 +1771,48 @@ _1B4F:
     Return
 
 _1B7B:
-    ScrCmd_30F 13, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _1D13
+    ScrCmd_30F 13, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 150000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_12, _1E05
     CallIfSet FLAG_VILLA_FURNITURE_UNK_12, _1E0F
     Return
 
 _1BAF:
-    ScrCmd_30F 14, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _1D13
+    ScrCmd_30F 14, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 150000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_13, _1E19
     CallIfSet FLAG_VILLA_FURNITURE_UNK_13, _1E23
     Return
 
 _1BE3:
-    ScrCmd_30F 15, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _1D13
+    ScrCmd_30F 15, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 146700, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_14, _1E2D
     CallIfSet FLAG_VILLA_FURNITURE_UNK_14, _1E37
     Return
 
 _1C17:
-    ScrCmd_30F 16, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _1D13
+    ScrCmd_30F 16, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 208000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_15, _1E41
     CallIfSet FLAG_VILLA_FURNITURE_UNK_15, _1E4B
     Return
 
 _1C4B:
-    ScrCmd_30F 17, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _1D13
+    ScrCmd_30F 17, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 52000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_16, _1E55
     CallIfSet FLAG_VILLA_FURNITURE_UNK_16, _1E5F
     Return
 
 _1C7F:
-    ScrCmd_30F 18, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _1D13
+    ScrCmd_30F 18, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 140000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_17, _1E69
     CallIfSet FLAG_VILLA_FURNITURE_UNK_17, _1E73
@@ -1826,8 +1826,8 @@ _1CB3:
     Return
 
 _1CDF:
-    ScrCmd_30F 20, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _1D13
+    ScrCmd_30F 20, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 120000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_19, _1E91
     CallIfSet FLAG_VILLA_FURNITURE_UNK_19, _1E9B

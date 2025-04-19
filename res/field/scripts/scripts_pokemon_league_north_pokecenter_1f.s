@@ -43,10 +43,10 @@ _006D:
     CloseMessage
     PlaySound SEQ_BADGE
     WaitSound
-    GetPlayerDir VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _00B8
-    GoToIfEq VAR_0x800C, 2, _00C8
-    GoToIfEq VAR_0x800C, 3, _00D8
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00B8
+    GoToIfEq VAR_RESULT, 2, _00C8
+    GoToIfEq VAR_RESULT, 3, _00D8
     End
 
 _00B8:
@@ -149,9 +149,9 @@ _01C1:
     BufferRivalName 0
     Message 0
     CloseMessage
-    GetPlayerStarterSpecies VAR_0x800C
-    GoToIfEq VAR_0x800C, SPECIES_TURTWIG, _0203
-    GoToIfEq VAR_0x800C, SPECIES_CHIMCHAR, _020F
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _0203
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _020F
     GoTo _01F7
 
 _01F7:
@@ -167,8 +167,8 @@ _020F:
     GoTo _021B
 
 _021B:
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _02AC
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _02AC
     BufferRivalName 0
     BufferPlayerName 1
     Message 1

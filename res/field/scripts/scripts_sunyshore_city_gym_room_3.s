@@ -26,14 +26,14 @@ _0027:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_BEACON, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0104
+    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0104
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 156, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_VOLKNER
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _011A
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _011A
     Message 1
     BufferPlayerName 0
     Message 2
@@ -58,7 +58,7 @@ _0027:
 _00BC:
     SetVar VAR_0x8004, ITEM_TM57
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00FA
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00FA
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00B6
     BufferItemName 0, VAR_0x8004

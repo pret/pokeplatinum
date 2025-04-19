@@ -15,8 +15,8 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _002E
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _002E
     CloseMessage
     ReleaseAll
     End

@@ -24,8 +24,8 @@ _003B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_STORAGE_KEY, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0063
+    CheckItem ITEM_STORAGE_KEY, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0063
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -34,14 +34,14 @@ _003B:
 
 _0063:
     Message 8
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0086
-    GoToIfEq VAR_0x800C, MENU_NO, _00C2
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0086
+    GoToIfEq VAR_RESULT, MENU_NO, _00C2
     End
 
 _0086:
     SetFlag FLAG_UNK_0x010E
-    RemoveItem ITEM_STORAGE_KEY, 1, VAR_0x800C
+    RemoveItem ITEM_STORAGE_KEY, 1, VAR_RESULT
     BufferPlayerName 0
     Message 9
     WaitABXPadPress

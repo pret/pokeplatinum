@@ -15,8 +15,8 @@ _0012:
     FacePlayer
     ScrCmd_17E VAR_0x8000
     ScrCmd_181 VAR_0x8001
-    ScrCmd_17D VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    ScrCmd_17D VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _033E
     GoToIfEq VAR_0x8008, 1, _0082
     GoToIfEq VAR_0x8008, 2, _00B9
@@ -28,7 +28,7 @@ _0012:
 
 _0082:
     Call _0158
-    GoToIfEq VAR_0x800C, 0, _00A6
+    GoToIfEq VAR_RESULT, 0, _00A6
     ScrCmd_33C 0, VAR_0x8000
     ScrCmd_346 0
     Message 13
@@ -43,7 +43,7 @@ _00A6:
 
 _00B9:
     Call _0158
-    GoToIfEq VAR_0x800C, 0, _00DC
+    GoToIfEq VAR_RESULT, 0, _00DC
     ScrCmd_17B 0, VAR_0x8000, VAR_0x8001
     Message 14
     GoTo _01F2
@@ -56,7 +56,7 @@ _00DC:
 
 _00EE:
     Call _0158
-    GoToIfEq VAR_0x800C, 0, _0111
+    GoToIfEq VAR_RESULT, 0, _0111
     ScrCmd_17B 0, VAR_0x8000, VAR_0x8001
     Message 15
     GoTo _01F2
@@ -69,7 +69,7 @@ _0111:
 
 _0123:
     Call _0158
-    GoToIfEq VAR_0x800C, 0, _0146
+    GoToIfEq VAR_RESULT, 0, _0146
     ScrCmd_17B 0, VAR_0x8000, VAR_0x8001
     Message 16
     GoTo _01F2
@@ -81,37 +81,37 @@ _0146:
     GoTo _053A
 
 _0158:
-    GetPlayerDir VAR_0x800C
-    GoToIfNe VAR_0x800C, 0, _0186
-    CheckItem ITEM_SPRAYDUCK, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0186
-    SetVar VAR_0x800C, 1
+    GetPlayerDir VAR_RESULT
+    GoToIfNe VAR_RESULT, 0, _0186
+    CheckItem ITEM_SPRAYDUCK, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0186
+    SetVar VAR_RESULT, 1
     Return
 
 _0186:
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _018E:
-    CheckItem ITEM_GROWTH_MULCH, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _01EA
-    CheckItem ITEM_DAMP_MULCH, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _01EA
-    CheckItem ITEM_STABLE_MULCH, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _01EA
-    CheckItem ITEM_GOOEY_MULCH, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _01EA
-    SetVar VAR_0x800C, 0
+    CheckItem ITEM_GROWTH_MULCH, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _01EA
+    CheckItem ITEM_DAMP_MULCH, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _01EA
+    CheckItem ITEM_STABLE_MULCH, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _01EA
+    CheckItem ITEM_GOOEY_MULCH, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _01EA
+    SetVar VAR_RESULT, 0
     Return
 
 _01EA:
-    SetVar VAR_0x800C, 1
+    SetVar VAR_RESULT, 1
     Return
 
 _01F2:
     Message 17
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _053A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _053A
     CloseMessage
     ScrCmd_184 0
     Message 20
@@ -130,9 +130,9 @@ _023B:
     ScrCmd_33D 0, VAR_0x8000
     Message 21
 _0243:
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _02F7
-    GoToIfCannotFitItem VAR_0x8000, VAR_0x8001, VAR_0x800C, _02CF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _02F7
+    GoToIfCannotFitItem VAR_0x8000, VAR_0x8001, VAR_RESULT, _02CF
     BufferNumber 1, VAR_0x8001
     GoToIfGt VAR_0x8001, 1, _0289
     BufferItemName 0, VAR_0x8000
@@ -154,8 +154,8 @@ _0291:
 _02B4:
     ScrCmd_33D 1, VAR_0x8000
 _02B9:
-    GetItemPocket VAR_0x8000, VAR_0x800C
-    BufferPocketName 3, VAR_0x800C
+    GetItemPocket VAR_0x8000, VAR_RESULT
+    BufferPocketName 3, VAR_RESULT
     Message 27
     WaitABXPadPress
     GoTo _053A
@@ -174,7 +174,7 @@ _02EC:
 
 _02F7:
     Call _0158
-    GoToIfEq VAR_0x800C, 0, _0310
+    GoToIfEq VAR_RESULT, 0, _0310
     GoTo _01F2
 
 _0310:
@@ -192,35 +192,35 @@ _0336:
     GoTo _053A
 
 _033E:
-    ScrCmd_17F VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0374
-    ScrCmd_17A 4, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _054B
-    ScrCmd_17F VAR_0x800C
-    BufferItemName 0, VAR_0x800C
+    ScrCmd_17F VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0374
+    ScrCmd_17A 4, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _054B
+    ScrCmd_17F VAR_RESULT
+    BufferItemName 0, VAR_RESULT
     Message 1
     GoTo _04DA
 
 _0374:
-    GetPlayerDir VAR_0x800C
-    GoToIfNe VAR_0x800C, 0, _0540
+    GetPlayerDir VAR_RESULT
+    GoToIfNe VAR_RESULT, 0, _0540
     Call _018E
-    GoToIfEq VAR_0x800C, 1, _03B4
-    ScrCmd_17A 4, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0540
+    GoToIfEq VAR_RESULT, 1, _03B4
+    ScrCmd_17A 4, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0540
     Message 0
     GoTo _04DA
 
 _03B4:
     Message 0
-    ScrCmd_17A 4, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0413
-    InitLocalTextMenu 1, 1, 0, VAR_0x800C
+    ScrCmd_17A 4, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0413
+    InitLocalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 2, 0
     AddMenuEntryImm 3, 1
     AddMenuEntryImm 4, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _042D
     GoToIfEq VAR_0x8008, 1, _04EE
     GoToIfEq VAR_0x8008, 2, _053A
@@ -228,8 +228,8 @@ _03B4:
 
 _0413:
     Message 5
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _042D
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _042D
     GoTo _053A
 
 _042D:
@@ -252,8 +252,8 @@ _042D:
 _049D:
     RemoveItem VAR_0x8005, 1, VAR_0x8004
     ScrCmd_182 VAR_0x8005
-    ScrCmd_17A 4, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _04CA
+    ScrCmd_17A 4, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _04CA
     BufferItemName 0, VAR_0x8005
     Message 11
     GoTo _04DA
@@ -266,8 +266,8 @@ _04CA:
 
 _04DA:
     Message 8
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _053A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _053A
 _04EE:
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -276,13 +276,13 @@ _04EE:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_179 VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _053C
-    BufferItemName 0, VAR_0x800C
+    ScrCmd_179 VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _053C
+    BufferItemName 0, VAR_RESULT
     Message 12
     WaitABXPadPress
-    RemoveItem VAR_0x800C, 1, VAR_0x8004
-    ScrCmd_183 VAR_0x800C
+    RemoveItem VAR_RESULT, 1, VAR_0x8004
+    ScrCmd_183 VAR_RESULT
     GoTo _053A
 
 _053A:
@@ -297,8 +297,8 @@ _0540:
     GoTo _053A
 
 _054B:
-    ScrCmd_17F VAR_0x800C
-    BufferItemName 0, VAR_0x800C
+    ScrCmd_17F VAR_RESULT
+    BufferItemName 0, VAR_RESULT
     Message 29
     WaitABXPadPress
     GoTo _053A
@@ -328,6 +328,6 @@ _0583:
 
 _0598:
     LockAll
-    SetVar VAR_0x800C, VAR_0x8000
+    SetVar VAR_RESULT, VAR_0x8000
     SetVar VAR_0x8005, VAR_0x8000
     GoTo _049D

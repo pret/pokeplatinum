@@ -214,11 +214,11 @@ _02B4:
     SetVar VAR_0x4001, VAR_0x4021
     GoToIfSet FLAG_UNK_0x0005, _034D
     Call _118A
-    GoToIfEq VAR_0x800C, 1, _034D
+    GoToIfEq VAR_RESULT, 1, _034D
     CallIfUnset FLAG_UNK_0x0001, _036E
     CallIfSet FLAG_UNK_0x0001, _0376
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0386
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0386
     Call _032F
     GoToIfEq VAR_0x8000, 0, _0398
     SetFlag FLAG_UNK_0x0005
@@ -289,11 +289,11 @@ _03CA:
     SetVar VAR_0x4001, VAR_0x4022
     GoToIfSet FLAG_UNK_0x0006, _034D
     Call _118A
-    GoToIfEq VAR_0x800C, 1, _034D
+    GoToIfEq VAR_RESULT, 1, _034D
     CallIfUnset FLAG_UNK_0x0002, _036E
     CallIfSet FLAG_UNK_0x0002, _0376
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0445
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0445
     Call _032F
     GoToIfEq VAR_0x8000, FALSE, _0398
     SetFlag FLAG_UNK_0x0006
@@ -315,11 +315,11 @@ _0457:
     SetVar VAR_0x4001, VAR_0x4023
     GoToIfSet FLAG_UNK_0x0007, _034D
     Call _118A
-    GoToIfEq VAR_0x800C, 1, _034D
+    GoToIfEq VAR_RESULT, 1, _034D
     CallIfUnset FLAG_UNK_0x0003, _036E
     CallIfSet FLAG_UNK_0x0003, _0376
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _04D2
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _04D2
     Call _032F
     GoToIfEq VAR_0x8000, 0, _0398
     SetFlag FLAG_UNK_0x0007
@@ -341,11 +341,11 @@ _04E4:
     SetVar VAR_0x4001, VAR_0x4024
     GoToIfSet FLAG_UNK_0x0008, _034D
     Call _118A
-    GoToIfEq VAR_0x800C, 1, _034D
+    GoToIfEq VAR_RESULT, 1, _034D
     CallIfUnset FLAG_UNK_0x0004, _036E
     CallIfSet FLAG_UNK_0x0004, _0376
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _055F
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _055F
     Call _032F
     GoToIfEq VAR_0x8000, 0, _0398
     SetFlag FLAG_UNK_0x0008
@@ -1202,7 +1202,7 @@ _1184:
     Return
 
 _118A:
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     GoToIfEq VAR_0x4001, 126, _123B
     GoToIfEq VAR_0x4001, 127, _1248
     GoToIfEq VAR_0x4001, 128, _1255
@@ -1271,5 +1271,5 @@ _12D7:
     Return
 
 _12E4:
-    SetVar VAR_0x800C, 1
+    SetVar VAR_RESULT, 1
     Return

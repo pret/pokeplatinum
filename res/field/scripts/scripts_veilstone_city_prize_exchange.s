@@ -23,18 +23,18 @@ _000E:
 _0039:
     Message 1
     Call _0119
-    GoToIfEq VAR_0x800C, -2, _00D8
-    GoToIfEq VAR_0x800C, VAR_0x4001, _00D8
-    GetGameCornerPrizeData VAR_0x800C, VAR_0x8000, VAR_0x8001
+    GoToIfEq VAR_RESULT, -2, _00D8
+    GoToIfEq VAR_RESULT, VAR_0x4001, _00D8
+    GetGameCornerPrizeData VAR_RESULT, VAR_0x8000, VAR_0x8001
     CallIfLt VAR_0x8000, 0x148, _0100
     CallIfGe VAR_0x8000, 0x148, _010A
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0039
-    HasCoins VAR_0x800C, VAR_0x8001
-    GoToIfEq VAR_0x800C, FALSE, _00F5
-    GoToIfCannotFitItem VAR_0x8000, 1, VAR_0x800C, _00E5
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0039
+    HasCoins VAR_RESULT, VAR_0x8001
+    GoToIfEq VAR_RESULT, FALSE, _00F5
+    GoToIfCannotFitItem VAR_0x8000, 1, VAR_RESULT, _00E5
     Message 4
-    AddItem VAR_0x8000, 1, VAR_0x800C
+    AddItem VAR_0x8000, 1, VAR_RESULT
     SubtractCoins VAR_0x8001
     UpdateCoinDisplay
     PlayFanfare SEQ_SE_DP_REGI
@@ -75,7 +75,7 @@ _010A:
 _0119:
     SetVar VAR_0x8008, 0
     SetVar VAR_0x8009, 0
-    InitGlobalTextListMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextListMenu 1, 1, 0, VAR_RESULT
     GoTo _0135
     End
 
@@ -101,15 +101,15 @@ _017C:
     GoToIfSet FLAG_UNK_0x00C4, _01AF
     SetFlag FLAG_UNK_0x00C4
     Message 8
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0250
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0250
     GoTo _01CB
     End
 
 _01AF:
     Message 9
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0250
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0250
     GoTo _01CB
     End
 
@@ -127,8 +127,8 @@ _01CB:
     GoToIfEq VAR_0x8001, 0, _025B
     ScrCmd_2FF VAR_0x8000, VAR_0x8004
     GoToIfEq VAR_0x8004, -1, _0245
-    CheckPartyMonHasMove VAR_0x800C, MOVE_HIDDEN_POWER, VAR_0x8000
-    GoToIfEq VAR_0x800C, 0, _0266
+    CheckPartyMonHasMove VAR_RESULT, MOVE_HIDDEN_POWER, VAR_0x8000
+    GoToIfEq VAR_RESULT, 0, _0266
     ScrCmd_2FD 0, VAR_0x8004
     Message 11
     GoTo _0276

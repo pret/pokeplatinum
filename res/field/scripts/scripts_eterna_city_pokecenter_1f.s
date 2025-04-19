@@ -61,14 +61,14 @@ _007D:
     LockAll
     FacePlayer
     GoToIfEq VAR_0x4002, 1, _00F4
-    CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _00D9
+    CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00D9
     GetFirstNonEggInParty VAR_0x8000
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 6
-    GetPartyMonFriendship VAR_0x800C, VAR_0x8000
-    GoToIfGe VAR_0x800C, 120, _00FF
-    GoToIfGe VAR_0x800C, 70, _010A
+    GetPartyMonFriendship VAR_RESULT, VAR_0x8000
+    GoToIfGe VAR_RESULT, 120, _00FF
+    GoToIfGe VAR_RESULT, 70, _010A
     GoTo _0115
     End
 

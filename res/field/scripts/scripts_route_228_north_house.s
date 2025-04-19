@@ -14,14 +14,14 @@ _000A:
     GoToIfSet FLAG_UNK_0x0108, _003B
     SetFlag FLAG_UNK_0x0108
     Message 0
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0055
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0055
     GoTo _028F
 
 _003B:
     Message 1
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0055
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0055
     GoTo _028F
 
 _0055:
@@ -38,12 +38,12 @@ _0055:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8001, 0, _02A5
     Call _0195
-    GoToIfEq VAR_0x800C, 0, _029A
-    SetVar VAR_0x8002, VAR_0x800C
+    GoToIfEq VAR_RESULT, 0, _029A
+    SetVar VAR_0x8002, VAR_RESULT
     Call _0251
-    GoToIfEq VAR_0x800C, 1, _02BB
-    GetPartyMonFriendship VAR_0x800C, VAR_0x8000
-    GoToIfLt VAR_0x800C, 0xFF, _02B0
+    GoToIfEq VAR_RESULT, 1, _02BB
+    GetPartyMonFriendship VAR_RESULT, VAR_0x8000
+    GoToIfLt VAR_RESULT, 0xFF, _02B0
     BufferPartyMonSpecies 0, VAR_0x8000
     GoToIfEq VAR_0x8002, 1, _00FE
     GoToIfEq VAR_0x8002, 2, _011E
@@ -51,22 +51,22 @@ _0055:
 
 _00FE:
     Message 9
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _028F
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _028F
     SetVar VAR_0x8003, 0x133
     GoTo _015E
 
 _011E:
     Message 10
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _028F
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _028F
     SetVar VAR_0x8003, 0x134
     GoTo _015E
 
 _013E:
     Message 11
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _028F
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _028F
     SetVar VAR_0x8003, 0x152
     GoTo _015E
 
@@ -75,11 +75,11 @@ _015E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_224 VAR_0x8000, VAR_0x8003
-    ScrCmd_225 VAR_0x800C
+    ScrCmd_225 VAR_RESULT
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 0xFF, _028F
+    GoToIfEq VAR_RESULT, 0xFF, _028F
     ReleaseAll
     End
 
@@ -96,19 +96,19 @@ _0195:
     GoToIfEq VAR_0x8001, 154, _0249
     GoToIfEq VAR_0x8001, 254, _0249
     GoToIfEq VAR_0x8001, 0x185, _0249
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _0239:
-    SetVar VAR_0x800C, 1
+    SetVar VAR_RESULT, 1
     Return
 
 _0241:
-    SetVar VAR_0x800C, 2
+    SetVar VAR_RESULT, 2
     Return
 
 _0249:
-    SetVar VAR_0x800C, 3
+    SetVar VAR_RESULT, 3
     Return
 
 _0251:
@@ -117,15 +117,15 @@ _0251:
     GoTo _0285
 
 _0271:
-    CheckPartyMonHasMove VAR_0x800C, MOVE_BLAST_BURN, VAR_0x8000
+    CheckPartyMonHasMove VAR_RESULT, MOVE_BLAST_BURN, VAR_0x8000
     Return
 
 _027B:
-    CheckPartyMonHasMove VAR_0x800C, MOVE_HYDRO_CANNON, VAR_0x8000
+    CheckPartyMonHasMove VAR_RESULT, MOVE_HYDRO_CANNON, VAR_0x8000
     Return
 
 _0285:
-    CheckPartyMonHasMove VAR_0x800C, MOVE_FRENZY_PLANT, VAR_0x8000
+    CheckPartyMonHasMove VAR_RESULT, MOVE_FRENZY_PLANT, VAR_0x8000
     Return
 
 _028F:

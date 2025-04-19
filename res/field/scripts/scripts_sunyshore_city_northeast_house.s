@@ -16,7 +16,7 @@ _0006:
     GoToIfUnset FLAG_UNK_0x00F7, _004C
     GetFirstNonEggInParty VAR_0x8002
     Call _0070
-    GoToIfEq VAR_0x800C, 1, _0136
+    GoToIfEq VAR_RESULT, 1, _0136
     GoTo _0146
 
 _004C:
@@ -39,41 +39,41 @@ _006A:
     GoTo _012B
 
 _0070:
-    GetDayOfWeek VAR_0x800C
-    GoToIfEq VAR_0x800C, DAY_OF_WEEK_SUNDAY, _00C8
-    GoToIfEq VAR_0x800C, DAY_OF_WEEK_MONDAY, _00D2
-    GoToIfEq VAR_0x800C, DAY_OF_WEEK_TUESDAY, _00DC
-    GoToIfEq VAR_0x800C, DAY_OF_WEEK_WEDNESDAY, _00E6
-    GoToIfEq VAR_0x800C, DAY_OF_WEEK_THURSDAY, _00F0
-    GoToIfEq VAR_0x800C, DAY_OF_WEEK_FRIDAY, _00FA
+    GetDayOfWeek VAR_RESULT
+    GoToIfEq VAR_RESULT, DAY_OF_WEEK_SUNDAY, _00C8
+    GoToIfEq VAR_RESULT, DAY_OF_WEEK_MONDAY, _00D2
+    GoToIfEq VAR_RESULT, DAY_OF_WEEK_TUESDAY, _00DC
+    GoToIfEq VAR_RESULT, DAY_OF_WEEK_WEDNESDAY, _00E6
+    GoToIfEq VAR_RESULT, DAY_OF_WEEK_THURSDAY, _00F0
+    GoToIfEq VAR_RESULT, DAY_OF_WEEK_FRIDAY, _00FA
     GoTo _0104
 
 _00C8:
-    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_SMILE
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8002, RIBBON_SMILE
     Return
 
 _00D2:
-    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_ALERT
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8002, RIBBON_ALERT
     Return
 
 _00DC:
-    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_SHOCK
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8002, RIBBON_SHOCK
     Return
 
 _00E6:
-    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_DOWNCAST
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8002, RIBBON_DOWNCAST
     Return
 
 _00F0:
-    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_CARELESS
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8002, RIBBON_CARELESS
     Return
 
 _00FA:
-    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_RELAX
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8002, RIBBON_RELAX
     Return
 
 _0104:
-    GetPartyMonRibbon VAR_0x800C, VAR_0x8002, RIBBON_SNOOZE
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8002, RIBBON_SNOOZE
     Return
 
 _010E:
@@ -102,13 +102,13 @@ _0136:
     End
 
 _0146:
-    GetDayOfWeek VAR_0x800C
-    GoToIfEq VAR_0x800C, DAY_OF_WEEK_SUNDAY, _019E
-    GoToIfEq VAR_0x800C, DAY_OF_WEEK_MONDAY, _01F2
-    GoToIfEq VAR_0x800C, DAY_OF_WEEK_TUESDAY, _0246
-    GoToIfEq VAR_0x800C, DAY_OF_WEEK_WEDNESDAY, _029A
-    GoToIfEq VAR_0x800C, DAY_OF_WEEK_THURSDAY, _02EE
-    GoToIfEq VAR_0x800C, DAY_OF_WEEK_FRIDAY, _0342
+    GetDayOfWeek VAR_RESULT
+    GoToIfEq VAR_RESULT, DAY_OF_WEEK_SUNDAY, _019E
+    GoToIfEq VAR_RESULT, DAY_OF_WEEK_MONDAY, _01F2
+    GoToIfEq VAR_RESULT, DAY_OF_WEEK_TUESDAY, _0246
+    GoToIfEq VAR_RESULT, DAY_OF_WEEK_WEDNESDAY, _029A
+    GoToIfEq VAR_RESULT, DAY_OF_WEEK_THURSDAY, _02EE
+    GoToIfEq VAR_RESULT, DAY_OF_WEEK_FRIDAY, _0342
     GoTo _0396
 
 _019E:
@@ -117,11 +117,11 @@ _019E:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
+    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 0, _03EA
+    GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 21
     SetFlag FLAG_UNK_0x0AA4
@@ -135,11 +135,11 @@ _01F2:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
+    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 0, _03EA
+    GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 3
     SetFlag FLAG_UNK_0x0AA4
@@ -153,11 +153,11 @@ _0246:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
+    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 0, _03EA
+    GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 11
     SetFlag FLAG_UNK_0x0AA4
@@ -171,11 +171,11 @@ _029A:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
+    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 0, _03EA
+    GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 13
     SetFlag FLAG_UNK_0x0AA4
@@ -189,11 +189,11 @@ _02EE:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
+    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 0, _03EA
+    GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 15
     SetFlag FLAG_UNK_0x0AA4
@@ -207,11 +207,11 @@ _0342:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
+    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 0, _03EA
+    GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 17
     SetFlag FLAG_UNK_0x0AA4
@@ -225,11 +225,11 @@ _0396:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_243 0, VAR_0x800C, VAR_0x8000
+    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 0, _03EA
+    GoToIfEq VAR_RESULT, 0, _03EA
     ScrCmd_245 0, VAR_0x8000
     Message 19
     SetFlag FLAG_UNK_0x0AA4

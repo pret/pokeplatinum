@@ -39,7 +39,7 @@ _0040:
     Message 2
     SetVar VAR_0x8004, ITEM_STICKY_BARB
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0092
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0092
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0105
     GoTo _0087
@@ -111,15 +111,15 @@ _013D:
     GoTo _0191
 
 _0149:
-    CheckMoney VAR_0x800C, 200
+    CheckMoney VAR_RESULT, 200
     Return
 
 _0153:
-    CheckMoney VAR_0x800C, 300
+    CheckMoney VAR_RESULT, 300
     Return
 
 _015D:
-    CheckMoney VAR_0x800C, 350
+    CheckMoney VAR_RESULT, 350
     Return
 
 _0167:
@@ -141,8 +141,8 @@ _0191:
     CallIfEq VAR_0x8000, 0, _0149
     CallIfEq VAR_0x8000, 1, _0153
     CallIfEq VAR_0x8000, 2, _015D
-    GoToIfEq VAR_0x800C, 0, _0277
-    GoToIfCannotFitItem VAR_0x8001, 1, VAR_0x800C, _0280
+    GoToIfEq VAR_RESULT, 0, _0277
+    GoToIfCannotFitItem VAR_0x8001, 1, VAR_RESULT, _0280
     CallIfEq VAR_0x8000, 0, _0167
     CallIfEq VAR_0x8000, 1, _0175
     CallIfEq VAR_0x8000, 2, _0183
@@ -154,9 +154,9 @@ _0191:
     SetVar VAR_0x8004, VAR_0x8001
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
-    GetRandom VAR_0x800C, 64
-    GoToIfNe VAR_0x800C, 0, _026E
-    GoToIfCannotFitItem VAR_0x8001, 1, VAR_0x800C, _0280
+    GetRandom VAR_RESULT, 64
+    GoToIfNe VAR_RESULT, 0, _026E
+    GoToIfCannotFitItem VAR_0x8001, 1, VAR_RESULT, _0280
     PlayFanfare SEQ_SE_DP_JIHANKI
     BufferItemName 0, VAR_0x8001
     Message 8

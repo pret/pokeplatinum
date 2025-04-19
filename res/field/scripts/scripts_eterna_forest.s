@@ -142,7 +142,7 @@ _0198:
     Message 5
     SetVar VAR_0x8004, ITEM_SOOTHE_BELL
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _01EA
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01EA
     GoTo _01DB
     End
 
@@ -356,11 +356,11 @@ _0411:
     FacePlayer
     Message 13
     CloseMessage
-    GetPlayerDir VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _046C
-    GoToIfEq VAR_0x800C, 1, _047E
-    GoToIfEq VAR_0x800C, 2, _0490
-    GoToIfEq VAR_0x800C, 3, _04A2
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _046C
+    GoToIfEq VAR_RESULT, 1, _047E
+    GoToIfEq VAR_RESULT, 2, _0490
+    GoToIfEq VAR_RESULT, 3, _04A2
     End
 
 _046C:

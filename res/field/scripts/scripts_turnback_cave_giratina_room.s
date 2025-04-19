@@ -34,10 +34,10 @@ _0037:
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_GIRATINA, 47
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _009B
-    CheckDidNotCapture VAR_0x800C
-    GoToIfEq VAR_0x800C, TRUE, _0090
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _009B
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _0090
     GoTo _0084
     End
 
@@ -68,7 +68,7 @@ _00A5:
     SetVar VAR_0x8004, ITEM_STARDUST
 _00CB:
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _010C
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _010C
     CallCommonScript 0x7E0
     CloseMessage
     RemoveObject 1
@@ -102,8 +102,8 @@ _0127:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 2
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0149
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0149
     GoTo _017F
     End
 

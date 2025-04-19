@@ -119,13 +119,13 @@ _00FE:
     FacePlayer
     ShowMoney 20, 2
     Message 8
-    InitLocalTextMenu 31, 11, 0, VAR_0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 14, 0
     AddMenuEntryImm 15, 1
     AddMenuEntryImm 16, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _0150
     GoToIfEq VAR_0x8008, 1, _018F
     GoTo _0215
@@ -134,9 +134,9 @@ _00FE:
 _0150:
     SetVar VAR_0x8004, 1
     SetVar VAR_0x8005, 200
-    GoToIfCannotFitItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_0x800C, _01FF
-    CheckMoney2 VAR_0x800C, 200
-    GoToIfEq VAR_0x800C, 0, _020A
+    GoToIfCannotFitItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT, _01FF
+    CheckMoney2 VAR_RESULT, 200
+    GoToIfEq VAR_RESULT, 0, _020A
     Message 9
     GoTo _01CE
     End
@@ -144,15 +144,15 @@ _0150:
 _018F:
     SetVar VAR_0x8004, 10
     SetVar VAR_0x8005, 2000
-    GoToIfCannotFitItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_0x800C, _01FF
-    CheckMoney2 VAR_0x800C, 2000
-    GoToIfEq VAR_0x800C, 0, _020A
+    GoToIfCannotFitItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT, _01FF
+    CheckMoney2 VAR_RESULT, 2000
+    GoToIfEq VAR_RESULT, 0, _020A
     Message 10
     GoTo _01CE
     End
 
 _01CE:
-    AddItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_0x800C
+    AddItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT
     PlayFanfare SEQ_SE_DP_REGI
     AddToGameRecord RECORD_MONEY_SPENT, VAR_0x8005
     RemoveMoney2 VAR_0x8005
@@ -190,16 +190,16 @@ _022A:
     FacePlayer
     ShowMoney 20, 2
     Message 17
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _025B
-    GoToIfEq VAR_0x800C, MENU_NO, _0306
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _025B
+    GoToIfEq VAR_RESULT, MENU_NO, _0306
     End
 
 _025B:
-    CheckItem ITEM_POFFIN_CASE, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0537
+    CheckItem ITEM_POFFIN_CASE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0537
     Call _0697
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _031B
     GoToIfEq VAR_0x8008, 1, _0344
     GoToIfEq VAR_0x8008, 2, _036D
@@ -296,14 +296,14 @@ _048C:
     End
 
 _04B5:
-    ScrCmd_307 VAR_0x800C
-    GoToIfLt VAR_0x800C, VAR_0x8005, _0521
+    ScrCmd_307 VAR_RESULT
+    GoToIfLt VAR_RESULT, VAR_0x8005, _0521
     GoTo _04CE
     End
 
 _04CE:
     GoToIfEq VAR_0x8005, 0, _0503
-    ScrCmd_289 VAR_0x800C, VAR_0x8007, VAR_0x8000, VAR_0x8001, VAR_0x8002, VAR_0x8003, 20
+    ScrCmd_289 VAR_RESULT, VAR_0x8007, VAR_0x8000, VAR_0x8001, VAR_0x8002, VAR_0x8003, 20
     AddToGameRecord RECORD_MONEY_SPENT, 6400
     RemoveMoney2 6400
     SubVar VAR_0x8005, 1
@@ -435,7 +435,7 @@ _0677:
 
 _0697:
     Message 18
-    InitLocalTextListMenu 1, 1, 0, VAR_0x800C
+    InitLocalTextListMenu 1, 1, 0, VAR_RESULT
     AddListMenuEntry 25, 0
     AddListMenuEntry 26, 1
     AddListMenuEntry 27, 2

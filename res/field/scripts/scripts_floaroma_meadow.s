@@ -20,12 +20,12 @@ _0024:
     LockAll
     Call _00CC
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_1
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _006E
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _006E
     Call _00EE
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_2
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _006E
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _006E
     Call _010E
     SetFlag FLAG_ALT_MUSIC_FLOAROMA_MEADOW
     ReleaseAll
@@ -132,7 +132,7 @@ _010E:
     Message 8
     SetVar VAR_0x8004, ITEM_HONEY
     SetVar VAR_0x8005, 10
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _01AD
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01AD
     CallCommonScript 0x7FC
     Message 9
     GoTo _01B0
@@ -175,13 +175,13 @@ _01DA:
     End
 
 _01F3:
-    InitLocalTextMenu 30, 11, 0, VAR_0x800C
+    InitLocalTextMenu 30, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 15, 0
     AddMenuEntryImm 16, 1
     AddMenuEntryImm 17, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _0241
     GoToIfEq VAR_0x8008, 1, _026A
     GoToIfEq VAR_0x8008, 2, _02C8
@@ -204,7 +204,7 @@ _026A:
 
 _0293:
     SetVar VAR_0x8004, ITEM_HONEY
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _02D5
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _02D5
     RemoveMoney2 VAR_0x8006
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI

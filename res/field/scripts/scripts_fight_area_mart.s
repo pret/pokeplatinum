@@ -30,7 +30,7 @@ _002A:
     Message 0
     SetVar VAR_0x8004, ITEM_SCOPE_LENS
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _007C
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _007C
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00D5
     GoTo _0071

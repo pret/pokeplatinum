@@ -51,11 +51,11 @@ _00A4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfEq VAR_UNK_0x408A, 1, _0102
-    CheckItem ITEM_ODD_KEYSTONE, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01BC
+    CheckItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01BC
     Message 2
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00E6
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00E6
     CloseMessage
     ReleaseAll
     End
@@ -64,19 +64,19 @@ _00E6:
     BufferPlayerName 0
     Message 3
     WaitABXPadPress
-    RemoveItem ITEM_ODD_KEYSTONE, 1, VAR_0x800C
+    RemoveItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
     SetVar VAR_UNK_0x408A, 1
     CloseMessage
     ReleaseAll
     End
 
 _0102:
-    GetSpiritombCounter VAR_0x800C
-    GoToIfGe VAR_0x800C, 32, _014D
-    GoToIfGe VAR_0x800C, 29, _01B1
-    GoToIfGe VAR_0x800C, 22, _01A6
-    GoToIfGe VAR_0x800C, 15, _019B
-    GoToIfGe VAR_0x800C, 8, _0190
+    GetSpiritombCounter VAR_RESULT
+    GoToIfGe VAR_RESULT, 32, _014D
+    GoToIfGe VAR_RESULT, 29, _01B1
+    GoToIfGe VAR_RESULT, 22, _01A6
+    GoToIfGe VAR_RESULT, 15, _019B
+    GoToIfGe VAR_RESULT, 8, _0190
     GoTo _0185
 
 _014D:
@@ -86,8 +86,8 @@ _014D:
     WaitCry
     CloseMessage
     StartWildBattle SPECIES_SPIRITOMB, 25
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _017F
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _017F
     SetVar VAR_UNK_0x408A, 0
     ClearSpiritombCounter
     End
@@ -148,17 +148,17 @@ _01C7:
     ScrCmd_346 0
     GoToIfSet FLAG_UNK_0x00A2, _020B
     Message 10
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0254
-    GoToIfEq VAR_0x800C, MENU_NO, _0249
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0254
+    GoToIfEq VAR_RESULT, MENU_NO, _0249
     End
 
 _020B:
     BufferItemName 0, VAR_0x8004
     Message 12
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0233
-    GoToIfEq VAR_0x800C, MENU_NO, _023E
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0233
+    GoToIfEq VAR_RESULT, MENU_NO, _023E
     End
 
 _0233:

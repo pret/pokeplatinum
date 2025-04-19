@@ -28,7 +28,7 @@ _0032:
     BufferPlayerName 0
     Message 1
     WaitSound
-    RemoveItem ITEM_PARCEL, 1, VAR_0x800C
+    RemoveItem ITEM_PARCEL, 1, VAR_RESULT
     BufferPlayerName 0
     BufferRivalName 1
     Message 2
@@ -38,8 +38,8 @@ _0032:
     BufferRivalName 1
     Message 3
     CloseMessage
-    GetPlayerDir VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    GetPlayerDir VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _00A4
     GoToIfEq VAR_0x8008, 2, _00BE
     GoTo _00D8
@@ -161,17 +161,17 @@ _01A6:
     GoToIfSet FLAG_UNK_0x0112, _02A8
     GoToIfSet FLAG_UNK_0x010C, _02BD
     Message 9
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _01E7
-    GoToIfEq VAR_0x800C, MENU_NO, _02D3
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _01E7
+    GoToIfEq VAR_RESULT, MENU_NO, _02D3
     End
 
 _01E7:
     Message 10
     CloseMessage
-    GetPlayerStarterSpecies VAR_0x800C
-    GoToIfEq VAR_0x800C, SPECIES_TURTWIG, _0220
-    GoToIfEq VAR_0x800C, SPECIES_CHIMCHAR, _022E
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _0220
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _022E
     GoTo _0212
     End
 
@@ -191,8 +191,8 @@ _022E:
     End
 
 _023C:
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _02DE
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _02DE
     SetFlag FLAG_UNK_0x010C
     GoToIfSet FLAG_UNK_0x010D, _0274
     GoToIfUnset FLAG_UNK_0x010D, _0269
@@ -209,7 +209,7 @@ _0274:
     Message 13
     SetVar VAR_0x8004, ITEM_POTION
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _02B3
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _02B3
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0112
     GoTo _02A8
@@ -254,17 +254,17 @@ _02E4:
     FacePlayer
     GoToIfSet FLAG_UNK_0x010D, _039C
     Message 15
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _031A
-    GoToIfEq VAR_0x800C, MENU_NO, _03A7
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _031A
+    GoToIfEq VAR_RESULT, MENU_NO, _03A7
     End
 
 _031A:
     Message 16
     CloseMessage
-    GetPlayerStarterSpecies VAR_0x800C
-    GoToIfEq VAR_0x800C, SPECIES_TURTWIG, _0353
-    GoToIfEq VAR_0x800C, SPECIES_CHIMCHAR, _0361
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _0353
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _0361
     GoTo _0345
     End
 
@@ -284,8 +284,8 @@ _0361:
     End
 
 _036F:
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _03D3
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _03D3
     SetFlag FLAG_UNK_0x010D
     GoToIfSet FLAG_UNK_0x010C, _03BD
     GoToIfUnset FLAG_UNK_0x010C, _03B2
@@ -334,7 +334,7 @@ _03D9:
 
 _03EA:
     Message 21
-    InitGlobalTextMenu 7, 2, 0, VAR_0x800C
+    InitGlobalTextMenu 7, 2, 0, VAR_RESULT
     AddMenuEntryImm 0, 0
     AddMenuEntryImm 1, 1
     AddMenuEntryImm 2, 2
@@ -342,7 +342,7 @@ _03EA:
     AddMenuEntryImm 4, 4
     AddMenuEntryImm 5, 5
     ShowMenuMultiColumn 2
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _045F
     GoToIfEq VAR_0x8008, 1, _046A
     GoToIfEq VAR_0x8008, 2, _0475

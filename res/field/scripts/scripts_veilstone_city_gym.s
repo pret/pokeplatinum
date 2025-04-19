@@ -20,14 +20,14 @@ _0022:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _00FF
+    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00FF
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 133, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_MAYLENE
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0118
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0118
     Message 1
     BufferPlayerName 0
     Message 2
@@ -51,7 +51,7 @@ _0022:
 _00B7:
     SetVar VAR_0x8004, ITEM_TM60
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00F5
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00F5
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x009D
     BufferItemName 0, VAR_0x8004
@@ -86,8 +86,8 @@ _011E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0144
+    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0144
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -105,8 +105,8 @@ _0144:
 _0152:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _017C
+    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _017C
     BufferRivalName 0
     BufferRivalName 1
     Message 8

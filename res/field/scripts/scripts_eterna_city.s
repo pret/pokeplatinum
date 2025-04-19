@@ -864,7 +864,7 @@ _0AB6:
     WaitMovement
     Message 3
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 32, _0CE4
     ApplyMovement 241, _0CDC
     WaitMovement
@@ -876,7 +876,7 @@ _0AB6:
     ApplyMovement LOCALID_PLAYER, _0CAC
     WaitMovement
     RemoveObject 32
-    WaitTime 35, VAR_0x800C
+    WaitTime 35, VAR_RESULT
     ApplyMovement 33, _0BD4
     ApplyMovement LOCALID_PLAYER, _0CC0
     WaitMovement
@@ -1139,10 +1139,10 @@ _0DF6:
     ApplyMovement LOCALID_PLAYER, _0EAC
     WaitMovement
     Message 9
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0E75
-    GetPartyCount VAR_0x800C
-    GoToIfGe VAR_0x800C, 6, _0E67
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0E75
+    GetPartyCount VAR_RESULT
+    GoToIfGe VAR_RESULT, 6, _0E67
     Call _0E4B
     ApplyMovement 12, _0EA0
     WaitMovement
@@ -1204,16 +1204,16 @@ _0EB4:
 
 _0ECD:
     Message 14
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0FAC
-    GetPartyCount VAR_0x800C
-    GoToIfGe VAR_0x800C, 6, _0F9E
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0FAC
+    GetPartyCount VAR_RESULT
+    GoToIfGe VAR_RESULT, 6, _0F9E
     Call _0E4B
-    GetPlayerDir VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0F32
-    GoToIfEq VAR_0x800C, 1, _0F4C
-    GoToIfEq VAR_0x800C, 2, _0F66
-    GoToIfEq VAR_0x800C, 3, _0F78
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0F32
+    GoToIfEq VAR_RESULT, 1, _0F4C
+    GoToIfEq VAR_RESULT, 2, _0F66
+    GoToIfEq VAR_RESULT, 3, _0F78
     End
 
 _0F32:

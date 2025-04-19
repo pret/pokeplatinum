@@ -23,7 +23,7 @@ _001C:
     GetRandom VAR_0x8004, 26
     AddVar VAR_0x8004, ITEM_CHERI_BERRY /* Random berry from Cheri to Tamato */
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0072
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0072
     SetFlag FLAG_UNK_0x0AA0
     CallCommonScript 0x7E0
     CloseMessage
@@ -48,12 +48,12 @@ _007C:
     LockAll
     FacePlayer
     GoToIfEq VAR_0x4000, 1, _00ED
-    CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _00FD
+    CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00FD
     Message 2
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00C7
-    GoToIfEq VAR_0x800C, MENU_NO, _00E2
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00C7
+    GoToIfEq VAR_RESULT, MENU_NO, _00E2
     End
 
 _00C7:
@@ -94,14 +94,14 @@ _0108:
     FacePlayer
     Message 7
     ShowMoney 20, 2
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 223, 0
     AddMenuEntryImm 224, 1
     AddMenuEntryImm 225, 2
     AddMenuEntryImm 226, 3
     AddMenuEntryImm 227, 4
     ShowMenu
-    SetVar VAR_0x8000, VAR_0x800C
+    SetVar VAR_0x8000, VAR_RESULT
     SetVar VAR_0x8008, VAR_0x8000
     GoToIfEq VAR_0x8008, 0, _0245
     GoToIfEq VAR_0x8008, 1, _0251
@@ -115,15 +115,15 @@ _0180:
     CallIfEq VAR_0x8000, 1, _027F
     CallIfEq VAR_0x8000, 2, _0289
     CallIfEq VAR_0x8000, 3, _0293
-    GoToIfEq VAR_0x800C, 0, _023C
-    GoToIfCannotFitItem VAR_0x8001, 1, VAR_0x800C, _0233
+    GoToIfEq VAR_RESULT, 0, _023C
+    GoToIfCannotFitItem VAR_0x8001, 1, VAR_RESULT, _0233
     CallIfEq VAR_0x8000, 0, _029D
     CallIfEq VAR_0x8000, 1, _02AB
     CallIfEq VAR_0x8000, 2, _02B9
     CallIfEq VAR_0x8000, 3, _02C7
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
-    AddItem VAR_0x8001, 1, VAR_0x800C
+    AddItem VAR_0x8001, 1, VAR_RESULT
     BufferItemName 0, VAR_0x8001
     Message 10
     Message 8
@@ -161,19 +161,19 @@ _0269:
     GoTo _0180
 
 _0275:
-    CheckMoney VAR_0x800C, 200
+    CheckMoney VAR_RESULT, 200
     Return
 
 _027F:
-    CheckMoney VAR_0x800C, 200
+    CheckMoney VAR_RESULT, 200
     Return
 
 _0289:
-    CheckMoney VAR_0x800C, 200
+    CheckMoney VAR_RESULT, 200
     Return
 
 _0293:
-    CheckMoney VAR_0x800C, 200
+    CheckMoney VAR_RESULT, 200
     Return
 
 _029D:
@@ -206,7 +206,7 @@ _02D5:
 
 _02E8:
     Message 14
-    InitLocalTextMenu 30, 7, 0, VAR_0x800C
+    InitLocalTextMenu 30, 7, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 19, 0
     AddMenuEntryImm 20, 1
@@ -214,7 +214,7 @@ _02E8:
     AddMenuEntryImm 22, 3
     AddMenuEntryImm 23, 4
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _035B
     GoToIfEq VAR_0x8008, 1, _0366
     GoToIfEq VAR_0x8008, 2, _0371

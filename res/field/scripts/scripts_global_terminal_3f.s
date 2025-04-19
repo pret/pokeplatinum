@@ -138,13 +138,13 @@ _0105:
 
 _0119:
     Message 11
-    InitLocalTextMenu 31, 11, 0, VAR_0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 13, 0
     AddMenuEntryImm 14, 1
     AddMenuEntryImm 15, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _0163
     GoToIfEq VAR_0x8008, 1, _0184
     GoTo _015D
@@ -157,8 +157,8 @@ _015D:
 
 _0163:
     CallCommonScript 0x7D6
-    SetVar VAR_0x800C, VAR_0x4000
-    GoToIfEq VAR_0x800C, 0, _015D
+    SetVar VAR_RESULT, VAR_0x4000
+    GoToIfEq VAR_RESULT, 0, _015D
     CloseMessage
     CallCommonScript 0x802
     ReleaseAll

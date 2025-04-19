@@ -25,7 +25,7 @@ _002F:
 
 _003F:
     LockAll
-    WaitTime 20, VAR_0x800C
+    WaitTime 20, VAR_RESULT
     ScrCmd_22F VAR_0x8004
     GoToIfLt VAR_0x8004, 10, _0078
     SetVar VAR_UNK_0x40A7, 1
@@ -41,7 +41,7 @@ _003F:
 _0078:
     Message 0
     CloseMessage
-    WaitTime 20, VAR_0x800C
+    WaitTime 20, VAR_RESULT
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_RESORT_AREA, 0, 0x338, 0x1C6, 1
@@ -76,19 +76,19 @@ _00D6:
     GetFirstNonEggInParty VAR_0x8000
     BufferPlayerName 0
     BufferPartyMonSpecies 2, VAR_0x8000
-    GetPartyMonRibbon VAR_0x800C, VAR_0x8000, RIBBON_GORGEOUS_ROYAL
-    GoToIfEq VAR_0x800C, 1, _0244
-    GetPartyMonRibbon VAR_0x800C, VAR_0x8000, RIBBON_ROYAL
-    GoToIfEq VAR_0x800C, 1, _01E7
-    GetPartyMonRibbon VAR_0x800C, VAR_0x8000, RIBBON_GORGEOUS
-    GoToIfEq VAR_0x800C, 1, _018A
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8000, RIBBON_GORGEOUS_ROYAL
+    GoToIfEq VAR_RESULT, 1, _0244
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8000, RIBBON_ROYAL
+    GoToIfEq VAR_RESULT, 1, _01E7
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8000, RIBBON_GORGEOUS
+    GoToIfEq VAR_RESULT, 1, _018A
     GoTo _012F
 
 _012F:
     ShowMoney 20, 2
     Message 3
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _025C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _025C
     GoToIfNotEnoughMoney 10000, _024F
     AddToGameRecord RECORD_MONEY_SPENT, 10000
     RemoveMoney 10000
@@ -107,8 +107,8 @@ _012F:
 _018A:
     ShowMoney 20, 2
     Message 4
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _025C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _025C
     GoToIfNotEnoughMoney 100000, _024F
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 100000
     RemoveMoney 100000
@@ -127,8 +127,8 @@ _018A:
 _01E7:
     ShowMoney 20, 2
     Message 5
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _025C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _025C
     GoToIfNotEnoughMoney 999999, _024F
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 999999
     RemoveMoney 999999
@@ -181,9 +181,9 @@ _027C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _02A4
-    GoToIfEq VAR_0x800C, GENDER_FEMALE, _02AF
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _02A4
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _02AF
     End
 
 _02A4:

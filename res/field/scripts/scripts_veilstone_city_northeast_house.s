@@ -24,25 +24,25 @@ _0037:
     End
 
 _0042:
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _005B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _005B
     GoTo _00FE
     End
 
 _005B:
-    GetPartyCount VAR_0x800C
-    GoToIfEq VAR_0x800C, 6, _00F3
+    GetPartyCount VAR_RESULT
+    GoToIfEq VAR_RESULT, 6, _00F3
     Message 2
     PlaySound SEQ_FANFA4
     BufferPlayerName 0
     Message 3
     WaitSound
-    GivePokemon SPECIES_PORYGON, 25, ITEM_NONE, VAR_0x800C
+    GivePokemon SPECIES_PORYGON, 25, ITEM_NONE, VAR_RESULT
     SetFlag FLAG_UNK_0x0097
     Message 4
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00AC
-    GoToIfEq VAR_0x800C, MENU_NO, _00ED
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00AC
+    GoToIfEq VAR_RESULT, MENU_NO, _00ED
     End
 
 _00AC:
@@ -51,8 +51,8 @@ _00AC:
     SubVar VAR_0x4000, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BB VAR_0x4000, VAR_0x800C
-    CallIfNe VAR_0x800C, 1, _00E7
+    ScrCmd_0BB VAR_0x4000, VAR_RESULT
+    CallIfNe VAR_RESULT, 1, _00E7
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

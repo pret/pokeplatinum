@@ -86,8 +86,8 @@ _013A:
     Message 2
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _01D9
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01D9
     Message 3
     CloseMessage
     GetPlayerDir VAR_0x8004
@@ -228,9 +228,9 @@ _0248:
     CallIfEq VAR_0x8000, 2, _042C
     CallIfEq VAR_0x8000, 3, _0438
     Message 9
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _04EC
-    GoToIfEq VAR_0x800C, MENU_NO, _04F7
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _04EC
+    GoToIfEq VAR_RESULT, MENU_NO, _04F7
     End
 
 _03EC:
@@ -495,8 +495,8 @@ _0632:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_SUITE_KEY, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _065A
+    CheckItem ITEM_SUITE_KEY, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _065A
     Message 18
     WaitABXPadPress
     CloseMessage
@@ -506,7 +506,7 @@ _0632:
 _065A:
     Message 19
     CloseMessage
-    RemoveItem ITEM_SUITE_KEY, 1, VAR_0x800C
+    RemoveItem ITEM_SUITE_KEY, 1, VAR_RESULT
     ApplyMovement 8, _06A8
     WaitMovement
     ScrCmd_168 22, 24, 11, 13, 77

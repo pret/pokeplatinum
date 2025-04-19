@@ -60,10 +60,10 @@ _00B7:
     AddMenuEntryImm 41, 2
     AddMenuEntryImm 42, 3
     ShowMenu
-    GoToIfEq VAR_0x800C, 0, _0152
-    GoToIfEq VAR_0x800C, 1, _017F
-    GoToIfEq VAR_0x800C, 2, _0117
-    GoToIfEq VAR_0x800C, 4, _01AC
+    GoToIfEq VAR_RESULT, 0, _0152
+    GoToIfEq VAR_RESULT, 1, _017F
+    GoToIfEq VAR_RESULT, 2, _0117
+    GoToIfEq VAR_RESULT, 4, _01AC
     GoTo _0139
     End
 
@@ -87,28 +87,28 @@ _0141:
 
 _0152:
     SetVar VAR_UNK_0x40BD, 0
-    ScrCmd_2D2 0, 3, VAR_0x800C
+    ScrCmd_2D2 0, 3, VAR_RESULT
     BufferNumber 0, 3
     BufferNumber 1, 3
-    GoToIfEq VAR_0x800C, 0, _01D9
+    GoToIfEq VAR_RESULT, 0, _01D9
     GoTo _01FF
     End
 
 _017F:
     SetVar VAR_UNK_0x40BD, 1
-    ScrCmd_2D2 0, 3, VAR_0x800C
+    ScrCmd_2D2 0, 3, VAR_RESULT
     BufferNumber 0, 3
     BufferNumber 1, 3
-    GoToIfEq VAR_0x800C, 0, _01D9
+    GoToIfEq VAR_RESULT, 0, _01D9
     GoTo _01FF
     End
 
 _01AC:
     SetVar VAR_UNK_0x40BD, 2
-    ScrCmd_2D2 0, 2, VAR_0x800C
+    ScrCmd_2D2 0, 2, VAR_RESULT
     BufferNumber 0, 2
     BufferNumber 1, 2
-    GoToIfEq VAR_0x800C, 0, _01EC
+    GoToIfEq VAR_RESULT, 0, _01EC
     GoTo _01FF
     End
 
@@ -129,18 +129,18 @@ _01FF:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_2D2 4, VAR_UNK_0x40BD, VAR_0x800C
+    ScrCmd_2D2 4, VAR_UNK_0x40BD, VAR_RESULT
     ScrCmd_2D4 VAR_0x4002, VAR_0x4005, VAR_0x4006
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_0x4002, 0xFF, _0139
-    ScrCmd_31E VAR_0x4002, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0xFF, _05D5
-    ScrCmd_31E VAR_0x4005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0xFF, _05D5
-    ScrCmd_31E VAR_0x4006, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0xFF, _05D5
+    ScrCmd_31E VAR_0x4002, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0xFF, _05D5
+    ScrCmd_31E VAR_0x4005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0xFF, _05D5
+    ScrCmd_31E VAR_0x4006, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0xFF, _05D5
     GetPartyMonSpecies VAR_0x4002, VAR_0x4001
     GoToIfEq VAR_0x4001, 0, _0139
     GoTo _028F
@@ -156,21 +156,21 @@ _0297:
     SetVar VAR_0x4000, 0
     HealParty
     CallCommonScript 0x7D6
-    SetVar VAR_0x800C, VAR_0x4000
-    GoToIfEq VAR_0x800C, 0, _0139
+    SetVar VAR_RESULT, VAR_0x4000
+    GoToIfEq VAR_RESULT, 0, _0139
     GoToIfEq VAR_UNK_0x40BD, 2, _02E5
     GoTo _049D
     End
 
 _02E5:
     Message 43
-    InitGlobalTextMenu 30, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 30, 1, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 13, 0
     AddMenuEntryImm 14, 1
     AddMenuEntryImm 5, 2
     ShowMenu
-    SetVar VAR_0x8008, VAR_0x800C
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _0329
     GoToIfEq VAR_0x8008, 1, _037D
     GoTo _0139
@@ -178,12 +178,12 @@ _02E5:
 
 _0329:
     Message 44
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _02E5
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _02E5
     CloseMessage
-    ScrCmd_0F2 31, 0, 0, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _036B
-    GoToIfEq VAR_0x800C, 3, _0373
+    ScrCmd_0F2 31, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _036B
+    GoToIfEq VAR_RESULT, 3, _0373
     GoTo _03D1
     End
 
@@ -198,12 +198,12 @@ _0373:
 
 _037D:
     Message 44
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _02E5
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _02E5
     CloseMessage
-    ScrCmd_0F3 31, 0, 0, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _03BF
-    GoToIfEq VAR_0x800C, 3, _03C7
+    ScrCmd_0F3 31, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _03BF
+    GoToIfEq VAR_RESULT, 3, _03C7
     GoTo _03D1
     End
 
@@ -221,8 +221,8 @@ _03D1:
     ScrCmd_135 136
     GetPartyMonSpecies VAR_0x4002, VAR_0x8000
     GetPartyMonSpecies VAR_0x4005, VAR_0x8001
-    ScrCmd_2D3 VAR_0x8000, VAR_0x8001, VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    ScrCmd_2D3 VAR_0x8000, VAR_0x8001, VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 1, _0444
     GoToIfEq VAR_0x8008, 2, _045A
     GoToIfEq VAR_0x8008, 3, _0470
@@ -319,7 +319,7 @@ _0558:
 
 _0573:
     ScrCmd_02E 32
-    WaitTime 10, VAR_0x800C
+    WaitTime 10, VAR_RESULT
     ScrCmd_136
     ScrCmd_135 137
     CloseMessage
@@ -416,7 +416,7 @@ _0669:
     Return
 
 _066E:
-    InitLocalTextMenu 31, 9, 0, VAR_0x800C
+    InitLocalTextMenu 31, 9, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 38, 0
     AddMenuEntryImm 39, 1
@@ -424,7 +424,7 @@ _066E:
     Return
 
 _0686:
-    InitLocalTextMenu 31, 11, 0, VAR_0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 40, 4
     Message 4
@@ -450,7 +450,7 @@ _06A4:
 
 _06CB:
     ScrCmd_18D
-    ScrCmd_12D VAR_0x800C
+    ScrCmd_12D VAR_RESULT
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE

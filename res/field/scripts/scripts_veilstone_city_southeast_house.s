@@ -15,11 +15,11 @@ _000A:
     Message 0
     Message 1
     CloseMessage
-    GetPlayerDir VAR_0x800C
-    GoToIfEq VAR_0x800C, 2, _005F
-    GoToIfEq VAR_0x800C, 0, _006F
-    GoToIfEq VAR_0x800C, 3, _007F
-    GoToIfEq VAR_0x800C, 1, _008F
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 2, _005F
+    GoToIfEq VAR_RESULT, 0, _006F
+    GoToIfEq VAR_RESULT, 3, _007F
+    GoToIfEq VAR_RESULT, 1, _008F
     End
 
 _005F:
@@ -48,8 +48,8 @@ _009F:
     AddMenuEntryImm 174, 0
     AddMenuEntryImm 175, 1
     ShowMenu
-    GetRandom VAR_0x800C, 2
-    GoToIfEq VAR_0x800C, 0, _00E4
+    GetRandom VAR_RESULT, 2
+    GoToIfEq VAR_RESULT, 0, _00E4
     Message 4
     SetVar VAR_0x8004, 0x1BC
     SetVar VAR_0x8005, 1

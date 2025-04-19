@@ -110,7 +110,7 @@ _0118:
     LockAll
     Message 3
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     Message 4
     ApplyMovement 5, _01F0
     WaitMovement
@@ -123,7 +123,7 @@ _0118:
     BufferPlayerName 0
     Message 6
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 5, _0204
     ApplyMovement 4, _01DC
     WaitMovement

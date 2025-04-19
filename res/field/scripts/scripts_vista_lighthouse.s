@@ -47,11 +47,11 @@ _004C:
     Message 1
     Message 2
     CloseMessage
-    WaitTime 15, VAR_0x800C
-    GetPlayerDir VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0092
-    GoToIfEq VAR_0x800C, 2, _00AA
-    GoToIfEq VAR_0x800C, 3, _00C2
+    WaitTime 15, VAR_RESULT
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0092
+    GoToIfEq VAR_RESULT, 2, _00AA
+    GoToIfEq VAR_RESULT, 3, _00C2
     End
 
 _0092:

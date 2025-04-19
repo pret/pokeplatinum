@@ -19,12 +19,12 @@ _0006:
     End
 
 _002C:
-    CheckPoketchAppRegistered POKETCH_APPID_ROULETTE, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0125
-    CheckPoketchAppRegistered POKETCH_APPID_DOTART, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _00A7
-    CheckPoketchAppRegistered POKETCH_APPID_CALENDAR, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0089
+    CheckPoketchAppRegistered POKETCH_APPID_ROULETTE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0125
+    CheckPoketchAppRegistered POKETCH_APPID_DOTART, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00A7
+    CheckPoketchAppRegistered POKETCH_APPID_CALENDAR, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0089
     GoTo _006B
 
 _006B:

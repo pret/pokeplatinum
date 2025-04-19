@@ -34,7 +34,7 @@ _0032:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     ApplyMovement 11, _02D0
     WaitMovement
     Message 1
@@ -63,7 +63,7 @@ _0032:
     BufferPlayerName 1
     Message 4
     CloseMessage
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     CallIfLt VAR_UNK_0x409E, 1, _019E
     CallIfGe VAR_UNK_0x409E, 1, _01A3
     CloseMessage

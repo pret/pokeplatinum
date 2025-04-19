@@ -50,9 +50,9 @@ _00E7:
     End
 
 _00F3:
-    ScrCmd_19E 1, VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    ScrCmd_19E 1, VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, -5, _0141
     GoToIfEq VAR_0x8008, -4, _014D
     GoToIfEq VAR_0x8008, -3, _0159
@@ -102,9 +102,9 @@ _018F:
     End
 
 _019B:
-    ScrCmd_19E 0, VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    ScrCmd_19E 0, VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, -5, _0201
     GoToIfEq VAR_0x8008, -4, _01E9
     GoToIfEq VAR_0x8008, -3, _01F5
@@ -144,9 +144,9 @@ _0225:
     End
 
 _0231:
-    ScrCmd_19E 2, VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    ScrCmd_19E 2, VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, -4, _0265
     GoToIfEq VAR_0x8008, -1, _0165
     GoTo _0271

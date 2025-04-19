@@ -11,8 +11,8 @@ _0006:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00DE, _0039
-    CheckItem ITEM_HM08, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0044
+    CheckItem ITEM_HM08, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0044
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -30,7 +30,7 @@ _0044:
     Message 1
     SetVar VAR_0x8004, ITEM_ICICLE_PLATE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0076
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0076
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00DE
     GoTo _0039

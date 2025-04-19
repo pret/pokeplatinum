@@ -111,12 +111,12 @@ _00E6:
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_HEATRAN, 50
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0168
-    CheckLostBattle VAR_0x800C
-    CallIfEq VAR_0x800C, FALSE, _017A
-    CheckDidNotCapture VAR_0x800C
-    GoToIfEq VAR_0x800C, TRUE, _015D
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0168
+    CheckLostBattle VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, _017A
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _015D
     GoTo _0155
     End
 
@@ -208,7 +208,7 @@ _019C:
     WaitMovement
     Message 4
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     Message 5
     CloseMessage
     RemoveObject 0
@@ -231,7 +231,7 @@ _019C:
     WaitMovement
     Message 9
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 9, _0454
     ApplyMovement 10, _045C
     WaitMovement

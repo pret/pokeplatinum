@@ -50,11 +50,11 @@ _00AF:
     Return
 
 _00B7:
-    ScrCmd_22D 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _07AE
+    ScrCmd_22D 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _07AE
     GoToIfUnset FLAG_UNK_0x09BA, _00E5
-    ScrCmd_1E8 VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _060E
+    ScrCmd_1E8 VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _060E
 _00E5:
     GoToIfGe VAR_UNK_0x4071, 2, _0100
     BufferPlayerName 0
@@ -84,8 +84,8 @@ _0114:
     CloseMessage
     ApplyMovement 3, _019C
     WaitMovement
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _014E
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _014E
     GoTo _015C
     End
 
@@ -102,8 +102,8 @@ _015C:
     End
 
 _016A:
-    ScrCmd_11E VAR_0x800C
-    BufferNumber 1, VAR_0x800C
+    ScrCmd_11E VAR_RESULT
+    BufferNumber 1, VAR_RESULT
     Message 54
     WaitABXPadPress
     CloseMessage
@@ -139,8 +139,8 @@ _01AE:
     ApplyMovement LOCALID_PLAYER, _04E0
     WaitMovement
     SetVar VAR_0x8004, 0
-    GetPartyMonSpecies VAR_0x8004, VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    GetPartyMonSpecies VAR_0x8004, VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0x183, _0219
     GoToIfEq VAR_0x8008, 0x186, _0219
     GoToIfEq VAR_0x8008, 0x189, _0219
@@ -163,23 +163,23 @@ _022B:
     BufferPartyMonSpecies 0, 0
     Message 3
     Message 4
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _02BC
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _02BC
     GoTo _0261
     End
 
 _0261:
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BB 0, VAR_0x800C
-    SetVar VAR_0x8002, VAR_0x800C
+    ScrCmd_0BB 0, VAR_RESULT
+    SetVar VAR_0x8002, VAR_RESULT
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 5
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0261
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0261
     CallIfNe VAR_0x8002, 1, _02B6
     GoTo _02BC
     End
@@ -197,9 +197,9 @@ _02BC:
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _04BC
     WaitMovement
-    WaitTime 15, VAR_0x800C
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _02FC
+    WaitTime 15, VAR_RESULT
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _02FC
     GoTo _0316
     End
 
@@ -226,21 +226,21 @@ _0330:
     ApplyMovement 0, _047C
     ApplyMovement LOCALID_PLAYER, _04B4
     WaitMovement
-    WaitTime 35, VAR_0x800C
+    WaitTime 35, VAR_RESULT
     SetFlag FLAG_ALT_MUSIC_ROWANS_LAB
     PlayMusic SEQ_OPENING2
     Message 9
     Message 10
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0375
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0375
     GoTo _0394
     End
 
 _0375:
     BufferPlayerName 0
     Message 11
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0375
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0375
     GoTo _0394
     End
 
@@ -257,9 +257,9 @@ _0394:
     CloseMessage
     ApplyMovement 3, _04A0
     WaitMovement
-    WaitTime 15, VAR_0x800C
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _03DA
+    WaitTime 15, VAR_RESULT
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _03DA
     GoTo _03E8
     End
 
@@ -283,8 +283,8 @@ _03F6:
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _04BC
     WaitMovement
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _042B
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _042B
     GoTo _043C
     End
 
@@ -394,8 +394,8 @@ _04F0:
     FacePlayer
     Call _08A0
     GoToIfEq VAR_0x8006, 1, _0539
-    ScrCmd_22D 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _052B
+    ScrCmd_22D 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _052B
     BufferCounterpartName 0
     Message 21
     WaitABXPadPress
@@ -424,8 +424,8 @@ _0544:
     FacePlayer
     Call _08A0
     GoToIfEq VAR_0x8006, 1, _0587
-    ScrCmd_22D 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _057C
+    ScrCmd_22D 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _057C
     Message 22
     WaitABXPadPress
     CloseMessage
@@ -528,8 +528,8 @@ _0621:
 _0631:
     BufferPlayerName 0
     Message 27
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _0650
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0650
     GoTo _065B
     End
 
@@ -541,8 +541,8 @@ _0650:
     End
 
 _065B:
-    ScrCmd_11E VAR_0x800C
-    BufferNumber 0, VAR_0x800C
+    ScrCmd_11E VAR_RESULT
+    BufferNumber 0, VAR_RESULT
     Message 28
     BufferPlayerName 0
     Message 30
@@ -567,7 +567,7 @@ _0677:
     CloseMessage
     ApplyMovement 0, _080C
     WaitMovement
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     Message 34
     CloseMessage
     ApplyMovement 4, _088C
@@ -576,7 +576,7 @@ _0677:
     Message 35
     CallIfSet FLAG_GAME_COMPLETED, _07A2
     CallIfGe VAR_UNK_0x4081, 2, _079C
-    ScrCmd_22D 1, VAR_0x800C
+    ScrCmd_22D 1, VAR_RESULT
     BufferPlayerName 0
     PlaySound SEQ_FANFA4
     Message 36
@@ -594,7 +594,7 @@ _0677:
     RemoveObject 4
     Message 42
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement LOCALID_PLAYER, _0878
     WaitMovement
     BufferPlayerName 0

@@ -29,8 +29,8 @@ _0014:
 
 _0046:
     Message 2
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0060
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0060
     GoTo _00D1
 
 _0060:
@@ -38,16 +38,16 @@ _0060:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2A5
-    GetSelectedPartySlot VAR_0x800C
+    GetSelectedPartySlot VAR_RESULT
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x800C, 0xFF, _00D1
+    GoToIfEq VAR_RESULT, 0xFF, _00D1
     StartNpcTrade NPC_TRADE_FOOPA_MAGIKARP
-    SetVar VAR_0x8004, VAR_0x800C
+    SetVar VAR_0x8004, VAR_RESULT
     GetPartyMonSpecies VAR_0x8004, VAR_0x8005
-    GetNpcTradeRequestedSpecies VAR_0x800C
-    GoToIfNe VAR_0x8005, VAR_0x800C, _00C4
+    GetNpcTradeRequestedSpecies VAR_RESULT
+    GoToIfNe VAR_0x8005, VAR_RESULT, _00C4
     ScrCmd_229 VAR_0x8004
     FinishNpcTrade
     SetFlag FLAG_UNK_0x00F5

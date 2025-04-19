@@ -54,7 +54,7 @@ _00A0:
     Message 1
     SetVar VAR_0x8004, ITEM_TM66
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00F0
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00F0
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00CD
     GoTo _00E5

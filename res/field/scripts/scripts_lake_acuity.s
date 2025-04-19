@@ -12,7 +12,7 @@ _0006:
     ScrCmd_066 VAR_0x8004, VAR_0x8005
     ApplyMovement 241, _0228
     WaitMovement
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 2, _01C4
     WaitMovement
     BufferRivalName 0
@@ -46,7 +46,7 @@ _0006:
     WaitMovement
     Message 4
     CloseMessage
-    WaitTime 30, VAR_0x800C
+    WaitTime 30, VAR_RESULT
     ApplyMovement 2, _01CC
     WaitMovement
     Message 5

@@ -16,8 +16,8 @@ _001E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _003E
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _003E
     GoTo _0074
 
 _003E:
@@ -93,11 +93,11 @@ _00CF:
     LockAll
     FacePlayer
     Message 3
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _010A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _010A
     Message 5
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _010A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _010A
     Message 6
     GoTo _010A
     End

@@ -75,10 +75,10 @@ _0118:
     SetVar VAR_0x8008, VAR_0x8001
     GoToIfEq VAR_0x8008, 3, _031D
     GoToIfEq VAR_0x8008, -2, _031D
-    ScrCmd_2CC 1, VAR_0x8001, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0174
-    ScrCmd_2CC 2, VAR_0x8001, VAR_0x800C
-    BufferSpeciesNameFromVar 0, VAR_0x800C, 0, 0
+    ScrCmd_2CC 1, VAR_0x8001, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0174
+    ScrCmd_2CC 2, VAR_0x8001, VAR_RESULT
+    BufferSpeciesNameFromVar 0, VAR_RESULT, 0, 0
     Message 7
     GoTo _017F
     End

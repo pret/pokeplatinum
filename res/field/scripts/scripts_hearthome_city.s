@@ -139,11 +139,11 @@ _013B:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0001, _01A7
     Message 14
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _01B2
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _01B2
     Message 15
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     GetPlayerDir VAR_0x8004
     GoToIfEq VAR_0x8004, 0, _01BD
     GoToIfEq VAR_0x8004, 1, _01D7
@@ -328,8 +328,8 @@ _03AC:
     Message 33
     SetVar VAR_0x8004, 46
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06F3
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x014A
     CloseMessage
@@ -338,13 +338,13 @@ _03AC:
 
 _03F4:
     GoToIfSet FLAG_UNK_0x014B, _0442
-    CountBadgesAcquired VAR_0x800C
-    GoToIfLt VAR_0x800C, 8, _0442
+    CountBadgesAcquired VAR_RESULT
+    GoToIfLt VAR_RESULT, 8, _0442
     Message 34
     SetVar VAR_0x8004, 47
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06F3
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x014B
     CloseMessage
@@ -357,8 +357,8 @@ _0442:
     Message 35
     SetVar VAR_0x8004, 72
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06F3
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x014C
     CloseMessage
@@ -371,8 +371,8 @@ _048A:
     Message 36
     SetVar VAR_0x8004, 73
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06F3
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x014D
     CloseMessage
@@ -385,8 +385,8 @@ _04D2:
     Message 37
     SetVar VAR_0x8004, 74
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06F3
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x014E
     CloseMessage
@@ -399,8 +399,8 @@ _051A:
     Message 38
     SetVar VAR_0x8004, 75
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06F3
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x014F
     CloseMessage
@@ -413,8 +413,8 @@ _0562:
     Message 39
     SetVar VAR_0x8004, 76
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06F3
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x0150
     CloseMessage
@@ -423,13 +423,13 @@ _0562:
 
 _05AA:
     GoToIfSet FLAG_UNK_0x0151, _05F8
-    GetUndergroundTalkCounter VAR_0x800C
-    GoToIfLt VAR_0x800C, 100, _05F8
+    GetUndergroundTalkCounter VAR_RESULT
+    GoToIfLt VAR_RESULT, 100, _05F8
     Message 40
     SetVar VAR_0x8004, 77
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06F3
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x0151
     CloseMessage
@@ -438,13 +438,13 @@ _05AA:
 
 _05F8:
     GoToIfSet FLAG_UNK_0x0152, _0646
-    GetUndergroundItemsGivenAway VAR_0x800C
-    GoToIfLt VAR_0x800C, 100, _0646
+    GetUndergroundItemsGivenAway VAR_RESULT
+    GoToIfLt VAR_RESULT, 100, _0646
     Message 41
     SetVar VAR_0x8004, 78
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06F3
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x0152
     CloseMessage
@@ -453,13 +453,13 @@ _05F8:
 
 _0646:
     GoToIfSet FLAG_UNK_0x0153, _0694
-    GetUndergroundFossilsUnearthed VAR_0x800C
-    GoToIfLt VAR_0x800C, 100, _0694
+    GetUndergroundFossilsUnearthed VAR_RESULT
+    GoToIfLt VAR_RESULT, 100, _0694
     Message 42
     SetVar VAR_0x8004, 79
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06F3
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x0153
     CloseMessage
@@ -468,13 +468,13 @@ _0646:
 
 _0694:
     GoToIfSet FLAG_UNK_0x0154, _06E2
-    GetUndergroundTrapsSet VAR_0x800C
-    GoToIfLt VAR_0x800C, 100, _06E2
+    GetUndergroundTrapsSet VAR_RESULT
+    GoToIfLt VAR_RESULT, 100, _06E2
     Message 43
     SetVar VAR_0x8004, 80
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06F3
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x0154
     CloseMessage

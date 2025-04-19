@@ -41,16 +41,16 @@ _0044:
     GoToIfSet FLAG_UNK_0x0AA1, _00C0
     Message 2
     GetFirstNonEggInParty VAR_0x8000
-    GetPartyMonFriendship VAR_0x800C, VAR_0x8000
-    GoToIfGe VAR_0x800C, 150, _0084
-    GoToIfGe VAR_0x800C, 50, _00CB
+    GetPartyMonFriendship VAR_RESULT, VAR_0x8000
+    GoToIfGe VAR_RESULT, 150, _0084
+    GoToIfGe VAR_RESULT, 50, _00CB
     GoTo _00D6
 
 _0084:
     Message 3
     SetVar VAR_0x8004, ITEM_GREAT_BALL
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00B6
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00B6
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0AA1
     GoTo _00C0

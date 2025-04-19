@@ -157,9 +157,9 @@ _028A:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    GetPlayerStarterSpecies VAR_0x800C
-    GoToIfEq VAR_0x800C, SPECIES_TURTWIG, _02EB
-    GoToIfEq VAR_0x800C, SPECIES_CHIMCHAR, _02F7
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _02EB
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _02F7
     GoTo _02DF
 
 _02DF:
@@ -175,8 +175,8 @@ _02F7:
     GoTo _0303
 
 _0303:
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0334
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0334
     BufferRivalName 0
     Message 1
     CloseMessage
@@ -281,9 +281,9 @@ _03C8:
     CloseMessage
     ApplyMovement 12, _0490
     WaitMovement
-    WaitTime 15, VAR_0x800C
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _045E
+    WaitTime 15, VAR_RESULT
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _045E
     GoTo _046A
 
 _045E:
@@ -357,8 +357,8 @@ _04E7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _0506
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0506
     GoTo _050F
 
 _0506:
@@ -398,8 +398,8 @@ _054D:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A8, _0586
-    CheckBadgeAcquired BADGE_ID_MINE, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0591
+    CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0591
     GoTo _057B
     End
 
@@ -516,16 +516,16 @@ _0708:
     FacePlayer
     GoToIfEq VAR_UNK_0x4106, 2, _0900
     Message 27
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 213, 0
     CallIfSet FLAG_UNK_0x0133, _0790
     CallIfSet FLAG_UNK_0x013C, _078A
     AddMenuEntryImm 218, 4
     ShowMenu
-    GoToIfEq VAR_0x800C, 0, _0796
-    GoToIfEq VAR_0x800C, 1, _07D1
-    GoToIfEq VAR_0x800C, 2, _080C
-    GoToIfEq VAR_0x800C, 3, _0847
+    GoToIfEq VAR_RESULT, 0, _0796
+    GoToIfEq VAR_RESULT, 1, _07D1
+    GoToIfEq VAR_RESULT, 2, _080C
+    GoToIfEq VAR_RESULT, 3, _0847
     GoTo _0847
     End
 
@@ -637,12 +637,12 @@ _08F0:
     EndMovement
 
 _0900:
-    CheckItem ITEM_LUNAR_WING, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _094E
+    CheckItem ITEM_LUNAR_WING, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _094E
     Message 31
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0938
-    GoToIfEq VAR_0x800C, MENU_NO, _0943
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0938
+    GoToIfEq VAR_RESULT, MENU_NO, _0943
     End
 
 _0938:
@@ -699,10 +699,10 @@ _09BC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_HM04, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _09FA
-    ScrCmd_09A VAR_0x800C, 70
-    GoToIfNe VAR_0x800C, 6, _09FA
+    CheckItem ITEM_HM04, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _09FA
+    ScrCmd_09A VAR_RESULT, 70
+    GoToIfNe VAR_RESULT, 6, _09FA
     BufferRivalName 0
     Message 3
     WaitABXPadPress

@@ -945,10 +945,10 @@ _0E86:
     CallIfEq VAR_0x8001, 53, _0FE7
     CallIfEq VAR_0x8001, 54, _0FE7
     GoToIfDefeated VAR_0x8004, _0F40
-    ScrCmd_0E9 VAR_0x800C
-    GoToIfNe VAR_0x800C, 1, _0F01
-    CheckHasTwoAliveMons VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0FCB
+    ScrCmd_0E9 VAR_RESULT
+    GoToIfNe VAR_RESULT, 1, _0F01
+    CheckHasTwoAliveMons VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0FCB
     GoTo _0F01
     End
 
@@ -964,15 +964,15 @@ _0F1D:
     CloseMessage
     ScrCmd_20B
     StartTrainerBattle VAR_0x8004
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0FC5
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0FC5
     SetTrainerFlag VAR_0x8004
     ReleaseAll
     End
 
 _0F40:
-    ScrCmd_09B VAR_0x8004, VAR_0x800C
-    GoToIfNe VAR_0x800C, 0, _0F73
+    ScrCmd_09B VAR_0x8004, VAR_RESULT
+    GoToIfNe VAR_RESULT, 0, _0F73
     GoTo _0F5B
     End
 
@@ -986,11 +986,11 @@ _0F5B:
     End
 
 _0F73:
-    SetVar VAR_0x8007, VAR_0x800C
-    ScrCmd_0E9 VAR_0x800C
-    GoToIfNe VAR_0x800C, 1, _0FA3
-    CheckHasTwoAliveMons VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0FCB
+    SetVar VAR_0x8007, VAR_RESULT
+    ScrCmd_0E9 VAR_RESULT
+    GoToIfNe VAR_RESULT, 1, _0FA3
+    CheckHasTwoAliveMons VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0FCB
     GoTo _0FA3
     End
 
@@ -1051,114 +1051,114 @@ _104C:
 
 _1054:
     LockAll
-    ScrCmd_0B8 VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _1083
-    GoToIfEq VAR_0x800C, 1, _10F3
-    GoToIfEq VAR_0x800C, 2, _11A0
+    ScrCmd_0B8 VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1083
+    GoToIfEq VAR_RESULT, 1, _10F3
+    GoToIfEq VAR_RESULT, 2, _11A0
     End
 
 _1083:
-    ScrCmd_0B9 0, VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
+    ScrCmd_0B9 0, VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
     PlayTrainerEncounterBGM VAR_0x8004
     ScrCmd_0B6 0
     Call _10DE
-    ScrCmd_0B9 0, VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
+    ScrCmd_0B9 0, VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
     OpenMessage
     ScrCmd_0E6 VAR_0x8004, 0
     CloseMessage
     StartTrainerBattle VAR_0x8004
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0FC5
-    ScrCmd_0B9 0, VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0FC5
+    ScrCmd_0B9 0, VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
     SetTrainerFlag VAR_0x8004
     ReleaseAll
     End
 
 _10DE:
-    ScrCmd_0B7 0, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _10DE
+    ScrCmd_0B7 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _10DE
     Return
 
 _10F3:
-    ScrCmd_0B9 0, VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
+    ScrCmd_0B9 0, VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
     PlayTrainerEncounterBGM VAR_0x8004
     ScrCmd_0B6 0
     ScrCmd_0B6 1
     Call _1178
-    ScrCmd_0B9 0, VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
+    ScrCmd_0B9 0, VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
     OpenMessage
     ScrCmd_0E6 VAR_0x8004, 3
     CloseMessage
-    ScrCmd_0B9 1, VAR_0x800C
-    SetVar VAR_0x8005, VAR_0x800C
+    ScrCmd_0B9 1, VAR_RESULT
+    SetVar VAR_0x8005, VAR_RESULT
     OpenMessage
     ScrCmd_0E6 VAR_0x8005, 7
     CloseMessage
     StartTrainerBattle VAR_0x8004, VAR_0x8005
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0FC5
-    ScrCmd_0B9 0, VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0FC5
+    ScrCmd_0B9 0, VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
     SetTrainerFlag VAR_0x8004
-    ScrCmd_0B9 1, VAR_0x800C
-    SetVar VAR_0x8005, VAR_0x800C
+    ScrCmd_0B9 1, VAR_RESULT
+    SetVar VAR_0x8005, VAR_RESULT
     SetTrainerFlag VAR_0x8005
     ReleaseAll
     End
 
 _1178:
-    ScrCmd_0B7 0, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _1178
-    ScrCmd_0B7 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _1178
+    ScrCmd_0B7 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1178
+    ScrCmd_0B7 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1178
     Return
 
 _11A0:
-    ScrCmd_0B9 0, VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
+    ScrCmd_0B9 0, VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
     PlayTrainerEncounterBGM VAR_0x8004
     ScrCmd_0B6 0
     Call _123B
-    ScrCmd_0B9 0, VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
+    ScrCmd_0B9 0, VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
     OpenMessage
     ScrCmd_0E6 VAR_0x8004, 0
     CloseMessage
-    ScrCmd_0B9 1, VAR_0x800C
-    SetVar VAR_0x8005, VAR_0x800C
+    ScrCmd_0B9 1, VAR_RESULT
+    SetVar VAR_0x8005, VAR_RESULT
     PlayTrainerEncounterBGM VAR_0x8005
     ScrCmd_0B6 1
     Call _1250
-    ScrCmd_0B9 1, VAR_0x800C
-    SetVar VAR_0x8005, VAR_0x800C
+    ScrCmd_0B9 1, VAR_RESULT
+    SetVar VAR_0x8005, VAR_RESULT
     OpenMessage
     ScrCmd_0E6 VAR_0x8005, 0
     CloseMessage
     StartTrainerBattle VAR_0x8004, VAR_0x8005
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0FC5
-    ScrCmd_0B9 0, VAR_0x800C
-    SetVar VAR_0x8004, VAR_0x800C
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0FC5
+    ScrCmd_0B9 0, VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
     SetTrainerFlag VAR_0x8004
-    ScrCmd_0B9 1, VAR_0x800C
-    SetVar VAR_0x8005, VAR_0x800C
+    ScrCmd_0B9 1, VAR_RESULT
+    SetVar VAR_0x8005, VAR_RESULT
     SetTrainerFlag VAR_0x8005
     ReleaseAll
     End
 
 _123B:
-    ScrCmd_0B7 0, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _123B
+    ScrCmd_0B7 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _123B
     Return
 
 _1250:
-    ScrCmd_0B7 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _1250
+    ScrCmd_0B7 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1250
     Return
 
     .byte 0

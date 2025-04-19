@@ -16,7 +16,7 @@ _000A:
     Message 0
     SetVar VAR_0x8004, ITEM_HARD_STONE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0064
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0064
     SetFlag FLAG_UNK_0x007C
     CallCommonScript 0x7E0
     CloseMessage

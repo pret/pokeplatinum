@@ -2302,9 +2302,9 @@ _1EAE:
     WaitFanfare SEQ_SE_CONFIRM
     SetVar VAR_0x8004, VAR_0x8008
     SetVar VAR_0x8005, VAR_0x8009
-    CanFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _1EF0
-    GoToIfEq VAR_0x800C, 0, _20A8
+    CanFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _1EF0
+    GoToIfEq VAR_RESULT, 0, _20A8
     End
 
 _1EEA:
@@ -2315,22 +2315,22 @@ _1EEA:
 _1EF0:
     CallCommonScript 0x7D1
     RemoveObject VAR_0x800D
-    AddItem VAR_0x8004, VAR_0x8005, VAR_0x800C
+    AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     ScrCmd_2A2 VAR_0x8004
     CallIfEq VAR_0x8004, 0x1CF, _20C0
-    ScrCmd_07F VAR_0x8004, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _207D
-    GoToIfEq VAR_0x800C, 0, _2095
+    ScrCmd_07F VAR_0x8004, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _207D
+    GoToIfEq VAR_RESULT, 0, _2095
     End
 
 _1F33:
     WaitSound
-    ScrCmd_2A7 VAR_0x8004, VAR_0x800C
-    CallIfEq VAR_0x800C, 1, _20C6
+    ScrCmd_2A7 VAR_0x8004, VAR_RESULT
+    CallIfEq VAR_RESULT, 1, _20C6
     BufferPlayerName 0
     BufferItemName 1, VAR_0x8004
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, POCKET_KEY_ITEMS, _1FD9
     GoToIfEq VAR_0x8008, POCKET_ITEMS, _1FC6
     GoToIfEq VAR_0x8008, POCKET_BERRIES, _2025
@@ -2342,50 +2342,50 @@ _1F33:
     End
 
 _1FC6:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _205E
     End
 
 _1FD9:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _205E
     End
 
 _1FEC:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _205E
     End
 
 _1FFF:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _205E
     End
 
 _2012:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _205E
     End
 
 _2025:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _205E
     End
 
 _2038:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _205E
     End
 
 _204B:
-    GetItemPocket VAR_0x8004, VAR_0x800C
-    BufferPocketName 2, VAR_0x800C
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
     GoTo _205E
     End
 
@@ -2393,7 +2393,7 @@ _205E:
     CreateJournalEvent LOCATION_EVENT_ITEM_WAS_OBTAINED, VAR_0x8004, 0, 0, 0
     Message 9
     WaitABXPadPress
-    SetVar VAR_0x800C, 1
+    SetVar VAR_RESULT, 1
     GoTo _1EEA
     End
 
@@ -2416,7 +2416,7 @@ _20A8:
     BufferItemName 0, VAR_0x8004
     Message 4
     WaitABXPadPress
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     GoTo _1EEA
     End
 

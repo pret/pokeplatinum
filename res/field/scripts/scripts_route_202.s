@@ -95,9 +95,9 @@ _0164:
 
 _0174:
     GoToIfUnset FLAG_UNK_0x008F, _027C
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _019F
-    GoToIfEq VAR_0x800C, GENDER_FEMALE, _01B2
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _019F
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _01B2
     End
 
 _019F:
@@ -122,9 +122,9 @@ _01C5:
     StartCatchingTutorial
     ApplyMovement 3, _0490
     WaitMovement
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _0205
-    GoToIfEq VAR_0x800C, GENDER_FEMALE, _0211
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0205
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0211
     End
 
 _0205:
@@ -141,9 +141,9 @@ _021D:
     SetVar VAR_0x8004, 4
     SetVar VAR_0x8005, 5
     CallCommonScript 0x7FC
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _024D
-    GoToIfEq VAR_0x800C, GENDER_FEMALE, _0259
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _024D
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0259
     End
 
 _024D:
@@ -165,9 +165,9 @@ _0262:
     End
 
 _027C:
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _029C
-    GoToIfEq VAR_0x800C, GENDER_FEMALE, _02C8
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _029C
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _02C8
     End
 
 _029C:
@@ -382,11 +382,11 @@ _04C4:
     ApplyMovement 3, _0690
     ApplyMovement LOCALID_PLAYER, _06D0
     WaitMovement
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     CallIfEq VAR_0x8000, 0, _065D
     CallIfEq VAR_0x8000, 1, _0662
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     PlayDefaultMusic
     CallIfEq VAR_0x8002, 0, _05D1
     CallIfEq VAR_0x8002, 1, _05E5

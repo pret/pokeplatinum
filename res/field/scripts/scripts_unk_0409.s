@@ -25,13 +25,13 @@ _0042:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_09A VAR_0x800C, 15
-    GoToIfEq VAR_0x800C, 6, _008E
-    CheckBadgeAcquired BADGE_ID_FOREST, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _008E
+    ScrCmd_09A VAR_RESULT, 15
+    GoToIfEq VAR_RESULT, 6, _008E
+    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _008E
     Message 0
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00AE
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00AE
     CloseMessage
     GoTo _066D
     End
@@ -46,19 +46,19 @@ _008E:
     End
 
 _00AE:
-    ScrCmd_09A VAR_0x800C, 15
-    SetVar VAR_0x8004, VAR_0x800C
-    BufferPartyMonNickname 0, VAR_0x800C
+    ScrCmd_09A VAR_RESULT, 15
+    SetVar VAR_0x8004, VAR_RESULT
+    BufferPartyMonNickname 0, VAR_RESULT
     Message 1
     CloseMessage
     ScrCmd_0C5 VAR_0x8004
     ScrCmd_29E 0, VAR_0x8005
-    WaitTime 7, VAR_0x800C
+    WaitTime 7, VAR_RESULT
     RemoveObject VAR_0x800D
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_CUT, VAR_0x8004, 0, 0, 0
 _00E8:
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GoToIfEq VAR_0x8005, 0, _00E8
     GoTo _066D
     End
@@ -70,12 +70,12 @@ _0103:
     CloseMessage
     ScrCmd_0C5 VAR_0x8000
     ScrCmd_29E 0, VAR_0x8005
-    WaitTime 7, VAR_0x800C
+    WaitTime 7, VAR_RESULT
     RemoveObject VAR_0x800D
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_CUT, VAR_0x8004, 0, 0, 0
 _0133:
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GoToIfEq VAR_0x8005, 0, _0133
     ReleaseAll
     End
@@ -84,12 +84,12 @@ _014A:
     GoToIfNe VAR_UNK_0x40CD, 0, _0221
     GoToIfNe VAR_UNK_0x40B1, 1, _0221
     Call _017F
-    GoToIfEq VAR_0x800C, 0, _0221
+    GoToIfEq VAR_RESULT, 0, _0221
     SetVar VAR_UNK_0x40CD, 1
     Return
 
 _017F:
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 73, _01CE
     GoToIfEq VAR_0x8004, 74, _01DD
@@ -119,7 +119,7 @@ _020A:
     Return
 
 _0219:
-    SetVar VAR_0x800C, 1
+    SetVar VAR_RESULT, 1
     Return
 
 _0221:
@@ -129,14 +129,14 @@ _0223:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_09A VAR_0x800C, 249
-    SetVar VAR_0x8004, VAR_0x800C
-    GoToIfEq VAR_0x800C, 6, _0275
-    CheckBadgeAcquired BADGE_ID_COAL, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0275
+    ScrCmd_09A VAR_RESULT, 249
+    SetVar VAR_0x8004, VAR_RESULT
+    GoToIfEq VAR_RESULT, 6, _0275
+    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0275
     Message 3
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0284
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0284
     CloseMessage
     GoTo _066D
     End
@@ -154,12 +154,12 @@ _0284:
     CloseMessage
     ScrCmd_0C5 VAR_0x8004
     ScrCmd_29E 1, VAR_0x8005
-    WaitTime 10, VAR_0x800C
+    WaitTime 10, VAR_RESULT
     RemoveObject VAR_0x800D
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, VAR_0x8004, 0, 0, 0
 _02B2:
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GoToIfEq VAR_0x8005, 0, _02B2
     GoTo _066D
     End
@@ -171,12 +171,12 @@ _02CD:
     CloseMessage
     ScrCmd_0C5 VAR_0x8000
     ScrCmd_29E 1, VAR_0x8005
-    WaitTime 10, VAR_0x800C
+    WaitTime 10, VAR_RESULT
     RemoveObject VAR_0x800D
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, VAR_0x8004, 0, 0, 0
 _02FD:
-    WaitTime 1, VAR_0x800C
+    WaitTime 1, VAR_RESULT
     GoToIfEq VAR_0x8005, 0, _02FD
     ReleaseAll
     End
@@ -185,15 +185,15 @@ _0314:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Strength 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _03BD
-    ScrCmd_09A VAR_0x800C, 70
-    GoToIfEq VAR_0x800C, 6, _0372
-    CheckBadgeAcquired BADGE_ID_MINE, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0372
+    Strength 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _03BD
+    ScrCmd_09A VAR_RESULT, 70
+    GoToIfEq VAR_RESULT, 6, _0372
+    CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0372
     Message 6
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0381
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0381
     CloseMessage
     GoTo _066D
     End
@@ -207,9 +207,9 @@ _0372:
 
 _0381:
     Strength 1
-    ScrCmd_09A VAR_0x800C, 70
-    SetVar VAR_0x8004, VAR_0x800C
-    BufferPartyMonNickname 0, VAR_0x800C
+    ScrCmd_09A VAR_RESULT, 70
+    SetVar VAR_0x8004, VAR_RESULT
+    BufferPartyMonNickname 0, VAR_RESULT
     Message 10
     ScrCmd_0C5 VAR_0x8004
     CloseMessage
@@ -230,8 +230,8 @@ _03BD:
 
 _03CC:
     LockAll
-    Strength 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _03BD
+    Strength 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _03BD
     Strength 1
     BufferPartyMonNickname 0, VAR_0x8000
     Message 10
@@ -247,15 +247,15 @@ _03CC:
 _040E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_09A VAR_0x800C, 0x1AF
-    GoToIfEq VAR_0x800C, 6, _0469
-    CheckBadgeAcquired BADGE_ID_ICICLE, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0469
-    CheckHasPartner VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0478
+    ScrCmd_09A VAR_RESULT, 0x1AF
+    GoToIfEq VAR_RESULT, 6, _0469
+    CheckBadgeAcquired BADGE_ID_ICICLE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0469
+    CheckHasPartner VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0478
     Message 18
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0487
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0487
     CloseMessage
     GoTo _0671
     End
@@ -275,9 +275,9 @@ _0478:
     End
 
 _0487:
-    ScrCmd_09A VAR_0x800C, 0x1AF
-    SetVar VAR_0x8004, VAR_0x800C
-    BufferPartyMonNickname 0, VAR_0x800C
+    ScrCmd_09A VAR_RESULT, 0x1AF
+    SetVar VAR_0x8004, VAR_RESULT
+    BufferPartyMonNickname 0, VAR_RESULT
     Message 19
     CloseMessage
     ScrCmd_0BF VAR_0x8004
@@ -300,11 +300,11 @@ _04B9:
 _04DD:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckHasPartner VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0512
+    CheckHasPartner VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0512
     Message 12
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _051F
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _051F
     CloseMessage
     GoTo _0671
     End
@@ -316,9 +316,9 @@ _0512:
     GoTo _0671
 
 _051F:
-    ScrCmd_09A VAR_0x800C, 57
-    SetVar VAR_0x8004, VAR_0x800C
-    BufferPartyMonNickname 0, VAR_0x800C
+    ScrCmd_09A VAR_RESULT, 57
+    SetVar VAR_0x8004, VAR_RESULT
+    BufferPartyMonNickname 0, VAR_RESULT
     Message 13
     CloseMessage
     ScrCmd_0C0 VAR_0x8004
@@ -343,11 +343,11 @@ _0551:
 _057D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_09A VAR_0x800C, 0x1B0
-    GoToIfEq VAR_0x800C, 6, _05B4
+    ScrCmd_09A VAR_RESULT, 0x1B0
+    GoToIfEq VAR_RESULT, 6, _05B4
     Message 15
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _05C3
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _05C3
     CloseMessage
     GoTo _0671
     End
@@ -360,9 +360,9 @@ _05B4:
     End
 
 _05C3:
-    ScrCmd_09A VAR_0x800C, 0x1B0
-    SetVar VAR_0x8004, VAR_0x800C
-    BufferPartyMonNickname 0, VAR_0x800C
+    ScrCmd_09A VAR_RESULT, 0x1B0
+    SetVar VAR_0x8004, VAR_RESULT
+    BufferPartyMonNickname 0, VAR_RESULT
     Message 16
     CloseMessage
     ScrCmd_0C5 VAR_0x8004
@@ -400,7 +400,7 @@ _064C:
     ScrCmd_0C5 VAR_0x8000
     Flash 1
     ScrCmd_0C3
-    WaitTime 42, VAR_0x800C
+    WaitTime 42, VAR_RESULT
     GoTo _0675
 
 _066D:
@@ -418,13 +418,13 @@ _0675:
 _0679:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_09A VAR_0x800C, 127
-    GoToIfEq VAR_0x800C, 6, _06C3
-    CheckBadgeAcquired BADGE_ID_BEACON, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06C3
+    ScrCmd_09A VAR_RESULT, 127
+    GoToIfEq VAR_RESULT, 6, _06C3
+    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06C3
     Message 22
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _06D2
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _06D2
     CloseMessage
     GoTo _0671
     End
@@ -437,9 +437,9 @@ _06C3:
     End
 
 _06D2:
-    ScrCmd_09A VAR_0x800C, 127
-    SetVar VAR_0x8004, VAR_0x800C
-    BufferPartyMonNickname 0, VAR_0x800C
+    ScrCmd_09A VAR_RESULT, 127
+    SetVar VAR_0x8004, VAR_RESULT
+    BufferPartyMonNickname 0, VAR_RESULT
     Message 23
     CloseMessage
     ScrCmd_0C1 VAR_0x8004

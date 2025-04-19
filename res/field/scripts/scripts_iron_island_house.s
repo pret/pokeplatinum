@@ -28,7 +28,7 @@ _0035:
     Message 0
     SetVar VAR_0x8004, ITEM_METAL_COAT
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _00A8
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00A8
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x011D
     Message 1

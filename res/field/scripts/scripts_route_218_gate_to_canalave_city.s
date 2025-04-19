@@ -12,8 +12,8 @@ _000A:
     Call _006A
     BufferPlayerName 0
     BufferCounterpartName 1
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _0031
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0031
     GoTo _003C
     End
 

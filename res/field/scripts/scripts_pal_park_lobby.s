@@ -44,8 +44,8 @@ _007E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _009D
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _009D
     GoTo _00D2
 
 _009D:
@@ -53,9 +53,9 @@ _009D:
     SetFlag FLAG_UNK_0x00D3
     BufferPlayerName 0
     Message 21
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0107
-    GoToIfEq VAR_0x800C, MENU_NO, _01CB
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0107
+    GoToIfEq VAR_RESULT, MENU_NO, _01CB
     End
 
 _00D2:
@@ -63,9 +63,9 @@ _00D2:
     SetFlag FLAG_UNK_0x00D3
     BufferPlayerName 0
     Message 22
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0107
-    GoToIfEq VAR_0x800C, MENU_NO, _01CB
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0107
+    GoToIfEq VAR_RESULT, MENU_NO, _01CB
     End
 
 _0107:
@@ -85,30 +85,30 @@ _0122:
     GoTo _012B
 
 _012B:
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 198, 0
     AddMenuEntryImm 199, 1
     AddMenuEntryImm 200, 2
     AddMenuEntryImm 202, 4
     ShowMenu
-    GoToIfEq VAR_0x800C, 0, _0110
-    GoToIfEq VAR_0x800C, 1, _0119
-    GoToIfEq VAR_0x800C, 2, _0122
+    GoToIfEq VAR_RESULT, 0, _0110
+    GoToIfEq VAR_RESULT, 1, _0119
+    GoToIfEq VAR_RESULT, 2, _0122
     GoTo _0172
 
 _0172:
     Message 28
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _01CB
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _01CB
 _0186:
-    SetVar VAR_0x800C, 0
-    ScrCmd_252 VAR_0x800C
-    GoToIfLt VAR_0x800C, 6, _02AD
-    SetVar VAR_0x800C, 0
-    ScrCmd_254 VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0299
-    GetPlayerGender VAR_0x800C
-    GoToIfEq VAR_0x800C, GENDER_MALE, _0231
+    SetVar VAR_RESULT, 0
+    ScrCmd_252 VAR_RESULT
+    GoToIfLt VAR_RESULT, 6, _02AD
+    SetVar VAR_RESULT, 0
+    ScrCmd_254 VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0299
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0231
     GoTo _0245
 
 _01CB:
@@ -129,14 +129,14 @@ _01E2:
     GoTo _01EE
 
 _01EE:
-    InitGlobalTextMenu 1, 1, 0, VAR_0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 203, 0
     AddMenuEntryImm 204, 1
     AddMenuEntryImm 205, 2
     ShowMenu
-    GoToIfEq VAR_0x800C, 0, _0186
-    GoToIfEq VAR_0x800C, 1, _02A4
-    GoToIfEq VAR_0x800C, 2, _01CB
+    GoToIfEq VAR_RESULT, 0, _0186
+    GoToIfEq VAR_RESULT, 1, _02A4
+    GoToIfEq VAR_RESULT, 2, _01CB
     GoTo _01CB
 
 _0231:
@@ -214,17 +214,17 @@ _02F8:
     SetVar VAR_UNK_0x40F3, 0
     ApplyMovement LOCALID_PLAYER, _03EC
     WaitMovement
-    CalcCatchingShowPoints CATCHING_SHOW_CATCHING_POINTS, VAR_0x800C
-    BufferNumber 0, VAR_0x800C
-    CalcCatchingShowPoints CATCHING_SHOW_TIME_POINTS, VAR_0x800C
-    BufferNumber 1, VAR_0x800C
-    CalcCatchingShowPoints CATCHING_SHOW_TYPE_POINTS, VAR_0x800C
-    BufferNumber 2, VAR_0x800C
-    CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, VAR_0x800C
-    BufferNumber 3, VAR_0x800C
+    CalcCatchingShowPoints CATCHING_SHOW_CATCHING_POINTS, VAR_RESULT
+    BufferNumber 0, VAR_RESULT
+    CalcCatchingShowPoints CATCHING_SHOW_TIME_POINTS, VAR_RESULT
+    BufferNumber 1, VAR_RESULT
+    CalcCatchingShowPoints CATCHING_SHOW_TYPE_POINTS, VAR_RESULT
+    BufferNumber 2, VAR_RESULT
+    CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, VAR_RESULT
+    BufferNumber 3, VAR_RESULT
     Message 38
-    CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, VAR_0x800C
-    GoToIfGt VAR_0x800C, VAR_UNK_0x40E0, _035B
+    CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, VAR_RESULT
+    GoToIfGt VAR_RESULT, VAR_UNK_0x40E0, _035B
     Message 40
     Call _07BE
     GoTo _0370
@@ -237,11 +237,11 @@ _035B:
 
 _0370:
     Message 41
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _03AB
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _03AB
     Message 46
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _039E
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _039E
     GoTo _0370
 
 _039E:
@@ -303,8 +303,8 @@ _0413:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    GoToIfEq VAR_0x800C, 2, _0454
-    GoToIfEq VAR_0x800C, 1, _0449
+    GoToIfEq VAR_RESULT, 2, _0454
+    GoToIfEq VAR_RESULT, 1, _0449
     GoTo _043E
 
 _043E:
@@ -399,7 +399,7 @@ _04F6:
     CallCommonScript 0x7D9
     Message 4
     CloseMessage
-    WaitTime 15, VAR_0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement LOCALID_PLAYER, _0570
     WaitMovement
     ApplyMovement 1, _0564
@@ -442,15 +442,15 @@ _057C:
     FacePlayer
     GoToIfEq VAR_0x400A, 1, _062C
     GoToIfEq VAR_0x400A, 2, _063C
-    CheckPoketchAppRegistered POKETCH_APPID_COLORCHANGER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0657
+    CheckPoketchAppRegistered POKETCH_APPID_COLORCHANGER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0657
     Message 5
     Message 6
-    CheckPoketchAppRegistered POKETCH_APPID_KITCHENTIMER, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _05FB
+    CheckPoketchAppRegistered POKETCH_APPID_KITCHENTIMER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _05FB
     Message 10
-    CheckPartyHasSpecies VAR_0x800C, SPECIES_SNORLAX
-    GoToIfEq VAR_0x800C, 0, _064C
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_SNORLAX
+    GoToIfEq VAR_RESULT, 0, _064C
     Message 11
     SetVar VAR_0x8004, 20
     CallCommonScript 0x7D9
@@ -462,8 +462,8 @@ _057C:
 
 _05FB:
     Message 13
-    CheckPartyHasSpecies VAR_0x800C, SPECIES_KECLEON
-    GoToIfEq VAR_0x800C, 0, _064C
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_KECLEON
+    GoToIfEq VAR_RESULT, 0, _064C
     Message 14
     SetVar VAR_0x8004, 21
     CallCommonScript 0x7D9
@@ -508,12 +508,12 @@ _0662:
     LockAll
     FacePlayer
     GoToIfEq VAR_0x4009, 1, _06CF
-    GetGBACartridgeVersion VAR_0x800C
-    GoToIfEq VAR_0x800C, 4, _06DA
-    GoToIfEq VAR_0x800C, 5, _0706
-    GoToIfEq VAR_0x800C, 1, _0732
-    GoToIfEq VAR_0x800C, 2, _0756
-    GoToIfEq VAR_0x800C, 3, _077A
+    GetGBACartridgeVersion VAR_RESULT
+    GoToIfEq VAR_RESULT, 4, _06DA
+    GoToIfEq VAR_RESULT, 5, _0706
+    GoToIfEq VAR_RESULT, 1, _0732
+    GoToIfEq VAR_RESULT, 2, _0756
+    GoToIfEq VAR_RESULT, 3, _077A
     GoTo _06C4
     End
 
@@ -534,8 +534,8 @@ _06CF:
 _06DA:
     SetVar VAR_0x8004, ACCESSORY_CROWN
     SetVar VAR_0x8005, 1
-    ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06C4
+    ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06C4
     Message 67
     GoTo _079E
     End
@@ -543,32 +543,32 @@ _06DA:
 _0706:
     SetVar VAR_0x8004, ACCESSORY_TIARA
     SetVar VAR_0x8005, 1
-    ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _06C4
+    ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _06C4
     Message 68
     GoTo _079E
     End
 
 _0732:
     SetVar VAR_0x8004, 14
-    ScrCmd_1D6 VAR_0x8004, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _06C4
+    ScrCmd_1D6 VAR_0x8004, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _06C4
     Message 69
     GoTo _07AE
     End
 
 _0756:
     SetVar VAR_0x8004, 15
-    ScrCmd_1D6 VAR_0x8004, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _06C4
+    ScrCmd_1D6 VAR_0x8004, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _06C4
     Message 70
     GoTo _07AE
     End
 
 _077A:
     SetVar VAR_0x8004, 16
-    ScrCmd_1D6 VAR_0x8004, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _06C4
+    ScrCmd_1D6 VAR_0x8004, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _06C4
     Message 71
     GoTo _07AE
     End
@@ -588,11 +588,11 @@ _07AE:
     End
 
 _07BE:
-    CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, VAR_0x800C
-    CallIfLt VAR_0x800C, 0xBB8, _07FA
-    CallIfLt VAR_0x800C, 0xCE4, _0870
-    CallIfLt VAR_0x800C, 0xDAC, _08BF
-    CallIfLt VAR_0x800C, 0x2710, _0928
+    CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, VAR_RESULT
+    CallIfLt VAR_RESULT, 0xBB8, _07FA
+    CallIfLt VAR_RESULT, 0xCE4, _0870
+    CallIfLt VAR_RESULT, 0xDAC, _08BF
+    CallIfLt VAR_RESULT, 0x2710, _0928
     Return
 
 _07FA:
@@ -644,7 +644,7 @@ _0928:
 _0984:
     CanFitItem VAR_0x8006, 1, VAR_0x8007
     CallIfNe VAR_0x8007, 0, _09A1
-    SetVar VAR_0x800C, 0x2710
+    SetVar VAR_RESULT, 0x2710
     Return
 
 _09A1:

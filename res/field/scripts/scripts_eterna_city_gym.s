@@ -20,8 +20,8 @@ _0022:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FOREST, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0048
+    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0048
     Message 13
     WaitABXPadPress
     CloseMessage
@@ -39,8 +39,8 @@ _0048:
 _0056:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_FOREST, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0080
+    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0080
     BufferRivalName 0
     BufferRivalName 1
     Message 15
@@ -63,14 +63,14 @@ _0094:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FOREST, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0161
+    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0161
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 67, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_GARDENIA
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _01C3
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01C3
     Message 1
     BufferPlayerName 0
     Message 2
@@ -91,7 +91,7 @@ _0094:
 _0119:
     SetVar VAR_0x8004, ITEM_TM86
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0157
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0157
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0074
     BufferItemName 0, VAR_0x8004
@@ -119,7 +119,7 @@ _0161:
 _0177:
     SetVar VAR_0x8004, ITEM_TM86
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _01B7
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01B7
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0074
     BufferItemName 0, VAR_0x8004
@@ -152,8 +152,8 @@ _01C9:
     Message 6
     CloseMessage
     StartTrainerBattle TRAINER_LASS_CAROLINE
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _01C3
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01C3
     Message 7
     WaitABXPadPress
     SetVar VAR_UNK_0x40AE, 1
@@ -180,8 +180,8 @@ _021C:
     Message 8
     CloseMessage
     StartTrainerBattle TRAINER_AROMA_LADY_JENNA
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _01C3
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01C3
     Message 9
     WaitABXPadPress
     SetVar VAR_UNK_0x40AE, 2
@@ -208,8 +208,8 @@ _027B:
     Message 10
     CloseMessage
     StartTrainerBattle TRAINER_AROMA_LADY_ANGELA
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _01C3
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01C3
     Message 11
     WaitABXPadPress
     SetVar VAR_UNK_0x40AE, 3
@@ -226,11 +226,11 @@ _02CF:
     End
 
 _02DA:
-    GetPlayerDir VAR_0x800C
-    CallIfEq VAR_0x800C, 0, _0314
-    CallIfEq VAR_0x800C, 1, _0322
-    CallIfEq VAR_0x800C, 2, _0330
-    CallIfEq VAR_0x800C, 3, _033E
+    GetPlayerDir VAR_RESULT
+    CallIfEq VAR_RESULT, 0, _0314
+    CallIfEq VAR_RESULT, 1, _0322
+    CallIfEq VAR_RESULT, 2, _0330
+    CallIfEq VAR_RESULT, 3, _033E
     Return
 
 _0314:

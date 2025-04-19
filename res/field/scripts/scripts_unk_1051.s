@@ -39,29 +39,29 @@ _0064:
     Return
 
 _006C:
-    ScrCmd_282 VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0133
-    ScrCmd_1E8 VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _00B2
+    ScrCmd_282 VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0133
+    ScrCmd_1E8 VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00B2
     GoToIfUnset FLAG_UNK_0x0145, _0332
     Call _04A4
-    GoToIfEq VAR_0x800C, 0, _037C
+    GoToIfEq VAR_RESULT, 0, _037C
     GoTo _0357
 
 _00B2:
-    ScrCmd_22D 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _030D
+    ScrCmd_22D 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _030D
     GoToIfUnset FLAG_UNK_0x00F0, _02E8
     GoToIfUnset FLAG_UNK_0x0131, _02C3
-    ScrCmd_1E9 VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0158
+    ScrCmd_1E9 VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0158
     GoTo _00F3
     End
 
 _00F3:
     GoToIfUnset FLAG_UNK_0x0146, _01F4
-    GetRandom VAR_0x800C, 3
-    SetVar VAR_0x8008, VAR_0x800C
+    GetRandom VAR_RESULT, 3
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _01CB
     GoToIfEq VAR_0x8008, 1, _01A2
     GoToIfEq VAR_0x8008, 2, _017D
@@ -110,11 +110,11 @@ _01F4:
     CallIfEq VAR_0x8004, 0, _043F
     CallIfEq VAR_0x8004, 1, _0444
     CloseMessage
-    GetPlayerDir VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _0251
-    GoToIfEq VAR_0x800C, 1, _026B
-    GoToIfEq VAR_0x800C, 2, _0285
-    GoToIfEq VAR_0x800C, 3, _029F
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0251
+    GoToIfEq VAR_RESULT, 1, _026B
+    GoToIfEq VAR_RESULT, 2, _0285
+    GoToIfEq VAR_RESULT, 3, _029F
     End
 
 _0251:
@@ -201,9 +201,9 @@ _03A1:
 
 _03A9:
     Message 10
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _03CC
-    GoToIfEq VAR_0x800C, MENU_NO, _03D1
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _03CC
+    GoToIfEq VAR_RESULT, MENU_NO, _03D1
     End
 
 _03CC:
@@ -216,9 +216,9 @@ _03D1:
 
 _03D6:
     Message 24
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _03F9
-    GoToIfEq VAR_0x800C, MENU_NO, _03FE
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _03F9
+    GoToIfEq VAR_RESULT, MENU_NO, _03FE
     End
 
 _03F9:
@@ -344,11 +344,11 @@ _0494:
 _04A4:
     GoToIfEq VAR_UNK_0x40C4, 1, _04C6
     GoToIfEq VAR_UNK_0x40C5, 1, _04C6
-    SetVar VAR_0x800C, 1
+    SetVar VAR_RESULT, 1
     Return
 
 _04C6:
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
     .byte 0

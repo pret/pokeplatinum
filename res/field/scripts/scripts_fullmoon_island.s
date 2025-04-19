@@ -18,12 +18,12 @@ _0015:
     LockAll
     FacePlayer
     GetPlayerDir VAR_0x8004
-    CheckItem ITEM_LUNAR_WING, 1, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0052
+    CheckItem ITEM_LUNAR_WING, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0052
     Message 1
-    ShowYesNoMenu VAR_0x800C
+    ShowYesNoMenu VAR_RESULT
     CloseMessage
-    GoToIfEq VAR_0x800C, MENU_YES, _005D
+    GoToIfEq VAR_RESULT, MENU_YES, _005D
     GoTo _0098
 
 _0052:

@@ -23,25 +23,25 @@ _0033:
     End
 
 _003E:
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0057
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0057
     GoTo _00FA
     End
 
 _0057:
-    GetPartyCount VAR_0x800C
-    GoToIfEq VAR_0x800C, 6, _00EF
+    GetPartyCount VAR_RESULT
+    GoToIfEq VAR_RESULT, 6, _00EF
     Message 2
     PlaySound SEQ_FANFA4
     BufferPlayerName 0
     Message 3
     WaitSound
-    GivePokemon SPECIES_EEVEE, 20, ITEM_NONE, VAR_0x800C
+    GivePokemon SPECIES_EEVEE, 20, ITEM_NONE, VAR_RESULT
     SetFlag FLAG_UNK_0x0131
     Message 4
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _00A8
-    GoToIfEq VAR_0x800C, MENU_NO, _00E9
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00A8
+    GoToIfEq VAR_RESULT, MENU_NO, _00E9
     End
 
 _00A8:
@@ -50,8 +50,8 @@ _00A8:
     SubVar VAR_0x4000, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BB VAR_0x4000, VAR_0x800C
-    CallIfNe VAR_0x800C, 1, _00E3
+    ScrCmd_0BB VAR_0x4000, VAR_RESULT
+    CallIfNe VAR_RESULT, 1, _00E3
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -81,8 +81,8 @@ _00FA:
     End
 
 _0105:
-    ScrCmd_22D 2, VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _0122
+    ScrCmd_22D 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0122
     Message 7
     WaitABXPadPress
     CloseMessage

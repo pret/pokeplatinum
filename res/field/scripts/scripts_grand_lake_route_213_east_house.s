@@ -11,10 +11,10 @@ _0006:
     LockAll
     FacePlayer
     Message 0
-    GetRandom VAR_0x800C, 4
-    GoToIfEq VAR_0x800C, 0, _0044
-    GoToIfEq VAR_0x800C, 1, _004F
-    GoToIfEq VAR_0x800C, 2, _005A
+    GetRandom VAR_RESULT, 4
+    GoToIfEq VAR_RESULT, 0, _0044
+    GoToIfEq VAR_RESULT, 1, _004F
+    GoToIfEq VAR_RESULT, 2, _005A
     GoTo _0065
 
 _0044:

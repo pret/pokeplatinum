@@ -25,10 +25,10 @@ _0035:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckAvailableMysteryGift VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _00EE
-    GetTimeOfDay VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    CheckAvailableMysteryGift VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00EE
+    GetTimeOfDay VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _007E
     GoToIfEq VAR_0x8008, 1, _008A
     GoTo _0096
@@ -49,8 +49,8 @@ _0096:
     GoTo _00A2
 
 _00A2:
-    CheckCanReceiveMysteryGift VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _00D8
+    CheckCanReceiveMysteryGift VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00D8
     PlaySound SEQ_FANFA4
     PrepareMysteryGiftReceivedMsg VAR_0x8005, VAR_0x8006
     ScrCmd_1FB VAR_0x8005, VAR_0x8006

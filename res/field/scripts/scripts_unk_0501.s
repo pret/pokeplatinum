@@ -13,10 +13,10 @@ _000A:
     LockAll
     FacePlayer
     ScrCmd_16D
-    GetDaycareState VAR_0x800C
-    GoToIfEq VAR_0x800C, DAYCARE_EGG_WAITING, _004A
-    GoToIfEq VAR_0x800C, DAYCARE_ONE_MON, _00BE
-    GoToIfEq VAR_0x800C, DAYCARE_TWO_MONS, _00CB
+    GetDaycareState VAR_RESULT
+    GoToIfEq VAR_RESULT, DAYCARE_EGG_WAITING, _004A
+    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _00BE
+    GoToIfEq VAR_RESULT, DAYCARE_TWO_MONS, _00CB
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -25,11 +25,11 @@ _000A:
 
 _004A:
     Message 1
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0083
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0083
     Message 10
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0083
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0083
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -39,8 +39,8 @@ _004A:
     End
 
 _0083:
-    GetPartyCount VAR_0x800C
-    GoToIfNe VAR_0x800C, 6, _009F
+    GetPartyCount VAR_RESULT
+    GoToIfNe VAR_RESULT, 6, _009F
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -72,11 +72,11 @@ _00BE:
 _00CB:
     ScrCmd_16D
     Message 9
-    GetDaycareCompatibilityLevel VAR_0x800C
-    CallIfEq VAR_0x800C, 0, _0110
-    CallIfEq VAR_0x800C, 1, _0115
-    CallIfEq VAR_0x800C, 2, _011A
-    CallIfEq VAR_0x800C, 3, _011F
+    GetDaycareCompatibilityLevel VAR_RESULT
+    CallIfEq VAR_RESULT, 0, _0110
+    CallIfEq VAR_RESULT, 1, _0115
+    CallIfEq VAR_RESULT, 2, _011A
+    CallIfEq VAR_RESULT, 3, _011F
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -103,13 +103,13 @@ _0124:
     LockAll
     FacePlayer
     ShowMoney 20, 2
-    GetDaycareState VAR_0x800C
-    GoToIfEq VAR_0x800C, DAYCARE_EGG_WAITING, _02E2
-    GoToIfEq VAR_0x800C, DAYCARE_ONE_MON, _0309
-    GoToIfEq VAR_0x800C, DAYCARE_TWO_MONS, _04A0
+    GetDaycareState VAR_RESULT
+    GoToIfEq VAR_RESULT, DAYCARE_EGG_WAITING, _02E2
+    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _0309
+    GoToIfEq VAR_RESULT, DAYCARE_TWO_MONS, _04A0
     Message 15
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _017E
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _017E
     Message 20
     WaitABXPadPress
     CloseMessage
@@ -118,22 +118,22 @@ _0124:
     End
 
 _017E:
-    GetPartyCountHatched VAR_0x800C
-    GoToIfEq VAR_0x800C, 1, _02BB
-    ScrCmd_19C VAR_0x800C
-    GoToIfEq VAR_0x800C, 2, _02D5
+    GetPartyCountHatched VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _02BB
+    ScrCmd_19C VAR_RESULT
+    GoToIfEq VAR_RESULT, 2, _02D5
     Message 16
     CloseMessage
     HideMoney
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    SetVar VAR_0x800C, 0
+    SetVar VAR_RESULT, 0
 _01B9:
-    ScrCmd_290 VAR_0x800C
-    ScrCmd_291 VAR_0x8000, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, _01DE
+    ScrCmd_290 VAR_RESULT
+    ScrCmd_291 VAR_0x8000, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01DE
     ScrCmd_196 VAR_0x8000
-    ScrCmd_197 VAR_0x800C
+    ScrCmd_197 VAR_RESULT
     GoTo _01B9
 
 _01DE:
@@ -142,17 +142,17 @@ _01DE:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_0x8000, 0xFF, _0292
-    ScrCmd_31E VAR_0x8000, VAR_0x800C
-    GoToIfEq VAR_0x800C, 0xFF, _04EF
-    GetPartyMonSpecies VAR_0x8000, VAR_0x800C
-    GoToIfEq VAR_0x800C, SPECIES_NONE, _0285
-    CountAliveMonsExcept VAR_0x800C, VAR_0x8000
-    GoToIfEq VAR_0x800C, 0, _02C8
+    ScrCmd_31E VAR_0x8000, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0xFF, _04EF
+    GetPartyMonSpecies VAR_0x8000, VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_NONE, _0285
+    CountAliveMonsExcept VAR_RESULT, VAR_0x8000
+    GoToIfEq VAR_RESULT, 0, _02C8
     ScrCmd_1AF 0, VAR_0x8000, VAR_0x8001
     StorePartyMonIntoDaycare VAR_0x8000
     SetFlag FLAG_UNK_0x00FE
-    GetDaycareState VAR_0x800C
-    GoToIfEq VAR_0x800C, DAYCARE_ONE_MON, _025F
+    GetDaycareState VAR_RESULT
+    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _025F
     GoTo _0270
 
 _025F:
@@ -189,8 +189,8 @@ _0292:
 
 _029F:
     Message 18
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _017E
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _017E
     GoTo _0292
     End
 
@@ -231,8 +231,8 @@ _02EF:
     Return
 
 _02F4:
-    BufferDaycareGainedLevelsBySlot VAR_0x800C, VAR_0x8000
-    CallIfNe VAR_0x800C, 0, _02EF
+    BufferDaycareGainedLevelsBySlot VAR_RESULT, VAR_0x8000
+    CallIfNe VAR_RESULT, 0, _02EF
     Return
 
 _0309:
@@ -240,19 +240,19 @@ _0309:
     SetVar VAR_0x8000, 0
     Call _02F4
     Message 18
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _017E
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _017E
     Message 32
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0346
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0346
     GoTo _0292
 
 _0346:
-    GetPartyCount VAR_0x800C
-    GoToIfEq VAR_0x800C, 6, _045E
-    GetDaycareState VAR_0x800C
+    GetPartyCount VAR_RESULT
+    GoToIfEq VAR_RESULT, 6, _045E
+    GetDaycareState VAR_RESULT
     SetVar VAR_0x8001, 0
-    GoToIfEq VAR_0x800C, DAYCARE_ONE_MON, _03BE
+    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _03BE
     InitGlobalTextMenu 1, 1, 0, VAR_0x8001
     ScrCmd_1BC 0, 1, 2, 0
     AddMenuEntryImm 134, 0
@@ -268,13 +268,13 @@ _0346:
 _03BE:
     BufferDaycarePriceBySlot VAR_0x8004, VAR_0x8001
     Message 28
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _03DE
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _03DE
     GoTo _0292
 
 _03DE:
-    CheckMoney2 VAR_0x800C, VAR_0x8004
-    GoToIfEq VAR_0x800C, 1, _03FE
+    CheckMoney2 VAR_RESULT, VAR_0x8004
+    GoToIfEq VAR_RESULT, 1, _03FE
     Message 21
     WaitABXPadPress
     CloseMessage
@@ -295,14 +295,14 @@ _03FE:
     BufferPlayerName 1
     Message 30
     WaitCry
-    GetDaycareState VAR_0x800C
-    GoToIfEq VAR_0x800C, DAYCARE_ONE_MON, _0444
+    GetDaycareState VAR_RESULT
+    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _0444
     GoTo _0292
 
 _0444:
     Message 22
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0346
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0346
     GoTo _0292
 
 _045E:
@@ -336,8 +336,8 @@ _04A0:
     SetVar VAR_0x8000, 1
     Call _02F4
     Message 32
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_YES, _0346
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0346
     Message 23
     WaitABXPadPress
     CloseMessage

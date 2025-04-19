@@ -65,8 +65,8 @@ _00CF:
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_1
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0133
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0133
     Message 1
     CloseMessage
     ApplyMovement 0, _013C
@@ -114,8 +114,8 @@ _0150:
 _016C:
     BufferItemName 0, 0x1B6
     Message 6
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, MENU_NO, _01A2
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _01A2
     SetFlag FLAG_UNK_0x010F
     Call _00BB
     SetWarpEventPos 0, 243, 0x28E
@@ -145,8 +145,8 @@ _01BF:
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_DRIFLOON, 15
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _01FB
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01FB
     SetFlag FLAG_UNK_0x0AA8
     ReleaseAll
     End
@@ -174,7 +174,7 @@ _0201:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    WaitTime 120, VAR_0x800C
+    WaitTime 120, VAR_RESULT
     ScrCmd_168 7, 20, 19, 14, 77
     ScrCmd_16B 77
     ScrCmd_169 77

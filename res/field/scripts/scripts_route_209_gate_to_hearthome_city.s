@@ -32,9 +32,9 @@ _001D:
     BufferPlayerName 1
     Message 1
     CloseMessage
-    GetPlayerStarterSpecies VAR_0x800C
-    GoToIfEq VAR_0x800C, SPECIES_TURTWIG, _00B3
-    GoToIfEq VAR_0x800C, SPECIES_CHIMCHAR, _00C1
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _00B3
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _00C1
     GoTo _00A5
     End
 
@@ -54,8 +54,8 @@ _00C1:
     End
 
 _00CF:
-    CheckWonBattle VAR_0x800C
-    GoToIfEq VAR_0x800C, FALSE, _0148
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0148
     BufferRivalName 0
     BufferPlayerName 1
     Message 2

@@ -10,9 +10,9 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     IncrementGameRecord RECORD_UNK_048
-    ScrCmd_235 0, VAR_0x800C
-    Dummy1F9 VAR_0x800C
-    SetVar VAR_0x8008, VAR_0x800C
+    ScrCmd_235 0, VAR_RESULT
+    Dummy1F9 VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _005C
     GoToIfEq VAR_0x8008, 1, _0074
     GoToIfEq VAR_0x8008, 2, _0092

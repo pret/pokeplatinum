@@ -127,12 +127,12 @@ _0141:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckPartyHasFatefulEncounter VAR_0x800C, SPECIES_SHAYMIN
-    GoToIfEq VAR_0x800C, 0xFF, _019D
-    CheckPartyHasSpecies VAR_0x800C, SPECIES_SHAYMIN
-    GoToIfEq VAR_0x800C, 0, _019D
-    CheckItem ITEM_GRACIDEA, 1, VAR_0x800C
-    GoToIfNe VAR_0x800C, 0, _01A8
+    CheckPartyHasFatefulEncounter VAR_RESULT, SPECIES_SHAYMIN
+    GoToIfEq VAR_RESULT, 0xFF, _019D
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_SHAYMIN
+    GoToIfEq VAR_RESULT, 0, _019D
+    CheckItem ITEM_GRACIDEA, 1, VAR_RESULT
+    GoToIfNe VAR_RESULT, 0, _01A8
     Message 9
     SetVar VAR_0x8004, 0x1D2
     SetVar VAR_0x8005, 1

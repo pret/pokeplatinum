@@ -45,10 +45,10 @@ _0057:
     LockAll
     FacePlayer
     Message 1
-    GetHour VAR_0x800C
-    GoToIfLt VAR_0x800C, 4, _0113
-    GoToIfLt VAR_0x800C, 10, _0093
-    GoToIfLt VAR_0x800C, 20, _00D3
+    GetHour VAR_RESULT
+    GoToIfLt VAR_RESULT, 4, _0113
+    GoToIfLt VAR_RESULT, 10, _0093
+    GoToIfLt VAR_RESULT, 20, _00D3
     GoTo _0113
 
 _0093:
@@ -56,7 +56,7 @@ _0093:
     Message 2
     SetVar VAR_0x8004, ITEM_CHOICE_SPECS
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0174
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0174
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0134
     Message 3
@@ -67,7 +67,7 @@ _00D3:
     Message 2
     SetVar VAR_0x8004, ITEM_BLACKGLASSES
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0174
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0174
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0135
     Message 4
@@ -78,7 +78,7 @@ _0113:
     Message 2
     SetVar VAR_0x8004, ITEM_WISE_GLASSES
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_0x800C, _0174
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0174
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0136
     Message 5
