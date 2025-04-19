@@ -423,7 +423,7 @@ _0730:
     WaitABPress
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _07D4
-    ApplyMovement VAR_0x800D, _07FC
+    ApplyMovement VAR_LAST_TALKED, _07FC
     WaitMovement
     Return
 
@@ -432,7 +432,7 @@ _074B:
     WaitABPress
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _07D4
-    ApplyMovement VAR_0x800D, _07FC
+    ApplyMovement VAR_LAST_TALKED, _07FC
     WaitMovement
     Return
 
@@ -443,25 +443,25 @@ _0766:
     ScrCmd_135 109
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _07E4
-    ApplyMovement VAR_0x800D, _080C
+    ApplyMovement VAR_LAST_TALKED, _080C
     WaitMovement
     Return
 
 _078C:
     ApplyMovement LOCALID_PLAYER, _0824
-    ApplyMovement VAR_0x800D, _0854
+    ApplyMovement VAR_LAST_TALKED, _0854
     WaitMovement
     Return
 
 _07A0:
     ApplyMovement LOCALID_PLAYER, _0824
-    ApplyMovement VAR_0x800D, _0854
+    ApplyMovement VAR_LAST_TALKED, _0854
     WaitMovement
     Return
 
 _07B4:
     ApplyMovement LOCALID_PLAYER, _0838
-    ApplyMovement VAR_0x800D, _0864
+    ApplyMovement VAR_LAST_TALKED, _0864
     WaitMovement
     Return
 

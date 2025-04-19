@@ -2314,7 +2314,7 @@ _1EEA:
 
 _1EF0:
     CallCommonScript 0x7D1
-    RemoveObject VAR_0x800D
+    RemoveObject VAR_LAST_TALKED
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     ScrCmd_2A2 VAR_0x8004
     CallIfEq VAR_0x8004, 0x1CF, _20C0

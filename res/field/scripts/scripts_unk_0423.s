@@ -345,7 +345,7 @@ _048E:
     ScrCmd_323 VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _04BC
     GetCurrentMapID 0x405C
-    SetVar VAR_UNK_0x405D, VAR_0x800D
+    SetVar VAR_UNK_0x405D, VAR_LAST_TALKED
     Message 17
     GoTo _04C7
     End
@@ -395,16 +395,16 @@ _0526:
     WaitMovement
     ScrCmd_168 0, 0, 5, 5, 77
     Call _0320
-    ApplyMovement VAR_0x800D, _040C
+    ApplyMovement VAR_LAST_TALKED, _040C
     ApplyMovement LOCALID_PLAYER, _03C4
     WaitMovement
     Call _0328
-    ApplyMovement VAR_0x800D, _0414
+    ApplyMovement VAR_LAST_TALKED, _0414
     WaitMovement
     ScrCmd_168 0, 0, 5, 2, 77
     Call _0320
     ApplyMovement LOCALID_PLAYER, _03E0
-    ApplyMovement VAR_0x800D, _0424
+    ApplyMovement VAR_LAST_TALKED, _0424
     WaitMovement
     Call _0328
     SetVar VAR_0x4003, 0
