@@ -29,7 +29,7 @@ static void SetRoamingArticunoState(VarsFlags *varsFlags, u16 state);
 static BOOL TrySetVarToValue(VarsFlags *varsFlags, u16 varID, u16 value)
 {
     u16 *varAddress = VarsFlags_GetVarAddress(varsFlags, varID);
-    if (varID < VARS_START || varID > SPECIAL_VARS_START) {
+    if (varID < VARS_START || varID > SCRIPT_LOCAL_VARS_START) {
         GF_ASSERT(FALSE);
         return FALSE;
     }
