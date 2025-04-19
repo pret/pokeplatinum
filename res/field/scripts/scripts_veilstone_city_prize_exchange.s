@@ -35,7 +35,7 @@ _0039:
     GoToIfCannotFitItem 0x8000, 1, 0x800C, _00E5
     Message 4
     AddItem 0x8000, 1, 0x800C
-    SubstractCoins 0x8001
+    SubtractCoins 0x8001
     UpdateCoinDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI

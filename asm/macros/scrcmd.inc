@@ -747,7 +747,7 @@
     .short \coins
     .endm
 
-    /* See SubstractCoins for 122 */
+    /* See SubtractCoins for 122 */
 
     // If the player has no space left in the bag, destVarID will be set to FALSE
     .macro AddItem item, count, destVarID
@@ -3846,7 +3846,7 @@
     .short \arg1
     .endm
 
-    .macro SubstractCoins valueOrVarID
+    .macro SubtractCoins valueOrVarID
     .if \valueOrVarID < VARS_START
         .short 122 /* SubstractCoinsFromValue */
         .short \valueOrVarID
