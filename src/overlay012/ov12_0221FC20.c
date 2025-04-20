@@ -4151,7 +4151,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
     int v1[] = { 0, 0, 20, 10, 10, 20 };
     UnkStruct_ov12_02223764 *v2 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02223764));
 
-    v2->unk_00 = heapID;
+    v2->heapID = heapID;
     v2->unk_04 = param2;
     v2->unk_08.unk_00 = ov16_0223E010(battleSys);
     v2->unk_08.unk_04 = ov16_0223E018(battleSys);
@@ -4284,7 +4284,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
                     v18 = Sprite_GetPaletteProxy(v10->sprite);
                     v19 = PlttTransfer_GetPlttOffset(v18, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-                    PaletteData_LoadBufferFromFileStart(v2->unk_08.unk_08, v6, v7, v2->unk_00, 2, 0x20, v19 * 16);
+                    PaletteData_LoadBufferFromFileStart(v2->unk_08.unk_08, v6, v7, v2->heapID, 2, 0x20, v19 * 16);
                 }
             }
         }

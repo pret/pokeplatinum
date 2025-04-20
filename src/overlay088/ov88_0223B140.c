@@ -161,7 +161,6 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0);
 static int ov88_0223D69C(UnkStruct_02095E80 *param0);
 static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1);
 static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2);
-static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 
 static const int Unk_ov88_0223EF9C[][2] = {
     { 0x0, 0x20 },
@@ -290,7 +289,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     MI_CpuClearFast(v0, sizeof(UnkStruct_02095E80));
 
     v0->unk_174 = BgConfig_New(HEAP_ID_26);
-    v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, 26);
+    v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, HEAP_ID_26);
     v0->unk_17C = StringTemplate_Default(HEAP_ID_26);
     v0->unk_180 = StringTemplate_Default(HEAP_ID_26);
     v0->unk_184 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);
@@ -1161,9 +1160,9 @@ static void ov88_0223C44C(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, 0);
 }
 
-static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 heapID)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, param7, 1);
+    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, heapID, 1);
 
     if (v0 != NULL) {
         NNSG2dScreenData *v1;
@@ -1199,7 +1198,7 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, HEAP_ID_26);
 
-    ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, 26);
+    ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_26);
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, HEAP_ID_26);
     Font_LoadScreenIndicatorsPalette(0, 2 * 32, HEAP_ID_26);
@@ -1395,7 +1394,7 @@ static void ov88_0223CBA0(UnkStruct_02095E80 *param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.heapID = 26;
+        v0.heapID = HEAP_ID_26;
 
         for (v1 = 0; v1 < 2; v1++) {
             v0.position.x = FX32_ONE * Unk_ov88_0223EF9C[v1][0];
@@ -1826,7 +1825,7 @@ static int ov88_0223D514(UnkStruct_02095E80 *param0)
     case 0:
         sub_02030788(SaveData_GetBattleFrontier(param0->unk_04), param0->unk_36C8);
         sub_0202AFD4(param0->unk_36EC, param0->unk_36C8);
-        sub_02039298(param0->unk_04, param0->unk_36C4, 32 - 1, 26, 0);
+        sub_02039298(param0->unk_04, param0->unk_36C4, 32 - 1, HEAP_ID_26, 0);
         param0->unk_226C = ov88_0223D854;
         break;
     case 0xfffffffe:
@@ -1946,7 +1945,7 @@ static int ov88_0223D7AC(UnkStruct_02095E80 *param0)
 
         for (v0 = 0; v0 < 32; v0++) {
             if (!sub_0202AF78(param0->unk_36EC, v0)) {
-                sub_02039298(param0->unk_04, param0->unk_36C4, v0, 26, 0);
+                sub_02039298(param0->unk_04, param0->unk_36C4, v0, HEAP_ID_26, 0);
                 break;
             }
         }
@@ -2014,7 +2013,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
 
         for (v0 = 0; v0 < 32; v0++) {
             if (!sub_0202AF78(v2, v0)) {
-                sub_02039298(param0->unk_04, param0->unk_36C4, v0, 26, 0);
+                sub_02039298(param0->unk_04, param0->unk_36C4, v0, HEAP_ID_26, 0);
                 break;
             }
         }
@@ -2026,7 +2025,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
 
 static int ov88_0223D96C(UnkStruct_02095E80 *param0)
 {
-    if (0 == sub_020391DC(param0->unk_04, param0->unk_3644, 26)) {
+    if (0 == sub_020391DC(param0->unk_04, param0->unk_3644, HEAP_ID_26)) {
         CommTiming_StartSync(19);
         ov88_0223ECBC(&param0->unk_49C[23], 28, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D840;

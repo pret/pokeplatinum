@@ -26,7 +26,7 @@
 #include "unk_02073700.h"
 
 typedef struct {
-    int unk_00;
+    int heapID;
     SaveData *unk_04;
     int unk_08;
     int unk_0C;
@@ -35,7 +35,7 @@ typedef struct {
 } UnkStruct_ov59_021D2FBC;
 
 typedef u32 (*UnkFuncPtr_ov59_021D33FC)(SaveData *);
-typedef void *(*UnkFuncPtr_ov59_021D33FC_1)(SaveData *, int, u32);
+typedef void *(*UnkFuncPtr_ov59_021D33FC_1)(SaveData *, int heapID, u32);
 typedef void (*UnkFuncPtr_ov59_021D33FC_2)(const UnkStruct_ov59_021D2FBC *);
 
 typedef struct {
@@ -50,10 +50,10 @@ static u32 ov59_021D2F88(SaveData *param0)
     return ov59_021D2A2C(v0);
 }
 
-static void *ov59_021D2F94(SaveData *param0, int param1, u32 param2)
+static void *ov59_021D2F94(SaveData *param0, int heapID, u32 param2)
 {
     RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(param0);
-    void *v1 = Heap_AllocFromHeapAtEnd(param1, param2);
+    void *v1 = Heap_AllocFromHeapAtEnd(heapID, param2);
 
     MI_CpuCopyFast(ov59_021D2A30(v0), v1, param2);
 
@@ -72,11 +72,11 @@ static u32 ov59_021D2FD4(SaveData *param0)
     return sub_02029C60();
 }
 
-static void *ov59_021D2FE0(SaveData *param0, int param1, u32 param2)
+static void *ov59_021D2FE0(SaveData *param0, int heapID, u32 param2)
 {
     UnkStruct_02029C68 *v0;
     UnkStruct_0202A750 *v1 = sub_0202A750(param0);
-    void *v2 = Heap_AllocFromHeapAtEnd(param1, param2);
+    void *v2 = Heap_AllocFromHeapAtEnd(heapID, param2);
 
     v0 = sub_02029CA8(v1, 0);
     MI_CpuCopyFast(v0, v2, param2);
@@ -117,12 +117,12 @@ static void ov59_021D3090(const UnkStruct_ov59_021D2FBC *param0)
 {
     UnkStruct_0202E8C0 *v0 = sub_0202E8C0(param0->unk_04);
 
-    sub_0202ED0C(param0->unk_04, param0->unk_0C, param0->unk_08, param0->unk_10, param0->unk_00);
+    sub_0202ED0C(param0->unk_04, param0->unk_0C, param0->unk_08, param0->unk_10, param0->heapID);
 }
 
-static void *ov59_021D30B4(SaveData *param0, int param1, u32 param2)
+static void *ov59_021D30B4(SaveData *param0, int heapID, u32 param2)
 {
-    UnkStruct_ov96_0223B450_sub1 *v0 = Heap_AllocFromHeapAtEnd(param1, param2);
+    UnkStruct_ov96_0223B450_sub1 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
     MI_CpuClear8(v0, param2);
     sub_02073700(param0, 0, v0);
 
@@ -160,7 +160,7 @@ void ov59_021D30E0(SaveData *param0, UnkStruct_ov59_021D30E0 *param1)
 
     for (v2 = 0; v2 < v3; v2++) {
         v0 = v6[v2].unk_00(param0);
-        v1 = v6[v2].unk_04(param0, 51, v0);
+        v1 = v6[v2].unk_04(param0, HEAP_ID_51, v0);
 
         GF_ASSERT(v4 > v0);
 
@@ -183,7 +183,7 @@ void ov59_021D313C(SaveData *param0, const UnkStruct_ov59_021D30E0 *param1)
     const void *v8[5];
     u32 v9[4 - 2 + 1];
 
-    v0.unk_00 = 51;
+    v0.heapID = HEAP_ID_51;
     v0.unk_04 = param0;
     v0.unk_0C = CommSys_CurNetId();
     v0.unk_08 = 5;

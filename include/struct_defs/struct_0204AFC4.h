@@ -11,7 +11,7 @@
 
 typedef struct UnkStruct_0204AFC4_t {
     int unk_00;
-    int unk_04;
+    int heapID;
     u32 unk_08;
     u8 unk_0C;
     u8 unk_0D;

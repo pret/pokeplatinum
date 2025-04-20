@@ -62,7 +62,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
         {
             UnkStruct_ov119_021D1930 v1;
 
-            v1.heapId = HEAP_ID_71;
+            v1.heapID = HEAP_ID_71;
             v1.unk_04 = 0;
 
             param0->unk_04.unk_40 = ov119_021D14AC(&v1);
@@ -243,7 +243,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         {
             UnkStruct_ov119_021D1930 v1;
 
-            v1.heapId = HEAP_ID_71;
+            v1.heapID = HEAP_ID_71;
             v1.unk_04 = 1;
             param0->unk_04.unk_40 = ov119_021D14AC(&v1);
         }

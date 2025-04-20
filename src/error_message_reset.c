@@ -88,7 +88,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     MessageLoader *errorMsgData;
     Strbuf *errorString;
     int v4;
-    int v5 = 0;
+    int heapID = HEAP_ID_SYSTEM;
 
     if (sErrorMessagePrinterLock == TRUE) {
         return;
@@ -127,19 +127,19 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
     GXLayers_SetBanks(&sErrorMessageBanksConfig);
-    bgConfig = BgConfig_New(v5);
+    bgConfig = BgConfig_New(heapID);
 
     SetAllGraphicsModes(&sErrorMessageBgModeSet);
     Bg_InitFromTemplate(bgConfig, 0, &sErrorMessageBgTemplate, 0);
     Bg_ClearTilemap(bgConfig, 0);
-    LoadStandardWindowGraphics(bgConfig, 0, (512 - 9), 2, 0, v5);
-    Font_LoadTextPalette(0, 1 * (2 * 16), v5);
-    Bg_ClearTilesRange(0, 32, 0, v5);
+    LoadStandardWindowGraphics(bgConfig, 0, (512 - 9), 2, 0, heapID);
+    Font_LoadTextPalette(0, 1 * (2 * 16), heapID);
+    Bg_ClearTilesRange(0, 32, 0, heapID);
     Bg_MaskPalette(0, 0x6c21);
     Bg_MaskPalette(4, 0x6c21);
 
-    errorMsgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0214, v5);
-    errorString = Strbuf_Init(0x180, v5);
+    errorMsgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0214, heapID);
+    errorString = Strbuf_Init(0x180, heapID);
 
     Text_ResetAllPrinters();
 

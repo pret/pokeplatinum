@@ -73,7 +73,7 @@ void sub_0204F470(FieldTask *param0, void **param1, u8 param2);
 static BOOL sub_0204F4A4(FieldTask *param0);
 static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int param2);
 static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem);
-static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int param2);
+static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int heapID);
 static int sub_0204F6B0(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem);
 
 BOOL ScrCmd_2CC(ScriptContext *param0)
@@ -310,7 +310,7 @@ static BOOL sub_0204F4A4(FieldTask *param0)
         break;
 
     case UnkEnum_0204F13C_3:
-        v1->unk_00 = sub_0204F628(v1, fieldSystem, 11);
+        v1->unk_00 = sub_0204F628(v1, fieldSystem, HEAP_ID_FIELDMAP);
         break;
 
     case UnkEnum_0204F13C_4:
@@ -396,7 +396,7 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
     return UnkEnum_0204F13C_3;
 }
 
-static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int param2)
+static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int heapID)
 {
     PokemonSummary *v0;
     SaveData *v1;
@@ -415,7 +415,7 @@ static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
 
     v1 = fieldSystem->saveData;
 
-    v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
+    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
     v0->options = SaveData_GetOptions(v1);

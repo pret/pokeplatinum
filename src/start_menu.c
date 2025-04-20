@@ -1110,7 +1110,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         Pokemon *v10;
 
         v10 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partyMan->selectedMonSlot);
-        v9 = sub_0203D984(fieldSystem, v10, 11);
+        v9 = sub_0203D984(fieldSystem, v10, HEAP_ID_FIELDMAP);
 
         menu->taskData = v9;
         menu->unk_260 = sub_0203C540(partyMan->unk_24, 2, partyMan->selectedMonSlot);

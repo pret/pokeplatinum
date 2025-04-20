@@ -120,7 +120,7 @@ static const struct {
 };
 
 typedef struct UnkStruct_02014D38_t {
-    u32 unk_00;
+    u32 heapID;
     MessageLoader *unk_04[11];
 } UnkStruct_02014D38;
 
@@ -148,7 +148,7 @@ UnkStruct_02014D38 *sub_02014D38(u32 heapID)
     UnkStruct_02014D38 *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02014D38));
 
     for (v0 = 0; v0 < 11; v0++) {
-        v1->unk_00 = heapID;
+        v1->heapID = heapID;
         v1->unk_04[v0] = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, Unk_020E550C[v0], heapID);
     }
 

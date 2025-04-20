@@ -84,7 +84,7 @@ Sprite *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2,
             v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
         }
 
-        v3.heapID = 93;
+        v3.heapID = HEAP_ID_93;
 
         if (param5 == 1) {
             v3.position.y += (192 << FX32_SHIFT);

@@ -88,7 +88,7 @@ int ov96_0223B6A0(OverlayManager *param0, int *param1)
             SetAllGraphicsModes(&v1);
         }
 
-        v0->unk_BCC = StringTemplate_New(11, 32, 68);
+        v0->unk_BCC = StringTemplate_New(11, 32, HEAP_ID_68);
         v0->unk_BD0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0670, HEAP_ID_68);
         v0->unk_BD4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_68);
         v0->unk_BD8 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_68);
@@ -289,7 +289,7 @@ void ov96_0223BAE0(AffineSpriteListTemplate *param0, UnkStruct_ov96_0223BF40 *pa
     param0->affineZRotation = 0;
     param0->priority = 1;
     param0->vramType = param3;
-    param0->heapID = 68;
+    param0->heapID = HEAP_ID_68;
 }
 
 static void ov96_0223BB0C(UnkStruct_ov96_0223BF40 *param0)

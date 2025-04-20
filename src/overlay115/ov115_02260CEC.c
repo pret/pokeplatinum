@@ -259,7 +259,7 @@ typedef struct {
     s16 unk_96;
     u16 unk_98;
     s16 unk_9A;
-    u32 unk_9C;
+    u32 heapID;
 } UnkStruct_ov115_02265788;
 
 typedef struct {
@@ -409,7 +409,7 @@ static BOOL ov115_02262E64(UnkStruct_ov115_02262E64 *param0);
 static void ov115_02262EFC(UnkStruct_ov115_02260D78 *param0, const UnkStruct_ov115_02262E64 *param1);
 static void ov115_02262F04(UnkStruct_ov115_02260D78 *param0, const UnkStruct_ov115_02262DC4 *param1);
 static void ov115_02262F50(const UnkStruct_ov115_02262F50 *param0, const UnkStruct_ov115_022612BC *param1, u32 param2, UnkStruct_ov115_02262DC4 *param3);
-static void ov115_02262FB4(UnkStruct_ov115_02263130 *param0, UnkStruct_ov115_02261ADC *param1, u32 param2);
+static void ov115_02262FB4(UnkStruct_ov115_02263130 *param0, UnkStruct_ov115_02261ADC *param1, u32 heapID);
 static void ov115_022630DC(UnkStruct_ov115_02263130 *param0, UnkStruct_ov115_02261ADC *param1);
 static void ov115_02263130(UnkStruct_ov115_02263130 *param0);
 static BOOL ov115_02263150(UnkStruct_ov115_02263130 *param0, UnkStruct_ov115_02260D78 *param1);
@@ -439,7 +439,7 @@ static void ov115_02263CD8(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 p
 static void ov115_02263DF4(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263A74(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 param2);
 static void ov115_02263B78(UnkStruct_ov115_02261ADC *param0);
-static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 param2, NNSFndAllocator *param3);
+static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 heapID, NNSFndAllocator *param3);
 static void ov115_02263FF4(UnkStruct_ov115_02263DF8 *param0, NNSFndAllocator *param1);
 static void ov115_02264044(UnkStruct_ov115_02263DF8 *param0, const UnkStruct_ov115_02261C18 *param1, int param2);
 static void ov115_022640A4(UnkStruct_ov115_02263DF8 *param0, const UnkStruct_ov115_02261C18 *param1, int param2);
@@ -458,7 +458,7 @@ static void ov115_022642F8(s16 param0, s16 param1, VecFx32 *param2);
 static void ov115_02264324(const VecFx32 *param0, NNSG2dSVec2 *param1);
 static void ov115_02264354(const VecFx32 *param0, VecFx32 *param1, u32 param2, u32 param3);
 static void ov115_0226439C(const VecFx32 *param0, VecFx32 *param1, u32 param2, u32 param3);
-static void ov115_022643EC(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 param2);
+static void ov115_022643EC(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 heapID);
 static void ov115_02264564(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02264620(UnkStruct_ov115_02261ADC *param0, const UnkStruct_ov115_022622F8 *param1, u32 param2, u32 param3);
 static void ov115_0226464C(UnkStruct_ov115_02261ADC *param0, const UnkStruct_ov115_022622F8 *param1);
@@ -487,7 +487,7 @@ static void ov115_02264C78(UnkStruct_ov115_02261ADC *param0, UnkStruct_ov115_022
 static void ov115_02264C90(UnkStruct_ov115_02264C90 *param0);
 static void ov115_02264D80(UnkStruct_ov115_02264C90 *param0, s32 param1, s32 param2);
 static void ov115_02264DD8(int param0, int param1, int param2, int param3, int param4, s32 *param5, s32 *param6);
-static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, int param3, u32 param4, u32 param5, NNSFndAllocator *param6);
+static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, int param3, u32 param4, u32 heapID, NNSFndAllocator *param6);
 static void ov115_02264F68(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_02261ADC *param1, NNSFndAllocator *param2);
 static void ov115_02264FA0(UnkStruct_ov115_02264FA0 *param0);
 static void ov115_022650C8(UnkStruct_ov115_02264FA0 *param0);
@@ -1410,7 +1410,7 @@ static void ov115_022617D8(UnkStruct_ov115_022615B0 *param0, u32 param1)
     Sprite_SetDrawFlag(param0->unk_00[param1], 0);
 }
 
-static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1, const UnkStruct_ov115_02262F50 *param2, u32 param3, u32 param4, NARC *param5, u32 param6)
+static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1, const UnkStruct_ov115_02262F50 *param2, u32 param3, u32 param4, NARC *param5, u32 heapID)
 {
     Strbuf *v0;
     AffineSpriteListTemplate v1;
@@ -1420,14 +1420,14 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
     Window_Add(param1->unk_00, &param0->unk_0C, 1, 2, 19, 28, 4, 5, (1 + 9));
     Window_FillRectWithColor(&param0->unk_0C, 15, 0, 0, 28 * 8, 4 * 8);
 
-    v0 = Strbuf_Init(128, param6);
+    v0 = Strbuf_Init(128, heapID);
 
     MessageLoader_GetStrbuf(param1->unk_08, 0, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_0C, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     Strbuf_Free(v0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param5, 18, param1->unk_00, 2, 0, 0, 0, param6);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param5, 20 + (param3 - 2), param1->unk_00, 2, 0, 0, 0, param6);
-    Graphics_LoadPaletteFromOpenNARC(param5, 19, 0, 0 * 32, (3 + 1) * 32, param6);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param5, 18, param1->unk_00, 2, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param5, 20 + (param3 - 2), param1->unk_00, 2, 0, 0, 0, heapID);
+    Graphics_LoadPaletteFromOpenNARC(param5, 19, 0, 0 * 32, (3 + 1) * 32, heapID);
 
     {
         int v2;
@@ -1443,7 +1443,7 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
         Window_Add(param1->unk_00, &v5, 2, 0, 0, 8, 2, 5, 256);
 
         v6 = 256;
-        v7 = Strbuf_Init(128, param6);
+        v7 = Strbuf_Init(128, heapID);
 
         for (v2 = 0; v2 < param3; v2++) {
             if (v2 != param4) {
@@ -2635,20 +2635,20 @@ static void ov115_02262F50(const UnkStruct_ov115_02262F50 *param0, const UnkStru
     }
 }
 
-static void ov115_02262FB4(UnkStruct_ov115_02263130 *param0, UnkStruct_ov115_02261ADC *param1, u32 param2)
+static void ov115_02262FB4(UnkStruct_ov115_02263130 *param0, UnkStruct_ov115_02261ADC *param1, u32 heapID)
 {
     NARC *v0;
     BOOL v1;
 
     memset(param0, 0, sizeof(UnkStruct_ov115_02263130));
 
-    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param2);
+    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, heapID);
 
     {
-        param0->unk_00[0] = SpriteResourceCollection_AddTilesFrom(param1->unk_1AC[0], v0, 21, 0, 120, NNS_G2D_VRAM_TYPE_2DSUB, param2);
-        param0->unk_00[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_1AC[1], v0, 20, 0, 120, NNS_G2D_VRAM_TYPE_2DSUB, 2, param2);
-        param0->unk_00[2] = SpriteResourceCollection_AddFrom(param1->unk_1AC[2], v0, 22, 0, 120, 2, param2);
-        param0->unk_00[3] = SpriteResourceCollection_AddFrom(param1->unk_1AC[3], v0, 23, 0, 120, 3, param2);
+        param0->unk_00[0] = SpriteResourceCollection_AddTilesFrom(param1->unk_1AC[0], v0, 21, 0, 120, NNS_G2D_VRAM_TYPE_2DSUB, heapID);
+        param0->unk_00[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_1AC[1], v0, 20, 0, 120, NNS_G2D_VRAM_TYPE_2DSUB, 2, heapID);
+        param0->unk_00[2] = SpriteResourceCollection_AddFrom(param1->unk_1AC[2], v0, 22, 0, 120, 2, heapID);
+        param0->unk_00[3] = SpriteResourceCollection_AddFrom(param1->unk_1AC[3], v0, 23, 0, 120, 3, heapID);
 
         v1 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_00[0]);
         GF_ASSERT(v1);
@@ -2669,7 +2669,7 @@ static void ov115_02262FB4(UnkStruct_ov115_02263130 *param0, UnkStruct_ov115_022
         v2.position.y = FX32_CONST(120) + (512 << FX32_SHIFT);
         v2.priority = 0;
         v2.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-        v2.heapID = param2;
+        v2.heapID = heapID;
 
         param0->unk_34 = SpriteList_Add(&v2);
         Sprite_SetDrawFlag(param0->unk_34, 0);
@@ -3229,12 +3229,12 @@ static void ov115_02263B78(UnkStruct_ov115_02261ADC *param0)
     }
 }
 
-static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 param1)
+static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 {
-    param0->unk_04 = StringTemplate_Default(param1);
-    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0407, param1);
-    param0->unk_0C = Strbuf_Init(128, param1);
-    param0->unk_10 = Strbuf_Init(128, param1);
+    param0->unk_04 = StringTemplate_Default(heapID);
+    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0407, heapID);
+    param0->unk_0C = Strbuf_Init(128, heapID);
+    param0->unk_10 = Strbuf_Init(128, heapID);
 }
 
 static void ov115_02263C04(UnkStruct_ov115_02261ADC *param0)
@@ -3311,7 +3311,7 @@ static void ov115_02263DF4(UnkStruct_ov115_02261ADC *param0)
     return;
 }
 
-static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 param2, NNSFndAllocator *param3)
+static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 heapID, NNSFndAllocator *param3)
 {
     static const u16 v0[6] = {
         26,
@@ -3335,7 +3335,7 @@ static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 p
     memset(param0, 0, sizeof(UnkStruct_ov115_02263DF8));
 
     for (v2 = 0; v2 < 3; v2++) {
-        Easy3DModel_LoadFrom(&param0->unk_168[v2], param1, v1[v2], param2);
+        Easy3DModel_LoadFrom(&param0->unk_168[v2], param1, v1[v2], heapID);
         Easy3DObject_Init(&param0->unk_00[v2], &param0->unk_168[v2]);
         Easy3DObject_SetVisibility(&param0->unk_00[v2], 0);
         Easy3DObject_SetPosition(&param0->unk_00[v2], Unk_ov115_02265B20.x, Unk_ov115_02265B20.y + (-FX32_CONST(200)), Unk_ov115_02265B20.z);
@@ -3343,7 +3343,7 @@ static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 p
     }
 
     for (v2 = 0; v2 < 6; v2++) {
-        Easy3DAnim_LoadFrom(&param0->unk_198[v2], &param0->unk_168[Unk_ov115_02266644[v2]], param1, v0[v2], param2, param3);
+        Easy3DAnim_LoadFrom(&param0->unk_198[v2], &param0->unk_168[Unk_ov115_02266644[v2]], param1, v0[v2], heapID, param3);
         Easy3DAnim_SetFrame(&param0->unk_198[v2], 0);
 
         v3 = 0;
@@ -3364,7 +3364,7 @@ static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 p
     }
 
     for (v2 = 0; v2 < 1; v2++) {
-        Easy3DAnim_LoadFrom(&param0->unk_214[v2], &param0->unk_168[Unk_ov115_02265AE0[v2]], param1, 32, param2, param3);
+        Easy3DAnim_LoadFrom(&param0->unk_214[v2], &param0->unk_168[Unk_ov115_02265AE0[v2]], param1, 32, heapID, param3);
         Easy3DObject_AddAnim(&param0->unk_00[Unk_ov115_02265AE0[v2]], &param0->unk_214[v2]);
     }
 
@@ -3582,7 +3582,7 @@ static void ov115_0226439C(const VecFx32 *param0, VecFx32 *param1, u32 param2, u
     MTX_MultVec33(param0, &v0, param1);
 }
 
-static void ov115_022643EC(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 param2)
+static void ov115_022643EC(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 heapID)
 {
     BOOL v0;
     int v1;
@@ -3595,17 +3595,17 @@ static void ov115_022643EC(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 p
     };
 
     for (v1 = 0; v1 < 5; v1++) {
-        Easy3DModel_LoadFrom(&param0->unk_760.unk_00[v1], param1, v2[v1], param2);
+        Easy3DModel_LoadFrom(&param0->unk_760.unk_00[v1], param1, v2[v1], heapID);
     }
 
-    Easy3DModel_LoadFrom(&param0->unk_760.unk_50, param1, 46, param2);
+    Easy3DModel_LoadFrom(&param0->unk_760.unk_50, param1, 46, heapID);
     NNS_G3dMdlUseGlbAlpha(param0->unk_760.unk_50.model);
 
     {
-        param0->unk_760.unk_60[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1AC[0], param1, 7, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, param2);
-        param0->unk_760.unk_60[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1AC[1], param1, 4, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, 4, param2);
-        param0->unk_760.unk_60[2] = SpriteResourceCollection_AddFrom(param0->unk_1AC[2], param1, 6, 0, 100, 2, param2);
-        param0->unk_760.unk_60[3] = SpriteResourceCollection_AddFrom(param0->unk_1AC[3], param1, 5, 0, 100, 3, param2);
+        param0->unk_760.unk_60[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1AC[0], param1, 7, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, heapID);
+        param0->unk_760.unk_60[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1AC[1], param1, 4, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, 4, heapID);
+        param0->unk_760.unk_60[2] = SpriteResourceCollection_AddFrom(param0->unk_1AC[2], param1, 6, 0, 100, 2, heapID);
+        param0->unk_760.unk_60[3] = SpriteResourceCollection_AddFrom(param0->unk_1AC[3], param1, 5, 0, 100, 3, heapID);
 
         v0 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_760.unk_60[0]);
         GF_ASSERT(v0);
@@ -3619,7 +3619,7 @@ static void ov115_022643EC(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 p
     SpriteResourcesHeader_Init(&param0->unk_760.unk_70, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1AC[0], param0->unk_1AC[1], param0->unk_1AC[2], param0->unk_1AC[3], NULL, NULL);
 
     for (v1 = 0; v1 < 96; v1++) {
-        ov115_022646BC(param0, &param0->unk_7F4[v1], param2);
+        ov115_022646BC(param0, &param0->unk_7F4[v1], heapID);
     }
 }
 
@@ -4089,7 +4089,7 @@ static void ov115_02264DD8(int param0, int param1, int param2, int param3, int p
     *param6 = FX_Mul(CalcSineDegrees(v0), param2 << FX32_SHIFT) >> FX32_SHIFT;
 }
 
-static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, int param3, u32 param4, u32 param5, NNSFndAllocator *param6)
+static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, int param3, u32 param4, u32 heapID, NNSFndAllocator *param6)
 {
     static const u16 v0[4] = {
         35,
@@ -4119,7 +4119,7 @@ static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_022
             v3 = v0[param3 - 1];
         }
 
-        Easy3DModel_LoadFrom(&param0->unk_168[v4], param2, v3, param5);
+        Easy3DModel_LoadFrom(&param0->unk_168[v4], param2, v3, heapID);
         Easy3DObject_Init(&param0->unk_00[v4], &param0->unk_168[v4]);
         Easy3DObject_SetPosition(&param0->unk_00[v4], 0, (FX32_CONST(-90) - FX32_CONST(8)), 0);
         Easy3DObject_SetScale(&param0->unk_00[v4], (FX32_CONST(1.50f)), (FX32_CONST(1.50f)), (FX32_CONST(1.50f)));
@@ -4136,7 +4136,7 @@ static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_022
     }
 
     for (v4 = 0; v4 < 3; v4++) {
-        Easy3DAnim_LoadFrom(&param0->unk_198[v4], &param0->unk_168[v2[v4]], param2, v1[v4], param5, param6);
+        Easy3DAnim_LoadFrom(&param0->unk_198[v4], &param0->unk_168[v2[v4]], param2, v1[v4], heapID, param6);
         Easy3DObject_AddAnim(&param0->unk_00[v2[v4]], &param0->unk_198[v4]);
     }
 
@@ -4369,7 +4369,7 @@ static void ov115_022653F4(UnkStruct_ov115_02261ADC *param0, s16 param1, u16 par
 
 static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, u32 heapID)
 {
-    param0->unk_9C = heapID;
+    param0->heapID = heapID;
 
     {
         BOOL v0;
@@ -4434,7 +4434,7 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         v4.unk_20 = 0;
         v4.unk_24 = 0;
         v4.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v4.unk_2C = heapID;
+        v4.heapID = heapID;
 
         param0->unk_48 = sub_02012B60(&v4, param0->unk_4C);
 
@@ -4478,7 +4478,7 @@ static void ov115_02265700(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         Strbuf_FormatInt(param0->unk_5C, param2, 2, 2, 1);
         Window_AddToTopLeftCorner(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
         Text_AddPrinterWithParamsAndColor(&param0->unk_38, FONT_SYSTEM, param0->unk_5C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-        sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->unk_9C);
+        sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->heapID);
         Window_Remove(&param0->unk_38);
     }
 
@@ -4507,7 +4507,7 @@ static void ov115_022657A8(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
             Strbuf_FormatInt(param0->unk_5C, param2, 2, 2, 1);
             Window_AddToTopLeftCorner(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
             Text_AddPrinterWithParamsAndColor(&param0->unk_38, FONT_SYSTEM, param0->unk_5C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-            sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->unk_9C);
+            sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->heapID);
             Window_Remove(&param0->unk_38);
         }
 

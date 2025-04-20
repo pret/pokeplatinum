@@ -2813,7 +2813,7 @@ static void ov23_0224108C(void)
         v2.affineZRotation = 0;
         v2.priority = 0;
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v2.heapID = 29;
+        v2.heapID = HEAP_ID_29;
         v2.position.x = FX32_ONE * 0;
         v2.position.y = FX32_ONE * 240;
 

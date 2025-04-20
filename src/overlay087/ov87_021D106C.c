@@ -500,7 +500,7 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
     v2.resourceData = &v1;
     v2.position.z = 0;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.heapID = 61;
+    v2.heapID = HEAP_ID_61;
 
     v7 = Graphics_GetCharData(27, 76, 0, &v5, HEAP_ID_61);
     v8 = Graphics_GetPlttData(27, 75, &v6, HEAP_ID_61);

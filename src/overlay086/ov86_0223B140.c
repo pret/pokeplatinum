@@ -818,7 +818,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     VEC_Set(&(v3.position), 0, 0, 0);
 
     v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v3.heapID = 63;
+    v3.heapID = HEAP_ID_63;
 
     v9 = Graphics_GetCharDataFromOpenNARC(param3, 76, 0, &v7, HEAP_ID_63);
     v10 = Graphics_GetPlttDataFromOpenNARC(param3, 75, &v8, HEAP_ID_63);

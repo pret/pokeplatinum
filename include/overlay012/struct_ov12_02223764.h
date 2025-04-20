@@ -8,7 +8,7 @@
 #include "sprite_system.h"
 
 typedef struct {
-    int unk_00;
+    int heapID;
     int unk_04;
     UnkStruct_ov12_02223764_sub1 unk_08;
     int unk_14[4];

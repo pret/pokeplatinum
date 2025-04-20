@@ -452,15 +452,15 @@ static void ov112_0225C970(UnkStruct_ov112_0225C970 *param0, const UnkStruct_ov6
     ov112_0225CA14(&param0->unk_08);
 }
 
-static void ov112_0225C9BC(UnkStruct_ov112_0225C9BC *param0, u32 param1)
+static void ov112_0225C9BC(UnkStruct_ov112_0225C9BC *param0, u32 heapID)
 {
-    param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__LOBBY_NEWS, param1);
+    param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__LOBBY_NEWS, heapID);
 
-    VramTransfer_New(48, param1);
+    VramTransfer_New(48, heapID);
     GXLayers_SetBanks(&Unk_ov112_0225D858);
 
-    ov112_0225CA34(param0, param1);
-    ov112_0225CB98(param0, param1);
+    ov112_0225CA34(param0, heapID);
+    ov112_0225CB98(param0, heapID);
 }
 
 static void ov112_0225C9F4(UnkStruct_ov112_0225C9BC *param0)
@@ -937,20 +937,20 @@ static void ov112_0225D1B8(const UnkStruct_ov112_0225D180 *param0, const NNSG2dP
     }
 }
 
-static void ov112_0225D1EC(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2)
+static void ov112_0225D1EC(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov112_0225C9BC *param1, u32 heapID)
 {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        ov112_0225D408(&param0->unk_00[v0], param1, v0, param2);
+        ov112_0225D408(&param0->unk_00[v0], param1, v0, heapID);
 
         Window_Add(param1->unk_00, &param0->unk_60[v0], 3, 1, Unk_ov112_0225D804[v0], 30, 2, 7 + v0, 0x300 + ((30 * 2) * v0));
         Window_FillTilemap(&param0->unk_60[v0], 0);
         Window_ScheduleCopyToVRAM(&param0->unk_60[v0]);
     }
 
-    param0->unk_90 = Strbuf_Init(256, param2);
-    param0->unk_94 = Graphics_GetPlttDataFromOpenNARC(param1->unk_1A4, 0, &param0->unk_98, param2);
+    param0->unk_90 = Strbuf_Init(256, heapID);
+    param0->unk_94 = Graphics_GetPlttDataFromOpenNARC(param1->unk_1A4, 0, &param0->unk_98, heapID);
 
     Bg_LoadPalette(0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (7 * 0x20) + (13 * 2));
     Bg_LoadPalette(0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (8 * 0x20) + (13 * 2));
@@ -1024,11 +1024,11 @@ static void ov112_0225D3E0(UnkStruct_ov112_0225D2D0 *param0)
     }
 }
 
-static void ov112_0225D408(UnkStruct_ov112_0225D44C *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2, u32 param3)
+static void ov112_0225D408(UnkStruct_ov112_0225D44C *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2, u32 heapID)
 {
     param0->unk_00 = 0;
     param0->unk_02 = 0;
-    param0->unk_08 = Strbuf_Init(256, param3);
+    param0->unk_08 = Strbuf_Init(256, heapID);
     param0->unk_01 = 7 + param2;
 
     Window_Add(param1->unk_00, &param0->unk_0C, 3, 0, 0, 180, 2, 7, 0);
@@ -1105,7 +1105,7 @@ static void ov112_0225D4F8(const UnkStruct_ov112_0225D44C *param0, Window *param
     Window_ScheduleCopyToVRAM(param1);
 }
 
-static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2)
+static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_0225C9BC *param1, u32 heapID)
 {
     int v0;
     MessageLoader *v1;
@@ -1117,8 +1117,8 @@ static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_022
 
     memset(param0, 0, sizeof(UnkStruct_ov112_0225D6DC));
 
-    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0653, param2);
-    v2 = Strbuf_Init(128, param2);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0653, heapID);
+    v2 = Strbuf_Init(128, heapID);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov112_0225D73C(&param0->unk_40[v0], Unk_ov112_0225D960[v0], Unk_ov112_0225D968[v0]);
@@ -1131,7 +1131,7 @@ static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_022
 
         v3 = Strbuf_NumLines(v2);
         v7 = Unk_ov112_0225D880[v0].unk_08;
-        v4 = Strbuf_Init(Strbuf_Length(v2) + 1, param2);
+        v4 = Strbuf_Init(Strbuf_Length(v2) + 1, heapID);
         for (v5 = 0; v5 < v3; v5++) {
             Strbuf_CopyLineNum(v4, v2, v5);
             switch (Unk_ov112_0225D880[v0].unk_09) {

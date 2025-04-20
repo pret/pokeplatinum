@@ -267,7 +267,7 @@ static Sprite *ov20_021D4B40(UnkStruct_ov20_021D4AD4 *param0, NNSG2dImageProxy *
     v1.position.z = 0;
     v1.priority = param7;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-    v1.heapID = 35;
+    v1.heapID = HEAP_ID_35;
 
     v2 = SpriteList_Add(&v1);
 

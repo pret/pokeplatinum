@@ -45,7 +45,7 @@ struct UnkStruct_ov25_022555E8_t {
     u16 unk_10;
     u16 unk_12;
     GXOamAttr *unk_14;
-    u32 unk_18;
+    u32 heapID;
 };
 
 static void ov25_022559D8(UnkStruct_ov25_022558C4 **param0, UnkStruct_ov25_022558C4 *param1, u32 param2);
@@ -71,7 +71,7 @@ UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *param0, u32 hea
         v0->unk_0C = NULL;
         v0->unk_04 = NULL;
         v0->unk_00 = param0;
-        v0->unk_18 = heapID;
+        v0->heapID = heapID;
         v0->unk_10 = NNS_G2dGetOamManagerOamCapacity(param0);
         v0->unk_14 = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * v0->unk_10);
 
@@ -301,11 +301,11 @@ void ov25_02255950(UnkStruct_ov25_022558C4 *param0, u16 param1)
     param0->unk_90 = param1;
 }
 
-BOOL ov25_02255958(UnkStruct_ov25_02255958 *param0, u32 narcId, u32 memberId, u32 memberId2, enum HeapId heapId)
+BOOL ov25_02255958(UnkStruct_ov25_02255958 *param0, u32 narcId, u32 memberId, u32 memberId2, enum HeapId heapID)
 {
-    param0->unk_10 = heapId;
-    param0->unk_00 = LoadCompressedMemberFromNARC(narcId, memberId, heapId);
-    param0->unk_04 = LoadCompressedMemberFromNARC(narcId, memberId2, heapId);
+    param0->heapID = heapID;
+    param0->unk_00 = LoadCompressedMemberFromNARC(narcId, memberId, heapID);
+    param0->unk_04 = LoadCompressedMemberFromNARC(narcId, memberId2, heapID);
 
     if ((param0->unk_00 != NULL) && (param0->unk_04 != NULL)) {
         if (!NNS_G2dGetUnpackedCellBank(param0->unk_00, &(param0->unk_08))) {
@@ -323,12 +323,12 @@ BOOL ov25_02255958(UnkStruct_ov25_02255958 *param0, u32 narcId, u32 memberId, u3
 void ov25_022559B0(UnkStruct_ov25_02255958 *param0)
 {
     if (param0->unk_00 != NULL) {
-        Heap_FreeToHeapExplicit(param0->unk_10, param0->unk_00);
+        Heap_FreeToHeapExplicit(param0->heapID, param0->unk_00);
         param0->unk_00 = NULL;
     }
 
     if (param0->unk_04 != NULL) {
-        Heap_FreeToHeapExplicit(param0->unk_10, param0->unk_04);
+        Heap_FreeToHeapExplicit(param0->heapID, param0->unk_04);
         param0->unk_04 = NULL;
     }
 }

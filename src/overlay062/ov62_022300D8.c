@@ -660,7 +660,7 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
             Window_AddToTopLeftCorner(param0->unk_14.unk_10, &v6, 20, 2, 0, 0);
 
             v7[v11]->unk_18 = sub_02012B20(&v6, HEAP_ID_102);
-            v4 = sub_02012898(&v6, v8[v11], 102);
+            v4 = sub_02012898(&v6, v8[v11], HEAP_ID_102);
 
             CharTransfer_AllocRange(v4, 1, v8[v11], &v7[v11]->unk_1C);
             ManagedSprite_GetPositionXY(v7[v11]->unk_00, &v0, &v1);
@@ -676,7 +676,7 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
             v2.unk_20 = 3;
             v2.unk_24 = Unk_ov62_022488A8[v11][v10] - 1;
             v2.unk_28 = v8[v11];
-            v2.unk_2C = 102;
+            v2.heapID = HEAP_ID_102;
             v7[v11]->unk_14 = sub_02012B60(&v2, v7[v11]->unk_18);
 
             sub_02012AC0(v7[v11]->unk_14, (2 - 1));
@@ -701,9 +701,9 @@ void ov62_02230FC8(UnkStruct_0208C06C *param0, UnkStruct_ov62_022307C0_sub1 *par
         if (param0->unk_88C[param3->unk_18] == NULL) {
             v0 = MessageLoader_GetNewStrbuf(v1, param2);
         } else {
-            v3 = ov62_02231690(102);
+            v3 = ov62_02231690(HEAP_ID_102);
             v4 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 7);
-            v5 = sub_02030B94(param0->unk_88C[param3->unk_18], 102);
+            v5 = sub_02030B94(param0->unk_88C[param3->unk_18], HEAP_ID_102);
             ov62_022349A8(param0, v5);
             v0 = Strbuf_Init(255, HEAP_ID_102);
 
@@ -717,9 +717,9 @@ void ov62_02230FC8(UnkStruct_0208C06C *param0, UnkStruct_ov62_022307C0_sub1 *par
         if (param0->unk_88C[param3->unk_18] == NULL) {
             v0 = MessageLoader_GetNewStrbuf(v1, param2);
         } else {
-            v3 = ov62_02231690(102);
+            v3 = ov62_02231690(HEAP_ID_102);
             v4 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 7);
-            v5 = sub_02030B94(param0->unk_88C[param3->unk_18], 102);
+            v5 = sub_02030B94(param0->unk_88C[param3->unk_18], HEAP_ID_102);
             ov62_022349A8(param0, v5);
             v0 = Strbuf_Init(255, HEAP_ID_102);
 
@@ -736,7 +736,7 @@ void ov62_02230FC8(UnkStruct_0208C06C *param0, UnkStruct_ov62_022307C0_sub1 *par
     Window_Init(&v2);
     Window_AddToTopLeftCorner(param0->unk_14.unk_10, &v2, 20, 2, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
-    sub_02012BE0(param1->unk_14, param1->unk_18, &v2, 102);
+    sub_02012BE0(param1->unk_14, param1->unk_18, &v2, HEAP_ID_102);
     Strbuf_Free(v0);
     Window_Remove(&v2);
 }
@@ -776,7 +776,7 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     Window_AddToTopLeftCorner(param1->unk_10, &v6, 20, 2, 0, 0);
 
     param0->unk_10 = sub_02012B20(&v6, HEAP_ID_102);
-    v4 = sub_02012898(&v6, param2, 102);
+    v4 = sub_02012898(&v6, param2, HEAP_ID_102);
 
     CharTransfer_AllocRange(v4, 1, param2, &param0->unk_14);
     ManagedSprite_GetPositionXY(param0->unk_08, &v0, &v1);
@@ -792,7 +792,7 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     v2.unk_20 = 3;
     v2.unk_24 = 0;
     v2.unk_28 = param2;
-    v2.unk_2C = 102;
+    v2.heapID = HEAP_ID_102;
 
     param0->unk_0C = sub_02012B60(&v2, param0->unk_10);
 
@@ -813,7 +813,7 @@ void ov62_0223124C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     Window_Init(&v2);
     Window_AddToTopLeftCorner(param1->unk_10, &v2, 20, 2, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
-    sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
+    sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, HEAP_ID_102);
     Strbuf_Free(v0);
     Window_Remove(&v2);
 }

@@ -4327,7 +4327,7 @@ static int ov65_022323C0(UnkStruct_ov65_0222EBE0 *param0, int param1)
     if (ov65_022321A8(param0)) {
         (void)0;
     } else if (CommTiming_IsSyncState(18) && (ov65_02232390(param0) == 1)) {
-        sub_020391DC(param0->saveData, v1, 54);
+        sub_020391DC(param0->saveData, v1, HEAP_ID_54);
         ov65_02232DFC(param0);
 
         v2 = ov65_02234FA8(param0, ov4_021D2388());
@@ -6708,7 +6708,7 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 hea
     v7.unk_20 = 0;
     v7.unk_24 = 0;
     v7.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v7.unk_2C = heapID;
+    v7.heapID = heapID;
 
     param0->unk_BE0.unk_234 = sub_02012B60(&v7, v5);
 

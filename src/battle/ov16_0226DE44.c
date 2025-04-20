@@ -47,9 +47,9 @@ static const SpriteTemplate Unk_ov16_02270AD8 = {
     0x0
 };
 
-void ov16_0226DE44(SpriteSystem *param0, SpriteManager *param1, u32 param2, PaletteData *param3, u32 param4, u32 param5, u32 param6, u32 param7)
+void ov16_0226DE44(SpriteSystem *param0, SpriteManager *param1, u32 heapID, PaletteData *param3, u32 param4, u32 param5, u32 param6, u32 param7)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, param2);
+    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, heapID);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param3, PLTTBUF_SUB_OBJ, param0, param1, v0, 11, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
     SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, v0, 10, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, param4);

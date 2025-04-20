@@ -614,7 +614,7 @@ static void sub_02068ACC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     menu = FieldTask_GetEnv(param0->unk_00);
-    v2 = sub_0203D94C(fieldSystem, 3, Item_MailNumber(param0->unk_04), 11);
+    v2 = sub_0203D94C(fieldSystem, 3, Item_MailNumber(param0->unk_04), HEAP_ID_FIELDMAP);
 
     menu->unk_260 = sub_0203C540(param0->unk_04, 3, 0);
     menu->taskData = v2;
@@ -798,7 +798,7 @@ static void sub_02068CF0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem_StartFieldMap(fieldSystem);
 
     v3 = ov5_021F0484();
-    v2 = Heap_AllocFromHeapAtEnd(11, v3);
+    v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v3);
 
     memset(v2, 0, v3);
 
@@ -831,22 +831,19 @@ static u32 sub_02068D68(const UnkStruct_020684D0 *param0)
 
 static void sub_02068D80(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *menu;
-
-    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    menu = FieldTask_GetEnv(param0->unk_00);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->callback = ov5_021F08F8;
-    menu->taskData = ov5_021F08CC(fieldSystem, 11, 0);
+    menu->taskData = ov5_021F08CC(fieldSystem, HEAP_ID_FIELDMAP, 0);
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL sub_02068DBC(UnkStruct_02068870 *param0)
 {
-    void *v0 = ov5_021F08CC(param0->fieldSystem, 4, 0);
+    void *v0 = ov5_021F08CC(param0->fieldSystem, HEAP_ID_FIELD, 0);
 
     FieldSystem_CreateTask(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
@@ -854,22 +851,19 @@ static BOOL sub_02068DBC(UnkStruct_02068870 *param0)
 
 static void sub_02068DDC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *menu;
-
-    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    menu = FieldTask_GetEnv(param0->unk_00);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->callback = ov5_021F08F8;
-    menu->taskData = ov5_021F08CC(fieldSystem, 11, 1);
+    menu->taskData = ov5_021F08CC(fieldSystem, HEAP_ID_FIELDMAP, 1);
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL sub_02068E18(UnkStruct_02068870 *param0)
 {
-    void *v0 = ov5_021F08CC(param0->fieldSystem, 4, 1);
+    void *v0 = ov5_021F08CC(param0->fieldSystem, HEAP_ID_FIELD, 1);
 
     FieldSystem_CreateTask(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
@@ -877,22 +871,19 @@ static BOOL sub_02068E18(UnkStruct_02068870 *param0)
 
 static void sub_02068E38(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *menu;
-
-    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    menu = FieldTask_GetEnv(param0->unk_00);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->callback = ov5_021F08F8;
-    menu->taskData = ov5_021F08CC(fieldSystem, 11, 2);
+    menu->taskData = ov5_021F08CC(fieldSystem, HEAP_ID_FIELDMAP, 2);
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL sub_02068E74(UnkStruct_02068870 *param0)
 {
-    void *v0 = ov5_021F08CC(param0->fieldSystem, 4, 2);
+    void *v0 = ov5_021F08CC(param0->fieldSystem, HEAP_ID_FIELD, 2);
 
     FieldSystem_CreateTask(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
@@ -1035,7 +1026,7 @@ static u32 sub_020690C4(const UnkStruct_020684D0 *param0)
 static BOOL sub_020690F0(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    void *v1 = ov6_02247100(fieldSystem, 11);
+    void *v1 = ov6_02247100(fieldSystem, HEAP_ID_FIELDMAP);
 
     FieldTask_InitJump(task, ov6_02247120, v1);
     return 0;

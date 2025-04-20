@@ -31,18 +31,18 @@ typedef struct UnkStruct_020393C8_t {
 static int inline inline_02039614(UnkStruct_020393C8 *param0);
 static int inline inline_02039614_1(int param0, int param1);
 static void sub_02039428(SysTask *param0, void *param1);
-static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 param3);
-static void sub_02039530(int param0, BOOL param1, u32 param2);
+static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 heapID);
+static void sub_02039530(int param0, BOOL param1, u32 heapID);
 static void sub_02039614(UnkStruct_020393C8 *param0);
 
-UnkStruct_020393C8 *sub_020393C8(u32 param0, u32 param1, int param2, int param3, BOOL param4, const UnkStruct_020E5EB4 *param5[], int param6)
+UnkStruct_020393C8 *sub_020393C8(u32 param0, u32 heapID, int param2, int param3, BOOL param4, const UnkStruct_020E5EB4 *param5[], int param6)
 {
     UnkStruct_020393C8 *v0;
 
-    sub_020394D0(param6, param4, (16 * 2 * 14), param1);
-    sub_02039530(param6, param4, param1);
+    sub_020394D0(param6, param4, (16 * 2 * 14), heapID);
+    sub_02039530(param6, param4, heapID);
 
-    v0 = (UnkStruct_020393C8 *)Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_020393C8));
+    v0 = (UnkStruct_020393C8 *)Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_020393C8));
 
     v0->unk_18 = SysTask_ExecuteAfterVBlank(sub_02039428, v0, 5);
     v0->unk_0C = param2;
@@ -134,18 +134,18 @@ void sub_02039440(UnkStruct_020393C8 *param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02039474(UnkStruct_020393C8 *param0, BOOL param1, u32 param2)
+void sub_02039474(UnkStruct_020393C8 *param0, BOOL param1, u32 heapID)
 {
-    sub_020394D0(NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_10, (16 * 2 * 14), param2);
-    sub_02039530(NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_10, param2);
+    sub_020394D0(NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_10, (16 * 2 * 14), heapID);
+    sub_02039530(NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_10, heapID);
 
     param0->unk_11 = (param1) ? 1 : 2;
     param0->unk_12 = 1;
 }
 
-void *sub_020394A8(u32 param0)
+void *sub_020394A8(u32 heapID)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(param0, 600);
+    void *v0 = Heap_AllocFromHeapAtEnd(heapID, 600);
 
     ReadFileToBuffer("data/pl_wm.NCLR", &v0);
     DC_FlushRange(v0, 600);
@@ -153,9 +153,9 @@ void *sub_020394A8(u32 param0)
     return v0;
 }
 
-static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 param3)
+static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 heapID)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(param3, 600);
+    void *v0 = Heap_AllocFromHeapAtEnd(heapID, 600);
 
     if (v0) {
         NNSG2dPaletteData *v1;
@@ -174,9 +174,9 @@ static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 param3)
     }
 }
 
-static void sub_02039530(int param0, BOOL param1, u32 param2)
+static void sub_02039530(int param0, BOOL param1, u32 heapID)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(param2, 600);
+    void *v0 = Heap_AllocFromHeapAtEnd(heapID, 600);
 
     if (v0) {
         NNSG2dCharacterData *v1;
@@ -319,7 +319,7 @@ void sub_02039750(int param0, int param1, BOOL param2, int param3)
         sub_02039794();
     }
 
-    Unk_021C07D8 = sub_020393C8(0, 91, param0, param1, param2, Unk_02100A38, param3);
+    Unk_021C07D8 = sub_020393C8(0, HEAP_ID_91, param0, param1, param2, Unk_02100A38, param3);
 }
 
 void sub_02039794(void)
@@ -337,10 +337,10 @@ void sub_020397B0(int param0)
     }
 }
 
-void sub_020397C8(BOOL param0, u32 param1)
+void sub_020397C8(BOOL param0, u32 heapID)
 {
     if (Unk_021C07D8) {
-        sub_02039474(Unk_021C07D8, param0, param1);
+        sub_02039474(Unk_021C07D8, param0, heapID);
     }
 }
 

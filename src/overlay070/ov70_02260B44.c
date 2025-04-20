@@ -184,7 +184,7 @@ void ov70_02260CE0(UnkStruct_ov70_02260BB8 *param0)
     return;
 }
 
-void ov70_02260CE4(UnkStruct_ov70_02260BB8 *param0, int param1, int param2, u32 param3, u32 heapID)
+void ov70_02260CE4(UnkStruct_ov70_02260BB8 *param0, int param1, int param2, u32 heapID, u32 heapID2)
 {
     NARC *v0;
     UnkStruct_ov70_02261418 *v1;
@@ -192,14 +192,14 @@ void ov70_02260CE4(UnkStruct_ov70_02260BB8 *param0, int param1, int param2, u32 
     param0->unk_127 = param2;
     param0->unk_126 = param1;
 
-    v1 = ov70_022613F4(param1, param2, param3);
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY, param3);
+    v1 = ov70_022613F4(param1, param2, heapID);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY, heapID);
 
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_494, heapID, 4);
+    Heap_FndInitAllocatorForExpHeap(&param0->unk_494, heapID2, 4);
 
-    ov70_022614F4(&param0->unk_12C, v0, v1, heapID, &param0->unk_494);
-    ov70_02261B24(&param0->unk_29C, v0, &param0->unk_494, v1, heapID);
-    ov70_0226174C(&param0->unk_1C4, v0, &param0->unk_494, v1, heapID);
+    ov70_022614F4(&param0->unk_12C, v0, v1, heapID2, &param0->unk_494);
+    ov70_02261B24(&param0->unk_29C, v0, &param0->unk_494, v1, heapID2);
+    ov70_0226174C(&param0->unk_1C4, v0, &param0->unk_494, v1, heapID2);
 
     NARC_dtor(v0);
 

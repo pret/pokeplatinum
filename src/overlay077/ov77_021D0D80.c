@@ -138,7 +138,7 @@ static BOOL ov77_021D1A60(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
 static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int heapID);
 static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
 static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
-static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int param1);
+static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int heapID);
 static void ov77_021D1514(UnkStruct_ov77_021D1208 *param0);
 static void ov77_021D1704(UnkStruct_ov77_021D1208 *param0);
 static void ov77_021D1984(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D1208 *param1);
@@ -389,17 +389,17 @@ static void ov77_021D11FC(UnkStruct_ov77_021D17B4 *param0)
     sub_020242C4(param0->unk_08);
 }
 
-static void ov77_021D1208(UnkStruct_ov77_021D1208 *param0, int param1, int param2, int param3)
+static void ov77_021D1208(UnkStruct_ov77_021D1208 *param0, int param1, int param2, int heapID)
 {
     void *v0;
     void *v1;
     NNSG3dResTex *v2;
 
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_70, param3, 4);
+    Heap_FndInitAllocatorForExpHeap(&param0->unk_70, heapID, 4);
 
-    param0->unk_5C = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param1, param3);
-    param0->unk_60 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param2, param3);
-    param0->unk_64 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 2, param3);
+    param0->unk_5C = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param1, heapID);
+    param0->unk_60 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param2, heapID);
+    param0->unk_64 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 2, heapID);
 
     Easy3D_InitRenderObjFromResource(&param0->unk_04, &param0->unk_58, &param0->unk_5C);
 
@@ -428,23 +428,23 @@ static void ov77_021D1208(UnkStruct_ov77_021D1208 *param0, int param1, int param
 
     param0->unk_AC = 0;
 
-    ov77_021D1300(param0, param3);
+    ov77_021D1300(param0, heapID);
 }
 
-static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int param1)
+static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int heapID)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param1);
+    NARC *v0 = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, heapID);
 
     {
-        Easy3DModel_LoadFrom(&param0->unk_150, v0, 19, param1);
+        Easy3DModel_LoadFrom(&param0->unk_150, v0, 19, heapID);
 
         NNS_G3dMdlUseMdlAlpha(param0->unk_150.model);
         NNS_G3dMdlUseMdlPolygonID(param0->unk_150.model);
 
-        Easy3DAnim_LoadFrom(&param0->unk_128, &param0->unk_150, v0, 21, param1, &param0->unk_70);
+        Easy3DAnim_LoadFrom(&param0->unk_128, &param0->unk_150, v0, 21, heapID, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_128, 0);
 
-        Easy3DAnim_LoadFrom(&param0->unk_13C, &param0->unk_150, v0, 20, param1, &param0->unk_70);
+        Easy3DAnim_LoadFrom(&param0->unk_13C, &param0->unk_150, v0, 20, heapID, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_13C, 0);
 
         Easy3DObject_Init(&param0->unk_B0, &param0->unk_150);
@@ -458,14 +458,14 @@ static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int param1)
     }
 
     {
-        Easy3DModel_LoadFrom(&param0->unk_200, v0, 16, param1);
+        Easy3DModel_LoadFrom(&param0->unk_200, v0, 16, heapID);
         NNS_G3dMdlUseMdlAlpha(param0->unk_200.model);
         NNS_G3dMdlUseMdlPolygonID(param0->unk_200.model);
 
-        Easy3DAnim_LoadFrom(&param0->unk_1D8, &param0->unk_200, v0, 18, param1, &param0->unk_70);
+        Easy3DAnim_LoadFrom(&param0->unk_1D8, &param0->unk_200, v0, 18, heapID, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_1D8, 0);
 
-        Easy3DAnim_LoadFrom(&param0->unk_1EC, &param0->unk_200, v0, 17, param1, &param0->unk_70);
+        Easy3DAnim_LoadFrom(&param0->unk_1EC, &param0->unk_200, v0, 17, heapID, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_1EC, 0);
 
         Easy3DObject_Init(&param0->unk_160, &param0->unk_200);
@@ -1209,21 +1209,21 @@ static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
     return 1;
 }
 
-static void ov77_021D2214(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 *param2)
+static void ov77_021D2214(BgConfig *param0, int heapID, UnkStruct_ov77_021D1568 *param2)
 {
     {
         int v0, v1;
 
-        Graphics_LoadTilesToBgLayer(48, 23, param0, 7, 0, 0, 0, param1);
-        Graphics_LoadTilesToBgLayer(48, 26, param0, 3, 0, 0, 0, param1);
-        Graphics_LoadTilemapToBgLayer(48, 24, param0, 7, 0, 0, 0, param1);
-        Graphics_LoadTilemapToBgLayer(48, 27, param0, 3, 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayer(48, 23, param0, 7, 0, 0, 0, heapID);
+        Graphics_LoadTilesToBgLayer(48, 26, param0, 3, 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(48, 24, param0, 7, 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(48, 27, param0, 3, 0, 0, 0, heapID);
 
         v0 = 7;
         v1 = 6;
 
-        Graphics_LoadPalette(48, v0, 4, 0, 0, param1);
-        Graphics_LoadPalette(48, v1, 0, 0, 0, param1);
+        Graphics_LoadPalette(48, v0, 4, 0, 0, heapID);
+        Graphics_LoadPalette(48, v1, 0, 0, 0, heapID);
     }
     {
         int v2, v3;
@@ -1231,19 +1231,19 @@ static void ov77_021D2214(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 
         v2 = 12;
         v3 = 11;
 
-        Graphics_LoadTilesToBgLayer(48, v2, param0, 6, 0, 0, 0, param1);
-        Graphics_LoadPalette(48, v3, 6, 0x4000, 0, param1);
-        Graphics_LoadTilemapToBgLayer(48, 22, param0, 6, 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayer(48, v2, param0, 6, 0, 0, 0, heapID);
+        Graphics_LoadPalette(48, v3, 6, 0x4000, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(48, 22, param0, 6, 0, 0, 0, heapID);
     }
     {
-        Graphics_LoadTilesToBgLayer(128, 14, param0, 5, 0, 0, 0, param1);
-        Graphics_LoadPalette(128, 13, 6, 0x2000, 0, param1);
-        Graphics_LoadTilemapToBgLayer(128, 12, param0, 5, 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayer(128, 14, param0, 5, 0, 0, 0, heapID);
+        Graphics_LoadPalette(128, 13, 6, 0x2000, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(128, 12, param0, 5, 0, 0, 0, heapID);
     }
     {
-        Graphics_LoadTilesToBgLayer(48, 5, param0, 1, 0, 0, 0, param1);
-        Graphics_LoadTilemapToBgLayer(48, 3, param0, 1, 0, 0, 0, param1);
-        Graphics_LoadPalette(48, 4, 0, 32 * 1, 32 * 3, param1);
+        Graphics_LoadTilesToBgLayer(48, 5, param0, 1, 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(48, 3, param0, 1, 0, 0, 0, heapID);
+        Graphics_LoadPalette(48, 4, 0, 32 * 1, 32 * 3, heapID);
     }
 
     Bg_MaskPalette(0, 0x0);
@@ -1254,10 +1254,10 @@ static void ov77_021D2214(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 
         Strbuf *v5;
         u32 v6;
 
-        Bg_ClearTilesRange(4, 32, 0, param1);
+        Bg_ClearTilesRange(4, 32, 0, heapID);
 
-        v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0609, param1);
-        v5 = Strbuf_Init(64, param1);
+        v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0609, heapID);
+        v5 = Strbuf_Init(64, heapID);
 
         Window_AddFromTemplate(param0, &param2->unk_22C, &Unk_ov77_021D72D0);
         Window_FillRectWithColor(&param2->unk_22C, 0, 0, 0, 28 * 8, 2 * 8);

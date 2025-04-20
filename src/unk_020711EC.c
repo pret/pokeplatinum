@@ -40,7 +40,7 @@ typedef struct UnkStruct_ov101_021D5D90_t {
 typedef struct UnkStruct_020711EC_t {
     int unk_00;
     int unk_04;
-    int unk_08;
+    int heapID;
     UnkStruct_ov101_021D5D90 *unk_0C;
 } UnkStruct_020711EC;
 
@@ -68,7 +68,7 @@ UnkStruct_020711EC *sub_020711EC(int heapID, int param1)
 
     v0->unk_0C = sub_0207145C(heapID, param1);
     v0->unk_00 = param1;
-    v0->unk_08 = heapID;
+    v0->heapID = heapID;
 
     return v0;
 }
@@ -250,7 +250,7 @@ static UnkStruct_020711EC *sub_0207142C(int heapID)
 
 static void sub_02071450(UnkStruct_020711EC *param0)
 {
-    Heap_FreeToHeapExplicit(param0->unk_08, param0);
+    Heap_FreeToHeapExplicit(param0->heapID, param0);
 }
 
 static UnkStruct_ov101_021D5D90 *sub_0207145C(int heapID, int param1)
@@ -268,7 +268,7 @@ static UnkStruct_ov101_021D5D90 *sub_0207145C(int heapID, int param1)
 
 static void sub_02071480(UnkStruct_020711EC *param0)
 {
-    Heap_FreeToHeapExplicit(param0->unk_08, param0->unk_0C);
+    Heap_FreeToHeapExplicit(param0->heapID, param0->unk_0C);
 }
 
 static void sub_02071490(UnkStruct_ov101_021D5D90 *param0)
