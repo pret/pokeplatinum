@@ -730,7 +730,7 @@ static BOOL ScrCmd_GetRotomFormsInSave(ScriptContext *ctx);
 static BOOL ScrCmd_30A(ScriptContext *ctx);
 static BOOL ScrCmd_311(ScriptContext *ctx);
 static BOOL ScrCmd_312(ScriptContext *ctx);
-static BOOL ScrCmd_31F(ScriptContext *ctx);
+static BOOL ScrCmd_ResetDistortionWorldPersistedCameraAngles(ScriptContext *ctx);
 static BOOL ScrCmd_313(ScriptContext *ctx);
 static BOOL ScrCmd_StartGiratinaOriginBattle(ScriptContext *ctx);
 static BOOL ScrCmd_WriteSpeciesSeen(ScriptContext *ctx);
@@ -1565,7 +1565,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckPartyHasFatefulEncounter,
     ScrCmd_31D,
     ScrCmd_31E,
-    ScrCmd_31F,
+    ScrCmd_ResetDistortionWorldPersistedCameraAngles,
     ScrCmd_320,
     ScrCmd_321,
     ScrCmd_322,
@@ -8110,12 +8110,12 @@ static BOOL ScrCmd_312(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_31F(ScriptContext *ctx)
+static BOOL ScrCmd_ResetDistortionWorldPersistedCameraAngles(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov9_02249FD0(fieldSystem);
-    return 0;
+    DistWorld_ResetPersistedCameraAngles(fieldSystem);
+    return FALSE;
 }
 
 u32 Unk_021C07E8;
