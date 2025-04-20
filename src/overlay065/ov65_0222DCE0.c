@@ -76,7 +76,7 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201E3D8.h"
-#include "unk_02023FCC.h"
+#include "touch_screen_actions.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C858.h"
 #include "unk_0203061C.h"
@@ -141,7 +141,7 @@ static void ov65_0223366C(UnkStruct_ov65_0222EBE0 *param0, u32 param1);
 static u32 ov65_0223368C(const UnkStruct_ov65_0222EBE0 *param0, u32 param1);
 static void ov65_022336A4(UnkStruct_ov65_0222EBE0 *param0, u32 heapID);
 static void ov65_022336C4(UnkStruct_ov65_0222EBE0 *param0);
-static void ov65_022332C4(u32 param0, u32 param1, void *param2);
+static void ov65_022332C4(u32 param0, enum TouchScreenButtonState param1, void *param2);
 static void ov65_02234A10(UnkStruct_ov65_0222EBE0 *param0);
 static void ov65_022332FC(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 heapID);
 static void ov65_02233570(UnkStruct_ov65_0222EBE0 *param0);
@@ -169,7 +169,7 @@ static void ov65_02234CFC(UnkStruct_ov65_0222EBE0 *param0);
 static void ov65_02234D6C(UnkStruct_ov65_0222EBE0 *param0);
 static void ov65_02234DA0(UnkStruct_ov65_0222EBE0 *param0);
 static u32 ov65_02234DD8(UnkStruct_ov65_0222EBE0 *param0);
-static void ov65_02234E40(u32 param0, u32 param1, void *param2);
+static void ov65_02234E40(u32 param0, enum TouchScreenButtonState param1, void *param2);
 static void ov65_02234E50(UnkStruct_ov65_02234E50 *param0, u32 param1);
 static BOOL ov65_02234E8C(UnkStruct_ov65_02234E50 *param0, u32 param1, u32 param2, u32 param3);
 static void ov65_02234F68(UnkStruct_ov65_0222EBE0 *param0, int param1);
@@ -4935,7 +4935,7 @@ static void ov65_02232FE0(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 hea
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
 
-    param0->unk_BE0.unk_4C = sub_02023FCC(v0, 8, ov65_022332C4, param0, heapID);
+    param0->unk_BE0.unk_4C = TouchScreenActions_RegisterHandler(v0, 8, ov65_022332C4, param0, heapID);
     param0->unk_BE0.unk_00 = StringTemplate_Default(heapID);
 
     ov65_022332FC(param0, param1, heapID);
@@ -4954,7 +4954,7 @@ static void ov65_02233068(UnkStruct_ov65_0222EBE0 *param0)
 
     ov65_02233570(param0);
 
-    sub_02024034(param0->unk_BE0.unk_4C);
+    TouchScreenActions_Free(param0->unk_BE0.unk_4C);
     param0->unk_BE0.unk_4C = NULL;
 
     StringTemplate_Free(param0->unk_BE0.unk_00);
@@ -5000,7 +5000,7 @@ static u32 ov65_022330C0(UnkStruct_ov65_0222EBE0 *param0, u32 heapID)
     }
 
     if (param0->unk_BE0.unk_73 == 0) {
-        sub_0202404C(param0->unk_BE0.unk_4C);
+        TouchScreenActions_HandleAction(param0->unk_BE0.unk_4C);
         ov65_02234A10(param0);
 
         if (param0->unk_BE0.unk_75 == 1) {
@@ -5097,7 +5097,7 @@ static void ov65_0223327C(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
     }
 }
 
-static void ov65_022332C4(u32 param0, u32 param1, void *param2)
+static void ov65_022332C4(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_ov65_0222EBE0 *v0 = param2;
     u32 v1 = (v0->unk_BE0.unk_70 * 8) + param0;
@@ -5112,7 +5112,7 @@ static void ov65_022332C4(u32 param0, u32 param1, void *param2)
     }
 
     switch (param1) {
-    case 0:
+    case TOUCH_BUTTON_PRESSED:
         v0->unk_BE0.unk_71 = v1;
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         break;
@@ -6716,14 +6716,14 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 hea
     Window_Remove(&v3);
     Font_Free(FONT_SUBSCREEN);
 
-    param0->unk_BE0.unk_244 = sub_02023FCC(Unk_ov65_0223895C, 3, ov65_02234E40, param0, heapID);
+    param0->unk_BE0.unk_244 = TouchScreenActions_RegisterHandler(Unk_ov65_0223895C, 3, ov65_02234E40, param0, heapID);
 }
 
 static void ov65_02234CFC(UnkStruct_ov65_0222EBE0 *param0)
 {
     int v0;
 
-    sub_02024034(param0->unk_BE0.unk_244);
+    TouchScreenActions_Free(param0->unk_BE0.unk_244);
     sub_02012BD8(param0->unk_BE0.unk_234);
     CharTransfer_ClearRange(&param0->unk_BE0.unk_228);
 
@@ -6776,7 +6776,7 @@ static u32 ov65_02234DD8(UnkStruct_ov65_0222EBE0 *param0)
     param0->unk_BE0.unk_23C = 3;
     param0->unk_BE0.unk_240 = 0xff;
 
-    sub_0202404C(param0->unk_BE0.unk_244);
+    TouchScreenActions_HandleAction(param0->unk_BE0.unk_244);
 
     for (v0 = 0; v0 < 3; v0++) {
         if ((param0->unk_BE0.unk_238 == 2) && (v0 == 1)) {
@@ -6793,7 +6793,7 @@ static u32 ov65_02234DD8(UnkStruct_ov65_0222EBE0 *param0)
     return 0;
 }
 
-static void ov65_02234E40(u32 param0, u32 param1, void *param2)
+static void ov65_02234E40(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_ov65_0222EBE0 *v0 = param2;
 

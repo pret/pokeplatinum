@@ -5,6 +5,7 @@
 #include "overlay062/struct_ov62_02246BF4.h"
 
 #include "game_options.h"
+#include "touch_screen.h"
 
 UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Options *param3);
 void ov62_02246B4C(UnkStruct_ov62_02246B00 *param0);
@@ -19,7 +20,7 @@ BOOL ov62_02247084(UnkStruct_ov62_02246BF4 *param0);
 void ov62_022470A8(UnkStruct_ov62_02246BF4 *param0);
 void ov62_02247160(UnkStruct_ov62_02246BF4 *param0);
 void ov62_02247220(UnkStruct_ov62_02246BF4 *param0);
-void ov62_0224730C(u32 param0, u32 param1, void *param2);
+void ov62_0224730C(u32 param0, enum TouchScreenButtonState param1, void *param2);
 void ov62_022474A8(UnkStruct_ov62_02246BF4 *param0);
 void ov62_02247504(UnkStruct_ov62_02246BF4 *param0);
 int ov62_02247518(UnkStruct_ov62_02246BF4 *param0, int param1);

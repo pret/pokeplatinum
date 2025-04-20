@@ -34,10 +34,10 @@
 #include "savedata.h"
 #include "sound.h"
 #include "system.h"
+#include "touch_screen_actions.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_0201E3D8.h"
-#include "unk_02023FCC.h"
 #include "unk_02024220.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
@@ -244,7 +244,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     sub_02097F20(v0->unk_00, v0->unk_3C4[0]);
     Heap_FreeToHeap(v0->unk_428);
     ov76_0223B678(v0);
-    sub_02024034(v0->unk_D4.unk_F8);
+    TouchScreenActions_Free(v0->unk_D4.unk_F8);
     PokemonSpriteManager_Free(v0->unk_D4.unk_D0);
     sub_02015FB8(v0->unk_D4.unk_188);
     ov76_0223B8C4(v0);

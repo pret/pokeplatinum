@@ -95,7 +95,7 @@ BOOL ov22_02254EDC(UnkStruct_ov22_02255040 *param0, int param1, int param2)
     TouchScreenHitTable v0;
 
     ov22_02255040(param0, &v0);
-    return sub_02022830(&v0, param1, param2);
+    return TouchScreen_IsTouchInHitTable(&v0, param1, param2);
 }
 
 void ov22_02254EF4(UnkStruct_ov22_02255040 *param0, s16 param1, s16 param2)

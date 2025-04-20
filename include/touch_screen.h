@@ -1,8 +1,17 @@
 #ifndef POKEPLATINUM_TOUCH_SCREEN_H
 #define POKEPLATINUM_TOUCH_SCREEN_H
 
-#define TOUCHSCREEN_USE_CIRCLE 0xfe
-#define TOUCHSCREEN_INPUT_NONE -1
+#define TOUCHSCREEN_TABLE_TERMINATOR 0xff
+#define TOUCHSCREEN_USE_CIRCLE       0xfe
+#define TOUCHSCREEN_INPUT_NONE       -1
+
+enum TouchScreenButtonState {
+    TOUCH_BUTTON_NOT_PRESSED = -1,
+    TOUCH_BUTTON_PRESSED,
+    TOUCH_BUTTON_RELEASED,
+    TOUCH_BUTTON_HELD,
+    TOUCH_BUTTON_HELD_OUT_OF_BOUNDS
+};
 
 /**
  * These two structs represent regions that can be checked on the touch screen.
@@ -28,8 +37,8 @@ typedef union {
 
 int TouchScreen_CheckRectangleHeld(const TouchScreenRect *rect);
 int TouchScreen_CheckRectanglePressed(const TouchScreenRect *rect);
-int sub_02022684(const TouchScreenHitTable *hitTable);
-int sub_020226DC(const TouchScreenHitTable *hitTable);
+int TouchScreen_CheckHeldHitTableID(const TouchScreenHitTable *hitTable);
+int TouchScreen_CheckPressedHitTableID(const TouchScreenHitTable *hitTable);
 BOOL TouchScreen_LocationHeld(const TouchScreenHitTable *hitTable);
 BOOL TouchScreen_LocationPressed(const TouchScreenHitTable *hitTable);
 BOOL TouchScreen_Touched(void);
@@ -42,7 +51,7 @@ BOOL TouchScreen_Touched(void);
 BOOL TouchScreen_Tapped(void);
 BOOL TouchScreen_GetHoldState(u32 *x, u32 *y);
 BOOL TouchScreen_GetTapState(u32 *x, u32 *y);
-int sub_020227DC(const TouchScreenHitTable *hitTable, u32 param1, u32 param2);
-BOOL sub_02022830(const TouchScreenHitTable *hitTable, u32 param1, u32 param2);
+int TouchScreen_CheckTouchedHitTableID(const TouchScreenHitTable *hitTable, u32 touchX, u32 touchY);
+BOOL TouchScreen_IsTouchInHitTable(const TouchScreenHitTable *hitTable, u32 touchX, u32 touchY);
 
-#endif // POKEPLATINUM_UNK_02022594_H
+#endif // POKEPLATINUM_TOUCH_SCREEN_H

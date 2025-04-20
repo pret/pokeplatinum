@@ -267,8 +267,8 @@ static u8 Unk_ov108_022437A0;
 static u8 Unk_ov108_022437A1;
 
 static const TouchScreenHitTable Unk_ov108_02243687[] = {
-    { 0xfe, 0x80, 0x60, 0x20 },
-    { 0xff, 0x0, 0x0, 0x0 }
+    { TOUCHSCREEN_USE_CIRCLE, 0x80, 0x60, 0x20 },
+    { TOUCHSCREEN_TABLE_TERMINATOR, 0x0, 0x0, 0x0 }
 };
 
 int ov108_02241AE0(OverlayManager *param0, int *param1)
@@ -1588,7 +1588,7 @@ static void ov108_02242F38(UnkStruct_ov108_02241DB0 *param0)
 
 static BOOL ov108_02242FE8(UnkStruct_ov108_02241DB0 *param0)
 {
-    int v0 = sub_020226DC(Unk_ov108_02243687);
+    int v0 = TouchScreen_CheckPressedHitTableID(Unk_ov108_02243687);
 
     if (v0 == 0) {
         ov108_02243008(param0);
