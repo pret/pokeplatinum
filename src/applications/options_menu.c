@@ -58,7 +58,7 @@
 
 #define HEAP_ALLOCATION_SIZE 0x10000
 
-enum {
+enum OptionsMenuEntryID {
     ENTRY_TEXT_SPEED = 0,
     ENTRY_SOUND_MODE,
     ENTRY_BATTLE_SCENE,
@@ -202,7 +202,7 @@ BOOL OptionsMenu_Exit(OverlayManager *ovyManager, int *state)
     return TRUE;
 }
 
-enum {
+enum OptonsMenuState {
     STATE_SETUP_MENU_VISUALS = 0,
     STATE_WAIT_FOR_FADE_IN,
     STATE_HANDLE_INPUT,

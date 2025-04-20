@@ -1,6 +1,6 @@
 #include "constants/species.h"
 
-enum {
+enum FormIconIndex {
     ICON_EGG = SPECIES_EGG,
     ICON_MANAPHY_EGG,
     ICON_DEOXYS_ATTACK,
