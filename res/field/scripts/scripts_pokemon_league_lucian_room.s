@@ -65,7 +65,7 @@ _00B7:
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     ClearFlag FLAG_UNK_0x0285
     AddObject 2
-    SetVar VAR_0x4001, 1
+    SetVar VAR_MAP_LOCAL_1, 1
     ReleaseAll
     End
 

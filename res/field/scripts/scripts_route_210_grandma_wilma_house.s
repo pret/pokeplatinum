@@ -72,21 +72,21 @@ _0097:
     End
 
 _00A2:
-    GetPartyCount VAR_0x4000
+    GetPartyCount VAR_MAP_LOCAL_0
 _00A6:
-    SubVar VAR_0x4000, 1
-    GetPartyMonSpecies VAR_0x4000, VAR_RESULT
+    SubVar VAR_MAP_LOCAL_0, 1
+    GetPartyMonSpecies VAR_MAP_LOCAL_0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _00FC
-    ScrCmd_248 VAR_0x8004, VAR_0x8005, VAR_0x4000
+    ScrCmd_248 VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_0
     GoToIfEq VAR_0x8004, 16, _00E7
     GoToIfEq VAR_0x8005, 16, _00E7
     GoTo _00FC
 
 _00E7:
-    CheckPartyMonHasMove VAR_RESULT, MOVE_DRACO_METEOR, VAR_0x4000
+    CheckPartyMonHasMove VAR_RESULT, MOVE_DRACO_METEOR, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _010F
 _00FC:
-    GoToIfNe VAR_0x4000, 0, _00A6
+    GoToIfNe VAR_MAP_LOCAL_0, 0, _00A6
     GoTo _0066
 
 _010F:

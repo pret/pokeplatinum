@@ -9,20 +9,20 @@
 
 _000E:
     GoToIfEq VAR_UNK_0x40DD, 0, _0048
-    ScrCmd_207 VAR_0x4000
-    GoToIfEq VAR_0x4000, 1, _004A
-    ScrCmd_1DD 55, 0, VAR_0x4000
-    SetVar VAR_0x4020, VAR_0x4000
-    ScrCmd_1DD 55, 1, VAR_0x4000
-    SetVar VAR_0x4021, VAR_0x4000
+    ScrCmd_207 VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _004A
+    ScrCmd_1DD 55, 0, VAR_MAP_LOCAL_0
+    SetVar VAR_0x4020, VAR_MAP_LOCAL_0
+    ScrCmd_1DD 55, 1, VAR_MAP_LOCAL_0
+    SetVar VAR_0x4021, VAR_MAP_LOCAL_0
 _0048:
     End
 
 _004A:
-    ScrCmd_1DD 55, 0, VAR_0x4000
-    SetVar VAR_0x4021, VAR_0x4000
-    ScrCmd_1DD 55, 1, VAR_0x4000
-    SetVar VAR_0x4020, VAR_0x4000
+    ScrCmd_1DD 55, 0, VAR_MAP_LOCAL_0
+    SetVar VAR_0x4021, VAR_MAP_LOCAL_0
+    ScrCmd_1DD 55, 1, VAR_MAP_LOCAL_0
+    SetVar VAR_0x4020, VAR_MAP_LOCAL_0
     End
 
 _0068:

@@ -54,11 +54,11 @@ _00B6:
     SetFlag FLAG_UNK_0x09CC
     SetFlag FLAG_UNK_0x02A1
     CalcAmitySquareBerryAndAccessoryManOptionID VAR_UNK_0x40AB
-    GetRandom VAR_0x4002, 5
-    GoToIfEq VAR_0x4002, 0, _00FE
-    GoToIfEq VAR_0x4002, 1, _0108
-    GoToIfEq VAR_0x4002, 2, _0112
-    GoToIfEq VAR_0x4002, 3, _011C
+    GetRandom VAR_MAP_LOCAL_2, 5
+    GoToIfEq VAR_MAP_LOCAL_2, 0, _00FE
+    GoToIfEq VAR_MAP_LOCAL_2, 1, _0108
+    GoToIfEq VAR_MAP_LOCAL_2, 2, _0112
+    GoToIfEq VAR_MAP_LOCAL_2, 3, _011C
     End
 
 _00FE:
@@ -100,7 +100,7 @@ _015A:
     End
 
 _0174:
-    SetVar VAR_0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     GoTo _0994
     End
 
@@ -113,7 +113,7 @@ _0182:
     End
 
 _0195:
-    SetVar VAR_0x4000, 1
+    SetVar VAR_MAP_LOCAL_0, 1
     GoTo _0ACC
     End
 
@@ -126,25 +126,25 @@ _01A3:
     End
 
 _01B6:
-    SetVar VAR_0x400A, 0
-    GetPartyCount VAR_0x400B
-    SetVar VAR_0x400C, 0
+    SetVar VAR_MAP_LOCAL_A, 0
+    GetPartyCount VAR_MAP_LOCAL_B
+    SetVar VAR_MAP_LOCAL_C, 0
     GoTo _01CE
     End
 
 _01CE:
-    GetPartyMonSpecies VAR_0x400A, VAR_RESULT
+    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, _026D
-    CallIfEq VAR_0x4000, 0, _0C50
-    CallIfEq VAR_0x4000, 1, _0D36
+    CallIfEq VAR_MAP_LOCAL_0, 0, _0C50
+    CallIfEq VAR_MAP_LOCAL_0, 1, _0D36
     GoToIfEq VAR_RESULT, 0, _026D
-    BufferPartyMonNickname 0, VAR_0x400A
-    GoToIfEq VAR_0x400C, 0, _0229
-    GoToIfNe VAR_0x400C, 0, _024B
+    BufferPartyMonNickname 0, VAR_MAP_LOCAL_A
+    GoToIfEq VAR_MAP_LOCAL_C, 0, _0229
+    GoToIfNe VAR_MAP_LOCAL_C, 0, _024B
     End
 
 _0229:
-    AddVar VAR_0x400C, 1
+    AddVar VAR_MAP_LOCAL_C, 1
     Message 2
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _0299
@@ -152,7 +152,7 @@ _0229:
     End
 
 _024B:
-    AddVar VAR_0x400C, 1
+    AddVar VAR_MAP_LOCAL_C, 1
     Message 4
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _0299
@@ -160,9 +160,9 @@ _024B:
     End
 
 _026D:
-    AddVar VAR_0x400A, 1
-    SubVar VAR_0x400B, 1
-    GoToIfNe VAR_0x400B, 0, _01CE
+    AddVar VAR_MAP_LOCAL_A, 1
+    SubVar VAR_MAP_LOCAL_B, 1
+    GoToIfNe VAR_MAP_LOCAL_B, 0, _01CE
     Message 5
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
@@ -174,8 +174,8 @@ _0299:
     HealParty
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    SetVar VAR_UNK_0x409D, VAR_0x400A
-    GetPartyMonSpecies VAR_0x400A, VAR_UNK_0x409A
+    SetVar VAR_UNK_0x409D, VAR_MAP_LOCAL_A
+    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_UNK_0x409A
     GoTo _0E48
     End
 
@@ -558,12 +558,12 @@ _07E7:
     End
 
 _07F2:
-    SetVar VAR_0x400A, 0
+    SetVar VAR_MAP_LOCAL_A, 0
     GoTo _080E
     End
 
 _0800:
-    SetVar VAR_0x400A, 1
+    SetVar VAR_MAP_LOCAL_A, 1
     GoTo _080E
     End
 
@@ -579,7 +579,7 @@ _080E:
     CallIfEq VAR_RESULT, 3, _0893
     CallIfEq VAR_RESULT, 4, _0898
     CallIfEq VAR_RESULT, 5, _089D
-    GoToIfEq VAR_0x400A, 0, _08A2
+    GoToIfEq VAR_MAP_LOCAL_A, 0, _08A2
     GoTo _08B4
     End
 
@@ -803,7 +803,7 @@ _0ACC:
     End
 
 _0C50:
-    GetPartyMonSpecies VAR_0x400A, VAR_RESULT
+    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
     GoToIfEq VAR_RESULT, 25, _0D2E
     GoToIfEq VAR_RESULT, 35, _0D2E
     GoToIfEq VAR_RESULT, 54, _0D2E
@@ -828,7 +828,7 @@ _0D2E:
     Return
 
 _0D36:
-    GetPartyMonSpecies VAR_0x400A, VAR_RESULT
+    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
     GoToIfEq VAR_RESULT, 25, _0D2E
     GoToIfEq VAR_RESULT, 35, _0D2E
     GoToIfEq VAR_RESULT, 54, _0D2E

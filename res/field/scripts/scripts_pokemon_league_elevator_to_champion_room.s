@@ -8,19 +8,19 @@
     ScriptEntryEnd
 
 _000E:
-    SetVar VAR_0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     InitPersistedMapFeaturesForPlatformLift
-    CheckPlatformLiftNotUsedWhenEnteredMap VAR_0x4001
-    GoToIfEq VAR_0x4001, 0, _0029
+    CheckPlatformLiftNotUsedWhenEnteredMap VAR_MAP_LOCAL_1
+    GoToIfEq VAR_MAP_LOCAL_1, 0, _0029
     End
 
 _0029:
-    SetVar VAR_0x4000, 1
+    SetVar VAR_MAP_LOCAL_0, 1
     End
 
 _0031:
     TriggerPlatformLift
-    SetVar VAR_0x4000, 1
+    SetVar VAR_MAP_LOCAL_0, 1
     End
 
     .byte 0

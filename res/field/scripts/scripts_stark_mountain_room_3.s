@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _0016:
-    SetVar VAR_0x4000, VAR_UNK_0x409E
+    SetVar VAR_MAP_LOCAL_0, VAR_UNK_0x409E
     CallIfGe VAR_UNK_0x409E, 1, _0031
     Call _0037
     End
@@ -22,10 +22,10 @@ _0031:
 
 _0037:
     GoToIfSet FLAG_UNK_0x0120, _0083
-    CheckGameCompleted VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _0083
-    ScrCmd_22D 2, VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _0083
+    CheckGameCompleted VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0083
+    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0083
     GoToIfUnset FLAG_MESPRIT_CAUGHT, _0083
     GoToIfNe VAR_UNK_0x409E, 1, _0083
     ClearFlag FLAG_UNK_0x01DD

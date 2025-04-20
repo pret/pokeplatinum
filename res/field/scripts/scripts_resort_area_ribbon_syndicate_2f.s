@@ -14,10 +14,10 @@ _0012:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AA5, _00E2
-    GoToIfEq VAR_0x400A, 1, _00E2
-    GetFirstNonEggInParty VAR_0x4000
+    GoToIfEq VAR_MAP_LOCAL_A, 1, _00E2
+    GetFirstNonEggInParty VAR_MAP_LOCAL_0
     BufferPlayerName 0
-    BufferPartyMonNickname 1, VAR_0x4000
+    BufferPartyMonNickname 1, VAR_MAP_LOCAL_0
     Message 0
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0058
@@ -83,19 +83,19 @@ _00ED:
     GoTo _0135
 
 _0113:
-    ScrCmd_1BA 30, VAR_0x4000
+    ScrCmd_1BA 30, VAR_MAP_LOCAL_0
     Call _0146
     Message 8
     Return
 
 _0124:
-    ScrCmd_1BA 10, VAR_0x4000
+    ScrCmd_1BA 10, VAR_MAP_LOCAL_0
     Call _0146
     Message 10
     Return
 
 _0135:
-    ScrCmd_1BA 5, VAR_0x4000
+    ScrCmd_1BA 5, VAR_MAP_LOCAL_0
     Call _0146
     Message 11
     Return
@@ -103,7 +103,7 @@ _0135:
 _0146:
     WaitFanfare SEQ_SE_DP_FW367
     SetFlag FLAG_UNK_0x0AA5
-    SetVar VAR_0x400A, 1
+    SetVar VAR_MAP_LOCAL_A, 1
     ApplyMovement 1, _02DC
     WaitMovement
     Return

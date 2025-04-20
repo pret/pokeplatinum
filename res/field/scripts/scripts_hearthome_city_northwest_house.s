@@ -46,11 +46,11 @@ _0057:
 
 _00A8:
     CloseMessage
-    GetPartyCount VAR_0x4000
-    SubVar VAR_0x4000, 1
+    GetPartyCount VAR_MAP_LOCAL_0
+    SubVar VAR_MAP_LOCAL_0, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BB VAR_0x4000, VAR_RESULT
+    ScrCmd_0BB VAR_MAP_LOCAL_0, VAR_RESULT
     CallIfNe VAR_RESULT, 1, _00E3
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen

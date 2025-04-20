@@ -13,8 +13,8 @@
 _0016:
     GoToIfEq VAR_UNK_0x40D9, 0, _0035
     SetFlag FLAG_UNK_0x01CB
-    ScrCmd_1DD 55, 0, VAR_0x4000
-    SetVar VAR_0x4020, VAR_0x4000
+    ScrCmd_1DD 55, 0, VAR_MAP_LOCAL_0
+    SetVar VAR_0x4020, VAR_MAP_LOCAL_0
 _0035:
     End
 

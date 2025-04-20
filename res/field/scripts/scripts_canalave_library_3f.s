@@ -18,9 +18,9 @@
     ScriptEntryEnd
 
 _0032:
-    GetPlayerGender VAR_0x4000
-    GoToIfEq VAR_0x4000, GENDER_MALE, _0052
-    GoToIfEq VAR_0x4000, GENDER_FEMALE, _005A
+    GetPlayerGender VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0052
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _005A
     End
 
 _0052:

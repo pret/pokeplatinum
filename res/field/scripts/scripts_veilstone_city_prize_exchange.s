@@ -12,7 +12,7 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_0x4001, 19
+    SetVar VAR_MAP_LOCAL_1, 19
     Message 0
     ShowCoins 21, 1
     SetVar VAR_0x8005, 0
@@ -24,7 +24,7 @@ _0039:
     Message 1
     Call _0119
     GoToIfEq VAR_RESULT, -2, _00D8
-    GoToIfEq VAR_RESULT, VAR_0x4001, _00D8
+    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_1, _00D8
     GetGameCornerPrizeData VAR_RESULT, VAR_0x8000, VAR_0x8001
     CallIfLt VAR_0x8000, 0x148, _0100
     CallIfGe VAR_0x8000, 0x148, _010A
@@ -85,7 +85,7 @@ _0135:
     ScrCmd_280 1, VAR_0x8001, 1, 5
     AddListMenuEntry 168, VAR_0x8008
     AddVar VAR_0x8008, 1
-    GoToIfLt VAR_0x8008, VAR_0x4001, _0135
+    GoToIfLt VAR_0x8008, VAR_MAP_LOCAL_1, _0135
     GoTo _016C
     End
 

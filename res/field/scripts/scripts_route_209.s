@@ -15,12 +15,12 @@
     ScriptEntryEnd
 
 _0026:
-    GetTimeOfDay VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _006D
-    GoToIfEq VAR_0x4000, 1, _007F
-    GoToIfEq VAR_0x4000, 2, _007F
-    GoToIfEq VAR_0x4000, 3, _007F
-    GoToIfEq VAR_0x4000, 4, _007F
+    GetTimeOfDay VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _006D
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _007F
+    GoToIfEq VAR_MAP_LOCAL_0, 2, _007F
+    GoToIfEq VAR_MAP_LOCAL_0, 3, _007F
+    GoToIfEq VAR_MAP_LOCAL_0, 4, _007F
     End
 
 _006D:

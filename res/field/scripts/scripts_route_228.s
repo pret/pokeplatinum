@@ -10,9 +10,9 @@
 
 _0012:
     CallIfNe VAR_UNK_0x406B, 0x122, _003F
-    CheckPartyHasFatefulEncounterRegigigas VAR_0x4001
-    GoToIfEq VAR_0x4001, 0, _0067
-    GoToIfEq VAR_0x4001, 1, _0071
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_1
+    GoToIfEq VAR_MAP_LOCAL_1, 0, _0067
+    GoToIfEq VAR_MAP_LOCAL_1, 1, _0071
     End
 
 _003F:
@@ -20,9 +20,9 @@ _003F:
     Return
 
 _0047:
-    CheckPartyHasFatefulEncounterRegigigas VAR_0x4001
-    GoToIfEq VAR_0x4001, 0, _0067
-    GoToIfEq VAR_0x4001, 1, _0071
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_1
+    GoToIfEq VAR_MAP_LOCAL_1, 0, _0067
+    GoToIfEq VAR_MAP_LOCAL_1, 1, _0071
     End
 
 _0067:

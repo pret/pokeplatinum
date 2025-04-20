@@ -10,7 +10,7 @@
 #define LEE            43
 #define ARIEL          71
 
-#define VAR_MAP_ID     VAR_0x4001
+#define VAR_MAP_ID     VAR_MAP_LOCAL_1
 #define VAR_NPC_1      VAR_0x402A
 #define VAR_NPC_2      VAR_0x402B
 
@@ -37,14 +37,14 @@ PokemonCenterDailyTrainers_End:
     End
 
 PokemonCenterDailyTrainers_SetNPCs:
-    GetDayOfWeek VAR_0x4000
-    CallIfEq VAR_0x4000, DAY_OF_WEEK_SUNDAY, PokemonCenterDailyTrainers_SetNPCsSunday
-    CallIfEq VAR_0x4000, DAY_OF_WEEK_MONDAY, PokemonCenterDailyTrainers_SetNPCsMonday
-    CallIfEq VAR_0x4000, DAY_OF_WEEK_TUESDAY, PokemonCenterDailyTrainers_SetNPCsTuesday
-    CallIfEq VAR_0x4000, DAY_OF_WEEK_WEDNESDAY, PokemonCenterDailyTrainers_SetNPCsWednesday
-    CallIfEq VAR_0x4000, DAY_OF_WEEK_THURSDAY, PokemonCenterDailyTrainers_SetNPCsThursday
-    CallIfEq VAR_0x4000, DAY_OF_WEEK_FRIDAY, PokemonCenterDailyTrainers_SetNPCsFriday
-    CallIfEq VAR_0x4000, DAY_OF_WEEK_SATURDAY, PokemonCenterDailyTrainers_SetNPCsSaturday
+    GetDayOfWeek VAR_MAP_LOCAL_0
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, PokemonCenterDailyTrainers_SetNPCsSunday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_MONDAY, PokemonCenterDailyTrainers_SetNPCsMonday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_TUESDAY, PokemonCenterDailyTrainers_SetNPCsTuesday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_WEDNESDAY, PokemonCenterDailyTrainers_SetNPCsWednesday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_THURSDAY, PokemonCenterDailyTrainers_SetNPCsThursday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_FRIDAY, PokemonCenterDailyTrainers_SetNPCsFriday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SATURDAY, PokemonCenterDailyTrainers_SetNPCsSaturday
     Return
 
 PokemonCenterDailyTrainers_SetNPCsSunday:

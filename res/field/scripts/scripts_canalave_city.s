@@ -36,15 +36,15 @@ _0066:
     CallIfEq VAR_UNK_0x40F8, 2, _00F8
     CallIfEq VAR_UNK_0x40F8, 3, _0100
     Call _0168
-    CallIfEq VAR_0x4000, 0, _01E7
-    CallIfEq VAR_0x4000, 1, _0116
+    CallIfEq VAR_MAP_LOCAL_0, 0, _01E7
+    CallIfEq VAR_MAP_LOCAL_0, 1, _0116
     CallIfEq VAR_UNK_0x4078, 1, _0132
     CallIfEq VAR_UNK_0x4078, 2, _0132
     CallIfEq VAR_UNK_0x4078, 4, _011C
     CallIfEq VAR_UNK_0x4078, 5, _0158
-    GetPlayerGender VAR_0x4000
-    GoToIfEq VAR_0x4000, GENDER_MALE, _0148
-    GoToIfEq VAR_0x4000, GENDER_FEMALE, _0150
+    GetPlayerGender VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0148
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0150
     End
 
 _00F8:
@@ -90,23 +90,23 @@ _0158:
 _0168:
     GoToIfSet FLAG_UNK_0x0158, _01CA
     GoToIfUnset FLAG_GAME_COMPLETED, _01CA
-    ScrCmd_22D 2, VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _01CA
-    CheckItem ITEM_MEMBER_CARD, 1, VAR_0x4000
-    GoToIfEq VAR_0x4000, FALSE, _01CA
-    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_0x4000
-    GoToIfEq VAR_0x4000, FALSE, _01CA
+    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _01CA
+    CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _01CA
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _01CA
     GoToIfUnset FLAG_UNK_0x012C, _01CA
-    SetVar VAR_0x4000, 1
+    SetVar VAR_MAP_LOCAL_0, 1
     Return
 
 _01CA:
-    SetVar VAR_0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     Return
 
 _01D2:
     Call _0168
-    CallIfEq VAR_0x4000, 0, _01E7
+    CallIfEq VAR_MAP_LOCAL_0, 0, _01E7
     End
 
 _01E7:
@@ -491,7 +491,7 @@ _06A3:
 
 _06BA:
     Call _0168
-    GoToIfEq VAR_0x4000, 0, _06E2
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _06E2
     ShowScrollingSign 42
     End
 

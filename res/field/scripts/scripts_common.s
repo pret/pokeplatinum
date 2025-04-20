@@ -342,7 +342,7 @@ _048B:
 _0494:
     SetFlag FLAG_UNK_0x001F
     Call _04A8
-    SetVar VAR_0x4000, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0, VAR_RESULT
     ReturnCommonScript
     End
 
@@ -1566,12 +1566,12 @@ _14AC:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfNe VAR_0x8004, 31, _1570
     GoToIfNe VAR_0x8005, 52, _1570
-    CheckGameCompleted VAR_0x4000
-    GoToIfEq VAR_0x4000, FALSE, _1570
-    ScrCmd_22D 2, VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _1570
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_0x4000
-    GoToIfEq VAR_0x4000, FALSE, _1570
+    CheckGameCompleted VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _1570
+    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _1570
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _1570
     GoToIfSet FLAG_UNK_0x011E, _1570
     BufferPlayerName 0
     Message 122

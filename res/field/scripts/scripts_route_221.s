@@ -10,8 +10,8 @@
     ScriptEntryEnd
 
 _0012:
-    ScrCmd_22D 2, VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _002C
+    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _002C
     SetFlag FLAG_UNK_0x027F
     SetFlag FLAG_UNK_0x0280
 _002C:

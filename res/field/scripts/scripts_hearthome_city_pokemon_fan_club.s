@@ -12,8 +12,8 @@
     ScriptEntryEnd
 
 _001A:
-    ScrCmd_238 4, VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _0033
+    ScrCmd_238 4, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0033
     ClearFlag FLAG_UNK_0x0210
     End
 

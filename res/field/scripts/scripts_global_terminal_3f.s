@@ -157,7 +157,7 @@ _015D:
 
 _0163:
     CallCommonScript 0x7D6
-    SetVar VAR_RESULT, VAR_0x4000
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _015D
     CloseMessage
     CallCommonScript 0x802

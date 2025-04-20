@@ -25,8 +25,8 @@ _003A:
     FacePlayer
     SetVar VAR_0x8007, 0
     CallIfUnset FLAG_UNK_0x0088, _006F
-    GoToIfEq VAR_0x4001, 0, _0077
-    GoToIfEq VAR_0x4001, 1, _0080
+    GoToIfEq VAR_MAP_LOCAL_1, 0, _0077
+    GoToIfEq VAR_MAP_LOCAL_1, 1, _0080
     End
 
 _006F:
@@ -71,7 +71,7 @@ _00F5:
     End
 
 _0115:
-    SetVar VAR_0x4002, 0
+    SetVar VAR_MAP_LOCAL_2, 0
     GoTo _016C
 
 _0121:
@@ -80,12 +80,12 @@ _0121:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    GetSelectedPartySlot VAR_0x4002
+    GetSelectedPartySlot VAR_MAP_LOCAL_2
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x4002, 0xFF, _02B3
-    GetPartyMonSpecies VAR_0x4002, VAR_RESULT
+    GoToIfEq VAR_MAP_LOCAL_2, 0xFF, _02B3
+    GetPartyMonSpecies VAR_MAP_LOCAL_2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _02BE
     GoTo _016C
 
@@ -123,7 +123,7 @@ _01EC:
     SetFlag FLAG_UNK_0x0088
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0A6 VAR_0x4002, VAR_0x8005, VAR_0x8007
+    ScrCmd_0A6 VAR_MAP_LOCAL_2, VAR_0x8005, VAR_0x8007
     ReturnToField
     ApplyMovement LOCALID_PLAYER, _0360
     WaitMovement
@@ -157,7 +157,7 @@ _0279:
 
 _0293:
     GoToIfEq VAR_0x8005, 0, _0335
-    SetVar VAR_0x4001, 1
+    SetVar VAR_MAP_LOCAL_1, 1
     Message 7
     WaitABXPadPress
     CloseMessage

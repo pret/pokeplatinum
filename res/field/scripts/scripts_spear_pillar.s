@@ -18,9 +18,9 @@ _0022:
     SetFlag FLAG_UNK_0x09C7
     Call _00C7
     Call _0062
-    GetPlayerGender VAR_0x4000
-    GoToIfEq VAR_0x4000, GENDER_MALE, _0052
-    GoToIfEq VAR_0x4000, GENDER_FEMALE, _005A
+    GetPlayerGender VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0052
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _005A
     End
 
 _0052:
@@ -32,14 +32,14 @@ _005A:
     End
 
 _0062:
-    CheckGameCompleted VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _00C5
-    ScrCmd_22D 2, VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _00C5
-    CheckItem ITEM_AZURE_FLUTE, 1, VAR_0x4000
-    GoToIfEq VAR_0x4000, FALSE, _00C5
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_0x4000
-    GoToIfEq VAR_0x4000, FALSE, _00C5
+    CheckGameCompleted VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _00C5
+    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _00C5
+    CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _00C5
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _00C5
     GoToIfSet FLAG_UNK_0x011E, _00C5
     SetVar VAR_UNK_0x4118, 1
     GoTo _00C5

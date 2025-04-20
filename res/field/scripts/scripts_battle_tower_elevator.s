@@ -10,15 +10,15 @@
 
 _0012:
     CallIfNe VAR_UNK_0x40DB, 0, _008A
-    ScrCmd_1DD 43, 0, VAR_0x400A
+    ScrCmd_1DD 43, 0, VAR_MAP_LOCAL_A
     Call _008E
-    CallIfEq VAR_0x400A, 2, _009E
-    CallIfEq VAR_0x400A, 3, _009E
-    CallIfEq VAR_0x400A, 0, _008E
-    CallIfEq VAR_0x400A, 1, _008E
-    CallIfEq VAR_0x400A, 4, _0096
-    CallIfEq VAR_0x400A, 5, _0096
-    CallIfEq VAR_0x400A, 6, _0096
+    CallIfEq VAR_MAP_LOCAL_A, 2, _009E
+    CallIfEq VAR_MAP_LOCAL_A, 3, _009E
+    CallIfEq VAR_MAP_LOCAL_A, 0, _008E
+    CallIfEq VAR_MAP_LOCAL_A, 1, _008E
+    CallIfEq VAR_MAP_LOCAL_A, 4, _0096
+    CallIfEq VAR_MAP_LOCAL_A, 5, _0096
+    CallIfEq VAR_MAP_LOCAL_A, 6, _0096
     End
 
 _008A:
@@ -69,27 +69,27 @@ _010A:
 
 _0132:
     Call _0188
-    ScrCmd_23C VAR_0x4000, 3
+    ScrCmd_23C VAR_MAP_LOCAL_0, 3
     Call _0194
     Return
 
 _0146:
     LockAll
-    SetVar VAR_0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     Call _0132
     GoTo _00A6
     End
 
 _015C:
     LockAll
-    SetVar VAR_0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     Call _0132
     GoTo _00E9
     End
 
 _0172:
     LockAll
-    SetVar VAR_0x4000, 1
+    SetVar VAR_MAP_LOCAL_0, 1
     Call _0132
     GoTo _010A
     End

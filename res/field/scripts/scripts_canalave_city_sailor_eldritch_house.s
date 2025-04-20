@@ -17,10 +17,10 @@ _0035:
 
 _0037:
     GoToIfSet FLAG_UNK_0x012C, _0035
-    CheckGameCompleted VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _0035
-    ScrCmd_22D 2, VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _0035
+    CheckGameCompleted VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0035
+    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0035
     SetVar VAR_UNK_0x4106, 1
     Call _007B
     End

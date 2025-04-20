@@ -11,8 +11,8 @@
     ScriptEntryEnd
 
 _0016:
-    ScrCmd_238 6, VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _003C
+    ScrCmd_238 6, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _003C
     GoToIfLt VAR_UNK_0x4077, 2, _003C
     ClearFlag FLAG_UNK_0x0212
     End

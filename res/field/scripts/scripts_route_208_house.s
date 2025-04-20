@@ -47,7 +47,7 @@ _007C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_0x4000, 1, _00ED
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _00ED
     CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _00FD
     Message 2
@@ -58,7 +58,7 @@ _007C:
 
 _00C7:
     Message 3
-    SetVar VAR_0x4000, 1
+    SetVar VAR_MAP_LOCAL_0, 1
     SetVar VAR_0x8004, 7
     CallCommonScript 0x7D9
     WaitABXPadPress

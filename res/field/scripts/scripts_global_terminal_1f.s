@@ -164,7 +164,7 @@ _0202:
 
 _020D:
     CallCommonScript 0x7D6
-    SetVar VAR_RESULT, VAR_0x4000
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _02EA
     HealParty
     SetVar VAR_UNK_0x40D5, 6
@@ -375,7 +375,7 @@ _0464:
 
 _046A:
     CallCommonScript 0x7D6
-    SetVar VAR_RESULT, VAR_0x4000
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0464
     CloseMessage
     CallCommonScript 0x802
@@ -415,7 +415,7 @@ _04EE:
 
 _04F4:
     CallCommonScript 0x7D6
-    SetVar VAR_RESULT, VAR_0x4000
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _04EE
     CloseMessage
     CallCommonScript 0x802

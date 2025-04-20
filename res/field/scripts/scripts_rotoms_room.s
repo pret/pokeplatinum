@@ -31,14 +31,14 @@ RotomsRoom_InitFlags:
     SetFlag FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR
     SetFlag FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN
     SetFlag FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER
-    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, VAR_0x4000
-    GoToIfEq VAR_0x4000, FALSE, _00A5
-    GetRotomFormsInSave VAR_0x4000, VAR_0x4001, VAR_0x4002, VAR_0x4003, VAR_0x4004
-    CallIfEq VAR_0x4000, FALSE, RotomsRoom_InitShowMicrowaveOven
-    CallIfEq VAR_0x4001, FALSE, RotomsRoom_InitShowWashingMachine
-    CallIfEq VAR_0x4002, FALSE, RotomsRoom_InitShowRefrigerator
-    CallIfEq VAR_0x4003, FALSE, RotomsRoom_InitShowRotaryFan
-    CallIfEq VAR_0x4004, FALSE, RotomsRoom_InitShowLawnMower
+    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _00A5
+    GetRotomFormsInSave VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_MAP_LOCAL_4
+    CallIfEq VAR_MAP_LOCAL_0, FALSE, RotomsRoom_InitShowMicrowaveOven
+    CallIfEq VAR_MAP_LOCAL_1, FALSE, RotomsRoom_InitShowWashingMachine
+    CallIfEq VAR_MAP_LOCAL_2, FALSE, RotomsRoom_InitShowRefrigerator
+    CallIfEq VAR_MAP_LOCAL_3, FALSE, RotomsRoom_InitShowRotaryFan
+    CallIfEq VAR_MAP_LOCAL_4, FALSE, RotomsRoom_InitShowLawnMower
     End
 
 _00A5:

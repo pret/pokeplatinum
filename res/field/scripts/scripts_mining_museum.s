@@ -96,7 +96,7 @@ _0225:
     AddMenuEntry 44, VAR_0x8004
     ShowMenu
     GoToIfEq VAR_0x8003, 0xFF, _03E7
-    GoToIfEq VAR_0x8003, VAR_0x4000, _03E7
+    GoToIfEq VAR_0x8003, VAR_MAP_LOCAL_0, _03E7
     CallIfEq VAR_0x8003, 0, _0384
     CallIfEq VAR_0x8003, 1, _038C
     CallIfEq VAR_0x8003, 2, _0394
@@ -110,94 +110,94 @@ _0225:
     GoTo _03D8
 
 _02DC:
-    SetVar VAR_0x4000, 103
-    CheckItem VAR_0x4000, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0, 103
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
 _02EC:
-    SetVar VAR_0x4000, 101
-    CheckItem VAR_0x4000, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0, 101
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
 _02FC:
-    SetVar VAR_0x4000, 102
-    CheckItem VAR_0x4000, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0, 102
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
 _030C:
-    SetVar VAR_0x4000, 99
-    CheckItem VAR_0x4000, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0, 99
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
 _031C:
-    SetVar VAR_0x4000, 100
-    CheckItem VAR_0x4000, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0, 100
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
 _032C:
-    SetVar VAR_0x4000, 104
-    CheckItem VAR_0x4000, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0, 104
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
 _033C:
-    SetVar VAR_0x4000, 105
-    CheckItem VAR_0x4000, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0, 105
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
 _034C:
-    SetVar VAR_0x4001, VAR_0x4000
+    SetVar VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_0
     Return
 
 _0354:
-    SetVar VAR_0x4002, VAR_0x4000
+    SetVar VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_0
     Return
 
 _035C:
-    SetVar VAR_0x4003, VAR_0x4000
+    SetVar VAR_MAP_LOCAL_3, VAR_MAP_LOCAL_0
     Return
 
 _0364:
-    SetVar VAR_0x4004, VAR_0x4000
+    SetVar VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_0
     Return
 
 _036C:
-    SetVar VAR_0x4005, VAR_0x4000
+    SetVar VAR_MAP_LOCAL_5, VAR_MAP_LOCAL_0
     Return
 
 _0374:
-    SetVar VAR_0x4006, VAR_0x4000
+    SetVar VAR_MAP_LOCAL_6, VAR_MAP_LOCAL_0
     Return
 
 _037C:
-    SetVar VAR_0x4007, VAR_0x4000
+    SetVar VAR_MAP_LOCAL_7, VAR_MAP_LOCAL_0
     Return
 
 _0384:
-    SetVar VAR_0x8002, VAR_0x4001
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_1
     Return
 
 _038C:
-    SetVar VAR_0x8002, VAR_0x4002
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_2
     Return
 
 _0394:
-    SetVar VAR_0x8002, VAR_0x4003
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_3
     Return
 
 _039C:
-    SetVar VAR_0x8002, VAR_0x4004
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_4
     Return
 
 _03A4:
-    SetVar VAR_0x8002, VAR_0x4005
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_5
     Return
 
 _03AC:
-    SetVar VAR_0x8002, VAR_0x4006
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_6
     Return
 
 _03B4:
-    SetVar VAR_0x8002, VAR_0x4007
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_7
     Return
 
 _03BC:
@@ -242,11 +242,11 @@ _03F2:
 
 _0459:
     CloseMessage
-    GetPartyCount VAR_0x4000
-    SubVar VAR_0x4000, 1
+    GetPartyCount VAR_MAP_LOCAL_0
+    SubVar VAR_MAP_LOCAL_0, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BB VAR_0x4000, VAR_RESULT
+    ScrCmd_0BB VAR_MAP_LOCAL_0, VAR_RESULT
     CallIfNe VAR_RESULT, 1, _0494
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen

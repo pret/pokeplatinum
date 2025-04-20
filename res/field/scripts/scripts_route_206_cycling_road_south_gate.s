@@ -15,9 +15,9 @@ _001A:
     End
 
 _001C:
-    GetPlayerMapPos VAR_0x4004, VAR_0x4005
-    CallIfLe VAR_0x4005, 3, _0037
-    SetVar VAR_0x4003, 1
+    GetPlayerMapPos VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5
+    CallIfLe VAR_MAP_LOCAL_5, 3, _0037
+    SetVar VAR_MAP_LOCAL_3, 1
     End
 
 _0037:
@@ -49,7 +49,7 @@ _0050:
 
 _0080:
     SetFlag FLAG_FORCE_BIKING_IN_GATE
-    SetVar VAR_0x4002, 1
+    SetVar VAR_MAP_LOCAL_2, 1
     ReleaseAll
     End
 
@@ -66,7 +66,7 @@ _0098:
 _00A0:
     LockAll
     ClearFlag FLAG_FORCE_BIKING_IN_GATE
-    SetVar VAR_0x4002, 0
+    SetVar VAR_MAP_LOCAL_2, 0
     ReleaseAll
     End
 

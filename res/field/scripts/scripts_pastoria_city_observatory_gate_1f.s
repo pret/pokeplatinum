@@ -22,8 +22,8 @@ _0022:
     LockAll
     ApplyMovement LOCALID_PLAYER, _0194
     WaitMovement
-    GetPlayerMapPos VAR_0x4000, VAR_0x4001
-    CallIfEq VAR_0x4000, 5, _017D
+    GetPlayerMapPos VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1
+    CallIfEq VAR_MAP_LOCAL_0, 5, _017D
     ShowMoney 20, 2
     Message 0
     ShowYesNoMenu VAR_RESULT
@@ -152,8 +152,8 @@ _01F1:
     WaitMovement
     SetVar VAR_UNK_0x40DA, 0
     ScrCmd_202 1
-    ScrCmd_31B VAR_0x4002
-    GoToIfGe VAR_0x4002, 5, _021E
+    ScrCmd_31B VAR_MAP_LOCAL_2
+    GoToIfGe VAR_MAP_LOCAL_2, 5, _021E
     ReleaseAll
     End
 
@@ -201,8 +201,8 @@ _0298:
     ApplyMovement LOCALID_PLAYER, _0280
     WaitMovement
     SetVar VAR_UNK_0x40DA, 0
-    ScrCmd_31B VAR_0x4002
-    GoToIfGe VAR_0x4002, 5, _021E
+    ScrCmd_31B VAR_MAP_LOCAL_2
+    GoToIfGe VAR_MAP_LOCAL_2, 5, _021E
     ReleaseAll
     End
 

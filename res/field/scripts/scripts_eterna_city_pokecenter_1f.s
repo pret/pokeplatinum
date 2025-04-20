@@ -60,7 +60,7 @@ _007D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_0x4002, 1, _00F4
+    GoToIfEq VAR_MAP_LOCAL_2, 1, _00F4
     CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _00D9
     GetFirstNonEggInParty VAR_0x8000
@@ -74,7 +74,7 @@ _007D:
 
 _00D9:
     Message 4
-    SetVar VAR_0x4002, 1
+    SetVar VAR_MAP_LOCAL_2, 1
     SetVar VAR_0x8004, 5
     CallCommonScript 0x7D9
     WaitABXPadPress

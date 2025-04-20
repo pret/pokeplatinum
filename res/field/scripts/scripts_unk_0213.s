@@ -31,22 +31,22 @@ _0055:
     Return
 
 _005B:
-    SetVar VAR_0x4000, 13
-    SetVar VAR_0x4001, 5
-    SetVar VAR_0x4002, 2
+    SetVar VAR_MAP_LOCAL_0, 13
+    SetVar VAR_MAP_LOCAL_1, 5
+    SetVar VAR_MAP_LOCAL_2, 2
     GoTo _008F
     End
 
 _0075:
-    SetVar VAR_0x4000, 8
-    SetVar VAR_0x4001, 5
-    SetVar VAR_0x4002, 2
+    SetVar VAR_MAP_LOCAL_0, 8
+    SetVar VAR_MAP_LOCAL_1, 5
+    SetVar VAR_MAP_LOCAL_2, 2
     GoTo _008F
     End
 
 _008F:
     LockAll
-    ScrCmd_168 0, 0, VAR_0x4000, VAR_0x4002, 77
+    ScrCmd_168 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_2, 77
     Call _050B
     ScrCmd_1B1 0xFF
     ApplyMovement LOCALID_PLAYER, _00F0
@@ -54,7 +54,7 @@ _008F:
     Call _0513
     ApplyMovement LOCALID_PLAYER, _00F8
     WaitMovement
-    ScrCmd_168 0, 0, VAR_0x4000, VAR_0x4001, 77
+    ScrCmd_168 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, 77
     Call _050B
     ApplyMovement LOCALID_PLAYER, _0100
     WaitMovement
@@ -261,7 +261,7 @@ _0290:
 _02E4:
     HealParty
     CallCommonScript 0x7D6
-    SetVar VAR_RESULT, VAR_0x4000
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 1, _0305
     GoTo _01D3
     End
@@ -462,7 +462,7 @@ _05CF:
     SetVar VAR_UNK_0x40D5, 2
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     CallCommonScript 0x7D6
-    SetVar VAR_RESULT, VAR_0x4000
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 1, _062D
     SetVar VAR_UNK_0x40D5, 0
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE

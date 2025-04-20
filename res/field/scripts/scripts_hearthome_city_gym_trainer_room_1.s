@@ -6,6 +6,6 @@
     ScriptEntryEnd
 
 _0006:
-    SetVar VAR_0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     InitPersistedMapFeaturesForHearthomeGym
     End

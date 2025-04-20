@@ -177,7 +177,7 @@ _0277:
     GoToIfEq VAR_RESULT, 0xFF, _02A9
     HealParty
     CallCommonScript 0x7D6
-    SetVar VAR_RESULT, VAR_0x4000
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 1, _02AF
     GoTo _026C
     End
@@ -387,7 +387,7 @@ _051B:
 _0526:
     HealParty
     CallCommonScript 0x7D6
-    SetVar VAR_RESULT, VAR_0x4000
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0508
     Message 19
     CloseMessage
@@ -407,7 +407,7 @@ _0526:
     ApplyMovement VAR_LAST_TALKED, _0424
     WaitMovement
     Call _0328
-    SetVar VAR_0x4003, 0
+    SetVar VAR_MAP_LOCAL_3, 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_WIFI_PLAZA_ENTRANCE, 0, 20, 11, 0

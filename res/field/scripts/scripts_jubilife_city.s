@@ -36,9 +36,9 @@
 _0072:
     CallIfEq VAR_UNK_0x4077, 0, _00AC
     CallIfGe VAR_UNK_0x4077, 3, _00C2
-    GetPlayerGender VAR_0x4000
-    GoToIfEq VAR_0x4000, GENDER_MALE, _00D8
-    GoToIfEq VAR_0x4000, GENDER_FEMALE, _00E0
+    GetPlayerGender VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _00D8
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _00E0
     End
 
 _00AC:
@@ -1000,7 +1000,7 @@ _0CF0:
     Call _0D72
     Call _0D72
     ScrCmd_1D5 0
-    SetVar VAR_0x4001, 0x270F
+    SetVar VAR_MAP_LOCAL_1, 0x270F
     Call _0D8C
     Call _0D8C
     Return
@@ -1021,8 +1021,8 @@ _0D72:
 
 _0D8C:
     GetRandom VAR_RESULT, 8
-    GoToIfEq VAR_0x4001, VAR_RESULT, _0D8C
-    SetVar VAR_0x4001, VAR_RESULT
+    GoToIfEq VAR_MAP_LOCAL_1, VAR_RESULT, _0D8C
+    SetVar VAR_MAP_LOCAL_1, VAR_RESULT
     SetVar VAR_0x8004, 1
     AddVar VAR_0x8004, VAR_RESULT
     ScrCmd_1D5 VAR_0x8004

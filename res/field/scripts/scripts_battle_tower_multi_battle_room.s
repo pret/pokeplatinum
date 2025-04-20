@@ -13,20 +13,20 @@ _0012:
     GoToIfEq VAR_UNK_0x40DE, 0, _0054
     SetFlag FLAG_UNK_0x01EA
     SetFlag FLAG_UNK_0x01EB
-    ScrCmd_207 VAR_0x4000
-    GoToIfEq VAR_0x4000, 1, _0056
-    ScrCmd_1DD 55, 0, VAR_0x4000
-    SetVar VAR_0x4020, VAR_0x4000
-    ScrCmd_1DD 55, 1, VAR_0x4000
-    SetVar VAR_0x4021, VAR_0x4000
+    ScrCmd_207 VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _0056
+    ScrCmd_1DD 55, 0, VAR_MAP_LOCAL_0
+    SetVar VAR_0x4020, VAR_MAP_LOCAL_0
+    ScrCmd_1DD 55, 1, VAR_MAP_LOCAL_0
+    SetVar VAR_0x4021, VAR_MAP_LOCAL_0
 _0054:
     End
 
 _0056:
-    ScrCmd_1DD 55, 0, VAR_0x4000
-    SetVar VAR_0x4021, VAR_0x4000
-    ScrCmd_1DD 55, 1, VAR_0x4000
-    SetVar VAR_0x4020, VAR_0x4000
+    ScrCmd_1DD 55, 0, VAR_MAP_LOCAL_0
+    SetVar VAR_0x4021, VAR_MAP_LOCAL_0
+    ScrCmd_1DD 55, 1, VAR_MAP_LOCAL_0
+    SetVar VAR_0x4020, VAR_MAP_LOCAL_0
     End
 
 _0074:
@@ -137,13 +137,13 @@ _01DF:
 
 _022F:
     ScrCmd_1DD 37, 0, 0
-    SetVar VAR_0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     GoTo _00CB
     End
 
 _0245:
     ScrCmd_1DD 38, 0, 0
-    SetVar VAR_0x4000, 1
+    SetVar VAR_MAP_LOCAL_0, 1
     GoTo _00CB
     End
 
@@ -237,16 +237,16 @@ _03D6:
     AddListMenuEntry 148, 1
     ShowListMenu
     CloseMessage
-    SetVar VAR_0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     GoToIfEq VAR_RESULT, 1, _0452
 _0418:
     Message 12
     ScrCmd_136
     ScrCmd_135 5
-    ScrCmd_1E1 2, VAR_0x4000, VAR_RESULT
-    ScrCmd_1E2 2, VAR_0x4000
+    ScrCmd_1E1 2, VAR_MAP_LOCAL_0, VAR_RESULT
+    ScrCmd_1E2 2, VAR_MAP_LOCAL_0
     CloseMessage
-    SetVar VAR_0x8008, VAR_0x4000
+    SetVar VAR_0x8008, VAR_MAP_LOCAL_0
     GoToIfEq VAR_0x8008, 1, _0474
     Call _0589
     GoTo _039E
@@ -256,7 +256,7 @@ _0452:
     Message 5
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _03D6
-    SetVar VAR_0x4000, 1
+    SetVar VAR_MAP_LOCAL_0, 1
     GoTo _0418
     End
 

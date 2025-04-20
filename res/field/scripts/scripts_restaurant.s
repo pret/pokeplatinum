@@ -29,9 +29,9 @@
 
 _0058:
     SetFlag FLAG_UNK_0x09EE
-    GetHour VAR_0x4000
-    GoToIfLt VAR_0x4000, 9, _0087
-    GoToIfGe VAR_0x4000, 23, _0087
+    GetHour VAR_MAP_LOCAL_0
+    GoToIfLt VAR_MAP_LOCAL_0, 9, _0087
+    GoToIfGe VAR_MAP_LOCAL_0, 23, _0087
     GoToIfUnset FLAG_UNK_0x0AAB, _00B3
     End
 
@@ -77,23 +77,23 @@ _00B3:
     ClearTrainerFlag TRAINER_SCIENTIST_EMILIO
     ClearTrainerFlag TRAINER_BREEDER_KAYLEE
     SetVar VAR_UNK_0x4104, 0
-    GetRandom VAR_0x4001, 1
-    SetVar VAR_0x4000, 5
-    SetVar VAR_0x400A, 0x2710
+    GetRandom VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0, 5
+    SetVar VAR_MAP_LOCAL_A, 0x2710
 _0137:
-    GetRandom2 VAR_0x4001, 9
-    CallIfEq VAR_0x4001, 0, _01D8
-    CallIfEq VAR_0x4001, 1, _01F5
-    CallIfEq VAR_0x4001, 2, _0212
-    CallIfEq VAR_0x4001, 3, _022F
-    CallIfEq VAR_0x4001, 4, _024C
-    CallIfEq VAR_0x4001, 5, _0269
-    CallIfEq VAR_0x4001, 6, _0286
-    CallIfEq VAR_0x4001, 7, _02A3
-    CallIfEq VAR_0x4001, 8, _02C0
-    SubVar VAR_0x400A, 1
-    GoToIfEq VAR_0x400A, 0, _01D2
-    GoToIfNe VAR_0x4000, 0, _0137
+    GetRandom2 VAR_MAP_LOCAL_1, 9
+    CallIfEq VAR_MAP_LOCAL_1, 0, _01D8
+    CallIfEq VAR_MAP_LOCAL_1, 1, _01F5
+    CallIfEq VAR_MAP_LOCAL_1, 2, _0212
+    CallIfEq VAR_MAP_LOCAL_1, 3, _022F
+    CallIfEq VAR_MAP_LOCAL_1, 4, _024C
+    CallIfEq VAR_MAP_LOCAL_1, 5, _0269
+    CallIfEq VAR_MAP_LOCAL_1, 6, _0286
+    CallIfEq VAR_MAP_LOCAL_1, 7, _02A3
+    CallIfEq VAR_MAP_LOCAL_1, 8, _02C0
+    SubVar VAR_MAP_LOCAL_A, 1
+    GoToIfEq VAR_MAP_LOCAL_A, 0, _01D2
+    GoToIfNe VAR_MAP_LOCAL_0, 0, _0137
 _01D2:
     SetFlag FLAG_UNK_0x0AAB
     End
@@ -102,63 +102,63 @@ _01D8:
     GoToIfUnset FLAG_UNK_0x0244, _02DD
     ClearFlag FLAG_UNK_0x0244
     GetRandom2 VAR_UNK_0x40FB, 3
-    SubVar VAR_0x4000, 1
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _01F5:
     GoToIfUnset FLAG_UNK_0x0245, _02DD
     ClearFlag FLAG_UNK_0x0245
     GetRandom2 VAR_UNK_0x40FC, 3
-    SubVar VAR_0x4000, 1
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _0212:
     GoToIfUnset FLAG_UNK_0x0246, _02DD
     ClearFlag FLAG_UNK_0x0246
     GetRandom2 VAR_UNK_0x40FD, 3
-    SubVar VAR_0x4000, 1
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _022F:
     GoToIfUnset FLAG_UNK_0x0247, _02DD
     ClearFlag FLAG_UNK_0x0247
     GetRandom2 VAR_UNK_0x40FE, 3
-    SubVar VAR_0x4000, 1
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _024C:
     GoToIfUnset FLAG_UNK_0x0248, _02DD
     ClearFlag FLAG_UNK_0x0248
     GetRandom2 VAR_UNK_0x40FF, 3
-    SubVar VAR_0x4000, 1
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _0269:
     GoToIfUnset FLAG_UNK_0x0249, _02DD
     ClearFlag FLAG_UNK_0x0249
     GetRandom2 VAR_UNK_0x4100, 3
-    SubVar VAR_0x4000, 1
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _0286:
     GoToIfUnset FLAG_UNK_0x024A, _02DD
     ClearFlag FLAG_UNK_0x024A
     GetRandom2 VAR_UNK_0x4101, 3
-    SubVar VAR_0x4000, 1
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _02A3:
     GoToIfUnset FLAG_UNK_0x024B, _02DD
     ClearFlag FLAG_UNK_0x024B
     GetRandom2 VAR_UNK_0x4102, 3
-    SubVar VAR_0x4000, 1
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _02C0:
     GoToIfUnset FLAG_UNK_0x024C, _02DD
     ClearFlag FLAG_UNK_0x024C
     GetRandom2 VAR_UNK_0x4103, 3
-    SubVar VAR_0x4000, 1
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _02DD:

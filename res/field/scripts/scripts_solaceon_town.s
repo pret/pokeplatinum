@@ -21,8 +21,8 @@ _0032:
     End
 
 _0034:
-    CheckDaycareHasEgg VAR_0x4000
-    GoToIfNe VAR_0x4000, FALSE, _0047
+    CheckDaycareHasEgg VAR_MAP_LOCAL_0
+    GoToIfNe VAR_MAP_LOCAL_0, FALSE, _0047
     End
 
 _0047:

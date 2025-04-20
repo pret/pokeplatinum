@@ -9,10 +9,10 @@
     ScriptEntryEnd
 
 _0012:
-    GetUnownFormsSeenCount VAR_0x4000
-    GoToIfGe VAR_0x4000, 26, _003F
-    GoToIfGe VAR_0x4000, 10, _0051
-    GoToIfLt VAR_0x4000, 10, _0063
+    GetUnownFormsSeenCount VAR_MAP_LOCAL_0
+    GoToIfGe VAR_MAP_LOCAL_0, 26, _003F
+    GoToIfGe VAR_MAP_LOCAL_0, 10, _0051
+    GoToIfLt VAR_MAP_LOCAL_0, 10, _0063
     End
 
 _003F:
@@ -31,10 +31,10 @@ _0063:
     End
 
 _0075:
-    GetUnownFormsSeenCount VAR_0x4000
-    GoToIfGe VAR_0x4000, 26, _003F
-    GoToIfGe VAR_0x4000, 10, _0051
-    GoToIfLt VAR_0x4000, 10, _0063
+    GetUnownFormsSeenCount VAR_MAP_LOCAL_0
+    GoToIfGe VAR_MAP_LOCAL_0, 26, _003F
+    GoToIfGe VAR_MAP_LOCAL_0, 10, _0051
+    GoToIfLt VAR_MAP_LOCAL_0, 10, _0063
     End
 
 _00A2:

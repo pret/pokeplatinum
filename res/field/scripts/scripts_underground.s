@@ -39,9 +39,9 @@ _00BE:
     End
 
 _00CD:
-    GetPlayerMapPos VAR_0x4000, VAR_0x4001
-    AddVar VAR_0x4000, 1
-    ScrCmd_187 16, VAR_0x4000, 1, VAR_0x4001, 1
+    GetPlayerMapPos VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1
+    AddVar VAR_MAP_LOCAL_0, 1
+    ScrCmd_187 16, VAR_MAP_LOCAL_0, 1, VAR_MAP_LOCAL_1, 1
     End
 
 _00E7:

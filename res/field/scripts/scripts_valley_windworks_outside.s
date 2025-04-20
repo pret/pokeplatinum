@@ -22,8 +22,8 @@ _0024:
     CallIfUnset FLAG_UNK_0x010F, _00C5
     GoToIfLt VAR_UNK_0x4089, 2, _007C
     GoToIfSet FLAG_UNK_0x0AA8, _007C
-    GetDayOfWeek VAR_0x4000
-    GoToIfNe VAR_0x4000, 5, _007C
+    GetDayOfWeek VAR_MAP_LOCAL_0
+    GoToIfNe VAR_MAP_LOCAL_0, 5, _007C
     GoTo _0076
 
 _0076:

@@ -20,8 +20,8 @@
     ScriptEntryEnd
 
 _003A:
-    ScrCmd_238 19, VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _0053
+    ScrCmd_238 19, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0053
     ClearFlag FLAG_UNK_0x02C3
     End
 
@@ -33,8 +33,8 @@ _0059:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_0x4003, 0
-    SetVar VAR_0x4004, 0
+    SetVar VAR_MAP_LOCAL_3, 0
+    SetVar VAR_MAP_LOCAL_4, 0
     GoTo _0091
     End
 
@@ -42,21 +42,21 @@ _0075:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_0x4003, 0
-    SetVar VAR_0x4004, 1
+    SetVar VAR_MAP_LOCAL_3, 0
+    SetVar VAR_MAP_LOCAL_4, 1
     GoTo _0091
     End
 
 _0091:
     ScrCmd_313 0
-    CallIfEq VAR_0x4004, 0, _0570
-    CallIfEq VAR_0x4004, 1, _0575
+    CallIfEq VAR_MAP_LOCAL_4, 0, _0570
+    CallIfEq VAR_MAP_LOCAL_4, 1, _0575
     GoTo _00B7
     End
 
 _00B7:
-    CallIfEq VAR_0x4004, 0, _057A
-    CallIfEq VAR_0x4004, 1, _0592
+    CallIfEq VAR_MAP_LOCAL_4, 0, _057A
+    CallIfEq VAR_MAP_LOCAL_4, 1, _0592
     AddMenuEntryImm 19, 2
     AddMenuEntryImm 20, 3
     ShowMenu
@@ -68,8 +68,8 @@ _00B7:
     End
 
 _0117:
-    CallIfEq VAR_0x4004, 0, _05A6
-    CallIfEq VAR_0x4004, 1, _05AB
+    CallIfEq VAR_MAP_LOCAL_4, 0, _05A6
+    CallIfEq VAR_MAP_LOCAL_4, 1, _05AB
     GoTo _00B7
     End
 
@@ -130,10 +130,10 @@ _01D6:
 _01DE:
     CallIfEq VAR_UNK_0x40B8, 0, _0386
     CallIfEq VAR_UNK_0x40B8, 1, _0386
-    SetVar VAR_0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     HealParty
     CallCommonScript 0x7D6
-    SetVar VAR_RESULT, VAR_0x4000
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0139
     GoToIfEq VAR_UNK_0x40B8, 2, _022C
     GoTo _038E
@@ -397,7 +397,7 @@ _05AB:
 
 _05B0:
     ScrCmd_313 0
-    SetVar VAR_0x4003, 1
+    SetVar VAR_MAP_LOCAL_3, 1
     SetVar VAR_UNK_0x40B7, 0
     Message 11
     Call _0386

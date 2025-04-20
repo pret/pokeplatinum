@@ -129,9 +129,9 @@ _0141:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetDayOfWeek VAR_0x4000
-    GoToIfEq VAR_0x4000, DAY_OF_WEEK_SUNDAY, _01BE
-    GoToIfEq VAR_0x4000, DAY_OF_WEEK_SATURDAY, _01BE
+    GetDayOfWeek VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, _01BE
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SATURDAY, _01BE
     BufferRivalName 0
     BufferPlayerName 1
     SetVar VAR_0x8008, VAR_UNK_0x40C2

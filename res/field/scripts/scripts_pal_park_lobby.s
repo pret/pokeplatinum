@@ -376,9 +376,9 @@ _04B4:
     SetVar VAR_UNK_0x40E0, 0x7D0
     ApplyMovement 1, _0548
     WaitMovement
-    GetPlayerGender VAR_0x4000
+    GetPlayerGender VAR_MAP_LOCAL_0
     BufferPlayerName 0
-    GoToIfEq VAR_0x4000, GENDER_MALE, _04E4
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _04E4
     GoTo _04ED
 
 _04E4:
@@ -440,8 +440,8 @@ _057C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_0x400A, 1, _062C
-    GoToIfEq VAR_0x400A, 2, _063C
+    GoToIfEq VAR_MAP_LOCAL_A, 1, _062C
+    GoToIfEq VAR_MAP_LOCAL_A, 2, _063C
     CheckPoketchAppRegistered POKETCH_APPID_COLORCHANGER, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0657
     Message 5
@@ -455,7 +455,7 @@ _057C:
     SetVar VAR_0x8004, 20
     CallCommonScript 0x7D9
     WaitABXPadPress
-    SetVar VAR_0x400A, 1
+    SetVar VAR_MAP_LOCAL_A, 1
     CloseMessage
     ReleaseAll
     End
@@ -468,7 +468,7 @@ _05FB:
     SetVar VAR_0x8004, 21
     CallCommonScript 0x7D9
     WaitABXPadPress
-    SetVar VAR_0x400A, 2
+    SetVar VAR_MAP_LOCAL_A, 2
     CloseMessage
     ReleaseAll
     End
@@ -507,7 +507,7 @@ _0662:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_0x4009, 1, _06CF
+    GoToIfEq VAR_MAP_LOCAL_9, 1, _06CF
     GetGBACartridgeVersion VAR_RESULT
     GoToIfEq VAR_RESULT, 4, _06DA
     GoToIfEq VAR_RESULT, 5, _0706
@@ -575,14 +575,14 @@ _077A:
 
 _079E:
     CallCommonScript 0x7DF
-    SetVar VAR_0x4009, 1
+    SetVar VAR_MAP_LOCAL_9, 1
     CloseMessage
     ReleaseAll
     End
 
 _07AE:
     CallCommonScript 0x7F4
-    SetVar VAR_0x4009, 1
+    SetVar VAR_MAP_LOCAL_9, 1
     CloseMessage
     ReleaseAll
     End

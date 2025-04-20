@@ -135,8 +135,8 @@ _0184:
     ShowPoketch
     Call _01B1
     Call _0168
-    ScrCmd_238 7, VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _01AB
+    ScrCmd_238 7, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _01AB
     ClearFlag FLAG_UNK_0x0213
     End
 
@@ -176,7 +176,7 @@ _01FC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_0x4003, 0
+    SetVar VAR_MAP_LOCAL_3, 0
     SetVar VAR_0x8007, 2
     Message 3
     GoTo _023A
@@ -186,14 +186,14 @@ _021B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_0x4003, 1
+    SetVar VAR_MAP_LOCAL_3, 1
     SetVar VAR_0x8007, 2
     Message 7
     GoTo _023A
     End
 
 _023A:
-    GoToIfEq VAR_0x4003, 1, _0250
+    GoToIfEq VAR_MAP_LOCAL_3, 1, _0250
     Message 4
     GoTo _0253
 
@@ -222,7 +222,7 @@ _0291:
     End
 
 _02A8:
-    GoToIfEq VAR_0x4003, 1, _02BD
+    GoToIfEq VAR_MAP_LOCAL_3, 1, _02BD
     GoTo _040D
     End
 
@@ -230,7 +230,7 @@ _02BD:
     HealParty
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     CallCommonScript 0x7D6
-    SetVar VAR_RESULT, VAR_0x4000
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 1, _02E2
     GoTo _0291
     End
@@ -241,7 +241,7 @@ _02E2:
     End
 
 _02F0:
-    GoToIfEq VAR_0x4003, 1, _0305
+    GoToIfEq VAR_MAP_LOCAL_3, 1, _0305
     GoTo _030E
     End
 
@@ -404,14 +404,14 @@ _0562:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    CallIfEq VAR_0x4003, 0, _0600
-    CallIfEq VAR_0x4003, 1, _0608
+    CallIfEq VAR_MAP_LOCAL_3, 0, _0600
+    CallIfEq VAR_MAP_LOCAL_3, 1, _0608
     SetVar VAR_RESULT, 0
 _0596:
-    ScrCmd_194 VAR_RESULT, VAR_0x8004, VAR_0x8005, VAR_0x4004
-    ScrCmd_195 VAR_0x4002, VAR_RESULT
+    ScrCmd_194 VAR_RESULT, VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_4
+    ScrCmd_195 VAR_MAP_LOCAL_2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _05C1
-    ScrCmd_196 VAR_0x4002
+    ScrCmd_196 VAR_MAP_LOCAL_2
     ScrCmd_197 VAR_RESULT
     GoTo _0596
 
@@ -419,7 +419,7 @@ _05C1:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x4002, 0xFF, _05E4
+    GoToIfEq VAR_MAP_LOCAL_2, 0xFF, _05E4
     GoTo _0610
     End
 
@@ -431,15 +431,15 @@ _05E4:
     End
 
 _0600:
-    SetVar VAR_0x4004, 0
+    SetVar VAR_MAP_LOCAL_4, 0
     Return
 
 _0608:
-    SetVar VAR_0x4004, 1
+    SetVar VAR_MAP_LOCAL_4, 1
     Return
 
 _0610:
-    GoToIfEq VAR_0x4003, 1, _0625
+    GoToIfEq VAR_MAP_LOCAL_3, 1, _0625
     GoTo _070D
     End
 
@@ -498,9 +498,9 @@ _0705:
     End
 
 _070D:
-    ScrCmd_0FA VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_0x4002
-    CallIfEq VAR_0x4003, 1, _07B5
-    GoToIfEq VAR_0x4003, 2, _078A
+    ScrCmd_0FA VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
+    CallIfEq VAR_MAP_LOCAL_3, 1, _07B5
+    GoToIfEq VAR_MAP_LOCAL_3, 2, _078A
     ScrCmd_109 VAR_RESULT
     AddVar VAR_RESULT, 1
     ScrCmd_0FF VAR_RESULT, 0
@@ -513,9 +513,9 @@ _070D:
     ScrCmd_0F9 25
     CloseMessage
 _0761:
-    GoToIfEq VAR_0x4003, 0, _07BC
-    GoToIfEq VAR_0x4003, 1, _07F1
-    GoToIfEq VAR_0x4003, 2, _0830
+    GoToIfEq VAR_MAP_LOCAL_3, 0, _07BC
+    GoToIfEq VAR_MAP_LOCAL_3, 1, _07F1
+    GoToIfEq VAR_MAP_LOCAL_3, 2, _0830
     End
 
 _078A:
@@ -575,7 +575,7 @@ _0830:
     End
 
 _086A:
-    GoToIfEq VAR_0x4003, 2, _08CD
+    GoToIfEq VAR_MAP_LOCAL_3, 2, _08CD
     ScrCmd_0C6
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, _0892
@@ -608,17 +608,17 @@ _08CD:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_101
-    ScrCmd_110 VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_0x4002
+    ScrCmd_110 VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
     SetVar VAR_UNK_0x40CC, 0
     Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 28, 3, 1
     LockAll
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_10C VAR_0x4003
-    ScrCmd_110 VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_0x4002
+    ScrCmd_10C VAR_MAP_LOCAL_3
+    ScrCmd_110 VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
     ScrCmd_107 VAR_0x8004
     ScrCmd_118
-    ScrCmd_0FB VAR_0x4002
+    ScrCmd_0FB VAR_MAP_LOCAL_2
     SetVar VAR_RESULT, 28
     Call _0052
     Call _008B
@@ -642,7 +642,7 @@ _0947:
     WaitFadeScreen
     Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 0, 29, 7, 0
     ScrCmd_117
-    ScrCmd_10C VAR_0x4003
+    ScrCmd_10C VAR_MAP_LOCAL_3
     ScrCmd_113
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -711,8 +711,8 @@ _0947:
     ScrCmd_2B1
     ScrCmd_101
     ScrCmd_117
-    ScrCmd_110 VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_0x4002
-    ScrCmd_10C VAR_0x4003
+    ScrCmd_110 VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
+    ScrCmd_10C VAR_MAP_LOCAL_3
     Call _0D3A
     ScrCmd_2B0
     FadeScreen 6, 1, 1, 0x7FFF
@@ -764,12 +764,12 @@ _0B50:
     FadeScreen 6, 1, 20, 0
     WaitFadeScreen
     ScrCmd_114
-    ScrCmd_110 VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_0x4002
+    ScrCmd_110 VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
     ScrCmd_10F VAR_0x8004
     ScrCmd_118
-    ScrCmd_0FB VAR_0x4002
+    ScrCmd_0FB VAR_MAP_LOCAL_2
     SetVar VAR_UNK_0x40CC, 0
-    GoToIfEq VAR_0x4003, 0, _0BF2
+    GoToIfEq VAR_MAP_LOCAL_3, 0, _0BF2
     Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 7, 3, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -865,11 +865,11 @@ _0D3A:
     ScrCmd_10A VAR_RESULT, VAR_0x4024
     ClearFlag FLAG_UNK_0x0205
     AddObject 5
-    ScrCmd_108 VAR_0x4000
-    GoToIfEq VAR_0x4000, 0, _0D86
-    GoToIfEq VAR_0x4000, 1, _0D8C
-    GoToIfEq VAR_0x4000, 2, _0D92
-    GoToIfEq VAR_0x4000, 3, _0D98
+    ScrCmd_108 VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0D86
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _0D8C
+    GoToIfEq VAR_MAP_LOCAL_0, 2, _0D92
+    GoToIfEq VAR_MAP_LOCAL_0, 3, _0D98
     Return
 
 _0D86:
@@ -1021,7 +1021,7 @@ _0E74:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_0x4003, 2
+    SetVar VAR_MAP_LOCAL_3, 2
     SetVar VAR_0x8004, 0
     Message 111
     GoTo _0E93
@@ -1056,20 +1056,20 @@ _0EE1:
     End
 
 _0F30:
-    SetVar VAR_0x4004, 0
+    SetVar VAR_MAP_LOCAL_4, 0
     SetVar VAR_0x8007, 3
     GoTo _1027
     End
 
 _0F44:
-    SetVar VAR_0x4004, 1
+    SetVar VAR_MAP_LOCAL_4, 1
     SetVar VAR_0x8005, 0
     SetVar VAR_0x8007, 5
     GoTo _1027
     End
 
 _0F5E:
-    SetVar VAR_0x4004, 0
+    SetVar VAR_MAP_LOCAL_4, 0
     SetVar VAR_0x8007, 7
     GoTo _1027
     End
@@ -1251,7 +1251,7 @@ _0F72:
     .byte 0
 
 _1027:
-    GoToIfEq VAR_0x4004, 1, _1101
+    GoToIfEq VAR_MAP_LOCAL_4, 1, _1101
     GoTo _103A
 
 _103A:
@@ -1313,9 +1313,9 @@ _1101:
     SetVar VAR_RESULT, 0
 _111B:
     ScrCmd_194 VAR_RESULT, VAR_0x8004, VAR_0x8005, 0
-    ScrCmd_195 VAR_0x4002, VAR_RESULT
+    ScrCmd_195 VAR_MAP_LOCAL_2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1146
-    ScrCmd_196 VAR_0x4002
+    ScrCmd_196 VAR_MAP_LOCAL_2
     ScrCmd_197 VAR_RESULT
     GoTo _111B
 
@@ -1323,7 +1323,7 @@ _1146:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq VAR_0x4002, 0xFF, _10F4
+    GoToIfEq VAR_MAP_LOCAL_2, 0xFF, _10F4
     GoTo _070D
     End
 
