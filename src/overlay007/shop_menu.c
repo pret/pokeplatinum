@@ -1231,7 +1231,7 @@ static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu)
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
         GameRecords_AddToRecordValue(shopMenu->records, RECORD_UNK_069, shopMenu->itemPrice * shopMenu->itemAmount);
     } else {
-        GameRecords_AddToRecordValue(shopMenu->records, RECORD_UNK_035, shopMenu->itemPrice * shopMenu->itemAmount);
+        GameRecords_AddToRecordValue(shopMenu->records, RECORD_MONEY_SPENT, shopMenu->itemPrice * shopMenu->itemAmount);
     }
 
     Shop_PrintCurrentMoney(shopMenu, TRUE);

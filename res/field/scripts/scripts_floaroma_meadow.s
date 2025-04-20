@@ -189,25 +189,23 @@ _01F3:
     End
 
 _0241:
-    ScrCmd_071 0x800C, 100
-    GoToIfEq 0x800C, 0, _02E2
+    GoToIfNotEnoughMoney 100, _02E2
     SetVar 0x8005, 1
     SetVar 0x8006, 100
     GoTo _0293
     End
 
 _026A:
-    ScrCmd_071 0x800C, 0x3E8
-    GoToIfEq 0x800C, 0, _02E2
+    GoToIfNotEnoughMoney 1000, _02E2
     SetVar 0x8005, 10
-    SetVar 0x8006, 0x3E8
+    SetVar 0x8006, 1000
     GoTo _0293
     End
 
 _0293:
     SetVar 0x8004, ITEM_HONEY
     GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _02D5
-    ScrCmd_1A3 0x8006
+    RemoveMoney2 0x8006
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI

@@ -1,116 +1,116 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="9219" />
-	<row id="pl_msg_00000147_00000" index="0">
+	<row id="GameCorner_Text_WelcomeToTheVeilstoneGameCorner" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome to the Veilstone Game Corner!\r</language>
 	</row>
-	<row id="pl_msg_00000147_00001" index="1">
+	<row id="GameCorner_Text_DidYouWantSomeCoins_NoCoinCase" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Did you want some Coins for the\nslots?\rOh, I’m sorry, you don’t have\na Coin Case to hold your Coins.</language>
 	</row>
-	<row id="pl_msg_00000147_00002" index="2">
+	<row id="GameCorner_Text_DidYouWantSomeCoins_1000For50Coins" index="2">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Did you want some game Coins?\rIt’s $1000 for 50 Coins.\nWould you like some?</language>
 	</row>
-	<row id="pl_msg_00000147_00003" index="3">
+	<row id="GameCorner_Text_DidYouWantSomeCoins_ThankYouVeryMuchHereAreYourCoins" index="3">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Thank you very much!\nHere are your Coins!</language>
 	</row>
-	<row id="pl_msg_00000147_00004" index="4">
+	<row id="GameCorner_Text_UmYouDontAppearToHaveEnoughMoney" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Um... You don’t appear to have\nenough money...</language>
 	</row>
-	<row id="pl_msg_00000147_00005" index="5">
+	<row id="GameCorner_Text_OhYourCoinCaseIsFull" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh?\nYour Coin Case is full.</language>
 	</row>
-	<row id="pl_msg_00000147_00006" index="6">
+	<row id="GameCorner_Text_OhYouDontNeedCoinsThen" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh... You don’t need Coins, then?\nPlease come again!</language>
 	</row>
-	<row id="pl_msg_00000147_00007" index="7">
+	<row id="GameCorner_Text_TenStraightBonusRoundsOnTheSlots" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ten straight bonus rounds on\nthe slots! That’s amazing!\rI would say you had an explosion\nof good luck!\rSo, please take this Technical Machine\nas a memento!\r</language>
 	</row>
-	<row id="pl_msg_00000147_00008" index="8">
+	<row id="GameCorner_Text_PleaseKeepPlayingTheSlots" index="8">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Please keep playing the slots for\nanother explosion of good luck!</language>
 	</row>
-	<row id="pl_msg_00000147_00009" index="9">
+	<row id="GameCorner_Text_OhYourBagIsFullWeWillHoldTheTMForYou" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, your Bag is full...\nWe will hold the TM for you.</language>
 	</row>
-	<row id="pl_msg_00000147_00010" index="10">
+	<row id="GameCorner_Text_WeReStillAmazedByYourTenStraightBonusRounds" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">We’re still amazed by your ten straight\nbonus rounds on the slots before.\rI would say you had an explosion\nof good luck!\rSo, please take this Technical Machine\nas a memento!\r</language>
 	</row>
-	<row id="pl_msg_00000147_00011" index="11">
+	<row id="GameCorner_Text_YouCantPlayIfYouDontHaveACoinCase" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You can’t play if you don’t have\na Coin Case.</language>
 	</row>
-	<row id="pl_msg_00000147_00012" index="12">
+	<row id="GameCorner_Text_IllEplainHowTheSlotMachinesWorkAtThisGameCorner" index="12">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’ll explain how the slot machines\nwork at this Game Corner.\rDuring regular play, you should\nstop the reels from the left.\rDuring the bonus round, watch\nwhere CLEFAIRY points and stop\fthe reels in that order.</language>
 	</row>
-	<row id="pl_msg_00000147_00013" index="13">
+	<row id="GameCorner_Text_HeyKidIfYouWantToPlayHereYouNeedACoinCase" index="13">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hey, kid, if you want to play here,\nyou need a Coin Case.\rI think the young man next door\nhad one.</language>
 	</row>
-	<row id="pl_msg_00000147_00014" index="14">
+	<row id="GameCorner_Text_IveBeenWinningATonToday" index="14">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’ve been winning a ton today.\nHere, take some Coins!\r{STRVAR_1 3, 0, 0} received 20 Coins\nfrom the man.\r{STRVAR_1 3, 0, 0} put the Coins away in\nthe Coin Case.</language>
 	</row>
-	<row id="pl_msg_00000147_00015" index="15">
+	<row id="GameCorner_Text_ListenWhenClefairyAppears" index="15">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Listen, when CLEFAIRY appears, that’s\nyour chance to line up sevens.\rLine those babies up and you’re into\nthe bonus round!</language>
 	</row>
-	<row id="pl_msg_00000147_00016" index="16">
+	<row id="GameCorner_Text_WooHooClefairyLookAtItItsDrivingMeBananas" index="16">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Woohoo! CLEFAIRY! Look at it!\nIt’s driving me bananas!\rOh, if only you had a Coin Case!\nThen you’d know what fun this is!</language>
 	</row>
-	<row id="pl_msg_00000147_00017" index="17">
+	<row id="GameCorner_Text_WooHooClefairyLookYeahahItsACarnival" index="17">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Woohoo! CLEFAIRY! Look!\nYeahah! It’s a carnival!\rLet me share some of my joy with\nyou!\r{STRVAR_1 3, 0, 0} received 50 Coins\nfrom the man.\r{STRVAR_1 3, 0, 0} put the Coins away in\nthe Coin Case.</language>
 	</row>
-	<row id="pl_msg_00000147_00018" index="18">
+	<row id="GameCorner_Text_WooHooClefairyItsAdorable" index="18">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Woohoo! CLEFAIRY! It’s adorable!\nJust seeing it gets my pulse racing!\rOh, let me impart a piece of advice\nto you!\rIf the moon turns red, you don’t\nwant to get a replay because it\fmakes CLEFAIRY tired!</language>
 	</row>
-	<row id="pl_msg_00000147_00019" index="19">
+	<row id="GameCorner_Text_IWantCoinsOfCourse" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I want Coins, of course, but\nsetting records is hot, too!</language>
 	</row>
-	<row id="pl_msg_00000147_00020" index="20">
+	<row id="GameCorner_Text_WhenAPokeBallAppears" index="20">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">When a Poké Ball appears, it’s a\nchance to line up slot marks.\rReplays and PIKACHU line up even if\nyou don’t make an effort.\rBut you need to aim for better marks,\nlike Poké Balls and Moon Stones.</language>
 	</row>
-	<row id="pl_msg_00000147_00021" index="21">
+	<row id="GameCorner_Text_AFriendInMyGroupScoredATonOfCoinsHere" index="21">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A friend in my group scored a ton of\nCoins here.\rWhy mess with a good thing?\nI’ll try the same spot, too!</language>
 	</row>
-	<row id="pl_msg_00000147_00022" index="22">
+	<row id="GameCorner_Text_SighNothingGoingMyWayToday" index="22">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sigh...\nNothing’s going my way today...\rAre you a Trainer?\nDid you battle the Gym Leader?\rShe happens to be my daughter.\nShe’s some kind of tough!</language>
 	</row>
-	<row id="pl_msg_00000147_00023" index="23">
+	<row id="GameCorner_Text_Looker" index="23">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Looker: Ah, it is you, yes.\rExamine, if you will, the reels.\nThe Team Galactic logo, it is here.\rFurther investigation is needed, and\nI am just the man to do it.\rAlso, where the masses gather, so too\ndoes information.\r...Ack. My streak is broken.</language>
 	</row>
-	<row id="pl_msg_00000147_00024" index="24">
+	<row id="GameCorner_Text_Looker_PostStarkMountain" index="24">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Looker: Ah, it is you, yes.\rI have decided to use the opportunity\nof being here in Sinnoh.\rI am therefore trying to teach moves\nto Pokémon that I have captured.\rAlso, if I have nothing to do, it means\nthe world, it is at peace.\r...Ack. My streak is broken.</language>
 	</row>
-	<row id="pl_msg_00000147_00025" index="25">
+	<row id="GameCorner_Text_ShootFor10" index="25">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Shoot for 10!\nLine up those bonus rounds!\rIf you accomplish the feat of completing\n10 uninterrupted bonus rounds,\fplease go to the counter.\rYou will be presented with a fabulous\nprize!\rThe current record sits at\n{STRVAR_1 52, 0, 0} straight bonus rounds!</language>
 	</row>
-	<row id="pl_msg_00000147_00026" index="26">
+	<row id="GameCorner_Text_Unused_00026" index="26">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語"></language>
 	</row>
-	<row id="pl_msg_00000147_00027" index="27">
+	<row id="GameCorner_Text_Unused_00027" index="27">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語"></language>

@@ -47,31 +47,29 @@ _0044:
     End
 
 _0092:
-    ScrCmd_071 0x800C, 0x1F4
-    GoToIfEq 0x800C, 0, _0150
+    GoToIfNotEnoughMoney 500, _0150
     SetVar 0x8005, 1
-    SetVar 0x8006, 0x1F4
+    SetVar 0x8006, 500
     GoTo _00E4
     End
 
 _00BB:
-    ScrCmd_071 0x800C, 0x1770
-    GoToIfEq 0x800C, 0, _0150
+    GoToIfNotEnoughMoney 6000, _0150
     SetVar 0x8005, 12
-    SetVar 0x8006, 0x1770
+    SetVar 0x8006, 6000
     GoTo _00E4
     End
 
 _00E4:
     SetVar 0x8004, ITEM_MOOMOO_MILK
     GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0143
-    ScrCmd_334 35, 0x8006
-    ScrCmd_1A3 0x8006
+    AddToGameRecord RECORD_MONEY_SPENT, 0x8006
+    RemoveMoney2 0x8006
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
-    CallIfEq 0x8006, 0x1F4, _0139
-    CallIfEq 0x8006, 0x1770, _013E
+    CallIfEq 0x8006, 500, _0139
+    CallIfEq 0x8006, 6000, _013E
     CallCommonScript 0x7E0
     CloseMessage
     HideMoney

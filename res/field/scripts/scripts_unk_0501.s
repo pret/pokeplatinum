@@ -273,7 +273,7 @@ _03BE:
     GoTo _0292
 
 _03DE:
-    ScrCmd_1AB 0x800C, 0x8004
+    CheckMoney2 0x800C, 0x8004
     GoToIfEq 0x800C, 1, _03FE
     Message 21
     WaitABXPadPress
@@ -286,7 +286,7 @@ _03FE:
     ApplyMovement 0, _046C
     WaitMovement
     MoveMonToPartyFromDaycareSlot 0x8002, 0x8001
-    ScrCmd_1A3 0x8004
+    RemoveMoney2 0x8004
     UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI

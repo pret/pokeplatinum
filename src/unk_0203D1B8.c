@@ -219,12 +219,12 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    s64 unk_04;
+    s64 startTime;
     UnkStruct_0203E348 unk_0C;
 } UnkStruct_0203E35C;
 
 static void sub_0203DF68(FieldTask *taskMan);
-static u8 sub_0203E484(SaveData *saveData, u8 param1);
+static u8 sub_0203E484(SaveData *saveData, u8 slotMachineID);
 
 static BOOL OverlayInit_Battle(OverlayManager *ovyManager, int *state)
 {
@@ -1551,7 +1551,7 @@ static BOOL sub_0203E35C(FieldTask *param0)
             u16 *v5 = SaveData_GetCoins(fieldSystem->saveData);
             s64 v6 = GetTimestamp();
 
-            sub_0206DD38(fieldSystem, Coins_GetValue(v5), v2->unk_00, TimeElapsed(v2->unk_04, v6) / 60);
+            sub_0206DD38(fieldSystem, Coins_GetValue(v5), v2->unk_00, TimeElapsed(v2->startTime, v6) / 60);
             Coins_SetValue(SaveData_GetCoins(fieldSystem->saveData), v2->unk_00);
 
             v4 = SystemVars_GetConsecutiveBonusRoundWins(v1);
@@ -1569,61 +1569,78 @@ static BOOL sub_0203E35C(FieldTask *param0)
     return 0;
 }
 
-void sub_0203E414(FieldTask *param0, int param1)
+void sub_0203E414(FieldTask *task, int slotMachineID)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    Options *v1 = SaveData_GetOptions(fieldSystem->saveData);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    Options *options = SaveData_GetOptions(fieldSystem->saveData);
     UnkStruct_0203E35C *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203E35C));
 
     v2->unk_0C.unk_00 = &v2->unk_00;
     v2->unk_00 = Coins_GetValue(SaveData_GetCoins(fieldSystem->saveData));
-    v2->unk_04 = GetTimestamp();
+    v2->startTime = GetTimestamp();
     v2->unk_0C.records = SaveData_GetGameRecords(fieldSystem->saveData);
     v2->unk_0C.unk_0C = 0;
-    v2->unk_0C.unk_10 = Options_Frame(v1);
-    v2->unk_0C.unk_04 = sub_0203E484(fieldSystem->saveData, param1);
+    v2->unk_0C.msgBoxFrame = Options_Frame(options);
+    v2->unk_0C.unk_04 = sub_0203E484(fieldSystem->saveData, slotMachineID);
 
     GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_05);
-    FieldTask_InitCall(param0, sub_0203E35C, v2);
+    FieldTask_InitCall(task, sub_0203E35C, v2);
 }
 
-static u8 sub_0203E484(SaveData *param0, u8 param1)
+enum SlotMachineID {
+    SLOT_MACHINE_0,
+    SLOT_MACHINE_1,
+    SLOT_MACHINE_2,
+    SLOT_MACHINE_3,
+    SLOT_MACHINE_4,
+    SLOT_MACHINE_5,
+    SLOT_MACHINE_6,
+    SLOT_MACHINE_7,
+    SLOT_MACHINE_8,
+    SLOT_MACHINE_9,
+    SLOT_MACHINE_10,
+    SLOT_MACHINE_11,
+    SLOT_MACHINE_COUNT
+};
+
+static u8 sub_0203E484(SaveData *saveData, u8 slotMachineID)
 {
-    static const u8 v0[12] = {
-        0,
-        5,
-        1,
-        1,
-        4,
-        4,
-        2,
-        2,
-        2,
-        3,
-        3,
-        3,
+    // Chances? Modes?
+    static const u8 v0[SLOT_MACHINE_COUNT] = {
+        [SLOT_MACHINE_0] = 0,
+        [SLOT_MACHINE_1] = 5,
+        [SLOT_MACHINE_2] = 1,
+        [SLOT_MACHINE_3] = 1,
+        [SLOT_MACHINE_4] = 4,
+        [SLOT_MACHINE_5] = 4,
+        [SLOT_MACHINE_6] = 2,
+        [SLOT_MACHINE_7] = 2,
+        [SLOT_MACHINE_8] = 2,
+        [SLOT_MACHINE_9] = 3,
+        [SLOT_MACHINE_10] = 3,
+        [SLOT_MACHINE_11] = 3,
     };
-    RecordMixedRNG *v1 = SaveData_GetRecordMixedRNG(param0);
-    u32 v2;
-    u8 v3[12];
-    u8 v4, v5, v6, v7;
+    RecordMixedRNG *recordMixRNG = SaveData_GetRecordMixedRNG(saveData);
+    u32 oldSeed;
+    u8 v3[SLOT_MACHINE_COUNT];
+    u8 i, j, slot, temp;
 
-    v2 = LCRNG_GetSeed();
+    oldSeed = LCRNG_GetSeed();
 
-    LCRNG_SetSeed(RecordMixedRNG_GetRand(v1));
+    LCRNG_SetSeed(RecordMixedRNG_GetRand(recordMixRNG));
     MI_CpuCopy8(v0, v3, sizeof(v3));
 
-    for (v4 = 0; v4 < 12; v4++) {
-        for (v5 = v4 + 1; v5 < 12; v5++) {
-            v6 = LCRNG_Next() % 12;
-            v7 = v3[v4];
-            v3[v4] = v3[v6];
-            v3[v6] = v7;
+    for (i = 0; i < SLOT_MACHINE_COUNT; i++) {
+        for (j = i + 1; j < SLOT_MACHINE_COUNT; j++) {
+            slot = LCRNG_Next() % SLOT_MACHINE_COUNT;
+            temp = v3[i];
+            v3[i] = v3[slot];
+            v3[slot] = temp;
         }
     }
 
-    LCRNG_SetSeed(v2);
-    return v3[param1];
+    LCRNG_SetSeed(oldSeed);
+    return v3[slotMachineID];
 }
 
 static BOOL FieldTask_AccessoryShop(FieldTask *task)

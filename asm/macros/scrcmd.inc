@@ -688,20 +688,25 @@
     .short 110
     .endm
 
-    .macro ScrCmd_06F arg0
+    .macro GiveMoney value
     .short 111
-    .long \arg0
+    .long \value
     .endm
 
-    .macro ScrCmd_070 arg0
+    .macro RemoveMoney value
     .short 112
-    .long \arg0
+    .long \value
     .endm
 
-    .macro ScrCmd_071 arg0, arg1
+    .macro CheckMoney destVar, value
     .short 113
-    .short \arg0
-    .long \arg1
+    .short \destVar
+    .long \value
+    .endm
+
+    .macro GoToIfNotEnoughMoney value, offset
+    CheckMoney 0x800C, \value
+    GoToIfEq 0x800C, FALSE, \offset
     .endm
 
     .macro ShowMoney tilemapLeft, tilemapTop
@@ -732,20 +737,17 @@
     .short 119
     .endm
 
-    .macro ScrCmd_078 arg0
+    .macro GetCoinsAmount destVar
     .short 120
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_079 arg0
+    .macro AddCoins coins
     .short 121
-    .short \arg0
+    .short \coins
     .endm
 
-    .macro ScrCmd_07A arg0
-    .short 122
-    .short \arg0
-    .endm
+    /* See SubtractCoins for 122 */
 
     // If the player has no space left in the bag, destVarID will be set to FALSE
     .macro AddItem item, count, destVarID
@@ -2323,9 +2325,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1A3 arg0
+    .macro RemoveMoney2 valueOrVarID
     .short 419
-    .short \arg0
+    .short \valueOrVarID
     .endm
 
     .macro MoveMonToPartyFromDaycareSlot destVarSpecies, daycareSlot
@@ -2361,10 +2363,10 @@
     .short \daycareSlot
     .endm
 
-    .macro ScrCmd_1AB arg0, arg1
+    .macro CheckMoney2 destVar, valueOrVarID
     .short 427
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \valueOrVarID
     .endm
 
     .macro ScrCmd_1AC
@@ -3472,9 +3474,9 @@
     .short 614
     .endm
 
-    .macro ScrCmd_267 arg0
+    .macro ScrCmd_267 slotMachineID
     .short 615
-    .short \arg0
+    .short \slotMachineID
     .endm
 
     .macro GetHour destVar
@@ -3552,11 +3554,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_274 arg0, arg1
-    .short 628
-    .short \arg0
-    .long \arg1
-    .endm
+    /* See HasCoins for 628 */
 
     /* Returns TRUE in destVarID if the player has won at least 10 consecutive bonus rounds */
     .macro CheckBonusRoundStreak destVarID
@@ -3564,10 +3562,12 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_276 arg0, arg1
+    .macro GoToIfCannotAddCoins amount, offset
     .short 630
-    .short \arg0
-    .short \arg1
+    .short 0x800C
+    .short \amount
+    Noop
+    GoToIfEq 0x800C, FALSE, \offset
     .endm
 
     .macro GetDailyRandomLevel destVarID
@@ -3846,15 +3846,26 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_2A8 arg0
-    .short 680
-    .short \arg0
+    .macro SubtractCoins valueOrVarID
+    .if \valueOrVarID < VARS_START
+        .short 122 /* SubstractCoinsFromValue */
+        .short \valueOrVarID
+    .else
+        .short 680 /* SubstractCoinsFromVar */
+        .short \valueOrVarID
+    .endif
     .endm
 
-    .macro ScrCmd_2A9 arg0, arg1
-    .short 681
-    .short \arg0
-    .short \arg1
+    .macro HasCoins varID, valueOrVarID
+    .if \valueOrVarID < VARS_START
+        .short 628 /* HasCoinsFromValue */
+        .short \varID
+        .long \valueOrVarID
+    .else
+        .short 681 /* HasCoinsFromVar */
+        .short \varID
+        .short \valueOrVarID
+    .endif
     .endm
 
     .macro ScrCmd_2AA arg0, arg1, arg2, arg3, arg4
@@ -4613,16 +4624,17 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_334 arg0, arg1
+    .macro AddToGameRecord recordID, value
     .short 820
-    .short \arg0
-    .short \arg1
+    .short \recordID
+    .short \value
     .endm
 
-    .macro ScrCmd_335 arg0, arg1
+    // For values equals or bigger than VARS_START
+    .macro AddToGameRecordBigValue recordID, value
     .short 821
-    .short \arg0
-    .long \arg1
+    .short \recordID
+    .long \value
     .endm
 
     .macro ScrCmd_336 arg0
