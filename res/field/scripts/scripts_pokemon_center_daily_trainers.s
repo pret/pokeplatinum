@@ -11,8 +11,8 @@
 #define ARIEL          71
 
 #define VAR_MAP_ID     VAR_MAP_LOCAL_1
-#define VAR_NPC_1      VAR_0x402A
-#define VAR_NPC_2      VAR_0x402B
+#define VAR_NPC_1      VAR_OBJ_GFX_ID_A
+#define VAR_NPC_2      VAR_OBJ_GFX_ID_B
 
 #define VAR_TWO_MONS   VAR_0x8000
 #define VAR_IS_NPC_2   VAR_0x8004

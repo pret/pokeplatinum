@@ -74,11 +74,11 @@ _0132:
     Return
 
 _0148:
-    SetVar VAR_0x4020, 97
+    SetVar VAR_OBJ_GFX_ID_0, 97
     End
 
 _0150:
-    SetVar VAR_0x4020, 0
+    SetVar VAR_OBJ_GFX_ID_0, 0
     End
 
 _0158:

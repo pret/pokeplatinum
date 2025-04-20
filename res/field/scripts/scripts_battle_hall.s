@@ -134,31 +134,31 @@ _0215:
     Return
 
 _0235:
-    SetVar VAR_0x4021, 97
+    SetVar VAR_OBJ_GFX_ID_1, 97
     Return
 
 _023D:
-    SetVar VAR_0x4021, 0
+    SetVar VAR_OBJ_GFX_ID_1, 0
     Return
 
 _0245:
-    SetVar VAR_0x4021, 140
+    SetVar VAR_OBJ_GFX_ID_1, 140
     Return
 
 _024D:
-    SetVar VAR_0x4021, 166
+    SetVar VAR_OBJ_GFX_ID_1, 166
     Return
 
 _0255:
-    SetVar VAR_0x4021, 167
+    SetVar VAR_OBJ_GFX_ID_1, 167
     Return
 
 _025D:
-    SetVar VAR_0x4023, 7
+    SetVar VAR_OBJ_GFX_ID_3, 7
     Return
 
 _0265:
-    SetVar VAR_0x4023, 4
+    SetVar VAR_OBJ_GFX_ID_3, 4
     Return
 
 _026D:
@@ -956,7 +956,7 @@ _0D14:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_MAP_LOCAL_1, VAR_0x4021
+    SetVar VAR_MAP_LOCAL_1, VAR_OBJ_GFX_ID_1
     GoToIfEq VAR_MAP_LOCAL_1, 0, _0D68
     GoToIfEq VAR_MAP_LOCAL_1, 97, _0D73
     GoToIfEq VAR_MAP_LOCAL_1, 140, _0D7E

@@ -27,14 +27,14 @@ _0039:
     ClearFlag FLAG_UNK_0x02A3
     ClearFlag FLAG_UNK_0x02A4
     ClearFlag FLAG_UNK_0x02A5
-    CallIfEq VAR_0x4022, 0xFFF, _00ED
-    CallIfEq VAR_0x4023, 0xFFF, _00F3
-    CallIfEq VAR_0x4024, 0xFFF, _00F9
-    CallIfEq VAR_0x4024, 141, _00FF
-    CallIfEq VAR_0x4024, 142, _010C
-    CallIfEq VAR_0x4024, 143, _0119
-    CallIfEq VAR_0x4024, 144, _0126
-    CallIfEq VAR_0x4024, 145, _0133
+    CallIfEq VAR_OBJ_GFX_ID_2, 0xFFF, _00ED
+    CallIfEq VAR_OBJ_GFX_ID_3, 0xFFF, _00F3
+    CallIfEq VAR_OBJ_GFX_ID_4, 0xFFF, _00F9
+    CallIfEq VAR_OBJ_GFX_ID_4, 141, _00FF
+    CallIfEq VAR_OBJ_GFX_ID_4, 142, _010C
+    CallIfEq VAR_OBJ_GFX_ID_4, 143, _0119
+    CallIfEq VAR_OBJ_GFX_ID_4, 144, _0126
+    CallIfEq VAR_OBJ_GFX_ID_4, 145, _0133
     ClearFlag FLAG_UNK_0x0001
     ClearFlag FLAG_UNK_0x0002
     ClearFlag FLAG_UNK_0x0003
@@ -79,10 +79,10 @@ _0133:
     Return
 
 _0140:
-    SetVar VAR_0x4021, VAR_UNK_0x4065
-    SetVar VAR_0x4022, VAR_UNK_0x4066
-    SetVar VAR_0x4023, VAR_UNK_0x4067
-    SetVar VAR_0x4024, VAR_UNK_0x4068
+    SetVar VAR_OBJ_GFX_ID_1, VAR_UNK_0x4065
+    SetVar VAR_OBJ_GFX_ID_2, VAR_UNK_0x4066
+    SetVar VAR_OBJ_GFX_ID_3, VAR_UNK_0x4067
+    SetVar VAR_OBJ_GFX_ID_4, VAR_UNK_0x4068
     Return
 
 _015A:
@@ -211,7 +211,7 @@ _02B4:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_MAP_LOCAL_1, VAR_0x4021
+    SetVar VAR_MAP_LOCAL_1, VAR_OBJ_GFX_ID_1
     GoToIfSet FLAG_UNK_0x0005, _034D
     Call _118A
     GoToIfEq VAR_RESULT, 1, _034D
@@ -286,7 +286,7 @@ _03CA:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_MAP_LOCAL_1, VAR_0x4022
+    SetVar VAR_MAP_LOCAL_1, VAR_OBJ_GFX_ID_2
     GoToIfSet FLAG_UNK_0x0006, _034D
     Call _118A
     GoToIfEq VAR_RESULT, 1, _034D
@@ -312,7 +312,7 @@ _0457:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_MAP_LOCAL_1, VAR_0x4023
+    SetVar VAR_MAP_LOCAL_1, VAR_OBJ_GFX_ID_3
     GoToIfSet FLAG_UNK_0x0007, _034D
     Call _118A
     GoToIfEq VAR_RESULT, 1, _034D
@@ -338,7 +338,7 @@ _04E4:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_MAP_LOCAL_1, VAR_0x4024
+    SetVar VAR_MAP_LOCAL_1, VAR_OBJ_GFX_ID_4
     GoToIfSet FLAG_UNK_0x0008, _034D
     Call _118A
     GoToIfEq VAR_RESULT, 1, _034D
@@ -366,14 +366,14 @@ _0571:
     Return
 
 _0593:
-    CallIfEq VAR_0x4021, 126, _05FD
-    CallIfEq VAR_0x4022, 126, _05FD
-    CallIfEq VAR_0x4023, 126, _05FD
-    CallIfEq VAR_0x4024, 126, _05FD
-    CallIfEq VAR_0x4021, 132, _05FD
-    CallIfEq VAR_0x4022, 132, _05FD
-    CallIfEq VAR_0x4023, 132, _05FD
-    CallIfEq VAR_0x4024, 132, _05FD
+    CallIfEq VAR_OBJ_GFX_ID_1, 126, _05FD
+    CallIfEq VAR_OBJ_GFX_ID_2, 126, _05FD
+    CallIfEq VAR_OBJ_GFX_ID_3, 126, _05FD
+    CallIfEq VAR_OBJ_GFX_ID_4, 126, _05FD
+    CallIfEq VAR_OBJ_GFX_ID_1, 132, _05FD
+    CallIfEq VAR_OBJ_GFX_ID_2, 132, _05FD
+    CallIfEq VAR_OBJ_GFX_ID_3, 132, _05FD
+    CallIfEq VAR_OBJ_GFX_ID_4, 132, _05FD
     Return
 
 _05FD:

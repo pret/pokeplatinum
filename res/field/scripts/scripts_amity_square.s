@@ -878,102 +878,102 @@ _0E48:
     End
 
 _0F5A:
-    SetVar VAR_0x4020, 71
+    SetVar VAR_OBJ_GFX_ID_0, 71
     GoTo _1072
     End
 
 _0F68:
-    SetVar VAR_0x4020, 78
+    SetVar VAR_OBJ_GFX_ID_0, 78
     GoTo _1072
     End
 
 _0F76:
-    SetVar VAR_0x4020, 72
+    SetVar VAR_OBJ_GFX_ID_0, 72
     GoTo _1072
     End
 
 _0F84:
-    SetVar VAR_0x4020, 74
+    SetVar VAR_OBJ_GFX_ID_0, 74
     GoTo _1072
     End
 
 _0F92:
-    SetVar VAR_0x4020, 204
+    SetVar VAR_OBJ_GFX_ID_0, 204
     GoTo _1072
     End
 
 _0FA0:
-    SetVar VAR_0x4020, 185
+    SetVar VAR_OBJ_GFX_ID_0, 185
     GoTo _1072
     End
 
 _0FAE:
-    SetVar VAR_0x4020, 206
+    SetVar VAR_OBJ_GFX_ID_0, 206
     GoTo _1072
     End
 
 _0FBC:
-    SetVar VAR_0x4020, 207
+    SetVar VAR_OBJ_GFX_ID_0, 207
     GoTo _1072
     End
 
 _0FCA:
-    SetVar VAR_0x4020, 73
+    SetVar VAR_OBJ_GFX_ID_0, 73
     GoTo _1072
     End
 
 _0FD8:
-    SetVar VAR_0x4020, 79
+    SetVar VAR_OBJ_GFX_ID_0, 79
     GoTo _1072
     End
 
 _0FE6:
-    SetVar VAR_0x4020, 205
+    SetVar VAR_OBJ_GFX_ID_0, 205
     GoTo _1072
     End
 
 _0FF4:
-    SetVar VAR_0x4020, 220
+    SetVar VAR_OBJ_GFX_ID_0, 220
     GoTo _1072
     End
 
 _1002:
-    SetVar VAR_0x4020, 221
+    SetVar VAR_OBJ_GFX_ID_0, 221
     GoTo _1072
     End
 
 _1010:
-    SetVar VAR_0x4020, 222
+    SetVar VAR_OBJ_GFX_ID_0, 222
     GoTo _1072
     End
 
 _101E:
-    SetVar VAR_0x4020, 223
+    SetVar VAR_OBJ_GFX_ID_0, 223
     GoTo _1072
     End
 
 _102C:
-    SetVar VAR_0x4020, 224
+    SetVar VAR_OBJ_GFX_ID_0, 224
     GoTo _1072
     End
 
 _103A:
-    SetVar VAR_0x4020, 225
+    SetVar VAR_OBJ_GFX_ID_0, 225
     GoTo _1072
     End
 
 _1048:
-    SetVar VAR_0x4020, 226
+    SetVar VAR_OBJ_GFX_ID_0, 226
     GoTo _1072
     End
 
 _1056:
-    SetVar VAR_0x4020, 227
+    SetVar VAR_OBJ_GFX_ID_0, 227
     GoTo _1072
     End
 
 _1064:
-    SetVar VAR_0x4020, 228
+    SetVar VAR_OBJ_GFX_ID_0, 228
     GoTo _1072
     End
 

@@ -26,15 +26,15 @@ _008A:
     Return
 
 _008E:
-    SetVar VAR_0x402A, 231
+    SetVar VAR_OBJ_GFX_ID_A, 231
     Return
 
 _0096:
-    SetVar VAR_0x402A, 235
+    SetVar VAR_OBJ_GFX_ID_A, 235
     Return
 
 _009E:
-    SetVar VAR_0x402A, 232
+    SetVar VAR_OBJ_GFX_ID_A, 232
     Return
 
 _00A6:

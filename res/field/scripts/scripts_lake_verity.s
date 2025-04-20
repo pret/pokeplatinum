@@ -22,11 +22,11 @@ _001E:
     End
 
 _0061:
-    SetVar VAR_0x4020, 97
+    SetVar VAR_OBJ_GFX_ID_0, 97
     End
 
 _0069:
-    SetVar VAR_0x4020, 0
+    SetVar VAR_OBJ_GFX_ID_0, 0
     End
 
 _0071:

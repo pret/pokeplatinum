@@ -205,14 +205,14 @@ _0396:
 
 _03A1:
     SetVar VAR_0x8007, TRAINER_RICH_BOY_LIAM
-    SetVar VAR_0x4020, 62
+    SetVar VAR_OBJ_GFX_ID_0, 62
     ScrCmd_2F3 2, VAR_0x8007
     Message 8
     Return
 
 _03B7:
     SetVar VAR_0x8007, TRAINER_LADY_CELESTE
-    SetVar VAR_0x4020, 63
+    SetVar VAR_OBJ_GFX_ID_0, 63
     ScrCmd_2F3 2, VAR_0x8007
     Message 9
     Return

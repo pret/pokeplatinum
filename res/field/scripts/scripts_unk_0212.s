@@ -854,15 +854,15 @@ _0CEE:
     Return
 
 _0D20:
-    ScrCmd_10A 0, VAR_0x4020
-    ScrCmd_10A 1, VAR_0x4021
-    ScrCmd_10A 2, VAR_0x4022
-    ScrCmd_10A 3, VAR_0x4023
+    ScrCmd_10A 0, VAR_OBJ_GFX_ID_0
+    ScrCmd_10A 1, VAR_OBJ_GFX_ID_1
+    ScrCmd_10A 2, VAR_OBJ_GFX_ID_2
+    ScrCmd_10A 3, VAR_OBJ_GFX_ID_3
     Return
 
 _0D3A:
     ScrCmd_108 VAR_RESULT
-    ScrCmd_10A VAR_RESULT, VAR_0x4024
+    ScrCmd_10A VAR_RESULT, VAR_OBJ_GFX_ID_4
     ClearFlag FLAG_UNK_0x0205
     AddObject 5
     ScrCmd_108 VAR_MAP_LOCAL_0

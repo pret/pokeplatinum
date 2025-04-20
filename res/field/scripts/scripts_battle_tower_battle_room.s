@@ -14,7 +14,7 @@ _0016:
     GoToIfEq VAR_UNK_0x40D9, 0, _0035
     SetFlag FLAG_UNK_0x01CB
     ScrCmd_1DD 55, 0, VAR_MAP_LOCAL_0
-    SetVar VAR_0x4020, VAR_MAP_LOCAL_0
+    SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
 _0035:
     End
 
@@ -258,7 +258,7 @@ _0448:
 
 _045C:
     ScrCmd_1DD 41, 0, VAR_RESULT
-    SetVar VAR_0x4021, VAR_RESULT
+    SetVar VAR_OBJ_GFX_ID_1, VAR_RESULT
     ClearFlag FLAG_UNK_0x01CB
     AddObject 1
     ApplyMovement 1, _0524
@@ -291,7 +291,7 @@ _04BA:
     Return
 
 _04CE:
-    SetVar VAR_0x4021, 169
+    SetVar VAR_OBJ_GFX_ID_1, 169
     ClearFlag FLAG_UNK_0x01CB
     AddObject 1
     ApplyMovement 1, _05A8

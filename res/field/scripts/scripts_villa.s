@@ -92,11 +92,11 @@ _01ED:
     End
 
 _01EF:
-    SetVar VAR_0x4021, 97
+    SetVar VAR_OBJ_GFX_ID_1, 97
     Return
 
 _01F7:
-    SetVar VAR_0x4021, 0
+    SetVar VAR_OBJ_GFX_ID_1, 0
     Return
 
 _01FF:
