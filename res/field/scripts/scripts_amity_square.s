@@ -199,7 +199,7 @@ _02C9:
     WaitFadeScreen
     SetVar VAR_UNK_0x4099, 1
     ClearAmitySquareStepCount
-    Call _03DC
+    Call AmitySquare_FollowerMon_SetNextPickUpType
     ScrCmd_27C 0, VAR_FOLLOWER_MON_PARTY_ID
     Message AmitySquare_Text_PleaseDoEnjoyYourTimeTogether
     CloseMessage
@@ -308,94 +308,94 @@ _03C8:
     .byte 0
     .byte 0
 
-_03DC:
+AmitySquare_FollowerMon_SetNextPickUpType:
     GetRandom VAR_RESULT, 5
-    CallIfEq VAR_RESULT, 0, _040A
-    CallIfNe VAR_RESULT, 0, _0412
+    CallIfEq VAR_RESULT, 0, AmitySquare_FollowerMon_SetNextPickUpType_Item      /* 20% */
+    CallIfNe VAR_RESULT, 0, AmitySquare_FollowerMon_SetNextPickUpType_Accessory /* 80% */
     CalcAmitySquareFoundAccessory VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID, VAR_FOLLOWER_MON_SPECIES
-    GoTo _041A
+    GoTo AmitySquare_FollowerMon_SetPickupItemVar
     End
 
-_040A:
+AmitySquare_FollowerMon_SetNextPickUpType_Item:
     SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, PICKUP_TYPE_ITEM
     Return
 
-_0412:
+AmitySquare_FollowerMon_SetNextPickUpType_Accessory:
     SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, PICKUP_TYPE_ACCESORY
     Return
 
-_041A:
+AmitySquare_FollowerMon_SetPickupItemVar:
     GetRandom VAR_RESULT, 100
-    GoToIfLt VAR_RESULT, 20, _0490
-    GoToIfLt VAR_RESULT, 35, _0498
-    GoToIfLt VAR_RESULT, 50, _04A0
-    GoToIfLt VAR_RESULT, 65, _04A8
-    GoToIfLt VAR_RESULT, 72, _04B0
-    GoToIfLt VAR_RESULT, 79, _04B8
-    GoToIfLt VAR_RESULT, 86, _04C0
-    GoToIfLt VAR_RESULT, 93, _04C8
-    GoTo _04D0
+    GoToIfLt VAR_RESULT, 20, AmitySquare_FollowerMon_SetPickupItemVar_MagostBerry /* 20% */
+    GoToIfLt VAR_RESULT, 35, AmitySquare_FollowerMon_SetPickupItemVar_CornnBerry  /* 15% */
+    GoToIfLt VAR_RESULT, 50, AmitySquare_FollowerMon_SetPickupItemVar_RabutaBerry /* 15% */
+    GoToIfLt VAR_RESULT, 65, AmitySquare_FollowerMon_SetPickupItemVar_NomelBerry  /* 15% */
+    GoToIfLt VAR_RESULT, 72, AmitySquare_FollowerMon_SetPickupItemVar_SpelonBerry /*  7% */
+    GoToIfLt VAR_RESULT, 79, AmitySquare_FollowerMon_SetPickupItemVar_PamtreBerry /*  7% */
+    GoToIfLt VAR_RESULT, 86, AmitySquare_FollowerMon_SetPickupItemVar_WatmelBerry /*  7% */
+    GoToIfLt VAR_RESULT, 93, AmitySquare_FollowerMon_SetPickupItemVar_DurinBerry  /*  7% */
+    GoTo AmitySquare_FollowerMon_SetPickupItemVar_BelueBerry                      /*  7% */
     End
 
-_0490:
+AmitySquare_FollowerMon_SetPickupItemVar_MagostBerry:
     SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_MAGOST_BERRY
     Return
 
-_0498:
+AmitySquare_FollowerMon_SetPickupItemVar_CornnBerry:
     SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_CORNN_BERRY
     Return
 
-_04A0:
+AmitySquare_FollowerMon_SetPickupItemVar_RabutaBerry:
     SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_RABUTA_BERRY
     Return
 
-_04A8:
+AmitySquare_FollowerMon_SetPickupItemVar_NomelBerry:
     SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_NOMEL_BERRY
     Return
 
-_04B0:
+AmitySquare_FollowerMon_SetPickupItemVar_SpelonBerry:
     SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_SPELON_BERRY
     Return
 
-_04B8:
+AmitySquare_FollowerMon_SetPickupItemVar_PamtreBerry:
     SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_PAMTRE_BERRY
     Return
 
-_04C0:
+AmitySquare_FollowerMon_SetPickupItemVar_WatmelBerry:
     SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_WATMEL_BERRY
     Return
 
-_04C8:
+AmitySquare_FollowerMon_SetPickupItemVar_DurinBerry:
     SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_DURIN_BERRY
     Return
 
-_04D0:
+AmitySquare_FollowerMon_SetPickupItemVar_BelueBerry:
     SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_BELUE_BERRY
     Return
 
-_04D8:
+AmitySquare_FollowerMon_PickUp:
     SetVar VAR_0x8000, VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE
     ClearAmitySquareStepCount
-    Call _03DC
-    GoToIfEq VAR_0x8000, PICKUP_TYPE_ITEM, _04FB
-    GoTo _056C
+    Call AmitySquare_FollowerMon_SetNextPickUpType
+    GoToIfEq VAR_0x8000, PICKUP_TYPE_ITEM, AmitySquare_FollowerMon_PickUp_TryItem
+    GoTo AmitySquare_FollowerMon_PickUp_TryAccessory
     End
 
-_04FB:
+AmitySquare_FollowerMon_PickUp_TryItem:
     SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ITEM_ID
     SetVar LOCALID_COUNT, 1
-    GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT, _0595
-    GoTo _054D
+    GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT, AmitySquare_FollowerMon_PickUp_FailedItem_TryAccessory
+    GoTo AmitySquare_FollowerMon_PickUp_GiveItem
     End
 
-_0524:
+AmitySquare_FollowerMon_PickUp_FailedAccessory_TryItem:
     SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ITEM_ID
     SetVar LOCALID_COUNT, 1
     GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT, AmitySquare_FollowerMon_Message
-    GoTo _054D
+    GoTo AmitySquare_FollowerMon_PickUp_GiveItem
     End
 
-_054D:
+AmitySquare_FollowerMon_PickUp_GiveItem:
     PlayCry VAR_FOLLOWER_MON_SPECIES
     Message AmitySquare_Text_OhPokemonIsHoldingSomething
     WaitCry
@@ -406,23 +406,23 @@ _054D:
     ReleaseAll
     End
 
-_056C:
+AmitySquare_FollowerMon_PickUp_TryAccessory:
     SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID
     SetVar LOCALID_COUNT, 1
     CanFitAccessory LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0524
-    GoTo _05BE
+    GoToIfEq VAR_RESULT, 0, AmitySquare_FollowerMon_PickUp_FailedAccessory_TryItem
+    GoTo AmitySquare_FollowerMon_PickUp_GiveAccessory
     End
 
-_0595:
+AmitySquare_FollowerMon_PickUp_FailedItem_TryAccessory:
     SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID
     SetVar LOCALID_COUNT, 1
     CanFitAccessory LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, AmitySquare_FollowerMon_Message
-    GoTo _05BE
+    GoTo AmitySquare_FollowerMon_PickUp_GiveAccessory
     End
 
-_05BE:
+AmitySquare_FollowerMon_PickUp_GiveAccessory:
     PlayCry VAR_FOLLOWER_MON_SPECIES
     Message AmitySquare_Text_OhPokemonIsHoldingSomething
     WaitCry
@@ -996,7 +996,7 @@ AmitySquare_FollowerMon:
     FacePlayer
     BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
     GetAmitySquareStepCount VAR_RESULT
-    GoToIfGe VAR_RESULT, 200, _04D8
+    GoToIfGe VAR_RESULT, 200, AmitySquare_FollowerMon_PickUp
     GoTo AmitySquare_FollowerMon_Message
     End
 
