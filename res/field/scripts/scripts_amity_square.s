@@ -15,7 +15,7 @@
     ScriptEntry _0365
     ScriptEntry _0140
     ScriptEntry _0365
-    ScriptEntry _1084
+    ScriptEntry AmitySquare_FollowerMon
     ScriptEntry _07F2
     ScriptEntry _0800
     ScriptEntry AmitySquare_DrifloonMan
@@ -391,7 +391,7 @@ _04FB:
 _0524:
     SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ITEM_ID
     SetVar LOCALID_COUNT, 1
-    GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT, _05DD
+    GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT, AmitySquare_FollowerMon_Message
     GoTo _054D
     End
 
@@ -418,7 +418,7 @@ _0595:
     SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID
     SetVar LOCALID_COUNT, 1
     CanFitAccessory LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _05DD
+    GoToIfEq VAR_RESULT, 0, AmitySquare_FollowerMon_Message
     GoTo _05BE
     End
 
@@ -433,135 +433,135 @@ _05BE:
     ReleaseAll
     End
 
-_05DD:
+AmitySquare_FollowerMon_Message:
     BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
     PlayCry VAR_FOLLOWER_MON_SPECIES
-    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_GROTLE, _0719
-    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_TORTERRA, _0719
-    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_MONFERNO, _0719
-    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_INFERNAPE, _0719
-    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_PRINPLUP, _0719
-    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_EMPOLEON, _0719
+    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_GROTLE, AmitySquare_FollowerMon_Message_EvolvedStarter
+    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_TORTERRA, AmitySquare_FollowerMon_Message_EvolvedStarter
+    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_MONFERNO, AmitySquare_FollowerMon_Message_EvolvedStarter
+    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_INFERNAPE, AmitySquare_FollowerMon_Message_EvolvedStarter
+    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_PRINPLUP, AmitySquare_FollowerMon_Message_EvolvedStarter
+    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_EMPOLEON, AmitySquare_FollowerMon_Message_EvolvedStarter
     GetRandom VAR_RESULT, 9
-    GoToIfEq VAR_RESULT, 0, _06AC
-    GoToIfEq VAR_RESULT, 1, _06B7
-    GoToIfEq VAR_RESULT, 2, _06C2
-    GoToIfEq VAR_RESULT, 3, _06CD
-    GoToIfEq VAR_RESULT, 4, _06D8
-    GoToIfEq VAR_RESULT, 5, _06E3
-    GoToIfEq VAR_RESULT, 6, _06EE
-    GoToIfEq VAR_RESULT, 7, _06F9
-    GoTo _0704
+    GoToIfEq VAR_RESULT, 0, AmitySquare_FollowerMon_IsHappilyKeepingUp
+    GoToIfEq VAR_RESULT, 1, AmitySquare_FollowerMon_AppearsToBeVeryHappy
+    GoToIfEq VAR_RESULT, 2, AmitySquare_FollowerMon_AppearsToBeFeelingGood
+    GoToIfEq VAR_RESULT, 3, AmitySquare_FollowerMon_IsLookingEndearinglyAtYou
+    GoToIfEq VAR_RESULT, 4, AmitySquare_FollowerMon_IsPickingAtTheGroundForSomeReason
+    GoToIfEq VAR_RESULT, 5, AmitySquare_FollowerMon_AlmostTripped
+    GoToIfEq VAR_RESULT, 6, AmitySquare_FollowerMon_IsSkippingHappily
+    GoToIfEq VAR_RESULT, 7, AmitySquare_FollowerMon_SeemsToBeSoHappyItCantKeepStill
+    GoTo AmitySquare_FollowerMon_SeemsToBeEnjoyingTheWalk
     End
 
-_06AC:
+AmitySquare_FollowerMon_IsHappilyKeepingUp:
     Message AmitySquare_Text_PokemonIsHappilyKeepingUp
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06B7:
+AmitySquare_FollowerMon_AppearsToBeVeryHappy:
     Message AmitySquare_Text_PokemonAppearsToBeVeryHappy
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06C2:
+AmitySquare_FollowerMon_AppearsToBeFeelingGood:
     Message AmitySquare_Text_PokemonAppearsToBeFeelingGood
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06CD:
+AmitySquare_FollowerMon_IsLookingEndearinglyAtYou:
     Message AmitySquare_Text_PokemonIsLookingEndearinglyAtYou
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06D8:
+AmitySquare_FollowerMon_IsPickingAtTheGroundForSomeReason:
     Message AmitySquare_Text_PokemonIsPickingAtTheGroundForSomeReason
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06E3:
+AmitySquare_FollowerMon_AlmostTripped:
     Message AmitySquare_Text_PokemonAlmostTripped
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06EE:
+AmitySquare_FollowerMon_IsSkippingHappily:
     Message AmitySquare_Text_PokemonIsSkippingHappily
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06F9:
+AmitySquare_FollowerMon_SeemsToBeSoHappyItCantKeepStill:
     Message AmitySquare_Text_PokemonSeemsToBeSoHappyItCantKeepStill
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_0704:
+AmitySquare_FollowerMon_SeemsToBeEnjoyingTheWalk:
     Message AmitySquare_Text_PokemonSeemsToBeEnjoyingTheWalk
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_070F:
+AmitySquare_FollowerMon_End:
     WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0719:
+AmitySquare_FollowerMon_Message_EvolvedStarter:
     GetRandom VAR_RESULT, 9
-    GoToIfEq VAR_RESULT, 0, _078F
-    GoToIfEq VAR_RESULT, 1, _079A
-    GoToIfEq VAR_RESULT, 2, _07A5
-    GoToIfEq VAR_RESULT, 3, _07B0
-    GoToIfEq VAR_RESULT, 4, _07BB
-    GoToIfEq VAR_RESULT, 5, _07C6
-    GoToIfEq VAR_RESULT, 6, _07D1
-    GoToIfEq VAR_RESULT, 7, _07DC
-    GoTo _07E7
+    GoToIfEq VAR_RESULT, 0, AmitySquare_FollowerMon_IsFollowingAlongRelaxedAndCasual
+    GoToIfEq VAR_RESULT, 1, AmitySquare_FollowerMon_AppearsToBeVeryHappy2
+    GoToIfEq VAR_RESULT, 2, AmitySquare_FollowerMon_AppearsToBeFeelingGood2
+    GoToIfEq VAR_RESULT, 3, AmitySquare_FollowerMon_SnuggledUpClose
+    GoToIfEq VAR_RESULT, 4, AmitySquare_FollowerMon_IsPickingAtTheGroundForSomeReason2
+    GoToIfEq VAR_RESULT, 5, AmitySquare_FollowerMon_PretendedToTrip
+    GoToIfEq VAR_RESULT, 6, AmitySquare_FollowerMon_GaveAContentedYawn
+    GoToIfEq VAR_RESULT, 7, AmitySquare_FollowerMon_IsSniffingAtTheGrass
+    GoTo AmitySquare_FollowerMon_SeemsToBeEnjoyingTheWalk2
     End
 
-_078F:
+AmitySquare_FollowerMon_IsFollowingAlongRelaxedAndCasual:
     Message AmitySquare_Text_PokemonIsFollowingAlongRelaxedAndCasual
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_079A:
+AmitySquare_FollowerMon_AppearsToBeVeryHappy2:
     Message AmitySquare_Text_PokemonAppearsToBeVeryHappy
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07A5:
+AmitySquare_FollowerMon_AppearsToBeFeelingGood2:
     Message AmitySquare_Text_PokemonAppearsToBeFeelingGood
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07B0:
+AmitySquare_FollowerMon_SnuggledUpClose:
     Message AmitySquare_Text_PokemonSnuggledUpClose
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07BB:
+AmitySquare_FollowerMon_IsPickingAtTheGroundForSomeReason2:
     Message AmitySquare_Text_PokemonIsPickingAtTheGroundForSomeReason
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07C6:
+AmitySquare_FollowerMon_PretendedToTrip:
     Message AmitySquare_Text_PokemonPretendedToTrip
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07D1:
+AmitySquare_FollowerMon_GaveAContentedYawn:
     Message AmitySquare_Text_PokemonGaveAContentedYawn
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07DC:
+AmitySquare_FollowerMon_IsSniffingAtTheGrass:
     Message AmitySquare_Text_PokemonIsSniffingAtTheGrass
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07E7:
+AmitySquare_FollowerMon_SeemsToBeEnjoyingTheWalk2:
     Message AmitySquare_Text_PokemonSeemsToBeEnjoyingTheWalk
-    GoTo _070F
+    GoTo AmitySquare_FollowerMon_End
     End
 
 _07F2:
@@ -990,14 +990,14 @@ _1072:
     GoTo _02C9
     End
 
-_1084:
+AmitySquare_FollowerMon:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
     GetAmitySquareStepCount VAR_RESULT
     GoToIfGe VAR_RESULT, 200, _04D8
-    GoTo _05DD
+    GoTo AmitySquare_FollowerMon_Message
     End
 
 AmitySquare_GiftMan:
