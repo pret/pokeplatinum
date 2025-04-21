@@ -174,7 +174,7 @@ _0299:
     HealParty
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    SetVar VAR_UNK_0x409D, VAR_MAP_LOCAL_A
+    SetVar VAR_FOLLOWER_MON_PARTY_ID, VAR_MAP_LOCAL_A
     GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_UNK_0x409A
     GoTo _0E48
     End
@@ -193,7 +193,7 @@ _02C9:
     SetVar VAR_UNK_0x4099, 1
     ClearAmitySquareStepCount
     Call _03DC
-    ScrCmd_27C 0, VAR_UNK_0x409D
+    ScrCmd_27C 0, VAR_FOLLOWER_MON_PARTY_ID
     Message AmitySquare_Text_PleaseDoEnjoyYourTimeTogether
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C8
@@ -427,7 +427,7 @@ _05BE:
     End
 
 _05DD:
-    BufferPartyMonNickname 0, VAR_UNK_0x409D
+    BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
     PlayCry VAR_UNK_0x409A
     GoToIfEq VAR_UNK_0x409A, SPECIES_GROTLE, _0719
     GoToIfEq VAR_UNK_0x409A, SPECIES_TORTERRA, _0719
@@ -571,7 +571,7 @@ _080E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    BufferPartyMonNickname 0, VAR_UNK_0x409D
+    BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
     GetRandom VAR_RESULT, 6
     CallIfEq VAR_RESULT, 0, _0884
     CallIfEq VAR_RESULT, 1, _0889
@@ -987,7 +987,7 @@ _1084:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    BufferPartyMonNickname 0, VAR_UNK_0x409D
+    BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
     GetAmitySquareStepCount VAR_RESULT
     GoToIfGe VAR_RESULT, 200, _04D8
     GoTo _05DD

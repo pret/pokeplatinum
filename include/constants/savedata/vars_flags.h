@@ -4271,7 +4271,7 @@
 #define VAR_UNK_0x409A                        (STORY_VARS_START + 42)
 #define VAR_UNK_0x409B                        (STORY_VARS_START + 43)
 #define VAR_UNK_0x409C                        (STORY_VARS_START + 44)
-#define VAR_UNK_0x409D                        (STORY_VARS_START + 45)
+#define VAR_FOLLOWER_MON_PARTY_ID             (STORY_VARS_START + 45)
 #define VAR_UNK_0x409E                        (STORY_VARS_START + 46)
 #define VAR_UNK_0x409F                        (STORY_VARS_START + 47)
 #define VAR_UNK_0x40A0                        (STORY_VARS_START + 48)
