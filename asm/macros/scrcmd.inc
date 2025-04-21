@@ -4689,10 +4689,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_33D arg0, arg1
+    .macro BufferItemNamePlural templateArg, item
     .short 829
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
     .macro ScrCmd_33E arg0, arg1

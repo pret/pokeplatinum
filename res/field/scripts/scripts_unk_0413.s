@@ -127,7 +127,7 @@ _021B:
     GoTo _0243
 
 _023B:
-    ScrCmd_33D 0, VAR_0x8000
+    BufferItemNamePlural 0, VAR_0x8000
     Message 21
 _0243:
     ShowYesNoMenu VAR_RESULT
@@ -140,7 +140,7 @@ _0243:
     GoTo _0291
 
 _0289:
-    ScrCmd_33D 0, VAR_0x8000
+    BufferItemNamePlural 0, VAR_0x8000
     Message 25
 _0291:
     PlaySound SEQ_KINOMI
@@ -152,7 +152,7 @@ _0291:
     GoTo _02B9
 
 _02B4:
-    ScrCmd_33D 1, VAR_0x8000
+    BufferItemNamePlural 1, VAR_0x8000
 _02B9:
     GetItemPocket VAR_0x8000, VAR_RESULT
     BufferPocketName 3, VAR_RESULT
@@ -166,7 +166,7 @@ _02CF:
     GoTo _02EC
 
 _02E7:
-    ScrCmd_33D 0, VAR_0x8000
+    BufferItemNamePlural 0, VAR_0x8000
 _02EC:
     Message 26
     WaitABXPadPress
@@ -185,7 +185,7 @@ _0310:
     GoTo _0336
 
 _032E:
-    ScrCmd_33D 1, VAR_0x8000
+    BufferItemNamePlural 1, VAR_0x8000
     Message 24
 _0336:
     WaitABXPadPress

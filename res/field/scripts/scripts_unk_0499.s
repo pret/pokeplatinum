@@ -121,7 +121,7 @@ _01B6:
     GoTo _01D3
 
 _01CE:
-    ScrCmd_33D 0, VAR_MAP_LOCAL_0
+    BufferItemNamePlural 0, VAR_MAP_LOCAL_0
 _01D3:
     BufferNumber 1, VAR_MAP_LOCAL_1
     GoToIfCannotFitItem VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, VAR_RESULT, _0294
@@ -137,7 +137,7 @@ _0200:
     GoTo _021D
 
 _0218:
-    ScrCmd_33D 0, VAR_MAP_LOCAL_2
+    BufferItemNamePlural 0, VAR_MAP_LOCAL_2
 _021D:
     BufferNumber 1, VAR_MAP_LOCAL_3
     GoToIfCannotFitItem VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_RESULT, _0294
@@ -153,7 +153,7 @@ _024A:
     GoTo _0267
 
 _0262:
-    ScrCmd_33D 0, VAR_MAP_LOCAL_4
+    BufferItemNamePlural 0, VAR_MAP_LOCAL_4
 _0267:
     BufferNumber 1, VAR_MAP_LOCAL_5
     GoToIfCannotFitItem VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5, VAR_RESULT, _0294

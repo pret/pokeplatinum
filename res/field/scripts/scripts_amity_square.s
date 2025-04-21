@@ -1012,7 +1012,7 @@ _10E1:
     SetVar VAR_0x8005, 5
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _1172
     BufferPlayerName 0
-    ScrCmd_33D 1, VAR_0x8004
+    BufferItemNamePlural 1, VAR_0x8004
     PlaySound SEQ_FANFA4
     Message AmitySquare_Text_PlayerReceivedItem
     WaitSound

@@ -822,7 +822,7 @@ _0A82:
     GoTo _0A9F
 
 _0A9A:
-    ScrCmd_33D 0, VAR_0x8004
+    BufferItemNamePlural 0, VAR_0x8004
 _0A9F:
     Message 25
     GoTo _0AA8
@@ -837,7 +837,7 @@ _0AA8:
     GoTo _0ADD
 
 _0AD8:
-    ScrCmd_33D 1, VAR_0x8004
+    BufferItemNamePlural 1, VAR_0x8004
 _0ADD:
     GetItemPocket VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT

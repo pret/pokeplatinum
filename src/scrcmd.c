@@ -1595,7 +1595,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetMenuXOriginSide,
     ScrCmd_SetMenuYOriginSide,
     ScrCmd_33C,
-    ScrCmd_33D,
+    ScrCmd_BufferItemNamePlural,
     ScrCmd_33E,
     ScrCmd_33F,
     ScrCmd_340,

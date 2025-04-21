@@ -483,15 +483,15 @@ BOOL ScrCmd_33C(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_33D(ScriptContext *param0)
+BOOL ScrCmd_BufferItemNamePlural(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 item = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetItemNamePlural(*v1, v2, v3);
-    return 0;
+    StringTemplate_SetItemNamePlural(*strTemplate, templateArg, item);
+    return FALSE;
 }
 
 BOOL ScrCmd_33E(ScriptContext *param0)
