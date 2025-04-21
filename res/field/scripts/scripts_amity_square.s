@@ -310,11 +310,11 @@ _03DC:
     End
 
 _040A:
-    SetVar VAR_UNK_0x409B, 0
+    SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, 0
     Return
 
 _0412:
-    SetVar VAR_UNK_0x409B, 1
+    SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, 1
     Return
 
 _041A:
@@ -367,7 +367,7 @@ _04D0:
     Return
 
 _04D8:
-    SetVar VAR_0x8000, VAR_UNK_0x409B
+    SetVar VAR_0x8000, VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE
     ClearAmitySquareStepCount
     Call _03DC
     GoToIfEq VAR_0x8000, 0, _04FB

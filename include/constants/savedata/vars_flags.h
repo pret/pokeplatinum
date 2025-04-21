@@ -4269,7 +4269,7 @@
 #define VAR_UNK_0x4098                        (STORY_VARS_START + 40)
 #define VAR_UNK_0x4099                        (STORY_VARS_START + 41)
 #define VAR_FOLLOWER_MON_SPECIES              (STORY_VARS_START + 42)
-#define VAR_UNK_0x409B                        (STORY_VARS_START + 43)
+#define VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE     (STORY_VARS_START + 43)
 #define VAR_UNK_0x409C                        (STORY_VARS_START + 44)
 #define VAR_FOLLOWER_MON_PARTY_ID             (STORY_VARS_START + 45)
 #define VAR_UNK_0x409E                        (STORY_VARS_START + 46)
