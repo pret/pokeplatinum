@@ -5,7 +5,7 @@
 
 #include "constants/field/window.h"
 #include "constants/scrcmd.h"
-#include "generated/accessories.h"
+#include "constants/accessories.h"
 
 #include "overlay007/shop_menu.h"
 

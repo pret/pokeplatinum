@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/species.h"
-#include "generated/accessories.h"
+#include "constants/accessories.h"
 
 #include "field_script_context.h"
 #include "inlines.h"

@@ -3,8 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_020298D8.h"
+#include "struct_defs/struct_0202A750.h"
+
+#include "constants/accessories.h"
 
 #include "overlay022/ov22_02259098.h"
 #include "overlay022/struct_ov22_02255040.h"
@@ -19,57 +21,6 @@
 #include "strbuf.h"
 #include "unk_02014A84.h"
 #include "unk_02015064.h"
-
-typedef struct UnkStruct_0202A138_t {
-    u32 unk_00;
-    u32 unk_04;
-    u16 unk_08;
-    u16 unk_0A[11];
-    u16 unk_20[8];
-    s8 unk_30;
-    u8 unk_31;
-    u8 unk_32;
-    u8 unk_33;
-    u8 unk_34;
-} UnkStruct_0202A138;
-
-typedef struct UnkStruct_0202A150_t {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    s8 unk_03;
-} UnkStruct_0202A150;
-
-typedef struct UnkStruct_02029C68_t {
-    u32 unk_00;
-    UnkStruct_0202A138 unk_04;
-    u32 unk_3C;
-    Sentence unk_40;
-    UnkStruct_0202A150 unk_48[10];
-    u8 unk_70;
-    u8 unk_71;
-} UnkStruct_02029C68;
-
-typedef struct UnkStruct_02029C88_t {
-    u32 unk_00;
-    u32 unk_04;
-    UnkStruct_0202A138 unk_08;
-    u32 unk_40;
-    UnkStruct_0202A150 unk_44[20];
-    u8 unk_94;
-} UnkStruct_02029C88;
-
-typedef struct UnkStruct_02029D04_t {
-    u32 unk_00[8];
-    u32 unk_20[2];
-    u32 unk_28[6];
-} UnkStruct_02029D04;
-
-typedef struct UnkStruct_0202A750_t {
-    UnkStruct_02029C68 unk_00[11];
-    UnkStruct_02029C88 unk_4C8[5];
-    UnkStruct_02029D04 unk_7A4;
-} UnkStruct_0202A750;
 
 static BOOL sub_020298BC(u32 param0)
 {
@@ -168,7 +119,7 @@ static void sub_02029A2C(u32 *param0, u8 param1, u8 param2)
     u8 v0;
     u8 v1;
 
-    GF_ASSERT(param2 < 61);
+    GF_ASSERT(param2 < NON_UNIQUE_ACCESSORY_COUNT);
 
     v0 = param2 / 8;
     v1 = param2 % 8;
@@ -185,15 +136,15 @@ static u8 sub_02029A70(const u32 *param0, u8 param1)
     u8 v1;
     u8 v2;
 
-    GF_ASSERT(param1 < 61);
+    GF_ASSERT(param1 < NON_UNIQUE_ACCESSORY_COUNT);
 
     v1 = param1 / 8;
     v2 = param1 % 8;
     v2 *= 4;
     v0 = (param0[v1] >> v2) & 0xf;
 
-    if (v0 > 9) {
-        v0 = 9;
+    if (v0 > MAX_ACCESORIES_PER_TYPE) {
+        v0 = MAX_ACCESORIES_PER_TYPE;
     }
 
     return v0;
@@ -271,19 +222,19 @@ static u8 sub_02029B80(const u32 *param0)
     return v1;
 }
 
-static BOOL sub_02029BA4(u32 param0)
+static BOOL Accesory_CanHaveMultiple(u32 accessory)
 {
-    if (param0 < 61) {
-        return 1;
+    if (accessory < NON_UNIQUE_ACCESSORY_COUNT) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static inline u8 inline_02029D94(u32 param0)
+static inline u8 Accessory_ToUniqueID(u32 accessory)
 {
-    GF_ASSERT(param0 >= 61);
-    return param0 - 61;
+    GF_ASSERT(accessory >= NON_UNIQUE_ACCESSORY_COUNT);
+    return accessory - NON_UNIQUE_ACCESSORY_COUNT;
 }
 
 static void sub_02029BB0(UnkStruct_02029D04 *param0)
@@ -385,28 +336,28 @@ BOOL sub_02029D2C(const ImageClips *param0, int param1)
     return sub_0202A218(&param0->unk_4C8[param1]);
 }
 
-BOOL sub_02029D50(const UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
+BOOL sub_02029D50(const UnkStruct_02029D04 *param0, u32 accessory, u32 count)
 {
-    u32 v0;
-    BOOL v1 = 1;
+    u32 currentCount;
+    BOOL canFit = TRUE;
 
-    v0 = sub_02029D94(param0, accessory);
+    currentCount = sub_02029D94(param0, accessory);
 
-    if (sub_02029BA4(accessory)) {
-        v0 += param2;
+    if (Accesory_CanHaveMultiple(accessory)) {
+        currentCount += count;
 
-        if (v0 > 9) {
-            v1 = 0;
+        if (currentCount > MAX_ACCESORIES_PER_TYPE) {
+            canFit = FALSE;
         }
     } else {
-        v0 += param2;
+        currentCount += count;
 
-        if (v0 > 1) {
-            v1 = 0;
+        if (currentCount > 1) {
+            canFit = FALSE;
         }
     }
 
-    return v1;
+    return canFit;
 }
 
 BOOL sub_02029D80(const UnkStruct_02029D04 *param0, u32 param1)
@@ -420,17 +371,17 @@ BOOL sub_02029D80(const UnkStruct_02029D04 *param0, u32 param1)
     return 0;
 }
 
-u32 sub_02029D94(const UnkStruct_02029D04 *param0, u32 param1)
+u32 sub_02029D94(const UnkStruct_02029D04 *param0, u32 accessory)
 {
     u32 v0;
 
-    GF_ASSERT(param1 < 100);
+    GF_ASSERT(accessory < ACCESSORY_COUNT);
 
-    if (sub_02029BA4(param1)) {
-        v0 = sub_02029A70(param0->unk_00, param1);
+    if (Accesory_CanHaveMultiple(accessory)) {
+        v0 = sub_02029A70(param0->unk_00, accessory);
     } else {
-        param1 = inline_02029D94(param1);
-        v0 = sub_02029AF0(param0->unk_20, param1);
+        accessory = Accessory_ToUniqueID(accessory);
+        v0 = sub_02029AF0(param0->unk_20, accessory);
     }
 
     return v0;
@@ -448,11 +399,11 @@ u32 sub_02029DD4(const UnkStruct_02029D04 *param0, u32 param1)
 
 u32 sub_02029DF0(const UnkStruct_02029D04 *param0)
 {
-    int v0;
+    int i;
     int v1 = 0;
 
-    for (v0 = 0; v0 < 100; v0++) {
-        v1 += sub_02029D94(param0, v0);
+    for (i = 0; i < ACCESSORY_COUNT; i++) {
+        v1 += sub_02029D94(param0, i);
     }
 
     return v1;
@@ -472,42 +423,42 @@ u32 sub_02029E0C(const UnkStruct_02029D04 *param0)
     return v1;
 }
 
-void sub_02029E2C(UnkStruct_02029D04 *param0, u32 param1, u32 param2)
+void sub_02029E2C(UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
 {
     u8 v0;
 
-    GF_ASSERT(param1 < 100);
+    GF_ASSERT(accessory < ACCESSORY_COUNT);
 
-    if (sub_02029BA4(param1)) {
-        v0 = sub_02029A70(param0->unk_00, param1);
+    if (Accesory_CanHaveMultiple(accessory)) {
+        v0 = sub_02029A70(param0->unk_00, accessory);
         v0 += param2;
 
-        if (v0 > 9) {
-            v0 = 9;
+        if (v0 > MAX_ACCESORIES_PER_TYPE) {
+            v0 = MAX_ACCESORIES_PER_TYPE;
         }
 
-        sub_02029A2C(param0->unk_00, v0, param1);
+        sub_02029A2C(param0->unk_00, v0, accessory);
     } else {
-        v0 = sub_02029AF0(param0->unk_20, param1);
+        v0 = sub_02029AF0(param0->unk_20, accessory);
         v0 += param2;
 
         if (v0 > 1) {
             v0 = 1;
         }
 
-        param1 = inline_02029D94(param1);
-        sub_02029AB0(param0->unk_20, v0, param1);
+        accessory = Accessory_ToUniqueID(accessory);
+        sub_02029AB0(param0->unk_20, v0, accessory);
     }
 }
 
-void sub_02029EA0(UnkStruct_02029D04 *param0, u32 param1, u32 param2)
+void sub_02029EA0(UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
 {
     u8 v0;
 
-    GF_ASSERT(param1 < 100);
+    GF_ASSERT(accessory < ACCESSORY_COUNT);
 
-    if (sub_02029BA4(param1)) {
-        v0 = sub_02029A70(param0->unk_00, param1);
+    if (Accesory_CanHaveMultiple(accessory)) {
+        v0 = sub_02029A70(param0->unk_00, accessory);
 
         if (v0 > param2) {
             v0 -= param2;
@@ -515,12 +466,12 @@ void sub_02029EA0(UnkStruct_02029D04 *param0, u32 param1, u32 param2)
             v0 = 0;
         }
 
-        sub_02029A2C(param0->unk_00, v0, param1);
+        sub_02029A2C(param0->unk_00, v0, accessory);
     } else {
         v0 = 0;
-        param1 = inline_02029D94(param1);
+        accessory = Accessory_ToUniqueID(accessory);
 
-        sub_02029AB0(param0->unk_20, v0, param1);
+        sub_02029AB0(param0->unk_20, v0, accessory);
     }
 }
 

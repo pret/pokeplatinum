@@ -12,7 +12,7 @@
 #include "constants/overworld_weather.h"
 #include "constants/scrcmd.h"
 #include "constants/species.h"
-#include "generated/accessories.h"
+#include "constants/accessories.h"
 #include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
 #include "generated/save_types.h"
@@ -7046,13 +7046,13 @@ static BOOL ScrCmd_279(ScriptContext *ctx)
 {
     ImageClips *v0;
     UnkStruct_02029D04 *v1;
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 accessory = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
 
     v0 = SaveData_GetImageClips(ctx->fieldSystem->saveData);
     v1 = sub_02029D04(v0);
 
-    sub_02029EA0(v1, v2, v3);
+    sub_02029EA0(v1, accessory, v3);
     return 0;
 }
 
