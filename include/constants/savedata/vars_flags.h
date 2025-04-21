@@ -4267,7 +4267,7 @@
 #define VAR_UNK_0x4096                        (STORY_VARS_START + 38)
 #define VAR_UNK_0x4097                        (STORY_VARS_START + 39)
 #define VAR_UNK_0x4098                        (STORY_VARS_START + 40)
-#define VAR_UNK_0x4099                        (STORY_VARS_START + 41)
+#define VAR_FOLLOWER_MON_ACTIVE               (STORY_VARS_START + 41) // Set but never read
 #define VAR_FOLLOWER_MON_SPECIES              (STORY_VARS_START + 42)
 #define VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE     (STORY_VARS_START + 43)
 #define VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID  (STORY_VARS_START + 44)

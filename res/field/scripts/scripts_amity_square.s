@@ -197,7 +197,7 @@ _02C9:
     CallIfEq VAR_0x8001, 2, _0338
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar VAR_UNK_0x4099, 1
+    SetVar VAR_FOLLOWER_MON_ACTIVE, TRUE
     ClearAmitySquareStepCount
     Call AmitySquare_FollowerMon_SetNextPickUpType
     ScrCmd_27C 0, VAR_FOLLOWER_MON_PARTY_ID
@@ -267,7 +267,7 @@ _037D:
 _0389:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar VAR_UNK_0x4099, 0
+    SetVar VAR_FOLLOWER_MON_ACTIVE, FALSE
     Message AmitySquare_Text_AreYouFeelingRefreshedPleaseComeAgainOk
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
