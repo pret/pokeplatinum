@@ -16,8 +16,8 @@
     ScriptEntry _0140
     ScriptEntry _0365
     ScriptEntry AmitySquare_FollowerMon
-    ScriptEntry _07F2
-    ScriptEntry _0800
+    ScriptEntry AmitySquare_WestReceptionist
+    ScriptEntry AmitySquare_EastReceptionist
     ScriptEntry AmitySquare_DrifloonMan
     ScriptEntry AmitySquare_Drifloon
     ScriptEntry AmitySquare_HappinyWoman
@@ -564,57 +564,57 @@ AmitySquare_FollowerMon_SeemsToBeEnjoyingTheWalk2:
     GoTo AmitySquare_FollowerMon_End
     End
 
-_07F2:
+AmitySquare_WestReceptionist:
     SetVar VAR_MAP_LOCAL_A, 0
-    GoTo _080E
+    GoTo AmitySquare_Receptionist
     End
 
-_0800:
+AmitySquare_EastReceptionist:
     SetVar VAR_MAP_LOCAL_A, 1
-    GoTo _080E
+    GoTo AmitySquare_Receptionist
     End
 
-_080E:
+AmitySquare_Receptionist:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
     GetRandom VAR_RESULT, 6
-    CallIfEq VAR_RESULT, 0, _0884
-    CallIfEq VAR_RESULT, 1, _0889
-    CallIfEq VAR_RESULT, 2, _088E
-    CallIfEq VAR_RESULT, 3, _0893
-    CallIfEq VAR_RESULT, 4, _0898
-    CallIfEq VAR_RESULT, 5, _089D
-    GoToIfEq VAR_MAP_LOCAL_A, 0, _08A2
-    GoTo _08B4
+    CallIfEq VAR_RESULT, 0, AmitySquare_YourPokemonLooksQuitePleasedFollowingYouAround
+    CallIfEq VAR_RESULT, 1, AmitySquare_OkTheOwnerOfAmitySquare
+    CallIfEq VAR_RESULT, 2, AmitySquare_YouMayFindUsefulItemsOnTheGround
+    CallIfEq VAR_RESULT, 3, AmitySquare_AreYouEnjoyingYourStroll
+    CallIfEq VAR_RESULT, 4, AmitySquare_ItMakesMeHappySeeingAllTheCutePokemon
+    CallIfEq VAR_RESULT, 5, AmitySquare_YouMaySpendAllTheTimeYouLikeInAmitySquare
+    GoToIfEq VAR_MAP_LOCAL_A, 0, AmitySquare_WestReceptionist_End
+    GoTo AmitySquare_EastReceptionist_End
     End
 
-_0884:
+AmitySquare_YourPokemonLooksQuitePleasedFollowingYouAround:
     Message AmitySquare_Text_YourPokemonLooksQuitePleasedFollowingYouAround
     Return
 
-_0889:
+AmitySquare_OkTheOwnerOfAmitySquare:
     Message AmitySquare_Text_OkTheOwnerOfAmitySquare
     Return
 
-_088E:
+AmitySquare_YouMayFindUsefulItemsOnTheGround:
     Message AmitySquare_Text_YouMayFindUsefulItemsOnTheGround
     Return
 
-_0893:
+AmitySquare_AreYouEnjoyingYourStroll:
     Message AmitySquare_Text_AreYouEnjoyingYourStroll
     Return
 
-_0898:
+AmitySquare_ItMakesMeHappySeeingAllTheCutePokemon:
     Message AmitySquare_Text_ItMakesMeHappySeeingAllTheCutePokemon
     Return
 
-_089D:
+AmitySquare_YouMaySpendAllTheTimeYouLikeInAmitySquare:
     Message AmitySquare_Text_YouMaySpendAllTheTimeYouLikeInAmitySquare
     Return
 
-_08A2:
+AmitySquare_WestReceptionist_End:
     WaitABXPadPress
     CloseMessage
     ApplyMovement 0, _08C8
@@ -622,7 +622,7 @@ _08A2:
     ReleaseAll
     End
 
-_08B4:
+AmitySquare_EastReceptionist_End:
     WaitABXPadPress
     CloseMessage
     ApplyMovement 1, _08D0
