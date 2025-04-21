@@ -4,7 +4,11 @@
 /tools/cw/mwrap
 /tools/cw/mwrap.exe
 
-# Wrapped subprojects folders
+# Metroskrew artifacts
+/metroskrew-*.tar.xz
+/metroskrew-*.7z
+
+# Subproject folders
 /subprojects/libvct-*/
 /subprojects/NitroDWC-*/
 /subprojects/NitroSDK-*/
@@ -22,6 +26,7 @@
 /subprojects/rapidjson-*/
 /subprojects/meson-*/
 /subprojects/nitrorom/
+/subprojects/metroskrew/
 
 # CLion folders
 .idea/
