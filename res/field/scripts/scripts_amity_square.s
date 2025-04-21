@@ -25,7 +25,7 @@
     ScriptEntry _0943
     ScriptEntry _0962
     ScriptEntry _0975
-    ScriptEntry _10AA
+    ScriptEntry AmitySquare_GiftMan
     ScriptEntry _118B
     ScriptEntry _1199
     ScriptEntry _11A7
@@ -999,44 +999,44 @@ _1084:
     GoTo _05DD
     End
 
-_10AA:
+AmitySquare_GiftMan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED, _117C
+    GoToIfSet FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED, AmitySquare_GiftMan_ReceivedGift
     Message AmitySquare_Text_HelloHowDoYouDoILoveThisPark
     GetAmitySquareBerryOrAccessoryIDFromMan VAR_AMITY_SQUARE_GIFT_ID, LOCALID_ITEM_OR_ACCESSORY_ID
-    GoToIfAmitySquareManGiftIsNotAccesory VAR_AMITY_SQUARE_GIFT_ID, _10E1
-    GoTo _1136
+    GoToIfAmitySquareManGiftIsNotAccesory VAR_AMITY_SQUARE_GIFT_ID, AmitySquare_GiftMan_ItemGift
+    GoTo AmitySquare_GiftMan_AccessoryGift
     End
 
-_10E1:
+AmitySquare_GiftMan_ItemGift:
     BufferItemName 0, LOCALID_ITEM_OR_ACCESSORY_ID
     Message AmitySquare_Text_DoYouKnowTheItemIFoundSome
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _1161
+    GoToIfEq VAR_RESULT, MENU_NO, AmitySquare_GiftMan_DeclinedGift
     SetVar LOCALID_COUNT, 5
-    GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT, _1172
+    GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT, AmitySquare_GiftMan_CannotFitItem
     BufferPlayerName 0
     BufferItemNamePlural 1, LOCALID_ITEM_OR_ACCESSORY_ID
     PlaySound SEQ_FANFA4
     Message AmitySquare_Text_PlayerReceivedItem
     WaitSound
     AddItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT
-    GoTo _117C
+    GoTo AmitySquare_GiftMan_ReceivedGift
     End
 
-_1136:
+AmitySquare_GiftMan_AccessoryGift:
     BufferAccessoryName 0, LOCALID_ITEM_OR_ACCESSORY_ID
     Message AmitySquare_Text_DoYouKnowTheItemIFoundSome
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _1161
+    GoToIfEq VAR_RESULT, MENU_NO, AmitySquare_GiftMan_DeclinedGift
     SetVar LOCALID_COUNT, 1
     CallCommonScript 0x7DF
-    GoTo _117C
+    GoTo AmitySquare_GiftMan_ReceivedGift
     End
 
-_1161:
+AmitySquare_GiftMan_DeclinedGift:
     Message AmitySquare_Text_OhItsNoProblemToMe
     WaitABXPadPress
     CloseMessage
@@ -1050,13 +1050,13 @@ _1161:
     .byte 2
     .byte 0
 
-_1172:
+AmitySquare_GiftMan_CannotFitItem:
     CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End
 
-_117C:
+AmitySquare_GiftMan_ReceivedGift:
     SetFlag FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED
     Message AmitySquare_Text_HahahahPerhapsIllSeeYouAgainTomorrow
     WaitABXPadPress
