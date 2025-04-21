@@ -19,7 +19,8 @@ makerom_exe = find_program('makerom', native: true)
 arm_none_eabi_gcc_exe = find_program('arm-none-eabi-gcc', native: true)
 arm_none_eabi_objcopy_exe = find_program('arm-none-eabi-objcopy', native: true)
 
-# External tools
+# Subproject tools
 nitrogfx_exe = find_program('nitrogfx', native: true)
+nitrorom_exe = find_program('nitrorom', native: true)
 narc_exe = find_program('narc', native: true)
 SDATTool_py = find_program('SDATTool_py', native: true)

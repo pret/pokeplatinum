@@ -125,11 +125,6 @@ registry:
 
 ### Windows with MSYS2
 
-> [!CAUTION]
-> `MSYS2 is known to currently produce a non-matching ROM; proceed at your own
-> risk, and heavily prefer to build using Windows Subsystem for Linux, if at all
-> possible.
-
 If you are unable to run Windows Subsystem for Linux due to performance reasons
 or lacking virtualization requirements, then MSYS2 may be an option for you.
 

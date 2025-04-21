@@ -13,6 +13,7 @@
 #include "constants/scrcmd.h"
 #include "constants/species.h"
 #include "generated/accessories.h"
+#include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
 #include "generated/save_types.h"
 #include "generated/signpost_commands.h"
