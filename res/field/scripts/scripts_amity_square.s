@@ -105,7 +105,7 @@ _0174:
     End
 
 _0182:
-    Message 0
+    Message AmitySquare_Text_PermittedList
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
@@ -114,11 +114,11 @@ _0182:
 
 _0195:
     SetVar VAR_MAP_LOCAL_0, 1
-    GoTo _0ACC
+    GoTo AmitySquare_CheckPartyHasSpecies_NationalDex
     End
 
 _01A3:
-    Message 1
+    Message AmitySquare_Text_PermittedListNationalDex
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
@@ -145,7 +145,7 @@ _01CE:
 
 _0229:
     AddVar VAR_MAP_LOCAL_C, 1
-    Message 2
+    Message AmitySquare_Text_OkWouldYouLikeToGoForAStrollWithYourPokemon
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _0299
     GoTo _026D
@@ -153,7 +153,7 @@ _0229:
 
 _024B:
     AddVar VAR_MAP_LOCAL_C, 1
-    Message 4
+    Message AmitySquare_Text_OhOkThenYouWouldRatherGoForAStrollWithYourPokemon
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _0299
     GoTo _026D
@@ -163,7 +163,7 @@ _026D:
     AddVar VAR_MAP_LOCAL_A, 1
     SubVar VAR_MAP_LOCAL_B, 1
     GoToIfNe VAR_MAP_LOCAL_B, 0, _01CE
-    Message 5
+    Message AmitySquare_Text_ISeePleaseComeBack
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
@@ -194,7 +194,7 @@ _02C9:
     ClearAmitySquareStepCount
     Call _03DC
     ScrCmd_27C 0, VAR_UNK_0x409D
-    Message 3
+    Message AmitySquare_Text_PleaseDoEnjoyYourTimeTogether
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C8
     ApplyMovement VAR_0x8002, _03C8
@@ -261,7 +261,7 @@ _0389:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar VAR_UNK_0x4099, 0
-    Message 6
+    Message AmitySquare_Text_AreYouFeelingRefreshedPleaseComeAgainOk
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
@@ -390,7 +390,7 @@ _0524:
 
 _054D:
     PlayCry VAR_UNK_0x409A
-    Message 22
+    Message AmitySquare_Text_OhPokemonIsHoldingSomething
     WaitCry
     ScrCmd_27C 1, VAR_0x8004
     IncrementGameRecord RECORD_UNK_051
@@ -417,7 +417,7 @@ _0595:
 
 _05BE:
     PlayCry VAR_UNK_0x409A
-    Message 22
+    Message AmitySquare_Text_OhPokemonIsHoldingSomething
     WaitCry
     ScrCmd_27C 2, VAR_0x8004
     IncrementGameRecord RECORD_UNK_051
@@ -448,47 +448,47 @@ _05DD:
     End
 
 _06AC:
-    Message 13
+    Message AmitySquare_Text_PokemonIsHappilyKeepingUp
     GoTo _070F
     End
 
 _06B7:
-    Message 14
+    Message AmitySquare_Text_PokemonAppearsToBeVeryHappy
     GoTo _070F
     End
 
 _06C2:
-    Message 15
+    Message AmitySquare_Text_PokemonAppearsToBeFeelingGood
     GoTo _070F
     End
 
 _06CD:
-    Message 16
+    Message AmitySquare_Text_PokemonIsLookingEndearinglyAtYou
     GoTo _070F
     End
 
 _06D8:
-    Message 17
+    Message AmitySquare_Text_PokemonIsPickingAtTheGroundForSomeReason
     GoTo _070F
     End
 
 _06E3:
-    Message 18
+    Message AmitySquare_Text_PokemonAlmostTripped
     GoTo _070F
     End
 
 _06EE:
-    Message 19
+    Message AmitySquare_Text_PokemonIsSkippingHappily
     GoTo _070F
     End
 
 _06F9:
-    Message 20
+    Message AmitySquare_Text_PokemonSeemsToBeSoHappyItCantKeepStill
     GoTo _070F
     End
 
 _0704:
-    Message 21
+    Message AmitySquare_Text_PokemonSeemsToBeEnjoyingTheWalk
     GoTo _070F
     End
 
@@ -513,47 +513,47 @@ _0719:
     End
 
 _078F:
-    Message 23
+    Message AmitySquare_Text_PokemonIsFollowingAlongRelaxedAndCasual
     GoTo _070F
     End
 
 _079A:
-    Message 14
+    Message AmitySquare_Text_PokemonAppearsToBeVeryHappy
     GoTo _070F
     End
 
 _07A5:
-    Message 15
+    Message AmitySquare_Text_PokemonAppearsToBeFeelingGood
     GoTo _070F
     End
 
 _07B0:
-    Message 24
+    Message AmitySquare_Text_PokemonSnuggledUpClose
     GoTo _070F
     End
 
 _07BB:
-    Message 17
+    Message AmitySquare_Text_PokemonIsPickingAtTheGroundForSomeReason
     GoTo _070F
     End
 
 _07C6:
-    Message 25
+    Message AmitySquare_Text_PokemonPretendedToTrip
     GoTo _070F
     End
 
 _07D1:
-    Message 26
+    Message AmitySquare_Text_PokemonGaveAContentedYawn
     GoTo _070F
     End
 
 _07DC:
-    Message 27
+    Message AmitySquare_Text_PokemonIsSniffingAtTheGrass
     GoTo _070F
     End
 
 _07E7:
-    Message 21
+    Message AmitySquare_Text_PokemonSeemsToBeEnjoyingTheWalk
     GoTo _070F
     End
 
@@ -584,27 +584,27 @@ _080E:
     End
 
 _0884:
-    Message 7
+    Message AmitySquare_Text_YourPokemonLooksQuitePleasedFollowingYouAround
     Return
 
 _0889:
-    Message 8
+    Message AmitySquare_Text_OkTheOwnerOfAmitySquare
     Return
 
 _088E:
-    Message 9
+    Message AmitySquare_Text_YouMayFindUsefulItemsOnTheGround
     Return
 
 _0893:
-    Message 10
+    Message AmitySquare_Text_AreYouEnjoyingYourStroll
     Return
 
 _0898:
-    Message 11
+    Message AmitySquare_Text_ItMakesMeHappySeeingAllTheCutePokemon
     Return
 
 _089D:
-    Message 12
+    Message AmitySquare_Text_YouMaySpendAllTheTimeYouLikeInAmitySquare
     Return
 
 _08A2:
@@ -637,7 +637,7 @@ _08D8:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 28
+    Message AmitySquare_Text_TheseRuinsAreFromALongLongTimeAgo
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -649,7 +649,7 @@ _08EB:
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_DRIFLOON
-    Message 29
+    Message AmitySquare_Text_DrifloonFoon
     WaitCry
     WaitABXPadPress
     CloseMessage
@@ -660,7 +660,7 @@ _090A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 30
+    Message AmitySquare_Text_IComeHereWithMyHappinyEverySingleDay
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -670,7 +670,7 @@ _091D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 31
+    Message AmitySquare_Text_HappinyAppearsToBeDrowsy
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -680,7 +680,7 @@ _0930:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 32
+    Message AmitySquare_Text_OohIJustCantBelieveIt
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -692,7 +692,7 @@ _0943:
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
-    Message 33
+    Message AmitySquare_Text_PikachuPikkaPika
     WaitCry
     WaitABXPadPress
     CloseMessage
@@ -703,7 +703,7 @@ _0962:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 34
+    Message AmitySquare_Text_YouShouldTalkToYourPokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -715,7 +715,7 @@ _0975:
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_CLEFAIRY
-    Message 35
+    Message AmitySquare_Text_ThereIsSomethingShinyInClefairysHands
     WaitCry
     WaitABXPadPress
     CloseMessage
@@ -998,7 +998,7 @@ _10AA:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AB5, _117C
-    Message 36
+    Message AmitySquare_Text_HelloHowDoYouDoILoveThisPark
     GetAmitySquareBerryOrAccessoryIDFromMan VAR_UNK_0x40AB, VAR_0x8004
     ScrCmd_2E0 VAR_UNK_0x40AB, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _10E1
@@ -1007,7 +1007,7 @@ _10AA:
 
 _10E1:
     BufferItemName 0, VAR_0x8004
-    Message 37
+    Message AmitySquare_Text_DoYouKnowTheItemIFoundSome
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _1161
     SetVar VAR_0x8005, 5
@@ -1015,7 +1015,7 @@ _10E1:
     BufferPlayerName 0
     ScrCmd_33D 1, VAR_0x8004
     PlaySound SEQ_FANFA4
-    Message 40
+    Message AmitySquare_Text_PlayerReceivedItem
     WaitSound
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoTo _117C
@@ -1023,7 +1023,7 @@ _10E1:
 
 _1136:
     ScrCmd_261 0, VAR_0x8004
-    Message 37
+    Message AmitySquare_Text_DoYouKnowTheItemIFoundSome
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _1161
     SetVar VAR_0x8005, 1
@@ -1032,7 +1032,7 @@ _1136:
     End
 
 _1161:
-    Message 38
+    Message AmitySquare_Text_OhItsNoProblemToMe
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1053,7 +1053,7 @@ _1172:
 
 _117C:
     SetFlag FLAG_UNK_0x0AB5
-    Message 39
+    Message AmitySquare_Text_HahahahPerhapsIllSeeYouAgainTomorrow
     WaitABXPadPress
     CloseMessage
     ReleaseAll
