@@ -1,6 +1,8 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/amity_square.h"
 
+#define LOCALID_HAS_NATIONAL_DEX     VAR_MAP_LOCAL_0
+
     .data
 
     ScriptEntry _00B6
@@ -100,7 +102,7 @@ _015A:
     End
 
 _0174:
-    SetVar VAR_MAP_LOCAL_0, 0
+    SetVar LOCALID_HAS_NATIONAL_DEX, FALSE
     GoTo _0994
     End
 
@@ -113,7 +115,7 @@ _0182:
     End
 
 _0195:
-    SetVar VAR_MAP_LOCAL_0, 1
+    SetVar LOCALID_HAS_NATIONAL_DEX, TRUE
     GoTo AmitySquare_CheckPartyHasSpecies_NationalDex
     End
 
@@ -135,8 +137,8 @@ _01B6:
 _01CE:
     GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, _026D
-    CallIfEq VAR_MAP_LOCAL_0, 0, _0C50
-    CallIfEq VAR_MAP_LOCAL_0, 1, _0D36
+    CallIfEq LOCALID_HAS_NATIONAL_DEX, FALSE, _0C50
+    CallIfEq LOCALID_HAS_NATIONAL_DEX, TRUE, _0D36
     GoToIfEq VAR_RESULT, 0, _026D
     BufferPartyMonNickname 0, VAR_MAP_LOCAL_A
     GoToIfEq VAR_MAP_LOCAL_C, 0, _0229
