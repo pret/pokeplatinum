@@ -508,7 +508,7 @@ void SystemFlag_ClearVillaVisitorOutside(VarsFlags *varsFlags)
 
 BOOL SystemFlag_HandleGiratinaAnimation(VarsFlags *varsFlags, enum HandleFlagOp op, enum GiratinaShadowAnimation anim)
 {
-    return HandleFlag(varsFlags, op, FLAG_DISTORSION_WORLD_GIRATINA_SHADOW_1 + anim);
+    return HandleFlag(varsFlags, op, FLAG_DISTORTION_WORLD_GIRATINA_SHADOW_1 + anim);
 }
 
 BOOL SystemFlag_HandleDistortionWorldPuzzleFinished(VarsFlags *varsFlags, enum HandleFlagOp op)
