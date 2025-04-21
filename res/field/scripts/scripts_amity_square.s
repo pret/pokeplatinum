@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/amity_square.h"
+#include "generated/object_events.h"
 
 #define LOCALID_HAS_NATIONAL_DEX     VAR_MAP_LOCAL_0
 #define LOCALID_ITEM_OR_ACCESSORY_ID VAR_0x8004
@@ -141,8 +142,8 @@ _01B6:
 _01CE:
     GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, _026D
-    CallIfEq LOCALID_HAS_NATIONAL_DEX, FALSE, _0C50
-    CallIfEq LOCALID_HAS_NATIONAL_DEX, TRUE, _0D36
+    CallIfEq LOCALID_HAS_NATIONAL_DEX, FALSE, AmitySquare_CheckAllowedMon
+    CallIfEq LOCALID_HAS_NATIONAL_DEX, TRUE, AmitySquare_CheckAllowedMon_NationalDex
     GoToIfEq VAR_RESULT, 0, _026D
     BufferPartyMonNickname 0, VAR_MAP_LOCAL_A
     GoToIfEq VAR_MAP_LOCAL_C, 0, _0229
@@ -182,7 +183,7 @@ _0299:
     WaitFadeScreen
     SetVar VAR_FOLLOWER_MON_PARTY_ID, VAR_MAP_LOCAL_A
     GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_FOLLOWER_MON_SPECIES
-    GoTo _0E48
+    GoTo AmitySquare_SetFollowerGfx
     End
 
 _02BB:
@@ -808,178 +809,178 @@ _0ACC:
     GoTo _01A3
     End
 
-_0C50:
+AmitySquare_CheckAllowedMon:
     GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
-    GoToIfEq VAR_RESULT, 25, _0D2E
-    GoToIfEq VAR_RESULT, 35, _0D2E
-    GoToIfEq VAR_RESULT, 54, _0D2E
-    GoToIfEq VAR_RESULT, 0x1A1, _0D2E
-    GoToIfEq VAR_RESULT, 0x1A9, _0D2E
-    GoToIfEq VAR_RESULT, 0x1AB, _0D2E
-    GoToIfEq VAR_RESULT, 0x1B8, _0D2E
-    GoToIfEq VAR_RESULT, 0x183, _0D2E
-    GoToIfEq VAR_RESULT, 0x184, _0D2E
-    GoToIfEq VAR_RESULT, 0x185, _0D2E
-    GoToIfEq VAR_RESULT, 0x186, _0D2E
-    GoToIfEq VAR_RESULT, 0x187, _0D2E
-    GoToIfEq VAR_RESULT, 0x188, _0D2E
-    GoToIfEq VAR_RESULT, 0x189, _0D2E
-    GoToIfEq VAR_RESULT, 0x18A, _0D2E
-    GoToIfEq VAR_RESULT, 0x18B, _0D2E
-    SetVar VAR_RESULT, 0
+    GoToIfEq VAR_RESULT, SPECIES_PIKACHU, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_CLEFAIRY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PSYDUCK, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PACHIRISU, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_DRIFLOON, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_BUNEARY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_HAPPINY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_GROTLE, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_TORTERRA, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_MONFERNO, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_INFERNAPE, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PRINPLUP, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_EMPOLEON, AmitySquare_SetMonAllowedFlag
+    SetVar VAR_RESULT, FALSE
     Return
 
-_0D2E:
-    SetVar VAR_RESULT, 1
+AmitySquare_SetMonAllowedFlag:
+    SetVar VAR_RESULT, TRUE
     Return
 
-_0D36:
+AmitySquare_CheckAllowedMon_NationalDex:
     GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
-    GoToIfEq VAR_RESULT, 25, _0D2E
-    GoToIfEq VAR_RESULT, 35, _0D2E
-    GoToIfEq VAR_RESULT, 54, _0D2E
-    GoToIfEq VAR_RESULT, 0x1A1, _0D2E
-    GoToIfEq VAR_RESULT, 0x1A9, _0D2E
-    GoToIfEq VAR_RESULT, 0x1AB, _0D2E
-    GoToIfEq VAR_RESULT, 0x1B8, _0D2E
-    GoToIfEq VAR_RESULT, 39, _0D2E
-    GoToIfEq VAR_RESULT, 0xFF, _0D2E
-    GoToIfEq VAR_RESULT, 0x12C, _0D2E
-    GoToIfEq VAR_RESULT, 0x11D, _0D2E
-    GoToIfEq VAR_RESULT, 0x183, _0D2E
-    GoToIfEq VAR_RESULT, 0x184, _0D2E
-    GoToIfEq VAR_RESULT, 0x185, _0D2E
-    GoToIfEq VAR_RESULT, 0x186, _0D2E
-    GoToIfEq VAR_RESULT, 0x187, _0D2E
-    GoToIfEq VAR_RESULT, 0x188, _0D2E
-    GoToIfEq VAR_RESULT, 0x189, _0D2E
-    GoToIfEq VAR_RESULT, 0x18A, _0D2E
-    GoToIfEq VAR_RESULT, 0x18B, _0D2E
-    SetVar VAR_RESULT, 0
+    GoToIfEq VAR_RESULT, SPECIES_PIKACHU, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_CLEFAIRY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PSYDUCK, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PACHIRISU, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_DRIFLOON, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_BUNEARY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_HAPPINY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_JIGGLYPUFF, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_TORCHIC, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_SKITTY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_SHROOMISH, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_GROTLE, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_TORTERRA, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_MONFERNO, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_INFERNAPE, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PRINPLUP, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_EMPOLEON, AmitySquare_SetMonAllowedFlag
+    SetVar VAR_RESULT, FALSE
     Return
 
-_0E48:
+AmitySquare_SetFollowerGfx:
     SetVar VAR_0x8008, VAR_FOLLOWER_MON_SPECIES
-    GoToIfEq VAR_0x8008, 25, _0F5A
-    GoToIfEq VAR_0x8008, 0xFF, _0F68
-    GoToIfEq VAR_0x8008, 35, _0F76
-    GoToIfEq VAR_0x8008, 54, _0F84
-    GoToIfEq VAR_0x8008, 0x1A1, _0F92
-    GoToIfEq VAR_0x8008, 0x1A9, _0FA0
-    GoToIfEq VAR_0x8008, 0x1AB, _0FAE
-    GoToIfEq VAR_0x8008, 0x1B8, _0FBC
-    GoToIfEq VAR_0x8008, 39, _0FCA
-    GoToIfEq VAR_0x8008, 0x12C, _0FD8
-    GoToIfEq VAR_0x8008, 0x11D, _0FE6
-    GoToIfEq VAR_0x8008, 0x183, _0FF4
-    GoToIfEq VAR_0x8008, 0x184, _1002
-    GoToIfEq VAR_0x8008, 0x185, _1010
-    GoToIfEq VAR_0x8008, 0x186, _101E
-    GoToIfEq VAR_0x8008, 0x187, _102C
-    GoToIfEq VAR_0x8008, 0x188, _103A
-    GoToIfEq VAR_0x8008, 0x189, _1048
-    GoToIfEq VAR_0x8008, 0x18A, _1056
-    GoToIfEq VAR_0x8008, 0x18B, _1064
+    GoToIfEq VAR_0x8008, SPECIES_PIKACHU, AmitySquare_SetFollowerGfx_Pikachu
+    GoToIfEq VAR_0x8008, SPECIES_TORCHIC, AmitySquare_SetFollowerGfx_Torchic
+    GoToIfEq VAR_0x8008, SPECIES_CLEFAIRY, AmitySquare_SetFollowerGfx_Clefairy
+    GoToIfEq VAR_0x8008, SPECIES_PSYDUCK, AmitySquare_SetFollowerGfx_Psyduck
+    GoToIfEq VAR_0x8008, SPECIES_PACHIRISU, AmitySquare_SetFollowerGfx_Pachirisu
+    GoToIfEq VAR_0x8008, SPECIES_DRIFLOON, AmitySquare_SetFollowerGfx_Drifloon
+    GoToIfEq VAR_0x8008, SPECIES_BUNEARY, AmitySquare_SetFollowerGfx_Buneary
+    GoToIfEq VAR_0x8008, SPECIES_HAPPINY, AmitySquare_SetFollowerGfx_Happiny
+    GoToIfEq VAR_0x8008, SPECIES_JIGGLYPUFF, AmitySquare_SetFollowerGfx_Jigglypuff
+    GoToIfEq VAR_0x8008, SPECIES_SKITTY, AmitySquare_SetFollowerGfx_Skitty
+    GoToIfEq VAR_0x8008, SPECIES_SHROOMISH, AmitySquare_SetFollowerGfx_Shroomish
+    GoToIfEq VAR_0x8008, SPECIES_TURTWIG, AmitySquare_SetFollowerGfx_Turtwig
+    GoToIfEq VAR_0x8008, SPECIES_GROTLE, AmitySquare_SetFollowerGfx_Grottle
+    GoToIfEq VAR_0x8008, SPECIES_TORTERRA, AmitySquare_SetFollowerGfx_Torterra
+    GoToIfEq VAR_0x8008, SPECIES_CHIMCHAR, AmitySquare_SetFollowerGfx_Chimchar
+    GoToIfEq VAR_0x8008, SPECIES_MONFERNO, AmitySquare_SetFollowerGfx_Monferno
+    GoToIfEq VAR_0x8008, SPECIES_INFERNAPE, AmitySquare_SetFollowerGfx_Infernape
+    GoToIfEq VAR_0x8008, SPECIES_PIPLUP, AmitySquare_SetFollowerGfx_Piplup
+    GoToIfEq VAR_0x8008, SPECIES_PRINPLUP, AmitySquare_SetFollowerGfx_Prinplup
+    GoToIfEq VAR_0x8008, SPECIES_EMPOLEON, AmitySquare_SetFollowerGfx_Empoleon
     GoTo _02BB
     End
 
-_0F5A:
-    SetVar VAR_OBJ_GFX_ID_0, 71
+AmitySquare_SetFollowerGfx_Pikachu:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PIKACHU
     GoTo _1072
     End
 
-_0F68:
-    SetVar VAR_OBJ_GFX_ID_0, 78
+AmitySquare_SetFollowerGfx_Torchic:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_TORCHIC
     GoTo _1072
     End
 
-_0F76:
-    SetVar VAR_OBJ_GFX_ID_0, 72
+AmitySquare_SetFollowerGfx_Clefairy:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_CLEFAIRY
     GoTo _1072
     End
 
-_0F84:
-    SetVar VAR_OBJ_GFX_ID_0, 74
+AmitySquare_SetFollowerGfx_Psyduck:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PSYDUCK
     GoTo _1072
     End
 
-_0F92:
-    SetVar VAR_OBJ_GFX_ID_0, 204
+AmitySquare_SetFollowerGfx_Pachirisu:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PACHIRISU
     GoTo _1072
     End
 
-_0FA0:
-    SetVar VAR_OBJ_GFX_ID_0, 185
+AmitySquare_SetFollowerGfx_Drifloon:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_DRIFLOON
     GoTo _1072
     End
 
-_0FAE:
-    SetVar VAR_OBJ_GFX_ID_0, 206
+AmitySquare_SetFollowerGfx_Buneary:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_BUNEARY
     GoTo _1072
     End
 
-_0FBC:
-    SetVar VAR_OBJ_GFX_ID_0, 207
+AmitySquare_SetFollowerGfx_Happiny:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_HAPPINY
     GoTo _1072
     End
 
-_0FCA:
-    SetVar VAR_OBJ_GFX_ID_0, 73
+AmitySquare_SetFollowerGfx_Jigglypuff:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_JIGGLYPUFF
     GoTo _1072
     End
 
-_0FD8:
-    SetVar VAR_OBJ_GFX_ID_0, 79
+AmitySquare_SetFollowerGfx_Skitty:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SKITTY
     GoTo _1072
     End
 
-_0FE6:
-    SetVar VAR_OBJ_GFX_ID_0, 205
+AmitySquare_SetFollowerGfx_Shroomish:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SHROOMISH
     GoTo _1072
     End
 
-_0FF4:
-    SetVar VAR_OBJ_GFX_ID_0, 220
+AmitySquare_SetFollowerGfx_Turtwig:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_TURTWIG
     GoTo _1072
     End
 
-_1002:
-    SetVar VAR_OBJ_GFX_ID_0, 221
+AmitySquare_SetFollowerGfx_Grottle:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_GROTLE
     GoTo _1072
     End
 
-_1010:
-    SetVar VAR_OBJ_GFX_ID_0, 222
+AmitySquare_SetFollowerGfx_Torterra:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_TORTERRA
     GoTo _1072
     End
 
-_101E:
-    SetVar VAR_OBJ_GFX_ID_0, 223
+AmitySquare_SetFollowerGfx_Chimchar:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_CHIMCHAR
     GoTo _1072
     End
 
-_102C:
-    SetVar VAR_OBJ_GFX_ID_0, 224
+AmitySquare_SetFollowerGfx_Monferno:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_MONFERNO
     GoTo _1072
     End
 
-_103A:
-    SetVar VAR_OBJ_GFX_ID_0, 225
+AmitySquare_SetFollowerGfx_Infernape:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_INFERNAPE
     GoTo _1072
     End
 
-_1048:
-    SetVar VAR_OBJ_GFX_ID_0, 226
+AmitySquare_SetFollowerGfx_Piplup:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PIPLUP
     GoTo _1072
     End
 
-_1056:
-    SetVar VAR_OBJ_GFX_ID_0, 227
+AmitySquare_SetFollowerGfx_Prinplup:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PRINPLUP
     GoTo _1072
     End
 
-_1064:
-    SetVar VAR_OBJ_GFX_ID_0, 228
+AmitySquare_SetFollowerGfx_Empoleon:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_EMPOLEON
     GoTo _1072
     End
 
