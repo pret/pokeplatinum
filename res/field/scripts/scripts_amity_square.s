@@ -997,7 +997,7 @@ _10AA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0AB5, _117C
+    GoToIfSet FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED, _117C
     Message AmitySquare_Text_HelloHowDoYouDoILoveThisPark
     GetAmitySquareBerryOrAccessoryIDFromMan VAR_UNK_0x40AB, VAR_0x8004
     GoToIfAmitySquareManGiftIsNotAccesory VAR_UNK_0x40AB, _10E1
@@ -1051,7 +1051,7 @@ _1172:
     End
 
 _117C:
-    SetFlag FLAG_UNK_0x0AB5
+    SetFlag FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED
     Message AmitySquare_Text_HahahahPerhapsIllSeeYouAgainTomorrow
     WaitABXPadPress
     CloseMessage

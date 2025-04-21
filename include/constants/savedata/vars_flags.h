@@ -2753,7 +2753,7 @@
 #define FLAG_UNK_0x0AB2                             0x0AB2
 #define FLAG_UNK_0x0AB3                             0x0AB3
 #define FLAG_UNK_0x0AB4                             0x0AB4
-#define FLAG_UNK_0x0AB5                             0x0AB5
+#define FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED         0x0AB5
 #define FLAG_UNK_0x0AB6                             0x0AB6
 #define FLAG_UNK_0x0AB7                             0x0AB7
 #define FLAG_UNK_0x0AB8                             0x0AB8
