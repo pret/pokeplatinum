@@ -53,12 +53,12 @@
 _00B6:
     SetFlag FLAG_UNK_0x09CC
     SetFlag FLAG_UNK_0x02A1
-    CalcAmitySquareBerryAndAccessoryManOptionID 0x40AB
-    GetRandom 0x4002, 5
-    GoToIfEq 0x4002, 0, _00FE
-    GoToIfEq 0x4002, 1, _0108
-    GoToIfEq 0x4002, 2, _0112
-    GoToIfEq 0x4002, 3, _011C
+    CalcAmitySquareBerryAndAccessoryManOptionID VAR_UNK_0x40AB
+    GetRandom VAR_MAP_LOCAL_2, 5
+    GoToIfEq VAR_MAP_LOCAL_2, 0, _00FE
+    GoToIfEq VAR_MAP_LOCAL_2, 1, _0108
+    GoToIfEq VAR_MAP_LOCAL_2, 2, _0112
+    GoToIfEq VAR_MAP_LOCAL_2, 3, _011C
     End
 
 _00FE:
@@ -79,7 +79,7 @@ _011C:
 
 _0126:
     LockAll
-    SetVar 0x8001, 1
+    SetVar VAR_0x8001, 1
     ApplyMovement LOCALID_PLAYER, _03B0
     WaitMovement
     GoTo _015A
@@ -87,20 +87,20 @@ _0126:
 
 _0140:
     LockAll
-    SetVar 0x8001, 2
+    SetVar VAR_0x8001, 2
     ApplyMovement LOCALID_PLAYER, _03B8
     WaitMovement
     GoTo _015A
     End
 
 _015A:
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 1, _0195
+    ScrCmd_22D 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0195
     GoTo _0174
     End
 
 _0174:
-    SetVar 0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     GoTo _0994
     End
 
@@ -113,7 +113,7 @@ _0182:
     End
 
 _0195:
-    SetVar 0x4000, 1
+    SetVar VAR_MAP_LOCAL_0, 1
     GoTo _0ACC
     End
 
@@ -126,43 +126,43 @@ _01A3:
     End
 
 _01B6:
-    SetVar 0x400A, 0
-    GetPartyCount 0x400B
-    SetVar 0x400C, 0
+    SetVar VAR_MAP_LOCAL_A, 0
+    GetPartyCount VAR_MAP_LOCAL_B
+    SetVar VAR_MAP_LOCAL_C, 0
     GoTo _01CE
     End
 
 _01CE:
-    GetPartyMonSpecies 0x400A, 0x800C
-    GoToIfEq 0x800C, SPECIES_NONE, _026D
-    CallIfEq 0x4000, 0, _0C50
-    CallIfEq 0x4000, 1, _0D36
-    GoToIfEq 0x800C, 0, _026D
-    BufferPartyMonNickname 0, 0x400A
-    GoToIfEq 0x400C, 0, _0229
-    GoToIfNe 0x400C, 0, _024B
+    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_NONE, _026D
+    CallIfEq VAR_MAP_LOCAL_0, 0, _0C50
+    CallIfEq VAR_MAP_LOCAL_0, 1, _0D36
+    GoToIfEq VAR_RESULT, 0, _026D
+    BufferPartyMonNickname 0, VAR_MAP_LOCAL_A
+    GoToIfEq VAR_MAP_LOCAL_C, 0, _0229
+    GoToIfNe VAR_MAP_LOCAL_C, 0, _024B
     End
 
 _0229:
-    AddVar 0x400C, 1
+    AddVar VAR_MAP_LOCAL_C, 1
     Message 2
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0299
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0299
     GoTo _026D
     End
 
 _024B:
-    AddVar 0x400C, 1
+    AddVar VAR_MAP_LOCAL_C, 1
     Message 4
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0299
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0299
     GoTo _026D
     End
 
 _026D:
-    AddVar 0x400A, 1
-    SubVar 0x400B, 1
-    GoToIfNe 0x400B, 0, _01CE
+    AddVar VAR_MAP_LOCAL_A, 1
+    SubVar VAR_MAP_LOCAL_B, 1
+    GoToIfNe VAR_MAP_LOCAL_B, 0, _01CE
     Message 5
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
@@ -174,8 +174,8 @@ _0299:
     HealParty
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    SetVar 0x409D, 0x400A
-    GetPartyMonSpecies 0x400A, 0x409A
+    SetVar VAR_UNK_0x409D, VAR_MAP_LOCAL_A
+    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_UNK_0x409A
     GoTo _0E48
     End
 
@@ -185,31 +185,31 @@ _02BB:
     End
 
 _02C9:
-    AddObject 0x8002
-    CallIfEq 0x8001, 1, _032A
-    CallIfEq 0x8001, 2, _0338
+    AddObject VAR_0x8002
+    CallIfEq VAR_0x8001, 1, _032A
+    CallIfEq VAR_0x8001, 2, _0338
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x4099, 1
+    SetVar VAR_UNK_0x4099, 1
     ClearAmitySquareStepCount
     Call _03DC
-    ScrCmd_27C 0, 0x409D
+    ScrCmd_27C 0, VAR_UNK_0x409D
     Message 3
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C8
-    ApplyMovement 0x8002, _03C8
+    ApplyMovement VAR_0x8002, _03C8
     WaitMovement
     SetHasPartner
-    ScrCmd_06D 0x8002, 48
+    ScrCmd_06D VAR_0x8002, 48
     ReleaseAll
     End
 
 _032A:
-    ScrCmd_187 0x8002, 12, 2, 47, 2
+    ScrCmd_187 VAR_0x8002, 12, 2, 47, 2
     Return
 
 _0338:
-    ScrCmd_187 0x8002, 51, 2, 47, 3
+    ScrCmd_187 VAR_0x8002, 51, 2, 47, 3
     Return
 
     .byte 188
@@ -260,7 +260,7 @@ _037D:
 _0389:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x4099, 0
+    SetVar VAR_UNK_0x4099, 0
     Message 6
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
@@ -302,97 +302,97 @@ _03C8:
     .byte 0
 
 _03DC:
-    GetRandom 0x800C, 5
-    CallIfEq 0x800C, 0, _040A
-    CallIfNe 0x800C, 0, _0412
-    CalcAmitySquareFoundAccessory 0x409C, 0x409A
+    GetRandom VAR_RESULT, 5
+    CallIfEq VAR_RESULT, 0, _040A
+    CallIfNe VAR_RESULT, 0, _0412
+    CalcAmitySquareFoundAccessory VAR_UNK_0x409C, VAR_UNK_0x409A
     GoTo _041A
     End
 
 _040A:
-    SetVar 0x409B, 0
+    SetVar VAR_UNK_0x409B, 0
     Return
 
 _0412:
-    SetVar 0x409B, 1
+    SetVar VAR_UNK_0x409B, 1
     Return
 
 _041A:
-    GetRandom 0x800C, 100
-    GoToIfLt 0x800C, 20, _0490
-    GoToIfLt 0x800C, 35, _0498
-    GoToIfLt 0x800C, 50, _04A0
-    GoToIfLt 0x800C, 65, _04A8
-    GoToIfLt 0x800C, 72, _04B0
-    GoToIfLt 0x800C, 79, _04B8
-    GoToIfLt 0x800C, 86, _04C0
-    GoToIfLt 0x800C, 93, _04C8
+    GetRandom VAR_RESULT, 100
+    GoToIfLt VAR_RESULT, 20, _0490
+    GoToIfLt VAR_RESULT, 35, _0498
+    GoToIfLt VAR_RESULT, 50, _04A0
+    GoToIfLt VAR_RESULT, 65, _04A8
+    GoToIfLt VAR_RESULT, 72, _04B0
+    GoToIfLt VAR_RESULT, 79, _04B8
+    GoToIfLt VAR_RESULT, 86, _04C0
+    GoToIfLt VAR_RESULT, 93, _04C8
     GoTo _04D0
     End
 
 _0490:
-    SetVar 0x409F, ITEM_MAGOST_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_MAGOST_BERRY
     Return
 
 _0498:
-    SetVar 0x409F, ITEM_CORNN_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_CORNN_BERRY
     Return
 
 _04A0:
-    SetVar 0x409F, ITEM_RABUTA_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_RABUTA_BERRY
     Return
 
 _04A8:
-    SetVar 0x409F, ITEM_NOMEL_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_NOMEL_BERRY
     Return
 
 _04B0:
-    SetVar 0x409F, ITEM_SPELON_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_SPELON_BERRY
     Return
 
 _04B8:
-    SetVar 0x409F, ITEM_PAMTRE_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_PAMTRE_BERRY
     Return
 
 _04C0:
-    SetVar 0x409F, ITEM_WATMEL_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_WATMEL_BERRY
     Return
 
 _04C8:
-    SetVar 0x409F, ITEM_DURIN_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_DURIN_BERRY
     Return
 
 _04D0:
-    SetVar 0x409F, ITEM_BELUE_BERRY
+    SetVar VAR_UNK_0x409F, ITEM_BELUE_BERRY
     Return
 
 _04D8:
-    SetVar 0x8000, 0x409B
+    SetVar VAR_0x8000, VAR_UNK_0x409B
     ClearAmitySquareStepCount
     Call _03DC
-    GoToIfEq 0x8000, 0, _04FB
+    GoToIfEq VAR_0x8000, 0, _04FB
     GoTo _056C
     End
 
 _04FB:
-    SetVar 0x8004, 0x409F
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0595
+    SetVar VAR_0x8004, VAR_UNK_0x409F
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0595
     GoTo _054D
     End
 
 _0524:
-    SetVar 0x8004, 0x409F
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _05DD
+    SetVar VAR_0x8004, VAR_UNK_0x409F
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _05DD
     GoTo _054D
     End
 
 _054D:
-    PlayCry 0x409A
+    PlayCry VAR_UNK_0x409A
     Message 22
     WaitCry
-    ScrCmd_27C 1, 0x8004
+    ScrCmd_27C 1, VAR_0x8004
     IncrementGameRecord RECORD_UNK_051
     CallCommonScript 0x7E0
     CloseMessage
@@ -400,26 +400,26 @@ _054D:
     End
 
 _056C:
-    SetVar 0x8004, 0x409C
-    SetVar 0x8005, 1
-    ScrCmd_1D3 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0524
+    SetVar VAR_0x8004, VAR_UNK_0x409C
+    SetVar VAR_0x8005, 1
+    ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0524
     GoTo _05BE
     End
 
 _0595:
-    SetVar 0x8004, 0x409C
-    SetVar 0x8005, 1
-    ScrCmd_1D3 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _05DD
+    SetVar VAR_0x8004, VAR_UNK_0x409C
+    SetVar VAR_0x8005, 1
+    ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _05DD
     GoTo _05BE
     End
 
 _05BE:
-    PlayCry 0x409A
+    PlayCry VAR_UNK_0x409A
     Message 22
     WaitCry
-    ScrCmd_27C 2, 0x8004
+    ScrCmd_27C 2, VAR_0x8004
     IncrementGameRecord RECORD_UNK_051
     CallCommonScript 0x7DF
     CloseMessage
@@ -427,23 +427,23 @@ _05BE:
     End
 
 _05DD:
-    BufferPartyMonNickname 0, 0x409D
-    PlayCry 0x409A
-    GoToIfEq 0x409A, SPECIES_GROTLE, _0719
-    GoToIfEq 0x409A, SPECIES_TORTERRA, _0719
-    GoToIfEq 0x409A, SPECIES_MONFERNO, _0719
-    GoToIfEq 0x409A, SPECIES_INFERNAPE, _0719
-    GoToIfEq 0x409A, SPECIES_PRINPLUP, _0719
-    GoToIfEq 0x409A, SPECIES_EMPOLEON, _0719
-    GetRandom 0x800C, 9
-    GoToIfEq 0x800C, 0, _06AC
-    GoToIfEq 0x800C, 1, _06B7
-    GoToIfEq 0x800C, 2, _06C2
-    GoToIfEq 0x800C, 3, _06CD
-    GoToIfEq 0x800C, 4, _06D8
-    GoToIfEq 0x800C, 5, _06E3
-    GoToIfEq 0x800C, 6, _06EE
-    GoToIfEq 0x800C, 7, _06F9
+    BufferPartyMonNickname 0, VAR_UNK_0x409D
+    PlayCry VAR_UNK_0x409A
+    GoToIfEq VAR_UNK_0x409A, SPECIES_GROTLE, _0719
+    GoToIfEq VAR_UNK_0x409A, SPECIES_TORTERRA, _0719
+    GoToIfEq VAR_UNK_0x409A, SPECIES_MONFERNO, _0719
+    GoToIfEq VAR_UNK_0x409A, SPECIES_INFERNAPE, _0719
+    GoToIfEq VAR_UNK_0x409A, SPECIES_PRINPLUP, _0719
+    GoToIfEq VAR_UNK_0x409A, SPECIES_EMPOLEON, _0719
+    GetRandom VAR_RESULT, 9
+    GoToIfEq VAR_RESULT, 0, _06AC
+    GoToIfEq VAR_RESULT, 1, _06B7
+    GoToIfEq VAR_RESULT, 2, _06C2
+    GoToIfEq VAR_RESULT, 3, _06CD
+    GoToIfEq VAR_RESULT, 4, _06D8
+    GoToIfEq VAR_RESULT, 5, _06E3
+    GoToIfEq VAR_RESULT, 6, _06EE
+    GoToIfEq VAR_RESULT, 7, _06F9
     GoTo _0704
     End
 
@@ -500,15 +500,15 @@ _070F:
     End
 
 _0719:
-    GetRandom 0x800C, 9
-    GoToIfEq 0x800C, 0, _078F
-    GoToIfEq 0x800C, 1, _079A
-    GoToIfEq 0x800C, 2, _07A5
-    GoToIfEq 0x800C, 3, _07B0
-    GoToIfEq 0x800C, 4, _07BB
-    GoToIfEq 0x800C, 5, _07C6
-    GoToIfEq 0x800C, 6, _07D1
-    GoToIfEq 0x800C, 7, _07DC
+    GetRandom VAR_RESULT, 9
+    GoToIfEq VAR_RESULT, 0, _078F
+    GoToIfEq VAR_RESULT, 1, _079A
+    GoToIfEq VAR_RESULT, 2, _07A5
+    GoToIfEq VAR_RESULT, 3, _07B0
+    GoToIfEq VAR_RESULT, 4, _07BB
+    GoToIfEq VAR_RESULT, 5, _07C6
+    GoToIfEq VAR_RESULT, 6, _07D1
+    GoToIfEq VAR_RESULT, 7, _07DC
     GoTo _07E7
     End
 
@@ -558,12 +558,12 @@ _07E7:
     End
 
 _07F2:
-    SetVar 0x400A, 0
+    SetVar VAR_MAP_LOCAL_A, 0
     GoTo _080E
     End
 
 _0800:
-    SetVar 0x400A, 1
+    SetVar VAR_MAP_LOCAL_A, 1
     GoTo _080E
     End
 
@@ -571,15 +571,15 @@ _080E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    BufferPartyMonNickname 0, 0x409D
-    GetRandom 0x800C, 6
-    CallIfEq 0x800C, 0, _0884
-    CallIfEq 0x800C, 1, _0889
-    CallIfEq 0x800C, 2, _088E
-    CallIfEq 0x800C, 3, _0893
-    CallIfEq 0x800C, 4, _0898
-    CallIfEq 0x800C, 5, _089D
-    GoToIfEq 0x400A, 0, _08A2
+    BufferPartyMonNickname 0, VAR_UNK_0x409D
+    GetRandom VAR_RESULT, 6
+    CallIfEq VAR_RESULT, 0, _0884
+    CallIfEq VAR_RESULT, 1, _0889
+    CallIfEq VAR_RESULT, 2, _088E
+    CallIfEq VAR_RESULT, 3, _0893
+    CallIfEq VAR_RESULT, 4, _0898
+    CallIfEq VAR_RESULT, 5, _089D
+    GoToIfEq VAR_MAP_LOCAL_A, 0, _08A2
     GoTo _08B4
     End
 
@@ -723,262 +723,262 @@ _0975:
     End
 
 _0994:
-    CheckPartyHasSpecies 0x800C, SPECIES_PIKACHU
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_CLEFAIRY
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_PSYDUCK
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_PACHIRISU
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_DRIFLOON
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_BUNEARY
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_HAPPINY
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_TURTWIG
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_GROTLE
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_TORTERRA
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_CHIMCHAR
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_MONFERNO
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_INFERNAPE
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_PIPLUP
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_PRINPLUP
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_EMPOLEON
-    GoToIfEq 0x800C, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_PIKACHU
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_CLEFAIRY
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_PSYDUCK
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_PACHIRISU
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_DRIFLOON
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_BUNEARY
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_HAPPINY
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_TURTWIG
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_GROTLE
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_TORTERRA
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_CHIMCHAR
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_MONFERNO
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_INFERNAPE
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_PIPLUP
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_PRINPLUP
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_EMPOLEON
+    GoToIfEq VAR_RESULT, 1, _01B6
     GoTo _0182
     End
 
 _0ACC:
-    CheckPartyHasSpecies 0x800C, SPECIES_PIKACHU
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_CLEFAIRY
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_PSYDUCK
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_PACHIRISU
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_DRIFLOON
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_BUNEARY
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_HAPPINY
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_JIGGLYPUFF
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_TORCHIC
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_SKITTY
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_SHROOMISH
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_TURTWIG
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_GROTLE
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_TORTERRA
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_CHIMCHAR
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_MONFERNO
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_INFERNAPE
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_PIPLUP
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_PRINPLUP
-    GoToIfEq 0x800C, 1, _01B6
-    CheckPartyHasSpecies 0x800C, SPECIES_EMPOLEON
-    GoToIfEq 0x800C, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_PIKACHU
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_CLEFAIRY
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_PSYDUCK
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_PACHIRISU
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_DRIFLOON
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_BUNEARY
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_HAPPINY
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_JIGGLYPUFF
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_TORCHIC
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_SKITTY
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_SHROOMISH
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_TURTWIG
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_GROTLE
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_TORTERRA
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_CHIMCHAR
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_MONFERNO
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_INFERNAPE
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_PIPLUP
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_PRINPLUP
+    GoToIfEq VAR_RESULT, 1, _01B6
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_EMPOLEON
+    GoToIfEq VAR_RESULT, 1, _01B6
     GoTo _01A3
     End
 
 _0C50:
-    GetPartyMonSpecies 0x400A, 0x800C
-    GoToIfEq 0x800C, 25, _0D2E
-    GoToIfEq 0x800C, 35, _0D2E
-    GoToIfEq 0x800C, 54, _0D2E
-    GoToIfEq 0x800C, 0x1A1, _0D2E
-    GoToIfEq 0x800C, 0x1A9, _0D2E
-    GoToIfEq 0x800C, 0x1AB, _0D2E
-    GoToIfEq 0x800C, 0x1B8, _0D2E
-    GoToIfEq 0x800C, 0x183, _0D2E
-    GoToIfEq 0x800C, 0x184, _0D2E
-    GoToIfEq 0x800C, 0x185, _0D2E
-    GoToIfEq 0x800C, 0x186, _0D2E
-    GoToIfEq 0x800C, 0x187, _0D2E
-    GoToIfEq 0x800C, 0x188, _0D2E
-    GoToIfEq 0x800C, 0x189, _0D2E
-    GoToIfEq 0x800C, 0x18A, _0D2E
-    GoToIfEq 0x800C, 0x18B, _0D2E
-    SetVar 0x800C, 0
+    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
+    GoToIfEq VAR_RESULT, 25, _0D2E
+    GoToIfEq VAR_RESULT, 35, _0D2E
+    GoToIfEq VAR_RESULT, 54, _0D2E
+    GoToIfEq VAR_RESULT, 0x1A1, _0D2E
+    GoToIfEq VAR_RESULT, 0x1A9, _0D2E
+    GoToIfEq VAR_RESULT, 0x1AB, _0D2E
+    GoToIfEq VAR_RESULT, 0x1B8, _0D2E
+    GoToIfEq VAR_RESULT, 0x183, _0D2E
+    GoToIfEq VAR_RESULT, 0x184, _0D2E
+    GoToIfEq VAR_RESULT, 0x185, _0D2E
+    GoToIfEq VAR_RESULT, 0x186, _0D2E
+    GoToIfEq VAR_RESULT, 0x187, _0D2E
+    GoToIfEq VAR_RESULT, 0x188, _0D2E
+    GoToIfEq VAR_RESULT, 0x189, _0D2E
+    GoToIfEq VAR_RESULT, 0x18A, _0D2E
+    GoToIfEq VAR_RESULT, 0x18B, _0D2E
+    SetVar VAR_RESULT, 0
     Return
 
 _0D2E:
-    SetVar 0x800C, 1
+    SetVar VAR_RESULT, 1
     Return
 
 _0D36:
-    GetPartyMonSpecies 0x400A, 0x800C
-    GoToIfEq 0x800C, 25, _0D2E
-    GoToIfEq 0x800C, 35, _0D2E
-    GoToIfEq 0x800C, 54, _0D2E
-    GoToIfEq 0x800C, 0x1A1, _0D2E
-    GoToIfEq 0x800C, 0x1A9, _0D2E
-    GoToIfEq 0x800C, 0x1AB, _0D2E
-    GoToIfEq 0x800C, 0x1B8, _0D2E
-    GoToIfEq 0x800C, 39, _0D2E
-    GoToIfEq 0x800C, 0xFF, _0D2E
-    GoToIfEq 0x800C, 0x12C, _0D2E
-    GoToIfEq 0x800C, 0x11D, _0D2E
-    GoToIfEq 0x800C, 0x183, _0D2E
-    GoToIfEq 0x800C, 0x184, _0D2E
-    GoToIfEq 0x800C, 0x185, _0D2E
-    GoToIfEq 0x800C, 0x186, _0D2E
-    GoToIfEq 0x800C, 0x187, _0D2E
-    GoToIfEq 0x800C, 0x188, _0D2E
-    GoToIfEq 0x800C, 0x189, _0D2E
-    GoToIfEq 0x800C, 0x18A, _0D2E
-    GoToIfEq 0x800C, 0x18B, _0D2E
-    SetVar 0x800C, 0
+    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
+    GoToIfEq VAR_RESULT, 25, _0D2E
+    GoToIfEq VAR_RESULT, 35, _0D2E
+    GoToIfEq VAR_RESULT, 54, _0D2E
+    GoToIfEq VAR_RESULT, 0x1A1, _0D2E
+    GoToIfEq VAR_RESULT, 0x1A9, _0D2E
+    GoToIfEq VAR_RESULT, 0x1AB, _0D2E
+    GoToIfEq VAR_RESULT, 0x1B8, _0D2E
+    GoToIfEq VAR_RESULT, 39, _0D2E
+    GoToIfEq VAR_RESULT, 0xFF, _0D2E
+    GoToIfEq VAR_RESULT, 0x12C, _0D2E
+    GoToIfEq VAR_RESULT, 0x11D, _0D2E
+    GoToIfEq VAR_RESULT, 0x183, _0D2E
+    GoToIfEq VAR_RESULT, 0x184, _0D2E
+    GoToIfEq VAR_RESULT, 0x185, _0D2E
+    GoToIfEq VAR_RESULT, 0x186, _0D2E
+    GoToIfEq VAR_RESULT, 0x187, _0D2E
+    GoToIfEq VAR_RESULT, 0x188, _0D2E
+    GoToIfEq VAR_RESULT, 0x189, _0D2E
+    GoToIfEq VAR_RESULT, 0x18A, _0D2E
+    GoToIfEq VAR_RESULT, 0x18B, _0D2E
+    SetVar VAR_RESULT, 0
     Return
 
 _0E48:
-    SetVar 0x8008, 0x409A
-    GoToIfEq 0x8008, 25, _0F5A
-    GoToIfEq 0x8008, 0xFF, _0F68
-    GoToIfEq 0x8008, 35, _0F76
-    GoToIfEq 0x8008, 54, _0F84
-    GoToIfEq 0x8008, 0x1A1, _0F92
-    GoToIfEq 0x8008, 0x1A9, _0FA0
-    GoToIfEq 0x8008, 0x1AB, _0FAE
-    GoToIfEq 0x8008, 0x1B8, _0FBC
-    GoToIfEq 0x8008, 39, _0FCA
-    GoToIfEq 0x8008, 0x12C, _0FD8
-    GoToIfEq 0x8008, 0x11D, _0FE6
-    GoToIfEq 0x8008, 0x183, _0FF4
-    GoToIfEq 0x8008, 0x184, _1002
-    GoToIfEq 0x8008, 0x185, _1010
-    GoToIfEq 0x8008, 0x186, _101E
-    GoToIfEq 0x8008, 0x187, _102C
-    GoToIfEq 0x8008, 0x188, _103A
-    GoToIfEq 0x8008, 0x189, _1048
-    GoToIfEq 0x8008, 0x18A, _1056
-    GoToIfEq 0x8008, 0x18B, _1064
+    SetVar VAR_0x8008, VAR_UNK_0x409A
+    GoToIfEq VAR_0x8008, 25, _0F5A
+    GoToIfEq VAR_0x8008, 0xFF, _0F68
+    GoToIfEq VAR_0x8008, 35, _0F76
+    GoToIfEq VAR_0x8008, 54, _0F84
+    GoToIfEq VAR_0x8008, 0x1A1, _0F92
+    GoToIfEq VAR_0x8008, 0x1A9, _0FA0
+    GoToIfEq VAR_0x8008, 0x1AB, _0FAE
+    GoToIfEq VAR_0x8008, 0x1B8, _0FBC
+    GoToIfEq VAR_0x8008, 39, _0FCA
+    GoToIfEq VAR_0x8008, 0x12C, _0FD8
+    GoToIfEq VAR_0x8008, 0x11D, _0FE6
+    GoToIfEq VAR_0x8008, 0x183, _0FF4
+    GoToIfEq VAR_0x8008, 0x184, _1002
+    GoToIfEq VAR_0x8008, 0x185, _1010
+    GoToIfEq VAR_0x8008, 0x186, _101E
+    GoToIfEq VAR_0x8008, 0x187, _102C
+    GoToIfEq VAR_0x8008, 0x188, _103A
+    GoToIfEq VAR_0x8008, 0x189, _1048
+    GoToIfEq VAR_0x8008, 0x18A, _1056
+    GoToIfEq VAR_0x8008, 0x18B, _1064
     GoTo _02BB
     End
 
 _0F5A:
-    SetVar 0x4020, 71
+    SetVar VAR_OBJ_GFX_ID_0, 71
     GoTo _1072
     End
 
 _0F68:
-    SetVar 0x4020, 78
+    SetVar VAR_OBJ_GFX_ID_0, 78
     GoTo _1072
     End
 
 _0F76:
-    SetVar 0x4020, 72
+    SetVar VAR_OBJ_GFX_ID_0, 72
     GoTo _1072
     End
 
 _0F84:
-    SetVar 0x4020, 74
+    SetVar VAR_OBJ_GFX_ID_0, 74
     GoTo _1072
     End
 
 _0F92:
-    SetVar 0x4020, 204
+    SetVar VAR_OBJ_GFX_ID_0, 204
     GoTo _1072
     End
 
 _0FA0:
-    SetVar 0x4020, 185
+    SetVar VAR_OBJ_GFX_ID_0, 185
     GoTo _1072
     End
 
 _0FAE:
-    SetVar 0x4020, 206
+    SetVar VAR_OBJ_GFX_ID_0, 206
     GoTo _1072
     End
 
 _0FBC:
-    SetVar 0x4020, 207
+    SetVar VAR_OBJ_GFX_ID_0, 207
     GoTo _1072
     End
 
 _0FCA:
-    SetVar 0x4020, 73
+    SetVar VAR_OBJ_GFX_ID_0, 73
     GoTo _1072
     End
 
 _0FD8:
-    SetVar 0x4020, 79
+    SetVar VAR_OBJ_GFX_ID_0, 79
     GoTo _1072
     End
 
 _0FE6:
-    SetVar 0x4020, 205
+    SetVar VAR_OBJ_GFX_ID_0, 205
     GoTo _1072
     End
 
 _0FF4:
-    SetVar 0x4020, 220
+    SetVar VAR_OBJ_GFX_ID_0, 220
     GoTo _1072
     End
 
 _1002:
-    SetVar 0x4020, 221
+    SetVar VAR_OBJ_GFX_ID_0, 221
     GoTo _1072
     End
 
 _1010:
-    SetVar 0x4020, 222
+    SetVar VAR_OBJ_GFX_ID_0, 222
     GoTo _1072
     End
 
 _101E:
-    SetVar 0x4020, 223
+    SetVar VAR_OBJ_GFX_ID_0, 223
     GoTo _1072
     End
 
 _102C:
-    SetVar 0x4020, 224
+    SetVar VAR_OBJ_GFX_ID_0, 224
     GoTo _1072
     End
 
 _103A:
-    SetVar 0x4020, 225
+    SetVar VAR_OBJ_GFX_ID_0, 225
     GoTo _1072
     End
 
 _1048:
-    SetVar 0x4020, 226
+    SetVar VAR_OBJ_GFX_ID_0, 226
     GoTo _1072
     End
 
 _1056:
-    SetVar 0x4020, 227
+    SetVar VAR_OBJ_GFX_ID_0, 227
     GoTo _1072
     End
 
 _1064:
-    SetVar 0x4020, 228
+    SetVar VAR_OBJ_GFX_ID_0, 228
     GoTo _1072
     End
 
 _1072:
-    SetVar 0x8002, 5
+    SetVar VAR_0x8002, 5
     ClearFlag FLAG_UNK_0x02A1
     GoTo _02C9
     End
@@ -987,9 +987,9 @@ _1084:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    BufferPartyMonNickname 0, 0x409D
-    GetAmitySquareStepCount 0x800C
-    GoToIfGe 0x800C, 200, _04D8
+    BufferPartyMonNickname 0, VAR_UNK_0x409D
+    GetAmitySquareStepCount VAR_RESULT
+    GoToIfGe VAR_RESULT, 200, _04D8
     GoTo _05DD
     End
 
@@ -999,34 +999,34 @@ _10AA:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AB5, _117C
     Message 36
-    GetAmitySquareBerryOrAccessoryIDFromMan 0x40AB, 0x8004
-    ScrCmd_2E0 0x40AB, 0x800C
-    GoToIfEq 0x800C, 0, _10E1
+    GetAmitySquareBerryOrAccessoryIDFromMan VAR_UNK_0x40AB, VAR_0x8004
+    ScrCmd_2E0 VAR_UNK_0x40AB, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _10E1
     GoTo _1136
     End
 
 _10E1:
-    BufferItemName 0, 0x8004
+    BufferItemName 0, VAR_0x8004
     Message 37
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _1161
-    SetVar 0x8005, 5
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _1172
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _1161
+    SetVar VAR_0x8005, 5
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _1172
     BufferPlayerName 0
-    ScrCmd_33D 1, 0x8004
+    ScrCmd_33D 1, VAR_0x8004
     PlaySound SEQ_FANFA4
     Message 40
     WaitSound
-    AddItem 0x8004, 0x8005, 0x800C
+    AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoTo _117C
     End
 
 _1136:
-    ScrCmd_261 0, 0x8004
+    ScrCmd_261 0, VAR_0x8004
     Message 37
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _1161
-    SetVar 0x8005, 1
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _1161
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DF
     GoTo _117C
     End
@@ -1060,137 +1060,137 @@ _117C:
     End
 
 _118B:
-    SetVar 0x8003, 1
+    SetVar VAR_0x8003, 1
     GoTo _1305
     End
 
 _1199:
-    SetVar 0x8003, 2
+    SetVar VAR_0x8003, 2
     GoTo _1305
     End
 
 _11A7:
-    SetVar 0x8003, 3
+    SetVar VAR_0x8003, 3
     GoTo _1305
     End
 
 _11B5:
-    SetVar 0x8003, 4
+    SetVar VAR_0x8003, 4
     GoTo _1305
     End
 
 _11C3:
-    SetVar 0x8003, 5
+    SetVar VAR_0x8003, 5
     GoTo _1305
     End
 
 _11D1:
-    SetVar 0x8003, 6
+    SetVar VAR_0x8003, 6
     GoTo _1305
     End
 
 _11DF:
-    SetVar 0x8003, 7
+    SetVar VAR_0x8003, 7
     GoTo _1305
     End
 
 _11ED:
-    SetVar 0x8003, 8
+    SetVar VAR_0x8003, 8
     GoTo _1305
     End
 
 _11FB:
-    SetVar 0x8003, 9
+    SetVar VAR_0x8003, 9
     GoTo _1305
     End
 
 _1209:
-    SetVar 0x8003, 10
+    SetVar VAR_0x8003, 10
     GoTo _1305
     End
 
 _1217:
-    SetVar 0x8003, 11
+    SetVar VAR_0x8003, 11
     GoTo _1305
     End
 
 _1225:
-    SetVar 0x8003, 12
+    SetVar VAR_0x8003, 12
     GoTo _1305
     End
 
 _1233:
-    SetVar 0x8003, 13
+    SetVar VAR_0x8003, 13
     GoTo _1305
     End
 
 _1241:
-    SetVar 0x8003, 14
+    SetVar VAR_0x8003, 14
     GoTo _1305
     End
 
 _124F:
-    SetVar 0x8003, 15
+    SetVar VAR_0x8003, 15
     GoTo _1305
     End
 
 _125D:
-    SetVar 0x8003, 16
+    SetVar VAR_0x8003, 16
     GoTo _1305
     End
 
 _126B:
-    SetVar 0x8003, 17
+    SetVar VAR_0x8003, 17
     GoTo _1305
     End
 
 _1279:
-    SetVar 0x8003, 18
+    SetVar VAR_0x8003, 18
     GoTo _1305
     End
 
 _1287:
-    SetVar 0x8003, 19
+    SetVar VAR_0x8003, 19
     GoTo _1305
     End
 
 _1295:
-    SetVar 0x8003, 20
+    SetVar VAR_0x8003, 20
     GoTo _1305
     End
 
 _12A3:
-    SetVar 0x8003, 21
+    SetVar VAR_0x8003, 21
     GoTo _1305
     End
 
 _12B1:
-    SetVar 0x8003, 22
+    SetVar VAR_0x8003, 22
     GoTo _1305
     End
 
 _12BF:
-    SetVar 0x8003, 23
+    SetVar VAR_0x8003, 23
     GoTo _1305
     End
 
 _12CD:
-    SetVar 0x8003, 24
+    SetVar VAR_0x8003, 24
     GoTo _1305
     End
 
 _12DB:
-    SetVar 0x8003, 25
+    SetVar VAR_0x8003, 25
     GoTo _1305
     End
 
 _12E9:
-    SetVar 0x8003, 26
+    SetVar VAR_0x8003, 26
     GoTo _1305
     End
 
 _12F7:
-    SetVar 0x8003, 27
+    SetVar VAR_0x8003, 27
     GoTo _1305
     End
 
@@ -1198,39 +1198,39 @@ _1305:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     LockAll
-    WaitTime 1, 0x800C
+    WaitTime 1, VAR_RESULT
     ScrCmd_32D
     ScrCmd_338
     ApplyMovement 5, _1758
     WaitMovement
     PlayFanfare SEQ_SE_DP_GYURU
-    CallIfEq 0x8003, 1, _14C2
-    CallIfEq 0x8003, 2, _14DA
-    CallIfEq 0x8003, 3, _14F2
-    CallIfEq 0x8003, 4, _150A
-    CallIfEq 0x8003, 5, _1522
-    CallIfEq 0x8003, 6, _153A
-    CallIfEq 0x8003, 7, _1552
-    CallIfEq 0x8003, 8, _156A
-    CallIfEq 0x8003, 9, _1582
-    CallIfEq 0x8003, 10, _159A
-    CallIfEq 0x8003, 11, _15B2
-    CallIfEq 0x8003, 12, _15CA
-    CallIfEq 0x8003, 13, _15E2
-    CallIfEq 0x8003, 14, _15FA
-    CallIfEq 0x8003, 15, _1612
-    CallIfEq 0x8003, 16, _162A
-    CallIfEq 0x8003, 17, _1642
-    CallIfEq 0x8003, 18, _165A
-    CallIfEq 0x8003, 19, _1672
-    CallIfEq 0x8003, 20, _168A
-    CallIfEq 0x8003, 21, _16A2
-    CallIfEq 0x8003, 22, _16BA
-    CallIfEq 0x8003, 23, _16D2
-    CallIfEq 0x8003, 24, _16EA
-    CallIfEq 0x8003, 25, _1702
-    CallIfEq 0x8003, 26, _171A
-    CallIfEq 0x8003, 27, _1732
+    CallIfEq VAR_0x8003, 1, _14C2
+    CallIfEq VAR_0x8003, 2, _14DA
+    CallIfEq VAR_0x8003, 3, _14F2
+    CallIfEq VAR_0x8003, 4, _150A
+    CallIfEq VAR_0x8003, 5, _1522
+    CallIfEq VAR_0x8003, 6, _153A
+    CallIfEq VAR_0x8003, 7, _1552
+    CallIfEq VAR_0x8003, 8, _156A
+    CallIfEq VAR_0x8003, 9, _1582
+    CallIfEq VAR_0x8003, 10, _159A
+    CallIfEq VAR_0x8003, 11, _15B2
+    CallIfEq VAR_0x8003, 12, _15CA
+    CallIfEq VAR_0x8003, 13, _15E2
+    CallIfEq VAR_0x8003, 14, _15FA
+    CallIfEq VAR_0x8003, 15, _1612
+    CallIfEq VAR_0x8003, 16, _162A
+    CallIfEq VAR_0x8003, 17, _1642
+    CallIfEq VAR_0x8003, 18, _165A
+    CallIfEq VAR_0x8003, 19, _1672
+    CallIfEq VAR_0x8003, 20, _168A
+    CallIfEq VAR_0x8003, 21, _16A2
+    CallIfEq VAR_0x8003, 22, _16BA
+    CallIfEq VAR_0x8003, 23, _16D2
+    CallIfEq VAR_0x8003, 24, _16EA
+    CallIfEq VAR_0x8003, 25, _1702
+    CallIfEq VAR_0x8003, 26, _171A
+    CallIfEq VAR_0x8003, 27, _1732
     ApplyMovement LOCALID_PLAYER, _1764
     WaitMovement
     FadeScreen 6, 1, 1, 0
@@ -1242,7 +1242,7 @@ _1305:
     WaitMovement
     ScrCmd_32E
     ScrCmd_339
-    WaitTime 2, 0x800C
+    WaitTime 2, VAR_RESULT
     End
 
 _14C2:
@@ -1409,7 +1409,7 @@ _1732:
 
 _174A:
     LockAll
-    SetVar 0x40AC, 0
+    SetVar VAR_UNK_0x40AC, 0
     ReleaseAll
     End
 

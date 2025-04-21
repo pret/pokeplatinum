@@ -34,11 +34,11 @@
     ScriptEntryEnd
 
 _0072:
-    CallIfEq 0x4077, 0, _00AC
-    CallIfGe 0x4077, 3, _00C2
-    GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _00D8
-    GoToIfEq 0x4000, GENDER_FEMALE, _00E0
+    CallIfEq VAR_UNK_0x4077, 0, _00AC
+    CallIfGe VAR_UNK_0x4077, 3, _00C2
+    GetPlayerGender VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _00D8
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _00E0
     End
 
 _00AC:
@@ -54,19 +54,19 @@ _00C2:
     Return
 
 _00D8:
-    SetVar 0x4020, 97
+    SetVar VAR_OBJ_GFX_ID_0, 97
     End
 
 _00E0:
-    SetVar 0x4020, 0
+    SetVar VAR_OBJ_GFX_ID_0, 0
     End
 
 _00E8:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 173, _0119
-    GoToIfEq 0x8004, 174, _0129
-    GoToIfEq 0x8004, 175, _0139
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 173, _0119
+    GoToIfEq VAR_0x8004, 174, _0129
+    GoToIfEq VAR_0x8004, 175, _0139
     End
 
 _0119:
@@ -93,19 +93,19 @@ _0149:
     ApplyMovement 7, _044C
     WaitMovement
     CallCommonScript 0x7F8
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _018D
-    GoToIfEq 0x800C, GENDER_FEMALE, _0224
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _018D
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0224
     End
 
 _018D:
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 0
-    GetPartyCount 0x800C
-    BufferNumber 0, 0x800C
-    CallIfGe 0x800C, 4, _021A
-    CallIfLe 0x800C, 3, _021F
+    GetPartyCount VAR_RESULT
+    BufferNumber 0, VAR_RESULT
+    CallIfGe VAR_RESULT, 4, _021A
+    CallIfLe VAR_RESULT, 3, _021F
     BufferPlayerName 0
     BufferRivalName 1
     Message 3
@@ -120,7 +120,7 @@ _018D:
     Call _03C0
     Message 23
     CloseMessage
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     BufferPlayerName 0
     Call _041B
     Message 24
@@ -144,10 +144,10 @@ _0224:
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 4
-    GetPartyCount 0x800C
-    BufferNumber 0, 0x800C
-    CallIfGe 0x800C, 4, _02B1
-    CallIfLe 0x800C, 3, _02B6
+    GetPartyCount VAR_RESULT
+    BufferNumber 0, VAR_RESULT
+    CallIfGe VAR_RESULT, 4, _02B1
+    CallIfLe VAR_RESULT, 3, _02B6
     BufferPlayerName 0
     BufferRivalName 1
     Message 7
@@ -162,7 +162,7 @@ _0224:
     Call _03C0
     Message 26
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     BufferPlayerName 0
     Call _041B
     Message 27
@@ -187,16 +187,16 @@ _02BB:
     ApplyMovement LOCALID_PLAYER, _04F8
     WaitMovement
     RemoveObject 7
-    SetVar 0x4077, 1
+    SetVar VAR_UNK_0x4077, 1
     ReleaseAll
     End
 
 _02DB:
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 173, _030C
-    GoToIfEq 0x8004, 174, _0320
-    GoToIfEq 0x8004, 175, _0334
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 173, _030C
+    GoToIfEq VAR_0x8004, 174, _0320
+    GoToIfEq VAR_0x8004, 175, _0334
     End
 
 _030C:
@@ -240,9 +240,9 @@ _036E:
 _0390:
     Message 16
     Message 17
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _03B6
-    GoToIfEq 0x800C, MENU_NO, _03BB
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _03B6
+    GoToIfEq VAR_RESULT, MENU_NO, _03BB
     End
 
 _03B6:
@@ -255,8 +255,8 @@ _03BB:
 
 _03C0:
     Message 20
-    SetVar 0x8004, 0x1D1
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1D1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Message 21
     CloseMessage
@@ -441,8 +441,8 @@ _058C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COAL, 0x800C
-    GoToIfEq 0x800C, 1, _05B2
+    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _05B2
     Message 29
     WaitABXPadPress
     CloseMessage
@@ -468,10 +468,10 @@ _05BD:
 
 _05D0:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x30B, _0601
-    GoToIfEq 0x8005, 0x30C, _062A
-    GoToIfEq 0x8005, 0x30D, _0653
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x30B, _0601
+    GoToIfEq VAR_0x8005, 0x30C, _062A
+    GoToIfEq VAR_0x8005, 0x30D, _0653
     End
 
 _0601:
@@ -566,11 +566,11 @@ _06F8:
 
 _0700:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2F5, _073E
-    GoToIfEq 0x8005, 0x2F6, _0758
-    GoToIfEq 0x8005, 0x2F7, _0772
-    GoToIfEq 0x8005, 0x2F8, _078C
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2F5, _073E
+    GoToIfEq VAR_0x8005, 0x2F6, _0758
+    GoToIfEq VAR_0x8005, 0x2F7, _0772
+    GoToIfEq VAR_0x8005, 0x2F8, _078C
     End
 
 _073E:
@@ -607,11 +607,11 @@ _07A6:
     ApplyMovement LOCALID_PLAYER, _08AC
     ApplyMovement 31, _0914
     WaitMovement
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2F5, _0846
-    GoToIfEq 0x8005, 0x2F6, _0858
-    GoToIfEq 0x8005, 0x2F7, _086A
-    GoToIfEq 0x8005, 0x2F8, _087C
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2F5, _0846
+    GoToIfEq VAR_0x8005, 0x2F6, _0858
+    GoToIfEq VAR_0x8005, 0x2F7, _086A
+    GoToIfEq VAR_0x8005, 0x2F8, _087C
     End
 
 _07FC:
@@ -777,8 +777,8 @@ _097F:
     End
 
 _0994:
-    CheckItem ITEM_PAL_PAD, 1, 0x800C
-    GoToIfEq 0x800C, 1, _09BD
+    CheckItem ITEM_PAL_PAD, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _09BD
     Message 36
     CloseMessage
     ApplyMovement 31, _1558
@@ -805,10 +805,10 @@ _09DC:
     WaitMovement
     Message 64
     CloseMessage
-    GetPlayerMapPos 0x8000, 0x8001
-    GoToIfEq 0x8000, 173, _0A1C
-    GoToIfEq 0x8000, 174, _0A36
-    GoToIfEq 0x8000, 175, _0A50
+    GetPlayerMapPos VAR_0x8000, VAR_0x8001
+    GoToIfEq VAR_0x8000, 173, _0A1C
+    GoToIfEq VAR_0x8000, 174, _0A36
+    GoToIfEq VAR_0x8000, 175, _0A50
     End
 
 _0A1C:
@@ -852,9 +852,9 @@ _0A6A:
     Message 70
     ApplyMovement 7, _0E44
     WaitMovement
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0ADC
-    GoToIfEq 0x800C, GENDER_FEMALE, _0AED
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0ADC
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0AED
     End
 
 _0ADC:
@@ -879,9 +879,9 @@ _0AFE:
     ApplyMovement LOCALID_PLAYER, _0F30
     WaitMovement
     Call JubilifeCity_SetPlayerCounterpartPartnerTeam
-    StartTagBattle 0x8004, TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1, TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0DB7
+    StartTagBattle VAR_0x8004, TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1, TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0DB7
     ApplyMovement 18, _0EB4
     WaitMovement
     Message 73
@@ -899,33 +899,33 @@ _0AFE:
     Message 74
     ApplyMovement 7, _0E60
     WaitMovement
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0C30
-    GoToIfEq 0x800C, GENDER_FEMALE, _0C41
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0C30
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0C41
     End
 
 JubilifeCity_SetPlayerCounterpartPartnerTeam:
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, JubilifeCity_SetDawnPartnerTeam
-    GoToIfEq 0x800C, GENDER_FEMALE, JubilifeCity_SetLucasPartnerTeam
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, JubilifeCity_SetDawnPartnerTeam
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, JubilifeCity_SetLucasPartnerTeam
     End
 
 JubilifeCity_SetDawnPartnerTeam:
-    GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, TRAINER_DAWN_JUBILIFE_CITY_CHIMCHAR
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, JubilifeCity_Return
-    SetVar 0x8004, TRAINER_DAWN_JUBILIFE_CITY_PIPLUP
-    GoToIfEq 0x800C, SPECIES_PIPLUP, JubilifeCity_Return
-    SetVar 0x8004, TRAINER_DAWN_JUBILIFE_CITY_TURTWIG
+    GetPlayerStarterSpecies VAR_RESULT
+    SetVar VAR_0x8004, TRAINER_DAWN_JUBILIFE_CITY_CHIMCHAR
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, JubilifeCity_Return
+    SetVar VAR_0x8004, TRAINER_DAWN_JUBILIFE_CITY_PIPLUP
+    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, JubilifeCity_Return
+    SetVar VAR_0x8004, TRAINER_DAWN_JUBILIFE_CITY_TURTWIG
     Return
 
 JubilifeCity_SetLucasPartnerTeam:
-    GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, TRAINER_LUCAS_JUBILIFE_CITY_CHIMCHAR
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, JubilifeCity_Return
-    SetVar 0x8004, TRAINER_LUCAS_JUBILIFE_CITY_PIPLUP
-    GoToIfEq 0x800C, SPECIES_PIPLUP, JubilifeCity_Return
-    SetVar 0x8004, TRAINER_LUCAS_JUBILIFE_CITY_TURTWIG
+    GetPlayerStarterSpecies VAR_RESULT
+    SetVar VAR_0x8004, TRAINER_LUCAS_JUBILIFE_CITY_CHIMCHAR
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, JubilifeCity_Return
+    SetVar VAR_0x8004, TRAINER_LUCAS_JUBILIFE_CITY_PIPLUP
+    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, JubilifeCity_Return
+    SetVar VAR_0x8004, TRAINER_LUCAS_JUBILIFE_CITY_TURTWIG
     Return
 
 JubilifeCity_Return:
@@ -960,9 +960,9 @@ _0C7C:
     RemoveObject 7
     RemoveObject 16
     ClearFlag FLAG_UNK_0x0198
-    SetVar 0x4077, 4
-    SetVar 0x4076, 2
-    SetVar 0x4079, 3
+    SetVar VAR_UNK_0x4077, 4
+    SetVar VAR_UNK_0x4076, 2
+    SetVar VAR_UNK_0x4079, 3
     RemoveObject 24
     RemoveObject 25
     RemoveObject 27
@@ -977,7 +977,7 @@ _0C7C:
     Call _0CF0
     Message 79
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 30, _0DC8
     WaitMovement
     RemoveObject 30
@@ -985,8 +985,8 @@ _0C7C:
     End
 
 _0CF0:
-    SetVar 0x8004, 0x1B3
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1B3
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00F2
     Call _0D58
@@ -1000,32 +1000,32 @@ _0CF0:
     Call _0D72
     Call _0D72
     ScrCmd_1D5 0
-    SetVar 0x4001, 0x270F
+    SetVar VAR_MAP_LOCAL_1, 0x270F
     Call _0D8C
     Call _0D8C
     Return
 
 _0D58:
-    GetRandom 0x800C, 6
-    SetVar 0x8004, 0
-    AddVar 0x8004, 0x800C
-    ScrCmd_1D2 0x8004, 1
+    GetRandom VAR_RESULT, 6
+    SetVar VAR_0x8004, 0
+    AddVar VAR_0x8004, VAR_RESULT
+    ScrCmd_1D2 VAR_0x8004, 1
     Return
 
 _0D72:
-    GetRandom 0x800C, 6
-    SetVar 0x8004, 18
-    AddVar 0x8004, 0x800C
-    ScrCmd_1D2 0x8004, 1
+    GetRandom VAR_RESULT, 6
+    SetVar VAR_0x8004, 18
+    AddVar VAR_0x8004, VAR_RESULT
+    ScrCmd_1D2 VAR_0x8004, 1
     Return
 
 _0D8C:
-    GetRandom 0x800C, 8
-    GoToIfEq 0x4001, 0x800C, _0D8C
-    SetVar 0x4001, 0x800C
-    SetVar 0x8004, 1
-    AddVar 0x8004, 0x800C
-    ScrCmd_1D5 0x8004
+    GetRandom VAR_RESULT, 8
+    GoToIfEq VAR_MAP_LOCAL_1, VAR_RESULT, _0D8C
+    SetVar VAR_MAP_LOCAL_1, VAR_RESULT
+    SetVar VAR_0x8004, 1
+    AddVar VAR_0x8004, VAR_RESULT
+    ScrCmd_1D5 VAR_0x8004
     Return
 
 _0DB7:
@@ -1308,15 +1308,15 @@ _0F3C:
     LockAll
     FacePlayer
     Message 80
-    InitGlobalTextListMenu 29, 11, 0, 0x800C, NO_EXIT_ON_B
+    InitGlobalTextListMenu 29, 11, 0, VAR_RESULT, NO_EXIT_ON_B
     SetMenuXOriginToRight
     AddListMenuEntry 45, 0
     AddListMenuEntry 46, 1
     AddListMenuEntry 47, 2
     ShowListMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0F97
-    GoToIfEq 0x8008, 1, _0FA2
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _0F97
+    GoToIfEq VAR_0x8008, 1, _0FA2
     Message 83
     WaitABXPadPress
     CloseMessage
@@ -1372,9 +1372,9 @@ _0FE6:
     LockAll
     FacePlayer
     Message 88
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1011
-    GoToIfEq 0x800C, MENU_NO, _101C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1011
+    GoToIfEq VAR_RESULT, MENU_NO, _101C
     End
 
 _1011:
@@ -1430,14 +1430,14 @@ _10C4:
     ApplyMovement 23, _1178
     ApplyMovement LOCALID_PLAYER, _1170
     WaitMovement
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 172, _1133
-    CallIfEq 0x8004, 173, _113F
-    CallIfEq 0x8004, 174, _114B
-    CallIfEq 0x8004, 175, _1157
-    CallIfEq 0x8004, 176, _1163
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 172, _1133
+    CallIfEq VAR_0x8004, 173, _113F
+    CallIfEq VAR_0x8004, 174, _114B
+    CallIfEq VAR_0x8004, 175, _1157
+    CallIfEq VAR_0x8004, 176, _1163
     Message 39
-    SetVar 0x40E7, 2
+    SetVar VAR_UNK_0x40E7, 2
     Message 40
     WaitABXPadPress
     CloseMessage
@@ -1517,9 +1517,9 @@ _11CC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x8004, 0
+    SetVar VAR_0x8004, 0
     Call _11F8
-    GoToIfEq 0x8004, 3, _1223
+    GoToIfEq VAR_0x8004, 3, _1223
     Message 41
     WaitABXPadPress
     CloseMessage
@@ -1533,16 +1533,16 @@ _11F8:
     Return
 
 _121B:
-    AddVar 0x8004, 1
+    AddVar VAR_0x8004, 1
     Return
 
 _1223:
     Message 42
-    RemoveItem ITEM_COUPON_1, 1, 0x800C
-    RemoveItem ITEM_COUPON_2, 1, 0x800C
-    RemoveItem ITEM_COUPON_3, 1, 0x800C
+    RemoveItem ITEM_COUPON_1, 1, VAR_RESULT
+    RemoveItem ITEM_COUPON_2, 1, VAR_RESULT
+    RemoveItem ITEM_COUPON_3, 1, VAR_RESULT
     ScrCmd_131
-    SetVar 0x4077, 2
+    SetVar VAR_UNK_0x4077, 2
     RegisterPoketchApp POKETCH_APPID_DIGITALWATCH
     RegisterPoketchApp POKETCH_APPID_CALCULATOR
     RegisterPoketchApp POKETCH_APPID_PEDOMETER
@@ -1553,11 +1553,11 @@ _1223:
     WaitSound
     Message 44
     CloseMessage
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _12A1
-    GoToIfEq 0x800C, 1, _12BB
-    GoToIfEq 0x800C, 2, _12A1
-    GoToIfEq 0x800C, 3, _12A1
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _12A1
+    GoToIfEq VAR_RESULT, 1, _12BB
+    GoToIfEq VAR_RESULT, 2, _12A1
+    GoToIfEq VAR_RESULT, 3, _12A1
     End
 
 _12A1:
@@ -1613,9 +1613,9 @@ _1320:
     FacePlayer
     GoToIfSet FLAG_UNK_0x00ED, _138C
     Message 45
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1356
-    GoToIfEq 0x800C, MENU_NO, _137D
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1356
+    GoToIfEq VAR_RESULT, MENU_NO, _137D
     End
 
 _1356:
@@ -1623,8 +1623,8 @@ _1356:
     Message 46
     Message 48
     Message 49
-    SetVar 0x8004, 0x1CC
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1CC
+    SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x00ED
     CallCommonScript 0x7E0
     CloseMessage
@@ -1652,9 +1652,9 @@ _1397:
     FacePlayer
     GoToIfSet FLAG_UNK_0x00EE, _1403
     Message 51
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _13CD
-    GoToIfEq 0x800C, MENU_NO, _13F4
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _13CD
+    GoToIfEq VAR_RESULT, MENU_NO, _13F4
     End
 
 _13CD:
@@ -1662,8 +1662,8 @@ _13CD:
     Message 52
     Message 54
     Message 55
-    SetVar 0x8004, 0x1CD
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1CD
+    SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x00EE
     CallCommonScript 0x7E0
     CloseMessage
@@ -1689,12 +1689,12 @@ _140E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfLt 0x40E7, 2, _149E
+    GoToIfLt VAR_UNK_0x40E7, 2, _149E
     GoToIfSet FLAG_UNK_0x00EF, _1493
     Message 57
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1451
-    GoToIfEq 0x800C, MENU_NO, _1484
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1451
+    GoToIfEq VAR_RESULT, MENU_NO, _1484
     End
 
 _1451:
@@ -1703,8 +1703,8 @@ _1451:
     Message 60
     Message 61
     ScrCmd_187 23, 174, 1, 0x303, 1
-    SetVar 0x8004, 0x1CE
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1CE
+    SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x00EF
     CallCommonScript 0x7E0
     CloseMessage
@@ -1755,8 +1755,8 @@ _14BC:
 
 _14CF:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    SetObjectEventPos 31, 179, 0x8005
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    SetObjectEventPos 31, 179, VAR_0x8005
     ScrCmd_189 31, 3
     ScrCmd_188 31, 17
     ClearFlag FLAG_UNK_0x0181
@@ -1773,7 +1773,7 @@ _14CF:
     WaitMovement
     RemoveObject 31
     CallCommonScript 0x808
-    SetVar 0x4076, 2
+    SetVar VAR_UNK_0x4076, 2
     ReleaseAll
     End
 

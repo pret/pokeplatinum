@@ -14,23 +14,23 @@
     ScriptEntryEnd
 
 _001A:
-    CallIfEq 0x4057, 1, _00AA
+    CallIfEq VAR_SHAYMIN_EVENT_STATE, 1, _00AA
     GoToIfSet FLAG_UNK_0x012D, _0080
-    CheckGameCompleted 0x4000
-    GoToIfEq 0x4000, 0, _0080
-    ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _0080
-    CheckItem ITEM_OAKS_LETTER, 1, 0x4000
-    GoToIfEq 0x4000, FALSE, _0080
-    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, 0x4000
-    GoToIfEq 0x4000, FALSE, _0080
+    CheckGameCompleted VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0080
+    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0080
+    CheckItem ITEM_OAKS_LETTER, 1, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0080
+    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0080
     ClearFlag FLAG_UNK_0x0252
 _0080:
     End
 
 _0082:
     GoToIfSet FLAG_UNK_0x012D, _009A
-    CallIfEq 0x408D, 1, _009C
+    CallIfEq VAR_UNK_0x408D, 1, _009C
 _009A:
     End
 
@@ -46,8 +46,8 @@ _009C:
     .byte 0
 
 _00AA:
-    SetVar 0x4057, 2
-    SetVar 0x4085, 1
+    SetVar VAR_SHAYMIN_EVENT_STATE, 2
+    SetVar VAR_UNK_0x4085, 1
     Return
 
 _00B8:
@@ -74,10 +74,10 @@ _00E4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x408D, 1
+    SetVar VAR_UNK_0x408D, 1
     BufferPlayerName 0
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_FEMALE, _0219
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0219
     Message 0
 _0114:
     CloseMessage
@@ -88,30 +88,30 @@ _0114:
 _0124:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_271 0x800C
+    ScrCmd_271 VAR_RESULT
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x800C, 1, _0222
+    GoToIfEq VAR_RESULT, 1, _0222
     BufferPlayerName 0
     ScrCmd_272 1
     Message 3
-    ShowYesNoMenu 0x800C
+    ShowYesNoMenu VAR_RESULT
     CloseMessage
-    GoToIfEq 0x800C, MENU_NO, _0124
+    GoToIfEq VAR_RESULT, MENU_NO, _0124
     Call _029A
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     FadeOutMusic 0, 10
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen
     EnableHiddenLocation HIDDEN_LOCATION_SEABREAK_PATH
     ScrCmd_333 0
     Warp MAP_HEADER_ROUTE_224, 0, 0x38C, 0x1EC, 0
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     FadeScreen 6, 6, 1, 0x7FFF
     WaitFadeScreen
     Call _02B8
-    CallIfNe 0x4057, 2, _01F0
-    CallIfEq 0x4057, 2, _01F5
+    CallIfNe VAR_SHAYMIN_EVENT_STATE, 2, _01F0
+    CallIfEq VAR_SHAYMIN_EVENT_STATE, 2, _01F5
     WaitABXPadPress
     CloseMessage
     ScrCmd_333 127
@@ -119,7 +119,7 @@ _0124:
     SetFlag FLAG_UNK_0x012D
     SetFlag FLAG_UNK_0x0252
     SetFlag FLAG_UNK_0x02CA
-    SetVar 0x408D, 0
+    SetVar VAR_UNK_0x408D, 0
     ReleaseAll
     End
 
@@ -134,7 +134,7 @@ _01F5:
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _0438
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     Message 11
     Return
 
@@ -158,10 +158,10 @@ _022D:
     End
 
 _0240:
-    GetPlayerMapPos 0x8000, 0x8001
-    SetVar 0x8008, 0x8000
-    GoToIfEq 0x8008, 0x38D, _0272
-    GoToIfEq 0x8008, 0x38E, _0286
+    GetPlayerMapPos VAR_0x8000, VAR_0x8001
+    SetVar VAR_0x8008, VAR_0x8000
+    GoToIfEq VAR_0x8008, 0x38D, _0272
+    GoToIfEq VAR_0x8008, 0x38E, _0286
     ApplyMovement LOCALID_PLAYER, _0328
     WaitMovement
     Return
@@ -195,7 +195,7 @@ _02B8:
     WaitMovement
     PlayCry SPECIES_SHAYMIN
     WaitCry
-    CallIfEq 0x4057, 2, _02AE
+    CallIfEq VAR_SHAYMIN_EVENT_STATE, 2, _02AE
     ApplyMovement 3, _038C
     ApplyMovement 16, _03B0
     ApplyMovement LOCALID_PLAYER, _039C
@@ -341,10 +341,10 @@ _0448:
 _0458:
     LockAll
     ClearFlag FLAG_UNK_0x02CA
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x1F0, _048D
-    GoToIfEq 0x8005, 0x1F1, _04AF
-    GoToIfEq 0x8005, 0x1F2, _04D1
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x1F0, _048D
+    GoToIfEq VAR_0x8005, 0x1F1, _04AF
+    GoToIfEq VAR_0x8005, 0x1F2, _04D1
     End
 
 _048D:
@@ -379,10 +379,10 @@ _04F3:
     WaitMovement
     Message 9
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x1F0, _0531
-    GoToIfEq 0x8005, 0x1F1, _054B
-    GoToIfEq 0x8005, 0x1F2, _0565
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x1F0, _0531
+    GoToIfEq VAR_0x8005, 0x1F1, _054B
+    GoToIfEq VAR_0x8005, 0x1F2, _0565
     End
 
 _0531:
@@ -407,8 +407,8 @@ _0565:
     End
 
 _057F:
-    SetVar 0x4057, 2
-    SetVar 0x4085, 2
+    SetVar VAR_SHAYMIN_EVENT_STATE, 2
+    SetVar VAR_UNK_0x4085, 2
     Message 10
     WaitABXPadPress
     CloseMessage

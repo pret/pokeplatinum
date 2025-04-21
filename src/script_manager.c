@@ -474,11 +474,11 @@ u16 *FieldSystem_GetVarPointer(FieldSystem *fieldSystem, u16 varID)
         return NULL;
     }
 
-    if (varID < SPECIAL_VARS_START) {
+    if (varID < SCRIPT_LOCAL_VARS_START) {
         return VarsFlags_GetVarAddress(varsFlags, varID);
     }
 
-    return FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_START + varID - SPECIAL_VARS_START);
+    return FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_START + varID - SCRIPT_LOCAL_VARS_START);
 }
 
 u16 FieldSystem_TryGetVar(FieldSystem *fieldSystem, u16 varID)

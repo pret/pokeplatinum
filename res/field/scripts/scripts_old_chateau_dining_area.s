@@ -7,14 +7,14 @@
     ScriptEntryEnd
 
 _000A:
-    ScrCmd_292 10, 0x4000
-    GoToIfEq 0x4000, 1, _0022
+    ScrCmd_292 10, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _0022
     SetFlag FLAG_UNK_0x027B
     End
 
 _0022:
     ClearFlag FLAG_UNK_0x027B
-    SetVar 0x4110, 1
+    SetVar VAR_UNK_0x4110, 1
     End
 
 _002E:
@@ -24,7 +24,7 @@ _002E:
     WaitMovement
     SetFlag FLAG_UNK_0x027B
     RemoveObject 0
-    SetVar 0x4110, 0
+    SetVar VAR_UNK_0x4110, 0
     ReleaseAll
     End
 

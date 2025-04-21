@@ -43,14 +43,14 @@ _0062:
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40DA, 2
+    SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
     ReleaseAll
     End
 
 _00A0:
     LockAll
-    SetVar 0x40DA, 2
+    SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
     ReleaseAll
     End
@@ -66,7 +66,7 @@ _00AF:
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40DA, 2
+    SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
     ReleaseAll
     End
@@ -82,7 +82,7 @@ _00ED:
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40DA, 2
+    SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
     ReleaseAll
     End
@@ -90,15 +90,15 @@ _00ED:
 _012B:
     LockAll
     Message 5
-    ShowYesNoMenu 0x800C
+    ShowYesNoMenu VAR_RESULT
     CloseMessage
-    GoToIfNe 0x800C, MENU_YES, _0174
+    GoToIfNe VAR_RESULT, MENU_YES, _0174
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40DA, 2
+    SetVar VAR_UNK_0x40DA, 2
     ScrCmd_202 1
     ReleaseAll
     End
@@ -110,7 +110,7 @@ _0174:
 _0178:
     LockAll
     Message 3
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 188, 0
     AddMenuEntryImm 189, 1
     AddMenuEntryImm 190, 2
@@ -118,20 +118,20 @@ _0178:
     AddMenuEntryImm 192, 4
     ShowMenu
     CloseMessage
-    GoToIfEq 0x800C, 4, _06C2
-    GoToIfEq 0x800C, -2, _06C2
-    ScrCmd_210 0, 0x8004
-    SetVar 0x8005, 0
-    CallIfEq 0x8004, 6, _0634
+    GoToIfEq VAR_RESULT, 4, _06C2
+    GoToIfEq VAR_RESULT, -2, _06C2
+    ScrCmd_210 0, VAR_0x8004
+    SetVar VAR_0x8005, 0
+    CallIfEq VAR_0x8004, 6, _0634
     SetPlayerHeightCalculationEnabled FALSE
-    CallIfEq 0x800C, 0, _06D0
-    CallIfEq 0x800C, 1, _06DC
-    CallIfEq 0x800C, 2, _06D0
-    CallIfEq 0x800C, 3, _06DC
-    CallIfEq 0x800C, 0, _068A
-    CallIfEq 0x800C, 1, _0698
-    CallIfEq 0x800C, 2, _06A6
-    CallIfEq 0x800C, 3, _06B4
+    CallIfEq VAR_RESULT, 0, _06D0
+    CallIfEq VAR_RESULT, 1, _06DC
+    CallIfEq VAR_RESULT, 2, _06D0
+    CallIfEq VAR_RESULT, 3, _06DC
+    CallIfEq VAR_RESULT, 0, _068A
+    CallIfEq VAR_RESULT, 1, _0698
+    CallIfEq VAR_RESULT, 2, _06A6
+    CallIfEq VAR_RESULT, 3, _06B4
     SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
@@ -139,7 +139,7 @@ _0178:
 _0242:
     LockAll
     Message 3
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 188, 0
     AddMenuEntryImm 189, 1
     AddMenuEntryImm 190, 2
@@ -147,20 +147,20 @@ _0242:
     AddMenuEntryImm 192, 4
     ShowMenu
     CloseMessage
-    GoToIfEq 0x800C, 4, _06C2
-    GoToIfEq 0x800C, -2, _06C2
-    ScrCmd_210 0, 0x8004
-    SetVar 0x8005, 0
-    CallIfEq 0x8004, 6, _0634
+    GoToIfEq VAR_RESULT, 4, _06C2
+    GoToIfEq VAR_RESULT, -2, _06C2
+    ScrCmd_210 0, VAR_0x8004
+    SetVar VAR_0x8005, 0
+    CallIfEq VAR_0x8004, 6, _0634
     SetPlayerHeightCalculationEnabled FALSE
-    CallIfEq 0x800C, 0, _06F4
-    CallIfEq 0x800C, 1, _06E8
-    CallIfEq 0x800C, 2, _06F4
-    CallIfEq 0x800C, 3, _06E8
-    CallIfEq 0x800C, 0, _068A
-    CallIfEq 0x800C, 1, _0698
-    CallIfEq 0x800C, 2, _06A6
-    CallIfEq 0x800C, 3, _06B4
+    CallIfEq VAR_RESULT, 0, _06F4
+    CallIfEq VAR_RESULT, 1, _06E8
+    CallIfEq VAR_RESULT, 2, _06F4
+    CallIfEq VAR_RESULT, 3, _06E8
+    CallIfEq VAR_RESULT, 0, _068A
+    CallIfEq VAR_RESULT, 1, _0698
+    CallIfEq VAR_RESULT, 2, _06A6
+    CallIfEq VAR_RESULT, 3, _06B4
     SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
@@ -168,7 +168,7 @@ _0242:
 _030C:
     LockAll
     Message 3
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 186, 0
     AddMenuEntryImm 187, 1
     AddMenuEntryImm 190, 2
@@ -176,20 +176,20 @@ _030C:
     AddMenuEntryImm 192, 4
     ShowMenu
     CloseMessage
-    GoToIfEq 0x800C, 4, _06C2
-    GoToIfEq 0x800C, -2, _06C2
-    ScrCmd_210 1, 0x8004
-    SetVar 0x8005, 1
-    CallIfEq 0x8004, 6, _0634
+    GoToIfEq VAR_RESULT, 4, _06C2
+    GoToIfEq VAR_RESULT, -2, _06C2
+    ScrCmd_210 1, VAR_0x8004
+    SetVar VAR_0x8005, 1
+    CallIfEq VAR_0x8004, 6, _0634
     SetPlayerHeightCalculationEnabled FALSE
-    CallIfEq 0x800C, 0, _06D0
-    CallIfEq 0x800C, 1, _06DC
-    CallIfEq 0x800C, 2, _06D0
-    CallIfEq 0x800C, 3, _06DC
-    CallIfEq 0x800C, 0, _066E
-    CallIfEq 0x800C, 1, _067C
-    CallIfEq 0x800C, 2, _06A6
-    CallIfEq 0x800C, 3, _06B4
+    CallIfEq VAR_RESULT, 0, _06D0
+    CallIfEq VAR_RESULT, 1, _06DC
+    CallIfEq VAR_RESULT, 2, _06D0
+    CallIfEq VAR_RESULT, 3, _06DC
+    CallIfEq VAR_RESULT, 0, _066E
+    CallIfEq VAR_RESULT, 1, _067C
+    CallIfEq VAR_RESULT, 2, _06A6
+    CallIfEq VAR_RESULT, 3, _06B4
     SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
@@ -197,7 +197,7 @@ _030C:
 _03D6:
     LockAll
     Message 3
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 186, 0
     AddMenuEntryImm 187, 1
     AddMenuEntryImm 190, 2
@@ -205,20 +205,20 @@ _03D6:
     AddMenuEntryImm 192, 4
     ShowMenu
     CloseMessage
-    GoToIfEq 0x800C, 4, _06C2
-    GoToIfEq 0x800C, -2, _06C2
-    ScrCmd_210 1, 0x8004
-    SetVar 0x8005, 1
-    CallIfEq 0x8004, 6, _0634
+    GoToIfEq VAR_RESULT, 4, _06C2
+    GoToIfEq VAR_RESULT, -2, _06C2
+    ScrCmd_210 1, VAR_0x8004
+    SetVar VAR_0x8005, 1
+    CallIfEq VAR_0x8004, 6, _0634
     SetPlayerHeightCalculationEnabled FALSE
-    CallIfEq 0x800C, 0, _06F4
-    CallIfEq 0x800C, 1, _06E8
-    CallIfEq 0x800C, 2, _06F4
-    CallIfEq 0x800C, 3, _06E8
-    CallIfEq 0x800C, 0, _066E
-    CallIfEq 0x800C, 1, _067C
-    CallIfEq 0x800C, 2, _06A6
-    CallIfEq 0x800C, 3, _06B4
+    CallIfEq VAR_RESULT, 0, _06F4
+    CallIfEq VAR_RESULT, 1, _06E8
+    CallIfEq VAR_RESULT, 2, _06F4
+    CallIfEq VAR_RESULT, 3, _06E8
+    CallIfEq VAR_RESULT, 0, _066E
+    CallIfEq VAR_RESULT, 1, _067C
+    CallIfEq VAR_RESULT, 2, _06A6
+    CallIfEq VAR_RESULT, 3, _06B4
     SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
@@ -226,7 +226,7 @@ _03D6:
 _04A0:
     LockAll
     Message 3
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 186, 0
     AddMenuEntryImm 187, 1
     AddMenuEntryImm 188, 2
@@ -234,20 +234,20 @@ _04A0:
     AddMenuEntryImm 192, 4
     ShowMenu
     CloseMessage
-    GoToIfEq 0x800C, 4, _06C2
-    GoToIfEq 0x800C, -2, _06C2
-    ScrCmd_210 2, 0x8004
-    SetVar 0x8005, 2
-    CallIfEq 0x8004, 6, _0634
+    GoToIfEq VAR_RESULT, 4, _06C2
+    GoToIfEq VAR_RESULT, -2, _06C2
+    ScrCmd_210 2, VAR_0x8004
+    SetVar VAR_0x8005, 2
+    CallIfEq VAR_0x8004, 6, _0634
     SetPlayerHeightCalculationEnabled FALSE
-    CallIfEq 0x800C, 0, _06D0
-    CallIfEq 0x800C, 1, _06DC
-    CallIfEq 0x800C, 2, _06D0
-    CallIfEq 0x800C, 3, _06DC
-    CallIfEq 0x800C, 0, _066E
-    CallIfEq 0x800C, 1, _067C
-    CallIfEq 0x800C, 2, _068A
-    CallIfEq 0x800C, 3, _0698
+    CallIfEq VAR_RESULT, 0, _06D0
+    CallIfEq VAR_RESULT, 1, _06DC
+    CallIfEq VAR_RESULT, 2, _06D0
+    CallIfEq VAR_RESULT, 3, _06DC
+    CallIfEq VAR_RESULT, 0, _066E
+    CallIfEq VAR_RESULT, 1, _067C
+    CallIfEq VAR_RESULT, 2, _068A
+    CallIfEq VAR_RESULT, 3, _0698
     SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
@@ -255,7 +255,7 @@ _04A0:
 _056A:
     LockAll
     Message 3
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 186, 0
     AddMenuEntryImm 187, 1
     AddMenuEntryImm 188, 2
@@ -263,44 +263,44 @@ _056A:
     AddMenuEntryImm 192, 4
     ShowMenu
     CloseMessage
-    GoToIfEq 0x800C, 4, _06C2
-    GoToIfEq 0x800C, -2, _06C2
-    ScrCmd_210 2, 0x8004
-    SetVar 0x8005, 2
-    CallIfEq 0x8004, 6, _0634
+    GoToIfEq VAR_RESULT, 4, _06C2
+    GoToIfEq VAR_RESULT, -2, _06C2
+    ScrCmd_210 2, VAR_0x8004
+    SetVar VAR_0x8005, 2
+    CallIfEq VAR_0x8004, 6, _0634
     SetPlayerHeightCalculationEnabled FALSE
-    CallIfEq 0x800C, 0, _06F4
-    CallIfEq 0x800C, 1, _06E8
-    CallIfEq 0x800C, 2, _06F4
-    CallIfEq 0x800C, 3, _06E8
-    CallIfEq 0x800C, 0, _066E
-    CallIfEq 0x800C, 1, _067C
-    CallIfEq 0x800C, 2, _068A
-    CallIfEq 0x800C, 3, _0698
+    CallIfEq VAR_RESULT, 0, _06F4
+    CallIfEq VAR_RESULT, 1, _06E8
+    CallIfEq VAR_RESULT, 2, _06F4
+    CallIfEq VAR_RESULT, 3, _06E8
+    CallIfEq VAR_RESULT, 0, _066E
+    CallIfEq VAR_RESULT, 1, _067C
+    CallIfEq VAR_RESULT, 2, _068A
+    CallIfEq VAR_RESULT, 3, _0698
     SetPlayerHeightCalculationEnabled TRUE
     ReleaseAll
     End
 
 _0634:
-    ScrCmd_20F 0x8005, 3
+    ScrCmd_20F VAR_0x8005, 3
     Return
 
 _063C:
-    ScrCmd_20F 0x8006, 4
+    ScrCmd_20F VAR_0x8006, 4
     Return
 
 _0644:
-    SetVar 0x8006, 0
+    SetVar VAR_0x8006, 0
     Call _063C
     Return
 
 _0652:
-    SetVar 0x8006, 1
+    SetVar VAR_0x8006, 1
     Call _063C
     Return
 
 _0660:
-    SetVar 0x8006, 2
+    SetVar VAR_0x8006, 2
     Call _063C
     Return
 

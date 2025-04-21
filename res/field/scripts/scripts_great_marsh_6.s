@@ -13,37 +13,37 @@ _000A:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AB4, _00BC
     Message 0
-    GetRandom 0x8004, 4
-    SetVar 0x8008, 0x8004
-    GoToIfEq 0x8008, 0, _005B
-    GoToIfEq 0x8008, 1, _0069
-    GoToIfEq 0x8008, 2, _0077
+    GetRandom VAR_0x8004, 4
+    SetVar VAR_0x8008, VAR_0x8004
+    GoToIfEq VAR_0x8008, 0, _005B
+    GoToIfEq VAR_0x8008, 1, _0069
+    GoToIfEq VAR_0x8008, 2, _0077
     GoTo _0085
     End
 
 _005B:
-    SetVar 0x8004, ITEM_RED_SHARD
+    SetVar VAR_0x8004, ITEM_RED_SHARD
     GoTo _0093
     End
 
 _0069:
-    SetVar 0x8004, ITEM_BLUE_SHARD
+    SetVar VAR_0x8004, ITEM_BLUE_SHARD
     GoTo _0093
     End
 
 _0077:
-    SetVar 0x8004, ITEM_YELLOW_SHARD
+    SetVar VAR_0x8004, ITEM_YELLOW_SHARD
     GoTo _0093
     End
 
 _0085:
-    SetVar 0x8004, ITEM_GREEN_SHARD
+    SetVar VAR_0x8004, ITEM_GREEN_SHARD
     GoTo _0093
     End
 
 _0093:
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00C7
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00C7
     SetFlag FLAG_UNK_0x0AB4
     CallCommonScript 0x7E0
     CloseMessage

@@ -21,21 +21,21 @@ _001D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x8004, 0x1BD
-    BufferItemName 0, 0x8004
+    SetVar VAR_0x8004, 0x1BD
+    BufferItemName 0, VAR_0x8004
     GoToIfSet FLAG_UNK_0x0084, _005E
     Message 1
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _00A7
-    GoToIfEq 0x800C, MENU_NO, _009C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00A7
+    GoToIfEq VAR_RESULT, MENU_NO, _009C
     End
 
 _005E:
-    BufferItemName 0, 0x8004
+    BufferItemName 0, VAR_0x8004
     Message 3
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0086
-    GoToIfEq 0x800C, MENU_NO, _0091
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0086
+    GoToIfEq VAR_RESULT, MENU_NO, _0091
     End
 
 _0086:
@@ -60,9 +60,9 @@ _009C:
     End
 
 _00A7:
-    BufferItemName 0, 0x8004
+    BufferItemName 0, VAR_0x8004
     Message 2
-    SetVar 0x8005, 1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0084
     GoTo _005E

@@ -34,9 +34,9 @@ _0040:
     ScrCmd_189 0, 0
     ScrCmd_188 0, 14
     AddObject 0
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 9, _0110
-    CallIfEq 0x8004, 10, _0126
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 9, _0110
+    CallIfEq VAR_0x8004, 10, _0126
     Message 1
     Message 2
     CloseMessage
@@ -51,15 +51,15 @@ _0040:
     ScrCmd_189 1, 0
     ScrCmd_188 1, 14
     AddObject 1
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 9, _0285
-    CallIfEq 0x8004, 10, _0291
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 9, _0285
+    CallIfEq VAR_0x8004, 10, _0291
     Message 4
     Message 5
     Message 6
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _019D
-    GoToIfEq 0x800C, MENU_NO, _013C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _019D
+    GoToIfEq VAR_RESULT, MENU_NO, _013C
     End
 
 _0110:
@@ -79,9 +79,9 @@ _0126:
 _013C:
     Message 10
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 9, _0165
-    CallIfEq 0x8004, 10, _0181
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 9, _0165
+    CallIfEq VAR_0x8004, 10, _0181
     ReleaseAll
     End
 
@@ -103,41 +103,41 @@ _019D:
     Message 8
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0393
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0393
     Call _01C3
     ReleaseAll
     End
 
 _01C3:
     ClearFlag FLAG_UNK_0x01BD
-    SetVar 0x4074, 1
+    SetVar VAR_UNK_0x4074, 1
     Message 11
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     RemoveObject 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 8, _029D
-    CallIfEq 0x8004, 9, _02B1
-    CallIfEq 0x8004, 10, _02FA
-    CallIfEq 0x8004, 11, _0343
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 8, _029D
+    CallIfEq VAR_0x8004, 9, _02B1
+    CallIfEq VAR_0x8004, 10, _02FA
+    CallIfEq VAR_0x8004, 11, _0343
     Message 13
-    SetVar 0x8004, 0x1A6
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1A6
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x01AC
     ClearFlag FLAG_UNK_0x01C3
     SetFlag FLAG_DUMMY_2445
     Message 14
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 9, _0357
-    CallIfEq 0x8004, 10, _036B
-    CallIfEq 0x8004, 11, _037F
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 9, _0357
+    CallIfEq VAR_0x8004, 10, _036B
+    CallIfEq VAR_0x8004, 11, _037F
     RemoveObject 0
     Return
 
@@ -158,7 +158,7 @@ _029D:
     Return
 
 _02B1:
-    GoToIfEq 0x8005, 4, _02D2
+    GoToIfEq VAR_0x8005, 4, _02D2
     ApplyMovement LOCALID_PLAYER, _0434
     ApplyMovement 0, _04D8
     WaitMovement
@@ -192,7 +192,7 @@ _02D2:
     .byte 0
 
 _02FA:
-    GoToIfEq 0x8005, 4, _031B
+    GoToIfEq VAR_0x8005, 4, _031B
     ApplyMovement LOCALID_PLAYER, _0454
     ApplyMovement 0, _04E0
     WaitMovement
@@ -463,13 +463,13 @@ _0538:
     LockAll
     FacePlayer
     Message 7
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _057A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _057A
     Message 8
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0393
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0393
     Call _01C3
     ReleaseAll
     End
@@ -496,29 +496,29 @@ _0596:
     ClearFlag FLAG_UNK_0x01A6
     SetObjectEventPos 2, 4, 11
     AddObject 2
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 9, _06CF
-    CallIfEq 0x8004, 10, _06E5
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 9, _06CF
+    CallIfEq VAR_0x8004, 10, _06E5
     Message 16
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 9, _0713
-    CallIfEq 0x8004, 10, _071F
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 9, _0713
+    CallIfEq VAR_0x8004, 10, _071F
     Message 17
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0753
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0753
     CloseMessage
     ApplyMovement 2, _07F0
     ApplyMovement LOCALID_PLAYER, _0858
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     Message 18
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 9, _0713
-    CallIfEq 0x8004, 10, _071F
-    CallIfEq 0x8004, 9, _06FB
-    CallIfEq 0x8004, 10, _0707
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0753
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 9, _0713
+    CallIfEq VAR_0x8004, 10, _071F
+    CallIfEq VAR_0x8004, 9, _06FB
+    CallIfEq VAR_0x8004, 10, _0707
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0753
     Message 19
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0864
@@ -526,12 +526,12 @@ _0596:
     WaitMovement
     Message 20
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 9, _072B
-    CallIfEq 0x8004, 10, _073F
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 9, _072B
+    CallIfEq VAR_0x8004, 10, _073F
     Message 21
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0753
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0753
     Message 22
     GoTo _075E
     End
@@ -589,9 +589,9 @@ _0753:
 
 _075E:
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 9, _0788
-    CallIfEq 0x8004, 10, _079C
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 9, _0788
+    CallIfEq VAR_0x8004, 10, _079C
     RemoveObject 2
     ReleaseAll
     End

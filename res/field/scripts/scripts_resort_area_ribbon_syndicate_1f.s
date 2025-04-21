@@ -25,10 +25,10 @@ _002F:
 
 _003F:
     LockAll
-    WaitTime 20, 0x800C
-    ScrCmd_22F 0x8004
-    GoToIfLt 0x8004, 10, _0078
-    SetVar 0x40A7, 1
+    WaitTime 20, VAR_RESULT
+    ScrCmd_22F VAR_0x8004
+    GoToIfLt VAR_0x8004, 10, _0078
+    SetVar VAR_UNK_0x40A7, 1
     SetFlag FLAG_UNK_0x00FA
     BufferPlayerName 0
     Message 1
@@ -41,7 +41,7 @@ _003F:
 _0078:
     Message 0
     CloseMessage
-    WaitTime 20, 0x800C
+    WaitTime 20, VAR_RESULT
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_RESORT_AREA, 0, 0x338, 0x1C6, 1
@@ -73,22 +73,22 @@ _00D6:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetFirstNonEggInParty 0x8000
+    GetFirstNonEggInParty VAR_0x8000
     BufferPlayerName 0
-    BufferPartyMonSpecies 2, 0x8000
-    GetPartyMonRibbon 0x800C, 0x8000, RIBBON_GORGEOUS_ROYAL
-    GoToIfEq 0x800C, 1, _0244
-    GetPartyMonRibbon 0x800C, 0x8000, RIBBON_ROYAL
-    GoToIfEq 0x800C, 1, _01E7
-    GetPartyMonRibbon 0x800C, 0x8000, RIBBON_GORGEOUS
-    GoToIfEq 0x800C, 1, _018A
+    BufferPartyMonSpecies 2, VAR_0x8000
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8000, RIBBON_GORGEOUS_ROYAL
+    GoToIfEq VAR_RESULT, 1, _0244
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8000, RIBBON_ROYAL
+    GoToIfEq VAR_RESULT, 1, _01E7
+    GetPartyMonRibbon VAR_RESULT, VAR_0x8000, RIBBON_GORGEOUS
+    GoToIfEq VAR_RESULT, 1, _018A
     GoTo _012F
 
 _012F:
     ShowMoney 20, 2
     Message 3
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _025C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _025C
     GoToIfNotEnoughMoney 10000, _024F
     AddToGameRecord RECORD_MONEY_SPENT, 10000
     RemoveMoney 10000
@@ -98,7 +98,7 @@ _012F:
     Message 7
     Message 8
     WaitABXPadPress
-    SetPartyMonRibbon 0x8000, RIBBON_GORGEOUS
+    SetPartyMonRibbon VAR_0x8000, RIBBON_GORGEOUS
     CloseMessage
     HideMoney
     ReleaseAll
@@ -107,8 +107,8 @@ _012F:
 _018A:
     ShowMoney 20, 2
     Message 4
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _025C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _025C
     GoToIfNotEnoughMoney 100000, _024F
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 100000
     RemoveMoney 100000
@@ -118,7 +118,7 @@ _018A:
     Message 9
     Message 10
     WaitABXPadPress
-    SetPartyMonRibbon 0x8000, RIBBON_ROYAL
+    SetPartyMonRibbon VAR_0x8000, RIBBON_ROYAL
     CloseMessage
     HideMoney
     ReleaseAll
@@ -127,8 +127,8 @@ _018A:
 _01E7:
     ShowMoney 20, 2
     Message 5
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _025C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _025C
     GoToIfNotEnoughMoney 999999, _024F
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 999999
     RemoveMoney 999999
@@ -138,7 +138,7 @@ _01E7:
     Message 11
     Message 12
     WaitABXPadPress
-    SetPartyMonRibbon 0x8000, RIBBON_GORGEOUS_ROYAL
+    SetPartyMonRibbon VAR_0x8000, RIBBON_GORGEOUS_ROYAL
     CloseMessage
     HideMoney
     ReleaseAll
@@ -181,9 +181,9 @@ _027C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _02A4
-    GoToIfEq 0x800C, GENDER_FEMALE, _02AF
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _02A4
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _02AF
     End
 
 _02A4:

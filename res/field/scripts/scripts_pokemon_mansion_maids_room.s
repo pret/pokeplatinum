@@ -14,9 +14,9 @@ _000E:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0139, _005D
     Message 0
-    SetVar 0x8004, ITEM_SOOTHE_BELL
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0053
+    SetVar VAR_0x8004, ITEM_SOOTHE_BELL
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0053
     SetFlag FLAG_UNK_0x0139
     CallCommonScript 0x7E0
     CloseMessage
@@ -50,8 +50,8 @@ _007B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 3
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _009D
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _009D
     GoTo _00D3
     End
 

@@ -15,9 +15,9 @@ _001A:
     End
 
 _001C:
-    GetPlayerMapPos 0x4004, 0x4005
-    CallIfLe 0x4005, 3, _0037
-    SetVar 0x4003, 1
+    GetPlayerMapPos VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5
+    CallIfLe VAR_MAP_LOCAL_5, 3, _0037
+    SetVar VAR_MAP_LOCAL_3, 1
     End
 
 _0037:
@@ -36,8 +36,8 @@ _003D:
 
 _0050:
     LockAll
-    CheckPlayerOnBike 0x800C
-    GoToIfEq 0x800C, TRUE, _0080
+    CheckPlayerOnBike VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _0080
     ApplyMovement 0, _0090
     WaitMovement
     Message 1
@@ -49,7 +49,7 @@ _0050:
 
 _0080:
     SetFlag FLAG_FORCE_BIKING_IN_GATE
-    SetVar 0x4002, 1
+    SetVar VAR_MAP_LOCAL_2, 1
     ReleaseAll
     End
 
@@ -66,7 +66,7 @@ _0098:
 _00A0:
     LockAll
     ClearFlag FLAG_FORCE_BIKING_IN_GATE
-    SetVar 0x4002, 0
+    SetVar VAR_MAP_LOCAL_2, 0
     ReleaseAll
     End
 
@@ -75,10 +75,10 @@ _00B0:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x012B, _00E5
-    SetVar 0x8004, ACCESSORY_FLAG
-    ScrCmd_261 0, 0x8004
+    SetVar VAR_0x8004, ACCESSORY_FLAG
+    ScrCmd_261 0, VAR_0x8004
     Message 3
-    SetVar 0x8005, 1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DF
     SetFlag FLAG_UNK_0x012B
     CloseMessage

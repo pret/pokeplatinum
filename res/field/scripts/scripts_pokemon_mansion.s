@@ -56,9 +56,9 @@ _0087:
     FacePlayer
     GoToIfDefeated 0x37C, _0396
     GoToIfDefeated 0x37D, _0396
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _00CB
-    GoToIfEq 0x800C, 1, _00E5
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00CB
+    GoToIfEq VAR_RESULT, 1, _00E5
     GoTo _00FF
     End
 
@@ -80,16 +80,16 @@ _00FF:
     CallIfUnset FLAG_UNK_0x0166, _045A
     CallIfSet FLAG_UNK_0x0166, _0467
     SetFlag FLAG_UNK_0x0166
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0471
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0471
     SetTrainerFlag TRAINER_RICH_BOY_LIAM
     SetTrainerFlag TRAINER_LADY_CELESTE
     Message 5
     CloseMessage
     ApplyMovement 2, _03FC
     WaitMovement
-    SetVar 0x404D, 0
-    SetVar 0x8005, 0
+    SetVar VAR_TOTAL_TURNS_LAST_BATTLE, 0
+    SetVar VAR_0x8005, 0
     ClearFlag FLAG_UNK_0x0257
     AddObject 5
     ApplyMovement 5, _0420
@@ -97,9 +97,9 @@ _00FF:
     Message 15
     CloseMessage
     StartTrainerBattle TRAINER_MAID_BELINDA
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0484
-    AddVar 0x8005, 0x404D
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0484
+    AddVar VAR_0x8005, 0x404D
     Message 16
     CloseMessage
     ApplyMovement 5, _0414
@@ -109,9 +109,9 @@ _00FF:
     Message 17
     CloseMessage
     StartTrainerBattle TRAINER_MAID_SOPHIE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0484
-    AddVar 0x8005, 0x404D
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0484
+    AddVar VAR_0x8005, 0x404D
     Message 18
     CloseMessage
     ApplyMovement 5, _0414
@@ -121,9 +121,9 @@ _00FF:
     Message 19
     CloseMessage
     StartTrainerBattle TRAINER_MAID_EMILY
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0484
-    AddVar 0x8005, 0x404D
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0484
+    AddVar VAR_0x8005, 0x404D
     Message 20
     CloseMessage
     ApplyMovement 5, _0414
@@ -133,9 +133,9 @@ _00FF:
     Message 21
     CloseMessage
     StartTrainerBattle TRAINER_MAID_ELENA
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0484
-    AddVar 0x8005, 0x404D
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0484
+    AddVar VAR_0x8005, 0x404D
     Message 22
     CloseMessage
     ApplyMovement 5, _0414
@@ -143,7 +143,7 @@ _00FF:
     ApplyMovement 2, _0408
     WaitMovement
     BufferNumber 0, VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET
-    BufferNumber 1, 0x8005
+    BufferNumber 1, VAR_0x8005
     Message 6
     CloseMessage
     ApplyMovement 2, _03FC
@@ -153,9 +153,9 @@ _00FF:
     Message 23
     CloseMessage
     StartTrainerBattle TRAINER_MAID_CLARE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0484
-    AddVar 0x8005, 0x404D
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0484
+    AddVar VAR_0x8005, 0x404D
     Message 24
     CloseMessage
     ApplyMovement 5, _0414
@@ -164,12 +164,12 @@ _00FF:
     ApplyMovement 2, _0408
     WaitMovement
     BufferNumber 0, VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET
-    BufferNumber 1, 0x8005
+    BufferNumber 1, VAR_0x8005
     Message 7
-    GoToIfNe 0x8005, VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET, _044C
-    GetRandom 0x8006, 2
-    CallIfEq 0x8006, 0, _03A1
-    CallIfEq 0x8006, 1, _03B7
+    GoToIfNe VAR_0x8005, VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET, _044C
+    GetRandom VAR_0x8006, 2
+    CallIfEq VAR_0x8006, 0, _03A1
+    CallIfEq VAR_0x8006, 1, _03B7
     CloseMessage
     ApplyMovement 2, _03FC
     WaitMovement
@@ -177,24 +177,24 @@ _00FF:
     AddObject 4
     ApplyMovement 4, _0420
     WaitMovement
-    CallIfEq 0x8006, 0, _03CD
-    CallIfEq 0x8006, 1, _03D2
+    CallIfEq VAR_0x8006, 0, _03CD
+    CallIfEq VAR_0x8006, 1, _03D2
     CloseMessage
-    StartTrainerBattle 0x8007
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0484
+    StartTrainerBattle VAR_0x8007
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0484
     SetTrainerFlag TRAINER_RICH_BOY_LIAM
     SetTrainerFlag TRAINER_LADY_CELESTE
-    CallIfEq 0x8006, 0, _03D7
-    CallIfEq 0x8006, 1, _03DC
+    CallIfEq VAR_0x8006, 0, _03D7
+    CallIfEq VAR_0x8006, 1, _03DC
     CloseMessage
     ApplyMovement 4, _0414
     WaitMovement
     RemoveObject 4
     ApplyMovement 2, _0408
     WaitMovement
-    CallIfEq 0x8006, 0, _03E1
-    CallIfEq 0x8006, 1, _03E6
+    CallIfEq VAR_0x8006, 0, _03E1
+    CallIfEq VAR_0x8006, 1, _03E6
     GoTo _0396
     End
 
@@ -204,16 +204,16 @@ _0396:
     End
 
 _03A1:
-    SetVar 0x8007, TRAINER_RICH_BOY_LIAM
-    SetVar 0x4020, 62
-    ScrCmd_2F3 2, 0x8007
+    SetVar VAR_0x8007, TRAINER_RICH_BOY_LIAM
+    SetVar VAR_OBJ_GFX_ID_0, 62
+    ScrCmd_2F3 2, VAR_0x8007
     Message 8
     Return
 
 _03B7:
-    SetVar 0x8007, TRAINER_LADY_CELESTE
-    SetVar 0x4020, 63
-    ScrCmd_2F3 2, 0x8007
+    SetVar VAR_0x8007, TRAINER_LADY_CELESTE
+    SetVar VAR_OBJ_GFX_ID_0, 63
+    ScrCmd_2F3 2, VAR_0x8007
     Message 9
     Return
 

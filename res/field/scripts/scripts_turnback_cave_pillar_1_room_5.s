@@ -6,8 +6,8 @@
     ScriptEntryEnd
 
 _0006:
-    AddVar 0x410C, 1
-    ScrCmd_285 0x410B, 0x410C
+    AddVar VAR_UNK_0x410C, 1
+    ScrCmd_285 VAR_UNK_0x410B, VAR_UNK_0x410C
     End
 
     .byte 2

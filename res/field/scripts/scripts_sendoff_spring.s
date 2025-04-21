@@ -34,8 +34,8 @@ _0021:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x40AA, 2
-    SetVar 0x40A6, 2
+    SetVar VAR_UNK_0x40AA, 2
+    SetVar VAR_UNK_0x40A6, 2
     SetFlag FLAG_UNK_0x01C7
     ClearFlag FLAG_UNK_0x0132
     SetFlag FLAG_UNK_0x028F
@@ -71,7 +71,7 @@ _00C0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40AA, 3, _00E0
+    GoToIfGe VAR_UNK_0x40AA, 3, _00E0
     Message 3
     GoTo _00EB
     End

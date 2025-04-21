@@ -23,7 +23,7 @@ _0012:
     ApplyMovement LOCALID_PLAYER, _0080
     WaitMovement
     ScrCmd_312 128
-    SetVar 0x4055, 3
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 3
     ReleaseAll
     End
 

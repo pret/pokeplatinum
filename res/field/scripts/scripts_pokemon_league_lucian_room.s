@@ -17,8 +17,8 @@ _000A:
     CloseMessage
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _007A
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0082
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00A6
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00A6
     SetFlag FLAG_UNK_0x00B3
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     RemoveObject 1
@@ -65,7 +65,7 @@ _00B7:
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     ClearFlag FLAG_UNK_0x0285
     AddObject 2
-    SetVar 0x4001, 1
+    SetVar VAR_MAP_LOCAL_1, 1
     ReleaseAll
     End
 

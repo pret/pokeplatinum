@@ -51,9 +51,9 @@
 
 _00B2:
     InitPersistedMapFeaturesForVilla
-    GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _01EF
-    CallIfEq 0x4000, GENDER_FEMALE, _01F7
+    GetPlayerGender VAR_MAP_LOCAL_0
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _01EF
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _01F7
     GoToIfSet FLAG_VILLA_VISITOR_OUTSIDE, _01ED
     SetFlag FLAG_UNK_0x02A7
     SetFlag FLAG_UNK_0x02A8
@@ -69,34 +69,34 @@ _00B2:
     SetFlag FLAG_UNK_0x02B7
     SetFlag FLAG_UNK_0x02B8
     SetFlag FLAG_UNK_0x02B9
-    GoToIfEq 0x404E, 0xFF, _01FF
-    SetVar 0x400F, 0x404E
-    CallIfEq 0x404E, 0, _0201
-    CallIfEq 0x404E, 1, _0207
-    CallIfEq 0x404E, 2, _020D
-    CallIfEq 0x404E, 3, _021E
-    CallIfEq 0x404E, 4, _0224
-    CallIfEq 0x404E, 5, _0235
-    CallIfEq 0x404E, 6, _0246
-    CallIfEq 0x404E, 7, _0248
-    CallIfEq 0x404E, 8, _0259
-    CallIfEq 0x404E, 9, _025B
-    CallIfEq 0x404E, 10, _026C
-    CallIfEq 0x404E, 11, _026E
-    CallIfEq 0x404E, 12, _0274
-    CallIfEq 0x404E, 13, _0276
-    CallIfEq 0x404E, 14, _0280
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, 0xFF, _01FF
+    SetVar VAR_MAP_LOCAL_F, 0x404E
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 0, _0201
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 1, _0207
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 2, _020D
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 3, _021E
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 4, _0224
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 5, _0235
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 6, _0246
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 7, _0248
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 8, _0259
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 9, _025B
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 10, _026C
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 11, _026E
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 12, _0274
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 13, _0276
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 14, _0280
     End
 
 _01ED:
     End
 
 _01EF:
-    SetVar 0x4021, 97
+    SetVar VAR_OBJ_GFX_ID_1, 97
     Return
 
 _01F7:
-    SetVar 0x4021, 0
+    SetVar VAR_OBJ_GFX_ID_1, 0
     Return
 
 _01FF:
@@ -176,11 +176,11 @@ _029C:
     FacePlayer
     BufferRivalName 0
     BufferPlayerName 1
-    CallIfEq 0x405A, 0, _02F3
-    CallIfEq 0x405A, 1, _02F8
-    CallIfEq 0x405A, 2, _02FD
-    CallIfEq 0x405A, 3, _0302
-    CallIfEq 0x405A, 4, _0307
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _02F3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _02F8
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _02FD
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0302
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0307
     GoTo _0AEC
     End
 
@@ -209,42 +209,42 @@ _030C:
     LockAll
     FacePlayer
     BufferPlayerName 1
-    CallIfEq 0x405A, 0, _0360
-    CallIfEq 0x405A, 1, _0380
-    CallIfEq 0x405A, 2, _03A0
-    CallIfEq 0x405A, 3, _03C0
-    CallIfEq 0x405A, 4, _03E0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0360
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0380
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _03A0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _03C0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _03E0
     GoTo _0AEC
     End
 
 _0360:
-    GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _0400
-    CallIfEq 0x4000, GENDER_FEMALE, _0405
+    GetPlayerGender VAR_MAP_LOCAL_0
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0400
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0405
     Return
 
 _0380:
-    GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _040A
-    CallIfEq 0x4000, GENDER_FEMALE, _040F
+    GetPlayerGender VAR_MAP_LOCAL_0
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _040A
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _040F
     Return
 
 _03A0:
-    GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _0414
-    CallIfEq 0x4000, GENDER_FEMALE, _0419
+    GetPlayerGender VAR_MAP_LOCAL_0
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0414
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0419
     Return
 
 _03C0:
-    GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _041E
-    CallIfEq 0x4000, GENDER_FEMALE, _0423
+    GetPlayerGender VAR_MAP_LOCAL_0
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _041E
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0423
     Return
 
 _03E0:
-    GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _0428
-    CallIfEq 0x4000, GENDER_FEMALE, _042D
+    GetPlayerGender VAR_MAP_LOCAL_0
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0428
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _042D
     Return
 
 _0400:
@@ -291,11 +291,11 @@ _0432:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq 0x405A, 0, _0483
-    CallIfEq 0x405A, 1, _0488
-    CallIfEq 0x405A, 2, _048D
-    CallIfEq 0x405A, 3, _0492
-    CallIfEq 0x405A, 4, _0497
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0483
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0488
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _048D
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0492
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0497
     GoTo _0AEC
     End
 
@@ -325,11 +325,11 @@ _049C:
     FacePlayer
     BufferRivalName 0
     BufferPlayerName 1
-    CallIfEq 0x405A, 0, _04F3
-    CallIfEq 0x405A, 1, _04F8
-    CallIfEq 0x405A, 2, _04FD
-    CallIfEq 0x405A, 3, _0502
-    CallIfEq 0x405A, 4, _0507
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _04F3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _04F8
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _04FD
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0502
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0507
     GoTo _0AEC
     End
 
@@ -357,11 +357,11 @@ _050C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq 0x405A, 0, _055D
-    CallIfEq 0x405A, 1, _0562
-    CallIfEq 0x405A, 2, _0567
-    CallIfEq 0x405A, 3, _056C
-    CallIfEq 0x405A, 4, _0571
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _055D
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0562
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _0567
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _056C
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0571
     GoTo _0AEC
     End
 
@@ -389,11 +389,11 @@ _0576:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq 0x405A, 0, _05C7
-    CallIfEq 0x405A, 1, _05CC
-    CallIfEq 0x405A, 2, _05D1
-    CallIfEq 0x405A, 3, _05D6
-    CallIfEq 0x405A, 4, _05DB
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _05C7
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _05CC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _05D1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _05D6
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _05DB
     GoTo _0AEC
     End
 
@@ -421,11 +421,11 @@ _05E0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq 0x405A, 0, _0631
-    CallIfEq 0x405A, 1, _0636
-    CallIfEq 0x405A, 2, _063B
-    CallIfEq 0x405A, 3, _0640
-    CallIfEq 0x405A, 4, _0645
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0631
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0636
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _063B
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0640
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0645
     GoTo _0AEC
     End
 
@@ -450,16 +450,16 @@ _0645:
     Return
 
 _064A:
-    GoToIfEq 0x404E, 14, _0A50
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, 14, _0A50
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 1
-    CallIfEq 0x405A, 0, _06AB
-    CallIfEq 0x405A, 1, _06B0
-    CallIfEq 0x405A, 2, _06B5
-    CallIfEq 0x405A, 3, _06BA
-    CallIfEq 0x405A, 4, _06BF
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _06AB
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _06B0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _06B5
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _06BA
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _06BF
     GoTo _0AEC
     End
 
@@ -487,11 +487,11 @@ _06C4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq 0x405A, 0, _0715
-    CallIfEq 0x405A, 1, _071D
-    CallIfEq 0x405A, 2, _0722
-    CallIfEq 0x405A, 3, _072A
-    CallIfEq 0x405A, 4, _072F
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0715
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _071D
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _0722
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _072A
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _072F
     GoTo _0AEC
     End
 
@@ -521,11 +521,11 @@ _0734:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq 0x405A, 0, _0785
-    CallIfEq 0x405A, 1, _078A
-    CallIfEq 0x405A, 2, _078F
-    CallIfEq 0x405A, 3, _0794
-    CallIfEq 0x405A, 4, _0799
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0785
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _078A
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _078F
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0794
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0799
     GoTo _0AEC
     End
 
@@ -550,15 +550,15 @@ _0799:
     Return
 
 _079E:
-    GoToIfEq 0x404E, 14, _0A50
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, 14, _0A50
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq 0x405A, 0, _07FC
-    CallIfEq 0x405A, 1, _0801
-    CallIfEq 0x405A, 2, _0806
-    CallIfEq 0x405A, 3, _080B
-    CallIfEq 0x405A, 4, _0810
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _07FC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0801
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _0806
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _080B
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0810
     GoTo _0AEC
     End
 
@@ -583,15 +583,15 @@ _0810:
     Return
 
 _0815:
-    GoToIfEq 0x404E, 13, _088C
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, 13, _088C
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq 0x405A, 0, _0873
-    CallIfEq 0x405A, 1, _0878
-    CallIfEq 0x405A, 2, _087D
-    CallIfEq 0x405A, 3, _0882
-    CallIfEq 0x405A, 4, _0887
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0873
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0878
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _087D
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0882
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0887
     GoTo _0AEC
     End
 
@@ -618,11 +618,11 @@ _0887:
 _088C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CallIfEq 0x405A, 0, _08DB
-    CallIfEq 0x405A, 1, _08E2
-    CallIfEq 0x405A, 2, _08E9
-    CallIfEq 0x405A, 3, _0900
-    CallIfEq 0x405A, 4, _0917
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _08DB
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _08E2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _08E9
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0900
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0917
     GoTo _0AEC
     End
 
@@ -672,11 +672,11 @@ _0944:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq 0x405A, 0, _0995
-    CallIfEq 0x405A, 1, _099A
-    CallIfEq 0x405A, 2, _099F
-    CallIfEq 0x405A, 3, _09A4
-    CallIfEq 0x405A, 4, _09A9
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0995
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _099A
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _099F
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _09A4
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _09A9
     GoTo _0AEC
     End
 
@@ -703,11 +703,11 @@ _09A9:
 _09AE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CallIfEq 0x405A, 0, _09FD
-    CallIfEq 0x405A, 1, _0A04
-    CallIfEq 0x405A, 2, _0A0B
-    CallIfEq 0x405A, 3, _0A22
-    CallIfEq 0x405A, 4, _0A39
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _09FD
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0A04
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _0A0B
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0A22
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0A39
     GoTo _0AEC
     End
 
@@ -749,11 +749,11 @@ _0A50:
     ApplyMovement 10, _0AE0
     ApplyMovement 7, _0AD8
     WaitMovement
-    CallIfEq 0x405A, 0, _0AB4
-    CallIfEq 0x405A, 1, _0AB9
-    CallIfEq 0x405A, 2, _0ABE
-    CallIfEq 0x405A, 3, _0AC3
-    CallIfEq 0x405A, 4, _0AC8
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0AB4
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0AB9
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _0ABE
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0AC3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0AC8
     GoTo _0AEC
     End
 
@@ -808,7 +808,7 @@ _0AF4:
     ApplyMovement 6, _0B4C
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
-    SetVar 0x400F, 0
+    SetVar VAR_MAP_LOCAL_F, 0
     ReleaseAll
     End
 
@@ -839,7 +839,7 @@ _0B5C:
     ApplyMovement 9, _0BA4
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
-    SetVar 0x400F, 0
+    SetVar VAR_MAP_LOCAL_F, 0
     ReleaseAll
     End
 
@@ -868,7 +868,7 @@ _0BBC:
     ApplyMovement 10, _0C04
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
-    SetVar 0x400F, 0
+    SetVar VAR_MAP_LOCAL_F, 0
     ReleaseAll
     End
 
@@ -899,7 +899,7 @@ _0C24:
     ApplyMovement 12, _0C6C
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
-    SetVar 0x400F, 0
+    SetVar VAR_MAP_LOCAL_F, 0
     ReleaseAll
     End
 
@@ -1008,26 +1008,26 @@ _0D63:
     End
 
 _0D6E:
-    ScrCmd_2FA 0x8004
+    ScrCmd_2FA VAR_0x8004
     ScrCmd_2F8
-    SetVar 0x8007, 0
-    WaitTime 1, 0x800C
+    SetVar VAR_0x8007, 0
+    WaitTime 1, VAR_RESULT
     GoTo _0D88
     End
 
 _0D88:
-    AddVar 0x8007, 1
-    WaitTime 1, 0x800C
-    Dummy1F9 0x8007
-    ScrCmd_2FC 0x800C
-    GoToIfEq 0x800C, 1, _0DC2
-    Dummy1F9 0x8007
-    GoToIfEq 0x8007, 0x258, _0DC2
+    AddVar VAR_0x8007, 1
+    WaitTime 1, VAR_RESULT
+    Dummy1F9 VAR_0x8007
+    ScrCmd_2FC VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0DC2
+    Dummy1F9 VAR_0x8007
+    GoToIfEq VAR_0x8007, 0x258, _0DC2
     GoTo _0D88
     End
 
 _0DC2:
-    ScrCmd_2F9 0x8004
+    ScrCmd_2F9 VAR_0x8004
     CloseMessage
     ReleaseAll
     End
@@ -1103,13 +1103,13 @@ _0E5D:
 
 _0E65:
     LockAll
-    SetVar 0x40A1, 1
+    SetVar VAR_UNK_0x40A1, 1
     ShowMoney 21, 1
     Message 0
-    InitLocalTextListMenu 1, 1, 0, 0x8002
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8002
     AddListMenuEntry 189, 0
     ShowListMenu
-    GoToIfNe 0x8002, 0, _0EA7
+    GoToIfNe VAR_0x8002, 0, _0EA7
     Call _0F7C
     CloseMessage
     Call _1092
@@ -1130,10 +1130,10 @@ _0EB4:
     FacePlayer
     ShowMoney 21, 1
     Message 1
-    InitLocalTextListMenu 1, 1, 0, 0x8002
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8002
     AddListMenuEntry 189, 0
     ShowListMenu
-    GoToIfNe 0x8002, 0, _1478
+    GoToIfNe VAR_0x8002, 0, _1478
     Call _0F7C
     CloseMessage
     Call _1092
@@ -1141,7 +1141,7 @@ _0EB4:
     End
 
 _0EF6:
-    InitLocalTextListMenu 1, 1, 0, 0x8002
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8002
     Call _19E4
     Call _1A05
     Call _1A26
@@ -1167,30 +1167,30 @@ _0EF6:
 
 _0F7C:
     PlayFanfare SEQ_SE_DP_REGI
-    CallIfEq 0x8002, 0, _2079
-    CallIfEq 0x8002, 1, _208D
-    CallIfEq 0x8002, 2, _20A1
-    CallIfEq 0x8002, 3, _20B5
-    CallIfEq 0x8002, 4, _20C9
-    CallIfEq 0x8002, 5, _20DD
-    CallIfEq 0x8002, 6, _20F1
-    CallIfEq 0x8002, 7, _2105
-    CallIfEq 0x8002, 8, _2119
-    CallIfEq 0x8002, 9, _212D
-    CallIfEq 0x8002, 10, _2141
-    CallIfEq 0x8002, 11, _2155
-    CallIfEq 0x8002, 12, _2169
-    CallIfEq 0x8002, 13, _217D
-    CallIfEq 0x8002, 14, _2191
-    CallIfEq 0x8002, 15, _21A5
-    CallIfEq 0x8002, 16, _21B9
-    CallIfEq 0x8002, 17, _21CD
-    CallIfEq 0x8002, 18, _21E1
-    CallIfEq 0x8002, 19, _21F5
+    CallIfEq VAR_0x8002, 0, _2079
+    CallIfEq VAR_0x8002, 1, _208D
+    CallIfEq VAR_0x8002, 2, _20A1
+    CallIfEq VAR_0x8002, 3, _20B5
+    CallIfEq VAR_0x8002, 4, _20C9
+    CallIfEq VAR_0x8002, 5, _20DD
+    CallIfEq VAR_0x8002, 6, _20F1
+    CallIfEq VAR_0x8002, 7, _2105
+    CallIfEq VAR_0x8002, 8, _2119
+    CallIfEq VAR_0x8002, 9, _212D
+    CallIfEq VAR_0x8002, 10, _2141
+    CallIfEq VAR_0x8002, 11, _2155
+    CallIfEq VAR_0x8002, 12, _2169
+    CallIfEq VAR_0x8002, 13, _217D
+    CallIfEq VAR_0x8002, 14, _2191
+    CallIfEq VAR_0x8002, 15, _21A5
+    CallIfEq VAR_0x8002, 16, _21B9
+    CallIfEq VAR_0x8002, 17, _21CD
+    CallIfEq VAR_0x8002, 18, _21E1
+    CallIfEq VAR_0x8002, 19, _21F5
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     HideMoney
-    ScrCmd_30D 0x8002
+    ScrCmd_30D VAR_0x8002
     Return
 
 _1092:
@@ -1201,13 +1201,13 @@ _1092:
     Warp MAP_HEADER_VILLA, 0, 10, 6, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x8002, 0, _1485
-    GoToIfNe 0x8002, 0, _1514
+    GoToIfEq VAR_0x8002, 0, _1485
+    GoToIfNe VAR_0x8002, 0, _1514
     End
 
 _10DA:
     Call _2209
-    GoToIfEq 0x404E, 0, _1103
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, 0, _1103
     SetObjectEventPos 1, 11, 11
     ScrCmd_188 1, 14
     ScrCmd_189 1, 0
@@ -1223,7 +1223,7 @@ _1103:
 
 _1121:
     Call _2209
-    GoToIfEq 0x404E, 1, _114A
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, 1, _114A
     SetObjectEventPos 0, 11, 11
     ScrCmd_188 0, 14
     ScrCmd_189 0, 0
@@ -1239,7 +1239,7 @@ _114A:
 
 _1168:
     Call _2209
-    GoToIfEq 0x404E, 2, _1199
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, 2, _1199
     GoTo _1183
     End
 
@@ -1260,7 +1260,7 @@ _1199:
 
 _11C2:
     Call _2209
-    GoToIfEq 0x404E, 5, _11F3
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, 5, _11F3
     GoTo _11DD
     End
 
@@ -1281,7 +1281,7 @@ _11F3:
 
 _121C:
     Call _2209
-    GoToIfEq 0x404E, 12, _1245
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, 12, _1245
     SetObjectEventPos 12, 11, 11
     ScrCmd_188 12, 14
     ScrCmd_189 12, 0
@@ -1296,9 +1296,9 @@ _1245:
     Return
 
 _1263:
-    CallIfNe 0x404E, 0, _12A3
+    CallIfNe VAR_RESORT_VILLA_VISITOR, 0, _12A3
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    SetVar 0x404E, 0xFF
+    SetVar VAR_RESORT_VILLA_VISITOR, 0xFF
     ApplyMovement LOCALID_PLAYER, _1454
     WaitMovement
     BufferRivalName 0
@@ -1321,14 +1321,14 @@ _12A3:
     Return
 
 _12BF:
-    CallIfNe 0x404E, 1, _1316
+    CallIfNe VAR_RESORT_VILLA_VISITOR, 1, _1316
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    SetVar 0x404E, 1
+    SetVar VAR_RESORT_VILLA_VISITOR, 1
     BufferRivalName 0
     BufferPlayerName 1
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _12FC
-    GoToIfEq 0x800C, GENDER_FEMALE, _1307
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _12FC
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _1307
     End
 
 _12FC:
@@ -1355,11 +1355,11 @@ _1316:
     Return
 
 _1332:
-    CallIfNe 0x404E, 2, _1374
-    CallIfEq 0x404E, 2, _1367
+    CallIfNe VAR_RESORT_VILLA_VISITOR, 2, _1374
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 2, _1367
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     SetFlag FLAG_UNK_0x02AA
-    SetVar 0x404E, 2
+    SetVar VAR_RESORT_VILLA_VISITOR, 2
     BufferRivalName 0
     BufferPlayerName 1
     Message 12
@@ -1380,11 +1380,11 @@ _1374:
     Return
 
 _1390:
-    CallIfNe 0x404E, 5, _13D2
-    CallIfEq 0x404E, 5, _13C5
+    CallIfNe VAR_RESORT_VILLA_VISITOR, 5, _13D2
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 5, _13C5
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     SetFlag FLAG_UNK_0x02B2
-    SetVar 0x404E, 5
+    SetVar VAR_RESORT_VILLA_VISITOR, 5
     BufferRivalName 0
     BufferPlayerName 1
     Message 13
@@ -1405,11 +1405,11 @@ _13D2:
     Return
 
 _13EE:
-    CallIfNe 0x404E, 12, _1436
-    CallIfEq 0x404E, 12, _1429
+    CallIfNe VAR_RESORT_VILLA_VISITOR, 12, _1436
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 12, _1429
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    SetVar 0x404E, 12
-    SetVar 0x400F, 0
+    SetVar VAR_RESORT_VILLA_VISITOR, 12
+    SetVar VAR_MAP_LOCAL_F, 0
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     BufferRivalName 0
     BufferPlayerName 1
@@ -1476,7 +1476,7 @@ _1485:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Call _15B0
-    SetVar 0x40A1, 2
+    SetVar VAR_UNK_0x40A1, 2
     Return
 
     .balign 4, 0
@@ -1509,7 +1509,7 @@ _14FC:
 
 _1514:
     Call _18F8
-    GoToIfEq 0x800C, 1, _155E
+    GoToIfEq VAR_RESULT, 1, _155E
     Message 7
     GoTo _1532
     End
@@ -1532,19 +1532,19 @@ _155E:
     End
 
 _156D:
-    CallIfEq 0x8002, 0, _10DA
-    CallIfEq 0x8002, 2, _1121
-    CallIfEq 0x8002, 7, _1168
-    CallIfEq 0x8002, 9, _11C2
-    CallIfEq 0x8002, 14, _121C
+    CallIfEq VAR_0x8002, 0, _10DA
+    CallIfEq VAR_0x8002, 2, _1121
+    CallIfEq VAR_0x8002, 7, _1168
+    CallIfEq VAR_0x8002, 9, _11C2
+    CallIfEq VAR_0x8002, 14, _121C
     Return
 
 _15B0:
-    CallIfEq 0x8002, 0, _1263
-    CallIfEq 0x8002, 2, _12BF
-    CallIfEq 0x8002, 7, _1332
-    CallIfEq 0x8002, 9, _1390
-    CallIfEq 0x8002, 14, _13EE
+    CallIfEq VAR_0x8002, 0, _1263
+    CallIfEq VAR_0x8002, 2, _12BF
+    CallIfEq VAR_0x8002, 7, _1332
+    CallIfEq VAR_0x8002, 9, _1390
+    CallIfEq VAR_0x8002, 14, _13EE
     Return
 
 _15F3:
@@ -1575,7 +1575,7 @@ _1624:
     BufferPlayerName 1
     Message 119
     Call _18F8
-    GoToIfEq 0x800C, 1, _1651
+    GoToIfEq VAR_RESULT, 1, _1651
     GoTo _165C
     End
 
@@ -1591,53 +1591,53 @@ _165C:
 
 _1667:
     Call _0EF6
-    SetVar 0x8003, 1
-    CallIfEq 0x8002, 0, _1EA5
-    CallIfEq 0x8002, 1, _1EB2
-    CallIfEq 0x8002, 2, _1EBF
-    CallIfEq 0x8002, 3, _1ECC
-    CallIfEq 0x8002, 4, _1ED9
-    CallIfEq 0x8002, 5, _1EE6
-    CallIfEq 0x8002, 6, _1EF3
-    CallIfEq 0x8002, 7, _1F00
-    CallIfEq 0x8002, 8, _1F0D
-    CallIfEq 0x8002, 9, _1F1A
-    CallIfEq 0x8002, 10, _1F27
-    CallIfEq 0x8002, 11, _1F34
-    CallIfEq 0x8002, 12, _1F41
-    CallIfEq 0x8002, 13, _1F4E
-    CallIfEq 0x8002, 14, _1F5B
-    CallIfEq 0x8002, 15, _1F68
-    CallIfEq 0x8002, 16, _1F75
-    CallIfEq 0x8002, 17, _1F82
-    CallIfEq 0x8002, 18, _1F8F
-    CallIfEq 0x8002, 19, _1F9C
-    GoToIfEq 0x8002, -2, _18DE
-    GoToIfEq 0x8003, 0, _18C8
+    SetVar VAR_0x8003, 1
+    CallIfEq VAR_0x8002, 0, _1EA5
+    CallIfEq VAR_0x8002, 1, _1EB2
+    CallIfEq VAR_0x8002, 2, _1EBF
+    CallIfEq VAR_0x8002, 3, _1ECC
+    CallIfEq VAR_0x8002, 4, _1ED9
+    CallIfEq VAR_0x8002, 5, _1EE6
+    CallIfEq VAR_0x8002, 6, _1EF3
+    CallIfEq VAR_0x8002, 7, _1F00
+    CallIfEq VAR_0x8002, 8, _1F0D
+    CallIfEq VAR_0x8002, 9, _1F1A
+    CallIfEq VAR_0x8002, 10, _1F27
+    CallIfEq VAR_0x8002, 11, _1F34
+    CallIfEq VAR_0x8002, 12, _1F41
+    CallIfEq VAR_0x8002, 13, _1F4E
+    CallIfEq VAR_0x8002, 14, _1F5B
+    CallIfEq VAR_0x8002, 15, _1F68
+    CallIfEq VAR_0x8002, 16, _1F75
+    CallIfEq VAR_0x8002, 17, _1F82
+    CallIfEq VAR_0x8002, 18, _1F8F
+    CallIfEq VAR_0x8002, 19, _1F9C
+    GoToIfEq VAR_0x8002, -2, _18DE
+    GoToIfEq VAR_0x8003, 0, _18C8
     Message 121
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _18DE
-    CallIfEq 0x8002, 0, _1FB1
-    CallIfEq 0x8002, 1, _1FBB
-    CallIfEq 0x8002, 2, _1FC5
-    CallIfEq 0x8002, 3, _1FCF
-    CallIfEq 0x8002, 4, _1FD9
-    CallIfEq 0x8002, 5, _1FE3
-    CallIfEq 0x8002, 6, _1FED
-    CallIfEq 0x8002, 7, _1FF7
-    CallIfEq 0x8002, 8, _2001
-    CallIfEq 0x8002, 9, _200B
-    CallIfEq 0x8002, 10, _2015
-    CallIfEq 0x8002, 11, _201F
-    CallIfEq 0x8002, 12, _2029
-    CallIfEq 0x8002, 13, _2033
-    CallIfEq 0x8002, 14, _203D
-    CallIfEq 0x8002, 15, _2047
-    CallIfEq 0x8002, 16, _2051
-    CallIfEq 0x8002, 17, _205B
-    CallIfEq 0x8002, 18, _2065
-    CallIfEq 0x8002, 19, _206F
-    GoToIfEq 0x8003, 0, _18D3
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _18DE
+    CallIfEq VAR_0x8002, 0, _1FB1
+    CallIfEq VAR_0x8002, 1, _1FBB
+    CallIfEq VAR_0x8002, 2, _1FC5
+    CallIfEq VAR_0x8002, 3, _1FCF
+    CallIfEq VAR_0x8002, 4, _1FD9
+    CallIfEq VAR_0x8002, 5, _1FE3
+    CallIfEq VAR_0x8002, 6, _1FED
+    CallIfEq VAR_0x8002, 7, _1FF7
+    CallIfEq VAR_0x8002, 8, _2001
+    CallIfEq VAR_0x8002, 9, _200B
+    CallIfEq VAR_0x8002, 10, _2015
+    CallIfEq VAR_0x8002, 11, _201F
+    CallIfEq VAR_0x8002, 12, _2029
+    CallIfEq VAR_0x8002, 13, _2033
+    CallIfEq VAR_0x8002, 14, _203D
+    CallIfEq VAR_0x8002, 15, _2047
+    CallIfEq VAR_0x8002, 16, _2051
+    CallIfEq VAR_0x8002, 17, _205B
+    CallIfEq VAR_0x8002, 18, _2065
+    CallIfEq VAR_0x8002, 19, _206F
+    GoToIfEq VAR_0x8003, 0, _18D3
     Call _0F7C
     CloseMessage
     Call _1092
@@ -1690,11 +1690,11 @@ _18F8:
     GoToIfUnset FLAG_VILLA_FURNITURE_UNK_17, _19DC
     GoToIfUnset FLAG_VILLA_FURNITURE_UNK_18, _19DC
     GoToIfUnset FLAG_VILLA_FURNITURE_UNK_19, _19DC
-    SetVar 0x800C, 1
+    SetVar VAR_RESULT, 1
     Return
 
 _19DC:
-    SetVar 0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _19E4:
@@ -1771,48 +1771,48 @@ _1B4F:
     Return
 
 _1B7B:
-    ScrCmd_30F 13, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 13, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 150000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_12, _1E05
     CallIfSet FLAG_VILLA_FURNITURE_UNK_12, _1E0F
     Return
 
 _1BAF:
-    ScrCmd_30F 14, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 14, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 150000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_13, _1E19
     CallIfSet FLAG_VILLA_FURNITURE_UNK_13, _1E23
     Return
 
 _1BE3:
-    ScrCmd_30F 15, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 15, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 146700, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_14, _1E2D
     CallIfSet FLAG_VILLA_FURNITURE_UNK_14, _1E37
     Return
 
 _1C17:
-    ScrCmd_30F 16, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 16, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 208000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_15, _1E41
     CallIfSet FLAG_VILLA_FURNITURE_UNK_15, _1E4B
     Return
 
 _1C4B:
-    ScrCmd_30F 17, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 17, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 52000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_16, _1E55
     CallIfSet FLAG_VILLA_FURNITURE_UNK_16, _1E5F
     Return
 
 _1C7F:
-    ScrCmd_30F 18, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 18, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 140000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_17, _1E69
     CallIfSet FLAG_VILLA_FURNITURE_UNK_17, _1E73
@@ -1826,8 +1826,8 @@ _1CB3:
     Return
 
 _1CDF:
-    ScrCmd_30F 20, 0x800C
-    GoToIfEq 0x800C, 0, _1D13
+    ScrCmd_30F 20, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _1D13
     ScrCmd_2F5 0, 120000, 1, 6
     CallIfUnset FLAG_VILLA_FURNITURE_UNK_19, _1E91
     CallIfSet FLAG_VILLA_FURNITURE_UNK_19, _1E9B
@@ -2077,87 +2077,87 @@ _1F9C:
     Return
 
 _1FA9:
-    SetVar 0x8003, 0
+    SetVar VAR_0x8003, 0
     Return
 
 _1FB1:
-    CheckMoney 0x8003, 0
+    CheckMoney VAR_0x8003, 0
     Return
 
 _1FBB:
-    CheckMoney 0x8003, 120000
+    CheckMoney VAR_0x8003, 120000
     Return
 
 _1FC5:
-    CheckMoney 0x8003, 90000
+    CheckMoney VAR_0x8003, 90000
     Return
 
 _1FCF:
-    CheckMoney 0x8003, 187000
+    CheckMoney VAR_0x8003, 187000
     Return
 
 _1FD9:
-    CheckMoney 0x8003, 58000
+    CheckMoney VAR_0x8003, 58000
     Return
 
 _1FE3:
-    CheckMoney 0x8003, 220000
+    CheckMoney VAR_0x8003, 220000
     Return
 
 _1FED:
-    CheckMoney 0x8003, 160000
+    CheckMoney VAR_0x8003, 160000
     Return
 
 _1FF7:
-    CheckMoney 0x8003, 150000
+    CheckMoney VAR_0x8003, 150000
     Return
 
 _2001:
-    CheckMoney 0x8003, 127000
+    CheckMoney VAR_0x8003, 127000
     Return
 
 _200B:
-    CheckMoney 0x8003, 120000
+    CheckMoney VAR_0x8003, 120000
     Return
 
 _2015:
-    CheckMoney 0x8003, 168000
+    CheckMoney VAR_0x8003, 168000
     Return
 
 _201F:
-    CheckMoney 0x8003, 25300
+    CheckMoney VAR_0x8003, 25300
     Return
 
 _2029:
-    CheckMoney 0x8003, 150000
+    CheckMoney VAR_0x8003, 150000
     Return
 
 _2033:
-    CheckMoney 0x8003, 150000
+    CheckMoney VAR_0x8003, 150000
     Return
 
 _203D:
-    CheckMoney 0x8003, 146700
+    CheckMoney VAR_0x8003, 146700
     Return
 
 _2047:
-    CheckMoney 0x8003, 208000
+    CheckMoney VAR_0x8003, 208000
     Return
 
 _2051:
-    CheckMoney 0x8003, 52000
+    CheckMoney VAR_0x8003, 52000
     Return
 
 _205B:
-    CheckMoney 0x8003, 140000
+    CheckMoney VAR_0x8003, 140000
     Return
 
 _2065:
-    CheckMoney 0x8003, 108000
+    CheckMoney VAR_0x8003, 108000
     Return
 
 _206F:
-    CheckMoney 0x8003, 120000
+    CheckMoney VAR_0x8003, 120000
     Return
 
 _2079:
@@ -2281,21 +2281,21 @@ _21F5:
     Return
 
 _2209:
-    CallIfEq 0x404E, 0, _22CE
-    CallIfEq 0x404E, 1, _22D4
-    CallIfEq 0x404E, 2, _22DA
-    CallIfEq 0x404E, 3, _22EB
-    CallIfEq 0x404E, 4, _22F1
-    CallIfEq 0x404E, 5, _2302
-    CallIfEq 0x404E, 6, _2313
-    CallIfEq 0x404E, 7, _2324
-    CallIfEq 0x404E, 8, _2335
-    CallIfEq 0x404E, 9, _2346
-    CallIfEq 0x404E, 10, _2357
-    CallIfEq 0x404E, 11, _2368
-    CallIfEq 0x404E, 12, _236E
-    CallIfEq 0x404E, 13, _237F
-    CallIfEq 0x404E, 14, _2389
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 0, _22CE
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 1, _22D4
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 2, _22DA
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 3, _22EB
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 4, _22F1
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 5, _2302
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 6, _2313
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 7, _2324
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 8, _2335
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 9, _2346
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 10, _2357
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 11, _2368
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 12, _236E
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 13, _237F
+    CallIfEq VAR_RESORT_VILLA_VISITOR, 14, _2389
     Return
 
 _22CE:

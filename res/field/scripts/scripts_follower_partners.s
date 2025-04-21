@@ -98,8 +98,8 @@ _00F9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40CB, 2, _0126
-    GoToIfEq 0x40CB, 1, _0131
+    GoToIfGe VAR_UNK_0x40CB, 2, _0126
+    GoToIfEq VAR_UNK_0x40CB, 1, _0131
     BufferRivalName 0
     GoTo _013C
     End
@@ -119,7 +119,7 @@ _0131:
 _013C:
     WaitABXPadPress
     CloseMessage
-    AddVar 0x40CB, 1
+    AddVar VAR_UNK_0x40CB, 1
     ReleaseAll
     End
 

@@ -16,7 +16,7 @@ _001A:
     End
 
 _0020:
-    SetVar 0x8007, 0
+    SetVar VAR_0x8007, 0
     CallCommonScript 0x7D2
     End
 

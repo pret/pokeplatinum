@@ -17,13 +17,13 @@ _0022:
     End
 
 _0024:
-    CallIfEq 0x40CF, 2, _0082
+    CallIfEq VAR_UNK_0x40CF, 2, _0082
     CallIfSet FLAG_UNK_0x010F, _00BB
     CallIfUnset FLAG_UNK_0x010F, _00C5
-    GoToIfLt 0x4089, 2, _007C
+    GoToIfLt VAR_UNK_0x4089, 2, _007C
     GoToIfSet FLAG_UNK_0x0AA8, _007C
-    GetDayOfWeek 0x4000
-    GoToIfNe 0x4000, 5, _007C
+    GetDayOfWeek VAR_MAP_LOCAL_0
+    GoToIfNe VAR_MAP_LOCAL_0, 5, _007C
     GoTo _0076
 
 _0076:
@@ -35,7 +35,7 @@ _007C:
     End
 
 _0082:
-    SetVar 0x40CF, 3
+    SetVar VAR_UNK_0x40CF, 3
     Return
 
 _008A:
@@ -65,8 +65,8 @@ _00CF:
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_1
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0133
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0133
     Message 1
     CloseMessage
     ApplyMovement 0, _013C
@@ -114,8 +114,8 @@ _0150:
 _016C:
     BufferItemName 0, 0x1B6
     Message 6
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _01A2
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _01A2
     SetFlag FLAG_UNK_0x010F
     Call _00BB
     SetWarpEventPos 0, 243, 0x28E
@@ -145,8 +145,8 @@ _01BF:
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_DRIFLOON, 15
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _01FB
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01FB
     SetFlag FLAG_UNK_0x0AA8
     ReleaseAll
     End
@@ -174,7 +174,7 @@ _0201:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    WaitTime 120, 0x800C
+    WaitTime 120, VAR_RESULT
     ScrCmd_168 7, 20, 19, 14, 77
     ScrCmd_16B 77
     ScrCmd_169 77
@@ -191,7 +191,7 @@ _0201:
     ApplyMovement 6, _0324
     WaitMovement
     RemoveObject 6
-    SetVar 0x411E, 2
+    SetVar VAR_UNK_0x411E, 2
     ReleaseAll
     End
 

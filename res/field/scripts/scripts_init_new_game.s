@@ -22,7 +22,7 @@ _0006:
     SetFlag FLAG_UNK_0x01BA
     SetFlag FLAG_UNK_0x0174
     SetFlag FLAG_UNK_0x01F1
-    SetVar 0x4070, 1
+    SetVar VAR_UNK_0x4070, 1
     SetFlag FLAG_UNK_0x0197
     SetFlag FLAG_UNK_0x02C4
     SetFlag FLAG_UNK_0x022A
@@ -51,7 +51,7 @@ _0006:
     SetFlag FLAG_UNK_0x0186
     SetFlag FLAG_UNK_0x02CC
     SetFlag FLAG_UNK_0x019A
-    SetVar 0x4093, 1
+    SetVar VAR_UNK_0x4093, 1
     SetFlag FLAG_UNK_0x0180
     SetFlag FLAG_UNK_0x018C
     SetFlag FLAG_UNK_0x01FE
@@ -110,7 +110,7 @@ _0006:
     SetFlag FLAG_UNK_0x0252
     SetFlag FLAG_UNK_0x02CA
     SetFlag FLAG_UNK_0x0452
-    SetVar 0x4040, 9
+    SetVar VAR_CONSECUTIVE_BONUS_ROUND_WINS, 9
     SetFlag FLAG_UNK_0x0278
     SetFlag FLAG_UNK_0x0217
     SetFlag FLAG_UNK_0x0182

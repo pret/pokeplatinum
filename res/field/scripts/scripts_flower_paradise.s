@@ -11,12 +11,12 @@
 
 _000E:
     SetFlag FLAG_UNK_0x09D5
-    ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _005C
-    CheckItem ITEM_OAKS_LETTER, 1, 0x4000
-    GoToIfEq 0x4000, FALSE, _005C
-    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, 0x4000
-    GoToIfEq 0x4000, FALSE, _005C
+    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _005C
+    CheckItem ITEM_OAKS_LETTER, 1, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _005C
+    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _005C
     GoToIfSet FLAG_UNK_0x0123, _005C
     ClearFlag FLAG_UNK_0x0251
     End
@@ -45,10 +45,10 @@ _007D:
     SetFlag FLAG_UNK_0x008E
     StartFatefulEncounter SPECIES_SHAYMIN, 30
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00D7
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _00C8
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00D7
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _00C8
     SetFlag FLAG_UNK_0x0123
     ReleaseAll
     End

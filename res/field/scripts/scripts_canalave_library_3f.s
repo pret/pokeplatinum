@@ -18,17 +18,17 @@
     ScriptEntryEnd
 
 _0032:
-    GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _0052
-    GoToIfEq 0x4000, GENDER_FEMALE, _005A
+    GetPlayerGender VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0052
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _005A
     End
 
 _0052:
-    SetVar 0x4020, 97
+    SetVar VAR_OBJ_GFX_ID_0, 97
     End
 
 _005A:
-    SetVar 0x4020, 0
+    SetVar VAR_OBJ_GFX_ID_0, 0
     End
 
 _0062:
@@ -40,11 +40,11 @@ _0062:
     ApplyMovement 4, _0364
     ApplyMovement LOCALID_PLAYER, _0310
     WaitMovement
-    GetPlayerMapPos 0x8004, 0x8005
-    ScrCmd_066 0x8004, 0x8005
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    ScrCmd_066 VAR_0x8004, VAR_0x8005
     ApplyMovement 241, _0340
     WaitMovement
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     BufferRivalName 0
     BufferPlayerName 1
     Message 1
@@ -58,7 +58,7 @@ _0062:
     CloseMessage
     ApplyMovement 4, _035C
     WaitMovement
-    WaitTime 10, 0x800C
+    WaitTime 10, VAR_RESULT
     BufferPlayerName 0
     Message 4
     CloseMessage
@@ -72,8 +72,8 @@ _0062:
     BufferRivalName 0
     Message 7
     Message 8
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0116
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0116
     GoTo _0124
     End
 
@@ -95,8 +95,8 @@ _0132:
     ApplyMovement 2, _02E0
     ApplyMovement 3, _03D8
     WaitMovement
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0162
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0162
     GoTo _0173
     End
 
@@ -145,15 +145,15 @@ _0184:
     ScrCmd_067
     ScrCmd_310
     ReturnToField
-    GetPlayerMapPos 0x8004, 0x8005
-    ScrCmd_066 0x8004, 0x8005
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    ScrCmd_066 VAR_0x8004, VAR_0x8005
     ApplyMovement 241, _0340
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 22
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 4, _03B4
     WaitMovement
     BufferRivalName 0
@@ -180,8 +180,8 @@ _0184:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 2
     ScrCmd_04A 0x603
-    SetVar 0x4078, 4
-    SetVar 0x40B2, 2
+    SetVar VAR_UNK_0x4078, 4
+    SetVar VAR_UNK_0x40B2, 2
     SetFlag FLAG_UNK_0x00A8
     SetFlag FLAG_UNK_0x01AE
     ClearFlag FLAG_UNK_0x01B3
@@ -373,9 +373,9 @@ _043A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 30
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0471
-    GoToIfEq 0x800C, MENU_NO, _0463
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0471
+    GoToIfEq VAR_RESULT, MENU_NO, _0463
     End
 
 _0463:
@@ -397,9 +397,9 @@ _047C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 33
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _04B3
-    GoToIfEq 0x800C, MENU_NO, _04A5
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _04B3
+    GoToIfEq VAR_RESULT, MENU_NO, _04A5
     End
 
 _04A5:
@@ -421,9 +421,9 @@ _04BE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 36
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _04F5
-    GoToIfEq 0x800C, MENU_NO, _04E7
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _04F5
+    GoToIfEq VAR_RESULT, MENU_NO, _04E7
     End
 
 _04E7:
@@ -445,9 +445,9 @@ _0500:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 39
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0537
-    GoToIfEq 0x800C, MENU_NO, _0529
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0537
+    GoToIfEq VAR_RESULT, MENU_NO, _0529
     End
 
 _0529:
@@ -460,11 +460,11 @@ _0529:
 
 _0537:
     Message 41
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0529
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0529
     Message 42
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0529
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0529
     Message 43
     WaitABXPadPress
     CloseMessage
@@ -475,9 +475,9 @@ _056A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 44
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _05A1
-    GoToIfEq 0x800C, MENU_NO, _0593
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _05A1
+    GoToIfEq VAR_RESULT, MENU_NO, _0593
     End
 
 _0593:
@@ -490,11 +490,11 @@ _0593:
 
 _05A1:
     Message 46
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0593
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0593
     Message 47
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0593
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0593
     Message 48
     WaitABXPadPress
     CloseMessage
@@ -505,9 +505,9 @@ _05D4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 49
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _060B
-    GoToIfEq 0x800C, MENU_NO, _05FD
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _060B
+    GoToIfEq VAR_RESULT, MENU_NO, _05FD
     End
 
 _05FD:
@@ -530,15 +530,15 @@ _0616:
     LockAll
     Message 52
     Message 53
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntry 0x103, 0
     AddMenuEntry 0x104, 1
     AddMenuEntry 0x105, 2
     AddMenuEntry 0x106, 3
     ShowMenu
-    GoToIfEq 0x800C, 0, _0673
-    GoToIfEq 0x800C, 1, _067E
-    GoToIfEq 0x800C, 2, _0689
+    GoToIfEq VAR_RESULT, 0, _0673
+    GoToIfEq VAR_RESULT, 1, _067E
+    GoToIfEq VAR_RESULT, 2, _0689
     GoTo _0694
     End
 

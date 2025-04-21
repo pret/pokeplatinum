@@ -15,7 +15,7 @@ _0012:
     End
 
 _0023:
-    SetVar 0x4091, 0
+    SetVar VAR_UNK_0x4091, 0
     End
 
 _002B:
@@ -23,7 +23,7 @@ _002B:
     LockAll
     FacePlayer
     SetPlayerBike FALSE
-    GoToIfGe 0x4091, 1, _0095
+    GoToIfGe VAR_UNK_0x4091, 1, _0095
     BufferPlayerName 0
     CallIfUnset FLAG_UNK_0x00E0, _008B
     CallIfSet FLAG_UNK_0x00E0, _0090
@@ -32,7 +32,7 @@ _002B:
     Message 1
     WaitSound
     SetFlag FLAG_UNK_0x00E0
-    SetVar 0x4091, 1
+    SetVar VAR_UNK_0x4091, 1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -83,8 +83,8 @@ _00E2:
     LockAll
     ClearHasPartner
     ScrCmd_06D 4, 16
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 2, _0103
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 2, _0103
     GoTo _011B
 
 _0103:
@@ -103,8 +103,8 @@ _0133:
     BufferPlayerName 0
     Message 5
     CloseMessage
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 3, _0152
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 3, _0152
     GoTo _016A
 
 _0152:
@@ -122,7 +122,7 @@ _016A:
 _0182:
     RemoveObject 4
     SetFlag FLAG_UNK_0x00E4
-    SetVar 0x4091, 2
+    SetVar VAR_UNK_0x4091, 2
     ReleaseAll
     End
 

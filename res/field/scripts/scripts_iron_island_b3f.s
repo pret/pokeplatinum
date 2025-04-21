@@ -9,17 +9,17 @@
     ScriptEntryEnd
 
 _0012:
-    CheckPartyHasFatefulEncounterRegigigas 0x4004
-    GoToIfEq 0x4004, 0, _0061
-    GoToIfEq 0x4004, 1, _006B
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_4
+    GoToIfEq VAR_MAP_LOCAL_4, 0, _0061
+    GoToIfEq VAR_MAP_LOCAL_4, 1, _006B
     End
 
 _0032:
     InitPersistedMapFeaturesForPlatformLift
-    CallIfNe 0x4069, 0x122, _0079
-    CheckPartyHasFatefulEncounterRegigigas 0x4004
-    GoToIfEq 0x4004, 0, _0061
-    GoToIfEq 0x4004, 1, _006B
+    CallIfNe VAR_UNK_0x4069, 0x122, _0079
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_4
+    GoToIfEq VAR_MAP_LOCAL_4, 0, _0061
+    GoToIfEq VAR_MAP_LOCAL_4, 1, _006B
     End
 
 _0061:
@@ -35,7 +35,7 @@ _0075:
     End
 
 _0079:
-    SetVar 0x4069, 0
+    SetVar VAR_UNK_0x4069, 0
     Return
 
 _0081:

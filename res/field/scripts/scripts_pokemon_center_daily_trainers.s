@@ -10,14 +10,14 @@
 #define LEE            43
 #define ARIEL          71
 
-#define VAR_MAP_ID     0x4001
-#define VAR_NPC_1      0x402A
-#define VAR_NPC_2      0x402B
+#define VAR_MAP_ID     VAR_MAP_LOCAL_1
+#define VAR_NPC_1      VAR_OBJ_GFX_ID_A
+#define VAR_NPC_2      VAR_OBJ_GFX_ID_B
 
-#define VAR_TWO_MONS   0x8000
-#define VAR_IS_NPC_2   0x8004
-#define VAR_TRAINER    0x8005
-#define VAR_DEFEATED   0x8006
+#define VAR_TWO_MONS   VAR_0x8000
+#define VAR_IS_NPC_2   VAR_0x8004
+#define VAR_TRAINER    VAR_0x8005
+#define VAR_DEFEATED   VAR_0x8006
 
     .data
 
@@ -37,14 +37,14 @@ PokemonCenterDailyTrainers_End:
     End
 
 PokemonCenterDailyTrainers_SetNPCs:
-    GetDayOfWeek 0x4000
-    CallIfEq 0x4000, DAY_OF_WEEK_SUNDAY, PokemonCenterDailyTrainers_SetNPCsSunday
-    CallIfEq 0x4000, DAY_OF_WEEK_MONDAY, PokemonCenterDailyTrainers_SetNPCsMonday
-    CallIfEq 0x4000, DAY_OF_WEEK_TUESDAY, PokemonCenterDailyTrainers_SetNPCsTuesday
-    CallIfEq 0x4000, DAY_OF_WEEK_WEDNESDAY, PokemonCenterDailyTrainers_SetNPCsWednesday
-    CallIfEq 0x4000, DAY_OF_WEEK_THURSDAY, PokemonCenterDailyTrainers_SetNPCsThursday
-    CallIfEq 0x4000, DAY_OF_WEEK_FRIDAY, PokemonCenterDailyTrainers_SetNPCsFriday
-    CallIfEq 0x4000, DAY_OF_WEEK_SATURDAY, PokemonCenterDailyTrainers_SetNPCsSaturday
+    GetDayOfWeek VAR_MAP_LOCAL_0
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, PokemonCenterDailyTrainers_SetNPCsSunday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_MONDAY, PokemonCenterDailyTrainers_SetNPCsMonday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_TUESDAY, PokemonCenterDailyTrainers_SetNPCsTuesday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_WEDNESDAY, PokemonCenterDailyTrainers_SetNPCsWednesday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_THURSDAY, PokemonCenterDailyTrainers_SetNPCsThursday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_FRIDAY, PokemonCenterDailyTrainers_SetNPCsFriday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SATURDAY, PokemonCenterDailyTrainers_SetNPCsSaturday
     Return
 
 PokemonCenterDailyTrainers_SetNPCsSunday:
@@ -223,9 +223,9 @@ PokemonCenterDailyTrainers_IntroMessageSecondNPC:
     End
 
 PokemonCenterDailyTrainers_AskForBattle:
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, PokemonCenterDailyTrainers_BattleAccepted
-    GoToIfEq 0x800C, MENU_NO, PokemonCenterDailyTrainers_BattleDeclined
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, PokemonCenterDailyTrainers_BattleAccepted
+    GoToIfEq VAR_RESULT, MENU_NO, PokemonCenterDailyTrainers_BattleDeclined
     End
 
 PokemonCenterDailyTrainers_NotEnoughAliveMons:
@@ -271,8 +271,8 @@ PokemonCenterDailyTrainers_BattleAcceptedSecondNPC:
 PokemonCenterDailyTrainers_Battle:
     CloseMessage
     StartTrainerBattle VAR_TRAINER
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, PokemonCenterDailyTrainers_BattleLost
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PokemonCenterDailyTrainers_BattleLost
     GoTo PokemonCenterDailyTrainers_PostBattle
     End
 

@@ -12,9 +12,9 @@
     ScriptEntryEnd
 
 _001A:
-    GetPlayerMapPos 0x4004, 0x4005
-    CallIfGe 0x4005, 12, _0035
-    SetVar 0x4003, 1
+    GetPlayerMapPos VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5
+    CallIfGe VAR_MAP_LOCAL_5, 12, _0035
+    SetVar VAR_MAP_LOCAL_3, 1
     End
 
 _0035:
@@ -41,8 +41,8 @@ _004E:
 
 _0061:
     LockAll
-    CheckPlayerOnBike 0x800C
-    GoToIfEq 0x800C, TRUE, _0091
+    CheckPlayerOnBike VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _0091
     ApplyMovement 1, _00A0
     WaitMovement
     Message 1
@@ -54,7 +54,7 @@ _0061:
 
 _0091:
     SetFlag FLAG_FORCE_BIKING_IN_GATE
-    SetVar 0x4002, 1
+    SetVar VAR_MAP_LOCAL_2, 1
     ReleaseAll
     End
 
@@ -71,7 +71,7 @@ _00A8:
 _00B0:
     LockAll
     ClearFlag FLAG_FORCE_BIKING_IN_GATE
-    SetVar 0x4002, 0
+    SetVar VAR_MAP_LOCAL_2, 0
     ReleaseAll
     End
 
@@ -82,8 +82,8 @@ _00C0:
     GoToIfSet FLAG_UNK_0x010B, _0154
     BufferPlayerName 0
     BufferCounterpartName 1
-    GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _00F0
+    GetPlayerGender VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _00F0
     GoTo _00F9
 
 _00F0:
@@ -95,13 +95,13 @@ _00F9:
     GoTo _0102
 
 _0102:
-    ScrCmd_120 0x8004
-    BufferNumber 1, 0x8004
-    GoToIfLt 0x8004, 35, _015F
+    ScrCmd_120 VAR_0x8004
+    BufferNumber 1, VAR_0x8004
+    GoToIfLt VAR_0x8004, 35, _015F
     Message 5
-    SetVar 0x8004, ITEM_EXP_SHARE
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _014A
+    SetVar VAR_0x8004, ITEM_EXP_SHARE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _014A
     SetFlag FLAG_UNK_0x010B
     CallCommonScript 0x7E0
     CloseMessage
