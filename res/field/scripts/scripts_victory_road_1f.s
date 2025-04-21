@@ -10,7 +10,7 @@
 _000A:
     SetFlag FLAG_UNK_0x09CA
     GoToIfUnset FLAG_GAME_COMPLETED, _002F
-    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _002F
     SetFlag FLAG_UNK_0x027E
 _002F:

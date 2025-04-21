@@ -137,6 +137,7 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "scrcmd_amity_square.h"
 #include "scrcmd_coins.h"
 #include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_game_corner_prize.h"
@@ -184,7 +185,6 @@
 #include "unk_0204B64C.h"
 #include "unk_0204C500.h"
 #include "unk_0204CA84.h"
-#include "unk_0204CDDC.h"
 #include "unk_0204CFFC.h"
 #include "unk_0204E240.h"
 #include "unk_0204E75C.h"
@@ -564,7 +564,7 @@ static BOOL ScrCmd_GiveJournal(ScriptContext *ctx);
 static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx);
 static BOOL ScrCmd_1CE(ScriptContext *ctx);
 static BOOL ScrCmd_1D2(ScriptContext *ctx);
-static BOOL ScrCmd_1D3(ScriptContext *ctx);
+static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_1D4(ScriptContext *ctx);
 static BOOL ScrCmd_1D5(ScriptContext *ctx);
 static BOOL ScrCmd_1D6(ScriptContext *ctx);
@@ -612,7 +612,7 @@ static BOOL ScrCmd_229(ScriptContext *ctx);
 static BOOL ScrCmd_FinishNpcTrade(ScriptContext *ctx);
 static BOOL ScrCmd_22B(ScriptContext *ctx);
 static BOOL ScrCmd_22C(ScriptContext *ctx);
-static BOOL ScrCmd_22D(ScriptContext *ctx);
+static BOOL ScrCmd_GetSetNationalDexEnabled(ScriptContext *ctx);
 static BOOL ScrCmd_233(ScriptContext *ctx);
 static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx);
 static BOOL ScrCmd_239(ScriptContext *ctx);
@@ -1234,7 +1234,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Flash,
     ScrCmd_Defog,
     ScrCmd_1D2,
-    ScrCmd_1D3,
+    ScrCmd_CanFitAccessory,
     ScrCmd_1D4,
     ScrCmd_1D5,
     ScrCmd_1D6,
@@ -1324,7 +1324,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FinishNpcTrade,
     ScrCmd_22B,
     ScrCmd_22C,
-    ScrCmd_22D,
+    ScrCmd_GetSetNationalDexEnabled,
     ScrCmd_22E,
     ScrCmd_22F,
     ScrCmd_GetPartyMonRibbon,
@@ -1376,7 +1376,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_25E,
     ScrCmd_25F,
     ScrCmd_260,
-    ScrCmd_261,
+    ScrCmd_BufferAccessoryName,
     ScrCmd_CheckPartyHasSpecies2,
     ScrCmd_ChangeDeoxysForm,
     ScrCmd_CheckPartyCombeeGenderCount,
@@ -1503,7 +1503,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FindPartySlotWithSpecies,
     ScrCmd_2DE,
     ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID,
-    ScrCmd_2E0,
+    ScrCmd_CheckAmitySquareManGiftIsAccesory,
     ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan,
     ScrCmd_2E2,
     ScrCmd_2E3,
@@ -1596,7 +1596,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetMenuXOriginSide,
     ScrCmd_SetMenuYOriginSide,
     ScrCmd_33C,
-    ScrCmd_33D,
+    ScrCmd_BufferItemNamePlural,
     ScrCmd_33E,
     ScrCmd_33F,
     ScrCmd_340,
@@ -6110,17 +6110,17 @@ static BOOL ScrCmd_1D2(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_1D3(ScriptContext *ctx)
+static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx)
 {
     UnkStruct_0202A750 *v0;
     UnkStruct_02029D04 *v1;
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 *v4 = ScriptContext_GetVarPointer(ctx);
+    u16 accessory = ScriptContext_GetVar(ctx);
+    u16 count = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     v0 = sub_0202A750(ctx->fieldSystem->saveData);
     v1 = sub_02029D04(v0);
-    *v4 = sub_02029D50(v1, v2, v3);
+    *destVar = sub_02029D50(v1, accessory, count);
 
     return 0;
 }
@@ -6501,23 +6501,23 @@ static BOOL ScrCmd_22C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_22D(ScriptContext *ctx)
+static BOOL ScrCmd_GetSetNationalDexEnabled(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u8 getOrSet = ScriptContext_ReadByte(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = 0;
+    *destVar = 0;
 
-    if (v0 == 1) {
+    if (getOrSet == 1) { // Set
         Pokedex_ObtainNationalDex(SaveData_GetPokedex(ctx->fieldSystem->saveData));
         TrainerInfo_GiveNationalDex(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData));
-    } else if (v0 == 2) {
-        *v1 = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(ctx->fieldSystem->saveData));
+    } else if (getOrSet == 2) { // Get
+        *destVar = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(ctx->fieldSystem->saveData));
     } else {
         GF_ASSERT(FALSE);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_233(ScriptContext *ctx)

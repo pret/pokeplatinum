@@ -19,7 +19,7 @@ _0018:
     FacePlayer
     GoToIfSet FLAG_UNK_0x012A, _004D
     SetVar VAR_0x8004, ACCESSORY_BIG_TREE
-    ScrCmd_261 0, VAR_0x8004
+    BufferAccessoryName 0, VAR_0x8004
     Message 0
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7DF

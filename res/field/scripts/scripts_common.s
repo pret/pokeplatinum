@@ -751,11 +751,11 @@ _0992:
 _099F:
     PlaySound SEQ_ACCE
     ScrCmd_1D2 VAR_0x8004, VAR_0x8005
-    ScrCmd_261 0, VAR_0x8004
+    BufferAccessoryName 0, VAR_0x8004
     Message 25
     WaitSound
     BufferPlayerName 0
-    ScrCmd_261 1, VAR_0x8004
+    BufferAccessoryName 1, VAR_0x8004
     Return
 
 _09BD:
@@ -822,7 +822,7 @@ _0A82:
     GoTo _0A9F
 
 _0A9A:
-    ScrCmd_33D 0, VAR_0x8004
+    BufferItemNamePlural 0, VAR_0x8004
 _0A9F:
     Message 25
     GoTo _0AA8
@@ -837,7 +837,7 @@ _0AA8:
     GoTo _0ADD
 
 _0AD8:
-    ScrCmd_33D 1, VAR_0x8004
+    BufferItemNamePlural 1, VAR_0x8004
 _0ADD:
     GetItemPocket VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
@@ -931,7 +931,7 @@ _0C1C:
     CallIfUnset FLAG_MET_BEBE, _0C7B
     CallIfSet FLAG_MET_BEBE, _0C81
     AddMenuEntryImm 60, 1
-    ScrCmd_22D 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     CallIfEq VAR_RESULT, 0, _0C87
     CallIfEq VAR_RESULT, 1, _0C8D
     GoToIfSet FLAG_GAME_COMPLETED, _0C93
@@ -1568,7 +1568,7 @@ _14AC:
     GoToIfNe VAR_0x8005, 52, _1570
     CheckGameCompleted VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, _1570
-    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _1570
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, _1570

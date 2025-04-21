@@ -1,25 +1,32 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/amity_square.h"
+#include "generated/object_events.h"
+
+#define LOCALID_HAS_NATIONAL_DEX     VAR_MAP_LOCAL_0
+#define LOCALID_ITEM_OR_ACCESSORY_ID VAR_0x8004
+#define LOCALID_COUNT                VAR_0x8005
+#define PICKUP_TYPE_ITEM             0
+#define PICKUP_TYPE_ACCESORY         1
 
     .data
 
     ScriptEntry _00B6
-    ScriptEntry _0126
-    ScriptEntry _0365
-    ScriptEntry _0140
-    ScriptEntry _0365
-    ScriptEntry _1084
-    ScriptEntry _07F2
-    ScriptEntry _0800
-    ScriptEntry _08D8
-    ScriptEntry _08EB
-    ScriptEntry _090A
-    ScriptEntry _091D
-    ScriptEntry _0930
-    ScriptEntry _0943
-    ScriptEntry _0962
-    ScriptEntry _0975
-    ScriptEntry _10AA
+    ScriptEntry AmitySquare_Trigger_WestGate
+    ScriptEntry AmitySquare_Trigger_ExitAmitySquare
+    ScriptEntry AmitySquare_Trigger_EastGate
+    ScriptEntry AmitySquare_Trigger_ExitAmitySquare
+    ScriptEntry AmitySquare_FollowerMon
+    ScriptEntry AmitySquare_WestReceptionist
+    ScriptEntry AmitySquare_EastReceptionist
+    ScriptEntry AmitySquare_DrifloonMan
+    ScriptEntry AmitySquare_Drifloon
+    ScriptEntry AmitySquare_HappinyWoman
+    ScriptEntry AmitySquare_Happiny
+    ScriptEntry AmitySquare_PikachuMan
+    ScriptEntry AmitySquare_Pikachu
+    ScriptEntry AmitySquare_ClefairyGirl
+    ScriptEntry AmitySquare_Clefairy
+    ScriptEntry AmitySquare_GiftMan
     ScriptEntry _118B
     ScriptEntry _1199
     ScriptEntry _11A7
@@ -53,7 +60,7 @@
 _00B6:
     SetFlag FLAG_UNK_0x09CC
     SetFlag FLAG_UNK_0x02A1
-    CalcAmitySquareBerryAndAccessoryManOptionID VAR_UNK_0x40AB
+    CalcAmitySquareBerryAndAccessoryManOptionID VAR_AMITY_SQUARE_GIFT_ID
     GetRandom VAR_MAP_LOCAL_2, 5
     GoToIfEq VAR_MAP_LOCAL_2, 0, _00FE
     GoToIfEq VAR_MAP_LOCAL_2, 1, _0108
@@ -77,48 +84,48 @@ _011C:
     SetObjectEventPos 15, 48, 41
     End
 
-_0126:
+AmitySquare_Trigger_WestGate:
     LockAll
     SetVar VAR_0x8001, 1
     ApplyMovement LOCALID_PLAYER, _03B0
     WaitMovement
-    GoTo _015A
+    GoTo AmitySquare_CheckHasNationalDex
     End
 
-_0140:
+AmitySquare_Trigger_EastGate:
     LockAll
     SetVar VAR_0x8001, 2
     ApplyMovement LOCALID_PLAYER, _03B8
     WaitMovement
-    GoTo _015A
+    GoTo AmitySquare_CheckHasNationalDex
     End
 
-_015A:
-    ScrCmd_22D 2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0195
-    GoTo _0174
+AmitySquare_CheckHasNationalDex:
+    GetNationalDexEnabled VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, AmitySquare_HasNationalDex
+    GoTo AmitySquare_DoesntHaveNationalDex
     End
 
-_0174:
-    SetVar VAR_MAP_LOCAL_0, 0
-    GoTo _0994
+AmitySquare_DoesntHaveNationalDex:
+    SetVar LOCALID_HAS_NATIONAL_DEX, FALSE
+    GoTo AmitySquare_CheckPartyHasSpecies
     End
 
-_0182:
-    Message 0
+AmitySquare_ListPermittedSpecies:
+    Message AmitySquare_Text_PermittedList
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
     ReleaseAll
     End
 
-_0195:
-    SetVar VAR_MAP_LOCAL_0, 1
-    GoTo _0ACC
+AmitySquare_HasNationalDex:
+    SetVar LOCALID_HAS_NATIONAL_DEX, TRUE
+    GoTo AmitySquare_CheckPartyHasSpecies_NationalDex
     End
 
-_01A3:
-    Message 1
+AmitySquare_ListPermittedSpecies_NationalDex:
+    Message AmitySquare_Text_PermittedListNationalDex
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
@@ -135,8 +142,8 @@ _01B6:
 _01CE:
     GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, _026D
-    CallIfEq VAR_MAP_LOCAL_0, 0, _0C50
-    CallIfEq VAR_MAP_LOCAL_0, 1, _0D36
+    CallIfEq LOCALID_HAS_NATIONAL_DEX, FALSE, AmitySquare_CheckAllowedMon
+    CallIfEq LOCALID_HAS_NATIONAL_DEX, TRUE, AmitySquare_CheckAllowedMon_NationalDex
     GoToIfEq VAR_RESULT, 0, _026D
     BufferPartyMonNickname 0, VAR_MAP_LOCAL_A
     GoToIfEq VAR_MAP_LOCAL_C, 0, _0229
@@ -145,7 +152,7 @@ _01CE:
 
 _0229:
     AddVar VAR_MAP_LOCAL_C, 1
-    Message 2
+    Message AmitySquare_Text_OkWouldYouLikeToGoForAStrollWithYourPokemon
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _0299
     GoTo _026D
@@ -153,7 +160,7 @@ _0229:
 
 _024B:
     AddVar VAR_MAP_LOCAL_C, 1
-    Message 4
+    Message AmitySquare_Text_OhOkThenYouWouldRatherGoForAStrollWithYourPokemon
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _0299
     GoTo _026D
@@ -163,7 +170,7 @@ _026D:
     AddVar VAR_MAP_LOCAL_A, 1
     SubVar VAR_MAP_LOCAL_B, 1
     GoToIfNe VAR_MAP_LOCAL_B, 0, _01CE
-    Message 5
+    Message AmitySquare_Text_ISeePleaseComeBack
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
@@ -174,9 +181,9 @@ _0299:
     HealParty
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    SetVar VAR_UNK_0x409D, VAR_MAP_LOCAL_A
-    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_UNK_0x409A
-    GoTo _0E48
+    SetVar VAR_FOLLOWER_MON_PARTY_ID, VAR_MAP_LOCAL_A
+    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_FOLLOWER_MON_SPECIES
+    GoTo AmitySquare_SetFollowerGfx
     End
 
 _02BB:
@@ -190,11 +197,11 @@ _02C9:
     CallIfEq VAR_0x8001, 2, _0338
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar VAR_UNK_0x4099, 1
+    SetVar VAR_FOLLOWER_MON_ACTIVE, TRUE
     ClearAmitySquareStepCount
-    Call _03DC
-    ScrCmd_27C 0, VAR_UNK_0x409D
-    Message 3
+    Call AmitySquare_FollowerMon_SetNextPickUpType
+    ScrCmd_27C 0, VAR_FOLLOWER_MON_PARTY_ID
+    Message AmitySquare_Text_PleaseDoEnjoyYourTimeTogether
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C8
     ApplyMovement VAR_0x8002, _03C8
@@ -244,24 +251,24 @@ _0338:
     .byte 2
     .byte 0
 
-_0365:
+AmitySquare_Trigger_ExitAmitySquare:
     LockAll
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ClearHasPartner
-    GoTo _037D
+    GoTo AmitySquare_RemoveFollower
     End
 
-_037D:
+AmitySquare_RemoveFollower:
     RemoveObject 5
-    GoTo _0389
+    GoTo AmitySquare_Trigger_ExitAmitySquare_End
     End
 
-_0389:
+AmitySquare_Trigger_ExitAmitySquare_End:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar VAR_UNK_0x4099, 0
-    Message 6
+    SetVar VAR_FOLLOWER_MON_ACTIVE, FALSE
+    Message AmitySquare_Text_AreYouFeelingRefreshedPleaseComeAgainOk
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
@@ -301,313 +308,313 @@ _03C8:
     .byte 0
     .byte 0
 
-_03DC:
+AmitySquare_FollowerMon_SetNextPickUpType:
     GetRandom VAR_RESULT, 5
-    CallIfEq VAR_RESULT, 0, _040A
-    CallIfNe VAR_RESULT, 0, _0412
-    CalcAmitySquareFoundAccessory VAR_UNK_0x409C, VAR_UNK_0x409A
-    GoTo _041A
+    CallIfEq VAR_RESULT, 0, AmitySquare_FollowerMon_SetNextPickUpType_Item      /* 20% */
+    CallIfNe VAR_RESULT, 0, AmitySquare_FollowerMon_SetNextPickUpType_Accessory /* 80% */
+    CalcAmitySquareFoundAccessory VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID, VAR_FOLLOWER_MON_SPECIES
+    GoTo AmitySquare_FollowerMon_SetPickupItemVar
     End
 
-_040A:
-    SetVar VAR_UNK_0x409B, 0
+AmitySquare_FollowerMon_SetNextPickUpType_Item:
+    SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, PICKUP_TYPE_ITEM
     Return
 
-_0412:
-    SetVar VAR_UNK_0x409B, 1
+AmitySquare_FollowerMon_SetNextPickUpType_Accessory:
+    SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, PICKUP_TYPE_ACCESORY
     Return
 
-_041A:
+AmitySquare_FollowerMon_SetPickupItemVar:
     GetRandom VAR_RESULT, 100
-    GoToIfLt VAR_RESULT, 20, _0490
-    GoToIfLt VAR_RESULT, 35, _0498
-    GoToIfLt VAR_RESULT, 50, _04A0
-    GoToIfLt VAR_RESULT, 65, _04A8
-    GoToIfLt VAR_RESULT, 72, _04B0
-    GoToIfLt VAR_RESULT, 79, _04B8
-    GoToIfLt VAR_RESULT, 86, _04C0
-    GoToIfLt VAR_RESULT, 93, _04C8
-    GoTo _04D0
+    GoToIfLt VAR_RESULT, 20, AmitySquare_FollowerMon_SetPickupItemVar_MagostBerry /* 20% */
+    GoToIfLt VAR_RESULT, 35, AmitySquare_FollowerMon_SetPickupItemVar_CornnBerry  /* 15% */
+    GoToIfLt VAR_RESULT, 50, AmitySquare_FollowerMon_SetPickupItemVar_RabutaBerry /* 15% */
+    GoToIfLt VAR_RESULT, 65, AmitySquare_FollowerMon_SetPickupItemVar_NomelBerry  /* 15% */
+    GoToIfLt VAR_RESULT, 72, AmitySquare_FollowerMon_SetPickupItemVar_SpelonBerry /*  7% */
+    GoToIfLt VAR_RESULT, 79, AmitySquare_FollowerMon_SetPickupItemVar_PamtreBerry /*  7% */
+    GoToIfLt VAR_RESULT, 86, AmitySquare_FollowerMon_SetPickupItemVar_WatmelBerry /*  7% */
+    GoToIfLt VAR_RESULT, 93, AmitySquare_FollowerMon_SetPickupItemVar_DurinBerry  /*  7% */
+    GoTo AmitySquare_FollowerMon_SetPickupItemVar_BelueBerry                      /*  7% */
     End
 
-_0490:
-    SetVar VAR_UNK_0x409F, ITEM_MAGOST_BERRY
+AmitySquare_FollowerMon_SetPickupItemVar_MagostBerry:
+    SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_MAGOST_BERRY
     Return
 
-_0498:
-    SetVar VAR_UNK_0x409F, ITEM_CORNN_BERRY
+AmitySquare_FollowerMon_SetPickupItemVar_CornnBerry:
+    SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_CORNN_BERRY
     Return
 
-_04A0:
-    SetVar VAR_UNK_0x409F, ITEM_RABUTA_BERRY
+AmitySquare_FollowerMon_SetPickupItemVar_RabutaBerry:
+    SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_RABUTA_BERRY
     Return
 
-_04A8:
-    SetVar VAR_UNK_0x409F, ITEM_NOMEL_BERRY
+AmitySquare_FollowerMon_SetPickupItemVar_NomelBerry:
+    SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_NOMEL_BERRY
     Return
 
-_04B0:
-    SetVar VAR_UNK_0x409F, ITEM_SPELON_BERRY
+AmitySquare_FollowerMon_SetPickupItemVar_SpelonBerry:
+    SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_SPELON_BERRY
     Return
 
-_04B8:
-    SetVar VAR_UNK_0x409F, ITEM_PAMTRE_BERRY
+AmitySquare_FollowerMon_SetPickupItemVar_PamtreBerry:
+    SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_PAMTRE_BERRY
     Return
 
-_04C0:
-    SetVar VAR_UNK_0x409F, ITEM_WATMEL_BERRY
+AmitySquare_FollowerMon_SetPickupItemVar_WatmelBerry:
+    SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_WATMEL_BERRY
     Return
 
-_04C8:
-    SetVar VAR_UNK_0x409F, ITEM_DURIN_BERRY
+AmitySquare_FollowerMon_SetPickupItemVar_DurinBerry:
+    SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_DURIN_BERRY
     Return
 
-_04D0:
-    SetVar VAR_UNK_0x409F, ITEM_BELUE_BERRY
+AmitySquare_FollowerMon_SetPickupItemVar_BelueBerry:
+    SetVar VAR_FOLLOWER_MON_PICKUP_ITEM_ID, ITEM_BELUE_BERRY
     Return
 
-_04D8:
-    SetVar VAR_0x8000, VAR_UNK_0x409B
+AmitySquare_FollowerMon_PickUp:
+    SetVar VAR_0x8000, VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE
     ClearAmitySquareStepCount
-    Call _03DC
-    GoToIfEq VAR_0x8000, 0, _04FB
-    GoTo _056C
+    Call AmitySquare_FollowerMon_SetNextPickUpType
+    GoToIfEq VAR_0x8000, PICKUP_TYPE_ITEM, AmitySquare_FollowerMon_PickUp_TryItem
+    GoTo AmitySquare_FollowerMon_PickUp_TryAccessory
     End
 
-_04FB:
-    SetVar VAR_0x8004, VAR_UNK_0x409F
-    SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0595
-    GoTo _054D
+AmitySquare_FollowerMon_PickUp_TryItem:
+    SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ITEM_ID
+    SetVar LOCALID_COUNT, 1
+    GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT, AmitySquare_FollowerMon_PickUp_FailedItem_TryAccessory
+    GoTo AmitySquare_FollowerMon_PickUp_GiveItem
     End
 
-_0524:
-    SetVar VAR_0x8004, VAR_UNK_0x409F
-    SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _05DD
-    GoTo _054D
+AmitySquare_FollowerMon_PickUp_FailedAccessory_TryItem:
+    SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ITEM_ID
+    SetVar LOCALID_COUNT, 1
+    GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT, AmitySquare_FollowerMon_Message
+    GoTo AmitySquare_FollowerMon_PickUp_GiveItem
     End
 
-_054D:
-    PlayCry VAR_UNK_0x409A
-    Message 22
+AmitySquare_FollowerMon_PickUp_GiveItem:
+    PlayCry VAR_FOLLOWER_MON_SPECIES
+    Message AmitySquare_Text_OhPokemonIsHoldingSomething
     WaitCry
-    ScrCmd_27C 1, VAR_0x8004
+    ScrCmd_27C 1, LOCALID_ITEM_OR_ACCESSORY_ID
     IncrementGameRecord RECORD_UNK_051
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
 
-_056C:
-    SetVar VAR_0x8004, VAR_UNK_0x409C
-    SetVar VAR_0x8005, 1
-    ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0524
-    GoTo _05BE
+AmitySquare_FollowerMon_PickUp_TryAccessory:
+    SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID
+    SetVar LOCALID_COUNT, 1
+    CanFitAccessory LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, AmitySquare_FollowerMon_PickUp_FailedAccessory_TryItem
+    GoTo AmitySquare_FollowerMon_PickUp_GiveAccessory
     End
 
-_0595:
-    SetVar VAR_0x8004, VAR_UNK_0x409C
-    SetVar VAR_0x8005, 1
-    ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _05DD
-    GoTo _05BE
+AmitySquare_FollowerMon_PickUp_FailedItem_TryAccessory:
+    SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID
+    SetVar LOCALID_COUNT, 1
+    CanFitAccessory LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, AmitySquare_FollowerMon_Message
+    GoTo AmitySquare_FollowerMon_PickUp_GiveAccessory
     End
 
-_05BE:
-    PlayCry VAR_UNK_0x409A
-    Message 22
+AmitySquare_FollowerMon_PickUp_GiveAccessory:
+    PlayCry VAR_FOLLOWER_MON_SPECIES
+    Message AmitySquare_Text_OhPokemonIsHoldingSomething
     WaitCry
-    ScrCmd_27C 2, VAR_0x8004
+    ScrCmd_27C 2, LOCALID_ITEM_OR_ACCESSORY_ID
     IncrementGameRecord RECORD_UNK_051
     CallCommonScript 0x7DF
     CloseMessage
     ReleaseAll
     End
 
-_05DD:
-    BufferPartyMonNickname 0, VAR_UNK_0x409D
-    PlayCry VAR_UNK_0x409A
-    GoToIfEq VAR_UNK_0x409A, SPECIES_GROTLE, _0719
-    GoToIfEq VAR_UNK_0x409A, SPECIES_TORTERRA, _0719
-    GoToIfEq VAR_UNK_0x409A, SPECIES_MONFERNO, _0719
-    GoToIfEq VAR_UNK_0x409A, SPECIES_INFERNAPE, _0719
-    GoToIfEq VAR_UNK_0x409A, SPECIES_PRINPLUP, _0719
-    GoToIfEq VAR_UNK_0x409A, SPECIES_EMPOLEON, _0719
+AmitySquare_FollowerMon_Message:
+    BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
+    PlayCry VAR_FOLLOWER_MON_SPECIES
+    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_GROTLE, AmitySquare_FollowerMon_Message_EvolvedStarter
+    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_TORTERRA, AmitySquare_FollowerMon_Message_EvolvedStarter
+    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_MONFERNO, AmitySquare_FollowerMon_Message_EvolvedStarter
+    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_INFERNAPE, AmitySquare_FollowerMon_Message_EvolvedStarter
+    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_PRINPLUP, AmitySquare_FollowerMon_Message_EvolvedStarter
+    GoToIfEq VAR_FOLLOWER_MON_SPECIES, SPECIES_EMPOLEON, AmitySquare_FollowerMon_Message_EvolvedStarter
     GetRandom VAR_RESULT, 9
-    GoToIfEq VAR_RESULT, 0, _06AC
-    GoToIfEq VAR_RESULT, 1, _06B7
-    GoToIfEq VAR_RESULT, 2, _06C2
-    GoToIfEq VAR_RESULT, 3, _06CD
-    GoToIfEq VAR_RESULT, 4, _06D8
-    GoToIfEq VAR_RESULT, 5, _06E3
-    GoToIfEq VAR_RESULT, 6, _06EE
-    GoToIfEq VAR_RESULT, 7, _06F9
-    GoTo _0704
+    GoToIfEq VAR_RESULT, 0, AmitySquare_FollowerMon_IsHappilyKeepingUp
+    GoToIfEq VAR_RESULT, 1, AmitySquare_FollowerMon_AppearsToBeVeryHappy
+    GoToIfEq VAR_RESULT, 2, AmitySquare_FollowerMon_AppearsToBeFeelingGood
+    GoToIfEq VAR_RESULT, 3, AmitySquare_FollowerMon_IsLookingEndearinglyAtYou
+    GoToIfEq VAR_RESULT, 4, AmitySquare_FollowerMon_IsPickingAtTheGroundForSomeReason
+    GoToIfEq VAR_RESULT, 5, AmitySquare_FollowerMon_AlmostTripped
+    GoToIfEq VAR_RESULT, 6, AmitySquare_FollowerMon_IsSkippingHappily
+    GoToIfEq VAR_RESULT, 7, AmitySquare_FollowerMon_SeemsToBeSoHappyItCantKeepStill
+    GoTo AmitySquare_FollowerMon_SeemsToBeEnjoyingTheWalk
     End
 
-_06AC:
-    Message 13
-    GoTo _070F
+AmitySquare_FollowerMon_IsHappilyKeepingUp:
+    Message AmitySquare_Text_PokemonIsHappilyKeepingUp
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06B7:
-    Message 14
-    GoTo _070F
+AmitySquare_FollowerMon_AppearsToBeVeryHappy:
+    Message AmitySquare_Text_PokemonAppearsToBeVeryHappy
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06C2:
-    Message 15
-    GoTo _070F
+AmitySquare_FollowerMon_AppearsToBeFeelingGood:
+    Message AmitySquare_Text_PokemonAppearsToBeFeelingGood
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06CD:
-    Message 16
-    GoTo _070F
+AmitySquare_FollowerMon_IsLookingEndearinglyAtYou:
+    Message AmitySquare_Text_PokemonIsLookingEndearinglyAtYou
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06D8:
-    Message 17
-    GoTo _070F
+AmitySquare_FollowerMon_IsPickingAtTheGroundForSomeReason:
+    Message AmitySquare_Text_PokemonIsPickingAtTheGroundForSomeReason
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06E3:
-    Message 18
-    GoTo _070F
+AmitySquare_FollowerMon_AlmostTripped:
+    Message AmitySquare_Text_PokemonAlmostTripped
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06EE:
-    Message 19
-    GoTo _070F
+AmitySquare_FollowerMon_IsSkippingHappily:
+    Message AmitySquare_Text_PokemonIsSkippingHappily
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_06F9:
-    Message 20
-    GoTo _070F
+AmitySquare_FollowerMon_SeemsToBeSoHappyItCantKeepStill:
+    Message AmitySquare_Text_PokemonSeemsToBeSoHappyItCantKeepStill
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_0704:
-    Message 21
-    GoTo _070F
+AmitySquare_FollowerMon_SeemsToBeEnjoyingTheWalk:
+    Message AmitySquare_Text_PokemonSeemsToBeEnjoyingTheWalk
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_070F:
+AmitySquare_FollowerMon_End:
     WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0719:
+AmitySquare_FollowerMon_Message_EvolvedStarter:
     GetRandom VAR_RESULT, 9
-    GoToIfEq VAR_RESULT, 0, _078F
-    GoToIfEq VAR_RESULT, 1, _079A
-    GoToIfEq VAR_RESULT, 2, _07A5
-    GoToIfEq VAR_RESULT, 3, _07B0
-    GoToIfEq VAR_RESULT, 4, _07BB
-    GoToIfEq VAR_RESULT, 5, _07C6
-    GoToIfEq VAR_RESULT, 6, _07D1
-    GoToIfEq VAR_RESULT, 7, _07DC
-    GoTo _07E7
+    GoToIfEq VAR_RESULT, 0, AmitySquare_FollowerMon_IsFollowingAlongRelaxedAndCasual
+    GoToIfEq VAR_RESULT, 1, AmitySquare_FollowerMon_AppearsToBeVeryHappy2
+    GoToIfEq VAR_RESULT, 2, AmitySquare_FollowerMon_AppearsToBeFeelingGood2
+    GoToIfEq VAR_RESULT, 3, AmitySquare_FollowerMon_SnuggledUpClose
+    GoToIfEq VAR_RESULT, 4, AmitySquare_FollowerMon_IsPickingAtTheGroundForSomeReason2
+    GoToIfEq VAR_RESULT, 5, AmitySquare_FollowerMon_PretendedToTrip
+    GoToIfEq VAR_RESULT, 6, AmitySquare_FollowerMon_GaveAContentedYawn
+    GoToIfEq VAR_RESULT, 7, AmitySquare_FollowerMon_IsSniffingAtTheGrass
+    GoTo AmitySquare_FollowerMon_SeemsToBeEnjoyingTheWalk2
     End
 
-_078F:
-    Message 23
-    GoTo _070F
+AmitySquare_FollowerMon_IsFollowingAlongRelaxedAndCasual:
+    Message AmitySquare_Text_PokemonIsFollowingAlongRelaxedAndCasual
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_079A:
-    Message 14
-    GoTo _070F
+AmitySquare_FollowerMon_AppearsToBeVeryHappy2:
+    Message AmitySquare_Text_PokemonAppearsToBeVeryHappy
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07A5:
-    Message 15
-    GoTo _070F
+AmitySquare_FollowerMon_AppearsToBeFeelingGood2:
+    Message AmitySquare_Text_PokemonAppearsToBeFeelingGood
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07B0:
-    Message 24
-    GoTo _070F
+AmitySquare_FollowerMon_SnuggledUpClose:
+    Message AmitySquare_Text_PokemonSnuggledUpClose
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07BB:
-    Message 17
-    GoTo _070F
+AmitySquare_FollowerMon_IsPickingAtTheGroundForSomeReason2:
+    Message AmitySquare_Text_PokemonIsPickingAtTheGroundForSomeReason
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07C6:
-    Message 25
-    GoTo _070F
+AmitySquare_FollowerMon_PretendedToTrip:
+    Message AmitySquare_Text_PokemonPretendedToTrip
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07D1:
-    Message 26
-    GoTo _070F
+AmitySquare_FollowerMon_GaveAContentedYawn:
+    Message AmitySquare_Text_PokemonGaveAContentedYawn
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07DC:
-    Message 27
-    GoTo _070F
+AmitySquare_FollowerMon_IsSniffingAtTheGrass:
+    Message AmitySquare_Text_PokemonIsSniffingAtTheGrass
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07E7:
-    Message 21
-    GoTo _070F
+AmitySquare_FollowerMon_SeemsToBeEnjoyingTheWalk2:
+    Message AmitySquare_Text_PokemonSeemsToBeEnjoyingTheWalk
+    GoTo AmitySquare_FollowerMon_End
     End
 
-_07F2:
+AmitySquare_WestReceptionist:
     SetVar VAR_MAP_LOCAL_A, 0
-    GoTo _080E
+    GoTo AmitySquare_Receptionist
     End
 
-_0800:
+AmitySquare_EastReceptionist:
     SetVar VAR_MAP_LOCAL_A, 1
-    GoTo _080E
+    GoTo AmitySquare_Receptionist
     End
 
-_080E:
+AmitySquare_Receptionist:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    BufferPartyMonNickname 0, VAR_UNK_0x409D
+    BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
     GetRandom VAR_RESULT, 6
-    CallIfEq VAR_RESULT, 0, _0884
-    CallIfEq VAR_RESULT, 1, _0889
-    CallIfEq VAR_RESULT, 2, _088E
-    CallIfEq VAR_RESULT, 3, _0893
-    CallIfEq VAR_RESULT, 4, _0898
-    CallIfEq VAR_RESULT, 5, _089D
-    GoToIfEq VAR_MAP_LOCAL_A, 0, _08A2
-    GoTo _08B4
+    CallIfEq VAR_RESULT, 0, AmitySquare_YourPokemonLooksQuitePleasedFollowingYouAround
+    CallIfEq VAR_RESULT, 1, AmitySquare_OkTheOwnerOfAmitySquare
+    CallIfEq VAR_RESULT, 2, AmitySquare_YouMayFindUsefulItemsOnTheGround
+    CallIfEq VAR_RESULT, 3, AmitySquare_AreYouEnjoyingYourStroll
+    CallIfEq VAR_RESULT, 4, AmitySquare_ItMakesMeHappySeeingAllTheCutePokemon
+    CallIfEq VAR_RESULT, 5, AmitySquare_YouMaySpendAllTheTimeYouLikeInAmitySquare
+    GoToIfEq VAR_MAP_LOCAL_A, 0, AmitySquare_WestReceptionist_End
+    GoTo AmitySquare_EastReceptionist_End
     End
 
-_0884:
-    Message 7
+AmitySquare_YourPokemonLooksQuitePleasedFollowingYouAround:
+    Message AmitySquare_Text_YourPokemonLooksQuitePleasedFollowingYouAround
     Return
 
-_0889:
-    Message 8
+AmitySquare_OkTheOwnerOfAmitySquare:
+    Message AmitySquare_Text_OkTheOwnerOfAmitySquare
     Return
 
-_088E:
-    Message 9
+AmitySquare_YouMayFindUsefulItemsOnTheGround:
+    Message AmitySquare_Text_YouMayFindUsefulItemsOnTheGround
     Return
 
-_0893:
-    Message 10
+AmitySquare_AreYouEnjoyingYourStroll:
+    Message AmitySquare_Text_AreYouEnjoyingYourStroll
     Return
 
-_0898:
-    Message 11
+AmitySquare_ItMakesMeHappySeeingAllTheCutePokemon:
+    Message AmitySquare_Text_ItMakesMeHappySeeingAllTheCutePokemon
     Return
 
-_089D:
-    Message 12
+AmitySquare_YouMaySpendAllTheTimeYouLikeInAmitySquare:
+    Message AmitySquare_Text_YouMaySpendAllTheTimeYouLikeInAmitySquare
     Return
 
-_08A2:
+AmitySquare_WestReceptionist_End:
     WaitABXPadPress
     CloseMessage
     ApplyMovement 0, _08C8
@@ -615,7 +622,7 @@ _08A2:
     ReleaseAll
     End
 
-_08B4:
+AmitySquare_EastReceptionist_End:
     WaitABXPadPress
     CloseMessage
     ApplyMovement 1, _08D0
@@ -633,347 +640,347 @@ _08D0:
     MoveAction_002
     EndMovement
 
-_08D8:
+AmitySquare_DrifloonMan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 28
+    Message AmitySquare_Text_TheseRuinsAreFromALongLongTimeAgo
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_08EB:
+AmitySquare_Drifloon:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_DRIFLOON
-    Message 29
+    Message AmitySquare_Text_DrifloonFoon
     WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_090A:
+AmitySquare_HappinyWoman:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 30
+    Message AmitySquare_Text_IComeHereWithMyHappinyEverySingleDay
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_091D:
+AmitySquare_Happiny:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 31
+    Message AmitySquare_Text_HappinyAppearsToBeDrowsy
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0930:
+AmitySquare_PikachuMan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 32
+    Message AmitySquare_Text_OohIJustCantBelieveIt
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0943:
+AmitySquare_Pikachu:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
-    Message 33
+    Message AmitySquare_Text_PikachuPikkaPika
     WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0962:
+AmitySquare_ClefairyGirl:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 34
+    Message AmitySquare_Text_YouShouldTalkToYourPokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0975:
+AmitySquare_Clefairy:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_CLEFAIRY
-    Message 35
+    Message AmitySquare_Text_ThereIsSomethingShinyInClefairysHands
     WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0994:
+AmitySquare_CheckPartyHasSpecies:
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PIKACHU
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_CLEFAIRY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PSYDUCK
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PACHIRISU
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_DRIFLOON
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_BUNEARY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_HAPPINY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_TURTWIG
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_GROTLE
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_TORTERRA
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_CHIMCHAR
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_MONFERNO
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_INFERNAPE
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PIPLUP
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PRINPLUP
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_EMPOLEON
-    GoToIfEq VAR_RESULT, 1, _01B6
-    GoTo _0182
+    GoToIfEq VAR_RESULT, TRUE, _01B6
+    GoTo AmitySquare_ListPermittedSpecies
     End
 
-_0ACC:
+AmitySquare_CheckPartyHasSpecies_NationalDex:
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PIKACHU
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_CLEFAIRY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PSYDUCK
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PACHIRISU
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_DRIFLOON
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_BUNEARY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_HAPPINY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_JIGGLYPUFF
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_TORCHIC
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_SKITTY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_SHROOMISH
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_TURTWIG
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_GROTLE
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_TORTERRA
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_CHIMCHAR
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_MONFERNO
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_INFERNAPE
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PIPLUP
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PRINPLUP
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_EMPOLEON
-    GoToIfEq VAR_RESULT, 1, _01B6
-    GoTo _01A3
+    GoToIfEq VAR_RESULT, TRUE, _01B6
+    GoTo AmitySquare_ListPermittedSpecies_NationalDex
     End
 
-_0C50:
+AmitySquare_CheckAllowedMon:
     GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
-    GoToIfEq VAR_RESULT, 25, _0D2E
-    GoToIfEq VAR_RESULT, 35, _0D2E
-    GoToIfEq VAR_RESULT, 54, _0D2E
-    GoToIfEq VAR_RESULT, 0x1A1, _0D2E
-    GoToIfEq VAR_RESULT, 0x1A9, _0D2E
-    GoToIfEq VAR_RESULT, 0x1AB, _0D2E
-    GoToIfEq VAR_RESULT, 0x1B8, _0D2E
-    GoToIfEq VAR_RESULT, 0x183, _0D2E
-    GoToIfEq VAR_RESULT, 0x184, _0D2E
-    GoToIfEq VAR_RESULT, 0x185, _0D2E
-    GoToIfEq VAR_RESULT, 0x186, _0D2E
-    GoToIfEq VAR_RESULT, 0x187, _0D2E
-    GoToIfEq VAR_RESULT, 0x188, _0D2E
-    GoToIfEq VAR_RESULT, 0x189, _0D2E
-    GoToIfEq VAR_RESULT, 0x18A, _0D2E
-    GoToIfEq VAR_RESULT, 0x18B, _0D2E
-    SetVar VAR_RESULT, 0
+    GoToIfEq VAR_RESULT, SPECIES_PIKACHU, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_CLEFAIRY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PSYDUCK, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PACHIRISU, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_DRIFLOON, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_BUNEARY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_HAPPINY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_GROTLE, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_TORTERRA, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_MONFERNO, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_INFERNAPE, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PRINPLUP, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_EMPOLEON, AmitySquare_SetMonAllowedFlag
+    SetVar VAR_RESULT, FALSE
     Return
 
-_0D2E:
-    SetVar VAR_RESULT, 1
+AmitySquare_SetMonAllowedFlag:
+    SetVar VAR_RESULT, TRUE
     Return
 
-_0D36:
+AmitySquare_CheckAllowedMon_NationalDex:
     GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
-    GoToIfEq VAR_RESULT, 25, _0D2E
-    GoToIfEq VAR_RESULT, 35, _0D2E
-    GoToIfEq VAR_RESULT, 54, _0D2E
-    GoToIfEq VAR_RESULT, 0x1A1, _0D2E
-    GoToIfEq VAR_RESULT, 0x1A9, _0D2E
-    GoToIfEq VAR_RESULT, 0x1AB, _0D2E
-    GoToIfEq VAR_RESULT, 0x1B8, _0D2E
-    GoToIfEq VAR_RESULT, 39, _0D2E
-    GoToIfEq VAR_RESULT, 0xFF, _0D2E
-    GoToIfEq VAR_RESULT, 0x12C, _0D2E
-    GoToIfEq VAR_RESULT, 0x11D, _0D2E
-    GoToIfEq VAR_RESULT, 0x183, _0D2E
-    GoToIfEq VAR_RESULT, 0x184, _0D2E
-    GoToIfEq VAR_RESULT, 0x185, _0D2E
-    GoToIfEq VAR_RESULT, 0x186, _0D2E
-    GoToIfEq VAR_RESULT, 0x187, _0D2E
-    GoToIfEq VAR_RESULT, 0x188, _0D2E
-    GoToIfEq VAR_RESULT, 0x189, _0D2E
-    GoToIfEq VAR_RESULT, 0x18A, _0D2E
-    GoToIfEq VAR_RESULT, 0x18B, _0D2E
-    SetVar VAR_RESULT, 0
+    GoToIfEq VAR_RESULT, SPECIES_PIKACHU, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_CLEFAIRY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PSYDUCK, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PACHIRISU, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_DRIFLOON, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_BUNEARY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_HAPPINY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_JIGGLYPUFF, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_TORCHIC, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_SKITTY, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_SHROOMISH, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_GROTLE, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_TORTERRA, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_MONFERNO, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_INFERNAPE, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_PRINPLUP, AmitySquare_SetMonAllowedFlag
+    GoToIfEq VAR_RESULT, SPECIES_EMPOLEON, AmitySquare_SetMonAllowedFlag
+    SetVar VAR_RESULT, FALSE
     Return
 
-_0E48:
-    SetVar VAR_0x8008, VAR_UNK_0x409A
-    GoToIfEq VAR_0x8008, 25, _0F5A
-    GoToIfEq VAR_0x8008, 0xFF, _0F68
-    GoToIfEq VAR_0x8008, 35, _0F76
-    GoToIfEq VAR_0x8008, 54, _0F84
-    GoToIfEq VAR_0x8008, 0x1A1, _0F92
-    GoToIfEq VAR_0x8008, 0x1A9, _0FA0
-    GoToIfEq VAR_0x8008, 0x1AB, _0FAE
-    GoToIfEq VAR_0x8008, 0x1B8, _0FBC
-    GoToIfEq VAR_0x8008, 39, _0FCA
-    GoToIfEq VAR_0x8008, 0x12C, _0FD8
-    GoToIfEq VAR_0x8008, 0x11D, _0FE6
-    GoToIfEq VAR_0x8008, 0x183, _0FF4
-    GoToIfEq VAR_0x8008, 0x184, _1002
-    GoToIfEq VAR_0x8008, 0x185, _1010
-    GoToIfEq VAR_0x8008, 0x186, _101E
-    GoToIfEq VAR_0x8008, 0x187, _102C
-    GoToIfEq VAR_0x8008, 0x188, _103A
-    GoToIfEq VAR_0x8008, 0x189, _1048
-    GoToIfEq VAR_0x8008, 0x18A, _1056
-    GoToIfEq VAR_0x8008, 0x18B, _1064
+AmitySquare_SetFollowerGfx:
+    SetVar VAR_0x8008, VAR_FOLLOWER_MON_SPECIES
+    GoToIfEq VAR_0x8008, SPECIES_PIKACHU, AmitySquare_SetFollowerGfx_Pikachu
+    GoToIfEq VAR_0x8008, SPECIES_TORCHIC, AmitySquare_SetFollowerGfx_Torchic
+    GoToIfEq VAR_0x8008, SPECIES_CLEFAIRY, AmitySquare_SetFollowerGfx_Clefairy
+    GoToIfEq VAR_0x8008, SPECIES_PSYDUCK, AmitySquare_SetFollowerGfx_Psyduck
+    GoToIfEq VAR_0x8008, SPECIES_PACHIRISU, AmitySquare_SetFollowerGfx_Pachirisu
+    GoToIfEq VAR_0x8008, SPECIES_DRIFLOON, AmitySquare_SetFollowerGfx_Drifloon
+    GoToIfEq VAR_0x8008, SPECIES_BUNEARY, AmitySquare_SetFollowerGfx_Buneary
+    GoToIfEq VAR_0x8008, SPECIES_HAPPINY, AmitySquare_SetFollowerGfx_Happiny
+    GoToIfEq VAR_0x8008, SPECIES_JIGGLYPUFF, AmitySquare_SetFollowerGfx_Jigglypuff
+    GoToIfEq VAR_0x8008, SPECIES_SKITTY, AmitySquare_SetFollowerGfx_Skitty
+    GoToIfEq VAR_0x8008, SPECIES_SHROOMISH, AmitySquare_SetFollowerGfx_Shroomish
+    GoToIfEq VAR_0x8008, SPECIES_TURTWIG, AmitySquare_SetFollowerGfx_Turtwig
+    GoToIfEq VAR_0x8008, SPECIES_GROTLE, AmitySquare_SetFollowerGfx_Grottle
+    GoToIfEq VAR_0x8008, SPECIES_TORTERRA, AmitySquare_SetFollowerGfx_Torterra
+    GoToIfEq VAR_0x8008, SPECIES_CHIMCHAR, AmitySquare_SetFollowerGfx_Chimchar
+    GoToIfEq VAR_0x8008, SPECIES_MONFERNO, AmitySquare_SetFollowerGfx_Monferno
+    GoToIfEq VAR_0x8008, SPECIES_INFERNAPE, AmitySquare_SetFollowerGfx_Infernape
+    GoToIfEq VAR_0x8008, SPECIES_PIPLUP, AmitySquare_SetFollowerGfx_Piplup
+    GoToIfEq VAR_0x8008, SPECIES_PRINPLUP, AmitySquare_SetFollowerGfx_Prinplup
+    GoToIfEq VAR_0x8008, SPECIES_EMPOLEON, AmitySquare_SetFollowerGfx_Empoleon
     GoTo _02BB
     End
 
-_0F5A:
-    SetVar VAR_OBJ_GFX_ID_0, 71
+AmitySquare_SetFollowerGfx_Pikachu:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PIKACHU
     GoTo _1072
     End
 
-_0F68:
-    SetVar VAR_OBJ_GFX_ID_0, 78
+AmitySquare_SetFollowerGfx_Torchic:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_TORCHIC
     GoTo _1072
     End
 
-_0F76:
-    SetVar VAR_OBJ_GFX_ID_0, 72
+AmitySquare_SetFollowerGfx_Clefairy:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_CLEFAIRY
     GoTo _1072
     End
 
-_0F84:
-    SetVar VAR_OBJ_GFX_ID_0, 74
+AmitySquare_SetFollowerGfx_Psyduck:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PSYDUCK
     GoTo _1072
     End
 
-_0F92:
-    SetVar VAR_OBJ_GFX_ID_0, 204
+AmitySquare_SetFollowerGfx_Pachirisu:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PACHIRISU
     GoTo _1072
     End
 
-_0FA0:
-    SetVar VAR_OBJ_GFX_ID_0, 185
+AmitySquare_SetFollowerGfx_Drifloon:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_DRIFLOON
     GoTo _1072
     End
 
-_0FAE:
-    SetVar VAR_OBJ_GFX_ID_0, 206
+AmitySquare_SetFollowerGfx_Buneary:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_BUNEARY
     GoTo _1072
     End
 
-_0FBC:
-    SetVar VAR_OBJ_GFX_ID_0, 207
+AmitySquare_SetFollowerGfx_Happiny:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_HAPPINY
     GoTo _1072
     End
 
-_0FCA:
-    SetVar VAR_OBJ_GFX_ID_0, 73
+AmitySquare_SetFollowerGfx_Jigglypuff:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_JIGGLYPUFF
     GoTo _1072
     End
 
-_0FD8:
-    SetVar VAR_OBJ_GFX_ID_0, 79
+AmitySquare_SetFollowerGfx_Skitty:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SKITTY
     GoTo _1072
     End
 
-_0FE6:
-    SetVar VAR_OBJ_GFX_ID_0, 205
+AmitySquare_SetFollowerGfx_Shroomish:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SHROOMISH
     GoTo _1072
     End
 
-_0FF4:
-    SetVar VAR_OBJ_GFX_ID_0, 220
+AmitySquare_SetFollowerGfx_Turtwig:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_TURTWIG
     GoTo _1072
     End
 
-_1002:
-    SetVar VAR_OBJ_GFX_ID_0, 221
+AmitySquare_SetFollowerGfx_Grottle:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_GROTLE
     GoTo _1072
     End
 
-_1010:
-    SetVar VAR_OBJ_GFX_ID_0, 222
+AmitySquare_SetFollowerGfx_Torterra:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_TORTERRA
     GoTo _1072
     End
 
-_101E:
-    SetVar VAR_OBJ_GFX_ID_0, 223
+AmitySquare_SetFollowerGfx_Chimchar:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_CHIMCHAR
     GoTo _1072
     End
 
-_102C:
-    SetVar VAR_OBJ_GFX_ID_0, 224
+AmitySquare_SetFollowerGfx_Monferno:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_MONFERNO
     GoTo _1072
     End
 
-_103A:
-    SetVar VAR_OBJ_GFX_ID_0, 225
+AmitySquare_SetFollowerGfx_Infernape:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_INFERNAPE
     GoTo _1072
     End
 
-_1048:
-    SetVar VAR_OBJ_GFX_ID_0, 226
+AmitySquare_SetFollowerGfx_Piplup:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PIPLUP
     GoTo _1072
     End
 
-_1056:
-    SetVar VAR_OBJ_GFX_ID_0, 227
+AmitySquare_SetFollowerGfx_Prinplup:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PRINPLUP
     GoTo _1072
     End
 
-_1064:
-    SetVar VAR_OBJ_GFX_ID_0, 228
+AmitySquare_SetFollowerGfx_Empoleon:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_EMPOLEON
     GoTo _1072
     End
 
@@ -983,56 +990,55 @@ _1072:
     GoTo _02C9
     End
 
-_1084:
+AmitySquare_FollowerMon:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    BufferPartyMonNickname 0, VAR_UNK_0x409D
+    BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
     GetAmitySquareStepCount VAR_RESULT
-    GoToIfGe VAR_RESULT, 200, _04D8
-    GoTo _05DD
+    GoToIfGe VAR_RESULT, 200, AmitySquare_FollowerMon_PickUp
+    GoTo AmitySquare_FollowerMon_Message
     End
 
-_10AA:
+AmitySquare_GiftMan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0AB5, _117C
-    Message 36
-    GetAmitySquareBerryOrAccessoryIDFromMan VAR_UNK_0x40AB, VAR_0x8004
-    ScrCmd_2E0 VAR_UNK_0x40AB, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _10E1
-    GoTo _1136
+    GoToIfSet FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED, AmitySquare_GiftMan_ReceivedGift
+    Message AmitySquare_Text_HelloHowDoYouDoILoveThisPark
+    GetAmitySquareBerryOrAccessoryIDFromMan VAR_AMITY_SQUARE_GIFT_ID, LOCALID_ITEM_OR_ACCESSORY_ID
+    GoToIfAmitySquareManGiftIsNotAccesory VAR_AMITY_SQUARE_GIFT_ID, AmitySquare_GiftMan_ItemGift
+    GoTo AmitySquare_GiftMan_AccessoryGift
     End
 
-_10E1:
-    BufferItemName 0, VAR_0x8004
-    Message 37
+AmitySquare_GiftMan_ItemGift:
+    BufferItemName 0, LOCALID_ITEM_OR_ACCESSORY_ID
+    Message AmitySquare_Text_DoYouKnowTheItemIFoundSome
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _1161
-    SetVar VAR_0x8005, 5
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _1172
+    GoToIfEq VAR_RESULT, MENU_NO, AmitySquare_GiftMan_DeclinedGift
+    SetVar LOCALID_COUNT, 5
+    GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT, AmitySquare_GiftMan_CannotFitItem
     BufferPlayerName 0
-    ScrCmd_33D 1, VAR_0x8004
+    BufferItemNamePlural 1, LOCALID_ITEM_OR_ACCESSORY_ID
     PlaySound SEQ_FANFA4
-    Message 40
+    Message AmitySquare_Text_PlayerReceivedItem
     WaitSound
-    AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
-    GoTo _117C
+    AddItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT
+    GoTo AmitySquare_GiftMan_ReceivedGift
     End
 
-_1136:
-    ScrCmd_261 0, VAR_0x8004
-    Message 37
+AmitySquare_GiftMan_AccessoryGift:
+    BufferAccessoryName 0, LOCALID_ITEM_OR_ACCESSORY_ID
+    Message AmitySquare_Text_DoYouKnowTheItemIFoundSome
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _1161
-    SetVar VAR_0x8005, 1
+    GoToIfEq VAR_RESULT, MENU_NO, AmitySquare_GiftMan_DeclinedGift
+    SetVar LOCALID_COUNT, 1
     CallCommonScript 0x7DF
-    GoTo _117C
+    GoTo AmitySquare_GiftMan_ReceivedGift
     End
 
-_1161:
-    Message 38
+AmitySquare_GiftMan_DeclinedGift:
+    Message AmitySquare_Text_OhItsNoProblemToMe
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1045,15 +1051,15 @@ _1161:
     .byte 2
     .byte 0
 
-_1172:
+AmitySquare_GiftMan_CannotFitItem:
     CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End
 
-_117C:
-    SetFlag FLAG_UNK_0x0AB5
-    Message 39
+AmitySquare_GiftMan_ReceivedGift:
+    SetFlag FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED
+    Message AmitySquare_Text_HahahahPerhapsIllSeeYouAgainTomorrow
     WaitABXPadPress
     CloseMessage
     ReleaseAll

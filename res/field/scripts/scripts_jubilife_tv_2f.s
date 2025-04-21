@@ -49,7 +49,7 @@ _0044:
     End
 
 _00A4:
-    ScrCmd_261 0, VAR_UNK_0x410A
+    BufferAccessoryName 0, VAR_UNK_0x410A
     Message 2
     WaitABXPadPress
     CloseMessage

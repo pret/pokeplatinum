@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0204CDDC_H
-#define POKEPLATINUM_UNK_0204CDDC_H
+#ifndef POKEPLATINUM_SCRCMD_AMITY_SQUARE_H
+#define POKEPLATINUM_SCRCMD_AMITY_SQUARE_H
 
 #include "field_script_context.h"
 
@@ -10,7 +10,7 @@ BOOL ScrCmd_ClearAmitySquareStepCount(ScriptContext *ctx);
 BOOL ScrCmd_GetAmitySquareStepCount(ScriptContext *ctx);
 BOOL ScrCmd_CalcAmitySquareFoundAccessory(ScriptContext *ctx);
 BOOL ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID(ScriptContext *ctx);
-BOOL ScrCmd_2E0(ScriptContext *param0);
+BOOL ScrCmd_CheckAmitySquareManGiftIsAccesory(ScriptContext *ctx);
 BOOL ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan(ScriptContext *ctx);
 
-#endif // POKEPLATINUM_UNK_0204CDDC_H
+#endif // POKEPLATINUM_SCRCMD_AMITY_SQUARE_H

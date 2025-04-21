@@ -11,7 +11,7 @@
 
 _000E:
     SetFlag FLAG_UNK_0x09D5
-    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _005C
     CheckItem ITEM_OAKS_LETTER, 1, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, _005C

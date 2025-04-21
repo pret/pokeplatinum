@@ -111,7 +111,7 @@ _012F:
     CallIfEq VAR_RESULT, SPECIES_TURTWIG, _0194
     CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, _019C
     CallIfEq VAR_RESULT, SPECIES_PIPLUP, _01A4
-    ScrCmd_261 0, VAR_0x8004
+    BufferAccessoryName 0, VAR_0x8004
     Message 37
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7DF

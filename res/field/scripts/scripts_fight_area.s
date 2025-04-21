@@ -221,7 +221,7 @@ _0198:
     ApplyMovement LOCALID_PLAYER, _041C
     WaitMovement
     RemoveObject 8
-    ScrCmd_22D 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     CallIfEq VAR_RESULT, 1, _02E0
     SetVar VAR_UNK_0x4081, 2
     Return

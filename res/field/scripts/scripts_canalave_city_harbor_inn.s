@@ -19,7 +19,7 @@ _001F:
     End
 
 _002C:
-    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 1, _0040
     End
 

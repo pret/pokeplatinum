@@ -71,7 +71,7 @@ _00AB:
     End
 
 _00B5:
-    ScrCmd_22D 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _00D6
     GoToIfEq VAR_RESULT, 1, _00DF
     End

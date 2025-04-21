@@ -2604,11 +2604,12 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1D3 arg0, arg1, arg2
+    // destVarID will be set to TRUE if the player has space for at least 'count' accessories of the specified type in their bag
+    .macro CanFitAccessory accessory, count, destVarID
     .short 467
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \accessory
+    .short \count
+    .short \destVarID
     .endm
 
     .macro ScrCmd_1D4 arg0, arg1, arg2
@@ -3091,10 +3092,18 @@
     .short 556
     .endm
 
-    .macro ScrCmd_22D arg0, arg1
+    .macro GetSetNationalDexEnabled getSet, destVar
     .short 557
-    .byte \arg0
-    .short \arg1
+    .byte \getSet
+    .short \destVar
+    .endm
+
+    .macro SetNationalDexEnabled
+    GetSetNationalDexEnabled 1, VAR_RESULT
+    .endm
+
+    .macro GetNationalDexEnabled destVar
+    GetSetNationalDexEnabled 2, \destVar
     .endm
 
     .macro ScrCmd_22E arg0, arg1
@@ -3442,10 +3451,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_261 arg0, arg1
+    .macro BufferAccessoryName templateArg, accessory
     .short 609
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \accessory
     .endm
 
     // Like CheckPartyHasSpecies, but args are reversed and it checks the species inside eggs.
@@ -4159,10 +4168,11 @@
     .short \destBerryAndAccessoryManOptionID
     .endm
 
-    .macro ScrCmd_2E0 arg0, arg1
-    .short 736
-    .short \arg0
-    .short \arg1
+    .macro GoToIfAmitySquareManGiftIsNotAccesory giftID, offset
+    .short 736 /* CheckAmitySquareManGiftIsAccesory */
+    .short \giftID
+    .short VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, \offset
     .endm
 
     .macro GetAmitySquareBerryOrAccessoryIDFromMan berryAndAccessoryManOptionID, destBerryOrAccessoryID
@@ -4688,10 +4698,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_33D arg0, arg1
+    .macro BufferItemNamePlural templateArg, item
     .short 829
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
     .macro ScrCmd_33E arg0, arg1

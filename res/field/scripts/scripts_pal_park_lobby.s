@@ -534,7 +534,7 @@ _06CF:
 _06DA:
     SetVar VAR_0x8004, ACCESSORY_CROWN
     SetVar VAR_0x8005, 1
-    ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CanFitAccessory VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06C4
     Message 67
     GoTo _079E
@@ -543,7 +543,7 @@ _06DA:
 _0706:
     SetVar VAR_0x8004, ACCESSORY_TIARA
     SetVar VAR_0x8005, 1
-    ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CanFitAccessory VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06C4
     Message 68
     GoTo _079E
