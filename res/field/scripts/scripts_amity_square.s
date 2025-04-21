@@ -402,7 +402,7 @@ _054D:
 _056C:
     SetVar VAR_0x8004, VAR_UNK_0x409C
     SetVar VAR_0x8005, 1
-    ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CanFitAccessory VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0524
     GoTo _05BE
     End
@@ -410,7 +410,7 @@ _056C:
 _0595:
     SetVar VAR_0x8004, VAR_UNK_0x409C
     SetVar VAR_0x8005, 1
-    ScrCmd_1D3 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CanFitAccessory VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _05DD
     GoTo _05BE
     End

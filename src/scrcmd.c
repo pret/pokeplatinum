@@ -563,7 +563,7 @@ static BOOL ScrCmd_GiveJournal(ScriptContext *ctx);
 static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx);
 static BOOL ScrCmd_1CE(ScriptContext *ctx);
 static BOOL ScrCmd_1D2(ScriptContext *ctx);
-static BOOL ScrCmd_1D3(ScriptContext *ctx);
+static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_1D4(ScriptContext *ctx);
 static BOOL ScrCmd_1D5(ScriptContext *ctx);
 static BOOL ScrCmd_1D6(ScriptContext *ctx);
@@ -1233,7 +1233,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Flash,
     ScrCmd_Defog,
     ScrCmd_1D2,
-    ScrCmd_1D3,
+    ScrCmd_CanFitAccessory,
     ScrCmd_1D4,
     ScrCmd_1D5,
     ScrCmd_1D6,
@@ -6109,17 +6109,17 @@ static BOOL ScrCmd_1D2(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_1D3(ScriptContext *ctx)
+static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx)
 {
     UnkStruct_0202A750 *v0;
     UnkStruct_02029D04 *v1;
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 *v4 = ScriptContext_GetVarPointer(ctx);
+    u16 accessory = ScriptContext_GetVar(ctx);
+    u16 count = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     v0 = sub_0202A750(ctx->fieldSystem->saveData);
     v1 = sub_02029D04(v0);
-    *v4 = sub_02029D50(v1, v2, v3);
+    *destVar = sub_02029D50(v1, accessory, count);
 
     return 0;
 }

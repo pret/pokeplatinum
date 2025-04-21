@@ -2604,11 +2604,12 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1D3 arg0, arg1, arg2
+    // destVarID will be set to TRUE if the player has space for at least 'count' accessories of the specified type in their bag
+    .macro CanFitAccessory accessory, count, destVarID
     .short 467
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \accessory
+    .short \count
+    .short \destVarID
     .endm
 
     .macro ScrCmd_1D4 arg0, arg1, arg2
