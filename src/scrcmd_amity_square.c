@@ -1,4 +1,4 @@
-#include "unk_0204CDDC.h"
+#include "scrcmd_amity_square.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -134,18 +134,18 @@ BOOL ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_2E0(ScriptContext *param0)
+BOOL ScrCmd_CheckAmitySquareManGiftIsAccesory(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
+    u16 giftID = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    if (v0 < 9) {
-        *v1 = 0;
+    if (giftID < 9) {
+        *destVar = FALSE;
     } else {
-        *v1 = 1;
+        *destVar = TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan(ScriptContext *ctx)

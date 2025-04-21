@@ -136,6 +136,7 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "scrcmd_amity_square.h"
 #include "scrcmd_coins.h"
 #include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_game_corner_prize.h"
@@ -183,7 +184,6 @@
 #include "unk_0204B64C.h"
 #include "unk_0204C500.h"
 #include "unk_0204CA84.h"
-#include "unk_0204CDDC.h"
 #include "unk_0204CFFC.h"
 #include "unk_0204E240.h"
 #include "unk_0204E75C.h"
@@ -1502,7 +1502,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FindPartySlotWithSpecies,
     ScrCmd_2DE,
     ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID,
-    ScrCmd_2E0,
+    ScrCmd_CheckAmitySquareManGiftIsAccesory,
     ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan,
     ScrCmd_2E2,
     ScrCmd_2E3,

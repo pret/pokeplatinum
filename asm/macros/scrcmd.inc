@@ -4159,10 +4159,11 @@
     .short \destBerryAndAccessoryManOptionID
     .endm
 
-    .macro ScrCmd_2E0 arg0, arg1
-    .short 736
-    .short \arg0
-    .short \arg1
+    .macro GoToIfAmitySquareManGiftIsNotAccesory giftID, offset
+    .short 736 /* CheckAmitySquareManGiftIsAccesory */
+    .short \giftID
+    .short VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, \offset
     .endm
 
     .macro GetAmitySquareBerryOrAccessoryIDFromMan berryAndAccessoryManOptionID, destBerryOrAccessoryID

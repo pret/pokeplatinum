@@ -1000,8 +1000,7 @@ _10AA:
     GoToIfSet FLAG_UNK_0x0AB5, _117C
     Message AmitySquare_Text_HelloHowDoYouDoILoveThisPark
     GetAmitySquareBerryOrAccessoryIDFromMan VAR_UNK_0x40AB, VAR_0x8004
-    ScrCmd_2E0 VAR_UNK_0x40AB, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _10E1
+    GoToIfAmitySquareManGiftIsNotAccesory VAR_UNK_0x40AB, _10E1
     GoTo _1136
     End
 
