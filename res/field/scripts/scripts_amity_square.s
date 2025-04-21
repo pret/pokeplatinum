@@ -2,6 +2,7 @@
 #include "res/text/bank/amity_square.h"
 
 #define LOCALID_HAS_NATIONAL_DEX     VAR_MAP_LOCAL_0
+#define LOCALID_ITEM_OR_ACCESSORY_ID VAR_0x8004
 
     .data
 
@@ -377,16 +378,16 @@ _04D8:
     End
 
 _04FB:
-    SetVar VAR_0x8004, VAR_FOLLOWER_MON_PICKUP_ITEM_ID
+    SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ITEM_ID
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0595
+    GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, VAR_0x8005, VAR_RESULT, _0595
     GoTo _054D
     End
 
 _0524:
-    SetVar VAR_0x8004, VAR_FOLLOWER_MON_PICKUP_ITEM_ID
+    SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ITEM_ID
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _05DD
+    GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, VAR_0x8005, VAR_RESULT, _05DD
     GoTo _054D
     End
 
@@ -394,7 +395,7 @@ _054D:
     PlayCry VAR_FOLLOWER_MON_SPECIES
     Message AmitySquare_Text_OhPokemonIsHoldingSomething
     WaitCry
-    ScrCmd_27C 1, VAR_0x8004
+    ScrCmd_27C 1, LOCALID_ITEM_OR_ACCESSORY_ID
     IncrementGameRecord RECORD_UNK_051
     CallCommonScript 0x7E0
     CloseMessage
@@ -402,17 +403,17 @@ _054D:
     End
 
 _056C:
-    SetVar VAR_0x8004, VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID
+    SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID
     SetVar VAR_0x8005, 1
-    CanFitAccessory VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CanFitAccessory LOCALID_ITEM_OR_ACCESSORY_ID, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0524
     GoTo _05BE
     End
 
 _0595:
-    SetVar VAR_0x8004, VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID
+    SetVar LOCALID_ITEM_OR_ACCESSORY_ID, VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID
     SetVar VAR_0x8005, 1
-    CanFitAccessory VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CanFitAccessory LOCALID_ITEM_OR_ACCESSORY_ID, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _05DD
     GoTo _05BE
     End
@@ -421,7 +422,7 @@ _05BE:
     PlayCry VAR_FOLLOWER_MON_SPECIES
     Message AmitySquare_Text_OhPokemonIsHoldingSomething
     WaitCry
-    ScrCmd_27C 2, VAR_0x8004
+    ScrCmd_27C 2, LOCALID_ITEM_OR_ACCESSORY_ID
     IncrementGameRecord RECORD_UNK_051
     CallCommonScript 0x7DF
     CloseMessage
@@ -1001,29 +1002,29 @@ _10AA:
     FacePlayer
     GoToIfSet FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED, _117C
     Message AmitySquare_Text_HelloHowDoYouDoILoveThisPark
-    GetAmitySquareBerryOrAccessoryIDFromMan VAR_AMITY_SQUARE_GIFT_ID, VAR_0x8004
+    GetAmitySquareBerryOrAccessoryIDFromMan VAR_AMITY_SQUARE_GIFT_ID, LOCALID_ITEM_OR_ACCESSORY_ID
     GoToIfAmitySquareManGiftIsNotAccesory VAR_AMITY_SQUARE_GIFT_ID, _10E1
     GoTo _1136
     End
 
 _10E1:
-    BufferItemName 0, VAR_0x8004
+    BufferItemName 0, LOCALID_ITEM_OR_ACCESSORY_ID
     Message AmitySquare_Text_DoYouKnowTheItemIFoundSome
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _1161
     SetVar VAR_0x8005, 5
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _1172
+    GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, VAR_0x8005, VAR_RESULT, _1172
     BufferPlayerName 0
-    BufferItemNamePlural 1, VAR_0x8004
+    BufferItemNamePlural 1, LOCALID_ITEM_OR_ACCESSORY_ID
     PlaySound SEQ_FANFA4
     Message AmitySquare_Text_PlayerReceivedItem
     WaitSound
-    AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
+    AddItem LOCALID_ITEM_OR_ACCESSORY_ID, VAR_0x8005, VAR_RESULT
     GoTo _117C
     End
 
 _1136:
-    BufferAccessoryName 0, VAR_0x8004
+    BufferAccessoryName 0, LOCALID_ITEM_OR_ACCESSORY_ID
     Message AmitySquare_Text_DoYouKnowTheItemIFoundSome
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _1161
