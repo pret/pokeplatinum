@@ -108,7 +108,7 @@ _015A:
 
 _0174:
     SetVar LOCALID_HAS_NATIONAL_DEX, FALSE
-    GoTo _0994
+    GoTo AmitySquare_CheckPartyHasSpecies
     End
 
 _0182:
@@ -729,7 +729,7 @@ AmitySquare_Clefairy:
     ReleaseAll
     End
 
-_0994:
+AmitySquare_CheckPartyHasSpecies:
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PIKACHU
     GoToIfEq VAR_RESULT, 1, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_CLEFAIRY
@@ -765,7 +765,7 @@ _0994:
     GoTo _0182
     End
 
-_0ACC:
+AmitySquare_CheckPartyHasSpecies_NationalDex:
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PIKACHU
     GoToIfEq VAR_RESULT, 1, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_CLEFAIRY
