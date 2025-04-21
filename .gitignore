@@ -1,8 +1,5 @@
-# Meson files
+# Build directory
 /build/
-/tools/cw/build/
-/tools/cw/mwrap
-/tools/cw/mwrap.exe
 
 # Metroskrew artifacts
 /metroskrew-*.tar.xz
@@ -27,6 +24,9 @@
 /subprojects/meson-*/
 /subprojects/nitrorom/
 /subprojects/metroskrew/
+
+# Legacy mwrap compiler
+/tools/cw/mwrap
 
 # CLion folders
 .idea/
