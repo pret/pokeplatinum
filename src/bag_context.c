@@ -122,13 +122,13 @@ static u32 CalcTotalBallSeals(SaveData *saveData)
 
 static u32 GetNumAccessories(SaveData *saveData)
 {
-    UnkStruct_02029D04 *v0 = sub_02029D04(sub_0202A750(saveData));
+    UnkStruct_02029D04 *v0 = sub_02029D04(SaveData_GetImageClips(saveData));
     return sub_02029DF0(v0);
 }
 
 static u32 GetNumBackdrops(SaveData *saveData)
 {
-    UnkStruct_02029D04 *v0 = sub_02029D04(sub_0202A750(saveData));
+    UnkStruct_02029D04 *v0 = sub_02029D04(SaveData_GetImageClips(saveData));
     return sub_02029E0C(v0);
 }
 

@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
+#include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_02093800.h"
 #include "struct_defs/struct_02093BBC.h"
 #include "struct_defs/struct_02094A58.h"
@@ -418,7 +418,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
     v0->unk_00.unk_115 = 110;
     v0->unk_00.unk_10D = v0->unk_00.unk_115;
     v0->unk_00.unk_10E = 1;
-    v0->unk_1980 = param0->unk_14;
+    v0->imageClips = param0->imageClips;
     v0->options = param0->options;
     v0->saveData = param0->saveData;
     v0->unk_1974 = param0->unk_08;
@@ -598,7 +598,7 @@ void sub_02093BBC(UnkStruct_02095C48 *param0)
 
     v0->unk_10 = param0->unk_00.unk_111;
     v0->unk_14 = param0->unk_00.unk_10F;
-    v0->unk_18 = sub_02029D04(param0->unk_1980);
+    v0->unk_18 = sub_02029D04(param0->imageClips);
     v0->unk_1C = &param0->unk_1984;
     v0->options = param0->options;
     v0->unk_24 = param0->unk_1978;
@@ -1428,16 +1428,11 @@ u32 sub_02094904(UnkStruct_02095C48 *param0)
 
     GF_ASSERT(v0 != 100);
 
-    {
-        UnkStruct_0202A750 *v1;
-        UnkStruct_02029D04 *v2;
+    ImageClips *imageClips = SaveData_GetImageClips(param0->saveData);
+    UnkStruct_02029D04 *v2 = sub_02029D04(imageClips);
 
-        v1 = sub_0202A750(param0->saveData);
-        v2 = sub_02029D04(v1);
-
-        if (sub_02029D50(v2, v0, 1) == 0) {
-            return 0xffff;
-        }
+    if (sub_02029D50(v2, v0, 1) == 0) {
+        return 0xffff;
     }
 
     return v0;
@@ -1636,8 +1631,8 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, Jo
     }
 
     if (sub_02094790(param0) == 0) {
-        UnkStruct_0202A750 *v11 = sub_0202A750(param0->saveData);
-        UnkStruct_02029C88 *v12 = sub_02029CD0(v11, param0->unk_00.unk_10F);
+        ImageClips *imageClips = SaveData_GetImageClips(param0->saveData);
+        UnkStruct_02029C88 *v12 = sub_02029CD0(imageClips, param0->unk_00.unk_10F);
 
         sub_0202A25C(v12);
         sub_0202A390(v12, param0->unk_00.unk_E8[param0->unk_00.unk_113]);

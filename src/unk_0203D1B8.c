@@ -10,10 +10,10 @@
 
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/gts_player_data.h"
+#include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
@@ -822,7 +822,7 @@ static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *saveData, int para
     UnkStruct_0203DA00 *v0;
     Pokemon *v1;
     int v2;
-    UnkStruct_0202A750 *v3;
+    ImageClips *imageClips;
     UnkStruct_02029C68 *v4;
     UnkStruct_02029D04 *v5;
 
@@ -832,9 +832,9 @@ static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *saveData, int para
 
     v0->unk_00 = v1;
 
-    v3 = sub_0202A750(saveData);
-    v4 = sub_02029CA8(v3, 0);
-    v5 = sub_02029D04(v3);
+    imageClips = SaveData_GetImageClips(saveData);
+    v4 = sub_02029CA8(imageClips, 0);
+    v5 = sub_02029D04(imageClips);
 
     v0->unk_04 = v4;
     v0->unk_08 = v5;

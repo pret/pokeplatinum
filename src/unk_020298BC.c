@@ -20,57 +20,6 @@
 #include "string_gf.h"
 #include "unk_02014A84.h"
 
-typedef struct UnkStruct_0202A138_t {
-    u32 unk_00;
-    u32 unk_04;
-    u16 unk_08;
-    u16 unk_0A[11];
-    u16 unk_20[8];
-    s8 unk_30;
-    u8 unk_31;
-    u8 unk_32;
-    u8 unk_33;
-    u8 unk_34;
-} UnkStruct_0202A138;
-
-typedef struct UnkStruct_0202A150_t {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    s8 unk_03;
-} UnkStruct_0202A150;
-
-typedef struct UnkStruct_02029C68_t {
-    u32 unk_00;
-    UnkStruct_0202A138 unk_04;
-    u32 unk_3C;
-    Sentence unk_40;
-    UnkStruct_0202A150 unk_48[10];
-    u8 unk_70;
-    u8 unk_71;
-} UnkStruct_02029C68;
-
-typedef struct UnkStruct_02029C88_t {
-    u32 unk_00;
-    u32 unk_04;
-    UnkStruct_0202A138 unk_08;
-    u32 unk_40;
-    UnkStruct_0202A150 unk_44[20];
-    u8 unk_94;
-} UnkStruct_02029C88;
-
-typedef struct UnkStruct_02029D04_t {
-    u32 unk_00[8];
-    u32 unk_20[2];
-    u32 unk_28[6];
-} UnkStruct_02029D04;
-
-typedef struct UnkStruct_0202A750_t {
-    UnkStruct_02029C68 unk_00[11];
-    UnkStruct_02029C88 unk_4C8[5];
-    UnkStruct_02029D04 unk_7A4;
-} UnkStruct_0202A750;
-
 static BOOL sub_020298BC(u32 param0)
 {
     if ((param0 == 0x1234) || (param0 == 0x2345)) {
@@ -306,24 +255,24 @@ static void sub_02029BD8(Pokemon *param0, u8 *param1, u8 *param2)
     *param2 += (5 * 8);
 }
 
-void ImageClip_Init(UnkStruct_0202A750 *param0)
+void ImageClips_Init(ImageClips *imageClips)
 {
     int v0;
 
     for (v0 = 0; v0 < 11; v0++) {
-        inline_02029BFC(&param0->unk_00[v0]);
+        inline_02029BFC(&imageClips->unk_00[v0]);
     }
 
     for (v0 = 0; v0 < 5; v0++) {
-        inline_02029BFC_1(&param0->unk_4C8[v0]);
+        inline_02029BFC_1(&imageClips->unk_4C8[v0]);
     }
 
-    sub_02029BB0(&param0->unk_7A4);
+    sub_02029BB0(&imageClips->unk_7A4);
 }
 
-int ImageClip_SaveSize(void)
+int ImageClips_SaveSize(void)
 {
-    return sizeof(UnkStruct_0202A750);
+    return sizeof(ImageClips);
 }
 
 int sub_02029C60(void)
@@ -352,37 +301,37 @@ UnkStruct_02029C88 *sub_02029C88(u32 heapID)
     return v0;
 }
 
-UnkStruct_02029C68 *sub_02029CA8(UnkStruct_0202A750 *param0, int param1)
+UnkStruct_02029C68 *sub_02029CA8(ImageClips *imageClips, int param1)
 {
     GF_ASSERT(param1 < 11);
-    GF_ASSERT(inline_02029CA8(&param0->unk_00[param1]));
+    GF_ASSERT(inline_02029CA8(&imageClips->unk_00[param1]));
 
-    return &param0->unk_00[param1];
+    return &imageClips->unk_00[param1];
 }
 
-UnkStruct_02029C88 *sub_02029CD0(UnkStruct_0202A750 *param0, int param1)
+UnkStruct_02029C88 *sub_02029CD0(ImageClips *imageClips, int param1)
 {
     GF_ASSERT(param1 < 5);
-    GF_ASSERT(inline_02029CD0(&param0->unk_4C8[param1]));
+    GF_ASSERT(inline_02029CD0(&imageClips->unk_4C8[param1]));
 
-    return &param0->unk_4C8[param1];
+    return &imageClips->unk_4C8[param1];
 }
 
-UnkStruct_02029D04 *sub_02029D04(UnkStruct_0202A750 *param0)
+UnkStruct_02029D04 *sub_02029D04(ImageClips *imageClips)
 {
-    return &param0->unk_7A4;
+    return &imageClips->unk_7A4;
 }
 
-BOOL sub_02029D10(const UnkStruct_0202A750 *param0, int param1)
+BOOL sub_02029D10(const ImageClips *imageClips, int param1)
 {
     GF_ASSERT(param1 < 11);
-    return sub_02029F34(&param0->unk_00[param1]);
+    return sub_02029F34(&imageClips->unk_00[param1]);
 }
 
-BOOL sub_02029D2C(const UnkStruct_0202A750 *param0, int param1)
+BOOL sub_02029D2C(const ImageClips *imageClips, int param1)
 {
     GF_ASSERT(param1 < 5);
-    return sub_0202A218(&param0->unk_4C8[param1]);
+    return sub_0202A218(&imageClips->unk_4C8[param1]);
 }
 
 BOOL sub_02029D50(const UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
@@ -890,7 +839,7 @@ s8 sub_0202A630(const UnkStruct_0202A150 *param0)
     return param0->unk_03;
 }
 
-static BOOL sub_0202A638(UnkStruct_0202A750 *param0, const UnkStruct_02029C68 *param1)
+static BOOL sub_0202A638(ImageClips *imageClips, const UnkStruct_02029C68 *param1)
 {
     int v0;
     const void *v1;
@@ -903,7 +852,7 @@ static BOOL sub_0202A638(UnkStruct_0202A750 *param0, const UnkStruct_02029C68 *p
         v2 = MATH_CalcCRC32(&v4, param1, sizeof(UnkStruct_02029C68));
 
         for (v0 = 0; v0 < 11; v0++) {
-            v1 = sub_02029CA8(param0, v0);
+            v1 = sub_02029CA8(imageClips, v0);
             MATH_CRC32InitTable(&v4);
             v3 = MATH_CalcCRC32(&v4, v1, sizeof(UnkStruct_02029C68));
 
@@ -919,7 +868,7 @@ static BOOL sub_0202A638(UnkStruct_0202A750 *param0, const UnkStruct_02029C68 *p
     return v5;
 }
 
-void sub_0202A6A8(u8 param0, int param1, UnkStruct_0202A750 *param2, const void **param3)
+void sub_0202A6A8(u8 param0, int param1, ImageClips *imageClips, const void **param3)
 {
     int v0;
     UnkStruct_02029C68 *v1;
@@ -937,7 +886,7 @@ void sub_0202A6A8(u8 param0, int param1, UnkStruct_0202A750 *param2, const void 
         if (param3[v3] != NULL) {
             v2 = param3[v3];
 
-            if (sub_0202A638(param2, v2) == 1) {
+            if (sub_0202A638(imageClips, v2) == 1) {
                 v0++;
             }
         }
@@ -945,8 +894,8 @@ void sub_0202A6A8(u8 param0, int param1, UnkStruct_0202A750 *param2, const void 
 
     for (v3 = 11 - 1; v3 >= 1; v3--) {
         if (v3 + v0 < 11) {
-            v1 = sub_02029CA8(param2, v3 + v0);
-            v2 = sub_02029CA8(param2, v3);
+            v1 = sub_02029CA8(imageClips, v3 + v0);
+            v2 = sub_02029CA8(imageClips, v3);
 
             sub_0202A0CC(v1, v2);
         }
@@ -962,8 +911,8 @@ void sub_0202A6A8(u8 param0, int param1, UnkStruct_0202A750 *param2, const void 
         if (param3[v3] != NULL) {
             v2 = param3[v3];
 
-            if (sub_0202A638(param2, v2) == 1) {
-                v1 = sub_02029CA8(param2, v4);
+            if (sub_0202A638(imageClips, v2) == 1) {
+                v1 = sub_02029CA8(imageClips, v4);
                 v4++;
                 sub_0202A0CC(v1, v2);
             }
@@ -971,7 +920,7 @@ void sub_0202A6A8(u8 param0, int param1, UnkStruct_0202A750 *param2, const void 
     }
 }
 
-UnkStruct_0202A750 *sub_0202A750(SaveData *saveData)
+ImageClips *SaveData_GetImageClips(SaveData *saveData)
 {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_IMAGE_CLIPS);
 }

@@ -72,9 +72,9 @@ int ov22_0225B660(ApplicationManager *appMan, int *param1)
     v1 = ApplicationManager_Args(appMan);
 
     if (v1->unk_08 == 0) {
-        v0->unk_00 = sub_02029CA8(v1->unk_00, v1->unk_04);
+        v0->unk_00 = sub_02029CA8(v1->imageClips, v1->unk_04);
     } else {
-        v0->unk_04 = sub_02029CD0(v1->unk_00, v1->unk_04);
+        v0->unk_04 = sub_02029CD0(v1->imageClips, v1->unk_04);
     }
 
     v0->unk_08 = v1->unk_04;

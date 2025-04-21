@@ -30,7 +30,6 @@
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -42,6 +41,7 @@
 #include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/special_encounter.h"
+#include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
 #include "struct_defs/underground.h"
@@ -3780,14 +3780,14 @@ static BOOL ScrCmd_WaitForTransition(ScriptContext *ctx)
 
 static BOOL sub_02041D98(FieldSystem *fieldSystem, int param1, int param2)
 {
-    UnkStruct_0202A750 *v0 = sub_0202A750(fieldSystem->saveData);
+    ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
     if (param1 == 0) {
-        if (!sub_02029D10(v0, param2)) {
+        if (!sub_02029D10(imageClips, param2)) {
             return FALSE;
         }
     } else {
-        if (!sub_02029D2C(v0, param2)) {
+        if (!sub_02029D2C(imageClips, param2)) {
             return FALSE;
         }
     }
@@ -3797,7 +3797,7 @@ static BOOL sub_02041D98(FieldSystem *fieldSystem, int param1, int param2)
 
 static UnkStruct_02041DC8 *sub_02041DC8(int heapID, FieldSystem *fieldSystem, int param2, int param3)
 {
-    UnkStruct_0202A750 *v3 = sub_0202A750(fieldSystem->saveData);
+    ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
     if (!sub_02041D98(fieldSystem, param2, param3)) {
         return NULL;
@@ -3806,7 +3806,7 @@ static UnkStruct_02041DC8 *sub_02041DC8(int heapID, FieldSystem *fieldSystem, in
     UnkStruct_02041DC8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02041DC8));
     memset(v0, 0, sizeof(UnkStruct_02041DC8));
 
-    v0->unk_00 = v3;
+    v0->imageClips = imageClips;
     v0->unk_08 = param2;
     v0->unk_04 = param3;
 
@@ -4042,8 +4042,8 @@ static BOOL ScrCmd_12F(ScriptContext *ctx)
 static BOOL ScrCmd_130(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
-    UnkStruct_0202A750 *v1 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029C68 *v2 = sub_02029CA8(v1, 0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    UnkStruct_02029C68 *v2 = sub_02029CA8(imageClips, 0);
 
     sub_0202A0A0(v2, v0);
 
@@ -5929,8 +5929,8 @@ static BOOL ScrCmd_AddAccessory(ScriptContext *ctx)
     u16 accessoryID = ScriptContext_GetVar(ctx);
     u16 amount = ScriptContext_GetVar(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    UnkStruct_02029D04 *v1 = sub_02029D04(imageClips);
 
     sub_02029E2C(v1, accessoryID, amount);
     return FALSE;
@@ -5942,8 +5942,8 @@ static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx)
     u16 count = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    UnkStruct_02029D04 *v1 = sub_02029D04(imageClips);
     *destVar = sub_02029D50(v1, accessory, count);
 
     return FALSE;
@@ -5955,8 +5955,8 @@ static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx)
     u16 v3 = ScriptContext_GetVar(ctx);
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    UnkStruct_02029D04 *v1 = sub_02029D04(imageClips);
 
     if (v3 <= sub_02029D94(v1, v2)) {
         *v4 = 1;
@@ -5971,8 +5971,8 @@ static BOOL ScrCmd_ObtainContestBackdrop(ScriptContext *ctx)
 {
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    UnkStruct_02029D04 *v1 = sub_02029D04(imageClips);
 
     sub_02029EFC(v1, v2);
     return FALSE;
@@ -5983,8 +5983,8 @@ static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx)
     u16 backdrop = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    UnkStruct_02029D04 *v1 = sub_02029D04(imageClips);
     *destVar = sub_02029D80(v1, backdrop);
 
     return FALSE;
@@ -6737,8 +6737,8 @@ static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx)
     int i;
     u16 *destAccessoryID = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    UnkStruct_02029D04 *v1 = sub_02029D04(imageClips);
 
     int unobtainedAccessoryCount = 0;
 
@@ -6838,8 +6838,8 @@ static BOOL ScrCmd_Unused_279(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    UnkStruct_02029D04 *v1 = sub_02029D04(imageClips);
 
     sub_02029EA0(v1, v2, v3);
     return FALSE;
