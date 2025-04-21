@@ -4285,7 +4285,7 @@
 #define VAR_UNK_0x40A8                        (STORY_VARS_START + 56)
 #define VAR_UNK_0x40A9                        (STORY_VARS_START + 57)
 #define VAR_UNK_0x40AA                        (STORY_VARS_START + 58)
-#define VAR_UNK_0x40AB                        (STORY_VARS_START + 59)
+#define VAR_AMITY_SQUARE_GIFT_ID              (STORY_VARS_START + 59)
 #define VAR_UNK_0x40AC                        (STORY_VARS_START + 60)
 #define VAR_UNK_0x40AD                        (STORY_VARS_START + 61)
 #define VAR_UNK_0x40AE                        (STORY_VARS_START + 62)

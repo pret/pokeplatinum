@@ -53,7 +53,7 @@
 _00B6:
     SetFlag FLAG_UNK_0x09CC
     SetFlag FLAG_UNK_0x02A1
-    CalcAmitySquareBerryAndAccessoryManOptionID VAR_UNK_0x40AB
+    CalcAmitySquareBerryAndAccessoryManOptionID VAR_AMITY_SQUARE_GIFT_ID
     GetRandom VAR_MAP_LOCAL_2, 5
     GoToIfEq VAR_MAP_LOCAL_2, 0, _00FE
     GoToIfEq VAR_MAP_LOCAL_2, 1, _0108
@@ -999,8 +999,8 @@ _10AA:
     FacePlayer
     GoToIfSet FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED, _117C
     Message AmitySquare_Text_HelloHowDoYouDoILoveThisPark
-    GetAmitySquareBerryOrAccessoryIDFromMan VAR_UNK_0x40AB, VAR_0x8004
-    GoToIfAmitySquareManGiftIsNotAccesory VAR_UNK_0x40AB, _10E1
+    GetAmitySquareBerryOrAccessoryIDFromMan VAR_AMITY_SQUARE_GIFT_ID, VAR_0x8004
+    GoToIfAmitySquareManGiftIsNotAccesory VAR_AMITY_SQUARE_GIFT_ID, _10E1
     GoTo _1136
     End
 
