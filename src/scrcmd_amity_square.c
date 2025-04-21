@@ -145,7 +145,7 @@ BOOL ScrCmd_CalcAmitySquareFoundAccessory(ScriptContext *ctx)
     return FALSE;
 }
 
-static const u16 sBerryAndAccesoryManOptions[] = {
+static const u16 sBerryAndAccessoryManOptions[] = {
     ITEM_MAGOST_BERRY,
     ITEM_CORNN_BERRY,
     ITEM_RABUTA_BERRY,
@@ -168,11 +168,11 @@ BOOL ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID(ScriptContext *ctx)
 {
     u16 *destBerryAndAccessoryManOptionID = ScriptContext_GetVarPointer(ctx);
 
-    *destBerryAndAccessoryManOptionID = LCRNG_Next() % (NELEMS(sBerryAndAccesoryManOptions));
+    *destBerryAndAccessoryManOptionID = LCRNG_Next() % (NELEMS(sBerryAndAccessoryManOptions));
     return FALSE;
 }
 
-BOOL ScrCmd_CheckAmitySquareManGiftIsAccesory(ScriptContext *ctx)
+BOOL ScrCmd_CheckAmitySquareManGiftIsAccessory(ScriptContext *ctx)
 {
     u16 giftID = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
@@ -191,6 +191,6 @@ BOOL ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan(ScriptContext *ctx)
     u16 berryAndAccessoryManOptionID = ScriptContext_GetVar(ctx);
     u16 *destBerryOrAccessoryID = ScriptContext_GetVarPointer(ctx);
 
-    *destBerryOrAccessoryID = sBerryAndAccesoryManOptions[berryAndAccessoryManOptionID];
+    *destBerryOrAccessoryID = sBerryAndAccessoryManOptions[berryAndAccessoryManOptionID];
     return FALSE;
 }

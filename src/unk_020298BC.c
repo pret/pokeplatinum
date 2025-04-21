@@ -385,14 +385,14 @@ BOOL sub_02029D2C(const UnkStruct_0202A750 *param0, int param1)
     return sub_0202A218(&param0->unk_4C8[param1]);
 }
 
-BOOL sub_02029D50(const UnkStruct_02029D04 *param0, u32 param1, u32 param2)
+BOOL sub_02029D50(const UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
 {
     u32 v0;
     BOOL v1 = 1;
 
-    v0 = sub_02029D94(param0, param1);
+    v0 = sub_02029D94(param0, accessory);
 
-    if (sub_02029BA4(param1)) {
+    if (sub_02029BA4(accessory)) {
         v0 += param2;
 
         if (v0 > 9) {

@@ -4168,8 +4168,8 @@
     .short \destBerryAndAccessoryManOptionID
     .endm
 
-    .macro GoToIfAmitySquareManGiftIsNotAccesory giftID, offset
-    .short 736 /* CheckAmitySquareManGiftIsAccesory */
+    .macro GoToIfAmitySquareManGiftIsNotAccessory giftID, offset
+    .short 736 /* CheckAmitySquareManGiftIsAccessory */
     .short \giftID
     .short VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, \offset

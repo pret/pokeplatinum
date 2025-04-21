@@ -1503,7 +1503,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FindPartySlotWithSpecies,
     ScrCmd_2DE,
     ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID,
-    ScrCmd_CheckAmitySquareManGiftIsAccesory,
+    ScrCmd_CheckAmitySquareManGiftIsAccessory,
     ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan,
     ScrCmd_2E2,
     ScrCmd_2E3,

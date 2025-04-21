@@ -6,7 +6,7 @@
 #define LOCALID_ITEM_OR_ACCESSORY_ID VAR_0x8004
 #define LOCALID_COUNT                VAR_0x8005
 #define PICKUP_TYPE_ITEM             0
-#define PICKUP_TYPE_ACCESORY         1
+#define PICKUP_TYPE_ACCESSORY        1
 
     .data
 
@@ -321,7 +321,7 @@ AmitySquare_FollowerMon_SetNextPickUpType_Item:
     Return
 
 AmitySquare_FollowerMon_SetNextPickUpType_Accessory:
-    SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, PICKUP_TYPE_ACCESORY
+    SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, PICKUP_TYPE_ACCESSORY
     Return
 
 AmitySquare_FollowerMon_SetPickupItemVar:
@@ -1007,7 +1007,7 @@ AmitySquare_GiftMan:
     GoToIfSet FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED, AmitySquare_GiftMan_ReceivedGift
     Message AmitySquare_Text_HelloHowDoYouDoILoveThisPark
     GetAmitySquareBerryOrAccessoryIDFromMan VAR_AMITY_SQUARE_GIFT_ID, LOCALID_ITEM_OR_ACCESSORY_ID
-    GoToIfAmitySquareManGiftIsNotAccesory VAR_AMITY_SQUARE_GIFT_ID, AmitySquare_GiftMan_ItemGift
+    GoToIfAmitySquareManGiftIsNotAccessory VAR_AMITY_SQUARE_GIFT_ID, AmitySquare_GiftMan_ItemGift
     GoTo AmitySquare_GiftMan_AccessoryGift
     End
 

@@ -10,7 +10,7 @@ BOOL ScrCmd_ClearAmitySquareStepCount(ScriptContext *ctx);
 BOOL ScrCmd_GetAmitySquareStepCount(ScriptContext *ctx);
 BOOL ScrCmd_CalcAmitySquareFoundAccessory(ScriptContext *ctx);
 BOOL ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID(ScriptContext *ctx);
-BOOL ScrCmd_CheckAmitySquareManGiftIsAccesory(ScriptContext *ctx);
+BOOL ScrCmd_CheckAmitySquareManGiftIsAccessory(ScriptContext *ctx);
 BOOL ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan(ScriptContext *ctx);
 
 #endif // POKEPLATINUM_SCRCMD_AMITY_SQUARE_H
