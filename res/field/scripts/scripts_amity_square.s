@@ -18,14 +18,14 @@
     ScriptEntry _1084
     ScriptEntry _07F2
     ScriptEntry _0800
-    ScriptEntry _08D8
-    ScriptEntry _08EB
-    ScriptEntry _090A
-    ScriptEntry _091D
-    ScriptEntry _0930
-    ScriptEntry _0943
-    ScriptEntry _0962
-    ScriptEntry _0975
+    ScriptEntry AmitySquare_DrifloonMan
+    ScriptEntry AmitySquare_Drifloon
+    ScriptEntry AmitySquare_HappinyWoman
+    ScriptEntry AmitySquare_Happiny
+    ScriptEntry AmitySquare_PikachuMan
+    ScriptEntry AmitySquare_Pikachu
+    ScriptEntry AmitySquare_ClefairyGirl
+    ScriptEntry AmitySquare_Clefairy
     ScriptEntry AmitySquare_GiftMan
     ScriptEntry _118B
     ScriptEntry _1199
@@ -640,7 +640,7 @@ _08D0:
     MoveAction_002
     EndMovement
 
-_08D8:
+AmitySquare_DrifloonMan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -650,7 +650,7 @@ _08D8:
     ReleaseAll
     End
 
-_08EB:
+AmitySquare_Drifloon:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -663,7 +663,7 @@ _08EB:
     ReleaseAll
     End
 
-_090A:
+AmitySquare_HappinyWoman:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -673,7 +673,7 @@ _090A:
     ReleaseAll
     End
 
-_091D:
+AmitySquare_Happiny:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -683,7 +683,7 @@ _091D:
     ReleaseAll
     End
 
-_0930:
+AmitySquare_PikachuMan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -693,7 +693,7 @@ _0930:
     ReleaseAll
     End
 
-_0943:
+AmitySquare_Pikachu:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -706,7 +706,7 @@ _0943:
     ReleaseAll
     End
 
-_0962:
+AmitySquare_ClefairyGirl:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -716,7 +716,7 @@ _0962:
     ReleaseAll
     End
 
-_0975:
+AmitySquare_Clefairy:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
