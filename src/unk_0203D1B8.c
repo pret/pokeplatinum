@@ -8,7 +8,7 @@
 
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
+#include "struct_defs/struct_0202A750.h"
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
@@ -847,7 +847,7 @@ static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *param1, int param2
     UnkStruct_0203DA00 *v0;
     Pokemon *v1;
     int v2;
-    UnkStruct_0202A750 *v3;
+    ImageClips *v3;
     UnkStruct_02029C68 *v4;
     UnkStruct_02029D04 *v5;
 
@@ -857,7 +857,7 @@ static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *param1, int param2
 
     v0->unk_00 = v1;
 
-    v3 = sub_0202A750(param1);
+    v3 = SaveData_GetImageClips(param1);
     v4 = sub_02029CA8(v3, 0);
     v5 = sub_02029D04(v3);
 

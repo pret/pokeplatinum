@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A138_decl.h"
 #include "struct_decls/struct_0202A150_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
+#include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_020298D8.h"
 
 #include "overlay022/struct_ov22_02255040.h"
@@ -16,17 +16,17 @@
 #include "savedata.h"
 #include "strbuf.h"
 
-void ImageClip_Init(UnkStruct_0202A750 *param0);
+void ImageClip_Init(ImageClips *param0);
 int ImageClip_SaveSize(void);
 int sub_02029C60(void);
 int sub_02029C64(void);
 UnkStruct_02029C68 *sub_02029C68(u32 heapID);
 UnkStruct_02029C88 *sub_02029C88(u32 heapID);
-UnkStruct_02029C68 *sub_02029CA8(UnkStruct_0202A750 *param0, int param1);
-UnkStruct_02029C88 *sub_02029CD0(UnkStruct_0202A750 *param0, int param1);
-UnkStruct_02029D04 *sub_02029D04(UnkStruct_0202A750 *param0);
-BOOL sub_02029D10(const UnkStruct_0202A750 *param0, int param1);
-BOOL sub_02029D2C(const UnkStruct_0202A750 *param0, int param1);
+UnkStruct_02029C68 *sub_02029CA8(ImageClips *param0, int param1);
+UnkStruct_02029C88 *sub_02029CD0(ImageClips *param0, int param1);
+UnkStruct_02029D04 *sub_02029D04(ImageClips *param0);
+BOOL sub_02029D10(const ImageClips *param0, int param1);
+BOOL sub_02029D2C(const ImageClips *param0, int param1);
 BOOL sub_02029D50(const UnkStruct_02029D04 *param0, u32 param1, u32 param2);
 BOOL sub_02029D80(const UnkStruct_02029D04 *param0, u32 param1);
 u32 sub_02029D94(const UnkStruct_02029D04 *param0, u32 param1);
@@ -85,8 +85,8 @@ u8 sub_0202A624(const UnkStruct_0202A150 *param0);
 u8 sub_0202A628(const UnkStruct_0202A150 *param0);
 u8 sub_0202A62C(const UnkStruct_0202A150 *param0);
 s8 sub_0202A630(const UnkStruct_0202A150 *param0);
-void sub_0202A6A8(u8 param0, int param1, UnkStruct_0202A750 *param2, const void **param3);
-UnkStruct_0202A750 *sub_0202A750(SaveData *saveData);
+void sub_0202A6A8(u8 param0, int param1, ImageClips *param2, const void **param3);
+ImageClips *SaveData_GetImageClips(SaveData *saveData);
 void sub_0202A75C(const UnkStruct_02029C68 *param0, UnkStruct_ov61_0222AE80 *param1);
 void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, UnkStruct_02029C68 *param1);
 

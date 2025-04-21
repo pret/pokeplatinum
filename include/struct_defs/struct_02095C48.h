@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02095C48_H
 #define POKEPLATINUM_STRUCT_02095C48_H
 
-#include "struct_decls/struct_0202A750_decl.h"
+#include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_02094A58.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 #include "struct_defs/struct_02095C60.h"
@@ -39,7 +39,7 @@ typedef struct {
     u8 unk_197D;
     u8 unk_197E;
     u8 padding_197F;
-    UnkStruct_0202A750 *unk_1980;
+    ImageClips *unk_1980;
     UnkStruct_02095C60 unk_1984;
     void *unk_199C;
     UnkStruct_02094A58 *unk_19A0;

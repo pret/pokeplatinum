@@ -112,7 +112,7 @@ BOOL ScrCmd_0FA(ScriptContext *param0)
     v8.unk_08 = v1;
     v8.unk_0C = v0;
     v8.unk_10 = v3;
-    v8.unk_14 = sub_0202A750(param0->fieldSystem->saveData);
+    v8.unk_14 = SaveData_GetImageClips(param0->fieldSystem->saveData);
     v8.unk_18 = SaveData_GetOptions(param0->fieldSystem->saveData);
     v8.unk_1C = param0->fieldSystem->saveData;
     v8.unk_20 = SaveData_GetChatotCry(param0->fieldSystem->saveData);

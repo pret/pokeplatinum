@@ -10,7 +10,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
+#include "struct_defs/struct_0202A750.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"
@@ -1743,7 +1743,7 @@ void sub_0206E398(FieldSystem *fieldSystem, u16 param1)
     v1->unk_02 = param1;
 
     {
-        UnkStruct_0202A750 *v2 = sub_0202A750(fieldSystem->saveData);
+        ImageClips *v2 = SaveData_GetImageClips(fieldSystem->saveData);
         UnkStruct_02029C68 *v3 = sub_02029CA8(v2, 0);
 
         v1->unk_00 = sub_0202A184(v3);
@@ -2645,7 +2645,7 @@ static BOOL sub_0206EE74(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
     return 0;
 }
 
-static int sub_0206EE9C(UnkStruct_0202A750 *param0)
+static int sub_0206EE9C(ImageClips *param0)
 {
     int v0, v1;
 
@@ -2662,7 +2662,7 @@ static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 {
     UnkStruct_02029C68 *v0;
     int v1, v2, v3, v4;
-    UnkStruct_0202A750 *v5 = sub_0202A750(fieldSystem->saveData);
+    ImageClips *v5 = SaveData_GetImageClips(fieldSystem->saveData);
 
     v2 = sub_0206EE9C(v5);
 
@@ -2704,7 +2704,7 @@ static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206EF64(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    UnkStruct_0202A750 *v0 = sub_0202A750(fieldSystem->saveData);
+    ImageClips *v0 = SaveData_GetImageClips(fieldSystem->saveData);
 
     if (sub_0206EE9C(v0) != 0) {
         return 1;

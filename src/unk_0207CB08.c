@@ -118,13 +118,13 @@ static u32 sub_0207CBC0(SaveData *param0)
 
 static u32 sub_0207CBE0(SaveData *param0)
 {
-    UnkStruct_02029D04 *v0 = sub_02029D04(sub_0202A750(param0));
+    UnkStruct_02029D04 *v0 = sub_02029D04(SaveData_GetImageClips(param0));
     return sub_02029DF0(v0);
 }
 
 static u32 sub_0207CBF0(SaveData *param0)
 {
-    UnkStruct_02029D04 *v0 = sub_02029D04(sub_0202A750(param0));
+    UnkStruct_02029D04 *v0 = sub_02029D04(SaveData_GetImageClips(param0));
     return sub_02029E0C(v0);
 }
 

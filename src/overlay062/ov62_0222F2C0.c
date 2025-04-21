@@ -593,7 +593,7 @@ BOOL ov62_0222FD3C(UnkStruct_0208C06C *param0)
         break;
     case 5:
         if (v0 == 0) {
-            UnkStruct_02029C68 *v2 = sub_02029CA8(sub_0202A750(param0->unk_830), v0);
+            UnkStruct_02029C68 *v2 = sub_02029CA8(SaveData_GetImageClips(param0->unk_830), v0);
             v1 = sub_02029F34(v2);
 
             if (v1 == 0) {

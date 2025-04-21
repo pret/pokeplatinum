@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
+#include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_02093800.h"
 #include "struct_defs/struct_02093BBC.h"
 #include "struct_defs/struct_02094A58.h"
@@ -1428,10 +1428,10 @@ u32 sub_02094904(UnkStruct_02095C48 *param0)
     GF_ASSERT(v0 != 100);
 
     {
-        UnkStruct_0202A750 *v1;
+        ImageClips *v1;
         UnkStruct_02029D04 *v2;
 
-        v1 = sub_0202A750(param0->unk_1970);
+        v1 = SaveData_GetImageClips(param0->unk_1970);
         v2 = sub_02029D04(v1);
 
         if (sub_02029D50(v2, v0, 1) == 0) {
@@ -1635,7 +1635,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
     }
 
     if (sub_02094790(param0) == 0) {
-        UnkStruct_0202A750 *v11 = sub_0202A750(param0->unk_1970);
+        ImageClips *v11 = SaveData_GetImageClips(param0->unk_1970);
         UnkStruct_02029C88 *v12 = sub_02029CD0(v11, param0->unk_00.unk_10F);
 
         sub_0202A25C(v12);

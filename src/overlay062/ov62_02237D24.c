@@ -296,7 +296,7 @@ static BOOL ov62_02237F08(UnkStruct_0208C06C *param0)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         ov62_02234540(param0, 1);
 
-        v0->unk_22C = sub_02029CA8(sub_0202A750(param0->unk_830), 0);
+        v0->unk_22C = sub_02029CA8(SaveData_GetImageClips(param0->unk_830), 0);
 
         if (v0->unk_228 == NULL) {
             v0->unk_228 = ov22_0225AF8C(&v0->unk_218, v0->unk_22C);

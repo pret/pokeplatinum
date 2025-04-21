@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02093800_H
 #define POKEPLATINUM_STRUCT_02093800_H
 
-#include "struct_decls/struct_0202A750_decl.h"
+#include "struct_defs/struct_0202A750.h"
 
 #include "game_options.h"
 #include "pokemon.h"
@@ -20,7 +20,7 @@ typedef struct {
     Pokemon *unk_08;
     const Strbuf *unk_0C;
     const TrainerInfo *unk_10;
-    UnkStruct_0202A750 *unk_14;
+    ImageClips *unk_14;
     const Options *unk_18;
     SaveData *unk_1C;
     void *unk_20;
