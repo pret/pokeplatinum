@@ -11,7 +11,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetSetNationalDexEnabled 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _002F
     Message 0
     WaitABXPadPress
@@ -30,7 +30,7 @@ _003A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetSetNationalDexEnabled 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _009A
     GoTo _005A
 

@@ -3098,6 +3098,14 @@
     .short \destVar
     .endm
 
+    .macro SetNationalDexEnabled
+    GetSetNationalDexEnabled 1, VAR_RESULT
+    .endm
+
+    .macro GetNationalDexEnabled destVar
+    GetSetNationalDexEnabled 2, \destVar
+    .endm
+
     .macro ScrCmd_22E arg0, arg1
     .short 558
     .short \arg0

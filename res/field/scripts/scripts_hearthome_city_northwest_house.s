@@ -81,7 +81,7 @@ _00FA:
     End
 
 _0105:
-    GetSetNationalDexEnabled 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0122
     Message 7
     WaitABXPadPress

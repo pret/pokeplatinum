@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _000E:
-    GetSetNationalDexEnabled 2, VAR_MAP_LOCAL_0
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _0058
     CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0058

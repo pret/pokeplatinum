@@ -24,7 +24,7 @@ _0037:
     GoToIfSet FLAG_UNK_0x0120, _0083
     CheckGameCompleted VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _0083
-    GetSetNationalDexEnabled 2, VAR_MAP_LOCAL_0
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _0083
     GoToIfUnset FLAG_MESPRIT_CAUGHT, _0083
     GoToIfNe VAR_UNK_0x409E, 1, _0083

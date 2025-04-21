@@ -18,7 +18,7 @@ _001A:
     GoToIfSet FLAG_UNK_0x012D, _0080
     CheckGameCompleted VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _0080
-    GetSetNationalDexEnabled 2, VAR_MAP_LOCAL_0
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _0080
     CheckItem ITEM_OAKS_LETTER, 1, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0080

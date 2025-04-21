@@ -34,7 +34,7 @@ _005A:
 _0062:
     CheckGameCompleted VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _00C5
-    GetSetNationalDexEnabled 2, VAR_MAP_LOCAL_0
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _00C5
     CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, _00C5

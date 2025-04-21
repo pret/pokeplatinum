@@ -90,7 +90,7 @@ _0158:
 _0168:
     GoToIfSet FLAG_UNK_0x0158, _01CA
     GoToIfUnset FLAG_GAME_COMPLETED, _01CA
-    GetSetNationalDexEnabled 2, VAR_MAP_LOCAL_0
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _01CA
     CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, _01CA

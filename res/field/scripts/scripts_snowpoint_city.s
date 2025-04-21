@@ -31,7 +31,7 @@ _0047:
     WaitMovement
     Message 0
     CloseMessage
-    GetSetNationalDexEnabled 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0088
     GoTo _0072
     End
@@ -66,7 +66,7 @@ _00B4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetSetNationalDexEnabled 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _00DF
     GoTo _00D4
 

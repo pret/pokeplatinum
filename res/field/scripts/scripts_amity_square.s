@@ -101,7 +101,7 @@ AmitySquare_Trigger_EastGate:
     End
 
 AmitySquare_CheckHasNationalDex:
-    GetSetNationalDexEnabled 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, AmitySquare_HasNationalDex
     GoTo AmitySquare_DoesntHaveNationalDex
     End

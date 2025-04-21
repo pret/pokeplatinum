@@ -77,7 +77,7 @@ _00E0:
     SetVar VAR_UNK_0x410F, 2
     GoToIfSet FLAG_UNK_0x015C, _014B
     GoToIfUnset FLAG_UNK_0x015D, _0110
-    GetSetNationalDexEnabled 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _014B
 _0110:
     ApplyMovement LOCALID_PLAYER, _0164
@@ -85,7 +85,7 @@ _0110:
     WaitMovement
     BufferPlayerName 0
     BufferRivalName 1
-    GetSetNationalDexEnabled 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     CallIfEq VAR_RESULT, 1, _014F
     CallIfEq VAR_RESULT, 0, _0158
     WaitABXPadPress

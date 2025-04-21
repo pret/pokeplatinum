@@ -35,7 +35,7 @@ _0067:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AA2, _0155
     GoToIfEq VAR_MAP_LOCAL_B, 1, _0155
-    GetSetNationalDexEnabled 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _00AA
     GoTo _009F
 
@@ -174,7 +174,7 @@ _0224:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetSetNationalDexEnabled 2, VAR_RESULT
+    GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0244
     GoTo _0270
 
