@@ -50,7 +50,7 @@ _00AF:
     Return
 
 _00B7:
-    ScrCmd_22D 2, VAR_RESULT
+    GetSetNationalDexEnabled 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _07AE
     GoToIfUnset FLAG_UNK_0x09BA, _00E5
     ScrCmd_1E8 VAR_RESULT
@@ -394,7 +394,7 @@ _04F0:
     FacePlayer
     Call _08A0
     GoToIfEq VAR_0x8006, 1, _0539
-    ScrCmd_22D 2, VAR_RESULT
+    GetSetNationalDexEnabled 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _052B
     BufferCounterpartName 0
     Message 21
@@ -424,7 +424,7 @@ _0544:
     FacePlayer
     Call _08A0
     GoToIfEq VAR_0x8006, 1, _0587
-    ScrCmd_22D 2, VAR_RESULT
+    GetSetNationalDexEnabled 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _057C
     Message 22
     WaitABXPadPress
@@ -576,7 +576,7 @@ _0677:
     Message 35
     CallIfSet FLAG_GAME_COMPLETED, _07A2
     CallIfGe VAR_UNK_0x4081, 2, _079C
-    ScrCmd_22D 1, VAR_RESULT
+    GetSetNationalDexEnabled 1, VAR_RESULT
     BufferPlayerName 0
     PlaySound SEQ_FANFA4
     Message 36

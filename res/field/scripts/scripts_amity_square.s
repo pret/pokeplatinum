@@ -101,7 +101,7 @@ _0140:
     End
 
 _015A:
-    ScrCmd_22D 2, VAR_RESULT
+    GetSetNationalDexEnabled 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0195
     GoTo _0174
     End

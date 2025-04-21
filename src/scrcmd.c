@@ -611,7 +611,7 @@ static BOOL ScrCmd_229(ScriptContext *ctx);
 static BOOL ScrCmd_FinishNpcTrade(ScriptContext *ctx);
 static BOOL ScrCmd_22B(ScriptContext *ctx);
 static BOOL ScrCmd_22C(ScriptContext *ctx);
-static BOOL ScrCmd_22D(ScriptContext *ctx);
+static BOOL ScrCmd_GetSetNationalDexEnabled(ScriptContext *ctx);
 static BOOL ScrCmd_233(ScriptContext *ctx);
 static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx);
 static BOOL ScrCmd_239(ScriptContext *ctx);
@@ -1323,7 +1323,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FinishNpcTrade,
     ScrCmd_22B,
     ScrCmd_22C,
-    ScrCmd_22D,
+    ScrCmd_GetSetNationalDexEnabled,
     ScrCmd_22E,
     ScrCmd_22F,
     ScrCmd_GetPartyMonRibbon,
@@ -6500,23 +6500,23 @@ static BOOL ScrCmd_22C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_22D(ScriptContext *ctx)
+static BOOL ScrCmd_GetSetNationalDexEnabled(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u8 getOrSet = ScriptContext_ReadByte(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = 0;
+    *destVar = 0;
 
-    if (v0 == 1) {
+    if (getOrSet == 1) { // Set
         Pokedex_ObtainNationalDex(SaveData_GetPokedex(ctx->fieldSystem->saveData));
         TrainerInfo_GiveNationalDex(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData));
-    } else if (v0 == 2) {
-        *v1 = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(ctx->fieldSystem->saveData));
+    } else if (getOrSet == 2) { // Get
+        *destVar = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(ctx->fieldSystem->saveData));
     } else {
         GF_ASSERT(FALSE);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_233(ScriptContext *ctx)

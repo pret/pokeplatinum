@@ -931,7 +931,7 @@ _0C1C:
     CallIfUnset FLAG_MET_BEBE, _0C7B
     CallIfSet FLAG_MET_BEBE, _0C81
     AddMenuEntryImm 60, 1
-    ScrCmd_22D 2, VAR_RESULT
+    GetSetNationalDexEnabled 2, VAR_RESULT
     CallIfEq VAR_RESULT, 0, _0C87
     CallIfEq VAR_RESULT, 1, _0C8D
     GoToIfSet FLAG_GAME_COMPLETED, _0C93
@@ -1568,7 +1568,7 @@ _14AC:
     GoToIfNe VAR_0x8005, 52, _1570
     CheckGameCompleted VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, _1570
-    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GetSetNationalDexEnabled 2, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _1570
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, _1570

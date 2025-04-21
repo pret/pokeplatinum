@@ -49,7 +49,7 @@ _006C:
     GoTo _0357
 
 _00B2:
-    ScrCmd_22D 2, VAR_RESULT
+    GetSetNationalDexEnabled 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _030D
     GoToIfUnset FLAG_UNK_0x00F0, _02E8
     GoToIfUnset FLAG_UNK_0x0131, _02C3

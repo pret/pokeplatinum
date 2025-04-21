@@ -45,7 +45,7 @@ _008C:
     Message 6
     CloseMessage
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_4
-    ScrCmd_22D 2, VAR_RESULT
+    GetSetNationalDexEnabled 2, VAR_RESULT
     CallIfEq VAR_RESULT, 1, _010A
     CallIfEq VAR_UNK_0x40F4, 0, _0102
     GetPartyCount VAR_RESULT
@@ -163,7 +163,7 @@ _0261:
     Return
 
 _0263:
-    ScrCmd_22D 2, VAR_RESULT
+    GetSetNationalDexEnabled 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0279
     ClearFlag FLAG_UNK_0x0243
 _0279:

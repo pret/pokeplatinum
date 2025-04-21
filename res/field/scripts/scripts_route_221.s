@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GetSetNationalDexEnabled 2, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _002C
     SetFlag FLAG_UNK_0x027F
     SetFlag FLAG_UNK_0x0280

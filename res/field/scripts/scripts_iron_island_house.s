@@ -9,7 +9,7 @@
 
 _000A:
     GoToIfSet FLAG_UNK_0x011D, _0029
-    ScrCmd_22D 2, VAR_MAP_LOCAL_0
+    GetSetNationalDexEnabled 2, VAR_MAP_LOCAL_0
     CallIfEq VAR_MAP_LOCAL_0, 1, _002F
     End
 

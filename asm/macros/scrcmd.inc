@@ -3092,10 +3092,10 @@
     .short 556
     .endm
 
-    .macro ScrCmd_22D arg0, arg1
+    .macro GetSetNationalDexEnabled getSet, destVar
     .short 557
-    .byte \arg0
-    .short \arg1
+    .byte \getSet
+    .short \destVar
     .endm
 
     .macro ScrCmd_22E arg0, arg1
