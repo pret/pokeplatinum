@@ -5,6 +5,7 @@
 #define LOCALID_ITEM_OR_ACCESSORY_ID VAR_0x8004
 #define LOCALID_COUNT                VAR_0x8005
 #define PICKUP_TYPE_ITEM             0
+#define PICKUP_TYPE_ACCESORY         1
 
     .data
 
@@ -319,7 +320,7 @@ _040A:
     Return
 
 _0412:
-    SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, 1
+    SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, PICKUP_TYPE_ACCESORY
     Return
 
 _041A:
