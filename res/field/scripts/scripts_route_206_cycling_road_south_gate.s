@@ -76,7 +76,7 @@ _00B0:
     FacePlayer
     GoToIfSet FLAG_UNK_0x012B, _00E5
     SetVar VAR_0x8004, ACCESSORY_FLAG
-    ScrCmd_261 0, VAR_0x8004
+    BufferAccessoryName 0, VAR_0x8004
     Message 3
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7DF

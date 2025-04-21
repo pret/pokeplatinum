@@ -1375,7 +1375,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_25E,
     ScrCmd_25F,
     ScrCmd_260,
-    ScrCmd_261,
+    ScrCmd_BufferAccessoryName,
     ScrCmd_CheckPartyHasSpecies2,
     ScrCmd_ChangeDeoxysForm,
     ScrCmd_CheckPartyCombeeGenderCount,

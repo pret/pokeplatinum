@@ -1021,7 +1021,7 @@ _10E1:
     End
 
 _1136:
-    ScrCmd_261 0, VAR_0x8004
+    BufferAccessoryName 0, VAR_0x8004
     Message AmitySquare_Text_DoYouKnowTheItemIFoundSome
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _1161

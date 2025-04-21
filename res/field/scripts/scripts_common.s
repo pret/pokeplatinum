@@ -751,11 +751,11 @@ _0992:
 _099F:
     PlaySound SEQ_ACCE
     ScrCmd_1D2 VAR_0x8004, VAR_0x8005
-    ScrCmd_261 0, VAR_0x8004
+    BufferAccessoryName 0, VAR_0x8004
     Message 25
     WaitSound
     BufferPlayerName 0
-    ScrCmd_261 1, VAR_0x8004
+    BufferAccessoryName 1, VAR_0x8004
     Return
 
 _09BD:

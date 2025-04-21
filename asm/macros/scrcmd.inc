@@ -3442,10 +3442,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_261 arg0, arg1
+    .macro BufferAccessoryName templateArg, accessory
     .short 609
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \accessory
     .endm
 
     // Like CheckPartyHasSpecies, but args are reversed and it checks the species inside eggs.
