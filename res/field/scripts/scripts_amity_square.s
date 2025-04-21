@@ -11,10 +11,10 @@
     .data
 
     ScriptEntry _00B6
-    ScriptEntry _0126
-    ScriptEntry _0365
-    ScriptEntry _0140
-    ScriptEntry _0365
+    ScriptEntry AmitySquare_Trigger_WestGate
+    ScriptEntry AmitySquare_Trigger_ExitAmitySquare
+    ScriptEntry AmitySquare_Trigger_EastGate
+    ScriptEntry AmitySquare_Trigger_ExitAmitySquare
     ScriptEntry AmitySquare_FollowerMon
     ScriptEntry AmitySquare_WestReceptionist
     ScriptEntry AmitySquare_EastReceptionist
@@ -84,34 +84,34 @@ _011C:
     SetObjectEventPos 15, 48, 41
     End
 
-_0126:
+AmitySquare_Trigger_WestGate:
     LockAll
     SetVar VAR_0x8001, 1
     ApplyMovement LOCALID_PLAYER, _03B0
     WaitMovement
-    GoTo _015A
+    GoTo AmitySquare_CheckHasNationalDex
     End
 
-_0140:
+AmitySquare_Trigger_EastGate:
     LockAll
     SetVar VAR_0x8001, 2
     ApplyMovement LOCALID_PLAYER, _03B8
     WaitMovement
-    GoTo _015A
+    GoTo AmitySquare_CheckHasNationalDex
     End
 
-_015A:
+AmitySquare_CheckHasNationalDex:
     GetSetNationalDexEnabled 2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0195
-    GoTo _0174
+    GoToIfEq VAR_RESULT, TRUE, AmitySquare_HasNationalDex
+    GoTo AmitySquare_DoesntHaveNationalDex
     End
 
-_0174:
+AmitySquare_DoesntHaveNationalDex:
     SetVar LOCALID_HAS_NATIONAL_DEX, FALSE
     GoTo AmitySquare_CheckPartyHasSpecies
     End
 
-_0182:
+AmitySquare_ListPermittedSpecies:
     Message AmitySquare_Text_PermittedList
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
@@ -119,12 +119,12 @@ _0182:
     ReleaseAll
     End
 
-_0195:
+AmitySquare_HasNationalDex:
     SetVar LOCALID_HAS_NATIONAL_DEX, TRUE
     GoTo AmitySquare_CheckPartyHasSpecies_NationalDex
     End
 
-_01A3:
+AmitySquare_ListPermittedSpecies_NationalDex:
     Message AmitySquare_Text_PermittedListNationalDex
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _03C0
@@ -251,20 +251,20 @@ _0338:
     .byte 2
     .byte 0
 
-_0365:
+AmitySquare_Trigger_ExitAmitySquare:
     LockAll
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ClearHasPartner
-    GoTo _037D
+    GoTo AmitySquare_RemoveFollower
     End
 
-_037D:
+AmitySquare_RemoveFollower:
     RemoveObject 5
-    GoTo _0389
+    GoTo AmitySquare_Trigger_ExitAmitySquare_End
     End
 
-_0389:
+AmitySquare_Trigger_ExitAmitySquare_End:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar VAR_FOLLOWER_MON_ACTIVE, FALSE
@@ -731,82 +731,82 @@ AmitySquare_Clefairy:
 
 AmitySquare_CheckPartyHasSpecies:
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PIKACHU
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_CLEFAIRY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PSYDUCK
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PACHIRISU
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_DRIFLOON
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_BUNEARY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_HAPPINY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_TURTWIG
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_GROTLE
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_TORTERRA
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_CHIMCHAR
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_MONFERNO
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_INFERNAPE
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PIPLUP
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PRINPLUP
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_EMPOLEON
-    GoToIfEq VAR_RESULT, 1, _01B6
-    GoTo _0182
+    GoToIfEq VAR_RESULT, TRUE, _01B6
+    GoTo AmitySquare_ListPermittedSpecies
     End
 
 AmitySquare_CheckPartyHasSpecies_NationalDex:
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PIKACHU
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_CLEFAIRY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PSYDUCK
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PACHIRISU
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_DRIFLOON
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_BUNEARY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_HAPPINY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_JIGGLYPUFF
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_TORCHIC
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_SKITTY
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_SHROOMISH
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_TURTWIG
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_GROTLE
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_TORTERRA
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_CHIMCHAR
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_MONFERNO
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_INFERNAPE
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PIPLUP
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_PRINPLUP
-    GoToIfEq VAR_RESULT, 1, _01B6
+    GoToIfEq VAR_RESULT, TRUE, _01B6
     CheckPartyHasSpecies VAR_RESULT, SPECIES_EMPOLEON
-    GoToIfEq VAR_RESULT, 1, _01B6
-    GoTo _01A3
+    GoToIfEq VAR_RESULT, TRUE, _01B6
+    GoTo AmitySquare_ListPermittedSpecies_NationalDex
     End
 
 AmitySquare_CheckAllowedMon:
