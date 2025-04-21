@@ -14,7 +14,7 @@
 #include "constants/scrcmd.h"
 #include "constants/species.h"
 #include "constants/string.h"
-#include "generated/accessories.h"
+#include "constants/accessories.h"
 #include "generated/comm_club_ret_codes.h"
 #include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
@@ -6835,13 +6835,13 @@ static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx)
 
 static BOOL ScrCmd_Unused_279(ScriptContext *ctx)
 {
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 accessory = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
 
     ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
     UnkStruct_02029D04 *v1 = sub_02029D04(imageClips);
 
-    sub_02029EA0(v1, v2, v3);
+    sub_02029EA0(v1, accessory, v3);
     return FALSE;
 }
 

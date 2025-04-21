@@ -1,4 +1,4 @@
-#include "generated/accessories.h"
+#include "constants/accessories.h"
 #include "generated/badges.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/battle_tower_functions.h"
