@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "constants/overworld_weather.h"
-#include "constants/savedata/vars_flags.h"
 #include "constants/species.h"
+#include "generated/first_arrival_to_zones.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"

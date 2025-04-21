@@ -90,6 +90,7 @@ metang_generators = {
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
     'trainer_types': { 'type': 'enum', 'tag': 'TrainerType' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
+    'vars_flags': {'type': 'enum', 'tag': 'VarFlag'},
     'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'},
     'mart_specialties_id': {'type': 'enum', 'tag': 'MartSpecialtiesID'},
     'mart_decor_id': {'type': 'enum', 'tag': 'MartDecorID'},
