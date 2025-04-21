@@ -4,6 +4,7 @@
 #define LOCALID_HAS_NATIONAL_DEX     VAR_MAP_LOCAL_0
 #define LOCALID_ITEM_OR_ACCESSORY_ID VAR_0x8004
 #define LOCALID_COUNT                VAR_0x8005
+#define PICKUP_TYPE_ITEM             0
 
     .data
 
@@ -314,7 +315,7 @@ _03DC:
     End
 
 _040A:
-    SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, 0
+    SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, PICKUP_TYPE_ITEM
     Return
 
 _0412:
@@ -374,7 +375,7 @@ _04D8:
     SetVar VAR_0x8000, VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE
     ClearAmitySquareStepCount
     Call _03DC
-    GoToIfEq VAR_0x8000, 0, _04FB
+    GoToIfEq VAR_0x8000, PICKUP_TYPE_ITEM, _04FB
     GoTo _056C
     End
 
