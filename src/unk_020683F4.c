@@ -488,11 +488,10 @@ static BOOL sub_02068884(FieldTask *task)
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
             Sound_SetSpecialBGM(fieldSystem, SEQ_NONE);
-            sub_02055554(
-                fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
+            Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
         } else {
             Sound_SetSpecialBGM(fieldSystem, SEQ_BICYCLE);
-            sub_02055554(fieldSystem, 1152, 1);
+            Sound_TryFadeOutToBGM(fieldSystem, SEQ_BICYCLE, 1);
             MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
 
             PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, (1 << 1));

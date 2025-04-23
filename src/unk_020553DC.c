@@ -107,8 +107,7 @@ const static u16 sTrainerEncounterBGMs[][2] = {
 
 void sub_020553DC(void);
 static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID);
-BOOL sub_02055554(FieldSystem *fieldSystem, u16 param1, int param2);
-static void sub_020555CC(FieldSystem *fieldSystem, int param1, int *param2, int *param3);
+static void Sound_GetBGMFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode, int *fadeOutFrames, int *waitFrames);
 
 void sub_020553DC()
 {
@@ -228,52 +227,53 @@ static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int h
     return 0;
 }
 
-BOOL sub_02055554(FieldSystem *fieldSystem, u16 bgmID, int param2)
+BOOL Sound_TryFadeOutToBGM(FieldSystem *fieldSystem, u16 bgmID, int mode)
 {
     PlayerAvatar *playerAvatar;
-    int v1, v2, playerState;
+    int fadeOutFrames, waitFrames, playerState;
 
     playerAvatar = fieldSystem->playerAvatar;
     playerState = PlayerAvatar_GetPlayerState(playerAvatar);
 
-    if (Sound_IsBGMFixed() == 1) {
-        return 0;
+    if (Sound_IsBGMFixed() == TRUE) {
+        return FALSE;
     }
 
     if (bgmID == Sound_GetCurrentBGM1(fieldSystem)) {
-        return 0;
+        return FALSE;
     }
 
     Sound_ClearBGMPauseFlags();
-    sub_020555CC(fieldSystem, param2, &v1, &v2);
+    Sound_GetBGMFadeOutAndWaitFrames(fieldSystem, mode, &fadeOutFrames, &waitFrames);
 
-    if ((playerState == PLAYER_STATE_CYCLING) || (playerState == PLAYER_STATE_CYCLING)) { // Yes, it's checking bike twice. Maybe there was a point were Acro and Mach Bikes were still a thing?
-        Sound_FadeToBGM(4, bgmID, v1, v2, 30, 0, NULL);
+    // Yes, it's checking bike twice. Maybe there was a point were Acro and Mach Bikes were still a thing?
+    if ((playerState == PLAYER_STATE_CYCLING) || (playerState == PLAYER_STATE_CYCLING)) {
+        Sound_FadeToBGM(4, bgmID, fadeOutFrames, waitFrames, 30, 0, NULL);
     } else {
-        Sound_FadeOutAndPlayBGM(4, bgmID, v1, v2, 0, NULL);
+        Sound_FadeOutAndPlayBGM(4, bgmID, fadeOutFrames, waitFrames, 0, NULL);
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_020555CC(FieldSystem *fieldSystem, int param1, int *param2, int *param3)
+static void Sound_GetBGMFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode, int *fadeOutFrames, int *waitFrames)
 {
-    switch (param1) {
+    switch (mode) {
     case 0:
-        *param2 = 30;
-        *param3 = 0;
+        *fadeOutFrames = 30;
+        *waitFrames = 0;
         break;
     case 1:
-        *param2 = 60;
-        *param3 = 0;
+        *fadeOutFrames = 60;
+        *waitFrames = 0;
         break;
     case 2:
-        *param2 = 60;
-        *param3 = 15;
+        *fadeOutFrames = 60;
+        *waitFrames = 15;
         break;
     case 3:
-        *param2 = 60;
-        *param3 = 0;
+        *fadeOutFrames = 60;
+        *waitFrames = 0;
         break;
     }
 }

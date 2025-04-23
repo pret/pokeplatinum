@@ -618,7 +618,7 @@ static BOOL ov5_021E0160(FieldTask *taskMan)
     case 0:
         if (PlayerAvatar_MapDistortionState(v0->playerAvatar) == AVATAR_DISTORTION_STATE_NONE) {
             Sound_SetSpecialBGM(v0->fieldSystem, SEQ_NONE);
-            sub_02055554(v0->fieldSystem, 1151, 1);
+            Sound_TryFadeOutToBGM(v0->fieldSystem, SEQ_NAMINORI, 1);
         }
 
         if (v0->unk_0C.unk_00 == 1) {
@@ -783,7 +783,7 @@ static BOOL ov5_021E03C8(FieldTask *param0)
 
         sub_0205EC00(v0->playerAvatar, NULL);
         PlayerAvatar_SetPlayerState(v0->playerAvatar, 0x0);
-        sub_02055554(v0->fieldSystem, Sound_GetBGMByMapID(v0->fieldSystem, v0->fieldSystem->location->mapId), 1);
+        Sound_TryFadeOutToBGM(v0->fieldSystem, Sound_GetBGMByMapID(v0->fieldSystem, v0->fieldSystem->location->mapId), 1);
         ov5_021E1134(v0);
         return 1;
     }

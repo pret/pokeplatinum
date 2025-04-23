@@ -4707,14 +4707,14 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
 
     if (rideBike == TRUE) {
         Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_BICYCLE);
-        sub_02055554(ctx->fieldSystem, 1152, 1);
+        Sound_TryFadeOutToBGM(ctx->fieldSystem, SEQ_BICYCLE, 1);
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 1));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
     } else {
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 0));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
         Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_NONE);
-        sub_02055554(ctx->fieldSystem, Sound_GetOverrideBGM(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
+        Sound_TryFadeOutToBGM(ctx->fieldSystem, Sound_GetOverrideBGM(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
     }
 
     return FALSE;
