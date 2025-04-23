@@ -88,7 +88,7 @@ u16 sub_0205DFC4(u32 param0)
 
 u16 Item_IsTMHM(u16 item)
 {
-    if ((item >= ITEM_TM01) && (item <= ITEM_HM08)) {
+    if (item >= ITEM_TM01 && item <= ITEM_HM08) {
         return TRUE;
     }
 
