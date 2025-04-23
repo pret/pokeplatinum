@@ -307,7 +307,7 @@ _04B0:
     CallCommonScript 0x7D1
     ScrCmd_236 VAR_0x8004
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
-    ScrCmd_07F VAR_0x8004, VAR_RESULT
+    IsItemTMHM VAR_0x8004, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0624
     GoToIfEq VAR_RESULT, 0, _063C
     End

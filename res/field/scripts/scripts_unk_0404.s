@@ -2316,11 +2316,11 @@ _1EF0:
     CallCommonScript 0x7D1
     RemoveObject VAR_LAST_TALKED
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
-    ScrCmd_2A2 VAR_0x8004
+    TrySetUnusedUndergroundField VAR_0x8004
     CallIfEq VAR_0x8004, 0x1CF, _20C0
-    ScrCmd_07F VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _207D
-    GoToIfEq VAR_RESULT, 0, _2095
+    IsItemTMHM VAR_0x8004, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _207D
+    GoToIfEq VAR_RESULT, FALSE, _2095
     End
 
 _1F33:

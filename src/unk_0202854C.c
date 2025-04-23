@@ -259,9 +259,9 @@ BOOL sub_02028810(SaveData *param0)
     return 1;
 }
 
-void sub_02028828(UndergroundData *param0)
+void UndergroundData_SetUnusedField(UndergroundData *undergroundData)
 {
-    param0->unk_99 = 1;
+    undergroundData->unused = 1;
 }
 
 void sub_02028830(UndergroundData *param0, const TrainerInfo *param1)

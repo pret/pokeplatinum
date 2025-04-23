@@ -67,7 +67,7 @@ _00F4:
     End
 
 _00FF:
-    ScrCmd_2FE 91, VAR_0x8000
+    GetItemQuantity ITEM_STAR_PIECE, VAR_0x8000
     GoToIfGe VAR_0x8000, 10, _014E
     GoTo _011A
     End

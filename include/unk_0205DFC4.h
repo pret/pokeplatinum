@@ -7,7 +7,7 @@
 #include "savedata.h"
 
 u16 sub_0205DFC4(u32 param0);
-u16 sub_0205E060(u16 param0);
+u16 Item_IsTMHM(u16 item);
 u16 sub_0205E078(u16 param0, u16 param1);
 u16 sub_0205E0E4(u16 param0, u16 param1);
 u16 SaveData_GetFirstNonEggInParty(SaveData *saveData);

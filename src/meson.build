@@ -194,7 +194,7 @@ pokeplatinum_c = files(
     'unk_0204E240.c',
     'scrcmd_game_corner_prize.c',
     'scrcmd_system_flags.c',
-    'unk_0204E75C.c',
+    'scrcmd_item.c',
     'unk_0204E974.c',
     'unk_0204EDA4.c',
     'scrcmd_dummy_23F_242.c',

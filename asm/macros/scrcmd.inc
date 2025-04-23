@@ -781,10 +781,10 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_07F arg0, arg1
+    .macro IsItemTMHM item, destVar
     .short 127
-    .short \arg0
-    .short \arg1
+    .short \item
+    .short \destVar
     .endm
 
     .macro GetItemPocket item, destVarID
@@ -793,11 +793,11 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_081
+    .macro ScrCmd_Dummy081
     .short 129
     .endm
 
-    .macro ScrCmd_082
+    .macro ScrCmd_Dummy082
     .short 130
     .endm
 
@@ -3823,9 +3823,9 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_2A2 arg0
+    .macro TrySetUnusedUndergroundField item
     .short 674
-    .short \arg0
+    .short \item
     .endm
 
     .macro ScrCmd_2A3 arg0
@@ -4344,10 +4344,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_2FE arg0, arg1
+    .macro GetItemQuantity item, destVar
     .short 766
-    .short \arg0
-    .short \arg1
+    .short \item
+    .short \destVar
     .endm
 
     .macro ScrCmd_2FF arg0, arg1
