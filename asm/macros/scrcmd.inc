@@ -562,10 +562,10 @@
     .short \frames
     .endm
 
-    .macro ScrCmd_056 arg0, arg1
+    .macro SetBGMPlayerPaused playedID, paused
     .short 86
-    .byte \arg0
-    .byte \arg1
+    .byte \playedID
+    .byte \paused
     .endm
 
     .macro ScrCmd_057 arg0

@@ -10,7 +10,7 @@ BOOL ScrCmd_PlayDefaultMusic(ScriptContext *ctx);
 BOOL ScrCmd_SetSpecialBGM(ScriptContext *ctx);
 BOOL ScrCmd_FadeOutBGM(ScriptContext *ctx);
 BOOL ScrCmd_FadeInBGM(ScriptContext *ctx);
-BOOL ScrCmd_056(ScriptContext *param0);
+BOOL ScrCmd_SetBGMPlayerPaused(ScriptContext *ctx);
 BOOL ScrCmd_057(ScriptContext *param0);
 BOOL ScrCmd_058(ScriptContext *param0);
 BOOL ScrCmd_PlayFanfare(ScriptContext *ctx);

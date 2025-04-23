@@ -16,7 +16,6 @@ static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);
 static BOOL ScrCmd_IsPokemonCryPlaying(ScriptContext *param0);
 static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx);
-BOOL ScrCmd_056(ScriptContext *param0);
 BOOL ScrCmd_057(ScriptContext *param0);
 BOOL ScrCmd_058(ScriptContext *param0);
 BOOL ScrCmd_04A(ScriptContext *param0);
@@ -90,13 +89,13 @@ BOOL ScrCmd_FadeInBGM(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_056(ScriptContext *param0)
+BOOL ScrCmd_SetBGMPlayerPaused(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(param0);
-    BOOL v1 = ScriptContext_ReadByte(param0);
+    u8 playerID = ScriptContext_ReadByte(ctx);
+    BOOL paused = ScriptContext_ReadByte(ctx);
 
-    Sound_SetBGMPlayerPaused(v0, v1);
-    return 0;
+    Sound_SetBGMPlayerPaused(playerID, paused);
+    return FALSE;
 }
 
 BOOL ScrCmd_057(ScriptContext *param0)
