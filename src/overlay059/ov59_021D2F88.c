@@ -5,8 +5,8 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
-#include "struct_defs/struct_0202A750.h"
 #include "struct_decls/struct_0202E8C0_decl.h"
+#include "struct_defs/struct_0202A750.h"
 
 #include "overlay059/ov59_021D2A2C.h"
 #include "overlay059/ov59_021D2B44.h"

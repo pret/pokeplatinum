@@ -4,6 +4,7 @@
 #include <nitro/code16.h>
 #include <string.h>
 
+#include "constants/accessories.h"
 #include "constants/battle.h"
 #include "constants/daycare.h"
 #include "constants/field/dynamic_map_features.h"
@@ -12,7 +13,6 @@
 #include "constants/overworld_weather.h"
 #include "constants/scrcmd.h"
 #include "constants/species.h"
-#include "constants/accessories.h"
 #include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
 #include "generated/save_types.h"
@@ -28,7 +28,6 @@
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
-#include "struct_defs/struct_0202A750.h"
 #include "struct_decls/struct_0202CA1C_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
@@ -38,6 +37,7 @@
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/daycare.h"
 #include "struct_defs/special_encounter.h"
+#include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203E608.h"

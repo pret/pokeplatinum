@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/accessories.h"
+
 #include "struct_defs/struct_020298D8.h"
 #include "struct_defs/struct_0202A750.h"
-
-#include "constants/accessories.h"
 
 #include "overlay022/ov22_02259098.h"
 #include "overlay022/struct_ov22_02255040.h"

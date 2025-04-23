@@ -6,8 +6,8 @@
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A138_decl.h"
 #include "struct_decls/struct_0202A150_decl.h"
-#include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_020298D8.h"
+#include "struct_defs/struct_0202A750.h"
 
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay061/struct_ov61_0222AE80.h"
