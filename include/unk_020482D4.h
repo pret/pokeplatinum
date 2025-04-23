@@ -3,7 +3,7 @@
 
 #include "field_script_context.h"
 
-BOOL ScrCmd_2AE(ScriptContext *param0);
+BOOL ScrCmd_IsSequencePlaying(ScriptContext *ctx);
 BOOL ScrCmd_PlayMusic(ScriptContext *ctx);
 BOOL ScrCmd_StopMusic(ScriptContext *ctx);
 BOOL ScrCmd_PlayDefaultMusic(ScriptContext *ctx);

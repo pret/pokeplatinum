@@ -30,18 +30,17 @@ BOOL ScrCmd_05B(ScriptContext *param0);
 BOOL ScrCmd_05C(ScriptContext *param0);
 BOOL ScrCmd_05D(ScriptContext *param0);
 BOOL ScrCmd_283(ScriptContext *param0);
-BOOL ScrCmd_2AE(ScriptContext *param0);
 BOOL ScrCmd_2F8(ScriptContext *param0);
 BOOL ScrCmd_2F9(ScriptContext *param0);
 BOOL ScrCmd_2FA(ScriptContext *param0);
 
-BOOL ScrCmd_2AE(ScriptContext *param0)
+BOOL ScrCmd_IsSequencePlaying(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(param0);
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
+    u16 seqID = ScriptContext_ReadHalfWord(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = Sound_IsSequencePlaying(v0);
-    return 0;
+    *destVar = Sound_IsSequencePlaying(seqID);
+    return FALSE;
 }
 
 BOOL ScrCmd_PlayMusic(ScriptContext *ctx)

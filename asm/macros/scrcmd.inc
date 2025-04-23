@@ -3901,10 +3901,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_2AE arg0, arg1
+    .macro IsSequencePlaying seqID, destVar
     .short 686
-    .short \arg0
-    .short \arg1
+    .short \seqID
+    .short \destVar
     .endm
 
     .macro ScrCmd_2AF arg0

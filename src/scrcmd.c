@@ -1453,7 +1453,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2AB,
     ScrCmd_2AC,
     ScrCmd_2AD,
-    ScrCmd_2AE,
+    ScrCmd_IsSequencePlaying,
     ScrCmd_2AF,
     ScrCmd_2B0,
     ScrCmd_2B1,
