@@ -113,7 +113,7 @@ typedef struct AccessoryShop {
     enum AccessoryShopState state;
     enum AccessoryShopState nextState;
     SaveData *saveData;
-    UnkStruct_02029D04 *unk_0C;
+    FashionCase *unk_0C;
     Bag *bag;
     BgConfig *bgConfig;
     enum HeapId heapID;

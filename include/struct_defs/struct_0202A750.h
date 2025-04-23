@@ -46,12 +46,12 @@ typedef struct UnkStruct_02029D04_t {
     u32 unk_00[8];
     u32 unk_20[2];
     u32 unk_28[6];
-} UnkStruct_02029D04;
+} FashionCase;
 
 typedef struct ImageClips {
     UnkStruct_02029C68 unk_00[11];
     UnkStruct_02029C88 unk_4C8[5];
-    UnkStruct_02029D04 unk_7A4;
+    FashionCase fashionCase;
 } ImageClips;
 
 #endif // POKEPLATINUM_STRUCT_0202A750_DEF_H

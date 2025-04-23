@@ -21,8 +21,6 @@
 
 static u32 sub_0207CBB4(SaveData *param0);
 static u32 sub_0207CBC0(SaveData *param0);
-static u32 sub_0207CBE0(SaveData *param0);
-static u32 sub_0207CBF0(SaveData *param0);
 static u32 sub_0207CC00(SaveData *param0);
 
 UnkStruct_0207CB08 *sub_0207CB08(u8 heapID)
@@ -116,16 +114,16 @@ static u32 sub_0207CBC0(SaveData *param0)
     return v2;
 }
 
-static u32 sub_0207CBE0(SaveData *param0)
+static u32 SaveData_GetTotalAccessoryCount(SaveData *saveData)
 {
-    UnkStruct_02029D04 *v0 = sub_02029D04(SaveData_GetImageClips(param0));
-    return sub_02029DF0(v0);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(SaveData_GetImageClips(saveData));
+    return FashionCase_GetTotalAccessoryCount(fashionCase);
 }
 
-static u32 sub_0207CBF0(SaveData *param0)
+static u32 sub_0207CBF0(SaveData *saveData)
 {
-    UnkStruct_02029D04 *v0 = sub_02029D04(SaveData_GetImageClips(param0));
-    return sub_02029E0C(v0);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(SaveData_GetImageClips(saveData));
+    return sub_02029E0C(fashionCase);
 }
 
 static u32 sub_0207CC00(SaveData *param0)
@@ -152,7 +150,7 @@ BOOL sub_0207CC10(SaveData *param0, Strbuf *param1, u16 param2, u32 param3)
         StringTemplate_SetNumber(v1, 0, sub_0207CBC0(param0), 4, 0, 1);
     } else if (param2 == 435) {
         v2 = MessageLoader_GetNewStrbuf(v0, 93);
-        StringTemplate_SetNumber(v1, 0, sub_0207CBE0(param0), 3, 0, 1);
+        StringTemplate_SetNumber(v1, 0, SaveData_GetTotalAccessoryCount(param0), 3, 0, 1);
         StringTemplate_SetNumber(v1, 1, sub_0207CBF0(param0), 2, 0, 1);
     } else if (param2 == 444) {
         v2 = MessageLoader_GetNewStrbuf(v0, 57);

@@ -130,24 +130,24 @@ static void sub_02029A2C(u32 *param0, u8 param1, u8 param2)
     param0[v0] |= (param1 << v1);
 }
 
-static u8 sub_02029A70(const u32 *param0, u8 param1)
+static u8 sub_02029A70(const u32 *param0, u8 accessory)
 {
-    u8 v0;
+    u8 count;
     u8 v1;
     u8 v2;
 
-    GF_ASSERT(param1 < NON_UNIQUE_ACCESSORY_COUNT);
+    GF_ASSERT(accessory < NON_UNIQUE_ACCESSORY_COUNT);
 
-    v1 = param1 / 8;
-    v2 = param1 % 8;
+    v1 = accessory / 8;
+    v2 = accessory % 8;
     v2 *= 4;
-    v0 = (param0[v1] >> v2) & 0xf;
+    count = (param0[v1] >> v2) & 0xf;
 
-    if (v0 > MAX_ACCESORIES_PER_TYPE) {
-        v0 = MAX_ACCESORIES_PER_TYPE;
+    if (count > MAX_ACCESORIES_PER_TYPE) {
+        count = MAX_ACCESORIES_PER_TYPE;
     }
 
-    return v0;
+    return count;
 }
 
 static void sub_02029AB0(u32 *param0, u8 param1, u8 param2)
@@ -237,11 +237,11 @@ static inline u8 Accessory_ToUniqueID(u32 accessory)
     return accessory - NON_UNIQUE_ACCESSORY_COUNT;
 }
 
-static void sub_02029BB0(UnkStruct_02029D04 *param0)
+static void sub_02029BB0(FashionCase *param0)
 {
     int v0;
 
-    memset(param0, 0, sizeof(UnkStruct_02029D04));
+    memset(param0, 0, sizeof(FashionCase));
 
     for (v0 = 0; v0 < 18; v0++) {
         sub_02029B18(param0->unk_28, 18, v0);
@@ -257,19 +257,19 @@ static void sub_02029BD8(Pokemon *param0, u8 *param1, u8 *param2)
     *param2 += (5 * 8);
 }
 
-void ImageClip_Init(ImageClips *param0)
+void ImageClip_Init(ImageClips *imageClips)
 {
     int v0;
 
     for (v0 = 0; v0 < 11; v0++) {
-        inline_02029BFC(&param0->unk_00[v0]);
+        inline_02029BFC(&imageClips->unk_00[v0]);
     }
 
     for (v0 = 0; v0 < 5; v0++) {
-        inline_02029BFC_1(&param0->unk_4C8[v0]);
+        inline_02029BFC_1(&imageClips->unk_4C8[v0]);
     }
 
-    sub_02029BB0(&param0->unk_7A4);
+    sub_02029BB0(&imageClips->fashionCase);
 }
 
 int ImageClip_SaveSize(void)
@@ -319,9 +319,9 @@ UnkStruct_02029C88 *sub_02029CD0(ImageClips *param0, int param1)
     return &param0->unk_4C8[param1];
 }
 
-UnkStruct_02029D04 *sub_02029D04(ImageClips *param0)
+FashionCase *ImageClips_GetFashionCase(ImageClips *imageClips)
 {
-    return &param0->unk_7A4;
+    return &imageClips->fashionCase;
 }
 
 BOOL sub_02029D10(const ImageClips *param0, int param1)
@@ -336,12 +336,12 @@ BOOL sub_02029D2C(const ImageClips *param0, int param1)
     return sub_0202A218(&param0->unk_4C8[param1]);
 }
 
-BOOL sub_02029D50(const UnkStruct_02029D04 *param0, u32 accessory, u32 count)
+BOOL FashionCase_CanFitAccessory(const FashionCase *fashionCase, u32 accessory, u32 count)
 {
     u32 currentCount;
     BOOL canFit = TRUE;
 
-    currentCount = sub_02029D94(param0, accessory);
+    currentCount = FashionCase_GetAccessoryCount(fashionCase, accessory);
 
     if (Accesory_CanHaveMultiple(accessory)) {
         currentCount += count;
@@ -360,7 +360,7 @@ BOOL sub_02029D50(const UnkStruct_02029D04 *param0, u32 accessory, u32 count)
     return canFit;
 }
 
-BOOL sub_02029D80(const UnkStruct_02029D04 *param0, u32 param1)
+BOOL sub_02029D80(const FashionCase *param0, u32 param1)
 {
     u32 v0 = sub_02029DD4(param0, param1);
 
@@ -371,23 +371,23 @@ BOOL sub_02029D80(const UnkStruct_02029D04 *param0, u32 param1)
     return 0;
 }
 
-u32 sub_02029D94(const UnkStruct_02029D04 *param0, u32 accessory)
+u32 FashionCase_GetAccessoryCount(const FashionCase *fashionCase, u32 accessory)
 {
-    u32 v0;
+    u32 count;
 
     GF_ASSERT(accessory < ACCESSORY_COUNT);
 
     if (Accesory_CanHaveMultiple(accessory)) {
-        v0 = sub_02029A70(param0->unk_00, accessory);
+        count = sub_02029A70(fashionCase->unk_00, accessory);
     } else {
         accessory = Accessory_ToUniqueID(accessory);
-        v0 = sub_02029AF0(param0->unk_20, accessory);
+        count = sub_02029AF0(fashionCase->unk_20, accessory);
     }
 
-    return v0;
+    return count;
 }
 
-u32 sub_02029DD4(const UnkStruct_02029D04 *param0, u32 param1)
+u32 sub_02029DD4(const FashionCase *param0, u32 param1)
 {
     BOOL v0;
 
@@ -397,19 +397,19 @@ u32 sub_02029DD4(const UnkStruct_02029D04 *param0, u32 param1)
     return v0;
 }
 
-u32 sub_02029DF0(const UnkStruct_02029D04 *param0)
+u32 FashionCase_GetTotalAccessoryCount(const FashionCase *fashionCase)
 {
     int i;
-    int v1 = 0;
+    int count = 0;
 
     for (i = 0; i < ACCESSORY_COUNT; i++) {
-        v1 += sub_02029D94(param0, i);
+        count += FashionCase_GetAccessoryCount(fashionCase, i);
     }
 
-    return v1;
+    return count;
 }
 
-u32 sub_02029E0C(const UnkStruct_02029D04 *param0)
+u32 sub_02029E0C(const FashionCase *param0)
 {
     int v0;
     int v1 = 0;
@@ -423,7 +423,7 @@ u32 sub_02029E0C(const UnkStruct_02029D04 *param0)
     return v1;
 }
 
-void sub_02029E2C(UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
+void sub_02029E2C(FashionCase *param0, u32 accessory, u32 param2)
 {
     u8 v0;
 
@@ -451,7 +451,7 @@ void sub_02029E2C(UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
     }
 }
 
-void sub_02029EA0(UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
+void sub_02029EA0(FashionCase *param0, u32 accessory, u32 param2)
 {
     u8 v0;
 
@@ -475,7 +475,7 @@ void sub_02029EA0(UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
     }
 }
 
-void sub_02029EFC(UnkStruct_02029D04 *param0, u32 param1)
+void sub_02029EFC(FashionCase *param0, u32 param1)
 {
     u8 v0;
 

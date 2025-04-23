@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02029D04_DECL_H
 #define POKEPLATINUM_STRUCT_02029D04_DECL_H
 
-typedef struct UnkStruct_02029D04_t UnkStruct_02029D04;
+typedef struct UnkStruct_02029D04_t FashionCase;
 
 #endif // POKEPLATINUM_STRUCT_02029D04_DECL_H

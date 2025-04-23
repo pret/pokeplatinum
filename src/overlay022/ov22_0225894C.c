@@ -3,30 +3,32 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/accessories.h"
+
 #include "struct_decls/struct_02029D04_decl.h"
 
 #include "overlay022/struct_ov22_0225899C.h"
 
 #include "unk_020298BC.h"
 
-void ov22_0225894C(const UnkStruct_02029D04 *param0, UnkStruct_ov22_0225899C *param1)
+void ov22_0225894C(const FashionCase *fashionCase, UnkStruct_ov22_0225899C *param1)
 {
-    int v0;
+    int i;
     u32 v1;
 
-    for (v0 = 0; v0 < 100; v0++) {
-        param1->unk_00[v0] = sub_02029D94(param0, v0);
+    for (i = 0; i < ACCESSORY_COUNT; i++) {
+        param1->unk_00[i] = FashionCase_GetAccessoryCount(fashionCase, i);
     }
 
-    for (v0 = 0; v0 < 18; v0++) {
-        param1->unk_190[v0] = 18;
+    for (i = 0; i < 18; i++) {
+        param1->unk_190[i] = 18;
     }
 
-    for (v0 = 0; v0 < 18; v0++) {
-        v1 = sub_02029DD4(param0, v0);
+    for (i = 0; i < 18; i++) {
+        v1 = sub_02029DD4(fashionCase, i);
 
         if (v1 != 18) {
-            param1->unk_190[v1] = v0;
+            param1->unk_190[v1] = i;
         }
     }
 }

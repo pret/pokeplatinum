@@ -81,10 +81,10 @@ static void AccessoryShop_DeleteYesNoChoice(AccessoryShopYesNoChoice *yesNoChoic
 static u32 AccessoryShop_SelectYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice);
 static void AccessoryShop_SetDataPointers(AccessoryShopDataPtrs *dataPtr, AccessoryShopDescBox *descBox, const AccessoryShopItem *items, Bag *bag, enum HeapId heapID, BgConfig *bgConfig);
 static void AccessoryShop_Update(void *ptr, u32 cursorPos);
-static BOOL AccessoryShop_HasAllAccessories(const UnkStruct_02029D04 *param0, const AccessoryShopItem *items, u32 maxItems);
+static BOOL AccessoryShop_HasAllAccessories(const FashionCase *param0, const AccessoryShopItem *items, u32 maxItems);
 static BOOL AccessoryShop_HasEnoughBerries(Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapId heapID);
-static BOOL ov7_0224CCE4(const UnkStruct_02029D04 *param0, const AccessoryShopItem *items, u32 idx);
-static void AccessoryShop_DoPurchase(UnkStruct_02029D04 *param0, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapId heapID);
+static BOOL ov7_0224CCE4(const FashionCase *param0, const AccessoryShopItem *items, u32 idx);
+static void AccessoryShop_DoPurchase(FashionCase *param0, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapId heapID);
 
 AccessoryShop *AccessoryShop_New(enum HeapId heapID, SaveData *saveData, BgConfig *bgConfig)
 {
@@ -95,7 +95,7 @@ AccessoryShop *AccessoryShop_New(enum HeapId heapID, SaveData *saveData, BgConfi
     shop->heapID = heapID;
     shop->bgConfig = bgConfig;
     shop->saveData = saveData;
-    shop->unk_0C = sub_02029D04(SaveData_GetImageClips(shop->saveData));
+    shop->unk_0C = ImageClips_GetFashionCase(SaveData_GetImageClips(shop->saveData));
     shop->bag = SaveData_GetBag(saveData);
     shop->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FLOWER_SHOP, shop->heapID);
 
@@ -718,10 +718,10 @@ static u32 AccessoryShop_SelectYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice
     return Menu_ProcessInputAndHandleExit(yesNoChoice->menu, yesNoChoice->heapID);
 }
 
-static BOOL AccessoryShop_HasAllAccessories(const UnkStruct_02029D04 *param0, const AccessoryShopItem *items, u32 maxItems)
+static BOOL AccessoryShop_HasAllAccessories(const FashionCase *param0, const AccessoryShopItem *items, u32 maxItems)
 {
     for (int i = 0; i < maxItems; i++) {
-        if (sub_02029D50(param0, items[i].accessoryID, 1) == TRUE) {
+        if (FashionCase_CanFitAccessory(param0, items[i].accessoryID, 1) == TRUE) {
             return FALSE;
         }
     }
@@ -740,12 +740,12 @@ static BOOL AccessoryShop_HasEnoughBerries(Bag *bag, const AccessoryShopItem *it
     return FALSE;
 }
 
-static BOOL ov7_0224CCE4(const UnkStruct_02029D04 *param0, const AccessoryShopItem *items, u32 idx)
+static BOOL ov7_0224CCE4(const FashionCase *param0, const AccessoryShopItem *items, u32 idx)
 {
-    return sub_02029D50(param0, items[idx].accessoryID, 1);
+    return FashionCase_CanFitAccessory(param0, items[idx].accessoryID, 1);
 }
 
-static void AccessoryShop_DoPurchase(UnkStruct_02029D04 *param0, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapId heapID)
+static void AccessoryShop_DoPurchase(FashionCase *param0, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapId heapID)
 {
     u32 accessoryID = items[idx].accessoryID;
     u32 itemId = items[idx].itemBerryID + FIRST_BERRY_IDX;

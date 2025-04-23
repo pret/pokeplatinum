@@ -597,7 +597,7 @@ void sub_02093BBC(UnkStruct_02095C48 *param0)
 
     v0->unk_10 = param0->unk_00.unk_111;
     v0->unk_14 = param0->unk_00.unk_10F;
-    v0->unk_18 = sub_02029D04(param0->unk_1980);
+    v0->unk_18 = ImageClips_GetFashionCase(param0->unk_1980);
     v0->unk_1C = &param0->unk_1984;
     v0->unk_20 = param0->unk_196C;
     v0->unk_24 = param0->unk_1978;
@@ -1429,12 +1429,12 @@ u32 sub_02094904(UnkStruct_02095C48 *param0)
 
     {
         ImageClips *v1;
-        UnkStruct_02029D04 *v2;
+        FashionCase *v2;
 
         v1 = SaveData_GetImageClips(param0->unk_1970);
-        v2 = sub_02029D04(v1);
+        v2 = ImageClips_GetFashionCase(v1);
 
-        if (sub_02029D50(v2, v0, 1) == 0) {
+        if (FashionCase_CanFitAccessory(v2, v0, 1) == 0) {
             return 0xffff;
         }
     }

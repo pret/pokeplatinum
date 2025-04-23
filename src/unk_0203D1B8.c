@@ -849,7 +849,7 @@ static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *param1, int param2
     int v2;
     ImageClips *v3;
     UnkStruct_02029C68 *v4;
-    UnkStruct_02029D04 *v5;
+    FashionCase *v5;
 
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203DA00));
     memset(v0, 0, sizeof(UnkStruct_0203DA00));
@@ -859,7 +859,7 @@ static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *param1, int param2
 
     v3 = SaveData_GetImageClips(param1);
     v4 = sub_02029CA8(v3, 0);
-    v5 = sub_02029D04(v3);
+    v5 = ImageClips_GetFashionCase(v3);
 
     v0->unk_04 = v4;
     v0->unk_08 = v5;

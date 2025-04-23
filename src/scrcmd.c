@@ -6099,12 +6099,12 @@ static BOOL ScrCmd_1CE(ScriptContext *ctx)
 static BOOL ScrCmd_1D2(ScriptContext *ctx)
 {
     ImageClips *v0;
-    UnkStruct_02029D04 *v1;
+    FashionCase *v1;
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
 
     v0 = SaveData_GetImageClips(ctx->fieldSystem->saveData);
-    v1 = sub_02029D04(v0);
+    v1 = ImageClips_GetFashionCase(v0);
 
     sub_02029E2C(v1, v2, v3);
     return 0;
@@ -6113,14 +6113,14 @@ static BOOL ScrCmd_1D2(ScriptContext *ctx)
 static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx)
 {
     ImageClips *v0;
-    UnkStruct_02029D04 *v1;
+    FashionCase *v1;
     u16 accessory = ScriptContext_GetVar(ctx);
     u16 count = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     v0 = SaveData_GetImageClips(ctx->fieldSystem->saveData);
-    v1 = sub_02029D04(v0);
-    *destVar = sub_02029D50(v1, accessory, count);
+    v1 = ImageClips_GetFashionCase(v0);
+    *destVar = FashionCase_CanFitAccessory(v1, accessory, count);
 
     return 0;
 }
@@ -6128,15 +6128,15 @@ static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx)
 static BOOL ScrCmd_1D4(ScriptContext *ctx)
 {
     ImageClips *v0;
-    UnkStruct_02029D04 *v1;
+    FashionCase *v1;
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
 
     v0 = SaveData_GetImageClips(ctx->fieldSystem->saveData);
-    v1 = sub_02029D04(v0);
+    v1 = ImageClips_GetFashionCase(v0);
 
-    if (v3 <= sub_02029D94(v1, v2)) {
+    if (v3 <= FashionCase_GetAccessoryCount(v1, v2)) {
         *v4 = 1;
     } else {
         *v4 = 0;
@@ -6148,11 +6148,11 @@ static BOOL ScrCmd_1D4(ScriptContext *ctx)
 static BOOL ScrCmd_1D5(ScriptContext *ctx)
 {
     ImageClips *v0;
-    UnkStruct_02029D04 *v1;
+    FashionCase *v1;
     u16 v2 = ScriptContext_GetVar(ctx);
 
     v0 = SaveData_GetImageClips(ctx->fieldSystem->saveData);
-    v1 = sub_02029D04(v0);
+    v1 = ImageClips_GetFashionCase(v0);
 
     sub_02029EFC(v1, v2);
     return 0;
@@ -6161,12 +6161,12 @@ static BOOL ScrCmd_1D5(ScriptContext *ctx)
 static BOOL ScrCmd_1D6(ScriptContext *ctx)
 {
     ImageClips *v0;
-    UnkStruct_02029D04 *v1;
+    FashionCase *v1;
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 *v3 = ScriptContext_GetVarPointer(ctx);
 
     v0 = SaveData_GetImageClips(ctx->fieldSystem->saveData);
-    v1 = sub_02029D04(v0);
+    v1 = ImageClips_GetFashionCase(v0);
     *v3 = sub_02029D80(v1, v2);
 
     return 0;
@@ -6941,18 +6941,18 @@ static BOOL ScrCmd_26B(ScriptContext *ctx)
 static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx)
 {
     ImageClips *v0;
-    UnkStruct_02029D04 *v1;
+    FashionCase *v1;
     u16 hasAccessory[NUM_MASSAGE_GIRL_ACCESSORIES];
     int i;
     u16 *destAccessoryID = ScriptContext_GetVarPointer(ctx);
 
     v0 = SaveData_GetImageClips(ctx->fieldSystem->saveData);
-    v1 = sub_02029D04(v0);
+    v1 = ImageClips_GetFashionCase(v0);
 
     int unobtainedAccessoryCount = 0;
 
     for (i = 0; i < NUM_MASSAGE_GIRL_ACCESSORIES; i++) {
-        if (sub_02029D50(v1, ACCESSORY_PRETTY_DEWDROP + i, 1) == 1) {
+        if (FashionCase_CanFitAccessory(v1, ACCESSORY_PRETTY_DEWDROP + i, 1) == 1) {
             hasAccessory[i] = TRUE;
             unobtainedAccessoryCount++;
         }
@@ -7045,12 +7045,12 @@ static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx)
 static BOOL ScrCmd_279(ScriptContext *ctx)
 {
     ImageClips *v0;
-    UnkStruct_02029D04 *v1;
+    FashionCase *v1;
     u16 accessory = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
 
     v0 = SaveData_GetImageClips(ctx->fieldSystem->saveData);
-    v1 = sub_02029D04(v0);
+    v1 = ImageClips_GetFashionCase(v0);
 
     sub_02029EA0(v1, accessory, v3);
     return 0;
