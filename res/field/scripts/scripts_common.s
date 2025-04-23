@@ -319,7 +319,7 @@ _0457:
     Message 11
     WaitABPress
     CloseMessage
-    FadeOutMusic 0, 10
+    FadeOutBGM 0, 10
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_1F8
@@ -1642,7 +1642,7 @@ _15CB:
     End
 
 _15D7:
-    FadeOutMusic 0, 30
+    FadeOutBGM 0, 30
     StopMusic 0
     PlayDefaultMusic
     ReturnCommonScript

@@ -456,7 +456,7 @@ _0508:
     Call _0109
     MessageVar VAR_0x8004
     CloseMessage
-    FadeOutMusic 0, 30
+    FadeOutBGM 0, 30
     ScrCmd_20D 0, VAR_RESULT
     WaitTime 10, VAR_RESULT
     PlayFanfare SEQ_SE_PL_KUSARI

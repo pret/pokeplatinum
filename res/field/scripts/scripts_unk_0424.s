@@ -24,7 +24,7 @@ _0031:
     End
 
 _0054:
-    FadeOutMusic 42, 10
+    FadeOutBGM 42, 10
     Message 1
     ScrCmd_05A VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT

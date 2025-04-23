@@ -222,7 +222,7 @@ _0316:
     End
 
 _0330:
-    FadeOutMusic 0, 40
+    FadeOutBGM 0, 40
     ApplyMovement 0, _047C
     ApplyMovement LOCALID_PLAYER, _04B4
     WaitMovement

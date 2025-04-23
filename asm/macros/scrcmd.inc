@@ -551,7 +551,7 @@
     .short \bgmID
     .endm
 
-    .macro FadeOutMusic targetVolume, frames
+    .macro FadeOutBGM targetVolume, frames
     .short 84
     .short \targetVolume
     .short \frames

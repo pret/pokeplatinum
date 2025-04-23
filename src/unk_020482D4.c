@@ -65,7 +65,7 @@ BOOL ScrCmd_SetSpecialBGM(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_FadeOutMusic(ScriptContext *ctx)
+BOOL ScrCmd_FadeOutBGM(ScriptContext *ctx)
 {
     u16 targetVolume = ScriptContext_ReadHalfWord(ctx);
     u16 frames = ScriptContext_ReadHalfWord(ctx);
