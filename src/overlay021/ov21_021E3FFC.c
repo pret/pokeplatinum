@@ -337,7 +337,7 @@ static int ov21_021E4288(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
         }
 
         Sound_SetBGMPlayerPaused(1, 0);
-        Sound_FadeInBGM(127, 3, 0);
+        Sound_FadeInBGM(127, 3, BGM_FADE_IN_TYPE_FROM_ZERO);
         param1->unk_00++;
         break;
     case 1:

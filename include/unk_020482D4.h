@@ -9,7 +9,7 @@ BOOL ScrCmd_StopMusic(ScriptContext *ctx);
 BOOL ScrCmd_PlayDefaultMusic(ScriptContext *ctx);
 BOOL ScrCmd_SetSpecialBGM(ScriptContext *ctx);
 BOOL ScrCmd_FadeOutMusic(ScriptContext *ctx);
-BOOL ScrCmd_055(ScriptContext *param0);
+BOOL ScrCmd_FadeInBGM(ScriptContext *ctx);
 BOOL ScrCmd_056(ScriptContext *param0);
 BOOL ScrCmd_057(ScriptContext *param0);
 BOOL ScrCmd_058(ScriptContext *param0);

@@ -29,7 +29,7 @@ _0054:
     ScrCmd_05A VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     WaitTime 30, VAR_RESULT
-    ScrCmd_055 10
+    FadeInBGM 10
     WaitTime 10, VAR_RESULT
     GoToIfEq VAR_0x8004, 0, _00BA
     ScrCmd_05B

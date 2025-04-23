@@ -557,9 +557,9 @@
     .short \frames
     .endm
 
-    .macro ScrCmd_055 arg0
+    .macro FadeInBGM frames
     .short 85
-    .short \arg0
+    .short \frames
     .endm
 
     .macro ScrCmd_056 arg0, arg1

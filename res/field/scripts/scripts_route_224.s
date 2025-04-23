@@ -115,7 +115,7 @@ _0124:
     WaitABXPadPress
     CloseMessage
     ScrCmd_333 127
-    ScrCmd_055 10
+    FadeInBGM 10
     SetFlag FLAG_UNK_0x012D
     SetFlag FLAG_UNK_0x0252
     SetFlag FLAG_UNK_0x02CA

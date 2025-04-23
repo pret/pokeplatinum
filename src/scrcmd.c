@@ -852,7 +852,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_PlayDefaultMusic,
     ScrCmd_SetSpecialBGM,
     ScrCmd_FadeOutMusic,
-    ScrCmd_055,
+    ScrCmd_FadeInBGM,
     ScrCmd_056,
     ScrCmd_057,
     ScrCmd_058,

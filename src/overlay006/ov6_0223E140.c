@@ -589,7 +589,7 @@ static BOOL ov6_0223E408(FieldTask *param0)
         }
         break;
     case 5:
-        Sound_FadeInBGM(127, 16, 0);
+        Sound_FadeInBGM(127, 16, BGM_FADE_IN_TYPE_FROM_ZERO);
         v1->unk_0C++;
         break;
     case 6:
