@@ -117,11 +117,11 @@ void sub_020553DC()
     Sound_SetScene(SOUND_SCENE_NONE);
 }
 
-void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 sdatID)
+void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 bgmID)
 {
     u16 *bgm = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    *bgm = sdatID;
+    *bgm = bgmID;
 }
 
 u16 Sound_GetSpecialBGM(FieldSystem *fieldSystem)

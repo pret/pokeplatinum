@@ -546,9 +546,9 @@
     .short 82
     .endm
 
-    .macro ScrCmd_053 arg0
+    .macro SetSpecialBGM bgmID
     .short 83
-    .short \arg0
+    .short \bgmID
     .endm
 
     .macro FadeOutMusic targetVolume, frames

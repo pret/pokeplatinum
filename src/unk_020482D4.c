@@ -16,9 +16,6 @@ static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);
 static BOOL ScrCmd_IsPokemonCryPlaying(ScriptContext *param0);
 static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx);
-BOOL ScrCmd_053(ScriptContext *param0);
-BOOL ScrCmd_FadeOutMusic(ScriptContext *ctx);
-BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 BOOL ScrCmd_055(ScriptContext *param0);
 BOOL ScrCmd_056(ScriptContext *param0);
 BOOL ScrCmd_057(ScriptContext *param0);
@@ -63,10 +60,10 @@ BOOL ScrCmd_PlayDefaultMusic(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_053(ScriptContext *param0)
+BOOL ScrCmd_SetSpecialBGM(ScriptContext *ctx)
 {
-    Sound_SetSpecialBGM(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
-    return 0;
+    Sound_SetSpecialBGM(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    return FALSE;
 }
 
 BOOL ScrCmd_FadeOutMusic(ScriptContext *ctx)
