@@ -12,7 +12,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_16D
+    BufferDaycareMonNicknames
     GetDaycareState VAR_RESULT
     GoToIfEq VAR_RESULT, DAYCARE_EGG_WAITING, _004A
     GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _00BE
@@ -62,7 +62,7 @@ _009F:
     End
 
 _00BE:
-    ScrCmd_16D
+    BufferDaycareMonNicknames
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -70,7 +70,7 @@ _00BE:
     End
 
 _00CB:
-    ScrCmd_16D
+    BufferDaycareMonNicknames
     Message 9
     GetDaycareCompatibilityLevel VAR_RESULT
     CallIfEq VAR_RESULT, 0, _0110
@@ -148,7 +148,7 @@ _01DE:
     GoToIfEq VAR_RESULT, SPECIES_NONE, _0285
     CountAliveMonsExcept VAR_RESULT, VAR_0x8000
     GoToIfEq VAR_RESULT, 0, _02C8
-    ScrCmd_1AF 0, VAR_0x8000, VAR_0x8001
+    BufferPartyMonNicknameReturnSpecies 0, VAR_0x8000, VAR_0x8001
     StorePartyMonIntoDaycare VAR_0x8000
     SetFlag FLAG_UNK_0x00FE
     GetDaycareState VAR_RESULT
@@ -254,9 +254,9 @@ _0346:
     SetVar VAR_0x8001, 0
     GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _03BE
     InitGlobalTextMenu 1, 1, 0, VAR_0x8001
-    ScrCmd_1BC 0, 1, 2, 0
+    BufferDaycareNicknameLevelGender 0, 1, 2, 0
     AddMenuEntryImm 134, 0
-    ScrCmd_1BC 0, 1, 2, 1
+    BufferDaycareNicknameLevelGender 0, 1, 2, 1
     AddMenuEntryImm 135, 1
     AddMenuEntryImm 136, 2
     ShowMenu

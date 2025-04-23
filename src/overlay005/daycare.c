@@ -997,24 +997,24 @@ Pokemon *Party_GetFirstEgg(Party *party)
     return NULL;
 }
 
-void ov5_021E72BC(Daycare *daycare, StringTemplate *param1)
+void ov5_021E72BC(Daycare *daycare, StringTemplate *strTemplate)
 {
-    BoxPokemon *v0[2];
-    u16 v1[10 + 1];
+    BoxPokemon *boxMon[NUM_DAYCARE_MONS];
+    u16 v1[MON_NAME_LEN + 1];
 
-    Daycare_CopyDaycareMonToBoxMonArray(daycare, v0);
+    Daycare_CopyDaycareMonToBoxMonArray(daycare, boxMon);
 
-    if (BoxPokemon_GetValue(v0[0], MON_DATA_SPECIES, NULL) != 0) {
-        StringTemplate_SetNickname(param1, 0, v0[0]);
-        StringTemplate_SetOTName(param1, 2, v0[0]);
+    if (BoxPokemon_GetValue(boxMon[0], MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+        StringTemplate_SetNickname(strTemplate, 0, boxMon[0]);
+        StringTemplate_SetOTName(strTemplate, 2, boxMon[0]);
     }
 
-    if (BoxPokemon_GetValue(v0[1], MON_DATA_SPECIES, NULL) != 0) {
-        StringTemplate_SetNickname(param1, 1, v0[1]);
+    if (BoxPokemon_GetValue(boxMon[1], MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+        StringTemplate_SetNickname(strTemplate, 1, boxMon[1]);
     }
 }
 
-void ov5_021E7308(Daycare *daycare, u32 param1, u32 param2, u32 param3, u8 slot, StringTemplate *template)
+void Daycare_BufferNicknameLevelGender(Daycare *daycare, u32 idxNickname, u32 idxLevel, u32 idxGender, u8 slot, StringTemplate *template)
 {
     DaycareMon *daycareMon;
     BoxPokemon *boxMon;
@@ -1024,10 +1024,10 @@ void ov5_021E7308(Daycare *daycare, u32 param1, u32 param2, u32 param3, u8 slot,
     daycareMon = Daycare_GetDaycareMon(daycare, slot);
     boxMon = Daycare_GetBoxMon(daycare, slot);
 
-    StringTemplate_SetNickname(template, param1, boxMon);
+    StringTemplate_SetNickname(template, idxNickname, boxMon);
 
     level = BoxPokemon_GiveExperience(boxMon, DaycareMon_GetSteps(daycareMon));
-    StringTemplate_SetNumber(template, param2, level, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(template, idxLevel, level, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
     gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL);
 
     if (gender != GENDER_NONE) {
@@ -1038,15 +1038,15 @@ void ov5_021E7308(Daycare *daycare, u32 param1, u32 param2, u32 param3, u8 slot,
         }
     }
 
-    StringTemplate_SetGenderMarker(template, param3, gender);
+    StringTemplate_SetGenderMarker(template, idxGender, gender);
 }
 
-u16 ov5_021E73A0(Party *param0, int param1, StringTemplate *param2)
+u16 Party_StringTemplateSetNicknameReturnSpecies(Party *party, int slot, StringTemplate *strTemplate)
 {
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0, param1);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
 
-    StringTemplate_SetNickname(param2, 0, Pokemon_GetBoxPokemon(v0));
-    return Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+    StringTemplate_SetNickname(strTemplate, 0, Pokemon_GetBoxPokemon(mon));
+    return Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 }
 
 u8 Daycare_GetState(Daycare *daycare)

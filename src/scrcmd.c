@@ -139,6 +139,7 @@
 #include "savedata.h"
 #include "scrcmd_amity_square.h"
 #include "scrcmd_coins.h"
+#include "scrcmd_daycare.h"
 #include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_game_corner_prize.h"
 #include "scrcmd_jubilife_lottery.h"
@@ -184,7 +185,6 @@
 #include "unk_0204AEE8.h"
 #include "unk_0204B64C.h"
 #include "unk_0204C500.h"
-#include "unk_0204CA84.h"
 #include "unk_0204CFFC.h"
 #include "unk_0204E240.h"
 #include "unk_0204E75C.h"
@@ -1132,7 +1132,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_16A,
     ScrCmd_16B,
     ScrCmd_16C,
-    ScrCmd_16D,
+    ScrCmd_BufferDaycareMonNicknames,
     ScrCmd_GetDaycareState,
     ScrCmd_InitPersistedMapFeaturesForPastoriaGym,
     ScrCmd_170,
@@ -1188,9 +1188,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1A2,
     ScrCmd_RemoveMoney2,
     ScrCmd_MoveMonToPartyFromDaycareSlot,
-    ScrCmd_1A5,
-    ScrCmd_1A6,
-    ScrCmd_1A7,
+    ScrCmd_Dummy1A5,
+    ScrCmd_Dummy1A6,
+    ScrCmd_Dummy1A7,
     ScrCmd_ResetDaycarePersonalityAndStepCounter,
     ScrCmd_GiveEggFromDaycare,
     ScrCmd_BufferDaycarePriceBySlot,
@@ -1198,7 +1198,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1AC,
     ScrCmd_Dummy1AD,
     ScrCmd_BufferDaycareGainedLevelsBySlot,
-    ScrCmd_1AF,
+    ScrCmd_BufferPartyMonNicknameReturnSpecies,
     ScrCmd_StorePartyMonIntoDaycare,
     ScrCmd_1B1,
     ScrCmd_1B2,
@@ -1211,7 +1211,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetFriendshipByPartySlot,
     ScrCmd_1BA,
     ScrCmd_1BB,
-    ScrCmd_1BC,
+    ScrCmd_BufferDaycareNicknameLevelGender,
     ScrCmd_GetPlayerDir,
     ScrCmd_GetDaycareCompatibilityLevel,
     ScrCmd_CheckDaycareHasEgg,
