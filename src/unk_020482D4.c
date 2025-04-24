@@ -16,8 +16,6 @@ static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);
 static BOOL ScrCmd_IsPokemonCryPlaying(ScriptContext *param0);
 static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx);
-BOOL ScrCmd_057(ScriptContext *param0);
-BOOL ScrCmd_058(ScriptContext *param0);
 BOOL ScrCmd_04A(ScriptContext *param0);
 BOOL ScrCmd_059(ScriptContext *param0);
 BOOL ScrCmd_05A(ScriptContext *param0);
@@ -98,16 +96,16 @@ BOOL ScrCmd_SetBGMPlayerPaused(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_057(ScriptContext *param0)
+BOOL ScrCmd_057(ScriptContext *ctx)
 {
-    sub_02005588(SOUND_SCENE_FIELD, ScriptContext_ReadHalfWord(param0));
-    return 0;
+    sub_02005588(SOUND_SCENE_FIELD, ScriptContext_ReadHalfWord(ctx));
+    return FALSE;
 }
 
-BOOL ScrCmd_058(ScriptContext *param0)
+BOOL ScrCmd_SetBGMFixed(ScriptContext *ctx)
 {
-    Sound_SetBGMFixed(ScriptContext_ReadByte(param0));
-    return 0;
+    Sound_SetBGMFixed(ScriptContext_ReadByte(ctx));
+    return FALSE;
 }
 
 BOOL ScrCmd_PlayFanfare(ScriptContext *ctx)

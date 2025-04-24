@@ -30,7 +30,6 @@ typedef struct PokemonCryDurationParam {
 static void Sound_Impl_HandleBGMChange(u16 param0, enum SoundHandleType param1);
 static BOOL Sound_Impl_PlayBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
 static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
-BOOL sub_02005588(u8 param0, u16 param1);
 static void Sound_Impl_ResetBGM(void);
 void Sound_StopAll(void);
 static void Sound_Impl_SetPokemonCryVolume(u16 param0, enum SoundHandleType param1, int param2);

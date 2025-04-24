@@ -573,9 +573,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_058 arg0
+    .macro SetBGMFixed bgmID
     .short 88
-    .byte \arg0
+    .byte \bgmID
     .endm
 
     .macro ScrCmd_059 arg0

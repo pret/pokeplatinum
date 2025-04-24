@@ -855,7 +855,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FadeInBGM,
     ScrCmd_SetBGMPlayerPaused,
     ScrCmd_057,
-    ScrCmd_058,
+    ScrCmd_SetBGMFixed,
     ScrCmd_059,
     ScrCmd_05A,
     ScrCmd_05B,
