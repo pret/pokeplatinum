@@ -3647,10 +3647,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_283 arg0, arg1
+    .macro SetInitialVolumeForSequence seqID, volume
     .short 643
-    .short \arg0
-    .short \arg1
+    .short \seqID
+    .short \volume
     .endm
 
     .macro GetUnownFormsSeenCount destVar

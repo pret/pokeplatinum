@@ -1410,7 +1410,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_280,
     ScrCmd_281,
     ScrCmd_282,
-    ScrCmd_283,
+    ScrCmd_SetInitialVolumeForSequence,
     ScrCmd_GetUnownFormsSeenCount,
     ScrCmd_285,
     ScrCmd_GetUndergroundItemsGivenAway,

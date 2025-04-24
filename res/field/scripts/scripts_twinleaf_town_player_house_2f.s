@@ -20,7 +20,7 @@ _002A:
     End
 
 _0039:
-    ScrCmd_283 0x406, 50
+    SetInitialVolumeForSequence SEQ_TV_HOUSOU, 50
     End
 
 _0041:
