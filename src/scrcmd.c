@@ -860,7 +860,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_TryRecordChatotCry,
     ScrCmd_StopRecordingChatotCry,
     ScrCmd_StoreRecordedChatotCry,
-    ScrCmd_05D,
+    ScrCmd_SetSubScene63,
     ScrCmd_ApplyMovement,
     ScrCmd_WaitMovement,
     ScrCmd_LockAll,

@@ -16,7 +16,6 @@ static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);
 static BOOL ScrCmd_IsPokemonCryPlaying(ScriptContext *param0);
 static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx);
-BOOL ScrCmd_05D(ScriptContext *param0);
 BOOL ScrCmd_283(ScriptContext *param0);
 BOOL ScrCmd_2F8(ScriptContext *param0);
 BOOL ScrCmd_2F9(ScriptContext *param0);
@@ -204,10 +203,10 @@ BOOL ScrCmd_StoreRecordedChatotCry(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_05D(ScriptContext *param0)
+BOOL ScrCmd_SetSubScene63(ScriptContext *ctx)
 {
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
-    return 1;
+    return TRUE;
 }
 
 BOOL ScrCmd_283(ScriptContext *param0)

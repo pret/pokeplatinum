@@ -596,7 +596,7 @@
     .short 92
     .endm
 
-    .macro ScrCmd_05D
+    .macro SetSubScene63
     .short 93
     .endm
 

@@ -462,7 +462,7 @@ _0508:
     PlayFanfare SEQ_SE_PL_KUSARI
     WaitTime 20, VAR_RESULT
     PlayMusic SEQ_THE_EVENT02
-    ScrCmd_05D
+    SetSubScene63
     GoTo _0567
     End
 
