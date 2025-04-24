@@ -501,9 +501,9 @@
     .short \sdatID
     .endm
 
-    .macro ScrCmd_04A arg0
+    .macro StopFanfare seqID
     .short 74
-    .short \arg0
+    .short \seqID
     .endm
 
     .macro WaitFanfare sdatID

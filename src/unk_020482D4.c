@@ -16,7 +16,6 @@ static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);
 static BOOL ScrCmd_IsPokemonCryPlaying(ScriptContext *param0);
 static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx);
-BOOL ScrCmd_04A(ScriptContext *param0);
 BOOL ScrCmd_05C(ScriptContext *param0);
 BOOL ScrCmd_05D(ScriptContext *param0);
 BOOL ScrCmd_283(ScriptContext *param0);
@@ -111,10 +110,10 @@ BOOL ScrCmd_PlayFanfare(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_04A(ScriptContext *param0)
+BOOL ScrCmd_StopFanfare(ScriptContext *ctx)
 {
-    Sound_StopEffect(ScriptContext_GetVar(param0), 0);
-    return 0;
+    Sound_StopEffect(ScriptContext_GetVar(ctx), 0);
+    return FALSE;
 }
 
 BOOL ScrCmd_WaitFanfare(ScriptContext *ctx)

@@ -14,7 +14,7 @@ BOOL ScrCmd_SetBGMPlayerPaused(ScriptContext *ctx);
 BOOL ScrCmd_057(ScriptContext *ctx);
 BOOL ScrCmd_SetBGMFixed(ScriptContext *ctx);
 BOOL ScrCmd_PlayFanfare(ScriptContext *ctx);
-BOOL ScrCmd_04A(ScriptContext *param0);
+BOOL ScrCmd_StopFanfare(ScriptContext *ctx);
 BOOL ScrCmd_WaitFanfare(ScriptContext *ctx);
 BOOL ScrCmd_PlayCry(ScriptContext *ctx);
 BOOL ScrCmd_WaitCry(ScriptContext *ctx);

@@ -841,7 +841,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ShowListMenu,
     ScrCmd_ShowMenuMultiColumn,
     ScrCmd_PlayFanfare,
-    ScrCmd_04A,
+    ScrCmd_StopFanfare,
     ScrCmd_WaitFanfare,
     ScrCmd_PlayCry,
     ScrCmd_WaitCry,

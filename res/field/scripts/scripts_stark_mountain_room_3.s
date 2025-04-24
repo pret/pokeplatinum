@@ -182,7 +182,7 @@ _019C:
     WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_FW089
     ScrCmd_29F 0
-    ScrCmd_04A 0x65C
+    StopFanfare SEQ_SE_DP_FW089
     ApplyMovement 2, _03A4
     ApplyMovement LOCALID_PLAYER, _0388
     WaitMovement
