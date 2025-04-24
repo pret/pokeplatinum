@@ -501,7 +501,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You don’t have enough money.</language>
 	</row>
-	<row id="pl_msg_00000602_00124" index="124">
+	<row id="Villa_Text_ThisIsTheListOfPurchasedFurniture" index="124">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">This is the list of purchased furniture.</language>
 	</row>

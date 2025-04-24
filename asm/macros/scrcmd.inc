@@ -21,6 +21,7 @@
 #include "generated/sdat.h"
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
+#include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
 #include "constants/forms.h"
 #include "constants/honey_tree.h"
@@ -4417,9 +4418,9 @@
     .short 777
     .endm
 
-    .macro ScrCmd_30A arg0
+    .macro IncrementTrainerScore scoreID
     .short 778
-    .short \arg0
+    .short \scoreID
     .endm
 
     .macro ScrCmd_30B

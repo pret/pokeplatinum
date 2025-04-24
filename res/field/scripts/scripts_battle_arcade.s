@@ -476,7 +476,7 @@ _0700:
     End
 
 _073C:
-    ScrCmd_30A 41
+    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_41
     Return
 
 _0742:

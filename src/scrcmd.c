@@ -728,7 +728,7 @@ static BOOL ScrCmd_2F7(ScriptContext *ctx);
 static BOOL ScrCmd_2FB(ScriptContext *ctx);
 static BOOL ScrCmd_2FC(ScriptContext *ctx);
 static BOOL ScrCmd_GetRotomFormsInSave(ScriptContext *ctx);
-static BOOL ScrCmd_30A(ScriptContext *ctx);
+static BOOL ScrCmd_IncrementTrainerScore(ScriptContext *ctx);
 static BOOL ScrCmd_311(ScriptContext *ctx);
 static BOOL ScrCmd_312(ScriptContext *ctx);
 static BOOL ScrCmd_31F(ScriptContext *ctx);
@@ -1545,7 +1545,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_307,
     ScrCmd_308,
     ScrCmd_309,
-    ScrCmd_30A,
+    ScrCmd_IncrementTrainerScore,
     ScrCmd_30B,
     ScrCmd_30C,
     ScrCmd_30D,
@@ -8085,12 +8085,12 @@ static u32 SaveData_GetRotomFormsInSave(SaveData *saveData)
     return rotomForms;
 }
 
-static BOOL ScrCmd_30A(ScriptContext *ctx)
+static BOOL ScrCmd_IncrementTrainerScore(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 scoreID = ScriptContext_ReadHalfWord(ctx);
 
-    GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(ctx->fieldSystem->saveData), v0);
-    return 0;
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(ctx->fieldSystem->saveData), scoreID);
+    return FALSE;
 }
 
 static BOOL ScrCmd_311(ScriptContext *ctx)

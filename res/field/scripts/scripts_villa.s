@@ -1509,8 +1509,8 @@ _14FC:
     .byte 0
 
 _1514:
-    Call _18F8
-    GoToIfEq VAR_RESULT, 1, _155E
+    Call Villa_CheckIfHasAllFurniture
+    GoToIfEq VAR_RESULT, TRUE, Villa_DeliveryGuy_HasAllFurniture
     Message Villa_Text_ThankYouForWaitingImDeliveringYourOrder
     GoTo _1532
     End
@@ -1526,8 +1526,8 @@ _1532:
     Call _15B0
     Return
 
-_155E:
-    ScrCmd_30A 49
+Villa_DeliveryGuy_HasAllFurniture:
+    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_49
     Message Villa_Text_ThankYouForWaitingImDeliveringYourOrder_AlsoAndIHateToSayThisBut
     GoTo _1532
     End
@@ -1575,13 +1575,13 @@ _1624:
     ShowMoney 21, 1
     BufferPlayerName 1
     Message 119
-    Call _18F8
-    GoToIfEq VAR_RESULT, 1, _1651
+    Call Villa_CheckIfHasAllFurniture
+    GoToIfEq VAR_RESULT, TRUE, _1651
     GoTo _165C
     End
 
 _1651:
-    Message 124
+    Message Villa_Text_ThisIsTheListOfPurchasedFurniture
     GoTo _1667
     End
 
@@ -1670,32 +1670,32 @@ _18F0:
     ReleaseAll
     End
 
-_18F8:
-    GoToIfUnset FLAG_VILLA_FURNITURE_TABLE, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_BIG_SOFA, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_SMALL_SOFA, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_BED, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_NIGHT_TABLE, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_TV, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_AUDIO_SYSTEM, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_BOOKSHELF, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_RACK, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_HOUSEPLANT, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_PC_DESK, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_MUSIC_BOX, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_PIANO, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_GUEST_SET, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_WALL_CLOCK, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_MASTERPIECE, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_TEA_SET, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_CHANDELIER, _19DC
-    SetVar VAR_RESULT, 1
+Villa_CheckIfHasAllFurniture:
+    GoToIfUnset FLAG_VILLA_FURNITURE_TABLE, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_BIG_SOFA, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_SMALL_SOFA, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_BED, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_NIGHT_TABLE, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_TV, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_AUDIO_SYSTEM, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_BOOKSHELF, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_RACK, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_HOUSEPLANT, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_PC_DESK, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_MUSIC_BOX, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_PIANO, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_GUEST_SET, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_WALL_CLOCK, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_MASTERPIECE, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_TEA_SET, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_CHANDELIER, Villa_DoesntHaveAllFurniture
+    SetVar VAR_RESULT, TRUE
     Return
 
-_19DC:
-    SetVar VAR_RESULT, 0
+Villa_DoesntHaveAllFurniture:
+    SetVar VAR_RESULT, FALSE
     Return
 
 _19E4:
