@@ -568,9 +568,9 @@
     .byte \paused
     .endm
 
-    .macro ScrCmd_057 arg0
+    .macro ScrCmd_057 seqID
     .short 87
-    .short \arg0
+    .short \seqID
     .endm
 
     .macro SetBGMFixed bgmID
