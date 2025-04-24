@@ -41,7 +41,6 @@ static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form);
 void Sound_ClearPokemonCryParams(void);
 static BOOL Sound_Impl_PlayPokemonCryEcho(u16 species, s8 pitch, u8 form);
 static BOOL Sound_PlayPokemonCryReversedEcho(u16 param0, s8 param1, int param2, int param3, int heapID);
-BOOL Sound_PlayFanfare(u16 param0);
 BOOL Sound_UpdateFanfareDelay(void);
 static void Sound_Impl_StopFanfare(int param0);
 BOOL Sound_IsBGMPausedByFanfare(void);

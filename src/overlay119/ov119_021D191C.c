@@ -137,7 +137,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
             break;
         }
 
-        Sound_PlayFanfare(1156);
+        Sound_PlayFanfare(SEQ_FANFA5);
         param0->unk_60++;
     case 9:
         if (Sound_IsBGMPausedByFanfare() != 0) {
@@ -287,7 +287,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
             break;
         }
 
-        Sound_PlayFanfare(1156);
+        Sound_PlayFanfare(SEQ_FANFA5);
         param0->unk_60++;
     case 9:
         if (Sound_IsBGMPausedByFanfare() != 0) {
