@@ -4319,14 +4319,14 @@
     .short 760
     .endm
 
-    .macro ScrCmd_2F9 arg0
+    .macro SetFieldScene bgmID
     .short 761
-    .short \arg0
+    .short \bgmID
     .endm
 
-    .macro ScrCmd_2FA arg0
+    .macro GetCurrentBGM destVar
     .short 762
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_2FB

@@ -16,8 +16,6 @@ static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);
 static BOOL ScrCmd_IsPokemonCryPlaying(ScriptContext *param0);
 static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx);
-BOOL ScrCmd_2F9(ScriptContext *param0);
-BOOL ScrCmd_2FA(ScriptContext *param0);
 
 BOOL ScrCmd_IsSequencePlaying(ScriptContext *ctx)
 {
@@ -227,18 +225,18 @@ BOOL ScrCmd_SetScene22(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_2F9(ScriptContext *param0)
+BOOL ScrCmd_SetFieldScene(ScriptContext *ctx)
 {
-    u16 bgmID = ScriptContext_GetVar(param0);
+    u16 bgmID = ScriptContext_GetVar(ctx);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
-    return 1;
+    return TRUE;
 }
 
-BOOL ScrCmd_2FA(ScriptContext *param0)
+BOOL ScrCmd_GetCurrentBGM(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(param0);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = Sound_GetCurrentBGM();
-    return 0;
+    *destVar = Sound_GetCurrentBGM();
+    return FALSE;
 }

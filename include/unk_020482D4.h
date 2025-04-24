@@ -27,7 +27,7 @@ BOOL ScrCmd_StoreRecordedChatotCry(ScriptContext *ctx);
 BOOL ScrCmd_SetSubScene63(ScriptContext *ctx);
 BOOL ScrCmd_SetInitialVolumeForSequence(ScriptContext *ctx);
 BOOL ScrCmd_SetScene22(ScriptContext *ctx);
-BOOL ScrCmd_2F9(ScriptContext *param0);
-BOOL ScrCmd_2FA(ScriptContext *param0);
+BOOL ScrCmd_SetFieldScene(ScriptContext *ctx);
+BOOL ScrCmd_GetCurrentBGM(ScriptContext *ctx);
 
 #endif // POKEPLATINUM_UNK_020482D4_H
