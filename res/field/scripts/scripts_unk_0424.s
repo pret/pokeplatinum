@@ -34,7 +34,7 @@ _0054:
     GoToIfEq VAR_0x8004, 0, _00BA
     StopRecordingChatotCry
     WaitTime 1, VAR_RESULT
-    ScrCmd_05C
+    StoreRecordedChatotCry
     WaitTime 1, VAR_RESULT
     ScrCmd_28D
     BufferPartyMonNickname 0, VAR_0x8005

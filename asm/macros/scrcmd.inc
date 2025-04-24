@@ -592,7 +592,7 @@
     .short 91
     .endm
 
-    .macro ScrCmd_05C
+    .macro StoreRecordedChatotCry
     .short 92
     .endm
 
