@@ -10,6 +10,14 @@
 
 #include "savedata.h"
 
+#define WONDERCARD_TITLE_LENGTH       36
+#define WONDERCARD_DESCRIPTION_LENGTH 250
+#define NUM_WONDERCARD_SPRITES        3
+
+#define WONDERCARD_ID_MAX    2048
+#define NUM_PGT_SLOTS        8
+#define NUM_WONDERCARD_SLOTS 3
+
 typedef struct MysteryGiftPokemonData {
     BOOL hasCustomOT;
     Pokemon pokemon;
@@ -50,15 +58,15 @@ typedef struct PGT {
 } PGT;
 
 typedef struct WonderCardMetadata {
-    u16 title[36];
+    u16 title[WONDERCARD_TITLE_LENGTH];
     u32 validGames; //!< A bit field of the games the WonderCard can be received on.
     u16 id;
     u8 unique : 1;
     u8 unk_4E_1 : 1;
     u8 saveWonderCard : 1; //!< If FALSE, savePgt is ignored and treated as TRUE.
     u8 savePgt : 1;
-    u8 redistributable : 1;
-    u8 isRedistribution : 1; //!< Whether or not the wonder card was obtained from another player redistributing it
+    u8 shareable : 1;
+    u8 fromSharing : 1; //!< Whether or not the wonder card was obtained from another player sharing it
     u8 : 2;
     u8 padding_4F;
 } WonderCardMetadata;
@@ -66,16 +74,16 @@ typedef struct WonderCardMetadata {
 typedef struct WonderCard {
     PGT pgt;
     WonderCardMetadata metadata;
-    u16 description[250];
+    u16 description[WONDERCARD_DESCRIPTION_LENGTH];
     u8 redistributionsLeft;
     u8 padding_349;
-    u16 spritesSpecies[3];
+    u16 spritesSpecies[NUM_WONDERCARD_SPRITES];
     u8 redistributionCount;
     u8 padding_351[3];
     s32 receivedDate;
 } WonderCard;
 
-enum MYSTERY_GIFT_TYPE {
+enum MysteryGiftType {
     MYST_GIFT_NONE = 0,
     MYST_GIFT_POKEMON,
     MYST_GIFT_EGG,
@@ -92,10 +100,6 @@ enum MYSTERY_GIFT_TYPE {
     MYST_GIFT_UNKNOWN,
     MYST_GIFT_TYPE_MAX = 14,
 };
-
-#define WONDERCARD_ID_MAX    2048
-#define NUM_PGT_SLOTS        8
-#define NUM_WONDERCARD_SLOTS 3
 
 typedef struct MysteryGift {
     u8 received[WONDERCARD_ID_MAX / 8];

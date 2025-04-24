@@ -1262,8 +1262,8 @@ static int ov97_02231BD8(UnkStruct_ov97_02230868 *param0)
     memcpy(&param0->unk_04.unk_8C.unk_00, &v0->metadata, sizeof(WonderCardMetadata));
 
     param0->unk_04.unk_8C.unk_50.redistributionsLeft = 0;
-    param0->unk_04.unk_8C.unk_00.redistributable = 0;
-    param0->unk_04.unk_8C.unk_00.isRedistribution = 1;
+    param0->unk_04.unk_8C.unk_00.shareable = 0;
+    param0->unk_04.unk_8C.unk_00.fromSharing = 1;
 
     ov97_0222D1C4(&param0->unk_04, param0->unk_2C04, 15);
 

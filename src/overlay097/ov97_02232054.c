@@ -167,7 +167,7 @@ int ov97_02232148(SaveData *param0, UnkStruct_ov97_0223829C *param1)
         return 3;
     }
 
-    if (param1->unk_00.isRedistribution == 1) {
+    if (param1->unk_00.fromSharing == 1) {
         return 5;
     }
 

@@ -433,7 +433,7 @@ static void ov97_0222D658(OverlayManager *param0)
         v0 = 1;
         v4->redistributionCount = 0;
 
-        if (v3->redistributable == 0) {
+        if (v3->shareable == 0) {
             v4->redistributionsLeft = 0;
         }
 
