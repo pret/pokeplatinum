@@ -496,9 +496,9 @@
     .endm
 
     // Plays a sound effect without interrupting the current music
-    .macro PlayFanfare sdatID
+    .macro PlayFanfare seqID
     .short 73
-    .short \sdatID
+    .short \seqID
     .endm
 
     .macro StopFanfare seqID
@@ -506,9 +506,9 @@
     .short \seqID
     .endm
 
-    .macro WaitFanfare sdatID
+    .macro WaitFanfare seqID
     .short 75
-    .short \sdatID
+    .short \seqID
     .endm
 
     .macro PlayCry species, unused=0
@@ -522,18 +522,18 @@
     .endm
 
     // Pauses the current music and then plays a sound effect
-    .macro PlaySound sdatID
+    .macro PlaySound seqID
     .short 78
-    .short \sdatID
+    .short \seqID
     .endm
 
     .macro WaitSound
     .short 79
     .endm
 
-    .macro PlayMusic sdatID
+    .macro PlayMusic seqID
     .short 80
-    .short \sdatID
+    .short \seqID
     .endm
 
     .macro StopMusic dummy
