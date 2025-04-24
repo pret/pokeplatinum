@@ -1009,7 +1009,7 @@ _0D63:
 
 _0D6E:
     ScrCmd_2FA VAR_0x8004
-    ScrCmd_2F8
+    SetScene22
     SetVar VAR_0x8007, 0
     WaitTime 1, VAR_RESULT
     GoTo _0D88

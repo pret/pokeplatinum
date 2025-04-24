@@ -4315,7 +4315,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2F8
+    .macro SetScene22
     .short 760
     .endm
 

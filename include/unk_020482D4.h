@@ -26,7 +26,7 @@ BOOL ScrCmd_StopRecordingChatotCry(ScriptContext *ctx);
 BOOL ScrCmd_StoreRecordedChatotCry(ScriptContext *ctx);
 BOOL ScrCmd_SetSubScene63(ScriptContext *ctx);
 BOOL ScrCmd_SetInitialVolumeForSequence(ScriptContext *ctx);
-BOOL ScrCmd_2F8(ScriptContext *param0);
+BOOL ScrCmd_SetScene22(ScriptContext *ctx);
 BOOL ScrCmd_2F9(ScriptContext *param0);
 BOOL ScrCmd_2FA(ScriptContext *param0);
 

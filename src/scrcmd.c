@@ -1527,7 +1527,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2F5,
     ScrCmd_2F6,
     ScrCmd_2F7,
-    ScrCmd_2F8,
+    ScrCmd_SetScene22,
     ScrCmd_2F9,
     ScrCmd_2FA,
     ScrCmd_2FB,

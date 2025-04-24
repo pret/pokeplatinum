@@ -216,7 +216,7 @@ BOOL ScrCmd_SetInitialVolumeForSequence(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_2F8(ScriptContext *param0)
+BOOL ScrCmd_SetScene22(ScriptContext *ctx)
 {
     if (gSystem.heldKeys & PAD_KEY_UP) {
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_22, SEQ_PL_TOWN02, 1);
@@ -224,7 +224,7 @@ BOOL ScrCmd_2F8(ScriptContext *param0)
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_22, SEQ_PL_TOWN02, 1);
     }
 
-    return 1;
+    return TRUE;
 }
 
 BOOL ScrCmd_2F9(ScriptContext *param0)
