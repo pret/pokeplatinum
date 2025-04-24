@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/villa.h"
+#include "generated/string_padding_mode.h"
 
     .data
 
@@ -774,7 +775,7 @@ _0AC3:
     Return
 
 _0AC8:
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_18, _0AB4
+    GoToIfUnset FLAG_VILLA_FURNITURE_TEA_SET, _0AB4
     Message 96
     Return
 
@@ -976,7 +977,7 @@ _0D03:
 _0D14:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_11, _0D63
+    GoToIfSet FLAG_VILLA_FURNITURE_MUSIC_BOX, _0D63
     Message 107
     GoTo _0E5D
     End
@@ -1105,19 +1106,19 @@ _0E65:
     LockAll
     SetVar VAR_UNK_0x40A1, 1
     ShowMoney 21, 1
-    Message 0
+    Message Villa_Text_TheOriginalOwnersFurnitureIsGone
     InitLocalTextListMenu 1, 1, 0, VAR_0x8002
     AddListMenuEntry 189, 0
     ShowListMenu
     GoToIfNe VAR_0x8002, 0, _0EA7
-    Call _0F7C
+    Call Villa_BuyFurniture
     CloseMessage
     Call _1092
     ReleaseAll
     End
 
 _0EA7:
-    Message 1
+    Message Villa_Text_GoAheadOrderATableFromThisOrderForm
     WaitABXPadPress
     CloseMessage
     HideMoney
@@ -1129,12 +1130,12 @@ _0EB4:
     LockAll
     FacePlayer
     ShowMoney 21, 1
-    Message 1
+    Message Villa_Text_GoAheadOrderATableFromThisOrderForm
     InitLocalTextListMenu 1, 1, 0, VAR_0x8002
     AddListMenuEntry 189, 0
     ShowListMenu
     GoToIfNe VAR_0x8002, 0, _1478
-    Call _0F7C
+    Call Villa_BuyFurniture
     CloseMessage
     Call _1092
     ReleaseAll
@@ -1165,28 +1166,28 @@ _0EF6:
     ShowListMenuSetWidth 18
     Return
 
-_0F7C:
+Villa_BuyFurniture:
     PlayFanfare SEQ_SE_DP_REGI
-    CallIfEq VAR_0x8002, 0, _2079
-    CallIfEq VAR_0x8002, 1, _208D
-    CallIfEq VAR_0x8002, 2, _20A1
-    CallIfEq VAR_0x8002, 3, _20B5
-    CallIfEq VAR_0x8002, 4, _20C9
-    CallIfEq VAR_0x8002, 5, _20DD
-    CallIfEq VAR_0x8002, 6, _20F1
-    CallIfEq VAR_0x8002, 7, _2105
-    CallIfEq VAR_0x8002, 8, _2119
-    CallIfEq VAR_0x8002, 9, _212D
-    CallIfEq VAR_0x8002, 10, _2141
-    CallIfEq VAR_0x8002, 11, _2155
-    CallIfEq VAR_0x8002, 12, _2169
-    CallIfEq VAR_0x8002, 13, _217D
-    CallIfEq VAR_0x8002, 14, _2191
-    CallIfEq VAR_0x8002, 15, _21A5
-    CallIfEq VAR_0x8002, 16, _21B9
-    CallIfEq VAR_0x8002, 17, _21CD
-    CallIfEq VAR_0x8002, 18, _21E1
-    CallIfEq VAR_0x8002, 19, _21F5
+    CallIfEq VAR_0x8002, 0, Villa_BuyFurniture_Table
+    CallIfEq VAR_0x8002, 1, Villa_BuyFurniture_BigSofa
+    CallIfEq VAR_0x8002, 2, Villa_BuyFurniture_SmallSofa
+    CallIfEq VAR_0x8002, 3, Villa_BuyFurniture_Bed
+    CallIfEq VAR_0x8002, 4, Villa_BuyFurniture_NightTable
+    CallIfEq VAR_0x8002, 5, Villa_BuyFurniture_TV
+    CallIfEq VAR_0x8002, 6, Villa_BuyFurniture_AudioSystem
+    CallIfEq VAR_0x8002, 7, Villa_BuyFurniture_Bookshelf
+    CallIfEq VAR_0x8002, 8, Villa_BuyFurniture_Rack
+    CallIfEq VAR_0x8002, 9, Villa_BuyFurniture_Houseplant
+    CallIfEq VAR_0x8002, 10, Villa_BuyFurniture_PCDesk
+    CallIfEq VAR_0x8002, 11, Villa_BuyFurniture_MusicBox
+    CallIfEq VAR_0x8002, 12, Villa_BuyFurniture_PokemonBust
+    CallIfEq VAR_0x8002, 13, Villa_BuyFurniture_PokemonBustSilver
+    CallIfEq VAR_0x8002, 14, Villa_BuyFurniture_Piano
+    CallIfEq VAR_0x8002, 15, Villa_BuyFurniture_GuestSet
+    CallIfEq VAR_0x8002, 16, Villa_BuyFurniture_WallClock
+    CallIfEq VAR_0x8002, 17, Villa_BuyFurniture_Masterpiece
+    CallIfEq VAR_0x8002, 18, Villa_BuyFurniture_TeaSet
+    CallIfEq VAR_0x8002, 19, Villa_BuyFurniture_Chandelier
     UpdateMoneyDisplay
     WaitFanfare SEQ_SE_DP_REGI
     HideMoney
@@ -1449,7 +1450,7 @@ _1468:
     EndMovement
 
 _1478:
-    Message 1
+    Message Villa_Text_GoAheadOrderATableFromThisOrderForm
     WaitABXPadPress
     CloseMessage
     HideMoney
@@ -1457,7 +1458,7 @@ _1478:
     End
 
 _1485:
-    Message 3
+    Message Villa_Text_ThankYouForWaitingImDeliveringYourOrder_WeHopeYoullKeepOrdering
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -1508,9 +1509,9 @@ _14FC:
     .byte 0
 
 _1514:
-    Call _18F8
-    GoToIfEq VAR_RESULT, 1, _155E
-    Message 7
+    Call Villa_CheckIfHasAllFurniture
+    GoToIfEq VAR_RESULT, TRUE, Villa_DeliveryGuy_HasAllFurniture
+    Message Villa_Text_ThankYouForWaitingImDeliveringYourOrder
     GoTo _1532
     End
 
@@ -1525,9 +1526,9 @@ _1532:
     Call _15B0
     Return
 
-_155E:
-    ScrCmd_30A 49
-    Message 8
+Villa_DeliveryGuy_HasAllFurniture:
+    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_49
+    Message Villa_Text_ThankYouForWaitingImDeliveringYourOrder_AlsoAndIHateToSayThisBut
     GoTo _1532
     End
 
@@ -1551,7 +1552,7 @@ _15F3:
     LockAll
     ApplyMovement 14, _1614
     WaitMovement
-    Message 2
+    Message Villa_Text_WhoaWhoaDontGoYet
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _161C
     WaitMovement
@@ -1574,13 +1575,13 @@ _1624:
     ShowMoney 21, 1
     BufferPlayerName 1
     Message 119
-    Call _18F8
-    GoToIfEq VAR_RESULT, 1, _1651
+    Call Villa_CheckIfHasAllFurniture
+    GoToIfEq VAR_RESULT, TRUE, _1651
     GoTo _165C
     End
 
 _1651:
-    Message 124
+    Message Villa_Text_ThisIsTheListOfPurchasedFurniture
     GoTo _1667
     End
 
@@ -1613,32 +1614,32 @@ _1667:
     CallIfEq VAR_0x8002, 18, _1F8F
     CallIfEq VAR_0x8002, 19, _1F9C
     GoToIfEq VAR_0x8002, -2, _18DE
-    GoToIfEq VAR_0x8003, 0, _18C8
+    GoToIfEq VAR_0x8003, FALSE, _18C8
     Message 121
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _18DE
-    CallIfEq VAR_0x8002, 0, _1FB1
-    CallIfEq VAR_0x8002, 1, _1FBB
-    CallIfEq VAR_0x8002, 2, _1FC5
-    CallIfEq VAR_0x8002, 3, _1FCF
-    CallIfEq VAR_0x8002, 4, _1FD9
-    CallIfEq VAR_0x8002, 5, _1FE3
-    CallIfEq VAR_0x8002, 6, _1FED
-    CallIfEq VAR_0x8002, 7, _1FF7
-    CallIfEq VAR_0x8002, 8, _2001
-    CallIfEq VAR_0x8002, 9, _200B
-    CallIfEq VAR_0x8002, 10, _2015
-    CallIfEq VAR_0x8002, 11, _201F
-    CallIfEq VAR_0x8002, 12, _2029
-    CallIfEq VAR_0x8002, 13, _2033
-    CallIfEq VAR_0x8002, 14, _203D
-    CallIfEq VAR_0x8002, 15, _2047
-    CallIfEq VAR_0x8002, 16, _2051
-    CallIfEq VAR_0x8002, 17, _205B
-    CallIfEq VAR_0x8002, 18, _2065
-    CallIfEq VAR_0x8002, 19, _206F
-    GoToIfEq VAR_0x8003, 0, _18D3
-    Call _0F7C
+    CallIfEq VAR_0x8002, 0, Villa_CheckMoney_Table
+    CallIfEq VAR_0x8002, 1, Villa_CheckMoney_BigSofa
+    CallIfEq VAR_0x8002, 2, Villa_CheckMoney_SmallSofa
+    CallIfEq VAR_0x8002, 3, Villa_CheckMoney_Bed
+    CallIfEq VAR_0x8002, 4, Villa_CheckMoney_NightTable
+    CallIfEq VAR_0x8002, 5, Villa_CheckMoney_TV
+    CallIfEq VAR_0x8002, 6, Villa_CheckMoney_AudioSystem
+    CallIfEq VAR_0x8002, 7, Villa_CheckMoney_Bookshelf
+    CallIfEq VAR_0x8002, 8, Villa_CheckMoney_Rack
+    CallIfEq VAR_0x8002, 9, Villa_CheckMoney_Houseplant
+    CallIfEq VAR_0x8002, 10, Villa_CheckMoney_PCDesk
+    CallIfEq VAR_0x8002, 11, Villa_CheckMoney_MusicBox
+    CallIfEq VAR_0x8002, 12, Villa_CheckMoney_PokemonBust
+    CallIfEq VAR_0x8002, 13, Villa_CheckMoney_PokemonBustSilver
+    CallIfEq VAR_0x8002, 14, Villa_CheckMoney_Piano
+    CallIfEq VAR_0x8002, 15, Villa_CheckMoney_GuestSet
+    CallIfEq VAR_0x8002, 16, Villa_CheckMoney_WallClock
+    CallIfEq VAR_0x8002, 17, Villa_CheckMoney_Masterpiece
+    CallIfEq VAR_0x8002, 18, Villa_CheckMoney_TeaSet
+    CallIfEq VAR_0x8002, 19, Villa_CheckMoney_Chandelier
+    GoToIfEq VAR_0x8003, FALSE, _18D3
+    Call Villa_BuyFurniture
     CloseMessage
     Call _1092
     ReleaseAll
@@ -1669,168 +1670,168 @@ _18F0:
     ReleaseAll
     End
 
-_18F8:
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_00, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_01, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_02, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_03, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_04, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_05, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_06, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_07, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_08, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_09, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_10, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_11, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_12, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_13, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_14, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_15, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_16, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_17, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_18, _19DC
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_19, _19DC
-    SetVar VAR_RESULT, 1
+Villa_CheckIfHasAllFurniture:
+    GoToIfUnset FLAG_VILLA_FURNITURE_TABLE, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_BIG_SOFA, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_SMALL_SOFA, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_BED, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_NIGHT_TABLE, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_TV, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_AUDIO_SYSTEM, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_BOOKSHELF, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_RACK, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_HOUSEPLANT, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_PC_DESK, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_MUSIC_BOX, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_PIANO, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_GUEST_SET, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_WALL_CLOCK, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_MASTERPIECE, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_TEA_SET, Villa_DoesntHaveAllFurniture
+    GoToIfUnset FLAG_VILLA_FURNITURE_CHANDELIER, Villa_DoesntHaveAllFurniture
+    SetVar VAR_RESULT, TRUE
     Return
 
-_19DC:
-    SetVar VAR_RESULT, 0
+Villa_DoesntHaveAllFurniture:
+    SetVar VAR_RESULT, FALSE
     Return
 
 _19E4:
-    ScrCmd_2F5 0, 0, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_00, _1D15
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_00, _1D1F
+    BufferNumberPaddingDigits 0, 0, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_TABLE, _1D15
+    CallIfSet FLAG_VILLA_FURNITURE_TABLE, _1D1F
     Return
 
 _1A05:
-    ScrCmd_2F5 0, 120000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_01, _1D29
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_01, _1D33
+    BufferNumberPaddingDigits 0, 120000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_BIG_SOFA, _1D29
+    CallIfSet FLAG_VILLA_FURNITURE_BIG_SOFA, _1D33
     Return
 
 _1A26:
-    ScrCmd_2F5 0, 90000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_02, _1D3D
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_02, _1D47
+    BufferNumberPaddingDigits 0, 90000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_SMALL_SOFA, _1D3D
+    CallIfSet FLAG_VILLA_FURNITURE_SMALL_SOFA, _1D47
     Return
 
 _1A47:
-    ScrCmd_2F5 0, 187000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_03, _1D51
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_03, _1D5B
+    BufferNumberPaddingDigits 0, 187000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_BED, _1D51
+    CallIfSet FLAG_VILLA_FURNITURE_BED, _1D5B
     Return
 
 _1A68:
-    ScrCmd_2F5 0, 58000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_04, _1D65
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_04, _1D6F
+    BufferNumberPaddingDigits 0, 58000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_NIGHT_TABLE, _1D65
+    CallIfSet FLAG_VILLA_FURNITURE_NIGHT_TABLE, _1D6F
     Return
 
 _1A89:
-    ScrCmd_2F5 0, 220000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_05, _1D79
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_05, _1D83
+    BufferNumberPaddingDigits 0, 220000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_TV, _1D79
+    CallIfSet FLAG_VILLA_FURNITURE_TV, _1D83
     Return
 
 _1AAA:
-    ScrCmd_2F5 0, 160000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_06, _1D8D
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_06, _1D97
+    BufferNumberPaddingDigits 0, 160000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_AUDIO_SYSTEM, _1D8D
+    CallIfSet FLAG_VILLA_FURNITURE_AUDIO_SYSTEM, _1D97
     Return
 
 _1ACB:
-    ScrCmd_2F5 0, 150000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_07, _1DA1
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_07, _1DAB
+    BufferNumberPaddingDigits 0, 150000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_BOOKSHELF, _1DA1
+    CallIfSet FLAG_VILLA_FURNITURE_BOOKSHELF, _1DAB
     Return
 
 _1AEC:
-    ScrCmd_2F5 0, 127000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_08, _1DB5
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_08, _1DBF
+    BufferNumberPaddingDigits 0, 127000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_RACK, _1DB5
+    CallIfSet FLAG_VILLA_FURNITURE_RACK, _1DBF
     Return
 
 _1B0D:
-    ScrCmd_2F5 0, 120000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_09, _1DC9
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_09, _1DD3
+    BufferNumberPaddingDigits 0, 120000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_HOUSEPLANT, _1DC9
+    CallIfSet FLAG_VILLA_FURNITURE_HOUSEPLANT, _1DD3
     Return
 
 _1B2E:
-    ScrCmd_2F5 0, 168000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_10, _1DDD
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_10, _1DE7
+    BufferNumberPaddingDigits 0, 168000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_PC_DESK, _1DDD
+    CallIfSet FLAG_VILLA_FURNITURE_PC_DESK, _1DE7
     Return
 
 _1B4F:
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_08, _1D13
-    ScrCmd_2F5 0, 25300, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_11, _1DF1
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_11, _1DFB
+    GoToIfUnset FLAG_VILLA_FURNITURE_RACK, _1D13
+    BufferNumberPaddingDigits 0, 25300, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_MUSIC_BOX, _1DF1
+    CallIfSet FLAG_VILLA_FURNITURE_MUSIC_BOX, _1DFB
     Return
 
 _1B7B:
     ScrCmd_30F 13, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
-    ScrCmd_2F5 0, 150000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_12, _1E05
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_12, _1E0F
+    BufferNumberPaddingDigits 0, 150000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST, _1E05
+    CallIfSet FLAG_VILLA_FURNITURE_POKEMON_BUST, _1E0F
     Return
 
 _1BAF:
     ScrCmd_30F 14, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
-    ScrCmd_2F5 0, 150000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_13, _1E19
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_13, _1E23
+    BufferNumberPaddingDigits 0, 150000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, _1E19
+    CallIfSet FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, _1E23
     Return
 
 _1BE3:
     ScrCmd_30F 15, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
-    ScrCmd_2F5 0, 146700, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_14, _1E2D
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_14, _1E37
+    BufferNumberPaddingDigits 0, 146700, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_PIANO, _1E2D
+    CallIfSet FLAG_VILLA_FURNITURE_PIANO, _1E37
     Return
 
 _1C17:
     ScrCmd_30F 16, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
-    ScrCmd_2F5 0, 208000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_15, _1E41
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_15, _1E4B
+    BufferNumberPaddingDigits 0, 208000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_GUEST_SET, _1E41
+    CallIfSet FLAG_VILLA_FURNITURE_GUEST_SET, _1E4B
     Return
 
 _1C4B:
     ScrCmd_30F 17, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
-    ScrCmd_2F5 0, 52000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_16, _1E55
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_16, _1E5F
+    BufferNumberPaddingDigits 0, 52000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_WALL_CLOCK, _1E55
+    CallIfSet FLAG_VILLA_FURNITURE_WALL_CLOCK, _1E5F
     Return
 
 _1C7F:
     ScrCmd_30F 18, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
-    ScrCmd_2F5 0, 140000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_17, _1E69
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_17, _1E73
+    BufferNumberPaddingDigits 0, 140000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_MASTERPIECE, _1E69
+    CallIfSet FLAG_VILLA_FURNITURE_MASTERPIECE, _1E73
     Return
 
 _1CB3:
-    GoToIfUnset FLAG_VILLA_FURNITURE_UNK_15, _1D13
-    ScrCmd_2F5 0, 108000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_18, _1E7D
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_18, _1E87
+    GoToIfUnset FLAG_VILLA_FURNITURE_GUEST_SET, _1D13
+    BufferNumberPaddingDigits 0, 108000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_TEA_SET, _1E7D
+    CallIfSet FLAG_VILLA_FURNITURE_TEA_SET, _1E87
     Return
 
 _1CDF:
     ScrCmd_30F 20, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _1D13
-    ScrCmd_2F5 0, 120000, 1, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_UNK_19, _1E91
-    CallIfSet FLAG_VILLA_FURNITURE_UNK_19, _1E9B
+    BufferNumberPaddingDigits 0, 120000, PADDING_MODE_SPACES, 6
+    CallIfUnset FLAG_VILLA_FURNITURE_CHANDELIER, _1E91
+    CallIfSet FLAG_VILLA_FURNITURE_CHANDELIER, _1E9B
     Return
 
 _1D13:
@@ -1997,287 +1998,287 @@ _1E9B:
     Return
 
 _1EA5:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_00, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_TABLE, _1FA9
     Return
 
 _1EB2:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_01, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_BIG_SOFA, _1FA9
     Return
 
 _1EBF:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_02, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_SMALL_SOFA, _1FA9
     Return
 
 _1ECC:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_03, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_BED, _1FA9
     Return
 
 _1ED9:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_04, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_NIGHT_TABLE, _1FA9
     Return
 
 _1EE6:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_05, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_TV, _1FA9
     Return
 
 _1EF3:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_06, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_AUDIO_SYSTEM, _1FA9
     Return
 
 _1F00:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_07, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_BOOKSHELF, _1FA9
     Return
 
 _1F0D:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_08, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_RACK, _1FA9
     Return
 
 _1F1A:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_09, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_HOUSEPLANT, _1FA9
     Return
 
 _1F27:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_10, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_PC_DESK, _1FA9
     Return
 
 _1F34:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_11, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_MUSIC_BOX, _1FA9
     Return
 
 _1F41:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_12, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_POKEMON_BUST, _1FA9
     Return
 
 _1F4E:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_13, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, _1FA9
     Return
 
 _1F5B:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_14, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_PIANO, _1FA9
     Return
 
 _1F68:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_15, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_GUEST_SET, _1FA9
     Return
 
 _1F75:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_16, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_WALL_CLOCK, _1FA9
     Return
 
 _1F82:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_17, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_MASTERPIECE, _1FA9
     Return
 
 _1F8F:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_18, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_TEA_SET, _1FA9
     Return
 
 _1F9C:
-    GoToIfSet FLAG_VILLA_FURNITURE_UNK_19, _1FA9
+    GoToIfSet FLAG_VILLA_FURNITURE_CHANDELIER, _1FA9
     Return
 
 _1FA9:
     SetVar VAR_0x8003, 0
     Return
 
-_1FB1:
+Villa_CheckMoney_Table:
     CheckMoney VAR_0x8003, 0
     Return
 
-_1FBB:
+Villa_CheckMoney_BigSofa:
     CheckMoney VAR_0x8003, 120000
     Return
 
-_1FC5:
+Villa_CheckMoney_SmallSofa:
     CheckMoney VAR_0x8003, 90000
     Return
 
-_1FCF:
+Villa_CheckMoney_Bed:
     CheckMoney VAR_0x8003, 187000
     Return
 
-_1FD9:
+Villa_CheckMoney_NightTable:
     CheckMoney VAR_0x8003, 58000
     Return
 
-_1FE3:
+Villa_CheckMoney_TV:
     CheckMoney VAR_0x8003, 220000
     Return
 
-_1FED:
+Villa_CheckMoney_AudioSystem:
     CheckMoney VAR_0x8003, 160000
     Return
 
-_1FF7:
+Villa_CheckMoney_Bookshelf:
     CheckMoney VAR_0x8003, 150000
     Return
 
-_2001:
+Villa_CheckMoney_Rack:
     CheckMoney VAR_0x8003, 127000
     Return
 
-_200B:
+Villa_CheckMoney_Houseplant:
     CheckMoney VAR_0x8003, 120000
     Return
 
-_2015:
+Villa_CheckMoney_PCDesk:
     CheckMoney VAR_0x8003, 168000
     Return
 
-_201F:
+Villa_CheckMoney_MusicBox:
     CheckMoney VAR_0x8003, 25300
     Return
 
-_2029:
+Villa_CheckMoney_PokemonBust:
     CheckMoney VAR_0x8003, 150000
     Return
 
-_2033:
+Villa_CheckMoney_PokemonBustSilver:
     CheckMoney VAR_0x8003, 150000
     Return
 
-_203D:
+Villa_CheckMoney_Piano:
     CheckMoney VAR_0x8003, 146700
     Return
 
-_2047:
+Villa_CheckMoney_GuestSet:
     CheckMoney VAR_0x8003, 208000
     Return
 
-_2051:
+Villa_CheckMoney_WallClock:
     CheckMoney VAR_0x8003, 52000
     Return
 
-_205B:
+Villa_CheckMoney_Masterpiece:
     CheckMoney VAR_0x8003, 140000
     Return
 
-_2065:
+Villa_CheckMoney_TeaSet:
     CheckMoney VAR_0x8003, 108000
     Return
 
-_206F:
+Villa_CheckMoney_Chandelier:
     CheckMoney VAR_0x8003, 120000
     Return
 
-_2079:
+Villa_BuyFurniture_Table:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 0
     RemoveMoney 0
-    SetFlag FLAG_VILLA_FURNITURE_UNK_00
+    SetFlag FLAG_VILLA_FURNITURE_TABLE
     Return
 
-_208D:
+Villa_BuyFurniture_BigSofa:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 120000
     RemoveMoney 120000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_01
+    SetFlag FLAG_VILLA_FURNITURE_BIG_SOFA
     Return
 
-_20A1:
+Villa_BuyFurniture_SmallSofa:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 90000
     RemoveMoney 90000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_02
+    SetFlag FLAG_VILLA_FURNITURE_SMALL_SOFA
     Return
 
-_20B5:
+Villa_BuyFurniture_Bed:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 187000
     RemoveMoney 187000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_03
+    SetFlag FLAG_VILLA_FURNITURE_BED
     Return
 
-_20C9:
+Villa_BuyFurniture_NightTable:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 58000
     RemoveMoney 58000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_04
+    SetFlag FLAG_VILLA_FURNITURE_NIGHT_TABLE
     Return
 
-_20DD:
+Villa_BuyFurniture_TV:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 220000
     RemoveMoney 220000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_05
+    SetFlag FLAG_VILLA_FURNITURE_TV
     Return
 
-_20F1:
+Villa_BuyFurniture_AudioSystem:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 160000
     RemoveMoney 160000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_06
+    SetFlag FLAG_VILLA_FURNITURE_AUDIO_SYSTEM
     Return
 
-_2105:
+Villa_BuyFurniture_Bookshelf:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 150000
     RemoveMoney 150000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_07
+    SetFlag FLAG_VILLA_FURNITURE_BOOKSHELF
     Return
 
-_2119:
+Villa_BuyFurniture_Rack:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 127000
     RemoveMoney 127000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_08
+    SetFlag FLAG_VILLA_FURNITURE_RACK
     Return
 
-_212D:
+Villa_BuyFurniture_Houseplant:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 120000
     RemoveMoney 120000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_09
+    SetFlag FLAG_VILLA_FURNITURE_HOUSEPLANT
     Return
 
-_2141:
+Villa_BuyFurniture_PCDesk:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 168000
     RemoveMoney 168000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_10
+    SetFlag FLAG_VILLA_FURNITURE_PC_DESK
     Return
 
-_2155:
+Villa_BuyFurniture_MusicBox:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 25300
     RemoveMoney 25300
-    SetFlag FLAG_VILLA_FURNITURE_UNK_11
+    SetFlag FLAG_VILLA_FURNITURE_MUSIC_BOX
     Return
 
-_2169:
+Villa_BuyFurniture_PokemonBust:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 150000
     RemoveMoney 150000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_12
+    SetFlag FLAG_VILLA_FURNITURE_POKEMON_BUST
     Return
 
-_217D:
+Villa_BuyFurniture_PokemonBustSilver:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 150000
     RemoveMoney 150000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_13
+    SetFlag FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER
     Return
 
-_2191:
+Villa_BuyFurniture_Piano:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 146700
     RemoveMoney 146700
-    SetFlag FLAG_VILLA_FURNITURE_UNK_14
+    SetFlag FLAG_VILLA_FURNITURE_PIANO
     Return
 
-_21A5:
+Villa_BuyFurniture_GuestSet:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 208000
     RemoveMoney 208000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_15
+    SetFlag FLAG_VILLA_FURNITURE_GUEST_SET
     Return
 
-_21B9:
+Villa_BuyFurniture_WallClock:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 52000
     RemoveMoney 52000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_16
+    SetFlag FLAG_VILLA_FURNITURE_WALL_CLOCK
     Return
 
-_21CD:
+Villa_BuyFurniture_Masterpiece:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 140000
     RemoveMoney 140000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_17
+    SetFlag FLAG_VILLA_FURNITURE_MASTERPIECE
     Return
 
-_21E1:
+Villa_BuyFurniture_TeaSet:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 108000
     RemoveMoney 108000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_18
+    SetFlag FLAG_VILLA_FURNITURE_TEA_SET
     Return
 
-_21F5:
+Villa_BuyFurniture_Chandelier:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 120000
     RemoveMoney 120000
-    SetFlag FLAG_VILLA_FURNITURE_UNK_19
+    SetFlag FLAG_VILLA_FURNITURE_CHANDELIER
     Return
 
 _2209:

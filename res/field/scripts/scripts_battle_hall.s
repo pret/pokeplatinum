@@ -598,7 +598,7 @@ _08FC:
     End
 
 _0938:
-    ScrCmd_30A 40
+    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_40
     Return
 
 _093E:

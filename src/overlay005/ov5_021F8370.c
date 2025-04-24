@@ -29,7 +29,7 @@ typedef struct {
 } UnkStruct_ov5_021F83D4;
 
 typedef struct {
-    u16 unk_00;
+    u16 furniture;
     u16 unk_02;
     VecFx32 unk_04;
     UnkStruct_ov5_021F83D4 unk_10;
@@ -52,8 +52,8 @@ struct UnkStruct_ov5_021F8480_t {
     UnkStruct_ov5_021F8480_sub1 unk_08[23];
 };
 
-static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const u32 param1);
-static BOOL ov5_021F8508(FieldSystem *fieldSystem, u32 param1);
+static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const enum VillaFurniture furniture);
+static BOOL FieldSystem_OwnsVillaFurniture(FieldSystem *fieldSystem, enum VillaFurniture furniture);
 static BOOL ov5_021F851C(int param0, int param1, const UnkStruct_ov5_0220192C *param2, FieldSystem *fieldSystem);
 
 static const UnkStruct_ov5_0220192C Unk_ov5_0220192C[23];
@@ -79,11 +79,9 @@ void Villa_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = v3;
 
     {
-        int v4;
-
-        for (v4 = 0; v4 < 20; v4++) {
-            if (ov5_021F8508(fieldSystem, v4) == 1) {
-                ov5_021F8480(v3, v4);
+        for (int i = 0; i < VILLA_FURNITURE_MAX; i++) {
+            if (FieldSystem_OwnsVillaFurniture(fieldSystem, i) == TRUE) {
+                ov5_021F8480(v3, i);
             }
         }
     }
@@ -125,7 +123,7 @@ BOOL ov5_021F8410(FieldSystem *fieldSystem, const int param1, const int param2, 
 
         for (v1 = 0; v1 < 23; v1++, v3++) {
             if (ov5_021F851C(param1, param2, v3, fieldSystem) == 1) {
-                const UnkStruct_ov5_022018DC *v4 = &Unk_ov5_022018DC[v3->unk_00];
+                const UnkStruct_ov5_022018DC *v4 = &Unk_ov5_022018DC[v3->furniture];
 
                 if (v4->unk_00 == 10100) {
                     if (param3 != 0) {
@@ -142,17 +140,17 @@ BOOL ov5_021F8410(FieldSystem *fieldSystem, const int param1, const int param2, 
     return 0;
 }
 
-static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const u32 param1)
+static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const enum VillaFurniture furniture)
 {
     int v0, v1;
     UnkStruct_ov5_021F8480_sub1 *v2;
     VecFx32 v3 = { 0, 0, 0 };
-    int v4 = Unk_ov5_0220188C[param1];
+    int v4 = Unk_ov5_0220188C[furniture];
     const UnkStruct_ov5_0220192C *v5 = Unk_ov5_0220192C;
     FieldSystem *fieldSystem = param0->fieldSystem;
 
     for (v0 = 0; v0 < 23; v0++, v5++) {
-        if (v5->unk_00 == param1) {
+        if (v5->furniture == furniture) {
             v1 = 0;
             v2 = param0->unk_08;
 
@@ -172,16 +170,16 @@ static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const u32 param1)
     }
 }
 
-static BOOL ov5_021F8508(FieldSystem *fieldSystem, u32 param1)
+static BOOL FieldSystem_OwnsVillaFurniture(FieldSystem *fieldSystem, enum VillaFurniture furniture)
 {
-    return SystemFlag_HandleOwnsVillaFurniture(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, param1);
+    return SystemFlag_HandleOwnsVillaFurniture(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, furniture);
 }
 
 static BOOL ov5_021F851C(int param0, int param1, const UnkStruct_ov5_0220192C *param2, FieldSystem *fieldSystem)
 {
     const UnkStruct_ov5_021F83D4 *v0 = &param2->unk_10;
 
-    if ((param2->unk_02 == 1) && (ov5_021F8508(fieldSystem, param2->unk_00) == 1)) {
+    if ((param2->unk_02 == 1) && (FieldSystem_OwnsVillaFurniture(fieldSystem, param2->furniture) == TRUE)) {
         if ((param1 >= v0->unk_02) && (param1 <= v0->unk_06) && (param0 >= v0->unk_00) && (param0 <= v0->unk_04)) {
             return 1;
         }

@@ -151,7 +151,7 @@ BOOL ScrCmd_BufferNumber(ScriptContext *ctx)
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 number = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetNumber(*strTemplate, templateArg, number, sub_0205DFC4(number), PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(*strTemplate, templateArg, number, GetNumberDigitCount(number), PADDING_MODE_SPACES, CHARSET_MODE_EN);
     return FALSE;
 }
 
@@ -165,28 +165,28 @@ BOOL ScrCmd_280(ScriptContext *param0)
     u8 v5 = ScriptContext_ReadByte(param0);
 
     if (v4 == 0) {
-        v5 = sub_0205DFC4(v3);
+        v5 = GetNumberDigitCount(v3);
     }
 
     StringTemplate_SetNumber(*v1, v2, v3, v5, v4, 1);
     return 0;
 }
 
-BOOL ScrCmd_2F5(ScriptContext *param0)
+BOOL ScrCmd_BufferNumberPaddingDigits(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u32 v3 = ScriptContext_ReadWord(param0);
-    u8 v4 = ScriptContext_ReadByte(param0);
-    u8 v5 = ScriptContext_ReadByte(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u32 value = ScriptContext_ReadWord(ctx);
+    u8 paddingMode = ScriptContext_ReadByte(ctx);
+    u8 maxDigits = ScriptContext_ReadByte(ctx);
 
-    if (v4 == 0) {
-        v5 = sub_0205DFC4(v3);
+    if (paddingMode == PADDING_MODE_NONE) {
+        maxDigits = GetNumberDigitCount(value);
     }
 
-    StringTemplate_SetNumber(*v1, v2, v3, v5, v4, 1);
-    return 0;
+    StringTemplate_SetNumber(*strTemplate, templateArg, value, maxDigits, paddingMode, 1);
+    return FALSE;
 }
 
 BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx)

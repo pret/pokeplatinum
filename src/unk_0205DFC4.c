@@ -37,7 +37,6 @@ typedef struct {
     u8 unk_09;
 } UnkStruct_0205E3AC;
 
-u16 sub_0205DFC4(u32 param0);
 u16 sub_0205E078(u16 param0, u16 param1);
 u16 sub_0205E0E4(u16 param0, u16 param1);
 int sub_0205E430(u8 param0, u8 param1);
@@ -63,23 +62,23 @@ int sub_0205E728(u8 param0);
 int sub_0205E750(u8 param0);
 int sub_0205E790(u8 param0);
 
-u16 sub_0205DFC4(u32 param0)
+u16 GetNumberDigitCount(u32 number)
 {
-    if (param0 / 10 == 0) {
+    if (number / 10 == 0) {
         return 1;
-    } else if (param0 / 100 == 0) {
+    } else if (number / 100 == 0) {
         return 2;
-    } else if (param0 / 1000 == 0) {
+    } else if (number / 1000 == 0) {
         return 3;
-    } else if (param0 / 10000 == 0) {
+    } else if (number / 10000 == 0) {
         return 4;
-    } else if (param0 / 100000 == 0) {
+    } else if (number / 100000 == 0) {
         return 5;
-    } else if (param0 / 1000000 == 0) {
+    } else if (number / 1000000 == 0) {
         return 6;
-    } else if (param0 / 10000000 == 0) {
+    } else if (number / 10000000 == 0) {
         return 7;
-    } else if (param0 / 100000000 == 0) {
+    } else if (number / 100000000 == 0) {
         return 8;
     }
 

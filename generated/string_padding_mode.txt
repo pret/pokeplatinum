@@ -1,0 +1,4 @@
+# Control codes for how to pad numeric strings.
+PADDING_MODE_NONE    # Do not pad the string. Effectively left-justification.
+PADDING_MODE_SPACES  # Right-justify the string, padding with spaces.
+PADDING_MODE_ZEROES  # Right-justify the string, padding with zeroes.

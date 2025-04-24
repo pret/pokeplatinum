@@ -428,7 +428,7 @@ _05FA:
     End
 
 _0636:
-    ScrCmd_30A 38
+    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_38
     Return
 
 _063C:
