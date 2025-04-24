@@ -4295,12 +4295,12 @@
     .short \arg3
     .endm
 
-    .macro ScrCmd_2F5 arg0, arg1, arg2, arg3
+    .macro BufferNumberPaddingDigits templateArg, value, paddingMode, maxDigits
     .short 757
-    .byte \arg0
-    .long \arg1
-    .byte \arg2
-    .byte \arg3
+    .byte \templateArg
+    .long \value
+    .byte \paddingMode
+    .byte \maxDigits
     .endm
 
     .macro ScrCmd_2F6 arg0, arg1, arg2

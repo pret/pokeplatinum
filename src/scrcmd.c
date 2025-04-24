@@ -1524,7 +1524,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_InitPersistedMapFeaturesForDistortionWorld,
     ScrCmd_2F3,
     ScrCmd_2F4,
-    ScrCmd_2F5,
+    ScrCmd_BufferNumberPaddingDigits,
     ScrCmd_2F6,
     ScrCmd_2F7,
     ScrCmd_SetScene22,

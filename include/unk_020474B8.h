@@ -15,7 +15,7 @@ BOOL ScrCmd_BufferTMHMMoveName(ScriptContext *ctx);
 BOOL ScrCmd_BufferMoveName(ScriptContext *ctx);
 BOOL ScrCmd_BufferNumber(ScriptContext *ctx);
 BOOL ScrCmd_280(ScriptContext *param0);
-BOOL ScrCmd_2F5(ScriptContext *param0);
+BOOL ScrCmd_BufferNumberPaddingDigits(ScriptContext *ctx);
 BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx);
 BOOL ScrCmd_251(ScriptContext *param0);
 BOOL ScrCmd_BufferPoketchAppName(ScriptContext *ctx);

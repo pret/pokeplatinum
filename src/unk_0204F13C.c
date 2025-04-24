@@ -555,7 +555,7 @@ BOOL ScrCmd_324(ScriptContext *param0)
         Heap_FreeToHeap(v2);
     }
 
-    StringTemplate_SetNumber(*v10, v11, v4, sub_0205DFC4(v4), 1, 1);
+    StringTemplate_SetNumber(*v10, v11, v4, GetNumberDigitCount(v4), 1, 1);
 
     v7 = 0;
     v6 = 0;
@@ -592,11 +592,11 @@ BOOL ScrCmd_324(ScriptContext *param0)
         }
     }
 
-    StringTemplate_SetNumber(*v10, v12, Unk_020EC078[v6].unk_00, sub_0205DFC4(Unk_020EC078[v6].unk_00), 1, 1);
+    StringTemplate_SetNumber(*v10, v12, Unk_020EC078[v6].unk_00, GetNumberDigitCount(Unk_020EC078[v6].unk_00), 1, 1);
 
-    StringTemplate_SetNumber(*v10, v13, Unk_020EC078[*v15].unk_00, sub_0205DFC4(Unk_020EC078[*v15].unk_00), 1, 1);
+    StringTemplate_SetNumber(*v10, v13, Unk_020EC078[*v15].unk_00, GetNumberDigitCount(Unk_020EC078[*v15].unk_00), 1, 1);
 
-    StringTemplate_SetNumber(*v10, v14, v7, sub_0205DFC4(v7), 1, 1);
+    StringTemplate_SetNumber(*v10, v14, v7, GetNumberDigitCount(v7), 1, 1);
 
     return 0;
 }
