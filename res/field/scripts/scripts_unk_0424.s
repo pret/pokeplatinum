@@ -11,7 +11,7 @@ _0006:
     WaitTime 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_0x8000
     DrawPokemonPreviewFromPartySlot VAR_0x8000
-    ScrCmd_059 VAR_RESULT
+    CheckRecordedChatotCryIsPlayable VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0031
     GoTo _0054
     End

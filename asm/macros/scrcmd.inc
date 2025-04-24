@@ -578,9 +578,9 @@
     .byte \bgmID
     .endm
 
-    .macro ScrCmd_059 arg0
+    .macro CheckRecordedChatotCryIsPlayable destVar
     .short 89
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_05A arg0
