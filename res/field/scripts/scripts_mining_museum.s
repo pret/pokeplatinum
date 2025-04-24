@@ -65,14 +65,14 @@ _0055:
     SetVar VAR_0x8005, 0
     InitGlobalTextMenu 1, 1, 0, VAR_0x8003
 _013E:
-    CallIfEq VAR_0x8005, 0, _02DC
-    CallIfEq VAR_0x8005, 1, _02EC
-    CallIfEq VAR_0x8005, 2, _02FC
-    CallIfEq VAR_0x8005, 3, _030C
-    CallIfEq VAR_0x8005, 4, _031C
-    CallIfEq VAR_0x8005, 5, _032C
-    CallIfEq VAR_0x8005, 6, _033C
-    GoToIfEq VAR_RESULT, 0, _0219
+    CallIfEq VAR_0x8005, 0, MiningMuseum_CheckFossil_OldAmber
+    CallIfEq VAR_0x8005, 1, MiningMuseum_CheckFossil_HelixFossil
+    CallIfEq VAR_0x8005, 2, MiningMuseum_CheckFossil_DomeFossil
+    CallIfEq VAR_0x8005, 3, MiningMuseum_CheckFossil_RootFossil
+    CallIfEq VAR_0x8005, 4, MiningMuseum_CheckFossil_ClawFossil
+    CallIfEq VAR_0x8005, 5, MiningMuseum_CheckFossil_ArmorFossil
+    CallIfEq VAR_0x8005, 6, MiningMuseum_CheckFossil_SkullFossil
+    GoToIfEq VAR_RESULT, FALSE, _0219
     CallIfEq VAR_0x8004, 0, _034C
     CallIfEq VAR_0x8004, 1, _0354
     CallIfEq VAR_0x8004, 2, _035C
@@ -109,38 +109,38 @@ _0225:
     RemoveItem VAR_0x8002, 1, VAR_RESULT
     GoTo _03D8
 
-_02DC:
-    SetVar VAR_MAP_LOCAL_0, 103
+MiningMuseum_CheckFossil_OldAmber:
+    SetVar VAR_MAP_LOCAL_0, ITEM_OLD_AMBER
     CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
-_02EC:
-    SetVar VAR_MAP_LOCAL_0, 101
+MiningMuseum_CheckFossil_HelixFossil:
+    SetVar VAR_MAP_LOCAL_0, ITEM_HELIX_FOSSIL
     CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
-_02FC:
-    SetVar VAR_MAP_LOCAL_0, 102
+MiningMuseum_CheckFossil_DomeFossil:
+    SetVar VAR_MAP_LOCAL_0, ITEM_DOME_FOSSIL
     CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
-_030C:
-    SetVar VAR_MAP_LOCAL_0, 99
+MiningMuseum_CheckFossil_RootFossil:
+    SetVar VAR_MAP_LOCAL_0, ITEM_ROOT_FOSSIL
     CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
-_031C:
-    SetVar VAR_MAP_LOCAL_0, 100
+MiningMuseum_CheckFossil_ClawFossil:
+    SetVar VAR_MAP_LOCAL_0, ITEM_CLAW_FOSSIL
     CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
-_032C:
-    SetVar VAR_MAP_LOCAL_0, 104
+MiningMuseum_CheckFossil_ArmorFossil:
+    SetVar VAR_MAP_LOCAL_0, ITEM_ARMOR_FOSSIL
     CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
-_033C:
-    SetVar VAR_MAP_LOCAL_0, 105
+MiningMuseum_CheckFossil_SkullFossil:
+    SetVar VAR_MAP_LOCAL_0, ITEM_SKULL_FOSSIL
     CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 

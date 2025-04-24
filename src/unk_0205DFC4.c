@@ -38,7 +38,6 @@ typedef struct {
 } UnkStruct_0205E3AC;
 
 u16 sub_0205DFC4(u32 param0);
-u16 sub_0205E060(u16 param0);
 u16 sub_0205E078(u16 param0, u16 param1);
 u16 sub_0205E0E4(u16 param0, u16 param1);
 int sub_0205E430(u8 param0, u8 param1);
@@ -87,13 +86,13 @@ u16 sub_0205DFC4(u32 param0)
     return 1;
 }
 
-u16 sub_0205E060(u16 param0)
+u16 Item_IsTMHM(u16 item)
 {
-    if ((param0 >= 328) && (param0 <= 427)) {
-        return 1;
+    if (item >= ITEM_TM01 && item <= ITEM_HM08) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 u16 sub_0205E078(u16 param0, u16 param1)

@@ -141,6 +141,7 @@
 #include "scrcmd_coins.h"
 #include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_game_corner_prize.h"
+#include "scrcmd_item.h"
 #include "scrcmd_jubilife_lottery.h"
 #include "scrcmd_money.h"
 #include "scrcmd_mystery_gift.h"
@@ -187,7 +188,6 @@
 #include "unk_0204CA84.h"
 #include "unk_0204CFFC.h"
 #include "unk_0204E240.h"
-#include "unk_0204E75C.h"
 #include "unk_0204E974.h"
 #include "unk_0204EDA4.h"
 #include "unk_0204F04C.h"
@@ -683,7 +683,7 @@ static BOOL ScrCmd_29E(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundTalkCounter(ScriptContext *ctx);
 static BOOL ScrCmd_29F(ScriptContext *ctx);
 static BOOL ScrCmd_2A1(ScriptContext *ctx);
-static BOOL ScrCmd_2A2(ScriptContext *ctx);
+static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx);
 static BOOL ScrCmd_2A3(ScriptContext *ctx);
 static BOOL ScrCmd_2A4(ScriptContext *ctx);
 static BOOL ScrCmd_2A7(ScriptContext *ctx);
@@ -894,10 +894,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_RemoveItem,
     ScrCmd_CanFitItem,
     ScrCmd_CheckItem,
-    ScrCmd_07F,
+    ScrCmd_IsItemTMHM,
     ScrCmd_GetItemPocket,
-    ScrCmd_081,
-    ScrCmd_082,
+    ScrCmd_Dummy081,
+    ScrCmd_Dummy082,
     ScrCmd_083,
     ScrCmd_084,
     ScrCmd_085,
@@ -1441,7 +1441,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_29F,
     ScrCmd_StartTagBattle,
     ScrCmd_2A1,
-    ScrCmd_2A2,
+    ScrCmd_TrySetUnusedUndergroundField,
     ScrCmd_2A3,
     ScrCmd_2A4,
     ScrCmd_2A5,
@@ -1533,7 +1533,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2FB,
     ScrCmd_2FC,
     ScrCmd_2FD,
-    ScrCmd_2FE,
+    ScrCmd_GetItemQuantity,
     ScrCmd_2FF,
     ScrCmd_300,
     ScrCmd_301,
@@ -7488,16 +7488,16 @@ static BOOL ScrCmd_2A4(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_2A2(ScriptContext *ctx)
+static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    UndergroundData *v1 = SaveData_GetUndergroundData(ctx->fieldSystem->saveData);
+    u16 item = ScriptContext_GetVar(ctx);
+    UndergroundData *undergroundData = SaveData_GetUndergroundData(ctx->fieldSystem->saveData);
 
-    if ((v0 == 135) || (v0 == 136)) {
-        sub_02028828(v1);
+    if (item == ITEM_ADAMANT_ORB || item == ITEM_LUSTROUS_ORB) {
+        UndergroundData_SetUnusedField(undergroundData);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_2A7(ScriptContext *ctx)

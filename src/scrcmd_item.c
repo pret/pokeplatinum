@@ -1,4 +1,4 @@
-#include "unk_0204E75C.h"
+#include "scrcmd_item.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -55,24 +55,24 @@ BOOL ScrCmd_CheckItem(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_2FE(ScriptContext *param0)
+BOOL ScrCmd_GetItemQuantity(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 item = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), v1, HEAP_ID_FIELDMAP);
-    return 0;
+    *destVar = Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), item, HEAP_ID_FIELDMAP);
+    return FALSE;
 }
 
-BOOL ScrCmd_07F(ScriptContext *param0)
+BOOL ScrCmd_IsItemTMHM(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 item = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = sub_0205E060(v1);
-    return 0;
+    *destVar = Item_IsTMHM(item);
+    return FALSE;
 }
 
 BOOL ScrCmd_GetItemPocket(ScriptContext *ctx)
@@ -85,12 +85,12 @@ BOOL ScrCmd_GetItemPocket(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_081(ScriptContext *param0)
+BOOL ScrCmd_Dummy081(ScriptContext *ctx)
 {
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_082(ScriptContext *param0)
+BOOL ScrCmd_Dummy082(ScriptContext *ctx)
 {
-    return 0;
+    return FALSE;
 }

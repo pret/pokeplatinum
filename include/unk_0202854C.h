@@ -21,7 +21,7 @@ void SaveData_LoadAndUpdateUnderground(SaveData *param0);
 void sub_020287E0(SaveData *param0);
 void sub_020287F8(SaveData *param0);
 BOOL sub_02028810(SaveData *param0);
-void sub_02028828(UndergroundData *param0);
+void UndergroundData_SetUnusedField(UndergroundData *undergroundData);
 void sub_02028830(UndergroundData *param0, const TrainerInfo *param1);
 TrainerInfo *sub_020288C8(const UndergroundData *param0, int param1, int param2);
 u32 sub_02028930(UndergroundData *param0);
