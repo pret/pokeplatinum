@@ -583,9 +583,9 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_05A arg0
+    .macro TryRecordChatotCry destVar
     .short 90
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_05B

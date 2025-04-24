@@ -857,7 +857,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_057,
     ScrCmd_SetBGMFixed,
     ScrCmd_CheckRecordedChatotCryIsPlayable,
-    ScrCmd_05A,
+    ScrCmd_TryRecordChatotCry,
     ScrCmd_05B,
     ScrCmd_05C,
     ScrCmd_05D,

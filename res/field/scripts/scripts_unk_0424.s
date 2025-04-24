@@ -26,7 +26,7 @@ _0031:
 _0054:
     FadeOutBGM 42, 10
     Message 1
-    ScrCmd_05A VAR_RESULT
+    TryRecordChatotCry VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     WaitTime 30, VAR_RESULT
     FadeInBGM 10
