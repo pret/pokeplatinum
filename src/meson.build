@@ -176,7 +176,7 @@ pokeplatinum_c = files(
     'unk_02046C7C.c',
     'unk_020474B8.c',
     'scrcmd_jubilife_lottery.c',
-    'unk_020482D4.c',
+    'scrcmd_sound.c',
     'unk_02048614.c',
     'unk_02048BD0.c',
     'unk_02048DD8.c',

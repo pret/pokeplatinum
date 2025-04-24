@@ -176,7 +176,7 @@
 #include "unk_0203D1B8.h"
 #include "unk_02046C7C.h"
 #include "unk_020474B8.h"
-#include "unk_020482D4.h"
+#include "scrcmd_sound.h"
 #include "unk_02048614.h"
 #include "unk_02048BD0.h"
 #include "unk_02048DD8.h"

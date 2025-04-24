@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020482D4_H
-#define POKEPLATINUM_UNK_020482D4_H
+#ifndef POKEPLATINUM_SCRCMD_SOUND_H
+#define POKEPLATINUM_SCRCMD_SOUND_H
 
 #include "field_script_context.h"
 
@@ -30,4 +30,4 @@ BOOL ScrCmd_SetScene22(ScriptContext *ctx);
 BOOL ScrCmd_SetFieldScene(ScriptContext *ctx);
 BOOL ScrCmd_GetCurrentBGM(ScriptContext *ctx);
 
-#endif // POKEPLATINUM_UNK_020482D4_H
+#endif // POKEPLATINUM_SCRCMD_SOUND_H
