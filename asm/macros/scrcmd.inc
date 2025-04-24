@@ -2039,7 +2039,7 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_16D
+    .macro BufferDaycareMonNicknames
     .short 365
     .endm
 
@@ -2336,16 +2336,16 @@
     .short \daycareSlot
     .endm
 
-    .macro ScrCmd_1A5 arg0
+    .macro Dummy1A5 dummy
     .short 421
-    .short \arg0
+    .short \dummy
     .endm
 
-    .macro ScrCmd_1A6
+    .macro Dummy1A6
     .short 422
     .endm
 
-    .macro ScrCmd_1A7
+    .macro Dummy1A7
     .short 423
     .endm
 
@@ -2384,11 +2384,11 @@
     .short \daycareSlot
     .endm
 
-    .macro ScrCmd_1AF arg0, arg1, arg2
+    .macro BufferPartyMonNicknameReturnSpecies unused, partySlot, destVar
     .short 431
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \unused
+    .short \partySlot
+    .short \destVar
     .endm
 
     .macro StorePartyMonIntoDaycare partySlot
@@ -2461,12 +2461,12 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1BC arg0, arg1, arg2, arg3
+    .macro BufferDaycareNicknameLevelGender templateArgNickname, templateArgLevel, templateArgGender, daycareSlot
     .short 444
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \templateArgNickname
+    .short \templateArgLevel
+    .short \templateArgGender
+    .short \daycareSlot
     .endm
 
     .macro GetPlayerDir destVarID
@@ -3021,7 +3021,7 @@
     .endif
     .endm
 
-    .macro ScrCmd_Dummy21E
+    .macro Dummy21E
     .short 542
     .endm
 

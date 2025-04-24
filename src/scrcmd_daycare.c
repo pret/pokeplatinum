@@ -1,4 +1,4 @@
-#include "unk_0204CA84.h"
+#include "scrcmd_daycare.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -18,15 +18,15 @@
 #include "script_manager.h"
 #include "trainer_info.h"
 
-BOOL ScrCmd_16D(ScriptContext *param0)
+BOOL ScrCmd_BufferDaycareMonNicknames(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    SaveData *saveData = fieldSystem->saveData;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    ov5_021E72BC(SaveData_GetDaycare(v1), *v2);
+    ov5_021E72BC(SaveData_GetDaycare(saveData), *strTemplate);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_GetDaycareState(ScriptContext *ctx)
@@ -112,17 +112,17 @@ BOOL ScrCmd_BufferDaycareGainedLevelsBySlot(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_1AF(ScriptContext *param0)
+BOOL ScrCmd_BufferPartyMonNicknameReturnSpecies(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    Party *v1;
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u16 v3 = ScriptContext_ReadHalfWord(param0);
-    u16 v4 = ScriptContext_GetVar(param0);
-    u16 *v5 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    Party *party;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u16 unused = ScriptContext_ReadHalfWord(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v1 = SaveData_GetParty(fieldSystem->saveData);
-    *v5 = ov5_021E73A0(v1, v4, *v2);
+    party = SaveData_GetParty(fieldSystem->saveData);
+    *destVar = Party_StringTemplateSetNicknameReturnSpecies(party, partySlot, *strTemplate);
 
     return 0;
 }
@@ -143,18 +143,18 @@ BOOL ScrCmd_StorePartyMonIntoDaycare(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_1BC(ScriptContext *ctx)
+BOOL ScrCmd_BufferDaycareNicknameLevelGender(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v3 = ScriptContext_GetVar(ctx);
-    u8 v4 = ScriptContext_GetVar(ctx);
-    u8 v5 = ScriptContext_GetVar(ctx);
-    u8 v6 = ScriptContext_GetVar(ctx);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArgNickname = ScriptContext_GetVar(ctx);
+    u8 templateArgLevel = ScriptContext_GetVar(ctx);
+    u8 templateArgGender = ScriptContext_GetVar(ctx);
+    u8 daycareSlot = ScriptContext_GetVar(ctx);
 
-    ov5_021E7308(SaveData_GetDaycare(saveData), v3, v4, v5, v6, *v2);
-    return 0;
+    Daycare_BufferNicknameLevelGender(SaveData_GetDaycare(saveData), templateArgNickname, templateArgLevel, templateArgGender, daycareSlot, *strTemplate);
+    return FALSE;
 }
 
 BOOL ScrCmd_GetDaycareCompatibilityLevel(ScriptContext *ctx)
@@ -183,24 +183,24 @@ BOOL ScrCmd_CheckDaycareHasEgg(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_1A5(ScriptContext *param0)
+BOOL ScrCmd_Dummy1A5(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *dummy = ScriptContext_GetVarPointer(ctx);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_1A6(ScriptContext *param0)
+BOOL ScrCmd_Dummy1A6(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    return 0;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    return FALSE;
 }
 
-BOOL ScrCmd_1A7(ScriptContext *param0)
+BOOL ScrCmd_Dummy1A7(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    return 0;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    return FALSE;
 }
 
 BOOL ScrCmd_Dummy1AD(ScriptContext *ctx)
