@@ -1245,7 +1245,7 @@ static int ov109_021D18A0(UnkStruct_ov109_021D0F70 *param0)
     }
 
     {
-        Sound_PlayFanfare(1158);
+        Sound_PlayFanfare(SEQ_FANFA4);
     }
 
     param0->unk_00 = 38;
@@ -1288,7 +1288,7 @@ static int ov109_021D1918(UnkStruct_ov109_021D0F70 *param0)
         ov109_021D2714(param0, 3, v0);
 
         BOOL removedItem = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, HEAP_ID_95);
-        Sound_PlayFanfare(1158);
+        Sound_PlayFanfare(SEQ_FANFA4);
 
         if (removedItem == TRUE) {
             param0->unk_00 = 40;

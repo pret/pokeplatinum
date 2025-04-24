@@ -319,7 +319,7 @@ _0457:
     Message 11
     WaitABPress
     CloseMessage
-    FadeOutMusic 0, 10
+    FadeOutBGM 0, 10
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_1F8
@@ -1616,33 +1616,33 @@ _1581:
     End
 
 _15A7:
-    ScrCmd_057 0x477
+    ScrCmd_057 SEQ_THE_GIRL
     Return
 
 _15AD:
-    ScrCmd_057 0x476
+    ScrCmd_057 SEQ_THE_BOY
     Return
 
 _15B3:
     StopMusic 0
-    ScrCmd_057 0x473
+    ScrCmd_057 SEQ_THE_RIV
     ReturnCommonScript
     End
 
 _15BF:
     StopMusic 0
-    ScrCmd_057 0x472
+    ScrCmd_057 SEQ_TSURETEKE
     ReturnCommonScript
     End
 
 _15CB:
     StopMusic 0
-    ScrCmd_057 0x4B0
+    ScrCmd_057 SEQ_PL_HANDSOME
     ReturnCommonScript
     End
 
 _15D7:
-    FadeOutMusic 0, 30
+    FadeOutBGM 0, 30
     StopMusic 0
     PlayDefaultMusic
     ReturnCommonScript

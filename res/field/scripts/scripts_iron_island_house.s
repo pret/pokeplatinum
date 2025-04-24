@@ -52,7 +52,7 @@ _00B2:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_04A 0x603
+    StopFanfare SEQ_SE_DP_KAIDAN2
     ReleaseAll
     End
 
@@ -62,7 +62,7 @@ _00D0:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_04A 0x603
+    StopFanfare SEQ_SE_DP_KAIDAN2
     ReleaseAll
     End
 

@@ -622,7 +622,7 @@ static void ov101_021D18F4(SysTask *param0, void *param1)
     case 1:
         switch (v1->unk_08) {
         case UnkEnum_ov101_021D1894_00:
-            Sound_SetBGMPlayerPaused(1, 1);
+            Sound_SetBGMPlayerPaused(PLAYER_FIELD, TRUE);
             break;
         case UnkEnum_ov101_021D1894_01:
             Sound_StopBGM(SEQ_SLOT_ATARI, 0);
@@ -637,7 +637,7 @@ static void ov101_021D18F4(SysTask *param0, void *param1)
     case 2:
         switch (v1->unk_0C) {
         case UnkEnum_ov101_021D1894_00:
-            Sound_SetBGMPlayerPaused(1, 0);
+            Sound_SetBGMPlayerPaused(PLAYER_FIELD, FALSE);
             break;
         case UnkEnum_ov101_021D1894_01:
             Sound_PlayBasicBGM(SEQ_SLOT_ATARI);

@@ -456,13 +456,13 @@ _0508:
     Call _0109
     MessageVar VAR_0x8004
     CloseMessage
-    FadeOutMusic 0, 30
+    FadeOutBGM 0, 30
     ScrCmd_20D 0, VAR_RESULT
     WaitTime 10, VAR_RESULT
     PlayFanfare SEQ_SE_PL_KUSARI
     WaitTime 20, VAR_RESULT
     PlayMusic SEQ_THE_EVENT02
-    ScrCmd_05D
+    SetSubScene63
     GoTo _0567
     End
 

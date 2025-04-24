@@ -496,19 +496,19 @@
     .endm
 
     // Plays a sound effect without interrupting the current music
-    .macro PlayFanfare sdatID
+    .macro PlayFanfare seqID
     .short 73
-    .short \sdatID
+    .short \seqID
     .endm
 
-    .macro ScrCmd_04A arg0
+    .macro StopFanfare seqID
     .short 74
-    .short \arg0
+    .short \seqID
     .endm
 
-    .macro WaitFanfare sdatID
+    .macro WaitFanfare seqID
     .short 75
-    .short \sdatID
+    .short \seqID
     .endm
 
     .macro PlayCry species, unused=0
@@ -522,18 +522,18 @@
     .endm
 
     // Pauses the current music and then plays a sound effect
-    .macro PlaySound sdatID
+    .macro PlaySound seqID
     .short 78
-    .short \sdatID
+    .short \seqID
     .endm
 
     .macro WaitSound
     .short 79
     .endm
 
-    .macro PlayMusic sdatID
+    .macro PlayMusic seqID
     .short 80
-    .short \sdatID
+    .short \seqID
     .endm
 
     .macro StopMusic dummy
@@ -546,57 +546,57 @@
     .short 82
     .endm
 
-    .macro ScrCmd_053 arg0
+    .macro SetSpecialBGM bgmID
     .short 83
-    .short \arg0
+    .short \bgmID
     .endm
 
-    .macro FadeOutMusic targetVolume, frames
+    .macro FadeOutBGM targetVolume, frames
     .short 84
     .short \targetVolume
     .short \frames
     .endm
 
-    .macro ScrCmd_055 arg0
+    .macro FadeInBGM frames
     .short 85
-    .short \arg0
+    .short \frames
     .endm
 
-    .macro ScrCmd_056 arg0, arg1
+    .macro SetBGMPlayerPaused playedID, paused
     .short 86
-    .byte \arg0
-    .byte \arg1
+    .byte \playedID
+    .byte \paused
     .endm
 
-    .macro ScrCmd_057 arg0
+    .macro ScrCmd_057 seqID
     .short 87
-    .short \arg0
+    .short \seqID
     .endm
 
-    .macro ScrCmd_058 arg0
+    .macro SetBGMFixed bgmID
     .short 88
-    .byte \arg0
+    .byte \bgmID
     .endm
 
-    .macro ScrCmd_059 arg0
+    .macro CheckRecordedChatotCryIsPlayable destVar
     .short 89
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_05A arg0
+    .macro TryRecordChatotCry destVar
     .short 90
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_05B
+    .macro StopRecordingChatotCry
     .short 91
     .endm
 
-    .macro ScrCmd_05C
+    .macro StoreRecordedChatotCry
     .short 92
     .endm
 
-    .macro ScrCmd_05D
+    .macro SetSubScene63
     .short 93
     .endm
 
@@ -3647,10 +3647,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_283 arg0, arg1
+    .macro SetInitialVolumeForSequence seqID, volume
     .short 643
-    .short \arg0
-    .short \arg1
+    .short \seqID
+    .short \volume
     .endm
 
     .macro GetUnownFormsSeenCount destVar
@@ -3901,10 +3901,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_2AE arg0, arg1
+    .macro IsSequencePlaying seqID, destVar
     .short 686
-    .short \arg0
-    .short \arg1
+    .short \seqID
+    .short \destVar
     .endm
 
     .macro ScrCmd_2AF arg0
@@ -4315,18 +4315,18 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2F8
+    .macro SetScene22
     .short 760
     .endm
 
-    .macro ScrCmd_2F9 arg0
+    .macro SetFieldScene bgmID
     .short 761
-    .short \arg0
+    .short \bgmID
     .endm
 
-    .macro ScrCmd_2FA arg0
+    .macro GetCurrentBGM destVar
     .short 762
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_2FB

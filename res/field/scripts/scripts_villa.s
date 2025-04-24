@@ -1008,8 +1008,8 @@ _0D63:
     End
 
 _0D6E:
-    ScrCmd_2FA VAR_0x8004
-    ScrCmd_2F8
+    GetCurrentBGM VAR_0x8004
+    SetScene22
     SetVar VAR_0x8007, 0
     WaitTime 1, VAR_RESULT
     GoTo _0D88
@@ -1027,7 +1027,7 @@ _0D88:
     End
 
 _0DC2:
-    ScrCmd_2F9 VAR_0x8004
+    SetFieldScene VAR_0x8004
     CloseMessage
     ReleaseAll
     End

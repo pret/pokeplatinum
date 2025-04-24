@@ -100,7 +100,7 @@ _0124:
     GoToIfEq VAR_RESULT, MENU_NO, _0124
     Call _029A
     WaitTime 15, VAR_RESULT
-    FadeOutMusic 0, 10
+    FadeOutBGM 0, 10
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen
     EnableHiddenLocation HIDDEN_LOCATION_SEABREAK_PATH
@@ -115,7 +115,7 @@ _0124:
     WaitABXPadPress
     CloseMessage
     ScrCmd_333 127
-    ScrCmd_055 10
+    FadeInBGM 10
     SetFlag FLAG_UNK_0x012D
     SetFlag FLAG_UNK_0x0252
     SetFlag FLAG_UNK_0x02CA

@@ -11,7 +11,7 @@ _0006:
     WaitTime 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_0x8000
     DrawPokemonPreviewFromPartySlot VAR_0x8000
-    ScrCmd_059 VAR_RESULT
+    CheckRecordedChatotCryIsPlayable VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0031
     GoTo _0054
     End
@@ -24,17 +24,17 @@ _0031:
     End
 
 _0054:
-    FadeOutMusic 42, 10
+    FadeOutBGM 42, 10
     Message 1
-    ScrCmd_05A VAR_RESULT
+    TryRecordChatotCry VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     WaitTime 30, VAR_RESULT
-    ScrCmd_055 10
+    FadeInBGM 10
     WaitTime 10, VAR_RESULT
     GoToIfEq VAR_0x8004, 0, _00BA
-    ScrCmd_05B
+    StopRecordingChatotCry
     WaitTime 1, VAR_RESULT
-    ScrCmd_05C
+    StoreRecordedChatotCry
     WaitTime 1, VAR_RESULT
     ScrCmd_28D
     BufferPartyMonNickname 0, VAR_0x8005

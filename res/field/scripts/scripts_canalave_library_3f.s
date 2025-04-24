@@ -174,12 +174,12 @@ _0184:
     WaitMovement
     Message 25
     CloseMessage
-    ScrCmd_04A 0x5DC
+    StopFanfare SEQ_SE_CONFIRM
     ApplyMovement 2, _0308
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 2
-    ScrCmd_04A 0x603
+    StopFanfare SEQ_SE_DP_KAIDAN2
     SetVar VAR_UNK_0x4078, 4
     SetVar VAR_UNK_0x40B2, 2
     SetFlag FLAG_UNK_0x00A8

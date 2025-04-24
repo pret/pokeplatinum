@@ -177,7 +177,7 @@ _0198:
     Message 12
     ClearFlag FLAG_UNK_0x01E3
     AddObject 26
-    ScrCmd_04A 0x5DC
+    StopFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     MessageInstant 13
     ApplyMovement 26, _03B4

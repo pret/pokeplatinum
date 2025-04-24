@@ -4845,7 +4845,7 @@ static void ov65_02232E70(UnkStruct_ov65_0222EBE0 *param0, int param1)
             ov4_021D2584(0);
 
             if (ov65_02231A54() == 1) {
-                Sound_FadeInBGM(120, 30, 1);
+                Sound_FadeInBGM(120, 30, BGM_FADE_IN_TYPE_FROM_CURRENT);
             }
         }
     }

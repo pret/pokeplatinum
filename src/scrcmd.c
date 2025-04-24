@@ -147,6 +147,7 @@
 #include "scrcmd_money.h"
 #include "scrcmd_mystery_gift.h"
 #include "scrcmd_shop.h"
+#include "scrcmd_sound.h"
 #include "scrcmd_system_flags.h"
 #include "script_manager.h"
 #include "sound.h"
@@ -178,7 +179,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_02046C7C.h"
 #include "unk_020474B8.h"
-#include "unk_020482D4.h"
 #include "unk_02048614.h"
 #include "unk_02048BD0.h"
 #include "unk_02048DD8.h"
@@ -841,7 +841,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ShowListMenu,
     ScrCmd_ShowMenuMultiColumn,
     ScrCmd_PlayFanfare,
-    ScrCmd_04A,
+    ScrCmd_StopFanfare,
     ScrCmd_WaitFanfare,
     ScrCmd_PlayCry,
     ScrCmd_WaitCry,
@@ -850,17 +850,17 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_PlayMusic,
     ScrCmd_StopMusic,
     ScrCmd_PlayDefaultMusic,
-    ScrCmd_053,
-    ScrCmd_FadeOutMusic,
-    ScrCmd_055,
-    ScrCmd_056,
+    ScrCmd_SetSpecialBGM,
+    ScrCmd_FadeOutBGM,
+    ScrCmd_FadeInBGM,
+    ScrCmd_SetBGMPlayerPaused,
     ScrCmd_057,
-    ScrCmd_058,
-    ScrCmd_059,
-    ScrCmd_05A,
-    ScrCmd_05B,
-    ScrCmd_05C,
-    ScrCmd_05D,
+    ScrCmd_SetBGMFixed,
+    ScrCmd_CheckRecordedChatotCryIsPlayable,
+    ScrCmd_TryRecordChatotCry,
+    ScrCmd_StopRecordingChatotCry,
+    ScrCmd_StoreRecordedChatotCry,
+    ScrCmd_SetSubScene63,
     ScrCmd_ApplyMovement,
     ScrCmd_WaitMovement,
     ScrCmd_LockAll,
@@ -1410,7 +1410,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_280,
     ScrCmd_281,
     ScrCmd_282,
-    ScrCmd_283,
+    ScrCmd_SetInitialVolumeForSequence,
     ScrCmd_GetUnownFormsSeenCount,
     ScrCmd_285,
     ScrCmd_GetUndergroundItemsGivenAway,
@@ -1453,7 +1453,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2AB,
     ScrCmd_2AC,
     ScrCmd_2AD,
-    ScrCmd_2AE,
+    ScrCmd_IsSequencePlaying,
     ScrCmd_2AF,
     ScrCmd_2B0,
     ScrCmd_2B1,
@@ -1527,9 +1527,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2F5,
     ScrCmd_2F6,
     ScrCmd_2F7,
-    ScrCmd_2F8,
-    ScrCmd_2F9,
-    ScrCmd_2FA,
+    ScrCmd_SetScene22,
+    ScrCmd_SetFieldScene,
+    ScrCmd_GetCurrentBGM,
     ScrCmd_2FB,
     ScrCmd_2FC,
     ScrCmd_2FD,
@@ -4706,15 +4706,15 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
     u8 rideBike = ScriptContext_ReadByte(ctx);
 
     if (rideBike == TRUE) {
-        Sound_SetSpecialBGM(ctx->fieldSystem, 1152);
-        sub_02055554(ctx->fieldSystem, 1152, 1);
+        Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_BICYCLE);
+        Sound_TryFadeOutToBGM(ctx->fieldSystem, SEQ_BICYCLE, 1);
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 1));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
     } else {
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 0));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
-        Sound_SetSpecialBGM(ctx->fieldSystem, 0);
-        sub_02055554(ctx->fieldSystem, Sound_GetOverrideBGM(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
+        Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_NONE);
+        Sound_TryFadeOutToBGM(ctx->fieldSystem, Sound_GetOverrideBGM(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
     }
 
     return FALSE;
@@ -4722,7 +4722,7 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
 
 static BOOL ScrCmd_2BF(ScriptContext *ctx)
 {
-    Sound_SetSpecialBGM(ctx->fieldSystem, 1189);
+    Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_PL_BICYCLE);
     return 0;
 }
 

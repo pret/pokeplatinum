@@ -3510,7 +3510,7 @@ static BOOL ov114_0225F7D8(UnkStruct_ov114_0225E854 *param0)
 static void ov114_0225F83C(UnkStruct_ov114_0225E854 *param0)
 {
     if (param0->unk_6C4 == 0) {
-        Sound_PlayFanfare(1222);
+        Sound_PlayFanfare(SEQ_PL_WINMINI2);
         param0->unk_6C4 = 1;
     }
 }
