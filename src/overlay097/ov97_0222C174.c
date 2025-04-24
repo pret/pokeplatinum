@@ -806,7 +806,7 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     v4->metadata.unk_4E_1 = 0;
     v4->metadata.saveWonderCard = 1;
     v4->metadata.savePgt = 1;
-    v4->metadata.isRedistribution = 0;
+    v4->metadata.fromSharing = 0;
 
     v1 = MessageUtil_ExpandedStrbuf(v2, v3, 75, param0->heapID);
 

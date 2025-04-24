@@ -733,18 +733,19 @@ static void PrepCannotReceivePoketchAppMsg(MystGiftGiveMsgFormatter *formatter, 
     StringTemplate_SetPlayerName(formatter->stringTemplate, 0, SaveData_GetTrainerInfo(formatter->fieldSystem->saveData));
 }
 
-static const GiftHandler giftHandlers[] = {
-    { CanReceivePokemon, GivePokemon, PrepReceivedPokemonMsg, PrepCannotReceivePokemonMsg }, // Pokemon
-    { CanReceivePokemon, GiveEgg, PrepReceivedEggMsg, PrepCannotReceivePokemonMsg }, // Egg
-    { CanReceiveItem, GiveItem, PrepReceivedItemMsg, PrepCannotReceiveItemMsg }, // Item
-    { CanReceiveBattleReg, GiveBattleReg, PrepReceivedRulesMsg, PrepCannotReceiveRulesMsg }, // Battle regulation
-    { CanReceiveDecorationGood, GiveDecorationGood, PrepReceivedDecoGoodMsg, PrepCannotReceiveDecoGood }, // Underground decoration good
-    { CanReceiveCosmetic, GiveCosmetic, PrepReceivedCosmeticMsg, PrepCannotReceiveCosmeticMsg }, // Seal/Accessory/Backdrop
-    { CanReceivePokemon, GenerateManaphyEgg, PrepReceivedManaphyEggMsg, PrepCannotReceivePokemonMsg }, // Manaphy egg
-    { CanReceiveMemberCard, InitDarkraiEvent, PrepReceivedMemberCardMsg, PrepCannotReceiveMemberCardMsg }, // Member card
-    { CanReceiveOaksLetter, InitShayminEvent, PrepReceivedOaksLetterMsg, PrepCannotReceivedOaksLetterMsg }, // Oak's letter
-    { CanReceiveAzureFlute, InitArceusEvent, PrepReceivedAzureFluteMsg, PrepCannotReceiveAzureFluteMsg }, // Azure flute
-    { CanReceivePoketchApp, GivePoketchApp, PrepReceivedPoketchAppMsg, PrepCannotReceivePoketchAppMsg }, // Poketch app
-    { CanReceiveSecretKey, InitRotomEvent, PrepReceivedSecretKeyMsg, PrepCannotReceiveSecretKeyMsg }, // Secret key
-    { CanReceivePokemon, GivePokemon, PrepReceivedPokemonMsg, PrepCannotReceivePokemonMsg } // Same as Pokemon, likely unused
+// Mystery Gift type 0 has no handler because it signals an empty Wonder Card/PGT slot
+static const GiftHandler giftHandlers[MYST_GIFT_TYPE_MAX - 1] = {
+    [MYST_GIFT_POKEMON - 1] = { CanReceivePokemon, GivePokemon, PrepReceivedPokemonMsg, PrepCannotReceivePokemonMsg },
+    [MYST_GIFT_EGG - 1] = { CanReceivePokemon, GiveEgg, PrepReceivedEggMsg, PrepCannotReceivePokemonMsg },
+    [MYST_GIFT_ITEM - 1] = { CanReceiveItem, GiveItem, PrepReceivedItemMsg, PrepCannotReceiveItemMsg },
+    [MYST_GIFT_BATTLE_REG - 1] = { CanReceiveBattleReg, GiveBattleReg, PrepReceivedRulesMsg, PrepCannotReceiveRulesMsg },
+    [MYST_GIFT_DECORATION_GOOD - 1] = { CanReceiveDecorationGood, GiveDecorationGood, PrepReceivedDecoGoodMsg, PrepCannotReceiveDecoGood },
+    [MYST_GIFT_COSMETICS - 1] = { CanReceiveCosmetic, GiveCosmetic, PrepReceivedCosmeticMsg, PrepCannotReceiveCosmeticMsg }, // Seal/Accessory/Backdrop
+    [MYST_GIFT_MANAPHY_EGG - 1] = { CanReceivePokemon, GenerateManaphyEgg, PrepReceivedManaphyEggMsg, PrepCannotReceivePokemonMsg },
+    [MYST_GIFT_MEMBER_CARD - 1] = { CanReceiveMemberCard, InitDarkraiEvent, PrepReceivedMemberCardMsg, PrepCannotReceiveMemberCardMsg },
+    [MYST_GIFT_OAKS_LETTER - 1] = { CanReceiveOaksLetter, InitShayminEvent, PrepReceivedOaksLetterMsg, PrepCannotReceivedOaksLetterMsg },
+    [MYST_GIFT_AZURE_FLUTE - 1] = { CanReceiveAzureFlute, InitArceusEvent, PrepReceivedAzureFluteMsg, PrepCannotReceiveAzureFluteMsg },
+    [MYST_GIFT_POKETCH_APP - 1] = { CanReceivePoketchApp, GivePoketchApp, PrepReceivedPoketchAppMsg, PrepCannotReceivePoketchAppMsg },
+    [MYST_GIFT_SECRET_KEY - 1] = { CanReceiveSecretKey, InitRotomEvent, PrepReceivedSecretKeyMsg, PrepCannotReceiveSecretKeyMsg },
+    [MYST_GIFT_UNKNOWN - 1] = { CanReceivePokemon, GivePokemon, PrepReceivedPokemonMsg, PrepCannotReceivePokemonMsg } // Same as Pokemon, likely unused
 };
