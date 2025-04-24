@@ -588,7 +588,7 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_05B
+    .macro StopRecordingChatotCry
     .short 91
     .endm
 

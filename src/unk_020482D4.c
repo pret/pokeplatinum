@@ -17,7 +17,6 @@ static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);
 static BOOL ScrCmd_IsPokemonCryPlaying(ScriptContext *param0);
 static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx);
 BOOL ScrCmd_04A(ScriptContext *param0);
-BOOL ScrCmd_05B(ScriptContext *param0);
 BOOL ScrCmd_05C(ScriptContext *param0);
 BOOL ScrCmd_05D(ScriptContext *param0);
 BOOL ScrCmd_283(ScriptContext *param0);
@@ -195,10 +194,10 @@ BOOL ScrCmd_TryRecordChatotCry(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_05B(ScriptContext *param0)
+BOOL ScrCmd_StopRecordingChatotCry(ScriptContext *ctx)
 {
     Sound_StopRecordingChatotCry();
-    return 1;
+    return TRUE;
 }
 
 BOOL ScrCmd_05C(ScriptContext *param0)

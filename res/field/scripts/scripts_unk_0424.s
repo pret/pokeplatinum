@@ -32,7 +32,7 @@ _0054:
     FadeInBGM 10
     WaitTime 10, VAR_RESULT
     GoToIfEq VAR_0x8004, 0, _00BA
-    ScrCmd_05B
+    StopRecordingChatotCry
     WaitTime 1, VAR_RESULT
     ScrCmd_05C
     WaitTime 1, VAR_RESULT

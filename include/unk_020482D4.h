@@ -22,7 +22,7 @@ BOOL ScrCmd_PlaySound(ScriptContext *ctx);
 BOOL ScrCmd_WaitSound(ScriptContext *ctx);
 BOOL ScrCmd_CheckRecordedChatotCryIsPlayable(ScriptContext *ctx);
 BOOL ScrCmd_TryRecordChatotCry(ScriptContext *ctx);
-BOOL ScrCmd_05B(ScriptContext *param0);
+BOOL ScrCmd_StopRecordingChatotCry(ScriptContext *ctx);
 BOOL ScrCmd_05C(ScriptContext *param0);
 BOOL ScrCmd_05D(ScriptContext *param0);
 BOOL ScrCmd_283(ScriptContext *param0);
