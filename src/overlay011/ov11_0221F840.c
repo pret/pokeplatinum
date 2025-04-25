@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 
 #include "camera.h"
 #include "heap.h"
@@ -13,9 +13,9 @@
 static u32 ov11_0221F914(u32 param0, BOOL param1);
 static u32 ov11_0221F930(u32 param0, BOOL param1);
 
-UnkStruct_02014014 *ov11_0221F840(int heapID)
+ParticleSystem *ov11_0221F840(int heapID)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     void *v1;
     Camera *camera;
 
@@ -30,9 +30,9 @@ UnkStruct_02014014 *ov11_0221F840(int heapID)
     return v0;
 }
 
-UnkStruct_02014014 *ov11_0221F888(int heapID)
+ParticleSystem *ov11_0221F888(int heapID)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     void *v1;
     Camera *camera;
 
@@ -52,7 +52,7 @@ UnkStruct_02014014 *ov11_0221F888(int heapID)
     return v0;
 }
 
-void ov11_0221F8D8(UnkStruct_02014014 *param0)
+void ov11_0221F8D8(ParticleSystem *param0)
 {
     void *v0 = sub_02014730(param0);
 

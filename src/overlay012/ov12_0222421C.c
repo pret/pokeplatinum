@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225104.h"
@@ -56,7 +56,7 @@ static void ov12_0222421C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
 {
     UnkStruct_ov12_0221FCDC *v0;
-    UnkStruct_02014014 *v1;
+    ParticleSystem *v1;
     int v2;
     int v3;
     int v4;
@@ -81,7 +81,7 @@ static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, V
 static void ov12_022242A0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
 {
     UnkStruct_ov12_0221FCDC *v0;
-    UnkStruct_02014014 *v1;
+    ParticleSystem *v1;
     int v2;
     int v3;
     int v4;

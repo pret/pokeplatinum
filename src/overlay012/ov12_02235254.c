@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
@@ -480,7 +480,7 @@ void ov12_02235508(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    UnkStruct_02014014 *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = ov12_02220250(param0);
     v2 = sub_02014790(v3);
     v0 = ov12_02235254(param0, param1);
     v1 = ov12_0221FDD4(param0);
@@ -492,7 +492,7 @@ void ov12_02235538(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    UnkStruct_02014014 *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = ov12_02220250(param0);
     v2 = sub_02014790(v3);
     v0 = ov12_02235254(param0, param1);
     v1 = ov12_0221FDD4(param0);
@@ -504,7 +504,7 @@ void ov12_02235568(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    UnkStruct_02014014 *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = ov12_02220250(param0);
     v2 = sub_02014790(v3);
     v0 = ov12_02235254(param0, param1);
     v1 = ov12_0221FDD4(param0);
@@ -516,7 +516,7 @@ void ov12_02235598(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    UnkStruct_02014014 *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = ov12_02220250(param0);
     v2 = sub_02014790(v3);
     v0 = ov12_02235254(param0, param1);
     v1 = ov12_0221FDD4(param0);
@@ -528,7 +528,7 @@ void ov12_022355C8(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    UnkStruct_02014014 *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = ov12_02220250(param0);
     v2 = sub_02014790(v3);
     v0 = ov12_02235254(param0, param1);
     v1 = ov12_0221FDD4(param0);
@@ -540,7 +540,7 @@ void ov12_022355F8(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    UnkStruct_02014014 *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = ov12_02220250(param0);
     v2 = sub_02014790(v3);
     v0 = ov12_02235254(param0, param1);
     v1 = ov12_0221FDD4(param0);
@@ -552,7 +552,7 @@ void ov12_02235628(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    UnkStruct_02014014 *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = ov12_02220250(param0);
     v2 = sub_02014790(v3);
     v0 = ov12_02235254(param0, param1);
     v1 = ov12_0221FDD4(param0);
@@ -564,7 +564,7 @@ void ov12_02235658(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    UnkStruct_02014014 *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = ov12_02220250(param0);
     v2 = sub_02014790(v3);
     v0 = ov12_02235254(param0, param1);
     v1 = ov12_0221FDD4(param0);
@@ -576,7 +576,7 @@ void ov12_02235688(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    UnkStruct_02014014 *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = ov12_02220250(param0);
     v2 = sub_02014790(v3);
     v0 = ov12_02235254(param0, param1);
     v1 = ov12_0221FDD4(param0);
@@ -588,7 +588,7 @@ void ov12_022356B8(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    UnkStruct_02014014 *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = ov12_02220250(param0);
     v2 = sub_02014790(v3);
     v0 = ov12_02235254(param0, param1);
     v1 = ov12_0221FDD4(param0);
@@ -600,7 +600,7 @@ void ov12_022356E8(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    UnkStruct_02014014 *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = ov12_02220250(param0);
     v2 = sub_02014790(v3);
     v0 = ov12_02235254(param0, param1);
     v1 = ov12_0221FDD4(param0);
@@ -612,7 +612,7 @@ void ov12_02235718(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    UnkStruct_02014014 *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = ov12_02220250(param0);
     v2 = sub_02014790(v3);
     v0 = ov12_02235254(param0, param1);
     v1 = ov12_0221FDD4(param0);

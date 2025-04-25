@@ -4,7 +4,7 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
@@ -55,7 +55,7 @@ typedef struct UnkStruct_ov117_02261280_t {
     GenericPointerData *unk_98;
     Camera *camera1;
     Camera *camera2;
-    UnkStruct_02014014 *unk_A4;
+    ParticleSystem *unk_A4;
     NNSFndAllocator unk_A8;
     UnkStruct_ov117_02262664 unk_B8;
     UnkStruct_ov117_022626B0 *unk_D4;

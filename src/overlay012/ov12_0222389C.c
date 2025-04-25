@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02235254.h"
@@ -64,7 +64,7 @@ void ov12_022238DC(SPLEmitter *param0)
 void ov12_022238E0(SPLEmitter *param0)
 {
     UnkStruct_ov12_0221FCDC *v0;
-    UnkStruct_02014014 *v1;
+    ParticleSystem *v1;
     int v2, v3, v4;
     VecFx32 v5, v6, v7;
 
@@ -123,7 +123,7 @@ void ov12_022238E0(SPLEmitter *param0)
 void ov12_02223998(SPLEmitter *param0)
 {
     UnkStruct_ov12_0221FCDC *v0;
-    UnkStruct_02014014 *v1;
+    ParticleSystem *v1;
     int v2;
     VecFx32 v3, v4;
 
@@ -195,7 +195,7 @@ void ov12_02223AC8(SPLEmitter *param0)
 {
     UnkStruct_ov12_0221FCDC *v0;
     VecFx32 v1;
-    UnkStruct_02014014 *v2;
+    ParticleSystem *v2;
     int v3;
     int v4;
     int v5;
@@ -224,7 +224,7 @@ void ov12_02223B30(SPLEmitter *param0)
 {
     UnkStruct_ov12_0221FCDC *v0;
     VecFx32 v1;
-    UnkStruct_02014014 *v2;
+    ParticleSystem *v2;
     int v3;
     int v4;
     int v5;
@@ -413,7 +413,7 @@ static void ov12_02223DA4(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
 
 static void ov12_02223E74(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, int param2, int param3, int param4, int param5)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     VecFx32 v1;
     int v2, v3;
     VecFx16 v4;

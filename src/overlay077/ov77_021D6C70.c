@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 
 #include "camera.h"
 #include "heap.h"
@@ -19,7 +19,7 @@ typedef struct UnkStruct_ov77_021D6CFC_t {
     PokemonSprite *unk_04[3];
     BOOL unk_10;
     void *unk_14;
-    UnkStruct_02014014 *unk_18;
+    ParticleSystem *unk_18;
     int unk_1C[3];
     u8 unk_28;
     u8 unk_29;
@@ -90,7 +90,7 @@ const int ov77_021D6CB8(void)
     return sizeof(UnkStruct_ov77_021D6CFC);
 }
 
-UnkStruct_02014014 *ov77_021D6CBC(UnkStruct_ov77_021D6CFC *param0)
+ParticleSystem *ov77_021D6CBC(UnkStruct_ov77_021D6CFC *param0)
 {
     GF_ASSERT(param0 != NULL && param0->unk_18 != NULL);
     return param0->unk_18;

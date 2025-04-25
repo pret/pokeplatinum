@@ -7,7 +7,7 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -80,7 +80,7 @@ typedef struct UnkStruct_ov5_02202120 {
     u8 unk_02;
     u8 unk_03;
     FieldSystem *fieldSystem;
-    UnkStruct_02014014 *unk_08;
+    ParticleSystem *unk_08;
     void *unk_0C;
     u32 unk_10;
     u32 unk_14;

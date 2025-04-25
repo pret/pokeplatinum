@@ -10,7 +10,6 @@
 #include "struct_defs/struct_02014910.h"
 #include "struct_defs/struct_02014970.h"
 
-#include "functypes/funcptr_02014014.h"
 #include "functypes/funcptr_020146F4.h"
 
 #include "camera.h"
@@ -29,40 +28,11 @@ enum {
     MAX_POLYGON_ID = 63,
 };
 
-typedef struct UnkStruct_02014014_t {
-    SPLManager *unk_00;
-    void *unk_04;
-    SPLEmitter *unk_08;
-    void *unk_0C;
-    void *unk_10;
-    void *unk_14;
-    UnkFuncPtr_02014014 unk_18;
-    UnkFuncPtr_02014014 unk_1C;
-    Camera *camera;
-    VecFx32 unk_24;
-    u16 unk_30;
-    VecFx32 unk_34;
-    VecFx32 unk_40;
-    VecFx32 unk_4C;
-    union {
-        NNSGfdFrmTexVramState unk_58_val1;
-        NNSGfdTexKey unk_58_val2[16];
-    };
-    union {
-        NNSGfdFrmPlttVramState unk_98_val1;
-        NNSGfdPlttKey unk_98_val2[16];
-    };
-    u8 unk_D8;
-    u8 unk_D9;
-    u8 unk_DA;
-    u8 unk_DB;
-} UnkStruct_02014014;
-
 static void *Unk_021BF618[16];
 
 static void *Unk_021BF614;
 
-static UnkStruct_02014014 *Unk_021BF610;
+static ParticleSystem *Unk_021BF610;
 
 static const VecFx32 Unk_020E5448 = {
     0, 0, 0x4000
@@ -92,13 +62,13 @@ static void *sub_02014414(u32 param0);
 static void *sub_02014440(u32 param0);
 static void *sub_0201446C(u32 param0);
 static void *sub_02014498(u32 param0);
-static inline void *Particle_LocalAlloc(UnkStruct_02014014 *param0, u32 param1);
-static void sub_02014560(UnkStruct_02014014 *param0);
+static inline void *Particle_LocalAlloc(ParticleSystem *param0, u32 param1);
+static void sub_02014560(ParticleSystem *param0);
 static void sub_020145A0(SysTask *param0, void *param1);
 
-void sub_0201411C(UnkStruct_02014014 *param0);
-void sub_02014718(UnkStruct_02014014 *param0);
-void sub_020144CC(UnkStruct_02014014 *param0, void *param1, int param2, int param3);
+void sub_0201411C(ParticleSystem *param0);
+void sub_02014718(ParticleSystem *param0);
+void sub_020144CC(ParticleSystem *param0, void *param1, int param2, int param3);
 
 static const SPLAllocFunc Unk_020E5454[] = {
     sub_02014204,
@@ -128,9 +98,9 @@ void sub_02014000(void)
     }
 }
 
-UnkStruct_02014014 *sub_02014014(UnkFuncPtr_02014014 param0, UnkFuncPtr_02014014 param1, void *param2, int param3, int param4, int heapID)
+ParticleSystem *sub_02014014(SPLTexVRAMAllocFunc param0, SPLPalVRAMAllocFunc param1, void *param2, int param3, int param4, int heapID)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     int v1;
 
     for (v1 = 0; v1 < 16; v1++) {
@@ -142,11 +112,11 @@ UnkStruct_02014014 *sub_02014014(UnkFuncPtr_02014014 param0, UnkFuncPtr_02014014
         return NULL;
     }
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02014014));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(ParticleSystem));
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
     }
-    memset(v0, 0, sizeof(UnkStruct_02014014));
+    memset(v0, 0, sizeof(ParticleSystem));
 
     v0->unk_18 = param0;
     v0->unk_1C = param1;
@@ -181,7 +151,7 @@ UnkStruct_02014014 *sub_02014014(UnkFuncPtr_02014014 param0, UnkFuncPtr_02014014
     return v0;
 }
 
-void sub_0201411C(UnkStruct_02014014 *param0)
+void sub_0201411C(ParticleSystem *param0)
 {
     int v0;
 
@@ -243,7 +213,7 @@ void sub_020141E4(void)
     }
 }
 
-static inline void *Particle_LocalAlloc(UnkStruct_02014014 *param0, u32 param1)
+static inline void *Particle_LocalAlloc(ParticleSystem *param0, u32 param1)
 {
     void *v0;
     u32 v1, v2;
@@ -265,97 +235,97 @@ static inline void *Particle_LocalAlloc(UnkStruct_02014014 *param0, u32 param1)
 
 static void *sub_02014204(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[0];
+    ParticleSystem *v0 = Unk_021BF618[0];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014230(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[1];
+    ParticleSystem *v0 = Unk_021BF618[1];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_0201425C(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[2];
+    ParticleSystem *v0 = Unk_021BF618[2];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014288(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[3];
+    ParticleSystem *v0 = Unk_021BF618[3];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_020142B4(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[4];
+    ParticleSystem *v0 = Unk_021BF618[4];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_020142E0(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[5];
+    ParticleSystem *v0 = Unk_021BF618[5];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_0201430C(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[6];
+    ParticleSystem *v0 = Unk_021BF618[6];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014338(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[7];
+    ParticleSystem *v0 = Unk_021BF618[7];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014364(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[8];
+    ParticleSystem *v0 = Unk_021BF618[8];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014390(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[9];
+    ParticleSystem *v0 = Unk_021BF618[9];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_020143BC(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[10];
+    ParticleSystem *v0 = Unk_021BF618[10];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_020143E8(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[11];
+    ParticleSystem *v0 = Unk_021BF618[11];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014414(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[12];
+    ParticleSystem *v0 = Unk_021BF618[12];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014440(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[13];
+    ParticleSystem *v0 = Unk_021BF618[13];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_0201446C(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[14];
+    ParticleSystem *v0 = Unk_021BF618[14];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014498(u32 param0)
 {
-    UnkStruct_02014014 *v0 = Unk_021BF618[15];
+    ParticleSystem *v0 = Unk_021BF618[15];
     return Particle_LocalAlloc(v0, param0);
 }
 
@@ -364,7 +334,7 @@ void *sub_020144C4(int param0, int param1, int param2)
     return NARC_AllocAndReadWholeMemberByIndexPair(param0, param1, param2);
 }
 
-void sub_020144CC(UnkStruct_02014014 *param0, void *param1, int param2, int param3)
+void sub_020144CC(ParticleSystem *param0, void *param1, int param2, int param3)
 {
     GF_ASSERT(param0->unk_00 != NULL);
     GF_ASSERT(param0->unk_04 == NULL);
@@ -398,7 +368,7 @@ void sub_020144CC(UnkStruct_02014014 *param0, void *param1, int param2, int para
     }
 }
 
-static void sub_02014560(UnkStruct_02014014 *param0)
+static void sub_02014560(ParticleSystem *param0)
 {
     SPLManager_LoadResources(param0->unk_00, param0->unk_04);
 
@@ -423,7 +393,7 @@ static void sub_02014560(UnkStruct_02014014 *param0)
 
 static void sub_020145A0(SysTask *param0, void *param1)
 {
-    UnkStruct_02014014 *v0 = param1;
+    ParticleSystem *v0 = param1;
 
     sub_02014560(v0);
     SysTask_Done(param0);
@@ -432,7 +402,7 @@ static void sub_020145A0(SysTask *param0, void *param1)
 void sub_020145B4(NNSGfdTexKey param0)
 {
     int v0;
-    UnkStruct_02014014 *v1;
+    ParticleSystem *v1;
 
     GF_ASSERT(param0 != NNS_GFD_ALLOC_ERROR_TEXKEY);
     GF_ASSERT(Unk_021BF610 != NULL);
@@ -451,7 +421,7 @@ void sub_020145B4(NNSGfdTexKey param0)
 void sub_020145F4(NNSGfdPlttKey param0)
 {
     int v0;
-    UnkStruct_02014014 *v1;
+    ParticleSystem *v1;
 
     GF_ASSERT(param0 != NNS_GFD_ALLOC_ERROR_PLTTKEY);
     GF_ASSERT(Unk_021BF610 != NULL);
@@ -467,7 +437,7 @@ void sub_020145F4(NNSGfdPlttKey param0)
     GF_ASSERT(FALSE);
 }
 
-void sub_02014638(UnkStruct_02014014 *param0)
+void sub_02014638(ParticleSystem *param0)
 {
     const MtxFx43 *v0;
 
@@ -489,7 +459,7 @@ void sub_02014638(UnkStruct_02014014 *param0)
     NNS_G3dGlbFlush();
 }
 
-void sub_02014674(UnkStruct_02014014 *param0)
+void sub_02014674(ParticleSystem *param0)
 {
     SPLManager_Update(param0->unk_00);
 }
@@ -529,7 +499,7 @@ int sub_020146C0(void)
     return count;
 }
 
-SPLEmitter *sub_020146E4(UnkStruct_02014014 *param0, int param1, const VecFx32 *param2)
+SPLEmitter *sub_020146E4(ParticleSystem *param0, int param1, const VecFx32 *param2)
 {
     SPLEmitter *v0 = SPLManager_CreateEmitter(param0->unk_00, param1, param2);
     param0->unk_08 = v0;
@@ -537,7 +507,7 @@ SPLEmitter *sub_020146E4(UnkStruct_02014014 *param0, int param1, const VecFx32 *
     return v0;
 }
 
-SPLEmitter *sub_020146F4(UnkStruct_02014014 *param0, int param1, UnkFuncPtr_020146F4 param2, void *param3)
+SPLEmitter *sub_020146F4(ParticleSystem *param0, int param1, UnkFuncPtr_020146F4 param2, void *param3)
 {
     SPLEmitter *v0;
 
@@ -549,32 +519,32 @@ SPLEmitter *sub_020146F4(UnkStruct_02014014 *param0, int param1, UnkFuncPtr_0201
     return v0;
 }
 
-s32 sub_02014710(UnkStruct_02014014 *param0)
+s32 sub_02014710(ParticleSystem *param0)
 {
     return param0->unk_00->activeEmitters.count;
 }
 
-void sub_02014718(UnkStruct_02014014 *param0)
+void sub_02014718(ParticleSystem *param0)
 {
     SPLManager_DeleteAllEmitters(param0->unk_00);
 }
 
-void sub_02014724(UnkStruct_02014014 *param0, SPLEmitter *param1)
+void sub_02014724(ParticleSystem *param0, SPLEmitter *param1)
 {
     SPLManager_DeleteEmitter(param0->unk_00, param1);
 }
 
-void *sub_02014730(UnkStruct_02014014 *param0)
+void *sub_02014730(ParticleSystem *param0)
 {
     return param0->unk_0C;
 }
 
-void sub_02014734(UnkStruct_02014014 *param0, VecFx32 *param1)
+void sub_02014734(ParticleSystem *param0, VecFx32 *param1)
 {
     *param1 = param0->unk_40;
 }
 
-void sub_02014744(UnkStruct_02014014 *param0, const VecFx32 *param1)
+void sub_02014744(ParticleSystem *param0, const VecFx32 *param1)
 {
     param0->unk_40 = *param1;
     Camera_SetUp(param1, param0->camera);
@@ -590,17 +560,17 @@ void sub_02014770(VecFx32 *param0)
     *param0 = Unk_020E5430;
 }
 
-Camera *sub_02014784(UnkStruct_02014014 *param0)
+Camera *sub_02014784(ParticleSystem *param0)
 {
     return param0->camera;
 }
 
-void sub_02014788(UnkStruct_02014014 *param0, int param1)
+void sub_02014788(ParticleSystem *param0, int param1)
 {
     param0->unk_DB = param1;
 }
 
-u8 sub_02014790(UnkStruct_02014014 *param0)
+u8 sub_02014790(ParticleSystem *param0)
 {
     return param0->unk_DB;
 }

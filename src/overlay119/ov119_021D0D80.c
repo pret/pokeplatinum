@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -46,8 +46,8 @@ void ov119_021D0DF4(void);
 void ov119_021D0E78(void);
 static u32 ov119_021D13B4(u32 param0, BOOL param1);
 static u32 ov119_021D13D0(u32 param0, BOOL param1);
-static UnkStruct_02014014 *ov119_021D13EC(int heapID);
-static UnkStruct_02014014 *ov119_021D1434(int heapID, int param1, int param2);
+static ParticleSystem *ov119_021D13EC(int heapID);
+static ParticleSystem *ov119_021D1434(int heapID, int param1, int param2);
 static void ov119_021D1474(SPLEmitter *param0);
 
 void ov119_021D0D80(void)
@@ -421,9 +421,9 @@ static u32 ov119_021D13D0(u32 param0, BOOL param1)
     return v1;
 }
 
-static UnkStruct_02014014 *ov119_021D13EC(int heapID)
+static ParticleSystem *ov119_021D13EC(int heapID)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     void *v1;
     Camera *camera;
 
@@ -438,9 +438,9 @@ static UnkStruct_02014014 *ov119_021D13EC(int heapID)
     return v0;
 }
 
-static UnkStruct_02014014 *ov119_021D1434(int heapID, int param1, int param2)
+static ParticleSystem *ov119_021D1434(int heapID, int param1, int param2)
 {
-    UnkStruct_02014014 *v0 = ov119_021D13EC(heapID);
+    ParticleSystem *v0 = ov119_021D13EC(heapID);
     void *v1 = sub_020144C4(param1, param2, heapID);
 
     sub_020144CC(v0, v1, (1 << 1) | (1 << 3), 1);
@@ -448,7 +448,7 @@ static UnkStruct_02014014 *ov119_021D1434(int heapID, int param1, int param2)
     return v0;
 }
 
-void ov119_021D145C(UnkStruct_02014014 *param0)
+void ov119_021D145C(ParticleSystem *param0)
 {
     void *v0 = sub_02014730(param0);
     sub_0201411C(param0);

@@ -5,7 +5,7 @@
 
 #include "generated/species.h"
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 #include "struct_defs/struct_0207F248.h"
 
 #include "camera.h"
@@ -35,7 +35,7 @@ typedef struct OverlayMetadata_t {
     int unk_0C;
     u32 unk_10;
     int unk_14;
-    UnkStruct_02014014 *unk_18;
+    ParticleSystem *unk_18;
 } OverlayMetadata;
 
 static void ov118_021D0F70(GameWindowLayout *param0);

@@ -6,7 +6,7 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -98,7 +98,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     UnkStruct_02012744 *unk_B38;
     FontOAM *unk_B3C[4];
     GenericPointerData *unk_B4C;
-    UnkStruct_02014014 *unk_B50;
+    ParticleSystem *unk_B50;
     void *unk_B54;
     u8 unk_B58[4];
     u8 unk_B5C[4];

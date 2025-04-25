@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 
 #include "camera.h"
 #include "heap.h"
@@ -11,13 +11,13 @@
 #include "unk_0202419C.h"
 
 typedef struct UnkStruct_ov104_0223D5F0_t {
-    UnkStruct_02014014 *unk_00[8];
+    ParticleSystem *unk_00[8];
     u16 heapID;
 } UnkStruct_ov104_0223D5F0;
 
 static u32 ov104_0223D720(u32 param0, BOOL param1);
 static u32 ov104_0223D744(u32 param0, BOOL param1);
-static void ov104_0223D708(UnkStruct_02014014 *param0);
+static void ov104_0223D708(ParticleSystem *param0);
 
 UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(int heapID)
 {
@@ -44,9 +44,9 @@ void ov104_0223D5F0(UnkStruct_ov104_0223D5F0 *param0)
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_02014014 *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1, int param2, int param3)
+ParticleSystem *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1, int param2, int param3)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     void *v1;
     Camera *camera;
     void *v3;
@@ -96,7 +96,7 @@ int ov104_0223D6A8(void)
     return 1;
 }
 
-UnkStruct_02014014 *ov104_0223D6D0(UnkStruct_ov104_0223D5F0 *param0, int param1)
+ParticleSystem *ov104_0223D6D0(UnkStruct_ov104_0223D5F0 *param0, int param1)
 {
     GF_ASSERT(param0->unk_00[param1] != NULL);
     return param0->unk_00[param1];
@@ -117,7 +117,7 @@ BOOL ov104_0223D6E4(UnkStruct_ov104_0223D5F0 *param0)
     return 1;
 }
 
-static void ov104_0223D708(UnkStruct_02014014 *param0)
+static void ov104_0223D708(ParticleSystem *param0)
 {
     void *v0 = sub_02014730(param0);
 

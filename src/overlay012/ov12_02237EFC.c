@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 
 #include "functypes/funcptr_020146F4.h"
 #include "overlay012/ov12_0221FC20.h"
@@ -21,7 +21,7 @@ typedef struct UnkStruct_ov12_02238004_t {
     int unk_00;
     int heapID;
     UnkStruct_ov12_02237F38 unk_08;
-    UnkStruct_02014014 *unk_10;
+    ParticleSystem *unk_10;
     SPLEmitter *unk_14;
     SysTask *unk_18;
     int unk_1C;

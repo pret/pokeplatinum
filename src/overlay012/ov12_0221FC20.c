@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "battle/ov16_0223DF00.h"
@@ -62,7 +62,7 @@ typedef struct UnkStruct_ov12_02223178_t {
     u16 unk_14;
     u16 unk_16;
     int unk_18;
-    UnkStruct_02014014 *unk_1C[16];
+    ParticleSystem *unk_1C[16];
     SPLEmitter *unk_5C[20];
     SpriteSystem *unk_AC;
     UnkStruct_ov16_0223E0C8 *unk_B0[4];
@@ -703,12 +703,12 @@ u16 ov12_02220248(UnkStruct_ov12_0221FCDC *param0)
     return param0->unk_BC->unk_16;
 }
 
-UnkStruct_02014014 *ov12_02220250(UnkStruct_ov12_0221FCDC *param0)
+ParticleSystem *ov12_02220250(UnkStruct_ov12_0221FCDC *param0)
 {
     return param0->unk_BC->unk_1C[param0->unk_BC->unk_18];
 }
 
-UnkStruct_02014014 *ov12_02220260(UnkStruct_ov12_0221FCDC *param0, int param1)
+ParticleSystem *ov12_02220260(UnkStruct_ov12_0221FCDC *param0, int param1)
 {
     return param0->unk_BC->unk_1C[param1];
 }

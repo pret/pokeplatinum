@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225864.h"
@@ -344,7 +344,7 @@ typedef struct {
     int unk_28;
     int unk_2C;
     int unk_30;
-    UnkStruct_02014014 *unk_34;
+    ParticleSystem *unk_34;
     SPLEmitter *unk_38;
     UnkStruct_ov12_0223595C unk_3C;
     UnkStruct_ov12_02235998 unk_58[4];
@@ -366,7 +366,7 @@ typedef struct {
     int unk_28;
     int unk_2C;
     int unk_30;
-    UnkStruct_02014014 *unk_34;
+    ParticleSystem *unk_34;
     SPLEmitter *unk_38;
     UnkStruct_ov12_0223595C unk_3C;
     UnkStruct_ov12_02225F6C unk_58;

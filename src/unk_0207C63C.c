@@ -2,7 +2,7 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_0207C8C4.h"
@@ -26,9 +26,9 @@ BOOL sub_0207C8E0(UnkStruct_0207C8C4 *param0);
 void sub_0207C8F4(UnkStruct_0207C8C4 *param0);
 static u32 sub_0207C794(u32 param0, BOOL param1);
 static u32 sub_0207C7B0(u32 param0, BOOL param1);
-static UnkStruct_02014014 *sub_0207C7CC(int heapID);
-static UnkStruct_02014014 *sub_0207C814(int heapID, int param1, int param2);
-static void sub_0207C83C(UnkStruct_02014014 *param0);
+static ParticleSystem *sub_0207C7CC(int heapID);
+static ParticleSystem *sub_0207C814(int heapID, int param1, int param2);
+static void sub_0207C83C(ParticleSystem *param0);
 static void sub_0207C854(SPLEmitter *param0);
 
 void sub_0207C63C(void)
@@ -126,9 +126,9 @@ static u32 sub_0207C7B0(u32 param0, BOOL param1)
     return v1;
 }
 
-static UnkStruct_02014014 *sub_0207C7CC(int heapID)
+static ParticleSystem *sub_0207C7CC(int heapID)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     void *v1;
     Camera *camera;
 
@@ -143,9 +143,9 @@ static UnkStruct_02014014 *sub_0207C7CC(int heapID)
     return v0;
 }
 
-static UnkStruct_02014014 *sub_0207C814(int heapID, int param1, int param2)
+static ParticleSystem *sub_0207C814(int heapID, int param1, int param2)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     void *v1;
 
     v0 = sub_0207C7CC(heapID);
@@ -156,7 +156,7 @@ static UnkStruct_02014014 *sub_0207C814(int heapID, int param1, int param2)
     return v0;
 }
 
-void sub_0207C83C(UnkStruct_02014014 *param0)
+void sub_0207C83C(ParticleSystem *param0)
 {
     void *v0 = sub_02014730(param0);
 

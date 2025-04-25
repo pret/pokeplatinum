@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 
@@ -42,7 +42,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     BOOL *unk_0C;
-    UnkStruct_02014014 *unk_10;
+    ParticleSystem *unk_10;
     UnkStruct_0202CA64 *unk_14;
     UnkFuncPtr_020146F4 unk_18;
 } UnkStruct_02236430;
@@ -51,7 +51,7 @@ typedef struct UnkStruct_ov12_02235FE0_t {
     int heapID;
     UnkStruct_ov12_02236030 unk_04;
     int unk_10;
-    UnkStruct_02014014 *unk_14[9];
+    ParticleSystem *unk_14[9];
     UnkStruct_0202CA64 *unk_38[9];
     BOOL unk_5C[9];
     SPLEmitter *unk_80;
@@ -68,7 +68,7 @@ typedef struct UnkStruct_ov12_02235FE0_t {
 typedef struct UnkStruct_ov12_02236648_t {
     UnkStruct_ov12_02236690 unk_00;
     SPLEmitter *unk_14;
-    UnkStruct_02014014 *unk_18;
+    ParticleSystem *unk_18;
     int unk_1C;
     int unk_20;
 } UnkStruct_ov12_02236648;

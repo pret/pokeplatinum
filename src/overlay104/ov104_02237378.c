@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "unk_02014000.h"
 
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay104/ov104_0222DCE0.h"
@@ -564,7 +564,7 @@ static void ov104_02237C0C(UnkStruct_ov104_0222E930 *param0, UnkStruct_ov104_022
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(param0->unk_00);
-    UnkStruct_02014014 *v2 = ov104_0223D6D0(v1->unk_10, 0);
+    ParticleSystem *v2 = ov104_0223D6D0(v1->unk_10, 0);
     sub_020146F4(v2, param2, ov104_02237C30, param1);
 
     return;
