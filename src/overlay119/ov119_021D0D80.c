@@ -100,7 +100,7 @@ void ov119_021D0E78(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_InitAll();
 }
 
 void ov119_021D0EB8(BgConfig *param0)
@@ -428,7 +428,7 @@ static ParticleSystem *ov119_021D13EC(int heapID)
     Camera *camera;
 
     v1 = Heap_AllocFromHeap(heapID, 0x4800);
-    v0 = sub_02014014(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, heapID);
+    v0 = ParticleSystem_New(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, heapID);
     camera = sub_02014784(v0);
 
     if (camera != NULL) {

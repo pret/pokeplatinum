@@ -81,7 +81,7 @@ void sub_0207C730(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_InitAll();
 }
 
 void sub_0207C770(void)
@@ -133,7 +133,7 @@ static ParticleSystem *sub_0207C7CC(int heapID)
     Camera *camera;
 
     v1 = Heap_AllocFromHeap(heapID, 0x4800);
-    v0 = sub_02014014(sub_0207C794, sub_0207C7B0, v1, 0x4800, 1, heapID);
+    v0 = ParticleSystem_New(sub_0207C794, sub_0207C7B0, v1, 0x4800, 1, heapID);
     camera = sub_02014784(v0);
 
     if (camera != NULL) {

@@ -20,7 +20,7 @@ ParticleSystem *ov11_0221F840(int heapID)
     Camera *camera;
 
     v1 = Heap_AllocFromHeap(heapID, 0x4800);
-    v0 = sub_02014014(ov11_0221F914, ov11_0221F930, v1, 0x4800, 1, heapID);
+    v0 = ParticleSystem_New(ov11_0221F914, ov11_0221F930, v1, 0x4800, 1, heapID);
     camera = sub_02014784(v0);
 
     if (camera != NULL) {
@@ -42,7 +42,7 @@ ParticleSystem *ov11_0221F888(int heapID)
         return NULL;
     }
 
-    v0 = sub_02014014(ov11_0221F914, ov11_0221F930, v1, 0x4200, 1, heapID);
+    v0 = ParticleSystem_New(ov11_0221F914, ov11_0221F930, v1, 0x4200, 1, heapID);
     camera = sub_02014784(v0);
 
     if (camera != NULL) {

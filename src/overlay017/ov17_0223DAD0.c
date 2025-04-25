@@ -697,7 +697,7 @@ static BOOL ov17_0223E3CC(UnkStruct_ov17_0224DF54 *param0, int *param1, int *par
 
 static void ov17_0223E450(void)
 {
-    sub_02014000();
+    ParticleSystem_InitAll();
 }
 
 static void ov17_0223E458(UnkStruct_ov17_0224DF54 *param0)
@@ -831,7 +831,7 @@ static void ov17_0223E778(UnkStruct_ov17_0224DF54 *param0)
     GF_ASSERT(param0->unk_0C == NULL);
 
     v0 = Heap_AllocFromHeap(HEAP_ID_23, 0x4800);
-    param0->unk_0C = sub_02014014(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, HEAP_ID_23);
+    param0->unk_0C = ParticleSystem_New(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, HEAP_ID_23);
 
     camera = sub_02014784(param0->unk_0C);
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);

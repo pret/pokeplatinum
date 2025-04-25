@@ -410,7 +410,7 @@ void ov76_0223BF10(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_InitAll();
 }
 
 void ov76_0223BF50(void)

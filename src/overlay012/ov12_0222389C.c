@@ -138,7 +138,7 @@ void ov12_02223998(SPLEmitter *param0)
     SPLEmitter_SetPosZ(param0, v3.z);
 
     ov12_02235760(v2, &v4);
-    sub_02014744(v1, &v4);
+    ParticleSystem_SetCameraUp(v1, &v4);
 }
 
 void ov12_022239F4(SPLEmitter *param0)

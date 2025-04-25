@@ -901,10 +901,10 @@ static void ov117_02261574(UnkStruct_ov117_02261280 *param0)
     Camera *camera;
     void *v2;
 
-    sub_02014000();
+    ParticleSystem_InitAll();
 
     v0 = Heap_AllocFromHeap(HEAP_ID_110, 0x4800);
-    param0->unk_A4 = sub_02014014(ov117_02261644, ov117_02261668, v0, 0x4800, 1, HEAP_ID_110);
+    param0->unk_A4 = ParticleSystem_New(ov117_02261644, ov117_02261668, v0, 0x4800, 1, HEAP_ID_110);
     camera = sub_02014784(param0->unk_A4);
 
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);

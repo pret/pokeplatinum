@@ -1731,10 +1731,10 @@ static void ov10_022217CC(UnkStruct_ov10_0221FB28 *param0)
     param0->unk_B4C = sub_02024220(param0->unk_00->heapID, 0, 4, 0, 2, NULL);
 
     G3X_AlphaBlend(1);
-    sub_02014000();
+    ParticleSystem_InitAll();
 
     param0->unk_B54 = Heap_AllocFromHeap(param0->unk_00->heapID, 0x4800);
-    param0->unk_B50 = sub_02014014(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800, 1, param0->unk_00->heapID);
+    param0->unk_B50 = ParticleSystem_New(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800, 1, param0->unk_00->heapID);
 
     camera = sub_02014784(param0->unk_B50);
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);

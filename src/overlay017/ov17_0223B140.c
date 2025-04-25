@@ -537,7 +537,7 @@ static void ov17_0223B884(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_InitAll();
 }
 
 static void ov17_0223B8C4(UnkStruct_ov17_02246F24 *param0)

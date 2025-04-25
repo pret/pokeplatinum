@@ -1423,7 +1423,7 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     GF_ASSERT(Unk_ov5_02202120->unk_08 == NULL);
 
     Unk_ov5_02202120->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELD, 0x4800);
-    Unk_ov5_02202120->unk_08 = sub_02014014(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, HEAP_ID_FIELD);
+    Unk_ov5_02202120->unk_08 = ParticleSystem_New(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, HEAP_ID_FIELD);
     GF_ASSERT(Unk_ov5_02202120->unk_08);
 
     sub_02014788(Unk_ov5_02202120->unk_08, 1);
@@ -1510,7 +1510,7 @@ static void ov5_021DF28C(SysTask *param0, void *param1)
     switch (v0->unk_00) {
     case 2:
 
-        sub_02014000();
+        ParticleSystem_InitAll();
 
         {
             VecFx32 v1 = { 0 };

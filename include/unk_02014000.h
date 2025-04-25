@@ -10,20 +10,20 @@
 #include "spl.h"
 
 typedef struct ParticleSystem {
-    SPLManager *unk_00;
+    SPLManager *manager;
     void *unk_04;
     SPLEmitter *unk_08;
-    void *unk_0C;
-    void *unk_10;
-    void *unk_14;
-    SPLTexVRAMAllocFunc unk_18;
-    SPLPalVRAMAllocFunc unk_1C;
+    void *heapStart;
+    void *heap;
+    void *heapEnd;
+    SPLTexVRAMAllocFunc texAllocFunc;
+    SPLPalVRAMAllocFunc palAllocFunc;
     Camera *camera;
     VecFx32 unk_24;
-    u16 unk_30;
-    VecFx32 unk_34;
-    VecFx32 unk_40;
-    VecFx32 unk_4C;
+    u16 cameraFov;
+    VecFx32 cameraPos;
+    VecFx32 cameraUp;
+    VecFx32 cameraTarget;
     union {
         NNSGfdFrmTexVramState unk_58_val1;
         NNSGfdTexKey unk_58_val2[16];
@@ -34,12 +34,12 @@ typedef struct ParticleSystem {
     };
     u8 unk_D8;
     u8 unk_D9;
-    u8 unk_DA;
-    u8 unk_DB;
+    u8 id;
+    u8 cameraProjection;
 } ParticleSystem;
 
-void sub_02014000(void);
-ParticleSystem *sub_02014014(SPLTexVRAMAllocFunc param0, SPLPalVRAMAllocFunc param1, void *param2, int param3, int param4, int heapID);
+void ParticleSystem_InitAll(void);
+ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc param0, SPLPalVRAMAllocFunc param1, void *param2, int param3, BOOL param4, enum HeapId heapID);
 void sub_0201411C(ParticleSystem *param0);
 void sub_020141E4(void);
 void *sub_020144C4(int param0, int param1, int param2);
@@ -58,7 +58,7 @@ void sub_02014718(ParticleSystem *param0);
 void sub_02014724(ParticleSystem *param0, SPLEmitter *param1);
 void *sub_02014730(ParticleSystem *param0);
 void sub_02014734(ParticleSystem *param0, VecFx32 *param1);
-void sub_02014744(ParticleSystem *param0, const VecFx32 *param1);
+void ParticleSystem_SetCameraUp(ParticleSystem *param0, const VecFx32 *param1);
 void *sub_02014764(void);
 void sub_02014770(VecFx32 *param0);
 Camera *sub_02014784(ParticleSystem *param0);
