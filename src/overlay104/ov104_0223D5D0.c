@@ -60,8 +60,8 @@ ParticleSystem *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1, int
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
     sub_02014788(v0, param3);
 
-    v3 = sub_020144C4(157, param2, param0->heapID);
-    sub_020144CC(v0, v3, (1 << 1) | (1 << 3), 1);
+    v3 = ParticleSystem_LoadResourceFromNARC(157, param2, param0->heapID);
+    ParticleSystem_SetResource(v0, v3, (1 << 1) | (1 << 3), 1);
 
     param0->unk_00[param1] = v0;
     return v0;
@@ -81,17 +81,17 @@ int ov104_0223D6A8(void)
 
     sub_020241B4();
 
-    if (sub_02014680() == 0) {
+    if (ParticleSystem_GetActiveAmount() == 0) {
         return 0;
     }
 
-    v0 = sub_0201469C();
+    v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
         sub_020241B4();
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
 
     return 1;
 }
@@ -121,7 +121,7 @@ static void ov104_0223D708(ParticleSystem *param0)
 {
     void *v0 = sub_02014730(param0);
 
-    sub_0201411C(param0);
+    ParticleSystem_Free(param0);
     Heap_FreeToHeap(v0);
 }
 
@@ -133,7 +133,7 @@ static u32 ov104_0223D720(u32 param0, BOOL param1)
     v1 = NNS_GfdAllocTexVram(param0, param1, 0);
     GF_ASSERT(v1 != NNS_GFD_ALLOC_ERROR_TEXKEY);
 
-    sub_020145B4(v1);
+    ParticleSystem_RegisterTextureKey(v1);
 
     v0 = NNS_GfdGetTexKeyAddr(v1);
     return v0;
@@ -150,7 +150,7 @@ static u32 ov104_0223D744(u32 param0, BOOL param1)
         GF_ASSERT(FALSE);
     }
 
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
     v1 = NNS_GfdGetPlttKeyAddr(v0);
 
     return v1;

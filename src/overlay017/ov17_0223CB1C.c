@@ -286,7 +286,7 @@ int ov17_0223CF8C(OverlayManager *param0, int *param1)
     UnkStruct_ov17_02247A48 *v0 = OverlayManager_Data(param0);
     int v1;
 
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov17_0223D434(v0);
     ov17_0223D498(v0);

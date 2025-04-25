@@ -6,12 +6,27 @@
 
 #include "functypes/funcptr_020146F4.h"
 
+#include "constants/narc.h"
+#include "constants/heap.h"
+
 #include "camera.h"
 #include "spl.h"
 
+#define MAX_TEXTURE_KEYS 16
+#define MAX_PALETTE_KEYS 16
+
+enum VRAMAutoRelease {
+    VRAM_AUTO_RELEASE_NONE = 0,
+
+    VRAM_AUTO_RELEASE_TEXTURE_FRM = (1 << 0), // Auto-release VRAM using the Frame Texture VRAM Manager
+    VRAM_AUTO_RELEASE_TEXTURE_LNK = (1 << 1), // Auto-release VRAM using the Linked-List Texture VRAM Manager
+    VRAM_AUTO_RELEASE_PALETTE_FRM = (1 << 2), // Auto-release VRAM using the Frame Palette VRAM Manager
+    VRAM_AUTO_RELEASE_PALETTE_LNK = (1 << 3), // Auto-release VRAM using the Linked-List Palette VRAM Manager
+};
+
 typedef struct ParticleSystem {
     SPLManager *manager;
-    void *unk_04;
+    void *resource;
     SPLEmitter *unk_08;
     void *heapStart;
     void *heap;
@@ -25,33 +40,37 @@ typedef struct ParticleSystem {
     VecFx32 cameraUp;
     VecFx32 cameraTarget;
     union {
-        NNSGfdFrmTexVramState unk_58_val1;
-        NNSGfdTexKey unk_58_val2[16];
+        NNSGfdFrmTexVramState textureVRAMState;
+        NNSGfdTexKey textureKeys[MAX_TEXTURE_KEYS];
     };
     union {
-        NNSGfdFrmPlttVramState unk_98_val1;
-        NNSGfdPlttKey unk_98_val2[16];
+        NNSGfdFrmPlttVramState paletteVRAMState;
+        NNSGfdPlttKey paletteKeys[MAX_PALETTE_KEYS];
     };
-    u8 unk_D8;
+    u8 vramAutoRelease;
     u8 unk_D9;
     u8 id;
     u8 cameraProjection;
 } ParticleSystem;
 
 void ParticleSystem_InitAll(void);
+
+// When using a custom texture/palette allocator function, be sure to use
+// ParticleSystem_RegisterTextureKey or ParticleSystem_RegisterPaletteKey to register
+// allocated textures in the particle system.
 ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc param0, SPLPalVRAMAllocFunc param1, void *param2, int param3, BOOL param4, enum HeapId heapID);
-void sub_0201411C(ParticleSystem *param0);
-void sub_020141E4(void);
-void *sub_020144C4(int param0, int param1, int param2);
-void sub_020144CC(ParticleSystem *param0, void *param1, int param2, int param3);
-void sub_020145B4(NNSGfdTexKey param0);
-void sub_020145F4(NNSGfdPlttKey param0);
-void sub_02014638(ParticleSystem *param0);
-void sub_02014674(ParticleSystem *param0);
-int sub_02014680(void);
-int sub_0201469C(void);
-int sub_020146C0(void);
-SPLEmitter *sub_020146E4(ParticleSystem *param0, int param1, const VecFx32 *param2);
+void ParticleSystem_Free(ParticleSystem *param0);
+void ParticleSystem_FreeAll(void);
+void *ParticleSystem_LoadResourceFromNARC(enum NarcID narcID, int memberIndex, enum HeapId heapID);
+void ParticleSystem_SetResource(ParticleSystem *param0, void *resource, enum VRAMAutoRelease autoRelease, BOOL uploadImmediately);
+void ParticleSystem_RegisterTextureKey(NNSGfdTexKey param0);
+void ParticleSystem_RegisterPaletteKey(NNSGfdPlttKey param0);
+void ParticleSystem_Draw(ParticleSystem *param0);
+void ParticleSystem_Update(ParticleSystem *param0);
+int ParticleSystem_GetActiveAmount(void);
+int ParticleSystem_DrawAll(void);
+int ParticleSystem_UpdateAll(void);
+SPLEmitter *ParticleSystem_CreateEmitter(ParticleSystem *param0, int param1, const VecFx32 *param2);
 SPLEmitter *sub_020146F4(ParticleSystem *param0, int param1, UnkFuncPtr_020146F4 param2, void *param3);
 s32 sub_02014710(ParticleSystem *param0);
 void sub_02014718(ParticleSystem *param0);

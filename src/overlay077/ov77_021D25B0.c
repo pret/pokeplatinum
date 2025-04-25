@@ -1825,8 +1825,8 @@ static void ov77_021D4188(UnkStruct_ov77_021D37C0 *param0)
     if (param0->unk_25D == 1) {
         NNS_G3dGeFlushBuffer();
         sub_020241B4();
-        sub_0201469C();
-        sub_020146C0();
+        ParticleSystem_DrawAll();
+        ParticleSystem_UpdateAll();
     }
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);

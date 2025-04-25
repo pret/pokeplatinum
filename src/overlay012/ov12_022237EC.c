@@ -50,18 +50,18 @@ static void ov12_022237EC(SPLEmitter *param0)
 ParticleSystem *ov12_022237F0(int heapID, int param1, int param2)
 {
     ParticleSystem *v0 = ov11_0221F840(heapID);
-    void *v1 = sub_020144C4(29, param1, heapID);
+    void *v1 = ParticleSystem_LoadResourceFromNARC(29, param1, heapID);
 
-    sub_020144CC(v0, v1, (1 << 1) | (1 << 3), param2);
+    ParticleSystem_SetResource(v0, v1, (1 << 1) | (1 << 3), param2);
     return v0;
 }
 
 ParticleSystem *ov12_02223818(int heapID, int param1, int param2, int param3)
 {
     ParticleSystem *v0 = ov11_0221F840(heapID);
-    void *v1 = sub_020144C4(param1, param2, heapID);
+    void *v1 = ParticleSystem_LoadResourceFromNARC(param1, param2, heapID);
 
-    sub_020144CC(v0, v1, (1 << 1) | (1 << 3), param3);
+    ParticleSystem_SetResource(v0, v1, (1 << 1) | (1 << 3), param3);
     return v0;
 }
 
@@ -82,7 +82,7 @@ ParticleSystem *ov12_0222384C(NARC *param0, int heapID, int param2, int param3)
     }
 
     v1 = ov12_02223844(param0, param2, heapID);
-    sub_020144CC(v0, v1, (1 << 1) | (1 << 3), param3);
+    ParticleSystem_SetResource(v0, v1, (1 << 1) | (1 << 3), param3);
 
     return v0;
 }

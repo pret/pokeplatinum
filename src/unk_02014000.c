@@ -39,7 +39,10 @@ static void *sParticleSystems[MAX_PARTICLE_SYSTEMS];
 
 static void *Unk_021BF614;
 
-static ParticleSystem *Unk_021BF610;
+// Particle system whose resources are currently being uploaded to VRAM.
+// Used so custom Texture/Palette allocators can save the resources.
+// See ParticleSystem_Register*Key
+static ParticleSystem *sUploadingParticleSystem;
 
 static const VecFx32 sParticleSystemDefaultCameraPos = {
     0, 0, 0x4000
@@ -70,12 +73,8 @@ static void *sub_02014440(u32 param0);
 static void *sub_0201446C(u32 param0);
 static void *sub_02014498(u32 param0);
 static inline void *Particle_LocalAlloc(ParticleSystem *param0, u32 param1);
-static void sub_02014560(ParticleSystem *param0);
-static void sub_020145A0(SysTask *param0, void *param1);
-
-void sub_0201411C(ParticleSystem *param0);
-void sub_02014718(ParticleSystem *param0);
-void sub_020144CC(ParticleSystem *param0, void *param1, int param2, int param3);
+static void ParticleSystem_UploadResourcesInternal(ParticleSystem *param0);
+static void ParticleSystem_VBlankResourceUploadInternal(SysTask *param0, void *param1);
 
 static const SPLAllocFunc sParticleSystemAllocFuncs[] = {
     sub_02014204,
@@ -174,64 +173,59 @@ ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMA
     return particleSystem;
 }
 
-void sub_0201411C(ParticleSystem *param0)
+void ParticleSystem_Free(ParticleSystem *particleSystem)
 {
-    int v0;
+    sub_02014718(particleSystem);
 
-    sub_02014718(param0);
-
-    if (param0->unk_D8 & (1 << 0)) {
-        NNS_GfdSetFrmTexVramState(&param0->unk_58_val1);
-    } else if (param0->unk_D8 & (1 << 1)) {
-        int v1;
-        for (v1 = 0; v1 < 16; v1++) {
-            if (param0->unk_58_val2[v1] != NNS_GFD_ALLOC_ERROR_TEXKEY) {
-                NNS_GfdFreeLnkTexVram(param0->unk_58_val2[v1]);
-                param0->unk_58_val2[v1] = NNS_GFD_ALLOC_ERROR_TEXKEY;
+    if (particleSystem->vramAutoRelease & VRAM_AUTO_RELEASE_TEXTURE_FRM) {
+        NNS_GfdSetFrmTexVramState(&particleSystem->textureVRAMState);
+    } else if (particleSystem->vramAutoRelease & VRAM_AUTO_RELEASE_TEXTURE_LNK) {
+        for (int i = 0; i < MAX_TEXTURE_KEYS; i++) {
+            if (particleSystem->textureKeys[i] != NNS_GFD_ALLOC_ERROR_TEXKEY) {
+                NNS_GfdFreeLnkTexVram(particleSystem->textureKeys[i]);
+                particleSystem->textureKeys[i] = NNS_GFD_ALLOC_ERROR_TEXKEY;
             }
         }
     }
 
-    if (param0->unk_D8 & (1 << 2)) {
-        NNS_GfdSetFrmPlttVramState(&param0->unk_98_val1);
-    } else if (param0->unk_D8 & (1 << 3)) {
-        int v2;
-        for (v2 = 0; v2 < 16; v2++) {
-            if (param0->unk_98_val2[v2] != NNS_GFD_ALLOC_ERROR_PLTTKEY) {
-                NNS_GfdFreeLnkPlttVram(param0->unk_98_val2[v2]);
-                param0->unk_98_val2[v2] = NNS_GFD_ALLOC_ERROR_PLTTKEY;
+    if (particleSystem->vramAutoRelease & (1 << 2)) {
+        NNS_GfdSetFrmPlttVramState(&particleSystem->paletteVRAMState);
+    } else if (particleSystem->vramAutoRelease & (1 << 3)) {
+        for (int i = 0; i < MAX_PALETTE_KEYS; i++) {
+            if (particleSystem->paletteKeys[i] != NNS_GFD_ALLOC_ERROR_PLTTKEY) {
+                NNS_GfdFreeLnkPlttVram(particleSystem->paletteKeys[i]);
+                particleSystem->paletteKeys[i] = NNS_GFD_ALLOC_ERROR_PLTTKEY;
             }
         }
     }
-    param0->unk_D8 = 0 | 0;
-    param0->unk_08 = NULL;
 
-    if (param0->unk_04 != NULL) {
-        Heap_FreeToHeap(param0->unk_04);
-        param0->unk_04 = NULL;
+    particleSystem->vramAutoRelease = VRAM_AUTO_RELEASE_NONE;
+    particleSystem->unk_08 = NULL;
+
+    if (particleSystem->resource != NULL) {
+        Heap_FreeToHeap(particleSystem->resource);
+        particleSystem->resource = NULL;
     }
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (sParticleSystems[v0] == param0) {
-            sParticleSystems[v0] = NULL;
+    for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
+        if (sParticleSystems[i] == particleSystem) {
+            sParticleSystems[i] = NULL;
             break;
         }
     }
 
-    if (param0->camera != NULL) {
-        Camera_Delete(param0->camera);
+    if (particleSystem->camera != NULL) {
+        Camera_Delete(particleSystem->camera);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_FreeToHeap(particleSystem);
 }
 
-void sub_020141E4(void)
+void ParticleSystem_FreeAll(void)
 {
-    int i;
-
-    for (i = 0; i < 16; i++) {
+    for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         if (sParticleSystems[i] != NULL) {
-            sub_0201411C(sParticleSystems[i]);
+            ParticleSystem_Free(sParticleSystems[i]);
         }
     }
 }
@@ -352,192 +346,185 @@ static void *sub_02014498(u32 param0)
     return Particle_LocalAlloc(v0, param0);
 }
 
-void *sub_020144C4(int param0, int param1, int param2)
+void *ParticleSystem_LoadResourceFromNARC(enum NarcID narcID, int memberIndex, enum HeapId heapID)
 {
-    return NARC_AllocAndReadWholeMemberByIndexPair(param0, param1, param2);
+    return NARC_AllocAndReadWholeMemberByIndexPair(narcID, memberIndex, heapID);
 }
 
-void sub_020144CC(ParticleSystem *param0, void *param1, int param2, int param3)
+void ParticleSystem_SetResource(ParticleSystem *particleSystem, void *resource, enum VRAMAutoRelease autoRelease, BOOL uploadImmediately)
 {
-    GF_ASSERT(param0->manager != NULL);
-    GF_ASSERT(param0->unk_04 == NULL);
+    GF_ASSERT(particleSystem->manager != NULL);
+    GF_ASSERT(particleSystem->resource == NULL);
 
-    param0->unk_D8 = param2;
+    particleSystem->vramAutoRelease = autoRelease;
 
-    if (param2 & (1 << 0)) {
-        NNS_GfdGetFrmTexVramState(&param0->unk_58_val1);
-    } else if (param2 & (1 << 1)) {
-        int v0;
-        for (v0 = 0; v0 < 16; v0++) {
-            param0->unk_58_val2[v0] = NNS_GFD_ALLOC_ERROR_TEXKEY;
+    if (autoRelease & VRAM_AUTO_RELEASE_TEXTURE_FRM) {
+        NNS_GfdGetFrmTexVramState(&particleSystem->textureVRAMState);
+    } else if (autoRelease & VRAM_AUTO_RELEASE_TEXTURE_LNK) {
+        for (int i = 0; i < MAX_TEXTURE_KEYS; i++) {
+            particleSystem->textureKeys[i] = NNS_GFD_ALLOC_ERROR_TEXKEY;
         }
     }
 
-    if (param2 & (1 << 2)) {
-        NNS_GfdGetFrmPlttVramState(&param0->unk_98_val1);
-    } else if (param2 & (1 << 3)) {
-        int v1;
-        for (v1 = 0; v1 < 16; v1++) {
-            param0->unk_98_val2[v1] = NNS_GFD_ALLOC_ERROR_PLTTKEY;
+    if (autoRelease & VRAM_AUTO_RELEASE_PALETTE_FRM) {
+        NNS_GfdGetFrmPlttVramState(&particleSystem->paletteVRAMState);
+    } else if (autoRelease & VRAM_AUTO_RELEASE_PALETTE_LNK) {
+        for (int i = 0; i < MAX_PALETTE_KEYS; i++) {
+            particleSystem->paletteKeys[i] = NNS_GFD_ALLOC_ERROR_PLTTKEY;
         }
     }
 
-    param0->unk_04 = param1;
+    particleSystem->resource = resource;
 
-    if (param3 == 1) {
-        sub_02014560(param0);
+    if (uploadImmediately == TRUE) {
+        ParticleSystem_UploadResourcesInternal(particleSystem);
     } else {
-        SysTask_ExecuteAfterVBlank(sub_020145A0, param0, 5);
+        SysTask_ExecuteAfterVBlank(ParticleSystem_VBlankResourceUploadInternal, particleSystem, 5);
     }
 }
 
-static void sub_02014560(ParticleSystem *param0)
+static void ParticleSystem_UploadResourcesInternal(ParticleSystem *particleSystem)
 {
-    SPLManager_LoadResources(param0->manager, param0->unk_04);
+    SPLManager_LoadResources(particleSystem->manager, particleSystem->resource);
 
-    Unk_021BF610 = param0;
-    if (param0->texAllocFunc == NULL) {
-        (void)SPLManager_UploadTextures(param0->manager);
-    } else {
-        SPLManager_UploadTexturesEx(param0->manager, param0->texAllocFunc);
-    }
-    if (param0->palAllocFunc == NULL) {
-        (void)SPLManager_UploadPalettes(param0->manager);
-    } else {
-        SPLManager_UploadPalettesEx(param0->manager, param0->palAllocFunc);
-    }
-    Unk_021BF610 = NULL;
+    sUploadingParticleSystem = particleSystem;
 
-    {
-        u32 v0;
-        v0 = ((const UnkStruct_02014560 *)param0->unk_04)->unk_14;
+    if (particleSystem->texAllocFunc == NULL) {
+        SPLManager_UploadTextures(particleSystem->manager);
+    } else {
+        SPLManager_UploadTexturesEx(particleSystem->manager, particleSystem->texAllocFunc);
     }
+
+    if (particleSystem->palAllocFunc == NULL) {
+        SPLManager_UploadPalettes(particleSystem->manager);
+    } else {
+        SPLManager_UploadPalettesEx(particleSystem->manager, particleSystem->palAllocFunc);
+    }
+
+    sUploadingParticleSystem = NULL;
 }
 
-static void sub_020145A0(SysTask *param0, void *param1)
+static void ParticleSystem_VBlankResourceUploadInternal(SysTask *task, void *param)
 {
-    ParticleSystem *v0 = param1;
+    ParticleSystem *particleSystem = param;
 
-    sub_02014560(v0);
-    SysTask_Done(param0);
+    ParticleSystem_UploadResourcesInternal(particleSystem);
+    SysTask_Done(task);
 }
 
-void sub_020145B4(NNSGfdTexKey param0)
+void ParticleSystem_RegisterTextureKey(NNSGfdTexKey key)
 {
-    int v0;
-    ParticleSystem *v1;
+    GF_ASSERT(key != NNS_GFD_ALLOC_ERROR_TEXKEY);
+    GF_ASSERT(sUploadingParticleSystem != NULL);
 
-    GF_ASSERT(param0 != NNS_GFD_ALLOC_ERROR_TEXKEY);
-    GF_ASSERT(Unk_021BF610 != NULL);
+    ParticleSystem *particleSystem = sUploadingParticleSystem;
 
-    v1 = Unk_021BF610;
-
-    for (v0 = 0; v0 < 16; v0++) {
-        if (v1->unk_58_val2[v0] == NNS_GFD_ALLOC_ERROR_TEXKEY) {
-            v1->unk_58_val2[v0] = param0;
+    for (int i = 0; i < MAX_TEXTURE_KEYS; i++) {
+        if (particleSystem->textureKeys[i] == NNS_GFD_ALLOC_ERROR_TEXKEY) {
+            particleSystem->textureKeys[i] = key;
             return;
         }
     }
+
     GF_ASSERT(FALSE);
 }
 
-void sub_020145F4(NNSGfdPlttKey param0)
+void ParticleSystem_RegisterPaletteKey(NNSGfdPlttKey key)
 {
-    int v0;
-    ParticleSystem *v1;
+    GF_ASSERT(key != NNS_GFD_ALLOC_ERROR_PLTTKEY);
+    GF_ASSERT(sUploadingParticleSystem != NULL);
 
-    GF_ASSERT(param0 != NNS_GFD_ALLOC_ERROR_PLTTKEY);
-    GF_ASSERT(Unk_021BF610 != NULL);
+    ParticleSystem *particleSystem = sUploadingParticleSystem;
 
-    v1 = Unk_021BF610;
-
-    for (v0 = 0; v0 < 16; v0++) {
-        if (v1->unk_98_val2[v0] == NNS_GFD_ALLOC_ERROR_PLTTKEY) {
-            v1->unk_98_val2[v0] = param0;
+    for (int i = 0; i < MAX_PALETTE_KEYS; i++) {
+        if (particleSystem->paletteKeys[i] == NNS_GFD_ALLOC_ERROR_PLTTKEY) {
+            particleSystem->paletteKeys[i] = key;
             return;
         }
     }
+
     GF_ASSERT(FALSE);
 }
 
-void sub_02014638(ParticleSystem *param0)
+void ParticleSystem_Draw(ParticleSystem *particleSystem)
 {
-    const MtxFx43 *v0;
-
-    if (param0->camera != NULL) {
-        Camera_ComputeProjectionMatrix(param0->cameraProjection, param0->camera);
-        Camera_SetAsActive(param0->camera);
+    if (particleSystem->camera != NULL) {
+        Camera_ComputeProjectionMatrix(particleSystem->cameraProjection, particleSystem->camera);
+        Camera_SetAsActive(particleSystem->camera);
         Camera_ComputeViewMatrix();
     }
 
     NNS_G3dGlbFlush();
 
-    v0 = NNS_G3dGlbGetCameraMtx();
-    SPLManager_Draw(param0->manager, v0);
+    const MtxFx43 *viewMatrix = NNS_G3dGlbGetCameraMtx();
+    SPLManager_Draw(particleSystem->manager, viewMatrix);
 
-    if (param0->camera != NULL) {
+    if (particleSystem->camera != NULL) {
         Camera_ClearActive();
     }
 
     NNS_G3dGlbFlush();
 }
 
-void sub_02014674(ParticleSystem *param0)
+void ParticleSystem_Update(ParticleSystem *particleSystem)
 {
-    SPLManager_Update(param0->manager);
+    SPLManager_Update(particleSystem->manager);
 }
 
-int sub_02014680(void)
+int ParticleSystem_GetActiveAmount(void)
 {
-    int i, count = 0;
-    for (i = 0; i < 16; i++) {
+    int count = 0;
+    for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         if (sParticleSystems[i] != NULL) {
             count++;
         }
     }
+
     return count;
 }
 
-int sub_0201469C(void)
+int ParticleSystem_DrawAll(void)
 {
-    int i, count = 0;
-    for (i = 0; i < 16; i++) {
+    int count = 0;
+    for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         if (sParticleSystems[i] != NULL) {
-            sub_02014638(sParticleSystems[i]);
+            ParticleSystem_Draw(sParticleSystems[i]);
             count++;
         }
     }
+
     return count;
 }
 
-int sub_020146C0(void)
+int ParticleSystem_UpdateAll(void)
 {
-    int i, count = 0;
-    for (i = 0; i < 16; i++) {
+    int count = 0;
+    for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         if (sParticleSystems[i] != NULL) {
-            sub_02014674(sParticleSystems[i]);
+            ParticleSystem_Update(sParticleSystems[i]);
             count++;
         }
     }
+
     return count;
 }
 
-SPLEmitter *sub_020146E4(ParticleSystem *param0, int param1, const VecFx32 *param2)
+SPLEmitter *ParticleSystem_CreateEmitter(ParticleSystem *particleSystem, int resourceID, const VecFx32 *position)
 {
-    SPLEmitter *v0 = SPLManager_CreateEmitter(param0->manager, param1, param2);
-    param0->unk_08 = v0;
+    SPLEmitter *emitter = SPLManager_CreateEmitter(particleSystem->manager, resourceID, position);
+    particleSystem->unk_08 = emitter;
 
-    return v0;
+    return emitter;
 }
 
-SPLEmitter *sub_020146F4(ParticleSystem *param0, int param1, UnkFuncPtr_020146F4 param2, void *param3)
+SPLEmitter *sub_020146F4(ParticleSystem *particleSystem, int resourceID, UnkFuncPtr_020146F4 param2, void *param3)
 {
     SPLEmitter *v0;
 
     Unk_021BF614 = param3;
-    v0 = SPLManager_CreateEmitterWithCallback(param0->manager, param1, param2);
+    v0 = SPLManager_CreateEmitterWithCallback(particleSystem->manager, resourceID, param2);
     Unk_021BF614 = NULL;
-    param0->unk_08 = v0;
+    particleSystem->unk_08 = v0;
 
     return v0;
 }

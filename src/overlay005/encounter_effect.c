@@ -1397,14 +1397,14 @@ void ov5_021DF070(void)
         return;
     }
 
-    sub_0201469C();
+    ParticleSystem_DrawAll();
 }
 
 void ov5_021DF084(void)
 {
     GF_ASSERT(Unk_ov5_02202120);
 
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov5_021DF3D4(Unk_ov5_02202120->fieldSystem);
     ov5_021D16F4(Unk_ov5_02202120->fieldSystem, 1);
@@ -1432,7 +1432,7 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, v1);
 
     v0 = LoadMemberFromOpenNARC(param0, param1, 0, HEAP_ID_FIELD, 0);
-    sub_020144CC(Unk_ov5_02202120->unk_08, v0, 0 | 0, 0);
+    ParticleSystem_SetResource(Unk_ov5_02202120->unk_08, v0, 0 | 0, 0);
 }
 
 void ov5_021DF17C(u32 param0)
@@ -1444,7 +1444,7 @@ void ov5_021DF17C(u32 param0)
     GF_ASSERT(Unk_ov5_02202120->unk_08);
 
     for (v0 = 0; v0 < param0; v0++) {
-        sub_020146E4(Unk_ov5_02202120->unk_08, v0, &v1);
+        ParticleSystem_CreateEmitter(Unk_ov5_02202120->unk_08, v0, &v1);
     }
 }
 
@@ -1456,7 +1456,7 @@ BOOL ov5_021DF1CC(void)
         return 1;
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
 
     if (sub_02014710(Unk_ov5_02202120->unk_08) == 0) {
         return 1;
@@ -1478,7 +1478,7 @@ void ov5_021DF224(void)
 {
     GF_ASSERT(Unk_ov5_02202120);
 
-    sub_0201411C(Unk_ov5_02202120->unk_08);
+    ParticleSystem_Free(Unk_ov5_02202120->unk_08);
     Heap_FreeToHeap(Unk_ov5_02202120->unk_0C);
 
     Unk_ov5_02202120->unk_08 = NULL;

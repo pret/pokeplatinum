@@ -58,7 +58,7 @@ static u32 ov77_021D6C70(u32 param0, BOOL param1)
     NNSGfdTexKey v1;
 
     v1 = NNS_GfdAllocTexVram(param0, param1, 0);
-    sub_020145B4(v1);
+    ParticleSystem_RegisterTextureKey(v1);
 
     GF_ASSERT(v1 != NNS_GFD_ALLOC_ERROR_TEXKEY);
 
@@ -78,7 +78,7 @@ static u32 ov77_021D6C94(u32 param0, BOOL param1)
         GF_ASSERT(FALSE);
     }
 
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
 
     v1 = NNS_GfdGetPlttKeyAddr(v0);
 
@@ -155,13 +155,13 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
 
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
-    v3 = sub_020144C4(61, 4, 76);
-    sub_020144CC(param0->unk_18, v3, (1 << 1) | (1 << 3), 1);
+    v3 = ParticleSystem_LoadResourceFromNARC(61, 4, 76);
+    ParticleSystem_SetResource(param0->unk_18, v3, (1 << 1) | (1 << 3), 1);
 }
 
 void ov77_021D6E28(UnkStruct_ov77_021D6CFC *param0)
 {
-    sub_0201411C(param0->unk_18);
+    ParticleSystem_Free(param0->unk_18);
     Heap_FreeToHeap(param0->unk_14);
     PokemonSpriteManager_Free(param0->unk_00);
 }
@@ -366,9 +366,9 @@ static BOOL ov77_021D7204(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 
 static void ov77_021D725C(void)
 {
-    int v0 = sub_0201469C();
+    int v0 = ParticleSystem_DrawAll();
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
 }
 
 static void ov77_021D7268(SPLEmitter *param0)

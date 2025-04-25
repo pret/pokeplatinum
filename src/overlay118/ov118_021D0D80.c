@@ -199,8 +199,8 @@ static void ov118_021D0FDC(OverlayMetadata *param0)
 
 static void ov118_021D1028(OverlayMetadata *param0)
 {
-    void *v0 = sub_020144C4(185, param0->unk_10, 12);
-    sub_020144CC(param0->unk_18, v0, (1 << 1) | (1 << 3), 1);
+    void *v0 = ParticleSystem_LoadResourceFromNARC(185, param0->unk_10, 12);
+    ParticleSystem_SetResource(param0->unk_18, v0, (1 << 1) | (1 << 3), 1);
 
     switch (param0->unk_0C) {
     case SPECIES_GIRATINA:
@@ -231,13 +231,13 @@ static int ov118_021D10E8(void)
 
     sub_020241B4();
 
-    v0 = sub_0201469C();
+    v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
         sub_020241B4();
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
     return v0;
@@ -246,7 +246,7 @@ static int ov118_021D10E8(void)
 static void ov118_021D110C(OverlayMetadata *param0)
 {
     void *v0 = sub_02014730(param0->unk_18);
-    sub_0201411C(param0->unk_18);
+    ParticleSystem_Free(param0->unk_18);
     Heap_FreeToHeap(v0);
 }
 
@@ -256,7 +256,7 @@ static u32 ov118_021D1128(u32 param0, BOOL param1)
 
     v0 = NNS_GfdAllocTexVram(param0, param1, 0);
     GF_ASSERT(v0 != NNS_GFD_ALLOC_ERROR_TEXKEY);
-    sub_020145B4(v0);
+    ParticleSystem_RegisterTextureKey(v0);
 
     return NNS_GfdGetTexKeyAddr(v0);
 }
@@ -268,7 +268,7 @@ static u32 ov118_021D114C(u32 param0, BOOL param1)
     v0 = NNS_GfdAllocPlttVram(param0, param1, NNS_GFD_ALLOC_FROM_LOW);
     GF_ASSERT(v0 != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
 
     return NNS_GfdGetPlttKeyAddr(v0);
 }

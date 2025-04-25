@@ -392,7 +392,7 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
     GF_ASSERT(sub_02014710(v0->unk_0C) == 0);
 
     ov17_0223E7E0(v0);
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov17_0224A95C(&v0->unk_14);
     ov17_0224AA58(v0);
@@ -836,14 +836,14 @@ static void ov17_0223E778(UnkStruct_ov17_0224DF54 *param0)
     camera = sub_02014784(param0->unk_0C);
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
-    v2 = sub_020144C4(61, 3, 23);
-    sub_020144CC(param0->unk_0C, v2, (1 << 1) | (1 << 3), 1);
+    v2 = ParticleSystem_LoadResourceFromNARC(61, 3, 23);
+    ParticleSystem_SetResource(param0->unk_0C, v2, (1 << 1) | (1 << 3), 1);
 }
 
 static void ov17_0223E7E0(UnkStruct_ov17_0224DF54 *param0)
 {
     void *v0 = sub_02014730(param0->unk_0C);
-    sub_0201411C(param0->unk_0C);
+    ParticleSystem_Free(param0->unk_0C);
     Heap_FreeToHeap(v0);
 
     param0->unk_0C = NULL;
@@ -855,7 +855,7 @@ static u32 ov17_0223E800(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocTexVram(param0, param1, 0);
-    sub_020145B4(v0);
+    ParticleSystem_RegisterTextureKey(v0);
 
     v1 = NNS_GfdGetTexKeyAddr(v0);
     return v1;
@@ -867,7 +867,7 @@ static u32 ov17_0223E81C(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocPlttVram(param0, param1, 0);
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
 
     v1 = NNS_GfdGetPlttKeyAddr(v0);
     return v1;

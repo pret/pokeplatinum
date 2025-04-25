@@ -91,14 +91,14 @@ void sub_0207C770(void)
 
     sub_020241B4();
 
-    v0 = sub_0201469C();
+    v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
         sub_020241B4();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
@@ -108,7 +108,7 @@ static u32 sub_0207C794(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocTexVram(param0, param1, 0);
-    sub_020145B4(v0);
+    ParticleSystem_RegisterTextureKey(v0);
 
     v1 = NNS_GfdGetTexKeyAddr(v0);
     return v1;
@@ -120,7 +120,7 @@ static u32 sub_0207C7B0(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocPlttVram(param0, param1, 0);
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
 
     v1 = NNS_GfdGetPlttKeyAddr(v0);
     return v1;
@@ -149,9 +149,9 @@ static ParticleSystem *sub_0207C814(int heapID, int param1, int param2)
     void *v1;
 
     v0 = sub_0207C7CC(heapID);
-    v1 = sub_020144C4(param1, param2, heapID);
+    v1 = ParticleSystem_LoadResourceFromNARC(param1, param2, heapID);
 
-    sub_020144CC(v0, v1, (1 << 1) | (1 << 3), 1);
+    ParticleSystem_SetResource(v0, v1, (1 << 1) | (1 << 3), 1);
 
     return v0;
 }
@@ -160,7 +160,7 @@ void sub_0207C83C(ParticleSystem *param0)
 {
     void *v0 = sub_02014730(param0);
 
-    sub_0201411C(param0);
+    ParticleSystem_Free(param0);
     Heap_FreeToHeap(v0);
 }
 

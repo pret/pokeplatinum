@@ -56,7 +56,7 @@ void ov11_0221F8D8(ParticleSystem *param0)
 {
     void *v0 = sub_02014730(param0);
 
-    sub_0201411C(param0);
+    ParticleSystem_Free(param0);
     Heap_FreeToHeap(v0);
 }
 
@@ -67,18 +67,18 @@ void ov11_0221F8F0(void)
 
     sub_020241B4();
 
-    if (sub_02014680() == 0) {
+    if (ParticleSystem_GetActiveAmount() == 0) {
         return;
     }
 
-    v0 = sub_0201469C();
+    v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
         sub_020241B4();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
 }
 
 static u32 ov11_0221F914(u32 param0, BOOL param1)
@@ -87,7 +87,7 @@ static u32 ov11_0221F914(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocTexVram(param0, param1, 0);
-    sub_020145B4(v0);
+    ParticleSystem_RegisterTextureKey(v0);
     v1 = NNS_GfdGetTexKeyAddr(v0);
 
     return v1;
@@ -99,7 +99,7 @@ static u32 ov11_0221F930(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocPlttVram(param0, param1, 0);
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
     v1 = NNS_GfdGetPlttKeyAddr(v0);
 
     return v1;

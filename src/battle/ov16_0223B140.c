@@ -760,7 +760,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     MessageLoader_Free(battleSystem->unk_10);
     StringTemplate_Free(battleSystem->strFormatter);
     sub_02015FB8(battleSystem->unk_1C4);
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov12_0221FDF4(battleSystem->unk_8C);
     BattleContext_Free(battleSystem->battleCtx);
