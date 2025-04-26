@@ -1736,17 +1736,17 @@ static void ov10_022217CC(UnkStruct_ov10_0221FB28 *param0)
     param0->unk_B54 = Heap_AllocFromHeap(param0->unk_00->heapID, 0x4800);
     param0->unk_B50 = ParticleSystem_New(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800, 1, param0->unk_00->heapID);
 
-    camera = sub_02014784(param0->unk_B50);
+    camera = ParticleSystem_GetCamera(param0->unk_B50);
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
     v1 = ParticleSystem_LoadResourceFromNARC(61, 2, param0->unk_00->heapID);
     ParticleSystem_SetResource(param0->unk_B50, v1, (1 << 1) | (1 << 3), 1);
 
-    sub_020146F4(param0->unk_B50, 0, NULL, NULL);
-    sub_020146F4(param0->unk_B50, 1, NULL, NULL);
-    sub_020146F4(param0->unk_B50, 2, NULL, NULL);
-    sub_020146F4(param0->unk_B50, 3, NULL, NULL);
-    sub_020146F4(param0->unk_B50, 4, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(param0->unk_B50, 0, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(param0->unk_B50, 1, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(param0->unk_B50, 2, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(param0->unk_B50, 3, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(param0->unk_B50, 4, NULL, NULL);
 }
 
 static int ov10_022218BC(UnkStruct_ov10_0221FB28 *param0)
@@ -1760,7 +1760,7 @@ static int ov10_022218BC(UnkStruct_ov10_0221FB28 *param0)
 
     sub_020241B4();
 
-    if (sub_02014710(param0->unk_B50) == 0) {
+    if (ParticleSystem_GetActiveEmitterCount(param0->unk_B50) == 0) {
         return 0;
     }
 

@@ -2881,7 +2881,7 @@ static void ov12_02229A6C(SysTask *param0, void *param1)
     }
 
     if ((ov12_02225C14(&v0->unk_A8[0]) == 0) && (v1 == 0)) {
-        sub_02014724(v0->unk_34, v0->unk_38);
+        ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
         ov12_02220220(v0->unk_3C.unk_04, param0);
         ov12_02235E80(v0);
         (v0) = NULL;
@@ -3026,7 +3026,7 @@ static void ov12_02229DF0(SysTask *param0, void *param1)
     BOOL v1 = ov12_02229A50(v0->unk_38);
 
     if ((ov12_02225CE4(&v0->unk_A8[0], &v0->unk_A8[1]) == 0) && (v1 == 0)) {
-        sub_02014724(v0->unk_34, v0->unk_38);
+        ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
         ov12_02220220(v0->unk_3C.unk_04, param0);
         ov12_02235E80(v0);
         (v0) = NULL;
@@ -3083,7 +3083,7 @@ static void ov12_02229F9C(SysTask *param0, void *param1)
     BOOL v1 = ov12_02229A50(v0->unk_38);
 
     if ((ov12_02225AE0(&v0->unk_58) == 0) && (v1 == 0)) {
-        sub_02014724(v0->unk_34, v0->unk_38);
+        ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
         ov12_02220220(v0->unk_3C.unk_04, param0);
         Heap_FreeToHeap(v0);
     } else {

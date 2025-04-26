@@ -1883,7 +1883,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
             param1->unk_25B = 1;
             param1->unk_25D = 0;
             param1->unk_25C = 1;
-            GF_ASSERT(sub_02014710(ov77_021D6CBC(param1->unk_1C)) == 0);
+            GF_ASSERT(ParticleSystem_GetActiveEmitterCount(ov77_021D6CBC(param1->unk_1C)) == 0);
         }
 
         if (param2 == 945) {

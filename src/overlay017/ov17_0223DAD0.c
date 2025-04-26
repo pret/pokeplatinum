@@ -389,7 +389,7 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
     UnkStruct_ov17_0224DF54 *v0 = OverlayManager_Data(param0);
     int v1;
 
-    GF_ASSERT(sub_02014710(v0->unk_0C) == 0);
+    GF_ASSERT(ParticleSystem_GetActiveEmitterCount(v0->unk_0C) == 0);
 
     ov17_0223E7E0(v0);
     ParticleSystem_FreeAll();
@@ -833,7 +833,7 @@ static void ov17_0223E778(UnkStruct_ov17_0224DF54 *param0)
     v0 = Heap_AllocFromHeap(HEAP_ID_23, 0x4800);
     param0->unk_0C = ParticleSystem_New(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, HEAP_ID_23);
 
-    camera = sub_02014784(param0->unk_0C);
+    camera = ParticleSystem_GetCamera(param0->unk_0C);
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
     v2 = ParticleSystem_LoadResourceFromNARC(61, 3, 23);
@@ -842,7 +842,7 @@ static void ov17_0223E778(UnkStruct_ov17_0224DF54 *param0)
 
 static void ov17_0223E7E0(UnkStruct_ov17_0224DF54 *param0)
 {
-    void *v0 = sub_02014730(param0->unk_0C);
+    void *v0 = ParticleSystem_GetHeapStart(param0->unk_0C);
     ParticleSystem_Free(param0->unk_0C);
     Heap_FreeToHeap(v0);
 

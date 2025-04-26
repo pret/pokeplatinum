@@ -119,7 +119,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
 
         ov118_021D10E8();
 
-        if ((v0->unk_04 > v0->unk_08) && (sub_02014710(v0->unk_18) == 0)) {
+        if ((v0->unk_04 > v0->unk_08) && (ParticleSystem_GetActiveEmitterCount(v0->unk_18) == 0)) {
             v0->unk_00++;
         }
         break;
@@ -192,7 +192,7 @@ static void ov118_021D0FDC(OverlayMetadata *param0)
 
     v0 = Heap_AllocFromHeap(HEAP_ID_12, 0x4800);
     param0->unk_18 = ParticleSystem_New(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, HEAP_ID_12);
-    camera = sub_02014784(param0->unk_18);
+    camera = ParticleSystem_GetCamera(param0->unk_18);
 
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 }
@@ -204,14 +204,14 @@ static void ov118_021D1028(OverlayMetadata *param0)
 
     switch (param0->unk_0C) {
     case SPECIES_GIRATINA:
-        sub_020146F4(param0->unk_18, 0, ov118_021D10B0, param0);
-        sub_020146F4(param0->unk_18, 1, ov118_021D10B0, param0);
-        sub_020146F4(param0->unk_18, 2, ov118_021D10B0, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, 0, ov118_021D10B0, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, 1, ov118_021D10B0, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, 2, ov118_021D10B0, param0);
         Sound_PlayEffect(SEQ_SE_PL_W467109);
         break;
     case SPECIES_SHAYMIN:
-        sub_020146F4(param0->unk_18, 0, ov118_021D10B0, param0);
-        sub_020146F4(param0->unk_18, 1, ov118_021D10B0, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, 0, ov118_021D10B0, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, 1, ov118_021D10B0, param0);
         Sound_PlayEffect(SEQ_SE_PL_W363);
         break;
     }
@@ -219,7 +219,7 @@ static void ov118_021D1028(OverlayMetadata *param0)
 
 static void ov118_021D10B0(SPLEmitter *param0)
 {
-    OverlayMetadata *v0 = sub_02014764();
+    OverlayMetadata *v0 = ParticleSystem_GetEmitterCallbackParam();
 
     SPLEmitter_SetPosX(param0, Unk_ov118_021D1170[v0->unk_14][0]);
     SPLEmitter_SetPosY(param0, Unk_ov118_021D1170[v0->unk_14][1]);
@@ -245,7 +245,7 @@ static int ov118_021D10E8(void)
 
 static void ov118_021D110C(OverlayMetadata *param0)
 {
-    void *v0 = sub_02014730(param0->unk_18);
+    void *v0 = ParticleSystem_GetHeapStart(param0->unk_18);
     ParticleSystem_Free(param0->unk_18);
     Heap_FreeToHeap(v0);
 }

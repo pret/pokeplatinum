@@ -1426,9 +1426,9 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     Unk_ov5_02202120->unk_08 = ParticleSystem_New(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, HEAP_ID_FIELD);
     GF_ASSERT(Unk_ov5_02202120->unk_08);
 
-    sub_02014788(Unk_ov5_02202120->unk_08, 1);
+    ParticleSystem_SetCameraProjection(Unk_ov5_02202120->unk_08, 1);
 
-    v1 = sub_02014784(Unk_ov5_02202120->unk_08);
+    v1 = ParticleSystem_GetCamera(Unk_ov5_02202120->unk_08);
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, v1);
 
     v0 = LoadMemberFromOpenNARC(param0, param1, 0, HEAP_ID_FIELD, 0);
@@ -1458,7 +1458,7 @@ BOOL ov5_021DF1CC(void)
 
     ParticleSystem_UpdateAll();
 
-    if (sub_02014710(Unk_ov5_02202120->unk_08) == 0) {
+    if (ParticleSystem_GetActiveEmitterCount(Unk_ov5_02202120->unk_08) == 0) {
         return 1;
     }
 
@@ -1467,7 +1467,7 @@ BOOL ov5_021DF1CC(void)
 
 BOOL ov5_021DF208(void)
 {
-    if (sub_02014710(Unk_ov5_02202120->unk_08) == 0) {
+    if (ParticleSystem_GetActiveEmitterCount(Unk_ov5_02202120->unk_08) == 0) {
         return 1;
     }
 

@@ -905,7 +905,7 @@ static void ov117_02261574(UnkStruct_ov117_02261280 *param0)
 
     v0 = Heap_AllocFromHeap(HEAP_ID_110, 0x4800);
     param0->unk_A4 = ParticleSystem_New(ov117_02261644, ov117_02261668, v0, 0x4800, 1, HEAP_ID_110);
-    camera = sub_02014784(param0->unk_A4);
+    camera = ParticleSystem_GetCamera(param0->unk_A4);
 
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
     v2 = ParticleSystem_LoadResourceFromNARC(190, 0, 110);
@@ -914,7 +914,7 @@ static void ov117_02261574(UnkStruct_ov117_02261280 *param0)
 
 static void ov117_022615E0(UnkStruct_ov117_02261280 *param0)
 {
-    void *v0 = sub_02014730(param0->unk_A4);
+    void *v0 = ParticleSystem_GetHeapStart(param0->unk_A4);
 
     ParticleSystem_Free(param0->unk_A4);
     Heap_FreeToHeap(v0);
@@ -924,13 +924,13 @@ void ov117_02261600(UnkStruct_ov117_02261280 *param0, int param1)
 {
     switch (param1) {
     case 0:
-        sub_020146F4(param0->unk_A4, 0, NULL, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_A4, 0, NULL, param0);
         break;
     case 1:
-        sub_020146F4(param0->unk_A4, 1, NULL, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_A4, 1, NULL, param0);
         break;
     case 2:
-        sub_020146F4(param0->unk_A4, 2, NULL, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_A4, 2, NULL, param0);
         break;
     default:
         GF_ASSERT(0);

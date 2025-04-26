@@ -2359,7 +2359,7 @@ void ov17_0224CA90(UnkStruct_ov17_0224DF54 *param0, u32 param1, s32 param2, s32 
     param0->unk_1064.unk_08 = param4;
     param0->unk_1064.unk_0C = param5;
 
-    sub_020146F4(param0->unk_0C, param1, ov17_0224CAC0, param0);
+    ParticleSystem_CreateEmitterWithCallback(param0->unk_0C, param1, ov17_0224CAC0, param0);
 }
 
 static void ov17_0224CAC0(SPLEmitter *param0)
@@ -2367,14 +2367,14 @@ static void ov17_0224CAC0(SPLEmitter *param0)
     UnkStruct_ov17_0224DF54 *v0;
     UnkStruct_ov17_0224CAC0 *v1;
 
-    v0 = sub_02014764();
+    v0 = ParticleSystem_GetEmitterCallbackParam();
     v1 = &v0->unk_1064;
 
     SPLEmitter_SetPosX(param0, v1->unk_00);
     SPLEmitter_SetPosY(param0, v1->unk_04);
     SPLEmitter_SetPosZ(param0, v1->unk_08);
 
-    sub_020147B0(param0, v1->unk_0C);
+    ParticleSystem_SetEmitterEmissionCount(param0, v1->unk_0C);
 }
 
 static void ov17_0224CB00(UnkStruct_ov17_0224DF54 *param0, int param1, int param2)

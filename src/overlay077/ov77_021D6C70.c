@@ -100,8 +100,8 @@ SPLEmitter *ov77_021D6CD0(UnkStruct_ov77_021D6CFC *param0, int param1)
 {
     GF_ASSERT(param0 != NULL && param0->unk_18 != NULL);
 
-    sub_02014788(param0->unk_18, 1);
-    return sub_020146F4(param0->unk_18, param1, NULL, NULL);
+    ParticleSystem_SetCameraProjection(param0->unk_18, 1);
+    return ParticleSystem_CreateEmitterWithCallback(param0->unk_18, param1, NULL, NULL);
 }
 
 void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
@@ -151,7 +151,7 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
 
     param0->unk_14 = Heap_AllocFromHeap(HEAP_ID_76, 0x4800);
     param0->unk_18 = ParticleSystem_New(ov77_021D6C70, ov77_021D6C94, param0->unk_14, 0x4800, 1, HEAP_ID_76);
-    camera = sub_02014784(param0->unk_18);
+    camera = ParticleSystem_GetCamera(param0->unk_18);
 
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
@@ -215,14 +215,14 @@ BOOL ov77_021D6E78(UnkStruct_ov77_021D6CFC *param0, const u8 param1, const int p
         }
         break;
     case 2:
-        sub_02014788(param0->unk_18, 1);
-        sub_020146F4(param0->unk_18, Unk_ov77_021D7970[param0->unk_1C[param1]][0], ov77_021D7268, param0->unk_04[param1]);
-        sub_020146F4(param0->unk_18, Unk_ov77_021D7970[param0->unk_1C[param1]][1], ov77_021D7268, param0->unk_04[param1]);
-        sub_020146F4(param0->unk_18, Unk_ov77_021D7970[param0->unk_1C[param1]][2], ov77_021D7268, param0->unk_04[param1]);
+        ParticleSystem_SetCameraProjection(param0->unk_18, 1);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, Unk_ov77_021D7970[param0->unk_1C[param1]][0], ov77_021D7268, param0->unk_04[param1]);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, Unk_ov77_021D7970[param0->unk_1C[param1]][1], ov77_021D7268, param0->unk_04[param1]);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, Unk_ov77_021D7970[param0->unk_1C[param1]][2], ov77_021D7268, param0->unk_04[param1]);
         (*v0)++;
         break;
     case 3:
-        if (sub_02014710(param0->unk_18) == 0) {
+        if (ParticleSystem_GetActiveEmitterCount(param0->unk_18) == 0) {
             G2_SetWndOutsidePlane(GX_WND_PLANEMASK_OBJ, 1);
             (*v0)++;
         }
@@ -373,7 +373,7 @@ static void ov77_021D725C(void)
 
 static void ov77_021D7268(SPLEmitter *param0)
 {
-    PokemonSprite *v0 = sub_02014764();
+    PokemonSprite *v0 = ParticleSystem_GetEmitterCallbackParam();
     VecFx32 v1 = { 0, 0, 0 };
 
     v1.x = 172 * (PokemonSprite_GetAttribute(v0, MON_SPRITE_X_CENTER) - 128);

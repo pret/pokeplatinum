@@ -4,8 +4,6 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
-#include "functypes/funcptr_020146F4.h"
-
 #include "constants/narc.h"
 #include "constants/heap.h"
 
@@ -27,7 +25,7 @@ enum VRAMAutoRelease {
 typedef struct ParticleSystem {
     SPLManager *manager;
     void *resource;
-    SPLEmitter *unk_08;
+    SPLEmitter *latestEmitter; // Last created emitter
     void *heapStart;
     void *heap;
     void *heapEnd;
@@ -71,32 +69,32 @@ int ParticleSystem_GetActiveAmount(void);
 int ParticleSystem_DrawAll(void);
 int ParticleSystem_UpdateAll(void);
 SPLEmitter *ParticleSystem_CreateEmitter(ParticleSystem *param0, int param1, const VecFx32 *param2);
-SPLEmitter *sub_020146F4(ParticleSystem *param0, int param1, UnkFuncPtr_020146F4 param2, void *param3);
-s32 sub_02014710(ParticleSystem *param0);
-void sub_02014718(ParticleSystem *param0);
-void sub_02014724(ParticleSystem *param0, SPLEmitter *param1);
-void *sub_02014730(ParticleSystem *param0);
-void sub_02014734(ParticleSystem *param0, VecFx32 *param1);
+SPLEmitter *ParticleSystem_CreateEmitterWithCallback(ParticleSystem *param0, int param1, SPLEmitterCallback param2, void *param3);
+s32 ParticleSystem_GetActiveEmitterCount(ParticleSystem *param0);
+void ParticleSystem_DeleteAllEmitters(ParticleSystem *param0);
+void ParticleSystem_DeleteEmitter(ParticleSystem *param0, SPLEmitter *param1);
+void *ParticleSystem_GetHeapStart(ParticleSystem *param0);
+void ParticleSystem_GetCameraUp(ParticleSystem *param0, VecFx32 *param1);
 void ParticleSystem_SetCameraUp(ParticleSystem *param0, const VecFx32 *param1);
-void *sub_02014764(void);
-void sub_02014770(VecFx32 *param0);
-Camera *sub_02014784(ParticleSystem *param0);
-void sub_02014788(ParticleSystem *param0, int param1);
-u8 sub_02014790(ParticleSystem *param0);
-void sub_02014798(SPLEmitter *param0, VecFx16 *param1);
-void sub_020147B0(SPLEmitter *param0, fx32 param1);
-void sub_02014874(SPLEmitter *param0, VecFx16 *param1);
-void sub_02014890(SPLEmitter *param0, VecFx32 *param1);
-void sub_020148A8(SPLEmitter *param0, VecFx32 *param1);
-void sub_020148DC(SPLEmitter *param0, fx16 *param1);
-void sub_020148F4(SPLEmitter *param0, fx16 *param1);
-void sub_02014910(SPLEmitter *param0, u16 *param1);
-void sub_02014924(SPLEmitter *param0, u16 *param1);
-void sub_02014940(SPLEmitter *param0, u16 *param1);
-void sub_02014954(SPLEmitter *param0, u16 *param1);
-void sub_02014970(SPLEmitter *param0, VecFx32 *param1);
-void sub_02014988(SPLEmitter *param0, VecFx32 *param1);
-void sub_020149BC(SPLEmitter *param0, fx16 *param1);
-void sub_020149D4(SPLEmitter *param0, fx16 *param1);
+void *ParticleSystem_GetEmitterCallbackParam(void);
+void ParticleSystem_GetDefaultCameraUp(VecFx32 *param0);
+Camera *ParticleSystem_GetCamera(ParticleSystem *param0);
+void ParticleSystem_SetCameraProjection(ParticleSystem *param0, enum CameraProjection param1);
+u8 ParticleSystem_GetCameraProjection(ParticleSystem *param0);
+void ParticleSystem_GetEmitterAxis(SPLEmitter *param0, VecFx16 *param1);
+void ParticleSystem_SetEmitterEmissionCount(SPLEmitter *param0, fx32 param1);
+void ParticleSystem_SetEmitterGravityMagnitude(SPLEmitter *param0, VecFx16 *param1);
+void ParticleSystem_SetEmitterMagnetTarget(SPLEmitter *param0, VecFx32 *param1);
+void ParticleSystem_GetEmitterMagnetTarget(SPLEmitter *param0, VecFx32 *param1);
+void ParticleSystem_SetEmitterMagnetForce(SPLEmitter *param0, fx16 *param1);
+void ParticleSystem_GetEmitterMagnetForce(SPLEmitter *param0, fx16 *param1);
+void ParticleSystem_SetEmitterSpinAngle(SPLEmitter *param0, u16 *param1);
+void ParticleSystem_GetEmitterSpinAngle(SPLEmitter *param0, u16 *param1);
+void ParticleSystem_SetEmitterSpinAxis(SPLEmitter *param0, u16 *param1);
+void ParticleSystem_GetEmitterSpinAxis(SPLEmitter *param0, u16 *param1);
+void ParticleSystem_SetEmitterConvergenceTarget(SPLEmitter *param0, VecFx32 *param1);
+void ParticleSystem_GetEmitterConvergenceTarget(SPLEmitter *param0, VecFx32 *param1);
+void ParticleSystem_SetEmitterConvergenceForce(SPLEmitter *param0, fx16 *param1);
+void ParticleSystem_GetEmitterConvergenceForce(SPLEmitter *param0, fx16 *param1);
 
 #endif // POKEPLATINUM_UNK_02014000_H

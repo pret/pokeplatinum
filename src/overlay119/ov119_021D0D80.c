@@ -429,7 +429,7 @@ static ParticleSystem *ov119_021D13EC(int heapID)
 
     v1 = Heap_AllocFromHeap(heapID, 0x4800);
     v0 = ParticleSystem_New(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, heapID);
-    camera = sub_02014784(v0);
+    camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
         Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
@@ -450,7 +450,7 @@ static ParticleSystem *ov119_021D1434(int heapID, int param1, int param2)
 
 void ov119_021D145C(ParticleSystem *param0)
 {
-    void *v0 = sub_02014730(param0);
+    void *v0 = ParticleSystem_GetHeapStart(param0);
     ParticleSystem_Free(param0);
     Heap_FreeToHeap(v0);
 }
@@ -475,7 +475,7 @@ UnkStruct_ov119_021D14DC *ov119_021D14AC(UnkStruct_ov119_021D1930 *param0)
     v4->unk_00 = *param0;
     v4->unk_0C = ov119_021D1434(v4->unk_00.heapID, 119, v4->unk_00.unk_04);
 
-    sub_02014788(v4->unk_0C, 1);
+    ParticleSystem_SetCameraProjection(v4->unk_0C, 1);
 
     return v4;
 }
@@ -488,15 +488,15 @@ void ov119_021D14DC(UnkStruct_ov119_021D14DC *param0, int param1)
     int v3;
     UnkStruct_ov119_021D14DC *v4 = param0;
 
-    sub_020146F4(v4->unk_0C, param1, ov119_021D1474, v4);
-    sub_02014788(v4->unk_0C, 1);
+    ParticleSystem_CreateEmitterWithCallback(v4->unk_0C, param1, ov119_021D1474, v4);
+    ParticleSystem_SetCameraProjection(v4->unk_0C, 1);
 }
 
 BOOL ov119_021D14F8(UnkStruct_ov119_021D14DC *param0)
 {
     UnkStruct_ov119_021D14DC *v0 = param0;
 
-    if (sub_02014710(v0->unk_0C) == 0) {
+    if (ParticleSystem_GetActiveEmitterCount(v0->unk_0C) == 0) {
         return 0;
     }
 

@@ -3,15 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02014560.h"
-#include "struct_defs/struct_020147B8.h"
-#include "struct_defs/struct_02014874.h"
-#include "struct_defs/struct_02014890.h"
-#include "struct_defs/struct_02014910.h"
-#include "struct_defs/struct_02014970.h"
-
-#include "functypes/funcptr_020146F4.h"
-
 #include "camera.h"
 #include "heap.h"
 #include "narc.h"
@@ -28,26 +19,28 @@
 #define MAX_POLYGON_ID          63
 
 
+enum SPLBehaviorType {
+    SPL_BEHAVIOR_GRAVITY = 0,
+    SPL_BEHAVIOR_RANDOM,
+    SPL_BEHAVIOR_MAGNET,
+    SPL_BEHAVIOR_SPIN,
+    SPL_BEHAVIOR_COLLISION_PLANE,
+    SPL_BEHAVIOR_CONVERGENCE,
+};
+
 static void *sParticleSystems[MAX_PARTICLE_SYSTEMS];
 
-static void *Unk_021BF614;
+// Current callback parameter for the emitter creation callback.
+static void *sEmitterCallbackParam;
 
 // Particle system whose resources are currently being uploaded to VRAM.
 // Used so custom Texture/Palette allocators can save the resources.
 // See ParticleSystem_Register*Key
 static ParticleSystem *sUploadingParticleSystem;
 
-static const VecFx32 sParticleSystemDefaultCameraPos = {
-    0, 0, 0x4000
-};
-
-static const VecFx32 sParticleSystemDefaultCameraUp = {
-    0, FX32_ONE, 0
-};
-
-static const VecFx32 sParticleSystemDefaultCameraTarget = {
-    0, 0, 0
-};
+static const VecFx32 sParticleSystemDefaultCameraPos    = { FX32_CONST(0), FX32_CONST(0), FX32_CONST(4) };
+static const VecFx32 sParticleSystemDefaultCameraUp     = { FX32_CONST(0), FX32_CONST(1), FX32_CONST(0) };
+static const VecFx32 sParticleSystemDefaultCameraTarget = { FX32_CONST(0), FX32_CONST(0), FX32_CONST(0) };
 
 static void *ParticleSystem00_AllocMemory(u32 size);
 static void *ParticleSystem01_AllocMemory(u32 size);
@@ -168,7 +161,7 @@ ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMA
 
 void ParticleSystem_Free(ParticleSystem *particleSystem)
 {
-    sub_02014718(particleSystem);
+    ParticleSystem_DeleteAllEmitters(particleSystem);
 
     if (particleSystem->vramAutoRelease & VRAM_AUTO_RELEASE_TEXTURE_FRM) {
         NNS_GfdSetFrmTexVramState(&particleSystem->textureVRAMState);
@@ -193,7 +186,7 @@ void ParticleSystem_Free(ParticleSystem *particleSystem)
     }
 
     particleSystem->vramAutoRelease = VRAM_AUTO_RELEASE_NONE;
-    particleSystem->unk_08 = NULL;
+    particleSystem->latestEmitter = NULL;
 
     if (particleSystem->resource != NULL) {
         Heap_FreeToHeap(particleSystem->resource);
@@ -487,46 +480,44 @@ int ParticleSystem_UpdateAll(void)
 SPLEmitter *ParticleSystem_CreateEmitter(ParticleSystem *particleSystem, int resourceID, const VecFx32 *position)
 {
     SPLEmitter *emitter = SPLManager_CreateEmitter(particleSystem->manager, resourceID, position);
-    particleSystem->unk_08 = emitter;
+    particleSystem->latestEmitter = emitter;
 
     return emitter;
 }
 
-SPLEmitter *sub_020146F4(ParticleSystem *particleSystem, int resourceID, UnkFuncPtr_020146F4 param2, void *param3)
+SPLEmitter *ParticleSystem_CreateEmitterWithCallback(ParticleSystem *particleSystem, int resourceID, SPLEmitterCallback callback, void *param)
 {
-    SPLEmitter *v0;
+    sEmitterCallbackParam = param;
+    SPLEmitter *emitter = SPLManager_CreateEmitterWithCallback(particleSystem->manager, resourceID, callback);
+    sEmitterCallbackParam = NULL;
+    particleSystem->latestEmitter = emitter;
 
-    Unk_021BF614 = param3;
-    v0 = SPLManager_CreateEmitterWithCallback(particleSystem->manager, resourceID, param2);
-    Unk_021BF614 = NULL;
-    particleSystem->unk_08 = v0;
-
-    return v0;
+    return emitter;
 }
 
-s32 sub_02014710(ParticleSystem *param0)
+s32 ParticleSystem_GetActiveEmitterCount(ParticleSystem *particleSystem)
 {
-    return param0->manager->activeEmitters.count;
+    return particleSystem->manager->activeEmitters.count;
 }
 
-void sub_02014718(ParticleSystem *param0)
+void ParticleSystem_DeleteAllEmitters(ParticleSystem *particleSystem)
 {
-    SPLManager_DeleteAllEmitters(param0->manager);
+    SPLManager_DeleteAllEmitters(particleSystem->manager);
 }
 
-void sub_02014724(ParticleSystem *param0, SPLEmitter *param1)
+void ParticleSystem_DeleteEmitter(ParticleSystem *particleSystem, SPLEmitter *emitter)
 {
-    SPLManager_DeleteEmitter(param0->manager, param1);
+    SPLManager_DeleteEmitter(particleSystem->manager, emitter);
 }
 
-void *sub_02014730(ParticleSystem *param0)
+void *ParticleSystem_GetHeapStart(ParticleSystem *particleSystem)
 {
-    return param0->heapStart;
+    return particleSystem->heapStart;
 }
 
-void sub_02014734(ParticleSystem *param0, VecFx32 *param1)
+void ParticleSystem_GetCameraUp(ParticleSystem *particleSystem, VecFx32 *up)
 {
-    *param1 = param0->cameraUp;
+    *up = particleSystem->cameraUp;
 }
 
 void ParticleSystem_SetCameraUp(ParticleSystem *particleSystem, const VecFx32 *up)
@@ -535,98 +526,86 @@ void ParticleSystem_SetCameraUp(ParticleSystem *particleSystem, const VecFx32 *u
     Camera_SetUp(up, particleSystem->camera);
 }
 
-void *sub_02014764(void)
+void *ParticleSystem_GetEmitterCallbackParam(void)
 {
-    return Unk_021BF614;
+    return sEmitterCallbackParam;
 }
 
-void sub_02014770(VecFx32 *param0)
+void ParticleSystem_GetDefaultCameraUp(VecFx32 *up)
 {
-    *param0 = sParticleSystemDefaultCameraUp;
+    *up = sParticleSystemDefaultCameraUp;
 }
 
-Camera *sub_02014784(ParticleSystem *param0)
+Camera *ParticleSystem_GetCamera(ParticleSystem *particleSystem)
 {
-    return param0->camera;
+    return particleSystem->camera;
 }
 
-void sub_02014788(ParticleSystem *param0, int param1)
+void ParticleSystem_SetCameraProjection(ParticleSystem *particleSystem, enum CameraProjection projection)
 {
-    param0->cameraProjection = param1;
+    particleSystem->cameraProjection = projection;
 }
 
-u8 sub_02014790(ParticleSystem *param0)
+u8 ParticleSystem_GetCameraProjection(ParticleSystem *particleSystem)
 {
-    return param0->cameraProjection;
+    return particleSystem->cameraProjection;
 }
 
-void sub_02014798(SPLEmitter *param0, VecFx16 *param1)
+void ParticleSystem_GetEmitterAxis(SPLEmitter *emitter, VecFx16 *axis)
 {
-    *param1 = param0->axis;
+    *axis = emitter->axis;
 }
 
-void sub_020147B0(SPLEmitter *param0, fx32 param1)
+void ParticleSystem_SetEmitterEmissionCount(SPLEmitter *emitter, fx32 count)
 {
-    param0->resource->header->emissionCount = param1;
+    emitter->resource->header->emissionCount = count;
 }
 
-enum SpecialFieldType {
-    SPL_FLD_TYPE_GRAVITY = 0,
-    SPL_FLD_TYPE_RANDOM,
-    SPL_FLD_TYPE_MAGNET,
-    SPL_FLD_TYPE_SPIN,
-    SPL_FLD_TYPE_SIMPLE_COLL,
-    SPL_FLD_TYPE_CONVERGENCE,
-};
-
-static const void *sub_020147B8(SPLEmitter *param0, int param1)
+static const void *ParticleSystem_GetEmitterBehaviorInternal(SPLEmitter *emitter, int behaviorType)
 {
-    int v0;
-    int v1;
-    SPLBehavior *v2;
+    int i; // Required to match
 
-    v1 = param0->resource->behaviorCount;
-
-    if (v1 == 0) {
+    int behaviorCount = emitter->resource->behaviorCount;
+    if (behaviorCount == 0) {
         return NULL;
     }
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v2 = &param0->resource->behaviors[v0];
+    for (i = 0; i < behaviorCount; i++) {
+        SPLBehavior *behavior = &emitter->resource->behaviors[i];
 
-        if (v2 == NULL) {
+        if (behavior == NULL) {
             continue;
         }
 
-        switch (param1) {
-        case SPL_FLD_TYPE_GRAVITY:
-            if (v2->applyFunc == SPLBehavior_ApplyGravity) {
-                return v2->object;
+        switch (behaviorType) {
+        case SPL_BEHAVIOR_GRAVITY:
+            if (behavior->applyFunc == SPLBehavior_ApplyGravity) {
+                return behavior->object;
             }
             continue;
-        case SPL_FLD_TYPE_RANDOM:
-            if (v2->applyFunc == SPLBehavior_ApplyRandom) {
-                return v2->object;
+        case SPL_BEHAVIOR_RANDOM:
+            if (behavior->applyFunc == SPLBehavior_ApplyRandom) {
+                return behavior->object;
             }
             continue;
-        case SPL_FLD_TYPE_MAGNET:
-            if (v2->applyFunc == SPLBehavior_ApplyMagnet) {
-                return v2->object;
+        case SPL_BEHAVIOR_MAGNET:
+            if (behavior->applyFunc == SPLBehavior_ApplyMagnet) {
+                return behavior->object;
             }
             continue;
-        case SPL_FLD_TYPE_SPIN:
-            if (v2->applyFunc == SPLBehavior_ApplySpin) {
-                return v2->object;
+        case SPL_BEHAVIOR_SPIN:
+            if (behavior->applyFunc == SPLBehavior_ApplySpin) {
+                return behavior->object;
             }
             continue;
-        case SPL_FLD_TYPE_SIMPLE_COLL:
-            if (v2->applyFunc == SPLBehavior_ApplyCollisionPlane) {
-                return v2->object;
+        case SPL_BEHAVIOR_COLLISION_PLANE:
+            if (behavior->applyFunc == SPLBehavior_ApplyCollisionPlane) {
+                return behavior->object;
             }
             break;
-        case SPL_FLD_TYPE_CONVERGENCE:
-            if (v2->applyFunc == SPLBehavior_ApplyConvergence) {
-                return v2->object;
+        case SPL_BEHAVIOR_CONVERGENCE:
+            if (behavior->applyFunc == SPLBehavior_ApplyConvergence) {
+                return behavior->object;
             }
             continue;
         default:
@@ -637,153 +616,138 @@ static const void *sub_020147B8(SPLEmitter *param0, int param1)
     return NULL;
 }
 
-void sub_02014874(SPLEmitter *param0, VecFx16 *param1)
+void ParticleSystem_SetEmitterGravityMagnitude(SPLEmitter *emitter, VecFx16 *magnitude)
 {
-    UnkStruct_02014874 *v0 = (UnkStruct_02014874 *)sub_020147B8(param0, SPL_FLD_TYPE_GRAVITY);
-
-    if (v0 == NULL) {
+    SPLGravityBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_GRAVITY);
+    if (behavior == NULL) {
         return;
     }
 
-    v0->unk_00 = *param1;
+    behavior->magnitude = *magnitude;
 }
 
-void sub_02014890(SPLEmitter *param0, VecFx32 *param1)
+void ParticleSystem_SetEmitterMagnetTarget(SPLEmitter *emitter, VecFx32 *target)
 {
-    UnkStruct_02014890 *v0 = (UnkStruct_02014890 *)sub_020147B8(param0, SPL_FLD_TYPE_MAGNET);
-
-    if (v0 == NULL) {
+    SPLMagnetBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_MAGNET);
+    if (behavior == NULL) {
         return;
     }
 
-    v0->unk_00 = *param1;
+    behavior->target = *target;
 }
 
-void sub_020148A8(SPLEmitter *param0, VecFx32 *param1)
+void ParticleSystem_GetEmitterMagnetTarget(SPLEmitter *emitter, VecFx32 *target)
 {
-    UnkStruct_02014890 *v0 = (UnkStruct_02014890 *)sub_020147B8(param0, SPL_FLD_TYPE_MAGNET);
-
-    if (v0 == NULL) {
-        VecFx32 v1 = { 0, 0, 0 };
-        *param1 = v1;
+    SPLMagnetBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_MAGNET);
+    if (behavior == NULL) {
+        *target = (VecFx32){ 0, 0, 0 };
         return;
     }
 
-    *param1 = v0->unk_00;
+    *target = behavior->target;
 }
 
-void sub_020148DC(SPLEmitter *param0, fx16 *param1)
+void ParticleSystem_SetEmitterMagnetForce(SPLEmitter *emitter, fx16 *force)
 {
-    UnkStruct_02014890 *v0 = (UnkStruct_02014890 *)sub_020147B8(param0, SPL_FLD_TYPE_MAGNET);
-
-    if (v0 == NULL) {
+    SPLMagnetBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_MAGNET);
+    if (behavior == NULL) {
         return;
     }
 
-    v0->unk_0C = *param1;
+    behavior->force = *force;
 }
 
-void sub_020148F4(SPLEmitter *param0, fx16 *param1)
+void ParticleSystem_GetEmitterMagnetForce(SPLEmitter *emitter, fx16 *force)
 {
-    UnkStruct_02014890 *v0 = (UnkStruct_02014890 *)sub_020147B8(param0, SPL_FLD_TYPE_MAGNET);
-
-    if (v0 == NULL) {
-        *param1 = 0;
+    SPLMagnetBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_MAGNET);
+    if (behavior == NULL) {
+        *force = 0;
         return;
     }
 
-    *param1 = v0->unk_0C;
+    *force = behavior->force;
 }
 
-void sub_02014910(SPLEmitter *param0, u16 *param1)
+void ParticleSystem_SetEmitterSpinAngle(SPLEmitter *emitter, u16 *angle)
 {
-    UnkStruct_02014910 *v0 = (UnkStruct_02014910 *)sub_020147B8(param0, SPL_FLD_TYPE_SPIN);
-
-    if (v0 == NULL) {
+    SPLSpinBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_SPIN);
+    if (behavior == NULL) {
         return;
     }
 
-    v0->unk_00 = *param1;
+    behavior->angle = *angle;
 }
 
-void sub_02014924(SPLEmitter *param0, u16 *param1)
+void ParticleSystem_GetEmitterSpinAngle(SPLEmitter *emitter, u16 *angle)
 {
-    UnkStruct_02014910 *v0 = (UnkStruct_02014910 *)sub_020147B8(param0, SPL_FLD_TYPE_SPIN);
-
-    if (v0 == NULL) {
-        *param1 = 0;
+    SPLSpinBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_SPIN);
+    if (behavior == NULL) {
+        *angle = 0;
         return;
     }
 
-    *param1 = v0->unk_00;
+    *angle = behavior->angle;
 }
 
-void sub_02014940(SPLEmitter *param0, u16 *param1)
+void ParticleSystem_SetEmitterSpinAxis(SPLEmitter *emitter, u16 *axis)
 {
-    UnkStruct_02014910 *v0 = (UnkStruct_02014910 *)sub_020147B8(param0, SPL_FLD_TYPE_SPIN);
-
-    if (v0 == NULL) {
+    SPLSpinBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_SPIN);
+    if (behavior == NULL) {
         return;
     }
 
-    v0->unk_02 = *param1;
+    behavior->axis = *axis;
 }
 
-void sub_02014954(SPLEmitter *param0, u16 *param1)
+void ParticleSystem_GetEmitterSpinAxis(SPLEmitter *emitter, u16 *axis)
 {
-    UnkStruct_02014910 *v0 = (UnkStruct_02014910 *)sub_020147B8(param0, SPL_FLD_TYPE_SPIN);
-
-    if (v0 == NULL) {
-        *param1 = 0;
+    SPLSpinBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_SPIN);
+    if (behavior == NULL) {
+        *axis = 0;
         return;
     }
 
-    *param1 = v0->unk_02;
+    *axis = behavior->axis;
 }
 
-void sub_02014970(SPLEmitter *param0, VecFx32 *param1)
+void ParticleSystem_SetEmitterConvergenceTarget(SPLEmitter *emitter, VecFx32 *target)
 {
-    UnkStruct_02014970 *v0 = (UnkStruct_02014970 *)sub_020147B8(param0, SPL_FLD_TYPE_CONVERGENCE);
-
-    if (v0 == NULL) {
+    SPLConvergenceBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_CONVERGENCE);
+    if (behavior == NULL) {
         return;
     }
 
-    v0->unk_00 = *param1;
+    behavior->target = *target;
 }
 
-void sub_02014988(SPLEmitter *param0, VecFx32 *param1)
+void ParticleSystem_GetEmitterConvergenceTarget(SPLEmitter *emitter, VecFx32 *target)
 {
-    UnkStruct_02014970 *v0 = (UnkStruct_02014970 *)sub_020147B8(param0, SPL_FLD_TYPE_CONVERGENCE);
-
-    if (v0 == NULL) {
-        VecFx32 v1 = { 0, 0, 0 };
-        *param1 = v1;
+    SPLConvergenceBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_CONVERGENCE);
+    if (behavior == NULL) {
+        *target = (VecFx32){ 0, 0, 0 };
         return;
     }
 
-    *param1 = v0->unk_00;
+    *target = behavior->target;
 }
 
-void sub_020149BC(SPLEmitter *param0, fx16 *param1)
+void ParticleSystem_SetEmitterConvergenceForce(SPLEmitter *emitter, fx16 *force)
 {
-    UnkStruct_02014970 *v0 = (UnkStruct_02014970 *)sub_020147B8(param0, SPL_FLD_TYPE_CONVERGENCE);
-
-    if (v0 == NULL) {
+    SPLConvergenceBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_CONVERGENCE);
+    if (behavior == NULL) {
         return;
     }
 
-    v0->unk_0C = *param1;
+    behavior->force = *force;
 }
 
-void sub_020149D4(SPLEmitter *param0, fx16 *param1)
+void ParticleSystem_GetEmitterConvergenceForce(SPLEmitter *emitter, fx16 *force)
 {
-    UnkStruct_02014970 *v0 = (UnkStruct_02014970 *)sub_020147B8(param0, SPL_FLD_TYPE_CONVERGENCE);
-
-    if (v0 == NULL) {
-        *param1 = 0;
+    SPLConvergenceBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_CONVERGENCE);
+    if (behavior == NULL) {
+        *force = 0;
         return;
     }
 
-    *param1 = v0->unk_0C;
+    *force = behavior->force;
 }

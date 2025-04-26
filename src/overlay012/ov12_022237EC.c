@@ -5,7 +5,6 @@
 
 #include "unk_02014000.h"
 
-#include "functypes/funcptr_020146F4.h"
 #include "overlay011/ov11_0221F840.h"
 #include "overlay012/ov12_0222389C.h"
 #include "overlay012/ov12_0222421C.h"
@@ -16,7 +15,7 @@
 
 static void ov12_022237EC(SPLEmitter *param0);
 
-static const UnkFuncPtr_020146F4 Unk_ov12_02238DB0[] = {
+static const SPLEmitterCallback Unk_ov12_02238DB0[] = {
     ov12_022237EC,
     ov12_022238E0,
     ov12_02223998,
@@ -89,7 +88,7 @@ ParticleSystem *ov12_0222384C(NARC *param0, int heapID, int param2, int param3)
 
 SPLEmitter *ov12_02223880(ParticleSystem *param0, int param1, int param2, void *param3)
 {
-    return sub_020146F4(param0, param1, Unk_ov12_02238DB0[param2], param3);
+    return ParticleSystem_CreateEmitterWithCallback(param0, param1, Unk_ov12_02238DB0[param2], param3);
 }
 
 void ov12_02223894(ParticleSystem *param0)

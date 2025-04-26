@@ -55,10 +55,10 @@ ParticleSystem *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1, int
 
     v1 = Heap_AllocFromHeap(param0->heapID, 0x4800);
     v0 = ParticleSystem_New(ov104_0223D720, ov104_0223D744, v1, 0x4800, 1, param0->heapID);
-    camera = sub_02014784(v0);
+    camera = ParticleSystem_GetCamera(v0);
 
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
-    sub_02014788(v0, param3);
+    ParticleSystem_SetCameraProjection(v0, param3);
 
     v3 = ParticleSystem_LoadResourceFromNARC(157, param2, param0->heapID);
     ParticleSystem_SetResource(v0, v3, (1 << 1) | (1 << 3), 1);
@@ -108,7 +108,7 @@ BOOL ov104_0223D6E4(UnkStruct_ov104_0223D5F0 *param0)
 
     for (v0 = 0; v0 < (((3 + 1) + 3) + 1); v0++) {
         if (param0->unk_00[v0] != NULL) {
-            if (sub_02014710(param0->unk_00[v0]) > 0) {
+            if (ParticleSystem_GetActiveEmitterCount(param0->unk_00[v0]) > 0) {
                 return 0;
             }
         }
@@ -119,7 +119,7 @@ BOOL ov104_0223D6E4(UnkStruct_ov104_0223D5F0 *param0)
 
 static void ov104_0223D708(ParticleSystem *param0)
 {
-    void *v0 = sub_02014730(param0);
+    void *v0 = ParticleSystem_GetHeapStart(param0);
 
     ParticleSystem_Free(param0);
     Heap_FreeToHeap(v0);

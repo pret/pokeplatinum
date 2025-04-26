@@ -21,7 +21,7 @@ ParticleSystem *ov11_0221F840(int heapID)
 
     v1 = Heap_AllocFromHeap(heapID, 0x4800);
     v0 = ParticleSystem_New(ov11_0221F914, ov11_0221F930, v1, 0x4800, 1, heapID);
-    camera = sub_02014784(v0);
+    camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
         Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
@@ -43,7 +43,7 @@ ParticleSystem *ov11_0221F888(int heapID)
     }
 
     v0 = ParticleSystem_New(ov11_0221F914, ov11_0221F930, v1, 0x4200, 1, heapID);
-    camera = sub_02014784(v0);
+    camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
         Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
@@ -54,7 +54,7 @@ ParticleSystem *ov11_0221F888(int heapID)
 
 void ov11_0221F8D8(ParticleSystem *param0)
 {
-    void *v0 = sub_02014730(param0);
+    void *v0 = ParticleSystem_GetHeapStart(param0);
 
     ParticleSystem_Free(param0);
     Heap_FreeToHeap(v0);

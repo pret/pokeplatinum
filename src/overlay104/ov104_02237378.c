@@ -565,7 +565,7 @@ static void ov104_02237C0C(UnkStruct_ov104_0222E930 *param0, UnkStruct_ov104_022
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(param0->unk_00);
     ParticleSystem *v2 = ov104_0223D6D0(v1->unk_10, 0);
-    sub_020146F4(v2, param2, ov104_02237C30, param1);
+    ParticleSystem_CreateEmitterWithCallback(v2, param2, ov104_02237C30, param1);
 
     return;
 }
@@ -574,11 +574,11 @@ static void ov104_02237C30(SPLEmitter *param0)
 {
     VecFx32 v0;
     VecFx16 v1;
-    UnkStruct_ov104_0223BFFC *v2 = sub_02014764();
+    UnkStruct_ov104_0223BFFC *v2 = ParticleSystem_GetEmitterCallbackParam();
     const VecFx32 v3[] = { FX32_ONE * -1, 0, 0 };
 
     if (v2->unk_A7A == 1) {
-        sub_02014798(param0, &v1);
+        ParticleSystem_GetEmitterAxis(param0, &v1);
         v1.x *= -1;
 
         SPLEmitter_SetAxis(param0, &v1);

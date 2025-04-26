@@ -68,7 +68,7 @@ static BOOL ov12_02225114(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
     switch (v0[0]) {
     case 0: {
-        sub_02014874(param0, &v1);
+        ParticleSystem_SetEmitterGravityMagnitude(param0, &v1);
         v1.x *= param1->unk_08;
         v1.y *= param1->unk_08;
         v1.z *= param1->unk_08;
@@ -80,7 +80,7 @@ static BOOL ov12_02225114(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         v1.y *= param1->unk_08;
         v1.z *= param1->unk_08;
 
-        sub_02014874(param0, &v1);
+        ParticleSystem_SetEmitterGravityMagnitude(param0, &v1);
 
         return 1;
     } break;
@@ -94,7 +94,7 @@ static BOOL ov12_02225114(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     v1.y -= param1->unk_2C.y;
     v1.z -= param1->unk_2C.z;
 
-    sub_02014874(param0, &v1);
+    ParticleSystem_SetEmitterGravityMagnitude(param0, &v1);
     return 1;
 }
 
@@ -122,7 +122,7 @@ static BOOL ov12_02225200(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
     switch (v0[0]) {
     case 0: {
-        sub_020148A8(param0, &v1);
+        ParticleSystem_GetEmitterMagnetTarget(param0, &v1);
 
         v1.x *= param1->unk_08;
         v1.y *= param1->unk_08;
@@ -148,7 +148,7 @@ static BOOL ov12_02225200(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     v1.x -= param1->unk_2C.x;
     v1.y -= param1->unk_2C.y;
 
-    sub_02014890(param0, &v1);
+    ParticleSystem_SetEmitterMagnetTarget(param0, &v1);
     return 1;
 }
 
@@ -166,7 +166,7 @@ static BOOL ov12_022252C8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
     switch (v0[0]) {
     case 0: {
-        sub_020148F4(param0, &v1);
+        ParticleSystem_GetEmitterMagnetForce(param0, &v1);
         v1 *= param1->unk_08;
     } break;
     case 1: {
@@ -179,7 +179,7 @@ static BOOL ov12_022252C8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         break;
     }
 
-    sub_020148DC(param0, &v1);
+    ParticleSystem_SetEmitterMagnetForce(param0, &v1);
     return 1;
 }
 
@@ -197,7 +197,7 @@ static BOOL ov12_0222534C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
     switch (v0[0]) {
     case 0: {
-        sub_02014924(param0, &v1);
+        ParticleSystem_GetEmitterSpinAngle(param0, &v1);
         v1 *= param1->unk_08;
     } break;
     case 1: {
@@ -210,7 +210,7 @@ static BOOL ov12_0222534C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         break;
     }
 
-    sub_02014910(param0, &v1);
+    ParticleSystem_SetEmitterSpinAngle(param0, &v1);
     return 1;
 }
 
@@ -228,7 +228,7 @@ static BOOL ov12_022253CC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
     switch (v0[0]) {
     case 0: {
-        sub_02014954(param0, &v1);
+        ParticleSystem_GetEmitterSpinAxis(param0, &v1);
     } break;
     case 1: {
         v1 = v0[2];
@@ -239,7 +239,7 @@ static BOOL ov12_022253CC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         break;
     }
 
-    sub_02014940(param0, &v1);
+    ParticleSystem_SetEmitterSpinAxis(param0, &v1);
     return 1;
 }
 
@@ -277,7 +277,7 @@ static BOOL ov12_02225444(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
     switch (v0[0]) {
     case 0: {
-        sub_02014988(param0, &v1);
+        ParticleSystem_GetEmitterConvergenceTarget(param0, &v1);
         v1.x *= param1->unk_08;
         v1.y *= param1->unk_08;
         v1.z *= param1->unk_08;
@@ -310,7 +310,7 @@ static BOOL ov12_02225444(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     v1.y -= param1->unk_2C.y;
     v1.z -= param1->unk_2C.z;
 
-    sub_02014970(param0, &v1);
+    ParticleSystem_SetEmitterConvergenceTarget(param0, &v1);
     return 1;
 }
 
@@ -328,7 +328,7 @@ static BOOL ov12_02225550(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
     switch (v0[0]) {
     case 0: {
-        sub_020149D4(param0, &v1);
+        ParticleSystem_GetEmitterConvergenceForce(param0, &v1);
         v1 *= param1->unk_08;
     } break;
     case 1: {
@@ -341,7 +341,7 @@ static BOOL ov12_02225550(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         break;
     }
 
-    sub_020149BC(param0, &v1);
+    ParticleSystem_SetEmitterConvergenceForce(param0, &v1);
     return 1;
 }
 

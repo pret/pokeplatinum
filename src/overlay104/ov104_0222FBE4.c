@@ -2561,7 +2561,7 @@ static BOOL ov104_02231B74(UnkStruct_ov104_0222E930 *param0)
     v3 = ov104_0222FC00(param0);
     v4 = ov104_0223D6D0(v1->unk_10, v2);
 
-    sub_020146F4(v4, v3, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(v4, v3, NULL, NULL);
 
     return 0;
 }
