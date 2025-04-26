@@ -58,9 +58,9 @@ static void *ParticleSystem12_AllocMemory(u32 size);
 static void *ParticleSystem13_AllocMemory(u32 size);
 static void *ParticleSystem14_AllocMemory(u32 size);
 static void *ParticleSystem15_AllocMemory(u32 size);
-static inline void *ParticleSystem_AllocMemory(ParticleSystem *param0, u32 param1);
-static void ParticleSystem_UploadResourcesInternal(ParticleSystem *param0);
-static void ParticleSystem_VBlankResourceUploadInternal(SysTask *param0, void *param1);
+static inline void *ParticleSystem_AllocMemory(ParticleSystem *particleSystem, u32 size);
+static void ParticleSystem_UploadResourcesInternal(ParticleSystem *particleSystem);
+static void ParticleSystem_VBlankResourceUploadInternal(SysTask *task, void *param);
 
 static const SPLAllocFunc sParticleSystemAllocFuncs[] = {
     ParticleSystem00_AllocMemory,
@@ -128,7 +128,7 @@ ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMA
         particleSystem->camera = Camera_Alloc(heapID);
 
         {
-            VEC_Set(&particleSystem->unk_24, 0, 0, 0);
+            VEC_Set(&particleSystem->unused1, 0, 0, 0);
             particleSystem->cameraFov = 8192;
 
             Camera_InitWithTargetAndPosition(
