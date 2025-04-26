@@ -3,15 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "particle_system.h"
-
 #include "camera.h"
 #include "heap.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "rtc.h"
 #include "spl.h"
-#include "particle_system.h"
 #include "unk_0202419C.h"
 
 typedef struct UnkStruct_ov77_021D6CFC_t {

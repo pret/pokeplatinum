@@ -7,6 +7,7 @@
 #include "overlay012/struct_ov12_02236648_decl.h"
 #include "overlay012/struct_ov12_02236690.h"
 #include "overlay012/struct_ov12_02237728.h"
+
 #include "spl.h"
 
 UnkStruct_ov12_02235FE0 *ov12_02235FE0(int heapID);

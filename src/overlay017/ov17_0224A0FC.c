@@ -37,6 +37,7 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
@@ -50,7 +51,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02012744.h"
-#include "particle_system.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 

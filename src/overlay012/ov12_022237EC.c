@@ -3,15 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "particle_system.h"
-
 #include "overlay011/ov11_0221F840.h"
 #include "overlay012/ov12_0222389C.h"
 #include "overlay012/ov12_0222421C.h"
 
 #include "narc.h"
-#include "spl.h"
 #include "particle_system.h"
+#include "spl.h"
 
 static void ov12_022237EC(SPLEmitter *param0);
 

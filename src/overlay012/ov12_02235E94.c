@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "particle_system.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 
@@ -24,6 +23,7 @@
 #include "math_util.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "sound_playback.h"
 #include "spl.h"
@@ -32,7 +32,6 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "particle_system.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 

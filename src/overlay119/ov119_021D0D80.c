@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "particle_system.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -23,6 +22,7 @@
 #include "menu.h"
 #include "message.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
@@ -34,7 +34,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200F174.h"
-#include "particle_system.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"

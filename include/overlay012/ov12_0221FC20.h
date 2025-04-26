@@ -2,7 +2,6 @@
 #define POKEPLATINUM_OV12_0221FC20_H
 
 #include "struct_decls/battle_system.h"
-#include "particle_system.h"
 
 #include "battle/struct_ov16_02264408.h"
 #include "battle/struct_ov16_02265BBC.h"
@@ -14,6 +13,7 @@
 
 #include "bg_window.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon_sprite.h"
 #include "spl.h"
 #include "sprite_system.h"

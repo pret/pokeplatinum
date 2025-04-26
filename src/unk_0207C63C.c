@@ -2,7 +2,6 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "particle_system.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_0207C8C4.h"
@@ -10,8 +9,8 @@
 #include "camera.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "spl.h"
 #include "particle_system.h"
+#include "spl.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 

@@ -3,16 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "particle_system.h"
-
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay115/camera_angle.h"
 
 #include "camera.h"
-#include "spl.h"
 #include "particle_system.h"
+#include "spl.h"
 
 static s8 ov12_0222389C(UnkStruct_ov12_0221FCDC *param0, int param1, int param2);
 

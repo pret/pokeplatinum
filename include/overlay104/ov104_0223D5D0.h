@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_OV104_0223D5D0_H
 #define POKEPLATINUM_OV104_0223D5D0_H
 
-#include "particle_system.h"
-
 #include "overlay104/struct_ov104_0223D5F0_decl.h"
+
+#include "particle_system.h"
 
 UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(int heapID);
 void ov104_0223D5F0(UnkStruct_ov104_0223D5F0 *param0);

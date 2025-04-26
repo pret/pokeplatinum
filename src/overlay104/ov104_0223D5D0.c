@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "particle_system.h"
-
 #include "camera.h"
 #include "heap.h"
 #include "particle_system.h"

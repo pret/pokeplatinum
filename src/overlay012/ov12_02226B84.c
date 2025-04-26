@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "particle_system.h"
-
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
@@ -25,13 +23,13 @@
 #include "inlines.h"
 #include "math_util.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pltt_transfer.h"
 #include "pokemon_sprite.h"
 #include "spl.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
-#include "particle_system.h"
 
 typedef struct {
     int unk_00;

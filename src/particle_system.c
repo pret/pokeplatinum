@@ -11,13 +11,12 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-#define MAX_PARTICLE_SYSTEMS    16
-#define MAX_EMITTERS            20
-#define MAX_PARTICLES           200
-#define FIXED_POLYGON_ID        5
-#define MIN_POLYGON_ID          6
-#define MAX_POLYGON_ID          63
-
+#define MAX_PARTICLE_SYSTEMS 16
+#define MAX_EMITTERS         20
+#define MAX_PARTICLES        200
+#define FIXED_POLYGON_ID     5
+#define MIN_POLYGON_ID       6
+#define MAX_POLYGON_ID       63
 
 enum SPLBehaviorType {
     SPL_BEHAVIOR_GRAVITY = 0,
@@ -38,8 +37,8 @@ static void *sEmitterCallbackParam;
 // See ParticleSystem_Register*Key
 static ParticleSystem *sUploadingParticleSystem;
 
-static const VecFx32 sParticleSystemDefaultCameraPos    = { FX32_CONST(0), FX32_CONST(0), FX32_CONST(4) };
-static const VecFx32 sParticleSystemDefaultCameraUp     = { FX32_CONST(0), FX32_CONST(1), FX32_CONST(0) };
+static const VecFx32 sParticleSystemDefaultCameraPos = { FX32_CONST(0), FX32_CONST(0), FX32_CONST(4) };
+static const VecFx32 sParticleSystemDefaultCameraUp = { FX32_CONST(0), FX32_CONST(1), FX32_CONST(0) };
 static const VecFx32 sParticleSystemDefaultCameraTarget = { FX32_CONST(0), FX32_CONST(0), FX32_CONST(0) };
 
 static void *ParticleSystem00_AllocMemory(u32 size);
@@ -132,13 +131,12 @@ ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMA
             particleSystem->cameraFov = 8192;
 
             Camera_InitWithTargetAndPosition(
-                &sParticleSystemDefaultCameraTarget, 
-                &sParticleSystemDefaultCameraPos, 
-                particleSystem->cameraFov, 
-                CAMERA_PROJECTION_PERSPECTIVE, 
-                FALSE, 
-                particleSystem->camera
-            );
+                &sParticleSystemDefaultCameraTarget,
+                &sParticleSystemDefaultCameraPos,
+                particleSystem->cameraFov,
+                CAMERA_PROJECTION_PERSPECTIVE,
+                FALSE,
+                particleSystem->camera);
 
             particleSystem->cameraProjection = CAMERA_PROJECTION_PERSPECTIVE;
             Camera_SetAsActive(particleSystem->camera);
@@ -146,13 +144,12 @@ ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMA
     }
 
     particleSystem->manager = SPLManager_New(
-        sParticleSystemAllocFuncs[id], 
-        MAX_EMITTERS, 
-        MAX_PARTICLES, 
-        FIXED_POLYGON_ID, 
-        MIN_POLYGON_ID, 
-        MAX_POLYGON_ID
-    );
+        sParticleSystemAllocFuncs[id],
+        MAX_EMITTERS,
+        MAX_PARTICLES,
+        FIXED_POLYGON_ID,
+        MIN_POLYGON_ID,
+        MAX_POLYGON_ID);
 
     ParticleSystem_SetCameraUp(particleSystem, &sParticleSystemDefaultCameraUp);
 
@@ -640,7 +637,7 @@ void ParticleSystem_GetEmitterMagnetTarget(SPLEmitter *emitter, VecFx32 *target)
 {
     SPLMagnetBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_MAGNET);
     if (behavior == NULL) {
-        *target = (VecFx32){ 0, 0, 0 };
+        *target = (VecFx32) { 0, 0, 0 };
         return;
     }
 
@@ -724,7 +721,7 @@ void ParticleSystem_GetEmitterConvergenceTarget(SPLEmitter *emitter, VecFx32 *ta
 {
     SPLConvergenceBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_CONVERGENCE);
     if (behavior == NULL) {
-        *target = (VecFx32){ 0, 0, 0 };
+        *target = (VecFx32) { 0, 0, 0 };
         return;
     }
 

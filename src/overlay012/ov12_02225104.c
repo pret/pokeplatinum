@@ -8,8 +8,8 @@
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02225640.h"
 
-#include "spl.h"
 #include "particle_system.h"
+#include "spl.h"
 
 static void ov12_02225104(UnkStruct_ov12_02225640 *param0, int param1[]);
 static BOOL ov12_02225110(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);

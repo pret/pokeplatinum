@@ -1,10 +1,9 @@
 #ifndef POKEPLATINUM_OV77_021D6C70_H
 #define POKEPLATINUM_OV77_021D6C70_H
 
-#include "particle_system.h"
-
 #include "overlay077/struct_ov77_021D6CFC_decl.h"
 
+#include "particle_system.h"
 #include "spl.h"
 
 const int ov77_021D6CB8(void);

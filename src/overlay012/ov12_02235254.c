@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "particle_system.h"
-
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02235350.h"
@@ -13,9 +11,9 @@
 
 #include "heap.h"
 #include "inlines.h"
+#include "particle_system.h"
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
-#include "particle_system.h"
 
 void ov17_022413D8(void);
 void include_unk_ov12_0223A218(VecFx32 *dummy);

@@ -4,7 +4,6 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "particle_system.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
@@ -30,6 +29,7 @@
 #include "camera.h"
 #include "message.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"

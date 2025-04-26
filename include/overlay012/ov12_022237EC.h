@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_OV12_022237EC_H
 #define POKEPLATINUM_OV12_022237EC_H
 
-#include "particle_system.h"
-
 #include "narc.h"
+#include "particle_system.h"
 #include "spl.h"
 
 ParticleSystem *ov12_022237F0(int heapID, int param1, int param2);
