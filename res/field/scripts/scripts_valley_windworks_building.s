@@ -20,10 +20,10 @@ _0022:
 
 _0035:
     SetObjectEventPos 5, 21, 5
-    ScrCmd_189 5, 2
+    SetObjectEventDir 5, 2
     ScrCmd_188 5, 16
     SetObjectEventPos 2, 18, 4
-    ScrCmd_189 2, 1
+    SetObjectEventDir 2, 1
     ScrCmd_188 2, 15
     End
 

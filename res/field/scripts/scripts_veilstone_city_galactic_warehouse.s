@@ -17,7 +17,7 @@ _0016:
 _0025:
     SetObjectEventPos 4, 8, 10
     ScrCmd_188 4, 14
-    ScrCmd_189 4, 0
+    SetObjectEventDir 4, 0
     Return
 
 _003B:
@@ -145,7 +145,7 @@ _0197:
     LockAll
     SetObjectEventPos 4, 8, 11
     ScrCmd_188 4, 14
-    ScrCmd_189 4, 0
+    SetObjectEventDir 4, 0
     ClearFlag FLAG_UNK_0x020D
     AddObject 4
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

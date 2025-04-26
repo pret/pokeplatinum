@@ -3,7 +3,7 @@
 
 #include "field_script_context.h"
 
-BOOL ScrCmd_253(ScriptContext *param0);
+BOOL ScrCmd_SetClearInPalParkFlag(ScriptContext *ctx);
 BOOL ScrCmd_254(ScriptContext *param0);
 BOOL ScrCmd_255(ScriptContext *param0);
 BOOL ScrCmd_CalcCatchingShowPoints(ScriptContext *ctx);

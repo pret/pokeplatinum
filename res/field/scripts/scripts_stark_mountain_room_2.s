@@ -44,7 +44,7 @@ _0031:
 
 _007D:
     SetObjectEventPos 14, 42, 78
-    ScrCmd_189 14, 0
+    SetObjectEventDir 14, 0
     ScrCmd_188 14, 14
     ClearFlag FLAG_UNK_0x01DA
     AddObject 14
@@ -59,7 +59,7 @@ _007D:
 
 _00B7:
     SetObjectEventPos 14, 42, 68
-    ScrCmd_189 14, 0
+    SetObjectEventDir 14, 0
     ScrCmd_188 14, 14
     ApplyMovement 14, _0144
     WaitMovement

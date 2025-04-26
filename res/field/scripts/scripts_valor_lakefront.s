@@ -23,7 +23,7 @@ _0026:
 
 _004B:
     SetObjectEventPos 5, 0x2D3, 0x301
-    ScrCmd_189 5, 0
+    SetObjectEventDir 5, 0
     ScrCmd_188 5, 14
     Return
 
@@ -183,7 +183,7 @@ _0248:
     CallIfEq VAR_0x8000, 2, _0400
     CallIfEq VAR_0x8000, 3, _040A
     ClearFlag FLAG_UNK_0x01AD
-    ScrCmd_189 0, 1
+    SetObjectEventDir 0, 1
     ScrCmd_188 0, 15
     AddObject 0
     ApplyMovement 0, _0594
@@ -195,7 +195,7 @@ _0248:
     CallIfEq VAR_0x8000, 2, _0458
     CallIfEq VAR_0x8000, 3, _0462
     ClearFlag FLAG_UNK_0x01D5
-    ScrCmd_189 10, 0
+    SetObjectEventDir 10, 0
     ScrCmd_188 10, 14
     AddObject 10
     CallCommonScript 0x7FA

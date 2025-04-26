@@ -38,7 +38,7 @@ _0066:
 _0082:
     SetObjectEventPos 7, 0x28F, 0x1AA
     ScrCmd_188 7, 14
-    ScrCmd_189 7, 0
+    SetObjectEventDir 7, 0
     End
 
 _0098:

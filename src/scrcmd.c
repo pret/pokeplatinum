@@ -499,7 +499,7 @@ static BOOL ScrCmd_152(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_187(ScriptContext *ctx);
 static BOOL ScrCmd_188(ScriptContext *ctx);
-static BOOL ScrCmd_189(ScriptContext *ctx);
+static BOOL ScrCmd_SetObjectEventDir(ScriptContext *ctx);
 static BOOL ScrCmd_SetWarpEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_18B(ScriptContext *ctx);
 static BOOL ScrCmd_18C(ScriptContext *ctx);
@@ -1160,7 +1160,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetObjectEventPos,
     ScrCmd_187,
     ScrCmd_188,
-    ScrCmd_189,
+    ScrCmd_SetObjectEventDir,
     ScrCmd_SetWarpEventPos,
     ScrCmd_18B,
     ScrCmd_18C,
@@ -1362,7 +1362,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_RandomizeJubilifeLottery,
     ScrCmd_251,
     ScrCmd_252,
-    ScrCmd_253,
+    ScrCmd_SetClearInPalParkFlag,
     ScrCmd_254,
     ScrCmd_255,
     ScrCmd_CalcCatchingShowPoints,
@@ -5599,13 +5599,13 @@ static BOOL ScrCmd_188(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_189(ScriptContext *ctx)
+static BOOL ScrCmd_SetObjectEventDir(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 localID = ScriptContext_GetVar(ctx);
+    u16 dir = ScriptContext_GetVar(ctx);
 
-    MapHeaderData_SetObjectEventDir(ctx->fieldSystem, v0, v1);
-    return 0;
+    MapHeaderData_SetObjectEventDir(ctx->fieldSystem, localID, dir);
+    return FALSE;
 }
 
 static BOOL ScrCmd_SetWarpEventPos(ScriptContext *ctx)

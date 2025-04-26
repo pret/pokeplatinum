@@ -21,12 +21,12 @@
 _0036:
     ClearFlag FLAG_ALT_MUSIC_PAL_PARK
     SetFlag FLAG_UNK_0x09F3
-    GoToIfNe VAR_UNK_0x40F3, 0, _004D
+    GoToIfNe VAR_PAL_PARK_STATE, 0, _004D
     End
 
 _004D:
     SetObjectEventPos 7, 8, 9
-    ScrCmd_189 7, 2
+    SetObjectEventDir 7, 2
     End
 
 _005D:
@@ -201,7 +201,7 @@ _02CC:
 
 _02D8:
     LockAll
-    SetVar VAR_UNK_0x40F3, 0
+    SetVar VAR_PAL_PARK_STATE, 0
     ApplyMovement LOCALID_PLAYER, _03E4
     WaitMovement
     ApplyMovement 7, _03D8
@@ -211,7 +211,7 @@ _02D8:
 
 _02F8:
     LockAll
-    SetVar VAR_UNK_0x40F3, 0
+    SetVar VAR_PAL_PARK_STATE, 0
     ApplyMovement LOCALID_PLAYER, _03EC
     WaitMovement
     CalcCatchingShowPoints CATCHING_SHOW_CATCHING_POINTS, VAR_RESULT

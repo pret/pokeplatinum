@@ -67,7 +67,7 @@ _006A:
     ClearFlag FLAG_UNK_0x01BB
     SetObjectEventPos 5, 12, 15
     ScrCmd_188 5, 16
-    ScrCmd_189 5, 2
+    SetObjectEventDir 5, 2
     AddObject 5
     RemoveObject 4
     SetFlag FLAG_UNK_0x0071
@@ -79,7 +79,7 @@ _006A:
     ClearFlag FLAG_UNK_0x01C2
     SetObjectEventPos 4, 12, 15
     ScrCmd_188 4, 16
-    ScrCmd_189 4, 2
+    SetObjectEventDir 4, 2
     AddObject 4
     RemoveObject 5
     CloseMessage

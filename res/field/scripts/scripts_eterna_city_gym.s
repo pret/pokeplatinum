@@ -235,20 +235,20 @@ _02DA:
 
 _0314:
     ScrCmd_188 VAR_0x8007, 15
-    ScrCmd_189 VAR_0x8007, 1
+    SetObjectEventDir VAR_0x8007, 1
     Return
 
 _0322:
     ScrCmd_188 VAR_0x8007, 14
-    ScrCmd_189 VAR_0x8007, 0
+    SetObjectEventDir VAR_0x8007, 0
     Return
 
 _0330:
     ScrCmd_188 VAR_0x8007, 17
-    ScrCmd_189 VAR_0x8007, 3
+    SetObjectEventDir VAR_0x8007, 3
     Return
 
 _033E:
     ScrCmd_188 VAR_0x8007, 16
-    ScrCmd_189 VAR_0x8007, 2
+    SetObjectEventDir VAR_0x8007, 2
     Return

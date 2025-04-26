@@ -802,7 +802,7 @@ _0AF4:
     ClearFlag FLAG_UNK_0x02B0
     SetObjectEventPos 6, 11, 11
     ScrCmd_188 6, 14
-    ScrCmd_189 6, 0
+    SetObjectEventDir 6, 0
     AddObject 6
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement LOCALID_PLAYER, _0B3C
@@ -833,7 +833,7 @@ _0B5C:
     ClearFlag FLAG_UNK_0x02B3
     SetObjectEventPos 9, 11, 11
     ScrCmd_188 9, 14
-    ScrCmd_189 9, 0
+    SetObjectEventDir 9, 0
     AddObject 9
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement LOCALID_PLAYER, _0BAC
@@ -862,7 +862,7 @@ _0BBC:
     ClearFlag FLAG_UNK_0x02B6
     SetObjectEventPos 10, 11, 11
     ScrCmd_188 10, 14
-    ScrCmd_189 10, 0
+    SetObjectEventDir 10, 0
     AddObject 10
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement LOCALID_PLAYER, _0C14
@@ -893,7 +893,7 @@ _0C24:
     ClearFlag FLAG_UNK_0x02B8
     SetObjectEventPos 12, 11, 11
     ScrCmd_188 12, 14
-    ScrCmd_189 12, 0
+    SetObjectEventDir 12, 0
     AddObject 12
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement LOCALID_PLAYER, _0C78
@@ -1211,13 +1211,13 @@ _10DA:
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 0, _1103
     SetObjectEventPos 1, 11, 11
     ScrCmd_188 1, 14
-    ScrCmd_189 1, 0
+    SetObjectEventDir 1, 0
     Return
 
 _1103:
     SetObjectEventPos 1, 10, 8
     ScrCmd_188 1, 14
-    ScrCmd_189 1, 0
+    SetObjectEventDir 1, 0
     ClearFlag FLAG_UNK_0x02A7
     AddObject 1
     Return
@@ -1227,13 +1227,13 @@ _1121:
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 1, _114A
     SetObjectEventPos 0, 11, 11
     ScrCmd_188 0, 14
-    ScrCmd_189 0, 0
+    SetObjectEventDir 0, 0
     Return
 
 _114A:
     SetObjectEventPos 0, 10, 8
     ScrCmd_188 0, 14
-    ScrCmd_189 0, 0
+    SetObjectEventDir 0, 0
     ClearFlag FLAG_UNK_0x02A8
     AddObject 0
     Return
@@ -1247,14 +1247,14 @@ _1168:
 _1183:
     SetObjectEventPos 2, 11, 11
     ScrCmd_188 2, 14
-    ScrCmd_189 2, 0
+    SetObjectEventDir 2, 0
     Return
 
 _1199:
     GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _1183
     SetObjectEventPos 2, 10, 8
     ScrCmd_188 2, 14
-    ScrCmd_189 2, 0
+    SetObjectEventDir 2, 0
     ClearFlag FLAG_UNK_0x02A9
     AddObject 2
     Return
@@ -1268,14 +1268,14 @@ _11C2:
 _11DD:
     SetObjectEventPos 5, 11, 11
     ScrCmd_188 5, 14
-    ScrCmd_189 5, 0
+    SetObjectEventDir 5, 0
     Return
 
 _11F3:
     GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _11DD
     SetObjectEventPos 5, 10, 8
     ScrCmd_188 5, 14
-    ScrCmd_189 5, 0
+    SetObjectEventDir 5, 0
     ClearFlag FLAG_UNK_0x02AE
     AddObject 5
     Return
@@ -1285,13 +1285,13 @@ _121C:
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 12, _1245
     SetObjectEventPos 12, 11, 11
     ScrCmd_188 12, 14
-    ScrCmd_189 12, 0
+    SetObjectEventDir 12, 0
     Return
 
 _1245:
     SetObjectEventPos 12, 10, 8
     ScrCmd_188 12, 14
-    ScrCmd_189 12, 0
+    SetObjectEventDir 12, 0
     ClearFlag FLAG_UNK_0x02B8
     AddObject 12
     Return

@@ -32,22 +32,22 @@ _0069:
 _0071:
     SetObjectEventPos 5, 46, 50
     ScrCmd_188 5, 14
-    ScrCmd_189 5, 0
+    SetObjectEventDir 5, 0
     Return
 
 _0087:
     SetObjectEventPos 5, 46, 51
     ScrCmd_188 5, 15
-    ScrCmd_189 5, 1
+    SetObjectEventDir 5, 1
     Return
 
 _009D:
     SetObjectEventPos 5, 50, 37
     ScrCmd_188 5, 16
-    ScrCmd_189 5, 2
+    SetObjectEventDir 5, 2
     SetObjectEventPos 6, 50, 39
     ScrCmd_188 6, 16
-    ScrCmd_189 6, 2
+    SetObjectEventDir 6, 2
     Return
 
 _00C7:

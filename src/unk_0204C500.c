@@ -26,17 +26,17 @@
 #include "unk_02092494.h"
 #include "vars_flags.h"
 
-BOOL ScrCmd_253(ScriptContext *param0)
+BOOL ScrCmd_SetClearInPalParkFlag(ScriptContext *ctx)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
-    u16 v1 = ScriptContext_GetVar(param0);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
+    u16 v1 = ScriptContext_GetVar(ctx);
 
     if (v1 == 0) {
-        SystemFlag_SetInPalPark(v0);
-        CatchingShow_Start(param0->fieldSystem);
+        SystemFlag_SetInPalPark(varsFlags);
+        CatchingShow_Start(ctx->fieldSystem);
     } else if (v1 == 1) {
-        SystemFlag_ClearInPalPark(v0);
-        CatchingShow_End(param0->fieldSystem);
+        SystemFlag_ClearInPalPark(varsFlags);
+        CatchingShow_End(ctx->fieldSystem);
     } else {
         GF_ASSERT(0);
     }

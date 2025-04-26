@@ -29,7 +29,7 @@ _0053:
 
 _005B:
     SetObjectEventPos 3, 186, 0x331
-    ScrCmd_189 3, 1
+    SetObjectEventDir 3, 1
     ScrCmd_188 3, 15
     Return
 

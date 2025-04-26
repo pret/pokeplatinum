@@ -26,7 +26,7 @@ _0034:
     End
 
 _0047:
-    ScrCmd_189 3, 3
+    SetObjectEventDir 3, 3
     End
 
 _004F:

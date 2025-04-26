@@ -1080,7 +1080,7 @@ _0CF4:
 
 _0D00:
     LockAll
-    ScrCmd_189 12, 3
+    SetObjectEventDir 12, 3
     ScrCmd_188 12, 17
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 0x21C, _0D64

@@ -2183,10 +2183,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_189 arg0, arg1
+    .macro SetObjectEventDir localID, dir
     .short 393
-    .short \arg0
-    .short \arg1
+    .short \localID
+    .short \dir
     .endm
 
     .macro SetWarpEventPos index, x, z
@@ -3389,9 +3389,17 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_253 arg0
+    .macro SetClearInPalParkFlag getClear
     .short 595
-    .short \arg0
+    .short \getClear
+    .endm
+
+    .macro SetInPalParkFlag
+    SetClearInPalParkFlag 0
+    .endm
+
+    .macro ClearInPalParkFlag
+    SetClearInPalParkFlag 1
     .endm
 
     .macro ScrCmd_254 arg0
