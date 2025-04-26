@@ -27,13 +27,6 @@
 #define MIN_POLYGON_ID          6
 #define MAX_POLYGON_ID          63
 
-// enum {
-//     EMIT_MAX = 20,
-//     PARTICLE_MAX = 200,
-//     FIX_POLYGON_ID = 5,
-//     MIN_POLYGON_ID = 6,
-//     MAX_POLYGON_ID = 63,
-// };
 
 static void *sParticleSystems[MAX_PARTICLE_SYSTEMS];
 
@@ -56,43 +49,43 @@ static const VecFx32 sParticleSystemDefaultCameraTarget = {
     0, 0, 0
 };
 
-static void *sub_02014204(u32 param0);
-static void *sub_02014230(u32 param0);
-static void *sub_0201425C(u32 param0);
-static void *sub_02014288(u32 param0);
-static void *sub_020142B4(u32 param0);
-static void *sub_020142E0(u32 param0);
-static void *sub_0201430C(u32 param0);
-static void *sub_02014338(u32 param0);
-static void *sub_02014364(u32 param0);
-static void *sub_02014390(u32 param0);
-static void *sub_020143BC(u32 param0);
-static void *sub_020143E8(u32 param0);
-static void *sub_02014414(u32 param0);
-static void *sub_02014440(u32 param0);
-static void *sub_0201446C(u32 param0);
-static void *sub_02014498(u32 param0);
-static inline void *Particle_LocalAlloc(ParticleSystem *param0, u32 param1);
+static void *ParticleSystem00_AllocMemory(u32 size);
+static void *ParticleSystem01_AllocMemory(u32 size);
+static void *ParticleSystem02_AllocMemory(u32 size);
+static void *ParticleSystem03_AllocMemory(u32 size);
+static void *ParticleSystem04_AllocMemory(u32 size);
+static void *ParticleSystem05_AllocMemory(u32 size);
+static void *ParticleSystem06_AllocMemory(u32 size);
+static void *ParticleSystem07_AllocMemory(u32 size);
+static void *ParticleSystem08_AllocMemory(u32 size);
+static void *ParticleSystem09_AllocMemory(u32 size);
+static void *ParticleSystem10_AllocMemory(u32 size);
+static void *ParticleSystem11_AllocMemory(u32 size);
+static void *ParticleSystem12_AllocMemory(u32 size);
+static void *ParticleSystem13_AllocMemory(u32 size);
+static void *ParticleSystem14_AllocMemory(u32 size);
+static void *ParticleSystem15_AllocMemory(u32 size);
+static inline void *ParticleSystem_AllocMemory(ParticleSystem *param0, u32 param1);
 static void ParticleSystem_UploadResourcesInternal(ParticleSystem *param0);
 static void ParticleSystem_VBlankResourceUploadInternal(SysTask *param0, void *param1);
 
 static const SPLAllocFunc sParticleSystemAllocFuncs[] = {
-    sub_02014204,
-    sub_02014230,
-    sub_0201425C,
-    sub_02014288,
-    sub_020142B4,
-    sub_020142E0,
-    sub_0201430C,
-    sub_02014338,
-    sub_02014364,
-    sub_02014390,
-    sub_020143BC,
-    sub_020143E8,
-    sub_02014414,
-    sub_02014440,
-    sub_0201446C,
-    sub_02014498,
+    ParticleSystem00_AllocMemory,
+    ParticleSystem01_AllocMemory,
+    ParticleSystem02_AllocMemory,
+    ParticleSystem03_AllocMemory,
+    ParticleSystem04_AllocMemory,
+    ParticleSystem05_AllocMemory,
+    ParticleSystem06_AllocMemory,
+    ParticleSystem07_AllocMemory,
+    ParticleSystem08_AllocMemory,
+    ParticleSystem09_AllocMemory,
+    ParticleSystem10_AllocMemory,
+    ParticleSystem11_AllocMemory,
+    ParticleSystem12_AllocMemory,
+    ParticleSystem13_AllocMemory,
+    ParticleSystem14_AllocMemory,
+    ParticleSystem15_AllocMemory,
 };
 
 void ParticleSystem_InitAll(void)
@@ -230,120 +223,102 @@ void ParticleSystem_FreeAll(void)
     }
 }
 
-static inline void *Particle_LocalAlloc(ParticleSystem *param0, u32 param1)
+static inline void *ParticleSystem_AllocMemory(ParticleSystem *particleSystem, u32 size)
 {
-    void *v0;
-    u32 v1, v2;
+    void *allocated = particleSystem->heap;
 
-    v0 = param0->heap;
-
-    v1 = (u32)param0->heap + param1;
-    v2 = v1 % 4;
-    if (v2 > 0) {
-        v1 += 4 - v2;
+    u32 newHeapPos = (u32)particleSystem->heap + size;
+    u32 offset = newHeapPos % 4;
+    if (offset > 0) {
+        newHeapPos += 4 - offset;
     }
-    param0->heap = (void *)v1;
 
-    if (param0->heap >= param0->heapEnd) {
+    particleSystem->heap = (void *)newHeapPos;
+    if (particleSystem->heap >= particleSystem->heapEnd) {
         GF_ASSERT(FALSE);
     }
-    return v0;
+
+    return allocated;
 }
 
-static void *sub_02014204(u32 param0)
+static void *ParticleSystem00_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[0];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[0], size);
 }
 
-static void *sub_02014230(u32 param0)
+static void *ParticleSystem01_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[1];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[1], size);
 }
 
-static void *sub_0201425C(u32 param0)
+static void *ParticleSystem02_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[2];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[2], size);
 }
 
-static void *sub_02014288(u32 param0)
+static void *ParticleSystem03_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[3];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[3], size);
 }
 
-static void *sub_020142B4(u32 param0)
+static void *ParticleSystem04_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[4];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[4], size);
 }
 
-static void *sub_020142E0(u32 param0)
+static void *ParticleSystem05_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[5];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[5], size);
 }
 
-static void *sub_0201430C(u32 param0)
+static void *ParticleSystem06_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[6];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[6], size);
 }
 
-static void *sub_02014338(u32 param0)
+static void *ParticleSystem07_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[7];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[7], size);
 }
 
-static void *sub_02014364(u32 param0)
+static void *ParticleSystem08_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[8];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[8], size);
 }
 
-static void *sub_02014390(u32 param0)
+static void *ParticleSystem09_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[9];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[9], size);
 }
 
-static void *sub_020143BC(u32 param0)
+static void *ParticleSystem10_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[10];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[10], size);
 }
 
-static void *sub_020143E8(u32 param0)
+static void *ParticleSystem11_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[11];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[11], size);
 }
 
-static void *sub_02014414(u32 param0)
+static void *ParticleSystem12_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[12];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[12], size);
 }
 
-static void *sub_02014440(u32 param0)
+static void *ParticleSystem13_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[13];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[13], size);
 }
 
-static void *sub_0201446C(u32 param0)
+static void *ParticleSystem14_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[14];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[14], size);
 }
 
-static void *sub_02014498(u32 param0)
+static void *ParticleSystem15_AllocMemory(u32 size)
 {
-    ParticleSystem *v0 = sParticleSystems[15];
-    return Particle_LocalAlloc(v0, param0);
+    return ParticleSystem_AllocMemory(sParticleSystems[15], size);
 }
 
 void *ParticleSystem_LoadResourceFromNARC(enum NarcID narcID, int memberIndex, enum HeapId heapID)
