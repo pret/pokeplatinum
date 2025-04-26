@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV12_0221FC20_H
 
 #include "struct_decls/battle_system.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 
 #include "battle/struct_ov16_02264408.h"
 #include "battle/struct_ov16_02265BBC.h"

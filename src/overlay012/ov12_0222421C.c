@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225104.h"
@@ -15,7 +15,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "spl.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 
 typedef struct {
     int unk_00;

@@ -40,7 +40,7 @@
 #include "touch_screen.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202C9F4.h"

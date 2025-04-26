@@ -3,11 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 
 #include "camera.h"
 #include "heap.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "unk_0202419C.h"
 
 static u32 ov11_0221F914(u32 param0, BOOL param1);

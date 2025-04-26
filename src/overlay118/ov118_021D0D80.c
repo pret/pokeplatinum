@@ -5,7 +5,7 @@
 
 #include "generated/species.h"
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "struct_defs/struct_0207F248.h"
 
 #include "camera.h"
@@ -22,7 +22,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "unk_0202419C.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"

@@ -5,7 +5,7 @@
 
 #include "generated/game_records.h"
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 
@@ -83,7 +83,7 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200F174.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"

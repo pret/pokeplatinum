@@ -49,7 +49,7 @@ pokeplatinum_c = files(
     'rtc.c',
     'string_list.c',
     'screen_scroll_manager.c',
-    'unk_02014000.c',
+    'particle_system.c',
     'colored_arrow.c',
     'unk_02014A84.c',
     'unk_02014D38.c',

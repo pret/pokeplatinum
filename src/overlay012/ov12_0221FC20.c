@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/battle_system.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "battle/ov16_0223DF00.h"
@@ -46,7 +46,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "vram_transfer.h"
 
 typedef struct UnkStruct_ov12_02223178_t {

@@ -4,7 +4,7 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay114/struct_ov114_0225CAD4_decl.h"

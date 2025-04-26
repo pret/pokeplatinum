@@ -50,7 +50,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 

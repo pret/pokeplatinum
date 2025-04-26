@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay104/ov104_0222DCE0.h"
@@ -39,7 +39,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "unk_02030494.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"

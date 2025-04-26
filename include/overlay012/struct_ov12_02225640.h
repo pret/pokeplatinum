@@ -3,7 +3,7 @@
 
 #include <nitro/fx/fx.h>
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_0224DF54_H
 #define POKEPLATINUM_STRUCT_OV17_0224DF54_H
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02095C48.h"
 

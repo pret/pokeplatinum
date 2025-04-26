@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_022237EC.h"
@@ -14,7 +14,7 @@
 #include "spl.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 
 typedef struct UnkStruct_ov12_02238004_t {
     int unk_00;

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02235254.h"
@@ -12,7 +12,7 @@
 
 #include "camera.h"
 #include "spl.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 
 static s8 ov12_0222389C(UnkStruct_ov12_0221FCDC *param0, int param1, int param2);
 

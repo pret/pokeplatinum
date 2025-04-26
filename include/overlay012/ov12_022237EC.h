@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV12_022237EC_H
 #define POKEPLATINUM_OV12_022237EC_H
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 
 #include "narc.h"
 #include "spl.h"

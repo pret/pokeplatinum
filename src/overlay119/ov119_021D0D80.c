@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -34,7 +34,7 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200F174.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"

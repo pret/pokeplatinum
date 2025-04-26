@@ -7,7 +7,7 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -41,7 +41,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "unk_02054884.h"
 
 enum ScreenFlashState {

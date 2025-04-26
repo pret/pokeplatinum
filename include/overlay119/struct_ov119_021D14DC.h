@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV119_021D14DC_H
 #define POKEPLATINUM_STRUCT_OV119_021D14DC_H
 
-#include "unk_02014000.h"
+#include "particle_system.h"
 
 #include "overlay119/struct_ov119_021D1930.h"
 
