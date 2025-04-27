@@ -18,7 +18,7 @@ static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2);
 static u32 sub_0201E784(u32 param0, u32 param1);
 static void sub_0201E7FC(UnkStruct_ov72_0223E2A8 *param0, u32 param1);
 static u32 sub_0201E69C(u32 param0, u32 param1, u32 param2);
-static void sub_0201E4A4(u32 param0, u32 param1, void *param2, u32 param3, u32 param4, u32 param5);
+static void UpdateTouchScreenState(u32 param0, u32 param1, void *buffer, u32 param3, u32 param4, u32 bufferFrequency);
 static void ClearTouchOnBufferData(TPData *buffer, int bufferSize);
 
 typedef struct {
@@ -29,29 +29,29 @@ typedef struct {
     u32 unk_54;
     u16 unk_58;
     u16 touchScreenDisabled;
-} UnkStruct_021C0704;
+} TouchScreenState;
 
-static UnkStruct_021C0704 Unk_021C0704;
+static TouchScreenState touchScreenState;
 
 void sub_0201E3D8(void)
 {
-    GF_ASSERT(Unk_021C0704.touchScreenDisabled == 0);
+    GF_ASSERT(touchScreenState.touchScreenDisabled == 0);
 
-    Unk_021C0704.unk_58 = 0;
-    Unk_021C0704.touchScreenDisabled = 0;
+    touchScreenState.unk_58 = 0;
+    touchScreenState.touchScreenDisabled = 0;
 }
 
 u32 SetTouchScreenBuffer(TPData *buffer, u32 param1, u32 bufferFrequency)
 {
     u32 result;
 
-    GF_ASSERT(Unk_021C0704.touchScreenDisabled == 0);
+    GF_ASSERT(touchScreenState.touchScreenDisabled == 0);
 
     if ((bufferFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (bufferFrequency <= 0)) {
         return 0;
     }
 
-    if (Unk_021C0704.unk_58 != 0) {
+    if (touchScreenState.unk_58 != 0) {
         return 0;
     }
 
@@ -61,7 +61,7 @@ u32 SetTouchScreenBuffer(TPData *buffer, u32 param1, u32 bufferFrequency)
         return result;
     }
 
-    sub_0201E4A4(1, 1, buffer, param1, 0, bufferFrequency * 2);
+    UpdateTouchScreenState(1, 1, buffer, param1, 0, bufferFrequency * 2);
 
     return 1;
 }
@@ -70,13 +70,13 @@ u32 SetTouchScreenBufferFrequency(u32 bufferFrequency)
 {
     u32 result;
 
-    GF_ASSERT(Unk_021C0704.touchScreenDisabled == 0);
+    GF_ASSERT(touchScreenState.touchScreenDisabled == 0);
 
     if ((bufferFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (bufferFrequency <= 0)) {
         return 0;
     }
 
-    if (Unk_021C0704.unk_58 != 0) {
+    if (touchScreenState.unk_58 != 0) {
         return 0;
     }
 
@@ -86,21 +86,21 @@ u32 SetTouchScreenBufferFrequency(u32 bufferFrequency)
         return result;
     }
 
-    sub_0201E4A4(2, 1, NULL, 0, 0, bufferFrequency * 2);
+    UpdateTouchScreenState(2, 1, NULL, 0, 0, bufferFrequency * 2);
 
     return 1;
 }
 
-static void sub_0201E4A4(u32 param0, u32 param1, void *param2, u32 param3, u32 param4, u32 param5)
+static void UpdateTouchScreenState(u32 param0, u32 param1, void *buffer, u32 param3, u32 param4, u32 bufferFrequency)
 {
-    Unk_021C0704.unk_58 = param0;
+    touchScreenState.unk_58 = param0;
     gSystem.touchAutoSampling = param1;
-    Unk_021C0704.buffer = param2;
-    Unk_021C0704.unk_04 = param3;
-    Unk_021C0704.autoSamplingBufferFrequency = param5;
-    Unk_021C0704.unk_54 = param4;
+    touchScreenState.buffer = buffer;
+    touchScreenState.unk_04 = param3;
+    touchScreenState.autoSamplingBufferFrequency = bufferFrequency;
+    touchScreenState.unk_54 = param4;
 
-    ClearTouchOnBufferData(Unk_021C0704.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
+    ClearTouchOnBufferData(touchScreenState.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
 }
 
 static void ClearTouchOnBufferData(TPData *buffer, int bufferSize)
@@ -117,7 +117,7 @@ static u32 StopAutoSampling(void)
     u32 errorCount = 0;
     BOOL hasError;
 
-    if (Unk_021C0704.unk_58 == 0) {
+    if (touchScreenState.unk_58 == 0) {
         return 1;
     }
 
@@ -143,12 +143,12 @@ u32 sub_0201E530(void)
 {
     u32 v0;
 
-    GF_ASSERT(Unk_021C0704.touchScreenDisabled == 0);
+    GF_ASSERT(touchScreenState.touchScreenDisabled == 0);
 
     v0 = StopAutoSampling();
 
     if (v0 == 1) {
-        sub_0201E4A4(0, 0, NULL, 0, 0, 0);
+        UpdateTouchScreenState(0, 0, NULL, 0, 0, 0);
     }
 
     return v0;
@@ -159,18 +159,18 @@ u32 sub_0201E564(UnkStruct_ov72_0223E2A8 *param0, u32 param1, u32 param2)
     u32 v0 = 3;
     u32 v1;
 
-    GF_ASSERT(Unk_021C0704.touchScreenDisabled == 0);
+    GF_ASSERT(touchScreenState.touchScreenDisabled == 0);
 
-    if (Unk_021C0704.unk_58 != 0) {
+    if (touchScreenState.unk_58 != 0) {
         v1 = TP_GetLatestIndexInAuto();
 
-        sub_0201E5C0(Unk_021C0704.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
+        sub_0201E5C0(touchScreenState.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
 
         if (param0 != NULL) {
             sub_0201E7FC(param0, v1);
         }
 
-        if (Unk_021C0704.unk_58 == 1) {
+        if (touchScreenState.unk_58 == 1) {
             v0 = sub_0201E69C(param1, v1, param2);
         } else {
             v0 = 1;
@@ -197,36 +197,36 @@ void AfterSleep(void)
 {
     u32 v0;
 
-    if (Unk_021C0704.touchScreenDisabled == 0) {
+    if (touchScreenState.touchScreenDisabled == 0) {
         return;
     }
 
-    if (Unk_021C0704.unk_58 == 0) {
+    if (touchScreenState.unk_58 == 0) {
         return;
     }
 
-    v0 = StartAutoSampling(Unk_021C0704.autoSamplingBufferFrequency / 2);
+    v0 = StartAutoSampling(touchScreenState.autoSamplingBufferFrequency / 2);
     GF_ASSERT(v0 == 1);
 
-    Unk_021C0704.touchScreenDisabled = 0;
+    touchScreenState.touchScreenDisabled = 0;
 }
 
 void BeforeSleep(void)
 {
     u32 v0;
 
-    if (Unk_021C0704.touchScreenDisabled == 1) {
+    if (touchScreenState.touchScreenDisabled == 1) {
         return;
     }
 
-    if (Unk_021C0704.unk_58 == 0) {
+    if (touchScreenState.unk_58 == 0) {
         return;
     }
 
     v0 = StopAutoSampling();
     GF_ASSERT(v0 == 1);
 
-    Unk_021C0704.touchScreenDisabled = 1;
+    touchScreenState.touchScreenDisabled = 1;
 }
 
 static u32 StartAutoSampling(u32 bufferFrequency)
@@ -235,7 +235,7 @@ static u32 StartAutoSampling(u32 bufferFrequency)
     BOOL hasError;
 
     do {
-        TP_RequestAutoSamplingStartAsync(0, bufferFrequency, Unk_021C0704.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
+        TP_RequestAutoSamplingStartAsync(0, bufferFrequency, touchScreenState.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
         TP_WaitBusy(TP_REQUEST_COMMAND_FLAG_AUTO_ON);
 
         hasError = TP_CheckError(TP_REQUEST_COMMAND_FLAG_AUTO_ON);
@@ -286,24 +286,24 @@ static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2)
     s32 v2;
     s16 v3;
 
-    for (v0 = 0; v0 < Unk_021C0704.autoSamplingBufferFrequency; v0++) {
-        v3 = param1 - Unk_021C0704.autoSamplingBufferFrequency + v0 + 1;
+    for (v0 = 0; v0 < touchScreenState.autoSamplingBufferFrequency; v0++) {
+        v3 = param1 - touchScreenState.autoSamplingBufferFrequency + v0 + 1;
 
         if (v3 < 0) {
             v3 += 9;
         }
 
-        if ((Unk_021C0704.autoSamplingBuffer[v3].touch == TP_TOUCH_ON) && (Unk_021C0704.autoSamplingBuffer[v3].validity == TP_VALIDITY_VALID)) {
-            v1 = CalcIntsDifference(Unk_021C0704.buffer[Unk_021C0704.unk_54 - 1].x, Unk_021C0704.autoSamplingBuffer[v3].x);
-            v2 = CalcIntsDifference(Unk_021C0704.buffer[Unk_021C0704.unk_54 - 1].y, Unk_021C0704.autoSamplingBuffer[v3].y);
+        if ((touchScreenState.autoSamplingBuffer[v3].touch == TP_TOUCH_ON) && (touchScreenState.autoSamplingBuffer[v3].validity == TP_VALIDITY_VALID)) {
+            v1 = CalcIntsDifference(touchScreenState.buffer[touchScreenState.unk_54 - 1].x, touchScreenState.autoSamplingBuffer[v3].x);
+            v2 = CalcIntsDifference(touchScreenState.buffer[touchScreenState.unk_54 - 1].y, touchScreenState.autoSamplingBuffer[v3].y);
 
             if ((v1 >= param2) || (v2 >= param2)) {
-                Unk_021C0704.buffer[Unk_021C0704.unk_54] = Unk_021C0704.autoSamplingBuffer[v3];
-                Unk_021C0704.unk_54++;
+                touchScreenState.buffer[touchScreenState.unk_54] = touchScreenState.autoSamplingBuffer[v3];
+                touchScreenState.unk_54++;
 
-                if (Unk_021C0704.unk_54 >= Unk_021C0704.unk_04) {
+                if (touchScreenState.unk_54 >= touchScreenState.unk_04) {
                     if (param0 == 1) {
-                        Unk_021C0704.unk_54 %= Unk_021C0704.unk_04;
+                        touchScreenState.unk_54 %= touchScreenState.unk_04;
                     } else {
                         return -1;
                     }
@@ -312,7 +312,7 @@ static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2)
         }
     }
 
-    return Unk_021C0704.unk_54;
+    return touchScreenState.unk_54;
 }
 
 static u32 sub_0201E784(u32 param0, u32 param1)
@@ -320,26 +320,26 @@ static u32 sub_0201E784(u32 param0, u32 param1)
     int v0;
     s16 v1;
 
-    for (v0 = 0; v0 < Unk_021C0704.autoSamplingBufferFrequency; v0++) {
-        v1 = param1 - Unk_021C0704.autoSamplingBufferFrequency + v0 + 1;
+    for (v0 = 0; v0 < touchScreenState.autoSamplingBufferFrequency; v0++) {
+        v1 = param1 - touchScreenState.autoSamplingBufferFrequency + v0 + 1;
 
         if (v1 < 0) {
             v1 += MAX_AUTO_SAMPLING_BUFFER_SIZE;
         }
 
-        Unk_021C0704.buffer[Unk_021C0704.unk_54] = Unk_021C0704.autoSamplingBuffer[v1];
-        Unk_021C0704.unk_54++;
+        touchScreenState.buffer[touchScreenState.unk_54] = touchScreenState.autoSamplingBuffer[v1];
+        touchScreenState.unk_54++;
 
-        if (Unk_021C0704.unk_54 >= Unk_021C0704.unk_04) {
+        if (touchScreenState.unk_54 >= touchScreenState.unk_04) {
             if (param0 == 4) {
-                Unk_021C0704.unk_54 %= Unk_021C0704.unk_04;
+                touchScreenState.unk_54 %= touchScreenState.unk_04;
             } else {
                 return -1;
             }
         }
     }
 
-    return Unk_021C0704.unk_54;
+    return touchScreenState.unk_54;
 }
 
 static void sub_0201E7FC(UnkStruct_ov72_0223E2A8 *param0, u32 param1)
@@ -356,15 +356,15 @@ static void sub_0201E7FC(UnkStruct_ov72_0223E2A8 *param0, u32 param1)
         param0->unk_02[v0].y = 0;
     }
 
-    for (v0 = 0; v0 < Unk_021C0704.autoSamplingBufferFrequency; v0++) {
-        v1 = param1 - Unk_021C0704.autoSamplingBufferFrequency + v0 + 1;
+    for (v0 = 0; v0 < touchScreenState.autoSamplingBufferFrequency; v0++) {
+        v1 = param1 - touchScreenState.autoSamplingBufferFrequency + v0 + 1;
 
         if (v1 < 0) {
             v1 += MAX_AUTO_SAMPLING_BUFFER_SIZE;
         }
 
-        if (Unk_021C0704.autoSamplingBuffer[v1].validity == TP_VALIDITY_VALID) {
-            param0->unk_02[param0->unk_00] = Unk_021C0704.autoSamplingBuffer[v1];
+        if (touchScreenState.autoSamplingBuffer[v1].validity == TP_VALIDITY_VALID) {
+            param0->unk_02[param0->unk_00] = touchScreenState.autoSamplingBuffer[v1];
             param0->unk_00++;
         }
     }
