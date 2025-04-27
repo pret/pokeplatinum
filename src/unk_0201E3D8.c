@@ -41,15 +41,13 @@ void sub_0201E3D8(void)
     Unk_021C0704.touchScreenDisabled = 0;
 }
 
-u32 sub_0201E3F4(TPData *param0, u32 param1, u32 param2)
+u32 SetTouchScreenBuffer(TPData *buffer, u32 param1, u32 bufferFrequency)
 {
-    int v0 = 0;
-    u32 v1;
-    int v2;
+    u32 result;
 
     GF_ASSERT(Unk_021C0704.touchScreenDisabled == 0);
 
-    if ((param2 >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (param2 <= 0)) {
+    if ((bufferFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (bufferFrequency <= 0)) {
         return 0;
     }
 
@@ -57,13 +55,13 @@ u32 sub_0201E3F4(TPData *param0, u32 param1, u32 param2)
         return 0;
     }
 
-    v1 = StartAutoSampling(param2);
+    result = StartAutoSampling(bufferFrequency);
 
-    if (v1 != 1) {
-        return v1;
+    if (result != 1) {
+        return result;
     }
 
-    sub_0201E4A4(1, 1, param0, param1, 0, param2 * 2);
+    sub_0201E4A4(1, 1, buffer, param1, 0, bufferFrequency * 2);
 
     return 1;
 }
