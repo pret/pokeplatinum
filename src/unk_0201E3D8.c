@@ -29,10 +29,10 @@ typedef struct {
 
 static u32 StartAutoSampling(u32 bufferFrequency);
 static u32 StopAutoSampling(void);
-static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2);
-static u32 sub_0201E784(u32 param0, u32 param1);
+static u32 sub_0201E6CC(u32 frequency, u32 latestIndex, u32 param2);
+static u32 sub_0201E784(u32 frequency, u32 latestIndex);
 static void OutputAutoSampleBuffer(TouchPadDataBuffer *outBuffer, u32 latestIndex);
-static u32 sub_0201E69C(u32 param0, u32 param1, u32 param2);
+static u32 sub_0201E69C(u32 frequency, u32 latestIndex, u32 param2);
 static void UpdateTouchScreenState(enum AutoSamplingState autoSamplingState, BOOL autoSamplingEnabled, void *buffer, u32 param3, u32 param4, u32 bufferFrequency);
 static void ClearTouchOnBufferData(TPData *buffer, int bufferSize);
 
@@ -159,24 +159,24 @@ u32 DisableTouchScreen(void)
     return autoSamplingResult;
 }
 
-u32 sub_0201E564(TouchPadDataBuffer *param0, u32 param1, u32 param2)
+u32 sub_0201E564(TouchPadDataBuffer *buffer, u32 frequency, u32 param2)
 {
     u32 v0 = 3;
-    u32 v1;
+    u32 latestIndex;
 
     GF_ASSERT(touchScreenState.touchScreenDisabled == FALSE);
 
     if (touchScreenState.autoSamplingState != AUTO_SAMPLING_STATE_DISABLED) {
-        v1 = TP_GetLatestIndexInAuto();
+        latestIndex = TP_GetLatestIndexInAuto();
 
         ConvertTouchPadDataToScreenSpace(touchScreenState.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
 
-        if (param0 != NULL) {
-            OutputAutoSampleBuffer(param0, v1);
+        if (buffer != NULL) {
+            OutputAutoSampleBuffer(buffer, latestIndex);
         }
 
         if (touchScreenState.autoSamplingState == AUTO_SAMPLING_STATE_ENABLED) {
-            v0 = sub_0201E69C(param1, v1, param2);
+            v0 = sub_0201E69C(frequency, latestIndex, param2);
         } else {
             v0 = 1;
         }
@@ -257,18 +257,18 @@ static u32 StartAutoSampling(u32 bufferFrequency)
     return 1;
 }
 
-static u32 sub_0201E69C(u32 param0, u32 param1, u32 param2)
+static u32 sub_0201E69C(u32 frequency, u32 latestIndex, u32 param2)
 {
     u32 v0;
 
-    switch (param0) {
+    switch (frequency) {
     case 1:
     case 3:
-        v0 = sub_0201E6CC(param0, param1, param2);
+        v0 = sub_0201E6CC(frequency, latestIndex, param2);
         break;
     case 4:
     case 5:
-        v0 = sub_0201E784(param0, param1);
+        v0 = sub_0201E784(frequency, latestIndex);
         break;
     default:
         v0 = 1;
@@ -284,7 +284,7 @@ static inline int CalcIntsDifference(int int1, int int2)
     return diff;
 }
 
-static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2)
+static u32 sub_0201E6CC(u32 frequency, u32 latestIndex, u32 param2)
 {
     int v0;
     s32 v1;
@@ -292,7 +292,7 @@ static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2)
     s16 v3;
 
     for (v0 = 0; v0 < touchScreenState.autoSamplingBufferFrequency; v0++) {
-        v3 = param1 - touchScreenState.autoSamplingBufferFrequency + v0 + 1;
+        v3 = latestIndex - touchScreenState.autoSamplingBufferFrequency + v0 + 1;
 
         if (v3 < 0) {
             v3 += 9;
@@ -307,7 +307,7 @@ static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2)
                 touchScreenState.unk_54++;
 
                 if (touchScreenState.unk_54 >= touchScreenState.unk_04) {
-                    if (param0 == 1) {
+                    if (frequency == 1) {
                         touchScreenState.unk_54 %= touchScreenState.unk_04;
                     } else {
                         return -1;
@@ -320,23 +320,23 @@ static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2)
     return touchScreenState.unk_54;
 }
 
-static u32 sub_0201E784(u32 param0, u32 param1)
+static u32 sub_0201E784(u32 frequency, u32 latestIndex)
 {
-    int v0;
-    s16 v1;
+    int i;
+    s16 bufferIndex;
 
-    for (v0 = 0; v0 < touchScreenState.autoSamplingBufferFrequency; v0++) {
-        v1 = param1 - touchScreenState.autoSamplingBufferFrequency + v0 + 1;
+    for (i = 0; i < touchScreenState.autoSamplingBufferFrequency; i++) {
+        bufferIndex = latestIndex - touchScreenState.autoSamplingBufferFrequency + i + 1;
 
-        if (v1 < 0) {
-            v1 += MAX_AUTO_SAMPLING_BUFFER_SIZE;
+        if (bufferIndex < 0) {
+            bufferIndex += MAX_AUTO_SAMPLING_BUFFER_SIZE;
         }
 
-        touchScreenState.buffer[touchScreenState.unk_54] = touchScreenState.autoSamplingBuffer[v1];
+        touchScreenState.buffer[touchScreenState.unk_54] = touchScreenState.autoSamplingBuffer[bufferIndex];
         touchScreenState.unk_54++;
 
         if (touchScreenState.unk_54 >= touchScreenState.unk_04) {
-            if (param0 == 4) {
+            if (frequency == 4) {
                 touchScreenState.unk_54 %= touchScreenState.unk_04;
             } else {
                 return -1;

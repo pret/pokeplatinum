@@ -9,7 +9,7 @@ void EnableTouchScreen(void);
 BOOL InitializeTouchScreen(TPData *buffer, u32 param1, u32 bufferFrequency);
 BOOL InitializeTouchScreenNoBuffer(u32 bufferFrequency);
 u32 DisableTouchScreen(void);
-u32 sub_0201E564(TouchPadDataBuffer *param0, u32 param1, u32 param2);
+u32 sub_0201E564(TouchPadDataBuffer *buffer, u32 frequency, u32 param2);
 void ConvertTouchPadDataToScreenSpace(TPData *touchPadDataBuffer, u32 touchPadDataBufferSize);
 void AfterSleep(void);
 void BeforeSleep(void);
