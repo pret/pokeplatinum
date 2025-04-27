@@ -22,7 +22,7 @@ static void sub_0201E4A4(u32 param0, u32 param1, void *param2, u32 param3, u32 p
 static void ClearTouchOnBufferData(TPData *buffer, int bufferSize);
 
 typedef struct {
-    TPData *unk_00;
+    TPData *buffer;
     u32 unk_04;
     u32 autoSamplingBufferFrequency;
     TPData autoSamplingBuffer[MAX_AUTO_SAMPLING_BUFFER_SIZE];
@@ -95,7 +95,7 @@ static void sub_0201E4A4(u32 param0, u32 param1, void *param2, u32 param3, u32 p
 {
     Unk_021C0704.unk_58 = param0;
     gSystem.touchAutoSampling = param1;
-    Unk_021C0704.unk_00 = param2;
+    Unk_021C0704.buffer = param2;
     Unk_021C0704.unk_04 = param3;
     Unk_021C0704.autoSamplingBufferFrequency = param5;
     Unk_021C0704.unk_54 = param4;
@@ -294,11 +294,11 @@ static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2)
         }
 
         if ((Unk_021C0704.autoSamplingBuffer[v3].touch == TP_TOUCH_ON) && (Unk_021C0704.autoSamplingBuffer[v3].validity == TP_VALIDITY_VALID)) {
-            v1 = CalcIntsDifference(Unk_021C0704.unk_00[Unk_021C0704.unk_54 - 1].x, Unk_021C0704.autoSamplingBuffer[v3].x);
-            v2 = CalcIntsDifference(Unk_021C0704.unk_00[Unk_021C0704.unk_54 - 1].y, Unk_021C0704.autoSamplingBuffer[v3].y);
+            v1 = CalcIntsDifference(Unk_021C0704.buffer[Unk_021C0704.unk_54 - 1].x, Unk_021C0704.autoSamplingBuffer[v3].x);
+            v2 = CalcIntsDifference(Unk_021C0704.buffer[Unk_021C0704.unk_54 - 1].y, Unk_021C0704.autoSamplingBuffer[v3].y);
 
             if ((v1 >= param2) || (v2 >= param2)) {
-                Unk_021C0704.unk_00[Unk_021C0704.unk_54] = Unk_021C0704.autoSamplingBuffer[v3];
+                Unk_021C0704.buffer[Unk_021C0704.unk_54] = Unk_021C0704.autoSamplingBuffer[v3];
                 Unk_021C0704.unk_54++;
 
                 if (Unk_021C0704.unk_54 >= Unk_021C0704.unk_04) {
@@ -327,7 +327,7 @@ static u32 sub_0201E784(u32 param0, u32 param1)
             v1 += MAX_AUTO_SAMPLING_BUFFER_SIZE;
         }
 
-        Unk_021C0704.unk_00[Unk_021C0704.unk_54] = Unk_021C0704.autoSamplingBuffer[v1];
+        Unk_021C0704.buffer[Unk_021C0704.unk_54] = Unk_021C0704.autoSamplingBuffer[v1];
         Unk_021C0704.unk_54++;
 
         if (Unk_021C0704.unk_54 >= Unk_021C0704.unk_04) {
