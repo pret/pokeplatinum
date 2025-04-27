@@ -19,7 +19,7 @@ static u32 sub_0201E784(u32 param0, u32 param1);
 static void sub_0201E7FC(UnkStruct_ov72_0223E2A8 *param0, u32 param1);
 static u32 sub_0201E69C(u32 param0, u32 param1, u32 param2);
 static void sub_0201E4A4(u32 param0, u32 param1, void *param2, u32 param3, u32 param4, u32 param5);
-static void sub_0201E4D8(TPData *param0, int param1);
+static void ClearTouchOnBufferData(TPData *buffer, int bufferSize);
 
 typedef struct {
     TPData *unk_00;
@@ -103,15 +103,15 @@ static void sub_0201E4A4(u32 param0, u32 param1, void *param2, u32 param3, u32 p
     Unk_021C0704.autoSamplingBufferFrequency = param5;
     Unk_021C0704.unk_54 = param4;
 
-    sub_0201E4D8(Unk_021C0704.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
+    ClearTouchOnBufferData(Unk_021C0704.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
 }
 
-static void sub_0201E4D8(TPData *param0, int param1)
+static void ClearTouchOnBufferData(TPData *buffer, int bufferSize)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < param1; v0++) {
-        param0[v0].touch = 0;
+    for (i = 0; i < bufferSize; i++) {
+        buffer[i].touch = TP_TOUCH_OFF;
     }
 }
 
