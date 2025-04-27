@@ -24,7 +24,7 @@ static void sub_0201E4D8(TPData *param0, int param1);
 typedef struct {
     TPData *unk_00;
     u32 unk_04;
-    u32 unk_08;
+    u32 autoSamplingBufferFrequency;
     TPData autoSamplingBuffer[MAX_AUTO_SAMPLING_BUFFER_SIZE];
     u32 unk_54;
     u16 unk_58;
@@ -49,7 +49,7 @@ u32 sub_0201E3F4(TPData *param0, u32 param1, u32 param2)
 
     GF_ASSERT(Unk_021C0704.unk_5A == 0);
 
-    if ((param2 >= 5) || (param2 <= 0)) {
+    if ((param2 >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (param2 <= 0)) {
         return 0;
     }
 
@@ -75,7 +75,7 @@ u32 sub_0201E450(u32 param0)
 
     GF_ASSERT(Unk_021C0704.unk_5A == 0);
 
-    if ((param0 >= 5) || (param0 <= 0)) {
+    if ((param0 >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (param0 <= 0)) {
         return 0;
     }
 
@@ -100,7 +100,7 @@ static void sub_0201E4A4(u32 param0, u32 param1, void *param2, u32 param3, u32 p
     gSystem.touchAutoSampling = param1;
     Unk_021C0704.unk_00 = param2;
     Unk_021C0704.unk_04 = param3;
-    Unk_021C0704.unk_08 = param5;
+    Unk_021C0704.autoSamplingBufferFrequency = param5;
     Unk_021C0704.unk_54 = param4;
 
     sub_0201E4D8(Unk_021C0704.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
@@ -134,7 +134,7 @@ static u32 sub_0201E4EC(void)
         if (v1 != 0) {
             v0++;
         }
-    } while ((v1 != 0) && (v0 <= 5));
+    } while ((v1 != 0) && (v0 <= AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL));
 
     if (v0 > 5) {
         return 2;
@@ -209,7 +209,7 @@ void AfterSleep(void)
         return;
     }
 
-    v0 = sub_0201E658(Unk_021C0704.unk_08 / 2);
+    v0 = sub_0201E658(Unk_021C0704.autoSamplingBufferFrequency / 2);
     GF_ASSERT(v0 == 1);
 
     Unk_021C0704.unk_5A = 0;
@@ -247,7 +247,7 @@ static u32 sub_0201E658(u32 param0)
         if (v1 != 0) {
             v0++;
         }
-    } while ((v1 != 0) && (v0 <= 5));
+    } while ((v1 != 0) && (v0 <= AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL));
 
     if (v0 > 5) {
         return 2;
@@ -290,8 +290,8 @@ static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2)
     s32 v2;
     s16 v3;
 
-    for (v0 = 0; v0 < Unk_021C0704.unk_08; v0++) {
-        v3 = param1 - Unk_021C0704.unk_08 + v0 + 1;
+    for (v0 = 0; v0 < Unk_021C0704.autoSamplingBufferFrequency; v0++) {
+        v3 = param1 - Unk_021C0704.autoSamplingBufferFrequency + v0 + 1;
 
         if (v3 < 0) {
             v3 += 9;
@@ -324,8 +324,8 @@ static u32 sub_0201E784(u32 param0, u32 param1)
     int v0;
     s16 v1;
 
-    for (v0 = 0; v0 < Unk_021C0704.unk_08; v0++) {
-        v1 = param1 - Unk_021C0704.unk_08 + v0 + 1;
+    for (v0 = 0; v0 < Unk_021C0704.autoSamplingBufferFrequency; v0++) {
+        v1 = param1 - Unk_021C0704.autoSamplingBufferFrequency + v0 + 1;
 
         if (v1 < 0) {
             v1 += MAX_AUTO_SAMPLING_BUFFER_SIZE;
@@ -360,8 +360,8 @@ static void sub_0201E7FC(UnkStruct_ov72_0223E2A8 *param0, u32 param1)
         param0->unk_02[v0].y = 0;
     }
 
-    for (v0 = 0; v0 < Unk_021C0704.unk_08; v0++) {
-        v1 = param1 - Unk_021C0704.unk_08 + v0 + 1;
+    for (v0 = 0; v0 < Unk_021C0704.autoSamplingBufferFrequency; v0++) {
+        v1 = param1 - Unk_021C0704.autoSamplingBufferFrequency + v0 + 1;
 
         if (v1 < 0) {
             v1 += MAX_AUTO_SAMPLING_BUFFER_SIZE;
