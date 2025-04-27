@@ -13,7 +13,7 @@
 #define AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL 5
 
 static u32 StartAutoSampling(u32 bufferFrequency);
-static u32 sub_0201E4EC(void);
+static u32 StopAutoSampling(void);
 static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2);
 static u32 sub_0201E784(u32 param0, u32 param1);
 static void sub_0201E7FC(UnkStruct_ov72_0223E2A8 *param0, u32 param1);
@@ -115,11 +115,10 @@ static void sub_0201E4D8(TPData *param0, int param1)
     }
 }
 
-static u32 sub_0201E4EC(void)
+static u32 StopAutoSampling(void)
 {
-    u32 v0 = 0;
-    u32 v1;
-    int v2;
+    u32 errorCount = 0;
+    BOOL hasError;
 
     if (Unk_021C0704.unk_58 == 0) {
         return 1;
@@ -129,14 +128,14 @@ static u32 sub_0201E4EC(void)
         TP_RequestAutoSamplingStopAsync();
         TP_WaitBusy(TP_REQUEST_COMMAND_FLAG_AUTO_OFF);
 
-        v1 = TP_CheckError(TP_REQUEST_COMMAND_FLAG_AUTO_OFF);
+        hasError = TP_CheckError(TP_REQUEST_COMMAND_FLAG_AUTO_OFF);
 
-        if (v1 != 0) {
-            v0++;
+        if (hasError != FALSE) {
+            errorCount++;
         }
-    } while ((v1 != 0) && (v0 <= AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL));
+    } while ((hasError != FALSE) && (errorCount <= AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL));
 
-    if (v0 > 5) {
+    if (errorCount > AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL) {
         return 2;
     }
 
@@ -149,7 +148,7 @@ u32 sub_0201E530(void)
 
     GF_ASSERT(Unk_021C0704.unk_5A == 0);
 
-    v0 = sub_0201E4EC();
+    v0 = StopAutoSampling();
 
     if (v0 == 1) {
         sub_0201E4A4(0, 0, NULL, 0, 0, 0);
@@ -227,7 +226,7 @@ void BeforeSleep(void)
         return;
     }
 
-    v0 = sub_0201E4EC();
+    v0 = StopAutoSampling();
     GF_ASSERT(v0 == 1);
 
     Unk_021C0704.unk_5A = 1;
@@ -236,7 +235,7 @@ void BeforeSleep(void)
 static u32 StartAutoSampling(u32 bufferFrequency)
 {
     int errorCount = 0;
-    u32 hasError;
+    BOOL hasError;
 
     do {
         TP_RequestAutoSamplingStartAsync(0, bufferFrequency, Unk_021C0704.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
