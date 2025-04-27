@@ -31,7 +31,7 @@ static u32 StartAutoSampling(u32 bufferFrequency);
 static u32 StopAutoSampling(void);
 static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2);
 static u32 sub_0201E784(u32 param0, u32 param1);
-static void OutputAutoSampleBuffer(TouchPadDataBuffer *outBuffer, u32 lastIndex);
+static void OutputAutoSampleBuffer(TouchPadDataBuffer *outBuffer, u32 latestIndex);
 static u32 sub_0201E69C(u32 param0, u32 param1, u32 param2);
 static void UpdateTouchScreenState(enum AutoSamplingState autoSamplingState, BOOL autoSamplingEnabled, void *buffer, u32 param3, u32 param4, u32 bufferFrequency);
 static void ClearTouchOnBufferData(TPData *buffer, int bufferSize);
@@ -347,7 +347,7 @@ static u32 sub_0201E784(u32 param0, u32 param1)
     return touchScreenState.unk_54;
 }
 
-static void OutputAutoSampleBuffer(TouchPadDataBuffer *outBuffer, u32 lastIndex)
+static void OutputAutoSampleBuffer(TouchPadDataBuffer *outBuffer, u32 latestIndex)
 {
     int i;
     s16 bufferIndex;
@@ -362,7 +362,7 @@ static void OutputAutoSampleBuffer(TouchPadDataBuffer *outBuffer, u32 lastIndex)
     }
 
     for (i = 0; i < touchScreenState.autoSamplingBufferFrequency; i++) {
-        bufferIndex = lastIndex - touchScreenState.autoSamplingBufferFrequency + i + 1;
+        bufferIndex = latestIndex - touchScreenState.autoSamplingBufferFrequency + i + 1;
 
         if (bufferIndex < 0) {
             bufferIndex += MAX_AUTO_SAMPLING_BUFFER_SIZE;
