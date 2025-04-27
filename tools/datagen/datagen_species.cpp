@@ -429,8 +429,6 @@ static ArchivedPokeSpriteData ParsePokeSprite(const rapidjson::Document &root)
     const rapidjson::Value &back = root["back"];
     const rapidjson::Value &shadow = root["shadow"];
 
-    std::cout << "here" << std::endl;
-
     data.faces[0] = ParsePokeSpriteFace(front);
     data.faces[1] = ParsePokeSpriteFace(back);
     data.yOffset = front["addl_y_offset"].GetInt();

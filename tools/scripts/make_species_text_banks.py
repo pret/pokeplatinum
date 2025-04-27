@@ -2,6 +2,7 @@
 import argparse
 import json
 import os
+import sys
 import pathlib
 import xml.etree.ElementTree as ET
 
@@ -98,11 +99,24 @@ def Full_Width_Number(value):
     return f'{num:０>{len(str(NUM_POKEMON))}}'
 
 # collect data
+errors = ""
 for i, species_dir in enumerate(SPECIES_DIRS):
     file = source_dir / species_dir / 'data.json'
-    with open(file, 'r', encoding='utf-8') as data_file:
-        pkdata = json.load(data_file)
-    pokemon_name = pkdata['pokedex_data']['en']['name']
+    try:
+        with open(file, 'r', encoding='utf-8') as data_file:
+            pkdata = json.load(data_file)
+        pokemon_name = pkdata['pokedex_data']['en']['name']
+    except json.decoder.JSONDecodeError as e:
+        docLines = e.doc.splitlines()
+        startLine = max(e.lineno-2, 0)
+        endLine = min(e.lineno+1, len(docLines))
+        
+        errorLines = [f"{lineNum:>4} {line}" for lineNum, line in zip(list(range(startLine+1, endLine+1)), docLines[startLine : endLine])][ : endLine - startLine]
+        errorLineIndex = e.lineno - startLine - 1
+        errorLines[errorLineIndex] = errorLines[errorLineIndex][ : 5] + f"\033[31m{errorLines[errorLineIndex][5 : ]}\033[0m"
+
+        errors += f"{file}:{e.lineno}:{e.colno}\033[31 merror: \033[0m{e.msg}\n{'\n'.join(errorLines)}\n"
+        continue
     
     # species_names
     species_name[i] = pokemon_name
@@ -150,6 +164,10 @@ for i, species_dir in enumerate(SPECIES_DIRS):
 
         # category
         species_category[j][i] = pkdexdata[lang]['category']
+
+if errors:
+    print(errors, file=sys.stderr)
+    sys.exit(1)
 
 # SPECIES_NONE
 species_name[0] = '-----'

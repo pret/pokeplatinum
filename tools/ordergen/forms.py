@@ -2,7 +2,7 @@
 
 import argparse
 import json
-
+import sys
 
 argp = argparse.ArgumentParser(
     description="Process a forms registry into a listing of res/pokemon subdirectories"
@@ -20,8 +20,20 @@ with (
     open(args.ICON_OUT, "w", encoding="utf-8") as icon_out,
     open(args.SPRITE_OUT, "w", encoding="utf-8") as sprite_out,
 ):
-    form_reg: dict[str, dict[str, str | bool]] = json.load(form_reg_f)
+    try:
+        form_reg: dict[str, dict[str, str | bool]] = json.load(form_reg_f)
+    except json.decoder.JSONDecodeError as e:
+        docLines = e.doc.splitlines()
+        startLine = max(e.lineno-2, 0)
+        endLine = min(e.lineno+1, len(docLines))
+        
+        errorLines = [f"{lineNum:>4} {line}" for lineNum, line in zip(list(range(startLine+1, endLine+1)), docLines[startLine : endLine])][ : endLine - startLine]
+        errorLineIndex = e.lineno - startLine - 1
+        errorLines[errorLineIndex] = errorLines[errorLineIndex][ : 5] + f"\033[31m{errorLines[errorLineIndex][5 : ]}\033[0m"
 
+        print(f"{args.FORM_REGISTRY}:{e.lineno}:{e.colno}\033[31m error: \033[0m{e.msg}\n{'\n'.join(errorLines)}\n", file=sys.stderr)
+        sys.exit(1)
+    
     all_sprite_lines = []
     all_palette_lines = []
     last_sprite_lines = []

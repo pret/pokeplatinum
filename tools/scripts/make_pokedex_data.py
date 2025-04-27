@@ -2,6 +2,7 @@
 import argparse
 import json
 import os
+import sys
 import pathlib
 import subprocess
 
@@ -68,12 +69,25 @@ heightData = [0 for i in range(NUM_POKEMON)]
 weightData = [0 for i in range(NUM_POKEMON)]
 nameData = ['' for i in range(NUM_POKEMON)]
 
+errors = ""
 for i, species_dir in enumerate(SPECIES_DIRS):
-    file = source_dir / species_dir / 'data.json'
-    if ((species_dir == 'giratina') and (args.giratina_form == 'giratina_origin')):
-        file = source_dir / 'giratina/forms/origin/data.json'
-    with open(file, 'r', encoding='utf-8') as data_file:
-        pkdata = json.load(data_file)
+    try:
+        file = source_dir / species_dir / 'data.json'
+        if ((species_dir == 'giratina') and (args.giratina_form == 'giratina_origin')):
+            file = source_dir / 'giratina/forms/origin/data.json'
+        with open(file, 'r', encoding='utf-8') as data_file:
+            pkdata = json.load(data_file)
+    except json.decoder.JSONDecodeError as e:
+        docLines = e.doc.splitlines()
+        startLine = max(e.lineno-2, 0)
+        endLine = min(e.lineno+1, len(docLines))
+        
+        errorLines = [f"{lineNum:>4} {line}" for lineNum, line in zip(list(range(startLine+1, endLine+1)), docLines[startLine : endLine])][ : endLine - startLine]
+        errorLineIndex = e.lineno - startLine - 1
+        errorLines[errorLineIndex] = errorLines[errorLineIndex][ : 5] + f"\033[31m{errorLines[errorLineIndex][5 : ]}\033[0m"
+
+        errors += f"{file}:{e.lineno}:{e.colno}\033[31m error: \033[0m{e.msg}\n{'\n'.join(errorLines)}\n"
+        continue
 
     # Do not attempt to process eggs
     if species_dir in ['egg', 'bad_egg']:
@@ -109,6 +123,10 @@ for i, species_dir in enumerate(SPECIES_DIRS):
         heightData[i-1] = pkdexdata['height']
         weightData[i-1] = pkdexdata['weight']
         nameData[i-1] = pkdexdata['en']['name']
+
+if errors:
+    print(errors, file=sys.stderr)
+    sys.exit(1)
 
 # sinnoh dex order
 with open(source_dir / 'sinnoh_pokedex.json') as data_file:
