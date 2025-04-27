@@ -19,20 +19,20 @@ enum AutoSamplingState
 
 typedef struct {
     TPData *buffer;
-    u32 unk_04;
+    u32 bufferSize;
     u32 autoSamplingBufferFrequency;
     TPData autoSamplingBuffer[MAX_AUTO_SAMPLING_BUFFER_SIZE];
-    u32 unk_54;
+    u32 currentBufferIndex;
     u16 autoSamplingState;
     u16 touchScreenDisabled;
 } TouchScreenState;
 
 static u32 StartAutoSampling(u32 bufferFrequency);
 static u32 StopAutoSampling(void);
-static u32 sub_0201E6CC(u32 frequency, u32 latestIndex, u32 param2);
+static u32 sub_0201E6CC(u32 frequency, u32 latestIndex, u32 limit);
 static u32 sub_0201E784(u32 frequency, u32 latestIndex);
 static void OutputAutoSampleBuffer(TouchPadDataBuffer *outBuffer, u32 latestIndex);
-static u32 sub_0201E69C(u32 frequency, u32 latestIndex, u32 param2);
+static u32 sub_0201E69C(u32 frequency, u32 latestIndex, u32 limit);
 static void UpdateTouchScreenState(enum AutoSamplingState autoSamplingState, BOOL autoSamplingEnabled, void *buffer, u32 param3, u32 param4, u32 bufferFrequency);
 static void ClearTouchOnBufferData(TPData *buffer, int bufferSize);
 
@@ -101,9 +101,9 @@ static void UpdateTouchScreenState(enum AutoSamplingState autoSamplingState, BOO
     touchScreenState.autoSamplingState = autoSamplingState;
     gSystem.touchAutoSampling = autoSamplingEnabled;
     touchScreenState.buffer = buffer;
-    touchScreenState.unk_04 = param3;
+    touchScreenState.bufferSize = param3;
     touchScreenState.autoSamplingBufferFrequency = bufferFrequency;
-    touchScreenState.unk_54 = param4;
+    touchScreenState.currentBufferIndex = param4;
 
     ClearTouchOnBufferData(touchScreenState.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
 }
@@ -257,14 +257,14 @@ static u32 StartAutoSampling(u32 bufferFrequency)
     return 1;
 }
 
-static u32 sub_0201E69C(u32 frequency, u32 latestIndex, u32 param2)
+static u32 sub_0201E69C(u32 frequency, u32 latestIndex, u32 limit)
 {
     u32 v0;
 
     switch (frequency) {
     case 1:
     case 3:
-        v0 = sub_0201E6CC(frequency, latestIndex, param2);
+        v0 = sub_0201E6CC(frequency, latestIndex, limit);
         break;
     case 4:
     case 5:
@@ -284,31 +284,31 @@ static inline int CalcIntsDifference(int int1, int int2)
     return diff;
 }
 
-static u32 sub_0201E6CC(u32 frequency, u32 latestIndex, u32 param2)
+static u32 sub_0201E6CC(u32 frequency, u32 latestIndex, u32 limit)
 {
-    int v0;
-    s32 v1;
-    s32 v2;
-    s16 v3;
+    int i;
+    s32 xDiff;
+    s32 yDiff;
+    s16 bufferIndex;
 
-    for (v0 = 0; v0 < touchScreenState.autoSamplingBufferFrequency; v0++) {
-        v3 = latestIndex - touchScreenState.autoSamplingBufferFrequency + v0 + 1;
+    for (i = 0; i < touchScreenState.autoSamplingBufferFrequency; i++) {
+        bufferIndex = latestIndex - touchScreenState.autoSamplingBufferFrequency + i + 1;
 
-        if (v3 < 0) {
-            v3 += 9;
+        if (bufferIndex < 0) {
+            bufferIndex += MAX_AUTO_SAMPLING_BUFFER_SIZE;
         }
 
-        if ((touchScreenState.autoSamplingBuffer[v3].touch == TP_TOUCH_ON) && (touchScreenState.autoSamplingBuffer[v3].validity == TP_VALIDITY_VALID)) {
-            v1 = CalcIntsDifference(touchScreenState.buffer[touchScreenState.unk_54 - 1].x, touchScreenState.autoSamplingBuffer[v3].x);
-            v2 = CalcIntsDifference(touchScreenState.buffer[touchScreenState.unk_54 - 1].y, touchScreenState.autoSamplingBuffer[v3].y);
+        if ((touchScreenState.autoSamplingBuffer[bufferIndex].touch == TP_TOUCH_ON) && (touchScreenState.autoSamplingBuffer[bufferIndex].validity == TP_VALIDITY_VALID)) {
+            xDiff = CalcIntsDifference(touchScreenState.buffer[touchScreenState.currentBufferIndex - 1].x, touchScreenState.autoSamplingBuffer[bufferIndex].x);
+            yDiff = CalcIntsDifference(touchScreenState.buffer[touchScreenState.currentBufferIndex - 1].y, touchScreenState.autoSamplingBuffer[bufferIndex].y);
 
-            if ((v1 >= param2) || (v2 >= param2)) {
-                touchScreenState.buffer[touchScreenState.unk_54] = touchScreenState.autoSamplingBuffer[v3];
-                touchScreenState.unk_54++;
+            if ((xDiff >= limit) || (yDiff >= limit)) {
+                touchScreenState.buffer[touchScreenState.currentBufferIndex] = touchScreenState.autoSamplingBuffer[bufferIndex];
+                touchScreenState.currentBufferIndex++;
 
-                if (touchScreenState.unk_54 >= touchScreenState.unk_04) {
+                if (touchScreenState.currentBufferIndex >= touchScreenState.bufferSize) {
                     if (frequency == 1) {
-                        touchScreenState.unk_54 %= touchScreenState.unk_04;
+                        touchScreenState.currentBufferIndex %= touchScreenState.bufferSize;
                     } else {
                         return -1;
                     }
@@ -317,7 +317,7 @@ static u32 sub_0201E6CC(u32 frequency, u32 latestIndex, u32 param2)
         }
     }
 
-    return touchScreenState.unk_54;
+    return touchScreenState.currentBufferIndex;
 }
 
 static u32 sub_0201E784(u32 frequency, u32 latestIndex)
@@ -332,19 +332,19 @@ static u32 sub_0201E784(u32 frequency, u32 latestIndex)
             bufferIndex += MAX_AUTO_SAMPLING_BUFFER_SIZE;
         }
 
-        touchScreenState.buffer[touchScreenState.unk_54] = touchScreenState.autoSamplingBuffer[bufferIndex];
-        touchScreenState.unk_54++;
+        touchScreenState.buffer[touchScreenState.currentBufferIndex] = touchScreenState.autoSamplingBuffer[bufferIndex];
+        touchScreenState.currentBufferIndex++;
 
-        if (touchScreenState.unk_54 >= touchScreenState.unk_04) {
+        if (touchScreenState.currentBufferIndex >= touchScreenState.bufferSize) {
             if (frequency == 4) {
-                touchScreenState.unk_54 %= touchScreenState.unk_04;
+                touchScreenState.currentBufferIndex %= touchScreenState.bufferSize;
             } else {
                 return -1;
             }
         }
     }
 
-    return touchScreenState.unk_54;
+    return touchScreenState.currentBufferIndex;
 }
 
 static void OutputAutoSampleBuffer(TouchPadDataBuffer *outBuffer, u32 latestIndex)
