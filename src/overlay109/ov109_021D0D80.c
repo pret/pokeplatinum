@@ -447,7 +447,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, HEAP_ID_95);
 
     VramTransfer_New(8, HEAP_ID_95);
-    sub_0201E3D8();
+    EnableTouchScreen();
     SetTouchScreenBufferFrequency(4);
     ov109_021D1C28(v0);
     SetVBlankCallback(ov109_021D1C00, v0);

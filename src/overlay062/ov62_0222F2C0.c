@@ -69,7 +69,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     ov62_0222F848(param0);
 
     {
-        sub_0201E3D8();
+        EnableTouchScreen();
         SetTouchScreenBufferFrequency(4);
 
         param0->unk_14.unk_30 = 1;

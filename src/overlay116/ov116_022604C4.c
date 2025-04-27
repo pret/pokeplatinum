@@ -94,7 +94,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     {
         u32 v3;
 
-        sub_0201E3D8();
+        EnableTouchScreen();
         v3 = SetTouchScreenBufferFrequency(4);
     }
 

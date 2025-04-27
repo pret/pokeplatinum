@@ -74,7 +74,7 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
     sub_02089688(v0);
 
     {
-        sub_0201E3D8();
+        EnableTouchScreen();
         SetTouchScreenBufferFrequency(4);
         sub_0208A0B8(v0);
     }

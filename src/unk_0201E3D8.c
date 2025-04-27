@@ -33,7 +33,7 @@ typedef struct {
 
 static TouchScreenState touchScreenState;
 
-void sub_0201E3D8(void)
+void EnableTouchScreen(void)
 {
     GF_ASSERT(touchScreenState.touchScreenDisabled == 0);
 

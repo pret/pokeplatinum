@@ -329,7 +329,7 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     SetVBlankCallback(ChooseStarterAppMainCallback, app);
     DisableHBlank();
 
-    sub_0201E3D8();
+    EnableTouchScreen();
     GF_ASSERT(SetTouchScreenBufferFrequency(4) == 1);
 
     RenderControlFlags_SetCanABSpeedUpPrint(1);

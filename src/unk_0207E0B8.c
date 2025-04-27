@@ -267,7 +267,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     sub_0207E8C0();
     sub_0207E918(v0->unk_00);
     sub_0207EB6C(v0, v1);
-    sub_0201E3D8();
+    EnableTouchScreen();
     SetTouchScreenBufferFrequency(4);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_57, SEQ_NONE, 0);
     sub_02081A24(v0);

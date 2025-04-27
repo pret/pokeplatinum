@@ -205,7 +205,7 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
 
     v2 = OverlayManager_Args(param0);
     v0->unk_738 = v2->unk_0C;
-    sub_0201E3D8();
+    EnableTouchScreen();
     v1 = SetTouchScreenBufferFrequency(4);
 
     if (v1 != 1) {
@@ -426,7 +426,7 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     v0->unk_730 = v2->unk_08;
     v0->unk_734 = v2->unk_1C;
 
-    sub_0201E3D8();
+    EnableTouchScreen();
     v1 = SetTouchScreenBufferFrequency(4);
 
     if (v1 != 1) {

@@ -133,7 +133,7 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
         new_system->oamManager = oamManager;
 
         if (PoketchSystem_InitInternal(new_system)) {
-            sub_0201E3D8();
+            EnableTouchScreen();
             SetTouchScreenBufferFrequency(4);
 
             new_system->poketchSysPtr = poketchSys;

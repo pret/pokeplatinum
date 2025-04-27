@@ -106,7 +106,7 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
 
     SetVBlankCallback(VBlankCallBack, appPtr);
     DisableHBlank();
-    sub_0201E3D8();
+    EnableTouchScreen();
 
     GF_ASSERT(SetTouchScreenBufferFrequency(4) == TRUE);
 

@@ -169,7 +169,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     {
         u32 v8;
 
-        sub_0201E3D8();
+        EnableTouchScreen();
         v8 = SetTouchScreenBufferFrequency(4);
 
         if (v8 != 1) {

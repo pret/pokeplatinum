@@ -123,7 +123,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     ov99_021D1380(v0->unk_08);
 
-    sub_0201E3D8();
+    EnableTouchScreen();
     SetTouchScreenBufferFrequency(4);
 
     v0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0548, HEAP_ID_75);

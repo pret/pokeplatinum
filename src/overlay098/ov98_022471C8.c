@@ -306,7 +306,7 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     VramTransfer_New(64, HEAP_ID_109);
     SetAutorepeat(4, 8);
     ov98_02247510(v0->unk_04);
-    sub_0201E3D8();
+    EnableTouchScreen();
     SetTouchScreenBufferFrequency(4);
 
     v0->unk_20 = StringTemplate_New(11, 64, HEAP_ID_109);

@@ -5,7 +5,7 @@
 
 #include "overlay072/struct_ov72_0223E2A8.h"
 
-void sub_0201E3D8(void);
+void EnableTouchScreen(void);
 u32 SetTouchScreenBuffer(TPData *buffer, u32 param1, u32 bufferFrequency);
 u32 SetTouchScreenBufferFrequency(u32 bufferFrequency);
 u32 sub_0201E530(void);

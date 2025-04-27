@@ -133,7 +133,7 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         sub_0200F344(1, 0x0);
         sub_0200F32C(0);
         sub_0200F32C(1);
-        sub_0201E3D8();
+        EnableTouchScreen();
         SetTouchScreenBufferFrequency(4);
         break;
     case 1:

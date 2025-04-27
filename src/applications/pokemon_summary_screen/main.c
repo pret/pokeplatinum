@@ -233,7 +233,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     summaryScreen->narcPlPokeData = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    sub_0201E3D8();
+    EnableTouchScreen();
     SetTouchScreenBufferFrequency(4);
     TryHideContestPages(summaryScreen);
     SetVRAMBanks();

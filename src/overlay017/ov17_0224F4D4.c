@@ -172,7 +172,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
 
     ov17_0224FB34(v0->unk_10.unk_20);
 
-    sub_0201E3D8();
+    EnableTouchScreen();
     SetTouchScreenBufferFrequency(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_24);
 
