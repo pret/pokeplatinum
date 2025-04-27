@@ -171,7 +171,7 @@ u32 sub_0201E564(UnkStruct_ov72_0223E2A8 *param0, u32 param1, u32 param2)
     if (touchScreenState.autoSamplingState != AUTO_SAMPLING_STATE_DISABLED) {
         v1 = TP_GetLatestIndexInAuto();
 
-        sub_0201E5C0(touchScreenState.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
+        CalibrateTouchPadData(touchScreenState.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
 
         if (param0 != NULL) {
             OutputAutoSampleBuffer(param0, v1);
@@ -189,14 +189,14 @@ u32 sub_0201E564(UnkStruct_ov72_0223E2A8 *param0, u32 param1, u32 param2)
     return v0;
 }
 
-void sub_0201E5C0(TPData *param0, u32 param1)
+void CalibrateTouchPadData(TPData *dataBuffer, u32 dataBufferSize)
 {
-    int v0;
-    TPData v1;
+    int i;
+    TPData calibratedData;
 
-    for (v0 = 0; v0 < param1; v0++) {
-        TP_GetCalibratedPoint(&v1, &(param0[v0]));
-        param0[v0] = v1;
+    for (i = 0; i < dataBufferSize; i++) {
+        TP_GetCalibratedPoint(&calibratedData, &(dataBuffer[i]));
+        dataBuffer[i] = calibratedData;
     }
 }
 
