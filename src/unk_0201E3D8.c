@@ -276,10 +276,10 @@ static u32 sub_0201E69C(u32 param0, u32 param1, u32 param2)
     return v0;
 }
 
-static inline int inline_0201E6CC(int param0, int param1)
+static inline int CalcIntsDifference(int int1, int int2)
 {
-    int v0 = (param0 >= param1) ? (param0 - param1) : (param1 - param0);
-    return v0;
+    int diff = (int1 >= int2) ? (int1 - int2) : (int2 - int1);
+    return diff;
 }
 
 static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2)
@@ -297,8 +297,8 @@ static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2)
         }
 
         if ((Unk_021C0704.autoSamplingBuffer[v3].touch == TP_TOUCH_ON) && (Unk_021C0704.autoSamplingBuffer[v3].validity == TP_VALIDITY_VALID)) {
-            v1 = inline_0201E6CC(Unk_021C0704.unk_00[Unk_021C0704.unk_54 - 1].x, Unk_021C0704.autoSamplingBuffer[v3].x);
-            v2 = inline_0201E6CC(Unk_021C0704.unk_00[Unk_021C0704.unk_54 - 1].y, Unk_021C0704.autoSamplingBuffer[v3].y);
+            v1 = CalcIntsDifference(Unk_021C0704.unk_00[Unk_021C0704.unk_54 - 1].x, Unk_021C0704.autoSamplingBuffer[v3].x);
+            v2 = CalcIntsDifference(Unk_021C0704.unk_00[Unk_021C0704.unk_54 - 1].y, Unk_021C0704.autoSamplingBuffer[v3].y);
 
             if ((v1 >= param2) || (v2 >= param2)) {
                 Unk_021C0704.unk_00[Unk_021C0704.unk_54] = Unk_021C0704.autoSamplingBuffer[v3];
