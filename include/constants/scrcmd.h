@@ -2,6 +2,7 @@
 #define POKEPLATINUM_CONSTANTS_SCRCMD_H
 
 #include "generated/accessories.h"
+#include "generated/backdrops.h"
 
 #define MENU_YES 0
 #define MENU_NO  1

@@ -32,7 +32,7 @@ PalPark_Trigger_Countdown:
     MessageInstant PalPark_Text_Start
     PlayFanfare SEQ_SE_DP_CON_016
     WaitTime 30, VAR_RESULT
-    SetInPalParkFlag
+    SetInCatchingShowFlag
     SetVar VAR_PAL_PARK_STATE, 1
     SetFlag FLAG_ALT_MUSIC_PAL_PARK
     PlayMusic SEQ_D_SAFARI
@@ -160,7 +160,7 @@ PalPark_RetireFromCatchingShow:
     Return
 
 PalPark_ClearFlagAndWarpOut:
-    ClearInPalParkFlag
+    ClearInCatchingShowFlag
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_PAL_PARK_LOBBY, 0, 7, 7, 1

@@ -1,4 +1,4 @@
-#include "unk_0204C500.h"
+#include "scrcmd_catching_show.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -26,61 +26,61 @@
 #include "unk_02092494.h"
 #include "vars_flags.h"
 
-BOOL ScrCmd_SetClearInPalParkFlag(ScriptContext *ctx)
+BOOL ScrCmd_SetClearInCatchingShowFlag(ScriptContext *ctx)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 setClear = ScriptContext_GetVar(ctx);
 
-    if (v1 == 0) {
+    if (setClear == 0) {
         SystemFlag_SetInPalPark(varsFlags);
         CatchingShow_Start(ctx->fieldSystem);
-    } else if (v1 == 1) {
+    } else if (setClear == 1) {
         SystemFlag_ClearInPalPark(varsFlags);
         CatchingShow_End(ctx->fieldSystem);
     } else {
         GF_ASSERT(0);
     }
 
-    return 0;
-}
-
-BOOL ScrCmd_254(ScriptContext *ctx)
-{
-    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
-    Pokemon *v1 = Pokemon_New(HEAP_ID_FIELD_TASK);
-    u16 *destVar = ScriptContext_GetVarPointer(ctx);
-
-    if (GetPalParkTransferMonCount(transferData) == CATCHING_SHOW_MONS) {
-        *destVar = 1;
-    } else {
-        *destVar = 0;
-    }
-
-    Heap_FreeToHeap(v1);
     return FALSE;
 }
 
-BOOL ScrCmd_255(ScriptContext *ctx)
+BOOL ScrCmd_CheckHasEnoughMonForCatchingShow(ScriptContext *ctx)
+{
+    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
+    Pokemon *dummy = Pokemon_New(HEAP_ID_FIELD_TASK);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+
+    if (GetPalParkTransferMonCount(transferData) == CATCHING_SHOW_MONS) {
+        *destVar = TRUE;
+    } else {
+        *destVar = FALSE;
+    }
+
+    Heap_FreeToHeap(dummy);
+    return FALSE;
+}
+
+BOOL ScrCmd_MoveCatchingShowMonsToPCBoxes(ScriptContext *ctx)
 {
     PalParkTransfer *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
     PCBoxes *boxes = SaveData_GetPCBoxes(ctx->fieldSystem->saveData);
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(ctx->fieldSystem->saveData);
     Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
-    BOOL v5;
+    BOOL success;
 
     for (int i = 0; i < CATCHING_SHOW_MONS; i++) {
         TransferDataToMon(transferData, i, mon);
         UpdateMonStatusAndTrainerInfo(mon, trainerInfo, 2, 0, HEAP_ID_FIELD_TASK);
-        v5 = PCBoxes_TryStoreBoxMon(boxes, Pokemon_GetBoxPokemon(mon));
-        GF_ASSERT(v5);
-        sub_0202F180(ctx->fieldSystem->saveData, mon);
+        success = PCBoxes_TryStoreBoxMon(boxes, Pokemon_GetBoxPokemon(mon));
+        GF_ASSERT(success);
+        SaveData_UpdateCatchRecords(ctx->fieldSystem->saveData, mon);
     }
 
     Heap_FreeToHeap(mon);
     ClearPalParkTransferPokemonData(transferData);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_CalcCatchingShowPoints(ScriptContext *ctx)

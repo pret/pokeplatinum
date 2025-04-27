@@ -227,7 +227,7 @@ _0306:
     End
 
 _031F:
-    ScrCmd_252 VAR_RESULT
+    GetPCBoxesFreeSlotCount VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0338
     GoTo _020D
     End
@@ -547,7 +547,7 @@ _0696:
     End
 
 _06A1:
-    ScrCmd_1D6 VAR_0x8004, VAR_RESULT
+    CheckBackdrop VAR_0x8004, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06D3
     AddVar VAR_0x8004, 1
     GoToIfLe VAR_0x8004, 13, _06A1
@@ -586,7 +586,7 @@ _0710:
     End
 
 _071E:
-    ScrCmd_1D6 VAR_0x8004, VAR_RESULT
+    CheckBackdrop VAR_0x8004, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _074A
     AddVar VAR_0x8004, 1
     GoToIfLe VAR_0x8004, 13, _071E

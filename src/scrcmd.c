@@ -185,7 +185,7 @@
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
 #include "unk_0204B64C.h"
-#include "unk_0204C500.h"
+#include "scrcmd_catching_show.h"
 #include "unk_0204CFFC.h"
 #include "unk_0204E240.h"
 #include "unk_0204E974.h"
@@ -567,7 +567,7 @@ static BOOL ScrCmd_1D2(ScriptContext *ctx);
 static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_1D4(ScriptContext *ctx);
 static BOOL ScrCmd_1D5(ScriptContext *ctx);
-static BOOL ScrCmd_1D6(ScriptContext *ctx);
+static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_192(ScriptContext *ctx);
 static BOOL ScrCmd_194(ScriptContext *ctx);
 static BOOL ScrCmd_195(ScriptContext *ctx);
@@ -629,7 +629,7 @@ static BOOL ScrCmd_24A(ScriptContext *ctx);
 static BOOL ScrCmd_24B(ScriptContext *ctx);
 static BOOL ScrCmd_24C(ScriptContext *ctx);
 static BOOL ScrCmd_24D(ScriptContext *ctx);
-static BOOL ScrCmd_252(ScriptContext *ctx);
+static BOOL ScrCmd_GetPCBoxesFreeSlotCount(ScriptContext *ctx);
 static BOOL ScrCmd_258(ScriptContext *ctx);
 static BOOL ScrCmd_259(ScriptContext *ctx);
 static BOOL ScrCmd_25A(ScriptContext *ctx);
@@ -1237,7 +1237,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CanFitAccessory,
     ScrCmd_1D4,
     ScrCmd_1D5,
-    ScrCmd_1D6,
+    ScrCmd_CheckBackdrop,
     ScrCmd_1D7,
     ScrCmd_1D8,
     ScrCmd_1D9,
@@ -1361,10 +1361,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckForJubilifeLotteryWinner,
     ScrCmd_RandomizeJubilifeLottery,
     ScrCmd_251,
-    ScrCmd_252,
-    ScrCmd_SetClearInPalParkFlag,
-    ScrCmd_254,
-    ScrCmd_255,
+    ScrCmd_GetPCBoxesFreeSlotCount,
+    ScrCmd_SetClearInCatchingShowFlag,
+    ScrCmd_CheckHasEnoughMonForCatchingShow,
+    ScrCmd_MoveCatchingShowMonsToPCBoxes,
     ScrCmd_CalcCatchingShowPoints,
     ScrCmd_ShowAccessoryShop,
     ScrCmd_258,
@@ -6158,16 +6158,16 @@ static BOOL ScrCmd_1D5(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_1D6(ScriptContext *ctx)
+static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx)
 {
     UnkStruct_0202A750 *v0;
     UnkStruct_02029D04 *v1;
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 *v3 = ScriptContext_GetVarPointer(ctx);
+    u16 backdrop = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     v0 = sub_0202A750(ctx->fieldSystem->saveData);
     v1 = sub_02029D04(v0);
-    *v3 = sub_02029D80(v1, v2);
+    *destVar = sub_02029D80(v1, backdrop);
 
     return 0;
 }
@@ -6711,13 +6711,13 @@ static BOOL ScrCmd_WriteSpeciesSeen(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_252(ScriptContext *ctx)
+static BOOL ScrCmd_GetPCBoxesFreeSlotCount(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
-    u16 v1 = PCBoxes_CountAllBoxMons(SaveData_GetPCBoxes(ctx->fieldSystem->saveData));
-    *v0 = 18 * (5 * 6) - v1;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 boxMonCount = PCBoxes_CountAllBoxMons(SaveData_GetPCBoxes(ctx->fieldSystem->saveData));
+    *destVar = MAX_PC_BOXES * MAX_MONS_PER_BOX - boxMonCount;
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_258(ScriptContext *ctx)

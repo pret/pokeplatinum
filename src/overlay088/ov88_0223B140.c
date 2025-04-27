@@ -2502,7 +2502,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         ResetChatotCryDataStatus(v4);
     }
 
-    sub_0202F180(param4->unk_10, v1);
+    SaveData_UpdateCatchRecords(param4->unk_10, v1);
     Pokemon_Copy(v1, Party_GetPokemonBySlotIndex(param0, param2));
     Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param1, param3));
     ov88_0223E7F0(param4->unk_1C, v1);

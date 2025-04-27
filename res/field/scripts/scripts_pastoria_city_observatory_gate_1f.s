@@ -32,7 +32,7 @@ _0022:
     End
 
 _006A:
-    ScrCmd_252 VAR_RESULT
+    GetPCBoxesFreeSlotCount VAR_RESULT
     GoToIfNe VAR_RESULT, 0, _008C
     GetPartyCount VAR_RESULT
     GoToIfEq VAR_RESULT, 6, _0168

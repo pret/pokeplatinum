@@ -231,7 +231,7 @@ static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     int v0;
 
     if (param8 == NULL) {
-        param1->unk_8C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS_2, param0->heapID);
+        param1->unk_8C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, param0->heapID);
         param1->unk_97_1 = 1;
     } else {
         param1->unk_8C = param8;
