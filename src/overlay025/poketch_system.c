@@ -134,7 +134,7 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
 
         if (PoketchSystem_InitInternal(new_system)) {
             sub_0201E3D8();
-            sub_0201E450(4);
+            SetTouchScreenBufferFrequency(4);
 
             new_system->poketchSysPtr = poketchSys;
             new_system->unk_38 = SysTask_Start(PoketchSystem_PostRender, new_system, 4);

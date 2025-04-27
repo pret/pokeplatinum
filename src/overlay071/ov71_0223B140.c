@@ -166,7 +166,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     ov71_0223B968(v0, v1);
 
     sub_0201E3D8();
-    sub_0201E450(4);
+    SetTouchScreenBufferFrequency(4);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_56, SEQ_NONE, 0);
     ov71_0223D324(&v0->unk_3354);
     Sound_PlayEffect(SEQ_SE_DP_CARD3);

@@ -235,7 +235,7 @@ int ov85_02241440(OverlayManager *param0, int *param1)
 
     SetAutorepeat(4, 8);
     sub_0201E3D8();
-    sub_0201E450(4);
+    SetTouchScreenBufferFrequency(4);
 
     ov85_02241E60(v0, v1);
     ov85_0224183C(v0);

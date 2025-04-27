@@ -421,7 +421,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     ov84_0223D0BC(v0);
 
     sub_0201E3D8();
-    sub_0201E450(4);
+    SetTouchScreenBufferFrequency(4);
 
     ov84_0223F040(v0);
     RenderControlFlags_SetSpeedUpOnTouch(1);

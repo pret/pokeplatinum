@@ -165,7 +165,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     ov104_0223CC10(v0);
 
     sub_0201E3D8();
-    sub_0201E450(4);
+    SetTouchScreenBufferFrequency(4);
 
     ov104_0223CFF4(v0);
 

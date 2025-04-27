@@ -377,7 +377,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     ov113_0225CF58(v0->unk_08);
 
     sub_0201E3D8();
-    sub_0201E450(4);
+    SetTouchScreenBufferFrequency(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_118);
 
     v0->unk_2C = StringTemplate_Default(HEAP_ID_118);

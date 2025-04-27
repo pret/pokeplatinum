@@ -83,7 +83,7 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
     SetAutorepeat(4, 8);
     DWWarp_VramSetBank();
     sub_0201E3D8();
-    sub_0201E450(4);
+    SetTouchScreenBufferFrequency(4);
 
     DWWarp_InitModel(dww);
     DWWarp_InitCamera(dww);
