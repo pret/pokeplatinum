@@ -50,7 +50,7 @@ void EnableTouchScreen(void)
 
 BOOL InitializeTouchScreen(TPData *buffer, u32 param1, u32 bufferFrequency)
 {
-    u32 result;
+    u32 autoSamplingResult;
 
     GF_ASSERT(touchScreenState.touchScreenDisabled == FALSE);
 
@@ -62,10 +62,10 @@ BOOL InitializeTouchScreen(TPData *buffer, u32 param1, u32 bufferFrequency)
         return FALSE;
     }
 
-    result = StartAutoSampling(bufferFrequency);
+    autoSamplingResult = StartAutoSampling(bufferFrequency);
 
-    if (result != 1) {
-        return result;
+    if (autoSamplingResult != 1) {
+        return autoSamplingResult;
     }
 
     UpdateTouchScreenState(AUTO_SAMPLING_STATE_ENABLED, TRUE, buffer, param1, 0, bufferFrequency * 2);
@@ -75,7 +75,7 @@ BOOL InitializeTouchScreen(TPData *buffer, u32 param1, u32 bufferFrequency)
 
 BOOL InitializeTouchScreenNoBuffer(u32 bufferFrequency)
 {
-    u32 result;
+    u32 autoSamplingResult;
 
     GF_ASSERT(touchScreenState.touchScreenDisabled == FALSE);
 
@@ -87,10 +87,10 @@ BOOL InitializeTouchScreenNoBuffer(u32 bufferFrequency)
         return FALSE;
     }
 
-    result = StartAutoSampling(bufferFrequency);
+    autoSamplingResult = StartAutoSampling(bufferFrequency);
 
-    if (result != 1) {
-        return result;
+    if (autoSamplingResult != 1) {
+        return autoSamplingResult;
     }
 
     UpdateTouchScreenState(AUTO_SAMPLING_STATE_ENABLED_NO_BUFFER, TRUE, NULL, 0, 0, bufferFrequency * 2);
@@ -148,17 +148,17 @@ static u32 StopAutoSampling(void)
 
 u32 DisableTouchScreen(void)
 {
-    u32 result;
+    u32 autoSamplingResult;
 
     GF_ASSERT(touchScreenState.touchScreenDisabled == FALSE);
 
-    result = StopAutoSampling();
+    autoSamplingResult = StopAutoSampling();
 
-    if (result == 1) {
+    if (autoSamplingResult == 1) {
         UpdateTouchScreenState(AUTO_SAMPLING_STATE_DISABLED, FALSE, NULL, 0, 0, 0);
     }
 
-    return result;
+    return autoSamplingResult;
 }
 
 u32 sub_0201E564(UnkStruct_ov72_0223E2A8 *param0, u32 param1, u32 param2)
@@ -202,7 +202,7 @@ void ConvertTouchPadDataToScreenSpace(TPData *touchPadDataBuffer, u32 touchPadDa
 
 void AfterSleep(void)
 {
-    u32 v0;
+    u32 autoSamplingResult;
 
     if (touchScreenState.touchScreenDisabled == FALSE) {
         return;
@@ -212,15 +212,15 @@ void AfterSleep(void)
         return;
     }
 
-    v0 = StartAutoSampling(touchScreenState.autoSamplingBufferFrequency / 2);
-    GF_ASSERT(v0 == 1);
+    autoSamplingResult = StartAutoSampling(touchScreenState.autoSamplingBufferFrequency / 2);
+    GF_ASSERT(autoSamplingResult == 1);
 
     touchScreenState.touchScreenDisabled = FALSE;
 }
 
 void BeforeSleep(void)
 {
-    u32 v0;
+    u32 autoSamplingResult;
 
     if (touchScreenState.touchScreenDisabled == TRUE) {
         return;
@@ -230,8 +230,8 @@ void BeforeSleep(void)
         return;
     }
 
-    v0 = StopAutoSampling();
-    GF_ASSERT(v0 == 1);
+    autoSamplingResult = StopAutoSampling();
+    GF_ASSERT(autoSamplingResult == 1);
 
     touchScreenState.touchScreenDisabled = TRUE;
 }
