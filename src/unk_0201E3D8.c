@@ -28,17 +28,17 @@ typedef struct {
     TPData autoSamplingBuffer[MAX_AUTO_SAMPLING_BUFFER_SIZE];
     u32 unk_54;
     u16 unk_58;
-    u16 unk_5A;
+    u16 touchScreenDisabled;
 } UnkStruct_021C0704;
 
 static UnkStruct_021C0704 Unk_021C0704;
 
 void sub_0201E3D8(void)
 {
-    GF_ASSERT(Unk_021C0704.unk_5A == 0);
+    GF_ASSERT(Unk_021C0704.touchScreenDisabled == 0);
 
     Unk_021C0704.unk_58 = 0;
-    Unk_021C0704.unk_5A = 0;
+    Unk_021C0704.touchScreenDisabled = 0;
 }
 
 u32 sub_0201E3F4(TPData *param0, u32 param1, u32 param2)
@@ -47,7 +47,7 @@ u32 sub_0201E3F4(TPData *param0, u32 param1, u32 param2)
     u32 v1;
     int v2;
 
-    GF_ASSERT(Unk_021C0704.unk_5A == 0);
+    GF_ASSERT(Unk_021C0704.touchScreenDisabled == 0);
 
     if ((param2 >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (param2 <= 0)) {
         return 0;
@@ -73,7 +73,7 @@ u32 sub_0201E450(u32 param0)
     u32 v0;
     int v1;
 
-    GF_ASSERT(Unk_021C0704.unk_5A == 0);
+    GF_ASSERT(Unk_021C0704.touchScreenDisabled == 0);
 
     if ((param0 >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (param0 <= 0)) {
         return 0;
@@ -146,7 +146,7 @@ u32 sub_0201E530(void)
 {
     u32 v0;
 
-    GF_ASSERT(Unk_021C0704.unk_5A == 0);
+    GF_ASSERT(Unk_021C0704.touchScreenDisabled == 0);
 
     v0 = StopAutoSampling();
 
@@ -162,7 +162,7 @@ u32 sub_0201E564(UnkStruct_ov72_0223E2A8 *param0, u32 param1, u32 param2)
     u32 v0 = 3;
     u32 v1;
 
-    GF_ASSERT(Unk_021C0704.unk_5A == 0);
+    GF_ASSERT(Unk_021C0704.touchScreenDisabled == 0);
 
     if (Unk_021C0704.unk_58 != 0) {
         v1 = TP_GetLatestIndexInAuto();
@@ -200,7 +200,7 @@ void AfterSleep(void)
 {
     u32 v0;
 
-    if (Unk_021C0704.unk_5A == 0) {
+    if (Unk_021C0704.touchScreenDisabled == 0) {
         return;
     }
 
@@ -211,14 +211,14 @@ void AfterSleep(void)
     v0 = StartAutoSampling(Unk_021C0704.autoSamplingBufferFrequency / 2);
     GF_ASSERT(v0 == 1);
 
-    Unk_021C0704.unk_5A = 0;
+    Unk_021C0704.touchScreenDisabled = 0;
 }
 
 void BeforeSleep(void)
 {
     u32 v0;
 
-    if (Unk_021C0704.unk_5A == 1) {
+    if (Unk_021C0704.touchScreenDisabled == 1) {
         return;
     }
 
@@ -229,7 +229,7 @@ void BeforeSleep(void)
     v0 = StopAutoSampling();
     GF_ASSERT(v0 == 1);
 
-    Unk_021C0704.unk_5A = 1;
+    Unk_021C0704.touchScreenDisabled = 1;
 }
 
 static u32 StartAutoSampling(u32 bufferFrequency)
