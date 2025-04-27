@@ -141,17 +141,17 @@ static u32 StopAutoSampling(void)
 
 u32 DisableTouchScreen(void)
 {
-    u32 v0;
+    u32 result;
 
     GF_ASSERT(touchScreenState.touchScreenDisabled == 0);
 
-    v0 = StopAutoSampling();
+    result = StopAutoSampling();
 
-    if (v0 == 1) {
+    if (result == 1) {
         UpdateTouchScreenState(0, 0, NULL, 0, 0, 0);
     }
 
-    return v0;
+    return result;
 }
 
 u32 sub_0201E564(UnkStruct_ov72_0223E2A8 *param0, u32 param1, u32 param2)
