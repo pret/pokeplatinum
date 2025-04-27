@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay072/struct_ov72_0223E2A8.h"
+#include "overlay072/touch_pad_data_buffer.h"
 #include "overlay111/ov111_021D2F80.h"
 #include "overlay111/ov111_021D33F4.h"
 #include "overlay111/ov111_021D3548.h"

@@ -16,7 +16,7 @@
 #include "struct_defs/struct_0209C194.h"
 
 #include "overlay005/struct_ov5_02201C58.h"
-#include "overlay072/struct_ov72_0223E2A8.h"
+#include "overlay072/touch_pad_data_buffer.h"
 #include "overlay109/struct_ov109_021D1048.h"
 #include "overlay109/struct_ov109_021D17EC.h"
 #include "overlay115/camera_angle.h"

@@ -12,7 +12,7 @@
 
 #include "overlay058/struct_ov58_021D2754.h"
 #include "overlay058/struct_ov58_021D2820.h"
-#include "overlay072/struct_ov72_0223E2A8.h"
+#include "overlay072/touch_pad_data_buffer.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"

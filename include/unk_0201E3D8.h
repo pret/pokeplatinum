@@ -3,7 +3,7 @@
 
 #include <nitro.h>
 
-#include "overlay072/struct_ov72_0223E2A8.h"
+#include "overlay072/touch_pad_data_buffer.h"
 
 void EnableTouchScreen(void);
 BOOL InitializeTouchScreen(TPData *buffer, u32 param1, u32 bufferFrequency);

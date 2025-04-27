@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay072/struct_ov72_0223E2A8.h"
-
 #include "inlines.h"
 #include "system.h"
 

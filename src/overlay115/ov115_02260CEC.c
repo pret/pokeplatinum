@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay072/struct_ov72_0223E2A8.h"
+#include "overlay072/touch_pad_data_buffer.h"
 #include "overlay092/struct_ov92_021D28C0.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
