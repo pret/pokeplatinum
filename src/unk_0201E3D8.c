@@ -8,8 +8,10 @@
 #include "inlines.h"
 #include "system.h"
 
-static u32 sub_0201E658(u32 param0);
-static u32 sub_0201E4EC(void);
+#define MAX_AUTO_SAMPLING_BUFFER_SIZE            9
+#define TOUCH_BUFFER_FREQUENCY_LIMIT     5
+#define AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL 5
+
 static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2);
 static u32 sub_0201E784(u32 param0, u32 param1);
 static void sub_0201E7FC(UnkStruct_ov72_0223E2A8 *param0, u32 param1);
