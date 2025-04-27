@@ -33,7 +33,7 @@ static u32 StartAutoSampling(u32 bufferFrequency);
 static u32 StopAutoSampling(void);
 static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2);
 static u32 sub_0201E784(u32 param0, u32 param1);
-static void OutputAutoSampleBuffer(UnkStruct_ov72_0223E2A8 *outBuffer, u32 lastIndex);
+static void OutputAutoSampleBuffer(TouchPadDataBuffer *outBuffer, u32 lastIndex);
 static u32 sub_0201E69C(u32 param0, u32 param1, u32 param2);
 static void UpdateTouchScreenState(enum AutoSamplingState autoSamplingState, BOOL autoSamplingEnabled, void *buffer, u32 param3, u32 param4, u32 bufferFrequency);
 static void ClearTouchOnBufferData(TPData *buffer, int bufferSize);
@@ -161,7 +161,7 @@ u32 DisableTouchScreen(void)
     return autoSamplingResult;
 }
 
-u32 sub_0201E564(UnkStruct_ov72_0223E2A8 *param0, u32 param1, u32 param2)
+u32 sub_0201E564(TouchPadDataBuffer *param0, u32 param1, u32 param2)
 {
     u32 v0 = 3;
     u32 v1;
@@ -349,18 +349,18 @@ static u32 sub_0201E784(u32 param0, u32 param1)
     return touchScreenState.unk_54;
 }
 
-static void OutputAutoSampleBuffer(UnkStruct_ov72_0223E2A8 *outBuffer, u32 lastIndex)
+static void OutputAutoSampleBuffer(TouchPadDataBuffer *outBuffer, u32 lastIndex)
 {
     int i;
     s16 bufferIndex;
 
-    outBuffer->unk_00 = 0;
+    outBuffer->bufferSize = 0;
 
     for (i = 0; i < 8; i++) {
-        outBuffer->unk_02[i].validity = TP_VALIDITY_VALID;
-        outBuffer->unk_02[i].touch = TP_TOUCH_OFF;
-        outBuffer->unk_02[i].x = 0;
-        outBuffer->unk_02[i].y = 0;
+        outBuffer->buffer[i].validity = TP_VALIDITY_VALID;
+        outBuffer->buffer[i].touch = TP_TOUCH_OFF;
+        outBuffer->buffer[i].x = 0;
+        outBuffer->buffer[i].y = 0;
     }
 
     for (i = 0; i < touchScreenState.autoSamplingBufferFrequency; i++) {
@@ -371,8 +371,8 @@ static void OutputAutoSampleBuffer(UnkStruct_ov72_0223E2A8 *outBuffer, u32 lastI
         }
 
         if (touchScreenState.autoSamplingBuffer[bufferIndex].validity == TP_VALIDITY_VALID) {
-            outBuffer->unk_02[outBuffer->unk_00] = touchScreenState.autoSamplingBuffer[bufferIndex];
-            outBuffer->unk_00++;
+            outBuffer->buffer[outBuffer->bufferSize] = touchScreenState.autoSamplingBuffer[bufferIndex];
+            outBuffer->bufferSize++;
         }
     }
 }

@@ -314,7 +314,7 @@ typedef struct UnkStruct_ov115_02260D78_t {
     UnkStruct_ov115_02261C18 unk_19CC;
     UnkStruct_ov115_02261ADC unk_1AB4;
     UnkStruct_ov115_02265AD4 unk_8680;
-    UnkStruct_ov72_0223E2A8 unk_8690;
+    TouchPadDataBuffer unk_8690;
     UnkStruct_ov115_02262E64 unk_86D4;
     const UnkStruct_ov115_02262F50 *unk_8720;
     u16 unk_8724;
@@ -2420,16 +2420,16 @@ static void ov115_02262B70(UnkStruct_ov115_02260D78 *param0)
     }
 
     if (param0->unk_20.unk_00 == 1) {
-        if (param0->unk_8690.unk_00 == 1) {
-            v0.x = param0->unk_8690.unk_02[0].x;
-            v0.y = param0->unk_8690.unk_02[0].y;
+        if (param0->unk_8690.bufferSize == 1) {
+            v0.x = param0->unk_8690.buffer[0].x;
+            v0.y = param0->unk_8690.buffer[0].y;
             ov115_02262CBC(&param0->unk_20, v0);
-        } else if (param0->unk_8690.unk_00 >= 2) {
-            v0.x = param0->unk_8690.unk_02[0].x;
-            v0.y = param0->unk_8690.unk_02[0].y;
+        } else if (param0->unk_8690.bufferSize >= 2) {
+            v0.x = param0->unk_8690.buffer[0].x;
+            v0.y = param0->unk_8690.buffer[0].y;
             ov115_02262CBC(&param0->unk_20, v0);
-            v0.x = param0->unk_8690.unk_02[param0->unk_8690.unk_00 - 1].x;
-            v0.y = param0->unk_8690.unk_02[param0->unk_8690.unk_00 - 1].y;
+            v0.x = param0->unk_8690.buffer[param0->unk_8690.bufferSize - 1].x;
+            v0.y = param0->unk_8690.buffer[param0->unk_8690.bufferSize - 1].y;
             ov115_02262CBC(&param0->unk_20, v0);
         } else {
             v0.x = gSystem.touchX;

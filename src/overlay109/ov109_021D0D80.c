@@ -161,7 +161,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    UnkStruct_ov72_0223E2A8 unk_10;
+    TouchPadDataBuffer unk_10;
 } UnkStruct_ov109_021D294C;
 
 typedef struct {
@@ -2205,9 +2205,9 @@ static void ov109_021D294C(UnkStruct_ov109_021D0F70 *param0)
     sub_0201E564(&v2->unk_10, 2, 0);
 
     while (v1 >= 0) {
-        if (v2->unk_10.unk_02[v1].touch == 1) {
-            v2->unk_00 = v2->unk_10.unk_02[v1].x;
-            v2->unk_04 = v2->unk_10.unk_02[v1].y;
+        if (v2->unk_10.buffer[v1].touch == 1) {
+            v2->unk_00 = v2->unk_10.buffer[v1].x;
+            v2->unk_04 = v2->unk_10.buffer[v1].y;
             v0 = 1;
         }
 

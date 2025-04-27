@@ -122,7 +122,7 @@ static void ov58_021D2CB8(UnkStruct_02095EAC *param0, int param1);
 static BOOL ov58_021D2CEC(UnkStruct_02095EAC *param0, UnkStruct_02015958 *param1);
 static void ov58_021D2D10(UnkStruct_02095EAC *param0);
 static int ov58_021D2D30(UnkStruct_02095EAC *param0);
-static void ov58_021D2D4C(UnkStruct_ov58_021D2820 *param0, UnkStruct_ov72_0223E2A8 *param1, int param2, int param3);
+static void ov58_021D2D4C(UnkStruct_ov58_021D2820 *param0, TouchPadDataBuffer *param1, int param2, int param3);
 
 static UnkStruct_ov58_021D3180 Unk_ov58_021D3180[] = {
     { NULL, 0x1 },
@@ -880,7 +880,7 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
     }
 
     {
-        UnkStruct_ov72_0223E2A8 v4;
+        TouchPadDataBuffer v4;
         int v5;
 
         if (sub_0201E564(&v4, 4, 64) == 1) {
@@ -1874,30 +1874,30 @@ static int ov58_021D2D30(UnkStruct_02095EAC *param0)
     return 0;
 }
 
-static void ov58_021D2D4C(UnkStruct_ov58_021D2820 *param0, UnkStruct_ov72_0223E2A8 *param1, int param2, int param3)
+static void ov58_021D2D4C(UnkStruct_ov58_021D2820 *param0, TouchPadDataBuffer *param1, int param2, int param3)
 {
     int v0, v1;
 
-    if (param1->unk_00 != 0) {
-        param0->unk_00[0] = param1->unk_02[0].x;
-        param0->unk_04[0] = param1->unk_02[0].y;
+    if (param1->bufferSize != 0) {
+        param0->unk_00[0] = param1->buffer[0].x;
+        param0->unk_04[0] = param1->buffer[0].y;
 
-        v1 = param1->unk_00 - 1;
+        v1 = param1->bufferSize - 1;
 
-        param0->unk_00[1] = param1->unk_02[v1].x;
-        param0->unk_04[1] = param1->unk_02[v1].y;
+        param0->unk_00[1] = param1->buffer[v1].x;
+        param0->unk_04[1] = param1->buffer[v1].y;
 
         for (v0 = 0; v0 < 2; v0++) {
             if ((param0->unk_00[v0] + param0->unk_04[v0]) == 0) {
-                param1->unk_00 = 0;
+                param1->bufferSize = 0;
             }
         }
     }
 
-    if (param1->unk_00 >= 2) {
+    if (param1->bufferSize >= 2) {
         param0->unk_08_3 = 2;
     } else {
-        param0->unk_08_3 = param1->unk_00;
+        param0->unk_08_3 = param1->bufferSize;
     }
 
     param0->unk_08_0 = param2;

@@ -116,7 +116,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     u8 unk_411[9];
     u32 unk_41C;
     u32 unk_420;
-    UnkStruct_ov72_0223E2A8 unk_424;
+    TouchPadDataBuffer unk_424;
     u8 unk_466[38400];
 };
 
@@ -1858,9 +1858,9 @@ static void ov111_021D297C(UnkStruct_ov111_021D0F7C *param0, int param1)
 {
     int v0, v1, v2, v3;
 
-    for (v0 = 0; v0 < param0->unk_424.unk_00; v0++) {
-        v2 = param0->unk_424.unk_02[v0].x;
-        v3 = param0->unk_424.unk_02[v0].y;
+    for (v0 = 0; v0 < param0->unk_424.bufferSize; v0++) {
+        v2 = param0->unk_424.buffer[v0].x;
+        v3 = param0->unk_424.buffer[v0].y;
 
         if ((Unk_ov111_021D3728[param1].unk_02 <= v2) && (v2 <= Unk_ov111_021D3728[param1].unk_03) && (Unk_ov111_021D3728[param1].unk_00 <= v3) && (v3 <= Unk_ov111_021D3728[param1].unk_01)) {
             ov111_021D2ECC(param0, v2, v3);
@@ -1875,9 +1875,9 @@ static void ov111_021D29D8(UnkStruct_ov111_021D0F7C *param0)
     int v0;
     u8 v1, v2;
 
-    for (v0 = 0; v0 < param0->unk_424.unk_00; v0++) {
-        v1 = param0->unk_424.unk_02[v0].x;
-        v2 = param0->unk_424.unk_02[v0].y;
+    for (v0 = 0; v0 < param0->unk_424.bufferSize; v0++) {
+        v1 = param0->unk_424.buffer[v0].x;
+        v2 = param0->unk_424.buffer[v0].y;
 
         ov111_021D2A18(param0, v1, v2);
     }

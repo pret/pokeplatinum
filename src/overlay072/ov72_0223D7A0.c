@@ -671,16 +671,16 @@ static void ov72_0223E2A8(UnkStruct_ov72_0223DB98 *param0)
     }
 
     {
-        UnkStruct_ov72_0223E2A8 v2;
+        TouchPadDataBuffer v2;
         int v3;
 
         if (sub_0201E564(&v2, 4, 1) == 1) {
-            for (v3 = 0; v3 < v2.unk_00; v3++) {
-                param0->unk_4380.unk_00[v3] = v2.unk_02[v3].x;
-                param0->unk_4380.unk_08[v3] = v2.unk_02[v3].y;
+            for (v3 = 0; v3 < v2.bufferSize; v3++) {
+                param0->unk_4380.unk_00[v3] = v2.buffer[v3].x;
+                param0->unk_4380.unk_08[v3] = v2.buffer[v3].y;
             }
 
-            param0->unk_4380.unk_10_4 = v2.unk_00;
+            param0->unk_4380.unk_10_4 = v2.bufferSize;
             param0->unk_4380.unk_10_0 = param0->unk_437E;
         }
     }
