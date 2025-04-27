@@ -426,7 +426,7 @@ int ov111_021D0F40(OverlayManager *param0, int *param1)
     int v0;
     UnkStruct_ov111_021D0F7C *v1 = OverlayManager_Data(param0);
 
-    sub_0201E530();
+    DisableTouchScreen();
     *(v1->unk_3D8) = v1->unk_0C;
     VramTransfer_Free();
 

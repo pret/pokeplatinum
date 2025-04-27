@@ -324,7 +324,7 @@ int ov58_021D1018(OverlayManager *param0, int *param1)
         ov58_021D19D4(v0);
         ov58_021D13F0(v0->unk_00);
 
-        sub_0201E530();
+        DisableTouchScreen();
         MessageLoader_Free(v0->unk_10);
         StringTemplate_Free(v0->unk_0C);
         (*param1)++;

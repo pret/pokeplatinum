@@ -571,7 +571,7 @@ int ov84_0223B900(OverlayManager *param0, int *param1)
     ov84_0223F1DC(v0->unk_04);
     ov84_0223BBC4(v0->unk_00);
 
-    sub_0201E530();
+    DisableTouchScreen();
     VramTransfer_Free();
 
     ov84_0223FB50(v0);

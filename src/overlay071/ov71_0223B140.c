@@ -389,7 +389,7 @@ int ov71_0223B5B8(OverlayManager *param0, int *param1)
     ov71_0223C6D4(v0->unk_04);
     ov71_0223BBDC(v0->unk_00);
 
-    sub_0201E530();
+    DisableTouchScreen();
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_25);

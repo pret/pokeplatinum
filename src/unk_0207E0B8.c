@@ -647,7 +647,7 @@ static int sub_0207E7E0(OverlayManager *param0, int *param1)
     sub_02082FF4(v0);
     sub_02081B90(v0);
     sub_0207EA24(v0->unk_00);
-    sub_0201E530();
+    DisableTouchScreen();
     VramTransfer_Free();
 
     for (v1 = 0; v1 < 6; v1++) {

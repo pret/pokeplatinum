@@ -438,7 +438,7 @@ BOOL ChooseStarter_Exit(OverlayManager *param0, int *param1)
 
     v1->species = GetSelectedSpecies(v0->cursorPosition);
 
-    v2 = sub_0201E530();
+    v2 = DisableTouchScreen();
     GF_ASSERT(v2 == 1);
 
     ov78_021D24E4(&v0->unk_6A8);

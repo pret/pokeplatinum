@@ -248,7 +248,7 @@ static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 *param0)
 {
     int v0;
 
-    sub_0201E530();
+    DisableTouchScreen();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     SetVBlankCallback(NULL, NULL);

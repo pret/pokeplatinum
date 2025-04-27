@@ -160,7 +160,7 @@ BOOL DWWarp_Exit(OverlayManager *ovy, int *state)
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    sub_0201E530();
+    DisableTouchScreen();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);

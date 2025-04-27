@@ -258,7 +258,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     {
         u32 v1;
 
-        v1 = sub_0201E530();
+        v1 = DisableTouchScreen();
 
         if (v1 != 1) {
             (void)0;

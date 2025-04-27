@@ -669,7 +669,7 @@ static void ov116_022610FC(UnkStruct_ov116_0226139C *param0)
 
     {
         u32 v0;
-        v0 = sub_0201E530();
+        v0 = DisableTouchScreen();
     }
 
     LCRNG_SetSeed(param0->unk_78);

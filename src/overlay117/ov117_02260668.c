@@ -477,7 +477,7 @@ int ov117_02260C10(OverlayManager *param0, int *param1)
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
     ov117_02260EB8(v0->unk_98);
-    sub_0201E530();
+    DisableTouchScreen();
     OverlayManager_FreeData(param0);
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);

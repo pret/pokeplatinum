@@ -284,7 +284,7 @@ int ov85_022415A0(OverlayManager *param0, int *param1)
     ov85_02241860(v0->unk_04);
     ov85_022416E8(v0->unk_00);
 
-    sub_0201E530();
+    DisableTouchScreen();
 
     ov85_0224181C(v0);
     ov85_0224202C(v0);

@@ -281,7 +281,7 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
-    sub_0201E530();
+    DisableTouchScreen();
     OverlayManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_75);
 

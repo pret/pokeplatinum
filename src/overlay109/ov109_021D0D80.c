@@ -491,7 +491,7 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov109_021D0F70 *v0 = OverlayManager_Data(param0);
 
-    if (sub_0201E530() != 1) {
+    if (DisableTouchScreen() != 1) {
         GF_ASSERT(0);
     }
 

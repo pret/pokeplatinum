@@ -737,7 +737,7 @@ UnkStruct_ov115_02260D78 *ov115_02260CEC(u32 heapID, u32 param1, u32 param2, u32
 
 void ov115_02260D78(UnkStruct_ov115_02260D78 *param0)
 {
-    u32 v0 = sub_0201E530();
+    u32 v0 = DisableTouchScreen();
     GF_ASSERT(v0 == 1);
 
     ov115_022630DC(&param0->unk_8730, &param0->unk_1AB4);

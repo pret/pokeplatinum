@@ -139,7 +139,7 @@ static u32 StopAutoSampling(void)
     return 1;
 }
 
-u32 sub_0201E530(void)
+u32 DisableTouchScreen(void)
 {
     u32 v0;
 

@@ -450,7 +450,7 @@ static void PoketchEvent_OnShutdown(PoketchSystem *poketchSys)
     case 3:
         if (ov25_02254800(poketchSys->unk_1C)) {
             PoketchSystem_UnloadApp(poketchSys);
-            sub_0201E530();
+            DisableTouchScreen();
             PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_UNLOAD);
         }
         break;

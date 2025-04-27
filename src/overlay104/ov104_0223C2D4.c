@@ -232,7 +232,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
 
     ov104_0223CFEC(param0->unk_0C);
 
-    sub_0201E530();
+    DisableTouchScreen();
     Heap_FreeToHeap(param0);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);

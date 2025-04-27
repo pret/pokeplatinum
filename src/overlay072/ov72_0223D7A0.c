@@ -226,7 +226,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
     ov72_0223E260(v0);
     Font_Free(FONT_SUBSCREEN);
     ov72_0223DC6C(v0->unk_00);
-    sub_0201E530();
+    DisableTouchScreen();
     MessageLoader_Free(v0->unk_14);
     StringTemplate_Free(v0->unk_10);
     ov72_0223DC34(v0);

@@ -174,7 +174,7 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         }
         break;
     case 6:
-        sub_0201E530();
+        DisableTouchScreen();
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         SetVBlankCallback(NULL, NULL);

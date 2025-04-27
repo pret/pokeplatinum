@@ -168,7 +168,7 @@ int PokedexMain_Exit(OverlayManager *overlayMan, int *state)
 
     SetVBlankCallback(NULL, NULL);
 
-    GF_ASSERT(sub_0201E530() == TRUE);
+    GF_ASSERT(DisableTouchScreen() == TRUE);
 
     PokedexMain_FreeGraphics();
     VramTransfer_Free();

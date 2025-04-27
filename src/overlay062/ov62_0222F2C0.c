@@ -173,7 +173,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
 
     {
         u32 v1;
-        v1 = sub_0201E530();
+        v1 = DisableTouchScreen();
 
         sub_02024034(param0->unk_14.unk_18);
         RenderControlFlags_SetSpeedUpOnTouch(0);

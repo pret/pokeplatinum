@@ -393,7 +393,7 @@ int ov22_02256098(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
-    v1 = sub_0201E530();
+    v1 = DisableTouchScreen();
     GF_ASSERT(v1 == 1);
 
     OverlayManager_FreeData(param0);
@@ -654,7 +654,7 @@ int ov22_02256600(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
-    v1 = sub_0201E530();
+    v1 = DisableTouchScreen();
     GF_ASSERT(v1 == 1);
 
     OverlayManager_FreeData(param0);

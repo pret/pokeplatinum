@@ -349,7 +349,7 @@ static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state)
     PokemonSummaryScreen_FreeSpriteResources(summaryScreen);
     PokemonSummaryScreen_RemoveWindows(summaryScreen);
     TeardownBgs(summaryScreen->bgConfig);
-    sub_0201E530();
+    DisableTouchScreen();
     VramTransfer_Free();
     FreeStrings(summaryScreen);
     NARC_dtor(summaryScreen->narcPlPokeData);

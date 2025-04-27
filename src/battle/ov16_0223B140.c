@@ -786,7 +786,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     Font_Free(FONT_SUBSCREEN);
     SysTask_Done(battleSystem->unk_1C);
     SysTask_Done(battleSystem->unk_20);
-    sub_0201E530();
+    DisableTouchScreen();
 
     ov16_0223CE20(battleSystem->unk_00);
 

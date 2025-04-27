@@ -139,7 +139,7 @@ static int sub_0208927C(OverlayManager *param0, int *param1)
 
     {
         u32 v1;
-        v1 = sub_0201E530();
+        v1 = DisableTouchScreen();
     }
 
     SpriteSystem_FreeResourcesAndManager(v0->unk_2C0.unk_04, v0->unk_2C0.unk_08);

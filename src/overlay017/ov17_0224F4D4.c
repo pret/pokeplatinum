@@ -321,7 +321,7 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
 
     ov17_0223F1E0(v0->unk_0C);
 
-    sub_0201E530();
+    DisableTouchScreen();
     OverlayManager_FreeData(param0);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
