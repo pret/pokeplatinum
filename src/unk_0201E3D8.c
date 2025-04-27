@@ -12,7 +12,7 @@
 
 enum TouchPadMode
 {
-    TOUCH_PAD_MODE_DISABLED = 0,
+    TOUCH_PAD_MODE_INACTIVE = 0,
     TOUCH_PAD_MODE_AUTO_SAMPLING_WITH_DATA_BUFFER,
     TOUCH_PAD_MODE_AUTO_SAMPLING_WITHOUT_DATA_BUFFER,
 };
@@ -22,7 +22,7 @@ typedef struct {
     u32 touchPadDataBufferSize;
     u32 autoSamplingBufferFrequency;
     TPData autoSamplingBuffer[AUTO_SAMPLING_BUFFER_MAX_SIZE];
-    u32 currentTouchPadDataBufferIndex;
+    u32 currentTouchPadDataBufferIndex; // Need to rename
     u16 touchPadMode;
     u16 touchPadDisabled;
 } TouchPadState;
@@ -42,7 +42,7 @@ void EnableTouchScreen(void)
 {
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
-    touchPadState.touchPadMode = TOUCH_PAD_MODE_DISABLED;
+    touchPadState.touchPadMode = TOUCH_PAD_MODE_INACTIVE;
     touchPadState.touchPadDisabled = FALSE;
 }
 
@@ -56,7 +56,7 @@ BOOL InitializeTouchScreen(TPData *touchPadDataBuffer, u32 param1, u32 bufferFre
         return FALSE;
     }
 
-    if (touchPadState.touchPadMode != TOUCH_PAD_MODE_DISABLED) {
+    if (touchPadState.touchPadMode != TOUCH_PAD_MODE_INACTIVE) {
         return FALSE;
     }
 
@@ -81,7 +81,7 @@ BOOL InitializeTouchScreenNoBuffer(u32 bufferFrequency)
         return FALSE;
     }
 
-    if (touchPadState.touchPadMode != TOUCH_PAD_MODE_DISABLED) {
+    if (touchPadState.touchPadMode != TOUCH_PAD_MODE_INACTIVE) {
         return FALSE;
     }
 
@@ -122,7 +122,7 @@ static u32 StopAutoSampling(void)
     u32 errorCount = 0;
     BOOL hasError;
 
-    if (touchPadState.touchPadMode == TOUCH_PAD_MODE_DISABLED) {
+    if (touchPadState.touchPadMode == TOUCH_PAD_MODE_INACTIVE) {
         return 1;
     }
 
@@ -153,7 +153,7 @@ u32 DisableTouchScreen(void)
     autoSamplingResult = StopAutoSampling();
 
     if (autoSamplingResult == 1) {
-        UpdateTouchScreenState(TOUCH_PAD_MODE_DISABLED, FALSE, NULL, 0, 0, 0);
+        UpdateTouchScreenState(TOUCH_PAD_MODE_INACTIVE, FALSE, NULL, 0, 0, 0);
     }
 
     return autoSamplingResult;
@@ -166,7 +166,7 @@ u32 sub_0201E564(TouchPadDataBuffer *touchPadDataBuffer, u32 frequency, u32 para
 
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
-    if (touchPadState.touchPadMode != TOUCH_PAD_MODE_DISABLED) {
+    if (touchPadState.touchPadMode != TOUCH_PAD_MODE_INACTIVE) {
         latestIndex = TP_GetLatestIndexInAuto();
 
         ConvertTouchPadDataToScreenSpace(touchPadState.autoSamplingBuffer, AUTO_SAMPLING_BUFFER_MAX_SIZE);
@@ -206,7 +206,7 @@ void AfterSleep(void)
         return;
     }
 
-    if (touchPadState.touchPadMode == TOUCH_PAD_MODE_DISABLED) {
+    if (touchPadState.touchPadMode == TOUCH_PAD_MODE_INACTIVE) {
         return;
     }
 
@@ -224,7 +224,7 @@ void BeforeSleep(void)
         return;
     }
 
-    if (touchPadState.touchPadMode == TOUCH_PAD_MODE_DISABLED) {
+    if (touchPadState.touchPadMode == TOUCH_PAD_MODE_INACTIVE) {
         return;
     }
 
