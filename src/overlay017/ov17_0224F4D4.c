@@ -173,7 +173,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     ov17_0224FB34(v0->unk_10.unk_20);
 
     EnableTouchScreen();
-    SetTouchScreenBufferFrequency(4);
+    InitializeTouchScreenNoBuffer(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_24);
 
     v0->unk_10.unk_18 = SpriteSystem_Alloc(HEAP_ID_24);

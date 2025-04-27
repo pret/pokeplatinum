@@ -781,7 +781,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
             sub_02099550();
         }
 
-        v2 = SetTouchScreenBufferFrequency(4);
+        v2 = InitializeTouchScreenNoBuffer(4);
         GF_ASSERT(v2 == 1);
         (*param1)++;
         break;

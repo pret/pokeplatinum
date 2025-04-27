@@ -230,7 +230,7 @@ static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0)
         ov80_021D1088(param0, param0->unk_28);
         ov80_021D1158(param0);
         EnableTouchScreen();
-        SetTouchScreenBufferFrequency(4);
+        InitializeTouchScreenNoBuffer(4);
         ov80_021D2A08(param0);
         break;
     case 2:

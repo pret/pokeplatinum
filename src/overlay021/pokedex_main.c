@@ -108,7 +108,7 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
     DisableHBlank();
     EnableTouchScreen();
 
-    GF_ASSERT(SetTouchScreenBufferFrequency(4) == TRUE);
+    GF_ASSERT(InitializeTouchScreenNoBuffer(4) == TRUE);
 
     PokedexMain_InitGX(HEAP_ID_POKEDEX);
 

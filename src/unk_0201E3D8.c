@@ -48,7 +48,7 @@ void EnableTouchScreen(void)
     touchScreenState.touchScreenDisabled = FALSE;
 }
 
-u32 SetTouchScreenBuffer(TPData *buffer, u32 param1, u32 bufferFrequency)
+u32 InitializeTouchScreen(TPData *buffer, u32 param1, u32 bufferFrequency)
 {
     u32 result;
 
@@ -73,7 +73,7 @@ u32 SetTouchScreenBuffer(TPData *buffer, u32 param1, u32 bufferFrequency)
     return 1;
 }
 
-u32 SetTouchScreenBufferFrequency(u32 bufferFrequency)
+u32 InitializeTouchScreenNoBuffer(u32 bufferFrequency)
 {
     u32 result;
 

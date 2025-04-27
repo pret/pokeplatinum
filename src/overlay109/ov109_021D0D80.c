@@ -448,7 +448,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
 
     VramTransfer_New(8, HEAP_ID_95);
     EnableTouchScreen();
-    SetTouchScreenBufferFrequency(4);
+    InitializeTouchScreenNoBuffer(4);
     ov109_021D1C28(v0);
     SetVBlankCallback(ov109_021D1C00, v0);
     ov109_021D29CC(v0);

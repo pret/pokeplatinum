@@ -164,7 +164,7 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     SetAutorepeat(4, 8);
     ov61_0222C224(v0->unk_04);
     EnableTouchScreen();
-    SetTouchScreenBufferFrequency(4);
+    InitializeTouchScreenNoBuffer(4);
 
     v0->unk_20 = StringTemplate_New(11, 64, HEAP_ID_117);
     v0->unk_24 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0671, HEAP_ID_117);

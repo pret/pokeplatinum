@@ -212,7 +212,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     SetAutorepeat(4, 8);
     ov117_022610D8(v0->unk_2C);
     EnableTouchScreen();
-    SetTouchScreenBufferFrequency(4);
+    InitializeTouchScreenNoBuffer(4);
     ov117_02260EC0(v0);
 
     v0->unk_24 = SpriteSystem_Alloc(HEAP_ID_110);
