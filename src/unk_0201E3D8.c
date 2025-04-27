@@ -48,18 +48,18 @@ void EnableTouchScreen(void)
     touchScreenState.touchScreenDisabled = FALSE;
 }
 
-u32 InitializeTouchScreen(TPData *buffer, u32 param1, u32 bufferFrequency)
+BOOL InitializeTouchScreen(TPData *buffer, u32 param1, u32 bufferFrequency)
 {
     u32 result;
 
     GF_ASSERT(touchScreenState.touchScreenDisabled == FALSE);
 
     if ((bufferFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (bufferFrequency <= 0)) {
-        return 0;
+        return FALSE;
     }
 
     if (touchScreenState.autoSamplingState != AUTO_SAMPLING_STATE_DISABLED) {
-        return 0;
+        return FALSE;
     }
 
     result = StartAutoSampling(bufferFrequency);
@@ -70,21 +70,21 @@ u32 InitializeTouchScreen(TPData *buffer, u32 param1, u32 bufferFrequency)
 
     UpdateTouchScreenState(AUTO_SAMPLING_STATE_ENABLED, TRUE, buffer, param1, 0, bufferFrequency * 2);
 
-    return 1;
+    return TRUE;
 }
 
-u32 InitializeTouchScreenNoBuffer(u32 bufferFrequency)
+BOOL InitializeTouchScreenNoBuffer(u32 bufferFrequency)
 {
     u32 result;
 
     GF_ASSERT(touchScreenState.touchScreenDisabled == FALSE);
 
     if ((bufferFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (bufferFrequency <= 0)) {
-        return 0;
+        return FALSE;
     }
 
     if (touchScreenState.autoSamplingState != AUTO_SAMPLING_STATE_DISABLED) {
-        return 0;
+        return FALSE;
     }
 
     result = StartAutoSampling(bufferFrequency);
@@ -95,7 +95,7 @@ u32 InitializeTouchScreenNoBuffer(u32 bufferFrequency)
 
     UpdateTouchScreenState(AUTO_SAMPLING_STATE_ENABLED_NO_BUFFER, TRUE, NULL, 0, 0, bufferFrequency * 2);
 
-    return 1;
+    return TRUE;
 }
 
 static void UpdateTouchScreenState(enum AutoSamplingState autoSamplingState, BOOL autoSamplingEnabled, void *buffer, u32 param3, u32 param4, u32 bufferFrequency)
