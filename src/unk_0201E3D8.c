@@ -8,10 +8,12 @@
 #include "inlines.h"
 #include "system.h"
 
-#define MAX_AUTO_SAMPLING_BUFFER_SIZE            9
-#define TOUCH_BUFFER_FREQUENCY_LIMIT     5
+#define MAX_AUTO_SAMPLING_BUFFER_SIZE        9
+#define AUTO_SAMPLING_FREQUENCY_LIMIT        5
 #define AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL 5
 
+static u32 sub_0201E658(u32 param0);
+static u32 sub_0201E4EC(void);
 static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2);
 static u32 sub_0201E784(u32 param0, u32 param1);
 static void sub_0201E7FC(UnkStruct_ov72_0223E2A8 *param0, u32 param1);
@@ -23,7 +25,7 @@ typedef struct {
     TPData *unk_00;
     u32 unk_04;
     u32 unk_08;
-    TPData unk_0C[9];
+    TPData autoSamplingBuffer[MAX_AUTO_SAMPLING_BUFFER_SIZE];
     u32 unk_54;
     u16 unk_58;
     u16 unk_5A;
@@ -101,7 +103,7 @@ static void sub_0201E4A4(u32 param0, u32 param1, void *param2, u32 param3, u32 p
     Unk_021C0704.unk_08 = param5;
     Unk_021C0704.unk_54 = param4;
 
-    sub_0201E4D8(Unk_021C0704.unk_0C, 9);
+    sub_0201E4D8(Unk_021C0704.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
 }
 
 static void sub_0201E4D8(TPData *param0, int param1)
@@ -166,7 +168,7 @@ u32 sub_0201E564(UnkStruct_ov72_0223E2A8 *param0, u32 param1, u32 param2)
     if (Unk_021C0704.unk_58 != 0) {
         v1 = TP_GetLatestIndexInAuto();
 
-        sub_0201E5C0(Unk_021C0704.unk_0C, 9);
+        sub_0201E5C0(Unk_021C0704.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
 
         if (param0 != NULL) {
             sub_0201E7FC(param0, v1);
@@ -237,7 +239,7 @@ static u32 sub_0201E658(u32 param0)
     u32 v1;
 
     do {
-        TP_RequestAutoSamplingStartAsync(0, param0, Unk_021C0704.unk_0C, 9);
+        TP_RequestAutoSamplingStartAsync(0, param0, Unk_021C0704.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
         TP_WaitBusy(TP_REQUEST_COMMAND_FLAG_AUTO_ON);
 
         v1 = TP_CheckError(TP_REQUEST_COMMAND_FLAG_AUTO_ON);
@@ -295,12 +297,12 @@ static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2)
             v3 += 9;
         }
 
-        if ((Unk_021C0704.unk_0C[v3].touch == TP_TOUCH_ON) && (Unk_021C0704.unk_0C[v3].validity == TP_VALIDITY_VALID)) {
-            v1 = inline_0201E6CC(Unk_021C0704.unk_00[Unk_021C0704.unk_54 - 1].x, Unk_021C0704.unk_0C[v3].x);
-            v2 = inline_0201E6CC(Unk_021C0704.unk_00[Unk_021C0704.unk_54 - 1].y, Unk_021C0704.unk_0C[v3].y);
+        if ((Unk_021C0704.autoSamplingBuffer[v3].touch == TP_TOUCH_ON) && (Unk_021C0704.autoSamplingBuffer[v3].validity == TP_VALIDITY_VALID)) {
+            v1 = inline_0201E6CC(Unk_021C0704.unk_00[Unk_021C0704.unk_54 - 1].x, Unk_021C0704.autoSamplingBuffer[v3].x);
+            v2 = inline_0201E6CC(Unk_021C0704.unk_00[Unk_021C0704.unk_54 - 1].y, Unk_021C0704.autoSamplingBuffer[v3].y);
 
             if ((v1 >= param2) || (v2 >= param2)) {
-                Unk_021C0704.unk_00[Unk_021C0704.unk_54] = Unk_021C0704.unk_0C[v3];
+                Unk_021C0704.unk_00[Unk_021C0704.unk_54] = Unk_021C0704.autoSamplingBuffer[v3];
                 Unk_021C0704.unk_54++;
 
                 if (Unk_021C0704.unk_54 >= Unk_021C0704.unk_04) {
@@ -326,10 +328,10 @@ static u32 sub_0201E784(u32 param0, u32 param1)
         v1 = param1 - Unk_021C0704.unk_08 + v0 + 1;
 
         if (v1 < 0) {
-            v1 += 9;
+            v1 += MAX_AUTO_SAMPLING_BUFFER_SIZE;
         }
 
-        Unk_021C0704.unk_00[Unk_021C0704.unk_54] = Unk_021C0704.unk_0C[v1];
+        Unk_021C0704.unk_00[Unk_021C0704.unk_54] = Unk_021C0704.autoSamplingBuffer[v1];
         Unk_021C0704.unk_54++;
 
         if (Unk_021C0704.unk_54 >= Unk_021C0704.unk_04) {
@@ -362,11 +364,11 @@ static void sub_0201E7FC(UnkStruct_ov72_0223E2A8 *param0, u32 param1)
         v1 = param1 - Unk_021C0704.unk_08 + v0 + 1;
 
         if (v1 < 0) {
-            v1 += 9;
+            v1 += MAX_AUTO_SAMPLING_BUFFER_SIZE;
         }
 
-        if (Unk_021C0704.unk_0C[v1].validity == TP_VALIDITY_VALID) {
-            param0->unk_02[param0->unk_00] = Unk_021C0704.unk_0C[v1];
+        if (Unk_021C0704.autoSamplingBuffer[v1].validity == TP_VALIDITY_VALID) {
+            param0->unk_02[param0->unk_00] = Unk_021C0704.autoSamplingBuffer[v1];
             param0->unk_00++;
         }
     }
