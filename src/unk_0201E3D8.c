@@ -33,7 +33,7 @@ static u32 StartAutoSampling(u32 bufferFrequency);
 static u32 StopAutoSampling(void);
 static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2);
 static u32 sub_0201E784(u32 param0, u32 param1);
-static void outputAutoSampleBuffer(UnkStruct_ov72_0223E2A8 *outBuffer, u32 lastIndex);
+static void OutputAutoSampleBuffer(UnkStruct_ov72_0223E2A8 *outBuffer, u32 lastIndex);
 static u32 sub_0201E69C(u32 param0, u32 param1, u32 param2);
 static void UpdateTouchScreenState(enum AutoSamplingState autoSamplingState, u32 param1, void *buffer, u32 param3, u32 param4, u32 bufferFrequency);
 static void ClearTouchOnBufferData(TPData *buffer, int bufferSize);
@@ -174,7 +174,7 @@ u32 sub_0201E564(UnkStruct_ov72_0223E2A8 *param0, u32 param1, u32 param2)
         sub_0201E5C0(touchScreenState.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
 
         if (param0 != NULL) {
-            outputAutoSampleBuffer(param0, v1);
+            OutputAutoSampleBuffer(param0, v1);
         }
 
         if (touchScreenState.autoSamplingState == AUTO_SAMPLING_STATE_ENABLED) {
@@ -349,7 +349,7 @@ static u32 sub_0201E784(u32 param0, u32 param1)
     return touchScreenState.unk_54;
 }
 
-static void outputAutoSampleBuffer(UnkStruct_ov72_0223E2A8 *outBuffer, u32 lastIndex)
+static void OutputAutoSampleBuffer(UnkStruct_ov72_0223E2A8 *outBuffer, u32 lastIndex)
 {
     int i;
     s16 bufferIndex;
