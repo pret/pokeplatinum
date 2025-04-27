@@ -12,7 +12,7 @@
 #define AUTO_SAMPLING_FREQUENCY_LIMIT        5
 #define AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL 5
 
-static u32 sub_0201E658(u32 param0);
+static u32 StartAutoSampling(u32 bufferFrequency);
 static u32 sub_0201E4EC(void);
 static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2);
 static u32 sub_0201E784(u32 param0, u32 param1);
@@ -57,7 +57,7 @@ u32 sub_0201E3F4(TPData *param0, u32 param1, u32 param2)
         return 0;
     }
 
-    v1 = sub_0201E658(param2);
+    v1 = StartAutoSampling(param2);
 
     if (v1 != 1) {
         return v1;
@@ -83,7 +83,7 @@ u32 sub_0201E450(u32 param0)
         return 0;
     }
 
-    v0 = sub_0201E658(param0);
+    v0 = StartAutoSampling(param0);
 
     if (v0 != 1) {
         return v0;
@@ -209,7 +209,7 @@ void AfterSleep(void)
         return;
     }
 
-    v0 = sub_0201E658(Unk_021C0704.autoSamplingBufferFrequency / 2);
+    v0 = StartAutoSampling(Unk_021C0704.autoSamplingBufferFrequency / 2);
     GF_ASSERT(v0 == 1);
 
     Unk_021C0704.unk_5A = 0;
@@ -233,23 +233,23 @@ void BeforeSleep(void)
     Unk_021C0704.unk_5A = 1;
 }
 
-static u32 sub_0201E658(u32 param0)
+static u32 StartAutoSampling(u32 bufferFrequency)
 {
-    int v0 = 0;
-    u32 v1;
+    int errorCount = 0;
+    u32 hasError;
 
     do {
-        TP_RequestAutoSamplingStartAsync(0, param0, Unk_021C0704.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
+        TP_RequestAutoSamplingStartAsync(0, bufferFrequency, Unk_021C0704.autoSamplingBuffer, MAX_AUTO_SAMPLING_BUFFER_SIZE);
         TP_WaitBusy(TP_REQUEST_COMMAND_FLAG_AUTO_ON);
 
-        v1 = TP_CheckError(TP_REQUEST_COMMAND_FLAG_AUTO_ON);
+        hasError = TP_CheckError(TP_REQUEST_COMMAND_FLAG_AUTO_ON);
 
-        if (v1 != 0) {
-            v0++;
+        if (hasError != FALSE) {
+            errorCount++;
         }
-    } while ((v1 != 0) && (v0 <= AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL));
+    } while ((hasError != FALSE) && (errorCount <= AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL));
 
-    if (v0 > 5) {
+    if (errorCount > AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL) {
         return 2;
     }
 
