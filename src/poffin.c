@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "savedata.h"
 
 #define FLAVOR_NONE 30

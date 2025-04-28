@@ -15,7 +15,7 @@
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_object.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "player_avatar.h"

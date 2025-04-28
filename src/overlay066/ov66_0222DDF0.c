@@ -47,7 +47,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "party.h"
 #include "pokedex.h"

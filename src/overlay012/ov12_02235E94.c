@@ -22,7 +22,7 @@
 #include "overlay012/struct_ov12_02237728.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"

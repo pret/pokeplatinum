@@ -9,7 +9,7 @@
 #include "overlay096/struct_ov96_0223B574.h"
 
 #include "charcode_util.h"
-#include "math.h"
+#include "math_util.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"

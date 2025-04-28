@@ -63,7 +63,7 @@
 #include "field_comm_manager.h"
 #include "game_records.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"

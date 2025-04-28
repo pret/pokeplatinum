@@ -20,7 +20,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sys_task.h"

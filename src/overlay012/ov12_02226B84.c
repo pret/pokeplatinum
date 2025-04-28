@@ -23,7 +23,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon_sprite.h"

@@ -118,7 +118,7 @@
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
-#include "math.h"
+#include "math_util.h"
 #include "menu.h"
 #include "message.h"
 #include "message_util.h"

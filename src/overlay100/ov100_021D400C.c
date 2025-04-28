@@ -5,7 +5,7 @@
 
 #include "overlay100/struct_ov100_021D4104.h"
 
-#include "math.h"
+#include "math_util.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 

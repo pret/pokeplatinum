@@ -27,7 +27,7 @@
 #include "heap.h"
 #include "item.h"
 #include "list_menu.h"
-#include "math.h"
+#include "math_util.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"

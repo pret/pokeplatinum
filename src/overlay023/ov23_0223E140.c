@@ -37,7 +37,7 @@
 #include "heap.h"
 #include "journal.h"
 #include "map_matrix.h"
-#include "math.h"
+#include "math_util.h"
 #include "menu.h"
 #include "narc.h"
 #include "pltt_transfer.h"

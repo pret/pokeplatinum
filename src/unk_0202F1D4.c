@@ -21,7 +21,7 @@
 #include "field_battle_data_transfer.h"
 #include "game_options.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"

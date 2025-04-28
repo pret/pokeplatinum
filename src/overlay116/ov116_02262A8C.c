@@ -18,7 +18,7 @@
 #include "easy3d_object.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"

@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "map_header_data.h"
 #include "map_object.h"
-#include "math.h"
+#include "math_util.h"
 #include "player_avatar.h"
 #include "script_manager.h"
 #include "sound_playback.h"
