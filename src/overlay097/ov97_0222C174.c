@@ -791,7 +791,7 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
 
     MI_CpuClear8(v4, sizeof(WonderCard));
 
-    v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, param0->heapID);
+    v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, param0->heapID);
     v2 = StringTemplate_Default(param0->heapID);
 
     v4->pgt.type = 7;

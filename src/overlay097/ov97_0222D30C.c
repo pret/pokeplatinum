@@ -779,7 +779,7 @@ static void ov97_0222DD1C(OverlayManager *param0, UnkStruct_ov97_0223E5B8 *param
     }
 
     v2->unk_7C = StringList_New(param2, 86);
-    v2->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_86);
+    v2->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_86);
 
     for (v0 = 0; v0 < param2; v0++) {
         StringList_AddFromMessageBank(v2->unk_7C, v2->unk_10, param1[v0].unk_00, param1[v0].unk_04);
@@ -834,7 +834,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
     Strbuf *v0;
     UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
 
-    v1->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_86);
+    v1->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_86);
     v1->unk_0C = StringTemplate_Default(HEAP_ID_86);
 
     Window_FillTilemap(param1, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
@@ -1025,7 +1025,7 @@ static int ov97_0222E228(OverlayManager *param0, Window *param1, int param2, int
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
 
     if (param1 && param2) {
-        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_86);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_86);
         v0 = StringTemplate_Default(HEAP_ID_86);
         v2->unk_14 = MessageUtil_ExpandedStrbuf(v0, v1, param2, HEAP_ID_86);
         v2->unk_68 = 1;
