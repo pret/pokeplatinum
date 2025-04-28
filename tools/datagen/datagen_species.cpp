@@ -500,7 +500,11 @@ int main(int argc, char **argv)
         try {
             fs::path speciesDataPath = dataRoot / species / "data.json";
             std::string json = ReadWholeFile(speciesDataPath);
-            doc.Parse(json.c_str());
+            rapidjson::ParseResult ok = doc.Parse(json.c_str(), json.length());
+            if (!ok) {
+                ReportJsonError(ok, json, speciesDataPath);
+                std::exit(EXIT_FAILURE);
+            }
 
             SpeciesData data = ParseSpeciesData(doc);
             SpeciesEvolutionList evos = ParseEvolutions(doc);

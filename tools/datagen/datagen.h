@@ -7,6 +7,7 @@
  */
 
 // clang-format off
+#include <algorithm>
 #include <cstdint>
 #include <cstdlib>
 #include <filesystem>
@@ -18,6 +19,7 @@
 #include <vector>
 
 #include <rapidjson/document.h>
+#include <rapidjson/error/en.h>
 #include <narc/narc.h>
 // clang-format on
 
@@ -187,6 +189,47 @@ static inline std::vector<std::string> ReadRegistryEnvVar(const char *var)
 
     std::string val = val_p;
     return Tokenize(val, ';');
+}
+
+struct Slice {
+    long begin;
+    long length;
+};
+
+static inline void ReportJsonError(rapidjson::ParseResult ok, std::string &json, fs::path &sourcepath)
+{
+    std::vector<Slice> linecoords { Slice { 0, 0 } };
+    for (int i = 0; i < json.length(); i++) {
+        if (json.at(i) == '\n') {
+            linecoords.back().length = i - linecoords.back().begin;
+            linecoords.emplace_back(Slice { i + 1, 0 });
+        }
+    }
+    linecoords.back().length = json.length() - linecoords.back().begin;
+
+    auto line = std::find_if(linecoords.begin(), linecoords.end(), [&ok](Slice slice) {
+        return slice.length + slice.begin >= ok.Offset();
+    });
+    auto lineidx = std::distance(linecoords.begin(), line);
+    auto linenum = lineidx + 1;
+    auto colnum = ok.Offset() - line->begin + 1;
+
+    std::cerr << "\033[1;37m" << fs::relative(sourcepath).generic_string() << ":" << linenum << ":" << colnum << ": ";
+    std::cerr << "\033[1;31merror: ";
+    std::cerr << "\033[1;37m" << rapidjson::GetParseError_En(ok.Code());
+    std::cerr << "\033[0m" << std::endl;
+
+    if (lineidx > 0) {
+        auto &prev = linecoords.at(lineidx - 1);
+        std::cerr << std::setw(5) << linenum - 1 << " | " << json.substr(prev.begin, prev.length) << std::endl;
+    }
+
+    std::cerr << std::setw(5) << linenum << " | " << "\033[0;31m" << json.substr(line->begin, line->length) << "\033[0m" << std::endl;
+
+    if (lineidx < linecoords.size() - 1) {
+        auto &next = linecoords.at(lineidx + 1);
+        std::cerr << std::setw(5) << linenum + 1 << " | " << json.substr(next.begin, next.length) << std::endl;
+    }
 }
 
 #endif // POKEPLATINUM_DATAGEN_H

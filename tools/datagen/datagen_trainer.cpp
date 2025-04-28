@@ -215,7 +215,11 @@ int main(int argc, char **argv)
         try {
             fs::path trainerDataPath = dataRoot / (trainerStem + ".json");
             std::string json = ReadWholeFile(trainerDataPath);
-            doc.Parse(json.c_str(), json.length());
+            rapidjson::ParseResult ok = doc.Parse(json.c_str(), json.length());
+            if (!ok) {
+                ReportJsonError(ok, json, trainerDataPath);
+                std::exit(EXIT_FAILURE);
+            }
 
             TrainerHeader trdata = ParseTrainerData(doc);
             narc_pack_file_copy(trdataVFS, reinterpret_cast<unsigned char *>(&trdata), sizeof(trdata));
