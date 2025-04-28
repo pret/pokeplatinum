@@ -46,7 +46,7 @@ void EnableTouchScreen(void)
     touchPadState.touchPadDisabled = FALSE;
 }
 
-BOOL InitializeTouchScreen(TPData *touchPadDataBuffer, u32 param1, u32 bufferFrequency)
+BOOL InitializeTouchScreen(TPData *touchPadDataBuffer, u32 touchPadDataBufferSize, u32 bufferFrequency)
 {
     u32 autoSamplingResult;
 
@@ -66,7 +66,7 @@ BOOL InitializeTouchScreen(TPData *touchPadDataBuffer, u32 param1, u32 bufferFre
         return autoSamplingResult;
     }
 
-    UpdateTouchScreenState(TOUCH_PAD_MODE_AUTO_SAMPLING_WITH_DATA_BUFFER, TRUE, touchPadDataBuffer, param1, 0, bufferFrequency * 2);
+    UpdateTouchScreenState(TOUCH_PAD_MODE_AUTO_SAMPLING_WITH_DATA_BUFFER, TRUE, touchPadDataBuffer, touchPadDataBufferSize, 0, bufferFrequency * 2);
 
     return TRUE;
 }
