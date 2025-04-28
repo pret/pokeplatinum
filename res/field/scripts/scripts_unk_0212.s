@@ -151,7 +151,7 @@ _01B1:
 _01BE:
     SetObjectEventPos 9, 24, 6
     ScrCmd_188 9, 15
-    SetObjectEventDir 9, 1
+    SetObjectEventDir 9, DIR_SOUTH
     Return
 
 _01D4:

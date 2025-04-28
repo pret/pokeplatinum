@@ -39,7 +39,7 @@ _005E:
 
 _009C:
     SetObjectEventPos 21, 0x27D, 0x32C
-    SetObjectEventDir 21, 3
+    SetObjectEventDir 21, DIR_EAST
     ScrCmd_188 21, 17
     End
 
@@ -546,7 +546,7 @@ _04C8:
     ClearFlag FLAG_UNK_0x01A9
     SetObjectEventPos 26, 0x253, 0x333
     ScrCmd_188 26, 16
-    SetObjectEventDir 26, 2
+    SetObjectEventDir 26, DIR_WEST
     AddObject 26
     ApplyMovement 26, _05B0
     WaitMovement
@@ -632,7 +632,7 @@ _05E0:
     ClearFlag FLAG_UNK_0x01A9
     SetObjectEventPos 26, 0x253, 0x333
     ScrCmd_188 26, 15
-    SetObjectEventDir 26, 1
+    SetObjectEventDir 26, DIR_SOUTH
     AddObject 26
     ScrCmd_062 26
     ApplyMovement 26, _0798
@@ -649,7 +649,7 @@ _05E0:
     WaitMovement
     ClearFlag FLAG_UNK_0x01FB
     SetObjectEventPos 27, 0x24D, 0x33B
-    SetObjectEventDir 27, 0
+    SetObjectEventDir 27, DIR_NORTH
     ScrCmd_188 27, 14
     AddObject 27
     ScrCmd_062 27
@@ -700,19 +700,19 @@ _05E0:
 
 _0721:
     SetObjectEventPos 26, 0x260, 0x32E
-    SetObjectEventDir 26, 1
+    SetObjectEventDir 26, DIR_SOUTH
     ScrCmd_188 26, 15
     Return
 
 _0737:
     SetObjectEventPos 27, 0x263, 0x32A
-    SetObjectEventDir 27, 0
+    SetObjectEventDir 27, DIR_NORTH
     ScrCmd_188 27, 14
     Return
 
 _074D:
     SetObjectEventPos 26, 0x263, 0x32A
-    SetObjectEventDir 26, 0
+    SetObjectEventDir 26, DIR_NORTH
     ScrCmd_188 26, 14
     Return
 
@@ -832,7 +832,7 @@ _086F:
     CloseMessage
     ClearFlag FLAG_UNK_0x020C
     SetObjectEventPos 21, 0x262, 0x328
-    SetObjectEventDir 21, 3
+    SetObjectEventDir 21, DIR_EAST
     ScrCmd_188 21, 17
     AddObject 21
     ScrCmd_062 21
@@ -854,7 +854,7 @@ _08FA:
     ClearFlag FLAG_UNK_0x020C
     SetObjectEventPos 21, 0x27D, 0x32C
     ScrCmd_188 21, 17
-    SetObjectEventDir 21, 3
+    SetObjectEventDir 21, DIR_EAST
     AddObject 21
     Return
 

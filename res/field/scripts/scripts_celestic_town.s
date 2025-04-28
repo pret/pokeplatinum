@@ -84,7 +84,7 @@ _013C:
     RemoveObject 2
     RemoveObject 3
     SetObjectEventPos 3, 0x1D2, 0x213
-    SetObjectEventDir 3, 0
+    SetObjectEventDir 3, DIR_NORTH
     ScrCmd_188 3, 14
     ClearFlag FLAG_UNK_0x01AC
     AddObject 3

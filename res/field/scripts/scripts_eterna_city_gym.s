@@ -235,20 +235,20 @@ _02DA:
 
 _0314:
     ScrCmd_188 VAR_0x8007, 15
-    SetObjectEventDir VAR_0x8007, 1
+    SetObjectEventDir VAR_0x8007, DIR_SOUTH
     Return
 
 _0322:
     ScrCmd_188 VAR_0x8007, 14
-    SetObjectEventDir VAR_0x8007, 0
+    SetObjectEventDir VAR_0x8007, DIR_NORTH
     Return
 
 _0330:
     ScrCmd_188 VAR_0x8007, 17
-    SetObjectEventDir VAR_0x8007, 3
+    SetObjectEventDir VAR_0x8007, DIR_EAST
     Return
 
 _033E:
     ScrCmd_188 VAR_0x8007, 16
-    SetObjectEventDir VAR_0x8007, 2
+    SetObjectEventDir VAR_0x8007, DIR_WEST
     Return

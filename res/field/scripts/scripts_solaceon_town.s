@@ -26,7 +26,7 @@ _0034:
     End
 
 _0047:
-    SetObjectEventDir 3, 3
+    SetObjectEventDir 3, DIR_EAST
     End
 
 _004F:

@@ -28,11 +28,11 @@ _003E:
 _005A:
     ClearFlag FLAG_UNK_0x0198
     SetObjectEventPos 0, 7, 14
-    SetObjectEventDir 0, 1
+    SetObjectEventDir 0, DIR_SOUTH
     ScrCmd_188 0, 15
     ClearFlag FLAG_UNK_0x0199
     SetObjectEventPos 3, 6, 14
-    SetObjectEventDir 3, 1
+    SetObjectEventDir 3, DIR_SOUTH
     ScrCmd_188 3, 15
     Return
 

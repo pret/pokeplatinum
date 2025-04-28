@@ -29,7 +29,7 @@ _0036:
 
 _004D:
     SetObjectEventPos 7, 8, 9
-    SetObjectEventDir 7, 2
+    SetObjectEventDir 7, DIR_WEST
     End
 
 PalParkLobby_BufferRecord:

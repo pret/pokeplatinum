@@ -43,13 +43,13 @@ _0072:
 
 _00AC:
     SetObjectEventPos 31, 177, 0x306
-    SetObjectEventDir 31, 1
+    SetObjectEventDir 31, DIR_SOUTH
     ScrCmd_188 31, 15
     Return
 
 _00C2:
     SetObjectEventPos 7, 176, 0x2E3
-    SetObjectEventDir 7, 2
+    SetObjectEventDir 7, DIR_WEST
     ScrCmd_188 7, 16
     Return
 
@@ -1757,7 +1757,7 @@ _14CF:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetObjectEventPos 31, 179, VAR_0x8005
-    SetObjectEventDir 31, 3
+    SetObjectEventDir 31, DIR_EAST
     ScrCmd_188 31, 17
     ClearFlag FLAG_UNK_0x0181
     AddObject 31

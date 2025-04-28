@@ -34,7 +34,7 @@ _0036:
     SetVar VAR_UNK_0x40A9, 2
     SetObjectEventPos 5, 20, 25
     ScrCmd_188 5, 16
-    SetObjectEventDir 5, 2
+    SetObjectEventDir 5, DIR_WEST
     ClearFlag FLAG_UNK_0x029F
     AddObject 5
     ApplyMovement 5, _0148

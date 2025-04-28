@@ -2,6 +2,7 @@
 #include "generated/badges.h"
 #include "generated/catching_show_points_category.h"
 #include "generated/days_of_week.h"
+#include "generated/facing_directions.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
 #include "generated/items.h"
