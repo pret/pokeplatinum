@@ -24,7 +24,7 @@
 #include "sys_task.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 
 FS_EXTERN_OVERLAY(poketch_digital_watch);
 FS_EXTERN_OVERLAY(overlay27);

@@ -45,7 +45,7 @@
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_0201E010.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 #include "unk_02024220.h"
 #include "unk_0202602C.h"
 #include "unk_020393C8.h"

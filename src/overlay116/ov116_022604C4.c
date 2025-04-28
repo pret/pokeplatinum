@@ -38,7 +38,7 @@
 #include "sprite_util.h"
 #include "system.h"
 #include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"

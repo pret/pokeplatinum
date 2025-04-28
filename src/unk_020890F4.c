@@ -20,7 +20,7 @@
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 #include "unk_02023FCC.h"
 #include "unk_020393C8.h"
 #include "unk_02089604.h"

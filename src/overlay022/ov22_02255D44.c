@@ -72,7 +72,7 @@
 #include "unk_0200679C.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"

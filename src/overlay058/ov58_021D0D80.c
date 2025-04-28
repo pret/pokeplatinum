@@ -45,7 +45,7 @@
 #include "trainer_info.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"

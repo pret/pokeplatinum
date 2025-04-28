@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0201E3D8_H
-#define POKEPLATINUM_UNK_0201E3D8_H
+#ifndef POKEPLATINUM_TOUCH_PAD_H
+#define POKEPLATINUM_TOUCH_PAD_H
 
 #include <nitro.h>
 
@@ -23,4 +23,4 @@ void ConvertTouchPadDataToScreenSpace(TPData *touchPadDataBuffer, u32 touchPadDa
 void AfterSleep(void);
 void BeforeSleep(void);
 
-#endif // POKEPLATINUM_UNK_0201E3D8_H
+#endif // POKEPLATINUM_TOUCH_PAD_H

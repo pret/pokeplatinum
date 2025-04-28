@@ -42,7 +42,7 @@
 #include "text.h"
 #include "sound_playback.h"
 #include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
 #include "unk_020366A0.h"

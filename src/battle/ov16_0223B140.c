@@ -75,7 +75,7 @@
 #include "unk_02014000.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202F1D4.h"

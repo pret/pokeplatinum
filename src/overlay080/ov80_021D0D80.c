@@ -23,7 +23,7 @@
 #include "strbuf.h"
 #include "system.h"
 #include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 #include "unk_0208C098.h"
 
 int ov80_021D0D80(OverlayManager *param0, int *param1);

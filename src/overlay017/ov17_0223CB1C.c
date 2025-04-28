@@ -38,7 +38,7 @@
 #include "system.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_020933F8.h"
