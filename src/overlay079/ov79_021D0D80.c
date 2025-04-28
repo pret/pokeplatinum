@@ -133,7 +133,7 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         sub_0200F344(1, 0x0);
         sub_0200F32C(0);
         sub_0200F32C(1);
-        EnableTouchScreen();
+        EnableTouchPad();
         InitializeTouchScreenNoBuffer(4);
         break;
     case 1:
@@ -174,7 +174,7 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         }
         break;
     case 6:
-        DisableTouchScreen();
+        DisableTouchPad();
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         SetVBlankCallback(NULL, NULL);

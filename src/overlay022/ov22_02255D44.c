@@ -205,7 +205,7 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
 
     v2 = OverlayManager_Args(param0);
     v0->unk_738 = v2->unk_0C;
-    EnableTouchScreen();
+    EnableTouchPad();
     v1 = InitializeTouchScreenNoBuffer(4);
 
     if (v1 != 1) {
@@ -393,7 +393,7 @@ int ov22_02256098(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
-    v1 = DisableTouchScreen();
+    v1 = DisableTouchPad();
     GF_ASSERT(v1 == 1);
 
     OverlayManager_FreeData(param0);
@@ -426,7 +426,7 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     v0->unk_730 = v2->unk_08;
     v0->unk_734 = v2->unk_1C;
 
-    EnableTouchScreen();
+    EnableTouchPad();
     v1 = InitializeTouchScreenNoBuffer(4);
 
     if (v1 != 1) {
@@ -654,7 +654,7 @@ int ov22_02256600(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
-    v1 = DisableTouchScreen();
+    v1 = DisableTouchPad();
     GF_ASSERT(v1 == 1);
 
     OverlayManager_FreeData(param0);

@@ -182,7 +182,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     ov17_0223B728(v0->unk_0C.unk_24);
 
-    EnableTouchScreen();
+    EnableTouchPad();
     InitializeTouchScreenNoBuffer(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_21);
 
@@ -367,7 +367,7 @@ int ov17_0223B580(OverlayManager *param0, int *param1)
 
     ov17_0223F1E0(v0->unk_08);
 
-    DisableTouchScreen();
+    DisableTouchPad();
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();

@@ -133,7 +133,7 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
         new_system->oamManager = oamManager;
 
         if (PoketchSystem_InitInternal(new_system)) {
-            EnableTouchScreen();
+            EnableTouchPad();
             InitializeTouchScreenNoBuffer(4);
 
             new_system->poketchSysPtr = poketchSys;
@@ -450,7 +450,7 @@ static void PoketchEvent_OnShutdown(PoketchSystem *poketchSys)
     case 3:
         if (ov25_02254800(poketchSys->unk_1C)) {
             PoketchSystem_UnloadApp(poketchSys);
-            DisableTouchScreen();
+            DisableTouchPad();
             PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_UNLOAD);
         }
         break;

@@ -211,7 +211,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     VramTransfer_New(64, HEAP_ID_110);
     SetAutorepeat(4, 8);
     ov117_022610D8(v0->unk_2C);
-    EnableTouchScreen();
+    EnableTouchPad();
     InitializeTouchScreenNoBuffer(4);
     ov117_02260EC0(v0);
 
@@ -477,7 +477,7 @@ int ov117_02260C10(OverlayManager *param0, int *param1)
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
     ov117_02260EB8(v0->unk_98);
-    DisableTouchScreen();
+    DisableTouchPad();
     OverlayManager_FreeData(param0);
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);

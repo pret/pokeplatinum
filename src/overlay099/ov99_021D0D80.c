@@ -123,7 +123,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     ov99_021D1380(v0->unk_08);
 
-    EnableTouchScreen();
+    EnableTouchPad();
     InitializeTouchScreenNoBuffer(4);
 
     v0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0548, HEAP_ID_75);
@@ -281,7 +281,7 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
-    DisableTouchScreen();
+    DisableTouchPad();
     OverlayManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_75);
 

@@ -609,7 +609,7 @@ static void ov16_0223B790(OverlayManager *param0)
 
     ov16_0223C210(battleSys);
 
-    EnableTouchScreen();
+    EnableTouchPad();
     InitializeTouchScreenNoBuffer(4);
 
     battleSys->unk_0C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
@@ -786,7 +786,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     Font_Free(FONT_SUBSCREEN);
     SysTask_Done(battleSystem->unk_1C);
     SysTask_Done(battleSystem->unk_20);
-    DisableTouchScreen();
+    DisableTouchPad();
 
     ov16_0223CE20(battleSystem->unk_00);
 

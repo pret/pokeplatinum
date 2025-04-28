@@ -106,7 +106,7 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
 
     SetVBlankCallback(VBlankCallBack, appPtr);
     DisableHBlank();
-    EnableTouchScreen();
+    EnableTouchPad();
 
     GF_ASSERT(InitializeTouchScreenNoBuffer(4) == TRUE);
 
@@ -168,7 +168,7 @@ int PokedexMain_Exit(OverlayManager *overlayMan, int *state)
 
     SetVBlankCallback(NULL, NULL);
 
-    GF_ASSERT(DisableTouchScreen() == TRUE);
+    GF_ASSERT(DisableTouchPad() == TRUE);
 
     PokedexMain_FreeGraphics();
     VramTransfer_Free();

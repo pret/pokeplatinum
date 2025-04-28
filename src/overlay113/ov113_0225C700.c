@@ -376,7 +376,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     ov113_0225CF58(v0->unk_08);
 
-    EnableTouchScreen();
+    EnableTouchPad();
     InitializeTouchScreenNoBuffer(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_118);
 
@@ -653,7 +653,7 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
-    DisableTouchScreen();
+    DisableTouchPad();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);

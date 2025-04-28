@@ -94,7 +94,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     {
         u32 v3;
 
-        EnableTouchScreen();
+        EnableTouchPad();
         v3 = InitializeTouchScreenNoBuffer(4);
     }
 
@@ -669,7 +669,7 @@ static void ov116_022610FC(UnkStruct_ov116_0226139C *param0)
 
     {
         u32 v0;
-        v0 = DisableTouchScreen();
+        v0 = DisableTouchPad();
     }
 
     LCRNG_SetSeed(param0->unk_78);

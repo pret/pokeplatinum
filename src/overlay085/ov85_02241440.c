@@ -234,7 +234,7 @@ int ov85_02241440(OverlayManager *param0, int *param1)
     ov85_022417E4(v0);
 
     SetAutorepeat(4, 8);
-    EnableTouchScreen();
+    EnableTouchPad();
     InitializeTouchScreenNoBuffer(4);
 
     ov85_02241E60(v0, v1);
@@ -284,7 +284,7 @@ int ov85_022415A0(OverlayManager *param0, int *param1)
     ov85_02241860(v0->unk_04);
     ov85_022416E8(v0->unk_00);
 
-    DisableTouchScreen();
+    DisableTouchPad();
 
     ov85_0224181C(v0);
     ov85_0224202C(v0);

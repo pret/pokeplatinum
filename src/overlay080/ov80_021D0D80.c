@@ -229,7 +229,7 @@ static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0)
         param0->unk_28 = BgConfig_New(param0->heapID);
         ov80_021D1088(param0, param0->unk_28);
         ov80_021D1158(param0);
-        EnableTouchScreen();
+        EnableTouchPad();
         InitializeTouchScreenNoBuffer(4);
         ov80_021D2A08(param0);
         break;
@@ -248,7 +248,7 @@ static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 *param0)
 {
     int v0;
 
-    DisableTouchScreen();
+    DisableTouchPad();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     SetVBlankCallback(NULL, NULL);

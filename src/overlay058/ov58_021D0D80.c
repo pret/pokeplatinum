@@ -193,7 +193,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
 
         ov58_021D142C(v0, v1);
 
-        EnableTouchScreen();
+        EnableTouchPad();
         InitializeTouchScreenNoBuffer(2);
         SetVBlankCallback(ov58_021D115C, v0->unk_00);
 
@@ -324,7 +324,7 @@ int ov58_021D1018(OverlayManager *param0, int *param1)
         ov58_021D19D4(v0);
         ov58_021D13F0(v0->unk_00);
 
-        DisableTouchScreen();
+        DisableTouchPad();
         MessageLoader_Free(v0->unk_10);
         StringTemplate_Free(v0->unk_0C);
         (*param1)++;

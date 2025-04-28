@@ -164,7 +164,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     ov104_0223CB80(v0);
     ov104_0223CC10(v0);
 
-    EnableTouchScreen();
+    EnableTouchPad();
     InitializeTouchScreenNoBuffer(4);
 
     ov104_0223CFF4(v0);
@@ -232,7 +232,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
 
     ov104_0223CFEC(param0->unk_0C);
 
-    DisableTouchScreen();
+    DisableTouchPad();
     Heap_FreeToHeap(param0);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);

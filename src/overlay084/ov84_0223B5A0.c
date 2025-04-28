@@ -420,7 +420,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     ov84_0223BC1C(v0);
     ov84_0223D0BC(v0);
 
-    EnableTouchScreen();
+    EnableTouchPad();
     InitializeTouchScreenNoBuffer(4);
 
     ov84_0223F040(v0);
@@ -571,7 +571,7 @@ int ov84_0223B900(OverlayManager *param0, int *param1)
     ov84_0223F1DC(v0->unk_04);
     ov84_0223BBC4(v0->unk_00);
 
-    DisableTouchScreen();
+    DisableTouchPad();
     VramTransfer_Free();
 
     ov84_0223FB50(v0);

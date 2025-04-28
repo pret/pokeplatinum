@@ -38,7 +38,7 @@ static void ClearTouchOnBufferData(TPData *touchPadDataBuffer, int touchPadDataB
 
 static TouchPadState touchPadState;
 
-void EnableTouchScreen(void)
+void EnableTouchPad(void)
 {
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
@@ -144,7 +144,7 @@ static u32 StopAutoSampling(void)
     return 1;
 }
 
-u32 DisableTouchScreen(void)
+u32 DisableTouchPad(void)
 {
     u32 autoSamplingResult;
 

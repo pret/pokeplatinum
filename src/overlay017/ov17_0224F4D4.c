@@ -172,7 +172,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
 
     ov17_0224FB34(v0->unk_10.unk_20);
 
-    EnableTouchScreen();
+    EnableTouchPad();
     InitializeTouchScreenNoBuffer(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_24);
 
@@ -321,7 +321,7 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
 
     ov17_0223F1E0(v0->unk_0C);
 
-    DisableTouchScreen();
+    DisableTouchPad();
     OverlayManager_FreeData(param0);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);

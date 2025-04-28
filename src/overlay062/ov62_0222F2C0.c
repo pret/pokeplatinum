@@ -69,7 +69,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     ov62_0222F848(param0);
 
     {
-        EnableTouchScreen();
+        EnableTouchPad();
         InitializeTouchScreenNoBuffer(4);
 
         param0->unk_14.unk_30 = 1;
@@ -173,7 +173,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
 
     {
         u32 v1;
-        v1 = DisableTouchScreen();
+        v1 = DisableTouchPad();
 
         sub_02024034(param0->unk_14.unk_18);
         RenderControlFlags_SetSpeedUpOnTouch(0);

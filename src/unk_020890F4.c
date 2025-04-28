@@ -74,7 +74,7 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
     sub_02089688(v0);
 
     {
-        EnableTouchScreen();
+        EnableTouchPad();
         InitializeTouchScreenNoBuffer(4);
         sub_0208A0B8(v0);
     }
@@ -139,7 +139,7 @@ static int sub_0208927C(OverlayManager *param0, int *param1)
 
     {
         u32 v1;
-        v1 = DisableTouchScreen();
+        v1 = DisableTouchPad();
     }
 
     SpriteSystem_FreeResourcesAndManager(v0->unk_2C0.unk_04, v0->unk_2C0.unk_08);

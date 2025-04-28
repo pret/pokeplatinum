@@ -233,7 +233,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     summaryScreen->narcPlPokeData = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    EnableTouchScreen();
+    EnableTouchPad();
     InitializeTouchScreenNoBuffer(4);
     TryHideContestPages(summaryScreen);
     SetVRAMBanks();
@@ -349,7 +349,7 @@ static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state)
     PokemonSummaryScreen_FreeSpriteResources(summaryScreen);
     PokemonSummaryScreen_RemoveWindows(summaryScreen);
     TeardownBgs(summaryScreen->bgConfig);
-    DisableTouchScreen();
+    DisableTouchPad();
     VramTransfer_Free();
     FreeStrings(summaryScreen);
     NARC_dtor(summaryScreen->narcPlPokeData);

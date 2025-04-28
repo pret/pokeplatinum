@@ -329,7 +329,7 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     SetVBlankCallback(ChooseStarterAppMainCallback, app);
     DisableHBlank();
 
-    EnableTouchScreen();
+    EnableTouchPad();
     GF_ASSERT(InitializeTouchScreenNoBuffer(4) == 1);
 
     RenderControlFlags_SetCanABSpeedUpPrint(1);
@@ -438,7 +438,7 @@ BOOL ChooseStarter_Exit(OverlayManager *param0, int *param1)
 
     v1->species = GetSelectedSpecies(v0->cursorPosition);
 
-    v2 = DisableTouchScreen();
+    v2 = DisableTouchPad();
     GF_ASSERT(v2 == 1);
 
     ov78_021D24E4(&v0->unk_6A8);

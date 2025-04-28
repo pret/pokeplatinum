@@ -893,7 +893,7 @@ int ov65_0222E548(OverlayManager *param0, int *param1)
     ov65_0222EC2C(v0);
 
     OverlayManager_FreeData(param0);
-    DisableTouchScreen();
+    DisableTouchPad();
     VramTransfer_Free();
     Heap_Destroy(HEAP_ID_54);
 

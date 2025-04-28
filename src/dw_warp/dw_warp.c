@@ -82,7 +82,7 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
 
     SetAutorepeat(4, 8);
     DWWarp_VramSetBank();
-    EnableTouchScreen();
+    EnableTouchPad();
     InitializeTouchScreenNoBuffer(4);
 
     DWWarp_InitModel(dww);
@@ -160,7 +160,7 @@ BOOL DWWarp_Exit(OverlayManager *ovy, int *state)
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    DisableTouchScreen();
+    DisableTouchPad();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);

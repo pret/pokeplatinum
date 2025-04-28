@@ -426,7 +426,7 @@ int ov111_021D0F40(OverlayManager *param0, int *param1)
     int v0;
     UnkStruct_ov111_021D0F7C *v1 = OverlayManager_Data(param0);
 
-    DisableTouchScreen();
+    DisableTouchPad();
     *(v1->unk_3D8) = v1->unk_0C;
     VramTransfer_Free();
 
@@ -1193,7 +1193,7 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
 
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
-    EnableTouchScreen();
+    EnableTouchPad();
     InitializeTouchScreenNoBuffer(1);
     SetVBlankCallback(ov111_021D2090, (void *)param0);
 

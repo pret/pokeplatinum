@@ -169,7 +169,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     {
         u32 v8;
 
-        EnableTouchScreen();
+        EnableTouchPad();
         v8 = InitializeTouchScreenNoBuffer(4);
 
         if (v8 != 1) {
@@ -258,7 +258,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     {
         u32 v1;
 
-        v1 = DisableTouchScreen();
+        v1 = DisableTouchPad();
 
         if (v1 != 1) {
             (void)0;

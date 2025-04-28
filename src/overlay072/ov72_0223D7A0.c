@@ -145,7 +145,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
 
         ov72_0223DCA8(v0, v1);
 
-        EnableTouchScreen();
+        EnableTouchPad();
         InitializeTouchScreenNoBuffer(1);
         SetVBlankCallback(ov72_0223DA48, v0->unk_00);
         Font_InitManager(FONT_SUBSCREEN, HEAP_ID_39);
@@ -226,7 +226,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
     ov72_0223E260(v0);
     Font_Free(FONT_SUBSCREEN);
     ov72_0223DC6C(v0->unk_00);
-    DisableTouchScreen();
+    DisableTouchPad();
     MessageLoader_Free(v0->unk_14);
     StringTemplate_Free(v0->unk_10);
     ov72_0223DC34(v0);
