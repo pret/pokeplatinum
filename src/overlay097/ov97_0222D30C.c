@@ -104,7 +104,7 @@ typedef struct {
 void Strbuf_ToChars(const Strbuf *param0, u16 *param1, u32 param2);
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
 MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
-void ov97_02231FFC(BgConfig *param0, void *, int heapID);
+void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapId heapID);
 static int ov97_0222D474(OverlayManager *param0);
 static int ov97_0222D4D8(OverlayManager *param0);
 static int ov97_0222DA18(OverlayManager *param0);
@@ -431,10 +431,10 @@ static void ov97_0222D658(OverlayManager *param0)
         RTCDate v7;
 
         v0 = 1;
-        v4->redistributionCount = 0;
+        v4->timesShared = 0;
 
         if (v3->shareable == 0) {
-            v4->redistributionsLeft = 0;
+            v4->sharesLeft = 0;
         }
 
         GetCurrentDate(&v7);
@@ -2392,7 +2392,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         ov97_0222DC20(v3->unk_00);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-        ov97_02231FFC(v3->unk_00, &v3->unk_8C.unk_50, HEAP_ID_86);
+        WonderCardsApp_ShowWondercard(v3->unk_00, &v3->unk_8C.unk_50, HEAP_ID_86);
         ov97_02237790(1, 55, v3->unk_163C, 2);
         v3->unk_8C.unk_00.saveWonderCard = 0;
         break;
@@ -2419,7 +2419,7 @@ void ov97_022301B0(OverlayManager *param0)
     Unk_ov97_0223F1B0 = param0;
 }
 
-extern const OverlayManagerTemplate Unk_ov97_0223D7AC;
+extern const OverlayManagerTemplate gWonderCardsAppTemplate;
 
 static int ov97_022301BC(OverlayManager *param0, int *param1)
 {
@@ -2431,7 +2431,7 @@ static int ov97_022301BC(OverlayManager *param0, int *param1)
     if (v0->unk_440 == 0) {
         EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
     } else if (v0->unk_440 == 1) {
-        EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D7AC);
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &gWonderCardsAppTemplate);
     }
 
     Heap_Destroy(HEAP_ID_91);

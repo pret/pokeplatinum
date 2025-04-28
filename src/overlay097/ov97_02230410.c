@@ -1,6 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+#include "constants/narc.h"
+#include "constants/palette.h"
+#include "generated/string_padding_mode.h"
+
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
 #include "overlay097/ov97_02237694.h"
@@ -22,6 +27,7 @@
 #include "message_util.h"
 #include "mystery_gift.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
 #include "save_player.h"
@@ -44,719 +50,1097 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
+#include "res/text/bank/unk_0421.h"
+
 FS_EXTERN_OVERLAY(overlay97);
 
-typedef struct {
-    u16 unk_00[2][768];
+#define DIRECTION_NEXT     1
+#define DIRECTION_PREVIOUS -1
+
+#define SCROLL_REGISTER_SIZE sizeof(u16)
+
+#define WONDERCARD_HEIGHT 168
+
+#define CENTER_TEXT -1
+
+#define SHARE_UNLIMITED 0xff
+
+#define SHARE_MAX_PLAYERS 4
+
+#define EMPTY_ORDER_SLOT 0x7fff * 0x7fff
+
+#define BASE_TILE_SYSTEM_WINDOW_BORDER 1
+#define BASE_TILE_FIELD_WINDOW_BORDER  (BASE_TILE_SYSTEM_WINDOW_BORDER + NUM_TILES_SYSTEM_WINDOW_BORDER)
+#define BASE_TILE_MESSAGE_BOX_BORDER   (BASE_TILE_FIELD_WINDOW_BORDER + NUM_TILES_FIELD_WINDOW_BORDER)
+#define BASE_TILE_WINDOWS_START        (BASE_TILE_MESSAGE_BOX_BORDER + NUM_TILES_MESSAGE_BOX_BORDER)
+
+// Make sure to update the TILESET_SIZE constants if you edit the tilesets
+#define WC_SHARE_SCREEN_TILESET_SIZE   96
+#define WC_SHARE_SCREEN_TILEMAP_WIDTH  (HW_LCD_WIDTH / 8)
+#define WC_SHARE_SCREEN_TILEMAP_HEIGHT (HW_LCD_HEIGHT / 8)
+#define WC_FRONT_BACK_TILESET_SIZE     384
+#define WC_FRONT_TILEMAP_WIDTH         (HW_LCD_WIDTH / 8)
+#define WC_FRONT_TILEMAP_HEIGHT        (HW_LCD_HEIGHT / 8)
+#define WC_BACK_TILEMAP_WIDTH          (HW_LCD_WIDTH / 8)
+#define WC_BACK_TILEMAP_HEIGHT         (HW_LCD_HEIGHT / 8)
+#define WC_APP_BG_TILESET_SIZE         16
+#define WC_APP_BG_TILEMAP_WIDTH        (HW_LCD_WIDTH / 8)
+#define WC_APP_BG_TILEMAP_HEIGHT       (HW_LCD_HEIGHT / 8)
+
+enum WonderCardsAppWindow {
+    WC_FRONT_TEXT_WONDER_CARD = 0,
+    WC_FRONT_TEXT_DATE_RECEIVED,
+    WC_FRONT_GIFT_STATUS,
+    WC_FRONT_WONDERCARD_TITLE,
+    WC_FRONT_RECEIVED_DATE,
+    WC_BACK_DESCRIPTION,
+    WC_BACK_SHARES_LEFT,
+    MSG_BOX_TEXT_WONDER_CARD,
+    MSG_BOX_WC_ACTIONS_MENU,
+    MSG_BOX_CONFIRM_WC_DELETE,
+    MSG_BOX_CONFIRM_WC_SHARE,
+    WC_SHARING_TEXT_PAL_DISTRIBUTION_REGISTRATION,
+    WC_SHARING_TEXT_CURRENT_ENTRIES,
+    WC_SHARING_TEXT_SEND,
+    WC_SHARING_TEXT_CANCEL,
+    WC_SHARING_ENTRIES_COUNT,
+    WC_SHARING_PLAYER_INFO,
+    MSG_BOX_DISTRIBUTION_UNDER_WAY,
+    MSG_BOX_DISTRIBUTION_SUCCESSFUL,
+    NUM_WC_APP_WINDOWS,
+};
+
+enum WonderCardsAppState {
+    WC_APP_STATE_LOAD_FROM_SAVE = 0,
+    WC_APP_STATE_INIT_GRAPHICS,
+    WC_APP_STATE_LOAD_GRAPHICS,
+    WC_APP_STATE_SELECT_WONDERCARD,
+    WC_APP_STATE_SHOW_WONDERCARD_ACTIONS,
+    WC_APP_STATE_WAIT_FOR_MENU_CHOICE,
+    WC_APP_STATE_START_FLIP_WC_TO_BACK,
+    WC_APP_STATE_WAIT_WC_FLIP_TO_BACK_HALFWAY,
+    WC_APP_STATE_SHOW_WONDERCARD_BACK,
+    WC_APP_STATE_START_FLIP_WC_TO_FRONT,
+    WC_APP_STATE_WAIT_WC_FLIP_TO_FRONT_HALFWAY,
+    WC_APP_STATE_CLOSE_WINDOWS,
+    WC_APP_STATE_WAIT_CONFIRM_DELETION,
+    WC_APP_STATE_WAIT_CONFIRM_START_WIRELESS,
+    WC_APP_STATE_ASK_START_WIRELESS_TO_SHARE_WC,
+    WC_APP_STATE_START_TRANSITION_TO_WC_SHARE_SCREEN,
+    WC_APP_STATE_SHOW_WC_SHARE_SCREEN,
+    WC_APP_STATE_PREPARE_FOR_SHARING,
+    WC_APP_STATE_WAIT_FOR_PLAYERS,
+    WC_APP_STATE_RETURN_AFTER_COMM_MAN_EXIT,
+    WC_APP_STATE_RETURN_TO_WC_ACTIONS,
+    WC_APP_STATE_DISTRIBUTION_UNDERWAY,
+    WC_APP_STATE_WAIT_FOR_COMM_MAN_EXIT,
+    WC_APP_STATE_START_COMM_SYNC,
+    WC_APP_STATE_WAIT_FOR_COMM_SYNC,
+    WC_APP_STATE_DISTRIBUTION_SUCCESSFUL,
+    WC_APP_STATE_NO_MORE_WONDERCARDS,
+    WC_APP_STATE_WAIT_FOR_SCREEN_TRANSITION,
+    WC_APP_STATE_EXIT,
+    WC_APP_STATE_UNUSED,
+    NUM_WC_APP_STATES,
+};
+
+enum WonderCardsAppScreen {
+    WC_SCREEN_WONDERCARD_FRONT = 0,
+    WC_SCREEN_WONDERCARD_BACK,
+    WC_MESSAGE_BOX, // Not a separate screen, used for message boxes that shouldn't always be shown on each screen
+    WC_SCREEN_WONDERCARD_SHARING,
+};
+
+enum WonderCardAction {
+    WC_ACTION_INFO = 0,
+    WC_ACTION_SHARE,
+    WC_ACTION_TRASH,
+    WC_ACTION_EXIT,
+};
+
+enum WonderCardShareBtn {
+    WC_SHARE_BTN_SEND = 0,
+    WC_SHARE_BTN_CANCEL,
+};
+
+enum WonderCardShareAction {
+    WC_SHARE_ACTION_NONE = 0,
+    WC_SHARE_ACTION_SEND,
+    WC_SHARE_ACTION_EXIT,
+    WC_SHARE_ACTION_PLAY_SOUND,
+};
+
+enum WonderCardFlipStage {
+    WC_FLIP_STAGE_GROWING = 0,
+    WC_FLIP_STAGE_SHRINKING,
+};
+
+typedef struct WonderCardsAppData WonderCardsAppData;
+
+typedef BOOL (*WcAppWindowSetupFuncPtr)(WonderCardsAppData *, Window *, TextColor);
+typedef enum WonderCardsAppState (*StateTransitionFuncPtr)(OverlayManager *);
+typedef void (*WcAppMainCallbackFuncPtr)(WonderCardsAppData *);
+
+typedef struct WonderCardFlipAnimManager {
+    u16 scrollsBuffers[2][HW_LCD_HEIGHT * 4];
     BufferManager *bufferManager;
-    SysTask *unk_C04;
-    fx32 unk_C08;
-    fx32 unk_C0C;
-    BOOL unk_C10;
-    BOOL unk_C14;
-} UnkStruct_ov97_02231318;
+    SysTask *sysTask;
+    fx32 offsetStep;
+    fx32 deltaOffsetStep;
+    BOOL running;
+    BOOL animStage;
+} WonderCardFlipAnimManager;
+
+typedef struct WonderCardsAppWindowTemplate {
+    int screen;
+    int tilemapLeft;
+    int tilemapTop;
+    int width;
+    int height;
+    int font;
+    int textColor;
+    union {
+        enum FontAttribute fontAttribute;
+        int colorIndex;
+    } bgColor;
+    u32 entryID;
+    WcAppWindowSetupFuncPtr setup;
+    int leftMarginSize;
+    int topMarginSize;
+} WonderCardsAppWindowTemplate;
 
 typedef struct {
+    int textEntryID;
+    union {
+        enum WonderCardsAppState targetState; //!< Used when the state transition is handled by the main function
+        StateTransitionFuncPtr transitionFunc; //!< Used when some action needs to be performed outside of the main function before changing the state, typically showing a message box and/or menu
+        u32 asU32;
+    } stateChange;
+} StateTransitionListMenuEntryTemplate;
+
+struct WonderCardsAppData {
     int heapID;
     UnkStruct_ov97_0222D04C unk_04;
-    BgConfig *unk_2A5C;
-    StringTemplate *unk_2A60;
-    MessageLoader *unk_2A64;
-    Window unk_2A68[20];
-    int unk_2BA8[20];
-    int unk_2BF8;
-    void *unk_2BFC;
-    MysteryGift *unk_2C00;
-    SaveData *unk_2C04;
-    Options *unk_2C08;
-    int unk_2C0C;
-    int unk_2C10;
-    WonderCard *unk_2C14[3];
-    int unk_2C20;
-    int unk_2C24;
-    ListMenu *unk_2C28;
-    StringList *unk_2C2C;
-    Window unk_2C30;
-    Window unk_2C40;
-    int unk_2C50;
-    int unk_2C54;
-    u32 unk_2C58[4];
-    TrainerInfo *unk_2C68[5];
-    int unk_2C7C[5];
-    int unk_2C90;
-    int unk_2C94;
-    void (*unk_2C98)(void *);
-    int unk_2C9C;
-    int unk_2CA0;
-    SpriteList *unk_2CA4;
-    G2dRenderer unk_2CA8;
-    SpriteResourceCollection *unk_2E34[6];
-    SpriteResource *unk_2E4C[6];
-    SpriteResourcesHeader unk_2E64;
-    Sprite *unk_2E88[2];
-    Sprite *unk_2E90[3];
-    WonderCard unk_2E9C;
-    UnkStruct_ov97_02231318 unk_31F4;
-    void (*unk_3E0C)(void *);
-    int unk_3E10;
-    void *unk_3E14;
-} UnkStruct_ov97_02230868;
+    BgConfig *bgConfig;
+    StringTemplate *strTemplate;
+    MessageLoader *msgLoader;
 
-typedef struct {
-    int unk_00;
-    u32 unk_04;
-} UnkStruct_ov97_0223E640;
+    // These two arrays have an extra element for some reason
+    Window windows[NUM_WC_APP_WINDOWS + 1];
+    int windowBasetiles[NUM_WC_APP_WINDOWS + 1];
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    int unk_18;
-    int unk_1C;
-    u32 unk_20;
+    int messageBoxBaseTile;
+    void *messageBoxTemplate;
+    MysteryGift *mysteryGift;
+    SaveData *saveData;
+    Options *options;
+    int msgBoxFrame;
+    int unused_2C10;
+    WonderCard *wonderCards[NUM_WONDERCARD_SLOTS];
+    int selectedWondercardSlot;
+    int currentScreen;
+    ListMenu *listMenu;
+    StringList *strList;
+    Window messageBox;
+    Window standardWindow;
+    int nextWindowBasetile;
+    int connectedPlayersCount;
+    u32 unused_2C58[4];
 
-    // clang-format off
-    BOOL (* unk_24)(UnkStruct_ov97_02230868 *, Window *, u32);
-    // clang-format on
+    /*
+     * The index for these is the network ID of the players you're sharing the WC with.
+     * Since network ID 0 is the current player, there is a unused slot at index 0.
+     */
+    TrainerInfo *connTrainerInfos[1 + SHARE_MAX_PLAYERS];
+    int orderNumbers[1 + SHARE_MAX_PLAYERS];
 
-    int unk_28;
-    int unk_2C;
-} UnkStruct_ov97_0223E680;
-
-void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
-MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
-static int ov97_02230728(OverlayManager *param0);
-static int ov97_022306F4(OverlayManager *param0);
-static int ov97_02230834(OverlayManager *param0);
-static int ov97_02230778(OverlayManager *param0);
-static void ov97_02230868(UnkStruct_ov97_02230868 *param0);
-static BOOL ov97_022308B0(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
-static BOOL ov97_022308B4(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
-static BOOL ov97_02230904(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
-static BOOL ov97_0223097C(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
-static BOOL ov97_022309E4(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
-static BOOL ov97_02230A34(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
-static BOOL ov97_02230AB0(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
-static BOOL ov97_02230B94(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
-static BOOL ov97_02230BAC(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
-static BOOL ov97_02230BF0(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
-static int ov97_02231CA0(UnkStruct_ov97_02230868 *param0, Window *param1);
-static void ov97_02231E78(UnkStruct_ov97_02230868 *param0, Window *param1, int param2);
-static void ov97_02231F1C(UnkStruct_ov97_02230868 *param0, int *param1, int param2);
-static int ov97_02230E04(UnkStruct_ov97_02230868 *param0, Window *param1, int param2, int param3);
-static void ov97_02230F98(UnkStruct_ov97_02230868 *param0, int param1);
-static int ov97_02230F20(UnkStruct_ov97_02230868 *param0, int param1, int param2);
-static void ov97_02230C44(UnkStruct_ov97_02230868 *param0, int param1, int param2);
-static int ov97_02231BD8(UnkStruct_ov97_02230868 *param0);
-static void ov97_022310FC(UnkStruct_ov97_02230868 *param0);
-static void ov97_02230438(UnkStruct_ov97_02230868 *param0);
-static int ov97_02231C84(UnkStruct_ov97_02230868 *param0);
-
-UnkStruct_ov97_0223E680 Unk_ov97_0223E680[] = {
-    { 0x0, 0x2, 0x2, 0xC, 0x2, 0x1, 0x10200, -1, 0x24, ov97_022308B0 },
-    { 0x0, 0x6, 0x11, 0xB, 0x2, 0x1, 0xF0200, -1, 0x28, ov97_022308B0 },
-    { 0x0, 0x2, 0x9, 0x1C, 0x4, 0x1, 0x10200, -1, NULL, ov97_02230904 },
-    { 0x0, 0x2, 0x6, 0x1C, 0x2, 0x1, 0xF0200, -1, NULL, ov97_022308B4 },
-    { 0x0, 0x12, 0x11, 0xB, 0x2, 0x1, 0x10200, -1, 0x31, ov97_0223097C },
-    { 0x1, 0x2, 0x3, 0x1C, 0xA, 0x1, 0x10200, -1, NULL, ov97_022309E4 },
-    { 0x1, 0x2, 0xE, 0x1C, 0x4, 0x1, 0x10200, -1, 0x29, ov97_02230A34 },
-    { 0x2, 0x2, 0x13, 0x1B, 0x4, 0x1, 0x10200, 0xF, 0x24, ov97_022308B0 },
-    { 0x2, 0x12, 0x9, 0xC, 0x8, 0x1, 0x10200, 0x5, NULL, ov97_02230AB0 },
-    { 0x2, 0x18, 0xD, 0x6, 0x4, 0x1, 0x10200, 0x5, NULL, ov97_02230B94 },
-    { 0x2, 0x18, 0xD, 0x6, 0x4, 0x1, 0x10200, 0x5, NULL, ov97_02230BAC },
-    { 0x3, 0x1, 0x1, 0x19, 0x2, 0x0, 0xE0F00, -1, 0x34, ov97_022308B0, 0x7, 0x0 },
-    { 0x3, 0x17, 0x7, 0x9, 0x4, 0x0, 0xE0F00, -1, 0x37, ov97_022308B0, 0x2, 0x0 },
-    { 0x3, 0x6, 0x14, 0x6, 0x2, 0x0, 0xE0F00, -1, 0x39, ov97_022308B0, -1, 0x1 },
-    { 0x3, 0x14, 0x14, 0x6, 0x2, 0x0, 0xE0F00, -1, 0x3A, ov97_022308B0, -1, 0x1 },
-    { 0x3, 0x19, 0xC, 0x4, 0x2, 0x1, 0x10200, -1, 0x38, ov97_02230BF0 },
-    { 0x3, 0x2, 0x5, 0x13, 0xB, 0x0, 0x10200, -1, NULL, ov97_022308B0 },
-    { 0x2, 0x2, 0x13, 0x1B, 0x4, 0x1, 0x10200, 0xE, 0x3B, ov97_022308B0 },
-    { 0x2, 0x2, 0x13, 0x1B, 0x4, 0x1, 0x10200, 0xE, 0x3C, ov97_022308B0 }
+    int prevConnPlayersCount;
+    int shouldSendWc;
+    void (*unused_2C98)(void *);
+    int numPlayerConnections;
+    int queuedState;
+    SpriteList *spriteList;
+    G2dRenderer g2dRenderer;
+    SpriteResourceCollection *spriteResourceCollections[6];
+    SpriteResource *spriteResources[6];
+    SpriteResourcesHeader spriteResourceHeader;
+    Sprite *shareScreenBtnSprites[2];
+    Sprite *selectedWcSprites[NUM_WONDERCARD_SPRITES];
+    WonderCard currentWonderCard;
+    WonderCardFlipAnimManager flipAnimMan;
+    WcAppMainCallbackFuncPtr mainCallback;
+    int shareScreenSelectedBtn;
+    WaitDial *waitDial;
 };
 
-UnkStruct_ov97_0223E640 Unk_ov97_0223E640[] = {
-    { 0x2A, (u32)6 },
-    { 0x2B, (u32)ov97_022306F4 },
-    { 0x2C, (u32)ov97_02230728 },
-    { 0x2D, (u32)11 }
+static enum WonderCardsAppState AskConfirmDeleteWc(OverlayManager *ovlMan);
+static enum WonderCardsAppState AskConfirmShareWc(OverlayManager *ovlMan);
+static enum WonderCardsAppState GoBackToWcActionsMenu(OverlayManager *ovlMan);
+static enum WonderCardsAppState DeleteWcAndOpenNextWcActionsMenu(OverlayManager *ovlMan);
+static void WonderCardsApp_CloseListMenu(WonderCardsAppData *appData);
+static BOOL DoNothing(WonderCardsAppData *appData, Window *window, TextColor color);
+static BOOL PrintWondercardTitle(WonderCardsAppData *appData, Window *window, TextColor color);
+static BOOL DetermineGiftStatus(WonderCardsAppData *appData, Window *window, TextColor color);
+static BOOL SetupDateString(WonderCardsAppData *appData, Window *window, TextColor color);
+static BOOL PrintWondercardDescription(WonderCardsAppData *appData, Window *window, TextColor color);
+static BOOL SetupRemainingSharesCount(WonderCardsAppData *appData, Window *window, TextColor color);
+static BOOL InitWondercardActionsMenu(WonderCardsAppData *appData, Window *window, TextColor color);
+static BOOL InitConfirmWondercardDeleteMenu(WonderCardsAppData *appData, Window *window, TextColor color);
+static BOOL InitConfirmWondercardShareMenu(WonderCardsAppData *appData, Window *window, TextColor color);
+static BOOL SetupEntriesCount(WonderCardsAppData *appData, Window *window, TextColor color);
+static int UpdateConnectedPlayers(WonderCardsAppData *appData, Window *window);
+static void UpdateConnectedPlayersCount(WonderCardsAppData *appData, Window *window, int count);
+static void StopWirelessCommunication(WonderCardsAppData *appData, enum WonderCardsAppState *state, enum WonderCardsAppState nextState);
+static int ShowWindowFromTemplateIndex(WonderCardsAppData *appData, Window *window, int windowTemplateIdx, int baseTile);
+static void LoadWondercardGraphics(WonderCardsAppData *appData, enum WonderCardsAppScreen screen);
+static int GetNextOccupiedWcSlot(WonderCardsAppData *appData, int currentSlot, int direction);
+static void ShowWindowsForScreen(WonderCardsAppData *appData, BOOL unused, enum WonderCardsAppScreen screen);
+static int PrepareSelectedWCForSharing(WonderCardsAppData *appData);
+static void LoadPokemonSpritesForSelectedWc(WonderCardsAppData *appData);
+static void ResetAllSprites(WonderCardsAppData *appData);
+static int CountConnectedPlayers(WonderCardsAppData *appData);
+
+WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] = {
+    [WC_FRONT_TEXT_WONDER_CARD] = {
+        .screen = WC_SCREEN_WONDERCARD_FRONT,
+        .tilemapLeft = 2,
+        .tilemapTop = 2,
+        .width = 12,
+        .height = TEXT_LINES_TILES(1),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = MysteryGiftMenu_Text_WonderCard,
+        .setup = DoNothing,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [WC_FRONT_TEXT_DATE_RECEIVED] = {
+        .screen = WC_SCREEN_WONDERCARD_FRONT,
+        .tilemapLeft = 6,
+        .tilemapTop = 17,
+        .width = 11,
+        .height = TEXT_LINES_TILES(1),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(15, 2, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = MysteryGiftMenu_Text_DateReceived,
+        .setup = DoNothing,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [WC_FRONT_GIFT_STATUS] = {
+        // Gift status : pending, received or no gift in WC
+        .screen = WC_SCREEN_WONDERCARD_FRONT,
+        .tilemapLeft = 2,
+        .tilemapTop = 9,
+        .width = 28,
+        .height = TEXT_LINES_TILES(2),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = NULL,
+        .setup = DetermineGiftStatus,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [WC_FRONT_WONDERCARD_TITLE] = {
+        .screen = WC_SCREEN_WONDERCARD_FRONT,
+        .tilemapLeft = 2,
+        .tilemapTop = 6,
+        .width = 28,
+        .height = TEXT_LINES_TILES(1),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(15, 2, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = NULL,
+        .setup = PrintWondercardTitle,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [WC_FRONT_RECEIVED_DATE] = {
+        .screen = WC_SCREEN_WONDERCARD_FRONT,
+        .tilemapLeft = 18,
+        .tilemapTop = 17,
+        .width = 11,
+        .height = TEXT_LINES_TILES(1),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = MysteryGiftMenu_Text_DateTemplate,
+        .setup = SetupDateString,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [WC_BACK_DESCRIPTION] = {
+        .screen = WC_SCREEN_WONDERCARD_BACK,
+        .tilemapLeft = 2,
+        .tilemapTop = 3,
+        .width = 28,
+        .height = TEXT_LINES_TILES(5),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = NULL,
+        .setup = PrintWondercardDescription,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [WC_BACK_SHARES_LEFT] = {
+        .screen = WC_SCREEN_WONDERCARD_BACK,
+        .tilemapLeft = 2,
+        .tilemapTop = 14,
+        .width = 28,
+        .height = TEXT_LINES_TILES(2),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = MysteryGiftMenu_Text_CanBeDistributedNTimes,
+        .setup = SetupRemainingSharesCount,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [MSG_BOX_TEXT_WONDER_CARD] = {
+        .screen = WC_MESSAGE_BOX,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 27,
+        .height = TEXT_LINES_TILES(2),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .colorIndex = 0xF },
+        .entryID = MysteryGiftMenu_Text_WonderCard,
+        .setup = DoNothing,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [MSG_BOX_WC_ACTIONS_MENU] = {
+        .screen = WC_MESSAGE_BOX,
+        .tilemapLeft = 18,
+        .tilemapTop = 9,
+        .width = 12,
+        .height = TEXT_LINES_TILES(4),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .colorIndex = 0x5 },
+        .entryID = NULL,
+        .setup = InitWondercardActionsMenu,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [MSG_BOX_CONFIRM_WC_DELETE] = {
+        .screen = WC_MESSAGE_BOX,
+        .tilemapLeft = 24,
+        .tilemapTop = 13,
+        .width = 6,
+        .height = TEXT_LINES_TILES(2),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .colorIndex = 0x5 },
+        .entryID = NULL,
+        .setup = InitConfirmWondercardDeleteMenu,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [MSG_BOX_CONFIRM_WC_SHARE] = {
+        .screen = WC_MESSAGE_BOX,
+        .tilemapLeft = 24,
+        .tilemapTop = 13,
+        .width = 6,
+        .height = TEXT_LINES_TILES(2),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .colorIndex = 0x5 },
+        .entryID = NULL,
+        .setup = InitConfirmWondercardShareMenu,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [WC_SHARING_TEXT_PAL_DISTRIBUTION_REGISTRATION] = {
+        .screen = WC_SCREEN_WONDERCARD_SHARING,
+        .tilemapLeft = 1,
+        .tilemapTop = 1,
+        .width = 25,
+        .height = TEXT_LINES_TILES(1),
+        .font = FONT_SYSTEM,
+        .textColor = TEXT_COLOR(14, 15, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = MysteryGiftMenu_Text_PalDistributionRegitration,
+        .setup = DoNothing,
+        .leftMarginSize = 7,
+        .topMarginSize = 0,
+    },
+    [WC_SHARING_TEXT_CURRENT_ENTRIES] = {
+        .screen = WC_SCREEN_WONDERCARD_SHARING,
+        .tilemapLeft = 23,
+        .tilemapTop = 7,
+        .width = 9,
+        .height = TEXT_LINES_TILES(2),
+        .font = FONT_SYSTEM,
+        .textColor = TEXT_COLOR(14, 15, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = MysteryGiftMenu_Text_CurrentEntries,
+        .setup = DoNothing,
+        .leftMarginSize = 2,
+        .topMarginSize = 0,
+    },
+    [WC_SHARING_TEXT_SEND] = {
+        .screen = WC_SCREEN_WONDERCARD_SHARING,
+        .tilemapLeft = 6,
+        .tilemapTop = 20,
+        .width = 6,
+        .height = TEXT_LINES_TILES(1),
+        .font = FONT_SYSTEM,
+        .textColor = TEXT_COLOR(14, 15, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = MysteryGiftMenu_Text_Send,
+        .setup = DoNothing,
+        .leftMarginSize = CENTER_TEXT,
+        .topMarginSize = 1,
+    },
+    [WC_SHARING_TEXT_CANCEL] = {
+        .screen = WC_SCREEN_WONDERCARD_SHARING,
+        .tilemapLeft = 20,
+        .tilemapTop = 20,
+        .width = 6,
+        .height = TEXT_LINES_TILES(1),
+        .font = FONT_SYSTEM,
+        .textColor = TEXT_COLOR(14, 15, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = MysteryGiftMenu_Text_Cancel_WonderCards,
+        .setup = DoNothing,
+        .leftMarginSize = CENTER_TEXT,
+        .topMarginSize = 1,
+    },
+    [WC_SHARING_ENTRIES_COUNT] = {
+        .screen = WC_SCREEN_WONDERCARD_SHARING,
+        .tilemapLeft = 25,
+        .tilemapTop = 12,
+        .width = 4,
+        .height = TEXT_LINES_TILES(1),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = MysteryGiftMenu_Text_EntriesCountTemplate,
+        .setup = SetupEntriesCount,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [WC_SHARING_PLAYER_INFO] = {
+        // Name & TID for the players the WC will be shared with.
+        .screen = WC_SCREEN_WONDERCARD_SHARING,
+        .tilemapLeft = 2,
+        .tilemapTop = 5,
+        .width = 19,
+        .height = TEXT_LINES_WITH_SPACING_TILES(4, 1),
+        .font = FONT_SYSTEM,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .fontAttribute = -1 },
+        .entryID = NULL,
+        .setup = DoNothing,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [MSG_BOX_DISTRIBUTION_UNDER_WAY] = {
+        .screen = WC_MESSAGE_BOX,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 27,
+        .height = TEXT_LINES_TILES(2),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .colorIndex = 0xE },
+        .entryID = MysteryGiftMenu_Text_GiftDistributionUnderWay,
+        .setup = DoNothing,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
+    [MSG_BOX_DISTRIBUTION_SUCCESSFUL] = {
+        .screen = WC_MESSAGE_BOX,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 27,
+        .height = TEXT_LINES_TILES(2),
+        .font = FONT_MESSAGE,
+        .textColor = TEXT_COLOR(1, 2, 0),
+        .bgColor = { .colorIndex = 0xE },
+        .entryID = MysteryGiftMenu_Text_GiftDistributionSuccessful,
+        .setup = DoNothing,
+        .leftMarginSize = 0,
+        .topMarginSize = 0,
+    },
 };
 
-UnkStruct_ov97_0223E640 Unk_ov97_0223E610[] = {
-    { 0x40, (u32)ov97_02230778 },
-    { 0x41, (u32)ov97_02230834 }
+static StateTransitionListMenuEntryTemplate sWonderCardActions[] = {
+    [WC_ACTION_INFO] = { MysteryGiftMenu_Text_Info, { .targetState = WC_APP_STATE_START_FLIP_WC_TO_BACK } },
+    [WC_ACTION_SHARE] = { MysteryGiftMenu_Text_Share, { .transitionFunc = AskConfirmShareWc } },
+    [WC_ACTION_TRASH] = { MysteryGiftMenu_Text_Trash, { .transitionFunc = AskConfirmDeleteWc } },
+    [WC_ACTION_EXIT] = { MysteryGiftMenu_Text_Exit_WonderCards, { .targetState = WC_APP_STATE_CLOSE_WINDOWS } }
 };
 
-UnkStruct_ov97_0223E640 Unk_ov97_0223E630[] = {
-    { 0x40, (u32)14 },
-    { 0x41, (u32)ov97_02230834 }
+static StateTransitionListMenuEntryTemplate sConfirmWondercardDeleteOptions[] = {
+    { MysteryGiftMenu_Text_Yes_WonderCards, { .transitionFunc = DeleteWcAndOpenNextWcActionsMenu } },
+    { MysteryGiftMenu_Text_No_WonderCards, { .transitionFunc = GoBackToWcActionsMenu } }
 };
 
-UnkStruct_ov97_0223E640 Unk_ov97_0223E620[] = {
-    { 0x40, (u32)15 },
-    { 0x41, (u32)ov97_02230834 }
+static StateTransitionListMenuEntryTemplate sConfirmWondercardShareOptions[] = {
+    { MysteryGiftMenu_Text_Yes_WonderCards, { .targetState = WC_APP_STATE_ASK_START_WIRELESS_TO_SHARE_WC } },
+    { MysteryGiftMenu_Text_No_WonderCards, { .transitionFunc = GoBackToWcActionsMenu } }
 };
 
-static ListMenuTemplate Unk_ov97_0223E660 = {
-    NULL,
-    ov97_022383C4,
-    NULL,
-    NULL,
-    0x0,
-    0x4,
-    0x0,
-    0xC,
-    0x0,
-    0x0,
-    0x1,
-    0xF,
-    0x2,
-    0x0,
-    0x10,
-    0x1,
-    0x0,
-    0x0
+static StateTransitionListMenuEntryTemplate sConfirmStartWirelessOptions[] = {
+    { MysteryGiftMenu_Text_Yes_WonderCards, { .targetState = WC_APP_STATE_START_TRANSITION_TO_WC_SHARE_SCREEN } },
+    { MysteryGiftMenu_Text_No_WonderCards, { .transitionFunc = GoBackToWcActionsMenu } }
 };
 
-static void ov97_02230410(UnkStruct_ov97_02230868 *param0)
+static ListMenuTemplate sWonderCardsAppListMenuTemplate = {
+    .choices = NULL,
+    .cursorCallback = ov97_022383C4,
+    .printCallback = NULL,
+    .window = NULL,
+    .count = 0,
+    .maxDisplay = 4,
+    .headerXOffset = 0,
+    .textXOffset = 12,
+    .cursorXOffset = 0,
+    .yOffset = 0,
+    .textColorFg = 0x1,
+    .textColorBg = 0xF,
+    .textColorShadow = 0x2,
+    .letterSpacing = 0,
+    .lineSpacing = 0x10,
+    .pagerMode = PAGER_MODE_LEFT_RIGHT_PAD,
+    .fontID = FONT_SYSTEM,
+    .cursorType = 0x0
+};
+
+static void LoadWcShareScreenButtonsGraphics(WonderCardsAppData *appData)
 {
-    ov97_02230438(param0);
+    ResetAllSprites(appData);
     ov97_02237A20();
     ov97_02237A74();
-    ov97_02237B0C(116, 15, 12, 14, 13, 0);
+    ov97_02237B0C(NARC_INDEX_GRAPHIC__MYSTERY, 15, 12, 14, 13, 0);
 }
 
-static void ov97_02230438(UnkStruct_ov97_02230868 *param0)
+static void ResetAllSprites(WonderCardsAppData *appData)
 {
-    if (param0->unk_2E88[0]) {
-        Sprite_Delete(param0->unk_2E88[0]);
+    if (appData->shareScreenBtnSprites[0]) {
+        Sprite_Delete(appData->shareScreenBtnSprites[0]);
     }
 
-    if (param0->unk_2E88[1]) {
-        Sprite_Delete(param0->unk_2E88[1]);
+    if (appData->shareScreenBtnSprites[1]) {
+        Sprite_Delete(appData->shareScreenBtnSprites[1]);
     }
 
-    param0->unk_2E88[0] = param0->unk_2E88[1] = NULL;
+    appData->shareScreenBtnSprites[0] = appData->shareScreenBtnSprites[1] = NULL;
 
-    if (param0->unk_2E90[0]) {
-        Sprite_Delete(param0->unk_2E90[0]);
+    if (appData->selectedWcSprites[0]) {
+        Sprite_Delete(appData->selectedWcSprites[0]);
     }
 
-    if (param0->unk_2E90[1]) {
-        Sprite_Delete(param0->unk_2E90[1]);
+    if (appData->selectedWcSprites[1]) {
+        Sprite_Delete(appData->selectedWcSprites[1]);
     }
 
-    if (param0->unk_2E90[2]) {
-        Sprite_Delete(param0->unk_2E90[2]);
+    if (appData->selectedWcSprites[2]) {
+        Sprite_Delete(appData->selectedWcSprites[2]);
     }
 
-    param0->unk_2E90[0] = param0->unk_2E90[1] = param0->unk_2E90[2] = NULL;
+    appData->selectedWcSprites[0] = appData->selectedWcSprites[1] = appData->selectedWcSprites[2] = NULL;
     ov97_02237DA0();
 }
 
-static void ov97_022304AC(UnkStruct_ov97_02230868 *param0)
+static void ShowWcShareButtons(WonderCardsAppData *appData)
 {
-    param0->unk_3E10 = 0;
-    param0->unk_2E88[0] = ov97_02237D14(0, param0->unk_2E88[0], 72, 168, 1);
+    appData->shareScreenSelectedBtn = 0;
+    appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND] = ov97_02237D14(0, appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND], 72, WONDERCARD_HEIGHT, 1);
+    Sprite_SetExplicitPriority(appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND], 2);
 
-    Sprite_SetExplicitPriority(param0->unk_2E88[0], 2);
-    param0->unk_2E88[1] = ov97_02237D14(0, param0->unk_2E88[1], 184, 168, 0);
-    Sprite_SetExplicitPriority(param0->unk_2E88[1], 2);
+    appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL] = ov97_02237D14(0, appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL], 184, WONDERCARD_HEIGHT, 0);
+    Sprite_SetExplicitPriority(appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL], 2);
 }
 
-static void ov97_02230500(Window *param0, u8 param1)
+static void EraseStandardWindowIfInUse(Window *window, u8 skipTransfer)
 {
-    if (Window_IsInUse(param0) == 1) {
-        Window_EraseStandardFrame(param0, param1);
+    if (Window_IsInUse(window) == TRUE) {
+        Window_EraseStandardFrame(window, skipTransfer);
     }
 }
 
-static void ov97_02230518(Window *param0, u8 param1)
+static void EraseMessageBoxIfInUse(Window *window, u8 skipTransfer)
 {
-    if (Window_IsInUse(param0) == 1) {
-        Window_EraseMessageBox(param0, param1);
+    if (Window_IsInUse(window) == TRUE) {
+        Window_EraseMessageBox(window, skipTransfer);
     }
 }
 
-static void ov97_02230530(UnkStruct_ov97_02230868 *param0, UnkStruct_ov97_0223E640 *param1, int param2, Window *param3, int param4)
+static void MakeStateChangeListMenuFromEntryTemplates(WonderCardsAppData *appData, StateTransitionListMenuEntryTemplate *entries, int numEntries, Window *window, int startCursorPos)
 {
-    int v0;
-    ListMenuTemplate v1;
-
-    if (param0->unk_2C2C) {
-        StringList_Free(param0->unk_2C2C);
+    if (appData->strList) {
+        StringList_Free(appData->strList);
     }
 
-    if (param0->unk_2C28) {
-        ListMenu_Free(param0->unk_2C28, NULL, NULL);
+    if (appData->listMenu) {
+        ListMenu_Free(appData->listMenu, NULL, NULL);
     }
 
-    param0->unk_2C2C = StringList_New(param2, 87);
-    param0->unk_2A64 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_87);
+    appData->strList = StringList_New(numEntries, HEAP_ID_WONDER_CARDS_APP);
+    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_WONDER_CARDS_APP);
 
-    for (v0 = 0; v0 < param2; v0++) {
-        StringList_AddFromMessageBank(param0->unk_2C2C, param0->unk_2A64, param1[v0].unk_00, param1[v0].unk_04);
+    for (int i = 0; i < numEntries; i++) {
+        StringList_AddFromMessageBank(appData->strList, appData->msgLoader, entries[i].textEntryID, entries[i].stateChange.asU32);
     }
 
-    MessageLoader_Free(param0->unk_2A64);
+    MessageLoader_Free(appData->msgLoader);
 
-    v1 = Unk_ov97_0223E660;
+    ListMenuTemplate listMenuTemplate = sWonderCardsAppListMenuTemplate;
 
-    v1.choices = param0->unk_2C2C;
-    v1.count = param2;
-    v1.window = param3;
+    listMenuTemplate.choices = appData->strList;
+    listMenuTemplate.count = numEntries;
+    listMenuTemplate.window = window;
 
-    param0->unk_2C28 = ListMenu_New(&v1, 0, param4, 87);
+    appData->listMenu = ListMenu_New(&listMenuTemplate, 0, startCursorPos, HEAP_ID_WONDER_CARDS_APP);
 }
 
-static void ov97_022305EC(Window *param0, int param1)
+static void PrintTextEntryToWindow(Window *window, int textEntryID)
 {
-    Strbuf *v0;
-    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_87);
-    StringTemplate *v2 = StringTemplate_Default(HEAP_ID_87);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_WONDER_CARDS_APP);
+    StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
 
-    Window_FillTilemap(param0, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
+    Window_FillTilemap(window, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
-    v0 = MessageUtil_ExpandedStrbuf(v2, v1, param1, HEAP_ID_87);
-    Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Window_CopyToVRAM(param0);
+    Strbuf *strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, textEntryID, HEAP_ID_WONDER_CARDS_APP);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Window_CopyToVRAM(window);
 
-    Strbuf_Free(v0);
-    MessageLoader_Free(v1);
-    StringTemplate_Free(v2);
+    Strbuf_Free(strBuf);
+    MessageLoader_Free(msgLoader);
+    StringTemplate_Free(strTemplate);
 }
 
-static void ov97_02230664(BgConfig *param0)
+static void LoadWcShareScreenBackground(BgConfig *bgConfig)
 {
-    Graphics_LoadPalette(116, 11, 0, 16 * 2 * 15, 16 * 2, HEAP_ID_87);
-    Graphics_LoadPalette(116, 16, 0, 16 * 2 * 12, 16 * 2, HEAP_ID_87);
-    Graphics_LoadTilesToBgLayer(116, 17, param0, 1, 0, 6 * 16 * 0x20, 1, HEAP_ID_87);
-    Graphics_LoadTilemapToBgLayer(116, 18, param0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_87);
-    Bg_ChangeTilemapRectPalette(param0, 1, 0, 0, 32, 24, 12);
-    Bg_CopyTilemapBufferToVRAM(param0, 1);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 11, PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), PALETTE_SIZE_BYTES, HEAP_ID_WONDER_CARDS_APP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 16, PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), PALETTE_SIZE_BYTES, HEAP_ID_WONDER_CARDS_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 17, bgConfig, BG_LAYER_MAIN_1, 0, WC_SHARE_SCREEN_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_WONDER_CARDS_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 18, bgConfig, BG_LAYER_MAIN_1, 0, WC_SHARE_SCREEN_TILEMAP_HEIGHT * WC_SHARE_SCREEN_TILEMAP_WIDTH * 2, TRUE, HEAP_ID_WONDER_CARDS_APP);
+    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_MAIN_1, 0, 0, WC_SHARE_SCREEN_TILEMAP_WIDTH, WC_SHARE_SCREEN_TILEMAP_HEIGHT, PLTT_12);
+    Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_1);
 }
 
-static int ov97_022306F4(OverlayManager *param0)
+static enum WonderCardsAppState AskConfirmShareWc(OverlayManager *ovlMan)
 {
-    UnkStruct_ov97_02230868 *v0 = OverlayManager_Data(param0);
+    WonderCardsAppData *appData = OverlayManager_Data(ovlMan);
 
-    ov97_02230868(v0);
-    ov97_022305EC(&v0->unk_2C30, 46);
-    ov97_02230E04(v0, &v0->unk_2C40, 7 + 3, v0->unk_2C50);
+    WonderCardsApp_CloseListMenu(appData);
+    PrintTextEntryToWindow(&appData->messageBox, MysteryGiftMenu_Text_WouldYouLikeToShareThisGift);
+    ShowWindowFromTemplateIndex(appData, &appData->standardWindow, MSG_BOX_CONFIRM_WC_SHARE, appData->nextWindowBasetile);
 
-    return 13;
+    return WC_APP_STATE_WAIT_CONFIRM_START_WIRELESS;
 }
 
-static int ov97_02230728(OverlayManager *param0)
+static enum WonderCardsAppState AskConfirmDeleteWc(OverlayManager *ovlMan)
 {
-    UnkStruct_ov97_02230868 *v0 = OverlayManager_Data(param0);
+    WonderCardsAppData *appData = OverlayManager_Data(ovlMan);
 
-    ov97_02230868(v0);
+    WonderCardsApp_CloseListMenu(appData);
 
-    if (MysteryGift_CheckWcHasPgtSaved(v0->unk_2C00, v0->unk_2C20) == 1) {
-        ov97_022305EC(&v0->unk_2C30, 62);
+    if (MysteryGift_CheckWcHasPgtSaved(appData->mysteryGift, appData->selectedWondercardSlot) == TRUE) {
+        PrintTextEntryToWindow(&appData->messageBox, MysteryGiftMenu_Text_HaventReceivedGiftYet);
     } else {
-        ov97_022305EC(&v0->unk_2C30, 61);
+        PrintTextEntryToWindow(&appData->messageBox, MysteryGiftMenu_Text_ThrowCardAway);
     }
 
-    ov97_02230E04(v0, &v0->unk_2C40, 7 + 2, v0->unk_2C50);
-    return 12;
+    ShowWindowFromTemplateIndex(appData, &appData->standardWindow, MSG_BOX_CONFIRM_WC_DELETE, appData->nextWindowBasetile);
+    return WC_APP_STATE_WAIT_CONFIRM_DELETION;
 }
 
-static int ov97_02230778(OverlayManager *param0)
+static enum WonderCardsAppState DeleteWcAndOpenNextWcActionsMenu(OverlayManager *ovlMan)
 {
-    UnkStruct_ov97_02230868 *v0 = OverlayManager_Data(param0);
+    WonderCardsAppData *appData = OverlayManager_Data(ovlMan);
 
-    ov97_02230868(v0);
-    ov97_022305EC(&v0->unk_2C30, 63);
+    WonderCardsApp_CloseListMenu(appData);
+    PrintTextEntryToWindow(&appData->messageBox, MysteryGiftMenu_Text_DiscardingDontTurnOff);
 
-    v0->unk_3E14 = Window_AddWaitDial(&v0->unk_2C30, ((1 + 9) + 9));
+    appData->waitDial = Window_AddWaitDial(&appData->messageBox, BASE_TILE_MESSAGE_BOX_BORDER);
 
-    if (MysteryGift_CheckWcHasPgtSaved(v0->unk_2C00, v0->unk_2C20) == 1) {
-        MysteryGift_FreeWcErasePgt(v0->unk_2C00, v0->unk_2C20);
+    if (MysteryGift_CheckWcHasPgtSaved(appData->mysteryGift, appData->selectedWondercardSlot) == TRUE) {
+        MysteryGift_FreeWcErasePgt(appData->mysteryGift, appData->selectedWondercardSlot);
     } else {
-        MysteryGift_FreeWcSlot(v0->unk_2C00, v0->unk_2C20);
+        MysteryGift_FreeWcSlot(appData->mysteryGift, appData->selectedWondercardSlot);
     }
 
-    SaveData_Save(v0->unk_2C04);
-    DestroyWaitDial(v0->unk_3E14);
+    SaveData_Save(appData->saveData);
+    DestroyWaitDial(appData->waitDial);
 
-    if (MysteryGift_CheckHasWonderCards(v0->unk_2C00) == 0) {
-        return 26;
+    if (MysteryGift_CheckHasWonderCards(appData->mysteryGift) == FALSE) {
+        return WC_APP_STATE_NO_MORE_WONDERCARDS;
     }
 
-    v0->unk_2C20 = ov97_02230F20(v0, v0->unk_2C20, 1);
+    appData->selectedWondercardSlot = GetNextOccupiedWcSlot(appData, appData->selectedWondercardSlot, DIRECTION_NEXT);
 
-    ov97_022305EC(&v0->unk_2C30, 36);
-    ov97_02230E04(v0, &v0->unk_2C40, 7 + 1, v0->unk_2C50);
-    ov97_02230C44(v0, 1, 0);
+    PrintTextEntryToWindow(&appData->messageBox, MysteryGiftMenu_Text_WonderCard);
+    ShowWindowFromTemplateIndex(appData, &appData->standardWindow, MSG_BOX_WC_ACTIONS_MENU, appData->nextWindowBasetile);
+    ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
 
-    return 5;
+    return WC_APP_STATE_WAIT_FOR_MENU_CHOICE;
 }
 
-static int ov97_02230834(OverlayManager *param0)
+static enum WonderCardsAppState GoBackToWcActionsMenu(OverlayManager *ovlMan)
 {
-    UnkStruct_ov97_02230868 *v0 = OverlayManager_Data(param0);
+    WonderCardsAppData *appData = OverlayManager_Data(ovlMan);
 
-    ov97_02230868(v0);
-    ov97_022305EC(&v0->unk_2C30, 36);
-    ov97_02230E04(v0, &v0->unk_2C40, 7 + 1, v0->unk_2C50);
+    WonderCardsApp_CloseListMenu(appData);
+    PrintTextEntryToWindow(&appData->messageBox, MysteryGiftMenu_Text_WonderCard);
+    ShowWindowFromTemplateIndex(appData, &appData->standardWindow, MSG_BOX_WC_ACTIONS_MENU, appData->nextWindowBasetile);
 
-    return 5;
+    return WC_APP_STATE_WAIT_FOR_MENU_CHOICE;
 }
 
-static void ov97_02230868(UnkStruct_ov97_02230868 *param0)
+static void WonderCardsApp_CloseListMenu(WonderCardsAppData *appData)
 {
-    StringList_Free(param0->unk_2C2C);
-    param0->unk_2C2C = NULL;
-    ListMenu_Free(param0->unk_2C28, NULL, NULL);
-    param0->unk_2C28 = NULL;
-    ov97_02230500(&param0->unk_2C40, 0);
-    Window_ClearAndCopyToVRAM(&param0->unk_2C40);
-    Window_Remove(&param0->unk_2C40);
+    StringList_Free(appData->strList);
+    appData->strList = NULL;
+    ListMenu_Free(appData->listMenu, NULL, NULL);
+    appData->listMenu = NULL;
+    EraseStandardWindowIfInUse(&appData->standardWindow, FALSE);
+    Window_ClearAndCopyToVRAM(&appData->standardWindow);
+    Window_Remove(&appData->standardWindow);
 }
 
-static BOOL ov97_022308B0(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2)
+static BOOL DoNothing(WonderCardsAppData *appData, Window *window, TextColor color)
 {
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov97_022308B4(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2)
+static BOOL PrintWondercardTitle(WonderCardsAppData *appData, Window *windwow, TextColor color)
 {
-    Strbuf *v0 = Strbuf_Init(36 + 1, param0->heapID);
+    Strbuf *strBuf = Strbuf_Init(WONDERCARD_TITLE_LENGTH + 1, appData->heapID);
 
-    Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->metadata.title, 36);
-    Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
-    Strbuf_Free(v0);
+    Strbuf_CopyNumChars(strBuf, appData->wonderCards[appData->selectedWondercardSlot]->metadata.title, WONDERCARD_TITLE_LENGTH);
+    Text_AddPrinterWithParamsAndColor(windwow, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    Strbuf_Free(strBuf);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov97_02230904(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2)
+static BOOL DetermineGiftStatus(WonderCardsAppData *appData, Window *window, TextColor color)
 {
-    Strbuf *v0;
-    WonderCard *v1 = param0->unk_2C14[param0->unk_2C20];
-    int v2;
+    WonderCard *wonderCard = appData->wonderCards[appData->selectedWondercardSlot];
+    int stringEntryID;
 
-    if (v1->metadata.savePgt == 0) {
-        v2 = 39;
+    if (wonderCard->metadata.savePgt == FALSE) {
+        stringEntryID = MysteryGiftMenu_Text_NoGiftAttached;
     } else {
-        if ((param0->unk_2C00 == NULL) || (MysteryGift_CheckWcHasPgtSaved(param0->unk_2C00, param0->unk_2C20) == 1)) {
-            v2 = 37;
+        if (appData->mysteryGift == NULL || MysteryGift_CheckWcHasPgtSaved(appData->mysteryGift, appData->selectedWondercardSlot) == TRUE) {
+            stringEntryID = MysteryGiftMenu_Text_PleasePickUpInPokeMart;
         } else {
-            v2 = 38;
+            stringEntryID = MysteryGiftMenu_Text_AlreadyReceivedBefore;
         }
     }
 
-    v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v2, param0->heapID);
+    Strbuf *strBuf = MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, stringEntryID, appData->heapID);
 
-    Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
-    Strbuf_Free(v0);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    Strbuf_Free(strBuf);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov97_0223097C(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
+static BOOL SetupDateString(WonderCardsAppData *appData, Window *window, TextColor color)
 {
-    RTCDate v0;
+    RTCDate date;
 
-    RTC_ConvertDayToDate(&v0, param0->unk_2C14[param0->unk_2C20]->receivedDate);
+    RTC_ConvertDayToDate(&date, appData->wonderCards[appData->selectedWondercardSlot]->receivedDate);
 
-    StringTemplate_SetNumber(param0->unk_2A60, 0, v0.year + 2000, 4, 2, 1);
-    StringTemplate_SetMonthName(param0->unk_2A60, 1, v0.month);
-    StringTemplate_SetNumber(param0->unk_2A60, 2, v0.day, 2, 2, 1);
+    StringTemplate_SetNumber(appData->strTemplate, 0, date.year + 2000, 4, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+    StringTemplate_SetMonthName(appData->strTemplate, 1, date.month);
+    StringTemplate_SetNumber(appData->strTemplate, 2, date.day, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov97_022309E4(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
+static BOOL PrintWondercardDescription(WonderCardsAppData *appData, Window *window, TextColor color)
 {
-    Strbuf *v0 = Strbuf_Init(250 + 1, HEAP_ID_87);
+    Strbuf *strBuf = Strbuf_Init(WONDERCARD_DESCRIPTION_LENGTH + 1, HEAP_ID_WONDER_CARDS_APP);
 
-    Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->description, 250);
-    Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
-    Strbuf_Free(v0);
+    Strbuf_CopyNumChars(strBuf, appData->wonderCards[appData->selectedWondercardSlot]->description, WONDERCARD_DESCRIPTION_LENGTH);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    Strbuf_Free(strBuf);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov97_02230A34(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
+static BOOL SetupRemainingSharesCount(WonderCardsAppData *appData, Window *window, TextColor color)
 {
-    if (param0->unk_2C14[param0->unk_2C20]->redistributionsLeft == 255) {
-        Strbuf *v0;
-
-        v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 51, HEAP_ID_87);
-        Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
-        Strbuf_Free(v0);
-        return 0;
-    } else if (param0->unk_2C14[param0->unk_2C20]->redistributionsLeft) {
-        StringTemplate_SetNumber(param0->unk_2A60, 0, param0->unk_2C14[param0->unk_2C20]->redistributionsLeft, 3, 0, 1);
-        return 1;
+    if (appData->wonderCards[appData->selectedWondercardSlot]->sharesLeft == SHARE_UNLIMITED) {
+        Strbuf *strBuf = MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, MysteryGiftMenu_Text_CanBeSharedAsManyFriendsAsYouLike, HEAP_ID_WONDER_CARDS_APP);
+        Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
+        Strbuf_Free(strBuf);
+        return FALSE;
+    } else if (appData->wonderCards[appData->selectedWondercardSlot]->sharesLeft) {
+        StringTemplate_SetNumber(appData->strTemplate, 0, appData->wonderCards[appData->selectedWondercardSlot]->sharesLeft, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-static BOOL ov97_02230AB0(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
+static BOOL InitWondercardActionsMenu(WonderCardsAppData *appData, Window *window, TextColor unused)
 {
-    UnkStruct_ov97_0223E640 v0[4];
-    UnkStruct_ov97_0223E680 *v1;
-    int v2 = 0;
+    StateTransitionListMenuEntryTemplate entries[4];
+    WonderCardsAppWindowTemplate *windowTemplate;
+    int numOptions = 0;
 
-    v0[v2++] = Unk_ov97_0223E640[0];
+    entries[numOptions++] = sWonderCardActions[WC_ACTION_INFO];
 
-    if (param0->unk_2C14[param0->unk_2C20]->redistributionsLeft) {
-        v0[v2++] = Unk_ov97_0223E640[1];
+    if (appData->wonderCards[appData->selectedWondercardSlot]->sharesLeft) {
+        entries[numOptions++] = sWonderCardActions[WC_ACTION_SHARE];
     }
 
-    v0[v2++] = Unk_ov97_0223E640[2];
-    v0[v2++] = Unk_ov97_0223E640[3];
+    entries[numOptions++] = sWonderCardActions[WC_ACTION_TRASH];
+    entries[numOptions++] = sWonderCardActions[WC_ACTION_EXIT];
 
-    v1 = param0->unk_2BFC;
+    windowTemplate = appData->messageBoxTemplate;
 
-    Window_ClearAndCopyToVRAM(param1);
-    Window_Remove(param1);
-    Window_Add(param0->unk_2A5C, param1, 2, v1->unk_04, v1->unk_08 + (4 - v2) * 2, v1->unk_0C, v1->unk_10 - (4 - v2) * 2, 15, param0->unk_2BF8);
-    ov97_02230530(param0, v0, v2, param1, 0);
+    Window_ClearAndCopyToVRAM(window);
+    Window_Remove(window);
+    Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_2, windowTemplate->tilemapLeft, windowTemplate->tilemapTop + (4 - numOptions) * 2, windowTemplate->width, windowTemplate->height - (4 - numOptions) * 2, PLTT_15, appData->messageBoxBaseTile);
+    MakeStateChangeListMenuFromEntryTemplates(appData, entries, numOptions, window, 0);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov97_02230B94(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
+static BOOL InitConfirmWondercardDeleteMenu(WonderCardsAppData *appData, Window *window, TextColor unused)
 {
-    ov97_02230530(param0, Unk_ov97_0223E610, 2, param1, 1);
-    return 1;
+    MakeStateChangeListMenuFromEntryTemplates(appData, sConfirmWondercardDeleteOptions, NELEMS(sConfirmWondercardDeleteOptions), window, 1);
+    return TRUE;
 }
 
-static BOOL ov97_02230BAC(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
+static BOOL InitConfirmWondercardShareMenu(WonderCardsAppData *appData, Window *window, TextColor unused)
 {
-    ov97_02230530(param0, Unk_ov97_0223E630, 2, param1, 0);
-    return 1;
+    MakeStateChangeListMenuFromEntryTemplates(appData, sConfirmWondercardShareOptions, NELEMS(sConfirmWondercardShareOptions), window, 0);
+    return TRUE;
 }
 
-static BOOL ov97_02230BC4(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
+static BOOL AskConfirmStartWireless(WonderCardsAppData *appData, Window *window, TextColor unused)
 {
-    ov97_022305EC(&param0->unk_2C30, 2);
-    ov97_02230530(param0, Unk_ov97_0223E620, 2, param1, 0);
+    PrintTextEntryToWindow(&appData->messageBox, MysteryGiftMenu_Text_WirelessCommunicationsWillBeLaunched);
+    MakeStateChangeListMenuFromEntryTemplates(appData, sConfirmStartWirelessOptions, NELEMS(sConfirmStartWirelessOptions), window, 0);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov97_02230BF0(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
+static BOOL SetupEntriesCount(WonderCardsAppData *appData, Window *window, TextColor unused)
 {
-    StringTemplate_SetNumber(param0->unk_2A60, 0, 0, 1, 1, 1);
-    return 1;
+    StringTemplate_SetNumber(appData->strTemplate, 0, 0, 1, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    return TRUE;
 }
 
-static void ov97_02230C10(UnkStruct_ov97_02230868 *param0, int param1, int param2, int *param3)
+static void DoScreenTransitionToState(WonderCardsAppData *appData, int param1, enum WonderCardsAppState nextState, enum WonderCardsAppState *state)
 {
-    StartScreenTransition(0, param1, param1, 0x0, 6, 1, HEAP_ID_87);
+    StartScreenTransition(0, param1, param1, 0x0, 6, 1, HEAP_ID_WONDER_CARDS_APP);
 
-    if (param3) {
-        *param3 = 27;
+    if (state) {
+        *state = WC_APP_STATE_WAIT_FOR_SCREEN_TRANSITION;
     }
 
-    param0->unk_2CA0 = param2;
+    appData->queuedState = nextState;
 }
 
-static void ov97_02230C44(UnkStruct_ov97_02230868 *param0, int param1, int param2)
+static void ShowWindowsForScreen(WonderCardsAppData *appData, BOOL unused, enum WonderCardsAppScreen screen)
 {
-    int v0, v1;
-    Strbuf *v2;
-    TextColor v3;
-    UnkStruct_ov97_0223E680 *v4 = Unk_ov97_0223E680;
+    // forward declarations required to match
+    int i, baseTile;
 
-    param0->unk_2A64 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, param0->heapID);
-    param0->unk_2A60 = StringTemplate_Default(param0->heapID);
-    param0->unk_2C24 = param2;
+    WonderCardsAppWindowTemplate *windowTemplates = sWonderCardsAppWindows;
 
-    ov97_02230F98(param0, param2);
+    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, appData->heapID);
+    appData->strTemplate = StringTemplate_Default(appData->heapID);
+    appData->currentScreen = screen;
 
-    for (v0 = 0; v0 < sizeof(Unk_ov97_0223E680) / sizeof(UnkStruct_ov97_0223E680); v0++) {
-        if ((v4[v0].unk_00 != param2) && (v4[v0].unk_00 != 2)) {
-            if (param0->unk_2A68[v0].bgConfig) {
-                Window_ClearAndCopyToVRAM(&param0->unk_2A68[v0]);
-                Window_Remove(&param0->unk_2A68[v0]);
+    LoadWondercardGraphics(appData, screen);
+
+    for (i = 0; i < NELEMS(sWonderCardsAppWindows); i++) {
+        if (windowTemplates[i].screen != screen && windowTemplates[i].screen != WC_MESSAGE_BOX) {
+            if (appData->windows[i].bgConfig) {
+                Window_ClearAndCopyToVRAM(&appData->windows[i]);
+                Window_Remove(&appData->windows[i]);
             }
         }
     }
 
-    v1 = (((1 + 9) + 9) + (18 + 12));
+    baseTile = BASE_TILE_WINDOWS_START;
 
-    for (v0 = 0; v0 < sizeof(Unk_ov97_0223E680) / sizeof(UnkStruct_ov97_0223E680); v0++) {
-        if (v4[v0].unk_00 == param2) {
-            if (param0->unk_2A68[v0].bgConfig == NULL) {
-                param0->unk_2BA8[v0] = v1;
-                Window_Add(param0->unk_2A5C, &param0->unk_2A68[v0], 0, v4[v0].unk_04, v4[v0].unk_08, v4[v0].unk_0C, v4[v0].unk_10, 15, v1);
+    for (i = 0; i < NELEMS(sWonderCardsAppWindows); i++) {
+        if (windowTemplates[i].screen == screen) {
+            if (appData->windows[i].bgConfig == NULL) {
+                appData->windowBasetiles[i] = baseTile;
+                Window_Add(appData->bgConfig, &appData->windows[i], BG_LAYER_MAIN_0, windowTemplates[i].tilemapLeft, windowTemplates[i].tilemapTop, windowTemplates[i].width, windowTemplates[i].height, PLTT_15, baseTile);
             }
 
-            Window_FillTilemap(&param0->unk_2A68[v0], Font_GetAttribute(v4[v0].unk_14, v4[v0].unk_1C));
-            v3 = v4[v0].unk_18;
+            Window_FillTilemap(&appData->windows[i], Font_GetAttribute(windowTemplates[i].font, windowTemplates[i].bgColor.fontAttribute));
+            TextColor color = windowTemplates[i].textColor;
 
-            if (v4[v0].unk_24(param0, &param0->unk_2A68[v0], v3) == 1) {
-                if (v4[v0].unk_20) {
-                    v2 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v4[v0].unk_20, param0->heapID);
+            if (windowTemplates[i].setup(appData, &appData->windows[i], color) == TRUE) {
+                if (windowTemplates[i].entryID) {
+                    Strbuf *strBuf = MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, windowTemplates[i].entryID, appData->heapID);
 
                     {
-                        u32 v5 = (v4[v0].unk_28 == -1) ? Font_CalcCenterAlignment(v4[v0].unk_14, v2, 0, v4[v0].unk_0C * 8) : v4[v0].unk_28;
-                        Text_AddPrinterWithParamsAndColor(&param0->unk_2A68[v0], v4[v0].unk_14, v2, v5, v4[v0].unk_2C, TEXT_SPEED_NO_TRANSFER, v3, NULL);
+                        u32 yOffset = (windowTemplates[i].leftMarginSize == CENTER_TEXT) ? Font_CalcCenterAlignment(windowTemplates[i].font, strBuf, 0, windowTemplates[i].width * 8) : windowTemplates[i].leftMarginSize;
+                        Text_AddPrinterWithParamsAndColor(&appData->windows[i], windowTemplates[i].font, strBuf, yOffset, windowTemplates[i].topMarginSize, TEXT_SPEED_NO_TRANSFER, color, NULL);
                     }
 
-                    Strbuf_Free(v2);
+                    Strbuf_Free(strBuf);
                 }
             }
 
-            Window_CopyToVRAM(&param0->unk_2A68[v0]);
-            v1 += v4[v0].unk_0C * v4[v0].unk_10;
+            Window_CopyToVRAM(&appData->windows[i]);
+            baseTile += windowTemplates[i].width * windowTemplates[i].height;
         }
     }
 
-    MessageLoader_Free(param0->unk_2A64);
-    StringTemplate_Free(param0->unk_2A60);
+    MessageLoader_Free(appData->msgLoader);
+    StringTemplate_Free(appData->strTemplate);
 
-    if (param2 == 0) {
-        ov97_022310FC(param0);
+    if (screen == WC_SCREEN_WONDERCARD_FRONT) {
+        LoadPokemonSpritesForSelectedWc(appData);
     }
 }
 
-static int ov97_02230E04(UnkStruct_ov97_02230868 *param0, Window *param1, int param2, int param3)
+static int ShowWindowFromTemplateIndex(WonderCardsAppData *appData, Window *window, int windowTemplateIdx, int baseTile)
 {
-    Strbuf *v0;
-    u32 v1;
-    UnkStruct_ov97_0223E680 *v2 = Unk_ov97_0223E680 + param2;
+    WonderCardsAppWindowTemplate *windowTemplate = &sWonderCardsAppWindows[windowTemplateIdx];
 
-    if (param1->bgConfig == NULL) {
-        Window_Add(param0->unk_2A5C, param1, 2, v2->unk_04, v2->unk_08, v2->unk_0C, v2->unk_10, 15, param3);
+    if (window->bgConfig == NULL) {
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_2, windowTemplate->tilemapLeft, windowTemplate->tilemapTop, windowTemplate->width, windowTemplate->height, PLTT_15, baseTile);
     }
 
-    Window_FillTilemap(param1, v2->unk_1C);
+    Window_FillTilemap(window, windowTemplate->bgColor.colorIndex);
 
-    if (v2->unk_20) {
-        param0->unk_2A64 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_87);
-        param0->unk_2A60 = StringTemplate_Default(HEAP_ID_87);
+    if (windowTemplate->entryID) {
+        appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_WONDER_CARDS_APP);
+        appData->strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
     }
 
-    param0->unk_2BF8 = param3;
-    param0->unk_2BFC = v2;
+    appData->messageBoxBaseTile = baseTile;
+    appData->messageBoxTemplate = windowTemplate;
 
-    v2->unk_24(param0, param1, 66048);
+    windowTemplate->setup(appData, window, TEXT_COLOR(1, 2, 0));
 
-    if (v2->unk_20) {
-        v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v2->unk_20, HEAP_ID_87);
+    if (windowTemplate->entryID) {
+        Strbuf *strBuf = MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, windowTemplate->entryID, HEAP_ID_WONDER_CARDS_APP);
 
-        Text_AddPrinterWithParamsAndColor(param1, v2->unk_14, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, v2->unk_18, NULL);
-        Strbuf_Free(v0);
-        MessageLoader_Free(param0->unk_2A64);
-        StringTemplate_Free(param0->unk_2A60);
+        Text_AddPrinterWithParamsAndColor(window, windowTemplate->font, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, windowTemplate->textColor, NULL);
+        Strbuf_Free(strBuf);
+        MessageLoader_Free(appData->msgLoader);
+        StringTemplate_Free(appData->strTemplate);
     }
 
-    if (param1 == &param0->unk_2C30) {
-        Window_DrawMessageBoxWithScrollCursor(param1, 0, ((1 + 9) + 9), 10);
+    if (window == &appData->messageBox) {
+        Window_DrawMessageBoxWithScrollCursor(window, FALSE, BASE_TILE_MESSAGE_BOX_BORDER, PLTT_10);
     } else {
-        Window_DrawStandardFrame(param1, 0, (1 + 9), 14);
+        Window_DrawStandardFrame(window, FALSE, BASE_TILE_FIELD_WINDOW_BORDER, PLTT_14);
     }
 
-    return param3 + v2->unk_0C * v2->unk_10;
+    return baseTile + windowTemplate->width * windowTemplate->height;
 }
 
-static int ov97_02230F20(UnkStruct_ov97_02230868 *param0, int param1, int param2)
+static int GetNextOccupiedWcSlot(WonderCardsAppData *appData, int current, int direction)
 {
-    int v0 = param1;
+    int initial = current;
 
     while (TRUE) {
-        param1 += param2;
+        current += direction;
 
-        if (param1 == 3) {
-            param1 = 0;
+        if (current == NUM_WONDERCARD_SLOTS) {
+            current = 0;
         }
 
-        if (param1 == -1) {
-            param1 = 3 - 1;
+        if (current == -1) {
+            current = NUM_WONDERCARD_SLOTS - 1;
         }
 
-        if (v0 == param1) {
+        if (initial == current) {
             break;
         }
 
-        if (MysteryGift_CheckIsWcSlotOccupied(param0->unk_2C00, param1)) {
+        if (MysteryGift_CheckIsWcSlotOccupied(appData->mysteryGift, current)) {
             break;
         }
     }
 
-    return param1;
+    return current;
 }
 
-static void ov97_02230F58(UnkStruct_ov97_02230868 *param0, u32 param1, u32 param2, u32 param3)
+static void LoadTilemapBufferFromNarc(WonderCardsAppData *appData, u32 narcMemberIdx, u32 bgLayer, u32 size)
 {
-    NNSG2dScreenData *v0;
-    void *v1 = LoadMemberFromNARC(116, param1, 1, param0->heapID, 1);
+    NNSG2dScreenData *screenData;
+    void *nscr = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__MYSTERY, narcMemberIdx, TRUE, appData->heapID, TRUE);
 
-    NNS_G2dGetUnpackedScreenData(v1, &v0);
+    NNS_G2dGetUnpackedScreenData(nscr, &screenData);
 
-    Bg_LoadTilemapBuffer(param0->unk_2A5C, param2, v0->rawData, param3);
-    Heap_FreeToHeap(v1);
+    Bg_LoadTilemapBuffer(appData->bgConfig, bgLayer, screenData->rawData, size);
+    Heap_FreeToHeap(nscr);
 }
 
-static void ov97_02230F98(UnkStruct_ov97_02230868 *param0, int param1)
+static void LoadWondercardGraphics(WonderCardsAppData *appData, enum WonderCardsAppScreen screen)
 {
-    Graphics_LoadPalette(116, 3, 0, 0, 16 * 16, param0->heapID);
-    Graphics_LoadTilesToBgLayer(116, 6, param0->unk_2A5C, 1, 0, 24 * 16 * 0x20, 1, param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 3, PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), 8 * PALETTE_SIZE_BYTES, appData->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 6, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_FRONT_BACK_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, appData->heapID);
 
-    switch (param1) {
-    case 0:
-        Graphics_LoadTilemapToBgLayer(116, 4, param0->unk_2A5C, 1, 0, 32 * 24 * 2, 1, param0->heapID);
+    switch (screen) {
+    case WC_SCREEN_WONDERCARD_FRONT:
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 4, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_FRONT_TILEMAP_WIDTH * WC_FRONT_TILEMAP_HEIGHT * 2, TRUE, appData->heapID);
         break;
-    case 1:
-        Graphics_LoadTilemapToBgLayer(116, 5, param0->unk_2A5C, 1, 0, 32 * 24 * 2, 1, param0->heapID);
+    case WC_SCREEN_WONDERCARD_BACK:
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 5, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_BACK_TILEMAP_WIDTH * WC_BACK_TILEMAP_HEIGHT * 2, TRUE, appData->heapID);
         break;
     }
 
-    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 11, 16 * 2, param0->heapID);
-    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_2A5C, 3, 0 * 1, 1 * 16 * 0x20, 1, param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, PAL_LOAD_MAIN_BG, PLTT_OFFSET(11), PALETTE_SIZE_BYTES, appData->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, appData->bgConfig, BG_LAYER_MAIN_3, 0, WC_APP_BG_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, appData->heapID);
 
-    ov97_02230F58(param0, 2, 3, 32 * 24 * 2);
+    LoadTilemapBufferFromNarc(appData, 2, BG_LAYER_MAIN_3, WC_APP_BG_TILEMAP_WIDTH * WC_APP_BG_TILEMAP_HEIGHT * 2);
 
-    Bg_ChangeTilemapRectPalette(param0->unk_2A5C, 3, 0, 0, 32, 24, 11);
-    Bg_CopyTilemapBufferToVRAM(param0->unk_2A5C, 3);
+    Bg_ChangeTilemapRectPalette(appData->bgConfig, BG_LAYER_MAIN_3, 0, 0, WC_APP_BG_TILEMAP_WIDTH, WC_APP_BG_TILEMAP_HEIGHT, PLTT_11);
+    Bg_CopyTilemapBufferToVRAM(appData->bgConfig, BG_LAYER_MAIN_3);
 }
 
-static void ov97_02231088(OverlayManager *param0, int *param1, int (*param2)(OverlayManager *))
+static void ProcessStateTransitionMenuInput(OverlayManager *ovlMan, enum WonderCardsAppState *state, StateTransitionFuncPtr onCancelStateTransition)
 {
-    u32 v0;
-    int v1;
-    UnkStruct_ov97_02230868 *v2 = OverlayManager_Data(param0);
-    static int (*v3)(OverlayManager *);
+    enum WonderCardsAppState nextState;
+    WonderCardsAppData *appData = OverlayManager_Data(ovlMan);
+    static StateTransitionFuncPtr optionStateTransitionFunc;
 
-    v0 = ListMenu_ProcessInput(v2->unk_2C28);
+    u32 input = ListMenu_ProcessInput(appData->listMenu);
 
-    switch (v0) {
-    case 0xffffffff:
+    switch (input) {
+    case LIST_NOTHING_CHOSEN:
         break;
-    case 0xfffffffe:
+    case LIST_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-        if (param2) {
-            v1 = param2(param0);
+        if (onCancelStateTransition) {
+            nextState = onCancelStateTransition(ovlMan);
 
-            if (v1 != -1) {
-                *param1 = v1;
+            if (nextState != -1) {
+                *state = nextState;
             }
         }
         break;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-        if (v0) {
-            if (v0 < 30) {
-                *param1 = v0;
+        if (input) {
+            if (input < NUM_WC_APP_STATES) {
+                *state = input;
             } else {
-                v3 = (static int (*)(OverlayManager *))v0;
-                v1 = v3(param0);
+                optionStateTransitionFunc = (StateTransitionFuncPtr)input;
+                nextState = optionStateTransitionFunc(ovlMan);
 
-                if (v1 != -1) {
-                    *param1 = v1;
+                if (nextState != -1) {
+                    *state = nextState;
                 }
             }
         }
@@ -764,725 +1148,713 @@ static void ov97_02231088(OverlayManager *param0, int *param1, int (*param2)(Ove
     }
 }
 
-static void ov97_022310FC(UnkStruct_ov97_02230868 *param0)
+static void LoadPokemonSpritesForSelectedWc(WonderCardsAppData *appData)
 {
-    int v0, v1, v2;
-    u8 *v3;
-    NNSG2dCharacterData *v4;
+    int spriteX, i; // forward declarations required to match
 
-    if ((param0->unk_2E90[0] == NULL) && (param0->unk_2E90[1] == NULL) && (param0->unk_2E90[2] == NULL)) {
-        if (ov97_02237A60() == 1) {
-            ov97_02230438(param0);
+    if (appData->selectedWcSprites[0] == NULL && appData->selectedWcSprites[1] == NULL && appData->selectedWcSprites[2] == NULL) {
+        if (ov97_02237A60() == TRUE) {
+            ResetAllSprites(appData);
         }
 
         ov97_02237A20();
         ov97_02237A74();
-        ov97_02237B0C(116, 26, 23, 25, 24, 0);
+        ov97_02237B0C(NARC_INDEX_GRAPHIC__MYSTERY, 26, 23, 25, 24, 0);
 
-        Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 3 * 0x20, 0, param0->heapID);
+        Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), PAL_LOAD_MAIN_OBJ, PLTT_OFFSET(3), 0, appData->heapID);
     }
 
-    v2 = 1;
-    v0 = 178;
+    enum Species species = SPECIES_BULBASAUR;
+    spriteX = 178;
 
-    for (v1 = 0; v1 < 3; v1++, v0 += 25) {
-        v2 = param0->unk_2C14[param0->unk_2C20]->spritesSpecies[v1];
+    for (i = 0; i < NUM_WONDERCARD_SPRITES; i++, spriteX += 25) {
+        species = appData->wonderCards[appData->selectedWondercardSlot]->spritesSpecies[i];
 
-        if (v2 == 0) {
-            if (param0->unk_2E90[v1]) {
-                Sprite_SetDrawFlag(param0->unk_2E90[v1], 0);
+        if (species == SPECIES_NONE) {
+            if (appData->selectedWcSprites[i]) {
+                Sprite_SetDrawFlag(appData->selectedWcSprites[i], FALSE);
             }
 
             continue;
         }
 
-        param0->unk_2E90[v1] = ov97_02237D14(0, param0->unk_2E90[v1], v0, 16, 10 + v1);
-        v3 = Graphics_GetCharData(19, PokeIconSpriteIndex(v2, 0, HEAP_ID_SYSTEM), 0, &v4, param0->heapID);
+        NNSG2dCharacterData *charData;
 
-        DC_FlushRange(v4->pRawData, ((4 * 4) * 0x20));
-        GX_LoadOBJ(v4->pRawData, (0x64 + v1 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
+        appData->selectedWcSprites[i] = ov97_02237D14(0, appData->selectedWcSprites[i], spriteX, 16, 10 + i);
+        u8 *ncgrBuffer = Graphics_GetCharData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(species, FALSE, HEAP_ID_SYSTEM), FALSE, &charData, appData->heapID);
 
-        Sprite_SetExplicitPalette(param0->unk_2E90[v1], PokeIconPaletteIndex(v2, 0, 0) + 3);
-        Heap_FreeToHeap(v3);
+        DC_FlushRange(charData->pRawData, (4 * 4 * 0x20));
+        GX_LoadOBJ(charData->pRawData, (0x64 + i * 4 * 4) * 0x20, (4 * 4 * 0x20));
+
+        Sprite_SetExplicitPalette(appData->selectedWcSprites[i], PokeIconPaletteIndex(species, 0, 0) + 3);
+        Heap_FreeToHeap(ncgrBuffer);
     }
 }
 
-static int ov97_02231224(OverlayManager *param0, int *param1)
+static BOOL WonderCardsApp_Init(OverlayManager *ovlMan, int *unused)
 {
-    UnkStruct_ov97_02230868 *v0;
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_WONDER_CARDS_APP, HEAP_SIZE_WONDER_CARDS_APP);
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_87, 0x30000);
+    WonderCardsAppData *appData = OverlayManager_NewData(ovlMan, sizeof(WonderCardsAppData), HEAP_ID_WONDER_CARDS_APP);
+    memset(appData, 0, sizeof(WonderCardsAppData));
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_02230868), HEAP_ID_87);
-    memset(v0, 0, sizeof(UnkStruct_ov97_02230868));
+    appData->bgConfig = BgConfig_New(HEAP_ID_WONDER_CARDS_APP);
+    appData->heapID = HEAP_ID_WONDER_CARDS_APP;
 
-    v0->unk_2A5C = BgConfig_New(HEAP_ID_87);
-    v0->heapID = HEAP_ID_87;
+    sub_0200F344(DS_SCREEN_MAIN, 0x0);
+    sub_0200F344(DS_SCREEN_SUB, 0x0);
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    appData->selectedWondercardSlot = NUM_WONDERCARD_SLOTS - 1;
+    appData->numPlayerConnections = 1;
 
-    v0->unk_2C20 = 3 - 1;
-    v0->unk_2C9C = 1;
-
-    ov97_02237694(HEAP_ID_87);
+    ov97_02237694(HEAP_ID_WONDER_CARDS_APP);
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
 
-    return 1;
+    return TRUE;
 }
 
-static void ov97_02231290(SysTask *param0, void *param1)
+static void StartDMAForFlipAnim(SysTask *sysTask, WonderCardFlipAnimManager *animMan)
 {
-    UnkStruct_ov97_02231318 *v0 = (UnkStruct_ov97_02231318 *)param1;
-
     BufferManager_StopDMA();
-    BufferManager_StartDMA(BufferManager_GetReadBuffer(v0->bufferManager), (void *)REG_BG0HOFS_ADDR, sizeof(u32) * 2, 1);
+    BufferManager_StartDMA(BufferManager_GetReadBuffer(animMan->bufferManager), (void *)REG_BG0HOFS_ADDR, SCROLL_REGISTER_SIZE * 4, BUFFER_MANAGER_DMA_TYPE_32BIT); // Write to the horizontal and vertical scroll registers for background layers 0 and 1 after each scaline
 }
 
-static void ov97_022312B4(UnkStruct_ov97_02230868 *param0, BOOL param1, fx32 param2, fx32 param3)
+static void StartFlipAnim(WonderCardsAppData *appData, enum WonderCardFlipStage stage, fx32 startOffsetStep, fx32 startDOfsStep)
 {
-    UnkStruct_ov97_02231318 *v0 = &param0->unk_31F4;
+    WonderCardFlipAnimManager *animMan = &appData->flipAnimMan;
 
-    v0->unk_C14 = param1;
-    v0->unk_C08 = param2;
-    v0->unk_C0C = param3;
+    animMan->animStage = stage;
+    animMan->offsetStep = startOffsetStep;
+    animMan->deltaOffsetStep = startDOfsStep;
 
-    if (v0->bufferManager == NULL) {
-        v0->bufferManager = BufferManager_New(87, v0->unk_00[0], v0->unk_00[1]);
+    if (animMan->bufferManager == NULL) {
+        animMan->bufferManager = BufferManager_New(HEAP_ID_WONDER_CARDS_APP, animMan->scrollsBuffers[0], animMan->scrollsBuffers[1]);
     }
 
-    if (v0->unk_C04 == NULL) {
-        v0->unk_C04 = SysTask_ExecuteOnVBlank(ov97_02231290, v0, 1024);
+    if (animMan->sysTask == NULL) {
+        animMan->sysTask = SysTask_ExecuteOnVBlank((SysTaskFunc)StartDMAForFlipAnim, animMan, 1024);
     }
 
-    v0->unk_C10 = 1;
+    animMan->running = TRUE;
 }
 
-static void ov97_02231318(UnkStruct_ov97_02230868 *param0)
+static void CancelFlipAnim(WonderCardsAppData *appData)
 {
-    UnkStruct_ov97_02231318 *v0 = &param0->unk_31F4;
+    WonderCardFlipAnimManager *animMan = &appData->flipAnimMan;
 
-    if (v0->bufferManager) {
-        BufferManager_Delete(v0->bufferManager);
+    if (animMan->bufferManager) {
+        BufferManager_Delete(animMan->bufferManager);
     }
 
-    if (v0->unk_C04) {
-        SysTask_Done(v0->unk_C04);
+    if (animMan->sysTask) {
+        SysTask_Done(animMan->sysTask);
     }
 
-    v0->bufferManager = NULL;
-    v0->unk_C04 = NULL;
+    animMan->bufferManager = NULL;
+    animMan->sysTask = NULL;
 
     BufferManager_StopDMA();
 }
 
-static BOOL ov97_02231354(UnkStruct_ov97_02230868 *param0)
+static BOOL RunFlipAnimFrame(WonderCardsAppData *appData)
 {
-    int v0, v1;
-    u16 *v2;
-    UnkStruct_ov97_02231318 *v3 = &param0->unk_31F4;
-    fx32 v4 = (168 / 2) * FX32_ONE;
+    int scanline, offset; // forward declarations required to match
 
-    if (v3->unk_C10 == 0) {
-        return 1;
+    WonderCardFlipAnimManager *flipAnimMan = &appData->flipAnimMan;
+    fx32 offsetFx32 = (WONDERCARD_HEIGHT / 2) * FX32_ONE;
+
+    if (flipAnimMan->running == FALSE) {
+        return TRUE;
     }
 
-    if (v3->unk_C14 == 1) {
-        v3->unk_C08 += v3->unk_C0C;
-        v3->unk_C0C += v3->unk_C0C;
+    if (flipAnimMan->animStage == WC_FLIP_STAGE_SHRINKING) {
+        flipAnimMan->offsetStep += flipAnimMan->deltaOffsetStep;
+        flipAnimMan->deltaOffsetStep += flipAnimMan->deltaOffsetStep;
 
-        if (v3->unk_C08 / FX32_ONE > 1000) {
-            v3->unk_C10 = 0;
-            v4 = 168;
-            v3->unk_C08 = 0;
-            v3->unk_C0C = 0;
+        if (flipAnimMan->offsetStep / FX32_ONE > 1000) {
+            flipAnimMan->running = FALSE;
+            offsetFx32 = WONDERCARD_HEIGHT;
+            flipAnimMan->offsetStep = 0;
+            flipAnimMan->deltaOffsetStep = 0;
         }
     } else {
-        v3->unk_C08 -= v3->unk_C0C;
-        v3->unk_C0C /= 2;
+        flipAnimMan->offsetStep -= flipAnimMan->deltaOffsetStep;
+        flipAnimMan->deltaOffsetStep /= 2;
 
-        if (v3->unk_C0C < FX32_ONE / 4) {
-            v3->unk_C10 = 0;
-            v3->unk_C08 = 1 * FX32_ONE;
-            v3->unk_C0C = 0;
+        if (flipAnimMan->deltaOffsetStep < FX32_ONE / 4) {
+            flipAnimMan->running = FALSE;
+            flipAnimMan->offsetStep = 1 * FX32_ONE;
+            flipAnimMan->deltaOffsetStep = 0;
         }
     }
 
-    v2 = BufferManager_GetWriteBuffer(v3->bufferManager);
+    u16 *buffer = BufferManager_GetWriteBuffer(flipAnimMan->bufferManager);
 
-    for (v0 = 168 / 2; v0 < 168; v0++) {
-        v1 = v4 / FX32_ONE;
+    for (scanline = WONDERCARD_HEIGHT / 2; scanline < WONDERCARD_HEIGHT; scanline++) {
+        offset = offsetFx32 / FX32_ONE;
 
-        if (v1 < 0) {
-            v1 = 0;
+        if (offset < 0) {
+            offset = 0;
         }
 
-        if (v1 > 168) {
-            v1 = 168;
+        if (offset > WONDERCARD_HEIGHT) {
+            offset = WONDERCARD_HEIGHT;
         }
 
-        v2[v0 * 4 + 1] = v2[v0 * 4 + 3] = (0 - (v0) + (v1));
-        v2[(168 - v0) * 4 + 1] = v2[(168 - v0) * 4 + 3] = (0 - (168 - v0) + (168 - v1));
+        // Set the vertical scroll offsets for background layers 0 and 1 for each scanline (registers REG_BG[01]VOFS)
+        buffer[scanline * 4 + 1] = buffer[scanline * 4 + 3] = (0 - scanline + offset);
+        buffer[(WONDERCARD_HEIGHT - scanline) * 4 + 1] = buffer[(WONDERCARD_HEIGHT - scanline) * 4 + 3] = (0 - (WONDERCARD_HEIGHT - scanline) + (WONDERCARD_HEIGHT - offset));
 
-        v4 += v3->unk_C08;
+        offsetFx32 += flipAnimMan->offsetStep;
     }
 
-    DC_FlushRange(v2, sizeof(u16) * HW_LCD_HEIGHT * 4);
-    BufferManager_SwapBuffers(v3->bufferManager);
+    DC_FlushRange(buffer, SCROLL_REGISTER_SIZE * 4 * HW_LCD_HEIGHT);
+    BufferManager_SwapBuffers(flipAnimMan->bufferManager);
 
-    return 0;
+    return FALSE;
 }
 
-static void ov97_02231464(void *param0)
+static void WonderCardsAppCallbackSaveGame(WonderCardsAppData *appData)
 {
-    int v0;
-    UnkStruct_ov97_02230868 *v1 = (UnkStruct_ov97_02230868 *)param0;
+    int stage = ov97_0223847C();
 
-    v0 = ov97_0223847C();
-
-    if ((v0 == 2) || (v0 == 3)) {
+    if (stage == 2 || stage == 3) {
         Sound_PlayEffect(SEQ_SE_DP_SAVE);
-        v1->unk_3E0C = NULL;
+        appData->mainCallback = NULL;
     }
 }
 
-static void ov97_02231488(UnkStruct_ov97_02230868 *param0)
+static void UpdateShareCount(WonderCardsAppData *appData)
 {
-    GF_ASSERT(param0->unk_2C20 < 3);
+    GF_ASSERT(appData->selectedWondercardSlot < NUM_WONDERCARD_SLOTS);
     SaveData_Checksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 
-    if (param0->unk_2C14[param0->unk_2C20]->redistributionCount != 255) {
-        param0->unk_2C14[param0->unk_2C20]->redistributionCount++;
+    if (appData->wonderCards[appData->selectedWondercardSlot]->timesShared != SHARE_UNLIMITED) {
+        appData->wonderCards[appData->selectedWondercardSlot]->timesShared++;
     }
 
-    if (param0->unk_2C14[param0->unk_2C20]->redistributionsLeft != 255) {
-        param0->unk_2C14[param0->unk_2C20]->redistributionsLeft--;
+    if (appData->wonderCards[appData->selectedWondercardSlot]->sharesLeft != SHARE_UNLIMITED) {
+        appData->wonderCards[appData->selectedWondercardSlot]->sharesLeft--;
     }
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
-    ov97_0223846C(param0->unk_2C04);
+    ov97_0223846C(appData->saveData);
 
-    param0->unk_3E0C = ov97_02231464;
+    appData->mainCallback = WonderCardsAppCallbackSaveGame;
 }
 
-static void ov97_022314FC(UnkStruct_ov97_02230868 *param0, int param1, int *param2)
+static void HandleWCShareScreenInput(WonderCardsAppData *appData, int playerCount, enum WonderCardsAppState *state)
 {
-    int v0;
-    int v1 = param0->unk_3E10;
+    enum WonderCardShareBtn selectedButton = appData->shareScreenSelectedBtn;
 
-    if (gSystem.pressedKeys & PAD_KEY_RIGHT && (param0->unk_3E10 != 1)) {
-        param0->unk_3E10 = 1;
+    if (JOY_NEW(PAD_KEY_RIGHT) && appData->shareScreenSelectedBtn != WC_SHARE_BTN_CANCEL) {
+        appData->shareScreenSelectedBtn = WC_SHARE_BTN_CANCEL;
     }
 
-    if (gSystem.pressedKeys & PAD_KEY_LEFT && (param0->unk_3E10 != 0)) {
-        param0->unk_3E10 = 0;
+    if (JOY_NEW(PAD_KEY_LEFT) && appData->shareScreenSelectedBtn != WC_SHARE_BTN_SEND) {
+        appData->shareScreenSelectedBtn = WC_SHARE_BTN_SEND;
     }
 
-    if (v1 != param0->unk_3E10) {
-        Sprite_SetAnim(param0->unk_2E88[0], param0->unk_3E10 == 0 ? 1 : 0);
-        Sprite_SetAnim(param0->unk_2E88[1], param0->unk_3E10 == 0 ? 0 : 1);
+    if (selectedButton != appData->shareScreenSelectedBtn) {
+        Sprite_SetAnim(appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND], appData->shareScreenSelectedBtn == WC_SHARE_BTN_SEND ? 1 : 0);
+        Sprite_SetAnim(appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL], appData->shareScreenSelectedBtn == WC_SHARE_BTN_SEND ? 0 : 1);
     }
 
-    v0 = 0;
+    enum WonderCardShareAction nextAction = WC_SHARE_ACTION_NONE;
 
-    if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        v0 = 2;
-    } else if ((gSystem.pressedKeys & PAD_BUTTON_A) && param1 && (param0->unk_3E10 == 0)) {
-        v0 = 1;
-    } else if ((gSystem.pressedKeys & PAD_BUTTON_A) && (param0->unk_3E10 == 1)) {
-        v0 = 2;
-    } else if ((gSystem.pressedKeys & PAD_BUTTON_A) && (param1 == 0)) {
-        v0 = 3;
+    if (JOY_NEW(PAD_BUTTON_B)) {
+        nextAction = WC_SHARE_ACTION_EXIT;
+    } else if (JOY_NEW(PAD_BUTTON_A) && playerCount && appData->shareScreenSelectedBtn == WC_SHARE_BTN_SEND) {
+        nextAction = WC_SHARE_ACTION_SEND;
+    } else if (JOY_NEW(PAD_BUTTON_A) && appData->shareScreenSelectedBtn == WC_SHARE_BTN_CANCEL) {
+        nextAction = WC_SHARE_ACTION_EXIT;
+    } else if (JOY_NEW(PAD_BUTTON_A) && playerCount == 0) { // "SEND" pressed, no player connected
+        nextAction = WC_SHARE_ACTION_PLAY_SOUND;
     }
 
-    if (v0 == 1) {
+    if (nextAction == WC_SHARE_ACTION_SEND) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         CommTiming_StartSync(0xAB);
 
-        param0->unk_2C94 = 1;
-        *param2 = 21;
-        ov97_02230E04(param0, &param0->unk_2C30, 17, 640);
-        param0->unk_3E14 = Window_AddWaitDial(&param0->unk_2C30, ((1 + 9) + 9));
+        appData->shouldSendWc = TRUE;
+        *state = WC_APP_STATE_DISTRIBUTION_UNDERWAY;
+        ShowWindowFromTemplateIndex(appData, &appData->messageBox, MSG_BOX_DISTRIBUTION_UNDER_WAY, 640);
+        appData->waitDial = Window_AddWaitDial(&appData->messageBox, BASE_TILE_MESSAGE_BOX_BORDER);
     }
 
-    if (v0 == 2) {
+    if (nextAction == WC_SHARE_ACTION_EXIT) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        ov97_02231F1C(param0, param2, 19);
+        StopWirelessCommunication(appData, state, WC_APP_STATE_RETURN_AFTER_COMM_MAN_EXIT);
     }
 
-    if (v0 == 3) {
+    if (nextAction == WC_SHARE_ACTION_PLAY_SOUND) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
-static int ov97_0223161C(OverlayManager *param0, int *param1)
+static int WonderCardsApp_Main(OverlayManager *ovlMan, enum WonderCardsAppState *state)
 {
-    int v0, v1, v2, v3;
-    UnkStruct_ov97_02230868 *v4 = OverlayManager_Data(param0);
+    WonderCardsAppData *appData = OverlayManager_Data(ovlMan);
 
-    switch (*param1) {
-    case 0:
-        v4->unk_2C04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-        v4->unk_2C00 = SaveData_GetMysteryGift(v4->unk_2C04);
-        v4->unk_2C08 = SaveData_GetOptions(v4->unk_2C04);
-        v4->unk_2C0C = Options_Frame(v4->unk_2C08);
+    switch (*state) {
+    case WC_APP_STATE_LOAD_FROM_SAVE:
+        appData->saveData = ((ApplicationArgs *)OverlayManager_Args(ovlMan))->saveData;
+        appData->mysteryGift = SaveData_GetMysteryGift(appData->saveData);
+        appData->options = SaveData_GetOptions(appData->saveData);
+        appData->msgBoxFrame = Options_Frame(appData->options);
 
-        v4->unk_2C14[0] = MysteryGift_TryGetWonderCard(v4->unk_2C00, 0);
-        v4->unk_2C14[1] = MysteryGift_TryGetWonderCard(v4->unk_2C00, 1);
-        v4->unk_2C14[2] = MysteryGift_TryGetWonderCard(v4->unk_2C00, 2);
+        appData->wonderCards[0] = MysteryGift_TryGetWonderCard(appData->mysteryGift, 0);
+        appData->wonderCards[1] = MysteryGift_TryGetWonderCard(appData->mysteryGift, 1);
+        appData->wonderCards[2] = MysteryGift_TryGetWonderCard(appData->mysteryGift, 2);
 
-        v4->unk_2C20 = ov97_02230F20(v4, v4->unk_2C20, 1);
-        *param1 = 1;
+        appData->selectedWondercardSlot = GetNextOccupiedWcSlot(appData, appData->selectedWondercardSlot, DIRECTION_NEXT);
+        *state = WC_APP_STATE_INIT_GRAPHICS;
         break;
-    case 1:
+    case WC_APP_STATE_INIT_GRAPHICS:
         ov97_02232054();
-        ov97_02232074(v4->unk_2A5C);
-        *param1 = 2;
+        ov97_02232074(appData->bgConfig);
+        *state = WC_APP_STATE_LOAD_GRAPHICS;
         break;
-    case 2:
+    case WC_APP_STATE_LOAD_GRAPHICS:
         Text_ResetAllPrinters();
-        ov97_02230F98(v4, 0);
-        Font_LoadTextPalette(0, 15 * 32, HEAP_ID_87);
-        LoadStandardWindowGraphics(v4->unk_2A5C, 0, 1, 13, 0, HEAP_ID_87);
-        LoadStandardWindowGraphics(v4->unk_2A5C, 0, (1 + 9), 14, 1, HEAP_ID_87);
-        LoadMessageBoxGraphics(v4->unk_2A5C, 0, ((1 + 9) + 9), 10, v4->unk_2C0C, HEAP_ID_87);
+        LoadWondercardGraphics(appData, WC_SCREEN_WONDERCARD_FRONT);
+        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), HEAP_ID_WONDER_CARDS_APP);
+        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_SYSTEM_WINDOW_BORDER, PLTT_13, STANDARD_WINDOW_SYSTEM, HEAP_ID_WONDER_CARDS_APP);
+        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_FIELD_WINDOW_BORDER, PLTT_14, STANDARD_WINDOW_FIELD, HEAP_ID_WONDER_CARDS_APP);
+        LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_BORDER, PLTT_10, appData->msgBoxFrame, HEAP_ID_WONDER_CARDS_APP);
 
-        ov97_02230C44(v4, 1, 0);
-        ov97_02230C10(v4, 1, 3, param1);
+        ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
+        DoScreenTransitionToState(appData, 1, WC_APP_STATE_SELECT_WONDERCARD, state);
         break;
-    case 3:
-        v0 = v4->unk_2C20;
+    case WC_APP_STATE_SELECT_WONDERCARD: {
+        int selectedWcSlot = appData->selectedWondercardSlot;
 
-        if (gSystem.pressedKeys & PAD_KEY_UP) {
-            v0 = ov97_02230F20(v4, v4->unk_2C20, -1);
-        } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-            v0 = ov97_02230F20(v4, v4->unk_2C20, 1);
-        } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
+        if (JOY_NEW(PAD_KEY_UP)) {
+            selectedWcSlot = GetNextOccupiedWcSlot(appData, appData->selectedWondercardSlot, DIRECTION_PREVIOUS);
+        } else if (JOY_NEW(PAD_KEY_DOWN)) {
+            selectedWcSlot = GetNextOccupiedWcSlot(appData, appData->selectedWondercardSlot, DIRECTION_NEXT);
+        } else if (JOY_NEW(PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov97_02230C10(v4, 0, 28, param1);
-        } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
+            DoScreenTransitionToState(appData, 0, WC_APP_STATE_EXIT, state);
+        } else if (JOY_NEW(PAD_BUTTON_A)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            *param1 = 4;
+            *state = WC_APP_STATE_SHOW_WONDERCARD_ACTIONS;
         }
 
-        if (v4->unk_2C20 != v0) {
+        if (appData->selectedWondercardSlot != selectedWcSlot) {
             Sound_PlayEffect(SEQ_SE_DP_CARD2);
-            v4->unk_2C20 = v0;
-            ov97_02230C44(v4, 1, 0);
+            appData->selectedWondercardSlot = selectedWcSlot;
+            ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
         }
         break;
-    case 4:
-        v4->unk_2C50 = ov97_02230E04(v4, &v4->unk_2C30, 7, 640);
-        ov97_02230E04(v4, &v4->unk_2C40, 7 + 1, v4->unk_2C50);
-        *param1 = 5;
+    }
+    case WC_APP_STATE_SHOW_WONDERCARD_ACTIONS:
+        appData->nextWindowBasetile = ShowWindowFromTemplateIndex(appData, &appData->messageBox, MSG_BOX_TEXT_WONDER_CARD, 640);
+        ShowWindowFromTemplateIndex(appData, &appData->standardWindow, MSG_BOX_WC_ACTIONS_MENU, appData->nextWindowBasetile);
+        *state = WC_APP_STATE_WAIT_FOR_MENU_CHOICE;
         break;
-    case 5:
-        ov97_02231088(param0, param1, NULL);
+    case WC_APP_STATE_WAIT_FOR_MENU_CHOICE:
+        ProcessStateTransitionMenuInput(ovlMan, state, NULL);
 
-        if (gSystem.pressedKeys & PAD_BUTTON_B) {
+        if (JOY_NEW(PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            *param1 = 11;
+            *state = WC_APP_STATE_CLOSE_WINDOWS;
         }
         break;
-    case 6:
+    case WC_APP_STATE_START_FLIP_WC_TO_BACK:
         Sound_PlayEffect(SEQ_SE_DP_CARD2);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
-        ov97_02230518(&v4->unk_2C30, 0);
-        ov97_02230500(&v4->unk_2C40, 0);
-        ov97_022312B4(v4, 1, 1 * FX32_ONE, 0.025 * FX32_ONE);
-        *param1 = 7;
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, FALSE);
+        EraseMessageBoxIfInUse(&appData->messageBox, FALSE);
+        EraseStandardWindowIfInUse(&appData->standardWindow, FALSE);
+        StartFlipAnim(appData, WC_FLIP_STAGE_SHRINKING, 1 * FX32_ONE, 0.025 * FX32_ONE);
+        *state = WC_APP_STATE_WAIT_WC_FLIP_TO_BACK_HALFWAY;
         break;
-    case 7:
-        if (ov97_02231354(v4)) {
-            ov97_02230C44(v4, 1, 1);
-            ov97_022312B4(v4, 0, 1800 * FX32_ONE, 900 * FX32_ONE);
-            *param1 = 8;
+    case WC_APP_STATE_WAIT_WC_FLIP_TO_BACK_HALFWAY:
+        if (RunFlipAnimFrame(appData)) {
+            ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_BACK);
+            StartFlipAnim(appData, WC_FLIP_STAGE_GROWING, 1800 * FX32_ONE, 900 * FX32_ONE);
+            *state = WC_APP_STATE_SHOW_WONDERCARD_BACK;
         }
         break;
-    case 8:
-        ov97_02231354(v4);
+    case WC_APP_STATE_SHOW_WONDERCARD_BACK:
+        RunFlipAnimFrame(appData);
 
-        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_DP_CARD2);
-            ov97_022312B4(v4, 1, 1 * FX32_ONE, 0.025 * FX32_ONE);
-            *param1 = 9;
+            StartFlipAnim(appData, WC_FLIP_STAGE_SHRINKING, 1 * FX32_ONE, 0.025 * FX32_ONE);
+            *state = WC_APP_STATE_START_FLIP_WC_TO_FRONT;
         }
         break;
-    case 9:
-        if (ov97_02231354(v4)) {
-            ov97_02230C44(v4, 1, 0);
-            ov97_022312B4(v4, 0, 1800 * FX32_ONE, 900 * FX32_ONE);
-            GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
-            *param1 = 10;
+    case WC_APP_STATE_START_FLIP_WC_TO_FRONT:
+        if (RunFlipAnimFrame(appData)) {
+            ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
+            StartFlipAnim(appData, WC_FLIP_STAGE_GROWING, 1800 * FX32_ONE, 900 * FX32_ONE);
+            GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, FALSE);
+            *state = WC_APP_STATE_WAIT_WC_FLIP_TO_FRONT_HALFWAY;
         }
         break;
-    case 10:
-        if (ov97_02231354(v4)) {
-            Window_DrawMessageBoxWithScrollCursor(&v4->unk_2C30, 0, ((1 + 9) + 9), 10);
-            Window_DrawStandardFrame(&v4->unk_2C40, 0, (1 + 9), 14);
-            GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-            ov97_02231318(v4);
-            *param1 = 5;
+    case WC_APP_STATE_WAIT_WC_FLIP_TO_FRONT_HALFWAY:
+        if (RunFlipAnimFrame(appData)) {
+            Window_DrawMessageBoxWithScrollCursor(&appData->messageBox, FALSE, BASE_TILE_MESSAGE_BOX_BORDER, PLTT_10);
+            Window_DrawStandardFrame(&appData->standardWindow, FALSE, BASE_TILE_FIELD_WINDOW_BORDER, PLTT_14);
+            GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
+            CancelFlipAnim(appData);
+            *state = WC_APP_STATE_WAIT_FOR_MENU_CHOICE;
         }
         break;
-    case 11:
-        ov97_02230868(v4);
-        ov97_02230518(&v4->unk_2C30, 0);
-        Window_ClearAndCopyToVRAM(&v4->unk_2C30);
-        Window_Remove(&v4->unk_2C30);
-        *param1 = 3;
+    case WC_APP_STATE_CLOSE_WINDOWS:
+        WonderCardsApp_CloseListMenu(appData);
+        EraseMessageBoxIfInUse(&appData->messageBox, FALSE);
+        Window_ClearAndCopyToVRAM(&appData->messageBox);
+        Window_Remove(&appData->messageBox);
+        *state = WC_APP_STATE_SELECT_WONDERCARD;
         break;
-    case 12:
-        ov97_02231088(param0, param1, ov97_02230834);
+    case WC_APP_STATE_WAIT_CONFIRM_DELETION:
+        ProcessStateTransitionMenuInput(ovlMan, state, GoBackToWcActionsMenu);
         break;
-    case 13:
-        ov97_02231088(param0, param1, ov97_02230834);
+    case WC_APP_STATE_WAIT_CONFIRM_START_WIRELESS:
+        ProcessStateTransitionMenuInput(ovlMan, state, GoBackToWcActionsMenu);
         break;
-    case 14:
-        ov97_02230BC4(v4, &v4->unk_2C40, 66048);
-        *param1 = 13;
+    case WC_APP_STATE_ASK_START_WIRELESS_TO_SHARE_WC:
+        AskConfirmStartWireless(appData, &appData->standardWindow, TEXT_COLOR(1, 2, 0));
+        *state = WC_APP_STATE_WAIT_CONFIRM_START_WIRELESS;
         break;
-    case 15:
-        ov97_02230C10(v4, 0, 16, param1);
+    case WC_APP_STATE_START_TRANSITION_TO_WC_SHARE_SCREEN:
+        DoScreenTransitionToState(appData, 0, WC_APP_STATE_SHOW_WC_SHARE_SCREEN, state);
         break;
-    case 16:
-        ov97_02230868(v4);
-        ov97_02230518(&v4->unk_2C30, 0);
-        Window_ClearAndCopyToVRAM(&v4->unk_2C30);
-        Window_Remove(&v4->unk_2C30);
-        ov97_02230C44(v4, 0, 3);
-        ov97_02230664(v4->unk_2A5C);
-        ov97_02230410(v4);
-        ov97_022304AC(v4);
-        *param1 = 17;
+    case WC_APP_STATE_SHOW_WC_SHARE_SCREEN:
+        WonderCardsApp_CloseListMenu(appData);
+        EraseMessageBoxIfInUse(&appData->messageBox, FALSE);
+        Window_ClearAndCopyToVRAM(&appData->messageBox);
+        Window_Remove(&appData->messageBox);
+        ShowWindowsForScreen(appData, 0, WC_SCREEN_WONDERCARD_SHARING);
+        LoadWcShareScreenBackground(appData->bgConfig);
+        LoadWcShareScreenButtonsGraphics(appData);
+        ShowWcShareButtons(appData);
+        *state = WC_APP_STATE_PREPARE_FOR_SHARING;
         break;
-    case 17:
-        ov97_02231BD8(v4);
+    case WC_APP_STATE_PREPARE_FOR_SHARING:
+        PrepareSelectedWCForSharing(appData);
         sub_02039734();
-        ov97_02230C10(v4, 1, 18, param1);
+        DoScreenTransitionToState(appData, 1, WC_APP_STATE_WAIT_FOR_PLAYERS, state);
         break;
-    case 18:
-        v3 = 0;
+    case WC_APP_STATE_WAIT_FOR_PLAYERS: {
+        int connectedPlayersCount = 0;
 
         if (CommSys_IsPlayerConnected(0)) {
-            sub_02034150(&v4->unk_04.unk_8C.unk_00);
+            sub_02034150(&appData->unk_04.unk_8C.unk_00);
 
-            v3 = ov97_02231CA0(v4, &v4->unk_2A68[16]);
+            connectedPlayersCount = UpdateConnectedPlayers(appData, &appData->windows[WC_SHARING_PLAYER_INFO]);
 
-            if ((v3 == 0) && v4->unk_2C90) {
-                Window_FillTilemap(&v4->unk_2A68[16], 0);
-                Window_CopyToVRAM(&v4->unk_2A68[16]);
-                v4->unk_2C90 = 0;
+            if (connectedPlayersCount == 0 && appData->prevConnPlayersCount) {
+                Window_FillTilemap(&appData->windows[WC_SHARING_PLAYER_INFO], 0);
+                Window_CopyToVRAM(&appData->windows[WC_SHARING_PLAYER_INFO]);
+                appData->prevConnPlayersCount = 0;
             }
 
-            ov97_02231E78(v4, &v4->unk_2A68[15], v3);
-            v4->unk_2C90 = v3;
+            UpdateConnectedPlayersCount(appData, &appData->windows[WC_SHARING_ENTRIES_COUNT], connectedPlayersCount);
+            appData->prevConnPlayersCount = connectedPlayersCount;
         }
 
-        ov97_022314FC(v4, v3, param1);
+        HandleWCShareScreenInput(appData, connectedPlayersCount, state);
         break;
-    case 19:
-        ov97_02230C10(v4, 0, 20, param1);
+    }
+    case WC_APP_STATE_RETURN_AFTER_COMM_MAN_EXIT:
+        DoScreenTransitionToState(appData, 0, WC_APP_STATE_RETURN_TO_WC_ACTIONS, state);
         break;
-    case 20:
-        ov97_02230438(v4);
-        ov97_02230518(&v4->unk_2C30, 0);
-        ov97_02230500(&v4->unk_2C40, 0);
-        ov97_02230C44(v4, 1, 0);
-        Font_LoadTextPalette(0, 15 * 32, HEAP_ID_87);
-        ov97_02230C10(v4, 1, 4, param1);
+    case WC_APP_STATE_RETURN_TO_WC_ACTIONS:
+        ResetAllSprites(appData);
+        EraseMessageBoxIfInUse(&appData->messageBox, FALSE);
+        EraseStandardWindowIfInUse(&appData->standardWindow, FALSE);
+        ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
+        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), HEAP_ID_WONDER_CARDS_APP);
+        DoScreenTransitionToState(appData, 1, WC_APP_STATE_SHOW_WONDERCARD_ACTIONS, state);
         break;
-    case 22:
-        if (CommMan_IsInitialized() == 0) {
-            *param1 = v4->unk_2CA0;
+    case WC_APP_STATE_WAIT_FOR_COMM_MAN_EXIT:
+        if (CommMan_IsInitialized() == FALSE) {
+            *state = appData->queuedState;
         }
         break;
-    case 21:
-        if (--v4->unk_2C94 == 0) {
-            ov97_0223829C(&v4->unk_04.unk_8C, &v4->unk_2E9C, v4->heapID);
-            ov97_0222D1F0((const void *)&v4->unk_2E9C, sizeof(WonderCard));
-            ov97_02231488(v4);
-            *param1 = 23;
+    case WC_APP_STATE_DISTRIBUTION_UNDERWAY:
+        if (--appData->shouldSendWc == FALSE) {
+            ov97_0223829C(&appData->unk_04.unk_8C, &appData->currentWonderCard, appData->heapID);
+            ov97_0222D1F0((const void *)&appData->currentWonderCard, sizeof(WonderCard));
+            UpdateShareCount(appData);
+            *state = WC_APP_STATE_START_COMM_SYNC;
         }
         break;
-    case 23:
+    case WC_APP_STATE_START_COMM_SYNC:
         if (ov97_02238528() == 4) {
             CommTiming_StartSync(0x93);
-            *param1 = 24;
+            *state = WC_APP_STATE_WAIT_FOR_COMM_SYNC;
         }
         break;
-    case 24:
-        if ((ov97_02231C84(v4) == 0) || (CommTiming_IsSyncState(0x93) == 1)) {
+    case WC_APP_STATE_WAIT_FOR_COMM_SYNC:
+        if (CountConnectedPlayers(appData) == 0 || CommTiming_IsSyncState(0x93) == TRUE) {
             ov97_022384F4();
-            ov97_02230E04(v4, &v4->unk_2C30, 17 + 1, 640);
-            DestroyWaitDial(v4->unk_3E14);
-            ov97_02231F1C(v4, param1, 25);
+            ShowWindowFromTemplateIndex(appData, &appData->messageBox, MSG_BOX_DISTRIBUTION_SUCCESSFUL, 640);
+            DestroyWaitDial(appData->waitDial);
+            StopWirelessCommunication(appData, state, WC_APP_STATE_DISTRIBUTION_SUCCESSFUL);
         }
         break;
-    case 25:
-        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            *param1 = 19;
+    case WC_APP_STATE_DISTRIBUTION_SUCCESSFUL:
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
+            *state = WC_APP_STATE_RETURN_AFTER_COMM_MAN_EXIT;
         }
         break;
-    case 26:
-        ov97_02230C10(v4, 0, 28, param1);
+    case WC_APP_STATE_NO_MORE_WONDERCARDS:
+        DoScreenTransitionToState(appData, 0, WC_APP_STATE_EXIT, state);
         break;
-    case 27:
+    case WC_APP_STATE_WAIT_FOR_SCREEN_TRANSITION:
         if (IsScreenTransitionDone()) {
-            *param1 = v4->unk_2CA0;
+            *state = appData->queuedState;
         }
         break;
-    case 28:
-        ov97_02230438(v4);
-        ov97_02231318(v4);
-        return 1;
+    case WC_APP_STATE_EXIT:
+        ResetAllSprites(appData);
+        CancelFlipAnim(appData);
+        return TRUE;
         break;
-    case 29:
+    case WC_APP_STATE_UNUSED:
         break;
     }
 
-    if (v4->unk_2CA4 != NULL) {
-        SpriteList_Update(v4->unk_2CA4);
+    if (appData->spriteList != NULL) {
+        SpriteList_Update(appData->spriteList);
     }
 
     ov97_02237CA0();
 
-    if (v4->unk_3E0C) {
-        v4->unk_3E0C(v4);
+    if (appData->mainCallback) {
+        appData->mainCallback(appData);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static int ov97_02231BD8(UnkStruct_ov97_02230868 *param0)
+static int PrepareSelectedWCForSharing(WonderCardsAppData *appData)
 {
-    WonderCard *v0 = param0->unk_2C14[param0->unk_2C20];
+    WonderCard *wonderCard = appData->wonderCards[appData->selectedWondercardSlot];
 
-    memcpy(&param0->unk_04.unk_8C.unk_50, v0, sizeof(WonderCard));
-    memcpy(&param0->unk_04.unk_8C.unk_00, &v0->metadata, sizeof(WonderCardMetadata));
+    memcpy(&appData->unk_04.unk_8C.unk_50, wonderCard, sizeof(WonderCard));
+    memcpy(&appData->unk_04.unk_8C.unk_00, &wonderCard->metadata, sizeof(WonderCardMetadata));
 
-    param0->unk_04.unk_8C.unk_50.redistributionsLeft = 0;
-    param0->unk_04.unk_8C.unk_00.shareable = 0;
-    param0->unk_04.unk_8C.unk_00.fromSharing = 1;
+    appData->unk_04.unk_8C.unk_50.sharesLeft = 0;
+    appData->unk_04.unk_8C.unk_00.shareable = FALSE;
+    appData->unk_04.unk_8C.unk_00.fromSharing = TRUE;
 
-    ov97_0222D1C4(&param0->unk_04, param0->unk_2C04, 15);
+    ov97_0222D1C4(&appData->unk_04, appData->saveData, 15);
 
     return NULL;
 }
 
-static int ov97_02231C48(int *param0)
+static int PopEarliestReturnNetId(int *orderNums)
 {
-    int *v0 = param0;
-    int v1 = *param0;
-    int v2 = 0;
+    int *minPtr = orderNums;
+    int min = *orderNums;
+    int minPos = 0;
 
-    if (param0[1] < v1) {
-        v1 = param0[1], v2 = 1, v0 = &param0[1];
+    if (orderNums[1] < min) {
+        min = orderNums[1], minPos = 1, minPtr = &orderNums[1];
     }
 
-    if (param0[2] < v1) {
-        v1 = param0[2], v2 = 2, v0 = &param0[2];
+    if (orderNums[2] < min) {
+        min = orderNums[2], minPos = 2, minPtr = &orderNums[2];
     }
 
-    if (param0[3] < v1) {
-        v1 = param0[3], v2 = 3, v0 = &param0[3];
+    if (orderNums[3] < min) {
+        min = orderNums[3], minPos = 3, minPtr = &orderNums[3];
     }
 
-    *v0 = 32767 * 32767;
-    return v2 + 1;
+    *minPtr = EMPTY_ORDER_SLOT;
+    return minPos + 1;
 }
 
-static int ov97_02231C84(UnkStruct_ov97_02230868 *param0)
+static int CountConnectedPlayers(WonderCardsAppData *appData)
 {
-    int v0, v1;
-    TrainerInfo *v2;
+    int i; // forward declaration required to match
 
-    v1 = 0;
+    int connectedPlayers = 0;
 
-    for (v0 = 1; v0 < 4 + 1; v0++) {
-        if (CommInfo_TrainerInfo(v0)) {
-            v1++;
+    for (i = 1; i < SHARE_MAX_PLAYERS + 1; i++) {
+        if (CommInfo_TrainerInfo(i)) {
+            connectedPlayers++;
         }
     }
 
-    return v1;
+    return connectedPlayers;
 }
 
-static int ov97_02231CA0(UnkStruct_ov97_02230868 *param0, Window *param1)
+static int UpdateConnectedPlayers(WonderCardsAppData *appData, Window *window)
 {
-    int v0, v1, v2, v3;
-    u32 v4;
-    TrainerInfo *v5;
-    Strbuf *v6;
-    StringTemplate *v7;
-    MessageLoader *v8;
-    int v9[4];
-    int v10[4];
+    // forward declarations required to match
+    int i;
+    Strbuf *strBuf;
 
-    v1 = 0;
-    v3 = 0;
+    int numConnectedPlayers = 0;
+    int numSlotsChanged = 0;
 
-    for (v0 = 1; v0 < 4 + 1; v0++) {
-        v5 = CommInfo_TrainerInfo(v0);
+    for (i = 1; i < SHARE_MAX_PLAYERS + 1; i++) {
+        TrainerInfo *tmpTrainerInfo = CommInfo_TrainerInfo(i);
 
-        if (v5 == NULL) {
-            if (param0->unk_2C68[v0]) {
-                v3++;
+        if (tmpTrainerInfo == NULL) {
+            if (appData->connTrainerInfos[i]) {
+                numSlotsChanged++;
             }
 
-            param0->unk_2C68[v0] = NULL;
-            param0->unk_2C7C[v0] = 32767 * 32767;
-        } else if (param0->unk_2C68[v0] != v5) {
-            v3++;
-            v1++;
-            param0->unk_2C68[v0] = v5;
-            param0->unk_2C7C[v0] = param0->unk_2C9C++;
+            appData->connTrainerInfos[i] = NULL;
+            appData->orderNumbers[i] = EMPTY_ORDER_SLOT;
+        } else if (appData->connTrainerInfos[i] != tmpTrainerInfo) {
+            numSlotsChanged++;
+            numConnectedPlayers++;
+            appData->connTrainerInfos[i] = tmpTrainerInfo;
+            appData->orderNumbers[i] = appData->numPlayerConnections++;
         } else {
-            v1++;
+            numConnectedPlayers++;
         }
     }
 
-    if (v3 == 0) {
-        return v1;
+    if (numSlotsChanged == 0) {
+        return numConnectedPlayers;
     }
 
-    v9[0] = param0->unk_2C7C[1], v9[1] = param0->unk_2C7C[2], v9[2] = param0->unk_2C7C[3], v9[3] = param0->unk_2C7C[4];
-    v10[0] = ov97_02231C48(v9);
-    v10[1] = ov97_02231C48(v9);
-    v10[2] = ov97_02231C48(v9);
-    v10[3] = ov97_02231C48(v9);
+    int orderNumbers[SHARE_MAX_PLAYERS];
+    int connectedPlayersNetIds[SHARE_MAX_PLAYERS];
 
-    v7 = StringTemplate_Default(HEAP_ID_87);
-    v8 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_87);
-    v2 = 0;
+    orderNumbers[0] = appData->orderNumbers[1], orderNumbers[1] = appData->orderNumbers[2], orderNumbers[2] = appData->orderNumbers[3], orderNumbers[3] = appData->orderNumbers[4];
+    connectedPlayersNetIds[0] = PopEarliestReturnNetId(orderNumbers);
+    connectedPlayersNetIds[1] = PopEarliestReturnNetId(orderNumbers);
+    connectedPlayersNetIds[2] = PopEarliestReturnNetId(orderNumbers);
+    connectedPlayersNetIds[3] = PopEarliestReturnNetId(orderNumbers);
 
-    Window_FillTilemap(param1, 0);
+    StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_WONDER_CARDS_APP);
+    int trainerInfoYOffset = 0;
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v5 = CommInfo_TrainerInfo(v10[v0]);
+    Window_FillTilemap(window, 0);
 
-        if (v5) {
-            StringTemplate_SetPlayerName(v7, 0, v5);
-            v6 = MessageUtil_ExpandedStrbuf(v7, v8, 53, HEAP_ID_87);
+    for (i = 0; i < numConnectedPlayers; i++) {
+        TrainerInfo *tmpTrainerInfo = CommInfo_TrainerInfo(connectedPlayersNetIds[i]);
 
-            if (TrainerInfo_Gender(v5) == 0) {
-                Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v6, 0, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
+        if (tmpTrainerInfo) {
+            StringTemplate_SetPlayerName(strTemplate, 0, tmpTrainerInfo);
+            strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, MysteryGiftMenu_Text_TrainerNameTemplate, HEAP_ID_WONDER_CARDS_APP);
+
+            if (TrainerInfo_Gender(tmpTrainerInfo) == GENDER_MALE) {
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, 0, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
             } else {
-                Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v6, 0, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, 0, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
             }
 
-            Strbuf_Free(v6);
-            StringTemplate_SetNumber(v7, 0, TrainerInfo_ID(v5) & 0xFFFF, 5, 2, 1);
+            Strbuf_Free(strBuf);
+            StringTemplate_SetNumber(strTemplate, 0, TrainerInfo_ID(tmpTrainerInfo) & 0xFFFF, 5, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
 
-            v6 = MessageUtil_ExpandedStrbuf(v7, v8, 54, HEAP_ID_87);
+            strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, MysteryGiftMenu_Text_TrainerIdTemplate, HEAP_ID_WONDER_CARDS_APP);
 
-            Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v6, 80, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 15, 0), NULL);
-            Strbuf_Free(v6);
+            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, 80, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 15, 0), NULL);
+            Strbuf_Free(strBuf);
 
-            v2 += 24;
+            trainerInfoYOffset += 24;
         }
     }
 
-    if (v1) {
-        Window_CopyToVRAM(param1);
+    if (numConnectedPlayers) {
+        Window_CopyToVRAM(window);
     }
 
-    MessageLoader_Free(v8);
-    StringTemplate_Free(v7);
+    MessageLoader_Free(msgLoader);
+    StringTemplate_Free(strTemplate);
 
-    return v1;
+    return numConnectedPlayers;
 }
 
-static void ov97_02231E78(UnkStruct_ov97_02230868 *param0, Window *param1, int param2)
+static void UpdateConnectedPlayersCount(WonderCardsAppData *appData, Window *window, int newCount)
 {
-    Strbuf *v0;
+    Strbuf *strBuf;
 
-    param0->unk_2C54 = param2;
-    param0->unk_2A64 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_87);
-    param0->unk_2A60 = StringTemplate_Default(HEAP_ID_87);
+    appData->connectedPlayersCount = newCount;
+    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_WONDER_CARDS_APP);
+    appData->strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
 
-    Window_FillTilemap(param1, 0);
-    StringTemplate_SetNumber(param0->unk_2A60, 0, param0->unk_2C54, 1, 1, 1);
+    Window_FillTilemap(window, 0);
+    StringTemplate_SetNumber(appData->strTemplate, 0, appData->connectedPlayersCount, 1, PADDING_MODE_SPACES, CHARSET_MODE_EN);
 
-    v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 56, HEAP_ID_87);
+    strBuf = MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, MysteryGiftMenu_Text_EntriesCountTemplate, HEAP_ID_WONDER_CARDS_APP);
 
-    Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Window_CopyToVRAM(param1);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Window_CopyToVRAM(window);
 
-    Strbuf_Free(v0);
-    MessageLoader_Free(param0->unk_2A64);
-    StringTemplate_Free(param0->unk_2A60);
+    Strbuf_Free(strBuf);
+    MessageLoader_Free(appData->msgLoader);
+    StringTemplate_Free(appData->strTemplate);
 }
 
-static void ov97_02231F1C(UnkStruct_ov97_02230868 *param0, int *param1, int param2)
+static void StopWirelessCommunication(WonderCardsAppData *appData, enum WonderCardsAppState *state, enum WonderCardsAppState nextState)
 {
     ov97_0222D2DC();
     sub_02039794();
-    param0->unk_2CA0 = param2;
-    *param1 = 22;
+    appData->queuedState = nextState;
+    *state = WC_APP_STATE_WAIT_FOR_COMM_MAN_EXIT;
 }
 
 extern const OverlayManagerTemplate Unk_ov97_0223D71C;
 
-static int ov97_02231F38(OverlayManager *param0, int *param1)
+static BOOL WonderCardsApp_Exit(OverlayManager *ovyMan, int *unused)
 {
-    int v0;
-    UnkStruct_ov97_02230868 *v1 = OverlayManager_Data(param0);
+    WonderCardsAppData *appData = OverlayManager_Data(ovyMan);
 
-    for (v0 = 0; v0 < sizeof(Unk_ov97_0223E680) / sizeof(UnkStruct_ov97_0223E680); v0++) {
-        if (v1->unk_2A68[v0].bgConfig) {
-            Window_ClearAndCopyToVRAM(&v1->unk_2A68[v0]);
-            Window_Remove(&v1->unk_2A68[v0]);
+    for (int i = 0; i < NELEMS(sWonderCardsAppWindows); i++) {
+        if (appData->windows[i].bgConfig) {
+            Window_ClearAndCopyToVRAM(&appData->windows[i]);
+            Window_Remove(&appData->windows[i]);
         }
     }
 
-    if (v1->unk_2C30.bgConfig) {
-        Window_ClearAndCopyToVRAM(&v1->unk_2C30);
-        Window_Remove(&v1->unk_2C30);
+    if (appData->messageBox.bgConfig) {
+        Window_ClearAndCopyToVRAM(&appData->messageBox);
+        Window_Remove(&appData->messageBox);
     }
 
-    if (v1->unk_2C40.bgConfig) {
-        Window_ClearAndCopyToVRAM(&v1->unk_2C40);
-        Window_Remove(&v1->unk_2C40);
+    if (appData->standardWindow.bgConfig) {
+        Window_ClearAndCopyToVRAM(&appData->standardWindow);
+        Window_Remove(&appData->standardWindow);
     }
 
-    Bg_FreeTilemapBuffer(v1->unk_2A5C, 0);
-    Bg_FreeTilemapBuffer(v1->unk_2A5C, 1);
-    Bg_FreeTilemapBuffer(v1->unk_2A5C, 2);
-    Bg_FreeTilemapBuffer(v1->unk_2A5C, 3);
-    Heap_FreeToHeap(v1->unk_2A5C);
+    Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_3);
+    Heap_FreeToHeap(appData->bgConfig);
     EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
     Heap_Destroy(HEAP_ID_91);
-    OverlayManager_FreeData(param0);
-    Heap_Destroy(HEAP_ID_87);
+    OverlayManager_FreeData(ovyMan);
+    Heap_Destroy(HEAP_ID_WONDER_CARDS_APP);
 
-    return 1;
+    return TRUE;
 }
 
-const OverlayManagerTemplate Unk_ov97_0223D7AC = {
-    ov97_02231224,
-    ov97_0223161C,
-    ov97_02231F38,
-    0xffffffff
+const OverlayManagerTemplate gWonderCardsAppTemplate = {
+    WonderCardsApp_Init,
+    (OverlayFunc)WonderCardsApp_Main, // Erase enum type information for the second argument
+    WonderCardsApp_Exit,
+    FS_OVERLAY_ID_NONE
 };
 
-void ov97_02231FFC(BgConfig *param0, void *param1, int heapID)
+void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapId heapID)
 {
-    UnkStruct_ov97_02230868 *v0;
+    ov97_02232074(bgConfig);
 
-    ov97_02232074(param0);
+    WonderCardsAppData *appData = Heap_AllocFromHeapAtEnd(heapID, sizeof(WonderCardsAppData));
+    memset(appData, 0, sizeof(WonderCardsAppData));
 
-    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_ov97_02230868));
-    memset(v0, 0, sizeof(UnkStruct_ov97_02230868));
+    appData->bgConfig = bgConfig;
+    appData->heapID = heapID;
 
-    v0->unk_2A5C = param0;
-    v0->heapID = heapID;
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), appData->heapID);
 
-    Font_LoadTextPalette(0, 15 * 32, v0->heapID);
+    appData->wonderCards[0] = wonderCard;
+    appData->selectedWondercardSlot = 0;
 
-    v0->unk_2C14[0] = (WonderCard *)param1;
-    v0->unk_2C20 = 0;
-
-    ov97_02230C44(v0, 1, 0);
-    Heap_FreeToHeap(v0);
+    ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
+    Heap_FreeToHeap(appData);
 }
