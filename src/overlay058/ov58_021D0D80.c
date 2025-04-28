@@ -883,7 +883,7 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
         TouchPadDataBuffer v4;
         int v5;
 
-        if (sub_0201E564(&v4, TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITHOUT_THRESHOLD_WITHOUT_WRAPPING, 64) == 1) {
+        if (WriteAutoSamplingDataToBuffer(&v4, TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ALL_DATA_WITHOUT_WRAPPING, 64) == 1) {
             ov58_021D2D4C(&param0->unk_43DC, &v4, param0->unk_43DA, param0->unk_43DB);
 
             if (v2 == 1) {

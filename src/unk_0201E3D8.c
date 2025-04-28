@@ -6,9 +6,10 @@
 #include "inlines.h"
 #include "system.h"
 
-#define AUTO_SAMPLING_BUFFER_MAX_SIZE        9
-#define AUTO_SAMPLING_FREQUENCY_LIMIT        SPI_TP_SAMPLING_FREQUENCY_MAX + 1
-#define AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL 5
+#define AUTO_SAMPLING_NUM_FRAMES_TO_STORE     2
+#define AUTO_SAMPLING_BUFFER_MAX_SIZE         SPI_TP_SAMPLING_FREQUENCY_MAX * AUTO_SAMPLING_NUM_FRAMES_TO_STORE + 1 // + 1 for the active sample
+#define AUTO_SAMPLING_FREQUENCY_LIMIT         SPI_TP_SAMPLING_FREQUENCY_MAX + 1
+#define AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL  5
 
 enum TouchPadMode
 {
@@ -17,24 +18,37 @@ enum TouchPadMode
     TOUCH_PAD_MODE_ACTIVE,
 };
 
+enum AutoSamplingOperationResult
+{
+    AUTO_SAMPLING_OPERATION_RESULT_SUCCESS = 1,
+    AUTO_SAMPLING_OPERATION_RESULT_FAILURE,
+};
+
+enum WriteAutoSamplingDataResult
+{
+    WRITE_AUTO_SAMPLING_DATA_RESULT_EXTERNAL_BUFFER_INDEX_OUT_OF_RANGE = -1,
+    WRITE_AUTO_SAMPLING_DATA_RESULT_EXTERNAL_BUFFER_NOT_WRITTEN_TO = 1,
+    WRITE_AUTO_SAMPLING_DATA_RESULT_NO_DATA_WRITTEN = 3,
+};
+
 typedef struct {
     TPData *externalBuffer;
     u32 externalBufferSize;
-    u32 autoSamplingBufferFrequency;
+    u32 autoSamplingBufferSize;
     TPData autoSamplingBuffer[AUTO_SAMPLING_BUFFER_MAX_SIZE];
     u32 currentExternalBufferIndex;
     u16 touchPadMode;
     u16 touchPadDisabled;
 } TouchPadState;
 
-static u32 StartAutoSampling(u32 frequency);
-static u32 StopAutoSampling(void);
-static u32 TransferAutoSamplingBufferToTouchPadDataWithThreshold(enum TouchPadDataBufferTransferMethod method, u32 latestIndex, u32 threshold);
-static u32 TransferAutoSamplingBufferToTouchPadData(enum TouchPadDataBufferTransferMethod method, u32 latestIndex);
-static void OutputAutoSamplingBuffer(TouchPadDataBuffer *outBuffer, u32 lastAutoSamplingIndex);
-static u32 TransferAutoSamplingBuffer(enum TouchPadDataBufferTransferMethod method, u32 latestIndex, u32 threshold);
-static void UpdateTouchScreenState(enum TouchPadMode touchPadMode, BOOL autoSamplingEnabled, void *externalBuffer, u32 externalBufferSize, u32 currentExternalBufferIndex, u32 bufferFrequency);
-static void ClearTouchOnBufferData(TPData *touchPadDataBuffer, int externalBufferSize);
+static enum AutoSamplingOperationResult StartAutoSampling(u32 frequency);
+static enum AutoSamplingOperationResult StopAutoSampling(void);
+static u32 WriteAutoSamplingTouchDataToExternalBuffer(enum TouchPadExternalBufferWriteMethod externalBufferWriteMethod, u32 latestAutoSamplingIndex, u32 changeThreshold);
+static u32 WriteAutoSamplingDataToExternalBuffer(enum TouchPadExternalBufferWriteMethod externalBufferWriteMethod, u32 latestAutoSamplingIndex);
+static void OutputAutoSamplingData(TouchPadDataBuffer *outBuffer, u32 lastAutoSamplingIndex);
+static u32 WriteAutoSamplingData(enum TouchPadExternalBufferWriteMethod externalBufferWriteMethod, u32 latestAutoSamplingIndex, u32 changeThreshold);
+static void UpdateTouchScreenState(enum TouchPadMode touchPadMode, BOOL autoSamplingEnabled, void *externalBuffer, u32 externalBufferSize, u32 currentExternalBufferIndex, u32 autoSamplingBufferSize);
+static void ResetTouchPadData(TPData *touchPadDataBuffer, int touchPadDataBufferSize);
 
 static TouchPadState touchPadState;
 
@@ -48,7 +62,7 @@ void EnableTouchPad(void)
 
 BOOL InitializeTouchPadWithExternalBuffer(TPData *externalBuffer, u32 externalBufferSize, u32 autoSamplingFrequency)
 {
-    u32 autoSamplingResult;
+    enum AutoSamplingOperationResult autoSamplingResult;
 
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
@@ -62,18 +76,18 @@ BOOL InitializeTouchPadWithExternalBuffer(TPData *externalBuffer, u32 externalBu
 
     autoSamplingResult = StartAutoSampling(autoSamplingFrequency);
 
-    if (autoSamplingResult != 1) {
+    if (autoSamplingResult != AUTO_SAMPLING_OPERATION_RESULT_SUCCESS) {
         return autoSamplingResult;
     }
 
-    UpdateTouchScreenState(TOUCH_PAD_MODE_ACTIVE_WITH_EXTERNAL_BUFFER, TRUE, externalBuffer, externalBufferSize, 0, autoSamplingFrequency * 2);
+    UpdateTouchScreenState(TOUCH_PAD_MODE_ACTIVE_WITH_EXTERNAL_BUFFER, TRUE, externalBuffer, externalBufferSize, 0, autoSamplingFrequency * AUTO_SAMPLING_NUM_FRAMES_TO_STORE);
 
     return TRUE;
 }
 
 BOOL InitializeTouchPad(u32 autoSamplingFrequency)
 {
-    u32 autoSamplingResult;
+    enum AutoSamplingOperationResult autoSamplingResult;
 
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
@@ -87,43 +101,43 @@ BOOL InitializeTouchPad(u32 autoSamplingFrequency)
 
     autoSamplingResult = StartAutoSampling(autoSamplingFrequency);
 
-    if (autoSamplingResult != 1) {
+    if (autoSamplingResult != AUTO_SAMPLING_OPERATION_RESULT_SUCCESS) {
         return autoSamplingResult;
     }
 
-    UpdateTouchScreenState(TOUCH_PAD_MODE_ACTIVE, TRUE, NULL, 0, 0, autoSamplingFrequency * 2);
+    UpdateTouchScreenState(TOUCH_PAD_MODE_ACTIVE, TRUE, NULL, 0, 0, autoSamplingFrequency * AUTO_SAMPLING_NUM_FRAMES_TO_STORE);
 
     return TRUE;
 }
 
-static void UpdateTouchScreenState(enum TouchPadMode touchPadMode, BOOL autoSamplingEnabled, void *externalBuffer, u32 externalBufferSize, u32 currentExternalBufferIndex, u32 bufferFrequency)
+static void UpdateTouchScreenState(enum TouchPadMode touchPadMode, BOOL autoSamplingEnabled, void *externalBuffer, u32 externalBufferSize, u32 currentExternalBufferIndex, u32 autoSamplingBufferSize)
 {
     touchPadState.touchPadMode = touchPadMode;
     gSystem.touchAutoSampling = autoSamplingEnabled;
     touchPadState.externalBuffer = externalBuffer;
     touchPadState.externalBufferSize = externalBufferSize;
-    touchPadState.autoSamplingBufferFrequency = bufferFrequency;
+    touchPadState.autoSamplingBufferSize = autoSamplingBufferSize;
     touchPadState.currentExternalBufferIndex = currentExternalBufferIndex;
 
-    ClearTouchOnBufferData(touchPadState.autoSamplingBuffer, AUTO_SAMPLING_BUFFER_MAX_SIZE);
+    ResetTouchPadData(touchPadState.autoSamplingBuffer, AUTO_SAMPLING_BUFFER_MAX_SIZE);
 }
 
-static void ClearTouchOnBufferData(TPData *touchPadDataBuffer, int externalBufferSize)
+static void ResetTouchPadData(TPData *touchPadDataBuffer, int touchPadDataBufferSize)
 {
     int i;
 
-    for (i = 0; i < externalBufferSize; i++) {
+    for (i = 0; i < touchPadDataBufferSize; i++) {
         touchPadDataBuffer[i].touch = TP_TOUCH_OFF;
     }
 }
 
-static u32 StopAutoSampling(void)
+static enum AutoSamplingOperationResult StopAutoSampling(void)
 {
     u32 errorCount = 0;
     BOOL hasError;
 
     if (touchPadState.touchPadMode == TOUCH_PAD_MODE_INACTIVE) {
-        return 1;
+        return AUTO_SAMPLING_OPERATION_RESULT_SUCCESS;
     }
 
     do {
@@ -138,61 +152,61 @@ static u32 StopAutoSampling(void)
     } while ((hasError != FALSE) && (errorCount <= AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL));
 
     if (errorCount > AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL) {
-        return 2;
+        return AUTO_SAMPLING_OPERATION_RESULT_FAILURE;
     }
 
-    return 1;
+    return AUTO_SAMPLING_OPERATION_RESULT_SUCCESS;
 }
 
 u32 DisableTouchPad(void)
 {
-    u32 autoSamplingResult;
+    enum AutoSamplingOperationResult autoSamplingResult;
 
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
     autoSamplingResult = StopAutoSampling();
 
-    if (autoSamplingResult == 1) {
+    if (autoSamplingResult == AUTO_SAMPLING_OPERATION_RESULT_SUCCESS) {
         UpdateTouchScreenState(TOUCH_PAD_MODE_INACTIVE, FALSE, NULL, 0, 0, 0);
     }
 
     return autoSamplingResult;
 }
 
-u32 sub_0201E564(TouchPadDataBuffer *buffer, enum TouchPadDataBufferTransferMethod method, u32 threshold)
+u32 WriteAutoSamplingDataToBuffer(TouchPadDataBuffer *outBuffer, enum TouchPadExternalBufferWriteMethod externalBufferWriteMethod, u32 changeThreshold)
 {
-    u32 v0 = 3;
-    u32 latestIndex;
+    u32 result = WRITE_AUTO_SAMPLING_DATA_RESULT_NO_DATA_WRITTEN;
+    u32 latestAutoSamplingIndex;
 
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
     if (touchPadState.touchPadMode != TOUCH_PAD_MODE_INACTIVE) {
-        latestIndex = TP_GetLatestIndexInAuto();
+        latestAutoSamplingIndex = TP_GetLatestIndexInAuto();
 
         ConvertTouchPadDataToScreenSpace(touchPadState.autoSamplingBuffer, AUTO_SAMPLING_BUFFER_MAX_SIZE);
 
-        if (buffer != NULL) {
-            OutputAutoSamplingBuffer(buffer, latestIndex);
+        if (outBuffer != NULL) {
+            OutputAutoSamplingData(outBuffer, latestAutoSamplingIndex);
         }
 
         if (touchPadState.touchPadMode == TOUCH_PAD_MODE_ACTIVE_WITH_EXTERNAL_BUFFER) {
-            v0 = TransferAutoSamplingBuffer(method, latestIndex, threshold);
+            result = WriteAutoSamplingData(externalBufferWriteMethod, latestAutoSamplingIndex, changeThreshold);
         } else {
-            v0 = 1;
+            result = WRITE_AUTO_SAMPLING_DATA_RESULT_EXTERNAL_BUFFER_NOT_WRITTEN_TO;
         }
     } else {
         (void)0;
     }
 
-    return v0;
+    return result;
 }
 
-void ConvertTouchPadDataToScreenSpace(TPData *touchPadDataBuffer, u32 externalBufferSize)
+void ConvertTouchPadDataToScreenSpace(TPData *touchPadDataBuffer, u32 touchPadDataBufferSize)
 {
     int i;
     TPData convertedData;
 
-    for (i = 0; i < externalBufferSize; i++) {
+    for (i = 0; i < touchPadDataBufferSize; i++) {
         TP_GetCalibratedPoint(&convertedData, &(touchPadDataBuffer[i]));
         touchPadDataBuffer[i] = convertedData;
     }
@@ -200,7 +214,7 @@ void ConvertTouchPadDataToScreenSpace(TPData *touchPadDataBuffer, u32 externalBu
 
 void AfterSleep(void)
 {
-    u32 autoSamplingResult;
+    enum AutoSamplingOperationResult autoSamplingResult;
 
     if (touchPadState.touchPadDisabled == FALSE) {
         return;
@@ -210,8 +224,8 @@ void AfterSleep(void)
         return;
     }
 
-    autoSamplingResult = StartAutoSampling(touchPadState.autoSamplingBufferFrequency / 2);
-    GF_ASSERT(autoSamplingResult == 1);
+    autoSamplingResult = StartAutoSampling(touchPadState.autoSamplingBufferSize / AUTO_SAMPLING_NUM_FRAMES_TO_STORE);
+    GF_ASSERT(autoSamplingResult == AUTO_SAMPLING_OPERATION_RESULT_SUCCESS);
 
     touchPadState.touchPadDisabled = FALSE;
 }
@@ -229,12 +243,12 @@ void BeforeSleep(void)
     }
 
     autoSamplingResult = StopAutoSampling();
-    GF_ASSERT(autoSamplingResult == 1);
+    GF_ASSERT(autoSamplingResult == AUTO_SAMPLING_OPERATION_RESULT_SUCCESS);
 
     touchPadState.touchPadDisabled = TRUE;
 }
 
-static u32 StartAutoSampling(u32 frequency)
+static enum AutoSamplingOperationResult StartAutoSampling(u32 frequency)
 {
     int errorCount = 0;
     BOOL hasError;
@@ -251,31 +265,31 @@ static u32 StartAutoSampling(u32 frequency)
     } while ((hasError != FALSE) && (errorCount <= AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL));
 
     if (errorCount > AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL) {
-        return 2;
+        return AUTO_SAMPLING_OPERATION_RESULT_FAILURE;
     }
 
-    return 1;
+    return AUTO_SAMPLING_OPERATION_RESULT_SUCCESS;
 }
 
-static u32 TransferAutoSamplingBuffer(enum TouchPadDataBufferTransferMethod method, u32 latestIndex, u32 threshold)
+static u32 WriteAutoSamplingData(enum TouchPadExternalBufferWriteMethod externalBufferWriteMethod, u32 latestAutoSamplingIndex, u32 changeThreshold)
 {
-    u32 v0;
+    u32 externalBufferEndIndex;
 
-    switch (method) {
-    case TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITH_THRESHOLD_WITH_WRAPPING:
-    case TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITH_THRESHOLD_WITHOUT_WRAPPING:
-        v0 = TransferAutoSamplingBufferToTouchPadDataWithThreshold(method, latestIndex, threshold);
+    switch (externalBufferWriteMethod) {
+    case TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ONLY_TOUCHES_WITH_WRAPPING:
+    case TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ONLY_TOUCHES_WITHOUT_WRAPPING:
+        externalBufferEndIndex = WriteAutoSamplingTouchDataToExternalBuffer(externalBufferWriteMethod, latestAutoSamplingIndex, changeThreshold);
         break;
-    case TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITHOUT_THRESHOLD_WITHOUT_WRAPPING:
-    case TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITHOUT_THRESHOLD_WITH_WRAPPING:
-        v0 = TransferAutoSamplingBufferToTouchPadData(method, latestIndex);
+    case TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ALL_DATA_WITHOUT_WRAPPING:
+    case TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ALL_DATA_WITH_WRAPPING:
+        externalBufferEndIndex = WriteAutoSamplingDataToExternalBuffer(externalBufferWriteMethod, latestAutoSamplingIndex);
         break;
     default:
-        v0 = 1;
+        externalBufferEndIndex = WRITE_AUTO_SAMPLING_DATA_RESULT_EXTERNAL_BUFFER_NOT_WRITTEN_TO;
         break;
     }
 
-    return v0;
+    return externalBufferEndIndex;
 }
 
 static inline int CalcIntsDifference(int int1, int int2)
@@ -284,34 +298,33 @@ static inline int CalcIntsDifference(int int1, int int2)
     return diff;
 }
 
-static u32 TransferAutoSamplingBufferToTouchPadDataWithThreshold(enum TouchPadDataBufferTransferMethod method, u32 latestIndex, u32 threshold)
+static u32 WriteAutoSamplingTouchDataToExternalBuffer(enum TouchPadExternalBufferWriteMethod externalBufferWriteMethod, u32 latestAutoSamplingIndex, u32 changeThreshold)
 {
     int i;
     s32 xDiff;
     s32 yDiff;
     s16 bufferIndex;
 
-    for (i = 0; i < touchPadState.autoSamplingBufferFrequency; i++) {
-        bufferIndex = latestIndex - touchPadState.autoSamplingBufferFrequency + i + 1;
+    for (i = 0; i < touchPadState.autoSamplingBufferSize; i++) {
+        bufferIndex = latestAutoSamplingIndex - touchPadState.autoSamplingBufferSize + i + 1;
 
         if (bufferIndex < 0) {
             bufferIndex += AUTO_SAMPLING_BUFFER_MAX_SIZE;
         }
 
-        // Current touch data has to be different enough to the previous to be valid
         if ((touchPadState.autoSamplingBuffer[bufferIndex].touch == TP_TOUCH_ON) && (touchPadState.autoSamplingBuffer[bufferIndex].validity == TP_VALIDITY_VALID)) {
             xDiff = CalcIntsDifference(touchPadState.externalBuffer[touchPadState.currentExternalBufferIndex - 1].x, touchPadState.autoSamplingBuffer[bufferIndex].x);
             yDiff = CalcIntsDifference(touchPadState.externalBuffer[touchPadState.currentExternalBufferIndex - 1].y, touchPadState.autoSamplingBuffer[bufferIndex].y);
 
-            if ((xDiff >= threshold) || (yDiff >= threshold)) {
+            if ((xDiff >= changeThreshold) || (yDiff >= changeThreshold)) {
                 touchPadState.externalBuffer[touchPadState.currentExternalBufferIndex] = touchPadState.autoSamplingBuffer[bufferIndex];
                 touchPadState.currentExternalBufferIndex++;
 
                 if (touchPadState.currentExternalBufferIndex >= touchPadState.externalBufferSize) {
-                    if (method == TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITH_THRESHOLD_WITH_WRAPPING) {
+                    if (externalBufferWriteMethod == TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ONLY_TOUCHES_WITH_WRAPPING) {
                         touchPadState.currentExternalBufferIndex %= touchPadState.externalBufferSize;
                     } else {
-                        return -1;
+                        return WRITE_AUTO_SAMPLING_DATA_RESULT_EXTERNAL_BUFFER_INDEX_OUT_OF_RANGE;
                     }
                 }
             }
@@ -321,13 +334,13 @@ static u32 TransferAutoSamplingBufferToTouchPadDataWithThreshold(enum TouchPadDa
     return touchPadState.currentExternalBufferIndex;
 }
 
-static u32 TransferAutoSamplingBufferToTouchPadData(enum TouchPadDataBufferTransferMethod method, u32 latestIndex)
+static u32 WriteAutoSamplingDataToExternalBuffer(enum TouchPadExternalBufferWriteMethod externalBufferWriteMethod, u32 latestAutoSamplingIndex)
 {
     int i;
     s16 bufferIndex;
 
-    for (i = 0; i < touchPadState.autoSamplingBufferFrequency; i++) {
-        bufferIndex = latestIndex - touchPadState.autoSamplingBufferFrequency + i + 1;
+    for (i = 0; i < touchPadState.autoSamplingBufferSize; i++) {
+        bufferIndex = latestAutoSamplingIndex - touchPadState.autoSamplingBufferSize + i + 1;
 
         if (bufferIndex < 0) {
             bufferIndex += AUTO_SAMPLING_BUFFER_MAX_SIZE;
@@ -337,10 +350,10 @@ static u32 TransferAutoSamplingBufferToTouchPadData(enum TouchPadDataBufferTrans
         touchPadState.currentExternalBufferIndex++;
 
         if (touchPadState.currentExternalBufferIndex >= touchPadState.externalBufferSize) {
-            if (method == TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITHOUT_THRESHOLD_WITHOUT_WRAPPING) {
+            if (externalBufferWriteMethod == TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ALL_DATA_WITHOUT_WRAPPING) {
                 touchPadState.currentExternalBufferIndex %= touchPadState.externalBufferSize;
             } else {
-                return -1;
+                return WRITE_AUTO_SAMPLING_DATA_RESULT_EXTERNAL_BUFFER_INDEX_OUT_OF_RANGE;
             }
         }
     }
@@ -348,7 +361,7 @@ static u32 TransferAutoSamplingBufferToTouchPadData(enum TouchPadDataBufferTrans
     return touchPadState.currentExternalBufferIndex;
 }
 
-static void OutputAutoSamplingBuffer(TouchPadDataBuffer *outBuffer, u32 lastAutoSamplingIndex)
+static void OutputAutoSamplingData(TouchPadDataBuffer *outBuffer, u32 lastAutoSamplingIndex)
 {
     int i;
     s16 bufferIndex;
@@ -362,8 +375,8 @@ static void OutputAutoSamplingBuffer(TouchPadDataBuffer *outBuffer, u32 lastAuto
         outBuffer->buffer[i].y = 0;
     }
 
-    for (i = 0; i < touchPadState.autoSamplingBufferFrequency; i++) {
-        bufferIndex = lastAutoSamplingIndex - touchPadState.autoSamplingBufferFrequency + i + 1;
+    for (i = 0; i < touchPadState.autoSamplingBufferSize; i++) {
+        bufferIndex = lastAutoSamplingIndex - touchPadState.autoSamplingBufferSize + i + 1;
 
         if (bufferIndex < 0) {
             bufferIndex += AUTO_SAMPLING_BUFFER_MAX_SIZE;

@@ -2202,7 +2202,7 @@ static void ov109_021D294C(UnkStruct_ov109_021D0F70 *param0)
     int v0 = 0, v1 = 4 - 1;
     UnkStruct_ov109_021D294C *v2 = &param0->unk_D2C;
 
-    sub_0201E564(&v2->unk_10, TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_NO_TRANSFER, 0);
+    WriteAutoSamplingDataToBuffer(&v2->unk_10, TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_NO_WRITE, 0);
 
     while (v1 >= 0) {
         if (v2->unk_10.buffer[v1].touch == 1) {

@@ -744,7 +744,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
         }
         break;
     case 3:
-        sub_0201E564(&param0->unk_424, TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITHOUT_THRESHOLD_WITHOUT_WRAPPING, 2);
+        WriteAutoSamplingDataToBuffer(&param0->unk_424, TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ALL_DATA_WITHOUT_WRAPPING, 2);
         v1 = TouchScreen_CheckRectangleHeld((const TouchScreenRect *)Unk_ov111_021D3794);
 
         if (v1 != 0xffffffff) {
