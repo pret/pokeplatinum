@@ -234,7 +234,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
 
     Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     EnableTouchPad();
-    InitializeTouchScreen(4);
+    InitializeTouchPad(4);
     TryHideContestPages(summaryScreen);
     SetVRAMBanks();
     SetupBgs(summaryScreen->bgConfig);

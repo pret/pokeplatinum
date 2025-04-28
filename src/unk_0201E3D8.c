@@ -13,8 +13,8 @@
 enum TouchPadMode
 {
     TOUCH_PAD_MODE_INACTIVE = 0,
-    TOUCH_PAD_MODE_AUTO_SAMPLING_WITH_DATA_BUFFER,
-    TOUCH_PAD_MODE_AUTO_SAMPLING_WITHOUT_DATA_BUFFER,
+    TOUCH_PAD_MODE_ACTIVE_WITH_EXTERNAL_BUFFER,
+    TOUCH_PAD_MODE_ACTIVE,
 };
 
 typedef struct {
@@ -46,7 +46,7 @@ void EnableTouchPad(void)
     touchPadState.touchPadDisabled = FALSE;
 }
 
-BOOL InitializeTouchScreenWithExternalBuffer(TPData *externalBuffer, u32 externalBufferSize, u32 autoSamplingFrequency)
+BOOL InitializeTouchPadWithExternalBuffer(TPData *externalBuffer, u32 externalBufferSize, u32 autoSamplingFrequency)
 {
     u32 autoSamplingResult;
 
@@ -66,12 +66,12 @@ BOOL InitializeTouchScreenWithExternalBuffer(TPData *externalBuffer, u32 externa
         return autoSamplingResult;
     }
 
-    UpdateTouchScreenState(TOUCH_PAD_MODE_AUTO_SAMPLING_WITH_DATA_BUFFER, TRUE, externalBuffer, externalBufferSize, 0, autoSamplingFrequency * 2);
+    UpdateTouchScreenState(TOUCH_PAD_MODE_ACTIVE_WITH_EXTERNAL_BUFFER, TRUE, externalBuffer, externalBufferSize, 0, autoSamplingFrequency * 2);
 
     return TRUE;
 }
 
-BOOL InitializeTouchScreen(u32 autoSamplingFrequency)
+BOOL InitializeTouchPad(u32 autoSamplingFrequency)
 {
     u32 autoSamplingResult;
 
@@ -91,7 +91,7 @@ BOOL InitializeTouchScreen(u32 autoSamplingFrequency)
         return autoSamplingResult;
     }
 
-    UpdateTouchScreenState(TOUCH_PAD_MODE_AUTO_SAMPLING_WITHOUT_DATA_BUFFER, TRUE, NULL, 0, 0, autoSamplingFrequency * 2);
+    UpdateTouchScreenState(TOUCH_PAD_MODE_ACTIVE, TRUE, NULL, 0, 0, autoSamplingFrequency * 2);
 
     return TRUE;
 }
@@ -175,7 +175,7 @@ u32 sub_0201E564(TouchPadDataBuffer *buffer, enum TouchPadDataBufferTransferMeth
             OutputAutoSamplingBuffer(buffer, latestIndex);
         }
 
-        if (touchPadState.touchPadMode == TOUCH_PAD_MODE_AUTO_SAMPLING_WITH_DATA_BUFFER) {
+        if (touchPadState.touchPadMode == TOUCH_PAD_MODE_ACTIVE_WITH_EXTERNAL_BUFFER) {
             v0 = TransferAutoSamplingBuffer(method, latestIndex, threshold);
         } else {
             v0 = 1;

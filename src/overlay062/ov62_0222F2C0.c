@@ -70,7 +70,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
 
     {
         EnableTouchPad();
-        InitializeTouchScreen(4);
+        InitializeTouchPad(4);
 
         param0->unk_14.unk_30 = 1;
 

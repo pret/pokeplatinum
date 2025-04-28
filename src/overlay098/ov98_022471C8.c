@@ -307,7 +307,7 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     SetAutorepeat(4, 8);
     ov98_02247510(v0->unk_04);
     EnableTouchPad();
-    InitializeTouchScreen(4);
+    InitializeTouchPad(4);
 
     v0->unk_20 = StringTemplate_New(11, 64, HEAP_ID_109);
     v0->unk_24 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0671, HEAP_ID_109);

@@ -146,7 +146,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         ov72_0223DCA8(v0, v1);
 
         EnableTouchPad();
-        InitializeTouchScreen(1);
+        InitializeTouchPad(1);
         SetVBlankCallback(ov72_0223DA48, v0->unk_00);
         Font_InitManager(FONT_SUBSCREEN, HEAP_ID_39);
 

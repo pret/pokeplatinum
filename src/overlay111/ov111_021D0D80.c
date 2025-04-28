@@ -1194,7 +1194,7 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
     EnableTouchPad();
-    InitializeTouchScreen(1);
+    InitializeTouchPad(1);
     SetVBlankCallback(ov111_021D2090, (void *)param0);
 
     return;
