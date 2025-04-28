@@ -7,7 +7,7 @@
 #include "system.h"
 
 #define AUTO_SAMPLING_BUFFER_MAX_SIZE        9
-#define AUTO_SAMPLING_FREQUENCY_LIMIT        5
+#define AUTO_SAMPLING_FREQUENCY_threshold        5
 #define AUTO_SAMPLING_NUM_ERRORS_BEFORE_FAIL 5
 
 enum TouchPadMode
@@ -29,10 +29,10 @@ typedef struct {
 
 static u32 StartAutoSampling(u32 frequency);
 static u32 StopAutoSampling(void);
-static u32 sub_0201E6CC(u32 frequency, u32 latestIndex, u32 limit);
-static u32 sub_0201E784(u32 frequency, u32 latestIndex);
+static u32 TransferAutoSamplingBufferToTouchPadDataWithThreshold(enum TouchPadDataBufferTransferMethod method, u32 latestIndex, u32 threshold);
+static u32 TransferAutoSamplingBufferToTouchPadData(enum TouchPadDataBufferTransferMethod method, u32 latestIndex);
 static void OutputAutoSamplingBuffer(TouchPadDataBuffer *outBuffer, u32 lastAutoSamplingIndex);
-static u32 sub_0201E69C(u32 frequency, u32 latestIndex, u32 limit);
+static u32 TransferAutoSamplingBuffer(enum TouchPadDataBufferTransferMethod method, u32 latestIndex, u32 threshold);
 static void UpdateTouchScreenState(enum TouchPadMode touchPadMode, BOOL autoSamplingEnabled, void *touchPadDataBuffer, u32 touchPadDataBufferSize, u32 currentTouchPadDataBufferIndex, u32 bufferFrequency);
 static void ClearTouchOnBufferData(TPData *touchPadDataBuffer, int touchPadDataBufferSize);
 
@@ -52,7 +52,7 @@ BOOL InitializeTouchScreen(TPData *touchPadDataBuffer, u32 touchPadDataBufferSiz
 
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
-    if ((bufferFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (bufferFrequency <= 0)) {
+    if ((bufferFrequency >= AUTO_SAMPLING_FREQUENCY_threshold) || (bufferFrequency <= 0)) {
         return FALSE;
     }
 
@@ -77,7 +77,7 @@ BOOL InitializeTouchScreenNoBuffer(u32 bufferFrequency)
 
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
-    if ((bufferFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (bufferFrequency <= 0)) {
+    if ((bufferFrequency >= AUTO_SAMPLING_FREQUENCY_threshold) || (bufferFrequency <= 0)) {
         return FALSE;
     }
 
@@ -159,7 +159,7 @@ u32 DisableTouchPad(void)
     return autoSamplingResult;
 }
 
-u32 sub_0201E564(TouchPadDataBuffer *touchPadDataBuffer, u32 frequency, u32 param2)
+u32 sub_0201E564(TouchPadDataBuffer *buffer, enum TouchPadDataBufferTransferMethod method, u32 threshold)
 {
     u32 v0 = 3;
     u32 latestIndex;
@@ -171,12 +171,12 @@ u32 sub_0201E564(TouchPadDataBuffer *touchPadDataBuffer, u32 frequency, u32 para
 
         ConvertTouchPadDataToScreenSpace(touchPadState.autoSamplingBuffer, AUTO_SAMPLING_BUFFER_MAX_SIZE);
 
-        if (touchPadDataBuffer != NULL) {
-            OutputAutoSamplingBuffer(touchPadDataBuffer, latestIndex);
+        if (buffer != NULL) {
+            OutputAutoSamplingBuffer(buffer, latestIndex);
         }
 
         if (touchPadState.touchPadMode == TOUCH_PAD_MODE_AUTO_SAMPLING_WITH_DATA_BUFFER) {
-            v0 = sub_0201E69C(frequency, latestIndex, param2);
+            v0 = TransferAutoSamplingBuffer(method, latestIndex, threshold);
         } else {
             v0 = 1;
         }
@@ -257,18 +257,18 @@ static u32 StartAutoSampling(u32 frequency)
     return 1;
 }
 
-static u32 sub_0201E69C(u32 frequency, u32 latestIndex, u32 limit)
+static u32 TransferAutoSamplingBuffer(enum TouchPadDataBufferTransferMethod method, u32 latestIndex, u32 threshold)
 {
     u32 v0;
 
-    switch (frequency) {
-    case 1:
-    case 3:
-        v0 = sub_0201E6CC(frequency, latestIndex, limit);
+    switch (method) {
+    case TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITH_THRESHOLD_WITH_WRAPPING:
+    case TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITH_THRESHOLD_WITHOUT_WRAPPING:
+        v0 = TransferAutoSamplingBufferToTouchPadDataWithThreshold(method, latestIndex, threshold);
         break;
-    case 4:
-    case 5:
-        v0 = sub_0201E784(frequency, latestIndex);
+    case TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITHOUT_THRESHOLD_WITHOUT_WRAPPING:
+    case TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITHOUT_THRESHOLD_WITH_WRAPPING:
+        v0 = TransferAutoSamplingBufferToTouchPadData(method, latestIndex);
         break;
     default:
         v0 = 1;
@@ -284,7 +284,7 @@ static inline int CalcIntsDifference(int int1, int int2)
     return diff;
 }
 
-static u32 sub_0201E6CC(u32 frequency, u32 latestIndex, u32 limit)
+static u32 TransferAutoSamplingBufferToTouchPadDataWithThreshold(enum TouchPadDataBufferTransferMethod method, u32 latestIndex, u32 threshold)
 {
     int i;
     s32 xDiff;
@@ -303,12 +303,12 @@ static u32 sub_0201E6CC(u32 frequency, u32 latestIndex, u32 limit)
             xDiff = CalcIntsDifference(touchPadState.touchPadDataBuffer[touchPadState.currentTouchPadDataBufferIndex - 1].x, touchPadState.autoSamplingBuffer[bufferIndex].x);
             yDiff = CalcIntsDifference(touchPadState.touchPadDataBuffer[touchPadState.currentTouchPadDataBufferIndex - 1].y, touchPadState.autoSamplingBuffer[bufferIndex].y);
 
-            if ((xDiff >= limit) || (yDiff >= limit)) {
+            if ((xDiff >= threshold) || (yDiff >= threshold)) {
                 touchPadState.touchPadDataBuffer[touchPadState.currentTouchPadDataBufferIndex] = touchPadState.autoSamplingBuffer[bufferIndex];
                 touchPadState.currentTouchPadDataBufferIndex++;
 
                 if (touchPadState.currentTouchPadDataBufferIndex >= touchPadState.touchPadDataBufferSize) {
-                    if (frequency == 1) {
+                    if (method == TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITH_THRESHOLD_WITH_WRAPPING) {
                         touchPadState.currentTouchPadDataBufferIndex %= touchPadState.touchPadDataBufferSize;
                     } else {
                         return -1;
@@ -321,7 +321,7 @@ static u32 sub_0201E6CC(u32 frequency, u32 latestIndex, u32 limit)
     return touchPadState.currentTouchPadDataBufferIndex;
 }
 
-static u32 sub_0201E784(u32 frequency, u32 latestIndex)
+static u32 TransferAutoSamplingBufferToTouchPadData(enum TouchPadDataBufferTransferMethod method, u32 latestIndex)
 {
     int i;
     s16 bufferIndex;
@@ -337,7 +337,7 @@ static u32 sub_0201E784(u32 frequency, u32 latestIndex)
         touchPadState.currentTouchPadDataBufferIndex++;
 
         if (touchPadState.currentTouchPadDataBufferIndex >= touchPadState.touchPadDataBufferSize) {
-            if (frequency == 4) {
+            if (method == TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITHOUT_THRESHOLD_WITHOUT_WRAPPING) {
                 touchPadState.currentTouchPadDataBufferIndex %= touchPadState.touchPadDataBufferSize;
             } else {
                 return -1;

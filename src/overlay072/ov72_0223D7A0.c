@@ -674,7 +674,7 @@ static void ov72_0223E2A8(UnkStruct_ov72_0223DB98 *param0)
         TouchPadDataBuffer v2;
         int v3;
 
-        if (sub_0201E564(&v2, 4, 1) == 1) {
+        if (sub_0201E564(&v2, TOUCH_PAD_DATA_BUFFER_TRANSFER_METHOD_WITHOUT_THRESHOLD_WITHOUT_WRAPPING, 1) == 1) {
             for (v3 = 0; v3 < v2.bufferSize; v3++) {
                 param0->unk_4380.unk_00[v3] = v2.buffer[v3].x;
                 param0->unk_4380.unk_08[v3] = v2.buffer[v3].y;
