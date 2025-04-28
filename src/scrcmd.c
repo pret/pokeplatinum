@@ -6169,7 +6169,7 @@ static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx)
     v1 = sub_02029D04(v0);
     *destVar = sub_02029D80(v1, backdrop);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_1E8(ScriptContext *ctx)
