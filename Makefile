@@ -83,7 +83,7 @@ data: $(BUILD)/build.ninja
 	$(NINJA) -C $(BUILD) data
 
 target: $(BUILD)/build.ninja
-	$(NINJA) -C $(BUILD) $(MESON_TARGET)
+	$(MESON) compile -C $(BUILD) $(MESON_TARGET)
 
 format: $(BUILD)/build.ninja
 	$(NINJA) -C $(BUILD) clang-format
