@@ -5,8 +5,7 @@
 
 #include "overlay072/touch_pad_data_buffer.h"
 
-enum TouchPadExternalBufferWriteMethod
-{
+enum TouchPadExternalBufferWriteMethod {
     TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ONLY_TOUCHES_WITH_WRAPPING = 1,
     TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_NO_WRITE,
     TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ONLY_TOUCHES_WITHOUT_WRAPPING,
