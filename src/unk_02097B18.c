@@ -170,7 +170,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
         u32 v8;
 
         EnableTouchPad();
-        v8 = InitializeTouchScreenNoBuffer(4);
+        v8 = InitializeTouchScreen(4);
 
         if (v8 != 1) {
             (void)0;

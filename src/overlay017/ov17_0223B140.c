@@ -183,7 +183,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     ov17_0223B728(v0->unk_0C.unk_24);
 
     EnableTouchPad();
-    InitializeTouchScreenNoBuffer(4);
+    InitializeTouchScreen(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_21);
 
     v0->unk_0C.unk_18 = SpriteSystem_Alloc(21);

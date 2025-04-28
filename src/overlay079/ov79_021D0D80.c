@@ -134,7 +134,7 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         sub_0200F32C(0);
         sub_0200F32C(1);
         EnableTouchPad();
-        InitializeTouchScreenNoBuffer(4);
+        InitializeTouchScreen(4);
         break;
     case 1:
         if (!ov79_021D122C(param0)) {

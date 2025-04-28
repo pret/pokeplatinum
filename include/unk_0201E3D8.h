@@ -15,8 +15,8 @@ enum TouchPadDataBufferTransferMethod
 };
 
 void EnableTouchPad(void);
-BOOL InitializeTouchScreen(TPData *touchPadDataBuffer, u32 touchPadDataBufferSize, u32 bufferFrequency);
-BOOL InitializeTouchScreenNoBuffer(u32 bufferFrequency);
+BOOL InitializeTouchScreenWithExternalBuffer(TPData *externalBuffer, u32 externalBufferSize, u32 autoSamplingFrequency);
+BOOL InitializeTouchScreen(u32 autoSamplingFrequency);
 u32 DisableTouchPad(void);
 u32 sub_0201E564(TouchPadDataBuffer *buffer, enum TouchPadDataBufferTransferMethod method, u32 threshold);
 void ConvertTouchPadDataToScreenSpace(TPData *touchPadDataBuffer, u32 touchPadDataBufferSize);

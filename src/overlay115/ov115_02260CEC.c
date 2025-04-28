@@ -729,7 +729,7 @@ UnkStruct_ov115_02260D78 *ov115_02260CEC(u32 heapID, u32 param1, u32 param2, u32
     ov115_02262FB4(&v0->unk_8730, &v0->unk_1AB4, heapID);
     ov115_0226327C(&v0->unk_8770);
 
-    v1 = InitializeTouchScreen(Unk_ov115_022666C0, 8, 4);
+    v1 = InitializeTouchScreenWithExternalBuffer(Unk_ov115_022666C0, 8, 4);
     GF_ASSERT(v1 == 1);
 
     return v0;

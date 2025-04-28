@@ -206,7 +206,7 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
     v2 = OverlayManager_Args(param0);
     v0->unk_738 = v2->unk_0C;
     EnableTouchPad();
-    v1 = InitializeTouchScreenNoBuffer(4);
+    v1 = InitializeTouchScreen(4);
 
     if (v1 != 1) {
         (void)0;
@@ -427,7 +427,7 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     v0->unk_734 = v2->unk_1C;
 
     EnableTouchPad();
-    v1 = InitializeTouchScreenNoBuffer(4);
+    v1 = InitializeTouchScreen(4);
 
     if (v1 != 1) {
         (void)0;

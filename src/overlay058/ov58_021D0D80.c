@@ -194,7 +194,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
         ov58_021D142C(v0, v1);
 
         EnableTouchPad();
-        InitializeTouchScreenNoBuffer(2);
+        InitializeTouchScreen(2);
         SetVBlankCallback(ov58_021D115C, v0->unk_00);
 
         ov58_021D12C4(v0);

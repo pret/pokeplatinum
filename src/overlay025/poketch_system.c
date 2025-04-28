@@ -134,7 +134,7 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
 
         if (PoketchSystem_InitInternal(new_system)) {
             EnableTouchPad();
-            InitializeTouchScreenNoBuffer(4);
+            InitializeTouchScreen(4);
 
             new_system->poketchSysPtr = poketchSys;
             new_system->unk_38 = SysTask_Start(PoketchSystem_PostRender, new_system, 4);
