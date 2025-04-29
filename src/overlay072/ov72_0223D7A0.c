@@ -12,10 +12,10 @@
 
 #include "overlay072/struct_ov72_0223DB98_decl.h"
 #include "overlay072/struct_ov72_0223DB98_t.h"
-#include "overlay072/touch_pad_data_buffer.h"
 #include "overlay072/struct_ov72_0223E7D8.h"
 #include "overlay072/struct_ov72_0223E80C.h"
 #include "overlay072/struct_ov72_0223EAD8.h"
+#include "overlay072/touch_pad_data_buffer.h"
 
 #include "assert.h"
 #include "bg_window.h"
@@ -46,11 +46,11 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
-#include "touch_pad.h"
 #include "unk_0202C7FC.h"
 #include "vram_transfer.h"
 

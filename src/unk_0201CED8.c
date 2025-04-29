@@ -1,9 +1,9 @@
-#include "touch_pad.h"
-
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/struct_0201CFEC.h"
+
+#include "touch_pad.h"
 
 static void sub_0201D018(const fx16 param0, const fx16 param1, const fx16 param2, const fx16 param3, const fx16 param4, const fx16 param5, GXBoxTestParam *param6);
 static u32 sub_0201D03C(const GXBoxTestParam *param0);

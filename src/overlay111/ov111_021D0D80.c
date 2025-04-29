@@ -40,12 +40,12 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
-#include "touch_pad.h"
 #include "vram_transfer.h"
 
 typedef struct {

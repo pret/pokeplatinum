@@ -22,9 +22,9 @@
 #include "savedata.h"
 #include "sound_playback.h"
 #include "sys_task.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "touch_pad.h"
 
 FS_EXTERN_OVERLAY(poketch_digital_watch);
 FS_EXTERN_OVERLAY(overlay27);

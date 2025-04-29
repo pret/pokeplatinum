@@ -24,9 +24,9 @@
 #include "sprite.h"
 #include "strbuf.h"
 #include "system.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200F174.h"
-#include "touch_pad.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 

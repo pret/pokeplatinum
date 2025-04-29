@@ -51,9 +51,9 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "unk_0200F174.h"
 #include "unk_02015064.h"
-#include "touch_pad.h"
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
 
