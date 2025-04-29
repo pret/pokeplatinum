@@ -13,7 +13,7 @@ typedef struct {
     void *unk_14;
     UnkStruct_02010658 *unk_18;
     UnkStruct_0200F600 *unk_1C;
-    int unk_20;
+    int heapID;
     u16 unk_24;
     u8 padding_26[2];
     u32 unk_28;

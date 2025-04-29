@@ -5,6 +5,7 @@
 
 #include "constants/field/window.h"
 #include "constants/scrcmd.h"
+#include "generated/accessories.h"
 
 #include "overlay007/shop_menu.h"
 
@@ -29,28 +30,28 @@
 #include "res/text/bank/flower_shop.h"
 
 static const AccessoryShopItem sAccessoryShop_ItemLists[ACCESSORY_SHOP_ITEM_LIST_COUNT] = {
-    { 0x32, BERRY_ID(CHERI), 1 },
-    { 0x33, BERRY_ID(CHESTO), 1 },
-    { 0x34, BERRY_ID(PECHA), 1 },
-    { 0x35, BERRY_ID(ORAN), 1 },
-    { 0x36, BERRY_ID(RAWST), 1 },
-    { 0x37, BERRY_ID(ASPEAR), 1 },
-    { 0x38, BERRY_ID(LEPPA), 1 },
-    { 0x39, BERRY_ID(PERSIM), 1 },
-    { 0x3A, BERRY_ID(RAZZ), 10 },
-    { 0x3B, BERRY_ID(BLUK), 10 },
-    { 0x3C, BERRY_ID(NANAB), 10 },
-    { 0x3D, BERRY_ID(WEPEAR), 10 },
-    { 0x3E, BERRY_ID(PINAP), 10 },
-    { 0x3F, BERRY_ID(CORNN), 50 },
-    { 0x40, BERRY_ID(PAMTRE), 100 },
-    { 0x41, BERRY_ID(MAGOST), 50 },
-    { 0x42, BERRY_ID(WATMEL), 100 },
-    { 0x43, BERRY_ID(RABUTA), 50 },
-    { 0x44, BERRY_ID(NOMEL), 50 },
-    { 0x45, BERRY_ID(DURIN), 100 },
-    { 0x46, BERRY_ID(SPELON), 100 },
-    { 0x47, BERRY_ID(BELUE), 100 }
+    { ACCESSORY_RED_FLOWER, BERRY_ID(CHERI), 1 },
+    { ACCESSORY_PINK_FLOWER, BERRY_ID(CHESTO), 1 },
+    { ACCESSORY_WHITE_FLOWER, BERRY_ID(PECHA), 1 },
+    { ACCESSORY_BLUE_FLOWER, BERRY_ID(ORAN), 1 },
+    { ACCESSORY_ORANGE_FLOWER, BERRY_ID(RAWST), 1 },
+    { ACCESSORY_YELLOW_FLOWER, BERRY_ID(ASPEAR), 1 },
+    { ACCESSORY_GOOGLY_SPECS, BERRY_ID(LEPPA), 1 },
+    { ACCESSORY_BLACK_SPECS, BERRY_ID(PERSIM), 1 },
+    { ACCESSORY_GORGEOUS_SPECS, BERRY_ID(RAZZ), 10 },
+    { ACCESSORY_SWEET_CANDY, BERRY_ID(BLUK), 10 },
+    { ACCESSORY_CONFETTI, BERRY_ID(NANAB), 10 },
+    { ACCESSORY_COLORED_PARASOL, BERRY_ID(WEPEAR), 10 },
+    { ACCESSORY_OLD_UMBRELLA, BERRY_ID(PINAP), 10 },
+    { ACCESSORY_SPOTLIGHT, BERRY_ID(CORNN), 50 },
+    { ACCESSORY_CAPE, BERRY_ID(PAMTRE), 100 },
+    { ACCESSORY_STANDING_MIKE, BERRY_ID(MAGOST), 50 },
+    { ACCESSORY_SURFBOARD, BERRY_ID(WATMEL), 100 },
+    { ACCESSORY_CARPET, BERRY_ID(RABUTA), 50 },
+    { ACCESSORY_RETRO_PIPE, BERRY_ID(NOMEL), 50 },
+    { ACCESSORY_FLUFFY_BED, BERRY_ID(DURIN), 100 },
+    { ACCESSORY_MIRROR_BALL, BERRY_ID(SPELON), 100 },
+    { ACCESSORY_PHOTO_BOARD, BERRY_ID(BELUE), 100 }
 };
 
 static void AccessoryShop_LoadGraphics(AccessoryShop *shop);
@@ -124,7 +125,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
     switch (shop->state) {
     case ACCESSORY_SHOP_STATE_LOAD_GREET_MSG:
         AccessoryShop_ShowMsgBox(&shop->msgbox, shop->bgConfig, shop->heapID, shop->renderDelay);
-        strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, flower_shop_greet);
+        strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_Greet);
         AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
         Strbuf_Free(strbuf);
         shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
@@ -132,7 +133,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
         break;
     case ACCESSORY_SHOP_STATE_INIT_ITEM_LIST:
         if (AccessoryShop_HasAllAccessories(shop->unk_0C, sAccessoryShop_ItemLists, ACCESSORY_SHOP_ITEM_LIST_COUNT)) {
-            strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, flower_shop_thanks);
+            strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_Thanks);
             AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
             Strbuf_Free(strbuf);
             shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
@@ -148,7 +149,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
         // fallthrough
     case ACCESSORY_SHOP_STATE_LOAD_BUY_MSG:
         AccessoryShop_UpdateItemListMenu(&shop->itemList);
-        strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, flower_shop_purchase);
+        strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_Purchase);
         AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
         Strbuf_Free(strbuf);
         shop->state = ACCESSORY_SHOP_STATE_WAIT_MSGBOX;
@@ -168,7 +169,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (input == LIST_CANCEL) {
-            strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, flower_shop_please_come_again);
+            strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_PleaseComeAgain);
             AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
             Strbuf_Free(strbuf);
             shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
@@ -185,7 +186,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
 
         if (input == MENU_YES) {
             if (AccessoryShop_HasEnoughBerries(shop->bag, sAccessoryShop_ItemLists, shop->itemList.cursorPos, shop->heapID) == FALSE) {
-                strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, flower_shop_not_enough_berries);
+                strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_NotEnoughBerries);
                 AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
                 Strbuf_Free(strbuf);
                 shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
@@ -195,7 +196,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
             }
 
             if (ov7_0224CCE4(shop->unk_0C, sAccessoryShop_ItemLists, shop->itemList.cursorPos) == FALSE) {
-                strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, flower_shop_cant_carry_more_accessories);
+                strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_CantCarryMoreAccessories);
                 AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
                 Strbuf_Free(strbuf);
                 AccessoryShop_DeleteYesNoChoice(&shop->yesNoChoice);
@@ -204,7 +205,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
                 break;
             }
 
-            strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, flower_shop_purchase_success);
+            strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_PurchaseSuccess);
             AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
             Strbuf_Free(strbuf);
             AccessoryShop_DeleteYesNoChoice(&shop->yesNoChoice);
@@ -229,14 +230,14 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
         }
         break;
     case ACCESSORY_SHOP_STATE_LOAD_SHOCKED_MSG:
-        strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, flower_shop_traded_all_accessories);
+        strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_TradedAllAccessories);
         AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
         Strbuf_Free(strbuf);
         shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
         shop->nextState = ACCESSORY_SHOP_STATE_LOAD_THANKS_MSG;
         break;
     case ACCESSORY_SHOP_STATE_LOAD_THANKS_MSG:
-        strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, flower_shop_thanks);
+        strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_Thanks);
         AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
         Strbuf_Free(strbuf);
         shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
@@ -360,7 +361,7 @@ static void AccessoryShop_LoadConfirmPurchaseMsg(AccessoryShopMessageBox *msgbox
     Strbuf *fmtString, *strbuf;
     StringTemplate *strTemplate = StringTemplate_Default(heapID);
     strbuf = Strbuf_Init(200, heapID);
-    fmtString = MessageLoader_GetNewStrbuf(msgLoader, flower_shop_confirm_purchase);
+    fmtString = MessageLoader_GetNewStrbuf(msgLoader, FlowerShop_Text_ConfirmPurchase);
 
     if (items[idx].totalAmount == 1) {
         StringTemplate_SetItemName(strTemplate, 0, items[idx].itemBerryID + FIRST_BERRY_IDX);
@@ -384,7 +385,7 @@ static void AccessoryShop_LoadSuccessfulPurchaseMsg(AccessoryShopMessageBox *msg
     Strbuf *fmtString, *strbuf;
     StringTemplate *strTemplate = StringTemplate_Default(heapID);
     strbuf = Strbuf_Init(200, heapID);
-    fmtString = MessageLoader_GetNewStrbuf(msgLoader, flower_shop_purchase_post_success);
+    fmtString = MessageLoader_GetNewStrbuf(msgLoader, FlowerShop_Text_PurchasePostSuccess);
 
     if (items[idx].totalAmount == 1) {
         StringTemplate_SetItemName(strTemplate, 0, items[idx].itemBerryID + FIRST_BERRY_IDX);
@@ -414,7 +415,7 @@ static void AccessoryShop_ShowDescBox(AccessoryShopDescBox *descBox, BgConfig *b
     descBox->strTemplate = StringTemplate_Default(heapID);
 
     for (int i = 0; i < ACCESSORY_SHOP_FORMAT_STRS; i++) {
-        descBox->fmtString[i] = MessageLoader_GetNewStrbuf(msgLoader, flower_shop_berry_name_format + i);
+        descBox->fmtString[i] = MessageLoader_GetNewStrbuf(msgLoader, FlowerShop_Text_BerryNameFormat + i);
     }
 
     descBox->strbuf = Strbuf_Init(32, heapID);
@@ -502,7 +503,7 @@ static void AccessoryShop_ShowItemList(AccessoryShopItemList *itemList, BgConfig
     itemList->strTemplate = StringTemplate_Default(heapID);
     itemList->tempStrbuf = Strbuf_Init(32, heapID);
 
-    fmtString = MessageLoader_GetNewStrbuf(msgLoader, flower_shop_berry_name_format);
+    fmtString = MessageLoader_GetNewStrbuf(msgLoader, FlowerShop_Text_BerryNameFormat);
 
     for (i = 0; i < maxItems; i++) {
         StringTemplate_SetContestAccessoryName(itemList->strTemplate, 0, items[i].accessoryID);
@@ -513,7 +514,7 @@ static void AccessoryShop_ShowItemList(AccessoryShopItemList *itemList, BgConfig
         itemList->strList[i].index = i;
     }
 
-    itemList->strbuf[maxItems] = MessageLoader_GetNewStrbuf(msgLoader, flower_shop_exit);
+    itemList->strbuf[maxItems] = MessageLoader_GetNewStrbuf(msgLoader, FlowerShop_Text_Exit);
     itemList->strList[maxItems].entry = itemList->strbuf[maxItems];
     itemList->strList[maxItems].index = maxItems;
 

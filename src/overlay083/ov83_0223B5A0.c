@@ -134,7 +134,7 @@ int ov83_0223B5B0(OverlayManager *param0, int *param1)
 
     SetVBlankCallback(ov83_0223B5A0, v0);
     DisableHBlank();
-    Sound_SetSceneAndPlayBGM(12, 1183, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_12, SEQ_KINOMI1, 1);
 
     return 1;
 }
@@ -571,7 +571,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     }
 
         if (param1->unk_1490 != 0) {
-            UnkStruct_0202B370 *v3 = sub_0202B370(param0->unk_10->saveData);
+            WiFiList *v3 = SaveData_GetWiFiList(param0->unk_10->saveData);
             int v4;
             int v5, v6;
             int v7;

@@ -93,7 +93,7 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
     case 0:
         scriptManager->ctx[SCRIPT_CONTEXT_MAIN] = ScriptContext_CreateAndStart(fieldSystem, scriptManager->scriptID);
         scriptManager->numActiveContexts = 1;
-        scriptManager->strTemplate = StringTemplate_New(8, 64, 11);
+        scriptManager->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELDMAP);
         scriptManager->msgBuf = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
         scriptManager->tmpBuf = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
         scriptManager->state++;
@@ -207,7 +207,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_1051, TEXT_BANK_UNK_0552);
         retScriptID -= 10300;
     } else if (retScriptID >= 10200) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0407, TEXT_BANK_UNK_0379);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0407, TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN);
         retScriptID -= 10200;
     } else if (retScriptID >= 10150) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_1116, TEXT_BANK_UNK_0621);
@@ -227,9 +227,9 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     } else if (retScriptID >= 9800) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0212, TEXT_BANK_UNK_0217);
         retScriptID -= 9800;
-    } else if (retScriptID >= 9700) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0422, TEXT_BANK_UNK_0429);
-        retScriptID -= 9700;
+    } else if (retScriptID >= SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS) {
+        ScriptContext_Load(fieldSystem, ctx, scripts_follower_partners, TEXT_BANK_FOLLOWER_PARTNERS);
+        retScriptID -= SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS;
     } else if (retScriptID >= SCRIPT_ID_OFFSET_INIT_NEW_GAME) {
         ScriptContext_Load(fieldSystem, ctx, scripts_init_new_game, TEXT_BANK_COMMON_STRINGS);
         retScriptID -= SCRIPT_ID_OFFSET_INIT_NEW_GAME;
@@ -474,11 +474,11 @@ u16 *FieldSystem_GetVarPointer(FieldSystem *fieldSystem, u16 varID)
         return NULL;
     }
 
-    if (varID < SPECIAL_VARS_START) {
+    if (varID < SCRIPT_LOCAL_VARS_START) {
         return VarsFlags_GetVarAddress(varsFlags, varID);
     }
 
-    return FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_START + varID - SPECIAL_VARS_START);
+    return FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_START + varID - SCRIPT_LOCAL_VARS_START);
 }
 
 u16 FieldSystem_TryGetVar(FieldSystem *fieldSystem, u16 varID)

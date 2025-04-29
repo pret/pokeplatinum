@@ -22,7 +22,7 @@ _0040:
     End
 
 _004A:
-    GoToIfGe 0x40AA, 2, _0069
+    GoToIfGe VAR_UNK_0x40AA, 2, _0069
     GoTo _005F
     End
 
@@ -33,21 +33,21 @@ _005F:
 _0069:
     GoToIfUnset FLAG_UNK_0x0145, _005F
     GoToIfSet FLAG_UNK_0x00D0, _00BC
-    GoToIfGe 0x40C4, 1, _00BC
-    CheckItem ITEM_ADAMANT_ORB, 1, 0x4001
-    GoToIfEq 0x4001, 1, _0104
-    CheckPartyHasHeldItem ITEM_ADAMANT_ORB, 0x4001
-    GoToIfEq 0x4001, 1, _0104
+    GoToIfGe VAR_UNK_0x40C4, 1, _00BC
+    CheckItem ITEM_ADAMANT_ORB, 1, VAR_MAP_LOCAL_1
+    GoToIfEq VAR_MAP_LOCAL_1, 1, _0104
+    CheckPartyHasHeldItem ITEM_ADAMANT_ORB, VAR_MAP_LOCAL_1
+    GoToIfEq VAR_MAP_LOCAL_1, 1, _0104
     GoTo _00BC
     End
 
 _00BC:
     GoToIfSet FLAG_UNK_0x00D1, _005F
-    GoToIfGe 0x40C5, 1, _005F
-    CheckItem ITEM_LUSTROUS_ORB, 1, 0x4001
-    GoToIfEq 0x4001, 1, _010E
-    CheckPartyHasHeldItem ITEM_LUSTROUS_ORB, 0x4001
-    GoToIfEq 0x4001, 1, _010E
+    GoToIfGe VAR_UNK_0x40C5, 1, _005F
+    CheckItem ITEM_LUSTROUS_ORB, 1, VAR_MAP_LOCAL_1
+    GoToIfEq VAR_MAP_LOCAL_1, 1, _010E
+    CheckPartyHasHeldItem ITEM_LUSTROUS_ORB, VAR_MAP_LOCAL_1
+    GoToIfEq VAR_MAP_LOCAL_1, 1, _010E
     GoTo _005F
     End
 

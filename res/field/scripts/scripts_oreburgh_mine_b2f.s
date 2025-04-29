@@ -41,12 +41,12 @@ _0034:
 _0044:
     Message 0
     CloseMessage
-    ScrCmd_29E 2, 0x8005
-    WaitTime 10, 0x800C
+    ScrCmd_29E 2, VAR_0x8005
+    WaitTime 10, VAR_RESULT
     RemoveObject 1
 _0059:
-    WaitTime 1, 0x800C
-    GoToIfEq 0x8005, 0, _0059
+    WaitTime 1, VAR_RESULT
+    GoToIfEq VAR_0x8005, 0, _0059
     FacePlayer
     Message 1
     CloseMessage
@@ -162,7 +162,7 @@ _00FC:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
     Message 2
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -175,7 +175,7 @@ _011B:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
     Message 3
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -188,7 +188,7 @@ _013A:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
     Message 4
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

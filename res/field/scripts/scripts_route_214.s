@@ -9,10 +9,10 @@
     ScriptEntryEnd
 
 _0012:
-    ScrCmd_284 0x4000
-    GoToIfGe 0x4000, 26, _003F
-    GoToIfGe 0x4000, 10, _0051
-    GoToIfLt 0x4000, 10, _0063
+    GetUnownFormsSeenCount VAR_MAP_LOCAL_0
+    GoToIfGe VAR_MAP_LOCAL_0, 26, _003F
+    GoToIfGe VAR_MAP_LOCAL_0, 10, _0051
+    GoToIfLt VAR_MAP_LOCAL_0, 10, _0063
     End
 
 _003F:
@@ -31,10 +31,10 @@ _0063:
     End
 
 _0075:
-    ScrCmd_284 0x4000
-    GoToIfGe 0x4000, 26, _003F
-    GoToIfGe 0x4000, 10, _0051
-    GoToIfLt 0x4000, 10, _0063
+    GetUnownFormsSeenCount VAR_MAP_LOCAL_0
+    GoToIfGe VAR_MAP_LOCAL_0, 26, _003F
+    GoToIfGe VAR_MAP_LOCAL_0, 10, _0051
+    GoToIfLt VAR_MAP_LOCAL_0, 10, _0063
     End
 
 _00A2:

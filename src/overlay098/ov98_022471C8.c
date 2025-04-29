@@ -309,7 +309,7 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     sub_0201E3D8();
     sub_0201E450(4);
 
-    v0->unk_20 = StringTemplate_New(11, 64, 109);
+    v0->unk_20 = StringTemplate_New(11, 64, HEAP_ID_109);
     v0->unk_24 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0671, HEAP_ID_109);
     v0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_109);
     v0->unk_30 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_109);
@@ -1708,7 +1708,7 @@ static int ov98_02248BFC(UnkStruct_ov98_02247704 *param0)
     DWCUserData *v0;
     s32 v1;
     SystemData *v2;
-    UnkStruct_0202B370 *v3 = sub_0202B370(param0->unk_00->saveData);
+    WiFiList *v3 = SaveData_GetWiFiList(param0->unk_00->saveData);
     v2 = SaveData_GetSystemData(param0->unk_00->saveData);
     v0 = sub_0202AD28(v3);
     v1 = sub_02025D74(v2);

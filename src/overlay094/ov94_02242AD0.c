@@ -63,7 +63,7 @@ static void ov94_02243E48(JournalEntry *param0, UnkStruct_ov94_0223BA88 *param1)
 static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02243E2C(UnkStruct_0202C878 *param0, UnkStruct_ov94_0223BA88 *param1);
 static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2);
-static void ov94_02243DE8(UnkStruct_0202DA40 *param0, int param1);
+static void ov94_02243DE8(GlobalTrade *param0, int param1);
 static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1);
 static void ov94_022438C8(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02243EC8(UnkStruct_ov94_0223FD4C *param0, int param1, int param2);
@@ -832,7 +832,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
             param0->unk_2C = 38;
             break;
         case -13:
-            sub_02039834(3, 1, 0);
+            sub_02039834(HEAP_ID_APPLICATION, 1, 0);
             break;
         }
     } else {
@@ -1371,7 +1371,7 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
     ov94_02243DE8(param0->unk_00->unk_00, 1);
 }
 
-static void ov94_02243DE8(UnkStruct_0202DA40 *param0, int param1)
+static void ov94_02243DE8(GlobalTrade *param0, int param1)
 {
     RTCDate v0;
     RTCTime v1;

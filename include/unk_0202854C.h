@@ -8,6 +8,8 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
+#define NUM_MAX_DECORATION_GOODS 200
+
 int Underground_SaveSize(void);
 int sub_02028554(void);
 int sub_02028558(void);
@@ -19,7 +21,7 @@ void SaveData_LoadAndUpdateUnderground(SaveData *param0);
 void sub_020287E0(SaveData *param0);
 void sub_020287F8(SaveData *param0);
 BOOL sub_02028810(SaveData *param0);
-void sub_02028828(UndergroundData *param0);
+void UndergroundData_SetUnusedField(UndergroundData *undergroundData);
 void sub_02028830(UndergroundData *param0, const TrainerInfo *param1);
 TrainerInfo *sub_020288C8(const UndergroundData *param0, int param1, int param2);
 u32 sub_02028930(UndergroundData *param0);
@@ -128,9 +130,9 @@ int sub_02029874(const UnkStruct_02029894 *param0);
 int sub_0202987C(const UnkStruct_02029894 *param0);
 int sub_02029884(const UnkStruct_02029894 *param0);
 BOOL sub_0202988C(const UnkStruct_02029894 *param0);
-UnkStruct_02029894 *sub_02029894(SaveData *param0);
-SecretBaseRecord *SaveData_SecretBaseRecord(SaveData *param0);
+UnkStruct_02029894 *sub_02029894(SaveData *saveData);
+SecretBaseRecord *SaveData_SecretBaseRecord(SaveData *saveData);
 SecretBaseRecord *sub_020298AC(UnkStruct_02029894 *param0);
-UndergroundData *sub_020298B0(SaveData *param0);
+UndergroundData *SaveData_GetUndergroundData(SaveData *saveData);
 
 #endif // POKEPLATINUM_UNK_0202854C_H

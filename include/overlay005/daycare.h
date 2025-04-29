@@ -24,8 +24,8 @@ void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *tra
 BOOL Daycare_Update(Daycare *daycare, Party *param1, FieldSystem *fieldSystem);
 Pokemon *Party_GetFirstEgg(Party *party);
 void ov5_021E72BC(Daycare *daycare, StringTemplate *param1);
-void ov5_021E7308(Daycare *daycare, u32 param1, u32 param2, u32 param3, u8 slot, StringTemplate *template);
-u16 ov5_021E73A0(Party *param0, int param1, StringTemplate *param2);
+void Daycare_BufferNicknameLevelGender(Daycare *daycare, u32 idxNickname, u32 idxLevel, u32 idxGender, u8 slot, StringTemplate *template);
+u16 Party_StringTemplateSetNicknameReturnSpecies(Party *party, int slot, StringTemplate *strTemplate);
 u8 Daycare_GetState(Daycare *daycare);
 u32 Daycare_GetCompatibilityLevel(Daycare *daycare);
 void Egg_CreateHatchedMon(Pokemon *param0, int heapID);

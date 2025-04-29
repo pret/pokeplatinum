@@ -428,7 +428,7 @@ void ov20_021D3578(UnkStruct_ov20_021D30F8 *param0, u32 param1)
     case 0:
 
     {
-        StringTemplate *v0 = StringTemplate_New(2, 60, 0);
+        StringTemplate *v0 = StringTemplate_New(2, 60, HEAP_ID_SYSTEM);
         Strbuf *v1 = Strbuf_Init(300, HEAP_ID_SYSTEM);
 
         StringTemplate_SetBagPocketName(v0, 0, 0);

@@ -92,15 +92,14 @@ Pokemon *Party_GetPokemonBySlotIndex(const Party *party, int slot)
     return (Pokemon *)&party->pokemon[slot];
 }
 
-void sub_0207A128(Party *party, int slot, Pokemon *pokemon)
+void Party_AddPokemonBySlotIndex(Party *party, int slot, Pokemon *pokemon)
 {
-    int v0;
 
     PARTY_ASSERT_SLOT(party, slot);
 
-    v0 = Pokemon_GetValue(&(party->pokemon[slot]), MON_DATA_SPECIES_EXISTS, NULL) - Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EXISTS, NULL);
+    int addOrRemoveSlots = Pokemon_GetValue(&(party->pokemon[slot]), MON_DATA_SPECIES_EXISTS, NULL) - Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EXISTS, NULL);
     party->pokemon[slot] = *pokemon;
-    party->currentCount += v0;
+    party->currentCount += addOrRemoveSlots;
 }
 
 BOOL Party_SwapSlots(Party *party, int slotA, int slotB)

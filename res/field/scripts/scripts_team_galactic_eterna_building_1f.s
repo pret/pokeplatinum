@@ -71,8 +71,8 @@ _006A:
     AddObject 5
     RemoveObject 4
     SetFlag FLAG_UNK_0x0071
-    SetVar 0x411D, 1
-    WaitTime 30, 0x800C
+    SetVar VAR_UNK_0x411D, 1
+    WaitTime 30, VAR_RESULT
     Message 1
     ApplyMovement 5, _0110
     WaitMovement
@@ -113,10 +113,10 @@ _0110:
     EndMovement
 
 _0134:
-    CheckItem ITEM_SECRET_KEY, 1, 0x800C
-    GoToIfEq 0x800C, FALSE, _01AA
-    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, 0x800C
-    GoToIfEq 0x800C, FALSE, _01AA
+    CheckItem ITEM_SECRET_KEY, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01AA
+    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01AA
     GoToIfUnset FLAG_UNK_0x0081, _01AA
     PlayFanfare SEQ_SE_CONFIRM
     LockAll

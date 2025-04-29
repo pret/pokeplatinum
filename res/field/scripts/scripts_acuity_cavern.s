@@ -29,21 +29,21 @@ AcuityCavern_Uxie:
     LockAll
     FacePlayer
     PlayCry SPECIES_UXIE
-    Message acuity_cavern_uxie_battle_intro
+    Message AcuityCavern_Text_UxieCry
     CloseMessage
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_UXIE, 50
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, AcuityCavern_LostBattle
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, AcuityCavern_UxieDisappeared
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, AcuityCavern_LostBattle
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, AcuityCavern_UxieDisappeared
     SetFlag FLAG_UXIE_CAUGHT
     ReleaseAll
     End
 
 AcuityCavern_UxieDisappeared:
-    Message acuity_cavern_uxie_disappeared
+    Message AcuityCavern_Text_UxieDisappeared
     WaitABXPadPress
     CloseMessage
     ReleaseAll

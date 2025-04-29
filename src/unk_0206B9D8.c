@@ -66,11 +66,11 @@ typedef struct {
     u16 unk_02;
 } UnkStruct_0206BD88;
 
-static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int param2)
+static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int heapID)
 {
     u8 v0;
     SaveData *v1;
-    PartyManagementData *v2 = Heap_AllocFromHeapAtEnd(param2, sizeof(PartyManagementData));
+    PartyManagementData *v2 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PartyManagementData));
 
     v1 = fieldSystem->saveData;
     MI_CpuClear8(v2, sizeof(PartyManagementData));
@@ -125,7 +125,7 @@ static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
     return 2;
 }
 
-static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int param2)
+static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int heapID)
 {
     PokemonSummary *v0;
     SaveData *v1;
@@ -134,7 +134,7 @@ static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
     };
 
     v1 = fieldSystem->saveData;
-    v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
+    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
     v0->options = SaveData_GetOptions(v1);
@@ -179,13 +179,13 @@ static BOOL sub_0206BB94(FieldTask *param0)
 
     switch (v1->unk_04) {
     case 0:
-        v1->unk_04 = sub_0206B9D8(v1, v0, 11);
+        v1->unk_04 = sub_0206B9D8(v1, v0, HEAP_ID_FIELDMAP);
         break;
     case 1:
         v1->unk_04 = sub_0206BA84(v1, v0);
         break;
     case 2:
-        v1->unk_04 = sub_0206BAE0(v1, v0, 11);
+        v1->unk_04 = sub_0206BAE0(v1, v0, HEAP_ID_FIELDMAP);
         break;
     case 3:
         v1->unk_04 = sub_0206BB6C(v1, v0);
@@ -326,13 +326,13 @@ void sub_0206BD88(FieldTask *param0, u16 param1, u16 param2)
 
 u16 sub_0206BDBC(SaveData *param0)
 {
-    UnkStruct_0203068C *v0;
+    BattleFrontier *v0;
     UnkStruct_0202D750 *v1;
     UndergroundData *v2;
     u16 v3;
     u8 v4, v5, v6, v7, v8, v9;
 
-    v0 = sub_0203068C(param0);
+    v0 = SaveData_GetBattleFrontier(param0);
     v3 = sub_02030698(v0, 0, 0xff);
 
     if (v3 < 20) {
@@ -351,7 +351,7 @@ u16 sub_0206BDBC(SaveData *param0)
         return 0;
     }
 
-    v2 = sub_020298B0(param0);
+    v2 = SaveData_GetUndergroundData(param0);
 
     if (!v4) {
         if (sub_02028984(v2, 85)) {
@@ -401,12 +401,12 @@ u16 sub_0206BDBC(SaveData *param0)
 
 u16 sub_0206BF04(SaveData *param0)
 {
-    UnkStruct_0203068C *v0;
+    BattleFrontier *v0;
     UnkStruct_0202D750 *v1;
     u16 v2;
     u8 v3, v4, v5, v6, v7, v8;
 
-    v0 = sub_0203068C(param0);
+    v0 = SaveData_GetBattleFrontier(param0);
     v2 = sub_02030698(v0, 0, 0xff);
 
     if (v2 < 20) {

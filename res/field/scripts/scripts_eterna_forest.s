@@ -22,15 +22,15 @@ _0032:
     End
 
 _003F:
-    SetVar 0x40B1, 0
+    SetVar VAR_UNK_0x40B1, 0
     End
 
 _0047:
     LockAll
     SetPlayerBike FALSE
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 28, _006E
-    GoToIfEq 0x8004, 29, _007E
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 28, _006E
+    GoToIfEq VAR_0x8004, 29, _007E
     End
 
 _006E:
@@ -51,7 +51,7 @@ _008E:
     Message 1
     WaitSound
     SetFlag FLAG_UNK_0x008B
-    SetVar 0x40B1, 1
+    SetVar VAR_UNK_0x40B1, 1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -95,9 +95,9 @@ _0108:
     WaitMovement
     Message 4
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 28, _0148
-    GoToIfEq 0x8004, 29, _0158
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 28, _0148
+    GoToIfEq VAR_0x8004, 29, _0158
     End
 
 _0148:
@@ -111,7 +111,7 @@ _0158:
     GoTo _0168
 
 _0168:
-    SetVar 0x40B1, 0
+    SetVar VAR_UNK_0x40B1, 0
     ReleaseAll
     End
 
@@ -140,9 +140,9 @@ _0198:
     WaitMovement
     BufferPlayerName 0
     Message 5
-    SetVar 0x8004, ITEM_SOOTHE_BELL
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _01EA
+    SetVar VAR_0x8004, ITEM_SOOTHE_BELL
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01EA
     GoTo _01DB
     End
 
@@ -154,12 +154,12 @@ _01DB:
 
 _01EA:
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 34, _023B
-    GoToIfEq 0x8005, 35, _0253
-    GoToIfEq 0x8005, 36, _026B
-    GoToIfEq 0x8005, 37, _0283
-    GoToIfEq 0x8005, 38, _029B
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 34, _023B
+    GoToIfEq VAR_0x8005, 35, _0253
+    GoToIfEq VAR_0x8005, 36, _026B
+    GoToIfEq VAR_0x8005, 37, _0283
+    GoToIfEq VAR_0x8005, 38, _029B
     GoTo _02B3
     End
 
@@ -211,7 +211,7 @@ _02CB:
     RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_UNK_0x00E3
-    SetVar 0x40B1, 2
+    SetVar VAR_UNK_0x40B1, 2
     ReleaseAll
     End
 
@@ -356,11 +356,11 @@ _0411:
     FacePlayer
     Message 13
     CloseMessage
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _046C
-    GoToIfEq 0x800C, 1, _047E
-    GoToIfEq 0x800C, 2, _0490
-    GoToIfEq 0x800C, 3, _04A2
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _046C
+    GoToIfEq VAR_RESULT, 1, _047E
+    GoToIfEq VAR_RESULT, 2, _0490
+    GoToIfEq VAR_RESULT, 3, _04A2
     End
 
 _046C:
@@ -429,7 +429,7 @@ _050C:
 
 _051D:
     LockAll
-    SetVar 0x40CD, 2
+    SetVar VAR_UNK_0x40CD, 2
     ApplyMovement 0, _053C
     WaitMovement
     Message 8

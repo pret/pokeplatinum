@@ -15,25 +15,25 @@ _001A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40B6, 9, _00B2
+    GoToIfGe VAR_UNK_0x40B6, 9, _00B2
     GoToIfSet FLAG_UNK_0x0113, _0164
     GoToIfSet FLAG_UNK_0x0079, _007E
     Message 0
-    SetVar 0x8004, 0x1AC
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1AC
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0079
     ClearFlag FLAG_UNK_0x0111
     Message 1
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _009C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _009C
     SetFlag FLAG_UNK_0x0113
     GoTo _0164
 
 _007E:
     Message 2
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _009C
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _009C
     SetFlag FLAG_UNK_0x0113
     GoTo _0164
 
@@ -152,31 +152,31 @@ _0159:
     End
 
 _0164:
-    GoToIfEq 0x40B6, 0, _01DF
-    GoToIfEq 0x40B6, 1, _023D
-    GoToIfEq 0x40B6, 2, _029B
-    GoToIfEq 0x40B6, 3, _02D9
-    GoToIfEq 0x40B6, 4, _0347
-    GoToIfEq 0x40B6, 5, _03D9
-    GoToIfEq 0x40B6, 6, _0448
-    GoToIfEq 0x40B6, 7, _04A9
-    GoToIfEq 0x40B6, 8, _050A
+    GoToIfEq VAR_UNK_0x40B6, 0, _01DF
+    GoToIfEq VAR_UNK_0x40B6, 1, _023D
+    GoToIfEq VAR_UNK_0x40B6, 2, _029B
+    GoToIfEq VAR_UNK_0x40B6, 3, _02D9
+    GoToIfEq VAR_UNK_0x40B6, 4, _0347
+    GoToIfEq VAR_UNK_0x40B6, 5, _03D9
+    GoToIfEq VAR_UNK_0x40B6, 6, _0448
+    GoToIfEq VAR_UNK_0x40B6, 7, _04A9
+    GoToIfEq VAR_UNK_0x40B6, 8, _050A
     GoTo _00B2
 
 _01DF:
     GoToIfUnset FLAG_UNK_0x0111, _00BD
     GoToIfUnset FLAG_ENTERED_UNDERGROUND, _0122
-    SetVar 0x40B6, 1
+    SetVar VAR_UNK_0x40B6, 1
     ClearFlag FLAG_UNK_0x0111
     Message 6
-    SetVar 0x8004, 1
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DD
-    SetVar 0x8004, 23
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 23
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DD
-    SetVar 0x8004, 28
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 28
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DD
     Message 7
     WaitABXPadPress
@@ -187,17 +187,17 @@ _01DF:
 _023D:
     GoToIfUnset FLAG_UNK_0x0111, _00CC
     GoToIfUnset FLAG_DIGGING_FOR_FOSSILS, _012D
-    SetVar 0x40B6, 2
+    SetVar VAR_UNK_0x40B6, 2
     ClearFlag FLAG_UNK_0x0111
     Message 10
-    SetVar 0x8004, 1
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DE
-    SetVar 0x8004, 3
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 3
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DE
-    SetVar 0x8004, 4
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 4
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DE
     Message 11
     WaitABXPadPress
@@ -208,11 +208,11 @@ _023D:
 _029B:
     GoToIfUnset FLAG_UNK_0x0111, _00DB
     GoToIfUnset FLAG_SPHERE_ACQUIRED, _0138
-    SetVar 0x40B6, 3
+    SetVar VAR_UNK_0x40B6, 3
     ClearFlag FLAG_UNK_0x0111
     Message 14
-    SetVar 0x8004, 33
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 33
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DD
     Message 15
     WaitABXPadPress
@@ -223,20 +223,20 @@ _029B:
 _02D9:
     GoToIfUnset FLAG_UNK_0x0111, _00EA
     GoToIfUnset FLAG_CREATED_SECRET_BASE, _0143
-    SetVar 0x40B6, 4
+    SetVar VAR_UNK_0x40B6, 4
     ClearFlag FLAG_UNK_0x0111
     Message 18
-    SetVar 0x8004, 11
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 11
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FE
-    SetVar 0x8004, 9
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 9
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FE
-    SetVar 0x8004, 17
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 17
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FE
-    SetVar 0x8004, 113
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 113
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FE
     Message 19
     WaitABXPadPress
@@ -247,7 +247,7 @@ _02D9:
 _0347:
     GoToIfUnset FLAG_UNK_0x0111, _00F9
     GoToIfUnset FLAG_DECORATED_SECRET_BASE, _014E
-    SetVar 0x40B6, 5
+    SetVar VAR_UNK_0x40B6, 5
     ClearFlag FLAG_UNK_0x0111
     ClearFlag FLAG_UNK_0x00FC
     Message 22
@@ -259,26 +259,26 @@ _0347:
     End
 
 _037F:
-    GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _03A3
-    GoToIfEq 0x800C, SPECIES_TURTWIG, _03B5
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _03A3
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _03B5
     GoTo _03C7
 
 _03A3:
-    SetVar 0x8004, 101
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 101
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FE
     Return
 
 _03B5:
-    SetVar 0x8004, 102
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 102
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FE
     Return
 
 _03C7:
-    SetVar 0x8004, 103
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 103
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FE
     Return
 
@@ -287,12 +287,12 @@ _03D9:
     GoToIfUnset FLAG_DELIVERED_STOLEN_FLAG, _0159
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0443
-    SetVar 0x8004, 81
-    SetVar 0x8005, 1
-    ScrCmd_085 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _056B
+    SetVar VAR_0x8004, 81
+    SetVar VAR_0x8005, 1
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _056B
     CallCommonScript 0x7FE
-    SetVar 0x40B6, 6
+    SetVar VAR_UNK_0x40B6, 6
     ClearFlag FLAG_UNK_0x0111
     ClearFlag FLAG_UNK_0x00FC
     Message 28
@@ -306,16 +306,16 @@ _0443:
     Return
 
 _0448:
-    ScrCmd_24A 0x800C
-    GoToIfLt 0x800C, 3, _00A7
+    ScrCmd_24A VAR_RESULT
+    GoToIfLt VAR_RESULT, 3, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _04A4
-    SetVar 0x8004, 82
-    SetVar 0x8005, 1
-    ScrCmd_085 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _056B
+    SetVar VAR_0x8004, 82
+    SetVar VAR_0x8005, 1
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _056B
     CallCommonScript 0x7DC
-    SetVar 0x40B6, 7
+    SetVar VAR_UNK_0x40B6, 7
     ClearFlag FLAG_UNK_0x00FC
     CloseMessage
     ReleaseAll
@@ -326,16 +326,16 @@ _04A4:
     Return
 
 _04A9:
-    ScrCmd_24A 0x800C
-    GoToIfLt 0x800C, 10, _00A7
+    ScrCmd_24A VAR_RESULT
+    GoToIfLt VAR_RESULT, 10, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0505
-    SetVar 0x8004, 83
-    SetVar 0x8005, 1
-    ScrCmd_085 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _056B
+    SetVar VAR_0x8004, 83
+    SetVar VAR_0x8005, 1
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _056B
     CallCommonScript 0x7DC
-    SetVar 0x40B6, 8
+    SetVar VAR_UNK_0x40B6, 8
     ClearFlag FLAG_UNK_0x00FC
     CloseMessage
     ReleaseAll
@@ -346,16 +346,16 @@ _0505:
     Return
 
 _050A:
-    ScrCmd_24A 0x800C
-    GoToIfLt 0x800C, 50, _00A7
+    ScrCmd_24A VAR_RESULT
+    GoToIfLt VAR_RESULT, 50, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0566
-    SetVar 0x8004, 84
-    SetVar 0x8005, 1
-    ScrCmd_085 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _056B
+    SetVar VAR_0x8004, 84
+    SetVar VAR_0x8005, 1
+    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _056B
     CallCommonScript 0x7DC
-    SetVar 0x40B6, 9
+    SetVar VAR_UNK_0x40B6, 9
     ClearFlag FLAG_UNK_0x00FC
     CloseMessage
     ReleaseAll
@@ -378,10 +378,10 @@ _057A:
     Return
 
 _057F:
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 5, _05B2
-    GoToIfEq 0x8004, 7, _05BE
-    GoToIfEq 0x8005, 4, _05CA
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 5, _05B2
+    GoToIfEq VAR_0x8004, 7, _05BE
+    GoToIfEq VAR_0x8005, 4, _05CA
     GoTo _05D6
 
 _05B2:
@@ -483,7 +483,7 @@ _0685:
 
 _0696:
     Message 42
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 180, 0
     AddMenuEntryImm 181, 1
     AddMenuEntryImm 182, 2
@@ -491,12 +491,12 @@ _0696:
     AddMenuEntryImm 184, 4
     AddMenuEntryImm 12, 5
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _070A
-    GoToIfEq 0x8008, 1, _0715
-    GoToIfEq 0x8008, 2, _0720
-    GoToIfEq 0x8008, 3, _072B
-    GoToIfEq 0x8008, 4, _0736
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _070A
+    GoToIfEq VAR_0x8008, 1, _0715
+    GoToIfEq VAR_0x8008, 2, _0720
+    GoToIfEq VAR_0x8008, 3, _072B
+    GoToIfEq VAR_0x8008, 4, _0736
     GoTo _0741
     End
 

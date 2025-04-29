@@ -18,9 +18,9 @@ _0006:
 
 _0026:
     Message 1
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0049
-    GoToIfEq 0x800C, MENU_NO, _0130
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0049
+    GoToIfEq VAR_RESULT, MENU_NO, _0130
     End
 
 _0049:
@@ -32,34 +32,34 @@ _0054:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_191
-    GetSelectedPartySlot 0x8002
+    GetSelectedPartySlot VAR_0x8002
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x8002, 0xFF, _0130
-    GetPartyMonSpecies 0x8002, 0x8001
-    GoToIfEq 0x8001, 0, _011A
-    GetPartyMonMoveCount 0x800C, 0x8002
-    GoToIfEq 0x800C, 1, _0125
+    GoToIfEq VAR_0x8002, 0xFF, _0130
+    GetPartyMonSpecies VAR_0x8002, VAR_0x8001
+    GoToIfEq VAR_0x8001, 0, _011A
+    GetPartyMonMoveCount VAR_RESULT, VAR_0x8002
+    GoToIfEq VAR_RESULT, 1, _0125
     Message 6
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    SelectPartyMonMove 0x8002
-    GetSelectedPartyMonMove 0x8001
+    SelectPartyMonMove VAR_0x8002
+    GetSelectedPartyMonMove VAR_0x8001
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x8001, MOVE_NOT_SELECTED, _0049
-    ScrCmd_1CB 0, 0x8002, 0x8001
+    GoToIfEq VAR_0x8001, MOVE_NOT_SELECTED, _0049
+    ScrCmd_1CB 0, VAR_0x8002, VAR_0x8001
     Message 7
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0105
-    GoToIfEq 0x800C, MENU_NO, _0049
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0105
+    GoToIfEq VAR_RESULT, MENU_NO, _0049
     End
 
 _0105:
-    ScrCmd_1C9 0x8002, 0x8001
+    ScrCmd_1C9 VAR_0x8002, VAR_0x8001
     Message 8
     PlaySound SEQ_WASURE
     WaitSound

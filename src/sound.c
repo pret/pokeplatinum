@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/species.h"
-#include "generated/sdat.h"
 
 #include "global/utility.h"
 
@@ -55,7 +54,7 @@ void Sound_SetCurrentBGM(u16 bgmID)
     u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_BGM);
     *param = bgmID;
 
-    Sound_SetNextBGM(0);
+    Sound_SetNextBGM(SEQ_NONE);
 }
 
 u16 Sound_Impl_GetCurrentBGM(void)
@@ -278,7 +277,7 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int unused)
     case SOUND_SCENE_CONTEST:
         Sound_Impl_PlayContestBGM(bgmID, unused);
         break;
-    case 7:
+    case SOUND_SCENE_7:
         sub_020048F0(bgmID, unused);
         break;
     case SOUND_SCENE_SUB_BAG:
@@ -301,35 +300,35 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int unused)
     case 68:
         Sound_Impl_LoadSubSceneSoundData(scene);
         break;
-    case 1:
+    case SOUND_SCENE_1:
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_TITLE);
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
-    case 14:
+    case SOUND_SCENE_14:
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_ENDING);
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
-    case 2:
+    case SOUND_SCENE_2:
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
-    case 3:
-    case 8:
-    case 9:
-    case 10:
-    case 12:
-    case 13:
-    case 15:
-    case 16:
-    case 17:
-    case 18:
-    case 19:
-    case 20:
-    case 21:
-    case 23:
+    case SOUND_SCENE_3:
+    case SOUND_SCENE_8:
+    case SOUND_SCENE_9:
+    case SOUND_SCENE_10:
+    case SOUND_SCENE_12:
+    case SOUND_SCENE_13:
+    case SOUND_SCENE_15:
+    case SOUND_SCENE_16:
+    case SOUND_SCENE_17:
+    case SOUND_SCENE_18:
+    case SOUND_SCENE_19:
+    case SOUND_SCENE_20:
+    case SOUND_SCENE_21:
+    case SOUND_SCENE_23:
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
-    case 22:
+    case SOUND_SCENE_22:
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
     }
@@ -488,14 +487,14 @@ static void Sound_Impl_PlayCutsceneBGM(u8 scene, u16 bgmID, int unused)
     Sound_PlayBGM(bgmID);
 }
 
-void sub_02004950(u16 param0)
+void Sound_SwapBGM(u16 bgmID)
 {
-    int v0;
+    BOOL v0;
     SoundSystem *v1 = SoundSystem_Get();
 
     Sound_Impl_PauseOrStopFieldBGM();
 
-    v0 = Sound_PlayBGM(param0);
+    v0 = Sound_PlayBGM(bgmID);
     return;
 }
 
@@ -1091,7 +1090,7 @@ static void Sound_Impl_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int f
     const NNSSndArcBankInfo **currentBankInfo = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO);
 
     Sound_FadeOutBGM(SOUND_VOLUME_MIN, fadeOutFrames);
-    Sound_SetCurrentBGM(0);
+    Sound_SetCurrentBGM(SEQ_NONE);
 
     Sound_SetNextBGM(bgmID);
     Sound_SetFollowUpWaitFrames(fadeInFrames);
@@ -1279,7 +1278,7 @@ void Sound_WaveData_AccumulateAmplitudes(const SNDWaveData *data, u8 *amplitudes
 
 static void Sound_Impl_FilterCallback(void *bufferL, void *bufferR, u32 length, NNSSndCaptureFormat format, void *arg)
 {
-    enum {
+    enum Channel {
         L,
         R
     };

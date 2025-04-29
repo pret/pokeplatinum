@@ -11,35 +11,35 @@
 
 int PalPad_SaveSize(void)
 {
-    return sizeof(UnkStruct_02027F8C) * 16;
+    return sizeof(PalPad) * 16;
 }
 
-UnkStruct_02027F8C *sub_02027F8C(SaveData *param0)
+PalPad *SaveData_GetPalPad(SaveData *saveData)
 {
-    return SaveData_SaveTable(param0, 9);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PAL_PAD);
 }
 
-void PalPad_Init(UnkStruct_02027F8C *param0)
+void PalPad_Init(PalPad *param0)
 {
     int v0;
 
     for (v0 = 0; v0 < 16; v0++) {
-        memset(&param0[v0], 0, sizeof(UnkStruct_02027F8C));
+        memset(&param0[v0], 0, sizeof(PalPad));
         param0[v0].unk_00[0] = 0xffff;
     }
 }
 
-const u16 *sub_02027FBC(const UnkStruct_02027F8C *param0, int param1)
+const u16 *sub_02027FBC(const PalPad *param0, int param1)
 {
     return param0[param1].unk_00;
 }
 
-u8 sub_02027FC4(const UnkStruct_02027F8C *param0, int param1)
+u8 sub_02027FC4(const PalPad *param0, int param1)
 {
     return param0->unk_68[param1];
 }
 
-BOOL sub_02027FCC(const UnkStruct_02027F8C *param0, const UnkStruct_02027F8C *param1)
+BOOL sub_02027FCC(const PalPad *param0, const PalPad *param1)
 {
     if (0 == CharCode_Compare(param0->unk_00, param1->unk_00)) {
         if (param0->unk_10 == param1->unk_10) {
@@ -50,11 +50,11 @@ BOOL sub_02027FCC(const UnkStruct_02027F8C *param0, const UnkStruct_02027F8C *pa
     return 0;
 }
 
-void sub_02027FEC(UnkStruct_02027F8C *param0, UnkStruct_02027F8C *param1, int param2, int heapID)
+void sub_02027FEC(PalPad *param0, PalPad *param1, int param2, int heapID)
 {
     int v0, v1, v2;
     int v3[5];
-    UnkStruct_02027F8C *v4 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02027F8C) * 16);
+    PalPad *v4 = Heap_AllocFromHeap(heapID, sizeof(PalPad) * 16);
     PalPad_Init(v4);
 
     for (v0 = 0; v0 < param2; v0++) {
@@ -90,11 +90,11 @@ void sub_02027FEC(UnkStruct_02027F8C *param0, UnkStruct_02027F8C *param1, int pa
         }
     }
 
-    memcpy(param0, v4, sizeof(UnkStruct_02027F8C) * 16);
+    memcpy(param0, v4, sizeof(PalPad) * 16);
     Heap_FreeToHeap(v4);
 }
 
-int sub_020280E0(UnkStruct_02027F8C *param0, u32 param1)
+int sub_020280E0(PalPad *param0, u32 param1)
 {
     int v0, v1;
 

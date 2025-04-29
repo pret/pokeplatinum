@@ -12,14 +12,14 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COAL, 0x800C
-    GoToIfEq 0x800C, 1, _0103
+    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0103
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 47, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_ROARK
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0119
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0119
     Message 1
     BufferPlayerName 0
     Message 2
@@ -32,11 +32,11 @@ _000E:
     SetTrainerFlag TRAINER_YOUNGSTER_JONATHON
     SetTrainerFlag TRAINER_YOUNGSTER_DARIUS
     SetFlag FLAG_UNK_0x023F
-    SetVar 0x40F0, 1
-    SetVar 0x4076, 1
-    SetVar 0x4079, 2
+    SetVar VAR_UNK_0x40F0, 1
+    SetVar VAR_UNK_0x4076, 1
+    SetVar VAR_UNK_0x4079, 2
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 47, TRAINER_LEADER_ROARK, 0, 0
-    SetVar 0x4077, 3
+    SetVar VAR_UNK_0x4077, 3
     ClearFlag FLAG_UNK_0x017A
     ClearFlag FLAG_UNK_0x019D
     ClearFlag FLAG_UNK_0x019C
@@ -46,13 +46,13 @@ _000E:
     End
 
 _00BB:
-    SetVar 0x8004, ITEM_TM76
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00F9
+    SetVar VAR_0x8004, ITEM_TM76
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00F9
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0075
-    BufferItemName 0, 0x8004
-    BufferTMHMMoveName 1, 0x8004
+    BufferItemName 0, VAR_0x8004
+    BufferTMHMMoveName 1, VAR_0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -82,8 +82,8 @@ _011F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COAL, 0x800C
-    GoToIfEq 0x800C, 1, _0145
+    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0145
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -101,8 +101,8 @@ _0145:
 _0153:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_COAL, 0x800C
-    GoToIfEq 0x800C, 1, _017D
+    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _017D
     BufferRivalName 0
     BufferRivalName 1
     Message 8

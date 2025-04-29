@@ -269,7 +269,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     sub_0207EB6C(v0, v1);
     sub_0201E3D8();
     sub_0201E450(4);
-    Sound_SetSceneAndPlayBGM(57, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_57, SEQ_NONE, 0);
     sub_02081A24(v0);
     sub_02082C2C(v0);
     sub_02082E58(v0);
@@ -948,7 +948,7 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
     v0->unk_00 = BgConfig_New(HEAP_ID_12);
 
     if ((v0->unk_5A4->unk_20 == 2) && (v0->unk_5A4->unk_14 != NULL)) {
-        v0->unk_B20 = sub_0207A2A8(12);
+        v0->unk_B20 = sub_0207A2A8(HEAP_ID_12);
     } else {
         v0->unk_B20 = NULL;
     }

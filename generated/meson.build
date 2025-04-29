@@ -12,6 +12,7 @@ metang_exe = find_program('metang', native: true)
 
 metang_generators = {
     'abilities': { 'type': 'enum', 'tag': 'Ability' },
+    'accessories': {'type': 'enum', 'tag': 'Accessory'},
     'ai_action_choices': { 'type': 'enum', 'tag': 'AIActionChoice' },
     'ai_flags': { 'type': 'mask', 'tag': 'AIFlag', 'extra': ['--no-auto'] },
     'ai_load_type_targets': { 'type': 'enum', 'tag': 'AILoadTypeTarget' },
@@ -83,17 +84,20 @@ metang_generators = {
     'shadow_sizes': { 'type': 'enum', 'tag': 'ShadowSize' },
     'species': { 'type': 'enum', 'tag': 'Species' },
     'species_data_params': { 'type': 'enum', 'tag': 'SpeciesDataParam' },
+    'string_padding_mode': { 'type': 'enum', 'tag': 'PaddingMode' },
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
-    'trainers': { 'type': 'enum', 'tag': 'Trainer' },
+    'trainers': { 'type': 'enum', 'tag': 'TrainerID' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
     'trainer_types': { 'type': 'enum', 'tag': 'TrainerType' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
+    'vars_flags': {'type': 'enum', 'tag': 'VarFlag'},
     'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'},
     'mart_specialties_id': {'type': 'enum', 'tag': 'MartSpecialtiesID'},
     'mart_decor_id': {'type': 'enum', 'tag': 'MartDecorID'},
     'mart_seal_id': {'type': 'enum', 'tag': 'MartSealID'},
     'mart_frontier_id': {'type': 'enum', 'tag': 'MartFrontierId'},
+    'mystery_gift_delivery_stages': {'type': 'enum', 'tag': 'MysteryGiftDeliveryStage'},
 }
 
 c_consts_generators = []

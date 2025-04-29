@@ -65,6 +65,7 @@
 #include "vars_flags.h"
 
 #include "constdata/const_020F1E88.h"
+#include "res/text/bank/location_names.h"
 
 typedef void *(*UnkFuncPtr_02068870)(void *);
 
@@ -254,11 +255,11 @@ static void sub_020684D0(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
     param1->unk_00 = fieldSystem->location->mapId;
     param1->unk_04 = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData));
     param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
-    param1->unk_0E = sub_02061760(fieldSystem->playerAvatar);
+    param1->unk_0E = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
 
     {
-        int v0 = sub_0205EAA0(fieldSystem->playerAvatar);
-        param1->unk_0C = sub_020616F0(fieldSystem->playerAvatar, v0);
+        int v0 = PlayerAvatar_GetDistortionDir(fieldSystem->playerAvatar);
+        param1->unk_0C = PlayerAvatar_GetDistortionTileBehaviour(fieldSystem->playerAvatar, v0);
     }
 
     param1->unk_10 = sub_02055FC8(fieldSystem, NULL);
@@ -281,16 +282,16 @@ static UnkStruct_0206851C *sub_0206851C(u32 param0, u16 param1, u16 param2, u16 
 static void sub_02068540(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1, u32 param2)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = sub_020685AC;
-    v1->unk_25C = sub_0206851C(param2, param0->unk_04, 0, 0, 0);
-    v1->state = START_MENU_STATE_10;
+    menu->callback = sub_020685AC;
+    menu->taskData = sub_0206851C(param2, param0->unk_04, 0, 0, 0);
+    menu->state = START_MENU_STATE_10;
 }
 
 static void sub_02068584(UnkStruct_02068870 *param0, u32 param1)
@@ -329,21 +330,21 @@ static BOOL sub_020685AC(FieldTask *task)
 static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
     PartyManagementData *v2;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memset(v2, 0, sizeof(PartyManagementData));
 
     v2->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v2->unk_08 = sub_02028430(fieldSystem->saveData);
+    v2->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v2->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     v2->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    v2->unk_18 = &v1->unk_24C;
+    v2->unk_18 = &menu->fieldMoveContext;
     v2->unk_21 = 0;
     v2->unk_20 = 5;
     v2->unk_1C = fieldSystem;
@@ -351,20 +352,20 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v2->selectedMonSlot = param0->unk_06;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
-    v1->unk_25C = v2;
-    sub_0203B674(v1, sub_0203B7C0);
+    menu->taskData = v2;
+    sub_0203B674(menu, sub_0203B7C0);
 }
 
 static void sub_020686C8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
 
-    v1->unk_25C = sub_0203D8AC(fieldSystem);
-    sub_0203B674(v1, sub_0203C3F4);
+    menu->taskData = sub_0203D8AC(fieldSystem);
+    sub_0203B674(menu, sub_0203C3F4);
 }
 
 static BOOL sub_020686F8(UnkStruct_02068870 *param0)
@@ -381,16 +382,16 @@ static void *sub_02068708(void *param0)
 static void sub_02068710(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = FieldTask_MapChangeToUnderground;
-    v1->unk_25C = sub_02053FAC(fieldSystem);
-    v1->state = START_MENU_STATE_10;
+    menu->callback = FieldTask_MapChangeToUnderground;
+    menu->taskData = sub_02053FAC(fieldSystem);
+    menu->state = START_MENU_STATE_10;
 
     fieldSystem->unk_90 = 0;
 }
@@ -408,7 +409,7 @@ static BOOL sub_02068750(UnkStruct_02068870 *param0)
 
 static u32 sub_0206877C(const UnkStruct_020684D0 *param0)
 {
-    if (MapHeader_GetMapLabelTextID(param0->unk_00) == 0) {
+    if (MapHeader_GetMapLabelTextID(param0->unk_00) == LocationNames_Text_MysteryZone) {
         return -1;
     }
 
@@ -453,16 +454,16 @@ static u32 sub_0206877C(const UnkStruct_020684D0 *param0)
 static void sub_0206883C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = sub_02068884;
-    v1->unk_25C = NULL;
-    v1->state = START_MENU_STATE_10;
+    menu->callback = sub_02068884;
+    menu->taskData = NULL;
+    menu->state = START_MENU_STATE_10;
 }
 
 static BOOL sub_02068870(UnkStruct_02068870 *param0)
@@ -486,12 +487,11 @@ static BOOL sub_02068884(FieldTask *task)
             PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, (1 << 0));
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
-            Sound_SetSpecialBGM(fieldSystem, 0);
-            sub_02055554(
-                fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
+            Sound_SetSpecialBGM(fieldSystem, SEQ_NONE);
+            Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
         } else {
-            Sound_SetSpecialBGM(fieldSystem, 1152);
-            sub_02055554(fieldSystem, 1152, 1);
+            Sound_SetSpecialBGM(fieldSystem, SEQ_BICYCLE);
+            Sound_TryFadeOutToBGM(fieldSystem, SEQ_BICYCLE, 1);
             MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
 
             PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, (1 << 1));
@@ -579,20 +579,20 @@ static void *sub_02068A28(void *param0)
 static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
     PartyManagementData *v2;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memset(v2, 0, sizeof(PartyManagementData));
 
     v2->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v2->unk_08 = sub_02028430(fieldSystem->saveData);
+    v2->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v2->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-    v2->unk_18 = &v1->unk_24C;
+    v2->unk_18 = &menu->fieldMoveContext;
     v2->unk_21 = 0;
     v2->unk_20 = 6;
     v2->unk_1C = fieldSystem;
@@ -601,24 +601,24 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v2->unk_26 = Item_MoveForTMHM(param0->unk_04);
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
-    v1->unk_25C = v2;
-    sub_0203B674(v1, sub_0203B7C0);
+    menu->taskData = v2;
+    sub_0203B674(menu, sub_0203B7C0);
 }
 
 static void sub_02068ACC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
     UnkStruct_02097728 *v2;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
-    v2 = sub_0203D94C(fieldSystem, 3, Item_MailNumber(param0->unk_04), 11);
+    menu = FieldTask_GetEnv(param0->unk_00);
+    v2 = sub_0203D94C(fieldSystem, 3, Item_MailNumber(param0->unk_04), HEAP_ID_FIELDMAP);
 
-    v1->unk_260 = sub_0203C540(param0->unk_04, 3, 0);
-    v1->unk_25C = v2;
+    menu->unk_260 = sub_0203C540(param0->unk_04, 3, 0);
+    menu->taskData = v2;
 
-    sub_0203B674(v1, sub_0203C558);
+    sub_0203B674(menu, sub_0203C558);
 }
 
 static u32 sub_02068B18(const UnkStruct_020684D0 *param0)
@@ -654,15 +654,15 @@ BOOL sub_02068B50(const UnkStruct_020684D0 *param0)
 static void sub_02068B5C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
     UnkStruct_0203D9B8 *v2;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
     v2 = sub_0203D9B8(fieldSystem, HEAP_ID_FIELDMAP);
 
-    v1->unk_25C = v2;
-    sub_0203B674(v1, sub_0203C710);
+    menu->taskData = v2;
+    sub_0203B674(menu, sub_0203C710);
 }
 
 static BOOL sub_02068B8C(UnkStruct_02068870 *param0)
@@ -679,14 +679,14 @@ static void *sub_02068B9C(void *param0)
 static void sub_02068BA8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
 
     sub_0203DE78(fieldSystem, fieldSystem->saveData);
-    v1->unk_25C = NULL;
-    sub_0203B674(v1, sub_0203C750);
+    menu->taskData = NULL;
+    sub_0203B674(menu, sub_0203C750);
 }
 
 static BOOL sub_02068BDC(UnkStruct_02068870 *param0)
@@ -704,19 +704,19 @@ static void *sub_02068BEC(void *param0)
 static void sub_02068BF8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
     int *v2;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
     v2 = Heap_AllocFromHeapAtEnd(11, sizeof(int));
 
     (*v2) = 0;
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = RefreshRadarChain;
-    v1->unk_25C = v2;
-    v1->state = START_MENU_STATE_10;
+    menu->callback = RefreshRadarChain;
+    menu->taskData = v2;
+    menu->state = START_MENU_STATE_10;
 }
 
 static BOOL sub_02068C38(UnkStruct_02068870 *param0)
@@ -787,23 +787,23 @@ static u32 sub_02068CE0(const UnkStruct_020684D0 *param0)
 static void sub_02068CF0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
     UnkStruct_ov5_021F0468 *v2;
     int v3;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
     v3 = ov5_021F0484();
-    v2 = Heap_AllocFromHeapAtEnd(11, v3);
+    v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v3);
 
     memset(v2, 0, v3);
 
-    v1->unk_22C = ov5_021F0488;
-    v1->unk_25C = v2;
-    v1->state = START_MENU_STATE_10;
+    menu->callback = ov5_021F0488;
+    menu->taskData = v2;
+    menu->state = START_MENU_STATE_10;
 
     Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, HEAP_ID_FIELDMAP);
 }
@@ -830,22 +830,19 @@ static u32 sub_02068D68(const UnkStruct_020684D0 *param0)
 
 static void sub_02068D80(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *v1;
-
-    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = ov5_021F08F8;
-    v1->unk_25C = ov5_021F08CC(fieldSystem, 11, 0);
-    v1->state = START_MENU_STATE_10;
+    menu->callback = ov5_021F08F8;
+    menu->taskData = ov5_021F08CC(fieldSystem, HEAP_ID_FIELDMAP, 0);
+    menu->state = START_MENU_STATE_10;
 }
 
 static BOOL sub_02068DBC(UnkStruct_02068870 *param0)
 {
-    void *v0 = ov5_021F08CC(param0->fieldSystem, 4, 0);
+    void *v0 = ov5_021F08CC(param0->fieldSystem, HEAP_ID_FIELD, 0);
 
     FieldSystem_CreateTask(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
@@ -853,22 +850,19 @@ static BOOL sub_02068DBC(UnkStruct_02068870 *param0)
 
 static void sub_02068DDC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *v1;
-
-    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = ov5_021F08F8;
-    v1->unk_25C = ov5_021F08CC(fieldSystem, 11, 1);
-    v1->state = START_MENU_STATE_10;
+    menu->callback = ov5_021F08F8;
+    menu->taskData = ov5_021F08CC(fieldSystem, HEAP_ID_FIELDMAP, 1);
+    menu->state = START_MENU_STATE_10;
 }
 
 static BOOL sub_02068E18(UnkStruct_02068870 *param0)
 {
-    void *v0 = ov5_021F08CC(param0->fieldSystem, 4, 1);
+    void *v0 = ov5_021F08CC(param0->fieldSystem, HEAP_ID_FIELD, 1);
 
     FieldSystem_CreateTask(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
@@ -876,22 +870,19 @@ static BOOL sub_02068E18(UnkStruct_02068870 *param0)
 
 static void sub_02068E38(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *v1;
-
-    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = ov5_021F08F8;
-    v1->unk_25C = ov5_021F08CC(fieldSystem, 11, 2);
-    v1->state = START_MENU_STATE_10;
+    menu->callback = ov5_021F08F8;
+    menu->taskData = ov5_021F08CC(fieldSystem, HEAP_ID_FIELDMAP, 2);
+    menu->state = START_MENU_STATE_10;
 }
 
 static BOOL sub_02068E74(UnkStruct_02068870 *param0)
 {
-    void *v0 = ov5_021F08CC(param0->fieldSystem, 4, 2);
+    void *v0 = ov5_021F08CC(param0->fieldSystem, HEAP_ID_FIELD, 2);
 
     FieldSystem_CreateTask(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
@@ -976,29 +967,29 @@ static BOOL sub_02068F48(FieldTask *task)
 static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
     PartyManagementData *v2;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memset(v2, 0, sizeof(PartyManagementData));
 
     v2->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v2->unk_08 = sub_02028430(fieldSystem->saveData);
+    v2->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v2->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     v2->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    v2->unk_18 = &v1->unk_24C;
+    v2->unk_18 = &menu->fieldMoveContext;
     v2->unk_21 = 0;
     v2->unk_20 = 16;
     v2->unk_24 = param0->unk_04;
     v2->selectedMonSlot = param0->unk_06;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
-    v1->unk_25C = v2;
-    sub_0203B674(v1, sub_0203B7C0);
+    menu->taskData = v2;
+    sub_0203B674(menu, sub_0203B7C0);
 }
 
 static void sub_02069080(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
@@ -1011,8 +1002,8 @@ static void sub_02069080(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    menu->unk_22C = sub_020690F0;
-    menu->unk_25C = NULL;
+    menu->callback = sub_020690F0;
+    menu->taskData = NULL;
     menu->state = START_MENU_STATE_10;
 
     Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, HEAP_ID_FIELDMAP);
@@ -1034,7 +1025,7 @@ static u32 sub_020690C4(const UnkStruct_020684D0 *param0)
 static BOOL sub_020690F0(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    void *v1 = ov6_02247100(fieldSystem, 11);
+    void *v1 = ov6_02247100(fieldSystem, HEAP_ID_FIELDMAP);
 
     FieldTask_InitJump(task, ov6_02247120, v1);
     return 0;
@@ -1077,14 +1068,14 @@ static u32 sub_02069130(const UnkStruct_020684D0 *param0)
 static void sub_02069188(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
 
     sub_0203DE88(fieldSystem, fieldSystem->saveData);
-    v1->unk_25C = NULL;
-    sub_0203B674(v1, sub_0203C784);
+    menu->taskData = NULL;
+    sub_0203B674(menu, sub_0203C784);
 }
 
 static BOOL sub_020691BC(UnkStruct_02068870 *param0)
@@ -1104,15 +1095,15 @@ static void *sub_020691CC(void *param0)
 static void sub_020691E0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
 {
     FieldSystem *fieldSystem;
-    StartMenu *v1;
+    StartMenu *menu;
     PartyManagementData *v2;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
-    v1 = FieldTask_GetEnv(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
 
-    v1->unk_25C = sub_0203E598(fieldSystem, HEAP_ID_FIELDMAP, 466);
+    menu->taskData = sub_0203E598(fieldSystem, HEAP_ID_FIELDMAP, 466);
 
-    sub_0203B674(v1, sub_0203B7C0);
+    sub_0203B674(menu, sub_0203B7C0);
 }
 
 static BOOL sub_02069218(UnkStruct_02068870 *param0)

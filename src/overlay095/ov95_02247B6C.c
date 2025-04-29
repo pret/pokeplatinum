@@ -284,7 +284,7 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
     G2_BlendNone();
 
     sub_02039734();
-    sub_020397C8(1, 57);
+    sub_020397C8(1, HEAP_ID_57);
     StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_58);
 
     return 1;

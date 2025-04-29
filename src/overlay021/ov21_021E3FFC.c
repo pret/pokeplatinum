@@ -296,7 +296,7 @@ static int ov21_021E41A8(void *param0, PokedexGraphicsManager *graphicsMan, cons
         }
 
         if ((v4 == 1) && (Sound_IsFadeActive() == FALSE)) {
-            Sound_SetBGMPlayerPaused(1, 1);
+            Sound_SetBGMPlayerPaused(PLAYER_FIELD, TRUE);
             graphicsMan->state++;
         }
         break;
@@ -336,8 +336,8 @@ static int ov21_021E4288(void *param0, PokedexGraphicsManager *graphicsMan, cons
             ov21_021E448C(v3, v2, v0, 0);
         }
 
-        Sound_SetBGMPlayerPaused(1, 0);
-        Sound_FadeInBGM(127, 3, 0);
+        Sound_SetBGMPlayerPaused(PLAYER_FIELD, FALSE);
+        Sound_FadeInBGM(127, 3, BGM_FADE_IN_TYPE_FROM_ZERO);
         graphicsMan->state++;
         break;
     case 1:

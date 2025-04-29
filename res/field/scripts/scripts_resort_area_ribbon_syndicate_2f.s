@@ -14,13 +14,13 @@ _0012:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AA5, _00E2
-    GoToIfEq 0x400A, 1, _00E2
-    GetFirstNonEggInParty 0x4000
+    GoToIfEq VAR_MAP_LOCAL_A, 1, _00E2
+    GetFirstNonEggInParty VAR_MAP_LOCAL_0
     BufferPlayerName 0
-    BufferPartyMonNickname 1, 0x4000
+    BufferPartyMonNickname 1, VAR_MAP_LOCAL_0
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0058
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0058
     GoTo _0063
 
 _0058:
@@ -38,10 +38,10 @@ _0063:
 
 _0074:
     Message 3
-    GetRandom 0x800C, 4
-    GoToIfEq 0x800C, 0, _00AA
-    GoToIfEq 0x800C, 1, _00B3
-    GoToIfEq 0x800C, 2, _00BC
+    GetRandom VAR_RESULT, 4
+    GoToIfEq VAR_RESULT, 0, _00AA
+    GoToIfEq VAR_RESULT, 1, _00B3
+    GoToIfEq VAR_RESULT, 2, _00BC
     GoTo _00C5
 
 _00AA:
@@ -77,25 +77,25 @@ _00E2:
     End
 
 _00ED:
-    GetRandom 0x800C, 100
-    GoToIfLt 0x800C, 5, _0113
-    GoToIfLt 0x800C, 30, _0124
+    GetRandom VAR_RESULT, 100
+    GoToIfLt VAR_RESULT, 5, _0113
+    GoToIfLt VAR_RESULT, 30, _0124
     GoTo _0135
 
 _0113:
-    ScrCmd_1BA 30, 0x4000
+    ScrCmd_1BA 30, VAR_MAP_LOCAL_0
     Call _0146
     Message 8
     Return
 
 _0124:
-    ScrCmd_1BA 10, 0x4000
+    ScrCmd_1BA 10, VAR_MAP_LOCAL_0
     Call _0146
     Message 10
     Return
 
 _0135:
-    ScrCmd_1BA 5, 0x4000
+    ScrCmd_1BA 5, VAR_MAP_LOCAL_0
     Call _0146
     Message 11
     Return
@@ -103,16 +103,16 @@ _0135:
 _0146:
     WaitFanfare SEQ_SE_DP_FW367
     SetFlag FLAG_UNK_0x0AA5
-    SetVar 0x400A, 1
+    SetVar VAR_MAP_LOCAL_A, 1
     ApplyMovement 1, _02DC
     WaitMovement
     Return
 
 _0160:
-    GetPlayerMapPos 0x8005, 0x8006
-    GoToIfEq 0x8005, 11, _0193
-    GoToIfEq 0x8005, 13, _01AB
-    GoToIfEq 0x8006, 4, _01C3
+    GetPlayerMapPos VAR_0x8005, VAR_0x8006
+    GoToIfEq VAR_0x8005, 11, _0193
+    GoToIfEq VAR_0x8005, 13, _01AB
+    GoToIfEq VAR_0x8006, 4, _01C3
     GoTo _01DB
 
 _0193:

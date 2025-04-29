@@ -762,7 +762,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
 
         v0->unk_180 = 8;
         v0->saveData = v1->saveData;
-        v0->unk_00 = sub_0202B370(v0->saveData);
+        v0->unk_00 = SaveData_GetWiFiList(v0->saveData);
         v0->unk_3B4 = v1->unk_04;
         v0->unk_3AC = 8;
         v0->unk_3D0 = -1;
@@ -1616,7 +1616,7 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
             param0->unk_3A8 = 61;
         }
     } else {
-        Sound_SetSceneAndPlayBGM(11, 1175, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
         ov65_0222EE98(param0);
 
         if (!DWC_CheckHasProfile(sub_0202AD28(param0->unk_00))) {
@@ -1729,8 +1729,8 @@ static int ov65_0222F304(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
         if (v1 == 0) {
             WiFiList_Init(param0->unk_00);
-            Email_Init(SaveData_SaveTable(param0->saveData, 35));
-            sub_02030764(sub_0203068C(param0->saveData));
+            Email_Init(SaveData_SaveTable(param0->saveData, SAVE_TABLE_ENTRY_EMAIL));
+            sub_02030764(SaveData_GetBattleFrontier(param0->saveData));
             param0->unk_3A8 = 14;
             param0->unk_04 = sub_0203871C(param0->saveData, sizeof(UnkStruct_0207DFAC));
             ov65_02232B58(param0, 23, 1);
@@ -3797,19 +3797,19 @@ static u32 ov65_022319B8(UnkStruct_ov65_0222EBE0 *param0)
 
 static void ov65_02231A0C(void)
 {
-    u32 v0;
+    u32 bgmID;
 
     ov4_021D2584(0);
 
     if (ov65_02231A54() == 0) {
-        if (IsNight() == 0) {
-            v0 = 1085;
+        if (IsNight() == FALSE) {
+            bgmID = SEQ_PC_01;
         } else {
-            v0 = 1086;
+            bgmID = SEQ_PC_02;
         }
 
-        Sound_SetScene(0);
-        Sound_SetSceneAndPlayBGM(11, v0, 1);
+        Sound_SetScene(SOUND_SCENE_NONE);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, bgmID, 1);
     } else {
         Sound_SetInitialVolumeForSequence(Sound_GetCurrentBGM(), 120);
     }
@@ -4327,7 +4327,7 @@ static int ov65_022323C0(UnkStruct_ov65_0222EBE0 *param0, int param1)
     if (ov65_022321A8(param0)) {
         (void)0;
     } else if (CommTiming_IsSyncState(18) && (ov65_02232390(param0) == 1)) {
-        sub_020391DC(param0->saveData, v1, 54);
+        sub_020391DC(param0->saveData, v1, HEAP_ID_54);
         ov65_02232DFC(param0);
 
         v2 = ov65_02234FA8(param0, ov4_021D2388());
@@ -4845,7 +4845,7 @@ static void ov65_02232E70(UnkStruct_ov65_0222EBE0 *param0, int param1)
             ov4_021D2584(0);
 
             if (ov65_02231A54() == 1) {
-                Sound_FadeInBGM(120, 30, 1);
+                Sound_FadeInBGM(120, 30, BGM_FADE_IN_TYPE_FROM_CURRENT);
             }
         }
     }
@@ -6268,10 +6268,10 @@ static void ov65_022342A8(UnkStruct_ov65_0222EBE0 *param0, u32 heapID)
 {
     int v0;
     int v1;
-    UnkStruct_0203068C *v2;
+    BattleFrontier *v2;
     Strbuf *v3;
 
-    v2 = sub_0203068C(param0->saveData);
+    v2 = SaveData_GetBattleFrontier(param0->saveData);
     v0 = param0->unk_BE0.unk_71 - 1;
 
     {
@@ -6327,7 +6327,7 @@ static void ov65_022343CC(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 static void ov65_0223449C(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 {
     int v0;
-    UnkStruct_0202B370 *v1 = sub_0202B370(param0->saveData);
+    WiFiList *v1 = SaveData_GetWiFiList(param0->saveData);
 
     v0 = param0->unk_BE0.unk_71 - 1;
 
@@ -6376,7 +6376,7 @@ static void ov65_02234628(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_02234694(UnkStruct_ov65_0222EBE0 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
     int v0;
-    UnkStruct_0203068C *v1 = sub_0203068C(param0->saveData);
+    BattleFrontier *v1 = SaveData_GetBattleFrontier(param0->saveData);
     v0 = sub_02030698(v1, param2, param3);
 
     ov65_02234708(param0, param1, v0, param4, param5);
@@ -6384,7 +6384,7 @@ static void ov65_02234694(UnkStruct_ov65_0222EBE0 *param0, u32 param1, u32 param
 
 static void ov65_022346C4(UnkStruct_ov65_0222EBE0 *param0, Strbuf *param1, u32 param2, u32 param3)
 {
-    UnkStruct_0203068C *v0;
+    BattleFrontier *v0;
     BOOL v1;
     u32 v2;
     static const u32 v3[6] = {
@@ -6398,7 +6398,7 @@ static void ov65_022346C4(UnkStruct_ov65_0222EBE0 *param0, Strbuf *param1, u32 p
 
     GF_ASSERT(param2 < 6);
 
-    v0 = sub_0203068C(param0->saveData);
+    v0 = SaveData_GetBattleFrontier(param0->saveData);
     v1 = sub_02030698(v0, v3[param2], param3);
 
     if (v1 == 0) {
@@ -6708,7 +6708,7 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 hea
     v7.unk_20 = 0;
     v7.unk_24 = 0;
     v7.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v7.unk_2C = heapID;
+    v7.heapID = heapID;
 
     param0->unk_BE0.unk_234 = sub_02012B60(&v7, v5);
 

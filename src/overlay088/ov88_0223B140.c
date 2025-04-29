@@ -160,8 +160,7 @@ static int ov88_0223D7AC(UnkStruct_02095E80 *param0);
 static int ov88_0223D854(UnkStruct_02095E80 *param0);
 static int ov88_0223D69C(UnkStruct_02095E80 *param0);
 static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1);
-static void ov88_0223D0D4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkStruct_02027F8C *param2);
-static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
+static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2);
 
 static const int Unk_ov88_0223EF9C[][2] = {
     { 0x0, 0x20 },
@@ -290,7 +289,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     MI_CpuClearFast(v0, sizeof(UnkStruct_02095E80));
 
     v0->unk_174 = BgConfig_New(HEAP_ID_26);
-    v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, 26);
+    v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, HEAP_ID_26);
     v0->unk_17C = StringTemplate_Default(HEAP_ID_26);
     v0->unk_180 = StringTemplate_Default(HEAP_ID_26);
     v0->unk_184 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);
@@ -318,11 +317,11 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     sub_02038A1C(26, v0->unk_174);
     sub_02039734();
 
-    if (IsNight() == 0) {
-        Sound_SetSceneAndPlayBGM(4, 1085, 1);
+    if (IsNight() == FALSE) {
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PC_01, 1);
         Sound_AdjustVolumeForVoiceChat(1085);
     } else {
-        Sound_SetSceneAndPlayBGM(4, 1086, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PC_02, 1);
         Sound_AdjustVolumeForVoiceChat(1086);
     }
 
@@ -898,7 +897,7 @@ static void ov88_0223C0E0(void *param0)
         int v1 = v0->unk_2168 - 1;
 
         GXS_LoadOBJ(v0->unk_848[v1], 0 + v1 * (0x20 * 10 * 10), (0x20 * 10 * 10));
-        Graphics_LoadPalette(v0->unk_2148[v1].archive, v0->unk_2148[v1].palette, 5, 0x20 * (2 + v1), 32, HEAP_ID_26);
+        Graphics_LoadPalette(v0->unk_2148[v1].narcID, v0->unk_2148[v1].palette, 5, 0x20 * (2 + v1), 32, HEAP_ID_26);
 
         v0->unk_2168 = 0;
     }
@@ -1161,9 +1160,9 @@ static void ov88_0223C44C(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, 0);
 }
 
-static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 heapID)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, param7, 1);
+    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, heapID, 1);
 
     if (v0 != NULL) {
         NNSG2dScreenData *v1;
@@ -1199,7 +1198,7 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, HEAP_ID_26);
 
-    ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, 26);
+    ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_26);
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, HEAP_ID_26);
     Font_LoadScreenIndicatorsPalette(0, 2 * 32, HEAP_ID_26);
@@ -1264,7 +1263,7 @@ static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteT
         int v0 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         int v1 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
-        sub_020136A4(param3->archive, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, v0, 0, 2, v1);
+        sub_020136A4(param3->narcID, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, v0, 0, 2, v1);
     }
 
     DC_FlushRange(param2, 0x20 * 10 * 10);
@@ -1395,7 +1394,7 @@ static void ov88_0223CBA0(UnkStruct_02095E80 *param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.heapID = 26;
+        v0.heapID = HEAP_ID_26;
 
         for (v1 = 0; v1 < 2; v1++) {
             v0.position.x = FX32_ONE * Unk_ov88_0223EF9C[v1][0];
@@ -1646,7 +1645,7 @@ static void ov88_0223D0C0(SaveData *param0)
     CommSys_SendData(32, v0, 14);
 }
 
-static void ov88_0223D0D4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkStruct_02027F8C *param2)
+static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
 {
     int v0;
 
@@ -1664,7 +1663,7 @@ static void ov88_0223D0D4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkSt
         param2->unk_78[v0] = param1[v0].unk_16;
     }
 
-    CommSys_SendDataHuge(28, param2, sizeof(UnkStruct_02027F8C));
+    CommSys_SendDataHuge(28, param2, sizeof(PalPad));
 }
 
 static void ov88_0223D140(ChatotCry *param0)
@@ -1824,9 +1823,9 @@ static int ov88_0223D514(UnkStruct_02095E80 *param0)
 
     switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
     case 0:
-        sub_02030788(sub_0203068C(param0->unk_04), param0->unk_36C8);
+        sub_02030788(SaveData_GetBattleFrontier(param0->unk_04), param0->unk_36C8);
         sub_0202AFD4(param0->unk_36EC, param0->unk_36C8);
-        sub_02039298(param0->unk_04, param0->unk_36C4, 32 - 1, 26, 0);
+        sub_02039298(param0->unk_04, param0->unk_36C4, 32 - 1, HEAP_ID_26, 0);
         param0->unk_226C = ov88_0223D854;
         break;
     case 0xfffffffe:
@@ -1946,7 +1945,7 @@ static int ov88_0223D7AC(UnkStruct_02095E80 *param0)
 
         for (v0 = 0; v0 < 32; v0++) {
             if (!sub_0202AF78(param0->unk_36EC, v0)) {
-                sub_02039298(param0->unk_04, param0->unk_36C4, v0, 26, 0);
+                sub_02039298(param0->unk_04, param0->unk_36C4, v0, HEAP_ID_26, 0);
                 break;
             }
         }
@@ -2010,11 +2009,11 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
     }
 
     {
-        UnkStruct_0202B370 *v2 = sub_0202B370(param0->unk_04);
+        WiFiList *v2 = SaveData_GetWiFiList(param0->unk_04);
 
         for (v0 = 0; v0 < 32; v0++) {
             if (!sub_0202AF78(v2, v0)) {
-                sub_02039298(param0->unk_04, param0->unk_36C4, v0, 26, 0);
+                sub_02039298(param0->unk_04, param0->unk_36C4, v0, HEAP_ID_26, 0);
                 break;
             }
         }
@@ -2026,7 +2025,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
 
 static int ov88_0223D96C(UnkStruct_02095E80 *param0)
 {
-    if (0 == sub_020391DC(param0->unk_04, param0->unk_3644, 26)) {
+    if (0 == sub_020391DC(param0->unk_04, param0->unk_3644, HEAP_ID_26)) {
         CommTiming_StartSync(19);
         ov88_0223ECBC(&param0->unk_49C[23], 28, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D840;
@@ -2035,7 +2034,7 @@ static int ov88_0223D96C(UnkStruct_02095E80 *param0)
 
     param0->unk_36CC = StringTemplate_Default(HEAP_ID_26);
     param0->unk_36D0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_26);
-    param0->unk_36EC = sub_0202B370(param0->unk_04);
+    param0->unk_36EC = SaveData_GetWiFiList(param0->unk_04);
     param0->unk_226C = ov88_0223D854;
 
     return 0;

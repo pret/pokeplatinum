@@ -8,25 +8,25 @@
     ScriptEntryEnd
 
 _000E:
-    GoToIfEq 0x40DD, 0, _0048
-    ScrCmd_207 0x4000
-    GoToIfEq 0x4000, 1, _004A
-    ScrCmd_1DD 55, 0, 0x4000
-    SetVar 0x4020, 0x4000
-    ScrCmd_1DD 55, 1, 0x4000
-    SetVar 0x4021, 0x4000
+    GoToIfEq VAR_UNK_0x40DD, 0, _0048
+    ScrCmd_207 VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _004A
+    ScrCmd_1DD 55, 0, VAR_MAP_LOCAL_0
+    SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
+    ScrCmd_1DD 55, 1, VAR_MAP_LOCAL_0
+    SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0
 _0048:
     End
 
 _004A:
-    ScrCmd_1DD 55, 0, 0x4000
-    SetVar 0x4021, 0x4000
-    ScrCmd_1DD 55, 1, 0x4000
-    SetVar 0x4020, 0x4000
+    ScrCmd_1DD 55, 0, VAR_MAP_LOCAL_0
+    SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0
+    ScrCmd_1DD 55, 1, VAR_MAP_LOCAL_0
+    SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
     End
 
 _0068:
-    CallIfNe 0x40DD, 0, _007F
+    CallIfNe VAR_UNK_0x40DD, 0, _007F
     ScrCmd_1B2 2
     ScrCmd_1B2 3
     End

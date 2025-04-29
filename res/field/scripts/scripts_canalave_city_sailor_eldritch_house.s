@@ -9,24 +9,24 @@
     ScriptEntryEnd
 
 _000E:
-    GoToIfEq 0x4106, 0, _0037
-    CallIfEq 0x4106, 3, _0073
-    CallIfGe 0x4106, 1, _007B
+    GoToIfEq VAR_UNK_0x4106, 0, _0037
+    CallIfEq VAR_UNK_0x4106, 3, _0073
+    CallIfGe VAR_UNK_0x4106, 1, _007B
 _0035:
     End
 
 _0037:
     GoToIfSet FLAG_UNK_0x012C, _0035
-    CheckGameCompleted 0x4000
-    GoToIfEq 0x4000, 0, _0035
-    ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _0035
-    SetVar 0x4106, 1
+    CheckGameCompleted VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0035
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0035
+    SetVar VAR_UNK_0x4106, 1
     Call _007B
     End
 
 _0073:
-    SetVar 0x4106, 0
+    SetVar VAR_UNK_0x4106, 0
     Return
 
 _007B:
@@ -45,10 +45,10 @@ _007B:
     .byte 0
 
 _00A5:
-    SetVar 0x8008, 0x4106
-    GoToIfEq 0x8008, 1, _00E5
-    GoToIfEq 0x8008, 2, _00E5
-    GoToIfEq 0x8008, 3, _00F8
+    SetVar VAR_0x8008, VAR_UNK_0x4106
+    GoToIfEq VAR_0x8008, 1, _00E5
+    GoToIfEq VAR_0x8008, 2, _00E5
+    GoToIfEq VAR_0x8008, 3, _00F8
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -79,9 +79,9 @@ _00F8:
     End
 
 _010B:
-    GoToIfEq 0x4106, 1, _0158
-    GoToIfEq 0x4106, 2, _0158
-    GoToIfEq 0x4106, 3, _0145
+    GoToIfEq VAR_UNK_0x4106, 1, _0158
+    GoToIfEq VAR_UNK_0x4106, 2, _0158
+    GoToIfEq VAR_UNK_0x4106, 3, _0145
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -104,20 +104,20 @@ _0145:
 _0158:
     GoToIfUnset FLAG_UNK_0x0133, _01EA
     GoToIfUnset FLAG_UNK_0x011F, _01D9
-    CheckItem ITEM_LUNAR_WING, 1, 0x800C
-    GoToIfEq 0x800C, 0, _01D9
+    CheckItem ITEM_LUNAR_WING, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01D9
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetFlag FLAG_UNK_0x012C
-    SetVar 0x4106, 3
-    RemoveItem ITEM_LUNAR_WING, 1, 0x800C
+    SetVar VAR_UNK_0x4106, 3
+    RemoveItem ITEM_LUNAR_WING, 1, VAR_RESULT
     BufferPlayerName 0
     Message 2
     Message 3
     PlaySound SEQ_ASA
     WaitSound
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     Call _01FC
     Message 5
     Call _0256
@@ -140,7 +140,7 @@ _01D9:
 
 _01EA:
     SetFlag FLAG_UNK_0x0133
-    SetVar 0x4106, 2
+    SetVar VAR_UNK_0x4106, 2
     GoTo _01D9
     End
 
@@ -149,7 +149,7 @@ _01FC:
     WaitFanfare SEQ_SE_DP_KAIDAN2
     ClearFlag FLAG_UNK_0x025B
     AddObject 2
-    WaitTime 5, 0x800C
+    WaitTime 5, VAR_RESULT
     ApplyMovement 1, _0294
     ApplyMovement 0, _0294
     ApplyMovement LOCALID_PLAYER, _0294

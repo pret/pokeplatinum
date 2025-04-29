@@ -30,7 +30,7 @@ BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2, u16 para
 void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 param2);
 static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
 static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
-static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
+static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int heapID);
 static void ov104_0223A090(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
 
 UnkStruct_0209BBA4 *ov104_02239C58(SaveData *param0)
@@ -93,7 +93,7 @@ void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 
         ov104_02239F38(param0, param1, fieldSystem, 11);
         break;
     case 2:
-        ov104_02239FB0(param0, param1, fieldSystem, 11);
+        ov104_02239FB0(param0, param1, fieldSystem, HEAP_ID_FIELDMAP);
         break;
     case 3:
         ov104_0223A090(param0, param1, fieldSystem, 11);
@@ -114,7 +114,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 
     param1->unk_A8->unk_00 = SaveData_GetParty(param1->unk_00);
     param1->unk_A8->unk_04 = SaveData_GetBag(param1->unk_00);
-    param1->unk_A8->unk_08 = sub_02028430(param1->unk_00);
+    param1->unk_A8->unk_08 = SaveData_GetMailBox(param1->unk_00);
     param1->unk_A8->unk_0C = SaveData_GetOptions(param1->unk_00);
     param1->unk_A8->unk_21 = 0;
 
@@ -189,13 +189,13 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     return;
 }
 
-static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
+static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int heapID)
 {
     static const u8 v0[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    param1->unk_AC = Heap_AllocFromHeapAtEnd(param3, sizeof(PokemonSummary));
+    param1->unk_AC = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
     MI_CpuClear8(param1->unk_AC, sizeof(PokemonSummary));
 
     param1->unk_AC->options = SaveData_GetOptions(param1->unk_00);

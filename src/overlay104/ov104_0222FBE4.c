@@ -1642,7 +1642,7 @@ static BOOL ov104_02230B50(UnkStruct_ov104_0222E930 *param0)
     MI_CpuClear8(v1, sizeof(FieldBattleDTO));
 
     sub_0202F298(v2->saveData, 11, &v0, v1, 0);
-    Sound_SetSceneAndPlayBGM(5, 1119, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
     sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v1, 1, NULL);
 
     return 1;
@@ -2477,7 +2477,7 @@ static BOOL ov104_02231A28(UnkStruct_ov104_0222E930 *param0)
     v0 = sub_0209B970(param0->unk_00->unk_00);
     param0->unk_78[0] = ov104_0222FC00(param0);
 
-    Sound_SetSceneAndPlayBGM(5, 1119, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
 
     v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02231148));
     v1->unk_14 = sub_0209B978(param0->unk_00->unk_00);
@@ -2720,7 +2720,7 @@ static BOOL ov104_02231DAC(UnkStruct_ov104_0222E930 *param0)
 
     ov104_0223D554(v0, &v2, &v3);
     ov104_0223DC7C(v1, v0->unk_00, v0->unk_34.unk_00, v0->unk_34.unk_04, v0->unk_04, &param0->unk_78[0], v2, v3);
-    Sound_SetSceneAndPlayBGM(5, 1202, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_FRONTIER_BRAIN, 1);
     ov104_0222E974(param0, ov104_02231E14);
 
     return 1;
@@ -2793,9 +2793,9 @@ static BOOL ov104_02231EC4(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02231ED8(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_0202B370 *v0;
+    WiFiList *v0;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = sub_0202B370(v1->saveData);
+    v0 = SaveData_GetWiFiList(v1->saveData);
 
     sub_0202B13C(v0, ov4_021D2388());
     return 0;

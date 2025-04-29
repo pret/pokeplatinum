@@ -14,9 +14,9 @@ _000A:
     GoToIfSet FLAG_UNK_0x007C, _0054
     BufferItemName 0, ITEM_HARD_STONE
     Message 0
-    SetVar 0x8004, ITEM_HARD_STONE
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0064
+    SetVar VAR_0x8004, ITEM_HARD_STONE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0064
     SetFlag FLAG_UNK_0x007C
     CallCommonScript 0x7E0
     CloseMessage
@@ -44,7 +44,7 @@ _006E:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PSYDUCK
     Message 2
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

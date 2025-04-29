@@ -304,7 +304,7 @@ static void ov95_0224A518(UnkStruct_ov95_0224A42C *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     sub_02039734();
-    sub_020397C8(1, 57);
+    sub_020397C8(1, HEAP_ID_57);
 }
 
 static void ov95_0224A678(UnkStruct_ov95_0224A42C *param0)

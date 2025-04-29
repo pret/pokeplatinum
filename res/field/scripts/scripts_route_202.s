@@ -13,18 +13,18 @@
     ScriptEntryEnd
 
 _001E:
-    CallIfGe 0x4087, 2, _005B
-    GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _004B
-    GoToIfEq 0x4000, GENDER_FEMALE, _0053
+    CallIfGe VAR_UNK_0x4087, 2, _005B
+    GetPlayerGender VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _004B
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0053
     End
 
 _004B:
-    SetVar 0x4020, 97
+    SetVar VAR_OBJ_GFX_ID_0, 97
     End
 
 _0053:
-    SetVar 0x4020, 0
+    SetVar VAR_OBJ_GFX_ID_0, 0
     End
 
 _005B:
@@ -60,12 +60,12 @@ _00C7:
     ApplyMovement 3, _03C4
     ApplyMovement LOCALID_PLAYER, _04A0
     WaitMovement
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x339, _0124
-    GoToIfEq 0x8005, 0x33A, _0134
-    GoToIfEq 0x8005, 0x33B, _0144
-    GoToIfEq 0x8005, 0x33C, _0154
-    GoToIfEq 0x8005, 0x33D, _0164
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x339, _0124
+    GoToIfEq VAR_0x8005, 0x33A, _0134
+    GoToIfEq VAR_0x8005, 0x33B, _0144
+    GoToIfEq VAR_0x8005, 0x33C, _0154
+    GoToIfEq VAR_0x8005, 0x33D, _0164
     End
 
 _0124:
@@ -95,9 +95,9 @@ _0164:
 
 _0174:
     GoToIfUnset FLAG_UNK_0x008F, _027C
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _019F
-    GoToIfEq 0x800C, GENDER_FEMALE, _01B2
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _019F
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _01B2
     End
 
 _019F:
@@ -122,9 +122,9 @@ _01C5:
     StartCatchingTutorial
     ApplyMovement 3, _0490
     WaitMovement
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0205
-    GoToIfEq 0x800C, GENDER_FEMALE, _0211
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0205
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0211
     End
 
 _0205:
@@ -138,12 +138,12 @@ _0211:
     GoTo _021D
 
 _021D:
-    SetVar 0x8004, 4
-    SetVar 0x8005, 5
+    SetVar VAR_0x8004, 4
+    SetVar VAR_0x8005, 5
     CallCommonScript 0x7FC
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _024D
-    GoToIfEq 0x800C, GENDER_FEMALE, _0259
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _024D
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0259
     End
 
 _024D:
@@ -160,14 +160,14 @@ _0262:
     ApplyMovement 3, _0498
     WaitMovement
     RemoveObject 3
-    SetVar 0x4087, 1
+    SetVar VAR_UNK_0x4087, 1
     ReleaseAll
     End
 
 _027C:
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _029C
-    GoToIfEq 0x800C, GENDER_FEMALE, _02C8
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _029C
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _02C8
     End
 
 _029C:
@@ -202,11 +202,11 @@ _02EF:
 
 _02F4:
     CloseMessage
-    GoToIfEq 0x8005, 0x339, _0339
-    GoToIfEq 0x8005, 0x33A, _0351
-    GoToIfEq 0x8005, 0x33B, _0369
-    GoToIfEq 0x8005, 0x33C, _0381
-    GoToIfEq 0x8005, 0x33D, _0399
+    GoToIfEq VAR_0x8005, 0x339, _0339
+    GoToIfEq VAR_0x8005, 0x33A, _0351
+    GoToIfEq VAR_0x8005, 0x33B, _0369
+    GoToIfEq VAR_0x8005, 0x33C, _0381
+    GoToIfEq VAR_0x8005, 0x33D, _0399
     End
 
 _0339:
@@ -369,10 +369,10 @@ _04C4:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    GetPlayerDir 0x8002
-    GetPlayerGender 0x8000
-    CallIfEq 0x8000, GENDER_MALE, _0653
-    CallIfEq 0x8000, GENDER_FEMALE, _0658
+    GetPlayerDir VAR_0x8002
+    GetPlayerGender VAR_0x8000
+    CallIfEq VAR_0x8000, GENDER_MALE, _0653
+    CallIfEq VAR_0x8000, GENDER_FEMALE, _0658
     CloseMessage
     PlayMusic SEQ_POKERADAR
     ScrCmd_308 189, 0x332
@@ -382,23 +382,23 @@ _04C4:
     ApplyMovement 3, _0690
     ApplyMovement LOCALID_PLAYER, _06D0
     WaitMovement
-    WaitTime 15, 0x800C
-    CallIfEq 0x8000, 0, _065D
-    CallIfEq 0x8000, 1, _0662
+    WaitTime 15, VAR_RESULT
+    CallIfEq VAR_0x8000, 0, _065D
+    CallIfEq VAR_0x8000, 1, _0662
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     PlayDefaultMusic
-    CallIfEq 0x8002, 0, _05D1
-    CallIfEq 0x8002, 1, _05E5
-    CallIfEq 0x8002, 2, _05F9
-    CallIfEq 0x8002, 3, _0605
-    CallIfEq 0x8000, 0, _0667
-    CallIfEq 0x8000, 1, _066C
+    CallIfEq VAR_0x8002, 0, _05D1
+    CallIfEq VAR_0x8002, 1, _05E5
+    CallIfEq VAR_0x8002, 2, _05F9
+    CallIfEq VAR_0x8002, 3, _0605
+    CallIfEq VAR_0x8000, 0, _0667
+    CallIfEq VAR_0x8000, 1, _066C
     CloseMessage
-    CallIfEq 0x8002, 0, _0611
-    CallIfEq 0x8002, 1, _061D
-    CallIfEq 0x8002, 2, _0629
-    CallIfEq 0x8002, 3, _0635
+    CallIfEq VAR_0x8002, 0, _0611
+    CallIfEq VAR_0x8002, 1, _061D
+    CallIfEq VAR_0x8002, 2, _0629
+    CallIfEq VAR_0x8002, 3, _0635
     GoTo _0641
     End
 
@@ -447,7 +447,7 @@ _0635:
 _0641:
     RemoveObject 3
     ClearFlag FLAG_UNK_0x0177
-    SetVar 0x4087, 3
+    SetVar VAR_UNK_0x4087, 3
     ReleaseAll
     End
 

@@ -116,7 +116,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0);
 static int ov56_02256BC0(UnkStruct_ov56_02256468 *param0);
 static void ov56_02257100(UnkStruct_ov56_02256468 *param0);
 static void ov56_02257048(UnkStruct_ov56_02256468 *param0, TrainerInfo *param1, Sentence *param2, u32 param3);
-static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4);
+static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4);
 static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5);
 static void ov56_0225710C(UnkStruct_ov56_02256468 *param0);
 static void ov56_0225712C(UnkStruct_ov56_02256468 *param0);
@@ -413,7 +413,7 @@ static void ov56_02256704(UnkStruct_ov56_02256468 *param0)
         v1.affineZRotation = 0;
         v1.priority = 0;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-        v1.heapID = 4;
+        v1.heapID = HEAP_ID_FIELD;
 
         for (v0 = 0; v0 < 3; v0++) {
             v1.position.x = FX32_CONST(256 - 24);
@@ -753,7 +753,7 @@ static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_
     Bg_CopyTilemapBufferRangeToVRAM(param0, 7, Bg_GetTilemapBuffer(param0, 7), 32 * 24 * 2, 0);
 }
 
-static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4)
+static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4)
 {
     Strbuf *v0 = NULL;
     Strbuf *v1;
@@ -785,7 +785,7 @@ static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTempl
 static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence *param2, TrainerInfo *param3)
 {
     UnkStruct_0205C95C *v0 = param0->unk_2D4;
-    UnkStruct_02027F8C *v1 = param0->unk_04->unk_474;
+    PalPad *v1 = param0->unk_04->unk_474;
     int *v2;
 
     if (v0->unk_348 == 30) {

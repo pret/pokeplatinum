@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-enum {
+enum FieldScriptState {
     SCRIPT_STATE_STOPPED,
     SCRIPT_STATE_RUNNING,
     SCRIPT_STATE_WAITING,

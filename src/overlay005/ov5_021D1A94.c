@@ -16,7 +16,7 @@
 
 struct UnkStruct_ov5_021D1A94_t {
     FieldSystem *fieldSystem;
-    int unk_04;
+    int heapID;
     int unk_08;
     UnkStruct_ov5_021D1BEC *unk_0C;
     SysTaskManager *unk_10;
@@ -38,7 +38,7 @@ UnkStruct_ov5_021D1A94 *ov5_021D1A94(FieldSystem *fieldSystem, int heapID, int p
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021D1A94));
 
     v0->fieldSystem = fieldSystem;
-    v0->unk_04 = heapID;
+    v0->heapID = heapID;
     v0->unk_08 = param2;
     v0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021D1BEC) * param2);
 
@@ -108,7 +108,7 @@ UnkStruct_ov5_021D1BEC *ov5_021D1B6C(UnkStruct_ov5_021D1A94 *param0, const UnkSt
             GF_ASSERT(v1->unk_08 != NULL);
 
             if (param1->unk_04 != 0) {
-                v1->unk_10 = Heap_AllocFromHeap(param0->unk_04, param1->unk_04);
+                v1->unk_10 = Heap_AllocFromHeap(param0->heapID, param1->unk_04);
             }
 
             if (param1->unk_08) {

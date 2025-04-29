@@ -309,8 +309,8 @@ static BOOL BtlCmd_End(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static int BattleScript_Read(BattleContext *battleCtx);
 static void BattleScript_Iter(BattleContext *battleCtx, int i);
-static void BattleScript_Jump(BattleContext *battleCtx, int narc, int file);
-static void BattleScript_Call(BattleContext *battleCtx, int narc, int file);
+static void BattleScript_Jump(BattleContext *battleCtx, enum NarcID narcID, int file);
+static void BattleScript_Call(BattleContext *battleCtx, enum NarcID narcID, int file);
 static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *battleCtx, int var);
 static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
 static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2465,7 +2465,7 @@ static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx
     return FALSE;
 }
 
-enum {
+enum GetExpTaskState {
     SEQ_GET_EXP_START = 0,
     SEQ_GET_EXP_WAIT_MESSAGE_PRINT,
     SEQ_GET_EXP_WAIT_MESSAGE_DELAY,
@@ -2511,7 +2511,7 @@ enum {
     SEQ_GET_EXP_DONE,
 };
 
-enum {
+enum GetExpTaskDataIndex {
     GET_EXP_MSG_INDEX = 0,
     GET_EXP_MSG_DELAY,
     GET_EXP_LEARNSET_INDEX,
@@ -9714,12 +9714,12 @@ static void BattleScript_Iter(BattleContext *battleCtx, int i)
  * current execution.
  *
  * @param battleCtx
- * @param narc          Which NARC to open for the script
+ * @param narcID        Which NARC to open for the script
  * @param file          Which file in the NARC to load
  */
-static void BattleScript_Jump(BattleContext *battleCtx, int narc, int file)
+static void BattleScript_Jump(BattleContext *battleCtx, enum NarcID narcID, int file)
 {
-    BattleSystem_LoadScript(battleCtx, narc, file);
+    BattleSystem_LoadScript(battleCtx, narcID, file);
 }
 
 /**
@@ -9727,12 +9727,12 @@ static void BattleScript_Jump(BattleContext *battleCtx, int narc, int file)
  * execution once finished with the newly-loaded script.
  *
  * @param battleCtx
- * @param narc          Which NARC to open for the script
+ * @param narcID        Which NARC to open for the script
  * @param file          Which file in the NARC to load
  */
-static void BattleScript_Call(BattleContext *battleCtx, int narc, int file)
+static void BattleScript_Call(BattleContext *battleCtx, enum NarcID narcID, int file)
 {
-    BattleSystem_CallScript(battleCtx, narc, file);
+    BattleSystem_CallScript(battleCtx, narcID, file);
 }
 
 /**
@@ -10559,7 +10559,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 BallThrow v7;
 
                 v7.mode = 3;
-                v7.heapID = 5;
+                v7.heapID = HEAP_ID_BATTLE;
                 v7.target = v1 + 20000;
                 v7.ballID = v2->ball;
                 v7.cellActorSys = ov16_0223E010(v2->battleSys);
@@ -10688,7 +10688,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v2->tmpData[1] = 30;
                 v2->seqNum = 9;
 
-                Sound_PlayBGM(1127);
+                Sound_PlayBGM(SEQ_VICTORY_WILD_POKEMON);
                 BattleSystem_SetRedHPSoundFlag(v2->battleSys, 2);
             }
         }
@@ -10759,7 +10759,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v12.unk_00 = BattleSystem_BGL(v2->battleSys);
                 v12.unk_04 = BattleSystem_PaletteSys(v2->battleSys);
                 v12.unk_08 = v5;
-                v12.heapId = HEAP_ID_BATTLE;
+                v12.heapID = HEAP_ID_BATTLE;
                 v12.unk_10 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                 v12.unk_14 = IsNationalDexObtained(BattleSystem_GetPokedex(v2->battleSys));
                 v2->tmpPtr[1] = CharTransfer_PopTaskManager();
@@ -12247,7 +12247,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     Window_AddToTopLeftCorner(v8, &v9, 12, 4, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v9, FONT_SYSTEM, v7, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
-    v10 = sub_02012898(&v9, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
+    v10 = sub_02012898(&v9, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_BATTLE);
     CharTransfer_AllocRange(v10, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v11);
 
     v12.unk_00 = param1->tmpPtr[0];
@@ -12261,7 +12261,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     v12.unk_20 = 0;
     v12.unk_24 = 100;
     v12.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v12.unk_2C = 5;
+    v12.heapID = HEAP_ID_BATTLE;
 
     param1->fontOAM = sub_020127E8(&v12);
     param1->charTransferAllocation = v11;

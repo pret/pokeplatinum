@@ -25,10 +25,10 @@ void ov22_02259098(UnkStruct_ov22_0225A0E4 *param0, PokemonSpriteTemplate *param
     void *v0;
     NNSG2dCharacterData *v1;
 
-    v0 = LoadMemberFromNARC(param1->archive, param1->character, 0, 14, 0);
+    v0 = LoadMemberFromNARC(param1->narcID, param1->character, 0, 14, 0);
     v1 = ov22_02255340(param0, v0, (100 + 18));
 
-    PokemonSprite_Decrypt((u8 *)v1->pRawData, param1->archive);
+    PokemonSprite_Decrypt((u8 *)v1->pRawData, param1->narcID);
 }
 
 void ov22_022590C0(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pokemon *param2, PokemonSpriteTemplate *param3, int param4)
@@ -64,10 +64,10 @@ void ov22_022590D4(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pok
         void *v4;
         NNSG2dCharacterData *v5;
 
-        v4 = LoadMemberFromNARC(param3->archive, param3->character, 0, param4, 0);
+        v4 = LoadMemberFromNARC(param3->narcID, param3->character, 0, param4, 0);
 
         NNS_G2dGetUnpackedCharacterData(v4, &v5);
-        PokemonSprite_Decrypt((u8 *)v5->pRawData, param3->archive);
+        PokemonSprite_Decrypt((u8 *)v5->pRawData, param3->narcID);
 
         if (param5 == 0) {
             ov22_022593B8(v5->pRawData, v5->W * 8, v5->H * 8, &param0->unk_08);

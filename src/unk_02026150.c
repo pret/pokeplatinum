@@ -94,7 +94,7 @@ BattleRegulation Unk_02100860 = {
     0x0,
 };
 
-const BattleRegulation *sub_02026150(SaveData *param0, int param1)
+const BattleRegulation *sub_02026150(SaveData *saveData, int param1)
 {
     UnkStruct_02026030 *v0 = NULL;
 
@@ -102,7 +102,7 @@ const BattleRegulation *sub_02026150(SaveData *param0, int param1)
         return &Unk_02100880[param1];
     }
 
-    v0 = SaveData_SaveTable(param0, 13);
+    v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_REGULATION_BATTLES);
     return &v0->unk_00[0];
 }
 

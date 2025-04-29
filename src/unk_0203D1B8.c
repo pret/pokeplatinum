@@ -32,7 +32,6 @@
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_defs/struct_02070950.h"
 #include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02097728.h"
@@ -88,6 +87,7 @@
 #include "coins.h"
 #include "dexmode_checker.h"
 #include "field_battle_data_transfer.h"
+#include "field_move_tasks.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -115,7 +115,6 @@
 #include "unk_02017498.h"
 #include "unk_02028124.h"
 #include "unk_020298BC.h"
-#include "unk_0202ACE0.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
@@ -220,12 +219,12 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    s64 unk_04;
+    s64 startTime;
     UnkStruct_0203E348 unk_0C;
 } UnkStruct_0203E35C;
 
 static void sub_0203DF68(FieldTask *taskMan);
-static u8 sub_0203E484(SaveData *saveData, u8 param1);
+static u8 sub_0203E484(SaveData *saveData, u8 slotMachineID);
 
 static BOOL OverlayInit_Battle(OverlayManager *ovyManager, int *state)
 {
@@ -384,7 +383,7 @@ static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, i
 
     v0->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_08 = sub_02028430(fieldSystem->saveData);
+    v0->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v0->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     v0->unk_21 = param2;
     v0->unk_20 = param3;
@@ -393,7 +392,7 @@ static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, i
     return v0;
 }
 
-void *sub_0203D390(FieldSystem *fieldSystem, UnkStruct_02070950 *param1, u8 param2)
+void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2)
 {
     PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 0);
 
@@ -480,7 +479,7 @@ static BOOL sub_0203D444(FieldTask *param0)
         }
         break;
     case 2:
-        v1->unk_08 = sub_0203D670(fieldSystem, v1->heapID, 0);
+        v1->unk_08 = sub_0203D670(fieldSystem, v1->heapID, SUMMARY_MODE_NORMAL);
         v1->unk_08->monIndex = v1->unk_04->selectedMonSlot;
         FieldSystem_OpenSummaryScreen(fieldSystem, v1->unk_08);
         *v2 = 3;
@@ -571,7 +570,7 @@ void *sub_0203D644(FieldSystem *fieldSystem, int param1)
     return v0;
 }
 
-PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int param1, int param2)
+PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode)
 {
     PokemonSummary *v0;
     SaveData *v1;
@@ -580,7 +579,7 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int param1, int param2)
     };
 
     v1 = fieldSystem->saveData;
-    v0 = Heap_AllocFromHeapAtEnd(param1, sizeof(PokemonSummary));
+    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
@@ -590,7 +589,7 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int param1, int param2)
     v0->monIndex = 0;
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
-    v0->mode = param2;
+    v0->mode = mode;
     v0->dexMode = SaveData_GetDexMode(v1);
     v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->specialRibbons = sub_0202D79C(v1);
@@ -787,20 +786,20 @@ static void sub_0203D910(FieldSystem *fieldSystem, UnkStruct_02097728 *param1)
 
 UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 param3, int param4)
 {
-    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3, 11);
+    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3, HEAP_ID_FIELDMAP);
     sub_0203D910(fieldSystem, v0);
 
     return v0;
 }
 
-UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, int param3)
+UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, int heapID)
 {
     UnkStruct_02097728 *v0;
 
     if (param1 == 3) {
-        v0 = sub_020976F4(FieldSystem_GetSaveData(fieldSystem), param2, param3);
+        v0 = sub_020976F4(FieldSystem_GetSaveData(fieldSystem), param2, heapID);
     } else {
-        v0 = sub_0209767C(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3);
+        v0 = sub_0209767C(FieldSystem_GetSaveData(fieldSystem), param1, param2, heapID);
     }
 
     sub_0203D910(fieldSystem, v0);
@@ -808,9 +807,9 @@ UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2
     return v0;
 }
 
-UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int param2)
+UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int heapID)
 {
-    UnkStruct_02097728 *v0 = sub_020976BC(FieldSystem_GetSaveData(fieldSystem), param1, param2);
+    UnkStruct_02097728 *v0 = sub_020976BC(FieldSystem_GetSaveData(fieldSystem), param1, heapID);
     sub_0203D910(fieldSystem, v0);
 
     return v0;
@@ -963,7 +962,7 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
 {
     param0->unk_04 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     param0->unk_08 = SaveData_GetParty(fieldSystem->saveData);
-    param0->unk_0C = SaveData_SaveTable(fieldSystem->saveData, 9);
+    param0->unk_0C = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PAL_PAD);
     param0->unk_14 = sub_0202C878(fieldSystem->saveData);
     param0->unk_18 = SaveData_GetOptions(fieldSystem->saveData);
     param0->unk_24 = SaveData_GetPokedex(fieldSystem->saveData);
@@ -1349,12 +1348,12 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203E0FC));
 
-    v0->unk_00 = sub_0202DA40(fieldSystem->saveData);
+    v0->unk_00 = SaveData_GetGlobalTrade(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
-    v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, 2);
+    v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
     v0->unk_0C = SaveData_GetPCBoxes(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetPokedex(fieldSystem->saveData);
-    v0->unk_14 = sub_0202B370(fieldSystem->saveData);
+    v0->unk_14 = SaveData_GetWiFiList(fieldSystem->saveData);
     v0->unk_18 = sub_0202C878(fieldSystem->saveData);
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_24 = SaveData_GetOptions(fieldSystem->saveData);
@@ -1389,9 +1388,9 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
     v0->unk_04 = sub_0202D764(fieldSystem->saveData);
     v0->unk_08 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetOptions(fieldSystem->saveData);
-    v0->unk_14 = sub_0202AD28(sub_0202B370(fieldSystem->saveData));
+    v0->unk_14 = sub_0202AD28(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->unk_0C = fieldSystem->saveData;
-    v0->unk_1C = sub_02039058(sub_0202B370(fieldSystem->saveData));
+    v0->unk_1C = sub_02039058(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->unk_18 = param1;
     v0->unk_24 = param2;
     v0->unk_20 = 1;
@@ -1514,7 +1513,7 @@ void sub_0203E2FC(FieldSystem *fieldSystem)
     v0.unk_00 = v2;
     v0.unk_04 = SaveData_GetOptions(fieldSystem->saveData);
     v0.unk_08 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v0.unk_0C = sub_02055428(fieldSystem, fieldSystem->location->mapId);
+    v0.unk_0C = Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId);
 
     sub_020985AC(fieldSystem->task, &v0);
 }
@@ -1552,7 +1551,7 @@ static BOOL sub_0203E35C(FieldTask *param0)
             u16 *v5 = SaveData_GetCoins(fieldSystem->saveData);
             s64 v6 = GetTimestamp();
 
-            sub_0206DD38(fieldSystem, Coins_GetValue(v5), v2->unk_00, TimeElapsed(v2->unk_04, v6) / 60);
+            sub_0206DD38(fieldSystem, Coins_GetValue(v5), v2->unk_00, TimeElapsed(v2->startTime, v6) / 60);
             Coins_SetValue(SaveData_GetCoins(fieldSystem->saveData), v2->unk_00);
 
             v4 = SystemVars_GetConsecutiveBonusRoundWins(v1);
@@ -1570,61 +1569,78 @@ static BOOL sub_0203E35C(FieldTask *param0)
     return 0;
 }
 
-void sub_0203E414(FieldTask *param0, int param1)
+void sub_0203E414(FieldTask *task, int slotMachineID)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    Options *v1 = SaveData_GetOptions(fieldSystem->saveData);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    Options *options = SaveData_GetOptions(fieldSystem->saveData);
     UnkStruct_0203E35C *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203E35C));
 
     v2->unk_0C.unk_00 = &v2->unk_00;
     v2->unk_00 = Coins_GetValue(SaveData_GetCoins(fieldSystem->saveData));
-    v2->unk_04 = GetTimestamp();
+    v2->startTime = GetTimestamp();
     v2->unk_0C.records = SaveData_GetGameRecords(fieldSystem->saveData);
     v2->unk_0C.unk_0C = 0;
-    v2->unk_0C.unk_10 = Options_Frame(v1);
-    v2->unk_0C.unk_04 = sub_0203E484(fieldSystem->saveData, param1);
+    v2->unk_0C.msgBoxFrame = Options_Frame(options);
+    v2->unk_0C.unk_04 = sub_0203E484(fieldSystem->saveData, slotMachineID);
 
     GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_05);
-    FieldTask_InitCall(param0, sub_0203E35C, v2);
+    FieldTask_InitCall(task, sub_0203E35C, v2);
 }
 
-static u8 sub_0203E484(SaveData *param0, u8 param1)
+enum SlotMachineID {
+    SLOT_MACHINE_0,
+    SLOT_MACHINE_1,
+    SLOT_MACHINE_2,
+    SLOT_MACHINE_3,
+    SLOT_MACHINE_4,
+    SLOT_MACHINE_5,
+    SLOT_MACHINE_6,
+    SLOT_MACHINE_7,
+    SLOT_MACHINE_8,
+    SLOT_MACHINE_9,
+    SLOT_MACHINE_10,
+    SLOT_MACHINE_11,
+    SLOT_MACHINE_COUNT
+};
+
+static u8 sub_0203E484(SaveData *saveData, u8 slotMachineID)
 {
-    static const u8 v0[12] = {
-        0,
-        5,
-        1,
-        1,
-        4,
-        4,
-        2,
-        2,
-        2,
-        3,
-        3,
-        3,
+    // Chances? Modes?
+    static const u8 v0[SLOT_MACHINE_COUNT] = {
+        [SLOT_MACHINE_0] = 0,
+        [SLOT_MACHINE_1] = 5,
+        [SLOT_MACHINE_2] = 1,
+        [SLOT_MACHINE_3] = 1,
+        [SLOT_MACHINE_4] = 4,
+        [SLOT_MACHINE_5] = 4,
+        [SLOT_MACHINE_6] = 2,
+        [SLOT_MACHINE_7] = 2,
+        [SLOT_MACHINE_8] = 2,
+        [SLOT_MACHINE_9] = 3,
+        [SLOT_MACHINE_10] = 3,
+        [SLOT_MACHINE_11] = 3,
     };
-    RecordMixedRNG *v1 = SaveData_GetRecordMixedRNG(param0);
-    u32 v2;
-    u8 v3[12];
-    u8 v4, v5, v6, v7;
+    RecordMixedRNG *recordMixRNG = SaveData_GetRecordMixedRNG(saveData);
+    u32 oldSeed;
+    u8 v3[SLOT_MACHINE_COUNT];
+    u8 i, j, slot, temp;
 
-    v2 = LCRNG_GetSeed();
+    oldSeed = LCRNG_GetSeed();
 
-    LCRNG_SetSeed(RecordMixedRNG_GetRand(v1));
+    LCRNG_SetSeed(RecordMixedRNG_GetRand(recordMixRNG));
     MI_CpuCopy8(v0, v3, sizeof(v3));
 
-    for (v4 = 0; v4 < 12; v4++) {
-        for (v5 = v4 + 1; v5 < 12; v5++) {
-            v6 = LCRNG_Next() % 12;
-            v7 = v3[v4];
-            v3[v4] = v3[v6];
-            v3[v6] = v7;
+    for (i = 0; i < SLOT_MACHINE_COUNT; i++) {
+        for (j = i + 1; j < SLOT_MACHINE_COUNT; j++) {
+            slot = LCRNG_Next() % SLOT_MACHINE_COUNT;
+            temp = v3[i];
+            v3[i] = v3[slot];
+            v3[slot] = temp;
         }
     }
 
-    LCRNG_SetSeed(v2);
-    return v3[param1];
+    LCRNG_SetSeed(oldSeed);
+    return v3[slotMachineID];
 }
 
 static BOOL FieldTask_AccessoryShop(FieldTask *task)
@@ -1701,7 +1717,7 @@ PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int para
 
     v0->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_08 = sub_02028430(fieldSystem->saveData);
+    v0->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
     v0->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
     v0->unk_18 = NULL;

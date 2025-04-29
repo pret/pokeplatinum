@@ -1,371 +1,371 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="33809" />
-	<row id="pokemon_center_daily_trainers_kinsey_intro_jubilife" index="0">
+	<row id="PokemonCenterDailyTrainers_Text_KinseyJubilife_Intro" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hi, can we feature you in a news piece\nwe’re doing?\rAll you have to do is battle with me.\nWill you do that?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_kinsey_battle_accepted_jubilife" index="1">
+	<row id="PokemonCenterDailyTrainers_Text_KinseyJubilife_BattleAccepted" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Reporter Kinsey’s live interview!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_kinsey_battle_declined_jubilife" index="2">
+	<row id="PokemonCenterDailyTrainers_Text_KinseyJubilife_BattleDeclined" index="2">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Unbelievable! Press coverage denied!\nI find you intriguing, too...</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_kinsey_post_battle_jubilife" index="3">
+	<row id="PokemonCenterDailyTrainers_Text_KinseyJubilife_PostBattle" index="3">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">To get people to open up, we approach\nthem honestly with no hidden tricks.\rIt’s like the relationship between\nPokémon and Trainers, isn’t it?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_tevin_intro_jubilife" index="4">
+	<row id="PokemonCenterDailyTrainers_Text_TevinJubilife_Intro" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’ve spotted a charismatic Trainer!\nIs it OK to go for the scoop?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_tevin_battle_accepted_jubilife" index="5">
+	<row id="PokemonCenterDailyTrainers_Text_TevinJubilife_BattleAccepted" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">As a professional cameraman, I always\ngo for the best shot!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_tevin_battle_declined_jubilife" index="6">
+	<row id="PokemonCenterDailyTrainers_Text_TevinJubilife_BattleDeclined" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">That’s a downer...\rI thought I’d found a Trainer and\nPokémon who’d shine on camera.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_tevin_post_battle_jubilife" index="7">
+	<row id="PokemonCenterDailyTrainers_Text_TevinJubilife_PostBattle" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The lively expressions on you and your\nPokémon’s faces...\rIt sure makes for some great TV!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_lee_intro_hearthome" index="8">
+	<row id="PokemonCenterDailyTrainers_Text_LeeHearthome_Intro" index="8">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Are we all ready to have some fun?\nI sure am! Aren’t you having fun?!\fLet’s make it fun! OK?!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_lee_battle_accepted_hearthome" index="9">
+	<row id="PokemonCenterDailyTrainers_Text_LeeHearthome_BattleAccepted" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK, how shall we do this?\nShall we do something fantastical?\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_lee_battle_declined_hearthome" index="10">
+	<row id="PokemonCenterDailyTrainers_Text_LeeHearthome_BattleDeclined" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, how shall I say this...?\nIt makes me all lonely, I say...</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_lee_post_battle_hearthome" index="11">
+	<row id="PokemonCenterDailyTrainers_Text_LeeHearthome_PostBattle" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A clown’s makeup is a face that’s\ncrying while laughing. Mwahahah!\rIt defines what we do!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_arturo_intro_canalave" index="12">
+	<row id="PokemonCenterDailyTrainers_Text_ArturoCanalave_Intro" index="12">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Come on, let’s show off our Pokémon!\nLet’s do battle, kiddo!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_arturo_battle_accepted_canalave" index="13">
+	<row id="PokemonCenterDailyTrainers_Text_ArturoCanalave_BattleAccepted" index="13">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your spirit’s vibes...\nYou’ve got rock in your veins!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_arturo_battle_declined_calanave" index="14">
+	<row id="PokemonCenterDailyTrainers_Text_ArturoCalanave_BattleDeclined" index="14">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">My guitar...\nIt lies broken and weeping...</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_arturo_post_battle_canalave" index="15">
+	<row id="PokemonCenterDailyTrainers_Text_ArturoCanalave_PostBattle" index="15">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon and rock and roll are all\nanyone needs to survive this world!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_grace_intro_oreburgh" index="16">
+	<row id="PokemonCenterDailyTrainers_Text_GraceOreburgh_Intro" index="16">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hi, I’m Grace, the Idol! I’m just back\nfrom a show in Oreburgh Mine!\rSo, shall we battle?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_grace_battle_accepted_oreburgh" index="17">
+	<row id="PokemonCenterDailyTrainers_Text_GraceOreburgh_BattleAccepted" index="17">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’ll let you join my fan club if you can\nbeat me!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_grace_battle_declined_oreburgh" index="18">
+	<row id="PokemonCenterDailyTrainers_Text_GraceOreburgh_BattleDeclined" index="18">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You won’t accept my challenge?!\nBut I’m an Idol...</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_grace_post_battle_oreburgh" index="19">
+	<row id="PokemonCenterDailyTrainers_Text_GraceOreburgh_PostBattle" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Well, that’s me and my Pokémon!\nI hope you’ll support us!\rJust so you know, our latest single is\ntitled “Jigglin’ Pokémon Wub”!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_oli_not_enough_pokemon_eterna" index="20">
+	<row id="PokemonCenterDailyTrainers_Text_OliEterna_NotEnoughPokemon" index="20">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Two Pokémon!\nThat’s what we need.\rWe’re looking for a Trainer who’s\ntraveling with at least two Pokémon.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_oli_intro_eterna" index="21">
+	<row id="PokemonCenterDailyTrainers_Text_OliEterna_Intro" index="21">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh! Would you like to battle against the\nboth of us?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_oli_battle_accepted_eterna" index="22">
+	<row id="PokemonCenterDailyTrainers_Text_OliEterna_BattleAccepted" index="22">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You’re live on camera, but try to act\nnatural, OK?\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_oli_battle_declined_eterna" index="23">
+	<row id="PokemonCenterDailyTrainers_Text_OliEterna_BattleDeclined" index="23">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK, that’s how it is, huh.\nCan’t do anything about that.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_oli_post_battle_eterna" index="24">
+	<row id="PokemonCenterDailyTrainers_Text_OliEterna_PostBattle" index="24">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Whee!\nWasn’t that battle smoking hot?\rYou should make a Battle Video of it and\nshare it with the world!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_roxy_not_enough_pokemon_eterna" index="25">
+	<row id="PokemonCenterDailyTrainers_Text_RoxyEterna_NotEnoughPokemon" index="25">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, dear!\nYou only have one Pokémon with you?\rThat’s very commendable, but we can’t\nbattle with you that way.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_roxy_intro_eterna" index="26">
+	<row id="PokemonCenterDailyTrainers_Text_RoxyEterna_Intro" index="26">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Giggle!\nCould you win against both of us?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_roxy_battle_accepted_eterna" index="27">
+	<row id="PokemonCenterDailyTrainers_Text_RoxyEterna_BattleAccepted" index="27">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">We’ll thoroughly check out your\nabilities as a Trainer!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_roxy_battle_declined_eterna" index="28">
+	<row id="PokemonCenterDailyTrainers_Text_RoxyEterna_BattleDeclined" index="28">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh? You haven’t healed your Pokémon,\nmaybe?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_roxy_post_battle_eterna" index="29">
+	<row id="PokemonCenterDailyTrainers_Text_RoxyEterna_PostBattle" index="29">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">That was a good match.\rIt adds flair and drama when many\neager Pokémon get involved.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_kinsey_intro_hearthome" index="30">
+	<row id="PokemonCenterDailyTrainers_Text_KinseyHearthome_Intro" index="30">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">We’re doing a news piece on Trainers.\nCan we get you to participate?\rIf we can, we’d like to see how strong\nyou are in a battle!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_kinsey_battle_accepted_hearthome" index="31">
+	<row id="PokemonCenterDailyTrainers_Text_KinseyHearthome_BattleAccepted" index="31">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Jubilife TV!\nOn-the-spot live report!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_kinsey_battle_declined_hearthome" index="32">
+	<row id="PokemonCenterDailyTrainers_Text_KinseyHearthome_BattleDeclined" index="32">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">...Are you one of those contrary\npeople who reply “No” first thing?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_kinsey_post_battle_hearthome" index="33">
+	<row id="PokemonCenterDailyTrainers_Text_KinseyHearthome_PostBattle" index="33">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Why Trainers choose certain kinds of\nPokémon and their feelings about it...\rThat’s what we’re investigating.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_tevin_intro_hearthome" index="34">
+	<row id="PokemonCenterDailyTrainers_Text_TevinHearthome_Intro" index="34">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I felt a flash of inspiration when I laid\neyes on you.\rI’d really love to capture you on\ncamera while you’re battling.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_tevin_battle_accepted_hearthome" index="35">
+	<row id="PokemonCenterDailyTrainers_Text_TevinHearthome_BattleAccepted" index="35">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">For close-ups, I need to get in tight.\nYou don’t mind, do you?\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_tevin_battle_declined_hearthome" index="36">
+	<row id="PokemonCenterDailyTrainers_Text_TevinHearthome_BattleDeclined" index="36">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">That’s a downer...\rI thought I’d found a Trainer and\nPokémon who’d shine on camera.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_tevin_post_battle_hearthome" index="37">
+	<row id="PokemonCenterDailyTrainers_Text_TevinHearthome_PostBattle" index="37">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">So, did you come to Hearthome to\ncompete in Contests?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_grace_intro_pastiora" index="38">
+	<row id="PokemonCenterDailyTrainers_Text_GracePastiora_Intro" index="38">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Would you like to battle with me?\nAs a memento of your visit to Pastoria?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_grace_battle_accepted_pastiora" index="39">
+	<row id="PokemonCenterDailyTrainers_Text_GracePastiora_BattleAccepted" index="39">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’ll let you join my fan club if you can\nbeat me!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_grace_battle_declined_pastiora" index="40">
+	<row id="PokemonCenterDailyTrainers_Text_GracePastiora_BattleDeclined" index="40">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You’re not interested in Idols?\n...I think I’m going to cry.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_grace_post_battle_pastiora" index="41">
+	<row id="PokemonCenterDailyTrainers_Text_GracePastiora_PostBattle" index="41">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Well, that’s me and my Pokémon!\nI hope you’ll support us!\rJust so you know, our latest single is\ntitled “Jigglin’ Pokémon Wub”!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_lee_intro_pastoria" index="42">
+	<row id="PokemonCenterDailyTrainers_Text_LeePastoria_Intro" index="42">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Are we all ready to have some fun?\nOur battle will be fun! OK?!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_lee_battle_accepted_pastiora" index="43">
+	<row id="PokemonCenterDailyTrainers_Text_LeePastiora_BattleAccepted" index="43">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK, how shall we do this?\nShall we do something fantastical?\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_lee_battle_declined_pastiora" index="44">
+	<row id="PokemonCenterDailyTrainers_Text_LeePastiora_BattleDeclined" index="44">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, how shall I say this...?\nIt makes me all lonely, I say...</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_lee_post_battle_pastiora" index="45">
+	<row id="PokemonCenterDailyTrainers_Text_LeePastiora_PostBattle" index="45">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Well, let’s see!\nWhich town will we go to next?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_arturo_intro_pastoria" index="46">
+	<row id="PokemonCenterDailyTrainers_Text_ArturoPastoria_Intro" index="46">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Come on, let’s show off our Pokémon!\nLet’s do battle, kiddo!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_arturo_battle_accepted_pastiora" index="47">
+	<row id="PokemonCenterDailyTrainers_Text_ArturoPastiora_BattleAccepted" index="47">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your spirit’s vibes...\nYou’ve got rock in your veins!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_arturo_battle_declined_pastiora" index="48">
+	<row id="PokemonCenterDailyTrainers_Text_ArturoPastiora_BattleDeclined" index="48">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">My guitar...\nIt lies broken and weeping...</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_arturo_post_battle_pastiora" index="49">
+	<row id="PokemonCenterDailyTrainers_Text_ArturoPastiora_PostBattle" index="49">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Rock is about your spirit!\nBattling is about spirit, too!\fThat’s why a battle is rock!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_oli_not_enough_pokemon_veilstone" index="50">
+	<row id="PokemonCenterDailyTrainers_Text_OliVeilstone_NotEnoughPokemon" index="50">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Two Pokémon! If you had two Pokémon,\nwe’d get a great shot here.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_oli_intro_veilstone" index="51">
+	<row id="PokemonCenterDailyTrainers_Text_OliVeilstone_Intro" index="51">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh! You’re ready for a battle\nwith us?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_oli_battle_accepted_veilstone" index="52">
+	<row id="PokemonCenterDailyTrainers_Text_OliVeilstone_BattleAccepted" index="52">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You’re live on camera, but try to act\nnatural, OK?\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_oli_battle_declined_veilstone" index="53">
+	<row id="PokemonCenterDailyTrainers_Text_OliVeilstone_BattleDeclined" index="53">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK, that’s how it is, huh.\nCan’t do anything about that.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_oli_post_battle_veilstone" index="54">
+	<row id="PokemonCenterDailyTrainers_Text_OliVeilstone_PostBattle" index="54">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’d like to take that footage and\nbroadcast it worldwide.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_roxy_not_enough_pokemon_veilstone" index="55">
+	<row id="PokemonCenterDailyTrainers_Text_RoxyVeilstone_NotEnoughPokemon" index="55">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, no. What we really want to see\nis you battling using two Pokémon!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_roxy_intro_veilstone" index="56">
+	<row id="PokemonCenterDailyTrainers_Text_RoxyVeilstone_Intro" index="56">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Giggle!\nWill you have a battle with us?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_roxy_battle_accepted_veilstone" index="57">
+	<row id="PokemonCenterDailyTrainers_Text_RoxyVeilstone_BattleAccepted" index="57">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">We’ll thoroughly check out your\nabilities as a Trainer!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_roxy_battle_declined_veilstone" index="58">
+	<row id="PokemonCenterDailyTrainers_Text_RoxyVeilstone_BattleDeclined" index="58">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, too bad!\nI wanted to check out your Pokémon!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_roxy_post_battle_veilstone" index="59">
+	<row id="PokemonCenterDailyTrainers_Text_RoxyVeilstone_PostBattle" index="59">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I lost but I’m totally thrilled!\nWe made a wonderful spectacle!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_arturo_intro_sunyshore" index="60">
+	<row id="PokemonCenterDailyTrainers_Text_ArturoSunyshore_Intro" index="60">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Do you want to hear me play my guitar?\nOr do we battle?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_arturo_battle_accepted_sunyshore" index="61">
+	<row id="PokemonCenterDailyTrainers_Text_ArturoSunyshore_BattleAccepted" index="61">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your spirit’s vibes...\nYou’ve got rock in your veins!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_arturo_battle_declined_sunyshore" index="62">
+	<row id="PokemonCenterDailyTrainers_Text_ArturoSunyshore_BattleDeclined" index="62">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">My guitar...\nIt lies broken and weeping...</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_arturo_post_battle_sunyshore" index="63">
+	<row id="PokemonCenterDailyTrainers_Text_ArturoSunyshore_PostBattle" index="63">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">For Trainers, Pokémon!\rFor my girl, sweet kisses!\rThat’s the perfect world for this\nguitarist!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_grace_intro_snowpoint" index="64">
+	<row id="PokemonCenterDailyTrainers_Text_GraceSnowpoint_Intro" index="64">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Thank you for coming to Grace’s live\nshow in Snowpoint!\rI’m so happy you came to see me!\nI’ll battle you as my thank-you!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_grace_battle_accepted_snowpoint" index="65">
+	<row id="PokemonCenterDailyTrainers_Text_GraceSnowpoint_BattleAccepted" index="65">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’ll let you join my fan club if you can\nbeat me!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_grace_battle_declined_snowpoint" index="66">
+	<row id="PokemonCenterDailyTrainers_Text_GraceSnowpoint_BattleDeclined" index="66">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">But my song!\nIt’s nicer than that Crasher Wake’s!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_grace_post_battle_snowpoint" index="67">
+	<row id="PokemonCenterDailyTrainers_Text_GraceSnowpoint_PostBattle" index="67">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">My dream is to be the top Idol!\rTo win everyone’s heart, I’ll sing my\nheart out in snowy Snowpoint!\r...To a crowd of none.\n...This is Grace. Thanks for listening...</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_kinsey_intro_fight_area" index="68">
+	<row id="PokemonCenterDailyTrainers_Text_KinseyFightArea_Intro" index="68">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">We’re doing a feature on tough Trainers\nin the Battle Zone.\rThat’s where you come in.\nWe need you to battle us!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_kinsey_battle_accepted_fight_area" index="69">
+	<row id="PokemonCenterDailyTrainers_Text_KinseyFightArea_BattleAccepted" index="69">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Reporter Kinsey’s live interview!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_kinsey_battle_declined_fight_area" index="70">
+	<row id="PokemonCenterDailyTrainers_Text_KinseyFightArea_BattleDeclined" index="70">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You don’t have to be shy.\nWe can obscure your face if we have to.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_kinsey_post_battle_fight_area" index="71">
+	<row id="PokemonCenterDailyTrainers_Text_KinseyFightArea_PostBattle" index="71">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I go after interviews like my favorite\nPokémon move--I tackle them!\rOf course, I don’t use Tackle in\nbattles, though.</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_tevin_intro_fight_area" index="72">
+	<row id="PokemonCenterDailyTrainers_Text_TevinFightArea_Intro" index="72">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Expert Trainer spotted!\nWill you let us battle with you?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_tevin_battle_accepted_fight_area" index="73">
+	<row id="PokemonCenterDailyTrainers_Text_TevinFightArea_BattleAccepted" index="73">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Great! Great!\nYou guys are great!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_tevin_battle_declined_fight_area" index="74">
+	<row id="PokemonCenterDailyTrainers_Text_TevinFightArea_BattleDeclined" index="74">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Want to see how good you are before\nyou go off to the Battle Frontier?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_tevin_post_battled_fight_area" index="75">
+	<row id="PokemonCenterDailyTrainers_Text_TevinFightArea_PostBattle" index="75">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The combination of you and your Pokémon\nwill tear up the Battle Tower!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_ariel_intro_floaroma" index="76">
+	<row id="PokemonCenterDailyTrainers_Text_ArielFloaroma_Intro" index="76">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Po-Po-Pokémon!\rI want to become more like a PIKACHU!\nWill you battle me?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_ariel_battle_accepted_floaroma" index="77">
+	<row id="PokemonCenterDailyTrainers_Text_ArielFloaroma_BattleAccepted" index="77">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pi-Pikachu!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_ariel_battle_declined_floaroma" index="78">
+	<row id="PokemonCenterDailyTrainers_Text_ArielFloaroma_BattleDeclined" index="78">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pi-Pikachu!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_ariel_post_battle_floaroma" index="79">
+	<row id="PokemonCenterDailyTrainers_Text_ArielFloaroma_PostBattle" index="79">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I can make static electricity, but I’m\nnot very much like a Pokémon yet.\rDon’t give up, me!\nBecome a Pokémon, me!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_ariel_intro_solaceon" index="80">
+	<row id="PokemonCenterDailyTrainers_Text_ArielSolaceon_Intro" index="80">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pikachu!\rI want to become more like a PIKACHU!\nWill you battle me?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_ariel_battle_accepted_solaceon" index="81">
+	<row id="PokemonCenterDailyTrainers_Text_ArielSolaceon_BattleAccepted" index="81">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pi-Pikachu!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_ariel_battle_declined_solaceon" index="82">
+	<row id="PokemonCenterDailyTrainers_Text_ArielSolaceon_BattleDeclined" index="82">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pi-Pikachu!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_ariel_post_battle_solaceon" index="83">
+	<row id="PokemonCenterDailyTrainers_Text_ArielSolaceon_PostBattle" index="83">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I need to find a way to get more into\nthe character of a Pokémon...\rMaybe I should get the Day Care to\nraise me?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_lee_intro_celestic" index="84">
+	<row id="PokemonCenterDailyTrainers_Text_LeeCelestic_Intro" index="84">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">As a clown, I like to show off Pokémon\nthat are a little out of the ordinary.\rWant to battle and see for yourself?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_lee_battle_accepted_celestic" index="85">
+	<row id="PokemonCenterDailyTrainers_Text_LeeCelestic_BattleAccepted" index="85">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK, how shall we do this?\nShall we do something fantastical?\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_lee_battle_declined_celestic" index="86">
+	<row id="PokemonCenterDailyTrainers_Text_LeeCelestic_BattleDeclined" index="86">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, how shall I say this...?\nIt makes me all lonely, I say...</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_lee_post_battle_celestic" index="87">
+	<row id="PokemonCenterDailyTrainers_Text_LeeCelestic_PostBattle" index="87">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Here’s a piece of useless trivia.\nFear of clowns is also known as\fcoulrophobia!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_ariel_intro_resort_area" index="88">
+	<row id="PokemonCenterDailyTrainers_Text_ArielResortArea_Intro" index="88">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Po-Po-Pokémon!\rI want to become more like a PIKACHU!\nWill you battle me?</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_ariel_battle_accepted_resort_area" index="89">
+	<row id="PokemonCenterDailyTrainers_Text_ArielResortArea_BattleAccepted" index="89">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pi-Pikachu!\r</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_ariel_battle_declined_resort_area" index="90">
+	<row id="PokemonCenterDailyTrainers_Text_ArielResortArea_BattleDeclined" index="90">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pi-Pikachu!</language>
 	</row>
-	<row id="pokemon_center_daily_trainers_ariel_post_battle_resort_area" index="91">
+	<row id="PokemonCenterDailyTrainers_Text_ArielResortArea_PostBattle" index="91">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">But I just had my team pampered at the\nRibbon Syndicate!\rI have to get more into the character\nof a Pokémon...</language>
 	</row>

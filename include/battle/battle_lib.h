@@ -60,20 +60,20 @@ void BattleSystem_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCt
  * @brief Load a script file from the specified NARC.
  *
  * @param battleCtx
- * @param narc          Which NARC to open for the script
+ * @param narcID        Which NARC to open for the script
  * @param file          Which file in the NARC to load
  */
-void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file);
+void BattleSystem_LoadScript(BattleContext *battleCtx, enum NarcID narcID, int file);
 
 /**
  * @brief Load a script file from the specified NARC and invoke it as a call,
  * returning to the previous script once finished processing.
  *
  * @param battleCtx
- * @param narc          Which NARC to open for the script
+ * @param narcID        Which NARC to open for the script
  * @param file          Which file in the NARC to load
  */
-void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
+void BattleSystem_CallScript(BattleContext *battleCtx, enum NarcID narcID, int file);
 
 /**
  * @brief Pop a script from the stack, if one is present, and load it for

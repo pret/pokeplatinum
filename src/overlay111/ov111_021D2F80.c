@@ -129,7 +129,7 @@ Sprite *ov111_021D3280(UnkStruct_ov111_021D2F80 *param0, u32 param1, u32 param2,
         v3.affineScale.z = FX32_ONE;
         v3.affineZRotation = 0;
         v3.priority = param4;
-        v3.heapID = 115;
+        v3.heapID = HEAP_ID_115;
 
         if (param5 == 0) {
             v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;

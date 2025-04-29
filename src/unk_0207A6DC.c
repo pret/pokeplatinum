@@ -75,7 +75,7 @@ static void sub_0207ADB4(int param0, int param1, void *param2, void *param3);
 static void sub_0207ACB4(SysTask *param0, void *param1);
 static void sub_0207AD40(SysTask *param0, void *param1);
 static void sub_0207AE34(int param0, int param1, void *param2, void *param3);
-static void sub_0207ADD4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkStruct_02027F8C *param2);
+static void sub_0207ADD4(TrainerInfo *param0, PalPad *param1, PalPad *param2);
 
 static const CommCmdTable Unk_020F099C[] = {
     { sub_0207ADB4, sub_02032944, NULL },
@@ -440,14 +440,14 @@ BOOL sub_0207AAC8(UnkStruct_0207A778 *param0)
 
 BOOL sub_0207AAFC(UnkStruct_0207A778 *param0)
 {
-    UnkStruct_02027F8C *v0;
+    PalPad *v0;
     TrainerInfo *v1;
 
     if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
-    v0 = (UnkStruct_02027F8C *)&param0->unk_20[0];
+    v0 = (PalPad *)&param0->unk_20[0];
 
     if (param0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
         v1 = param0->unk_00->trainerInfo[CommSys_CurNetId() * 2];
@@ -455,7 +455,7 @@ BOOL sub_0207AAFC(UnkStruct_0207A778 *param0)
         v1 = param0->unk_00->trainerInfo[CommSys_CurNetId()];
     }
 
-    sub_0207ADD4(v1, param0->unk_00->unk_124, (UnkStruct_02027F8C *)param0->unk_20);
+    sub_0207ADD4(v1, param0->unk_00->unk_124, (PalPad *)param0->unk_20);
 
     {
         int v2;
@@ -651,7 +651,7 @@ static void sub_0207ADB4(int param0, int param1, void *param2, void *param3)
     ov16_0223F350(v0, 1);
 }
 
-static void sub_0207ADD4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkStruct_02027F8C *param2)
+static void sub_0207ADD4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
 {
     int v0;
 
@@ -675,7 +675,7 @@ void sub_0207AE34(int param0, int param1, void *param2, void *param3)
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
 
     if (CommSys_CurNetId() != param0) {
-        sub_02027FEC(v0->unk_00->unk_124, (UnkStruct_02027F8C *)param2, 1, HEAP_ID_BATTLE);
+        sub_02027FEC(v0->unk_00->unk_124, (PalPad *)param2, 1, HEAP_ID_BATTLE);
     }
 
     v0->unk_1020++;

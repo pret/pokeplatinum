@@ -55,7 +55,7 @@ static void PCBoxes_InitInternal(PCBoxes *pcBoxes)
     MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_STORAGE_SYSTEM, HEAP_ID_SYSTEM);
     if (messageLoader) {
         for (boxID = 0; boxID < MAX_PC_BOXES; boxID++) {
-            MessageLoader_Get(messageLoader, box1_name + boxID, pcBoxes->names[boxID]);
+            MessageLoader_Get(messageLoader, PokemonStorageSystem_Text_Box1 + boxID, pcBoxes->names[boxID]);
         }
 
         MessageLoader_Free(messageLoader);

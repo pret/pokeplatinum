@@ -1,15 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202442C_decl.h"
-#include "struct_defs/struct_0202DBAC.h"
-
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/struct_ov97_0222D04C.h"
-#include "overlay097/struct_ov97_0222D250.h"
-#include "overlay097/union_ov97_0222D2B0.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
@@ -25,6 +20,7 @@
 #include "main.h"
 #include "message.h"
 #include "message_util.h"
+#include "mystery_gift.h"
 #include "overlay_manager.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
@@ -43,7 +39,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200F174.h"
-#include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -76,7 +71,7 @@ typedef struct {
     Options *unk_2C08;
     int unk_2C0C;
     int unk_2C10;
-    UnkStruct_0202DBAC *unk_2C14[3];
+    WonderCard *unk_2C14[3];
     int unk_2C20;
     int unk_2C24;
     ListMenu *unk_2C28;
@@ -100,7 +95,7 @@ typedef struct {
     SpriteResourcesHeader unk_2E64;
     Sprite *unk_2E88[2];
     Sprite *unk_2E90[3];
-    UnkUnion_ov97_0222D2B0 unk_2E9C;
+    WonderCard unk_2E9C;
     UnkStruct_ov97_02231318 unk_31F4;
     void (*unk_3E0C)(void *);
     int unk_3E10;
@@ -360,7 +355,7 @@ static int ov97_02230728(OverlayManager *param0)
 
     ov97_02230868(v0);
 
-    if (sub_0202DDA8(v0->unk_2C00, v0->unk_2C20) == 1) {
+    if (MysteryGift_CheckWcHasPgtSaved(v0->unk_2C00, v0->unk_2C20) == 1) {
         ov97_022305EC(&v0->unk_2C30, 62);
     } else {
         ov97_022305EC(&v0->unk_2C30, 61);
@@ -379,16 +374,16 @@ static int ov97_02230778(OverlayManager *param0)
 
     v0->unk_3E14 = Window_AddWaitDial(&v0->unk_2C30, ((1 + 9) + 9));
 
-    if (sub_0202DDA8(v0->unk_2C00, v0->unk_2C20) == 1) {
-        sub_0202DC7C(v0->unk_2C00, v0->unk_2C20);
+    if (MysteryGift_CheckWcHasPgtSaved(v0->unk_2C00, v0->unk_2C20) == 1) {
+        MysteryGift_FreeWcErasePgt(v0->unk_2C00, v0->unk_2C20);
     } else {
-        sub_0202DCB8(v0->unk_2C00, v0->unk_2C20);
+        MysteryGift_FreeWcSlot(v0->unk_2C00, v0->unk_2C20);
     }
 
     SaveData_Save(v0->unk_2C04);
     DestroyWaitDial(v0->unk_3E14);
 
-    if (sub_0202DD88(v0->unk_2C00) == 0) {
+    if (MysteryGift_CheckHasWonderCards(v0->unk_2C00) == 0) {
         return 26;
     }
 
@@ -432,7 +427,7 @@ static BOOL ov97_022308B4(UnkStruct_ov97_02230868 *param0, Window *param1, TextC
 {
     Strbuf *v0 = Strbuf_Init(36 + 1, param0->heapID);
 
-    Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->unk_104.unk_00, 36);
+    Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->metadata.title, 36);
     Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
     Strbuf_Free(v0);
 
@@ -442,13 +437,13 @@ static BOOL ov97_022308B4(UnkStruct_ov97_02230868 *param0, Window *param1, TextC
 static BOOL ov97_02230904(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2)
 {
     Strbuf *v0;
-    UnkStruct_0202DBAC *v1 = param0->unk_2C14[param0->unk_2C20];
+    WonderCard *v1 = param0->unk_2C14[param0->unk_2C20];
     int v2;
 
-    if (v1->unk_104.unk_4E_3 == 0) {
+    if (v1->metadata.savePgt == 0) {
         v2 = 39;
     } else {
-        if ((param0->unk_2C00 == NULL) || (sub_0202DDA8(param0->unk_2C00, param0->unk_2C20) == 1)) {
+        if ((param0->unk_2C00 == NULL) || (MysteryGift_CheckWcHasPgtSaved(param0->unk_2C00, param0->unk_2C20) == 1)) {
             v2 = 37;
         } else {
             v2 = 38;
@@ -467,7 +462,7 @@ static BOOL ov97_0223097C(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
 {
     RTCDate v0;
 
-    RTC_ConvertDayToDate(&v0, param0->unk_2C14[param0->unk_2C20]->unk_354);
+    RTC_ConvertDayToDate(&v0, param0->unk_2C14[param0->unk_2C20]->receivedDate);
 
     StringTemplate_SetNumber(param0->unk_2A60, 0, v0.year + 2000, 4, 2, 1);
     StringTemplate_SetMonthName(param0->unk_2A60, 1, v0.month);
@@ -480,7 +475,7 @@ static BOOL ov97_022309E4(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
 {
     Strbuf *v0 = Strbuf_Init(250 + 1, HEAP_ID_87);
 
-    Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->unk_154, 250);
+    Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->description, 250);
     Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
     Strbuf_Free(v0);
 
@@ -489,15 +484,15 @@ static BOOL ov97_022309E4(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
 
 static BOOL ov97_02230A34(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
 {
-    if (param0->unk_2C14[param0->unk_2C20]->unk_348 == 255) {
+    if (param0->unk_2C14[param0->unk_2C20]->redistributionsLeft == 255) {
         Strbuf *v0;
 
         v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 51, HEAP_ID_87);
         Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
         Strbuf_Free(v0);
         return 0;
-    } else if (param0->unk_2C14[param0->unk_2C20]->unk_348) {
-        StringTemplate_SetNumber(param0->unk_2A60, 0, param0->unk_2C14[param0->unk_2C20]->unk_348, 3, 0, 1);
+    } else if (param0->unk_2C14[param0->unk_2C20]->redistributionsLeft) {
+        StringTemplate_SetNumber(param0->unk_2A60, 0, param0->unk_2C14[param0->unk_2C20]->redistributionsLeft, 3, 0, 1);
         return 1;
     } else {
         return 0;
@@ -512,7 +507,7 @@ static BOOL ov97_02230AB0(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
 
     v0[v2++] = Unk_ov97_0223E640[0];
 
-    if (param0->unk_2C14[param0->unk_2C20]->unk_348) {
+    if (param0->unk_2C14[param0->unk_2C20]->redistributionsLeft) {
         v0[v2++] = Unk_ov97_0223E640[1];
     }
 
@@ -685,7 +680,7 @@ static int ov97_02230F20(UnkStruct_ov97_02230868 *param0, int param1, int param2
             break;
         }
 
-        if (sub_0202DD5C(param0->unk_2C00, param1)) {
+        if (MysteryGift_CheckIsWcSlotOccupied(param0->unk_2C00, param1)) {
             break;
         }
     }
@@ -791,7 +786,7 @@ static void ov97_022310FC(UnkStruct_ov97_02230868 *param0)
     v0 = 178;
 
     for (v1 = 0; v1 < 3; v1++, v0 += 25) {
-        v2 = param0->unk_2C14[param0->unk_2C20]->unk_34A[v1];
+        v2 = param0->unk_2C14[param0->unk_2C20]->spritesSpecies[v1];
 
         if (v2 == 0) {
             if (param0->unk_2E90[v1]) {
@@ -954,17 +949,17 @@ static void ov97_02231464(void *param0)
 static void ov97_02231488(UnkStruct_ov97_02230868 *param0)
 {
     GF_ASSERT(param0->unk_2C20 < 3);
-    SaveData_Checksum(31);
+    SaveData_Checksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 
-    if (param0->unk_2C14[param0->unk_2C20]->unk_350 != 255) {
-        param0->unk_2C14[param0->unk_2C20]->unk_350++;
+    if (param0->unk_2C14[param0->unk_2C20]->redistributionCount != 255) {
+        param0->unk_2C14[param0->unk_2C20]->redistributionCount++;
     }
 
-    if (param0->unk_2C14[param0->unk_2C20]->unk_348 != 255) {
-        param0->unk_2C14[param0->unk_2C20]->unk_348--;
+    if (param0->unk_2C14[param0->unk_2C20]->redistributionsLeft != 255) {
+        param0->unk_2C14[param0->unk_2C20]->redistributionsLeft--;
     }
 
-    SaveData_SetChecksum(31);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
     ov97_0223846C(param0->unk_2C04);
 
     param0->unk_3E0C = ov97_02231464;
@@ -1032,9 +1027,9 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         v4->unk_2C08 = SaveData_GetOptions(v4->unk_2C04);
         v4->unk_2C0C = Options_Frame(v4->unk_2C08);
 
-        v4->unk_2C14[0] = sub_0202DB00(v4->unk_2C00, 0);
-        v4->unk_2C14[1] = sub_0202DB00(v4->unk_2C00, 1);
-        v4->unk_2C14[2] = sub_0202DB00(v4->unk_2C00, 2);
+        v4->unk_2C14[0] = MysteryGift_TryGetWonderCard(v4->unk_2C00, 0);
+        v4->unk_2C14[1] = MysteryGift_TryGetWonderCard(v4->unk_2C00, 1);
+        v4->unk_2C14[2] = MysteryGift_TryGetWonderCard(v4->unk_2C00, 2);
 
         v4->unk_2C20 = ov97_02230F20(v4, v4->unk_2C20, 1);
         *param1 = 1;
@@ -1205,7 +1200,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
     case 21:
         if (--v4->unk_2C94 == 0) {
             ov97_0223829C(&v4->unk_04.unk_8C, &v4->unk_2E9C, v4->heapID);
-            ov97_0222D1F0((const void *)&v4->unk_2E9C, sizeof(UnkUnion_ov97_0222D2B0));
+            ov97_0222D1F0((const void *)&v4->unk_2E9C, sizeof(WonderCard));
             ov97_02231488(v4);
             *param1 = 23;
         }
@@ -1261,14 +1256,14 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
 
 static int ov97_02231BD8(UnkStruct_ov97_02230868 *param0)
 {
-    UnkStruct_0202DBAC *v0 = param0->unk_2C14[param0->unk_2C20];
+    WonderCard *v0 = param0->unk_2C14[param0->unk_2C20];
 
-    memcpy(&param0->unk_04.unk_8C.unk_50, v0, sizeof(UnkUnion_ov97_0222D2B0));
-    memcpy(&param0->unk_04.unk_8C.unk_00, &v0->unk_104, sizeof(UnkStruct_ov97_0222D250));
+    memcpy(&param0->unk_04.unk_8C.unk_50, v0, sizeof(WonderCard));
+    memcpy(&param0->unk_04.unk_8C.unk_00, &v0->metadata, sizeof(WonderCardMetadata));
 
-    param0->unk_04.unk_8C.unk_50.val2.unk_348 = 0;
-    param0->unk_04.unk_8C.unk_00.unk_4E_4 = 0;
-    param0->unk_04.unk_8C.unk_00.unk_4E_5 = 1;
+    param0->unk_04.unk_8C.unk_50.redistributionsLeft = 0;
+    param0->unk_04.unk_8C.unk_00.shareable = 0;
+    param0->unk_04.unk_8C.unk_00.fromSharing = 1;
 
     ov97_0222D1C4(&param0->unk_04, param0->unk_2C04, 15);
 
@@ -1485,7 +1480,7 @@ void ov97_02231FFC(BgConfig *param0, void *param1, int heapID)
 
     Font_LoadTextPalette(0, 15 * 32, v0->heapID);
 
-    v0->unk_2C14[0] = (UnkStruct_0202DBAC *)param1;
+    v0->unk_2C14[0] = (WonderCard *)param1;
     v0->unk_2C20 = 0;
 
     ov97_02230C44(v0, 1, 0);

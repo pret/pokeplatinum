@@ -1900,7 +1900,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         BallThrow v2;
 
         v2.type = Unk_ov16_0226F174[v0->unk_82];
-        v2.heapID = 5;
+        v2.heapID = HEAP_ID_BATTLE;
         v2.target = v0->unk_81;
         v2.ballID = v0->unk_8E;
         v2.cellActorSys = ov16_0223E010(v0->unk_00);
@@ -2152,7 +2152,7 @@ static void ov16_0225F764(SysTask *param0, void *param1)
                 BallThrow v5;
 
                 v5.type = Unk_ov16_0226F174[v0->unk_6A];
-                v5.heapID = 5;
+                v5.heapID = HEAP_ID_BATTLE;
                 v5.mode = 5;
                 v5.target = v0->unk_69;
                 v5.ballID = v0->unk_6E;
@@ -2168,7 +2168,7 @@ static void ov16_0225F764(SysTask *param0, void *param1)
                 int v7[] = { 0, 1, 2, 3, 4, 5 };
 
                 v6.type = v7[v0->unk_6A];
-                v6.heapID = 5;
+                v6.heapID = HEAP_ID_BATTLE;
                 v6.mode = 5;
                 v6.target = v0->unk_69;
                 v6.ballID = v0->unk_6E;
@@ -2507,7 +2507,7 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
                     break;
                 }
 
-                v6.heapID = 5;
+                v6.heapID = HEAP_ID_BATTLE;
                 v6.mode = 4;
                 v6.target = v0->unk_09;
                 v6.cellActorSys = ov16_0223E010(v0->unk_00);
@@ -2747,7 +2747,7 @@ static void ov16_02260384(SysTask *param0, void *param1)
     }
 }
 
-enum {
+enum SlideHealthbarInState {
     SLIDE_HEALTHBAR_IN_STATE_ENABLE = 0,
     SLIDE_HEALTHBAR_IN_STATE_WAIT,
     SLIDE_HEALTHBAR_IN_STATE_DONE,
@@ -2789,7 +2789,7 @@ static void SlideHealthbarInTask(SysTask *task, void *data)
     }
 }
 
-enum {
+enum SlideHealthbarOutState {
     SLIDE_HEALTHBAR_OUT_STATE_WAIT = 0,
     SLIDE_HEALTHBAR_OUT_STATE_DONE,
 };
@@ -5650,8 +5650,8 @@ static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, PokemonSpriteManage
         v3 = 0;
     }
 
-    sub_02013750(param2->archive, param2->character, HEAP_ID_BATTLE, v1, param2->personality, 0, v3, param2->spindaSpots);
-    ov16_0223F2CC(ov16_0223E0C8(battleSys), param10, param2->archive);
+    sub_02013750(param2->narcID, param2->character, HEAP_ID_BATTLE, v1, param2->personality, 0, v3, param2->spindaSpots);
+    ov16_0223F2CC(ov16_0223E0C8(battleSys), param10, param2->narcID);
     ov16_0223F2E4(ov16_0223E0C8(battleSys), param10, param2->palette);
     ov16_0223F2FC(ov16_0223E0C8(battleSys), param10, param6);
 
@@ -6202,7 +6202,7 @@ static BOOL ov16_02264650(UnkStruct_ov16_02264650_1 *param0, ManagedSprite *para
     int v1;
     BOOL v2 = 0;
 
-    v1 = ManagedSprite_SetUserAttrForCurrentAnimFrame(param0->unk_08);
+    v1 = ManagedSprite_GetUserAttrForCurrentAnimFrame(param0->unk_08);
 
     switch (v1) {
     case 1:

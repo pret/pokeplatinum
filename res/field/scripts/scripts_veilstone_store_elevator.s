@@ -10,14 +10,14 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetFloorsAbove 0x40CE
-    SetVar 0x8008, 0x40CE
-    GoToIfEq 0x8008, 0, _0068
-    GoToIfEq 0x8008, 1, _0072
-    GoToIfEq 0x8008, 2, _007C
-    GoToIfEq 0x8008, 3, _0086
-    GoToIfEq 0x8008, 4, _0090
-    GoToIfEq 0x8008, 5, _009A
+    GetFloorsAbove VAR_UNK_0x40CE
+    SetVar VAR_0x8008, VAR_UNK_0x40CE
+    GoToIfEq VAR_0x8008, 0, _0068
+    GoToIfEq VAR_0x8008, 1, _0072
+    GoToIfEq VAR_0x8008, 2, _007C
+    GoToIfEq VAR_0x8008, 3, _0086
+    GoToIfEq VAR_0x8008, 4, _0090
+    GoToIfEq VAR_0x8008, 5, _009A
     End
 
 _0068:
@@ -46,9 +46,9 @@ _009A:
     End
 
 _00A6:
-    ShowCurrentFloor 20, 1, 0x40CE
+    ShowCurrentFloor 20, 1, VAR_UNK_0x40CE
     Message 0
-    InitGlobalTextMenu 1, 1, 0, 0x800C
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 120, 0
     AddMenuEntryImm 119, 1
     AddMenuEntryImm 118, 2
@@ -57,108 +57,108 @@ _00A6:
     AddMenuEntryImm 121, 5
     AddMenuEntryImm 124, 6
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _02BC
-    GoToIfEq 0x8008, 1, _026D
-    GoToIfEq 0x8008, 2, _021E
-    GoToIfEq 0x8008, 3, _01CF
-    GoToIfEq 0x8008, 4, _0180
-    GoToIfEq 0x8008, 5, _0131
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _02BC
+    GoToIfEq VAR_0x8008, 1, _026D
+    GoToIfEq VAR_0x8008, 2, _021E
+    GoToIfEq VAR_0x8008, 3, _01CF
+    GoToIfEq VAR_0x8008, 4, _0180
+    GoToIfEq VAR_0x8008, 5, _0131
     GoTo _03F6
 
 _0131:
-    WaitTime 1, 0x800C
-    GetFloorsAbove 0x40CE
+    WaitTime 1, VAR_RESULT
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 0x236, 1, 18, 2, 1
-    GoToIfEq 0x40CE, 5, _03DF
-    CallIfGt 0x40CE, 5, _030B
-    CallIfLt 0x40CE, 5, _0316
+    GoToIfEq VAR_UNK_0x40CE, 5, _03DF
+    CallIfGt VAR_UNK_0x40CE, 5, _030B
+    CallIfLt VAR_UNK_0x40CE, 5, _0316
     Call _0321
-    SetVar 0x40CE, 5
+    SetVar VAR_UNK_0x40CE, 5
     GoTo _033F
 
 _0180:
-    WaitTime 1, 0x800C
-    GetFloorsAbove 0x40CE
+    WaitTime 1, VAR_RESULT
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 137, 2, 18, 2, 1
-    GoToIfEq 0x40CE, 4, _03DF
-    CallIfGt 0x40CE, 4, _030B
-    CallIfLt 0x40CE, 4, _0316
+    GoToIfEq VAR_UNK_0x40CE, 4, _03DF
+    CallIfGt VAR_UNK_0x40CE, 4, _030B
+    CallIfLt VAR_UNK_0x40CE, 4, _0316
     Call _0321
-    SetVar 0x40CE, 4
+    SetVar VAR_UNK_0x40CE, 4
     GoTo _033F
 
 _01CF:
-    WaitTime 1, 0x800C
-    GetFloorsAbove 0x40CE
+    WaitTime 1, VAR_RESULT
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 138, 2, 18, 2, 1
-    GoToIfEq 0x40CE, 3, _03DF
-    CallIfGt 0x40CE, 3, _030B
-    CallIfLt 0x40CE, 3, _0316
+    GoToIfEq VAR_UNK_0x40CE, 3, _03DF
+    CallIfGt VAR_UNK_0x40CE, 3, _030B
+    CallIfLt VAR_UNK_0x40CE, 3, _0316
     Call _0321
-    SetVar 0x40CE, 3
+    SetVar VAR_UNK_0x40CE, 3
     GoTo _033F
 
 _021E:
-    WaitTime 1, 0x800C
-    GetFloorsAbove 0x40CE
+    WaitTime 1, VAR_RESULT
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 139, 2, 18, 2, 1
-    GoToIfEq 0x40CE, 2, _03DF
-    CallIfGt 0x40CE, 2, _030B
-    CallIfLt 0x40CE, 2, _0316
+    GoToIfEq VAR_UNK_0x40CE, 2, _03DF
+    CallIfGt VAR_UNK_0x40CE, 2, _030B
+    CallIfLt VAR_UNK_0x40CE, 2, _0316
     Call _0321
-    SetVar 0x40CE, 2
+    SetVar VAR_UNK_0x40CE, 2
     GoTo _033F
 
 _026D:
-    WaitTime 1, 0x800C
-    GetFloorsAbove 0x40CE
+    WaitTime 1, VAR_RESULT
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 140, 2, 18, 2, 1
-    GoToIfEq 0x40CE, 1, _03DF
-    CallIfGt 0x40CE, 1, _030B
-    CallIfLt 0x40CE, 1, _0316
+    GoToIfEq VAR_UNK_0x40CE, 1, _03DF
+    CallIfGt VAR_UNK_0x40CE, 1, _030B
+    CallIfLt VAR_UNK_0x40CE, 1, _0316
     Call _0321
-    SetVar 0x40CE, 1
+    SetVar VAR_UNK_0x40CE, 1
     GoTo _033F
 
 _02BC:
-    WaitTime 1, 0x800C
-    GetFloorsAbove 0x40CE
+    WaitTime 1, VAR_RESULT
+    GetFloorsAbove VAR_UNK_0x40CE
     ScrCmd_11B 141, 1, 18, 2, 1
-    GoToIfEq 0x40CE, 0, _03DF
-    CallIfGt 0x40CE, 0, _030B
-    CallIfLt 0x40CE, 0, _0316
+    GoToIfEq VAR_UNK_0x40CE, 0, _03DF
+    CallIfGt VAR_UNK_0x40CE, 0, _030B
+    CallIfLt VAR_UNK_0x40CE, 0, _0316
     Call _0321
-    SetVar 0x40CE, 0
+    SetVar VAR_UNK_0x40CE, 0
     GoTo _033F
 
 _030B:
     Message 2
-    SetVar 0x8004, 0
+    SetVar VAR_0x8004, 0
     Return
 
 _0316:
     Message 3
-    SetVar 0x8004, 1
+    SetVar VAR_0x8004, 1
     Return
 
 _0321:
-    SetVar 0x40CE, -1
+    SetVar VAR_UNK_0x40CE, -1
     CloseMessage
     ApplyMovement 0, _0410
     WaitMovement
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_23C 0x8004, 4
+    ScrCmd_23C VAR_0x8004, 4
     Return
 
 _033F:
-    SetVar 0x8008, 0x40CE
-    GoToIfEq 0x8008, 0, _0395
-    GoToIfEq 0x8008, 1, _03A0
-    GoToIfEq 0x8008, 2, _03AB
-    GoToIfEq 0x8008, 3, _03B6
-    GoToIfEq 0x8008, 4, _03C1
-    GoToIfEq 0x8008, 5, _03CC
+    SetVar VAR_0x8008, VAR_UNK_0x40CE
+    GoToIfEq VAR_0x8008, 0, _0395
+    GoToIfEq VAR_0x8008, 1, _03A0
+    GoToIfEq VAR_0x8008, 2, _03AB
+    GoToIfEq VAR_0x8008, 3, _03B6
+    GoToIfEq VAR_0x8008, 4, _03C1
+    GoToIfEq VAR_0x8008, 5, _03CC
     End
 
 _0395:
@@ -198,8 +198,8 @@ _03D7:
     End
 
 _03DF:
-    SetVar 0x40CE, -1
-    WaitTime 1, 0x800C
+    SetVar VAR_UNK_0x40CE, -1
+    WaitTime 1, VAR_RESULT
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -207,8 +207,8 @@ _03DF:
     End
 
 _03F6:
-    SetVar 0x40CE, -1
-    WaitTime 1, 0x800C
+    SetVar VAR_UNK_0x40CE, -1
+    WaitTime 1, VAR_RESULT
     Message 1
     WaitABXPadPress
     CloseMessage

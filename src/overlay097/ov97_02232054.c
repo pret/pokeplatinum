@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202442C_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay097/struct_ov97_0223829C.h"
@@ -11,8 +10,8 @@
 
 #include "bg_window.h"
 #include "gx_layers.h"
+#include "mystery_gift.h"
 #include "savedata.h"
-#include "unk_0202DAB4.h"
 
 void ov97_02232054(void)
 {
@@ -135,16 +134,16 @@ int ov97_02232148(SaveData *param0, UnkStruct_ov97_0223829C *param1)
     u32 v0;
     MysteryGift *v1 = SaveData_GetMysteryGift(param0);
 
-    v0 = param1->unk_00.unk_48;
+    v0 = param1->unk_00.validGames;
 
-    if ((v0 == 0xFFFFFFFF) && (param1->unk_00.unk_4C == 0xFFFF)) {
+    if ((v0 == 0xFFFFFFFF) && (param1->unk_00.id == 0xFFFF)) {
         MysteryGift_Init(v1);
         SaveData_SaveBlock(param0, 0);
 
         OS_ResetSystem(0);
     }
 
-    if ((param1->unk_00.unk_4C >= 100) && (param1->unk_00.unk_4C <= 152)) {
+    if ((param1->unk_00.id >= 100) && (param1->unk_00.id <= 152)) {
         v0 |= (1 << 12) + (1 << 7) + (1 << 8);
     }
 
@@ -156,19 +155,19 @@ int ov97_02232148(SaveData *param0, UnkStruct_ov97_0223829C *param1)
         return 1;
     }
 
-    if ((param1->unk_00.unk_4E_0 == 1) && (sub_0202DE2C(v1, param1->unk_00.unk_4C) == 1)) {
+    if ((param1->unk_00.unique == 1) && (MysteryGift_GetWcIDReceived(v1, param1->unk_00.id) == 1)) {
         return 2;
     }
 
-    if ((param1->unk_00.unk_4E_2 == 1) && (sub_0202DD08(v1) == 0)) {
+    if ((param1->unk_00.saveWonderCard == 1) && (MysteryGift_CheckFreeWcSlotExists(v1) == 0)) {
         return 4;
     }
 
-    if (sub_0202DCE0(v1) == 0) {
+    if (MysteryGift_CheckFreePgtSlotExists(v1) == 0) {
         return 3;
     }
 
-    if (param1->unk_00.unk_4E_5 == 1) {
+    if (param1->unk_00.fromSharing == 1) {
         return 5;
     }
 

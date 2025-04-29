@@ -20,7 +20,7 @@ typedef struct {
     int unk_20;
     int unk_24;
     int unk_28;
-    int unk_2C;
+    int heapID;
 } UnkStruct_020127E8;
 
 #endif // POKEPLATINUM_STRUCT_020127E8_H

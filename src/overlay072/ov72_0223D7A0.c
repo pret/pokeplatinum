@@ -156,7 +156,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         ov72_0223DF58(v0);
         ov72_0223E0A0(v0, param0);
 
-        Sound_SetSceneAndPlayBGM(56, 0, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_56, SEQ_NONE, 0);
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
         NARC_dtor(v1);
         (*param1)++;
@@ -522,7 +522,7 @@ static void ov72_0223DF58(UnkStruct_ov72_0223DB98 *param0)
         v1.affineZRotation = 0;
         v1.priority = 1;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.heapID = 39;
+        v1.heapID = HEAP_ID_39;
 
         for (v0 = 0; v0 < 1; v0++) {
             v1.resourceData = &param0->unk_220;

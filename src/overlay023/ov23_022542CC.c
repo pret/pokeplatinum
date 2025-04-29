@@ -381,7 +381,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
     int v4;
     int v5;
 
-    v0 = sub_020298B0(param0->fieldSystem->saveData);
+    v0 = SaveData_GetUndergroundData(param0->fieldSystem->saveData);
     v4 = sub_020289A0(v0);
     param0->unk_48 = v4;
     v5 = v4 + 1;

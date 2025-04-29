@@ -20,7 +20,7 @@ typedef struct {
     u16 unk_18;
     u16 unk_1A;
     u8 unk_1C;
-    u8 unk_1D;
+    u8 heapID;
     u8 unk_1E;
     u16 unk_20;
 } UnkStruct_ov23_02248D20;

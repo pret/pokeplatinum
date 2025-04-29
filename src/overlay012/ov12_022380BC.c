@@ -96,9 +96,9 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
     *v1 = v0;
 
     PokemonSprite_ScheduleReloadFromNARC(param0->unk_18[param0->unk_00]);
-    sub_02013750(v1->archive, v1->character, heapID, param0->unk_08[param0->unk_00]->unk_00, v7, 0, v4, v1->spindaSpots);
+    sub_02013750(v1->narcID, v1->character, heapID, param0->unk_08[param0->unk_00]->unk_00, v7, 0, v4, v1->spindaSpots);
 
-    param0->unk_08[param0->unk_00]->unk_04 = v1->archive;
+    param0->unk_08[param0->unk_00]->unk_04 = v1->narcID;
     param0->unk_08[param0->unk_00]->unk_08 = v1->palette;
 
     v11 = param0->unk_08[param0->unk_00]->unk_0C = LoadPokemonSpriteYOffset(v2, v3, v4, v6, v7);
@@ -146,9 +146,9 @@ void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
         v3 = 0;
     }
 
-    sub_02013750(v0->archive, v0->character, heapID, param0->unk_08[param0->unk_00]->unk_00, v5, 0, v3, v0->spindaSpots);
+    sub_02013750(v0->narcID, v0->character, heapID, param0->unk_08[param0->unk_00]->unk_00, v5, 0, v3, v0->spindaSpots);
 
-    param0->unk_08[param0->unk_00]->unk_04 = v0->archive;
+    param0->unk_08[param0->unk_00]->unk_04 = v0->narcID;
     param0->unk_08[param0->unk_00]->unk_08 = v0->palette;
     param0->unk_08[param0->unk_00]->unk_0C = LoadPokemonSpriteYOffset(v1, v2, v3, v4, v5);
 
@@ -167,7 +167,7 @@ void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
 
     PokemonSprite_Push(param0->unk_18[param0->unk_00]);
 
-    v0.archive = 117;
+    v0.narcID = 117;
     v0.palette = 250;
     v0.spindaSpots = 0;
     v0.dummy = 0;
@@ -185,9 +185,9 @@ void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
     *v1 = v0;
 
     PokemonSprite_ScheduleReloadFromNARC(param0->unk_18[param0->unk_00]);
-    sub_02013610(v1->archive, v1->character, heapID, param0->unk_08[param0->unk_00]->unk_00);
+    sub_02013610(v1->narcID, v1->character, heapID, param0->unk_08[param0->unk_00]->unk_00);
 
-    param0->unk_08[param0->unk_00]->unk_04 = v0.archive;
+    param0->unk_08[param0->unk_00]->unk_04 = v0.narcID;
     param0->unk_08[param0->unk_00]->unk_08 = v0.palette;
 
     NARC_ReadWholeMemberByIndexPair(&v4, NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O, v3);

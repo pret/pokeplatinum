@@ -10,14 +10,14 @@
 #define LEE            43
 #define ARIEL          71
 
-#define VAR_MAP_ID     0x4001
-#define VAR_NPC_1      0x402A
-#define VAR_NPC_2      0x402B
+#define VAR_MAP_ID     VAR_MAP_LOCAL_1
+#define VAR_NPC_1      VAR_OBJ_GFX_ID_A
+#define VAR_NPC_2      VAR_OBJ_GFX_ID_B
 
-#define VAR_TWO_MONS   0x8000
-#define VAR_IS_NPC_2   0x8004
-#define VAR_TRAINER    0x8005
-#define VAR_DEFEATED   0x8006
+#define VAR_TWO_MONS   VAR_0x8000
+#define VAR_IS_NPC_2   VAR_0x8004
+#define VAR_TRAINER    VAR_0x8005
+#define VAR_DEFEATED   VAR_0x8006
 
     .data
 
@@ -37,14 +37,14 @@ PokemonCenterDailyTrainers_End:
     End
 
 PokemonCenterDailyTrainers_SetNPCs:
-    GetDayOfWeek 0x4000
-    CallIfEq 0x4000, DAY_OF_WEEK_SUNDAY, PokemonCenterDailyTrainers_SetNPCsSunday
-    CallIfEq 0x4000, DAY_OF_WEEK_MONDAY, PokemonCenterDailyTrainers_SetNPCsMonday
-    CallIfEq 0x4000, DAY_OF_WEEK_TUESDAY, PokemonCenterDailyTrainers_SetNPCsTuesday
-    CallIfEq 0x4000, DAY_OF_WEEK_WEDNESDAY, PokemonCenterDailyTrainers_SetNPCsWednesday
-    CallIfEq 0x4000, DAY_OF_WEEK_THURSDAY, PokemonCenterDailyTrainers_SetNPCsThursday
-    CallIfEq 0x4000, DAY_OF_WEEK_FRIDAY, PokemonCenterDailyTrainers_SetNPCsFriday
-    CallIfEq 0x4000, DAY_OF_WEEK_SATURDAY, PokemonCenterDailyTrainers_SetNPCsSaturday
+    GetDayOfWeek VAR_MAP_LOCAL_0
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, PokemonCenterDailyTrainers_SetNPCsSunday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_MONDAY, PokemonCenterDailyTrainers_SetNPCsMonday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_TUESDAY, PokemonCenterDailyTrainers_SetNPCsTuesday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_WEDNESDAY, PokemonCenterDailyTrainers_SetNPCsWednesday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_THURSDAY, PokemonCenterDailyTrainers_SetNPCsThursday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_FRIDAY, PokemonCenterDailyTrainers_SetNPCsFriday
+    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SATURDAY, PokemonCenterDailyTrainers_SetNPCsSaturday
     Return
 
 PokemonCenterDailyTrainers_SetNPCsSunday:
@@ -223,9 +223,9 @@ PokemonCenterDailyTrainers_IntroMessageSecondNPC:
     End
 
 PokemonCenterDailyTrainers_AskForBattle:
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, PokemonCenterDailyTrainers_BattleAccepted
-    GoToIfEq 0x800C, MENU_NO, PokemonCenterDailyTrainers_BattleDeclined
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, PokemonCenterDailyTrainers_BattleAccepted
+    GoToIfEq VAR_RESULT, MENU_NO, PokemonCenterDailyTrainers_BattleDeclined
     End
 
 PokemonCenterDailyTrainers_NotEnoughAliveMons:
@@ -271,8 +271,8 @@ PokemonCenterDailyTrainers_BattleAcceptedSecondNPC:
 PokemonCenterDailyTrainers_Battle:
     CloseMessage
     StartTrainerBattle VAR_TRAINER
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, PokemonCenterDailyTrainers_BattleLost
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PokemonCenterDailyTrainers_BattleLost
     GoTo PokemonCenterDailyTrainers_PostBattle
     End
 
@@ -337,15 +337,15 @@ PokemonCenterDailyTrainers_GraceIntroMessage:
     Return
 
 PokemonCenterDailyTrainers_GraceIntroMessageOreburgh:
-    Message pokemon_center_daily_trainers_grace_intro_oreburgh
+    Message PokemonCenterDailyTrainers_Text_GraceOreburgh_Intro
     Return
 
 PokemonCenterDailyTrainers_GraceIntroMessagePastoria:
-    Message pokemon_center_daily_trainers_grace_intro_pastiora
+    Message PokemonCenterDailyTrainers_Text_GracePastiora_Intro
     Return
 
 PokemonCenterDailyTrainers_GraceIntroMessageSnowpoint:
-    Message pokemon_center_daily_trainers_grace_intro_snowpoint
+    Message PokemonCenterDailyTrainers_Text_GraceSnowpoint_Intro
     Return
 
 PokemonCenterDailyTrainers_KinseyIntroMessage:
@@ -356,15 +356,15 @@ PokemonCenterDailyTrainers_KinseyIntroMessage:
     Return
 
 PokemonCenterDailyTrainers_KinseyIntroMessageJubilife:
-    Message pokemon_center_daily_trainers_kinsey_intro_jubilife
+    Message PokemonCenterDailyTrainers_Text_KinseyJubilife_Intro
     Return
 
 PokemonCenterDailyTrainers_KinseyIntroMessageHearthome:
-    Message pokemon_center_daily_trainers_kinsey_intro_hearthome
+    Message PokemonCenterDailyTrainers_Text_KinseyHearthome_Intro
     Return
 
 PokemonCenterDailyTrainers_KinseyIntroMessageFightArea:
-    Message pokemon_center_daily_trainers_kinsey_intro_fight_area
+    Message PokemonCenterDailyTrainers_Text_KinseyFightArea_Intro
     Return
 
 PokemonCenterDailyTrainers_TevinOrOliIntroMessage:
@@ -377,15 +377,15 @@ PokemonCenterDailyTrainers_TevinOrOliIntroMessage:
     Return
 
 PokemonCenterDailyTrainers_TevinIntroMessageJubilife:
-    Message pokemon_center_daily_trainers_tevin_intro_jubilife
+    Message PokemonCenterDailyTrainers_Text_TevinJubilife_Intro
     Return
 
 PokemonCenterDailyTrainers_TevinIntroMessageHearthome:
-    Message pokemon_center_daily_trainers_tevin_intro_hearthome
+    Message PokemonCenterDailyTrainers_Text_TevinHearthome_Intro
     Return
 
 PokemonCenterDailyTrainers_TevinIntroMessageFightArea:
-    Message pokemon_center_daily_trainers_tevin_intro_fight_area
+    Message PokemonCenterDailyTrainers_Text_TevinFightArea_Intro
     Return
 
 PokemonCenterDailyTrainers_LeeIntroMessage:
@@ -396,15 +396,15 @@ PokemonCenterDailyTrainers_LeeIntroMessage:
     Return
 
 PokemonCenterDailyTrainers_LeeIntroMessageHearthome:
-    Message pokemon_center_daily_trainers_lee_intro_hearthome
+    Message PokemonCenterDailyTrainers_Text_LeeHearthome_Intro
     Return
 
 PokemonCenterDailyTrainers_LeeIntroMessagePastoria:
-    Message pokemon_center_daily_trainers_lee_intro_pastoria
+    Message PokemonCenterDailyTrainers_Text_LeePastoria_Intro
     Return
 
 PokemonCenterDailyTrainers_LeeIntroMessageCelestic:
-    Message pokemon_center_daily_trainers_lee_intro_celestic
+    Message PokemonCenterDailyTrainers_Text_LeeCelestic_Intro
     Return
 
 PokemonCenterDailyTrainers_RoxyIntroMessage:
@@ -414,11 +414,11 @@ PokemonCenterDailyTrainers_RoxyIntroMessage:
     Return
 
 PokemonCenterDailyTrainers_RoxyIntroMessageEterna:
-    Message pokemon_center_daily_trainers_roxy_intro_eterna
+    Message PokemonCenterDailyTrainers_Text_RoxyEterna_Intro
     Return
 
 PokemonCenterDailyTrainers_RoxyIntroMessageVeilstone:
-    Message pokemon_center_daily_trainers_roxy_intro_veilstone
+    Message PokemonCenterDailyTrainers_Text_RoxyVeilstone_Intro
     Return
 
 PokemonCenterDailyTrainers_OliIntroMessage:
@@ -428,11 +428,11 @@ PokemonCenterDailyTrainers_OliIntroMessage:
     Return
 
 PokemonCenterDailyTrainers_OliIntroMessageEterna:
-    Message pokemon_center_daily_trainers_oli_intro_eterna
+    Message PokemonCenterDailyTrainers_Text_OliEterna_Intro
     Return
 
 PokemonCenterDailyTrainers_OliIntroMessageVeilstone:
-    Message pokemon_center_daily_trainers_oli_intro_veilstone
+    Message PokemonCenterDailyTrainers_Text_OliVeilstone_Intro
     Return
 
 PokemonCenterDailyTrainers_ArielIntroMessage:
@@ -443,15 +443,15 @@ PokemonCenterDailyTrainers_ArielIntroMessage:
     Return
 
 PokemonCenterDailyTrainers_ArielIntroMessageFloaroma:
-    Message pokemon_center_daily_trainers_ariel_intro_floaroma
+    Message PokemonCenterDailyTrainers_Text_ArielFloaroma_Intro
     Return
 
 PokemonCenterDailyTrainers_ArielIntroMessageSolaceon:
-    Message pokemon_center_daily_trainers_ariel_intro_solaceon
+    Message PokemonCenterDailyTrainers_Text_ArielSolaceon_Intro
     Return
 
 PokemonCenterDailyTrainers_ArielIntroMessageResortArea:
-    Message pokemon_center_daily_trainers_ariel_intro_resort_area
+    Message PokemonCenterDailyTrainers_Text_ArielResortArea_Intro
     Return
 
 PokemonCenterDailyTrainers_ArturoIntroMessage:
@@ -462,15 +462,15 @@ PokemonCenterDailyTrainers_ArturoIntroMessage:
     Return
 
 PokemonCenterDailyTrainers_ArturoIntroMessageCanalave:
-    Message pokemon_center_daily_trainers_arturo_intro_canalave
+    Message PokemonCenterDailyTrainers_Text_ArturoCanalave_Intro
     Return
 
 PokemonCenterDailyTrainers_ArturoIntroMessagePastoria:
-    Message pokemon_center_daily_trainers_arturo_intro_pastoria
+    Message PokemonCenterDailyTrainers_Text_ArturoPastoria_Intro
     Return
 
 PokemonCenterDailyTrainers_ArturoIntroMessageSunyshore:
-    Message pokemon_center_daily_trainers_arturo_intro_sunyshore
+    Message PokemonCenterDailyTrainers_Text_ArturoSunyshore_Intro
     Return
 
 PokemonCenterDailyTrainers_GraceBattleAccepted:
@@ -482,15 +482,15 @@ PokemonCenterDailyTrainers_GraceBattleAccepted:
     Return
 
 PokemonCenterDailyTrainers_GraceBattleAcceptedMessageOreburgh:
-    Message pokemon_center_daily_trainers_grace_battle_accepted_oreburgh
+    Message PokemonCenterDailyTrainers_Text_GraceOreburgh_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_GraceBattleAcceptedMessagePastoria:
-    Message pokemon_center_daily_trainers_grace_battle_accepted_pastiora
+    Message PokemonCenterDailyTrainers_Text_GracePastiora_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_GraceBattleAcceptedMessageSnowpoint:
-    Message pokemon_center_daily_trainers_grace_battle_accepted_snowpoint
+    Message PokemonCenterDailyTrainers_Text_GraceSnowpoint_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_KinseyBattleAccepted:
@@ -502,17 +502,17 @@ PokemonCenterDailyTrainers_KinseyBattleAccepted:
 
 PokemonCenterDailyTrainers_KinseyBattleAcceptedJubilife:
     Call PokemonCenterDailyTrainers_SetKinseyTeam
-    Message pokemon_center_daily_trainers_kinsey_battle_accepted_jubilife
+    Message PokemonCenterDailyTrainers_Text_KinseyJubilife_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_KinseyBattleAcceptedHearthome:
     Call PokemonCenterDailyTrainers_SetKinseyTeam
-    Message pokemon_center_daily_trainers_kinsey_battle_accepted_hearthome
+    Message PokemonCenterDailyTrainers_Text_KinseyHearthome_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_KinseyBattleAcceptedFightArea:
     Call PokemonCenterDailyTrainers_SetKinseyTeam
-    Message pokemon_center_daily_trainers_kinsey_battle_accepted_fight_area
+    Message PokemonCenterDailyTrainers_Text_KinseyFightArea_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_TevinOrOliBattleAccepted:
@@ -526,17 +526,17 @@ PokemonCenterDailyTrainers_TevinOrOliBattleAccepted:
 
 PokemonCenterDailyTrainers_TevinBattleAcceptedJubilife:
     Call PokemonCenterDailyTrainers_SetTevinTeam
-    Message pokemon_center_daily_trainers_tevin_battle_accepted_jubilife
+    Message PokemonCenterDailyTrainers_Text_TevinJubilife_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_TevinBattleAcceptedHearthome:
     Call PokemonCenterDailyTrainers_SetTevinTeam
-    Message pokemon_center_daily_trainers_tevin_battle_accepted_hearthome
+    Message PokemonCenterDailyTrainers_Text_TevinHearthome_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_TevinBattleAcceptedFightArea:
     Call PokemonCenterDailyTrainers_SetTevinTeam
-    Message pokemon_center_daily_trainers_tevin_battle_accepted_fight_area
+    Message PokemonCenterDailyTrainers_Text_TevinFightArea_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_LeeBattleAccepted:
@@ -548,15 +548,15 @@ PokemonCenterDailyTrainers_LeeBattleAccepted:
     Return
 
 PokemonCenterDailyTrainers_LeeBattleAcceptedHearthome:
-    Message pokemon_center_daily_trainers_lee_battle_accepted_hearthome
+    Message PokemonCenterDailyTrainers_Text_LeeHearthome_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_LeeBattleAcceptedPastoria:
-    Message pokemon_center_daily_trainers_lee_battle_accepted_pastiora
+    Message PokemonCenterDailyTrainers_Text_LeePastiora_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_LeeBattleAcceptedCelestic:
-    Message pokemon_center_daily_trainers_lee_battle_accepted_celestic
+    Message PokemonCenterDailyTrainers_Text_LeeCelestic_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_RoxyBattleAccepted:
@@ -567,12 +567,12 @@ PokemonCenterDailyTrainers_RoxyBattleAccepted:
 
 PokemonCenterDailyTrainers_RoxyBattleAcceptedEterna:
     Call PokemonCenterDailyTrainers_SetRoxyAndOliTeam
-    Message pokemon_center_daily_trainers_roxy_battle_accepted_eterna
+    Message PokemonCenterDailyTrainers_Text_RoxyEterna_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_RoxyBattleAcceptedVeilstone:
     Call PokemonCenterDailyTrainers_SetRoxyAndOliTeam
-    Message pokemon_center_daily_trainers_roxy_battle_accepted_veilstone
+    Message PokemonCenterDailyTrainers_Text_RoxyVeilstone_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_OliBattleAccepted:
@@ -583,12 +583,12 @@ PokemonCenterDailyTrainers_OliBattleAccepted:
 
 PokemonCenterDailyTrainers_OliBattleAcceptedEterna:
     Call PokemonCenterDailyTrainers_SetRoxyAndOliTeam
-    Message pokemon_center_daily_trainers_oli_battle_accepted_eterna
+    Message PokemonCenterDailyTrainers_Text_OliEterna_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_OliBattleAcceptedVeilstone:
     Call PokemonCenterDailyTrainers_SetRoxyAndOliTeam
-    Message pokemon_center_daily_trainers_oli_battle_accepted_veilstone
+    Message PokemonCenterDailyTrainers_Text_OliVeilstone_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_ArielBattleAccepted:
@@ -600,15 +600,15 @@ PokemonCenterDailyTrainers_ArielBattleAccepted:
     Return
 
 PokemonCenterDailyTrainers_ArielBattleAcceptedFloaroma:
-    Message pokemon_center_daily_trainers_ariel_battle_accepted_floaroma
+    Message PokemonCenterDailyTrainers_Text_ArielFloaroma_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_ArielBattleAcceptedSolaceon:
-    Message pokemon_center_daily_trainers_ariel_battle_accepted_solaceon
+    Message PokemonCenterDailyTrainers_Text_ArielSolaceon_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_ArielBattleAcceptedResortArea:
-    Message pokemon_center_daily_trainers_ariel_battle_accepted_resort_area
+    Message PokemonCenterDailyTrainers_Text_ArielResortArea_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleAccepted:
@@ -620,15 +620,15 @@ PokemonCenterDailyTrainers_ArturoBattleAccepted:
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleAcceptedCanalave:
-    Message pokemon_center_daily_trainers_arturo_battle_accepted_canalave
+    Message PokemonCenterDailyTrainers_Text_ArturoCanalave_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleAcceptedPastoria:
-    Message pokemon_center_daily_trainers_arturo_battle_accepted_pastiora
+    Message PokemonCenterDailyTrainers_Text_ArturoPastiora_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleAcceptedSunyshore:
-    Message pokemon_center_daily_trainers_arturo_battle_accepted_sunyshore
+    Message PokemonCenterDailyTrainers_Text_ArturoSunyshore_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_GraceBattleDeclined:
@@ -639,15 +639,15 @@ PokemonCenterDailyTrainers_GraceBattleDeclined:
     Return
 
 PokemonCenterDailyTrainers_GraceBattleDeclinedOreburgh:
-    Message pokemon_center_daily_trainers_grace_battle_declined_oreburgh
+    Message PokemonCenterDailyTrainers_Text_GraceOreburgh_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_GraceBattleDeclinedPastoria:
-    Message pokemon_center_daily_trainers_grace_battle_declined_pastiora
+    Message PokemonCenterDailyTrainers_Text_GracePastiora_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_GraceBattleDeclinedSnowpoint:
-    Message pokemon_center_daily_trainers_grace_battle_declined_snowpoint
+    Message PokemonCenterDailyTrainers_Text_GraceSnowpoint_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_KinseyBattleDeclined:
@@ -658,15 +658,15 @@ PokemonCenterDailyTrainers_KinseyBattleDeclined:
     Return
 
 PokemonCenterDailyTrainers_KinseyBattleDeclinedJubilife:
-    Message pokemon_center_daily_trainers_kinsey_battle_declined_jubilife
+    Message PokemonCenterDailyTrainers_Text_KinseyJubilife_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_KinseyBattleDeclinedHearthome:
-    Message pokemon_center_daily_trainers_kinsey_battle_declined_hearthome
+    Message PokemonCenterDailyTrainers_Text_KinseyHearthome_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_KinseyBattleDeclinedFightArea:
-    Message pokemon_center_daily_trainers_kinsey_battle_declined_fight_area
+    Message PokemonCenterDailyTrainers_Text_KinseyFightArea_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_TevinOrOliBattleDeclined:
@@ -679,15 +679,15 @@ PokemonCenterDailyTrainers_TevinOrOliBattleDeclined:
     Return
 
 PokemonCenterDailyTrainers_KevinBattleDeclinedJubilife:
-    Message pokemon_center_daily_trainers_tevin_battle_declined_jubilife
+    Message PokemonCenterDailyTrainers_Text_TevinJubilife_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_KevinBattleDeclinedHearthome:
-    Message pokemon_center_daily_trainers_tevin_battle_declined_hearthome
+    Message PokemonCenterDailyTrainers_Text_TevinHearthome_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_KevinBattleDeclinedFightArea:
-    Message pokemon_center_daily_trainers_tevin_battle_declined_fight_area
+    Message PokemonCenterDailyTrainers_Text_TevinFightArea_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_LeeBattleDeclined:
@@ -698,15 +698,15 @@ PokemonCenterDailyTrainers_LeeBattleDeclined:
     Return
 
 PokemonCenterDailyTrainers_LeeBattleDeclinedHearthome:
-    Message pokemon_center_daily_trainers_lee_battle_declined_hearthome
+    Message PokemonCenterDailyTrainers_Text_LeeHearthome_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_LeeBattleDeclinedPastoria:
-    Message pokemon_center_daily_trainers_lee_battle_declined_pastiora
+    Message PokemonCenterDailyTrainers_Text_LeePastiora_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_LeeBattleDeclinedCelestic:
-    Message pokemon_center_daily_trainers_lee_battle_declined_celestic
+    Message PokemonCenterDailyTrainers_Text_LeeCelestic_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_RoxyBattleDeclined:
@@ -716,11 +716,11 @@ PokemonCenterDailyTrainers_RoxyBattleDeclined:
     Return
 
 PokemonCenterDailyTrainers_RoxyBattleDeclinedEterna:
-    Message pokemon_center_daily_trainers_roxy_battle_declined_eterna
+    Message PokemonCenterDailyTrainers_Text_RoxyEterna_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_RoxyBattleDeclinedVeilstone:
-    Message pokemon_center_daily_trainers_roxy_battle_declined_veilstone
+    Message PokemonCenterDailyTrainers_Text_RoxyVeilstone_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_OliBattleDeclined:
@@ -730,11 +730,11 @@ PokemonCenterDailyTrainers_OliBattleDeclined:
     Return
 
 PokemonCenterDailyTrainers_OliBattleDeclinedEterna:
-    Message pokemon_center_daily_trainers_oli_battle_declined_eterna
+    Message PokemonCenterDailyTrainers_Text_OliEterna_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_OliBattleDeclinedVeilstone:
-    Message pokemon_center_daily_trainers_oli_battle_declined_veilstone
+    Message PokemonCenterDailyTrainers_Text_OliVeilstone_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_ArielBattleDeclined:
@@ -745,15 +745,15 @@ PokemonCenterDailyTrainers_ArielBattleDeclined:
     Return
 
 PokemonCenterDailyTrainers_ArielBattleDeclinedFloaroma:
-    Message pokemon_center_daily_trainers_ariel_battle_declined_floaroma
+    Message PokemonCenterDailyTrainers_Text_ArielFloaroma_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_ArielBattleDeclinedSolaceon:
-    Message pokemon_center_daily_trainers_ariel_battle_declined_solaceon
+    Message PokemonCenterDailyTrainers_Text_ArielSolaceon_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_ArielBattleDeclinedResortArea:
-    Message pokemon_center_daily_trainers_ariel_battle_declined_resort_area
+    Message PokemonCenterDailyTrainers_Text_ArielResortArea_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleDeclined:
@@ -764,15 +764,15 @@ PokemonCenterDailyTrainers_ArturoBattleDeclined:
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleDeclinedCanalave:
-    Message pokemon_center_daily_trainers_arturo_battle_declined_calanave
+    Message PokemonCenterDailyTrainers_Text_ArturoCalanave_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleDeclinedPastoria:
-    Message pokemon_center_daily_trainers_arturo_battle_declined_pastiora
+    Message PokemonCenterDailyTrainers_Text_ArturoPastiora_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleDeclinedSunyshore:
-    Message pokemon_center_daily_trainers_arturo_battle_declined_sunyshore
+    Message PokemonCenterDailyTrainers_Text_ArturoSunyshore_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_GracePostBattle:
@@ -784,15 +784,15 @@ PokemonCenterDailyTrainers_GracePostBattle:
     Return
 
 PokemonCenterDailyTrainers_GracePostBattleMessageOreburgh:
-    Message pokemon_center_daily_trainers_grace_post_battle_oreburgh
+    Message PokemonCenterDailyTrainers_Text_GraceOreburgh_PostBattle
     Return
 
 PokemonCenterDailyTrainers_GracePostBattleMessagePastoria:
-    Message pokemon_center_daily_trainers_grace_post_battle_pastiora
+    Message PokemonCenterDailyTrainers_Text_GracePastiora_PostBattle
     Return
 
 PokemonCenterDailyTrainers_GracePostBattleMessageSnowpoint:
-    Message pokemon_center_daily_trainers_grace_post_battle_snowpoint
+    Message PokemonCenterDailyTrainers_Text_GraceSnowpoint_PostBattle
     Return
 
 PokemonCenterDailyTrainers_KinseyPostBattle:
@@ -804,17 +804,17 @@ PokemonCenterDailyTrainers_KinseyPostBattle:
 
 PokemonCenterDailyTrainers_KinseyPostBattleJubilife:
     SetFlag FLAG_DEFEATED_REPORTER_KINSEY
-    Message pokemon_center_daily_trainers_kinsey_post_battle_jubilife
+    Message PokemonCenterDailyTrainers_Text_KinseyJubilife_PostBattle
     Return
 
 PokemonCenterDailyTrainers_KinseyPostBattleHearthome:
     SetFlag FLAG_DEFEATED_REPORTER_KINSEY
-    Message pokemon_center_daily_trainers_kinsey_post_battle_hearthome
+    Message PokemonCenterDailyTrainers_Text_KinseyHearthome_PostBattle
     Return
 
 PokemonCenterDailyTrainers_KinseyPostBattleFightArea:
     SetFlag FLAG_DEFEATED_REPORTER_KINSEY
-    Message pokemon_center_daily_trainers_kinsey_post_battle_fight_area
+    Message PokemonCenterDailyTrainers_Text_KinseyFightArea_PostBattle
     Return
 
 PokemonCenterDailyTrainers_TevinOrOliPostBattle:
@@ -828,17 +828,17 @@ PokemonCenterDailyTrainers_TevinOrOliPostBattle:
 
 PokemonCenterDailyTrainers_TevinPostBattleJubilife:
     SetFlag FLAG_DEFEATED_CAMERAMAN_TEVIN
-    Message pokemon_center_daily_trainers_tevin_post_battle_jubilife
+    Message PokemonCenterDailyTrainers_Text_TevinJubilife_PostBattle
     Return
 
 PokemonCenterDailyTrainers_TevinPostBattleHearthome:
     SetFlag FLAG_DEFEATED_CAMERAMAN_TEVIN
-    Message pokemon_center_daily_trainers_tevin_post_battle_hearthome
+    Message PokemonCenterDailyTrainers_Text_TevinHearthome_PostBattle
     Return
 
 PokemonCenterDailyTrainers_TevinPostBattleFightArea:
     SetFlag FLAG_DEFEATED_CAMERAMAN_TEVIN
-    Message pokemon_center_daily_trainers_tevin_post_battled_fight_area
+    Message PokemonCenterDailyTrainers_Text_TevinFightArea_PostBattle
     Return
 
 PokemonCenterDailyTrainers_LeePostBattle:
@@ -850,15 +850,15 @@ PokemonCenterDailyTrainers_LeePostBattle:
     Return
 
 PokemonCenterDailyTrainers_LeePostBattleMessageHearthome:
-    Message pokemon_center_daily_trainers_lee_post_battle_hearthome
+    Message PokemonCenterDailyTrainers_Text_LeeHearthome_PostBattle
     Return
 
 PokemonCenterDailyTrainers_LeePostBattleMessagePastoria:
-    Message pokemon_center_daily_trainers_lee_post_battle_pastiora
+    Message PokemonCenterDailyTrainers_Text_LeePastiora_PostBattle
     Return
 
 PokemonCenterDailyTrainers_LeePostBattleMessageCelestic:
-    Message pokemon_center_daily_trainers_lee_post_battle_celestic
+    Message PokemonCenterDailyTrainers_Text_LeeCelestic_PostBattle
     Return
 
 PokemonCenterDailyTrainers_RoxyPostBattle:
@@ -869,12 +869,12 @@ PokemonCenterDailyTrainers_RoxyPostBattle:
 
 PokemonCenterDailyTrainers_RoxyPostBattleEterna:
     SetFlag FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
-    Message pokemon_center_daily_trainers_roxy_post_battle_eterna
+    Message PokemonCenterDailyTrainers_Text_RoxyEterna_PostBattle
     Return
 
 PokemonCenterDailyTrainers_RoxyPostBattleVeilstone:
     SetFlag FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
-    Message pokemon_center_daily_trainers_roxy_post_battle_veilstone
+    Message PokemonCenterDailyTrainers_Text_RoxyVeilstone_PostBattle
     Return
 
 PokemonCenterDailyTrainers_OliPostBattle:
@@ -885,12 +885,12 @@ PokemonCenterDailyTrainers_OliPostBattle:
 
 PokemonCenterDailyTrainers_OliPostBattleEterna:
     SetFlag FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
-    Message pokemon_center_daily_trainers_oli_post_battle_eterna
+    Message PokemonCenterDailyTrainers_Text_OliEterna_PostBattle
     Return
 
 PokemonCenterDailyTrainers_OliPostBattleVeilstone:
     SetFlag FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
-    Message pokemon_center_daily_trainers_oli_post_battle_veilstone
+    Message PokemonCenterDailyTrainers_Text_OliVeilstone_PostBattle
     Return
 
 PokemonCenterDailyTrainers_ArielPostBattle:
@@ -902,15 +902,15 @@ PokemonCenterDailyTrainers_ArielPostBattle:
     Return
 
 PokemonCenterDailyTrainers_ArielPostBattleMessageFloaroma:
-    Message pokemon_center_daily_trainers_ariel_post_battle_floaroma
+    Message PokemonCenterDailyTrainers_Text_ArielFloaroma_PostBattle
     Return
 
 PokemonCenterDailyTrainers_ArielPostBattleMessageSolaceon:
-    Message pokemon_center_daily_trainers_ariel_post_battle_solaceon
+    Message PokemonCenterDailyTrainers_Text_ArielSolaceon_PostBattle
     Return
 
 PokemonCenterDailyTrainers_ArielPostBattleMessageResortArea:
-    Message pokemon_center_daily_trainers_ariel_post_battle_resort_area
+    Message PokemonCenterDailyTrainers_Text_ArielResortArea_PostBattle
     Return
 
 PokemonCenterDailyTrainers_ArturoPostBattle:
@@ -922,15 +922,15 @@ PokemonCenterDailyTrainers_ArturoPostBattle:
     Return
 
 PokemonCenterDailyTrainers_ArturoPostBattleMessageCanalave:
-    Message pokemon_center_daily_trainers_arturo_post_battle_canalave
+    Message PokemonCenterDailyTrainers_Text_ArturoCanalave_PostBattle
     Return
 
 PokemonCenterDailyTrainers_ArturoPostBattleMessagePastoria:
-    Message pokemon_center_daily_trainers_arturo_post_battle_pastiora
+    Message PokemonCenterDailyTrainers_Text_ArturoPastiora_PostBattle
     Return
 
 PokemonCenterDailyTrainers_ArturoPostBattleMessageSunyshore:
-    Message pokemon_center_daily_trainers_arturo_post_battle_sunyshore
+    Message PokemonCenterDailyTrainers_Text_ArturoSunyshore_PostBattle
     Return
 
 PokemonCenterDailyTrainers_RoxyNotEnoughAliveMonsMessage:
@@ -940,11 +940,11 @@ PokemonCenterDailyTrainers_RoxyNotEnoughAliveMonsMessage:
     Return
 
 PokemonCenterDailyTrainers_RoxyNotEnoughAliveMonsMessageEterna:
-    Message pokemon_center_daily_trainers_roxy_not_enough_pokemon_eterna
+    Message PokemonCenterDailyTrainers_Text_RoxyEterna_NotEnoughPokemon
     Return
 
 PokemonCenterDailyTrainers_RoxyNotEnoughAliveMonsMessageVeilstone:
-    Message pokemon_center_daily_trainers_roxy_not_enough_pokemon_veilstone
+    Message PokemonCenterDailyTrainers_Text_RoxyVeilstone_NotEnoughPokemon
     Return
 
 PokemonCenterDailyTrainers_OliNotEnoughAliveMonsMessage:
@@ -954,11 +954,11 @@ PokemonCenterDailyTrainers_OliNotEnoughAliveMonsMessage:
     Return
 
 PokemonCenterDailyTrainers_OliNotEnoughAliveMonsMessageEterna:
-    Message pokemon_center_daily_trainers_oli_not_enough_pokemon_eterna
+    Message PokemonCenterDailyTrainers_Text_OliEterna_NotEnoughPokemon
     Return
 
 PokemonCenterDailyTrainers_OliNotEnoughAliveMonsMessageVeilstone:
-    Message pokemon_center_daily_trainers_oli_not_enough_pokemon_veilstone
+    Message PokemonCenterDailyTrainers_Text_OliVeilstone_NotEnoughPokemon
     Return
 
 PokemonCenterDailyTrainers_SetGraceTeam:

@@ -297,8 +297,8 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             }
         }
 
-        int distortionDir = sub_0205EAA0(fieldSystem->playerAvatar);
-        u32 distortionBehavior = sub_020616F0(fieldSystem->playerAvatar, distortionDir);
+        int distortionDir = PlayerAvatar_GetDistortionDir(fieldSystem->playerAvatar);
+        u32 distortionBehavior = PlayerAvatar_GetDistortionTileBehaviour(fieldSystem->playerAvatar, distortionDir);
         int distortionScript = Field_TileBehaviorToScript(fieldSystem, distortionBehavior);
 
         if (distortionScript != 0xffff) {
@@ -680,15 +680,15 @@ u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
         return 10100;
     }
 
-    if (ov5_021E0760(behavior, playerDir)) {
+    if (PlayerAvatar_CanUseRockClimb(behavior, playerDir)) {
         return 10003;
     }
 
     if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) != PLAYER_STATE_SURFING) {
         TrainerInfo *info = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        u32 distortionBehavior = sub_02061760(fieldSystem->playerAvatar);
+        u32 distortionBehavior = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
 
-        if (ov5_021E0118(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, 3)) {
+        if (PlayerAvatar_CanUseSurf(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, 3)) {
             if (Party_HasMonWithMove(SaveData_GetParty(fieldSystem->saveData), MOVE_SURF) != PARTY_SLOT_NONE) {
                 return 10004;
             }

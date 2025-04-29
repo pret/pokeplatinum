@@ -9,16 +9,16 @@
     ScriptEntryEnd
 
 _0012:
-    CallIfNe 0x40DB, 0, _008A
-    ScrCmd_1DD 43, 0, 0x400A
+    CallIfNe VAR_UNK_0x40DB, 0, _008A
+    ScrCmd_1DD 43, 0, VAR_MAP_LOCAL_A
     Call _008E
-    CallIfEq 0x400A, 2, _009E
-    CallIfEq 0x400A, 3, _009E
-    CallIfEq 0x400A, 0, _008E
-    CallIfEq 0x400A, 1, _008E
-    CallIfEq 0x400A, 4, _0096
-    CallIfEq 0x400A, 5, _0096
-    CallIfEq 0x400A, 6, _0096
+    CallIfEq VAR_MAP_LOCAL_A, 2, _009E
+    CallIfEq VAR_MAP_LOCAL_A, 3, _009E
+    CallIfEq VAR_MAP_LOCAL_A, 0, _008E
+    CallIfEq VAR_MAP_LOCAL_A, 1, _008E
+    CallIfEq VAR_MAP_LOCAL_A, 4, _0096
+    CallIfEq VAR_MAP_LOCAL_A, 5, _0096
+    CallIfEq VAR_MAP_LOCAL_A, 6, _0096
     End
 
 _008A:
@@ -26,23 +26,23 @@ _008A:
     Return
 
 _008E:
-    SetVar 0x402A, 231
+    SetVar VAR_OBJ_GFX_ID_A, 231
     Return
 
 _0096:
-    SetVar 0x402A, 235
+    SetVar VAR_OBJ_GFX_ID_A, 235
     Return
 
 _009E:
-    SetVar 0x402A, 232
+    SetVar VAR_OBJ_GFX_ID_A, 232
     Return
 
 _00A6:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_1DD 43, 0, 0x800C
-    GoToIfEq 0x800C, 4, _01F8
-    GoToIfEq 0x800C, 5, _01F8
+    ScrCmd_1DD 43, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 4, _01F8
+    GoToIfEq VAR_RESULT, 5, _01F8
     ScrCmd_1F8
     ScrCmd_2C4 5
     ReturnToField
@@ -69,27 +69,27 @@ _010A:
 
 _0132:
     Call _0188
-    ScrCmd_23C 0x4000, 3
+    ScrCmd_23C VAR_MAP_LOCAL_0, 3
     Call _0194
     Return
 
 _0146:
     LockAll
-    SetVar 0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     Call _0132
     GoTo _00A6
     End
 
 _015C:
     LockAll
-    SetVar 0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     Call _0132
     GoTo _00E9
     End
 
 _0172:
     LockAll
-    SetVar 0x4000, 1
+    SetVar VAR_MAP_LOCAL_0, 1
     Call _0132
     GoTo _010A
     End

@@ -167,7 +167,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
 
     sub_0201E3D8();
     sub_0201E450(4);
-    Sound_SetSceneAndPlayBGM(56, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_56, SEQ_NONE, 0);
     ov71_0223D324(&v0->unk_3354);
     Sound_PlayEffect(SEQ_SE_DP_CARD3);
     ov71_0223CF0C(&v0->unk_30E4, v1);
@@ -700,7 +700,7 @@ static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *param1)
         {
             BOOL v7;
 
-            param0->unk_30B8 = LoadMemberFromOpenNARC(param1, v4, 0, 25, 0);
+            param0->unk_30B8 = LoadMemberFromOpenNARC(param1, v4, 0, HEAP_ID_25, 0);
             GF_ASSERT(param0->unk_30B8 != NULL);
 
             v7 = NNS_G2dGetUnpackedBGCharacterData(param0->unk_30B8, &param0->unk_30BC);
@@ -720,7 +720,7 @@ static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *param1)
         {
             BOOL v8;
 
-            param0->unk_30B8 = LoadMemberFromOpenNARC(param1, Unk_ov71_0223D604[param0->unk_B4->unk_05], 0, 25, 0);
+            param0->unk_30B8 = LoadMemberFromOpenNARC(param1, Unk_ov71_0223D604[param0->unk_B4->unk_05], 0, HEAP_ID_25, 0);
             GF_ASSERT(param0->unk_30B8 != NULL);
 
             v8 = NNS_G2dGetUnpackedBGCharacterData(param0->unk_30B8, &param0->unk_30BC);

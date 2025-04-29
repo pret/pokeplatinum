@@ -103,7 +103,7 @@ int ov101_021D0D80(OverlayManager *param0, int *param1)
     ov101_021D59AC(v1);
     ov101_021D5AF0(v1);
     ov101_021D5C28(v1);
-    Sound_SetSceneAndPlayBGM(66, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_66, SEQ_NONE, 0);
     ov101_021D18C0(v1);
     StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_79);
 
@@ -192,7 +192,7 @@ static UnkStruct_ov101_021D13C8 *ov101_021D0F6C(UnkStruct_0203E348 *param0)
 
     v0->unk_60 = *(param0->unk_00);
     v0->unk_88 = param0->unk_04;
-    v0->unk_4C4 = param0->unk_10;
+    v0->msgBoxFrame = param0->msgBoxFrame;
 
     return v0;
 }
@@ -430,7 +430,7 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
     UnkStruct_ov101_021D148C *v1 = &param0->unk_408;
 
     LoadStandardWindowGraphics(param0->unk_43C, 0, 1, 15, 0, HEAP_ID_79);
-    LoadMessageBoxGraphics(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->unk_4C4, HEAP_ID_79);
+    LoadMessageBoxGraphics(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->msgBoxFrame, HEAP_ID_79);
     Font_LoadScreenIndicatorsPalette(0, 15 * 32, HEAP_ID_79);
 
     v1->unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0544, HEAP_ID_79);
@@ -622,13 +622,13 @@ static void ov101_021D18F4(SysTask *param0, void *param1)
     case 1:
         switch (v1->unk_08) {
         case UnkEnum_ov101_021D1894_00:
-            Sound_SetBGMPlayerPaused(1, 1);
+            Sound_SetBGMPlayerPaused(PLAYER_FIELD, TRUE);
             break;
         case UnkEnum_ov101_021D1894_01:
-            Sound_StopBGM(1184, 0);
+            Sound_StopBGM(SEQ_SLOT_ATARI, 0);
             break;
         case UnkEnum_ov101_021D1894_02:
-            Sound_StopBGM(1185, 0);
+            Sound_StopBGM(SEQ_SLOT_OOATARI, 0);
             break;
         }
 
@@ -637,13 +637,13 @@ static void ov101_021D18F4(SysTask *param0, void *param1)
     case 2:
         switch (v1->unk_0C) {
         case UnkEnum_ov101_021D1894_00:
-            Sound_SetBGMPlayerPaused(1, 0);
+            Sound_SetBGMPlayerPaused(PLAYER_FIELD, FALSE);
             break;
         case UnkEnum_ov101_021D1894_01:
-            Sound_PlayBasicBGM(1184);
+            Sound_PlayBasicBGM(SEQ_SLOT_ATARI);
             break;
         case UnkEnum_ov101_021D1894_02:
-            Sound_PlayBasicBGM(1185);
+            Sound_PlayBasicBGM(SEQ_SLOT_OOATARI);
             break;
         }
 

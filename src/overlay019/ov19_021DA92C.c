@@ -38,7 +38,7 @@ u32 sub_0207C920(void);
 u32 sub_0207C924(void);
 u32 sub_0207C928(void);
 u8 sub_0207C92C(int param0);
-u32 sub_0207C944(void);
+enum NarcID sub_0207C944(void);
 void Window_PutRectToTilemap(Window *param0, u32 param1, u32 param2);
 static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0);
 static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0);
@@ -57,7 +57,7 @@ BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *par
 {
     int v0;
 
-    if (ov19_021D5E08(param2) == 4) {
+    if (ov19_GetBoxMode(param2) == PC_MODE_COMPARE) {
         param0->unk_00 = 0;
         return 1;
     }
@@ -211,7 +211,8 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
 {
     NNSG2dImageProxy v0;
     SpriteResourcesHeader v1;
-    u32 v2, v3, v4;
+    enum NarcID v2;
+    u32 v3, v4;
 
     v2 = sub_0207C944();
     v3 = sub_0207C908(2);
@@ -293,7 +294,7 @@ static void ov19_021DACF8(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        if (ov19_021D5E4C(v1->unk_10) == 0) {
+        if (ov19_IsMonAvailableToCursor(v1->unk_10) == FALSE) {
             break;
         }
 
@@ -450,7 +451,7 @@ void ov19_021DAF98(UnkStruct_ov19_021DA9E0 *param0)
     Window_FillTilemap(&param0->unk_04[2], 15);
     Window_FillTilemap(&param0->unk_04[3], 0);
 
-    if (ov19_021D5E4C(param0->unk_10)) {
+    if (ov19_IsMonAvailableToCursor(param0->unk_10)) {
         ov19_021DB0E4(param0);
     }
 
@@ -476,7 +477,7 @@ void ov19_021DAFF8(UnkStruct_ov19_021DA9E0 *param0)
         param0->unk_24 = NULL;
     }
 
-    if (ov19_021D5E4C(param0->unk_10)) {
+    if (ov19_IsMonAvailableToCursor(param0->unk_10)) {
         ov19_021DB0E4(param0);
     } else {
         ov19_021DB24C(param0, 0);
@@ -564,7 +565,7 @@ void ov19_021DB224(UnkStruct_ov19_021DA9E0 *param0)
         return;
     }
 
-    if (ov19_021D5E4C(param0->unk_10)) {
+    if (ov19_IsMonAvailableToCursor(param0->unk_10)) {
         const PCMonPreview *preview;
 
         preview = ov19_GetPCMonPreview(param0->unk_10);

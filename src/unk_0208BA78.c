@@ -289,9 +289,9 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
         sub_02005464(1);
 
         if (sub_0208BE80(param0->unk_10->trainer[1].header.trainerType) == 1) {
-            Sound_SetSceneAndPlayBGM(5, 1202, 1);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_FRONTIER_BRAIN, 1);
         } else {
-            Sound_SetSceneAndPlayBGM(5, 1119, 1);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
         }
     }
         param0->unk_08 = OverlayManager_New(&gBattleOverlayTemplate, param0->unk_10, heapID);
@@ -315,15 +315,15 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
         OverlayManager_Free(param0->unk_08);
 
         {
-            u16 v1;
+            u16 bgmID;
 
             sub_02005464(0);
-            Sound_SetScene(0);
+            Sound_SetScene(SOUND_SCENE_NONE);
 
-            v1 = sub_02055428(param0->fieldSystem, param0->fieldSystem->location->mapId);
+            bgmID = Sound_GetOverrideBGM(param0->fieldSystem, param0->fieldSystem->location->mapId);
 
-            Sound_SetFieldBGM(sub_020554A4(param0->fieldSystem, param0->fieldSystem->location->mapId));
-            Sound_SetSceneAndPlayBGM(4, v1, 1);
+            Sound_SetFieldBGM(Sound_GetBGMByMapID(param0->fieldSystem, param0->fieldSystem->location->mapId));
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
         }
 
         param0->unk_00 = 0;

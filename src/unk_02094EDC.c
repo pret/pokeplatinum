@@ -386,7 +386,7 @@ int sub_02094EDC(UnkStruct_02095C48 *param0)
     return 0;
 }
 
-void sub_02094F04(UnkStruct_02095C48 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7)
+void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3, int param4, int param5, int param6, int param7)
 {
     int v0, v1;
     u8 *v2;
@@ -415,9 +415,9 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int param1, int param2, int param3
         break;
     }
 
-    v9 = LoadMemberFromNARC(90, 0, 0, param1, 1);
+    v9 = LoadMemberFromNARC(90, 0, 0, heapID, 1);
     v6 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 0) / sizeof(UnkStruct_ov6_02248BE8);
-    v2 = Heap_AllocFromHeapAtEnd(param1, v6 + 1);
+    v2 = Heap_AllocFromHeapAtEnd(heapID, v6 + 1);
 
     if ((param6 == 1) && (param7 == 1)) {
         v5 = 1;
@@ -671,16 +671,16 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
 
     if (param4 != NULL) {
         GF_ASSERT(param4->unk_00 != NULL);
-        sub_02013610(v0.archive, v0.character, heapID, param4->unk_00);
+        sub_02013610(v0.narcID, v0.character, heapID, param4->unk_00);
         param4->unk_08 = v0.palette;
-        param4->unk_04 = v0.archive;
+        param4->unk_04 = v0.narcID;
     }
 
     v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param6, param7 + v2, param8, param1, NULL, NULL);
     return v1;
 }
 
-void sub_020954F0(UnkStruct_02095C48 *param0, int param1, int param2, int param3, int param4)
+void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int param3, int param4)
 {
     int v0, v1;
     u8 v2 = 0, v3 = 0;
@@ -689,10 +689,10 @@ void sub_020954F0(UnkStruct_02095C48 *param0, int param1, int param2, int param3
     UnkStruct_020954F0 *v6;
     u8 *v7, *v8;
 
-    v6 = LoadMemberFromNARC(90, 1, 0, param1, 1);
+    v6 = LoadMemberFromNARC(90, 1, 0, heapID, 1);
     v5 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 1) / sizeof(UnkStruct_020954F0);
-    v7 = Heap_AllocFromHeapAtEnd(param1, v5 + 1);
-    v8 = Heap_AllocFromHeapAtEnd(param1, v5 + 1);
+    v7 = Heap_AllocFromHeapAtEnd(heapID, v5 + 1);
+    v8 = Heap_AllocFromHeapAtEnd(heapID, v5 + 1);
 
     for (v0 = 0; v0 < v5; v0++) {
         if (param4 != v6[v0].unk_04_10) {

@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city.h"
-#include "constants/forms.h"
 
     .data
 
@@ -40,10 +39,10 @@
 
 _0082:
     CallIfSet FLAG_UNK_0x0155, _00E0
-    CallIfGe 0x411A, 2, _00BA
-    GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _00D0
-    GoToIfEq 0x4000, GENDER_FEMALE, _00D8
+    CallIfGe VAR_UNK_0x411A, 2, _00BA
+    GetPlayerGender VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _00D0
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _00D8
     End
 
 _00BA:
@@ -53,11 +52,11 @@ _00BA:
     Return
 
 _00D0:
-    SetVar 0x4020, 97
+    SetVar VAR_OBJ_GFX_ID_0, 97
     End
 
 _00D8:
-    SetVar 0x4020, 0
+    SetVar VAR_OBJ_GFX_ID_0, 0
     End
 
 _00E0:
@@ -71,14 +70,14 @@ _00F6:
     ApplyMovement 6, _0444
     WaitMovement
     CallCommonScript 0x7F8
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x2A9, _02E1
-    CallIfEq 0x8004, 0x2AA, _02ED
-    CallIfEq 0x8004, 0x2AB, _02F9
-    CallIfEq 0x8004, 0x2AC, _0305
-    GetPlayerGender 0x8004
-    CallIfEq 0x8004, GENDER_MALE, _0297
-    CallIfEq 0x8004, GENDER_FEMALE, _029F
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x2A9, _02E1
+    CallIfEq VAR_0x8004, 0x2AA, _02ED
+    CallIfEq VAR_0x8004, 0x2AB, _02F9
+    CallIfEq VAR_0x8004, 0x2AC, _0305
+    GetPlayerGender VAR_0x8004
+    CallIfEq VAR_0x8004, GENDER_MALE, _0297
+    CallIfEq VAR_0x8004, GENDER_FEMALE, _029F
     CloseMessage
     CallCommonScript 0x7F9
     ScrCmd_168 21, 19, 12, 3, 77
@@ -97,32 +96,32 @@ _00F6:
     CloseMessage
     ApplyMovement 25, _056C
     WaitMovement
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x2A9, _0311
-    CallIfEq 0x8004, 0x2AA, _032D
-    CallIfEq 0x8004, 0x2AB, _0349
-    CallIfEq 0x8004, 0x2AC, _0365
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x2A9, _0311
+    CallIfEq VAR_0x8004, 0x2AA, _032D
+    CallIfEq VAR_0x8004, 0x2AB, _0349
+    CallIfEq VAR_0x8004, 0x2AC, _0365
     Message 5
     Message 6
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x2A9, _0381
-    CallIfEq 0x8004, 0x2AA, _039D
-    CallIfEq 0x8004, 0x2AB, _03B9
-    CallIfEq 0x8004, 0x2AC, _03D5
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x2A9, _0381
+    CallIfEq VAR_0x8004, 0x2AA, _039D
+    CallIfEq VAR_0x8004, 0x2AB, _03B9
+    CallIfEq VAR_0x8004, 0x2AC, _03D5
     RemoveObject 25
-    WaitTime 20, 0x800C
-    GetPlayerGender 0x8004
-    CallIfEq 0x8004, GENDER_MALE, _02A7
-    CallIfEq 0x8004, GENDER_FEMALE, _02C4
+    WaitTime 20, VAR_RESULT
+    GetPlayerGender VAR_0x8004
+    CallIfEq VAR_0x8004, GENDER_MALE, _02A7
+    CallIfEq VAR_0x8004, GENDER_FEMALE, _02C4
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x2A9, _03F1
-    CallIfEq 0x8004, 0x2AA, _0405
-    CallIfEq 0x8004, 0x2AB, _0419
-    CallIfEq 0x8004, 0x2AC, _042D
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x2A9, _03F1
+    CallIfEq VAR_0x8004, 0x2AA, _0405
+    CallIfEq VAR_0x8004, 0x2AB, _0419
+    CallIfEq VAR_0x8004, 0x2AC, _042D
     RemoveObject 6
-    SetVar 0x40F5, 1
+    SetVar VAR_UNK_0x40F5, 1
     ReleaseAll
     End
 
@@ -140,7 +139,7 @@ _02A7:
     BufferPlayerName 0
     Message 7
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement LOCALID_PLAYER, _052C
     WaitMovement
     Message 8
@@ -150,7 +149,7 @@ _02C4:
     BufferPlayerName 0
     Message 9
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement LOCALID_PLAYER, _052C
     WaitMovement
     Message 10
@@ -461,16 +460,16 @@ _05CC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender 0x8004
-    GoToIfEq 0x8004, 0, _05F4
-    GoToIfEq 0x8004, 1, _0625
+    GetPlayerGender VAR_0x8004
+    GoToIfEq VAR_0x8004, 0, _05F4
+    GoToIfEq VAR_0x8004, 1, _0625
     End
 
 _05F4:
     BufferPlayerName 0
     Message 19
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0611
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0611
     GoTo _061A
 
 _0611:
@@ -487,8 +486,8 @@ _061A:
 _0625:
     BufferPlayerName 0
     Message 24
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0642
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0642
     GoTo _064B
 
 _0642:
@@ -504,45 +503,45 @@ _064B:
 
 _0656:
     CloseMessage
-    GetPlayerDir 0x800C
-    CallIfEq 0x800C, 3, _099F
-    CallIfEq 0x800C, 1, _09B3
-    CallIfEq 0x800C, 0, _09C7
+    GetPlayerDir VAR_RESULT
+    CallIfEq VAR_RESULT, 3, _099F
+    CallIfEq VAR_RESULT, 1, _09B3
+    CallIfEq VAR_RESULT, 0, _09C7
     Call VeilstoneCity_SetPlayerCounterpartPartnerTeam
-    StartTagBattle 0x8004, TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1, TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0A73
+    StartTagBattle VAR_0x8004, TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1, TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0A73
     Message 16
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8005, 0x253, _09DB
-    CallIfEq 0x8005, 0x255, _09E7
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 0x253, _09DB
+    CallIfEq VAR_0x8005, 0x255, _09E7
     Message 17
     CloseMessage
-    WaitTime 15, 0x800C
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8005, 0x253, _09F3
-    CallIfEq 0x8005, 0x255, _09FF
+    WaitTime 15, VAR_RESULT
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 0x253, _09F3
+    CallIfEq VAR_0x8005, 0x255, _09FF
     RemoveObject 7
     Message 18
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8005, 0x253, _0A0B
-    CallIfEq 0x8005, 0x255, _0A17
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 0x253, _0A0B
+    CallIfEq VAR_0x8005, 0x255, _0A17
     RemoveObject 20
-    GetPlayerGender 0x8004
-    CallIfEq 0x8004, GENDER_MALE, _0A23
-    CallIfEq 0x8004, GENDER_FEMALE, _0A28
+    GetPlayerGender VAR_0x8004
+    CallIfEq VAR_0x8004, GENDER_MALE, _0A23
+    CallIfEq VAR_0x8004, GENDER_FEMALE, _0A28
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8005, 0x253, _0A4B
-    CallIfEq 0x8005, 0x255, _0A5F
-    WaitTime 10, 0x800C
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 0x253, _0A4B
+    CallIfEq VAR_0x8005, 0x255, _0A5F
+    WaitTime 10, VAR_RESULT
     BufferPlayerName 0
-    GetPlayerGender 0x8004
-    CallIfEq 0x8004, GENDER_MALE, _0A2D
-    CallIfEq 0x8004, GENDER_FEMALE, _0A32
+    GetPlayerGender VAR_0x8004
+    CallIfEq VAR_0x8004, GENDER_MALE, _0A2D
+    CallIfEq VAR_0x8004, GENDER_FEMALE, _0A32
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ClearFlag FLAG_UNK_0x028A
     SetObjectEventPos 26, 0x2B4, 0x25E
     AddObject 26
@@ -554,21 +553,21 @@ _0656:
     ApplyMovement 6, _0B3C
     ApplyMovement LOCALID_PLAYER, _0B9C
     WaitMovement
-    GetPlayerGender 0x8004
-    CallIfEq 0x8004, GENDER_MALE, _0A37
-    CallIfEq 0x8004, GENDER_FEMALE, _0A3C
+    GetPlayerGender VAR_0x8004
+    CallIfEq VAR_0x8004, GENDER_MALE, _0A37
+    CallIfEq VAR_0x8004, GENDER_FEMALE, _0A3C
     Message 32
-    GetPlayerGender 0x8004
-    CallIfEq 0x8004, GENDER_MALE, _0A41
-    CallIfEq 0x8004, GENDER_FEMALE, _0A46
+    GetPlayerGender VAR_0x8004
+    CallIfEq VAR_0x8004, GENDER_MALE, _0A41
+    CallIfEq VAR_0x8004, GENDER_FEMALE, _0A46
     CloseMessage
     ApplyMovement 6, _0B44
     ApplyMovement 26, _0A88
     WaitMovement
     RemoveObject 6
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x253, _083A
-    GoToIfEq 0x8005, 0x255, _0854
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x253, _083A
+    GoToIfEq VAR_0x8005, 0x255, _0854
     End
 
 _083A:
@@ -588,9 +587,9 @@ _0854:
 _086E:
     Message 35
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x253, _08A9
-    GoToIfEq 0x8005, 0x255, _08C3
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x253, _08A9
+    GoToIfEq VAR_0x8005, 0x255, _08C3
     End
 
     .byte 134
@@ -632,7 +631,7 @@ _08DD:
     SetFlag FLAG_UNK_0x01A9
     SetFlag FLAG_UNK_0x028A
     ClearFlag FLAG_UNK_0x020D
-    SetVar 0x411F, 1
+    SetVar VAR_UNK_0x411F, 1
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -642,27 +641,27 @@ _08DD:
     End
 
 VeilstoneCity_SetPlayerCounterpartPartnerTeam:
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, VeilstoneCity_SetDawnPartnerTeam
-    GoToIfEq 0x800C, GENDER_FEMALE, VeilstoneCity_SetLucasPartnerTeam
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, VeilstoneCity_SetDawnPartnerTeam
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, VeilstoneCity_SetLucasPartnerTeam
     End
 
 VeilstoneCity_SetDawnPartnerTeam:
-    GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, TRAINER_DAWN_VEILSTONE_CITY_PIPLUP
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _099D
-    SetVar 0x8004, TRAINER_DAWN_VEILSTONE_CITY_TURTWIG
-    GoToIfEq 0x800C, SPECIES_PIPLUP, _099D
-    SetVar 0x8004, TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR
+    GetPlayerStarterSpecies VAR_RESULT
+    SetVar VAR_0x8004, TRAINER_DAWN_VEILSTONE_CITY_PIPLUP
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _099D
+    SetVar VAR_0x8004, TRAINER_DAWN_VEILSTONE_CITY_TURTWIG
+    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, _099D
+    SetVar VAR_0x8004, TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR
     Return
 
 VeilstoneCity_SetLucasPartnerTeam:
-    GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _099D
-    SetVar 0x8004, TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG
-    GoToIfEq 0x800C, SPECIES_PIPLUP, _099D
-    SetVar 0x8004, TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR
+    GetPlayerStarterSpecies VAR_RESULT
+    SetVar VAR_0x8004, TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _099D
+    SetVar VAR_0x8004, TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG
+    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, _099D
+    SetVar VAR_0x8004, TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR
     Return
 
 _099D:
@@ -1092,9 +1091,9 @@ _0C77:
     FacePlayer
     GoToIfSet FLAG_UNK_0x00CC, _0CBC
     Message 50
-    SetVar 0x8004, ITEM_TM63
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0CC7
+    SetVar VAR_0x8004, ITEM_TM63
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0CC7
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00CC
     GoTo _0CBC
@@ -1174,8 +1173,8 @@ _0D5C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COBBLE, 0x800C
-    GoToIfEq 0x800C, 1, _0D82
+    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0D82
     Message 12
     WaitABXPadPress
     CloseMessage
@@ -1193,8 +1192,8 @@ _0D8D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COBBLE, 0x800C
-    GoToIfEq 0x800C, 1, _0DB3
+    CheckBadgeAcquired BADGE_ID_COBBLE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0DB3
     Message 13
     WaitABXPadPress
     CloseMessage
@@ -1224,11 +1223,11 @@ _0DBE:
     ScrCmd_189 26, 0
     ClearFlag FLAG_UNK_0x028A
     AddObject 26
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _0E34
-    GoToIfEq 0x800C, 1, _0E5C
-    GoToIfEq 0x800C, 2, _0EA4
-    GoToIfEq 0x800C, 3, _0E7C
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0E34
+    GoToIfEq VAR_RESULT, 1, _0E5C
+    GoToIfEq VAR_RESULT, 2, _0EA4
+    GoToIfEq VAR_RESULT, 3, _0E7C
     End
 
 _0E34:
@@ -1277,13 +1276,13 @@ _0ECC:
 
 _0ED8:
     Message 38
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0EF4
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0EF4
     GoTo _0F0B
     End
 
 _0EF4:
-    SetVar 0x411F, 3
+    SetVar VAR_UNK_0x411F, 3
     SetFlag FLAG_UNK_0x009B
     Message 39
     CloseMessage
@@ -1434,13 +1433,13 @@ _10A2:
 VeilstoneCity_DeoxysMeteoriteSpeed:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckPartyHasSpecies2 SPECIES_DEOXYS, 0x800C
-    GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
+    CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_SPEED
     PlayCry SPECIES_DEOXYS
-    Message veilstone_city_meteorite_speed
+    Message VeilstoneCity_Text_MeteoriteSpeed
     WaitABXPadPress
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ReleaseAll
     End
@@ -1448,13 +1447,13 @@ VeilstoneCity_DeoxysMeteoriteSpeed:
 VeilstoneCity_DeoxysMeteoriteDefense:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckPartyHasSpecies2 SPECIES_DEOXYS, 0x800C
-    GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
+    CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_DEFENSE
     PlayCry SPECIES_DEOXYS
-    Message veilstone_city_meteorite_defense
+    Message VeilstoneCity_Text_MeteoriteDefense
     WaitABXPadPress
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ReleaseAll
     End
@@ -1462,13 +1461,13 @@ VeilstoneCity_DeoxysMeteoriteDefense:
 VeilstoneCity_DeoxysMeteoriteAttack:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckPartyHasSpecies2 SPECIES_DEOXYS, 0x800C
-    GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
+    CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_ATTACK
     PlayCry SPECIES_DEOXYS
-    Message veilstone_city_meteorite_attack
+    Message VeilstoneCity_Text_MeteoriteAttack
     WaitABXPadPress
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ReleaseAll
     End
@@ -1476,19 +1475,19 @@ VeilstoneCity_DeoxysMeteoriteAttack:
 VeilstoneCity_DeoxysMeteoriteNormal:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckPartyHasSpecies2 SPECIES_DEOXYS, 0x800C
-    GoToIfEq 0x800C, FALSE, VeilstoneCity_MeteoriteFromTheStars
+    CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_NORMAL
     PlayCry SPECIES_DEOXYS
-    Message veilstone_city_meteorite_normal
+    Message VeilstoneCity_Text_MeteoriteNormal
     WaitABXPadPress
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneCity_MeteoriteFromTheStars:
-    Message veilstone_city_meteorite_from_the_stars
+    Message VeilstoneCity_Text_MeteoriteFromTheStars
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1498,9 +1497,9 @@ _1184:
     LockAll
     ApplyMovement 6, _11E8
     WaitMovement
-    GetPlayerGender 0x8004
-    CallIfEq 0x8004, GENDER_MALE, _11D6
-    CallIfEq 0x8004, GENDER_FEMALE, _11DE
+    GetPlayerGender VAR_0x8004
+    CallIfEq VAR_0x8004, GENDER_MALE, _11D6
+    CallIfEq VAR_0x8004, GENDER_FEMALE, _11DE
     CloseMessage
     ApplyMovement 6, _11FC
     WaitMovement
@@ -1508,7 +1507,7 @@ _1184:
     Call _00BA
     ClearFlag FLAG_UNK_0x01A8
     AddObject 6
-    SetVar 0x411A, 2
+    SetVar VAR_UNK_0x411A, 2
     ReleaseAll
     End
 
@@ -1540,8 +1539,8 @@ _1204:
     LockAll
     FacePlayer
     Message 52
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _122B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _122B
     Message 53
     GoTo _1236
     End

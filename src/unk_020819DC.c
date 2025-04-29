@@ -623,7 +623,7 @@ static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
         Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 4:
-        Sound_PlayFanfare(1155);
+        Sound_PlayFanfare(SEQ_FANFA1);
         break;
     case 5:
         return Sound_IsEffectPlaying(1510);

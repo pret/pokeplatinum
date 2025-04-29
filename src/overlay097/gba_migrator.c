@@ -229,20 +229,20 @@ static int sGBAHMMoves[] = {
 
 static int sMigrateFromGBAGameMessageIDs[] = {
     NULL,
-    [VERSION_SAPPHIRE] = migrate_from_gba_from_sapphire,
-    [VERSION_RUBY] = migrate_from_gba_from_ruby,
-    [VERSION_EMERALD] = migrate_from_gba_from_emerald,
-    [VERSION_FIRERED] = migrate_from_gba_from_firered,
-    [VERSION_LEAFGREEN] = migrate_from_gba_from_leafgreen,
+    [VERSION_SAPPHIRE] = MigrateFromGBA_Text_FromSapphire,
+    [VERSION_RUBY] = MigrateFromGBA_Text_FromRuby,
+    [VERSION_EMERALD] = MigrateFromGBA_Text_FromEmerald,
+    [VERSION_FIRERED] = MigrateFromGBA_Text_FromFirered,
+    [VERSION_LEAFGREEN] = MigrateFromGBA_Text_FromLeafgreen,
 };
 
 static int sSavingOnGBAGameAndPlatinumMessageIDs[] = {
     NULL,
-    [VERSION_SAPPHIRE] = migrate_from_gba_saving_on_sapphire_and_platinum,
-    [VERSION_RUBY] = migrate_from_gba_saving_on_ruby_and_platinum,
-    [VERSION_EMERALD] = migrate_from_gba_saving_on_emerald_and_platinum,
-    [VERSION_FIRERED] = migrate_from_gba_saving_on_firered_and_platinum,
-    [VERSION_LEAFGREEN] = migrate_from_gba_saving_on_leafgreen_and_platinum,
+    [VERSION_SAPPHIRE] = MigrateFromGBA_Text_SavingOnSapphireAndPlatinum,
+    [VERSION_RUBY] = MigrateFromGBA_Text_SavingOnRubyAndPlatinum,
+    [VERSION_EMERALD] = MigrateFromGBA_Text_SavingOnEmeraldAndPlatinum,
+    [VERSION_FIRERED] = MigrateFromGBA_Text_SavingOnFireredAndPlatinum,
+    [VERSION_LEAFGREEN] = MigrateFromGBA_Text_SavingOnLeafgreenAndPlatinum,
 };
 
 static u8 sGBAGameRectPalettes[] = {
@@ -256,13 +256,13 @@ static u8 sGBAGameRectPalettes[] = {
 
 static int sCannotMigrateMessageIDs[] = {
     [CAN_MIGRATE] = NULL,
-    [CANNOT_MIGRATE_GBA_PAK_READ_ERROR] = migrate_from_gba_error_reading_gba_pak,
-    [CANNOT_MIGRATE_WAIT_FOR_FULL_DAY] = migrate_from_gba_full_day_hasnt_passed,
-    [CANNOT_MIGRATE_DIFFERENT_CONSOLE] = migrate_from_gba_different_ds_or_internal_clock_altered,
-    [CANNOT_MIGRATE_INTERNAL_CLOCK_ALTERED] = migrate_from_gba_different_ds_or_internal_clock_altered,
-    [CANNOT_MIGRATE_LESS_THAN_6_IN_GBA_BOXES] = migrate_from_gba_less_than_six,
-    [CANNOT_MIGRATE_ALREADY_STOCKED] = migrate_from_gba_game_card_already_stocked,
-    [CANNOT_MIGRATE_CLOCK_ADJUSTED] = migrate_from_gba_game_clock_adjusted,
+    [CANNOT_MIGRATE_GBA_PAK_READ_ERROR] = MigrateFromGBA_Text_ErrorReadingGBAPak,
+    [CANNOT_MIGRATE_WAIT_FOR_FULL_DAY] = MigrateFromGBA_Text_FullDayHasntPassed,
+    [CANNOT_MIGRATE_DIFFERENT_CONSOLE] = MigrateFromGBA_Text_DifferentDsOrInternalClockAltered,
+    [CANNOT_MIGRATE_INTERNAL_CLOCK_ALTERED] = MigrateFromGBA_Text_DifferentDsOrInternalClockAltered,
+    [CANNOT_MIGRATE_LESS_THAN_6_IN_GBA_BOXES] = MigrateFromGBA_Text_LessThanSix,
+    [CANNOT_MIGRATE_ALREADY_STOCKED] = MigrateFromGBA_Text_GameCardAlreadyStocked,
+    [CANNOT_MIGRATE_CLOCK_ADJUSTED] = MigrateFromGBA_Text_GameClockAdjusted,
 };
 
 static BOOL IsGBASpeciesInvalid(int speciesGBA)
@@ -1234,13 +1234,13 @@ static void ov97_02234B0C(GBAMigrator *migrator, BoxPokemonGBA *boxMonGBA)
     v4.unk_2C = TEXT_COLOR(15, 2, 0);
     v4.unk_38 = NULL;
 
-    v4.messageEntryID = migrate_from_gba_item;
+    v4.messageEntryID = MigrateFromGBA_Text_Item;
     v4.unk_18 = 18 * 8;
     v4.unk_1C = 0;
 
     ov97_02233DD0(migrator, &v4, 0x4);
 
-    v4.messageEntryID = migrate_from_gba_level;
+    v4.messageEntryID = MigrateFromGBA_Text_Level;
     v4.unk_18 = 10 * 8;
     v4.unk_1C = 8;
 
@@ -1538,7 +1538,7 @@ static void ov97_02234F88(GBAMigrator *migrator)
     LoadMessageBoxGraphics(migrator->bgConfig, 0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 
     ov97_02234ECC(migrator);
-    migrator->unk_490.messageEntryID = migrate_from_gba_six_chosen_will_migrate;
+    migrator->unk_490.messageEntryID = MigrateFromGBA_Text_SixChosenWillMigrate;
     ov97_02233DD0(migrator, &migrator->unk_490, 0x8 | 0x10);
 }
 
@@ -1837,7 +1837,7 @@ static int GBAMigrator_Init(OverlayManager *param0, int *state)
     migrator->unk_12668 = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
     migrator->unk_1266C = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
 
-    Sound_SetSceneAndPlayBGM(9, 1174, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_9, SEQ_PRESENT, 1);
 
     if (OS_IsTickAvailable() == 0) {
         OS_InitTick();
@@ -1918,7 +1918,7 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
         switch (boxPos) {
         case 1:
             sub_02015A54(migrator->unk_E8EC);
-            migrator->messageEntryID = migrate_from_gba_cannot_return_to_gba_migrate_to_platinum;
+            migrator->messageEntryID = MigrateFromGBA_Text_CannotReturnToGBAMigrateToPlatinum;
             *state = GBA_MIGRATOR_STATE_4;
             break;
         case 2:
@@ -1950,7 +1950,7 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
                     *state = GBA_MIGRATOR_STATE_11;
                 }
             } else {
-                migrator->messageEntryID = migrate_from_gba_please_choose_six;
+                migrator->messageEntryID = MigrateFromGBA_Text_PleaseChooseSix;
                 *state = GBA_MIGRATOR_STATE_6;
             }
             break;
@@ -1982,7 +1982,7 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
         case 1:
             sub_02015A54(migrator->unk_E8EC);
             migrator->unk_490.unk_44 = 0;
-            migrator->unk_490.messageEntryID = migrate_from_gba_making_adjustments;
+            migrator->unk_490.messageEntryID = MigrateFromGBA_Text_MakingAdjustments;
             ov97_02233DD0(migrator, &migrator->unk_490, 0);
             migrator->unk_E8F0.unk_08 = Window_AddWaitDial(&migrator->unk_4FC, (0x3F0 - (18 + 12)));
             *state = GBA_MIGRATOR_STATE_10;
@@ -2034,16 +2034,16 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
                 } else if (gbaMonValidity == GBA_MON_STATE_2) {
                     ov97_02234B0C(migrator, NULL);
                 } else if (gbaMonValidity == GBA_MON_STATE_IS_EGG) {
-                    migrator->messageEntryID = migrate_from_gba_egg_cannot_migrate;
+                    migrator->messageEntryID = MigrateFromGBA_Text_EggCannotMigrate;
                     *state = GBA_MIGRATOR_STATE_14;
                 } else if (gbaMonValidity == GBA_MON_STATE_HAS_HM) {
-                    migrator->messageEntryID = migrate_from_gba_knows_hidden_move;
+                    migrator->messageEntryID = MigrateFromGBA_Text_KnowsHiddenMove;
                     *state = GBA_MIGRATOR_STATE_14;
                 } else if (gbaMonValidity == GBA_MON_STATE_HAS_INVALID_ITEM) {
-                    migrator->messageEntryID = migrate_from_gba_mon_not_permitted_to_migrate;
+                    migrator->messageEntryID = MigrateFromGBA_Text_MonNotPermittedToMigrate;
                     *state = GBA_MIGRATOR_STATE_14;
                 } else if (gbaMonValidity == GBA_MON_STATE_IS_INVALID_SPECIES) {
-                    migrator->messageEntryID = migrate_from_gba_mon_not_permitted_to_migrate;
+                    migrator->messageEntryID = MigrateFromGBA_Text_MonNotPermittedToMigrate;
                     *state = GBA_MIGRATOR_STATE_14;
                 }
             } else {
@@ -2108,7 +2108,7 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
     case GBA_MIGRATOR_STATE_18: {
         UnkStruct_ov97_02233DAC v5;
 
-        migrator->unk_490.messageEntryID = migrate_from_gba_cannot_return_to_gba;
+        migrator->unk_490.messageEntryID = MigrateFromGBA_Text_CannotReturnToGBA;
 
         ov97_02233DD0(migrator, &migrator->unk_490, 0);
         ov97_02235310(migrator);
@@ -2147,9 +2147,9 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
             Sound_PlayEffect(SEQ_SE_DP_SAVE);
 
             if (v2 == 11) {
-                migrator->unk_490.messageEntryID = migrate_from_gba_safely_migrated_to_platinum;
+                migrator->unk_490.messageEntryID = MigrateFromGBA_Text_SafelyMigratedToPlatinum;
             } else {
-                migrator->unk_490.messageEntryID = migrate_from_gba_save_failed;
+                migrator->unk_490.messageEntryID = MigrateFromGBA_Text_SaveFailed;
             }
 
             ov97_02233DD0(migrator, &migrator->unk_490, 0);

@@ -53,7 +53,7 @@ void sub_0202E858(UnkStruct_0202E858 *param0)
     param0->unk_04 = 0;
 
     CharCode_FillWithEOS(param0->unk_08, 7 + 1);
-    SaveData_SetChecksum(28);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
 }
 
 BOOL sub_0202E870(UnkStruct_0202E858 *param0)
@@ -82,13 +82,13 @@ void Rankings_Init(UnkStruct_0202E8C0 *param0)
         }
     }
 
-    SaveData_SetChecksum(28);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
 }
 
-UnkStruct_0202E8C0 *sub_0202E8C0(SaveData *param0)
+UnkStruct_0202E8C0 *sub_0202E8C0(SaveData *saveData)
 {
-    SaveData_Checksum(28);
-    return SaveData_SaveTable(param0, 28);
+    SaveData_Checksum(SAVE_TABLE_ENTRY_RANKINGS);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_RANKINGS);
 }
 
 void sub_0202E8D4(UnkStruct_0202E8C0 *param0, int param1, u8 param2)
@@ -108,7 +108,7 @@ void sub_0202E8D4(UnkStruct_0202E8C0 *param0, int param1, u8 param2)
     }
 
     sub_0202E858(&(v1->unk_00[6 - 1]));
-    SaveData_SetChecksum(28);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
 }
 
 int sub_0202E91C(void)
@@ -121,7 +121,7 @@ static u32 *sub_0202E924(SaveData *param0, int param1)
     int v0;
     u32 v1;
     GameRecords *v2;
-    UnkStruct_0203068C *v3;
+    BattleFrontier *v3;
     u32 *v4;
     static const int v5[] = {
         0x0,
@@ -140,7 +140,7 @@ static u32 *sub_0202E924(SaveData *param0, int param1)
     };
 
     v2 = SaveData_GetGameRecords(param0);
-    v3 = sub_0203068C(param0);
+    v3 = SaveData_GetBattleFrontier(param0);
     v4 = Heap_AllocFromHeapAtEnd(param1, 4 * 13);
 
     for (v0 = 0; v0 < 13; v0++) {
@@ -178,7 +178,7 @@ static u32 *sub_0202E924(SaveData *param0, int param1)
         }
     }
 
-    SaveData_SetChecksum(28);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
 
     return v4;
 }
@@ -209,7 +209,7 @@ void *sub_0202E9FC(SaveData *param0, int param1)
 
     Heap_FreeToHeap(v6);
     Strbuf_Free(v4);
-    SaveData_SetChecksum(28);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
 
     return v3;
 }
@@ -332,21 +332,21 @@ static void sub_0202EAEC(UnkStruct_0202E8C0 *param0, UnkStruct_0202EABC *param1,
     }
 }
 
-static void sub_0202ECB0(UnkStruct_0202E8C0 *param0, u32 param1, u8 param2, UnkStruct_0202E91C **param3, u8 param4, int param5)
+static void sub_0202ECB0(UnkStruct_0202E8C0 *param0, u32 param1, u8 param2, UnkStruct_0202E91C **param3, u8 param4, int heapID)
 {
     int v0, v1;
-    UnkStruct_0202EABC *v2 = Heap_AllocFromHeapAtEnd(param5, sizeof(UnkStruct_0202EABC));
+    UnkStruct_0202EABC *v2 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_0202EABC));
 
-    sub_0202EAEC(param0, v2, param1, param2, 0, param3, param4, param5);
+    sub_0202EAEC(param0, v2, param1, param2, 0, param3, param4, heapID);
 
     if (param1 != 0) {
-        sub_0202EAEC(param0, v2, param1, param2, 1, param3, param4, param5);
+        sub_0202EAEC(param0, v2, param1, param2, 1, param3, param4, heapID);
     }
 
     Heap_FreeToHeap(v2);
 }
 
-void sub_0202ED0C(SaveData *param0, int param1, u8 param2, const void **param3, int param4)
+void sub_0202ED0C(SaveData *param0, int param1, u8 param2, const void **param3, int heapID)
 {
     u8 v0, v1;
     u32 v2;
@@ -375,10 +375,10 @@ void sub_0202ED0C(SaveData *param0, int param1, u8 param2, const void **param3, 
     }
 
     for (v0 = 0; v0 < 13; v0++) {
-        sub_0202ECB0(v4, v2, v0, v3, v1, param4);
+        sub_0202ECB0(v4, v2, v0, v3, v1, heapID);
     }
 
-    SaveData_SetChecksum(28);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
 
     return;
 }
@@ -448,5 +448,5 @@ void sub_0202EE8C(UnkStruct_0202EE10 *param0)
 
     Heap_FreeToHeap(param0);
     param0 = NULL;
-    SaveData_SetChecksum(28);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
 }

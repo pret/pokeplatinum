@@ -12,19 +12,19 @@ _000A:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00B2, _00D2
-    ScrCmd_0EA TRAINER_ELITE_FOUR_FLINT
+    PlayTrainerEncounterBGM TRAINER_ELITE_FOUR_FLINT
     CallIfUnset FLAG_GAME_COMPLETED, _00F0
     CallIfSet FLAG_GAME_COMPLETED, _0104
     CloseMessage
-    CallIfUnset FLAG_UNK_0x00D6, _00A0
-    CallIfSet FLAG_UNK_0x00D6, _00A8
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00CC
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _00A0
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _00A8
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00CC
     SetFlag FLAG_UNK_0x00B2
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     RemoveObject 1
-    CallIfUnset FLAG_UNK_0x00D6, _00B0
-    CallIfSet FLAG_UNK_0x00D6, _00BE
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _00B0
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _00BE
     CallIfUnset FLAG_GAME_COMPLETED, _0109
     CallIfSet FLAG_GAME_COMPLETED, _010E
     WaitABXPadPress
@@ -105,7 +105,7 @@ _0138:
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     ClearFlag FLAG_UNK_0x0284
     AddObject 2
-    SetVar 0x4001, 1
+    SetVar VAR_MAP_LOCAL_1, 1
     ReleaseAll
     End
 

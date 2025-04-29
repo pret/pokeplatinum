@@ -131,7 +131,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_57, 98304);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_58, 98304);
         ov95_02247688();
-        Sound_SetSceneAndPlayBGM(3, 1170, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_3, SEQ_KOUKAN, 1);
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov95_02247628), HEAP_ID_57);
 
@@ -577,7 +577,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
             v4.unk_08 *= 2;
         }
 
-        sub_02013720(v0.archive, v0.character, HEAP_ID_57, &v4, v3, v7, param4, 2, v8);
+        sub_02013720(v0.narcID, v0.character, HEAP_ID_57, &v4, v3, v7, param4, 2, v8);
         DC_FlushRange(v3, v2);
         Bg_LoadTiles(param0->unk_08, param2, v3, v2, 0);
 
@@ -586,7 +586,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
     }
 
     v1 = (param2 >= 4) ? 4 : 0;
-    Graphics_LoadPalette(v0.archive, v0.palette, v1, param3 * 0x20, 0x20, HEAP_ID_57);
+    Graphics_LoadPalette(v0.narcID, v0.palette, v1, param3 * 0x20, 0x20, HEAP_ID_57);
 }
 
 void ov95_022474D4(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 param3, u32 param4, u32 param5)
@@ -654,7 +654,7 @@ Sprite *ov95_022475E4(UnkStruct_ov95_02247628 *param0, SpriteResourcesHeader *pa
     v1.position.z = 0;
     v1.priority = param4;
     v1.vramType = param5;
-    v1.heapID = 57;
+    v1.heapID = HEAP_ID_57;
 
     v0 = SpriteList_Add(&v1);
 

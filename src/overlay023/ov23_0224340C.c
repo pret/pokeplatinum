@@ -616,7 +616,7 @@ static const UnkFuncPtr_ov23_022564CC Unk_ov23_022565E4[] = {
 static void ov23_0224340C(void)
 {
     int v0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
 
     for (v0 = 0; v0 < 16; v0++) {
         Unk_ov23_02257764->unk_308[v0].unk_04 = sub_02029030(v1, v0);
@@ -645,7 +645,7 @@ void ov23_022434BC(void *param0, FieldSystem *fieldSystem)
     MI_CpuFill8(Unk_ov23_02257764, 0, sizeof(UnkStruct_ov23_02257764));
     Unk_ov23_02257764->fieldSystem = fieldSystem;
 
-    v1 = sub_020298B0(FieldSystem_GetSaveData(fieldSystem));
+    v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(fieldSystem));
 
     Unk_ov23_02257764->unk_2F0 = NULL;
 
@@ -1095,7 +1095,7 @@ int ov23_02243C3C(int param0, int param1, MATHRandContext16 *param2, int param3)
     int v2, v3;
     UnkStruct_ov23_02243DA8 *v4;
     UnkStruct_ov23_02243DA8 *v5;
-    UndergroundData *v6 = sub_020298B0(Unk_ov23_02257764->fieldSystem->saveData);
+    UndergroundData *v6 = SaveData_GetUndergroundData(Unk_ov23_02257764->fieldSystem->saveData);
 
     if (param3 >= (16 * 4)) {
         return 0;
@@ -1128,7 +1128,7 @@ int ov23_02243C3C(int param0, int param1, MATHRandContext16 *param2, int param3)
 void ov23_02243CE8(void)
 {
     int v0;
-    UndergroundData *v1 = sub_020298B0(Unk_ov23_02257764->fieldSystem->saveData);
+    UndergroundData *v1 = SaveData_GetUndergroundData(Unk_ov23_02257764->fieldSystem->saveData);
 
     for (v0 = 0; v0 < (16 * 4); v0++) {
         int v2 = sub_02028F40(v1, v0);
@@ -1150,7 +1150,7 @@ void ov23_02243CE8(void)
 
 static void ov23_02243D50(void)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
+    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
     int v1;
 
     for (v1 = 0; v1 < 16; v1++) {
@@ -1324,7 +1324,7 @@ BOOL ov23_02244080(int param0, UnkStruct_ov23_0224271C *param1, u8 param2)
     u8 v2 = param0;
     UnkStruct_ov23_02243DA8 *v3;
     UnkStruct_ov23_02244140 v4;
-    UndergroundData *v5 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
+    UndergroundData *v5 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
 
     v0 = CommPlayer_AddXServer(param0);
     v1 = CommPlayer_AddZServer(param0);
@@ -1465,7 +1465,7 @@ static BOOL ov23_022442F0(int param0)
 {
     UnkStruct_ov23_02244140 v0;
     UnkStruct_ov23_02243DA8 *v1;
-    UndergroundData *v2 = sub_020298B0(Unk_ov23_02257764->fieldSystem->saveData);
+    UndergroundData *v2 = SaveData_GetUndergroundData(Unk_ov23_02257764->fieldSystem->saveData);
 
     if (ov23_0224162C(param0)) {
         return 0;
@@ -3309,7 +3309,7 @@ static void ov23_0224644C(int param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.heapID = 4;
+        v0.heapID = HEAP_ID_FIELD;
 
         for (v1 = 0; v1 < param0; v1++) {
             v0.position.x = FX32_ONE * 300;
@@ -3657,7 +3657,7 @@ static void ov23_02246D44(UnkStruct_ov23_022468DC *param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.heapID = 4;
+        v0.heapID = HEAP_ID_FIELD;
 
         for (v1 = 0; v1 < ov23_022468C0(); v1++) {
             v0.position.x = FX32_ONE * 300;
@@ -3835,7 +3835,7 @@ static void ov23_022471D8(UnkStruct_ov23_022471D8 *param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.heapID = 4;
+        v0.heapID = HEAP_ID_FIELD;
 
         for (v1 = 0; v1 < 15; v1++) {
             v0.position.x = FX32_ONE * 100;
@@ -4307,7 +4307,7 @@ static void ov23_02247E38(UnkStruct_ov23_02247E38 *param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.heapID = 4;
+        v0.heapID = HEAP_ID_FIELD;
 
         for (v1 = 0; v1 < 1; v1++) {
             v0.position.x = FX32_ONE * 128;
@@ -4763,7 +4763,7 @@ static void ov23_02248748(UnkStruct_ov23_02248748 *param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.heapID = 4;
+        v0.heapID = HEAP_ID_FIELD;
 
         for (v1 = 0; v1 < 25; v1++) {
             v0.position.x = FX32_ONE * 300;

@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_UNK_0203D1B8_H
 #define POKEPLATINUM_UNK_0203D1B8_H
 
-#include "struct_decls/struct_02070950_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -21,6 +20,7 @@
 #include "overlay090/struct_ov90_021D0D80.h"
 
 #include "field_battle_data_transfer.h"
+#include "field_move_tasks.h"
 #include "field_task.h"
 #include "pokemon.h"
 #include "savedata.h"
@@ -33,7 +33,7 @@ u16 sub_0203D2C4(void *param0);
 void sub_0203D2E4(FieldSystem *fieldSystem, void *param1);
 void sub_0203D30C(FieldSystem *fieldSystem, void *param1);
 void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *overlayArgs);
-void *sub_0203D390(FieldSystem *fieldSystem, UnkStruct_02070950 *param1, u8 param2);
+void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2);
 void *sub_0203D3C0(int param0, FieldSystem *fieldSystem);
 void *sub_0203D3E4(int param0, FieldSystem *fieldSystem);
 int PartyManagementData_GetSelectedSlot(PartyManagementData *partyMan);
@@ -44,7 +44,7 @@ void *sub_0203D50C(FieldTask *taskMan, int heapID);
 void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3, int param4, int param5);
 void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2);
 void *sub_0203D644(FieldSystem *fieldSystem, int param1);
-PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int param1, int param2);
+PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode);
 void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapId heapID, FieldSystem *fieldSystem, u8 partyIndex);
 int PokemonSummary_GetSelectedMoveSlot(void *summary);
 void sub_0203D754(FieldSystem *fieldSystem, UnkStruct_02042434 *param1);
@@ -54,8 +54,8 @@ void sub_0203D884(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1);
 void *sub_0203D8AC(FieldSystem *fieldSystem);
 void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem);
 UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 param3, int param4);
-UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, int param3);
-UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int param2);
+UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, int heapID);
+UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int heapID);
 UnkStruct_0203D9B8 *sub_0203D9B8(FieldSystem *fieldSystem, int heapID);
 void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1);
 void sub_0203DAC0(FieldTask *param0, u16 *param1, SaveData *param2, u16 param3, u16 param4);
@@ -83,7 +83,7 @@ void sub_0203E2AC(FieldSystem *fieldSystem, void *param1);
 void sub_0203E2D4(FieldSystem *fieldSystem, void *param1);
 void sub_0203E2FC(FieldSystem *fieldSystem);
 BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1);
-void sub_0203E414(FieldTask *param0, int param1);
+void sub_0203E414(FieldTask *task, int slotMachineID);
 void AccessoryShop_Init(FieldTask *task);
 void *sub_0203E53C(FieldSystem *fieldSystem, int heapID, int param2);
 void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, int heapID);

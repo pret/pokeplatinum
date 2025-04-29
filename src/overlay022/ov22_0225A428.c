@@ -38,8 +38,8 @@ static void ov22_0225A7B8(UnkStruct_ov22_022597BC *param0);
 static void ov22_0225A7C0(Window *param0);
 static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6);
 static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, Strbuf **param7);
-static s32 ov22_0225A860(Window *param0, int param1, int param2, int param3, int param4, int param5, TextColor param6, u32 param7);
-static s32 ov22_0225A8B4(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8);
+static s32 ov22_0225A860(Window *param0, enum NarcID narcID, int param2, int param3, int param4, int param5, TextColor param6, u32 param7);
+static s32 ov22_0225A8B4(Window *param0, enum NarcID narcID, int param2, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8);
 static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, SpriteList *param1, SpriteResourceCollection **param2, int param3, NARC *param4);
 static void ov22_0225A9C8(UnkStruct_ov22_0225A914 *param0, int param1);
 static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollection **param1);
@@ -248,7 +248,7 @@ static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int
     return v0;
 }
 
-static s32 ov22_0225A860(Window *window, int narcID, int bankID, int param3, int param4, int param5, TextColor param6, u32 param7)
+static s32 ov22_0225A860(Window *window, enum NarcID narcID, int bankID, int param3, int param4, int param5, TextColor param6, u32 param7)
 {
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, narcID, bankID, HEAP_ID_13);
     GF_ASSERT(msgLoader);
@@ -262,7 +262,7 @@ static s32 ov22_0225A860(Window *window, int narcID, int bankID, int param3, int
     return v2;
 }
 
-static s32 ov22_0225A8B4(Window *param0, int narcID, int bankID, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8)
+static s32 ov22_0225A8B4(Window *param0, enum NarcID narcID, int bankID, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8)
 {
     GF_ASSERT(*param8 == NULL);
 
@@ -289,7 +289,7 @@ static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, SpriteList *param1, S
     v1.resourceData = &v0;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v1.priority = 0;
-    v1.heapID = 14;
+    v1.heapID = HEAP_ID_14;
 
     for (v2 = 0; v2 < (20 / 10); v2++) {
         v1.position.y = 104 + (18 * v2);
@@ -382,7 +382,7 @@ static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, SpriteList *param1, S
     v1.resourceData = &v0;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v1.priority = 0;
-    v1.heapID = 14;
+    v1.heapID = HEAP_ID_14;
     v1.position.y = 58 * FX32_ONE;
     v1.position.y += (512 * FX32_ONE);
 

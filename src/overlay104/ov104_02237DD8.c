@@ -180,7 +180,7 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2
         }
 
         if (v5 == 1) {
-            v9->unk_18 = sub_02030698(sub_0203068C(v9->unk_04), sub_0205E700(v9->unk_10), sub_0205E6A8(sub_0205E700(v9->unk_10)));
+            v9->unk_18 = sub_02030698(SaveData_GetBattleFrontier(v9->unk_04), sub_0205E700(v9->unk_10), sub_0205E6A8(sub_0205E700(v9->unk_10)));
         } else {
             v9->unk_18 = 0;
         }
@@ -196,7 +196,7 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2
         v9->unk_11 = (u8)sub_0203054C(v4, 2, 0, 0, NULL);
         v9->unk_1C = (u8)sub_0203054C(v4, 3, 0, 0, NULL);
         v9->unk_12 = (u8)sub_0203054C(v4, 1, 0, 0, NULL);
-        v9->unk_18 = sub_02030698(sub_0203068C(v9->unk_04), sub_0205E700(v9->unk_10), sub_0205E6A8(sub_0205E700(v9->unk_10)));
+        v9->unk_18 = sub_02030698(SaveData_GetBattleFrontier(v9->unk_04), sub_0205E700(v9->unk_10), sub_0205E6A8(sub_0205E700(v9->unk_10)));
         v9->unk_1A = (u16)(v9->unk_18 / 7);
 
         for (v7 = 0; v7 < 3; v7++) {
@@ -408,16 +408,16 @@ void ov104_02238278(UnkStruct_ov104_0223BFFC *param0, u8 param1)
 
     v2[0] = param0->unk_12;
     sub_020304CC(param0->unk_08, 1, 0, 0, v2);
-    sub_020306E4(sub_0203068C(param0->unk_04), sub_0205E700(param0->unk_10), sub_0205E6A8(sub_0205E700(param0->unk_10)), param0->unk_18);
+    sub_020306E4(SaveData_GetBattleFrontier(param0->unk_04), sub_0205E700(param0->unk_10), sub_0205E6A8(sub_0205E700(param0->unk_10)), param0->unk_18);
 
     if (param1 != 2) {
-        v5 = sub_02030848(sub_0203068C(param0->unk_04), sub_0205E728(param0->unk_10), sub_0205E6A8(sub_0205E728(param0->unk_10)), param0->unk_18);
+        v5 = sub_02030848(SaveData_GetBattleFrontier(param0->unk_04), sub_0205E728(param0->unk_10), sub_0205E6A8(sub_0205E728(param0->unk_10)), param0->unk_18);
 
         v2[0] = param0->unk_2F;
         sub_020305CC(v9, 8, param0->unk_10, 0, v2);
 
         if (param0->unk_10 == 3) {
-            sub_020306E4(sub_0203068C(param0->unk_04), 110, sub_0205E6A8(110), param0->unk_2F);
+            sub_020306E4(SaveData_GetBattleFrontier(param0->unk_04), 110, sub_0205E6A8(110), param0->unk_2F);
         }
     }
 

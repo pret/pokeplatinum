@@ -15,27 +15,27 @@
     ScriptEntryEnd
 
 _0026:
-    GoToIfLt 0x4069, 0x118, _0035
+    GoToIfLt VAR_UNK_0x4069, 0x118, _0035
     End
 
 _0035:
-    SetVar 0x4069, 0
+    SetVar VAR_UNK_0x4069, 0
     End
 
 _003D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq 0x4069, 0x122, _00ED
-    GoToIfEq 0x4069, 0x118, _00F8
+    GoToIfEq VAR_UNK_0x4069, 0x122, _00ED
+    GoToIfEq VAR_UNK_0x4069, 0x118, _00F8
     GoToIfUnset FLAG_GAME_COMPLETED, _010F
-    ScrCmd_32B 0x800C
-    GoToIfEq 0x800C, 0, _011A
-    GoToIfEq 0x4069, 0x10E, _00AE
-    GoToIfLt 0x4069, 0x104, _011A
+    CheckPartyHasFatefulEncounterRegigigas VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _011A
+    GoToIfEq VAR_UNK_0x4069, 0x10E, _00AE
+    GoToIfLt VAR_UNK_0x4069, 0x104, _011A
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
-    SetVar 0x4069, 0x10E
+    SetVar VAR_UNK_0x4069, 0x10E
     Message 1
     GoTo _0125
     End
@@ -43,14 +43,14 @@ _003D:
 _00AE:
     PlayCry SPECIES_REGISTEEL
     Message 2
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_REGISTEEL, 30
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0109
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _00F8
-    SetVar 0x4069, 0x122
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0109
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _00F8
+    SetVar VAR_UNK_0x4069, 0x122
     ReleaseAll
     End
 
@@ -60,7 +60,7 @@ _00ED:
     End
 
 _00F8:
-    SetVar 0x4069, 0x118
+    SetVar VAR_UNK_0x4069, 0x118
     Message 3
     GoTo _0125
     End
@@ -87,52 +87,52 @@ _0125:
     End
 
 _012D:
-    SetVar 0x4001, 1
-    GoToIfGe 0x4069, 0x104, _020D
+    SetVar VAR_MAP_LOCAL_1, 1
+    GoToIfGe VAR_UNK_0x4069, 0x104, _020D
     GoTo _01EA
     End
 
 _0148:
-    SetVar 0x4002, 1
-    GoToIfGe 0x4069, 0x104, _020D
+    SetVar VAR_MAP_LOCAL_2, 1
+    GoToIfGe VAR_UNK_0x4069, 0x104, _020D
     GoTo _01EA
     End
 
 _0163:
-    SetVar 0x4003, 1
-    GoToIfGe 0x4069, 0x104, _020D
+    SetVar VAR_MAP_LOCAL_3, 1
+    GoToIfGe VAR_UNK_0x4069, 0x104, _020D
     GoTo _01EA
     End
 
 _017E:
-    SetVar 0x4004, 1
-    GoToIfGe 0x4069, 0x104, _020D
+    SetVar VAR_MAP_LOCAL_4, 1
+    GoToIfGe VAR_UNK_0x4069, 0x104, _020D
     GoTo _01EA
     End
 
 _0199:
-    SetVar 0x4005, 1
-    GoToIfGe 0x4069, 0x104, _020D
+    SetVar VAR_MAP_LOCAL_5, 1
+    GoToIfGe VAR_UNK_0x4069, 0x104, _020D
     GoTo _01EA
     End
 
 _01B4:
-    SetVar 0x4006, 1
-    GoToIfGe 0x4069, 0x104, _020D
+    SetVar VAR_MAP_LOCAL_6, 1
+    GoToIfGe VAR_UNK_0x4069, 0x104, _020D
     GoTo _01EA
     End
 
 _01CF:
-    SetVar 0x4007, 1
-    GoToIfGe 0x4069, 0x104, _020D
+    SetVar VAR_MAP_LOCAL_7, 1
+    GoToIfGe VAR_UNK_0x4069, 0x104, _020D
     GoTo _01EA
     End
 
 _01EA:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    ScrCmd_32C 0x4069, 0x24C, 0x8004, 0x8005
-    GoToIfGe 0x4069, 0x104, _020F
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    ScrCmd_32C VAR_UNK_0x4069, 0x24C, VAR_0x8004, VAR_0x8005
+    GoToIfGe VAR_UNK_0x4069, 0x104, _020F
     ReleaseAll
     End
 
@@ -143,7 +143,7 @@ _020F:
     GoToIfUnset FLAG_GAME_COMPLETED, _020D
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
-    SetVar 0x4069, 0x10E
+    SetVar VAR_UNK_0x4069, 0x10E
     Message 1
     WaitABXPadPress
     CloseMessage

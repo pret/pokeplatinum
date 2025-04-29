@@ -294,8 +294,8 @@ static BOOL FieldTask_WiFiEncounter(FieldTask *task)
 
     switch (*state) {
     case 0:
-        Sound_SetScene(0);
-        Sound_SetSceneAndPlayBGM(5, encounter->battleBGM, 1);
+        Sound_SetScene(SOUND_SCENE_NONE);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, encounter->battleBGM, 1);
         CallBattleTask(task, encounter->dto);
         (*state)++;
         break;

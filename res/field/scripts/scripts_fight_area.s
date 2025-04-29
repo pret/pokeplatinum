@@ -31,8 +31,8 @@
     ScriptEntryEnd
 
 _0066:
-    GoToIfEq 0x4081, 1, _0082
-    GoToIfGe 0x409E, 1, _0098
+    GoToIfEq VAR_UNK_0x4081, 1, _0082
+    GoToIfGe VAR_UNK_0x409E, 1, _0098
     End
 
 _0082:
@@ -120,13 +120,13 @@ _00D8:
     ApplyMovement 7, _0354
     WaitMovement
     CallCommonScript 0x801
-    SetVar 0x4081, 1
+    SetVar VAR_UNK_0x4081, 1
     ScrCmd_32E
     Message 1
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _02EE
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _02EE
     Call _014E
-    GoToIfEq 0x800C, FALSE, _0306
+    GoToIfEq VAR_RESULT, FALSE, _0306
     Call _0198
     ReleaseAll
     End
@@ -146,8 +146,8 @@ _014E:
     Message 8
     CloseMessage
     Call FightArea_SetRivalPartnerTeam
-    StartTagBattle 0x8004, TRAINER_LEADER_VOLKNER_FIGHT_AREA, TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA
-    CheckWonBattle 0x800C
+    StartTagBattle VAR_0x8004, TRAINER_LEADER_VOLKNER_FIGHT_AREA, TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA
+    CheckWonBattle VAR_RESULT
     Return
 
 _0198:
@@ -177,7 +177,7 @@ _0198:
     Message 12
     ClearFlag FLAG_UNK_0x01E3
     AddObject 26
-    ScrCmd_04A 0x5DC
+    StopFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     MessageInstant 13
     ApplyMovement 26, _03B4
@@ -221,9 +221,9 @@ _0198:
     ApplyMovement LOCALID_PLAYER, _041C
     WaitMovement
     RemoveObject 8
-    ScrCmd_22D 2, 0x800C
-    CallIfEq 0x800C, 1, _02E0
-    SetVar 0x4081, 2
+    GetNationalDexEnabled VAR_RESULT
+    CallIfEq VAR_RESULT, 1, _02E0
+    SetVar VAR_UNK_0x4081, 2
     Return
 
 _02E0:
@@ -248,12 +248,12 @@ _0306:
     End
 
 FightArea_SetRivalPartnerTeam:
-    GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _033E
-    SetVar 0x8004, TRAINER_RIVAL_FIGHT_AREA_TURTWIG
-    GoToIfEq 0x800C, SPECIES_TURTWIG, _033E
-    SetVar 0x8004, TRAINER_RIVAL_FIGHT_AREA_PIPLUP
+    GetPlayerStarterSpecies VAR_RESULT
+    SetVar VAR_0x8004, TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _033E
+    SetVar VAR_0x8004, TRAINER_RIVAL_FIGHT_AREA_TURTWIG
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _033E
+    SetVar VAR_0x8004, TRAINER_RIVAL_FIGHT_AREA_PIPLUP
     Return
 
 _033E:
@@ -541,11 +541,11 @@ _0521:
     BufferItemName 0, 0x1BF
     GoToIfSet FLAG_UNK_0x006B, _057A
     Message 42
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _056F
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _056F
     Message 43
-    SetVar 0x8004, 0x1BF
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1BF
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x006B
     Message 44
@@ -585,11 +585,11 @@ _05CA:
     LockAll
     FacePlayer
     FacePlayer
-    GetPlayerDir 0x8004
+    GetPlayerDir VAR_0x8004
     Message 38
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0606
-    GoToIfEq 0x800C, MENU_NO, _05FB
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0606
+    GoToIfEq VAR_RESULT, MENU_NO, _05FB
     End
 
 _05FB:
@@ -603,9 +603,9 @@ _0606:
     Message 39
     CloseMessage
     Call _0646
-    CallIfEq 0x8004, 1, _0660
-    CallIfEq 0x8004, 3, _067A
-    CallIfEq 0x8004, 2, _0694
+    CallIfEq VAR_0x8004, 1, _0660
+    CallIfEq VAR_0x8004, 3, _067A
+    CallIfEq VAR_0x8004, 2, _0694
     ScrCmd_23D 1, 0, 165, 0x164, 246
     ReleaseAll
     End
@@ -679,17 +679,17 @@ _06F0:
     FacePlayer
     ApplyMovement 7, _07A0
     WaitMovement
-    GetPlayerDir 0x8004
-    CallIfEq 0x8004, 3, _076E
-    CallIfEq 0x8004, 2, _077A
-    CallIfEq 0x8004, 1, _0786
-    CallIfEq 0x8004, 0, _0792
+    GetPlayerDir VAR_0x8004
+    CallIfEq VAR_0x8004, 3, _076E
+    CallIfEq VAR_0x8004, 2, _077A
+    CallIfEq VAR_0x8004, 1, _0786
+    CallIfEq VAR_0x8004, 0, _0792
     BufferRivalName 0
     Message 4
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _02EE
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _02EE
     Call _014E
-    GoToIfEq 0x800C, FALSE, _0306
+    GoToIfEq VAR_RESULT, FALSE, _0306
     Call _0198
     ReleaseAll
     End

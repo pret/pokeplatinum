@@ -204,7 +204,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
         ov109_021D441C(v0, v1);
         ov109_021D4518(v0);
         ov109_021D45F4(v0);
-        Sound_SetSceneAndPlayBGM(52, 0, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
         sub_0209BE50(v2->unk_34);
         sub_020378B8();
         sub_02037B58(3);
@@ -644,7 +644,7 @@ static void ov109_021D4518(UnkStruct_ov109_021D5140 *param0)
         v1.affineZRotation = 0;
         v1.priority = 1;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.heapID = 95;
+        v1.heapID = HEAP_ID_95;
 
         for (v0 = 0; v0 < 5; v0++) {
             v1.position.x = FX32_ONE * Unk_ov109_021D5DD0[v0 + 1][0];

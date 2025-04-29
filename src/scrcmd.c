@@ -12,6 +12,8 @@
 #include "constants/overworld_weather.h"
 #include "constants/scrcmd.h"
 #include "constants/species.h"
+#include "generated/accessories.h"
+#include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
 #include "generated/save_types.h"
 #include "generated/signpost_commands.h"
@@ -135,10 +137,17 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "scrcmd_amity_square.h"
+#include "scrcmd_coins.h"
+#include "scrcmd_daycare.h"
 #include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_game_corner_prize.h"
+#include "scrcmd_item.h"
 #include "scrcmd_jubilife_lottery.h"
+#include "scrcmd_money.h"
+#include "scrcmd_mystery_gift.h"
 #include "scrcmd_shop.h"
+#include "scrcmd_sound.h"
 #include "scrcmd_system_flags.h"
 #include "script_manager.h"
 #include "sound.h"
@@ -170,22 +179,15 @@
 #include "unk_0203D1B8.h"
 #include "unk_02046C7C.h"
 #include "unk_020474B8.h"
-#include "unk_020482D4.h"
 #include "unk_02048614.h"
 #include "unk_02048BD0.h"
 #include "unk_02048DD8.h"
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
 #include "unk_0204B64C.h"
-#include "unk_0204B830.h"
 #include "unk_0204C500.h"
-#include "unk_0204C6C8.h"
-#include "unk_0204C8F0.h"
-#include "unk_0204CA84.h"
-#include "unk_0204CDDC.h"
 #include "unk_0204CFFC.h"
 #include "unk_0204E240.h"
-#include "unk_0204E75C.h"
 #include "unk_0204E974.h"
 #include "unk_0204EDA4.h"
 #include "unk_0204F04C.h"
@@ -562,7 +564,7 @@ static BOOL ScrCmd_GiveJournal(ScriptContext *ctx);
 static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx);
 static BOOL ScrCmd_1CE(ScriptContext *ctx);
 static BOOL ScrCmd_1D2(ScriptContext *ctx);
-static BOOL ScrCmd_1D3(ScriptContext *ctx);
+static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_1D4(ScriptContext *ctx);
 static BOOL ScrCmd_1D5(ScriptContext *ctx);
 static BOOL ScrCmd_1D6(ScriptContext *ctx);
@@ -579,8 +581,8 @@ static BOOL ScrCmd_1EF(ScriptContext *ctx);
 static BOOL ScrCmd_IncrementGameRecord(ScriptContext *ctx);
 static BOOL ScrCmd_1E6(ScriptContext *ctx);
 static BOOL ScrCmd_1E7(ScriptContext *ctx);
-static BOOL ScrCmd_334(ScriptContext *ctx);
-static BOOL ScrCmd_335(ScriptContext *ctx);
+static BOOL ScrCmd_AddToGameRecord(ScriptContext *ctx);
+static BOOL ScrCmd_AddToGameRecordBigValue(ScriptContext *ctx);
 static BOOL ScrCmd_Dummy1F9(ScriptContext *ctx);
 static BOOL ScrCmd_GetPreviousMapID(ScriptContext *ctx);
 static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx);
@@ -610,7 +612,7 @@ static BOOL ScrCmd_229(ScriptContext *ctx);
 static BOOL ScrCmd_FinishNpcTrade(ScriptContext *ctx);
 static BOOL ScrCmd_22B(ScriptContext *ctx);
 static BOOL ScrCmd_22C(ScriptContext *ctx);
-static BOOL ScrCmd_22D(ScriptContext *ctx);
+static BOOL ScrCmd_GetSetNationalDexEnabled(ScriptContext *ctx);
 static BOOL ScrCmd_233(ScriptContext *ctx);
 static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx);
 static BOOL ScrCmd_239(ScriptContext *ctx);
@@ -639,15 +641,15 @@ static BOOL ScrCmd_25F(ScriptContext *ctx);
 static BOOL ScrCmd_260(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyHasSpecies2(ScriptContext *ctx);
 static BOOL ScrCmd_ChangeDeoxysForm(ScriptContext *ctx);
-static BOOL ScrCmd_264(ScriptContext *ctx);
+static BOOL ScrCmd_CheckPartyCombeeGenderCount(ScriptContext *ctx);
 static BOOL ScrCmd_HidePoketch(ScriptContext *ctx);
 static BOOL ScrCmd_ShowPoketch(ScriptContext *ctx);
 static BOOL ScrCmd_267(ScriptContext *ctx);
-static BOOL ScrCmd_268(ScriptContext *ctx);
+static BOOL ScrCmd_GetHour(ScriptContext *ctx);
 static BOOL ScrCmd_269(ScriptContext *ctx);
 static BOOL ScrCmd_26A(ScriptContext *ctx);
 static BOOL ScrCmd_26B(ScriptContext *ctx);
-static BOOL ScrCmd_26C(ScriptContext *ctx);
+static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx);
 static BOOL ScrCmd_SetHiddenLocation(ScriptContext *ctx);
 static BOOL ScrCmd_273(ScriptContext *ctx);
@@ -660,7 +662,7 @@ static BOOL ScrCmd_27D(ScriptContext *ctx);
 static BOOL ScrCmd_CheckIsDepartmentStoreRegular(ScriptContext *ctx);
 static BOOL ScrCmd_27F(ScriptContext *ctx);
 static BOOL ScrCmd_282(ScriptContext *ctx);
-static BOOL ScrCmd_284(ScriptContext *ctx);
+static BOOL ScrCmd_GetUnownFormsSeenCount(ScriptContext *ctx);
 static BOOL ScrCmd_285(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundItemsGivenAway(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundFossilsUnearthed(ScriptContext *ctx);
@@ -681,7 +683,7 @@ static BOOL ScrCmd_29E(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundTalkCounter(ScriptContext *ctx);
 static BOOL ScrCmd_29F(ScriptContext *ctx);
 static BOOL ScrCmd_2A1(ScriptContext *ctx);
-static BOOL ScrCmd_2A2(ScriptContext *ctx);
+static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx);
 static BOOL ScrCmd_2A3(ScriptContext *ctx);
 static BOOL ScrCmd_2A4(ScriptContext *ctx);
 static BOOL ScrCmd_2A7(ScriptContext *ctx);
@@ -726,7 +728,7 @@ static BOOL ScrCmd_2F7(ScriptContext *ctx);
 static BOOL ScrCmd_2FB(ScriptContext *ctx);
 static BOOL ScrCmd_2FC(ScriptContext *ctx);
 static BOOL ScrCmd_GetRotomFormsInSave(ScriptContext *ctx);
-static BOOL ScrCmd_30A(ScriptContext *ctx);
+static BOOL ScrCmd_IncrementTrainerScore(ScriptContext *ctx);
 static BOOL ScrCmd_311(ScriptContext *ctx);
 static BOOL ScrCmd_312(ScriptContext *ctx);
 static BOOL ScrCmd_31F(ScriptContext *ctx);
@@ -737,8 +739,8 @@ static BOOL ScrCmd_320(ScriptContext *ctx);
 static BOOL ScrCmd_321(ScriptContext *ctx);
 static BOOL ScrCmd_322(ScriptContext *ctx);
 static BOOL ScrCmd_323(ScriptContext *ctx);
-static BOOL ScrCmd_328(ScriptContext *ctx);
-static BOOL ScrCmd_32B(ScriptContext *ctx);
+static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx);
+static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx);
 static BOOL sub_02040F0C(ScriptContext *ctx);
 static void sub_02040F28(FieldSystem *fieldSystem, SysTask *param1, MapObjectAnimCmd *param2);
 static void sub_02040F5C(SysTask *param0, void *param1);
@@ -839,26 +841,26 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ShowListMenu,
     ScrCmd_ShowMenuMultiColumn,
     ScrCmd_PlayFanfare,
-    ScrCmd_04A,
+    ScrCmd_StopFanfare,
     ScrCmd_WaitFanfare,
     ScrCmd_PlayCry,
-    ScrCmd_04D,
+    ScrCmd_WaitCry,
     ScrCmd_PlaySound,
     ScrCmd_WaitSound,
     ScrCmd_PlayMusic,
     ScrCmd_StopMusic,
     ScrCmd_PlayDefaultMusic,
-    ScrCmd_053,
-    ScrCmd_FadeOutMusic,
-    ScrCmd_055,
-    ScrCmd_056,
+    ScrCmd_SetSpecialBGM,
+    ScrCmd_FadeOutBGM,
+    ScrCmd_FadeInBGM,
+    ScrCmd_SetBGMPlayerPaused,
     ScrCmd_057,
-    ScrCmd_058,
-    ScrCmd_059,
-    ScrCmd_05A,
-    ScrCmd_05B,
-    ScrCmd_05C,
-    ScrCmd_05D,
+    ScrCmd_SetBGMFixed,
+    ScrCmd_CheckRecordedChatotCryIsPlayable,
+    ScrCmd_TryRecordChatotCry,
+    ScrCmd_StopRecordingChatotCry,
+    ScrCmd_StoreRecordedChatotCry,
+    ScrCmd_SetSubScene63,
     ScrCmd_ApplyMovement,
     ScrCmd_WaitMovement,
     ScrCmd_LockAll,
@@ -876,26 +878,26 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_06C,
     ScrCmd_06D,
     ScrCmd_06E,
-    ScrCmd_06F,
-    ScrCmd_070,
-    ScrCmd_071,
+    ScrCmd_GiveMoney,
+    ScrCmd_RemoveMoney,
+    ScrCmd_CheckMoney,
     ScrCmd_ShowMoney,
     ScrCmd_HideMoney,
     ScrCmd_UpdateMoneyDisplay,
     ScrCmd_ShowCoins,
     ScrCmd_HideCoins,
     ScrCmd_UpdateCoinDisplay,
-    ScrCmd_078,
-    ScrCmd_079,
-    ScrCmd_07A,
+    ScrCmd_GetCoinsAmount,
+    ScrCmd_AddCoins,
+    ScrCmd_SubstractCoinsFromValue,
     ScrCmd_AddItem,
     ScrCmd_RemoveItem,
     ScrCmd_CanFitItem,
     ScrCmd_CheckItem,
-    ScrCmd_07F,
+    ScrCmd_IsItemTMHM,
     ScrCmd_GetItemPocket,
-    ScrCmd_081,
-    ScrCmd_082,
+    ScrCmd_Dummy081,
+    ScrCmd_Dummy082,
     ScrCmd_083,
     ScrCmd_084,
     ScrCmd_085,
@@ -999,7 +1001,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0E7,
     ScrCmd_0E8,
     ScrCmd_0E9,
-    ScrCmd_0EA,
+    ScrCmd_PlayTrainerEncounterBGM,
     ScrCmd_BlackOutFromBattle,
     ScrCmd_CheckWonBattle,
     ScrCmd_CheckLostBattle,
@@ -1130,7 +1132,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_16A,
     ScrCmd_16B,
     ScrCmd_16C,
-    ScrCmd_16D,
+    ScrCmd_BufferDaycareMonNicknames,
     ScrCmd_GetDaycareState,
     ScrCmd_InitPersistedMapFeaturesForPastoriaGym,
     ScrCmd_170,
@@ -1184,19 +1186,19 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1A0,
     ScrCmd_1A1,
     ScrCmd_1A2,
-    ScrCmd_1A3,
+    ScrCmd_RemoveMoney2,
     ScrCmd_MoveMonToPartyFromDaycareSlot,
-    ScrCmd_1A5,
-    ScrCmd_1A6,
-    ScrCmd_1A7,
+    ScrCmd_Dummy1A5,
+    ScrCmd_Dummy1A6,
+    ScrCmd_Dummy1A7,
     ScrCmd_ResetDaycarePersonalityAndStepCounter,
     ScrCmd_GiveEggFromDaycare,
     ScrCmd_BufferDaycarePriceBySlot,
-    ScrCmd_1AB,
+    ScrCmd_CheckMoney2,
     ScrCmd_1AC,
     ScrCmd_Dummy1AD,
     ScrCmd_BufferDaycareGainedLevelsBySlot,
-    ScrCmd_1AF,
+    ScrCmd_BufferPartyMonNicknameReturnSpecies,
     ScrCmd_StorePartyMonIntoDaycare,
     ScrCmd_1B1,
     ScrCmd_1B2,
@@ -1209,7 +1211,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetFriendshipByPartySlot,
     ScrCmd_1BA,
     ScrCmd_1BB,
-    ScrCmd_1BC,
+    ScrCmd_BufferDaycareNicknameLevelGender,
     ScrCmd_GetPlayerDir,
     ScrCmd_GetDaycareCompatibilityLevel,
     ScrCmd_CheckDaycareHasEgg,
@@ -1232,7 +1234,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Flash,
     ScrCmd_Defog,
     ScrCmd_1D2,
-    ScrCmd_1D3,
+    ScrCmd_CanFitAccessory,
     ScrCmd_1D4,
     ScrCmd_1D5,
     ScrCmd_1D6,
@@ -1300,7 +1302,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetSpiritombCounter,
     ScrCmd_ClearAmitySquareStepCount,
     ScrCmd_GetAmitySquareStepCount,
-    ScrCmd_217,
+    ScrCmd_CalcAmitySquareFoundAccessory,
     ScrCmd_218,
     ScrCmd_SetNewsPressDeadline,
     ScrCmd_GetNewsPressDeadline,
@@ -1322,7 +1324,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FinishNpcTrade,
     ScrCmd_22B,
     ScrCmd_22C,
-    ScrCmd_22D,
+    ScrCmd_GetSetNationalDexEnabled,
     ScrCmd_22E,
     ScrCmd_22F,
     ScrCmd_GetPartyMonRibbon,
@@ -1339,7 +1341,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_23B,
     ScrCmd_23C,
     ScrCmd_23D,
-    ScrCmd_23E,
+    ScrCmd_MysteryGiftGive,
     ScrCmd_Dummy23F,
     ScrCmd_Dummy240,
     ScrCmd_Dummy241,
@@ -1374,18 +1376,18 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_25E,
     ScrCmd_25F,
     ScrCmd_260,
-    ScrCmd_261,
+    ScrCmd_BufferAccessoryName,
     ScrCmd_CheckPartyHasSpecies2,
     ScrCmd_ChangeDeoxysForm,
-    ScrCmd_264,
+    ScrCmd_CheckPartyCombeeGenderCount,
     ScrCmd_HidePoketch,
     ScrCmd_ShowPoketch,
     ScrCmd_267,
-    ScrCmd_268,
+    ScrCmd_GetHour,
     ScrCmd_269,
     ScrCmd_26A,
     ScrCmd_26B,
-    ScrCmd_26C,
+    ScrCmd_TryGetRandomMassageGirlAccessory,
     ScrCmd_26D,
     ScrCmd_GetGBACartridgeVersion,
     ScrCmd_ClearSpiritombCounter,
@@ -1393,9 +1395,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_271,
     ScrCmd_272,
     ScrCmd_273,
-    ScrCmd_274,
+    ScrCmd_HasCoinsFromValue,
     ScrCmd_CheckBonusRoundStreak,
-    ScrCmd_276,
+    ScrCmd_CanAddCoins,
     ScrCmd_GetDailyRandomLevel,
     ScrCmd_278,
     ScrCmd_279,
@@ -1408,8 +1410,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_280,
     ScrCmd_281,
     ScrCmd_282,
-    ScrCmd_283,
-    ScrCmd_284,
+    ScrCmd_SetInitialVolumeForSequence,
+    ScrCmd_GetUnownFormsSeenCount,
     ScrCmd_285,
     ScrCmd_GetUndergroundItemsGivenAway,
     ScrCmd_GetUndergroundFossilsUnearthed,
@@ -1439,19 +1441,19 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_29F,
     ScrCmd_StartTagBattle,
     ScrCmd_2A1,
-    ScrCmd_2A2,
+    ScrCmd_TrySetUnusedUndergroundField,
     ScrCmd_2A3,
     ScrCmd_2A4,
     ScrCmd_2A5,
     ScrCmd_GetGameCornerPrizeData,
     ScrCmd_2A7,
-    ScrCmd_2A8,
-    ScrCmd_2A9,
+    ScrCmd_SubstractCoinsFromVar,
+    ScrCmd_HasCoinsFromVar,
     ScrCmd_2AA,
     ScrCmd_2AB,
     ScrCmd_2AC,
     ScrCmd_2AD,
-    ScrCmd_2AE,
+    ScrCmd_IsSequencePlaying,
     ScrCmd_2AF,
     ScrCmd_2B0,
     ScrCmd_2B1,
@@ -1500,9 +1502,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2DC,
     ScrCmd_FindPartySlotWithSpecies,
     ScrCmd_2DE,
-    ScrCmd_2DF,
-    ScrCmd_2E0,
-    ScrCmd_2E1,
+    ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID,
+    ScrCmd_CheckAmitySquareManGiftIsAccesory,
+    ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan,
     ScrCmd_2E2,
     ScrCmd_2E3,
     ScrCmd_2E4,
@@ -1522,16 +1524,16 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_InitPersistedMapFeaturesForDistortionWorld,
     ScrCmd_2F3,
     ScrCmd_2F4,
-    ScrCmd_2F5,
+    ScrCmd_BufferNumberPaddingDigits,
     ScrCmd_2F6,
     ScrCmd_2F7,
-    ScrCmd_2F8,
-    ScrCmd_2F9,
-    ScrCmd_2FA,
+    ScrCmd_SetScene22,
+    ScrCmd_SetFieldScene,
+    ScrCmd_GetCurrentBGM,
     ScrCmd_2FB,
     ScrCmd_2FC,
     ScrCmd_2FD,
-    ScrCmd_2FE,
+    ScrCmd_GetItemQuantity,
     ScrCmd_2FF,
     ScrCmd_300,
     ScrCmd_301,
@@ -1543,7 +1545,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_307,
     ScrCmd_308,
     ScrCmd_309,
-    ScrCmd_30A,
+    ScrCmd_IncrementTrainerScore,
     ScrCmd_30B,
     ScrCmd_30C,
     ScrCmd_30D,
@@ -1573,10 +1575,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_325,
     ScrCmd_326,
     ScrCmd_ShowListMenuSetWidth,
-    ScrCmd_328,
+    ScrCmd_SetPartyGiratinaForm,
     ScrCmd_329,
     ScrCmd_32A,
-    ScrCmd_32B,
+    ScrCmd_CheckPartyHasFatefulEncounterRegigigas,
     ScrCmd_32C,
     ScrCmd_32D,
     ScrCmd_32E,
@@ -1585,8 +1587,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_331,
     ScrCmd_332,
     ScrCmd_333,
-    ScrCmd_334,
-    ScrCmd_335,
+    ScrCmd_AddToGameRecord,
+    ScrCmd_AddToGameRecordBigValue,
     ScrCmd_336,
     ScrCmd_CheckHasSeenSpecies,
     ScrCmd_338,
@@ -1594,7 +1596,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetMenuXOriginSide,
     ScrCmd_SetMenuYOriginSide,
     ScrCmd_33C,
-    ScrCmd_33D,
+    ScrCmd_BufferItemNamePlural,
     ScrCmd_33E,
     ScrCmd_33F,
     ScrCmd_340,
@@ -3454,10 +3456,10 @@ static BOOL ScrCmd_06E(ScriptContext *ctx)
 
 static BOOL ScrCmd_2AB(ScriptContext *ctx)
 {
-    UnkStruct_0202CA1C *v0;
+    BallSeals *v0;
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    v0 = sub_0202CA1C(ctx->fieldSystem->saveData);
+    v0 = SaveData_GetBallSeals(ctx->fieldSystem->saveData);
     *v1 = sub_0202CBA8(v0);
 
     return 0;
@@ -3465,11 +3467,11 @@ static BOOL ScrCmd_2AB(ScriptContext *ctx)
 
 static BOOL ScrCmd_093(ScriptContext *ctx)
 {
-    UnkStruct_0202CA1C *v0;
+    BallSeals *v0;
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    v0 = sub_0202CA1C(ctx->fieldSystem->saveData);
+    v0 = SaveData_GetBallSeals(ctx->fieldSystem->saveData);
     *v2 = sub_0202CBC8(v0, v1);
 
     return 0;
@@ -3480,7 +3482,7 @@ static BOOL ScrCmd_094(ScriptContext *ctx)
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    sub_0202CAE0(sub_0202CA1C(ctx->fieldSystem->saveData), v0, v1);
+    sub_0202CAE0(SaveData_GetBallSeals(ctx->fieldSystem->saveData), v0, v1);
     return 0;
 }
 
@@ -4267,7 +4269,7 @@ static BOOL ScrCmd_0AB(ScriptContext *ctx)
     UnkStruct_02042434 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02042434));
 
     v1->unk_00 = ctx->fieldSystem->saveData;
-    v1->unk_04 = ScriptContext_ReadByte(ctx);
+    v1->boxMode = ScriptContext_ReadByte(ctx);
     *v0 = v1;
 
     sub_0203D754(ctx->fieldSystem, *v0);
@@ -4704,15 +4706,15 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
     u8 rideBike = ScriptContext_ReadByte(ctx);
 
     if (rideBike == TRUE) {
-        Sound_SetSpecialBGM(ctx->fieldSystem, 1152);
-        sub_02055554(ctx->fieldSystem, 1152, 1);
+        Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_BICYCLE);
+        Sound_TryFadeOutToBGM(ctx->fieldSystem, SEQ_BICYCLE, 1);
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 1));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
     } else {
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 0));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
-        Sound_SetSpecialBGM(ctx->fieldSystem, 0);
-        sub_02055554(ctx->fieldSystem, sub_02055428(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
+        Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_NONE);
+        Sound_TryFadeOutToBGM(ctx->fieldSystem, Sound_GetOverrideBGM(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
     }
 
     return FALSE;
@@ -4720,7 +4722,7 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
 
 static BOOL ScrCmd_2BF(ScriptContext *ctx)
 {
-    Sound_SetSpecialBGM(ctx->fieldSystem, 1189);
+    Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_PL_BICYCLE);
     return 0;
 }
 
@@ -5936,7 +5938,7 @@ static BOOL ScrCmd_1B4(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    UnkStruct_02028430 *v2 = sub_02028430(fieldSystem->saveData);
+    MailBox *v2 = SaveData_GetMailBox(fieldSystem->saveData);
 
     *v1 = (u16)sub_02028494(v2, 0);
     return 0;
@@ -6108,17 +6110,17 @@ static BOOL ScrCmd_1D2(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_1D3(ScriptContext *ctx)
+static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx)
 {
     UnkStruct_0202A750 *v0;
     UnkStruct_02029D04 *v1;
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 *v4 = ScriptContext_GetVarPointer(ctx);
+    u16 accessory = ScriptContext_GetVar(ctx);
+    u16 count = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     v0 = sub_0202A750(ctx->fieldSystem->saveData);
     v1 = sub_02029D04(v0);
-    *v4 = sub_02029D50(v1, v2, v3);
+    *destVar = sub_02029D50(v1, accessory, count);
 
     return 0;
 }
@@ -6289,22 +6291,22 @@ static BOOL ScrCmd_1E7(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_334(ScriptContext *ctx)
+static BOOL ScrCmd_AddToGameRecord(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 recordID = ScriptContext_ReadHalfWord(ctx);
+    u16 value = ScriptContext_GetVar(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), v0, v1);
-    return 0;
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), recordID, value);
+    return FALSE;
 }
 
-static BOOL ScrCmd_335(ScriptContext *ctx)
+static BOOL ScrCmd_AddToGameRecordBigValue(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u32 v1 = ScriptContext_ReadWord(ctx);
+    u16 recordID = ScriptContext_ReadHalfWord(ctx);
+    u32 value = ScriptContext_ReadWord(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), v0, v1);
-    return 0;
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), recordID, value);
+    return FALSE;
 }
 
 static BOOL ScrCmd_202(ScriptContext *ctx)
@@ -6366,7 +6368,7 @@ static BOOL ScrCmd_20F(ScriptContext *ctx)
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
 
-    Sound_SetSceneAndPlayBGM(65, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_65, SEQ_NONE, 0);
     ov6_02242B58(ctx->fieldSystem, *v0, v1);
 
     return 1;
@@ -6499,23 +6501,23 @@ static BOOL ScrCmd_22C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_22D(ScriptContext *ctx)
+static BOOL ScrCmd_GetSetNationalDexEnabled(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u8 getOrSet = ScriptContext_ReadByte(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = 0;
+    *destVar = 0;
 
-    if (v0 == 1) {
+    if (getOrSet == 1) { // Set
         Pokedex_ObtainNationalDex(SaveData_GetPokedex(ctx->fieldSystem->saveData));
         TrainerInfo_GiveNationalDex(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData));
-    } else if (v0 == 2) {
-        *v1 = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(ctx->fieldSystem->saveData));
+    } else if (getOrSet == 2) { // Get
+        *destVar = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(ctx->fieldSystem->saveData));
     } else {
         GF_ASSERT(FALSE);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_233(ScriptContext *ctx)
@@ -6823,43 +6825,43 @@ static BOOL ScrCmd_ChangeDeoxysForm(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_264(ScriptContext *ctx)
+static BOOL ScrCmd_CheckPartyCombeeGenderCount(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    int v1, v2, v3, v4, v5, v6;
-    u16 *v7 = ScriptContext_GetVarPointer(ctx);
-    Party *v8 = SaveData_GetParty(ctx->fieldSystem->saveData);
-    int v9 = Party_GetCurrentCount(v8);
+    Pokemon *mon;
+    int i, species, hasMale, hasFemale, isEgg, gender;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    Party *party = SaveData_GetParty(ctx->fieldSystem->saveData);
+    int partyCount = Party_GetCurrentCount(party);
 
-    v3 = 0;
-    v4 = 0;
+    hasMale = 0;
+    hasFemale = 0;
 
-    for (v1 = 0; v1 < v9; v1++) {
-        v0 = Party_GetPokemonBySlotIndex(v8, v1);
-        v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
-        v6 = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
-        v5 = Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(party, i);
+        species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
+        isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
-        if ((v2 == SPECIES_COMBEE) && (v5 == 0)) {
-            if (v6 == 0) {
-                v3 = 1;
+        if (species == SPECIES_COMBEE && isEgg == FALSE) {
+            if (gender == GENDER_MALE) {
+                hasMale = TRUE;
             }
 
-            if (v6 == 1) {
-                v4 = 1;
+            if (gender == GENDER_FEMALE) {
+                hasFemale = TRUE;
             }
         }
     }
 
-    if ((v3 == 1) && (v4 == 1)) {
-        *v7 = 2;
-    } else if ((v3 == 0) && (v4 == 0)) {
-        *v7 = 0;
+    if (hasMale == TRUE && hasFemale == TRUE) {
+        *destVar = 2;
+    } else if ((hasMale == FALSE) && (hasFemale == FALSE)) {
+        *destVar = 0;
     } else {
-        *v7 = 1;
+        *destVar = 1;
     }
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ScrCmd_HidePoketch(ScriptContext *ctx)
@@ -6878,18 +6880,18 @@ static BOOL ScrCmd_ShowPoketch(ScriptContext *ctx)
 
 static BOOL ScrCmd_267(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 slotMachineID = ScriptContext_GetVar(ctx);
 
-    sub_0203E414(ctx->fieldSystem->task, v0);
+    sub_0203E414(ctx->fieldSystem->task, slotMachineID);
     return 1;
 }
 
-static BOOL ScrCmd_268(ScriptContext *ctx)
+static BOOL ScrCmd_GetHour(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = FieldSystem_GetHour(ctx->fieldSystem);
-    return 0;
+    *destVar = FieldSystem_GetHour(ctx->fieldSystem);
+    return FALSE;
 }
 
 static BOOL ScrCmd_269(ScriptContext *ctx)
@@ -6936,49 +6938,48 @@ static BOOL ScrCmd_26B(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_26C(ScriptContext *ctx)
+static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx)
 {
     UnkStruct_0202A750 *v0;
     UnkStruct_02029D04 *v1;
-    u16 v2[16];
-    int v3, v4, v5, v6;
-    u16 *v7 = ScriptContext_GetVarPointer(ctx);
+    u16 hasAccessory[NUM_MASSAGE_GIRL_ACCESSORIES];
+    int i;
+    u16 *destAccessoryID = ScriptContext_GetVarPointer(ctx);
 
     v0 = sub_0202A750(ctx->fieldSystem->saveData);
     v1 = sub_02029D04(v0);
 
-    v4 = 0;
+    int unobtainedAccessoryCount = 0;
 
-    for (v3 = 0; v3 < (49 - 34 + 1); v3++) {
-        if (sub_02029D50(v1, 34 + v3, 1) == 1) {
-            v2[v3] = 1;
-            v4++;
+    for (i = 0; i < NUM_MASSAGE_GIRL_ACCESSORIES; i++) {
+        if (sub_02029D50(v1, ACCESSORY_PRETTY_DEWDROP + i, 1) == 1) {
+            hasAccessory[i] = TRUE;
+            unobtainedAccessoryCount++;
         }
     }
 
-    if (v4 == 0) {
-        *v7 = 0xffff;
-        return 0;
+    if (unobtainedAccessoryCount == 0) {
+        *destAccessoryID = -1;
+        return FALSE;
     }
 
-    v5 = LCRNG_Next() % v4;
+    int rand = LCRNG_Next() % unobtainedAccessoryCount;
 
-    for (v3 = 0; v3 < (49 - 34 + 1); v3++) {
-        if (v2[v3] == 1) {
-            if (v5 == 0) {
+    for (i = 0; i < NUM_MASSAGE_GIRL_ACCESSORIES; i++) {
+        if (hasAccessory[i] == TRUE) {
+            if (rand == 0) {
                 break;
             } else {
-                v5--;
+                rand--;
             }
         }
     }
 
-    GF_ASSERT(v3 < (49 - 34 + 1));
+    GF_ASSERT(i < NUM_MASSAGE_GIRL_ACCESSORIES);
 
-    v6 = 34 + v3;
-    *v7 = v6;
+    *destAccessoryID = ACCESSORY_PRETTY_DEWDROP + i;
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx)
@@ -7142,13 +7143,13 @@ static BOOL ScrCmd_282(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_284(ScriptContext *ctx)
+static BOOL ScrCmd_GetUnownFormsSeenCount(ScriptContext *ctx)
 {
-    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    const Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = Pokedex_NumFormsSeen_Unown(v0);
-    return 0;
+    *destVar = Pokedex_NumFormsSeen_Unown(pokedex);
+    return FALSE;
 }
 
 static BOOL ScrCmd_285(ScriptContext *ctx)
@@ -7483,20 +7484,20 @@ static BOOL ScrCmd_2A4(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_0202AF94(sub_0202B370(ctx->fieldSystem->saveData));
+    *v0 = sub_0202AF94(SaveData_GetWiFiList(ctx->fieldSystem->saveData));
     return 0;
 }
 
-static BOOL ScrCmd_2A2(ScriptContext *ctx)
+static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    UndergroundData *v1 = sub_020298B0(ctx->fieldSystem->saveData);
+    u16 item = ScriptContext_GetVar(ctx);
+    UndergroundData *undergroundData = SaveData_GetUndergroundData(ctx->fieldSystem->saveData);
 
-    if ((v0 == 135) || (v0 == 136)) {
-        sub_02028828(v1);
+    if (item == ITEM_ADAMANT_ORB || item == ITEM_LUSTROUS_ORB) {
+        UndergroundData_SetUnusedField(undergroundData);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_2A7(ScriptContext *ctx)
@@ -8084,12 +8085,12 @@ static u32 SaveData_GetRotomFormsInSave(SaveData *saveData)
     return rotomForms;
 }
 
-static BOOL ScrCmd_30A(ScriptContext *ctx)
+static BOOL ScrCmd_IncrementTrainerScore(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 scoreID = ScriptContext_ReadHalfWord(ctx);
 
-    GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(ctx->fieldSystem->saveData), v0);
-    return 0;
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(ctx->fieldSystem->saveData), scoreID);
+    return FALSE;
 }
 
 static BOOL ScrCmd_311(ScriptContext *ctx)
@@ -8191,57 +8192,53 @@ static BOOL ScrCmd_323(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_328(ScriptContext *ctx)
+static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Party *v1;
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 form = ScriptContext_GetVar(ctx);
+    Party *party = SaveData_GetParty(ctx->fieldSystem->saveData);
 
-    v1 = SaveData_GetParty(ctx->fieldSystem->saveData);
-    Party_SetGiratinaForm(v1, v2);
-    {
-        int v3, v4;
-        Pokemon *v5;
+    Party_SetGiratinaForm(party, form);
 
-        v4 = Party_GetCurrentCount(v1);
+    int partyCount = Party_GetCurrentCount(party);
 
-        for (v3 = 0; v3 < v4; v3++) {
-            v5 = Party_GetPokemonBySlotIndex(v1, v3);
+    for (int i = 0; i < partyCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-            if ((Pokemon_GetValue(v5, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA)) {
-                Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), v5);
-            }
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+            && Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA) {
+            Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), mon);
         }
     }
-    return 0;
+    return FALSE;
 }
 
-static BOOL ScrCmd_32B(ScriptContext *ctx)
+static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx)
 {
-    u32 v0, v1;
-    int v2, v3;
-    Pokemon *v4;
-    u16 *v5 = ScriptContext_GetVarPointer(ctx);
+    u32 species, fatefulEncounter;
+    int partyCount, i;
+    Pokemon *mon;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v5 = 0;
-    v2 = Party_GetCurrentCount(SaveData_GetParty(ctx->fieldSystem->saveData));
+    *destVar = FALSE;
+    partyCount = Party_GetCurrentCount(SaveData_GetParty(ctx->fieldSystem->saveData));
 
-    for (v3 = 0; v3 < v2; v3++) {
-        v4 = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), v3);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), i);
 
-        if (Pokemon_GetValue(v4, MON_DATA_IS_EGG, NULL) == 0) {
-            v0 = Pokemon_GetValue(v4, MON_DATA_SPECIES, NULL);
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
-            if (v0 == SPECIES_REGIGIGAS) {
-                v1 = Pokemon_GetValue(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL);
+            if (species == SPECIES_REGIGIGAS) {
+                fatefulEncounter = Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
-                if (v1 == 1) {
-                    *v5 = 1;
-                    return 0;
+                if (fatefulEncounter == TRUE) {
+                    *destVar = TRUE;
+                    return FALSE;
                 }
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }

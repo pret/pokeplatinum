@@ -8,13 +8,13 @@
 
 _0006:
     LockAll
-    GetRandom 0x8000, 5
-    SetVar 0x8008, 0x8000
-    GoToIfEq 0x8008, 0, _0057
-    GoToIfEq 0x8008, 1, _0071
-    GoToIfEq 0x8008, 2, _008B
-    GoToIfEq 0x8008, 3, _00A5
-    GoToIfEq 0x8008, 4, _00BF
+    GetRandom VAR_0x8000, 5
+    SetVar VAR_0x8008, VAR_0x8000
+    GoToIfEq VAR_0x8008, 0, _0057
+    GoToIfEq VAR_0x8008, 1, _0071
+    GoToIfEq VAR_0x8008, 2, _008B
+    GoToIfEq VAR_0x8008, 3, _00A5
+    GoToIfEq VAR_0x8008, 4, _00BF
     End
 
 _0057:
@@ -64,14 +64,14 @@ _00D9:
     WaitMovement
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    SetVar 0x4003, 1
+    SetVar VAR_MAP_LOCAL_3, 1
     Warp 0x405C, 0, 5, 2, 1
     ScrCmd_1F8
-    ScrCmd_0B3 0x800C
-    SetVar 0x8004, 0x800C
-    ScrCmd_2F7 0x8004
+    ScrCmd_0B3 VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
+    ScrCmd_2F7 VAR_0x8004
     ReturnToField
-    SetVar 0x4080, 1
+    SetVar VAR_UNK_0x4080, 1
     ScrCmd_1B2 0xFF
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen

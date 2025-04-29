@@ -334,7 +334,7 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
     v0->unk_00 = 0;
     v0->unk_1C28 = ov86_0223B744(ov86_0223B6CC, v0, 6);
 
-    Sound_SetSceneAndPlayBGM(8, 1171, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_8, SEQ_BLD_EV_DENDO2, 1);
 
     return 1;
 }
@@ -818,7 +818,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     VEC_Set(&(v3.position), 0, 0, 0);
 
     v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v3.heapID = 63;
+    v3.heapID = HEAP_ID_63;
 
     v9 = Graphics_GetCharDataFromOpenNARC(param3, 76, 0, &v7, HEAP_ID_63);
     v10 = Graphics_GetPlttDataFromOpenNARC(param3, 75, &v8, HEAP_ID_63);
@@ -839,17 +839,17 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
         param0->unk_2E0[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_SPECIES, NULL);
         param0->unk_2F8[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_FORM, NULL);
 
-        sub_02013720(v1.archive, v1.character, HEAP_ID_63, &v0[0], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
+        sub_02013720(v1.narcID, v1.character, HEAP_ID_63, &v0[0], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200, 3200);
 
-        sub_02013720(v1.archive, v1.character, HEAP_ID_63, &v0[1], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
+        sub_02013720(v1.narcID, v1.character, HEAP_ID_63, &v0[1], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200 + 3200, 3200);
 
-        Graphics_LoadPalette(v1.archive, v1.palette, 1, v12 * 0x20, 0x20, HEAP_ID_63);
+        Graphics_LoadPalette(v1.narcID, v1.palette, 1, v12 * 0x20, 0x20, HEAP_ID_63);
         PokeSprite_LoadAnimationFrames(param0->unk_1C54, &param0->unk_1D8[v12][0], param0->unk_2E0[v12], 1);
     }
 

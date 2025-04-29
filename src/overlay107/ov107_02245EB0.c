@@ -66,7 +66,7 @@ FS_EXTERN_OVERLAY(overlay104);
 
 struct UnkStruct_ov107_02246170_t {
     OverlayManager * unk_00;
-    UnkStruct_0203068C * unk_04;
+    BattleFrontier * unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -266,7 +266,7 @@ int ov107_02245EB0 (OverlayManager * param0, int * param1)
     v1->unk_3D8 = &v2->unk_14[0];
     v1->unk_11 = 0xff;
     v1->unk_43A = v2->unk_28;
-    v1->unk_04 = sub_0203068C(v1->unk_14C);
+    v1->unk_04 = SaveData_GetBattleFrontier(v1->unk_14C);
 
     for (v0 = 0; v0 < 3; v0++) {
         v1->unk_437[v0] = 1;
@@ -3464,7 +3464,7 @@ static void ov107_022493CC (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
             v4 = ov107_02249CAC(param0->unk_14C, param0->unk_09, v2);
 
             v5[0] = (v4 + 1);
-            sub_020306E4(sub_0203068C(param0->unk_14C), sub_0205E5B4(param0->unk_09, v2), sub_0205E6A8(sub_0205E5B4(param0->unk_09, v2)), (v4 + 1));
+            sub_020306E4(SaveData_GetBattleFrontier(param0->unk_14C), sub_0205E5B4(param0->unk_09, v2), sub_0205E6A8(sub_0205E5B4(param0->unk_09, v2)), (v4 + 1));
 
             if (ov104_0223BA14(param0->unk_09) == 1) {
                 param0->unk_0F_3 = 2;
@@ -3489,7 +3489,7 @@ static void ov107_022493CC (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
             v4 = ov107_02249CAC(param0->unk_14C, param0->unk_09, v2);
 
             v5[0] = (v4 + 1);
-            sub_020306E4(sub_0203068C(param0->unk_14C), sub_0205E5B4(param0->unk_09, v2), sub_0205E6A8(sub_0205E5B4(param0->unk_09, v2)), (v4 + 1));
+            sub_020306E4(SaveData_GetBattleFrontier(param0->unk_14C), sub_0205E5B4(param0->unk_09, v2), sub_0205E6A8(sub_0205E5B4(param0->unk_09, v2)), (v4 + 1));
 
             if (ov104_0223BA14(param0->unk_09) == 1) {
                 param0->unk_0F_3 = 2;

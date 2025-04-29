@@ -10,8 +10,8 @@
     ScriptEntryEnd
 
 _0012:
-    ScrCmd_238 13, 0x4000
-    GoToIfEq 0x4000, 0, _002B
+    ScrCmd_238 13, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _002B
     ClearFlag FLAG_UNK_0x0219
     End
 
@@ -46,7 +46,7 @@ _0057:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
     Message 2
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

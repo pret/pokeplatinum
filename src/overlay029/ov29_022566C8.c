@@ -46,15 +46,15 @@ BOOL ov29_022566C8(UnkStruct_ov29_022566C8 **param0, const UnkStruct_ov29_022566
     UnkStruct_ov29_022566C8 *v0 = (UnkStruct_ov29_022566C8 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov29_022566C8));
 
     if (v0 != NULL) {
-        GF_ASSERT(GF_heap_c_dummy_return_true(7));
+        GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
         PoketchTask_InitActiveTaskList(v0->unk_08, 16);
 
-        GF_ASSERT(GF_heap_c_dummy_return_true(7));
+        GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_50 = ov25_02254664();
 
-        GF_ASSERT(GF_heap_c_dummy_return_true(7));
+        GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
         *param0 = v0;
         return 1;
     }
@@ -86,7 +86,7 @@ static BOOL ov29_02256728(UnkStruct_ov29_022566C8 *param0)
 void ov29_02256770(UnkStruct_ov29_022566C8 *param0)
 {
     if (param0 != NULL) {
-        GF_ASSERT(GF_heap_c_dummy_return_true(7));
+        GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
 
         if (param0->unk_70) {
             PoketchMemory_WriteFast(param0->unk_00->unk_16E8, param0->unk_70->pixels, (20 * 19 * 0x20));
@@ -164,29 +164,29 @@ static void ov29_02256804(SysTask *param0, void *param1)
     GXSDispCnt v2;
     UnkStruct_ov29_022566C8 *v3;
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 
     v3 = PoketchTask_GetTaskData(param1);
 
     Bg_InitFromTemplate(v3->unk_04, 6, &v0, 0);
     Bg_InitFromTemplate(v3->unk_04, 7, &v1, 0);
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 
     Graphics_LoadTilesToBgLayer(12, 30, v3->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Graphics_LoadTilemapToBgLayer(12, 31, v3->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Poketch_LoadActivePalette(0, 0);
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 
     ov29_02256728(v3);
     Window_CopyToVRAM(v3->unk_70);
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 
     ov29_02256ABC(v3);
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 
     Bg_CopyTilemapBufferToVRAM(v3->unk_04, 7);
 
@@ -194,7 +194,7 @@ static void ov29_02256804(SysTask *param0, void *param1)
     GXS_SetVisiblePlane(v2.visiblePlane | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ);
     ov29_022567F0(param1);
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 }
 
 static void ov29_02256908(SysTask *param0, void *param1)

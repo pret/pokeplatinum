@@ -105,7 +105,7 @@ typedef struct {
     Window unk_194;
     UnkStruct_0206A844 *unk_1A4;
     UnkStruct_02097728 *unk_1A8;
-    UnkStruct_02028430 *unk_1AC;
+    MailBox *unk_1AC;
     Bag *bag;
     PartyManagementData *unk_1B4;
 } UnkStruct_02072334;
@@ -133,7 +133,7 @@ static void sub_020727F8(SysTask *param0, void *param1);
 static void sub_02072878(SysTask *param0, void *param1);
 static void sub_02072EA4(UnkStruct_02072334 *param0, SysTaskFunc param1, SysTaskFunc param2);
 static void sub_02072EB8(UnkStruct_02072EB8 *param0, u8 param1);
-static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int param2);
+static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int heapID);
 static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1);
 static void sub_020729B4(UnkStruct_02072334 *param0);
 static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2);
@@ -142,7 +142,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2);
 static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2);
 static void sub_02072DB8(UnkStruct_02072334 *param0);
 static void sub_02072E4C(UnkStruct_02072334 *param0);
-static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int param2);
+static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int heapID);
 static void sub_02073020(UnkStruct_02072334 *param0, u8 param1);
 static BOOL sub_02073060(UnkStruct_02072334 *param0);
 static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2);
@@ -874,12 +874,12 @@ static void sub_02072EB8(UnkStruct_02072EB8 *param0, u8 param1)
     }
 }
 
-static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int param2)
+static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int heapID)
 {
     u8 v0 = 0;
 
     for (v0 = 0; v0 < param1; v0++) {
-        param0[v0].unk_08 = Strbuf_Init(8, param2);
+        param0[v0].unk_08 = Strbuf_Init(8, heapID);
         sub_02072EB8(param0, v0);
     }
 }
@@ -895,20 +895,20 @@ static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1)
     }
 }
 
-static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int param2)
+static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int heapID)
 {
     u8 v0 = 0, v1 = 0, v2 = 0xFF, v3 = 0;
     int v4;
-    UnkStruct_02028430 *v5;
+    MailBox *v5;
     Mail *v6;
     UnkStruct_02072EB8 *v7, *v8;
 
-    v5 = sub_02028430(param1);
+    v5 = SaveData_GetMailBox(param1);
 
     param0->unk_1AC = v5;
     param0->bag = SaveData_GetBag(param1);
 
-    v6 = sub_0202818C(param2);
+    v6 = sub_0202818C(heapID);
 
     for (v0 = 0; v0 < 20; v0++) {
         sub_020284CC(v5, 0, v0, v6);
@@ -1205,7 +1205,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
         v0->unk_00 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
         v0->unk_04 = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
         v0->unk_0C = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_08 = sub_02028430(param0->fieldSystem->saveData);
+        v0->unk_08 = SaveData_GetMailBox(param0->fieldSystem->saveData);
         v0->unk_21 = 0;
         v0->unk_20 = param1;
         v0->unk_24 = param0->unk_1C[param0->unk_18].item;

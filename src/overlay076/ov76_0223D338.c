@@ -835,7 +835,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 BallThrow v0;
 
                 v0.type = 1;
-                v0.heapID = 53;
+                v0.heapID = HEAP_ID_53;
                 v0.mode = 0;
                 v0.target = 0xFF;
                 v0.bgPrio = 0;
@@ -922,7 +922,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 BallThrow v5;
 
                 v5.type = 1;
-                v5.heapID = 53;
+                v5.heapID = HEAP_ID_53;
                 v5.mode = 5;
                 v5.target = 0xFF;
                 v5.bgPrio = 0;

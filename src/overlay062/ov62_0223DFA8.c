@@ -245,9 +245,9 @@ static void ov62_0223E0FC (UnkStruct_0208C06C * param0, int param1, int param2)
         Strbuf* v5;
         UnkStruct_02030A80 * v6 = v2->unk_194.unk_00;
 
-        v3 = ov62_02231690(102);
+        v3 = ov62_02231690(HEAP_ID_102);
         v0 = Strbuf_Init(255, HEAP_ID_102);
-        v4 = sub_02030B94(v6, 102);
+        v4 = sub_02030B94(v6, HEAP_ID_102);
         ov62_022349A8(param0, v4);
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
         StringTemplate_SetStrbuf(v3, 0, v4, 0, 1, GAME_LANGUAGE);
@@ -261,9 +261,9 @@ static void ov62_0223E0FC (UnkStruct_0208C06C * param0, int param1, int param2)
         Strbuf* v9;
         UnkStruct_02030A80 * v10 = param0->unk_88C[param2];
 
-        v7 = ov62_02231690(102);
+        v7 = ov62_02231690(HEAP_ID_102);
         v0 = Strbuf_Init(255, HEAP_ID_102);
-        v8 = sub_02030B94(v10, 102);
+        v8 = sub_02030B94(v10, HEAP_ID_102);
         ov62_022349A8(param0, v8);
         v9 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
@@ -503,7 +503,7 @@ static BOOL ov62_0223E510 (UnkStruct_0208C06C * param0)
         ov62_02234540(param0, 1);
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
-        sub_020397C8(1, 102);
+        sub_020397C8(1, HEAP_ID_102);
         ov62_0223376C(param0, 1);
         param0->unk_08++;
         break;
@@ -828,9 +828,9 @@ static void ov62_0223EE88 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
     if (param1->unk_88C[param2] == NULL) {
         v0 = MessageLoader_GetNewStrbuf(v1, 8);
     } else {
-        v3 = ov62_02231690(102);
+        v3 = ov62_02231690(HEAP_ID_102);
         v4 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 7);
-        v5 = sub_02030B94(param1->unk_88C[param2], 102);
+        v5 = sub_02030B94(param1->unk_88C[param2], HEAP_ID_102);
         ov62_022349A8(param1, v5);
         v0 = Strbuf_Init(255, HEAP_ID_102);
 
@@ -844,7 +844,7 @@ static void ov62_0223EE88 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
     Window_Init(&v2);
     Window_AddToTopLeftCorner(param1->unk_14.unk_10, &v2, 20, 2, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
-    sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
+    sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, HEAP_ID_102);
     Strbuf_Free(v0);
     Window_Remove(&v2);
 }
@@ -1119,7 +1119,7 @@ static BOOL ov62_0223F348 (UnkStruct_0208C06C * param0)
         ov62_0223F06C(param0);
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
-        sub_020397C8(1, 102);
+        sub_020397C8(1, HEAP_ID_102);
         ov62_0223376C(param0, 1);
         param0->unk_08++;
         break;
@@ -1771,9 +1771,9 @@ static void ov62_022402FC (UnkStruct_0208C06C * param0, int param1, BOOL param2)
         Strbuf* v5;
         UnkStruct_02030A80 * v6 = v2->unk_194.unk_00;
 
-        v3 = ov62_02231690(102);
+        v3 = ov62_02231690(HEAP_ID_102);
         v0 = Strbuf_Init(255, HEAP_ID_102);
-        v4 = sub_02030B94(v6, 102);
+        v4 = sub_02030B94(v6, HEAP_ID_102);
         ov62_022349A8(param0, v4);
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
         StringTemplate_SetStrbuf(v3, 0, v4, 0, 1, GAME_LANGUAGE);

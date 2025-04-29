@@ -1114,7 +1114,7 @@ void ov16_0223EF48(BattleSystem *battleSystem, Pokemon *param1)
 
 void ov16_0223EF68(BattleSystem *battleSystem, Pokemon *param1)
 {
-    sub_0206D160(battleSystem->unk_9C, param1, battleSystem->resultMask, battleSystem->unk_241E, 5);
+    sub_0206D160(battleSystem->unk_9C, param1, battleSystem->resultMask, battleSystem->unk_241E, HEAP_ID_BATTLE);
 }
 
 void ov16_0223EF8C(BattleSystem *battleSystem)
@@ -2434,13 +2434,13 @@ static BOOL BattleMessage_Callback(TextPrinterTemplate *param0, u16 param1)
         v0 = Sound_IsBGMPausedByFanfare();
         break;
     case 3:
-        Sound_PlayFanfare(1156);
+        Sound_PlayFanfare(SEQ_FANFA5);
         break;
     case 4:
         Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 5:
-        Sound_PlayFanfare(1155);
+        Sound_PlayFanfare(SEQ_FANFA1);
         break;
     default:
         break;

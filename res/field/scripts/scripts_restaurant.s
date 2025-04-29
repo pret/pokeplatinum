@@ -29,9 +29,9 @@
 
 _0058:
     SetFlag FLAG_UNK_0x09EE
-    ScrCmd_268 0x4000
-    GoToIfLt 0x4000, 9, _0087
-    GoToIfGe 0x4000, 23, _0087
+    GetHour VAR_MAP_LOCAL_0
+    GoToIfLt VAR_MAP_LOCAL_0, 9, _0087
+    GoToIfGe VAR_MAP_LOCAL_0, 23, _0087
     GoToIfUnset FLAG_UNK_0x0AAB, _00B3
     End
 
@@ -45,7 +45,7 @@ _0087:
     SetFlag FLAG_UNK_0x024A
     SetFlag FLAG_UNK_0x024B
     SetFlag FLAG_UNK_0x024C
-    SetVar 0x4104, 1
+    SetVar VAR_UNK_0x4104, 1
     End
 
 _00B3:
@@ -76,24 +76,24 @@ _00B3:
     ClearTrainerFlag TRAINER_BEAUTY_GABRIELLA
     ClearTrainerFlag TRAINER_SCIENTIST_EMILIO
     ClearTrainerFlag TRAINER_BREEDER_KAYLEE
-    SetVar 0x4104, 0
-    GetRandom 0x4001, 1
-    SetVar 0x4000, 5
-    SetVar 0x400A, 0x2710
+    SetVar VAR_UNK_0x4104, 0
+    GetRandom VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0, 5
+    SetVar VAR_MAP_LOCAL_A, 0x2710
 _0137:
-    GetRandom2 0x4001, 9
-    CallIfEq 0x4001, 0, _01D8
-    CallIfEq 0x4001, 1, _01F5
-    CallIfEq 0x4001, 2, _0212
-    CallIfEq 0x4001, 3, _022F
-    CallIfEq 0x4001, 4, _024C
-    CallIfEq 0x4001, 5, _0269
-    CallIfEq 0x4001, 6, _0286
-    CallIfEq 0x4001, 7, _02A3
-    CallIfEq 0x4001, 8, _02C0
-    SubVar 0x400A, 1
-    GoToIfEq 0x400A, 0, _01D2
-    GoToIfNe 0x4000, 0, _0137
+    GetRandom2 VAR_MAP_LOCAL_1, 9
+    CallIfEq VAR_MAP_LOCAL_1, 0, _01D8
+    CallIfEq VAR_MAP_LOCAL_1, 1, _01F5
+    CallIfEq VAR_MAP_LOCAL_1, 2, _0212
+    CallIfEq VAR_MAP_LOCAL_1, 3, _022F
+    CallIfEq VAR_MAP_LOCAL_1, 4, _024C
+    CallIfEq VAR_MAP_LOCAL_1, 5, _0269
+    CallIfEq VAR_MAP_LOCAL_1, 6, _0286
+    CallIfEq VAR_MAP_LOCAL_1, 7, _02A3
+    CallIfEq VAR_MAP_LOCAL_1, 8, _02C0
+    SubVar VAR_MAP_LOCAL_A, 1
+    GoToIfEq VAR_MAP_LOCAL_A, 0, _01D2
+    GoToIfNe VAR_MAP_LOCAL_0, 0, _0137
 _01D2:
     SetFlag FLAG_UNK_0x0AAB
     End
@@ -101,64 +101,64 @@ _01D2:
 _01D8:
     GoToIfUnset FLAG_UNK_0x0244, _02DD
     ClearFlag FLAG_UNK_0x0244
-    GetRandom2 0x40FB, 3
-    SubVar 0x4000, 1
+    GetRandom2 VAR_UNK_0x40FB, 3
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _01F5:
     GoToIfUnset FLAG_UNK_0x0245, _02DD
     ClearFlag FLAG_UNK_0x0245
-    GetRandom2 0x40FC, 3
-    SubVar 0x4000, 1
+    GetRandom2 VAR_UNK_0x40FC, 3
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _0212:
     GoToIfUnset FLAG_UNK_0x0246, _02DD
     ClearFlag FLAG_UNK_0x0246
-    GetRandom2 0x40FD, 3
-    SubVar 0x4000, 1
+    GetRandom2 VAR_UNK_0x40FD, 3
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _022F:
     GoToIfUnset FLAG_UNK_0x0247, _02DD
     ClearFlag FLAG_UNK_0x0247
-    GetRandom2 0x40FE, 3
-    SubVar 0x4000, 1
+    GetRandom2 VAR_UNK_0x40FE, 3
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _024C:
     GoToIfUnset FLAG_UNK_0x0248, _02DD
     ClearFlag FLAG_UNK_0x0248
-    GetRandom2 0x40FF, 3
-    SubVar 0x4000, 1
+    GetRandom2 VAR_UNK_0x40FF, 3
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _0269:
     GoToIfUnset FLAG_UNK_0x0249, _02DD
     ClearFlag FLAG_UNK_0x0249
-    GetRandom2 0x4100, 3
-    SubVar 0x4000, 1
+    GetRandom2 VAR_UNK_0x4100, 3
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _0286:
     GoToIfUnset FLAG_UNK_0x024A, _02DD
     ClearFlag FLAG_UNK_0x024A
-    GetRandom2 0x4101, 3
-    SubVar 0x4000, 1
+    GetRandom2 VAR_UNK_0x4101, 3
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _02A3:
     GoToIfUnset FLAG_UNK_0x024B, _02DD
     ClearFlag FLAG_UNK_0x024B
-    GetRandom2 0x4102, 3
-    SubVar 0x4000, 1
+    GetRandom2 VAR_UNK_0x4102, 3
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _02C0:
     GoToIfUnset FLAG_UNK_0x024C, _02DD
     ClearFlag FLAG_UNK_0x024C
-    GetRandom2 0x4103, 3
-    SubVar 0x4000, 1
+    GetRandom2 VAR_UNK_0x4103, 3
+    SubVar VAR_MAP_LOCAL_0, 1
     Return
 
 _02DD:
@@ -168,7 +168,7 @@ _02DF:
     LockAll
     ApplyMovement LOCALID_PLAYER, _212C
     WaitMovement
-    WaitTime 20, 0x800C
+    WaitTime 20, VAR_RESULT
     Message 1
     CloseMessage
     ReleaseAll
@@ -194,12 +194,12 @@ _0331:
     LockAll
     CheckTrainerFlag TRAINER_ARTIST_ISMAEL
     GoToIfDefeated TRAINER_ARTIST_ISMAEL, _046C
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _04BC
-    SetVar 0x8008, 0x40FB
-    GoToIfEq 0x8008, 0, _038A
-    GoToIfEq 0x8008, 1, _03A9
-    GoToIfEq 0x8008, 2, _03C8
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _04BC
+    SetVar VAR_0x8008, VAR_UNK_0x40FB
+    GoToIfEq VAR_0x8008, 0, _038A
+    GoToIfEq VAR_0x8008, 1, _03A9
+    GoToIfEq VAR_0x8008, 2, _03C8
     ReleaseAll
     End
 
@@ -207,38 +207,38 @@ _038A:
     Message 4
     FacePlayer
     Message 5
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _03E7
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _03E7
     GoTo _0460
 
 _03A9:
     Message 12
     FacePlayer
     Message 13
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _03E7
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _03E7
     GoTo _0460
 
 _03C8:
     Message 20
     FacePlayer
     Message 21
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _03E7
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _03E7
     GoTo _0460
 
 _03E7:
     CloseMessage
     StartTrainerBattle TRAINER_ARTIST_ISMAEL, TRAINER_BEAUTY_HARLEY
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_ARTIST_ISMAEL
     SetTrainerFlag TRAINER_BEAUTY_HARLEY
     Call _04CF
-    SetVar 0x8008, 0x40FB
-    GoToIfEq 0x8008, 0, _043F
-    GoToIfEq 0x8008, 1, _044A
-    GoToIfEq 0x8008, 2, _0455
+    SetVar VAR_0x8008, VAR_UNK_0x40FB
+    GoToIfEq VAR_0x8008, 0, _043F
+    GoToIfEq VAR_0x8008, 1, _044A
+    GoToIfEq VAR_0x8008, 2, _0455
     ReleaseAll
     End
 
@@ -270,10 +270,10 @@ _0460:
     End
 
 _046C:
-    SetVar 0x8008, 0x40FB
-    GoToIfEq 0x8008, 0, _049B
-    GoToIfEq 0x8008, 1, _04A6
-    GoToIfEq 0x8008, 2, _04B1
+    SetVar VAR_0x8008, VAR_UNK_0x40FB
+    GoToIfEq VAR_0x8008, 0, _049B
+    GoToIfEq VAR_0x8008, 1, _04A6
+    GoToIfEq VAR_0x8008, 2, _04B1
     End
 
 _049B:
@@ -316,12 +316,12 @@ _04DB:
     LockAll
     CheckTrainerFlag TRAINER_BEAUTY_HARLEY
     GoToIfDefeated TRAINER_BEAUTY_HARLEY, _0616
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _0666
-    SetVar 0x8008, 0x40FB
-    GoToIfEq 0x8008, 0, _0534
-    GoToIfEq 0x8008, 1, _0553
-    GoToIfEq 0x8008, 2, _0572
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _0666
+    SetVar VAR_0x8008, VAR_UNK_0x40FB
+    GoToIfEq VAR_0x8008, 0, _0534
+    GoToIfEq VAR_0x8008, 1, _0553
+    GoToIfEq VAR_0x8008, 2, _0572
     ReleaseAll
     End
 
@@ -329,38 +329,38 @@ _0534:
     Message 8
     FacePlayer
     Message 9
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0591
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0591
     GoTo _060A
 
 _0553:
     Message 16
     FacePlayer
     Message 17
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0591
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0591
     GoTo _060A
 
 _0572:
     Message 24
     FacePlayer
     Message 25
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0591
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0591
     GoTo _060A
 
 _0591:
     CloseMessage
     StartTrainerBattle TRAINER_ARTIST_ISMAEL, TRAINER_BEAUTY_HARLEY
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_ARTIST_ISMAEL
     SetTrainerFlag TRAINER_BEAUTY_HARLEY
     Call _0679
-    SetVar 0x8008, 0x40FB
-    GoToIfEq 0x8008, 0, _05E9
-    GoToIfEq 0x8008, 1, _05F4
-    GoToIfEq 0x8008, 2, _05FF
+    SetVar VAR_0x8008, VAR_UNK_0x40FB
+    GoToIfEq VAR_0x8008, 0, _05E9
+    GoToIfEq VAR_0x8008, 1, _05F4
+    GoToIfEq VAR_0x8008, 2, _05FF
     ReleaseAll
     End
 
@@ -392,10 +392,10 @@ _060A:
     End
 
 _0616:
-    SetVar 0x8008, 0x40FB
-    GoToIfEq 0x8008, 0, _0645
-    GoToIfEq 0x8008, 1, _0650
-    GoToIfEq 0x8008, 2, _065B
+    SetVar VAR_0x8008, VAR_UNK_0x40FB
+    GoToIfEq VAR_0x8008, 0, _0645
+    GoToIfEq VAR_0x8008, 1, _0650
+    GoToIfEq VAR_0x8008, 2, _065B
     End
 
 _0645:
@@ -438,12 +438,12 @@ _0685:
     LockAll
     CheckTrainerFlag TRAINER_RICH_BOY_ROMAN
     GoToIfDefeated TRAINER_RICH_BOY_ROMAN, _07C0
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _0810
-    SetVar 0x8008, 0x40FC
-    GoToIfEq 0x8008, 0, _06DE
-    GoToIfEq 0x8008, 1, _06FD
-    GoToIfEq 0x8008, 2, _071C
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _0810
+    SetVar VAR_0x8008, VAR_UNK_0x40FC
+    GoToIfEq VAR_0x8008, 0, _06DE
+    GoToIfEq VAR_0x8008, 1, _06FD
+    GoToIfEq VAR_0x8008, 2, _071C
     ReleaseAll
     End
 
@@ -451,38 +451,38 @@ _06DE:
     Message 30
     FacePlayer
     Message 31
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _073B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _073B
     GoTo _07B4
 
 _06FD:
     Message 38
     FacePlayer
     Message 39
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _073B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _073B
     GoTo _07B4
 
 _071C:
     Message 46
     FacePlayer
     Message 47
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _073B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _073B
     GoTo _07B4
 
 _073B:
     CloseMessage
     StartTrainerBattle TRAINER_RICH_BOY_ROMAN, TRAINER_LADY_KYLIE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_RICH_BOY_ROMAN
     SetTrainerFlag TRAINER_LADY_KYLIE
     Call _0823
-    SetVar 0x8008, 0x40FC
-    GoToIfEq 0x8008, 0, _0793
-    GoToIfEq 0x8008, 1, _079E
-    GoToIfEq 0x8008, 2, _07A9
+    SetVar VAR_0x8008, VAR_UNK_0x40FC
+    GoToIfEq VAR_0x8008, 0, _0793
+    GoToIfEq VAR_0x8008, 1, _079E
+    GoToIfEq VAR_0x8008, 2, _07A9
     ReleaseAll
     End
 
@@ -514,10 +514,10 @@ _07B4:
     End
 
 _07C0:
-    SetVar 0x8008, 0x40FC
-    GoToIfEq 0x8008, 0, _07EF
-    GoToIfEq 0x8008, 1, _07FA
-    GoToIfEq 0x8008, 2, _0805
+    SetVar VAR_0x8008, VAR_UNK_0x40FC
+    GoToIfEq VAR_0x8008, 0, _07EF
+    GoToIfEq VAR_0x8008, 1, _07FA
+    GoToIfEq VAR_0x8008, 2, _0805
     End
 
 _07EF:
@@ -560,12 +560,12 @@ _082F:
     LockAll
     CheckTrainerFlag TRAINER_LADY_KYLIE
     GoToIfDefeated TRAINER_LADY_KYLIE, _096A
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _09BA
-    SetVar 0x8008, 0x40FC
-    GoToIfEq 0x8008, 0, _0888
-    GoToIfEq 0x8008, 1, _08A7
-    GoToIfEq 0x8008, 2, _08C6
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _09BA
+    SetVar VAR_0x8008, VAR_UNK_0x40FC
+    GoToIfEq VAR_0x8008, 0, _0888
+    GoToIfEq VAR_0x8008, 1, _08A7
+    GoToIfEq VAR_0x8008, 2, _08C6
     ReleaseAll
     End
 
@@ -573,38 +573,38 @@ _0888:
     Message 34
     FacePlayer
     Message 35
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _08E5
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _08E5
     GoTo _095E
 
 _08A7:
     Message 42
     FacePlayer
     Message 43
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _08E5
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _08E5
     GoTo _095E
 
 _08C6:
     Message 50
     FacePlayer
     Message 51
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _08E5
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _08E5
     GoTo _095E
 
 _08E5:
     CloseMessage
     StartTrainerBattle TRAINER_RICH_BOY_ROMAN, TRAINER_LADY_KYLIE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_RICH_BOY_ROMAN
     SetTrainerFlag TRAINER_LADY_KYLIE
     Call _09CD
-    SetVar 0x8008, 0x40FC
-    GoToIfEq 0x8008, 0, _093D
-    GoToIfEq 0x8008, 1, _0948
-    GoToIfEq 0x8008, 2, _0953
+    SetVar VAR_0x8008, VAR_UNK_0x40FC
+    GoToIfEq VAR_0x8008, 0, _093D
+    GoToIfEq VAR_0x8008, 1, _0948
+    GoToIfEq VAR_0x8008, 2, _0953
     ReleaseAll
     End
 
@@ -636,10 +636,10 @@ _095E:
     End
 
 _096A:
-    SetVar 0x8008, 0x40FC
-    GoToIfEq 0x8008, 0, _0999
-    GoToIfEq 0x8008, 1, _09A4
-    GoToIfEq 0x8008, 2, _09AF
+    SetVar VAR_0x8008, VAR_UNK_0x40FC
+    GoToIfEq VAR_0x8008, 0, _0999
+    GoToIfEq VAR_0x8008, 1, _09A4
+    GoToIfEq VAR_0x8008, 2, _09AF
     End
 
 _0999:
@@ -682,12 +682,12 @@ _09D9:
     LockAll
     CheckTrainerFlag TRAINER_GENTLEMAN_LEONARDO
     GoToIfDefeated TRAINER_GENTLEMAN_LEONARDO, _0B14
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _0B64
-    SetVar 0x8008, 0x40FD
-    GoToIfEq 0x8008, 0, _0A32
-    GoToIfEq 0x8008, 1, _0A51
-    GoToIfEq 0x8008, 2, _0A70
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _0B64
+    SetVar VAR_0x8008, VAR_UNK_0x40FD
+    GoToIfEq VAR_0x8008, 0, _0A32
+    GoToIfEq VAR_0x8008, 1, _0A51
+    GoToIfEq VAR_0x8008, 2, _0A70
     ReleaseAll
     End
 
@@ -695,38 +695,38 @@ _0A32:
     Message 56
     FacePlayer
     Message 57
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0A8F
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0A8F
     GoTo _0B08
 
 _0A51:
     Message 64
     FacePlayer
     Message 65
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0A8F
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0A8F
     GoTo _0B08
 
 _0A70:
     Message 72
     FacePlayer
     Message 73
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0A8F
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0A8F
     GoTo _0B08
 
 _0A8F:
     CloseMessage
     StartTrainerBattle TRAINER_GENTLEMAN_LEONARDO, TRAINER_SOCIALITE_REBECCA
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_GENTLEMAN_LEONARDO
     SetTrainerFlag TRAINER_SOCIALITE_REBECCA
     Call _0B77
-    SetVar 0x8008, 0x40FD
-    GoToIfEq 0x8008, 0, _0AE7
-    GoToIfEq 0x8008, 1, _0AF2
-    GoToIfEq 0x8008, 2, _0AFD
+    SetVar VAR_0x8008, VAR_UNK_0x40FD
+    GoToIfEq VAR_0x8008, 0, _0AE7
+    GoToIfEq VAR_0x8008, 1, _0AF2
+    GoToIfEq VAR_0x8008, 2, _0AFD
     ReleaseAll
     End
 
@@ -758,10 +758,10 @@ _0B08:
     End
 
 _0B14:
-    SetVar 0x8008, 0x40FD
-    GoToIfEq 0x8008, 0, _0B43
-    GoToIfEq 0x8008, 1, _0B4E
-    GoToIfEq 0x8008, 2, _0B59
+    SetVar VAR_0x8008, VAR_UNK_0x40FD
+    GoToIfEq VAR_0x8008, 0, _0B43
+    GoToIfEq VAR_0x8008, 1, _0B4E
+    GoToIfEq VAR_0x8008, 2, _0B59
     End
 
 _0B43:
@@ -804,12 +804,12 @@ _0B83:
     LockAll
     CheckTrainerFlag TRAINER_SOCIALITE_REBECCA
     GoToIfDefeated TRAINER_SOCIALITE_REBECCA, _0CBE
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _0D0E
-    SetVar 0x8008, 0x40FD
-    GoToIfEq 0x8008, 0, _0BDC
-    GoToIfEq 0x8008, 1, _0BFB
-    GoToIfEq 0x8008, 2, _0C1A
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _0D0E
+    SetVar VAR_0x8008, VAR_UNK_0x40FD
+    GoToIfEq VAR_0x8008, 0, _0BDC
+    GoToIfEq VAR_0x8008, 1, _0BFB
+    GoToIfEq VAR_0x8008, 2, _0C1A
     ReleaseAll
     End
 
@@ -817,38 +817,38 @@ _0BDC:
     Message 60
     FacePlayer
     Message 61
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0C39
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0C39
     GoTo _0CB2
 
 _0BFB:
     Message 68
     FacePlayer
     Message 69
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0C39
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0C39
     GoTo _0CB2
 
 _0C1A:
     Message 76
     FacePlayer
     Message 77
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0C39
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0C39
     GoTo _0CB2
 
 _0C39:
     CloseMessage
     StartTrainerBattle TRAINER_GENTLEMAN_LEONARDO, TRAINER_SOCIALITE_REBECCA
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_GENTLEMAN_LEONARDO
     SetTrainerFlag TRAINER_SOCIALITE_REBECCA
     Call _0D21
-    SetVar 0x8008, 0x40FD
-    GoToIfEq 0x8008, 0, _0C91
-    GoToIfEq 0x8008, 1, _0C9C
-    GoToIfEq 0x8008, 2, _0CA7
+    SetVar VAR_0x8008, VAR_UNK_0x40FD
+    GoToIfEq VAR_0x8008, 0, _0C91
+    GoToIfEq VAR_0x8008, 1, _0C9C
+    GoToIfEq VAR_0x8008, 2, _0CA7
     ReleaseAll
     End
 
@@ -880,10 +880,10 @@ _0CB2:
     End
 
 _0CBE:
-    SetVar 0x8008, 0x40FD
-    GoToIfEq 0x8008, 0, _0CED
-    GoToIfEq 0x8008, 1, _0CF8
-    GoToIfEq 0x8008, 2, _0D03
+    SetVar VAR_0x8008, VAR_UNK_0x40FD
+    GoToIfEq VAR_0x8008, 0, _0CED
+    GoToIfEq VAR_0x8008, 1, _0CF8
+    GoToIfEq VAR_0x8008, 2, _0D03
     End
 
 _0CED:
@@ -926,12 +926,12 @@ _0D2D:
     LockAll
     CheckTrainerFlag TRAINER_COLLECTOR_EUGENE
     GoToIfDefeated TRAINER_COLLECTOR_EUGENE, _0E68
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _0EB8
-    SetVar 0x8008, 0x40FE
-    GoToIfEq 0x8008, 0, _0D86
-    GoToIfEq 0x8008, 1, _0DA5
-    GoToIfEq 0x8008, 2, _0DC4
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _0EB8
+    SetVar VAR_0x8008, VAR_UNK_0x40FE
+    GoToIfEq VAR_0x8008, 0, _0D86
+    GoToIfEq VAR_0x8008, 1, _0DA5
+    GoToIfEq VAR_0x8008, 2, _0DC4
     ReleaseAll
     End
 
@@ -939,38 +939,38 @@ _0D86:
     Message 82
     FacePlayer
     Message 83
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0DE3
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0DE3
     GoTo _0E5C
 
 _0DA5:
     Message 90
     FacePlayer
     Message 91
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0DE3
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0DE3
     GoTo _0E5C
 
 _0DC4:
     Message 98
     FacePlayer
     Message 99
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0DE3
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0DE3
     GoTo _0E5C
 
 _0DE3:
     CloseMessage
     StartTrainerBattle TRAINER_COLLECTOR_EUGENE, TRAINER_AROMA_LADY_ALISON
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_COLLECTOR_EUGENE
     SetTrainerFlag TRAINER_AROMA_LADY_ALISON
     Call _0ECB
-    SetVar 0x8008, 0x40FE
-    GoToIfEq 0x8008, 0, _0E3B
-    GoToIfEq 0x8008, 1, _0E46
-    GoToIfEq 0x8008, 2, _0E51
+    SetVar VAR_0x8008, VAR_UNK_0x40FE
+    GoToIfEq VAR_0x8008, 0, _0E3B
+    GoToIfEq VAR_0x8008, 1, _0E46
+    GoToIfEq VAR_0x8008, 2, _0E51
     ReleaseAll
     End
 
@@ -1002,10 +1002,10 @@ _0E5C:
     End
 
 _0E68:
-    SetVar 0x8008, 0x40FE
-    GoToIfEq 0x8008, 0, _0E97
-    GoToIfEq 0x8008, 1, _0EA2
-    GoToIfEq 0x8008, 2, _0EAD
+    SetVar VAR_0x8008, VAR_UNK_0x40FE
+    GoToIfEq VAR_0x8008, 0, _0E97
+    GoToIfEq VAR_0x8008, 1, _0EA2
+    GoToIfEq VAR_0x8008, 2, _0EAD
     End
 
 _0E97:
@@ -1048,12 +1048,12 @@ _0ED7:
     LockAll
     CheckTrainerFlag TRAINER_AROMA_LADY_ALISON
     GoToIfDefeated TRAINER_AROMA_LADY_ALISON, _1012
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _1062
-    SetVar 0x8008, 0x40FE
-    GoToIfEq 0x8008, 0, _0F30
-    GoToIfEq 0x8008, 1, _0F4F
-    GoToIfEq 0x8008, 2, _0F6E
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _1062
+    SetVar VAR_0x8008, VAR_UNK_0x40FE
+    GoToIfEq VAR_0x8008, 0, _0F30
+    GoToIfEq VAR_0x8008, 1, _0F4F
+    GoToIfEq VAR_0x8008, 2, _0F6E
     ReleaseAll
     End
 
@@ -1061,38 +1061,38 @@ _0F30:
     Message 86
     FacePlayer
     Message 87
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0F8D
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0F8D
     GoTo _1006
 
 _0F4F:
     Message 94
     FacePlayer
     Message 95
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0F8D
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0F8D
     GoTo _1006
 
 _0F6E:
     Message 102
     FacePlayer
     Message 103
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0F8D
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0F8D
     GoTo _1006
 
 _0F8D:
     CloseMessage
     StartTrainerBattle TRAINER_COLLECTOR_EUGENE, TRAINER_AROMA_LADY_ALISON
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_COLLECTOR_EUGENE
     SetTrainerFlag TRAINER_AROMA_LADY_ALISON
     Call _1075
-    SetVar 0x8008, 0x40FE
-    GoToIfEq 0x8008, 0, _0FE5
-    GoToIfEq 0x8008, 1, _0FF0
-    GoToIfEq 0x8008, 2, _0FFB
+    SetVar VAR_0x8008, VAR_UNK_0x40FE
+    GoToIfEq VAR_0x8008, 0, _0FE5
+    GoToIfEq VAR_0x8008, 1, _0FF0
+    GoToIfEq VAR_0x8008, 2, _0FFB
     ReleaseAll
     End
 
@@ -1124,10 +1124,10 @@ _1006:
     End
 
 _1012:
-    SetVar 0x8008, 0x40FE
-    GoToIfEq 0x8008, 0, _1041
-    GoToIfEq 0x8008, 1, _104C
-    GoToIfEq 0x8008, 2, _1057
+    SetVar VAR_0x8008, VAR_UNK_0x40FE
+    GoToIfEq VAR_0x8008, 0, _1041
+    GoToIfEq VAR_0x8008, 1, _104C
+    GoToIfEq VAR_0x8008, 2, _1057
     End
 
 _1041:
@@ -1170,12 +1170,12 @@ _1081:
     LockAll
     CheckTrainerFlag TRAINER_SCHOOL_KID_ESTEBAN
     GoToIfDefeated TRAINER_SCHOOL_KID_ESTEBAN, _11BC
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _120C
-    SetVar 0x8008, 0x40FF
-    GoToIfEq 0x8008, 0, _10DA
-    GoToIfEq 0x8008, 1, _10F9
-    GoToIfEq 0x8008, 2, _1118
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _120C
+    SetVar VAR_0x8008, VAR_UNK_0x40FF
+    GoToIfEq VAR_0x8008, 0, _10DA
+    GoToIfEq VAR_0x8008, 1, _10F9
+    GoToIfEq VAR_0x8008, 2, _1118
     ReleaseAll
     End
 
@@ -1183,38 +1183,38 @@ _10DA:
     Message 108
     FacePlayer
     Message 109
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1137
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1137
     GoTo _11B0
 
 _10F9:
     Message 116
     FacePlayer
     Message 117
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1137
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1137
     GoTo _11B0
 
 _1118:
     Message 124
     FacePlayer
     Message 125
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1137
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1137
     GoTo _11B0
 
 _1137:
     CloseMessage
     StartTrainerBattle TRAINER_SCHOOL_KID_ESTEBAN, TRAINER_POKEFAN_MEREDITH
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_SCHOOL_KID_ESTEBAN
     SetTrainerFlag TRAINER_POKEFAN_MEREDITH
     Call _121F
-    SetVar 0x8008, 0x40FF
-    GoToIfEq 0x8008, 0, _118F
-    GoToIfEq 0x8008, 1, _119A
-    GoToIfEq 0x8008, 2, _11A5
+    SetVar VAR_0x8008, VAR_UNK_0x40FF
+    GoToIfEq VAR_0x8008, 0, _118F
+    GoToIfEq VAR_0x8008, 1, _119A
+    GoToIfEq VAR_0x8008, 2, _11A5
     ReleaseAll
     End
 
@@ -1246,10 +1246,10 @@ _11B0:
     End
 
 _11BC:
-    SetVar 0x8008, 0x40FF
-    GoToIfEq 0x8008, 0, _11EB
-    GoToIfEq 0x8008, 1, _11F6
-    GoToIfEq 0x8008, 2, _1201
+    SetVar VAR_0x8008, VAR_UNK_0x40FF
+    GoToIfEq VAR_0x8008, 0, _11EB
+    GoToIfEq VAR_0x8008, 1, _11F6
+    GoToIfEq VAR_0x8008, 2, _1201
     End
 
 _11EB:
@@ -1292,12 +1292,12 @@ _122B:
     LockAll
     CheckTrainerFlag TRAINER_POKEFAN_MEREDITH
     GoToIfDefeated TRAINER_POKEFAN_MEREDITH, _1366
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _13B6
-    SetVar 0x8008, 0x40FF
-    GoToIfEq 0x8008, 0, _1284
-    GoToIfEq 0x8008, 1, _12A3
-    GoToIfEq 0x8008, 2, _12C2
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _13B6
+    SetVar VAR_0x8008, VAR_UNK_0x40FF
+    GoToIfEq VAR_0x8008, 0, _1284
+    GoToIfEq VAR_0x8008, 1, _12A3
+    GoToIfEq VAR_0x8008, 2, _12C2
     ReleaseAll
     End
 
@@ -1305,38 +1305,38 @@ _1284:
     Message 112
     FacePlayer
     Message 113
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _12E1
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _12E1
     GoTo _135A
 
 _12A3:
     Message 120
     FacePlayer
     Message 121
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _12E1
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _12E1
     GoTo _135A
 
 _12C2:
     Message 128
     FacePlayer
     Message 129
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _12E1
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _12E1
     GoTo _135A
 
 _12E1:
     CloseMessage
     StartTrainerBattle TRAINER_SCHOOL_KID_ESTEBAN, TRAINER_POKEFAN_MEREDITH
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_SCHOOL_KID_ESTEBAN
     SetTrainerFlag TRAINER_POKEFAN_MEREDITH
     Call _13C9
-    SetVar 0x8008, 0x40FF
-    GoToIfEq 0x8008, 0, _1339
-    GoToIfEq 0x8008, 1, _1344
-    GoToIfEq 0x8008, 2, _134F
+    SetVar VAR_0x8008, VAR_UNK_0x40FF
+    GoToIfEq VAR_0x8008, 0, _1339
+    GoToIfEq VAR_0x8008, 1, _1344
+    GoToIfEq VAR_0x8008, 2, _134F
     ReleaseAll
     End
 
@@ -1368,10 +1368,10 @@ _135A:
     End
 
 _1366:
-    SetVar 0x8008, 0x40FF
-    GoToIfEq 0x8008, 0, _1395
-    GoToIfEq 0x8008, 1, _13A0
-    GoToIfEq 0x8008, 2, _13AB
+    SetVar VAR_0x8008, VAR_UNK_0x40FF
+    GoToIfEq VAR_0x8008, 0, _1395
+    GoToIfEq VAR_0x8008, 1, _13A0
+    GoToIfEq VAR_0x8008, 2, _13AB
     End
 
 _1395:
@@ -1414,12 +1414,12 @@ _13D5:
     LockAll
     CheckTrainerFlag TRAINER_VETERAN_EMANUEL
     GoToIfDefeated TRAINER_VETERAN_EMANUEL, _1510
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _1560
-    SetVar 0x8008, 0x4100
-    GoToIfEq 0x8008, 0, _142E
-    GoToIfEq 0x8008, 1, _144D
-    GoToIfEq 0x8008, 2, _146C
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _1560
+    SetVar VAR_0x8008, VAR_UNK_0x4100
+    GoToIfEq VAR_0x8008, 0, _142E
+    GoToIfEq VAR_0x8008, 1, _144D
+    GoToIfEq VAR_0x8008, 2, _146C
     ReleaseAll
     End
 
@@ -1427,38 +1427,38 @@ _142E:
     Message 134
     FacePlayer
     Message 135
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _148B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _148B
     GoTo _1504
 
 _144D:
     Message 142
     FacePlayer
     Message 143
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _148B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _148B
     GoTo _1504
 
 _146C:
     Message 150
     FacePlayer
     Message 151
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _148B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _148B
     GoTo _1504
 
 _148B:
     CloseMessage
     StartTrainerBattle TRAINER_VETERAN_EMANUEL, TRAINER_LASS_BLYTHE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_VETERAN_EMANUEL
     SetTrainerFlag TRAINER_LASS_BLYTHE
     Call _1573
-    SetVar 0x8008, 0x4100
-    GoToIfEq 0x8008, 0, _14E3
-    GoToIfEq 0x8008, 1, _14EE
-    GoToIfEq 0x8008, 2, _14F9
+    SetVar VAR_0x8008, VAR_UNK_0x4100
+    GoToIfEq VAR_0x8008, 0, _14E3
+    GoToIfEq VAR_0x8008, 1, _14EE
+    GoToIfEq VAR_0x8008, 2, _14F9
     ReleaseAll
     End
 
@@ -1490,10 +1490,10 @@ _1504:
     End
 
 _1510:
-    SetVar 0x8008, 0x4100
-    GoToIfEq 0x8008, 0, _153F
-    GoToIfEq 0x8008, 1, _154A
-    GoToIfEq 0x8008, 2, _1555
+    SetVar VAR_0x8008, VAR_UNK_0x4100
+    GoToIfEq VAR_0x8008, 0, _153F
+    GoToIfEq VAR_0x8008, 1, _154A
+    GoToIfEq VAR_0x8008, 2, _1555
     End
 
 _153F:
@@ -1536,12 +1536,12 @@ _157F:
     LockAll
     CheckTrainerFlag TRAINER_LASS_BLYTHE
     GoToIfDefeated TRAINER_LASS_BLYTHE, _16BA
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _170A
-    SetVar 0x8008, 0x4100
-    GoToIfEq 0x8008, 0, _15D8
-    GoToIfEq 0x8008, 1, _15F7
-    GoToIfEq 0x8008, 2, _1616
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _170A
+    SetVar VAR_0x8008, VAR_UNK_0x4100
+    GoToIfEq VAR_0x8008, 0, _15D8
+    GoToIfEq VAR_0x8008, 1, _15F7
+    GoToIfEq VAR_0x8008, 2, _1616
     ReleaseAll
     End
 
@@ -1549,38 +1549,38 @@ _15D8:
     Message 138
     FacePlayer
     Message 139
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1635
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1635
     GoTo _16AE
 
 _15F7:
     Message 146
     FacePlayer
     Message 147
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1635
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1635
     GoTo _16AE
 
 _1616:
     Message 154
     FacePlayer
     Message 155
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1635
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1635
     GoTo _16AE
 
 _1635:
     CloseMessage
     StartTrainerBattle TRAINER_VETERAN_EMANUEL, TRAINER_LASS_BLYTHE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_VETERAN_EMANUEL
     SetTrainerFlag TRAINER_LASS_BLYTHE
     Call _171D
-    SetVar 0x8008, 0x4100
-    GoToIfEq 0x8008, 0, _168D
-    GoToIfEq 0x8008, 1, _1698
-    GoToIfEq 0x8008, 2, _16A3
+    SetVar VAR_0x8008, VAR_UNK_0x4100
+    GoToIfEq VAR_0x8008, 0, _168D
+    GoToIfEq VAR_0x8008, 1, _1698
+    GoToIfEq VAR_0x8008, 2, _16A3
     ReleaseAll
     End
 
@@ -1612,10 +1612,10 @@ _16AE:
     End
 
 _16BA:
-    SetVar 0x8008, 0x4100
-    GoToIfEq 0x8008, 0, _16E9
-    GoToIfEq 0x8008, 1, _16F4
-    GoToIfEq 0x8008, 2, _16FF
+    SetVar VAR_0x8008, VAR_UNK_0x4100
+    GoToIfEq VAR_0x8008, 0, _16E9
+    GoToIfEq VAR_0x8008, 1, _16F4
+    GoToIfEq VAR_0x8008, 2, _16FF
     End
 
 _16E9:
@@ -1658,12 +1658,12 @@ _1729:
     LockAll
     CheckTrainerFlag TRAINER_CAMERAMAN_DARRYL
     GoToIfDefeated TRAINER_CAMERAMAN_DARRYL, _1864
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _18B4
-    SetVar 0x8008, 0x4101
-    GoToIfEq 0x8008, 0, _1782
-    GoToIfEq 0x8008, 1, _17A1
-    GoToIfEq 0x8008, 2, _17C0
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _18B4
+    SetVar VAR_0x8008, VAR_UNK_0x4101
+    GoToIfEq VAR_0x8008, 0, _1782
+    GoToIfEq VAR_0x8008, 1, _17A1
+    GoToIfEq VAR_0x8008, 2, _17C0
     ReleaseAll
     End
 
@@ -1671,38 +1671,38 @@ _1782:
     Message 160
     FacePlayer
     Message 161
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _17DF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _17DF
     GoTo _1858
 
 _17A1:
     Message 168
     FacePlayer
     Message 169
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _17DF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _17DF
     GoTo _1858
 
 _17C0:
     Message 176
     FacePlayer
     Message 177
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _17DF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _17DF
     GoTo _1858
 
 _17DF:
     CloseMessage
     StartTrainerBattle TRAINER_CAMERAMAN_DARRYL, TRAINER_REPORTER_VALERIE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_CAMERAMAN_DARRYL
     SetTrainerFlag TRAINER_REPORTER_VALERIE
     Call _18C7
-    SetVar 0x8008, 0x4101
-    GoToIfEq 0x8008, 0, _1837
-    GoToIfEq 0x8008, 1, _1842
-    GoToIfEq 0x8008, 2, _184D
+    SetVar VAR_0x8008, VAR_UNK_0x4101
+    GoToIfEq VAR_0x8008, 0, _1837
+    GoToIfEq VAR_0x8008, 1, _1842
+    GoToIfEq VAR_0x8008, 2, _184D
     ReleaseAll
     End
 
@@ -1734,10 +1734,10 @@ _1858:
     End
 
 _1864:
-    SetVar 0x8008, 0x4101
-    GoToIfEq 0x8008, 0, _1893
-    GoToIfEq 0x8008, 1, _189E
-    GoToIfEq 0x8008, 2, _18A9
+    SetVar VAR_0x8008, VAR_UNK_0x4101
+    GoToIfEq VAR_0x8008, 0, _1893
+    GoToIfEq VAR_0x8008, 1, _189E
+    GoToIfEq VAR_0x8008, 2, _18A9
     End
 
 _1893:
@@ -1780,12 +1780,12 @@ _18D3:
     LockAll
     CheckTrainerFlag TRAINER_REPORTER_VALERIE
     GoToIfDefeated TRAINER_REPORTER_VALERIE, _1A0E
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _1A5E
-    SetVar 0x8008, 0x4101
-    GoToIfEq 0x8008, 0, _192C
-    GoToIfEq 0x8008, 1, _194B
-    GoToIfEq 0x8008, 2, _196A
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _1A5E
+    SetVar VAR_0x8008, VAR_UNK_0x4101
+    GoToIfEq VAR_0x8008, 0, _192C
+    GoToIfEq VAR_0x8008, 1, _194B
+    GoToIfEq VAR_0x8008, 2, _196A
     ReleaseAll
     End
 
@@ -1793,38 +1793,38 @@ _192C:
     Message 164
     FacePlayer
     Message 165
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1989
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1989
     GoTo _1A02
 
 _194B:
     Message 172
     FacePlayer
     Message 173
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1989
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1989
     GoTo _1A02
 
 _196A:
     Message 180
     FacePlayer
     Message 181
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1989
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1989
     GoTo _1A02
 
 _1989:
     CloseMessage
     StartTrainerBattle TRAINER_CAMERAMAN_DARRYL, TRAINER_REPORTER_VALERIE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_CAMERAMAN_DARRYL
     SetTrainerFlag TRAINER_REPORTER_VALERIE
     Call _1A71
-    SetVar 0x8008, 0x4101
-    GoToIfEq 0x8008, 0, _19E1
-    GoToIfEq 0x8008, 1, _19EC
-    GoToIfEq 0x8008, 2, _19F7
+    SetVar VAR_0x8008, VAR_UNK_0x4101
+    GoToIfEq VAR_0x8008, 0, _19E1
+    GoToIfEq VAR_0x8008, 1, _19EC
+    GoToIfEq VAR_0x8008, 2, _19F7
     ReleaseAll
     End
 
@@ -1856,10 +1856,10 @@ _1A02:
     End
 
 _1A0E:
-    SetVar 0x8008, 0x4101
-    GoToIfEq 0x8008, 0, _1A3D
-    GoToIfEq 0x8008, 1, _1A48
-    GoToIfEq 0x8008, 2, _1A53
+    SetVar VAR_0x8008, VAR_UNK_0x4101
+    GoToIfEq VAR_0x8008, 0, _1A3D
+    GoToIfEq VAR_0x8008, 1, _1A48
+    GoToIfEq VAR_0x8008, 2, _1A53
     End
 
 _1A3D:
@@ -1902,12 +1902,12 @@ _1A7D:
     LockAll
     CheckTrainerFlag TRAINER_PI_KENDRICK
     GoToIfDefeated TRAINER_PI_KENDRICK, _1BB8
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _1C08
-    SetVar 0x8008, 0x4102
-    GoToIfEq 0x8008, 0, _1AD6
-    GoToIfEq 0x8008, 1, _1AF5
-    GoToIfEq 0x8008, 2, _1B14
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _1C08
+    SetVar VAR_0x8008, VAR_UNK_0x4102
+    GoToIfEq VAR_0x8008, 0, _1AD6
+    GoToIfEq VAR_0x8008, 1, _1AF5
+    GoToIfEq VAR_0x8008, 2, _1B14
     ReleaseAll
     End
 
@@ -1915,38 +1915,38 @@ _1AD6:
     Message 186
     FacePlayer
     Message 187
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1B33
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1B33
     GoTo _1BAC
 
 _1AF5:
     Message 194
     FacePlayer
     Message 195
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1B33
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1B33
     GoTo _1BAC
 
 _1B14:
     Message 202
     FacePlayer
     Message 203
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1B33
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1B33
     GoTo _1BAC
 
 _1B33:
     CloseMessage
     StartTrainerBattle TRAINER_PI_KENDRICK, TRAINER_BEAUTY_GABRIELLA
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_PI_KENDRICK
     SetTrainerFlag TRAINER_BEAUTY_GABRIELLA
     Call _1C1B
-    SetVar 0x8008, 0x4102
-    GoToIfEq 0x8008, 0, _1B8B
-    GoToIfEq 0x8008, 1, _1B96
-    GoToIfEq 0x8008, 2, _1BA1
+    SetVar VAR_0x8008, VAR_UNK_0x4102
+    GoToIfEq VAR_0x8008, 0, _1B8B
+    GoToIfEq VAR_0x8008, 1, _1B96
+    GoToIfEq VAR_0x8008, 2, _1BA1
     ReleaseAll
     End
 
@@ -1978,10 +1978,10 @@ _1BAC:
     End
 
 _1BB8:
-    SetVar 0x8008, 0x4102
-    GoToIfEq 0x8008, 0, _1BE7
-    GoToIfEq 0x8008, 1, _1BF2
-    GoToIfEq 0x8008, 2, _1BFD
+    SetVar VAR_0x8008, VAR_UNK_0x4102
+    GoToIfEq VAR_0x8008, 0, _1BE7
+    GoToIfEq VAR_0x8008, 1, _1BF2
+    GoToIfEq VAR_0x8008, 2, _1BFD
     End
 
 _1BE7:
@@ -2024,12 +2024,12 @@ _1C27:
     LockAll
     CheckTrainerFlag TRAINER_BEAUTY_GABRIELLA
     GoToIfDefeated TRAINER_BEAUTY_GABRIELLA, _1D62
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _1DB2
-    SetVar 0x8008, 0x4102
-    GoToIfEq 0x8008, 0, _1C80
-    GoToIfEq 0x8008, 1, _1C9F
-    GoToIfEq 0x8008, 2, _1CBE
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _1DB2
+    SetVar VAR_0x8008, VAR_UNK_0x4102
+    GoToIfEq VAR_0x8008, 0, _1C80
+    GoToIfEq VAR_0x8008, 1, _1C9F
+    GoToIfEq VAR_0x8008, 2, _1CBE
     ReleaseAll
     End
 
@@ -2037,38 +2037,38 @@ _1C80:
     Message 190
     FacePlayer
     Message 191
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1CDD
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1CDD
     GoTo _1D56
 
 _1C9F:
     Message 198
     FacePlayer
     Message 199
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1CDD
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1CDD
     GoTo _1D56
 
 _1CBE:
     Message 206
     FacePlayer
     Message 207
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1CDD
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1CDD
     GoTo _1D56
 
 _1CDD:
     CloseMessage
     StartTrainerBattle TRAINER_PI_KENDRICK, TRAINER_BEAUTY_GABRIELLA
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_PI_KENDRICK
     SetTrainerFlag TRAINER_BEAUTY_GABRIELLA
     Call _1DC5
-    SetVar 0x8008, 0x4102
-    GoToIfEq 0x8008, 0, _1D35
-    GoToIfEq 0x8008, 1, _1D40
-    GoToIfEq 0x8008, 2, _1D4B
+    SetVar VAR_0x8008, VAR_UNK_0x4102
+    GoToIfEq VAR_0x8008, 0, _1D35
+    GoToIfEq VAR_0x8008, 1, _1D40
+    GoToIfEq VAR_0x8008, 2, _1D4B
     ReleaseAll
     End
 
@@ -2100,10 +2100,10 @@ _1D56:
     End
 
 _1D62:
-    SetVar 0x8008, 0x4102
-    GoToIfEq 0x8008, 0, _1D91
-    GoToIfEq 0x8008, 1, _1D9C
-    GoToIfEq 0x8008, 2, _1DA7
+    SetVar VAR_0x8008, VAR_UNK_0x4102
+    GoToIfEq VAR_0x8008, 0, _1D91
+    GoToIfEq VAR_0x8008, 1, _1D9C
+    GoToIfEq VAR_0x8008, 2, _1DA7
     End
 
 _1D91:
@@ -2146,12 +2146,12 @@ _1DD1:
     LockAll
     CheckTrainerFlag TRAINER_SCIENTIST_EMILIO
     GoToIfDefeated TRAINER_SCIENTIST_EMILIO, _1F0C
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _1F5C
-    SetVar 0x8008, 0x4103
-    GoToIfEq 0x8008, 0, _1E2A
-    GoToIfEq 0x8008, 1, _1E49
-    GoToIfEq 0x8008, 2, _1E68
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _1F5C
+    SetVar VAR_0x8008, VAR_UNK_0x4103
+    GoToIfEq VAR_0x8008, 0, _1E2A
+    GoToIfEq VAR_0x8008, 1, _1E49
+    GoToIfEq VAR_0x8008, 2, _1E68
     ReleaseAll
     End
 
@@ -2159,38 +2159,38 @@ _1E2A:
     Message 212
     FacePlayer
     Message 213
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1E87
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1E87
     GoTo _1F00
 
 _1E49:
     Message 220
     FacePlayer
     Message 221
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1E87
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1E87
     GoTo _1F00
 
 _1E68:
     Message 228
     FacePlayer
     Message 229
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _1E87
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _1E87
     GoTo _1F00
 
 _1E87:
     CloseMessage
     StartTrainerBattle TRAINER_SCIENTIST_EMILIO, TRAINER_BREEDER_KAYLEE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_SCIENTIST_EMILIO
     SetTrainerFlag TRAINER_BREEDER_KAYLEE
     Call _1F6F
-    SetVar 0x8008, 0x4103
-    GoToIfEq 0x8008, 0, _1EDF
-    GoToIfEq 0x8008, 1, _1EEA
-    GoToIfEq 0x8008, 2, _1EF5
+    SetVar VAR_0x8008, VAR_UNK_0x4103
+    GoToIfEq VAR_0x8008, 0, _1EDF
+    GoToIfEq VAR_0x8008, 1, _1EEA
+    GoToIfEq VAR_0x8008, 2, _1EF5
     ReleaseAll
     End
 
@@ -2222,10 +2222,10 @@ _1F00:
     End
 
 _1F0C:
-    SetVar 0x8008, 0x4103
-    GoToIfEq 0x8008, 0, _1F3B
-    GoToIfEq 0x8008, 1, _1F46
-    GoToIfEq 0x8008, 2, _1F51
+    SetVar VAR_0x8008, VAR_UNK_0x4103
+    GoToIfEq VAR_0x8008, 0, _1F3B
+    GoToIfEq VAR_0x8008, 1, _1F46
+    GoToIfEq VAR_0x8008, 2, _1F51
     End
 
 _1F3B:
@@ -2268,12 +2268,12 @@ _1F7B:
     LockAll
     CheckTrainerFlag TRAINER_BREEDER_KAYLEE
     GoToIfDefeated TRAINER_BREEDER_KAYLEE, _20B6
-    CountAliveMonsExcept 0x800C, 6
-    GoToIfEq 0x800C, 1, _2106
-    SetVar 0x8008, 0x4103
-    GoToIfEq 0x8008, 0, _1FD4
-    GoToIfEq 0x8008, 1, _1FF3
-    GoToIfEq 0x8008, 2, _2012
+    CountAliveMonsExcept VAR_RESULT, 6
+    GoToIfEq VAR_RESULT, 1, _2106
+    SetVar VAR_0x8008, VAR_UNK_0x4103
+    GoToIfEq VAR_0x8008, 0, _1FD4
+    GoToIfEq VAR_0x8008, 1, _1FF3
+    GoToIfEq VAR_0x8008, 2, _2012
     ReleaseAll
     End
 
@@ -2281,38 +2281,38 @@ _1FD4:
     Message 216
     FacePlayer
     Message 217
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _2031
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _2031
     GoTo _20AA
 
 _1FF3:
     Message 224
     FacePlayer
     Message 225
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _2031
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _2031
     GoTo _20AA
 
 _2012:
     Message 232
     FacePlayer
     Message 233
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _2031
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _2031
     GoTo _20AA
 
 _2031:
     CloseMessage
     StartTrainerBattle TRAINER_SCIENTIST_EMILIO, TRAINER_BREEDER_KAYLEE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _2125
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _2125
     SetTrainerFlag TRAINER_SCIENTIST_EMILIO
     SetTrainerFlag TRAINER_BREEDER_KAYLEE
     Call _2119
-    SetVar 0x8008, 0x4103
-    GoToIfEq 0x8008, 0, _2089
-    GoToIfEq 0x8008, 1, _2094
-    GoToIfEq 0x8008, 2, _209F
+    SetVar VAR_0x8008, VAR_UNK_0x4103
+    GoToIfEq VAR_0x8008, 0, _2089
+    GoToIfEq VAR_0x8008, 1, _2094
+    GoToIfEq VAR_0x8008, 2, _209F
     ReleaseAll
     End
 
@@ -2344,10 +2344,10 @@ _20AA:
     End
 
 _20B6:
-    SetVar 0x8008, 0x4103
-    GoToIfEq 0x8008, 0, _20E5
-    GoToIfEq 0x8008, 1, _20F0
-    GoToIfEq 0x8008, 2, _20FB
+    SetVar VAR_0x8008, VAR_UNK_0x4103
+    GoToIfEq VAR_0x8008, 0, _20E5
+    GoToIfEq VAR_0x8008, 1, _20F0
+    GoToIfEq VAR_0x8008, 2, _20FB
     End
 
 _20E5:

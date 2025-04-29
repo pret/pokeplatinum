@@ -58,7 +58,7 @@
 
 #define HEAP_ALLOCATION_SIZE 0x10000
 
-enum {
+enum OptionsMenuEntryID {
     ENTRY_TEXT_SPEED = 0,
     ENTRY_SOUND_MODE,
     ENTRY_BATTLE_SCENE,
@@ -202,7 +202,7 @@ BOOL OptionsMenu_Exit(OverlayManager *ovyManager, int *state)
     return TRUE;
 }
 
-enum {
+enum OptonsMenuState {
     STATE_SETUP_MENU_VISUALS = 0,
     STATE_WAIT_FOR_FADE_IN,
     STATE_HANDLE_INPUT,
@@ -252,7 +252,7 @@ BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
 
     case STATE_CONFIRM_NEW_SETTINGS:
         RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
-        PrintBankEntryAsDescription(menuData, options_menu_confirm_dialog, FALSE);
+        PrintBankEntryAsDescription(menuData, OptionsMenu_Text_ConfirmDialog, FALSE);
         break;
 
     case STATE_WAIT_CONFIRM_NEW_SETTINGS:
@@ -684,13 +684,13 @@ static void TeardownWindows(OptionsMenuData *menuData)
 }
 
 static const u8 sEntryLabels[MAX_ENTRIES] = {
-    options_menu_text_speed_label,
-    options_menu_sound_mode_label,
-    options_menu_battle_scene_label,
-    options_menu_battle_style_label,
-    options_menu_button_mode_label,
-    options_menu_message_box_style_label,
-    options_menu_close_label,
+    OptionsMenu_Text_TextSpeedLabel,
+    OptionsMenu_Text_SoundModeLabel,
+    OptionsMenu_Text_BattleSceneLabel,
+    OptionsMenu_Text_BattleStyleLabel,
+    OptionsMenu_Text_ButtonModeLabel,
+    OptionsMenu_Text_MessageBoxStyleLabel,
+    OptionsMenu_Text_CloseLabel,
 };
 
 static void PrintTitleAndEntries(OptionsMenuData *menuData)
@@ -700,7 +700,7 @@ static void PrintTitleAndEntries(OptionsMenuData *menuData)
     TextColor whiteBg = TEXT_COLOR(1, 2, 15);
 
     Strbuf *strbuf = Strbuf_Init(256, menuData->heapID);
-    MessageLoader_GetStrbuf(menuData->msgLoader, options_menu_title, strbuf);
+    MessageLoader_GetStrbuf(menuData->msgLoader, OptionsMenu_Text_Title, strbuf);
     Text_AddPrinterWithParamsAndColor(&menuData->windows.title,
         FONT_SYSTEM,
         strbuf,
@@ -744,12 +744,12 @@ static const int sNumChoicesPerEntry[MAX_ENTRIES] = {
 };
 
 static const u8 sFirstChoicePerEntry[MAX_ENTRIES] = {
-    options_menu_text_speed_slow,
-    options_menu_sound_mode_stereo,
-    options_menu_battle_scene_on,
-    options_menu_battle_style_shift,
-    options_menu_button_mode_normal,
-    options_menu_message_box_style_01,
+    OptionsMenu_Text_TextSpeedSlow,
+    OptionsMenu_Text_SoundModeStereo,
+    OptionsMenu_Text_BattleSceneOn,
+    OptionsMenu_Text_BattleStyleShift,
+    OptionsMenu_Text_ButtonModeNormal,
+    OptionsMenu_Text_MessageBoxStyle_01,
     NULL,
 };
 
@@ -962,13 +962,13 @@ static u32 ProcessConfirmationInput(OptionsMenuData *menuData)
 }
 
 static const u8 sEntryDescriptions[MAX_ENTRIES] = {
-    options_menu_text_speed_description,
-    options_menu_sound_mode_description,
-    options_menu_battle_scene_description,
-    options_menu_battle_style_description,
-    options_menu_button_mode_description,
-    options_menu_message_box_style_description,
-    options_menu_close_description,
+    OptionsMenu_Text_TextSpeedDescription,
+    OptionsMenu_Text_SoundModeDescription,
+    OptionsMenu_Text_BattleSceneDescription,
+    OptionsMenu_Text_BattleStyleDescription,
+    OptionsMenu_Text_ButtonModeDescription,
+    OptionsMenu_Text_MessageBoxStyleDescription,
+    OptionsMenu_Text_CloseDescription,
 };
 
 static void PrintEntryDescription(OptionsMenuData *menuData, u16 entry, BOOL scheduleVRAMCopy)

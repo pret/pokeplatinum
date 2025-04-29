@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _0016:
-    SetVar 0x8007, 3
+    SetVar VAR_0x8007, 3
     CallCommonScript 0x7D2
     End
 
@@ -50,7 +50,7 @@ _005E:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_BUNEARY
     Message 3
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -60,22 +60,22 @@ _007D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq 0x4002, 1, _00F4
-    CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, 0x800C
-    GoToIfEq 0x800C, 0, _00D9
-    GetFirstNonEggInParty 0x8000
-    BufferPartyMonSpecies 0, 0x8000
+    GoToIfEq VAR_MAP_LOCAL_2, 1, _00F4
+    CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00D9
+    GetFirstNonEggInParty VAR_0x8000
+    BufferPartyMonSpecies 0, VAR_0x8000
     Message 6
-    GetPartyMonFriendship 0x800C, 0x8000
-    GoToIfGe 0x800C, 120, _00FF
-    GoToIfGe 0x800C, 70, _010A
+    GetPartyMonFriendship VAR_RESULT, VAR_0x8000
+    GoToIfGe VAR_RESULT, 120, _00FF
+    GoToIfGe VAR_RESULT, 70, _010A
     GoTo _0115
     End
 
 _00D9:
     Message 4
-    SetVar 0x4002, 1
-    SetVar 0x8004, 5
+    SetVar VAR_MAP_LOCAL_2, 1
+    SetVar VAR_0x8004, 5
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage

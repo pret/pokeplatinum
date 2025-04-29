@@ -30,7 +30,7 @@ typedef struct UnkStruct_ov23_02253E2C_t {
     StringTemplate *unk_28;
     int unk_2C;
     int unk_30;
-    int unk_34;
+    int heapID;
     int unk_38;
     int unk_3C;
     u16 unk_40;
@@ -86,7 +86,7 @@ UnkStruct_ov23_02253E2C *ov23_02253D48(int param0, int heapID, BgConfig *param2,
     v1->unk_28 = StringTemplate_Default(heapID);
     v1->unk_2C = param0;
     v1->unk_24 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param0, heapID);
-    v1->unk_34 = heapID;
+    v1->heapID = heapID;
     v1->unk_18 = param2;
 
     Window_Init(&v1->unk_08);
@@ -116,7 +116,7 @@ void ov23_02253DFC(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
         param0->unk_2C = param1;
         MessageLoader_Free(param0->unk_24);
 
-        param0->unk_24 = MessageLoader_Init(param2, NARC_INDEX_MSGDATA__PL_MSG, param1, param0->unk_34);
+        param0->unk_24 = MessageLoader_Init(param2, NARC_INDEX_MSGDATA__PL_MSG, param1, param0->heapID);
         GF_ASSERT(param0->unk_24 != NULL);
     }
 }

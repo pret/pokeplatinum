@@ -3,13 +3,13 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 
+#include "overlay019/box_cursor.h"
 #include "overlay019/box_customization.h"
+#include "overlay019/box_mon_selection.h"
+#include "overlay019/box_settings.h"
 #include "overlay019/pc_mon_preview.h"
-#include "overlay019/struct_ov19_021D3CFC.h"
-#include "overlay019/struct_ov19_021D4DE4.h"
 #include "overlay019/struct_ov19_021D4EE4.h"
 #include "overlay019/struct_ov19_021D4F34.h"
-#include "overlay019/struct_ov19_021D5594.h"
 #include "overlay019/struct_ov19_021D5D20.h"
 #include "overlay019/struct_ov19_021DF964.h"
 
@@ -17,11 +17,11 @@
 
 typedef struct {
     const PCBoxes *pcBoxes;
-    const Party *unk_04;
-    UnkStruct_ov19_021D3CFC unk_08;
-    UnkStruct_ov19_021D5594 unk_14;
+    const Party *party;
+    BoxCursor cursor;
+    BoxMonSelection selection;
     BoxCustomization customization;
-    UnkStruct_ov19_021D4DE4 unk_48;
+    BoxSettings boxSettings;
     PCMonPreview pcMonPreview;
     UnkStruct_ov19_021DF964 unk_74;
     UnkStruct_ov19_021D5D20 unk_98;
@@ -30,7 +30,7 @@ typedef struct {
     UnkStruct_ov19_021D4EE4 unk_A4;
     u32 unk_10C;
     u16 unk_110;
-    u16 unk_112;
+    u16 cursorItem;
 } UnkStruct_ov19_021D4DF0;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021D4DF0_H

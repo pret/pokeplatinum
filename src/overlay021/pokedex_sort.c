@@ -719,7 +719,7 @@ static u16 *PokedexFromNARC(enum HeapId heapID, int pokedexSort, int *pokedexLen
 
     GF_ASSERT(PDSI_NUMSORTS > pokedexSort);
 
-    u32 pokedexDataNarcIndex = Pokedex_Data_NARC_Index();
+    enum NarcID pokedexDataNarcIndex = Pokedex_Data_NARC_Index();
     u16 *pokedexFromFile = LoadMemberFromNARC_OutFileSize(pokedexDataNarcIndex, NUMSTATFILES + pokedexSort, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / (sizeof(u16));
 

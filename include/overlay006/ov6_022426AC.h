@@ -19,7 +19,7 @@ typedef struct GreatMarshLookout_SpriteResources {
     BOOL unk_1D0;
 } GreatMarshLookout_SpriteResources;
 
-GreatMarshLookout_SpriteResources *GreatMarshLookout_AllocSpriteResources(const int heapId);
+GreatMarshLookout_SpriteResources *GreatMarshLookout_AllocSpriteResources(const int heapID);
 void GreatMarshLookout_FreeSpriteResources(GreatMarshLookout_SpriteResources *resources);
 void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources *resources, const int species);
 void ov6_022427F4(GreatMarshLookout_SpriteResources *param0);

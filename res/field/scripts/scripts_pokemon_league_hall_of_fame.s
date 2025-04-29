@@ -13,17 +13,17 @@ _0006:
     WaitMovement
     ApplyMovement 1, _0134
     WaitMovement
-    ScrCmd_28F 0x800C
-    CallIfEq 0x800C, 0, _0111
-    CallIfNe 0x800C, 0, _0119
+    ScrCmd_28F VAR_RESULT
+    CallIfEq VAR_RESULT, 0, _0111
+    CallIfNe VAR_RESULT, 0, _0119
     CloseMessage
     ApplyMovement 1, _0144
     ApplyMovement 0, _015C
     WaitMovement
-    WaitTime 15, 0x800C
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0074
-    GoToIfEq 0x800C, GENDER_FEMALE, _0080
+    WaitTime 15, VAR_RESULT
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0074
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0080
     End
 
 _0074:
@@ -45,11 +45,11 @@ _008C:
     Message 6
     CloseMessage
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_4
-    ScrCmd_22D 2, 0x800C
-    CallIfEq 0x800C, 1, _010A
-    CallIfEq 0x40F4, 0, _0102
-    GetPartyCount 0x800C
-    ScrCmd_25A 0x800C
+    GetNationalDexEnabled VAR_RESULT
+    CallIfEq VAR_RESULT, 1, _010A
+    CallIfEq VAR_UNK_0x40F4, 0, _0102
+    GetPartyCount VAR_RESULT
+    ScrCmd_25A VAR_RESULT
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     ScrCmd_260 24
@@ -62,7 +62,7 @@ _008C:
     End
 
 _0102:
-    SetVar 0x40F4, 1
+    SetVar VAR_UNK_0x40F4, 1
     Return
 
 _010A:
@@ -131,11 +131,11 @@ _0174:
     CallIfUnset FLAG_UXIE_CAUGHT, PokemonLeagueHallOfFame_ClearFlagUxieDisappeared
     CallIfUnset FLAG_UNK_0x0121, _0287
     CallIfEq VAR_ROAMING_MESPRIT_STATE, 2, PokemonLeagueHallOfFame_ClearFlagMespritDisappeared
-    CallIfEq 0x4058, 2, _0299
-    CallIfEq 0x405E, 2, _02A5
-    CallIfEq 0x405F, 2, _02AD
-    CallIfEq 0x4060, 2, _02B5
-    CallIfEq 0x410F, 0, _0234
+    CallIfEq VAR_ROAMING_CRESSELIA_STATE, 2, _0299
+    CallIfEq VAR_ROAMING_MOLTRES_STATE, 2, _02A5
+    CallIfEq VAR_ROAMING_ZAPDOS_STATE, 2, _02AD
+    CallIfEq VAR_ROAMING_ARTICUNO_STATE, 2, _02B5
+    CallIfEq VAR_UNK_0x410F, 0, _0234
     ClearFlag FLAG_UNK_0x0177
     CallIfUnset FLAG_UNK_0x00B9, _02BD
     ClearFlag FLAG_UNK_0x0186
@@ -144,27 +144,27 @@ _0174:
     Return
 
 _0234:
-    SetVar 0x410F, 1
+    SetVar VAR_UNK_0x410F, 1
     Return
 
 _023C:
-    SetVar 0x40C4, 0
+    SetVar VAR_UNK_0x40C4, 0
     Return
 
 _0244:
-    SetVar 0x40C5, 0
+    SetVar VAR_UNK_0x40C5, 0
     Return
 
 _024C:
     GoToIfUnset FLAG_MESPRIT_CAUGHT, _0261
     ClearFlag FLAG_UNK_0x01DD
-    SetVar 0x409E, 1
+    SetVar VAR_UNK_0x409E, 1
 _0261:
     Return
 
 _0263:
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 0, _0279
+    GetNationalDexEnabled VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0279
     ClearFlag FLAG_UNK_0x0243
 _0279:
     Return
@@ -188,19 +188,19 @@ PokemonLeagueHallOfFame_ClearFlagMespritDisappeared:
 
 _0299:
     ClearFlag FLAG_UNK_0x024F
-    SetVar 0x4058, 3
+    SetVar VAR_ROAMING_CRESSELIA_STATE, 3
     Return
 
 _02A5:
-    SetVar 0x405E, 3
+    SetVar VAR_ROAMING_MOLTRES_STATE, 3
     Return
 
 _02AD:
-    SetVar 0x405F, 3
+    SetVar VAR_ROAMING_ZAPDOS_STATE, 3
     Return
 
 _02B5:
-    SetVar 0x4060, 3
+    SetVar VAR_ROAMING_ARTICUNO_STATE, 3
     Return
 
 _02BD:

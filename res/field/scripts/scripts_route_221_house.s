@@ -13,51 +13,51 @@ _000A:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0137, _0114
     GoToIfSet FLAG_UNK_0x0AAE, _016F
-    GetDailyRandomLevel 0x8000
-    BufferNumber 0, 0x8000
-    GetPartyCount 0x8002
-    SetVar 0x8003, 0
+    GetDailyRandomLevel VAR_0x8000
+    BufferNumber 0, VAR_0x8000
+    GetPartyCount VAR_0x8002
+    SetVar VAR_0x8003, 0
 _003B:
-    ScrCmd_278 0x8001, 0x8003
-    GoToIfEq 0x8000, 0x8001, _006D
-    AddVar 0x8003, 1
-    SubVar 0x8002, 1
-    GoToIfNe 0x8002, 0, _003B
+    ScrCmd_278 VAR_0x8001, VAR_0x8003
+    GoToIfEq VAR_0x8000, VAR_0x8001, _006D
+    AddVar VAR_0x8003, 1
+    SubVar VAR_0x8002, 1
+    GoToIfNe VAR_0x8002, 0, _003B
     GoTo _0164
 
 _006D:
-    CallIfEq 0x4108, 0, _00ED
-    CallIfEq 0x4108, 1, _00F5
-    CallIfEq 0x4108, 2, _00FD
-    BufferPartyMonSpecies 1, 0x8003
-    BufferItemName 2, 0x8004
+    CallIfEq VAR_UNK_0x4108, 0, _00ED
+    CallIfEq VAR_UNK_0x4108, 1, _00F5
+    CallIfEq VAR_UNK_0x4108, 2, _00FD
+    BufferPartyMonSpecies 1, VAR_0x8003
+    BufferItemName 2, VAR_0x8004
     Message 1
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0105
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0105
     GoTo _00C2
 
 _00C2:
     CallCommonScript 0x7E0
     ClearFlag FLAG_UNK_0x0137
     SetFlag FLAG_UNK_0x0AAE
-    AddVar 0x4108, 1
-    GoToIfLt 0x4108, 3, _00E7
-    SetVar 0x4108, 0
+    AddVar VAR_UNK_0x4108, 1
+    GoToIfLt VAR_UNK_0x4108, 3, _00E7
+    SetVar VAR_UNK_0x4108, 0
 _00E7:
     CloseMessage
     ReleaseAll
     End
 
 _00ED:
-    SetVar 0x8004, ITEM_BLACK_BELT
+    SetVar VAR_0x8004, ITEM_BLACK_BELT
     Return
 
 _00F5:
-    SetVar 0x8004, ITEM_EXPERT_BELT
+    SetVar VAR_0x8004, ITEM_EXPERT_BELT
     Return
 
 _00FD:
-    SetVar 0x8004, ITEM_FOCUS_SASH
+    SetVar VAR_0x8004, ITEM_FOCUS_SASH
     Return
 
 _0105:
@@ -69,13 +69,13 @@ _0105:
     End
 
 _0114:
-    CallIfEq 0x4108, 0, _00ED
-    CallIfEq 0x4108, 1, _00F5
-    CallIfEq 0x4108, 2, _00FD
-    BufferItemName 2, 0x8004
+    CallIfEq VAR_UNK_0x4108, 0, _00ED
+    CallIfEq VAR_UNK_0x4108, 1, _00F5
+    CallIfEq VAR_UNK_0x4108, 2, _00FD
+    BufferItemName 2, VAR_0x8004
     Message 3
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0105
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0105
     GoTo _00C2
 
 _0164:

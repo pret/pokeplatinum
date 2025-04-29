@@ -785,7 +785,7 @@ static int ov109_021D122C(UnkStruct_ov109_021D0F70 *param0)
     param0->unk_D4.unk_40 = (FX32_ONE * (v1->unk_04));
     param0->unk_00 = 17;
 
-    Sound_SetSceneAndPlayBGM(15, 1210, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_15, SEQ_PL_GURUGURU, 1);
     ov109_021D2788(param0);
 
     return 1;
@@ -1245,7 +1245,7 @@ static int ov109_021D18A0(UnkStruct_ov109_021D0F70 *param0)
     }
 
     {
-        Sound_PlayFanfare(1158);
+        Sound_PlayFanfare(SEQ_FANFA4);
     }
 
     param0->unk_00 = 38;
@@ -1288,7 +1288,7 @@ static int ov109_021D1918(UnkStruct_ov109_021D0F70 *param0)
         ov109_021D2714(param0, 3, v0);
 
         BOOL removedItem = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, HEAP_ID_95);
-        Sound_PlayFanfare(1158);
+        Sound_PlayFanfare(SEQ_FANFA4);
 
         if (removedItem == TRUE) {
             param0->unk_00 = 40;
@@ -1455,7 +1455,7 @@ static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
     StartScreenTransition(2, 0, 0, 0x0, 8, 1, HEAP_ID_95);
 
     if (param0->unk_1C != Sound_Impl_GetCurrentBGM()) {
-        Sound_SetSceneAndPlayBGM(4, param0->unk_1C, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, param0->unk_1C, 1);
     }
 
     param0->unk_00 = 52;
@@ -1976,7 +1976,7 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
 
     {
         NNSG2dPaletteData *v5;
-        void *v6 = sub_020394A8(95);
+        void *v6 = sub_020394A8(HEAP_ID_95);
 
         NNS_G2dGetUnpackedPaletteData(v6, &v5);
         PaletteData_LoadBuffer(v2, v5->pRawData, 2, 14 * 16, 32);
@@ -2259,7 +2259,7 @@ static void ov109_021D29CC(UnkStruct_ov109_021D0F70 *param0)
     v0 = param0->unk_CC->unk_08;
     v1 = Unk_ov109_021D5A80[v0];
 
-    sub_0207389C(&v2->unk_54, 0, v3, v1, 95, 0);
+    sub_0207389C(&v2->unk_54, 0, v3, v1, HEAP_ID_95, 0);
     sub_020738EC(&v2->unk_54);
     sub_02073B70(&v2->unk_68, &v2->unk_54);
 
@@ -2349,19 +2349,19 @@ static void ov109_021D2B00(UnkStruct_ov109_021D0F70 *param0)
     const u32 *v1, *v2;
     UnkStruct_ov109_021D1334 *v3 = &param0->unk_190;
 
-    sub_0207389C(&v3->unk_00, 0, param0->unk_D80, 0, 95, 0);
+    sub_0207389C(&v3->unk_00, 0, param0->unk_D80, 0, HEAP_ID_95, 0);
     sub_020738EC(&v3->unk_00);
-    sub_0207389C(&v3->unk_14, 0, param0->unk_D80, 5, 95, 0);
+    sub_0207389C(&v3->unk_14, 0, param0->unk_D80, 5, HEAP_ID_95, 0);
     sub_020738EC(&v3->unk_14);
 
     v1 = Unk_ov109_021D5A14;
     v2 = Unk_ov109_021D5A3C;
 
     for (v0 = 0; v0 < 5; v0++, v1++, v2++) {
-        sub_0207389C(&v3->unk_28[v0], 0, param0->unk_D80, *v1, 95, 0);
+        sub_0207389C(&v3->unk_28[v0], 0, param0->unk_D80, *v1, HEAP_ID_95, 0);
         sub_020738EC(&v3->unk_28[v0]);
-        sub_020739B4(&v3->unk_8C[v0], 0, param0->unk_D80, *v2, 95, 0);
-        sub_02073A3C(&v3->unk_8C[v0], &v3->unk_28[v0], 95);
+        sub_020739B4(&v3->unk_8C[v0], 0, param0->unk_D80, *v2, HEAP_ID_95, 0);
+        sub_02073A3C(&v3->unk_8C[v0], &v3->unk_28[v0], HEAP_ID_95);
         sub_02073A5C(&v3->unk_8C[v0], &v3->unk_28[v0]);
     }
 }

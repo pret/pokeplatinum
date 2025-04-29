@@ -82,7 +82,7 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
 
     dto->background = BACKGROUND_PLAIN;
     dto->terrain = TERRAIN_MAX;
-    dto->mapLabelTextID = location_names_00000;
+    dto->mapLabelTextID = LocationNames_Text_MysteryZone;
     dto->timeOfDay = TIMEOFDAY_MORNING;
     dto->mapEvolutionMethod = 0;
     dto->visitedContestHall = TRUE;
@@ -275,7 +275,7 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
     dto->unk_104 = sub_0202C878(save);
     dto->records = SaveData_GetGameRecords(save);
     dto->journalEntry = journalEntry;
-    dto->unk_124 = sub_02027F8C(save);
+    dto->unk_124 = SaveData_GetPalPad(save);
     dto->mapHeaderID = mapHeaderID;
     dto->saveData = save;
 }
@@ -330,7 +330,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
     dto->unk_104 = sub_0202C878(fieldSystem->saveData);
     dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
-    dto->unk_124 = sub_02027F8C(fieldSystem->saveData);
+    dto->unk_124 = SaveData_GetPalPad(fieldSystem->saveData);
     dto->mapHeaderID = fieldSystem->location->mapId;
     dto->saveData = fieldSystem->saveData;
 
@@ -396,7 +396,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
     dto->mapHeaderID = fieldSystem->location->mapId;
-    dto->unk_124 = sub_02027F8C(fieldSystem->saveData);
+    dto->unk_124 = SaveData_GetPalPad(fieldSystem->saveData);
     dto->saveData = fieldSystem->saveData;
 
     if (sub_020326C4(sub_0203895C())) {

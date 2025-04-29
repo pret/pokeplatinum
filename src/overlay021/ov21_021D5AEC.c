@@ -124,7 +124,7 @@ static void ov21_021D6580(UnkStruct_ov21_021D71A8 *param0);
 static void ov21_021D65DC(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, int param2);
 static void ov21_021D6744(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, int param2);
 static void ov21_021D695C(UnkStruct_ov21_021D71A8 *param0);
-static int ov21_021D70C0(PokedexGraphicData *param0, int param1);
+static int ov21_021D70C0(PokedexGraphicData *param0, int heapID);
 static void ov21_021D67EC(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, const UnkStruct_ov21_021D5B68 *param2, int param3);
 static void ov21_021D6940(UnkStruct_ov21_021D71A8 *param0);
 static void ov21_021D68C8(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, const UnkStruct_ov21_021D5B68 *param2);
@@ -1433,13 +1433,13 @@ static void ov21_021D7094(PokedexGraphicData **param0, const UnkStruct_ov21_021D
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 }
 
-static int ov21_021D70C0(PokedexGraphicData *param0, int param1)
+static int ov21_021D70C0(PokedexGraphicData *param0, int heapID)
 {
     Window *v0;
     int v1;
 
     v0 = ov21_021D4D6C(param0->unk_14C, 15, 2);
-    v1 = sub_02012898(v0, NNS_G2D_VRAM_TYPE_2DMAIN, param1);
+    v1 = sub_02012898(v0, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
     ov21_021D4DA0(v0);
 

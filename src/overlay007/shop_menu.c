@@ -257,9 +257,9 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         shopMenu->destInventory = SaveData_GetBag(fieldSystem->saveData);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
-        shopMenu->destInventory = sub_020298B0(fieldSystem->saveData);
+        shopMenu->destInventory = SaveData_GetUndergroundData(fieldSystem->saveData);
     } else {
-        shopMenu->destInventory = sub_0202CA1C(fieldSystem->saveData);
+        shopMenu->destInventory = SaveData_GetBallSeals(fieldSystem->saveData);
     }
 
     Shop_SetItemsForSale(shopMenu, shopItems);
@@ -456,7 +456,7 @@ static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
         StringTemplate_Free(shopMenu->strTemplate);
         Strbuf_Free(shopMenu->strbuf);
 
-        if (shopMenu->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != location_names_00101
+        if (shopMenu->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != LocationNames_Text_VeilstoneStore
             && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_NORTH_HOUSE
             && fieldSystem->location->mapId != MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE) {
             if (shopMenu->itemPurchaseCount != 0 && shopMenu->itemSoldCount != 0) {
@@ -1231,7 +1231,7 @@ static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu)
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
         GameRecords_AddToRecordValue(shopMenu->records, RECORD_UNK_069, shopMenu->itemPrice * shopMenu->itemAmount);
     } else {
-        GameRecords_AddToRecordValue(shopMenu->records, RECORD_UNK_035, shopMenu->itemPrice * shopMenu->itemAmount);
+        GameRecords_AddToRecordValue(shopMenu->records, RECORD_MONEY_SPENT, shopMenu->itemPrice * shopMenu->itemAmount);
     }
 
     Shop_PrintCurrentMoney(shopMenu, TRUE);

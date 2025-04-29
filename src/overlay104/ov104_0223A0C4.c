@@ -909,16 +909,16 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
     Party *v5;
     Pokemon *v6;
 
-    v3 = FieldBattleDTO_New(param0->unk_04, ov104_0223A700(param0->unk_0F));
+    v3 = FieldBattleDTO_New(param0->heapID, ov104_0223A700(param0->unk_0F));
     saveData = param1->saveData;
     v5 = SaveData_GetParty(saveData);
 
     FieldBattleDTO_InitFromGameState(v3, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
-    v3->background = 18;
+    v3->background = BACKGROUND_BATTLE_TOWER;
     v3->terrain = TERRAIN_BATTLE_TOWER;
 
-    v6 = Pokemon_New(param0->unk_04);
+    v6 = Pokemon_New(param0->heapID);
     v1 = 50;
 
     Party_InitWithCapacity(v3->parties[0], param0->unk_0E);
@@ -939,7 +939,7 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
     Heap_FreeToHeap(v6);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v3);
 
-    ov104_0223A6AC(v3, &(param0->unk_78[0]), param0->unk_0E, 1, param0->unk_04);
+    ov104_0223A6AC(v3, &(param0->unk_78[0]), param0->unk_0E, 1, param0->heapID);
 
     for (v0 = 0; v0 < 4; v0++) {
         v3->trainer[v0].header.aiMask = (0x1 | 0x2 | 0x4);
@@ -947,10 +947,10 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
 
     switch (param0->unk_0F) {
     case 2:
-        ov104_0223A6AC(v3, &(param0->unk_298[param0->unk_10_5]), param0->unk_0E, 2, param0->unk_04);
+        ov104_0223A6AC(v3, &(param0->unk_298[param0->unk_10_5]), param0->unk_0E, 2, param0->heapID);
     case 3:
     case 6:
-        ov104_0223A6AC(v3, &(param0->unk_78[1]), param0->unk_0E, 3, param0->unk_04);
+        ov104_0223A6AC(v3, &(param0->unk_78[1]), param0->unk_0E, 3, param0->heapID);
         break;
     default:
         break;

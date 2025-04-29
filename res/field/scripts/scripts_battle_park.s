@@ -19,11 +19,11 @@
 
 _0032:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 23, _01A8
-    CallIfEq 0x8004, 24, _01BA
-    CallIfEq 0x8004, 25, _01CC
-    CallIfEq 0x8004, 26, _01DE
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 23, _01A8
+    CallIfEq VAR_0x8004, 24, _01BA
+    CallIfEq VAR_0x8004, 25, _01CC
+    CallIfEq VAR_0x8004, 26, _01DE
     ClearFlag FLAG_UNK_0x0276
     AddObject 11
     ScrCmd_062 11
@@ -34,7 +34,7 @@ _0032:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     ApplyMovement 11, _02D0
     WaitMovement
     Message 1
@@ -46,11 +46,11 @@ _0032:
     WaitMovement
     Message 3
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 23, _01F0
-    CallIfEq 0x8004, 24, _0204
-    CallIfEq 0x8004, 25, _0218
-    CallIfEq 0x8004, 26, _022C
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 23, _01F0
+    CallIfEq VAR_0x8004, 24, _0204
+    CallIfEq VAR_0x8004, 25, _0218
+    CallIfEq VAR_0x8004, 26, _022C
     RemoveObject 11
     ClearFlag FLAG_UNK_0x0277
     AddObject 12
@@ -63,17 +63,17 @@ _0032:
     BufferPlayerName 1
     Message 4
     CloseMessage
-    WaitTime 30, 0x800C
-    CallIfLt 0x409E, 1, _019E
-    CallIfGe 0x409E, 1, _01A3
+    WaitTime 30, VAR_RESULT
+    CallIfLt VAR_UNK_0x409E, 1, _019E
+    CallIfGe VAR_UNK_0x409E, 1, _01A3
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 23, _0240
-    CallIfEq 0x8004, 24, _0254
-    CallIfEq 0x8004, 25, _0268
-    CallIfEq 0x8004, 26, _027C
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 23, _0240
+    CallIfEq VAR_0x8004, 24, _0254
+    CallIfEq VAR_0x8004, 25, _0268
+    CallIfEq VAR_0x8004, 26, _027C
     RemoveObject 12
-    SetVar 0x410E, 1
+    SetVar VAR_UNK_0x410E, 1
     ReleaseAll
     End
 

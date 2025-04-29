@@ -26,8 +26,8 @@ u32 sub_0206156C(PlayerAvatar *playerAvatar, int param1);
 void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, int direction, int *x, int *z);
 void PlayerAvatar_GetFacingTileCoords(PlayerAvatar *playerAvatar, int *x, int *z);
 void sub_02061674(PlayerAvatar *playerAvatar, int param1, int *param2, int *param3, int *param4);
-u32 sub_020616F0(PlayerAvatar *playerAvatar, int param1);
-u32 sub_02061760(PlayerAvatar *playerAvatar);
+u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int param1);
+u32 PlayerAvatar_GetDistortionCurrTileBehaviour(PlayerAvatar *playerAvatar);
 void sub_020617BC(PlayerAvatar *const playerAvatar, int *param1, int *param2, int *param3);
 
 #endif // POKEPLATINUM_UNK_0205F180_H

@@ -69,7 +69,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
 
     {
         NNSG2dPaletteData *v0;
-        void *v1 = sub_020394A8(106);
+        void *v1 = sub_020394A8(HEAP_ID_106);
 
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
         PaletteData_LoadBuffer(param0->unk_48.unk_14, v0->pRawData, 2, 14 * 16, 32);

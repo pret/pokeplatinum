@@ -18,7 +18,7 @@ _0022:
     End
 
 _0026:
-    GoToIfEq 0x4055, 7, _0080
+    GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, 7, _0080
     GoToIfSet FLAG_DISTORTION_WORLD_PUZZLE_FINISHED, _0051
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
@@ -40,7 +40,7 @@ _0051:
     WaitMovement
     ApplyMovement 134, _011C
     WaitMovement
-    SetVar 0x4055, 7
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 7
     ReleaseAll
     End
 
@@ -59,7 +59,7 @@ _0093:
     PlayCry SPECIES_MESPRIT
     Message 0
     CloseMessage
-    ScrCmd_04D
+    WaitCry
     ApplyMovement 131, _0130
     WaitMovement
     ScrCmd_312 131
@@ -71,7 +71,7 @@ _00B4:
     PlayCry SPECIES_UXIE
     Message 1
     CloseMessage
-    ScrCmd_04D
+    WaitCry
     ApplyMovement 132, _0130
     WaitMovement
     ScrCmd_312 132
@@ -83,7 +83,7 @@ _00D5:
     PlayCry SPECIES_AZELF
     Message 2
     CloseMessage
-    ScrCmd_04D
+    WaitCry
     ApplyMovement 133, _0130
     WaitMovement
     ScrCmd_312 133

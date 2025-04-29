@@ -132,21 +132,21 @@ _0103:
 _0105:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    SetVar 0x8005, 2
+    SetVar VAR_0x8005, 2
     GoTo _0119
     End
 
 _0119:
     Message 11
-    InitLocalTextMenu 31, 11, 0, 0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 13, 0
     AddMenuEntryImm 14, 1
     AddMenuEntryImm 15, 2
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0163
-    GoToIfEq 0x8008, 1, _0184
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _0163
+    GoToIfEq VAR_0x8008, 1, _0184
     GoTo _015D
     End
 
@@ -157,8 +157,8 @@ _015D:
 
 _0163:
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
-    GoToIfEq 0x800C, 0, _015D
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_RESULT, 0, _015D
     CloseMessage
     CallCommonScript 0x802
     ReleaseAll

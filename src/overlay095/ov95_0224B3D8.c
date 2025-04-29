@@ -406,7 +406,7 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 
             Window_DrawMessageBox(&(param0->unk_5C), 109, 2);
             Window_CopyToVRAM(&(param0->unk_5C));
-            Sound_PlayFanfare(1156);
+            Sound_PlayFanfare(SEQ_FANFA5);
 
             param0->unk_08 = 0;
             param0->unk_0C = 1;

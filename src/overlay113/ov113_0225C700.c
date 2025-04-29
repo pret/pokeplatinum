@@ -1119,13 +1119,13 @@ static BOOL ov113_0225D938(int param0, int param1, ManagedSprite *param2, NARC *
     }
 
     if (PokemonHasOverworldFootprint(param0, param1, param6) == 1) {
-        v2 = LoadMemberFromOpenNARC(param4, 3 + param0, 1, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param4, 3 + param0, 1, HEAP_ID_118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
         DC_FlushRange(v3->pRawData, 0x20 * 8);
         v4 = &((u8 *)v3->pRawData)[0x20 * 4];
         v5 = v3->pRawData;
     } else {
-        v2 = LoadMemberFromOpenNARC(param3, 16, 0, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param3, 16, 0, HEAP_ID_118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
         DC_FlushRange(v3->pRawData, 0x20 * 4);
         v4 = v3->pRawData;
@@ -1188,7 +1188,7 @@ static void ov113_0225DAA8(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
         v0 = 27;
     }
 
-    Easy3DModel_LoadFrom(&param0->unk_D8.unk_00, param1, v0, 118);
+    Easy3DModel_LoadFrom(&param0->unk_D8.unk_00, param1, v0, HEAP_ID_118);
     Easy3DObject_Init(&param0->unk_D8.unk_10, &param0->unk_D8.unk_00);
     Easy3DObject_SetPosition(&param0->unk_D8.unk_10, (FX32_CONST(0)), (FX32_CONST(0)), (FX32_CONST(0)));
     Easy3DObject_SetScale(&param0->unk_D8.unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
@@ -1509,7 +1509,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     Window_AddToTopLeftCorner(v5, &v1, v8, 16 / 8, 0, 0);
     Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
 
-    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 118);
+    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_118);
     CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
     if (param9 == 1) {
@@ -1529,7 +1529,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     v0.unk_20 = 0;
     v0.unk_24 = 51;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_2C = 118;
+    v0.heapID = HEAP_ID_118;
 
     v4 = sub_020127E8(&v0);
 

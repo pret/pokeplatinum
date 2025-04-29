@@ -30,12 +30,10 @@ typedef struct PokemonCryDurationParam {
 static void Sound_Impl_HandleBGMChange(u16 param0, enum SoundHandleType param1);
 static BOOL Sound_Impl_PlayBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
 static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType);
-BOOL sub_02005588(u8 param0, u16 param1);
 static void Sound_Impl_ResetBGM(void);
 void Sound_StopAll(void);
 static void Sound_Impl_SetPokemonCryVolume(u16 param0, enum SoundHandleType param1, int param2);
 void Sound_StopPokemonCries(int param0);
-BOOL Sound_IsPokemonCryPlaying(void);
 void Sound_SetPokemonCryDuration(int param0, int heapID);
 static void Sound_Impl_CryDurationTask(SysTask *param0, void *param1);
 void Sound_Impl_DestroyCryDurationTask(void);
@@ -43,7 +41,6 @@ static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form);
 void Sound_ClearPokemonCryParams(void);
 static BOOL Sound_Impl_PlayPokemonCryEcho(u16 species, s8 pitch, u8 form);
 static BOOL Sound_PlayPokemonCryReversedEcho(u16 param0, s8 param1, int param2, int param3, int heapID);
-BOOL Sound_PlayFanfare(u16 param0);
 BOOL Sound_UpdateFanfareDelay(void);
 static void Sound_Impl_StopFanfare(int param0);
 BOOL Sound_IsBGMPausedByFanfare(void);
@@ -152,8 +149,8 @@ void Sound_StopBGM(u16 bgmID, int fadeOutFrames)
 
 static void Sound_Impl_ResetBGM(void)
 {
-    Sound_SetCurrentBGM(0);
-    Sound_SetNextBGM(0);
+    Sound_SetCurrentBGM(SEQ_NONE);
+    Sound_SetNextBGM(SEQ_NONE);
     SoundSystem_SetState(SOUND_SYSTEM_STATE_IDLE);
 }
 

@@ -85,7 +85,7 @@ void ov21_021D1FA4(PokedexGraphicData *param0, int heapID)
     v1.unk_00 = param0->spriteList;
     v1.unk_04 = param0->bgConfig;
     v1.unk_08 = 16;
-    v1.heapId = heapID;
+    v1.heapID = heapID;
 
     param0->unk_14C = ov21_021D4C0C(&v1);
 

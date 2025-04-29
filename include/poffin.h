@@ -26,7 +26,7 @@ typedef struct PoffinCase {
     Poffin slot[MAX_POFFINS];
 } PoffinCase;
 
-typedef enum {
+enum PoffinAttributeID {
     POFFIN_ATTRIBUTEID_FLAVOR,
     POFFIN_ATTRIBUTEID_SPICINESS,
     POFFIN_ATTRIBUTEID_DRYNESS,
@@ -35,14 +35,14 @@ typedef enum {
     POFFIN_ATTRIBUTEID_SOURNESS,
     POFFIN_ATTRIBUTEID_06,
     POFFIN_ATTRIBUTEID_NUM
-} PoffinAttributeID;
+};
 
 int Poffin_SizeOf(void);
 BOOL Poffin_HasValidFlavor(Poffin *poffin);
 void Poffin_Clear(Poffin *poffin);
 Poffin *Poffin_New(int heapID);
 void Poffin_Copy(Poffin *src, Poffin *dest);
-u8 Poffin_GetAttribute(Poffin *poffin, PoffinAttributeID attributeID);
+u8 Poffin_GetAttribute(Poffin *poffin, enum PoffinAttributeID attributeID);
 int sub_0202A9E4(Poffin *poffin, u8 *param1, u8 param2, BOOL isFoul);
 void Poffin_StoreAttributesToArray(Poffin *poffin, u8 *dest);
 u8 Poffin_CalcLevel(Poffin *poffin);

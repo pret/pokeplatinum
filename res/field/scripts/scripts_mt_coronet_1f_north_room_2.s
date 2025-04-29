@@ -8,20 +8,20 @@
     ScriptEntryEnd
 
 _000E:
-    CallIfNe 0x406A, 0x122, _003B
-    ScrCmd_32B 0x4001
-    GoToIfEq 0x4001, 0, _0063
-    GoToIfEq 0x4001, 1, _006D
+    CallIfNe VAR_UNK_0x406A, 0x122, _003B
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_1
+    GoToIfEq VAR_MAP_LOCAL_1, 0, _0063
+    GoToIfEq VAR_MAP_LOCAL_1, 1, _006D
     End
 
 _003B:
-    SetVar 0x406A, 0
+    SetVar VAR_UNK_0x406A, 0
     Return
 
 _0043:
-    ScrCmd_32B 0x4001
-    GoToIfEq 0x4001, 0, _0063
-    GoToIfEq 0x4001, 1, _006D
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_1
+    GoToIfEq VAR_MAP_LOCAL_1, 0, _0063
+    GoToIfEq VAR_MAP_LOCAL_1, 1, _006D
     End
 
 _0063:

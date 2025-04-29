@@ -10,11 +10,11 @@
 #include "struct_defs/struct_02083D1C.h"
 
 #include "field/field_system.h"
-#include "functypes/funcptr_02084808.h"
 #include "overlay118/ov118_021D0D80.h"
 
 #include "bag.h"
 #include "bg_window.h"
+#include "field_move_tasks.h"
 #include "font.h"
 #include "heap.h"
 #include "menu.h"
@@ -29,7 +29,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0207070C.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
@@ -310,7 +309,7 @@ static int sub_0208384C(void *param0)
     v0 = param0;
     v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
 
-    if (sub_02097788(v0->unk_5A4->unk_08, v1, 12) != 0xFFFFFFFF) {
+    if (sub_02097788(v0->unk_5A4->unk_08, v1, HEAP_ID_12) != 0xFFFFFFFF) {
         v0->unk_704[v0->unk_B11].unk_0C = 0;
         sub_02083040(v0, v0->unk_B11, v0->unk_704[v0->unk_B11].unk_0C);
         sub_02082708(v0, 46, 0);
@@ -863,12 +862,11 @@ int sub_02084780(GameWindowLayout *param0)
 
 static void sub_02084808(GameWindowLayout *param0, int *param1)
 {
-    UnkFuncPtr_02084808 v0;
+    FieldMoveErrContext v0;
     u32 v1;
     u32 v2;
 
-    v0 = (UnkFuncPtr_02084808)sub_0207070C(
-        1, param0->unk_5A4->unk_23 - 11);
+    v0 = (FieldMoveErrContext)FieldMove_GetTaskOrError(FIELD_MOVE_ERROR, param0->unk_5A4->unk_23 - 11);
 
     if (v0 != NULL) {
         v1 = v0(param0->unk_5A4->unk_18);

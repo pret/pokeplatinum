@@ -55,7 +55,7 @@ void Poffin_Copy(Poffin *src, Poffin *dest)
     dest->dummy = src->dummy;
 }
 
-u8 Poffin_GetAttribute(Poffin *poffin, PoffinAttributeID attributeID)
+u8 Poffin_GetAttribute(Poffin *poffin, enum PoffinAttributeID attributeID)
 {
     switch (attributeID) {
     case POFFIN_ATTRIBUTEID_FLAVOR:

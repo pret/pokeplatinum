@@ -28,9 +28,9 @@
     ScriptEntryEnd
 
 _005A:
-    ScrCmd_325 0x4000
-    CallIfGe 0x4000, 11, _0090
-    CallIfGe 0x4000, 101, _007A
+    ScrCmd_325 VAR_MAP_LOCAL_0
+    CallIfGe VAR_MAP_LOCAL_0, 11, _0090
+    CallIfGe VAR_MAP_LOCAL_0, 101, _007A
     End
 
 _007A:
@@ -44,14 +44,14 @@ _0090:
     Return
 
 _00A6:
-    GoToIfEq 0x40BA, 1, _00B5
+    GoToIfEq VAR_UNK_0x40BA, 1, _00B5
     End
 
 _00B5:
     Call _015D
-    GetRandom 0x4007, 100
+    GetRandom VAR_MAP_LOCAL_7, 100
     CallIfUnset FLAG_UNK_0x02CB, _00DB
-    GoToIfLt 0x4007, 30, _00E5
+    GoToIfLt VAR_MAP_LOCAL_7, 30, _00E5
     End
 
 _00DB:
@@ -65,24 +65,24 @@ _00E5:
 
 _00F2:
     SetFlag FLAG_UNK_0x0AC4
-    ScrCmd_326 0x4008
-    GoToIfGe 0x4008, 0x2710, _0123
-    GoToIfGe 0x4008, 0x3E8, _0131
-    GoToIfGe 0x4008, 0x1F4, _013F
+    ScrCmd_326 VAR_MAP_LOCAL_8
+    GoToIfGe VAR_MAP_LOCAL_8, 0x2710, _0123
+    GoToIfGe VAR_MAP_LOCAL_8, 0x3E8, _0131
+    GoToIfGe VAR_MAP_LOCAL_8, 0x1F4, _013F
     End
 
 _0123:
-    GetRandom 0x4063, 4
+    GetRandom VAR_UNK_0x4063, 4
     GoTo _014D
     End
 
 _0131:
-    GetRandom 0x4063, 2
+    GetRandom VAR_UNK_0x4063, 2
     GoTo _014D
     End
 
 _013F:
-    SetVar 0x4063, 0
+    SetVar VAR_UNK_0x4063, 0
     GoTo _014D
     End
 
@@ -94,10 +94,10 @@ _014D:
 
 _015D:
     CallIfUnset FLAG_UNK_0x02C1, _019C
-    ScrCmd_238 14, 0x4000
-    GoToIfEq 0x4000, 0, _0196
-    ScrCmd_32A 0x4000
-    GoToIfEq 0x4000, 0, _0196
+    ScrCmd_238 14, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0196
+    ScrCmd_32A VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0196
     ClearFlag FLAG_UNK_0x02C1
     AddObject 10
     Return
@@ -112,61 +112,61 @@ _019C:
     Return
 
 _01A6:
-    GetPlayerGender 0x4000
-    CallIfEq 0x4000, GENDER_MALE, _025D
-    CallIfEq 0x4000, GENDER_FEMALE, _0265
+    GetPlayerGender VAR_MAP_LOCAL_0
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _025D
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0265
     Call _01DF
-    ScrCmd_238 14, 0x4000
-    CallIfEq 0x4000, 0, _0196
+    ScrCmd_238 14, VAR_MAP_LOCAL_0
+    CallIfEq VAR_MAP_LOCAL_0, 0, _0196
     End
 
 _01DF:
-    CallIfEq 0x4063, 0, _0215
-    CallIfEq 0x4063, 1, _0245
-    CallIfEq 0x4063, 2, _024D
-    CallIfEq 0x4063, 3, _0255
+    CallIfEq VAR_UNK_0x4063, 0, _0215
+    CallIfEq VAR_UNK_0x4063, 1, _0245
+    CallIfEq VAR_UNK_0x4063, 2, _024D
+    CallIfEq VAR_UNK_0x4063, 3, _0255
     Return
 
 _0215:
-    GetPlayerGender 0x4009
-    GoToIfEq 0x4009, GENDER_MALE, _0235
-    GoToIfEq 0x4009, GENDER_FEMALE, _023D
+    GetPlayerGender VAR_MAP_LOCAL_9
+    GoToIfEq VAR_MAP_LOCAL_9, GENDER_MALE, _0235
+    GoToIfEq VAR_MAP_LOCAL_9, GENDER_FEMALE, _023D
     Return
 
 _0235:
-    SetVar 0x4021, 97
+    SetVar VAR_OBJ_GFX_ID_1, 97
     Return
 
 _023D:
-    SetVar 0x4021, 0
+    SetVar VAR_OBJ_GFX_ID_1, 0
     Return
 
 _0245:
-    SetVar 0x4021, 140
+    SetVar VAR_OBJ_GFX_ID_1, 140
     Return
 
 _024D:
-    SetVar 0x4021, 166
+    SetVar VAR_OBJ_GFX_ID_1, 166
     Return
 
 _0255:
-    SetVar 0x4021, 167
+    SetVar VAR_OBJ_GFX_ID_1, 167
     Return
 
 _025D:
-    SetVar 0x4023, 7
+    SetVar VAR_OBJ_GFX_ID_3, 7
     Return
 
 _0265:
-    SetVar 0x4023, 4
+    SetVar VAR_OBJ_GFX_ID_3, 4
     Return
 
 _026D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x4003, 0
-    SetVar 0x4004, 0
+    SetVar VAR_MAP_LOCAL_3, 0
+    SetVar VAR_MAP_LOCAL_4, 0
     GoTo _02A5
     End
 
@@ -174,34 +174,34 @@ _0289:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x4003, 0
-    SetVar 0x4004, 1
+    SetVar VAR_MAP_LOCAL_3, 0
+    SetVar VAR_MAP_LOCAL_4, 1
     GoTo _02A5
     End
 
 _02A5:
     ScrCmd_313 0
-    CallIfEq 0x4004, 0, _0874
-    CallIfEq 0x4004, 1, _0879
+    CallIfEq VAR_MAP_LOCAL_4, 0, _0874
+    CallIfEq VAR_MAP_LOCAL_4, 1, _0879
     GoTo _02CB
     End
 
 _02CB:
-    CallIfEq 0x4004, 0, _087E
-    CallIfEq 0x4004, 1, _0896
+    CallIfEq VAR_MAP_LOCAL_4, 0, _087E
+    CallIfEq VAR_MAP_LOCAL_4, 1, _0896
     AddMenuEntryImm 19, 2
     AddMenuEntryImm 20, 3
     ShowMenu
-    GoToIfEq 0x800C, 0, _0366
-    GoToIfEq 0x800C, 1, _0389
-    GoToIfEq 0x800C, 2, _032B
-    GoToIfEq 0x800C, 4, _03AC
+    GoToIfEq VAR_RESULT, 0, _0366
+    GoToIfEq VAR_RESULT, 1, _0389
+    GoToIfEq VAR_RESULT, 2, _032B
+    GoToIfEq VAR_RESULT, 4, _03AC
     GoTo _034D
     End
 
 _032B:
-    CallIfEq 0x4004, 0, _08AA
-    CallIfEq 0x4004, 1, _08AF
+    CallIfEq VAR_MAP_LOCAL_4, 0, _08AA
+    CallIfEq VAR_MAP_LOCAL_4, 1, _08AF
     GoTo _02CB
     End
 
@@ -210,7 +210,7 @@ _034D:
     End
 
 _0355:
-    SetVar 0x40BA, 0
+    SetVar VAR_UNK_0x40BA, 0
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -218,23 +218,23 @@ _0355:
     End
 
 _0366:
-    SetVar 0x40BB, 0
-    ScrCmd_2CC 0, 1, 0x800C
-    GoToIfEq 0x800C, 0, _03CF
+    SetVar VAR_UNK_0x40BB, 0
+    ScrCmd_2CC 0, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _03CF
     GoTo _03F5
     End
 
 _0389:
-    SetVar 0x40BB, 1
-    ScrCmd_2CC 0, 2, 0x800C
-    GoToIfEq 0x800C, 0, _03E2
+    SetVar VAR_UNK_0x40BB, 1
+    ScrCmd_2CC 0, 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _03E2
     GoTo _03F5
     End
 
 _03AC:
-    SetVar 0x40BB, 2
-    ScrCmd_2CC 0, 1, 0x800C
-    GoToIfEq 0x800C, 0, _03CF
+    SetVar VAR_UNK_0x40BB, 2
+    ScrCmd_2CC 0, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _03CF
     GoTo _03F5
     End
 
@@ -255,40 +255,40 @@ _03F5:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_2CC 4, 0x40BB, 0x800C
-    ScrCmd_2D0 0x4002, 0x4005
+    ScrCmd_2CC 4, VAR_UNK_0x40BB, VAR_RESULT
+    ScrCmd_2D0 VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_5
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x4002, 0xFF, _034D
-    ScrCmd_31E 0x4002, 0x800C
-    GoToIfEq 0x800C, 0xFF, _07C8
-    ScrCmd_31E 0x4005, 0x800C
-    GoToIfEq 0x800C, 0xFF, _07C8
-    GetPartyMonSpecies 0x4002, 0x4001
-    GoToIfEq 0x4001, 0, _034D
-    ScrCmd_2CC 1, 0x40BB, 0x800C
-    GoToIfEq 0x800C, 0, _04F4
-    ScrCmd_2CC 2, 0x40BB, 0x800C
-    BufferSpeciesNameFromVar 0, 0x800C, 0, 0
-    GoToIfEq 0x800C, 0x4001, _04F4
+    GoToIfEq VAR_MAP_LOCAL_2, 0xFF, _034D
+    ScrCmd_31E VAR_MAP_LOCAL_2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0xFF, _07C8
+    ScrCmd_31E VAR_MAP_LOCAL_5, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0xFF, _07C8
+    GetPartyMonSpecies VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_1
+    GoToIfEq VAR_MAP_LOCAL_1, 0, _034D
+    ScrCmd_2CC 1, VAR_UNK_0x40BB, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _04F4
+    ScrCmd_2CC 2, VAR_UNK_0x40BB, VAR_RESULT
+    BufferSpeciesNameFromVar 0, VAR_RESULT, 0, 0
+    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_1, _04F4
     GoTo _04A2
     End
 
 _04A2:
-    BufferSpeciesNameFromVar 1, 0x4001, 0, 0
+    BufferSpeciesNameFromVar 1, VAR_MAP_LOCAL_1, 0, 0
     Message 34
-    InitGlobalTextListMenu 25, 13, 1, 0x800C
+    InitGlobalTextListMenu 25, 13, 1, VAR_RESULT
     AddListMenuEntry 41, 0
     AddListMenuEntry 42, 1
     ShowListMenuSetWidth 6
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _04E4
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _04E4
     GoTo _034D
     End
 
 _04E4:
-    ScrCmd_2CC 3, 0x40BB, 0x800C
+    ScrCmd_2CC 3, VAR_UNK_0x40BB, VAR_RESULT
     GoTo _04F4
     End
 
@@ -297,39 +297,39 @@ _04F4:
     End
 
 _04FC:
-    CallIfEq 0x40BB, 0, _0673
-    CallIfEq 0x40BB, 1, _0673
-    SetVar 0x4000, 0
+    CallIfEq VAR_UNK_0x40BB, 0, _0673
+    CallIfEq VAR_UNK_0x40BB, 1, _0673
+    SetVar VAR_MAP_LOCAL_0, 0
     HealParty
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
-    GoToIfEq 0x800C, 0, _034D
-    GoToIfEq 0x40BB, 2, _054A
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_RESULT, 0, _034D
+    GoToIfEq VAR_UNK_0x40BB, 2, _054A
     GoTo _0690
     End
 
 _054A:
     Message 30
-    InitGlobalTextMenu 30, 1, 0, 0x800C
+    InitGlobalTextMenu 30, 1, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 13, 0
     AddMenuEntryImm 14, 1
     AddMenuEntryImm 5, 2
     ShowMenu
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _058E
-    GoToIfEq 0x8008, 1, _05E2
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _058E
+    GoToIfEq VAR_0x8008, 1, _05E2
     GoTo _034D
     End
 
 _058E:
     Message 31
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _054A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _054A
     CloseMessage
-    ScrCmd_0F2 30, 0, 0, 0x800C
-    GoToIfEq 0x800C, 1, _05D0
-    GoToIfEq 0x800C, 3, _05D8
+    ScrCmd_0F2 30, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _05D0
+    GoToIfEq VAR_RESULT, 3, _05D8
     GoTo _0636
     End
 
@@ -344,12 +344,12 @@ _05D8:
 
 _05E2:
     Message 31
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _054A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _054A
     CloseMessage
-    ScrCmd_0F3 30, 0, 0, 0x800C
-    GoToIfEq 0x800C, 1, _0624
-    GoToIfEq 0x800C, 3, _062C
+    ScrCmd_0F3 30, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0624
+    GoToIfEq VAR_RESULT, 3, _062C
     GoTo _0636
     End
 
@@ -365,18 +365,18 @@ _062C:
 _0636:
     ScrCmd_136
     ScrCmd_135 108
-    ScrCmd_2CF 0x4001, 0x800C
-    GoToIfEq 0x800C, 1, _067B
+    ScrCmd_2CF VAR_MAP_LOCAL_1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _067B
     ScrCmd_136
     ScrCmd_135 110
     Message 32
-    CallIfEq 0x40BB, 2, _0673
+    CallIfEq VAR_UNK_0x40BB, 2, _0673
     Call _08DB
     GoTo _0690
     End
 
 _0673:
-    SetVar 0x40BA, 0xFF
+    SetVar VAR_UNK_0x40BA, 0xFF
     Return
 
 _067B:
@@ -390,9 +390,9 @@ _068C:
     Return
 
 _0690:
-    CallIfEq 0x40BB, 0, _0730
-    CallIfEq 0x40BB, 1, _074B
-    CallIfEq 0x40BB, 2, _0766
+    CallIfEq VAR_UNK_0x40BB, 0, _0730
+    CallIfEq VAR_UNK_0x40BB, 1, _074B
+    CallIfEq VAR_UNK_0x40BB, 2, _0766
     PlayFanfare SEQ_SE_DP_KAIDAN2
     GoTo _06C3
     End
@@ -400,14 +400,14 @@ _0690:
 _06C3:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    CallIfEq 0x40BB, 0, _078C
-    CallIfEq 0x40BB, 1, _07A0
-    CallIfEq 0x40BB, 2, _07B4
+    CallIfEq VAR_UNK_0x40BB, 0, _078C
+    CallIfEq VAR_UNK_0x40BB, 1, _07A0
+    CallIfEq VAR_UNK_0x40BB, 2, _07B4
     IncrementGameRecord RECORD_UNK_058
     CreateJournalEvent LOCATION_EVENT_BATTLE_HALL, 0, 0, 0, 0
     ScrCmd_1F8
     ScrCmd_2C4 9
-    CallIfEq 0x40BB, 2, _072C
+    CallIfEq VAR_UNK_0x40BB, 2, _072C
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -423,7 +423,7 @@ _0730:
     WaitABPress
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _07D4
-    ApplyMovement 0x800D, _07FC
+    ApplyMovement VAR_LAST_TALKED, _07FC
     WaitMovement
     Return
 
@@ -432,41 +432,41 @@ _074B:
     WaitABPress
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _07D4
-    ApplyMovement 0x800D, _07FC
+    ApplyMovement VAR_LAST_TALKED, _07FC
     WaitMovement
     Return
 
 _0766:
     ScrCmd_02E 9
-    WaitTime 10, 0x800C
+    WaitTime 10, VAR_RESULT
     ScrCmd_136
     ScrCmd_135 109
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _07E4
-    ApplyMovement 0x800D, _080C
+    ApplyMovement VAR_LAST_TALKED, _080C
     WaitMovement
     Return
 
 _078C:
     ApplyMovement LOCALID_PLAYER, _0824
-    ApplyMovement 0x800D, _0854
+    ApplyMovement VAR_LAST_TALKED, _0854
     WaitMovement
     Return
 
 _07A0:
     ApplyMovement LOCALID_PLAYER, _0824
-    ApplyMovement 0x800D, _0854
+    ApplyMovement VAR_LAST_TALKED, _0854
     WaitMovement
     Return
 
 _07B4:
     ApplyMovement LOCALID_PLAYER, _0838
-    ApplyMovement 0x800D, _0864
+    ApplyMovement VAR_LAST_TALKED, _0864
     WaitMovement
     Return
 
 _07C8:
-    SetVar 0x40BA, 0
+    SetVar VAR_UNK_0x40BA, 0
     CallCommonScript 0x809
     End
 
@@ -543,7 +543,7 @@ _0879:
     Return
 
 _087E:
-    InitLocalTextMenu 31, 9, 0, 0x800C
+    InitLocalTextMenu 31, 9, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 16, 0
     AddMenuEntryImm 17, 1
@@ -551,7 +551,7 @@ _087E:
     Return
 
 _0896:
-    InitLocalTextMenu 31, 11, 0, 0x800C
+    InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm 18, 4
     Message 4
@@ -567,8 +567,8 @@ _08AF:
 
 _08B4:
     ScrCmd_313 0
-    SetVar 0x4003, 1
-    SetVar 0x40BA, 0
+    SetVar VAR_MAP_LOCAL_3, 1
+    SetVar VAR_UNK_0x40BA, 0
     Message 11
     Call _0673
     Call _08DB
@@ -577,7 +577,7 @@ _08B4:
 
 _08DB:
     ScrCmd_18D
-    ScrCmd_12D 0x800C
+    ScrCmd_12D VAR_RESULT
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
@@ -585,20 +585,20 @@ _08DB:
 
 _08ED:
     Message 12
-    ScrCmd_2D1 0x40BB
+    ScrCmd_2D1 VAR_UNK_0x40BB
     GoTo _034D
     End
 
 _08FC:
-    CallIfEq 0x40BB, 0, _0938
-    CallIfEq 0x40BB, 1, _0938
-    CallIfEq 0x4051, 1, _093E
-    CallIfEq 0x4051, 3, _0955
+    CallIfEq VAR_UNK_0x40BB, 0, _0938
+    CallIfEq VAR_UNK_0x40BB, 1, _0938
+    CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 1, _093E
+    CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 3, _0955
     GoTo _034D
     End
 
 _0938:
-    ScrCmd_30A 40
+    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_40
     Return
 
 _093E:
@@ -607,7 +607,7 @@ _093E:
     Message 15
     PlaySound SEQ_FANFA4
     WaitSound
-    SetVar 0x4051, 2
+    SetVar VAR_BATTLE_HALL_PRINT_STATE, 2
     Return
 
 _0955:
@@ -616,7 +616,7 @@ _0955:
     Message 14
     PlaySound SEQ_FANFA4
     WaitSound
-    SetVar 0x4051, 4
+    SetVar VAR_BATTLE_HALL_PRINT_STATE, 4
     CallCommonScript 0x806
     Return
 
@@ -695,7 +695,7 @@ _09D1:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PACHIRISU
     Message 62
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -756,10 +756,10 @@ _0A4F:
     LockAll
     FacePlayer
     GoToIfUnset FLAG_UNK_0x00BE, _0AD7
-    ScrCmd_324 1, 2, 3, 4, 0x4062, 0x800C
-    GoToIfEq 0x800C, 0, _0AAD
-    GoToIfEq 0x800C, 2, _0AB8
-    GoToIfEq 0x800C, 3, _0AC9
+    ScrCmd_324 1, 2, 3, 4, VAR_UNK_0x4062, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0AAD
+    GoToIfEq VAR_RESULT, 2, _0AB8
+    GoToIfEq VAR_RESULT, 3, _0AC9
     BufferPlayerName 0
     Message 69
     Message 70
@@ -803,23 +803,23 @@ _0AEE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0C22
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _0C22
     GoTo _0B0F
     End
 
 _0B0F:
     BufferPlayerName 0
-    ScrCmd_325 0x8005
-    GoToIfGe 0x8005, 0x1DB, _0B96
-    GoToIfGe 0x8005, 0x15F, _0BA1
-    GoToIfGe 0x8005, 251, _0BAC
-    GoToIfGe 0x8005, 151, _0BB7
-    GoToIfGe 0x8005, 101, _0BC2
-    GoToIfGe 0x8005, 51, _0BCD
-    GoToIfGe 0x8005, 31, _0BD8
-    GoToIfGe 0x8005, 11, _0BE3
-    GoToIfGe 0x8005, 1, _0BEE
+    ScrCmd_325 VAR_0x8005
+    GoToIfGe VAR_0x8005, 0x1DB, _0B96
+    GoToIfGe VAR_0x8005, 0x15F, _0BA1
+    GoToIfGe VAR_0x8005, 251, _0BAC
+    GoToIfGe VAR_0x8005, 151, _0BB7
+    GoToIfGe VAR_0x8005, 101, _0BC2
+    GoToIfGe VAR_0x8005, 51, _0BCD
+    GoToIfGe VAR_0x8005, 31, _0BD8
+    GoToIfGe VAR_0x8005, 11, _0BE3
+    GoToIfGe VAR_0x8005, 1, _0BEE
     Message 75
     GoTo _0BF9
     End
@@ -879,23 +879,23 @@ _0C01:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_FEMALE, _0B0F
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0B0F
     GoTo _0C22
     End
 
 _0C22:
     BufferPlayerName 0
-    ScrCmd_325 0x8005
-    GoToIfGe 0x8005, 0x1DB, _0CA9
-    GoToIfGe 0x8005, 0x15F, _0CB4
-    GoToIfGe 0x8005, 251, _0CBF
-    GoToIfGe 0x8005, 151, _0CCA
-    GoToIfGe 0x8005, 101, _0CD5
-    GoToIfGe 0x8005, 51, _0CE0
-    GoToIfGe 0x8005, 31, _0CEB
-    GoToIfGe 0x8005, 11, _0CF6
-    GoToIfGe 0x8005, 1, _0D01
+    ScrCmd_325 VAR_0x8005
+    GoToIfGe VAR_0x8005, 0x1DB, _0CA9
+    GoToIfGe VAR_0x8005, 0x15F, _0CB4
+    GoToIfGe VAR_0x8005, 251, _0CBF
+    GoToIfGe VAR_0x8005, 151, _0CCA
+    GoToIfGe VAR_0x8005, 101, _0CD5
+    GoToIfGe VAR_0x8005, 51, _0CE0
+    GoToIfGe VAR_0x8005, 31, _0CEB
+    GoToIfGe VAR_0x8005, 11, _0CF6
+    GoToIfGe VAR_0x8005, 1, _0D01
     Message 85
     GoTo _0D0C
     End
@@ -956,12 +956,12 @@ _0D14:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar 0x4001, 0x4021
-    GoToIfEq 0x4001, 0, _0D68
-    GoToIfEq 0x4001, 97, _0D73
-    GoToIfEq 0x4001, 140, _0D7E
-    GoToIfEq 0x4001, 166, _0D89
-    GoToIfEq 0x4001, 167, _0D94
+    SetVar VAR_MAP_LOCAL_1, VAR_OBJ_GFX_ID_1
+    GoToIfEq VAR_MAP_LOCAL_1, 0, _0D68
+    GoToIfEq VAR_MAP_LOCAL_1, 97, _0D73
+    GoToIfEq VAR_MAP_LOCAL_1, 140, _0D7E
+    GoToIfEq VAR_MAP_LOCAL_1, 166, _0D89
+    GoToIfEq VAR_MAP_LOCAL_1, 167, _0D94
     End
 
 _0D68:

@@ -18,8 +18,8 @@ _001A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 7
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _003A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _003A
     CloseMessage
     ReleaseAll
     End
@@ -29,7 +29,7 @@ _003A:
     Message 8
     CloseMessage
     PlayFanfare SEQ_SE_PL_SYUWA
-    ScrCmd_328 0
+    SetPartyGiratinaForm GIRATINA_FORM_ALTERED
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 31, 33, 1
@@ -63,7 +63,7 @@ _0070:
     ApplyMovement LOCALID_PLAYER, _0160
     ApplyMovement 128, _01B4
     WaitMovement
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     ScrCmd_322
     Message 3
     WaitABXPadPress
@@ -76,7 +76,7 @@ _0070:
     ApplyMovement 128, _01CC
     WaitMovement
     ScrCmd_312 128
-    SetVar 0x4055, 1
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 1
     ReleaseAll
     End
 
