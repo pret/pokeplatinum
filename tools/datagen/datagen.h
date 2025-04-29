@@ -159,9 +159,15 @@ static inline std::string ReadWholeFile(std::ifstream &ifs)
 }
 
 // Read a whole file into a C++-string.
+// This routine is a potential exit-point if the file cannot be loaded for reading.
 static inline std::string ReadWholeFile(fs::path &fname)
 {
-    std::ifstream ifs(fname);
+    std::ifstream ifs(fname, std::ios::in);
+    if (ifs.fail()) {
+        std::cerr << "could not open file " << fs::relative(fname).generic_string() << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+
     return ReadWholeFile(ifs);
 }
 

@@ -212,20 +212,19 @@ int main(int argc, char **argv)
 
     rapidjson::Document doc;
     for (auto &trainerStem : trainerRegistry) {
-        try {
-            fs::path trainerDataPath = dataRoot / (trainerStem + ".json");
-            std::string json = ReadWholeFile(trainerDataPath);
-            rapidjson::ParseResult ok = doc.Parse(json.c_str(), json.length());
-            if (!ok) {
-                ReportJsonError(ok, json, trainerDataPath);
-                std::exit(EXIT_FAILURE);
-            }
+        fs::path trainerDataPath = dataRoot / (trainerStem + ".json");
+        std::string json = ReadWholeFile(trainerDataPath);
+        rapidjson::ParseResult ok = doc.Parse(json.c_str(), json.length());
+        if (!ok) {
+            ReportJsonError(ok, json, trainerDataPath);
+            std::exit(EXIT_FAILURE);
+        }
 
+        try {
             TrainerHeader trdata = ParseTrainerData(doc);
             narc_pack_file_copy(trdataVFS, reinterpret_cast<unsigned char *>(&trdata), sizeof(trdata));
             ParseAndPackParty(doc, static_cast<TrainerDataType>(trdata.monDataType), trdata.partySize, trpokeVFS);
-        } catch (std::exception &e) {
-            std::cerr << "exception parsing data file for " + trainerStem << std::endl;
+        } catch (const std::exception &e) {
             std::cerr << e.what() << std::endl;
             std::exit(EXIT_FAILURE);
         }
