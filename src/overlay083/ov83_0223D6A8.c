@@ -43,7 +43,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "int_distance.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "render_window.h"
 #include "sound_playback.h"

@@ -3,6 +3,7 @@ import argparse
 import json
 import pathlib
 import subprocess
+import sys
 
 from generated.species import Species
 
@@ -284,9 +285,22 @@ field_night = [set() for species in range(NUM_POKEMON)]
 field_special = [set() for species in range(NUM_POKEMON)]
 field_special_natdex = [set() for species in range(NUM_POKEMON)]
 
+errors = ""
 for file in args.src_files:
-    with open(file, encoding='utf-8') as encounter_file:
-        enc_data = json.load(encounter_file)
+    try:
+        with open(file, encoding='utf-8') as encounter_file:
+            enc_data = json.load(encounter_file)
+    except json.decoder.JSONDecodeError as e:
+        docLines = e.doc.splitlines()
+        startLine = max(e.lineno-2, 0)
+        endLine = min(e.lineno+1, len(docLines))
+        
+        errorLines = [f"{lineNum:>4} {line}" for lineNum, line in zip(list(range(startLine+1, endLine+1)), docLines[startLine : endLine])][ : endLine - startLine]
+        errorLineIndex = e.lineno - startLine - 1
+        errorLines[errorLineIndex] = errorLines[errorLineIndex][ : 5] + f"\033[31m{errorLines[errorLineIndex][5 : ]}\033[0m"
+
+        errors += f"{file}:{e.lineno}:{e.colno}\033[31m error: \033[0m{e.msg}\n{'\n'.join(errorLines)}\n"
+        continue
 
     if (file == args.honey_file):
         for species in enc_data['common']:
@@ -412,6 +426,9 @@ for file in args.src_files:
             for species in enc_data['radar']:
                 field_special_natdex[Species[species].value].add(map_num)
 
+if errors:
+    print(errors, file=sys.stderr)
+    sys.exit(1)
 
 for species in range(NUM_POKEMON):
     speciesSets = [dungeon_morning[species],

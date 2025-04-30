@@ -10,7 +10,7 @@
 #include "struct_defs/struct_020298B0.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "rtc.h"
 #include "savedata.h"
 #include "system.h"

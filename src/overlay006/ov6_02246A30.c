@@ -10,7 +10,7 @@
 #include "field/field_system.h"
 
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "pokedex.h"
 #include "save_player.h"
 #include "system_flags.h"

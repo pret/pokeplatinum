@@ -25,7 +25,7 @@
 #include "inlines.h"
 #include "journal.h"
 #include "location.h"
-#include "math.h"
+#include "math_util.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"

@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "palette.h"
 #include "sprite_system.h"

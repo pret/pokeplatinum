@@ -35,7 +35,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_object_move.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "pltt_transfer.h"

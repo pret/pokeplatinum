@@ -43,7 +43,7 @@
 #include "map_object.h"
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "persisted_map_features.h"
 #include "player_avatar.h"

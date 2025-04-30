@@ -19,7 +19,7 @@
 #include "berry_data.h"
 #include "heap.h"
 #include "int_distance.h"
-#include "math.h"
+#include "math_util.h"
 #include "poffin.h"
 #include "system.h"
 

@@ -17,7 +17,7 @@
 #include "game_overlay.h"
 #include "game_start.h"
 #include "main.h"
-#include "math.h"
+#include "math_util.h"
 #include "overlay_manager.h"
 #include "rtc.h"
 #include "save_player.h"

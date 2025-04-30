@@ -11,7 +11,7 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
-#include "math.h"
+#include "math_util.h"
 #include "sprite_system.h"
 
 typedef struct {

@@ -15,7 +15,7 @@
 #include "field_message.h"
 #include "graphics.h"
 #include "gx_layers.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "render_window.h"

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_MATH_H
-#define POKEPLATINUM_MATH_H
+#ifndef POKEPLATINUM_MATH_UTIL_H
+#define POKEPLATINUM_MATH_UTIL_H
 
 #include <nitro/fx/fx.h>
 
@@ -41,4 +41,4 @@ void DecodeData(void *data, u32 size, u32 seed);
 u16 CalcCRC16Checksum(const void *data, u32 dataLen);
 void InitCRC16Table(enum HeapId heapID);
 
-#endif // POKEPLATINUM_MATH_H
+#endif // POKEPLATINUM_MATH_UTIL_H

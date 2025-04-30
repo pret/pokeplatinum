@@ -429,8 +429,6 @@ static ArchivedPokeSpriteData ParsePokeSprite(const rapidjson::Document &root)
     const rapidjson::Value &back = root["back"];
     const rapidjson::Value &shadow = root["shadow"];
 
-    std::cout << "here" << std::endl;
-
     data.faces[0] = ParsePokeSpriteFace(front);
     data.faces[1] = ParsePokeSpriteFace(back);
     data.yOffset = front["addl_y_offset"].GetInt();
@@ -499,11 +497,15 @@ int main(int argc, char **argv)
 
     rapidjson::Document doc;
     for (auto &species : speciesRegistry) {
-        try {
-            fs::path speciesDataPath = dataRoot / species / "data.json";
-            std::string json = ReadWholeFile(speciesDataPath);
-            doc.Parse(json.c_str());
+        fs::path speciesDataPath = dataRoot / species / "data.json";
+        std::string json = ReadWholeFile(speciesDataPath);
+        rapidjson::ParseResult ok = doc.Parse(json.c_str(), json.length());
+        if (!ok) {
+            ReportJsonError(ok, json, speciesDataPath);
+            std::exit(EXIT_FAILURE);
+        }
 
+        try {
             SpeciesData data = ParseSpeciesData(doc);
             SpeciesEvolutionList evos = ParseEvolutions(doc);
             SpeciesLearnsetWithSize sizedLearnset = ParseLevelUpLearnset(doc);
@@ -519,11 +521,16 @@ int main(int argc, char **argv)
                 palParkData.emplace_back(palPark.value());
             }
 
+            // Mechanically-distinct forms do not have sprite_data.json files
             fs::path speciesSpriteDataPath = dataRoot / species / "sprite_data.json";
-            std::ifstream spriteDataIFS(speciesSpriteDataPath);
+            std::ifstream spriteDataIFS(speciesSpriteDataPath, std::ios::in);
             if (spriteDataIFS.good()) {
                 std::string spriteData = ReadWholeFile(spriteDataIFS);
-                doc.Parse(spriteData.c_str());
+                ok = doc.Parse(spriteData.c_str());
+                if (!ok) {
+                    ReportJsonError(ok, json, speciesSpriteDataPath);
+                    std::exit(EXIT_FAILURE);
+                }
 
                 u8 genderRatio = species != "none" ? data.genderRatio : GENDER_RATIO_FEMALE_50; // treat SPECIES_NONE as if it has two genders.
                 PackHeights(heightVFS, doc, genderRatio);
@@ -531,8 +538,7 @@ int main(int argc, char **argv)
                 ArchivedPokeSpriteData pokeSprite = ParsePokeSprite(doc);
                 pokeSpriteData.emplace_back(pokeSprite);
             }
-        } catch (std::exception &e) {
-            std::cerr << "exception parsing data file for " + species << std::endl;
+        } catch (const std::exception &e) {
             std::cerr << e.what() << std::endl;
             std::exit(EXIT_FAILURE);
         }

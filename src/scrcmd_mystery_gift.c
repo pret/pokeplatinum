@@ -16,7 +16,7 @@
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "mystery_gift.h"
 #include "party.h"
 #include "pokemon.h"

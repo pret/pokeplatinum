@@ -23,7 +23,7 @@
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "pltt_transfer.h"
 #include "sound.h"

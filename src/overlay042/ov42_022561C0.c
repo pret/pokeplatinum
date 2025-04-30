@@ -9,7 +9,7 @@
 
 #include "bg_window.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "poketch_memory.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"

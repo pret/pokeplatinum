@@ -15,7 +15,7 @@
 #include "heap.h"
 #include "location.h"
 #include "map_header.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "palette.h"
 #include "script_manager.h"

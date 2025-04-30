@@ -21,7 +21,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "main.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"

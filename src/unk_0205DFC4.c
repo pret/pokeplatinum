@@ -13,7 +13,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
-#include "math.h"
+#include "math_util.h"
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
