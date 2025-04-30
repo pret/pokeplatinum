@@ -15,7 +15,6 @@
 #include "overlay072/struct_ov72_0223E7D8.h"
 #include "overlay072/struct_ov72_0223E80C.h"
 #include "overlay072/struct_ov72_0223EAD8.h"
-#include "overlay072/touch_pad_data_buffer.h"
 
 #include "assert.h"
 #include "bg_window.h"

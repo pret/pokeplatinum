@@ -3,7 +3,11 @@
 
 #include <nitro.h>
 
-#include "overlay072/touch_pad_data_buffer.h"
+#include "touch_pad.h"
+typedef struct TouchPadDataBuffer {
+    u16 bufferSize;
+    TPData buffer[8];
+} TouchPadDataBuffer;
 
 enum TouchPadExternalBufferWriteMethod {
     TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ONLY_TOUCHES_WITH_WRAPPING = 1,
