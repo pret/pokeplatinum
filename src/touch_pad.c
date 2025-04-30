@@ -59,8 +59,6 @@ void EnableTouchPad(void)
 
 BOOL InitializeTouchPadWithExternalBuffer(TPData *externalBuffer, u32 externalBufferSize, u32 autoSamplingFrequency)
 {
-    enum AutoSamplingOperationResult autoSamplingResult;
-
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
     if (autoSamplingFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT || autoSamplingFrequency <= 0) {
@@ -71,7 +69,7 @@ BOOL InitializeTouchPadWithExternalBuffer(TPData *externalBuffer, u32 externalBu
         return FALSE;
     }
 
-    autoSamplingResult = StartAutoSampling(autoSamplingFrequency);
+    enum AutoSamplingOperationResult autoSamplingResult = StartAutoSampling(autoSamplingFrequency);
 
     if (autoSamplingResult != AUTO_SAMPLING_OPERATION_RESULT_SUCCESS) {
         return autoSamplingResult;
@@ -84,8 +82,6 @@ BOOL InitializeTouchPadWithExternalBuffer(TPData *externalBuffer, u32 externalBu
 
 BOOL InitializeTouchPad(u32 autoSamplingFrequency)
 {
-    enum AutoSamplingOperationResult autoSamplingResult;
-
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
     if (autoSamplingFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT || autoSamplingFrequency <= 0) {
@@ -96,7 +92,7 @@ BOOL InitializeTouchPad(u32 autoSamplingFrequency)
         return FALSE;
     }
 
-    autoSamplingResult = StartAutoSampling(autoSamplingFrequency);
+    enum AutoSamplingOperationResult autoSamplingResult = StartAutoSampling(autoSamplingFrequency);
 
     if (autoSamplingResult != AUTO_SAMPLING_OPERATION_RESULT_SUCCESS) {
         return autoSamplingResult;
