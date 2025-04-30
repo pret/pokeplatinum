@@ -1,9 +1,7 @@
-#include "overlay021/pokedex_update.h"
+#include "overlay021/pokedex_updater.h"
 
 #include <nitro.h>
 #include <string.h>
-
-#include "overlay021/pokedex_updater.h"
 
 enum pageState {
     PAGE_STATE_ENTER = 0,
@@ -19,7 +17,7 @@ static void ResetGraphicsMan(PokedexGraphicsManager *graphicsMan);
 static BOOL RunDataFunction(PokedexDataFunction dataFunc, PokedexDataManager *dataMan, void *data);
 static BOOL RunGraphicsFunction(PokedexGraphicsFunction graphicsFunc, void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
 
-PokedexUpdater *PokedexUpdate_InitUpdater(enum HeapId heapID)
+PokedexUpdater *PokedexUpdater_New(enum HeapId heapID)
 {
     PokedexUpdater *pokedexUpdater = Heap_AllocFromHeap(heapID, sizeof(PokedexUpdater));
 
@@ -32,14 +30,14 @@ PokedexUpdater *PokedexUpdate_InitUpdater(enum HeapId heapID)
     return pokedexUpdater;
 }
 
-void PokedexUpdate_PopulateUpdater(PokedexUpdater *pokedexUpdater, const PokedexUpdaterInput *pokedexUpdaterInput)
+void PokedexUpdater_PopulateUpdater(PokedexUpdater *pokedexUpdater, const PokedexUpdaterTemplate *pokedexUpdaterTemplate)
 {
     GF_ASSERT(pokedexUpdater);
-    GF_ASSERT(pokedexUpdaterInput);
-    GF_ASSERT(PokedexUpdate_IsPageExited(pokedexUpdater));
+    GF_ASSERT(pokedexUpdaterTemplate);
+    GF_ASSERT(PokedexUpdater_IsPageExited(pokedexUpdater));
 
-    pokedexUpdater->pageData = pokedexUpdaterInput->pageData;
-    pokedexUpdater->pageGraphics = pokedexUpdaterInput->pageGraphics;
+    pokedexUpdater->pageData = pokedexUpdaterTemplate->pageData;
+    pokedexUpdater->pageGraphics = pokedexUpdaterTemplate->pageGraphics;
     pokedexUpdater->state = PAGE_STATE_ENTER;
 
     ResetDataMan(&pokedexUpdater->dataMan);
@@ -48,15 +46,15 @@ void PokedexUpdate_PopulateUpdater(PokedexUpdater *pokedexUpdater, const Pokedex
     ResetGraphicsMan(&pokedexUpdater->graphicsMan);
     pokedexUpdater->graphicsMan.heapID = pokedexUpdater->heapID;
 
-    pokedexUpdater->dataFunc[0] = pokedexUpdaterInput->dataFunc[0];
-    pokedexUpdater->dataFunc[1] = pokedexUpdaterInput->dataFunc[1];
-    pokedexUpdater->dataFunc[2] = pokedexUpdaterInput->dataFunc[2];
-    pokedexUpdater->graphicsFunc[0] = pokedexUpdaterInput->graphicsFunc[0];
-    pokedexUpdater->graphicsFunc[1] = pokedexUpdaterInput->graphicsFunc[1];
-    pokedexUpdater->graphicsFunc[2] = pokedexUpdaterInput->graphicsFunc[2];
+    pokedexUpdater->dataFunc[0] = pokedexUpdaterTemplate->dataFunc[0];
+    pokedexUpdater->dataFunc[1] = pokedexUpdaterTemplate->dataFunc[1];
+    pokedexUpdater->dataFunc[2] = pokedexUpdaterTemplate->dataFunc[2];
+    pokedexUpdater->graphicsFunc[0] = pokedexUpdaterTemplate->graphicsFunc[0];
+    pokedexUpdater->graphicsFunc[1] = pokedexUpdaterTemplate->graphicsFunc[1];
+    pokedexUpdater->graphicsFunc[2] = pokedexUpdaterTemplate->graphicsFunc[2];
 }
 
-BOOL PokedexUpdate_UpdateData(PokedexUpdater *pokedexUpdater)
+BOOL PokedexUpdater_UpdateData(PokedexUpdater *pokedexUpdater)
 {
     BOOL processDone;
 
@@ -101,7 +99,7 @@ BOOL PokedexUpdate_UpdateData(PokedexUpdater *pokedexUpdater)
     return FALSE;
 }
 
-BOOL PokedexUpdate_UpdateGraphics(PokedexUpdater *pokedexUpdater)
+BOOL PokedexUpdater_UpdateGraphics(PokedexUpdater *pokedexUpdater)
 {
     BOOL processDone;
 
@@ -140,25 +138,25 @@ BOOL PokedexUpdate_UpdateGraphics(PokedexUpdater *pokedexUpdater)
     return FALSE;
 }
 
-void PokedexUpdate_SetDataUnchanged(PokedexUpdater *pokedexUpdater, BOOL unchanged)
+void PokedexUpdater_SetDataUnchanged(PokedexUpdater *pokedexUpdater, BOOL unchanged)
 {
     pokedexUpdater->dataMan.unchanged = unchanged;
 }
 
-void PokedexUpdate_DataExit(PokedexUpdater *pokedexUpdater)
+void PokedexUpdater_DataExit(PokedexUpdater *pokedexUpdater)
 {
     GF_ASSERT(pokedexUpdater);
     pokedexUpdater->dataMan.exit = TRUE;
 }
 
-BOOL PokedexUpdate_IsPageExited(PokedexUpdater *pokedexUpdater)
+BOOL PokedexUpdater_IsPageExited(PokedexUpdater *pokedexUpdater)
 {
     GF_ASSERT(pokedexUpdater);
 
     return pokedexUpdater->state == PAGE_STATE_EXIT;
 }
 
-BOOL PokedexUpdate_IsPageDataActive(PokedexUpdater *pokedexUpdater)
+BOOL PokedexUpdater_IsPageDataActive(PokedexUpdater *pokedexUpdater)
 {
     GF_ASSERT(pokedexUpdater);
 

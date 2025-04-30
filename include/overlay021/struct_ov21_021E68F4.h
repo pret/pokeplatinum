@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV21_021E68F4_H
 #define POKEPLATINUM_STRUCT_OV21_021E68F4_H
 
-#include "overlay021/pokedex_data_function.h"
-#include "overlay021/pokedex_graphics_function.h"
+#include "overlay021/pokedex_updater.h"
 #include "overlay021/struct_ov21_021D4660.h"
 
 typedef struct {

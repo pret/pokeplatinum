@@ -785,7 +785,7 @@ Overlay overlay21
 	Object main.nef.p/src_overlay021_ov21_021D1F90.c.o
 	Object main.nef.p/src_overlay021_ov21_021D1FA4.c.o
 	Object main.nef.p/src_overlay021_pokedex_sort.c.o
-	Object main.nef.p/src_overlay021_pokedex_update.c.o
+	Object main.nef.p/src_overlay021_pokedex_updater.c.o
 	Object main.nef.p/src_overlay021_ov21_021D423C.c.o
 	Object main.nef.p/src_overlay021_ov21_021D4340.c.o
 	Object main.nef.p/src_overlay021_ov21_021D4C0C.c.o

@@ -59,12 +59,12 @@ static PokedexGraphicData **ov21_021E0D40(enum HeapId heapID, PokedexApp *param1
 static void ov21_021E0D68(UnkStruct_ov21_021E0D68 *param0);
 static void ov21_021E0D7C(PokedexGraphicData **param0);
 static int ov21_021E0D90(void);
-static int ov21_021E0D94(PokedexDataManager *param0, void *param1);
-static int ov21_021E0D98(PokedexDataManager *param0, void *param1);
-static int ov21_021E0DA8(PokedexDataManager *param0, void *param1);
-static int ov21_021E0DAC(void *param0, PokedexGraphicsManager *param1, const void *param2, const PokedexDataManager *param3);
-static int ov21_021E0E8C(void *param0, PokedexGraphicsManager *param1, const void *param2, const PokedexDataManager *param3);
-static int ov21_021E0E90(void *param0, PokedexGraphicsManager *param1, const void *param2, const PokedexDataManager *param3);
+static int ov21_021E0D94(PokedexDataManager *dataMan, void *data);
+static int ov21_021E0D98(PokedexDataManager *dataMan, void *data);
+static int ov21_021E0DA8(PokedexDataManager *dataMan, void *data);
+static int ov21_021E0DAC(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
+static int ov21_021E0E8C(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
+static int ov21_021E0E90(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
 static void ov21_021E14D4(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021E0D68 *param2, BOOL param3);
 static BOOL ov21_021E1550(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021E0D68 *param2, BOOL param3);
 static void ov21_021E15AC(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021E0D68 *param2, BOOL param3);
@@ -217,14 +217,14 @@ static int ov21_021E0D90(void)
     return 0;
 }
 
-static int ov21_021E0D94(PokedexDataManager *dataMan, void *param1)
+static int ov21_021E0D94(PokedexDataManager *dataMan, void *data)
 {
     return 1;
 }
 
-static int ov21_021E0D98(PokedexDataManager *dataMan, void *param1)
+static int ov21_021E0D98(PokedexDataManager *dataMan, void *data)
 {
-    UnkStruct_ov21_021E0D68 *v0 = param1;
+    UnkStruct_ov21_021E0D68 *v0 = data;
 
     if (dataMan->exit == 1) {
         return 1;
@@ -237,15 +237,15 @@ static int ov21_021E0D98(PokedexDataManager *dataMan, void *param1)
     return 0;
 }
 
-static int ov21_021E0DA8(PokedexDataManager *dataMan, void *param1)
+static int ov21_021E0DA8(PokedexDataManager *dataMan, void *data)
 {
     return 1;
 }
 
-static int ov21_021E0DAC(void *param0, PokedexGraphicsManager *graphicsMan, const void *param2, const PokedexDataManager *dataMan)
+static int ov21_021E0DAC(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
 {
-    const UnkStruct_ov21_021E0D68 *v0 = param2;
-    PokedexGraphicData **v1 = param0;
+    const UnkStruct_ov21_021E0D68 *v0 = data;
+    PokedexGraphicData **v1 = graphics;
     UnkStruct_ov21_021E14D4 *v2 = graphicsMan->pageGraphics;
     BOOL v3;
 
@@ -300,15 +300,15 @@ static int ov21_021E0DAC(void *param0, PokedexGraphicsManager *graphicsMan, cons
     return 0;
 }
 
-static int ov21_021E0E8C(void *param0, PokedexGraphicsManager *graphicsMan, const void *param2, const PokedexDataManager *dataMan)
+static int ov21_021E0E8C(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
 {
     return 0;
 }
 
-static int ov21_021E0E90(void *param0, PokedexGraphicsManager *graphicsMan, const void *param2, const PokedexDataManager *dataMan)
+static int ov21_021E0E90(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
 {
-    const UnkStruct_ov21_021E0D68 *v0 = param2;
-    PokedexGraphicData **v1 = param0;
+    const UnkStruct_ov21_021E0D68 *v0 = data;
+    PokedexGraphicData **v1 = graphics;
     UnkStruct_ov21_021E14D4 *v2 = graphicsMan->pageGraphics;
     BOOL v3;
 

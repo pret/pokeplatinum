@@ -32,7 +32,7 @@
 #include "overlay021/pokedex_search.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_text.h"
-#include "overlay021/pokedex_update.h"
+#include "overlay021/pokedex_updater.h"
 #include "overlay021/species_caught_status.h"
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
@@ -269,10 +269,10 @@ PokedexApp *PokedexMain_NewPokedexApp(enum HeapId heapID, const PokedexOverlayAr
     pokedexApp->unk_1A74 = ov21_021D423C(heapID);
     pokedexApp->unk_1A78 = ov21_021D423C(heapID);
     pokedexApp->unk_1A7C = ov21_021D423C(heapID);
-    pokedexApp->unk_1D64 = PokedexUpdate_InitUpdater(heapID);
-    pokedexApp->unk_1D68 = PokedexUpdate_InitUpdater(heapID);
-    pokedexApp->unk_1D6C = PokedexUpdate_InitUpdater(heapID);
-    pokedexApp->unk_1D70 = PokedexUpdate_InitUpdater(heapID);
+    pokedexApp->unk_1D64 = PokedexUpdater_New(heapID);
+    pokedexApp->unk_1D68 = PokedexUpdater_New(heapID);
+    pokedexApp->unk_1D6C = PokedexUpdater_New(heapID);
+    pokedexApp->unk_1D70 = PokedexUpdater_New(heapID);
 
     sortParams.pokedex = pokedexOverlayArgs->pokedex;
     sortParams.trainerInfo = pokedexOverlayArgs->trainerInfo;
@@ -312,26 +312,26 @@ BOOL ov21_021D10B8(PokedexApp *pokedexApp)
     ov21_021D3960(&pokedexApp->sortData);
 
     if ((ov21_021D42D4(pokedexApp->unk_1A78) == 0) && (ov21_021D42D4(pokedexApp->unk_1A70) == 0) && (ov21_021D42D4(pokedexApp->unk_1A7C) == 0) && (ov21_021D42D4(pokedexApp->unk_1A74) == 0)) {
-        PokedexUpdate_SetDataUnchanged(pokedexApp->unk_1D6C, 0);
-        PokedexUpdate_SetDataUnchanged(pokedexApp->unk_1D70, 0);
-        PokedexUpdate_SetDataUnchanged(pokedexApp->unk_1D64, 0);
-        PokedexUpdate_SetDataUnchanged(pokedexApp->unk_1D68, 0);
+        PokedexUpdater_SetDataUnchanged(pokedexApp->unk_1D6C, 0);
+        PokedexUpdater_SetDataUnchanged(pokedexApp->unk_1D70, 0);
+        PokedexUpdater_SetDataUnchanged(pokedexApp->unk_1D64, 0);
+        PokedexUpdater_SetDataUnchanged(pokedexApp->unk_1D68, 0);
     } else {
-        PokedexUpdate_SetDataUnchanged(pokedexApp->unk_1D6C, 1);
-        PokedexUpdate_SetDataUnchanged(pokedexApp->unk_1D70, 1);
-        PokedexUpdate_SetDataUnchanged(pokedexApp->unk_1D64, 1);
-        PokedexUpdate_SetDataUnchanged(pokedexApp->unk_1D68, 1);
+        PokedexUpdater_SetDataUnchanged(pokedexApp->unk_1D6C, 1);
+        PokedexUpdater_SetDataUnchanged(pokedexApp->unk_1D70, 1);
+        PokedexUpdater_SetDataUnchanged(pokedexApp->unk_1D64, 1);
+        PokedexUpdater_SetDataUnchanged(pokedexApp->unk_1D68, 1);
     }
 
-    PokedexUpdate_UpdateData(pokedexApp->unk_1D6C);
-    PokedexUpdate_UpdateData(pokedexApp->unk_1D70);
-    PokedexUpdate_UpdateData(pokedexApp->unk_1D64);
-    PokedexUpdate_UpdateData(pokedexApp->unk_1D68);
+    PokedexUpdater_UpdateData(pokedexApp->unk_1D6C);
+    PokedexUpdater_UpdateData(pokedexApp->unk_1D70);
+    PokedexUpdater_UpdateData(pokedexApp->unk_1D64);
+    PokedexUpdater_UpdateData(pokedexApp->unk_1D68);
 
-    PokedexUpdate_UpdateGraphics(pokedexApp->unk_1D6C);
-    PokedexUpdate_UpdateGraphics(pokedexApp->unk_1D70);
-    PokedexUpdate_UpdateGraphics(pokedexApp->unk_1D64);
-    PokedexUpdate_UpdateGraphics(pokedexApp->unk_1D68);
+    PokedexUpdater_UpdateGraphics(pokedexApp->unk_1D6C);
+    PokedexUpdater_UpdateGraphics(pokedexApp->unk_1D70);
+    PokedexUpdater_UpdateGraphics(pokedexApp->unk_1D64);
+    PokedexUpdater_UpdateGraphics(pokedexApp->unk_1D68);
 
     if ((ov21_021D42D4(pokedexApp->unk_1A70) == 0) && (ov21_021D42D4(pokedexApp->unk_1A7C) == 0) && (ov21_021D42D4(pokedexApp->unk_1A74) == 0)) {
         ov21_021D4284(pokedexApp->unk_1A78, pokedexApp->unk_1A68);

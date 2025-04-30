@@ -3,7 +3,7 @@
 
 #include "heap.h"
 
-typedef struct {
+typedef struct PokedexGraphicsManager {
     int state;
     enum HeapId heapID;
     void *pageGraphics;

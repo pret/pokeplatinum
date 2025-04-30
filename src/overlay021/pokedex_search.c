@@ -83,12 +83,12 @@ static void FreeSearchSettings(PokedexSearchSettings *searchSettings);
 static void ov21_021D879C(PokedexGraphicData **param0);
 static void ov21_021D87B0(UnkStruct_ov21_021D4660 *param0);
 static int ov21_021D87C8(void);
-static int ResetSearchSettings(PokedexDataManager *param0, void *param1);
-static int UpdateScreenState(PokedexDataManager *param0, void *param1);
-static int ov21_021D8928(PokedexDataManager *param0, void *param1);
-static int EnterPokedexSearch(void *param0, PokedexGraphicsManager *param1, const void *param2, const PokedexDataManager *param3);
-static int UpdateDisplay(void *param0, PokedexGraphicsManager *param1, const void *param2, const PokedexDataManager *param3);
-static int ExitPokedexSearch(void *param0, PokedexGraphicsManager *param1, const void *param2, const PokedexDataManager *param3);
+static int ResetSearchSettings(PokedexDataManager *dataMan, void *data);
+static int UpdateScreenState(PokedexDataManager *dataMan, void *data);
+static int ov21_021D8928(PokedexDataManager *dataMan, void *data);
+static int EnterPokedexSearch(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
+static int UpdateDisplay(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
+static int ExitPokedexSearch(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
 static void LoadingScreenTransition(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, const PokedexSearchSettings *searchSettings, enum HeapId heapID);
 static void LoadingScreenAnimation(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, const PokedexSearchSettings *searchSettings, enum HeapId heapID);
 static void SearchingMessage(PokedexGraphicData **param0, enum HeapId heapID);
@@ -312,15 +312,15 @@ static int ov21_021D87C8(void)
     return 1;
 }
 
-static int ResetSearchSettings(PokedexDataManager *param0, void *param1)
+static int ResetSearchSettings(PokedexDataManager *dataMan, void *data)
 {
-    PokedexSearchSettings *searchSettings = param1;
-    int *v1 = Heap_AllocFromHeap(param0->heapID, sizeof(int));
+    PokedexSearchSettings *searchSettings = data;
+    int *v1 = Heap_AllocFromHeap(dataMan->heapID, sizeof(int));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(int));
 
-    param0->pageData = v1;
+    dataMan->pageData = v1;
 
     searchSettings->filterMethod = FM_ORDER;
     searchSettings->sortOrder = SO_NUMERICAL;
@@ -335,19 +335,19 @@ static int ResetSearchSettings(PokedexDataManager *param0, void *param1)
     return 1;
 }
 
-static int UpdateScreenState(PokedexDataManager *param0, void *param1)
+static int UpdateScreenState(PokedexDataManager *dataMan, void *data)
 {
-    PokedexSearchSettings *searchSettings = param1;
+    PokedexSearchSettings *searchSettings = data;
 
-    if (param0->exit == 1) {
+    if (dataMan->exit == 1) {
         return 1;
     }
 
-    if (param0->unchanged == 1) {
+    if (dataMan->unchanged == 1) {
         return 0;
     }
 
-    switch (param0->state) {
+    switch (dataMan->state) {
     case 0:
 
         if (searchSettings->noneFound) {
@@ -361,7 +361,7 @@ static int UpdateScreenState(PokedexDataManager *param0, void *param1)
             } else {
                 searchSettings->screenState = SS_SEARCH;
                 searchSettings->screenTimer = 4;
-                param0->state++;
+                dataMan->state++;
             }
         }
         break;
@@ -369,7 +369,7 @@ static int UpdateScreenState(PokedexDataManager *param0, void *param1)
         searchSettings->screenTimer--;
 
         if (searchSettings->screenTimer < 0) {
-            param0->state++;
+            dataMan->state++;
 
             searchSettings->screenState = SS_LOADING;
             searchSettings->screenTimer = 32;
@@ -381,12 +381,12 @@ static int UpdateScreenState(PokedexDataManager *param0, void *param1)
         searchSettings->screenTimer--;
 
         if (searchSettings->screenTimer < 0) {
-            param0->state++;
+            dataMan->state++;
         }
         break;
     case 3:
         BOOL dexExists = TRUE;
-        dexExists = PokedexSort_Sort(searchSettings->unk_04, searchSettings->sortOrder, searchSettings->filterName, searchSettings->typeFilter1, searchSettings->typeFilter2, searchSettings->filterForm, PokedexSort_IsNationalDex(searchSettings->unk_04), param0->heapID, TRUE);
+        dexExists = PokedexSort_Sort(searchSettings->unk_04, searchSettings->sortOrder, searchSettings->filterName, searchSettings->typeFilter1, searchSettings->typeFilter2, searchSettings->filterForm, PokedexSort_IsNationalDex(searchSettings->unk_04), dataMan->heapID, TRUE);
 
         if (dexExists == TRUE) {
             *searchSettings->exitFlag |= EXITSEARCH;
@@ -400,7 +400,7 @@ static int UpdateScreenState(PokedexDataManager *param0, void *param1)
             searchSettings->screenState = SS_RETURN;
             searchSettings->screenTimer = 4;
 
-            param0->state++;
+            dataMan->state++;
         }
         break;
     case 4:
@@ -409,7 +409,7 @@ static int UpdateScreenState(PokedexDataManager *param0, void *param1)
         if (searchSettings->screenTimer < 0) {
             searchSettings->screenState = SS_MENU;
             searchSettings->screenTimer = 0;
-            param0->state = 0;
+            dataMan->state = 0;
         }
         break;
     default:
@@ -420,21 +420,21 @@ static int UpdateScreenState(PokedexDataManager *param0, void *param1)
     return 0;
 }
 
-static int ov21_021D8928(PokedexDataManager *param0, void *param1)
+static int ov21_021D8928(PokedexDataManager *dataMan, void *data)
 {
-    int *v0 = param0->pageData;
+    int *v0 = dataMan->pageData;
 
     Heap_FreeToHeap(v0);
-    param0->pageData = NULL;
+    dataMan->pageData = NULL;
 
     return 1;
 }
 
-static int EnterPokedexSearch(void *param0, PokedexGraphicsManager *graphicsMan, const void *param2, const PokedexDataManager *param3)
+static int EnterPokedexSearch(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
 {
-    const PokedexSearchSettings *searchSettings = param2;
-    const int *v1 = param3->pageData;
-    PokedexGraphicData **v2 = param0;
+    const PokedexSearchSettings *searchSettings = data;
+    const int *v1 = dataMan->pageData;
+    PokedexGraphicData **v2 = graphics;
     PokedexSearchDisplay *searchDisplay = graphicsMan->pageGraphics;
 
     switch (graphicsMan->state) {
@@ -460,10 +460,10 @@ static int EnterPokedexSearch(void *param0, PokedexGraphicsManager *graphicsMan,
     return 0;
 }
 
-static int UpdateDisplay(void *param0, PokedexGraphicsManager *graphicsMan, const void *param2, const PokedexDataManager *param3)
+static int UpdateDisplay(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
 {
-    const PokedexSearchSettings *searchSettings = param2;
-    PokedexGraphicData **v2 = param0;
+    const PokedexSearchSettings *searchSettings = data;
+    PokedexGraphicData **v2 = graphics;
     PokedexSearchDisplay *searchDisplay = graphicsMan->pageGraphics;
 
     if (searchSettings->screenState == SS_MENU) {
@@ -477,10 +477,10 @@ static int UpdateDisplay(void *param0, PokedexGraphicsManager *graphicsMan, cons
     return 0;
 }
 
-static int ExitPokedexSearch(void *param0, PokedexGraphicsManager *graphicsMan, const void *param2, const PokedexDataManager *param3)
+static int ExitPokedexSearch(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
 {
-    const PokedexSearchSettings *searchSettings = param2;
-    PokedexGraphicData **v2 = param0;
+    const PokedexSearchSettings *searchSettings = data;
+    PokedexGraphicData **v2 = graphics;
     PokedexSearchDisplay *searchDisplay = graphicsMan->pageGraphics;
 
     switch (graphicsMan->state) {

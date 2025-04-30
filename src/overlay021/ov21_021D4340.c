@@ -8,7 +8,6 @@
 #include "overlay021/ov21_021D423C.h"
 #include "overlay021/pokedex_app.h"
 #include "overlay021/pokedex_main.h"
-#include "overlay021/pokedex_update.h"
 #include "overlay021/pokedex_updater.h"
 #include "overlay021/struct_ov21_021D423C_decl.h"
 #include "overlay021/struct_ov21_021D4340.h"
@@ -29,11 +28,11 @@ BOOL ov21_021D4340(UnkStruct_ov21_021D4340_1 *param0)
 
     switch (param0->unk_00) {
     case 0:
-        PokedexUpdate_DataExit(v0->unk_04);
+        PokedexUpdater_DataExit(v0->unk_04);
         param0->unk_00++;
         break;
     case 1:
-        if (PokedexUpdate_IsPageExited(v0->unk_04) == 1) {
+        if (PokedexUpdater_IsPageExited(v0->unk_04) == 1) {
             param0->unk_00++;
         }
         break;
@@ -42,7 +41,7 @@ BOOL ov21_021D4340(UnkStruct_ov21_021D4340_1 *param0)
         param0->unk_00++;
         break;
     case 3:
-        if (PokedexUpdate_IsPageDataActive(v0->unk_04) == 1) {
+        if (PokedexUpdater_IsPageDataActive(v0->unk_04) == 1) {
             return 1;
         }
         break;
@@ -62,17 +61,17 @@ BOOL ov21_021D43A8(UnkStruct_ov21_021D4340_1 *param0)
 
     switch (param0->unk_00) {
     case 0:
-        PokedexUpdate_DataExit(v0->unk_00);
-        PokedexUpdate_DataExit(v0->unk_04);
-        PokedexUpdate_DataExit(v0->unk_08);
-        PokedexUpdate_DataExit(v0->unk_0C);
+        PokedexUpdater_DataExit(v0->unk_00);
+        PokedexUpdater_DataExit(v0->unk_04);
+        PokedexUpdater_DataExit(v0->unk_08);
+        PokedexUpdater_DataExit(v0->unk_0C);
         param0->unk_00++;
         break;
     case 1:
-        v1[0] = PokedexUpdate_IsPageExited(v0->unk_00);
-        v1[1] = PokedexUpdate_IsPageExited(v0->unk_04);
-        v1[2] = PokedexUpdate_IsPageExited(v0->unk_08);
-        v1[3] = PokedexUpdate_IsPageExited(v0->unk_0C);
+        v1[0] = PokedexUpdater_IsPageExited(v0->unk_00);
+        v1[1] = PokedexUpdater_IsPageExited(v0->unk_04);
+        v1[2] = PokedexUpdater_IsPageExited(v0->unk_08);
+        v1[3] = PokedexUpdater_IsPageExited(v0->unk_0C);
 
         for (v2 = 0; v2 < 4; v2++) {
             if (v1[v2] == 0) {
@@ -103,17 +102,17 @@ BOOL ov21_021D4434(UnkStruct_ov21_021D4340_1 *param0)
 
     switch (param0->unk_00) {
     case 0:
-        PokedexUpdate_DataExit(v0->unk_00);
-        PokedexUpdate_DataExit(v0->unk_04);
-        PokedexUpdate_DataExit(v0->unk_08);
-        PokedexUpdate_DataExit(v0->unk_0C);
+        PokedexUpdater_DataExit(v0->unk_00);
+        PokedexUpdater_DataExit(v0->unk_04);
+        PokedexUpdater_DataExit(v0->unk_08);
+        PokedexUpdater_DataExit(v0->unk_0C);
         param0->unk_00++;
         break;
     case 1:
-        v1[0] = PokedexUpdate_IsPageExited(v0->unk_00);
-        v1[1] = PokedexUpdate_IsPageExited(v0->unk_04);
-        v1[2] = PokedexUpdate_IsPageExited(v0->unk_08);
-        v1[3] = PokedexUpdate_IsPageExited(v0->unk_0C);
+        v1[0] = PokedexUpdater_IsPageExited(v0->unk_00);
+        v1[1] = PokedexUpdater_IsPageExited(v0->unk_04);
+        v1[2] = PokedexUpdater_IsPageExited(v0->unk_08);
+        v1[3] = PokedexUpdater_IsPageExited(v0->unk_0C);
 
         for (v2 = 0; v2 < 4; v2++) {
             if (v1[v2] == 0) {
@@ -134,23 +133,23 @@ BOOL ov21_021D4434(UnkStruct_ov21_021D4340_1 *param0)
         break;
     case 3:
         if (v0->unk_20) {
-            v1[0] = PokedexUpdate_IsPageDataActive(v0->unk_00);
+            v1[0] = PokedexUpdater_IsPageDataActive(v0->unk_00);
         } else {
             v1[0] = 1;
         }
 
         if (v0->unk_24) {
-            v1[1] = PokedexUpdate_IsPageDataActive(v0->unk_04);
+            v1[1] = PokedexUpdater_IsPageDataActive(v0->unk_04);
         }
 
         if (v0->unk_28) {
-            v1[2] = PokedexUpdate_IsPageDataActive(v0->unk_08);
+            v1[2] = PokedexUpdater_IsPageDataActive(v0->unk_08);
         } else {
             v1[2] = 1;
         }
 
         if (v0->unk_2C) {
-            v1[3] = PokedexUpdate_IsPageDataActive(v0->unk_0C);
+            v1[3] = PokedexUpdater_IsPageDataActive(v0->unk_0C);
         } else {
             v1[3] = 1;
         }
@@ -182,13 +181,13 @@ BOOL ov21_021D4558(UnkStruct_ov21_021D4340_1 *param0)
 
     switch (param0->unk_00) {
     case 0:
-        PokedexUpdate_DataExit(v0->unk_00);
-        PokedexUpdate_DataExit(v0->unk_04);
+        PokedexUpdater_DataExit(v0->unk_00);
+        PokedexUpdater_DataExit(v0->unk_04);
         param0->unk_00++;
         break;
     case 1:
-        v1[0] = PokedexUpdate_IsPageExited(v0->unk_00);
-        v1[1] = PokedexUpdate_IsPageExited(v0->unk_04);
+        v1[0] = PokedexUpdater_IsPageExited(v0->unk_00);
+        v1[1] = PokedexUpdater_IsPageExited(v0->unk_04);
 
         for (v2 = 0; v2 < 2; v2++) {
             if (v1[v2] == 0) {
@@ -207,13 +206,13 @@ BOOL ov21_021D4558(UnkStruct_ov21_021D4340_1 *param0)
         break;
     case 3:
         if (v0->unk_10) {
-            v1[0] = PokedexUpdate_IsPageDataActive(v0->unk_00);
+            v1[0] = PokedexUpdater_IsPageDataActive(v0->unk_00);
         } else {
             v1[0] = 1;
         }
 
         if (v0->unk_14) {
-            v1[1] = PokedexUpdate_IsPageDataActive(v0->unk_04);
+            v1[1] = PokedexUpdater_IsPageDataActive(v0->unk_04);
         } else {
             v1[1] = 1;
         }
@@ -238,15 +237,15 @@ BOOL ov21_021D4558(UnkStruct_ov21_021D4340_1 *param0)
 
 static void ov21_021D4628(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D423C *param1, PokedexUpdater *pokedexUpdater)
 {
-    PokedexUpdaterInput pokedexUpdaterInput;
+    PokedexUpdaterTemplate pokedexUpdaterTemplate;
 
     if (param0) {
-        pokedexUpdaterInput.pageData = param0->pageData;
-        pokedexUpdaterInput.pageGraphics = param0->pageGraphics;
-        pokedexUpdaterInput.dataFunc = param0->dataFunc;
-        pokedexUpdaterInput.graphicsFunc = param0->graphicsFunc;
+        pokedexUpdaterTemplate.pageData = param0->pageData;
+        pokedexUpdaterTemplate.pageGraphics = param0->pageGraphics;
+        pokedexUpdaterTemplate.dataFunc = param0->dataFunc;
+        pokedexUpdaterTemplate.graphicsFunc = param0->graphicsFunc;
 
-        PokedexUpdate_PopulateUpdater(pokedexUpdater, &pokedexUpdaterInput);
+        PokedexUpdater_PopulateUpdater(pokedexUpdater, &pokedexUpdaterTemplate);
         ov21_021D426C(param1, param0->unk_20, param0->unk_24);
     }
 }

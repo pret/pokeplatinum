@@ -136,12 +136,12 @@ static UnkStruct_ov21_021E747C *ov21_021E7424(enum HeapId heapID, PokedexApp *pa
 static void ov21_021E7468(UnkStruct_ov21_021E7468 *param0);
 static void ov21_021E747C(UnkStruct_ov21_021E747C *param0);
 static int ov21_021E749C(void);
-static int ov21_021E74A0(PokedexDataManager *param0, void *param1);
-static int ov21_021E750C(PokedexDataManager *param0, void *param1);
-static int ov21_021E751C(PokedexDataManager *param0, void *param1);
-static int ov21_021E7530(void *param0, PokedexGraphicsManager *param1, const void *param2, const PokedexDataManager *param3);
-static int ov21_021E75D4(void *param0, PokedexGraphicsManager *param1, const void *param2, const PokedexDataManager *param3);
-static int ov21_021E7694(void *param0, PokedexGraphicsManager *param1, const void *param2, const PokedexDataManager *param3);
+static int ov21_021E74A0(PokedexDataManager *dataMan, void *data);
+static int ov21_021E750C(PokedexDataManager *dataMan, void *data);
+static int ov21_021E751C(PokedexDataManager *dataMan, void *data);
+static int ov21_021E7530(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
+static int ov21_021E75D4(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
+static int ov21_021E7694(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
 static void ov21_021E7714(UnkStruct_ov21_021E7714 *param0);
 static void ov21_021E7718(UnkStruct_ov21_021E7714 *param0);
 static void ov21_021E771C(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E747C *param1, const UnkStruct_ov21_021E7468 *param2, BOOL param3);
@@ -269,19 +269,19 @@ static int ov21_021E749C(void)
     return 0;
 }
 
-static int ov21_021E74A0(PokedexDataManager *param0, void *param1)
+static int ov21_021E74A0(PokedexDataManager *dataMan, void *data)
 {
-    UnkStruct_ov21_021E7468 *v0 = param1;
+    UnkStruct_ov21_021E7468 *v0 = data;
     UnkStruct_ov21_021E74A0 *v1;
     int v2;
     int v3;
     int species;
 
-    v1 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021E74A0));
+    v1 = Heap_AllocFromHeap(dataMan->heapID, sizeof(UnkStruct_ov21_021E74A0));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(UnkStruct_ov21_021E74A0));
-    param0->pageData = v1;
+    dataMan->pageData = v1;
 
     species = PokedexSort_CurrentSpecies(v0->unk_00);
     v2 = Pokedex_HeightWeightData_Weight(v0->unk_00->HWData, species);
@@ -303,38 +303,38 @@ static int ov21_021E74A0(PokedexDataManager *param0, void *param1)
     return 1;
 }
 
-static int ov21_021E750C(PokedexDataManager *param0, void *param1)
+static int ov21_021E750C(PokedexDataManager *dataMan, void *data)
 {
-    UnkStruct_ov21_021E7468 *v0 = param1;
-    UnkStruct_ov21_021E74A0 *v1 = param0->pageData;
+    UnkStruct_ov21_021E7468 *v0 = data;
+    UnkStruct_ov21_021E74A0 *v1 = dataMan->pageData;
 
-    if (param0->exit == 1) {
+    if (dataMan->exit == 1) {
         return 1;
     }
 
-    if (param0->unchanged == 1) {
+    if (dataMan->unchanged == 1) {
         return 0;
     }
 
     return 0;
 }
 
-static int ov21_021E751C(PokedexDataManager *param0, void *param1)
+static int ov21_021E751C(PokedexDataManager *dataMan, void *data)
 {
-    UnkStruct_ov21_021E7468 *v0 = param1;
-    UnkStruct_ov21_021E74A0 *v1 = param0->pageData;
+    UnkStruct_ov21_021E7468 *v0 = data;
+    UnkStruct_ov21_021E74A0 *v1 = dataMan->pageData;
 
     Heap_FreeToHeap(v1);
-    param0->pageData = NULL;
+    dataMan->pageData = NULL;
 
     return 1;
 }
 
-static int ov21_021E7530(void *param0, PokedexGraphicsManager *graphicsMan, const void *param2, const PokedexDataManager *param3)
+static int ov21_021E7530(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
 {
-    const UnkStruct_ov21_021E7468 *v0 = param2;
-    const UnkStruct_ov21_021E74A0 *v1 = param3->pageData;
-    UnkStruct_ov21_021E747C *v2 = param0;
+    const UnkStruct_ov21_021E7468 *v0 = data;
+    const UnkStruct_ov21_021E74A0 *v1 = dataMan->pageData;
+    UnkStruct_ov21_021E747C *v2 = graphics;
     UnkStruct_ov21_021E7714 *v3 = graphicsMan->pageGraphics;
 
     switch (graphicsMan->state) {
@@ -364,11 +364,11 @@ static int ov21_021E7530(void *param0, PokedexGraphicsManager *graphicsMan, cons
     return 0;
 }
 
-static int ov21_021E75D4(void *param0, PokedexGraphicsManager *graphicsMan, const void *param2, const PokedexDataManager *param3)
+static int ov21_021E75D4(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
 {
-    const UnkStruct_ov21_021E7468 *v0 = param2;
-    const UnkStruct_ov21_021E74A0 *v1 = param3->pageData;
-    UnkStruct_ov21_021E747C *v2 = param0;
+    const UnkStruct_ov21_021E7468 *v0 = data;
+    const UnkStruct_ov21_021E74A0 *v1 = dataMan->pageData;
+    UnkStruct_ov21_021E747C *v2 = graphics;
     UnkStruct_ov21_021E7714 *v3 = graphicsMan->pageGraphics;
 
     switch (graphicsMan->state) {
@@ -419,20 +419,20 @@ static int ov21_021E75D4(void *param0, PokedexGraphicsManager *graphicsMan, cons
     return 0;
 }
 
-static int ov21_021E7694(void *param0, PokedexGraphicsManager *graphicsMan, const void *param2, const PokedexDataManager *param3)
+static int ov21_021E7694(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
 {
-    const UnkStruct_ov21_021E7468 *v0 = param2;
-    const UnkStruct_ov21_021E74A0 *v1 = param3->pageData;
-    UnkStruct_ov21_021E747C *v2 = param0;
+    const UnkStruct_ov21_021E7468 *v0 = data;
+    const UnkStruct_ov21_021E74A0 *v1 = dataMan->pageData;
+    UnkStruct_ov21_021E747C *v2 = graphics;
     UnkStruct_ov21_021E7714 *v3 = graphicsMan->pageGraphics;
 
     switch (graphicsMan->state) {
     case 0:
-        ov21_021E771C(v3, v2, param2, 0);
+        ov21_021E771C(v3, v2, data, 0);
         graphicsMan->state++;
         break;
     case 1:
-        if (ov21_021E77A4(v3, v2, param2, 0)) {
+        if (ov21_021E77A4(v3, v2, data, 0)) {
             graphicsMan->state++;
         }
         break;
