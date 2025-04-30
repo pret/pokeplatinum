@@ -3,7 +3,6 @@
 
 #include <nitro.h>
 
-#include "touch_pad.h"
 typedef struct TouchPadDataBuffer {
     u16 bufferSize;
     TPData buffer[8];
