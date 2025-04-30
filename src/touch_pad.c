@@ -63,7 +63,7 @@ BOOL InitializeTouchPadWithExternalBuffer(TPData *externalBuffer, u32 externalBu
 
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
-    if ((autoSamplingFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (autoSamplingFrequency <= 0)) {
+    if (autoSamplingFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT || autoSamplingFrequency <= 0) {
         return FALSE;
     }
 
@@ -88,7 +88,7 @@ BOOL InitializeTouchPad(u32 autoSamplingFrequency)
 
     GF_ASSERT(touchPadState.touchPadDisabled == FALSE);
 
-    if ((autoSamplingFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT) || (autoSamplingFrequency <= 0)) {
+    if (autoSamplingFrequency >= AUTO_SAMPLING_FREQUENCY_LIMIT || autoSamplingFrequency <= 0) {
         return FALSE;
     }
 
@@ -191,8 +191,6 @@ u32 WriteAutoSamplingDataToBuffer(TouchPadDataBuffer *outBuffer, enum TouchPadEx
         } else {
             result = WRITE_AUTO_SAMPLING_DATA_RESULT_EXTERNAL_BUFFER_NOT_WRITTEN_TO;
         }
-    } else {
-        (void)0;
     }
 
     return result;
@@ -213,11 +211,7 @@ void AfterSleep(void)
 {
     enum AutoSamplingOperationResult autoSamplingResult;
 
-    if (touchPadState.touchPadDisabled == FALSE) {
-        return;
-    }
-
-    if (touchPadState.touchPadMode == TOUCH_PAD_MODE_INACTIVE) {
+    if (touchPadState.touchPadDisabled == FALSE || touchPadState.touchPadMode == TOUCH_PAD_MODE_INACTIVE) {
         return;
     }
 
@@ -231,11 +225,7 @@ void BeforeSleep(void)
 {
     u32 autoSamplingResult;
 
-    if (touchPadState.touchPadDisabled == TRUE) {
-        return;
-    }
-
-    if (touchPadState.touchPadMode == TOUCH_PAD_MODE_INACTIVE) {
+    if (touchPadState.touchPadDisabled == TRUE || touchPadState.touchPadMode == TOUCH_PAD_MODE_INACTIVE) {
         return;
     }
 
@@ -289,10 +279,9 @@ static u32 WriteAutoSamplingData(enum TouchPadExternalBufferWriteMethod external
     return externalBufferEndIndex;
 }
 
-static inline int CalcIntsDifference(int int1, int int2)
+static inline int CalcAbsDifference(int int1, int int2)
 {
-    int diff = (int1 >= int2) ? (int1 - int2) : (int2 - int1);
-    return diff;
+    return (int1 >= int2) ? (int1 - int2) : (int2 - int1);
 }
 
 static u32 WriteAutoSamplingTouchDataToExternalBuffer(enum TouchPadExternalBufferWriteMethod externalBufferWriteMethod, u32 latestAutoSamplingIndex, u32 changeThreshold)
@@ -310,8 +299,8 @@ static u32 WriteAutoSamplingTouchDataToExternalBuffer(enum TouchPadExternalBuffe
         }
 
         if ((touchPadState.autoSamplingBuffer[bufferIndex].touch == TP_TOUCH_ON) && (touchPadState.autoSamplingBuffer[bufferIndex].validity == TP_VALIDITY_VALID)) {
-            xDiff = CalcIntsDifference(touchPadState.externalBuffer[touchPadState.currentExternalBufferIndex - 1].x, touchPadState.autoSamplingBuffer[bufferIndex].x);
-            yDiff = CalcIntsDifference(touchPadState.externalBuffer[touchPadState.currentExternalBufferIndex - 1].y, touchPadState.autoSamplingBuffer[bufferIndex].y);
+            xDiff = CalcAbsDifference(touchPadState.externalBuffer[touchPadState.currentExternalBufferIndex - 1].x, touchPadState.autoSamplingBuffer[bufferIndex].x);
+            yDiff = CalcAbsDifference(touchPadState.externalBuffer[touchPadState.currentExternalBufferIndex - 1].y, touchPadState.autoSamplingBuffer[bufferIndex].y);
 
             if ((xDiff >= changeThreshold) || (yDiff >= changeThreshold)) {
                 touchPadState.externalBuffer[touchPadState.currentExternalBufferIndex] = touchPadState.autoSamplingBuffer[bufferIndex];
