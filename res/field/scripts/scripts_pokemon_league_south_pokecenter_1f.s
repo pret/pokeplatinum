@@ -12,11 +12,11 @@
     ScriptEntryEnd
 
 _001A:
-    SetFlag 0x9C0
+    SetFlag FLAG_UNK_0x09C0
     End
 
 _0020:
-    SetVar 0x8007, 0
+    SetVar VAR_0x8007, 0
     CallCommonScript 0x7D2
     End
 

@@ -10,9 +10,9 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_294 21, 1
-    GoToIfSet 114, _0031
-    SetFlag 114
+    ShowBattlePoints 21, 1
+    GoToIfSet FLAG_UNK_0x0072, _0031
+    SetFlag FLAG_UNK_0x0072
     BufferNumber 0, 1
     Message 15
     GoTo _0041
@@ -26,48 +26,48 @@ _0031:
 
 _0041:
     Message 1
-    ScrCmd_041 30, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 2, 0
-    ScrCmd_042 3, 1
-    ScrCmd_042 4, 2
-    ScrCmd_043
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0085
-    GoToIfEq 0x8008, 1, _015D
+    InitLocalTextMenu 30, 11, 0, VAR_RESULT
+    SetMenuXOriginToRight
+    AddMenuEntryImm 2, 0
+    AddMenuEntryImm 3, 1
+    AddMenuEntryImm 4, 2
+    ShowMenu
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _0085
+    GoToIfEq VAR_0x8008, 1, _015D
     GoTo _0152
     End
 
 _0085:
     BufferNumber 2, 1
     Message 7
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0152
-    ScrCmd_29A 1, 0x800C
-    GoToIfEq 0x800C, 0, _0147
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0152
+    ScrCmd_29A 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0147
     ScrCmd_299 1
-    ScrCmd_296
+    UpdateBPDisplay
     Message 10
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_295
+    HideBattlePoints
     CloseMessage
     ScrCmd_2E2
-    ScrCmd_2E4 0, 0x4000, 0x4001
-    ScrCmd_2E4 1, 0x4002, 0x4003
-    ScrCmd_2E4 2, 0x4004, 0x4005
+    ScrCmd_2E4 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1
+    ScrCmd_2E4 1, VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3
+    ScrCmd_2E4 2, VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5
     ScrCmd_2E3
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x8000, 0
+    SetVar VAR_0x8000, 0
     Call _017A
-    GoToIfEq 0x8000, 0, _01AB
-    BufferNumber 0, 0x8000
+    GoToIfEq VAR_0x8000, 0, _01AB
+    BufferNumber 0, VAR_0x8000
     Message 11
-    CallIfNe 0x4001, 0, _01B6
-    CallIfNe 0x4003, 0, _0200
-    CallIfNe 0x4005, 0, _024A
+    CallIfNe VAR_MAP_LOCAL_1, 0, _01B6
+    CallIfNe VAR_MAP_LOCAL_3, 0, _0200
+    CallIfNe VAR_MAP_LOCAL_5, 0, _024A
     Message 5
     GoTo _0172
     End
@@ -90,7 +90,7 @@ _015D:
 _0168:
     WaitABXPadPress
     CloseMessage
-    ScrCmd_295
+    HideBattlePoints
     ReleaseAll
     End
 
@@ -101,13 +101,13 @@ _0172:
     End
 
 _017A:
-    CallIfNe 0x4001, 0, _01A3
-    CallIfNe 0x4003, 0, _01A3
-    CallIfNe 0x4005, 0, _01A3
+    CallIfNe VAR_MAP_LOCAL_1, 0, _01A3
+    CallIfNe VAR_MAP_LOCAL_3, 0, _01A3
+    CallIfNe VAR_MAP_LOCAL_5, 0, _01A3
     Return
 
 _01A3:
-    AddVar 0x8000, 1
+    AddVar VAR_0x8000, 1
     Return
 
 _01AB:
@@ -116,53 +116,50 @@ _01AB:
     End
 
 _01B6:
-    GoToIfGt 0x4001, 1, _01CE
-    BufferItemName 0, 0x4000
+    GoToIfGt VAR_MAP_LOCAL_1, 1, _01CE
+    BufferItemName 0, VAR_MAP_LOCAL_0
     GoTo _01D3
 
 _01CE:
-    ScrCmd_33D 0, 0x4000
+    BufferItemNamePlural 0, VAR_MAP_LOCAL_0
 _01D3:
-    BufferNumber 1, 0x4001
-    ScrCmd_07D 0x4000, 0x4001, 0x800C
-    GoToIfEq 0x800C, 0, _0294
+    BufferNumber 1, VAR_MAP_LOCAL_1
+    GoToIfCannotFitItem VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, VAR_RESULT, _0294
     PlaySound SEQ_FANFA4
     Message 13
-    AddItem 0x4000, 0x4001, 0x800C
+    AddItem VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, VAR_RESULT
     WaitSound
     Return
 
 _0200:
-    GoToIfGt 0x4003, 1, _0218
-    BufferItemName 0, 0x4002
+    GoToIfGt VAR_MAP_LOCAL_3, 1, _0218
+    BufferItemName 0, VAR_MAP_LOCAL_2
     GoTo _021D
 
 _0218:
-    ScrCmd_33D 0, 0x4002
+    BufferItemNamePlural 0, VAR_MAP_LOCAL_2
 _021D:
-    BufferNumber 1, 0x4003
-    ScrCmd_07D 0x4002, 0x4003, 0x800C
-    GoToIfEq 0x800C, 0, _0294
+    BufferNumber 1, VAR_MAP_LOCAL_3
+    GoToIfCannotFitItem VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_RESULT, _0294
     PlaySound SEQ_FANFA4
     Message 13
-    AddItem 0x4002, 0x4003, 0x800C
+    AddItem VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_RESULT
     WaitSound
     Return
 
 _024A:
-    GoToIfGt 0x4005, 1, _0262
-    BufferItemName 0, 0x4004
+    GoToIfGt VAR_MAP_LOCAL_5, 1, _0262
+    BufferItemName 0, VAR_MAP_LOCAL_4
     GoTo _0267
 
 _0262:
-    ScrCmd_33D 0, 0x4004
+    BufferItemNamePlural 0, VAR_MAP_LOCAL_4
 _0267:
-    BufferNumber 1, 0x4005
-    ScrCmd_07D 0x4004, 0x4005, 0x800C
-    GoToIfEq 0x800C, 0, _0294
+    BufferNumber 1, VAR_MAP_LOCAL_5
+    GoToIfCannotFitItem VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5, VAR_RESULT, _0294
     PlaySound SEQ_FANFA4
     Message 13
-    AddItem 0x4004, 0x4005, 0x800C
+    AddItem VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5, VAR_RESULT
     WaitSound
     Return
 

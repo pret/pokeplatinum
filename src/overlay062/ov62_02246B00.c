@@ -14,10 +14,10 @@
 #include "inlines.h"
 #include "narc.h"
 #include "palette.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
-#include "unk_02005474.h"
 #include "unk_02023FCC.h"
 
 static inline void inline_ov62_02247CE0(UnkStruct_ov62_02246BF4 *param0, int param1, s16 param2, s16 param3);
@@ -447,7 +447,7 @@ void ov62_0224730C(u32 param0, u32 param1, void *param2)
                 v0->unk_29C.unk_04 = v0->unk_00[param0].unk_04;
             }
 
-            Sound_PlayEffect(1379);
+            Sound_PlayEffect(SEQ_SE_PL_BREC57);
         } else {
             if (param0 == 22) {
                 v0->unk_188[1].unk_14.unk_00 = 0;
@@ -469,7 +469,7 @@ void ov62_0224730C(u32 param0, u32 param1, void *param2)
                     return;
                 }
 
-                Sound_PlayEffect(1379);
+                Sound_PlayEffect(SEQ_SE_PL_BREC57);
 
                 v1 = v0->unk_188[0].unk_00;
                 v0->unk_00[v1].unk_00 = param0 - 12 + 1;
@@ -503,10 +503,10 @@ void ov62_0224730C(u32 param0, u32 param1, void *param2)
                 }
             } else {
                 if (param0 == 22) {
-                    Sound_PlayEffect(1379);
+                    Sound_PlayEffect(SEQ_SE_PL_BREC57);
                     ov62_02247160(v0);
                 } else {
-                    Sound_PlayEffect(1379);
+                    Sound_PlayEffect(SEQ_SE_PL_BREC57);
                     ov62_022470A8(v0);
                 }
             }

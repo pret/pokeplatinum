@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000A:
-    ScrCmd_2F2
+    InitPersistedMapFeaturesForDistortionWorld
     End
 
 _000E:
@@ -17,8 +17,8 @@ _000E:
     ApplyMovement 128, _0060
     WaitMovement
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _003B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _003B
     Message 1
     GoTo _003E
 
@@ -31,7 +31,7 @@ _003E:
     ApplyMovement 128, _0068
     WaitMovement
     ScrCmd_312 128
-    SetVar 0x4055, 6
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 6
     ReleaseAll
     End
 

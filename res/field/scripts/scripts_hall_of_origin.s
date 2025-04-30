@@ -11,63 +11,63 @@
     ScriptEntryEnd
 
 _0012:
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
-    GoToIfEq 0x4000, FALSE, _0035
-    GoToIfSet 0x11E, _0035
-    ClearFlag 0x24E
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0035
+    GoToIfSet FLAG_UNK_0x011E, _0035
+    ClearFlag FLAG_UNK_0x024E
     End
 
 _0035:
-    SetFlag 0x24E
+    SetFlag FLAG_UNK_0x024E
     End
 
 _003B:
-    GoToIfSet 142, _0048
+    GoToIfSet FLAG_UNK_0x008E, _0048
     End
 
 _0048:
-    SetFlag 0x24E
+    SetFlag FLAG_UNK_0x024E
     RemoveObject 0
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E
     End
 
 _0056:
     LockAll
-    SetVar 0x4118, 0
+    SetVar VAR_UNK_0x4118, 0
     Call _00E9
     Call _0104
     PlayCry SPECIES_ARCEUS
-    ScrCmd_04D
+    WaitCry
     Call _016F
     PlayCry SPECIES_ARCEUS
     Message 0
     CloseMessage
-    SetFlag 142
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_ARCEUS, 80
-    ClearFlag 142
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00DF
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _00D0
-    CallIfEq 0x4056, 0, _00C8
-    SetFlag 0x11E
+    ClearFlag FLAG_UNK_0x008E
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00DF
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _00D0
+    CallIfEq VAR_ARCEUS_EVENT_STATE, 0, _00C8
+    SetFlag FLAG_UNK_0x011E
     ReleaseAll
     End
 
 _00C8:
-    SetVar 0x4056, 1
+    SetVar VAR_ARCEUS_EVENT_STATE, 1
     Return
 
 _00D0:
     Message 1
     WaitABXPadPress
     CloseMessage
-    ClearFlag 0x24E
+    ClearFlag FLAG_UNK_0x024E
     ReleaseAll
     End
 
 _00DF:
-    ClearFlag 0x24E
+    ClearFlag FLAG_UNK_0x024E
     BlackOutFromBattle
     ReleaseAll
     End
@@ -84,11 +84,11 @@ _00F8:
     EndMovement
 
 _0104:
-    GetPlayerMapPos 0x8004, 0x8005
-    SetVar 0x8008, 0x8004
-    GoToIfEq 0x8008, 30, _0139
-    GoToIfEq 0x8008, 31, _014B
-    GoToIfEq 0x8008, 32, _015D
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    SetVar VAR_0x8008, VAR_0x8004
+    GoToIfEq VAR_0x8008, 30, _0139
+    GoToIfEq VAR_0x8008, 31, _014B
+    GoToIfEq VAR_0x8008, 32, _015D
 _0137:
     Return
 

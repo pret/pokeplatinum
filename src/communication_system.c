@@ -27,7 +27,7 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 
-enum {
+enum TransmissionType {
     TRANSMISSION_TYPE_SERVER_CLIENT,
     TRANSMISSION_TYPE_PARALLEL,
     TRANSMISSION_TYPE_SWITCH_TO_SERVER_CLIENT,

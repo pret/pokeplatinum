@@ -24,9 +24,9 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "render_window.h"
+#include "sound.h"
 #include "sprite_system.h"
 #include "system.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"
@@ -62,7 +62,7 @@ int ov100_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_0C.unk_50.unk_02 = 31;
     v0->unk_0C.unk_C1 = 31;
 
-    sub_02005454(1);
+    Sound_Set2PokemonCriesAllowed(1);
 
     {
         Window *v1 = &v0->unk_0C.unk_30;
@@ -150,7 +150,7 @@ int ov100_021D0F44(OverlayManager *param0, int *param1)
     GXLayers_SwapDisplay();
     OverlayManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_111);
-    sub_02005454(0);
+    Sound_Set2PokemonCriesAllowed(0);
 
     return 1;
 }
@@ -217,7 +217,7 @@ static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0)
     param0->unk_10 = PaletteData_New(HEAP_ID_111);
     param0->unk_14 = sub_02024220(HEAP_ID_111, 0, 1, 0, 4, NULL);
     param0->camera = Camera_Alloc(HEAP_ID_111);
-    param0->unk_2C = MessageLoader_Init(0, 26, 234, HEAP_ID_111);
+    param0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPEAR_PILLAR, HEAP_ID_111);
 
     PaletteData_SetAutoTransparent(param0->unk_10, 1);
     PaletteData_AllocBuffer(param0->unk_10, 0, 0x200, HEAP_ID_111);

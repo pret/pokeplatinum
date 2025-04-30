@@ -9,13 +9,13 @@
     ScriptEntryEnd
 
 _000E:
-    ScrCmd_238 13, 0x4000
-    GoToIfEq 0x4000, 0, _0027
-    ClearFlag 0x219
+    ScrCmd_238 13, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0027
+    ClearFlag FLAG_UNK_0x0219
     End
 
 _0027:
-    SetFlag 0x219
+    SetFlag FLAG_UNK_0x0219
     End
 
 _002D:

@@ -24,13 +24,15 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -41,8 +43,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_0201E3D8.h"
@@ -173,7 +173,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
         v0->unk_00 = BgConfig_New(HEAP_ID_39);
 
         v0->unk_0C = StringTemplate_Default(HEAP_ID_39);
-        v0->unk_10 = MessageLoader_Init(0, 26, 425, HEAP_ID_39);
+        v0->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0425, HEAP_ID_39);
 
         SetAutorepeat(4, 8);
 
@@ -203,7 +203,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
         ov58_021D16D8(v0);
         ov58_021D18AC(v0, param0);
 
-        sub_02004550(52, 0, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
 
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
@@ -606,7 +606,7 @@ static void ov58_021D1524(void)
         CharTransfer_Init(&v0);
     }
 
-    PlttTransfer_Init(20, 39);
+    PlttTransfer_Init(20, HEAP_ID_39);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -618,21 +618,21 @@ static void ov58_021D1554(UnkStruct_02095EAC *param0, NARC *param1)
     NNS_G2dInitOamManagerModule();
 
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 39);
-    param0->unk_34 = SpriteList_InitRendering(50 + 3, &param0->unk_38, 39);
+    param0->unk_34 = SpriteList_InitRendering(50 + 3, &param0->unk_38, HEAP_ID_39);
     SetSubScreenViewRect(&param0->unk_38, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1C4[v0] = SpriteResourceCollection_New(2, v0, 39);
+        param0->unk_1C4[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_39);
     }
 
-    param0->unk_1D4[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1C4[0], param1, 6, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 39);
-    param0->unk_1D4[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1C4[1], param1, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, 39);
-    param0->unk_1D4[0][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 0, 2, 39);
-    param0->unk_1D4[0][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 0, 3, 39);
-    param0->unk_1D4[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1C4[0], param1, 6, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, 39);
-    param0->unk_1D4[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1C4[1], param1, 0, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, 39);
-    param0->unk_1D4[1][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 1, 2, 39);
-    param0->unk_1D4[1][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 1, 3, 39);
+    param0->unk_1D4[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1C4[0], param1, 6, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_39);
+    param0->unk_1D4[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1C4[1], param1, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_39);
+    param0->unk_1D4[0][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 0, 2, HEAP_ID_39);
+    param0->unk_1D4[0][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 0, 3, HEAP_ID_39);
+    param0->unk_1D4[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1C4[0], param1, 6, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_39);
+    param0->unk_1D4[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1C4[1], param1, 0, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, HEAP_ID_39);
+    param0->unk_1D4[1][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 1, 2, HEAP_ID_39);
+    param0->unk_1D4[1][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 1, 3, HEAP_ID_39);
 
     SpriteTransfer_RequestChar(param0->unk_1D4[0][0]);
     SpriteTransfer_RequestChar(param0->unk_1D4[1][0]);
@@ -675,7 +675,7 @@ static void ov58_021D16D8(UnkStruct_02095EAC *param0)
         v1.affineZRotation = 0;
         v1.priority = 1;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.heapID = 39;
+        v1.heapID = HEAP_ID_39;
 
         for (v0 = 0; v0 < 5; v0++) {
             v1.resourceData = &param0->unk_218;
@@ -819,14 +819,14 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
             if (param0->unk_43DA != v0) {
                 param0->unk_43DA = v0;
                 ov58_021D1CAC(param0->unk_2AC, v0);
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
             break;
         case 8:
             if (param0->unk_368 == 4) {
                 if (CommSys_CurNetId() == 0) {
                     if (param0->unk_380 != sub_020318EC()) {
-                        Sound_PlayEffect(1522);
+                        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                         break;
                     }
 
@@ -836,16 +836,16 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
                     ov58_021D2CB0(param0, 5);
                     ov58_021D1CDC(param0->unk_2AC, 1);
                     v2 = 1;
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                 } else {
                     if (param0->unk_43E6[0].unk_09 == 2) {
-                        Sound_PlayEffect(1522);
+                        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                     } else {
                         ov58_021D2A98(param0, 1, TEXT_SPEED_FAST);
                         ov58_021D2CB0(param0, 5);
                         ov58_021D1CDC(param0->unk_2AC, 1);
                         v2 = 1;
-                        Sound_PlayEffect(1500);
+                        Sound_PlayEffect(SEQ_SE_CONFIRM);
                     }
                 }
             }
@@ -865,7 +865,7 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
 
             if (param0->unk_43DB != (0 + v0 - 9)) {
                 param0->unk_43DB = 0 + v0 - 9;
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
             }
         } break;
         }
@@ -948,7 +948,7 @@ static int ov58_021D1D64(UnkStruct_02095EAC *param0, int param1)
     }
 
     ov58_021D2CB0(param0, 2);
-    Sound_PlayEffect(1508);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
 
     G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, -6);
 
@@ -1009,7 +1009,7 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
         ov58_021D1D40(param0);
 
         if (ov58_021D2D30(param0)) {
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
         }
 
         return param1;
@@ -1281,7 +1281,7 @@ static int ov58_021D2320(UnkStruct_02095EAC *param0, int param1)
 
     ov58_021D2A98(param0, 2, TEXT_SPEED_FAST);
     ov58_021D2CB0(param0, 22);
-    Sound_PlayEffect(1508);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
 
     if (CommSys_CurNetId() == 0) {
         ov58_021D2B3C(param0, 0);

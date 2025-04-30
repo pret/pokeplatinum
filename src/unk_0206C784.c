@@ -3,9 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/map_prop.h"
+#include "constants/field/map_prop.h"
 
-#include "struct_defs/struct_02055130.h"
 #include "struct_defs/struct_0206C8D4.h"
 
 #include "field/field_system.h"
@@ -21,11 +20,11 @@
 #include "field_transition.h"
 #include "heap.h"
 #include "player_avatar.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
+#include "sound.h"
+#include "sound_playback.h"
+#include "terrain_collision_manager.h"
 #include "unk_0200F174.h"
 #include "unk_0203D1B8.h"
-#include "unk_02054D00.h"
 #include "unk_020553DC.h"
 
 typedef struct {
@@ -40,7 +39,7 @@ typedef struct {
     int unk_0C;
     fx32 unk_10;
     fx32 unk_14;
-    int unk_18;
+    int mapID;
     int unk_1C;
     int unk_20;
     VecFx32 unk_24;
@@ -62,7 +61,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
     UnkStruct_0206CAD0 *v0;
     BOOL v1;
     BOOL v2;
-    UnkStruct_02055130 v3;
+    TerrainCollisionHitbox v3;
     int v4;
     int v5;
 
@@ -70,7 +69,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
 
     v0->unk_01 = param1;
     v0->unk_04 = param2;
-    v0->unk_18 = param3;
+    v0->mapID = param3;
     v0->unk_1C = param4;
     v0->unk_20 = param5;
     v0->unk_34 = *(fieldSystem->areaModelAttrs);
@@ -81,23 +80,23 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
     v0->unk_05 = 0;
     v0->unk_08 = 0;
 
-    sub_02004550(64, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_64, SEQ_NONE, 0);
 
     if (param1 == 3) {
-        v4 = 34;
-        sub_020550F4(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1, -3, 3, 6, &v3);
+        v4 = MAP_PROP_MODEL_REGULAR_SHIP;
+        TerrainCollisionHitbox_Init(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1, -3, 3, 6, &v3);
         v1 = 1;
         v5 = (25 * 16 * FX32_ONE);
         v0->unk_10 = (14 * 16 * FX32_ONE);
     } else if (param1 == 2) {
-        v4 = 538;
-        sub_020550F4(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), -2, 2, 6, 3, &v3);
+        v4 = MAP_PROP_MODEL_SCREW_STEAMSHIP_SPIRAL;
+        TerrainCollisionHitbox_Init(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), -2, 2, 6, 3, &v3);
         v1 = 1;
         v5 = (12 * 16 * FX32_ONE);
     }
 
     if (v1) {
-        v2 = sub_02055178(fieldSystem, v4, &v3, &v0->unk_30);
+        v2 = FieldSystem_FindCollidingLoadedMapPropByModelID(fieldSystem, v4, &v3, &v0->unk_30);
 
         if (v2) {
             v0->unk_0C = v5;
@@ -114,7 +113,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
                 v0->unk_00 = 1;
 
                 sub_0206CBA0(fieldSystem);
-                Sound_PlayEffect(1757);
+                Sound_PlayEffect(SEQ_SE_DP_SHIP02);
             } else {
                 v0->unk_00 = 0;
             }
@@ -191,7 +190,7 @@ static BOOL sub_0206C964(FieldTask *taskMan)
             if (sub_0206CB8C(&v1->unk_10, &v1->unk_14, &v1->unk_02)) {
                 MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 1, 0);
                 MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 2, 0);
-                Sound_PlayEffect(1758);
+                Sound_PlayEffect(SEQ_SE_DP_SHIP03);
             }
         } else {
             if ((MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 1)) && (MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 2)) && v2) {
@@ -201,11 +200,11 @@ static BOOL sub_0206C964(FieldTask *taskMan)
     } break;
     case 2:
         StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELDMAP);
-        sub_0200564C(0, 6);
+        Sound_FadeOutBGM(0, 6);
         v1->unk_00 = 3;
         break;
     case 3:
-        if (!IsScreenTransitionDone() || (Sound_CheckFade() != 0)) {
+        if (!IsScreenTransitionDone() || (Sound_IsFadeActive())) {
             return 0;
         }
 
@@ -222,11 +221,11 @@ static BOOL sub_0206C964(FieldTask *taskMan)
         v1->unk_00 = 5;
         break;
     case 5:
-        FieldTask_ChangeMapToLocation(taskMan, v1->unk_18, -1, v1->unk_1C, v1->unk_20, v1->unk_04);
+        FieldTask_ChangeMapToLocation(taskMan, v1->mapID, -1, v1->unk_1C, v1->unk_20, v1->unk_04);
         v1->unk_00 = 6;
         break;
     case 6:
-        Sound_PlayMapBGM(fieldSystem, v1->unk_18);
+        Sound_PlayMapBGM(fieldSystem, v1->mapID);
         FieldTransition_StartMapAndFadeIn(taskMan);
         v1->unk_00 = 7;
         break;
@@ -306,7 +305,7 @@ static void sub_0206CBA0(FieldSystem *fieldSystem)
     int v3[2] = { 1, 2 };
 
     for (v0 = 0; v0 < 2; v0++) {
-        v1 = sub_020552B4(fieldSystem, v2[v0], NULL, NULL);
+        v1 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, v2[v0], NULL, NULL);
 
         if (v1) {
             NNSG3dResMdl *v4;
@@ -316,7 +315,7 @@ static void sub_0206CBA0(FieldSystem *fieldSystem)
 
             v5 = AreaDataManager_GetMapPropModelFile(v2[v0], fieldSystem->areaDataManager);
             v4 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v5), 0);
-            v1 = sub_020552B4(fieldSystem, v2[v0], &v6, NULL);
+            v1 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, v2[v0], &v6, NULL);
 
             GF_ASSERT(v1);
             v7 = MapProp_GetRenderObj(v6);

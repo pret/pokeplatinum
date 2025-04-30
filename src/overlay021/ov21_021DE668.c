@@ -3,10 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D1F90.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
@@ -32,14 +28,14 @@
 #include "narc.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_02012744.h"
 
 #include "res/text/bank/pokedex.h"
@@ -86,9 +82,9 @@ static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
 static void ov21_021DEA0C(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1);
 static void ov21_021DEA44(UnkStruct_ov21_021DE760 *param0, int heapID);
 static void ov21_021DEB58(UnkStruct_ov21_021DE760 *param0, const UnkStruct_ov21_021DE6D4 *param1, int param2);
-static void ov21_021DEC2C(Window *param0, int param1, int param2, u32 param3);
-static void ov21_021DEC80(Window *param0, int param1, int param2, u32 param3);
-static void ov21_021DECD4(Window *param0, int param1, int param2, int param3, u32 param4);
+static void ov21_021DEC2C(Window *param0, int heapID, int param2, u32 param3);
+static void ov21_021DEC80(Window *param0, int heapID, int param2, u32 param3);
+static void ov21_021DECD4(Window *param0, int heapID, int param2, int param3, u32 param4);
 static void ov21_021DED24(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int param3);
 static void ov21_021DED68(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1);
 static void ov21_021DED7C(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, int param2, int param3);
@@ -225,7 +221,7 @@ static int ov21_021DE79C(UnkStruct_ov21_021E6A68 *param0, void *param1)
     switch (param0->unk_00) {
     case 0:
         if (v0->unk_1C == 1) {
-            Sound_PlayPokemonCry(POKECRY_POKEDEX, PokedexSort_CurrentSpecies(v0->unk_04), 0x1ff, 0x1ff, 0x1ff, 0);
+            Sound_PlayPokemonCryEx(POKECRY_POKEDEX, PokedexSort_CurrentSpecies(v0->unk_04), 0x1ff, 0x1ff, 0x1ff, 0);
             v0->unk_1C = 0;
         }
 
@@ -240,7 +236,7 @@ static int ov21_021DE79C(UnkStruct_ov21_021E6A68 *param0, void *param1)
 
 static int ov21_021DE7F8(UnkStruct_ov21_021E6A68 *param0, void *param1)
 {
-    sub_0200592C(0);
+    Sound_StopPokemonCries(0);
     return 1;
 }
 
@@ -445,12 +441,12 @@ void ov21_021DEB8C(Window *param0, int param1, enum HeapId heapID, int param3, u
     ov21_021DECD4(param0, heapID, param1, param3, param4);
 }
 
-static void ov21_021DEC2C(Window *param0, int param1, int param2, u32 param3)
+static void ov21_021DEC2C(Window *param0, int heapID, int param2, u32 param3)
 {
-    Strbuf *v0 = Strbuf_Init(64, param1);
+    Strbuf *v0 = Strbuf_Init(64, heapID);
 
     int heightMessageBankIndex = Height_Message_Bank_Index();
-    MessageLoader *v1 = MessageLoader_Init(0, 26, heightMessageBankIndex, param1);
+    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, heightMessageBankIndex, heapID);
 
     MessageLoader_GetStrbuf(v1, param2, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 184, 88, TEXT_SPEED_INSTANT, param3, NULL);
@@ -458,12 +454,12 @@ static void ov21_021DEC2C(Window *param0, int param1, int param2, u32 param3)
     MessageLoader_Free(v1);
 }
 
-static void ov21_021DEC80(Window *param0, int param1, int param2, u32 param3)
+static void ov21_021DEC80(Window *param0, int heapID, int param2, u32 param3)
 {
-    Strbuf *v0 = Strbuf_Init(64, param1);
+    Strbuf *v0 = Strbuf_Init(64, heapID);
 
     int weightMessageBankIndex = Weight_Message_Bank_Index();
-    MessageLoader *v1 = MessageLoader_Init(0, 26, weightMessageBankIndex, param1);
+    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, weightMessageBankIndex, heapID);
 
     MessageLoader_GetStrbuf(v1, param2, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 184, 104, TEXT_SPEED_INSTANT, param3, NULL);
@@ -471,9 +467,9 @@ static void ov21_021DEC80(Window *param0, int param1, int param2, u32 param3)
     MessageLoader_Free(v1);
 }
 
-static void ov21_021DECD4(Window *param0, int param1, int param2, int param3, u32 param4)
+static void ov21_021DECD4(Window *param0, int heapID, int param2, int param3, u32 param4)
 {
-    Strbuf *v0 = PokedexText_DexEntry(param2, GAME_LANGUAGE, param3, param1);
+    Strbuf *v0 = PokedexText_DexEntry(param2, GAME_LANGUAGE, param3, heapID);
     u32 v1 = Font_CalcMaxLineWidth(FONT_SYSTEM, v0, 0);
     u32 v2 = (v1 < 240) ? 128 - v1 / 2 : 8;
 
@@ -484,9 +480,9 @@ static void ov21_021DECD4(Window *param0, int param1, int param2, int param3, u3
 static void ov21_021DED24(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int param3)
 {
     int species = PokedexSort_CurrentSpecies(param2->unk_04);
-    int v1 = PokedexSort_DefaultForm(param2->unk_04, species);
+    int form = PokedexSort_DefaultForm(param2->unk_04, species);
 
-    if ((species == 487) && (v1 > 0)) {
+    if ((species == SPECIES_GIRATINA) && (form > 0)) {
         species = 11;
     }
 
@@ -583,15 +579,15 @@ static void ov21_021DEF54(UnkStruct_ov21_021DE760 *param0, const UnkStruct_ov21_
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
     PokedexMain_DisplayPokemonSprite(param0->unk_00, param1->unk_04, species, 2, 48, 72);
-    sub_02007DEC(v0, 6, 0);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 0);
 }
 
 static void ov21_021DEF8C(UnkStruct_ov21_021DE760 *param0)
 {
     PokemonSprite *v0 = ov21_021D2170(param0->unk_00);
 
-    sub_02007DEC(v0, 6, 1);
-    sub_02008780(v0);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 1);
+    PokemonSprite_ClearFade(v0);
 }
 
 static void ov21_021DEFA8(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, int param2)

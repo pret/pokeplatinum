@@ -188,31 +188,31 @@ void BattleSystem_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCt
     }
 }
 
-void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file)
+void BattleSystem_LoadScript(BattleContext *battleCtx, enum NarcID narcID, int file)
 {
-    GF_ASSERT(NARC_GetMemberSizeByIndexPair(narc, file) < BATTLE_SCRIPT_SIZE_MAX * sizeof(u32));
+    GF_ASSERT(NARC_GetMemberSizeByIndexPair(narcID, file) < BATTLE_SCRIPT_SIZE_MAX * sizeof(u32));
 
-    battleCtx->scriptNarc = narc;
+    battleCtx->scriptNarc = narcID;
     battleCtx->scriptFile = file;
     battleCtx->scriptCursor = 0;
 
-    NARC_ReadWholeMemberByIndexPair(&battleCtx->battleScript, narc, file);
+    NARC_ReadWholeMemberByIndexPair(&battleCtx->battleScript, narcID, file);
 }
 
-void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file)
+void BattleSystem_CallScript(BattleContext *battleCtx, enum NarcID narcID, int file)
 {
-    GF_ASSERT(NARC_GetMemberSizeByIndexPair(narc, file) < 400 * 4);
+    GF_ASSERT(NARC_GetMemberSizeByIndexPair(narcID, file) < 400 * 4);
     GF_ASSERT(battleCtx->scriptStackPointer < 4);
 
     battleCtx->scriptStackNarc[battleCtx->scriptStackPointer] = battleCtx->scriptNarc;
     battleCtx->scriptStackFile[battleCtx->scriptStackPointer] = battleCtx->scriptFile;
     battleCtx->scriptStackCursor[battleCtx->scriptStackPointer] = battleCtx->scriptCursor;
     battleCtx->scriptStackPointer++;
-    battleCtx->scriptNarc = narc;
+    battleCtx->scriptNarc = narcID;
     battleCtx->scriptFile = file;
     battleCtx->scriptCursor = 0;
 
-    NARC_ReadWholeMemberByIndexPair(&battleCtx->battleScript, narc, file);
+    NARC_ReadWholeMemberByIndexPair(&battleCtx->battleScript, narcID, file);
 }
 
 BOOL BattleSystem_PopScript(BattleContext *battleCtx)
@@ -1854,7 +1854,7 @@ enum BattleSubAnimation Battler_StatusCondition(BattleContext *battleCtx, int ba
     return BATTLE_ANIMATION_NONE;
 }
 
-enum {
+enum CheckTrainerMessageState {
     CHECK_TRMSG_START = 0,
 
     CHECK_TRMSG_FIRST_DAMAGE = CHECK_TRMSG_START,
@@ -3613,7 +3613,7 @@ int BattleSystem_Divide(int dividend, int divisor)
     return dividend;
 }
 
-enum {
+enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_START = 0,
 
     SWITCH_IN_CHECK_STATE_FIELD_WEATHER = SWITCH_IN_CHECK_STATE_START,
@@ -3635,7 +3635,7 @@ enum {
     SWITCH_IN_CHECK_STATE_DONE,
 };
 
-enum {
+enum SwitchInCheckResult {
     SWITCH_IN_CHECK_RESULT_CONTINUE = 0,
     SWITCH_IN_CHECK_RESULT_BREAK,
     SWITCH_IN_CHECK_RESULT_DONE,
@@ -6426,7 +6426,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 // Force Giratina-Altered form
                 tmp = 0;
                 Pokemon_SetValue(mon, MON_DATA_FORM, &tmp);
-                Pokemon_SetGiratinaForm(mon);
+                Pokemon_SetGiratinaFormByHeldItem(mon);
 
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].attack = Pokemon_GetValue(mon, MON_DATA_ATK, 0);
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].defense = Pokemon_GetValue(mon, MON_DATA_DEF, 0);

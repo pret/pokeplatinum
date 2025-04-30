@@ -8,7 +8,6 @@
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_t.h"
@@ -36,7 +35,7 @@
 #include "item.h"
 #include "journal.h"
 #include "list_menu.h"
-#include "math.h"
+#include "math_util.h"
 #include "menu.h"
 #include "message.h"
 #include "message_util.h"
@@ -50,6 +49,9 @@
 #include "render_window.h"
 #include "rtc.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_chatot.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -62,9 +64,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
-#include "unk_02006224.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_0202ACE0.h"
@@ -103,7 +102,7 @@ static void ov88_0223CEF0(u16 *param0);
 static int ov88_0223CF30(int param0, int param1, UnkStruct_ov88_0223C8AC *param2);
 static void ov88_0223CF68(int param0, Sprite *param1, int param2);
 static int ov88_0223CFF4(u32 *param0, int *param1, Sprite *param2, UnkStruct_ov88_0223C8AC *param3, int param4);
-static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, ArchivedSprite *param3);
+static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteTemplate *param3);
 static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon);
 static void ov88_0223D140(ChatotCry *param0);
 static void ov88_0223E894(UnkStruct_02095E80 *param0);
@@ -161,8 +160,7 @@ static int ov88_0223D7AC(UnkStruct_02095E80 *param0);
 static int ov88_0223D854(UnkStruct_02095E80 *param0);
 static int ov88_0223D69C(UnkStruct_02095E80 *param0);
 static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1);
-static void ov88_0223D0D4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkStruct_02027F8C *param2);
-static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
+static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2);
 
 static const int Unk_ov88_0223EF9C[][2] = {
     { 0x0, 0x20 },
@@ -291,10 +289,10 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     MI_CpuClearFast(v0, sizeof(UnkStruct_02095E80));
 
     v0->unk_174 = BgConfig_New(HEAP_ID_26);
-    v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, 26);
+    v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, HEAP_ID_26);
     v0->unk_17C = StringTemplate_Default(HEAP_ID_26);
     v0->unk_180 = StringTemplate_Default(HEAP_ID_26);
-    v0->unk_184 = MessageLoader_Init(0, 26, 354, HEAP_ID_26);
+    v0->unk_184 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);
     v0->unk_40 = NULL;
 
     ov88_0223C370(v0, param0);
@@ -319,12 +317,12 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     sub_02038A1C(26, v0->unk_174);
     sub_02039734();
 
-    if (IsNight() == 0) {
-        sub_02004550(4, 1085, 1);
-        sub_02004A84(1085);
+    if (IsNight() == FALSE) {
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PC_01, 1);
+        Sound_AdjustVolumeForVoiceChat(1085);
     } else {
-        sub_02004550(4, 1086, 1);
-        sub_02004A84(1086);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PC_02, 1);
+        Sound_AdjustVolumeForVoiceChat(1086);
     }
 
     NARC_dtor(v1);
@@ -506,7 +504,7 @@ static void ov88_0223B748(Window *param0, StringTemplate *param1, MessageLoader 
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param3); v0++) {
-        Strbuf *v1 = MessageUtil_ExpandedStrbuf(param1, param2, 1 + param4 + v0, 26);
+        Strbuf *v1 = MessageUtil_ExpandedStrbuf(param1, param2, 1 + param4 + v0, HEAP_ID_26);
 
         ov88_0223EC78(&param0[v0], v1, 8, TEXT_SPEED_INSTANT, 1, 0);
         Strbuf_Free(v1);
@@ -557,24 +555,21 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
     switch (param0->unk_4C) {
     case 0:
         CommTiming_StartSync(80);
-        ResetLock(2);
+        ResetLock(RESET_LOCK_0x2);
         ov88_0223E894(param0);
 
-        {
-            int v0, v1, v2;
-            Pokemon *v3;
+        int i, form, species;
 
-            for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_08->unk_08); v0++) {
-                Pokemon *v4 = Party_GetPokemonBySlotIndex(param0->unk_08->unk_08, v0);
+        for (i = 0; i < Party_GetCurrentCount(param0->unk_08->unk_08); i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_08->unk_08, i);
 
-                v2 = Pokemon_GetValue(v4, MON_DATA_SPECIES_EGG, NULL);
+            species = Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL);
 
-                if (v2 == 492) {
-                    v1 = Pokemon_GetValue(v4, MON_DATA_FORM, NULL);
+            if (species == SPECIES_SHAYMIN) {
+                form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-                    if (v1 != 0) {
-                        Pokemon_SetShayminForm(v4, 0);
-                    }
+                if (form != SHAYMIN_FORM_LAND) {
+                    Pokemon_SetShayminForm(mon, SHAYMIN_FORM_LAND);
                 }
             }
         }
@@ -680,7 +675,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         }
         break;
     case 14:
-        ov88_0223D140(GetChatotCryDataFromSave(param0->unk_04));
+        ov88_0223D140(SaveData_GetChatotCry(param0->unk_04));
         param0->unk_4C++;
         break;
     case 15:
@@ -733,7 +728,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
             Window_EraseMessageBox(&param0->unk_49C[23], 0);
             Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
             ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-            ResetUnlock(2);
+            ResetUnlock(RESET_LOCK_0x2);
 
             return 1;
         }
@@ -902,7 +897,7 @@ static void ov88_0223C0E0(void *param0)
         int v1 = v0->unk_2168 - 1;
 
         GXS_LoadOBJ(v0->unk_848[v1], 0 + v1 * (0x20 * 10 * 10), (0x20 * 10 * 10));
-        Graphics_LoadPalette(v0->unk_2148[v1].archive, v0->unk_2148[v1].palette, 5, 0x20 * (2 + v1), 32, HEAP_ID_26);
+        Graphics_LoadPalette(v0->unk_2148[v1].narcID, v0->unk_2148[v1].palette, 5, 0x20 * (2 + v1), 32, HEAP_ID_26);
 
         v0->unk_2168 = 0;
     }
@@ -1165,9 +1160,9 @@ static void ov88_0223C44C(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, 0);
 }
 
-static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 heapID)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, param7, 1);
+    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, heapID, 1);
 
     if (v0 != NULL) {
         NNSG2dScreenData *v1;
@@ -1203,7 +1198,7 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, HEAP_ID_26);
 
-    ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, 26);
+    ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_26);
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, HEAP_ID_26);
     Font_LoadScreenIndicatorsPalette(0, 2 * 32, HEAP_ID_26);
@@ -1226,7 +1221,7 @@ static void ov88_0223C63C(void)
         CharTransfer_Init(&v0);
     }
 
-    PlttTransfer_Init(20, 26);
+    PlttTransfer_Init(20, HEAP_ID_26);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -1238,20 +1233,20 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 127, 0, 32, 0, 127, 0, 32, 26);
 
-    param0->unk_194 = SpriteList_InitRendering((2 + 12 + 12 + 12 + 2 + 2 + 2 + 1), &param0->unk_198, 26);
+    param0->unk_194 = SpriteList_InitRendering((2 + 12 + 12 + 12 + 2 + 2 + 2 + 1), &param0->unk_198, HEAP_ID_26);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_324[v0] = SpriteResourceCollection_New(2, v0, 26);
+        param0->unk_324[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_26);
     }
 
-    param0->unk_334[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_324[0], param1, 7, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 26);
-    param0->unk_334[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_324[1], param1, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, 26);
-    param0->unk_334[0][2] = SpriteResourceCollection_AddFrom(param0->unk_324[2], param1, 8, 1, 0, 2, 26);
-    param0->unk_334[0][3] = SpriteResourceCollection_AddFrom(param0->unk_324[3], param1, 9, 1, 0, 3, 26);
-    param0->unk_334[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_324[0], param1, 10, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, 26);
-    param0->unk_334[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_324[1], param1, 0, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 10, 26);
-    param0->unk_334[1][2] = SpriteResourceCollection_AddFrom(param0->unk_324[2], param1, 11, 1, 1, 2, 26);
-    param0->unk_334[1][3] = SpriteResourceCollection_AddFrom(param0->unk_324[3], param1, 12, 1, 1, 3, 26);
+    param0->unk_334[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_324[0], param1, 7, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_26);
+    param0->unk_334[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_324[1], param1, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, HEAP_ID_26);
+    param0->unk_334[0][2] = SpriteResourceCollection_AddFrom(param0->unk_324[2], param1, 8, 1, 0, 2, HEAP_ID_26);
+    param0->unk_334[0][3] = SpriteResourceCollection_AddFrom(param0->unk_324[3], param1, 9, 1, 0, 3, HEAP_ID_26);
+    param0->unk_334[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_324[0], param1, 10, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_26);
+    param0->unk_334[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_324[1], param1, 0, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 10, HEAP_ID_26);
+    param0->unk_334[1][2] = SpriteResourceCollection_AddFrom(param0->unk_324[2], param1, 11, 1, 1, 2, HEAP_ID_26);
+    param0->unk_334[1][3] = SpriteResourceCollection_AddFrom(param0->unk_324[3], param1, 12, 1, 1, 3, HEAP_ID_26);
 
     SpriteTransfer_RequestChar(param0->unk_334[0][0]);
     SpriteTransfer_RequestChar(param0->unk_334[1][0]);
@@ -1260,15 +1255,15 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, HEAP_ID_26);
 }
 
-static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, ArchivedSprite *param3)
+static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteTemplate *param3)
 {
-    Pokemon_BuildArchivedSprite(param3, param1, 2);
+    Pokemon_BuildSpriteTemplate(param3, param1, 2);
 
     {
         int v0 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         int v1 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
-        sub_020136A4(param3->archive, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, v0, 0, 2, v1);
+        sub_020136A4(param3->narcID, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, v0, 0, 2, v1);
     }
 
     DC_FlushRange(param2, 0x20 * 10 * 10);
@@ -1399,7 +1394,7 @@ static void ov88_0223CBA0(UnkStruct_02095E80 *param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.heapID = 26;
+        v0.heapID = HEAP_ID_26;
 
         for (v1 = 0; v1 < 2; v1++) {
             v0.position.x = FX32_ONE * Unk_ov88_0223EF9C[v1][0];
@@ -1514,9 +1509,9 @@ static void ov88_0223CE74(UnkStruct_02095E80 *param0)
         form = param0->unk_6F4[param0->unk_88[0]].unk_06;
 
         if (species == SPECIES_CHATOT) {
-            Sound_PlayChatotCry(GetChatotCryDataFromSave(param0->unk_04), 0, 100, 0);
+            Sound_PlayChatotCry(SaveData_GetChatotCry(param0->unk_04), 0, 100, 0);
         } else {
-            sub_02005844(species, form);
+            Sound_PlayPokemonCry(species, form);
         }
 
         Sprite_SetAnimateFlag(param0->unk_464[v2], 1);
@@ -1597,7 +1592,7 @@ static int ov88_0223CFF4(u32 *param0, int *param1, Sprite *param2, UnkStruct_ov8
             ov88_0223CF68(v1, param2, param4);
 
             if (*param1 != v1) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 *param1 = v1;
                 v2 = 1;
             }
@@ -1650,7 +1645,7 @@ static void ov88_0223D0C0(SaveData *param0)
     CommSys_SendData(32, v0, 14);
 }
 
-static void ov88_0223D0D4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkStruct_02027F8C *param2)
+static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
 {
     int v0;
 
@@ -1668,7 +1663,7 @@ static void ov88_0223D0D4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkSt
         param2->unk_78[v0] = param1[v0].unk_16;
     }
 
-    CommSys_SendDataHuge(28, param2, sizeof(UnkStruct_02027F8C));
+    CommSys_SendDataHuge(28, param2, sizeof(PalPad));
 }
 
 static void ov88_0223D140(ChatotCry *param0)
@@ -1679,7 +1674,7 @@ static void ov88_0223D140(ChatotCry *param0)
 static int ov88_0223D150(UnkStruct_02095E80 *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_88[0] = 12;
         ov88_0223BE28(param0);
         ov88_0223CF68(param0->unk_88[0], param0->unk_39C[0], 0);
@@ -1828,9 +1823,9 @@ static int ov88_0223D514(UnkStruct_02095E80 *param0)
 
     switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
     case 0:
-        sub_02030788(sub_0203068C(param0->unk_04), param0->unk_36C8);
+        sub_02030788(SaveData_GetBattleFrontier(param0->unk_04), param0->unk_36C8);
         sub_0202AFD4(param0->unk_36EC, param0->unk_36C8);
-        sub_02039298(param0->unk_04, param0->unk_36C4, 32 - 1, 26, 0);
+        sub_02039298(param0->unk_04, param0->unk_36C4, 32 - 1, HEAP_ID_26, 0);
         param0->unk_226C = ov88_0223D854;
         break;
     case 0xfffffffe:
@@ -1857,14 +1852,14 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v1 = CommInfo_TrainerInfo(param0->unk_36C4);
         StringTemplate_SetPlayerName(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_36C8 = v0;
 
         {
@@ -1950,7 +1945,7 @@ static int ov88_0223D7AC(UnkStruct_02095E80 *param0)
 
         for (v0 = 0; v0 < 32; v0++) {
             if (!sub_0202AF78(param0->unk_36EC, v0)) {
-                sub_02039298(param0->unk_04, param0->unk_36C4, v0, 26, 0);
+                sub_02039298(param0->unk_04, param0->unk_36C4, v0, HEAP_ID_26, 0);
                 break;
             }
         }
@@ -2005,7 +2000,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
         return 0;
     }
 
-    if (Bag_CanRemoveItem(SaveData_GetBag(param0->unk_04), 437, 1, 26) == 1) {
+    if (Bag_CanRemoveItem(SaveData_GetBag(param0->unk_04), ITEM_PAL_PAD, 1, HEAP_ID_26) == TRUE) {
         v1 = CommInfo_TrainerInfo(param0->unk_36C4);
         StringTemplate_SetPlayerName(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 57);
@@ -2014,11 +2009,11 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
     }
 
     {
-        UnkStruct_0202B370 *v2 = sub_0202B370(param0->unk_04);
+        WiFiList *v2 = SaveData_GetWiFiList(param0->unk_04);
 
         for (v0 = 0; v0 < 32; v0++) {
             if (!sub_0202AF78(v2, v0)) {
-                sub_02039298(param0->unk_04, param0->unk_36C4, v0, 26, 0);
+                sub_02039298(param0->unk_04, param0->unk_36C4, v0, HEAP_ID_26, 0);
                 break;
             }
         }
@@ -2030,7 +2025,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
 
 static int ov88_0223D96C(UnkStruct_02095E80 *param0)
 {
-    if (0 == sub_020391DC(param0->unk_04, param0->unk_3644, 26)) {
+    if (0 == sub_020391DC(param0->unk_04, param0->unk_3644, HEAP_ID_26)) {
         CommTiming_StartSync(19);
         ov88_0223ECBC(&param0->unk_49C[23], 28, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D840;
@@ -2038,8 +2033,8 @@ static int ov88_0223D96C(UnkStruct_02095E80 *param0)
     }
 
     param0->unk_36CC = StringTemplate_Default(HEAP_ID_26);
-    param0->unk_36D0 = MessageLoader_Init(0, 26, 675, HEAP_ID_26);
-    param0->unk_36EC = sub_0202B370(param0->unk_04);
+    param0->unk_36D0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_26);
+    param0->unk_36EC = SaveData_GetWiFiList(param0->unk_04);
     param0->unk_226C = ov88_0223D854;
 
     return 0;
@@ -2494,7 +2489,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         Pokemon_SetValue(v1, MON_DATA_FRIENDSHIP, &v3);
     }
 
-    sub_0209304C(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, 11);
+    UpdateMonStatusAndTrainerInfo(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELDMAP);
     sub_0207893C(v1);
     Pokemon_Copy(v0, param4->unk_3C);
     Pokemon_Copy(v1, param4->unk_40);
@@ -2503,7 +2498,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
     param4->unk_2C = param2;
 
     if (Party_HasSpecies(param0, SPECIES_CHATOT) == 0) {
-        ChatotCry *v4 = GetChatotCryDataFromSave(param4->unk_10);
+        ChatotCry *v4 = SaveData_GetChatotCry(param4->unk_10);
         ResetChatotCryDataStatus(v4);
     }
 

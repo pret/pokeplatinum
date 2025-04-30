@@ -60,16 +60,16 @@ void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 25);
 
-    param0->unk_00 = SpriteList_InitRendering((8 + 8 + 8 + 1), &param0->unk_04, 25);
+    param0->unk_00 = SpriteList_InitRendering((8 + 8 + 8 + 1), &param0->unk_04, HEAP_ID_25);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov71_0223D6C8[v0], v0, 25);
+        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov71_0223D6C8[v0], v0, HEAP_ID_25);
     }
 
-    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], param1, 33, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 25);
-    param0->unk_1A0[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_190[1], param1, 14, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 9, 25);
-    param0->unk_1A0[0][2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param1, 44, 0, 1, 2, 25);
-    param0->unk_1A0[0][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param1, 46, 0, 1, 3, 25);
+    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], param1, 33, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_25);
+    param0->unk_1A0[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_190[1], param1, 14, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 9, HEAP_ID_25);
+    param0->unk_1A0[0][2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param1, 44, 0, 1, 2, HEAP_ID_25);
+    param0->unk_1A0[0][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param1, 46, 0, 1, 3, HEAP_ID_25);
 
     SpriteTransfer_RequestChar(param0->unk_1A0[0][0]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[0][1]);
@@ -119,7 +119,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
         v3.affineZRotation = 0;
         v3.priority = 2;
         v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v3.heapID = 25;
+        v3.heapID = HEAP_ID_25;
 
         for (v0 = 0; v0 < 8; v0++) {
             v3.position.x = FX32_ONE * Unk_ov71_0223D73C[v0].unk_00;
@@ -223,7 +223,7 @@ static void ov71_0223D2F4(void)
         CharTransfer_Init(&v0);
     }
 
-    PlttTransfer_Init(2, 25);
+    PlttTransfer_Init(2, HEAP_ID_25);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }

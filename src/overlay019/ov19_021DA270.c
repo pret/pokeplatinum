@@ -149,7 +149,7 @@ void ov19_021DA428(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, s32 para
     GF_ASSERT(param7->unk_00 != NULL);
 
     Sprite_SetExplicitPalette(param7->unk_00, 2 + param7->unk_2C);
-    ov19_021DA63C(param0, param7, ov19_021D5EC8(param0->unk_40));
+    ov19_021DA63C(param0, param7, ov19_GetMonSpriteTransparencyMask(param0->unk_40));
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
@@ -183,7 +183,7 @@ void ov19_021DA548(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, u32 para
     GF_ASSERT(param10->unk_00 != NULL);
 
     Sprite_SetExplicitPalette(param10->unk_00, 2 + param10->unk_2C);
-    ov19_021DA63C(param0, param10, ov19_021D5EC8(param0->unk_40));
+    ov19_021DA63C(param0, param10, ov19_GetMonSpriteTransparencyMask(param0->unk_40));
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
@@ -226,12 +226,12 @@ void ov19_021DA694(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *par
     u32 v1;
     NNSG2dCharacterData *v2;
 
-    if ((param1->unk_30 == 112) && (param1->unk_28 == PokeIconSpriteIndex(487, 0, 0))) {
-        param1->unk_28 = PokeIconSpriteIndex(487, 0, 1);
-    } else if ((param1->unk_30 != 112) && (param1->unk_28 == PokeIconSpriteIndex(487, 0, 1))) {
-        param1->unk_28 = PokeIconSpriteIndex(487, 0, 0);
-    } else if ((param2 == 1) && (param1->unk_28 == PokeIconSpriteIndex(492, 0, 1))) {
-        param1->unk_28 = PokeIconSpriteIndex(492, 0, 0);
+    if (param1->unk_30 == 112 && param1->unk_28 == PokeIconSpriteIndex(SPECIES_GIRATINA, 0, GIRATINA_FORM_ALTERED)) {
+        param1->unk_28 = PokeIconSpriteIndex(SPECIES_GIRATINA, 0, GIRATINA_FORM_ORIGIN);
+    } else if (param1->unk_30 != 112 && param1->unk_28 == PokeIconSpriteIndex(SPECIES_GIRATINA, 0, GIRATINA_FORM_ORIGIN)) {
+        param1->unk_28 = PokeIconSpriteIndex(SPECIES_GIRATINA, 0, GIRATINA_FORM_ALTERED);
+    } else if (param2 == 1 && param1->unk_28 == PokeIconSpriteIndex(SPECIES_SHAYMIN, 0, SHAYMIN_FORM_SKY)) {
+        param1->unk_28 = PokeIconSpriteIndex(SPECIES_SHAYMIN, 0, SHAYMIN_FORM_LAND);
     } else {
         return;
     }

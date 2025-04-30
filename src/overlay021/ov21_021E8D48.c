@@ -3,12 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
-#include "struct_decls/struct_02007768_decl.h"
-#include "struct_defs/archived_sprite.h"
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D1F90.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
@@ -31,6 +25,8 @@
 #include "palette.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -39,8 +35,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"
@@ -103,7 +97,7 @@ static void ov21_021E9208(SpriteResourceCollection **param0, int param1);
 static void ov21_021E9228(SpriteResourceCollection **param0);
 static void ov21_021E9240(UnkStruct_ov21_021D22F8 *param0, UnkStruct_ov21_021D4C0C *param1, int param2, int param3, int param4);
 static void ov21_021E92B0(UnkStruct_ov21_021D22F8 *param0);
-static PokemonSprite *ov21_021E99E0(UnkStruct_02007768 *param0, Pokemon *param1, int param2, int param3, int param4);
+static PokemonSprite *ov21_021E99E0(PokemonSpriteManager *param0, Pokemon *param1, int param2, int param3, int param4);
 static void ov21_021E92C4(SpriteResource **param0, SpriteResourceCollection **param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov21_021E9344(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov21_021E93C4(SpriteResource **param0, SpriteResourceCollection **param1);
@@ -134,7 +128,7 @@ static void ov21_021E9B08(UnkStruct_ov21_021E9A9C *param0, int param1);
 
 UnkStruct_ov21_021E8D48 *ov21_021E8D48(const UnkStruct_ov21_021E8E0C *param0)
 {
-    UnkStruct_ov21_021E8D48 *v0 = Heap_AllocFromHeap(param0->heapId, sizeof(UnkStruct_ov21_021E8D48));
+    UnkStruct_ov21_021E8D48 *v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021E8D48));
 
     memset(v0, 0, sizeof(UnkStruct_ov21_021E8D48));
 
@@ -191,37 +185,37 @@ void ov21_021E8E04(UnkStruct_ov21_021E8D48 *param0, BOOL param1)
 static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_021E8E0C *param1)
 {
     UnkStruct_ov21_021D1FA4 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, param1->heapId);
+    NARC *v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, param1->heapID);
     int v2;
 
     param0->unk_220 = Pokemon_GetValue(param1->unk_10, MON_DATA_SPECIES, NULL);
     v2 = Pokemon_GetValue(param1->unk_10, MON_DATA_FORM, NULL);
 
     param0->unk_00 = param1->unk_00;
-    param0->unk_19C = SpriteList_InitRendering(32, &param0->unk_10, param1->heapId);
+    param0->unk_19C = SpriteList_InitRendering(32, &param0->unk_10, param1->heapID);
 
-    Utility_Clear2DMainOAM(param1->heapId);
-    ov21_021E9A0C(param1->heapId);
+    Utility_Clear2DMainOAM(param1->heapID);
+    ov21_021E9A0C(param1->heapID);
 
-    param0->unk_0C = ov21_021E99E0(param1->unk_08, param1->unk_10, 48, 72, param1->heapId);
+    param0->unk_0C = ov21_021E99E0(param1->unk_08, param1->unk_10, 48, 72, param1->heapID);
     param0->unk_08 = param1->unk_04;
 
     v0.unk_00 = param0->unk_19C;
     v0.unk_04 = param0->unk_00;
     v0.unk_08 = 3;
-    v0.heapId = param1->heapId;
+    v0.heapID = param1->heapID;
 
     param0->unk_1B0 = ov21_021D4C0C(&v0);
 
-    ov21_021E90B0(param0->unk_00, param1->heapId);
+    ov21_021E90B0(param0->unk_00, param1->heapID);
     G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), -16);
 
-    param0->unk_04 = ov21_021E91B0(param0->unk_00, param1->heapId);
+    param0->unk_04 = ov21_021E91B0(param0->unk_00, param1->heapID);
 
-    ov21_021E9208(param0->unk_1A0, param1->heapId);
-    ov21_021D2B88(&param0->unk_1B4, param0->unk_1A0, param1->heapId, v1);
-    ov21_021D2D88(&param0->unk_1B4, param0->unk_19C, param0->unk_1A0, param1->heapId, 2);
-    ov21_021E9240(&param0->unk_1B4, param0->unk_1B0, param1->heapId, param0->unk_220, param1->unk_14);
+    ov21_021E9208(param0->unk_1A0, param1->heapID);
+    ov21_021D2B88(&param0->unk_1B4, param0->unk_1A0, param1->heapID, v1);
+    ov21_021D2D88(&param0->unk_1B4, param0->unk_19C, param0->unk_1A0, param1->heapID, 2);
+    ov21_021E9240(&param0->unk_1B4, param0->unk_1B0, param1->heapID, param0->unk_220, param1->unk_14);
     ov21_021D1858(&param0->unk_1B4, 172, 32);
     ov21_021D2E44(&param0->unk_1B4, 1);
 
@@ -234,18 +228,18 @@ static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_
             v3 = param0->unk_220;
         }
 
-        ov21_021E9458(&param0->unk_1E4, param0->unk_1A0, v3, param1->heapId);
-        ov21_021E94B0(&param0->unk_1E4, param0->unk_19C, param0->unk_1A0, param1->heapId);
+        ov21_021E9458(&param0->unk_1E4, param0->unk_1A0, v3, param1->heapID);
+        ov21_021E94B0(&param0->unk_1E4, param0->unk_19C, param0->unk_1A0, param1->heapID);
     }
 
-    ov21_021E95BC(&param0->unk_200, param0->unk_1A0, param0->unk_220, param1->heapId, v1);
-    ov21_021E95F8(&param0->unk_200, param0->unk_19C, param0->unk_1A0, param1->heapId, param0->unk_220);
-    ov21_021E9504(&param0->unk_1F8, param0->unk_19C, param0->unk_1A0, param1->heapId, param0->unk_200.unk_08);
-    ov21_021E9560(&param0->unk_1F8, param0->unk_1B0, param1->heapId, param0->unk_220, param0->unk_1B4.unk_0C[1]);
-    ov21_021E96A8(param0->unk_00, param1->heapId, v1);
-    ov21_021E97C4(param0->unk_00, param1->heapId, v1);
-    ov21_021E9968(param0->unk_04, param1->heapId, param0->unk_220);
-    ov21_021E9A40(&param0->unk_228, param1->heapId, param1->unk_14, v1);
+    ov21_021E95BC(&param0->unk_200, param0->unk_1A0, param0->unk_220, param1->heapID, v1);
+    ov21_021E95F8(&param0->unk_200, param0->unk_19C, param0->unk_1A0, param1->heapID, param0->unk_220);
+    ov21_021E9504(&param0->unk_1F8, param0->unk_19C, param0->unk_1A0, param1->heapID, param0->unk_200.unk_08);
+    ov21_021E9560(&param0->unk_1F8, param0->unk_1B0, param1->heapID, param0->unk_220, param0->unk_1B4.unk_0C[1]);
+    ov21_021E96A8(param0->unk_00, param1->heapID, v1);
+    ov21_021E97C4(param0->unk_00, param1->heapID, v1);
+    ov21_021E9968(param0->unk_04, param1->heapID, param0->unk_220);
+    ov21_021E9A40(&param0->unk_228, param1->heapID, param1->unk_14, v1);
 
     param0->unk_248 = 1;
 
@@ -686,12 +680,12 @@ static void ov21_021E9828(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        v1 = Sound_PlayPokemonCry(POKECRY_POKEDEX, v0->unk_220, 0x1ff, 0x1ff, 0x1ff, 0);
+        v1 = Sound_PlayPokemonCryEx(POKECRY_POKEDEX, v0->unk_220, 0x1ff, 0x1ff, 0x1ff, 0);
         GF_ASSERT(v1);
         v0->unk_21C++;
         break;
     case 3:
-        if (sub_0200598C() == 0) {
+        if (Sound_IsPokemonCryPlaying() == 0) {
             v0->unk_21C++;
         }
         break;
@@ -716,7 +710,7 @@ static void ov21_021E98D8(PaletteData *param0, PokemonSprite *param1)
 
 static void ov21_021E98F8(PaletteData *param0, PokemonSprite *param1, int param2, int param3, int param4, int param5, int param6)
 {
-    sub_020086FC(param1, param2, param4, param5, param6);
+    PokemonSprite_StartFade(param1, param2, param4, param5, param6);
     PaletteData_StartFade(param0, 0x1 | 0x4, 0xffff, param5, param3, param4, param6);
     PaletteData_SetAutoTransparent(param0, 0);
 }
@@ -726,7 +720,7 @@ static BOOL ov21_021E9948(PaletteData *param0, PokemonSprite *param1)
     BOOL v0[2];
 
     v0[0] = PaletteData_GetSelectedBuffersMask(param0);
-    v0[1] = sub_020087B4(param1);
+    v0[1] = PokemonSprite_IsFadeActive(param1);
 
     if ((v0[0] == 0) && (v0[1] == 0)) {
         return 1;
@@ -753,12 +747,12 @@ static void ov21_021E998C(Window *param0, enum HeapId heapID)
     MessageLoader_Free(pokedexMessageBank);
 }
 
-static PokemonSprite *ov21_021E99E0(UnkStruct_02007768 *param0, Pokemon *param1, int param2, int param3, int param4)
+static PokemonSprite *ov21_021E99E0(PokemonSpriteManager *param0, Pokemon *param1, int param2, int param3, int param4)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
 
-    Pokemon_BuildArchivedSprite(&v0, param1, 2);
-    return sub_02007C34(param0, &v0, param2, param3, 0, 0, NULL, NULL);
+    Pokemon_BuildSpriteTemplate(&v0, param1, 2);
+    return PokemonSpriteManager_CreateSprite(param0, &v0, param2, param3, 0, 0, NULL, NULL);
 }
 
 static void ov21_021E9A0C(int param0)

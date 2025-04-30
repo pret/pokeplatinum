@@ -3,22 +3,22 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "constants/field_poison.h"
 #include "constants/player_avatar.h"
 #include "generated/game_records.h"
-#include "generated/sdat.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/daycare.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/daycare.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1154.h"
-#include "overlay005/ov5_021E622C.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/ov5_021EF4BC.h"
 #include "overlay005/ov5_021F8370.h"
@@ -33,6 +33,7 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "daycare_save.h"
 #include "encounter.h"
 #include "field_comm_manager.h"
 #include "field_map_change.h"
@@ -45,30 +46,29 @@
 #include "map_object.h"
 #include "map_tile_behavior.h"
 #include "party.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
 #include "pokemon.h"
 #include "pokeradar.h"
 #include "save_player.h"
 #include "script_manager.h"
+#include "sound_playback.h"
 #include "start_menu.h"
 #include "system.h"
 #include "system_flags.h"
 #include "system_vars.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
-#include "unk_020261E4.h"
 #include "unk_02030EE0.h"
 #include "unk_020366A0.h"
 #include "unk_0203C954.h"
 #include "unk_02054884.h"
-#include "unk_02054D00.h"
 #include "unk_02056B30.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
 #include "unk_0205F180.h"
 #include "unk_02067A84.h"
 #include "unk_020683F4.h"
-#include "unk_02071B10.h"
 #include "vars_flags.h"
 
 static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput *input);
@@ -180,14 +180,14 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 
     // dummy5 will always be false, so this branch will always be taken, but it doesn't match without the condition
     if (input->dummy5 == FALSE) {
-        BOOL hasTwoAliveMons = Party_HasTwoAliveMons(Party_GetFromSavedata(fieldSystem->saveData));
+        BOOL hasTwoAliveMons = Party_HasTwoAliveMons(SaveData_GetParty(fieldSystem->saveData));
 
         if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
             hasTwoAliveMons = TRUE;
         }
 
         if (sub_02067A84(fieldSystem, hasTwoAliveMons) == TRUE
-            || (sub_02071CB4(fieldSystem, 2) == TRUE
+            || (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == TRUE
                 && ov8_0224C51C(fieldSystem) == TRUE)) {
 
             sub_0205F56C(fieldSystem->playerAvatar);
@@ -212,11 +212,11 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;
         }
 
-        if (Party_HasMonWithMove(Party_GetFromSavedata(fieldSystem->saveData), MOVE_WATERFALL) != PARTY_SLOT_NONE) {
+        if (Party_HasMonWithMove(SaveData_GetParty(fieldSystem->saveData), MOVE_WATERFALL) != PARTY_SLOT_NONE) {
             playerEvent |= PLAYER_EVENT_USED_WATERFALL;
         }
 
-        if (sub_02071CB4(fieldSystem, 9) == TRUE && ov9_02250F74(fieldSystem) == TRUE) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE && ov9_02250F74(fieldSystem) == TRUE) {
             playerEvent |= PLAYER_EVENT_DISTORTION_WORLD;
         }
 
@@ -234,7 +234,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             return TRUE;
         }
 
-        if (sub_02071CB4(fieldSystem, 9) == TRUE) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE) {
             int direction = (s8)input->playerDir;
 
             if (direction == DIR_NONE) {
@@ -257,7 +257,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         int validInteraction;
         MapObject *object;
 
-        if (sub_02071CB4(fieldSystem, 9) == TRUE) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE) {
             validInteraction = Field_DistortionInteract(fieldSystem, &object);
         } else {
             validInteraction = sub_0203CA40(fieldSystem, &object);
@@ -297,8 +297,8 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             }
         }
 
-        int distortionDir = sub_0205EAA0(fieldSystem->playerAvatar);
-        u32 distortionBehavior = sub_020616F0(fieldSystem->playerAvatar, distortionDir);
+        int distortionDir = PlayerAvatar_GetDistortionDir(fieldSystem->playerAvatar);
+        u32 distortionBehavior = PlayerAvatar_GetDistortionTileBehaviour(fieldSystem->playerAvatar, distortionDir);
         int distortionScript = Field_TileBehaviorToScript(fieldSystem, distortionBehavior);
 
         if (distortionScript != 0xffff) {
@@ -317,7 +317,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
     }
 
     if (input->mapTransition) {
-        if (sub_02071CB4(fieldSystem, 9) == TRUE) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE) {
             ov9_0224A800(fieldSystem, input->transitionDir);
         } else if (Field_CheckMapTransition(fieldSystem, input) == TRUE) {
             Field_TrySetMapConnection(fieldSystem);
@@ -565,14 +565,14 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
         return FALSE;
     }
 
-    if (sub_02071CB4(fieldSystem, 4) == TRUE && ov8_0224BF4C(fieldSystem) == TRUE) {
+    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM) == TRUE && ov8_0224BF4C(fieldSystem) == TRUE) {
         return TRUE;
     }
 
     int playerX, playerZ;
     Field_Step(fieldSystem, &playerX, &playerZ);
 
-    if (FieldSystem_CheckCollision(fieldSystem, playerX, playerZ) == FALSE) {
+    if (TerrainCollisionManager_CheckCollision(fieldSystem, playerX, playerZ) == FALSE) {
         return FALSE;
     }
 
@@ -580,12 +580,12 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
     Location nextMap;
 
     if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap) && input->transitionDir != DIR_NONE) {
-        tileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
+        tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerZ);
 
         if (TileBehavior_IsDoor(tileBehavior)) {
             int v6 = input->transitionDir;
 
-            if (sub_02071CB4(fieldSystem, 2) == TRUE) {
+            if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == TRUE) {
                 ov8_0224C62C(fieldSystem, playerX, playerZ, &v6);
             }
 
@@ -597,7 +597,7 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
 
     Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
 
-    tileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
+    tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerZ);
 
     if (TileBehavior_IsWarpEntranceEast(tileBehavior) || TileBehavior_IsWarpEast(tileBehavior)) {
         if (input->transitionDir != DIR_EAST) {
@@ -680,16 +680,16 @@ u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
         return 10100;
     }
 
-    if (ov5_021E0760(behavior, playerDir)) {
+    if (PlayerAvatar_CanUseRockClimb(behavior, playerDir)) {
         return 10003;
     }
 
     if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) != PLAYER_STATE_SURFING) {
         TrainerInfo *info = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        u32 distortionBehavior = sub_02061760(fieldSystem->playerAvatar);
+        u32 distortionBehavior = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
 
-        if (ov5_021E0118(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, 3)) {
-            if (Party_HasMonWithMove(Party_GetFromSavedata(fieldSystem->saveData), MOVE_SURF) != PARTY_SLOT_NONE) {
+        if (PlayerAvatar_CanUseSurf(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, 3)) {
+            if (Party_HasMonWithMove(SaveData_GetParty(fieldSystem->saveData), MOVE_SURF) != PARTY_SLOT_NONE) {
                 return 10004;
             }
         }
@@ -700,11 +700,11 @@ u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
 
 static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
 {
-    if (sub_02071CB4(fieldSystem, 3) == TRUE && ov8_0224AAA8(fieldSystem)) {
+    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_CANALAVE_GYM) == TRUE && ov8_0224AAA8(fieldSystem)) {
         return TRUE;
     }
 
-    if (sub_02071CB4(fieldSystem, 9) == TRUE && ov9_0224A71C(fieldSystem) == TRUE) {
+    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE && ov9_0224A71C(fieldSystem) == TRUE) {
         return TRUE;
     }
 
@@ -716,7 +716,7 @@ static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
-    u8 tileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
+    u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerZ);
 
     if (Field_CheckCoordEvent(fieldSystem) == TRUE) {
         return TRUE;
@@ -826,14 +826,14 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
 
 static BOOL Field_UpdateDaycare(FieldSystem *fieldSystem)
 {
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
-    UnkStruct_02026310 *v1 = sub_02026310(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    Daycare *daycare = SaveData_GetDaycare(fieldSystem->saveData);
 
-    if (ov5_021E7154(v1, party, fieldSystem) == TRUE) {
-        GameRecords *v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    if (Daycare_Update(daycare, party, fieldSystem) == TRUE) {
+        GameRecords *records = SaveData_GetGameRecords(fieldSystem->saveData);
 
-        GameRecords_IncrementRecordValue(v2, RECORD_UNK_011);
-        GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_15);
+        GameRecords_IncrementRecordValue(records, RECORD_EGGS_HATCHED);
+        GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_UNK_15);
         ScriptManager_Set(fieldSystem, 2031, NULL);
 
         return TRUE;
@@ -883,7 +883,7 @@ static void Field_CalculateFriendship(FieldSystem *fieldSystem)
 {
     // C99-style declarations don't match
     int i, partyCount;
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     u16 mapID = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
 
     partyCount = Party_GetCurrentCount(party);
@@ -896,7 +896,7 @@ static void Field_CalculateFriendship(FieldSystem *fieldSystem)
 
 static BOOL Field_UpdatePoison(FieldSystem *fieldSystem)
 {
-    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
     u16 *poisonSteps = FieldOverworldState_GetPoisonStepCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     (*poisonSteps)++;
@@ -983,14 +983,14 @@ static u8 Field_CurrentTileBehavior(const FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
     Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
-    return FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
+    return TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerZ);
 }
 
 static u8 Field_NextTileBehavior(const FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
     Field_Step(fieldSystem, &playerX, &playerZ);
-    return FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
+    return TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerZ);
 }
 
 static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int playerZ, Location *nextMap)

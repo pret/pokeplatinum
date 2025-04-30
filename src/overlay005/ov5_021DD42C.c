@@ -107,7 +107,7 @@ void ov5_021DD530(ScriptContext *param0, StringTemplate *param1, u8 param2, u8 p
 
 static u8 ov5_021DD574(ScriptContext *param0)
 {
-    return Options_TextFrameDelay(SaveData_Options(param0->fieldSystem->saveData));
+    return Options_TextFrameDelay(SaveData_GetOptions(param0->fieldSystem->saveData));
 }
 
 static void ov5_021DD588(FieldSystem *fieldSystem, UnkStruct_ov5_021DD648 *param1)
@@ -134,7 +134,7 @@ static void ov5_021DD610(FieldSystem *fieldSystem, UnkStruct_ov5_021DD648 *param
 {
     if (*(param1->unk_10) == 0) {
         FieldMessage_AddWindow(fieldSystem->bgConfig, param1->unk_0C, 3);
-        FieldMessage_DrawWindow(param1->unk_0C, SaveData_Options(fieldSystem->saveData));
+        FieldMessage_DrawWindow(param1->unk_0C, SaveData_GetOptions(fieldSystem->saveData));
         *(param1->unk_10) = 1;
     }
 
@@ -157,7 +157,7 @@ static void ov5_021DD664(UnkStruct_ov5_021DD648 *param0, u16 param1, u16 param2,
     sub_02014CF8(&v0, 0, param3);
     sub_02014CF8(&v0, 1, param4);
 
-    v1 = sub_02014B34(&v0, 32);
+    v1 = sub_02014B34(&v0, HEAP_ID_FIELD_TASK);
 
     Strbuf_Copy(param0->unk_00, v1);
     Strbuf_Free(v1);

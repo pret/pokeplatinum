@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag 0x9D1
+    SetFlag FLAG_UNK_0x09D1
     End
 
 _0018:
@@ -42,7 +42,7 @@ _002F:
     RemoveObject 6
     RemoveObject 7
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar 0x40A0, 1
+    SetVar VAR_UNK_0x40A0, 1
     ReleaseAll
     End
 
@@ -110,7 +110,7 @@ _0118:
     LockAll
     Message 3
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     Message 4
     ApplyMovement 5, _01F0
     WaitMovement
@@ -123,7 +123,7 @@ _0118:
     BufferPlayerName 0
     Message 6
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 5, _0204
     ApplyMovement 4, _01DC
     WaitMovement
@@ -145,7 +145,7 @@ _0118:
     RemoveObject 4
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40A0, 3
+    SetVar VAR_UNK_0x40A0, 3
     ReleaseAll
     End
 

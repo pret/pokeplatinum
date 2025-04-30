@@ -27,12 +27,12 @@
 #include "message.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02024220.h"
 
@@ -103,7 +103,7 @@ void ov17_0223F1E0(GenericPointerData *param0)
     sub_020242C4(param0);
 }
 
-void ov17_0223F1E8(int param0, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -128,7 +128,7 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteManager *param2, UnkStruc
         Text_AddPrinterWithParamsColorAndSpacing(&v1, param6, param5, 0, 0, TEXT_SPEED_NO_TRANSFER, param7, v7, 0, NULL);
     }
 
-    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, param0);
+    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
     CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
     if (param12 == 1) {
@@ -148,7 +148,7 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteManager *param2, UnkStruc
     v0.unk_20 = param13;
     v0.unk_24 = param14;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_2C = param0;
+    v0.heapID = heapID;
 
     v4 = sub_020127E8(&v0);
 
@@ -185,7 +185,7 @@ Strbuf *ov17_0223F310(u32 param0, u32 param1)
     MessageLoader *v0;
     Strbuf *v1;
 
-    v0 = MessageLoader_Init(1, 26, 207, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_JUDGE_NAMES, param1);
     v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);
@@ -438,7 +438,7 @@ static void ov17_0223F774(SysTask *param0, void *param1)
 
     if (v0->unk_08 > v0->unk_0C[v0->unk_11]) {
         BrightnessController_StartTransition(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
-        Sound_PlayEffect(1528);
+        Sound_PlayEffect(SEQ_SE_DP_CON_014);
 
         v0->unk_08 = 0;
         v0->unk_11++;

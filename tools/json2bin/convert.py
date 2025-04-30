@@ -8,12 +8,14 @@ from generated import (
     items,
     genders,
     map_headers,
+    maps,
     moves,
     movement_types,
     object_events,
     species,
     trainer_classes,
-    trainer_types
+    trainer_types,
+    vars_flags
 )
 
 def pad(len: int) -> bytes:
@@ -27,6 +29,9 @@ def u16(i: int) -> bytes:
 
 def u32(i: int) -> bytes:
     return i.to_bytes(4, 'little')
+
+def ascii(i: str) -> bytes:
+    return str.encode(i, 'ascii')
 
 def from_item(s: str) -> int:
     return items.Item[s].value
@@ -58,8 +63,16 @@ def from_movement_type(s: str) -> int:
 def from_trainer_type(s: str) -> int:
     return trainer_types.TrainerType[s].value
 
+def from_var_flag(s: str) -> int:
+    if s.isnumeric():
+        return int(s)
+    return vars_flags.VarFlag[s].value
+
 def from_map_header(s: str) -> int:
     return map_headers.MapHeader[s].value
+
+def from_map(s: str) -> int:
+    return maps.MapID[s].value
 
 TrainerDataFlags = collections.namedtuple('TrainerDataFlags', ['has_moves', 'has_items'])
 

@@ -25,14 +25,14 @@
     ScriptEntryEnd
 
 _004E:
-    CallIfEq 0x40A6, 2, _0077
-    CallIfEq 0x40A6, 3, _0077
-    GoToIfEq 0x407E, 0, _0083
+    CallIfEq VAR_UNK_0x40A6, 2, _0077
+    CallIfEq VAR_UNK_0x40A6, 3, _0077
+    GoToIfEq VAR_UNK_0x407E, 0, _0083
     End
 
 _0077:
-    SetFlag 0x199
-    SetVar 0x40A6, 4
+    SetFlag FLAG_UNK_0x0199
+    SetVar VAR_UNK_0x40A6, 4
     Return
 
 _0083:
@@ -45,15 +45,15 @@ _0099:
     LockAll
     ApplyMovement 9, _04E8
     WaitMovement
-    ClearFlag 0x255
+    ClearFlag FLAG_UNK_0x0255
     AddObject 20
     ScrCmd_062 20
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 0x355, _00FA
-    GoToIfEq 0x8004, 0x356, _0114
-    GoToIfEq 0x8004, 0x357, _012E
-    GoToIfEq 0x8004, 0x358, _0148
-    GoToIfEq 0x8004, 0x359, _0162
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 0x355, _00FA
+    GoToIfEq VAR_0x8004, 0x356, _0114
+    GoToIfEq VAR_0x8004, 0x357, _012E
+    GoToIfEq VAR_0x8004, 0x358, _0148
+    GoToIfEq VAR_0x8004, 0x359, _0162
     End
 
 _00FA:
@@ -98,35 +98,35 @@ _017C:
     ApplyMovement 20, _04A0
     WaitMovement
     Message 11
-    CallIfEq 0x8004, 0x355, _02BE
-    CallIfEq 0x8004, 0x356, _02CA
-    CallIfEq 0x8004, 0x357, _02D6
-    CallIfEq 0x8004, 0x358, _02E2
-    CallIfEq 0x8004, 0x359, _02EE
+    CallIfEq VAR_0x8004, 0x355, _02BE
+    CallIfEq VAR_0x8004, 0x356, _02CA
+    CallIfEq VAR_0x8004, 0x357, _02D6
+    CallIfEq VAR_0x8004, 0x358, _02E2
+    CallIfEq VAR_0x8004, 0x359, _02EE
     Message 12
     CloseMessage
-    CallIfEq 0x8004, 0x355, _02FA
-    CallIfEq 0x8004, 0x356, _030E
-    CallIfEq 0x8004, 0x357, _0322
-    CallIfEq 0x8004, 0x358, _032E
-    CallIfEq 0x8004, 0x359, _0342
+    CallIfEq VAR_0x8004, 0x355, _02FA
+    CallIfEq VAR_0x8004, 0x356, _030E
+    CallIfEq VAR_0x8004, 0x357, _0322
+    CallIfEq VAR_0x8004, 0x358, _032E
+    CallIfEq VAR_0x8004, 0x359, _0342
     RemoveObject 20
-    CallIfEq 0x8004, 0x355, _0356
-    CallIfEq 0x8004, 0x356, _0362
-    CallIfEq 0x8004, 0x357, _036E
-    CallIfEq 0x8004, 0x358, _037A
-    CallIfEq 0x8004, 0x359, _0386
+    CallIfEq VAR_0x8004, 0x355, _0356
+    CallIfEq VAR_0x8004, 0x356, _0362
+    CallIfEq VAR_0x8004, 0x357, _036E
+    CallIfEq VAR_0x8004, 0x358, _037A
+    CallIfEq VAR_0x8004, 0x359, _0386
     ApplyMovement LOCALID_PLAYER, _0528
     WaitMovement
     Message 13
     Call _0577
     CloseMessage
-    CallIfEq 0x8004, 0x355, _0392
-    CallIfEq 0x8004, 0x356, _039E
-    CallIfEq 0x8004, 0x357, _03AA
-    CallIfEq 0x8004, 0x358, _03B6
-    CallIfEq 0x8004, 0x359, _03C2
-    SetVar 0x407E, 3
+    CallIfEq VAR_0x8004, 0x355, _0392
+    CallIfEq VAR_0x8004, 0x356, _039E
+    CallIfEq VAR_0x8004, 0x357, _03AA
+    CallIfEq VAR_0x8004, 0x358, _03B6
+    CallIfEq VAR_0x8004, 0x359, _03C2
+    SetVar VAR_UNK_0x407E, 3
     ReleaseAll
     End
 
@@ -416,10 +416,10 @@ _0530:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 154, _056C
+    GoToIfSet FLAG_UNK_0x009A, _056C
     Message 8
-    CheckBadgeAcquired BADGE_ID_BEACON, 0x800C
-    GoToIfEq 0x800C, 0, _0561
+    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0561
     GoTo _056C
     End
 
@@ -439,18 +439,18 @@ _056C:
 
 _0577:
     Message 6
-    SetVar 0x8004, 0x1AA
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1AA
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 154
+    SetFlag FLAG_UNK_0x009A
     Message 7
     Return
 
 _0593:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x316, _05B7
-    GoToIfEq 0x8005, 0x317, _05C7
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x316, _05B7
+    GoToIfEq VAR_0x8005, 0x317, _05C7
     End
 
 _05B7:
@@ -468,22 +468,22 @@ _05D7:
     CloseMessage
     ApplyMovement 18, _0668
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 18, _0670
     WaitMovement
     Message 1
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 18, _0678
     WaitMovement
     RemoveObject 18
-    WaitTime 1, 0x800C
+    WaitTime 1, VAR_RESULT
     SetObjectEventPos 18, 0x34D, 0x2EC
     ScrCmd_188 18, 15
     ScrCmd_189 18, 1
-    ClearFlag 0x239
+    ClearFlag FLAG_UNK_0x0239
     AddObject 18
-    SetVar 0x407E, 1
+    SetVar VAR_UNK_0x407E, 1
     ReleaseAll
     End
 
@@ -613,15 +613,15 @@ _0791:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    GetDayOfWeek 0x800C
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, DAY_OF_WEEK_SUNDAY, _0806
-    GoToIfEq 0x8008, DAY_OF_WEEK_MONDAY, _0810
-    GoToIfEq 0x8008, DAY_OF_WEEK_TUESDAY, _081A
-    GoToIfEq 0x8008, DAY_OF_WEEK_WEDNESDAY, _0824
-    GoToIfEq 0x8008, DAY_OF_WEEK_THURSDAY, _082E
-    GoToIfEq 0x8008, DAY_OF_WEEK_FRIDAY, _0838
-    GoToIfEq 0x8008, DAY_OF_WEEK_SATURDAY, _0842
+    GetDayOfWeek VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SUNDAY, _0806
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_MONDAY, _0810
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_TUESDAY, _081A
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_WEDNESDAY, _0824
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_THURSDAY, _082E
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_FRIDAY, _0838
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SATURDAY, _0842
     End
 
 _0806:
@@ -660,7 +660,7 @@ _0850:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x162, _086E
+    GoToIfSet FLAG_UNK_0x0162, _086E
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -670,11 +670,11 @@ _0850:
 _086E:
     Message 3
     CloseMessage
-    WaitTime 15, 0x800C
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _08A6
-    GoToIfEq 0x800C, 2, _08BE
-    GoToIfEq 0x800C, 3, _08D6
+    WaitTime 15, VAR_RESULT
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _08A6
+    GoToIfEq VAR_RESULT, 2, _08BE
+    GoToIfEq VAR_RESULT, 3, _08D6
     End
 
 _08A6:

@@ -12,7 +12,7 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -331,7 +331,7 @@ static const VRAMTransfer Unk_ov16_0226F3D4[] = {
 #define HEALTHBAR_EFFECTS_PALETTE_RESID 20007
 #define HEALTHBAR_SAFARI_PALETTE_RESID  20008
 
-enum {
+enum HealthbarGfxResourceID {
     HEALTHBAR_SOLO_ENEMY_NANR = 186,
     HEALTHBAR_SOLO_ENEMY_NCER,
     HEALTHBAR_SOLO_ENEMY_NCGR,

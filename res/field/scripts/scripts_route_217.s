@@ -34,11 +34,11 @@ _003A:
 
 _004D:
     LockAll
-    ClearFlag 0x297
+    ClearFlag FLAG_UNK_0x0297
     AddObject 15
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x12E, _00CA
-    CallIfEq 0x8004, 0x12F, _00D6
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x12E, _00CA
+    CallIfEq VAR_0x8004, 0x12F, _00D6
     BufferPlayerName 0
     Message 0
     CloseMessage
@@ -48,12 +48,12 @@ _004D:
     WaitMovement
     Message 1
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x12E, _00E2
-    CallIfEq 0x8004, 0x12F, _00F6
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x12E, _00E2
+    CallIfEq VAR_0x8004, 0x12F, _00F6
     RemoveObject 15
-    SetVar 0x40A8, 1
-    SetFlag 0x298
+    SetVar VAR_UNK_0x40A8, 1
+    SetFlag FLAG_UNK_0x0298
     ReleaseAll
     End
 

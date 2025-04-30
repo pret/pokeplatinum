@@ -12,7 +12,7 @@
     ScriptEntryEnd
 
 _001A:
-    ScrCmd_2F2
+    InitPersistedMapFeaturesForDistortionWorld
     End
 
 _001E:
@@ -32,7 +32,7 @@ _0044:
     CloseMessage
     ApplyMovement 128, _029C
     WaitMovement
-    SetVar 0x4055, 8
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 8
     End
 
 _006F:
@@ -56,13 +56,13 @@ _0096:
     Message 5
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _01CE
-    SetVar 0x4055, 10
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01CE
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 10
     Message 6
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 86, _00E6
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 86, _00E6
     ApplyMovement LOCALID_PLAYER, _0210
     GoTo _00EE
 
@@ -75,8 +75,8 @@ _00EE:
     ScrCmd_312 129
     ApplyMovement 128, _02BC
     WaitMovement
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 74, _012F
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 74, _012F
     ApplyMovement LOCALID_PLAYER, _0254
     GoTo _013F
 
@@ -86,8 +86,8 @@ _012F:
 _013F:
     Message 7
     WaitMovement
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 74, _016D
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 74, _016D
     ApplyMovement 128, _02F8
     ApplyMovement LOCALID_PLAYER, _0274
     GoTo _017D
@@ -105,8 +105,8 @@ _017D:
     Message 9
     CloseMessage
     ApplyMovement 128, _02C8
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 74, _01BB
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 74, _01BB
     ApplyMovement LOCALID_PLAYER, _0220
     GoTo _01C3
 
@@ -120,7 +120,7 @@ _01C3:
     End
 
 _01CE:
-    SetVar 0x4055, 9
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, 9
     BlackOutFromBattle
     ReleaseAll
     End
@@ -128,7 +128,7 @@ _01CE:
 _01DA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe 0x4055, 10, _01F8
+    GoToIfGe VAR_DISTORTION_WORLD_PROGRESS, 10, _01F8
     Message 3
     WaitABXPadPress
     CloseMessage

@@ -20,11 +20,11 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
@@ -389,7 +389,7 @@ static int ov95_022487D4(UnkStruct_ov95_02248688 *param0, int *param1)
     case 3:
         if (param0->unk_08 < 40) {
             if (++(param0->unk_08) == 40) {
-                Sound_PlayEffect(1712);
+                Sound_PlayEffect(SEQ_SE_DP_KOUKAN10);
             }
         }
 

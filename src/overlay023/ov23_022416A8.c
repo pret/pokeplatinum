@@ -23,14 +23,14 @@
 #include "game_records.h"
 #include "heap.h"
 #include "message.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_flags.h"
-#include "unk_02005474.h"
+#include "terrain_collision_manager.h"
 #include "unk_0202854C.h"
-#include "unk_02054D00.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -97,7 +97,7 @@ void ov23_022416E0(void *param0, FieldSystem *fieldSystem)
     MI_CpuFill8(Unk_ov23_02257744, 0, sizeof(UnkStruct_ov23_02257744));
     Unk_ov23_02257744->fieldSystem = fieldSystem;
 
-    v1 = sub_020298B0(FieldSystem_GetSaveData(fieldSystem));
+    v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(fieldSystem));
 
     for (v0 = 0; v0 < 100; v0++) {
         Unk_ov23_02257744->unk_00[v0].unk_06 = sub_020290DC(v1, v0);
@@ -114,7 +114,7 @@ void ov23_022416E0(void *param0, FieldSystem *fieldSystem)
 
 static void ov23_02241778(void)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257744->fieldSystem));
+    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257744->fieldSystem));
     int v1;
 
     for (v1 = 0; v1 < 100; v1++) {
@@ -272,7 +272,7 @@ void ov23_022419B4(int param0, int param1, void *param2, void *param3)
 
             if (ov23_0224F6E0(v5->unk_06, v5->unk_04 + v5->unk_05)) {
                 Unk_ov23_02257744->unk_468[v1] = v5->unk_06;
-                Sound_PlayEffect(1507);
+                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
                 v4 = 99;
 
                 if (v5->unk_04 + v5->unk_05 < 99) {
@@ -366,7 +366,7 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
         return;
     }
 
-    if (FieldSystem_CheckCollision(Unk_ov23_02257744->fieldSystem, param2, param3)) {
+    if (TerrainCollisionManager_CheckCollision(Unk_ov23_02257744->fieldSystem, param2, param3)) {
         ov23_02253F40(ov23_0224219C(), 60, 0, NULL);
         return;
     }
@@ -400,9 +400,9 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
         ov23_02253F40(ov23_0224219C(), 58, 0, NULL);
         ov23_02250128(param0);
 
-        Sound_PlayEffect(1585);
+        Sound_PlayEffect(SEQ_SE_DP_SUTYA);
         SystemFlag_SetSphereAcquired(SaveData_GetVarsFlags(Unk_ov23_02257744->fieldSystem->saveData));
-        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(Unk_ov23_02257744->fieldSystem->saveData), RECORD_UNK_047);
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecords(Unk_ov23_02257744->fieldSystem->saveData), RECORD_UNK_047);
 
         ov5_021F57C8(Unk_ov23_02257744->fieldSystem, param2, param3);
     }
@@ -527,7 +527,7 @@ BOOL ov23_02241D58(Strbuf *param0)
 
 int ov23_02241DF8(MATHRandContext16 *param0)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257744->fieldSystem));
+    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257744->fieldSystem));
     int v1, v2, v3;
 
     for (v3 = 0; v3 < 100; v3++) {
@@ -548,7 +548,7 @@ static void ov23_02241E4C(SysTask *param0, void *param1)
     v0->unk_02++;
 
     if (100 < v0->unk_02) {
-        Sound_PlayEffect(1354);
+        Sound_PlayEffect(SEQ_SE_PL_UG_006);
         v0->unk_02 = 0;
     }
 }

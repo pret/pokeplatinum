@@ -38,6 +38,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -45,7 +46,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_flags.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
@@ -199,7 +199,7 @@ void ov23_022513B0(int param0, int param1, void *param2, void *param3)
 
     if (v0->unk_00 == CommSys_CurNetId()) {
         if (v0->unk_01 == CommSys_CurNetId()) {
-            Sound_PlayEffect(1548);
+            Sound_PlayEffect(SEQ_SE_DP_PC_ON);
             sub_020594FC();
             ov23_02251F94(fieldSystem);
         } else {
@@ -227,7 +227,7 @@ int ov23_02251414(void)
 
 static BOOL ov23_02251418(int param0, UnkStruct_ov23_02250CD4 *param1)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(param1->fieldSystem));
+    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param1->fieldSystem));
     int v1 = sub_02028B88(v0, param0);
 
     if (sub_0202895C(v0, v1)) {
@@ -240,7 +240,7 @@ static BOOL ov23_02251418(int param0, UnkStruct_ov23_02250CD4 *param1)
 
 static int ov23_0225144C(int param0, UnkStruct_ov23_02250CD4 *param1)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(param1->fieldSystem));
+    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param1->fieldSystem));
     int v1;
 
     if (sub_02028AFC(v0, param0)) {
@@ -297,11 +297,11 @@ static BOOL ov23_022514D8(SysTask *param0, void *param1)
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1550);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
         v0->unk_2AA = 2;
         break;
     case 0: {
-        UndergroundData *v4 = sub_020298B0(v0->fieldSystem->saveData);
+        UndergroundData *v4 = SaveData_GetUndergroundData(v0->fieldSystem->saveData);
 
         if (0 == sub_020289A0(v4)) {
             ov23_02253F40(ov23_022421BC(), 60, 0, NULL);
@@ -315,19 +315,19 @@ static BOOL ov23_022514D8(SysTask *param0, void *param1)
         }
     } break;
     case 4:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0->unk_2AA = 8;
         break;
     case 3:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0->unk_2AA = 6;
         break;
     case 1:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0->unk_2AA = 17;
         break;
     case 2:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0->unk_2AA = 20;
         break;
     default:
@@ -359,7 +359,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
         MessageLoader *v3;
         int v4 = 0;
 
-        v3 = MessageLoader_Init(0, 26, 639, HEAP_ID_FIELD);
+        v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0639, HEAP_ID_FIELD);
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == (v1 - 1)) {
@@ -405,7 +405,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
         MessageLoader *v3;
         int v4 = 0;
 
-        v3 = MessageLoader_Init(0, 26, 639, HEAP_ID_FIELD);
+        v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0639, HEAP_ID_FIELD);
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == param2) {
@@ -450,7 +450,7 @@ static BOOL ov23_022517E0(SysTask *param0, void *param1)
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0->unk_2AA = 0;
         break;
     case 0:
@@ -612,7 +612,7 @@ static BOOL ov23_02251ACC(FieldTask *param0)
 
     switch (v1->unk_00) {
     case 0:
-        Sound_PlayEffect(1549);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         StartScreenTransition(2, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
         v1->unk_00 = 1;
         break;
@@ -699,7 +699,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
     case 6:
         ov23_0224FB7C(param1);
         ov23_02254044(ov23_022421BC());
-        v0->unk_270 = ov23_02253C64(v0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(v0->fieldSystem)), sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem)), NULL, NULL);
+        v0->unk_270 = ov23_02253C64(v0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(v0->fieldSystem)), SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem)), NULL, NULL);
         v0->unk_2AA = 7;
         break;
     case 7:
@@ -941,7 +941,7 @@ void ov23_02252178(int param0, int param1, void *param2, void *param3)
     if (CommSys_CurNetId() == v1->unk_00) {
         ov23_02254068(ov23_022421AC(), CommInfo_TrainerInfo(v1->unk_01));
         ov23_02253F40(ov23_022421AC(), 8, 1, ov23_022513A4);
-        Sound_PlayBGM(1061);
+        Sound_PlayBGM(SEQ_HATANIGE);
     }
 
     ov23_0224AEC4(v1->unk_00, v1->unk_01);
@@ -954,7 +954,7 @@ static void ov23_022521C8(UnkStruct_ov23_02250CD4 *param0)
     ListMenu_CalcTrueCursorPos(param0->unk_48, &param0->unk_2AE);
 
     if (v0 != param0->unk_2AE) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     return;

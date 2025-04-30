@@ -8,7 +8,7 @@
 #include "constants/heap.h"
 #include "constants/items.h"
 
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 
 #include "heap.h"
 #include "party.h"
@@ -37,7 +37,7 @@ BOOL Pokemon_GiveMonFromScript(enum HeapId heapID, SaveData *saveData, u16 speci
     Party *party;
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
 
-    party = Party_GetFromSavedata(saveData);
+    party = SaveData_GetParty(saveData);
     mon = Pokemon_New(heapID);
 
     Pokemon_Init(mon);
@@ -62,7 +62,7 @@ BOOL sub_02054930(int unused, SaveData *saveData, u16 param2, u8 param3, int par
     int v0;
     BOOL result;
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
-    Party *party = Party_GetFromSavedata(saveData);
+    Party *party = SaveData_GetParty(saveData);
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
 
     Pokemon_Init(mon);

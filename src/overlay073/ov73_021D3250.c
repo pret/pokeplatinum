@@ -15,7 +15,7 @@
 #include "palette.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_0200F174.h"
 #include "system.h"
 
@@ -96,8 +96,8 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
         if (v0->unk_24) {
             v0->unk_24--;
         } else {
-            sub_02004224(1030);
-            sub_02004550(4, 1030, 1);
+            Sound_SetFieldBGM(SEQ_TV_HOUSOU);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_TV_HOUSOU, 1);
 
             v0->unk_24 = 3 * 30;
             *param1 = 2;
@@ -324,7 +324,7 @@ static void ov73_021D35F4 (UnkStruct_ov73_021D342C * param0)
 
 static void ov73_021D366C (UnkStruct_ov73_021D342C * param0)
 {
-    param0->unk_08 = MessageLoader_Init(1, 26, 607, param0->heapID);
+    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0607, param0->heapID);
 
     Text_ResetAllPrinters();
     param0->unk_0C = 0;

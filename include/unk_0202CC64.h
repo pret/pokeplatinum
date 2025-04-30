@@ -8,7 +8,7 @@
 int ChatotCry_SaveSize(void);
 void ChatotCry_Init(ChatotCry *param0);
 ChatotCry *ChatotCry_New(int heapID);
-ChatotCry *GetChatotCryDataFromSave(SaveData *param0);
+ChatotCry *SaveData_GetChatotCry(SaveData *saveData);
 BOOL IsChatotCryDataValid(const ChatotCry *param0);
 void ResetChatotCryDataStatus(ChatotCry *param0);
 const void *GetChatotCryAudioBuffer(const ChatotCry *param0);

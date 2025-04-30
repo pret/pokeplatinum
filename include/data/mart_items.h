@@ -127,11 +127,11 @@ const u16 VeilstoneDeptStoreStock_2F_UP[] = {
     ITEM_X_SPEED,
     ITEM_X_ATTACK,
     ITEM_X_DEFENSE,
-    ITEM_GUARD_SPEC_,
+    ITEM_GUARD_SPEC,
     ITEM_DIRE_HIT,
     ITEM_X_ACCURACY,
     ITEM_X_SPECIAL,
-    ITEM_X_SP__DEF,
+    ITEM_X_SP_DEF,
     SHOP_ITEM_END
 };
 

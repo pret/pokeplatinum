@@ -35,179 +35,179 @@ _0055:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 1, _03D8
+    GoToIfSet FLAG_UNK_0x0001, _03D8
     Message 1
-    GoToIfUnset 121, _04B6
-    GoToIfNe 0x40B4, 0, _03F2
-    ScrCmd_1F1 0x8000
-    GoToIfEq 0x8000, 0, _04AB
+    GoToIfUnset FLAG_UNK_0x0079, _04B6
+    GoToIfNe VAR_UNK_0x40B4, 0, _03F2
+    ScrCmd_1F1 VAR_0x8000
+    GoToIfEq VAR_0x8000, 0, _04AB
     Message 2
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _03E7
-    GoToIfEq 0x8000, 1, _03BC
-    SetVar 0x8001, 0
-    CheckItem ITEM_OLD_AMBER, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    CheckItem ITEM_HELIX_FOSSIL, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    CheckItem ITEM_DOME_FOSSIL, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    CheckItem ITEM_ROOT_FOSSIL, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    CheckItem ITEM_CLAW_FOSSIL, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    CheckItem ITEM_ARMOR_FOSSIL, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    CheckItem ITEM_SKULL_FOSSIL, 1, 0x800C
-    AddVar 0x8001, 0x800C
-    GoToIfEq 0x8001, 1, _03BC
-    SetVar 0x8004, 0
-    SetVar 0x8005, 0
-    ScrCmd_040 1, 1, 0, 1, 0x8003
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _03E7
+    GoToIfEq VAR_0x8000, 1, _03BC
+    SetVar VAR_0x8001, 0
+    CheckItem ITEM_OLD_AMBER, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    CheckItem ITEM_HELIX_FOSSIL, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    CheckItem ITEM_DOME_FOSSIL, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    CheckItem ITEM_ROOT_FOSSIL, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    CheckItem ITEM_CLAW_FOSSIL, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    CheckItem ITEM_ARMOR_FOSSIL, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    CheckItem ITEM_SKULL_FOSSIL, 1, VAR_RESULT
+    AddVar VAR_0x8001, VAR_RESULT
+    GoToIfEq VAR_0x8001, 1, _03BC
+    SetVar VAR_0x8004, 0
+    SetVar VAR_0x8005, 0
+    InitGlobalTextMenu 1, 1, 0, VAR_0x8003
 _013E:
-    CallIfEq 0x8005, 0, _02DC
-    CallIfEq 0x8005, 1, _02EC
-    CallIfEq 0x8005, 2, _02FC
-    CallIfEq 0x8005, 3, _030C
-    CallIfEq 0x8005, 4, _031C
-    CallIfEq 0x8005, 5, _032C
-    CallIfEq 0x8005, 6, _033C
-    GoToIfEq 0x800C, 0, _0219
-    CallIfEq 0x8004, 0, _034C
-    CallIfEq 0x8004, 1, _0354
-    CallIfEq 0x8004, 2, _035C
-    CallIfEq 0x8004, 3, _0364
-    CallIfEq 0x8004, 4, _036C
-    CallIfEq 0x8004, 5, _0374
-    CallIfEq 0x8004, 6, _037C
-    SetVar 0x8006, 0x8005
-    AddVar 0x8006, 156
-    ScrCmd_29D 0x8006, 0x8004
+    CallIfEq VAR_0x8005, 0, MiningMuseum_CheckFossil_OldAmber
+    CallIfEq VAR_0x8005, 1, MiningMuseum_CheckFossil_HelixFossil
+    CallIfEq VAR_0x8005, 2, MiningMuseum_CheckFossil_DomeFossil
+    CallIfEq VAR_0x8005, 3, MiningMuseum_CheckFossil_RootFossil
+    CallIfEq VAR_0x8005, 4, MiningMuseum_CheckFossil_ClawFossil
+    CallIfEq VAR_0x8005, 5, MiningMuseum_CheckFossil_ArmorFossil
+    CallIfEq VAR_0x8005, 6, MiningMuseum_CheckFossil_SkullFossil
+    GoToIfEq VAR_RESULT, FALSE, _0219
+    CallIfEq VAR_0x8004, 0, _034C
+    CallIfEq VAR_0x8004, 1, _0354
+    CallIfEq VAR_0x8004, 2, _035C
+    CallIfEq VAR_0x8004, 3, _0364
+    CallIfEq VAR_0x8004, 4, _036C
+    CallIfEq VAR_0x8004, 5, _0374
+    CallIfEq VAR_0x8004, 6, _037C
+    SetVar VAR_0x8006, VAR_0x8005
+    AddVar VAR_0x8006, 156
+    AddMenuEntry VAR_0x8006, VAR_0x8004
     GoTo _0225
 
 _0219:
-    AddVar 0x8005, 1
+    AddVar VAR_0x8005, 1
     GoTo _013E
 
 _0225:
-    AddVar 0x8004, 1
-    AddVar 0x8005, 1
-    GoToIfNe 0x8004, 0x8001, _013E
-    ScrCmd_29D 44, 0x8004
-    ScrCmd_043
-    GoToIfEq 0x8003, 0xFF, _03E7
-    GoToIfEq 0x8003, 0x4000, _03E7
-    CallIfEq 0x8003, 0, _0384
-    CallIfEq 0x8003, 1, _038C
-    CallIfEq 0x8003, 2, _0394
-    CallIfEq 0x8003, 3, _039C
-    CallIfEq 0x8003, 4, _03A4
-    CallIfEq 0x8003, 5, _03AC
-    CallIfEq 0x8003, 6, _03B4
-    ScrCmd_1F4 0x40B4, 0x8002
-    GoToIfEq 0x40B4, 0, _03E7
-    RemoveItem 0x8002, 1, 0x800C
+    AddVar VAR_0x8004, 1
+    AddVar VAR_0x8005, 1
+    GoToIfNe VAR_0x8004, VAR_0x8001, _013E
+    AddMenuEntry 44, VAR_0x8004
+    ShowMenu
+    GoToIfEq VAR_0x8003, 0xFF, _03E7
+    GoToIfEq VAR_0x8003, VAR_MAP_LOCAL_0, _03E7
+    CallIfEq VAR_0x8003, 0, _0384
+    CallIfEq VAR_0x8003, 1, _038C
+    CallIfEq VAR_0x8003, 2, _0394
+    CallIfEq VAR_0x8003, 3, _039C
+    CallIfEq VAR_0x8003, 4, _03A4
+    CallIfEq VAR_0x8003, 5, _03AC
+    CallIfEq VAR_0x8003, 6, _03B4
+    ScrCmd_1F4 VAR_UNK_0x40B4, VAR_0x8002
+    GoToIfEq VAR_UNK_0x40B4, 0, _03E7
+    RemoveItem VAR_0x8002, 1, VAR_RESULT
     GoTo _03D8
 
-_02DC:
-    SetVar 0x4000, 103
-    CheckItem 0x4000, 1, 0x800C
+MiningMuseum_CheckFossil_OldAmber:
+    SetVar VAR_MAP_LOCAL_0, ITEM_OLD_AMBER
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
-_02EC:
-    SetVar 0x4000, 101
-    CheckItem 0x4000, 1, 0x800C
+MiningMuseum_CheckFossil_HelixFossil:
+    SetVar VAR_MAP_LOCAL_0, ITEM_HELIX_FOSSIL
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
-_02FC:
-    SetVar 0x4000, 102
-    CheckItem 0x4000, 1, 0x800C
+MiningMuseum_CheckFossil_DomeFossil:
+    SetVar VAR_MAP_LOCAL_0, ITEM_DOME_FOSSIL
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
-_030C:
-    SetVar 0x4000, 99
-    CheckItem 0x4000, 1, 0x800C
+MiningMuseum_CheckFossil_RootFossil:
+    SetVar VAR_MAP_LOCAL_0, ITEM_ROOT_FOSSIL
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
-_031C:
-    SetVar 0x4000, 100
-    CheckItem 0x4000, 1, 0x800C
+MiningMuseum_CheckFossil_ClawFossil:
+    SetVar VAR_MAP_LOCAL_0, ITEM_CLAW_FOSSIL
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
-_032C:
-    SetVar 0x4000, 104
-    CheckItem 0x4000, 1, 0x800C
+MiningMuseum_CheckFossil_ArmorFossil:
+    SetVar VAR_MAP_LOCAL_0, ITEM_ARMOR_FOSSIL
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
-_033C:
-    SetVar 0x4000, 105
-    CheckItem 0x4000, 1, 0x800C
+MiningMuseum_CheckFossil_SkullFossil:
+    SetVar VAR_MAP_LOCAL_0, ITEM_SKULL_FOSSIL
+    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
     Return
 
 _034C:
-    SetVar 0x4001, 0x4000
+    SetVar VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_0
     Return
 
 _0354:
-    SetVar 0x4002, 0x4000
+    SetVar VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_0
     Return
 
 _035C:
-    SetVar 0x4003, 0x4000
+    SetVar VAR_MAP_LOCAL_3, VAR_MAP_LOCAL_0
     Return
 
 _0364:
-    SetVar 0x4004, 0x4000
+    SetVar VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_0
     Return
 
 _036C:
-    SetVar 0x4005, 0x4000
+    SetVar VAR_MAP_LOCAL_5, VAR_MAP_LOCAL_0
     Return
 
 _0374:
-    SetVar 0x4006, 0x4000
+    SetVar VAR_MAP_LOCAL_6, VAR_MAP_LOCAL_0
     Return
 
 _037C:
-    SetVar 0x4007, 0x4000
+    SetVar VAR_MAP_LOCAL_7, VAR_MAP_LOCAL_0
     Return
 
 _0384:
-    SetVar 0x8002, 0x4001
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_1
     Return
 
 _038C:
-    SetVar 0x8002, 0x4002
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_2
     Return
 
 _0394:
-    SetVar 0x8002, 0x4003
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_3
     Return
 
 _039C:
-    SetVar 0x8002, 0x4004
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_4
     Return
 
 _03A4:
-    SetVar 0x8002, 0x4005
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_5
     Return
 
 _03AC:
-    SetVar 0x8002, 0x4006
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_6
     Return
 
 _03B4:
-    SetVar 0x8002, 0x4007
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_7
     Return
 
 _03BC:
-    ScrCmd_1F5 0x8002, 0x8004, 1
-    ScrCmd_1F4 0x40B4, 0x8002
-    RemoveItem 0x8002, 1, 0x800C
+    ScrCmd_1F5 VAR_0x8002, VAR_0x8004, 1
+    ScrCmd_1F4 VAR_UNK_0x40B4, VAR_0x8002
+    RemoveItem VAR_0x8002, 1, VAR_RESULT
     GoTo _03D8
 
 _03D8:
-    SetFlag 1
+    SetFlag FLAG_UNK_0x0001
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -222,32 +222,32 @@ _03E7:
     End
 
 _03F2:
-    BufferSpeciesNameFromVar 0, 0x40B4, 0, 0
+    BufferSpeciesNameFromVar 0, VAR_UNK_0x40B4, 0, 0
     Message 7
-    GetPartyCount 0x800C
-    GoToIfEq 0x800C, 6, _04A0
-    BufferSpeciesNameFromVar 1, 0x40B4, 0, 0
+    GetPartyCount VAR_RESULT
+    GoToIfEq VAR_RESULT, 6, _04A0
+    BufferSpeciesNameFromVar 1, VAR_UNK_0x40B4, 0, 0
     BufferPlayerName 0
     PlaySound SEQ_FANFA4
     Message 8
     WaitSound
-    GivePokemon 0x40B4, 20, ITEM_NONE, 0x800C
+    GivePokemon VAR_UNK_0x40B4, 20, ITEM_NONE, VAR_RESULT
     IncrementGameRecord RECORD_UNK_115
-    SetVar 0x40B4, 0
+    SetVar VAR_UNK_0x40B4, 0
     Message 9
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0459
-    GoToIfEq 0x800C, MENU_NO, _049A
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0459
+    GoToIfEq VAR_RESULT, MENU_NO, _049A
     End
 
 _0459:
     CloseMessage
-    GetPartyCount 0x4000
-    SubVar 0x4000, 1
+    GetPartyCount VAR_MAP_LOCAL_0
+    SubVar VAR_MAP_LOCAL_0, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BB 0x4000, 0x800C
-    CallIfNe 0x800C, 1, _0494
+    ScrCmd_0BB VAR_MAP_LOCAL_0, VAR_RESULT
+    CallIfNe VAR_RESULT, 1, _0494
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

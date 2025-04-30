@@ -102,11 +102,11 @@ UnkStruct_0203D9B8 *sub_020989DC(SaveData *param0, int heapID)
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203D9B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_0203D9B8));
 
-    v0->unk_08 = Poffin_GetSavedataBlock(param0);
+    v0->unk_08 = SaveData_GetPoffinCase(param0);
     v0->unk_0C = SaveData_GetTrainerInfo(param0);
-    v0->unk_10 = Party_GetFromSavedata(param0);
+    v0->unk_10 = SaveData_GetParty(param0);
     v0->unk_14 = SaveData_GetBag(param0);
-    v0->unk_18 = SaveData_Options(param0);
+    v0->unk_18 = SaveData_GetOptions(param0);
 
     v1 = Poffin_New(heapID);
     v3 = StringTemplate_New(1, 32, heapID);
@@ -311,7 +311,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     }
 
     v1 = (PartyManagementData *)param0->unk_10;
-    v0 = v1->unk_22;
+    v0 = v1->selectedMonSlot;
     param0->unk_08 = v0;
     Heap_FreeToHeap(param0->unk_10);
 

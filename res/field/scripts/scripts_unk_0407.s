@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0379.h"
+#include "res/text/bank/mystery_gift_deliveryman.h"
 
     .data
 
@@ -8,29 +8,29 @@
     ScriptEntryEnd
 
 _000A:
-    ScrCmd_23E 0
-    ScrCmd_23E 1, 0x40ED
-    GoToIfEq 0x40ED, 0, _002B
-    ClearFlag 0x20A
-    ScrCmd_23E 7
+    LoadMysteryGift
+    CheckAvailableMysteryGift VAR_UNK_0x40ED
+    GoToIfEq VAR_UNK_0x40ED, 0, _002B
+    ClearFlag FLAG_UNK_0x020A
+    UnloadMysteryGift
     End
 
 _002B:
-    SetFlag 0x20A
-    ScrCmd_23E 7
+    SetFlag FLAG_UNK_0x020A
+    UnloadMysteryGift
     End
 
 _0035:
-    ScrCmd_23E 0
+    LoadMysteryGift
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_23E 1, 0x800C
-    GoToIfEq 0x800C, 0, _00EE
-    GetTimeOfDay 0x800C
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _007E
-    GoToIfEq 0x8008, 1, _008A
+    CheckAvailableMysteryGift VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00EE
+    GetTimeOfDay VAR_RESULT
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _007E
+    GoToIfEq VAR_0x8008, 1, _008A
     GoTo _0096
 
 _007E:
@@ -49,20 +49,20 @@ _0096:
     GoTo _00A2
 
 _00A2:
-    ScrCmd_23E 3, 0x800C
-    GoToIfEq 0x800C, 0, _00D8
+    CheckCanReceiveMysteryGift VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00D8
     PlaySound SEQ_FANFA4
-    ScrCmd_23E 5, 0x8005, 0x8006
-    ScrCmd_1FB 0x8005, 0x8006
+    PrepareMysteryGiftReceivedMsg VAR_0x8005, VAR_0x8006
+    ScrCmd_1FB VAR_0x8005, VAR_0x8006
     WaitSound
     Message 18
     WaitABXPadPress
-    ScrCmd_23E 4
+    GiveMysteryGift
     GoTo _0103
 
 _00D8:
-    ScrCmd_23E 6, 0x8005, 0x8006
-    ScrCmd_1FB 0x8005, 0x8006
+    PrepareMysterGiftCantReceiveMsg VAR_0x8005, VAR_0x8006
+    ScrCmd_1FB VAR_0x8005, VAR_0x8006
     WaitABXPadPress
     GoTo _00F9
 
@@ -74,13 +74,13 @@ _00EE:
 _00F9:
     CloseMessage
     ReleaseAll
-    ScrCmd_23E 7
+    UnloadMysteryGift
     End
 
 _0103:
     CloseMessage
     ReleaseAll
-    ScrCmd_23E 8
+    UnloadMysteryGift2
     End
 
     .byte 0

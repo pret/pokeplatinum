@@ -31,7 +31,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "message_util.h"
 #include "move_table.h"
@@ -41,6 +41,7 @@
 #include "pokemon_icon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -50,7 +51,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
@@ -1710,7 +1710,7 @@ static void ov16_02269550(UnkStruct_ov16_02268A14 *param0, int param1)
     v1->unk_0C = ((255 * 100) - v1->unk_08) / 100;
     v1->unk_0E = ((40 * 100) - v1->unk_0A) / 100;
 
-    Sound_PlayEffect(1806);
+    Sound_PlayEffect(SEQ_SE_DP_SLIDEIN);
     SysTask_Start(ov16_0226B988, v1, 1210);
 
     v0 = SetHBlankCallback(ov16_0226BB94, v1);
@@ -2600,7 +2600,7 @@ static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A9
         v1 = param10->unk_00;
     }
 
-    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, 5);
+    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_BATTLE);
     CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &v2);
 
     if (param9 == 1) {
@@ -2620,7 +2620,7 @@ static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A9
     v0.unk_20 = 0;
     v0.unk_24 = 100;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v0.unk_2C = 5;
+    v0.heapID = HEAP_ID_BATTLE;
 
     v4 = sub_020127E8(&v0);
 
@@ -2769,7 +2769,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
         }
 
         if ((v0->unk_28[i].unk_00.pixels == NULL) || ((param2->move[i] != v0->unk_00.move[i]) && (param2->move[i] != 0))) {
-            v6 = MessageUtil_MoveName(param2->move[i], 5);
+            v6 = MessageUtil_MoveName(param2->move[i], HEAP_ID_BATTLE);
             ov16_0226AEA0(param0, v6, FONT_SUBSCREEN, &v0->unk_28[i], TEXT_COLOR(7, 8, 9));
             Strbuf_Free(v6);
         }
@@ -3750,7 +3750,7 @@ static int ov16_0226BE48(UnkStruct_ov16_02268A14 *param0)
     if (v0->unk_00 == 0) {
         if ((param0->unk_6C0 == 1) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
             if (param0->unk_6C0 == 0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
 
             v0->unk_00 = 1;
@@ -3802,12 +3802,12 @@ static int ov16_0226BEC0(UnkStruct_ov16_02268A14 *param0, int param1)
                 if (gSystem.pressedKeys & PAD_KEY_LEFT) {
                     v0->unk_02 = 0;
                     v0->unk_01 = 1;
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                     v1 = PAD_KEY_LEFT;
                 } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
                     v0->unk_02 = 2;
                     v0->unk_01 = 1;
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                     v1 = PAD_KEY_RIGHT;
                 }
             }
@@ -4408,7 +4408,7 @@ static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2
     }
 
     if ((param0->unk_02 != v1) || (param0->unk_01 != v0)) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else {
         if (v2 & PAD_KEY) {
             return 0;

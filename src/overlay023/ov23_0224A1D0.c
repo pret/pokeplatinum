@@ -31,14 +31,14 @@
 #include "heap.h"
 #include "map_object_move.h"
 #include "player_avatar.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "system_vars.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_0206CCB0.h"
 #include "unk_020711EC.h"
@@ -82,7 +82,7 @@ static void ov23_0224A204(int param0)
 
     if (param0 == CommSys_CurNetId()) {
         if (commPlayerMan->unk_290[param0] != NULL) {
-            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(commPlayerMan->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_28);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(commPlayerMan->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_28);
 
             if (commPlayerMan->unk_27C[5 - 1]) {
                 Heap_FreeToHeap(commPlayerMan->unk_27C[5 - 1]);
@@ -93,7 +93,7 @@ static void ov23_0224A204(int param0)
             }
 
             commPlayerMan->unk_27C[0] = commPlayerMan->unk_290[param0];
-            sub_02028830(sub_020298B0(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), commPlayerMan->unk_290[param0]);
+            sub_02028830(SaveData_GetUndergroundData(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), commPlayerMan->unk_290[param0]);
 
             commPlayerMan->unk_290[param0] = NULL;
             commPlayerMan->unk_14A[param0].unk_20 = 0xff;
@@ -385,8 +385,8 @@ static void ov23_0224A6E4(UnkStruct_ov23_0224A570 *param0, BOOL param1, SecretBa
         ov23_02253F40(ov23_022421AC(), 11, 1, ov23_0224A5B0);
     }
 
-    sub_0200502C(4, 1060, 60, 0, 0xff, NULL);
-    Sound_PlayEffect(1526);
+    Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xff, NULL);
+    Sound_PlayEffect(SEQ_SE_DP_CARD10);
 }
 
 void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
@@ -406,7 +406,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             if (v1->unk_01 == CommSys_CurNetId()) {
                 sub_020594FC();
                 ov23_02253F40(ov23_022421AC(), 2, 1, ov23_0224A308);
-                sub_0200502C(4, 1060, 60, 0, 0xff, NULL);
+                Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xff, NULL);
             }
         }
         break;
@@ -431,7 +431,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
                 sub_020297EC(v4);
                 sub_020594FC();
                 ov23_02253F40(ov23_022421AC(), 13, 1, ov23_0224A300);
-                Sound_PlayEffect(1573);
+                Sound_PlayEffect(SEQ_SE_DP_UG_021);
             } else if (v1->unk_02 == CommSys_CurNetId()) {
                 ov23_0224A6E4(v1, 0, v4);
             }
@@ -443,8 +443,8 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
                 sub_02059464(0x1);
                 ov23_02254068(ov23_022421AC(), CommInfo_TrainerInfo(v1->unk_02));
                 ov23_02253F40(ov23_022421AC(), 12, 1, ov23_0224A328);
-                Sound_PlayBGM(1061);
-                Sound_PlayEffect(1573);
+                Sound_PlayBGM(SEQ_HATANIGE);
+                Sound_PlayEffect(SEQ_SE_DP_UG_021);
             } else if (v1->unk_02 == CommSys_CurNetId()) {
                 ov23_0224A6E4(v1, 1, v4);
             }
@@ -484,7 +484,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             }
 
             sub_020594FC();
-            Sound_PlayEffect(1579);
+            Sound_PlayEffect(SEQ_SE_DP_UG_027);
 
             if (v6 == sub_0202958C(v5)) {
                 ov23_02253F40(ov23_022421AC(), 7, 1, ov23_0224A300);
@@ -492,7 +492,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
                 CommSys_SendDataFixedSize(96, &v6);
             }
 
-            sub_0200502C(4, 1060, 60, 0, 0xff, NULL);
+            Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xff, NULL);
         }
 
         if (commPlayerMan->unk_290[v1->unk_01]) {

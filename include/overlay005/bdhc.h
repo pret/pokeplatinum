@@ -10,30 +10,30 @@
 typedef struct BDHCPlate {
     u16 firstPointIndex;
     u16 secondPointIndex;
-    u16 slopeIndex;
-    u16 heightIndex;
+    u16 normalIndex;
+    u16 constantIndex;
 } BDHCPlate;
 
 typedef struct BDHCPoint {
     fx32 x;
-    fx32 y;
+    fx32 z;
 } BDHCPoint;
 
 typedef struct BDHCStrip {
-    fx32 lowerBound;
+    fx32 scanline;
     u16 accessListElementCount;
     u16 accessListStartIndex;
 } BDHCStrip;
 
 typedef struct BDHC {
     BDHCPlate *plates;
-    fx32 *heights;
+    fx32 *constants;
     BDHCStrip *strips;
     u16 *accessList;
     BDHCPoint *points;
-    VecFx32 *slopes;
+    VecFx32 *normals;
     BOOL loaded;
-    int stripsSize;
+    int stripsCount;
 } BDHC;
 
 BOOL CalculateObjectHeight(const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, const BDHC *bdhc, fx32 *newObjectHeight);

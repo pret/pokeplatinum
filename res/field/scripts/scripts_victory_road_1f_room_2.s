@@ -10,11 +10,11 @@
     ScriptEntryEnd
 
 _0012:
-    GoToIfUnset 230, _001F
+    GoToIfUnset FLAG_UNK_0x00E6, _001F
     End
 
 _001F:
-    SetVar 0x4090, 0
+    SetVar VAR_UNK_0x4090, 0
     End
 
 _0027:
@@ -22,13 +22,13 @@ _0027:
     SetPlayerBike FALSE
     ApplyMovement 28, _0140
     WaitMovement
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 55, _008C
-    GoToIfEq 0x8005, 56, _009C
-    GoToIfEq 0x8005, 57, _00AC
-    GoToIfEq 0x8005, 58, _00BC
-    GoToIfEq 0x8005, 59, _00CC
-    GoToIfEq 0x8005, 60, _00DC
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 55, _008C
+    GoToIfEq VAR_0x8005, 56, _009C
+    GoToIfEq VAR_0x8005, 57, _00AC
+    GoToIfEq VAR_0x8005, 58, _00BC
+    GoToIfEq VAR_0x8005, 59, _00CC
+    GoToIfEq VAR_0x8005, 60, _00DC
     End
 
 _008C:
@@ -63,14 +63,14 @@ _00DC:
 
 _00EC:
     BufferPlayerName 0
-    CallIfUnset 223, _0134
-    CallIfSet 223, _0139
+    CallIfUnset FLAG_UNK_0x00DF, _0134
+    CallIfSet FLAG_UNK_0x00DF, _0139
     BufferPlayerName 0
     PlaySound SEQ_GONIN
     Message 1
     WaitSound
-    SetFlag 223
-    SetVar 0x4090, 1
+    SetFlag FLAG_UNK_0x00DF
+    SetVar VAR_UNK_0x4090, 1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -136,16 +136,16 @@ _0190:
     WaitMovement
     Message 4
     CloseMessage
-    SetVar 0x4090, 0
+    SetVar VAR_UNK_0x4090, 0
     ClearHasPartner
     ScrCmd_06D 28, 14
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 55, _020D
-    GoToIfEq 0x8005, 56, _021D
-    GoToIfEq 0x8005, 57, _022D
-    GoToIfEq 0x8005, 58, _023D
-    GoToIfEq 0x8005, 59, _024D
-    GoToIfEq 0x8005, 60, _025D
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 55, _020D
+    GoToIfEq VAR_0x8005, 56, _021D
+    GoToIfEq VAR_0x8005, 57, _022D
+    GoToIfEq VAR_0x8005, 58, _023D
+    GoToIfEq VAR_0x8005, 59, _024D
+    GoToIfEq VAR_0x8005, 60, _025D
     End
 
 _020D:
@@ -250,11 +250,11 @@ _02E4:
     WaitMovement
     Message 5
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 51, _0341
-    GoToIfEq 0x8004, 52, _0359
-    GoToIfEq 0x8004, 53, _0371
-    GoToIfEq 0x8004, 54, _0389
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 51, _0341
+    GoToIfEq VAR_0x8004, 52, _0359
+    GoToIfEq VAR_0x8004, 53, _0371
+    GoToIfEq VAR_0x8004, 54, _0389
     End
 
 _0341:
@@ -283,8 +283,8 @@ _0389:
 
 _03A1:
     RemoveObject 28
-    SetFlag 230
-    SetVar 0x4090, 2
+    SetFlag FLAG_UNK_0x00E6
+    SetVar VAR_UNK_0x4090, 2
     ReleaseAll
     End
 

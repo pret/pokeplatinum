@@ -11,8 +11,8 @@
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "sound_playback.h"
 #include "sprite.h"
-#include "unk_02005474.h"
 
 struct UnkStruct_ov107_02249B8C_t {
     s16 unk_00;
@@ -133,8 +133,8 @@ void ov107_02249C60(UnkStruct_ov107_02249B8C *param0, u16 param1, u16 param2)
     ov107_02249BB8(param0, param1, param2);
     ov107_02249BAC(param0, 1);
 
-    Sound_PlayEffect(1507);
-    Sound_PlayEffect(1622);
+    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+    Sound_PlayEffect(SEQ_SE_DP_DANSA4);
 
     return;
 }

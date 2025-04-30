@@ -36,7 +36,7 @@ BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_2C = param6;
     param0->unk_20 = param7;
     param0->unk_10 = param5;
-    param0->unk_14 = MessageLoader_Init(0, 26, 18, HEAP_ID_10);
+    param0->unk_14 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_STORAGE_SYSTEM, HEAP_ID_10);
     param0->unk_30 = Strbuf_Init(64, HEAP_ID_10);
     param0->unk_34 = Strbuf_Init(64, HEAP_ID_10);
     param0->unk_1C = 0;

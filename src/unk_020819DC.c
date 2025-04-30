@@ -14,11 +14,11 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0207E0B8.h"
 #include "unk_02083370.h"
@@ -616,14 +616,14 @@ static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
 {
     switch (param1) {
     case 1:
-        return sub_020057E0();
+        return Sound_IsAnyEffectPlaying();
     case 2:
-        return sub_020061E4();
+        return Sound_IsBGMPausedByFanfare();
     case 3:
-        Sound_PlayEffect(1510);
+        Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 4:
-        sub_02006150(1155);
+        Sound_PlayFanfare(SEQ_FANFA1);
         break;
     case 5:
         return Sound_IsEffectPlaying(1510);

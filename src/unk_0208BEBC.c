@@ -13,8 +13,8 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "savedata_misc.h"
+#include "sound.h"
 #include "system.h"
-#include "unk_020041CC.h"
 #include "unk_0208B284.h"
 #include "unk_0208BA78.h"
 
@@ -50,10 +50,10 @@ static int sub_0208BEBC(OverlayManager *param0, int *param1, int param2)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_102, 0x55000);
     v0 = sub_0208BA78(param0);
     ov62_02230060(v0);
-    sub_0200544C(1, (127 / 3));
+    Sound_SetPlayerVolume(1, (127 / 3));
 
     if (param2 != 0) {
-        sub_02004550(4, 1196, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PL_WIFITOWER, 1);
     }
 
     if (param2 == 0) {

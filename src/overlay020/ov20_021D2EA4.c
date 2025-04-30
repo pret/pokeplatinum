@@ -81,7 +81,7 @@ UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const Un
     v0->unk_40 = NULL;
     v0->unk_44 = NULL;
     v0->unk_4C = Strbuf_Init(128, HEAP_ID_35);
-    v0->unk_48 = MessageLoader_Init(0, 26, 437, HEAP_ID_35);
+    v0->unk_48 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0437, HEAP_ID_35);
     v0->unk_50 = ColoredArrow_New(35);
 
     return v0;
@@ -428,7 +428,7 @@ void ov20_021D3578(UnkStruct_ov20_021D30F8 *param0, u32 param1)
     case 0:
 
     {
-        StringTemplate *v0 = StringTemplate_New(2, 60, 0);
+        StringTemplate *v0 = StringTemplate_New(2, 60, HEAP_ID_SYSTEM);
         Strbuf *v1 = Strbuf_Init(300, HEAP_ID_SYSTEM);
 
         StringTemplate_SetBagPocketName(v0, 0, 0);

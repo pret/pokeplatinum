@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/screen.h"
-#include "generated/sdat.h"
 
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -18,10 +17,10 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_text.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -56,7 +55,7 @@ static void DWWarp_DeleteCamera(DistortionWorldWarp *warp);
 static void DWWarp_InitModel(DistortionWorldWarp *warp);
 static void DWWarp_DeleteModel(DistortionWorldWarp *warp);
 static void Model3D_Update(DistortionWorldWarp *warp);
-static GenericPointerData *DWWarp_Init3D(int heapId);
+static GenericPointerData *DWWarp_Init3D(int heapID);
 static void DWWarp_Setup3D(void);
 static void DWWarp_Exit3D(GenericPointerData *param0);
 static void DWWarp_CameraMove(DistortionWorldWarp *warp);
@@ -104,7 +103,7 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
     return TRUE;
 }
 
-enum {
+enum DWWarpState {
     DWARP_SEQ_SCREENWIPE = 0,
     DWARP_SEQ_LOOP,
     DWARP_SEQ_CLEAR_SCREEN,

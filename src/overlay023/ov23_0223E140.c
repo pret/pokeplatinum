@@ -37,7 +37,7 @@
 #include "heap.h"
 #include "journal.h"
 #include "map_matrix.h"
-#include "math.h"
+#include "math_util.h"
 #include "menu.h"
 #include "narc.h"
 #include "pltt_transfer.h"
@@ -46,6 +46,8 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -56,14 +58,12 @@
 #include "system.h"
 #include "system_flags.h"
 #include "system_vars.h"
+#include "terrain_collision_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
-#include "unk_02054D00.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
@@ -628,7 +628,7 @@ void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
     ov23_0223E140();
 
     Unk_ov23_02257740->unk_A24 = -1;
-    v2 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
+    v2 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
 
     if (sub_02029234(v2)) {
         MATHRandContext16 v3;
@@ -726,20 +726,20 @@ static BOOL ov23_0223E3AC(FieldSystem *fieldSystem, int param1, int param2)
         return 0;
     }
 
-    if (FieldSystem_CheckCollision(fieldSystem, param1, param2)) {
-        if (!FieldSystem_CheckCollision(fieldSystem, param1, param2 + 1)) {
+    if (TerrainCollisionManager_CheckCollision(fieldSystem, param1, param2)) {
+        if (!TerrainCollisionManager_CheckCollision(fieldSystem, param1, param2 + 1)) {
             return 1;
         }
 
-        if (!FieldSystem_CheckCollision(fieldSystem, param1, param2 - 1)) {
+        if (!TerrainCollisionManager_CheckCollision(fieldSystem, param1, param2 - 1)) {
             return 1;
         }
 
-        if (!FieldSystem_CheckCollision(fieldSystem, param1 + 1, param2)) {
+        if (!TerrainCollisionManager_CheckCollision(fieldSystem, param1 + 1, param2)) {
             return 1;
         }
 
-        if (!FieldSystem_CheckCollision(fieldSystem, param1 - 1, param2)) {
+        if (!TerrainCollisionManager_CheckCollision(fieldSystem, param1 - 1, param2)) {
             return 1;
         }
     }
@@ -753,7 +753,7 @@ static void ov23_0223E434(MATHRandContext16 *param0, int param1)
     u16 v4, v5, v6;
     u16 v7, v8, v9;
     UnkStruct_ov23_0223E6F8 *v10;
-    UndergroundData *v11 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
+    UndergroundData *v11 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
 
     v6 = (MapMatrix_GetWidth(Unk_ov23_02257740->fieldSystem->mapMatrix) - 2) * 32;
     v9 = (MapMatrix_GetHeight(Unk_ov23_02257740->fieldSystem->mapMatrix) - 2) * 32;
@@ -797,7 +797,7 @@ static void ov23_0223E434(MATHRandContext16 *param0, int param1)
             v5 = MATH_Rand16(param0, 20) + v4 - 10;
             v8 = MATH_Rand16(param0, 20) + v7 - 10;
 
-            if (!FieldSystem_CheckCollision(Unk_ov23_02257740->fieldSystem, v5, v8)) {
+            if (!TerrainCollisionManager_CheckCollision(Unk_ov23_02257740->fieldSystem, v5, v8)) {
                 int v12 = ov23_02243C3C(v5, v8, param0, Unk_ov23_02257740->unk_A30);
 
                 if (0 != v12) {
@@ -814,7 +814,7 @@ void ov23_0223E650(int param0, int param1, MATHRandContext16 *param2)
     int v0, v1, v2, v3;
     u16 v4, v5;
     UnkStruct_ov23_0223E6F8 *v6;
-    UndergroundData *v7 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
+    UndergroundData *v7 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
 
     v3 = 0;
 
@@ -887,7 +887,7 @@ static UnkStruct_ov23_0223E6F8 *ov23_0223E740(int param0, int param1)
 
 static void ov23_0223E834(void)
 {
-    UndergroundData *v0 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
+    UndergroundData *v0 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
     int v1;
     int v2, v3;
     UnkStruct_ov23_0223E6F8 *v4;
@@ -1044,7 +1044,7 @@ static void ov23_0223EA38(SysTask *param0, void *param1)
 
 void ov23_0223EAF8(int param0, int param1, void *param2, void *param3)
 {
-    UndergroundData *v0 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
+    UndergroundData *v0 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
     UnkStruct_ov23_0223E6F8 *v1 = Unk_ov23_02257740->unk_84C[param0];
     u8 v2 = param0;
     u8 *v3 = param2;
@@ -1258,13 +1258,13 @@ static void ov23_0223ED68(int param0, int param1, BOOL param2, BOOL param3, BOOL
 
     if (param3) {
         Sprite_SetAnim(Unk_ov23_02257740->unk_24C[3], 2);
-        Sound_PlayEffect(1700);
+        Sound_PlayEffect(SEQ_SE_DP_UG_004);
     } else if (param2) {
         Sprite_SetAnim(Unk_ov23_02257740->unk_24C[3], 3);
-        Sound_PlayEffect(1698);
+        Sound_PlayEffect(SEQ_SE_DP_UG_002);
     } else {
         Sprite_SetAnim(Unk_ov23_02257740->unk_24C[3], 4);
-        Sound_PlayEffect(1699);
+        Sound_PlayEffect(SEQ_SE_DP_UG_003);
     }
 
     Sprite_SetAnimateFlag(Unk_ov23_02257740->unk_24C[0], 1);
@@ -1292,7 +1292,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     void *v4;
     int v5;
 
-    sub_02004550(58, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_58, SEQ_NONE, 0);
     ov23_0223E140();
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
@@ -1448,7 +1448,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 7:
         if (IsScreenTransitionDone()) {
             v0->unk_08 = 0;
-            Sound_PlayEffect(1354);
+            Sound_PlayEffect(SEQ_SE_PL_UG_006);
             v0->unk_00 = 8;
         }
         break;
@@ -1469,7 +1469,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         v0->unk_08++;
 
         if (v0->unk_08 > 80) {
-            UndergroundData *v2 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+            UndergroundData *v2 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
             ov23_02254044(ov23_0224219C());
 
@@ -1507,7 +1507,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
 
         if (v0->unk_08 == 0) {
             Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), 64, 0, NULL);
-            Sound_PlayEffect(1507);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             v0->unk_4C = 60;
             v0->unk_00 = 15;
         }
@@ -1617,7 +1617,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 23:
         SpriteList_Update(Unk_ov23_02257740->unk_20);
         StartScreenTransition(3, 2, 2, 0x0, 15, 1, HEAP_ID_29);
-        Sound_PlayEffect(1697);
+        Sound_PlayEffect(SEQ_SE_DP_UG_001);
         v0->unk_00 = 24;
         break;
     case 24:
@@ -1773,7 +1773,7 @@ static BOOL ov23_0223F838(int param0, int param1, int param2)
 static int ov23_0223F970(UnkStruct_ov23_02256EB0 *param0)
 {
     SaveData *saveData = FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem);
-    UndergroundData *v1 = sub_020298B0(saveData);
+    UndergroundData *v1 = SaveData_GetUndergroundData(saveData);
     BOOL v2 = TrainerInfo_ID(SaveData_GetTrainerInfo(saveData)) % 2;
     BOOL v3 = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(saveData));
     int v4 = 0;
@@ -1845,7 +1845,7 @@ static int ov23_0223FA20(void)
 
 static void ov23_0223FA3C(BgConfig *param0, int param1, UnkStruct_ov23_0223EE80 *param2)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
     int v1, v2, v3 = ov23_0223F9C8();
     int v4, v5, v6, v7, v8 = 0, v9, v10;
     int v11 = ov23_0223FA20();
@@ -1982,7 +1982,7 @@ static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_38[v0] == 1) {
-            Sound_PlayEffect(1703);
+            Sound_PlayEffect(SEQ_SE_DP_KIRAKIRA4);
 
             for (v3 = 0; v3 < 3; v3++) {
                 v1 = MATH_Rand32(&Unk_ov23_02257740->unk_08, Unk_ov23_02257740->unk_874[v0].unk_00->unk_0C * 8);
@@ -2354,7 +2354,7 @@ static void ov23_022404F8(BgConfig *param0, int param1, int param2, int param3)
         if (2 == param3) {
             ov23_02240454(v2, Unk_ov23_02256BF8, 0x18, 54);
             ov23_02240454(v2, Unk_ov23_02256BF4, 0x24, 54);
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (2 + 1 == param3) {
             ov23_02240454(v2, Unk_ov23_02256BF8, 0x1e, 54);
         }
@@ -2373,7 +2373,7 @@ static void ov23_022404F8(BgConfig *param0, int param1, int param2, int param3)
         if (2 == param3) {
             ov23_02240454(v2, Unk_ov23_02256BF8, 0x12, 54);
             ov23_02240454(v2, Unk_ov23_02256BF4, 0x2a, 54);
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (2 + 1 == param3) {
             ov23_02240454(v2, Unk_ov23_02256BF4, 0x30, 54);
         }
@@ -2491,7 +2491,7 @@ static void ov23_022408A0(int param0, int param1)
 {
     int v0 = param0;
     SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
-    UndergroundData *v2 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v2 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (ov23_02241CF4(v0)) {
         ov23_0224F6E0(v0, param1);
@@ -2503,7 +2503,7 @@ static void ov23_022408A0(int param0, int param1)
 
 static BOOL ov23_022408EC(int param0)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (ov23_02241CF4(param0)) {
         if (40 == sub_02028C3C(v0)) {
@@ -2584,7 +2584,7 @@ static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 *param0)
 {
     int v0, v1, v2;
     SecretBaseRecord *v3 = SaveData_SecretBaseRecord(Unk_ov23_02257740->fieldSystem->saveData);
-    UndergroundData *v4 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
+    UndergroundData *v4 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
 
     for (v0 = 0; v0 < param0->unk_0C; v0++) {
         if (Unk_ov23_02257740->unk_874[v0].unk_08 == 1) {
@@ -2676,7 +2676,7 @@ static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
 {
     u8 v0[2];
     int v1;
-    UndergroundData *v2 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v2 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (Unk_ov23_02257740->unk_A29 == 1) {
         Unk_ov23_02257740->unk_A29 = 0;
@@ -2716,7 +2716,7 @@ static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
         param0->unk_14--;
 
         if (param0->unk_14 == 0) {
-            Sound_PlayEffect(1701);
+            Sound_PlayEffect(SEQ_SE_DP_KIRAKIRA3);
         }
     }
 
@@ -2730,7 +2730,7 @@ static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
 
     if (ov23_02240934(param0)) {
         sub_02029220(v2);
-        GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_02257740->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_30);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_02257740->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_30);
         param0->unk_00 = 14;
         param0->unk_08 = 25;
         param0->unk_50 = 1;
@@ -2765,12 +2765,12 @@ static void ov23_02240E88(void)
     RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 29);
     ov23_0224119C();
 
-    Unk_ov23_02257740->unk_20 = SpriteList_InitRendering(26, &Unk_ov23_02257740->unk_24, 29);
+    Unk_ov23_02257740->unk_20 = SpriteList_InitRendering(26, &Unk_ov23_02257740->unk_24, HEAP_ID_29);
 
     SetSubScreenViewRect(&Unk_ov23_02257740->unk_24, 0, (192 << FX32_SHIFT) * 2);
 
     for (v0 = 0; v0 < 4; v0++) {
-        Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, 29);
+        Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_29);
     }
 
     v1 = NARC_ctor(NARC_INDEX_DATA__UG_ANIM, HEAP_ID_29);
@@ -2813,7 +2813,7 @@ static void ov23_0224108C(void)
         v2.affineZRotation = 0;
         v2.priority = 0;
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v2.heapID = 29;
+        v2.heapID = HEAP_ID_29;
         v2.position.x = FX32_ONE * 0;
         v2.position.y = FX32_ONE * 240;
 
@@ -2842,7 +2842,7 @@ static void ov23_0224119C(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     }
 
-    PlttTransfer_Init(20, 29);
+    PlttTransfer_Init(20, HEAP_ID_29);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
@@ -2918,7 +2918,7 @@ static void ov23_022412CC(SysTask *param0, void *param1)
     v0->unk_4E4++;
 
     if ((250 / 3) < v0->unk_4E4) {
-        Sound_PlayEffect(1354);
+        Sound_PlayEffect(SEQ_SE_PL_UG_006);
         v0->unk_4E4 = 0;
     }
 }

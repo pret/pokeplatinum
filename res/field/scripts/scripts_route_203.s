@@ -42,11 +42,11 @@ _0085:
     ApplyMovement 5, _0268
     WaitMovement
     CallCommonScript 0x7FA
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2F5, _00D1
-    GoToIfEq 0x8005, 0x2F6, _00E1
-    GoToIfEq 0x8005, 0x2F7, _00F1
-    GoToIfEq 0x8005, 0x2F8, _0101
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2F5, _00D1
+    GoToIfEq VAR_0x8005, 0x2F6, _00E1
+    GoToIfEq VAR_0x8005, 0x2F7, _00F1
+    GoToIfEq VAR_0x8005, 0x2F8, _0101
     End
 
 _00D1:
@@ -74,9 +74,9 @@ _0111:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, SPECIES_TURTWIG, _014C
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0158
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _014C
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _0158
     GoTo _0140
 
 _0140:
@@ -92,16 +92,16 @@ _0158:
     GoTo _0164
 
 _0164:
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0207
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0207
     BufferRivalName 0
     Message 1
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2F5, _01B9
-    GoToIfEq 0x8005, 0x2F6, _01C9
-    GoToIfEq 0x8005, 0x2F7, _01D9
-    GoToIfEq 0x8005, 0x2F8, _01E9
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2F5, _01B9
+    GoToIfEq VAR_0x8005, 0x2F6, _01C9
+    GoToIfEq VAR_0x8005, 0x2F7, _01D9
+    GoToIfEq VAR_0x8005, 0x2F8, _01E9
     End
 
 _01B9:
@@ -126,7 +126,7 @@ _01E9:
 
 _01F9:
     RemoveObject 5
-    SetVar 0x4088, 1
+    SetVar VAR_UNK_0x4088, 1
     ReleaseAll
     End
 

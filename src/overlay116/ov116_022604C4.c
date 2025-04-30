@@ -29,14 +29,14 @@
 #include "easy3d_object.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
 #include "unk_02024220.h"
@@ -62,14 +62,14 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     ov116_022612CC(param0);
     SetVBlankCallback(ov116_02261794, param0);
     DisableHBlank();
-    VramTransfer_New(32, 106);
+    VramTransfer_New(32, HEAP_ID_106);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
     sub_02039734();
 
     {
         NNSG2dPaletteData *v0;
-        void *v1 = sub_020394A8(106);
+        void *v1 = sub_020394A8(HEAP_ID_106);
 
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
         PaletteData_LoadBuffer(param0->unk_48.unk_14, v0->pRawData, 2, 14 * 16, 32);
@@ -305,7 +305,7 @@ static void ov116_02260A2C(UnkStruct_ov116_02262A8C *param0, u32 param1, u32 par
         }
 
         if (Sound_IsEffectPlaying(1394) == 0) {
-            Sound_PlayEffect(1394);
+            Sound_PlayEffect(SEQ_SE_PL_KIRAKIRA);
         }
 
         param0->unk_1FBC.unk_00 = param1;

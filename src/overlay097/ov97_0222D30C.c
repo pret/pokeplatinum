@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202442C_decl.h"
-#include "struct_defs/struct_0202DF40.h"
-
 #include "overlay077/const_ov77_021D742C.h"
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
@@ -13,11 +10,9 @@
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/ov97_02238534.h"
 #include "overlay097/struct_ov97_0222D04C.h"
-#include "overlay097/struct_ov97_0222D250.h"
 #include "overlay097/struct_ov97_02237808.h"
 #include "overlay097/struct_ov97_02237AEC.h"
 #include "overlay097/struct_ov97_0223829C.h"
-#include "overlay097/union_ov97_0222D2B0.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
@@ -29,15 +24,18 @@
 #include "heap.h"
 #include "list_menu.h"
 #include "main.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "message_util.h"
+#include "mystery_gift.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -50,10 +48,7 @@
 #include "system.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -108,7 +103,7 @@ typedef struct {
 
 void Strbuf_ToChars(const Strbuf *param0, u16 *param1, u32 param2);
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
-MysteryGift *SaveData_MysteryGift(SaveData *param0);
+MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
 void ov97_02231FFC(BgConfig *param0, void *, int heapID);
 static int ov97_0222D474(OverlayManager *param0);
 static int ov97_0222D4D8(OverlayManager *param0);
@@ -350,35 +345,35 @@ static int ov97_0222D4D8(OverlayManager *param0)
     }
 }
 
-static UnkStruct_0202DF40 *ov97_0222D55C(OverlayManager *param0)
+static PGT *ov97_0222D55C(OverlayManager *param0)
 {
     UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
-    UnkUnion_ov97_0222D2B0 *v1 = &v0->unk_8C.unk_50;
-    UnkStruct_ov97_0222D250 *v2 = &v0->unk_8C.unk_00;
+    WonderCard *v1 = &v0->unk_8C.unk_50;
+    WonderCardMetadata *v2 = &v0->unk_8C.unk_00;
     UnkStruct_ov97_0223829C *v3;
 
     switch (v0->unk_1638) {
     case 1:
-        memcpy(v1, ov97_0222D2B8(0, NULL, 0), sizeof(UnkUnion_ov97_0222D2B0));
+        memcpy(v1, ov97_0222D2B8(0, NULL, 0), sizeof(WonderCard));
         ov97_02238324(&v0->unk_8C, &v0->unk_8C.unk_50, HEAP_ID_86);
         break;
     case 3:
         v3 = (UnkStruct_ov97_0223829C *)v0->unk_638;
-        memcpy(v1, &v3->unk_50, sizeof(UnkUnion_ov97_0222D2B0));
-        memcpy(v2, &v3->unk_00, sizeof(UnkStruct_ov97_0222D250));
+        memcpy(v1, &v3->unk_50, sizeof(WonderCard));
+        memcpy(v2, &v3->unk_00, sizeof(WonderCardMetadata));
         break;
     }
 
-    return &v1->val1;
+    return &v1->pgt;
 }
 
-static BOOL ov97_0222D5C8(UnkStruct_0202DF40 *param0)
+static BOOL ov97_0222D5C8(PGT *param0)
 {
-    switch (param0->unk_00) {
+    switch (param0->type) {
     case 13:
         return 1;
     case 3:
-        if (param0->unk_04.val3.unk_04 == 1) {
+        if (param0->data.itemGiftData.unk_04 == 1) {
             return 1;
         }
         break;
@@ -387,7 +382,7 @@ static BOOL ov97_0222D5C8(UnkStruct_0202DF40 *param0)
         Pokemon *v0;
         int v1;
 
-        v0 = (Pokemon *)&param0->unk_04.val1.unk_04;
+        v0 = &param0->data.pokemonGiftData.pokemon;
         v1 = Pokemon_GetValue(v0, MON_DATA_MET_LOCATION, NULL);
 
         if (((v1 >= 3) && (v1 <= 14)) || ((v1 >= 64) && (v1 <= 71))) {
@@ -411,10 +406,10 @@ static void ov97_0222D614(void *param0)
     v0 = ov97_0223847C();
 
     if ((v0 == 2) || (v0 == 3)) {
-        if (ov97_0222D5C8(&v1->unk_8C.unk_50.val1) == 1) {
+        if (ov97_0222D5C8(&v1->unk_8C.unk_50.pgt) == 1) {
             (void)0;
         } else {
-            Sound_PlayEffect(1563);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE);
         }
 
         v1->unk_2A48 = NULL;
@@ -425,34 +420,34 @@ static void ov97_0222D658(OverlayManager *param0)
 {
     int v0, v1;
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
-    UnkStruct_ov97_0222D250 *v3 = &v2->unk_8C.unk_00;
-    UnkUnion_ov97_0222D2B0 *v4 = &v2->unk_8C.unk_50;
+    WonderCardMetadata *v3 = &v2->unk_8C.unk_00;
+    WonderCard *v4 = &v2->unk_8C.unk_50;
     SaveData *v5 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     MysteryGift *v6;
 
-    if (v3->unk_4E_2 == 0) {
+    if (v3->saveWonderCard == 0) {
         v0 = 0;
     } else {
         RTCDate v7;
 
         v0 = 1;
-        v4->val2.unk_350 = 0;
+        v4->redistributionCount = 0;
 
-        if (v3->unk_4E_4 == 0) {
-            v4->val2.unk_348 = 0;
+        if (v3->shareable == 0) {
+            v4->redistributionsLeft = 0;
         }
 
         GetCurrentDate(&v7);
-        v4->val2.unk_354 = RTC_ConvertDateToDay(&v7);
+        v4->receivedDate = RTC_ConvertDateToDay(&v7);
     }
 
-    v6 = SaveData_MysteryGift(v5);
-    sub_0202DE5C(v6, v3->unk_4C);
+    v6 = SaveData_GetMysteryGift(v5);
+    MysteryGift_SetWcIDReceived(v6, v3->id);
 
     if (v0 == 0) {
-        v1 = sub_0202DB2C(v6, (const void *)v4, 3);
+        v1 = MysteryGift_TrySavePgt(v6, (const void *)v4, 3);
     } else {
-        v1 = sub_0202DBAC(v6, (const void *)v4);
+        v1 = MysteryGift_TrySaveWondercard(v6, (const void *)v4);
     }
 
     ov97_0223846C(v5);
@@ -664,7 +659,7 @@ static int ov97_0222DA84(OverlayManager *param0)
     Window *v0;
     SystemData *v1;
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
-    MysteryGift *v3 = SaveData_MysteryGift(v2->unk_04);
+    MysteryGift *v3 = SaveData_GetMysteryGift(v2->unk_04);
 
     if (v2->unk_62C == 30) {
         v2->unk_630 = 1;
@@ -784,7 +779,7 @@ static void ov97_0222DD1C(OverlayManager *param0, UnkStruct_ov97_0223E5B8 *param
     }
 
     v2->unk_7C = StringList_New(param2, 86);
-    v2->unk_10 = MessageLoader_Init(0, 26, 421, HEAP_ID_86);
+    v2->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_86);
 
     for (v0 = 0; v0 < param2; v0++) {
         StringList_AddFromMessageBank(v2->unk_7C, v2->unk_10, param1[v0].unk_00, param1[v0].unk_04);
@@ -815,12 +810,12 @@ static void ov97_0222DDD0(OverlayManager *param0, int param1, u32 param2)
     Window *v1;
     UnkStruct_ov97_0223E5B8 v2[4];
     int v3, v4 = 0;
-    MysteryGift *v5 = SaveData_MysteryGift(v0->unk_04);
+    MysteryGift *v5 = SaveData_GetMysteryGift(v0->unk_04);
 
     v1 = &v0->unk_28[0];
     v2[v4++] = Unk_ov97_0223E5B8[0];
 
-    if (sub_0202DD88(v5)) {
+    if (MysteryGift_CheckHasWonderCards(v5)) {
         v2[v4++] = Unk_ov97_0223E5B8[1];
     }
 
@@ -839,7 +834,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
     Strbuf *v0;
     UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
 
-    v1->unk_10 = MessageLoader_Init(1, 26, 421, HEAP_ID_86);
+    v1->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_86);
     v1->unk_0C = StringTemplate_Default(HEAP_ID_86);
 
     Window_FillTilemap(param1, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
@@ -847,7 +842,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
     if (v1->unk_14) {
         v0 = v1->unk_14;
     } else {
-        v0 = MessageUtil_ExpandedStrbuf(v1->unk_0C, v1->unk_10, param2, 86);
+        v0 = MessageUtil_ExpandedStrbuf(v1->unk_0C, v1->unk_10, param2, HEAP_ID_86);
     }
 
     v1->unk_6C = Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, v1->unk_68, TEXT_COLOR(1, 2, 15), NULL);
@@ -890,7 +885,7 @@ static void ov97_0222DF70(OverlayManager *param0, int *param1, int (*param2)(Ove
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (param2) {
             v1 = param2(param0);
@@ -901,7 +896,7 @@ static void ov97_0222DF70(OverlayManager *param0, int *param1, int (*param2)(Ove
         }
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (v0) {
             v3 = (static int (*)(OverlayManager *))v0;
@@ -965,7 +960,7 @@ static void ov97_0222E080(OverlayManager *param0, int *param1)
         Window_ClearAndCopyToVRAM(&v0->unk_26E0);
         Window_Remove(&v0->unk_26E0);
         Bg_ClearTilemap(v0->unk_00, 0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
         *param1 = 3;
@@ -1030,9 +1025,9 @@ static int ov97_0222E228(OverlayManager *param0, Window *param1, int param2, int
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
 
     if (param1 && param2) {
-        v1 = MessageLoader_Init(1, 26, 421, HEAP_ID_86);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, HEAP_ID_86);
         v0 = StringTemplate_Default(HEAP_ID_86);
-        v2->unk_14 = MessageUtil_ExpandedStrbuf(v0, v1, param2, 86);
+        v2->unk_14 = MessageUtil_ExpandedStrbuf(v0, v1, param2, HEAP_ID_86);
         v2->unk_68 = 1;
 
         ov97_0222DE78(param0, param1, param2);
@@ -1090,7 +1085,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    sub_02004550(10, 1174, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_10, SEQ_PRESENT, 1);
     ov97_02237520(86);
 
     if (ov97_02237624()) {
@@ -1101,7 +1096,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
 
     v0->unk_62C = 29;
     v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_08 = SaveData_Options(v0->unk_04);
+    v0->unk_08 = SaveData_GetOptions(v0->unk_04);
     v0->unk_68 = 0xff;
 
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
@@ -1178,7 +1173,7 @@ static Sprite *ov97_0222E538(UnkStruct_ov97_0222E398 *param0, int param1)
         v1.position.y = FX32_ONE * 32;
         v1.priority = 10;
         v1.vramType = param1;
-        v1.heapID = 86;
+        v1.heapID = HEAP_ID_86;
 
         if (v1.vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
             v1.position.y += FX32_CONST(256);
@@ -1862,7 +1857,7 @@ static void ov97_0222F4BC(SysTask *param0, void *param1)
         ov97_0222F410(v0, 2, 2);
 
         if (v1 || (v5 == ((80 / 4) - 1))) {
-            Sound_PlayEffect(1563);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE);
             v0->unk_00 = 5;
             ov97_0222E7B4(v0);
             ov97_0222E60C(v0);
@@ -1972,7 +1967,7 @@ static void ov97_0222F4BC(SysTask *param0, void *param1)
 static int ov97_0222F75C(OverlayManager *param0, int *param1)
 {
     u32 v0, v1;
-    UnkStruct_0202DF40 *v2;
+    PGT *v2;
     UnkStruct_ov97_0222D04C *v3 = OverlayManager_Data(param0);
 
     CTRDG_IsExisting();
@@ -2095,13 +2090,13 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             Bg_ClearTilemap(v3->unk_00, 0);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
 
-            v2 = &v3->unk_8C.unk_50.val1;
+            v2 = &v3->unk_8C.unk_50.pgt;
 
             if (ov97_0222D5C8(v2) == 1) {
                 ov97_02238194(v3->unk_00, v2);
                 v3->unk_2A54 = 2;
             } else {
-                Sound_PlayEffect(1572);
+                Sound_PlayEffect(SEQ_SE_DP_UG_020);
             }
 
             *param1 = 35;
@@ -2109,7 +2104,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             ov97_0222D30C(v3, 0);
             ov97_0222D40C(v3, -1);
 
-            v3->unk_8C.unk_00.unk_4E_2 = 0;
+            v3->unk_8C.unk_00.saveWonderCard = 0;
             *param1 = ov97_0222E228(param0, &v3->unk_18, 26, 55);
         }
     } break;
@@ -2134,7 +2129,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
                 Window_Add(v3->unk_00, &v3->unk_58, 0, 3, 2, 26, 4, 0, ((((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8) + 6 * 4));
             }
 
-            ov97_0222DF10(param0, &v3->unk_58, v3->unk_8C.unk_00.unk_00);
+            ov97_0222DF10(param0, &v3->unk_58, v3->unk_8C.unk_00.title);
             ov97_0222DE78(param0, &v3->unk_18, 4);
             ov97_0222D6F8(param0, 0);
             *param1 = 8;
@@ -2221,7 +2216,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             v3->unk_43C = 120;
         } else if (ov97_02238528() == 3) {
             ov97_0223850C();
-            v3->unk_8C.unk_00.unk_4E_2 = 0;
+            v3->unk_8C.unk_00.saveWonderCard = 0;
             ov97_0222D30C(v3, 0);
             *param1 = ov97_0222E228(param0, &v3->unk_18, 26, 55);
         }
@@ -2233,14 +2228,14 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             *param1 = 15;
         } else if (--v3->unk_43C == 0) {
             ov97_0223850C();
-            v3->unk_8C.unk_00.unk_4E_2 = 0;
+            v3->unk_8C.unk_00.saveWonderCard = 0;
             ov97_0222D30C(v3, 0);
             *param1 = ov97_0222E228(param0, &v3->unk_18, 26, 55);
         }
         break;
     case 14:
         ov97_0222D444(&v3->unk_58, 0);
-        v3->unk_8C.unk_00.unk_4E_2 = 0;
+        v3->unk_8C.unk_00.saveWonderCard = 0;
         *param1 = ov97_0222E228(param0, &v3->unk_18, 28, 55);
         break;
     case 15:
@@ -2248,13 +2243,13 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             ov97_0222D30C(v3, 0);
             ov97_0222D2DC();
             sub_02039794();
-            Sound_PlayEffect(1572);
+            Sound_PlayEffect(SEQ_SE_DP_UG_020);
             ov97_0222D40C(v3, -1);
             *param1 = ov97_0222E228(param0, &v3->unk_18, 8, 55);
         }
         break;
     case 16:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov97_0222DE78(param0, &v3->unk_18, 24);
         ov97_0222D444(&v3->unk_58, 0);
         *param1 = 18;
@@ -2266,14 +2261,14 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         }
 
         ov97_0222D30C(v3, 0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov97_0222DE78(param0, &v3->unk_18, 23);
         ov97_0222D444(&v3->unk_58, 0);
         *param1 = 18;
         break;
     case 18:
         if (gSystem.pressedKeys) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
             *param1 = 3;
         }
@@ -2298,7 +2293,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
                 Window_Add(v3->unk_00, &v3->unk_58, 0, 3, 2, 26, 4, 0, ((((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8) + 6 * 4));
             }
 
-            ov97_0222DF10(param0, &v3->unk_58, v3->unk_8C.unk_00.unk_00);
+            ov97_0222DF10(param0, &v3->unk_58, v3->unk_8C.unk_00.title);
             ov97_0222DE78(param0, &v3->unk_18, 4);
             ov97_0222D6F8(param0, 0);
             *param1 = 20;
@@ -2335,11 +2330,11 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             v3->unk_43C = 1;
             ov97_0222D30C(v3, 0);
             ov97_0222D40C(v3, -1);
-            Sound_PlayEffect(1572);
+            Sound_PlayEffect(SEQ_SE_DP_UG_020);
             *param1 = ov97_0222E228(param0, &v3->unk_18, 8, 25);
         } else if (ov97_02238528() == 3) {
             ov97_0222D40C(v3, -1);
-            v3->unk_8C.unk_00.unk_4E_2 = 0;
+            v3->unk_8C.unk_00.saveWonderCard = 0;
             *param1 = ov97_0222E228(param0, &v3->unk_18, 26, 55);
         }
         break;
@@ -2383,9 +2378,9 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         break;
     case 55:
         if (gSystem.pressedKeys) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-            if (v3->unk_8C.unk_00.unk_4E_2 == 1) {
+            if (v3->unk_8C.unk_00.saveWonderCard == 1) {
                 ov97_02237790(0, 56, v3->unk_163C, 2);
             } else {
                 ov97_02237784(1);
@@ -2397,9 +2392,9 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         ov97_0222DC20(v3->unk_00);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-        ov97_02231FFC(v3->unk_00, &v3->unk_8C.unk_50.val2, HEAP_ID_86);
+        ov97_02231FFC(v3->unk_00, &v3->unk_8C.unk_50, HEAP_ID_86);
         ov97_02237790(1, 55, v3->unk_163C, 2);
-        v3->unk_8C.unk_00.unk_4E_2 = 0;
+        v3->unk_8C.unk_00.saveWonderCard = 0;
         break;
     case 57:
         OS_ResetSystem(0);
@@ -2444,7 +2439,7 @@ static int ov97_022301BC(OverlayManager *param0, int *param1)
     Heap_Destroy(HEAP_ID_86);
 
     if (v0->unk_1638 == 2) {
-        SetGBACartridgeVersion(NULL);
+        SetGBACartridgeVersion(VERSION_NONE);
     }
 
     ov97_02238400(0);

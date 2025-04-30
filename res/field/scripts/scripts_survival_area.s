@@ -20,12 +20,12 @@ _002A:
     End
 
 _0032:
-    GetRandom 0x40C2, 3
-    GoToIfUnset 214, _0052
+    GetRandom VAR_UNK_0x40C2, 3
+    GoToIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0052
     End
 
 _0045:
-    GoToIfUnset 214, _0052
+    GoToIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0052
     End
 
 _0052:
@@ -66,7 +66,7 @@ _0095:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 215, _00B3
+    GoToIfSet FLAG_UNK_0x00D7, _00B3
     Message 10
     WaitABXPadPress
     CloseMessage
@@ -129,14 +129,14 @@ _0141:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetDayOfWeek 0x4000
-    GoToIfEq 0x4000, DAY_OF_WEEK_SUNDAY, _01BE
-    GoToIfEq 0x4000, DAY_OF_WEEK_SATURDAY, _01BE
+    GetDayOfWeek VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, _01BE
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SATURDAY, _01BE
     BufferRivalName 0
     BufferPlayerName 1
-    SetVar 0x8008, 0x40C2
-    GoToIfEq 0x8008, 0, _0195
-    GoToIfEq 0x8008, 1, _01A0
+    SetVar VAR_0x8008, VAR_UNK_0x40C2
+    GoToIfEq VAR_0x8008, 0, _0195
+    GoToIfEq VAR_0x8008, 1, _01A0
     GoTo _01AB
     End
 
@@ -162,21 +162,21 @@ _01B6:
     End
 
 _01BE:
-    GoToIfSet 0xAB2, _02CB
+    GoToIfSet FLAG_UNK_0x0AB2, _02CB
     BufferRivalName 0
     BufferPlayerName 1
     Message 2
     CloseMessage
-    GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, SPECIES_TURTWIG, _0236
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0272
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _0236
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _0272
     GoTo _01FA
     End
 
 _01FA:
-    ScrCmd_28F 0x800C
-    GoToIfLt 0x800C, 20, _021A
-    GoToIfGe 0x800C, 20, _0228
+    ScrCmd_28F VAR_RESULT
+    GoToIfLt VAR_RESULT, 20, _021A
+    GoToIfGe VAR_RESULT, 20, _0228
     End
 
 _021A:
@@ -190,9 +190,9 @@ _0228:
     End
 
 _0236:
-    ScrCmd_28F 0x800C
-    GoToIfLt 0x800C, 20, _0256
-    GoToIfGe 0x800C, 20, _0264
+    ScrCmd_28F VAR_RESULT
+    GoToIfLt VAR_RESULT, 20, _0256
+    GoToIfGe VAR_RESULT, 20, _0264
     End
 
 _0256:
@@ -206,9 +206,9 @@ _0264:
     End
 
 _0272:
-    ScrCmd_28F 0x800C
-    GoToIfLt 0x800C, 20, _0292
-    GoToIfGe 0x800C, 20, _02A0
+    ScrCmd_28F VAR_RESULT
+    GoToIfLt VAR_RESULT, 20, _0292
+    GoToIfGe VAR_RESULT, 20, _02A0
     End
 
 _0292:
@@ -222,9 +222,9 @@ _02A0:
     End
 
 _02AE:
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _02DC
-    SetFlag 0xAB2
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _02DC
+    SetFlag FLAG_UNK_0x0AB2
     GoTo _02CB
     End
 

@@ -4,6 +4,7 @@
 #include <nnsys.h>
 
 #include "constants/heap.h"
+#include "constants/narc.h"
 
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_02255810.h"
@@ -26,7 +27,7 @@ void ov25_Set_cParam(ov25_540_GraphicObject *param0, u32 param1);
 void ov25_Set_charNo(ov25_540_GraphicObject *param0, u32 param1);
 void ov25_Set_mosaic(ov25_540_GraphicObject *param0, BOOL param1);
 void ov25_Set_ElemRotZ(ov25_540_GraphicObject *param0, u16 param1);
-BOOL ov25_LoadNARCMembers(UnkStruct_ov25_02255958 *param0, u32 param1, u32 param2, u32 param3, enum HeapId param4);
+BOOL ov25_LoadNARCMembers(UnkStruct_ov25_02255958 *param0, enum NarcID narcID, u32 param2, u32 param3, enum HeapId param4);
 void ov25_FreeNARCMembers(UnkStruct_ov25_02255958 *param0);
 
 #endif // POKEPLATINUM_OV25_02255540_H

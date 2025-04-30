@@ -9,8 +9,6 @@
 #include "constants/species.h"
 #include "generated/items.h"
 #include "generated/moves.h"
-#include "generated/sdat.h"
-#include "generated/text_banks.h"
 
 #include "field/field_system.h"
 #include "overlay005/field_menu.h"
@@ -28,13 +26,13 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "script_manager.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "tutor_movesets.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02054884.h"
 
@@ -101,7 +99,7 @@ BOOL ScrCmd_CheckHasLearnableTutorMoves(ScriptContext *ctx)
     u16 location = ScriptContext_GetVar(ctx);
     u16 *hasLearnableMoves = ScriptContext_GetVarPointer(ctx);
 
-    Pokemon *pokemon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), partySlot);
+    Pokemon *pokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
     *hasLearnableMoves = Pokemon_HasLearnableMovesAt(pokemon, location);
 
     return FALSE;
@@ -113,7 +111,7 @@ BOOL ScrCmd_ResetMoveSlot(ScriptContext *ctx)
     u16 moveID = ScriptContext_GetVar(ctx);
     u16 moveSlot = ScriptContext_GetVar(ctx);
 
-    sub_02054988(Party_GetFromSavedata(ctx->fieldSystem->saveData), partySlot, moveID, moveSlot);
+    sub_02054988(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot, moveID, moveSlot);
     return FALSE;
 }
 
@@ -317,7 +315,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
     scriptContext->data[0] = selectedOptionVar;
 
     if (partySlot != 0xff) {
-        pokemon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(scriptContext->fieldSystem->saveData), partySlot);
+        pokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(scriptContext->fieldSystem->saveData), partySlot);
     }
 
     moveNamesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_FIELD_TASK);
@@ -577,7 +575,7 @@ BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    FieldMenuManager **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u8 v4 = ScriptContext_ReadByte(ctx);
     u16 selectedMove = ScriptContext_GetVar(ctx);
@@ -592,7 +590,7 @@ BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)
 BOOL ScrCmd_CloseShardCostWindow(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
 
     FieldMenuManager_DeleteMoveTutorCost(*v1);
     return FALSE;

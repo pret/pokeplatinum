@@ -63,7 +63,7 @@ void PaletteData_LoadBuffer(PaletteData *paletteData, const void *src, enum Pale
     MI_CpuCopy16(src, paletteData->buffers[bufferID].faded + destStart, srcSize);
 }
 
-void PaletteData_LoadBufferFromFile(PaletteData *paletteData, u32 narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 srcSize, u16 destStart, u16 srcStart)
+void PaletteData_LoadBufferFromFile(PaletteData *paletteData, enum NarcID narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 srcSize, u16 destStart, u16 srcStart)
 {
     NNSG2dPaletteData *palette;
     void *ptr = Graphics_GetPlttData(narcID, narcMemberIdx, &palette, heapID);
@@ -80,7 +80,7 @@ void PaletteData_LoadBufferFromFile(PaletteData *paletteData, u32 narcID, u32 na
     Heap_FreeToHeap(ptr);
 }
 
-void PaletteData_LoadBufferFromFileStart(PaletteData *paletteData, u32 narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 srcSize, u16 destStart)
+void PaletteData_LoadBufferFromFileStart(PaletteData *paletteData, enum NarcID narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 srcSize, u16 destStart)
 {
     PaletteData_LoadBufferFromFile(paletteData, narcID, narcMemberIdx, heapID, bufferID, srcSize, destStart, 0);
 }
@@ -115,7 +115,7 @@ void PaletteData_LoadBufferFromHardware(PaletteData *paletteData, enum PaletteBu
     PaletteData_LoadBuffer(paletteData, ptr + start, bufferID, start, size);
 }
 
-void LoadPaletteFromFile(u32 narcID, u32 narcMemberIdx, u32 heapID, u32 size, u16 start, void *dest)
+void LoadPaletteFromFile(enum NarcID narcID, u32 narcMemberIdx, u32 heapID, u32 size, u16 start, void *dest)
 {
     NNSG2dPaletteData *palette;
     void *ptr = Graphics_GetPlttData(narcID, narcMemberIdx, &palette, heapID);
@@ -585,7 +585,7 @@ void TintPalette(u16 *palette, int numColorsToTint, int tintR, int tintG, int ti
     }
 }
 
-void PaletteData_LoadBufferFromFileStartWithTint(PaletteData *paletteData, u32 narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 size, u16 start, int r, int g, int b)
+void PaletteData_LoadBufferFromFileStartWithTint(PaletteData *paletteData, enum NarcID narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 size, u16 start, int r, int g, int b)
 {
     NNSG2dPaletteData *palette;
     void *ptr = Graphics_GetPlttData(narcID, narcMemberIdx, &palette, heapID);

@@ -10,15 +10,11 @@
 #include "constants/trainer.h"
 #include "generated/abilities.h"
 #include "generated/genders.h"
-#include "generated/sdat.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/struct_02007768_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/fraction.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/trainer.h"
@@ -57,7 +53,10 @@
 #include "pc_boxes.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
+#include "sound_chatot.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -68,9 +67,6 @@
 #include "touch_screen.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
-#include "unk_02006224.h"
-#include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
@@ -313,8 +309,8 @@ static BOOL BtlCmd_End(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static int BattleScript_Read(BattleContext *battleCtx);
 static void BattleScript_Iter(BattleContext *battleCtx, int i);
-static void BattleScript_Jump(BattleContext *battleCtx, int narc, int file);
-static void BattleScript_Call(BattleContext *battleCtx, int narc, int file);
+static void BattleScript_Jump(BattleContext *battleCtx, enum NarcID narcID, int file);
+static void BattleScript_Call(BattleContext *battleCtx, enum NarcID narcID, int file);
 static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *battleCtx, int var);
 static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
 static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2469,7 +2465,7 @@ static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx
     return FALSE;
 }
 
-enum {
+enum GetExpTaskState {
     SEQ_GET_EXP_START = 0,
     SEQ_GET_EXP_WAIT_MESSAGE_PRINT,
     SEQ_GET_EXP_WAIT_MESSAGE_DELAY,
@@ -2515,7 +2511,7 @@ enum {
     SEQ_GET_EXP_DONE,
 };
 
-enum {
+enum GetExpTaskDataIndex {
     GET_EXP_MSG_INDEX = 0,
     GET_EXP_MSG_DELAY,
     GET_EXP_LEARNSET_INDEX,
@@ -8628,7 +8624,7 @@ static BOOL BtlCmd_CheckChatterActivation(BattleSystem *battleSys, BattleContext
         && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
         int chatter;
         if ((BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_RECORDING) == FALSE) {
-            chatter = Sound_Chatter(BattleSystem_ChatotVoice(battleSys, battleCtx->attacker));
+            chatter = Sound_GetChatterActivationParameter(BattleSystem_ChatotVoice(battleSys, battleCtx->attacker));
         } else {
             chatter = BattleSystem_RecordedChatter(battleSys, battleCtx->attacker);
         }
@@ -9718,12 +9714,12 @@ static void BattleScript_Iter(BattleContext *battleCtx, int i)
  * current execution.
  *
  * @param battleCtx
- * @param narc          Which NARC to open for the script
+ * @param narcID        Which NARC to open for the script
  * @param file          Which file in the NARC to load
  */
-static void BattleScript_Jump(BattleContext *battleCtx, int narc, int file)
+static void BattleScript_Jump(BattleContext *battleCtx, enum NarcID narcID, int file)
 {
-    BattleSystem_LoadScript(battleCtx, narc, file);
+    BattleSystem_LoadScript(battleCtx, narcID, file);
 }
 
 /**
@@ -9731,12 +9727,12 @@ static void BattleScript_Jump(BattleContext *battleCtx, int narc, int file)
  * execution once finished with the newly-loaded script.
  *
  * @param battleCtx
- * @param narc          Which NARC to open for the script
+ * @param narcID        Which NARC to open for the script
  * @param file          Which file in the NARC to load
  */
-static void BattleScript_Call(BattleContext *battleCtx, int narc, int file)
+static void BattleScript_Call(BattleContext *battleCtx, enum NarcID narcID, int file)
 {
-    BattleSystem_CallScript(battleCtx, narc, file);
+    BattleSystem_CallScript(battleCtx, narcID, file);
 }
 
 /**
@@ -10546,7 +10542,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     BattleScriptTaskData *v2 = param1;
     Pokemon *v3;
     PaletteData *v4;
-    UnkStruct_02007768 *v5;
+    PokemonSpriteManager *v5;
     MessageLoader *v6 = BattleSystem_MessageLoader(v2->battleSys);
     v4 = BattleSystem_PaletteSys(v2->battleSys);
     v5 = ov16_0223E000(v2->battleSys);
@@ -10563,7 +10559,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 BallThrow v7;
 
                 v7.mode = 3;
-                v7.heapID = 5;
+                v7.heapID = HEAP_ID_BATTLE;
                 v7.target = v1 + 20000;
                 v7.ballID = v2->ball;
                 v7.cellActorSys = ov16_0223E010(v2->battleSys);
@@ -10585,7 +10581,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v2->ballRotation = ov12_02237728(&v7);
                 v2->seqNum = 1;
 
-                Sound_PlayEffect(1802);
+                Sound_PlayEffect(SEQ_SE_DP_NAGERU);
                 v2->battleSys->unk_241E++;
                 ov12_022368C8(v2->ballRotation, 0);
             }
@@ -10600,7 +10596,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                     v8->unk_84 = NULL;
                     v2->seqNum = 1;
 
-                    Sound_PlayEffect(1802);
+                    Sound_PlayEffect(SEQ_SE_DP_NAGERU);
                     v2->battleSys->unk_241E++;
                     ov12_022368C8(v2->ballRotation, 0);
                 }
@@ -10613,11 +10609,11 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 u32 battleType = BattleSystem_BattleType(v2->battleSys);
 
                 if (battleType & BATTLE_TYPE_TRAINER) {
-                    sub_02005728(1510, 117);
+                    Sound_PlayPannedEffect(1510, 117);
                     ov12_022368C8(v2->ballRotation, 2);
                     v2->seqNum = 25;
                 } else {
-                    sub_02005728(1800, 117);
+                    Sound_PlayPannedEffect(1800, 117);
                     ov12_022368C8(v2->ballRotation, 1);
 
                     v2->seqNum = 2;
@@ -10676,7 +10672,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 7:
         if (--v2->tmpData[1] == 0) {
             ov12_022368C8(v2->ballRotation, 6);
-            sub_02005728(1801, 117);
+            Sound_PlayPannedEffect(1801, 117);
             v2->seqNum = 8;
         }
         break;
@@ -10692,7 +10688,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v2->tmpData[1] = 30;
                 v2->seqNum = 9;
 
-                Sound_PlayBGM(1127);
+                Sound_PlayBGM(SEQ_VICTORY_WILD_POKEMON);
                 BattleSystem_SetRedHPSoundFlag(v2->battleSys, 2);
             }
         }
@@ -10714,12 +10710,12 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                     BattleSystem_SetPokemonCatchData(v2->battleSys, v2->battleCtx, v3);
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
                     PaletteData_StartFade(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
-                    sub_0200872C(v5, 0, 16, 0, 0x0);
+                    PokemonSpriteManager_StartFadeAll(v5, 0, 16, 0, 0x0);
                     v2->seqNum = 32;
                 } else if (BattleSystem_CaughtSpecies(v2->battleSys, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL))) {
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
                     PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
-                    sub_0200872C(v5, 0, 16, 0, 0x0);
+                    PokemonSpriteManager_StartFadeAll(v5, 0, 16, 0, 0x0);
                     v2->seqNum = 16;
                 } else {
                     {
@@ -10743,7 +10739,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             if (--v2->tmpData[1] == 0) {
                 v2->seqNum = 12;
                 PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
-                sub_0200872C(v5, 0, 16, 0, 0x0);
+                PokemonSpriteManager_StartFadeAll(v5, 0, 16, 0, 0x0);
                 sub_02015738(ov16_0223E220(v2->battleSys), 1);
             }
         }
@@ -10754,7 +10750,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 UnkStruct_ov21_021E8E0C v12;
 
                 ov12_0223783C(v2->ballRotation);
-                sub_02007DD4(v5);
+                PokemonSpriteManager_DeleteAll(v5);
                 ov16_0223B53C(v2->battleSys);
                 ov16_022686BC(ov16_0223E020(v2->battleSys, 0), 0);
                 ov16_022686BC(ov16_0223E020(v2->battleSys, 1), 0);
@@ -10763,7 +10759,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v12.unk_00 = BattleSystem_BGL(v2->battleSys);
                 v12.unk_04 = BattleSystem_PaletteSys(v2->battleSys);
                 v12.unk_08 = v5;
-                v12.heapId = HEAP_ID_BATTLE;
+                v12.heapID = HEAP_ID_BATTLE;
                 v12.unk_10 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                 v12.unk_14 = IsNationalDexObtained(BattleSystem_GetPokedex(v2->battleSys));
                 v2->tmpPtr[1] = CharTransfer_PopTaskManager();
@@ -10777,7 +10773,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v2->seqNum = 14;
             } else if (TouchScreen_Tapped()) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 v2->seqNum = 14;
             }
 
@@ -10791,10 +10787,10 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         PokemonSprite *v13;
 
         v13 = ov21_021E8E00(v2->tmpPtr[0]);
-        sub_02008274(v13, 0, 4);
+        PokemonSprite_AddAttribute(v13, MON_SPRITE_X_CENTER, 4);
 
-        if (sub_020080C0(v13, 0) >= 128) {
-            sub_02007DEC(v13, 0, 128);
+        if (PokemonSprite_GetAttribute(v13, MON_SPRITE_X_CENTER) >= 128) {
+            PokemonSprite_SetAttribute(v13, MON_SPRITE_X_CENTER, 128);
             v2->seqNum = 15;
         }
     } break;
@@ -10808,19 +10804,19 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 16:
         if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             {
-                ArchivedSprite v14;
+                PokemonSpriteTemplate v14;
 
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
                 ov12_0223783C(v2->ballRotation);
-                sub_02007DD4(v5);
+                PokemonSpriteManager_DeleteAll(v5);
                 ov16_02263B20(BattleSystem_BattlerData(v2->battleSys, 0), 0);
                 ov16_0223B53C(v2->battleSys);
                 ov16_0223B578(v2->battleSys);
-                Pokemon_BuildArchivedSprite(&v14, v3, 2);
-                sub_02007C34(v5, &v14, 128, 72, 0, 0, NULL, NULL);
+                Pokemon_BuildSpriteTemplate(&v14, v3, 2);
+                PokemonSpriteManager_CreateSprite(v5, &v14, 128, 72, 0, 0, NULL, NULL);
                 PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 16, 0, 0x0);
-                sub_0200872C(v5, 16, 0, 0, 0x0);
+                PokemonSpriteManager_StartFadeAll(v5, 16, 0, 0, 0x0);
 
                 v2->seqNum = 17;
             }
@@ -10850,7 +10846,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             } else {
                 sub_02015738(ov16_0223E220(v2->battleSys), 1);
                 PaletteData_StartFade(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
-                sub_0200872C(v5, 0, 16, 0, 0x0);
+                PokemonSpriteManager_StartFadeAll(v5, 0, 16, 0, 0x0);
                 v2->seqNum = 20;
             }
         }
@@ -10943,7 +10939,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                     if (v2->seqNum == 22) {
                         sub_02015738(ov16_0223E220(v2->battleSys), 1);
                         PaletteData_StartFade(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
-                        sub_0200872C(v5, 0, 16, 0, 0x0);
+                        PokemonSpriteManager_StartFadeAll(v5, 0, 16, 0, 0x0);
                     }
 
                     v2->seqNum = 32;
@@ -10957,7 +10953,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                         int v29;
 
                         v24 = ov16_0223E228(v2->battleSys);
-                        v25 = PCBoxes_GetCurrentBox(v24);
+                        v25 = PCBoxes_GetCurrentBoxID(v24);
                         v26 = PCBoxes_FirstEmptyBox(v24);
 
                         PCBoxes_SetCurrentBox(v24, v26);
@@ -10967,7 +10963,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                             Pokemon_SetValue(v3, MON_DATA_MOVE1_CUR_PP + v27, &v28);
                         }
 
-                        if (Pokemon_SetGiratinaForm(v3) != -1) {
+                        if (Pokemon_SetGiratinaFormByHeldItem(v3) != -1) {
                             ov16_0223F9A0(v2->battleSys, v1);
                         }
 
@@ -11004,7 +11000,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 {
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
                     PaletteData_StartFade(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
-                    sub_0200872C(v5, 0, 16, 0, 0x0);
+                    PokemonSpriteManager_StartFadeAll(v5, 0, 16, 0, 0x0);
 
                     v2->seqNum = 32;
                 }
@@ -11088,7 +11084,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             if (BattleSystem_BattleType(v2->battleSys) & (BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_CATCH_TUTORIAL)) {
                 ov12_0223783C(v2->ballRotation);
-                sub_02007DD4(v5);
+                PokemonSpriteManager_DeleteAll(v5);
             }
 
             v2->battleSys->resultMask = 0x4;
@@ -12251,7 +12247,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     Window_AddToTopLeftCorner(v8, &v9, 12, 4, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v9, FONT_SYSTEM, v7, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
-    v10 = sub_02012898(&v9, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
+    v10 = sub_02012898(&v9, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_BATTLE);
     CharTransfer_AllocRange(v10, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v11);
 
     v12.unk_00 = param1->tmpPtr[0];
@@ -12265,7 +12261,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     v12.unk_20 = 0;
     v12.unk_24 = 100;
     v12.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v12.unk_2C = 5;
+    v12.heapID = HEAP_ID_BATTLE;
 
     param1->fontOAM = sub_020127E8(&v12);
     param1->charTransferAllocation = v11;

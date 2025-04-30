@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_0202A138_decl.h"
 #include "struct_decls/struct_0202A150_decl.h"
-#include "struct_defs/archived_sprite.h"
 
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02255094.h"
@@ -77,7 +76,7 @@ static void ov22_0225B4E4(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_ov22_
 static void ov22_0225B4F8(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029C68 *param1);
 static void ov22_0225B540(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029C88 *param1);
 static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int heapID);
-static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int param3);
+static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int heapID);
 
 UnkStruct_ov22_0225B1BC *ov22_0225AF8C(const UnkStruct_ov22_0225AF8C *param0, const UnkStruct_02029C68 *param1)
 {
@@ -346,7 +345,7 @@ static void ov22_0225B388(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_
     ov22_022578F4(&param0->unk_1F4, &v0);
 
     {
-        ArchivedSprite v4;
+        PokemonSpriteTemplate v4;
 
         v1 = sub_0202A60C(param1->unk_00);
         v2 = sub_0202A614(param1->unk_00);
@@ -452,7 +451,7 @@ static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
     ov22_0225B5A8(param0, param1, param2, heapID);
 }
 
-static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int param3)
+static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int heapID)
 {
     int v0;
     int v1;
@@ -464,7 +463,7 @@ static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
         v1 = v3;
 
         if (ResourceCollection_IsIDUnused(param1->unk_10, v1) == 1) {
-            v2 = LoadMemberFromOpenNARC(param0->unk_5C, v3 + 1, 0, param3, 1);
+            v2 = LoadMemberFromOpenNARC(param0->unk_5C, v3 + 1, 0, heapID, 1);
 
             ResourceCollection_Add(param1->unk_10, v2, v1);
             NNS_G2dGetUnpackedCharacterData(v2, &param1->unk_00[v1].unk_04);
@@ -473,7 +472,7 @@ static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
         }
     }
 
-    v2 = LoadMemberFromOpenNARC(param0->unk_5C, 0, 0, param3, 1);
+    v2 = LoadMemberFromOpenNARC(param0->unk_5C, 0, 0, heapID, 1);
 
     ResourceCollection_Add(param1->unk_14, v2, 0);
     NNS_G2dGetUnpackedPaletteData(v2, &param1->unk_08[0].unk_04);

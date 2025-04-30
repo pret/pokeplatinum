@@ -18,12 +18,12 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
@@ -194,7 +194,7 @@ static int ov95_0224A464(UnkStruct_ov95_0224A42C *param0, int *param1)
         break;
     case 1:
         if (Sprite_IsAnimated(param0->unk_20[0]) == 0) {
-            Sound_PlayEffect(1707);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN05);
             ov95_0224A864(param0, &(param0->unk_34));
             ov95_022479A8(param0->unk_2C, 1);
             (*param1)++;
@@ -304,7 +304,7 @@ static void ov95_0224A518(UnkStruct_ov95_0224A42C *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     sub_02039734();
-    sub_020397C8(1, 57);
+    sub_020397C8(1, HEAP_ID_57);
 }
 
 static void ov95_0224A678(UnkStruct_ov95_0224A42C *param0)

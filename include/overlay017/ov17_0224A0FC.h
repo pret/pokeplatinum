@@ -3,8 +3,6 @@
 
 #include <nitro/gx.h>
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay017/struct_ov17_0224A1EC.h"
 #include "overlay017/struct_ov17_0224ABFC.h"
 #include "overlay017/struct_ov17_0224B058.h"
@@ -16,6 +14,7 @@
 #include "overlay017/struct_ov17_02253084.h"
 
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 
 s16 ov17_0224A0FC(int param0);

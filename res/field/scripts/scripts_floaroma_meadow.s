@@ -13,21 +13,21 @@
     ScriptEntryEnd
 
 _001E:
-    SetFlag 0x9CE
+    SetFlag FLAG_UNK_0x09CE
     End
 
 _0024:
     LockAll
     Call _00CC
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_1
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _006E
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _006E
     Call _00EE
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_2
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _006E
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _006E
     Call _010E
-    SetFlag 0x989
+    SetFlag FLAG_ALT_MUSIC_FLOAROMA_MEADOW
     ReleaseAll
     End
 
@@ -115,25 +115,24 @@ _010E:
     WaitFadeScreen
     RemoveObject 0
     RemoveObject 1
-    SetVar 0x40E9, 1
+    SetVar VAR_UNK_0x40E9, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ClearFlag 0x19E
+    ClearFlag FLAG_UNK_0x019E
     AddObject 3
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 12, _01BA
-    CallIfEq 0x8004, 13, _01C6
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 12, _01BA
+    CallIfEq VAR_0x8004, 13, _01C6
     RemoveObject 3
     Message 7
-    SetVar 0x8004, 0x1B6
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1B6
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 159
+    SetFlag FLAG_UNK_0x009F
     Message 8
-    SetVar 0x8004, 94
-    SetVar 0x8005, 10
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _01AD
+    SetVar VAR_0x8004, ITEM_HONEY
+    SetVar VAR_0x8005, 10
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01AD
     CallCommonScript 0x7FC
     Message 9
     GoTo _01B0
@@ -141,7 +140,7 @@ _010E:
 _01AD:
     Message 12
 _01B0:
-    SetFlag 160
+    SetFlag FLAG_UNK_0x00A0
     WaitABXPadPress
     CloseMessage
     Return
@@ -171,50 +170,47 @@ _01DA:
     LockAll
     FacePlayer
     Message 10
-    ScrCmd_072 20, 2
+    ShowMoney 20, 2
     GoTo _01F3
     End
 
 _01F3:
-    ScrCmd_041 30, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 15, 0
-    ScrCmd_042 16, 1
-    ScrCmd_042 17, 2
-    ScrCmd_043
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0241
-    GoToIfEq 0x8008, 1, _026A
-    GoToIfEq 0x8008, 2, _02C8
+    InitLocalTextMenu 30, 11, 0, VAR_RESULT
+    SetMenuXOriginToRight
+    AddMenuEntryImm 15, 0
+    AddMenuEntryImm 16, 1
+    AddMenuEntryImm 17, 2
+    ShowMenu
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _0241
+    GoToIfEq VAR_0x8008, 1, _026A
+    GoToIfEq VAR_0x8008, 2, _02C8
     GoTo _02C8
     End
 
 _0241:
-    ScrCmd_071 0x800C, 100
-    GoToIfEq 0x800C, 0, _02E2
-    SetVar 0x8005, 1
-    SetVar 0x8006, 100
+    GoToIfNotEnoughMoney 100, _02E2
+    SetVar VAR_0x8005, 1
+    SetVar VAR_0x8006, 100
     GoTo _0293
     End
 
 _026A:
-    ScrCmd_071 0x800C, 0x3E8
-    GoToIfEq 0x800C, 0, _02E2
-    SetVar 0x8005, 10
-    SetVar 0x8006, 0x3E8
+    GoToIfNotEnoughMoney 1000, _02E2
+    SetVar VAR_0x8005, 10
+    SetVar VAR_0x8006, 1000
     GoTo _0293
     End
 
 _0293:
-    SetVar 0x8004, 94
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _02D5
-    ScrCmd_1A3 0x8006
-    ScrCmd_074
+    SetVar VAR_0x8004, ITEM_HONEY
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _02D5
+    RemoveMoney2 VAR_0x8006
+    UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     CallCommonScript 0x7E0
-    ScrCmd_073
+    HideMoney
     CloseMessage
     ReleaseAll
     End
@@ -222,7 +218,7 @@ _0293:
 _02C8:
     Message 14
     WaitABXPadPress
-    ScrCmd_073
+    HideMoney
     CloseMessage
     ReleaseAll
     End
@@ -230,7 +226,7 @@ _02C8:
 _02D5:
     Message 12
     WaitABXPadPress
-    ScrCmd_073
+    HideMoney
     CloseMessage
     ReleaseAll
     End
@@ -238,7 +234,7 @@ _02D5:
 _02E2:
     Message 13
     WaitABXPadPress
-    ScrCmd_073
+    HideMoney
     CloseMessage
     ReleaseAll
     End
@@ -251,11 +247,11 @@ _0306:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x8004, 0x1B6
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1B6
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     CloseMessage
-    SetFlag 159
+    SetFlag FLAG_UNK_0x009F
     RemoveObject 3
     ReleaseAll
     End

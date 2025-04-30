@@ -31,7 +31,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -39,6 +39,8 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -48,8 +50,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -434,7 +434,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     CommMan_SetErrorHandling(1, 1);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    ResetLock(2);
+    ResetLock(RESET_LOCK_0x2);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_95, 0x80000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D0F70), HEAP_ID_95);
@@ -443,10 +443,10 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     v1->unk_38 = v0;
     v0->unk_CC = v1;
     v0->unk_D0 = v1->unk_34;
-    v0->unk_24 = Party_GetFromSavedata(v0->unk_CC->unk_14.unk_08);
+    v0->unk_24 = SaveData_GetParty(v0->unk_CC->unk_14.unk_08);
     v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, HEAP_ID_95);
 
-    VramTransfer_New(8, 95);
+    VramTransfer_New(8, HEAP_ID_95);
     sub_0201E3D8();
     sub_0201E450(4);
     ov109_021D1C28(v0);
@@ -474,7 +474,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
         v5->unk_40 = (FX32_ONE * (Unk_ov109_021D5C44[v0->unk_CC->unk_08][v3]));
     }
 
-    v0->unk_1C = sub_020041FC();
+    v0->unk_1C = Sound_GetCurrentBGM();
 
     ov109_021D31A8(v0);
     ov109_021D32DC(v0);
@@ -510,7 +510,7 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
     NARC_dtor(v0->unk_D80);
     OverlayManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_95);
-    ResetUnlock(2);
+    ResetUnlock(RESET_LOCK_0x2);
 
     return 1;
 }
@@ -785,7 +785,7 @@ static int ov109_021D122C(UnkStruct_ov109_021D0F70 *param0)
     param0->unk_D4.unk_40 = (FX32_ONE * (v1->unk_04));
     param0->unk_00 = 17;
 
-    sub_02004550(15, 1210, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_15, SEQ_PL_GURUGURU, 1);
     ov109_021D2788(param0);
 
     return 1;
@@ -1072,7 +1072,7 @@ static int ov109_021D1648(UnkStruct_ov109_021D0F70 *param0)
         param0->unk_00 = 31;
     }
 
-    Sound_PlayEffect(1521);
+    Sound_PlayEffect(SEQ_SE_DP_PINPON);
     return 1;
 }
 
@@ -1245,7 +1245,7 @@ static int ov109_021D18A0(UnkStruct_ov109_021D0F70 *param0)
     }
 
     {
-        sub_02006150(1158);
+        Sound_PlayFanfare(SEQ_FANFA4);
     }
 
     param0->unk_00 = 38;
@@ -1256,7 +1256,7 @@ static int ov109_021D18F4(UnkStruct_ov109_021D0F70 *param0)
 {
     if (param0->unk_0C < (30 * 4)) {
         param0->unk_0C++;
-    } else if (sub_020061E4() == 0) {
+    } else if (Sound_IsBGMPausedByFanfare() == 0) {
         param0->unk_0C = 0;
         param0->unk_00 = 39;
     }
@@ -1275,7 +1275,6 @@ static int ov109_021D1918(UnkStruct_ov109_021D0F70 *param0)
 
     {
         u32 v0;
-        BOOL v1;
 
         v0 = Unk_ov109_021D5BE4[param0->unk_2C.unk_04][0];
         v0 += LCRNG_Next() % (Unk_ov109_021D5BE4[param0->unk_2C.unk_04][1] - v0 + 1);
@@ -1288,10 +1287,10 @@ static int ov109_021D1918(UnkStruct_ov109_021D0F70 *param0)
 
         ov109_021D2714(param0, 3, v0);
 
-        v1 = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, 95);
-        sub_02006150(1158);
+        BOOL removedItem = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, HEAP_ID_95);
+        Sound_PlayFanfare(SEQ_FANFA4);
 
-        if (v1 == 1) {
+        if (removedItem == TRUE) {
             param0->unk_00 = 40;
         } else {
             param0->unk_00 = 41;
@@ -1305,7 +1304,7 @@ static int ov109_021D19AC(UnkStruct_ov109_021D0F70 *param0)
 {
     if (param0->unk_0C < (30 * 4)) {
         param0->unk_0C++;
-    } else if (sub_020061E4() == 0) {
+    } else if (Sound_IsBGMPausedByFanfare() == 0) {
         param0->unk_0C = 0;
         param0->unk_00 = 43;
     }
@@ -1317,7 +1316,7 @@ static int ov109_021D19D0(UnkStruct_ov109_021D0F70 *param0)
 {
     if (param0->unk_0C < (30 * 4)) {
         param0->unk_0C++;
-    } else if (sub_020061E4() == 0) {
+    } else if (Sound_IsBGMPausedByFanfare() == 0) {
         param0->unk_0C = 0;
         param0->unk_00 = 40;
         ov109_021D2634(param0, 4);
@@ -1455,8 +1454,8 @@ static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 {
     StartScreenTransition(2, 0, 0, 0x0, 8, 1, HEAP_ID_95);
 
-    if (param0->unk_1C != sub_020041FC()) {
-        sub_02004550(4, param0->unk_1C, 1);
+    if (param0->unk_1C != Sound_Impl_GetCurrentBGM()) {
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, param0->unk_1C, 1);
     }
 
     param0->unk_00 = 52;
@@ -1977,7 +1976,7 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
 
     {
         NNSG2dPaletteData *v5;
-        void *v6 = sub_020394A8(95);
+        void *v6 = sub_020394A8(HEAP_ID_95);
 
         NNS_G2dGetUnpackedPaletteData(v6, &v5);
         PaletteData_LoadBuffer(v2, v5->pRawData, 2, 14 * 16, 32);
@@ -2007,7 +2006,7 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 38, GetMessageBoxPaletteNARCMember(param0->unk_CC->unk_14.unk_04), 95, 0, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
 
-    v1->unk_04 = MessageLoader_Init(0, 26, 376, HEAP_ID_95);
+    v1->unk_04 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0376, HEAP_ID_95);
     v1->unk_08 = StringTemplate_Default(HEAP_ID_95);
 
     for (v0 = 0; v0 < 1; v0++) {
@@ -2260,7 +2259,7 @@ static void ov109_021D29CC(UnkStruct_ov109_021D0F70 *param0)
     v0 = param0->unk_CC->unk_08;
     v1 = Unk_ov109_021D5A80[v0];
 
-    sub_0207389C(&v2->unk_54, 0, v3, v1, 95, 0);
+    sub_0207389C(&v2->unk_54, 0, v3, v1, HEAP_ID_95, 0);
     sub_020738EC(&v2->unk_54);
     sub_02073B70(&v2->unk_68, &v2->unk_54);
 
@@ -2350,19 +2349,19 @@ static void ov109_021D2B00(UnkStruct_ov109_021D0F70 *param0)
     const u32 *v1, *v2;
     UnkStruct_ov109_021D1334 *v3 = &param0->unk_190;
 
-    sub_0207389C(&v3->unk_00, 0, param0->unk_D80, 0, 95, 0);
+    sub_0207389C(&v3->unk_00, 0, param0->unk_D80, 0, HEAP_ID_95, 0);
     sub_020738EC(&v3->unk_00);
-    sub_0207389C(&v3->unk_14, 0, param0->unk_D80, 5, 95, 0);
+    sub_0207389C(&v3->unk_14, 0, param0->unk_D80, 5, HEAP_ID_95, 0);
     sub_020738EC(&v3->unk_14);
 
     v1 = Unk_ov109_021D5A14;
     v2 = Unk_ov109_021D5A3C;
 
     for (v0 = 0; v0 < 5; v0++, v1++, v2++) {
-        sub_0207389C(&v3->unk_28[v0], 0, param0->unk_D80, *v1, 95, 0);
+        sub_0207389C(&v3->unk_28[v0], 0, param0->unk_D80, *v1, HEAP_ID_95, 0);
         sub_020738EC(&v3->unk_28[v0]);
-        sub_020739B4(&v3->unk_8C[v0], 0, param0->unk_D80, *v2, 95, 0);
-        sub_02073A3C(&v3->unk_8C[v0], &v3->unk_28[v0], 95);
+        sub_020739B4(&v3->unk_8C[v0], 0, param0->unk_D80, *v2, HEAP_ID_95, 0);
+        sub_02073A3C(&v3->unk_8C[v0], &v3->unk_28[v0], HEAP_ID_95);
         sub_02073A5C(&v3->unk_8C[v0], &v3->unk_28[v0]);
     }
 }
@@ -2641,7 +2640,7 @@ static int ov109_021D308C(UnkStruct_ov109_021D2FE0 *param0)
     if (param0->unk_08 == 0) {
         if (v0->unk_50.y <= (FX32_ONE * 104)) {
             param0->unk_08 = 1;
-            Sound_PlayEffect(1616);
+            Sound_PlayEffect(SEQ_SE_DP_FW104);
         }
     }
 
@@ -2977,7 +2976,7 @@ static void ov109_021D34A8(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
             ov109_021D3218(param0);
             param1->unk_04 = 1;
             param1->unk_00++;
-            Sound_PlayEffect(1623);
+            Sound_PlayEffect(SEQ_SE_DP_DANSA5);
         }
         break;
     case 4:
@@ -2999,7 +2998,7 @@ static void ov109_021D34A8(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
             param1->unk_08 = 0;
             param1->unk_04 = 0;
             param1->unk_00 = 0;
-            Sound_PlayEffect(1585);
+            Sound_PlayEffect(SEQ_SE_DP_SUTYA);
         }
         break;
     }
@@ -3121,7 +3120,7 @@ static void ov109_021D3700(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
         break;
     case 1:
         ov109_021D228C(param0);
-        Sound_PlayEffect(1508);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         param1->unk_04 = 0;
         param1->unk_00++;
     case 2:
@@ -3467,7 +3466,7 @@ static void ov109_021D3B70(UnkStruct_ov109_021D0F70 *param0, int param1)
     v4 = Party_GetPokemonBySlotIndex(v2, v0);
     v5 = Party_GetPokemonBySlotIndex(v3, v1);
 
-    sub_0209304C(v5, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, 11);
+    UpdateMonStatusAndTrainerInfo(v5, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELDMAP);
     Pokemon_Copy(v5, v4);
 }
 

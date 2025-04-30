@@ -22,11 +22,11 @@ _0021:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 131, _0094
+    GoToIfSet FLAG_UNK_0x0083, _0094
     Message 1
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0062
-    GoToIfEq 0x800C, MENU_NO, _0057
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0062
+    GoToIfEq VAR_RESULT, MENU_NO, _0057
     End
 
 _0057:
@@ -38,11 +38,10 @@ _0057:
 
 _0062:
     Message 2
-    SetVar 0x8004, 0x19F
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _009F
-    SetFlag 131
+    SetVar VAR_0x8004, ITEM_TM88
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _009F
+    SetFlag FLAG_UNK_0x0083
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
@@ -68,7 +67,7 @@ _00A9:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_CLEFAIRY
     Message 5
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

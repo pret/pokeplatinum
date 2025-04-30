@@ -259,7 +259,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
             MessageLoader *v9;
             Strbuf *v10;
 
-            v9 = MessageLoader_Init(1, 26, 618, heapID);
+            v9 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_NAMES, heapID);
             v10 = MessageLoader_GetNewStrbuf(v9, param2->unk_00);
 
             ov104_0223E29C(param0, &v0->unk_7C, v10, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 2004, 208 + -92 + param0->unk_28, 11 * 8 + param0->unk_2A, 0, NULL);
@@ -443,7 +443,7 @@ static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
         v1 = param10->unk_00;
     }
 
-    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 94);
+    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_94);
     CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
     if (param9 == 1) {
@@ -463,7 +463,7 @@ static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
     v0.unk_20 = 0;
     v0.unk_24 = 11;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_2C = 94;
+    v0.heapID = HEAP_ID_94;
 
     v4 = sub_020127E8(&v0);
 

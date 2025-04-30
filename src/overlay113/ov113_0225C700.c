@@ -50,6 +50,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
@@ -59,7 +60,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
@@ -381,7 +381,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_118);
 
     v0->unk_2C = StringTemplate_Default(HEAP_ID_118);
-    v0->unk_30 = MessageLoader_Init(0, 26, 650, HEAP_ID_118);
+    v0->unk_30 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0650, HEAP_ID_118);
     v0->unk_10 = sub_02012744(4, HEAP_ID_118);
     v0->unk_160 = NARC_ctor(NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, HEAP_ID_118);
     v0->unk_164 = NARC_ctor(NARC_INDEX_POKETOOL__POKEFOOT__POKEFOOT, HEAP_ID_118);
@@ -488,7 +488,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
                 v0->unk_920 = v2;
                 ov113_0225E068(v0, v2);
             } else if (((*param1) == 2) && (v2 == 0xfe)) {
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                 PaletteData_Blend(v0->unk_0C, 0, (0 * 16 + 9), 1, 8, 0x0);
                 PaletteData_Blend(v0->unk_0C, 2, v0->unk_921 * 16, 16, 8, 0x0);
                 *param1 = 3;
@@ -499,7 +499,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         Window_FillTilemap(&v0->unk_B4, 0xf);
         Window_DrawMessageBoxWithScrollCursor(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 2, v0->unk_C4);
-        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 4:
@@ -549,7 +549,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         Window_FillTilemap(&v0->unk_B4, 0xf);
         Window_DrawMessageBoxWithScrollCursor(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 3, v0->unk_C4);
-        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 7:
@@ -604,7 +604,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
             if (ov66_02231760() == 1) {
                 (*param1) = 9;
             } else {
-                Sound_PlayEffect(1521);
+                Sound_PlayEffect(SEQ_SE_DP_PINPON);
                 ov66_0222E2A4(v0->unk_00->unk_00);
                 (*param1) = 6;
             }
@@ -900,7 +900,7 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
 
     {
         int v2;
-        v2 = Options_Frame(SaveData_Options(param0->unk_04));
+        v2 = Options_Frame(SaveData_GetOptions(param0->unk_04));
 
         PaletteData_LoadBufferFromFileStart(param0->unk_0C, 38, GetMessageBoxPaletteNARCMember(v2), 118, 0, 0x20, 14 * 16);
         LoadMessageBoxGraphics(param0->unk_08, 1, 1, 14, v2, HEAP_ID_118);
@@ -1119,13 +1119,13 @@ static BOOL ov113_0225D938(int param0, int param1, ManagedSprite *param2, NARC *
     }
 
     if (PokemonHasOverworldFootprint(param0, param1, param6) == 1) {
-        v2 = LoadMemberFromOpenNARC(param4, 3 + param0, 1, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param4, 3 + param0, 1, HEAP_ID_118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
         DC_FlushRange(v3->pRawData, 0x20 * 8);
         v4 = &((u8 *)v3->pRawData)[0x20 * 4];
         v5 = v3->pRawData;
     } else {
-        v2 = LoadMemberFromOpenNARC(param3, 16, 0, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param3, 16, 0, HEAP_ID_118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
         DC_FlushRange(v3->pRawData, 0x20 * 4);
         v4 = v3->pRawData;
@@ -1188,7 +1188,7 @@ static void ov113_0225DAA8(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
         v0 = 27;
     }
 
-    Easy3DModel_LoadFrom(&param0->unk_D8.unk_00, param1, v0, 118);
+    Easy3DModel_LoadFrom(&param0->unk_D8.unk_00, param1, v0, HEAP_ID_118);
     Easy3DObject_Init(&param0->unk_D8.unk_10, &param0->unk_D8.unk_00);
     Easy3DObject_SetPosition(&param0->unk_D8.unk_10, (FX32_CONST(0)), (FX32_CONST(0)), (FX32_CONST(0)));
     Easy3DObject_SetScale(&param0->unk_D8.unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
@@ -1320,7 +1320,7 @@ static void ov113_0225DD4C(int param0, SaveData *param1, UnkStruct_ov113_0226081
 
     MI_CpuClear8(param2, sizeof(UnkStruct_ov113_02260818) * 6);
 
-    v0 = Party_GetFromSavedata(param1);
+    v0 = SaveData_GetParty(param1);
     v1 = Party_GetCurrentCount(v0);
 
     for (v3 = 0; v3 < v1; v3++) {
@@ -1352,7 +1352,7 @@ BOOL ov113_0225DDC0(UnkStruct_ov113_0225DBCC *param0, const UnkStruct_ov113_0226
             }
         }
 
-        Sound_PlayEffect(1515);
+        Sound_PlayEffect(SEQ_SE_DP_BOX02);
     }
 
     return v0;
@@ -1419,10 +1419,10 @@ static int ov113_0225DE98(UnkStruct_ov113_0225DBCC *param0)
     param0->unk_194.unk_73F = v4;
 
     if (v2 > 0) {
-        Sound_PlayEffect(1508);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         return 1;
     } else if (v3 > 0) {
-        Sound_PlayEffect(1508);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         return 2;
     }
 
@@ -1457,7 +1457,7 @@ static void ov113_0225E068(UnkStruct_ov113_0225DBCC *param0, int param1)
     }
 
     ov113_0225E0D4(param0, param1);
-    Sound_PlayEffect(1509);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
 }
 
 static void ov113_0225E0D4(UnkStruct_ov113_0225DBCC *param0, int param1)
@@ -1509,7 +1509,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     Window_AddToTopLeftCorner(v5, &v1, v8, 16 / 8, 0, 0);
     Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
 
-    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 118);
+    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_118);
     CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
     if (param9 == 1) {
@@ -1529,7 +1529,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     v0.unk_20 = 0;
     v0.unk_24 = 51;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_2C = 118;
+    v0.heapID = HEAP_ID_118;
 
     v4 = sub_020127E8(&v0);
 

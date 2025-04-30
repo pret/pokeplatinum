@@ -21,9 +21,9 @@
 #include "overlay070/struct_ov70_0225C894_decl.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
+#include "sound_playback.h"
 #include "system.h"
-#include "unk_02005474.h"
 
 typedef struct {
     fx32 unk_00;
@@ -904,7 +904,7 @@ static void ov70_0225D4CC(UnkStruct_ov70_0225CC54 *param0, UnkStruct_ov70_0225CA
         if (param0->unk_0C.val2.unk_10 == 0) {
             param0->unk_08++;
             param0->unk_0C.val2.unk_10 = 0;
-            Sound_PlayEffect(1615);
+            Sound_PlayEffect(SEQ_SE_DP_TELE2);
         }
         break;
     case 2: {
@@ -941,7 +941,7 @@ static void ov70_0225D57C(UnkStruct_ov70_0225CC54 *param0, UnkStruct_ov70_0225CA
         param0->unk_0C.val2.unk_10 = 0;
         param0->unk_08++;
 
-        Sound_PlayEffect(1615);
+        Sound_PlayEffect(SEQ_SE_DP_TELE2);
     case 1: {
         BOOL v0;
         VecFx32 v1;

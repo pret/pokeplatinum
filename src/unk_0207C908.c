@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
+
 #include "palette.h"
 #include "sprite_system.h"
 
@@ -97,9 +99,9 @@ u8 sub_0207C92C(int param0)
     return Unk_020F0B4C[param0];
 }
 
-u32 sub_0207C944(void)
+enum NarcID sub_0207C944(void)
 {
-    return 27;
+    return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
 }
 
 void sub_0207C948(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
@@ -168,9 +170,9 @@ u8 sub_0207CAA8(int param0)
     return Unk_020F0AE0[param0];
 }
 
-u32 sub_0207CAC0(void)
+enum NarcID sub_0207CAC0(void)
 {
-    return 27;
+    return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
 }
 
 void sub_0207CAC4(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)

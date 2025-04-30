@@ -10,7 +10,7 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x4095, 1, _002F
+    GoToIfGe VAR_UNK_0x4095, 1, _002F
     GoTo _0021
 
 _0021:

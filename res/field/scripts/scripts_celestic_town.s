@@ -26,9 +26,9 @@ _0038:
     LockAll
     FacePlayer
     Message 1
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _006E
-    GoToIfEq 0x800C, MENU_NO, _0063
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _006E
+    GoToIfEq VAR_RESULT, MENU_NO, _0063
     End
 
 _0063:
@@ -42,14 +42,14 @@ _006E:
     Message 2
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_CELESTIC_TOWN
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0191
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0191
     Message 4
     CloseMessage
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _00BC
-    GoToIfEq 0x800C, 2, _00EC
-    GoToIfEq 0x800C, 3, _0114
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00BC
+    GoToIfEq VAR_RESULT, 2, _00EC
+    GoToIfEq VAR_RESULT, 3, _0114
     End
 
 _00BC:
@@ -86,7 +86,7 @@ _013C:
     SetObjectEventPos 3, 0x1D2, 0x213
     ScrCmd_189 3, 0
     ScrCmd_188 3, 14
-    ClearFlag 0x1AC
+    ClearFlag FLAG_UNK_0x01AC
     AddObject 3
     ScrCmd_062 3
     Return
@@ -98,8 +98,8 @@ _0166:
     PlaySound SEQ_FANFA4
     Message 6
     WaitSound
-    RemoveItem ITEM_OLD_CHARM, 1, 0x800C
-    SetFlag 166
+    RemoveItem ITEM_OLD_CHARM, 1, VAR_RESULT
+    SetFlag FLAG_UNK_0x00A6
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -204,7 +204,7 @@ _022C:
     End
 
 _024A:
-    SetVar 0x40F1, 1
+    SetVar VAR_UNK_0x40F1, 1
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -224,7 +224,7 @@ _026C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 166, _0289
+    GoToIfSet FLAG_UNK_0x00A6, _0289
     Call _024A
     ReleaseAll
     End
@@ -248,9 +248,9 @@ _0294:
     CloseMessage
     ApplyMovement 4, _02FC
     WaitMovement
-    SetVar 0x4074, 2
-    SetFlag 0x299
-    WaitTime 12, 0x800C
+    SetVar VAR_UNK_0x4074, 2
+    SetFlag FLAG_UNK_0x0299
+    WaitTime 12, VAR_RESULT
     Message 11
     WaitABXPadPress
     CloseMessage

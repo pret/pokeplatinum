@@ -3,19 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/sdat.h"
-#include "generated/text_banks.h"
-
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "string_list.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 
 #include "res/text/bank/common_strings_2.h"
 

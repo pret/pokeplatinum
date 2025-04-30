@@ -13,16 +13,16 @@ _000A:
     End
 
 _0012:
-    CheckGameCompleted 0x4000
-    GoToIfEq 0x4000, 0, _0075
-    ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _0075
-    CheckItem ITEM_AZURE_FLUTE, 1, 0x4000
-    GoToIfEq 0x4000, FALSE, _0075
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
-    GoToIfEq 0x4000, FALSE, _0075
-    GoToIfSet 0x11E, _0075
-    SetVar 0x4118, 1
+    CheckGameCompleted VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0075
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0075
+    CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0075
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0075
+    GoToIfSet FLAG_UNK_0x011E, _0075
+    SetVar VAR_UNK_0x4118, 1
     GoTo _0075
     End
 
@@ -32,21 +32,21 @@ _0075:
 _0077:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe 0x40C4, 1, _00F4
-    GoToIfSet 208, _00F4
+    GoToIfGe VAR_UNK_0x40C4, 1, _00F4
+    GoToIfSet FLAG_UNK_0x00D0, _00F4
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0101
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0101
     PlayCry SPECIES_DIALGA
     Message 1
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_DIALGA, 70
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00E8
-    SetVar 0x40C4, 1
-    CheckDidNotCapture 0x800C
-    CallIfEq 0x800C, FALSE, _00EE
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00E8
+    SetVar VAR_UNK_0x40C4, 1
+    CheckDidNotCapture VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, _00EE
     ReleaseAll
     End
 
@@ -56,7 +56,7 @@ _00E8:
     End
 
 _00EE:
-    SetFlag 208
+    SetFlag FLAG_UNK_0x00D0
     Return
 
 _00F4:

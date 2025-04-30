@@ -8,7 +8,7 @@ typedef struct UnkStruct_020298B0_t {
     u32 unk_90;
     s32 unk_94;
     u8 unk_98;
-    u8 unk_99;
+    u8 unused; // Set but never read
     u32 unk_9C[5];
     u16 unk_B0[5][8];
     u8 unk_100[5];

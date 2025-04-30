@@ -26,13 +26,13 @@
 #include "narc.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202D05C.h"
 #include "unk_02030CE8.h"
@@ -887,7 +887,7 @@ static int ov96_0223CA70(UnkStruct_ov96_0223BF40 *param0)
         }
 
         ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         param0->unk_98--;
 
@@ -896,7 +896,7 @@ static int ov96_0223CA70(UnkStruct_ov96_0223BF40 *param0)
         }
 
         ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         {
             RTCTime v0;
@@ -912,11 +912,11 @@ static int ov96_0223CA70(UnkStruct_ov96_0223BF40 *param0)
         }
 
         ov96_0223D950(param0, 0, 0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov96_0223D950(param0, 0, 0);
         param0->unk_1C = 21;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     return 3;
@@ -1152,7 +1152,7 @@ static int ov96_0223CFAC(UnkStruct_ov96_0223BF40 *param0)
         }
 
         ov96_0223D90C(&param0->unk_E48, param0->unk_BE8, param0->unk_90, 2);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         param0->unk_90--;
 
@@ -1161,15 +1161,15 @@ static int ov96_0223CFAC(UnkStruct_ov96_0223BF40 *param0)
         }
 
         ov96_0223D90C(&param0->unk_E48, param0->unk_BE8, param0->unk_90, 2);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov96_0223D950(param0, 0, 0);
         ov96_0223BBFC(param0, 11, 32);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov96_0223D950(param0, 0, 0);
         param0->unk_1C = 23;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     return 3;
@@ -1207,7 +1207,7 @@ static int ov96_0223D100(UnkStruct_ov96_0223BF40 *param0)
         }
 
         ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         param0->unk_98--;
 
@@ -1216,15 +1216,15 @@ static int ov96_0223D100(UnkStruct_ov96_0223BF40 *param0)
         }
 
         ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov96_0223D950(param0, 0, 0);
         param0->unk_1C = 35;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov96_0223D950(param0, 0, 0);
         param0->unk_1C = 29;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     return 3;

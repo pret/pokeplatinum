@@ -277,7 +277,7 @@ BOOL ov104_0222EE60(UnkStruct_ov104_0223B5C0 *param0)
     v1 = 0;
     v3 = 512;
     v4 = Pokemon_StructSize();
-    v6 = Party_GetFromSavedata(param0->unk_6FC);
+    v6 = SaveData_GetParty(param0->unk_6FC);
     v5 = Party_GetPokemonBySlotIndex(v6, param0->unk_260[0]);
 
     MI_CpuCopy8(v5, &param0->unk_784[0], v4);
@@ -735,7 +735,7 @@ BOOL ov104_0222F3B8(UnkStruct_ov104_0223BA10 *param0)
     v1 += 3;
     v1 += (7 + 1);
 
-    param0->unk_3C0[v1] = sub_02030698(sub_0203068C(param0->unk_04), sub_0205E630(param0->unk_10), sub_0205E6A8(sub_0205E630(param0->unk_10)));
+    param0->unk_3C0[v1] = sub_02030698(SaveData_GetBattleFrontier(param0->unk_04), sub_0205E630(param0->unk_10), sub_0205E6A8(sub_0205E630(param0->unk_10)));
     v1 += 1;
 
     if (CommSys_SendData(42, param0->unk_3C0, v3) == 1) {

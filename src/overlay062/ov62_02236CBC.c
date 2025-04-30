@@ -16,14 +16,14 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "palette.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "system_vars.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_0202D05C.h"
 #include "unk_02030A80.h"
@@ -597,7 +597,7 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
         Bg_ClearTilemap(param0->unk_14.unk_10, 6);
         ov62_022315C8(&v0->unk_D4, &v0->unk_D8, 0);
         ov62_02231560(&v0->unk_D4, &v0->unk_D8, 0, 0, GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1, 0);
-        Sound_PlayEffect(1377);
+        Sound_PlayEffect(SEQ_SE_PL_BREC20);
         param0->unk_08++;
     } else {
         v0 = param0->unk_860;
@@ -676,7 +676,7 @@ static BOOL ov62_02237AC0(UnkStruct_0208C06C *param0)
 
         if (v3) {
             if ((v1 > 10 * 8) && (v1 < 22 * 8) && (v2 > 19 * 8) && (v2 < 22 * 8)) {
-                Sound_PlayEffect(1379);
+                Sound_PlayEffect(SEQ_SE_PL_BREC57);
                 ov62_0222FB60(param0, 2);
             }
         }
@@ -692,7 +692,7 @@ static BOOL ov62_02237B00(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 0:
         if (v0->unk_00 == 0) {
-            Sound_PlayEffect(1378);
+            Sound_PlayEffect(SEQ_SE_PL_BREC21);
         }
         if (v0->unk_00 != 16) {
             v0->unk_00 += 2;

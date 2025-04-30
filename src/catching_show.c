@@ -22,8 +22,8 @@
 #include "pokemon.h"
 #include "rtc.h"
 #include "species.h"
+#include "terrain_collision_manager.h"
 #include "unk_0202EEC0.h"
-#include "unk_02054D00.h"
 
 #define PAL_PARK_AREA_NONE     0
 #define POINTS_LOST_PER_SECOND 2
@@ -60,7 +60,7 @@ void CatchingShow_Start(FieldSystem *fieldSystem)
 void CatchingShow_End(FieldSystem *fieldSystem)
 {
     CatchingShow *catchingShow = &sCatchingShow;
-    GameRecords *records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    GameRecords *records = SaveData_GetGameRecords(fieldSystem->saveData);
     s64 endTime = GetTimestamp();
     s64 elapsedTime = TimeElapsed(catchingShow->startTime, endTime);
 
@@ -126,7 +126,7 @@ static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow
     int i;
     SpeciesPalPark speciesData;
     u16 monSpecies;
-    PalParkTransfer *transferData = SaveData_PalParkTransfer(fieldSystem->saveData);
+    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
@@ -186,7 +186,7 @@ static BOOL IsStepCountZero(CatchingShow *catchingShow)
 
 static int GetEncounterArea(FieldSystem *fieldSystem, int playerX, int playerY)
 {
-    u16 tileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerY);
+    u16 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerY);
     int area = (playerX < 32) ? 0 : 1;
     area += (playerY < 32) ? 0 : 2;
 
@@ -258,7 +258,7 @@ static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO 
 static FieldBattleDTO *SetupBattleDTO(FieldSystem *fieldSystem, CatchingShow *catchingShow)
 {
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
-    PalParkTransfer *transferData = SaveData_PalParkTransfer(fieldSystem->saveData);
+    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
     int parkBallCount = CatchingShow_GetParkBallCount(fieldSystem);
     FieldBattleDTO *dto = FieldBattleDTO_NewPalPark(HEAP_ID_FIELDMAP, parkBallCount);
 

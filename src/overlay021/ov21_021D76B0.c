@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "overlay021/ov21_021D1FA4.h"
@@ -27,16 +25,16 @@
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 
@@ -46,7 +44,7 @@ typedef struct {
     int unk_00[7];
     UnkStruct_ov21_021D5B68 *unk_1C;
     int *unk_20;
-    int unk_24;
+    int heapID;
 } UnkStruct_ov21_021D77D4;
 
 typedef struct {
@@ -172,7 +170,7 @@ static UnkStruct_ov21_021D77D4 *ov21_021D7728(enum HeapId heapID, PokedexApp *pa
     }
 
     v0->unk_20 = ov21_021D13A0(param1);
-    v0->unk_24 = heapID;
+    v0->heapID = heapID;
 
     return v0;
 }
@@ -794,7 +792,7 @@ static void ov21_021D82A8(UnkStruct_ov21_021D7A64 *param0, UnkStruct_ov21_021D77
                 ov21_021D8530(param0, param1);
             } else {
                 param1->unk_1C->unk_0C = (64 * 10);
-                Sound_PlayEffect(1675);
+                Sound_PlayEffect(SEQ_SE_DP_DENSI06);
             }
         } else {
             param1->unk_1C->unk_08 = 0;

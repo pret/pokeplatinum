@@ -8,7 +8,7 @@
 #include "heap.h"
 #include "location.h"
 #include "main.h"
-#include "math.h"
+#include "math_util.h"
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
@@ -124,7 +124,7 @@ static int GameStartLoadSave_Main(OverlayManager *ovyManager, int *state)
     if (!SystemData_MatchesCurrentSystem(systemData) || !SystemData_MatchesCurrentRTCOffset(systemData)) {
         GameTime_StartPenalty(SaveData_GetGameTime(saveData));
         SystemData_Init(systemData);
-        Party_SetShayminLandForm(Party_GetFromSavedata(saveData));
+        Party_SetShayminLandForm(SaveData_GetParty(saveData));
     }
 
     PlayTime_Start(SaveData_GetPlayTime(saveData));

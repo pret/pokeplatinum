@@ -40,9 +40,9 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 #include "unk_02094EDC.h"
 
 static int ov17_0224CFF8(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
@@ -276,7 +276,7 @@ static void ov17_0224D1E8(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 
     SysTask_Start(ov17_0224D240, v1, 30000);
     v0->unk_1078 = 0;
-    Sound_PlayBGM(1135);
+    Sound_PlayBGM(SEQ_CONTEST_DRESSING_ROOM);
 }
 
 static void ov17_0224D240(SysTask *param0, void *param1)
@@ -387,11 +387,11 @@ static void ov17_0224D41C(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        sub_020055D0(1135, 30);
+        Sound_StopBGM(1135, 30);
         v0->unk_10++;
         break;
     case 1:
-        if (Sound_CheckFade() == 0) {
+        if (Sound_IsFadeActive() == FALSE) {
             v0->unk_10++;
         }
         break;
@@ -399,7 +399,7 @@ static void ov17_0224D41C(SysTask *param0, void *param1)
         G2_BlendNone();
         ov17_0224C84C();
         ov17_0224ABDC(&v0->unk_00->unk_14, 1);
-        Sound_PlayEffect(1772);
+        Sound_PlayEffect(SEQ_SE_DP_CON_019);
         v0->unk_10++;
         break;
     case 3:
@@ -1083,7 +1083,7 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
             }
         }
 
-        Sound_PlayEffect(1783);
+        Sound_PlayEffect(SEQ_SE_DP_CON_030);
         v0->unk_10++;
         break;
     case 3:
@@ -1430,7 +1430,7 @@ static void ov17_0224E7C8(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_0224DF54 *v0 = param1;
     UnkStruct_ov17_0224DF54_sub2 *v1 = param3;
 
-    sub_0200569C();
+    Sound_StopWaveOutAndSequences();
     Sound_PlayBGM(v1->unk_24.unk_00);
 
     v0->unk_1078 = 1;
@@ -1471,7 +1471,7 @@ static void ov17_0224E86C(SysTask *param0, void *param1)
         v0->unk_4C++;
         break;
     case 1:
-        if (sub_02005690(v0->unk_10.unk_24.unk_00) == 0) {
+        if (Sound_IsSequencePlaying(v0->unk_10.unk_24.unk_00) == FALSE) {
             v0->unk_4C++;
         }
         break;
@@ -1488,8 +1488,8 @@ static void ov17_0224E86C(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        Sound_PlayBGM(1135);
-        Sound_PlayEffect(1765);
+        Sound_PlayBGM(SEQ_CONTEST_DRESSING_ROOM);
+        Sound_PlayEffect(SEQ_SE_DP_CON_007);
         v0->unk_4C++;
         break;
     default:

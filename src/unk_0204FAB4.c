@@ -51,7 +51,7 @@ static void sub_0204FDB4(FieldTask *param0, void **param1, u8 param2);
 static BOOL sub_0204FDE8(FieldTask *param0);
 static int sub_0204FE50(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, int param2);
 static int sub_0204FF1C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem);
-static int sub_0204FF6C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, int param2);
+static int sub_0204FF6C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, int heapID);
 static int sub_0204FFF4(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem);
 BOOL ScrCmd_2D3(ScriptContext *param0);
 static void sub_0204FCF8(FieldTask *param0, u16 param1, u16 param2, u16 *param3);
@@ -83,7 +83,7 @@ BOOL ScrCmd_2D2(ScriptContext *param0)
         break;
     case 1:
         if (v4 == 3) {
-            *v6 = sub_02030698(sub_0203068C(param0->fieldSystem->saveData), 108, sub_0205E6A8(108));
+            *v6 = sub_02030698(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), 108, sub_0205E6A8(108));
         } else {
             *v6 = (u16)sub_02030470(v11, 9, v4, 0, NULL);
         }
@@ -134,16 +134,16 @@ static void sub_0204FBEC(SaveData *param0, UnkStruct_0203041C *param1, u8 param2
     sub_02030430(param1, 9, param2, 0, v2);
 
     if (param2 == 3) {
-        sub_020306E4(sub_0203068C(param0), 108, sub_0205E6A8(108), 0);
+        sub_020306E4(SaveData_GetBattleFrontier(param0), 108, sub_0205E6A8(108), 0);
     }
 
-    sub_020306E4(sub_0203068C(param0), sub_0205E5E0(param2), sub_0205E6A8(sub_0205E5E0(param2)), 0);
-    sub_020306E4(sub_0203068C(param0), sub_0205E630(param2), sub_0205E6A8(sub_0205E630(param2)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E5E0(param2), sub_0205E6A8(sub_0205E5E0(param2)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E630(param2), sub_0205E6A8(sub_0205E630(param2)), 0);
 
     v1[0] = 1;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_020306E4(sub_0203068C(param0), sub_0205E5B4(param2, v0), sub_0205E6A8(sub_0205E5B4(param2, v0)), 1);
+        sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E5B4(param2, v0), sub_0205E6A8(sub_0205E5B4(param2, v0)), 1);
     }
 
     return;
@@ -234,7 +234,7 @@ static BOOL sub_0204FDE8(FieldTask *param0)
         v1->unk_00 = sub_0204FF1C(v1, fieldSystem);
         break;
     case 2:
-        v1->unk_00 = sub_0204FF6C(v1, fieldSystem, 11);
+        v1->unk_00 = sub_0204FF6C(v1, fieldSystem, HEAP_ID_FIELDMAP);
         break;
     case 3:
         v1->unk_00 = sub_0204FFF4(v1, fieldSystem);
@@ -254,15 +254,15 @@ static int sub_0204FE50(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, in
 
     MI_CpuClearFast(v1, sizeof(PartyManagementData));
 
-    v1->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
+    v1->unk_00 = SaveData_GetParty(fieldSystem->saveData);
     v1->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v1->unk_08 = sub_02028430(fieldSystem->saveData);
-    v1->unk_0C = SaveData_Options(fieldSystem->saveData);
+    v1->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
+    v1->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
 
     v1->unk_21 = 0;
     v1->unk_20 = 23;
     v1->unk_1C = fieldSystem;
-    v1->unk_22 = param0->unk_05;
+    v1->selectedMonSlot = param0->unk_05;
 
     for (v0 = 0; v0 < 3; v0++) {
         v1->unk_2C[v0] = param0->unk_06[v0];
@@ -295,7 +295,7 @@ static int sub_0204FF1C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem)
 
     v1 = *(param0->unk_0C);
 
-    switch (v1->unk_22) {
+    switch (v1->selectedMonSlot) {
     case 7:
         return 4;
     case 6:
@@ -305,14 +305,14 @@ static int sub_0204FF1C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem)
     }
 
     MI_CpuCopy8(v1->unk_2C, param0->unk_06, 3);
-    param0->unk_05 = v1->unk_22;
+    param0->unk_05 = v1->selectedMonSlot;
     Heap_FreeToHeap(v1);
 
     *(param0->unk_0C) = NULL;
     return 2;
 }
 
-static int sub_0204FF6C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, int param2)
+static int sub_0204FF6C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, int heapID)
 {
     PokemonSummary *v0;
     SaveData *v1;
@@ -321,12 +321,12 @@ static int sub_0204FF6C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, in
     };
 
     v1 = fieldSystem->saveData;
-    v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
+    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
-    v0->options = SaveData_Options(v1);
-    v0->monData = Party_GetFromSavedata(v1);
+    v0->options = SaveData_GetOptions(v1);
+    v0->monData = SaveData_GetParty(v1);
     v0->dexMode = SaveData_GetDexMode(v1);
     v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->dataType = SUMMARY_DATA_PARTY_MON;

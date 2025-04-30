@@ -9,16 +9,16 @@
     ScriptEntryEnd
 
 _000E:
-    CallIfSet 0x121, _001B
+    CallIfSet FLAG_UNK_0x0121, _001B
     End
 
 _001B:
-    ClearFlag 0x278
+    ClearFlag FLAG_UNK_0x0278
     Return
 
 _0021:
     LockAll
-    ScrCmd_328 0
+    SetPartyGiratinaForm GIRATINA_FORM_ALTERED
     ScrCmd_2B5 0x10A, 0x2FA, 0x2CA
     Message 0
     CloseMessage
@@ -34,17 +34,17 @@ _0021:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x40AA, 2
-    SetVar 0x40A6, 2
-    SetFlag 0x1C7
-    ClearFlag 0x132
-    SetFlag 0x28F
-    SetFlag 0x295
-    SetFlag 0x29F
-    SetFlag 0x986
-    ClearFlag 0x292
+    SetVar VAR_UNK_0x40AA, 2
+    SetVar VAR_UNK_0x40A6, 2
+    SetFlag FLAG_UNK_0x01C7
+    ClearFlag FLAG_UNK_0x0132
+    SetFlag FLAG_UNK_0x028F
+    SetFlag FLAG_UNK_0x0295
+    SetFlag FLAG_UNK_0x029F
+    SetFlag FLAG_ALT_MUSIC_GALACTIC_HQ_1F
+    ClearFlag FLAG_UNK_0x0292
     SetFlag FLAG_GALACTIC_LEFT_LAKE_VALOR
-    SetFlag 0x295
+    SetFlag FLAG_UNK_0x0295
     ReleaseAll
     End
 
@@ -71,7 +71,7 @@ _00C0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40AA, 3, _00E0
+    GoToIfGe VAR_UNK_0x40AA, 3, _00E0
     Message 3
     GoTo _00EB
     End

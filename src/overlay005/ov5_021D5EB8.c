@@ -17,17 +17,17 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "render_oam.h"
 #include "render_view.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 
 typedef struct UnkStruct_ov5_021D5EF8_t {
     UnkStruct_ov5_021D6594 *unk_00;
@@ -776,7 +776,7 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0)
     RenderOam_InitSurface(&param0->unk_C0, &v0, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_14);
 
     for (v1 = 0; v1 < 4; v1++) {
-        param0->unk_00[v1] = SpriteResourceCollection_New(31, v1, 4);
+        param0->unk_00[v1] = SpriteResourceCollection_New(31, v1, HEAP_ID_FIELD);
     }
 
     v2 = SpriteResourceTable_Size();
@@ -792,7 +792,7 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0)
 
         v3.maxElements = 96;
         v3.renderer = &param0->unk_14;
-        v3.heapID = 4;
+        v3.heapID = HEAP_ID_FIELD;
 
         param0->unk_130 = SpriteList_New(&v3);
         param0->unk_134 = SysTask_Start(ov5_021D6284, param0, 10);
@@ -813,7 +813,7 @@ static void ov5_021D6290(SpriteResourceTable *param0, int param1, int param2)
     v0 = SpriteResourceTable_GetArrayElement(param0, param1);
     v1 = LoadMemberFromNARC(65, param2, 0, 4, 1);
 
-    SpriteResourceTable_LoadFromBinary(v1, v0, 4);
+    SpriteResourceTable_LoadFromBinary(v1, v0, HEAP_ID_FIELD);
     Heap_FreeToHeap(v1);
 }
 
@@ -1047,10 +1047,10 @@ static SpriteResource *ov5_021D65C0(SpriteResourceTable *param0, int param1, int
         v1 = SpriteResourceCollection_AddPaletteFromEx(param3, param4, v2, v3, v6, v4, v5, 4, param5);
         break;
     case 2:
-        v1 = SpriteResourceCollection_AddFrom(param3, param4, v2, v3, v6, 2, 4);
+        v1 = SpriteResourceCollection_AddFrom(param3, param4, v2, v3, v6, 2, HEAP_ID_FIELD);
         break;
     case 3:
-        v1 = SpriteResourceCollection_AddFrom(param3, param4, v2, v3, v6, 3, 4);
+        v1 = SpriteResourceCollection_AddFrom(param3, param4, v2, v3, v6, 3, HEAP_ID_FIELD);
         break;
     }
 
@@ -4601,11 +4601,11 @@ static void ov5_021DA748(SysTask *param0, void *param1)
                 if ((MTRNG_Next() % 3) != 0) {
                     v1[2] = 36;
 
-                    Sound_PlayEffect(1597);
+                    Sound_PlayEffect(SEQ_SE_DP_T_KAMI2);
                 } else {
                     v1[2] = 200;
 
-                    Sound_PlayEffect(1596);
+                    Sound_PlayEffect(SEQ_SE_DP_T_KAMI);
                 }
                 break;
             case 1:

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "overlay021/ov21_021D1FA4.h"
@@ -32,13 +30,13 @@
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 #include "vram_transfer.h"
@@ -529,7 +527,7 @@ static void ov21_021E1E8C(u32 param0, u32 param1, void *param2)
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 0);
-                    Sound_PlayEffect(1675);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
                 }
             }
             break;
@@ -544,7 +542,7 @@ static void ov21_021E1E8C(u32 param0, u32 param1, void *param2)
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 1);
-                    Sound_PlayEffect(1675);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
                 }
             }
             break;
@@ -559,7 +557,7 @@ static void ov21_021E1E8C(u32 param0, u32 param1, void *param2)
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 2);
-                    Sound_PlayEffect(1675);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
                 }
             }
             break;
@@ -574,7 +572,7 @@ static void ov21_021E1E8C(u32 param0, u32 param1, void *param2)
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 3);
-                    Sound_PlayEffect(1675);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
                 }
             }
             break;
@@ -589,7 +587,7 @@ static void ov21_021E1E8C(u32 param0, u32 param1, void *param2)
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 4);
-                    Sound_PlayEffect(1675);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
                 }
             }
             break;
@@ -604,7 +602,7 @@ static void ov21_021E1E8C(u32 param0, u32 param1, void *param2)
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 5);
-                    Sound_PlayEffect(1675);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
                 }
             }
             break;
@@ -1063,7 +1061,7 @@ static void ov21_021E2864(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A
         if (v0 == 1) {
             ov21_021E275C(param0, param1, param0->unk_10);
             ov21_021E2968(param0, param1);
-            Sound_PlayEffect(1675);
+            Sound_PlayEffect(SEQ_SE_DP_DENSI06);
         }
     }
 }

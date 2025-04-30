@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/bdhc.h"
+#include "constants/field/bdhc.h"
 #include "constants/heap.h"
 
 #include "fx_util.h"
@@ -21,12 +21,12 @@ enum BDHCSubTask {
 };
 
 typedef struct {
-    int pointsSize;
-    int slopesSize;
-    int heightsSize;
-    int platesSize;
-    int stripsSize;
-    int accessListSize;
+    int pointsCount;
+    int normalsCount;
+    int constantsCount;
+    int platesCount;
+    int stripsCount;
+    int accessListCount;
 } BDHCHeader;
 
 typedef struct {
@@ -50,12 +50,12 @@ typedef struct {
     int dummy08;
 } BDHCCandidateObjectHeight;
 
-static BOOL BDHC_FindStripIndexByLowerBound(const BDHCStrip *strips, const u16 stripsSize, const fx32 targetLowerBound, u16 *stripIndex);
+static BOOL BDHC_FindStripIndexByScanline(const BDHCStrip *strips, const u16 stripsCount, const fx32 scanline, u16 *stripIndex);
 
 static void BDHC_PrepareBuffers(const BDHCHeader *bdhcHeader, BDHC *bdhc, void **buffer);
 static void BDHC_LoadPoints(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader);
-static void BDHC_LoadSlopes(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader);
-static void BDHC_LoadHeights(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader);
+static void BDHC_LoadNormals(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader);
+static void BDHC_LoadConstants(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader);
 static void BDHC_LoadPlates(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader);
 static void BDHC_LoadStrips(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader);
 static void BDHC_LoadAccessList(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader);
@@ -72,15 +72,15 @@ static BOOL BDHC_IsPointInBoundingBox(const BDHCPoint *boundingBoxFirstPoint, co
         boundingBoxRight = &boundingBoxFirstPoint->x;
     }
 
-    if (boundingBoxFirstPoint->y <= boundingBoxSecondPoint->y) {
-        boundingBoxUp = &boundingBoxFirstPoint->y;
-        boundingBoxDown = &boundingBoxSecondPoint->y;
+    if (boundingBoxFirstPoint->z <= boundingBoxSecondPoint->z) {
+        boundingBoxUp = &boundingBoxFirstPoint->z;
+        boundingBoxDown = &boundingBoxSecondPoint->z;
     } else {
-        boundingBoxUp = &boundingBoxSecondPoint->y;
-        boundingBoxDown = &boundingBoxFirstPoint->y;
+        boundingBoxUp = &boundingBoxSecondPoint->z;
+        boundingBoxDown = &boundingBoxFirstPoint->z;
     }
 
-    if (((*boundingBoxLeft <= point->x) && (point->x <= *boundingBoxRight)) && ((*boundingBoxUp <= point->y) && (point->y <= *boundingBoxDown))) {
+    if (((*boundingBoxLeft <= point->x) && (point->x <= *boundingBoxRight)) && ((*boundingBoxUp <= point->z) && (point->z <= *boundingBoxDown))) {
         return TRUE;
     }
 
@@ -93,14 +93,14 @@ static void BDHC_GetPointsFromPlate(const BDHC *bdhc, u16 plateIndex, BDHCPoint 
     platePoints[1] = bdhc->points[bdhc->plates[plateIndex].secondPointIndex];
 }
 
-static void BDHC_GetSlopeFromPlate(const BDHC *bdhc, u16 plateIndex, VecFx32 *slope)
+static void BDHC_GetNormalFromPlate(const BDHC *bdhc, u16 plateIndex, VecFx32 *normal)
 {
-    *slope = bdhc->slopes[bdhc->plates[plateIndex].slopeIndex];
+    *normal = bdhc->normals[bdhc->plates[plateIndex].normalIndex];
 }
 
-static void BDHC_GetHeightFromPlate(const BDHC *bdhc, u16 plateIndex, fx32 *height)
+static void BDHC_GetConstantFromPlate(const BDHC *bdhc, u16 plateIndex, fx32 *constant)
 {
-    *height = bdhc->heights[bdhc->plates[plateIndex].heightIndex];
+    *constant = bdhc->constants[bdhc->plates[plateIndex].constantIndex];
 }
 
 static void BDHC_InitCandidateObjectHeightsArray(BDHCCandidateObjectHeight *candidateObjectHeights)
@@ -112,25 +112,22 @@ static void BDHC_InitCandidateObjectHeightsArray(BDHCCandidateObjectHeight *cand
     }
 }
 
-static BOOL BDHC_FindStripIndexByLowerBound(const BDHCStrip *strips, const u16 stripsSize, const fx32 targetLowerBound, u16 *stripIndex)
+static BOOL BDHC_FindStripIndexByScanline(const BDHCStrip *strips, const u16 stripsCount, const fx32 scanline, u16 *stripIndex)
 {
-    int low, high;
-    u32 mid;
-
-    if (stripsSize == 0) {
+    if (stripsCount == 0) {
         return FALSE;
-    } else if (stripsSize == 1) {
+    } else if (stripsCount == 1) {
         *stripIndex = 0;
         return TRUE;
     }
 
     // Simple binary search.
-    low = 0;
-    high = stripsSize - 1;
-    mid = high / 2;
+    int low = 0;
+    int high = stripsCount - 1;
+    u32 mid = high / 2;
 
     do {
-        if (strips[mid].lowerBound > targetLowerBound) {
+        if (strips[mid].scanline > scanline) {
             if (high - 1 > low) {
                 high = mid;
                 mid = (low + high) / 2;
@@ -154,57 +151,52 @@ static BOOL BDHC_FindStripIndexByLowerBound(const BDHCStrip *strips, const u16 s
 
 BOOL CalculateObjectHeight(const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, const BDHC *bdhc, fx32 *newObjectHeight)
 {
-    BDHCPoint platePoints[2];
-    BDHCPoint objectPosition;
-    VecFx32 slope;
-    fx32 minObjectHeightDiff, objectHeightDiff;
-    BOOL isPointInBoundingBox;
     u16 i, plateIndex;
-    fx32 height, calculatedObjectHeight;
-    int newObjectHeightCandidateCount;
-    u32 stripsSize;
-    BDHCCandidateObjectHeight newObjectHeightCandidates[BDHC_NEW_OBJECT_HEIGHT_CANDIDATES_ARRAY_SIZE];
-    u32 accessListStartIndex;
-    u16 stripIndex;
-    u16 accessListElementCount;
-    const BDHCStrip *strips;
 
     if (bdhc->loaded == FALSE) {
         return FALSE;
     }
 
-    isPointInBoundingBox = FALSE;
+    BOOL isPointInBoundingBox = FALSE;
 
+    BDHCPoint objectPosition;
     objectPosition.x = objectX;
-    objectPosition.y = objectZ;
+    objectPosition.z = objectZ;
 
-    newObjectHeightCandidateCount = 0;
+    int newObjectHeightCandidateCount = 0;
+    BDHCCandidateObjectHeight newObjectHeightCandidates[BDHC_NEW_OBJECT_HEIGHT_CANDIDATES_ARRAY_SIZE];
     BDHC_InitCandidateObjectHeightsArray(newObjectHeightCandidates);
 
-    stripsSize = bdhc->stripsSize;
-    strips = bdhc->strips;
+    u32 stripsCount = bdhc->stripsCount;
+    const BDHCStrip *strips = bdhc->strips;
+    u16 stripIndex;
 
-    if (BDHC_FindStripIndexByLowerBound(strips, stripsSize, objectPosition.y, &stripIndex) == FALSE) {
+    if (BDHC_FindStripIndexByScanline(strips, stripsCount, objectPosition.z, &stripIndex) == FALSE) {
         return FALSE;
     }
 
-    accessListElementCount = strips[stripIndex].accessListElementCount;
-    accessListStartIndex = strips[stripIndex].accessListStartIndex;
+    u16 accessListElementCount = strips[stripIndex].accessListElementCount;
+    u32 accessListStartIndex = strips[stripIndex].accessListStartIndex;
 
     for (i = 0; i < accessListElementCount; i++) {
+        BDHCPoint platePoints[2];
+
         plateIndex = bdhc->accessList[accessListStartIndex + i];
-        BDHC_GetPointsFromPlate(bdhc, plateIndex, platePoints);
+        BDHC_GetPointsFromPlate(bdhc, plateIndex, &platePoints[0]);
         isPointInBoundingBox = BDHC_IsPointInBoundingBox(&platePoints[0], &platePoints[1], &objectPosition);
 
         if (isPointInBoundingBox == TRUE) {
-            BDHC_GetSlopeFromPlate(bdhc, plateIndex, &slope);
-            BDHC_GetHeightFromPlate(bdhc, plateIndex, &height);
+            VecFx32 normal;
+            fx32 constant;
 
-            // On the next line, `slope.z` and `objectPosition.y` represent the same axis.
-            // Remember that `objectPosition.y` is, in fact, `objectZ`.
-            // Also, remember that `slope` is a normal vector, pointing upwards for a flat surface.
-            calculatedObjectHeight = -(FX_Mul(slope.x, objectPosition.x) + FX_Mul(slope.z, objectPosition.y) + height);
-            calculatedObjectHeight = FX_Div(calculatedObjectHeight, slope.y);
+            BDHC_GetNormalFromPlate(bdhc, plateIndex, &normal);
+            BDHC_GetConstantFromPlate(bdhc, plateIndex, &constant);
+
+            // This is an equation of a plane: Ax + By + Cz + D = 0
+            // We know (A, B, C), the normal vector of the plane, and D, the constant of the plane.
+            // We know the (x, z) coordinates of the object, and we want solve the equation for y.
+            fx32 calculatedObjectHeight = -(FX_Mul(normal.x, objectPosition.x) + FX_Mul(normal.z, objectPosition.z) + constant);
+            calculatedObjectHeight = FX_Div(calculatedObjectHeight, normal.y);
 
             newObjectHeightCandidates[newObjectHeightCandidateCount].val = calculatedObjectHeight;
             newObjectHeightCandidateCount++;
@@ -218,10 +210,10 @@ BOOL CalculateObjectHeight(const fx32 objectHeight, const fx32 objectX, const fx
     if (newObjectHeightCandidateCount > 1) {
         // Find the candidate with the smallest difference between the object's current height and the calculated height.
         plateIndex = 0;
-        minObjectHeightDiff = FX_Max(objectHeight, newObjectHeightCandidates[0].val) - FX_Min(objectHeight, newObjectHeightCandidates[0].val);
+        fx32 minObjectHeightDiff = FX_Max(objectHeight, newObjectHeightCandidates[0].val) - FX_Min(objectHeight, newObjectHeightCandidates[0].val);
 
         for (i = 1; i < newObjectHeightCandidateCount; i++) {
-            objectHeightDiff = FX_Max(objectHeight, newObjectHeightCandidates[i].val) - FX_Min(objectHeight, newObjectHeightCandidates[i].val);
+            fx32 objectHeightDiff = FX_Max(objectHeight, newObjectHeightCandidates[i].val) - FX_Min(objectHeight, newObjectHeightCandidates[i].val);
 
             if (minObjectHeightDiff > objectHeightDiff) {
                 minObjectHeightDiff = objectHeightDiff;
@@ -251,74 +243,73 @@ static void BDHC_LoadHeader(NARC *narc, BDHCHeader *bdhcHeader)
     MI_CpuClear32(bdhcHeader, sizeof(BDHCHeader));
 
     NARC_ReadFile(narc, BDHC_MAGIC_LENGTH, magic);
-    NARC_ReadFile(narc, 2, &bdhcHeader->pointsSize);
-    NARC_ReadFile(narc, 2, &bdhcHeader->slopesSize);
-    NARC_ReadFile(narc, 2, &bdhcHeader->heightsSize);
-    NARC_ReadFile(narc, 2, &bdhcHeader->platesSize);
-    NARC_ReadFile(narc, 2, &bdhcHeader->stripsSize);
-    NARC_ReadFile(narc, 2, &bdhcHeader->accessListSize);
+    NARC_ReadFile(narc, 2, &bdhcHeader->pointsCount);
+    NARC_ReadFile(narc, 2, &bdhcHeader->normalsCount);
+    NARC_ReadFile(narc, 2, &bdhcHeader->constantsCount);
+    NARC_ReadFile(narc, 2, &bdhcHeader->platesCount);
+    NARC_ReadFile(narc, 2, &bdhcHeader->stripsCount);
+    NARC_ReadFile(narc, 2, &bdhcHeader->accessListCount);
 }
 
 static void BDHC_PrepareBuffers(const BDHCHeader *bdhcHeader, BDHC *bdhc, void **buffer)
 {
-    void *ptr;
     int offset = 0;
 
-    ptr = (u8 *)*buffer;
+    void *ptr = (u8 *)*buffer;
     bdhc->points = ptr;
-    offset += (sizeof(BDHCPoint) * bdhcHeader->pointsSize);
+    offset += (sizeof(BDHCPoint) * bdhcHeader->pointsCount);
 
     ptr = (u8 *)*buffer + offset;
-    bdhc->slopes = ptr;
-    offset += (sizeof(VecFx32) * bdhcHeader->slopesSize);
+    bdhc->normals = ptr;
+    offset += (sizeof(VecFx32) * bdhcHeader->normalsCount);
 
     ptr = (u8 *)*buffer + offset;
-    bdhc->heights = ptr;
-    offset += (sizeof(fx32) * bdhcHeader->heightsSize);
+    bdhc->constants = ptr;
+    offset += (sizeof(fx32) * bdhcHeader->constantsCount);
 
     ptr = (u8 *)*buffer + offset;
     bdhc->plates = ptr;
-    offset += (sizeof(BDHCPlate) * bdhcHeader->platesSize);
+    offset += (sizeof(BDHCPlate) * bdhcHeader->platesCount);
 
     ptr = (u8 *)*buffer + offset;
     bdhc->strips = ptr;
-    offset += sizeof(BDHCStrip) * bdhcHeader->stripsSize;
+    offset += sizeof(BDHCStrip) * bdhcHeader->stripsCount;
 
     ptr = (u8 *)*buffer + offset;
     bdhc->accessList = ptr;
-    offset += sizeof(u16) * bdhcHeader->accessListSize;
+    offset += sizeof(u16) * bdhcHeader->accessListCount;
 
     GF_ASSERT(offset <= BDHC_BUFFER_SIZE);
 }
 
 static void BDHC_LoadPoints(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
 {
-    NARC_ReadFile(narc, sizeof(BDHCPoint) * bdhcHeader->pointsSize, bdhc->points);
+    NARC_ReadFile(narc, sizeof(BDHCPoint) * bdhcHeader->pointsCount, bdhc->points);
 }
 
-static void BDHC_LoadSlopes(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
+static void BDHC_LoadNormals(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
 {
-    NARC_ReadFile(narc, sizeof(VecFx32) * bdhcHeader->slopesSize, bdhc->slopes);
+    NARC_ReadFile(narc, sizeof(VecFx32) * bdhcHeader->normalsCount, bdhc->normals);
 }
 
-static void BDHC_LoadHeights(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
+static void BDHC_LoadConstants(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
 {
-    NARC_ReadFile(narc, sizeof(fx32) * bdhcHeader->heightsSize, bdhc->heights);
+    NARC_ReadFile(narc, sizeof(fx32) * bdhcHeader->constantsCount, bdhc->constants);
 }
 
 static void BDHC_LoadPlates(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
 {
-    NARC_ReadFile(narc, sizeof(BDHCPlate) * bdhcHeader->platesSize, bdhc->plates);
+    NARC_ReadFile(narc, sizeof(BDHCPlate) * bdhcHeader->platesCount, bdhc->plates);
 }
 
 static void BDHC_LoadStrips(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
 {
-    NARC_ReadFile(narc, sizeof(BDHCStrip) * bdhcHeader->stripsSize, bdhc->strips);
+    NARC_ReadFile(narc, sizeof(BDHCStrip) * bdhcHeader->stripsCount, bdhc->strips);
 }
 
 static void BDHC_LoadAccessList(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
 {
-    NARC_ReadFile(narc, sizeof(u16) * bdhcHeader->accessListSize, bdhc->accessList);
+    NARC_ReadFile(narc, sizeof(u16) * bdhcHeader->accessListCount, bdhc->accessList);
 }
 
 static void BDHC_LazyLoadTask(SysTask *sysTask, void *sysTaskParam)
@@ -338,7 +329,7 @@ static void BDHC_LazyLoadTask(SysTask *sysTask, void *sysTaskParam)
         }
 
         BDHC_LoadHeader(ctx->landDataNARC, &ctx->bdhcHeader);
-        ctx->bdhc->stripsSize = ctx->bdhcHeader.stripsSize;
+        ctx->bdhc->stripsCount = ctx->bdhcHeader.stripsCount;
         BDHC_PrepareBuffers(&ctx->bdhcHeader, ctx->bdhc, (void **)&ctx->buffer);
 
         subTaskCompleted = TRUE;
@@ -346,8 +337,8 @@ static void BDHC_LazyLoadTask(SysTask *sysTask, void *sysTaskParam)
 
     case BDHC_LOADER_SUBTASK_LOAD_FILE:
         BDHC_LoadPoints(ctx->landDataNARC, ctx->bdhc, &ctx->bdhcHeader);
-        BDHC_LoadSlopes(ctx->landDataNARC, ctx->bdhc, &ctx->bdhcHeader);
-        BDHC_LoadHeights(ctx->landDataNARC, ctx->bdhc, &ctx->bdhcHeader);
+        BDHC_LoadNormals(ctx->landDataNARC, ctx->bdhc, &ctx->bdhcHeader);
+        BDHC_LoadConstants(ctx->landDataNARC, ctx->bdhc, &ctx->bdhcHeader);
         BDHC_LoadPlates(ctx->landDataNARC, ctx->bdhc, &ctx->bdhcHeader);
         BDHC_LoadStrips(ctx->landDataNARC, ctx->bdhc, &ctx->bdhcHeader);
         BDHC_LoadAccessList(ctx->landDataNARC, ctx->bdhc, &ctx->bdhcHeader);
@@ -378,13 +369,13 @@ BDHC *BDHC_New(void)
     BDHC *bdhc = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(BDHC));
 
     bdhc->points = NULL;
-    bdhc->slopes = NULL;
+    bdhc->normals = NULL;
     bdhc->plates = NULL;
     bdhc->strips = NULL;
     bdhc->accessList = NULL;
     bdhc->accessList = NULL;
     bdhc->loaded = FALSE;
-    bdhc->stripsSize = 0;
+    bdhc->stripsCount = 0;
 
     return bdhc;
 }
@@ -394,12 +385,12 @@ void BDHC_Load(NARC *narc, const int bdhcSize, BDHC *bdhc, u8 *buffer)
     BDHCHeader *bdhcHeader = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(BDHCHeader));
 
     BDHC_LoadHeader(narc, bdhcHeader);
-    bdhc->stripsSize = bdhcHeader->stripsSize;
+    bdhc->stripsCount = bdhcHeader->stripsCount;
     BDHC_PrepareBuffers(bdhcHeader, bdhc, (void **)&buffer);
 
     BDHC_LoadPoints(narc, bdhc, bdhcHeader);
-    BDHC_LoadSlopes(narc, bdhc, bdhcHeader);
-    BDHC_LoadHeights(narc, bdhc, bdhcHeader);
+    BDHC_LoadNormals(narc, bdhc, bdhcHeader);
+    BDHC_LoadConstants(narc, bdhc, bdhcHeader);
     BDHC_LoadPlates(narc, bdhc, bdhcHeader);
     BDHC_LoadStrips(narc, bdhc, bdhcHeader);
     BDHC_LoadAccessList(narc, bdhc, bdhcHeader);
@@ -426,7 +417,7 @@ void BDHC_Reset(BDHC *bdhc)
 
     bdhc->loaded = FALSE;
     bdhc->points = NULL;
-    bdhc->slopes = NULL;
+    bdhc->normals = NULL;
     bdhc->plates = NULL;
     bdhc->strips = NULL;
     bdhc->accessList = NULL;

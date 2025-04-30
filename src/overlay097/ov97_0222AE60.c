@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0202442C_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay077/const_ov77_021D742C.h"
@@ -23,6 +22,7 @@
 #include "main.h"
 #include "message.h"
 #include "message_util.h"
+#include "mystery_gift.h"
 #include "overlay_manager.h"
 #include "play_time.h"
 #include "pokedex.h"
@@ -30,6 +30,8 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -37,13 +39,12 @@
 #include "system_data.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_0202DAB4.h"
 #include "unk_020366A0.h"
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
+
+#include "res/text/bank/main_menu.h"
 
 FS_EXTERN_OVERLAY(game_start);
 FS_EXTERN_OVERLAY(overlay77);
@@ -88,7 +89,7 @@ typedef struct {
     int unk_18;
     int unk_1C;
     int unk_20;
-    int unk_24;
+    int agbGameType; // Adds + 1, to track unset value
     int unk_28;
     int unk_2C;
     int unk_30;
@@ -129,7 +130,7 @@ static BOOL ov97_0222B8E4(void *param0, int param1, UnkStruct_ov97_02237808 *par
 static BOOL ov97_0222B934(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
 static BOOL ov97_0222B978(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
 static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-MysteryGift *SaveData_MysteryGift(SaveData *param0);
+MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
 int ov23_0224AC0C(void);
 int TrainerInfo_Size(void);
 
@@ -190,7 +191,7 @@ static BOOL ov97_0222AE64(UnkStruct_0222AE60 *param0)
         }
     } else {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             Window_EraseStandardFrame(&param0->unk_158, 0);
             Window_Remove(&param0->unk_158);
         }
@@ -203,46 +204,46 @@ static BOOL ov97_0222AE64(UnkStruct_0222AE60 *param0)
 
 static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
 {
-    int v0;
+    int gbaVersion;
     int v1 = ov97_02235D2C(NULL);
 
-    param0->unk_24 = 0;
+    param0->agbGameType = 0;
 
     if (v1 != 0) {
         return;
     }
 
-    v0 = 0;
+    gbaVersion = VERSION_NONE;
 
-    switch (ov97_02235DB0()) {
-    case 0:
-        v0 = 2;
+    switch (GBACart_GetAGBGameType()) {
+    case AGB_TYPE_RUBY:
+        gbaVersion = VERSION_RUBY;
         break;
-    case 1:
-        v0 = 1;
+    case AGB_TYPE_SAPPHIRE:
+        gbaVersion = VERSION_SAPPHIRE;
         break;
-    case 2:
-        v0 = 5;
+    case AGB_TYPE_LEAFGREEN:
+        gbaVersion = VERSION_LEAFGREEN;
         break;
-    case 3:
-        v0 = 4;
+    case AGB_TYPE_FIRERED:
+        gbaVersion = VERSION_FIRERED;
         break;
-    case 4:
-        v0 = 3;
+    case AGB_TYPE_EMERALD:
+        gbaVersion = VERSION_EMERALD;
         break;
     }
 
-    SetGBACartridgeVersion(v0);
+    SetGBACartridgeVersion(gbaVersion);
 
     if (Pokedex_IsNationalDexObtained(param0->unk_08) == FALSE) {
         return;
     }
 
-    if (ov97_02235DBC() != gGameLanguage) {
+    if (GBACart_GetLanguage() != gGameLanguage) {
         return;
     }
 
-    param0->unk_24 = ov97_02235DB0() + 1;
+    param0->agbGameType = GBACart_GetAGBGameType() + 1;
 
     ov97_02238440();
 }
@@ -264,7 +265,7 @@ static void ov97_0222AF8C(UnkStruct_0222AE60 *param0)
         param0->unk_124 = 13;
         param0->unk_40 = 0;
 
-        if (sub_0202DEC4(param0->unk_14) == 1) {
+        if (MysteryGift_GetLastWcIDReceived(param0->unk_14) == 1) {
             param0->unk_40 |= 0x1;
             param0->unk_44 |= 0x1;
         }
@@ -378,7 +379,7 @@ static BOOL ov97_0222B07C(UnkStruct_0222AE60 *param0)
                 Window_Remove(&param0->unk_13C);
                 param0->unk_12C = 19;
                 param0->unk_138 = gSystem.pressedKeys;
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         }
         break;
@@ -526,7 +527,7 @@ static void ov97_0222B4FC(UnkStruct_0222AE60 *param0, int param1, int param2)
 static void ov97_0222B53C(Window *param0, MessageLoader *param1, StringTemplate *param2, TextColor param3, u32 param4, int param5)
 {
     int v0, v1;
-    Strbuf *v2 = MessageUtil_ExpandedStrbuf(param2, param1, param4, 81);
+    Strbuf *v2 = MessageUtil_ExpandedStrbuf(param2, param1, param4, HEAP_ID_81);
     v0 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
     v1 = Window_GetWidth(param0) * 8 - (v0 + 32);
 
@@ -561,7 +562,7 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
     UnkStruct_0222AE60 *v6 = (UnkStruct_0222AE60 *)param0;
     TextColor v7;
 
-    v5 = MessageLoader_Init(1, 26, 550, HEAP_ID_81);
+    v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU, HEAP_ID_81);
     v4 = StringTemplate_Default(HEAP_ID_81);
 
     if (TrainerInfo_Gender(v6->unk_0C) == 1) {
@@ -577,7 +578,7 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
             continue;
         }
 
-        v3 = MessageUtil_ExpandedStrbuf(v4, v5, Unk_ov97_0223DF40[v0], 81);
+        v3 = MessageUtil_ExpandedStrbuf(v4, v5, Unk_ov97_0223DF40[v0], HEAP_ID_81);
         Text_AddPrinterWithParamsAndColor(param2->unk_10, FONT_SYSTEM, v3, 32, v0 * 16, TEXT_SPEED_NO_TRANSFER, v7, NULL);
         Strbuf_Free(v3);
     }
@@ -612,25 +613,25 @@ static BOOL ov97_0222B768(void *param0, int param1, UnkStruct_ov97_02237808 *par
     int v0;
     UnkStruct_0222AE60 *v1 = (UnkStruct_0222AE60 *)param0;
 
-    if (v1->unk_24 == 0) {
-        return 0;
+    if (v1->agbGameType == 0) {
+        return FALSE;
     }
 
-    switch (v1->unk_24 - 1) {
-    case 0:
-        v0 = 4;
+    switch (v1->agbGameType - 1) {
+    case AGB_TYPE_RUBY:
+        v0 = MainMenu_Text_MigrateFromRuby;
         break;
-    case 1:
-        v0 = 5;
+    case AGB_TYPE_SAPPHIRE:
+        v0 = MainMenu_Text_MigrateFromSapphire;
         break;
-    case 2:
-        v0 = 6;
+    case AGB_TYPE_LEAFGREEN:
+        v0 = MainMenu_Text_MigrateFromLeafgreen;
         break;
-    case 3:
-        v0 = 7;
+    case AGB_TYPE_FIRERED:
+        v0 = MainMenu_Text_MigrateFromFirered;
         break;
-    case 4:
-        v0 = 8;
+    case AGB_TYPE_EMERALD:
+        v0 = MainMenu_Text_MigrateFromEmerald;
         break;
     }
 
@@ -639,7 +640,7 @@ static BOOL ov97_0222B768(void *param0, int param1, UnkStruct_ov97_02237808 *par
 
     v1->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
@@ -647,7 +648,7 @@ static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *par
     UnkStruct_0222AE60 *v0 = (UnkStruct_0222AE60 *)param0;
 
     if (v0->unk_34 == 0) {
-        if (sub_0202DEC4(v0->unk_14) == 1) {
+        if (MysteryGift_GetLastWcIDReceived(v0->unk_14) == 1) {
             v0->unk_34 = 1;
         }
 
@@ -676,7 +677,7 @@ static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *par
         v0->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
         v0->unk_38 |= 0x1;
 
-        sub_0202DED4(v0->unk_14);
+        MysteryGift_SetLastWcIDReceived(v0->unk_14);
         return 1;
     }
 
@@ -831,7 +832,7 @@ static void ov97_0222BB88(UnkStruct_0222AE60 *param0, int param1)
         }
 
         if (param0->unk_DC[v0]) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         }
     }
@@ -976,7 +977,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     sub_0200F344(1, 0x0);
 
     v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_14 = SaveData_MysteryGift(v0->unk_04);
+    v0->unk_14 = SaveData_GetMysteryGift(v0->unk_04);
     v0->unk_11C = FX32_ONE * 0;
     v0->unk_120 = FX32_ONE * 0;
     v0->unk_0C = SaveData_GetTrainerInfo(v0->unk_04);
@@ -992,8 +993,8 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
         v0->unk_14C = 1;
     }
 
-    sub_020053CC(0);
-    sub_02004234(0);
+    Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
+    Sound_SetScene(SOUND_SCENE_NONE);
 
     return 1;
 }
@@ -1059,7 +1060,7 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
     case 5:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             if (gSystem.pressedKeys & PAD_BUTTON_A) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 v1->unk_58 = v1->unk_DC[v1->unk_54];
 
                 if (v1->unk_58 == 5) {
@@ -1068,11 +1069,11 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
                             sub_02037D84();
                         }
 
-                        sub_0209A8E0(81);
+                        sub_0209A8E0(HEAP_ID_81);
                     }
                 }
             } else {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 v1->unk_58 = 0;
                 ov97_02237784(1);
             }
@@ -1147,7 +1148,7 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
 }
 
 extern const OverlayManagerTemplate Unk_ov97_0223D71C;
-extern const OverlayManagerTemplate Unk_ov97_0223D864;
+extern const OverlayManagerTemplate gGBAMigratorOverlayTemplate;
 extern const OverlayManagerTemplate Unk_ov97_0223D6BC;
 extern const OverlayManagerTemplate Unk_020F6DF0;
 extern const OverlayManagerTemplate Unk_ov98_02249BAC;
@@ -1165,7 +1166,7 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
         break;
     case 5:
-        EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D864);
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &gGBAMigratorOverlayTemplate);
         break;
     case 4:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D6BC);
@@ -1174,11 +1175,11 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         RebootAndLoadROM("data/eoo.dat");
         break;
     case 7:
-        sub_0200569C();
+        Sound_StopWaveOutAndSequences();
         EnqueueApplication(0xffffffff, &Unk_020F6DF0);
         break;
     case 8:
-        sub_0200569C();
+        Sound_StopWaveOutAndSequences();
         EnqueueApplication(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
         break;
     case 0:

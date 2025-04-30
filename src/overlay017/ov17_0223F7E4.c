@@ -29,6 +29,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
@@ -36,7 +37,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02094EDC.h"
 
@@ -962,7 +962,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
         v1 = param10->unk_00;
     }
 
-    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, 21);
+    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_21);
     CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &v2);
 
     if (param9 == 1) {
@@ -982,7 +982,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     v0.unk_20 = 0;
     v0.unk_24 = 100;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v0.unk_2C = 21;
+    v0.heapID = HEAP_ID_21;
 
     v4 = sub_020127E8(&v0);
 
@@ -1450,7 +1450,7 @@ void ov17_02240A80(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
             v0->unk_130[v1] = 0;
         }
 
-        v2 = MessageUtil_MoveName(param1[v1], 21);
+        v2 = MessageUtil_MoveName(param1[v1], HEAP_ID_21);
 
         ov17_02240BF4(param0, v2, FONT_SUBSCREEN, &v0->unk_00[v1], TEXT_COLOR(1, 7, 8));
         Strbuf_Free(v2);
@@ -1524,7 +1524,7 @@ static int ov17_02240C90(UnkStruct_ov17_0223F7E4 *param0)
     if (v0->unk_00 == 0) {
         if ((param0->unk_304 == 1) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
             if (param0->unk_304 == 0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
 
             v0->unk_00 = 1;
@@ -1778,7 +1778,7 @@ static u32 ov17_02241004(UnkStruct_ov17_02241004 *param0, int param1, int param2
     }
 
     if ((param0->unk_02 != v1) || (param0->unk_01 != v0)) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else {
         if (v2 & PAD_KEY) {
             return 0;

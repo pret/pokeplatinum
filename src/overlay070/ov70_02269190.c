@@ -18,8 +18,8 @@
 #include "graphics.h"
 #include "heap.h"
 #include "narc.h"
+#include "sound_playback.h"
 #include "system.h"
-#include "unk_02005474.h"
 
 typedef struct {
     u16 unk_00;
@@ -153,7 +153,7 @@ static void ov70_0226949C(UnkStruct_ov70_0226949C *param0, u16 param1, u16 param
 static void ov70_022694D0(UnkStruct_ov70_0226949C *param0);
 static void ov70_02269508(const UnkStruct_ov70_0226949C *param0, fx32 *param1);
 static void ov70_02269510(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_02269800 *param1, u32 param2);
-static void ov70_02269540(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 param2);
+static void ov70_02269540(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 heapID);
 static void ov70_022695C4(UnkStruct_ov70_02269204 *param0);
 static void ov70_022695E0(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 param2);
 static void ov70_02269608(UnkStruct_ov70_02269204 *param0);
@@ -778,7 +778,7 @@ static void ov70_02269508(const UnkStruct_ov70_0226949C *param0, fx32 *param1)
 static void ov70_02269510(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_02269800 *param1, u32 param2)
 {
     if (param1->unk_08 == ov70_0225CCAC(param0->unk_04)) {
-        sub_02005770(param2, 5);
+        Sound_PlayEffectOnPlayer(param2, 5);
     } else {
         if (ov70_0225CE70(param1->unk_08) == 0) {
             Sound_PlayEffect(param2);
@@ -786,12 +786,12 @@ static void ov70_02269510(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
     }
 }
 
-static void ov70_02269540(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 param2)
+static void ov70_02269540(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 heapID)
 {
     int v0;
 
     for (v0 = 0; v0 < 15; v0++) {
-        param0->unk_10550[v0].data = LoadMemberFromOpenNARC(param1, 129 + v0, 0, param2, 0);
+        param0->unk_10550[v0].data = LoadMemberFromOpenNARC(param1, 129 + v0, 0, heapID, 0);
         param0->unk_10550[v0].set = NNS_G3dGetMdlSet(param0->unk_10550[v0].data);
         param0->unk_10550[v0].model = NNS_G3dGetMdlByIdx(param0->unk_10550[v0].set, 0);
         param0->unk_10550[v0].texture = NULL;

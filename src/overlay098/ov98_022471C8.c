@@ -40,7 +40,7 @@
 #include "system.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202ACE0.h"
@@ -303,18 +303,18 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_04 = BgConfig_New(HEAP_ID_109);
 
-    VramTransfer_New(64, 109);
+    VramTransfer_New(64, HEAP_ID_109);
     SetAutorepeat(4, 8);
     ov98_02247510(v0->unk_04);
     sub_0201E3D8();
     sub_0201E450(4);
 
-    v0->unk_20 = StringTemplate_New(11, 64, 109);
-    v0->unk_24 = MessageLoader_Init(0, 26, 671, HEAP_ID_109);
-    v0->unk_2C = MessageLoader_Init(0, 26, 674, HEAP_ID_109);
-    v0->unk_30 = MessageLoader_Init(0, 26, 695, HEAP_ID_109);
-    v0->unk_28 = MessageLoader_Init(0, 26, 412, HEAP_ID_109);
-    v0->unk_34 = MessageLoader_Init(0, 26, 358, HEAP_ID_109);
+    v0->unk_20 = StringTemplate_New(11, 64, HEAP_ID_109);
+    v0->unk_24 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0671, HEAP_ID_109);
+    v0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_109);
+    v0->unk_30 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_109);
+    v0->unk_28 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_109);
+    v0->unk_34 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0358, HEAP_ID_109);
     v0->unk_38 = Strbuf_Init((90 * 2), HEAP_ID_109);
     v0->unk_40 = Strbuf_Init((16 * 8 * 2), HEAP_ID_109);
     v0->unk_3C = MessageLoader_GetNewStrbuf(v0->unk_24, 31);
@@ -324,9 +324,9 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
 
     switch (ov98_02246EA4(v0->unk_00)) {
     case 12:
-        if (!DWC_CheckInet() && (sub_02039074(v0->unk_00->unk_04) == 1)) {
+        if (!DWC_CheckInet() && (sub_02039074(v0->unk_00->saveData) == 1)) {
             v0->unk_08 = 12;
-            sub_02038548(v0->unk_00->unk_04);
+            sub_02038548(v0->unk_00->saveData);
             sub_02039734();
         } else {
             v0->unk_08 = 0;
@@ -726,7 +726,7 @@ static int ov98_02247B98(UnkStruct_ov98_02247704 *param0)
         const UnkStruct_ov98_02249BDC *v4;
         int v5;
 
-        if (sub_02030D20(param0->unk_00->unk_04) == 1) {
+        if (sub_02030D20(param0->unk_00->saveData) == 1) {
             v3 = Unk_ov98_02249BC0;
             v4 = Unk_ov98_02249BEC;
             v5 = (NELEMS(Unk_ov98_02249BEC));
@@ -764,13 +764,13 @@ static int ov98_02247B98(UnkStruct_ov98_02247704 *param0)
         case 0xffffffff:
             break;
         case 0xfffffffe:
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov98_02246E88(param0->unk_00, 6, 0);
             param0->unk_9C = 29;
             param0->unk_94++;
             break;
         default:
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_9C = v0;
             param0->unk_94++;
             break;
@@ -819,10 +819,10 @@ static int ov98_02247D50(UnkStruct_ov98_02247704 *param0)
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
                 ov98_02249714(param0, param0->unk_34, 27, TEXT_SPEED_FAST, 0xf0f);
-                sub_02030D5C(param0->unk_00->unk_04, 0, 0);
+                sub_02030D5C(param0->unk_00->saveData, 0, 0);
             } else {
                 ov98_02249714(param0, param0->unk_34, 26, TEXT_SPEED_FAST, 0xf0f);
-                sub_02030D5C(param0->unk_00->unk_04, 0, 1);
+                sub_02030D5C(param0->unk_00->saveData, 0, 1);
             }
 
             param0->unk_94++;
@@ -859,7 +859,7 @@ static int ov98_02247E38(UnkStruct_ov98_02247704 *param0)
                 param0->unk_08 = 0;
             } else {
                 ov98_02249714(param0, param0->unk_34, 29, TEXT_SPEED_FAST, 0xf0f);
-                sub_02030D10(param0->unk_00->unk_04);
+                sub_02030D10(param0->unk_00->saveData);
                 param0->unk_94++;
             }
         }
@@ -1469,7 +1469,7 @@ static int ov98_02248804(UnkStruct_ov98_02247704 *param0)
         }
     } break;
     case 4:
-        if (sub_02039074(param0->unk_00->unk_04) == 0) {
+        if (sub_02039074(param0->unk_00->saveData) == 0) {
             ov98_02246E88(param0->unk_00, 5, 0);
             ov98_02246E9C(param0->unk_00, 12);
             param0->unk_08 = 29;
@@ -1541,7 +1541,7 @@ static int ov98_022489DC(UnkStruct_ov98_02247704 *param0)
 {
     switch (param0->unk_94) {
     case 0:
-        sub_02038548(param0->unk_00->unk_04);
+        sub_02038548(param0->unk_00->saveData);
         sub_02039734();
         ov98_02249714(param0, param0->unk_2C, 1, TEXT_SPEED_FAST, 0xf0f);
         ov98_02247AF0(param0);
@@ -1708,8 +1708,8 @@ static int ov98_02248BFC(UnkStruct_ov98_02247704 *param0)
     DWCUserData *v0;
     s32 v1;
     SystemData *v2;
-    UnkStruct_0202B370 *v3 = sub_0202B370(param0->unk_00->unk_04);
-    v2 = SaveData_GetSystemData(param0->unk_00->unk_04);
+    WiFiList *v3 = SaveData_GetWiFiList(param0->unk_00->saveData);
+    v2 = SaveData_GetSystemData(param0->unk_00->saveData);
     v0 = sub_0202AD28(v3);
     v1 = sub_02025D74(v2);
 
@@ -2071,12 +2071,12 @@ static int ov98_02249238(UnkStruct_ov98_02247704 *param0)
     case 1: {
         int v0;
 
-        v0 = SaveData_Save(param0->unk_00->unk_04);
+        v0 = SaveData_Save(param0->unk_00->saveData);
 
         if (v0 == 2) {
-            StringTemplate_SetPlayerName(param0->unk_20, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_04));
+            StringTemplate_SetPlayerName(param0->unk_20, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
             ov98_02249714(param0, param0->unk_34, 33, TEXT_SPEED_INSTANT, 0xf0f);
-            Sound_PlayEffect(1563);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE);
         } else {
             ov98_02249714(param0, param0->unk_34, 34, TEXT_SPEED_INSTANT, 0xf0f);
         }
@@ -2404,8 +2404,8 @@ static int ov98_022497F8(UnkStruct_ov98_02247704 *param0)
 
     switch (param0->unk_94) {
     case 0:
-        if (ov98_02246FA4(v0) == sub_02030D98(v0->unk_04, 3)) {
-            ov98_02249ACC(sub_02030D50(v0->unk_04), v2, 108);
+        if (ov98_02246FA4(v0) == sub_02030D98(v0->saveData, 3)) {
+            ov98_02249ACC(sub_02030D50(v0->saveData), v2, 108);
             for (v3 = 0; v3 < 4; v3++) {
                 StringTemplate_SetNumber(param0->unk_20, v3, v2[v3], 4, 2, 1);
             }
@@ -2484,13 +2484,13 @@ static void ov98_02249964(UnkStruct_ov98_02247704 *param0, int param1, int param
 static void ov98_022499A0(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
 static void ov98_022499B4(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }

@@ -23,16 +23,16 @@ Static main
 	Object main.nef.p/src_render_text.c.o
 	Object main.nef.p/src_font.c.o
 	Object main.nef.p/src_palette.c.o
-	Object main.nef.p/src_unk_02003B60.c.o
-	Object main.nef.p/src_unk_020041CC.c.o
-	Object main.nef.p/src_unk_02005474.c.o
-	Object main.nef.p/src_unk_02006224.c.o
+	Object main.nef.p/src_sound_system.c.o
+	Object main.nef.p/src_sound.c.o
+	Object main.nef.p/src_sound_playback.c.o
+	Object main.nef.p/src_sound_chatot.c.o
 	Object main.nef.p/src_game_overlay.c.o
 	Object main.nef.p/src_unk_0200679C.c.o
 	Object main.nef.p/src_overlay_manager.c.o
 	Object main.nef.p/src_narc.c.o
 	Object main.nef.p/src_graphics.c.o
-	Object main.nef.p/src_unk_0200762C.c.o
+	Object main.nef.p/src_pokemon_sprite.c.o
 	Object main.nef.p/src_sprite_util.c.o
 	Object main.nef.p/src_sprite_resource.c.o
 	Object main.nef.p/src_sprite_transfer.c.o
@@ -73,7 +73,7 @@ Static main
 	Object main.nef.p/src_sys_task_manager.c.o
 	Object main.nef.p/src_unk_0201CED8.c.o
 	Object main.nef.p/src_charcode.c.o
-	Object main.nef.p/src_math.c.o
+	Object main.nef.p/src_math_util.c.o
 	Object main.nef.p/src_text.c.o
 	Object main.nef.p/src_vram_transfer.c.o
 	Object main.nef.p/src_cell_transfer.c.o
@@ -109,12 +109,12 @@ Static main
 	Object main.nef.p/src_trainer_info.c.o
 	Object main.nef.p/src_unk_0202602C.c.o
 	Object main.nef.p/src_unk_02026150.c.o
-	Object main.nef.p/src_unk_020261E4.c.o
+	Object main.nef.p/src_daycare_save.c.o
 	Object main.nef.p/src_pokedex.c.o
 	Object main.nef.p/src_savedata_misc.c.o
 	Object main.nef.p/src_game_options.c.o
 	Object main.nef.p/src_berry_patches.c.o
-	Object main.nef.p/src_unk_02027F50.c.o
+	Object main.nef.p/src_persisted_map_features.c.o
 	Object main.nef.p/src_unk_02027F84.c.o
 	Object main.nef.p/src_unk_02028124.c.o
 	Object main.nef.p/src_unk_0202854C.c.o
@@ -134,7 +134,7 @@ Static main
 	Object main.nef.p/src_unk_0202D778.c.o
 	Object main.nef.p/src_special_encounter.c.o
 	Object main.nef.p/src_unk_0202DA40.c.o
-	Object main.nef.p/src_unk_0202DAB4.c.o
+	Object main.nef.p/src_mystery_gift.c.o
 	Object main.nef.p/src_unk_0202DF8C.c.o
 	Object main.nef.p/src_unk_0202E2CC.c.o
 	Object main.nef.p/src_unk_0202E840.c.o
@@ -174,7 +174,7 @@ Static main
 	Object main.nef.p/src_map_header_data.c.o
 	Object main.nef.p/src_field_overworld_state.c.o
 	Object main.nef.p/src_unk_0203A7D8.c.o
-	Object main.nef.p/src_unk_0203A944.c.o
+	Object main.nef.p/src_field_overworld_weather.c.o
 	Object main.nef.p/src_start_menu.c.o
 	Object main.nef.p/src_unk_0203C954.c.o
 	Object main.nef.p/src_field_system.c.o
@@ -187,7 +187,7 @@ Static main
 	Object main.nef.p/src_unk_02046C7C.c.o
 	Object main.nef.p/src_unk_020474B8.c.o
 	Object main.nef.p/src_scrcmd_jubilife_lottery.c.o
-	Object main.nef.p/src_unk_020482D4.c.o
+	Object main.nef.p/src_scrcmd_sound.c.o
 	Object main.nef.p/src_unk_02048614.c.o
 	Object main.nef.p/src_unk_02048BD0.c.o
 	Object main.nef.p/src_unk_02048DD8.c.o
@@ -195,17 +195,17 @@ Static main
 	Object main.nef.p/src_unk_02049D08.c.o
 	Object main.nef.p/src_unk_0204AEE8.c.o
 	Object main.nef.p/src_unk_0204B64C.c.o
-	Object main.nef.p/src_unk_0204B830.c.o
+	Object main.nef.p/src_scrcmd_mystery_gift.c.o
 	Object main.nef.p/src_unk_0204C500.c.o
-	Object main.nef.p/src_unk_0204C6C8.c.o
-	Object main.nef.p/src_unk_0204C8F0.c.o
-	Object main.nef.p/src_unk_0204CA84.c.o
-	Object main.nef.p/src_unk_0204CDDC.c.o
+	Object main.nef.p/src_scrcmd_coins.c.o
+	Object main.nef.p/src_scrcmd_money.c.o
+	Object main.nef.p/src_scrcmd_daycare.c.o
+	Object main.nef.p/src_scrcmd_amity_square.c.o
 	Object main.nef.p/src_unk_0204CFFC.c.o
 	Object main.nef.p/src_unk_0204E240.c.o
-	Object main.nef.p/src_unk_0204E378.c.o
+	Object main.nef.p/src_scrcmd_game_corner_prize.c.o
 	Object main.nef.p/src_scrcmd_system_flags.c.o
-	Object main.nef.p/src_unk_0204E75C.c.o
+	Object main.nef.p/src_scrcmd_item.c.o
 	Object main.nef.p/src_unk_0204E974.c.o
 	Object main.nef.p/src_unk_0204EDA4.c.o
 	Object main.nef.p/src_scrcmd_dummy_23F_242.c.o
@@ -226,8 +226,8 @@ Static main
 	Object main.nef.p/src_unk_02052C6C.c.o
 	Object main.nef.p/src_field_map_change.c.o
 	Object main.nef.p/src_unk_02054884.c.o
-	Object main.nef.p/src_unk_02054BD0.c.o
-	Object main.nef.p/src_unk_02054D00.c.o
+	Object main.nef.p/src_terrain_attributes.c.o
+	Object main.nef.p/src_terrain_collision_manager.c.o
 	Object main.nef.p/src_unk_020553DC.c.o
 	Object main.nef.p/src_unk_020556C4.c.o
 	Object main.nef.p/src_field_transition.c.o
@@ -258,7 +258,7 @@ Static main
 	Object main.nef.p/src_unk_020673B8.c.o
 	Object main.nef.p/src_unk_020677F4.c.o
 	Object main.nef.p/src_unk_02067A84.c.o
-	Object main.nef.p/src_unk_02068344.c.o
+	Object main.nef.p/src_dynamic_map_features.c.o
 	Object main.nef.p/src_unk_020683F4.c.o
 	Object main.nef.p/src_pokeradar.c.o
 	Object main.nef.p/src_unk_02069BE0.c.o
@@ -276,12 +276,11 @@ Static main
 	Object main.nef.p/src_unk_0206F314.c.o
 	Object main.nef.p/src_unk_02070428.c.o
 	Object main.nef.p/src_unk_0207064C.c.o
-	Object main.nef.p/src_unk_0207070C.c.o
+	Object main.nef.p/src_field_move_tasks.c.o
 	Object main.nef.p/src_unk_020711C8.c.o
 	Object main.nef.p/src_unk_020711EC.c.o
-	Object main.nef.p/src_unk_0207160C.c.o
-	Object main.nef.p/src_unk_02071B10.c.o
-	Object main.nef.p/src_unk_02071CD0.c.o
+	Object main.nef.p/src_platform_lift.c.o
+	Object main.nef.p/src_persisted_map_features_init.c.o
 	Object main.nef.p/src_map_header_util.c.o
 	Object main.nef.p/src_unk_02071D40.c.o
 	Object main.nef.p/src_unk_020722AC.c.o
@@ -495,7 +494,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_motion_blur.c.o
 	Object main.nef.p/src_overlay005_field_motion_blur.c.o
 	Object main.nef.p/src_overlay005_encounter_effect_core.c.o
-	Object main.nef.p/src_overlay005_ov5_021E622C.c.o
+	Object main.nef.p/src_overlay005_daycare.c.o
 	Object main.nef.p/src_overlay005_land_data.c.o
 	Object main.nef.p/src_overlay005_ov5_021EA714.c.o
 	Object main.nef.p/src_overlay005_ov5_021EA874.c.o
@@ -509,7 +508,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021EE7D4.c.o
 	Object main.nef.p/src_overlay005_loaded_map_buffers.c.o
 	Object main.nef.p/src_overlay005_bdhc.c.o
-	Object main.nef.p/src_overlay005_ov5_021EF250.c.o
+	Object main.nef.p/src_overlay005_dynamic_terrain_height.c.o
 	Object main.nef.p/src_overlay005_hblank_system.c.o
 	Object main.nef.p/src_overlay005_ov5_021EF4BC.c.o
 	Object main.nef.p/src_overlay005_area_data.c.o
@@ -519,7 +518,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021F067C.c.o
 	Object main.nef.p/src_overlay005_ov5_021F0824.c.o
 	Object main.nef.p/src_overlay005_ov5_021F08CC.c.o
-	Object main.nef.p/src_overlay005_ov5_021F0E84.c.o
+	Object main.nef.p/src_overlay005_footprint_type.c.o
 	Object main.nef.p/src_overlay005_ov5_021F0EB0.c.o
 	Object main.nef.p/src_overlay005_ov5_021F101C.c.o
 	Object main.nef.p/src_overlay005_ov5_021F10E8.c.o
@@ -1467,7 +1466,7 @@ Overlay overlay97
 	Object main.nef.p/src_overlay097_ov97_02233408.c.o
 	Object main.nef.p/src_overlay097_ov97_022337FC.c.o
 	Object main.nef.p/src_overlay097_ov97_02233814.c.o
-	Object main.nef.p/src_overlay097_ov97_02233B18.c.o
+	Object main.nef.p/src_overlay097_gba_migrator.c.o
 	Object main.nef.p/src_overlay097_ov97_02235D18.c.o
 	Object main.nef.p/src_overlay097_ov97_0223635C.c.o
 	Object main.nef.p/src_overlay097_ov97_02236380.c.o
@@ -1475,7 +1474,7 @@ Overlay overlay97
 	Object main.nef.p/src_overlay097_ov97_02237694.c.o
 	Object main.nef.p/src_overlay097_ov97_02238534.c.o
 	Object main.nef.p/src_overlay097_ov97_02238D74.c.o
-	Object main.nef.p/src_overlay097_ov97_022392E4.c.o
+	Object main.nef.p/src_overlay097_gba_convert_string.c.o
 	Library libcrypto_ov97.a
 }
 

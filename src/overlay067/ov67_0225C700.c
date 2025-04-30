@@ -32,11 +32,11 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -175,7 +175,7 @@ int ov67_0225C700(OverlayManager *param0, int *param1)
     v1 = OverlayManager_Args(param0);
 
     v0->unk_00 = v1->unk_00;
-    sub_02004550(11, 1175, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 0);
     v1->unk_10 = 0;
 
     ov67_0225CE30(v0, 112);
@@ -266,7 +266,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
             {
                 GameRecords *v4;
 
-                v4 = SaveData_GetGameRecordsPtr(v0->unk_00);
+                v4 = SaveData_GetGameRecords(v0->unk_00);
                 GameRecords_IncrementTrainerScore(v4, TRAINER_SCORE_EVENT_UNK_44);
             }
 
@@ -543,7 +543,7 @@ static void ov67_0225CE28(void *param0)
     inline_ov61_0222C1FC(&v0->unk_D4);
 }
 
-static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
+static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 heapID)
 {
     G2_BlendNone();
     G2S_BlendNone();
@@ -558,11 +558,11 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
         int v0;
 
         SetAllGraphicsModes(&Unk_ov67_0225D400);
-        param0->unk_0C = BgConfig_New(param1);
+        param0->unk_0C = BgConfig_New(heapID);
 
         for (v0 = 0; v0 < 3; v0++) {
             Bg_InitFromTemplate(param0->unk_0C, Unk_ov67_0225D3F4[v0], &Unk_ov67_0225D438[v0], 0);
-            Bg_ClearTilesRange(Unk_ov67_0225D3F4[v0], 32, 0, param1);
+            Bg_ClearTilesRange(Unk_ov67_0225D3F4[v0], 32, 0, heapID);
             Bg_ClearTilemap(param0->unk_0C, Unk_ov67_0225D3F4[v0]);
         }
     }
@@ -571,22 +571,22 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
         Options *v1;
         u8 v2;
 
-        v1 = SaveData_Options(param0->unk_00);
+        v1 = SaveData_GetOptions(param0->unk_00);
         v2 = Options_Frame(v1);
 
-        Font_LoadTextPalette(0, 12 * 32, param1);
-        Font_LoadScreenIndicatorsPalette(0, 11 * 32, param1);
-        LoadStandardWindowGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], (1 + (18 + 12)), 14, 0, param1);
-        LoadMessageBoxGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], 1, 13, v2, param1);
+        Font_LoadTextPalette(0, 12 * 32, heapID);
+        Font_LoadScreenIndicatorsPalette(0, 11 * 32, heapID);
+        LoadStandardWindowGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], (1 + (18 + 12)), 14, 0, heapID);
+        LoadMessageBoxGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], 1, 13, v2, heapID);
     }
 
     {
-        Graphics_LoadPalette(92, 3, 0, 0, 11 * 32, param1);
-        Graphics_LoadPalette(92, 3, 4, 0, 11 * 32, param1);
-        Graphics_LoadTilesToBgLayer(92, 2, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, param1);
-        Graphics_LoadTilesToBgLayer(92, 10, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
-        Graphics_LoadTilemapToBgLayer(92, 5, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, param1);
-        Graphics_LoadTilemapToBgLayer(92, 11, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
+        Graphics_LoadPalette(92, 3, 0, 0, 11 * 32, heapID);
+        Graphics_LoadPalette(92, 3, 4, 0, 11 * 32, heapID);
+        Graphics_LoadTilesToBgLayer(92, 2, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, heapID);
+        Graphics_LoadTilesToBgLayer(92, 10, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(92, 5, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(92, 11, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, heapID);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -594,9 +594,9 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
     {
         NARC *v3;
 
-        v3 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, param1);
+        v3 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, heapID);
 
-        inline_ov61_0222C3B0(&param0->unk_D4, v3, 4, param1);
+        inline_ov61_0222C3B0(&param0->unk_D4, v3, 4, heapID);
 
         NARC_dtor(v3);
     }
@@ -620,14 +620,14 @@ static void ov67_0225D17C(UnkStruct_ov67_0225D154 *param0)
     Bg_RunScheduledUpdates(param0->unk_0C);
 }
 
-static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *param9, u32 param10)
+static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *param9, u32 heapID)
 {
-    param0->unk_00 = StringTemplate_Default(param10);
-    param0->unk_04 = MessageLoader_Init(0, 26, param3, param10);
-    param0->unk_18 = Strbuf_Init(256, param10);
-    param0->unk_1C = Strbuf_Init(256, param10);
+    param0->unk_00 = StringTemplate_Default(heapID);
+    param0->unk_04 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param3, heapID);
+    param0->unk_18 = Strbuf_Init(256, heapID);
+    param0->unk_1C = Strbuf_Init(256, heapID);
     param0->unk_20 = param2;
-    param0->unk_28 = Options_TextFrameDelay(SaveData_Options(param9));
+    param0->unk_28 = Options_TextFrameDelay(SaveData_GetOptions(param9));
     param0->unk_2C = 0;
 
     Window_Add(param1, &param0->unk_08, Unk_ov67_0225D3F4[1], param4, param5, param6, param7, 11, param8);

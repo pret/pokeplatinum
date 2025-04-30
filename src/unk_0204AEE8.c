@@ -114,8 +114,8 @@ StringTemplate *sub_0204AEE8(SaveData *param0, u16 param1, u16 param2, u8 param3
     v2 = Strbuf_Init(12 + 2, HEAP_ID_FIELD);
     v3 = Strbuf_Init(2, HEAP_ID_FIELD);
     pokedex = SaveData_GetPokedex(param0);
-    v6 = MessageLoader_Init(1, 26, 412, HEAP_ID_FIELD);
-    v5 = StringTemplate_New(18 + 1, 12 + 2, 4);
+    v6 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD);
+    v5 = StringTemplate_New(18 + 1, 12 + 2, HEAP_ID_FIELD);
 
     StringTemplate_SetNumber(v5, 0, param1, 1, 0, 1);
 
@@ -204,7 +204,7 @@ void sub_0204B060(UnkStruct_0204AFC4 *param0, SaveData *param1)
     TrainerInfo *v3 = SaveData_GetTrainerInfo(param1);
 
     param0->unk_83E[0] = TrainerInfo_Gender(v3);
-    v1 = Party_GetFromSavedata(param1);
+    v1 = SaveData_GetParty(param1);
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_83E[1 + v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), MON_DATA_SPECIES, NULL);
@@ -279,7 +279,7 @@ u16 sub_0204B0F0(UnkStruct_0204AFC4 *param0, u8 param1, u8 param2, int param3)
 static UnkStruct_0204B184 *sub_0204B184(UnkStruct_ov104_0223A348 *param0, u16 param1, int param2)
 {
     UnkStruct_0204B184 *v0;
-    MessageLoader *v1 = MessageLoader_Init(1, 26, 21, param2);
+    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, param2);
     Strbuf *v2;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348));
@@ -409,15 +409,15 @@ BOOL sub_0204B3B8(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, 
     return v0;
 }
 
-void sub_0204B404(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, BOOL param3, const UnkStruct_0204B404 *param4, int param5)
+void sub_0204B404(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, BOOL param3, const UnkStruct_0204B404 *param4, int heapID)
 {
     int v0;
     u8 v1 = 0;
-    UnkStruct_0204B184 *v2 = sub_0204B184(param1, param2, param5);
+    UnkStruct_0204B184 *v2 = sub_0204B184(param1, param2, heapID);
     v1 = sub_0204AE84(param2);
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_0204B1E8(param0, &(param1->unk_30[v0]), param4->unk_04[v0], param4->unk_00, param4->unk_08[v0], v1, v0, param3, param5);
+        sub_0204B1E8(param0, &(param1->unk_30[v0]), param4->unk_04[v0], param4->unk_00, param4->unk_08[v0], v1, v0, param3, heapID);
     }
 
     Heap_FreeToHeap(v2);

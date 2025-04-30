@@ -23,13 +23,13 @@
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
+#include "sound.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "string_template.h"
 #include "system.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
@@ -88,20 +88,20 @@ int ov96_0223B6A0(OverlayManager *param0, int *param1)
             SetAllGraphicsModes(&v1);
         }
 
-        v0->unk_BCC = StringTemplate_New(11, 32, 68);
-        v0->unk_BD0 = MessageLoader_Init(0, 26, 670, HEAP_ID_68);
-        v0->unk_BD4 = MessageLoader_Init(0, 26, 674, HEAP_ID_68);
-        v0->unk_BD8 = MessageLoader_Init(0, 26, 695, HEAP_ID_68);
+        v0->unk_BCC = StringTemplate_New(11, 32, HEAP_ID_68);
+        v0->unk_BD0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0670, HEAP_ID_68);
+        v0->unk_BD4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_68);
+        v0->unk_BD8 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_68);
 
         SetAutorepeat(4, 8);
         ov96_0223B980(v0, param0);
         ov96_0223BC64(v0);
-        sub_02004550(52, 0, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
 
         v0->unk_24 = Heap_AllocFromHeap(HEAP_ID_68, 0x20000 + 32);
         v0->unk_28 = NNS_FndCreateExpHeap((void *)(((u32)v0->unk_24 + 31) / 32 * 32), 0x20000);
 
-        sub_02004550(11, 1175, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
 
         *param1 = 1;
         break;
@@ -242,7 +242,7 @@ static void ov96_0223B9A0(void)
         CharTransfer_Init(&v0);
     }
 
-    PlttTransfer_Init(20, 68);
+    PlttTransfer_Init(20, HEAP_ID_68);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -255,18 +255,18 @@ static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 *param0)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 68);
 
-    param0->unk_BF4 = SpriteList_InitRendering(10, &param0->unk_BF8, 68);
+    param0->unk_BF4 = SpriteList_InitRendering(10, &param0->unk_BF8, HEAP_ID_68);
 
     SetSubScreenViewRect(&param0->unk_BF8, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_D84[v0] = SpriteResourceCollection_New(2, v0, 68);
+        param0->unk_D84[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_68);
     }
 
-    param0->unk_D94[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_D84[0], v1, 35, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 68);
-    param0->unk_D94[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_D84[1], v1, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 68);
-    param0->unk_D94[0][2] = SpriteResourceCollection_AddFrom(param0->unk_D84[2], v1, 36, 1, 0, 2, 68);
-    param0->unk_D94[0][3] = SpriteResourceCollection_AddFrom(param0->unk_D84[3], v1, 37, 1, 0, 3, 68);
+    param0->unk_D94[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_D84[0], v1, 35, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_68);
+    param0->unk_D94[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_D84[1], v1, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_68);
+    param0->unk_D94[0][2] = SpriteResourceCollection_AddFrom(param0->unk_D84[2], v1, 36, 1, 0, 2, HEAP_ID_68);
+    param0->unk_D94[0][3] = SpriteResourceCollection_AddFrom(param0->unk_D84[3], v1, 37, 1, 0, 3, HEAP_ID_68);
 
     SpriteTransfer_RequestChar(param0->unk_D94[0][0]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_D94[0][1]);
@@ -289,7 +289,7 @@ void ov96_0223BAE0(AffineSpriteListTemplate *param0, UnkStruct_ov96_0223BF40 *pa
     param0->affineZRotation = 0;
     param0->priority = 1;
     param0->vramType = param3;
-    param0->heapID = 68;
+    param0->heapID = HEAP_ID_68;
 }
 
 static void ov96_0223BB0C(UnkStruct_ov96_0223BF40 *param0)

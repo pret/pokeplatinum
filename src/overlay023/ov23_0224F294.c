@@ -43,6 +43,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -52,7 +53,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_0206A780.h"
 
@@ -289,7 +289,7 @@ void ov23_0224F5B8(void)
 static int ov23_0224F5C8(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028E28(v1);
 }
@@ -297,7 +297,7 @@ static int ov23_0224F5C8(void *param0)
 static int ov23_0224F5DC(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_020289A0(v1);
 }
@@ -305,7 +305,7 @@ static int ov23_0224F5DC(void *param0)
 int ov23_0224F5F0(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_020289B8(v1, param0);
 }
@@ -313,7 +313,7 @@ int ov23_0224F5F0(int param0, void *param1)
 static int ov23_0224F608(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028B70(v1);
 }
@@ -321,7 +321,7 @@ static int ov23_0224F608(void *param0)
 int ov23_0224F61C(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028B88(v1, param0);
 }
@@ -335,7 +335,7 @@ void ov23_0224F634(int param0)
 static int ov23_0224F658(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028C3C(v1);
 }
@@ -343,7 +343,7 @@ static int ov23_0224F658(void *param0)
 int ov23_0224F66C(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028E44(v1, param0);
 }
@@ -351,7 +351,7 @@ int ov23_0224F66C(int param0, void *param1)
 int ov23_0224F684(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028C54(v1, param0);
 }
@@ -359,7 +359,7 @@ int ov23_0224F684(int param0, void *param1)
 int ov23_0224F69C(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028C60(v1, param0);
 }
@@ -367,7 +367,7 @@ int ov23_0224F69C(int param0, void *param1)
 static int ov23_0224F6B4(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028D58(v1);
 }
@@ -375,7 +375,7 @@ static int ov23_0224F6B4(void *param0)
 int ov23_0224F6C8(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028D74(v1, param0);
 }
@@ -418,7 +418,7 @@ void ov23_0224F758(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     UnkStruct_ov23_02250CD4 *v0;
     ListMenuTemplate v1;
 
-    Sound_PlayEffect(1533);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
     ov23_022430D0(2);
 
     v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
@@ -935,14 +935,14 @@ static BOOL ov23_02250048(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v0->unk_50, &v0->unk_2B0);
 
     if (v2 != v0->unk_2B0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v1) {
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224FCF4(v0);
         ov23_0224FDE0(v0);
         v0->unk_2AA = 5;
@@ -952,10 +952,10 @@ static BOOL ov23_02250048(SysTask *param0, void *param1)
 
         if (v1 == 1) {
             ov23_02243AD4(ov23_0224F66C(Unk_ov23_022577B8->unk_04, v0));
-            Sound_PlayEffect(1585);
+            Sound_PlayEffect(SEQ_SE_DP_SUTYA);
             v0->unk_2AA = 3;
         } else if (v1 == 2) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             ov23_0224FD68(Unk_ov23_022577B8->unk_05);
             ov23_022541B4(ov23_0224219C(), 2, Unk_ov23_022577B8->unk_05);
@@ -1118,14 +1118,14 @@ static BOOL ov23_0225044C(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v0->unk_50, &v0->unk_2B0);
 
     if (v2 != v0->unk_2B0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v1) {
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224FCF4(v0);
         ov23_022501BC(v0);
         v0->unk_2AA = 6;
@@ -1141,7 +1141,7 @@ static BOOL ov23_0225044C(SysTask *param0, void *param1)
             ov23_02254044(ov23_022421DC());
             ov23_02241AE8(Unk_ov23_022577B8->unk_05, ov23_0224F69C(Unk_ov23_022577B8->unk_04, v0), v4, v5);
         } else if (v1 == 2) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov23_02250128(Unk_ov23_022577B8->unk_05);
             ov23_022541A0(ov23_0224219C(), 2, Unk_ov23_022577B8->unk_05);
             ov23_02253F40(ov23_0224219C(), 130, 0, NULL);
@@ -1294,14 +1294,14 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v0->unk_50, &v0->unk_2B0);
 
     if (v2 != v0->unk_2B0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v1) {
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224FCF4(v0);
         ov23_02250598(v0);
         v0->unk_2AA = 7;
@@ -1310,12 +1310,12 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
         ov23_0224FCF4(v0);
 
         if (v1 == 3) {
-            int v3 = sub_02028938(Unk_ov23_022577B8->unk_05);
+            int item = sub_02028938(Unk_ov23_022577B8->unk_05);
             Bag *v4 = SaveData_GetBag(v0->fieldSystem->saveData);
 
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-            if (Bag_TryAddItem(v4, v3, 1, 4)) {
+            if (Bag_TryAddItem(v4, item, 1, HEAP_ID_FIELD)) {
                 sub_02028D80(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
                 ov23_022541A0(ov23_0224219C(), 0, Unk_ov23_022577B8->unk_05);
 
@@ -1329,7 +1329,7 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
                 ov23_02253F40(ov23_0224219C(), 80, 0, NULL);
             }
         } else if (v1 == 2) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             sub_02028D80(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
 
             ov23_022541A0(ov23_0224219C(), 2, Unk_ov23_022577B8->unk_05);
@@ -1543,7 +1543,7 @@ static void ov23_02250C74(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     int v1 = param1;
-    UndergroundData *v2 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *v2 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
     if (!sub_02028AFC(v2, v1)) {
         ListMenu_SetAltTextColors(param0, 1, 15, 2);
@@ -1662,7 +1662,7 @@ static BOOL ov23_02250EAC(SysTask *param0, void *param1)
         ov23_0225128C(v0, v2, ListMenu_GetAttribute(v0->unk_4C->unk_0C, 2), 6);
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224FD3C(v0);
         break;
     default:
@@ -1697,14 +1697,14 @@ static BOOL ov23_02250F8C(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v0->unk_50, &v0->unk_2B0);
 
     if (v2 != v0->unk_2B0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v1) {
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224FCF4(v0);
         ov23_02250CD4(v0);
         v0->unk_2AA = 8;
@@ -1713,7 +1713,7 @@ static BOOL ov23_02250F8C(SysTask *param0, void *param1)
         ov23_0224FCF4(v0);
 
         if (v1 == 2) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             sub_02028B94(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
             ov23_022541C8(ov23_0224219C(), 2, Unk_ov23_022577B8->unk_05);
             ov23_02253F40(ov23_0224219C(), 130, 0, NULL);

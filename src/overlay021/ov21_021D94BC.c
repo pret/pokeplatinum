@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "overlay021/ov21_021D1FA4.h"
@@ -32,13 +30,13 @@
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 
@@ -3100,37 +3098,37 @@ static void ov21_021DC3BC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     switch (param0->unk_80) {
     case 0:
         PokedexSearch_SetFilteredState(param1->unk_08, FALSE);
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         break;
     case 1:
         if (PokedexSearch_GetFilterMethod(param1->unk_08) != FM_ORDER) {
             PokedexSearch_SetFilterMethod(param1->unk_08, FM_ORDER);
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         }
         break;
     case 2:
         if (PokedexSearch_GetFilterMethod(param1->unk_08) != FM_NAME) {
             PokedexSearch_SetFilterMethod(param1->unk_08, FM_NAME);
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         }
         break;
     case 3:
         if (PokedexSearch_GetFilterMethod(param1->unk_08) != FM_TYPE) {
             PokedexSearch_SetFilterMethod(param1->unk_08, FM_TYPE);
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             param0->unk_88 = 0;
         }
         break;
     case 4:
         if (PokedexSearch_GetFilterMethod(param1->unk_08) != FM_FORM) {
             PokedexSearch_SetFilterMethod(param1->unk_08, FM_FORM);
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         }
         break;
     case 5:
         if (param0->unk_94 <= 1) {
             PokedexSearch_SetFilteredState(param1->unk_08, TRUE);
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         }
         break;
     default:
@@ -3169,7 +3167,7 @@ static void ov21_021DC48C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 
     if (sortOrder != 100) {
         if (PokedexSearch_GetSortOrder(param1->unk_08) != sortOrder) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             PokedexSearch_SetSortOrder(param1->unk_08, sortOrder);
         }
     }
@@ -3218,7 +3216,7 @@ static void ov21_021DC4F8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 
     if (v0 != 100) {
         if (PokedexSearch_GetFilterName(param1->unk_08) != v0) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
             PokedexSearch_SetFilterName(param1->unk_08, v0);
         }
@@ -3264,7 +3262,7 @@ static void ov21_021DC57C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
         break;
     case 10:
         param0->unk_20 = 1;
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         break;
     default:
         break;
@@ -3311,7 +3309,7 @@ static void ov21_021DC600(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
         break;
     case 9:
         param0->unk_20 = 0;
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         break;
     default:
         break;
@@ -3331,18 +3329,18 @@ static void ov21_021DC67C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
             if (PokedexSearch_GetFilterType(param1->unk_08, param0->unk_88) != param2) {
                 PokedexSearch_SetFilterType(param1->unk_08, param2, param0->unk_88);
                 param0->unk_88 = (param0->unk_88 + 1) % 2;
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             }
         }
     } else {
         if (PokedexSearch_GetFilterType(param1->unk_08, 0) != 0) {
             PokedexSearch_SetFilterType(param1->unk_08, param2, 0);
 
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         } else {
             if (PokedexSearch_GetFilterType(param1->unk_08, 1) != 0) {
                 PokedexSearch_SetFilterType(param1->unk_08, param2, 1);
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             }
         }
 
@@ -3406,7 +3404,7 @@ static void ov21_021DC720(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 
     if (v0 != 100) {
         if (PokedexSearch_GetFilterForm(param1->unk_08) != v0) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             PokedexSearch_SetFilterForm(param1->unk_08, v0);
         }
     }

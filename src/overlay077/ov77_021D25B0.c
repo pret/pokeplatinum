@@ -24,14 +24,14 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "main.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_oam.h"
+#include "sound.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_0202419C.h"
@@ -1111,7 +1111,7 @@ static BOOL ov77_021D30D0(UnkStruct_ov77_021D2F38 *param0, const int param1)
         param0->unk_06 = 0;
         param0->unk_08 = 0;
         param0->unk_10 = SysTask_Start(ov77_021D32A4, param0, 0);
-        sub_02004550(1, 1172, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_1, SEQ_TITLE00, 1);
         (*v0)++;
         break;
     case 1:

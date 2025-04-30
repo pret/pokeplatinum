@@ -35,14 +35,13 @@ _0040:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x105, _0087
+    GoToIfSet FLAG_UNK_0x0105, _0087
     Message 2
-    SetVar 0x8004, 0x120
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0092
+    SetVar VAR_0x8004, ITEM_STICKY_BARB
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0092
     CallCommonScript 0x7FC
-    SetFlag 0x105
+    SetFlag FLAG_UNK_0x0105
     GoTo _0087
     End
 
@@ -82,89 +81,87 @@ _00C0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 6
-    ScrCmd_072 20, 2
+    ShowMoney 20, 2
     GoTo _00D5
 
 _00D5:
-    ScrCmd_040 1, 1, 0, 1, 0x8000
-    ScrCmd_042 219, 0
-    ScrCmd_042 220, 1
-    ScrCmd_042 221, 2
-    ScrCmd_042 222, 3
-    ScrCmd_043
-    SetVar 0x8008, 0x8000
-    GoToIfEq 0x8008, 0, _0125
-    GoToIfEq 0x8008, 1, _0131
-    GoToIfEq 0x8008, 2, _013D
+    InitGlobalTextMenu 1, 1, 0, VAR_0x8000
+    AddMenuEntryImm 219, 0
+    AddMenuEntryImm 220, 1
+    AddMenuEntryImm 221, 2
+    AddMenuEntryImm 222, 3
+    ShowMenu
+    SetVar VAR_0x8008, VAR_0x8000
+    GoToIfEq VAR_0x8008, 0, _0125
+    GoToIfEq VAR_0x8008, 1, _0131
+    GoToIfEq VAR_0x8008, 2, _013D
     Message 10
     GoTo _028C
 
 _0125:
-    SetVar 0x8001, 30
+    SetVar VAR_0x8001, ITEM_FRESH_WATER
     GoTo _0191
 
 _0131:
-    SetVar 0x8001, 31
+    SetVar VAR_0x8001, ITEM_SODA_POP
     GoTo _0191
 
 _013D:
-    SetVar 0x8001, 32
+    SetVar VAR_0x8001, ITEM_LEMONADE
     GoTo _0191
 
 _0149:
-    ScrCmd_071 0x800C, 200
+    CheckMoney VAR_RESULT, 200
     Return
 
 _0153:
-    ScrCmd_071 0x800C, 0x12C
+    CheckMoney VAR_RESULT, 300
     Return
 
 _015D:
-    ScrCmd_071 0x800C, 0x15E
+    CheckMoney VAR_RESULT, 350
     Return
 
 _0167:
-    ScrCmd_334 35, 200
-    ScrCmd_070 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
+    RemoveMoney 200
     Return
 
 _0175:
-    ScrCmd_334 35, 0x12C
-    ScrCmd_070 0x12C
+    AddToGameRecord RECORD_MONEY_SPENT, 300
+    RemoveMoney 300
     Return
 
 _0183:
-    ScrCmd_334 35, 0x15E
-    ScrCmd_070 0x15E
+    AddToGameRecord RECORD_MONEY_SPENT, 350
+    RemoveMoney 350
     Return
 
 _0191:
-    CallIfEq 0x8000, 0, _0149
-    CallIfEq 0x8000, 1, _0153
-    CallIfEq 0x8000, 2, _015D
-    GoToIfEq 0x800C, 0, _0277
-    ScrCmd_07D 0x8001, 1, 0x800C
-    GoToIfEq 0x800C, 0, _0280
-    CallIfEq 0x8000, 0, _0167
-    CallIfEq 0x8000, 1, _0175
-    CallIfEq 0x8000, 2, _0183
-    ScrCmd_074
-    BufferItemName 0, 0x8001
+    CallIfEq VAR_0x8000, 0, _0149
+    CallIfEq VAR_0x8000, 1, _0153
+    CallIfEq VAR_0x8000, 2, _015D
+    GoToIfEq VAR_RESULT, 0, _0277
+    GoToIfCannotFitItem VAR_0x8001, 1, VAR_RESULT, _0280
+    CallIfEq VAR_0x8000, 0, _0167
+    CallIfEq VAR_0x8000, 1, _0175
+    CallIfEq VAR_0x8000, 2, _0183
+    UpdateMoneyDisplay
+    BufferItemName 0, VAR_0x8001
     PlayFanfare SEQ_SE_DP_JIHANKI
-    BufferItemName 0, 0x8001
+    BufferItemName 0, VAR_0x8001
     Message 7
-    SetVar 0x8004, 0x8001
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, VAR_0x8001
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
-    GetRandom 0x800C, 64
-    GoToIfNe 0x800C, 0, _026E
-    ScrCmd_07D 0x8001, 1, 0x800C
-    GoToIfEq 0x800C, 0, _0280
+    GetRandom VAR_RESULT, 64
+    GoToIfNe VAR_RESULT, 0, _026E
+    GoToIfCannotFitItem VAR_0x8001, 1, VAR_RESULT, _0280
     PlayFanfare SEQ_SE_DP_JIHANKI
-    BufferItemName 0, 0x8001
+    BufferItemName 0, VAR_0x8001
     Message 8
-    SetVar 0x8004, 0x8001
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, VAR_0x8001
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     GoTo _026E
 
@@ -179,14 +176,14 @@ _0277:
 _0280:
     CallCommonScript 0x7E1
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
 _028C:
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 

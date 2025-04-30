@@ -8,25 +8,25 @@
     ScriptEntryEnd
 
 _000A:
-    ScrCmd_25B
+    InitPersistedMapFeaturesForPlatformLift
     End
 
 _000E:
     ApplyMovement LOCALID_PLAYER, _012C
     WaitMovement
-    ScrCmd_0EA TRAINER_CHAMPION_CYNTHIA
-    CallIfUnset 0x964, _00EB
-    CallIfSet 0x964, _00F0
+    PlayTrainerEncounterBGM TRAINER_CHAMPION_CYNTHIA
+    CallIfUnset FLAG_GAME_COMPLETED, _00EB
+    CallIfSet FLAG_GAME_COMPLETED, _00F0
     CloseMessage
-    SetFlag 0x98B
-    CallIfUnset 214, _00F5
-    CallIfSet 214, _00FD
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0121
+    SetFlag FLAG_ALT_MUSIC_CHAMPION_ROOM
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _00F5
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _00FD
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0121
     Message 1
-    SetFlag 180
-    CallIfUnset 214, _0105
-    CallIfSet 214, _0113
+    SetFlag FLAG_UNK_0x00B4
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0105
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0113
     Message 2
     CloseMessage
     ApplyMovement 0, _0144
@@ -35,11 +35,11 @@ _000E:
     WaitMovement
     ApplyMovement 0, _0150
     WaitMovement
-    WaitTime 30, 0x800C
-    ScrCmd_25C
-    WaitTime 30, 0x800C
-    SetFlag 0x23A
-    SetFlag 0x23B
+    WaitTime 30, VAR_RESULT
+    TriggerPlatformLift
+    WaitTime 30, VAR_RESULT
+    SetFlag FLAG_UNK_0x023A
+    SetFlag FLAG_UNK_0x023B
     ApplyMovement LOCALID_PLAYER, _013C
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
@@ -76,7 +76,7 @@ _0113:
     Return
 
 _0121:
-    ClearFlag 0x98B
+    ClearFlag FLAG_ALT_MUSIC_CHAMPION_ROOM
     BlackOutFromBattle
     ReleaseAll
     End

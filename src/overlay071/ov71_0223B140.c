@@ -19,12 +19,12 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_oam.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
@@ -167,9 +167,9 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
 
     sub_0201E3D8();
     sub_0201E450(4);
-    sub_02004550(56, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_56, SEQ_NONE, 0);
     ov71_0223D324(&v0->unk_3354);
-    Sound_PlayEffect(1685);
+    Sound_PlayEffect(SEQ_SE_DP_CARD3);
     ov71_0223CF0C(&v0->unk_30E4, v1);
 
     {
@@ -244,7 +244,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
 
     SetVBlankCallback(ov71_0223C18C, NULL);
     DrawWifiConnectionIcon();
-    sub_0200544C(1, (127 / 3));
+    Sound_SetPlayerVolume(1, (127 / 3));
     StartScreenTransition(2, 3, 3, 0x0, 6, 1, HEAP_ID_25);
     NARC_dtor(v1);
 
@@ -313,7 +313,7 @@ int ov71_0223B388(OverlayManager *param0, int *param1)
                 v0->unk_337E = 0;
                 *param1 = 3;
             } else if (v1 == 4) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 StartScreenTransition(1, 4, 4, 0x0, 6, 1, HEAP_ID_25);
                 *param1 = 2;
@@ -393,7 +393,7 @@ int ov71_0223B5B8(OverlayManager *param0, int *param1)
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_25);
-    sub_0200544C(1, 127);
+    Sound_SetPlayerVolume(1, 127);
 
     return 1;
 }
@@ -406,7 +406,7 @@ static void ov71_0223B620(UnkStruct_ov71_0223B620 *param0)
     {
         MessageLoader *v0;
 
-        v0 = MessageLoader_Init(0, 26, 616, HEAP_ID_25);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0616, HEAP_ID_25);
 
         MessageLoader_GetStrbuf(v0, 11, param0->unk_3370);
         MessageLoader_Free(v0);
@@ -700,7 +700,7 @@ static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *param1)
         {
             BOOL v7;
 
-            param0->unk_30B8 = LoadMemberFromOpenNARC(param1, v4, 0, 25, 0);
+            param0->unk_30B8 = LoadMemberFromOpenNARC(param1, v4, 0, HEAP_ID_25, 0);
             GF_ASSERT(param0->unk_30B8 != NULL);
 
             v7 = NNS_G2dGetUnpackedBGCharacterData(param0->unk_30B8, &param0->unk_30BC);
@@ -720,7 +720,7 @@ static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *param1)
         {
             BOOL v8;
 
-            param0->unk_30B8 = LoadMemberFromOpenNARC(param1, Unk_ov71_0223D604[param0->unk_B4->unk_05], 0, 25, 0);
+            param0->unk_30B8 = LoadMemberFromOpenNARC(param1, Unk_ov71_0223D604[param0->unk_B4->unk_05], 0, HEAP_ID_25, 0);
             GF_ASSERT(param0->unk_30B8 != NULL);
 
             v8 = NNS_G2dGetUnpackedBGCharacterData(param0->unk_30B8, &param0->unk_30BC);
@@ -777,7 +777,7 @@ static BOOL ov71_0223BC20(UnkStruct_ov71_0223B620 *param0)
         param0->unk_30C8 += 2 << (FX32_SHIFT - 6);
         param0->unk_30CC += 2 << (FX32_SHIFT - 6);
 
-        Sound_PlayEffect(1686);
+        Sound_PlayEffect(SEQ_SE_DP_CARD5);
 
         param0->unk_337E++;
         break;
@@ -1233,7 +1233,7 @@ static void ov71_0223C45C(UnkStruct_ov71_0223C444 *param0)
     };
 
     if ((param0->unk_00 == 0) && (param0->unk_01 == 0)) {
-        Sound_PlayEffect(1682);
+        Sound_PlayEffect(SEQ_SE_DP_MIGAKU01);
     }
 
     if ((param0->unk_00 * param0->unk_02 < 0) || (param0->unk_01 * param0->unk_03 < 0)) {
@@ -1286,9 +1286,9 @@ static void ov71_0223C530(BgConfig *param0, const int param1, const u8 *param2)
 static void ov71_0223C594(const int param0)
 {
     if (param0 == 1) {
-        Sound_PlayEffect(1689);
+        Sound_PlayEffect(SEQ_SE_DP_CARD11);
     } else {
-        Sound_PlayEffect(1689);
+        Sound_PlayEffect(SEQ_SE_DP_CARD11);
     }
 }
 

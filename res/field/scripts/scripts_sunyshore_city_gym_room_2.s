@@ -9,8 +9,8 @@
     ScriptEntryEnd
 
 _0012:
-    SetVar 0x4000, 0
-    ScrCmd_175 1
+    SetVar VAR_MAP_LOCAL_0, 0
+    InitPersistedMapFeaturesForSunyshoreGym 1
     End
 
 _001D:

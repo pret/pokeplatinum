@@ -35,20 +35,20 @@
 #include "game_records.h"
 #include "heap.h"
 #include "journal.h"
-#include "math.h"
+#include "math_util.h"
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "ribbon.h"
 #include "rtc.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_020298BC.h"
 #include "unk_0202CC64.h"
 #include "unk_0202F108.h"
@@ -430,7 +430,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
         v0->unk_00.unk_E8[v2] = sub_02029C88(HEAP_ID_20);
     }
 
-    sub_020954F0(v0, 11, v0->unk_00.unk_10E, v0->unk_00.unk_10F, v0->unk_00.unk_110);
+    sub_020954F0(v0, HEAP_ID_FIELDMAP, v0->unk_00.unk_10E, v0->unk_00.unk_10F, v0->unk_00.unk_110);
     v0->unk_148 = Party_New(HEAP_ID_20);
 
     for (v2 = 0; v2 < 4; v2++) {
@@ -487,7 +487,7 @@ static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2)
     int v0 = 4 - 1;
     int v1;
 
-    sub_02094F04(param0, 11, v0, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_111, param1, param2);
+    sub_02094F04(param0, HEAP_ID_FIELDMAP, v0, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_111, param1, param2);
 
     for (v1 = 1; v1 < 4; v1++) {
         sub_02095380(&param0->unk_00.unk_10[v1], param0->unk_00.unk_00[v1], 20);
@@ -1506,7 +1506,7 @@ static void sub_02094B30(SysTask *param0, void *param1)
 
         if (v1->unk_08 > v1->unk_04[v1->unk_0A]) {
             BrightnessController_StartTransition(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
-            Sound_PlayEffect(1528);
+            Sound_PlayEffect(SEQ_SE_DP_CON_014);
             v1->unk_0A++;
             v1->unk_08 = 0;
 
@@ -1596,10 +1596,10 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
             sub_0206DDB8(param0->unk_1970, param0->unk_1974, v2);
         }
 
-        TVBroadcast *v4 = SaveData_TVBroadcast(param0->unk_1970);
+        TVBroadcast *v4 = SaveData_GetTVBroadcast(param0->unk_1970);
         sub_0206CF14(v4, param0->unk_1974, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1);
 
-        GameRecords *v5 = SaveData_GetGameRecordsPtr(param0->unk_1970);
+        GameRecords *v5 = SaveData_GetGameRecords(param0->unk_1970);
         GameRecords_IncrementRecordValue(v5, RECORD_UNK_090);
 
         if (sub_02094790(param0) == 0) {
@@ -1620,7 +1620,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
     } else {
         sub_0202F134(param0->unk_1970, param0->unk_00.unk_10F, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08);
 
-        GameRecords *records = SaveData_GetGameRecordsPtr(param0->unk_1970);
+        GameRecords *records = SaveData_GetGameRecords(param0->unk_1970);
         GameRecords_IncrementRecordValue(records, RECORD_UNK_091);
 
         if (sub_02094790(param0) == 0) {

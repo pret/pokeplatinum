@@ -13,7 +13,7 @@
 #include "map_object.h"
 #include "map_tile_behavior.h"
 #include "player_avatar.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 
@@ -61,7 +61,7 @@ static void ov5_021E11B0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, i
     v0->playerAvatar = playerAvatar;
     v0->unk_00 = param2;
 
-    Sound_PlayEffect(1624);
+    Sound_PlayEffect(SEQ_SE_DP_F209);
     FieldSystem_CreateTask(fieldSystem, ov5_021E120C, v0);
 }
 

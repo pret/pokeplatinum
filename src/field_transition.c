@@ -12,7 +12,7 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
-#include "unk_020041CC.h"
+#include "sound.h"
 #include "unk_0200F174.h"
 
 typedef struct EncounterEffectTaskData {
@@ -30,7 +30,7 @@ static BOOL FieldTask_RunEncounterEffect(FieldTask *task)
     switch (data->taskState) {
     case 0:
         EncounterEffect_Start(data->encEffectID, fieldSystem, &data->done);
-        sub_02004550(5, data->battleBGM, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, data->battleBGM, 1);
         data->taskState++;
         break;
 

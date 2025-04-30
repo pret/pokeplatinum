@@ -17,7 +17,7 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
 

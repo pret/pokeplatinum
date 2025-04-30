@@ -9,25 +9,25 @@
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 0x149, _009C
-    GoToIfSet 0xAB0, _009C
-    GetTimeOfDay 0x800C
-    GoToIfLt 0x800C, 3, _009C
+    GoToIfSet FLAG_UNK_0x0149, _009C
+    GoToIfSet FLAG_UNK_0x0AB0, _009C
+    GetTimeOfDay VAR_RESULT
+    GoToIfLt VAR_RESULT, 3, _009C
     Message 1
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0096
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0096
     BufferPlayerName 0
     Message 2
     CloseMessage
     PlayCry SPECIES_ROTOM
-    ScrCmd_04D
-    SetFlag 0xAB0
+    WaitCry
+    SetFlag FLAG_UNK_0x0AB0
     StartWildBattle SPECIES_ROTOM, 20
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00A7
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _008B
-    SetFlag 0x149
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00A7
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _008B
+    SetFlag FLAG_UNK_0x0149
     ReleaseAll
     End
 

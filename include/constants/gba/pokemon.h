@@ -3,7 +3,7 @@
 
 #define GBA_LEARNED_MOVES_MAX 4
 
-enum {
+enum GbaPokemonAttribute {
     GBA_MON_DATA_PERSONALITY,
     GBA_MON_DATA_OT_ID,
     GBA_MON_DATA_NICKNAME,

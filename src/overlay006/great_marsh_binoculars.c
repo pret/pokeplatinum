@@ -39,10 +39,10 @@ int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem)
     return encounterTable[LCRNG_RandMod(MAX_GRASS_ENCOUNTERS)];
 }
 
-GreatMarshBinoculars *GreatMarshBinoculars_InitData(const int heapId, FieldSystem *fieldSystem)
+GreatMarshBinoculars *GreatMarshBinoculars_InitData(const int heapID, FieldSystem *fieldSystem)
 {
     u8 i;
-    GreatMarshBinoculars *binocularsData = Heap_AllocFromHeapAtEnd(heapId, sizeof(GreatMarshBinoculars));
+    GreatMarshBinoculars *binocularsData = Heap_AllocFromHeapAtEnd(heapID, sizeof(GreatMarshBinoculars));
     binocularsData->fieldSystem = fieldSystem;
 
     u8 randIndex;

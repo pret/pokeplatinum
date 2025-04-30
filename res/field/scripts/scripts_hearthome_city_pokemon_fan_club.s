@@ -12,27 +12,26 @@
     ScriptEntryEnd
 
 _001A:
-    ScrCmd_238 4, 0x4000
-    GoToIfEq 0x4000, 0, _0033
-    ClearFlag 0x210
+    ScrCmd_238 4, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0033
+    ClearFlag FLAG_UNK_0x0210
     End
 
 _0033:
-    SetFlag 0x210
+    SetFlag FLAG_UNK_0x0210
     End
 
 _0039:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 141, _0083
+    GoToIfSet FLAG_UNK_0x008D, _0083
     Message 0
-    SetVar 0x8004, 0x1C1
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _008E
+    SetVar VAR_0x8004, ITEM_POFFIN_CASE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _008E
     CallCommonScript 0x7FC
-    SetFlag 141
+    SetFlag FLAG_UNK_0x008D
     Message 1
     WaitABXPadPress
     CloseMessage
@@ -56,16 +55,16 @@ _0098:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_247 0x8000
-    BufferPartyMonNickname 0, 0x8000
+    GetFirstNonEggInParty VAR_0x8000
+    BufferPartyMonNickname 0, VAR_0x8000
     Message 3
-    ScrCmd_1B9 0x800C, 0x8000
-    GoToIfGe 0x800C, 0xFF, _0108
-    GoToIfGe 0x800C, 200, _0113
-    GoToIfGe 0x800C, 150, _011E
-    GoToIfGe 0x800C, 100, _0129
-    GoToIfGe 0x800C, 50, _0134
-    GoToIfGe 0x800C, 1, _013F
+    GetPartyMonFriendship VAR_RESULT, VAR_0x8000
+    GoToIfGe VAR_RESULT, 0xFF, _0108
+    GoToIfGe VAR_RESULT, 200, _0113
+    GoToIfGe VAR_RESULT, 150, _011E
+    GoToIfGe VAR_RESULT, 100, _0129
+    GoToIfGe VAR_RESULT, 50, _0134
+    GoToIfGe VAR_RESULT, 1, _013F
     GoTo _014A
     End
 
@@ -125,7 +124,7 @@ _0155:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PSYDUCK
     Message 11
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -138,7 +137,7 @@ _0174:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_BUNEARY
     Message 12
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -151,7 +150,7 @@ _0193:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_CLEFAIRY
     Message 13
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

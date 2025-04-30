@@ -14,21 +14,21 @@
     ScriptEntryEnd
 
 _0022:
-    GoToIfUnset 0x104, _002F
+    GoToIfUnset FLAG_UNK_0x0104, _002F
     End
 
 _002F:
-    CheckBadgeAcquired BADGE_ID_FEN, 0x4000
-    GoToIfEq 0x4000, 1, _0044
+    CheckBadgeAcquired BADGE_ID_FEN, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _0044
     End
 
 _0044:
-    GoToIfSet 0x103, _0051
+    GoToIfSet FLAG_UNK_0x0103, _0051
     End
 
 _0051:
-    CallIfUnset 0x118, _0062
-    ClearFlag 0x21A
+    CallIfUnset FLAG_UNK_0x0118, _0062
+    ClearFlag FLAG_UNK_0x021A
     End
 
 _0062:
@@ -40,7 +40,7 @@ _0062:
 _0078:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 0x118, _0133
+    GoToIfSet FLAG_UNK_0x0118, _0133
     Message 0
     CloseMessage
     FacePlayer
@@ -48,9 +48,9 @@ _0078:
     WaitMovement
     Message 1
     CloseMessage
-    GetPlayerDir 0x8004
-    GoToIfEq 0x8004, 2, _00F1
-    GoToIfEq 0x8004, 3, _00DF
+    GetPlayerDir VAR_0x8004
+    GoToIfEq VAR_0x8004, 2, _00F1
+    GoToIfEq VAR_0x8004, 3, _00DF
     GoTo _00C5
     End
 
@@ -75,18 +75,18 @@ _00F1:
     End
 
 _010B:
-    SetFlag 0x118
+    SetFlag FLAG_UNK_0x0118
     RemoveObject 30
     SetObjectEventPos 30, 0x2AB, 0x341
     ScrCmd_189 30, 3
     ScrCmd_188 30, 17
-    ClearFlag 0x21A
+    ClearFlag FLAG_UNK_0x021A
     AddObject 30
     ReleaseAll
     End
 
 _0133:
-    GetPlayerDir 0x8004
+    GetPlayerDir VAR_0x8004
     Message 2
     CloseMessage
     FacePlayer
@@ -94,8 +94,8 @@ _0133:
     WaitMovement
     Message 3
     CloseMessage
-    GetPlayerDir 0x8004
-    GoToIfEq 0x8004, 2, _0180
+    GetPlayerDir VAR_0x8004
+    GoToIfEq VAR_0x8004, 2, _0180
     GoTo _0166
     End
 
@@ -115,32 +115,32 @@ _0180:
 
 _019A:
     RemoveObject 30
-    SetFlag 0x104
-    ClearFlag 0x1E8
+    SetFlag FLAG_UNK_0x0104
+    ClearFlag FLAG_UNK_0x01E8
     AddObject 33
     CallCommonScript 0x807
-    ScrCmd_315 0x800C
-    CallIfEq 0x800C, 2, _0261
-    CallIfEq 0x8004, 2, _0267
-    CallIfEq 0x8004, 3, _027B
-    CallIfEq 0x8004, 0, _028F
-    CallIfEq 0x8004, 1, _02A3
+    ScrCmd_315 VAR_RESULT
+    CallIfEq VAR_RESULT, 2, _0261
+    CallIfEq VAR_0x8004, 2, _0267
+    CallIfEq VAR_0x8004, 3, _027B
+    CallIfEq VAR_0x8004, 0, _028F
+    CallIfEq VAR_0x8004, 1, _02A3
     Message 4
     ApplyMovement 33, _0348
     WaitMovement
     Message 5
     Message 6
     CloseMessage
-    CallIfEq 0x8004, 2, _02B7
-    CallIfEq 0x8004, 3, _02CB
-    CallIfEq 0x8004, 0, _02DF
-    CallIfEq 0x8004, 1, _02F3
+    CallIfEq VAR_0x8004, 2, _02B7
+    CallIfEq VAR_0x8004, 3, _02CB
+    CallIfEq VAR_0x8004, 0, _02DF
+    CallIfEq VAR_0x8004, 1, _02F3
     RemoveObject 33
     CallCommonScript 0x808
-    ScrCmd_315 0x800C
-    CallIfEq 0x800C, 2, _0261
-    ClearFlag 0x211
-    ClearFlag 0x21B
+    ScrCmd_315 VAR_RESULT
+    CallIfEq VAR_RESULT, 2, _0261
+    ClearFlag FLAG_UNK_0x0211
+    ClearFlag FLAG_UNK_0x021B
     ReleaseAll
     End
 

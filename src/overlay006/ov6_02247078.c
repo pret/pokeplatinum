@@ -3,22 +3,20 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/map_prop.h"
-
-#include "struct_defs/struct_02055130.h"
+#include "constants/field/map_prop.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
 
-#include "unk_02054D00.h"
+#include "terrain_collision_manager.h"
 
 void ov6_02247078(FieldSystem *fieldSystem, const u8 param1)
 {
     BOOL v0;
     MapProp *v1;
-    UnkStruct_02055130 v2;
+    TerrainCollisionHitbox v2;
     int v3;
     int v4[] = {
         MAP_PROP_MODEL_POKECENTER_PC,
@@ -27,7 +25,7 @@ void ov6_02247078(FieldSystem *fieldSystem, const u8 param1)
         MAP_PROP_MODEL_DESK_DRAWER_LAPTOP_FACING_LEFT
     };
 
-    v0 = sub_02055324(fieldSystem, v4, 4, &v1, &v3);
+    v0 = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, v4, 4, &v1, &v3);
 
     if (v0) {
         NNSG3dResTex *v5;

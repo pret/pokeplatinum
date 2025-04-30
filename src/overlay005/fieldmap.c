@@ -3,12 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
 #include "constants/field/map_load.h"
 #include "constants/heap.h"
 
 #include "struct_decls/struct_02020C44_decl.h"
-#include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_02099F80.h"
@@ -21,6 +21,7 @@
 #include "overlay005/const_ov5_021FF6B8.h"
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
+#include "overlay005/dynamic_terrain_height.h"
 #include "overlay005/hblank_system.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/land_data.h"
@@ -39,7 +40,6 @@
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021EE75C.h"
-#include "overlay005/ov5_021EF250.h"
 #include "overlay005/ov5_021EF4BC.h"
 #include "overlay005/ov5_021F0824.h"
 #include "overlay005/ov5_021F10E8.h"
@@ -52,6 +52,7 @@
 #include "camera.h"
 #include "char_transfer.h"
 #include "comm_player_manager.h"
+#include "dynamic_map_features.h"
 #include "easy3d.h"
 #include "field_map_change.h"
 #include "field_message.h"
@@ -68,6 +69,7 @@
 #include "map_object.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "pltt_transfer.h"
 #include "pokeradar.h"
@@ -78,12 +80,10 @@
 #include "unk_0200F174.h"
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
-#include "unk_02027F50.h"
 #include "unk_020553DC.h"
 #include "unk_020556C4.h"
 #include "unk_020559DC.h"
 #include "unk_02055C50.h"
-#include "unk_02068344.h"
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay6);
@@ -268,14 +268,14 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_02068368(fieldSystem);
+        DynamicMapFeatures_Free(fieldSystem);
         LandDataManager_ForgetTrackedTarget(fieldSystem->landDataMan);
 
         fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
         fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
         fieldSystem->location->faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-        ov5_021EF300(fieldSystem->unk_A0);
+        DynamicTerrainHeightManager_Free(fieldSystem->dynamicTerrainHeightMan);
 
         {
             GF_ASSERT(fieldSystem->mapPropAnimMan != 0);
@@ -366,14 +366,14 @@ const OverlayManagerTemplate gFieldMapTemplate = {
 
 static int ov5_021D1178(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    int v1 = sub_02027F80(v0);
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    int v1 = PersistedMapFeatures_GetID(v0);
 
-    if (v1 == 0) {
+    if (v1 == DYNAMIC_MAP_FEATURES_NONE) {
         return 1;
     }
 
-    if (v1 == 9) {
+    if (v1 == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
         return 2;
     }
 
@@ -406,7 +406,7 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     }
 
     x = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
-    y = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileY(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Y;
+    y = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
     v0 = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x, y);
     mapId = fieldSystem->location->mapId;
 
@@ -427,7 +427,7 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     sub_0206184C(fieldSystem->mapObjMan, mapId, v0, objEventCount, objEventList);
 
     RadarChain_Clear(fieldSystem->chain);
-    sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
+    Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
     sub_0203A418(fieldSystem);
 
     if (fieldSystem->unk_04->unk_0C != NULL) {
@@ -471,7 +471,7 @@ void ov5_021D12D0(FieldSystem *fieldSystem, u32 param1)
 
     sub_0206184C(fieldSystem->mapObjMan, mapId, param1, objEventCount, objEventList);
 
-    sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
+    Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
     sub_0203A418(fieldSystem);
 
     if (fieldSystem->unk_04->unk_0C != NULL) {
@@ -520,7 +520,7 @@ static void ov5_021D13B4(FieldSystem *fieldSystem)
 
     v0 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     v1 = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
-    v2 = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileY(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Y;
+    v2 = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
     v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
     sub_02055740(v0, v1, v2, v3);
@@ -678,7 +678,7 @@ void ov5_021D15B4(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    PlttTransfer_Init(20, 4);
+    PlttTransfer_Init(20, HEAP_ID_FIELD);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -810,7 +810,7 @@ static void ov5_021D17EC(FieldSystem *fieldSystem)
         LandDataManager_SetSkipMapProps(fieldSystem->landDataMan, TRUE);
     }
 
-    fieldSystem->unk_A0 = ov5_021EF28C(8, HEAP_ID_FIELD);
+    fieldSystem->dynamicTerrainHeightMan = DynamicTerrainHeightManager_New(8, HEAP_ID_FIELD);
     fieldSystem->unk_A8 = HoneyTree_ShakeDataInit();
 
     if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_OVERWORLD) {
@@ -869,8 +869,8 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
     FieldEffect_InitRenderObject(fieldSystem->unk_40);
 
     {
-        UnkStruct_02027860 *v3 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-        int v4 = sub_02027F80(v3);
+        PersistedMapFeatures *v3 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+        int v4 = PersistedMapFeatures_GetID(v3);
 
         PlayerAvatar_InitDraw(fieldSystem->playerAvatar, v4);
     }
@@ -909,7 +909,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     fieldSystem->unk_04->unk_10 = ov5_021D5CB0();
 
     ov5_021D5CE4(fieldSystem->unk_04->unk_10, AreaDataManager_GetMapTexture(fieldSystem->areaDataManager));
-    sub_02068344(fieldSystem);
+    DynamicMapFeatures_Init(fieldSystem);
     ov5_021EE7C0(fieldSystem);
     SetVBlankCallback(fieldmap, fieldSystem);
 }
@@ -955,10 +955,10 @@ static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0)
 
 static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    int v1 = sub_02027F80(v0);
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    int v1 = PersistedMapFeatures_GetID(v0);
 
-    if (v1 == 9) {
+    if (v1 == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
         return TRUE;
     }
 

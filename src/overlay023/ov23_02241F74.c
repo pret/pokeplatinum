@@ -45,11 +45,11 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_flags.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
 #include "unk_020366A0.h"
-#include "unk_02054D00.h"
 #include "vars_flags.h"
 
 typedef BOOL (*UnkFuncPtr_ov23_02242540)(int, int);
@@ -125,7 +125,7 @@ static CommManUnderground *sCommManUnderground = NULL;
 
 static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fieldSystem)
 {
-    u8 v0 = Options_TextFrameDelay(SaveData_Options(fieldSystem->saveData));
+    u8 v0 = Options_TextFrameDelay(SaveData_GetOptions(fieldSystem->saveData));
     int v1;
 
     sCommManUnderground = param0;
@@ -323,7 +323,7 @@ BOOL ov23_0224240C(int param0, int param1)
     v0.unk_00 = param0;
     v0.unk_02 = param1;
 
-    if (FieldSystem_CheckCollision(sCommManUnderground->fieldSystem, param0, param1)) {
+    if (TerrainCollisionManager_CheckCollision(sCommManUnderground->fieldSystem, param0, param1)) {
         return 1;
     }
 
@@ -575,7 +575,7 @@ void ov23_02242830(u8 param0)
     u8 v0 = param0;
     UnkStruct_ov23_02242830 v1;
     int v2, v3;
-    UndergroundData *v4 = sub_020298B0(sCommManUnderground->fieldSystem->saveData);
+    UndergroundData *v4 = SaveData_GetUndergroundData(sCommManUnderground->fieldSystem->saveData);
 
     if ((sCommManUnderground->unk_146 != 0) && (sCommManUnderground->unk_134 != 0)) {
         return;
@@ -788,7 +788,7 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
 
         v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_02253608());
         ov23_02253598(v0, SaveData_SecretBaseRecord(FieldSystem_GetSaveData(fieldSystem)), FieldSystem_GetSaveData(fieldSystem));
-        ov23_0224F588(sub_020298B0(FieldSystem_GetSaveData(fieldSystem)));
+        ov23_0224F588(SaveData_GetUndergroundData(FieldSystem_GetSaveData(fieldSystem)));
     }
 }
 

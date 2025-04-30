@@ -86,7 +86,7 @@ BOOL ov104_02237378(UnkStruct_ov104_0222E930 *param0)
     u16 *v7 = ov104_0222FBE4(param0);
 
     v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = ov104_02237DD8(v1->unk_08, v2, v3, v4, v5, v6, v7);
+    v0 = ov104_02237DD8(v1->saveData, v2, v3, v4, v5, v6, v7);
 
     sub_0209B980(param0->unk_00->unk_00, v0);
     return 0;
@@ -131,7 +131,7 @@ BOOL ov104_0223740C(UnkStruct_ov104_0222E930 *param0)
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02238240));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02238240));
-    v2->unk_00 = v3->unk_08;
+    v2->unk_00 = v3->saveData;
 
     ov104_02237634(v2, v1);
     sub_0209B988(param0->unk_00->unk_00, &v4, v2, 0, ov104_0223770C);
@@ -362,7 +362,7 @@ BOOL ov104_02237748(UnkStruct_ov104_0222E930 *param0)
         *v20 = v3->unk_13;
         break;
     case 18:
-        v2 = Party_GetFromSavedata(v14->unk_08);
+        v2 = SaveData_GetParty(v14->saveData);
 
         for (v11 = 0; v11 < 3; v11++) {
             v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_2C[v11]);
@@ -481,7 +481,7 @@ BOOL ov104_02237748(UnkStruct_ov104_0222E930 *param0)
             StringTemplate_SetFrontierTrainerName(param0->unk_00->unk_44, v18, v3->unk_78[ov104_02238498(v3, v19)]);
         } else {
             if (ov104_0223C000(v3->unk_10) == 0) {
-                v16 = SaveData_GetTrainerInfo(v14->unk_08);
+                v16 = SaveData_GetTrainerInfo(v14->saveData);
             } else {
                 v16 = CommInfo_TrainerInfo(v19);
             }

@@ -9,7 +9,7 @@
     .byte 0
 
 _000B:
-    .short 0x4003, 0, 6
+    .short VAR_MAP_LOCAL_3, 0, 6
     .short 0
 
     .balign 4, 0

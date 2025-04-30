@@ -6,7 +6,6 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0223E0C8.h"
@@ -37,6 +36,8 @@
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
+#include "sound_playback.h"
 #include "spl.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -45,8 +46,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_02014000.h"
 #include "vram_transfer.h"
 
@@ -845,7 +844,7 @@ static BOOL ov12_022203A0(UnkStruct_ov12_02220314 *param0)
         }
     }
 
-    sub_02005818(param0->unk_14);
+    Sound_PanAllEffects(param0->unk_14);
 
     if (Sound_IsEffectPlaying(param0->unk_1A) == 0) {
         if (v0 == 1) {
@@ -882,7 +881,7 @@ static BOOL ov12_0222040C(UnkStruct_ov12_02220314 *param0)
     param0->unk_18--;
 
     Sound_PlayEffect(param0->unk_1A);
-    sub_020057FC(param0->unk_1A, 0xffff, param0->unk_14);
+    Sound_PanEffect(param0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, param0->unk_14);
 
     if (param0->unk_18 == 0) {
         v0 = 0;
@@ -897,7 +896,7 @@ static BOOL ov12_0222044C(UnkStruct_ov12_02220314 *param0)
 
     if ((param0->unk_03--) == 0) {
         Sound_PlayEffect(param0->unk_1A);
-        sub_020057FC(param0->unk_1A, 0xffff, param0->unk_14);
+        Sound_PanEffect(param0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, param0->unk_14);
 
         v0 = 0;
     }
@@ -1251,7 +1250,7 @@ static void ov12_02220798(UnkStruct_ov12_0221FCDC *param0)
         return;
     }
 
-    if (sub_020057E0()) {
+    if (Sound_IsAnyEffectPlaying()) {
         param0->unk_179++;
 
         if (param0->unk_179 > 90) {
@@ -1928,9 +1927,9 @@ static void ov12_0222118C(SysTask *param0, void *param1)
         v0->unk_04.unk_00 = 0;
     }
 
-    v1 = sub_020080C0(v0->unk_04.unk_04, 0);
-    v2 = sub_020080C0(v0->unk_04.unk_04, 1);
-    v2 -= sub_020080C0(v0->unk_04.unk_04, 41);
+    v1 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_X_CENTER);
+    v2 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_Y_CENTER);
+    v2 -= PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_SHADOW_HEIGHT);
 
     ManagedSprite_SetPositionXY(v0->unk_00, v1, v2);
 }
@@ -1951,9 +1950,9 @@ static void ov12_022211D8(SysTask *param0, void *param1)
         v0->unk_04.unk_00 = 0;
     }
 
-    v1 = sub_020080C0(v0->unk_04.unk_04, 0);
-    v2 = sub_020080C0(v0->unk_04.unk_04, 1);
-    v2 -= sub_020080C0(v0->unk_04.unk_04, 41);
+    v1 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_X_CENTER);
+    v2 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_Y_CENTER);
+    v2 -= PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_SHADOW_HEIGHT);
 
     Bg_SetOffset(v0->unk_00, 2, 0, -(v1 - 40));
     Bg_SetOffset(v0->unk_00, 2, 3, -(v2 - 40));
@@ -2045,9 +2044,9 @@ static void ov12_0222128C(UnkStruct_ov12_0221FCDC *param0)
         s16 v10;
         s16 v11;
 
-        v10 = sub_020080C0(ov12_022232FC(param0, v3), 0);
-        v11 = sub_020080C0(ov12_022232FC(param0, v3), 1);
-        v11 -= sub_020080C0(ov12_022232FC(param0, v3), 41);
+        v10 = PokemonSprite_GetAttribute(ov12_022232FC(param0, v3), 0);
+        v11 = PokemonSprite_GetAttribute(ov12_022232FC(param0, v3), 1);
+        v11 -= PokemonSprite_GetAttribute(ov12_022232FC(param0, v3), 41);
 
         Bg_SetOffset(param0->unk_C0, 2, 0, -(v10 - 40));
         Bg_SetOffset(param0->unk_C0, 2, 3, -(v11 - 40));
@@ -2161,9 +2160,9 @@ static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
         s16 v16;
 
         if (v12 != NULL) {
-            v15 = sub_020080C0(v12, 0);
-            v16 = sub_020080C0(v12, 1);
-            v16 -= sub_020080C0(v12, 41);
+            v15 = PokemonSprite_GetAttribute(v12, MON_SPRITE_X_CENTER);
+            v16 = PokemonSprite_GetAttribute(v12, MON_SPRITE_Y_CENTER);
+            v16 -= PokemonSprite_GetAttribute(v12, MON_SPRITE_SHADOW_HEIGHT);
         }
 
         v11.x = v15;
@@ -2185,7 +2184,7 @@ static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
         if (v12 == NULL) {
             ManagedSprite_SetDrawFlag(v1, 0);
         } else {
-            int v17 = sub_020080C0(v12, 6);
+            int v17 = PokemonSprite_GetAttribute(v12, MON_SPRITE_HIDE);
 
             if (v17 == 1) {
                 ManagedSprite_SetDrawFlag(v1, 0);
@@ -2319,7 +2318,7 @@ static void ov12_02221834(UnkStruct_ov12_0221FCDC *param0)
             v7 = ov12_022232FC(param0, v6);
 
             if (v7 != NULL) {
-                v5 = sub_020080C0(v7, 6);
+                v5 = PokemonSprite_GetAttribute(v7, MON_SPRITE_HIDE);
             } else {
                 v5 = 0;
             }
@@ -3303,7 +3302,7 @@ static void ov12_02222984(UnkStruct_ov12_0221FCDC *param0)
     v1 = ov12_0222317C(param0, v1);
 
     Sound_PlayEffect(v0);
-    sub_020057FC(v0, 0xffff, v1);
+    Sound_PanEffect(v0, SOUND_PLAYBACK_TRACK_ALL, v1);
 }
 
 static void ov12_022229BC(UnkStruct_ov12_0221FCDC *param0)
@@ -3316,7 +3315,7 @@ static void ov12_022229BC(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_18 += 1;
 
     v0 = ov12_0222317C(param0, v0);
-    sub_02005818(v0);
+    Sound_PanAllEffects(v0);
 }
 
 static void ov12_022229D8(UnkStruct_ov12_0221FCDC *param0)
@@ -3349,7 +3348,7 @@ static void ov12_022229D8(UnkStruct_ov12_0221FCDC *param0)
     v0->unk_10 = ov12_02223234(v0->unk_08, v0->unk_0C, v0->unk_10);
 
     Sound_PlayEffect(v0->unk_1A);
-    sub_020057FC(v0->unk_1A, 0xffff, v0->unk_08);
+    Sound_PanEffect(v0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, v0->unk_08);
 
     ov12_02220344(param0, v0);
 }
@@ -3380,7 +3379,7 @@ static void ov12_02222A78(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_18 += 1;
 
     Sound_PlayEffect(v0->unk_1A);
-    sub_020057FC(v0->unk_1A, 0xffff, v0->unk_08);
+    Sound_PanEffect(v0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, v0->unk_08);
 
     ov12_02220344(param0, v0);
 }
@@ -3415,7 +3414,7 @@ static void ov12_02222AF0(UnkStruct_ov12_0221FCDC *param0)
     v0->unk_10 = ov12_0222317C(param0, v0->unk_10);
 
     Sound_PlayEffect(v0->unk_1A);
-    sub_020057FC(v0->unk_1A, 0xffff, v0->unk_08);
+    Sound_PanEffect(v0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, v0->unk_08);
 
     ov12_02220344(param0, v0);
 }
@@ -3486,7 +3485,7 @@ static void ov12_02222C54(UnkStruct_ov12_0221FCDC *param0)
         return;
     }
 
-    if (sub_020057E0()) {
+    if (Sound_IsAnyEffectPlaying()) {
         param0->unk_179++;
 
         if (param0->unk_179 > 90) {
@@ -3800,12 +3799,12 @@ static void ov12_02223134(UnkStruct_ov12_0221FCDC *param0)
 {
     int v0;
 
-    if (sub_0200598C() == 0) {
+    if (Sound_IsPokemonCryPlaying() == 0) {
         param0->unk_18 += 1;
         v0 = inline_ov12_022204C4(param0->unk_18);
         param0->unk_18 += 1;
         param0->unk_89 = 0;
-        sub_0200592C(v0);
+        Sound_StopPokemonCries(v0);
     } else {
         param0->unk_89 = 1;
     }
@@ -3935,7 +3934,7 @@ PokemonSprite *ov12_022232FC(UnkStruct_ov12_0221FCDC *param0, int param1)
         return NULL;
     }
 
-    if (sub_02008B38(param0->unk_BC->unk_C4[param1])) {
+    if (PokemonSprite_IsActive(param0->unk_BC->unk_C4[param1])) {
         return param0->unk_BC->unk_C4[param1];
     } else {
         return NULL;
@@ -4152,7 +4151,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
     int v1[] = { 0, 0, 20, 10, 10, 20 };
     UnkStruct_ov12_02223764 *v2 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02223764));
 
-    v2->unk_00 = heapID;
+    v2->heapID = heapID;
     v2->unk_04 = param2;
     v2->unk_08.unk_00 = ov16_0223E010(battleSys);
     v2->unk_08.unk_04 = ov16_0223E018(battleSys);
@@ -4234,9 +4233,9 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
                 v13 = v2->unk_48[v5];
 
                 if (v13 != NULL) {
-                    v14 = sub_020080C0(v13, 0);
-                    v15 = sub_020080C0(v13, 1);
-                    v15 -= sub_020080C0(v13, 41);
+                    v14 = PokemonSprite_GetAttribute(v13, MON_SPRITE_X_CENTER);
+                    v15 = PokemonSprite_GetAttribute(v13, MON_SPRITE_Y_CENTER);
+                    v15 -= PokemonSprite_GetAttribute(v13, MON_SPRITE_SHADOW_HEIGHT);
                 } else {
                     continue;
                 }
@@ -4261,10 +4260,10 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
 
                 if (v13 == NULL) {
                     ManagedSprite_SetDrawFlag(v10, 0);
-                } else if (sub_02008B38(v13) == 0) {
+                } else if (PokemonSprite_IsActive(v13) == 0) {
                     ManagedSprite_SetDrawFlag(v10, 0);
                 } else {
-                    int v16 = sub_020080C0(v13, 6);
+                    int v16 = PokemonSprite_GetAttribute(v13, MON_SPRITE_HIDE);
 
                     if (v16 == 1) {
                         ManagedSprite_SetDrawFlag(v10, 0);
@@ -4285,7 +4284,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
                     v18 = Sprite_GetPaletteProxy(v10->sprite);
                     v19 = PlttTransfer_GetPlttOffset(v18, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-                    PaletteData_LoadBufferFromFileStart(v2->unk_08.unk_08, v6, v7, v2->unk_00, 2, 0x20, v19 * 16);
+                    PaletteData_LoadBufferFromFileStart(v2->unk_08.unk_08, v6, v7, v2->heapID, 2, 0x20, v19 * 16);
                 }
             }
         }

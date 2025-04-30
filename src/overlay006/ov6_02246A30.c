@@ -3,14 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/savedata/vars_flags.h"
+#include "generated/first_arrival_to_zones.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 
 #include "field/field_system.h"
 
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "pokedex.h"
 #include "save_player.h"
 #include "system_flags.h"

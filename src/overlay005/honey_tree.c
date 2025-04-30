@@ -3,11 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/map_prop.h"
 #include "constants/map_object.h"
-#include "constants/map_prop.h"
 #include "generated/map_headers.h"
-
-#include "struct_defs/struct_02055130.h"
 
 #include "field/field_system.h"
 #include "overlay005/land_data.h"
@@ -21,8 +19,8 @@
 #include "player_avatar.h"
 #include "save_player.h"
 #include "special_encounter.h"
+#include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_02054D00.h"
 
 #define TREE_GROUP_NO_ENCOUNTER 0
 #define TREE_GROUP_A            1
@@ -97,7 +95,7 @@ void HoneyTree_FreeShakeData(HoneyTreeShakeList **data)
 
 BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId)
 {
-    UnkStruct_02055130 v0;
+    TerrainCollisionHitbox v0;
     int x, z;
     BOOL isFacingHoneyTree;
 
@@ -107,8 +105,8 @@ BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId)
     z = Player_GetZPos(fieldSystem->playerAvatar);
 
     if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) == DIR_NORTH) { // Honey Trees can only be interacted with from below.
-        sub_020550F4(x, z, 0, -1, 1, 1, &v0);
-        isFacingHoneyTree = sub_02055178(fieldSystem, MAP_PROP_MODEL_HONEY_TREE, &v0, NULL);
+        TerrainCollisionHitbox_Init(x, z, 0, -1, 1, 1, &v0);
+        isFacingHoneyTree = FieldSystem_FindCollidingLoadedMapPropByModelID(fieldSystem, MAP_PROP_MODEL_HONEY_TREE, &v0, NULL);
     } else {
         isFacingHoneyTree = FALSE;
     }
@@ -456,7 +454,7 @@ int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
     treeDat = SpecialEncounter_GetPlayerHoneyTreeStates(SaveData_GetSpecialEncounters(fieldSystem->saveData));
     tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
 
-    if ((GAME_VERSION == DIAMOND) || (GAME_VERSION == PLATINUM)) {
+    if ((GAME_VERSION == VERSION_DIAMOND) || (GAME_VERSION == VERSION_PLATINUM)) {
         narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_DPt[tree->encounterTableIndex], HEAP_ID_FIELD);
     } else {
         narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_P_Unused[tree->encounterTableIndex], HEAP_ID_FIELD);

@@ -84,15 +84,15 @@ static const u8 Unk_020F1B64[4] = {
     0x4
 };
 
-static BOOL sub_0207DA28(FieldTask *param0)
+static BOOL sub_0207DA28(FieldTask *task)
 {
     int v0;
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0207DE40 *v2 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    UnkStruct_0207DE40 *v2 = FieldTask_GetEnv(task);
 
     switch (v2->unk_04) {
     case 0:
-        v2->unk_00->unk_00 = fieldSystem->saveData;
+        v2->unk_00->saveData = fieldSystem->saveData;
     case 1:
         v2->unk_04++;
 
@@ -104,7 +104,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         }
         break;
     case 2:
-        FieldTask_RunApplication(param0, &Unk_020F1B98, v2->unk_00);
+        FieldTask_RunApplication(task, &Unk_020F1B98, v2->unk_00);
         v2->unk_04++;
         break;
     case 3:
@@ -174,14 +174,14 @@ static BOOL sub_0207DA28(FieldTask *param0)
         }
         break;
     case 4:
-        Encounter_NewVsWiFi(param0, v2->unk_00->unk_08, v2->unk_0C, v2->unk_0D);
+        Encounter_NewVsWiFi(task, v2->unk_00->unk_08, v2->unk_0C, v2->unk_0D);
         v2->unk_04++;
         break;
     case 5:
         v2->unk_04 = 2;
         break;
     case 6:
-        sub_0203DDDC(param0);
+        sub_0203DDDC(task);
         v2->unk_04++;
         break;
     case 7:
@@ -479,6 +479,6 @@ static void sub_0207DF88(UnkStruct_ov115_02260440 *param0)
 
 static void sub_0207DF9C(FieldSystem *fieldSystem)
 {
-    GameRecords *v0 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    GameRecords *v0 = SaveData_GetGameRecords(fieldSystem->saveData);
     GameRecords_IncrementTrainerScore(v0, TRAINER_SCORE_EVENT_UNK_50);
 }

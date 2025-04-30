@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "constants/narc.h"
-#include "generated/text_banks.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 
@@ -84,7 +83,7 @@ BOOL ScrCmd_BufferPartyMonSpecies(ScriptContext *ctx)
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 partySlot = ScriptContext_GetVar(ctx);
 
-    Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     StringTemplate_SetSpeciesName(*strTemplate, templateArg, (BoxPokemon *)mon);
     return FALSE;
 }
@@ -152,7 +151,7 @@ BOOL ScrCmd_BufferNumber(ScriptContext *ctx)
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 number = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetNumber(*strTemplate, templateArg, number, sub_0205DFC4(number), PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(*strTemplate, templateArg, number, GetNumberDigitCount(number), PADDING_MODE_SPACES, CHARSET_MODE_EN);
     return FALSE;
 }
 
@@ -166,28 +165,28 @@ BOOL ScrCmd_280(ScriptContext *param0)
     u8 v5 = ScriptContext_ReadByte(param0);
 
     if (v4 == 0) {
-        v5 = sub_0205DFC4(v3);
+        v5 = GetNumberDigitCount(v3);
     }
 
     StringTemplate_SetNumber(*v1, v2, v3, v5, v4, 1);
     return 0;
 }
 
-BOOL ScrCmd_2F5(ScriptContext *param0)
+BOOL ScrCmd_BufferNumberPaddingDigits(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u32 v3 = ScriptContext_ReadWord(param0);
-    u8 v4 = ScriptContext_ReadByte(param0);
-    u8 v5 = ScriptContext_ReadByte(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u32 value = ScriptContext_ReadWord(ctx);
+    u8 paddingMode = ScriptContext_ReadByte(ctx);
+    u8 maxDigits = ScriptContext_ReadByte(ctx);
 
-    if (v4 == 0) {
-        v5 = sub_0205DFC4(v3);
+    if (paddingMode == PADDING_MODE_NONE) {
+        maxDigits = GetNumberDigitCount(value);
     }
 
-    StringTemplate_SetNumber(*v1, v2, v3, v5, v4, 1);
-    return 0;
+    StringTemplate_SetNumber(*strTemplate, templateArg, value, maxDigits, paddingMode, 1);
+    return FALSE;
 }
 
 BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx)
@@ -197,7 +196,7 @@ BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx)
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 partySlot = ScriptContext_GetVar(ctx);
 
-    Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     StringTemplate_SetNickname(*strTemplate, templateArg, (BoxPokemon *)mon);
 
     return FALSE;
@@ -207,7 +206,7 @@ BOOL ScrCmd_251(ScriptContext *param0)
 {
     BoxPokemon *v0;
     FieldSystem *fieldSystem = param0->fieldSystem;
-    PCBoxes *v2 = SaveData_PCBoxes(fieldSystem->saveData);
+    PCBoxes *v2 = SaveData_GetPCBoxes(fieldSystem->saveData);
     StringTemplate **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v4 = ScriptContext_ReadByte(param0);
     u16 v5 = ScriptContext_GetVar(param0);
@@ -271,12 +270,12 @@ BOOL ScrCmd_BufferSpeciesNameFromVar(ScriptContext *ctx)
     return 0;
 }
 
-static Strbuf *GetSpeciesNameStrbuf(u16 speciesId, u32 heapId)
+static Strbuf *GetSpeciesNameStrbuf(u16 speciesId, u32 heapID)
 {
     MessageLoader *speciesNames;
     Strbuf *buffer;
 
-    speciesNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapId);
+    speciesNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
     buffer = MessageLoader_GetNewStrbuf(speciesNames, speciesId);
 
     MessageLoader_Free(speciesNames);
@@ -393,15 +392,15 @@ BOOL ScrCmd_17C(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_261(ScriptContext *param0)
+BOOL ScrCmd_BufferAccessoryName(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 accessory = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetContestAccessoryName(*v1, v2, v3);
-    return 0;
+    StringTemplate_SetContestAccessoryName(*strTemplate, templateArg, accessory);
+    return FALSE;
 }
 
 BOOL ScrCmd_272(ScriptContext *param0)
@@ -430,7 +429,7 @@ BOOL ScrCmd_1CB(ScriptContext *param0)
     u16 v5 = ScriptContext_GetVar(param0);
     u16 v6;
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v4);
+    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v4);
     v6 = Pokemon_GetValue(v1, MON_DATA_MOVE1 + v5, NULL);
 
     StringTemplate_SetMoveName(*v2, v3, v6);
@@ -484,15 +483,15 @@ BOOL ScrCmd_33C(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_33D(ScriptContext *param0)
+BOOL ScrCmd_BufferItemNamePlural(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 item = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetItemNamePlural(*v1, v2, v3);
-    return 0;
+    StringTemplate_SetItemNamePlural(*strTemplate, templateArg, item);
+    return FALSE;
 }
 
 BOOL ScrCmd_33E(ScriptContext *param0)

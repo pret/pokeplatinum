@@ -10,21 +10,21 @@
     ScriptEntryEnd
 
 _0012:
-    ScrCmd_173
+    InitPersistedMapFeaturesForCanalaveGym
     End
 
 _0016:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_MINE, 0x800C
-    GoToIfEq 0x800C, 1, _0107
+    CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0107
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 35, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_BYRON
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0120
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0120
     Message 1
     BufferPlayerName 0
     Message 2
@@ -40,25 +40,24 @@ _0016:
     SetTrainerFlag TRAINER_BLACK_BELT_RICKY
     SetTrainerFlag TRAINER_WORKER_GERARDO
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 35, TRAINER_LEADER_BYRON, 0, 0
-    ClearFlag 0x1B2
-    ClearFlag 0x2CC
-    ClearFlag 0x1B8
-    ClearFlag 0x1B6
-    ClearFlag 0x1B7
-    SetVar 0x4078, 2
-    SetFlag 0x198
+    ClearFlag FLAG_UNK_0x01B2
+    ClearFlag FLAG_UNK_0x02CC
+    ClearFlag FLAG_UNK_0x01B8
+    ClearFlag FLAG_UNK_0x01B6
+    ClearFlag FLAG_UNK_0x01B7
+    SetVar VAR_UNK_0x4078, 2
+    SetFlag FLAG_UNK_0x0198
     Message 3
     GoTo _00BF
 
 _00BF:
-    SetVar 0x8004, 0x1A2
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00FD
+    SetVar VAR_0x8004, ITEM_TM91
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00FD
     CallCommonScript 0x7FC
-    SetFlag 146
-    BufferItemName 0, 0x8004
-    BufferTMHMMoveName 1, 0x8004
+    SetFlag FLAG_UNK_0x0092
+    BufferItemName 0, VAR_0x8004
+    BufferTMHMMoveName 1, VAR_0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -72,7 +71,7 @@ _00FD:
     End
 
 _0107:
-    GoToIfUnset 146, _00BF
+    GoToIfUnset FLAG_UNK_0x0092, _00BF
     BufferRivalName 1
     Message 5
     WaitABXPadPress
@@ -89,8 +88,8 @@ _0126:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_MINE, 0x800C
-    GoToIfEq 0x800C, 1, _014C
+    CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _014C
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -108,8 +107,8 @@ _014C:
 _015A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_MINE, 0x800C
-    GoToIfEq 0x800C, 1, _0184
+    CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0184
     BufferRivalName 0
     BufferRivalName 1
     Message 8

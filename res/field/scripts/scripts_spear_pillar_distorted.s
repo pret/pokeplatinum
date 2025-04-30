@@ -15,29 +15,29 @@
 
 _0022:
     LockAll
-    ClearFlag 0x2BA
+    ClearFlag FLAG_UNK_0x02BA
     AddObject 1
     ScrCmd_1B2 1
     SetObjectEventPos 0, 32, 34
     ScrCmd_189 0, 0
     ScrCmd_188 0, 14
-    ClearFlag 0x1CD
+    ClearFlag FLAG_UNK_0x01CD
     AddObject 0
     ScrCmd_066 30, 30
     ApplyMovement 241, _016C
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40C3, 2
+    SetVar VAR_UNK_0x40C3, 2
     ApplyMovement 0, _0144
     WaitMovement
     Message 0
     CloseMessage
-    ScrCmd_20D 4, 0x800C
-    WaitTime 30, 0x800C
+    ScrCmd_20D 4, VAR_RESULT
+    WaitTime 30, VAR_RESULT
 _0088:
-    ScrCmd_20D 6, 0x800C
-    GoToIfEq 0x800C, 0, _0088
+    ScrCmd_20D 6, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0088
     RemoveObject 1
     ApplyMovement 241, _0178
     WaitMovement
@@ -50,15 +50,15 @@ _0088:
     ApplyMovement 0, _0154
     WaitMovement
     Message 5
-    SetFlag 0x29E
+    SetFlag FLAG_UNK_0x029E
     GoTo _00DA
     End
 
 _00DA:
     Message 6
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _00FD
-    GoToIfEq 0x800C, MENU_NO, _0130
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00FD
+    GoToIfEq VAR_RESULT, MENU_NO, _0130
     End
 
 _00FD:
@@ -68,7 +68,7 @@ _00FD:
     WaitFadeScreen
     ScrCmd_320
     ReturnToField
-    ScrCmd_328 1
+    SetPartyGiratinaForm GIRATINA_FORM_ORIGIN
     Warp MAP_HEADER_DISTORTION_WORLD_1F, 0, 55, 40, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -122,9 +122,9 @@ _0184:
     LockAll
     FacePlayer
     Message 6
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _00FD
-    GoToIfEq 0x800C, MENU_NO, _01AF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00FD
+    GoToIfEq VAR_RESULT, MENU_NO, _01AF
     End
 
 _01AF:

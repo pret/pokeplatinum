@@ -13,9 +13,9 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 
 enum {
@@ -118,7 +118,7 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
         break;
     case 1:
         if (param0->unk_20) {
-            Sound_PlayEffect(1705);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN03);
             StartScreenTransition(0, 0, 0, 0x7fff, 16, 1, HEAP_ID_58);
             (*param1)++;
         }

@@ -85,23 +85,23 @@ _00A9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x129, _0109
-    GetPlayerStarterSpecies 0x800C
-    CallIfEq 0x800C, SPECIES_TURTWIG, _0119
-    CallIfEq 0x800C, SPECIES_CHIMCHAR, _0121
-    CallIfEq 0x800C, SPECIES_PIPLUP, _0129
-    SetVar 0x4107, 0x8004
-    ScrCmd_343 0, 0x8004
+    GoToIfSet FLAG_UNK_0x0129, _0109
+    GetPlayerStarterSpecies VAR_RESULT
+    CallIfEq VAR_RESULT, SPECIES_TURTWIG, _0119
+    CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, _0121
+    CallIfEq VAR_RESULT, SPECIES_PIPLUP, _0129
+    SetVar VAR_UNK_0x4107, VAR_0x8004
+    ScrCmd_343 0, VAR_0x8004
     Message 3
-    SetVar 0x8005, 1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DF
-    SetFlag 0x129
+    SetFlag FLAG_UNK_0x0129
     CloseMessage
     ReleaseAll
     End
 
 _0109:
-    ScrCmd_261 0, 0x4107
+    BufferAccessoryName 0, VAR_UNK_0x4107
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -109,15 +109,15 @@ _0109:
     End
 
 _0119:
-    SetVar 0x8004, 94
+    SetVar VAR_0x8004, ACCESSORY_PIPLUP_MASK
     Return
 
 _0121:
-    SetVar 0x8004, 92
+    SetVar VAR_0x8004, ACCESSORY_TURTWIG_MASK
     Return
 
 _0129:
-    SetVar 0x8004, 93
+    SetVar VAR_0x8004, ACCESSORY_CHIMCHAR_MASK
     Return
 
     .byte 0

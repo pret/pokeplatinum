@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "generated/sdat.h"
 
 #include "struct_defs/battle_io.h"
 
@@ -15,11 +14,11 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 
 typedef struct {
     ManagedSprite *managedSprite;
@@ -447,7 +446,7 @@ static void HideArrowTask(SysTask *task, void *data)
     }
 }
 
-enum {
+enum ShowPokeballsState {
     SHOW_POKEBALLS_INIT = 0,
     SHOW_POKEBALLS_DELAY,
     SHOW_POKEBALLS_DRAW,
@@ -672,7 +671,7 @@ static void HidePokeballs(PartyGaugePokeballs *pokeballs, int slot, enum HidePar
     }
 }
 
-enum {
+enum HidePokeballsState {
     HIDE_POKEBALLS_INIT = 0,
     HIDE_POKEBALLS_DELAY,
     HIDE_POKEBALLS_FADE,

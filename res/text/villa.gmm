@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="17438" />
-	<row id="pl_msg_00000602_00000" index="0">
+	<row id="Villa_Text_TheOriginalOwnersFurnitureIsGone" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The original owner’s furniture is gone,\nand I didn’t buy any.\rSo, yeah, I know, it’s barren.\nStill, not bad, eh?\rBut anyway, I feel kind of bad just\nimposing the place on you for nothing.\rI’ll tell you what, order a Table from\nthis order form.\rThat’ll do as my thanks to you!</language>
 	</row>
-	<row id="pl_msg_00000602_00001" index="1">
+	<row id="Villa_Text_GoAheadOrderATableFromThisOrderForm" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Go ahead, order a Table from this\norder form!</language>
 	</row>
-	<row id="pl_msg_00000602_00002" index="2">
+	<row id="Villa_Text_WhoaWhoaDontGoYet" index="2">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Whoa, whoa!\nDon’t go yet!\rNot until you order a Table from this\norder form!\r</language>
 	</row>
-	<row id="pl_msg_00000602_00003" index="3">
+	<row id="Villa_Text_ThankYouForWaitingImDeliveringYourOrder_WeHopeYoullKeepOrdering" index="3">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Thank you for waiting!\nI’m delivering your order!\rWe hope you’ll keep ordering quality\nfurnishings from us!\r</language>
 	</row>
@@ -31,11 +31,11 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000602_00007" index="7">
+	<row id="Villa_Text_ThankYouForWaitingImDeliveringYourOrder" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Thank you for waiting!\nI’m delivering your order!\r</language>
 	</row>
-	<row id="pl_msg_00000602_00008" index="8">
+	<row id="Villa_Text_ThankYouForWaitingImDeliveringYourOrder_AlsoAndIHateToSayThisBut" index="8">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Thank you for waiting!\nI’m delivering your order!\rAlso, and I hate to say this, but...\nWell, the truth of the matter is...\rWe’re completely out of furniture that\nwe could sell you...\rThank you so very, very much for your\nlong-standing patronage and support!\r</language>
 	</row>
@@ -501,7 +501,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You don’t have enough money.</language>
 	</row>
-	<row id="pl_msg_00000602_00124" index="124">
+	<row id="Villa_Text_ThisIsTheListOfPurchasedFurniture" index="124">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">This is the list of purchased furniture.</language>
 	</row>

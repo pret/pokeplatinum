@@ -22,7 +22,7 @@
 
 #include "map_object.h"
 #include "map_tile_behavior.h"
-#include "unk_02054D00.h"
+#include "terrain_collision_manager.h"
 #include "unk_020655F4.h"
 #include "unk_020673B8.h"
 
@@ -575,7 +575,7 @@ u32 sub_02063E18(const MapObject *mapObj, const VecFx32 *pos, int x, int y, int 
     s8 v1;
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-    if (sub_02055024(fieldSystem, pos, x, z, &v1) == TRUE) {
+    if (TerrainCollisionManager_WillMapObjectCollide(fieldSystem, pos, x, z, &v1) == TRUE) {
         v0 |= (1 << 1);
 
         if (v1 != 0) {
@@ -699,7 +699,7 @@ int sub_02064004(const MapObject *mapObj, int x, int z, int dir)
     if (sub_02062FDC(mapObj) == FALSE) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         u8 v1 = MapObject_GetCurrTileBehavior(mapObj);
-        u8 v2 = FieldSystem_GetTileBehavior(fieldSystem, x, z);
+        u8 v2 = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
 
         if (v2 == GetNullTileBehaviorID()) {
             return TRUE;
@@ -860,7 +860,7 @@ u32 MapObject_GetTileBehaviorFromDir(MapObject *mapObj, int dir)
     int x = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(dir);
     int z = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(dir);
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-    u8 tileBehavior = FieldSystem_GetTileBehavior(fieldSystem, x, z);
+    u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
 
     return tileBehavior;
 }
@@ -909,7 +909,7 @@ int sub_020642F8(MapObject *mapObj)
     MapObject_GetPosPtr(mapObj, &pos);
     v1 = pos;
 
-    if (sub_02062E44(mapObj) == 1) {
+    if (MapObject_IsHeightCalculationDisabled(mapObj) == TRUE) {
         MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_12);
         return 0;
     }
@@ -941,10 +941,10 @@ int MapObject_SetTileBehaviors(MapObject *mapObj)
         int z = MapObject_GetZPrev(mapObj);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        prevTileBehavior = FieldSystem_GetTileBehavior(fieldSystem, x, z);
+        prevTileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
         x = MapObject_GetX(mapObj);
         z = MapObject_GetZ(mapObj);
-        currTileBehavior = FieldSystem_GetTileBehavior(fieldSystem, x, z);
+        currTileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
     }
 
     MapObject_SetPrevTileBehavior(mapObj, prevTileBehavior);
@@ -1026,7 +1026,7 @@ int sub_020644A4(FieldSystem *fieldSystem, VecFx32 *pos)
     fx32 v0;
     u8 v1;
 
-    v0 = sub_02054FBC(fieldSystem, pos->y, pos->x, pos->z, &v1);
+    v0 = TerrainCollisionManager_GetHeight(fieldSystem, pos->y, pos->x, pos->z, &v1);
 
     if (v1 == 0) {
         return FALSE;
@@ -1041,7 +1041,7 @@ int sub_020644D0(FieldSystem *fieldSystem, VecFx32 *pos, int param2)
     fx32 v0;
     u8 v1;
 
-    v0 = sub_02054FBC(fieldSystem, pos->y, pos->x, pos->z, &v1);
+    v0 = TerrainCollisionManager_GetHeight(fieldSystem, pos->y, pos->x, pos->z, &v1);
 
     if (v1 == 0) {
         return FALSE;

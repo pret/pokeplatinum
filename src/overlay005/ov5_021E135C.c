@@ -12,9 +12,9 @@
 #include "heap.h"
 #include "map_object.h"
 #include "player_avatar.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 
 typedef struct {
@@ -54,7 +54,7 @@ static void ov5_021E139C(SysTask *param0, void *param1)
     switch (v0->unk_08) {
     case 0:
         v0->unk_08 = 1;
-        Sound_PlayEffect(1615);
+        Sound_PlayEffect(SEQ_SE_DP_TELE2);
     case 1:
         if (v0->unk_0C % 2) {
             ov5_021E135C(v0);
@@ -95,7 +95,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
         MapObject_Draw(v1);
     }
 
-        Sound_PlayEffect(1615);
+        Sound_PlayEffect(SEQ_SE_DP_TELE2);
         v0->unk_08 = 1;
     case 1:
         if (v0->unk_0C % 2) {

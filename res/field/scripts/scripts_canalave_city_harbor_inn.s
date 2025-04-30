@@ -10,37 +10,37 @@
     ScriptEntryEnd
 
 _000E:
-    SetFlag 0x241
-    GoToIfUnset 0x158, _001F
+    SetFlag FLAG_UNK_0x0241
+    GoToIfUnset FLAG_UNK_0x0158, _001F
     End
 
 _001F:
-    GoToIfSet 0x964, _002C
+    GoToIfSet FLAG_GAME_COMPLETED, _002C
     End
 
 _002C:
-    ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 1, _0040
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _0040
     End
 
 _0040:
-    CheckItem ITEM_MEMBER_CARD, 1, 0x4000
-    GoToIfEq 0x4000, 1, _0057
+    CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _0057
     End
 
 _0057:
-    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
-    GoToIfEq 0x4000, TRUE, _006B
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, TRUE, _006B
     End
 
 _006B:
-    GoToIfSet 0x12C, _0078
+    GoToIfSet FLAG_UNK_0x012C, _0078
     End
 
 _0078:
-    GoToIfGe 0x40F8, 2, _0091
-    ClearFlag 0x241
-    SetVar 0x40F8, 1
+    GoToIfGe VAR_UNK_0x40F8, 2, _0091
+    ClearFlag FLAG_UNK_0x0241
+    SetVar VAR_UNK_0x40F8, 1
     End
 
 _0091:
@@ -48,20 +48,20 @@ _0091:
 
 _0093:
     LockAll
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     Message 0
     CloseMessage
     ApplyMovement 0, _0148
     ApplyMovement LOCALID_PLAYER, _0130
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     BufferPlayerName 0
     Message 1
     CloseMessage
     PlayFanfare SEQ_SE_DP_MAZYO2
-    SetFlag 0x13C
-    SetFlag 0x241
-    SetVar 0x40F8, 2
+    SetFlag FLAG_UNK_0x013C
+    SetFlag FLAG_UNK_0x0241
+    SetVar VAR_UNK_0x40F8, 2
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     FadeScreen 6, 3, 1, 0
@@ -72,7 +72,7 @@ _0093:
     WaitFadeScreen
     FadeScreen 6, 6, 0, 0
     WaitFadeScreen
-    WaitTime 120, 0x800C
+    WaitTime 120, VAR_RESULT
     Warp MAP_HEADER_NEWMOON_ISLAND, 0, 152, 0x115, 1
     FadeScreen 6, 6, 1, 0
     WaitFadeScreen
@@ -111,12 +111,12 @@ _0160:
     End
 
 _0184:
-    GoToIfSet 0x158, _0197
-    SetVar 0x40F8, 0
+    GoToIfSet FLAG_UNK_0x0158, _0197
+    SetVar VAR_UNK_0x40F8, 0
     Return
 
 _0197:
-    SetVar 0x40F8, 3
+    SetVar VAR_UNK_0x40F8, 3
     Return
 
     .byte 0

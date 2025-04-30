@@ -29,6 +29,7 @@
 #include "pokedex.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -36,7 +37,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
 
@@ -86,7 +86,7 @@ static void ov23_022521F0(UnkStruct_ov23_02250CD4 *param0, int param1)
 {
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
-    UndergroundData *v6 = sub_020298B0(FieldSystem_GetSaveData(param0->fieldSystem));
+    UndergroundData *v6 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param0->fieldSystem));
 
     MATH_InitRand16(&v0, sub_02028930(v6) + param1);
 
@@ -132,7 +132,7 @@ static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1)
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
     SaveData *saveData = FieldSystem_GetSaveData(param0->fieldSystem);
-    UndergroundData *v7 = sub_020298B0(saveData);
+    UndergroundData *v7 = SaveData_GetUndergroundData(saveData);
     BOOL natdexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(saveData));
 
     MATH_InitRand16(&v0, sub_02028930(v7) + param1);
@@ -176,7 +176,7 @@ static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1)
 static int ov23_02252404(UnkStruct_ov23_02250CD4 *param0, int param1, int param2)
 {
     BOOL v0 = 0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(param0->fieldSystem));
+    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param0->fieldSystem));
 
     if (param0->unk_279[param1] != ov23_0224F684(param2, param0)) {
         return 0xfffd;
@@ -299,7 +299,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
 {
     MATHRandContext16 v0;
     UnkStruct_ov23_02250CD4 *v1 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
-    UndergroundData *v2 = sub_020298B0(FieldSystem_GetSaveData(v1->fieldSystem));
+    UndergroundData *v2 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v1->fieldSystem));
     int v3 = param1, v4, v5;
     int v6, v7 = 0, v8;
 
@@ -406,13 +406,13 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
         int v3;
 
         if (param0->unk_2AC == 1) {
-            v2 = MessageLoader_Init(0, 26, 630, HEAP_ID_FIELD);
+            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_TRAP_NAMES, HEAP_ID_FIELD);
             ov23_02253DFC(ov23_022421DC(), 630, 0);
         } else if (param0->unk_2AC == 0) {
-            v2 = MessageLoader_Init(0, 26, 626, HEAP_ID_FIELD);
+            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD);
             ov23_02253DFC(ov23_022421DC(), 626, 0);
         } else {
-            v2 = MessageLoader_Init(0, 26, 628, HEAP_ID_FIELD);
+            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ITEM_NAMES, HEAP_ID_FIELD);
             ov23_02253DFC(ov23_022421DC(), 628, 0);
         }
 
@@ -474,7 +474,7 @@ static void ov23_02252BB8(int param0, UnkStruct_ov23_02250CD4 *param1)
 
 static u32 ov23_02252C08(UnkStruct_ov23_02250CD4 *param0)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(param0->fieldSystem));
+    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param0->fieldSystem));
 
     if (ov23_0224F6E0(param0->unk_279[0], param0->unk_27E[0])) {
         if (param0->unk_2AC == 1) {
@@ -633,12 +633,12 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         ListMenu_CalcTrueCursorPos(v0->unk_48, &v0->unk_2AE);
 
         if (v5 != v0->unk_2AE) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
 
         switch (v1) {
         case 0xfffffffe:
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov23_02252B90(v0, 0);
             v0->unk_2AA = 17;
             break;
@@ -652,10 +652,10 @@ static void ov23_02252E70(SysTask *param0, void *param1)
                 v0->unk_2AB = v1;
 
                 if (v1 == 0) {
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                     v0->unk_2AA = 4;
                 } else {
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                     v0->unk_2AA = 12;
                 }
             }
@@ -676,7 +676,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         ListMenu_CalcTrueCursorPos(v0->unk_48, &v0->unk_2AE);
 
         if (v5 != v0->unk_2AE) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
 
         if (v1 == 0xfffffffe) {
@@ -689,14 +689,14 @@ static void ov23_02252E70(SysTask *param0, void *param1)
 
         switch (v1) {
         case 0xfffffffe:
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov23_02252B90(v0, 1);
             v0->unk_2AA = 2;
             break;
         case 0xffffffff:
             break;
         default:
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             v0->unk_2A8 = v1;
 
             if (v0->unk_2AC == 1) {
@@ -788,7 +788,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
                 }
 
                 ov23_02252C9C(6);
-                Sound_PlayEffect(1507);
+                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 
                 v0->unk_2AA = 10;
             }
@@ -882,7 +882,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
                 ov23_02252CE0(2, v0->unk_279[0]);
                 ov23_02252C9C(7);
 
-                Sound_PlayEffect(1507);
+                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 
                 v0->unk_2AA = 10;
             }
@@ -932,7 +932,7 @@ void ov23_022534A0(FieldSystem *fieldSystem)
     v4->unk_70 = StringTemplate_Default(HEAP_ID_FIELD);
     v4->unk_2AA = 0;
 
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
     v4->unk_04 = SysTask_Start(ov23_02252E70, v4, 10000);
     ov23_022431EC(v4, v4->unk_04, ov23_02251270);
 

@@ -25,7 +25,7 @@
 #include "trainer_info.h"
 
 struct UnkStruct_ov65_0222EBE0_t {
-    UnkStruct_0202B370 *unk_00;
+    WiFiList *unk_00;
     UnkStruct_0207DFAC *unk_04;
     int unk_08;
     u8 unk_0C[32];
@@ -37,7 +37,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     StringList *unk_154;
     ListMenu *unk_158;
     BgConfig *unk_15C;
-    SaveData *unk_160;
+    SaveData *saveData;
     StringTemplate *unk_164;
     MessageLoader *unk_168;
     MessageLoader *unk_16C;

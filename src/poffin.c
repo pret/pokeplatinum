@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "savedata.h"
 
 #define FLAVOR_NONE 30
@@ -55,7 +55,7 @@ void Poffin_Copy(Poffin *src, Poffin *dest)
     dest->dummy = src->dummy;
 }
 
-u8 Poffin_GetAttribute(Poffin *poffin, PoffinAttributeID attributeID)
+u8 Poffin_GetAttribute(Poffin *poffin, enum PoffinAttributeID attributeID)
 {
     switch (attributeID) {
     case POFFIN_ATTRIBUTEID_FLAVOR:
@@ -221,9 +221,9 @@ u8 Poffin_CalcLevel(Poffin *poffin)
     return level;
 }
 
-PoffinCase *Poffin_GetSavedataBlock(SaveData *savedata)
+PoffinCase *SaveData_GetPoffinCase(SaveData *savedata)
 {
-    return SaveData_SaveTable(savedata, 16);
+    return SaveData_SaveTable(savedata, SAVE_TABLE_ENTRY_POFFINS);
 }
 
 int Poffin_SaveSize(void)

@@ -8,8 +8,6 @@
 #include "constants/items.h"
 #include "constants/map_object.h"
 #include "generated/game_records.h"
-#include "generated/sdat.h"
-#include "generated/text_banks.h"
 
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
@@ -38,6 +36,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "shop_misc.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_system.h"
@@ -49,7 +48,6 @@
 #include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
@@ -244,8 +242,8 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
 
     shopMenu->strbuf = Strbuf_Init(96, HEAP_ID_FIELDMAP);
     shopMenu->trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    shopMenu->options = SaveData_Options(fieldSystem->saveData);
-    shopMenu->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    shopMenu->options = SaveData_GetOptions(fieldSystem->saveData);
+    shopMenu->records = SaveData_GetGameRecords(fieldSystem->saveData);
     shopMenu->varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
     shopMenu->incBuyCount = incBuyCount;
     shopMenu->cameraPosDest = Shop_GetCameraPosDest(fieldSystem);
@@ -259,9 +257,9 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         shopMenu->destInventory = SaveData_GetBag(fieldSystem->saveData);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
-        shopMenu->destInventory = sub_020298B0(fieldSystem->saveData);
+        shopMenu->destInventory = SaveData_GetUndergroundData(fieldSystem->saveData);
     } else {
-        shopMenu->destInventory = sub_0202CA1C(fieldSystem->saveData);
+        shopMenu->destInventory = SaveData_GetBallSeals(fieldSystem->saveData);
     }
 
     Shop_SetItemsForSale(shopMenu, shopItems);
@@ -458,7 +456,7 @@ static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
         StringTemplate_Free(shopMenu->strTemplate);
         Strbuf_Free(shopMenu->strbuf);
 
-        if (shopMenu->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != location_names_00101
+        if (shopMenu->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != LocationNames_Text_VeilstoneStore
             && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_NORTH_HOUSE
             && fieldSystem->location->mapId != MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE) {
             if (shopMenu->itemPurchaseCount != 0 && shopMenu->itemSoldCount != 0) {
@@ -1233,7 +1231,7 @@ static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu)
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
         GameRecords_AddToRecordValue(shopMenu->records, RECORD_UNK_069, shopMenu->itemPrice * shopMenu->itemAmount);
     } else {
-        GameRecords_AddToRecordValue(shopMenu->records, RECORD_UNK_035, shopMenu->itemPrice * shopMenu->itemAmount);
+        GameRecords_AddToRecordValue(shopMenu->records, RECORD_MONEY_SPENT, shopMenu->itemPrice * shopMenu->itemAmount);
     }
 
     Shop_PrintCurrentMoney(shopMenu, TRUE);
@@ -1270,7 +1268,7 @@ static u8 Shop_FinishPurchase(ShopMenu *shopMenu)
 
                 shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->strbuf, shopMenu->options, TRUE);
 
-                GameRecords *records = SaveData_GetGameRecordsPtr(shopMenu->saveData);
+                GameRecords *records = SaveData_GetGameRecords(shopMenu->saveData);
                 GameRecords_IncrementRecordValue(records, RECORD_UNK_050);
 
                 return SHOP_STATE_FINISH_FREE_PREMIER;
@@ -1622,7 +1620,7 @@ static void Shop_FinishScreenTransition(FieldTask *task)
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     shopMenu->unk_04 = sub_0207D824(bag, sShop_BagPockets, HEAP_ID_FIELDMAP);
 
-    sub_0207CB2C(shopMenu->unk_04, fieldSystem->saveData, 2, fieldSystem->unk_98);
+    sub_0207CB2C(shopMenu->unk_04, fieldSystem->saveData, 2, fieldSystem->bagCursor);
     sub_0203D1E4(fieldSystem, shopMenu->unk_04);
     FieldTask_InitJump(task, FieldTask_ShopMisc, shopMenu);
 

@@ -15,11 +15,11 @@
 #include "overlay101/struct_ov101_021D93D4.h"
 
 #include "enums.h"
-#include "math.h"
+#include "math_util.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 #include "unk_020711EC.h"
 
 typedef struct {
@@ -533,7 +533,7 @@ static int ov101_021D5E84(UnkStruct_ov101_021D630C *param0)
     Sprite_SetPosition(param0->unk_3C.unk_04, &v0);
     Sprite_SetAnim(param0->unk_3C.unk_04, 0);
     Sprite_SetAnimFrame(param0->unk_3C.unk_04, 0);
-    Sound_PlayEffect(1572);
+    Sound_PlayEffect(SEQ_SE_DP_UG_020);
 
     param0->unk_04++;
     return 0;
@@ -589,7 +589,7 @@ static int ov101_021D5F70(UnkStruct_ov101_021D630C *param0)
     Sprite_RestartAnim(param0->unk_3C.unk_04);
     Sprite_SetAnimateFlag(param0->unk_3C.unk_04, 1);
 
-    Sound_PlayEffect(1744);
+    Sound_PlayEffect(SEQ_SE_DP_SLOT01);
     param0->unk_04++;
 
     return 0;
@@ -1160,7 +1160,7 @@ static int ov101_021D6908(UnkStruct_ov101_021D66D0 *param0)
         param0->unk_14 = 0;
         param0->unk_08++;
 
-        sub_02005844(SPECIES_CLEFAIRY, 0);
+        Sound_PlayPokemonCry(SPECIES_CLEFAIRY, 0);
     }
 
     Sprite_SetAffineScale(param0->unk_24.unk_04, &v1);
@@ -1196,7 +1196,7 @@ static int ov101_021D6994(UnkStruct_ov101_021D66D0 *param0)
     Sprite_SetAnim(param0->unk_24.unk_04, 1);
     Sprite_SetAnimSpeed(param0->unk_24.unk_04, 0);
     Sprite_SetAnimateFlag(param0->unk_24.unk_04, 0);
-    Sound_PlayEffect(1745);
+    Sound_PlayEffect(SEQ_SE_DP_SLOT02);
 
     param0->unk_08++;
     return 0;

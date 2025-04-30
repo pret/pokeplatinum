@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetVar 0x8007, 3
+    SetVar VAR_0x8007, 3
     CallCommonScript 0x7D2
     End
 

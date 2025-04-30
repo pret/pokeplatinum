@@ -20,6 +20,8 @@
 /subprojects/narc/
 /subprojects/metang/
 /subprojects/rapidjson-*/
+/subprojects/meson-*/
+/subprojects/nitrorom/
 
 # CLion folders
 .idea/

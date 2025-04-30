@@ -15,10 +15,10 @@
 #include "map_object.h"
 #include "party.h"
 #include "script_manager.h"
+#include "sound.h"
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "system_vars.h"
-#include "unk_020041CC.h"
 #include "unk_020528D0.h"
 #include "unk_02054884.h"
 #include "unk_020553DC.h"
@@ -35,7 +35,6 @@ BOOL ScrCmd_StartTagBattle(ScriptContext *ctx);
 BOOL ScrCmd_0E7(ScriptContext *param0);
 BOOL ScrCmd_0E8(ScriptContext *param0);
 BOOL ScrCmd_0E9(ScriptContext *param0);
-BOOL ScrCmd_0EA(ScriptContext *param0);
 BOOL ScrCmd_BlackOutFromBattle(ScriptContext *param0);
 BOOL ScrCmd_CheckHasTwoAliveMons(ScriptContext *param0);
 BOOL ScrCmd_StartDummyTrainerBattle(ScriptContext *ctx);
@@ -256,12 +255,12 @@ BOOL ScrCmd_0E9(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0EA(ScriptContext *param0)
+BOOL ScrCmd_PlayTrainerEncounterBGM(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
+    u16 trainerID = ScriptContext_GetVar(ctx);
 
-    sub_02004950(sub_0205560C(v0));
-    return 1;
+    Sound_SwapBGM(Trainer_GetEncounterBGM(trainerID));
+    return TRUE;
 }
 
 BOOL ScrCmd_BlackOutFromBattle(ScriptContext *param0)
@@ -301,7 +300,7 @@ BOOL ScrCmd_CheckHasTwoAliveMons(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = Party_HasTwoAliveMons(Party_GetFromSavedata(ctx->fieldSystem->saveData));
+    *destVar = Party_HasTwoAliveMons(SaveData_GetParty(ctx->fieldSystem->saveData));
     return FALSE;
 }
 

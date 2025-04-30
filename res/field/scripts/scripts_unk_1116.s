@@ -25,134 +25,134 @@
     ScriptEntryEnd
 
 _004E:
-    SetVar 0x8000, 1
+    SetVar VAR_0x8000, 1
     GoTo _0159
 
 _005A:
-    SetVar 0x8000, 2
+    SetVar VAR_0x8000, 2
     GoTo _0159
 
 _0066:
-    SetVar 0x8000, 3
+    SetVar VAR_0x8000, 3
     GoTo _0159
 
 _0072:
-    SetVar 0x8000, 4
+    SetVar VAR_0x8000, 4
     GoTo _0159
 
 _007E:
-    SetVar 0x8000, 5
+    SetVar VAR_0x8000, 5
     GoTo _0159
 
 _008A:
-    SetVar 0x8000, 6
+    SetVar VAR_0x8000, 6
     GoTo _0159
 
 _0096:
-    SetVar 0x8000, 7
+    SetVar VAR_0x8000, 7
     GoTo _0159
 
 _00A2:
-    SetVar 0x8000, 8
+    SetVar VAR_0x8000, 8
     GoTo _0159
 
 _00AE:
-    SetVar 0x8000, 9
+    SetVar VAR_0x8000, 9
     GoTo _0159
 
 _00BA:
-    SetVar 0x8000, 10
+    SetVar VAR_0x8000, 10
     GoTo _0159
 
 _00C6:
-    SetVar 0x8000, 11
+    SetVar VAR_0x8000, 11
     GoTo _0159
 
 _00D2:
-    SetVar 0x8000, 12
+    SetVar VAR_0x8000, 12
     GoTo _0159
 
 _00DE:
-    SetVar 0x8000, 13
+    SetVar VAR_0x8000, 13
     GoTo _0159
 
 _00EA:
-    SetVar 0x8000, 14
+    SetVar VAR_0x8000, 14
     GoTo _0159
 
 _00F6:
-    GoToIfEq 0x4032, 1, _0129
-    GoToIfEq 0x4032, 2, _0135
-    GoToIfEq 0x4032, 3, _0141
-    SetVar 0x8000, 15
+    GoToIfEq VAR_UNK_0x4032, 1, _0129
+    GoToIfEq VAR_UNK_0x4032, 2, _0135
+    GoToIfEq VAR_UNK_0x4032, 3, _0141
+    SetVar VAR_0x8000, 15
     GoTo _0159
 
 _0129:
-    SetVar 0x8000, 16
+    SetVar VAR_0x8000, 16
     GoTo _0159
 
 _0135:
-    SetVar 0x8000, 17
+    SetVar VAR_0x8000, 17
     GoTo _0159
 
 _0141:
-    SetVar 0x8000, 18
+    SetVar VAR_0x8000, 18
     GoTo _0159
 
 _014D:
-    SetVar 0x8000, 19
+    SetVar VAR_0x8000, 19
     GoTo _0159
 
 _0159:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_238 0x8000, 0x800C
-    GoToIfEq 0x800C, 0, _02A1
+    ScrCmd_238 VAR_0x8000, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _02A1
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0190
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0190
     GoTo _02AE
     End
 
 _0190:
-    ScrCmd_237 0, 0x8000, 0x8004, 0x8005
-    ScrCmd_1FB 0x8004, 0x8005
-    GoToIfEq 0x8000, 10, _01F0
+    ScrCmd_237 0, VAR_0x8000, VAR_0x8004, VAR_0x8005
+    ScrCmd_1FB VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8000, 10, _01F0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
-    ScrCmd_243 0, 0x800C, 0x8004
+    ScrCmd_243 0, VAR_RESULT, VAR_0x8004
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x800C, 0, _02AE
-    ScrCmd_237 1, 0x8000, 0x8004, 0x8005
+    GoToIfEq VAR_RESULT, 0, _02AE
+    ScrCmd_237 1, VAR_0x8000, VAR_0x8004, VAR_0x8005
     GoTo _02A1
     End
 
 _01F0:
-    ScrCmd_045 1, 1, 0, 1, 0x8004
-    ScrCmd_046 22, 0xFF, 1
-    ScrCmd_046 23, 0xFF, 2
-    ScrCmd_046 24, 0xFF, 3
-    ScrCmd_046 25, 0xFF, 4
-    ScrCmd_046 26, 0xFF, 5
-    ScrCmd_046 27, 0xFF, 6
-    ScrCmd_046 28, 0xFF, 7
-    ScrCmd_046 29, 0xFF, 8
-    ScrCmd_046 30, 0xFF, 9
-    ScrCmd_046 31, 0xFF, 10
-    ScrCmd_046 32, 0xFF, 11
-    ScrCmd_046 33, 0xFF, 12
-    ScrCmd_046 34, 0xFF, 13
-    ScrCmd_046 35, 0xFF, 14
-    ScrCmd_046 36, 0xFF, 15
-    ScrCmd_046 37, 0xFF, 16
-    ScrCmd_046 38, 0xFF, 17
-    ScrCmd_047
-    GoToIfEq 0x8004, -2, _02AE
-    ScrCmd_237 1, 0x8000, 0x8004, 0x8005
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry 22, 1
+    AddListMenuEntry 23, 2
+    AddListMenuEntry 24, 3
+    AddListMenuEntry 25, 4
+    AddListMenuEntry 26, 5
+    AddListMenuEntry 27, 6
+    AddListMenuEntry 28, 7
+    AddListMenuEntry 29, 8
+    AddListMenuEntry 30, 9
+    AddListMenuEntry 31, 10
+    AddListMenuEntry 32, 11
+    AddListMenuEntry 33, 12
+    AddListMenuEntry 34, 13
+    AddListMenuEntry 35, 14
+    AddListMenuEntry 36, 15
+    AddListMenuEntry 37, 16
+    AddListMenuEntry 38, 17
+    ShowListMenu
+    GoToIfEq VAR_0x8004, -2, _02AE
+    ScrCmd_237 1, VAR_0x8000, VAR_0x8004, VAR_0x8005
     GoTo _02A1
     End
 

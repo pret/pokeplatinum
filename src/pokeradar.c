@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/battle.h"
-#include "generated/sdat.h"
 
 #include "struct_defs/radar_chain_records.h"
 #include "struct_defs/struct_0201CFEC.h"
@@ -24,10 +23,10 @@
 #include "player_avatar.h"
 #include "scrcmd.h"
 #include "script_manager.h"
+#include "sound_playback.h"
 #include "special_encounter.h"
-#include "unk_02005474.h"
+#include "terrain_collision_manager.h"
 #include "unk_0201CED8.h"
-#include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_020711EC.h"
 
@@ -139,7 +138,7 @@ BOOL RadarSpawnPatches(FieldSystem *fieldSystem, const int param1, const int par
 
     if (v7 == 0) {
         RadarChain_Clear(chain);
-        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
+        Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
     } else {
         chain->active = TRUE;
     }
@@ -292,7 +291,7 @@ void sub_0206979C(FieldSystem *fieldSystem)
 
     if (v3 == 4) {
         RadarChain_Clear(fieldSystem->chain);
-        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
+        Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
     }
 }
 
@@ -307,13 +306,13 @@ static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const 
     int v1 = (param3 - (9 / 2)) + param5;
     patch->x = v0;
     patch->z = v1;
-    u8 v2 = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
+    u8 v2 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v0, v1);
 
     if (TileBehavior_IsTallGrass(v2)) {
         u8 v3;
         patch->position.x = FX32_ONE * 16 * v0;
         patch->position.z = FX32_ONE * 16 * v1;
-        patch->position.y = sub_02054FBC(fieldSystem, 0, patch->position.x, patch->position.z, &v3);
+        patch->position.y = TerrainCollisionManager_GetHeight(fieldSystem, 0, patch->position.x, patch->position.z, &v3);
 
         if (param1 != patch->position.y) {
             patch->active = FALSE;
@@ -501,7 +500,7 @@ void RadarChargeStep(FieldSystem *fieldSystem)
 {
     u8 *v0;
 
-    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 431, 1, 4) == 1) {
+    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_POKE_RADAR, 1, HEAP_ID_FIELD) == TRUE) {
         v0 = SpecialEncounter_GetRadarCharge(SaveData_GetSpecialEncounters(fieldSystem->saveData));
         if ((*v0) < RADAR_BATTERY_STEPS) {
             (*v0)++;

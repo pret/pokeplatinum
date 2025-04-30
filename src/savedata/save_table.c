@@ -4,9 +4,11 @@
 #include <string.h>
 
 #include "bag.h"
+#include "daycare_save.h"
 #include "field_overworld_state.h"
 #include "game_records.h"
 #include "journal.h"
+#include "mystery_gift.h"
 #include "party.h"
 #include "pc_boxes.h"
 #include "poffin.h"
@@ -20,7 +22,6 @@
 #include "system_data.h"
 #include "unk_02014D38.h"
 #include "unk_0202602C.h"
-#include "unk_020261E4.h"
 #include "unk_02027F84.h"
 #include "unk_02028124.h"
 #include "unk_0202854C.h"
@@ -32,7 +33,6 @@
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
 #include "unk_0202DA40.h"
-#include "unk_0202DAB4.h"
 #include "unk_0202DF8C.h"
 #include "unk_0202E2CC.h"
 #include "unk_0202E840.h"
@@ -61,7 +61,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_UNDERGROUND, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Underground_SaveSize, (SaveEntryInitFunc)Underground_Init },
     { SAVE_TABLE_ENTRY_REGULATION_BATTLES, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RegulationBattles_SaveSize, (SaveEntryInitFunc)RegulationBattles_Init },
     { SAVE_TABLE_ENTRY_IMAGE_CLIPS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ImageClip_SaveSize, (SaveEntryInitFunc)ImageClip_Init },
-    { SAVE_TABLE_ENTRY_MAIL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Mail_SaveSize, (SaveEntryInitFunc)Mail_Init },
+    { SAVE_TABLE_ENTRY_MAILBOX, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MailBox_SaveSize, (SaveEntryInitFunc)MailBox_Init },
     { SAVE_TABLE_ENTRY_POFFINS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Poffin_SaveSize, (SaveEntryInitFunc)Poffin_Init },
     { SAVE_TABLE_ENTRY_RECORD_MIXED_RNG, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RecordMixedRNG_SaveSize, (SaveEntryInitFunc)RecordMixedRNG_Init },
     { SAVE_TABLE_ENTRY_JOURNAL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Journal_SaveSize, (SaveEntryInitFunc)Journal_Init10 },
@@ -69,7 +69,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_GAME_RECORDS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GameRecords_SaveSize, (SaveEntryInitFunc)GameRecords_Init },
     { SAVE_TABLE_ENTRY_BALL_SEALS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BallSeal_SaveSize, (SaveEntryInitFunc)BallSeal_Init },
     { SAVE_TABLE_ENTRY_CHATOT, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ChatotCry_SaveSize, (SaveEntryInitFunc)ChatotCry_Init },
-    { SAVE_TABLE_ENTRY_FRONTIER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Frontier_SaveSize, (SaveEntryInitFunc)Frontier_Init },
+    { SAVE_TABLE_ENTRY_FRONTIER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BattleFrontier_SaveSize, (SaveEntryInitFunc)BattleFrontier_Init },
     { SAVE_TABLE_ENTRY_RIBBONS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Ribbons_SaveSize, (SaveEntryInitFunc)Ribbons_Init },
     { SAVE_TABLE_ENTRY_ENCOUNTERS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SpecialEncounter_SaveSize, (SaveEntryInitFunc)SpecialEncounter_Init },
     { SAVE_TABLE_ENTRY_GLOBAL_TRADE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GlobalTrade_SaveSize, (SaveEntryInitFunc)GlobalTrade_Init },
@@ -88,26 +88,26 @@ const SaveTableEntry gSaveTable[] = {
 
 const int gSaveTableSize = NELEMS(gSaveTable);
 
-TVBroadcast *SaveData_TVBroadcast(SaveData *save)
+TVBroadcast *SaveData_GetTVBroadcast(SaveData *saveData)
 {
     SaveData_Checksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
-    return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_TV_BROADCAST);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-PCBoxes *SaveData_PCBoxes(SaveData *save)
+PCBoxes *SaveData_GetPCBoxes(SaveData *saveData)
 {
-    return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_PC_BOXES);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PC_BOXES);
 }
 
-MysteryGift *SaveData_MysteryGift(SaveData *save)
+MysteryGift *SaveData_GetMysteryGift(SaveData *saveData)
 {
     SaveData_Checksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
-    return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_MYSTERY_GIFT);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 }
 
-PalParkTransfer *SaveData_PalParkTransfer(SaveData *save)
+PalParkTransfer *SaveData_GetPalParkTransfer(SaveData *saveData)
 {
-    return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER);
 }
 
 const SaveTableEntry gExtraSaveTable[] = {
@@ -121,34 +121,34 @@ const SaveTableEntry gExtraSaveTable[] = {
 
 const int gExtraSaveTableSize = NELEMS(gExtraSaveTable);
 
-HallOfFame *SaveData_HallOfFame(SaveData *save, int heapID, int *resultCode)
+HallOfFame *SaveData_HallOfFame(SaveData *saveData, int heapID, int *resultCode)
 {
-    return SaveDataExtra_Get(save, heapID, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, resultCode);
+    return SaveDataExtra_Get(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, resultCode);
 }
 
-int SaveData_SaveHallOfFame(SaveData *save, HallOfFame *hof)
+int SaveData_SaveHallOfFame(SaveData *saveData, HallOfFame *hof)
 {
-    return SaveDataExtra_Save(save, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, hof);
+    return SaveDataExtra_Save(saveData, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, hof);
 }
 
-BattleRecording *SaveData_BattleRecording(SaveData *save, int heapID, int *resultCode, int recNum)
+BattleRecording *SaveData_BattleRecording(SaveData *saveData, int heapID, int *resultCode, int recNum)
 {
     BOOL tmp;
-    return SaveDataExtra_Mirror(save, heapID, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, resultCode, &tmp);
+    return SaveDataExtra_Mirror(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, resultCode, &tmp);
 }
 
-int SaveData_SaveBattleRecording(SaveData *save, BattleRecording *rec, int recNum)
+int SaveData_SaveBattleRecording(SaveData *saveData, BattleRecording *rec, int recNum)
 {
-    return SaveDataExtra_SaveMirror(save, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, rec);
+    return SaveDataExtra_SaveMirror(saveData, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, rec);
 }
 
-BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *save, int heapID, int *resultCode)
+BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *saveData, int heapID, int *resultCode)
 {
     BOOL tmp;
-    return SaveDataExtra_Mirror(save, heapID, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, resultCode, &tmp);
+    return SaveDataExtra_Mirror(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, resultCode, &tmp);
 }
 
-int SaveData_SaveBattleFrontierStage(SaveData *save, BattleFrontierStage *frontier)
+int SaveData_SaveBattleFrontierStage(SaveData *saveData, BattleFrontierStage *frontier)
 {
-    return SaveDataExtra_SaveMirror(save, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, frontier);
+    return SaveDataExtra_SaveMirror(saveData, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, frontier);
 }

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "overlay021/ov21_021D1FA4.h"
@@ -25,17 +23,17 @@
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 #include "vram_transfer.h"
@@ -289,7 +287,7 @@ static int ov21_021E4DC0(UnkStruct_ov21_021E6A68 *param0, void *param1)
     ov21_021E5128(v1, v0, param0->heapID);
     ov21_021E51DC(v1, v0);
 
-    v1->unk_6C = sub_020050F8(species);
+    v1->unk_6C = Sound_LoadPokedexDataForSpecies(species);
 
     param0->unk_08 = v1;
 
@@ -314,7 +312,7 @@ static int ov21_021E4E00(UnkStruct_ov21_021E6A68 *param0, void *param1)
     v0->unk_0C = v1->unk_3C;
 
     if (ov21_021E33AC(v0->unk_08)) {
-        if (sub_0200598C() == 0) {
+        if (Sound_IsPokemonCryPlaying() == 0) {
             if (v1->unk_64 == 0) {
                 ov21_021E5E18(v1);
             }
@@ -593,7 +591,7 @@ static void ov21_021E5268(u32 param0, u32 param1, void *param2)
                     }
                 } else {
                     if (v2->unk_2C == 1) {
-                        sub_0200592C(0);
+                        Sound_StopPokemonCries(0);
                     }
 
                     ov21_021E5DE8(v2, v1, species);
@@ -602,7 +600,7 @@ static void ov21_021E5268(u32 param0, u32 param1, void *param2)
             case 1:
                 v2->unk_28 = 2;
                 ov21_021E5E78(v2, v2->unk_64 ^ 1);
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 break;
             default:
                 break;
@@ -664,13 +662,13 @@ static void ov21_021E537C(u32 param0, UnkStruct_ov21_021E4D90 *param1, UnkStruct
                 if (12 <= v0) {
                     param2->unk_34 = 1;
                     param2->unk_38 = gSystem.touchX;
-                    Sound_PlayEffect(1527);
+                    Sound_PlayEffect(SEQ_SE_DP_KATI);
                 }
             } else {
                 if (-12 >= v0) {
                     param2->unk_34 = 0;
                     param2->unk_38 = gSystem.touchX;
-                    Sound_PlayEffect(1527);
+                    Sound_PlayEffect(SEQ_SE_DP_KATI);
                 }
             }
         }
@@ -1045,7 +1043,7 @@ static void ov21_021E5A44(UnkStruct_ov21_021E51DC *param0)
 static void ov21_021E5AAC(UnkStruct_ov21_021E51DC *param0)
 {
     if ((param0->unk_5C / (32 / 8)) != param0->unk_60) {
-        Sound_PlayEffect(1527);
+        Sound_PlayEffect(SEQ_SE_DP_KATI);
         param0->unk_60 = param0->unk_5C / (32 / 8);
     }
 }
@@ -1061,11 +1059,11 @@ static void ov21_021E5AD8(UnkStruct_ov21_021E51DC *param0)
 
     if ((param0->unk_5C > 0) && (param0->unk_5C <= (88 / 2))) {
         if (param0->unk_50 == 1) {
-            sub_02004EEC(0);
+            Sound_StopReverb(0);
         }
 
         if (param0->unk_50 != 2) {
-            sub_02004EFC();
+            Sound_StartFilter();
             param0->unk_50 = 2;
         }
 
@@ -1075,14 +1073,14 @@ static void ov21_021E5AD8(UnkStruct_ov21_021E51DC *param0)
             v0 = 1;
         }
 
-        sub_02004F4C(v0);
+        Sound_SetFilterSize(v0);
     } else {
         if (param0->unk_50 == 2) {
-            sub_02004F44();
+            Sound_StopFilter();
         }
 
         if (param0->unk_50 != 1) {
-            sub_02004EC8(0);
+            Sound_StartReverb(0);
             param0->unk_50 = 1;
         }
 
@@ -1097,7 +1095,7 @@ static void ov21_021E5AD8(UnkStruct_ov21_021E51DC *param0)
             v0--;
         }
 
-        sub_02004EF4(v0, 0);
+        Sound_SetReverbVolume(v0, 0);
     }
 }
 
@@ -1108,7 +1106,7 @@ static void ov21_021E5B50(UnkStruct_ov21_021E5004 *param0, const UnkStruct_ov21_
 
 static void ov21_021E5B6C(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4DA4 *param1, const UnkStruct_ov21_021E51DC *param2)
 {
-    int v0 = sub_02005188(1, param2->unk_6C, param2->unk_3C);
+    int v0 = Sound_GetNumberOfPlayedCrySamples(1, param2->unk_6C, param2->unk_3C);
 
     if (v0 == 0) {
         param0->unk_48 = 0;
@@ -1259,24 +1257,24 @@ static void ov21_021E5DE8(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D
 {
     param0->unk_2C = 1;
 
-    Sound_PlayPokemonCry(POKECRY_POKEDEX_CHORUS, species, 0, 127, 0x1ff, 0);
+    Sound_PlayPokemonCryEx(POKECRY_POKEDEX_CHORUS, species, 0, 127, 0x1ff, 0);
     ov21_021E5F00(param0);
 }
 
 static void ov21_021E5E18(UnkStruct_ov21_021E51DC *param0)
 {
-    sub_0200592C(0);
+    Sound_StopPokemonCries(0);
     param0->unk_2C = 0;
 }
 
 static void ov21_021E5E28(UnkStruct_ov21_021E51DC *param0)
 {
     if (param0->unk_50 == 1) {
-        sub_02004EEC(0);
+        Sound_StopReverb(0);
     }
 
     if (param0->unk_50 == 2) {
-        sub_02004F44();
+        Sound_StopFilter();
     }
 
     param0->unk_50 = 0;
@@ -1286,7 +1284,7 @@ static void ov21_021E5E48(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D
 {
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
-    if (sub_0200598C() == 0) {
+    if (Sound_IsPokemonCryPlaying() == 0) {
         param0->unk_68--;
 
         if (param0->unk_68 == 0) {
@@ -1349,14 +1347,14 @@ static void ov21_021E5F00(UnkStruct_ov21_021E51DC *param0)
 {
     if (param0->unk_2C) {
         ov21_021E5FF4(param0->unk_3C);
-        sub_02004F94(1, 0xffff, param0->unk_40);
+        Sound_SetPanForHandle(1, 0xffff, param0->unk_40);
         ov21_021E5F28(param0->unk_44);
     }
 }
 
 static void ov21_021E5F28(int param0)
 {
-    sub_02004A54(8, param0, 0);
+    Sound_FadeVolumeForHandle(8, param0, 0);
 }
 
 static void ov21_021E5F38(UnkStruct_ov21_021E5004 *param0, const UnkStruct_ov21_021E51DC *param1)
@@ -1383,7 +1381,7 @@ static void ov21_021E5F5C(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D
 
         if (param0->unk_64 == 0) {
             if (param0->unk_2C == 1) {
-                sub_0200592C(0);
+                Sound_StopPokemonCries(0);
             }
 
             ov21_021E5DE8(param0, param1, species);
@@ -1414,6 +1412,6 @@ static void ov21_021E5FD0(UnkStruct_ov21_021E4DA4 *param0, const UnkStruct_ov21_
 
 static void ov21_021E5FF4(int param0)
 {
-    sub_02004F68(1, 0xffff, param0);
-    sub_02004F68(8, 0xffff, 20 + param0);
+    Sound_SetPitchForHandle(1, 0xffff, param0);
+    Sound_SetPitchForHandle(8, 0xffff, 20 + param0);
 }

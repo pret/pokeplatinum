@@ -21,7 +21,7 @@
 
 #include "game_records.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
@@ -95,8 +95,8 @@ UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *param0, u16 param1, u8 param2
         }
 
         if (v3 == 1) {
-            v7->unk_0C = sub_02030698(sub_0203068C(v7->unk_4F8), sub_0205E430(v7->unk_05, v7->unk_04), sub_0205E6A8(sub_0205E430(v7->unk_05, v7->unk_04)));
-            v7->unk_08 = sub_02030698(sub_0203068C(v7->unk_4F8), sub_0205E488(v7->unk_05, v7->unk_04), sub_0205E6A8(sub_0205E488(v7->unk_05, v7->unk_04)));
+            v7->unk_0C = sub_02030698(SaveData_GetBattleFrontier(v7->unk_4F8), sub_0205E430(v7->unk_05, v7->unk_04), sub_0205E6A8(sub_0205E430(v7->unk_05, v7->unk_04)));
+            v7->unk_08 = sub_02030698(SaveData_GetBattleFrontier(v7->unk_4F8), sub_0205E488(v7->unk_05, v7->unk_04), sub_0205E6A8(sub_0205E488(v7->unk_05, v7->unk_04)));
         } else {
             v7->unk_0C = 0;
             v7->unk_08 = 0;
@@ -107,8 +107,8 @@ UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *param0, u16 param1, u8 param2
         v7->unk_04 = (u8)sub_02030030(v0, 1, 0, NULL);
         v7->unk_05 = (u8)sub_02030030(v0, 0, 0, NULL);
         v7->unk_06 = (u8)sub_02030030(v0, 2, 0, NULL);
-        v7->unk_0C = sub_02030698(sub_0203068C(v7->unk_4F8), sub_0205E430(v7->unk_05, v7->unk_04), sub_0205E6A8(sub_0205E430(v7->unk_05, v7->unk_04)));
-        v7->unk_08 = sub_02030698(sub_0203068C(v7->unk_4F8), sub_0205E488(v7->unk_05, v7->unk_04), sub_0205E6A8(sub_0205E488(v7->unk_05, v7->unk_04)));
+        v7->unk_0C = sub_02030698(SaveData_GetBattleFrontier(v7->unk_4F8), sub_0205E430(v7->unk_05, v7->unk_04), sub_0205E6A8(sub_0205E430(v7->unk_05, v7->unk_04)));
+        v7->unk_08 = sub_02030698(SaveData_GetBattleFrontier(v7->unk_4F8), sub_0205E488(v7->unk_05, v7->unk_04), sub_0205E6A8(sub_0205E488(v7->unk_05, v7->unk_04)));
     }
 
     v7->unk_0E = (u16)(v7->unk_0C / 7);
@@ -360,12 +360,12 @@ void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
     u16 v6[4];
     u32 v7[4];
     u32 v8, v9, v10;
-    UnkStruct_0203068C *v11;
+    BattleFrontier *v11;
     Pokemon *v12;
     UnkStruct_0202FF58 *v13 = param0->unk_4F4;
     UnkStruct_020300F4 *v14 = sub_020300F4(param0->unk_4F8);
 
-    v11 = sub_0203068C(param0->unk_4F8);
+    v11 = SaveData_GetBattleFrontier(param0->unk_4F8);
     v3 = ov104_0223AA50(param0->unk_04);
     v4 = ov104_0223AA74(param0->unk_04, 1);
 
@@ -567,12 +567,12 @@ void ov104_022346A4(UnkStruct_ov104_0223ADA0 *param0)
         (void)0;
     } else {
         v0 = Party_GetPokemonBySlotIndex(param0->unk_4D8, param0->unk_4DC[1]);
-        sub_0207A128(param0->unk_4D4, param0->unk_4DC[0], v0);
+        Party_AddPokemonBySlotIndex(param0->unk_4D4, param0->unk_4DC[0], v0);
 
         param0->unk_4E8[param0->unk_4DC[0]] = param0->unk_254[param0->unk_4DC[1]];
 
         ov104_02234790(param0);
-        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(param0->unk_4F8), RECORD_UNK_064);
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecords(param0->unk_4F8), RECORD_UNK_064);
     }
 
     return;

@@ -21,17 +21,17 @@
 #include "game_records.h"
 #include "heap.h"
 #include "list_menu.h"
-#include "math.h"
+#include "math_util.h"
 #include "menu.h"
 #include "message.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_vars.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
 #include "vars_flags.h"
@@ -221,7 +221,7 @@ void ov23_0224DCB8(int param0, UnkFuncPtr_ov23_0224DCB8 param1, FieldSystem *fie
     v0->unk_28.unk_02 = 0;
     v0->unk_28.unk_00 = v0->unk_30;
 
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
     ov23_0224DC68(v0, 0);
 
     v0->unk_00 = SysTask_Start(ov23_0224E2D8, v0, 10000);
@@ -240,7 +240,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
         MessageLoader *v1;
         int v2;
 
-        v1 = MessageLoader_Init(0, 26, 634, HEAP_ID_FIELD);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0634, HEAP_ID_FIELD);
 
         for (v2 = 0; v2 < NELEMS(Unk_ov23_022568B4); v2++) {
             StringList_AddFromMessageBank(param0->unk_1C, v1, Unk_ov23_022568B4[v2].unk_00, Unk_ov23_022568B4[v2].unk_04);
@@ -302,7 +302,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
         int v2, v3;
         u8 v4[4];
 
-        v1 = MessageLoader_Init(0, 26, 633, HEAP_ID_FIELD);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_QUESTIONS, HEAP_ID_FIELD);
 
         for (v2 = 0; v2 < 4; v2++) {
             u32 v5 = MTRNG_Next() % 12;
@@ -355,7 +355,7 @@ static BOOL ov23_0224DF1C(SysTask *param0, void *param1)
         return 0;
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         {
             UnkStruct_ov23_0224DF1C v3;
 
@@ -389,7 +389,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
         MessageLoader *v1;
         int v2;
 
-        v1 = MessageLoader_Init(0, 26, 632, HEAP_ID_FIELD);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ANSWERS, HEAP_ID_FIELD);
 
         for (v2 = 0; v2 < 4; v2++) {
             u32 v3 = 4 * param0->unk_32 + v2;
@@ -430,7 +430,7 @@ static BOOL ov23_0224E05C(SysTask *param0, void *param1)
     case 0xfffffffe:
         return 0;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224E244(param0, v0);
         v2.unk_00 = (v1 + v0->unk_32 * 4);
         v2.unk_01 = v0->unk_30;
@@ -461,7 +461,7 @@ static void ov23_0224E124(UnkStruct_ov23_0224E280 *param0)
 
     sub_0202952C(SaveData_SecretBaseRecord(FieldSystem_GetSaveData(param0->fieldSystem)));
     ov23_0224F634(param0->unk_28.unk_02);
-    Sound_PlayEffect(1507);
+    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 }
 
 static void ov23_0224E17C(UnkStruct_ov23_0224E280 *param0, int param1)
@@ -504,12 +504,12 @@ static BOOL ov23_0224E1E0(SysTask *param0, void *param1)
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224E8E0(v0);
         ov23_0224E244(param0, v0);
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         {
             UnkFuncPtr_ov23_0224E1E0 v2 = (UnkFuncPtr_ov23_0224E1E0)v1;
 
@@ -631,7 +631,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
     case 10:
         break;
     case 11:
-        GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_32);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_32);
         ov23_022539E8();
         ov23_0224DC68(v0, 9);
         v0->unk_37 = 12;
@@ -727,7 +727,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
             SystemVars_SetUndergroundItemsGivenAway(v2, SystemVars_GetUndergroundItemsGivenAway(v2) + 1);
         }
 
-        GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_31);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_31);
         v0->unk_37 = 25;
         break;
     case 25:
@@ -795,7 +795,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
         break;
     case 36:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_33);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_33);
             ov23_0224DC68(v0, 142);
             v0->unk_37 = 37;
         }
@@ -895,7 +895,7 @@ static void ov23_0224E93C(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
     if (v0 == 0) {
         if (ov23_0224F744(param1->unk_24.unk_02)) {
             sub_0202977C(SaveData_SecretBaseRecord(FieldSystem_GetSaveData(param1->fieldSystem)));
-            Sound_PlayEffect(1507);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             ov23_0224DC40(param1, 22);
 
             param1->unk_34 = 19;
@@ -974,7 +974,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
         MessageLoader *v2;
         int v3;
 
-        v2 = MessageLoader_Init(0, 26, 632, HEAP_ID_FIELD);
+        v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ANSWERS, HEAP_ID_FIELD);
 
         for (v3 = 0; v3 < 4; v3++) {
             u32 v4 = 4 * param0->unk_2E + v3;
@@ -1011,7 +1011,7 @@ static BOOL ov23_0224EB74(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v0->unk_1C, &v0->unk_36);
 
     if (v3 != v0->unk_36) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     if (CommSys_CheckError()) {
@@ -1024,7 +1024,7 @@ static BOOL ov23_0224EB74(SysTask *param0, void *param1)
     case 0xfffffffe:
         v1 = 51;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224EA08(param0, v0);
 
         if (v1 != 51) {
@@ -1405,7 +1405,7 @@ static void ov23_0224F270(UnkStruct_ov23_0224E280 *param0)
     ListMenu_CalcTrueCursorPos(param0->unk_20, &param0->unk_3A);
 
     if (v0 != param0->unk_3A) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     return;

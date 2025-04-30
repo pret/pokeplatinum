@@ -7,7 +7,7 @@
 #include "party.h"
 #include "pokemon.h"
 
-HeightWeightData *sub_0207A2A8(int param0);
+HeightWeightData *sub_0207A2A8(int heapID);
 void sub_0207A2C0(HeightWeightData *param0);
 BOOL sub_0207A2D0(const BattleRegulation *param0, Pokemon *param1, const HeightWeightData *param2);
 int sub_0207A3AC(const BattleRegulation *param0, Party *param1, const HeightWeightData *param2, u8 *param3);

@@ -52,7 +52,7 @@ add_global_arguments(c_args,
 
 pokeplatinum_args = [
     '-DPM_KEEP_ASSERTS',
-    '-DGAME_VERSION=PLATINUM',
+    '-DGAME_VERSION=VERSION_PLATINUM',
     '-DGAME_LANGUAGE=ENGLISH'
 ]
 
@@ -211,32 +211,25 @@ ichneumon_sub_defs = subproject('NitroSDK'
 ###                        DS ROM                        ###
 ############################################################
 pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
-    output: [
-        'pokeplatinum.us.nds',
-        'pokeplatinum.us.nlf'
-    ],
+    output: 'pokeplatinum.us.nds',
     input: [
         main,
-        banner_bnr,
         rom_header_template,
-        rom_rsf,
+        icon_png,
         ichneumon_sub,
         ichneumon_sub_defs,
-        fixrom_exe,
-        nitrofs_files # Make sure this is always listed last
+        nitrofs_files,
     ],
     command : [
-        makerom_exe,
-        '-DTITLE_NAME=POKEMON PL',
-        '-DBNR=@INPUT1@',
-        '-DHEADER_TEMPLATE=@INPUT2@',
-        '-DARM7=@INPUT4@',
-        '-DARM7_DEFS=@INPUT5@',
-        '@INPUT3@',
-        '@OUTPUT0@',
-        '@OUTPUT1@',
-        '&&','sh', '-c',
-        '@INPUT6@ @OUTPUT0@ --secure-crc 0xF8B8 --game-code CPUE'
+        nitrorom_exe,
+        'pack',
+        '-DHEADER_TEMPLATE=@INPUT1@', # rom_header_template
+        '-DICON_PNG=@INPUT2@',        # icon_png
+        '-DARM7_STATIC=@INPUT3@',     # ichneumon_sub
+        '-DARM7_DEFINE=@INPUT4@',     # ichneumon_sub_defs
+        '--output=@OUTPUT0@',         # pokeplatinum.us.nds
+        rom_ini,
+        filesys_csv,
     ],
     build_by_default: true
 )

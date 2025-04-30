@@ -14,7 +14,7 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag 0x9DD
+    SetFlag FLAG_UNK_0x09DD
     End
 
 _0028:
@@ -103,8 +103,8 @@ _00DF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_GALACTIC_KEY, 1, 0x800C
-    GoToIfEq 0x800C, 1, _0107
+    CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0107
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -113,9 +113,9 @@ _00DF:
 
 _0107:
     Message 10
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _012A
-    GoToIfEq 0x800C, MENU_NO, _015E
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _012A
+    GoToIfEq VAR_RESULT, MENU_NO, _015E
     End
 
 _012A:
@@ -127,7 +127,7 @@ _012A:
     ApplyMovement 5, _0164
     ApplyMovement 6, _016C
     WaitMovement
-    SetFlag 0x224
+    SetFlag FLAG_UNK_0x0224
     RemoveObject 5
     RemoveObject 6
     CloseMessage

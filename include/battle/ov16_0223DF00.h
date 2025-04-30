@@ -7,10 +7,8 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -31,6 +29,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -83,7 +82,7 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
  * @return Pointer to the Pokemon struct in that battler's party slot.
  */
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
-UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSys);
+PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSys);
 UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSys);
 SpriteSystem *ov16_0223E010(BattleSystem *battleSys);
 SpriteManager *ov16_0223E018(BattleSystem *battleSys);
@@ -210,7 +209,7 @@ u8 BattleSystem_TextSpeed(BattleSystem *battleSys);
 int BattleSystem_Ruleset(BattleSystem *battleSys);
 PokemonAnimationSys *BattleSystem_GetPokemonAnimationSystem(BattleSystem *battleSys);
 ChatotCry *BattleSystem_ChatotVoice(BattleSystem *battleSys, int param1);
-void ov16_0223EE70(BattleSystem *battleSys);
+void BattleSystem_SetBurmyForm(BattleSystem *battleSys);
 void ov16_0223EF2C(BattleSystem *battleSys, int param1, int param2);
 void ov16_0223EF48(BattleSystem *battleSys, Pokemon *param1);
 void ov16_0223EF68(BattleSystem *battleSys, Pokemon *param1);

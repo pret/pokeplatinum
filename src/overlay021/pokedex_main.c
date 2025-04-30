@@ -4,8 +4,6 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay021/funcptr_ov21_021E9B74.h"
@@ -54,6 +52,7 @@
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "render_oam.h"
+#include "sound.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -61,7 +60,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201E3D8.h"
@@ -92,7 +90,7 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
 {
     PokedexOverlayArgs pokedexOverlayArgs;
 
-    sub_02004550(54, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_54, SEQ_NONE, 0);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKEDEX, 0x40000);
 
     PokedexApp **appPtr = OverlayManager_NewData(overlayMan, sizeof(PokedexApp **), HEAP_ID_POKEDEX);
@@ -125,7 +123,7 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
 
     *appPtr = PokedexMain_NewPokedexApp(HEAP_ID_POKEDEX, &pokedexOverlayArgs);
 
-    sub_0200544C(1, (127 / 3));
+    Sound_SetPlayerVolume(1, (127 / 3));
 
     return 1;
 }
@@ -176,7 +174,7 @@ int PokedexMain_Exit(OverlayManager *overlayMan, int *state)
     VramTransfer_Free();
     OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_POKEDEX);
-    sub_0200544C(1, 127);
+    Sound_SetPlayerVolume(1, 127);
 
     return 1;
 }

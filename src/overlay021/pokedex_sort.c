@@ -174,31 +174,31 @@ u32 PokedexSort_Gender(const PokedexSortData *param0, int species, int formIndex
 
 u32 PokedexSort_UnownForm(const PokedexSortData *param0, int formIndex)
 {
-    GF_ASSERT(formIndex < 28);
+    GF_ASSERT(formIndex < UNOWN_FORM_COUNT);
     return Pokedex_GetForm_Unown(param0->pokedex, formIndex);
 }
 
 u32 PokedexSort_ShellosForm(const PokedexSortData *param0, int formIndex)
 {
-    GF_ASSERT(formIndex < 2);
+    GF_ASSERT(formIndex < SHELLOS_FORM_COUNT);
     return Pokedex_GetForm_Shellos(param0->pokedex, formIndex);
 }
 
 u32 PokedexSort_GastrodonForm(const PokedexSortData *param0, int formIndex)
 {
-    GF_ASSERT(formIndex < 2);
+    GF_ASSERT(formIndex < GASTRODON_FORM_COUNT);
     return Pokedex_GetForm_Gastrodon(param0->pokedex, formIndex);
 }
 
 u32 PokedexSort_BurmyForm(const PokedexSortData *param0, int formIndex)
 {
-    GF_ASSERT(formIndex < 3);
+    GF_ASSERT(formIndex < BURMY_FORM_COUNT);
     return Pokedex_GetForm_Burmy(param0->pokedex, formIndex);
 }
 
 u32 PokedexSort_WormadamForm(const PokedexSortData *param0, int formIndex)
 {
-    GF_ASSERT(formIndex < 3);
+    GF_ASSERT(formIndex < WORMADAM_FORM_COUNT);
     return Pokedex_GetForm_Wormadam(param0->pokedex, formIndex);
 }
 
@@ -719,7 +719,7 @@ static u16 *PokedexFromNARC(enum HeapId heapID, int pokedexSort, int *pokedexLen
 
     GF_ASSERT(PDSI_NUMSORTS > pokedexSort);
 
-    u32 pokedexDataNarcIndex = Pokedex_Data_NARC_Index();
+    enum NarcID pokedexDataNarcIndex = Pokedex_Data_NARC_Index();
     u16 *pokedexFromFile = LoadMemberFromNARC_OutFileSize(pokedexDataNarcIndex, NUMSTATFILES + pokedexSort, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / (sizeof(u16));
 

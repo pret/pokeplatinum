@@ -25,7 +25,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
@@ -36,6 +36,7 @@
 #include "render_oam.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -44,7 +45,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
@@ -150,7 +150,7 @@ static const u8 Unk_ov108_0224367C[] = {
 
 struct UnkStruct_ov108_02241DB0_t {
     OverlayManager *unk_00;
-    UnkStruct_0203068C *unk_04;
+    BattleFrontier *unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -298,11 +298,11 @@ int ov108_02241AE0(OverlayManager *param0, int *param1)
     v1->unk_426 = v2->unk_18;
     v1->unk_12 = v2->unk_07;
     v1->unk_3C4 = &v2->unk_38;
-    v1->unk_D8 = SaveData_Options(v1->unk_DC);
+    v1->unk_D8 = SaveData_GetOptions(v1->unk_DC);
     v1->unk_3C8 = v2->unk_30;
     v1->unk_3CC = v2->unk_34;
     v1->unk_0E = 0xff;
-    v1->unk_04 = sub_0203068C(v1->unk_DC);
+    v1->unk_04 = SaveData_GetBattleFrontier(v1->unk_DC);
     v1->unk_3C0 = v2->unk_08;
     v1->unk_1C = v2->unk_0C;
     v1->unk_20 = v2->unk_10;
@@ -532,7 +532,7 @@ static BOOL ov108_02241F28(UnkStruct_ov108_02241DB0 *param0)
         }
 
         ov108_02242884(param0, 3);
-        Sound_PlayEffect(1545);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
 
         param0->unk_0B = 24;
         param0->unk_08 = 3;
@@ -550,7 +550,7 @@ static BOOL ov108_02241F28(UnkStruct_ov108_02241DB0 *param0)
             }
         }
 
-        Sound_PlayEffect(1545);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
         param0->unk_0B = 24;
         param0->unk_08 = 4;
         break;
@@ -567,7 +567,7 @@ static BOOL ov108_02241F28(UnkStruct_ov108_02241DB0 *param0)
             }
         }
 
-        Sound_PlayEffect(1545);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
 
         param0->unk_0B = 24;
         param0->unk_08 = 5;
@@ -586,7 +586,7 @@ static BOOL ov108_02241F28(UnkStruct_ov108_02241DB0 *param0)
         }
 
         ov108_022435A8(param0->unk_338, 1);
-        Sound_PlayEffect(1572);
+        Sound_PlayEffect(SEQ_SE_DP_UG_020);
         ov108_022435F4(param0->unk_3BC, 0);
         param0->unk_08 = 6;
         break;
@@ -809,7 +809,7 @@ static void ov108_0224237C(UnkStruct_ov108_02241DB0 *param0)
     ov108_02242658(param0);
     ov108_022426B0(param0);
 
-    param0->unk_68 = MessageLoader_Init(1, 26, 536, HEAP_ID_103);
+    param0->unk_68 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0536, HEAP_ID_103);
     param0->unk_6C = StringTemplate_Default(HEAP_ID_103);
     param0->unk_70 = Strbuf_Init(600, HEAP_ID_103);
     param0->unk_74 = Strbuf_Init(600, HEAP_ID_103);
@@ -1093,7 +1093,7 @@ static void ov108_02242964(UnkStruct_ov108_02241DB0 *param0, int param1)
             param0->unk_0D++;
         }
 
-        Sound_PlayEffect(1509);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
 
         if (param0->unk_0D >= param0->unk_2E) {
             param0->unk_0D = 0;
@@ -1323,7 +1323,7 @@ static void ov108_02242BA0(UnkStruct_ov108_02241DB0 *param0, u8 param1)
     }
 
     ov108_022429C8(param0, v3);
-    Sound_PlayEffect(1507);
+    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 
     return;
 }
@@ -1601,7 +1601,7 @@ static BOOL ov108_02242FE8(UnkStruct_ov108_02241DB0 *param0)
 static void ov108_02243008(UnkStruct_ov108_02241DB0 *param0)
 {
     Sound_StopEffect(1500, 0);
-    Sound_PlayEffect(1508);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
     ov108_022435F4(param0->unk_3BC, 1);
 
     return;

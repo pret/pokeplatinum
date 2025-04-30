@@ -17,16 +17,16 @@ _0008:
 
 _001B:
     Message 1
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 9, 0
-    ScrCmd_042 10, 1
-    ScrCmd_042 11, 2
-    ScrCmd_042 12, 3
-    ScrCmd_043
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _00D0
-    GoToIfEq 0x8008, 1, _0121
-    GoToIfEq 0x8008, 2, _0078
+    InitLocalTextMenu 1, 1, 0, VAR_RESULT
+    AddMenuEntryImm 9, 0
+    AddMenuEntryImm 10, 1
+    AddMenuEntryImm 11, 2
+    AddMenuEntryImm 12, 3
+    ShowMenu
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _00D0
+    GoToIfEq VAR_0x8008, 1, _0121
+    GoToIfEq VAR_0x8008, 2, _0078
     GoTo _006D
     End
 
@@ -77,12 +77,12 @@ _00C5:
     End
 
 _00D0:
-    CheckItem ITEM_POFFIN_CASE, 1, 0x800C
-    GoToIfEq 0x800C, 0, _00AF
-    ScrCmd_1D8 0x800C
-    GoToIfEq 0x800C, 1, _00BA
-    GoToIfEq 0x800C, 2, _00C5
-    WaitTime 30, 0x800C
+    CheckItem ITEM_POFFIN_CASE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00AF
+    ScrCmd_1D8 VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00BA
+    GoToIfEq VAR_RESULT, 2, _00C5
+    WaitTime 30, VAR_RESULT
     Call _0085
     ScrCmd_1D7 0
     Call _0097
@@ -90,39 +90,39 @@ _00D0:
     End
 
 _0121:
-    CheckItem ITEM_POFFIN_CASE, 1, 0x800C
-    GoToIfEq 0x800C, 0, _00AF
-    ScrCmd_1D8 0x800C
-    GoToIfEq 0x800C, 1, _00BA
-    GoToIfEq 0x800C, 2, _00C5
+    CheckItem ITEM_POFFIN_CASE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00AF
+    ScrCmd_1D8 VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00BA
+    GoToIfEq VAR_RESULT, 2, _00C5
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
-    GoToIfEq 0x800C, 1, _0173
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_RESULT, 1, _0173
     GoTo _006D
     End
 
 _0173:
     Message 13
-    ScrCmd_040 30, 1, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 5, 2
-    ScrCmd_043
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _01B7
-    GoToIfEq 0x8008, 1, _020D
+    InitGlobalTextMenu 30, 1, 0, VAR_RESULT
+    SetMenuXOriginToRight
+    AddMenuEntryImm 13, 0
+    AddMenuEntryImm 14, 1
+    AddMenuEntryImm 5, 2
+    ShowMenu
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _01B7
+    GoToIfEq VAR_0x8008, 1, _020D
     GoTo _006D
     End
 
 _01B7:
     Message 2
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0173
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0173
     CloseMessage
-    ScrCmd_0F2 6, 0, 0, 0x800C
-    GoToIfEq 0x800C, 1, _01F9
-    GoToIfEq 0x800C, 3, _0203
+    ScrCmd_0F2 6, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _01F9
+    GoToIfEq VAR_RESULT, 3, _0203
     GoTo _0263
     End
 
@@ -138,12 +138,12 @@ _0203:
 
 _020D:
     Message 2
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0173
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0173
     CloseMessage
-    ScrCmd_0F3 6, 0, 0, 0x800C
-    GoToIfEq 0x800C, 1, _024F
-    GoToIfEq 0x800C, 3, _0259
+    ScrCmd_0F3 6, 0, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _024F
+    GoToIfEq VAR_RESULT, 3, _0259
     GoTo _0263
     End
 

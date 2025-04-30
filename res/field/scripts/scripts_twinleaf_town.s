@@ -15,30 +15,30 @@
     ScriptEntryEnd
 
 _0026:
-    CallIfEq 0x40F4, 1, _004F
-    CallIfEq 0x40A4, 4, _005F
-    CallIfEq 0x40A4, 6, _0057
+    CallIfEq VAR_UNK_0x40F4, 1, _004F
+    CallIfEq VAR_UNK_0x40A4, 4, _005F
+    CallIfEq VAR_UNK_0x40A4, 6, _0057
     End
 
 _004F:
-    SetVar 0x40F4, 2
+    SetVar VAR_UNK_0x40F4, 2
     Return
 
 _0057:
-    SetVar 0x40A4, 7
+    SetVar VAR_UNK_0x40A4, 7
     Return
 
 _005F:
-    SetVar 0x40A4, 5
+    SetVar VAR_UNK_0x40A4, 5
     Return
 
 _0067:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 144, _00A3
-    GoToIfGe 0x4095, 1, _00AE
-    GoToIfSet 234, _00BC
+    GoToIfSet FLAG_UNK_0x0090, _00A3
+    GoToIfGe VAR_UNK_0x4095, 1, _00AE
+    GoToIfSet FLAG_UNK_0x00EA, _00BC
     BufferPlayerName 0
     BufferRivalName 1
     Message 4
@@ -75,14 +75,14 @@ _00CD:
     LockAll
     ApplyMovement 3, _03B0
     WaitMovement
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 108, _0140
-    GoToIfEq 0x8004, 109, _0158
-    GoToIfEq 0x8004, 110, _0170
-    GoToIfEq 0x8004, 111, _0188
-    GoToIfEq 0x8004, 112, _01A0
-    GoToIfEq 0x8004, 113, _01B8
-    GoToIfEq 0x8004, 114, _01D0
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 108, _0140
+    GoToIfEq VAR_0x8004, 109, _0158
+    GoToIfEq VAR_0x8004, 110, _0170
+    GoToIfEq VAR_0x8004, 111, _0188
+    GoToIfEq VAR_0x8004, 112, _01A0
+    GoToIfEq VAR_0x8004, 113, _01B8
+    GoToIfEq VAR_0x8004, 114, _01D0
     GoTo _01E8
 
 _0140:
@@ -138,13 +138,13 @@ _0200:
     BufferRivalName 1
     Message 3
     CloseMessage
-    GoToIfEq 0x8004, 108, _026C
-    GoToIfEq 0x8004, 109, _027C
-    GoToIfEq 0x8004, 110, _028C
-    GoToIfEq 0x8004, 111, _029C
-    GoToIfEq 0x8004, 112, _02AC
-    GoToIfEq 0x8004, 113, _02BC
-    GoToIfEq 0x8004, 114, _02CC
+    GoToIfEq VAR_0x8004, 108, _026C
+    GoToIfEq VAR_0x8004, 109, _027C
+    GoToIfEq VAR_0x8004, 110, _028C
+    GoToIfEq VAR_0x8004, 111, _029C
+    GoToIfEq VAR_0x8004, 112, _02AC
+    GoToIfEq VAR_0x8004, 113, _02BC
+    GoToIfEq VAR_0x8004, 114, _02CC
     GoTo _02DC
 
 _026C:
@@ -391,14 +391,14 @@ _04D0:
     ScrCmd_168 3, 27, 9, 11, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ClearFlag 0x174
+    ClearFlag FLAG_UNK_0x0174
     AddObject 2
     ApplyMovement 2, _05A4
     ApplyMovement LOCALID_PLAYER, _0588
     WaitMovement
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 0
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     CallCommonScript 0x7FA
     ApplyMovement 2, _059C
     WaitMovement
@@ -409,7 +409,7 @@ _04D0:
     ApplyMovement LOCALID_PLAYER, _0570
     ApplyMovement 2, _05B0
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     BufferRivalName 0
     Message 2
     CloseMessage
@@ -420,8 +420,8 @@ _04D0:
     ScrCmd_16A 77
     RemoveObject 2
     CallCommonScript 0x7FB
-    SetVar 0x4070, 1
-    SetVar 0x40E6, 1
+    SetVar VAR_UNK_0x4070, 1
+    SetVar VAR_UNK_0x40E6, 1
     ReleaseAll
     End
 
@@ -482,8 +482,8 @@ _05E7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 144, _0612
-    GoToIfGe 0x4095, 1, _061D
+    GoToIfSet FLAG_UNK_0x0090, _0612
+    GoToIfGe VAR_UNK_0x4095, 1, _061D
     Message 8
     WaitABXPadPress
     CloseMessage

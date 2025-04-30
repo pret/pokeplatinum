@@ -14,26 +14,26 @@
     ScriptEntryEnd
 
 _0022:
-    GetTimeOfDay 0x4000
-    GoToIfEq 0x4000, 0, _0069
-    GoToIfEq 0x4000, 1, _007B
-    GoToIfEq 0x4000, 2, _007B
-    GoToIfEq 0x4000, 3, _007B
-    GoToIfEq 0x4000, 4, _007B
+    GetTimeOfDay VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0069
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _007B
+    GoToIfEq VAR_MAP_LOCAL_0, 2, _007B
+    GoToIfEq VAR_MAP_LOCAL_0, 3, _007B
+    GoToIfEq VAR_MAP_LOCAL_0, 4, _007B
     End
 
 _0069:
-    ClearFlag 0x273
-    ClearFlag 0x275
-    SetFlag 0x272
-    SetFlag 0x274
+    ClearFlag FLAG_UNK_0x0273
+    ClearFlag FLAG_UNK_0x0275
+    SetFlag FLAG_UNK_0x0272
+    SetFlag FLAG_UNK_0x0274
     End
 
 _007B:
-    ClearFlag 0x272
-    ClearFlag 0x274
-    SetFlag 0x273
-    SetFlag 0x275
+    ClearFlag FLAG_UNK_0x0272
+    ClearFlag FLAG_UNK_0x0274
+    SetFlag FLAG_UNK_0x0273
+    SetFlag FLAG_UNK_0x0275
     End
 
 _008D:
@@ -50,14 +50,13 @@ _00A0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 205, _00E5
+    GoToIfSet FLAG_UNK_0x00CD, _00E5
     Message 1
-    SetVar 0x8004, 0x189
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00F0
+    SetVar VAR_0x8004, ITEM_TM66
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00F0
     CallCommonScript 0x7FC
-    SetFlag 205
+    SetFlag FLAG_UNK_0x00CD
     GoTo _00E5
 
 _00E5:

@@ -23,14 +23,14 @@
 #include "savedata_misc.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "terrain_collision_manager.h"
 #include "unk_0201CED8.h"
-#include "unk_02054D00.h"
 #include "unk_020655F4.h"
 #include "unk_020677F4.h"
 #include "unk_0206CCB0.h"
 
 struct UnkStruct_02055CBC_t {
-    int unk_00;
+    int heapID;
     BerryGrowthData *unk_04;
     NNSG3dRenderObj unk_08;
     NNSG3dResMdl *unk_5C;
@@ -88,7 +88,7 @@ UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int heapID)
     UnkStruct_02055CBC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02055CBC));
     MI_CpuClear8(v0, sizeof(UnkStruct_02055CBC));
 
-    v0->unk_00 = heapID;
+    v0->heapID = heapID;
     v0->unk_04 = BerryGrowthData_Init(heapID);
 
     sub_02055D14(fieldSystem, v0);
@@ -124,7 +124,7 @@ static void sub_02055D14(FieldSystem *fieldSystem, UnkStruct_02055CBC *param1)
     UnkStruct_ov5_021DF47C *v0 = fieldSystem->unk_40;
     u32 v1 = ov5_021DF5A8(v0, 17);
 
-    param1->unk_60 = Heap_AllocFromHeap(param1->unk_00, v1);
+    param1->unk_60 = Heap_AllocFromHeap(param1->heapID, v1);
 
     ov5_021DF5B4(v0, 17, param1->unk_60);
     Easy3D_InitRenderObjFromResource(&param1->unk_08, &param1->unk_5C, &param1->unk_60);
@@ -178,7 +178,7 @@ BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1)
     BerryPatches_HarvestPatch(v3, v0);
     sub_02067834(param1);
 
-    return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), sub_02055C50(v2), v1, 4);
+    return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), sub_02055C50(v2), v1, HEAP_ID_FIELD);
 }
 
 void sub_02055E80(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
@@ -313,7 +313,7 @@ static BOOL sub_02056010(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, i
         GF_ASSERT(0);
     }
 
-    if (FieldSystem_CheckCollision(fieldSystem, v0, v1)) {
+    if (TerrainCollisionManager_CheckCollision(fieldSystem, v0, v1)) {
         return 1;
     }
 

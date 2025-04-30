@@ -17,7 +17,7 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "poketch_memory.h"
 #include "sys_task_manager.h"
 
@@ -212,13 +212,13 @@ static void ov41_022568DC(SysTask *param0, void *param1)
     UnkStruct_ov41_022567B0 *v3;
     u32 v4;
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
     v3 = PoketchTask_GetTaskData(param1);
 
     Bg_InitFromTemplate(v3->unk_04, 6, &v0, 0);
     Bg_InitFromTemplate(v3->unk_04, 7, &v1, 0);
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 
     v4 = Graphics_LoadTilesToBgLayer(12, 86, v3->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     v4 /= 0x20;
@@ -226,7 +226,7 @@ static void ov41_022568DC(SysTask *param0, void *param1)
     Graphics_LoadTilemapToBgLayer(12, 85, v3->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Poketch_LoadActivePalette(0, 0);
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 
     ov41_022569BC(v3, v4);
     Bg_CopyTilemapBufferToVRAM(v3->unk_04, 7);
@@ -235,7 +235,7 @@ static void ov41_022568DC(SysTask *param0, void *param1)
     GXS_SetVisiblePlane(v2.visiblePlane | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ);
 
     ov41_022568C8(param1);
-    GF_ASSERT(GF_heap_c_dummy_return_true(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 }
 
 static void ov41_022569BC(UnkStruct_ov41_022567B0 *param0, u32 param1)

@@ -6,9 +6,9 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 
@@ -36,7 +36,7 @@ u8 ov107_02249C9C(u8 param0, u8 param1)
 
 u8 ov107_02249CAC(SaveData *param0, u8 param1, u8 param2)
 {
-    return sub_02030698(sub_0203068C(param0), sub_0205E5B4(param1, param2), sub_0205E6A8(sub_0205E5B4(param1, param2)));
+    return sub_02030698(SaveData_GetBattleFrontier(param0), sub_0205E5B4(param1, param2), sub_0205E6A8(sub_0205E5B4(param1, param2)));
 }
 
 void ov107_02249CE0(u32 param0, u16 param1)

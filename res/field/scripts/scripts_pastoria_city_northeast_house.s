@@ -12,12 +12,12 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_247 0x8000
-    GoToIfUnset 0x140, _005C
-    GoToIfUnset 0x141, _005C
-    GoToIfUnset 0x142, _005C
-    GoToIfUnset 0x143, _005C
-    GoToIfUnset 0x144, _005C
+    GetFirstNonEggInParty VAR_0x8000
+    GoToIfUnset FLAG_UNK_0x0140, _005C
+    GoToIfUnset FLAG_UNK_0x0141, _005C
+    GoToIfUnset FLAG_UNK_0x0142, _005C
+    GoToIfUnset FLAG_UNK_0x0143, _005C
+    GoToIfUnset FLAG_UNK_0x0144, _005C
     Message 10
     WaitABXPadPress
     CloseMessage
@@ -28,15 +28,15 @@ _005C:
     Message 0
     Message 1
     Call _021C
-    GoToIfEq 0x800C, 1, _00D7
+    GoToIfEq VAR_RESULT, 1, _00D7
     Call _024C
-    GoToIfEq 0x800C, 1, _0118
+    GoToIfEq VAR_RESULT, 1, _0118
     Call _027C
-    GoToIfEq 0x800C, 1, _0159
+    GoToIfEq VAR_RESULT, 1, _0159
     Call _02AC
-    GoToIfEq 0x800C, 1, _019A
+    GoToIfEq VAR_RESULT, 1, _019A
     Call _02DC
-    GoToIfEq 0x800C, 1, _01DB
+    GoToIfEq VAR_RESULT, 1, _01DB
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -51,15 +51,14 @@ _00CC:
     End
 
 _00D7:
-    SetVar 0x8004, 0x104
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CC
-    BufferPartyMonSpecies 0, 0x8000
-    BufferItemName 1, 0x104
+    SetVar VAR_0x8004, ITEM_RED_SCARF
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CC
+    BufferPartyMonSpecies 0, VAR_0x8000
+    BufferItemName 1, ITEM_RED_SCARF
     Message 4
     CallCommonScript 0x7FC
-    SetFlag 0x140
+    SetFlag FLAG_UNK_0x0140
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -67,15 +66,14 @@ _00D7:
     End
 
 _0118:
-    SetVar 0x8004, 0x105
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CC
-    BufferPartyMonSpecies 0, 0x8000
-    BufferItemName 1, 0x105
+    SetVar VAR_0x8004, ITEM_BLUE_SCARF
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CC
+    BufferPartyMonSpecies 0, VAR_0x8000
+    BufferItemName 1, ITEM_BLUE_SCARF
     Message 4
     CallCommonScript 0x7FC
-    SetFlag 0x141
+    SetFlag FLAG_UNK_0x0141
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -83,15 +81,14 @@ _0118:
     End
 
 _0159:
-    SetVar 0x8004, 0x106
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CC
-    BufferPartyMonSpecies 0, 0x8000
-    BufferItemName 1, 0x106
+    SetVar VAR_0x8004, ITEM_PINK_SCARF
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CC
+    BufferPartyMonSpecies 0, VAR_0x8000
+    BufferItemName 1, ITEM_PINK_SCARF
     Message 4
     CallCommonScript 0x7FC
-    SetFlag 0x142
+    SetFlag FLAG_UNK_0x0142
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -99,15 +96,14 @@ _0159:
     End
 
 _019A:
-    SetVar 0x8004, 0x107
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CC
-    BufferPartyMonSpecies 0, 0x8000
-    BufferItemName 1, 0x107
+    SetVar VAR_0x8004, ITEM_GREEN_SCARF
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CC
+    BufferPartyMonSpecies 0, VAR_0x8000
+    BufferItemName 1, ITEM_GREEN_SCARF
     Message 4
     CallCommonScript 0x7FC
-    SetFlag 0x143
+    SetFlag FLAG_UNK_0x0143
     Message 8
     WaitABXPadPress
     CloseMessage
@@ -115,15 +111,14 @@ _019A:
     End
 
 _01DB:
-    SetVar 0x8004, 0x108
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CC
-    BufferPartyMonSpecies 0, 0x8000
-    BufferItemName 1, 0x108
+    SetVar VAR_0x8004, ITEM_YELLOW_SCARF
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CC
+    BufferPartyMonSpecies 0, VAR_0x8000
+    BufferItemName 1, ITEM_YELLOW_SCARF
     Message 4
     CallCommonScript 0x7FC
-    SetFlag 0x144
+    SetFlag FLAG_UNK_0x0144
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -131,58 +126,58 @@ _01DB:
     End
 
 _021C:
-    GoToIfSet 0x140, _0244
-    ScrCmd_281 0x8000, 0, 0x800C
-    GoToIfLt 0x800C, 200, _0244
-    SetVar 0x800C, 1
+    GoToIfSet FLAG_UNK_0x0140, _0244
+    ScrCmd_281 VAR_0x8000, 0, VAR_RESULT
+    GoToIfLt VAR_RESULT, 200, _0244
+    SetVar VAR_RESULT, 1
     Return
 
 _0244:
-    SetVar 0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _024C:
-    GoToIfSet 0x141, _0274
-    ScrCmd_281 0x8000, 1, 0x800C
-    GoToIfLt 0x800C, 200, _0274
-    SetVar 0x800C, 1
+    GoToIfSet FLAG_UNK_0x0141, _0274
+    ScrCmd_281 VAR_0x8000, 1, VAR_RESULT
+    GoToIfLt VAR_RESULT, 200, _0274
+    SetVar VAR_RESULT, 1
     Return
 
 _0274:
-    SetVar 0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _027C:
-    GoToIfSet 0x142, _02A4
-    ScrCmd_281 0x8000, 2, 0x800C
-    GoToIfLt 0x800C, 200, _02A4
-    SetVar 0x800C, 1
+    GoToIfSet FLAG_UNK_0x0142, _02A4
+    ScrCmd_281 VAR_0x8000, 2, VAR_RESULT
+    GoToIfLt VAR_RESULT, 200, _02A4
+    SetVar VAR_RESULT, 1
     Return
 
 _02A4:
-    SetVar 0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _02AC:
-    GoToIfSet 0x143, _02D4
-    ScrCmd_281 0x8000, 3, 0x800C
-    GoToIfLt 0x800C, 200, _02D4
-    SetVar 0x800C, 1
+    GoToIfSet FLAG_UNK_0x0143, _02D4
+    ScrCmd_281 VAR_0x8000, 3, VAR_RESULT
+    GoToIfLt VAR_RESULT, 200, _02D4
+    SetVar VAR_RESULT, 1
     Return
 
 _02D4:
-    SetVar 0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _02DC:
-    GoToIfSet 0x144, _0304
-    ScrCmd_281 0x8000, 4, 0x800C
-    GoToIfLt 0x800C, 200, _0304
-    SetVar 0x800C, 1
+    GoToIfSet FLAG_UNK_0x0144, _0304
+    ScrCmd_281 VAR_0x8000, 4, VAR_RESULT
+    GoToIfLt VAR_RESULT, 200, _0304
+    SetVar VAR_RESULT, 1
     Return
 
 _0304:
-    SetVar 0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _030C:
@@ -202,7 +197,7 @@ _031F:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PACHIRISU
     Message 12
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

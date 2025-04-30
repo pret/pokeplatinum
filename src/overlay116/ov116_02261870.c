@@ -69,7 +69,7 @@ static inline void inline_ov116_02261940_1(void)
 
 void ov116_022618A8(UnkStruct_ov116_0226501C *param0, NARC *param1, int param2)
 {
-    Easy3DModel_LoadFrom(&param0->unk_78, param1, param2, 106);
+    Easy3DModel_LoadFrom(&param0->unk_78, param1, param2, HEAP_ID_106);
 }
 
 void ov116_022618B4(UnkStruct_ov116_0226501C *param0, int param1)
@@ -395,7 +395,7 @@ void ov116_02261F70(UnkStruct_ov116_02262A8C *param0)
         MessageLoader *v0;
         Strbuf *v1;
 
-        v0 = MessageLoader_Init(0, 26, 410, HEAP_ID_106);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0410, HEAP_ID_106);
         v1 = MessageLoader_GetNewStrbuf(v0, 0);
 
         Text_AddPrinterWithParams(&param0->unk_1FC8, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);

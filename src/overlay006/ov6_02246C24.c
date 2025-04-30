@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/map_prop.h"
+#include "constants/field/map_prop.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
@@ -13,8 +13,8 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_matrix.h"
-#include "unk_02005474.h"
-#include "unk_02054D00.h"
+#include "sound_playback.h"
+#include "terrain_collision_manager.h"
 
 typedef struct {
     VecFx32 unk_00;
@@ -41,9 +41,9 @@ void ov6_02246C24(FieldSystem *fieldSystem, const u8 param1)
     BOOL v0;
     MapProp *v1;
     int v2;
-    int v3 = 123;
+    int v3 = MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE;
 
-    v0 = sub_020552B4(fieldSystem, v3, &v1, &v2);
+    v0 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, v3, &v1, &v2);
 
     if (v0) {
         UnkStruct_ov6_02246C24 *v4 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02246C24));
@@ -56,7 +56,7 @@ void ov6_02246C24(FieldSystem *fieldSystem, const u8 param1)
         {
             VecFx32 v5;
 
-            sub_020553A4(v2, MapMatrix_GetWidth(fieldSystem->mapMatrix), &v5);
+            TerrainCollisionManager_GetMapAbsoluteOrigin(v2, MapMatrix_GetWidth(fieldSystem->mapMatrix), &v5);
 
             v4->unk_00 = MapProp_GetPosition(v1);
             v4->unk_00.x += v5.x;
@@ -91,7 +91,7 @@ static BOOL ov6_02246C9C(FieldTask *param0)
 
         MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 0x10, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, NULL, v2, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
 
-        v8 = sub_020552B4(fieldSystem, 124, &v6, NULL);
+        v8 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_TV, &v6, NULL);
         GF_ASSERT(v8);
         v7 = MapProp_GetRenderObj(v6);
 
@@ -109,7 +109,7 @@ static BOOL ov6_02246C9C(FieldTask *param0)
         v11.y = v1->unk_00.y + Unk_ov6_0224989C[v1->unk_0D].y;
         v11.z = v1->unk_00.z + Unk_ov6_0224989C[v1->unk_0D].z;
 
-        Sound_PlayEffect(1534);
+        Sound_PlayEffect(SEQ_SE_DP_BOWA);
 
         v1->unk_10[v1->unk_0D] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, &v11, &v12, fieldSystem->mapPropAnimMan);
 
@@ -138,11 +138,11 @@ static BOOL ov6_02246C9C(FieldTask *param0)
     case 3:
         MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 0x10, 0);
         MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 0x20, 0);
-        sub_02006150(1166);
+        Sound_PlayFanfare(SEQ_ASA);
         (v1->unk_0F)++;
         break;
     case 4:
-        if ((MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 0x10)) && (MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 0x20)) && (sub_020061E4() == 0)) {
+        if ((MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 0x10)) && (MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 0x20)) && (Sound_IsBGMPausedByFanfare() == 0)) {
             u8 v13;
 
             MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 0x20);

@@ -15,26 +15,26 @@
     ScriptEntryEnd
 
 _0026:
-    GetTimeOfDay 0x4000
-    GoToIfEq 0x4000, 0, _006D
-    GoToIfEq 0x4000, 1, _007F
-    GoToIfEq 0x4000, 2, _007F
-    GoToIfEq 0x4000, 3, _007F
-    GoToIfEq 0x4000, 4, _007F
+    GetTimeOfDay VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _006D
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _007F
+    GoToIfEq VAR_MAP_LOCAL_0, 2, _007F
+    GoToIfEq VAR_MAP_LOCAL_0, 3, _007F
+    GoToIfEq VAR_MAP_LOCAL_0, 4, _007F
     End
 
 _006D:
-    ClearFlag 0x26D
-    ClearFlag 0x26F
-    SetFlag 0x26C
-    SetFlag 0x26E
+    ClearFlag FLAG_UNK_0x026D
+    ClearFlag FLAG_UNK_0x026F
+    SetFlag FLAG_UNK_0x026C
+    SetFlag FLAG_UNK_0x026E
     End
 
 _007F:
-    ClearFlag 0x26C
-    ClearFlag 0x26E
-    SetFlag 0x26D
-    SetFlag 0x26F
+    ClearFlag FLAG_UNK_0x026C
+    ClearFlag FLAG_UNK_0x026E
+    SetFlag FLAG_UNK_0x026D
+    SetFlag FLAG_UNK_0x026F
     End
 
 _0091:
@@ -50,12 +50,12 @@ _0091:
 _00A4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfEq 0x408A, 1, _0102
-    CheckItem ITEM_ODD_KEYSTONE, 1, 0x800C
-    GoToIfEq 0x800C, 0, _01BC
+    GoToIfEq VAR_UNK_0x408A, 1, _0102
+    CheckItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _01BC
     Message 2
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _00E6
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00E6
     CloseMessage
     ReleaseAll
     End
@@ -64,31 +64,31 @@ _00E6:
     BufferPlayerName 0
     Message 3
     WaitABXPadPress
-    RemoveItem ITEM_ODD_KEYSTONE, 1, 0x800C
-    SetVar 0x408A, 1
+    RemoveItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
+    SetVar VAR_UNK_0x408A, 1
     CloseMessage
     ReleaseAll
     End
 
 _0102:
-    GetSpiritombCounter 0x800C
-    GoToIfGe 0x800C, 32, _014D
-    GoToIfGe 0x800C, 29, _01B1
-    GoToIfGe 0x800C, 22, _01A6
-    GoToIfGe 0x800C, 15, _019B
-    GoToIfGe 0x800C, 8, _0190
+    GetSpiritombCounter VAR_RESULT
+    GoToIfGe VAR_RESULT, 32, _014D
+    GoToIfGe VAR_RESULT, 29, _01B1
+    GoToIfGe VAR_RESULT, 22, _01A6
+    GoToIfGe VAR_RESULT, 15, _019B
+    GoToIfGe VAR_RESULT, 8, _0190
     GoTo _0185
 
 _014D:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_SPIRITOMB
     Message 9
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     StartWildBattle SPECIES_SPIRITOMB, 25
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _017F
-    SetVar 0x408A, 0
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _017F
+    SetVar VAR_UNK_0x408A, 0
     ClearSpiritombCounter
     End
 
@@ -143,22 +143,22 @@ _01C7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x8004, 0x1BE
-    ScrCmd_33C 0, 0x8004
+    SetVar VAR_0x8004, 0x1BE
+    ScrCmd_33C 0, VAR_0x8004
     ScrCmd_346 0
-    GoToIfSet 162, _020B
+    GoToIfSet FLAG_UNK_0x00A2, _020B
     Message 10
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0254
-    GoToIfEq 0x800C, MENU_NO, _0249
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0254
+    GoToIfEq VAR_RESULT, MENU_NO, _0249
     End
 
 _020B:
-    BufferItemName 0, 0x8004
+    BufferItemName 0, VAR_0x8004
     Message 12
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0233
-    GoToIfEq 0x800C, MENU_NO, _023E
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0233
+    GoToIfEq VAR_RESULT, MENU_NO, _023E
     End
 
 _0233:
@@ -183,11 +183,11 @@ _0249:
     End
 
 _0254:
-    BufferItemName 0, 0x8004
+    BufferItemName 0, VAR_0x8004
     Message 11
-    SetVar 0x8005, 1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 162
+    SetFlag FLAG_UNK_0x00A2
     GoTo _020B
 
 _0270:

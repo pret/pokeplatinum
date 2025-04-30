@@ -23,11 +23,11 @@
 #include "map_object.h"
 #include "player_avatar.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_02014A84.h"
 #include "unk_02027F84.h"
 #include "unk_020366A0.h"
@@ -38,8 +38,8 @@
 #include "constdata/const_020ED570.h"
 
 static void sub_0205C304(SysTask *param0, void *param1);
-static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1, MapObjectManager *param2, UnkStruct_02027F8C *param3);
-static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param2, UnkStruct_02027F8C *param3);
+static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1, MapObjectManager *param2, PalPad *param3);
+static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param2, PalPad *param3);
 static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1);
 static void sub_0205C680(UnkStruct_0205C680 *param0, int param1);
 static void sub_0205C6BC(UnkStruct_0205C680 *param0);
@@ -65,7 +65,7 @@ UnkStruct_0205C22C *sub_0205C22C(UnkStruct_0205B43C *param0)
     v0->unk_47C = 1;
     v0->unk_04 = SysTask_Start(sub_0205C304, v0, 11);
     v0->fieldSystem = sub_0205B770(param0);
-    v0->unk_474 = SaveData_SaveTable(v0->fieldSystem->saveData, 9);
+    v0->unk_474 = SaveData_SaveTable(v0->fieldSystem->saveData, SAVE_TABLE_ENTRY_PAL_PAD);
     v0->playerAvatar = v0->fieldSystem->playerAvatar;
 
     Heap_CreateAtEnd(HEAP_ID_FIELDMAP, HEAP_ID_89, 10000);
@@ -118,7 +118,7 @@ static void sub_0205C304(SysTask *task, void *param1)
     }
 }
 
-static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param2, UnkStruct_02027F8C *param3)
+static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param2, PalPad *param3)
 {
     int v0, v1, v2 = 0;
     UnkStruct_0203330C *v3;
@@ -186,7 +186,7 @@ static void sub_0205C444(UnkStruct_0205C680 param0[], int param1, int param2)
     param0[param1].unk_00 = param2;
 }
 
-static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1, MapObjectManager *param2, UnkStruct_02027F8C *param3)
+static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1, MapObjectManager *param2, PalPad *param3)
 {
     WMBssDesc *v0;
     int v1;
@@ -366,7 +366,7 @@ static void sub_0205C6E0(UnkStruct_0205C680 *param0, MapObject *param1, int para
         return;
     }
 
-    Sound_PlayEffect(1615);
+    Sound_PlayEffect(SEQ_SE_DP_TELE2);
     sub_02061AD4(param1, param0->unk_08);
     sub_0205C680(param0, 0);
     MapObject_SetPosDirFromCoords(param1, v0, v1, v2, 1);

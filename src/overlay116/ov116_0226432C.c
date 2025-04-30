@@ -22,12 +22,12 @@
 #include "easy3d_object.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "palette.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 
 typedef struct {
@@ -487,7 +487,7 @@ static void ov116_022649E4(SysTask *param0, void *param1)
         if (v0->unk_08 == 0) {
             v0->unk_08++;
             ov116_02261E0C(v0->unk_00, 1, 0);
-            Sound_PlayEffect(1395);
+            Sound_PlayEffect(SEQ_SE_PL_140_2_2);
         }
 
         if (v0->unk_08 > 30) {
@@ -841,7 +841,7 @@ static void ov116_0226534C(SysTask *param0, void *param1)
         }
     case 4:
         if (v0->unk_08[3].unk_04 == 0) {
-            Sound_PlayEffect(1551);
+            Sound_PlayEffect(SEQ_SE_DP_DENDOU);
             v0->unk_08[3].unk_04 = 1;
             v0->unk_08[3].unk_50[0] = 0;
         }
@@ -852,7 +852,7 @@ static void ov116_0226534C(SysTask *param0, void *param1)
         }
     case 2:
         if (v0->unk_08[1].unk_04 == 0) {
-            Sound_PlayEffect(1393);
+            Sound_PlayEffect(SEQ_SE_PL_HAND);
             v0->unk_08[1].unk_04 = 1;
             v0->unk_08[1].unk_50[0] = 0;
         }

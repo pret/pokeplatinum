@@ -225,23 +225,23 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A man spoke to me in a foreign language.\nHe really surprised me!\rI think he was asking if I liked Pokémon\nor something.</language>
 	</row>
-	<row id="pl_msg_00000143_00056" index="56">
+	<row id="VeilstoneCity_Text_MeteoriteFromTheStars" index="56">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">It’s a mysterious meteorite that\nfell from the stars...</language>
 	</row>
-	<row id="pl_msg_00000143_00057" index="57">
+	<row id="VeilstoneCity_Text_MeteoriteSpeed" index="57">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Touching the meteorite boosted\nthe Speed of a certain Pokémon.</language>
 	</row>
-	<row id="pl_msg_00000143_00058" index="58">
+	<row id="VeilstoneCity_Text_MeteoriteDefense" index="58">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Touching the meteorite heightened\nthe defensive capabilities of\fa certain Pokémon.</language>
 	</row>
-	<row id="pl_msg_00000143_00059" index="59">
+	<row id="VeilstoneCity_Text_MeteoriteAttack" index="59">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Touching the meteorite heightened\nthe offensive capabilities of\fa certain Pokémon.</language>
 	</row>
-	<row id="pl_msg_00000143_00060" index="60">
+	<row id="VeilstoneCity_Text_MeteoriteNormal" index="60">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Touching the meteorite balanced out\nthe attributes of a certain Pokémon.</language>
 	</row>

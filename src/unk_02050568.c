@@ -20,9 +20,9 @@
 #include "location.h"
 #include "map_object.h"
 #include "player_avatar.h"
+#include "sound_playback.h"
 #include "system.h"
 #include "system_flags.h"
-#include "unk_02005474.h"
 #include "unk_02056B30.h"
 #include "unk_02070428.h"
 #include "vars_flags.h"
@@ -84,7 +84,7 @@ static BOOL sub_020505A0(FieldTask *taskMan)
         sub_0205074C(fieldSystem->playerAvatar, 1);
         sub_0205075C(fieldSystem);
         sub_02056B30(taskMan, 3, 17, 0xffff, 0x0, 6, 1, HEAP_ID_FIELDMAP);
-        Sound_PlayEffect(1657);
+        Sound_PlayEffect(SEQ_SE_DP_KASYA);
         v1->unk_08++;
         break;
     case 5:
@@ -94,7 +94,7 @@ static BOOL sub_020505A0(FieldTask *taskMan)
         break;
     case 6:
         sub_02056B30(taskMan, 3, 16, 0xffff, 0x0, 6, 1, HEAP_ID_FIELDMAP);
-        Sound_PlayEffect(1657);
+        Sound_PlayEffect(SEQ_SE_DP_KASYA);
         v1->unk_08++;
         break;
     case 7:

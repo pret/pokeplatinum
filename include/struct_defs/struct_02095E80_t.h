@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_sub1.h"
@@ -102,15 +101,15 @@ struct UnkStruct_02095E80_t {
     void *unk_7E8[12];
     NNSG2dCharacterData *unk_818[12];
     u8 unk_848[2][3200];
-    ArchivedSprite unk_2148[2];
+    PokemonSpriteTemplate unk_2148[2];
     int unk_2168;
     u8 unk_216C[256];
     int (*unk_226C)(UnkStruct_02095E80 *);
     Party *unk_2270;
     Party *unk_2274;
     ChatotCry *unk_2278;
-    UnkStruct_02027F8C *unk_227C;
-    UnkStruct_02027F8C unk_2280;
+    PalPad *unk_227C;
+    PalPad unk_2280;
     int unk_2308;
     int unk_230C;
     int unk_2310;
@@ -128,7 +127,7 @@ struct UnkStruct_02095E80_t {
     StringList *unk_36D4;
     ListMenu *unk_36D8;
     Window unk_36DC;
-    UnkStruct_0202B370 *unk_36EC;
+    WiFiList *unk_36EC;
     int unk_36F0;
     int unk_36F4;
     int unk_36F8;

@@ -24,19 +24,7 @@ typedef struct Strbuf {
     charcode_t data[1];
 } Strbuf;
 
-/**
- * Control codes for how to pad numeric strings.
- */
-enum PaddingMode {
-    /// Do not pad the string. Effectively left-justification.
-    PADDING_MODE_NONE,
-
-    /// Right-justify the string, padding with spaces.
-    PADDING_MODE_SPACES,
-
-    /// Right-justify the string, padding with zeroes.
-    PADDING_MODE_ZEROES,
-};
+#include "generated/string_padding_mode.h"
 
 /**
  * Control codes for which charset to use when formatting a string.

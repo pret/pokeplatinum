@@ -302,7 +302,7 @@ void ov25_Set_ElemRotZ(ov25_540_GraphicObject *param0, u16 value)
     param0->rotZ = value;
 }
 
-BOOL ov25_LoadNARCMembers(UnkStruct_ov25_02255958 *param0, u32 narcId, u32 memberId, u32 memberId2, enum HeapId heapId)
+BOOL ov25_LoadNARCMembers(UnkStruct_ov25_02255958 *param0, enum NarcID narcId, u32 memberId, u32 memberId2, enum HeapId heapId)
 {
     param0->heapID = heapId;
     param0->unk_00 = LoadCompressedMemberFromNARC(narcId, memberId, heapId);

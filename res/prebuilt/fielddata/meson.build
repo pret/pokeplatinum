@@ -1,8 +1,6 @@
 subdir('areadata')
 subdir('build_model')
 subdir('encountdata')
-subdir('land_data')
-subdir('mapmatrix')
 subdir('maptable')
 subdir('mm_list')
 subdir('tornworld')

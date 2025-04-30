@@ -11,7 +11,7 @@
 #include "render_text.h"
 #include "text.h"
 
-static void FontManager_Init(FontManager *fontManager, u32 narcID, u32 arcFileIdx, BOOL isMonospace, u32 heapID);
+static void FontManager_Init(FontManager *fontManager, enum NarcID narcID, u32 arcFileIdx, BOOL isMonospace, u32 heapID);
 static void FontManager_FreeWidthsAndNARC(FontManager *fontManager);
 static void FontManager_LoadGlyphs(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID);
 static void FontManager_LoadGlyphImmediate(FontManager *fontManager, u32 heapID);
@@ -45,7 +45,7 @@ static void (*const sFreeGlyphFuncs[])(FontManager *fontManager) = {
     [GLYPH_ACCESS_MODE_LAZY] = FontManager_FreeGlyphLazy
 };
 
-FontManager *FontManager_New(u32 narcID, u32 arcFileIdx, enum GlyphAccessMode glyphAccessMode, BOOL isMonospace, u32 heapID)
+FontManager *FontManager_New(enum NarcID narcID, u32 arcFileIdx, enum GlyphAccessMode glyphAccessMode, BOOL isMonospace, u32 heapID)
 {
     FontManager *fontManager = Heap_AllocFromHeap(heapID, sizeof(FontManager));
 
@@ -72,7 +72,7 @@ void FontManager_SwitchGlyphAccessMode(FontManager *fontManager, enum GlyphAcces
     }
 }
 
-static void FontManager_Init(FontManager *fontManager, u32 narcID, u32 arcFileIdx, BOOL isMonospace, u32 heapID)
+static void FontManager_Init(FontManager *fontManager, enum NarcID narcID, u32 arcFileIdx, BOOL isMonospace, u32 heapID)
 {
     fontManager->narc = NARC_ctor(narcID, heapID);
 

@@ -95,7 +95,7 @@ typedef struct UnkStruct_ov101_021D13C8_t {
     u32 unk_4B8;
     u32 unk_4BC;
     u32 unk_4C0;
-    int unk_4C4;
+    int msgBoxFrame;
 } UnkStruct_ov101_021D13C8;
 
 #endif // POKEPLATINUM_STRUCT_OV101_021D13C8_H

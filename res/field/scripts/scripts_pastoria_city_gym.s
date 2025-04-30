@@ -13,45 +13,45 @@
     ScriptEntryEnd
 
 _001E:
-    SetVar 0x4001, 0
-    SetVar 0x4002, 1
-    SetVar 0x4003, 0
-    ScrCmd_16F
+    SetVar VAR_MAP_LOCAL_1, 0
+    SetVar VAR_MAP_LOCAL_2, 1
+    SetVar VAR_MAP_LOCAL_3, 0
+    InitPersistedMapFeaturesForPastoriaGym
     End
 
 _0034:
     ScrCmd_170
-    SetVar 0x4001, 1
-    SetVar 0x4002, 0
-    SetVar 0x4003, 0
+    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_2, 0
+    SetVar VAR_MAP_LOCAL_3, 0
     End
 
 _004A:
     ScrCmd_170
-    SetVar 0x4001, 0
-    SetVar 0x4002, 1
-    SetVar 0x4003, 0
+    SetVar VAR_MAP_LOCAL_1, 0
+    SetVar VAR_MAP_LOCAL_2, 1
+    SetVar VAR_MAP_LOCAL_3, 0
     End
 
 _0060:
     ScrCmd_170
-    SetVar 0x4001, 0
-    SetVar 0x4002, 0
-    SetVar 0x4003, 1
+    SetVar VAR_MAP_LOCAL_1, 0
+    SetVar VAR_MAP_LOCAL_2, 0
+    SetVar VAR_MAP_LOCAL_3, 1
     End
 
 _0076:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FEN, 0x800C
-    GoToIfEq 0x800C, 1, _0155
+    CheckBadgeAcquired BADGE_ID_FEN, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0155
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 122, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_WAKE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _016B
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _016B
     Message 1
     BufferPlayerName 0
     Message 2
@@ -65,23 +65,22 @@ _0076:
     SetTrainerFlag TRAINER_SAILOR_SAMSON
     SetTrainerFlag TRAINER_TUBER_JACKY
     SetTrainerFlag TRAINER_TUBER_CAITLYN
-    SetVar 0x407C, 3
-    SetFlag 0x20C
-    SetFlag 0x156
+    SetVar VAR_UNK_0x407C, 3
+    SetFlag FLAG_UNK_0x020C
+    SetFlag FLAG_UNK_0x0156
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 122, TRAINER_LEADER_WAKE, 0, 0
     Message 3
     GoTo _010D
     End
 
 _010D:
-    SetVar 0x8004, 0x17E
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _014B
+    SetVar VAR_0x8004, ITEM_TM55
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _014B
     CallCommonScript 0x7FC
-    SetFlag 156
-    BufferItemName 0, 0x8004
-    BufferTMHMMoveName 1, 0x8004
+    SetFlag FLAG_UNK_0x009C
+    BufferItemName 0, VAR_0x8004
+    BufferTMHMMoveName 1, VAR_0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -95,7 +94,7 @@ _014B:
     End
 
 _0155:
-    GoToIfUnset 156, _010D
+    GoToIfUnset FLAG_UNK_0x009C, _010D
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -111,8 +110,8 @@ _0171:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FEN, 0x800C
-    GoToIfEq 0x800C, 1, _0197
+    CheckBadgeAcquired BADGE_ID_FEN, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0197
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -130,8 +129,8 @@ _0197:
 _01A5:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_FEN, 0x800C
-    GoToIfEq 0x800C, 1, _01CF
+    CheckBadgeAcquired BADGE_ID_FEN, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _01CF
     BufferRivalName 0
     BufferRivalName 1
     Message 8

@@ -12,19 +12,19 @@
     ScriptEntryEnd
 
 _001A:
-    SetFlag 0x2C9
-    CallIfEq 0x4056, 2, _002D
+    SetFlag FLAG_UNK_0x02C9
+    CallIfEq VAR_ARCEUS_EVENT_STATE, 2, _002D
     End
 
 _002D:
-    ClearFlag 0x2C9
+    ClearFlag FLAG_UNK_0x02C9
     Return
 
 _0033:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _0051
+    GoToIfSet FLAG_UNK_0x00A8, _0051
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -41,7 +41,7 @@ _0051:
 _005C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe 0x4056, 3, _0082
+    GoToIfGe VAR_ARCEUS_EVENT_STATE, 3, _0082
     Message 2
     GoTo _007A
     End
@@ -81,16 +81,16 @@ _00B2:
     ApplyMovement 1, _019C
     WaitMovement
     Message 5
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0104
-    GoToIfEq 0x800C, MENU_NO, _00E1
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0104
+    GoToIfEq VAR_RESULT, MENU_NO, _00E1
     End
 
 _00E1:
     Message 6
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0104
-    GoToIfEq 0x800C, MENU_NO, _00E1
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0104
+    GoToIfEq VAR_RESULT, MENU_NO, _00E1
     End
 
 _0104:
@@ -99,16 +99,16 @@ _0104:
     ApplyMovement 1, _01B4
     WaitMovement
     Message 8
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0159
-    GoToIfEq 0x800C, MENU_NO, _0136
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0159
+    GoToIfEq VAR_RESULT, MENU_NO, _0136
     End
 
 _0136:
     Message 9
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0159
-    GoToIfEq 0x800C, MENU_NO, _0136
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0159
+    GoToIfEq VAR_RESULT, MENU_NO, _0136
     End
 
 _0159:
@@ -126,7 +126,7 @@ _0159:
     ApplyMovement 1, _01D4
     WaitMovement
     RemoveObject 1
-    SetVar 0x4056, 3
+    SetVar VAR_ARCEUS_EVENT_STATE, 3
     ReleaseAll
     End
 

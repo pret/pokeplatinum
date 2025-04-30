@@ -13,30 +13,30 @@
     ScriptEntryEnd
 
 _001E:
-    GetTimeOfDay 0x4000
-    GoToIfEq 0x4000, 0, _0065
-    GoToIfEq 0x4000, 1, _006F
-    GoToIfEq 0x4000, 2, _006F
-    GoToIfEq 0x4000, 3, _006F
-    GoToIfEq 0x4000, 4, _006F
+    GetTimeOfDay VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0065
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _006F
+    GoToIfEq VAR_MAP_LOCAL_0, 2, _006F
+    GoToIfEq VAR_MAP_LOCAL_0, 3, _006F
+    GoToIfEq VAR_MAP_LOCAL_0, 4, _006F
     End
 
 _0065:
-    ClearFlag 0x271
-    SetFlag 0x270
+    ClearFlag FLAG_UNK_0x0271
+    SetFlag FLAG_UNK_0x0270
     End
 
 _006F:
-    ClearFlag 0x270
-    SetFlag 0x271
+    ClearFlag FLAG_UNK_0x0270
+    SetFlag FLAG_UNK_0x0271
     End
 
 _0079:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_SECRETPOTION, 1, 0x800C
-    GoToIfEq 0x800C, 1, _00A1
+    CheckItem ITEM_SECRETPOTION, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00A1
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -45,9 +45,9 @@ _0079:
 
 _00A1:
     Message 1
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _00CA
-    GoToIfEq 0x800C, MENU_NO, _00C4
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00CA
+    GoToIfEq VAR_RESULT, MENU_NO, _00C4
     End
 
 _00C4:
@@ -61,7 +61,7 @@ _00CA:
     Message 2
     CloseMessage
     PlayCry SPECIES_PSYDUCK
-    ScrCmd_04D
+    WaitCry
     ApplyMovement 27, _024C
     ApplyMovement 28, _024C
     ApplyMovement 26, _024C
@@ -76,10 +76,10 @@ _00CA:
     RemoveObject 28
     RemoveObject 26
     RemoveObject 19
-    WaitTime 45, 0x800C
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 0x230, _015B
-    GoToIfEq 0x8004, 0x231, _016F
+    WaitTime 45, VAR_RESULT
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 0x230, _015B
+    GoToIfEq VAR_0x8004, 0x231, _016F
     End
 
 _015B:
@@ -93,7 +93,7 @@ _016F:
     GoTo _0183
 
 _0183:
-    ClearFlag 0x1B1
+    ClearFlag FLAG_UNK_0x01B1
     AddObject 20
     ScrCmd_062 20
     ApplyMovement 20, _02C4
@@ -101,27 +101,27 @@ _0183:
     ApplyMovement LOCALID_PLAYER, _02DC
     WaitMovement
     Message 3
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _01E9
-    GoToIfEq 0x800C, MENU_NO, _01C6
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _01E9
+    GoToIfEq VAR_RESULT, MENU_NO, _01C6
     End
 
 _01C6:
     Message 5
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _01E9
-    GoToIfEq 0x800C, MENU_NO, _01C6
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _01E9
+    GoToIfEq VAR_RESULT, MENU_NO, _01C6
     End
 
 _01E9:
-    SetVar 0x8004, 0x1B7
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1B7
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Message 4
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 0x230, _0220
-    GoToIfEq 0x8004, 0x231, _0230
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 0x230, _0220
+    GoToIfEq VAR_0x8004, 0x231, _0230
     End
 
 _0220:
@@ -136,7 +136,7 @@ _0230:
 
 _0240:
     RemoveObject 20
-    SetFlag 0x107
+    SetFlag FLAG_UNK_0x0107
     ReleaseAll
     End
 
@@ -260,14 +260,13 @@ _031F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 199, _0364
+    GoToIfSet FLAG_UNK_0x00C7, _0364
     Message 7
-    SetVar 0x8004, 0x17A
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _036F
+    SetVar VAR_0x8004, ITEM_TM51
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _036F
     CallCommonScript 0x7FC
-    SetFlag 199
+    SetFlag FLAG_UNK_0x00C7
     GoTo _0364
 
 _0364:

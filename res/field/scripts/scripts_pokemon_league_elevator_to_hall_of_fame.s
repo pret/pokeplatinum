@@ -12,7 +12,7 @@ _000A:
     ApplyMovement LOCALID_PLAYER, _016C
     WaitMovement
     SetObjectEventPos 0, 6, 14
-    ClearFlag 0x23A
+    ClearFlag FLAG_UNK_0x023A
     AddObject 0
     ScrCmd_062 0
     ApplyMovement 0, _0138
@@ -21,7 +21,7 @@ _000A:
     Message 0
     CloseMessage
     SetObjectEventPos 1, 4, 14
-    ClearFlag 0x23B
+    ClearFlag FLAG_UNK_0x023B
     AddObject 1
     ScrCmd_062 1
     ApplyMovement 1, _0114
@@ -39,9 +39,9 @@ _000A:
     ApplyMovement 0, _0150
     WaitMovement
     Message 4
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _00B1
-    GoToIfEq 0x800C, 1, _00BD
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _00B1
+    GoToIfEq VAR_RESULT, 1, _00BD
     End
 
 _00B1:

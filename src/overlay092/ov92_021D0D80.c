@@ -20,7 +20,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "list_menu.h"
-#include "math.h"
+#include "math_util.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
@@ -29,12 +29,12 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_0202C858.h"
@@ -331,7 +331,7 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
         v0->unk_BB14 = sub_0202C8C0(v0->unk_04);
         v0->unk_BB18 = sub_0202C8C4(v0->unk_04);
         v0->unk_BB24 = sub_0202C990(v0->unk_04);
-        v0->unk_08 = SaveData_Options(v2);
+        v0->unk_08 = SaveData_GetOptions(v2);
     }
 
     ov92_021D14F0();
@@ -368,7 +368,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        v0->unk_B860 = MessageLoader_Init(1, 26, 356, v0->heapID);
+        v0->unk_B860 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0356, v0->heapID);
         v2 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH, v0->heapID);
 
         ov92_021D2150(v0, v2);
@@ -412,7 +412,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         }
 
         ov92_021D1DB4(v0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         switch (v3) {
         default:
@@ -467,7 +467,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         }
 
         ov92_021D1DB4(v0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (v5 != 0xfffffffe) {
             v5 = sub_02099780(0)[v5];
@@ -509,7 +509,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         }
 
         ov92_021D1DB4(v0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (v7 != 0xfffffffe) {
             u32 v8 = sub_020996D4(v0->unk_BB1C);
@@ -588,7 +588,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
 
         if ((gSystem.pressedKeys & PAD_BUTTON_B) || (v0->unk_BAF8 & PAD_BUTTON_B)) {
             Window_EraseStandardFrame(&v0->unk_B834, 0);
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             Window_FillRectWithColor(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
 
             if (v0->unk_BB14 == 0) {
@@ -604,7 +604,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
                 ov92_021D1F90(v0);
 
                 if (v0->unk_BB28 == 1) {
-                    Sound_PlayEffect(1501);
+                    Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 }
                 break;
             }
@@ -630,9 +630,9 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
                 *param1 = 16;
 
                 if (v0->unk_BAD8 == 0) {
-                    Sound_PlayEffect(1474);
+                    Sound_PlayEffect(SEQ_SE_PL_FTIMER03);
                 } else {
-                    Sound_PlayEffect(1474);
+                    Sound_PlayEffect(SEQ_SE_PL_FTIMER03);
                 }
             }
         }
@@ -1013,7 +1013,7 @@ static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param
 static void ov92_021D1C38(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
@@ -1046,7 +1046,7 @@ static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     int v2;
 
     Window_AddFromTemplate(param0->unk_B810, param1, param2);
-    v1 = MessageLoader_Init(0, 26, param4, param0->heapID);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param4, param0->heapID);
     param0->unk_B858 = StringList_New(param6, param0->heapID);
 
     for (v2 = 0; v2 < param6; v2++) {
@@ -1487,7 +1487,7 @@ BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int p
     int v1 = ov92_021D16F8(param0);
     BOOL v2;
 
-    v0 = MessageLoader_Init(0, 26, 694, param4);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTRY_NAMES, param4);
 
     MessageLoader_GetStrbuf(v0, param0, param2);
     MessageLoader_Free(v0);
@@ -1500,7 +1500,7 @@ BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int p
         v2 = 1;
     }
 
-    v0 = MessageLoader_Init(0, 26, sub_0209972C(v1), param4);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, sub_0209972C(v1), param4);
 
     MessageLoader_GetStrbuf(v0, param1, param3);
     MessageLoader_Free(v0);

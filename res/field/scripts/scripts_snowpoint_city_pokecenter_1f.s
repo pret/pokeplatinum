@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _0016:
-    SetVar 0x8007, 0
+    SetVar VAR_0x8007, 0
     CallCommonScript 0x7D2
     End
 
@@ -42,7 +42,7 @@ _0048:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PSYDUCK
     Message 4
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -52,13 +52,13 @@ _0067:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_ICICLE, 0x800C
-    GoToIfEq 0x800C, 1, _00EC
-    GetPlayerDir 0x8000
-    CallIfEq 0x8000, 0, _00C8
-    CallIfEq 0x8000, 1, _00C8
-    CallIfEq 0x8000, 2, _00D4
-    CallIfEq 0x8000, 3, _00E0
+    CheckBadgeAcquired BADGE_ID_ICICLE, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00EC
+    GetPlayerDir VAR_0x8000
+    CallIfEq VAR_0x8000, 0, _00C8
+    CallIfEq VAR_0x8000, 1, _00C8
+    CallIfEq VAR_0x8000, 2, _00D4
+    CallIfEq VAR_0x8000, 3, _00E0
     BufferPlayerName 0
     Message 0
     WaitABXPadPress

@@ -8,15 +8,15 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag 0x9D8
+    SetFlag FLAG_UNK_0x09D8
     End
 
 _0010:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_284 0x800C
-    GoToIfGe 0x800C, 26, _0034
+    GetUnownFormsSeenCount VAR_RESULT
+    GoToIfGe VAR_RESULT, 26, _0034
     Message 0
     WaitABXPadPress
     CloseMessage

@@ -14,7 +14,7 @@ _0016:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 168, _0034
+    GoToIfSet FLAG_UNK_0x00A8, _0034
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -31,7 +31,7 @@ _0034:
 _003F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 168, _0068
+    GoToIfSet FLAG_UNK_0x00A8, _0068
     Message 2
     FacePlayer
     Message 3
@@ -77,12 +77,12 @@ _00A2:
     LockAll
     FacePlayer
     Message 7
-    GetRandom 0x8000, 5
-    CallIfEq 0x8000, 0, _00FC
-    CallIfEq 0x8000, 1, _0101
-    CallIfEq 0x8000, 2, _0106
-    CallIfEq 0x8000, 3, _010B
-    CallIfEq 0x8000, 4, _0110
+    GetRandom VAR_0x8000, 5
+    CallIfEq VAR_0x8000, 0, _00FC
+    CallIfEq VAR_0x8000, 1, _0101
+    CallIfEq VAR_0x8000, 2, _0106
+    CallIfEq VAR_0x8000, 3, _010B
+    CallIfEq VAR_0x8000, 4, _0110
     GoTo _0115
     End
 
@@ -109,10 +109,10 @@ _0110:
 _0115:
     Message 8
     CloseMessage
-    GetPlayerDir 0x8000
-    CallIfEq 0x8000, 0, _0155
-    CallIfEq 0x8000, 2, _0169
-    CallIfEq 0x8000, 3, _0175
+    GetPlayerDir VAR_0x8000
+    CallIfEq VAR_0x8000, 0, _0155
+    CallIfEq VAR_0x8000, 2, _0169
+    CallIfEq VAR_0x8000, 3, _0175
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 2
     WaitFanfare SEQ_SE_DP_KAIDAN2

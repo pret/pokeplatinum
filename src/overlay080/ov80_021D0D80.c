@@ -19,9 +19,9 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "sound.h"
 #include "strbuf.h"
 #include "system.h"
-#include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
 #include "unk_0208C098.h"
@@ -113,7 +113,7 @@ int ov80_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_02 = v1->unk_13C;
     v0->heapID = HEAP_ID_17;
 
-    sub_02004550(55, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_55, SEQ_NONE, 0);
 
     return 1;
 }
@@ -218,8 +218,8 @@ static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0)
 
         param0->unk_18 = param0->unk_20;
         param0->unk_1C = param0->unk_24;
-        param0->unk_80 = MessageLoader_Init(1, 26, 433, param0->heapID);
-        param0->unk_84 = MessageLoader_Init(1, 26, 615, param0->heapID);
+        param0->unk_80 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, param0->heapID);
+        param0->unk_84 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0615, param0->heapID);
         param0->unk_88 = Strbuf_Init(22, param0->heapID);
         param0->unk_30 = MainMapMatrixData_Load(param0->heapID);
         param0->unk_40 = ov80_021D2D70("data/tmap_block.dat", param0->heapID);

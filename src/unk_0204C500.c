@@ -46,7 +46,7 @@ BOOL ScrCmd_253(ScriptContext *param0)
 
 BOOL ScrCmd_254(ScriptContext *ctx)
 {
-    PalParkTransfer *transferData = SaveData_PalParkTransfer(ctx->fieldSystem->saveData);
+    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
     Pokemon *v1 = Pokemon_New(HEAP_ID_FIELD_TASK);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
@@ -60,26 +60,25 @@ BOOL ScrCmd_254(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_255(ScriptContext *param0)
+BOOL ScrCmd_255(ScriptContext *ctx)
 {
-    PalParkTransfer *transferData = SaveData_PalParkTransfer(param0->fieldSystem->saveData);
-    PCBoxes *v1 = SaveData_PCBoxes(param0->fieldSystem->saveData);
-    Pokemon *v2 = Pokemon_New(HEAP_ID_FIELD_TASK);
-    TrainerInfo *v3 = SaveData_GetTrainerInfo(param0->fieldSystem->saveData);
-    Pokedex *pokedex = SaveData_GetPokedex(param0->fieldSystem->saveData);
+    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
+    PCBoxes *boxes = SaveData_GetPCBoxes(ctx->fieldSystem->saveData);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(ctx->fieldSystem->saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     BOOL v5;
-    int v6;
 
-    for (v6 = 0; v6 < 6; v6++) {
-        TransferDataToMon(transferData, v6, v2);
-        sub_0209304C(v2, v3, 2, 0, 32);
-        v5 = PCBoxes_TryStoreBoxMon(v1, Pokemon_GetBoxPokemon(v2));
+    for (int i = 0; i < CATCHING_SHOW_MONS; i++) {
+        TransferDataToMon(transferData, i, mon);
+        UpdateMonStatusAndTrainerInfo(mon, trainerInfo, 2, 0, HEAP_ID_FIELD_TASK);
+        v5 = PCBoxes_TryStoreBoxMon(boxes, Pokemon_GetBoxPokemon(mon));
         GF_ASSERT(v5);
-        sub_0202F180(param0->fieldSystem->saveData, v2);
+        sub_0202F180(ctx->fieldSystem->saveData, mon);
     }
 
-    Heap_FreeToHeap(v2);
-    sub_0202EF04(transferData);
+    Heap_FreeToHeap(mon);
+    ClearPalParkTransferPokemonData(transferData);
 
     return 0;
 }

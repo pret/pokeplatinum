@@ -11,19 +11,19 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 176, _00AC
-    ScrCmd_0EA TRAINER_ELITE_FOUR_AARON
+    GoToIfSet FLAG_UNK_0x00B0, _00AC
+    PlayTrainerEncounterBGM TRAINER_ELITE_FOUR_AARON
     Message 0
     CloseMessage
-    CallIfUnset 214, _007A
-    CallIfSet 214, _0082
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00A6
-    SetFlag 176
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _007A
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0082
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00A6
+    SetFlag FLAG_UNK_0x00B0
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     RemoveObject 2
-    CallIfUnset 214, _008A
-    CallIfSet 214, _0098
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _008A
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0098
     Message 1
     WaitABXPadPress
     CloseMessage
@@ -63,9 +63,9 @@ _00B7:
     ApplyMovement LOCALID_PLAYER, _00DC
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    ClearFlag 0x282
+    ClearFlag FLAG_UNK_0x0282
     AddObject 1
-    SetVar 0x4001, 1
+    SetVar VAR_MAP_LOCAL_1, 1
     ReleaseAll
     End
 

@@ -971,12 +971,9 @@ void sub_0202A6A8(u8 param0, int param1, UnkStruct_0202A750 *param2, const void 
     }
 }
 
-UnkStruct_0202A750 *sub_0202A750(SaveData *param0)
+UnkStruct_0202A750 *sub_0202A750(SaveData *saveData)
 {
-    UnkStruct_0202A750 *v0 = NULL;
-
-    v0 = SaveData_SaveTable(param0, 14);
-    return v0;
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_IMAGE_CLIPS);
 }
 
 void sub_0202A75C(const UnkStruct_02029C68 *param0, UnkStruct_ov61_0222AE80 *param1)

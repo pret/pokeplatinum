@@ -29,12 +29,12 @@
     ScriptEntryEnd
 
 _005E:
-    SetVar 0x40C7, 0
-    SetFlag 0x17E
-    CallIfEq 0x407C, 5, _074D
-    CallIfEq 0x407C, 4, _0721
-    CallIfEq 0x407C, 4, _0737
-    GoToIfSet 0x102, _009C
+    SetVar VAR_UNK_0x40C7, 0
+    SetFlag FLAG_UNK_0x017E
+    CallIfEq VAR_UNK_0x407C, 5, _074D
+    CallIfEq VAR_UNK_0x407C, 4, _0721
+    CallIfEq VAR_UNK_0x407C, 4, _0737
+    GoToIfSet FLAG_UNK_0x0102, _009C
     End
 
 _009C:
@@ -87,8 +87,8 @@ _00FE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FEN, 0x800C
-    GoToIfEq 0x800C, 1, _0124
+    CheckBadgeAcquired BADGE_ID_FEN, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0124
     Message 33
     WaitABXPadPress
     CloseMessage
@@ -106,16 +106,16 @@ _012F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x128, _0189
-    GetPlayerStarterSpecies 0x800C
-    CallIfEq 0x800C, SPECIES_TURTWIG, _0194
-    CallIfEq 0x800C, SPECIES_CHIMCHAR, _019C
-    CallIfEq 0x800C, SPECIES_PIPLUP, _01A4
-    ScrCmd_261 0, 0x8004
+    GoToIfSet FLAG_UNK_0x0128, _0189
+    GetPlayerStarterSpecies VAR_RESULT
+    CallIfEq VAR_RESULT, SPECIES_TURTWIG, _0194
+    CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, _019C
+    CallIfEq VAR_RESULT, SPECIES_PIPLUP, _01A4
+    BufferAccessoryName 0, VAR_0x8004
     Message 37
-    SetVar 0x8005, 1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7DF
-    SetFlag 0x128
+    SetFlag FLAG_UNK_0x0128
     CloseMessage
     ReleaseAll
     End
@@ -128,15 +128,15 @@ _0189:
     End
 
 _0194:
-    SetVar 0x8004, 93
+    SetVar VAR_0x8004, ACCESSORY_CHIMCHAR_MASK
     Return
 
 _019C:
-    SetVar 0x8004, 94
+    SetVar VAR_0x8004, ACCESSORY_PIPLUP_MASK
     Return
 
 _01A4:
-    SetVar 0x8004, 92
+    SetVar VAR_0x8004, ACCESSORY_TURTWIG_MASK
     Return
 
 _01AC:
@@ -176,7 +176,7 @@ _01E5:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_CLEFAIRY
     Message 36
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -185,7 +185,7 @@ _01E5:
 _0204:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 0x102, _0220
+    GoToIfSet FLAG_UNK_0x0102, _0220
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -196,15 +196,15 @@ _0220:
     FacePlayer
     Message 28
     CloseMessage
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 2, _025A
-    GoToIfEq 0x800C, 3, _027A
-    GoToIfEq 0x800C, 0, _0292
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 2, _025A
+    GoToIfEq VAR_RESULT, 3, _027A
+    GoToIfEq VAR_RESULT, 0, _0292
     GoTo _02B2
     End
 
 _025A:
-    SetVar 0x8007, 2
+    SetVar VAR_0x8007, 2
     ApplyMovement 21, _0388
     ApplyMovement LOCALID_PLAYER, _02EC
     WaitMovement
@@ -212,14 +212,14 @@ _025A:
     End
 
 _027A:
-    SetVar 0x8007, 3
+    SetVar VAR_0x8007, 3
     ApplyMovement 21, _0398
     WaitMovement
     GoTo _02D2
     End
 
 _0292:
-    SetVar 0x8007, 0
+    SetVar VAR_0x8007, 0
     ApplyMovement 21, _0398
     ApplyMovement LOCALID_PLAYER, _030C
     WaitMovement
@@ -227,7 +227,7 @@ _0292:
     End
 
 _02B2:
-    SetVar 0x8007, 1
+    SetVar VAR_0x8007, 1
     ApplyMovement 21, _0398
     ApplyMovement LOCALID_PLAYER, _0304
     WaitMovement
@@ -237,7 +237,7 @@ _02B2:
 _02D2:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 21
-    SetFlag 0x103
+    SetFlag FLAG_UNK_0x0103
     ReleaseAll
     End
 
@@ -496,8 +496,8 @@ _043E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x407C, 5, _04AE
-    GoToIfGe 0x407C, 4, _0471
+    GoToIfGe VAR_UNK_0x407C, 5, _04AE
+    GoToIfGe VAR_UNK_0x407C, 4, _0471
     BufferRivalName 0
     BufferPlayerName 1
     Message 4
@@ -505,8 +505,8 @@ _043E:
     End
 
 _0471:
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _0498
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0498
     BufferRivalName 0
     Message 16
     CloseMessage
@@ -543,7 +543,7 @@ _04C0:
 
 _04C8:
     LockAll
-    ClearFlag 0x1A9
+    ClearFlag FLAG_UNK_0x01A9
     SetObjectEventPos 26, 0x253, 0x333
     ScrCmd_188 26, 16
     ScrCmd_189 26, 2
@@ -560,9 +560,9 @@ _04C8:
     CloseMessage
     ApplyMovement 26, _05CC
     WaitMovement
-    GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, SPECIES_TURTWIG, _054B
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0557
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _054B
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _0557
     GoTo _053F
 
 _053F:
@@ -578,8 +578,8 @@ _0557:
     GoTo _0563
 
 _0563:
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0597
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0597
     BufferRivalName 0
     BufferPlayerName 1
     Message 6
@@ -587,12 +587,12 @@ _0563:
     ApplyMovement 26, _05D4
     WaitMovement
     RemoveObject 26
-    SetVar 0x407C, 2
+    SetVar VAR_UNK_0x407C, 2
     ReleaseAll
     End
 
 _0597:
-    SetFlag 0x1A9
+    SetFlag FLAG_UNK_0x01A9
     BlackOutFromBattle
     ReleaseAll
     End
@@ -629,7 +629,7 @@ _05D4:
 
 _05E0:
     LockAll
-    ClearFlag 0x1A9
+    ClearFlag FLAG_UNK_0x01A9
     SetObjectEventPos 26, 0x253, 0x333
     ScrCmd_188 26, 15
     ScrCmd_189 26, 1
@@ -647,7 +647,7 @@ _05E0:
     ScrCmd_169 77
     ApplyMovement LOCALID_PLAYER, _07D8
     WaitMovement
-    ClearFlag 0x1FB
+    ClearFlag FLAG_UNK_0x01FB
     SetObjectEventPos 27, 0x24D, 0x33B
     ScrCmd_189 27, 0
     ScrCmd_188 27, 14
@@ -658,7 +658,7 @@ _05E0:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    SetFlag 0x20F
+    SetFlag FLAG_UNK_0x020F
     ApplyMovement 27, _076C
     WaitMovement
     Message 8
@@ -689,12 +689,12 @@ _05E0:
     ApplyMovement 26, _07C0
     WaitMovement
     Call _0737
-    ClearFlag 0x1FB
+    ClearFlag FLAG_UNK_0x01FB
     ScrCmd_187 27, 0x263, 0, 0x32A, 0
     Call _0721
-    ClearFlag 0x1A9
+    ClearFlag FLAG_UNK_0x01A9
     ScrCmd_187 26, 0x260, 0, 0x32E, 1
-    SetVar 0x407C, 4
+    SetVar VAR_UNK_0x407C, 4
     ReleaseAll
     End
 
@@ -825,12 +825,12 @@ _086F:
     ApplyMovement 26, _0AF0
     WaitMovement
     PlayFanfare SEQ_SE_DP_FW291
-    WaitTime 4, 0x800C
+    WaitTime 4, VAR_RESULT
     Message 19
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
     CloseMessage
-    ClearFlag 0x20C
+    ClearFlag FLAG_UNK_0x020C
     SetObjectEventPos 21, 0x262, 0x328
     ScrCmd_189 21, 3
     ScrCmd_188 21, 17
@@ -851,7 +851,7 @@ _08D9:
 
 _08FA:
     RemoveObject 21
-    ClearFlag 0x20C
+    ClearFlag FLAG_UNK_0x020C
     SetObjectEventPos 21, 0x27D, 0x32C
     ScrCmd_188 21, 17
     ScrCmd_189 21, 3
@@ -865,13 +865,13 @@ _091C:
     ApplyMovement LOCALID_PLAYER, _099C
     WaitMovement
     RemoveObject 27
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x261, _0981
-    CallIfEq 0x8004, 0x263, _098D
-    CallIfEq 0x8004, 0x264, _0981
-    SetFlag 0x20D
-    SetVar 0x407C, 5
-    SetFlag 0x102
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x261, _0981
+    CallIfEq VAR_0x8004, 0x263, _098D
+    CallIfEq VAR_0x8004, 0x264, _0981
+    SetFlag FLAG_UNK_0x020D
+    SetVar VAR_UNK_0x407C, 5
+    SetFlag FLAG_UNK_0x0102
     BufferRivalName 0
     BufferPlayerName 1
     Message 25
@@ -900,9 +900,9 @@ _09A8:
     LockAll
     FacePlayer
     Call _086F
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x263, _0A31
-    CallIfEq 0x8004, 0x264, _0A55
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x263, _0A31
+    CallIfEq VAR_0x8004, 0x264, _0A55
     Call _08D9
     ApplyMovement LOCALID_PLAYER, _0AC8
     ApplyMovement 27, _0B74
@@ -911,9 +911,9 @@ _09A8:
     WaitMovement
     Call _08FA
     Message 23
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 0x263, _0A79
-    CallIfEq 0x8004, 0x264, _0A8D
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 0x263, _0A79
+    CallIfEq VAR_0x8004, 0x264, _0A8D
     Call _091C
     ReleaseAll
     End
@@ -1127,10 +1127,10 @@ _0BE0:
 
 _0BF0:
     LockAll
-    GoToIfSet 0x156, _0C1E
-    SetVar 0x40C7, 1
-    GetRandom 0x800C, 100
-    GoToIfGe 0x800C, 90, _0C22
+    GoToIfSet FLAG_UNK_0x0156, _0C1E
+    SetVar VAR_UNK_0x40C7, 1
+    GetRandom VAR_RESULT, 100
+    GoToIfGe VAR_RESULT, 90, _0C22
     GoTo _0C1E
     End
 
@@ -1139,14 +1139,14 @@ _0C1E:
     End
 
 _0C22:
-    ClearFlag 0x29D
+    ClearFlag FLAG_UNK_0x029D
     AddObject 28
     ApplyMovement LOCALID_PLAYER, _0C78
     ApplyMovement 28, _0C64
     WaitMovement
     PlayCry SPECIES_CROAGUNK
-    ScrCmd_04D
-    WaitTime 30, 0x800C
+    WaitCry
+    WaitTime 30, VAR_RESULT
     ApplyMovement 28, _0C70
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2

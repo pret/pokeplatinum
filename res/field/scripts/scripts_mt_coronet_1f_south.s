@@ -25,7 +25,7 @@ _0006:
     ApplyMovement 6, _0080
     WaitMovement
     RemoveObject 6
-    SetVar 0x4096, 1
+    SetVar VAR_UNK_0x4096, 1
     ReleaseAll
     End
 

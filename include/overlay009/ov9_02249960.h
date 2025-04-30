@@ -9,9 +9,9 @@
 
 #include "field_task.h"
 
-void ov9_02249960(FieldSystem *fieldSystem);
-void ov9_02249A60(FieldSystem *fieldSystem);
-BOOL ov9_02249E50(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4);
+void DistortionWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
+void DistortionWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
+BOOL DistortionWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
 void ov9_02249F9C(FieldSystem *fieldSystem);
 void ov9_02249FD0(FieldSystem *fieldSystem);
 int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1);

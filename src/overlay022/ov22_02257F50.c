@@ -18,7 +18,7 @@
 #include "overlay022/struct_ov22_022599A0.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_0200679C.h"

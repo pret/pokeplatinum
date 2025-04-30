@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/sdat.h"
-
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -19,9 +17,9 @@
 #include "location.h"
 #include "map_object.h"
 #include "player_avatar.h"
+#include "sound_playback.h"
 #include "system.h"
 #include "system_flags.h"
-#include "unk_02005474.h"
 #include "unk_02056B30.h"
 #include "unk_02070428.h"
 #include "vars_flags.h"

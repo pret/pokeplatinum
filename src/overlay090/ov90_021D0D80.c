@@ -24,13 +24,13 @@
 #include "overlay_manager.h"
 #include "render_oam.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
@@ -74,7 +74,7 @@ typedef struct {
     BgConfig *unk_10;
     UnkStruct_ov90_021D0D80 *unk_14;
     Options *unk_18;
-    UnkStruct_0203068C *unk_1C;
+    BattleFrontier *unk_1C;
     UnkStruct_0202D750 *unk_20;
     UnkStruct_0202D764 *unk_24;
     UnkStruct_ov90_021D0ECC_sub1 unk_28;
@@ -126,8 +126,8 @@ int ov90_021D0D80(OverlayManager *param0, int *param1)
 
     v0->unk_08 = v1->unk_04;
     v0->unk_0A = v1->unk_06;
-    v0->unk_18 = SaveData_Options(v1->unk_00);
-    v0->unk_1C = sub_0203068C(v1->unk_00);
+    v0->unk_18 = SaveData_GetOptions(v1->unk_00);
+    v0->unk_1C = SaveData_GetBattleFrontier(v1->unk_00);
     v0->unk_20 = sub_0202D750(v1->unk_00);
     v0->unk_24 = sub_0202D764(v1->unk_00);
     v0->heapID = HEAP_ID_74;
@@ -312,7 +312,7 @@ static void ov90_021D1034(void *param0)
 static int ov90_021D105C(UnkStruct_ov90_021D0ECC *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         return 1;
     }
 
@@ -358,12 +358,12 @@ static int ov90_021D1080(UnkStruct_ov90_021D0ECC *param0)
     int v0 = 0;
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         return 1;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (param0->unk_0B >= 10) {
             return 1;
@@ -376,27 +376,27 @@ static int ov90_021D1080(UnkStruct_ov90_021D0ECC *param0)
             v0 = inline_ov90_021D1080(param0);
 
             if (v0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
             v0 = inline_ov90_021D1080_1(param0);
 
             if (v0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         } else if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
             param0->unk_0C = (param0->unk_0C + 2) % 3;
             v0 = 1;
 
             if (param0->unk_0B != 10) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
             param0->unk_0C = (param0->unk_0C + 1) % 3;
             v0 = 1;
 
             if (param0->unk_0B != 10) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         }
 
@@ -598,7 +598,7 @@ static void ov90_021D13D8(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0 = 0;
 
-    param0->unk_28.unk_00 = MessageLoader_Init(0, 26, 22, param0->heapID);
+    param0->unk_28.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, param0->heapID);
     param0->unk_28.unk_04 = StringTemplate_New(2, ((18 + 1) * 4), param0->heapID);
     param0->unk_28.unk_08 = Strbuf_Init(((18 + 1) * 4), param0->heapID);
 

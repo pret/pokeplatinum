@@ -24,6 +24,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -35,7 +36,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_02014A84.h"
 #include "unk_02027F84.h"
@@ -116,7 +116,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0);
 static int ov56_02256BC0(UnkStruct_ov56_02256468 *param0);
 static void ov56_02257100(UnkStruct_ov56_02256468 *param0);
 static void ov56_02257048(UnkStruct_ov56_02256468 *param0, TrainerInfo *param1, Sentence *param2, u32 param3);
-static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4);
+static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4);
 static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5);
 static void ov56_0225710C(UnkStruct_ov56_02256468 *param0);
 static void ov56_0225712C(UnkStruct_ov56_02256468 *param0);
@@ -182,7 +182,7 @@ static void ov56_02256294(UnkStruct_ov56_02256468 *param0)
     param0->unk_2D8.unk_04 = 0;
     param0->unk_2D8.unk_06 = 0;
     param0->unk_18 = StringTemplate_Default(HEAP_ID_FIELD);
-    param0->unk_1C = MessageLoader_Init(0, 26, 635, HEAP_ID_FIELD);
+    param0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD);
     param0->unk_20 = Graphics_GetScrnData(74, 3, 1, &(param0->unk_24), 4);
 }
 
@@ -374,16 +374,16 @@ static void ov56_02256634(UnkStruct_ov56_02256468 *param0)
 {
     int v0;
 
-    param0->unk_28 = SpriteList_InitRendering(10, &param0->unk_2C, 4);
+    param0->unk_28 = SpriteList_InitRendering(10, &param0->unk_2C, HEAP_ID_FIELD);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1B8[v0] = SpriteResourceCollection_New(1, v0, 4);
+        param0->unk_1B8[v0] = SpriteResourceCollection_New(1, v0, HEAP_ID_FIELD);
     }
 
-    param0->unk_1C8[0] = SpriteResourceCollection_AddTiles(param0->unk_1B8[0], 74, 5, 1, 999, NNS_G2D_VRAM_TYPE_2DSUB, 4);
-    param0->unk_1C8[1] = SpriteResourceCollection_AddPalette(param0->unk_1B8[1], 74, 1, 0, 999, NNS_G2D_VRAM_TYPE_2DSUB, 1, 4);
-    param0->unk_1C8[2] = SpriteResourceCollection_Add(param0->unk_1B8[2], 74, 6, 1, 999, 2, 4);
-    param0->unk_1C8[3] = SpriteResourceCollection_Add(param0->unk_1B8[3], 74, 7, 1, 999, 3, 4);
+    param0->unk_1C8[0] = SpriteResourceCollection_AddTiles(param0->unk_1B8[0], 74, 5, 1, 999, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_FIELD);
+    param0->unk_1C8[1] = SpriteResourceCollection_AddPalette(param0->unk_1B8[1], 74, 1, 0, 999, NNS_G2D_VRAM_TYPE_2DSUB, 1, HEAP_ID_FIELD);
+    param0->unk_1C8[2] = SpriteResourceCollection_Add(param0->unk_1B8[2], 74, 6, 1, 999, 2, HEAP_ID_FIELD);
+    param0->unk_1C8[3] = SpriteResourceCollection_Add(param0->unk_1B8[3], 74, 7, 1, 999, 3, HEAP_ID_FIELD);
 
     SpriteTransfer_RequestCharAtEnd(param0->unk_1C8[0]);
     SpriteTransfer_RequestPlttFreeSpace(param0->unk_1C8[1]);
@@ -413,7 +413,7 @@ static void ov56_02256704(UnkStruct_ov56_02256468 *param0)
         v1.affineZRotation = 0;
         v1.priority = 0;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-        v1.heapID = 4;
+        v1.heapID = HEAP_ID_FIELD;
 
         for (v0 = 0; v0 < 3; v0++) {
             v1.position.x = FX32_CONST(256 - 24);
@@ -565,7 +565,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
 
             if (v3 == 1) {
                 if (param0->unk_2D8.unk_04 != 0) {
-                    Sound_PlayEffect(1509);
+                    Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                     param0->unk_2D8.unk_04--;
                 }
 
@@ -577,7 +577,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
 
             if (v3 == 1) {
                 if (param0->unk_2D8.unk_04 < param0->unk_2D8.unk_00 - 3) {
-                    Sound_PlayEffect(1509);
+                    Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                     param0->unk_2D8.unk_04++;
                 }
 
@@ -602,7 +602,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
                         v5 = (UnkStruct_0203330C *)&v4->gameInfo.userGameInfo;
 
                         if ((param0->unk_04->unk_0C[v1].unk_01 == 2) && (v5->unk_00 == param0->unk_2D4->unk_00[v2].unk_0C)) {
-                            Sound_PlayEffect(1509);
+                            Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                             param0->unk_04->unk_0C[v1].unk_03 = 1;
                             break;
                         }
@@ -613,7 +613,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
                     TrainerInfo *v6 = sub_02033F9C();
 
                     if (param0->unk_2D4->unk_00[v2].unk_0C == TrainerInfo_ID(v6)) {
-                        Sound_PlayEffect(1509);
+                        Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                         param0->unk_04->unk_0C[50].unk_03 = 1;
                     }
                 }
@@ -678,7 +678,7 @@ static void ov56_02256C84(UnkStruct_ov56_02256468 *param0)
         if (gSystem.pressedKeysRepeatable & PAD_BUTTON_L) {
             if (param0->unk_2D8.unk_04 != 0) {
                 param0->unk_2D8.unk_04--;
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
             }
         }
     } else if (gSystem.heldKeys & PAD_BUTTON_R) {
@@ -687,7 +687,7 @@ static void ov56_02256C84(UnkStruct_ov56_02256468 *param0)
         if (gSystem.pressedKeysRepeatable & PAD_BUTTON_R) {
             if (param0->unk_2D8.unk_04 < param0->unk_2D8.unk_00 - 3) {
                 param0->unk_2D8.unk_04++;
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
             }
         }
     }
@@ -753,7 +753,7 @@ static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_
     Bg_CopyTilemapBufferRangeToVRAM(param0, 7, Bg_GetTilemapBuffer(param0, 7), 32 * 24 * 2, 0);
 }
 
-static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4)
+static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4)
 {
     Strbuf *v0 = NULL;
     Strbuf *v1;
@@ -776,7 +776,7 @@ static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTempl
             Strbuf_Free(v1);
         }
 
-        v0 = MessageUtil_ExpandedStrbuf(param2, param3, 208, 89);
+        v0 = MessageUtil_ExpandedStrbuf(param2, param3, 208, HEAP_ID_89);
     }
 
     return v0;
@@ -785,7 +785,7 @@ static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTempl
 static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence *param2, TrainerInfo *param3)
 {
     UnkStruct_0205C95C *v0 = param0->unk_2D4;
-    UnkStruct_02027F8C *v1 = param0->unk_04->unk_474;
+    PalPad *v1 = param0->unk_04->unk_474;
     int *v2;
 
     if (v0->unk_348 == 30) {
@@ -807,7 +807,7 @@ static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence 
     v0->unk_00[*v2].unk_14 = *param2;
     v0->unk_00[*v2].unk_0C = param1;
     v0->unk_00[*v2].unk_10 = TrainerInfo_Gender(param3);
-    v0->unk_00[*v2].unk_04 = sub_02014B34(param2, 89);
+    v0->unk_00[*v2].unk_04 = sub_02014B34(param2, HEAP_ID_89);
     v0->unk_00[*v2].unk_08 = ov56_02256E5C(v1, param1, param0->unk_18, param0->unk_1C, param0->unk_10);
 
     (*v2)++;

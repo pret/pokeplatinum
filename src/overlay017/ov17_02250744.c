@@ -5,7 +5,6 @@
 
 #include "constants/narc.h"
 
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/ov17_0223F118.h"
@@ -19,13 +18,15 @@
 #include "game_options.h"
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -33,8 +34,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
@@ -200,7 +199,7 @@ void ov17_022507C4(UnkStruct_ov17_022507C4 *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02007DC8(param0->unk_08[v0]);
+        PokemonSprite_Delete(param0->unk_08[v0]);
         Heap_FreeToHeap(param0->unk_C8[v0].unk_00);
         param0->unk_C8[v0].unk_00 = NULL;
     }
@@ -603,7 +602,7 @@ void ov17_0225131C(UnkStruct_ov17_0224FCA0 *param0, int param1, int param2)
 {
     ManagedSprite_SetAnim(param0->unk_10.unk_138[param1], param2);
     ManagedSprite_SetDrawFlag(param0->unk_10.unk_138[param1], 1);
-    Sound_PlayEffect(1501);
+    Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 }
 
 void ov17_02251344(UnkStruct_ov17_0224FCA0 *param0, NARC *param1)
@@ -820,7 +819,7 @@ static void ov17_02251784(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        sub_02007DEC(v0->unk_00, 6, 0);
+        PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_HIDE, 0);
         v0->unk_10++;
     case 1:
         v0->unk_08 -= 0x800;
@@ -830,8 +829,8 @@ static void ov17_02251784(SysTask *param0, void *param1)
             v0->unk_10++;
         }
 
-        sub_02007DEC(v0->unk_00, 0, v0->unk_08 >> 8);
-        sub_02007DEC(v0->unk_00, 1, v0->unk_0C >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_X_CENTER, v0->unk_08 >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_Y_CENTER, v0->unk_0C >> 8);
         break;
     default:
         *(v0->unk_04) = 1;
@@ -855,11 +854,11 @@ static void ov17_022517F0(SysTask *param0, void *param1)
             v0->unk_10++;
         }
 
-        sub_02007DEC(v0->unk_00, 0, v0->unk_08 / 0x100);
-        sub_02007DEC(v0->unk_00, 1, v0->unk_0C >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_X_CENTER, v0->unk_08 / 0x100);
+        PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_Y_CENTER, v0->unk_0C >> 8);
         break;
     default:
-        sub_02007DEC(v0->unk_00, 6, 1);
+        PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_HIDE, 1);
         *(v0->unk_04) = 1;
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);

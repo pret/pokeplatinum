@@ -63,7 +63,7 @@ static void ov94_02243E48(JournalEntry *param0, UnkStruct_ov94_0223BA88 *param1)
 static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02243E2C(UnkStruct_0202C878 *param0, UnkStruct_ov94_0223BA88 *param1);
 static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2);
-static void ov94_02243DE8(UnkStruct_0202DA40 *param0, int param1);
+static void ov94_02243DE8(GlobalTrade *param0, int param1);
 static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1);
 static void ov94_022438C8(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02243EC8(UnkStruct_ov94_0223FD4C *param0, int param1, int param2);
@@ -661,7 +661,7 @@ static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
             {
                 TVBroadcast *v2;
 
-                v2 = SaveData_TVBroadcast(param0->unk_00->unk_20);
+                v2 = SaveData_GetTVBroadcast(param0->unk_00->unk_20);
                 sub_0206D104(v2);
             }
             break;
@@ -832,7 +832,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
             param0->unk_2C = 38;
             break;
         case -13:
-            sub_02039834(3, 1, 0);
+            sub_02039834(HEAP_ID_APPLICATION, 1, 0);
             break;
         }
     } else {
@@ -940,7 +940,7 @@ static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0)
     {
         TVBroadcast *v0;
 
-        v0 = SaveData_TVBroadcast(param0->unk_00->unk_20);
+        v0 = SaveData_GetTVBroadcast(param0->unk_00->unk_20);
         sub_0206D104(v0);
     }
 
@@ -1262,7 +1262,7 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
         Party_RemovePokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
         if (Party_HasSpecies(param0->unk_00->unk_08, 441) == 0) {
-            ChatotCry *v2 = GetChatotCryDataFromSave(param0->unk_00->unk_20);
+            ChatotCry *v2 = SaveData_GetChatotCry(param0->unk_00->unk_20);
             ResetChatotCryDataStatus(v2);
         }
     }
@@ -1371,7 +1371,7 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
     ov94_02243DE8(param0->unk_00->unk_00, 1);
 }
 
-static void ov94_02243DE8(UnkStruct_0202DA40 *param0, int param1)
+static void ov94_02243DE8(GlobalTrade *param0, int param1)
 {
     RTCDate v0;
     RTCTime v1;

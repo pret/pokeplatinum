@@ -49,7 +49,7 @@ struct FontManager {
     u8 *glyphWidths;
 };
 
-FontManager *FontManager_New(u32 narcID, u32 arcFileIdx, enum GlyphAccessMode glyphAccessMode, BOOL isMonospace, u32 heapID);
+FontManager *FontManager_New(enum NarcID narcID, u32 arcFileIdx, enum GlyphAccessMode glyphAccessMode, BOOL isMonospace, u32 heapID);
 void FontManager_Delete(FontManager *fontManager);
 void FontManager_SwitchGlyphAccessMode(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID);
 void FontManager_TryLoadGlyph(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph);

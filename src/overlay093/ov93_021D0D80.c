@@ -14,8 +14,8 @@
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "sound_playback.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_0208C098.h"
@@ -148,7 +148,7 @@ int ov93_021D0E70(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        Sound_PlayEffect(1756);
+        Sound_PlayEffect(SEQ_SE_DP_SHIP01);
         (*param1)++;
         break;
     case 1:
@@ -241,7 +241,7 @@ static void ov93_021D102C(UnkStruct_ov93_021D102C *param0)
     NNSG3dResTex *v1;
     void *v2;
     NARC *v3 = NARC_ctor(NARC_INDEX_ARC__SHIP_DEMO, HEAP_ID_72);
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_70, 72, 4);
+    Heap_FndInitAllocatorForExpHeap(&param0->unk_70, HEAP_ID_72, 4);
 
     param0->unk_5C = NARC_AllocAndReadWholeMember(v3, Unk_ov93_021D15A0[param0->unk_9C].unk_00, 72);
     Easy3D_InitRenderObjFromResource(&param0->unk_04, &param0->unk_58, &param0->unk_5C);

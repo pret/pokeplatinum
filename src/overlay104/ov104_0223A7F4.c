@@ -17,7 +17,7 @@
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
@@ -356,9 +356,9 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
     HealAllPokemonInParty(param0->unk_4D8);
 
     v4 = FieldBattleDTO_New(11, ov104_0223AD74(param0->unk_04));
-    FieldBattleDTO_InitFromGameState(v4, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
+    FieldBattleDTO_InitFromGameState(v4, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
-    v4->background = 19;
+    v4->background = BACKGROUND_BATTLE_FACTORY;
     v4->terrain = TERRAIN_BATTLE_FACTORY;
 
     Party_InitWithCapacity(v4->parties[0], v2);

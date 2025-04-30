@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02007768_decl.h"
-#include "struct_defs/archived_sprite.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"
 #include "struct_defs/struct_02095C48.h"
@@ -16,13 +13,13 @@
 
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_text.h"
 #include "strbuf.h"
-#include "unk_0200762C.h"
 #include "unk_020131EC.h"
 #include "unk_020298BC.h"
 #include "unk_020933F8.h"
@@ -389,7 +386,7 @@ int sub_02094EDC(UnkStruct_02095C48 *param0)
     return 0;
 }
 
-void sub_02094F04(UnkStruct_02095C48 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7)
+void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3, int param4, int param5, int param6, int param7)
 {
     int v0, v1;
     u8 *v2;
@@ -418,9 +415,9 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int param1, int param2, int param3
         break;
     }
 
-    v9 = LoadMemberFromNARC(90, 0, 0, param1, 1);
+    v9 = LoadMemberFromNARC(90, 0, 0, heapID, 1);
     v6 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 0) / sizeof(UnkStruct_ov6_02248BE8);
-    v2 = Heap_AllocFromHeapAtEnd(param1, v6 + 1);
+    v2 = Heap_AllocFromHeapAtEnd(heapID, v6 + 1);
 
     if ((param6 == 1) && (param7 == 1)) {
         v5 = 1;
@@ -631,7 +628,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int par
         Strbuf *v3, *v4;
         MessageLoader *v5;
 
-        v5 = MessageLoader_Init(1, 26, 205, param2);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0205, param2);
         v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
         v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
 
@@ -662,28 +659,28 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int par
     }
 }
 
-PokemonSprite *sub_02095484(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int heapID, int param6, int param7, int param8)
+PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int heapID, int param6, int param7, int param8)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     PokemonSprite *v1;
     int v2, v3, v4;
 
-    Pokemon_BuildArchivedSprite(&v0, param2, param3);
+    Pokemon_BuildSpriteTemplate(&v0, param2, param3);
 
     v2 = Pokemon_SpriteYOffset(param2, param3);
 
     if (param4 != NULL) {
         GF_ASSERT(param4->unk_00 != NULL);
-        sub_02013610(v0.archive, v0.character, heapID, param4->unk_00);
+        sub_02013610(v0.narcID, v0.character, heapID, param4->unk_00);
         param4->unk_08 = v0.palette;
-        param4->unk_04 = v0.archive;
+        param4->unk_04 = v0.narcID;
     }
 
-    v1 = sub_02007C34(param0, &v0, param6, param7 + v2, param8, param1, NULL, NULL);
+    v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param6, param7 + v2, param8, param1, NULL, NULL);
     return v1;
 }
 
-void sub_020954F0(UnkStruct_02095C48 *param0, int param1, int param2, int param3, int param4)
+void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int param3, int param4)
 {
     int v0, v1;
     u8 v2 = 0, v3 = 0;
@@ -692,10 +689,10 @@ void sub_020954F0(UnkStruct_02095C48 *param0, int param1, int param2, int param3
     UnkStruct_020954F0 *v6;
     u8 *v7, *v8;
 
-    v6 = LoadMemberFromNARC(90, 1, 0, param1, 1);
+    v6 = LoadMemberFromNARC(90, 1, 0, heapID, 1);
     v5 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 1) / sizeof(UnkStruct_020954F0);
-    v7 = Heap_AllocFromHeapAtEnd(param1, v5 + 1);
-    v8 = Heap_AllocFromHeapAtEnd(param1, v5 + 1);
+    v7 = Heap_AllocFromHeapAtEnd(heapID, v5 + 1);
+    v8 = Heap_AllocFromHeapAtEnd(heapID, v5 + 1);
 
     for (v0 = 0; v0 < v5; v0++) {
         if (param4 != v6[v0].unk_04_10) {

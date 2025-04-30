@@ -21,9 +21,9 @@
 #include "communication_system.h"
 #include "enums.h"
 #include "list_menu.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "system.h"
-#include "unk_02005474.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 
@@ -185,7 +185,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
             break;
         }
 
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov70_02262E8C(param0);
         break;
     case 2:
@@ -341,7 +341,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
 
         if (v0->unk_14 == 0) {
             if (gSystem.pressedKeys & PAD_BUTTON_B) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 if (ov66_02233374() == 0) {
                     v1->unk_00 = 6;

@@ -38,23 +38,23 @@ void ov106_02243310(UnkStruct_ov106_02243310 *param0, Pokemon *param1)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 98);
 
-    param0->unk_00 = SpriteList_InitRendering(2, &param0->unk_04, 98);
+    param0->unk_00 = SpriteList_InitRendering(2, &param0->unk_04, HEAP_ID_98);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov106_0224384C[v0], v0, 98);
+        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov106_0224384C[v0], v0, HEAP_ID_98);
     }
 
-    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 151, 12, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 98);
-    param0->unk_1A0[0][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 38, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 98);
-    param0->unk_1A0[0][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 14, 1, 0, 2, 98);
+    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 151, 12, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_98);
+    param0->unk_1A0[0][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 38, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_98);
+    param0->unk_1A0[0][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 14, 1, 0, 2, HEAP_ID_98);
 
-    param0->unk_1A0[0][3] = SpriteResourceCollection_Add(param0->unk_190[3], 151, 13, 1, 0, 3, 98);
+    param0->unk_1A0[0][3] = SpriteResourceCollection_Add(param0->unk_190[3], 151, 13, 1, 0, 3, HEAP_ID_98);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_98);
 
-    param0->unk_1A0[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], v1, Pokemon_IconSpriteIndex(param1), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 98);
-    param0->unk_1A0[1][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 19, PokeIconPalettesFileIndex(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 98);
-    param0->unk_1A0[1][2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], v1, PokeIcon32KCellsFileIndex(), 0, 1, 2, 98);
-    param0->unk_1A0[1][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], v1, PokeIcon32KAnimationFileIndex(), 0, 1, 3, 98);
+    param0->unk_1A0[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], v1, Pokemon_IconSpriteIndex(param1), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_98);
+    param0->unk_1A0[1][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 19, PokeIconPalettesFileIndex(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_98);
+    param0->unk_1A0[1][2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], v1, PokeIcon32KCellsFileIndex(), 0, 1, 2, HEAP_ID_98);
+    param0->unk_1A0[1][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], v1, PokeIcon32KAnimationFileIndex(), 0, 1, 3, HEAP_ID_98);
 
     for (v0 = 0; v0 < 2; v0++) {
         SpriteTransfer_RequestChar(param0->unk_1A0[v0][0]);
@@ -97,7 +97,7 @@ Sprite *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2,
             v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
         }
 
-        v3.heapID = 98;
+        v3.heapID = HEAP_ID_98;
 
         if (param4 == 1) {
             v3.position.y += (192 << FX32_SHIFT);
@@ -144,7 +144,7 @@ static void ov106_022435C8(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    PlttTransfer_Init((1 + 3), 98);
+    PlttTransfer_Init((1 + 3), HEAP_ID_98);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 

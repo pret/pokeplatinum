@@ -29,10 +29,10 @@
 #include "easy3d_object.h"
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "pokemon.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "unk_0200F174.h"
 
 __attribute__((aligned(4))) static const s16 Unk_ov113_02260BCC[] = {
@@ -568,7 +568,7 @@ static UnkStruct_ov113_0225E6B8 *ov113_0225E6B8(UnkStruct_ov113_0225DBCC *param0
 
 static BOOL ov113_0225E774(UnkStruct_ov113_0225EB20 *param0, Easy3DModel *param1, NARC *param2, NARC *param3, const UnkStruct_ov113_02260818 *param4, BOOL param5)
 {
-    param1->data = LoadMemberFromOpenNARC(param2, 29, 0, 118, 0);
+    param1->data = LoadMemberFromOpenNARC(param2, 29, 0, HEAP_ID_118, 0);
 
     {
         BOOL v0;
@@ -675,10 +675,10 @@ static void ov113_0225E920(NNSG3dResTex *param0, NARC *param1, NARC *param2, con
     v1 = (u8 *)((u8 *)param0 + param0->texInfo.ofsTex);
 
     if (v4 == 1) {
-        v2 = LoadMemberFromOpenNARC(param2, 3 + param3->unk_02, 1, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param2, 3 + param3->unk_02, 1, HEAP_ID_118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
     } else {
-        v2 = LoadMemberFromOpenNARC(param1, 16, 0, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param1, 16, 0, HEAP_ID_118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
     }
 
@@ -1809,7 +1809,7 @@ static BOOL ov113_0225FE30(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
     case 0:
         v0->unk_00 = Camera_GetDistance(camera);
         v0->unk_06++;
-        Sound_PlayEffect(1470);
+        Sound_PlayEffect(SEQ_SE_PL_TIMER03);
     case 1:
         Camera_AdjustDistance(((-FX32_ONE * 50) / 30), camera);
         v0->unk_04++;
@@ -1849,7 +1849,7 @@ static BOOL ov113_0225FEE0(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
 
     switch (v0->unk_0C) {
     case 0:
-        Sound_PlayEffect(1470);
+        Sound_PlayEffect(SEQ_SE_PL_TIMER03);
         v0->unk_0C++;
     case 1:
         v0->unk_0D++;
@@ -1901,7 +1901,7 @@ static BOOL ov113_0225FF8C(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
         v0->cameraAngle = Camera_GetAngle(camera);
         v0->unk_08 = v0->cameraAngle.y;
         v0->unk_0E++;
-        Sound_PlayEffect(1470);
+        Sound_PlayEffect(SEQ_SE_PL_TIMER03);
     case 1:
         v1.y += (-0x2000 / 2);
         v0->unk_08 += (-0x2000 / 2);
@@ -1944,7 +1944,7 @@ static BOOL ov113_02260064(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
         v0->cameraAngle = Camera_GetAngle(camera);
         v0->unk_08 = v0->cameraAngle.y;
         v0->unk_0E++;
-        Sound_PlayEffect(1470);
+        Sound_PlayEffect(SEQ_SE_PL_TIMER03);
     case 1:
         v1.y += (0x2000 / 2);
         v0->unk_08 += (0x2000 / 2);
@@ -1986,7 +1986,7 @@ static BOOL ov113_0226013C(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
     case 0:
         v0->cameraAngle = Camera_GetAngle(camera);
         v0->unk_08 = v0->cameraAngle.x;
-        Sound_PlayEffect(1470);
+        Sound_PlayEffect(SEQ_SE_PL_TIMER03);
         v0->unk_0E++;
     case 1:
         v1.x += (0x2000 / 3);
@@ -2033,7 +2033,7 @@ static BOOL ov113_02260218(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
     case 0:
         v0->cameraAngle = Camera_GetAngle(camera);
         v0->unk_0D++;
-        Sound_PlayEffect(1470);
+        Sound_PlayEffect(SEQ_SE_PL_TIMER03);
     case 1:
         v0->unk_08 += 0x18000;
 
@@ -2067,7 +2067,7 @@ static BOOL ov113_022602E4(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
     case 0:
         v0->unk_00 = Camera_GetDistance(camera);
         v0->unk_06++;
-        Sound_PlayEffect(1470);
+        Sound_PlayEffect(SEQ_SE_PL_TIMER03);
     case 1:
         Camera_AdjustDistance(((FX32_ONE * 50) / 30), camera);
         v0->unk_04++;
@@ -2111,7 +2111,7 @@ static BOOL ov113_02260394(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
         v0->unk_0C = Camera_GetPosition(camera);
         v0->unk_00 = Camera_GetTarget(camera);
         v0->unk_1D++;
-        Sound_PlayEffect(1470);
+        Sound_PlayEffect(SEQ_SE_PL_TIMER03);
     case 1:
         v0->unk_18 += 0x20000;
 
@@ -2150,7 +2150,7 @@ static BOOL ov113_0226046C(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
         v0->unk_0C = Camera_GetPosition(camera);
         v0->unk_00 = Camera_GetTarget(camera);
         v0->unk_1D++;
-        Sound_PlayEffect(1470);
+        Sound_PlayEffect(SEQ_SE_PL_TIMER03);
     case 1:
         v0->unk_18 += 0x20000;
 
@@ -2189,7 +2189,7 @@ static BOOL ov113_02260544(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
         v0->unk_08 = v0->cameraAngle.x;
         v0->unk_0E++;
 
-        Sound_PlayEffect(1470);
+        Sound_PlayEffect(SEQ_SE_PL_TIMER03);
     case 1:
         v1.x += (-0x2000 / 3);
         v0->unk_08 += (-0x2000 / 3);

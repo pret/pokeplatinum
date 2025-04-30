@@ -8,18 +8,18 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag 0x9D4
+    SetFlag FLAG_UNK_0x09D4
     Call _001C
-    ScrCmd_285 0x410B, 0x410C
+    ScrCmd_285 VAR_UNK_0x410B, VAR_UNK_0x410C
     End
 
 _001C:
-    SetVar 0x410B, 0
-    SetVar 0x410C, 0
+    SetVar VAR_UNK_0x410B, 0
+    SetVar VAR_UNK_0x410C, 0
     Return
 
 _002A:
-    GoToIfSet 0x121, _0046
+    GoToIfSet FLAG_UNK_0x0121, _0046
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0

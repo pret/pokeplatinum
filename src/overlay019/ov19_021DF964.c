@@ -12,8 +12,8 @@
 
 #include "enums.h"
 #include "pc_boxes.h"
+#include "sound_playback.h"
 #include "system.h"
-#include "unk_02005474.h"
 
 static void ov19_021DFCF8(UnkStruct_ov19_021DF964 *param0);
 static void ov19_021DFD08(UnkStruct_ov19_021DF964 *param0, UnkEnum_021DFB94 param1);
@@ -37,11 +37,11 @@ void ov19_021DF990(UnkStruct_ov19_021D4DF0 *param0)
     ov19_021DFCF8(v0);
     v0->unk_23 = 1;
 
-    switch (ov19_021D5E08(param0)) {
-    case 2:
+    switch (ov19_GetBoxMode(param0)) {
+    case PC_MODE_MOVE_MONS:
     default:
-        if (ov19_021D5E38(param0) == 2) {
-            ov19_021DFD08(v0, ov19_021D5E34(param0) ? UnkEnum_021DFB94_36 : UnkEnum_021DFB94_35);
+        if (ov19_GetPreviewMonSource(param0) == PREVIEW_MON_IN_CURSOR) {
+            ov19_021DFD08(v0, ov19_IsMonUnderCursor(param0) ? UnkEnum_021DFB94_36 : UnkEnum_021DFB94_35);
         } else {
             ov19_021DFD08(v0, UnkEnum_021DFB94_34);
         }
@@ -56,28 +56,28 @@ void ov19_021DF990(UnkStruct_ov19_021D4DF0 *param0)
             }
         }
 
-        ov19_021DFD08(v0, (ov19_021D5E10(param0) == 0) ? UnkEnum_021DFB94_38 : UnkEnum_021DFB94_39);
+        ov19_021DFD08(v0, (ov19_GetCursorLocation(param0) == CURSOR_IN_BOX) ? UnkEnum_021DFB94_38 : UnkEnum_021DFB94_39);
         ov19_021DFD08(v0, UnkEnum_021DFB94_41);
         ov19_021DFD08(v0, UnkEnum_021DFB94_42);
         ov19_021DFD08(v0, UnkEnum_021DFB94_43);
         break;
-    case 0:
+    case PC_MODE_DEPOSIT:
         ov19_021DFD08(v0, UnkEnum_021DFB94_39);
         ov19_021DFD08(v0, UnkEnum_021DFB94_37);
         ov19_021DFD08(v0, UnkEnum_021DFB94_41);
         ov19_021DFD08(v0, UnkEnum_021DFB94_42);
         ov19_021DFD08(v0, UnkEnum_021DFB94_43);
         break;
-    case 1:
+    case PC_MODE_WITHDRAW:
         ov19_021DFD08(v0, UnkEnum_021DFB94_38);
         ov19_021DFD08(v0, UnkEnum_021DFB94_37);
         ov19_021DFD08(v0, UnkEnum_021DFB94_41);
         ov19_021DFD08(v0, UnkEnum_021DFB94_42);
         ov19_021DFD08(v0, UnkEnum_021DFB94_43);
         break;
-    case 4:
+    case PC_MODE_COMPARE:
         ov19_021DFD08(v0, (ov19_021D5F9C(param0) == 0) ? UnkEnum_021DFB94_52 : UnkEnum_021DFB94_53);
-        ov19_021DFD08(v0, (ov19_021D5E10(param0) == 0) ? UnkEnum_021DFB94_38 : UnkEnum_021DFB94_39);
+        ov19_021DFD08(v0, (ov19_GetCursorLocation(param0) == CURSOR_IN_BOX) ? UnkEnum_021DFB94_38 : UnkEnum_021DFB94_39);
         ov19_021DFD08(v0, UnkEnum_021DFB94_41);
         ov19_021DFD08(v0, UnkEnum_021DFB94_43);
     }
@@ -89,7 +89,7 @@ void ov19_021DFAD0(UnkStruct_ov19_021D4DF0 *param0)
     u32 v1, v2;
 
     v0 = &(param0->unk_74);
-    v1 = ov19_021D5F7C(param0);
+    v1 = ov19_GetCursorItem(param0);
     v2 = ov19_GetPreviewedMonHeldItem(param0);
 
     ov19_021DFCF8(v0);
@@ -120,12 +120,12 @@ void ov19_021DFAD0(UnkStruct_ov19_021D4DF0 *param0)
 void ov19_021DFB50(UnkStruct_ov19_021D4DF0 *param0)
 {
     UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
-    const PCBoxes *v1 = ov19_021D5E90(param0);
+    const PCBoxes *unused = ov19_GetPCBoxes(param0);
 
     ov19_021DFCF8(v0);
     ov19_021DFD08(v0, UnkEnum_021DFB94_00);
 
-    if (ov19_021D5E08(param0) != 4) {
+    if (ov19_GetBoxMode(param0) != PC_MODE_COMPARE) {
         ov19_021DFD08(v0, UnkEnum_021DFB94_01);
         ov19_021DFD08(v0, UnkEnum_021DFB94_02);
     }
@@ -138,8 +138,8 @@ void ov19_021DFB50(UnkStruct_ov19_021D4DF0 *param0)
 void ov19_021DFB94(UnkStruct_ov19_021D4DF0 *param0, UnkEnum_021DFB94 param1)
 {
     UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
-    const PCBoxes *v1 = ov19_021D5E90(param0);
-    u32 v2;
+    const PCBoxes *pcBoxes = ov19_GetPCBoxes(param0);
+    u32 numUnlockedWallpapers;
 
     ov19_021DFCF8(v0);
     ov19_021DFD08(v0, UnkEnum_021DFB94_04);
@@ -147,13 +147,13 @@ void ov19_021DFB94(UnkStruct_ov19_021D4DF0 *param0, UnkEnum_021DFB94 param1)
     ov19_021DFD08(v0, UnkEnum_021DFB94_06);
     ov19_021DFD08(v0, UnkEnum_021DFB94_07);
 
-    v2 = PCBoxes_CountUnlockedWallpapers(v1);
+    numUnlockedWallpapers = PCBoxes_CountUnlockedWallpapers(pcBoxes);
 
-    if (v2 > 0) {
+    if (numUnlockedWallpapers > 0) {
         ov19_021DFD08(v0, UnkEnum_021DFB94_08);
     }
 
-    if (v2 > 4) {
+    if (numUnlockedWallpapers > 4) {
         ov19_021DFD08(v0, UnkEnum_021DFB94_09);
     }
 
@@ -175,7 +175,7 @@ void ov19_021DFC04(UnkStruct_ov19_021D4DF0 *param0, UnkEnum_021DFB94 param1)
         { UnkEnum_021DFB94_22, UnkEnum_021DFB94_23, UnkEnum_021DFB94_24, UnkEnum_021DFB94_25 },
     };
     UnkStruct_ov19_021DF964 *v1 = &(param0->unk_74);
-    const PCBoxes *v2 = ov19_021D5E90(param0);
+    const PCBoxes *pcBoxes = ov19_GetPCBoxes(param0);
     int v3;
 
     ov19_021DFCF8(v1);
@@ -195,7 +195,7 @@ void ov19_021DFC04(UnkStruct_ov19_021D4DF0 *param0, UnkEnum_021DFB94 param1)
         }
 
         for (v3 = 0; v3 < 8; v3++) {
-            if (PCBoxes_CheckHasUnlockedWallpaper(v2, v3)) {
+            if (PCBoxes_CheckHasUnlockedWallpaper(pcBoxes, v3)) {
                 if (v4) {
                     v4--;
                 } else {
@@ -275,12 +275,12 @@ int ov19_021DFD2C(UnkStruct_ov19_021D4DF0 *param0)
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return -1;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return v0->unk_00[v0->unk_20];
     }
 

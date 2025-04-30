@@ -160,16 +160,16 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_04 = BgConfig_New(HEAP_ID_117);
 
-    VramTransfer_New(64, 117);
+    VramTransfer_New(64, HEAP_ID_117);
     SetAutorepeat(4, 8);
     ov61_0222C224(v0->unk_04);
     sub_0201E3D8();
     sub_0201E450(4);
 
-    v0->unk_20 = StringTemplate_New(11, 64, 117);
-    v0->unk_24 = MessageLoader_Init(0, 26, 671, HEAP_ID_117);
-    v0->unk_28 = MessageLoader_Init(0, 26, 674, HEAP_ID_117);
-    v0->unk_2C = MessageLoader_Init(0, 26, 695, HEAP_ID_117);
+    v0->unk_20 = StringTemplate_New(11, 64, HEAP_ID_117);
+    v0->unk_24 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0671, HEAP_ID_117);
+    v0->unk_28 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_117);
+    v0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_117);
     v0->unk_34 = Strbuf_Init((90 * 2), HEAP_ID_117);
     v0->unk_3C = Strbuf_Init((16 * 8 * 2), HEAP_ID_117);
     v0->unk_38 = MessageLoader_GetNewStrbuf(v0->unk_24, 31);
@@ -433,7 +433,7 @@ static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_117);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_117);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_117);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(SaveData_Options(param0->unk_00->unk_00->unk_04)), HEAP_ID_117);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(SaveData_GetOptions(param0->unk_00->unk_00->unk_04)), HEAP_ID_117);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_117);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_117);
@@ -798,7 +798,7 @@ static int ov61_0222CBF0(UnkStruct_ov61_0222C664 *param0)
     DWCUserData *v0;
     s32 v1;
     SystemData *v2;
-    UnkStruct_0202B370 *v3 = sub_0202B370(param0->unk_00->unk_00->unk_04);
+    WiFiList *v3 = SaveData_GetWiFiList(param0->unk_00->unk_00->unk_04);
     v2 = SaveData_GetSystemData(param0->unk_00->unk_00->unk_04);
     v0 = sub_0202AD28(v3);
     v1 = sub_02025D74(v2);

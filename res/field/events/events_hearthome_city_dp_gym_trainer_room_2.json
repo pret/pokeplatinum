@@ -5,7 +5,7 @@
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 3329,
             "initial_dir": 1,
             "data": [

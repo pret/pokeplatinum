@@ -23,13 +23,13 @@
 #include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_020393C8.h"
@@ -176,7 +176,7 @@ static BOOL ov75_021D0E34(UnkStruct_ov75_021D1184 *param0)
 static int ov75_021D0E5C(UnkStruct_ov75_021D1184 *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Sound_PlayEffect(1507);
+        Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
         return 1;
     }
 
@@ -191,15 +191,15 @@ static int ov75_021D0E80(UnkStruct_ov75_021D1184 *param0)
         if (param0->unk_11 == 3) {
             if (param0->unk_12 == 0) {
                 if (ov75_021D0E34(param0)) {
-                    Sound_PlayEffect(1501);
+                    Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                     param0->unk_0C = UnkEnum_ov75_021D0E80_02;
                     return 0;
                 } else {
                     param0->unk_1C->unk_00 = 3;
-                    Sound_PlayEffect(1507);
+                    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
                 }
             } else {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 param0->unk_0C = UnkEnum_ov75_021D0E80_03;
                 return 0;
             }
@@ -208,12 +208,12 @@ static int ov75_021D0E80(UnkStruct_ov75_021D1184 *param0)
         } else {
             param0->unk_1C->unk_00 = param0->unk_1C->unk_02 = param0->unk_11;
             param0->unk_1C->unk_03 = param0->unk_12;
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         }
 
         return 1;
     } else if (gSystem.pressedKeys & (PAD_BUTTON_B)) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         param0->unk_0C = UnkEnum_ov75_021D0E80_03;
         return 0;
     }
@@ -241,7 +241,7 @@ static int ov75_021D0E80(UnkStruct_ov75_021D1184 *param0)
         return 0;
     }
 
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
 
     if (param0->unk_11 == 3) {
         param0->unk_16 = param0->unk_11 + param0->unk_12;
@@ -827,7 +827,7 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
         Strbuf *v2;
         int v3;
 
-        param0->unk_20 = MessageLoader_Init(1, 26, 409, param0->heapID);
+        param0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0409, param0->heapID);
 
         v2 = Strbuf_Init(8 * 2, param0->heapID);
 

@@ -11,8 +11,8 @@
 #include "overlay059/struct_ov59_021D30E0.h"
 
 #include "communication_system.h"
-#include "math.h"
-#include "unk_02005474.h"
+#include "math_util.h"
+#include "sound_playback.h"
 #include "unk_02030EE0.h"
 #include "unk_02032798.h"
 #include "unk_020366A0.h"
@@ -187,7 +187,7 @@ void sub_0209621C(int param0, int param1, void *param2, void *param3)
     ov59_021D2204(v0, 25, param0);
 
     CommMan_SetErrorHandling(1, 1);
-    Sound_PlayEffect(1624);
+    Sound_PlayEffect(SEQ_SE_DP_F209);
 }
 
 void sub_02096264(int param0, int param1, void *param2, void *param3)

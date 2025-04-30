@@ -5,7 +5,7 @@
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
-#include "math.h"
+#include "math_util.h"
 #include "pokedex.h"
 
 #define START_ENCODED_RECORDS RECORD_TRAINER_SCORE
@@ -31,7 +31,7 @@ void GameRecords_Init(GameRecords *records)
     EncodeGameRecords(records, START_ENCODED_RECORDS);
 }
 
-GameRecords *SaveData_GetGameRecordsPtr(SaveData *savedata)
+GameRecords *SaveData_GetGameRecords(SaveData *savedata)
 {
     return SaveData_SaveTable(savedata, SAVE_TABLE_ENTRY_GAME_RECORDS);
 }
@@ -98,7 +98,7 @@ static u8 sUsesHighLimit[MAX_RECORDS] = {
     [RECORD_TRAINER_BATTLES_FOUGHT] = TRUE,
     [RECORD_UNK_009] = FALSE,
     [RECORD_UNK_010] = FALSE,
-    [RECORD_UNK_011] = FALSE,
+    [RECORD_EGGS_HATCHED] = FALSE,
     [RECORD_UNK_012] = TRUE,
     [RECORD_UNK_013] = TRUE,
     [RECORD_UNK_014] = TRUE,
@@ -122,12 +122,12 @@ static u8 sUsesHighLimit[MAX_RECORDS] = {
     [RECORD_UNK_032] = TRUE,
     [RECORD_UNK_033] = TRUE,
     [RECORD_UNK_034] = TRUE,
-    [RECORD_UNK_035] = TRUE,
+    [RECORD_MONEY_SPENT] = TRUE,
     [RECORD_UNK_036] = TRUE,
     [RECORD_UNK_037] = TRUE,
     [RECORD_UNK_038] = TRUE,
     [RECORD_UNK_039] = TRUE,
-    [RECORD_UNK_040] = TRUE,
+    [RECORD_DEPOSITED_IN_DAYCARE] = TRUE,
     [RECORD_FAINTED_IN_BATTLE] = FALSE,
     [RECORD_UNK_042] = FALSE,
     [RECORD_UNK_043] = FALSE,
@@ -203,7 +203,7 @@ static u8 sUsesHighLimit[MAX_RECORDS] = {
     [RECORD_UNK_113] = FALSE,
     [RECORD_UNK_114] = FALSE,
     [RECORD_UNK_115] = FALSE,
-    [RECORD_UNK_116] = FALSE,
+    [RECORD_CHECKED_FOOTPRINTS] = FALSE,
     [RECORD_UNK_117] = FALSE,
     [RECORD_UNK_118] = FALSE,
     [RECORD_UNK_119] = FALSE,

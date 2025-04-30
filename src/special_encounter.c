@@ -6,7 +6,7 @@
 #include "struct_defs/radar_chain_records.h"
 #include "struct_defs/special_encounter.h"
 
-#include "math.h"
+#include "math_util.h"
 #include "roaming_pokemon.h"
 #include "savedata.h"
 
@@ -68,9 +68,9 @@ RadarChainRecords *SpecialEncounter_GetRadarChainRecords(SpecialEncounter *speEn
     return &(speEnc->chainRecords);
 }
 
-SpecialEncounter *SaveData_GetSpecialEncounters(SaveData *speEnc)
+SpecialEncounter *SaveData_GetSpecialEncounters(SaveData *saveData)
 {
-    return SaveData_SaveTable(speEnc, SAVE_TABLE_ENTRY_ENCOUNTERS);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_ENCOUNTERS);
 }
 
 // This is exclusively used in combination with SpecialEncounter_GetHoneyTree, so they could've just been one function...
@@ -97,14 +97,14 @@ HoneyTree *SpecialEncounter_GetHoneyTree(const u8 treeId, PlayerHoneyTreeStates 
 }
 
 // These are minute timers. They start at 24 hours'worth of minutes
-void SpecialEncounter_DecrementHoneyTreeTimers(SaveData *save, const int decrement)
+void SpecialEncounter_DecrementHoneyTreeTimers(SaveData *saveData, const int decrement)
 {
     int i;
     PlayerHoneyTreeStates *treeDat;
     SpecialEncounter *speEnc;
     HoneyTree *tree;
 
-    speEnc = SaveData_GetSpecialEncounters(save);
+    speEnc = SaveData_GetSpecialEncounters(saveData);
     treeDat = &(speEnc->treeStates);
 
     for (i = 0; i < NUM_HONEY_TREES; i++) {

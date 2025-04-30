@@ -8,9 +8,7 @@
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
-#include "generated/sdat.h"
 #include "generated/species.h"
-#include "generated/text_banks.h"
 
 #include "struct_defs/struct_02099F80.h"
 
@@ -34,9 +32,13 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
 #include "ribbon.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_chatot.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -44,10 +46,6 @@
 #include "system.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
-#include "unk_02006224.h"
-#include "unk_0200762C.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
@@ -256,7 +254,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     PokemonSummaryScreen_SetupCamera(summaryScreen);
     SetVBlankCallback(PokemonSummaryScreenVBlank, summaryScreen);
     GXLayers_TurnBothDispOn();
-    sub_02004550(61, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_61, SEQ_NONE, 0);
     DrawWifiConnectionIcon();
     NARC_dtor(narc);
 
@@ -370,7 +368,7 @@ static void PokemonSummaryScreenVBlank(void *data)
     PokemonSummaryScreen *summaryScreen = data;
 
     Bg_RunScheduledUpdates(summaryScreen->bgConfig);
-    sub_02008A94(summaryScreen->monSprite.spriteManager);
+    PokemonSpriteManager_UpdateCharAndPltt(summaryScreen->monSprite.spriteManager);
     VramTransfer_Process();
     SpriteSystem_TransferOam();
 
@@ -1070,15 +1068,15 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     monData->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
 
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_species_name_template, summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, PokemonSummary_Text_SpeciesNameTemplate, summaryScreen->strbuf);
     StringTemplate_SetSpeciesName(summaryScreen->strFormatter, 0, boxMon);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.speciesName, summaryScreen->strbuf);
 
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_nickname_template, summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, PokemonSummary_Text_NicknameTemplate, summaryScreen->strbuf);
     StringTemplate_SetNickname(summaryScreen->strFormatter, 0, boxMon);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.nickname, summaryScreen->strbuf);
 
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_otname_template, summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, PokemonSummary_Text_OtnameTemplate, summaryScreen->strbuf);
     StringTemplate_SetOTName(summaryScreen->strFormatter, 0, boxMon);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.OTName, summaryScreen->strbuf);
 
@@ -1170,7 +1168,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     summaryScreen->ribbonMax = 0;
 
     for (i = 0; i < RIBBON_MAX; i++) {
-        if (Pokemon_GetValue(mon, Ribbon_GetData(i, RIBBON_DATA_RIBBON_ID), NULL) != 0) {
+        if (Pokemon_GetValue(mon, Ribbon_GetData(i, RIBBON_DATA_MON_DATA_PARAM), NULL) != 0) {
             monData->ribbons[i / 32] |= (1 << (i & 0x1F));
             summaryScreen->ribbonMax++;
         }
@@ -1191,7 +1189,7 @@ static void PlayMonCry(PokemonSummaryScreen *summaryScreen)
     if (summaryScreen->monData.species == SPECIES_CHATOT) {
         Sound_PlayDelayedChatotCry(summaryScreen->data->chatotCry, 0, 100, 0, cryDelay);
     } else {
-        sub_0200590C(summaryScreen->monData.species, cryDelay, summaryScreen->monData.form);
+        Sound_PlayDelayedPokemonCry(summaryScreen->monData.species, cryDelay, summaryScreen->monData.form);
     }
 }
 
@@ -1664,7 +1662,7 @@ static u8 SetupBattleMoveInfo(PokemonSummaryScreen *summaryScreen)
         PokemonSummaryScreen_ShowMove5OrCancel(summaryScreen);
 
         if (summaryScreen->data->mode != SUMMARY_MODE_LOCK_MOVES) {
-            PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, summary_move_switch);
+            PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, PokemonSummary_Text_MoveSwitch);
             PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
         }
 
@@ -1712,7 +1710,7 @@ static u8 HideBattleMoveInfo(PokemonSummaryScreen *summaryScreen)
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_MON_LEVEL]);
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_ITEM]);
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_ITEM_NAME]);
-        PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, summary_select_battle_move_info);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, PokemonSummary_Text_SelectBattleMoveInfo);
         PokemonSummaryScreen_UpdatePageArrows(summaryScreen, TRUE);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
         return TRUE;
@@ -1871,7 +1869,7 @@ static u8 SetupContestMoveInfo(PokemonSummaryScreen *summaryScreen)
         PokemonSummaryScreen_ShowMove5OrCancel(summaryScreen);
 
         if (summaryScreen->data->mode != SUMMARY_MODE_LOCK_MOVES) {
-            PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, summary_move_switch);
+            PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, PokemonSummary_Text_MoveSwitch);
             PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
         }
 
@@ -1914,7 +1912,7 @@ static u8 HideContestMoveInfo(PokemonSummaryScreen *summaryScreen)
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_MON_LEVEL]);
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_ITEM]);
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_ITEM_NAME]);
-        PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, summary_select_contest_move_info);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, PokemonSummary_Text_SelectContestMoveInfo);
         PokemonSummaryScreen_UpdatePageArrows(summaryScreen, TRUE);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
         return TRUE;
@@ -2022,7 +2020,7 @@ static u8 SetupRibbonInfo(PokemonSummaryScreen *summaryScreen)
         }
     } break;
     case PAGE_STATE_SCROLL_FINISHED:
-        PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, summary_ribbon_select_cancel);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, PokemonSummary_Text_RibbonSelectCancel);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
         Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_CURSOR], TRUE);
         Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_FLASH], TRUE);
@@ -2068,7 +2066,7 @@ static u8 HideRibbonInfo(PokemonSummaryScreen *summaryScreen)
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_RIBBON_COUNT]);
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
         Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_COUNT]);
-        PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, summary_ribbon_select_info);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, PokemonSummary_Text_RibbonSelectInfo);
         PokemonSummaryScreen_UpdatePageArrows(summaryScreen, TRUE);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
 
@@ -2127,7 +2125,7 @@ static void ChangeSelectedRibbon(PokemonSummaryScreen *summaryScreen, s8 delta)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    summaryScreen->ribbonNum = PokemonSummaryScreen_RibbonNumAt(summaryScreen, summaryScreen->ribbonCol);
+    summaryScreen->ribbonID = PokemonSummaryScreen_RibbonIDAt(summaryScreen, summaryScreen->ribbonCol);
 
     PokemonSummaryScreen_UpdateRibbonCursorPos(summaryScreen);
 
@@ -2151,16 +2149,16 @@ static void ChangeSelectedRibbon(PokemonSummaryScreen *summaryScreen, s8 delta)
     }
 }
 
-u8 PokemonSummaryScreen_RibbonNumAt(PokemonSummaryScreen *summaryScreen, u8 col)
+u8 PokemonSummaryScreen_RibbonIDAt(PokemonSummaryScreen *summaryScreen, u8 col)
 {
-    u16 ribbonNum;
+    u16 ribbonID;
     u8 ribbonIndex = col + summaryScreen->ribbonRow * RIBBONS_PER_ROW;
     u8 monRibbonIndex = 0;
 
-    for (ribbonNum = 0; ribbonNum < RIBBON_MAX; ribbonNum++) {
-        if ((summaryScreen->monData.ribbons[ribbonNum / 32] & (1 << (ribbonNum & 0x1F))) != 0) {
+    for (ribbonID = 0; ribbonID < RIBBON_MAX; ribbonID++) {
+        if ((summaryScreen->monData.ribbons[ribbonID / 32] & (1 << (ribbonID & 0x1F))) != 0) {
             if (ribbonIndex == monRibbonIndex) {
-                return ribbonNum;
+                return ribbonID;
             }
 
             monRibbonIndex++;

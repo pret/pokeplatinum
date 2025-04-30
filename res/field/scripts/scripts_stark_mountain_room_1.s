@@ -8,8 +8,8 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag 0x9D2
-    SetFlag 0x28E
+    SetFlag FLAG_UNK_0x09D2
+    SetFlag FLAG_UNK_0x028E
     End
 
 _0014:
@@ -21,8 +21,8 @@ _0014:
     ApplyMovement 0, _0160
     WaitMovement
     StartTrainerBattle TRAINER_COMMANDER_MARS_STARK_MOUNTAIN
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0150
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0150
     Message 1
     CloseMessage
     ApplyMovement 0, _0168
@@ -34,11 +34,11 @@ _0014:
     ApplyMovement 4, _01CC
     WaitMovement
     StartTrainerBattle TRAINER_COMMANDER_JUPITER_STARK_MOUNTAIN
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0150
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0150
     Message 3
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 0, _0174
     ApplyMovement 4, _01F4
     WaitMovement
@@ -79,7 +79,7 @@ _0014:
     RemoveObject 4
     RemoveObject 15
     RemoveObject 16
-    SetVar 0x40AD, 1
+    SetVar VAR_UNK_0x40AD, 1
     ReleaseAll
     End
 

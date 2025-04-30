@@ -11,9 +11,9 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_247 0x800C
-    ScrCmd_212 0x8004, 0x800C
-    ScrCmd_17C 0, 0x8004
+    GetFirstNonEggInParty VAR_RESULT
+    ScrCmd_212 VAR_0x8004, VAR_RESULT
+    ScrCmd_17C 0, VAR_0x8004
     Message 0
     WaitABXPadPress
     CloseMessage

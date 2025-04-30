@@ -1,13 +1,11 @@
 #ifndef POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 #define POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 
-#include "struct_decls/struct_02054C18_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_decls/terrain_collision_manager_decl.h"
 #include "struct_defs/map_load_mode.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_0204AFC4.h"
@@ -15,6 +13,7 @@
 #include "field/field_system_sub2_decl.h"
 #include "overlay005/area_data.h"
 #include "overlay005/area_light.h"
+#include "overlay005/dynamic_terrain_height.h"
 #include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
@@ -24,7 +23,6 @@
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay005/struct_ov5_021EB0E0_decl.h"
-#include "overlay005/struct_ov5_021EF300_decl.h"
 #include "overlay023/struct_ov23_0224942C_decl.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
@@ -41,6 +39,8 @@
 #include "pokedex_memory.h"
 #include "pokeradar.h"
 #include "savedata.h"
+#include "terrain_attributes.h"
+#include "terrain_collision_manager.h"
 
 #define NUM_HONEY_TREES 21
 
@@ -89,7 +89,7 @@ typedef struct FieldSystem_t {
     AreaLightManager *areaLightMan;
     MapPropAnimationManager *mapPropAnimMan;
     MapPropOneShotAnimationManager *mapPropOneShotAnimMan;
-    UnkStruct_02054C18 *unk_58;
+    TerrainAttributes *terrainAttributes;
     const TerrainCollisionManager *terrainCollisionMan;
     BOOL skipMapAttributes;
     Signpost *signpost;
@@ -105,9 +105,9 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021EB0E0 *unk_8C;
     int unk_90;
     RadarChain *chain;
-    BagCursor *unk_98;
+    BagCursor *bagCursor;
     JournalEntry *journalEntry;
-    UnkStruct_ov5_021EF300 *unk_A0;
+    DynamicTerrainHeightManager *dynamicTerrainHeightMan;
     MapPropManager *mapPropManager;
     HoneyTreeShakeList *unk_A8;
     UnkStruct_0204AFC4 *unk_AC;

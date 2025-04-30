@@ -199,7 +199,7 @@ BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0)
     param0->unk_08[0] = param0->unk_A0;
 
     v2 = ov104_0223C264(param0->unk_A0);
-    param0->unk_08[1] = sub_02030698(sub_0203068C(param0->unk_00), v2, sub_0205E6A8(v2));
+    param0->unk_08[1] = sub_02030698(SaveData_GetBattleFrontier(param0->unk_00), v2, sub_0205E6A8(v2));
 
     if (CommSys_SendData(57, param0->unk_08, v1) == 1) {
         v0 = 1;
@@ -266,7 +266,7 @@ BOOL sub_0209BC64(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2)
     Party *v3;
 
     v1 = 40;
-    v3 = Party_GetFromSavedata(param0->unk_00);
+    v3 = SaveData_GetParty(param0->unk_00);
 
     param0->unk_6A[0] = param1;
     param0->unk_6A[1] = param2;

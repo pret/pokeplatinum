@@ -4,8 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay017/ov17_0223DAD0.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/struct_ov17_0224A1EC.h"
@@ -35,12 +33,14 @@
 #include "game_options.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "spl.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -49,7 +49,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_020933F8.h"
@@ -638,13 +637,13 @@ void ov17_0224A674(UnkStruct_ov17_0224A1EC *param0)
     v3 = MessageLoader_GetNewStrbuf(param0->unk_84, 7);
 
     for (v0 = 0; v0 < 3; v0++) {
-        ov17_0223F1E8(23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[0][v0], v1, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
+        ov17_0223F1E8(HEAP_ID_23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[0][v0], v1, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
         sub_020129D0(param0->unk_96C[0][v0].unk_00, 0);
 
-        ov17_0223F1E8(23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[1][v0], v2, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
+        ov17_0223F1E8(HEAP_ID_23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[1][v0], v2, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
         sub_020129D0(param0->unk_96C[1][v0].unk_00, 0);
 
-        ov17_0223F1E8(23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[2][v0], v3, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
+        ov17_0223F1E8(HEAP_ID_23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[2][v0], v3, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
         sub_020129D0(param0->unk_96C[2][v0].unk_00, 0);
     }
 
@@ -1280,30 +1279,30 @@ void ov17_0224B20C(UnkStruct_ov17_0224DF54 *param0, const UnkStruct_ov17_0224EDE
     }
 
     if (param1->unk_08_0 == 1) {
-        Sound_PlayEffect(1781);
+        Sound_PlayEffect(SEQ_SE_DP_CON_028);
     } else {
-        Sound_PlayEffect(1780);
+        Sound_PlayEffect(SEQ_SE_DP_CON_027_3);
     }
 
     if ((param0->unk_14.unk_A2C == 0) || ((param0->unk_14.unk_A2C > 0) && ((param1->unk_07 == 0) || (param1->unk_02 == param0->unk_00->unk_00.unk_113)))) {
         switch (param1->unk_04) {
         case 0:
             if (param0->unk_14.unk_A1D[param1->unk_02] == param0->unk_A3C.unk_2E) {
-                Sound_PlayEffect(1776);
+                Sound_PlayEffect(SEQ_SE_DP_CON_023);
             } else if (param0->unk_14.unk_A1D[param1->unk_02] == param0->unk_A3C.unk_2E - 1) {
-                Sound_PlayEffect(1775);
+                Sound_PlayEffect(SEQ_SE_DP_CON_022);
             } else {
-                Sound_PlayEffect(1774);
+                Sound_PlayEffect(SEQ_SE_DP_CON_021);
             }
             break;
         case 1:
-            Sound_PlayEffect(1777);
+            Sound_PlayEffect(SEQ_SE_DP_CON_024);
             break;
         case 2:
             if (param1->unk_08_1 == 1) {
-                Sound_PlayEffect(1778);
+                Sound_PlayEffect(SEQ_SE_DP_CON_026);
             } else {
-                Sound_PlayEffect(1526);
+                Sound_PlayEffect(SEQ_SE_DP_CARD10);
             }
             break;
         }
@@ -2326,7 +2325,7 @@ void ov17_0224C9F0(UnkStruct_ov17_0224DF54 *param0, int param1)
     v0->unk_0B = 1;
     v0->unk_08 = (10 << 8);
 
-    Sound_PlayEffect(1784);
+    Sound_PlayEffect(SEQ_SE_DP_CON_031);
 }
 
 static void ov17_0224CA28(SysTask *param0, void *param1)
@@ -2423,7 +2422,7 @@ static void ov17_0224CB80(UnkStruct_ov17_0224DF54 *param0, int param1)
     G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 16);
 
     SysTask_Start(ov17_0224CD60, param0, 1000);
-    Sound_PlayEffect(1765);
+    Sound_PlayEffect(SEQ_SE_DP_CON_007);
 }
 
 static void ov17_0224CD60(SysTask *param0, void *param1)
@@ -2469,7 +2468,7 @@ void ov17_0224CDC0(UnkStruct_ov17_0224DF54 *param0, int param1, int param2)
         }
     }
 
-    Sound_PlayEffect(1772);
+    Sound_PlayEffect(SEQ_SE_DP_CON_019);
 }
 
 void ov17_0224CE08(UnkStruct_ov17_0224DF54 *param0)

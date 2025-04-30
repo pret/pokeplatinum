@@ -16,9 +16,9 @@
 #include "heap.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_02030EE0.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
@@ -2003,7 +2003,7 @@ void sub_02038350(void)
         return;
     }
 
-    ResetUnlock(1);
+    ResetUnlock(RESET_LOCK_0x1);
     CommInfo_Delete();
     sub_02036C94(sub_020373B8, 5);
 }
@@ -2073,14 +2073,14 @@ void sub_02038438(SaveData *param0)
         Unk_021C07D4->unk_51 = 1;
         Unk_021C07D4->unk_28 = param0;
         CommMan_SetErrorHandling(0, 1);
-        ResetLock(1);
+        ResetLock(RESET_LOCK_0x1);
     }
 }
 
 void sub_0203848C(void)
 {
     if (Unk_021C07D4) {
-        ResetUnlock(1);
+        ResetUnlock(RESET_LOCK_0x1);
         CommMan_SetErrorHandling(0, 0);
         Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
@@ -2098,14 +2098,14 @@ void sub_020384C0(SaveData *param0)
         Unk_021C07D4->unk_51 = 1;
         Unk_021C07D4->unk_28 = param0;
         CommMan_SetErrorHandling(0, 1);
-        ResetLock(1);
+        ResetLock(RESET_LOCK_0x1);
     }
 }
 
 void sub_02038514(void)
 {
     if (Unk_021C07D4) {
-        ResetUnlock(1);
+        ResetUnlock(RESET_LOCK_0x1);
         CommMan_SetErrorHandling(0, 0);
         Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
@@ -2123,14 +2123,14 @@ void sub_02038548(SaveData *param0)
         Unk_021C07D4->unk_51 = 1;
         Unk_021C07D4->unk_28 = param0;
         CommMan_SetErrorHandling(0, 1);
-        ResetLock(1);
+        ResetLock(RESET_LOCK_0x1);
     }
 }
 
 void sub_0203859C(void)
 {
     if (Unk_021C07D4) {
-        ResetUnlock(1);
+        ResetUnlock(RESET_LOCK_0x1);
         CommMan_SetErrorHandling(0, 0);
         Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
@@ -2228,7 +2228,7 @@ void *sub_0203871C(SaveData *param0, int param1)
         return NULL;
     }
 
-    ResetLock(1);
+    ResetLock(RESET_LOCK_0x1);
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
     sub_020366A0(param0, 23);
     Unk_021C07D4->unk_00 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, param1);
@@ -2250,7 +2250,7 @@ void sub_0203878C(SaveData *param0, const void *param1)
         return;
     }
 
-    ResetLock(1);
+    ResetLock(RESET_LOCK_0x1);
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
     sub_020366A0(param0, 33);
 
@@ -2429,7 +2429,7 @@ void sub_020389FC(int param0)
 {
     int v0 = 0;
 
-    sub_02039834(0, 1, param0);
+    sub_02039834(HEAP_ID_SYSTEM, 1, param0);
 
     while (TRUE) {
         v0++;
@@ -2440,7 +2440,7 @@ void sub_02038A0C(void)
 {
     int v0 = 0;
 
-    sub_02039834(0, 4, 0);
+    sub_02039834(HEAP_ID_SYSTEM, 4, 0);
 
     while (TRUE) {
         v0++;
@@ -2459,7 +2459,7 @@ void sub_02038A20(int param0)
             || (Unk_021C07D4->unk_59 != 0) || sub_0203881C()) {
             if (!HeapCanaryOK()) {
                 if (!sub_020389D8()) {
-                    sub_0200569C();
+                    Sound_StopWaveOutAndSequences();
                     SaveData_SaveStateCancel(Unk_021C07D4->unk_28);
                     gSystem.touchAutoSampling = TRUE;
 
@@ -2697,7 +2697,7 @@ static void sub_02038D94(void)
     v0 = ov66_02232854();
 
     if (v0) {
-        ResetUnlock(1);
+        ResetUnlock(RESET_LOCK_0x1);
         CommInfo_Delete();
         sub_02036C94(sub_020373B8, 5);
         CommSys_SetWifiConnected(0);

@@ -10,29 +10,29 @@
     ScriptEntryEnd
 
 _000E:
-    SetFlag 0x9D5
-    ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _005C
-    CheckItem ITEM_OAKS_LETTER, 1, 0x4000
-    GoToIfEq 0x4000, FALSE, _005C
-    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, 0x4000
-    GoToIfEq 0x4000, FALSE, _005C
-    GoToIfSet 0x123, _005C
-    ClearFlag 0x251
+    SetFlag FLAG_UNK_0x09D5
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _005C
+    CheckItem ITEM_OAKS_LETTER, 1, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _005C
+    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _005C
+    GoToIfSet FLAG_UNK_0x0123, _005C
+    ClearFlag FLAG_UNK_0x0251
     End
 
 _005C:
-    SetFlag 0x251
+    SetFlag FLAG_UNK_0x0251
     End
 
 _0062:
-    GoToIfSet 142, _006F
+    GoToIfSet FLAG_UNK_0x008E, _006F
     End
 
 _006F:
-    SetFlag 0x251
+    SetFlag FLAG_UNK_0x0251
     RemoveObject 0
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E
     End
 
 _007D:
@@ -42,14 +42,14 @@ _007D:
     PlayCry SPECIES_SHAYMIN
     Message 0
     CloseMessage
-    SetFlag 142
+    SetFlag FLAG_UNK_0x008E
     StartFatefulEncounter SPECIES_SHAYMIN, 30
-    ClearFlag 142
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _00D7
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _00C8
-    SetFlag 0x123
+    ClearFlag FLAG_UNK_0x008E
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _00D7
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _00C8
+    SetFlag FLAG_UNK_0x0123
     ReleaseAll
     End
 
@@ -57,13 +57,13 @@ _00C8:
     Message 1
     WaitABXPadPress
     CloseMessage
-    ClearFlag 0x251
+    ClearFlag FLAG_UNK_0x0251
     ReleaseAll
     End
 
 _00D7:
     BlackOutFromBattle
-    ClearFlag 0x251
+    ClearFlag FLAG_UNK_0x0251
     ReleaseAll
     End
 

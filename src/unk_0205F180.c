@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/struct_0205E884_decl.h"
@@ -14,17 +15,17 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay009/ov9_02249960.h"
 
+#include "dynamic_map_features.h"
 #include "game_records.h"
 #include "inlines.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
+#include "persisted_map_features_init.h"
 #include "player_avatar.h"
-#include "unk_02005474.h"
-#include "unk_02054D00.h"
+#include "sound_playback.h"
+#include "terrain_collision_manager.h"
 #include "unk_020655F4.h"
-#include "unk_02068344.h"
-#include "unk_02071B10.h"
 
 typedef BOOL (*UnkFuncPtr_020EDB84)(u8);
 
@@ -275,29 +276,29 @@ static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar)
         }
 
         if ((MapObject_IsOnSnow(mapObj, v2) == 1) || (TileBehavior_IsSnowWithShadows(v2) == 1)) {
-            Sound_PlayEffect(1353);
+            Sound_PlayEffect(SEQ_SE_PL_YUKI);
         }
 
         if (TileBehavior_IsPuddle(v2) == 1) {
-            Sound_PlayEffect(1601);
+            Sound_PlayEffect(SEQ_SE_DP_FOOT3_0);
         }
 
         if (TileBehavior_IsShallowWater(v2) == 1) {
-            Sound_PlayEffect(1602);
+            Sound_PlayEffect(SEQ_SE_DP_FOOT3_1);
         }
 
         if (TileBehavior_IsSand(v2) == 1) {
         }
 
         if ((TileBehavior_IsMud(v2) == 1) && (TileBehavior_IsDeepMud(v2) != 1)) {
-            Sound_PlayEffect(1621);
+            Sound_PlayEffect(SEQ_SE_DP_MARSH_WALK);
         }
 
         int code = MapObject_GetMovementAction(mapObj);
 
         if (sub_020613D8(code) == 0) {
             if ((TileBehavior_IsVeryTallGrass(v2) == 1) || (TileBehavior_IsVeryTallGrass(v1) == 1)) {
-                Sound_PlayEffect(1619);
+                Sound_PlayEffect(SEQ_SE_DP_KUSA);
             }
         }
     }
@@ -558,7 +559,7 @@ static int sub_0205F808(PlayerAvatar *playerAvatar, int param1)
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int v2 = MapObject_GetMovingDir(mapObj);
 
-    Sound_PlayEffect(1620);
+    Sound_PlayEffect(SEQ_SE_DP_SUNA);
 
     if (v2 == 0) {
         if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING && PlayerAvatar_Speed(playerAvatar) >= 3) {
@@ -615,7 +616,7 @@ static int sub_0205F95C(PlayerAvatar *playerAvatar, int param1)
     int v1 = MapObject_GetMovingDir(mapObj);
 
     if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
-        Sound_PlayEffect(1622);
+        Sound_PlayEffect(SEQ_SE_DP_DANSA4);
         sub_02060B64(playerAvatar, mapObj, 0x5f, 2);
     } else {
         sub_02060B64(playerAvatar, mapObj, 0x5d, 3);
@@ -633,7 +634,7 @@ static int sub_0205F9AC(PlayerAvatar *playerAvatar, int param1)
     int v1 = MapObject_GetMovingDir(mapObj);
 
     if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
-        Sound_PlayEffect(1622);
+        Sound_PlayEffect(SEQ_SE_DP_DANSA4);
         sub_02060B64(playerAvatar, mapObj, 0x5e, 2);
     } else {
         sub_02060B64(playerAvatar, mapObj, 0x5c, 2);
@@ -923,7 +924,7 @@ static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *param1, int para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                Sound_PlayEffect(1537);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(param1, param2);
@@ -960,7 +961,7 @@ static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *param1, int para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                Sound_PlayEffect(1537);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(param1, param2);
@@ -1005,7 +1006,7 @@ static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int para
         } else if (v0 != 0) {
             v1 = 0x1c;
             v2 = 1;
-            Sound_PlayEffect(1537);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(param1, param2);
         } else {
             PlayerData *player;
@@ -1031,7 +1032,7 @@ static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int para
         } else {
             v1 = 0x1c;
             v2 = 1;
-            Sound_PlayEffect(1537);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(param1, param2);
         }
     }
@@ -1052,7 +1053,7 @@ static void sub_0206000C(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
         if (v0 != 0) {
             v1 = param8[param2];
             v2 = 1;
-            Sound_PlayEffect(1537);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(mapObj, param9[param2]);
         } else {
             PlayerData *v3;
@@ -1079,7 +1080,7 @@ static void sub_0206000C(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
             v1 = param8[param2];
             v2 = 1;
 
-            Sound_PlayEffect(1537);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(mapObj, param9[param2]);
         }
     }
@@ -1182,9 +1183,9 @@ static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 pa
             PlayerAvatar_SetCyclingGear(playerAvatar, gear);
 
             if (gear == 0) {
-                Sound_PlayEffect(1564);
+                Sound_PlayEffect(SEQ_SE_DP_GEAR2);
             } else {
-                Sound_PlayEffect(1561);
+                Sound_PlayEffect(SEQ_SE_DP_GEAR);
             }
         }
     }
@@ -1367,7 +1368,7 @@ static void sub_02060570(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                Sound_PlayEffect(1537);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(mapObj, param2);
@@ -1430,7 +1431,7 @@ static void sub_020606C8(PlayerAvatar *playerAvatar, MapObject *mapObj, int dir,
         v1 = 1;
 
         if ((v0 & (1 << 3)) == 0) {
-            Sound_PlayEffect(1537);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
         }
 
         MapObject_Turn(mapObj, dir);
@@ -1564,7 +1565,7 @@ static void sub_020608E4(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                Sound_PlayEffect(1537);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(mapObj, param2);
@@ -1583,7 +1584,7 @@ static void sub_020608E4(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                Sound_PlayEffect(1537);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(mapObj, param2);
@@ -1647,7 +1648,7 @@ static void sub_02060AA0(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
         v2 = sub_02065838(param2, 0x1c);
 
         if ((v0 & (1 << 3)) == 0) {
-            Sound_PlayEffect(1537);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
         }
 
         MapObject_Turn(mapObj, param2);
@@ -1734,7 +1735,7 @@ static u32 sub_02060C24(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         s8 v6;
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_0205507C(fieldSystem, &v0, x, z, &v6) == 1) {
+        if (TerrainCollisionManager_WillPlayerCollide(fieldSystem, &v0, x, z, &v6) == 1) {
             v1 |= (1 << 1);
 
             if (v6 != 0) {
@@ -1761,12 +1762,12 @@ static int sub_02060CE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
 
-        if (sub_020683D8(fieldSystem, v1, v2, 0, param2) == 1) {
+        if (DynamicMapFeatures_WillPlayerJumpEternaGymClock(fieldSystem, v1, v2, 0, param2) == 1) {
             return 1;
         }
 
         {
-            u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+            u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
             switch (param2) {
             case 0:
@@ -1804,7 +1805,7 @@ static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v2 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v3 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
-        u8 v4 = FieldSystem_GetTileBehavior(fieldSystem, v2, v3);
+        u8 v4 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v2, v3);
 
         switch (param2) {
         case 0:
@@ -1822,7 +1823,7 @@ static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         }
 
         if (v0 == 1) {
-            if (sub_02071CB4(fieldSystem, 9) == 1) {
+            if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
                 if (ov9_022511A0(fieldSystem, v2, v3, param2) == 1) {
                     v0 = 0;
                 }
@@ -1839,7 +1840,7 @@ static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj);
         int v2 = MapObject_GetZ(mapObj);
-        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+        u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
         switch (param2) {
         case 0:
@@ -1866,7 +1867,7 @@ static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
         v1 += MapObject_GetDxFromDir(param2);
         v2 += MapObject_GetDzFromDir(param2);
-        v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+        v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
         if (TileBehavior_IsDoor(v3) == 1) {
             return 1;
@@ -1882,7 +1883,7 @@ static int sub_02060EE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
-        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+        u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
         if ((param2 == 3) && TileBehavior_IsBikeRampEastward(v3)) {
             return 1;
@@ -1902,7 +1903,7 @@ static int sub_02060F4C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
-        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+        u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
         if (MapObject_IsOnWater(mapObj, v3)) {
             return 1;
@@ -1918,7 +1919,7 @@ static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
-        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+        u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
         if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
             if (MapObject_IsOnBikeBridgeNorthSouth(mapObj, v3) == 1) {
@@ -1952,7 +1953,7 @@ static int sub_02061058(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
-        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
+        u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
         if (MapObject_IsOnWater(mapObj, v3)) {
             return 1;
@@ -1983,7 +1984,7 @@ static int sub_02061100(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     u32 v0 = 0;
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-    if (sub_02071CB4(fieldSystem, 9) == 1) {
+    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
         int x = MapObject_GetX(mapObj);
         int y = MapObject_GetY(mapObj) / 2;
         int z = MapObject_GetZ(mapObj);
@@ -2009,7 +2010,7 @@ static int sub_02061180(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 9) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
             BOOL v1;
             u32 v2;
             int x = MapObject_GetX(mapObj);
@@ -2060,7 +2061,7 @@ static int sub_02061248(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     if ((param2 != -1) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02071CB4(fieldSystem, 9) == 1) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
             u32 v2;
             int x = MapObject_GetX(mapObj);
             int y = MapObject_GetY(mapObj) / 2;
@@ -2272,7 +2273,7 @@ u32 sub_0206147C(PlayerAvatar *playerAvatar, u16 param1, u16 param2, int param3,
             v0 = 0x1c;
 
             if ((v4 & (1 << 3)) == 0) {
-                Sound_PlayEffect(1537);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
         } else {
             switch (param3) {
@@ -2344,7 +2345,7 @@ static void sub_020615C8(PlayerAvatar *playerAvatar)
 {
     MapObject *v0 = Player_MapObject(playerAvatar);
     FieldSystem *fieldSystem = MapObject_FieldSystem(v0);
-    GameRecords *v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    GameRecords *v2 = SaveData_GetGameRecords(fieldSystem->saveData);
 
     GameRecords_IncrementRecordValue(v2, RECORD_UNK_000);
 }
@@ -2426,7 +2427,7 @@ void sub_02061674(PlayerAvatar *playerAvatar, int param1, int *param2, int *para
     (*param4) += v0->unk_04;
 }
 
-u32 sub_020616F0(PlayerAvatar *playerAvatar, int param1)
+u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int param1)
 {
     u32 v0;
 
@@ -2446,7 +2447,7 @@ u32 sub_020616F0(PlayerAvatar *playerAvatar, int param1)
     return v0;
 }
 
-u32 sub_02061760(PlayerAvatar *playerAvatar)
+u32 PlayerAvatar_GetDistortionCurrTileBehaviour(PlayerAvatar *playerAvatar)
 {
     u32 v0;
     MapObject *mapObj = Player_MapObject(playerAvatar);
@@ -2456,7 +2457,7 @@ u32 sub_02061760(PlayerAvatar *playerAvatar)
     int z = MapObject_GetZ(mapObj);
 
     if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == FALSE) {
-        v0 = FieldSystem_GetTileBehavior(fieldSystem, x, z);
+        v0 = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
     } else {
         ov9_02251044(fieldSystem, x, y, z, &v0);
     }
@@ -2466,7 +2467,7 @@ u32 sub_02061760(PlayerAvatar *playerAvatar)
 
 void sub_020617BC(PlayerAvatar *const playerAvatar, int *xOut, int *yOut, int *zOut)
 {
-    int v0 = sub_0205EAA0(playerAvatar);
+    int v0 = PlayerAvatar_GetDistortionDir(playerAvatar);
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
     *xOut = MapObject_GetX(mapObj);

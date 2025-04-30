@@ -36,13 +36,13 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
@@ -566,7 +566,7 @@ static int ov94_02241A58(UnkStruct_ov94_0223FD4C *param0)
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
         StringList_Free(param0->unk_10CC);
         param0->unk_2C = 5;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     case 0xfffffffe:
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
@@ -577,7 +577,7 @@ static int ov94_02241A58(UnkStruct_ov94_0223FD4C *param0)
         Window_Remove(&param0->unk_F9C[1]);
         ov94_0223C4C0(param0, 5, 5);
         param0->unk_2C = 2;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     }
 
@@ -625,7 +625,7 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
         param0->unk_2C = 0;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
         break;
     default:
@@ -636,7 +636,7 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
         param0->unk_B74.species = v0;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(v0, SPECIES_DATA_GENDER_RATIO);
 
         if (ov94_02241B80(&param0->unk_B74, param0->unk_10E4->unk_20)) {
@@ -686,7 +686,7 @@ static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0)
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_2C = 0;
         break;
 
@@ -697,7 +697,7 @@ static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_B74.gender = v0 + 1;
         param0->unk_2C = 10;
         ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, -1);
@@ -741,7 +741,7 @@ static int ov94_02241F28(UnkStruct_ov94_0223FD4C *param0)
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (ov94_02241B80(&param0->unk_B74, param0->unk_10E4->unk_20)) {
             param0->unk_2C = 0;
@@ -750,7 +750,7 @@ static int ov94_02241F28(UnkStruct_ov94_0223FD4C *param0)
         }
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
@@ -973,7 +973,7 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
     v0 = MessageLoader_GetNewStrbuf(param0, 100);
 
     StringTemplate_SetNumber(param1, 3, level, 3, 0, 1);
-    v1 = MessageUtil_ExpandedStrbuf(param1, param0, 102, 62);
+    v1 = MessageUtil_ExpandedStrbuf(param1, param0, 102, HEAP_ID_62);
 
     if (gender != GENDER_NONE + 1) {
         MessageLoader_GetStrbuf(param0, Unk_ov94_02245FD8[gender], v3);
@@ -1037,11 +1037,11 @@ void ov94_022425A8(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD4C *par
     u16 *v0;
 
     if (ov94_022411D0(param1->unk_110)) {
-        Pokemon_SetShayminForm((Pokemon *)(param1->unk_114), 0);
+        Pokemon_SetShayminForm((Pokemon *)(param1->unk_114), SHAYMIN_FORM_LAND);
 
         MI_CpuCopyFast(param1->unk_114, param0->unk_00.unk_00, Pokemon_StructSize());
     } else {
-        BoxPokemon_SetShayminForm(param1->unk_114, 0);
+        BoxPokemon_SetShayminForm(param1->unk_114, SHAYMIN_FORM_LAND);
         Pokemon_FromBoxPokemon(param1->unk_114, (Pokemon *)param0->unk_00.unk_00);
     }
 
@@ -1324,7 +1324,7 @@ u32 ov94_02242A6C(ListMenu *param0, u16 *param1)
 
     if (*param1 != v0) {
         if (*param1 != 0xffff) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
 
         *param1 = v0;

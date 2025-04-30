@@ -13,7 +13,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
-#include "math.h"
+#include "math_util.h"
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
@@ -37,8 +37,6 @@ typedef struct {
     u8 unk_09;
 } UnkStruct_0205E3AC;
 
-u16 sub_0205DFC4(u32 param0);
-u16 sub_0205E060(u16 param0);
 u16 sub_0205E078(u16 param0, u16 param1);
 u16 sub_0205E0E4(u16 param0, u16 param1);
 int sub_0205E430(u8 param0, u8 param1);
@@ -64,36 +62,36 @@ int sub_0205E728(u8 param0);
 int sub_0205E750(u8 param0);
 int sub_0205E790(u8 param0);
 
-u16 sub_0205DFC4(u32 param0)
+u16 GetNumberDigitCount(u32 number)
 {
-    if (param0 / 10 == 0) {
+    if (number / 10 == 0) {
         return 1;
-    } else if (param0 / 100 == 0) {
+    } else if (number / 100 == 0) {
         return 2;
-    } else if (param0 / 1000 == 0) {
+    } else if (number / 1000 == 0) {
         return 3;
-    } else if (param0 / 10000 == 0) {
+    } else if (number / 10000 == 0) {
         return 4;
-    } else if (param0 / 100000 == 0) {
+    } else if (number / 100000 == 0) {
         return 5;
-    } else if (param0 / 1000000 == 0) {
+    } else if (number / 1000000 == 0) {
         return 6;
-    } else if (param0 / 10000000 == 0) {
+    } else if (number / 10000000 == 0) {
         return 7;
-    } else if (param0 / 100000000 == 0) {
+    } else if (number / 100000000 == 0) {
         return 8;
     }
 
     return 1;
 }
 
-u16 sub_0205E060(u16 param0)
+u16 Item_IsTMHM(u16 item)
 {
-    if ((param0 >= 328) && (param0 <= 427)) {
-        return 1;
+    if (item >= ITEM_TM01 && item <= ITEM_HM08) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 u16 sub_0205E078(u16 param0, u16 param1)
@@ -238,18 +236,15 @@ u16 sub_0205E0E4(u16 param0, u16 param1)
     }
 }
 
-u16 sub_0205E1B4(SaveData *param0)
+u16 SaveData_GetFirstNonEggInParty(SaveData *saveData)
 {
-    Pokemon *v0;
-    u16 v1, v2;
+    u16 i, partyCount = Party_GetCurrentCount(SaveData_GetParty(saveData));
 
-    v2 = Party_GetCurrentCount(Party_GetFromSavedata(param0));
+    for (i = 0; i < partyCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(saveData), i);
 
-    for (v1 = 0; v1 < v2; v1++) {
-        v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0), v1);
-
-        if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) == 0) {
-            return v1;
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            return i;
         }
     }
 
@@ -263,7 +258,7 @@ BOOL HasAllLegendaryTitansInParty(SaveData *param0)
     static const u16 v5[] = { 377, 378, 379 };
     u16 v6[6];
 
-    v4 = Party_GetFromSavedata(param0);
+    v4 = SaveData_GetParty(param0);
     v2 = Party_GetCurrentCount(v4);
 
     for (v0 = 0; v0 < v2; v0++) {

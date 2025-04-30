@@ -29,19 +29,19 @@ void ov104_022394A4(UnkStruct_0204AFC4 *param0, SaveData *param1)
     case 2:
     case 3:
     case 6:
-        ov104_0223A0C4(param0, &(param0->unk_78[0]), param0->unk_3E[(param0->unk_0C - 1) * 2 + 0], param0->unk_0E, NULL, NULL, NULL, param0->unk_04);
+        ov104_0223A0C4(param0, &(param0->unk_78[0]), param0->unk_3E[(param0->unk_0C - 1) * 2 + 0], param0->unk_0E, NULL, NULL, NULL, param0->heapID);
 
         for (v0 = 0; v0 < param0->unk_0E; v0++) {
             v1[v0] = param0->unk_78[0].unk_30[v0].unk_00_val1_0;
             v2[v0] = param0->unk_78[0].unk_30[v0].unk_02;
         }
 
-        ov104_0223A0C4(param0, &(param0->unk_78[1]), param0->unk_3E[(param0->unk_0C - 1) * 2 + 1], param0->unk_0E, v1, v2, NULL, param0->unk_04);
+        ov104_0223A0C4(param0, &(param0->unk_78[1]), param0->unk_3E[(param0->unk_0C - 1) * 2 + 1], param0->unk_0E, v1, v2, NULL, param0->heapID);
         break;
     case 1:
     case 0:
     default:
-        ov104_0223A0C4(param0, &(param0->unk_78[0]), param0->unk_3E[param0->unk_0C - 1], param0->unk_0E, NULL, NULL, NULL, param0->unk_04);
+        ov104_0223A0C4(param0, &(param0->unk_78[0]), param0->unk_3E[param0->unk_0C - 1], param0->unk_0E, NULL, NULL, NULL, param0->heapID);
         break;
     }
 }

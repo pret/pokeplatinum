@@ -18,12 +18,12 @@
 #include "party.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0202602C.h"
 #include "unk_02026150.h"
 #include "unk_0207A2A8.h"
@@ -86,7 +86,7 @@ static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
     if (Window_IsInUse(&param0->unk_54) == 0) {
         Window_Init(&param0->unk_54);
         FieldMessage_AddWindow(param0->fieldSystem->bgConfig, &param0->unk_54, 3);
-        FieldMessage_DrawWindow(&param0->unk_54, SaveData_Options(param0->fieldSystem->saveData));
+        FieldMessage_DrawWindow(&param0->unk_54, SaveData_GetOptions(param0->fieldSystem->saveData));
     } else {
         FieldMessage_ClearWindow(&param0->unk_54);
     }
@@ -94,7 +94,7 @@ static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
     MessageLoader_GetStrbuf(param0->unk_68, param1, param0->unk_14);
     StringTemplate_Format(param0->unk_64, param0->unk_18, param0->unk_14);
 
-    param0->unk_74 = FieldMessage_Print(&param0->unk_54, param0->unk_18, SaveData_Options(param0->fieldSystem->saveData), 1);
+    param0->unk_74 = FieldMessage_Print(&param0->unk_54, param0->unk_18, SaveData_GetOptions(param0->fieldSystem->saveData), 1);
 }
 
 static void ov7_0224B558(UnkStruct_ov7_0224B4E8 *param0, BOOL param1)
@@ -180,24 +180,24 @@ static int ov7_0224B6E8(UnkStruct_ov7_0224B4E8 *param0)
     ListMenu_CalcTrueCursorPos(param0->unk_00, &param0->unk_80);
 
     if (v1 != param0->unk_80) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v0) {
     case 0xffffffff:
         return 0;
     case 12:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->fieldSystem->unk_B0 = NULL;
         ov7_0224B6AC(param0);
         return 2;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->fieldSystem->unk_B0 = NULL;
         ov7_0224B6AC(param0);
         return -1;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->fieldSystem->unk_B0 = sub_02026150(param0->fieldSystem->saveData, v0);
         break;
     }
@@ -257,18 +257,18 @@ static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0)
     ListMenu_CalcTrueCursorPos(param0->unk_04, &param0->unk_82);
 
     if (v1 != param0->unk_82) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v0) {
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0 = -1;
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov7_0224B6AC(param0);
         break;
     }
@@ -324,7 +324,7 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
     const int v12 = 55;
     const int v13 = (24 * 8) - 1;
 
-    v0 = MessageLoader_Init(0, 26, 353, HEAP_ID_FIELD);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, HEAP_ID_FIELD);
     v2 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
     v3 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
     v4 = &param0->unk_24;
@@ -421,7 +421,7 @@ static void ov7_0224BBA0(UnkStruct_ov7_0224B4E8 *param0)
 
 static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
 {
-    Party *v0 = Party_GetFromSavedata(param0->fieldSystem->saveData);
+    Party *v0 = SaveData_GetParty(param0->fieldSystem->saveData);
     int v1 = sub_0207A594(param0->fieldSystem->unk_B0, v0, param0->unk_6C);
     int v2;
 
@@ -429,7 +429,7 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
     case 0:
         return 1;
     case 4:
-        Sound_PlayEffect(1523);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03);
         ov7_0224B57C(param0, param0->unk_78 - 1);
         v2 = sub_02026074(param0->fieldSystem->unk_B0, 1);
         StringTemplate_SetNumber(param0->unk_64, 1, v2, 1, 1, 1);
@@ -437,7 +437,7 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
         break;
     default:
     case 1:
-        Sound_PlayEffect(1523);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03);
         ov7_0224B57C(param0, param0->unk_78 - 1);
         v2 = sub_02026074(param0->fieldSystem->unk_B0, 3);
         StringTemplate_SetNumber(param0->unk_64, 1, v2, 3, 0, 1);
@@ -557,12 +557,12 @@ static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
     v0->fieldSystem = fieldSystem;
     v0->fieldSystem->unk_B0 = NULL;
     v0->unk_64 = StringTemplate_Default(HEAP_ID_FIELD);
-    v0->unk_68 = MessageLoader_Init(0, 26, 221, HEAP_ID_FIELD);
+    v0->unk_68 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELD);
     v0->unk_14 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
     v0->unk_18 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
     v0->unk_1C = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
     v0->unk_20 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
-    v0->unk_6C = sub_0207A2A8(11);
+    v0->unk_6C = sub_0207A2A8(HEAP_ID_FIELDMAP);
 
     return v0;
 }

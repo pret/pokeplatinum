@@ -33,13 +33,13 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020393C8.h"
 
@@ -546,15 +546,15 @@ static int ov94_022402BC(UnkStruct_ov94_0223FD4C *param0)
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ov94_0223C4C0(param0, 1, 0);
             param0->unk_2C = 2;
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_112 == 30) {
                 ov94_0223C4C0(param0, 1, 0);
                 param0->unk_2C = 2;
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 if (param0->unk_112 != 31) {
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                     switch (ov94_022412F4(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112)) {
                     case 1:
@@ -579,12 +579,12 @@ static int ov94_022402BC(UnkStruct_ov94_0223FD4C *param0)
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ov94_0223C4C0(param0, 3, 0);
             param0->unk_2C = 2;
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_112 == 30) {
                 ov94_0223C4C0(param0, 3, 0);
                 param0->unk_2C = 2;
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 if (param0->unk_112 != 31) {
                     switch (ov94_022412F4(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112)) {
@@ -596,18 +596,18 @@ static int ov94_022402BC(UnkStruct_ov94_0223FD4C *param0)
                                 StringTemplate_SetNickname(param0->unk_B8C, 0, v0);
                                 ov94_02240D58(param0, 18, TEXT_SPEED_FAST, 0, 0xf0f, 0);
                                 ov94_0223C3F4(param0, 3, 9);
-                                Sound_PlayEffect(1500);
+                                Sound_PlayEffect(SEQ_SE_CONFIRM);
                             } else {
                                 ov94_02240D58(param0, 26, TEXT_SPEED_FAST, 0, 0xf0f, 1);
                                 ov94_0223C3F4(param0, 4, 1);
                             }
                         } else {
-                            Sound_PlayEffect(1500);
+                            Sound_PlayEffect(SEQ_SE_CONFIRM);
                         }
                     } break;
                     case 2:
                     case 0:
-                        Sound_PlayEffect(1500);
+                        Sound_PlayEffect(SEQ_SE_CONFIRM);
                         break;
                     }
                 }
@@ -639,7 +639,7 @@ static void ov94_022404F0(UnkStruct_ov94_0223FD4C *param0)
             if ((v2 == 99) || (v2 == 101)) {
                 param0->unk_110 = ov94_022405CC(param0->unk_110, 19, v2 - 100);
                 ov94_02240FA0(param0, param0->unk_110);
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 v0 = 1;
                 param0->unk_112 = v2;
@@ -648,7 +648,7 @@ static void ov94_022404F0(UnkStruct_ov94_0223FD4C *param0)
     }
 
     if (v0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov94_0223C3FC(param0->unk_E20, Unk_ov94_02245ED4[param0->unk_112][0], Unk_ov94_02245ED4[param0->unk_112][1]);
     }
 

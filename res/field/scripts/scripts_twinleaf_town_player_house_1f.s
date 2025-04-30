@@ -17,8 +17,8 @@
     ScriptEntryEnd
 
 _002E:
-    CallIfEq 0x40A4, 3, _0048
-    CallIfSet 143, _005E
+    CallIfEq VAR_UNK_0x40A4, 3, _0048
+    CallIfSet FLAG_UNK_0x008F, _005E
     End
 
 _0048:
@@ -28,7 +28,7 @@ _0048:
     Return
 
 _005E:
-    SetFlag 0x1F1
+    SetFlag FLAG_UNK_0x01F1
     Return
 
 _0064:
@@ -36,15 +36,15 @@ _0064:
     ApplyMovement LOCALID_PLAYER, _00A4
     ApplyMovement 0, _00B0
     WaitMovement
-    SetFlag 135
+    SetFlag FLAG_UNK_0x0087
     BufferPlayerName 0
     BufferRivalName 1
     Message 0
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 0, _00CC
     WaitMovement
-    SetVar 0x40A4, 1
+    SetVar VAR_UNK_0x40A4, 1
     ReleaseAll
     End
 
@@ -74,20 +74,20 @@ _00CC:
 
 _00E0:
     LockAll
-    SetVar 0x410F, 2
-    GoToIfSet 0x15C, _014B
-    GoToIfUnset 0x15D, _0110
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 0, _014B
+    SetVar VAR_UNK_0x410F, 2
+    GoToIfSet FLAG_UNK_0x015C, _014B
+    GoToIfUnset FLAG_UNK_0x015D, _0110
+    GetNationalDexEnabled VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _014B
 _0110:
     ApplyMovement LOCALID_PLAYER, _0164
     ApplyMovement 0, _0170
     WaitMovement
     BufferPlayerName 0
     BufferRivalName 1
-    ScrCmd_22D 2, 0x800C
-    CallIfEq 0x800C, 1, _014F
-    CallIfEq 0x800C, 0, _0158
+    GetNationalDexEnabled VAR_RESULT
+    CallIfEq VAR_RESULT, 1, _014F
+    CallIfEq VAR_RESULT, 0, _0158
     WaitABXPadPress
     CloseMessage
 _014B:
@@ -95,12 +95,12 @@ _014B:
     End
 
 _014F:
-    SetFlag 0x15C
+    SetFlag FLAG_UNK_0x015C
     Message 35
     Return
 
 _0158:
-    SetFlag 0x15D
+    SetFlag FLAG_UNK_0x015D
     Message 36
     Return
 
@@ -118,16 +118,16 @@ _0170:
 
 _017C:
     LockAll
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     ApplyMovement 0, _01D4
     ApplyMovement LOCALID_PLAYER, _01F8
     WaitMovement
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     BufferRivalName 0
     BufferPlayerName 1
     Message 6
     CloseMessage
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     BufferPlayerName 0
     Message 7
     GiveRunningShoes
@@ -138,7 +138,7 @@ _017C:
     Message 9
     WaitABXPadPress
     CloseMessage
-    SetVar 0x40A4, 4
+    SetVar VAR_UNK_0x40A4, 4
     ReleaseAll
     End
 
@@ -168,16 +168,16 @@ _0214:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 2, _02AF
-    GoToIfGe 0x40A4, 7, _0792
-    GoToIfEq 0x40A4, 6, _035E
-    GoToIfSet 144, _036C
-    GoToIfGe 0x40A4, 5, _0788
-    GoToIfGe 0x40A4, 4, _0711
-    GoToIfSet 248, _075A
-    GoToIfGe 0x40A4, 2, _0768
-    GoToIfSet 135, _077A
-    SetFlag 135
+    GoToIfSet FLAG_UNK_0x0002, _02AF
+    GoToIfGe VAR_UNK_0x40A4, 7, _0792
+    GoToIfEq VAR_UNK_0x40A4, 6, _035E
+    GoToIfSet FLAG_UNK_0x0090, _036C
+    GoToIfGe VAR_UNK_0x40A4, 5, _0788
+    GoToIfGe VAR_UNK_0x40A4, 4, _0711
+    GoToIfSet FLAG_UNK_0x00F8, _075A
+    GoToIfGe VAR_UNK_0x40A4, 2, _0768
+    GoToIfSet FLAG_UNK_0x0087, _077A
+    SetFlag FLAG_UNK_0x0087
     BufferPlayerName 0
     BufferRivalName 1
     Message 0
@@ -205,20 +205,20 @@ _0214:
     .byte 0
 
 _02AF:
-    GoToIfGe 0x40B2, 2, _0300
+    GoToIfGe VAR_UNK_0x40B2, 2, _0300
     GoTo _02C4
     End
 
 _02C4:
-    GetRandom 0x800C, 4
-    GoToIfEq 0x800C, 0, _031B
-    GoToIfEq 0x800C, 1, _0329
-    GoToIfEq 0x800C, 2, _0337
-    GoToIfEq 0x800C, 3, _0345
+    GetRandom VAR_RESULT, 4
+    GoToIfEq VAR_RESULT, 0, _031B
+    GoToIfEq VAR_RESULT, 1, _0329
+    GoToIfEq VAR_RESULT, 2, _0337
+    GoToIfEq VAR_RESULT, 3, _0345
     End
 
 _0300:
-    GoToIfGe 0x40AA, 2, _02C4
+    GoToIfGe VAR_UNK_0x40AA, 2, _02C4
     BufferPlayerName 0
     Message 41
     GoTo _0356
@@ -267,13 +267,13 @@ _036C:
     Call _0688
     BufferPlayerName 0
     Message 15
-    SetVar 0x8004, 0x1B1
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1B1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     GiveJournal
     Message 16
-    GetPlayerDir 0x8007
-    GoToIfEq 0x8007, 1, _03A6
+    GetPlayerDir VAR_0x8007
+    GoToIfEq VAR_0x8007, 1, _03A6
     GoTo _03B8
     End
 
@@ -296,7 +296,7 @@ _03CA:
     Message 18
     CloseMessage
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ClearFlag 0x1F1
+    ClearFlag FLAG_UNK_0x01F1
     AddObject 1
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0, _07B4
@@ -304,7 +304,7 @@ _03CA:
     WaitMovement
     ApplyMovement 1, _07FC
     WaitMovement
-    CallIfEq 0x8007, 0, _0465
+    CallIfEq VAR_0x8007, 0, _0465
     BufferRivalName 1
     Message 19
     ApplyMovement 0, _07C0
@@ -314,10 +314,10 @@ _03CA:
     Message 21
     BufferPlayerName 0
     Message 22
-    GoToIfEq 0x8007, 0, _0471
-    GoToIfEq 0x8007, 1, _048B
-    GoToIfEq 0x8007, 2, _04A5
-    GoToIfEq 0x8007, 3, _04BF
+    GoToIfEq VAR_0x8007, 0, _0471
+    GoToIfEq VAR_0x8007, 1, _048B
+    GoToIfEq VAR_0x8007, 2, _04A5
+    GoToIfEq VAR_0x8007, 3, _04BF
     End
 
 _0465:
@@ -356,10 +356,10 @@ _04BF:
 _04D9:
     Message 23
     CloseMessage
-    GoToIfEq 0x8007, 0, _0514
-    GoToIfEq 0x8007, 1, _052E
-    GoToIfEq 0x8007, 2, _0548
-    GoToIfEq 0x8007, 3, _0562
+    GoToIfEq VAR_0x8007, 0, _0514
+    GoToIfEq VAR_0x8007, 1, _052E
+    GoToIfEq VAR_0x8007, 2, _0548
+    GoToIfEq VAR_0x8007, 3, _0562
     End
 
 _0514:
@@ -393,8 +393,8 @@ _0562:
 _057C:
     BufferPlayerName 0
     BufferRivalName 1
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _059B
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _059B
     GoTo _05A6
     End
 
@@ -409,18 +409,18 @@ _05A6:
     End
 
 _05B1:
-    SetVar 0x8004, 0x1CB
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1CB
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
-    SetFlag 143
+    SetFlag FLAG_UNK_0x008F
     Message 27
     BufferRivalName 1
     Message 26
     CloseMessage
-    GoToIfEq 0x8007, 0, _0606
-    GoToIfEq 0x8007, 1, _0620
-    GoToIfEq 0x8007, 2, _0642
-    GoToIfEq 0x8007, 3, _065C
+    GoToIfEq VAR_0x8007, 0, _0606
+    GoToIfEq VAR_0x8007, 1, _0620
+    GoToIfEq VAR_0x8007, 2, _0642
+    GoToIfEq VAR_0x8007, 3, _065C
     End
 
 _0606:
@@ -455,18 +455,18 @@ _065C:
 _0676:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
-    SetVar 0x40A4, 6
+    SetVar VAR_UNK_0x40A4, 6
     ReleaseAll
     End
 
 _0688:
     BufferPlayerName 0
-    GetTimeOfDay 0x800C
-    CallIfEq 0x800C, 0, _06F8
-    CallIfEq 0x800C, 1, _06FD
-    CallIfEq 0x800C, 2, _0702
-    CallIfEq 0x800C, 3, _0707
-    CallIfEq 0x800C, 4, _070C
+    GetTimeOfDay VAR_RESULT
+    CallIfEq VAR_RESULT, 0, _06F8
+    CallIfEq VAR_RESULT, 1, _06FD
+    CallIfEq VAR_RESULT, 2, _0702
+    CallIfEq VAR_RESULT, 3, _0707
+    CallIfEq VAR_RESULT, 4, _070C
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -475,7 +475,7 @@ _0688:
     HealParty
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetFlag 2
+    SetFlag FLAG_UNK_0x0002
     Return
 
 _06F8:
@@ -577,7 +577,7 @@ _075A:
     End
 
 _0768:
-    SetFlag 248
+    SetFlag FLAG_UNK_0x00F8
     BufferPlayerName 0
     Message 2
     WaitABXPadPress
@@ -810,7 +810,7 @@ _08EA:
     End
 
 _0904:
-    SetVar 0x40A4, 2
+    SetVar VAR_UNK_0x40A4, 2
     BufferPlayerName 0
     Message 4
     WaitABXPadPress
@@ -871,12 +871,12 @@ _0948:
     End
 
 _095E:
-    GetTimeOfDay 0x800C
-    GoToIfEq 0x800C, 0, _09A5
-    GoToIfEq 0x800C, 1, _09B6
-    GoToIfEq 0x800C, 2, _09B6
-    GoToIfEq 0x800C, 3, _09C7
-    GoToIfEq 0x800C, 4, _09C7
+    GetTimeOfDay VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _09A5
+    GoToIfEq VAR_RESULT, 1, _09B6
+    GoToIfEq VAR_RESULT, 2, _09B6
+    GoToIfEq VAR_RESULT, 3, _09C7
+    GoToIfEq VAR_RESULT, 4, _09C7
     End
 
 _09A5:

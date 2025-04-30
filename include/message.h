@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_MESSAGE_H
 #define POKEPLATINUM_MESSAGE_H
 
+#include "generated/text_banks.h"
+
 #include "narc.h"
 #include "strbuf.h"
 
@@ -41,7 +43,7 @@ enum MessageLoaderType {
  * @param heapID    Which heap will own the allocation.
  * @return Allocated message data.
  */
-MessageBank *MessageBank_Load(u32 param0, u32 param1, u32 param2);
+MessageBank *MessageBank_Load(enum NarcID narcID, u32 param1, u32 param2);
 
 /**
  * @brief Free allocated message data back to the heap.
@@ -70,7 +72,7 @@ void MessageBank_Get(const MessageBank *bank, u32 entryID, charcode_t *dst);
  * @param heapID    Heap on which to allocate the loaded archive.
  * @param dst       Destination character buffer.
  */
-void MessageBank_GetFromNARC(u32 narcID, u32 bankID, u32 entryID, u32 heapID, charcode_t *dst);
+void MessageBank_GetFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID, charcode_t *dst);
 
 /**
  * @brief Get an entry out of the pre-loaded message bank and copy it into the
@@ -103,7 +105,7 @@ Strbuf *MessageBank_GetNewStrbuf(const MessageBank *bank, u32 entryID, u32 heapI
  * @param heapID    Heap on which to allocate the loaded archive.
  * @param strbuf    Destination Strbuf struct.
  */
-void MessageBank_GetStrbufFromNARC(u32 narcID, u32 bankID, u32 entryID, u32 heapID, Strbuf *strbuf);
+void MessageBank_GetStrbufFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID, Strbuf *strbuf);
 
 /**
  * @brief Load a message bank from an archive, then load an entry from that bank
@@ -127,7 +129,7 @@ void MessageBank_GetStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 he
  * @param heapID    Heap on which to allocate the loaded archive.
  * @return A newly-allocated Strbuf struct containing the loaded bank entry.
  */
-Strbuf *MessageBank_GetNewStrbufFromNARC(u32 narcID, u32 bankID, u32 entryID, u32 heapID);
+Strbuf *MessageBank_GetNewStrbufFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID);
 
 /**
  * @brief Load a message bank from an archive, then load an entry from that bank
@@ -156,7 +158,7 @@ u32 MessageBank_EntryCount(const MessageBank *bank);
  * @param bankID    Index of the bank to load from the archive.
  * @return Number of entries in the loaded bank.
  */
-u32 MessageBank_NARCEntryCount(u32 narcID, u32 bankID);
+u32 MessageBank_NARCEntryCount(enum NarcID narcID, u32 bankID);
 
 /**
  * @brief Initialize a new MessageLoader struct targeting a given archive and
@@ -168,7 +170,7 @@ u32 MessageBank_NARCEntryCount(u32 narcID, u32 bankID);
  * @param heapID    Heap on which to allocate the loaded archive.
  * @return Initialized MessageLoader struct.
  */
-MessageLoader *MessageLoader_Init(enum MessageLoaderType type, u32 narcID, u32 bankID, u32 heapID);
+MessageLoader *MessageLoader_Init(enum MessageLoaderType type, enum NarcID narcID, u32 bankID, u32 heapID);
 
 /**
  * @brief Free a MessageLoader struct back to its owning heap.

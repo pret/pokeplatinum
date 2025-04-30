@@ -12,29 +12,29 @@
     ScriptEntryEnd
 
 _001A:
-    SetFlag 0x9CB
+    SetFlag FLAG_UNK_0x09CB
     End
 
 _0020:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     MessageInstant 9
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     MessageInstant 10
     PlayFanfare SEQ_SE_DP_DECIDE
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     MessageInstant 11
     PlayFanfare SEQ_SE_DP_DECIDE
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     MessageInstant 12
     PlayFanfare SEQ_SE_DP_DECIDE
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     MessageInstant 13
     PlayFanfare SEQ_SE_DP_CON_016
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     ScrCmd_253 0
-    SetVar 0x40F3, 1
-    SetFlag 0x995
+    SetVar VAR_UNK_0x40F3, 1
+    SetFlag FLAG_ALT_MUSIC_PAL_PARK
     PlayMusic SEQ_D_SAFARI
     CloseMessage
     ReleaseAll
@@ -70,7 +70,7 @@ _008D:
     WaitSound
     CloseMessage
     ReleaseAll
-    SetVar 0x40F3, 1
+    SetVar VAR_UNK_0x40F3, 1
     Call _01C0
     End
 
@@ -78,14 +78,14 @@ _00B9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 8
-    ShowYesNoMenu 0x800C
+    ShowYesNoMenu VAR_RESULT
     CloseMessage
-    GoToIfEq 0x800C, MENU_YES, _00D9
+    GoToIfEq VAR_RESULT, MENU_YES, _00D9
     ReleaseAll
     End
 
 _00D9:
-    SetVar 0x40F3, 2
+    SetVar VAR_UNK_0x40F3, 2
     ReleaseAll
     Call _01C0
     End
@@ -95,8 +95,8 @@ _00E9:
     LockAll
     Call _0170
     CloseMessage
-    GoToIfEq 0x800C, 0, _0114
-    SetVar 0x40F3, 2
+    GoToIfEq VAR_RESULT, 0, _0114
+    SetVar VAR_UNK_0x40F3, 2
     ReleaseAll
     Call _01C0
     End
@@ -118,8 +118,8 @@ _012C:
     FacePlayer
     Call _0170
     CloseMessage
-    GoToIfEq 0x800C, 0, _0159
-    SetVar 0x40F3, 2
+    GoToIfEq VAR_RESULT, 0, _0159
+    SetVar VAR_UNK_0x40F3, 2
     ReleaseAll
     Call _01C0
     End
@@ -137,26 +137,26 @@ _0168:
 
 _0170:
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _01B5
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_FEMALE, _01A5
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _01B5
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, _01A5
     BufferPlayerName 0
     Message 2
     WaitABXPadPress
-    SetVar 0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _01A5:
     BufferPlayerName 0
     Message 3
     WaitABXPadPress
-    SetVar 0x800C, 0
+    SetVar VAR_RESULT, 0
     Return
 
 _01B5:
     Message 1
-    SetVar 0x800C, 1
+    SetVar VAR_RESULT, 1
     Return
 
 _01C0:

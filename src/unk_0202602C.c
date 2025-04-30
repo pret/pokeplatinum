@@ -35,9 +35,9 @@ void sub_0202604C(const BattleRegulation *param0, Strbuf *param1)
     Strbuf_CopyNumChars(param1, param0->unk_00, (11 + 1));
 }
 
-Strbuf *sub_0202605C(const BattleRegulation *param0, int param1)
+Strbuf *sub_0202605C(const BattleRegulation *param0, int heapID)
 {
-    Strbuf *v0 = Strbuf_Init((11 + 1) * 2, param1);
+    Strbuf *v0 = Strbuf_Init((11 + 1) * 2, heapID);
 
     Strbuf_CopyChars(v0, param0->unk_00);
     return v0;
@@ -97,12 +97,10 @@ int sub_02026074(const BattleRegulation *param0, int param1)
     return v0;
 }
 
-BattleRegulation *sub_0202610C(SaveData *param0, int param1)
+BattleRegulation *sub_0202610C(SaveData *saveData, int param1)
 {
-    UnkStruct_02026030 *v0 = NULL;
-
     GF_ASSERT(param1 < 1);
-    v0 = SaveData_SaveTable(param0, 13);
+    UnkStruct_02026030 *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_REGULATION_BATTLES);
 
     if (sub_02026074(&v0->unk_00[param1], 1) != 0) {
         return &v0->unk_00[param1];
@@ -111,10 +109,8 @@ BattleRegulation *sub_0202610C(SaveData *param0, int param1)
     return NULL;
 }
 
-void sub_0202613C(SaveData *param0, const BattleRegulation *param1)
+void sub_0202613C(SaveData *saveData, const BattleRegulation *param1)
 {
-    UnkStruct_02026030 *v0 = NULL;
-
-    v0 = SaveData_SaveTable(param0, 13);
+    UnkStruct_02026030 *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_REGULATION_BATTLES);
     BattleRegulation_Copy(param1, &v0->unk_00[0]);
 }

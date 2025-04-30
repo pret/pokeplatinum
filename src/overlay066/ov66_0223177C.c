@@ -418,7 +418,7 @@ BOOL ov66_02231C94(const UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_0
     GF_ASSERT(ov66_02231C60(param0));
 
     v2 = param0->unk_5C.unk_188.unk_2C;
-    v1 = MessageLoader_Init(1, 26, 653, param4);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0653, param4);
     v0 = StringTemplate_Default(param4);
 
     if (v2->unk_00 < 9) {
@@ -572,7 +572,7 @@ static BOOL ov66_02231E74(const UnkStruct_ov66_02231D38 *param0, u32 param1)
     return 0;
 }
 
-static void ov66_02231E94(UnkStruct_ov66_02231E94 *param0, u32 param1)
+static void ov66_02231E94(UnkStruct_ov66_02231E94 *param0, u32 heapID)
 {
     int v0, v1;
 
@@ -580,7 +580,7 @@ static void ov66_02231E94(UnkStruct_ov66_02231E94 *param0, u32 param1)
 
     for (v0 = 0; v0 < 8; v0++) {
         for (v1 = 0; v1 < 4; v1++) {
-            param0->unk_00[v0].unk_10[v1] = Strbuf_Init((7 + 1), param1);
+            param0->unk_00[v0].unk_10[v1] = Strbuf_Init((7 + 1), heapID);
         }
     }
 

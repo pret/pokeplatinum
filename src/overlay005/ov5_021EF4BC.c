@@ -7,9 +7,9 @@
 
 #include "buffer_manager.h"
 #include "heap.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 
 typedef struct UnkStruct_ov5_021EF4F8_t {
     u32 unk_00;
@@ -73,7 +73,7 @@ void Field_DoPoisonEffect(UnkStruct_ov5_021EF4F8 *param0)
     param0->unk_00 = 1;
     param0->unk_08 = 0;
 
-    Sound_PlayEffect(1552);
+    Sound_PlayEffect(SEQ_SE_DP_DOKU2);
 }
 
 static void ov5_021EF5A8(SysTask *param0, void *param1)

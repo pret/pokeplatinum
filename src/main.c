@@ -17,14 +17,14 @@
 #include "game_overlay.h"
 #include "game_start.h"
 #include "main.h"
-#include "math.h"
+#include "math_util.h"
 #include "overlay_manager.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_system.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02003B60.h"
 #include "unk_0200F174.h"
 #include "unk_02017428.h"
 #include "unk_0201E3D8.h"
@@ -71,7 +71,7 @@ void NitroMain(void)
     InitVRAM();
     InitKeypadAndTouchpad();
 
-    SetGBACartridgeVersion(NULL);
+    SetGBACartridgeVersion(VERSION_NONE);
     PM_GetBackLight(&sSavedBacklightState, NULL);
     sub_0202419C();
     InitRTC();
@@ -85,7 +85,7 @@ void NitroMain(void)
     sApplication.args.unk_00 = -1;
     sApplication.args.saveData = SaveData_Init();
 
-    sub_02003B60(GetChatotCryDataFromSave(sApplication.args.saveData), SaveData_Options(sApplication.args.saveData));
+    SoundSystem_Init(SaveData_GetChatotCry(sApplication.args.saveData), SaveData_GetOptions(sApplication.args.saveData));
     sub_02022844();
 
     if (sub_02038FFC(HEAP_ID_APPLICATION) == DWC_INIT_RESULT_DESTROY_OTHER_SETTING) {
@@ -93,7 +93,7 @@ void NitroMain(void)
     }
 
     if (SaveData_BackupExists(sApplication.args.saveData) == FALSE) {
-        sub_0209A74C(0);
+        sub_0209A74C(HEAP_ID_SYSTEM);
     } else {
         switch (OS_GetResetParameter()) {
         case RESET_CLEAN:
@@ -160,7 +160,7 @@ void NitroMain(void)
             gSystem.vblankCallback(gSystem.vblankCallbackData);
         }
 
-        UpdateSound();
+        SoundSystem_Tick();
         SysTaskManager_ExecuteTasks(gSystem.postVBlankTaskMgr);
     }
 }
@@ -268,24 +268,24 @@ static void HeapCanaryFailed(int resetParam, int param1)
     int elapsed;
 
     if (param1 == 3) {
-        sub_02039834(0, 3, 0);
+        sub_02039834(HEAP_ID_SYSTEM, 3, 0);
     } else if (resetParam == RESET_CLEAN) {
         if (sub_020389B8() == TRUE) {
-            sub_02039834(0, 6, 0);
+            sub_02039834(HEAP_ID_SYSTEM, 6, 0);
         } else {
-            sub_02039834(0, 2, 0);
+            sub_02039834(HEAP_ID_SYSTEM, 2, 0);
         }
     } else {
         if (sub_020389B8() == TRUE) {
-            sub_02039834(0, 5, 0);
+            sub_02039834(HEAP_ID_SYSTEM, 5, 0);
         } else {
-            sub_02039834(0, 0, 0);
+            sub_02039834(HEAP_ID_SYSTEM, 0, 0);
         }
     }
 
     sub_02037DB0();
     WaitFrame();
-    UpdateSound();
+    SoundSystem_Tick();
 
     elapsed = 0;
 

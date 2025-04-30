@@ -3,7 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02027860_decl.h"
+#include "constants/field/dynamic_map_features.h"
+
 #include "struct_defs/struct_02071C34.h"
 
 #include "field/field_system.h"
@@ -12,10 +13,10 @@
 
 #include "field_system.h"
 #include "heap.h"
+#include "persisted_map_features.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
 #include "system_flags.h"
-#include "unk_02027F50.h"
 #include "vars_flags.h"
 
 typedef struct UnkStruct_ov5_021F8480_t UnkStruct_ov5_021F8480;
@@ -28,7 +29,7 @@ typedef struct {
 } UnkStruct_ov5_021F83D4;
 
 typedef struct {
-    u16 unk_00;
+    u16 furniture;
     u16 unk_02;
     VecFx32 unk_04;
     UnkStruct_ov5_021F83D4 unk_10;
@@ -51,23 +52,23 @@ struct UnkStruct_ov5_021F8480_t {
     UnkStruct_ov5_021F8480_sub1 unk_08[23];
 };
 
-static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const u32 param1);
-static BOOL ov5_021F8508(FieldSystem *fieldSystem, u32 param1);
+static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const enum VillaFurniture furniture);
+static BOOL FieldSystem_OwnsVillaFurniture(FieldSystem *fieldSystem, enum VillaFurniture furniture);
 static BOOL ov5_021F851C(int param0, int param1, const UnkStruct_ov5_0220192C *param2, FieldSystem *fieldSystem);
 
 static const UnkStruct_ov5_0220192C Unk_ov5_0220192C[23];
 static const u32 Unk_ov5_0220188C[20];
 static const UnkStruct_ov5_022018DC Unk_ov5_022018DC[20];
 
-void ov5_021F8370(FieldSystem *fieldSystem)
+void Villa_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     int v0;
-    UnkStruct_02027860 *v1;
+    PersistedMapFeatures *v1;
     UnkStruct_02071C34 *v2;
     UnkStruct_ov5_021F8480 *v3;
 
-    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
-    v2 = sub_02027F6C(v1, 10);
+    v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    v2 = PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_VILLA);
     v3 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021F8480));
 
     memset(v3, 0, sizeof(UnkStruct_ov5_021F8480));
@@ -75,56 +76,54 @@ void ov5_021F8370(FieldSystem *fieldSystem)
     v3->fieldSystem = fieldSystem;
     v3->unk_04 = v2;
 
-    fieldSystem->unk_04->unk_24 = v3;
+    fieldSystem->unk_04->dynamicMapFeaturesData = v3;
 
     {
-        int v4;
-
-        for (v4 = 0; v4 < 20; v4++) {
-            if (ov5_021F8508(fieldSystem, v4) == 1) {
-                ov5_021F8480(v3, v4);
+        for (int i = 0; i < VILLA_FURNITURE_MAX; i++) {
+            if (FieldSystem_OwnsVillaFurniture(fieldSystem, i) == TRUE) {
+                ov5_021F8480(v3, i);
             }
         }
     }
 }
 
-void ov5_021F83C0(FieldSystem *fieldSystem)
+void Villa_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov5_021F8480 *v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov5_021F8480 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     Heap_FreeToHeap(v0);
-    fieldSystem->unk_04->unk_24 = NULL;
+    fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL ov5_021F83D4(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
+BOOL Villa_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
     int v0;
     const UnkStruct_ov5_021F83D4 *v1;
     const UnkStruct_ov5_0220192C *v2 = Unk_ov5_0220192C;
 
     for (v0 = 0; v0 < 23; v0++, v2++) {
-        if (ov5_021F851C(param1, param2, v2, fieldSystem) == 1) {
-            *param4 = 1;
+        if (ov5_021F851C(tileX, tileZ, v2, fieldSystem) == 1) {
+            *isColliding = 1;
             return 1;
         }
     }
 
-    *param4 = 0;
+    *isColliding = 0;
     return 0;
 }
 
 BOOL ov5_021F8410(FieldSystem *fieldSystem, const int param1, const int param2, const int param3)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (sub_02027F80(v0) == 10) {
+    if (PersistedMapFeatures_GetID(v0) == DYNAMIC_MAP_FEATURES_VILLA) {
         int v1;
         const UnkStruct_ov5_021F83D4 *v2;
         const UnkStruct_ov5_0220192C *v3 = Unk_ov5_0220192C;
 
         for (v1 = 0; v1 < 23; v1++, v3++) {
             if (ov5_021F851C(param1, param2, v3, fieldSystem) == 1) {
-                const UnkStruct_ov5_022018DC *v4 = &Unk_ov5_022018DC[v3->unk_00];
+                const UnkStruct_ov5_022018DC *v4 = &Unk_ov5_022018DC[v3->furniture];
 
                 if (v4->unk_00 == 10100) {
                     if (param3 != 0) {
@@ -141,17 +140,17 @@ BOOL ov5_021F8410(FieldSystem *fieldSystem, const int param1, const int param2, 
     return 0;
 }
 
-static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const u32 param1)
+static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const enum VillaFurniture furniture)
 {
     int v0, v1;
     UnkStruct_ov5_021F8480_sub1 *v2;
     VecFx32 v3 = { 0, 0, 0 };
-    int v4 = Unk_ov5_0220188C[param1];
+    int v4 = Unk_ov5_0220188C[furniture];
     const UnkStruct_ov5_0220192C *v5 = Unk_ov5_0220192C;
     FieldSystem *fieldSystem = param0->fieldSystem;
 
     for (v0 = 0; v0 < 23; v0++, v5++) {
-        if (v5->unk_00 == param1) {
+        if (v5->furniture == furniture) {
             v1 = 0;
             v2 = param0->unk_08;
 
@@ -171,16 +170,16 @@ static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const u32 param1)
     }
 }
 
-static BOOL ov5_021F8508(FieldSystem *fieldSystem, u32 param1)
+static BOOL FieldSystem_OwnsVillaFurniture(FieldSystem *fieldSystem, enum VillaFurniture furniture)
 {
-    return SystemFlag_HandleOwnsVillaFurniture(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, param1);
+    return SystemFlag_HandleOwnsVillaFurniture(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, furniture);
 }
 
 static BOOL ov5_021F851C(int param0, int param1, const UnkStruct_ov5_0220192C *param2, FieldSystem *fieldSystem)
 {
     const UnkStruct_ov5_021F83D4 *v0 = &param2->unk_10;
 
-    if ((param2->unk_02 == 1) && (ov5_021F8508(fieldSystem, param2->unk_00) == 1)) {
+    if ((param2->unk_02 == 1) && (FieldSystem_OwnsVillaFurniture(fieldSystem, param2->furniture) == TRUE)) {
         if ((param1 >= v0->unk_02) && (param1 <= v0->unk_06) && (param0 >= v0->unk_00) && (param0 <= v0->unk_04)) {
             return 1;
         }

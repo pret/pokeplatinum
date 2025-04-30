@@ -31,12 +31,12 @@ _005A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 138, _0082
+    GoToIfSet FLAG_UNK_0x008A, _0082
     BufferRivalName 0
     BufferPlayerName 1
     Message 0
     WaitABXPadPress
-    SetFlag 138
+    SetFlag FLAG_UNK_0x008A
     CloseMessage
     ReleaseAll
     End
@@ -53,9 +53,9 @@ _0090:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COAL, 0x800C
-    GoToIfEq 0x800C, 1, _00C1
-    GoToIfSet 122, _00CC
+    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00C1
+    GoToIfSet FLAG_UNK_0x007A, _00CC
     Message 8
     WaitABXPadPress
     CloseMessage
@@ -78,13 +78,13 @@ _00CC:
 
 _00D7:
     LockAll
-    ClearFlag 0x17C
+    ClearFlag FLAG_UNK_0x017C
     ScrCmd_188 3, 16
     ScrCmd_189 3, 2
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2EC, _011E
-    GoToIfEq 0x8005, 0x2ED, _0144
-    GoToIfEq 0x8005, 0x2EE, _016A
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2EC, _011E
+    GoToIfEq VAR_0x8005, 0x2ED, _0144
+    GoToIfEq VAR_0x8005, 0x2EE, _016A
     GoTo _0190
     End
 
@@ -140,10 +140,10 @@ _01B6:
     WaitMovement
     Message 5
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2EC, _021F
-    GoToIfEq 0x8005, 0x2ED, _0239
-    GoToIfEq 0x8005, 0x2EE, _0253
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2EC, _021F
+    GoToIfEq VAR_0x8005, 0x2ED, _0239
+    GoToIfEq VAR_0x8005, 0x2EE, _0253
     GoTo _026D
     End
 
@@ -179,7 +179,7 @@ _0287:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 3
     CallCommonScript 0x7FB
-    SetVar 0x4079, 3
+    SetVar VAR_UNK_0x4079, 3
     ReleaseAll
     End
 
@@ -287,14 +287,13 @@ _0376:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x109, _03BD
+    GoToIfSet FLAG_UNK_0x0109, _03BD
     Message 17
-    SetVar 0x8004, 26
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _03C8
+    SetVar VAR_0x8004, ITEM_SUPER_POTION
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _03C8
     CallCommonScript 0x7FC
-    SetFlag 0x109
+    SetFlag FLAG_UNK_0x0109
     GoTo _03BD
     End
 
@@ -333,10 +332,10 @@ _03E5:
 
 _03F8:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2EC, _042F
-    GoToIfEq 0x8005, 0x2ED, _0449
-    GoToIfEq 0x8005, 0x2EE, _0463
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2EC, _042F
+    GoToIfEq VAR_0x8005, 0x2ED, _0449
+    GoToIfEq VAR_0x8005, 0x2EE, _0463
     GoTo _047D
     End
 
@@ -372,11 +371,11 @@ _0497:
     Message 6
     CloseMessage
     CallCommonScript 0x800
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2EC, _04DC
-    GoToIfEq 0x8005, 0x2ED, _04F6
-    GoToIfEq 0x8005, 0x2EE, _0510
-    GoToIfEq 0x8005, 0x2EF, _052A
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2EC, _04DC
+    GoToIfEq VAR_0x8005, 0x2ED, _04F6
+    GoToIfEq VAR_0x8005, 0x2EE, _0510
+    GoToIfEq VAR_0x8005, 0x2EF, _052A
     End
 
 _04DC:
@@ -412,7 +411,7 @@ _0544:
     WaitABXPadPress
     CloseMessage
     CallCommonScript 0x801
-    SetVar 0x4079, 1
+    SetVar VAR_UNK_0x4079, 1
     ReleaseAll
     End
 
@@ -523,7 +522,7 @@ _0647:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 122, _0665
+    GoToIfSet FLAG_UNK_0x007A, _0665
     Message 11
     WaitABXPadPress
     CloseMessage
@@ -590,7 +589,7 @@ _0703:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
     Message 24
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -613,7 +612,7 @@ _0735:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
     Message 25
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -626,7 +625,7 @@ _0754:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
     Message 26
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll

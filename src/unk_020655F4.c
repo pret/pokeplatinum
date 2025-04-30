@@ -17,9 +17,9 @@
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 #include "unk_02069BE0.h"
 #include "unk_020711EC.h"
 #include "unk_020EDBAC.h"
@@ -868,7 +868,7 @@ static int MovementAction_Jump_Step1(MapObject *mapObj)
     sub_02062B68(mapObj);
     sub_02062A0C(mapObj, 0x0);
     MapObject_AdvanceMovementStep(mapObj);
-    Sound_PlayEffect(1607);
+    Sound_PlayEffect(SEQ_SE_DP_SUTYA2);
 
     return 1;
 }
@@ -1939,7 +1939,7 @@ static int sub_02067068(MapObject *mapObj)
     sub_02062B68(mapObj);
     sub_02062A0C(mapObj, 0x0);
     MapObject_AdvanceMovementStep(mapObj);
-    Sound_PlayEffect(1607);
+    Sound_PlayEffect(SEQ_SE_DP_SUTYA2);
 
     return 1;
 }

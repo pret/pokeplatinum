@@ -11,15 +11,14 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset 123, _0067
-    GoToIfSet 161, _005C
+    GoToIfUnset FLAG_UNK_0x007B, _0067
+    GoToIfSet FLAG_UNK_0x00A1, _005C
     Message 0
-    SetVar 0x8004, 247
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CF
+    SetVar VAR_0x8004, ITEM_SPELL_TAG
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CF
     CallCommonScript 0x7FC
-    SetFlag 161
+    SetFlag FLAG_UNK_0x00A1
     GoTo _005C
     End
 
@@ -41,15 +40,14 @@ _0072:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset 123, _00D9
-    GoToIfSet 0x116, _00C4
+    GoToIfUnset FLAG_UNK_0x007B, _00D9
+    GoToIfSet FLAG_UNK_0x0116, _00C4
     Message 3
-    SetVar 0x8004, 224
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00CF
+    SetVar VAR_0x8004, ITEM_CLEANSE_TAG
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CF
     CallCommonScript 0x7FC
-    SetFlag 0x116
+    SetFlag FLAG_UNK_0x0116
     GoTo _00C4
     End
 

@@ -1,18 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02007768_decl.h"
-#include "struct_defs/archived_sprite.h"
-#include "struct_defs/pokemon_sprite.h"
-
 #include "gx_layers.h"
 #include "pokemon.h"
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 #include "unk_0202419C.h"
 
 void ov105_02245CD0(void);
-void ov105_02245D50(UnkStruct_02007768 *param0);
-PokemonSprite *ov105_02245D88(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, int param4, int param5);
+void ov105_02245D50(PokemonSpriteManager *param0);
+PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, int param4, int param5);
 void ov105_02245DB8(PokemonSprite *param0, int param1);
 
 void ov105_02245CD0(void)
@@ -32,7 +28,7 @@ void ov105_02245CD0(void)
     return;
 }
 
-void ov105_02245D50(UnkStruct_02007768 *param0)
+void ov105_02245D50(PokemonSpriteManager *param0)
 {
     sub_020241B4();
 
@@ -44,29 +40,29 @@ void ov105_02245D50(UnkStruct_02007768 *param0)
     NNS_G3dGlbFlush();
     NNS_G2dSetupSoftwareSpriteCamera();
 
-    sub_02007768(param0);
+    PokemonSpriteManager_DrawSprites(param0);
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
     return;
 }
 
-PokemonSprite *ov105_02245D88(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, int param4, int param5)
+PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, int param4, int param5)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     PokemonSprite *v1;
     int v2;
     u32 v3;
 
-    Pokemon_BuildArchivedSprite(&v0, param2, 2);
+    Pokemon_BuildSpriteTemplate(&v0, param2, 2);
 
     v2 = 0;
-    v1 = sub_02007C34(param0, &v0, param3, (param4 + v2), param5, param1, NULL, NULL);
+    v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param3, (param4 + v2), param5, param1, NULL, NULL);
 
     return v1;
 }
 
 void ov105_02245DB8(PokemonSprite *param0, int param1)
 {
-    sub_02007DEC(param0, 35, param1);
+    PokemonSprite_SetAttribute(param0, MON_SPRITE_FLIP_H, param1);
     return;
 }

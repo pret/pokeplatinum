@@ -8,8 +8,6 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/archived_sprite.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0208C06C.h"
 
@@ -39,15 +37,15 @@
 #include "pc_boxes.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "pokemon_sprite.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 #include "unk_02030A80.h"
@@ -399,7 +397,7 @@ static void ov62_02239F98(u32 param0, u32 param1, void *param2)
         ov62_0223ADC0(v0, v1->unk_1B0);
 
         if ((v1->unk_04.unk_28[v1->unk_1B0] != 0) && (ov62_0223ADB0(v1->unk_04.unk_154, (1 << v1->unk_1B0)) != 1)) {
-            sub_02005844(v1->unk_04.unk_28[v1->unk_1B0], v1->unk_04.unk_158[v1->unk_1B0]);
+            Sound_PlayPokemonCry(v1->unk_04.unk_28[v1->unk_1B0], v1->unk_04.unk_158[v1->unk_1B0]);
         }
         break;
     case 1:
@@ -444,7 +442,7 @@ static void ov62_0223A138(UnkStruct_ov62_02239DBC *param0)
 static void ov62_0223A154(SaveData *param0, const PCBoxes *param1, int param2, UnkStruct_ov62_02239DA4 *param3)
 {
     memset(param3, 0, sizeof(UnkStruct_ov62_02239DA4));
-    ov61_0222AE88(param0, param1, param2, param3, 102);
+    ov61_0222AE88(param0, param1, param2, param3, HEAP_ID_102);
 }
 
 static BOOL ov62_0223A17C(UnkStruct_0208C06C *param0)
@@ -460,7 +458,7 @@ static BOOL ov62_0223A17C(UnkStruct_0208C06C *param0)
     Bg_ClearTilemap(param0->unk_14.unk_10, 6);
     Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
-    v0->unk_00 = SaveData_PCBoxes(param0->unk_830);
+    v0->unk_00 = SaveData_GetPCBoxes(param0->unk_830);
     ov62_0223A154(param0->unk_830, v0->unk_00, v0->unk_1A0, &v0->unk_04);
     ov62_0223A138(v0);
     ov62_022315C8(&v0->unk_1A4, &v0->unk_1A8, 0);
@@ -672,7 +670,7 @@ static BOOL ov62_0223A64C(UnkStruct_0208C06C *param0)
         sub_0208B9E0(param0->unk_6F0, 1);
         sub_0208BA08(param0->unk_6F0, 24, 24);
         ov62_02231AAC(param0, 288);
-        Sound_PlayEffect(1381);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80);
         param0->unk_08++;
         break;
     case 5:
@@ -691,7 +689,7 @@ static BOOL ov62_0223A64C(UnkStruct_0208C06C *param0)
             Sound_StopEffect(1381, 0);
             ov62_02233704(param0, 48);
             ov62_0223196C(param0, 1);
-            Sound_PlayEffect(1375);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12);
             param0->unk_08++;
         }
         break;
@@ -975,7 +973,7 @@ static void ov62_0223AC58(UnkStruct_0208C06C *param0, int param1)
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, v6);
     v3 = Strbuf_Init(255, HEAP_ID_102);
     v4 = Strbuf_Init(255, HEAP_ID_102);
-    v5 = ov62_02231690(102);
+    v5 = ov62_02231690(HEAP_ID_102);
 
     Strbuf_CopyChars(v3, v0->unk_38C[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00.unk_00);
     ov62_022349A8(param0, v3);
@@ -1170,41 +1168,41 @@ static void ov62_0223AFEC(UnkStruct_0208C06C *param0)
 static void ov62_0223B050(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
-    SpeciesData *v1;
-    ArchivedSprite v2;
-    u8 v3;
-    u8 v4;
-    u32 v5 = v0->unk_04.unk_DC[v0->unk_1B0];
-    u32 v6 = v0->unk_04.unk_158[v0->unk_1B0];
-    u16 v7 = v0->unk_04.unk_28[v0->unk_1B0];
-    u32 v8 = v0->unk_04.unk_64[v0->unk_1B0];
+    SpeciesData *speciesData;
+    PokemonSpriteTemplate v2;
+    u8 gender;
+    u8 isShiny;
+    u32 otID = v0->unk_04.unk_DC[v0->unk_1B0];
+    u32 form = v0->unk_04.unk_158[v0->unk_1B0];
+    u16 species = v0->unk_04.unk_28[v0->unk_1B0];
+    u32 personality = v0->unk_04.unk_64[v0->unk_1B0];
     u32 v9;
     int v10 = 2;
 
-    if (v7 == 0) {
+    if (species == SPECIES_NONE) {
         v0->unk_32C = NULL;
         return;
     }
 
     if (ov62_0223ADB0(v0->unk_04.unk_154, (1 << v0->unk_1B0)) == 1) {
-        if (v7 == 490) {
-            v6 = 1;
+        if (species == SPECIES_MANAPHY) {
+            form = EGG_FORM_MANAPHY;
         } else {
-            v6 = 0;
+            form = EGG_FORM_BASE;
         }
 
-        v7 = SPECIES_EGG;
+        species = SPECIES_EGG;
     }
 
-    v1 = SpeciesData_FromMonSpecies(v7, 102);
-    v3 = Pokemon_GetGenderOf(v7, v8);
-    v4 = Pokemon_IsPersonalityShiny(v5, v8);
-    v9 = LoadPokemonSpriteYOffset(v7, v3, v10, v6, v8);
+    speciesData = SpeciesData_FromMonSpecies(species, HEAP_ID_102);
+    gender = Pokemon_GetGenderOf(species, personality);
+    isShiny = Pokemon_IsPersonalityShiny(otID, personality);
+    v9 = LoadPokemonSpriteYOffset(species, gender, v10, form, personality);
     v9 = 0;
 
-    BuildArchivedPokemonSprite(&v2, v7, v3, v10, v4, v6, v8);
-    v0->unk_32C = sub_02007C34(param0->unk_14.unk_50, &v2, 42, 91 + v9, 0, 0, NULL, NULL);
-    SpeciesData_Free(v1);
+    BuildPokemonSpriteTemplate(&v2, species, gender, v10, isShiny, form, personality);
+    v0->unk_32C = PokemonSpriteManager_CreateSprite(param0->unk_14.unk_50, &v2, 42, 91 + v9, 0, 0, NULL, NULL);
+    SpeciesData_Free(speciesData);
 }
 
 static void ov62_0223B124(UnkStruct_0208C06C *param0, int param1)
@@ -1212,7 +1210,7 @@ static void ov62_0223B124(UnkStruct_0208C06C *param0, int param1)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     if (v0->unk_32C) {
-        sub_02007DEC(v0->unk_32C, 6, param1);
+        PokemonSprite_SetAttribute(v0->unk_32C, MON_SPRITE_HIDE, param1);
     }
 }
 
@@ -1221,7 +1219,7 @@ static void ov62_0223B140(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     if (v0->unk_32C) {
-        sub_02007DC8(v0->unk_32C);
+        PokemonSprite_Delete(v0->unk_32C);
     }
 }
 
@@ -1230,7 +1228,7 @@ static void ov62_0223B158(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     {
-        PCBoxes *v1 = SaveData_PCBoxes(param0->unk_830);
+        PCBoxes *v1 = SaveData_GetPCBoxes(param0->unk_830);
 
         if ((v0->unk_04.unk_176 >= 16) && (v0->unk_04.unk_176 < (16 + 8))) {
             v0->unk_04.unk_176 = 0;
@@ -1262,7 +1260,7 @@ static void ov62_0223B230(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     {
-        PCBoxes *v1 = SaveData_PCBoxes(param0->unk_830);
+        PCBoxes *v1 = SaveData_GetPCBoxes(param0->unk_830);
 
         if ((v0->unk_04.unk_176 >= 16) && (v0->unk_04.unk_176 < (16 + 8))) {
             v0->unk_04.unk_176 = 0;
@@ -1651,7 +1649,7 @@ static BOOL ov62_0223B980(UnkStruct_0208C06C *param0)
         sub_0208B9E0(param0->unk_6F0, 1);
         sub_0208BA08(param0->unk_6F0, 24, 24);
         ov62_02231AAC(param0, 289);
-        Sound_PlayEffect(1381);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80);
         param0->unk_08++;
         break;
     case 3:
@@ -1683,7 +1681,7 @@ static BOOL ov62_0223B980(UnkStruct_0208C06C *param0)
             param0->unk_08 = 7;
         } else {
             Sound_StopEffect(1381, 0);
-            Sound_PlayEffect(1375);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12);
             param0->unk_08++;
         }
         break;
@@ -1973,7 +1971,7 @@ static BOOL ov62_0223C138(UnkStruct_0208C06C *param0)
             sub_0208BA08(param0->unk_6F0, 12, 12);
 
             if ((v0->unk_04.unk_28[v0->unk_1B0] != 0) && (ov62_0223ADB0(v0->unk_04.unk_154, (1 << v0->unk_1B0)) != 1)) {
-                sub_02005844(v0->unk_04.unk_28[v0->unk_1B0], v0->unk_04.unk_158[v0->unk_1B0]);
+                Sound_PlayPokemonCry(v0->unk_04.unk_28[v0->unk_1B0], v0->unk_04.unk_158[v0->unk_1B0]);
             }
 
             ov62_0222FB60(param0, 10);

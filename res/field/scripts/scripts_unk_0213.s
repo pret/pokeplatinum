@@ -23,7 +23,7 @@
     ScriptEntryEnd
 
 _0046:
-    CallIfNe 0x40D5, 0, _0055
+    CallIfNe VAR_UNK_0x40D5, 0, _0055
     End
 
 _0055:
@@ -31,22 +31,22 @@ _0055:
     Return
 
 _005B:
-    SetVar 0x4000, 13
-    SetVar 0x4001, 5
-    SetVar 0x4002, 2
+    SetVar VAR_MAP_LOCAL_0, 13
+    SetVar VAR_MAP_LOCAL_1, 5
+    SetVar VAR_MAP_LOCAL_2, 2
     GoTo _008F
     End
 
 _0075:
-    SetVar 0x4000, 8
-    SetVar 0x4001, 5
-    SetVar 0x4002, 2
+    SetVar VAR_MAP_LOCAL_0, 8
+    SetVar VAR_MAP_LOCAL_1, 5
+    SetVar VAR_MAP_LOCAL_2, 2
     GoTo _008F
     End
 
 _008F:
     LockAll
-    ScrCmd_168 0, 0, 0x4000, 0x4002, 77
+    ScrCmd_168 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_2, 77
     Call _050B
     ScrCmd_1B1 0xFF
     ApplyMovement LOCALID_PLAYER, _00F0
@@ -54,13 +54,13 @@ _008F:
     Call _0513
     ApplyMovement LOCALID_PLAYER, _00F8
     WaitMovement
-    ScrCmd_168 0, 0, 0x4000, 0x4001, 77
+    ScrCmd_168 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, 77
     Call _050B
     ApplyMovement LOCALID_PLAYER, _0100
     WaitMovement
     Call _0513
-    ClearFlag 0x966
-    SetVar 0x40D5, 0
+    ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
+    SetVar VAR_UNK_0x40D5, 0
     ReleaseAll
     End
 
@@ -83,30 +83,30 @@ _0108:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2B7 0x800C
-    GoToIfEq 0x800C, 1, _0755
+    ScrCmd_2B7 VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0755
     Message 0
     GoTo _012C
     End
 
 _012C:
     Message 1
-    ScrCmd_044 1, 1, 1, 1, 0x800C
-    ScrCmd_046 163, 0xFF, 250
-    ScrCmd_046 6, 0xFF, 0
-    ScrCmd_046 7, 0xFF, 1
-    ScrCmd_046 8, 0xFF, 2
-    ScrCmd_046 164, 0xFF, 250
-    ScrCmd_046 9, 0xFF, 3
-    ScrCmd_046 10, 0xFF, 4
-    ScrCmd_046 11, 0xFF, 5
-    ScrCmd_047
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _01DE
-    GoToIfEq 0x8008, 1, _01F2
-    GoToIfEq 0x8008, 2, _021A
-    GoToIfEq 0x8008, 3, _0242
-    GoToIfEq 0x8008, 4, _01C8
+    InitGlobalTextListMenu 1, 1, 1, VAR_RESULT
+    AddListMenuEntry 163, LIST_MENU_BUILDER_HEADER
+    AddListMenuEntry 6, 0
+    AddListMenuEntry 7, 1
+    AddListMenuEntry 8, 2
+    AddListMenuEntry 164, LIST_MENU_BUILDER_HEADER
+    AddListMenuEntry 9, 3
+    AddListMenuEntry 10, 4
+    AddListMenuEntry 11, 5
+    ShowListMenu
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _01DE
+    GoToIfEq VAR_0x8008, 1, _01F2
+    GoToIfEq VAR_0x8008, 2, _021A
+    GoToIfEq VAR_0x8008, 3, _0242
+    GoToIfEq VAR_0x8008, 4, _01C8
     GoTo _01D3
     End
 
@@ -123,7 +123,7 @@ _01D3:
     End
 
 _01DE:
-    SetVar 0x8004, 1
+    SetVar VAR_0x8004, 1
     GoTo _026A
 
     .byte 22
@@ -136,9 +136,9 @@ _01DE:
     .byte 0
 
 _01F2:
-    SetVar 0x8004, 2
-    GetPartyCountHatched 0x800C
-    GoToIfLt 0x800C, 2, _020F
+    SetVar VAR_0x8004, 2
+    GetPartyCountHatched VAR_RESULT
+    GoToIfLt VAR_RESULT, 2, _020F
     GoTo _026A
 
 _020F:
@@ -149,9 +149,9 @@ _020F:
     End
 
 _021A:
-    SetVar 0x8004, 3
-    GetPartyCountHatched 0x800C
-    GoToIfLt 0x800C, 3, _0237
+    SetVar VAR_0x8004, 3
+    GetPartyCountHatched VAR_RESULT
+    GoToIfLt VAR_RESULT, 3, _0237
     GoTo _0290
 
 _0237:
@@ -162,9 +162,9 @@ _0237:
     End
 
 _0242:
-    SetVar 0x8004, 4
-    GetPartyCountHatched 0x800C
-    GoToIfLt 0x800C, 3, _025F
+    SetVar VAR_0x8004, 4
+    GetPartyCountHatched VAR_RESULT
+    GoToIfLt VAR_RESULT, 3, _025F
     GoTo _0290
 
 _025F:
@@ -175,14 +175,14 @@ _025F:
     End
 
 _026A:
-    ScrCmd_239 0x800C
-    GoToIfEq 0x800C, 1, _0290
-    GoToIfEq 0x800C, 3, _0290
+    ScrCmd_239 VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0290
+    GoToIfEq VAR_RESULT, 3, _0290
     GoTo _01D3
     End
 
 _0290:
-    SetVar 0x8005, 0
+    SetVar VAR_0x8005, 0
     GoTo _02E4
 
     .byte 2
@@ -261,25 +261,25 @@ _0290:
 _02E4:
     HealParty
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
-    GoToIfEq 0x800C, 1, _0305
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_RESULT, 1, _0305
     GoTo _01D3
     End
 
 _0305:
-    CallIfEq 0x8004, 1, _037A
-    CallIfEq 0x8004, 2, _037A
-    CallIfEq 0x8004, 3, _037A
-    CallIfEq 0x8004, 4, _037F
-    ScrCmd_040 30, 1, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 5, 2
-    ScrCmd_043
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0384
-    GoToIfEq 0x8008, 1, _03F7
+    CallIfEq VAR_0x8004, 1, _037A
+    CallIfEq VAR_0x8004, 2, _037A
+    CallIfEq VAR_0x8004, 3, _037A
+    CallIfEq VAR_0x8004, 4, _037F
+    InitGlobalTextMenu 30, 1, 0, VAR_RESULT
+    SetMenuXOriginToRight
+    AddMenuEntryImm 13, 0
+    AddMenuEntryImm 14, 1
+    AddMenuEntryImm 5, 2
+    ShowMenu
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _0384
+    GoToIfEq VAR_0x8008, 1, _03F7
     GoTo _01D3
     End
 
@@ -293,13 +293,13 @@ _037F:
 
 _0384:
     Message 124
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0305
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0305
     CloseMessage
-    ScrCmd_0F2 0x8004, 0x8005, 0, 0x800C
-    GoToIfEq 0x800C, 1, _03D3
-    GoToIfEq 0x800C, 3, _03DD
-    GoToIfEq 0x800C, 4, _03EA
+    ScrCmd_0F2 VAR_0x8004, VAR_0x8005, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _03D3
+    GoToIfEq VAR_RESULT, 3, _03DD
+    GoToIfEq VAR_RESULT, 4, _03EA
     GoTo _046A
     End
 
@@ -326,13 +326,13 @@ _03EA:
 
 _03F7:
     Message 124
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0305
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0305
     CloseMessage
-    ScrCmd_0F3 0x8004, 0x8005, 0, 0x800C
-    GoToIfEq 0x800C, 1, _0446
-    GoToIfEq 0x800C, 3, _0450
-    GoToIfEq 0x800C, 4, _045D
+    ScrCmd_0F3 VAR_0x8004, VAR_0x8005, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0446
+    GoToIfEq VAR_RESULT, 3, _0450
+    GoToIfEq VAR_RESULT, 4, _045D
     GoTo _046A
     End
 
@@ -358,8 +358,8 @@ _045D:
     End
 
 _046A:
-    SetVar 0x40D5, 1
-    SetFlag 0x966
+    SetVar VAR_UNK_0x40D5, 1
+    SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     ScrCmd_02E 52
     WaitABPressTime 45
     ScrCmd_135 96
@@ -376,16 +376,16 @@ _046A:
     ApplyMovement LOCALID_PLAYER, _0538
     WaitMovement
     Call _0513
-    GoToIfEq 0x8004, 4, _04F3
-    ScrCmd_207 0x800C
-    AddVar 0x800C, 7
-    ScrCmd_203 0x14C, 0, 0x800C, 11, 0
+    GoToIfEq VAR_0x8004, 4, _04F3
+    ScrCmd_207 VAR_RESULT
+    AddVar VAR_RESULT, 7
+    ScrCmd_203 0x14C, 0, VAR_RESULT, 11, 0
     End
 
 _04F3:
-    ScrCmd_207 0x800C
-    AddVar 0x800C, 6
-    ScrCmd_203 0x14D, 0, 0x800C, 11, 0
+    ScrCmd_207 VAR_RESULT
+    AddVar VAR_RESULT, 6
+    ScrCmd_203 0x14D, 0, VAR_RESULT, 11, 0
     End
 
 _050B:
@@ -425,52 +425,52 @@ _0544:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2B7 0x800C
-    GoToIfEq 0x800C, 1, _0755
+    ScrCmd_2B7 VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0755
     GoTo _0565
     End
 
 _0565:
     Message 57
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 41, 0
-    ScrCmd_042 42, 1
-    ScrCmd_042 10, 2
-    ScrCmd_043
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _05CF
-    GoToIfEq 0x8008, 1, _01D3
-    GoToIfEq 0x8008, 2, _05B3
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
+    AddMenuEntryImm 41, 0
+    AddMenuEntryImm 42, 1
+    AddMenuEntryImm 10, 2
+    ShowMenu
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _05CF
+    GoToIfEq VAR_0x8008, 1, _01D3
+    GoToIfEq VAR_0x8008, 2, _05B3
     GoTo _01D3
     End
 
 _05B3:
     Message 58
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _05CF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _05CF
     GoTo _01D3
     End
 
 _05CF:
-    SetVar 0x8004, 9
+    SetVar VAR_0x8004, 9
     HealParty
     Message 124
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _01D3
-    ScrCmd_31D 0x800C
-    GoToIfEq 0x800C, 0xFF, _068E
-    SetVar 0x40D5, 2
-    SetFlag 0x966
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _01D3
+    ScrCmd_31D VAR_RESULT
+    GoToIfEq VAR_RESULT, 0xFF, _068E
+    SetVar VAR_UNK_0x40D5, 2
+    SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     CallCommonScript 0x7D6
-    SetVar 0x800C, 0x4000
-    GoToIfEq 0x800C, 1, _062D
-    SetVar 0x40D5, 0
-    ClearFlag 0x966
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_RESULT, 1, _062D
+    SetVar VAR_UNK_0x40D5, 0
+    ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     GoTo _01D3
 
 _062D:
-    SetVar 0x40D5, 2
-    SetFlag 0x966
+    SetVar VAR_UNK_0x40D5, 2
+    SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Message 63
     CloseMessage
     ScrCmd_168 0, 0, 8, 5, 77
@@ -523,22 +523,22 @@ _06B4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetFlag 170
+    SetFlag FLAG_UNK_0x00AA
     Message 102
     GoTo _06CB
     End
 
 _06CB:
     Message 103
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 41, 0
-    ScrCmd_042 42, 1
-    ScrCmd_042 10, 2
-    ScrCmd_043
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0724
-    GoToIfEq 0x8008, 1, _074A
-    GoToIfEq 0x8008, 2, _0719
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
+    AddMenuEntryImm 41, 0
+    AddMenuEntryImm 42, 1
+    AddMenuEntryImm 10, 2
+    ShowMenu
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _0724
+    GoToIfEq VAR_0x8008, 1, _074A
+    GoToIfEq VAR_0x8008, 2, _0719
     GoTo _074A
     End
 

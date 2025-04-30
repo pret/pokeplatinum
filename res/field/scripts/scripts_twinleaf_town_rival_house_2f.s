@@ -25,9 +25,9 @@ _000E:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 0
     CallCommonScript 0x7FB
-    SetFlag 234
-    SetVar 0x40A3, 1
-    SetVar 0x4070, 2
+    SetFlag FLAG_UNK_0x00EA
+    SetVar VAR_UNK_0x40A3, 1
+    SetVar VAR_UNK_0x4070, 2
     ReleaseAll
     End
 

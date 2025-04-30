@@ -11,21 +11,20 @@
     ScriptEntryEnd
 
 _0016:
-    SetFlag 0x9E7
+    SetFlag FLAG_UNK_0x09E7
     End
 
 _001C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0xAA0, _0067
+    GoToIfSet FLAG_UNK_0x0AA0, _0067
     Message 0
-    GetRandom 0x8004, 26
-    AddVar 0x8004, 149
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0072
-    SetFlag 0xAA0
+    GetRandom VAR_0x8004, 26
+    AddVar VAR_0x8004, ITEM_CHERI_BERRY /* Random berry from Cheri to Tamato */
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0072
+    SetFlag FLAG_UNK_0x0AA0
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
@@ -48,19 +47,19 @@ _007C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq 0x4000, 1, _00ED
-    CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, 0x800C
-    GoToIfEq 0x800C, 1, _00FD
+    GoToIfEq VAR_MAP_LOCAL_0, 1, _00ED
+    CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00FD
     Message 2
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _00C7
-    GoToIfEq 0x800C, MENU_NO, _00E2
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00C7
+    GoToIfEq VAR_RESULT, MENU_NO, _00E2
     End
 
 _00C7:
     Message 3
-    SetVar 0x4000, 1
-    SetVar 0x8004, 7
+    SetVar VAR_MAP_LOCAL_0, 1
+    SetVar VAR_0x8004, 7
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
@@ -94,39 +93,38 @@ _0108:
     LockAll
     FacePlayer
     Message 7
-    ScrCmd_072 20, 2
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 223, 0
-    ScrCmd_042 224, 1
-    ScrCmd_042 225, 2
-    ScrCmd_042 226, 3
-    ScrCmd_042 227, 4
-    ScrCmd_043
-    SetVar 0x8000, 0x800C
-    SetVar 0x8008, 0x8000
-    GoToIfEq 0x8008, 0, _0245
-    GoToIfEq 0x8008, 1, _0251
-    GoToIfEq 0x8008, 2, _025D
-    GoToIfEq 0x8008, 3, _0269
+    ShowMoney 20, 2
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
+    AddMenuEntryImm 223, 0
+    AddMenuEntryImm 224, 1
+    AddMenuEntryImm 225, 2
+    AddMenuEntryImm 226, 3
+    AddMenuEntryImm 227, 4
+    ShowMenu
+    SetVar VAR_0x8000, VAR_RESULT
+    SetVar VAR_0x8008, VAR_0x8000
+    GoToIfEq VAR_0x8008, 0, _0245
+    GoToIfEq VAR_0x8008, 1, _0251
+    GoToIfEq VAR_0x8008, 2, _025D
+    GoToIfEq VAR_0x8008, 3, _0269
     Message 9
     GoTo _0229
 
 _0180:
-    CallIfEq 0x8000, 0, _0275
-    CallIfEq 0x8000, 1, _027F
-    CallIfEq 0x8000, 2, _0289
-    CallIfEq 0x8000, 3, _0293
-    GoToIfEq 0x800C, 0, _023C
-    ScrCmd_07D 0x8001, 1, 0x800C
-    GoToIfEq 0x800C, 0, _0233
-    CallIfEq 0x8000, 0, _029D
-    CallIfEq 0x8000, 1, _02AB
-    CallIfEq 0x8000, 2, _02B9
-    CallIfEq 0x8000, 3, _02C7
-    ScrCmd_074
+    CallIfEq VAR_0x8000, 0, _0275
+    CallIfEq VAR_0x8000, 1, _027F
+    CallIfEq VAR_0x8000, 2, _0289
+    CallIfEq VAR_0x8000, 3, _0293
+    GoToIfEq VAR_RESULT, 0, _023C
+    GoToIfCannotFitItem VAR_0x8001, 1, VAR_RESULT, _0233
+    CallIfEq VAR_0x8000, 0, _029D
+    CallIfEq VAR_0x8000, 1, _02AB
+    CallIfEq VAR_0x8000, 2, _02B9
+    CallIfEq VAR_0x8000, 3, _02C7
+    UpdateMoneyDisplay
     PlayFanfare SEQ_SE_DP_REGI
-    AddItem 0x8001, 1, 0x800C
-    BufferItemName 0, 0x8001
+    AddItem VAR_0x8001, 1, VAR_RESULT
+    BufferItemName 0, VAR_0x8001
     Message 10
     Message 8
     GoTo _0229
@@ -134,7 +132,7 @@ _0180:
 _0229:
     WaitABXPadPress
     CloseMessage
-    ScrCmd_073
+    HideMoney
     ReleaseAll
     End
 
@@ -147,55 +145,55 @@ _023C:
     GoTo _0229
 
 _0245:
-    SetVar 0x8001, 95
+    SetVar VAR_0x8001, ITEM_GROWTH_MULCH
     GoTo _0180
 
 _0251:
-    SetVar 0x8001, 96
+    SetVar VAR_0x8001, ITEM_DAMP_MULCH
     GoTo _0180
 
 _025D:
-    SetVar 0x8001, 97
+    SetVar VAR_0x8001, ITEM_STABLE_MULCH
     GoTo _0180
 
 _0269:
-    SetVar 0x8001, 98
+    SetVar VAR_0x8001, ITEM_GOOEY_MULCH
     GoTo _0180
 
 _0275:
-    ScrCmd_071 0x800C, 200
+    CheckMoney VAR_RESULT, 200
     Return
 
 _027F:
-    ScrCmd_071 0x800C, 200
+    CheckMoney VAR_RESULT, 200
     Return
 
 _0289:
-    ScrCmd_071 0x800C, 200
+    CheckMoney VAR_RESULT, 200
     Return
 
 _0293:
-    ScrCmd_071 0x800C, 200
+    CheckMoney VAR_RESULT, 200
     Return
 
 _029D:
-    ScrCmd_334 35, 200
-    ScrCmd_070 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
+    RemoveMoney 200
     Return
 
 _02AB:
-    ScrCmd_334 35, 200
-    ScrCmd_070 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
+    RemoveMoney 200
     Return
 
 _02B9:
-    ScrCmd_334 35, 200
-    ScrCmd_070 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
+    RemoveMoney 200
     Return
 
 _02C7:
-    ScrCmd_334 35, 200
-    ScrCmd_070 200
+    AddToGameRecord RECORD_MONEY_SPENT, 200
+    RemoveMoney 200
     Return
 
 _02D5:
@@ -208,20 +206,20 @@ _02D5:
 
 _02E8:
     Message 14
-    ScrCmd_041 30, 7, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 19, 0
-    ScrCmd_042 20, 1
-    ScrCmd_042 21, 2
-    ScrCmd_042 22, 3
-    ScrCmd_042 23, 4
-    ScrCmd_043
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _035B
-    GoToIfEq 0x8008, 1, _0366
-    GoToIfEq 0x8008, 2, _0371
-    GoToIfEq 0x8008, 3, _037C
-    GoToIfEq 0x8008, 4, _0387
+    InitLocalTextMenu 30, 7, 0, VAR_RESULT
+    SetMenuXOriginToRight
+    AddMenuEntryImm 19, 0
+    AddMenuEntryImm 20, 1
+    AddMenuEntryImm 21, 2
+    AddMenuEntryImm 22, 3
+    AddMenuEntryImm 23, 4
+    ShowMenu
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _035B
+    GoToIfEq VAR_0x8008, 1, _0366
+    GoToIfEq VAR_0x8008, 2, _0371
+    GoToIfEq VAR_0x8008, 3, _037C
+    GoToIfEq VAR_0x8008, 4, _0387
     GoTo _0387
     End
 

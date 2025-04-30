@@ -6,7 +6,6 @@
 #include "constants/battle/battle_io.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
 
 #include "battle/battle_display.h"
@@ -73,8 +72,8 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
-#include "unk_0200762C.h"
 #include "unk_020131EC.h"
 
 typedef void (*UnkFuncPtr_ov16_0226F068)(BattleSystem *, BattlerData *);
@@ -183,7 +182,7 @@ void ov16_0225C038(BattleSystem *battleSys, BattlerData *param1, int param2, int
     }
 
     v0.type = Unk_ov16_0226F174[param1->battlerType];
-    v0.heapID = 5;
+    v0.heapID = HEAP_ID_BATTLE;
     v0.mode = 4;
     v0.target = param1->battler;
     v0.ballID = param2;
@@ -351,7 +350,7 @@ static void ov16_0225C1B8(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C1CC(BattleSystem *battleSys, BattlerData *param1)
 {
-    sub_02007DC8(param1->unk_20);
+    PokemonSprite_Delete(param1->unk_20);
     ClearCommand(battleSys, param1->battler, 7);
     ZeroDataBuffer(param1);
 }
@@ -493,7 +492,7 @@ static void ov16_0225C314(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C328(BattleSystem *battleSys, BattlerData *param1)
 {
-    if (sub_020080C0(param1->unk_20, 6) == 1) {
+    if (PokemonSprite_GetAttribute(param1->unk_20, MON_SPRITE_HIDE) == 1) {
         ClearCommand(battleSys, param1->battler, 23);
     } else {
         ov16_0225DA44(battleSys, param1);
@@ -722,8 +721,8 @@ static void ov16_0225C670(BattleSystem *battleSys, BattlerData *param1)
 static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
 {
     UnkStruct_ov16_0225C684 *v0 = (UnkStruct_ov16_0225C684 *)&param1->data[0];
-    ArchivedSprite v1;
-    ArchivedSprite *v2;
+    PokemonSpriteTemplate v1;
+    PokemonSpriteTemplate *v2;
     int v3;
     int v4;
 
@@ -733,22 +732,22 @@ static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
         v4 = 0;
     }
 
-    BuildArchivedPokemonSprite(&v1, v0->unk_02, v0->unk_04, v4, v0->unk_05, v0->unk_01, v0->unk_08);
+    BuildPokemonSpriteTemplate(&v1, v0->unk_02, v0->unk_04, v4, v0->unk_05, v0->unk_01, v0->unk_08);
 
-    v2 = sub_02008A90(param1->unk_20);
+    v2 = PokemonSprite_GetTemplate(param1->unk_20);
     *v2 = v1;
 
-    sub_020089A0(param1->unk_20);
-    sub_02013750(v2->archive, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, 0, v4, v2->spindaSpots);
+    PokemonSprite_ScheduleReloadFromNARC(param1->unk_20);
+    sub_02013750(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, 0, v4, v2->spindaSpots);
 
-    ov16_0223F2CC(ov16_0223E0C8(battleSys), param1->battler, v2->archive);
+    ov16_0223F2CC(ov16_0223E0C8(battleSys), param1->battler, v2->narcID);
     ov16_0223F2E4(ov16_0223E0C8(battleSys), param1->battler, v2->palette);
 
     v3 = LoadPokemonSpriteYOffset(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
     ov16_0223F2FC(ov16_0223E0C8(battleSys), param1->battler, v3);
 
     v3 = ov12_022384CC(param1->battlerType, 1) + v3;
-    sub_02007DEC(param1->unk_20, 1, v3);
+    PokemonSprite_SetAttribute(param1->unk_20, MON_SPRITE_Y_CENTER, v3);
 
     ClearCommand(battleSys, param1->battler, v0->unk_00);
     ZeroDataBuffer(param1);

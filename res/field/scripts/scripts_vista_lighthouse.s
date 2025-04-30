@@ -47,11 +47,11 @@ _004C:
     Message 1
     Message 2
     CloseMessage
-    WaitTime 15, 0x800C
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _0092
-    GoToIfEq 0x800C, 2, _00AA
-    GoToIfEq 0x800C, 3, _00C2
+    WaitTime 15, VAR_RESULT
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0092
+    GoToIfEq VAR_RESULT, 2, _00AA
+    GoToIfEq VAR_RESULT, 3, _00C2
     End
 
 _0092:
@@ -81,7 +81,7 @@ _00D2:
     ScrCmd_169 77
     ScrCmd_16A 77
     RemoveObject 2
-    SetFlag 0x162
+    SetFlag FLAG_UNK_0x0162
     ReleaseAll
     End
 

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/map_prop.h"
+#include "constants/field/map_prop.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
@@ -12,8 +12,8 @@
 
 #include "field_task.h"
 #include "heap.h"
-#include "unk_02005474.h"
-#include "unk_02054D00.h"
+#include "sound_playback.h"
+#include "terrain_collision_manager.h"
 
 typedef struct {
     u8 unk_00;
@@ -26,7 +26,7 @@ static BOOL ov6_02246F40(FieldTask *param0);
 
 void ov6_02246F00(FieldSystem *fieldSystem, const u8 param1, const u8 param2)
 {
-    BOOL v0 = sub_020552B4(fieldSystem, 498, NULL, NULL);
+    BOOL v0 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, MAP_PROP_MODEL_ELEVATOR_LIGHTS, NULL, NULL);
 
     if (v0) {
         UnkStruct_ov6_02246F00 *v1 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02246F00));
@@ -57,7 +57,7 @@ static BOOL ov6_02246F40(FieldTask *param0)
         v3 = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_ELEVATOR_LIGHTS, fieldSystem->areaDataManager);
         v2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v3), 0);
 
-        v6 = sub_020552B4(fieldSystem, 498, &v4, NULL);
+        v6 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, MAP_PROP_MODEL_ELEVATOR_LIGHTS, &v4, NULL);
         GF_ASSERT(v6);
         v5 = MapProp_GetRenderObj(v4);
 
@@ -71,9 +71,9 @@ static BOOL ov6_02246F40(FieldTask *param0)
         MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 0x1, v1->unk_01);
 
         if (v1->unk_01 == 0) {
-            Sound_PlayEffect(1554);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
         } else {
-            Sound_PlayEffect(1554);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
         }
 
         (v1->unk_02)++;
@@ -86,7 +86,7 @@ static BOOL ov6_02246F40(FieldTask *param0)
                 Sound_StopEffect(1554, 0);
             }
 
-            Sound_PlayEffect(1521);
+            Sound_PlayEffect(SEQ_SE_DP_PINPON);
             MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 0x1);
             (v1->unk_02)++;
         }

@@ -12,7 +12,7 @@ typedef struct {
     u16 unk_06_0 : 8;
     u16 unk_06_8 : 4;
     u16 unk_06_12 : 4;
-    int unk_08;
+    int unk_08; // Item?
     BagCursor *unk_0C;
     UnkStruct_ov82_0223B164 *unk_10;
     int unk_14;

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -21,14 +20,14 @@
 #include "pokemon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sound_chatot.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
-#include "unk_02006224.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 
@@ -94,10 +93,10 @@ UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const Un
         NNS_G2dInitOamManagerModule();
         RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 61);
 
-        v0->unk_34 = SpriteList_InitRendering(64, &v0->unk_38, 61);
-        v0->unk_1E4 = MessageLoader_Init(0, 26, 352, HEAP_ID_61);
-        v0->unk_1E8 = MessageLoader_Init(1, 26, 412, HEAP_ID_61);
-        v0->unk_1EC = MessageLoader_Init(1, 26, 647, HEAP_ID_61);
+        v0->unk_34 = SpriteList_InitRendering(64, &v0->unk_38, HEAP_ID_61);
+        v0->unk_1E4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0352, HEAP_ID_61);
+        v0->unk_1E8 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_61);
+        v0->unk_1EC = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_61);
         v0->unk_1F0 = StringTemplate_Default(HEAP_ID_61);
         v0->unk_1F4 = Strbuf_Init(256, HEAP_ID_61);
         v0->unk_1F8 = Strbuf_Init(256, HEAP_ID_61);
@@ -173,7 +172,7 @@ static BOOL ov87_021D1260(UnkStruct_ov87_021D106C *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        Sound_PlayEffect(1550);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
         StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_61);
         (*param1)++;
         break;
@@ -200,9 +199,9 @@ static BOOL ov87_021D12C0(UnkStruct_ov87_021D106C *param0, int *param1)
         if (v1 == v0->unk_18) {
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
             Sprite_SetPriority(param0->unk_1C4[v1], 0);
-            Sound_FlagDefaultChatotCry(TRUE);
+            Sound_SetUsingDefaultChatotCry(TRUE);
 
-            sub_02005844(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
+            Sound_PlayPokemonCry(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
         } else {
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
             Sprite_SetPriority(param0->unk_1C4[v1], v1 + 1);
@@ -239,7 +238,7 @@ static BOOL ov87_021D1334(UnkStruct_ov87_021D106C *param0, int *param1)
 
 static BOOL ov87_021D1384(UnkStruct_ov87_021D106C *param0, int *param1)
 {
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
     ov87_021D1640(param0);
     return 1;
 }
@@ -501,7 +500,7 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
     v2.resourceData = &v1;
     v2.position.z = 0;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.heapID = 61;
+    v2.heapID = HEAP_ID_61;
 
     v7 = Graphics_GetCharData(27, 76, 0, &v5, HEAP_ID_61);
     v8 = Graphics_GetPlttData(27, 75, &v6, HEAP_ID_61);
@@ -532,7 +531,7 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
         10,
         10,
     };
-    ArchivedSprite v1;
+    PokemonSpriteTemplate v1;
     const UnkStruct_ov87_021D12C0 *v2;
     int v3;
 
@@ -541,17 +540,17 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
     for (v3 = 0; v3 < v2->unk_14; v3++) {
         Pokemon_InitWith(param0->unk_1FC, v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_12, INIT_IVS_RANDOM, TRUE, v2->unk_20[v3].unk_08, OTID_SET, v2->unk_20[v3].unk_0C);
         Pokemon_SetValue(param0->unk_1FC, MON_DATA_FORM, (void *)(&(v2->unk_20[v3].unk_13)));
-        Pokemon_BuildArchivedSprite(&v1, param0->unk_1FC, 2);
-        sub_02013720(v1.archive, v1.character, HEAP_ID_61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, 0, 2, v2->unk_20[v3].unk_10);
+        Pokemon_BuildSpriteTemplate(&v1, param0->unk_1FC, 2);
+        sub_02013720(v1.narcID, v1.character, HEAP_ID_61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, 0, 2, v2->unk_20[v3].unk_10);
 
         DC_FlushRange(param0->unk_200, sizeof(param0->unk_200));
         GX_LoadOBJ(param0->unk_200, 3200 * v3, 3200);
 
-        Graphics_LoadPalette(v1.archive, v1.palette, 1, v3 * 0x20, 0x20, HEAP_ID_61);
+        Graphics_LoadPalette(v1.narcID, v1.palette, 1, v3 * 0x20, 0x20, HEAP_ID_61);
 
         if (v3 == v2->unk_18) {
-            Sound_FlagDefaultChatotCry(TRUE);
-            sub_02005844(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
+            Sound_SetUsingDefaultChatotCry(TRUE);
+            Sound_PlayPokemonCry(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
         } else {
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_XLU);

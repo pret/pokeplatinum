@@ -6,7 +6,7 @@
 #include "char_transfer.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "sprite.h"
@@ -108,7 +108,7 @@ static void ov77_021D66A0(UnkStruct_ov77_021D6800 *param0, AffineSpriteListTempl
         param1->affineZRotation = 0;
         param1->priority = 1;
         param1->vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        param1->heapID = 76;
+        param1->heapID = HEAP_ID_76;
     }
 }
 

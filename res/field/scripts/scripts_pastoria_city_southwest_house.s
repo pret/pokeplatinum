@@ -11,14 +11,13 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0xAA3, _0055
+    GoToIfSet FLAG_UNK_0x0AA3, _0055
     Message 0
-    GetRandom 0x8004, 17
-    AddVar 0x8004, 184
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0060
-    SetFlag 0xAA3
+    GetRandom VAR_0x8004, 17
+    AddVar VAR_0x8004, ITEM_OCCA_BERRY /* Random type berry */
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0060
+    SetFlag FLAG_UNK_0x0AA3
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll

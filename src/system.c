@@ -8,7 +8,7 @@
 
 #include "boot.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "sys_task_manager.h"
 
 #define MAIN_TASK_MAX        160

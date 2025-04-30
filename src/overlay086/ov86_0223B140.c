@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_02008900.h"
 #include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_02099F80.h"
@@ -21,14 +19,17 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "party.h"
 #include "play_time.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_oam.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -38,9 +39,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 
@@ -157,7 +155,7 @@ typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
     Sprite *unk_08;
     const SpriteAnimationFrame *unk_0C;
-    UnkStruct_02008900 unk_10;
+    PokemonSpriteTaskAnim unk_10;
     NNSG2dImageProxy unk_24[2];
     BOOL unk_6C;
     int unk_70;
@@ -295,7 +293,7 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov86_0223B3C8), HEAP_ID_63);
 
     v0->unk_0C = OverlayManager_Args(param0);
-    v0->unk_1C50 = MessageLoader_Init(0, 26, 351, HEAP_ID_63);
+    v0->unk_1C50 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0351, HEAP_ID_63);
     v0->unk_1C48 = Strbuf_Init(500, HEAP_ID_63);
     v0->unk_1C4C = Strbuf_Init(500, HEAP_ID_63);
     v0->unk_1C44 = StringTemplate_Default(HEAP_ID_63);
@@ -336,7 +334,7 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
     v0->unk_00 = 0;
     v0->unk_1C28 = ov86_0223B744(ov86_0223B6CC, v0, 6);
 
-    sub_02004550(8, 1171, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_8, SEQ_BLD_EV_DENDO2, 1);
 
     return 1;
 }
@@ -420,11 +418,11 @@ static BOOL ov86_0223B40C(UnkStruct_ov86_0223B3C8 *param0)
     switch (param0->unk_00) {
     case 0:
         StartScreenTransition(3, 0, 0, 0x0, 2, 1, HEAP_ID_63);
-        sub_0200564C(0, 30);
+        Sound_FadeOutBGM(0, 30);
         param0->unk_00++;
         break;
     case 1:
-        if (IsScreenTransitionDone() && (Sound_CheckFade() == 0)) {
+        if (IsScreenTransitionDone() && (Sound_IsFadeActive() == FALSE)) {
             return 1;
         }
     }
@@ -775,7 +773,7 @@ static void ov86_0223BA44(UnkStruct_ov86_0223B3C8 *param0)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 63);
 
-    param0->unk_24 = SpriteList_InitRendering(64, &param0->unk_28, 63);
+    param0->unk_24 = SpriteList_InitRendering(64, &param0->unk_28, HEAP_ID_63);
     param0->unk_1D0 = Graphics_GetCellBankFromOpenNARC(v2, 77, 0, &v0, HEAP_ID_63);
     param0->unk_1D4 = Graphics_GetAnimBankFromOpenNARC(v2, 78, 0, &v1, HEAP_ID_63);
 
@@ -791,7 +789,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
         { 0, 0, 10, 10 },
         { 0 + 10, 0, 10, 10 }
     };
-    ArchivedSprite v1;
+    PokemonSpriteTemplate v1;
     SpriteResourcesHeader v2;
     SpriteListTemplate v3;
     UnkStruct_ov5_021DE5D0 v4;
@@ -820,7 +818,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     VEC_Set(&(v3.position), 0, 0, 0);
 
     v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v3.heapID = 63;
+    v3.heapID = HEAP_ID_63;
 
     v9 = Graphics_GetCharDataFromOpenNARC(param3, 76, 0, &v7, HEAP_ID_63);
     v10 = Graphics_GetPlttDataFromOpenNARC(param3, 75, &v8, HEAP_ID_63);
@@ -836,22 +834,22 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
 
         Sprite_SetDrawFlag(param0->unk_1B4[v12], 0);
         v11 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, param0->unk_2C8[v12]);
-        Pokemon_BuildArchivedSprite(&v1, (Pokemon *)v11, 2);
+        Pokemon_BuildSpriteTemplate(&v1, (Pokemon *)v11, 2);
 
         param0->unk_2E0[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_SPECIES, NULL);
         param0->unk_2F8[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_FORM, NULL);
 
-        sub_02013720(v1.archive, v1.character, HEAP_ID_63, &v0[0], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
+        sub_02013720(v1.narcID, v1.character, HEAP_ID_63, &v0[0], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200, 3200);
 
-        sub_02013720(v1.archive, v1.character, HEAP_ID_63, &v0[1], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
+        sub_02013720(v1.narcID, v1.character, HEAP_ID_63, &v0[1], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200 + 3200, 3200);
 
-        Graphics_LoadPalette(v1.archive, v1.palette, 1, v12 * 0x20, 0x20, HEAP_ID_63);
+        Graphics_LoadPalette(v1.narcID, v1.palette, 1, v12 * 0x20, 0x20, HEAP_ID_63);
         PokeSprite_LoadAnimationFrames(param0->unk_1C54, &param0->unk_1D8[v12][0], param0->unk_2E0[v12], 1);
     }
 
@@ -1192,7 +1190,7 @@ static void ov86_0223C2CC(UnkStruct_ov86_0223B3C8 *param0, int param1, BOOL para
     v0->unk_08 = param0->unk_1B4[param1];
     v0->unk_0C = &param0->unk_1D8[param1][0];
 
-    sub_020088E0(&v0->unk_10, v0->unk_0C);
+    PokemonSpriteTaskAnim_Init(&v0->unk_10, v0->unk_0C);
 
     v0->unk_6C = param2;
     v0->unk_70 = param0->unk_2E0[param1];
@@ -1212,11 +1210,11 @@ static void ov86_0223C398(SysTask *param0, void *param1)
     int v1;
 
     if (v0->unk_6C) {
-        sub_02005844(v0->unk_70, v0->unk_74);
+        Sound_PlayPokemonCry(v0->unk_70, v0->unk_74);
         v0->unk_6C = 0;
     }
 
-    v1 = sub_02008900(&v0->unk_10);
+    v1 = PokemonSpriteTaskAnim_Tick(&v0->unk_10);
 
     if (v1 >= 0) {
         Sprite_SetImageProxy(v0->unk_08, &v0->unk_24[v1]);

@@ -10,8 +10,8 @@
     ScriptEntryEnd
 
 _0012:
-    SetVar 0x4000, 0
-    ScrCmd_175 0
+    SetVar VAR_MAP_LOCAL_0, 0
+    InitPersistedMapFeaturesForSunyshoreGym 0
     End
 
 _001D:
@@ -22,8 +22,8 @@ _0022:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_BEACON, 0x800C
-    GoToIfEq 0x800C, 1, _0048
+    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0048
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -41,8 +41,8 @@ _0048:
 _0056:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_BEACON, 0x800C
-    GoToIfEq 0x800C, 1, _007A
+    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _007A
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -50,7 +50,7 @@ _0056:
     End
 
 _007A:
-    GoToIfGe 0x40EF, 1, _0098
+    GoToIfGe VAR_UNK_0x40EF, 1, _0098
     BufferPlayerName 0
     BufferRivalName 1
     Message 3

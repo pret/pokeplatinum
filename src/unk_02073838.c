@@ -53,9 +53,9 @@ void sub_02073848(UnkStruct_02073838 *param0, NNSG3dResFileHeader *param1, u32 p
     param0->unk_10 = NNS_G3dGetTex(param1);
 }
 
-void sub_0207389C(UnkStruct_02073838 *param0, u32 param1, NARC *param2, u32 param3, u32 param4, int param5)
+void sub_0207389C(UnkStruct_02073838 *param0, u32 param1, NARC *param2, u32 param3, u32 heapID, int param5)
 {
-    NNSG3dResFileHeader *v0 = LoadMemberFromOpenNARC(param2, param3, 0, param4, param5);
+    NNSG3dResFileHeader *v0 = LoadMemberFromOpenNARC(param2, param3, 0, heapID, param5);
     sub_02073848(param0, v0, param1);
 }
 
@@ -137,9 +137,9 @@ void sub_020739A8(UnkStruct_02073974 *param0, UnkStruct_02073974 *param1, u32 pa
     sub_02073994(param0, v0, param2);
 }
 
-void sub_020739B4(UnkStruct_02073974 *param0, u32 param1, NARC *param2, u32 param3, u32 param4, int param5)
+void sub_020739B4(UnkStruct_02073974 *param0, u32 param1, NARC *param2, u32 param3, u32 heapID, int param5)
 {
-    void *v0 = LoadMemberFromOpenNARC(param2, param3, 0, param4, param5);
+    void *v0 = LoadMemberFromOpenNARC(param2, param3, 0, heapID, param5);
     sub_02073980(param0, v0, param1);
 }
 
@@ -162,17 +162,17 @@ void sub_020739F0(UnkStruct_02073974 *param0)
     param0->unk_0C = NULL;
 }
 
-void sub_02073A14(UnkStruct_02073974 *param0, const NNSG3dResMdl *param1, u32 param2)
+void sub_02073A14(UnkStruct_02073974 *param0, const NNSG3dResMdl *param1, u32 heapID)
 {
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_14, param2, 4);
+    Heap_FndInitAllocatorForExpHeap(&param0->unk_14, heapID, 4);
     param0->unk_10 = NNS_G3dAllocAnmObj(&param0->unk_14, param0->unk_0C, param1);
 
     GF_ASSERT(param0->unk_10 != NULL);
 }
 
-void sub_02073A3C(UnkStruct_02073974 *param0, const UnkStruct_02073838 *param1, u32 param2)
+void sub_02073A3C(UnkStruct_02073974 *param0, const UnkStruct_02073838 *param1, u32 heapID)
 {
-    sub_02073A14(param0, param1->unk_0C, param2);
+    sub_02073A14(param0, param1->unk_0C, heapID);
 }
 
 void sub_02073A48(UnkStruct_02073974 *param0, const NNSG3dResMdl *param1, const NNSG3dResTex *param2)
@@ -185,10 +185,10 @@ void sub_02073A5C(UnkStruct_02073974 *param0, const UnkStruct_02073838 *param1)
     sub_02073A48(param0, param1->unk_0C, param1->unk_10);
 }
 
-void sub_02073A6C(UnkStruct_02073974 *param0, const UnkStruct_02073838 *param1, UnkStruct_02073974 *param2, u32 param3, u32 param4)
+void sub_02073A6C(UnkStruct_02073974 *param0, const UnkStruct_02073838 *param1, UnkStruct_02073974 *param2, u32 param3, u32 heapID)
 {
     sub_020739A8(param0, param2, param3);
-    sub_02073A3C(param0, param1, param4);
+    sub_02073A3C(param0, param1, heapID);
     sub_02073A5C(param0, param1);
 }
 

@@ -33,9 +33,9 @@ static void BoxPokemon_SetFatefulEncounterFlag(BoxPokemon *boxMon);
 PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
 {
     PokemonInfoDisplayStruct *v0 = Heap_AllocFromHeap(heapID, sizeof(PokemonInfoDisplayStruct));
-    v0->unk_00 = heapID;
-    v0->unk_04 = MessageLoader_Init(1, 26, 455, v0->unk_00);
-    v0->unk_08 = StringTemplate_New(9, 32, v0->unk_00);
+    v0->heapID = heapID;
+    v0->unk_04 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, v0->heapID);
+    v0->unk_08 = StringTemplate_New(9, 32, v0->heapID);
     v0->unk_0C = param0;
     v0->unk_10 = param1;
 
@@ -56,7 +56,7 @@ PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
         v0->unk_34.unk_04 = NULL;
     }
 
-    switch (DeterminePokemonStatus(v0->unk_0C, v0->unk_10, v0->unk_00)) {
+    switch (DeterminePokemonStatus(v0->unk_0C, v0->unk_10, v0->heapID)) {
     case 0:
         v0->unk_14.unk_00 = 1;
         InitializeNatureRelatedStrBuf(v0);
@@ -322,15 +322,15 @@ static void InitializeNatureRelatedStrBuf(PokemonInfoDisplayStruct *param0)
         return;
     }
 
-    param0->unk_14.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->unk_00);
+    param0->unk_14.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
     MessageLoader_GetStrbuf(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
 }
 
 static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1)
 {
-    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 8), param0->unk_00);
+    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 8), param0->heapID);
 
-    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 8), param0->unk_00);
+    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 8), param0->heapID);
 
     MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
     StringTemplate_SetNumber(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
@@ -348,9 +348,9 @@ static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int
 
 static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1)
 {
-    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
+    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
 
-    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
+    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
 
     MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
     StringTemplate_SetNumber(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
@@ -362,25 +362,25 @@ static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, i
     default:
         StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 7)));
         break;
-    case FIRERED:
-    case LEAFGREEN:
+    case VERSION_FIRERED:
+    case VERSION_LEAFGREEN:
         StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 3)));
         break;
-    case HEARTGOLD:
-    case SOULSILVER:
+    case VERSION_HEARTGOLD:
+    case VERSION_SOULSILVER:
         StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 4)));
         break;
-    case RUBY:
-    case SAPPHIRE:
-    case EMERALD:
+    case VERSION_RUBY:
+    case VERSION_SAPPHIRE:
+    case VERSION_EMERALD:
         StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 5)));
         break;
-    case COLOSSEUM:
+    case VERSION_GAMECUBE:
         StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 8)));
         break;
-    case DIAMOND:
-    case PEARL:
-    case PLATINUM:
+    case VERSION_DIAMOND:
+    case VERSION_PEARL:
+    case VERSION_PLATINUM:
         StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 7)));
         break;
     }
@@ -391,9 +391,9 @@ static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, i
 
 static void InitializeSpecialMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1, int param2)
 {
-    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 5), param0->unk_00);
+    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 5), param0->heapID);
 
-    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 5), param0->unk_00);
+    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 5), param0->heapID);
 
     MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
 
@@ -427,7 +427,7 @@ static void InitializeIVsStrBuf(PokemonInfoDisplayStruct *param0)
     int v0[6], v1, v2;
     int v3, v4;
 
-    param0->unk_24.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->unk_00);
+    param0->unk_24.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
 
     v0[0] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_HP_IV, NULL));
     v0[1] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_ATK_IV, NULL));
@@ -631,7 +631,7 @@ static void InitializeFlavorAffinityStrBuf(PokemonInfoDisplayStruct *param0)
 {
     int v0, v1, v2;
 
-    param0->unk_2C.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->unk_00);
+    param0->unk_2C.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
     v1 = 0;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -649,7 +649,7 @@ static void InitializeFriendshipLevelStrBuf(PokemonInfoDisplayStruct *param0)
     int v0 = Pokemon_GetValue(param0->unk_0C, MON_DATA_FRIENDSHIP, NULL);
     int v1;
 
-    param0->unk_34.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
+    param0->unk_34.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
 
     if (v0 <= 5) {
         v1 = 105;
@@ -747,9 +747,9 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
     return v0;
 }
 
-void sub_0209304C(Pokemon *param0, TrainerInfo *param1, int param2, int param3, int param4)
+void UpdateMonStatusAndTrainerInfo(Pokemon *mon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID)
 {
-    UpdateBoxMonStatusAndTrainerInfo(&param0->box, param1, param2, param3, param4);
+    UpdateBoxMonStatusAndTrainerInfo(&mon->box, trainerInfo, sel, metLocation, heapID);
 }
 
 void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID)

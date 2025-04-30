@@ -22,13 +22,13 @@
 #include "brightness_controller.h"
 #include "heap.h"
 #include "narc.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02023FCC.h"
 #include "vram_transfer.h"
 
@@ -557,7 +557,7 @@ static void ov21_021DE44C(u32 param0, u32 param1, void *param2)
     switch (param1) {
     case 0:
         ov21_021E33B4(v1->unk_08, 1);
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
         v2->unk_20 = 1;
         v2->unk_08 = gSystem.touchX - v2->unk_00;

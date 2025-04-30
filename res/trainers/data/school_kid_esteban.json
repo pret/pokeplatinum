@@ -2,7 +2,7 @@
     "name": "Esteban",
     "class": "TRAINER_CLASS_SCHOOL_KID_MALE",
     "items": [
-        "ITEM_X_SP__DEF"
+        "ITEM_X_SP_DEF"
     ],
     "ai_flags": [
         "AI_FLAG_BASIC",

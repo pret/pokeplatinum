@@ -5,7 +5,7 @@
 
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "savedata.h"
@@ -120,7 +120,7 @@ static const struct {
 };
 
 typedef struct UnkStruct_02014D38_t {
-    u32 unk_00;
+    u32 heapID;
     MessageLoader *unk_04[11];
 } UnkStruct_02014D38;
 
@@ -148,8 +148,8 @@ UnkStruct_02014D38 *sub_02014D38(u32 heapID)
     UnkStruct_02014D38 *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02014D38));
 
     for (v0 = 0; v0 < 11; v0++) {
-        v1->unk_00 = heapID;
-        v1->unk_04[v0] = MessageLoader_Init(1, 26, Unk_020E550C[v0], heapID);
+        v1->heapID = heapID;
+        v1->unk_04[v0] = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, Unk_020E550C[v0], heapID);
     }
 
     return v1;
@@ -257,13 +257,13 @@ void Sentence_Init(void *param0)
         }
     }
 
-    SaveData_SetChecksum(34);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_SENTENCE);
 }
 
-UnkStruct_02014EC4 *sub_02014EC4(SaveData *param0)
+UnkStruct_02014EC4 *sub_02014EC4(SaveData *saveData)
 {
-    SaveData_Checksum(34);
-    return SaveData_SaveTable(param0, 34);
+    SaveData_Checksum(SAVE_TABLE_ENTRY_SENTENCE);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_SENTENCE);
 }
 
 BOOL sub_02014ED8(const UnkStruct_02014EC4 *param0, u32 param1)
@@ -289,7 +289,7 @@ u32 sub_02014EE4(UnkStruct_02014EC4 *param0)
                 if (v2 == 0) {
                     param0->unk_04 |= (1 << v0);
 
-                    SaveData_SetChecksum(34);
+                    SaveData_SetChecksum(SAVE_TABLE_ENTRY_SENTENCE);
 
                     return v0;
                 } else {
@@ -299,7 +299,7 @@ u32 sub_02014EE4(UnkStruct_02014EC4 *param0)
         }
     }
 
-    SaveData_SetChecksum(34);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_SENTENCE);
 
     return 32;
 }
@@ -338,7 +338,7 @@ void sub_02014F98(UnkStruct_02014EC4 *param0, int param1)
 {
     param0->unk_00 |= (1 << param1);
 
-    SaveData_SetChecksum(34);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_SENTENCE);
 }
 
 UnkStruct_02014FB0 *sub_02014FB0(u32 heapID)

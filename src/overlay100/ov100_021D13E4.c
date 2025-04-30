@@ -17,13 +17,13 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "palette.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "sys_task.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
@@ -72,7 +72,7 @@ void *ov100_021D13E4(UnkStruct_ov100_021D4DD8 *param0)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 7, 8);
 
     ov100_021D4DC8(1);
-    sub_0200564C(0, 10);
+    Sound_FadeOutBGM(0, 10);
 
     return v0;
 }
@@ -110,8 +110,8 @@ BOOL ov100_021D14A8(void *param0)
             break;
         }
 
-        sub_02004550(18, 1065, 0);
-        sub_02004550(63, 0, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_18, SEQ_D_RYAYHY, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
         v0->unk_00 = 2;
         break;
     case 2:
@@ -123,11 +123,11 @@ BOOL ov100_021D14A8(void *param0)
         break;
     case 3:
         if (v0->unk_04 == v3[v0->unk_08]) {
-            Sound_PlayEffect(1479);
+            Sound_PlayEffect(SEQ_SE_PL_W392);
         }
 
         if (v0->unk_04 == v2[v0->unk_08]) {
-            Sound_PlayPokemonCry(POKECRY_NORMAL, v4[v0->unk_08], 0, 100, HEAP_ID_111, 0);
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, v4[v0->unk_08], 0, 100, HEAP_ID_111, 0);
         }
 
         if ((++v0->unk_04) >= v1[v0->unk_08]) {

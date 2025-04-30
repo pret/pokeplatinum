@@ -11,7 +11,7 @@
 #include "charcode_util.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"
@@ -25,7 +25,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID)
 void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *save, int heapID)
 {
     Trainer trdata;
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 618, heapID);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_NAMES, heapID);
     const charcode_t *rivalName = MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(save));
 
     for (int i = 0; i < MAX_BATTLERS; i++) {

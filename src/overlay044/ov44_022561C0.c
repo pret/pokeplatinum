@@ -2,7 +2,7 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "overlay005/ov5_021E622C.h"
+#include "overlay005/daycare.h"
 #include "overlay025/poketch_button.h"
 #include "overlay025/poketch_system.h"
 #include "overlay044/ov44_022565BC.h"
@@ -72,7 +72,7 @@ static BOOL ov44_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
 
 static BOOL ov44_0225621C(UnkStruct_ov44_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
-    Party *v0 = Party_GetFromSavedata(PoketchSystem_GetSaveData(poketchSys));
+    Party *v0 = SaveData_GetParty(PoketchSystem_GetSaveData(poketchSys));
     Pokemon *v1;
     int v2;
     int v3 = 0;
@@ -239,7 +239,7 @@ static BOOL ov44_022563D0(UnkStruct_ov44_0225621C *param0)
         if (param0->unk_46 == 3) {
             param0->unk_60[0] = param0->unk_48[param0->unk_04.unk_32];
             param0->unk_60[1] = param0->unk_48[param0->unk_04.unk_33];
-            param0->unk_04.unk_31 = ov5_021E7790(param0->unk_60);
+            param0->unk_04.unk_31 = BoxMon_GetPairDaycareCompatibilityLevel(param0->unk_60);
             ov44_02256744(param0->unk_38, 3);
             ov44_02256744(param0->unk_38, 6);
             param0->unk_01++;

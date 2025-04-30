@@ -1,4 +1,5 @@
 subdir('encounters')
 subdir('events')
+subdir('maps')
 subdir('scripts')
 subdir('trades')

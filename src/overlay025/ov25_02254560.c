@@ -19,9 +19,9 @@
 #include "heap.h"
 #include "palette.h"
 #include "poketch.h"
+#include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 
 #define POKETCH_PALETTE_NARC_IDX 0
 
@@ -500,45 +500,47 @@ static void ov25_560_LoadTilemap(void *taskMan, u16 *src, int position)
 static void ov25_02254CA8(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
-
+  
     ov25_560_LoadTilemap(taskMan, taskData->unk_6C, 0);
-    Sound_PlayEffect(1649);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI04);
 }
 
 static void ov25_02254CCC(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
-
+  
     ov25_560_LoadTilemap(taskMan, taskData->unk_12C, 1);
-    Sound_PlayEffect(1649);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI04);
 }
 
 static void ov25_02254CF4(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
+  
     ov25_560_LoadTilemap(taskMan, taskData->unk_2C, 0);
 }
 
 static void ov25_02254D0C(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
+  
     ov25_560_LoadTilemap(taskMan, taskData->unk_EC, 1);
 }
 
 static void ov25_02254D24(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
-
+  
     ov25_560_LoadTilemap(taskMan, taskData->unk_AC, 0);
-    Sound_PlayEffect(1647);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI01);
 }
 
 static void ov25_02254D48(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
-
+  
     ov25_560_LoadTilemap(taskMan, taskData->unk_16C, 1);
-    Sound_PlayEffect(1647);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI01);
 }
 
 static void ov25_560_LoadAndInitAnimationTask(SysTask *task, void *taskMan)

@@ -18,13 +18,13 @@
 #include "easy3d_object.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 
 static const s16 Unk_ov116_02267BFC[] = {
@@ -414,7 +414,7 @@ void ov116_02262E50(SysTask *param0, void *param1)
             }
         }
 
-        Sound_PlayEffect(1547);
+        Sound_PlayEffect(SEQ_SE_DP_DANSA);
 
         v0->unk_08 = 0;
         v0->unk_00++;
@@ -464,7 +464,7 @@ void ov116_02262E50(SysTask *param0, void *param1)
 
         if (v10[0] && v10[1]) {
             if (v0->unk_04 == 0) {
-                Sound_PlayEffect(1585);
+                Sound_PlayEffect(SEQ_SE_DP_SUTYA);
             }
             v0->unk_00++;
         }
@@ -472,7 +472,7 @@ void ov116_02262E50(SysTask *param0, void *param1)
     case 3:
         if (v0->unk_04 == 0) {
             if (v0->unk_08 == ((30 * 3) - 82)) {
-                Sound_PlayEffect(1397);
+                Sound_PlayEffect(SEQ_SE_PL_KIN);
             }
 
             if ((++v0->unk_08) >= ((30 * 3) - 50)) {
@@ -487,7 +487,7 @@ void ov116_02262E50(SysTask *param0, void *param1)
         if (v0->unk_04 == 0) {
             if ((++v0->unk_08) >= ((30 * 3) - 45)) {
                 *v0->unk_0C = 0;
-                Sound_PlayEffect(1547);
+                Sound_PlayEffect(SEQ_SE_DP_DANSA);
                 v0->unk_00 = 0;
                 v0->unk_04++;
             }
@@ -962,7 +962,7 @@ void ov116_02263B30(UnkStruct_ov116_02262A8C *param0)
 
             ov116_02262D64(param0, param0->unk_00);
             ov116_022637B4(param0);
-            Sound_PlayEffect(1396);
+            Sound_PlayEffect(SEQ_SE_PL_LV_UP);
         }
 
         ov116_02263DE8(param0);
@@ -1057,7 +1057,7 @@ void ov116_02263BA0(UnkStruct_ov116_02262A8C *param0)
 
             if (v0 != 0) {
                 if (Sound_IsEffectPlaying(1394) == 0) {
-                    Sound_PlayEffect(1394);
+                    Sound_PlayEffect(SEQ_SE_PL_KIRAKIRA);
                 }
 
                 ov116_0226493C(param0, v0, v1);

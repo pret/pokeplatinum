@@ -26,7 +26,7 @@ void sub_02082C2C(GameWindowLayout *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    VramTransfer_New(32, 12);
+    VramTransfer_New(32, HEAP_ID_12);
 
     param0->unk_5A8 = SpriteSystem_Alloc(12);
     param0->unk_5AC = SpriteManager_New(param0->unk_5A8);
@@ -116,7 +116,7 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
     v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
     v4 = NNS_G2dGetImageLocation(Sprite_GetImageProxy(param0->unk_704[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
-    v5 = LoadMemberFromOpenNARC(v1, Pokemon_IconSpriteIndex(v0), 0, 12, 1);
+    v5 = LoadMemberFromOpenNARC(v1, Pokemon_IconSpriteIndex(v0), 0, HEAP_ID_12, 1);
     v7 = NNS_G2dGetUnpackedCharacterData(v5, &v6);
 
     if (v7) {

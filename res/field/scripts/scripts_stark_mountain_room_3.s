@@ -11,38 +11,38 @@
     ScriptEntryEnd
 
 _0016:
-    SetVar 0x4000, 0x409E
-    CallIfGe 0x409E, 1, _0031
+    SetVar VAR_MAP_LOCAL_0, VAR_UNK_0x409E
+    CallIfGe VAR_UNK_0x409E, 1, _0031
     Call _0037
     End
 
 _0031:
-    SetFlag 0x1DB
+    SetFlag FLAG_UNK_0x01DB
     Return
 
 _0037:
-    GoToIfSet 0x120, _0083
-    CheckGameCompleted 0x4000
-    GoToIfEq 0x4000, 0, _0083
-    ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _0083
-    GoToIfUnset 0x125, _0083
-    GoToIfNe 0x409E, 1, _0083
-    ClearFlag 0x1DD
+    GoToIfSet FLAG_UNK_0x0120, _0083
+    CheckGameCompleted VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0083
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0083
+    GoToIfUnset FLAG_MESPRIT_CAUGHT, _0083
+    GoToIfNe VAR_UNK_0x409E, 1, _0083
+    ClearFlag FLAG_UNK_0x01DD
     Return
 
 _0083:
-    SetFlag 0x1DD
+    SetFlag FLAG_UNK_0x01DD
     Return
 
 _0089:
-    GoToIfSet 142, _0096
+    GoToIfSet FLAG_UNK_0x008E, _0096
     End
 
 _0096:
-    SetFlag 0x1DD
+    SetFlag FLAG_UNK_0x01DD
     RemoveObject 1
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E
     End
 
     .byte 14
@@ -103,25 +103,25 @@ _00E6:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
     WaitFanfare SEQ_SE_CONFIRM
-    CallIfUnset 215, _0174
-    SetVar 0x409E, 2
+    CallIfUnset FLAG_UNK_0x00D7, _0174
+    SetVar VAR_UNK_0x409E, 2
     PlayCry SPECIES_HEATRAN
     Message 15
     CloseMessage
-    SetFlag 142
+    SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_HEATRAN, 50
-    ClearFlag 142
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0168
-    CheckLostBattle 0x800C
-    CallIfEq 0x800C, FALSE, _017A
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _015D
+    ClearFlag FLAG_UNK_0x008E
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0168
+    CheckLostBattle VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, _017A
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _015D
     GoTo _0155
     End
 
 _0155:
-    SetFlag 0x120
+    SetFlag FLAG_UNK_0x0120
     ReleaseAll
     End
 
@@ -133,13 +133,13 @@ _015D:
     End
 
 _0168:
-    SetVar 0x409E, 1
+    SetVar VAR_UNK_0x409E, 1
     BlackOutFromBattle
     ReleaseAll
     End
 
 _0174:
-    SetFlag 215
+    SetFlag FLAG_UNK_0x00D7
     Return
 
 _017A:
@@ -182,7 +182,7 @@ _019C:
     WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_FW089
     ScrCmd_29F 0
-    ScrCmd_04A 0x65C
+    StopFanfare SEQ_SE_DP_FW089
     ApplyMovement 2, _03A4
     ApplyMovement LOCALID_PLAYER, _0388
     WaitMovement
@@ -196,9 +196,9 @@ _019C:
     Message 2
     Message 3
     PlayCry SPECIES_CROAGUNK
-    ScrCmd_04D
+    WaitCry
     CloseMessage
-    ClearFlag 0x232
+    ClearFlag FLAG_UNK_0x0232
     AddObject 0
     ApplyMovement 0, _0490
     WaitMovement
@@ -208,12 +208,12 @@ _019C:
     WaitMovement
     Message 4
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     Message 5
     CloseMessage
     RemoveObject 0
     RemoveObject 6
-    ClearFlag 0x231
+    ClearFlag FLAG_UNK_0x0231
     AddObject 4
     CallCommonScript 0x807
     Message 6
@@ -231,7 +231,7 @@ _019C:
     WaitMovement
     Message 9
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 9, _0454
     ApplyMovement 10, _045C
     WaitMovement
@@ -246,7 +246,7 @@ _019C:
     Message 11
     Message 12
     CloseMessage
-    ClearFlag 0x230
+    ClearFlag FLAG_UNK_0x0230
     AddObject 7
     ApplyMovement 7, _04C8
     WaitMovement
@@ -268,17 +268,17 @@ _019C:
     BufferPlayerName 0
     Message 14
     CloseMessage
-    SetVar 0x40A0, 2
-    SetFlag 0x1DB
-    SetFlag 0x231
-    SetVar 0x409E, 1
-    SetFlag 214
-    ClearFlag 0x1A3
-    ClearFlag 0x1D9
-    ClearFlag 0x1D6
-    ClearFlag 0x22B
-    ClearFlag 0x22D
-    ClearFlag 0x22E
+    SetVar VAR_UNK_0x40A0, 2
+    SetFlag FLAG_UNK_0x01DB
+    SetFlag FLAG_UNK_0x0231
+    SetVar VAR_UNK_0x409E, 1
+    SetFlag FLAG_ARRESTED_CHARON_STARK_MOUNTAIN
+    ClearFlag FLAG_UNK_0x01A3
+    ClearFlag FLAG_UNK_0x01D9
+    ClearFlag FLAG_UNK_0x01D6
+    ClearFlag FLAG_UNK_0x022B
+    ClearFlag FLAG_UNK_0x022D
+    ClearFlag FLAG_UNK_0x022E
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_STARK_MOUNTAIN_OUTSIDE, 0, 0x2EF, 233, 0

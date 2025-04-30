@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D4EE4.h"
 #include "overlay021/pokedex_graphic_data.h"
@@ -25,13 +22,13 @@
 #include "heap.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 #include "unk_02012744.h"
 #include "unk_02015064.h"
 
@@ -88,7 +85,7 @@ void ov21_021D1FA4(PokedexGraphicData *param0, int heapID)
     v1.unk_00 = param0->spriteList;
     v1.unk_04 = param0->bgConfig;
     v1.unk_08 = 16;
-    v1.heapId = heapID;
+    v1.heapID = heapID;
 
     param0->unk_14C = ov21_021D4C0C(&v1);
 
@@ -131,14 +128,14 @@ void ov21_021D2124(PokedexGraphicData *param0)
 
     NNS_G2dSetupSoftwareSpriteCamera();
 
-    sub_02007768(param0->unk_150);
+    PokemonSpriteManager_DrawSprites(param0->unk_150);
     sub_020150EC(param0->unk_164);
 }
 
 void ov21_021D214C(PokedexGraphicData *param0)
 {
     Bg_RunScheduledUpdates(param0->bgConfig);
-    sub_02008A94(param0->unk_150);
+    PokemonSpriteManager_UpdateCharAndPltt(param0->unk_150);
 }
 
 void ov21_021D2164(PokedexGraphicData *param0, int param1, int param2)
@@ -158,18 +155,18 @@ void ov21_021D217C(const PokedexGraphicData *param0, BOOL param1)
 
 void Pokedex_LoadPokemonSprite(PokedexGraphicData *param0, int species, int gender, int face, int shiny, u8 form, u32 personality, int param7, int param8, int param9)
 {
-    ArchivedSprite sprite;
+    PokemonSpriteTemplate spriteTemplate;
     s16 yOffset;
 
     if (param0->pokemonSprite[param9]) {
-        sub_02007DC8(param0->pokemonSprite[param9]);
+        PokemonSprite_Delete(param0->pokemonSprite[param9]);
     }
 
     if (gender == -1) {
         gender = Pokemon_GetGenderOf(species, 0);
     }
 
-    BuildArchivedPokemonSprite(&sprite, species, gender, face, shiny, form, personality);
+    BuildPokemonSpriteTemplate(&spriteTemplate, species, gender, face, shiny, form, personality);
 
     if (face == 0) {
         yOffset = LoadPokemonSpriteYOffset(species, gender, face, form, personality);
@@ -178,19 +175,19 @@ void Pokedex_LoadPokemonSprite(PokedexGraphicData *param0, int species, int gend
         yOffset = 0;
     }
 
-    param0->pokemonSprite[param9] = sub_02007C34(param0->unk_150, &sprite, param7, param8 + yOffset, 0, 0, NULL, NULL);
+    param0->pokemonSprite[param9] = PokemonSpriteManager_CreateSprite(param0->unk_150, &spriteTemplate, param7, param8 + yOffset, 0, 0, NULL, NULL);
 }
 
 void ov21_021D222C(PokedexGraphicData *param0, int param1, int param2, int param3)
 {
-    sub_02007DEC(param0->pokemonSprite[param3], 0, param1);
-    sub_02007DEC(param0->pokemonSprite[param3], 1, param2);
+    PokemonSprite_SetAttribute(param0->pokemonSprite[param3], MON_SPRITE_X_CENTER, param1);
+    PokemonSprite_SetAttribute(param0->pokemonSprite[param3], MON_SPRITE_Y_CENTER, param2);
 }
 
 void ov21_021D2250(PokedexGraphicData *param0, int *param1, int *param2, int param3)
 {
-    *param1 = sub_020080C0(param0->pokemonSprite[param3], 0);
-    *param2 = sub_020080C0(param0->pokemonSprite[param3], 1);
+    *param1 = PokemonSprite_GetAttribute(param0->pokemonSprite[param3], MON_SPRITE_X_CENTER);
+    *param2 = PokemonSprite_GetAttribute(param0->pokemonSprite[param3], MON_SPRITE_Y_CENTER);
 }
 
 PokemonSprite *ov21_021D2274(const PokedexGraphicData *param0, int param1)
@@ -205,9 +202,9 @@ void ov21_021D2280(const PokedexGraphicData *param0, BOOL param1, int param2)
     }
 
     if (param1 == 1) {
-        sub_02007DEC(param0->pokemonSprite[param2], 6, 0);
+        PokemonSprite_SetAttribute(param0->pokemonSprite[param2], MON_SPRITE_HIDE, 0);
     } else {
-        sub_02007DEC(param0->pokemonSprite[param2], 6, 1);
+        PokemonSprite_SetAttribute(param0->pokemonSprite[param2], MON_SPRITE_HIDE, 1);
     }
 }
 
@@ -352,7 +349,7 @@ void ov21_021D24FC(const PokedexGraphicData *param0, UnkStruct_ov21_021D23F8 *pa
     int v1 = -ov21_021D24B8(param1);
     v0 = ov21_021D2170(param0);
 
-    sub_020086FC(v0, v1, v1, 0, 0);
+    PokemonSprite_StartFade(v0, v1, v1, 0, 0);
 }
 
 void ov21_021D251C(const PokedexGraphicData *param0, UnkStruct_ov21_021D23F8 *param1, int param2)
@@ -361,7 +358,7 @@ void ov21_021D251C(const PokedexGraphicData *param0, UnkStruct_ov21_021D23F8 *pa
     int v1 = -ov21_021D24B8(param1);
     v0 = ov21_021D2274(param0, param2);
 
-    sub_020086FC(v0, v1, v1, 0, 0);
+    PokemonSprite_StartFade(v0, v1, v1, 0, 0);
 }
 
 void ov21_021D2544(const UnkStruct_ov21_021D4EE4 *param0, PokedexGraphicData *param1)
@@ -746,13 +743,13 @@ static void ov21_021D2A0C(PokedexGraphicData *param0, int heapID)
     NNSGfdPlttKey v1;
     int v2;
 
-    param0->unk_150 = sub_0200762C(heapID);
+    param0->unk_150 = PokemonSpriteManager_New(heapID);
 
     v0 = NNS_GfdAllocTexVram(0x8000, 0, 0);
     v1 = NNS_GfdAllocPlttVram(0x80, 0, NNS_GFD_ALLOC_FROM_LOW);
 
-    sub_02008A78(param0->unk_150, NNS_GfdGetTexKeyAddr(v0), NNS_GfdGetTexKeySize(v0));
-    sub_02008A84(param0->unk_150, NNS_GfdGetPlttKeyAddr(v1), NNS_GfdGetPlttKeySize(v1));
+    PokemonSpriteManager_SetCharBaseAddrAndSize(param0->unk_150, NNS_GfdGetTexKeyAddr(v0), NNS_GfdGetTexKeySize(v0));
+    PokemonSpriteManager_SetPlttBaseAddrAndSize(param0->unk_150, NNS_GfdGetPlttKeyAddr(v1), NNS_GfdGetPlttKeySize(v1));
 
     for (v2 = 0; v2 < 4; v2++) {
         param0->pokemonSprite[v2] = NULL;
@@ -777,11 +774,11 @@ static void ov21_021D2AB4(PokedexGraphicData *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->pokemonSprite[v0]) {
-            sub_02007DC8(param0->pokemonSprite[v0]);
+            PokemonSprite_Delete(param0->pokemonSprite[v0]);
         }
     }
 
-    sub_02007B6C(param0->unk_150);
+    PokemonSpriteManager_Free(param0->unk_150);
     sub_020150A8(param0->unk_164);
 }
 

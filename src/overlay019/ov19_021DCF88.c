@@ -15,7 +15,7 @@
 #include "enums.h"
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "pc_boxes.h"
 #include "sprite.h"
@@ -301,7 +301,7 @@ static const u16 Unk_ov19_021E0264[] = {
 
 BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4)
 {
-    if (ov19_021D5E08(param2) == 4) {
+    if (ov19_GetBoxMode(param2) == PC_MODE_COMPARE) {
         *param0 = NULL;
         return 1;
     } else {
@@ -452,7 +452,7 @@ static void ov19_021DD224(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 
     Sprite_SetFlipMode(param0->unk_30, 1);
 
-    if (ov19_021D5E08(param0->unk_04) == 3) {
+    if (ov19_GetBoxMode(param0->unk_04) == PC_MODE_MOVE_ITEMS) {
         Sprite_SetAnim(param0->unk_30, 1);
     }
 }
@@ -928,7 +928,7 @@ static void ov19_021DD9DC(UnkStruct_ov19_021DCF88 *param0)
     u32 v2;
     int v3;
 
-    v2 = ov19_021D5EC8(param0->unk_04);
+    v2 = ov19_GetMonSpriteTransparencyMask(param0->unk_04);
 
     NNS_G2dInitImageProxy(&v1);
     Graphics_LoadImageMapping(18, 141, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 192 * 0x20, 10, &v1);
@@ -1465,7 +1465,7 @@ void ov19_021DE2F4(UnkStruct_ov19_021DCF88 *param0)
     if (param0) {
         if (param0->unk_34[0] != NULL) {
             int v0;
-            u32 v1 = ov19_021D5EC8(param0->unk_04);
+            u32 v1 = ov19_GetMonSpriteTransparencyMask(param0->unk_04);
 
             for (v0 = 0; v0 < 8; v0++) {
                 Sprite_SetAnim(param0->unk_34[v0], ov19_021DD9B8(v0, v1));
@@ -1502,17 +1502,17 @@ static void ov19_021DE350(UnkStruct_ov19_021DCF88 *param0)
 
     v2 = ov19_021D5EB8(param0->unk_04) + 3;
 
-    if (v2 >= 18) {
-        v2 -= 18;
+    if (v2 >= MAX_PC_BOXES) {
+        v2 -= MAX_PC_BOXES;
     }
 
     for (v1 = 0; v1 < NELEMS(v0); v1++) {
-        PCBoxes_BufferBoxName(param0->unk_04->unk_00, v2, param0->unk_84);
+        PCBoxes_BufferBoxName(param0->unk_04->pcBoxes, v2, param0->unk_84);
         Window_FillRectWithColor(&param0->unk_88, 0, v0[v1].unk_00, v0[v1].unk_02, 104, 17);
         Text_AddPrinterWithParamsAndColor(&param0->unk_88, FONT_SYSTEM, param0->unk_84, v0[v1].unk_00 + 4, v0[v1].unk_02 + 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
         if (--v2 < 0) {
-            v2 = 18 - 1;
+            v2 = MAX_PC_BOXES - 1;
         }
     }
 

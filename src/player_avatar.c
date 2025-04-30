@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/dynamic_map_features.h"
+
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0205EC34.h"
@@ -90,7 +92,7 @@ PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *param1
     return playerAvatar;
 }
 
-void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int groundId)
+void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     GF_ASSERT(mapObj != NULL);
@@ -99,7 +101,7 @@ void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int groundId)
     ov5_021F6218(playerAvatar);
 
     if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_SURFING) {
-        if (groundId != 9) {
+        if (dynamicMapFeaturesID != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
             int x = Player_GetXPos(playerAvatar);
             int z = Player_GetZPos(playerAvatar);
             int dir = PlayerAvatar_GetDir(playerAvatar);
@@ -208,7 +210,7 @@ int PlayerAvatar_GetMoveDir(PlayerAvatar *const playerAvatar)
     return MapObject_GetMovingDir(Player_MapObject(playerAvatar));
 }
 
-int sub_0205EAA0(PlayerAvatar *const playerAvatar)
+int PlayerAvatar_GetDistortionDir(PlayerAvatar *const playerAvatar)
 {
     if (PlayerAvatar_DistortionStateOnFloor(playerAvatar) == TRUE) {
         return PlayerAvatar_GetDir(playerAvatar);
@@ -544,36 +546,37 @@ void sub_0205ECE0(PlayerAvatar *playerAvatar, int param1, int param2, int param3
     sub_0205EB10(playerAvatar, 0);
 }
 
-void sub_0205ED0C(PlayerAvatar *playerAvatar, fx32 param1)
-{
-    VecFx32 v0;
-    MapObject *v1 = Player_MapObject(playerAvatar);
-
-    MapObject_GetPosPtr(v1, &v0);
-    v0.y = param1;
-    MapObject_SetPos(v1, &v0);
-}
-
-void sub_0205ED2C(PlayerAvatar *playerAvatar, int param1)
+void Player_SetYPos(PlayerAvatar *playerAvatar, fx32 y)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
-    if (param1 == 1) {
-        sub_02062E28(mapObj, 0);
+    VecFx32 pos;
+    MapObject_GetPosPtr(mapObj, &pos);
+
+    pos.y = y;
+    MapObject_SetPos(mapObj, &pos);
+}
+
+void PlayerAvatar_SetHeightCalculationEnabled(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled)
+{
+    MapObject *mapObj = Player_MapObject(playerAvatar);
+
+    if (heightCalculationEnabled == TRUE) {
+        MapObject_SetHeightCalculationDisabled(mapObj, FALSE);
     } else {
-        sub_02062E28(mapObj, 1);
+        MapObject_SetHeightCalculationDisabled(mapObj, TRUE);
     }
 }
 
-void sub_0205ED48(PlayerAvatar *playerAvatar, int param1)
+void PlayerAvatar_SetHeightCalculationEnabledAndUpdate(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
-    if (param1 == 1) {
-        sub_02062E28(mapObj, 0);
+    if (heightCalculationEnabled == TRUE) {
+        MapObject_SetHeightCalculationDisabled(mapObj, FALSE);
         sub_020642F8(mapObj);
     } else {
-        sub_02062E28(mapObj, 1);
+        MapObject_SetHeightCalculationDisabled(mapObj, TRUE);
     }
 }
 

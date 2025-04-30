@@ -44,7 +44,7 @@ arm9_c_flags = [
     "-DSDK_TS",
     "-DPOKEPLATINUM_GENERATED_ENUM",
     "-DPM_KEEP_ASSERTS",
-    "-DGAME_VERSION=PLATINUM",
+    "-DGAME_VERSION=VERSION_PLATINUM",
     "-DGAME_LANGUAGE=ENGLISH",
 ]
 
@@ -255,6 +255,7 @@ datagen_cpp_commands = [
             f"-I{builddir}",  # metang-generated headers (constants)
             "-std=c++17",
             "-Wno-deprecated-declarations",
+            "-o",
             file.with_suffix(".o"),
             file.resolve(),
         ],

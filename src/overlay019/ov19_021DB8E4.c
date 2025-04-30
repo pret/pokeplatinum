@@ -122,7 +122,7 @@ BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_3C.pixels = param0->unk_18->pRawData;
     param0->unk_3C.width = 32;
     param0->unk_3C.height = 32;
-    param0->unk_4BF8 = MessageLoader_Init(1, 26, 391, HEAP_ID_10);
+    param0->unk_4BF8 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0391, HEAP_ID_10);
 
     for (v0 = 0; v0 < 18; v0++) {
         param0->unk_48[v0] = NULL;
@@ -234,7 +234,7 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
     u8 color, v7;
     int v8;
 
-    pcBoxes = ov19_021D5E90(param0->unk_0C);
+    pcBoxes = ov19_GetPCBoxes(param0->unk_0C);
     v8 = PCBoxes_GetWallpaper(pcBoxes, param1);
 
     if (v8 >= (16 + 8)) {
@@ -387,8 +387,8 @@ static void ov19_021DBDF4(UnkStruct_ov19_021DBA9C *param0)
         }
     }
 
-    for (v4 = 0; v4 < 18; v4++) {
-        param0->unk_94[v4] = PCBoxes_CountMonsInBox(ov19_021D5E90(param0->unk_0C), v4);
+    for (v4 = 0; v4 < MAX_PC_BOXES; v4++) {
+        param0->unk_94[v4] = PCBoxes_CountMonsInBox(ov19_GetPCBoxes(param0->unk_0C), v4);
     }
 }
 
@@ -426,7 +426,7 @@ static void ov19_021DBF4C(UnkStruct_ov19_021DBA9C *param0)
     Window *v1;
     u32 v2, v3;
 
-    v0 = ov19_021D5E90(param0->unk_0C);
+    v0 = ov19_GetPCBoxes(param0->unk_0C);
     v1 = &param0->unk_10[0];
 
     PCBoxes_BufferBoxName(v0, param0->unk_E0, param0->unk_4BFC);
@@ -595,7 +595,7 @@ void ov19_021DC29C(UnkStruct_ov19_021DBA9C *param0)
     UnkStruct_ov19_021DC29C *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DC29C));
 
     if (v0) {
-        u32 v1 = ov19_021D5F88(param0->unk_0C);
+        u32 v1 = ov19_GetCursorOrPreviewedItem(param0->unk_0C);
 
         Bg_SetOffset(param0->unk_04, 1, 3, 0);
         Bg_LoadToTilemapRect(param0->unk_04, 1, param0->unk_38->rawData, 0, 24, 32, 7);

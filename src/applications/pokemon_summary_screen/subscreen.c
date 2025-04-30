@@ -3,15 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/sdat.h"
-
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/sprites.h"
 
 #include "bg_window.h"
+#include "sound_playback.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 
 #define MAX_BUTTON_ANIM_FRAMES 3
 #define BUTTON_TILE_COUNT      5

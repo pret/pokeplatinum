@@ -35,6 +35,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -44,7 +45,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02030EA4.h"
 #include "unk_020393C8.h"
@@ -418,7 +418,7 @@ int ov68_0225C8A8(OverlayManager *param0, int *param1)
 
     OverlayManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_122);
-    sub_020057BC(0);
+    Sound_StopAllEffects(0);
 
     return 1;
 }
@@ -429,15 +429,15 @@ static void ov68_0225C914(void *param0)
     ov68_0225C98C(&v0->unk_00);
 }
 
-static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *param1, u32 param2)
+static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *param1, u32 heapID)
 {
-    Options *v0 = SaveData_Options(param1);
-    param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
+    Options *v0 = SaveData_GetOptions(param1);
+    param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, heapID);
 
-    VramTransfer_New(32, param2);
+    VramTransfer_New(32, heapID);
     GXLayers_SetBanks(&Unk_ov68_0225DDC0);
-    ov68_0225C9A0(param0, v0, param2);
-    ov68_0225CAB4(param0, param2);
+    ov68_0225C9A0(param0, v0, heapID);
+    ov68_0225CAB4(param0, heapID);
 }
 
 static void ov68_0225C960(UnkStruct_ov68_0225C91C *param0)
@@ -549,7 +549,7 @@ static void ov68_0225CB44(UnkStruct_ov68_0225C91C *param0)
     RenderOam_Free();
 }
 
-static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DFF8 *param1, u32 param2)
+static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DFF8 *param1, u32 heapID)
 {
     int v0;
     static const v1[9] = {
@@ -567,12 +567,12 @@ static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DF
     param0->unk_30 = param1;
 
     for (v0 = 0; v0 < 9; v0++) {
-        param0->unk_00[v0] = MessageLoader_Init(0, 26, v1[v0], param2);
+        param0->unk_00[v0] = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1[v0], heapID);
     }
 
-    param0->unk_24 = StringTemplate_Default(param2);
-    param0->unk_28 = Strbuf_Init(256, param2);
-    param0->unk_2C = Strbuf_Init(256, param2);
+    param0->unk_24 = StringTemplate_Default(heapID);
+    param0->unk_28 = Strbuf_Init(256, heapID);
+    param0->unk_2C = Strbuf_Init(256, heapID);
 }
 
 static void ov68_0225CBC0(UnkStruct_ov68_0225CB70 *param0)
@@ -763,19 +763,19 @@ static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         break;
     case 5:
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_28++;
             break;
         }
 
         if (gSystem.pressedKeys & PAD_KEY_UP) {
             if ((param0->unk_10 - 1) >= 0) {
-                Sound_PlayEffect(1504);
+                Sound_PlayEffect(SEQ_SE_DP_SELECT78);
                 param0->unk_10--;
             }
         } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
             if ((param0->unk_10 + 1) < 3) {
-                Sound_PlayEffect(1504);
+                Sound_PlayEffect(SEQ_SE_DP_SELECT78);
                 param0->unk_10++;
             }
         }
@@ -791,7 +791,7 @@ static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
 
         ov68_0225D218(param3, v1);
         ov68_0225D284(param3);
-        Sound_PlayEffect(1381);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80);
         param0->unk_28 = 7;
         break;
     case 7: {
@@ -799,7 +799,7 @@ static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         v3 = ov66_02233434();
 
         if (v3 != UnkEnum_ov66_02233434_01) {
-            Sound_PlayEffect(1508);
+            Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
             ov68_0225D2A0(param3);
 
             v1 = ov68_0225CBEC(param1, 0, 97);
@@ -893,17 +893,17 @@ static void ov68_0225D11C(UnkStruct_ov68_0225D0F8 *param0)
     Sprite_SetAnimateFlag(param0->unk_14, 1);
 }
 
-static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *param2, u32 param3)
+static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *param2, u32 heapID)
 {
     Window_Add(param1->unk_00, &param0->unk_08, 1, 2, 19, 27, 4, 4, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(&param0->unk_08, 15);
 
-    param0->unk_18 = Strbuf_Init(256, param3);
+    param0->unk_18 = Strbuf_Init(256, heapID);
 
     {
         Options *v0;
 
-        v0 = SaveData_Options(param2);
+        v0 = SaveData_GetOptions(param2);
         param0->unk_04 = Options_TextFrameDelay(v0);
     }
 }
@@ -1113,7 +1113,7 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         ov68_0225D8F0(param0, &param0->unk_88, param1, param2, &v2, heapID, TEXT_COLOR(9, 10, 0), TEXT_COLOR(13, 14, 0), v4);
         ov68_0225DA30(param0, &param0->unk_C8, param2, 1);
 
-        Sound_PlayEffect(1472);
+        Sound_PlayEffect(SEQ_SE_PL_PINPON2);
     }
 
         param0->unk_60 = 5;
@@ -1218,17 +1218,17 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         break;
     case 17: {
         UnkStruct_ov66_0222E908 v7;
-        UnkStruct_02030EC4 *v8;
+        WiFiQuestions *v8;
         BOOL v9;
 
-        v8 = sub_02030EC4(param4->unk_00);
+        v8 = SaveData_GetWiFiQuestions(param4->unk_00);
         v7.unk_00 = sub_02030ED0(v8);
         v7.unk_04 = sub_02030ED4(v8);
         v9 = ov66_0222E924(param4->unk_04, ov66_0222E338(param4->unk_04));
 
         ov68_0225D8F0(param0, &param0->unk_A8, param1, param2, &v7, heapID, TEXT_COLOR(11, 12, 0), TEXT_COLOR(15, 14, 0), v9);
         ov68_0225DA30(param0, &param0->unk_DC, param2, 2);
-        Sound_PlayEffect(1472);
+        Sound_PlayEffect(SEQ_SE_PL_PINPON2);
     }
         param0->unk_60 = 18;
         break;
@@ -1429,17 +1429,17 @@ static void ov68_0225DB3C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
     ov68_0225D89C(param0, param1, 119, TEXT_COLOR(5, 6, 0));
 }
 
-static void ov68_0225DB8C(UnkStruct_ov68_0225DB8C *param0, BOOL param1, u32 param2)
+static void ov68_0225DB8C(UnkStruct_ov68_0225DB8C *param0, BOOL param1, u32 heapID)
 {
     u32 v0;
     u32 v1;
     u16 *v2;
     int v3;
 
-    param0->unk_10 = Strbuf_Init(256, param2);
+    param0->unk_10 = Strbuf_Init(256, heapID);
 
     for (v3 = 0; v3 < 3; v3++) {
-        param0->unk_14[v3] = Strbuf_Init(256, param2);
+        param0->unk_14[v3] = Strbuf_Init(256, heapID);
     }
 
     if (param1 == 1) {

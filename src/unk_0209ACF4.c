@@ -17,11 +17,11 @@
 #include "message.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
@@ -69,7 +69,7 @@ void sub_0209ACF4(FieldTask *param0)
     v1->unk_04 = Strbuf_Init(400, HEAP_ID_FIELD_TASK);
     v1->unk_08 = Strbuf_Init(400, HEAP_ID_FIELD_TASK);
     v1->unk_0C = StringTemplate_Default(HEAP_ID_FIELD_TASK);
-    v1->unk_10 = MessageLoader_Init(1, 26, 420, HEAP_ID_FIELD_TASK);
+    v1->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0420, HEAP_ID_FIELD_TASK);
     v1->unk_14 = ColoredArrow_New(HEAP_ID_FIELD_TASK);
     v1->unk_50 = sub_0209747C(2, 0, v1->fieldSystem->saveData, HEAP_ID_FIELD_TASK);
 
@@ -266,13 +266,13 @@ static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2)
 
     if (Window_IsInUse(v0) == 0) {
         FieldMessage_AddWindow(param0->fieldSystem->bgConfig, v0, 3);
-        FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
+        FieldMessage_DrawWindow(v0, SaveData_GetOptions(param0->fieldSystem->saveData));
     } else {
         FieldMessage_ClearWindow(v0);
         Window_DrawMessageBoxWithScrollCursor(v0, 0, 1024 - (18 + 12), 10);
     }
 
-    param0->unk_58 = FieldMessage_Print(v0, param0->unk_08, SaveData_Options(param0->fieldSystem->saveData), 1);
+    param0->unk_58 = FieldMessage_Print(v0, param0->unk_08, SaveData_GetOptions(param0->fieldSystem->saveData), 1);
 }
 
 static BOOL sub_0209B100(UnkStruct_0209AD84 *param0)
@@ -383,12 +383,12 @@ static int sub_0209B288(UnkStruct_0209AD84 *param0)
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             return param0->unk_5C;
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             return param0->unk_60 - 1;
         }
 
@@ -399,7 +399,7 @@ static int sub_0209B288(UnkStruct_0209AD84 *param0)
         Window_FillRectWithColor(param0->unk_68, 15, 0, 0, 12, param0->unk_68->height * 8);
         ColoredArrow_Print(param0->unk_14, param0->unk_68, 0, param0->unk_5C * 16);
         Window_LoadTiles(param0->unk_68);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     return -1;

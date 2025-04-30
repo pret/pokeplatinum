@@ -17,8 +17,8 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
+#include "sound_playback.h"
 #include "sys_task_manager.h"
-#include "unk_02005474.h"
 
 struct UnkStruct_ov45_022566EC_t {
     const UnkStruct_ov45_022566EC_1 *unk_00;
@@ -408,7 +408,7 @@ static void ov45_02256B78(SysTask *param0, void *param1)
             return;
         }
 
-        if (sub_0200598C() == 0) {
+        if (Sound_IsPokemonCryPlaying() == 0) {
             PoketchSystem_PlayCry(294, 0);
         }
 

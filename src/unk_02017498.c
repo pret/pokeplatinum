@@ -11,8 +11,8 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "overlay_manager.h"
+#include "sound.h"
 #include "system.h"
-#include "unk_020041CC.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
 #include "unk_0208BA78.h"
@@ -54,7 +54,7 @@ int sub_02017498(OverlayManager *param0, int *param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_02017498));
     v0->unk_00 = OverlayManager_Args(param0);
 
-    sub_02004550(11, 1175, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
 
     return 1;
 }

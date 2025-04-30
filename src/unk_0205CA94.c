@@ -12,13 +12,13 @@
 #include "map_object.h"
 #include "player_avatar.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200F174.h"
 
@@ -198,7 +198,7 @@ void sub_0205CBFC(SysTask *param0, void *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
         sub_0205D274(v0, &v0->unk_1C0[0], 2);
         StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
-        Sound_PlayEffect(1583);
+        Sound_PlayEffect(SEQ_SE_DP_PYUU);
         v0->unk_1E0 = 1;
         v0->unk_1E4++;
         break;
@@ -206,7 +206,7 @@ void sub_0205CBFC(SysTask *param0, void *param1)
         v1 = v0->unk_1C0[0].unk_0C(&v0->unk_1C0[0]);
 
         if ((v1 == 0) && (IsScreenTransitionDone())) {
-            Sound_PlayEffect(1585);
+            Sound_PlayEffect(SEQ_SE_DP_SUTYA);
             v0->unk_1E4++;
             v0->unk_1E8 = -255;
         }
@@ -247,7 +247,7 @@ void sub_0205CD3C(SysTask *param0, void *param1)
         break;
     case 1:
         sub_0205D274(v0, &v0->unk_1C0[0], 3);
-        Sound_PlayEffect(1584);
+        Sound_PlayEffect(SEQ_SE_DP_PYUU2);
         v0->unk_1E0 = 1;
         v0->unk_1E4++;
         break;
@@ -315,7 +315,7 @@ void sub_0205CE7C(SysTask *param0, void *param1)
         break;
     case 2:
         if (IsScreenTransitionDone()) {
-            Sound_PlayEffect(1586);
+            Sound_PlayEffect(SEQ_SE_DP_GYURU);
             v0->unk_1E4++;
         }
         break;
@@ -414,7 +414,7 @@ void sub_0205D0AC(UnkStruct_0205D094 *param0)
 
 static void sub_0205D0B4(UnkStruct_0205D094 *param0)
 {
-    param0->unk_00 = SpriteList_InitRendering(2, &param0->unk_30, 4);
+    param0->unk_00 = SpriteList_InitRendering(2, &param0->unk_30, HEAP_ID_FIELD);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -426,7 +426,7 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
     void *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_08[v0] = SpriteResourceCollection_New(2, v0, 4);
+        param0->unk_08[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_FIELD);
     }
 
     param0->unk_20[0] = sub_0205D1C4(param0->unk_08[0], &param0->unk_18[0], Unk_020ED8B4[0][param1]);
@@ -463,18 +463,18 @@ static int sub_0205D1C4(SpriteResourceCollection *param0, SpriteResourceList **p
     v0 = Heap_AllocFromHeapAtEnd(4, SpriteResourceTable_Size());
     v3 = LoadMemberFromNARC(177, param2, 0, 4, 0);
 
-    SpriteResourceTable_LoadFromBinary(v3, v0, 4);
+    SpriteResourceTable_LoadFromBinary(v3, v0, HEAP_ID_FIELD);
     Heap_FreeToHeap(v3);
 
     if (param1 != NULL) {
         v2 = SpriteResourceTable_GetCount(v0);
-        *param1 = SpriteResourceList_New(v2, 4);
+        *param1 = SpriteResourceList_New(v2, HEAP_ID_FIELD);
         v1 = *param1;
     } else {
         v1 = NULL;
     }
 
-    v2 = SpriteResourceCollection_Extend(param0, v0, v1, 4);
+    v2 = SpriteResourceCollection_Extend(param0, v0, v1, HEAP_ID_FIELD);
 
     SpriteResourceTable_Clear(v0);
     Heap_FreeToHeap(v0);
@@ -558,7 +558,7 @@ static Sprite *sub_0205D344(UnkStruct_0205D094 *param0, int param1, VecFx32 *par
     v0.affineScale = v2;
     v0.priority = param3;
     v0.vramType = param4;
-    v0.heapID = 4;
+    v0.heapID = HEAP_ID_FIELD;
 
     v1 = SpriteList_AddAffine(&v0);
     GF_ASSERT(v1);

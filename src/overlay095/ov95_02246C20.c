@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02013610.h"
 
 #include "overlay006/struct_ov6_02246254.h"
@@ -28,6 +27,8 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "render_oam.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -35,8 +36,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_020393C8.h"
@@ -132,7 +131,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_57, 98304);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_58, 98304);
         ov95_02247688();
-        sub_02004550(3, 1170, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_3, SEQ_KOUKAN, 1);
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov95_02247628), HEAP_ID_57);
 
@@ -141,7 +140,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
             v0->unk_04 = 0;
             v0->unk_08 = BgConfig_New(HEAP_ID_57);
             v0->unk_14 = Strbuf_Init(400, HEAP_ID_57);
-            v0->unk_10 = MessageLoader_Init(0, 26, 350, HEAP_ID_57);
+            v0->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0350, HEAP_ID_57);
             v0->unk_0C = StringTemplate_Default(HEAP_ID_57);
 
             switch (v0->unk_00->unk_10) {
@@ -163,7 +162,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
             NNS_G2dInitOamManagerModule();
 
             RenderOam_Init(0, 128, 0, 32, 1, 127, 0, 32, 57);
-            v0->unk_18 = SpriteList_InitRendering(64, &v0->unk_1C, 57);
+            v0->unk_18 = SpriteList_InitRendering(64, &v0->unk_1C, HEAP_ID_57);
             SetSubScreenViewRect(&(v0->unk_1C), 0, (192 + 40 << FX32_SHIFT));
 
             v0->unk_1B0 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_SPECIES, NULL);
@@ -337,7 +336,7 @@ static void ov95_02247060(SysTask *param0, void *param1)
 
     if (v0->unk_E8 == 0) {
         if (--(v0->unk_F0) <= 0) {
-            Sound_PlayEffect(1710);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN08);
             v0->unk_F0 = 30;
             ov95_02247170(v0);
         }
@@ -546,7 +545,7 @@ static void ov95_022473A0(UnkStruct_ov95_022472C4 *param0)
 
 void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 param3, BOOL param4)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     u32 v1;
     u32 v2;
     void *v3;
@@ -569,7 +568,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
         v5 = (BoxPokemon *)((param1 == 0) ? param0->unk_00->unk_00 : param0->unk_00->unk_04);
         v6 = BoxPokemon_EnterDecryptionContext(v5);
 
-        BoxPokemon_BuildArchivedSprite(&v0, v5, 2, 0);
+        BoxPokemon_BuildSpriteTemplate(&v0, v5, 2, 0);
 
         v7 = BoxPokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL);
         v8 = BoxPokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
@@ -578,7 +577,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
             v4.unk_08 *= 2;
         }
 
-        sub_02013720(v0.archive, v0.character, HEAP_ID_57, &v4, v3, v7, param4, 2, v8);
+        sub_02013720(v0.narcID, v0.character, HEAP_ID_57, &v4, v3, v7, param4, 2, v8);
         DC_FlushRange(v3, v2);
         Bg_LoadTiles(param0->unk_08, param2, v3, v2, 0);
 
@@ -587,7 +586,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
     }
 
     v1 = (param2 >= 4) ? 4 : 0;
-    Graphics_LoadPalette(v0.archive, v0.palette, v1, param3 * 0x20, 0x20, HEAP_ID_57);
+    Graphics_LoadPalette(v0.narcID, v0.palette, v1, param3 * 0x20, 0x20, HEAP_ID_57);
 }
 
 void ov95_022474D4(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 param3, u32 param4, u32 param5)
@@ -655,7 +654,7 @@ Sprite *ov95_022475E4(UnkStruct_ov95_02247628 *param0, SpriteResourcesHeader *pa
     v1.position.z = 0;
     v1.priority = param4;
     v1.vramType = param5;
-    v1.heapID = 57;
+    v1.heapID = HEAP_ID_57;
 
     v0 = SpriteList_Add(&v1);
 

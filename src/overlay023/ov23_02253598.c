@@ -23,6 +23,7 @@
 #include "message.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -31,7 +32,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0202854C.h"
 
 typedef int (*UnkFuncPtr_ov23_022576EC)(const SecretBaseRecord *);
@@ -224,7 +224,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
     Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
-    v1 = MessageLoader_Init(0, 26, 640, HEAP_ID_FIELD);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0640, HEAP_ID_FIELD);
     Window_FillTilemap(&v4->unk_08, 15);
 
     if (param4) {
@@ -236,7 +236,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
     ov23_0225360C(&v4->unk_08, v1, param1, v0);
 
     Window_ScheduleCopyToVRAM(&v4->unk_08);
-    Sound_PlayEffect(1533);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
 
     Unk_ov23_022577BC->unk_04 = SysTask_Start(ov23_0225381C, v4, 10);
     Unk_ov23_022577BC->unk_00 = v4;
@@ -247,7 +247,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
 void ov23_022538FC(int param0)
 {
     int v0 = sub_02028558();
-    int v1 = GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577BC->unk_08));
+    int v1 = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->unk_08));
     u8 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0 + 1);
 
     MI_CpuClear8(v2, v0 + 1);
@@ -267,7 +267,7 @@ void ov23_022538FC(int param0)
 
 void ov23_02253968(void)
 {
-    int v0 = GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577BC->unk_08));
+    int v0 = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->unk_08));
 
     if (v0 >= 999999) {
         v0 = 999999;
@@ -407,13 +407,13 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *para
     Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
-    v1 = MessageLoader_Init(0, 26, 639, HEAP_ID_FIELD);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0639, HEAP_ID_FIELD);
     Window_FillTilemap(&v4->unk_08, 15);
 
     v0 = Unk_ov23_022577BC->unk_0C;
     ov23_02253A78(&v4->unk_08, v1, param1, v0, param2);
 
-    Sound_PlayEffect(1533);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
     Window_ScheduleCopyToVRAM(&v4->unk_08);
     MessageLoader_Free(v1);
 

@@ -23,6 +23,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -30,7 +31,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 #include "unk_0202E840.h"
 
 typedef struct {
@@ -198,8 +198,8 @@ static int sub_0206F314(UnkStruct_0206F314 *param0, FieldSystem *fieldSystem, u1
     v0->fieldSystem = fieldSystem;
     v0->unk_D0 = fieldSystem->bgConfig;
     v0->unk_304 = sub_0202E8C0(v1);
-    v0->unk_1A = Options_TextFrameDelay(SaveData_Options(v1));
-    v0->unk_1C = Options_Frame(SaveData_Options(v1));
+    v0->unk_1A = Options_TextFrameDelay(SaveData_GetOptions(v1));
+    v0->unk_1C = Options_Frame(SaveData_GetOptions(v1));
 
     param0->unk_08 = v0;
 
@@ -267,7 +267,7 @@ static int sub_0206F498(UnkStruct_0206F7F8 *param0)
     s32 v0 = ListMenu_ProcessInput(param0->unk_C0);
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         sub_0206FF10(param0);
         return 10;
     }
@@ -276,7 +276,7 @@ static int sub_0206F498(UnkStruct_0206F7F8 *param0)
         return 3;
     }
 
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
 
     switch (v0) {
     case 0xffffffff:
@@ -303,13 +303,13 @@ static int sub_0206F508(UnkStruct_0206F7F8 *param0)
 static int sub_0206F514(UnkStruct_0206F7F8 *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         sub_02070288(param0);
         return 2;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         sub_0206FFE4(param0);
         return 6;
     }
@@ -322,13 +322,13 @@ static int sub_0206F554(UnkStruct_0206F7F8 *param0)
     UnkStruct_0206F3A0 *v0;
 
     if (gSystem.pressedKeys & (PAD_BUTTON_B)) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         sub_02070010(param0);
         return 5;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_0C = 0;
         param0->unk_328 = &(param0->unk_324[param0->unk_1F].unk_04[param0->unk_32C[param0->unk_28]]);
 
@@ -341,7 +341,7 @@ static int sub_0206F554(UnkStruct_0206F7F8 *param0)
 
     if (gSystem.pressedKeys & PAD_KEY_UP) {
         if (param0->unk_28 > 0) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             --param0->unk_28;
             ManagedSprite_SetPositionXY(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
         }
@@ -349,7 +349,7 @@ static int sub_0206F554(UnkStruct_0206F7F8 *param0)
 
     if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         if (param0->unk_28 < (param0->unk_21 - 1)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ++param0->unk_28;
             ManagedSprite_SetPositionXY(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
         }
@@ -424,7 +424,7 @@ static int sub_0206F748(UnkStruct_0206F7F8 *param0)
 
     switch (param0->unk_0C) {
     case 0:
-        Sound_PlayEffect(1522);
+        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
         Window_FillTilemap(&param0->unk_E4, ((15 << 4) | 15));
         param0->unk_1E = Text_AddPrinterWithParamsAndColor(&param0->unk_E4, FONT_MESSAGE, param0->unk_2C.unk_68[2], 0, 0, param0->unk_1A, TEXT_COLOR(1, 2, 15), NULL);
         ManagedSprite_SetExplicitPalette(param0->unk_2FC[0], 2);
@@ -442,7 +442,7 @@ static int sub_0206F748(UnkStruct_0206F7F8 *param0)
             break;
         }
 
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         sub_0206FFB4(param0);
         ManagedSprite_SetExplicitPalette(param0->unk_2FC[0], 1);
         param0->unk_0C = 0;
@@ -519,7 +519,7 @@ static void sub_0206FA08(UnkStruct_0206F7F8 *param0)
 {
     int v0;
 
-    param0->unk_2C.unk_00 = MessageLoader_Init(0, 26, 532, param0->heapID);
+    param0->unk_2C.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0532, param0->heapID);
     param0->unk_2C.unk_04 = StringTemplate_New(2, (38 * 2), param0->heapID);
     param0->unk_2C.unk_08 = Strbuf_Init((38 * 2), param0->heapID);
     param0->unk_2C.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 13);
@@ -721,7 +721,7 @@ static void sub_0206FF60(ListMenu *param0, u32 param1, u8 param2)
     UnkStruct_0206F7F8 *v3 = (UnkStruct_0206F7F8 *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     ListMenu_GetListAndCursorPos(param0, &v0, &v1);

@@ -16,11 +16,11 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "palette.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0208B284.h"
@@ -46,11 +46,11 @@ static BOOL ov62_02235278(UnkStruct_0208C06C *param0)
 
         switch (v0) {
         case 1:
-            Sound_PlayEffect(1379);
+            Sound_PlayEffect(SEQ_SE_PL_BREC57);
             ov62_0222FB60(param0, 7);
             return 0;
         case 2:
-            Sound_PlayEffect(1379);
+            Sound_PlayEffect(SEQ_SE_PL_BREC57);
             ov62_0222FB60(param0, 8);
             return 0;
         default:

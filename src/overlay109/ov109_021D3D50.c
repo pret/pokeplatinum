@@ -25,7 +25,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
-#include "math.h"
+#include "math_util.h"
 #include "menu.h"
 #include "message.h"
 #include "message_util.h"
@@ -35,6 +35,8 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -46,8 +48,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02030EE0.h"
 #include "unk_020363E8.h"
@@ -191,7 +191,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
         v0->unk_10 = v2->unk_34;
         v0->unk_14 = BgConfig_New(HEAP_ID_95);
         v0->unk_34 = StringTemplate_Default(HEAP_ID_95);
-        v0->unk_38 = MessageLoader_Init(0, 26, 377, HEAP_ID_95);
+        v0->unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0377, HEAP_ID_95);
 
         SetAutorepeat(4, 8);
         ov109_021D40D0();
@@ -204,7 +204,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
         ov109_021D441C(v0, v1);
         ov109_021D4518(v0);
         ov109_021D45F4(v0);
-        sub_02004550(52, 0, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
         sub_0209BE50(v2->unk_34);
         sub_020378B8();
         sub_02037B58(3);
@@ -587,7 +587,7 @@ static void ov109_021D43EC(void)
         CharTransfer_Init(&v0);
     }
 
-    PlttTransfer_Init(20, 95);
+    PlttTransfer_Init(20, HEAP_ID_95);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -599,19 +599,19 @@ static void ov109_021D441C(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 95);
 
-    param0->unk_60 = SpriteList_InitRendering(30, &param0->unk_64, 95);
+    param0->unk_60 = SpriteList_InitRendering(30, &param0->unk_64, HEAP_ID_95);
     GF_ASSERT(param0->unk_60);
 
     SetSubScreenViewRect(&param0->unk_64, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1F0[v0] = SpriteResourceCollection_New(3, v0, 95);
+        param0->unk_1F0[v0] = SpriteResourceCollection_New(3, v0, HEAP_ID_95);
     }
 
-    param0->unk_200[2][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1F0[0], param1, 12, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 95);
-    param0->unk_200[2][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1F0[1], param1, 1, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 15, 95);
-    param0->unk_200[2][2] = SpriteResourceCollection_AddFrom(param0->unk_1F0[2], param1, 13, 1, 2, 2, 95);
-    param0->unk_200[2][3] = SpriteResourceCollection_AddFrom(param0->unk_1F0[3], param1, 14, 1, 2, 3, 95);
+    param0->unk_200[2][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1F0[0], param1, 12, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_95);
+    param0->unk_200[2][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1F0[1], param1, 1, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 15, HEAP_ID_95);
+    param0->unk_200[2][2] = SpriteResourceCollection_AddFrom(param0->unk_1F0[2], param1, 13, 1, 2, 2, HEAP_ID_95);
+    param0->unk_200[2][3] = SpriteResourceCollection_AddFrom(param0->unk_1F0[3], param1, 14, 1, 2, 3, HEAP_ID_95);
 
     SpriteTransfer_RequestChar(param0->unk_200[2][0]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_200[2][1]);
@@ -644,7 +644,7 @@ static void ov109_021D4518(UnkStruct_ov109_021D5140 *param0)
         v1.affineZRotation = 0;
         v1.priority = 1;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.heapID = 95;
+        v1.heapID = HEAP_ID_95;
 
         for (v0 = 0; v0 < 5; v0++) {
             v1.position.x = FX32_ONE * Unk_ov109_021D5DD0[v0 + 1][0];
@@ -747,7 +747,7 @@ static void ov109_021D47B8(UnkStruct_ov109_021D5140 *param0)
                 sub_0209BEBC(param0->unk_10, 7, &v0, 1);
                 ov109_021D5858(param0, 0);
             } else {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             }
         }
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
@@ -756,7 +756,7 @@ static void ov109_021D47B8(UnkStruct_ov109_021D5140 *param0)
                 ov109_021D55A8(param0, 4, 0);
                 ov109_021D48EC(param0, 4);
             } else {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             }
         } else {
             if ((CommSys_ConnectedCount() == param0->unk_10->unk_2C) && (param0->unk_10->unk_30 == 0)) {
@@ -767,7 +767,7 @@ static void ov109_021D47B8(UnkStruct_ov109_021D5140 *param0)
                 sub_0209BEBC(param0->unk_10, 7, &v1, 1);
                 ov109_021D5858(param0, 0);
             } else {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             }
         }
     } else {
@@ -852,7 +852,7 @@ static int ov109_021D4980(UnkStruct_ov109_021D5140 *param0, int param1)
     if (CommSys_CurNetId()) {
         if (param0->unk_10->unk_28) {
             if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             }
 
             ov109_021D48D0(param0);
@@ -861,7 +861,7 @@ static int ov109_021D4980(UnkStruct_ov109_021D5140 *param0, int param1)
     } else {
         if (param0->unk_10->unk_30 != 0) {
             if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             }
 
             ov109_021D48D0(param0);
@@ -976,7 +976,7 @@ static int ov109_021D4B94(UnkStruct_ov109_021D5140 *param0, int param1)
 
     if ((ov109_021D548C() != param0->unk_10->unk_2C) || (param0->unk_10->unk_30 != 0)) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
         }
 
         ov109_021D48D0(param0);
@@ -1132,7 +1132,7 @@ static int ov109_021D4E28(UnkStruct_ov109_021D5140 *param0, int param1)
 
     if ((param0->unk_10->unk_2C != ov109_021D548C()) || (param0->unk_10->unk_30 != 0)) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
         }
 
         ov109_021D48D0(param0);
@@ -1467,7 +1467,7 @@ static BOOL ov109_021D537C(Window *param0, int param1, TextColor param2, UnkStru
 
             TrainerInfo_NameStrbuf(param3->unk_3D8[v0][0], param3->unk_3C[v0]);
             StringTemplate_SetNumber(param3->unk_34, 0, v3, 5, 2, 1);
-            v2 = MessageUtil_ExpandedStrbuf(param3->unk_34, param3->unk_38, 1, 95);
+            v2 = MessageUtil_ExpandedStrbuf(param3->unk_34, param3->unk_38, 1, HEAP_ID_95);
 
             if (v1 == v0) {
                 Text_AddPrinterWithParamsAndColor(&param0[0], FONT_SYSTEM, param3->unk_3C[v0], 5, 1 + v0 * 18, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 3, 0), NULL);
@@ -1640,7 +1640,7 @@ static void ov109_021D5668(UnkStruct_ov109_021D5140 *param0)
     }
 
     if (v1) {
-        Sound_PlayEffect(1615);
+        Sound_PlayEffect(SEQ_SE_DP_TELE2);
     }
 }
 

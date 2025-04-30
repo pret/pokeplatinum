@@ -15,7 +15,7 @@
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "party.h"
 #include "pokemon.h"
 #include "trainer_info.h"
@@ -1583,14 +1583,14 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     v6 = (param0->unk_05 * 2);
     v4 = ov104_0223B500(param0->unk_04);
     v5 = ov104_0223B50C(param0->unk_04);
-    v13 = Party_GetFromSavedata(param0->unk_6FC);
+    v13 = SaveData_GetParty(param0->unk_6FC);
 
     HealAllPokemonInParty(v13);
 
     v8 = FieldBattleDTO_New(11, ov104_0223B4D4(param0->unk_04));
-    FieldBattleDTO_InitFromGameState(v8, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
+    FieldBattleDTO_InitFromGameState(v8, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
-    v8->background = 22;
+    v8->background = BACKGROUND_BATTLE_HALL;
     v8->terrain = TERRAIN_BATTLE_HALL;
     Party_InitWithCapacity(v8->parties[0], v4);
 
@@ -1805,7 +1805,7 @@ u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0)
     Party *v2;
     Pokemon *v3;
 
-    v2 = Party_GetFromSavedata(param0->unk_6FC);
+    v2 = SaveData_GetParty(param0->unk_6FC);
     v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_260[0]);
     v1 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
 
@@ -1862,7 +1862,7 @@ u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0)
     Pokemon *v1;
     u16 v2, v3;
 
-    v0 = Party_GetFromSavedata(param0->unk_6FC);
+    v0 = SaveData_GetParty(param0->unk_6FC);
     v1 = Party_GetPokemonBySlotIndex(v0, param0->unk_260[0]);
     v2 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 

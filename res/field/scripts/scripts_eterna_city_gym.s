@@ -13,15 +13,15 @@
     ScriptEntryEnd
 
 _001E:
-    ScrCmd_2C9
+    InitPersistedMapFeaturesForEternaGym
     End
 
 _0022:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FOREST, 0x800C
-    GoToIfEq 0x800C, 1, _0048
+    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0048
     Message 13
     WaitABXPadPress
     CloseMessage
@@ -39,8 +39,8 @@ _0048:
 _0056:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadgeAcquired BADGE_ID_FOREST, 0x800C
-    GoToIfEq 0x800C, 1, _0080
+    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0080
     BufferRivalName 0
     BufferRivalName 1
     Message 15
@@ -63,14 +63,14 @@ _0094:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_FOREST, 0x800C
-    GoToIfEq 0x800C, 1, _0161
+    CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0161
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 67, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_GARDENIA
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _01C3
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01C3
     Message 1
     BufferPlayerName 0
     Message 2
@@ -82,21 +82,20 @@ _0094:
     SetTrainerFlag TRAINER_AROMA_LADY_ANGELA
     SetTrainerFlag TRAINER_LASS_CAROLINE
     SetTrainerFlag TRAINER_BEAUTY_LINDSAY
-    ClearFlag 0x1FC
+    ClearFlag FLAG_UNK_0x01FC
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 67, TRAINER_LEADER_GARDENIA, 0, 0
     Message 3
     GoTo _0177
     End
 
 _0119:
-    SetVar 0x8004, 0x19D
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _0157
+    SetVar VAR_0x8004, ITEM_TM86
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0157
     CallCommonScript 0x7FC
-    SetFlag 116
-    BufferItemName 0, 0x8004
-    BufferTMHMMoveName 1, 0x8004
+    SetFlag FLAG_UNK_0x0074
+    BufferItemName 0, VAR_0x8004
+    BufferTMHMMoveName 1, VAR_0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -110,7 +109,7 @@ _0157:
     End
 
 _0161:
-    GoToIfUnset 116, _0119
+    GoToIfUnset FLAG_UNK_0x0074, _0119
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -118,14 +117,13 @@ _0161:
     End
 
 _0177:
-    SetVar 0x8004, 0x19D
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _01B7
+    SetVar VAR_0x8004, ITEM_TM86
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01B7
     CallCommonScript 0x7FC
-    SetFlag 116
-    BufferItemName 0, 0x8004
-    BufferTMHMMoveName 1, 0x8004
+    SetFlag FLAG_UNK_0x0074
+    BufferItemName 0, VAR_0x8004
+    BufferTMHMMoveName 1, VAR_0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -149,16 +147,16 @@ _01C9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40AE, 1, _0211
-    ScrCmd_0EA TRAINER_LASS_CAROLINE
+    GoToIfGe VAR_UNK_0x40AE, 1, _0211
+    PlayTrainerEncounterBGM TRAINER_LASS_CAROLINE
     Message 6
     CloseMessage
     StartTrainerBattle TRAINER_LASS_CAROLINE
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _01C3
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01C3
     Message 7
     WaitABXPadPress
-    SetVar 0x40AE, 1
+    SetVar VAR_UNK_0x40AE, 1
     CloseMessage
     ReleaseAll
     ScrCmd_2CA
@@ -175,18 +173,18 @@ _021C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40AE, 2, _0270
-    ScrCmd_0EA TRAINER_AROMA_LADY_JENNA
-    SetVar 0x8007, 3
+    GoToIfGe VAR_UNK_0x40AE, 2, _0270
+    PlayTrainerEncounterBGM TRAINER_AROMA_LADY_JENNA
+    SetVar VAR_0x8007, 3
     Call _02DA
     Message 8
     CloseMessage
     StartTrainerBattle TRAINER_AROMA_LADY_JENNA
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _01C3
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01C3
     Message 9
     WaitABXPadPress
-    SetVar 0x40AE, 2
+    SetVar VAR_UNK_0x40AE, 2
     CloseMessage
     ReleaseAll
     ScrCmd_2CA
@@ -203,18 +201,18 @@ _027B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x40AE, 3, _02CF
-    ScrCmd_0EA TRAINER_AROMA_LADY_ANGELA
-    SetVar 0x8007, 4
+    GoToIfGe VAR_UNK_0x40AE, 3, _02CF
+    PlayTrainerEncounterBGM TRAINER_AROMA_LADY_ANGELA
+    SetVar VAR_0x8007, 4
     Call _02DA
     Message 10
     CloseMessage
     StartTrainerBattle TRAINER_AROMA_LADY_ANGELA
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _01C3
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01C3
     Message 11
     WaitABXPadPress
-    SetVar 0x40AE, 3
+    SetVar VAR_UNK_0x40AE, 3
     CloseMessage
     ReleaseAll
     ScrCmd_2CA
@@ -228,29 +226,29 @@ _02CF:
     End
 
 _02DA:
-    GetPlayerDir 0x800C
-    CallIfEq 0x800C, 0, _0314
-    CallIfEq 0x800C, 1, _0322
-    CallIfEq 0x800C, 2, _0330
-    CallIfEq 0x800C, 3, _033E
+    GetPlayerDir VAR_RESULT
+    CallIfEq VAR_RESULT, 0, _0314
+    CallIfEq VAR_RESULT, 1, _0322
+    CallIfEq VAR_RESULT, 2, _0330
+    CallIfEq VAR_RESULT, 3, _033E
     Return
 
 _0314:
-    ScrCmd_188 0x8007, 15
-    ScrCmd_189 0x8007, 1
+    ScrCmd_188 VAR_0x8007, 15
+    ScrCmd_189 VAR_0x8007, 1
     Return
 
 _0322:
-    ScrCmd_188 0x8007, 14
-    ScrCmd_189 0x8007, 0
+    ScrCmd_188 VAR_0x8007, 14
+    ScrCmd_189 VAR_0x8007, 0
     Return
 
 _0330:
-    ScrCmd_188 0x8007, 17
-    ScrCmd_189 0x8007, 3
+    ScrCmd_188 VAR_0x8007, 17
+    ScrCmd_189 VAR_0x8007, 3
     Return
 
 _033E:
-    ScrCmd_188 0x8007, 16
-    ScrCmd_189 0x8007, 2
+    ScrCmd_188 VAR_0x8007, 16
+    ScrCmd_189 VAR_0x8007, 2
     Return

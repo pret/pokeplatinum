@@ -1,0 +1,10 @@
+{
+    "name": "m_dun3201_",
+    "headers": [],
+    "altitudes": [],
+    "maps": [
+        ["MAP_584", "MAP_585", "MAP_591"],
+        ["MAP_586", "MAP_587", "MAP_592"],
+        ["MAP_589", "MAP_590", "MAP_593"]
+    ]
+}

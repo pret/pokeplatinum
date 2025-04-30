@@ -12,8 +12,8 @@
 _0012:
     BufferPlayerName 0
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0031
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0031
     GoTo _003E
     End
 
@@ -34,11 +34,11 @@ _003E:
 
 _004C:
     BufferPlayerName 0
-    GetPlayerGender 0x800C
-    CallIfEq 0x800C, GENDER_MALE, _0086
-    CallIfEq 0x800C, GENDER_FEMALE, _008B
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _0090
+    GetPlayerGender VAR_RESULT
+    CallIfEq VAR_RESULT, GENDER_MALE, _0086
+    CallIfEq VAR_RESULT, GENDER_FEMALE, _008B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _0090
     GoTo _009D
     End
 
@@ -71,9 +71,9 @@ _00AB:
     End
 
 _00B5:
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 0, _00D6
-    GoToIfEq 0x800C, 1, _00DF
+    GetNationalDexEnabled VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _00D6
+    GoToIfEq VAR_RESULT, 1, _00DF
     End
 
 _00D6:
@@ -85,31 +85,31 @@ _00DF:
     GoTo _0126
 
 _00E8:
-    GoToIfUnset 0x9BA, _0104
-    ScrCmd_1E8 0x800C
-    CallIfEq 0x800C, 1, _0120
+    GoToIfUnset FLAG_UNK_0x09BA, _0104
+    ScrCmd_1E8 VAR_RESULT
+    CallIfEq VAR_RESULT, 1, _0120
 _0104:
-    ScrCmd_11E 0x8004
-    BufferNumber 0, 0x8004
+    ScrCmd_11E VAR_0x8004
+    BufferNumber 0, VAR_0x8004
     Message 1
-    ScrCmd_123 0, 0x800C
+    ScrCmd_123 0, VAR_RESULT
     BufferPlayerName 0
-    MessageVar 0x800C
+    MessageVar VAR_RESULT
     WaitABPress
     Return
 
 _0120:
-    SetFlag 0x110
+    SetFlag FLAG_UNK_0x0110
     Return
 
 _0126:
-    ScrCmd_121 0x8004
-    GetPlayerGender 0x8005
-    BufferNumber 0, 0x8004
+    ScrCmd_121 VAR_0x8004
+    GetPlayerGender VAR_0x8005
+    BufferNumber 0, VAR_0x8004
     Message 20
-    ScrCmd_123 1, 0x800C
+    ScrCmd_123 1, VAR_RESULT
     BufferPlayerName 0
-    MessageVar 0x800C
+    MessageVar VAR_RESULT
     WaitABPress
     Return
 

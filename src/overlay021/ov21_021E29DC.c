@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "overlay021/ov21_021D1FA4.h"
@@ -35,13 +33,13 @@
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 
@@ -1137,38 +1135,38 @@ static void ov21_021E37CC(u32 param0, u32 param1, void *param2)
         switch (param0) {
         case 5:
             ov21_021E2E00(v3);
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             break;
         case 0:
             if (v3->unk_08 != 0) {
                 ov21_021E3C18(v1, 0, v3->unk_08);
                 ov21_021E3E8C(v2, v1);
-                Sound_PlayEffect(1675);
+                Sound_PlayEffect(SEQ_SE_DP_DENSI06);
             }
             break;
         case 1:
             if (v3->unk_08 != 1) {
                 ov21_021E3C18(v1, 1, v3->unk_08);
                 ov21_021E3E8C(v2, v1);
-                Sound_PlayEffect(1675);
+                Sound_PlayEffect(SEQ_SE_DP_DENSI06);
             }
             break;
         case 2:
             if (v3->unk_08 != 2) {
                 ov21_021E3C18(v1, 2, v3->unk_08);
                 ov21_021E3E8C(v2, v1);
-                Sound_PlayEffect(1675);
+                Sound_PlayEffect(SEQ_SE_DP_DENSI06);
             }
             break;
         case 3:
             if (v3->unk_08 != 3) {
                 if (ov21_021E3C18(v1, 3, v3->unk_08)) {
                     ov21_021E3E8C(v2, v1);
-                    Sound_PlayEffect(1675);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
                 } else {
                     if (v2->unk_10 == 0) {
                         if (v3->unk_08 != 2) {
-                            Sound_PlayEffect(1501);
+                            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                         }
 
                         v2->unk_10 = 1;
@@ -1180,12 +1178,12 @@ static void ov21_021E37CC(u32 param0, u32 param1, void *param2)
             if (v3->unk_08 != 4) {
                 if (ov21_021E3C18(v1, 4, v3->unk_08)) {
                     ov21_021E3E8C(v2, v1);
-                    Sound_PlayEffect(1675);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
                 } else {
                     if (v2->unk_10 == 0) {
                         if (PokedexSort_CanDetectForms(v3->unk_04) == 1) {
                             if (v3->unk_08 != 2) {
-                                Sound_PlayEffect(1501);
+                                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                             }
                         }
 
@@ -1383,7 +1381,7 @@ static void ov21_021E3C34(UnkStruct_ov21_021E342C *param0)
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov21_021E2E00(v0);
         param0->unk_2C = 1;
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return;
     }
 }
@@ -1439,31 +1437,31 @@ static void ov21_021E3D48(UnkStruct_ov21_021E37B4 *param0, UnkStruct_ov21_021E34
             if (v0->unk_08 != 0) {
                 ov21_021E3C18(param1, 0, v0->unk_08);
                 param1->unk_0C[0] = 2;
-                Sound_PlayEffect(1675);
+                Sound_PlayEffect(SEQ_SE_DP_DENSI06);
             }
             break;
         case 1:
             if (v0->unk_08 != 1) {
                 ov21_021E3C18(param1, 1, v0->unk_08);
                 param1->unk_0C[1] = 2;
-                Sound_PlayEffect(1675);
+                Sound_PlayEffect(SEQ_SE_DP_DENSI06);
             }
             break;
         case 2:
             if (v0->unk_08 != 2) {
                 ov21_021E3C18(param1, 2, v0->unk_08);
                 param1->unk_0C[2] = 2;
-                Sound_PlayEffect(1675);
+                Sound_PlayEffect(SEQ_SE_DP_DENSI06);
             }
             break;
         case 3:
             if (v0->unk_08 != 3) {
                 if (ov21_021E3C18(param1, 3, v0->unk_08)) {
                     param1->unk_0C[3] = 2;
-                    Sound_PlayEffect(1675);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
                 } else {
                     if (v0->unk_08 != 2) {
-                        Sound_PlayEffect(1501);
+                        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                     }
                 }
             }
@@ -1472,10 +1470,10 @@ static void ov21_021E3D48(UnkStruct_ov21_021E37B4 *param0, UnkStruct_ov21_021E34
             if (v0->unk_08 != 4) {
                 if (ov21_021E3C18(param1, 4, v0->unk_08)) {
                     param1->unk_0C[4] = 2;
-                    Sound_PlayEffect(1675);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
                 } else {
                     if (v0->unk_08 != 2) {
-                        Sound_PlayEffect(1501);
+                        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                     }
                 }
             }
@@ -1484,7 +1482,7 @@ static void ov21_021E3D48(UnkStruct_ov21_021E37B4 *param0, UnkStruct_ov21_021E34
             ov21_021E2E00(v0);
             param1->unk_2C = 1;
             param1->unk_0C[5] = 2;
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             break;
         }
     }

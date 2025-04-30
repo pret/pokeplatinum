@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetVar 0x8007, 0
+    SetVar VAR_0x8007, 0
     CallCommonScript 0x7D2
     End
 
@@ -38,22 +38,21 @@ _0044:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0xAA1, _00C0
+    GoToIfSet FLAG_UNK_0x0AA1, _00C0
     Message 2
-    ScrCmd_247 0x8000
-    ScrCmd_1B9 0x800C, 0x8000
-    GoToIfGe 0x800C, 150, _0084
-    GoToIfGe 0x800C, 50, _00CB
+    GetFirstNonEggInParty VAR_0x8000
+    GetPartyMonFriendship VAR_RESULT, VAR_0x8000
+    GoToIfGe VAR_RESULT, 150, _0084
+    GoToIfGe VAR_RESULT, 50, _00CB
     GoTo _00D6
 
 _0084:
     Message 3
-    SetVar 0x8004, 3
-    SetVar 0x8005, 1
-    ScrCmd_07D 0x8004, 0x8005, 0x800C
-    GoToIfEq 0x800C, 0, _00B6
+    SetVar VAR_0x8004, ITEM_GREAT_BALL
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00B6
     CallCommonScript 0x7FC
-    SetFlag 0xAA1
+    SetFlag FLAG_UNK_0x0AA1
     GoTo _00C0
 
 _00B6:

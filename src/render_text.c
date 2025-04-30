@@ -4,15 +4,14 @@
 #include <string.h>
 
 #include "constants/charcode.h"
-#include "generated/sdat.h"
 
 #include "bg_window.h"
 #include "charcode.h"
 #include "font.h"
 #include "render_text.h"
+#include "sound_playback.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02005474.h"
 
 #define SPEED_UP_ON_TOUCH_PRESS (gSystem.touchPressed && sRenderControlFlags.speedUpOnTouch)
 #define SPEED_UP_ON_TOUCH_HOLD  (gSystem.touchHeld && sRenderControlFlags.speedUpOnTouch)

@@ -35,7 +35,7 @@
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 #include "sprite_system.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
@@ -528,7 +528,7 @@ static u32 ov62_0223D124 (UnkStruct_0208C06C * param0, int param1)
 
     GF_ASSERT(Unk_ov62_022497E8[v1] != 0xFFFF);
 
-    v0 = GameRecords_GetRecordValue(SaveData_GetGameRecordsPtr(param0->unk_830), Unk_ov62_022497E8[v1]);
+    v0 = GameRecords_GetRecordValue(SaveData_GetGameRecords(param0->unk_830), Unk_ov62_022497E8[v1]);
 
     return v0;
 }
@@ -975,7 +975,7 @@ static BOOL ov62_0223D744 (UnkStruct_0208C06C * param0)
         sub_0208B9E0(param0->unk_6F0, 1);
         sub_0208BA08(param0->unk_6F0, 24, 24);
         ov62_02231AAC(param0, 279);
-        Sound_PlayEffect(1381);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80);
         param0->unk_08++;
         break;
     case 1:
@@ -1040,7 +1040,7 @@ static BOOL ov62_0223D744 (UnkStruct_0208C06C * param0)
                 param0->unk_08 = 5;
             } else {
                 Sound_StopEffect(1381, 0);
-                Sound_PlayEffect(1375);
+                Sound_PlayEffect(SEQ_SE_PL_BREC12);
                 param0->unk_08 = 0xFF;
             }
         }

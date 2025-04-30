@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/communication/comm_type.h"
-#include "generated/sdat.h"
 
 #include "field/field_system.h"
 
@@ -21,6 +20,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -29,7 +29,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -164,8 +163,8 @@ static void CommClubMan_PrintMessage(int msgId, BOOL format)
         FieldMessage_AddWindow(sCommClubMan->fieldSystem->bgConfig, &sCommClubMan->msgWindow, 3);
     }
 
-    FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_Options(sCommClubMan->fieldSystem->saveData));
-    sCommClubMan->printMsgIndex = FieldMessage_Print(&sCommClubMan->msgWindow, sCommClubMan->strBuff[5], SaveData_Options(sCommClubMan->fieldSystem->saveData), 1);
+    FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_GetOptions(sCommClubMan->fieldSystem->saveData));
+    sCommClubMan->printMsgIndex = FieldMessage_Print(&sCommClubMan->msgWindow, sCommClubMan->strBuff[5], SaveData_GetOptions(sCommClubMan->fieldSystem->saveData), 1);
 }
 
 static inline void CommClubMan_PrintMessageFastSpeed(int msgId, BOOL format)
@@ -185,7 +184,7 @@ static inline void CommClubMan_PrintMessageFastSpeed(int msgId, BOOL format)
         FieldMessage_AddWindow(sCommClubMan->fieldSystem->bgConfig, &sCommClubMan->msgWindow, 3);
     }
 
-    FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_Options(sCommClubMan->fieldSystem->saveData));
+    FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_GetOptions(sCommClubMan->fieldSystem->saveData));
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
@@ -220,7 +219,7 @@ static void CommClubMan_Init(FieldSystem *fieldSystem)
     sCommClubMan->retCode = 0;
     sCommClubMan->fieldSystem = fieldSystem;
     sCommClubMan->unk_97 = 0;
-    sCommClubMan->msgLoader = MessageLoader_Init(1, 26, 353, HEAP_ID_FIELD);
+    sCommClubMan->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, HEAP_ID_FIELD);
     sCommClubMan->trainerInfoPersonal = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(sCommClubMan->fieldSystem));
     sCommClubMan->unk_7C = TrainerInfo_New(4);
 
@@ -469,13 +468,13 @@ static void ov7_02249FFC(SysTask *task, void *param1)
             ov7_0224A0C8(commClubMan);
             break;
         case 0xfffffffe:
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
             CommClubMan_Disconnect();
             CommClubMan_DestroyList(task, commClubMan);
             break;
         default:
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ListMenu_CalcTrueCursorPos(commClubMan->unk_5C, &commClubMan->connectIndex);
 
             if (sub_02033808() > commClubMan->connectIndex) {
@@ -894,7 +893,7 @@ static void ov7_0224A7D0(SysTask *task, void *param1)
 
     if (CommInfo_NewNetworkId() != 0xff) {
         commClubMan->unk_95 = CommInfo_NewNetworkId();
-        Sound_PlayEffect(1549);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         CommClubMan_PrintPlayerContactMsg(commClubMan->unk_95, commClubMan);
         CommClubMan_SetTask(ov7_0224AF84);
         return;

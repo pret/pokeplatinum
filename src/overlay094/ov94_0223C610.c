@@ -18,13 +18,13 @@
 #include "message.h"
 #include "narc.h"
 #include "render_window.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020393C8.h"
 
@@ -83,7 +83,7 @@ int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_02245934(param0);
     ov94_0223CF3C(param0);
 
-    sub_02004550(23, 1097, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_23, SEQ_BLD_BLD_GTC, 1);
 
     if (param0->unk_34 == 0) {
         ov94_0223C85C(param0);
@@ -430,19 +430,19 @@ static int ov94_0223CC28(UnkStruct_ov94_0223FD4C *param0)
             if (param0->unk_36 == 0) {
                 ov94_0223C4C0(param0, 5, 5);
                 param0->unk_2C = 9;
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 if (param0->unk_3A == 0) {
                     ov94_0223C4C0(param0, 7, 11);
                     param0->unk_1C = 2;
                     param0->unk_2C = 9;
                     param0->unk_3A = (60 * 30);
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                 } else {
                     Sprite_SetAnimateFlag(param0->unk_E20, 0);
                     ov94_0223CF80(param0, 34, TEXT_SPEED_FAST, 0, 0xf0f);
                     ov94_0223C3F4(param0, 11, 5);
-                    Sound_PlayEffect(1523);
+                    Sound_PlayEffect(SEQ_SE_DP_BOX03);
                     param0->unk_10E0 = 0;
                 }
             }
@@ -450,25 +450,25 @@ static int ov94_0223CC28(UnkStruct_ov94_0223FD4C *param0)
         case 1:
             ov94_0223C4C0(param0, 4, 0);
             param0->unk_2C = 9;
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         case 2:
             ov94_0223CFD8(param0, 7, ov94_0223C4D4(param0), 0, 0xf0f);
             ov94_0223C3F4(param0, 10, 12);
             Sprite_SetAnimateFlag(param0->unk_E20, 0);
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         }
     } else if (gSystem.pressedKeys & PAD_KEY_UP) {
         if (param0->unk_10C != 0) {
             param0->unk_10C--;
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov94_0223C3FC(param0->unk_E20, Unk_ov94_02245A48[param0->unk_10C][0], Unk_ov94_02245A48[param0->unk_10C][1]);
         }
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         if (param0->unk_10C < 2) {
             param0->unk_10C++;
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov94_0223C3FC(param0->unk_E20, Unk_ov94_02245A48[param0->unk_10C][0], Unk_ov94_02245A48[param0->unk_10C][1]);
         }
     }

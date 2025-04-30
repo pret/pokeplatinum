@@ -36,7 +36,7 @@ _0038:
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_TORCHIC
     Message 2
-    ScrCmd_04D
+    WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -52,26 +52,26 @@ _0057:
 
 _006A:
     Message 4
-    ScrCmd_045 1, 1, 0, 1, 0x800C
-    ScrCmd_046 14, 0xFF, 0
-    ScrCmd_046 15, 0xFF, 1
-    ScrCmd_046 16, 0xFF, 2
-    ScrCmd_046 17, 0xFF, 3
-    ScrCmd_046 18, 0xFF, 4
-    ScrCmd_046 19, 0xFF, 5
-    ScrCmd_046 20, 0xFF, 6
-    ScrCmd_046 21, 0xFF, 7
-    ScrCmd_046 22, 0xFF, 8
-    ScrCmd_047
-    SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0135
-    GoToIfEq 0x8008, 1, _0140
-    GoToIfEq 0x8008, 2, _014B
-    GoToIfEq 0x8008, 3, _0156
-    GoToIfEq 0x8008, 4, _0161
-    GoToIfEq 0x8008, 5, _016C
-    GoToIfEq 0x8008, 6, _0177
-    GoToIfEq 0x8008, 7, _0182
+    InitLocalTextListMenu 1, 1, 0, VAR_RESULT
+    AddListMenuEntry 14, 0
+    AddListMenuEntry 15, 1
+    AddListMenuEntry 16, 2
+    AddListMenuEntry 17, 3
+    AddListMenuEntry 18, 4
+    AddListMenuEntry 19, 5
+    AddListMenuEntry 20, 6
+    AddListMenuEntry 21, 7
+    AddListMenuEntry 22, 8
+    ShowListMenu
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, _0135
+    GoToIfEq VAR_0x8008, 1, _0140
+    GoToIfEq VAR_0x8008, 2, _014B
+    GoToIfEq VAR_0x8008, 3, _0156
+    GoToIfEq VAR_0x8008, 4, _0161
+    GoToIfEq VAR_0x8008, 5, _016C
+    GoToIfEq VAR_0x8008, 6, _0177
+    GoToIfEq VAR_0x8008, 7, _0182
     GoTo _018D
     End
 

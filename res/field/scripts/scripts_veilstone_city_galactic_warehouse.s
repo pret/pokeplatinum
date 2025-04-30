@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _0016:
-    CallIfLt 0x411F, 2, _0025
+    CallIfLt VAR_UNK_0x411F, 2, _0025
     End
 
 _0025:
@@ -24,8 +24,8 @@ _003B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem ITEM_STORAGE_KEY, 1, 0x800C
-    GoToIfEq 0x800C, 1, _0063
+    CheckItem ITEM_STORAGE_KEY, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0063
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -34,14 +34,14 @@ _003B:
 
 _0063:
     Message 8
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0086
-    GoToIfEq 0x800C, MENU_NO, _00C2
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0086
+    GoToIfEq VAR_RESULT, MENU_NO, _00C2
     End
 
 _0086:
-    SetFlag 0x10E
-    RemoveItem ITEM_STORAGE_KEY, 1, 0x800C
+    SetFlag FLAG_UNK_0x010E
+    RemoveItem ITEM_STORAGE_KEY, 1, VAR_RESULT
     BufferPlayerName 0
     Message 9
     WaitABXPadPress
@@ -86,8 +86,8 @@ _00D8:
     ApplyMovement LOCALID_PLAYER, _0174
     ApplyMovement 4, _015C
     WaitMovement
-    SetVar 0x407C, 1
-    SetVar 0x411F, 2
+    SetVar VAR_UNK_0x407C, 1
+    SetVar VAR_UNK_0x411F, 2
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -146,18 +146,18 @@ _0197:
     SetObjectEventPos 4, 8, 11
     ScrCmd_188 4, 14
     ScrCmd_189 4, 0
-    ClearFlag 0x20D
+    ClearFlag FLAG_UNK_0x020D
     AddObject 4
-    GetPlayerMapPos 0x8004, 0x8005
-    CallIfEq 0x8004, 8, _025A
-    CallIfEq 0x8004, 9, _026E
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8004, 8, _025A
+    CallIfEq VAR_0x8004, 9, _026E
     Message 4
     CloseMessage
     ApplyMovement 4, _0308
     WaitMovement
     Message 5
     CloseMessage
-    SetFlag 0x10E
+    SetFlag FLAG_UNK_0x010E
     WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 2, _00C8
@@ -165,15 +165,15 @@ _0197:
     WaitMovement
     RemoveObject 2
     RemoveObject 3
-    CallIfEq 0x8004, 8, _0282
-    CallIfEq 0x8004, 9, _028E
+    CallIfEq VAR_0x8004, 8, _0282
+    CallIfEq VAR_0x8004, 9, _028E
     Message 6
     CloseMessage
-    CallIfEq 0x8004, 8, _029A
-    CallIfEq 0x8004, 9, _02AE
+    CallIfEq VAR_0x8004, 8, _029A
+    CallIfEq VAR_0x8004, 9, _02AE
     RemoveObject 4
-    SetFlag 0x28A
-    SetVar 0x411F, 4
+    SetFlag FLAG_UNK_0x028A
+    SetVar VAR_UNK_0x411F, 4
     ReleaseAll
     End
 

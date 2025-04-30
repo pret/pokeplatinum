@@ -65,7 +65,7 @@ _0070:
     End
 
 _00B6:
-    SetFlag 127
+    SetFlag FLAG_UNK_0x007F
     Return
 
     .balign 4, 0
@@ -122,7 +122,7 @@ _011E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 145, _0142
+    GoToIfSet FLAG_UNK_0x0091, _0142
     Call _014D
     Message 0
     WaitABXPadPress
@@ -138,19 +138,19 @@ _0142:
     End
 
 _014D:
-    SetFlag 0x1A1
-    SetFlag 145
-    SetVar 0x4089, 1
+    SetFlag FLAG_UNK_0x01A1
+    SetFlag FLAG_UNK_0x0091
+    SetVar VAR_UNK_0x4089, 1
     Return
 
 _015D:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x293, _01A8
-    GoToIfEq 0x8005, 0x294, _01C2
-    GoToIfEq 0x8005, 0x295, _01DC
-    GoToIfEq 0x8005, 0x296, _01E2
-    GoToIfEq 0x8005, 0x297, _01FC
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x293, _01A8
+    GoToIfEq VAR_0x8005, 0x294, _01C2
+    GoToIfEq VAR_0x8005, 0x295, _01DC
+    GoToIfEq VAR_0x8005, 0x296, _01E2
+    GoToIfEq VAR_0x8005, 0x297, _01FC
     End
 
 _01A8:

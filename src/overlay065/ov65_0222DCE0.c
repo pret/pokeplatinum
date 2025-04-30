@@ -71,8 +71,8 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201E3D8.h"
@@ -385,12 +385,12 @@ static const WindowTemplate Unk_ov65_0223894C = {
 
 static BOOL ov65_0222DCE0(UnkStruct_ov65_0222EBE0 *param0)
 {
-    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(param0->unk_160), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_BATTLE_PARK);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(param0->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_BATTLE_PARK);
 }
 
 static BOOL ov65_0222DCF8(UnkStruct_ov65_0222EBE0 *param0)
 {
-    if (!Bag_GetItemQuantity(SaveData_GetBag(param0->unk_160), 449, 54)) {
+    if (!Bag_GetItemQuantity(SaveData_GetBag(param0->saveData), ITEM_POFFIN_CASE, HEAP_ID_54)) {
         return 0;
     }
 
@@ -640,7 +640,7 @@ static int ov65_0222DED4(int param0)
 
 static int ov65_0222DF88(UnkStruct_ov65_0222EBE0 *param0)
 {
-    Party *v0 = Party_GetFromSavedata(param0->unk_160);
+    Party *v0 = SaveData_GetParty(param0->saveData);
     Pokemon *v1;
     int v2 = Party_GetCurrentCount(v0);
     int v3, v4 = 0;
@@ -697,8 +697,8 @@ static void ov65_0222E01C(UnkStruct_ov65_0222EBE0 *param0)
 
     param0->unk_15C = BgConfig_New(HEAP_ID_54);
     param0->unk_164 = StringTemplate_Default(HEAP_ID_54);
-    param0->unk_168 = MessageLoader_Init(0, 26, 674, HEAP_ID_54);
-    param0->unk_16C = MessageLoader_Init(0, 26, 695, HEAP_ID_54);
+    param0->unk_168 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_54);
+    param0->unk_16C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_54);
 
     ov65_0222E618();
     ov65_0222E638(param0->unk_15C);
@@ -758,11 +758,11 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_0222EBE0), HEAP_ID_54);
 
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov65_0222EBE0));
-        VramTransfer_New(32, 54);
+        VramTransfer_New(32, HEAP_ID_54);
 
         v0->unk_180 = 8;
-        v0->unk_160 = v1->unk_00;
-        v0->unk_00 = sub_0202B370(v0->unk_160);
+        v0->saveData = v1->saveData;
+        v0->unk_00 = SaveData_GetWiFiList(v0->saveData);
         v0->unk_3B4 = v1->unk_04;
         v0->unk_3AC = 8;
         v0->unk_3D0 = -1;
@@ -916,7 +916,7 @@ int ov65_0222E548(OverlayManager *param0, int *param1)
     }
 
     if (ov65_02231A54() == 1) {
-        sub_02004A68(0, 120);
+        Sound_SetInitialVolumeForHandle(SOUND_HANDLE_TYPE_FIELD_BGM, 120);
     }
 
     return 1;
@@ -1459,7 +1459,7 @@ static void ov65_0222ECA8(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, v0, 4, 0, 0, 0, HEAP_ID_54);
 
     {
-        int v1 = Options_Frame(SaveData_Options(param0->unk_160));
+        int v1 = Options_Frame(SaveData_GetOptions(param0->saveData));
 
         LoadMessageBoxGraphics(v0, 2, (512 - (18 + 12)), 10, v1, HEAP_ID_54);
         LoadStandardWindowGraphics(v0, 2, ((512 - (18 + 12)) - 9), 11, 0, HEAP_ID_54);
@@ -1477,7 +1477,7 @@ static void ov65_0222EDD0(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    PlttTransfer_Init(20, 54);
+    PlttTransfer_Init(20, HEAP_ID_54);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
@@ -1491,12 +1491,12 @@ static void ov65_0222EE18(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 54);
 
-    param0->unk_18C = SpriteList_InitRendering(8, &param0->unk_190, 54);
+    param0->unk_18C = SpriteList_InitRendering(8, &param0->unk_190, HEAP_ID_54);
 
     SetSubScreenViewRect(&param0->unk_190, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_31C[v0] = SpriteResourceCollection_New(1, v0, 54);
+        param0->unk_31C[v0] = SpriteResourceCollection_New(1, v0, HEAP_ID_54);
     }
 
     param0->unk_32C = sub_02012744(1, HEAP_ID_54);
@@ -1616,7 +1616,7 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
             param0->unk_3A8 = 61;
         }
     } else {
-        sub_02004550(11, 1175, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
         ov65_0222EE98(param0);
 
         if (!DWC_CheckHasProfile(sub_0202AD28(param0->unk_00))) {
@@ -1660,7 +1660,7 @@ static int ov65_0222F1A8(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     } else {
         if (v1 == 0) {
-            param0->unk_04 = sub_0203871C(param0->unk_160, sizeof(UnkStruct_0207DFAC));
+            param0->unk_04 = sub_0203871C(param0->saveData, sizeof(UnkStruct_0207DFAC));
             ov65_02232B58(param0, 23, 1);
             GF_ASSERT(param0->unk_188 == NULL);
             param0->unk_188 = Window_AddWaitDial(&param0->unk_330, (512 - (18 + 12)));
@@ -1729,10 +1729,10 @@ static int ov65_0222F304(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
         if (v1 == 0) {
             WiFiList_Init(param0->unk_00);
-            Email_Init(SaveData_SaveTable(param0->unk_160, 35));
-            sub_02030764(sub_0203068C(param0->unk_160));
+            Email_Init(SaveData_SaveTable(param0->saveData, SAVE_TABLE_ENTRY_EMAIL));
+            sub_02030764(SaveData_GetBattleFrontier(param0->saveData));
             param0->unk_3A8 = 14;
-            param0->unk_04 = sub_0203871C(param0->unk_160, sizeof(UnkStruct_0207DFAC));
+            param0->unk_04 = sub_0203871C(param0->saveData, sizeof(UnkStruct_0207DFAC));
             ov65_02232B58(param0, 23, 1);
             GF_ASSERT(param0->unk_188 == NULL);
             param0->unk_188 = Window_AddWaitDial(&param0->unk_330, (512 - (18 + 12)));
@@ -1762,7 +1762,7 @@ static int ov65_0222F3DC(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
         if (v1 == 0) {
             param0->unk_3A8 = 14;
-            param0->unk_04 = sub_0203871C(param0->unk_160, sizeof(UnkStruct_0207DFAC));
+            param0->unk_04 = sub_0203871C(param0->saveData, sizeof(UnkStruct_0207DFAC));
             ov65_02232B58(param0, 23, 1);
             GF_ASSERT(param0->unk_188 == NULL);
             param0->unk_188 = Window_AddWaitDial(&param0->unk_330, (512 - (18 + 12)));
@@ -1787,10 +1787,10 @@ static int ov65_0222F490(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
 static void ov65_0222F4C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(param0->unk_160);
-    Pokedex *v1 = SaveData_GetPokedex(param0->unk_160);
-    Party *v2 = Party_GetFromSavedata(param0->unk_160);
-    UnkStruct_0202C878 *v3 = sub_0202C878(param0->unk_160);
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(param0->saveData);
+    Pokedex *v1 = SaveData_GetPokedex(param0->saveData);
+    Party *v2 = SaveData_GetParty(param0->saveData);
+    UnkStruct_0202C878 *v3 = sub_0202C878(param0->saveData);
     int v4, v5;
 
     GF_ASSERT((sizeof(UnkStruct_0207E060)) == sizeof(UnkStruct_0207E060));
@@ -2080,7 +2080,7 @@ static int ov65_0222F90C(UnkStruct_ov65_0222EBE0 *param0, int param1)
         MI_CpuClear8(param0->unk_CC, 32 * sizeof(int));
 
         ov65_0222EE98(param0);
-        param0->unk_04 = sub_0203871C(param0->unk_160, sizeof(UnkStruct_0207DFAC));
+        param0->unk_04 = sub_0203871C(param0->saveData, sizeof(UnkStruct_0207DFAC));
         ov65_02232B58(param0, 23, 1);
         GF_ASSERT(param0->unk_188 == NULL);
         param0->unk_188 = Window_AddWaitDial(&param0->unk_330, (512 - (18 + 12)));
@@ -2180,7 +2180,7 @@ static int ov65_0222FB44(UnkStruct_ov65_0222EBE0 *param0, int param1)
     }
 
     if (ov4_021D27E0()) {
-        SaveData_SaveStateInit(param0->unk_160, 0);
+        SaveData_SaveStateInit(param0->saveData, 0);
         param0->unk_3A8 = 71;
         return param1;
     }
@@ -2203,7 +2203,7 @@ static int ov65_0222FB44(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_0222FBD0(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     if (ov4_021D27E0()) {
-        int v0 = SaveData_SaveStateMain(param0->unk_160);
+        int v0 = SaveData_SaveStateMain(param0->saveData);
 
         if ((v0 != 0) && (v0 != 1)) {
             ov4_021D27F4();
@@ -2290,7 +2290,7 @@ static void ov65_0222FD70(UnkStruct_ov65_0222EBE0 *param0)
 {
     TextColor v0;
     int v1, v2, v3;
-    TrainerInfo *v4 = SaveData_GetTrainerInfo(param0->unk_160);
+    TrainerInfo *v4 = SaveData_GetTrainerInfo(param0->saveData);
     Strbuf *v5 = TrainerInfo_NameNewStrbuf(v4, 54);
     u32 v6;
 
@@ -2349,7 +2349,7 @@ static void ov65_0222FD70(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_0222FED8(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
@@ -2528,9 +2528,9 @@ static int ov65_02230164(UnkStruct_ov65_0222EBE0 *param0)
         ov65_022336C4(param0);
 
         if (v6 == 1) {
-            Sound_PlayEffect(1615);
+            Sound_PlayEffect(SEQ_SE_DP_TELE2);
         } else if (v7 == 1) {
-            Sound_PlayEffect(1615);
+            Sound_PlayEffect(SEQ_SE_DP_TELE2);
         }
     }
 
@@ -2595,7 +2595,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
                     ov65_02232B58(param0, 91, 0);
                 }
 
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 ov65_0222FD70(param0);
                 param0->unk_3A8 = 20;
                 ov65_02232F90(param0, HEAP_ID_54);
@@ -2620,7 +2620,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     v1 = ov65_0223012C(param0);
 
     if ((0 != v1) && (param0->unk_3D0 != -1)) {
-        Sound_PlayEffect(1572);
+        Sound_PlayEffect(SEQ_SE_DP_UG_020);
         param0->unk_3A8 = 48;
         return param1;
     }
@@ -2649,7 +2649,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     if (param0->unk_3D0 == -1) {
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
             if (ov65_0222DDFC(v4)) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 param0->unk_3A8 = 39;
                 ov65_02232F90(param0, HEAP_ID_54);
                 return param1;
@@ -2664,7 +2664,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     case 0:
         return param1;
     case 1:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
         if (ov65_0222DDFC(v4)) {
             param0->unk_3A8 = 39;
@@ -2679,7 +2679,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
         ov65_02232F90(param0, HEAP_ID_54);
         return param1;
     case 3:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
         if (ov65_0222DDFC(v4)) {
             ov65_022355B0(&param0->unk_3EC);
@@ -2697,7 +2697,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
         break;
     case 2:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
         if (ov65_0222DDFC(v4)) {
             param0->unk_3A8 = 39;
@@ -3327,10 +3327,10 @@ static int ov65_02230FBC(UnkStruct_ov65_0222EBE0 *param0, int param1)
     case 0xfffffffe:
         param0->unk_3A8 = 19;
         ov65_02232DFC(param0);
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         break;
     default:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
         if ((v0 == 19) && (v2 != 0)) {
             if (v2 == 1) {
@@ -3415,7 +3415,7 @@ static int ov65_02231200(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
         param0->unk_3E4 = 0;
 
-        CommInfo_Init(param0->unk_160, NULL);
+        CommInfo_Init(param0->saveData, NULL);
 
         CommInfo_SendBattleRegulation();
 
@@ -3510,11 +3510,11 @@ static int ov65_02231440(UnkStruct_ov65_0222EBE0 *param0, int param1)
     case 0xffffffff:
         return param1;
     case 0xfffffffe:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         param0->unk_3A8 = 36;
         break;
     default:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov65_02232E58(param0, v0);
         param0->unk_3A8 = 19;
         ov65_02232DFC(param0);
@@ -3780,15 +3780,15 @@ static BOOL ov65_02231978(UnkStruct_0207E060 *param0)
 
 static u32 ov65_022319B8(UnkStruct_ov65_0222EBE0 *param0)
 {
-    if (!Bag_HasItemsInPocket(SaveData_GetBag(param0->unk_160), 4)) {
+    if (!Bag_HasItemsInPocket(SaveData_GetBag(param0->saveData), POCKET_BERRIES)) {
         return 1;
     }
 
-    if (!Bag_GetItemQuantity(SaveData_GetBag(param0->unk_160), 449, 54)) {
+    if (!Bag_GetItemQuantity(SaveData_GetBag(param0->saveData), ITEM_POFFIN_CASE, HEAP_ID_54)) {
         return 3;
     }
 
-    if (Poffin_GetNumberOfFilledSlots(Poffin_GetSavedataBlock(param0->unk_160)) >= MAX_POFFINS) {
+    if (Poffin_GetNumberOfFilledSlots(SaveData_GetPoffinCase(param0->saveData)) >= MAX_POFFINS) {
         return 2;
     }
 
@@ -3797,27 +3797,27 @@ static u32 ov65_022319B8(UnkStruct_ov65_0222EBE0 *param0)
 
 static void ov65_02231A0C(void)
 {
-    u32 v0;
+    u32 bgmID;
 
     ov4_021D2584(0);
 
     if (ov65_02231A54() == 0) {
-        if (IsNight() == 0) {
-            v0 = 1085;
+        if (IsNight() == FALSE) {
+            bgmID = SEQ_PC_01;
         } else {
-            v0 = 1086;
+            bgmID = SEQ_PC_02;
         }
 
-        sub_02004234(0);
-        sub_02004550(11, v0, 1);
+        Sound_SetScene(SOUND_SCENE_NONE);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, bgmID, 1);
     } else {
-        sub_02004AD4(sub_020041FC(), 120);
+        Sound_SetInitialVolumeForSequence(Sound_GetCurrentBGM(), 120);
     }
 }
 
 static BOOL ov65_02231A54(void)
 {
-    u32 v0 = sub_020041FC();
+    u32 v0 = Sound_GetCurrentBGM();
 
     if ((v0 != 1085) && (v0 != 1086)) {
         return 0;
@@ -3829,7 +3829,7 @@ static BOOL ov65_02231A54(void)
 static void ov65_02231A74(UnkStruct_ov65_0222EBE0 *param0, u32 unused)
 {
     void *journalEntryOnlineEvent;
-    JournalEntry *journalEntry = SaveData_GetJournal(param0->unk_160);
+    JournalEntry *journalEntry = SaveData_GetJournal(param0->saveData);
     journalEntryOnlineEvent = JournalEntry_CreateEventMisc(54, ONLINE_EVENT_WIFI_CLUB);
 
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
@@ -3894,11 +3894,11 @@ static int ov65_02231A98(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
 
     case 0xfffffffe:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         param0->unk_3A8 = 19;
         break;
     default:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
         if (v0 == 1) {
             param0->unk_3A8 = 19;
@@ -4065,11 +4065,11 @@ static int ov65_02231E64(UnkStruct_ov65_0222EBE0 *param0, int param1)
         if (ov65_0222DD64(v0) == 0) {
             param0->unk_3A8 = 49;
             ov65_02232DFC(param0);
-            CommInfo_Init(param0->unk_160, NULL);
+            CommInfo_Init(param0->saveData, NULL);
             param0->unk_3BC = 30;
         } else if (CommSys_IsPlayerConnected(0) == 1) {
             ov65_02232DFC(param0);
-            CommInfo_Init(param0->unk_160, NULL);
+            CommInfo_Init(param0->saveData, NULL);
             CommMan_SetErrorHandling(0, 1);
             ov65_0222DFD4(v0);
 
@@ -4179,7 +4179,7 @@ static int ov65_02232028(UnkStruct_ov65_0222EBE0 *param0, int param1)
     ov65_02232DC0(param0, ov4_021D2388());
     ov65_02232B58(param0, 11, 0);
 
-    CommInfo_Init(param0->unk_160, NULL);
+    CommInfo_Init(param0->saveData, NULL);
 
     param0->unk_3A8 = 49;
     param0->unk_3BC = 30;
@@ -4327,7 +4327,7 @@ static int ov65_022323C0(UnkStruct_ov65_0222EBE0 *param0, int param1)
     if (ov65_022321A8(param0)) {
         (void)0;
     } else if (CommTiming_IsSyncState(18) && (ov65_02232390(param0) == 1)) {
-        sub_020391DC(param0->unk_160, v1, 54);
+        sub_020391DC(param0->saveData, v1, HEAP_ID_54);
         ov65_02232DFC(param0);
 
         v2 = ov65_02234FA8(param0, ov4_021D2388());
@@ -4714,7 +4714,7 @@ static int ov65_02232B28(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
 static void ov65_02232B58(UnkStruct_ov65_0222EBE0 *param0, int param1, BOOL param2)
 {
-    u8 v0 = Options_TextFrameDelay(SaveData_Options(param0->unk_160));
+    u8 v0 = Options_TextFrameDelay(SaveData_GetOptions(param0->saveData));
 
     ov65_02232F50(param0);
 
@@ -4840,12 +4840,12 @@ static void ov65_02232E70(UnkStruct_ov65_0222EBE0 *param0, int param1)
         if (ov65_0222DE40(param1) || (param1 == 8) || (param1 == 20) || (param1 == 22) || (param1 == 24) || (param1 == 26) || (param1 == 18)) {
             (void)0;
         } else if (param1 == 1) {
-            sub_0200564C(0, 30);
+            Sound_FadeOutBGM(0, 30);
         } else if (param1 == 16) {
             ov4_021D2584(0);
 
             if (ov65_02231A54() == 1) {
-                sub_0200560C(120, 30, 1);
+                Sound_FadeInBGM(120, 30, BGM_FADE_IN_TYPE_FROM_CURRENT);
             }
         }
     }
@@ -4983,7 +4983,7 @@ static u32 ov65_022330C0(UnkStruct_ov65_0222EBE0 *param0, u32 heapID)
         if (param0->unk_BE0.unk_70 != (v0 - 3)) {
             param0->unk_BE0.unk_70 = (v0 - 3);
 
-            Sound_PlayEffect(1505);
+            Sound_PlayEffect(SEQ_SE_DP_SELECT5);
             ov65_022336D4(param0);
 
             param0->unk_BE0.unk_75 = 1;
@@ -5022,10 +5022,10 @@ static u32 ov65_022330C0(UnkStruct_ov65_0222EBE0 *param0, u32 heapID)
             param0->unk_BE0.unk_73 = 0;
 
             ov65_02234DA0(param0);
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         } else {
             if (v2 != 0) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 ov65_0223327C(param0, v2);
                 ov65_02233874(param0, heapID);
             }
@@ -5114,7 +5114,7 @@ static void ov65_022332C4(u32 param0, u32 param1, void *param2)
     switch (param1) {
     case 0:
         v0->unk_BE0.unk_71 = v1;
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         break;
     default:
         break;
@@ -6268,10 +6268,10 @@ static void ov65_022342A8(UnkStruct_ov65_0222EBE0 *param0, u32 heapID)
 {
     int v0;
     int v1;
-    UnkStruct_0203068C *v2;
+    BattleFrontier *v2;
     Strbuf *v3;
 
-    v2 = sub_0203068C(param0->unk_160);
+    v2 = SaveData_GetBattleFrontier(param0->saveData);
     v0 = param0->unk_BE0.unk_71 - 1;
 
     {
@@ -6327,7 +6327,7 @@ static void ov65_022343CC(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 static void ov65_0223449C(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 {
     int v0;
-    UnkStruct_0202B370 *v1 = sub_0202B370(param0->unk_160);
+    WiFiList *v1 = SaveData_GetWiFiList(param0->saveData);
 
     v0 = param0->unk_BE0.unk_71 - 1;
 
@@ -6376,7 +6376,7 @@ static void ov65_02234628(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_02234694(UnkStruct_ov65_0222EBE0 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
     int v0;
-    UnkStruct_0203068C *v1 = sub_0203068C(param0->unk_160);
+    BattleFrontier *v1 = SaveData_GetBattleFrontier(param0->saveData);
     v0 = sub_02030698(v1, param2, param3);
 
     ov65_02234708(param0, param1, v0, param4, param5);
@@ -6384,7 +6384,7 @@ static void ov65_02234694(UnkStruct_ov65_0222EBE0 *param0, u32 param1, u32 param
 
 static void ov65_022346C4(UnkStruct_ov65_0222EBE0 *param0, Strbuf *param1, u32 param2, u32 param3)
 {
-    UnkStruct_0203068C *v0;
+    BattleFrontier *v0;
     BOOL v1;
     u32 v2;
     static const u32 v3[6] = {
@@ -6398,7 +6398,7 @@ static void ov65_022346C4(UnkStruct_ov65_0222EBE0 *param0, Strbuf *param1, u32 p
 
     GF_ASSERT(param2 < 6);
 
-    v0 = sub_0203068C(param0->unk_160);
+    v0 = SaveData_GetBattleFrontier(param0->saveData);
     v1 = sub_02030698(v0, v3[param2], param3);
 
     if (v1 == 0) {
@@ -6708,7 +6708,7 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 hea
     v7.unk_20 = 0;
     v7.unk_24 = 0;
     v7.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v7.unk_2C = heapID;
+    v7.heapID = heapID;
 
     param0->unk_BE0.unk_234 = sub_02012B60(&v7, v5);
 

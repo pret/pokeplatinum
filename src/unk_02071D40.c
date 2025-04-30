@@ -50,7 +50,7 @@ void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 pa
     GameRecords *gameRecords;
     SaveData *saveData = FieldSystem_GetSaveData(fieldSystem);
     trainerInfo = SaveData_GetTrainerInfo(saveData);
-    gameRecords = SaveData_GetGameRecordsPtr(saveData);
+    gameRecords = SaveData_GetGameRecords(saveData);
 
     param5->unk_05 = param3;
 
@@ -125,13 +125,13 @@ u8 sub_02071F28(FieldSystem *fieldSystem)
     GameRecords *gameRecords;
     VarsFlags *varsFlags;
     SecretBaseRecord *v4;
-    UnkStruct_0203068C *v5;
+    BattleFrontier *v5;
 
     saveData = FieldSystem_GetSaveData(fieldSystem);
-    gameRecords = SaveData_GetGameRecordsPtr(saveData);
+    gameRecords = SaveData_GetGameRecords(saveData);
     varsFlags = SaveData_GetVarsFlags(saveData);
     v4 = SaveData_SecretBaseRecord(saveData);
-    v5 = sub_0203068C(saveData);
+    v5 = SaveData_GetBattleFrontier(saveData);
     v0 = 0;
 
     if (SystemFlag_CheckGameCompleted(varsFlags)) {

@@ -2,9 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0202442C_decl.h"
-#include "struct_defs/struct_0202DBAC.h"
-#include "struct_defs/struct_0202DF40.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay077/const_ov77_021D742C.h"
@@ -26,21 +23,21 @@
 #include "main.h"
 #include "message.h"
 #include "message_util.h"
+#include "mystery_gift.h"
 #include "overlay_manager.h"
 #include "pokedex.h"
 #include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
-#include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
 
@@ -374,7 +371,7 @@ typedef struct {
     MysteryGift *unk_3174;
     int unk_3178;
     int unk_317C;
-    UnkStruct_0202DBAC unk_3180;
+    WonderCard unk_3180;
     void *unk_34D8;
 } UnkStruct_ov97_0222C388;
 
@@ -433,7 +430,7 @@ enum {
 
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0);
-MysteryGift *SaveData_MysteryGift(SaveData *param0);
+MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
 void ov97_02231FFC(BgConfig *param0, void *, int heapID);
 
 static u16 ov97_0222C174(u16 param0)
@@ -676,11 +673,11 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
     v0->unk_08 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
     v0->unk_0C = SaveData_GetPokedex(v0->unk_08);
-    v0->unk_14 = SaveData_Options(v0->unk_08);
+    v0->unk_14 = SaveData_GetOptions(v0->unk_08);
 
     ov97_02237694(v0->heapID);
 
-    v0->unk_3174 = SaveData_MysteryGift(v0->unk_08);
+    v0->unk_3174 = SaveData_GetMysteryGift(v0->unk_08);
     v0->unk_14C = UnkEnum_ov97_0222C78C_09;
     v0->unk_144 = ((1 + 9) + (18 + 12));
     v0->unk_154 = 0;
@@ -688,7 +685,7 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
     v0->unk_158 = 0;
 
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
-    sub_02004550(9, 1174, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_9, SEQ_PRESENT, 1);
 
     return 1;
 }
@@ -716,7 +713,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
     case UnkEnum_ov97_0222C78C_02:
         ov97_0222C47C(v0);
 
-        if (sub_0202DCE0(v0->unk_3174) == 0) {
+        if (MysteryGift_CheckFreePgtSlotExists(v0->unk_3174) == 0) {
             v0->unk_48.unk_50 = 1;
             v0->unk_317C = ov97_0223795C(v0->unk_04, &v0->unk_48, 2, 19, 21);
             ov97_02237790(1, UnkEnum_ov97_0222C78C_03, param1, UnkEnum_ov97_0222C78C_13);
@@ -750,7 +747,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
 
         ov97_02231FFC(v0->unk_04, &v0->unk_3180, HEAP_ID_85);
         ov97_02237790(1, UnkEnum_ov97_0222C78C_06, param1, UnkEnum_ov97_0222C78C_13);
-        v0->unk_3180.unk_104.unk_4E_2 = 0;
+        v0->unk_3180.metadata.saveWonderCard = 0;
         break;
     case UnkEnum_ov97_0222C78C_06:
         if (gSystem.pressedKeys) {
@@ -790,46 +787,46 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     Strbuf *v1;
     StringTemplate *v2;
     MessageLoader *v3;
-    UnkStruct_0202DBAC *v4 = &param0->unk_3180;
+    WonderCard *v4 = &param0->unk_3180;
 
-    MI_CpuClear8(v4, sizeof(UnkStruct_0202DBAC));
+    MI_CpuClear8(v4, sizeof(WonderCard));
 
-    v3 = MessageLoader_Init(1, 26, 421, param0->heapID);
+    v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, param0->heapID);
     v2 = StringTemplate_Default(param0->heapID);
 
-    v4->unk_00 = 7;
+    v4->pgt.type = 7;
     v1 = MessageUtil_ExpandedStrbuf(v2, v3, 76, param0->heapID);
 
-    Strbuf_ToChars((const Strbuf *)v1, v4->unk_104.unk_00, 36);
+    Strbuf_ToChars((const Strbuf *)v1, v4->metadata.title, 36);
     Strbuf_Free(v1);
 
-    v4->unk_104.unk_48 = (ov97_02237E4C(10) | ov97_02237E4C(11) | ov97_02237E4C(12));
-    v4->unk_104.unk_4C = 1;
-    v4->unk_104.unk_4E_0 = 0;
-    v4->unk_104.unk_4E_1 = 0;
-    v4->unk_104.unk_4E_2 = 1;
-    v4->unk_104.unk_4E_3 = 1;
-    v4->unk_104.unk_4E_5 = 0;
+    v4->metadata.validGames = (ov97_02237E4C(10) | ov97_02237E4C(11) | ov97_02237E4C(12));
+    v4->metadata.id = 1;
+    v4->metadata.unique = 0;
+    v4->metadata.unk_4E_1 = 0;
+    v4->metadata.saveWonderCard = 1;
+    v4->metadata.savePgt = 1;
+    v4->metadata.fromSharing = 0;
 
     v1 = MessageUtil_ExpandedStrbuf(v2, v3, 75, param0->heapID);
 
-    Strbuf_ToChars((const Strbuf *)v1, v4->unk_154, 250);
+    Strbuf_ToChars((const Strbuf *)v1, v4->description, 250);
     Strbuf_Free(v1);
 
-    v4->unk_348 = 0;
-    v4->unk_34A[0] = 490;
-    v4->unk_34A[1] = 0;
-    v4->unk_34A[2] = 0;
-    v4->unk_350 = 0;
+    v4->redistributionsLeft = 0;
+    v4->spritesSpecies[0] = 490;
+    v4->spritesSpecies[1] = 0;
+    v4->spritesSpecies[2] = 0;
+    v4->redistributionCount = 0;
     GetCurrentDate(&v0);
-    v4->unk_354 = RTC_ConvertDateToDay(&v0);
+    v4->receivedDate = RTC_ConvertDateToDay(&v0);
 
     StringTemplate_Free(v2);
     MessageLoader_Free(v3);
-    sub_0202DB2C(param0->unk_3174, &v4->unk_00, 3);
+    MysteryGift_TrySavePgt(param0->unk_3174, &v4->pgt, 3);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
 
-    ov97_02238194(param0->unk_04, (UnkStruct_0202DF40 *)v4);
+    ov97_02238194(param0->unk_04, (PGT *)v4);
 }
 
 static void ov97_0222CAAC(UnkStruct_ov97_0222C388 *param0, int param1)
@@ -928,7 +925,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         Sprite_SetDrawFlag(param0->unk_3170, 0);
         DestroyWaitDial(param0->unk_34D8);
         param0->unk_34D8 = NULL;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_160 = 1800;
         *v3 = UnkEnum_ov97_0222C6F8_30;
         break;
@@ -951,7 +948,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
             *v3 = UnkEnum_ov97_0222C6F8_10;
             param0->unk_160 = 3200;
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 34);
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_34D8 = NULL;
 
             return 1;
@@ -1058,7 +1055,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
 
             Sprite_SetDrawFlag(param0->unk_3170, 0);
             DestroyWaitDial(param0->unk_34D8);
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             param0->unk_34D8 = NULL;
         }

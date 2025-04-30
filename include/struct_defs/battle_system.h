@@ -9,7 +9,6 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
@@ -63,7 +62,7 @@ struct BattleSystem {
     PCBoxes *pcBoxes;
     Party *parties[MAX_BATTLERS];
     ChatotCry *unk_78[MAX_BATTLERS];
-    UnkStruct_02007768 *unk_88;
+    PokemonSpriteManager *unk_88;
     UnkStruct_ov12_0221FCDC *unk_8C;
     SpriteSystem *unk_90;
     SpriteManager *unk_94;
@@ -79,7 +78,7 @@ struct BattleSystem {
     UnkStruct_0200C440 *unk_1A8;
     void *unk_1AC;
     Options *unk_1B0;
-    UnkStruct_02027F8C *unk_1B4;
+    PalPad *unk_1B4;
     void *unk_1B8;
     u8 *unk_1BC;
     UnkStruct_ov10_0221F800 *unk_1C0;

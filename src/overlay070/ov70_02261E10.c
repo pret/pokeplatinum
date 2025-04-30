@@ -13,7 +13,7 @@
 
 #include "enums.h"
 #include "heap.h"
-#include "unk_02005474.h"
+#include "sound_playback.h"
 
 typedef struct {
     UnkStruct_ov70_022610B8 *unk_00;
@@ -662,7 +662,7 @@ static void ov70_02262968(UnkStruct_ov70_02261E10 *param0, UnkStruct_ov70_022610
 
     if (v1 == 1) {
         ov70_022629DC(param0, param1);
-        Sound_PlayEffect(1445);
+        Sound_PlayEffect(SEQ_SE_PL_EFF02);
     }
 }
 
@@ -676,7 +676,7 @@ static void ov70_022629AC(UnkStruct_ov70_02261E10 *param0, UnkStruct_ov70_022610
 
     if (v0 == 1) {
         ov70_022629DC(param0, param1);
-        Sound_PlayEffect(1449);
+        Sound_PlayEffect(SEQ_SE_PL_EFF04);
     }
 }
 

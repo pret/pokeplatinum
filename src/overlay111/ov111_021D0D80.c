@@ -24,7 +24,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -33,14 +33,14 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_0201567C.h"
@@ -336,7 +336,7 @@ int ov111_021D0D80(OverlayManager *param0, int *param1)
     v1->unk_168 = v2->unk_00;
     v1->unk_09 = v2->unk_04;
     v1->unk_3D8 = &v2->unk_14;
-    v1->unk_164 = SaveData_Options(v1->unk_168);
+    v1->unk_164 = SaveData_GetOptions(v1->unk_168);
     v1->unk_3DC = &v2->unk_08[0];
     v1->unk_3E0 = &v2->unk_0E[0];
 
@@ -351,7 +351,7 @@ int ov111_021D0D80(OverlayManager *param0, int *param1)
 
     ov111_021D1D68(v1);
     (*param1) = 0;
-    sub_02004550(68, 0, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_68, SEQ_NONE, 0);
 
     return 1;
 }
@@ -474,7 +474,7 @@ static BOOL ov111_021D0FC8(UnkStruct_ov111_021D0F7C *param0)
         ov111_021D24D4(param0);
         GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG0), 1);
         param0->unk_12 = (4 - 1);
-        Sound_PlayEffect(1359);
+        Sound_PlayEffect(SEQ_SE_PL_SYU03);
         param0->unk_08 = 1;
         break;
     case 1:
@@ -485,7 +485,7 @@ static BOOL ov111_021D0FC8(UnkStruct_ov111_021D0F7C *param0)
             if (param0->unk_12 == 0) {
                 param0->unk_08 = 2;
             } else {
-                Sound_PlayEffect(1359);
+                Sound_PlayEffect(SEQ_SE_PL_SYU03);
                 param0->unk_12--;
                 param0->unk_10 = -256;
             }
@@ -523,7 +523,7 @@ static BOOL ov111_021D10B8(UnkStruct_ov111_021D0F7C *param0)
         if (v3 != 0xffffffff) {
             GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 0);
             ov111_021D345C(param0->unk_3A4, 0);
-            Sound_PlayEffect(1508);
+            Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
 
             param0->unk_15[param0->unk_0E] = v3;
             param0->unk_0E++;
@@ -576,7 +576,7 @@ static BOOL ov111_021D116C(UnkStruct_ov111_021D0F7C *param0)
             param0->unk_1C.x = 0x1000;
             param0->unk_1C.y = 0x1000;
             param0->unk_1C.z = 0x1000;
-            Sound_PlayEffect(1359);
+            Sound_PlayEffect(SEQ_SE_PL_SYU03);
             param0->unk_08 = 2;
         }
         break;
@@ -664,7 +664,7 @@ static BOOL ov111_021D1284(UnkStruct_ov111_021D0F7C *param0)
 
         ov111_021D28E8(param0, 1, (param0->unk_15[param0->unk_0E] + 4), 32, 24);
         ov111_021D28E8(param0, 6, (param0->unk_15[param0->unk_0E] + 1), 32, 24);
-        Sound_PlayEffect(1359);
+        Sound_PlayEffect(SEQ_SE_PL_SYU03);
         param0->unk_08 = 2;
         break;
     case 2:
@@ -725,7 +725,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
 
         ov111_021D345C(param0->unk_3A0, 1);
         ov111_021D350C(param0->unk_3A0, 0);
-        Sound_PlayEffect(1361);
+        Sound_PlayEffect(SEQ_SE_PL_UG_020);
         param0->unk_08 = 1;
         break;
     case 1:
@@ -758,7 +758,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
                 ov111_021D297C(param0, v1);
 
                 if (Sound_IsEffectPlaying(1358) == 0) {
-                    Sound_PlayEffect(1358);
+                    Sound_PlayEffect(SEQ_SE_PL_KEZURI);
                 }
             }
 
@@ -808,7 +808,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
                 ov111_021D350C(param0->unk_3A0, 1);
                 ov111_021D2494(param0);
 
-                Sound_PlayEffect(1508);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
 
                 ov111_021D34C4(param0->unk_3A0, 0);
                 ov111_021D1F70(param0);
@@ -823,7 +823,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
                 ov111_021D350C(param0->unk_3A0, 1);
                 ov111_021D2494(param0);
 
-                Sound_PlayEffect(1508);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
 
                 ov111_021D34C4(param0->unk_3A0, 1);
                 ov111_021D1F70(param0);
@@ -945,7 +945,7 @@ static BOOL ov111_021D1980(UnkStruct_ov111_021D0F7C *param0)
         param0->unk_10 = 0;
         param0->unk_12 = 0;
 
-        Sound_PlayEffect(1359);
+        Sound_PlayEffect(SEQ_SE_PL_SYU03);
 
         param0->unk_08 = 1;
         break;
@@ -1148,7 +1148,7 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
     ov111_021D1FC4(param0);
     ov111_021D2034(param0);
 
-    param0->unk_38 = MessageLoader_Init(1, 26, 540, HEAP_ID_115);
+    param0->unk_38 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0540, HEAP_ID_115);
     param0->unk_3C = StringTemplate_Default(HEAP_ID_115);
     param0->unk_40 = Strbuf_Init(600, HEAP_ID_115);
     param0->unk_44 = Strbuf_Init(600, HEAP_ID_115);
@@ -1581,7 +1581,7 @@ static u8 ov111_021D255C(UnkStruct_ov111_021D0F7C *param0)
     ov111_021D345C(param0->unk_3C0, 1);
     ov111_021D350C(param0->unk_3C0, 1);
 
-    Sound_PlayEffect(1360);
+    Sound_PlayEffect(SEQ_SE_PL_CALL);
 
     return v0;
 }
@@ -1590,7 +1590,7 @@ static u8 ov111_021D25BC(UnkStruct_ov111_021D0F7C *param0)
 {
     u8 v0;
 
-    Sound_PlayEffect(1523);
+    Sound_PlayEffect(SEQ_SE_DP_BOX03);
     v0 = ov111_021D2424(param0, &param0->unk_5C[12], 11, 8 * 6, 1 + 4, TEXT_SPEED_INSTANT, 1, 2, 0, FONT_SYSTEM);
     Window_ScheduleCopyToVRAM(&param0->unk_5C[12]);
 
@@ -1918,7 +1918,7 @@ static BOOL ov111_021D2A68(UnkStruct_ov111_021D0F7C *param0, u8 param1)
 
     if (v4 >= 380) {
         if (param0->unk_411[param1] == 0) {
-            Sound_PlayEffect(1506);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
             param0->unk_40E[param0->unk_40D] = param1;
             param0->unk_40D++;
         }
@@ -2056,7 +2056,7 @@ static BOOL ov111_021D2D60(UnkStruct_ov111_021D0F7C *param0, u8 param1)
 
     if (param1 == 0) {
         if (param0->unk_14 == 0) {
-            Sound_PlayEffect(1362);
+            Sound_PlayEffect(SEQ_SE_PL_W100);
         }
 
         if (param0->unk_14 < 4) {

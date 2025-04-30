@@ -5,7 +5,7 @@
             "graphics_id": "OBJ_EVENT_GFX_VOLKNER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": 0,
+            "flag": "0",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -19,7 +19,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 3284,
             "initial_dir": 3,
             "data": [
@@ -35,7 +35,7 @@
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 3301,
             "initial_dir": 1,
             "data": [
@@ -51,7 +51,7 @@
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 3302,
             "initial_dir": 1,
             "data": [
@@ -67,7 +67,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": 0,
+            "flag": "0",
             "script": 3280,
             "initial_dir": 2,
             "data": [

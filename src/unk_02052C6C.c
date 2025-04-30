@@ -30,11 +30,11 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202DF8C.h"
 #include "unk_0203D1B8.h"
@@ -74,7 +74,7 @@ static void sub_02052C6C(FieldSystem *fieldSystem, BOOL param1)
         HallOfFame_Init(v0);
     }
 
-    v1 = Party_GetFromSavedata(fieldSystem->saveData);
+    v1 = SaveData_GetParty(fieldSystem->saveData);
 
     GetCurrentDate(&v2);
     sub_0202DFA8(v0, v1, &v2);
@@ -122,7 +122,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
     case 4: {
         int v6;
 
-        HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
+        HealAllPokemonInParty(SaveData_GetParty(fieldSystem->saveData));
         SaveData_SetFullSaveRequired();
         v6 = SaveData_Save(fieldSystem->saveData);
         sub_02052C6C(fieldSystem, v3->unk_00);
@@ -132,7 +132,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
     } break;
     case 5:
         if (sub_02052FFC(v3)) {
-            Sound_PlayEffect(1563);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE);
             v3->unk_38 = 18;
             (*v4)++;
         }
@@ -187,7 +187,7 @@ void sub_02052E58(FieldTask *param0)
 
     v5->unk_00 = SystemFlag_CheckGameCompleted(v3);
     v5->unk_04.unk_00 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v5->unk_04.unk_04 = Party_GetFromSavedata(fieldSystem->saveData);
+    v5->unk_04.unk_04 = SaveData_GetParty(fieldSystem->saveData);
     v5->unk_04.playTime = SaveData_GetPlayTime(fieldSystem->saveData);
     v5->unk_10.unk_00 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
     v5->unk_10.unk_04 = SystemFlag_CheckGameCompleted(v3);
@@ -197,7 +197,7 @@ void sub_02052E58(FieldTask *param0)
         sub_02055C2C(fieldSystem);
     }
 
-    v7 = Party_GetFromSavedata(fieldSystem->saveData);
+    v7 = SaveData_GetParty(fieldSystem->saveData);
 
     Party_GiveChampionRibbons(v7);
     SetPlayerStartLocation(v1);
@@ -206,7 +206,7 @@ void sub_02052E58(FieldTask *param0)
     SystemFlag_SetGameCompleted(v3);
     TrainerInfo_SetMainStoryCleared(v4);
 
-    v6 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    v6 = SaveData_GetGameRecords(fieldSystem->saveData);
 
     GameRecords_IncrementRecordValue(v6, RECORD_UNK_073);
     FieldTask_InitCall(param0, sub_02052CBC, v5);
@@ -266,7 +266,7 @@ static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
 
 static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
 {
-    Options *v0 = SaveData_Options(fieldSystem->saveData);
+    Options *v0 = SaveData_GetOptions(fieldSystem->saveData);
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 
@@ -291,21 +291,21 @@ static void sub_0205300C(UnkStruct_0205300C *param0)
 
 static void sub_02053028(FieldSystem *fieldSystem, UnkStruct_0205300C *param1, int param2)
 {
-    MessageLoader *v0 = MessageLoader_Init(1, 26, 213, HEAP_ID_FIELD);
+    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD);
 
     if (param2 == 2) {
         StringTemplate *v1;
 
         v1 = StringTemplate_Default(HEAP_ID_FIELD);
         StringTemplate_SetPlayerName(v1, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-        param1->unk_2C = MessageUtil_ExpandedStrbuf(v1, v0, 16, 4);
+        param1->unk_2C = MessageUtil_ExpandedStrbuf(v1, v0, 16, HEAP_ID_FIELD);
         StringTemplate_Free(v1);
     } else {
         param1->unk_2C = MessageLoader_GetNewStrbuf(v0, 18);
     }
 
     MessageLoader_Free(v0);
-    param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, SaveData_Options(fieldSystem->saveData), 1);
+    param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, SaveData_GetOptions(fieldSystem->saveData), 1);
 }
 
 static void sub_02053098(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
+
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
 
@@ -21,6 +23,7 @@
 #include "font.h"
 #include "message.h"
 #include "pltt_transfer.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -28,7 +31,6 @@
 #include "strbuf.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 
@@ -38,7 +40,7 @@ static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct
 static void ov22_0225A200(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4, int param5);
 static void ov22_0225A218(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_0225A2A8(UnkStruct_ov22_0225A0E4 *param0);
-static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 param2, u32 param3, int param4, int param5);
+static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, enum NarcID narcID, u32 param2, u32 param3, int param4, int param5);
 static void ov22_0225A3D0(Window *param0);
 static void ov22_0225A2D0(UnkStruct_ov22_02259C58 *param0, int param1);
 static void ov22_0225A338(UnkStruct_ov22_02259C58 *param0, int param1, int param2, int param3);
@@ -82,7 +84,7 @@ void ov22_02259C9C(UnkStruct_ov22_0225A154 *param0, UnkStruct_ov22_02259C9C *par
     v0.unk_20 = 0;
     v0.unk_24 = 0;
     v0.unk_28 = param1->unk_00.unk_00->vramType;
-    v0.unk_2C = param1->unk_00.unk_00->heapID;
+    v0.heapID = param1->unk_00.unk_00->heapID;
 
     param0->unk_10 = sub_020127E8(&v0);
 }
@@ -121,7 +123,7 @@ void ov22_02259D2C(UnkStruct_ov22_02259D2C *param0, int param1, int param2)
             if (param2 == 0) {
                 ov22_02259DB0(v1);
 
-                Sound_PlayEffect(1661);
+                Sound_PlayEffect(SEQ_SE_DP_PASO);
             } else if (param2 == 2) {
                 ov22_02259D98(v1);
             } else {
@@ -309,7 +311,7 @@ static void ov22_0225A0E4(UnkStruct_ov22_02259C58 *param0, int param1, UnkStruct
     v2.position.z = 0;
     v2.priority = 2;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.heapID = 14;
+    v2.heapID = HEAP_ID_14;
 
     v0.unk_00 = &v2;
     v0.unk_04 = NULL;
@@ -335,7 +337,7 @@ static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct
     v2.position.z = 0;
     v2.priority = 2;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.heapID = 14;
+    v2.heapID = HEAP_ID_14;
 
     v0.unk_00.unk_00 = &v2;
     v0.unk_00.unk_04 = NULL;
@@ -349,7 +351,7 @@ static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct
     v3 = SpriteResourceCollection_Find(param2->unk_48[1], 1);
     v0.unk_18 = SpriteTransfer_GetPaletteProxy(v3, NULL);
 
-    GF_ASSERT(CharTransfer_AllocRange(sub_02012898(param4, NNS_G2D_VRAM_TYPE_2DMAIN, 13), 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_14));
+    GF_ASSERT(CharTransfer_AllocRange(sub_02012898(param4, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_13), 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_14));
 
     v0.unk_24 = param0->unk_14.offset;
 
@@ -425,13 +427,13 @@ static void ov22_0225A338(UnkStruct_ov22_02259C58 *param0, int param1, int param
     }
 }
 
-static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 param2, u32 param3, int param4, int param5)
+static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, enum NarcID narcID, u32 bankID, u32 param3, int param4, int param5)
 {
     MessageLoader *v0;
     Strbuf *v1;
     Window *v2;
 
-    v0 = MessageLoader_Init(0, param1, param2, HEAP_ID_13);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, narcID, bankID, HEAP_ID_13);
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 

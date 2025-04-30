@@ -40,13 +40,13 @@
 #include "heap.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
+#include "sound_playback.h"
 #include "spl.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
@@ -280,7 +280,7 @@ static void ov17_02247C5C(SysTask *param0, void *param1)
         G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
         PaletteData_BlendMulti(v0->unk_00->unk_0C.unk_44, 0, 0x1fff, 0, 0x0);
         PaletteData_BlendMulti(v0->unk_00->unk_0C.unk_44, 2, 0x3fff, 0, 0x0);
-        Sound_PlayEffect(1772);
+        Sound_PlayEffect(SEQ_SE_DP_CON_019);
         v0->unk_10++;
         break;
     case 4:
@@ -328,8 +328,8 @@ static void ov17_02247DC8(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        v0->unk_14 = sub_020080C0(v0->unk_00->unk_0C.unk_08[v0->unk_11], 0) << 8;
-        v0->unk_18 = sub_020080C0(v0->unk_00->unk_0C.unk_08[v0->unk_11], 1) << 8;
+        v0->unk_14 = PokemonSprite_GetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_11], MON_SPRITE_X_CENTER) << 8;
+        v0->unk_18 = PokemonSprite_GetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_11], MON_SPRITE_Y_CENTER) << 8;
         v0->unk_10++;
         break;
     case 1:
@@ -341,8 +341,8 @@ static void ov17_02247DC8(SysTask *param0, void *param1)
             v0->unk_10++;
         }
 
-        sub_02007DEC(v0->unk_00->unk_0C.unk_08[v0->unk_11], 0, v0->unk_14 >> 8);
-        sub_02007DEC(v0->unk_00->unk_0C.unk_08[v0->unk_11], 1, v0->unk_18 >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_11], MON_SPRITE_X_CENTER, v0->unk_14 >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_11], MON_SPRITE_Y_CENTER, v0->unk_18 >> 8);
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
@@ -417,13 +417,13 @@ static void ov17_02247F8C(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        Sound_PlayEffect(1765);
+        Sound_PlayEffect(SEQ_SE_DP_CON_007);
         v0->unk_11 = 15;
         v0->unk_10++;
     case 1:
         if (v0->unk_13 >= v0->unk_12) {
             v0->unk_11 = 0;
-            Sound_PlayEffect(1765);
+            Sound_PlayEffect(SEQ_SE_DP_CON_007);
             v0->unk_10++;
             break;
         } else if (v0->unk_1B == 1) {
@@ -784,8 +784,8 @@ static void ov17_02248648(SysTask *param0, void *param1)
     switch (v0->unk_10) {
     case 0:
         ov17_022478D0(v0->unk_00, v0->unk_11);
-        v0->unk_14 = sub_020080C0(v0->unk_00->unk_0C.unk_18, 0) * 0x100;
-        v0->unk_18 = sub_020080C0(v0->unk_00->unk_0C.unk_18, 1) * 0x100;
+        v0->unk_14 = PokemonSprite_GetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_X_CENTER) * 0x100;
+        v0->unk_18 = PokemonSprite_GetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_Y_CENTER) * 0x100;
         v0->unk_10++;
     case 1:
         v0->unk_14 -= 0x400;
@@ -795,8 +795,8 @@ static void ov17_02248648(SysTask *param0, void *param1)
             v0->unk_10++;
         }
 
-        sub_02007DEC(v0->unk_00->unk_0C.unk_18, 0, v0->unk_14 / 0x100);
-        sub_02007DEC(v0->unk_00->unk_0C.unk_18, 1, v0->unk_18 / 0x100);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_X_CENTER, v0->unk_14 / 0x100);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_Y_CENTER, v0->unk_18 / 0x100);
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
@@ -835,8 +835,8 @@ static void ov17_02248744(SysTask *param0, void *param1)
     switch (v0->unk_10) {
     case 0:
         GF_ASSERT(v0->unk_00->unk_0C.unk_18 != NULL);
-        v0->unk_14 = sub_020080C0(v0->unk_00->unk_0C.unk_18, 0) * 0x100;
-        v0->unk_18 = sub_020080C0(v0->unk_00->unk_0C.unk_18, 1) * 0x100;
+        v0->unk_14 = PokemonSprite_GetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_X_CENTER) * 0x100;
+        v0->unk_18 = PokemonSprite_GetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_Y_CENTER) * 0x100;
         v0->unk_10++;
     case 1:
         v0->unk_14 += 0x400;
@@ -846,8 +846,8 @@ static void ov17_02248744(SysTask *param0, void *param1)
             v0->unk_10++;
         }
 
-        sub_02007DEC(v0->unk_00->unk_0C.unk_18, 0, v0->unk_14 / 0x100);
-        sub_02007DEC(v0->unk_00->unk_0C.unk_18, 1, v0->unk_18 / 0x100);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_X_CENTER, v0->unk_14 / 0x100);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_Y_CENTER, v0->unk_18 / 0x100);
         break;
     default:
         ov17_02247918(v0->unk_00);
@@ -920,7 +920,7 @@ static void ov17_02248860(SysTask *param0, void *param1)
         break;
     case 2:
         if ((v0->unk_14.unk_15 == 1) && (v0->unk_38.unk_0D == 1) && (v0->unk_48.unk_0D == 1)) {
-            Sound_PlayEffect(1765);
+            Sound_PlayEffect(SEQ_SE_DP_CON_007);
             v0->unk_10++;
         }
         break;
@@ -983,7 +983,7 @@ static void ov17_02248A24(SysTask *param0, void *param1)
         BallThrow v1;
 
         v1.type = 14;
-        v1.heapID = 22;
+        v1.heapID = HEAP_ID_22;
         v1.mode = 0;
         v1.target = 0;
         v1.cellActorSys = v0->unk_00->unk_0C.unk_1C;
@@ -1067,16 +1067,16 @@ static void ov17_02248BE0(SysTask *param0, void *param1)
         }
         break;
     case 1:
-        v0->unk_04 = sub_020080C0(v0->unk_00->unk_0C.unk_18, 0) * 0x100;
-        v0->unk_08 = sub_020080C0(v0->unk_00->unk_0C.unk_18, 1) * 0x100;
+        v0->unk_04 = PokemonSprite_GetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_X_CENTER) * 0x100;
+        v0->unk_08 = PokemonSprite_GetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_Y_CENTER) * 0x100;
         v0->unk_0C++;
     case 2:
         if (v0->unk_0E & 1) {
-            sub_02007DEC(v0->unk_00->unk_0C.unk_18, 0, v0->unk_04 / 0x100);
-            sub_02007DEC(v0->unk_00->unk_0C.unk_18, 1, v0->unk_08 / 0x100);
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_X_CENTER, v0->unk_04 / 0x100);
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_Y_CENTER, v0->unk_08 / 0x100);
         } else {
-            sub_02007DEC(v0->unk_00->unk_0C.unk_18, 0, v0->unk_04 / 0x100);
-            sub_02007DEC(v0->unk_00->unk_0C.unk_18, 1, v0->unk_08 / 0x100 - 3);
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_X_CENTER, v0->unk_04 / 0x100);
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_Y_CENTER, v0->unk_08 / 0x100 - 3);
         }
 
         v0->unk_0E++;
@@ -1101,8 +1101,8 @@ static void ov17_02248BE0(SysTask *param0, void *param1)
             v0->unk_0C++;
         }
 
-        sub_02007DEC(v0->unk_00->unk_0C.unk_18, 0, v0->unk_04 / 0x100);
-        sub_02007DEC(v0->unk_00->unk_0C.unk_18, 1, v0->unk_08 / 0x100);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_X_CENTER, v0->unk_04 / 0x100);
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_Y_CENTER, v0->unk_08 / 0x100);
         break;
     default:
         ov17_02247918(v0->unk_00);
@@ -1300,7 +1300,7 @@ static void ov17_02249014(SysTask *param0, void *param1)
         v0->unk_13 = v1;
 
         if (v0->unk_15 == 1) {
-            Sound_PlayEffect(1773);
+            Sound_PlayEffect(SEQ_SE_DP_CON_020);
             v0->unk_15 = 0;
         }
 

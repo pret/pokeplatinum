@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/text_banks.h"
-
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "overlay021/ov21_021D1FA4.h"
@@ -28,13 +26,13 @@
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 #include "vram_transfer.h"
@@ -474,14 +472,14 @@ static void ov21_021E6E04(u32 param0, u32 param1, void *param2)
         switch (param0) {
         case 0:
             if (v1->unk_04 != 0) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 v1->unk_04 = 0;
                 *v1->unk_00 |= (1 << 0);
             }
             break;
         case 1:
             if (v1->unk_04 != 1) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 v1->unk_04 = 1;
                 *v1->unk_00 |= (1 << 1);
             }
@@ -739,7 +737,7 @@ static void ov21_021E72E8(UnkStruct_ov21_021E6DAC *param0, UnkStruct_ov21_021E6A
             param0->unk_10[1] = 2;
         }
 
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
     }
 }
 

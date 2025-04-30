@@ -85,7 +85,7 @@ BOOL PoketchTask_NoActiveTasks(u32 *activeList)
     return TRUE;
 }
 
-void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, const void *constTaskData, u32 *activeTasks, u32 taskPriority, u32 heapId)
+void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, const void *constTaskData, u32 *activeTasks, u32 taskPriority, u32 heapID)
 {
     for (u32 i = 0; appTasks[i].taskId != POKETCH_TASK_LIST_EMPTY; i++) {
         if (appTasks[i].taskId == taskId) {
@@ -93,7 +93,7 @@ void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, 
             u32 size;
 
             size = sizeof(PoketchTaskManager) + appTasks[i].extraDataSize;
-            poketchTaskMan = Heap_AllocFromHeap(heapId, size);
+            poketchTaskMan = Heap_AllocFromHeap(heapID, size);
 
             if (poketchTaskMan != NULL) {
                 if (appTasks[i].extraDataSize != 0) {

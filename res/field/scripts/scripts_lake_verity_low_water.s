@@ -13,28 +13,28 @@
     ScriptEntryEnd
 
 _001E:
-    GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _003E
-    GoToIfEq 0x4000, GENDER_FEMALE, _0046
+    GetPlayerGender VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _003E
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0046
     End
 
 _003E:
-    SetVar 0x4020, 97
+    SetVar VAR_OBJ_GFX_ID_0, 97
     End
 
 _0046:
-    SetVar 0x4020, 0
+    SetVar VAR_OBJ_GFX_ID_0, 0
     End
 
 _004E:
-    GoToIfSet 142, _005B
+    GoToIfSet FLAG_UNK_0x008E, _005B
     End
 
 _005B:
-    SetFlag 0x18F
+    SetFlag FLAG_UNK_0x018F
     RemoveObject 3
     RemoveObject 2
-    ClearFlag 142
+    ClearFlag FLAG_UNK_0x008E
     End
     End
 
@@ -50,10 +50,10 @@ _006F:
     ScrCmd_066 46, 53
     ApplyMovement 241, _01B4
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     Message 1
     CloseMessage
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     ApplyMovement 4, _01E0
     ApplyMovement 241, _01C0
     WaitMovement
@@ -67,7 +67,7 @@ _006F:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 4
-    WaitTime 50, 0x800C
+    WaitTime 50, VAR_RESULT
     ApplyMovement LOCALID_PLAYER, _0378
     ApplyMovement 5, _02AC
     WaitMovement
@@ -77,17 +77,17 @@ _006F:
     ApplyMovement 5, _02B8
     ApplyMovement LOCALID_PLAYER, _0380
     WaitMovement
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     BufferPlayerName 1
     Message 4
     PlayCry SPECIES_MESPRIT
     Message 5
-    ScrCmd_04D
+    WaitCry
     CloseMessage
     ApplyMovement 5, _02C0
     ApplyMovement LOCALID_PLAYER, _0388
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 5, _02F0
     WaitMovement
     BufferRivalName 0
@@ -96,22 +96,22 @@ _006F:
     CloseMessage
     ApplyMovement 5, _02E8
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     BufferPlayerName 1
     Message 7
     CloseMessage
     ApplyMovement 5, _02F8
     ApplyMovement LOCALID_PLAYER, _039C
     WaitMovement
-    SetFlag 0x196
+    SetFlag FLAG_UNK_0x0196
     RemoveObject 5
     PlayFanfare SEQ_SE_DP_KAIDAN2
     GoTo _01A1
     End
 
 _01A1:
-    SetVar 0x4086, 4
-    SetVar 0x4095, 1
+    SetVar VAR_FOLLOWER_RIVAL_STATE, 4
+    SetVar VAR_UNK_0x4095, 1
     ReleaseAll
     End
 
@@ -630,8 +630,8 @@ _0418:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 184, _043D
-    SetFlag 184
+    GoToIfSet FLAG_UNK_0x00B8, _043D
+    SetFlag FLAG_UNK_0x00B8
     BufferPlayerName 0
     Message 8
     WaitABXPadPress
@@ -651,8 +651,8 @@ _044B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _046A
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _046A
     GoTo _0476
 
 _046A:

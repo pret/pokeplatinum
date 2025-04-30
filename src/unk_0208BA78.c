@@ -21,8 +21,8 @@
 #include "journal.h"
 #include "overlay_manager.h"
 #include "savedata.h"
+#include "sound.h"
 #include "system_flags.h"
-#include "unk_020041CC.h"
 #include "unk_0202F1D4.h"
 #include "unk_020553DC.h"
 #include "unk_0208C010.h"
@@ -212,7 +212,7 @@ static int sub_0208BC08(OverlayManager *param0, int *param1)
 
     Heap_FreeToHeap(v0->unk_14);
     OverlayManager_FreeData(param0);
-    sub_0200544C(1, 127);
+    Sound_SetPlayerVolume(1, 127);
     Heap_Destroy(HEAP_ID_119);
 
     return 1;
@@ -266,7 +266,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
         }
 
         param0->unk_10->bagCursor = BagCursor_New(heapID);
-        param0->unk_10->records = SaveData_GetGameRecordsPtr(param0->saveData);
+        param0->unk_10->records = SaveData_GetGameRecords(param0->saveData);
 
         if (Overlay_LoadByID(FS_OVERLAY_ID(overlay62), 2) == 1) {
             ov62_02248408(sub_0202F264(), param0->unk_10, heapID);
@@ -285,13 +285,13 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
         }
     } break;
     case 2: {
-        sub_0200544C(1, 127);
+        Sound_SetPlayerVolume(1, 127);
         sub_02005464(1);
 
         if (sub_0208BE80(param0->unk_10->trainer[1].header.trainerType) == 1) {
-            sub_02004550(5, 1202, 1);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_FRONTIER_BRAIN, 1);
         } else {
-            sub_02004550(5, 1119, 1);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
         }
     }
         param0->unk_08 = OverlayManager_New(&gBattleOverlayTemplate, param0->unk_10, heapID);
@@ -315,15 +315,15 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
         OverlayManager_Free(param0->unk_08);
 
         {
-            u16 v1;
+            u16 bgmID;
 
             sub_02005464(0);
-            sub_02004234(0);
+            Sound_SetScene(SOUND_SCENE_NONE);
 
-            v1 = sub_02055428(param0->fieldSystem, param0->fieldSystem->location->mapId);
+            bgmID = Sound_GetOverrideBGM(param0->fieldSystem, param0->fieldSystem->location->mapId);
 
-            sub_02004224(sub_020554A4(param0->fieldSystem, param0->fieldSystem->location->mapId));
-            sub_02004550(4, v1, 1);
+            Sound_SetFieldBGM(Sound_GetBGMByMapID(param0->fieldSystem, param0->fieldSystem->location->mapId));
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
         }
 
         param0->unk_00 = 0;
