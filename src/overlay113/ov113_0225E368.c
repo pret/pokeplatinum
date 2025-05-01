@@ -29,7 +29,7 @@
 #include "easy3d_object.h"
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "sound_playback.h"

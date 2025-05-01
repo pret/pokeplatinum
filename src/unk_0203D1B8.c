@@ -95,7 +95,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "overlay_manager.h"
 #include "party.h"
 #include "player_avatar.h"

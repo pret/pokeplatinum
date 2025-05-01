@@ -19,7 +19,7 @@
 #include "game_records.h"
 #include "heap.h"
 #include "item.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "message_util.h"
 #include "party.h"

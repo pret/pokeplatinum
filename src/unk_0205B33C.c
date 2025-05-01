@@ -18,7 +18,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "journal.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "save_player.h"
 #include "savedata.h"

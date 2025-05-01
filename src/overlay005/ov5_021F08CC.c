@@ -22,7 +22,7 @@
 #include "game_records.h"
 #include "heap.h"
 #include "map_object.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "party.h"
 #include "player_avatar.h"

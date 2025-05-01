@@ -8,7 +8,7 @@
 
 #include "field_script_context.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "system_vars.h"
 #include "vars_flags.h"
 

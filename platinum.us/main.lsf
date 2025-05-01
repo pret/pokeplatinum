@@ -73,7 +73,7 @@ Static main
 	Object main.nef.p/src_sys_task_manager.c.o
 	Object main.nef.p/src_unk_0201CED8.c.o
 	Object main.nef.p/src_charcode.c.o
-	Object main.nef.p/src_math.c.o
+	Object main.nef.p/src_math_util.c.o
 	Object main.nef.p/src_text.c.o
 	Object main.nef.p/src_vram_transfer.c.o
 	Object main.nef.p/src_cell_transfer.c.o
@@ -96,7 +96,7 @@ Static main
 	Object main.nef.p/src_render_view.c.o
 	Object main.nef.p/src_font_manager.c.o
 	Object main.nef.p/src_strbuf.c.o
-	Object main.nef.p/src_unk_02023FCC.c.o
+	Object main.nef.p/src_touch_screen_actions.c.o
 	Object main.nef.p/src_unk_0202414C.c.o
 	Object main.nef.p/src_unk_0202419C.c.o
 	Object main.nef.p/src_hardware_palette.c.o

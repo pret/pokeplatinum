@@ -18,7 +18,7 @@
 #include "overlay022/struct_ov22_022599A0.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_0200679C.h"
@@ -335,7 +335,7 @@ BOOL ov22_02258304(UnkStruct_ov22_02257F50 *param0, int param1, int param2)
     v0.rect.left = (8 + 2);
     v0.rect.right = (8 + 2) + (112 - (2 * 2));
 
-    return sub_02022830(&v0, param1, param2);
+    return TouchScreen_IsTouchInHitTable(&v0, param1, param2);
 }
 
 UnkStruct_ov22_02259560 *ov22_02258320(UnkStruct_ov22_02257F50 *param0, int *param1, int *param2, NNSG2dCharacterData **param3)

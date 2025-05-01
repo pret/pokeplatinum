@@ -24,7 +24,7 @@
 #include "heap.h"
 #include "list_menu.h"
 #include "main.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "message_util.h"
 #include "mystery_gift.h"

@@ -5,7 +5,7 @@
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
-#include "math.h"
+#include "math_util.h"
 #include "pokedex.h"
 
 #define START_ENCODED_RECORDS RECORD_TRAINER_SCORE

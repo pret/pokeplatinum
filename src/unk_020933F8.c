@@ -35,7 +35,7 @@
 #include "game_records.h"
 #include "heap.h"
 #include "journal.h"
-#include "math.h"
+#include "math_util.h"
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"

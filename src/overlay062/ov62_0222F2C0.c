@@ -28,8 +28,8 @@
 #include "sys_task.h"
 #include "system.h"
 #include "touch_pad.h"
+#include "touch_screen_actions.h"
 #include "unk_02012744.h"
-#include "unk_02023FCC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020298BC.h"
@@ -175,7 +175,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
         u32 v1;
         v1 = DisableTouchPad();
 
-        sub_02024034(param0->unk_14.unk_18);
+        TouchScreenActions_Free(param0->unk_14.unk_18);
         RenderControlFlags_SetSpeedUpOnTouch(0);
     }
 
@@ -631,11 +631,11 @@ BOOL ov62_0222FD3C(UnkStruct_0208C06C *param0)
     return v1;
 }
 
-static void ov62_0222FE1C(u32 param0, u32 param1, void *param2)
+static void ov62_0222FE1C(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_0208C06C *v0 = param2;
 
-    if (param1 != 0) {
+    if (param1 != TOUCH_BUTTON_PRESSED) {
         return;
     }
 
@@ -687,7 +687,7 @@ void ov62_0222FF40(UnkStruct_0208C06C *param0)
         param0->unk_534.unk_C8[v0].unk_10 = &param0->unk_14.unk_1C[v0];
     }
 
-    param0->unk_14.unk_18 = sub_02023FCC(param0->unk_14.unk_1C, 5, ov62_0222FE1C, param0, HEAP_ID_102);
+    param0->unk_14.unk_18 = TouchScreenActions_RegisterHandler(param0->unk_14.unk_1C, 5, ov62_0222FE1C, param0, HEAP_ID_102);
 }
 
 void ov62_0222FF7C(UnkStruct_0208C06C *param0)
@@ -733,7 +733,7 @@ void ov62_02230014(UnkStruct_0208C06C *param0)
 
 void ov62_02230054(UnkStruct_0208C06C *param0)
 {
-    sub_0202404C(param0->unk_14.unk_18);
+    TouchScreenActions_HandleAction(param0->unk_14.unk_18);
 }
 
 void ov62_02230060(UnkStruct_0208C06C *param0)
