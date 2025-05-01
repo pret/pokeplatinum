@@ -31,8 +31,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "touch_pad.h"
 #include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"
@@ -123,8 +123,8 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     ov99_021D1380(v0->unk_08);
 
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
 
     v0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0548, HEAP_ID_75);
     v0->unk_10F8 = NARC_ctor(NARC_INDEX_GRAPHIC__ENDING, HEAP_ID_75);
@@ -281,7 +281,7 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
-    sub_0201E530();
+    DisableTouchPad();
     OverlayManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_75);
 

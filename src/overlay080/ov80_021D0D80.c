@@ -22,8 +22,8 @@
 #include "sound.h"
 #include "strbuf.h"
 #include "system.h"
+#include "touch_pad.h"
 #include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
 #include "unk_0208C098.h"
 
 int ov80_021D0D80(OverlayManager *param0, int *param1);
@@ -229,8 +229,8 @@ static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0)
         param0->unk_28 = BgConfig_New(param0->heapID);
         ov80_021D1088(param0, param0->unk_28);
         ov80_021D1158(param0);
-        sub_0201E3D8();
-        sub_0201E450(4);
+        EnableTouchPad();
+        InitializeTouchPad(4);
         ov80_021D2A08(param0);
         break;
     case 2:
@@ -248,7 +248,7 @@ static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 *param0)
 {
     int v0;
 
-    sub_0201E530();
+    DisableTouchPad();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     SetVBlankCallback(NULL, NULL);

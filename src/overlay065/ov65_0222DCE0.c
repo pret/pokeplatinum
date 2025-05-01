@@ -75,7 +75,7 @@
 #include "sound_playback.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 #include "touch_screen_actions.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C858.h"
@@ -781,7 +781,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
             sub_02099550();
         }
 
-        v2 = sub_0201E450(4);
+        v2 = InitializeTouchPad(4);
         GF_ASSERT(v2 == 1);
         (*param1)++;
         break;
@@ -893,7 +893,7 @@ int ov65_0222E548(OverlayManager *param0, int *param1)
     ov65_0222EC2C(v0);
 
     OverlayManager_FreeData(param0);
-    sub_0201E530();
+    DisableTouchPad();
     VramTransfer_Free();
     Heap_Destroy(HEAP_ID_54);
 

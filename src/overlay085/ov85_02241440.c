@@ -23,9 +23,9 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -234,8 +234,8 @@ int ov85_02241440(OverlayManager *param0, int *param1)
     ov85_022417E4(v0);
 
     SetAutorepeat(4, 8);
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
 
     ov85_02241E60(v0, v1);
     ov85_0224183C(v0);
@@ -284,7 +284,7 @@ int ov85_022415A0(OverlayManager *param0, int *param1)
     ov85_02241860(v0->unk_04);
     ov85_022416E8(v0->unk_00);
 
-    sub_0201E530();
+    DisableTouchPad();
 
     ov85_0224181C(v0);
     ov85_0224202C(v0);

@@ -36,9 +36,9 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "touch_pad.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
-#include "unk_0201E3D8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_020933F8.h"
@@ -160,8 +160,8 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
 
     ov17_0223D1B8(v0->unk_0C.unk_24);
 
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_22);
 
     v0->unk_0C.unk_1C = SpriteSystem_Alloc(22);
@@ -332,7 +332,7 @@ int ov17_0223CF8C(OverlayManager *param0, int *param1)
 
     ov17_0223F1E0(v0->unk_08);
 
-    sub_0201E530();
+    DisableTouchPad();
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();

@@ -49,8 +49,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "touch_pad.h"
 #include "trainer_info.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020393C8.h"
@@ -164,8 +164,8 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     ov104_0223CB80(v0);
     ov104_0223CC10(v0);
 
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
 
     ov104_0223CFF4(v0);
 
@@ -232,7 +232,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
 
     ov104_0223CFEC(param0->unk_0C);
 
-    sub_0201E530();
+    DisableTouchPad();
     Heap_FreeToHeap(param0);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);

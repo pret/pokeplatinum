@@ -34,10 +34,10 @@
 #include "savedata.h"
 #include "sound.h"
 #include "system.h"
+#include "touch_pad.h"
 #include "touch_screen_actions.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
-#include "unk_0201E3D8.h"
 #include "unk_02024220.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
@@ -169,8 +169,8 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     {
         u32 v8;
 
-        sub_0201E3D8();
-        v8 = sub_0201E450(4);
+        EnableTouchPad();
+        v8 = InitializeTouchPad(4);
 
         if (v8 != 1) {
             (void)0;
@@ -258,7 +258,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     {
         u32 v1;
 
-        v1 = sub_0201E530();
+        v1 = DisableTouchPad();
 
         if (v1 != 1) {
             (void)0;

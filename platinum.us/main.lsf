@@ -82,7 +82,7 @@ Static main
 	Object main.nef.p/src_ascii_util.c.o
 	Object main.nef.p/src_fx_util.c.o
 	Object main.nef.p/src_int_distance.c.o
-	Object main.nef.p/src_unk_0201E3D8.c.o
+	Object main.nef.p/src_touch_pad.c.o
 	Object main.nef.p/src_char_transfer.c.o
 	Object main.nef.p/src_pltt_transfer.c.o
 	Object main.nef.p/src_gx_layers.c.o

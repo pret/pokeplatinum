@@ -12,7 +12,6 @@
 
 #include "overlay058/struct_ov58_021D2754.h"
 #include "overlay058/struct_ov58_021D2820.h"
-#include "overlay072/struct_ov72_0223E2A8.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"
@@ -41,11 +40,11 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
-#include "unk_0201E3D8.h"
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
@@ -122,7 +121,7 @@ static void ov58_021D2CB8(UnkStruct_02095EAC *param0, int param1);
 static BOOL ov58_021D2CEC(UnkStruct_02095EAC *param0, UnkStruct_02015958 *param1);
 static void ov58_021D2D10(UnkStruct_02095EAC *param0);
 static int ov58_021D2D30(UnkStruct_02095EAC *param0);
-static void ov58_021D2D4C(UnkStruct_ov58_021D2820 *param0, UnkStruct_ov72_0223E2A8 *param1, int param2, int param3);
+static void ov58_021D2D4C(UnkStruct_ov58_021D2820 *param0, TouchPadDataBuffer *param1, int param2, int param3);
 
 static UnkStruct_ov58_021D3180 Unk_ov58_021D3180[] = {
     { NULL, 0x1 },
@@ -193,8 +192,8 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
 
         ov58_021D142C(v0, v1);
 
-        sub_0201E3D8();
-        sub_0201E450(2);
+        EnableTouchPad();
+        InitializeTouchPad(2);
         SetVBlankCallback(ov58_021D115C, v0->unk_00);
 
         ov58_021D12C4(v0);
@@ -324,7 +323,7 @@ int ov58_021D1018(OverlayManager *param0, int *param1)
         ov58_021D19D4(v0);
         ov58_021D13F0(v0->unk_00);
 
-        sub_0201E530();
+        DisableTouchPad();
         MessageLoader_Free(v0->unk_10);
         StringTemplate_Free(v0->unk_0C);
         (*param1)++;
@@ -880,10 +879,10 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
     }
 
     {
-        UnkStruct_ov72_0223E2A8 v4;
+        TouchPadDataBuffer v4;
         int v5;
 
-        if (sub_0201E564(&v4, 4, 64) == 1) {
+        if (WriteAutoSamplingDataToBuffer(&v4, TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ALL_DATA_WITHOUT_WRAPPING, 64) == 1) {
             ov58_021D2D4C(&param0->unk_43DC, &v4, param0->unk_43DA, param0->unk_43DB);
 
             if (v2 == 1) {
@@ -1874,30 +1873,30 @@ static int ov58_021D2D30(UnkStruct_02095EAC *param0)
     return 0;
 }
 
-static void ov58_021D2D4C(UnkStruct_ov58_021D2820 *param0, UnkStruct_ov72_0223E2A8 *param1, int param2, int param3)
+static void ov58_021D2D4C(UnkStruct_ov58_021D2820 *param0, TouchPadDataBuffer *param1, int param2, int param3)
 {
     int v0, v1;
 
-    if (param1->unk_00 != 0) {
-        param0->unk_00[0] = param1->unk_02[0].x;
-        param0->unk_04[0] = param1->unk_02[0].y;
+    if (param1->bufferSize != 0) {
+        param0->unk_00[0] = param1->buffer[0].x;
+        param0->unk_04[0] = param1->buffer[0].y;
 
-        v1 = param1->unk_00 - 1;
+        v1 = param1->bufferSize - 1;
 
-        param0->unk_00[1] = param1->unk_02[v1].x;
-        param0->unk_04[1] = param1->unk_02[v1].y;
+        param0->unk_00[1] = param1->buffer[v1].x;
+        param0->unk_04[1] = param1->buffer[v1].y;
 
         for (v0 = 0; v0 < 2; v0++) {
             if ((param0->unk_00[v0] + param0->unk_04[v0]) == 0) {
-                param1->unk_00 = 0;
+                param1->bufferSize = 0;
             }
         }
     }
 
-    if (param1->unk_00 >= 2) {
+    if (param1->bufferSize >= 2) {
         param0->unk_08_3 = 2;
     } else {
-        param0->unk_08_3 = param1->unk_00;
+        param0->unk_08_3 = param1->bufferSize;
     }
 
     param0->unk_08_0 = param2;

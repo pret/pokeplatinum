@@ -27,9 +27,9 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "system.h"
+#include "touch_pad.h"
 #include "touch_screen_actions.h"
 #include "unk_02012744.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020298BC.h"
@@ -69,8 +69,8 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     ov62_0222F848(param0);
 
     {
-        sub_0201E3D8();
-        sub_0201E450(4);
+        EnableTouchPad();
+        InitializeTouchPad(4);
 
         param0->unk_14.unk_30 = 1;
 
@@ -173,7 +173,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
 
     {
         u32 v1;
-        v1 = sub_0201E530();
+        v1 = DisableTouchPad();
 
         TouchScreenActions_Free(param0->unk_14.unk_18);
         RenderControlFlags_SetSpeedUpOnTouch(0);

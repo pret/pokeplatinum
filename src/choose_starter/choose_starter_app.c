@@ -51,9 +51,9 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "unk_0200F174.h"
 #include "unk_02015064.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
 
@@ -329,8 +329,8 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     SetVBlankCallback(ChooseStarterAppMainCallback, app);
     DisableHBlank();
 
-    sub_0201E3D8();
-    GF_ASSERT(sub_0201E450(4) == 1);
+    EnableTouchPad();
+    GF_ASSERT(InitializeTouchPad(4) == 1);
 
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
@@ -438,7 +438,7 @@ BOOL ChooseStarter_Exit(OverlayManager *param0, int *param1)
 
     v1->species = GetSelectedSpecies(v0->cursorPosition);
 
-    v2 = sub_0201E530();
+    v2 = DisableTouchPad();
     GF_ASSERT(v2 == 1);
 
     ov78_021D24E4(&v0->unk_6A8);

@@ -60,10 +60,10 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020393C8.h"
@@ -376,8 +376,8 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     ov113_0225CF58(v0->unk_08);
 
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_118);
 
     v0->unk_2C = StringTemplate_Default(HEAP_ID_118);
@@ -653,7 +653,7 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
-    sub_0201E530();
+    DisableTouchPad();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);

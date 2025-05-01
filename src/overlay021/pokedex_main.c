@@ -59,10 +59,10 @@
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
 
@@ -106,9 +106,9 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
 
     SetVBlankCallback(VBlankCallBack, appPtr);
     DisableHBlank();
-    sub_0201E3D8();
+    EnableTouchPad();
 
-    GF_ASSERT(sub_0201E450(4) == TRUE);
+    GF_ASSERT(InitializeTouchPad(4) == TRUE);
 
     PokedexMain_InitGX(HEAP_ID_POKEDEX);
 
@@ -168,7 +168,7 @@ int PokedexMain_Exit(OverlayManager *overlayMan, int *state)
 
     SetVBlankCallback(NULL, NULL);
 
-    GF_ASSERT(sub_0201E530() == TRUE);
+    GF_ASSERT(DisableTouchPad() == TRUE);
 
     PokedexMain_FreeGraphics();
     VramTransfer_Free();
