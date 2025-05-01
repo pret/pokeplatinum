@@ -371,7 +371,7 @@ static BOOL ov27_022565D0(UnkStruct_ov27_0225621C *param0)
 static BOOL ov27_02256608(UnkStruct_ov27_0225621C *param0)
 {
     static const TouchScreenHitTable v0[] = {
-        { 0xfe, 112, 112, 39 },
+        { TOUCHSCREEN_USE_CIRCLE, 112, 112, 39 },
     };
 
     param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov27_02256660, param0, 8);

@@ -20,8 +20,8 @@
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
+#include "touch_screen_actions.h"
 #include "unk_0201E3D8.h"
-#include "unk_02023FCC.h"
 #include "unk_020393C8.h"
 #include "unk_02089604.h"
 #include "unk_0208A3F4.h"
@@ -144,7 +144,7 @@ static int sub_0208927C(OverlayManager *param0, int *param1)
 
     SpriteSystem_FreeResourcesAndManager(v0->unk_2C0.unk_04, v0->unk_2C0.unk_08);
     SpriteSystem_Free(v0->unk_2C0.unk_04);
-    sub_02024034(v0->unk_2C0.unk_14);
+    TouchScreenActions_Free(v0->unk_2C0.unk_14);
     OverlayManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_101);
 

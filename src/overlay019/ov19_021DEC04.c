@@ -707,14 +707,14 @@ static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int param1)
 static void ov19_021DF930(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021DEC04 *v0 = param1;
-    BOOL v1 = ov19_021D5FC0(v0->unk_08);
+    BOOL pressedAnimation = ov19_IsCompareButtonPressed(v0->unk_08);
 
     if (Sprite_GetActiveAnim(v0->unk_30) == 3) {
-        if (v1) {
+        if (pressedAnimation) {
             Sprite_SetAnim(v0->unk_30, 4);
         }
     } else {
-        if (v1 == 0) {
+        if (pressedAnimation == FALSE) {
             Sprite_SetAnim(v0->unk_30, 3);
         }
     }

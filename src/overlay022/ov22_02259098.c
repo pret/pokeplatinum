@@ -121,7 +121,7 @@ BOOL ov22_02259238(UnkStruct_020298D8 *param0)
 
 BOOL ov22_02259244(UnkStruct_020298D8 *param0, int param1, int param2)
 {
-    return sub_02022830(&param0->unk_04, param1, param2);
+    return TouchScreen_IsTouchInHitTable(&param0->unk_04, param1, param2);
 }
 
 void ov22_02259250(UnkStruct_020298D8 *param0, int *param1, int *param2)

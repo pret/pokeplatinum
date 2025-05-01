@@ -7,7 +7,6 @@
 #include "constants/species.h"
 
 #include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02042434.h"
@@ -54,7 +53,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02023FCC.h"
+#include "touch_screen_actions.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
 #include "unk_0207CB08.h"
@@ -69,14 +68,14 @@ FS_EXTERN_OVERLAY(overlay84);
 static const TouchScreenHitTable sMainPcButtons[] = {
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_LEFT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_RIGHT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
-    { 255, 0, 0, 0 }
+    { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
 static const TouchScreenHitTable sComparePokemonButtons[] = {
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_LEFT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_RIGHT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, COMPARE_MON_PC_BUTTON_X, COMPARE_MON_PC_BUTTON_Y, COMPARE_MON_PC_BUTTON_RADIUS },
-    { 255, 0, 0, 0 }
+    { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
 static const TouchScreenHitTable sPokemonMarkingsButtons[] = {
@@ -86,7 +85,7 @@ static const TouchScreenHitTable sPokemonMarkingsButtons[] = {
     { TOUCHSCREEN_USE_CIRCLE, PC_MARKINGS_BUTTON4_X, PC_MARKINGS_BUTTON4_Y, PC_MARKINGS_BUTTONS_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, PC_MARKINGS_BUTTON5_X, PC_MARKINGS_BUTTON5_Y, PC_MARKINGS_BUTTONS_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, PC_MARKINGS_BUTTON6_X, PC_MARKINGS_BUTTON6_Y, PC_MARKINGS_BUTTONS_RADIUS },
-    { 255, 0, 0, 0 }
+    { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
 static const u16 Unk_ov19_021DFDF0[] = {
@@ -125,9 +124,9 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     UnkStruct_0208737C *unk_128;
     PokemonSummary monSummary;
     UnkStruct_ov19_021D38E0 unk_15C;
-    UnkStruct_02023FCC *unk_17C;
-    UnkStruct_02023FCC *unk_180;
-    u32 unk_184;
+    TouchScreenActions *mainBoxAndCompareButtonsAction;
+    TouchScreenActions *markingsButtonsAction;
+    u32 touchScreenButtonPressed;
     u32 unk_188;
     MessageLoader *boxMessagesLoader;
     MessageLoader *speciesNameLoader;
@@ -208,7 +207,7 @@ static void ov19_021D45A8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static BOOL ov19_021D4B88(UnkStruct_ov19_021D5DF8 *param0);
-static void ov19_021D4BB0(u32 param0, u32 param1, void *param2);
+static void ov19_BoxTouchScreenMarkingsButtonHandler(u32 buttonIndex, enum TouchScreenButtonState buttonTouchState, void *context);
 static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *param1);
 static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0);
 static void BoxSettings_Init(BoxSettings *param0, enum BoxMode boxMode);
@@ -231,8 +230,8 @@ static enum CursorMovementState ov19_TryMoveSelection(UnkStruct_ov19_021D4DF0 *p
 static void ov19_MoveCursorToParty(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_ReturnCursorToBox(UnkStruct_ov19_021D5DF8 *param0);
 static BOOL ov19_TryPreviewCursorMon(UnkStruct_ov19_021D5DF8 *param0);
-static BOOL ov19_021D538C(UnkStruct_ov19_021D5DF8 *param0);
-static void ov19_021D53B8(u32 param0, u32 param1, void *param2);
+static BOOL ov19_TryPressTouchScreenButton(UnkStruct_ov19_021D5DF8 *param0);
+static void ov19_BoxTouchScreenButtonHandler(u32 buttonIndex, enum TouchScreenButtonState buttonTouchState, void *context);
 static void ov19_021D5408(UnkStruct_ov19_021D4DF0 *param0, u32 param1);
 static void ov19_SetCursorBoxLocation(UnkStruct_ov19_021D4DF0 *param0, u32 col, u32 row);
 static void ov19_PickUpMon(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4DF0 *param1);
@@ -251,7 +250,7 @@ static void ov19_LoadBoxMonIntoPreview(UnkStruct_ov19_021D4DF0 *param0, BoxPokem
 static void ov19_LoadBoxMonIntoComparison(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon, UnkStruct_ov19_021D5DF8 *param2);
 static void ov19_021D5B70(UnkStruct_ov19_021D4DF0 *param0);
 static void ov19_021D5B80(UnkStruct_ov19_021D4DF0 *param0);
-static void ov19_021D5BA0(UnkStruct_ov19_021D4DF0 *param0, BOOL param1);
+static void ov19_SetCompareButtonPressed(UnkStruct_ov19_021D4DF0 *param0, BOOL pressed);
 static void ov19_SetPreviewedBoxMon(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon);
 static void ov19_021D5BAC(UnkStruct_ov19_021D4DF0 *param0);
 static void ov19_GiveItemToSelectedMon(UnkStruct_ov19_021D4DF0 *param0, u16 item, UnkStruct_ov19_021D5DF8 *param2);
@@ -265,7 +264,7 @@ static void ov19_GiveItemFromCursor(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_o
 static void ov19_SwapMonAndCursorItems(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5DF8 *param1);
 static void ov19_021D5D94(UnkStruct_ov19_021D4DF0 *param0, u32 param1);
 static void ov19_021D5D9C(UnkStruct_ov19_021D4DF0 *param0, u32 param1);
-static void ov19_021D5DA4(UnkStruct_ov19_021D4DF0 *param0, u32 param1);
+static void ov19_SetMarkingsButtonsScrollOffset(UnkStruct_ov19_021D4DF0 *param0, u32 offset);
 static void ov19_021D5DAC(UnkStruct_ov19_021D4DF0 *param0, int param1);
 static void ov19_SetMonSpriteTransparencyMask(UnkStruct_ov19_021D4DF0 *param0, u32 param1);
 static void ov19_ToggleCursorFastMode(UnkStruct_ov19_021D4DF0 *param0);
@@ -429,9 +428,9 @@ static inline void inline_ov19_021D0FF0_sub1(UnkStruct_ov19_021D5DF8 *wk)
 
 static inline int inline_ov19_021D0FF0(UnkStruct_ov19_021D5DF8 *param0)
 {
-    if (ov19_021D538C(param0)) {
+    if (ov19_TryPressTouchScreenButton(param0)) {
         if (ov19_GetBoxMode(&param0->unk_00) != PC_MODE_COMPARE) {
-            switch (param0->unk_184) {
+            switch (param0->touchScreenButtonPressed) {
             case 0:
                 ov19_021D0EB0(param0, ov19_021D4640);
                 break;
@@ -444,7 +443,7 @@ static inline int inline_ov19_021D0FF0(UnkStruct_ov19_021D5DF8 *param0)
                 break;
             }
         } else {
-            switch (param0->unk_184) {
+            switch (param0->touchScreenButtonPressed) {
             case 0:
                 if ((ov19_021D5F9C(&param0->unk_00) == 0) && (ov19_IsMonUnderCursor(&param0->unk_00) == TRUE)) {
                     Sound_PlayEffect(SEQ_SE_DP_DECIDE);
@@ -2847,8 +2846,8 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        if (ov19_021D538C(param0)) {
-            if (param0->unk_184 == 1) {
+        if (ov19_TryPressTouchScreenButton(param0)) {
+            if (param0->touchScreenButtonPressed == 1) {
                 if (ov19_GetBoxMode(&param0->unk_00) != PC_MODE_MOVE_ITEMS) {
                     ov19_021D0EB0(param0, ov19_021D4938);
                 } else {
@@ -2980,7 +2979,7 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         ov19_021D5D94(&param0->unk_00, 2);
-        ov19_021D5DA4(&(param0->unk_00), 0);
+        ov19_SetMarkingsButtonsScrollOffset(&(param0->unk_00), 0);
         ov19_021D5D9C(&(param0->unk_00), 0);
         ov19_021D6594(param0->unk_114, 40);
         ov19_021D603C(&(param0->unk_1C8), 255, 192, 56, 88);
@@ -2993,8 +2992,8 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        if (ov19_021D538C(param0)) {
-            if (param0->unk_184 == 0) {
+        if (ov19_TryPressTouchScreenButton(param0)) {
+            if (param0->touchScreenButtonPressed == 0) {
                 ov19_021D0EB0(param0, ov19_021D4640);
                 break;
             }
@@ -3027,21 +3026,21 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             v0 = ov19_021D614C(&param0->unk_1C8);
 
             if (v0 != param0->unk_20C) {
-                int v1, v2;
+                int v1, offset;
 
                 v1 = v0 - param0->unk_20C;
-                v2 = ov19_021D5EB8(&param0->unk_00) + v1;
+                offset = ov19_021D5EB8(&param0->unk_00) + v1;
 
-                if (v2 < 0) {
-                    v2 += 8;
-                } else if (v2 >= 8) {
-                    v2 -= 8;
+                if (offset < 0) {
+                    offset += 8;
+                } else if (offset >= 8) {
+                    offset -= 8;
                 }
 
                 param0->unk_20C = v0;
 
-                ov19_021D5D9C(&(param0->unk_00), v2);
-                ov19_021D5DA4(&(param0->unk_00), v2);
+                ov19_021D5D9C(&(param0->unk_00), offset);
+                ov19_SetMarkingsButtonsScrollOffset(&(param0->unk_00), offset);
                 ov19_021D5DAC(&(param0->unk_00), v1);
                 ov19_021D6594(param0->unk_114, 41);
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -3090,7 +3089,7 @@ static BOOL ov19_021D4B88(UnkStruct_ov19_021D5DF8 *param0)
 {
     param0->unk_188 = 8;
 
-    sub_0202404C(param0->unk_180);
+    TouchScreenActions_HandleAction(param0->markingsButtonsAction);
 
     if (param0->unk_188 != 8) {
         return TRUE;
@@ -3099,22 +3098,21 @@ static BOOL ov19_021D4B88(UnkStruct_ov19_021D5DF8 *param0)
     return FALSE;
 }
 
-static void ov19_021D4BB0(u32 param0, u32 param1, void *param2)
+static void ov19_BoxTouchScreenMarkingsButtonHandler(u32 buttonIndex, enum TouchScreenButtonState buttonTouchState, void *context)
 {
-    UnkStruct_ov19_021D5DF8 *v0 = (UnkStruct_ov19_021D5DF8 *)param2;
+    UnkStruct_ov19_021D5DF8 *v0 = (UnkStruct_ov19_021D5DF8 *)context;
 
     if (v0->unk_188 == 8) {
-        if (param1 == 0) {
-            u32 v1 = ov19_021D5EC0(&v0->unk_00);
+        if (buttonTouchState == TOUCH_BUTTON_PRESSED) {
+            u32 mask = ov19_GetMarkingsButtonsScrollOffset(&v0->unk_00);
+            mask += buttonIndex;
 
-            v1 += param0;
-
-            if (v1 >= 8) {
-                v1 -= 8;
+            if (mask >= 8) {
+                mask -= 8;
             }
 
-            ov19_SetMonSpriteTransparencyMask(&v0->unk_00, v1);
-            v0->unk_188 = param0;
+            ov19_SetMonSpriteTransparencyMask(&v0->unk_00, mask);
+            v0->unk_188 = buttonIndex;
         }
     }
 }
@@ -3138,12 +3136,12 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     param0->unk_128 = sub_0208712C(HEAP_ID_9, 2, 0, 8, param0->options);
 
     if (param1->boxMode != PC_MODE_COMPARE) {
-        param0->unk_17C = sub_02023FCC(sMainPcButtons, NELEMS(sMainPcButtons), ov19_021D53B8, param0, HEAP_ID_9);
+        param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sMainPcButtons, NELEMS(sMainPcButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_9);
     } else {
-        param0->unk_17C = sub_02023FCC(sComparePokemonButtons, NELEMS(sComparePokemonButtons), ov19_021D53B8, param0, HEAP_ID_9);
+        param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sComparePokemonButtons, NELEMS(sComparePokemonButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_9);
     }
 
-    param0->unk_180 = sub_02023FCC(sPokemonMarkingsButtons, NELEMS(sPokemonMarkingsButtons), ov19_021D4BB0, param0, HEAP_ID_9);
+    param0->markingsButtonsAction = TouchScreenActions_RegisterHandler(sPokemonMarkingsButtons, NELEMS(sPokemonMarkingsButtons), ov19_BoxTouchScreenMarkingsButtonHandler, param0, HEAP_ID_9);
     param0->unk_00.pcBoxes = param0->pcBoxes;
     param0->unk_00.party = param0->party;
     param0->unk_00.unk_110 = 0;
@@ -3160,8 +3158,8 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
 
 static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0)
 {
-    sub_02024034(param0->unk_180);
-    sub_02024034(param0->unk_17C);
+    TouchScreenActions_Free(param0->markingsButtonsAction);
+    TouchScreenActions_Free(param0->mainBoxAndCompareButtonsAction);
 
     if (param0->mon) {
         Heap_FreeToHeap(param0->mon);
@@ -3260,7 +3258,7 @@ static void ov19_PCCompareMonsInit(UnkStruct_ov19_021D4EE4 *param0)
 {
     param0->unk_00 = 0;
     param0->unk_01 = 0;
-    param0->unk_04 = 0;
+    param0->compareButtonAnimationPressed = FALSE;
 
     for (int i = 0; i < 2; i++) {
         param0->unk_02[i] = 0;
@@ -3281,7 +3279,7 @@ static void ov19_021D4F34(UnkStruct_ov19_021D4F34 *param0)
 {
     param0->unk_00 = 0;
     param0->unk_02 = 0;
-    param0->unk_01 = 0;
+    param0->markingsButtonsScrollOffset = 0;
     param0->unk_04 = 0;
 }
 
@@ -3638,31 +3636,31 @@ static BOOL ov19_TryPreviewCursorMon(UnkStruct_ov19_021D5DF8 *param0)
     return FALSE;
 }
 
-static BOOL ov19_021D538C(UnkStruct_ov19_021D5DF8 *param0)
+static BOOL ov19_TryPressTouchScreenButton(UnkStruct_ov19_021D5DF8 *param0)
 {
-    param0->unk_184 = 65535;
-    sub_0202404C(param0->unk_17C);
+    param0->touchScreenButtonPressed = 0xFFFF;
+    TouchScreenActions_HandleAction(param0->mainBoxAndCompareButtonsAction);
 
-    return param0->unk_184 != 65535;
+    return param0->touchScreenButtonPressed != 0xFFFF;
 }
 
-static void ov19_021D53B8(u32 param0, u32 param1, void *param2)
+static void ov19_BoxTouchScreenButtonHandler(u32 buttonIndex, enum TouchScreenButtonState buttonTouchState, void *context)
 {
-    UnkStruct_ov19_021D5DF8 *v0 = (UnkStruct_ov19_021D5DF8 *)param2;
+    UnkStruct_ov19_021D5DF8 *v0 = (UnkStruct_ov19_021D5DF8 *)context;
 
-    if ((param1 == 0) && (v0->unk_184 == 65535)) {
-        v0->unk_184 = param0;
+    if (buttonTouchState == TOUCH_BUTTON_PRESSED && v0->touchScreenButtonPressed == 0xFFFF) {
+        v0->touchScreenButtonPressed = buttonIndex;
     }
 
     if (ov19_GetBoxMode(&v0->unk_00) == PC_MODE_COMPARE) {
-        if (param0 == 2) {
-            switch (param1) {
-            case 0:
-                ov19_021D5BA0(&v0->unk_00, 1);
+        if (buttonIndex == 2) {
+            switch (buttonTouchState) {
+            case TOUCH_BUTTON_PRESSED:
+                ov19_SetCompareButtonPressed(&v0->unk_00, TRUE);
                 break;
-            case 1:
-            case 3:
-                ov19_021D5BA0(&v0->unk_00, 0);
+            case TOUCH_BUTTON_RELEASED:
+            case TOUCH_BUTTON_HELD_OUT_OF_BOUNDS:
+                ov19_SetCompareButtonPressed(&v0->unk_00, FALSE);
                 break;
             }
         }
@@ -4026,9 +4024,9 @@ static void ov19_021D5B80(UnkStruct_ov19_021D4DF0 *param0)
     }
 }
 
-static void ov19_021D5BA0(UnkStruct_ov19_021D4DF0 *param0, BOOL param1)
+static void ov19_SetCompareButtonPressed(UnkStruct_ov19_021D4DF0 *param0, BOOL pressed)
 {
-    param0->unk_A4.unk_04 = param1;
+    param0->unk_A4.compareButtonAnimationPressed = pressed;
 }
 
 static void ov19_SetPreviewedBoxMon(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon)
@@ -4162,9 +4160,9 @@ static void ov19_021D5D9C(UnkStruct_ov19_021D4DF0 *param0, u32 param1)
     param0->unk_9C.unk_02 = param1;
 }
 
-static void ov19_021D5DA4(UnkStruct_ov19_021D4DF0 *param0, u32 param1)
+static void ov19_SetMarkingsButtonsScrollOffset(UnkStruct_ov19_021D4DF0 *param0, u32 offset)
 {
-    param0->unk_9C.unk_01 = param1;
+    param0->unk_9C.markingsButtonsScrollOffset = offset;
 }
 
 static void ov19_021D5DAC(UnkStruct_ov19_021D4DF0 *param0, int param1)
@@ -4325,9 +4323,9 @@ u32 ov19_021D5EB8(const UnkStruct_ov19_021D4DF0 *param0)
     return param0->unk_9C.unk_02;
 }
 
-u32 ov19_021D5EC0(const UnkStruct_ov19_021D4DF0 *param0)
+u32 ov19_GetMarkingsButtonsScrollOffset(const UnkStruct_ov19_021D4DF0 *param0)
 {
-    return param0->unk_9C.unk_01;
+    return param0->unk_9C.markingsButtonsScrollOffset;
 }
 
 u32 ov19_GetMonSpriteTransparencyMask(const UnkStruct_ov19_021D4DF0 *param0)
@@ -4435,9 +4433,9 @@ BOOL ov19_021D5FB8(const UnkStruct_ov19_021D4DF0 *param0, int param1)
     return param0->unk_A4.unk_02[param1];
 }
 
-BOOL ov19_021D5FC0(const UnkStruct_ov19_021D4DF0 *param0)
+BOOL ov19_IsCompareButtonPressed(const UnkStruct_ov19_021D4DF0 *param0)
 {
-    return param0->unk_A4.unk_04;
+    return param0->unk_A4.compareButtonAnimationPressed;
 }
 
 BOOL ov19_IsPreviewedMonEgg(const UnkStruct_ov19_021D4DF0 *param0)
