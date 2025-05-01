@@ -152,7 +152,7 @@ static void ov53_02256568(SysTask *param0, void *param1)
     if (v1->unk_00) {
         u32 v2 = PokeIconSpriteIndex(v1->unk_00, 0, 0);
 
-        ov25_022553A0(v0->unk_AC, &v2, 1, 1);
+        ov25_090_LoadPokemonIcons(v0->unk_AC, &v2, 1, 1);
         ov25_Set_cParam(v0->unk_24[0], 1 + PokeIconPaletteIndex(v1->unk_00, 0, 0));
         ov53_02256874(&(v0->unk_24[4]), v1->unk_04);
     } else {
@@ -359,8 +359,8 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
         param0->unk_8C[v3] = PokeIconSpriteIndex(((v2[v3]) ? v2[v3] : 1), 0, 0);
     }
 
-    ov25_022553A0(v1, param0->unk_8C, NELEMS(param0->unk_8C), 1);
-    ov25_02255360(1);
+    ov25_090_LoadPokemonIcons(v1, param0->unk_8C, NELEMS(param0->unk_8C), 1);
+    ov25_090_LoadPokemonIconLuminancePalette(1);
 
     for (v3 = 0; v3 < 16; v3++) {
         param0->unk_24[v3] = NULL;

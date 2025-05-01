@@ -149,7 +149,7 @@ static void DrawAppScreen(SysTask *param0, void *param1)
     Bg_CopyTilemapBufferToVRAM(v2->bgConfig, 6);
 
     ov25_FillPaletteFromActivePaletteSlot(15, 1);
-    ov25_02255360(2);
+    ov25_090_LoadPokemonIconLuminancePalette(2);
     ov32_02256898(v2, v2->playerParty);
     ov32_0225692C(v2, v2->playerParty);
     StartMonIconBounceTask(v2);

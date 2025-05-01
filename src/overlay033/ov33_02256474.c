@@ -242,7 +242,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     };
     NARC *v1;
 
-    ov25_02255360(1);
+    ov25_090_LoadPokemonIconLuminancePalette(1);
     Graphics_LoadObjectTiles(12, 35, 1, ((4 * 4 * 2) * 6) * 0x20, 0, 1, HEAP_ID_POKETCH_APP);
 
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_POKETCH_APP);

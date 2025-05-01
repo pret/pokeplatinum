@@ -136,13 +136,13 @@ static void ov44_0225660C(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_
     int v1;
     u32 v2;
 
-    ov25_02255360(1);
+    ov25_090_LoadPokemonIconLuminancePalette(1);
 
     v2 = Graphics_LoadObjectTiles(12, 74, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     v2 /= 20;
     param0->unk_64 = v2;
 
-    ov25_022553A0(v2, param1->unk_00, param1->unk_30, 0);
+    ov25_090_LoadPokemonIcons(v2, param1->unk_00, param1->unk_30, 0);
     ov25_LoadNARCMembers(&param0->unk_3C, 12, 72, 73, 8);
     ov25_LoadNARCMembers(&param0->unk_50, 12, 5, 6, 8);
 

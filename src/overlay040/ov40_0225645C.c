@@ -180,7 +180,7 @@ static void ov40_022564D4(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
     u32 v2[3];
     u32 v3;
 
-    ov25_02255360(1);
+    ov25_090_LoadPokemonIconLuminancePalette(1);
 
     v3 = Graphics_LoadObjectTiles(12, 84, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     v3 /= 20;
@@ -373,7 +373,7 @@ static void ov40_02256808(u32 param0, const UnkStruct_ov40_0225645C_1 *param1)
     v1[1] = (param1->unk_00 > 1) ? param1->unk_04[1] : v0;
     v1[2] = v0;
 
-    ov25_022553A0(param0, v1, NELEMS(v1), 1);
+    ov25_090_LoadPokemonIcons(param0, v1, NELEMS(v1), 1);
 }
 
 static void ov40_02256848(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_0225645C_1 *param1)

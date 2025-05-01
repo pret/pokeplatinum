@@ -255,7 +255,7 @@ static void ov54_022565EC(UnkStruct_ov54_0225642C *param0, const UnkStruct_ov54_
     };
     int v1;
 
-    ov25_02255360(0);
+    ov25_090_LoadPokemonIconLuminancePalette(0);
     ov25_LoadNARCMembers(&param0->unk_54, 12, 5, 6, 8);
 
     for (v1 = 0; v1 < param1->unk_90; v1++) {
@@ -270,7 +270,7 @@ static void ov54_022565EC(UnkStruct_ov54_0225642C *param0, const UnkStruct_ov54_
         param0->unk_24[v1] = NULL;
     }
 
-    ov25_022553A0(0, param0->unk_68, param1->unk_90, 0);
+    ov25_090_LoadPokemonIcons(0, param0->unk_68, param1->unk_90, 0);
 }
 
 static void ov54_022566A8(UnkStruct_ov54_0225642C *param0)
