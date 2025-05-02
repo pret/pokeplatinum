@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0208C06C.h"
@@ -45,8 +44,8 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
+#include "touch_screen_actions.h"
 #include "unk_02012744.h"
-#include "unk_02023FCC.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
 #include "unk_02030A80.h"
@@ -72,7 +71,7 @@ typedef struct {
     int unk_190;
     int unk_194;
     UnkStruct_ov62_022312B0 unk_198[2];
-    UnkStruct_02023FCC *unk_1D0[1];
+    TouchScreenActions *unk_1D0[1];
     UnkStruct_ov62_0223E01C_sub1 unk_1D4;
     UnkStruct_ov62_02249380 *unk_1E8;
     UnkStruct_ov62_02248CDC unk_1EC;
@@ -116,7 +115,7 @@ static void ov62_02239854(UnkStruct_0208C06C *param0, int param1);
 static BOOL ov62_02239984(UnkStruct_0208C06C *param0, int param1);
 static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1);
 static void ov62_02239B7C(UnkStruct_0208C06C *param0);
-static void ov62_02239BAC(u32 param0, u32 param1, void *param2);
+static void ov62_02239BAC(u32 param0, enum TouchScreenButtonState param1, void *param2);
 static void ov62_02239BD8(UnkStruct_0208C06C *param0);
 static void ov62_02239CE8(UnkStruct_0208C06C *param0);
 static void ov62_02239D0C(UnkStruct_0208C06C *param0);
@@ -606,7 +605,7 @@ static BOOL ov62_02238610(UnkStruct_0208C06C *param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
-        v0->unk_1D0[0] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02239BAC, param0, HEAP_ID_102);
+        v0->unk_1D0[0] = TouchScreenActions_RegisterHandler(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02239BAC, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 1:
@@ -621,7 +620,7 @@ static BOOL ov62_02238610(UnkStruct_0208C06C *param0)
         PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 2:
-        sub_0202404C(v0->unk_1D0[0]);
+        TouchScreenActions_HandleAction(v0->unk_1D0[0]);
 
         if (TouchScreen_LocationPressed(&Unk_ov62_02248CAC[0])
             || (v0->unk_1D4.unk_10 == 1)) {
@@ -631,7 +630,7 @@ static BOOL ov62_02238610(UnkStruct_0208C06C *param0)
         break;
     case 3:
         ov62_02239CE8(param0);
-        sub_02024034(v0->unk_1D0[0]);
+        TouchScreenActions_Free(v0->unk_1D0[0]);
         ov62_02231B8C(param0);
         param0->unk_08++;
     case 4:
@@ -1570,12 +1569,12 @@ static void ov62_02239B7C(UnkStruct_0208C06C *param0)
     v0->unk_1D4.unk_10 = 0;
 }
 
-static void ov62_02239BAC(u32 param0, u32 param1, void *param2)
+static void ov62_02239BAC(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_0208C06C *v0 = param2;
     UnkStruct_ov62_02237D24 *v1 = v0->unk_860;
 
-    if (param1 != 0) {
+    if (param1 != TOUCH_BUTTON_PRESSED) {
         return;
     }
     if (ov62_02239984(v0, param0) == 0) {

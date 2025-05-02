@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023FCC_decl.h"
-
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021DF734.h"
@@ -32,8 +30,8 @@
 #include "sprite_util.h"
 #include "system.h"
 #include "touch_screen.h"
+#include "touch_screen_actions.h"
 #include "unk_02012744.h"
-#include "unk_02023FCC.h"
 #include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"
@@ -51,7 +49,7 @@ typedef struct {
 } UnkStruct_ov21_021E88E8;
 
 typedef struct {
-    UnkStruct_02023FCC *unk_00;
+    TouchScreenActions *unk_00;
     TouchScreenHitTable *unk_04;
     UnkStruct_ov21_021E88E8 unk_08;
     int unk_10[1];
@@ -88,7 +86,7 @@ static void ov21_021E886C(UnkStruct_ov21_021E88B0 *param0, UnkStruct_ov21_021E85
 static void ov21_021E88B0(UnkStruct_ov21_021E88B0 *param0);
 static void ov21_021E88B8(UnkStruct_ov21_021E88B0 *param0, UnkStruct_ov21_021E8570 *param1);
 static void ov21_021E88D0(UnkStruct_ov21_021E88B0 *param0);
-static void ov21_021E88E8(u32 param0, u32 param1, void *param2);
+static void ov21_021E88E8(u32 param0, enum TouchScreenButtonState param1, void *param2);
 static void ov21_021E8C94(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4);
 static void ov21_021E8CBC(PokedexGraphicData **param0, UnkStruct_ov21_021E8794 *param1, const UnkStruct_ov21_021E88B0 *param2, int param3);
 static void ov21_021E8D3C(const UnkStruct_ov21_021E8570 *param0);
@@ -400,7 +398,7 @@ static void ov21_021E886C(UnkStruct_ov21_021E88B0 *param0, UnkStruct_ov21_021E85
 
     param0->unk_08.unk_00 = param1;
     param0->unk_08.unk_04 = param0;
-    param0->unk_00 = sub_02023FCC(param0->unk_04, 1, ov21_021E88E8, &param0->unk_08, heapID);
+    param0->unk_00 = TouchScreenActions_RegisterHandler(param0->unk_04, 1, ov21_021E88E8, &param0->unk_08, heapID);
 }
 
 static void ov21_021E88B0(UnkStruct_ov21_021E88B0 *param0)
@@ -414,7 +412,7 @@ static void ov21_021E88B0(UnkStruct_ov21_021E88B0 *param0)
 
 static void ov21_021E88B8(UnkStruct_ov21_021E88B0 *param0, UnkStruct_ov21_021E8570 *param1)
 {
-    sub_0202404C(param0->unk_00);
+    TouchScreenActions_HandleAction(param0->unk_00);
 
     if (param0->unk_14) {
         param0->unk_10[0] = 2;
@@ -423,13 +421,13 @@ static void ov21_021E88B8(UnkStruct_ov21_021E88B0 *param0, UnkStruct_ov21_021E85
 
 static void ov21_021E88D0(UnkStruct_ov21_021E88B0 *param0)
 {
-    sub_02024034(param0->unk_00);
+    TouchScreenActions_Free(param0->unk_00);
     Heap_FreeToHeap(param0->unk_04);
 
     param0->unk_04 = NULL;
 }
 
-static void ov21_021E88E8(u32 param0, u32 param1, void *param2)
+static void ov21_021E88E8(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_ov21_021E88E8 *v0 = param2;
     UnkStruct_ov21_021E8570 *v1 = v0->unk_00;
@@ -438,7 +436,7 @@ static void ov21_021E88E8(u32 param0, u32 param1, void *param2)
     v2->unk_10[param0] = param1;
 
     switch (param1) {
-    case 0:
+    case TOUCH_BUTTON_PRESSED:
         switch (param0) {
         case 0:
             ov21_021E33B4(v1->unk_08, 1);
@@ -448,7 +446,7 @@ static void ov21_021E88E8(u32 param0, u32 param1, void *param2)
             break;
         }
         break;
-    case 2:
+    case TOUCH_BUTTON_HELD:
         switch (param0) {
         case 0:
             v2->unk_14 = 1;

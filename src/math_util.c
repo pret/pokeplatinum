@@ -1,4 +1,4 @@
-#include "math.h"
+#include "math_util.h"
 
 #include <nitro/math/crc.h>
 

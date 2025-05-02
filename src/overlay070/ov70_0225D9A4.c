@@ -6,7 +6,6 @@
 
 #include "constants/screen.h"
 
-#include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -70,9 +69,9 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
+#include "touch_screen_actions.h"
 #include "trainer_info.h"
 #include "unk_0200F174.h"
-#include "unk_02023FCC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020366A0.h"
@@ -153,7 +152,7 @@ typedef struct {
     u16 unk_08;
     u16 unk_0A;
     Window unk_0C;
-    UnkStruct_02023FCC *unk_1C;
+    TouchScreenActions *unk_1C;
     void *unk_20[3];
     NNSG2dScreenData *unk_2C[3];
 } UnkStruct_ov70_02260744;
@@ -343,7 +342,7 @@ static void ov70_02260870(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4
 static void ov70_02260930(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1, u32 param2, NARC *param3, u32 param4);
 static void ov70_022609A8(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1);
 static void ov70_022609D4(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1, u32 param2, NARC *param3, u32 param4);
-static void ov70_02260A50(u32 param0, u32 param1, void *param2);
+static void ov70_02260A50(u32 param0, enum TouchScreenButtonState param1, void *param2);
 static void ov70_02260A68(UnkStruct_ov70_02260744 *param0);
 
 static const u8 Unk_ov70_0226D580[2] = {
@@ -3050,7 +3049,7 @@ static void ov70_02260744(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4
 
     {
         static const TouchScreenHitTable v1 = { 32, 160, 40, 216 };
-        param0->unk_1C = sub_02023FCC(&v1, 1, ov70_02260A50, param0, param3);
+        param0->unk_1C = TouchScreenActions_RegisterHandler(&v1, 1, ov70_02260A50, param0, param3);
     }
 
     param0->unk_06 = 1;
@@ -3060,7 +3059,7 @@ static void ov70_022607A8(UnkStruct_ov70_02260744 *param0)
 {
     int v0;
 
-    sub_02024034(param0->unk_1C);
+    TouchScreenActions_Free(param0->unk_1C);
     Window_Remove(&param0->unk_0C);
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -3075,7 +3074,7 @@ static BOOL ov70_022607D4(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4
     BOOL v0 = 0;
 
     if (param0->unk_06 == 0) {
-        sub_0202404C(param0->unk_1C);
+        TouchScreenActions_HandleAction(param0->unk_1C);
     } else {
         param0->unk_03 = 1;
     }
@@ -3186,7 +3185,7 @@ static void ov70_022609D4(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4
     Bg_ScheduleScroll(param1->unk_00, Unk_ov70_0226D5CC[3], 3, v0[param2]);
 }
 
-static void ov70_02260A50(u32 param0, u32 param1, void *param2)
+static void ov70_02260A50(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_ov70_02260744 *v0 = param2;
 

@@ -24,9 +24,9 @@
 #include "sprite.h"
 #include "strbuf.h"
 #include "system.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 
@@ -165,8 +165,8 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     ov71_0223B858(v0->unk_00);
     ov71_0223B968(v0, v1);
 
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_56, SEQ_NONE, 0);
     ov71_0223D324(&v0->unk_3354);
     Sound_PlayEffect(SEQ_SE_DP_CARD3);
@@ -389,7 +389,7 @@ int ov71_0223B5B8(OverlayManager *param0, int *param1)
     ov71_0223C6D4(v0->unk_04);
     ov71_0223BBDC(v0->unk_00);
 
-    sub_0201E530();
+    DisableTouchPad();
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_25);

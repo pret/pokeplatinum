@@ -8,7 +8,7 @@
 #include "heap.h"
 #include "location.h"
 #include "main.h"
-#include "math.h"
+#include "math_util.h"
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"

@@ -68,11 +68,11 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0200679C.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
-#include "unk_0201E3D8.h"
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
@@ -205,8 +205,8 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
 
     v2 = OverlayManager_Args(param0);
     v0->unk_738 = v2->unk_0C;
-    sub_0201E3D8();
-    v1 = sub_0201E450(4);
+    EnableTouchPad();
+    v1 = InitializeTouchPad(4);
 
     if (v1 != 1) {
         (void)0;
@@ -393,7 +393,7 @@ int ov22_02256098(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
-    v1 = sub_0201E530();
+    v1 = DisableTouchPad();
     GF_ASSERT(v1 == 1);
 
     OverlayManager_FreeData(param0);
@@ -426,8 +426,8 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     v0->unk_730 = v2->unk_08;
     v0->unk_734 = v2->unk_1C;
 
-    sub_0201E3D8();
-    v1 = sub_0201E450(4);
+    EnableTouchPad();
+    v1 = InitializeTouchPad(4);
 
     if (v1 != 1) {
         (void)0;
@@ -654,7 +654,7 @@ int ov22_02256600(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
-    v1 = sub_0201E530();
+    v1 = DisableTouchPad();
     GF_ASSERT(v1 == 1);
 
     OverlayManager_FreeData(param0);

@@ -42,7 +42,7 @@
 #include "text.h"
 #include "sound_playback.h"
 #include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
 #include "unk_020366A0.h"
@@ -306,8 +306,8 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     VramTransfer_New(64, HEAP_ID_109);
     SetAutorepeat(4, 8);
     ov98_02247510(v0->unk_04);
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
 
     v0->unk_20 = StringTemplate_New(11, 64, HEAP_ID_109);
     v0->unk_24 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0671, HEAP_ID_109);
@@ -421,7 +421,7 @@ int ov98_02247440(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
-    sub_0201E530();
+    DisableTouchPad();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);

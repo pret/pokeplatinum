@@ -37,7 +37,7 @@
 #include "bg_window.h"
 #include "enums.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"

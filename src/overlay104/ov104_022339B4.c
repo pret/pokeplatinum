@@ -21,7 +21,7 @@
 
 #include "game_records.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "party.h"
 #include "pokemon.h"
 #include "savedata.h"

@@ -20,7 +20,7 @@
 
 #include "enums.h"
 #include "list_menu.h"
-#include "math.h"
+#include "math_util.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 

@@ -9,7 +9,6 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay072/struct_ov72_0223E2A8.h"
 #include "overlay111/ov111_021D2F80.h"
 #include "overlay111/ov111_021D33F4.h"
 #include "overlay111/ov111_021D3548.h"
@@ -24,7 +23,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -40,12 +39,12 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
-#include "unk_0201E3D8.h"
 #include "vram_transfer.h"
 
 typedef struct {
@@ -116,7 +115,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     u8 unk_411[9];
     u32 unk_41C;
     u32 unk_420;
-    UnkStruct_ov72_0223E2A8 unk_424;
+    TouchPadDataBuffer unk_424;
     u8 unk_466[38400];
 };
 
@@ -426,7 +425,7 @@ int ov111_021D0F40(OverlayManager *param0, int *param1)
     int v0;
     UnkStruct_ov111_021D0F7C *v1 = OverlayManager_Data(param0);
 
-    sub_0201E530();
+    DisableTouchPad();
     *(v1->unk_3D8) = v1->unk_0C;
     VramTransfer_Free();
 
@@ -744,7 +743,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
         }
         break;
     case 3:
-        sub_0201E564(&param0->unk_424, 4, 2);
+        WriteAutoSamplingDataToBuffer(&param0->unk_424, TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ALL_DATA_WITHOUT_WRAPPING, 2);
         v1 = TouchScreen_CheckRectangleHeld((const TouchScreenRect *)Unk_ov111_021D3794);
 
         if (v1 != 0xffffffff) {
@@ -1193,8 +1192,8 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
 
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
-    sub_0201E3D8();
-    sub_0201E450(1);
+    EnableTouchPad();
+    InitializeTouchPad(1);
     SetVBlankCallback(ov111_021D2090, (void *)param0);
 
     return;
@@ -1858,9 +1857,9 @@ static void ov111_021D297C(UnkStruct_ov111_021D0F7C *param0, int param1)
 {
     int v0, v1, v2, v3;
 
-    for (v0 = 0; v0 < param0->unk_424.unk_00; v0++) {
-        v2 = param0->unk_424.unk_02[v0].x;
-        v3 = param0->unk_424.unk_02[v0].y;
+    for (v0 = 0; v0 < param0->unk_424.bufferSize; v0++) {
+        v2 = param0->unk_424.buffer[v0].x;
+        v3 = param0->unk_424.buffer[v0].y;
 
         if ((Unk_ov111_021D3728[param1].unk_02 <= v2) && (v2 <= Unk_ov111_021D3728[param1].unk_03) && (Unk_ov111_021D3728[param1].unk_00 <= v3) && (v3 <= Unk_ov111_021D3728[param1].unk_01)) {
             ov111_021D2ECC(param0, v2, v3);
@@ -1875,9 +1874,9 @@ static void ov111_021D29D8(UnkStruct_ov111_021D0F7C *param0)
     int v0;
     u8 v1, v2;
 
-    for (v0 = 0; v0 < param0->unk_424.unk_00; v0++) {
-        v1 = param0->unk_424.unk_02[v0].x;
-        v2 = param0->unk_424.unk_02[v0].y;
+    for (v0 = 0; v0 < param0->unk_424.bufferSize; v0++) {
+        v1 = param0->unk_424.buffer[v0].x;
+        v2 = param0->unk_424.buffer[v0].y;
 
         ov111_021D2A18(param0, v1, v2);
     }

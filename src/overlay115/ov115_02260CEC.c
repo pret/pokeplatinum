@@ -11,7 +11,6 @@
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay072/struct_ov72_0223E2A8.h"
 #include "overlay092/struct_ov92_021D28C0.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
@@ -31,7 +30,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "pltt_transfer.h"
@@ -47,9 +46,9 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_02012744.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
@@ -314,7 +313,7 @@ typedef struct UnkStruct_ov115_02260D78_t {
     UnkStruct_ov115_02261C18 unk_19CC;
     UnkStruct_ov115_02261ADC unk_1AB4;
     UnkStruct_ov115_02265AD4 unk_8680;
-    UnkStruct_ov72_0223E2A8 unk_8690;
+    TouchPadDataBuffer unk_8690;
     UnkStruct_ov115_02262E64 unk_86D4;
     const UnkStruct_ov115_02262F50 *unk_8720;
     u16 unk_8724;
@@ -729,7 +728,7 @@ UnkStruct_ov115_02260D78 *ov115_02260CEC(u32 heapID, u32 param1, u32 param2, u32
     ov115_02262FB4(&v0->unk_8730, &v0->unk_1AB4, heapID);
     ov115_0226327C(&v0->unk_8770);
 
-    v1 = sub_0201E3F4(Unk_ov115_022666C0, 8, 4);
+    v1 = InitializeTouchPadWithExternalBuffer(Unk_ov115_022666C0, 8, 4);
     GF_ASSERT(v1 == 1);
 
     return v0;
@@ -737,7 +736,7 @@ UnkStruct_ov115_02260D78 *ov115_02260CEC(u32 heapID, u32 param1, u32 param2, u32
 
 void ov115_02260D78(UnkStruct_ov115_02260D78 *param0)
 {
-    u32 v0 = sub_0201E530();
+    u32 v0 = DisableTouchPad();
     GF_ASSERT(v0 == 1);
 
     ov115_022630DC(&param0->unk_8730, &param0->unk_1AB4);
@@ -930,7 +929,7 @@ BOOL ov115_022610D4(UnkStruct_ov115_02260D78 *param0)
         }
     }
 
-    sub_0201E564(&param0->unk_8690, 1, 0);
+    WriteAutoSamplingDataToBuffer(&param0->unk_8690, TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ONLY_TOUCHES_WITH_WRAPPING, 0);
     ov115_02262974(param0);
 
     {
@@ -2420,16 +2419,16 @@ static void ov115_02262B70(UnkStruct_ov115_02260D78 *param0)
     }
 
     if (param0->unk_20.unk_00 == 1) {
-        if (param0->unk_8690.unk_00 == 1) {
-            v0.x = param0->unk_8690.unk_02[0].x;
-            v0.y = param0->unk_8690.unk_02[0].y;
+        if (param0->unk_8690.bufferSize == 1) {
+            v0.x = param0->unk_8690.buffer[0].x;
+            v0.y = param0->unk_8690.buffer[0].y;
             ov115_02262CBC(&param0->unk_20, v0);
-        } else if (param0->unk_8690.unk_00 >= 2) {
-            v0.x = param0->unk_8690.unk_02[0].x;
-            v0.y = param0->unk_8690.unk_02[0].y;
+        } else if (param0->unk_8690.bufferSize >= 2) {
+            v0.x = param0->unk_8690.buffer[0].x;
+            v0.y = param0->unk_8690.buffer[0].y;
             ov115_02262CBC(&param0->unk_20, v0);
-            v0.x = param0->unk_8690.unk_02[param0->unk_8690.unk_00 - 1].x;
-            v0.y = param0->unk_8690.unk_02[param0->unk_8690.unk_00 - 1].y;
+            v0.x = param0->unk_8690.buffer[param0->unk_8690.bufferSize - 1].x;
+            v0.y = param0->unk_8690.buffer[param0->unk_8690.bufferSize - 1].y;
             ov115_02262CBC(&param0->unk_20, v0);
         } else {
             v0.x = gSystem.touchX;

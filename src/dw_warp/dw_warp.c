@@ -21,8 +21,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "touch_pad.h"
 #include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 
@@ -82,8 +82,8 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
 
     SetAutorepeat(4, 8);
     DWWarp_VramSetBank();
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
 
     DWWarp_InitModel(dww);
     DWWarp_InitCamera(dww);
@@ -160,7 +160,7 @@ BOOL DWWarp_Exit(OverlayManager *ovy, int *state)
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    sub_0201E530();
+    DisableTouchPad();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);

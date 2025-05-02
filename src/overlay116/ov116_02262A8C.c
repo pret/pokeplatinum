@@ -18,7 +18,7 @@
 #include "easy3d_object.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -974,13 +974,13 @@ void ov116_02263B30(UnkStruct_ov116_02262A8C *param0)
 }
 
 static const TouchScreenHitTable Unk_ov116_02267B38[] = {
-    { 0xFE, 0x80, 0x80, 0x30 },
-    { 0xFF, 0x0, 0x0, 0x0 }
+    { TOUCHSCREEN_USE_CIRCLE, 0x80, 0x80, 0x30 },
+    { TOUCHSCREEN_TABLE_TERMINATOR, 0x0, 0x0, 0x0 }
 };
 
 static const TouchScreenHitTable Unk_ov116_02267B40[] = {
-    { 0xFE, 0x80, 0x80, 0x40 },
-    { 0xFF, 0x0, 0x0, 0x0 }
+    { TOUCHSCREEN_USE_CIRCLE, 0x80, 0x80, 0x40 },
+    { TOUCHSCREEN_TABLE_TERMINATOR, 0x0, 0x0, 0x0 }
 };
 
 void ov116_02263BA0(UnkStruct_ov116_02262A8C *param0)
@@ -996,9 +996,9 @@ void ov116_02263BA0(UnkStruct_ov116_02262A8C *param0)
         param0->unk_279C.unk_A4 = 0;
 
         if (param0->unk_2870) {
-            v7 = sub_020227DC(Unk_ov116_02267B40, v0, v1);
+            v7 = TouchScreen_CheckTouchedHitTableID(Unk_ov116_02267B40, v0, v1);
         } else {
-            v7 = sub_020227DC(Unk_ov116_02267B38, v0, v1);
+            v7 = TouchScreen_CheckTouchedHitTableID(Unk_ov116_02267B38, v0, v1);
         }
 
         if (v7 == 0xffffffff) {
