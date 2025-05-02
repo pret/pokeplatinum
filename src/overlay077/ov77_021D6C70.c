@@ -145,7 +145,7 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
 
     param0->unk_10 = 1;
 
-    ParticleSystem_InitAll();
+    ParticleSystem_ZeroAll();
 
     param0->unk_14 = Heap_AllocFromHeap(HEAP_ID_76, 0x4800);
     param0->unk_18 = ParticleSystem_New(ov77_021D6C70, ov77_021D6C94, param0->unk_14, 0x4800, 1, HEAP_ID_76);

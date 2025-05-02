@@ -187,7 +187,7 @@ static void ov118_021D0FDC(OverlayMetadata *param0)
     void *v0;
     Camera *camera;
 
-    ParticleSystem_InitAll();
+    ParticleSystem_ZeroAll();
 
     v0 = Heap_AllocFromHeap(HEAP_ID_12, 0x4800);
     param0->unk_18 = ParticleSystem_New(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, HEAP_ID_12);

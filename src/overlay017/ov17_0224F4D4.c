@@ -561,7 +561,7 @@ static void ov17_0224FDDC(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    ParticleSystem_InitAll();
+    ParticleSystem_ZeroAll();
 }
 
 static void ov17_0224FE1C(UnkStruct_ov17_0224FCA0 *param0)

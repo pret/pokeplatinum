@@ -23,7 +23,7 @@ UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(int heapID)
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223D5F0));
 
     v0->heapID = heapID;
-    ParticleSystem_InitAll();
+    ParticleSystem_ZeroAll();
 
     return v0;
 }

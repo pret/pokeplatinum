@@ -697,7 +697,7 @@ static BOOL ov17_0223E3CC(UnkStruct_ov17_0224DF54 *param0, int *param1, int *par
 
 static void ov17_0223E450(void)
 {
-    ParticleSystem_InitAll();
+    ParticleSystem_ZeroAll();
 }
 
 static void ov17_0223E458(UnkStruct_ov17_0224DF54 *param0)

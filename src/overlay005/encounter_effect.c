@@ -1509,7 +1509,7 @@ static void ov5_021DF28C(SysTask *param0, void *param1)
     switch (v0->unk_00) {
     case 2:
 
-        ParticleSystem_InitAll();
+        ParticleSystem_ZeroAll();
 
         {
             VecFx32 v1 = { 0 };

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02014000_H
-#define POKEPLATINUM_UNK_02014000_H
+#ifndef POKEPLATINUM_PARTICLE_SYSTEM_H
+#define POKEPLATINUM_PARTICLE_SYSTEM_H
 
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
@@ -25,7 +25,7 @@ enum VRAMAutoRelease {
 typedef struct ParticleSystem {
     SPLManager *manager;
     void *resource;
-    SPLEmitter *latestEmitter; // Last created emitter
+    SPLEmitter *lastAddedEmitter;
     void *heapStart;
     void *heap;
     void *heapEnd;
@@ -51,7 +51,7 @@ typedef struct ParticleSystem {
     u8 cameraProjection;
 } ParticleSystem;
 
-void ParticleSystem_InitAll(void);
+void ParticleSystem_ZeroAll(void);
 
 // When using a custom texture/palette allocator function, be sure to use
 // ParticleSystem_RegisterTextureKey or ParticleSystem_RegisterPaletteKey to register
@@ -97,4 +97,4 @@ void ParticleSystem_GetEmitterConvergenceTarget(SPLEmitter *emitter, VecFx32 *ta
 void ParticleSystem_SetEmitterConvergenceForce(SPLEmitter *emitter, fx16 *force);
 void ParticleSystem_GetEmitterConvergenceForce(SPLEmitter *emitter, fx16 *force);
 
-#endif // POKEPLATINUM_UNK_02014000_H
+#endif // POKEPLATINUM_PARTICLE_SYSTEM_H

@@ -1461,7 +1461,7 @@ static void ov16_0223CE28(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    ParticleSystem_InitAll();
+    ParticleSystem_ZeroAll();
 }
 
 static void ov16_0223CE68(void *param0)

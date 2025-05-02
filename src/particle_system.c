@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "camera.h"
+#include "fx_util.h"
 #include "heap.h"
 #include "narc.h"
 #include "spl_behavior.h"
@@ -37,9 +38,9 @@ static void *sEmitterCallbackParam;
 // See ParticleSystem_Register*Key
 static ParticleSystem *sUploadingParticleSystem;
 
-static const VecFx32 sParticleSystemDefaultCameraPos = { FX32_CONST(0), FX32_CONST(0), FX32_CONST(4) };
-static const VecFx32 sParticleSystemDefaultCameraUp = { FX32_CONST(0), FX32_CONST(1), FX32_CONST(0) };
-static const VecFx32 sParticleSystemDefaultCameraTarget = { FX32_CONST(0), FX32_CONST(0), FX32_CONST(0) };
+static const VecFx32 sParticleSystemDefaultCameraPos = VEC_FX32(0, 0, 4);
+static const VecFx32 sParticleSystemDefaultCameraUp = VEC_FX32(0, 1, 0);
+static const VecFx32 sParticleSystemDefaultCameraTarget = VEC_FX32(0, 0, 0);
 
 static void *ParticleSystem00_AllocMemory(u32 size);
 static void *ParticleSystem01_AllocMemory(u32 size);
@@ -80,7 +81,7 @@ static const SPLAllocFunc sParticleSystemAllocFuncs[] = {
     ParticleSystem15_AllocMemory,
 };
 
-void ParticleSystem_InitAll(void)
+void ParticleSystem_ZeroAll(void)
 {
     for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         sParticleSystems[i] = NULL;
@@ -126,21 +127,19 @@ ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMA
     if (hasCamera == TRUE) {
         particleSystem->camera = Camera_Alloc(heapID);
 
-        {
-            VEC_Set(&particleSystem->unused1, 0, 0, 0);
-            particleSystem->cameraFov = 8192;
+        VEC_Set(&particleSystem->unused1, 0, 0, 0);
+        particleSystem->cameraFov = 8192;
 
-            Camera_InitWithTargetAndPosition(
-                &sParticleSystemDefaultCameraTarget,
-                &sParticleSystemDefaultCameraPos,
-                particleSystem->cameraFov,
-                CAMERA_PROJECTION_PERSPECTIVE,
-                FALSE,
-                particleSystem->camera);
+        Camera_InitWithTargetAndPosition(
+            &sParticleSystemDefaultCameraTarget,
+            &sParticleSystemDefaultCameraPos,
+            particleSystem->cameraFov,
+            CAMERA_PROJECTION_PERSPECTIVE,
+            FALSE,
+            particleSystem->camera);
 
-            particleSystem->cameraProjection = CAMERA_PROJECTION_PERSPECTIVE;
-            Camera_SetAsActive(particleSystem->camera);
-        }
+        particleSystem->cameraProjection = CAMERA_PROJECTION_PERSPECTIVE;
+        Camera_SetAsActive(particleSystem->camera);
     }
 
     particleSystem->manager = SPLManager_New(
@@ -183,7 +182,7 @@ void ParticleSystem_Free(ParticleSystem *particleSystem)
     }
 
     particleSystem->vramAutoRelease = VRAM_AUTO_RELEASE_NONE;
-    particleSystem->latestEmitter = NULL;
+    particleSystem->lastAddedEmitter = NULL;
 
     if (particleSystem->resource != NULL) {
         Heap_FreeToHeap(particleSystem->resource);
@@ -477,7 +476,7 @@ int ParticleSystem_UpdateAll(void)
 SPLEmitter *ParticleSystem_CreateEmitter(ParticleSystem *particleSystem, int resourceID, const VecFx32 *position)
 {
     SPLEmitter *emitter = SPLManager_CreateEmitter(particleSystem->manager, resourceID, position);
-    particleSystem->latestEmitter = emitter;
+    particleSystem->lastAddedEmitter = emitter;
 
     return emitter;
 }
@@ -487,7 +486,7 @@ SPLEmitter *ParticleSystem_CreateEmitterWithCallback(ParticleSystem *particleSys
     sEmitterCallbackParam = param;
     SPLEmitter *emitter = SPLManager_CreateEmitterWithCallback(particleSystem->manager, resourceID, callback);
     sEmitterCallbackParam = NULL;
-    particleSystem->latestEmitter = emitter;
+    particleSystem->lastAddedEmitter = emitter;
 
     return emitter;
 }

@@ -99,7 +99,7 @@ void ov119_021D0E78(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    ParticleSystem_InitAll();
+    ParticleSystem_ZeroAll();
 }
 
 void ov119_021D0EB8(BgConfig *param0)
