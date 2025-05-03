@@ -64,7 +64,7 @@ enum WaitDialDeleteMode {
     DIAL_DELETE_MODE_DESTROY,
 };
 
-typedef struct WaitDial {
+struct WaitDial {
     Window *window;
     u8 pixels[WAIT_DIAL_WHOLE_SIZE];
     u8 messageBoxPixels[WAIT_DIAL_FRAME_SIZE];
@@ -74,7 +74,7 @@ typedef struct WaitDial {
     u8 : 1;
     u8 deleteMode : 2;
     u8 : 6;
-} WaitDial;
+};
 
 typedef struct PokemonPreview {
     UnkStruct_ov5_021D30A8 unk_00;

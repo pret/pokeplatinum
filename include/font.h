@@ -5,6 +5,14 @@
 #include "render_text.h"
 #include "strbuf.h"
 
+#define MAX_LETTER_HEIGHT       16
+#define MAX_LETTER_HEIGHT_TILES ((MAX_LETTER_HEIGHT + 7) / 8)
+
+#define TEXT_LINES(n)                             (n * MAX_LETTER_HEIGHT)
+#define TEXT_LINES_TILES(n)                       (n * MAX_LETTER_HEIGHT_TILES)
+#define TEXT_LINES_WITH_SPACING(n, spacing)       (n * MAX_LETTER_HEIGHT + (n - 1) * spacing)
+#define TEXT_LINES_WITH_SPACING_TILES(n, spacing) (n * MAX_LETTER_HEIGHT_TILES + (n - 1) * spacing)
+
 enum Font {
     FONT_SYSTEM = 0,
     FONT_MESSAGE,
