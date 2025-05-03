@@ -5,17 +5,14 @@
 
 #include "overlay021/ov21_021D1F90.h"
 #include "overlay021/ov21_021D1FA4.h"
-#include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/pokedex_app.h"
 #include "overlay021/pokedex_graphic_data.h"
 #include "overlay021/pokedex_main.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_text.h"
+#include "overlay021/pokedex_text_manager.h"
 #include "overlay021/struct_ov21_021D2648.h"
-#include "overlay021/struct_ov21_021D4C0C_decl.h"
-#include "overlay021/struct_ov21_021D4CA0.h"
-#include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021DE6D4.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
@@ -47,7 +44,7 @@ typedef struct {
 typedef struct {
     Sprite *unk_00[3];
     Sprite *unk_0C;
-    UnkStruct_ov21_021D4CA0 *unk_10;
+    PokedexTextData *unk_10;
     SpriteResource *unk_14[4];
     SpriteResource *unk_24[4];
     UnkStruct_ov21_021D2648 unk_34;
@@ -739,7 +736,7 @@ static void ov21_021DF214(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     PokedexGraphicData *v2 = param1->unk_00;
     int species = PokedexSort_CurrentSpecies(param2->unk_04);
     Window *v4;
-    UnkStruct_ov21_021D4CB8 v5;
+    PokedexDisplayBox displayBox;
     SpriteResource *v6;
 
     SpriteResourcesHeader_Init(&v0, 90 + 4000, 13 + 4000, 88 + 4000, 89 + 4000, 0xffffffff, 0xffffffff, 0, 0, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
@@ -763,35 +760,35 @@ static void ov21_021DF214(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     v4 = ov21_021DF30C(param1->unk_00->unk_14C, species, param3);
     v6 = ov21_021D2344(param1->unk_00, 1);
 
-    v5.unk_00 = param1->unk_00->unk_14C;
-    v5.unk_08 = SpriteTransfer_GetPaletteProxy(v6, NULL);
-    v5.unk_0C = param0->unk_0C;
-    v5.unk_10 = -78;
-    v5.unk_14 = -8;
-    v5.unk_18 = 0;
-    v5.unk_1C = 32 - 1;
-    v5.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v5.heapID = param3;
-    v5.unk_04 = v4;
+    displayBox.textMan = param1->unk_00->unk_14C;
+    displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(v6, NULL);
+    displayBox.sprite = param0->unk_0C;
+    displayBox.x = -78;
+    displayBox.y = -8;
+    displayBox.spriteResourcePriority = 0;
+    displayBox.spriteListPriority = 32 - 1;
+    displayBox.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    displayBox.heapID = param3;
+    displayBox.window = v4;
 
-    param0->unk_10 = ov21_021D4CA0(&v5);
+    param0->unk_10 = PokedexTextManager_NextTextData(&displayBox);
 
-    ov21_021D4DA0(v4);
+    PokedexTextManager_FreeWindow(v4);
 }
 
-Window *ov21_021DF30C(UnkStruct_ov21_021D4C0C *param0, int param1, int param2)
+Window *ov21_021DF30C(PokedexTextManager *textMan, int param1, int param2)
 {
     Window *v0;
     Strbuf *v1;
 
-    v0 = ov21_021D4D6C(param0, 18, 2);
+    v0 = PokedexTextManager_NewWindow(textMan, 18, 2);
     v1 = PokedexText_Category(param1, GAME_LANGUAGE, param2);
 
     {
         u32 v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
         u32 v3 = (v2 < 136) ? (136 - v2) / 2 : 0;
 
-        ov21_021D4E80(param0, v0, v1, v3, 0);
+        PokedexTextManager_DisplayStrbuf(textMan, v0, v1, v3, 0);
     }
 
     PokedexText_Free(v1);
@@ -803,7 +800,7 @@ static void ov21_021DF35C(UnkStruct_ov21_021DF374 *param0)
 {
     Sprite_Delete(param0->unk_0C);
     param0->unk_0C = NULL;
-    ov21_021D4D1C(param0->unk_10);
+    PokedexTextManager_FreeTextData(param0->unk_10);
 }
 
 static void ov21_021DF374(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3)
@@ -967,7 +964,7 @@ static void ov21_021DF64C(UnkStruct_ov21_021DF374 *param0)
     }
 
     Sprite_SetExplicitOAMMode(param0->unk_0C, GX_OAM_MODE_XLU);
-    sub_02012AF0(param0->unk_10->unk_00, GX_OAM_MODE_XLU);
+    sub_02012AF0(param0->unk_10->fontOAM, GX_OAM_MODE_XLU);
 }
 
 static void ov21_021DF680(UnkStruct_ov21_021DF374 *param0)
@@ -981,7 +978,7 @@ static void ov21_021DF680(UnkStruct_ov21_021DF374 *param0)
     }
 
     Sprite_SetExplicitOAMMode(param0->unk_0C, GX_OAM_MODE_NORMAL);
-    sub_02012AF0(param0->unk_10->unk_00, GX_OAM_MODE_NORMAL);
+    sub_02012AF0(param0->unk_10->fontOAM, GX_OAM_MODE_NORMAL);
 }
 
 static void ov21_021DF6B4(UnkStruct_ov21_021DE760 *param0)

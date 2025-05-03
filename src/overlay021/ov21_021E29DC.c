@@ -5,7 +5,6 @@
 
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
-#include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D4EE4.h"
 #include "overlay021/ov21_021DC9BC.h"
 #include "overlay021/ov21_021E0C68.h"
@@ -15,9 +14,8 @@
 #include "overlay021/pokedex_main.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_sort_data.h"
+#include "overlay021/pokedex_text_manager.h"
 #include "overlay021/struct_ov21_021D4660.h"
-#include "overlay021/struct_ov21_021D4CA0.h"
-#include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021D4EE4_decl.h"
 #include "overlay021/struct_ov21_021D4FE4.h"
 #include "overlay021/struct_ov21_021D5B68.h"
@@ -69,7 +67,7 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    UnkStruct_ov21_021D4CA0 *unk_04[5];
+    PokedexTextData *unk_04[5];
     SpriteResource *unk_18[4];
 } UnkStruct_ov21_021E326C;
 
@@ -711,35 +709,35 @@ static void ov21_021E326C(UnkStruct_ov21_021E326C *param0)
 static void ov21_021E3270(UnkStruct_ov21_021E2BBC *param0, UnkStruct_ov21_021E326C *param1, int param2)
 {
     Window *v0;
-    UnkStruct_ov21_021D4CB8 v1;
+    PokedexDisplayBox displayBox;
     PokedexGraphicData *v2 = param0->unk_00;
     int v3;
     int v4;
 
-    v1.unk_00 = v2->unk_14C;
-    v1.unk_08 = SpriteTransfer_GetPaletteProxy(param1->unk_18[1], NULL);
-    v1.unk_10 = 16;
-    v1.unk_14 = 0;
-    v1.unk_18 = 0;
-    v1.unk_1C = 0;
-    v1.unk_0C = NULL;
-    v1.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.heapID = param2;
+    displayBox.textMan = v2->unk_14C;
+    displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(param1->unk_18[1], NULL);
+    displayBox.x = 16;
+    displayBox.y = 0;
+    displayBox.spriteResourcePriority = 0;
+    displayBox.spriteListPriority = 0;
+    displayBox.sprite = NULL;
+    displayBox.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    displayBox.heapID = param2;
 
-    v3 = PlttTransfer_GetPlttOffset(v1.unk_08, NNS_G2D_VRAM_TYPE_2DMAIN);
+    v3 = PlttTransfer_GetPlttOffset(displayBox.paletteProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     for (v4 = 0; v4 < 5; v4++) {
-        v0 = ov21_021D4D6C(v2->unk_14C, 8, 2);
+        v0 = PokedexTextManager_NewWindow(v2->unk_14C, 8, 2);
 
-        Pokedex_DisplayMessage(v2->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_info + v4, 0, 0);
+        PokedexTextManager_DisplayMessage(v2->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_info + v4, 0, 0);
 
-        v1.unk_04 = v0;
-        param1->unk_04[v4] = ov21_021D4CA0(&v1);
+        displayBox.window = v0;
+        param1->unk_04[v4] = PokedexTextManager_NextTextData(&displayBox);
 
-        sub_02012A60(param1->unk_04[v4]->unk_00, v3);
-        sub_020129D0(param1->unk_04[v4]->unk_00, 0);
+        sub_02012A60(param1->unk_04[v4]->fontOAM, v3);
+        sub_020129D0(param1->unk_04[v4]->fontOAM, 0);
 
-        ov21_021D4DA0(v0);
+        PokedexTextManager_FreeWindow(v0);
     }
 }
 
@@ -748,7 +746,7 @@ static void ov21_021E3304(UnkStruct_ov21_021E326C *param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        ov21_021D4D1C(param0->unk_04[v0]);
+        PokedexTextManager_FreeTextData(param0->unk_04[v0]);
     }
 }
 
@@ -1337,7 +1335,7 @@ static void ov21_021E3BE0(UnkStruct_ov21_021E326C *param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_02012AF0(param0->unk_04[v0]->unk_00, GX_OAM_MODE_XLU);
+        sub_02012AF0(param0->unk_04[v0]->fontOAM, GX_OAM_MODE_XLU);
     }
 }
 
@@ -1346,7 +1344,7 @@ static void ov21_021E3BFC(UnkStruct_ov21_021E326C *param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_02012AF0(param0->unk_04[v0]->unk_00, GX_OAM_MODE_NORMAL);
+        sub_02012AF0(param0->unk_04[v0]->fontOAM, GX_OAM_MODE_NORMAL);
     }
 }
 
@@ -1589,8 +1587,8 @@ static BOOL ov21_021E3F98(UnkStruct_ov21_021E3440 *param0, BOOL param1)
 
 static void ov21_021E3FC0(UnkStruct_ov21_021E326C *param0, int param1, int param2)
 {
-    sub_020129D0(param0->unk_04[param2]->unk_00, 0);
-    sub_020129D0(param0->unk_04[param1]->unk_00, 1);
+    sub_020129D0(param0->unk_04[param2]->fontOAM, 0);
+    sub_020129D0(param0->unk_04[param1]->fontOAM, 1);
 }
 
 static void ov21_021E3FE4(UnkStruct_ov21_021E3900 *param0, const UnkStruct_ov21_021E342C *param1)
