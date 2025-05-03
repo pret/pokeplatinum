@@ -42,11 +42,11 @@
 #define BTN_TILEMAP_HEIGHT 8
 
 typedef struct {
-    BOOL elemLoaded;
-    Ov25_540_AnimationManager *unk_04;
-    ov25_spriteDataStruct spriteData;
-    Ov25_540_AnimatedSpriteData *unk_1C[2]; // anlimation elements
-} UnkStruct_ov25_02254DD8;
+    BOOL animationLoaded;
+    Ov25_540_AnimationManager *animMan;
+    ov25_SpriteData spriteData;
+    Ov25_540_AnimatedSpriteData *animatedDigits[2]; // anlimation elements
+} ov25_560_AppCounterAnimationData;
 
 struct Ov25_560_TaskData_t {
     const Ov25_560_ConstTaskData *constTaskData;
@@ -58,10 +58,10 @@ struct Ov25_560_TaskData_t {
     u16 tilemapDownBtnHalfPressed[32];
     u16 tilemapDownBtn[32];
     NNSG2dOamManagerInstance unused;
-    NNSG2dOamManagerInstance *oamMngr;
-    Ov25_540_AnimationManager *unk_1CC;
+    NNSG2dOamManagerInstance *oamMan;
+    Ov25_540_AnimationManager *animMan;
     SysTask *task;
-    UnkStruct_ov25_02254DD8 unk_1D4;
+    ov25_560_AppCounterAnimationData appCounterAnim;
     BgConfig *bgConfig;
     PoketchSystem *poketchSys;
     u16 poketchPalettes[NUM_PALETTE_COLOUR_SETS * SLOTS_PER_PALETTE_COLOUR_SET];
@@ -73,7 +73,7 @@ typedef struct {
     u16 heightCounter;
 } Ov25_560_ExtraTaskData;
 
-static void ov25_TaskCallback(SysTask *param0, void *param1);
+static void ov25_560_TaskCallback(SysTask *param0, void *param1);
 static void Poketch_InitPaletteData(Ov25_560_TaskData *param0);
 static void ov25_560_GeneratePoketchButtonSprite(u16 *param0, u32 param1, int param2, int param3);
 static void ov25_560_EndTask(PoketchTaskManager *param0);
@@ -89,32 +89,32 @@ static void ov25_560_UpBtnPressed_Task(SysTask *param0, void *param1);
 static void ov25_560_DownBtnPressed_Task(SysTask *param0, void *param1);
 static void ov25_560_UpBtnReleased_Task(SysTask *param0, void *param1);
 static void ov25_560_DownBtnReleased_Task(SysTask *param0, void *param1);
-static void ov25_560_LoadAndInitAnimationTask(SysTask *param0, void *param1);
-static void ov25_560_InitAnimationTask(SysTask *param0, void *param1);
-static void ov25_560_UnloadAnimElementsTask(SysTask *param0, void *param1);
-static void ov25_02254DD8(UnkStruct_ov25_02254DD8 *param0, Ov25_540_AnimationManager *param1);
-static void ov25_560_LoadAnimElements(Ov25_560_TaskData *param0, UnkStruct_ov25_02254DD8 *param1);
-static void ov25_560_LoadTaskPalette(Ov25_560_TaskData *param0, u32 param1);
-static void ov25_560_InitAnimations(UnkStruct_ov25_02254DD8 *param0, const Ov25_560_ConstTaskData *constTaskData);
-static void ov25_560_UnloadAnimElements(UnkStruct_ov25_02254DD8 *param0);
+static void ov25_560_LoadAppCounterTask(SysTask *param0, void *param1);
+static void ov25_560_UpdateAppCounterDigitsTask(SysTask *param0, void *param1);
+static void ov25_560_UnloadAppCounterAnimTask(SysTask *param0, void *param1);
+static void ov25_560_SetupAppCounterData(ov25_560_AppCounterAnimationData *param0, Ov25_540_AnimationManager *param1);
+static void ov25_560_LoadAppCounter(Ov25_560_TaskData *param0, ov25_560_AppCounterAnimationData *param1);
+static void ov25_560_LoadAppCounterPalette(Ov25_560_TaskData *param0, u32 param1);
+static void ov25_560_SetAppCounterDigits(ov25_560_AppCounterAnimationData *param0, const Ov25_560_ConstTaskData *constTaskData);
+static void ov25_560_UnloadAppCounterAnim(ov25_560_AppCounterAnimationData *param0);
 static void ov25_560_UnusedTask_3(SysTask *param0, void *param1);
 static void ov25_560_UnusedTask_4(SysTask *param0, void *param1);
 static void ov25_560_FreeTilemapBufferTask(SysTask *param0, void *param1);
 struct PoketchSystem *FieldSystem_GetPoketchSystem(void);
 SysTask *SysTask_ExecuteAfterVBlank(SysTaskFunc param0, void *param1, u32 param2);
 
-BOOL ov25_02254560(Ov25_560_TaskData **taskDataPtr, const Ov25_560_ConstTaskData *constTaskData, NNSG2dOamManagerInstance *oamMngr, PoketchSystem *poketchSys)
+BOOL ov25_560_Main(Ov25_560_TaskData **taskDataPtr, const Ov25_560_ConstTaskData *constTaskData, NNSG2dOamManagerInstance *oamMan, PoketchSystem *poketchSys)
 {
     *taskDataPtr = Heap_AllocFromHeap(HEAP_ID_POKETCH_MAIN, sizeof(Ov25_560_TaskData));
 
     if (*taskDataPtr != NULL) {
         Ov25_560_TaskData *newTaskData = *taskDataPtr;
 
-        newTaskData->oamMngr = oamMngr;
-        NNS_G2dResetOamManagerBuffer(newTaskData->oamMngr);
-        newTaskData->unk_1CC = ov25_SetupDataStructure(newTaskData->oamMngr, HEAP_ID_POKETCH_MAIN);
+        newTaskData->oamMan = oamMan;
+        NNS_G2dResetOamManagerBuffer(newTaskData->oamMan);
+        newTaskData->animMan = ov25_SetupDataStructure(newTaskData->oamMan, HEAP_ID_POKETCH_MAIN);
 
-        if (newTaskData->unk_1CC == NULL) {
+        if (newTaskData->animMan == NULL) {
             Heap_FreeToHeap(*taskDataPtr);
             *taskDataPtr = NULL;
             return FALSE;
@@ -125,7 +125,7 @@ BOOL ov25_02254560(Ov25_560_TaskData **taskDataPtr, const Ov25_560_ConstTaskData
         newTaskData->poketchSys = poketchSys;
 
         Poketch_InitPaletteData(newTaskData);
-        ov25_02254DD8(&newTaskData->unk_1D4, newTaskData->unk_1CC);
+        ov25_560_SetupAppCounterData(&newTaskData->appCounterAnim, newTaskData->animMan);
         PoketchTask_InitActiveTaskList((*taskDataPtr)->taskList, OV25_NUM_TASK_SLOTS);
 
         ov25_560_GeneratePoketchButtonSprite((*taskDataPtr)->tilemapUpBtnPressed, 64 + 8, 4, 6);
@@ -136,7 +136,7 @@ BOOL ov25_02254560(Ov25_560_TaskData **taskDataPtr, const Ov25_560_ConstTaskData
         ov25_560_GeneratePoketchButtonSprite((*taskDataPtr)->tilemapDownBtnHalfPressed, 64 + 24, 2, 4);
         ov25_560_GeneratePoketchButtonSprite((*taskDataPtr)->tilemapDownBtn, 64 + 28, 2, 4);
 
-        newTaskData->task = SysTask_ExecuteAfterVBlank(ov25_TaskCallback, newTaskData, 0);
+        newTaskData->task = SysTask_ExecuteAfterVBlank(ov25_560_TaskCallback, newTaskData, 0);
 
         return 1;
     }
@@ -144,21 +144,21 @@ BOOL ov25_02254560(Ov25_560_TaskData **taskDataPtr, const Ov25_560_ConstTaskData
     return 0;
 }
 
-static void ov25_TaskCallback(SysTask *task, void *data)
+static void ov25_560_TaskCallback(SysTask *task, void *data)
 {
     Ov25_560_TaskData *taskData = data;
-    ov25_MainFunc(taskData->unk_1CC);
+    ov25_MainFunc(taskData->animMan);
 }
 
-Ov25_540_AnimationManager *ov25_02254664(void)
+Ov25_540_AnimationManager *Poketch_GetAnimationManager(void)
 {
-    Ov25_560_TaskData *taskData = PoketchSystem_Get_ov25_560_struct();
-    return taskData->unk_1CC;
+    Ov25_560_TaskData *taskData = PoketchSystem_GetTaskData();
+    return taskData->animMan;
 }
 
 BgConfig *Poketch_GetBgConfig(void)
 {
-    Ov25_560_TaskData *taskData = PoketchSystem_Get_ov25_560_struct();
+    Ov25_560_TaskData *taskData = PoketchSystem_GetTaskData();
     return taskData->bgConfig;
 }
 
@@ -177,7 +177,7 @@ static void Poketch_InitPaletteData(Ov25_560_TaskData *taskData)
 
 void Poketch_LoadActivePalette(u32 bgOffset, u32 objOffset)
 {
-    Ov25_560_TaskData *taskData = PoketchSystem_Get_ov25_560_struct();
+    Ov25_560_TaskData *taskData = PoketchSystem_GetTaskData();
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
@@ -187,7 +187,7 @@ void Poketch_LoadActivePalette(u32 bgOffset, u32 objOffset)
 
 void Poketch_LoadActiveBacklightPalette(u32, u32)
 {
-    Ov25_560_TaskData *taskData = PoketchSystem_Get_ov25_560_struct();
+    Ov25_560_TaskData *taskData = PoketchSystem_GetTaskData();
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
@@ -197,7 +197,7 @@ void Poketch_LoadActiveBacklightPalette(u32, u32)
 
 void Poketch_CopyActivePalette(u16 *dest)
 {
-    Ov25_560_TaskData *taskData = PoketchSystem_Get_ov25_560_struct();
+    Ov25_560_TaskData *taskData = PoketchSystem_GetTaskData();
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
@@ -207,10 +207,10 @@ void Poketch_CopyActivePalette(u16 *dest)
 void ov25_560_Close(Ov25_560_TaskData *taskData)
 {
     if (taskData) {
-        ov25_560_UnloadAnimElements(&(taskData->unk_1D4));
+        ov25_560_UnloadAppCounterAnim(&(taskData->appCounterAnim));
 
-        if (taskData->unk_1CC) {
-            ov25_FreeOV25(taskData->unk_1CC);
+        if (taskData->animMan) {
+            ov25_540_FreeAnimationManager(taskData->animMan);
         }
 
         if (taskData->bgConfig) {
@@ -248,11 +248,11 @@ static void ov25_560_GeneratePoketchButtonSprite(u16 *dst, u32 param1, int param
 }
 
 static const PoketchTask poketchTasks[] = {
-    { 0, ov25_560_SetupBackgroundTask, 0x0 }, // * Setup background (pre app-init)
-    { 1, ov25_560_screenRevealAnimationTask, sizeof(Ov25_560_ExtraTaskData) }, // * Post app start init
-    { 2, ov25_560_screenRevealAnimationTask, sizeof(Ov25_560_ExtraTaskData) }, // * post app change init
+    { 0, ov25_560_SetupBackgroundTask, 0x0 },
+    { 1, ov25_560_screenRevealAnimationTask, sizeof(Ov25_560_ExtraTaskData) },
+    { 2, ov25_560_screenRevealAnimationTask, sizeof(Ov25_560_ExtraTaskData) },
     { 3, ov25_560_UnusedTask_1, sizeof(Ov25_560_ExtraTaskData) },
-    { 4, ov25_560_screenConcealAnimationTask, sizeof(Ov25_560_ExtraTaskData) }, // * app change started
+    { 4, ov25_560_screenConcealAnimationTask, sizeof(Ov25_560_ExtraTaskData) },
     { 5, ov25_560_UnusedTask_2, sizeof(Ov25_560_ExtraTaskData) },
     { 6, ov25_560_UpBtnHalfPressed_Task, 0x0 }, // * UP - Released - During app change
     { 8, ov25_560_UpBtnPressed_Task, 0x0 }, // * UP - Pressed
@@ -260,9 +260,9 @@ static const PoketchTask poketchTasks[] = {
     { 9, ov25_560_DownBtnHalfPressed_Task, 0x0 }, // * DOWN - Released - During app change
     { 11, ov25_560_DownBtnPressed_Task, 0x0 }, // * DOWN - Pressed
     { 10, ov25_560_DownBtnReleased_Task, 0x0 }, // * DOWN - Released
-    { 12, ov25_560_LoadAndInitAnimationTask, 0x0 }, // * Skip timer started
-    { 13, ov25_560_InitAnimationTask, 0x0 }, // * Skip timer restarted
-    { 14, ov25_560_UnloadAnimElementsTask, 0x0 }, // * Skip timer ended
+    { 12, ov25_560_LoadAppCounterTask, 0x0 },
+    { 13, ov25_560_UpdateAppCounterDigitsTask, 0x0 },
+    { 14, ov25_560_UnloadAppCounterAnimTask, 0x0 },
     { 15, ov25_560_UnusedTask_3, 0x0 },
     { 16, ov25_560_UnusedTask_4, 0x0 },
     { 17, ov25_560_FreeTilemapBufferTask, 0x0 },
@@ -334,9 +334,9 @@ static void ov25_560_SetupBackgroundTask(SysTask *task, void *taskMan)
     Bg_InitFromTemplate(taskData->bgConfig, 4, &bgTemplateLayer4, 0);
     Bg_InitFromTemplate(taskData->bgConfig, 5, &bgTemplateLayer5, 0);
 
-    Graphics_LoadTilesToBgLayer(12, 14, taskData->bgConfig, 4, 64, 0, 1, HEAP_ID_POKETCH_MAIN);
-    Graphics_LoadTilemapToBgLayer(12, 15, taskData->bgConfig, 4, 0, 0, 1, HEAP_ID_POKETCH_MAIN);
-    Graphics_LoadPaletteWithSrcOffset(12, 13, 4, PLTT_OFFSET(PoketchSystem_GetBorderColor(taskData->poketchSys)), PLTT_OFFSET(15), PALETTE_SIZE_BYTES, HEAP_ID_POKETCH_MAIN);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 14, taskData->bgConfig, 4, 64, 0, TRUE, HEAP_ID_POKETCH_MAIN);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 15, taskData->bgConfig, 4, 0, 0, TRUE, HEAP_ID_POKETCH_MAIN);
+    Graphics_LoadPaletteWithSrcOffset(NARC_INDEX_GRAPHIC__POKETCH, 13, PAL_LOAD_SUB_BG, PLTT_OFFSET(PoketchSystem_GetBorderColor(taskData->poketchSys)), PLTT_OFFSET(15), PALETTE_SIZE_BYTES, HEAP_ID_POKETCH_MAIN);
 
     Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 164, 0, 0, 32, 24, 15);
     Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, 5);
@@ -535,41 +535,41 @@ static void ov25_560_DownBtnReleased_Task(SysTask *task, void *taskMan)
     Sound_PlayEffect(SEQ_SE_DP_DENSI01);
 }
 
-static void ov25_560_LoadAndInitAnimationTask(SysTask *task, void *taskMan)
+static void ov25_560_LoadAppCounterTask(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
-    ov25_560_LoadAnimElements(taskData, &taskData->unk_1D4);
-    ov25_560_InitAnimations(&taskData->unk_1D4, taskData->constTaskData);
+    ov25_560_LoadAppCounter(taskData, &taskData->appCounterAnim);
+    ov25_560_SetAppCounterDigits(&taskData->appCounterAnim, taskData->constTaskData);
     ov25_560_EndTask(taskMan);
 }
 
-static void ov25_560_InitAnimationTask(SysTask *task, void *taskMan)
+static void ov25_560_UpdateAppCounterDigitsTask(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
-    ov25_560_InitAnimations(&taskData->unk_1D4, taskData->constTaskData);
+    ov25_560_SetAppCounterDigits(&taskData->appCounterAnim, taskData->constTaskData);
     ov25_560_EndTask(taskMan);
 }
 
-static void ov25_560_UnloadAnimElementsTask(SysTask *task, void *taskMan)
+static void ov25_560_UnloadAppCounterAnimTask(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
-    ov25_560_UnloadAnimElements(&taskData->unk_1D4);
+    ov25_560_UnloadAppCounterAnim(&taskData->appCounterAnim);
     ov25_560_EndTask(taskMan);
 }
 
-static void ov25_02254DD8(UnkStruct_ov25_02254DD8 *param0, Ov25_540_AnimationManager *param1)
+static void ov25_560_SetupAppCounterData(ov25_560_AppCounterAnimationData *appCounterAnim, Ov25_540_AnimationManager *animMan)
 {
-    param0->elemLoaded = FALSE;
-    param0->unk_04 = param1;
+    appCounterAnim->animationLoaded = FALSE;
+    appCounterAnim->animMan = animMan;
 }
 
-static void ov25_560_LoadAnimElements(Ov25_560_TaskData *taskData, UnkStruct_ov25_02254DD8 *param1)
+static void ov25_560_LoadAppCounter(Ov25_560_TaskData *taskData, ov25_560_AppCounterAnimationData *appCounterAnim)
 {
-    if (ov25_540_LoadSpriteFromNARC(&param1->spriteData, NARC_INDEX_GRAPHIC__POKETCH, 3, 4, HEAP_ID_POKETCH_MAIN)) {
-        static const UnkStruct_ov25_02255810 v0 = {
+    if (ov25_540_LoadSpriteFromNARC(&appCounterAnim->spriteData, NARC_INDEX_GRAPHIC__POKETCH, 3, 4, HEAP_ID_POKETCH_MAIN)) {
+        static const ov25_AnimationData animData = {
             { (176 << FX32_SHIFT), (40 << FX32_SHIFT) },
             0,
             0,
@@ -581,30 +581,30 @@ static void ov25_560_LoadAnimElements(Ov25_560_TaskData *taskData, UnkStruct_ov2
         Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 2, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_MAIN);
         Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 0, PAL_LOAD_SUB_OBJ, 0, 0x60, HEAP_ID_POKETCH_MAIN);
 
-        ov25_560_LoadTaskPalette(taskData, 15);
+        ov25_560_LoadAppCounterPalette(taskData, 15);
 
-        param1->unk_1C[0] = ov25_540_SetupNewAnimatedSprite(param1->unk_04, &v0, &param1->spriteData);
+        appCounterAnim->animatedDigits[0] = ov25_540_SetupNewAnimatedSprite(appCounterAnim->animMan, &animData, &appCounterAnim->spriteData);
 
-        if (param1->unk_1C[0] == NULL) {
+        if (appCounterAnim->animatedDigits[0] == NULL) {
             return;
         }
 
-        param1->unk_1C[1] = ov25_540_SetupNewAnimatedSprite(param1->unk_04, &v0, &param1->spriteData);
+        appCounterAnim->animatedDigits[1] = ov25_540_SetupNewAnimatedSprite(appCounterAnim->animMan, &animData, &appCounterAnim->spriteData);
 
-        if (param1->unk_1C[1] == NULL) {
-            ov25_540_RemoveAnimatedSprite(param1->unk_04, param1->unk_1C[0]);
+        if (appCounterAnim->animatedDigits[1] == NULL) {
+            ov25_540_RemoveAnimatedSprite(appCounterAnim->animMan, appCounterAnim->animatedDigits[0]);
             return;
         }
 
-        ov25_addTranslation(param1->unk_1C[1], 16 * FX32_ONE, 0);
-        ov25_Set_cParam(param1->unk_1C[0], 15);
-        ov25_Set_cParam(param1->unk_1C[1], 15);
+        ov25_540_translateSprite(appCounterAnim->animatedDigits[1], 16 * FX32_ONE, 0);
+        ov25_540_SetCParam(appCounterAnim->animatedDigits[0], 15);
+        ov25_540_SetCParam(appCounterAnim->animatedDigits[1], 15);
 
-        param1->elemLoaded = TRUE;
+        appCounterAnim->animationLoaded = TRUE;
     }
 }
 
-static void ov25_560_LoadTaskPalette(Ov25_560_TaskData *taskData, u32 offset)
+static void ov25_560_LoadAppCounterPalette(Ov25_560_TaskData *taskData, u32 offset)
 {
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
@@ -627,29 +627,29 @@ static void ov25_560_LoadTaskPalette(Ov25_560_TaskData *taskData, u32 offset)
     GXS_LoadOBJPltt(taskData->palette, PLTT_OFFSET(offset), sizeof(taskData->palette));
 }
 
-static void ov25_560_InitAnimations(UnkStruct_ov25_02254DD8 *param0, const Ov25_560_ConstTaskData *constTaskData)
+static void ov25_560_SetAppCounterDigits(ov25_560_AppCounterAnimationData *appCounterAnim, const Ov25_560_ConstTaskData *constTaskData)
 {
-    if (param0->elemLoaded) {
-        u32 animIDX_0, animIDX_1;
+    if (appCounterAnim->animationLoaded) {
+        u32 tensDigit, onesDigit;
 
-        CP_SetDiv32_32((constTaskData->value + 1), 10);
+        CP_SetDiv32_32((constTaskData->lastAppID + 1), 10);
 
-        animIDX_0 = CP_GetDivResult32();
-        animIDX_1 = CP_GetDivRemainder32();
+        tensDigit = CP_GetDivResult32();
+        onesDigit = CP_GetDivRemainder32();
 
-        ov25_InitAnimation(param0->unk_1C[0], animIDX_0);
-        ov25_InitAnimation(param0->unk_1C[1], animIDX_1);
+        ov25_540_UpdateAnimationIdx(appCounterAnim->animatedDigits[0], tensDigit);
+        ov25_540_UpdateAnimationIdx(appCounterAnim->animatedDigits[1], onesDigit);
     }
 }
 
-static void ov25_560_UnloadAnimElements(UnkStruct_ov25_02254DD8 *param0)
+static void ov25_560_UnloadAppCounterAnim(ov25_560_AppCounterAnimationData *appCounterAnim)
 {
-    if (param0->elemLoaded) {
-        ov25_540_RemoveAnimatedSprite(param0->unk_04, param0->unk_1C[0]);
-        ov25_540_RemoveAnimatedSprite(param0->unk_04, param0->unk_1C[1]);
-        ov25_540_FreeSpriteData(&param0->spriteData);
+    if (appCounterAnim->animationLoaded) {
+        ov25_540_RemoveAnimatedSprite(appCounterAnim->animMan, appCounterAnim->animatedDigits[0]);
+        ov25_540_RemoveAnimatedSprite(appCounterAnim->animMan, appCounterAnim->animatedDigits[1]);
+        ov25_540_FreeSpriteData(&appCounterAnim->spriteData);
 
-        param0->elemLoaded = FALSE;
+        appCounterAnim->animationLoaded = FALSE;
     }
 }
 

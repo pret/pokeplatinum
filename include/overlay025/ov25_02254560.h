@@ -10,8 +10,8 @@
 
 #include "bg_window.h"
 
-BOOL ov25_02254560(Ov25_560_TaskData **param0, const Ov25_560_ConstTaskData *constTaskData, NNSG2dOamManagerInstance *param2, PoketchSystem *poketchSys);
-Ov25_540_AnimationManager *ov25_02254664(void);
+BOOL ov25_560_Main(Ov25_560_TaskData **param0, const Ov25_560_ConstTaskData *constTaskData, NNSG2dOamManagerInstance *param2, PoketchSystem *poketchSys);
+Ov25_540_AnimationManager *Poketch_GetAnimationManager(void);
 BgConfig *Poketch_GetBgConfig(void);
 void Poketch_LoadActivePalette(u32 bgOffset, u32 objOffset);
 void Poketch_LoadActiveBacklightPalette(u32 unused_1, u32 unused_2);

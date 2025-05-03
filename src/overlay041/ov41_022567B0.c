@@ -27,7 +27,7 @@ struct UnkStruct_ov41_022567B0_t {
     u32 unk_08[6];
     Ov25_540_AnimationManager *unk_20;
     Ov25_540_AnimatedSpriteData *unk_24[4];
-    ov25_spriteDataStruct unk_34;
+    ov25_SpriteData unk_34;
     Window unk_48;
     u32 unk_58;
     BOOL unk_5C;
@@ -61,7 +61,7 @@ BOOL ov41_022567B0(UnkStruct_ov41_022567B0 **param0, const UnkStruct_ov41_022567
 
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = ov25_02254664();
+        v0->unk_20 = Poketch_GetAnimationManager();
         v0->unk_68 = 0;
 
         ov41_0225680C(v0, param1);
@@ -85,7 +85,7 @@ void ov41_022567F8(UnkStruct_ov41_022567B0 *param0)
 
 static void ov41_0225680C(UnkStruct_ov41_022567B0 *param0, const UnkStruct_ov41_022567B0_1 *param1)
 {
-    static const UnkStruct_ov25_02255810 v0[] = {
+    static const ov25_AnimationData v0[] = {
         {
             { (96 << FX32_SHIFT), (96 << FX32_SHIFT) },
             0,
@@ -307,9 +307,9 @@ static void ov41_02256AFC(SysTask *param0, void *param1)
     UnkStruct_ov41_022567B0 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov41_022567B0_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    ov25_InitAnimation(v0->unk_24[1], (v1->unk_5B74) ? 2 : 1);
-    ov25_InitAnimation(v0->unk_24[2], (v1->unk_5B75) ? 4 : 3);
-    ov25_InitAnimation(v0->unk_24[3], (v1->unk_5B76) ? 6 : 5);
+    ov25_540_UpdateAnimationIdx(v0->unk_24[1], (v1->unk_5B74) ? 2 : 1);
+    ov25_540_UpdateAnimationIdx(v0->unk_24[2], (v1->unk_5B75) ? 4 : 3);
+    ov25_540_UpdateAnimationIdx(v0->unk_24[3], (v1->unk_5B76) ? 6 : 5);
     ov41_022568C8(param1);
 }
 

@@ -53,8 +53,8 @@ struct PoketchPartyStatusGraphics {
     Window hpBarWindows[MAX_PARTY_SIZE];
     Ov25_540_AnimatedSpriteData *unk_9C[MAX_PARTY_SIZE]; // mon icons?
     Ov25_540_AnimatedSpriteData *unk_B4[MAX_PARTY_SIZE]; // held item icons?
-    ov25_spriteDataStruct unk_CC;
-    ov25_spriteDataStruct unk_E0;
+    ov25_SpriteData unk_CC;
+    ov25_SpriteData unk_E0;
     SysTask *bounceAnimTask;
     MonIconBounceAnim bounceAnimData;
     u8 iconSpriteBuffer[640];

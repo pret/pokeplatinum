@@ -27,8 +27,8 @@ struct UnkStruct_ov44_022565BC_t {
     u32 unk_08[6];
     Ov25_540_AnimationManager *unk_20;
     Ov25_540_AnimatedSpriteData *unk_24[6];
-    ov25_spriteDataStruct unk_3C;
-    ov25_spriteDataStruct unk_50;
+    ov25_SpriteData unk_3C;
+    ov25_SpriteData unk_50;
     u32 unk_64;
     BOOL unk_68;
     const int *unk_6C;
@@ -63,7 +63,7 @@ BOOL ov44_022565BC(UnkStruct_ov44_022565BC **param0, const UnkStruct_ov44_022565
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = ov25_02254664();
+        v0->unk_20 = Poketch_GetAnimationManager();
         ov44_0225660C(v0, param1);
         *param0 = v0;
 
@@ -83,7 +83,7 @@ void ov44_022565F8(UnkStruct_ov44_022565BC *param0)
 
 static void ov44_0225660C(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_022565BC_1 *param1)
 {
-    static const UnkStruct_ov25_02255810 v0[] = {
+    static const ov25_AnimationData v0[] = {
         {
             { (112 << FX32_SHIFT), (148 << FX32_SHIFT) },
             9,
@@ -160,7 +160,7 @@ static void ov44_0225660C(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_
     if (param1->unk_30 <= 1) {
         ov25_540_Hide(param0->unk_24[5], 1);
         ov25_540_Hide(param0->unk_24[3], 1);
-        ov25_InitAnimation(param0->unk_24[0], 10);
+        ov25_540_UpdateAnimationIdx(param0->unk_24[0], 10);
     }
 }
 
@@ -276,7 +276,7 @@ static void ov44_0225686C(SysTask *param0, void *param1)
     v1 = PoketchTask_GetConstTaskData(param1);
 
     PoketchSystem_PlaySoundEffect(1641);
-    ov25_InitAnimation(v0->unk_24[0], 10);
+    ov25_540_UpdateAnimationIdx(v0->unk_24[0], 10);
     ov44_02256780(param1);
 }
 
@@ -288,7 +288,7 @@ static void ov44_02256898(SysTask *param0, void *param1)
     v0 = PoketchTask_GetTaskData(param1);
     v1 = PoketchTask_GetConstTaskData(param1);
 
-    ov25_InitAnimation(v0->unk_24[0], 9);
+    ov25_540_UpdateAnimationIdx(v0->unk_24[0], 9);
     ov44_02256780(param1);
 }
 
@@ -331,18 +331,18 @@ static void ov44_02256954(UnkStruct_ov44_022565BC *param0, u32 param1, u32 param
         }
     }
 
-    ov25_InitAnimation(v0, v1);
+    ov25_540_UpdateAnimationIdx(v0, v1);
     ov25_Set_charNo(v0, param0->unk_64 + param2 * 16);
-    ov25_Set_cParam(v0, 1 + PokeIconPaletteIndex(param3, param4, 0));
+    ov25_540_SetCParam(v0, 1 + PokeIconPaletteIndex(param3, param4, 0));
 }
 
 static void ov44_022569AC(UnkStruct_ov44_022565BC *param0)
 {
     ov25_SetPosition(param0->unk_24[2], (48 << FX32_SHIFT), (88 << FX32_SHIFT));
     ov25_SetPosition(param0->unk_24[3], (176 << FX32_SHIFT), (88 << FX32_SHIFT));
-    ov25_InitAnimation(param0->unk_24[2], 5);
-    ov25_InitAnimation(param0->unk_24[3], 6);
-    ov25_InitAnimation(param0->unk_24[1], 0);
+    ov25_540_UpdateAnimationIdx(param0->unk_24[2], 5);
+    ov25_540_UpdateAnimationIdx(param0->unk_24[3], 6);
+    ov25_540_UpdateAnimationIdx(param0->unk_24[1], 0);
 }
 
 static void ov44_022569E4(SysTask *param0, void *param1)
@@ -456,15 +456,15 @@ static void ov44_02256A50(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_
         break;
     case 2:
         param0->unk_6C = Unk_ov44_02256CCC;
-        ov25_InitAnimation(param0->unk_24[1], 1);
+        ov25_540_UpdateAnimationIdx(param0->unk_24[1], 1);
         break;
     case 1:
         param0->unk_6C = Unk_ov44_02256D00;
-        ov25_InitAnimation(param0->unk_24[1], 2);
+        ov25_540_UpdateAnimationIdx(param0->unk_24[1], 2);
         break;
     case 0:
         param0->unk_6C = Unk_ov44_02256E1C;
-        ov25_InitAnimation(param0->unk_24[1], 3);
+        ov25_540_UpdateAnimationIdx(param0->unk_24[1], 3);
         break;
     }
 
@@ -505,13 +505,13 @@ func_start:
                 PoketchSystem_PlaySoundEffect(param0->unk_6C[(param0->unk_74)++]);
                 break;
             case -6:
-                ov25_InitAnimation(param0->unk_24[2], 6);
-                ov25_InitAnimation(param0->unk_24[3], 5);
+                ov25_540_UpdateAnimationIdx(param0->unk_24[2], 6);
+                ov25_540_UpdateAnimationIdx(param0->unk_24[3], 5);
                 break;
             case -7: {
                 u32 v0 = param0->unk_6C[(param0->unk_74)++];
                 u32 v1 = param0->unk_6C[(param0->unk_74)++];
-                ov25_InitAnimation(param0->unk_24[v0], v1);
+                ov25_540_UpdateAnimationIdx(param0->unk_24[v0], v1);
             } break;
             }
         }

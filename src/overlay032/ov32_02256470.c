@@ -52,7 +52,7 @@ BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPart
 
         graphicsData->playerParty = playerParty;
         graphicsData->bgConfig = Poketch_GetBgConfig();
-        graphicsData->unk_08 = ov25_02254664();
+        graphicsData->unk_08 = Poketch_GetAnimationManager();
         graphicsData->partyCount = 0;
         graphicsData->bounceAnimTask = NULL;
 
@@ -237,7 +237,7 @@ static u32 GetHpBarWidth(u32 currentHp, u32 maxHp)
 static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyStatus *param1)
 {
     int v0;
-    UnkStruct_ov25_02255810 v1;
+    ov25_AnimationData v1;
 
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 109, DS_SCREEN_SUB, 0 * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
@@ -248,7 +248,7 @@ static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyS
 
     for (v0 = 0; v0 < param1->partyCount; v0++) {
         if (param1->mons[v0].heldItem != ITEM_NONE) {
-            v1.animIDX = Item_IsMail(param1->mons[v0].heldItem) ? TRUE : FALSE;
+            v1.animIdx = Item_IsMail(param1->mons[v0].heldItem) ? TRUE : FALSE;
             v1.translation.x = ((sMonIconCoords[v0].x + 28) << FX32_SHIFT);
             v1.translation.y = ((sMonIconCoords[v0].y + 21) << FX32_SHIFT);
 
@@ -262,11 +262,11 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
     NARC *v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_POKETCH_APP);
 
     if (v0) {
-        UnkStruct_ov25_02255810 v1;
+        ov25_AnimationData v1;
         NNSG2dCharacterData *v2;
         int v3;
 
-        v1.animIDX = 0;
+        v1.animIdx = 0;
         v1.flip = 0;
         v1.oamPriority = 2;
         v1.unk_0C = 1;
@@ -285,13 +285,13 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
             param0->unk_9C[v3] = ov25_540_SetupNewAnimatedSprite(param0->unk_08, &v1, &param0->unk_CC);
 
             ov25_Set_charNo(param0->unk_9C[v3], (0 + 8) + 16 * v3);
-            ov25_InitAnimation(param0->unk_9C[v3], 4);
+            ov25_540_UpdateAnimationIdx(param0->unk_9C[v3], 4);
 
             if ((param1->mons[v3].currentHp == 0) || param1->mons[v3].status) { // darken sprite if mon is incapacitated
-                ov25_Set_cParam(param0->unk_9C[v3], 1);
+                ov25_540_SetCParam(param0->unk_9C[v3], 1);
             } else {
                 u16 v4 = PokeIconPaletteIndex(param1->mons[v3].species, param1->mons[v3].form, param1->mons[v3].isEgg);
-                ov25_Set_cParam(param0->unk_9C[v3], 2 + v4);
+                ov25_540_SetCParam(param0->unk_9C[v3], 2 + v4);
             }
         }
 

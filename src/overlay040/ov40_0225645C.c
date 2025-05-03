@@ -28,8 +28,8 @@ struct UnkStruct_ov40_0225645C_t {
     u32 unk_08[6];
     Ov25_540_AnimationManager *unk_20;
     Ov25_540_AnimatedSpriteData *unk_24[11];
-    ov25_spriteDataStruct unk_50;
-    ov25_spriteDataStruct unk_64;
+    ov25_SpriteData unk_50;
+    ov25_SpriteData unk_64;
     u32 unk_78;
     u32 unk_7C;
     u32 unk_80;
@@ -60,7 +60,7 @@ BOOL ov40_0225645C(UnkStruct_ov40_0225645C **param0, const UnkStruct_ov40_022564
 
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = ov25_02254664();
+        v0->unk_20 = Poketch_GetAnimationManager();
         v0->unk_88 = 0;
         v0->unk_8C = SysTask_ExecuteAfterVBlank(ov40_022567E0, v0, 0);
 
@@ -86,7 +86,7 @@ void ov40_022564B8(UnkStruct_ov40_0225645C *param0)
 
 static void ov40_022564D4(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_0225645C_1 *param1)
 {
-    static const UnkStruct_ov25_02255810 v0[] = {
+    static const ov25_AnimationData v0[] = {
         {
             { (56 << FX32_SHIFT), (128 << FX32_SHIFT) },
             7,
@@ -382,16 +382,16 @@ static void ov40_02256848(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
     BOOL v1;
 
     for (v0 = 0; v0 < param1->unk_00; v0++) {
-        ov25_Set_cParam(param0->unk_24[0 + v0], 1 + PokeIconPaletteIndex(param1->species[v0], param1->forms[v0], 0));
+        ov25_540_SetCParam(param0->unk_24[0 + v0], 1 + PokeIconPaletteIndex(param1->species[v0], param1->forms[v0], 0));
     }
 
-    ov25_Set_cParam(param0->unk_24[2], 1 + PokeIconPaletteIndex(1, 0, 1));
+    ov25_540_SetCParam(param0->unk_24[2], 1 + PokeIconPaletteIndex(1, 0, 1));
 
     if (param1->unk_00 > 0) {
         if (SpeciesData_GetFormValue(param1->species[0], param1->forms[0], 28)) {
-            ov25_InitAnimation(param0->unk_24[0], 6);
+            ov25_540_UpdateAnimationIdx(param0->unk_24[0], 6);
         } else {
-            ov25_InitAnimation(param0->unk_24[0], 7);
+            ov25_540_UpdateAnimationIdx(param0->unk_24[0], 7);
         }
     }
 
@@ -436,7 +436,7 @@ static void ov40_02256958(Ov25_540_AnimatedSpriteData **param0, u32 param1)
     v0[2] = CP_GetDivRemainder32();
 
     for (v1 = 0; v1 < 3; v1++) {
-        ov25_InitAnimation(param0[v1], v0[v1]);
+        ov25_540_UpdateAnimationIdx(param0[v1], v0[v1]);
     }
 
     ov25_540_Hide(param0[0], (param1 < 100));
@@ -447,13 +447,13 @@ static void ov40_02256A14(Ov25_540_AnimatedSpriteData *param0, u32 param1)
 {
     switch (param1) {
     case 0:
-        ov25_InitAnimation(param0, 10);
+        ov25_540_UpdateAnimationIdx(param0, 10);
         break;
     case 1:
-        ov25_InitAnimation(param0, 11);
+        ov25_540_UpdateAnimationIdx(param0, 11);
         break;
     default:
-        ov25_InitAnimation(param0, 12);
+        ov25_540_UpdateAnimationIdx(param0, 12);
         break;
     }
 }

@@ -24,7 +24,7 @@ struct UnkStruct_ov50_02256510_t {
     u32 unk_08[6];
     Ov25_540_AnimationManager *unk_20;
     Ov25_540_AnimatedSpriteData *unk_24;
-    ov25_spriteDataStruct unk_28;
+    ov25_SpriteData unk_28;
 };
 
 static void ov50_02256560(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1);
@@ -48,7 +48,7 @@ BOOL ov50_02256510(UnkStruct_ov50_02256510 **param0, const UnkStruct_ov50_022565
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = ov25_02254664();
+        v0->unk_20 = Poketch_GetAnimationManager();
         ov50_02256560(v0, param1);
         *param0 = v0;
 
@@ -68,7 +68,7 @@ void ov50_0225654C(UnkStruct_ov50_02256510 *param0)
 
 static void ov50_02256560(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1)
 {
-    static const UnkStruct_ov25_02255810 v0 = {
+    static const ov25_AnimationData v0 = {
         { (0 << FX32_SHIFT), (0 << FX32_SHIFT) },
         0,
         0,

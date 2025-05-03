@@ -25,7 +25,7 @@ struct UnkStruct_ov29_022566C8_t {
     BgConfig *unk_04;
     u32 unk_08[18];
     Ov25_540_AnimationManager *unk_50;
-    ov25_spriteDataStruct unk_54;
+    ov25_SpriteData unk_54;
     Ov25_540_AnimatedSpriteData *unk_68[2];
     Window *unk_70;
 };
@@ -52,7 +52,7 @@ BOOL ov29_022566C8(UnkStruct_ov29_022566C8 **param0, const UnkStruct_ov29_022566
         GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_50 = ov25_02254664();
+        v0->unk_50 = Poketch_GetAnimationManager();
 
         GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
         *param0 = v0;
@@ -202,11 +202,11 @@ static void ov29_02256908(SysTask *param0, void *param1)
     UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param1);
 
     if (v0->unk_00->unk_00 == 1) {
-        ov25_InitAnimation(v0->unk_68[0], 0);
-        ov25_InitAnimation(v0->unk_68[1], 3);
+        ov25_540_UpdateAnimationIdx(v0->unk_68[0], 0);
+        ov25_540_UpdateAnimationIdx(v0->unk_68[1], 3);
     } else {
-        ov25_InitAnimation(v0->unk_68[0], 1);
-        ov25_InitAnimation(v0->unk_68[1], 2);
+        ov25_540_UpdateAnimationIdx(v0->unk_68[0], 1);
+        ov25_540_UpdateAnimationIdx(v0->unk_68[1], 2);
     }
 
     PoketchSystem_PlaySoundEffect(1635);
@@ -295,7 +295,7 @@ static void ov29_02256A94(SysTask *param0, void *param1)
 
 static void ov29_02256ABC(UnkStruct_ov29_022566C8 *param0)
 {
-    static const UnkStruct_ov25_02255810 v0[] = {
+    static const ov25_AnimationData v0[] = {
         {
             { 192 << FX32_SHIFT, 56 << FX32_SHIFT },
             0,

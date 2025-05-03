@@ -25,7 +25,7 @@ struct UnkStruct_ov37_022563D4_t {
     u32 unk_08[6];
     Ov25_540_AnimationManager *unk_20;
     Ov25_540_AnimatedSpriteData *unk_24;
-    ov25_spriteDataStruct unk_28;
+    ov25_SpriteData unk_28;
 };
 
 static void ov37_0225641C(UnkStruct_ov37_022563D4 *param0, const UnkStruct_ov37_022563D4_1 *param1);
@@ -43,7 +43,7 @@ BOOL ov37_022563D4(UnkStruct_ov37_022563D4 **param0, const UnkStruct_ov37_022563
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = ov25_02254664();
+        v0->unk_20 = Poketch_GetAnimationManager();
         ov37_0225641C(v0, param1);
         *param0 = v0;
 
@@ -62,7 +62,7 @@ void ov37_02256410(UnkStruct_ov37_022563D4 *param0)
 
 static void ov37_0225641C(UnkStruct_ov37_022563D4 *param0, const UnkStruct_ov37_022563D4_1 *param1)
 {
-    static const UnkStruct_ov25_02255810 v0 = {
+    static const ov25_AnimationData v0 = {
         { (112 << FX32_SHIFT), (104 << FX32_SHIFT) },
         0,
         0,
@@ -78,7 +78,7 @@ static void ov37_0225641C(UnkStruct_ov37_022563D4 *param0, const UnkStruct_ov37_
     param0->unk_24 = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &param0->unk_28);
 
     if (param1->unk_00 == 0) {
-        ov25_InitAnimation(param0->unk_24, 1);
+        ov25_540_UpdateAnimationIdx(param0->unk_24, 1);
     }
 }
 
@@ -171,10 +171,10 @@ static void ov37_02256588(SysTask *param0, void *param1)
     PoketchSystem_PlaySoundEffect(1635);
 
     if (v1->unk_00) {
-        ov25_InitAnimation(v0->unk_24, 0);
+        ov25_540_UpdateAnimationIdx(v0->unk_24, 0);
         PM_SetBackLight(PM_LCD_BOTTOM, PM_BACKLIGHT_ON);
     } else {
-        ov25_InitAnimation(v0->unk_24, 1);
+        ov25_540_UpdateAnimationIdx(v0->unk_24, 1);
         PM_SetBackLight(PM_LCD_BOTTOM, PM_BACKLIGHT_OFF);
     }
 

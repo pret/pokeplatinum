@@ -29,7 +29,7 @@ struct UnkStruct_ov47_02256634_t {
     Ov25_540_AnimatedSpriteData *unk_3C[4];
     Ov25_540_AnimatedSpriteData *unk_4C[6];
     Ov25_540_AnimatedSpriteData *unk_64;
-    ov25_spriteDataStruct unk_68;
+    ov25_SpriteData unk_68;
     SysTask *unk_7C;
 };
 
@@ -49,7 +49,7 @@ BOOL ov47_02256634(UnkStruct_ov47_02256634 **param0, const UnkStruct_ov47_022566
 
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = ov25_02254664();
+        v0->unk_20 = Poketch_GetAnimationManager();
 
         ov47_02256684(v0, param1);
 
@@ -70,7 +70,7 @@ void ov47_02256670(UnkStruct_ov47_02256634 *param0)
 
 static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_02256634_1 *param1)
 {
-    UnkStruct_ov25_02255810 v0;
+    ov25_AnimationData v0;
     int v1, v2;
     u32 v3, v4;
 
@@ -87,7 +87,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
     v0.translation.x = ((v3) << FX32_SHIFT);
     v0.translation.y = ((v4) << FX32_SHIFT);
     v0.unk_0C = 1;
-    v0.animIDX = 0;
+    v0.animIdx = 0;
     param0->unk_64 = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &(param0->unk_68));
     v0.hasAffineTransform = 1;
 
@@ -95,7 +95,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
         v0.translation.x = ((param1->unk_0C[v1].unk_00) << FX32_SHIFT);
         v0.translation.y = ((param1->unk_0C[v1].unk_01) << FX32_SHIFT);
         v0.unk_0C = 2 + param1->unk_0C[v1].unk_02;
-        v0.animIDX = 1 + v1;
+        v0.animIdx = 1 + v1;
         param0->unk_24[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &(param0->unk_68));
     }
 
@@ -105,7 +105,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
         v0.translation.x = ((v3) << FX32_SHIFT);
         v0.translation.y = ((v4) << FX32_SHIFT);
         v0.unk_0C = 9;
-        v0.animIDX = 14 + v1;
+        v0.animIdx = 14 + v1;
 
         param0->unk_3C[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &(param0->unk_68));
 
@@ -120,7 +120,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
         v0.translation.x = ((v3) << FX32_SHIFT);
         v0.translation.y = ((v4) << FX32_SHIFT);
         v0.unk_0C = 8;
-        v0.animIDX = 18;
+        v0.animIdx = 18;
 
         param0->unk_4C[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &(param0->unk_68));
 
@@ -247,10 +247,10 @@ static void ov47_02256968(SysTask *param0, void *param1)
 
         if (v1->unk_0C[v3].unk_03) {
             ov25_UpdateElem_unk_84_00(v0->unk_20, v0->unk_24[v3], 0);
-            ov25_InitAnimation(v0->unk_24[v3], 8 + v3);
+            ov25_540_UpdateAnimationIdx(v0->unk_24[v3], 8 + v3);
         } else {
             ov25_UpdateElem_unk_84_00(v0->unk_20, v0->unk_24[v3], 2 + v1->unk_0C[v3].unk_02);
-            ov25_InitAnimation(v0->unk_24[v3], 1 + v3);
+            ov25_540_UpdateAnimationIdx(v0->unk_24[v3], 1 + v3);
         }
 
         ov25_SetPosition(v0->unk_24[v3], ((v1->unk_0C[v3].unk_00) << FX32_SHIFT), ((v1->unk_0C[v3].unk_01) << FX32_SHIFT));

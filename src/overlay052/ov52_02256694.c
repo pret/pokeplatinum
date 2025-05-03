@@ -30,7 +30,7 @@ struct UnkStruct_ov52_02256694_t {
     Window unk_20;
     Ov25_540_AnimationManager *unk_30;
     Ov25_540_AnimatedSpriteData *unk_34[4];
-    ov25_spriteDataStruct unk_44;
+    ov25_SpriteData unk_44;
     MessageLoader *unk_58;
     Strbuf *unk_5C;
 };
@@ -60,7 +60,7 @@ BOOL ov52_02256694(UnkStruct_ov52_02256694 **param0, const UnkStruct_ov52_022566
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_30 = ov25_02254664();
+        v0->unk_30 = Poketch_GetAnimationManager();
         v0->unk_58 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0461, HEAP_ID_POKETCH_APP);
         v0->unk_5C = Strbuf_Init(96, HEAP_ID_POKETCH_APP);
         ov52_0225670C(v0, param1);
@@ -84,7 +84,7 @@ void ov52_022566EC(UnkStruct_ov52_02256694 *param0)
 
 static void ov52_0225670C(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_02256694_1 *param1)
 {
-    static const UnkStruct_ov25_02255810 v0[] = {
+    static const ov25_AnimationData v0[] = {
         {
             { (112 << FX32_SHIFT), (150 << FX32_SHIFT) },
             3,
@@ -255,7 +255,7 @@ static void ov52_0225691C(SysTask *param0, void *param1)
     ov25_540_Hide(v0->unk_34[1], 0);
     ov25_540_Hide(v0->unk_34[2], 1);
     ov25_540_Hide(v0->unk_34[3], 1);
-    ov25_InitAnimation(v0->unk_34[1], 1);
+    ov25_540_UpdateAnimationIdx(v0->unk_34[1], 1);
 
     ov52_02256B10(v0);
     PoketchSystem_PlaySoundEffect(1635);
@@ -270,7 +270,7 @@ static void ov52_02256968(SysTask *param0, void *param1)
     ov25_540_Hide(v0->unk_34[1], 1);
     ov25_540_Hide(v0->unk_34[2], 0);
     ov25_540_Hide(v0->unk_34[3], 1);
-    ov25_InitAnimation(v0->unk_34[2], 2);
+    ov25_540_UpdateAnimationIdx(v0->unk_34[2], 2);
     ov52_02256B64(v0);
     PoketchSystem_PlaySoundEffect(1646);
     ov52_022567E0(param1);
@@ -284,7 +284,7 @@ static void ov52_022569B4(SysTask *param0, void *param1)
     ov25_540_Hide(v0->unk_34[1], 1);
     ov25_540_Hide(v0->unk_34[2], 0);
     ov25_540_Hide(v0->unk_34[3], 1);
-    ov25_InitAnimation(v0->unk_34[2], 2);
+    ov25_540_UpdateAnimationIdx(v0->unk_34[2], 2);
     ov52_02256BDC(v0);
     PoketchSystem_PlaySoundEffect(1646);
     ov52_022567E0(param1);
@@ -299,7 +299,7 @@ static void ov52_02256A00(SysTask *param0, void *param1)
     ov25_540_Hide(v0->unk_34[1], 1);
     ov25_540_Hide(v0->unk_34[2], 1);
     ov25_540_Hide(v0->unk_34[3], 0);
-    ov25_InitAnimation(v0->unk_34[3], 0);
+    ov25_540_UpdateAnimationIdx(v0->unk_34[3], 0);
 
     ov52_02256C64(v0, v1);
     PoketchSystem_PlaySoundEffect(1635);

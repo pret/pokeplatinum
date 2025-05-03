@@ -28,7 +28,7 @@ struct UnkStruct_ov42_022563D4_t {
     u32 unk_08[6];
     Ov25_540_AnimationManager *unk_20;
     Ov25_540_AnimatedSpriteData *unk_24;
-    ov25_spriteDataStruct unk_28;
+    ov25_SpriteData unk_28;
     fx32 unk_3C;
     fx32 unk_40;
     BOOL unk_44;
@@ -49,7 +49,7 @@ BOOL ov42_022563D4(UnkStruct_ov42_022563D4 **param0, const UnkStruct_ov42_022563
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = ov25_02254664();
+        v0->unk_20 = Poketch_GetAnimationManager();
 
         ov42_02256420(v0);
 
@@ -64,7 +64,7 @@ BOOL ov42_022563D4(UnkStruct_ov42_022563D4 **param0, const UnkStruct_ov42_022563
 
 static void ov42_02256420(UnkStruct_ov42_022563D4 *param0)
 {
-    static const UnkStruct_ov25_02255810 v0 = {
+    static const ov25_AnimationData v0 = {
         { (112 << FX32_SHIFT), (144 << FX32_SHIFT) },
         1,
         0,
@@ -79,7 +79,7 @@ static void ov42_02256420(UnkStruct_ov42_022563D4 *param0)
     param0->unk_24 = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &param0->unk_28);
 
     if (param0->unk_00->unk_00 == 0) {
-        ov25_InitAnimation(param0->unk_24, 2);
+        ov25_540_UpdateAnimationIdx(param0->unk_24, 2);
     }
 }
 
@@ -187,7 +187,7 @@ static void ov42_022565C4(SysTask *param0, void *param1)
     switch (PoketchTask_GetState(param1)) {
     case 0:
         PoketchSystem_PlaySoundEffect(1653);
-        ov25_InitAnimation(v0->unk_24, 0);
+        ov25_540_UpdateAnimationIdx(v0->unk_24, 0);
         v0->unk_3C = 144 << FX32_SHIFT;
         v0->unk_40 = Unk_ov42_02256720;
         v0->unk_44 = 0;
@@ -209,7 +209,7 @@ static void ov42_022565C4(SysTask *param0, void *param1)
                 v0->unk_3C = 144 << FX32_SHIFT;
             } else {
                 PoketchSystem_PlaySoundEffect(1654);
-                ov25_InitAnimation(v0->unk_24, (v1->unk_00) ? 1 : 2);
+                ov25_540_UpdateAnimationIdx(v0->unk_24, (v1->unk_00) ? 1 : 2);
                 v0->unk_3C = 144 << FX32_SHIFT;
                 PoketchTask_IncrementState(param1);
             }

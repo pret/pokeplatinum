@@ -51,8 +51,8 @@ struct UnkStruct_ov33_02256474_t {
     BgConfig *unk_04;
     u32 unk_08[10];
     Ov25_540_AnimationManager *unk_30;
-    ov25_spriteDataStruct unk_34;
-    ov25_spriteDataStruct unk_48;
+    ov25_SpriteData unk_34;
+    ov25_SpriteData unk_48;
     VecFx32 unk_5C[6];
     VecFx32 unk_A4;
     SysTask *unk_B0;
@@ -121,7 +121,7 @@ BOOL ov33_02256474(UnkStruct_ov33_02256474 **param0, const UnkStruct_ov33_022564
 
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_30 = ov25_02254664();
+        v0->unk_30 = Poketch_GetAnimationManager();
         v0->unk_B0 = NULL;
 
         for (v1 = 0; v1 < 6; v1++) {
@@ -248,12 +248,12 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_POKETCH_APP);
 
     if (v1) {
-        UnkStruct_ov25_02255810 v2;
+        ov25_AnimationData v2;
         NNSG2dCharacterData *v3;
         void *v4;
         int v5;
 
-        v2.animIDX = 0;
+        v2.animIdx = 0;
         v2.flip = 0;
         v2.oamPriority = 2;
         v2.hasAffineTransform = 1;
@@ -272,7 +272,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
             param0->unk_134[v5].unk_00 = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v2, &param0->unk_34);
 
             ov25_Set_charNo(param0->unk_134[v5].unk_00, (4 * 4 * 2) * v5);
-            ov25_Set_cParam(param0->unk_134[v5].unk_00, 1 + PokeIconPaletteIndex(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 0));
+            ov25_540_SetCParam(param0->unk_134[v5].unk_00, 1 + PokeIconPaletteIndex(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 0));
 
             v2.unk_0C = 0;
             param0->unk_134[v5].unk_04 = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v2, &param0->unk_48);
@@ -280,7 +280,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
             if (param0->unk_134[v5].unk_04) {
                 ov25_540_Hide(param0->unk_134[v5].unk_04, 1);
                 ov25_Set_charNo(param0->unk_134[v5].unk_04, ((4 * 4 * 2) * 6));
-                ov25_Set_cParam(param0->unk_134[v5].unk_04, 0);
+                ov25_540_SetCParam(param0->unk_134[v5].unk_04, 0);
             } else {
                 GF_ASSERT(0);
             }
@@ -314,9 +314,9 @@ static void ov33_022567D4(VecFx32 *param0)
 static inline void inline_ov33_0225681C(UnkStruct_ov33_02256474_sub1 *param0)
 {
     if (param0->unk_30) {
-        ov25_InitAnimation(param0->unk_00, 6);
+        ov25_540_UpdateAnimationIdx(param0->unk_00, 6);
     } else {
-        ov25_InitAnimation(param0->unk_00, (param0->unk_08.x > 0) ? 7 : 6);
+        ov25_540_UpdateAnimationIdx(param0->unk_00, (param0->unk_08.x > 0) ? 7 : 6);
     }
 }
 
@@ -578,7 +578,7 @@ static void ov33_02256C54(UnkStruct_ov33_02256474 *param0, int param1)
 {
     if (param0->unk_00->unk_04[param1].unk_0A == 0) {
         ov25_UpdateElem_unk_84_00(param0->unk_30, param0->unk_134[param1].unk_04, 0);
-        ov25_InitAnimation(param0->unk_134[param1].unk_04, 0 + (param0->unk_00->unk_04[param1].unk_0B - 1));
+        ov25_540_UpdateAnimationIdx(param0->unk_134[param1].unk_04, 0 + (param0->unk_00->unk_04[param1].unk_0B - 1));
         ov25_540_Hide(param0->unk_134[param1].unk_04, 0);
     }
 }
@@ -586,7 +586,7 @@ static void ov33_02256C54(UnkStruct_ov33_02256474 *param0, int param1)
 static void ov33_02256C98(UnkStruct_ov33_02256474 *param0, int param1)
 {
     ov25_UpdateElem_unk_84_00(param0->unk_30, param0->unk_134[param1].unk_04, 2);
-    ov25_InitAnimation(param0->unk_134[param1].unk_04, 3);
+    ov25_540_UpdateAnimationIdx(param0->unk_134[param1].unk_04, 3);
     ov25_540_Hide(param0->unk_134[param1].unk_04, 0);
 }
 

@@ -32,7 +32,7 @@ struct UnkStruct_ov48_0225650C_t {
     Ov25_540_AnimatedSpriteData *unk_24;
     Ov25_540_AnimatedSpriteData *unk_28[64];
     Ov25_540_AnimatedSpriteData *unk_128[4];
-    ov25_spriteDataStruct unk_138;
+    ov25_SpriteData unk_138;
     SysTask *unk_14C;
     BOOL unk_150;
     int unk_154;
@@ -58,7 +58,7 @@ BOOL ov48_0225650C(UnkStruct_ov48_0225650C **param0, const UnkStruct_ov48_022565
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = ov25_02254664();
+        v0->unk_20 = Poketch_GetAnimationManager();
         v0->unk_150 = param1->unk_8C;
         *param0 = v0;
         return 1;
@@ -229,7 +229,7 @@ static void ov48_0225672C(SysTask *param0, void *param1)
 static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
 {
     const UnkStruct_ov48_0225650C_1 *v0;
-    UnkStruct_ov25_02255810 v1;
+    ov25_AnimationData v1;
     u32 v2, v3;
     int v4;
 
@@ -248,13 +248,13 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
     v1.translation.x = ((v2) << FX32_SHIFT);
     v1.translation.y = ((v3) << FX32_SHIFT);
     v1.unk_0C = 0;
-    v1.animIDX = 0;
+    v1.animIdx = 0;
     param0->unk_24 = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v1, &(param0->unk_138));
 
     ov25_Set_mosaic(param0->unk_24, 1);
 
     v1.unk_0C = 1;
-    v1.animIDX = 7;
+    v1.animIdx = 7;
     v1.translation.x = 0;
     v1.translation.y = 0;
 
@@ -270,7 +270,7 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
         v1.translation.x = ((v2) << FX32_SHIFT);
         v1.translation.y = ((v3) << FX32_SHIFT);
         v1.unk_0C = 2;
-        v1.animIDX = 14 + v4;
+        v1.animIdx = 14 + v4;
         param0->unk_128[v4] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v1, &(param0->unk_138));
 
         ov25_Set_mosaic(param0->unk_128[v4], 1);

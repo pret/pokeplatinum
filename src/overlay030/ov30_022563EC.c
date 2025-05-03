@@ -24,7 +24,7 @@ struct UnkStruct_ov30_022563EC_t {
     BgConfig *unk_04;
     u32 unk_08[10];
     SysTask *unk_30;
-    ov25_spriteDataStruct unk_34;
+    ov25_SpriteData unk_34;
     Ov25_540_AnimationManager *unk_48;
     Ov25_540_AnimatedSpriteData *unk_4C[2];
 };
@@ -51,7 +51,7 @@ BOOL ov30_022563EC(UnkStruct_ov30_022563EC **param0, const UnkStruct_ov30_022563
 
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_48 = ov25_02254664();
+        v0->unk_48 = Poketch_GetAnimationManager();
 
         if (ov30_022565F4(v0) == 0) {
             Heap_FreeToHeap(v0);
@@ -186,15 +186,15 @@ static void ov30_022565B0(UnkStruct_ov30_022563EC *param0)
     CP_SetDiv32_32(param0->unk_00->unk_00.hour, 10);
 
     v0 = 60 + ((param0->unk_00->unk_00.hour % 12) * 30) + (param0->unk_00->unk_00.minute / 2);
-    ov25_InitAnimation(param0->unk_4C[0], v0);
+    ov25_540_UpdateAnimationIdx(param0->unk_4C[0], v0);
 
     v0 = 0 + param0->unk_00->unk_00.minute;
-    ov25_InitAnimation(param0->unk_4C[1], v0);
+    ov25_540_UpdateAnimationIdx(param0->unk_4C[1], v0);
 }
 
 static BOOL ov30_022565F4(UnkStruct_ov30_022563EC *param0)
 {
-    static const UnkStruct_ov25_02255810 v0[] = {
+    static const ov25_AnimationData v0[] = {
         {
             { 116 << FX32_SHIFT, 100 << FX32_SHIFT },
             60,

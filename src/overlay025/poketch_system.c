@@ -196,7 +196,7 @@ enum PoketchAppID PoketchSystem_CurrentAppID(PoketchSystem *poketchSys)
 
 static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys)
 {
-    if (ov25_02254560(&(poketchSys->taskData), &(poketchSys->constTaskData), poketchSys->oamManager, poketchSys)) {
+    if (ov25_560_Main(&(poketchSys->taskData), &(poketchSys->constTaskData), poketchSys->oamManager, poketchSys)) {
         poketchSys->systemState = POKETCH_SYSTEM_INIT;
         poketchSys->subState = 0;
         poketchSys->touchingScreen = FALSE;
@@ -326,9 +326,9 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
 
         if (ov25_560_NoActiveTasks(poketchSys->taskData)) {
             if (poketchSys->buttonDir == BUTTON_UP) {
-                poketchSys->constTaskData.value = Poketch_DecrementAppID(poketchSys->poketch);
+                poketchSys->constTaskData.lastAppID = Poketch_DecrementAppID(poketchSys->poketch);
             } else {
-                poketchSys->constTaskData.value = Poketch_IncrementAppID(poketchSys->poketch);
+                poketchSys->constTaskData.lastAppID = Poketch_IncrementAppID(poketchSys->poketch);
             }
 
             if (poketchSys->skipApp) {
@@ -368,9 +368,9 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
     case 4:
         if (poketchSys->buttonState == BUTTON_MANAGER_STATE_TAP || poketchSys->buttonState == BUTTON_MANAGER_STATE_TIMER0) {
             if (poketchSys->buttonDir == BUTTON_UP) {
-                poketchSys->constTaskData.value = Poketch_DecrementAppID(poketchSys->poketch);
+                poketchSys->constTaskData.lastAppID = Poketch_DecrementAppID(poketchSys->poketch);
             } else {
-                poketchSys->constTaskData.value = Poketch_IncrementAppID(poketchSys->poketch);
+                poketchSys->constTaskData.lastAppID = Poketch_IncrementAppID(poketchSys->poketch);
             }
 
             poketchSys->appSkipTimer = 30;
@@ -654,7 +654,7 @@ static BOOL PoketchSystem_StartTaskIfNotActive(Ov25_560_TaskData *taskData, u32 
     return TRUE;
 }
 
-Ov25_560_TaskData *PoketchSystem_Get_ov25_560_struct(void)
+Ov25_560_TaskData *PoketchSystem_GetTaskData(void)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
     return poketchSys->taskData;

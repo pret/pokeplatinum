@@ -28,7 +28,7 @@ struct UnkStruct_ov54_0225642C_t {
     u32 unk_08[6];
     Ov25_540_AnimationManager *unk_20;
     Ov25_540_AnimatedSpriteData *unk_24[12];
-    ov25_spriteDataStruct unk_54;
+    ov25_SpriteData unk_54;
     u32 unk_68[12];
 };
 
@@ -46,7 +46,7 @@ BOOL ov54_0225642C(UnkStruct_ov54_0225642C **param0, const UnkStruct_ov54_022564
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = ov25_02254664();
+        v0->unk_20 = Poketch_GetAnimationManager();
         *param0 = v0;
 
         return 1;
@@ -155,7 +155,7 @@ static void ov54_022565CC(SysTask *param0, void *param1)
 
 static void ov54_022565EC(UnkStruct_ov54_0225642C *param0, const UnkStruct_ov54_0225642C_1 *param1)
 {
-    static const UnkStruct_ov25_02255810 v0[] = {
+    static const ov25_AnimationData v0[] = {
         {
             { ((48 + 40 * 0) << FX32_SHIFT), ((48 + 48 * 0) << FX32_SHIFT) },
             4,
@@ -263,7 +263,7 @@ static void ov54_022565EC(UnkStruct_ov54_0225642C *param0, const UnkStruct_ov54_
         param0->unk_24[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0[v1], &param0->unk_54);
 
         ov25_Set_charNo(param0->unk_24[v1], v1 * 16);
-        ov25_Set_cParam(param0->unk_24[v1], PokeIconPaletteIndex(param1->unk_00[v1].unk_00, param1->unk_00[v1].unk_08, 0));
+        ov25_540_SetCParam(param0->unk_24[v1], PokeIconPaletteIndex(param1->unk_00[v1].unk_00, param1->unk_00[v1].unk_08, 0));
     }
 
     for (; v1 < 12; v1++) {

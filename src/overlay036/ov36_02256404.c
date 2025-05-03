@@ -23,8 +23,8 @@ struct UnkStruct_ov36_02256404_t {
     Ov25_540_AnimationManager *unk_20;
     Ov25_540_AnimatedSpriteData *unk_24;
     Ov25_540_AnimatedSpriteData *unk_28[5];
-    ov25_spriteDataStruct unk_3C;
-    ov25_spriteDataStruct unk_50;
+    ov25_SpriteData unk_3C;
+    ov25_SpriteData unk_50;
 };
 
 static void ov36_02256454(UnkStruct_ov36_02256404 *param0, const UnkStruct_ov36_02256404_1 *param1);
@@ -44,7 +44,7 @@ BOOL ov36_02256404(UnkStruct_ov36_02256404 **param0, const UnkStruct_ov36_022564
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = ov25_02254664();
+        v0->unk_20 = Poketch_GetAnimationManager();
         ov36_02256454(v0, param1);
         *param0 = v0;
 
@@ -64,7 +64,7 @@ void ov36_02256440(UnkStruct_ov36_02256404 *param0)
 
 static void ov36_02256454(UnkStruct_ov36_02256404 *param0, const UnkStruct_ov36_02256404_1 *param1)
 {
-    static const UnkStruct_ov25_02255810 v0 = {
+    static const ov25_AnimationData v0 = {
         { (114 << FX32_SHIFT), (128 << FX32_SHIFT) },
         0,
         0,
@@ -72,7 +72,7 @@ static void ov36_02256454(UnkStruct_ov36_02256404 *param0, const UnkStruct_ov36_
         0,
         0
     };
-    static const UnkStruct_ov25_02255810 v1 = {
+    static const ov25_AnimationData v1 = {
         { (0 << FX32_SHIFT), (0 << FX32_SHIFT) },
         0,
         0,
@@ -194,10 +194,10 @@ static void ov36_02256638(SysTask *param0, void *param1)
     switch (v0->unk_00->unk_04) {
     case 0:
         PoketchSystem_PlaySoundEffect(1641);
-        ov25_InitAnimation(v0->unk_24, 1);
+        ov25_540_UpdateAnimationIdx(v0->unk_24, 1);
         break;
     case 1:
-        ov25_InitAnimation(v0->unk_24, 0);
+        ov25_540_UpdateAnimationIdx(v0->unk_24, 0);
         break;
     }
 
@@ -223,7 +223,7 @@ static void ov36_0225669C(UnkStruct_ov36_02256404 *param0, const UnkStruct_ov36_
         CP_SetDiv32_32(v1, v2);
         v1 = CP_GetDivResult32();
 
-        ov25_InitAnimation(param0->unk_28[v0], v1);
+        ov25_540_UpdateAnimationIdx(param0->unk_28[v0], v1);
         v1 = CP_GetDivRemainder32();
         v2 /= 10;
     }

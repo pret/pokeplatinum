@@ -9,6 +9,6 @@ typedef struct {
     NNSG2dCellDataBank *sprite;
     NNSG2dAnimBankData *anim;
     u32 heapID;
-} ov25_spriteDataStruct;
+} ov25_SpriteData;
 
 #endif // POKEPLATINUM_STRUCT_OV25_02255958_H
