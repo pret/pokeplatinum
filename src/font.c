@@ -231,7 +231,7 @@ u8 Font_GetAttribute(u8 font, u8 attribute)
     return result;
 }
 
-void Font_LoadTextPalette(int palLocation, u32 palSlotOffset, u32 heapID)
+void Font_LoadTextPalette(enum PaletteLoadLocation palLocation, u32 palSlotOffset, u32 heapID)
 {
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT,
         font_NCLR,
@@ -241,7 +241,7 @@ void Font_LoadTextPalette(int palLocation, u32 palSlotOffset, u32 heapID)
         heapID);
 }
 
-void Font_LoadScreenIndicatorsPalette(int palLocation, u32 palSlotOffset, u32 heapID)
+void Font_LoadScreenIndicatorsPalette(enum PaletteLoadLocation palLocation, u32 palSlotOffset, u32 heapID)
 {
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT,
         screen_indicators_NCLR,
