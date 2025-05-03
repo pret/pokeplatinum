@@ -8,7 +8,7 @@
 #include "field/field_system_decl.h"
 #include "poketch/poketch_button.h"
 #include "poketch/poketch_graphics.h"
-#include "poketch/struct_ov25_02254560_decl.h"
+#include "poketch/poketch_structs.h"
 
 #include "bg_window.h"
 #include "enums.h"

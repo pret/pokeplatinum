@@ -3,10 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "poketch/struct_ov25_022555E8_decl.h"
-#include "poketch/struct_ov25_02255810.h"
-#include "poketch/struct_ov25_022558C4_decl.h"
-#include "poketch/struct_ov25_02255958.h"
+#include "poketch/poketch_structs.h"
 
 #include "graphics.h"
 #include "heap.h"

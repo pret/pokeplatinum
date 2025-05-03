@@ -1,8 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_OV25_02254560_1_H
-#define POKEPLATINUM_STRUCT_OV25_02254560_1_H
-
-typedef struct {
-    u32 lastAppID;
-} Ov25_560_ConstTaskData;
-
-#endif // POKEPLATINUM_STRUCT_OV25_02254560_1_H

@@ -6,10 +6,7 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 
-#include "poketch/struct_ov25_022555E8_decl.h"
-#include "poketch/struct_ov25_02255810.h"
-#include "poketch/struct_ov25_022558C4_decl.h"
-#include "poketch/struct_ov25_02255958.h"
+#include "poketch/poketch_structs.h"
 
 Ov25_540_AnimationManager *ov25_540_SetupAnimationManager(NNSG2dOamManagerInstance *oamMan, u32 heapID);
 void ov25_540_FreeAnimationManager(Ov25_540_AnimationManager *animMan);

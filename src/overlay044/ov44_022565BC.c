@@ -7,12 +7,9 @@
 #include "overlay044/struct_ov44_022565BC_decl.h"
 #include "poketch/poketch_animation.h"
 #include "poketch/poketch_graphics.h"
+#include "poketch/poketch_structs.h"
 #include "poketch/poketch_system.h"
 #include "poketch/poketch_task.h"
-#include "poketch/struct_ov25_022555E8_decl.h"
-#include "poketch/struct_ov25_02255810.h"
-#include "poketch/struct_ov25_022558C4_decl.h"
-#include "poketch/struct_ov25_02255958.h"
 
 #include "bg_window.h"
 #include "graphics.h"
