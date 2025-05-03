@@ -2,6 +2,7 @@
 #define POKEPLATINUM_FONT_H
 
 #include "charcode.h"
+#include "graphics.h"
 #include "render_text.h"
 #include "strbuf.h"
 
@@ -55,8 +56,8 @@ u32 Font_CalcStringWidth(enum Font font, const charcode_t *str, u32 letterSpacin
 u32 Font_CalcStrbufWidth(enum Font font, const Strbuf *strbuf, u32 letterSpacing);
 u32 Font_AreAllCharsValid(enum Font font, Strbuf *strbuf, Strbuf *tmpbuf);
 u8 Font_GetAttribute(u8 font, u8 attribute);
-void Font_LoadTextPalette(int palLocation, u32 palSlotOffset, u32 heapID);
-void Font_LoadScreenIndicatorsPalette(int palLocation, u32 palSlotOffset, u32 heapID);
+void Font_LoadTextPalette(enum PaletteLoadLocation palLocation, u32 palSlotOffset, u32 heapID);
+void Font_LoadScreenIndicatorsPalette(enum PaletteLoadLocation palLocation, u32 palSlotOffset, u32 heapID);
 u32 Font_CalcMaxLineWidth(enum Font font, const Strbuf *strbuf, u32 letterSpacing);
 u32 Font_CalcCenterAlignment(enum Font font, const Strbuf *strbuf, u32 letterSpacing, u32 windowWidth);
 u32 Font_CalcStringWidthWithCursorControl(enum Font font, const Strbuf *strbuf);

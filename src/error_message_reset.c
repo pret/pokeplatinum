@@ -11,6 +11,7 @@
 #include "brightness_controller.h"
 #include "communication_system.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "main.h"
@@ -133,7 +134,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     Bg_InitFromTemplate(bgConfig, 0, &sErrorMessageBgTemplate, 0);
     Bg_ClearTilemap(bgConfig, 0);
     LoadStandardWindowGraphics(bgConfig, 0, (512 - 9), 2, 0, heapID);
-    Font_LoadTextPalette(0, 1 * (2 * 16), heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), heapID);
     Bg_ClearTilesRange(0, 32, 0, heapID);
     Bg_MaskPalette(0, 0x6c21);
     Bg_MaskPalette(4, 0x6c21);
