@@ -1,17 +1,17 @@
-#include "overlay025/ov25_02254560.h"
+#include "poketch/poketch_graphics.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay025/ov25_02255090.h"
-#include "overlay025/ov25_02255540.h"
-#include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_02254560_1.h"
-#include "overlay025/struct_ov25_02254560_decl.h"
-#include "overlay025/struct_ov25_022555E8_decl.h"
-#include "overlay025/struct_ov25_02255810.h"
-#include "overlay025/struct_ov25_022558C4_decl.h"
-#include "overlay025/struct_ov25_02255958.h"
+#include "poketch/poketch_animation.h"
+#include "poketch/poketch_system.h"
+#include "poketch/poketch_task.h"
+#include "poketch/struct_ov25_02254560_1.h"
+#include "poketch/struct_ov25_02254560_decl.h"
+#include "poketch/struct_ov25_022555E8_decl.h"
+#include "poketch/struct_ov25_02255810.h"
+#include "poketch/struct_ov25_022558C4_decl.h"
+#include "poketch/struct_ov25_02255958.h"
 
 #include "bg_window.h"
 #include "graphics.h"
@@ -73,35 +73,35 @@ typedef struct {
     u16 heightCounter;
 } Ov25_560_ExtraTaskData;
 
-static void ov25_560_TaskCallback(SysTask *param0, void *param1);
-static void Poketch_InitPaletteData(Ov25_560_TaskData *param0);
-static void ov25_560_GeneratePoketchButtonSprite(u16 *param0, u32 param1, int param2, int param3);
-static void ov25_560_EndTask(PoketchTaskManager *param0);
-static void ov25_560_SetupBackgroundTask(SysTask *param0, void *param1);
-static void ov25_560_screenRevealAnimationTask(SysTask *param0, void *param1);
-static void ov25_560_screenConcealAnimationTask(SysTask *param0, void *param1);
-static void ov25_560_UnusedTask_1(SysTask *param0, void *param1);
-static void ov25_560_UnusedTask_2(SysTask *param0, void *param1);
-static void ov25_560_LoadBtnTilemap(void *param0, u16 *param1, int param2);
-static void ov25_560_UpBtnHalfPressed_Task(SysTask *param0, void *param1);
-static void ov25_560_DownBtnHalfPressed_Task(SysTask *param0, void *param1);
-static void ov25_560_UpBtnPressed_Task(SysTask *param0, void *param1);
-static void ov25_560_DownBtnPressed_Task(SysTask *param0, void *param1);
-static void ov25_560_UpBtnReleased_Task(SysTask *param0, void *param1);
-static void ov25_560_DownBtnReleased_Task(SysTask *param0, void *param1);
-static void ov25_560_LoadAppCounterTask(SysTask *param0, void *param1);
-static void ov25_560_UpdateAppCounterDigitsTask(SysTask *param0, void *param1);
-static void ov25_560_UnloadAppCounterAnimTask(SysTask *param0, void *param1);
-static void ov25_560_SetupAppCounterData(ov25_560_AppCounterAnimationData *param0, Ov25_540_AnimationManager *param1);
-static void ov25_560_LoadAppCounter(Ov25_560_TaskData *param0, ov25_560_AppCounterAnimationData *param1);
-static void ov25_560_LoadAppCounterPalette(Ov25_560_TaskData *param0, u32 param1);
-static void ov25_560_SetAppCounterDigits(ov25_560_AppCounterAnimationData *param0, const Ov25_560_ConstTaskData *constTaskData);
-static void ov25_560_UnloadAppCounterAnim(ov25_560_AppCounterAnimationData *param0);
-static void ov25_560_UnusedTask_3(SysTask *param0, void *param1);
-static void ov25_560_UnusedTask_4(SysTask *param0, void *param1);
-static void ov25_560_FreeTilemapBufferTask(SysTask *param0, void *param1);
+static void ov25_560_TaskCallback(SysTask *task, void *data);
+static void Poketch_InitPaletteData(Ov25_560_TaskData *taskData);
+static void ov25_560_GeneratePoketchButtonSprite(u16 *dst, u32 param1, int param2, int param3);
+static void ov25_560_EndTask(PoketchTaskManager *taskMan);
+static void ov25_560_SetupBackgroundTask(SysTask *task, void *taskMan);
+static void ov25_560_screenRevealAnimationTask(SysTask *task, void *taskMan);
+static void ov25_560_screenConcealAnimationTask(SysTask *task, void *taskMan);
+static void ov25_560_UnusedTask_1(SysTask *task, void *taskMan);
+static void ov25_560_UnusedTask_2(SysTask *task, void *taskMan);
+static void ov25_560_LoadBtnTilemap(void *taskMan, u16 *src, int btnLocation);
+static void ov25_560_UpBtnHalfPressed_Task(SysTask *task, void *taskMan);
+static void ov25_560_DownBtnHalfPressed_Task(SysTask *task, void *taskMan);
+static void ov25_560_UpBtnPressed_Task(SysTask *task, void *taskMan);
+static void ov25_560_DownBtnPressed_Task(SysTask *task, void *taskMan);
+static void ov25_560_UpBtnReleased_Task(SysTask *task, void *taskMan);
+static void ov25_560_DownBtnReleased_Task(SysTask *task, void *taskMan);
+static void ov25_560_LoadAppCounterTask(SysTask *task, void *taskMan);
+static void ov25_560_UpdateAppCounterDigitsTask(SysTask *task, void *taskMan);
+static void ov25_560_UnloadAppCounterAnimTask(SysTask *task, void *taskMan);
+static void ov25_560_SetupAppCounterData(ov25_560_AppCounterAnimationData *appCounterAnim, Ov25_540_AnimationManager *animMan);
+static void ov25_560_LoadAppCounter(Ov25_560_TaskData *taskData, ov25_560_AppCounterAnimationData *appCounterAnim);
+static void ov25_560_LoadAppCounterPalette(Ov25_560_TaskData *taskData, u32 offset);
+static void ov25_560_SetAppCounterDigits(ov25_560_AppCounterAnimationData *appCounterAnim, const Ov25_560_ConstTaskData *constTaskData);
+static void ov25_560_UnloadAppCounterAnim(ov25_560_AppCounterAnimationData *appCounterAnim);
+static void ov25_560_UnusedTask_3(SysTask *task, void *taskMan);
+static void ov25_560_UnusedTask_4(SysTask *task, void *taskMan);
+static void ov25_560_FreeTilemapBufferTask(SysTask *task, void *taskMan);
 struct PoketchSystem *FieldSystem_GetPoketchSystem(void);
-SysTask *SysTask_ExecuteAfterVBlank(SysTaskFunc param0, void *param1, u32 param2);
+SysTask *SysTask_ExecuteAfterVBlank(SysTaskFunc callback, void *param, u32 priority);
 
 BOOL ov25_560_Main(Ov25_560_TaskData **taskDataPtr, const Ov25_560_ConstTaskData *constTaskData, NNSG2dOamManagerInstance *oamMan, PoketchSystem *poketchSys)
 {

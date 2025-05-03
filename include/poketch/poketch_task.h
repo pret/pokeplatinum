@@ -31,11 +31,11 @@ void *PoketchTask_GetExtraData(PoketchTaskManager *taskMan);
 u32 PoketchTask_GetState(PoketchTaskManager *taskMan);
 void PoketchTask_IncrementState(PoketchTaskManager *taskMan);
 void PoketchTask_SetState(PoketchTaskManager *taskMan, u32 state);
-void ov25_02255258(u16 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6);
-void PoketchTask_MapToActivePaletteFromLuminance(u16 *param0, u32 param1);
-void PoketchTask_FillPaletteFromActivePaletteSlot(u32 param0, u32 param1);
-void PoketchTask_LoadPokemonIconLuminancePalette(u32 param0);
-void PoketchTask_LoadPokemonIcons(u32 param0, const u32 *param1, u32 param2, BOOL param3);
-void ov25_02255440(BgConfig *param0, u32 param1, u32 param2);
+void ov25_02255258(u16 *tileBuffer, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6);
+void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 size);
+void PoketchTask_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset);
+void PoketchTask_LoadPokemonIconLuminancePalette(u32 offset);
+void PoketchTask_LoadPokemonIcons(u32 offset, const u32 *iconIdxList, u32 numIcons, BOOL isLarge);
+void ov25_02255440(BgConfig *bgConfig, u32 digit, u32 bgLayer);
 
 #endif // POKEPLATINUM_OV25_02255090_H

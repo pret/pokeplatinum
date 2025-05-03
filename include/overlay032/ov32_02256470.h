@@ -3,10 +3,10 @@
 
 #include "constants/pokemon.h"
 
-#include "overlay025/struct_ov25_022555E8_decl.h"
-#include "overlay025/struct_ov25_02255810.h"
-#include "overlay025/struct_ov25_022558C4_decl.h"
-#include "overlay025/struct_ov25_02255958.h"
+#include "poketch/struct_ov25_022555E8_decl.h"
+#include "poketch/struct_ov25_02255810.h"
+#include "poketch/struct_ov25_022558C4_decl.h"
+#include "poketch/struct_ov25_02255958.h"
 
 #include "bg_window.h"
 #include "sys_task.h"

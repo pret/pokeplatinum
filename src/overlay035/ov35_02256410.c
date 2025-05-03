@@ -3,16 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay025/ov25_02254560.h"
-#include "overlay025/ov25_02255090.h"
-#include "overlay025/ov25_02255540.h"
-#include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_022555E8_decl.h"
-#include "overlay025/struct_ov25_02255810.h"
-#include "overlay025/struct_ov25_022558C4_decl.h"
-#include "overlay025/struct_ov25_02255958.h"
 #include "overlay035/struct_ov35_02256410_1.h"
 #include "overlay035/struct_ov35_02256410_decl.h"
+#include "poketch/poketch_animation.h"
+#include "poketch/poketch_graphics.h"
+#include "poketch/poketch_system.h"
+#include "poketch/poketch_task.h"
+#include "poketch/struct_ov25_022555E8_decl.h"
+#include "poketch/struct_ov25_02255810.h"
+#include "poketch/struct_ov25_022558C4_decl.h"
+#include "poketch/struct_ov25_02255958.h"
 
 #include "bg_window.h"
 #include "graphics.h"

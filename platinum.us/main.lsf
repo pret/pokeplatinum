@@ -869,12 +869,12 @@ Overlay pre_poketch_subscreen
 Overlay overlay25
 {
 	After overlay9
-	Object main.nef.p/src_overlay025_poketch_system.c.o
-	Object main.nef.p/src_overlay025_ov25_02254560.c.o
-	Object main.nef.p/src_overlay025_ov25_02255090.c.o
-	Object main.nef.p/src_overlay025_ov25_02255540.c.o
-	Object main.nef.p/src_overlay025_poketch_button.c.o
-	Object main.nef.p/src_overlay025_ov25_02255DBC.c.o
+	Object main.nef.p/src_poketch_poketch_system.c.o
+	Object main.nef.p/src_poketch_poketch_graphics.c.o
+	Object main.nef.p/src_poketch_poketch_task.c.o
+	Object main.nef.p/src_poketch_poketch_animation.c.o
+	Object main.nef.p/src_poketch_poketch_button.c.o
+	Object main.nef.p/src_poketch_ov25_02255DBC.c.o
 }
 
 Overlay poketch_digital_watch

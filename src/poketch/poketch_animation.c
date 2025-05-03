@@ -1,12 +1,12 @@
-#include "overlay025/ov25_02255540.h"
+#include "poketch/poketch_animation.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay025/struct_ov25_022555E8_decl.h"
-#include "overlay025/struct_ov25_02255810.h"
-#include "overlay025/struct_ov25_022558C4_decl.h"
-#include "overlay025/struct_ov25_02255958.h"
+#include "poketch/struct_ov25_022555E8_decl.h"
+#include "poketch/struct_ov25_02255810.h"
+#include "poketch/struct_ov25_022558C4_decl.h"
+#include "poketch/struct_ov25_02255958.h"
 
 #include "graphics.h"
 #include "heap.h"
@@ -50,12 +50,12 @@ struct Ov25_540_AnimationManager_t {
     u32 heapID;
 };
 
-static void ov25_540_PopulateAnimatedSpritePtrArray(Ov25_540_AnimatedSpriteData **param0, Ov25_540_AnimatedSpriteData *param1, u32 param2);
-static void ov25_540_UnlinkAnimatedSprite(Ov25_540_AnimatedSpriteData *param0);
+static void ov25_540_PopulateAnimatedSpritePtrArray(Ov25_540_AnimatedSpriteData **animatedSpritePtrArray, Ov25_540_AnimatedSpriteData *animatedSpritePool, u32 numSlots);
+static void ov25_540_UnlinkAnimatedSprite(Ov25_540_AnimatedSpriteData *animatedSprite);
 static Ov25_540_AnimatedSpriteData *ov25_540_GetNextUnusedAnimSlot(Ov25_540_AnimationManager *param0);
-static void ov25_540_MarkAnimatedSpriteUnused(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *param1);
-static void ov25_540_SortAnimIntoList(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *param1);
-static void ov25_540_RemoveAnimatedSpriteFromList(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *param1);
+static void ov25_540_MarkAnimatedSpriteUnused(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite);
+static void ov25_540_SortAnimIntoList(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite);
+static void ov25_540_RemoveAnimatedSpriteFromList(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite);
 
 Ov25_540_AnimationManager *ov25_540_SetupAnimationManager(NNSG2dOamManagerInstance *oamMan, u32 heapID)
 {
@@ -237,10 +237,10 @@ Ov25_540_AnimatedSpriteData *ov25_540_SetupNewAnimatedSprite(Ov25_540_AnimationM
     return animatedSprite;
 }
 
-void ov25_540_RemoveAnimatedSprite(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *param1)
+void ov25_540_RemoveAnimatedSprite(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite)
 {
-    ov25_540_RemoveAnimatedSpriteFromList(animMan, param1);
-    ov25_540_MarkAnimatedSpriteUnused(animMan, param1);
+    ov25_540_RemoveAnimatedSpriteFromList(animMan, animatedSprite);
+    ov25_540_MarkAnimatedSpriteUnused(animMan, animatedSprite);
 }
 
 void ov25_540_UpdateAnimationIdx(Ov25_540_AnimatedSpriteData *animatedSprite, u32 animIdx)
@@ -304,10 +304,10 @@ void ov25_540_SetSpriteRotation(Ov25_540_AnimatedSpriteData *animatedSprite, u16
     animatedSprite->rotZ = rotation;
 }
 
-BOOL ov25_540_LoadSpriteFromNARC(ov25_SpriteData *spriteData, enum NarcID narcId, u32 cellId, u32 animId, enum HeapId heapId)
+BOOL ov25_540_LoadSpriteFromNARC(ov25_SpriteData *spriteData, enum NarcID narcId, u32 spriteId, u32 animId, enum HeapId heapId)
 {
     spriteData->heapID = heapId;
-    spriteData->compressedSprite = LoadCompressedMemberFromNARC(narcId, cellId, heapId);
+    spriteData->compressedSprite = LoadCompressedMemberFromNARC(narcId, spriteId, heapId);
     spriteData->compressedAnim = LoadCompressedMemberFromNARC(narcId, animId, heapId);
 
     if ((spriteData->compressedSprite != NULL) && (spriteData->compressedAnim != NULL)) {

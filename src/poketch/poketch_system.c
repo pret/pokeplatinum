@@ -1,4 +1,4 @@
-#include "overlay025/poketch_system.h"
+#include "poketch/poketch_system.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -6,9 +6,9 @@
 #include "generated/genders.h"
 
 #include "field/field_system_decl.h"
-#include "overlay025/ov25_02254560.h"
-#include "overlay025/poketch_button.h"
-#include "overlay025/struct_ov25_02254560_decl.h"
+#include "poketch/poketch_button.h"
+#include "poketch/poketch_graphics.h"
+#include "poketch/struct_ov25_02254560_decl.h"
 
 #include "bg_window.h"
 #include "enums.h"
@@ -139,7 +139,7 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
             sub_0201E450(4);
 
             new_system->poketchSysPtr = poketchSys;
-            new_system->unk_38 = SysTask_Start(PoketchSystem_PostRender, new_system, 4);
+            new_system->postRenderTask = SysTask_Start(PoketchSystem_PostRender, new_system, 4);
 
             SysTask_Start(PoketchSystem_MainTask, new_system, 0);
         }
@@ -200,7 +200,7 @@ static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys)
         poketchSys->systemState = POKETCH_SYSTEM_INIT;
         poketchSys->subState = 0;
         poketchSys->touchingScreen = FALSE;
-        poketchSys->playerMoving = 0;
+        poketchSys->playerMoving = FALSE;
         poketchSys->pedometerUpdated = FALSE;
         poketchSys->appChanging = FALSE;
         poketchSys->appStarting = FALSE;
@@ -219,7 +219,7 @@ static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys)
 
 static void PoketchSystem_Shutdown(PoketchSystem *poketchSys)
 {
-    SysTask_Done(poketchSys->unk_38);
+    SysTask_Done(poketchSys->postRenderTask);
 
     PoketchSystem_ButtonShutdown(poketchSys);
     PoketchSystem_UnloadApp(poketchSys);
@@ -486,7 +486,7 @@ static void PoketchSystem_InitApp(PoketchSystem *poketchSys, u32)
 {
     GF_ASSERT(poketchSys->appState == POKETCH_APP_STATE_NONE);
 
-    poketchSys->currAppInit(&(poketchSys->unk_24), poketchSys, poketchSys->bgl, poketchSys->loadedAppID);
+    poketchSys->currAppInit(&(poketchSys->appData), poketchSys, poketchSys->bgl, poketchSys->loadedAppID);
     poketchSys->appState = POKETCH_APP_STATE_INIT;
 }
 
@@ -499,7 +499,7 @@ static void PoketchSystem_ShutdownApp(PoketchSystem *poketchSys)
 {
     GF_ASSERT(poketchSys->appState == POKETCH_APP_STATE_UPDATE);
 
-    poketchSys->currAppShutdown(poketchSys->unk_24);
+    poketchSys->currAppShutdown(poketchSys->appData);
     poketchSys->appState = POKETCH_APP_STATE_SHUTDOWN;
 }
 
@@ -549,8 +549,8 @@ static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys)
 
     if (poketchSys->buttonManager != NULL) {
         PoketchButtonManager_SetButtonTimer(poketchSys->buttonManager, POKETCH_SYSTEM_MAIN_BUTTON_UP, 0, 7);
-        poketchSys->unk_2C = POKETCH_EMPTY_TASK;
-        poketchSys->unk_30 = 0xffffffff;
+        poketchSys->nextBtnTask = POKETCH_EMPTY_TASK;
+        poketchSys->lastBtnReleaseTask = POKETCH_EMPTY_TASK;
         return TRUE;
     }
 
@@ -606,17 +606,17 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
             break;
         }
 
-        if (poketchSys->unk_2C != POKETCH_EMPTY_TASK) {
+        if (poketchSys->nextBtnTask != POKETCH_EMPTY_TASK) {
             u32 tmpTaskId = taskId;
 
-            taskId = poketchSys->unk_2C;
-            poketchSys->unk_2C = tmpTaskId;
+            taskId = poketchSys->nextBtnTask;
+            poketchSys->nextBtnTask = tmpTaskId;
         }
 
         if (taskId != POKETCH_EMPTY_TASK) {
             if (PoketchSystem_StartTaskIfNotActive(poketchSys->taskData, taskId)) {
                 if ((taskId == 6) || (taskId == 7) || (taskId == 9) || (taskId == 10)) {
-                    poketchSys->unk_30 = taskId;
+                    poketchSys->lastBtnReleaseTask = taskId;
                 }
             }
         }
@@ -626,12 +626,12 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
             PoketchButtonManager_ResetButtonState(poketchSys->buttonManager, 0);
             break;
         case BUTTON_MANAGER_STATE_TAP:
-            if (poketchSys->unk_30 == 6 || poketchSys->unk_30 == 9) {
+            if (poketchSys->lastBtnReleaseTask == 6 || poketchSys->lastBtnReleaseTask == 9) {
                 buttonEvent = BUTTON_MANAGER_STATE_NULL;
             }
             break;
         case BUTTON_MANAGER_STATE_DRAGGING:
-            if (poketchSys->unk_30 == 7 || poketchSys->unk_30 == 10) {
+            if (poketchSys->lastBtnReleaseTask == 7 || poketchSys->lastBtnReleaseTask == 10) {
                 buttonEvent = BUTTON_MANAGER_STATE_TAP;
             }
             break;

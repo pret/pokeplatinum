@@ -4,9 +4,9 @@
 #include <nnsys.h>
 
 #include "field/field_system_decl.h"
-#include "overlay025/poketch_button.h"
-#include "overlay025/struct_ov25_02254560_1.h"
-#include "overlay025/struct_ov25_02254560_decl.h"
+#include "poketch/poketch_button.h"
+#include "poketch/struct_ov25_02254560_1.h"
+#include "poketch/struct_ov25_02254560_decl.h"
 
 #include "bg_window.h"
 #include "poketch.h"
@@ -94,12 +94,12 @@ struct PoketchSystem {
     FSOverlayID loadedAppOverlayID;
     Ov25_560_TaskData *taskData;
     Ov25_560_ConstTaskData constTaskData;
-    void *unk_24;
+    void *appData;
     PoketchButtonManager *buttonManager;
-    u32 unk_2C;
-    u32 unk_30;
+    u32 nextBtnTask;
+    u32 lastBtnReleaseTask;
     PoketchSystem **poketchSysPtr;
-    SysTask *unk_38;
+    SysTask *postRenderTask;
 
     PoketchAppInitFunction currAppInit;
     PoketchAppShutdownFunction currAppShutdown;

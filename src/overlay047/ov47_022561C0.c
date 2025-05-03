@@ -4,10 +4,10 @@
 
 #include "struct_defs/special_encounter.h"
 
-#include "overlay025/poketch_system.h"
 #include "overlay047/ov47_02256634.h"
 #include "overlay047/struct_ov47_02256634_1.h"
 #include "overlay047/struct_ov47_02256634_decl.h"
+#include "poketch/poketch_system.h"
 
 #include "bg_window.h"
 #include "heap.h"

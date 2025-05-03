@@ -2,11 +2,11 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "overlay025/poketch_button.h"
-#include "overlay025/poketch_system.h"
 #include "overlay043/ov43_02256544.h"
 #include "overlay043/struct_ov43_02256544_1.h"
 #include "overlay043/struct_ov43_02256544_decl.h"
+#include "poketch/poketch_button.h"
+#include "poketch/poketch_system.h"
 
 #include "bg_window.h"
 #include "heap.h"
