@@ -23,10 +23,10 @@ struct UnkStruct_ov46_02256BCC_t {
     const UnkStruct_ov46_02256BCC_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[10];
-    Ov25_540_GraphicManager *unk_30;
-    ov25_540_GraphicObject *unk_34[17];
-    UnkStruct_ov25_02255958 unk_78;
-    UnkStruct_ov25_02255958 unk_8C;
+    Ov25_540_AnimationManager *unk_30;
+    Ov25_540_AnimatedSpriteData *unk_34[17];
+    ov25_spriteDataStruct unk_78;
+    ov25_spriteDataStruct unk_8C;
     BOOL unk_A0;
     u32 unk_A4;
     u32 unk_A8;
@@ -222,14 +222,14 @@ static void ov46_02256C20(UnkStruct_ov46_02256BCC *param0, const UnkStruct_ov46_
     Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Graphics_LoadObjectTiles(12, 94, 1, 80 * 0x20, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_LoadNARCMembers(&param0->unk_78, 12, 92, 93, 8);
-    ov25_LoadNARCMembers(&param0->unk_8C, 12, 3, 4, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_78, 12, 92, 93, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_8C, 12, 3, 4, 8);
 
     for (v1 = 0; v1 < 17; v1++) {
         if ((v1 >= 13) && (v1 <= 16)) {
-            param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_8C);
+            param0->unk_34[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v0[v1], &param0->unk_8C);
         } else {
-            param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_78);
+            param0->unk_34[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v0[v1], &param0->unk_78);
             ov25_Set_charNo(param0->unk_34[v1], 80);
         }
     }
@@ -247,12 +247,12 @@ static void ov46_02256CF4(UnkStruct_ov46_02256BCC *param0)
 
     for (v0 = 0; v0 < 17; v0++) {
         if (param0->unk_34[v0]) {
-            ov25_RemoveElem(param0->unk_30, param0->unk_34[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_30, param0->unk_34[v0]);
         }
     }
 
-    ov25_FreeNARCMembers(&param0->unk_78);
-    ov25_FreeNARCMembers(&param0->unk_8C);
+    ov25_540_FreeSpriteData(&param0->unk_78);
+    ov25_540_FreeSpriteData(&param0->unk_8C);
 }
 
 static const PoketchTask Unk_ov46_02257178[] = {

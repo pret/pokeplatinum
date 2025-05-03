@@ -24,12 +24,12 @@ struct UnkStruct_ov47_02256634_t {
     const UnkStruct_ov47_02256634_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    Ov25_540_GraphicManager *unk_20;
-    ov25_540_GraphicObject *unk_24[6];
-    ov25_540_GraphicObject *unk_3C[4];
-    ov25_540_GraphicObject *unk_4C[6];
-    ov25_540_GraphicObject *unk_64;
-    UnkStruct_ov25_02255958 unk_68;
+    Ov25_540_AnimationManager *unk_20;
+    Ov25_540_AnimatedSpriteData *unk_24[6];
+    Ov25_540_AnimatedSpriteData *unk_3C[4];
+    Ov25_540_AnimatedSpriteData *unk_4C[6];
+    Ov25_540_AnimatedSpriteData *unk_64;
+    ov25_spriteDataStruct unk_68;
     SysTask *unk_7C;
 };
 
@@ -76,7 +76,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
 
     Graphics_LoadObjectTiles(12, 120, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_LoadNARCMembers(&param0->unk_68, 12, 118, 119, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_68, 12, 118, 119, 8);
 
     v0.flip = 0;
     v0.oamPriority = 2;
@@ -88,7 +88,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
     v0.translation.y = ((v4) << FX32_SHIFT);
     v0.unk_0C = 1;
     v0.animIDX = 0;
-    param0->unk_64 = ov25_SetupNewElem(param0->unk_20, &v0, &(param0->unk_68));
+    param0->unk_64 = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &(param0->unk_68));
     v0.hasAffineTransform = 1;
 
     for (v1 = 0; v1 < 6; v1++) {
@@ -96,7 +96,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
         v0.translation.y = ((param1->unk_0C[v1].unk_01) << FX32_SHIFT);
         v0.unk_0C = 2 + param1->unk_0C[v1].unk_02;
         v0.animIDX = 1 + v1;
-        param0->unk_24[v1] = ov25_SetupNewElem(param0->unk_20, &v0, &(param0->unk_68));
+        param0->unk_24[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &(param0->unk_68));
     }
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -107,7 +107,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
         v0.unk_0C = 9;
         v0.animIDX = 14 + v1;
 
-        param0->unk_3C[v1] = ov25_SetupNewElem(param0->unk_20, &v0, &(param0->unk_68));
+        param0->unk_3C[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &(param0->unk_68));
 
         if (param1->unk_2C[v1] == 0) {
             ov25_540_Hide(param0->unk_3C[v1], 1);
@@ -122,7 +122,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
         v0.unk_0C = 8;
         v0.animIDX = 18;
 
-        param0->unk_4C[v1] = ov25_SetupNewElem(param0->unk_20, &v0, &(param0->unk_68));
+        param0->unk_4C[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &(param0->unk_68));
 
         if ((param1->unk_3C[v1].unk_00 == 0) || (v2 == 0)) {
             ov25_540_Hide(param0->unk_4C[v1], 1);
@@ -140,27 +140,27 @@ static void ov47_022567FC(UnkStruct_ov47_02256634 *param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_24[v0]) {
-            ov25_RemoveElem(param0->unk_20, param0->unk_24[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_24[v0]);
             param0->unk_24[v0] = NULL;
         }
     }
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_3C[v0]) {
-            ov25_RemoveElem(param0->unk_20, param0->unk_3C[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_3C[v0]);
             param0->unk_3C[v0] = NULL;
         }
     }
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_4C[v0]) {
-            ov25_RemoveElem(param0->unk_20, param0->unk_4C[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_4C[v0]);
             param0->unk_4C[v0] = NULL;
         }
     }
 
-    ov25_RemoveElem(param0->unk_20, param0->unk_64);
-    ov25_FreeNARCMembers(&param0->unk_68);
+    ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_64);
+    ov25_540_FreeSpriteData(&param0->unk_68);
 }
 
 static const PoketchTask Unk_ov47_02256A78[] = {

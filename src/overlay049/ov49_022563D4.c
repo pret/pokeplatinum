@@ -23,9 +23,9 @@ struct UnkStruct_ov49_022563D4_t {
     const UnkStruct_ov49_022563D4_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    Ov25_540_GraphicManager *unk_20;
-    ov25_540_GraphicObject *unk_24;
-    UnkStruct_ov25_02255958 unk_28;
+    Ov25_540_AnimationManager *unk_20;
+    Ov25_540_AnimatedSpriteData *unk_24;
+    ov25_spriteDataStruct unk_28;
 };
 
 static void ov49_02256410(UnkStruct_ov49_022563D4 *param0, const UnkStruct_ov49_022563D4_1 *param1);
@@ -66,8 +66,8 @@ static void ov49_02256410(UnkStruct_ov49_022563D4 *param0, const UnkStruct_ov49_
 
     Graphics_LoadObjectTiles(12, 69, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_LoadNARCMembers(&param0->unk_28, 12, 67, 68, 8);
-    param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v0, &param0->unk_28);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_28, 12, 67, 68, 8);
+    param0->unk_24 = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &param0->unk_28);
     ov25_SetPosition(param0->unk_24, (56 + (16 * param1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
 }
 
@@ -76,10 +76,10 @@ static void ov49_02256464(UnkStruct_ov49_022563D4 *param0)
     int v0;
 
     if (param0->unk_24) {
-        ov25_RemoveElem(param0->unk_20, param0->unk_24);
+        ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_24);
     }
 
-    ov25_FreeNARCMembers(&param0->unk_28);
+    ov25_540_FreeSpriteData(&param0->unk_28);
 }
 
 void ov49_02256480(UnkStruct_ov49_022563D4 *param0)

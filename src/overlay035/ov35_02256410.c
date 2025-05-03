@@ -23,11 +23,11 @@ struct UnkStruct_ov35_02256410_t {
     const UnkStruct_ov35_02256410_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    Ov25_540_GraphicManager *unk_20;
-    ov25_540_GraphicObject *unk_24;
-    ov25_540_GraphicObject *unk_28[4];
-    UnkStruct_ov25_02255958 unk_38;
-    UnkStruct_ov25_02255958 unk_4C;
+    Ov25_540_AnimationManager *unk_20;
+    Ov25_540_AnimatedSpriteData *unk_24;
+    Ov25_540_AnimatedSpriteData *unk_28[4];
+    ov25_spriteDataStruct unk_38;
+    ov25_spriteDataStruct unk_4C;
 };
 
 static void ov35_02256460(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_02256410_1 *param1);
@@ -90,15 +90,15 @@ static void ov35_02256460(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_
     Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Graphics_LoadObjectTiles(12, 47, 1, 80 * 0x20, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_LoadNARCMembers(&param0->unk_38, 12, 45, 46, 8);
-    ov25_LoadNARCMembers(&param0->unk_4C, 12, 3, 4, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_38, 12, 45, 46, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_4C, 12, 3, 4, 8);
 
-    param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v0, &param0->unk_38);
+    param0->unk_24 = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &param0->unk_38);
 
     ov25_Set_charNo(param0->unk_24, 80);
 
     for (v2 = 0; v2 < 4; v2++) {
-        param0->unk_28[v2] = ov25_SetupNewElem(param0->unk_20, &v1, &param0->unk_4C);
+        param0->unk_28[v2] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v1, &param0->unk_4C);
         ov25_SetPosition(param0->unk_28[v2], 360448 + 65536 * v2, 262144);
     }
 
@@ -109,14 +109,14 @@ static void ov35_02256514(UnkStruct_ov35_02256410 *param0)
 {
     int v0;
 
-    ov25_RemoveElem(param0->unk_20, param0->unk_24);
+    ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_24);
 
     for (v0 = 0; v0 < 4; v0++) {
-        ov25_RemoveElem(param0->unk_20, param0->unk_28[v0]);
+        ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_28[v0]);
     }
 
-    ov25_FreeNARCMembers(&(param0->unk_38));
-    ov25_FreeNARCMembers(&(param0->unk_4C));
+    ov25_540_FreeSpriteData(&(param0->unk_38));
+    ov25_540_FreeSpriteData(&(param0->unk_4C));
 }
 
 static const PoketchTask Unk_ov35_0225676C[] = {

@@ -22,10 +22,10 @@ struct UnkStruct_ov34_02256540_t {
     const UnkStruct_ov34_02256540_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[10];
-    Ov25_540_GraphicManager *unk_30;
-    ov25_540_GraphicObject *unk_34;
-    ov25_540_GraphicObject *unk_38[8];
-    UnkStruct_ov25_02255958 unk_58;
+    Ov25_540_AnimationManager *unk_30;
+    Ov25_540_AnimatedSpriteData *unk_34;
+    Ov25_540_AnimatedSpriteData *unk_38[8];
+    ov25_spriteDataStruct unk_58;
     BOOL unk_6C;
     u16 unk_70[16];
 };
@@ -88,15 +88,15 @@ static BOOL ov34_02256588(UnkStruct_ov34_02256540 *param0)
         0,
     };
 
-    if (ov25_LoadNARCMembers(&param0->unk_58, 12, 40, 41, 8)) {
+    if (ov25_540_LoadSpriteFromNARC(&param0->unk_58, 12, 40, 41, 8)) {
         int v2;
 
         Graphics_LoadObjectTiles(12, 42, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
-        param0->unk_34 = ov25_SetupNewElem(param0->unk_30, &v0, &param0->unk_58);
+        param0->unk_34 = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v0, &param0->unk_58);
         ov25_540_Hide(param0->unk_34, 1);
 
         for (v2 = 0; v2 < 8; v2++) {
-            param0->unk_38[v2] = ov25_SetupNewElem(param0->unk_30, &v1, &param0->unk_58);
+            param0->unk_38[v2] = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v1, &param0->unk_58);
             ov25_540_Hide(param0->unk_38[v2], 1);
         }
 
@@ -113,15 +113,15 @@ void ov34_02256604(UnkStruct_ov34_02256540 *param0)
 
         for (v0 = 0; v0 < 8; v0++) {
             if (param0->unk_38[v0]) {
-                ov25_RemoveElem(param0->unk_30, param0->unk_38[v0]);
+                ov25_540_RemoveAnimatedSprite(param0->unk_30, param0->unk_38[v0]);
             }
         }
 
         if (param0->unk_34) {
-            ov25_RemoveElem(param0->unk_30, param0->unk_34);
+            ov25_540_RemoveAnimatedSprite(param0->unk_30, param0->unk_34);
         }
 
-        ov25_FreeNARCMembers(&(param0->unk_58));
+        ov25_540_FreeSpriteData(&(param0->unk_58));
         Heap_FreeToHeap(param0);
     }
 }

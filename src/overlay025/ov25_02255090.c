@@ -14,7 +14,7 @@
 #include "sys_task_manager.h"
 
 #define POKETCH_TASK_LIST_VALIDATOR 0x12345678 // If activeList[VALIDATOR_IDX] is not this value, tasks will not be added or removed.
-#define POKETCH_TASK_LIST_EMPTY     0xFFFFFFFF
+#define POKETCH_EMPTY_TASK          0xFFFFFFFF
 
 #define NUM_SLOTS_IDX 0
 #define VALIDATOR_IDX 1
@@ -31,7 +31,7 @@ void PoketchTask_InitActiveTaskList(u32 *activeList, u32 numTaskSlots)
     activeList[VALIDATOR_IDX] = POKETCH_TASK_LIST_VALIDATOR;
 
     for (u32 slot = 0; slot < numTaskSlots; slot++) {
-        activeList[BASE_IDX + slot] = POKETCH_TASK_LIST_EMPTY;
+        activeList[BASE_IDX + slot] = POKETCH_EMPTY_TASK;
     }
 }
 
@@ -40,7 +40,7 @@ static BOOL AddTaskToActiveList(u32 *activeList, u32 taskId)
     GF_ASSERT(activeList[VALIDATOR_IDX] == POKETCH_TASK_LIST_VALIDATOR);
 
     for (u32 slot = 0; slot < activeList[NUM_SLOTS_IDX]; slot++) {
-        if (activeList[BASE_IDX + slot] == POKETCH_TASK_LIST_EMPTY) {
+        if (activeList[BASE_IDX + slot] == POKETCH_EMPTY_TASK) {
             activeList[BASE_IDX + slot] = taskId;
             return TRUE;
         }
@@ -55,7 +55,7 @@ static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId)
 
     for (u32 slot = 0; slot < activeList[NUM_SLOTS_IDX]; slot++) {
         if (activeList[BASE_IDX + slot] == taskId) {
-            activeList[BASE_IDX + slot] = POKETCH_TASK_LIST_EMPTY;
+            activeList[BASE_IDX + slot] = POKETCH_EMPTY_TASK;
             return;
         }
     }
@@ -77,7 +77,7 @@ BOOL PoketchTask_TaskIsNotActive(u32 *activeList, u32 taskId)
 BOOL PoketchTask_NoActiveTasks(u32 *activeList)
 {
     for (u32 slot = 0; slot < activeList[NUM_SLOTS_IDX]; slot++) {
-        if (activeList[BASE_IDX + slot] != POKETCH_TASK_LIST_EMPTY) {
+        if (activeList[BASE_IDX + slot] != POKETCH_EMPTY_TASK) {
             return FALSE;
         }
     }
@@ -87,7 +87,7 @@ BOOL PoketchTask_NoActiveTasks(u32 *activeList)
 
 void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, const void *constTaskData, u32 *activeTasks, u32 taskPriority, u32 heapID)
 {
-    for (u32 slot = 0; appTasks[slot].taskId != POKETCH_TASK_LIST_EMPTY; slot++) {
+    for (u32 slot = 0; appTasks[slot].taskId != POKETCH_EMPTY_TASK; slot++) {
         if (appTasks[slot].taskId == taskId) {
             u32 size = sizeof(PoketchTaskManager) + appTasks[slot].extraDataSize;
             PoketchTaskManager *poketchTaskMan = Heap_AllocFromHeap(heapID, size);
@@ -173,7 +173,7 @@ void ov25_02255258(u16 *tileBuffer, u32 param1, u32 param2, u32 param3, u32 para
     tileBuffer[param3 + 1] = param6 | (param4 + param5 + 1);
 }
 
-void ov25_MapToActivePaletteFromLuminance(u16 *rawData, u32 size)
+void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 size)
 {
     u16 *activePalette = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, PALETTE_SIZE_BYTES);
 
@@ -203,7 +203,7 @@ void ov25_MapToActivePaletteFromLuminance(u16 *rawData, u32 size)
     }
 }
 
-void ov25_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset)
+void PoketchTask_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset)
 {
     u16 *activePalette = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, PALETTE_SIZE_BYTES);
 
@@ -228,7 +228,7 @@ void ov25_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset)
     }
 }
 
-void ov25_090_LoadPokemonIconLuminancePalette(u32 offset)
+void PoketchTask_LoadPokemonIconLuminancePalette(u32 offset)
 {
     void *nclrBuffer;
     NNSG2dPaletteData *palette;
@@ -236,14 +236,14 @@ void ov25_090_LoadPokemonIconLuminancePalette(u32 offset)
     nclrBuffer = Graphics_GetPlttData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), &palette, HEAP_ID_POKETCH_APP);
 
     if (nclrBuffer) {
-        ov25_MapToActivePaletteFromLuminance(palette->pRawData, 4 * 0x10);
+        PoketchTask_MapToActivePaletteFromLuminance(palette->pRawData, 4 * 0x10);
         DC_FlushRange(palette->pRawData, 4 * PALETTE_SIZE_BYTES);
         GXS_LoadOBJPltt(palette->pRawData, PLTT_OFFSET(offset), 4 * PALETTE_SIZE_BYTES);
         Heap_FreeToHeap(nclrBuffer);
     }
 }
 
-void ov25_090_LoadPokemonIcons(u32 offset, const u32 *iconIdxList, u32 numIcons, BOOL isLarge)
+void PoketchTask_LoadPokemonIcons(u32 offset, const u32 *iconIdxList, u32 numIcons, BOOL isLarge)
 {
     static const u16 iconSize[2] = { 512, 1024 };
     static const u16 readSize[2] = { 640, 1152 };

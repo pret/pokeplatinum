@@ -26,10 +26,10 @@ struct UnkStruct_ov40_0225645C_t {
     const UnkStruct_ov40_0225645C_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    Ov25_540_GraphicManager *unk_20;
-    ov25_540_GraphicObject *unk_24[11];
-    UnkStruct_ov25_02255958 unk_50;
-    UnkStruct_ov25_02255958 unk_64;
+    Ov25_540_AnimationManager *unk_20;
+    Ov25_540_AnimatedSpriteData *unk_24[11];
+    ov25_spriteDataStruct unk_50;
+    ov25_spriteDataStruct unk_64;
     u32 unk_78;
     u32 unk_7C;
     u32 unk_80;
@@ -48,8 +48,8 @@ static void ov40_022567D8(UnkStruct_ov40_0225645C *param0);
 static void ov40_022567E0(SysTask *param0, void *param1);
 static void ov40_02256808(u32 param0, const UnkStruct_ov40_0225645C_1 *param1);
 static void ov40_02256848(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_0225645C_1 *param1);
-static void ov40_02256958(ov25_540_GraphicObject **param0, u32 param1);
-static void ov40_02256A14(ov25_540_GraphicObject *param0, u32 param1);
+static void ov40_02256958(Ov25_540_AnimatedSpriteData **param0, u32 param1);
+static void ov40_02256A14(Ov25_540_AnimatedSpriteData *param0, u32 param1);
 
 BOOL ov40_0225645C(UnkStruct_ov40_0225645C **param0, const UnkStruct_ov40_0225645C_1 *param1, BgConfig *param2)
 {
@@ -180,22 +180,22 @@ static void ov40_022564D4(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
     u32 v2[3];
     u32 v3;
 
-    ov25_090_LoadPokemonIconLuminancePalette(1);
+    PoketchTask_LoadPokemonIconLuminancePalette(1);
 
     v3 = Graphics_LoadObjectTiles(12, 84, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     v3 /= 20;
     param0->unk_78 = v3;
 
     ov40_02256808(v3, param1);
-    ov25_LoadNARCMembers(&param0->unk_50, 12, 82, 83, 8);
-    ov25_LoadNARCMembers(&param0->unk_64, 12, 5, 6, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_50, 12, 82, 83, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_64, 12, 5, 6, 8);
 
     for (v1 = 0; v1 < 11; v1++) {
         if ((v1 >= 0) && (v1 <= 2)) {
-            param0->unk_24[v1] = ov25_SetupNewElem(param0->unk_20, &v0[v1], &param0->unk_64);
+            param0->unk_24[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0[v1], &param0->unk_64);
             ov25_Set_charNo(param0->unk_24[v1], v3 + v1 * 0x20);
         } else {
-            param0->unk_24[v1] = ov25_SetupNewElem(param0->unk_20, &v0[v1], &param0->unk_50);
+            param0->unk_24[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0[v1], &param0->unk_50);
         }
 
         ov25_Set_mosaic(param0->unk_24[v1], 1);
@@ -210,12 +210,12 @@ static void ov40_02256598(UnkStruct_ov40_0225645C *param0)
 
     for (v0 = 0; v0 < 11; v0++) {
         if (param0->unk_24[v0]) {
-            ov25_RemoveElem(param0->unk_20, param0->unk_24[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_24[v0]);
         }
     }
 
-    ov25_FreeNARCMembers(&param0->unk_64);
-    ov25_FreeNARCMembers(&param0->unk_50);
+    ov25_540_FreeSpriteData(&param0->unk_64);
+    ov25_540_FreeSpriteData(&param0->unk_50);
 }
 
 static const PoketchTask Unk_ov40_02256A60[] = {
@@ -373,7 +373,7 @@ static void ov40_02256808(u32 param0, const UnkStruct_ov40_0225645C_1 *param1)
     v1[1] = (param1->unk_00 > 1) ? param1->unk_04[1] : v0;
     v1[2] = v0;
 
-    ov25_090_LoadPokemonIcons(param0, v1, NELEMS(v1), 1);
+    PoketchTask_LoadPokemonIcons(param0, v1, NELEMS(v1), 1);
 }
 
 static void ov40_02256848(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_0225645C_1 *param1)
@@ -419,7 +419,7 @@ static void ov40_02256848(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
     ov25_540_Hide(param0->unk_24[2], (param1->unk_01 == 0));
 }
 
-static void ov40_02256958(ov25_540_GraphicObject **param0, u32 param1)
+static void ov40_02256958(Ov25_540_AnimatedSpriteData **param0, u32 param1)
 {
     u32 v0[3];
     int v1;
@@ -443,7 +443,7 @@ static void ov40_02256958(ov25_540_GraphicObject **param0, u32 param1)
     ov25_540_Hide(param0[1], (param1 < 10));
 }
 
-static void ov40_02256A14(ov25_540_GraphicObject *param0, u32 param1)
+static void ov40_02256A14(Ov25_540_AnimatedSpriteData *param0, u32 param1)
 {
     switch (param1) {
     case 0:

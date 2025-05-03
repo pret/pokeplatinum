@@ -25,9 +25,9 @@ struct UnkStruct_ov41_022567B0_t {
     const UnkStruct_ov41_022567B0_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    Ov25_540_GraphicManager *unk_20;
-    ov25_540_GraphicObject *unk_24[4];
-    UnkStruct_ov25_02255958 unk_34;
+    Ov25_540_AnimationManager *unk_20;
+    Ov25_540_AnimatedSpriteData *unk_24[4];
+    ov25_spriteDataStruct unk_34;
     Window unk_48;
     u32 unk_58;
     BOOL unk_5C;
@@ -122,10 +122,10 @@ static void ov41_0225680C(UnkStruct_ov41_022567B0 *param0, const UnkStruct_ov41_
     int v1;
 
     Graphics_LoadObjectTiles(12, 89, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    ov25_LoadNARCMembers(&param0->unk_34, 12, 87, 88, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_34, 12, 87, 88, 8);
 
     for (v1 = 0; v1 < 4; v1++) {
-        param0->unk_24[v1] = ov25_SetupNewElem(param0->unk_20, &v0[v1], &param0->unk_34);
+        param0->unk_24[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0[v1], &param0->unk_34);
     }
 }
 
@@ -135,11 +135,11 @@ static void ov41_02256864(UnkStruct_ov41_022567B0 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_24[v0]) {
-            ov25_RemoveElem(param0->unk_20, param0->unk_24[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_24[v0]);
         }
     }
 
-    ov25_FreeNARCMembers(&param0->unk_34);
+    ov25_540_FreeSpriteData(&param0->unk_34);
 }
 
 static const PoketchTask Unk_ov41_02256E00[] = {

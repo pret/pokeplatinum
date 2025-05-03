@@ -27,10 +27,10 @@ struct UnkStruct_ov43_02256544_t {
     const UnkStruct_ov43_02256544_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[10];
-    Ov25_540_GraphicManager *unk_30;
-    ov25_540_GraphicObject *unk_34[6];
-    ov25_540_GraphicObject *unk_4C[5];
-    UnkStruct_ov25_02255958 unk_60;
+    Ov25_540_AnimationManager *unk_30;
+    Ov25_540_AnimatedSpriteData *unk_34[6];
+    Ov25_540_AnimatedSpriteData *unk_4C[5];
+    ov25_spriteDataStruct unk_60;
     Window unk_74;
     Window unk_84;
     Window unk_94;
@@ -139,14 +139,14 @@ static void ov43_022565B4(UnkStruct_ov43_02256544 *param0)
     int v2;
 
     Graphics_LoadObjectTiles(12, 64, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    ov25_LoadNARCMembers(&param0->unk_60, 12, 62, 63, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_60, 12, 62, 63, 8);
 
     for (v2 = 0; v2 < 6; v2++) {
-        param0->unk_34[v2] = ov25_SetupNewElem(param0->unk_30, &v0[v2], &param0->unk_60);
+        param0->unk_34[v2] = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v0[v2], &param0->unk_60);
     }
 
     for (v2 = 0; v2 < 5; v2++) {
-        param0->unk_4C[v2] = ov25_SetupNewElem(param0->unk_30, &v1, &param0->unk_60);
+        param0->unk_4C[v2] = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v1, &param0->unk_60);
         ov25_SetPosition(param0->unk_4C[v2], ((44 + 8 * v2) << FX32_SHIFT), 48 << FX32_SHIFT);
     }
 }
@@ -157,17 +157,17 @@ static void ov43_02256640(UnkStruct_ov43_02256544 *param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_34[v0]) {
-            ov25_RemoveElem(param0->unk_30, param0->unk_34[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_30, param0->unk_34[v0]);
         }
     }
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param0->unk_4C[v0]) {
-            ov25_RemoveElem(param0->unk_30, param0->unk_4C[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_30, param0->unk_4C[v0]);
         }
     }
 
-    ov25_FreeNARCMembers(&param0->unk_60);
+    ov25_540_FreeSpriteData(&param0->unk_60);
 }
 
 void ov43_02256680(UnkStruct_ov43_02256544 *param0)

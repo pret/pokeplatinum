@@ -24,10 +24,10 @@ struct UnkStruct_ov45_022566EC_t {
     const UnkStruct_ov45_022566EC_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[10];
-    Ov25_540_GraphicManager *unk_30;
-    ov25_540_GraphicObject *unk_34[13];
-    UnkStruct_ov25_02255958 unk_68;
-    UnkStruct_ov25_02255958 unk_7C;
+    Ov25_540_AnimationManager *unk_30;
+    Ov25_540_AnimatedSpriteData *unk_34[13];
+    ov25_spriteDataStruct unk_68;
+    ov25_spriteDataStruct unk_7C;
     BOOL unk_90;
     u32 unk_94;
     u32 unk_98;
@@ -182,14 +182,14 @@ static void ov45_0225673C(UnkStruct_ov45_022566EC *param0, const UnkStruct_ov45_
     Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Graphics_LoadObjectTiles(12, 79, 1, 80 * 0x20, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_LoadNARCMembers(&param0->unk_68, 12, 77, 78, 8);
-    ov25_LoadNARCMembers(&param0->unk_7C, 12, 3, 4, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_68, 12, 77, 78, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_7C, 12, 3, 4, 8);
 
     for (v1 = 0; v1 < 13; v1++) {
         if ((v1 >= 9) && (v1 <= 12)) {
-            param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_7C);
+            param0->unk_34[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v0[v1], &param0->unk_7C);
         } else {
-            param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_68);
+            param0->unk_34[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v0[v1], &param0->unk_68);
             ov25_Set_charNo(param0->unk_34[v1], 80);
         }
     }
@@ -217,12 +217,12 @@ static void ov45_02256864(UnkStruct_ov45_022566EC *param0)
 
     for (v0 = 0; v0 < 13; v0++) {
         if (param0->unk_34[v0]) {
-            ov25_RemoveElem(param0->unk_30, param0->unk_34[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_30, param0->unk_34[v0]);
         }
     }
 
-    ov25_FreeNARCMembers(&param0->unk_68);
-    ov25_FreeNARCMembers(&param0->unk_7C);
+    ov25_540_FreeSpriteData(&param0->unk_68);
+    ov25_540_FreeSpriteData(&param0->unk_7C);
 }
 
 static void ov45_02256894(UnkStruct_ov45_022566EC *param0, u32 param1, u32 param2)

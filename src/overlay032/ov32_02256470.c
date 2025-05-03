@@ -62,8 +62,8 @@ BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPart
             graphicsData->unk_B4[i] = NULL;
         }
 
-        ov25_LoadNARCMembers(&graphicsData->unk_CC, 12, 5, 6, HEAP_ID_POKETCH_APP);
-        ov25_LoadNARCMembers(&graphicsData->unk_E0, 12, 107, 108, HEAP_ID_POKETCH_APP);
+        ov25_540_LoadSpriteFromNARC(&graphicsData->unk_CC, 12, 5, 6, HEAP_ID_POKETCH_APP);
+        ov25_540_LoadSpriteFromNARC(&graphicsData->unk_E0, 12, 107, 108, HEAP_ID_POKETCH_APP);
         *dest = graphicsData;
         return TRUE;
     }
@@ -75,8 +75,8 @@ void PartyStatusGraphics_UnloadAndFree(PoketchPartyStatusGraphics *graphicsData)
 {
     if (graphicsData != NULL) {
         ov32_02256BD4(graphicsData);
-        ov25_FreeNARCMembers(&graphicsData->unk_CC);
-        ov25_FreeNARCMembers(&graphicsData->unk_E0);
+        ov25_540_FreeSpriteData(&graphicsData->unk_CC);
+        ov25_540_FreeSpriteData(&graphicsData->unk_E0);
 
         if (graphicsData->bounceAnimTask) {
             SysTask_Done(graphicsData->bounceAnimTask);
@@ -148,8 +148,8 @@ static void DrawAppScreen(SysTask *param0, void *param1)
     CreateHpBars(v2, v2->playerParty, v3);
     Bg_CopyTilemapBufferToVRAM(v2->bgConfig, 6);
 
-    ov25_FillPaletteFromActivePaletteSlot(15, 1);
-    ov25_090_LoadPokemonIconLuminancePalette(2);
+    PoketchTask_FillPaletteFromActivePaletteSlot(15, 1);
+    PoketchTask_LoadPokemonIconLuminancePalette(2);
     ov32_02256898(v2, v2->playerParty);
     ov32_0225692C(v2, v2->playerParty);
     StartMonIconBounceTask(v2);
@@ -252,7 +252,7 @@ static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyS
             v1.translation.x = ((sMonIconCoords[v0].x + 28) << FX32_SHIFT);
             v1.translation.y = ((sMonIconCoords[v0].y + 21) << FX32_SHIFT);
 
-            param0->unk_B4[v0] = ov25_SetupNewElem(param0->unk_08, &v1, &param0->unk_E0);
+            param0->unk_B4[v0] = ov25_540_SetupNewAnimatedSprite(param0->unk_08, &v1, &param0->unk_E0);
         }
     }
 }
@@ -282,7 +282,7 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
             v1.translation.x = ((sMonIconCoords[v3].x) << FX32_SHIFT);
             v1.translation.y = ((sMonIconCoords[v3].y) << FX32_SHIFT);
 
-            param0->unk_9C[v3] = ov25_SetupNewElem(param0->unk_08, &v1, &param0->unk_CC);
+            param0->unk_9C[v3] = ov25_540_SetupNewAnimatedSprite(param0->unk_08, &v1, &param0->unk_CC);
 
             ov25_Set_charNo(param0->unk_9C[v3], (0 + 8) + 16 * v3);
             ov25_InitAnimation(param0->unk_9C[v3], 4);
@@ -396,12 +396,12 @@ static void ov32_02256BD4(PoketchPartyStatusGraphics *param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_9C[v0] != NULL) {
-            ov25_RemoveElem(param0->unk_08, param0->unk_9C[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_08, param0->unk_9C[v0]);
             param0->unk_9C[v0] = NULL;
         }
 
         if (param0->unk_B4[v0] != NULL) {
-            ov25_RemoveElem(param0->unk_08, param0->unk_B4[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_08, param0->unk_B4[v0]);
             param0->unk_B4[v0] = NULL;
         }
     }

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV25_02254560_1_H
 
 typedef struct {
-    u32 unk_00;
-} Ov25_560_TaskData_1;
+    u32 value;
+} Ov25_560_ConstTaskData;
 
 #endif // POKEPLATINUM_STRUCT_OV25_02254560_1_H

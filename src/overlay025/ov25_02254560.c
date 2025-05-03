@@ -33,25 +33,33 @@
 
 #define OV25_NUM_TASK_SLOTS 8
 
+#define POKETCH_EMPTY_TASK 0xFFFFFFFF
+
+#define UP_BTN   0
+#define DOWN_BTN 1
+
+#define BTN_TILEMAP_WIDTH  4
+#define BTN_TILEMAP_HEIGHT 8
+
 typedef struct {
     BOOL elemLoaded;
-    Ov25_540_GraphicManager *unk_04;
-    UnkStruct_ov25_02255958 unk_08;
-    ov25_540_GraphicObject *unk_1C[2]; // anlimation elements
+    Ov25_540_AnimationManager *unk_04;
+    ov25_spriteDataStruct spriteData;
+    Ov25_540_AnimatedSpriteData *unk_1C[2]; // anlimation elements
 } UnkStruct_ov25_02254DD8;
 
 struct Ov25_560_TaskData_t {
-    const Ov25_560_TaskData_1 *taskData;
+    const Ov25_560_ConstTaskData *constTaskData;
     u32 taskList[2 + OV25_NUM_TASK_SLOTS];
-    u16 unk_2C[32];
-    u16 unk_6C[32];
-    u16 unk_AC[32];
-    u16 unk_EC[32];
-    u16 unk_12C[32];
-    u16 unk_16C[32];
+    u16 tilemapUpBtnPressed[32];
+    u16 tilemapUpBtnHalfPressed[32];
+    u16 tilemapUpBtn[32];
+    u16 tilemapDownBtnPressed[32];
+    u16 tilemapDownBtnHalfPressed[32];
+    u16 tilemapDownBtn[32];
     NNSG2dOamManagerInstance unused;
     NNSG2dOamManagerInstance *oamMngr;
-    Ov25_540_GraphicManager *unk_1CC;
+    Ov25_540_AnimationManager *unk_1CC;
     SysTask *task;
     UnkStruct_ov25_02254DD8 unk_1D4;
     BgConfig *bgConfig;
@@ -61,41 +69,41 @@ struct Ov25_560_TaskData_t {
 };
 
 typedef struct {
-    u16 unk_00;
-    u16 unk_02;
+    u16 iterationTracker;
+    u16 heightCounter;
 } Ov25_560_ExtraTaskData;
 
 static void ov25_TaskCallback(SysTask *param0, void *param1);
 static void Poketch_InitPaletteData(Ov25_560_TaskData *param0);
-static void ov25_02254798(u16 *param0, u32 param1, int param2, int param3);
+static void ov25_560_GeneratePoketchButtonSprite(u16 *param0, u32 param1, int param2, int param3);
 static void ov25_560_EndTask(PoketchTaskManager *param0);
 static void ov25_560_SetupBackgroundTask(SysTask *param0, void *param1);
-static void ov25_02254944(SysTask *param0, void *param1);
-static void ov25_02254A5C(SysTask *param0, void *param1);
-static void ov25_02254B8C(SysTask *param0, void *param1);
-static void ov25_02254BF0(SysTask *param0, void *param1);
-static void ov25_560_LoadTilemap(void *param0, u16 *param1, int param2);
-static void ov25_02254CA8(SysTask *param0, void *param1);
-static void ov25_02254CCC(SysTask *param0, void *param1);
-static void ov25_02254CF4(SysTask *param0, void *param1);
-static void ov25_02254D0C(SysTask *param0, void *param1);
-static void ov25_02254D24(SysTask *param0, void *param1);
-static void ov25_02254D48(SysTask *param0, void *param1);
+static void ov25_560_screenRevealAnimationTask(SysTask *param0, void *param1);
+static void ov25_560_screenConcealAnimationTask(SysTask *param0, void *param1);
+static void ov25_560_UnusedTask_1(SysTask *param0, void *param1);
+static void ov25_560_UnusedTask_2(SysTask *param0, void *param1);
+static void ov25_560_LoadBtnTilemap(void *param0, u16 *param1, int param2);
+static void ov25_560_UpBtnHalfPressed_Task(SysTask *param0, void *param1);
+static void ov25_560_DownBtnHalfPressed_Task(SysTask *param0, void *param1);
+static void ov25_560_UpBtnPressed_Task(SysTask *param0, void *param1);
+static void ov25_560_DownBtnPressed_Task(SysTask *param0, void *param1);
+static void ov25_560_UpBtnReleased_Task(SysTask *param0, void *param1);
+static void ov25_560_DownBtnReleased_Task(SysTask *param0, void *param1);
 static void ov25_560_LoadAndInitAnimationTask(SysTask *param0, void *param1);
 static void ov25_560_InitAnimationTask(SysTask *param0, void *param1);
 static void ov25_560_UnloadAnimElementsTask(SysTask *param0, void *param1);
-static void ov25_02254DD8(UnkStruct_ov25_02254DD8 *param0, Ov25_540_GraphicManager *param1);
+static void ov25_02254DD8(UnkStruct_ov25_02254DD8 *param0, Ov25_540_AnimationManager *param1);
 static void ov25_560_LoadAnimElements(Ov25_560_TaskData *param0, UnkStruct_ov25_02254DD8 *param1);
 static void ov25_560_LoadTaskPalette(Ov25_560_TaskData *param0, u32 param1);
-static void ov25_560_InitAnimations(UnkStruct_ov25_02254DD8 *param0, const Ov25_560_TaskData_1 *param1);
+static void ov25_560_InitAnimations(UnkStruct_ov25_02254DD8 *param0, const Ov25_560_ConstTaskData *constTaskData);
 static void ov25_560_UnloadAnimElements(UnkStruct_ov25_02254DD8 *param0);
-static void ov25_02254F68(SysTask *param0, void *param1);
-static void ov25_560_LoadTilemapBufferTask(SysTask *param0, void *param1);
+static void ov25_560_UnusedTask_3(SysTask *param0, void *param1);
+static void ov25_560_UnusedTask_4(SysTask *param0, void *param1);
 static void ov25_560_FreeTilemapBufferTask(SysTask *param0, void *param1);
 struct PoketchSystem *FieldSystem_GetPoketchSystem(void);
 SysTask *SysTask_ExecuteAfterVBlank(SysTaskFunc param0, void *param1, u32 param2);
 
-BOOL ov25_02254560(Ov25_560_TaskData **taskDataPtr, const Ov25_560_TaskData_1 *param1, NNSG2dOamManagerInstance *oamMngr, PoketchSystem *poketchSys)
+BOOL ov25_02254560(Ov25_560_TaskData **taskDataPtr, const Ov25_560_ConstTaskData *constTaskData, NNSG2dOamManagerInstance *oamMngr, PoketchSystem *poketchSys)
 {
     *taskDataPtr = Heap_AllocFromHeap(HEAP_ID_POKETCH_MAIN, sizeof(Ov25_560_TaskData));
 
@@ -112,7 +120,7 @@ BOOL ov25_02254560(Ov25_560_TaskData **taskDataPtr, const Ov25_560_TaskData_1 *p
             return FALSE;
         }
 
-        newTaskData->taskData = param1;
+        newTaskData->constTaskData = constTaskData;
         newTaskData->bgConfig = BgConfig_New(HEAP_ID_POKETCH_MAIN);
         newTaskData->poketchSys = poketchSys;
 
@@ -120,13 +128,13 @@ BOOL ov25_02254560(Ov25_560_TaskData **taskDataPtr, const Ov25_560_TaskData_1 *p
         ov25_02254DD8(&newTaskData->unk_1D4, newTaskData->unk_1CC);
         PoketchTask_InitActiveTaskList((*taskDataPtr)->taskList, OV25_NUM_TASK_SLOTS);
 
-        ov25_02254798((*taskDataPtr)->unk_2C, 64 + 8, 4, 6);
-        ov25_02254798((*taskDataPtr)->unk_6C, 64 + 12, 4, 6);
-        ov25_02254798((*taskDataPtr)->unk_AC, 64 + 16, 4, 6);
+        ov25_560_GeneratePoketchButtonSprite((*taskDataPtr)->tilemapUpBtnPressed, 64 + 8, 4, 6);
+        ov25_560_GeneratePoketchButtonSprite((*taskDataPtr)->tilemapUpBtnHalfPressed, 64 + 12, 4, 6);
+        ov25_560_GeneratePoketchButtonSprite((*taskDataPtr)->tilemapUpBtn, 64 + 16, 4, 6);
 
-        ov25_02254798((*taskDataPtr)->unk_EC, 64 + 20, 2, 4);
-        ov25_02254798((*taskDataPtr)->unk_12C, 64 + 24, 2, 4);
-        ov25_02254798((*taskDataPtr)->unk_16C, 64 + 28, 2, 4);
+        ov25_560_GeneratePoketchButtonSprite((*taskDataPtr)->tilemapDownBtnPressed, 64 + 20, 2, 4);
+        ov25_560_GeneratePoketchButtonSprite((*taskDataPtr)->tilemapDownBtnHalfPressed, 64 + 24, 2, 4);
+        ov25_560_GeneratePoketchButtonSprite((*taskDataPtr)->tilemapDownBtn, 64 + 28, 2, 4);
 
         newTaskData->task = SysTask_ExecuteAfterVBlank(ov25_TaskCallback, newTaskData, 0);
 
@@ -142,7 +150,7 @@ static void ov25_TaskCallback(SysTask *task, void *data)
     ov25_MainFunc(taskData->unk_1CC);
 }
 
-Ov25_540_GraphicManager *ov25_02254664(void)
+Ov25_540_AnimationManager *ov25_02254664(void)
 {
     Ov25_560_TaskData *taskData = PoketchSystem_Get_ov25_560_struct();
     return taskData->unk_1CC;
@@ -177,7 +185,7 @@ void Poketch_LoadActivePalette(u32 bgOffset, u32 objOffset)
     GXS_LoadOBJPltt(&taskData->poketchPalettes[screenColour * SLOTS_PER_PALETTE_COLOUR_SET], objOffset, PALETTE_SIZE_BYTES);
 }
 
-void Poketch_LoadActiveBacklightPalette(u32 unused_1, u32 unused_2)
+void Poketch_LoadActiveBacklightPalette(u32, u32)
 {
     Ov25_560_TaskData *taskData = PoketchSystem_Get_ov25_560_struct();
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
@@ -217,18 +225,18 @@ void ov25_560_Close(Ov25_560_TaskData *taskData)
     }
 }
 
-static void ov25_02254798(u16 *param0, u32 param1, int param2, int param3)
+static void ov25_560_GeneratePoketchButtonSprite(u16 *dst, u32 param1, int param2, int param3)
 {
-    int x, y, v2;
+    int x, y, pixleIdx;
     int v3;
 
-    v2 = 0;
+    pixleIdx = 0;
     v3 = 0;
 
-    for (y = 0; y < 8; y++) {
-        for (x = 0; x < 4; x++) {
-            param0[v2] = (15 << 12) | (param1 + v3 + x);
-            v2++;
+    for (y = 0; y < BTN_TILEMAP_HEIGHT; y++) {
+        for (x = 0; x < BTN_TILEMAP_WIDTH; x++) {
+            dst[pixleIdx] = (15 << 12) | (param1 + v3 + x);
+            pixleIdx++;
         }
 
         if ((y >= param2) && (y < param3)) {
@@ -240,30 +248,30 @@ static void ov25_02254798(u16 *param0, u32 param1, int param2, int param3)
 }
 
 static const PoketchTask poketchTasks[] = {
-    { 0x0, ov25_560_SetupBackgroundTask, 0x0 },
-    { 0x1, ov25_02254944, sizeof(Ov25_560_ExtraTaskData) },
-    { 0x2, ov25_02254944, sizeof(Ov25_560_ExtraTaskData) },
-    { 0x3, ov25_02254B8C, sizeof(Ov25_560_ExtraTaskData) },
-    { 0x4, ov25_02254A5C, sizeof(Ov25_560_ExtraTaskData) },
-    { 0x5, ov25_02254BF0, sizeof(Ov25_560_ExtraTaskData) },
-    { 0x6, ov25_02254CA8, 0x0 },
-    { 0x8, ov25_02254CF4, 0x0 },
-    { 0x7, ov25_02254D24, 0x0 },
-    { 0x9, ov25_02254CCC, 0x0 },
-    { 0xB, ov25_02254D0C, 0x0 },
-    { 0xA, ov25_02254D48, 0x0 },
-    { 0xC, ov25_560_LoadAndInitAnimationTask, 0x0 },
-    { 0xD, ov25_560_InitAnimationTask, 0x0 },
-    { 0xE, ov25_560_UnloadAnimElementsTask, 0x0 },
-    { 0xF, ov25_02254F68, 0x0 },
-    { 0x10, ov25_560_LoadTilemapBufferTask, 0x0 },
-    { 0x11, ov25_560_FreeTilemapBufferTask, 0x0 },
-    { 0xffffffff, NULL, 0x0 }
+    { 0, ov25_560_SetupBackgroundTask, 0x0 }, // * Setup background (pre app-init)
+    { 1, ov25_560_screenRevealAnimationTask, sizeof(Ov25_560_ExtraTaskData) }, // * Post app start init
+    { 2, ov25_560_screenRevealAnimationTask, sizeof(Ov25_560_ExtraTaskData) }, // * post app change init
+    { 3, ov25_560_UnusedTask_1, sizeof(Ov25_560_ExtraTaskData) },
+    { 4, ov25_560_screenConcealAnimationTask, sizeof(Ov25_560_ExtraTaskData) }, // * app change started
+    { 5, ov25_560_UnusedTask_2, sizeof(Ov25_560_ExtraTaskData) },
+    { 6, ov25_560_UpBtnHalfPressed_Task, 0x0 }, // * UP - Released - During app change
+    { 8, ov25_560_UpBtnPressed_Task, 0x0 }, // * UP - Pressed
+    { 7, ov25_560_UpBtnReleased_Task, 0x0 }, // * UP - Released
+    { 9, ov25_560_DownBtnHalfPressed_Task, 0x0 }, // * DOWN - Released - During app change
+    { 11, ov25_560_DownBtnPressed_Task, 0x0 }, // * DOWN - Pressed
+    { 10, ov25_560_DownBtnReleased_Task, 0x0 }, // * DOWN - Released
+    { 12, ov25_560_LoadAndInitAnimationTask, 0x0 }, // * Skip timer started
+    { 13, ov25_560_InitAnimationTask, 0x0 }, // * Skip timer restarted
+    { 14, ov25_560_UnloadAnimElementsTask, 0x0 }, // * Skip timer ended
+    { 15, ov25_560_UnusedTask_3, 0x0 },
+    { 16, ov25_560_UnusedTask_4, 0x0 },
+    { 17, ov25_560_FreeTilemapBufferTask, 0x0 },
+    { POKETCH_EMPTY_TASK, NULL, 0x0 }
 };
 
 void ov25_560_StartTask(Ov25_560_TaskData *taskData, u32 taskId)
 {
-    PoketchTask_Start(poketchTasks, taskId, taskData, taskData->taskData, taskData->taskList, 2, HEAP_ID_POKETCH_MAIN);
+    PoketchTask_Start(poketchTasks, taskId, taskData, taskData->constTaskData, taskData->taskList, 2, HEAP_ID_POKETCH_MAIN);
 }
 
 BOOL ov25_560_TaskIsNotActive(Ov25_560_TaskData *taskData, u32 taskId)
@@ -339,46 +347,42 @@ static void ov25_560_SetupBackgroundTask(SysTask *task, void *taskMan)
     ov25_560_EndTask(taskMan);
 }
 
-static void ov25_02254944(SysTask *task, void *taskMan)
+static void ov25_560_screenRevealAnimationTask(SysTask *task, void *taskMan)
 {
-    Ov25_560_ExtraTaskData *extraTaskData;
-    Ov25_560_TaskData *taskData;
-    u32 state;
-
-    extraTaskData = PoketchTask_GetExtraData(taskMan);
-    taskData = PoketchTask_GetTaskData(taskMan);
-    state = PoketchTask_GetState(taskMan);
+    Ov25_560_ExtraTaskData *extraTaskData = PoketchTask_GetExtraData(taskMan);
+    Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
+    u32 state = PoketchTask_GetState(taskMan);
 
     switch (state) {
     case 0:
-        extraTaskData->unk_00 = 0;
-        extraTaskData->unk_02 = 0;
+        extraTaskData->iterationTracker = 0;
+        extraTaskData->heightCounter = 0;
         PoketchTask_IncrementState(taskMan);
     case 1:
-        if (++(extraTaskData->unk_00) > 0) {
-            u32 v3, v4, v5;
+        if (++(extraTaskData->iterationTracker) > 0) {
+            u32 height, heightRemainder, y;
 
-            extraTaskData->unk_00 = 0;
-            extraTaskData->unk_02 += 12;
+            extraTaskData->iterationTracker = 0;
+            extraTaskData->heightCounter += 12;
 
-            if (extraTaskData->unk_02 > 40) {
-                extraTaskData->unk_02 = 40;
+            if (extraTaskData->heightCounter > 40) {
+                extraTaskData->heightCounter = 40;
             }
 
-            v3 = extraTaskData->unk_02 / 4;
-            v4 = extraTaskData->unk_02 % 4;
-            v5 = 2 + (20 / 2) - v3;
+            height = extraTaskData->heightCounter / 4;
+            heightRemainder = extraTaskData->heightCounter % 4;
+            y = 12 - height;
 
-            Bg_FillTilemapRect(taskData->bgConfig, 5, 64, 2, v5, 24, v3 * 2, 15);
+            Bg_FillTilemapRect(taskData->bgConfig, 5, 64, 2, y, 24, height * 2, 15);
 
-            if (v4) {
-                Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 164 + v4, 2, v5 - 1, 24, 1, 15);
-                Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 164 - v4, 2, v5 + v3 * 2, 24, 1, 15);
+            if (heightRemainder) {
+                Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 164 + heightRemainder, 2, y - 1, 24, 1, 15);
+                Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 164 - heightRemainder, 2, y + height * 2, 24, 1, 15);
             }
 
             Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, 5);
 
-            if (extraTaskData->unk_02 == 40) {
+            if (extraTaskData->heightCounter == 40) {
                 PoketchTask_IncrementState(taskMan);
             }
         }
@@ -388,49 +392,45 @@ static void ov25_02254944(SysTask *task, void *taskMan)
     }
 }
 
-static void ov25_02254A5C(SysTask *task, void *taskMan)
+static void ov25_560_screenConcealAnimationTask(SysTask *task, void *taskMan)
 {
-    Ov25_560_ExtraTaskData *extraTaskData;
-    Ov25_560_TaskData *taskData;
-    u32 state;
-
-    extraTaskData = PoketchTask_GetExtraData(taskMan);
-    taskData = PoketchTask_GetTaskData(taskMan);
-    state = PoketchTask_GetState(taskMan);
+    Ov25_560_ExtraTaskData *extraTaskData = PoketchTask_GetExtraData(taskMan);
+    Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
+    u32 state = PoketchTask_GetState(taskMan);
 
     switch (state) {
     case 0:
-        extraTaskData->unk_00 = 0;
-        extraTaskData->unk_02 = 0;
+        extraTaskData->iterationTracker = 0;
+        extraTaskData->heightCounter = 0;
         PoketchTask_IncrementState(taskMan);
     case 1:
-        if (++(extraTaskData->unk_00) > 0) {
-            u32 v3, v4, v5;
+        if (++(extraTaskData->iterationTracker) > 0) {
+            u32 height, heightRemainder, y;
 
-            extraTaskData->unk_00 = 0;
-            extraTaskData->unk_02 += 8;
+            extraTaskData->iterationTracker = 0;
+            extraTaskData->heightCounter += 8;
 
-            if (extraTaskData->unk_02 > 40) {
-                extraTaskData->unk_02 = 40;
+            if (extraTaskData->heightCounter > 40) {
+                extraTaskData->heightCounter = 40;
             }
 
-            v3 = extraTaskData->unk_02 / 4;
-            v4 = extraTaskData->unk_02 % 4;
-            v5 = 2 + 20 - v3;
+            height = extraTaskData->heightCounter / 4;
+            heightRemainder = extraTaskData->heightCounter % 4;
+            y = 22 - height;
 
-            Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 164, 2, 2, 24, v3, 15);
-            Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 164, 2, v5, 24, v3, 15);
+            Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 164, 2, 2, 24, height, 15);
+            Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 164, 2, y, 24, height, 15);
 
-            if (v4) {
-                v4--;
+            if (heightRemainder) {
+                heightRemainder--;
 
-                Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 167 - v4, 2, 0, 24, 1, 15);
-                Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 161 + v4, 2, v5 - 1, 24, 1, 15);
+                Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 167 - heightRemainder, 2, 0, 24, 1, 15);
+                Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 161 + heightRemainder, 2, y - 1, 24, 1, 15);
             }
 
             Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, 5);
 
-            if (extraTaskData->unk_02 == 40) {
+            if (extraTaskData->heightCounter == 40) {
                 PoketchTask_IncrementState(taskMan);
             }
         }
@@ -440,15 +440,11 @@ static void ov25_02254A5C(SysTask *task, void *taskMan)
     }
 }
 
-static void ov25_02254B8C(SysTask *task, void *taskMan)
+static void ov25_560_UnusedTask_1(SysTask *task, void *taskMan)
 {
-    Ov25_560_ExtraTaskData *extraTaskData;
-    Ov25_560_TaskData *taskData;
-    u32 state;
-
-    extraTaskData = PoketchTask_GetExtraData(taskMan);
-    taskData = PoketchTask_GetTaskData(taskMan);
-    state = PoketchTask_GetState(taskMan);
+    Ov25_560_ExtraTaskData *extraTaskData = PoketchTask_GetExtraData(taskMan);
+    Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
+    u32 state = PoketchTask_GetState(taskMan);
 
     if (state < 4) {
         Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 164 - state - 1, 2, 2, 24, 20, 15);
@@ -459,15 +455,11 @@ static void ov25_02254B8C(SysTask *task, void *taskMan)
     }
 }
 
-static void ov25_02254BF0(SysTask *task, void *taskMan)
+static void ov25_560_UnusedTask_2(SysTask *task, void *taskMan)
 {
-    Ov25_560_ExtraTaskData *extraTaskData;
-    Ov25_560_TaskData *taskData;
-    u32 state;
-
-    extraTaskData = PoketchTask_GetExtraData(taskMan);
-    taskData = PoketchTask_GetTaskData(taskMan);
-    state = PoketchTask_GetState(taskMan);
+    Ov25_560_ExtraTaskData *extraTaskData = PoketchTask_GetExtraData(taskMan);
+    Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
+    u32 state = PoketchTask_GetState(taskMan);
 
     if (state < 4) {
         Bg_FillTilemapRect(taskData->bgConfig, 5, 64 + 167 - state, 2, 2, 24, 20, 15);
@@ -478,12 +470,12 @@ static void ov25_02254BF0(SysTask *task, void *taskMan)
     }
 }
 
-static void ov25_560_LoadTilemap(void *taskMan, u16 *src, int position)
+static void ov25_560_LoadBtnTilemap(void *taskMan, u16 *src, int btnLocation)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
     int x, y;
 
-    if (position == 0) {
+    if (btnLocation == UP_BTN) {
         x = 28;
         y = 4;
     } else {
@@ -491,55 +483,55 @@ static void ov25_560_LoadTilemap(void *taskMan, u16 *src, int position)
         y = 12;
     }
 
-    Bg_LoadToTilemapRect(taskData->bgConfig, 4, src, x, y, 4, 8);
+    Bg_LoadToTilemapRect(taskData->bgConfig, 4, src, x, y, BTN_TILEMAP_WIDTH, BTN_TILEMAP_HEIGHT);
     Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, 4);
 
     ov25_560_EndTask(taskMan);
 }
 
-static void ov25_02254CA8(SysTask *task, void *taskMan)
+static void ov25_560_UpBtnHalfPressed_Task(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
-  
-    ov25_560_LoadTilemap(taskMan, taskData->unk_6C, 0);
+
+    ov25_560_LoadBtnTilemap(taskMan, taskData->tilemapUpBtnHalfPressed, UP_BTN);
     Sound_PlayEffect(SEQ_SE_DP_DENSI04);
 }
 
-static void ov25_02254CCC(SysTask *task, void *taskMan)
+static void ov25_560_DownBtnHalfPressed_Task(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
-  
-    ov25_560_LoadTilemap(taskMan, taskData->unk_12C, 1);
+
+    ov25_560_LoadBtnTilemap(taskMan, taskData->tilemapDownBtnHalfPressed, DOWN_BTN);
     Sound_PlayEffect(SEQ_SE_DP_DENSI04);
 }
 
-static void ov25_02254CF4(SysTask *task, void *taskMan)
+static void ov25_560_UpBtnPressed_Task(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
-  
-    ov25_560_LoadTilemap(taskMan, taskData->unk_2C, 0);
+
+    ov25_560_LoadBtnTilemap(taskMan, taskData->tilemapUpBtnPressed, UP_BTN);
 }
 
-static void ov25_02254D0C(SysTask *task, void *taskMan)
+static void ov25_560_DownBtnPressed_Task(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
-  
-    ov25_560_LoadTilemap(taskMan, taskData->unk_EC, 1);
+
+    ov25_560_LoadBtnTilemap(taskMan, taskData->tilemapDownBtnPressed, DOWN_BTN);
 }
 
-static void ov25_02254D24(SysTask *task, void *taskMan)
+static void ov25_560_UpBtnReleased_Task(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
-  
-    ov25_560_LoadTilemap(taskMan, taskData->unk_AC, 0);
+
+    ov25_560_LoadBtnTilemap(taskMan, taskData->tilemapUpBtn, UP_BTN);
     Sound_PlayEffect(SEQ_SE_DP_DENSI01);
 }
 
-static void ov25_02254D48(SysTask *task, void *taskMan)
+static void ov25_560_DownBtnReleased_Task(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
-  
-    ov25_560_LoadTilemap(taskMan, taskData->unk_16C, 1);
+
+    ov25_560_LoadBtnTilemap(taskMan, taskData->tilemapDownBtn, DOWN_BTN);
     Sound_PlayEffect(SEQ_SE_DP_DENSI01);
 }
 
@@ -548,7 +540,7 @@ static void ov25_560_LoadAndInitAnimationTask(SysTask *task, void *taskMan)
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     ov25_560_LoadAnimElements(taskData, &taskData->unk_1D4);
-    ov25_560_InitAnimations(&taskData->unk_1D4, taskData->taskData);
+    ov25_560_InitAnimations(&taskData->unk_1D4, taskData->constTaskData);
     ov25_560_EndTask(taskMan);
 }
 
@@ -556,7 +548,7 @@ static void ov25_560_InitAnimationTask(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
-    ov25_560_InitAnimations(&taskData->unk_1D4, taskData->taskData);
+    ov25_560_InitAnimations(&taskData->unk_1D4, taskData->constTaskData);
     ov25_560_EndTask(taskMan);
 }
 
@@ -568,7 +560,7 @@ static void ov25_560_UnloadAnimElementsTask(SysTask *task, void *taskMan)
     ov25_560_EndTask(taskMan);
 }
 
-static void ov25_02254DD8(UnkStruct_ov25_02254DD8 *param0, Ov25_540_GraphicManager *param1)
+static void ov25_02254DD8(UnkStruct_ov25_02254DD8 *param0, Ov25_540_AnimationManager *param1)
 {
     param0->elemLoaded = FALSE;
     param0->unk_04 = param1;
@@ -576,7 +568,7 @@ static void ov25_02254DD8(UnkStruct_ov25_02254DD8 *param0, Ov25_540_GraphicManag
 
 static void ov25_560_LoadAnimElements(Ov25_560_TaskData *taskData, UnkStruct_ov25_02254DD8 *param1)
 {
-    if (ov25_LoadNARCMembers(&param1->unk_08, 12, 3, 4, HEAP_ID_POKETCH_MAIN)) {
+    if (ov25_540_LoadSpriteFromNARC(&param1->spriteData, NARC_INDEX_GRAPHIC__POKETCH, 3, 4, HEAP_ID_POKETCH_MAIN)) {
         static const UnkStruct_ov25_02255810 v0 = {
             { (176 << FX32_SHIFT), (40 << FX32_SHIFT) },
             0,
@@ -586,21 +578,21 @@ static void ov25_560_LoadAnimElements(Ov25_560_TaskData *taskData, UnkStruct_ov2
             0
         };
 
-        Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, HEAP_ID_POKETCH_MAIN);
-        Graphics_LoadPalette(12, 0, 5, 0, 0x60, HEAP_ID_POKETCH_MAIN);
+        Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 2, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_MAIN);
+        Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 0, PAL_LOAD_SUB_OBJ, 0, 0x60, HEAP_ID_POKETCH_MAIN);
 
         ov25_560_LoadTaskPalette(taskData, 15);
 
-        param1->unk_1C[0] = ov25_SetupNewElem(param1->unk_04, &v0, &param1->unk_08);
+        param1->unk_1C[0] = ov25_540_SetupNewAnimatedSprite(param1->unk_04, &v0, &param1->spriteData);
 
         if (param1->unk_1C[0] == NULL) {
             return;
         }
 
-        param1->unk_1C[1] = ov25_SetupNewElem(param1->unk_04, &v0, &param1->unk_08);
+        param1->unk_1C[1] = ov25_540_SetupNewAnimatedSprite(param1->unk_04, &v0, &param1->spriteData);
 
         if (param1->unk_1C[1] == NULL) {
-            ov25_RemoveElem(param1->unk_04, param1->unk_1C[0]);
+            ov25_540_RemoveAnimatedSprite(param1->unk_04, param1->unk_1C[0]);
             return;
         }
 
@@ -615,32 +607,32 @@ static void ov25_560_LoadAnimElements(Ov25_560_TaskData *taskData, UnkStruct_ov2
 static void ov25_560_LoadTaskPalette(Ov25_560_TaskData *taskData, u32 offset)
 {
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
-    u32 screenColour = Poketch_CurrentScreenColor(poketch); // Unused
+    u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
     Poketch_CopyActivePalette(taskData->palette);
 
     {
-        u16 paletteSlot = taskData->palette[1];
+        u16 paletteTmp = taskData->palette[1];
         taskData->palette[1] = (taskData->palette[4]);
-        taskData->palette[4] = paletteSlot;
+        taskData->palette[4] = paletteTmp;
     }
 
     {
-        u16 paletteSlot = (taskData->palette[8]);
+        u16 paletteTmp = (taskData->palette[8]);
         taskData->palette[8] = taskData->palette[15];
-        taskData->palette[15] = paletteSlot;
+        taskData->palette[15] = paletteTmp;
     }
 
     DC_FlushRange(taskData->palette, sizeof(taskData->palette));
     GXS_LoadOBJPltt(taskData->palette, PLTT_OFFSET(offset), sizeof(taskData->palette));
 }
 
-static void ov25_560_InitAnimations(UnkStruct_ov25_02254DD8 *param0, const Ov25_560_TaskData_1 *taskData)
+static void ov25_560_InitAnimations(UnkStruct_ov25_02254DD8 *param0, const Ov25_560_ConstTaskData *constTaskData)
 {
     if (param0->elemLoaded) {
         u32 animIDX_0, animIDX_1;
 
-        CP_SetDiv32_32((taskData->unk_00 + 1), 10);
+        CP_SetDiv32_32((constTaskData->value + 1), 10);
 
         animIDX_0 = CP_GetDivResult32();
         animIDX_1 = CP_GetDivRemainder32();
@@ -653,22 +645,19 @@ static void ov25_560_InitAnimations(UnkStruct_ov25_02254DD8 *param0, const Ov25_
 static void ov25_560_UnloadAnimElements(UnkStruct_ov25_02254DD8 *param0)
 {
     if (param0->elemLoaded) {
-        ov25_RemoveElem(param0->unk_04, param0->unk_1C[0]);
-        ov25_RemoveElem(param0->unk_04, param0->unk_1C[1]);
-        ov25_FreeNARCMembers(&param0->unk_08);
+        ov25_540_RemoveAnimatedSprite(param0->unk_04, param0->unk_1C[0]);
+        ov25_540_RemoveAnimatedSprite(param0->unk_04, param0->unk_1C[1]);
+        ov25_540_FreeSpriteData(&param0->spriteData);
 
         param0->elemLoaded = FALSE;
     }
 }
 
-// Loading bar?
-static void ov25_02254F68(SysTask *task, void *taskMan)
+static void ov25_560_UnusedTask_3(SysTask *task, void *taskMan)
 {
     u32 state;
-    Ov25_560_ExtraTaskData *extraTaskData;
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
-
-    extraTaskData = PoketchTask_GetExtraData(taskMan); // Unused
+    Ov25_560_ExtraTaskData *extraTaskData = PoketchTask_GetExtraData(taskMan);
     state = PoketchTask_GetState(taskMan);
 
     switch (state) {
@@ -690,7 +679,7 @@ static void ov25_02254F68(SysTask *task, void *taskMan)
     }
 }
 
-static void ov25_560_LoadTilemapBufferTask(SysTask *task, void *taskMan)
+static void ov25_560_UnusedTask_4(SysTask *task, void *taskMan)
 {
     Ov25_560_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 

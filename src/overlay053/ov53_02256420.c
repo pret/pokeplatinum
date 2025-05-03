@@ -25,12 +25,12 @@ struct UnkStruct_ov53_02256420_t {
     const UnkStruct_ov53_02256420_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    Ov25_540_GraphicManager *unk_20;
-    ov25_540_GraphicObject *unk_24[16];
-    UnkStruct_ov25_02255958 unk_64;
-    UnkStruct_ov25_02255958 unk_78;
+    Ov25_540_AnimationManager *unk_20;
+    Ov25_540_AnimatedSpriteData *unk_24[16];
+    ov25_spriteDataStruct unk_64;
+    ov25_spriteDataStruct unk_78;
     u32 unk_8C[4];
-    ov25_540_GraphicObject *unk_9C;
+    Ov25_540_AnimatedSpriteData *unk_9C;
     fx32 unk_A0;
     fx32 unk_A4;
     fx32 unk_A8;
@@ -44,7 +44,7 @@ static void ov53_02256568(SysTask *param0, void *param1);
 static void ov53_022565E0(SysTask *param0, void *param1);
 static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_02256420_1 *param1);
 static void ov53_02256840(UnkStruct_ov53_02256420 *param0);
-static void ov53_02256874(ov25_540_GraphicObject **param0, u32 param1);
+static void ov53_02256874(Ov25_540_AnimatedSpriteData **param0, u32 param1);
 
 BOOL ov53_02256420(UnkStruct_ov53_02256420 **param0, const UnkStruct_ov53_02256420_1 *param1, BgConfig *param2)
 {
@@ -152,7 +152,7 @@ static void ov53_02256568(SysTask *param0, void *param1)
     if (v1->unk_00) {
         u32 v2 = PokeIconSpriteIndex(v1->unk_00, 0, 0);
 
-        ov25_090_LoadPokemonIcons(v0->unk_AC, &v2, 1, 1);
+        PoketchTask_LoadPokemonIcons(v0->unk_AC, &v2, 1, 1);
         ov25_Set_cParam(v0->unk_24[0], 1 + PokeIconPaletteIndex(v1->unk_00, 0, 0));
         ov53_02256874(&(v0->unk_24[4]), v1->unk_04);
     } else {
@@ -342,8 +342,8 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
     u32 v2[4];
     int v3, v4, v5;
 
-    ov25_LoadNARCMembers(&param0->unk_78, 12, 5, 6, 8);
-    ov25_LoadNARCMembers(&param0->unk_64, 12, 123, 124, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_78, 12, 5, 6, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_64, 12, 123, 124, 8);
 
     v1 = Graphics_LoadObjectTiles(12, 125, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     v1 /= 0x20;
@@ -359,20 +359,20 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
         param0->unk_8C[v3] = PokeIconSpriteIndex(((v2[v3]) ? v2[v3] : 1), 0, 0);
     }
 
-    ov25_090_LoadPokemonIcons(v1, param0->unk_8C, NELEMS(param0->unk_8C), 1);
-    ov25_090_LoadPokemonIconLuminancePalette(1);
+    PoketchTask_LoadPokemonIcons(v1, param0->unk_8C, NELEMS(param0->unk_8C), 1);
+    PoketchTask_LoadPokemonIconLuminancePalette(1);
 
     for (v3 = 0; v3 < 16; v3++) {
         param0->unk_24[v3] = NULL;
     }
 
     for (v3 = 0; v3 < 4; v3++) {
-        param0->unk_24[0 + v3] = ov25_SetupNewElem(param0->unk_20, &v0[v3], &param0->unk_78);
+        param0->unk_24[0 + v3] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0[v3], &param0->unk_78);
         ov25_Set_charNo(param0->unk_24[0 + v3], v1 + v3 * 32);
 
         for (v4 = 0; v4 < 3; v4++) {
             v5 = 4 + v3 * 3 + v4;
-            param0->unk_24[v5] = ov25_SetupNewElem(param0->unk_20, &v0[v5], &param0->unk_64);
+            param0->unk_24[v5] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0[v5], &param0->unk_64);
         }
 
         if (v2[v3] == 0) {
@@ -395,16 +395,16 @@ static void ov53_02256840(UnkStruct_ov53_02256420 *param0)
 
     for (v0 = 0; v0 < 16; v0++) {
         if (param0->unk_24[v0]) {
-            ov25_RemoveElem(param0->unk_20, param0->unk_24[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_24[v0]);
             param0->unk_24[v0] = NULL;
         }
     }
 
-    ov25_FreeNARCMembers(&param0->unk_78);
-    ov25_FreeNARCMembers(&param0->unk_64);
+    ov25_540_FreeSpriteData(&param0->unk_78);
+    ov25_540_FreeSpriteData(&param0->unk_64);
 }
 
-static void ov53_02256874(ov25_540_GraphicObject **param0, u32 param1)
+static void ov53_02256874(Ov25_540_AnimatedSpriteData **param0, u32 param1)
 {
     int v0, v1, v2;
     BOOL v3 = 0;

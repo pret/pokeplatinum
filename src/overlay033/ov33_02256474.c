@@ -27,8 +27,8 @@
 #include "system.h"
 
 typedef struct {
-    ov25_540_GraphicObject *unk_00;
-    ov25_540_GraphicObject *unk_04;
+    Ov25_540_AnimatedSpriteData *unk_00;
+    Ov25_540_AnimatedSpriteData *unk_04;
     VecFx32 unk_08;
     VecFx32 unk_14;
     VecFx32 unk_20;
@@ -50,9 +50,9 @@ struct UnkStruct_ov33_02256474_t {
     const UnkStruct_ov33_02256474_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[10];
-    Ov25_540_GraphicManager *unk_30;
-    UnkStruct_ov25_02255958 unk_34;
-    UnkStruct_ov25_02255958 unk_48;
+    Ov25_540_AnimationManager *unk_30;
+    ov25_spriteDataStruct unk_34;
+    ov25_spriteDataStruct unk_48;
     VecFx32 unk_5C[6];
     VecFx32 unk_A4;
     SysTask *unk_B0;
@@ -129,8 +129,8 @@ BOOL ov33_02256474(UnkStruct_ov33_02256474 **param0, const UnkStruct_ov33_022564
             v0->unk_134[v1].unk_04 = NULL;
         }
 
-        ov25_LoadNARCMembers(&v0->unk_34, 12, 5, 6, 8);
-        ov25_LoadNARCMembers(&v0->unk_48, 12, 36, 37, 8);
+        ov25_540_LoadSpriteFromNARC(&v0->unk_34, 12, 5, 6, 8);
+        ov25_540_LoadSpriteFromNARC(&v0->unk_48, 12, 36, 37, 8);
         *param0 = v0;
         return 1;
     }
@@ -145,16 +145,16 @@ void ov33_022564F0(UnkStruct_ov33_02256474 *param0)
 
         for (v0 = 0; v0 < 6; v0++) {
             if (param0->unk_134[v0].unk_00 != NULL) {
-                ov25_RemoveElem(param0->unk_30, param0->unk_134[v0].unk_00);
+                ov25_540_RemoveAnimatedSprite(param0->unk_30, param0->unk_134[v0].unk_00);
             }
 
             if (param0->unk_134[v0].unk_04 != NULL) {
-                ov25_RemoveElem(param0->unk_30, param0->unk_134[v0].unk_04);
+                ov25_540_RemoveAnimatedSprite(param0->unk_30, param0->unk_134[v0].unk_04);
             }
         }
 
-        ov25_FreeNARCMembers(&param0->unk_34);
-        ov25_FreeNARCMembers(&param0->unk_48);
+        ov25_540_FreeSpriteData(&param0->unk_34);
+        ov25_540_FreeSpriteData(&param0->unk_48);
 
         if (param0->unk_B0 != NULL) {
             SysTask_Done(param0->unk_B0);
@@ -242,7 +242,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     };
     NARC *v1;
 
-    ov25_090_LoadPokemonIconLuminancePalette(1);
+    PoketchTask_LoadPokemonIconLuminancePalette(1);
     Graphics_LoadObjectTiles(12, 35, 1, ((4 * 4 * 2) * 6) * 0x20, 0, 1, HEAP_ID_POKETCH_APP);
 
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_POKETCH_APP);
@@ -269,13 +269,13 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
             v2.translation.y = ((v0[v5].y) << FX32_SHIFT);
 
             v2.unk_0C = 1;
-            param0->unk_134[v5].unk_00 = ov25_SetupNewElem(param0->unk_30, &v2, &param0->unk_34);
+            param0->unk_134[v5].unk_00 = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v2, &param0->unk_34);
 
             ov25_Set_charNo(param0->unk_134[v5].unk_00, (4 * 4 * 2) * v5);
             ov25_Set_cParam(param0->unk_134[v5].unk_00, 1 + PokeIconPaletteIndex(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 0));
 
             v2.unk_0C = 0;
-            param0->unk_134[v5].unk_04 = ov25_SetupNewElem(param0->unk_30, &v2, &param0->unk_48);
+            param0->unk_134[v5].unk_04 = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v2, &param0->unk_48);
 
             if (param0->unk_134[v5].unk_04) {
                 ov25_540_Hide(param0->unk_134[v5].unk_04, 1);

@@ -28,11 +28,11 @@ struct UnkStruct_ov48_0225650C_t {
     const UnkStruct_ov48_0225650C_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    Ov25_540_GraphicManager *unk_20;
-    ov25_540_GraphicObject *unk_24;
-    ov25_540_GraphicObject *unk_28[64];
-    ov25_540_GraphicObject *unk_128[4];
-    UnkStruct_ov25_02255958 unk_138;
+    Ov25_540_AnimationManager *unk_20;
+    Ov25_540_AnimatedSpriteData *unk_24;
+    Ov25_540_AnimatedSpriteData *unk_28[64];
+    Ov25_540_AnimatedSpriteData *unk_128[4];
+    ov25_spriteDataStruct unk_138;
     SysTask *unk_14C;
     BOOL unk_150;
     int unk_154;
@@ -237,7 +237,7 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
 
     Graphics_LoadObjectTiles(12, 120, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_LoadNARCMembers(&param0->unk_138, 12, 118, 119, 8);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_138, 12, 118, 119, 8);
 
     v1.flip = 0;
     v1.oamPriority = 2;
@@ -249,7 +249,7 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
     v1.translation.y = ((v3) << FX32_SHIFT);
     v1.unk_0C = 0;
     v1.animIDX = 0;
-    param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v1, &(param0->unk_138));
+    param0->unk_24 = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v1, &(param0->unk_138));
 
     ov25_Set_mosaic(param0->unk_24, 1);
 
@@ -259,7 +259,7 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
     v1.translation.y = 0;
 
     for (v4 = 0; v4 < 64; v4++) {
-        param0->unk_28[v4] = ov25_SetupNewElem(param0->unk_20, &v1, &(param0->unk_138));
+        param0->unk_28[v4] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v1, &(param0->unk_138));
         ov25_Set_mosaic(param0->unk_28[v4], 1);
     }
 
@@ -271,7 +271,7 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
         v1.translation.y = ((v3) << FX32_SHIFT);
         v1.unk_0C = 2;
         v1.animIDX = 14 + v4;
-        param0->unk_128[v4] = ov25_SetupNewElem(param0->unk_20, &v1, &(param0->unk_138));
+        param0->unk_128[v4] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v1, &(param0->unk_138));
 
         ov25_Set_mosaic(param0->unk_128[v4], 1);
 
@@ -310,24 +310,24 @@ static void ov48_02256984(UnkStruct_ov48_0225650C *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_128[v0]) {
-            ov25_RemoveElem(param0->unk_20, param0->unk_128[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_128[v0]);
             param0->unk_128[v0] = NULL;
         }
     }
 
     for (v0 = 0; v0 < 64; v0++) {
         if (param0->unk_28[v0]) {
-            ov25_RemoveElem(param0->unk_20, param0->unk_28[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_28[v0]);
             param0->unk_28[v0] = NULL;
         }
     }
 
     if (param0->unk_24) {
-        ov25_RemoveElem(param0->unk_20, param0->unk_24);
+        ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_24);
         param0->unk_24 = NULL;
     }
 
-    ov25_FreeNARCMembers(&param0->unk_138);
+    ov25_540_FreeSpriteData(&param0->unk_138);
 }
 
 static void ov48_022569FC(SysTask *param0, void *param1)

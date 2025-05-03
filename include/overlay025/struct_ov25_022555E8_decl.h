@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV25_022555E8_DECL_H
 #define POKEPLATINUM_STRUCT_OV25_022555E8_DECL_H
 
-typedef struct Ov25_540_GraphicManager_t Ov25_540_GraphicManager;
+typedef struct Ov25_540_AnimationManager_t Ov25_540_AnimationManager;
 
 #endif // POKEPLATINUM_STRUCT_OV25_022555E8_DECL_H

@@ -26,9 +26,9 @@ struct UnkStruct_ov54_0225642C_t {
     const UnkStruct_ov54_0225642C_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    Ov25_540_GraphicManager *unk_20;
-    ov25_540_GraphicObject *unk_24[12];
-    UnkStruct_ov25_02255958 unk_54;
+    Ov25_540_AnimationManager *unk_20;
+    Ov25_540_AnimatedSpriteData *unk_24[12];
+    ov25_spriteDataStruct unk_54;
     u32 unk_68[12];
 };
 
@@ -255,12 +255,12 @@ static void ov54_022565EC(UnkStruct_ov54_0225642C *param0, const UnkStruct_ov54_
     };
     int v1;
 
-    ov25_090_LoadPokemonIconLuminancePalette(0);
-    ov25_LoadNARCMembers(&param0->unk_54, 12, 5, 6, 8);
+    PoketchTask_LoadPokemonIconLuminancePalette(0);
+    ov25_540_LoadSpriteFromNARC(&param0->unk_54, 12, 5, 6, 8);
 
     for (v1 = 0; v1 < param1->unk_90; v1++) {
         param0->unk_68[v1] = PokeIconSpriteIndex(param1->unk_00[v1].unk_00, 0, param1->unk_00[v1].unk_08);
-        param0->unk_24[v1] = ov25_SetupNewElem(param0->unk_20, &v0[v1], &param0->unk_54);
+        param0->unk_24[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0[v1], &param0->unk_54);
 
         ov25_Set_charNo(param0->unk_24[v1], v1 * 16);
         ov25_Set_cParam(param0->unk_24[v1], PokeIconPaletteIndex(param1->unk_00[v1].unk_00, param1->unk_00[v1].unk_08, 0));
@@ -270,7 +270,7 @@ static void ov54_022565EC(UnkStruct_ov54_0225642C *param0, const UnkStruct_ov54_
         param0->unk_24[v1] = NULL;
     }
 
-    ov25_090_LoadPokemonIcons(0, param0->unk_68, param1->unk_90, 0);
+    PoketchTask_LoadPokemonIcons(0, param0->unk_68, param1->unk_90, 0);
 }
 
 static void ov54_022566A8(UnkStruct_ov54_0225642C *param0)
@@ -279,10 +279,10 @@ static void ov54_022566A8(UnkStruct_ov54_0225642C *param0)
 
     for (v0 = 0; v0 < 12; v0++) {
         if (param0->unk_24[v0] != NULL) {
-            ov25_RemoveElem(param0->unk_20, param0->unk_24[v0]);
+            ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_24[v0]);
             param0->unk_24[v0] = NULL;
         }
     }
 
-    ov25_FreeNARCMembers(&param0->unk_54);
+    ov25_540_FreeSpriteData(&param0->unk_54);
 }

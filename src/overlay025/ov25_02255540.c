@@ -11,12 +11,14 @@
 #include "graphics.h"
 #include "heap.h"
 
-struct ov25_540_GraphicObject_t {
-    const NNSG2dCellDataBank *cellBank;
-    const NNSG2dAnimBankData *animBack;
-    NNSG2dCellAnimation cellAnim;
-    struct ov25_540_GraphicObject_t *previousGraphicObject;
-    struct ov25_540_GraphicObject_t *nextGraphicObject;
+struct Ov25_540_AnimatedSpriteData_t {
+    const NNSG2dCellDataBank *sprite;
+    const NNSG2dAnimBankData *anim;
+    NNSG2dCellAnimation spriteAnimation;
+
+    struct Ov25_540_AnimatedSpriteData_t *previousAnimatedSprite;
+    struct Ov25_540_AnimatedSpriteData_t *nextAnimatedSprite;
+
     NNSG2dFVec2 position;
     MtxFx22 *affineTransformationPtr;
     MtxFx22 affineTransformation;
@@ -37,64 +39,64 @@ struct ov25_540_GraphicObject_t {
     u8 mosaic;
 };
 
-struct Ov25_540_GraphicManager_t {
+struct Ov25_540_AnimationManager_t {
     NNSG2dOamManagerInstance *oamMngr;
-    ov25_540_GraphicObject **graphicObjectArray;
-    ov25_540_GraphicObject *lastGraphicObject;
-    ov25_540_GraphicObject *graphicObjectPool;
-    u16 numObjs;
-    u16 nextUnusedElemIdx;
+    Ov25_540_AnimatedSpriteData **animatedSpritePtrArray;
+    Ov25_540_AnimatedSpriteData *lastAnimatedSprite;
+    Ov25_540_AnimatedSpriteData *animatedSpritePool;
+    u16 numSlots;
+    u16 nextUnusedSlotIdx;
     GXOamAttr *oam;
     u32 heapID;
 };
 
-static void ov25_PopulatePointerArray(ov25_540_GraphicObject **param0, ov25_540_GraphicObject *param1, u32 param2);
-static void ov25_DissconectElem(ov25_540_GraphicObject *param0);
-static ov25_540_GraphicObject *ov25_GetNextUnusedElemPointer(Ov25_540_GraphicManager *param0);
-static void ov25_MarkElemPointerUnused(Ov25_540_GraphicManager *param0, ov25_540_GraphicObject *param1);
-static void ov25_SortElemIntoList(Ov25_540_GraphicManager *param0, ov25_540_GraphicObject *param1);
-static void ov25_RemoveElemFromList(Ov25_540_GraphicManager *param0, ov25_540_GraphicObject *param1);
+static void ov25_540_PopulateAnimatedSpritePtrArray(Ov25_540_AnimatedSpriteData **param0, Ov25_540_AnimatedSpriteData *param1, u32 param2);
+static void ov25_540_UnlinkAnimatedSprite(Ov25_540_AnimatedSpriteData *param0);
+static Ov25_540_AnimatedSpriteData *ov25_GetNextUnusedElemPointer(Ov25_540_AnimationManager *param0);
+static void ov25_540_MarkAnimatedSpriteUnused(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *param1);
+static void ov25_SortElemIntoList(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *param1);
+static void ov25_540_RemoveAnimatedSpriteFromList(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *param1);
 
-Ov25_540_GraphicManager *ov25_SetupDataStructure(NNSG2dOamManagerInstance *oamMngr, u32 heapID)
+Ov25_540_AnimationManager *ov25_SetupDataStructure(NNSG2dOamManagerInstance *oamMngr, u32 heapID)
 {
-    Ov25_540_GraphicManager *dataStructure;
+    Ov25_540_AnimationManager *dataStructure;
     BOOL success = FALSE;
 
     do {
-        dataStructure = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_GraphicManager));
+        dataStructure = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_AnimationManager));
 
         if (dataStructure == NULL) {
             break;
         }
 
         dataStructure->oam = NULL;
-        dataStructure->graphicObjectPool = NULL;
-        dataStructure->graphicObjectArray = NULL;
+        dataStructure->animatedSpritePool = NULL;
+        dataStructure->animatedSpritePtrArray = NULL;
         dataStructure->oamMngr = oamMngr;
         dataStructure->heapID = heapID;
-        dataStructure->numObjs = NNS_G2dGetOamManagerOamCapacity(oamMngr);
-        dataStructure->oam = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * dataStructure->numObjs);
+        dataStructure->numSlots = NNS_G2dGetOamManagerOamCapacity(oamMngr);
+        dataStructure->oam = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * dataStructure->numSlots);
 
         if (dataStructure->oam == NULL) {
             break;
         }
 
-        dataStructure->graphicObjectPool = Heap_AllocFromHeap(heapID, sizeof(ov25_540_GraphicObject) * dataStructure->numObjs);
+        dataStructure->animatedSpritePool = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_AnimatedSpriteData) * dataStructure->numSlots);
 
-        if (dataStructure->graphicObjectPool == NULL) {
+        if (dataStructure->animatedSpritePool == NULL) {
             break;
         }
 
-        dataStructure->graphicObjectArray = Heap_AllocFromHeap(heapID, sizeof(ov25_540_GraphicObject *) * dataStructure->numObjs);
+        dataStructure->animatedSpritePtrArray = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_AnimatedSpriteData *) * dataStructure->numSlots);
 
-        if (dataStructure->graphicObjectArray == NULL) {
+        if (dataStructure->animatedSpritePtrArray == NULL) {
             break;
         }
 
-        ov25_PopulatePointerArray(dataStructure->graphicObjectArray, dataStructure->graphicObjectPool, dataStructure->numObjs);
+        ov25_540_PopulateAnimatedSpritePtrArray(dataStructure->animatedSpritePtrArray, dataStructure->animatedSpritePool, dataStructure->numSlots);
 
-        dataStructure->nextUnusedElemIdx = 0;
-        dataStructure->lastGraphicObject = NULL;
+        dataStructure->nextUnusedSlotIdx = 0;
+        dataStructure->lastAnimatedSprite = NULL;
 
         success = TRUE;
     } while (FALSE);
@@ -105,12 +107,12 @@ Ov25_540_GraphicManager *ov25_SetupDataStructure(NNSG2dOamManagerInstance *oamMn
                 Heap_FreeToHeapExplicit(heapID, dataStructure->oam);
             }
 
-            if (dataStructure->graphicObjectPool != NULL) {
-                Heap_FreeToHeapExplicit(heapID, dataStructure->graphicObjectPool);
+            if (dataStructure->animatedSpritePool != NULL) {
+                Heap_FreeToHeapExplicit(heapID, dataStructure->animatedSpritePool);
             }
 
-            if (dataStructure->graphicObjectArray != NULL) {
-                Heap_FreeToHeapExplicit(heapID, dataStructure->graphicObjectArray);
+            if (dataStructure->animatedSpritePtrArray != NULL) {
+                Heap_FreeToHeapExplicit(heapID, dataStructure->animatedSpritePtrArray);
             }
 
             Heap_FreeToHeapExplicit(heapID, dataStructure);
@@ -122,45 +124,45 @@ Ov25_540_GraphicManager *ov25_SetupDataStructure(NNSG2dOamManagerInstance *oamMn
     return dataStructure;
 }
 
-void ov25_FreeOV25(Ov25_540_GraphicManager *param0)
+void ov25_FreeOV25(Ov25_540_AnimationManager *param0)
 {
     if (param0) {
         if (param0->oam) {
             Heap_FreeToHeap(param0->oam);
         }
 
-        if (param0->graphicObjectPool) {
-            Heap_FreeToHeap(param0->graphicObjectPool);
+        if (param0->animatedSpritePool) {
+            Heap_FreeToHeap(param0->animatedSpritePool);
         }
 
-        if (param0->graphicObjectArray) {
-            Heap_FreeToHeap(param0->graphicObjectArray);
+        if (param0->animatedSpritePtrArray) {
+            Heap_FreeToHeap(param0->animatedSpritePtrArray);
         }
 
         Heap_FreeToHeap(param0);
     }
 }
 
-void ov25_MainFunc(Ov25_540_GraphicManager *param0)
+void ov25_MainFunc(Ov25_540_AnimationManager *param0)
 {
-    if (param0->nextUnusedElemIdx) {
-        ov25_540_GraphicObject *elem = param0->lastGraphicObject;
+    if (param0->nextUnusedSlotIdx) {
+        Ov25_540_AnimatedSpriteData *elem = param0->lastAnimatedSprite;
         GXOamAttr *oam = param0->oam;
-        s32 numObjs = param0->numObjs;
-        u32 numObjsUsed;
+        s32 numSlots = param0->numSlots;
+        u32 numSlotsUsed;
 
         while (elem != NULL) {
-            NNS_G2dTickCellAnimation(&elem->cellAnim, FX32_ONE * 2); // Advance cell animation time
+            NNS_G2dTickCellAnimation(&elem->spriteAnimation, FX32_ONE * 2); // Advance cell animation time
 
             if (elem->isHidden == FALSE) {
-                const NNSG2dSRTControl *srtCtrl = &(elem->cellAnim.srtCtrl);
+                const NNSG2dSRTControl *srtCtrl = &(elem->spriteAnimation.srtCtrl);
                 NNSG2dFVec2 position;
 
                 position.x = elem->position.x + (fx32)(srtCtrl->srtData.trans.x << FX32_SHIFT);
                 position.y = elem->position.y + (fx32)(srtCtrl->srtData.trans.y << FX32_SHIFT);
 
                 if (elem->hasAffineTransform == FALSE) {
-                    numObjsUsed = NNS_G2dMakeCellToOams(oam, numObjs, NNS_G2dGetCellAnimationCurrentCell(&elem->cellAnim), NULL, &(position), 0, FALSE);
+                    numSlotsUsed = NNS_G2dMakeCellToOams(oam, numSlots, NNS_G2dGetCellAnimationCurrentCell(&elem->spriteAnimation), NULL, &(position), 0, FALSE);
                 } else {
                     u16 affineIdx;
 
@@ -180,12 +182,12 @@ void ov25_MainFunc(Ov25_540_GraphicManager *param0)
                     }
 
                     affineIdx = NNS_G2dEntryOamManagerAffine(param0->oamMngr, elem->affineTransformationPtr);
-                    numObjsUsed = NNS_G2dMakeCellToOams(oam, numObjs, NNS_G2dGetCellAnimationCurrentCell(&elem->cellAnim), elem->affineTransformationPtr, &(position), affineIdx, TRUE);
+                    numSlotsUsed = NNS_G2dMakeCellToOams(oam, numSlots, NNS_G2dGetCellAnimationCurrentCell(&elem->spriteAnimation), elem->affineTransformationPtr, &(position), affineIdx, TRUE);
                 }
 
-                numObjs -= numObjsUsed;
+                numSlots -= numSlotsUsed;
 
-                while (numObjsUsed--) {
+                while (numSlotsUsed--) {
                     oam->priority = elem->oamPriority;
                     oam->cParam += elem->cParam;
                     oam->charNo += elem->charNo;
@@ -196,7 +198,7 @@ void ov25_MainFunc(Ov25_540_GraphicManager *param0)
                 }
             }
 
-            elem = elem->previousGraphicObject;
+            elem = elem->previousAnimatedSprite;
         }
 
         if (oam > param0->oam) {
@@ -205,115 +207,115 @@ void ov25_MainFunc(Ov25_540_GraphicManager *param0)
     }
 }
 
-ov25_540_GraphicObject *ov25_SetupNewElem(Ov25_540_GraphicManager *param0, const UnkStruct_ov25_02255810 *param1, const UnkStruct_ov25_02255958 *param2)
+Ov25_540_AnimatedSpriteData *ov25_540_SetupNewAnimatedSprite(Ov25_540_AnimationManager *animMngr, const UnkStruct_ov25_02255810 *param1, const ov25_spriteDataStruct *param2)
 {
-    ov25_540_GraphicObject *newElem = ov25_GetNextUnusedElemPointer(param0);
+    Ov25_540_AnimatedSpriteData *animatedSprite = ov25_GetNextUnusedElemPointer(animMngr);
 
-    if (newElem != NULL) {
-        newElem->oamPriority = param1->oamPriority;
-        newElem->unk_84_val1_unk_00 = param1->unk_0C;
+    if (animatedSprite != NULL) {
+        animatedSprite->oamPriority = param1->oamPriority;
+        animatedSprite->unk_84_val1_unk_00 = param1->unk_0C;
 
-        ov25_SortElemIntoList(param0, newElem);
+        ov25_SortElemIntoList(animMngr, animatedSprite);
 
-        newElem->cellBank = param2->cellBank;
-        newElem->animBack = param2->animBank;
+        animatedSprite->sprite = param2->sprite;
+        animatedSprite->anim = param2->anim;
 
-        NNS_G2dInitCellAnimation(&(newElem->cellAnim), NNS_G2dGetAnimSequenceByIdx(newElem->animBack, param1->animIDX), newElem->cellBank);
+        NNS_G2dInitCellAnimation(&(animatedSprite->spriteAnimation), NNS_G2dGetAnimSequenceByIdx(animatedSprite->anim, param1->animIDX), animatedSprite->sprite);
 
-        newElem->position = param1->translation;
-        newElem->cParam = 0;
-        newElem->charNo = 0;
-        newElem->flipH = ((param1->flip & 1) != 0);
-        newElem->flipV = ((param1->flip & 2) != 0);
-        newElem->mosaic = 0;
-        newElem->rotZ = 0;
-        newElem->affineTransformationPtr = &(newElem->affineTransformation);
-        newElem->hasAffineTransform = param1->hasAffineTransform;
-        newElem->isHidden = FALSE;
+        animatedSprite->position = param1->translation;
+        animatedSprite->cParam = 0;
+        animatedSprite->charNo = 0;
+        animatedSprite->flipH = ((param1->flip & 1) != 0);
+        animatedSprite->flipV = ((param1->flip & 2) != 0);
+        animatedSprite->mosaic = 0;
+        animatedSprite->rotZ = 0;
+        animatedSprite->affineTransformationPtr = &(animatedSprite->affineTransformation);
+        animatedSprite->hasAffineTransform = param1->hasAffineTransform;
+        animatedSprite->isHidden = FALSE;
     }
 
-    return newElem;
+    return animatedSprite;
 }
 
-void ov25_RemoveElem(Ov25_540_GraphicManager *param0, ov25_540_GraphicObject *param1)
+void ov25_540_RemoveAnimatedSprite(Ov25_540_AnimationManager *animMngr, Ov25_540_AnimatedSpriteData *param1)
 {
-    ov25_RemoveElemFromList(param0, param1);
-    ov25_MarkElemPointerUnused(param0, param1);
+    ov25_540_RemoveAnimatedSpriteFromList(animMngr, param1);
+    ov25_540_MarkAnimatedSpriteUnused(animMngr, param1);
 }
 
-void ov25_InitAnimation(ov25_540_GraphicObject *param0, u32 animIDX)
+void ov25_InitAnimation(Ov25_540_AnimatedSpriteData *param0, u32 animIdx)
 {
-    NNS_G2dInitCellAnimation(&(param0->cellAnim), NNS_G2dGetAnimSequenceByIdx(param0->animBack, animIDX), param0->cellBank);
+    NNS_G2dInitCellAnimation(&(param0->spriteAnimation), NNS_G2dGetAnimSequenceByIdx(param0->anim, animIdx), param0->sprite);
 }
 
-BOOL ov25_AnimNotPlaying(ov25_540_GraphicObject *param0)
+BOOL ov25_AnimNotPlaying(Ov25_540_AnimatedSpriteData *param0)
 {
-    NNSG2dAnimController *animCtrl = NNS_G2dGetCellAnimationAnimCtrl(&(param0->cellAnim));
+    NNSG2dAnimController *animCtrl = NNS_G2dGetCellAnimationAnimCtrl(&(param0->spriteAnimation));
     return NNS_G2dIsAnimCtrlActive(animCtrl) == FALSE;
 }
 
-void ov25_addTranslation(ov25_540_GraphicObject *param0, fx32 x, fx32 y)
+void ov25_addTranslation(Ov25_540_AnimatedSpriteData *param0, fx32 x, fx32 y)
 {
     param0->position.x += x;
     param0->position.y += y;
 }
 
-void ov25_SetPosition(ov25_540_GraphicObject *param0, fx32 x, fx32 y)
+void ov25_SetPosition(Ov25_540_AnimatedSpriteData *param0, fx32 x, fx32 y)
 {
     param0->position.x = x;
     param0->position.y = y;
 }
 
-void ov25_GetPosition(const ov25_540_GraphicObject *param0, fx32 *x, fx32 *y)
+void ov25_GetPosition(const Ov25_540_AnimatedSpriteData *param0, fx32 *x, fx32 *y)
 {
     *x = param0->position.x;
     *y = param0->position.y;
 }
 
-void ov25_540_Hide(ov25_540_GraphicObject *param0, BOOL param1)
+void ov25_540_Hide(Ov25_540_AnimatedSpriteData *param0, BOOL param1)
 {
     param0->isHidden = param1;
 }
 
-void ov25_UpdateElem_unk_84_00(Ov25_540_GraphicManager *param0, ov25_540_GraphicObject *param1, u32 param2)
+void ov25_UpdateElem_unk_84_00(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *param1, u32 param2)
 {
-    ov25_RemoveElemFromList(param0, param1);
+    ov25_540_RemoveAnimatedSpriteFromList(param0, param1);
     param1->unk_84_val1_unk_00 = param2;
     ov25_SortElemIntoList(param0, param1);
 }
 
-void ov25_Set_cParam(ov25_540_GraphicObject *param0, u32 value)
+void ov25_Set_cParam(Ov25_540_AnimatedSpriteData *param0, u32 value)
 {
     param0->cParam = value;
 }
 
-void ov25_Set_charNo(ov25_540_GraphicObject *param0, u32 value)
+void ov25_Set_charNo(Ov25_540_AnimatedSpriteData *param0, u32 value)
 {
     param0->charNo = value;
 }
 
-void ov25_Set_mosaic(ov25_540_GraphicObject *param0, BOOL value)
+void ov25_Set_mosaic(Ov25_540_AnimatedSpriteData *param0, BOOL value)
 {
     param0->mosaic = value;
 }
 
-void ov25_Set_ElemRotZ(ov25_540_GraphicObject *param0, u16 value)
+void ov25_Set_ElemRotZ(Ov25_540_AnimatedSpriteData *param0, u16 value)
 {
     param0->rotZ = value;
 }
 
-BOOL ov25_LoadNARCMembers(UnkStruct_ov25_02255958 *param0, enum NarcID narcId, u32 memberId, u32 memberId2, enum HeapId heapId)
+BOOL ov25_540_LoadSpriteFromNARC(ov25_spriteDataStruct *spriteData, enum NarcID narcId, u32 cellId, u32 animId, enum HeapId heapId)
 {
-    param0->heapID = heapId;
-    param0->unk_00 = LoadCompressedMemberFromNARC(narcId, memberId, heapId);
-    param0->unk_04 = LoadCompressedMemberFromNARC(narcId, memberId2, heapId);
+    spriteData->heapID = heapId;
+    spriteData->compressedSprite = LoadCompressedMemberFromNARC(narcId, cellId, heapId);
+    spriteData->compressedAnim = LoadCompressedMemberFromNARC(narcId, animId, heapId);
 
-    if ((param0->unk_00 != NULL) && (param0->unk_04 != NULL)) {
-        if (!NNS_G2dGetUnpackedCellBank(param0->unk_00, &(param0->cellBank))) {
+    if ((spriteData->compressedSprite != NULL) && (spriteData->compressedAnim != NULL)) {
+        if (!NNS_G2dGetUnpackedCellBank(spriteData->compressedSprite, &(spriteData->sprite))) {
             return FALSE;
         }
 
-        if (!NNS_G2dGetUnpackedMCAnimBank(param0->unk_04, &(param0->animBank))) {
+        if (!NNS_G2dGetUnpackedMCAnimBank(spriteData->compressedAnim, &(spriteData->anim))) {
             return FALSE;
         }
     }
@@ -321,111 +323,111 @@ BOOL ov25_LoadNARCMembers(UnkStruct_ov25_02255958 *param0, enum NarcID narcId, u
     return TRUE;
 }
 
-void ov25_FreeNARCMembers(UnkStruct_ov25_02255958 *param0)
+void ov25_540_FreeSpriteData(ov25_spriteDataStruct *spriteData)
 {
-    if (param0->unk_00 != NULL) {
-        Heap_FreeToHeapExplicit(param0->heapID, param0->unk_00);
-        param0->unk_00 = NULL;
+    if (spriteData->compressedSprite != NULL) {
+        Heap_FreeToHeapExplicit(spriteData->heapID, spriteData->compressedSprite);
+        spriteData->compressedSprite = NULL;
     }
 
-    if (param0->unk_04 != NULL) {
-        Heap_FreeToHeapExplicit(param0->heapID, param0->unk_04);
-        param0->unk_04 = NULL;
-    }
-}
-
-static void ov25_PopulatePointerArray(ov25_540_GraphicObject **param0, ov25_540_GraphicObject *param1, u32 numObjs)
-{
-    while (numObjs--) {
-        *param0 = param1;
-        ov25_DissconectElem(param1);
-        param1++;
-        param0++;
+    if (spriteData->compressedAnim != NULL) {
+        Heap_FreeToHeapExplicit(spriteData->heapID, spriteData->compressedAnim);
+        spriteData->compressedAnim = NULL;
     }
 }
 
-static void ov25_DissconectElem(ov25_540_GraphicObject *param0)
+static void ov25_540_PopulateAnimatedSpritePtrArray(Ov25_540_AnimatedSpriteData **animatedSpritePtrArray, Ov25_540_AnimatedSpriteData *animatedSpritePool, u32 numSlots)
 {
-    param0->previousGraphicObject = NULL;
-    param0->nextGraphicObject = NULL;
+    while (numSlots--) {
+        *animatedSpritePtrArray = animatedSpritePool;
+        ov25_540_UnlinkAnimatedSprite(animatedSpritePool);
+        animatedSpritePool++;
+        animatedSpritePtrArray++;
+    }
 }
 
-static ov25_540_GraphicObject *ov25_GetNextUnusedElemPointer(Ov25_540_GraphicManager *param0)
+static void ov25_540_UnlinkAnimatedSprite(Ov25_540_AnimatedSpriteData *animatedSprite)
 {
-    if (param0->nextUnusedElemIdx < param0->numObjs) {
-        return param0->graphicObjectArray[param0->nextUnusedElemIdx++];
+    animatedSprite->previousAnimatedSprite = NULL;
+    animatedSprite->nextAnimatedSprite = NULL;
+}
+
+static Ov25_540_AnimatedSpriteData *ov25_GetNextUnusedElemPointer(Ov25_540_AnimationManager *param0)
+{
+    if (param0->nextUnusedSlotIdx < param0->numSlots) {
+        return param0->animatedSpritePtrArray[param0->nextUnusedSlotIdx++];
     }
 
     return NULL;
 }
 
-static void ov25_MarkElemPointerUnused(Ov25_540_GraphicManager *param0, ov25_540_GraphicObject *param1)
+static void ov25_540_MarkAnimatedSpriteUnused(Ov25_540_AnimationManager *animMngr, Ov25_540_AnimatedSpriteData *animatedSprite)
 {
-    if (param0->nextUnusedElemIdx == 0) {
+    if (animMngr->nextUnusedSlotIdx == 0) {
         return;
     }
 
-    ov25_DissconectElem(param1);
+    ov25_540_UnlinkAnimatedSprite(animatedSprite);
 
-    param0->nextUnusedElemIdx--;
-    param0->graphicObjectArray[param0->nextUnusedElemIdx] = param1;
+    animMngr->nextUnusedSlotIdx--;
+    animMngr->animatedSpritePtrArray[animMngr->nextUnusedSlotIdx] = animatedSprite;
 }
 
-static void ov25_SortElemIntoList(Ov25_540_GraphicManager *param0, ov25_540_GraphicObject *newElem)
+static void ov25_SortElemIntoList(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *newElem)
 {
-    if (param0->lastGraphicObject == NULL) {
-        param0->lastGraphicObject = newElem;
-        newElem->previousGraphicObject = NULL;
-        newElem->nextGraphicObject = NULL;
+    if (param0->lastAnimatedSprite == NULL) {
+        param0->lastAnimatedSprite = newElem;
+        newElem->previousAnimatedSprite = NULL;
+        newElem->nextAnimatedSprite = NULL;
     } else {
-        ov25_540_GraphicObject *prevElem = param0->lastGraphicObject;
+        Ov25_540_AnimatedSpriteData *prevElem = param0->lastAnimatedSprite;
 
         while (TRUE) {
             if (newElem->unk_84_val2 < prevElem->unk_84_val2) {
-                if (prevElem == param0->lastGraphicObject) {
-                    param0->lastGraphicObject = newElem;
+                if (prevElem == param0->lastAnimatedSprite) {
+                    param0->lastAnimatedSprite = newElem;
                 }
 
-                newElem->nextGraphicObject = prevElem->nextGraphicObject;
+                newElem->nextAnimatedSprite = prevElem->nextAnimatedSprite;
 
-                if (newElem->nextGraphicObject) {
-                    newElem->nextGraphicObject->previousGraphicObject = newElem;
+                if (newElem->nextAnimatedSprite) {
+                    newElem->nextAnimatedSprite->previousAnimatedSprite = newElem;
                 }
 
-                newElem->previousGraphicObject = prevElem;
-                prevElem->nextGraphicObject = newElem;
+                newElem->previousAnimatedSprite = prevElem;
+                prevElem->nextAnimatedSprite = newElem;
 
                 break;
             }
 
-            if (prevElem->previousGraphicObject == NULL) {
-                prevElem->previousGraphicObject = newElem;
-                newElem->nextGraphicObject = prevElem;
-                newElem->previousGraphicObject = NULL;
+            if (prevElem->previousAnimatedSprite == NULL) {
+                prevElem->previousAnimatedSprite = newElem;
+                newElem->nextAnimatedSprite = prevElem;
+                newElem->previousAnimatedSprite = NULL;
 
                 break;
             } else {
-                prevElem = prevElem->previousGraphicObject;
+                prevElem = prevElem->previousAnimatedSprite;
             }
         }
     }
 }
 
-static void ov25_RemoveElemFromList(Ov25_540_GraphicManager *param0, ov25_540_GraphicObject *elem)
+static void ov25_540_RemoveAnimatedSpriteFromList(Ov25_540_AnimationManager *animMngr, Ov25_540_AnimatedSpriteData *animatedSprite)
 {
-    if (elem->nextGraphicObject != NULL) {
-        if (elem->previousGraphicObject != NULL) {
-            elem->nextGraphicObject->previousGraphicObject = elem->previousGraphicObject;
-            elem->previousGraphicObject->nextGraphicObject = elem->nextGraphicObject;
+    if (animatedSprite->nextAnimatedSprite != NULL) {
+        if (animatedSprite->previousAnimatedSprite != NULL) {
+            animatedSprite->nextAnimatedSprite->previousAnimatedSprite = animatedSprite->previousAnimatedSprite;
+            animatedSprite->previousAnimatedSprite->nextAnimatedSprite = animatedSprite->nextAnimatedSprite;
         } else {
-            elem->nextGraphicObject->previousGraphicObject = NULL;
+            animatedSprite->nextAnimatedSprite->previousAnimatedSprite = NULL;
         }
     } else {
-        if (elem->previousGraphicObject != NULL) {
-            elem->previousGraphicObject->nextGraphicObject = NULL;
-            param0->lastGraphicObject = elem->previousGraphicObject;
+        if (animatedSprite->previousAnimatedSprite != NULL) {
+            animatedSprite->previousAnimatedSprite->nextAnimatedSprite = NULL;
+            animMngr->lastAnimatedSprite = animatedSprite->previousAnimatedSprite;
         } else {
-            param0->lastGraphicObject = NULL;
+            animMngr->lastAnimatedSprite = NULL;
         }
     }
 }
