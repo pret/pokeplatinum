@@ -5,12 +5,12 @@
 #include <nnsys.h>
 
 #include "overlay021/pokedex_graphic_data.h"
+#include "overlay021/pokedex_panel.h"
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D23F8.h"
 #include "overlay021/struct_ov21_021D2584.h"
 #include "overlay021/struct_ov21_021D2648.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
-#include "overlay021/struct_ov21_021D4EE4_decl.h"
 
 #include "bg_window.h"
 #include "narc.h"
@@ -45,12 +45,12 @@ int ov21_021D24B8(UnkStruct_ov21_021D23F8 *param0);
 BOOL ov21_021D24EC(UnkStruct_ov21_021D23F8 *param0);
 void ov21_021D24FC(const PokedexGraphicData *param0, UnkStruct_ov21_021D23F8 *param1);
 void ov21_021D251C(const PokedexGraphicData *param0, UnkStruct_ov21_021D23F8 *param1, int param2);
-void ov21_021D2544(const UnkStruct_ov21_021D4EE4 *param0, PokedexGraphicData *param1);
+void ov21_021D2544(const PokedexPanelData *param0, PokedexGraphicData *param1);
 void ov21_021D2574(PokedexGraphicData *param0, int param1, int param2, int param3, int param4);
 void ov21_021D2584(UnkStruct_ov21_021D2584 *param0, int param1);
 BOOL ov21_021D25A0(UnkStruct_ov21_021D2584 *param0);
 void ov21_021D25AC(UnkStruct_ov21_021D2584 *param0, BOOL param1);
-void ov21_021D25B8(const UnkStruct_ov21_021D4EE4 *param0, PokedexGraphicData *param1);
+void ov21_021D25B8(const PokedexPanelData *param0, PokedexGraphicData *param1);
 void ov21_021D25E8(PokedexGraphicData *param0, int param1, int param2, int param3, int param4);
 void ov21_021D2648(UnkStruct_ov21_021D2648 *param0, int param1, int param2, int param3, int param4, int param5);
 BOOL ov21_021D2664(UnkStruct_ov21_021D2648 *param0);

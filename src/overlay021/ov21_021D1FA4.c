@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "overlay021/ov21_021D4C0C.h"
-#include "overlay021/ov21_021D4EE4.h"
 #include "overlay021/pokedex_graphic_data.h"
+#include "overlay021/pokedex_panel.h"
 #include "overlay021/struct_ov21_021D1FA4.h"
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D23F8.h"
@@ -13,7 +13,6 @@
 #include "overlay021/struct_ov21_021D2648.h"
 #include "overlay021/struct_ov21_021D3124.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
-#include "overlay021/struct_ov21_021D4EE4_decl.h"
 #include "overlay022/struct_ov22_022550D4.h"
 
 #include "bg_window.h"
@@ -361,12 +360,12 @@ void ov21_021D251C(const PokedexGraphicData *param0, UnkStruct_ov21_021D23F8 *pa
     PokemonSprite_StartFade(v0, v1, v1, 0, 0);
 }
 
-void ov21_021D2544(const UnkStruct_ov21_021D4EE4 *param0, PokedexGraphicData *param1)
+void ov21_021D2544(const PokedexPanelData *param0, PokedexGraphicData *param1)
 {
     int v0, v1, v2, v3;
 
-    ov21_021D4F94(param0, &v0, &v1);
-    ov21_021D4FBC(param0, &v2, &v3);
+    PokedexPanel_GetCurrentButtonXY(param0, &v0, &v1);
+    PokedexPanel_GetCurrentButtonWidthHeight(param0, &v2, &v3);
     ov21_021D2574(param1, v0, v1, v2, v3);
 }
 
@@ -398,12 +397,12 @@ void ov21_021D25AC(UnkStruct_ov21_021D2584 *param0, BOOL param1)
     }
 }
 
-void ov21_021D25B8(const UnkStruct_ov21_021D4EE4 *param0, PokedexGraphicData *param1)
+void ov21_021D25B8(const PokedexPanelData *param0, PokedexGraphicData *param1)
 {
     int v0, v1, v2, v3;
 
-    ov21_021D4F94(param0, &v0, &v1);
-    ov21_021D4FBC(param0, &v2, &v3);
+    PokedexPanel_GetCurrentButtonXY(param0, &v0, &v1);
+    PokedexPanel_GetCurrentButtonWidthHeight(param0, &v2, &v3);
     ov21_021D25E8(param1, v0, v1, v2, v3);
 }
 
@@ -1069,7 +1068,7 @@ static void ov21_021D30D8(UnkStruct_ov21_021D2584 *param0, int param1, int param
     int v3;
 
     for (v3 = 0; v3 < 4; v3++) {
-        ov21_021D4FFC(v3, &v1, &v2, param1, param2, param3, param4);
+        PokedexPanel_GetCursorCornerPos(v3, &v1, &v2, param1, param2, param3, param4);
         v0.x = v1 << FX32_SHIFT;
         v0.y = (v2 << FX32_SHIFT) + (192 << FX32_SHIFT);
 

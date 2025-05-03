@@ -5,10 +5,10 @@
 
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
-#include "overlay021/ov21_021D4EE4.h"
 #include "overlay021/pokedex_app.h"
 #include "overlay021/pokedex_graphic_data.h"
 #include "overlay021/pokedex_main.h"
+#include "overlay021/pokedex_panel.h"
 #include "overlay021/pokedex_search.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_sort_data.h"
@@ -17,8 +17,6 @@
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
-#include "overlay021/struct_ov21_021D4EE4_decl.h"
-#include "overlay021/struct_ov21_021D4FE4.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
@@ -64,8 +62,8 @@ typedef struct {
     TouchScreenActions *unk_08;
     TouchScreenHitTable *unk_0C;
     UnkStruct_ov21_021D9D18 unk_10;
-    UnkStruct_ov21_021D4EE4 *unk_18;
-    UnkStruct_ov21_021D4FE4 *unk_1C;
+    PokedexPanelData *unk_18;
+    PokedexCursorData *unk_1C;
     int unk_20;
     int unk_24;
     int unk_28;
@@ -187,7 +185,7 @@ static void ov21_021DB428(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 static void ov21_021DB2FC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 static void ov21_021DB38C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, int param2, int param3);
 static void ov21_021DB468(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID);
-static void ov21_021DA534(UnkStruct_ov21_021D4FE4 *param0, int param1);
+static void ov21_021DA534(PokedexCursorData *param0, int param1);
 static void ov21_021DA5A8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 static void ov21_021DA6B0(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID);
 static void ov21_021DA7B0(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
@@ -765,7 +763,7 @@ static void ov21_021D9D18(u32 param0, enum TouchScreenButtonState param1, void *
 
     switch (param1) {
     case TOUCH_BUTTON_HELD:
-        ov21_021D4F20(v2->unk_18, 4, param0);
+        PokedexPanel_Move(v2->unk_18, 4, param0);
         v2->unk_80 = param0;
         v2->unk_94++;
         break;
@@ -867,7 +865,7 @@ static void ov21_021D9E90(u32 param0, enum TouchScreenButtonState param1, void *
 
     switch (param1) {
     case TOUCH_BUTTON_HELD:
-        ov21_021D4F20(v2->unk_18, 4, 8 + param0);
+        PokedexPanel_Move(v2->unk_18, 4, 8 + param0);
         v2->unk_84 = param0;
         break;
     default:
@@ -967,7 +965,7 @@ static void ov21_021D9FF8(u32 param0, enum TouchScreenButtonState param1, void *
 
     switch (param1) {
     case TOUCH_BUTTON_HELD:
-        ov21_021D4F20(v2->unk_18, 4, 6 + param0);
+        PokedexPanel_Move(v2->unk_18, 4, 6 + param0);
         v2->unk_84 = param0;
         break;
     default:
@@ -1078,7 +1076,7 @@ static void ov21_021DA18C(u32 param0, enum TouchScreenButtonState param1, void *
     switch (param1) {
     case TOUCH_BUTTON_HELD:
         if (v2->unk_90 == 0) {
-            ov21_021D4F20(v2->unk_18, 4, 6 + param0);
+            PokedexPanel_Move(v2->unk_18, 4, 6 + param0);
             v2->unk_84 = param0;
             v2->unk_90 = 1;
         }
@@ -1145,9 +1143,9 @@ static void ov21_021DA2C0(u32 param0, enum TouchScreenButtonState param1, void *
     case TOUCH_BUTTON_HELD:
         if (v2->unk_90 == 0) {
             if (param0 == 8) {
-                ov21_021D4F20(v2->unk_18, 4, 6 + param0 + 1);
+                PokedexPanel_Move(v2->unk_18, 4, 6 + param0 + 1);
             } else {
-                ov21_021D4F20(v2->unk_18, 4, 6 + param0);
+                PokedexPanel_Move(v2->unk_18, 4, 6 + param0);
             }
 
             v2->unk_84 = param0;
@@ -1326,7 +1324,7 @@ static void ov21_021DA514(u32 param0, enum TouchScreenButtonState param1, void *
 
     switch (param1) {
     case TOUCH_BUTTON_HELD:
-        ov21_021D4F20(v2->unk_18, 4, 6 + param0);
+        PokedexPanel_Move(v2->unk_18, 4, 6 + param0);
         v2->unk_84 = param0;
         break;
     default:
@@ -1334,7 +1332,7 @@ static void ov21_021DA514(u32 param0, enum TouchScreenButtonState param1, void *
     }
 }
 
-static void ov21_021DA534(UnkStruct_ov21_021D4FE4 *param0, int param1)
+static void ov21_021DA534(PokedexCursorData *param0, int param1)
 {
     int v0, v1;
     int v2, v3;
@@ -1378,14 +1376,14 @@ static void ov21_021DA534(UnkStruct_ov21_021D4FE4 *param0, int param1)
         break;
     }
 
-    ov21_021D4FE4(param0, v0, v1, v2, v3, 0, 0, param1);
+    PokedexPanel_InitCursorData(param0, v0, v1, v2, v3, 0, 0, param1);
 }
 
 static void ov21_021DA5A8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
     if (gSystem.heldKeys & PAD_BUTTON_A) {
         if (param0->unk_8C == 0) {
-            switch (ov21_021D4F7C(param0->unk_18)) {
+            switch (PokedexPanel_GetCurrentButton(param0->unk_18)) {
             case 1:
                 param0->unk_80 = 1;
                 param0->unk_2C[param0->unk_80] = 2;
@@ -1434,7 +1432,7 @@ static void ov21_021DA6B0(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
     int v4;
     int v5;
 
-    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D4FE4) * (3 * 6));
+    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(PokedexCursorData) * (3 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1489,22 +1487,22 @@ static void ov21_021DA6B0(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
             }
 
             if (v1 < (3 - 1)) {
-                ov21_021D4FE4(&param0->unk_1C[(v0 * 3) + v1], v2, v3, 60, 16, v4, v4, v5);
+                PokedexPanel_InitCursorData(&param0->unk_1C[(v0 * 3) + v1], v2, v3, 60, 16, v4, v4, v5);
             } else {
                 ov21_021DA534(&param0->unk_1C[(v0 * 3) + v1], v5);
             }
         }
     }
 
-    param0->unk_18 = ov21_021D4EE4(heapID);
-    ov21_021D4F04(param0->unk_18, param0->unk_1C, 3, 6);
+    param0->unk_18 = PokedexPanel_Alloc(heapID);
+    PokedexPanel_New(param0->unk_18, param0->unk_1C, 3, 6);
 }
 
 static void ov21_021DA7B0(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
     if (gSystem.heldKeys & PAD_BUTTON_A) {
         if (param0->unk_8C == 0) {
-            switch (ov21_021D4F7C(param0->unk_18)) {
+            switch (PokedexPanel_GetCurrentButton(param0->unk_18)) {
             case 8:
                 param0->unk_84 = 0;
                 param0->unk_44[param0->unk_84] = 2;
@@ -1545,7 +1543,7 @@ static void ov21_021DA888(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
     int v4;
     int v5;
 
-    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D4FE4) * (3 * 6));
+    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(PokedexCursorData) * (3 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1600,22 +1598,22 @@ static void ov21_021DA888(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
             }
 
             if (v1 < (3 - 1)) {
-                ov21_021D4FE4(&param0->unk_1C[(v0 * 3) + v1], v2, v3, 60, 16, v4, v4, v5);
+                PokedexPanel_InitCursorData(&param0->unk_1C[(v0 * 3) + v1], v2, v3, 60, 16, v4, v4, v5);
             } else {
                 ov21_021DA534(&param0->unk_1C[(v0 * 3) + v1], v5);
             }
         }
     }
 
-    param0->unk_18 = ov21_021D4EE4(heapID);
-    ov21_021D4F04(param0->unk_18, param0->unk_1C, 3, 6);
+    param0->unk_18 = PokedexPanel_Alloc(heapID);
+    PokedexPanel_New(param0->unk_18, param0->unk_1C, 3, 6);
 }
 
 static void ov21_021DA988(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
     if (gSystem.heldKeys & PAD_BUTTON_A) {
         if (param0->unk_8C == 0) {
-            switch (ov21_021D4F7C(param0->unk_18)) {
+            switch (PokedexPanel_GetCurrentButton(param0->unk_18)) {
             case 6:
                 param0->unk_84 = 0;
                 param0->unk_44[param0->unk_84] = 2;
@@ -1673,7 +1671,7 @@ static void ov21_021DAAD4(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
     int v6;
     int v7;
 
-    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D4FE4) * (3 * 6));
+    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(PokedexCursorData) * (3 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1747,22 +1745,22 @@ static void ov21_021DAAD4(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
             }
 
             if (v1 < (3 - 1)) {
-                ov21_021D4FE4(&param0->unk_1C[(v0 * 3) + v1], v2, v3, v4, v5, v6, v6, v7);
+                PokedexPanel_InitCursorData(&param0->unk_1C[(v0 * 3) + v1], v2, v3, v4, v5, v6, v6, v7);
             } else {
                 ov21_021DA534(&param0->unk_1C[(v0 * 3) + v1], v7);
             }
         }
     }
 
-    param0->unk_18 = ov21_021D4EE4(heapID);
-    ov21_021D4F04(param0->unk_18, param0->unk_1C, 3, 6);
+    param0->unk_18 = PokedexPanel_Alloc(heapID);
+    PokedexPanel_New(param0->unk_18, param0->unk_1C, 3, 6);
 }
 
 static void ov21_021DAC08(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
     if (gSystem.heldKeys & PAD_BUTTON_A) {
         if (param0->unk_8C == 0) {
-            switch (ov21_021D4F7C(param0->unk_18)) {
+            switch (PokedexPanel_GetCurrentButton(param0->unk_18)) {
             case 6:
                 param0->unk_84 = 0;
                 param0->unk_44[param0->unk_84] = 2;
@@ -1825,7 +1823,7 @@ static void ov21_021DAD74(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
     int v6, v7;
     int v8;
 
-    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D4FE4) * (3 * 6));
+    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(PokedexCursorData) * (3 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1913,22 +1911,22 @@ static void ov21_021DAD74(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
             }
 
             if (v1 < (3 - 1)) {
-                ov21_021D4FE4(&param0->unk_1C[(v0 * 3) + v1], v2, v3, v4, v5, v6, v7, v8);
+                PokedexPanel_InitCursorData(&param0->unk_1C[(v0 * 3) + v1], v2, v3, v4, v5, v6, v7, v8);
             } else {
                 ov21_021DA534(&param0->unk_1C[(v0 * 3) + v1], v8);
             }
         }
     }
 
-    param0->unk_18 = ov21_021D4EE4(heapID);
-    ov21_021D4F04(param0->unk_18, param0->unk_1C, 3, 6);
+    param0->unk_18 = PokedexPanel_Alloc(heapID);
+    PokedexPanel_New(param0->unk_18, param0->unk_1C, 3, 6);
 }
 
 static void ov21_021DAED8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
     if (gSystem.heldKeys & PAD_BUTTON_A) {
         if (param0->unk_8C == 0) {
-            switch (ov21_021D4F7C(param0->unk_18)) {
+            switch (PokedexPanel_GetCurrentButton(param0->unk_18)) {
             case 6:
                 param0->unk_84 = 0;
                 param0->unk_44[param0->unk_84] = 2;
@@ -1986,7 +1984,7 @@ static void ov21_021DB02C(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
     int v4;
     int v5;
 
-    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D4FE4) * (4 * 6));
+    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(PokedexCursorData) * (4 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -2041,22 +2039,22 @@ static void ov21_021DB02C(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
             }
 
             if (v1 < (4 - 1)) {
-                ov21_021D4FE4(&param0->unk_1C[(v0 * 4) + v1], v2, v3, 32, 20, v4, v4, v5);
+                PokedexPanel_InitCursorData(&param0->unk_1C[(v0 * 4) + v1], v2, v3, 32, 20, v4, v4, v5);
             } else {
                 ov21_021DA534(&param0->unk_1C[(v0 * 4) + v1], v5);
             }
         }
     }
 
-    param0->unk_18 = ov21_021D4EE4(heapID);
-    ov21_021D4F04(param0->unk_18, param0->unk_1C, 4, 6);
+    param0->unk_18 = PokedexPanel_Alloc(heapID);
+    PokedexPanel_New(param0->unk_18, param0->unk_1C, 4, 6);
 }
 
 static void ov21_021DB12C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
     if (gSystem.heldKeys & PAD_BUTTON_A) {
         if (param0->unk_8C == 0) {
-            switch (ov21_021D4F7C(param0->unk_18)) {
+            switch (PokedexPanel_GetCurrentButton(param0->unk_18)) {
             case 6:
                 param0->unk_84 = 0;
                 param0->unk_44[param0->unk_84] = 2;
@@ -2129,22 +2127,22 @@ static void ov21_021DB12C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 static void ov21_021DB2FC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
     if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        ov21_021D4F20(param0->unk_18, 0, 1);
+        PokedexPanel_Move(param0->unk_18, 0, 1);
         param0->unk_8C = 1;
     }
 
     if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        ov21_021D4F20(param0->unk_18, 0, -1);
+        PokedexPanel_Move(param0->unk_18, 0, -1);
         param0->unk_8C = 1;
     }
 
     if (gSystem.pressedKeys & PAD_KEY_UP) {
-        ov21_021D4F20(param0->unk_18, 1, -1);
+        PokedexPanel_Move(param0->unk_18, 1, -1);
         param0->unk_8C = 1;
     }
 
     if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-        ov21_021D4F20(param0->unk_18, 1, 1);
+        PokedexPanel_Move(param0->unk_18, 1, 1);
         param0->unk_8C = 1;
     }
 
@@ -2179,7 +2177,7 @@ static void ov21_021DB38C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 static void ov21_021DB3C8(UnkStruct_ov21_021D9B24 *param0)
 {
     Heap_FreeToHeap(param0->unk_1C);
-    ov21_021D4EFC(param0->unk_18);
+    PokedexPanel_Free(param0->unk_18);
     param0->unk_18 = NULL;
     param0->unk_1C = NULL;
 }
@@ -2235,7 +2233,7 @@ static void ov21_021DB428(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
         break;
     }
 
-    ov21_021D4F20(param0->unk_18, 4, v0);
+    PokedexPanel_Move(param0->unk_18, 4, v0);
 }
 
 static void ov21_021DB468(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)

@@ -789,7 +789,7 @@ Overlay overlay21
 	Object main.nef.p/src_overlay021_ov21_021D423C.c.o
 	Object main.nef.p/src_overlay021_ov21_021D4340.c.o
 	Object main.nef.p/src_overlay021_ov21_021D4C0C.c.o
-	Object main.nef.p/src_overlay021_ov21_021D4EE4.c.o
+	Object main.nef.p/src_overlay021_pokedex_panel.c.o
 	Object main.nef.p/src_overlay021_pokedex_field_map.c.o
 	Object main.nef.p/src_overlay021_pokedex_text.c.o
 	Object main.nef.p/src_overlay021_pokedex_enc_data.c.o
