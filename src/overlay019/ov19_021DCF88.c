@@ -942,7 +942,7 @@ static void ov19_021DD9DC(UnkStruct_ov19_021DCF88 *param0)
         Sprite_SetAnim(param0->unk_34[v3], ov19_021DD9B8(v3, v2));
     }
 
-    param0->unk_80 = ov19_021D5EC0(param0->unk_04);
+    param0->unk_80 = ov19_GetMarkingsButtonsScrollOffset(param0->unk_04);
 }
 
 static void ov19_021DDA7C(UnkStruct_ov19_021DCF88 *param0)

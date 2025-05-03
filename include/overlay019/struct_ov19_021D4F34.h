@@ -3,7 +3,7 @@
 
 typedef struct {
     u8 unk_00;
-    u8 unk_01;
+    u8 markingsButtonsScrollOffset;
     u8 unk_02;
     u8 padding_03;
     s16 unk_04;

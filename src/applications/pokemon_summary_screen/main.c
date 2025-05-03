@@ -45,11 +45,11 @@
 #include "string_template.h"
 #include "system.h"
 #include "system_flags.h"
+#include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
-#include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
@@ -233,8 +233,8 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     summaryScreen->narcPlPokeData = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     TryHideContestPages(summaryScreen);
     SetVRAMBanks();
     SetupBgs(summaryScreen->bgConfig);
@@ -349,7 +349,7 @@ static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state)
     PokemonSummaryScreen_FreeSpriteResources(summaryScreen);
     PokemonSummaryScreen_RemoveWindows(summaryScreen);
     TeardownBgs(summaryScreen->bgConfig);
-    sub_0201E530();
+    DisableTouchPad();
     VramTransfer_Free();
     FreeStrings(summaryScreen);
     NARC_dtor(summaryScreen->narcPlPokeData);

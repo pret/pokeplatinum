@@ -46,11 +46,11 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
@@ -211,8 +211,8 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     VramTransfer_New(64, HEAP_ID_110);
     SetAutorepeat(4, 8);
     ov117_022610D8(v0->unk_2C);
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     ov117_02260EC0(v0);
 
     v0->unk_24 = SpriteSystem_Alloc(HEAP_ID_110);
@@ -477,7 +477,7 @@ int ov117_02260C10(OverlayManager *param0, int *param1)
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
     ov117_02260EB8(v0->unk_98);
-    sub_0201E530();
+    DisableTouchPad();
     OverlayManager_FreeData(param0);
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);

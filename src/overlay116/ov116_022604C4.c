@@ -37,8 +37,8 @@
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "system.h"
+#include "touch_pad.h"
 #include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -94,8 +94,8 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     {
         u32 v3;
 
-        sub_0201E3D8();
-        v3 = sub_0201E450(4);
+        EnableTouchPad();
+        v3 = InitializeTouchPad(4);
     }
 
     ov116_022628B8(param0);
@@ -669,7 +669,7 @@ static void ov116_022610FC(UnkStruct_ov116_0226139C *param0)
 
     {
         u32 v0;
-        v0 = sub_0201E530();
+        v0 = DisableTouchPad();
     }
 
     LCRNG_SetSeed(param0->unk_78);

@@ -16,7 +16,6 @@
 #include "struct_defs/struct_0209C194.h"
 
 #include "overlay005/struct_ov5_02201C58.h"
-#include "overlay072/struct_ov72_0223E2A8.h"
 #include "overlay109/struct_ov109_021D1048.h"
 #include "overlay109/struct_ov109_021D17EC.h"
 #include "overlay115/camera_angle.h"
@@ -49,9 +48,9 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -161,7 +160,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    UnkStruct_ov72_0223E2A8 unk_10;
+    TouchPadDataBuffer unk_10;
 } UnkStruct_ov109_021D294C;
 
 typedef struct {
@@ -447,8 +446,8 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, HEAP_ID_95);
 
     VramTransfer_New(8, HEAP_ID_95);
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     ov109_021D1C28(v0);
     SetVBlankCallback(ov109_021D1C00, v0);
     ov109_021D29CC(v0);
@@ -491,7 +490,7 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov109_021D0F70 *v0 = OverlayManager_Data(param0);
 
-    if (sub_0201E530() != 1) {
+    if (DisableTouchPad() != 1) {
         GF_ASSERT(0);
     }
 
@@ -2202,12 +2201,12 @@ static void ov109_021D294C(UnkStruct_ov109_021D0F70 *param0)
     int v0 = 0, v1 = 4 - 1;
     UnkStruct_ov109_021D294C *v2 = &param0->unk_D2C;
 
-    sub_0201E564(&v2->unk_10, 2, 0);
+    WriteAutoSamplingDataToBuffer(&v2->unk_10, TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_NO_WRITE, 0);
 
     while (v1 >= 0) {
-        if (v2->unk_10.unk_02[v1].touch == 1) {
-            v2->unk_00 = v2->unk_10.unk_02[v1].x;
-            v2->unk_04 = v2->unk_10.unk_02[v1].y;
+        if (v2->unk_10.buffer[v1].touch == 1) {
+            v2->unk_00 = v2->unk_10.buffer[v1].x;
+            v2->unk_04 = v2->unk_10.buffer[v1].y;
             v0 = 1;
         }
 

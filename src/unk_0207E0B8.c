@@ -41,11 +41,11 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_0201E010.h"
-#include "unk_0201E3D8.h"
 #include "unk_02024220.h"
 #include "unk_0202602C.h"
 #include "unk_020393C8.h"
@@ -267,8 +267,8 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     sub_0207E8C0();
     sub_0207E918(v0->unk_00);
     sub_0207EB6C(v0, v1);
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_57, SEQ_NONE, 0);
     sub_02081A24(v0);
     sub_02082C2C(v0);
@@ -647,7 +647,7 @@ static int sub_0207E7E0(OverlayManager *param0, int *param1)
     sub_02082FF4(v0);
     sub_02081B90(v0);
     sub_0207EA24(v0->unk_00);
-    sub_0201E530();
+    DisableTouchPad();
     VramTransfer_Free();
 
     for (v1 = 0; v1 < 6; v1++) {

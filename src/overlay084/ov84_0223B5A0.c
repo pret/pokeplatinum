@@ -44,11 +44,11 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
 #include "unk_020683F4.h"
 #include "unk_0207CB08.h"
@@ -367,19 +367,19 @@ static const u16 Unk_ov84_02241096[] = {
 
 static const TouchScreenRect Unk_ov84_02240E98[] = {
     { 0x38, 0x67, 0x68, 0x97 },
-    { 0xFF, 0x0, 0x0, 0x0 }
+    { TOUCHSCREEN_TABLE_TERMINATOR, 0x0, 0x0, 0x0 }
 };
 
 static const TouchScreenHitTable Unk_ov84_02240EA8[] = {
-    { 0xFE, 0x80, 0x50, 0x1A },
-    { 0xFE, 0x80, 0x50, 0x40 },
-    { 0xFF, 0x0, 0x0, 0x0 }
+    { TOUCHSCREEN_USE_CIRCLE, 0x80, 0x50, 0x1A },
+    { TOUCHSCREEN_USE_CIRCLE, 0x80, 0x50, 0x40 },
+    { TOUCHSCREEN_TABLE_TERMINATOR, 0x0, 0x0, 0x0 }
 };
 
 static const TouchScreenHitTable Unk_ov84_02240EB4[] = {
-    { 0xFE, 0x80, 0x50, 0x10 },
-    { 0xFE, 0x80, 0x50, 0x50 },
-    { 0xFF, 0x0, 0x0, 0x0 }
+    { TOUCHSCREEN_USE_CIRCLE, 0x80, 0x50, 0x10 },
+    { TOUCHSCREEN_USE_CIRCLE, 0x80, 0x50, 0x50 },
+    { TOUCHSCREEN_TABLE_TERMINATOR, 0x0, 0x0, 0x0 }
 };
 
 int ov84_0223B5A0(OverlayManager *param0, int *param1)
@@ -420,8 +420,8 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     ov84_0223BC1C(v0);
     ov84_0223D0BC(v0);
 
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
 
     ov84_0223F040(v0);
     RenderControlFlags_SetSpeedUpOnTouch(1);
@@ -571,7 +571,7 @@ int ov84_0223B900(OverlayManager *param0, int *param1)
     ov84_0223F1DC(v0->unk_04);
     ov84_0223BBC4(v0->unk_00);
 
-    sub_0201E530();
+    DisableTouchPad();
     VramTransfer_Free();
 
     ov84_0223FB50(v0);
@@ -2932,7 +2932,7 @@ static void ov84_0223EB08(UnkStruct_ov84_0223B5A0 *param0, s8 param1)
 
 static BOOL ov84_0223EB54(void)
 {
-    int v0 = sub_020226DC(Unk_ov84_02240EA8);
+    int v0 = TouchScreen_CheckPressedHitTableID(Unk_ov84_02240EA8);
 
     if (v0 == 1) {
         return 1;
@@ -2943,7 +2943,7 @@ static BOOL ov84_0223EB54(void)
 
 static BOOL ov84_0223EB6C(void)
 {
-    int v0 = sub_02022684(Unk_ov84_02240EB4);
+    int v0 = TouchScreen_CheckHeldHitTableID(Unk_ov84_02240EB4);
 
     if (v0 == 1) {
         return 1;

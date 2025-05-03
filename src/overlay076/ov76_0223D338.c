@@ -39,11 +39,11 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "touch_screen.h"
+#include "touch_screen_actions.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_02015F84.h"
-#include "unk_02023FCC.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 #include "vram_transfer.h"
@@ -507,7 +507,7 @@ static void ov76_0223DA00(ManagedSprite *param0, FontOAM *param1)
     SysTask_Start(ov76_0223D9AC, v0, 1000);
 }
 
-void ov76_0223DA34(u32 param0, u32 param1, void *param2)
+void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_ov76_0223DE00 *v0 = (UnkStruct_ov76_0223DE00 *)param2;
 
@@ -517,7 +517,7 @@ void ov76_0223DA34(u32 param0, u32 param1, void *param2)
 
     switch (param0) {
     case 8:
-        if (param1 == 0) {
+        if (param1 == TOUCH_BUTTON_PRESSED) {
             if (v0->unk_418.unk_00 > 0) {
                 v0->unk_418.unk_00--;
             } else {
@@ -535,7 +535,7 @@ void ov76_0223DA34(u32 param0, u32 param1, void *param2)
         ov76_0223D94C(v0->unk_3E4.unk_00[8], param1);
         break;
     case 9:
-        if (param1 == 0) {
+        if (param1 == TOUCH_BUTTON_PRESSED) {
             v0->unk_418.unk_00++;
             v0->unk_418.unk_00 %= v0->unk_418.unk_04;
 
@@ -549,7 +549,7 @@ void ov76_0223DA34(u32 param0, u32 param1, void *param2)
         ov76_0223D94C(v0->unk_3E4.unk_00[9], param1);
         break;
     case 10:
-        if (param1 == 0) {
+        if (param1 == TOUCH_BUTTON_PRESSED) {
             if (v0->unk_3D4 != 5) {
                 v0->unk_3D4 = 5;
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
@@ -561,7 +561,7 @@ void ov76_0223DA34(u32 param0, u32 param1, void *param2)
         ov76_0223D94C(v0->unk_3E4.unk_00[10], param1);
         break;
     case 11:
-        if (param1 == 0) {
+        if (param1 == TOUCH_BUTTON_PRESSED) {
             if (v0->unk_3D4 != 6) {
                 v0->unk_3D4 = 6;
                 ov76_0223DCB8(v0, 0);
@@ -574,7 +574,7 @@ void ov76_0223DA34(u32 param0, u32 param1, void *param2)
         ov76_0223D94C(v0->unk_3E4.unk_00[11], param1);
         break;
     case 12:
-        if (param1 == 0) {
+        if (param1 == TOUCH_BUTTON_PRESSED) {
             if (v0->unk_3D4 != 7) {
                 v0->unk_3D4 = 7;
                 ov76_0223DCB8(v0, 0);
@@ -596,7 +596,7 @@ void ov76_0223DA34(u32 param0, u32 param1, void *param2)
     case 7: {
         int v1;
 
-        if (param1 == 0) {
+        if (param1 == TOUCH_BUTTON_PRESSED) {
             if (ov76_0223B2F8(v0) == 0) {
                 Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                 ov76_0223CA30(&v0->unk_D4.unk_18[0], 15);
@@ -629,7 +629,7 @@ void ov76_0223DA34(u32 param0, u32 param1, void *param2)
         int v2;
         int v3;
 
-        if (param1 == 0) {
+        if (param1 == TOUCH_BUTTON_PRESSED) {
             v2 = param0 - 13;
             ov76_0223B5C4(v0, param1, v2);
             v3 = sub_02098164(v0->unk_324[v2].unk_04);
@@ -684,7 +684,7 @@ void ov76_0223DCC0(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_324[v0 - 13].unk_0C = &param0->unk_D4.unk_FC[v0];
     }
 
-    param0->unk_D4.unk_F8 = sub_02023FCC(param0->unk_D4.unk_FC, 21, ov76_0223DA34, param0, HEAP_ID_53);
+    param0->unk_D4.unk_F8 = TouchScreenActions_RegisterHandler(param0->unk_D4.unk_FC, 21, ov76_0223DA34, param0, HEAP_ID_53);
 }
 
 void ov76_0223DD88(UnkStruct_ov76_0223DE00 *param0)
@@ -1127,7 +1127,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
     }
 
     if (param0->unk_D4.unk_00 == 0xFF) {
-        sub_0202404C(param0->unk_D4.unk_F8);
+        TouchScreenActions_HandleAction(param0->unk_D4.unk_F8);
     } else {
         u32 v11, v12;
         int v13;
