@@ -230,7 +230,7 @@ static void ov46_02256C20(UnkStruct_ov46_02256BCC *param0, const UnkStruct_ov46_
             param0->unk_34[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v0[v1], &param0->unk_8C);
         } else {
             param0->unk_34[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v0[v1], &param0->unk_78);
-            ov25_Set_charNo(param0->unk_34[v1], 80);
+            ov25_540_SetSpriteCharNo(param0->unk_34[v1], 80);
         }
     }
 
@@ -473,14 +473,14 @@ static void ov46_02257094(UnkStruct_ov46_02256BCC *param0, const UnkStruct_ov46_
 
 static void ov46_022570C4(UnkStruct_ov46_02256BCC *param0, BOOL param1)
 {
-    ov25_540_Hide(param0->unk_34[5], param1);
-    ov25_540_Hide(param0->unk_34[6], param1);
-    ov25_540_Hide(param0->unk_34[7], param1);
-    ov25_540_Hide(param0->unk_34[8], param1);
-    ov25_540_Hide(param0->unk_34[9], param1);
-    ov25_540_Hide(param0->unk_34[10], param1);
-    ov25_540_Hide(param0->unk_34[11], param1);
-    ov25_540_Hide(param0->unk_34[12], param1);
+    ov25_540_HideSprite(param0->unk_34[5], param1);
+    ov25_540_HideSprite(param0->unk_34[6], param1);
+    ov25_540_HideSprite(param0->unk_34[7], param1);
+    ov25_540_HideSprite(param0->unk_34[8], param1);
+    ov25_540_HideSprite(param0->unk_34[9], param1);
+    ov25_540_HideSprite(param0->unk_34[10], param1);
+    ov25_540_HideSprite(param0->unk_34[11], param1);
+    ov25_540_HideSprite(param0->unk_34[12], param1);
 }
 
 u32 ov46_0225710C(UnkStruct_ov46_02256BCC *param0)

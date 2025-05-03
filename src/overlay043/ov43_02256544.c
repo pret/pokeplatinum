@@ -147,7 +147,7 @@ static void ov43_022565B4(UnkStruct_ov43_02256544 *param0)
 
     for (v2 = 0; v2 < 5; v2++) {
         param0->unk_4C[v2] = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v1, &param0->unk_60);
-        ov25_SetPosition(param0->unk_4C[v2], ((44 + 8 * v2) << FX32_SHIFT), 48 << FX32_SHIFT);
+        ov25_540_SetSpritePosition(param0->unk_4C[v2], ((44 + 8 * v2) << FX32_SHIFT), 48 << FX32_SHIFT);
     }
 }
 

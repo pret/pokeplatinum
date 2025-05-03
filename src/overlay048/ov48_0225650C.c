@@ -276,7 +276,7 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
         ov25_Set_mosaic(param0->unk_128[v4], 1);
 
         if (v0->unk_94[v4] == 0) {
-            ov25_540_Hide(param0->unk_128[v4], 1);
+            ov25_540_HideSprite(param0->unk_128[v4], 1);
         }
     }
 
@@ -290,12 +290,12 @@ static void ov48_02256920(UnkStruct_ov48_0225650C *param0)
 
     for (v2 = 0; v2 < param0->unk_00->unk_08; v2++) {
         ov25_02255DBC(param0->unk_00->unk_0C[v2].unk_00, param0->unk_00->unk_0C[v2].unk_01, &v0, &v1);
-        ov25_SetPosition(param0->unk_28[v2], ((v0) << FX32_SHIFT), ((v1) << FX32_SHIFT));
-        ov25_540_Hide(param0->unk_28[v2], 0);
+        ov25_540_SetSpritePosition(param0->unk_28[v2], ((v0) << FX32_SHIFT), ((v1) << FX32_SHIFT));
+        ov25_540_HideSprite(param0->unk_28[v2], 0);
     }
 
     for (; v2 < 64; v2++) {
-        ov25_540_Hide(param0->unk_28[v2], 1);
+        ov25_540_HideSprite(param0->unk_28[v2], 1);
     }
 }
 
@@ -339,6 +339,6 @@ static void ov48_022569FC(SysTask *param0, void *param1)
         u32 v2, v3;
 
         ov25_02255DBC(v1->unk_00, v1->unk_04, &v2, &v3);
-        ov25_SetPosition(v0->unk_24, ((v2) << FX32_SHIFT), ((v3) << FX32_SHIFT));
+        ov25_540_SetSpritePosition(v0->unk_24, ((v2) << FX32_SHIFT), ((v3) << FX32_SHIFT));
     }
 }

@@ -24,10 +24,10 @@ struct Ov25_540_AnimatedSpriteData_t {
     MtxFx22 affineTransformation;
     union {
         struct {
-            u16 unk_84_val1_unk_00;
+            u16 priority;
             u16 oamPriority;
         };
-        u32 unk_84_val2;
+        u32 combinedPriority;
     };
     u16 cParam;
     u8 isHidden;
@@ -52,76 +52,76 @@ struct Ov25_540_AnimationManager_t {
 
 static void ov25_540_PopulateAnimatedSpritePtrArray(Ov25_540_AnimatedSpriteData **param0, Ov25_540_AnimatedSpriteData *param1, u32 param2);
 static void ov25_540_UnlinkAnimatedSprite(Ov25_540_AnimatedSpriteData *param0);
-static Ov25_540_AnimatedSpriteData *ov25_GetNextUnusedElemPointer(Ov25_540_AnimationManager *param0);
+static Ov25_540_AnimatedSpriteData *ov25_540_GetNextUnusedAnimSlot(Ov25_540_AnimationManager *param0);
 static void ov25_540_MarkAnimatedSpriteUnused(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *param1);
-static void ov25_SortElemIntoList(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *param1);
+static void ov25_540_SortAnimIntoList(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *param1);
 static void ov25_540_RemoveAnimatedSpriteFromList(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *param1);
 
-Ov25_540_AnimationManager *ov25_SetupDataStructure(NNSG2dOamManagerInstance *oamMan, u32 heapID)
+Ov25_540_AnimationManager *ov25_540_SetupAnimationManager(NNSG2dOamManagerInstance *oamMan, u32 heapID)
 {
-    Ov25_540_AnimationManager *dataStructure;
+    Ov25_540_AnimationManager *animMan;
     BOOL success = FALSE;
 
     do {
-        dataStructure = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_AnimationManager));
+        animMan = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_AnimationManager));
 
-        if (dataStructure == NULL) {
+        if (animMan == NULL) {
             break;
         }
 
-        dataStructure->oam = NULL;
-        dataStructure->animatedSpritePool = NULL;
-        dataStructure->animatedSpritePtrArray = NULL;
-        dataStructure->oamMan = oamMan;
-        dataStructure->heapID = heapID;
-        dataStructure->numSlots = NNS_G2dGetOamManagerOamCapacity(oamMan);
-        dataStructure->oam = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * dataStructure->numSlots);
+        animMan->oam = NULL;
+        animMan->animatedSpritePool = NULL;
+        animMan->animatedSpritePtrArray = NULL;
+        animMan->oamMan = oamMan;
+        animMan->heapID = heapID;
+        animMan->numSlots = NNS_G2dGetOamManagerOamCapacity(oamMan);
+        animMan->oam = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * animMan->numSlots);
 
-        if (dataStructure->oam == NULL) {
+        if (animMan->oam == NULL) {
             break;
         }
 
-        dataStructure->animatedSpritePool = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_AnimatedSpriteData) * dataStructure->numSlots);
+        animMan->animatedSpritePool = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_AnimatedSpriteData) * animMan->numSlots);
 
-        if (dataStructure->animatedSpritePool == NULL) {
+        if (animMan->animatedSpritePool == NULL) {
             break;
         }
 
-        dataStructure->animatedSpritePtrArray = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_AnimatedSpriteData *) * dataStructure->numSlots);
+        animMan->animatedSpritePtrArray = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_AnimatedSpriteData *) * animMan->numSlots);
 
-        if (dataStructure->animatedSpritePtrArray == NULL) {
+        if (animMan->animatedSpritePtrArray == NULL) {
             break;
         }
 
-        ov25_540_PopulateAnimatedSpritePtrArray(dataStructure->animatedSpritePtrArray, dataStructure->animatedSpritePool, dataStructure->numSlots);
+        ov25_540_PopulateAnimatedSpritePtrArray(animMan->animatedSpritePtrArray, animMan->animatedSpritePool, animMan->numSlots);
 
-        dataStructure->nextUnusedSlotIdx = 0;
-        dataStructure->lastAnimatedSprite = NULL;
+        animMan->nextUnusedSlotIdx = 0;
+        animMan->lastAnimatedSprite = NULL;
 
         success = TRUE;
     } while (FALSE);
 
     if (success == FALSE) {
-        if (dataStructure != NULL) {
-            if (dataStructure->oam != NULL) {
-                Heap_FreeToHeapExplicit(heapID, dataStructure->oam);
+        if (animMan != NULL) {
+            if (animMan->oam != NULL) {
+                Heap_FreeToHeapExplicit(heapID, animMan->oam);
             }
 
-            if (dataStructure->animatedSpritePool != NULL) {
-                Heap_FreeToHeapExplicit(heapID, dataStructure->animatedSpritePool);
+            if (animMan->animatedSpritePool != NULL) {
+                Heap_FreeToHeapExplicit(heapID, animMan->animatedSpritePool);
             }
 
-            if (dataStructure->animatedSpritePtrArray != NULL) {
-                Heap_FreeToHeapExplicit(heapID, dataStructure->animatedSpritePtrArray);
+            if (animMan->animatedSpritePtrArray != NULL) {
+                Heap_FreeToHeapExplicit(heapID, animMan->animatedSpritePtrArray);
             }
 
-            Heap_FreeToHeapExplicit(heapID, dataStructure);
+            Heap_FreeToHeapExplicit(heapID, animMan);
         }
 
         return NULL;
     }
 
-    return dataStructure;
+    return animMan;
 }
 
 void ov25_540_FreeAnimationManager(Ov25_540_AnimationManager *animMan)
@@ -143,79 +143,79 @@ void ov25_540_FreeAnimationManager(Ov25_540_AnimationManager *animMan)
     }
 }
 
-void ov25_MainFunc(Ov25_540_AnimationManager *param0)
+void ov25_540_UpdateAnimations(Ov25_540_AnimationManager *animMan)
 {
-    if (param0->nextUnusedSlotIdx) {
-        Ov25_540_AnimatedSpriteData *elem = param0->lastAnimatedSprite;
-        GXOamAttr *oam = param0->oam;
-        s32 numSlots = param0->numSlots;
+    if (animMan->nextUnusedSlotIdx) {
+        Ov25_540_AnimatedSpriteData *animatedSprite = animMan->lastAnimatedSprite;
+        GXOamAttr *oam = animMan->oam;
+        s32 numSlots = animMan->numSlots;
         u32 numSlotsUsed;
 
-        while (elem != NULL) {
-            NNS_G2dTickCellAnimation(&elem->spriteAnimation, FX32_ONE * 2); // Advance cell animation time
+        while (animatedSprite != NULL) {
+            NNS_G2dTickCellAnimation(&animatedSprite->spriteAnimation, FX32_ONE * 2); // Advance cell animation time
 
-            if (elem->isHidden == FALSE) {
-                const NNSG2dSRTControl *srtCtrl = &(elem->spriteAnimation.srtCtrl);
+            if (animatedSprite->isHidden == FALSE) {
+                const NNSG2dSRTControl *srtCtrl = &(animatedSprite->spriteAnimation.srtCtrl);
                 NNSG2dFVec2 position;
 
-                position.x = elem->position.x + (fx32)(srtCtrl->srtData.trans.x << FX32_SHIFT);
-                position.y = elem->position.y + (fx32)(srtCtrl->srtData.trans.y << FX32_SHIFT);
+                position.x = animatedSprite->position.x + (fx32)(srtCtrl->srtData.trans.x << FX32_SHIFT);
+                position.y = animatedSprite->position.y + (fx32)(srtCtrl->srtData.trans.y << FX32_SHIFT);
 
-                if (elem->hasAffineTransform == FALSE) {
-                    numSlotsUsed = NNS_G2dMakeCellToOams(oam, numSlots, NNS_G2dGetCellAnimationCurrentCell(&elem->spriteAnimation), NULL, &(position), 0, FALSE);
+                if (animatedSprite->hasAffineTransform == FALSE) {
+                    numSlotsUsed = NNS_G2dMakeCellToOams(oam, numSlots, NNS_G2dGetCellAnimationCurrentCell(&animatedSprite->spriteAnimation), NULL, &(position), 0, FALSE);
                 } else {
                     u16 affineIdx;
 
-                    MTX_Identity22(elem->affineTransformationPtr); // Create 2x2 identity matrix
+                    MTX_Identity22(animatedSprite->affineTransformationPtr); // Create 2x2 identity matrix
 
                     // Apply rotation
                     if (srtCtrl->srtData.SRT_EnableFlag & NNS_G2D_AFFINEENABLE_ROTATE) {
-                        u16 rotZ = srtCtrl->srtData.rotZ + elem->rotZ;
-                        MTX_Rot22(elem->affineTransformationPtr, FX_SinIdx(rotZ), FX_CosIdx(rotZ));
-                    } else if (elem->rotZ) {
-                        MTX_Rot22(elem->affineTransformationPtr, FX_SinIdx(elem->rotZ), FX_CosIdx(elem->rotZ));
+                        u16 rotZ = srtCtrl->srtData.rotZ + animatedSprite->rotZ;
+                        MTX_Rot22(animatedSprite->affineTransformationPtr, FX_SinIdx(rotZ), FX_CosIdx(rotZ));
+                    } else if (animatedSprite->rotZ) {
+                        MTX_Rot22(animatedSprite->affineTransformationPtr, FX_SinIdx(animatedSprite->rotZ), FX_CosIdx(animatedSprite->rotZ));
                     }
 
                     // Apply scale
                     if (srtCtrl->srtData.SRT_EnableFlag & NNS_G2D_AFFINEENABLE_SCALE) {
-                        MTX_ScaleApply22(elem->affineTransformationPtr, elem->affineTransformationPtr, FX_Inv(srtCtrl->srtData.scale.x), FX_Inv(srtCtrl->srtData.scale.y));
+                        MTX_ScaleApply22(animatedSprite->affineTransformationPtr, animatedSprite->affineTransformationPtr, FX_Inv(srtCtrl->srtData.scale.x), FX_Inv(srtCtrl->srtData.scale.y));
                     }
 
-                    affineIdx = NNS_G2dEntryOamManagerAffine(param0->oamMan, elem->affineTransformationPtr);
-                    numSlotsUsed = NNS_G2dMakeCellToOams(oam, numSlots, NNS_G2dGetCellAnimationCurrentCell(&elem->spriteAnimation), elem->affineTransformationPtr, &(position), affineIdx, TRUE);
+                    affineIdx = NNS_G2dEntryOamManagerAffine(animMan->oamMan, animatedSprite->affineTransformationPtr);
+                    numSlotsUsed = NNS_G2dMakeCellToOams(oam, numSlots, NNS_G2dGetCellAnimationCurrentCell(&animatedSprite->spriteAnimation), animatedSprite->affineTransformationPtr, &(position), affineIdx, TRUE);
                 }
 
                 numSlots -= numSlotsUsed;
 
                 while (numSlotsUsed--) {
-                    oam->priority = elem->oamPriority;
-                    oam->cParam += elem->cParam;
-                    oam->charNo += elem->charNo;
-                    oam->flipH ^= elem->flipH;
-                    oam->flipV ^= elem->flipV;
-                    oam->mosaic ^= elem->mosaic;
+                    oam->priority = animatedSprite->oamPriority;
+                    oam->cParam += animatedSprite->cParam;
+                    oam->charNo += animatedSprite->charNo;
+                    oam->flipH ^= animatedSprite->flipH;
+                    oam->flipV ^= animatedSprite->flipV;
+                    oam->mosaic ^= animatedSprite->mosaic;
                     oam++;
                 }
             }
 
-            elem = elem->previousAnimatedSprite;
+            animatedSprite = animatedSprite->previousAnimatedSprite;
         }
 
-        if (oam > param0->oam) {
-            NNS_G2dEntryOamManagerOam(param0->oamMan, param0->oam, oam - param0->oam);
+        if (oam > animMan->oam) {
+            NNS_G2dEntryOamManagerOam(animMan->oamMan, animMan->oam, oam - animMan->oam);
         }
     }
 }
 
 Ov25_540_AnimatedSpriteData *ov25_540_SetupNewAnimatedSprite(Ov25_540_AnimationManager *animMan, const ov25_AnimationData *animData, const ov25_SpriteData *spriteData)
 {
-    Ov25_540_AnimatedSpriteData *animatedSprite = ov25_GetNextUnusedElemPointer(animMan);
+    Ov25_540_AnimatedSpriteData *animatedSprite = ov25_540_GetNextUnusedAnimSlot(animMan);
 
     if (animatedSprite != NULL) {
         animatedSprite->oamPriority = animData->oamPriority;
-        animatedSprite->unk_84_val1_unk_00 = animData->unk_0C;
+        animatedSprite->priority = animData->unk_0C;
 
-        ov25_SortElemIntoList(animMan, animatedSprite);
+        ov25_540_SortAnimIntoList(animMan, animatedSprite);
 
         animatedSprite->sprite = spriteData->sprite;
         animatedSprite->anim = spriteData->anim;
@@ -248,40 +248,40 @@ void ov25_540_UpdateAnimationIdx(Ov25_540_AnimatedSpriteData *animatedSprite, u3
     NNS_G2dInitCellAnimation(&(animatedSprite->spriteAnimation), NNS_G2dGetAnimSequenceByIdx(animatedSprite->anim, animIdx), animatedSprite->sprite);
 }
 
-BOOL ov25_AnimNotPlaying(Ov25_540_AnimatedSpriteData *param0)
+BOOL ov25_540_AnimationInactive(Ov25_540_AnimatedSpriteData *animatedSprite)
 {
-    NNSG2dAnimController *animCtrl = NNS_G2dGetCellAnimationAnimCtrl(&(param0->spriteAnimation));
+    NNSG2dAnimController *animCtrl = NNS_G2dGetCellAnimationAnimCtrl(&(animatedSprite->spriteAnimation));
     return NNS_G2dIsAnimCtrlActive(animCtrl) == FALSE;
 }
 
-void ov25_540_translateSprite(Ov25_540_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y)
+void ov25_540_TranslateSprite(Ov25_540_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y)
 {
     animatedSprite->position.x += x;
     animatedSprite->position.y += y;
 }
 
-void ov25_SetPosition(Ov25_540_AnimatedSpriteData *param0, fx32 x, fx32 y)
+void ov25_540_SetSpritePosition(Ov25_540_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y)
 {
-    param0->position.x = x;
-    param0->position.y = y;
+    animatedSprite->position.x = x;
+    animatedSprite->position.y = y;
 }
 
-void ov25_GetPosition(const Ov25_540_AnimatedSpriteData *param0, fx32 *x, fx32 *y)
+void ov25_540_GetSpritePosition(const Ov25_540_AnimatedSpriteData *animatedSprite, fx32 *x, fx32 *y)
 {
-    *x = param0->position.x;
-    *y = param0->position.y;
+    *x = animatedSprite->position.x;
+    *y = animatedSprite->position.y;
 }
 
-void ov25_540_Hide(Ov25_540_AnimatedSpriteData *param0, BOOL param1)
+void ov25_540_HideSprite(Ov25_540_AnimatedSpriteData *animatedSprite, BOOL isHidden)
 {
-    param0->isHidden = param1;
+    animatedSprite->isHidden = isHidden;
 }
 
-void ov25_UpdateElem_unk_84_00(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *param1, u32 param2)
+void ov25_540_SetSpritePrority(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite, u32 priority)
 {
-    ov25_540_RemoveAnimatedSpriteFromList(param0, param1);
-    param1->unk_84_val1_unk_00 = param2;
-    ov25_SortElemIntoList(param0, param1);
+    ov25_540_RemoveAnimatedSpriteFromList(animMan, animatedSprite);
+    animatedSprite->priority = priority;
+    ov25_540_SortAnimIntoList(animMan, animatedSprite);
 }
 
 void ov25_540_SetCParam(Ov25_540_AnimatedSpriteData *animatedSprite, u32 value)
@@ -289,19 +289,19 @@ void ov25_540_SetCParam(Ov25_540_AnimatedSpriteData *animatedSprite, u32 value)
     animatedSprite->cParam = value;
 }
 
-void ov25_Set_charNo(Ov25_540_AnimatedSpriteData *param0, u32 value)
+void ov25_540_SetSpriteCharNo(Ov25_540_AnimatedSpriteData *animatedSprite, u32 value)
 {
-    param0->charNo = value;
+    animatedSprite->charNo = value;
 }
 
-void ov25_Set_mosaic(Ov25_540_AnimatedSpriteData *param0, BOOL value)
+void ov25_Set_mosaic(Ov25_540_AnimatedSpriteData *animatedSprite, BOOL isMosaic)
 {
-    param0->mosaic = value;
+    animatedSprite->mosaic = isMosaic;
 }
 
-void ov25_Set_ElemRotZ(Ov25_540_AnimatedSpriteData *param0, u16 value)
+void ov25_540_SetSpriteRotation(Ov25_540_AnimatedSpriteData *animatedSprite, u16 rotation)
 {
-    param0->rotZ = value;
+    animatedSprite->rotZ = rotation;
 }
 
 BOOL ov25_540_LoadSpriteFromNARC(ov25_SpriteData *spriteData, enum NarcID narcId, u32 cellId, u32 animId, enum HeapId heapId)
@@ -352,10 +352,10 @@ static void ov25_540_UnlinkAnimatedSprite(Ov25_540_AnimatedSpriteData *animatedS
     animatedSprite->nextAnimatedSprite = NULL;
 }
 
-static Ov25_540_AnimatedSpriteData *ov25_GetNextUnusedElemPointer(Ov25_540_AnimationManager *param0)
+static Ov25_540_AnimatedSpriteData *ov25_540_GetNextUnusedAnimSlot(Ov25_540_AnimationManager *animMan)
 {
-    if (param0->nextUnusedSlotIdx < param0->numSlots) {
-        return param0->animatedSpritePtrArray[param0->nextUnusedSlotIdx++];
+    if (animMan->nextUnusedSlotIdx < animMan->numSlots) {
+        return animMan->animatedSpritePtrArray[animMan->nextUnusedSlotIdx++];
     }
 
     return NULL;
@@ -373,41 +373,41 @@ static void ov25_540_MarkAnimatedSpriteUnused(Ov25_540_AnimationManager *animMan
     animMan->animatedSpritePtrArray[animMan->nextUnusedSlotIdx] = animatedSprite;
 }
 
-static void ov25_SortElemIntoList(Ov25_540_AnimationManager *param0, Ov25_540_AnimatedSpriteData *newElem)
+static void ov25_540_SortAnimIntoList(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite)
 {
-    if (param0->lastAnimatedSprite == NULL) {
-        param0->lastAnimatedSprite = newElem;
-        newElem->previousAnimatedSprite = NULL;
-        newElem->nextAnimatedSprite = NULL;
+    if (animMan->lastAnimatedSprite == NULL) {
+        animMan->lastAnimatedSprite = animatedSprite;
+        animatedSprite->previousAnimatedSprite = NULL;
+        animatedSprite->nextAnimatedSprite = NULL;
     } else {
-        Ov25_540_AnimatedSpriteData *prevElem = param0->lastAnimatedSprite;
+        Ov25_540_AnimatedSpriteData *prevAnimSlot = animMan->lastAnimatedSprite;
 
         while (TRUE) {
-            if (newElem->unk_84_val2 < prevElem->unk_84_val2) {
-                if (prevElem == param0->lastAnimatedSprite) {
-                    param0->lastAnimatedSprite = newElem;
+            if (animatedSprite->combinedPriority < prevAnimSlot->combinedPriority) {
+                if (prevAnimSlot == animMan->lastAnimatedSprite) {
+                    animMan->lastAnimatedSprite = animatedSprite;
                 }
 
-                newElem->nextAnimatedSprite = prevElem->nextAnimatedSprite;
+                animatedSprite->nextAnimatedSprite = prevAnimSlot->nextAnimatedSprite;
 
-                if (newElem->nextAnimatedSprite) {
-                    newElem->nextAnimatedSprite->previousAnimatedSprite = newElem;
+                if (animatedSprite->nextAnimatedSprite) {
+                    animatedSprite->nextAnimatedSprite->previousAnimatedSprite = animatedSprite;
                 }
 
-                newElem->previousAnimatedSprite = prevElem;
-                prevElem->nextAnimatedSprite = newElem;
+                animatedSprite->previousAnimatedSprite = prevAnimSlot;
+                prevAnimSlot->nextAnimatedSprite = animatedSprite;
 
                 break;
             }
 
-            if (prevElem->previousAnimatedSprite == NULL) {
-                prevElem->previousAnimatedSprite = newElem;
-                newElem->nextAnimatedSprite = prevElem;
-                newElem->previousAnimatedSprite = NULL;
+            if (prevAnimSlot->previousAnimatedSprite == NULL) {
+                prevAnimSlot->previousAnimatedSprite = animatedSprite;
+                animatedSprite->nextAnimatedSprite = prevAnimSlot;
+                animatedSprite->previousAnimatedSprite = NULL;
 
                 break;
             } else {
-                prevElem = prevElem->previousAnimatedSprite;
+                prevAnimSlot = prevAnimSlot->previousAnimatedSprite;
             }
         }
     }

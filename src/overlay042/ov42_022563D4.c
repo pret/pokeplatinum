@@ -215,7 +215,7 @@ static void ov42_022565C4(SysTask *param0, void *param1)
             }
         }
 
-        ov25_SetPosition(v0->unk_24, (112 << FX32_SHIFT), v0->unk_3C);
+        ov25_540_SetSpritePosition(v0->unk_24, (112 << FX32_SHIFT), v0->unk_3C);
         break;
     case 2:
         ov42_022564DC(param1);

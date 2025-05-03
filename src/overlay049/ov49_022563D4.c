@@ -68,7 +68,7 @@ static void ov49_02256410(UnkStruct_ov49_022563D4 *param0, const UnkStruct_ov49_
 
     ov25_540_LoadSpriteFromNARC(&param0->unk_28, 12, 67, 68, 8);
     param0->unk_24 = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &param0->unk_28);
-    ov25_SetPosition(param0->unk_24, (56 + (16 * param1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
+    ov25_540_SetSpritePosition(param0->unk_24, (56 + (16 * param1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
 }
 
 static void ov49_02256464(UnkStruct_ov49_022563D4 *param0)
@@ -172,6 +172,6 @@ static void ov49_02256594(SysTask *param0, void *param1)
 
     PoketchSystem_PlaySoundEffect(1635);
     Poketch_LoadActivePalette(0, 0);
-    ov25_SetPosition(v0->unk_24, (56 + (16 * v1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
+    ov25_540_SetSpritePosition(v0->unk_24, (56 + (16 * v1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
     ov49_022564D0(param1);
 }

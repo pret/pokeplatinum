@@ -158,10 +158,10 @@ static void ov53_02256568(SysTask *param0, void *param1)
     } else {
         int v3;
 
-        ov25_540_Hide(v0->unk_24[0], 1);
+        ov25_540_HideSprite(v0->unk_24[0], 1);
 
         for (v3 = 0; v3 < 3; v3++) {
-            ov25_540_Hide(v0->unk_24[4 + v3], 1);
+            ov25_540_HideSprite(v0->unk_24[4 + v3], 1);
         }
     }
 
@@ -181,7 +181,7 @@ static void ov53_022565E0(SysTask *param0, void *param1)
     switch (v2) {
     case 0: {
         v0->unk_9C = v0->unk_24[1 + v1->unk_24];
-        ov25_GetPosition(v0->unk_9C, &(v0->unk_A4), &(v0->unk_A0));
+        ov25_540_GetSpritePosition(v0->unk_9C, &(v0->unk_A4), &(v0->unk_A0));
     }
 
         PoketchSystem_PlayCry(v1->unk_08[v1->unk_24], 0);
@@ -194,12 +194,12 @@ static void ov53_022565E0(SysTask *param0, void *param1)
 
         v3 = ((((180 << FX32_SHIFT) / 16) * v2) + FX32_HALF) >> FX32_SHIFT;
         v4 = CalcSineDegrees(v3) * 24;
-        ov25_SetPosition(v0->unk_9C, v0->unk_A4, v0->unk_A0 - v4);
+        ov25_540_SetSpritePosition(v0->unk_9C, v0->unk_A4, v0->unk_A0 - v4);
     }
         PoketchTask_IncrementState(param1);
         break;
     case 16:
-        ov25_SetPosition(v0->unk_9C, v0->unk_A4, v0->unk_A0);
+        ov25_540_SetSpritePosition(v0->unk_9C, v0->unk_A4, v0->unk_A0);
         ov25_540_UpdateAnimationIdx(v0->unk_9C, 4);
         ov53_0225649C(param1);
         break;
@@ -368,7 +368,7 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
 
     for (v3 = 0; v3 < 4; v3++) {
         param0->unk_24[0 + v3] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0[v3], &param0->unk_78);
-        ov25_Set_charNo(param0->unk_24[0 + v3], v1 + v3 * 32);
+        ov25_540_SetSpriteCharNo(param0->unk_24[0 + v3], v1 + v3 * 32);
 
         for (v4 = 0; v4 < 3; v4++) {
             v5 = 4 + v3 * 3 + v4;
@@ -376,11 +376,11 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
         }
 
         if (v2[v3] == 0) {
-            ov25_540_Hide(param0->unk_24[0 + v3], 1);
+            ov25_540_HideSprite(param0->unk_24[0 + v3], 1);
 
             for (v4 = 0; v4 < 3; v4++) {
                 v5 = 4 + v3 * 3 + v4;
-                ov25_540_Hide(param0->unk_24[v5], 1);
+                ov25_540_HideSprite(param0->unk_24[v5], 1);
             }
         } else {
             ov25_540_SetCParam(param0->unk_24[0 + v3], 1 + PokeIconPaletteIndex(v2[v3], 0, 0));
@@ -420,7 +420,7 @@ static void ov53_02256874(Ov25_540_AnimatedSpriteData **param0, u32 param1)
             ov25_540_UpdateAnimationIdx(*param0, v1);
             v3 = 1;
         } else {
-            ov25_540_Hide(*param0, 1);
+            ov25_540_HideSprite(*param0, 1);
         }
 
         param1 -= (v1 * v2);

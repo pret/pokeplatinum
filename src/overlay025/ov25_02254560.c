@@ -45,7 +45,7 @@ typedef struct {
     BOOL animationLoaded;
     Ov25_540_AnimationManager *animMan;
     ov25_SpriteData spriteData;
-    Ov25_540_AnimatedSpriteData *animatedDigits[2]; // anlimation elements
+    Ov25_540_AnimatedSpriteData *animatedDigits[2];
 } ov25_560_AppCounterAnimationData;
 
 struct Ov25_560_TaskData_t {
@@ -112,7 +112,7 @@ BOOL ov25_560_Main(Ov25_560_TaskData **taskDataPtr, const Ov25_560_ConstTaskData
 
         newTaskData->oamMan = oamMan;
         NNS_G2dResetOamManagerBuffer(newTaskData->oamMan);
-        newTaskData->animMan = ov25_SetupDataStructure(newTaskData->oamMan, HEAP_ID_POKETCH_MAIN);
+        newTaskData->animMan = ov25_540_SetupAnimationManager(newTaskData->oamMan, HEAP_ID_POKETCH_MAIN);
 
         if (newTaskData->animMan == NULL) {
             Heap_FreeToHeap(*taskDataPtr);
@@ -147,7 +147,7 @@ BOOL ov25_560_Main(Ov25_560_TaskData **taskDataPtr, const Ov25_560_ConstTaskData
 static void ov25_560_TaskCallback(SysTask *task, void *data)
 {
     Ov25_560_TaskData *taskData = data;
-    ov25_MainFunc(taskData->animMan);
+    ov25_540_UpdateAnimations(taskData->animMan);
 }
 
 Ov25_540_AnimationManager *Poketch_GetAnimationManager(void)
@@ -596,7 +596,7 @@ static void ov25_560_LoadAppCounter(Ov25_560_TaskData *taskData, ov25_560_AppCou
             return;
         }
 
-        ov25_540_translateSprite(appCounterAnim->animatedDigits[1], 16 * FX32_ONE, 0);
+        ov25_540_TranslateSprite(appCounterAnim->animatedDigits[1], 16 * FX32_ONE, 0);
         ov25_540_SetCParam(appCounterAnim->animatedDigits[0], 15);
         ov25_540_SetCParam(appCounterAnim->animatedDigits[1], 15);
 

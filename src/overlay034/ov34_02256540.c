@@ -93,11 +93,11 @@ static BOOL ov34_02256588(UnkStruct_ov34_02256540 *param0)
 
         Graphics_LoadObjectTiles(12, 42, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
         param0->unk_34 = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v0, &param0->unk_58);
-        ov25_540_Hide(param0->unk_34, 1);
+        ov25_540_HideSprite(param0->unk_34, 1);
 
         for (v2 = 0; v2 < 8; v2++) {
             param0->unk_38[v2] = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v1, &param0->unk_58);
-            ov25_540_Hide(param0->unk_38[v2], 1);
+            ov25_540_HideSprite(param0->unk_38[v2], 1);
         }
 
         return 1;
@@ -239,8 +239,8 @@ static void ov34_022567D4(SysTask *param0, void *param1)
 
     switch (PoketchTask_GetState(param1)) {
     case 0:
-        ov25_SetPosition(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
-        ov25_540_Hide(v0->unk_34, 0);
+        ov25_540_SetSpritePosition(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
+        ov25_540_HideSprite(v0->unk_34, 0);
         ov25_540_UpdateAnimationIdx(v0->unk_34, 0);
         PoketchTask_IncrementState(param1);
         break;
@@ -251,7 +251,7 @@ static void ov34_022567D4(SysTask *param0, void *param1)
             break;
         }
 
-        if (ov25_AnimNotPlaying(v0->unk_34)) {
+        if (ov25_540_AnimationInactive(v0->unk_34)) {
             ov34_022569E8(v0);
             ov34_0225667C(param1);
         }
@@ -266,9 +266,9 @@ static void ov34_0225684C(SysTask *param0, void *param1)
 
     switch (PoketchTask_GetState(param1)) {
     case 0:
-        ov25_SetPosition(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
+        ov25_540_SetSpritePosition(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
         ov25_540_UpdateAnimationIdx(v0->unk_34, 0);
-        ov25_540_Hide(v0->unk_34, 0);
+        ov25_540_HideSprite(v0->unk_34, 0);
         PoketchTask_IncrementState(param1);
         break;
     case 1:
@@ -278,7 +278,7 @@ static void ov34_0225684C(SysTask *param0, void *param1)
             break;
         }
 
-        if (ov25_AnimNotPlaying(v0->unk_34)) {
+        if (ov25_540_AnimationInactive(v0->unk_34)) {
             ov25_540_UpdateAnimationIdx(v0->unk_34, 0);
         }
         break;
@@ -293,9 +293,9 @@ static void ov34_022568C0(SysTask *param0, void *param1)
     switch (PoketchTask_GetState(param1)) {
     case 0:
         ov34_02256974(v0, v1);
-        ov25_SetPosition(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
+        ov25_540_SetSpritePosition(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
         ov25_540_UpdateAnimationIdx(v0->unk_34, 0);
-        ov25_540_Hide(v0->unk_34, 0);
+        ov25_540_HideSprite(v0->unk_34, 0);
         PoketchTask_IncrementState(param1);
         break;
     case 1:
@@ -305,7 +305,7 @@ static void ov34_022568C0(SysTask *param0, void *param1)
             return;
         }
 
-        if (ov25_AnimNotPlaying(v0->unk_34)) {
+        if (ov25_540_AnimationInactive(v0->unk_34)) {
             ov34_022569A0(v0, v1);
             PoketchTask_IncrementState(param1);
         }
@@ -330,7 +330,7 @@ static void ov34_02256974(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_
     u32 v0;
 
     for (v0 = 0; v0 < param1->unk_0C; v0++) {
-        ov25_SetPosition(param0->unk_38[v0], (param1->unk_10[v0].unk_00 << FX32_SHIFT), (param1->unk_10[v0].unk_02 << FX32_SHIFT));
+        ov25_540_SetSpritePosition(param0->unk_38[v0], (param1->unk_10[v0].unk_00 << FX32_SHIFT), (param1->unk_10[v0].unk_02 << FX32_SHIFT));
     }
 }
 
@@ -345,24 +345,24 @@ static void ov34_022569A0(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_
             v1 = 3;
         }
 
-        ov25_540_Hide(param0->unk_38[v0], 0);
+        ov25_540_HideSprite(param0->unk_38[v0], 0);
         ov25_540_UpdateAnimationIdx(param0->unk_38[v0], v1);
     }
 }
 
 static BOOL ov34_022569DC(UnkStruct_ov34_02256540 *param0)
 {
-    return ov25_AnimNotPlaying(param0->unk_38[0]);
+    return ov25_540_AnimationInactive(param0->unk_38[0]);
 }
 
 static void ov34_022569E8(UnkStruct_ov34_02256540 *param0)
 {
     int v0;
 
-    ov25_540_Hide(param0->unk_34, 1);
+    ov25_540_HideSprite(param0->unk_34, 1);
 
     for (v0 = 0; v0 < 8; v0++) {
-        ov25_540_Hide(param0->unk_38[v0], 1);
+        ov25_540_HideSprite(param0->unk_38[v0], 1);
     }
 }
 

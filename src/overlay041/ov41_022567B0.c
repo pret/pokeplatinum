@@ -338,7 +338,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
     case 0:
         v0->unk_68 += 336;
         v0->unk_6A = 336;
-        ov25_Set_ElemRotZ(v0->unk_24[0], v0->unk_68);
+        ov25_540_SetSpriteRotation(v0->unk_24[0], v0->unk_68);
         v0->unk_64 = 0;
         v0->unk_60 = 0;
         v0->unk_5C = 0;
@@ -346,7 +346,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
         break;
     case 1:
         v0->unk_68 += v0->unk_6A;
-        ov25_Set_ElemRotZ(v0->unk_24[0], v0->unk_68);
+        ov25_540_SetSpriteRotation(v0->unk_24[0], v0->unk_68);
         v0->unk_6A += 336;
 
         if (v0->unk_6A >= 12288) {
@@ -357,7 +357,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
         break;
     case 2:
         v0->unk_68 += v0->unk_6A;
-        ov25_Set_ElemRotZ(v0->unk_24[0], v0->unk_68);
+        ov25_540_SetSpriteRotation(v0->unk_24[0], v0->unk_68);
 
         if (v0->unk_60) {
             v0->unk_6C = MTRNG_Next() & 7;
@@ -371,7 +371,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
         break;
     case 3:
         v0->unk_68 += v0->unk_6A;
-        ov25_Set_ElemRotZ(v0->unk_24[0], v0->unk_68);
+        ov25_540_SetSpriteRotation(v0->unk_24[0], v0->unk_68);
 
         if (v0->unk_6C == 0) {
             v0->unk_6C--;
@@ -383,7 +383,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
         if (v0->unk_6A > 80) {
             v0->unk_6A -= 80;
             v0->unk_68 += v0->unk_6A;
-            ov25_Set_ElemRotZ(v0->unk_24[0], v0->unk_68);
+            ov25_540_SetSpriteRotation(v0->unk_24[0], v0->unk_68);
         } else {
             v0->unk_6A = 0;
             ov41_022568C8(param1);

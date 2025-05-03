@@ -193,7 +193,7 @@ static void ov40_022564D4(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
     for (v1 = 0; v1 < 11; v1++) {
         if ((v1 >= 0) && (v1 <= 2)) {
             param0->unk_24[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0[v1], &param0->unk_64);
-            ov25_Set_charNo(param0->unk_24[v1], v3 + v1 * 0x20);
+            ov25_540_SetSpriteCharNo(param0->unk_24[v1], v3 + v1 * 0x20);
         } else {
             param0->unk_24[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0[v1], &param0->unk_50);
         }
@@ -402,21 +402,21 @@ static void ov40_02256848(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
 
     v1 = (param1->unk_00 == 0);
 
-    ov25_540_Hide(param0->unk_24[0], v1);
-    ov25_540_Hide(param0->unk_24[3], v1);
-    ov25_540_Hide(param0->unk_24[4], v1);
-    ov25_540_Hide(param0->unk_24[5], v1);
-    ov25_540_Hide(param0->unk_24[9], v1);
+    ov25_540_HideSprite(param0->unk_24[0], v1);
+    ov25_540_HideSprite(param0->unk_24[3], v1);
+    ov25_540_HideSprite(param0->unk_24[4], v1);
+    ov25_540_HideSprite(param0->unk_24[5], v1);
+    ov25_540_HideSprite(param0->unk_24[9], v1);
 
     v1 = (param1->unk_00 <= 1);
 
-    ov25_540_Hide(param0->unk_24[1], v1);
-    ov25_540_Hide(param0->unk_24[6], v1);
-    ov25_540_Hide(param0->unk_24[7], v1);
-    ov25_540_Hide(param0->unk_24[8], v1);
-    ov25_540_Hide(param0->unk_24[10], v1);
+    ov25_540_HideSprite(param0->unk_24[1], v1);
+    ov25_540_HideSprite(param0->unk_24[6], v1);
+    ov25_540_HideSprite(param0->unk_24[7], v1);
+    ov25_540_HideSprite(param0->unk_24[8], v1);
+    ov25_540_HideSprite(param0->unk_24[10], v1);
 
-    ov25_540_Hide(param0->unk_24[2], (param1->unk_01 == 0));
+    ov25_540_HideSprite(param0->unk_24[2], (param1->unk_01 == 0));
 }
 
 static void ov40_02256958(Ov25_540_AnimatedSpriteData **param0, u32 param1)
@@ -439,8 +439,8 @@ static void ov40_02256958(Ov25_540_AnimatedSpriteData **param0, u32 param1)
         ov25_540_UpdateAnimationIdx(param0[v1], v0[v1]);
     }
 
-    ov25_540_Hide(param0[0], (param1 < 100));
-    ov25_540_Hide(param0[1], (param1 < 10));
+    ov25_540_HideSprite(param0[0], (param1 < 100));
+    ov25_540_HideSprite(param0[1], (param1 < 10));
 }
 
 static void ov40_02256A14(Ov25_540_AnimatedSpriteData *param0, u32 param1)

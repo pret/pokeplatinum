@@ -110,7 +110,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
         param0->unk_3C[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &(param0->unk_68));
 
         if (param1->unk_2C[v1] == 0) {
-            ov25_540_Hide(param0->unk_3C[v1], 1);
+            ov25_540_HideSprite(param0->unk_3C[v1], 1);
         }
     }
 
@@ -125,7 +125,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
         param0->unk_4C[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &(param0->unk_68));
 
         if ((param1->unk_3C[v1].unk_00 == 0) || (v2 == 0)) {
-            ov25_540_Hide(param0->unk_4C[v1], 1);
+            ov25_540_HideSprite(param0->unk_4C[v1], 1);
         }
     }
 
@@ -246,32 +246,32 @@ static void ov47_02256968(SysTask *param0, void *param1)
         int v3 = v1->unk_24;
 
         if (v1->unk_0C[v3].unk_03) {
-            ov25_UpdateElem_unk_84_00(v0->unk_20, v0->unk_24[v3], 0);
+            ov25_540_SetSpritePrority(v0->unk_20, v0->unk_24[v3], 0);
             ov25_540_UpdateAnimationIdx(v0->unk_24[v3], 8 + v3);
         } else {
-            ov25_UpdateElem_unk_84_00(v0->unk_20, v0->unk_24[v3], 2 + v1->unk_0C[v3].unk_02);
+            ov25_540_SetSpritePrority(v0->unk_20, v0->unk_24[v3], 2 + v1->unk_0C[v3].unk_02);
             ov25_540_UpdateAnimationIdx(v0->unk_24[v3], 1 + v3);
         }
 
-        ov25_SetPosition(v0->unk_24[v3], ((v1->unk_0C[v3].unk_00) << FX32_SHIFT), ((v1->unk_0C[v3].unk_01) << FX32_SHIFT));
+        ov25_540_SetSpritePosition(v0->unk_24[v3], ((v1->unk_0C[v3].unk_00) << FX32_SHIFT), ((v1->unk_0C[v3].unk_01) << FX32_SHIFT));
     }
 
     if (v1->unk_08) {
         u32 v4, v5, v6;
 
         ov25_02255DBC(v1->unk_00, v1->unk_04, &v4, &v5);
-        ov25_SetPosition(v0->unk_64, ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
+        ov25_540_SetSpritePosition(v0->unk_64, ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
 
         for (v6 = 0; v6 < 6; v6++) {
             if (v1->unk_3C[v6].unk_00) {
                 if (ov25_02255E24(v1->unk_3C[v6].unk_04, &v4, &v5)) {
-                    ov25_SetPosition(v0->unk_4C[v6], ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
-                    ov25_540_Hide(v0->unk_4C[v6], 0);
+                    ov25_540_SetSpritePosition(v0->unk_4C[v6], ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
+                    ov25_540_HideSprite(v0->unk_4C[v6], 0);
                 } else {
-                    ov25_540_Hide(v0->unk_4C[v6], 1);
+                    ov25_540_HideSprite(v0->unk_4C[v6], 1);
                 }
             } else {
-                ov25_540_Hide(v0->unk_4C[v6], 1);
+                ov25_540_HideSprite(v0->unk_4C[v6], 1);
             }
         }
     }

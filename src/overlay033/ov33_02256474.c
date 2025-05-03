@@ -271,15 +271,15 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
             v2.unk_0C = 1;
             param0->unk_134[v5].unk_00 = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v2, &param0->unk_34);
 
-            ov25_Set_charNo(param0->unk_134[v5].unk_00, (4 * 4 * 2) * v5);
+            ov25_540_SetSpriteCharNo(param0->unk_134[v5].unk_00, (4 * 4 * 2) * v5);
             ov25_540_SetCParam(param0->unk_134[v5].unk_00, 1 + PokeIconPaletteIndex(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 0));
 
             v2.unk_0C = 0;
             param0->unk_134[v5].unk_04 = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v2, &param0->unk_48);
 
             if (param0->unk_134[v5].unk_04) {
-                ov25_540_Hide(param0->unk_134[v5].unk_04, 1);
-                ov25_Set_charNo(param0->unk_134[v5].unk_04, ((4 * 4 * 2) * 6));
+                ov25_540_HideSprite(param0->unk_134[v5].unk_04, 1);
+                ov25_540_SetSpriteCharNo(param0->unk_134[v5].unk_04, ((4 * 4 * 2) * 6));
                 ov25_540_SetCParam(param0->unk_134[v5].unk_04, 0);
             } else {
                 GF_ASSERT(0);
@@ -577,22 +577,22 @@ static BOOL ov33_02256C40(UnkStruct_ov33_02256474 *param0)
 static void ov33_02256C54(UnkStruct_ov33_02256474 *param0, int param1)
 {
     if (param0->unk_00->unk_04[param1].unk_0A == 0) {
-        ov25_UpdateElem_unk_84_00(param0->unk_30, param0->unk_134[param1].unk_04, 0);
+        ov25_540_SetSpritePrority(param0->unk_30, param0->unk_134[param1].unk_04, 0);
         ov25_540_UpdateAnimationIdx(param0->unk_134[param1].unk_04, 0 + (param0->unk_00->unk_04[param1].unk_0B - 1));
-        ov25_540_Hide(param0->unk_134[param1].unk_04, 0);
+        ov25_540_HideSprite(param0->unk_134[param1].unk_04, 0);
     }
 }
 
 static void ov33_02256C98(UnkStruct_ov33_02256474 *param0, int param1)
 {
-    ov25_UpdateElem_unk_84_00(param0->unk_30, param0->unk_134[param1].unk_04, 2);
+    ov25_540_SetSpritePrority(param0->unk_30, param0->unk_134[param1].unk_04, 2);
     ov25_540_UpdateAnimationIdx(param0->unk_134[param1].unk_04, 3);
-    ov25_540_Hide(param0->unk_134[param1].unk_04, 0);
+    ov25_540_HideSprite(param0->unk_134[param1].unk_04, 0);
 }
 
 static void ov33_02256CC4(UnkStruct_ov33_02256474 *param0, int param1)
 {
-    ov25_540_Hide(param0->unk_134[param1].unk_04, 1);
+    ov25_540_HideSprite(param0->unk_134[param1].unk_04, 1);
 }
 
 static void ov33_02256CDC(fx32 param0, u32 param1, VecFx32 *param2)
@@ -788,8 +788,8 @@ static void ov33_0225718C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
         VEC_Set(&v0->unk_20, 0, -20 * CalcSineDegrees(v0->unk_34_val3[1]), 0);
         VEC_Add(&v0->unk_14, &v0->unk_20, &param0->unk_A4);
 
-        ov25_SetPosition(v0->unk_00, param0->unk_A4.x, param0->unk_A4.y);
-        ov25_SetPosition(v0->unk_04, v0->unk_14.x, v0->unk_14.y + (8 << FX32_SHIFT));
+        ov25_540_SetSpritePosition(v0->unk_00, param0->unk_A4.x, param0->unk_A4.y);
+        ov25_540_SetSpritePosition(v0->unk_04, v0->unk_14.x, v0->unk_14.y + (8 << FX32_SHIFT));
 
         if (v0->unk_34_val3[2] == 2) {
             ov33_022567D4(&v0->unk_08);
@@ -986,8 +986,8 @@ static void ov33_022572A0(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
 
         VEC_Add(&param0->unk_134[v7].unk_14, &param0->unk_134[v7].unk_20, &param0->unk_A4);
 
-        ov25_SetPosition(param0->unk_134[v7].unk_00, param0->unk_A4.x, param0->unk_A4.y);
-        ov25_SetPosition(param0->unk_134[v7].unk_04, param0->unk_134[v7].unk_14.x, param0->unk_134[v7].unk_14.y + (8 << FX32_SHIFT));
+        ov25_540_SetSpritePosition(param0->unk_134[v7].unk_00, param0->unk_A4.x, param0->unk_A4.y);
+        ov25_540_SetSpritePosition(param0->unk_134[v7].unk_04, param0->unk_134[v7].unk_14.x, param0->unk_134[v7].unk_14.y + (8 << FX32_SHIFT));
     }
 }
 

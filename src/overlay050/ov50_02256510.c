@@ -91,7 +91,7 @@ static void ov50_022565B0(Ov25_540_AnimatedSpriteData *param0, u32 param1)
     v0 = (((4 + 3 * (param1 % 7)) + 1) * 8) << FX32_SHIFT;
     v1 = (((5 + 3 * (param1 / 7)) + 1) * 8) << FX32_SHIFT;
 
-    ov25_SetPosition(param0, v0, v1);
+    ov25_540_SetSpritePosition(param0, v0, v1);
 }
 
 static void ov50_022565E4(UnkStruct_ov50_02256510 *param0)
