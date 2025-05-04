@@ -19,13 +19,13 @@
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 
+#include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "functypes/funcptr_0203BC5C.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/save_info_window.h"
-#include "overlay021/pokedex_main.h"
 
 #include "bag.h"
 #include "bg_window.h"
