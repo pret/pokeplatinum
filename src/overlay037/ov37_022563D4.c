@@ -20,9 +20,9 @@ struct UnkStruct_ov37_022563D4_t {
     const UnkStruct_ov37_022563D4_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    Ov25_540_AnimationManager *unk_20;
-    Ov25_540_AnimatedSpriteData *unk_24;
-    ov25_SpriteData unk_28;
+    PoketchAnimation_AnimationManager *unk_20;
+    PoketchAnimation_AnimatedSpriteData *unk_24;
+    PoketchAnimation_SpriteData unk_28;
 };
 
 static void ov37_0225641C(UnkStruct_ov37_022563D4 *param0, const UnkStruct_ov37_022563D4_1 *param1);
@@ -39,8 +39,8 @@ BOOL ov37_022563D4(UnkStruct_ov37_022563D4 **param0, const UnkStruct_ov37_022563
     if (v0 != NULL) {
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
-        v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = Poketch_GetAnimationManager();
+        v0->unk_04 = PoketchGraphics_GetBgConfig();
+        v0->unk_20 = PoketchGraphics_GetAnimationManager();
         ov37_0225641C(v0, param1);
         *param0 = v0;
 
@@ -59,7 +59,7 @@ void ov37_02256410(UnkStruct_ov37_022563D4 *param0)
 
 static void ov37_0225641C(UnkStruct_ov37_022563D4 *param0, const UnkStruct_ov37_022563D4_1 *param1)
 {
-    static const ov25_AnimationData v0 = {
+    static const PoketchAnimation_AnimationData v0 = {
         { (112 << FX32_SHIFT), (104 << FX32_SHIFT) },
         0,
         0,
@@ -70,19 +70,19 @@ static void ov37_0225641C(UnkStruct_ov37_022563D4 *param0, const UnkStruct_ov37_
     int v1;
 
     Graphics_LoadObjectTiles(12, 104, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    ov25_540_LoadSpriteFromNARC(&param0->unk_28, 12, 102, 103, 8);
+    PoketchAnimation_LoadSpriteFromNARC(&param0->unk_28, 12, 102, 103, 8);
 
-    param0->unk_24 = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &param0->unk_28);
+    param0->unk_24 = PoketchAnimation_SetupNewAnimatedSprite(param0->unk_20, &v0, &param0->unk_28);
 
     if (param1->unk_00 == 0) {
-        ov25_540_UpdateAnimationIdx(param0->unk_24, 1);
+        PoketchAnimation_UpdateAnimationIdx(param0->unk_24, 1);
     }
 }
 
 static void ov37_02256470(UnkStruct_ov37_022563D4 *param0)
 {
-    ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_24);
-    ov25_540_FreeSpriteData(&(param0->unk_28));
+    PoketchAnimation_RemoveAnimatedSprite(param0->unk_20, param0->unk_24);
+    PoketchAnimation_FreeSpriteData(&(param0->unk_28));
 }
 
 static const PoketchTask Unk_ov37_02256614[] = {
@@ -142,7 +142,7 @@ static void ov37_022564D8(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 101, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Graphics_LoadTilemapToBgLayer(12, 100, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    Poketch_LoadActivePalette(0, 0);
+    PoketchGraphics_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
@@ -168,10 +168,10 @@ static void ov37_02256588(SysTask *param0, void *param1)
     PoketchSystem_PlaySoundEffect(1635);
 
     if (v1->unk_00) {
-        ov25_540_UpdateAnimationIdx(v0->unk_24, 0);
+        PoketchAnimation_UpdateAnimationIdx(v0->unk_24, 0);
         PM_SetBackLight(PM_LCD_BOTTOM, PM_BACKLIGHT_ON);
     } else {
-        ov25_540_UpdateAnimationIdx(v0->unk_24, 1);
+        PoketchAnimation_UpdateAnimationIdx(v0->unk_24, 1);
         PM_SetBackLight(PM_LCD_BOTTOM, PM_BACKLIGHT_OFF);
     }
 

@@ -33,7 +33,7 @@ BOOL ov31_02256554(UnkStruct_ov31_02256554 **param0, const UnkStruct_ov31_022565
         PoketchTask_InitActiveTaskList(v0->unk_08, 8);
 
         v0->unk_00 = param1;
-        v0->unk_04 = Poketch_GetBgConfig();
+        v0->unk_04 = PoketchGraphics_GetBgConfig();
 
         if (v0->unk_04 != NULL) {
             *param0 = v0;
@@ -103,7 +103,7 @@ static void ov31_022565E0(SysTask *param0, void *param1)
 
     ov31_02256644(v2->unk_04);
     ov31_0225672C(v2->unk_04, v2->unk_00);
-    Poketch_LoadActivePalette(0, 0);
+    PoketchGraphics_LoadActivePalette(0, 0);
 
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 

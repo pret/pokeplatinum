@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV25_02255540_H
-#define POKEPLATINUM_OV25_02255540_H
+#ifndef POKEPLATINUM_POKETCH_ANIMATION_H
+#define POKEPLATINUM_POKETCH_ANIMATION_H
 
 #include <nnsys.h>
 
@@ -8,23 +8,27 @@
 
 #include "poketch/poketch_structs.h"
 
-Ov25_540_AnimationManager *ov25_540_SetupAnimationManager(NNSG2dOamManagerInstance *oamMan, u32 heapID);
-void ov25_540_FreeAnimationManager(Ov25_540_AnimationManager *animMan);
-void ov25_540_UpdateAnimations(Ov25_540_AnimationManager *animMan);
-Ov25_540_AnimatedSpriteData *ov25_540_SetupNewAnimatedSprite(Ov25_540_AnimationManager *animMan, const ov25_AnimationData *animData, const ov25_SpriteData *spriteData);
-void ov25_540_RemoveAnimatedSprite(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite);
-void ov25_540_UpdateAnimationIdx(Ov25_540_AnimatedSpriteData *animatedSprite, u32 animIdx);
-BOOL ov25_540_AnimationInactive(Ov25_540_AnimatedSpriteData *animatedSprite);
-void ov25_540_TranslateSprite(Ov25_540_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y);
-void ov25_540_SetSpritePosition(Ov25_540_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y);
-void ov25_540_GetSpritePosition(const Ov25_540_AnimatedSpriteData *animatedSprite, fx32 *x, fx32 *y);
-void ov25_540_HideSprite(Ov25_540_AnimatedSpriteData *animatedSprite, BOOL isHidden);
-void ov25_540_SetSpritePrority(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite, u32 priority);
-void ov25_540_SetCParam(Ov25_540_AnimatedSpriteData *animatedSprite, u32 value);
-void ov25_540_SetSpriteCharNo(Ov25_540_AnimatedSpriteData *animatedSprite, u32 value);
-void ov25_Set_mosaic(Ov25_540_AnimatedSpriteData *animatedSprite, BOOL isMosaic);
-void ov25_540_SetSpriteRotation(Ov25_540_AnimatedSpriteData *animatedSprite, u16 rotation);
-BOOL ov25_540_LoadSpriteFromNARC(ov25_SpriteData *spriteData, enum NarcID narcID, u32 spriteId, u32 animId, enum HeapId heapId);
-void ov25_540_FreeSpriteData(ov25_SpriteData *spriteData);
+#define FLIP_NONE 0
+#define FLIP_H    1
+#define FLIP_V    2
 
-#endif // POKEPLATINUM_OV25_02255540_H
+PoketchAnimation_AnimationManager *PoketchAnimation_SetupAnimationManager(NNSG2dOamManagerInstance *oamMan, u32 heapID);
+void PoketchAnimation_FreeAnimationManager(PoketchAnimation_AnimationManager *animMan);
+void PoketchAnimation_UpdateAnimations(PoketchAnimation_AnimationManager *animMan);
+PoketchAnimation_AnimatedSpriteData *PoketchAnimation_SetupNewAnimatedSprite(PoketchAnimation_AnimationManager *animMan, const PoketchAnimation_AnimationData *animData, const PoketchAnimation_SpriteData *spriteData);
+void PoketchAnimation_RemoveAnimatedSprite(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite);
+void PoketchAnimation_UpdateAnimationIdx(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 animIdx);
+BOOL PoketchAnimation_AnimationInactive(PoketchAnimation_AnimatedSpriteData *animatedSprite);
+void PoketchAnimation_TranslateSprite(PoketchAnimation_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y);
+void PoketchAnimation_SetSpritePosition(PoketchAnimation_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y);
+void PoketchAnimation_GetSpritePosition(const PoketchAnimation_AnimatedSpriteData *animatedSprite, fx32 *x, fx32 *y);
+void PoketchAnimation_HideSprite(PoketchAnimation_AnimatedSpriteData *animatedSprite, BOOL isHidden);
+void PoketchAnimation_SetSpritePrority(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 priority);
+void PoketchAnimation_SetCParam(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 value);
+void PoketchAnimation_SetSpriteCharNo(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 value);
+void PoketchAnimation_SetMosaic(PoketchAnimation_AnimatedSpriteData *animatedSprite, BOOL isMosaic);
+void PoketchAnimation_SetSpriteRotation(PoketchAnimation_AnimatedSpriteData *animatedSprite, u16 rotation);
+BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData, enum NarcID narcID, u32 spriteId, u32 animId, enum HeapId heapId);
+void PoketchAnimation_FreeSpriteData(PoketchAnimation_SpriteData *spriteData);
+
+#endif // POKEPLATINUM_POKETCH_ANIMATION_H

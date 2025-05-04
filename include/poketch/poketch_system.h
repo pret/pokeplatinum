@@ -33,7 +33,7 @@
 #define POKETCH_BUTTON_BOTTOM_MAX_Y 160
 
 enum ButtonDir {
-    BUTTON_UP,
+    BUTTON_UP = 0,
     BUTTON_DOWN,
 };
 
@@ -91,8 +91,8 @@ struct PoketchSystem {
     u32 appSkipTimer;
     enum PoketchAppID loadedAppID;
     FSOverlayID loadedAppOverlayID;
-    Ov25_560_TaskData *taskData;
-    Ov25_560_ConstTaskData constTaskData;
+    PoketchGraphics_TaskData *taskData;
+    PoketchGraphics_ConstTaskData constTaskData;
     void *appData;
     PoketchButtonManager *buttonManager;
     u32 nextBtnTask;
@@ -124,7 +124,7 @@ void PoketchSystem_SetAppFunctions(PoketchAppInitFunction initFunction, PoketchA
 void PoketchSystem_NotifyAppLoaded(PoketchSystem *poketchSys);
 void PoketchSystem_NotifyAppUnloaded(PoketchSystem *poketchSys);
 void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *saveData);
-Ov25_560_TaskData *PoketchSystem_GetTaskData(void);
+PoketchGraphics_TaskData *PoketchSystem_GetTaskData(void);
 void PoketchSystem_PlaySoundEffect(u32 soundID);
 void PoketchSystem_PlayCry(u32 species, u32 form);
 BOOL PoketchSystem_GetDisplayHeldCoords(u32 *x, u32 *y);

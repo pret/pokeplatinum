@@ -23,9 +23,9 @@ struct UnkStruct_ov54_0225642C_t {
     const UnkStruct_ov54_0225642C_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    Ov25_540_AnimationManager *unk_20;
-    Ov25_540_AnimatedSpriteData *unk_24[12];
-    ov25_SpriteData unk_54;
+    PoketchAnimation_AnimationManager *unk_20;
+    PoketchAnimation_AnimatedSpriteData *unk_24[12];
+    PoketchAnimation_SpriteData unk_54;
     u32 unk_68[12];
 };
 
@@ -42,8 +42,8 @@ BOOL ov54_0225642C(UnkStruct_ov54_0225642C **param0, const UnkStruct_ov54_022564
     if (v0 != NULL) {
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
-        v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = Poketch_GetAnimationManager();
+        v0->unk_04 = PoketchGraphics_GetBgConfig();
+        v0->unk_20 = PoketchGraphics_GetAnimationManager();
         *param0 = v0;
 
         return 1;
@@ -115,7 +115,7 @@ static void ov54_022564BC(SysTask *param0, void *param1)
     Bg_FillTilesRange(v2->unk_04, 6, 4, 1, 0);
     Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
 
-    Poketch_LoadActivePalette(0, 0);
+    PoketchGraphics_LoadActivePalette(0, 0);
 
     Window_Add(v2->unk_04, &v4, 6, 2, 2, 24, 2, 0, 1);
     Window_FillTilemap(&v4, 4);
@@ -152,7 +152,7 @@ static void ov54_022565CC(SysTask *param0, void *param1)
 
 static void ov54_022565EC(UnkStruct_ov54_0225642C *param0, const UnkStruct_ov54_0225642C_1 *param1)
 {
-    static const ov25_AnimationData v0[] = {
+    static const PoketchAnimation_AnimationData v0[] = {
         {
             { ((48 + 40 * 0) << FX32_SHIFT), ((48 + 48 * 0) << FX32_SHIFT) },
             4,
@@ -253,14 +253,14 @@ static void ov54_022565EC(UnkStruct_ov54_0225642C *param0, const UnkStruct_ov54_
     int v1;
 
     PoketchTask_LoadPokemonIconLuminancePalette(0);
-    ov25_540_LoadSpriteFromNARC(&param0->unk_54, 12, 5, 6, 8);
+    PoketchAnimation_LoadSpriteFromNARC(&param0->unk_54, 12, 5, 6, 8);
 
     for (v1 = 0; v1 < param1->unk_90; v1++) {
         param0->unk_68[v1] = PokeIconSpriteIndex(param1->unk_00[v1].unk_00, 0, param1->unk_00[v1].unk_08);
-        param0->unk_24[v1] = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0[v1], &param0->unk_54);
+        param0->unk_24[v1] = PoketchAnimation_SetupNewAnimatedSprite(param0->unk_20, &v0[v1], &param0->unk_54);
 
-        ov25_540_SetSpriteCharNo(param0->unk_24[v1], v1 * 16);
-        ov25_540_SetCParam(param0->unk_24[v1], PokeIconPaletteIndex(param1->unk_00[v1].unk_00, param1->unk_00[v1].unk_08, 0));
+        PoketchAnimation_SetSpriteCharNo(param0->unk_24[v1], v1 * 16);
+        PoketchAnimation_SetCParam(param0->unk_24[v1], PokeIconPaletteIndex(param1->unk_00[v1].unk_00, param1->unk_00[v1].unk_08, 0));
     }
 
     for (; v1 < 12; v1++) {
@@ -276,10 +276,10 @@ static void ov54_022566A8(UnkStruct_ov54_0225642C *param0)
 
     for (v0 = 0; v0 < 12; v0++) {
         if (param0->unk_24[v0] != NULL) {
-            ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_24[v0]);
+            PoketchAnimation_RemoveAnimatedSprite(param0->unk_20, param0->unk_24[v0]);
             param0->unk_24[v0] = NULL;
         }
     }
 
-    ov25_540_FreeSpriteData(&param0->unk_54);
+    PoketchAnimation_FreeSpriteData(&param0->unk_54);
 }

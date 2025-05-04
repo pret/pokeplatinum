@@ -43,15 +43,15 @@ typedef struct MonIconBounceAnim {
 struct PoketchPartyStatusGraphics {
     const PlayerPartyStatus *playerParty;
     BgConfig *bgConfig;
-    Ov25_540_AnimationManager *unk_08;
+    PoketchAnimation_AnimationManager *unk_08;
     u32 activeTaskIds[10];
     u32 hpBarBaseTile;
     u32 partyCount;
     Window hpBarWindows[MAX_PARTY_SIZE];
-    Ov25_540_AnimatedSpriteData *unk_9C[MAX_PARTY_SIZE]; // mon icons?
-    Ov25_540_AnimatedSpriteData *unk_B4[MAX_PARTY_SIZE]; // held item icons?
-    ov25_SpriteData unk_CC;
-    ov25_SpriteData unk_E0;
+    PoketchAnimation_AnimatedSpriteData *unk_9C[MAX_PARTY_SIZE]; // mon icons?
+    PoketchAnimation_AnimatedSpriteData *unk_B4[MAX_PARTY_SIZE]; // held item icons?
+    PoketchAnimation_SpriteData unk_CC;
+    PoketchAnimation_SpriteData unk_E0;
     SysTask *bounceAnimTask;
     MonIconBounceAnim bounceAnimData;
     u8 iconSpriteBuffer[640];

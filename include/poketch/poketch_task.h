@@ -1,7 +1,14 @@
-#ifndef POKEPLATINUM_OV25_02255090_H
-#define POKEPLATINUM_OV25_02255090_H
+#ifndef POKEPLATINUM_POKETCH_TASK_H
+#define POKEPLATINUM_POKETCH_TASK_H
 
 #include "sys_task_manager.h"
+
+#define POKETCH_TASK_LIST_VALIDATOR 0x12345678 // If activeList[VALIDATOR_IDX] is not this value, tasks will not be added or removed.
+#define POKETCH_EMPTY_TASK          0xFFFFFFFF
+
+#define NUM_SLOTS_IDX 0
+#define VALIDATOR_IDX 1
+#define BASE_IDX      2
 
 typedef struct PoketchTask {
     u32 taskId;
@@ -13,7 +20,7 @@ typedef struct PoketchTaskManager {
     u32 taskId;
     u32 poketchTaskState;
     void *taskData;
-    void *extraData; // only used by ov25, ov27, ov34
+    void *extraData;
     const void *constTaskData;
     SysTask *task;
 } PoketchTaskManager;
@@ -32,10 +39,10 @@ u32 PoketchTask_GetState(PoketchTaskManager *taskMan);
 void PoketchTask_IncrementState(PoketchTaskManager *taskMan);
 void PoketchTask_SetState(PoketchTaskManager *taskMan, u32 state);
 void ov25_02255258(u16 *tileBuffer, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6);
-void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 size);
+void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEntries);
 void PoketchTask_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset);
 void PoketchTask_LoadPokemonIconLuminancePalette(u32 offset);
 void PoketchTask_LoadPokemonIcons(u32 offset, const u32 *iconIdxList, u32 numIcons, BOOL isLarge);
 void ov25_02255440(BgConfig *bgConfig, u32 digit, u32 bgLayer);
 
-#endif // POKEPLATINUM_OV25_02255090_H
+#endif // POKEPLATINUM_POKETCH_TASK_H

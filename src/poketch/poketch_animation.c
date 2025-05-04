@@ -8,13 +8,13 @@
 #include "graphics.h"
 #include "heap.h"
 
-struct Ov25_540_AnimatedSpriteData_t {
+struct PoketchAnimation_AnimatedSpriteData_t {
     const NNSG2dCellDataBank *sprite;
     const NNSG2dAnimBankData *anim;
     NNSG2dCellAnimation spriteAnimation;
 
-    struct Ov25_540_AnimatedSpriteData_t *previousAnimatedSprite;
-    struct Ov25_540_AnimatedSpriteData_t *nextAnimatedSprite;
+    struct PoketchAnimation_AnimatedSpriteData_t *previousAnimatedSprite;
+    struct PoketchAnimation_AnimatedSpriteData_t *nextAnimatedSprite;
 
     NNSG2dFVec2 position;
     MtxFx22 *affineTransformationPtr;
@@ -36,31 +36,31 @@ struct Ov25_540_AnimatedSpriteData_t {
     u8 mosaic;
 };
 
-struct Ov25_540_AnimationManager_t {
+struct PoketchAnimation_AnimationManager_t {
     NNSG2dOamManagerInstance *oamMan;
-    Ov25_540_AnimatedSpriteData **animatedSpritePtrArray;
-    Ov25_540_AnimatedSpriteData *lastAnimatedSprite;
-    Ov25_540_AnimatedSpriteData *animatedSpritePool;
+    PoketchAnimation_AnimatedSpriteData **animatedSpritePtrArray;
+    PoketchAnimation_AnimatedSpriteData *lastAnimatedSprite;
+    PoketchAnimation_AnimatedSpriteData *animatedSpritePool;
     u16 numSlots;
     u16 nextUnusedSlotIdx;
     GXOamAttr *oam;
     u32 heapID;
 };
 
-static void ov25_540_PopulateAnimatedSpritePtrArray(Ov25_540_AnimatedSpriteData **animatedSpritePtrArray, Ov25_540_AnimatedSpriteData *animatedSpritePool, u32 numSlots);
-static void ov25_540_UnlinkAnimatedSprite(Ov25_540_AnimatedSpriteData *animatedSprite);
-static Ov25_540_AnimatedSpriteData *ov25_540_GetNextUnusedAnimSlot(Ov25_540_AnimationManager *param0);
-static void ov25_540_MarkAnimatedSpriteUnused(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite);
-static void ov25_540_SortAnimIntoList(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite);
-static void ov25_540_RemoveAnimatedSpriteFromList(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite);
+static void PoketchAnimation_PopulateAnimatedSpritePtrArray(PoketchAnimation_AnimatedSpriteData **animatedSpritePtrArray, PoketchAnimation_AnimatedSpriteData *animatedSpritePool, u32 numSlots);
+static void PoketchAnimation_UnlinkAnimatedSprite(PoketchAnimation_AnimatedSpriteData *animatedSprite);
+static PoketchAnimation_AnimatedSpriteData *PoketchAnimation_GetNextUnusedAnimSlot(PoketchAnimation_AnimationManager *param0);
+static void PoketchAnimation_MarkAnimatedSpriteUnused(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite);
+static void PoketchAnimation_SortAnimIntoList(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite);
+static void PoketchAnimation_RemoveAnimatedSpriteFromList(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite);
 
-Ov25_540_AnimationManager *ov25_540_SetupAnimationManager(NNSG2dOamManagerInstance *oamMan, u32 heapID)
+PoketchAnimation_AnimationManager *PoketchAnimation_SetupAnimationManager(NNSG2dOamManagerInstance *oamMan, u32 heapID)
 {
-    Ov25_540_AnimationManager *animMan;
+    PoketchAnimation_AnimationManager *animMan;
     BOOL success = FALSE;
 
     do {
-        animMan = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_AnimationManager));
+        animMan = Heap_AllocFromHeap(heapID, sizeof(PoketchAnimation_AnimationManager));
 
         if (animMan == NULL) {
             break;
@@ -78,19 +78,19 @@ Ov25_540_AnimationManager *ov25_540_SetupAnimationManager(NNSG2dOamManagerInstan
             break;
         }
 
-        animMan->animatedSpritePool = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_AnimatedSpriteData) * animMan->numSlots);
+        animMan->animatedSpritePool = Heap_AllocFromHeap(heapID, sizeof(PoketchAnimation_AnimatedSpriteData) * animMan->numSlots);
 
         if (animMan->animatedSpritePool == NULL) {
             break;
         }
 
-        animMan->animatedSpritePtrArray = Heap_AllocFromHeap(heapID, sizeof(Ov25_540_AnimatedSpriteData *) * animMan->numSlots);
+        animMan->animatedSpritePtrArray = Heap_AllocFromHeap(heapID, sizeof(PoketchAnimation_AnimatedSpriteData *) * animMan->numSlots);
 
         if (animMan->animatedSpritePtrArray == NULL) {
             break;
         }
 
-        ov25_540_PopulateAnimatedSpritePtrArray(animMan->animatedSpritePtrArray, animMan->animatedSpritePool, animMan->numSlots);
+        PoketchAnimation_PopulateAnimatedSpritePtrArray(animMan->animatedSpritePtrArray, animMan->animatedSpritePool, animMan->numSlots);
 
         animMan->nextUnusedSlotIdx = 0;
         animMan->lastAnimatedSprite = NULL;
@@ -121,7 +121,7 @@ Ov25_540_AnimationManager *ov25_540_SetupAnimationManager(NNSG2dOamManagerInstan
     return animMan;
 }
 
-void ov25_540_FreeAnimationManager(Ov25_540_AnimationManager *animMan)
+void PoketchAnimation_FreeAnimationManager(PoketchAnimation_AnimationManager *animMan)
 {
     if (animMan) {
         if (animMan->oam) {
@@ -140,10 +140,10 @@ void ov25_540_FreeAnimationManager(Ov25_540_AnimationManager *animMan)
     }
 }
 
-void ov25_540_UpdateAnimations(Ov25_540_AnimationManager *animMan)
+void PoketchAnimation_UpdateAnimations(PoketchAnimation_AnimationManager *animMan)
 {
     if (animMan->nextUnusedSlotIdx) {
-        Ov25_540_AnimatedSpriteData *animatedSprite = animMan->lastAnimatedSprite;
+        PoketchAnimation_AnimatedSpriteData *animatedSprite = animMan->lastAnimatedSprite;
         GXOamAttr *oam = animMan->oam;
         s32 numSlots = animMan->numSlots;
         u32 numSlotsUsed;
@@ -204,15 +204,15 @@ void ov25_540_UpdateAnimations(Ov25_540_AnimationManager *animMan)
     }
 }
 
-Ov25_540_AnimatedSpriteData *ov25_540_SetupNewAnimatedSprite(Ov25_540_AnimationManager *animMan, const ov25_AnimationData *animData, const ov25_SpriteData *spriteData)
+PoketchAnimation_AnimatedSpriteData *PoketchAnimation_SetupNewAnimatedSprite(PoketchAnimation_AnimationManager *animMan, const PoketchAnimation_AnimationData *animData, const PoketchAnimation_SpriteData *spriteData)
 {
-    Ov25_540_AnimatedSpriteData *animatedSprite = ov25_540_GetNextUnusedAnimSlot(animMan);
+    PoketchAnimation_AnimatedSpriteData *animatedSprite = PoketchAnimation_GetNextUnusedAnimSlot(animMan);
 
     if (animatedSprite != NULL) {
         animatedSprite->oamPriority = animData->oamPriority;
-        animatedSprite->priority = animData->unk_0C;
+        animatedSprite->priority = animData->priority;
 
-        ov25_540_SortAnimIntoList(animMan, animatedSprite);
+        PoketchAnimation_SortAnimIntoList(animMan, animatedSprite);
 
         animatedSprite->sprite = spriteData->sprite;
         animatedSprite->anim = spriteData->anim;
@@ -222,9 +222,9 @@ Ov25_540_AnimatedSpriteData *ov25_540_SetupNewAnimatedSprite(Ov25_540_AnimationM
         animatedSprite->position = animData->translation;
         animatedSprite->cParam = 0;
         animatedSprite->charNo = 0;
-        animatedSprite->flipH = ((animData->flip & 1) != 0);
-        animatedSprite->flipV = ((animData->flip & 2) != 0);
-        animatedSprite->mosaic = 0;
+        animatedSprite->flipH = ((animData->flip & FLIP_H) != FLIP_NONE);
+        animatedSprite->flipV = ((animData->flip & FLIP_V) != FLIP_NONE);
+        animatedSprite->mosaic = FALSE;
         animatedSprite->rotZ = 0;
         animatedSprite->affineTransformationPtr = &(animatedSprite->affineTransformation);
         animatedSprite->hasAffineTransform = animData->hasAffineTransform;
@@ -234,74 +234,74 @@ Ov25_540_AnimatedSpriteData *ov25_540_SetupNewAnimatedSprite(Ov25_540_AnimationM
     return animatedSprite;
 }
 
-void ov25_540_RemoveAnimatedSprite(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite)
+void PoketchAnimation_RemoveAnimatedSprite(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite)
 {
-    ov25_540_RemoveAnimatedSpriteFromList(animMan, animatedSprite);
-    ov25_540_MarkAnimatedSpriteUnused(animMan, animatedSprite);
+    PoketchAnimation_RemoveAnimatedSpriteFromList(animMan, animatedSprite);
+    PoketchAnimation_MarkAnimatedSpriteUnused(animMan, animatedSprite);
 }
 
-void ov25_540_UpdateAnimationIdx(Ov25_540_AnimatedSpriteData *animatedSprite, u32 animIdx)
+void PoketchAnimation_UpdateAnimationIdx(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 animIdx)
 {
     NNS_G2dInitCellAnimation(&(animatedSprite->spriteAnimation), NNS_G2dGetAnimSequenceByIdx(animatedSprite->anim, animIdx), animatedSprite->sprite);
 }
 
-BOOL ov25_540_AnimationInactive(Ov25_540_AnimatedSpriteData *animatedSprite)
+BOOL PoketchAnimation_AnimationInactive(PoketchAnimation_AnimatedSpriteData *animatedSprite)
 {
     NNSG2dAnimController *animCtrl = NNS_G2dGetCellAnimationAnimCtrl(&(animatedSprite->spriteAnimation));
     return NNS_G2dIsAnimCtrlActive(animCtrl) == FALSE;
 }
 
-void ov25_540_TranslateSprite(Ov25_540_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y)
+void PoketchAnimation_TranslateSprite(PoketchAnimation_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y)
 {
     animatedSprite->position.x += x;
     animatedSprite->position.y += y;
 }
 
-void ov25_540_SetSpritePosition(Ov25_540_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y)
+void PoketchAnimation_SetSpritePosition(PoketchAnimation_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y)
 {
     animatedSprite->position.x = x;
     animatedSprite->position.y = y;
 }
 
-void ov25_540_GetSpritePosition(const Ov25_540_AnimatedSpriteData *animatedSprite, fx32 *x, fx32 *y)
+void PoketchAnimation_GetSpritePosition(const PoketchAnimation_AnimatedSpriteData *animatedSprite, fx32 *x, fx32 *y)
 {
     *x = animatedSprite->position.x;
     *y = animatedSprite->position.y;
 }
 
-void ov25_540_HideSprite(Ov25_540_AnimatedSpriteData *animatedSprite, BOOL isHidden)
+void PoketchAnimation_HideSprite(PoketchAnimation_AnimatedSpriteData *animatedSprite, BOOL isHidden)
 {
     animatedSprite->isHidden = isHidden;
 }
 
-void ov25_540_SetSpritePrority(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite, u32 priority)
+void PoketchAnimation_SetSpritePrority(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 priority)
 {
-    ov25_540_RemoveAnimatedSpriteFromList(animMan, animatedSprite);
+    PoketchAnimation_RemoveAnimatedSpriteFromList(animMan, animatedSprite);
     animatedSprite->priority = priority;
-    ov25_540_SortAnimIntoList(animMan, animatedSprite);
+    PoketchAnimation_SortAnimIntoList(animMan, animatedSprite);
 }
 
-void ov25_540_SetCParam(Ov25_540_AnimatedSpriteData *animatedSprite, u32 value)
+void PoketchAnimation_SetCParam(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 value)
 {
     animatedSprite->cParam = value;
 }
 
-void ov25_540_SetSpriteCharNo(Ov25_540_AnimatedSpriteData *animatedSprite, u32 value)
+void PoketchAnimation_SetSpriteCharNo(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 value)
 {
     animatedSprite->charNo = value;
 }
 
-void ov25_Set_mosaic(Ov25_540_AnimatedSpriteData *animatedSprite, BOOL isMosaic)
+void PoketchAnimation_SetMosaic(PoketchAnimation_AnimatedSpriteData *animatedSprite, BOOL isMosaic)
 {
     animatedSprite->mosaic = isMosaic;
 }
 
-void ov25_540_SetSpriteRotation(Ov25_540_AnimatedSpriteData *animatedSprite, u16 rotation)
+void PoketchAnimation_SetSpriteRotation(PoketchAnimation_AnimatedSpriteData *animatedSprite, u16 rotation)
 {
     animatedSprite->rotZ = rotation;
 }
 
-BOOL ov25_540_LoadSpriteFromNARC(ov25_SpriteData *spriteData, enum NarcID narcId, u32 spriteId, u32 animId, enum HeapId heapId)
+BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData, enum NarcID narcId, u32 spriteId, u32 animId, enum HeapId heapId)
 {
     spriteData->heapID = heapId;
     spriteData->compressedSprite = LoadCompressedMemberFromNARC(narcId, spriteId, heapId);
@@ -320,7 +320,7 @@ BOOL ov25_540_LoadSpriteFromNARC(ov25_SpriteData *spriteData, enum NarcID narcId
     return TRUE;
 }
 
-void ov25_540_FreeSpriteData(ov25_SpriteData *spriteData)
+void PoketchAnimation_FreeSpriteData(PoketchAnimation_SpriteData *spriteData)
 {
     if (spriteData->compressedSprite != NULL) {
         Heap_FreeToHeapExplicit(spriteData->heapID, spriteData->compressedSprite);
@@ -333,23 +333,23 @@ void ov25_540_FreeSpriteData(ov25_SpriteData *spriteData)
     }
 }
 
-static void ov25_540_PopulateAnimatedSpritePtrArray(Ov25_540_AnimatedSpriteData **animatedSpritePtrArray, Ov25_540_AnimatedSpriteData *animatedSpritePool, u32 numSlots)
+static void PoketchAnimation_PopulateAnimatedSpritePtrArray(PoketchAnimation_AnimatedSpriteData **animatedSpritePtrArray, PoketchAnimation_AnimatedSpriteData *animatedSpritePool, u32 numSlots)
 {
     while (numSlots--) {
         *animatedSpritePtrArray = animatedSpritePool;
-        ov25_540_UnlinkAnimatedSprite(animatedSpritePool);
+        PoketchAnimation_UnlinkAnimatedSprite(animatedSpritePool);
         animatedSpritePool++;
         animatedSpritePtrArray++;
     }
 }
 
-static void ov25_540_UnlinkAnimatedSprite(Ov25_540_AnimatedSpriteData *animatedSprite)
+static void PoketchAnimation_UnlinkAnimatedSprite(PoketchAnimation_AnimatedSpriteData *animatedSprite)
 {
     animatedSprite->previousAnimatedSprite = NULL;
     animatedSprite->nextAnimatedSprite = NULL;
 }
 
-static Ov25_540_AnimatedSpriteData *ov25_540_GetNextUnusedAnimSlot(Ov25_540_AnimationManager *animMan)
+static PoketchAnimation_AnimatedSpriteData *PoketchAnimation_GetNextUnusedAnimSlot(PoketchAnimation_AnimationManager *animMan)
 {
     if (animMan->nextUnusedSlotIdx < animMan->numSlots) {
         return animMan->animatedSpritePtrArray[animMan->nextUnusedSlotIdx++];
@@ -358,26 +358,26 @@ static Ov25_540_AnimatedSpriteData *ov25_540_GetNextUnusedAnimSlot(Ov25_540_Anim
     return NULL;
 }
 
-static void ov25_540_MarkAnimatedSpriteUnused(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite)
+static void PoketchAnimation_MarkAnimatedSpriteUnused(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite)
 {
     if (animMan->nextUnusedSlotIdx == 0) {
         return;
     }
 
-    ov25_540_UnlinkAnimatedSprite(animatedSprite);
+    PoketchAnimation_UnlinkAnimatedSprite(animatedSprite);
 
     animMan->nextUnusedSlotIdx--;
     animMan->animatedSpritePtrArray[animMan->nextUnusedSlotIdx] = animatedSprite;
 }
 
-static void ov25_540_SortAnimIntoList(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite)
+static void PoketchAnimation_SortAnimIntoList(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite)
 {
     if (animMan->lastAnimatedSprite == NULL) {
         animMan->lastAnimatedSprite = animatedSprite;
         animatedSprite->previousAnimatedSprite = NULL;
         animatedSprite->nextAnimatedSprite = NULL;
     } else {
-        Ov25_540_AnimatedSpriteData *prevAnimSlot = animMan->lastAnimatedSprite;
+        PoketchAnimation_AnimatedSpriteData *prevAnimSlot = animMan->lastAnimatedSprite;
 
         while (TRUE) {
             if (animatedSprite->combinedPriority < prevAnimSlot->combinedPriority) {
@@ -410,7 +410,7 @@ static void ov25_540_SortAnimIntoList(Ov25_540_AnimationManager *animMan, Ov25_5
     }
 }
 
-static void ov25_540_RemoveAnimatedSpriteFromList(Ov25_540_AnimationManager *animMan, Ov25_540_AnimatedSpriteData *animatedSprite)
+static void PoketchAnimation_RemoveAnimatedSpriteFromList(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite)
 {
     if (animatedSprite->nextAnimatedSprite != NULL) {
         if (animatedSprite->previousAnimatedSprite != NULL) {

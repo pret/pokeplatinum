@@ -31,7 +31,7 @@ BOOL ov51_0225632C(UnkStruct_ov51_0225632C **param0, const UnkStruct_ov51_022563
         PoketchTask_InitActiveTaskList(v0->unk_08, 8);
 
         v0->unk_00 = param1;
-        v0->unk_04 = Poketch_GetBgConfig();
+        v0->unk_04 = PoketchGraphics_GetBgConfig();
 
         if (v0->unk_04 != NULL) {
             *param0 = v0;

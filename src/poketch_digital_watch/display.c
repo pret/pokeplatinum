@@ -29,7 +29,7 @@ BOOL PoketchDigitalWatch_SetupDisplayManager(DisplayManager **displayManager, co
         PoketchTask_InitActiveTaskList(newDisplayManager->taskList, NUM_TASK_SLOTS);
 
         newDisplayManager->watchData = watchData;
-        newDisplayManager->bgConfig = Poketch_GetBgConfig();
+        newDisplayManager->bgConfig = PoketchGraphics_GetBgConfig();
 
         void *nscrBuffer = Graphics_GetScrnData(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_CLOCK_DIGITS_TILEMAP_IDX, TRUE, &screenData, HEAP_ID_POKETCH_APP);
 
@@ -122,7 +122,7 @@ static void SetupBackground(SysTask *sysTask, void *taskManager)
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DIGITAL_WATCH_NARC_TILES_IDX, displayManager->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DIGITAL_WATCH_NARC_TILEMAP_IDX, displayManager->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
-    Poketch_LoadActivePalette(0, 0);
+    PoketchGraphics_LoadActivePalette(0, 0);
     DrawClockDigits(displayManager);
 
     Bg_CopyTilemapBufferToVRAM(displayManager->bgConfig, BG_LAYER_SUB_2);
@@ -146,9 +146,9 @@ static void ToggleBacklightPalette(SysTask *sysTask, void *taskManager)
     DisplayManager *displayManager = PoketchTask_GetTaskData(taskManager);
 
     if (displayManager->watchData->backlightActive) {
-        Poketch_LoadActiveBacklightPalette(0, 0);
+        PoketchGraphics_LoadActiveBacklightPalette(0, 0);
     } else {
-        Poketch_LoadActivePalette(0, 0);
+        PoketchGraphics_LoadActivePalette(0, 0);
     }
 
     EndTask(taskManager);

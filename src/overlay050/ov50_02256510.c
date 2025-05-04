@@ -19,13 +19,13 @@ struct UnkStruct_ov50_02256510_t {
     const UnkStruct_ov50_02256510_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[6];
-    Ov25_540_AnimationManager *unk_20;
-    Ov25_540_AnimatedSpriteData *unk_24;
-    ov25_SpriteData unk_28;
+    PoketchAnimation_AnimationManager *unk_20;
+    PoketchAnimation_AnimatedSpriteData *unk_24;
+    PoketchAnimation_SpriteData unk_28;
 };
 
 static void ov50_02256560(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1);
-static void ov50_022565B0(Ov25_540_AnimatedSpriteData *param0, u32 param1);
+static void ov50_022565B0(PoketchAnimation_AnimatedSpriteData *param0, u32 param1);
 static void ov50_022565E4(UnkStruct_ov50_02256510 *param0);
 static void ov50_02256638(PoketchTaskManager *param0);
 static void ov50_0225664C(SysTask *param0, void *param1);
@@ -44,8 +44,8 @@ BOOL ov50_02256510(UnkStruct_ov50_02256510 **param0, const UnkStruct_ov50_022565
     if (v0 != NULL) {
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
-        v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_20 = Poketch_GetAnimationManager();
+        v0->unk_04 = PoketchGraphics_GetBgConfig();
+        v0->unk_20 = PoketchGraphics_GetAnimationManager();
         ov50_02256560(v0, param1);
         *param0 = v0;
 
@@ -65,7 +65,7 @@ void ov50_0225654C(UnkStruct_ov50_02256510 *param0)
 
 static void ov50_02256560(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1)
 {
-    static const ov25_AnimationData v0 = {
+    static const PoketchAnimation_AnimationData v0 = {
         { (0 << FX32_SHIFT), (0 << FX32_SHIFT) },
         0,
         0,
@@ -76,25 +76,25 @@ static void ov50_02256560(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_
 
     Graphics_LoadObjectTiles(12, 114, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_540_LoadSpriteFromNARC(&param0->unk_28, 12, 112, 113, 8);
-    param0->unk_24 = ov25_540_SetupNewAnimatedSprite(param0->unk_20, &v0, &param0->unk_28);
+    PoketchAnimation_LoadSpriteFromNARC(&param0->unk_28, 12, 112, 113, 8);
+    param0->unk_24 = PoketchAnimation_SetupNewAnimatedSprite(param0->unk_20, &v0, &param0->unk_28);
     ov50_022565B0(param0->unk_24, param1->unk_0C[param1->unk_08 - 1].unk_02);
 }
 
-static void ov50_022565B0(Ov25_540_AnimatedSpriteData *param0, u32 param1)
+static void ov50_022565B0(PoketchAnimation_AnimatedSpriteData *param0, u32 param1)
 {
     fx32 v0, v1;
 
     v0 = (((4 + 3 * (param1 % 7)) + 1) * 8) << FX32_SHIFT;
     v1 = (((5 + 3 * (param1 / 7)) + 1) * 8) << FX32_SHIFT;
 
-    ov25_540_SetSpritePosition(param0, v0, v1);
+    PoketchAnimation_SetSpritePosition(param0, v0, v1);
 }
 
 static void ov50_022565E4(UnkStruct_ov50_02256510 *param0)
 {
-    ov25_540_RemoveAnimatedSprite(param0->unk_20, param0->unk_24);
-    ov25_540_FreeSpriteData(&(param0->unk_28));
+    PoketchAnimation_RemoveAnimatedSprite(param0->unk_20, param0->unk_24);
+    PoketchAnimation_FreeSpriteData(&(param0->unk_28));
 }
 
 static const PoketchTask Unk_ov50_02256AC0[] = {
@@ -171,7 +171,7 @@ static void ov50_0225664C(SysTask *param0, void *param1)
     ov50_022567F4(v3, v4);
 
     Graphics_LoadTilesToBgLayer(12, 111, v3->unk_04, 7, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    Poketch_LoadActivePalette(0, 0);
+    PoketchGraphics_LoadActivePalette(0, 0);
 
     Bg_CopyTilemapBufferToVRAM(v3->unk_04, 6);
     Bg_CopyTilemapBufferToVRAM(v3->unk_04, 7);

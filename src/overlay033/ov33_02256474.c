@@ -24,8 +24,8 @@
 #include "system.h"
 
 typedef struct {
-    Ov25_540_AnimatedSpriteData *unk_00;
-    Ov25_540_AnimatedSpriteData *unk_04;
+    PoketchAnimation_AnimatedSpriteData *unk_00;
+    PoketchAnimation_AnimatedSpriteData *unk_04;
     VecFx32 unk_08;
     VecFx32 unk_14;
     VecFx32 unk_20;
@@ -47,9 +47,9 @@ struct UnkStruct_ov33_02256474_t {
     const UnkStruct_ov33_02256474_1 *unk_00;
     BgConfig *unk_04;
     u32 unk_08[10];
-    Ov25_540_AnimationManager *unk_30;
-    ov25_SpriteData unk_34;
-    ov25_SpriteData unk_48;
+    PoketchAnimation_AnimationManager *unk_30;
+    PoketchAnimation_SpriteData unk_34;
+    PoketchAnimation_SpriteData unk_48;
     VecFx32 unk_5C[6];
     VecFx32 unk_A4;
     SysTask *unk_B0;
@@ -117,8 +117,8 @@ BOOL ov33_02256474(UnkStruct_ov33_02256474 **param0, const UnkStruct_ov33_022564
         PoketchTask_InitActiveTaskList(v0->unk_08, 8);
 
         v0->unk_00 = param1;
-        v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_30 = Poketch_GetAnimationManager();
+        v0->unk_04 = PoketchGraphics_GetBgConfig();
+        v0->unk_30 = PoketchGraphics_GetAnimationManager();
         v0->unk_B0 = NULL;
 
         for (v1 = 0; v1 < 6; v1++) {
@@ -126,8 +126,8 @@ BOOL ov33_02256474(UnkStruct_ov33_02256474 **param0, const UnkStruct_ov33_022564
             v0->unk_134[v1].unk_04 = NULL;
         }
 
-        ov25_540_LoadSpriteFromNARC(&v0->unk_34, 12, 5, 6, 8);
-        ov25_540_LoadSpriteFromNARC(&v0->unk_48, 12, 36, 37, 8);
+        PoketchAnimation_LoadSpriteFromNARC(&v0->unk_34, 12, 5, 6, 8);
+        PoketchAnimation_LoadSpriteFromNARC(&v0->unk_48, 12, 36, 37, 8);
         *param0 = v0;
         return 1;
     }
@@ -142,16 +142,16 @@ void ov33_022564F0(UnkStruct_ov33_02256474 *param0)
 
         for (v0 = 0; v0 < 6; v0++) {
             if (param0->unk_134[v0].unk_00 != NULL) {
-                ov25_540_RemoveAnimatedSprite(param0->unk_30, param0->unk_134[v0].unk_00);
+                PoketchAnimation_RemoveAnimatedSprite(param0->unk_30, param0->unk_134[v0].unk_00);
             }
 
             if (param0->unk_134[v0].unk_04 != NULL) {
-                ov25_540_RemoveAnimatedSprite(param0->unk_30, param0->unk_134[v0].unk_04);
+                PoketchAnimation_RemoveAnimatedSprite(param0->unk_30, param0->unk_134[v0].unk_04);
             }
         }
 
-        ov25_540_FreeSpriteData(&param0->unk_34);
-        ov25_540_FreeSpriteData(&param0->unk_48);
+        PoketchAnimation_FreeSpriteData(&param0->unk_34);
+        PoketchAnimation_FreeSpriteData(&param0->unk_48);
 
         if (param0->unk_B0 != NULL) {
             SysTask_Done(param0->unk_B0);
@@ -213,7 +213,7 @@ static void ov33_02256598(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 7, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
 
-    Poketch_LoadActivePalette(0, 0);
+    PoketchGraphics_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     ov33_02256634(v2, v2->unk_00);
@@ -245,7 +245,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_POKETCH_APP);
 
     if (v1) {
-        ov25_AnimationData v2;
+        PoketchAnimation_AnimationData v2;
         NNSG2dCharacterData *v3;
         void *v4;
         int v5;
@@ -265,19 +265,19 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
             v2.translation.x = ((v0[v5].x) << FX32_SHIFT);
             v2.translation.y = ((v0[v5].y) << FX32_SHIFT);
 
-            v2.unk_0C = 1;
-            param0->unk_134[v5].unk_00 = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v2, &param0->unk_34);
+            v2.priority = 1;
+            param0->unk_134[v5].unk_00 = PoketchAnimation_SetupNewAnimatedSprite(param0->unk_30, &v2, &param0->unk_34);
 
-            ov25_540_SetSpriteCharNo(param0->unk_134[v5].unk_00, (4 * 4 * 2) * v5);
-            ov25_540_SetCParam(param0->unk_134[v5].unk_00, 1 + PokeIconPaletteIndex(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 0));
+            PoketchAnimation_SetSpriteCharNo(param0->unk_134[v5].unk_00, (4 * 4 * 2) * v5);
+            PoketchAnimation_SetCParam(param0->unk_134[v5].unk_00, 1 + PokeIconPaletteIndex(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 0));
 
-            v2.unk_0C = 0;
-            param0->unk_134[v5].unk_04 = ov25_540_SetupNewAnimatedSprite(param0->unk_30, &v2, &param0->unk_48);
+            v2.priority = 0;
+            param0->unk_134[v5].unk_04 = PoketchAnimation_SetupNewAnimatedSprite(param0->unk_30, &v2, &param0->unk_48);
 
             if (param0->unk_134[v5].unk_04) {
-                ov25_540_HideSprite(param0->unk_134[v5].unk_04, 1);
-                ov25_540_SetSpriteCharNo(param0->unk_134[v5].unk_04, ((4 * 4 * 2) * 6));
-                ov25_540_SetCParam(param0->unk_134[v5].unk_04, 0);
+                PoketchAnimation_HideSprite(param0->unk_134[v5].unk_04, 1);
+                PoketchAnimation_SetSpriteCharNo(param0->unk_134[v5].unk_04, ((4 * 4 * 2) * 6));
+                PoketchAnimation_SetCParam(param0->unk_134[v5].unk_04, 0);
             } else {
                 GF_ASSERT(0);
             }
@@ -311,9 +311,9 @@ static void ov33_022567D4(VecFx32 *param0)
 static inline void inline_ov33_0225681C(UnkStruct_ov33_02256474_sub1 *param0)
 {
     if (param0->unk_30) {
-        ov25_540_UpdateAnimationIdx(param0->unk_00, 6);
+        PoketchAnimation_UpdateAnimationIdx(param0->unk_00, 6);
     } else {
-        ov25_540_UpdateAnimationIdx(param0->unk_00, (param0->unk_08.x > 0) ? 7 : 6);
+        PoketchAnimation_UpdateAnimationIdx(param0->unk_00, (param0->unk_08.x > 0) ? 7 : 6);
     }
 }
 
@@ -574,22 +574,22 @@ static BOOL ov33_02256C40(UnkStruct_ov33_02256474 *param0)
 static void ov33_02256C54(UnkStruct_ov33_02256474 *param0, int param1)
 {
     if (param0->unk_00->unk_04[param1].unk_0A == 0) {
-        ov25_540_SetSpritePrority(param0->unk_30, param0->unk_134[param1].unk_04, 0);
-        ov25_540_UpdateAnimationIdx(param0->unk_134[param1].unk_04, 0 + (param0->unk_00->unk_04[param1].unk_0B - 1));
-        ov25_540_HideSprite(param0->unk_134[param1].unk_04, 0);
+        PoketchAnimation_SetSpritePrority(param0->unk_30, param0->unk_134[param1].unk_04, 0);
+        PoketchAnimation_UpdateAnimationIdx(param0->unk_134[param1].unk_04, 0 + (param0->unk_00->unk_04[param1].unk_0B - 1));
+        PoketchAnimation_HideSprite(param0->unk_134[param1].unk_04, 0);
     }
 }
 
 static void ov33_02256C98(UnkStruct_ov33_02256474 *param0, int param1)
 {
-    ov25_540_SetSpritePrority(param0->unk_30, param0->unk_134[param1].unk_04, 2);
-    ov25_540_UpdateAnimationIdx(param0->unk_134[param1].unk_04, 3);
-    ov25_540_HideSprite(param0->unk_134[param1].unk_04, 0);
+    PoketchAnimation_SetSpritePrority(param0->unk_30, param0->unk_134[param1].unk_04, 2);
+    PoketchAnimation_UpdateAnimationIdx(param0->unk_134[param1].unk_04, 3);
+    PoketchAnimation_HideSprite(param0->unk_134[param1].unk_04, 0);
 }
 
 static void ov33_02256CC4(UnkStruct_ov33_02256474 *param0, int param1)
 {
-    ov25_540_HideSprite(param0->unk_134[param1].unk_04, 1);
+    PoketchAnimation_HideSprite(param0->unk_134[param1].unk_04, 1);
 }
 
 static void ov33_02256CDC(fx32 param0, u32 param1, VecFx32 *param2)
@@ -785,8 +785,8 @@ static void ov33_0225718C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
         VEC_Set(&v0->unk_20, 0, -20 * CalcSineDegrees(v0->unk_34_val3[1]), 0);
         VEC_Add(&v0->unk_14, &v0->unk_20, &param0->unk_A4);
 
-        ov25_540_SetSpritePosition(v0->unk_00, param0->unk_A4.x, param0->unk_A4.y);
-        ov25_540_SetSpritePosition(v0->unk_04, v0->unk_14.x, v0->unk_14.y + (8 << FX32_SHIFT));
+        PoketchAnimation_SetSpritePosition(v0->unk_00, param0->unk_A4.x, param0->unk_A4.y);
+        PoketchAnimation_SetSpritePosition(v0->unk_04, v0->unk_14.x, v0->unk_14.y + (8 << FX32_SHIFT));
 
         if (v0->unk_34_val3[2] == 2) {
             ov33_022567D4(&v0->unk_08);
@@ -983,8 +983,8 @@ static void ov33_022572A0(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
 
         VEC_Add(&param0->unk_134[v7].unk_14, &param0->unk_134[v7].unk_20, &param0->unk_A4);
 
-        ov25_540_SetSpritePosition(param0->unk_134[v7].unk_00, param0->unk_A4.x, param0->unk_A4.y);
-        ov25_540_SetSpritePosition(param0->unk_134[v7].unk_04, param0->unk_134[v7].unk_14.x, param0->unk_134[v7].unk_14.y + (8 << FX32_SHIFT));
+        PoketchAnimation_SetSpritePosition(param0->unk_134[v7].unk_00, param0->unk_A4.x, param0->unk_A4.y);
+        PoketchAnimation_SetSpritePosition(param0->unk_134[v7].unk_04, param0->unk_134[v7].unk_14.x, param0->unk_134[v7].unk_14.y + (8 << FX32_SHIFT));
     }
 }
 

@@ -13,14 +13,17 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-#define POKETCH_TASK_LIST_VALIDATOR 0x12345678 // If activeList[VALIDATOR_IDX] is not this value, tasks will not be added or removed.
-#define POKETCH_EMPTY_TASK          0xFFFFFFFF
-
-#define NUM_SLOTS_IDX 0
-#define VALIDATOR_IDX 1
-#define BASE_IDX      2
-
 #define RGB_TO_GREYSCALE(r, g, b) ((((r) * 299) + ((g) * 587) + ((b) * 114)) / 1000)
+
+#define PLACE_DIGIT(__value, __offset)                                            \
+    {                                                                             \
+        u32 v2 = (((__value) / 4) * 16) + (((__value) & 3) * 2);                  \
+        (bgSrc)[0] = v2;                                                          \
+        (bgSrc)[1] = v2 + 1;                                                      \
+        (bgSrc)[2] = v2 + 8;                                                      \
+        (bgSrc)[3] = v2 + 9;                                                      \
+        Bg_LoadToTilemapRect(bgConfig, bgLayer, bgSrc, 9 + (__offset), 11, 2, 2); \
+    }
 
 static BOOL AddTaskToActiveList(u32 *activeList, u32 taskId);
 static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId);
@@ -173,7 +176,7 @@ void ov25_02255258(u16 *tileBuffer, u32 param1, u32 param2, u32 param3, u32 para
     tileBuffer[param3 + 1] = param6 | (param4 + param5 + 1);
 }
 
-void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 size)
+void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEntries)
 {
     u16 *activePalette = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, PALETTE_SIZE_BYTES);
 
@@ -181,14 +184,14 @@ void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 size)
         static const u8 paletteEntries[] = {
             1, 8, 15, 4
         };
-        u32 activeByte, redData, blueData, greenData, luminance;
+        u32 activePaletteEntrie, redData, blueData, greenData, luminance;
 
-        Poketch_CopyActivePalette(activePalette);
+        PoketchGraphics_CopyActivePalette(activePalette);
 
-        for (activeByte = 0; activeByte < size; activeByte++) {
-            redData = (rawData[activeByte] & GX_RGB_R_MASK) >> GX_RGB_R_SHIFT;
-            blueData = (rawData[activeByte] & GX_RGB_G_MASK) >> GX_RGB_G_SHIFT;
-            greenData = (rawData[activeByte] & GX_RGB_B_MASK) >> GX_RGB_B_SHIFT;
+        for (activePaletteEntrie = 0; activePaletteEntrie < numPaletteEntries; activePaletteEntrie++) {
+            redData = (rawData[activePaletteEntrie] & GX_RGB_R_MASK) >> GX_RGB_R_SHIFT;
+            blueData = (rawData[activePaletteEntrie] & GX_RGB_G_MASK) >> GX_RGB_G_SHIFT;
+            greenData = (rawData[activePaletteEntrie] & GX_RGB_B_MASK) >> GX_RGB_B_SHIFT;
             luminance = RGB_TO_GREYSCALE(redData, blueData, greenData);
             luminance >>= 3;
 
@@ -196,7 +199,7 @@ void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 size)
                 luminance = 3;
             }
 
-            rawData[activeByte] = activePalette[paletteEntries[luminance]];
+            rawData[activePaletteEntrie] = activePalette[paletteEntries[luminance]];
         }
 
         Heap_FreeToHeap(activePalette);
@@ -210,7 +213,7 @@ void PoketchTask_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset)
     if (activePalette) {
         u16 *newPalette = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, PALETTE_SIZE_BYTES);
 
-        Poketch_CopyActivePalette(activePalette);
+        PoketchGraphics_CopyActivePalette(activePalette);
 
         if (newPalette) {
             int paletteSlot;
@@ -236,7 +239,7 @@ void PoketchTask_LoadPokemonIconLuminancePalette(u32 offset)
     nclrBuffer = Graphics_GetPlttData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), &palette, HEAP_ID_POKETCH_APP);
 
     if (nclrBuffer) {
-        PoketchTask_MapToActivePaletteFromLuminance(palette->pRawData, 4 * 0x10);
+        PoketchTask_MapToActivePaletteFromLuminance(palette->pRawData, 4 * SLOTS_PER_PALETTE);
         DC_FlushRange(palette->pRawData, 4 * PALETTE_SIZE_BYTES);
         GXS_LoadOBJPltt(palette->pRawData, PLTT_OFFSET(offset), 4 * PALETTE_SIZE_BYTES);
         Heap_FreeToHeap(nclrBuffer);
@@ -275,59 +278,15 @@ void ov25_02255440(BgConfig *bgConfig, u32 digit, u32 bgLayer)
     u16 bgSrc[4];
     u32 tensDigit;
 
-    {
-        u32 v2 = ((1 / 4) * 16) + ((1 & 3) * 2);
-        (bgSrc)[0] = v2;
-        (bgSrc)[1] = v2 + 1;
-        (bgSrc)[2] = v2 + 8;
-        (bgSrc)[3] = v2 + 9;
-    }
-
-    //                                     dstX, dstY, dstWidth, dstHeight
-    Bg_LoadToTilemapRect(bgConfig, bgLayer, bgSrc, 9 + 0, 11, 2, 2);
-
-    {
-        u32 v2 = ((2 / 4) * 16) + ((2 & 3) * 2);
-        (bgSrc)[0] = v2;
-        (bgSrc)[1] = v2 + 1;
-        (bgSrc)[2] = v2 + 8;
-        (bgSrc)[3] = v2 + 9;
-    }
-
-    Bg_LoadToTilemapRect(bgConfig, bgLayer, bgSrc, 9 + 2, 11, 2, 2);
-
-    {
-        u32 v2 = ((3 / 4) * 16) + ((3 & 3) * 2);
-        (bgSrc)[0] = v2;
-        (bgSrc)[1] = v2 + 1;
-        (bgSrc)[2] = v2 + 8;
-        (bgSrc)[3] = v2 + 9;
-    }
-
-    Bg_LoadToTilemapRect(bgConfig, bgLayer, bgSrc, 9 + 4, 11, 2, 2);
+    PLACE_DIGIT(1, 0);
+    PLACE_DIGIT(2, 2);
+    PLACE_DIGIT(3, 4);
 
     tensDigit = digit / 10;
     digit -= (tensDigit * 10);
     tensDigit += 4;
     digit += 4;
 
-    {
-        u32 v2 = (((tensDigit) / 4) * 16) + (((tensDigit) & 3) * 2);
-        (bgSrc)[0] = v2;
-        (bgSrc)[1] = v2 + 1;
-        (bgSrc)[2] = v2 + 8;
-        (bgSrc)[3] = v2 + 9;
-    }
-
-    Bg_LoadToTilemapRect(bgConfig, bgLayer, bgSrc, 9 + 6, 11, 2, 2);
-
-    {
-        u32 v2 = (((digit) / 4) * 16) + (((digit) & 3) * 2);
-        (bgSrc)[0] = v2;
-        (bgSrc)[1] = v2 + 1;
-        (bgSrc)[2] = v2 + 8;
-        (bgSrc)[3] = v2 + 9;
-    }
-
-    Bg_LoadToTilemapRect(bgConfig, bgLayer, bgSrc, 9 + 8, 11, 2, 2);
+    PLACE_DIGIT(tensDigit, 6);
+    PLACE_DIGIT(digit, 8);
 }

@@ -9,6 +9,7 @@
 #include "poketch/poketch_button.h"
 #include "poketch/poketch_graphics.h"
 #include "poketch/poketch_structs.h"
+#include "poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "enums.h"
@@ -25,8 +26,6 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-
-#define POKETCH_EMPTY_TASK 0xFFFFFFFF
 
 FS_EXTERN_OVERLAY(poketch_digital_watch);
 FS_EXTERN_OVERLAY(overlay27);
@@ -78,10 +77,10 @@ static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys);
 static void PoketchSystem_ButtonShutdown(PoketchSystem *poketchSys);
 static void PoketchSystem_ButtonUpdate(PoketchSystem *poketchSys);
 static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touchEvent, void *system);
-static BOOL PoketchSystem_StartTaskIfNotActive(Ov25_560_TaskData *taskData, u32 taskId);
+static BOOL PoketchSystem_StartTaskIfNotActive(PoketchGraphics_TaskData *taskData, u32 taskId);
 static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y);
 
-// the order of this array determines the app order in the poketch.
+// The order of this array determines the app order in the poketch.
 static const struct {
     int appID;
     FSOverlayID overlayID;
@@ -196,7 +195,7 @@ enum PoketchAppID PoketchSystem_CurrentAppID(PoketchSystem *poketchSys)
 
 static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys)
 {
-    if (ov25_560_Main(&(poketchSys->taskData), &(poketchSys->constTaskData), poketchSys->oamManager, poketchSys)) {
+    if (PoketchGraphics_Main(&(poketchSys->taskData), &(poketchSys->constTaskData), poketchSys->oamManager, poketchSys)) {
         poketchSys->systemState = POKETCH_SYSTEM_INIT;
         poketchSys->subState = 0;
         poketchSys->touchingScreen = FALSE;
@@ -223,7 +222,7 @@ static void PoketchSystem_Shutdown(PoketchSystem *poketchSys)
 
     PoketchSystem_ButtonShutdown(poketchSys);
     PoketchSystem_UnloadApp(poketchSys);
-    ov25_560_Close(poketchSys->taskData);
+    PoketchGraphics_Close(poketchSys->taskData);
 }
 
 typedef void (*const PoketchEvent)(PoketchSystem *poketchSys);
@@ -274,11 +273,11 @@ static void PoketchEvent_InitApp(PoketchSystem *poketchSys)
 {
     switch (poketchSys->subState) {
     case 0:
-        ov25_560_StartTask(poketchSys->taskData, 0);
+        PoketchGraphics_StartTask(poketchSys->taskData, 0);
         poketchSys->subState++;
         break;
     case 1:
-        if (ov25_560_TaskIsNotActive(poketchSys->taskData, 0)) {
+        if (PoketchGraphics_TaskIsNotActive(poketchSys->taskData, 0)) {
             u32 app_ID = Poketch_CurrentAppID(poketchSys->poketch);
 
             PoketchSystem_LoadApp(poketchSys, app_ID);
@@ -292,10 +291,10 @@ static void PoketchEvent_InitApp(PoketchSystem *poketchSys)
             break;
         }
 
-        ov25_560_StartTask(poketchSys->taskData, 1);
+        PoketchGraphics_StartTask(poketchSys->taskData, 1);
         poketchSys->subState++;
     case 3:
-        if (ov25_560_TaskIsNotActive(poketchSys->taskData, 1)) {
+        if (PoketchGraphics_TaskIsNotActive(poketchSys->taskData, 1)) {
             PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_UPDATE);
         }
     }
@@ -314,7 +313,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
         case BUTTON_MANAGER_STATE_TIMER0:
             poketchSys->skipApp = FALSE;
             poketchSys->appChanging = TRUE;
-            ov25_560_StartTask(poketchSys->taskData, 4);
+            PoketchGraphics_StartTask(poketchSys->taskData, 4);
             poketchSys->subState++;
             break;
         }
@@ -324,7 +323,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
             poketchSys->skipApp = TRUE;
         }
 
-        if (ov25_560_NoActiveTasks(poketchSys->taskData)) {
+        if (PoketchGraphics_NoActiveTasks(poketchSys->taskData)) {
             if (poketchSys->buttonDir == BUTTON_UP) {
                 poketchSys->constTaskData.lastAppID = Poketch_DecrementAppID(poketchSys->poketch);
             } else {
@@ -332,7 +331,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
             }
 
             if (poketchSys->skipApp) {
-                ov25_560_StartTask(poketchSys->taskData, 12);
+                PoketchGraphics_StartTask(poketchSys->taskData, 12);
                 poketchSys->appSkipTimer = 30;
                 poketchSys->skipApp = FALSE;
                 poketchSys->subState = 4;
@@ -344,7 +343,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
         break;
     case 2:
         if (poketchSys->buttonState == BUTTON_MANAGER_STATE_TAP || poketchSys->buttonState == BUTTON_MANAGER_STATE_TIMER0) {
-            ov25_560_StartTask(poketchSys->taskData, 12);
+            PoketchGraphics_StartTask(poketchSys->taskData, 12);
             poketchSys->appSkipTimer = 30;
             poketchSys->skipApp = FALSE;
             poketchSys->subState = 4;
@@ -374,14 +373,14 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
             }
 
             poketchSys->appSkipTimer = 30;
-            ov25_560_StartTask(poketchSys->taskData, 13);
+            PoketchGraphics_StartTask(poketchSys->taskData, 13);
             break;
         }
 
         if (poketchSys->appSkipTimer) {
             poketchSys->appSkipTimer--;
         } else {
-            ov25_560_StartTask(poketchSys->taskData, 14);
+            PoketchGraphics_StartTask(poketchSys->taskData, 14);
             PoketchSystem_ShutdownApp(poketchSys);
             poketchSys->subState = 3;
         }
@@ -403,12 +402,12 @@ static void PoketchEvent_OnAppChange(PoketchSystem *poketchSys)
     } break;
     case 1:
         if (PoketchSystem_IsAppInitialized(poketchSys)) {
-            ov25_560_StartTask(poketchSys->taskData, 2);
+            PoketchGraphics_StartTask(poketchSys->taskData, 2);
             poketchSys->subState++;
         }
         break;
     case 2:
-        if (ov25_560_TaskIsNotActive(poketchSys->taskData, 2)) {
+        if (PoketchGraphics_TaskIsNotActive(poketchSys->taskData, 2)) {
             poketchSys->appChanging = FALSE;
             poketchSys->appStarting = FALSE;
             PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_UPDATE);
@@ -443,12 +442,12 @@ static void PoketchEvent_OnShutdown(PoketchSystem *poketchSys)
         break;
     case 2:
         if (PoketchSystem_IsAppShutdown(poketchSys)) {
-            ov25_560_StartTask(poketchSys->taskData, 17);
+            PoketchGraphics_StartTask(poketchSys->taskData, 17);
             poketchSys->subState = 3;
         }
         break;
     case 3:
-        if (ov25_560_NoActiveTasks(poketchSys->taskData)) {
+        if (PoketchGraphics_NoActiveTasks(poketchSys->taskData)) {
             PoketchSystem_UnloadApp(poketchSys);
             DisableTouchPad();
             PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_UNLOAD);
@@ -642,19 +641,19 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
     }
 }
 
-static BOOL PoketchSystem_StartTaskIfNotActive(Ov25_560_TaskData *taskData, u32 taskId)
+static BOOL PoketchSystem_StartTaskIfNotActive(PoketchGraphics_TaskData *taskData, u32 taskId)
 {
     for (u32 i = 0; i < 6; i++) {
-        if (ov25_560_TaskIsNotActive(taskData, taskId) == FALSE) {
+        if (PoketchGraphics_TaskIsNotActive(taskData, taskId) == FALSE) {
             return FALSE;
         }
     }
 
-    ov25_560_StartTask(taskData, taskId);
+    PoketchGraphics_StartTask(taskData, taskId);
     return TRUE;
 }
 
-Ov25_560_TaskData *PoketchSystem_GetTaskData(void)
+PoketchGraphics_TaskData *PoketchSystem_GetTaskData(void)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
     return poketchSys->taskData;
@@ -673,7 +672,7 @@ void PoketchSystem_PlayCry(u32 species, u32 form)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if (poketchSys->appChanging == FALSE && PoketechSystem_IsRunningTask(poketchSys) == 0) {
+    if (poketchSys->appChanging == FALSE && PoketechSystem_IsRunningTask(poketchSys) == FALSE) {
         Sound_PlayPokemonCry(species, form);
     }
 }

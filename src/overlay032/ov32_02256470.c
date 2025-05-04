@@ -51,8 +51,8 @@ BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPart
         PoketchTask_InitActiveTaskList(graphicsData->activeTaskIds, 8);
 
         graphicsData->playerParty = playerParty;
-        graphicsData->bgConfig = Poketch_GetBgConfig();
-        graphicsData->unk_08 = Poketch_GetAnimationManager();
+        graphicsData->bgConfig = PoketchGraphics_GetBgConfig();
+        graphicsData->unk_08 = PoketchGraphics_GetAnimationManager();
         graphicsData->partyCount = 0;
         graphicsData->bounceAnimTask = NULL;
 
@@ -62,8 +62,8 @@ BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPart
             graphicsData->unk_B4[i] = NULL;
         }
 
-        ov25_540_LoadSpriteFromNARC(&graphicsData->unk_CC, 12, 5, 6, HEAP_ID_POKETCH_APP);
-        ov25_540_LoadSpriteFromNARC(&graphicsData->unk_E0, 12, 107, 108, HEAP_ID_POKETCH_APP);
+        PoketchAnimation_LoadSpriteFromNARC(&graphicsData->unk_CC, 12, 5, 6, HEAP_ID_POKETCH_APP);
+        PoketchAnimation_LoadSpriteFromNARC(&graphicsData->unk_E0, 12, 107, 108, HEAP_ID_POKETCH_APP);
         *dest = graphicsData;
         return TRUE;
     }
@@ -75,8 +75,8 @@ void PartyStatusGraphics_UnloadAndFree(PoketchPartyStatusGraphics *graphicsData)
 {
     if (graphicsData != NULL) {
         ov32_02256BD4(graphicsData);
-        ov25_540_FreeSpriteData(&graphicsData->unk_CC);
-        ov25_540_FreeSpriteData(&graphicsData->unk_E0);
+        PoketchAnimation_FreeSpriteData(&graphicsData->unk_CC);
+        PoketchAnimation_FreeSpriteData(&graphicsData->unk_E0);
 
         if (graphicsData->bounceAnimTask) {
             SysTask_Done(graphicsData->bounceAnimTask);
@@ -142,7 +142,7 @@ static void DrawAppScreen(SysTask *param0, void *param1)
     v3 /= TILE_SIZE_4BPP;
 
     Bg_FillTilemapRect(v2->bgConfig, 6, 0x5, 0, 0, 32, 24, 0);
-    Poketch_LoadActivePalette(0, 0);
+    PoketchGraphics_LoadActivePalette(0, 0);
 
     v2->hpBarBaseTile = v3;
     CreateHpBars(v2, v2->playerParty, v3);
@@ -237,13 +237,13 @@ static u32 GetHpBarWidth(u32 currentHp, u32 maxHp)
 static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyStatus *param1)
 {
     int v0;
-    ov25_AnimationData v1;
+    PoketchAnimation_AnimationData v1;
 
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 109, DS_SCREEN_SUB, 0 * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     v1.flip = 0;
     v1.oamPriority = 2;
-    v1.unk_0C = 0;
+    v1.priority = 0;
     v1.hasAffineTransform = 0;
 
     for (v0 = 0; v0 < param1->partyCount; v0++) {
@@ -252,7 +252,7 @@ static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyS
             v1.translation.x = ((sMonIconCoords[v0].x + 28) << FX32_SHIFT);
             v1.translation.y = ((sMonIconCoords[v0].y + 21) << FX32_SHIFT);
 
-            param0->unk_B4[v0] = ov25_540_SetupNewAnimatedSprite(param0->unk_08, &v1, &param0->unk_E0);
+            param0->unk_B4[v0] = PoketchAnimation_SetupNewAnimatedSprite(param0->unk_08, &v1, &param0->unk_E0);
         }
     }
 }
@@ -262,14 +262,14 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
     NARC *v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_POKETCH_APP);
 
     if (v0) {
-        ov25_AnimationData v1;
+        PoketchAnimation_AnimationData v1;
         NNSG2dCharacterData *v2;
         int v3;
 
         v1.animIdx = 0;
         v1.flip = 0;
         v1.oamPriority = 2;
-        v1.unk_0C = 1;
+        v1.priority = 1;
         v1.hasAffineTransform = 1;
 
         for (v3 = 0; v3 < param1->partyCount; v3++) {
@@ -282,16 +282,16 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
             v1.translation.x = ((sMonIconCoords[v3].x) << FX32_SHIFT);
             v1.translation.y = ((sMonIconCoords[v3].y) << FX32_SHIFT);
 
-            param0->unk_9C[v3] = ov25_540_SetupNewAnimatedSprite(param0->unk_08, &v1, &param0->unk_CC);
+            param0->unk_9C[v3] = PoketchAnimation_SetupNewAnimatedSprite(param0->unk_08, &v1, &param0->unk_CC);
 
-            ov25_540_SetSpriteCharNo(param0->unk_9C[v3], (0 + 8) + 16 * v3);
-            ov25_540_UpdateAnimationIdx(param0->unk_9C[v3], 4);
+            PoketchAnimation_SetSpriteCharNo(param0->unk_9C[v3], (0 + 8) + 16 * v3);
+            PoketchAnimation_UpdateAnimationIdx(param0->unk_9C[v3], 4);
 
             if ((param1->mons[v3].currentHp == 0) || param1->mons[v3].status) { // darken sprite if mon is incapacitated
-                ov25_540_SetCParam(param0->unk_9C[v3], 1);
+                PoketchAnimation_SetCParam(param0->unk_9C[v3], 1);
             } else {
                 u16 v4 = PokeIconPaletteIndex(param1->mons[v3].species, param1->mons[v3].form, param1->mons[v3].isEgg);
-                ov25_540_SetCParam(param0->unk_9C[v3], 2 + v4);
+                PoketchAnimation_SetCParam(param0->unk_9C[v3], 2 + v4);
             }
         }
 
@@ -343,7 +343,7 @@ static void Task_HandleMonIconBounce(SysTask *task, void *taskData)
     case 1:
         if (data->bouncesDone == data->numBounces) { // bouncing will continue for as long as the touch screen is held on the same icon
             if (!(playerData->isTouchingPoketch && (data->partySlot == PoketchPartyStatus_CheckTouchingPartySlot(playerData->touchX, playerData->touchY, playerData->partyCount)))) {
-                ov25_540_SetSpritePosition(graphicsData->unk_9C[data->partySlot], (sMonIconCoords[data->partySlot].x << FX32_SHIFT), (sMonIconCoords[data->partySlot].y << FX32_SHIFT));
+                PoketchAnimation_SetSpritePosition(graphicsData->unk_9C[data->partySlot], (sMonIconCoords[data->partySlot].x << FX32_SHIFT), (sMonIconCoords[data->partySlot].y << FX32_SHIFT));
                 data->taskState = 0;
                 break;
             }
@@ -355,7 +355,7 @@ static void Task_HandleMonIconBounce(SysTask *task, void *taskData)
             targetX = sMonIconCoords[data->partySlot].x << FX32_SHIFT;
             targetY = (sMonIconCoords[data->partySlot].y + data->spriteOffset) << FX32_SHIFT;
 
-            ov25_540_SetSpritePosition(graphicsData->unk_9C[data->partySlot], targetX, targetY);
+            PoketchAnimation_SetSpritePosition(graphicsData->unk_9C[data->partySlot], targetX, targetY);
 
             if (data->bouncesDone < data->numBounces) {
                 data->bouncesDone++;
@@ -396,12 +396,12 @@ static void ov32_02256BD4(PoketchPartyStatusGraphics *param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_9C[v0] != NULL) {
-            ov25_540_RemoveAnimatedSprite(param0->unk_08, param0->unk_9C[v0]);
+            PoketchAnimation_RemoveAnimatedSprite(param0->unk_08, param0->unk_9C[v0]);
             param0->unk_9C[v0] = NULL;
         }
 
         if (param0->unk_B4[v0] != NULL) {
-            ov25_540_RemoveAnimatedSprite(param0->unk_08, param0->unk_B4[v0]);
+            PoketchAnimation_RemoveAnimatedSprite(param0->unk_08, param0->unk_B4[v0]);
             param0->unk_B4[v0] = NULL;
         }
     }
