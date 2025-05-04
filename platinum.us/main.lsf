@@ -53,7 +53,7 @@ Static main
 	Object main.nef.p/src_rtc.c.o
 	Object main.nef.p/src_string_list.c.o
 	Object main.nef.p/src_screen_scroll_manager.c.o
-	Object main.nef.p/src_unk_02014000.c.o
+	Object main.nef.p/src_particle_system.c.o
 	Object main.nef.p/src_colored_arrow.c.o
 	Object main.nef.p/src_unk_02014A84.c.o
 	Object main.nef.p/src_unk_02014D38.c.o

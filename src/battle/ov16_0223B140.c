@@ -53,6 +53,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
@@ -73,7 +74,6 @@
 #include "trainer_info.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
-#include "unk_02014000.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
@@ -760,7 +760,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     MessageLoader_Free(battleSystem->unk_10);
     StringTemplate_Free(battleSystem->strFormatter);
     sub_02015FB8(battleSystem->unk_1C4);
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov12_0221FDF4(battleSystem->unk_8C);
     BattleContext_Free(battleSystem->battleCtx);
@@ -1461,7 +1461,7 @@ static void ov16_0223CE28(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 static void ov16_0223CE68(void *param0)

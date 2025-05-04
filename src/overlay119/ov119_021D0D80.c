@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -23,6 +22,7 @@
 #include "menu.h"
 #include "message.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
@@ -34,7 +34,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200F174.h"
-#include "unk_02014000.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"
@@ -46,8 +45,8 @@ void ov119_021D0DF4(void);
 void ov119_021D0E78(void);
 static u32 ov119_021D13B4(u32 param0, BOOL param1);
 static u32 ov119_021D13D0(u32 param0, BOOL param1);
-static UnkStruct_02014014 *ov119_021D13EC(int heapID);
-static UnkStruct_02014014 *ov119_021D1434(int heapID, int param1, int param2);
+static ParticleSystem *ov119_021D13EC(int heapID);
+static ParticleSystem *ov119_021D1434(int heapID, int param1, int param2);
 static void ov119_021D1474(SPLEmitter *param0);
 
 void ov119_021D0D80(void)
@@ -100,7 +99,7 @@ void ov119_021D0E78(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 void ov119_021D0EB8(BgConfig *param0)
@@ -247,14 +246,14 @@ void ov119_021D1004(void)
 
     sub_020241B4();
 
-    v0 = sub_0201469C();
+    v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
         sub_020241B4();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
@@ -403,7 +402,7 @@ static u32 ov119_021D13B4(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocTexVram(param0, param1, 0);
-    sub_020145B4(v0);
+    ParticleSystem_RegisterTextureKey(v0);
 
     v1 = NNS_GfdGetTexKeyAddr(v0);
     return v1;
@@ -415,21 +414,21 @@ static u32 ov119_021D13D0(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocPlttVram(param0, param1, 0);
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
 
     v1 = NNS_GfdGetPlttKeyAddr(v0);
     return v1;
 }
 
-static UnkStruct_02014014 *ov119_021D13EC(int heapID)
+static ParticleSystem *ov119_021D13EC(int heapID)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     void *v1;
     Camera *camera;
 
     v1 = Heap_AllocFromHeap(heapID, 0x4800);
-    v0 = sub_02014014(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, heapID);
-    camera = sub_02014784(v0);
+    v0 = ParticleSystem_New(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, heapID);
+    camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
         Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
@@ -438,20 +437,20 @@ static UnkStruct_02014014 *ov119_021D13EC(int heapID)
     return v0;
 }
 
-static UnkStruct_02014014 *ov119_021D1434(int heapID, int param1, int param2)
+static ParticleSystem *ov119_021D1434(int heapID, int param1, int param2)
 {
-    UnkStruct_02014014 *v0 = ov119_021D13EC(heapID);
-    void *v1 = sub_020144C4(param1, param2, heapID);
+    ParticleSystem *v0 = ov119_021D13EC(heapID);
+    void *v1 = ParticleSystem_LoadResourceFromNARC(param1, param2, heapID);
 
-    sub_020144CC(v0, v1, (1 << 1) | (1 << 3), 1);
+    ParticleSystem_SetResource(v0, v1, (1 << 1) | (1 << 3), 1);
 
     return v0;
 }
 
-void ov119_021D145C(UnkStruct_02014014 *param0)
+void ov119_021D145C(ParticleSystem *param0)
 {
-    void *v0 = sub_02014730(param0);
-    sub_0201411C(param0);
+    void *v0 = ParticleSystem_GetHeapStart(param0);
+    ParticleSystem_Free(param0);
     Heap_FreeToHeap(v0);
 }
 
@@ -475,7 +474,7 @@ UnkStruct_ov119_021D14DC *ov119_021D14AC(UnkStruct_ov119_021D1930 *param0)
     v4->unk_00 = *param0;
     v4->unk_0C = ov119_021D1434(v4->unk_00.heapID, 119, v4->unk_00.unk_04);
 
-    sub_02014788(v4->unk_0C, 1);
+    ParticleSystem_SetCameraProjection(v4->unk_0C, 1);
 
     return v4;
 }
@@ -488,15 +487,15 @@ void ov119_021D14DC(UnkStruct_ov119_021D14DC *param0, int param1)
     int v3;
     UnkStruct_ov119_021D14DC *v4 = param0;
 
-    sub_020146F4(v4->unk_0C, param1, ov119_021D1474, v4);
-    sub_02014788(v4->unk_0C, 1);
+    ParticleSystem_CreateEmitterWithCallback(v4->unk_0C, param1, ov119_021D1474, v4);
+    ParticleSystem_SetCameraProjection(v4->unk_0C, 1);
 }
 
 BOOL ov119_021D14F8(UnkStruct_ov119_021D14DC *param0)
 {
     UnkStruct_ov119_021D14DC *v0 = param0;
 
-    if (sub_02014710(v0->unk_0C) == 0) {
+    if (ParticleSystem_GetActiveEmitterCount(v0->unk_0C) == 0) {
         return 0;
     }
 

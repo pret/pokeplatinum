@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
-
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225104.h"
 #include "overlay012/ov12_02225640.h"
@@ -14,8 +12,8 @@
 
 #include "heap.h"
 #include "inlines.h"
+#include "particle_system.h"
 #include "spl.h"
-#include "unk_02014000.h"
 
 typedef struct {
     int unk_00;
@@ -56,7 +54,7 @@ static void ov12_0222421C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
 {
     UnkStruct_ov12_0221FCDC *v0;
-    UnkStruct_02014014 *v1;
+    ParticleSystem *v1;
     int v2;
     int v3;
     int v4;
@@ -65,7 +63,7 @@ static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, V
     v0 = param1->unk_00;
 
     v1 = ov12_02220250(v0);
-    v2 = sub_02014790(v1);
+    v2 = ParticleSystem_GetCameraProjection(v1);
     v4 = ov12_02220248(v0);
     v5 = ov12_0223525C(v0, v4);
 
@@ -81,7 +79,7 @@ static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, V
 static void ov12_022242A0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
 {
     UnkStruct_ov12_0221FCDC *v0;
-    UnkStruct_02014014 *v1;
+    ParticleSystem *v1;
     int v2;
     int v3;
     int v4;
@@ -90,7 +88,7 @@ static void ov12_022242A0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, V
 
     v0 = param1->unk_00;
     v1 = ov12_02220250(v0);
-    v3 = sub_02014790(v1);
+    v3 = ParticleSystem_GetCameraProjection(v1);
     v5 = ov12_02220240(v0);
     v6 = ov12_0223525C(v0, v5);
 
@@ -675,7 +673,7 @@ void ov12_02224F14(SPLEmitter *param0)
     UnkStruct_ov12_0221FCDC *v0;
     UnkStruct_ov12_02225640 *v1;
 
-    v0 = sub_02014764();
+    v0 = ParticleSystem_GetEmitterCallbackParam();
     v1 = Heap_AllocFromHeap(ov12_0221FDE4(v0), sizeof(UnkStruct_ov12_02225640));
 
     v1->unk_00 = v0;

@@ -3,16 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
-
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay115/camera_angle.h"
 
 #include "camera.h"
+#include "particle_system.h"
 #include "spl.h"
-#include "unk_02014000.h"
 
 static s8 ov12_0222389C(UnkStruct_ov12_0221FCDC *param0, int param1, int param2);
 
@@ -64,11 +62,11 @@ void ov12_022238DC(SPLEmitter *param0)
 void ov12_022238E0(SPLEmitter *param0)
 {
     UnkStruct_ov12_0221FCDC *v0;
-    UnkStruct_02014014 *v1;
+    ParticleSystem *v1;
     int v2, v3, v4;
     VecFx32 v5, v6, v7;
 
-    v0 = sub_02014764();
+    v0 = ParticleSystem_GetEmitterCallbackParam();
     v2 = ov12_02220240(v0);
     v3 = ov12_02220248(v0);
     v2 = 1;
@@ -84,7 +82,7 @@ void ov12_022238E0(SPLEmitter *param0)
         } else {
             v8 = ov12_02235254(v0, v2);
             v9 = ov12_02235310(v8);
-            v10 = sub_02014790(v1);
+            v10 = ParticleSystem_GetCameraProjection(v1);
             v4 = ov12_0221FDD4(v0);
 
             ov12_02235448(v9, &v5, v4, v10);
@@ -102,7 +100,7 @@ void ov12_022238E0(SPLEmitter *param0)
         CameraAngle v11;
         Camera *camera;
 
-        camera = sub_02014784(v1);
+        camera = ParticleSystem_GetCamera(v1);
 
         switch (v2) {
         case 2:
@@ -123,11 +121,11 @@ void ov12_022238E0(SPLEmitter *param0)
 void ov12_02223998(SPLEmitter *param0)
 {
     UnkStruct_ov12_0221FCDC *v0;
-    UnkStruct_02014014 *v1;
+    ParticleSystem *v1;
     int v2;
     VecFx32 v3, v4;
 
-    v0 = sub_02014764();
+    v0 = ParticleSystem_GetEmitterCallbackParam();
     v2 = ov12_02220248(v0);
     v1 = ov12_02220250(v0);
 
@@ -138,7 +136,7 @@ void ov12_02223998(SPLEmitter *param0)
     SPLEmitter_SetPosZ(param0, v3.z);
 
     ov12_02235760(v2, &v4);
-    sub_02014744(v1, &v4);
+    ParticleSystem_SetCameraUp(v1, &v4);
 }
 
 void ov12_022239F4(SPLEmitter *param0)
@@ -147,7 +145,7 @@ void ov12_022239F4(SPLEmitter *param0)
     int v1;
     VecFx32 v2;
 
-    v0 = sub_02014764();
+    v0 = ParticleSystem_GetEmitterCallbackParam();
     v1 = ov12_02220248(v0);
 
     ov12_02235508(v0, v1, &v2);
@@ -163,7 +161,7 @@ void ov12_02223A38(SPLEmitter *param0)
     int v1;
     VecFx32 v2;
 
-    v0 = sub_02014764();
+    v0 = ParticleSystem_GetEmitterCallbackParam();
     v1 = ov12_02220240(v0);
 
     ov12_02235508(v0, v1, &v2);
@@ -180,7 +178,7 @@ void ov12_02223A7C(SPLEmitter *param0)
     int v2;
     VecFx32 v3;
 
-    v0 = sub_02014764();
+    v0 = ParticleSystem_GetEmitterCallbackParam();
     v1 = ov12_02220240(v0);
     v2 = ov12_02220248(v0);
 
@@ -195,15 +193,15 @@ void ov12_02223AC8(SPLEmitter *param0)
 {
     UnkStruct_ov12_0221FCDC *v0;
     VecFx32 v1;
-    UnkStruct_02014014 *v2;
+    ParticleSystem *v2;
     int v3;
     int v4;
     int v5;
     int v6;
 
-    v0 = sub_02014764();
+    v0 = ParticleSystem_GetEmitterCallbackParam();
     v2 = ov12_02220250(v0);
-    v3 = sub_02014790(v2);
+    v3 = ParticleSystem_GetCameraProjection(v2);
     v5 = ov12_02220240(v0);
     v6 = ov12_0223525C(v0, v5);
 
@@ -224,16 +222,16 @@ void ov12_02223B30(SPLEmitter *param0)
 {
     UnkStruct_ov12_0221FCDC *v0;
     VecFx32 v1;
-    UnkStruct_02014014 *v2;
+    ParticleSystem *v2;
     int v3;
     int v4;
     int v5;
     int v6;
     int v7;
 
-    v0 = sub_02014764();
+    v0 = ParticleSystem_GetEmitterCallbackParam();
     v2 = ov12_02220250(v0);
-    v4 = sub_02014790(v2);
+    v4 = ParticleSystem_GetCameraProjection(v2);
     v6 = ov12_02220248(v0);
     v7 = ov12_0223525C(v0, v6);
 
@@ -278,7 +276,7 @@ void ov12_02223B98(SPLEmitter *param0)
         { 0xFF, 0xFF, 0x18, 0xFF, 0x18, 0xFF }
     };
 
-    v0 = sub_02014764();
+    v0 = ParticleSystem_GetEmitterCallbackParam();
     v1 = ov12_02220240(v0);
     v2 = ov12_02220248(v0);
     v3 = ov12_02235254(v0, v1);
@@ -339,7 +337,7 @@ static void ov12_02223CD4(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
     case 0:
         break;
     case 1:
-        sub_02014988(param1, &v0);
+        ParticleSystem_GetEmitterConvergenceTarget(param1, &v0);
         v0.x *= param5;
         v0.y *= param5;
         v0.z *= param5;
@@ -368,7 +366,7 @@ static void ov12_02223CD4(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
     v0.y -= param6->y;
     v0.z -= param6->z;
 
-    sub_02014970(param1, &v0);
+    ParticleSystem_SetEmitterConvergenceTarget(param1, &v0);
 }
 
 static void ov12_02223DA4(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, int param2, int param3, int param4, s8 param5, VecFx32 *param6)
@@ -379,7 +377,7 @@ static void ov12_02223DA4(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
     case 0:
         break;
     case 1:
-        sub_020148A8(param1, &v0);
+        ParticleSystem_GetEmitterMagnetTarget(param1, &v0);
         v0.x *= param5;
         v0.y *= param5;
         v0.z *= param5;
@@ -408,12 +406,12 @@ static void ov12_02223DA4(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
     v0.y -= param6->y;
     v0.z -= param6->z;
 
-    sub_02014890(param1, &v0);
+    ParticleSystem_SetEmitterMagnetTarget(param1, &v0);
 }
 
 static void ov12_02223E74(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, int param2, int param3, int param4, int param5)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     VecFx32 v1;
     int v2, v3;
     VecFx16 v4;
@@ -537,7 +535,7 @@ static void ov12_02223E74(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
 static void ov12_02224138(SPLEmitter *param0, int param1, int param2)
 {
     int v0, v1;
-    UnkStruct_ov12_0221FCDC *v2 = sub_02014764();
+    UnkStruct_ov12_0221FCDC *v2 = ParticleSystem_GetEmitterCallbackParam();
     v0 = ov12_02220240(v2);
     v1 = ov12_02220248(v2);
 
@@ -602,7 +600,7 @@ void ov12_022241E0(SPLEmitter *param0)
 void ov12_022241EC(SPLEmitter *param0)
 {
     int v0, v1;
-    UnkStruct_ov12_0221FCDC *v2 = sub_02014764();
+    UnkStruct_ov12_0221FCDC *v2 = ParticleSystem_GetEmitterCallbackParam();
     v0 = ov12_02220240(v2);
     v1 = ov12_02220248(v2);
 
