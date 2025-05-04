@@ -149,11 +149,7 @@ void PokedexTextManager_DisplayStrbuf(PokedexTextManager *textMan, Window *windo
 
 static BOOL FontExists(PokedexTextData *textData)
 {
-    if (textData->fontOAM) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return textData->fontOAM != NULL;
 }
 
 static PokedexTextData *NextEmptyText(PokedexTextManager *textMan)
