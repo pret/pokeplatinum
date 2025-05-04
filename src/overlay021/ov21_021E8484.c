@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "overlay021/ov21_021D1FA4.h"
-#include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021DF734.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/pokedex_app.h"
@@ -14,9 +13,8 @@
 #include "overlay021/pokedex_main.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_sort_data.h"
+#include "overlay021/pokedex_text_manager.h"
 #include "overlay021/struct_ov21_021D4660.h"
-#include "overlay021/struct_ov21_021D4CA0.h"
-#include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 
 #include "bg_window.h"
@@ -58,7 +56,7 @@ typedef struct {
 
 typedef struct {
     Sprite *unk_00[1];
-    UnkStruct_ov21_021D4CA0 *unk_04[1];
+    PokedexTextData *unk_04[1];
     SpriteResource *unk_08[4];
     Sprite *unk_18[4];
     int unk_28[1];
@@ -87,7 +85,7 @@ static void ov21_021E88B0(UnkStruct_ov21_021E88B0 *param0);
 static void ov21_021E88B8(UnkStruct_ov21_021E88B0 *param0, UnkStruct_ov21_021E8570 *param1);
 static void ov21_021E88D0(UnkStruct_ov21_021E88B0 *param0);
 static void ov21_021E88E8(u32 param0, enum TouchScreenButtonState param1, void *param2);
-static void ov21_021E8C94(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4);
+static void ov21_021E8C94(Sprite *param0, PokedexTextData *textData, int param2, int param3, int param4);
 static void ov21_021E8CBC(PokedexGraphicData **param0, UnkStruct_ov21_021E8794 *param1, const UnkStruct_ov21_021E88B0 *param2, int param3);
 static void ov21_021E8D3C(const UnkStruct_ov21_021E8570 *param0);
 static void ov21_021E8CF0(UnkStruct_ov21_021E88B0 *param0, UnkStruct_ov21_021E8570 *param1);
@@ -342,7 +340,7 @@ static void ov21_021E8794(UnkStruct_ov21_021E8794 *param0)
 
     for (v0 = 0; v0 < 1; v0++) {
         Sprite_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_XLU);
-        sub_02012AF0(param0->unk_04[v0]->unk_00, GX_OAM_MODE_XLU);
+        sub_02012AF0(param0->unk_04[v0]->fontOAM, GX_OAM_MODE_XLU);
     }
 }
 
@@ -352,7 +350,7 @@ static void ov21_021E87AC(UnkStruct_ov21_021E8794 *param0)
 
     for (v0 = 0; v0 < 1; v0++) {
         Sprite_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_NORMAL);
-        sub_02012AF0(param0->unk_04[v0]->unk_00, GX_OAM_MODE_NORMAL);
+        sub_02012AF0(param0->unk_04[v0]->fontOAM, GX_OAM_MODE_NORMAL);
     }
 }
 
@@ -558,7 +556,7 @@ static void ov21_021E8B34(UnkStruct_ov21_021E8794 *param0)
 static void ov21_021E8B40(UnkStruct_ov21_021E8794 *param0, PokedexGraphicData **param1, int param2)
 {
     Window *v0;
-    UnkStruct_ov21_021D4CB8 v1;
+    PokedexDisplayBox displayBox;
     SpriteResource *v2;
     PokedexGraphicData *v3 = *param1;
     int v4;
@@ -568,26 +566,26 @@ static void ov21_021E8B40(UnkStruct_ov21_021E8794 *param0, PokedexGraphicData **
 
     v2 = SpriteResourceCollection_Find(v3->spriteResourceCollection[1], 11 + 2100);
 
-    v1.unk_00 = v3->unk_14C;
-    v1.unk_08 = SpriteTransfer_GetPaletteProxy(v2, NULL);
-    v1.unk_14 = -8;
-    v1.unk_18 = 2;
-    v1.unk_1C = 0;
-    v1.unk_20 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v1.heapID = param2;
+    displayBox.textMan = v3->unk_14C;
+    displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(v2, NULL);
+    displayBox.y = -8;
+    displayBox.spriteResourcePriority = 2;
+    displayBox.spriteListPriority = 0;
+    displayBox.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    displayBox.heapID = param2;
 
-    v4 = PlttTransfer_GetPlttOffset(v1.unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
-    v0 = ov21_021D4D6C(v3->unk_14C, 16, 2);
-    v5 = Pokedex_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_anotherform, 0, 0);
+    v4 = PlttTransfer_GetPlttOffset(displayBox.paletteProxy, NNS_G2D_VRAM_TYPE_2DSUB);
+    v0 = PokedexTextManager_NewWindow(v3->unk_14C, 16, 2);
+    v5 = PokedexTextManager_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_anotherform, 0, 0);
 
-    v1.unk_10 = -(v5 / 2);
-    v1.unk_04 = v0;
-    v1.unk_0C = param0->unk_00[0];
+    displayBox.x = -(v5 / 2);
+    displayBox.window = v0;
+    displayBox.sprite = param0->unk_00[0];
 
-    param0->unk_04[0] = ov21_021D4CA0(&v1);
+    param0->unk_04[0] = PokedexTextManager_NextTextData(&displayBox);
 
-    sub_02012A60(param0->unk_04[0]->unk_00, v4 + 4);
-    ov21_021D4DA0(v0);
+    sub_02012A60(param0->unk_04[0]->fontOAM, v4 + 4);
+    PokedexTextManager_FreeWindow(v0);
 }
 
 static void ov21_021E8BDC(UnkStruct_ov21_021E8794 *param0, PokedexGraphicData **param1)
@@ -595,11 +593,11 @@ static void ov21_021E8BDC(UnkStruct_ov21_021E8794 *param0, PokedexGraphicData **
     int v0;
 
     for (v0 = 0; v0 < 1; v0++) {
-        ov21_021D4D1C(param0->unk_04[v0]);
+        PokedexTextManager_FreeTextData(param0->unk_04[v0]);
     }
 }
 
-static void ov21_021E8BE8(PokedexGraphicData **param0, Sprite *param1, UnkStruct_ov21_021D4CA0 *param2, int param3, int param4, int param5, int *param6, int heapID, int param8, int param9, void **param10)
+static void ov21_021E8BE8(PokedexGraphicData **param0, Sprite *param1, PokedexTextData *textData, int param3, int param4, int param5, int *param6, int heapID, int param8, int param9, void **param10)
 {
     int v0;
     NNSG2dPaletteData *v1;
@@ -608,7 +606,7 @@ static void ov21_021E8BE8(PokedexGraphicData **param0, Sprite *param1, UnkStruct
     int v4;
 
     ov21_021D144C(param1, param3);
-    ov21_021E8C94(param1, param2, param4, param8, param9);
+    ov21_021E8C94(param1, textData, param4, param8, param9);
 
     v0 = Sprite_GetAnimFrame(param1);
 
@@ -649,17 +647,17 @@ static void ov21_021E8BE8(PokedexGraphicData **param0, Sprite *param1, UnkStruct
     }
 }
 
-static void ov21_021E8C94(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4)
+static void ov21_021E8C94(Sprite *param0, PokedexTextData *textData, int param2, int param3, int param4)
 {
     int v0;
 
-    ov21_021D1498(param0, param1, param2);
+    ov21_021D1498(param0, textData, param2);
     v0 = Sprite_GetAnimFrame(param0);
 
     if (v0 < 2) {
-        sub_02012AC0(param1->unk_00, param3);
+        sub_02012AC0(textData->fontOAM, param3);
     } else {
-        sub_02012AC0(param1->unk_00, param4);
+        sub_02012AC0(textData->fontOAM, param4);
     }
 }
 

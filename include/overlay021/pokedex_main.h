@@ -8,11 +8,10 @@
 #include "overlay021/pokedex_app.h"
 #include "overlay021/pokedex_graphic_data.h"
 #include "overlay021/pokedex_sort_data.h"
+#include "overlay021/pokedex_text_manager.h"
 #include "overlay021/pokedex_updater.h"
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D423C_decl.h"
-#include "overlay021/struct_ov21_021D4C0C_decl.h"
-#include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 
 #include "bg_window.h"
@@ -73,15 +72,15 @@ PokedexGraphicData *ov21_021D13FC(PokedexApp *pokedexApp);
 UnkStruct_ov21_021E68F4 *ov21_021D1410(PokedexApp *pokedexApp, int param1);
 UnkStruct_ov21_021E68F4 *ov21_021D1430(PokedexApp *pokedexApp, int param1);
 void ov21_021D144C(Sprite *param0, int param1);
-void ov21_021D1498(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2);
-void ov21_021D1524(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4);
+void ov21_021D1498(Sprite *param0, PokedexTextData *textData, int param2);
+void ov21_021D1524(Sprite *param0, PokedexTextData *textData, int param2, int param3, int param4);
 void ov21_021D154C(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4);
 void PokedexMain_SetLoadingScreenParams(PokedexLoadingScreen *pokedexLoadingScreen, BgConfig *bgConfig, int layer, NNSG2dScreenData *screenData, int topStart, int topEnd, int bottomStart, int bottomEnd, int duration);
 BOOL PokedexMain_LoadingScreenMove(PokedexLoadingScreen *pokedexLoadingScreen);
 void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int species, int heapID);
 Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, const PokedexSortData *pokedexSortData, int heapID, int species);
-Window *PokedexMain_DisplayNameNumberNational(UnkStruct_ov21_021D4C0C *param0, int heapID, int species);
-Window *PokedexMain_DisplayNameNumberLocal(UnkStruct_ov21_021D4C0C *param0, int heapID, int species);
+Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, int heapID, int species);
+Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, int heapID, int species);
 void PokedexMain_EntryNameNumber(PokedexGraphicData *param0, const PokedexSortData *pokedexSortData, int heapID, int statusIndex, fx32 x, fx32 y);
 void ov21_021D1848(PokedexGraphicData *pokedexGraphicData, int param1, int param2);
 void ov21_021D1858(UnkStruct_ov21_021D22F8 *param0, int param1, int param2);

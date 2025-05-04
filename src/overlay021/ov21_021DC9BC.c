@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "overlay021/ov21_021D1FA4.h"
-#include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/pokedex_app.h"
 #include "overlay021/pokedex_data_manager.h"
@@ -15,9 +14,8 @@
 #include "overlay021/pokedex_main.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_sort_data.h"
+#include "overlay021/pokedex_text_manager.h"
 #include "overlay021/struct_ov21_021D2648.h"
-#include "overlay021/struct_ov21_021D4CA0.h"
-#include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 
 #include "bg_window.h"
@@ -114,9 +112,9 @@ typedef struct PokedexMapDisplay {
     SpriteResource *unk_B4[4];
     int numDungeons;
     Sprite *AreaUnknownCellActor;
-    UnkStruct_ov21_021D4CA0 *AreaUnknownSpriteManager;
+    PokedexTextData *AreaUnknownSpriteManager;
     SpriteResource *unk_D0[4];
-    UnkStruct_ov21_021D4CA0 *unk_E0[3];
+    PokedexTextData *unk_E0[3];
     u8 pokedexFieldMap_1[POKEDEXMAPNUMCELLS];
     u8 pokedexFieldMap_2[POKEDEXMAPNUMCELLS];
     void *unk_7F4;
@@ -631,7 +629,7 @@ static void PokedexMapDisplay_DeleteCellActors(PokedexMapDisplay *mapDisplay)
 static void ov21_021DD2E0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, enum HeapId heapID)
 {
     Window *v0;
-    UnkStruct_ov21_021D4CB8 v1;
+    PokedexDisplayBox displayBox;
     SpriteResource *v2;
     PokedexGraphicData *v3 = param1->unk_00;
     int v4;
@@ -642,40 +640,40 @@ static void ov21_021DD2E0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 
     v2 = SpriteResourceCollection_Find(param1->unk_00->spriteResourceCollection[1], 14 + 6000);
 
-    v1.unk_00 = v3->unk_14C;
-    v1.unk_08 = SpriteTransfer_GetPaletteProxy(v2, NULL);
-    v1.unk_18 = 1;
-    v1.unk_1C = 31 - 1;
-    v1.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.heapID = heapID;
+    displayBox.textMan = v3->unk_14C;
+    displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(v2, NULL);
+    displayBox.spriteResourcePriority = 1;
+    displayBox.spriteListPriority = 31 - 1;
+    displayBox.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    displayBox.heapID = heapID;
 
-    v4 = PlttTransfer_GetPlttOffset(v1.unk_08, NNS_G2D_VRAM_TYPE_2DMAIN);
-    v0 = ov21_021D4D6C(v3->unk_14C, 16, 2);
-    v6 = Pokedex_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_areaunknown, 0, 0);
+    v4 = PlttTransfer_GetPlttOffset(displayBox.paletteProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
+    v0 = PokedexTextManager_NewWindow(v3->unk_14C, 16, 2);
+    v6 = PokedexTextManager_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_areaunknown, 0, 0);
 
-    v1.unk_04 = v0;
-    v1.unk_0C = mapDisplay->AreaUnknownCellActor;
-    v1.unk_10 = -(v6 / 2);
-    v1.unk_14 = -8;
+    displayBox.window = v0;
+    displayBox.sprite = mapDisplay->AreaUnknownCellActor;
+    displayBox.x = -(v6 / 2);
+    displayBox.y = -8;
 
-    mapDisplay->AreaUnknownSpriteManager = ov21_021D4CA0(&v1);
+    mapDisplay->AreaUnknownSpriteManager = PokedexTextManager_NextTextData(&displayBox);
 
-    sub_02012A60(mapDisplay->AreaUnknownSpriteManager->unk_00, v4 + 2);
-    ov21_021D4DA0(v0);
+    sub_02012A60(mapDisplay->AreaUnknownSpriteManager->fontOAM, v4 + 2);
+    PokedexTextManager_FreeWindow(v0);
 
     for (v5 = 0; v5 < 3; v5++) {
-        v0 = ov21_021D4D6C(v3->unk_14C, 9, 2);
-        v6 = Pokedex_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_morning + v5, 0, 0);
+        v0 = PokedexTextManager_NewWindow(v3->unk_14C, 9, 2);
+        v6 = PokedexTextManager_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_morning + v5, 0, 0);
 
-        v1.unk_04 = v0;
-        v1.unk_0C = NULL;
-        v1.unk_10 = 8 + ((9 * 8) - v6) / 2;
-        v1.unk_14 = 32;
+        displayBox.window = v0;
+        displayBox.sprite = NULL;
+        displayBox.x = 8 + ((9 * 8) - v6) / 2;
+        displayBox.y = 32;
 
-        mapDisplay->unk_E0[v5] = ov21_021D4CA0(&v1);
+        mapDisplay->unk_E0[v5] = PokedexTextManager_NextTextData(&displayBox);
 
-        sub_02012A60(mapDisplay->unk_E0[v5]->unk_00, v4 + 2);
-        ov21_021D4DA0(v0);
+        sub_02012A60(mapDisplay->unk_E0[v5]->fontOAM, v4 + 2);
+        PokedexTextManager_FreeWindow(v0);
     }
 }
 
@@ -683,10 +681,10 @@ static void ov21_021DD3FC(PokedexMapDisplay *mapDisplay)
 {
     int v0;
 
-    ov21_021D4D1C(mapDisplay->AreaUnknownSpriteManager);
+    PokedexTextManager_FreeTextData(mapDisplay->AreaUnknownSpriteManager);
 
     for (v0 = 0; v0 < 3; v0++) {
-        ov21_021D4D1C(mapDisplay->unk_E0[v0]);
+        PokedexTextManager_FreeTextData(mapDisplay->unk_E0[v0]);
     }
 }
 
@@ -695,10 +693,10 @@ static void PokedexMapDisplay_OAMMode_XLU(PokedexMapDisplay *mapDisplay)
     int v0;
 
     Sprite_SetExplicitOAMMode(mapDisplay->AreaUnknownCellActor, GX_OAM_MODE_XLU);
-    sub_02012AF0(mapDisplay->AreaUnknownSpriteManager->unk_00, GX_OAM_MODE_XLU);
+    sub_02012AF0(mapDisplay->AreaUnknownSpriteManager->fontOAM, GX_OAM_MODE_XLU);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02012AF0(mapDisplay->unk_E0[v0]->unk_00, GX_OAM_MODE_XLU);
+        sub_02012AF0(mapDisplay->unk_E0[v0]->fontOAM, GX_OAM_MODE_XLU);
     }
 }
 
@@ -707,10 +705,10 @@ static void PokedexMapDisplay_OAMMode_Normal(PokedexMapDisplay *mapDisplay)
     int v0;
 
     Sprite_SetExplicitOAMMode(mapDisplay->AreaUnknownCellActor, GX_OAM_MODE_NORMAL);
-    sub_02012AF0(mapDisplay->AreaUnknownSpriteManager->unk_00, GX_OAM_MODE_NORMAL);
+    sub_02012AF0(mapDisplay->AreaUnknownSpriteManager->fontOAM, GX_OAM_MODE_NORMAL);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02012AF0(mapDisplay->unk_E0[v0]->unk_00, GX_OAM_MODE_NORMAL);
+        sub_02012AF0(mapDisplay->unk_E0[v0]->fontOAM, GX_OAM_MODE_NORMAL);
     }
 }
 
@@ -1115,10 +1113,10 @@ static void ov21_021DD9E8(PokedexMapDisplay *mapDisplay, const EncounterCollecti
 {
     if ((mapDisplay->numVisibleDungeons <= 0) && (mapDisplay->numVisibleFields <= 0) && (mapDisplay->dungeonsZero <= 0) && (mapDisplay->fieldsZero <= 0)) {
         Sprite_SetDrawFlag(mapDisplay->AreaUnknownCellActor, 1);
-        sub_020129D0(mapDisplay->AreaUnknownSpriteManager->unk_00, 1);
+        sub_020129D0(mapDisplay->AreaUnknownSpriteManager->fontOAM, 1);
     } else {
         Sprite_SetDrawFlag(mapDisplay->AreaUnknownCellActor, 0);
-        sub_020129D0(mapDisplay->AreaUnknownSpriteManager->unk_00, 0);
+        sub_020129D0(mapDisplay->AreaUnknownSpriteManager->fontOAM, 0);
     }
 }
 
@@ -1128,9 +1126,9 @@ static void ov21_021DDA48(PokedexMapDisplay *mapDisplay, int param1)
 
     for (v0 = 0; v0 < 3; v0++) {
         if (v0 == param1) {
-            sub_020129D0(mapDisplay->unk_E0[v0]->unk_00, 1);
+            sub_020129D0(mapDisplay->unk_E0[v0]->fontOAM, 1);
         } else {
-            sub_020129D0(mapDisplay->unk_E0[v0]->unk_00, 0);
+            sub_020129D0(mapDisplay->unk_E0[v0]->fontOAM, 0);
         }
     }
 }

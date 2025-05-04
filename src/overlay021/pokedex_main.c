@@ -11,7 +11,6 @@
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D423C.h"
 #include "overlay021/ov21_021D4340.h"
-#include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D5AEC.h"
 #include "overlay021/ov21_021D76B0.h"
 #include "overlay021/ov21_021D94BC.h"
@@ -32,12 +31,10 @@
 #include "overlay021/pokedex_search.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_text.h"
+#include "overlay021/pokedex_text_manager.h"
 #include "overlay021/pokedex_updater.h"
 #include "overlay021/species_caught_status.h"
 #include "overlay021/struct_ov21_021D22F8.h"
-#include "overlay021/struct_ov21_021D4C0C_decl.h"
-#include "overlay021/struct_ov21_021D4CA0.h"
-#include "overlay021/struct_ov21_021D4CB8.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -513,46 +510,46 @@ void ov21_021D144C(Sprite *param0, int param1)
     }
 }
 
-void ov21_021D1498(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2)
+void ov21_021D1498(Sprite *param0, PokedexTextData *textData, int param2)
 {
     int v0 = Sprite_GetAnimFrame(param0);
     int v1, v2;
 
     switch (v0) {
     case 0:
-        sub_020129A4(param1->unk_00, &v1, &v2);
+        sub_020129A4(textData->fontOAM, &v1, &v2);
         v2 = param2;
-        sub_020128C4(param1->unk_00, v1, v2);
+        sub_020128C4(textData->fontOAM, v1, v2);
         break;
     case 1:
-        sub_020129A4(param1->unk_00, &v1, &v2);
+        sub_020129A4(textData->fontOAM, &v1, &v2);
         v2 = param2 + -2;
-        sub_020128C4(param1->unk_00, v1, v2);
+        sub_020128C4(textData->fontOAM, v1, v2);
         break;
     case 2:
-        sub_020129A4(param1->unk_00, &v1, &v2);
+        sub_020129A4(textData->fontOAM, &v1, &v2);
         v2 = param2 + -4;
-        sub_020128C4(param1->unk_00, v1, v2);
+        sub_020128C4(textData->fontOAM, v1, v2);
         break;
     case 3:
-        sub_020129A4(param1->unk_00, &v1, &v2);
+        sub_020129A4(textData->fontOAM, &v1, &v2);
         v2 = param2 + -2;
-        sub_020128C4(param1->unk_00, v1, v2);
+        sub_020128C4(textData->fontOAM, v1, v2);
         break;
     }
 }
 
-void ov21_021D1524(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4)
+void ov21_021D1524(Sprite *param0, PokedexTextData *textData, int param2, int param3, int param4)
 {
     int v0;
 
-    ov21_021D1498(param0, param1, param2);
+    ov21_021D1498(param0, textData, param2);
     v0 = Sprite_GetAnimFrame(param0);
 
     if (v0 < 2) {
-        sub_02012AC0(param1->unk_00, param3);
+        sub_02012AC0(textData->fontOAM, param3);
     } else {
-        sub_02012AC0(param1->unk_00, param4);
+        sub_02012AC0(textData->fontOAM, param4);
     }
 }
 
@@ -641,15 +638,15 @@ Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, co
     return window;
 }
 
-Window *PokedexMain_DisplayNameNumberNational(UnkStruct_ov21_021D4C0C *param0, int heapID, int species)
+Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, int heapID, int species)
 {
-    Window *window = ov21_021D4D6C(param0, 15, 2);
+    Window *window = PokedexTextManager_NewWindow(textMan, 15, 2);
     PokedexMain_DisplayNameNumberText(window, species, species, heapID);
 
     return window;
 }
 
-Window *PokedexMain_DisplayNameNumberLocal(UnkStruct_ov21_021D4C0C *param0, int heapID, int species)
+Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, int heapID, int species)
 {
     int dexNumber = Pokemon_SinnohDexNumber(species);
 
@@ -657,7 +654,7 @@ Window *PokedexMain_DisplayNameNumberLocal(UnkStruct_ov21_021D4C0C *param0, int 
         GF_ASSERT(dexNumber > 0);
     }
 
-    Window *window = ov21_021D4D6C(param0, 15, 2);
+    Window *window = PokedexTextManager_NewWindow(textMan, 15, 2);
     PokedexMain_DisplayNameNumberText(window, dexNumber, species, heapID);
 
     return window;
@@ -665,7 +662,7 @@ Window *PokedexMain_DisplayNameNumberLocal(UnkStruct_ov21_021D4C0C *param0, int 
 
 void PokedexMain_EntryNameNumber(PokedexGraphicData *param0, const PokedexSortData *pokedexSortData, int heapID, int statusIndex, fx32 x, fx32 y)
 {
-    UnkStruct_ov21_021D4CB8 v2;
+    PokedexDisplayBox displayBox;
     VecFx32 position;
     u32 isNationalDex = PokedexSort_IsNationalDex(pokedexSortData);
 
@@ -691,21 +688,21 @@ void PokedexMain_EntryNameNumber(PokedexGraphicData *param0, const PokedexSortDa
 
     SpriteResource *v4 = ov21_021D2344(param0, 1);
 
-    v2.unk_00 = param0->unk_14C;
-    v2.unk_08 = SpriteTransfer_GetPaletteProxy(v4, NULL);
-    v2.unk_0C = v0;
-    v2.unk_10 = -(128 / 2);
-    v2.unk_14 = -(16 / 2);
-    v2.unk_18 = 0;
-    v2.unk_1C = 0;
-    v2.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.heapID = heapID;
+    displayBox.textMan = param0->unk_14C;
+    displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(v4, NULL);
+    displayBox.sprite = v0;
+    displayBox.x = -(128 / 2);
+    displayBox.y = -(16 / 2);
+    displayBox.spriteResourcePriority = 0;
+    displayBox.spriteListPriority = 0;
+    displayBox.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    displayBox.heapID = heapID;
 
     Window *window = PokedexMain_DisplayNameNumber(param0, pokedexSortData, heapID, speciesCaughtStatus->species);
-    v2.unk_04 = window;
+    displayBox.window = window;
 
-    ov21_021D22E0(param0, &v2, 0, speciesCaughtStatus->species, isNationalDex);
-    ov21_021D4DA0(window);
+    ov21_021D22E0(param0, &displayBox, 0, speciesCaughtStatus->species, isNationalDex);
+    PokedexTextManager_FreeWindow(window);
 }
 
 void ov21_021D1848(PokedexGraphicData *param0, int param1, int param2)
@@ -724,8 +721,8 @@ void ov21_021D1858(UnkStruct_ov21_021D22F8 *param0, int param1, int param2)
     v0.x += (-54 * FX32_ONE);
     Sprite_SetPosition(param0->unk_04, &v0);
 
-    if (param0->unk_08->unk_00) {
-        sub_02012938(param0->unk_08->unk_00);
+    if (param0->unk_08->fontOAM) {
+        sub_02012938(param0->unk_08->fontOAM);
     }
 }
 

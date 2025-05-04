@@ -6,11 +6,11 @@
 
 #include "overlay021/pokedex_graphic_data.h"
 #include "overlay021/pokedex_panel.h"
+#include "overlay021/pokedex_text_manager.h"
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D23F8.h"
 #include "overlay021/struct_ov21_021D2584.h"
 #include "overlay021/struct_ov21_021D2648.h"
-#include "overlay021/struct_ov21_021D4CB8.h"
 
 #include "bg_window.h"
 #include "narc.h"
@@ -32,8 +32,8 @@ PokemonSprite *ov21_021D2274(const PokedexGraphicData *param0, int param1);
 void ov21_021D2280(const PokedexGraphicData *param0, BOOL param1, int param2);
 Sprite *ov21_021D22A8(const PokedexGraphicData *param0);
 Sprite *ov21_021D22C4(const PokedexGraphicData *param0);
-void ov21_021D22E0(PokedexGraphicData *param0, UnkStruct_ov21_021D4CB8 *param1, int param2, int param3, u32 param4);
-void ov21_021D22F8(UnkStruct_ov21_021D22F8 *param0, UnkStruct_ov21_021D4CB8 *param1, int param2, int param3, u32 param4);
+void ov21_021D22E0(PokedexGraphicData *param0, PokedexDisplayBox *displayBox, int param2, int param3, u32 param4);
+void ov21_021D22F8(UnkStruct_ov21_021D22F8 *param0, PokedexDisplayBox *displayBox, int param2, int param3, u32 param4);
 SpriteResource *ov21_021D2344(const PokedexGraphicData *param0, int param1);
 void ov21_021D2360(const PokedexGraphicData *param0, GXOamMode param1);
 void ov21_021D238C(const PokedexGraphicData *param0, int param1);

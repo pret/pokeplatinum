@@ -3,11 +3,11 @@
 
 #include "struct_decls/struct_02015064_decl.h"
 
+#include "overlay021/pokedex_text_manager.h"
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D23F8.h"
 #include "overlay021/struct_ov21_021D2584.h"
 #include "overlay021/struct_ov21_021D3124.h"
-#include "overlay021/struct_ov21_021D4C0C_decl.h"
 
 #include "bg_window.h"
 #include "narc.h"
@@ -23,7 +23,7 @@ typedef struct PokedexGraphicData {
     G2dRenderer g2Renderer;
     SpriteList *spriteList;
     SpriteResourceCollection *spriteResourceCollection[4];
-    UnkStruct_ov21_021D4C0C *unk_14C;
+    PokedexTextManager *unk_14C;
     PokemonSpriteManager *unk_150;
     PokemonSprite *pokemonSprite[4];
     UnkStruct_02015064 *unk_164;
