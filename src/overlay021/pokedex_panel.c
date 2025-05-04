@@ -90,13 +90,13 @@ void PokedexPanel_InitCursorData(PokedexCursorData *pokedexCursorData, int x, in
 
 void PokedexPanel_GetCursorCornerPos(enum CornerType cornerType, int *cornerX, int *cornerY, int x, int y, int width, int height)
 {
-    if ((cornerType == CORNER_TYPE_TOP_LEFT) || (cornerType == CORNER_TYPE_BOTTOM_LEFT)) {
+    if (cornerType == CORNER_TYPE_TOP_LEFT || cornerType == CORNER_TYPE_BOTTOM_LEFT) {
         x -= width / 2;
     } else {
         x += width / 2;
     }
 
-    if ((cornerType == CORNER_TYPE_TOP_LEFT) || (cornerType == CORNER_TYPE_TOP_RIGHT)) {
+    if (cornerType == CORNER_TYPE_TOP_LEFT || cornerType == CORNER_TYPE_TOP_RIGHT) {
         y -= height / 2;
     } else {
         y += height / 2;
@@ -128,23 +128,21 @@ static void StepCols(PokedexPanelData *pokedexPanelData, int direction)
     const PokedexCursorData *pokedexCursorData;
     int stepSum = 0;
 
-    GF_ASSERT((direction == -1) || (direction == 1));
+    GF_ASSERT(direction == -1 || direction == 1);
 
     do {
         stepSum += direction;
         newCol = pokedexPanelData->col + stepSum;
 
-        if ((newCol < 0) || (newCol >= pokedexPanelData->numCols)) {
+        if (newCol < 0 || newCol >= pokedexPanelData->numCols) {
             break;
         }
 
         pokedexCursorData = &pokedexPanelData->pokedexCursorData[CalcButtonIndex(pokedexPanelData, newCol, pokedexPanelData->row)];
     } while (pokedexCursorData->cursorColMovementType == CURSOR_MOVEMENT_SKIP);
 
-    if ((newCol >= 0) && (newCol < pokedexPanelData->numCols)) {
-        if (pokedexCursorData->cursorColMovementType == CURSOR_MOVEMENT_SELECT) {
-            pokedexPanelData->col = newCol;
-        }
+    if (newCol >= 0 && newCol < pokedexPanelData->numCols && pokedexCursorData->cursorColMovementType == CURSOR_MOVEMENT_SELECT) {
+        pokedexPanelData->col = newCol;
     }
 }
 
@@ -154,20 +152,20 @@ static void StepRows(PokedexPanelData *pokedexPanelData, int direction)
     const PokedexCursorData *pokedexCursorData;
     int stepSum = 0;
 
-    GF_ASSERT((direction == -1) || (direction == 1));
+    GF_ASSERT(direction == -1 || direction == 1);
 
     do {
         stepSum += direction;
         newRow = pokedexPanelData->row + stepSum;
 
-        if ((newRow < 0) || (newRow >= pokedexPanelData->numRows)) {
+        if (newRow < 0 || newRow >= pokedexPanelData->numRows) {
             break;
         }
 
         pokedexCursorData = &pokedexPanelData->pokedexCursorData[CalcButtonIndex(pokedexPanelData, pokedexPanelData->col, newRow)];
     } while (pokedexCursorData->cursorRowMovementType == CURSOR_MOVEMENT_SKIP);
 
-    if ((newRow >= 0) && (newRow < pokedexPanelData->numRows)) {
+    if (newRow >= 0 && newRow < pokedexPanelData->numRows) {
         if (pokedexCursorData->cursorColMovementType == CURSOR_MOVEMENT_SELECT) { // should be cursorRowMovementType?
             pokedexPanelData->row = newRow;
         }
@@ -196,13 +194,13 @@ static void WalkRows(PokedexPanelData *pokedexPanelData, int distance)
 
 static void inline SetCol(PokedexPanelData *pokedexPanelData, int col)
 {
-    GF_ASSERT((col >= 0) && (col < pokedexPanelData->numCols));
+    GF_ASSERT(col >= 0 && col < pokedexPanelData->numCols);
     pokedexPanelData->col = col;
 }
 
 static void inline SetRow(PokedexPanelData *pokedexPanelData, int row)
 {
-    GF_ASSERT((row >= 0) && (row < pokedexPanelData->numRows));
+    GF_ASSERT(row >= 0 && row < pokedexPanelData->numRows);
     pokedexPanelData->row = row;
 }
 
