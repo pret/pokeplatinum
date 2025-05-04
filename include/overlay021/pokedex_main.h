@@ -8,9 +8,9 @@
 #include "overlay021/pokedex_app.h"
 #include "overlay021/pokedex_graphic_data.h"
 #include "overlay021/pokedex_sort_data.h"
+#include "overlay021/pokedex_updater.h"
 #include "overlay021/pokedex_text_manager.h"
 #include "overlay021/struct_ov21_021D22F8.h"
-#include "overlay021/struct_ov21_021D3FE0_decl.h"
 #include "overlay021/struct_ov21_021D423C_decl.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 
@@ -54,10 +54,10 @@ BOOL ov21_021D10B8(PokedexApp *pokedexApp);
 void PokedexMain_InitGX(enum HeapId heapID);
 void PokedexMain_FreeGraphics(void);
 void ov21_021D12D8(PokedexApp *pokedexApp);
-UnkStruct_ov21_021D3FE0 *ov21_021D12EC(PokedexApp *pokedexApp);
-UnkStruct_ov21_021D3FE0 *ov21_021D1300(PokedexApp *pokedexApp);
-UnkStruct_ov21_021D3FE0 *ov21_021D1314(PokedexApp *pokedexApp);
-UnkStruct_ov21_021D3FE0 *ov21_021D1328(PokedexApp *pokedexApp);
+PokedexUpdater *ov21_021D12EC(PokedexApp *pokedexApp);
+PokedexUpdater *ov21_021D1300(PokedexApp *pokedexApp);
+PokedexUpdater *ov21_021D1314(PokedexApp *pokedexApp);
+PokedexUpdater *ov21_021D1328(PokedexApp *pokedexApp);
 UnkStruct_ov21_021D423C *ov21_021D133C(PokedexApp *pokedexApp);
 UnkStruct_ov21_021D423C *ov21_021D1350(PokedexApp *pokedexApp);
 UnkStruct_ov21_021D423C *ov21_021D1364(PokedexApp *pokedexApp);

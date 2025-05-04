@@ -3,7 +3,7 @@
 
 #include "overlay021/pokedex_graphic_data.h"
 #include "overlay021/pokedex_sort_data.h"
-#include "overlay021/struct_ov21_021D3FE0_decl.h"
+#include "overlay021/pokedex_updater.h"
 #include "overlay021/struct_ov21_021D423C_decl.h"
 #include "overlay021/struct_ov21_021D4660.h"
 #include "overlay021/struct_ov21_021E68F4.h"
@@ -27,10 +27,10 @@ typedef struct PokedexApp {
     UnkStruct_ov21_021D4660 unk_1A80;
     UnkStruct_ov21_021E68F4 unk_1A94[10];
     UnkStruct_ov21_021E68F4 unk_1C24[8];
-    UnkStruct_ov21_021D3FE0 *unk_1D64;
-    UnkStruct_ov21_021D3FE0 *unk_1D68;
-    UnkStruct_ov21_021D3FE0 *unk_1D6C;
-    UnkStruct_ov21_021D3FE0 *unk_1D70;
+    PokedexUpdater *unk_1D64;
+    PokedexUpdater *unk_1D68;
+    PokedexUpdater *unk_1D6C;
+    PokedexUpdater *unk_1D70;
 } PokedexApp;
 
 #endif // POKEPLATINUM_POKEDEX_APP_H
