@@ -8,7 +8,6 @@
 #include "field/field_system_decl.h"
 #include "poketch/poketch_button.h"
 #include "poketch/poketch_graphics.h"
-#include "poketch/poketch_structs.h"
 #include "poketch/poketch_task.h"
 
 #include "bg_window.h"

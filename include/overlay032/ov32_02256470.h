@@ -3,7 +3,7 @@
 
 #include "constants/pokemon.h"
 
-#include "poketch/poketch_structs.h"
+#include "poketch/poketch_animation.h"
 
 #include "bg_window.h"
 #include "sys_task.h"

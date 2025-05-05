@@ -3,18 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "poketch/poketch_structs.h"
-
 #include "graphics.h"
 #include "heap.h"
 
-struct PoketchAnimation_AnimatedSpriteData_t {
+struct PoketchAnimation_AnimatedSpriteData {
     const NNSG2dCellDataBank *sprite;
     const NNSG2dAnimBankData *anim;
     NNSG2dCellAnimation spriteAnimation;
 
-    struct PoketchAnimation_AnimatedSpriteData_t *previousAnimatedSprite;
-    struct PoketchAnimation_AnimatedSpriteData_t *nextAnimatedSprite;
+    struct PoketchAnimation_AnimatedSpriteData *previousAnimatedSprite;
+    struct PoketchAnimation_AnimatedSpriteData *nextAnimatedSprite;
 
     NNSG2dFVec2 position;
     MtxFx22 *affineTransformationPtr;
@@ -36,7 +34,7 @@ struct PoketchAnimation_AnimatedSpriteData_t {
     u8 mosaic;
 };
 
-struct PoketchAnimation_AnimationManager_t {
+struct PoketchAnimation_AnimationManager {
     NNSG2dOamManagerInstance *oamMan;
     PoketchAnimation_AnimatedSpriteData **animatedSpritePtrArray;
     PoketchAnimation_AnimatedSpriteData *lastAnimatedSprite;

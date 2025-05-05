@@ -7,7 +7,6 @@
 #include "overlay030/struct_ov30_022563EC_decl.h"
 #include "poketch/poketch_animation.h"
 #include "poketch/poketch_graphics.h"
-#include "poketch/poketch_structs.h"
 #include "poketch/poketch_task.h"
 
 #include "bg_window.h"

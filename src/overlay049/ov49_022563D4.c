@@ -7,7 +7,6 @@
 #include "overlay049/struct_ov49_022563D4_decl.h"
 #include "poketch/poketch_animation.h"
 #include "poketch/poketch_graphics.h"
-#include "poketch/poketch_structs.h"
 #include "poketch/poketch_system.h"
 #include "poketch/poketch_task.h"
 

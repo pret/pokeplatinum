@@ -6,7 +6,6 @@
 #include "constants/palette.h"
 
 #include "poketch/poketch_animation.h"
-#include "poketch/poketch_structs.h"
 #include "poketch/poketch_system.h"
 #include "poketch/poketch_task.h"
 
@@ -30,7 +29,7 @@ typedef struct {
     PoketchAnimation_AnimatedSpriteData *animatedDigits[2];
 } PoketchGraphics_AppCounterAnimationData;
 
-struct PoketchGraphics_TaskData_t {
+struct PoketchGraphics_TaskData {
     const PoketchGraphics_ConstTaskData *constTaskData;
     u32 taskList[BASE_IDX + NUM_TASK_SLOTS];
     u16 tilemapUpBtnPressed[BUTTON_TILEMAP_SIZE];

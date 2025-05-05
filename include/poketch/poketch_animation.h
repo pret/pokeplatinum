@@ -6,11 +6,29 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 
-#include "poketch/poketch_structs.h"
-
 #define FLIP_NONE 0
 #define FLIP_H    1
 #define FLIP_V    2
+
+typedef struct PoketchAnimation_AnimationManager PoketchAnimation_AnimationManager;
+typedef struct PoketchAnimation_AnimatedSpriteData PoketchAnimation_AnimatedSpriteData;
+
+typedef struct {
+    NNSG2dFVec2 translation;
+    u16 animIdx;
+    u8 flip;
+    u8 oamPriority;
+    u8 priority;
+    u8 hasAffineTransform;
+} PoketchAnimation_AnimationData;
+
+typedef struct {
+    void *compressedSprite;
+    void *compressedAnim;
+    NNSG2dCellDataBank *sprite;
+    NNSG2dAnimBankData *anim;
+    u32 heapID;
+} PoketchAnimation_SpriteData;
 
 PoketchAnimation_AnimationManager *PoketchAnimation_SetupAnimationManager(NNSG2dOamManagerInstance *oamMan, u32 heapID);
 void PoketchAnimation_FreeAnimationManager(PoketchAnimation_AnimationManager *animMan);

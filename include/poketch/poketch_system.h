@@ -5,10 +5,10 @@
 
 #include "field/field_system_decl.h"
 #include "poketch/poketch_button.h"
-#include "poketch/poketch_structs.h"
 
 #include "bg_window.h"
 #include "poketch.h"
+#include "poketch_graphics_task_structs.h"
 #include "savedata.h"
 #include "sys_task_manager.h"
 
