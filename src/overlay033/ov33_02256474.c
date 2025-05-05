@@ -251,9 +251,9 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
         int v5;
 
         v2.animIdx = 0;
-        v2.flip = 0;
+        v2.flip = FLIP_NONE;
         v2.oamPriority = 2;
-        v2.hasAffineTransform = 1;
+        v2.hasAffineTransform = TRUE;
 
         for (v5 = 0; v5 < param1->unk_00; v5++) {
             v4 = NARC_AllocAndReadWholeMember(v1, param1->unk_04[v5].unk_00, 8);

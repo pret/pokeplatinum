@@ -75,9 +75,9 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
 
     PoketchAnimation_LoadSpriteFromNARC(&param0->unk_68, 12, 118, 119, 8);
 
-    v0.flip = 0;
+    v0.flip = FLIP_NONE;
     v0.oamPriority = 2;
-    v0.hasAffineTransform = 0;
+    v0.hasAffineTransform = FALSE;
 
     ov25_02255DBC(param1->unk_00, param1->unk_04, &v3, &v4);
 
@@ -86,7 +86,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
     v0.priority = 1;
     v0.animIdx = 0;
     param0->unk_64 = PoketchAnimation_SetupNewAnimatedSprite(param0->unk_20, &v0, &(param0->unk_68));
-    v0.hasAffineTransform = 1;
+    v0.hasAffineTransform = TRUE;
 
     for (v1 = 0; v1 < 6; v1++) {
         v0.translation.x = ((param1->unk_0C[v1].unk_00) << FX32_SHIFT);

@@ -241,10 +241,10 @@ static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyS
 
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 109, DS_SCREEN_SUB, 0 * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
-    v1.flip = 0;
+    v1.flip = FLIP_NONE;
     v1.oamPriority = 2;
     v1.priority = 0;
-    v1.hasAffineTransform = 0;
+    v1.hasAffineTransform = FALSE;
 
     for (v0 = 0; v0 < param1->partyCount; v0++) {
         if (param1->mons[v0].heldItem != ITEM_NONE) {
@@ -267,10 +267,10 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
         int v3;
 
         v1.animIdx = 0;
-        v1.flip = 0;
+        v1.flip = FLIP_NONE;
         v1.oamPriority = 2;
         v1.priority = 1;
-        v1.hasAffineTransform = 1;
+        v1.hasAffineTransform = TRUE;
 
         for (v3 = 0; v3 < param1->partyCount; v3++) {
             NARC_ReadFromMember(v0, param1->mons[v3].iconSpriteIndex, 0, ((16 * TILE_SIZE_4BPP) + 0x80), param0->iconSpriteBuffer);

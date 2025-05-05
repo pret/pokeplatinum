@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/palette.h"
+
 #include "poketch/poketch_graphics.h"
 
 #include "bg_window.h"
@@ -182,7 +184,7 @@ void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEnt
 
     if (activePalette) {
         static const u8 paletteEntries[] = {
-            1, 8, 15, 4
+            PLTT_1, PLTT_8, PLTT_15, PLTT_4
         };
         u32 activePaletteEntrie, redData, blueData, greenData, luminance;
 

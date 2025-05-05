@@ -236,9 +236,9 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
 
     PoketchAnimation_LoadSpriteFromNARC(&param0->unk_138, 12, 118, 119, 8);
 
-    v1.flip = 0;
+    v1.flip = FLIP_NONE;
     v1.oamPriority = 2;
-    v1.hasAffineTransform = 0;
+    v1.hasAffineTransform = FALSE;
 
     ov25_02255DBC(v0->unk_00, v0->unk_04, &v2, &v3);
 
