@@ -8,7 +8,13 @@
 
 #include "bg_window.h"
 
-#define POKETCH_PALETTE_NARC_IDX 0
+#define POKETCH_PALETTE_NARC_IDX                0
+#define POKETCH_DIGIT_TILES_NARC_IDX            2
+#define POKETCH_DIGIT_SPRITE_NARC_IDX           3
+#define POKETCH_DIGIT_SPRITE_ANIMATION_NARC_IDX 4
+#define POKETCH_BUTTON_PALETTE_NARC_IDX         13
+#define POKETCH_DISPLAY_TILES_NARC_IDX          14
+#define POKETCH_DISPLAY_TILEMAP_NARC_IDX        15
 
 #define NUM_PALETTES                        16
 #define NUM_PALETTES_PER_PALETTE_COLOUR_SET 2

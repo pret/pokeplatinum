@@ -317,12 +317,12 @@ static void PoketchGraphics_SetupBackgroundTask(SysTask *task, void *taskMan)
     Bg_InitFromTemplate(taskData->bgConfig, BG_LAYER_SUB_0, &bgTemplateLayer4, BG_TYPE_STATIC);
     Bg_InitFromTemplate(taskData->bgConfig, BG_LAYER_SUB_1, &bgTemplateLayer5, BG_TYPE_STATIC);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 14, taskData->bgConfig, BG_LAYER_SUB_0, 64, 0, TRUE, HEAP_ID_POKETCH_MAIN);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 15, taskData->bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_POKETCH_MAIN);
-    Graphics_LoadPaletteWithSrcOffset(NARC_INDEX_GRAPHIC__POKETCH, 13, PAL_LOAD_SUB_BG, PLTT_OFFSET(PoketchSystem_GetBorderColor(taskData->poketchSys)), PLTT_OFFSET(15), PALETTE_SIZE_BYTES, HEAP_ID_POKETCH_MAIN);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DISPLAY_TILES_NARC_IDX, taskData->bgConfig, BG_LAYER_SUB_0, 64, 0, TRUE, HEAP_ID_POKETCH_MAIN);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DISPLAY_TILEMAP_NARC_IDX, taskData->bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_POKETCH_MAIN);
+    Graphics_LoadPaletteWithSrcOffset(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_BUTTON_PALETTE_NARC_IDX, PAL_LOAD_SUB_BG, PLTT_OFFSET(PoketchSystem_GetBorderColor(taskData->poketchSys)), PLTT_OFFSET(15), PALETTE_SIZE_BYTES, HEAP_ID_POKETCH_MAIN);
 
     Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164, 0, 0, 32, 24, PLTT_15);
-    Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, 5);
+    Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, BG_LAYER_SUB_1);
 
     GXS_SetVisiblePlane(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -551,7 +551,7 @@ static void PoketchGraphics_SetupAppCounterData(PoketchGraphics_AppCounterAnimat
 
 static void PoketchGraphics_LoadAppCounter(PoketchGraphics_TaskData *taskData, PoketchGraphics_AppCounterAnimationData *appCounterAnim)
 {
-    if (PoketchAnimation_LoadSpriteFromNARC(&appCounterAnim->spriteData, NARC_INDEX_GRAPHIC__POKETCH, 3, 4, HEAP_ID_POKETCH_MAIN)) {
+    if (PoketchAnimation_LoadSpriteFromNARC(&appCounterAnim->spriteData, NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DIGIT_SPRITE_NARC_IDX, POKETCH_DIGIT_SPRITE_ANIMATION_NARC_IDX, HEAP_ID_POKETCH_MAIN)) {
         static const PoketchAnimation_AnimationData animData = {
             .translation = { (176 << FX32_SHIFT), (40 << FX32_SHIFT) },
             .animIdx = 0,
@@ -561,8 +561,8 @@ static void PoketchGraphics_LoadAppCounter(PoketchGraphics_TaskData *taskData, P
             .hasAffineTransform = FALSE
         };
 
-        Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 2, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_MAIN);
-        Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 0, PAL_LOAD_SUB_OBJ, 0, 0x60, HEAP_ID_POKETCH_MAIN);
+        Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DIGIT_TILES_NARC_IDX, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_MAIN);
+        Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_PALETTE_NARC_IDX, PAL_LOAD_SUB_OBJ, 0, 0x60, HEAP_ID_POKETCH_MAIN);
 
         PoketchGraphics_LoadAppCounterPalette(taskData, 15);
 
