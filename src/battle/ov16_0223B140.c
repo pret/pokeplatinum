@@ -94,7 +94,7 @@ FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(overlay12);
 FS_EXTERN_OVERLAY(overlay13);
 FS_EXTERN_OVERLAY(trainer_ai);
-FS_EXTERN_OVERLAY(overlay21);
+FS_EXTERN_OVERLAY(pokedex);
 
 static const u32 BattleServerVersion = 0x140;
 
@@ -811,7 +811,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
 
     if (!sub_020389B8()) {
-        Overlay_UnloadByID(FS_OVERLAY_ID(overlay21));
+        Overlay_UnloadByID(FS_OVERLAY_ID(pokedex));
     }
 }
 
@@ -1632,7 +1632,7 @@ static void ov16_0223D0C4(SysTask *param0, void *param1)
 static void NitroStaticInit(void)
 {
     if (!sub_020389B8()) {
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay21), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(pokedex), 2);
     }
 }
 
