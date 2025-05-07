@@ -1,56 +1,51 @@
 #include "unk_0201E010.h"
 
-#include <nitro.h>
-#include <string.h>
-
-#include "struct_defs/struct_020F1DB8.h"
-
-void sub_0201E010(const ByteFlagSet *param0, u8 *param1, u8 *param2)
+void ReadABByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagA, u8 *flagB)
 {
-    *param1 = param0->unk_00;
-    *param2 = param0->unk_01;
+    *flagA = byteFlagSet->flagA;
+    *flagB = byteFlagSet->flagB;
 }
 
-void sub_0201E01C(const ByteFlagSet *param0, u8 *param1, u8 *param2)
+void ReadCDByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagC, u8 *flagD)
 {
-    *param1 = param0->unk_02;
-    *param2 = param0->unk_03;
+    *flagC = byteFlagSet->flagC;
+    *flagD = byteFlagSet->flagD;
 }
 
-u8 sub_0201E028(const ByteFlagSet *param0, u8 *param1, u8 *param2, u8 *param3, u8 *param4, u8 param5, u8 param6)
+u8 ReadByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagA, u8 *flagB, u8 *flagC, u8 *flagD, u8 setIndex, u8 direction)
 {
-    u8 v0 = param5;
+    u8 index = setIndex;
 
-    switch (param6) {
-    case 0:
-        v0 = param0[param5].unk_04;
+    switch (direction) {
+    case BYTE_FLAG_SET_DIRECTION_UP:
+        index = byteFlagSet[setIndex].upIndex;
         break;
-    case 1:
-        v0 = param0[param5].unk_05;
+    case BYTE_FLAG_SET_DIRECTION_DOWN:
+        index = byteFlagSet[setIndex].downIndex;
         break;
-    case 2:
-        v0 = param0[param5].unk_06;
+    case BYTE_FLAG_SET_DIRECTION_LEFT:
+        index = byteFlagSet[setIndex].leftIndex;
         break;
-    case 3:
-        v0 = param0[param5].unk_07;
+    case BYTE_FLAG_SET_DIRECTION_RIGHT:
+        index = byteFlagSet[setIndex].rightIndex;
         break;
     }
 
-    if (param1 != NULL) {
-        *param1 = param0[v0].unk_00;
+    if (flagA != NULL) {
+        *flagA = byteFlagSet[index].flagA;
     }
 
-    if (param2 != NULL) {
-        *param2 = param0[v0].unk_01;
+    if (flagB != NULL) {
+        *flagB = byteFlagSet[index].flagB;
     }
 
-    if (param3 != NULL) {
-        *param3 = param0[v0].unk_02;
+    if (flagC != NULL) {
+        *flagC = byteFlagSet[index].flagC;
     }
 
-    if (param4 != NULL) {
-        *param4 = param0[v0].unk_03;
+    if (flagD != NULL) {
+        *flagD = byteFlagSet[index].flagD;
     }
 
-    return v0;
+    return index;
 }

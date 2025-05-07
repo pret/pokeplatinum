@@ -1,10 +1,27 @@
 #ifndef POKEPLATINUM_UNK_0201E010_H
 #define POKEPLATINUM_UNK_0201E010_H
 
-#include "struct_defs/struct_020F1DB8.h"
+typedef struct {
+    u8 flagA;
+    u8 flagB;
+    u8 flagC;
+    u8 flagD;
+    u8 upIndex;
+    u8 downIndex;
+    u8 leftIndex;
+    u8 rightIndex;
+} ByteFlagSet;
 
-void sub_0201E010(const ByteFlagSet *param0, u8 *param1, u8 *param2);
-void sub_0201E01C(const ByteFlagSet *param0, u8 *param1, u8 *param2);
-u8 sub_0201E028(const ByteFlagSet *param0, u8 *param1, u8 *param2, u8 *param3, u8 *param4, u8 param5, u8 param6);
+enum ByteFlagSetDirection {
+    BYTE_FLAG_SET_DIRECTION_UP = 0,
+    BYTE_FLAG_SET_DIRECTION_DOWN,
+    BYTE_FLAG_SET_DIRECTION_LEFT,
+    BYTE_FLAG_SET_DIRECTION_RIGHT,
+    BYTE_FLAG_SET_DIRECTION_NO_DIRECTION,
+};
+
+void ReadABByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagA, u8 *flagB);
+void ReadCDByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagC, u8 *flagD);
+u8 ReadByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagA, u8 *flagB, u8 *flagC, u8 *flagD, u8 setIndex, u8 direction);
 
 #endif // POKEPLATINUM_UNK_0201E010_H
