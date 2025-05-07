@@ -93,6 +93,7 @@
             "SPECIES_MANECTRIC"
         ]
     ],
+    "offspring": "SPECIES_ELECTRIKE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

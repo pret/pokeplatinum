@@ -102,6 +102,7 @@
             "SPECIES_SCIZOR"
         ]
     ],
+    "offspring": "SPECIES_SCYTHER",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -112,6 +112,7 @@
             "SPECIES_RAMPARDOS"
         ]
     ],
+    "offspring": "SPECIES_CRANIDOS",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

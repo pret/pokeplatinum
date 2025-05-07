@@ -103,6 +103,7 @@
             "SPECIES_GROVYLE"
         ]
     ],
+    "offspring": "SPECIES_TREECKO",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

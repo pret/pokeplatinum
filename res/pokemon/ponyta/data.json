@@ -86,6 +86,7 @@
             "SPECIES_RAPIDASH"
         ]
     ],
+    "offspring": "SPECIES_PONYTA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

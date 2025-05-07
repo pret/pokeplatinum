@@ -99,6 +99,7 @@
             "SPECIES_SKUNTANK"
         ]
     ],
+    "offspring": "SPECIES_STUNKY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

@@ -101,6 +101,7 @@
             "SPECIES_NOCTOWL"
         ]
     ],
+    "offspring": "SPECIES_HOOTHOOT",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

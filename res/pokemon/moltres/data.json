@@ -96,6 +96,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_MOLTRES",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

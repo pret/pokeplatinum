@@ -99,6 +99,7 @@
             "SPECIES_YANMEGA"
         ]
     ],
+    "offspring": "SPECIES_YANMA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

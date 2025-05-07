@@ -104,6 +104,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SWINUB",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

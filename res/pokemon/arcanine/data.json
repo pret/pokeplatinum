@@ -85,6 +85,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_GROWLITHE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

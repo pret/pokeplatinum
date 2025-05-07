@@ -106,6 +106,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_CACNEA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -95,6 +95,7 @@
             "SPECIES_FLOATZEL"
         ]
     ],
+    "offspring": "SPECIES_BUIZEL",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

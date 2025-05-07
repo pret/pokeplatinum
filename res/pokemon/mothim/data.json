@@ -96,6 +96,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_BURMY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

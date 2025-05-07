@@ -110,6 +110,7 @@
             "SPECIES_KIRLIA"
         ]
     ],
+    "offspring": "SPECIES_RALTS",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

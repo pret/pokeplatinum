@@ -36,6 +36,7 @@
         "by_tm": [  ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_NONE",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_SMALL"

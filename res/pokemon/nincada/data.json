@@ -90,6 +90,7 @@
             "SPECIES_SHEDINJA"
         ]
     ],
+    "offspring": "SPECIES_NINCADA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -93,6 +93,7 @@
             "SPECIES_ELECTRODE"
         ]
     ],
+    "offspring": "SPECIES_VOLTORB",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

@@ -109,6 +109,7 @@
             "SPECIES_MAROWAK"
         ]
     ],
+    "offspring": "SPECIES_CUBONE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

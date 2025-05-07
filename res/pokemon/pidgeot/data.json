@@ -92,6 +92,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_PIDGEY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

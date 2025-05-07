@@ -177,6 +177,7 @@ datagen_species_out = custom_target('datagen_species_out',
         'tutorable_moves.h',
         'species_learnsets_by_tutor.h',
         'species_footprints.h',
+        'pms.narc',
     ],
     command: [
         datagen_species_exe,

@@ -105,6 +105,7 @@
             "SPECIES_GOLDUCK"
         ]
     ],
+    "offspring": "SPECIES_PSYDUCK",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -118,6 +118,7 @@
             "SPECIES_SLOWKING"
         ]
     ],
+    "offspring": "SPECIES_SLOWPOKE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

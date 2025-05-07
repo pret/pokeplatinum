@@ -110,6 +110,7 @@
             "SPECIES_GRANBULL"
         ]
     ],
+    "offspring": "SPECIES_SNUBBULL",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

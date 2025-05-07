@@ -109,6 +109,7 @@
             "SPECIES_PERSIAN"
         ]
     ],
+    "offspring": "SPECIES_MEOWTH",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

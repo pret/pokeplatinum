@@ -101,6 +101,7 @@
     "evolutions": [
         [ "EVO_TRADE", "SPECIES_GOLEM" ]
     ],
+    "offspring": "SPECIES_GEODUDE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

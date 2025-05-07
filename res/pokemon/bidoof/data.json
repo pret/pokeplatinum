@@ -102,6 +102,7 @@
             "SPECIES_BIBAREL"
         ]
     ],
+    "offspring": "SPECIES_BIDOOF",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

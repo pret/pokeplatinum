@@ -48,6 +48,7 @@
         "by_tutor": [  ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SMEARGLE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

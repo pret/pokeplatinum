@@ -100,6 +100,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_EKANS",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

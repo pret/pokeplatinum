@@ -94,6 +94,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_PARAS",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

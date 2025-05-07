@@ -99,6 +99,7 @@
             "SPECIES_OMASTAR"
         ]
     ],
+    "offspring": "SPECIES_OMANYTE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

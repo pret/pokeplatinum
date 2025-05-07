@@ -97,6 +97,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_TYROGUE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

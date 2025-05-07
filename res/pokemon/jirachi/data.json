@@ -117,6 +117,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_JIRACHI",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

@@ -96,6 +96,7 @@
             "SPECIES_NIDORINA"
         ]
     ],
+    "offspring": "SPECIES_NIDORAN_F",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

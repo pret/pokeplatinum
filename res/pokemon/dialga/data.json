@@ -111,6 +111,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_DIALGA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

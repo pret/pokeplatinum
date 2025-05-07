@@ -97,6 +97,7 @@
             "SPECIES_JUMPLUFF"
         ]
     ],
+    "offspring": "SPECIES_HOPPIP",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

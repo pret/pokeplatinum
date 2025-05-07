@@ -98,6 +98,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_PINSIR",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

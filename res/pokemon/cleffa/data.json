@@ -97,6 +97,7 @@
     "evolutions": [
         [ "EVO_LEVEL_HAPPINESS", "SPECIES_CLEFAIRY" ]
     ],
+    "offspring": "SPECIES_CLEFFA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

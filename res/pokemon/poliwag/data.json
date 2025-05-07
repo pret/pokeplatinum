@@ -89,6 +89,7 @@
             "SPECIES_POLIWHIRL"
         ]
     ],
+    "offspring": "SPECIES_POLIWAG",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

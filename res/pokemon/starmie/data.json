@@ -93,6 +93,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_STARYU",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

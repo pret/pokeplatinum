@@ -99,6 +99,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_AZURILL",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

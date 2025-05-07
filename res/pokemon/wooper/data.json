@@ -98,6 +98,7 @@
             "SPECIES_QUAGSIRE"
         ]
     ],
+    "offspring": "SPECIES_WOOPER",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

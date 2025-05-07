@@ -92,6 +92,7 @@
             "SPECIES_MANTINE"
         ]
     ],
+    "offspring": "SPECIES_MANTYKE",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

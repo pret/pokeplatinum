@@ -111,6 +111,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SMOOCHUM",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

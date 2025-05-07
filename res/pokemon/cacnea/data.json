@@ -103,6 +103,7 @@
             "SPECIES_CACTURNE"
         ]
     ],
+    "offspring": "SPECIES_CACNEA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

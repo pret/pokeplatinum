@@ -105,6 +105,7 @@
             "SPECIES_LINOONE"
         ]
     ],
+    "offspring": "SPECIES_ZIGZAGOON",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

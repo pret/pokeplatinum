@@ -83,6 +83,7 @@
             "SPECIES_GOREBYSS"
         ]
     ],
+    "offspring": "SPECIES_CLAMPERL",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

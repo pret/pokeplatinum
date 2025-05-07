@@ -276,6 +276,37 @@ static std::optional<SpeciesPalPark> TryParsePalPark(rapidjson::Document &root)
     return palPark;
 }
 
+static std::optional<u16> TryParseOffspring(rapidjson::Document &root)
+{
+    if (!root.HasMember("offspring")) {
+        return std::nullopt;
+    }
+
+    return LookupConst(root["offspring"].GetString(), Species);
+}
+
+
+static void PackOffspring(std::vector<u16> offspringData, fs::path path)
+{
+    // for matching, forms
+    offspringData.emplace_back(496);
+    offspringData.emplace_back(497);
+    offspringData.emplace_back(498);
+    offspringData.emplace_back(499);
+    offspringData.emplace_back(500);
+    offspringData.emplace_back(501);
+    offspringData.emplace_back(502);
+    offspringData.emplace_back(503);
+    offspringData.emplace_back(504);
+    offspringData.emplace_back(505);
+    offspringData.emplace_back(506);
+    offspringData.emplace_back(507);
+    // end for matching
+    
+    std::ofstream ofs(path);
+    ofs.write(reinterpret_cast<char*>(&offspringData[0]), offspringData.size() * sizeof(u16));
+}
+
 static std::vector<Move> EmitTutorableMoves(fs::path &tutorSchemaFname, fs::path outFname)
 {
     std::string tutorSchema = ReadWholeFile(tutorSchemaFname);
@@ -493,6 +524,7 @@ int main(int argc, char **argv)
     vfs_pack_ctx *wotblVFS = narc_pack_start();
     vfs_pack_ctx *heightVFS = narc_pack_start();
     std::vector<SpeciesPalPark> palParkData;
+    std::vector<u16> offspringData;
     std::vector<ArchivedPokeSpriteData> pokeSpriteData;
 
     rapidjson::Document doc;
@@ -510,6 +542,7 @@ int main(int argc, char **argv)
             SpeciesEvolutionList evos = ParseEvolutions(doc);
             SpeciesLearnsetWithSize sizedLearnset = ParseLevelUpLearnset(doc);
             std::optional<SpeciesPalPark> palPark = TryParsePalPark(doc);
+            std::optional<u16> offspring = TryParseOffspring(doc);
             TryEmitTutorableLearnset(doc, byTutorMovesets, tutorableMoves, tutorableLearnsetSize);
             TryEmitFootprint(doc, footprints);
 
@@ -519,6 +552,10 @@ int main(int argc, char **argv)
 
             if (palPark.has_value()) {
                 palParkData.emplace_back(palPark.value());
+            }
+
+            if (offspring.has_value()) {
+                offspringData.emplace_back(offspring.value());
             }
 
             // Mechanically-distinct forms do not have sprite_data.json files
@@ -560,5 +597,6 @@ int main(int argc, char **argv)
     PackNarc(heightVFS, outputRoot / "height.narc");
     PackSingleFileNarc(palParkData, outputRoot / "ppark.narc");
     PackSingleFileNarc(pokeSpriteData, outputRoot / "pl_poke_data.narc");
+    PackOffspring(offspringData, outputRoot / "pms.narc");
     return EXIT_SUCCESS;
 }

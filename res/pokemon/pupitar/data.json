@@ -103,6 +103,7 @@
             "SPECIES_TYRANITAR"
         ]
     ],
+    "offspring": "SPECIES_LARVITAR",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

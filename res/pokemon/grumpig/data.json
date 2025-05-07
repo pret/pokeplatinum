@@ -115,6 +115,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SPOINK",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -96,6 +96,7 @@
             "SPECIES_NIDOKING"
         ]
     ],
+    "offspring": "SPECIES_NIDORAN_M",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -92,6 +92,7 @@
             "SPECIES_SEADRA"
         ]
     ],
+    "offspring": "SPECIES_HORSEA",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"
