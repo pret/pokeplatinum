@@ -140,16 +140,16 @@ u32 ov13_02228B64(UnkStruct_ov13_02228A50 *param0)
     }
 
     if (gSystem.pressedKeys & PAD_KEY_UP) {
-        v4 = ReadByteFlags(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, 0);
+        v4 = ReadByteFlags(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, BYTE_FLAG_SET_DIRECTION_UP);
         v5 = 0;
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-        v4 = ReadByteFlags(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, 1);
+        v4 = ReadByteFlags(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, BYTE_FLAG_SET_DIRECTION_DOWN);
         v5 = 1;
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        v4 = ReadByteFlags(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, 2);
+        v4 = ReadByteFlags(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, BYTE_FLAG_SET_DIRECTION_LEFT);
         v5 = 2;
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        v4 = ReadByteFlags(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, 3);
+        v4 = ReadByteFlags(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, BYTE_FLAG_SET_DIRECTION_RIGHT);
         v5 = 3;
     } else {
         v4 = 0xffffffff;
