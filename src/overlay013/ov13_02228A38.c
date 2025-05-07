@@ -141,16 +141,16 @@ u32 ov13_02228B64(UnkStruct_ov13_02228A50 *param0)
 
     if (gSystem.pressedKeys & PAD_KEY_UP) {
         v4 = ReadByteFlags(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, BYTE_FLAG_SET_DIRECTION_UP);
-        v5 = 0;
+        v5 = BYTE_FLAG_SET_DIRECTION_UP;
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         v4 = ReadByteFlags(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, BYTE_FLAG_SET_DIRECTION_DOWN);
-        v5 = 1;
+        v5 = BYTE_FLAG_SET_DIRECTION_DOWN;
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         v4 = ReadByteFlags(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, BYTE_FLAG_SET_DIRECTION_LEFT);
-        v5 = 2;
+        v5 = BYTE_FLAG_SET_DIRECTION_LEFT;
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         v4 = ReadByteFlags(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, BYTE_FLAG_SET_DIRECTION_RIGHT);
-        v5 = 3;
+        v5 = BYTE_FLAG_SET_DIRECTION_RIGHT;
     } else {
         v4 = 0xffffffff;
     }
