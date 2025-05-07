@@ -101,32 +101,32 @@ static u8 ov13_02228ACC(UnkStruct_ov13_02228A50 *param0)
     return 0;
 }
 
-static u8 ov13_02228B18(const ByteFlagSet *param0, u8 param1)
+static BOOL ov13_02228B18(const ByteFlagSet *byteFlagSet, u8 direction)
 {
-    switch (param1) {
-    case 0:
-        if (param0->downIndex & 0x80) {
-            return 1;
+    switch (direction) {
+    case BYTE_FLAG_SET_DIRECTION_UP:
+        if (byteFlagSet->downIndex & 0x80) {
+            return TRUE;
         }
         break;
-    case 1:
-        if (param0->upIndex & 0x80) {
-            return 1;
+    case BYTE_FLAG_SET_DIRECTION_DOWN:
+        if (byteFlagSet->upIndex & 0x80) {
+            return TRUE;
         }
         break;
-    case 2:
-        if (param0->rightIndex & 0x80) {
-            return 1;
+    case BYTE_FLAG_SET_DIRECTION_LEFT:
+        if (byteFlagSet->rightIndex & 0x80) {
+            return TRUE;
         }
         break;
-    case 3:
-        if (param0->leftIndex & 0x80) {
-            return 1;
+    case BYTE_FLAG_SET_DIRECTION_RIGHT:
+        if (byteFlagSet->leftIndex & 0x80) {
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 u32 ov13_02228B64(UnkStruct_ov13_02228A50 *param0)
@@ -188,7 +188,7 @@ u32 ov13_02228B64(UnkStruct_ov13_02228A50 *param0)
             ReadABByteFlags(&param0->unk_04[v4], &v0, &v1);
             ReadCDByteFlags(&param0->unk_04[v4], &v2, &v3);
 
-            if ((ov13_02228B18(&param0->unk_04[v4], v5) == 1) && (v6 != 0)) {
+            if ((ov13_02228B18(&param0->unk_04[v4], v5) == TRUE) && (v6 != 0)) {
                 param0->unk_0A = param0->unk_09;
             } else {
                 param0->unk_0A = 0xff;
