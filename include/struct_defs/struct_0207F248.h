@@ -13,6 +13,7 @@
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
 
 #include "bg_window.h"
+#include "byte_flag_set.h"
 #include "menu.h"
 #include "message.h"
 #include "sprite.h"
@@ -20,7 +21,6 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
-#include "unk_0201E010.h"
 
 typedef struct {
     BgConfig *unk_00;

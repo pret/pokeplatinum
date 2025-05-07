@@ -12,12 +12,12 @@
 #include "overlay013/ov13_02228A38.h"
 #include "overlay013/struct_ov13_02227244.h"
 
+#include "byte_flag_set.h"
 #include "gx_layers.h"
 #include "item.h"
 #include "narc.h"
 #include "palette.h"
 #include "sprite_system.h"
-#include "unk_0201E010.h"
 
 static void ov13_02227C08(UnkStruct_ov13_02227244 *param0);
 static void ov13_02227C54(UnkStruct_ov13_02227244 *param0);

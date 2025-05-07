@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0201E010_H
-#define POKEPLATINUM_UNK_0201E010_H
+#ifndef POKEPLATINUM_BYTE_FLAG_SET_H
+#define POKEPLATINUM_BYTE_FLAG_SET_H
 
 typedef struct {
     u8 flagA;
@@ -24,4 +24,4 @@ void ReadABByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagA, u8 *flagB);
 void ReadCDByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagC, u8 *flagD);
 u8 ReadByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagA, u8 *flagB, u8 *flagC, u8 *flagD, u8 setIndex, u8 direction);
 
-#endif // POKEPLATINUM_UNK_0201E010_H
+#endif // POKEPLATINUM_BYTE_FLAG_SET_H

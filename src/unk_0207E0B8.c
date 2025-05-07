@@ -16,6 +16,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "byte_flag_set.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -44,7 +45,6 @@
 #include "touch_screen.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
-#include "unk_0201E010.h"
 #include "unk_02024220.h"
 #include "unk_0202602C.h"
 #include "unk_020393C8.h"

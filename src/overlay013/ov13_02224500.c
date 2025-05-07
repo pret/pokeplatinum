@@ -11,6 +11,7 @@
 #include "overlay013/struct_ov13_022213F0.h"
 #include "overlay013/struct_ov13_02221ED0.h"
 
+#include "byte_flag_set.h"
 #include "gx_layers.h"
 #include "item.h"
 #include "move_table.h"
@@ -19,7 +20,6 @@
 #include "party.h"
 #include "pokemon_icon.h"
 #include "sprite_system.h"
-#include "unk_0201E010.h"
 #include "unk_0207C908.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"

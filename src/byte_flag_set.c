@@ -1,4 +1,4 @@
-#include "unk_0201E010.h"
+#include "byte_flag_set.h"
 
 void ReadABByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagA, u8 *flagB)
 {
