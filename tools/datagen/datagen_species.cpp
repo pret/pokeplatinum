@@ -24,6 +24,7 @@
  *   - ppark.narc
  *   - height.narc
  *   - pl_poke_data.narc
+ *   - pms.narc
  *   - tutorable_moves.h
  *   - species_learnsets_by_tutor.h
  *   - species_footprints.h
@@ -289,18 +290,18 @@ static std::optional<u16> TryParseOffspring(rapidjson::Document &root)
 static void PackOffspring(std::vector<u16> offspringData, fs::path path)
 {
     // for matching, forms
-    offspringData.emplace_back(496);
-    offspringData.emplace_back(497);
-    offspringData.emplace_back(498);
-    offspringData.emplace_back(499);
-    offspringData.emplace_back(500);
-    offspringData.emplace_back(501);
-    offspringData.emplace_back(502);
-    offspringData.emplace_back(503);
-    offspringData.emplace_back(504);
-    offspringData.emplace_back(505);
-    offspringData.emplace_back(506);
-    offspringData.emplace_back(507);
+    offspringData.emplace_back(496); // deoxys attack
+    offspringData.emplace_back(497); // deoxys defense
+    offspringData.emplace_back(498); // deoxys speed
+    offspringData.emplace_back(499); // wormadam sandy
+    offspringData.emplace_back(500); // wormadam trash
+    offspringData.emplace_back(501); // shaymin sky
+    offspringData.emplace_back(502); // giratina origin
+    offspringData.emplace_back(503); // rotom heat
+    offspringData.emplace_back(504); // rotom wash
+    offspringData.emplace_back(505); // rotom frost
+    offspringData.emplace_back(506); // rotom fan
+    offspringData.emplace_back(507); // rotom mow
     // end for matching
     
     std::ofstream ofs(path);

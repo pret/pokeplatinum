@@ -9,6 +9,7 @@
 #     - height - Y offsets applied to each species' front and back sprites
 #     - pl_poke_data - Sprite animation sequences, frame data, and shadow sizes
 #       applied to a species' front and back sprites
+#     - pms - table of offspring for each species
 #     - tutorable_moves.h - a table of moves which can be tutored, including the
 #       cost of each shard to tutor it and which tutor provides it; ordinarily,
 #       this might be move-level data, but it is kept here for simplicity in
@@ -174,10 +175,10 @@ datagen_species_out = custom_target('datagen_species_out',
         'ppark.narc',
         'height.narc',
         'pl_poke_data.narc',
+        'pms.narc',
         'tutorable_moves.h',
         'species_learnsets_by_tutor.h',
         'species_footprints.h',
-        'pms.narc',
     ],
     command: [
         datagen_species_exe,
