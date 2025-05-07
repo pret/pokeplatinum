@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020F1DB8.h"
-
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
@@ -21,6 +19,7 @@
 #include "party.h"
 #include "pokemon_icon.h"
 #include "sprite_system.h"
+#include "unk_0201E010.h"
 #include "unk_0207C908.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020F1DB8.h"
-
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/ov16_0226DE44.h"
@@ -19,6 +17,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "sprite_system.h"
+#include "unk_0201E010.h"
 
 static void ov13_02227C08(UnkStruct_ov13_02227244 *param0);
 static void ov13_02227C54(UnkStruct_ov13_02227244 *param0);

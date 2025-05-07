@@ -344,7 +344,7 @@ void sub_0208327C(GameWindowLayout *param0, u8 param1, u8 param2)
 {
     u8 v0, v1;
 
-    sub_0201E010(&param0->unk_7F4[param1], &v0, &v1);
+    ReadABByteFlags(&param0->unk_7F4[param1], &v0, &v1);
     Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
     Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
     Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);

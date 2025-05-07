@@ -8,7 +8,6 @@
 #include "struct_defs/struct_020831B4.h"
 #include "struct_defs/struct_02083D1C.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/struct_020F1DB8.h"
 
 #include "functypes/funcptr_0207F248.h"
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
@@ -21,6 +20,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "unk_0201E010.h"
 
 typedef struct {
     BgConfig *unk_00;

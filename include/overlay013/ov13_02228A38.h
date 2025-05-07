@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_OV13_02228A38_H
 #define POKEPLATINUM_OV13_02228A38_H
 
-#include "struct_defs/struct_020F1DB8.h"
-
 #include "battle/struct_ov16_0226DC24_decl.h"
 #include "overlay013/struct_ov13_02228A50_decl.h"
+
+#include "unk_0201E010.h"
 
 UnkStruct_ov13_02228A50 *ov13_02228A38(u32 heapID);
 void ov13_02228A50(UnkStruct_ov13_02228A50 *param0);
