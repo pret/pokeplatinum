@@ -513,6 +513,7 @@ int main(int argc, char **argv)
     std::vector<u16> offspringData;
     std::vector<ArchivedPokeSpriteData> pokeSpriteData;
 
+    u16 personalValue = 0;
     rapidjson::Document doc;
     for (auto &species : speciesRegistry) {
         fs::path speciesDataPath = dataRoot / species / "data.json";
@@ -524,7 +525,6 @@ int main(int argc, char **argv)
         }
 
         try {
-            u16 personalValue = find(speciesRegistry.begin(), speciesRegistry.end(), species) - speciesRegistry.begin();
             SpeciesData data = ParseSpeciesData(doc);
             SpeciesEvolutionList evos = ParseEvolutions(doc);
             SpeciesLearnsetWithSize sizedLearnset = ParseLevelUpLearnset(doc);
@@ -564,6 +564,7 @@ int main(int argc, char **argv)
             std::cerr << e.what() << std::endl;
             std::exit(EXIT_FAILURE);
         }
+        personalValue += 1;
     }
 
     byTutorMovesets << "};\n"
