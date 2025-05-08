@@ -101,6 +101,7 @@
             "SPECIES_TANGROWTH"
         ]
     ],
+    "offspring": "SPECIES_TANGELA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

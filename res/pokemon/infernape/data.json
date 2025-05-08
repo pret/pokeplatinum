@@ -116,6 +116,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_CHIMCHAR",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

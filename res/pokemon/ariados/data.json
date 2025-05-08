@@ -87,6 +87,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SPINARAK",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

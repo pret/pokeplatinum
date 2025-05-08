@@ -105,6 +105,7 @@
             "SPECIES_BANETTE"
         ]
     ],
+    "offspring": "SPECIES_SHUPPET",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

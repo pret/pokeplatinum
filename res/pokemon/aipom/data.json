@@ -116,6 +116,7 @@
             "SPECIES_AMBIPOM"
         ]
     ],
+    "offspring": "SPECIES_AIPOM",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -93,6 +93,7 @@
             "SPECIES_PIDGEOTTO"
         ]
     ],
+    "offspring": "SPECIES_PIDGEY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

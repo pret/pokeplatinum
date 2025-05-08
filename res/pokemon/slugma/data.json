@@ -92,6 +92,7 @@
             "SPECIES_MAGCARGO"
         ]
     ],
+    "offspring": "SPECIES_SLUGMA",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

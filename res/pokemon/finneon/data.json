@@ -99,6 +99,7 @@
             "SPECIES_LUMINEON"
         ]
     ],
+    "offspring": "SPECIES_FINNEON",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

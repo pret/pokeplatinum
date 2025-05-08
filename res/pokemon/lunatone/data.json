@@ -105,6 +105,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_LUNATONE",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

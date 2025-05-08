@@ -92,6 +92,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_PACHIRISU",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

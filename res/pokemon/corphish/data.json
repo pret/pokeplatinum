@@ -107,6 +107,7 @@
             "SPECIES_CRAWDAUNT"
         ]
     ],
+    "offspring": "SPECIES_CORPHISH",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -85,6 +85,7 @@
             "SPECIES_GASTRODON"
         ]
     ],
+    "offspring": "SPECIES_SHELLOS",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

@@ -114,6 +114,7 @@
             "SPECIES_TOXICROAK"
         ]
     ],
+    "offspring": "SPECIES_CROAGUNK",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -87,6 +87,7 @@
             "SPECIES_HIPPOWDON"
         ]
     ],
+    "offspring": "SPECIES_HIPPOPOTAS",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -105,6 +105,7 @@
             "SPECIES_PORYGON_Z"
         ]
     ],
+    "offspring": "SPECIES_PORYGON",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

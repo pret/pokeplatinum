@@ -108,6 +108,7 @@
             "SPECIES_CLAYDOL"
         ]
     ],
+    "offspring": "SPECIES_BALTOY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

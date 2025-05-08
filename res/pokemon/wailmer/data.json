@@ -96,6 +96,7 @@
             "SPECIES_WAILORD"
         ]
     ],
+    "offspring": "SPECIES_WAILMER",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

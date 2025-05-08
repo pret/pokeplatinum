@@ -103,6 +103,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_CORSOLA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

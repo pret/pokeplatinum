@@ -96,6 +96,7 @@
             "SPECIES_ARMALDO"
         ]
     ],
+    "offspring": "SPECIES_ANORITH",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

@@ -106,6 +106,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_NOSEPASS",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

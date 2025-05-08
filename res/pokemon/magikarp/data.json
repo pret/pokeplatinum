@@ -47,6 +47,7 @@
             "SPECIES_GYARADOS"
         ]
     ],
+    "offspring": "SPECIES_MAGIKARP",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

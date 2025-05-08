@@ -101,6 +101,7 @@
     "evolutions": [
         [ "EVO_LEVEL_HAPPINESS", "SPECIES_TOGETIC" ]
     ],
+    "offspring": "SPECIES_TOGEPI",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

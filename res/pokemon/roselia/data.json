@@ -98,6 +98,7 @@
             "SPECIES_ROSERADE"
         ]
     ],
+    "offspring": "SPECIES_BUDEW",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

@@ -93,6 +93,7 @@
             "SPECIES_WHISCASH"
         ]
     ],
+    "offspring": "SPECIES_BARBOACH",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

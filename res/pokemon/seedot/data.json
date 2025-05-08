@@ -86,6 +86,7 @@
             "SPECIES_NUZLEAF"
         ]
     ],
+    "offspring": "SPECIES_SEEDOT",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -123,6 +123,7 @@
             "SPECIES_DUSKNOIR"
         ]
     ],
+    "offspring": "SPECIES_DUSKULL",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

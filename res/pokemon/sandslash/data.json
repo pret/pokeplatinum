@@ -105,6 +105,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SANDSHREW",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

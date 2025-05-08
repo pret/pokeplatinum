@@ -94,6 +94,7 @@
             "SPECIES_LOMBRE"
         ]
     ],
+    "offspring": "SPECIES_LOTAD",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

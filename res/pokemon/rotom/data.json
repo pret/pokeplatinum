@@ -92,6 +92,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_ROTOM",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

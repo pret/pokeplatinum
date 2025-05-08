@@ -97,6 +97,7 @@
             "SPECIES_GROTLE"
         ]
     ],
+    "offspring": "SPECIES_TURTWIG",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

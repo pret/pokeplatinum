@@ -92,6 +92,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_EXEGGCUTE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

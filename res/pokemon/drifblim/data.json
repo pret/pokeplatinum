@@ -109,6 +109,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_DRIFLOON",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

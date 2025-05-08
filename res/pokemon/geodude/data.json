@@ -103,6 +103,7 @@
             "SPECIES_GRAVELER"
         ]
     ],
+    "offspring": "SPECIES_GEODUDE",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

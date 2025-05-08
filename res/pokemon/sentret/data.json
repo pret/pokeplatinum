@@ -111,6 +111,7 @@
             "SPECIES_FURRET"
         ]
     ],
+    "offspring": "SPECIES_SENTRET",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

@@ -128,6 +128,7 @@
             "SPECIES_CLEFABLE"
         ]
     ],
+    "offspring": "SPECIES_CLEFFA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"
