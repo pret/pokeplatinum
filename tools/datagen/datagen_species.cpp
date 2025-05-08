@@ -277,10 +277,10 @@ static std::optional<SpeciesPalPark> TryParsePalPark(rapidjson::Document &root)
     return palPark;
 }
 
-static std::optional<u16> TryParseOffspring(rapidjson::Document &root)
+static u16 TryParseOffspring(rapidjson::Document &root, u16 personalValue)
 {
     if (!root.HasMember("offspring")) {
-        return std::nullopt;
+        return personalValue;
     }
 
     return LookupConst(root["offspring"].GetString(), Species);
@@ -289,21 +289,6 @@ static std::optional<u16> TryParseOffspring(rapidjson::Document &root)
 
 static void PackOffspring(std::vector<u16> offspringData, fs::path path)
 {
-    // for matching, forms
-    offspringData.emplace_back(496); // deoxys attack
-    offspringData.emplace_back(497); // deoxys defense
-    offspringData.emplace_back(498); // deoxys speed
-    offspringData.emplace_back(499); // wormadam sandy
-    offspringData.emplace_back(500); // wormadam trash
-    offspringData.emplace_back(501); // shaymin sky
-    offspringData.emplace_back(502); // giratina origin
-    offspringData.emplace_back(503); // rotom heat
-    offspringData.emplace_back(504); // rotom wash
-    offspringData.emplace_back(505); // rotom frost
-    offspringData.emplace_back(506); // rotom fan
-    offspringData.emplace_back(507); // rotom mow
-    // end for matching
-    
     std::ofstream ofs(path);
     ofs.write(reinterpret_cast<char*>(&offspringData[0]), offspringData.size() * sizeof(u16));
 }
@@ -539,11 +524,12 @@ int main(int argc, char **argv)
         }
 
         try {
+            u16 personalValue = find(speciesRegistry.begin(), speciesRegistry.end(), species) - speciesRegistry.begin();
             SpeciesData data = ParseSpeciesData(doc);
             SpeciesEvolutionList evos = ParseEvolutions(doc);
             SpeciesLearnsetWithSize sizedLearnset = ParseLevelUpLearnset(doc);
             std::optional<SpeciesPalPark> palPark = TryParsePalPark(doc);
-            std::optional<u16> offspring = TryParseOffspring(doc);
+            u16 offspring = TryParseOffspring(doc, personalValue);
             TryEmitTutorableLearnset(doc, byTutorMovesets, tutorableMoves, tutorableLearnsetSize);
             TryEmitFootprint(doc, footprints);
 
@@ -555,9 +541,7 @@ int main(int argc, char **argv)
                 palParkData.emplace_back(palPark.value());
             }
 
-            if (offspring.has_value()) {
-                offspringData.emplace_back(offspring.value());
-            }
+            offspringData.emplace_back(offspring);
 
             // Mechanically-distinct forms do not have sprite_data.json files
             fs::path speciesSpriteDataPath = dataRoot / species / "sprite_data.json";
