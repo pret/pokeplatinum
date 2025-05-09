@@ -1,0 +1,122 @@
+area_data_bin_gen = generator(
+    area_data_py,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@'
+)
+
+area_data_srcs = files(
+    'area_data_000.json',
+    'area_data_001.json',
+    'area_data_002.json',
+    'area_data_003.json',
+    'area_data_004.json',
+    'area_data_005.json',
+    'area_data_006.json',
+    'area_data_007.json',
+    'area_data_008.json',
+    'area_data_009.json',
+    'area_data_010.json',
+    'area_data_011.json',
+    'area_data_012.json',
+    'area_data_013.json',
+    'area_data_014.json',
+    'area_data_015.json',
+    'area_data_016.json',
+    'area_data_017.json',
+    'area_data_018.json',
+    'area_data_019.json',
+    'area_data_020.json',
+    'area_data_021.json',
+    'area_data_022.json',
+    'area_data_023.json',
+    'area_data_024.json',
+    'area_data_025.json',
+    'area_data_026.json',
+    'area_data_027.json',
+    'area_data_028.json',
+    'area_data_029.json',
+    'area_data_030.json',
+    'area_data_031.json',
+    'area_data_032.json',
+    'area_data_033.json',
+    'area_data_034.json',
+    'area_data_035.json',
+    'area_data_036.json',
+    'area_data_037.json',
+    'area_data_038.json',
+    'area_data_039.json',
+    'area_data_040.json',
+    'area_data_041.json',
+    'area_data_042.json',
+    'area_data_043.json',
+    'area_data_044.json',
+    'area_data_045.json',
+    'area_data_046.json',
+    'area_data_047.json',
+    'area_data_048.json',
+    'area_data_049.json',
+    'area_data_050.json',
+    'area_data_051.json',
+    'area_data_052.json',
+    'area_data_053.json',
+    'area_data_054.json',
+    'area_data_055.json',
+    'area_data_056.json',
+    'area_data_057.json',
+    'area_data_058.json',
+    'area_data_059.json',
+    'area_data_060.json',
+    'area_data_061.json',
+    'area_data_062.json',
+    'area_data_063.json',
+    'area_data_064.json',
+    'area_data_065.json',
+    'area_data_066.json',
+    'area_data_067.json',
+    'area_data_068.json',
+    'area_data_069.json',
+    'area_data_070.json',
+    'area_data_071.json',
+    'area_data_072.json',
+    'area_data_073.json',
+    'area_data_074.json',
+)
+
+area_data_order = files('area_data.order')
+
+area_data_deps = [ 
+    prop_model_set_narc, 
+    map_texture_set_narc, 
+    lighting_narc 
+]
+
+area_data_narc = custom_target('area_data.narc',
+    output: [
+        'area_data.narc',
+        'area_data.naix',
+    ],
+    input: [
+        area_data_bin_gen.process(area_data_srcs, 
+            env: jsoncnv_env,
+            extra_args: [
+                '--map-prop-set-naix', prop_model_set_narc[1].full_path(),
+                '--map-texture-set-naix', map_texture_set_narc[1].full_path(),
+                '--lighting-set-naix', lighting_narc[1].full_path(),
+            ],
+        ),
+        area_data_order,
+    ],
+    depends: [ 
+        py_consts_generators, 
+        area_data_deps 
+    ],
+    command: [
+        narc_exe, 'create',
+        '--naix',
+        '--order', area_data_order,
+        '--output', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
+    ]
+)
+
+nitrofs_files += area_data_narc

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import collections
 import functools
+import pathlib
+import re
 
 from generated import (
     ai_flags,
@@ -95,3 +97,10 @@ def derive_data_flags(party: list[dict]) -> TrainerDataFlags:
         has_items |= bool(mon.get('item', None))
 
     return TrainerDataFlags(has_moves, has_items)
+
+def parse_naix(filepath: pathlib.Path) -> dict[str, int]:
+    with open(filepath, 'r') as file:
+        return {
+            match['ident']: int(match['value'])
+            for match in re.finditer(r'#define (?P<ident>\w+) (?P<value>\d+)', file.read())
+        }
