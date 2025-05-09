@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import collections
 import functools
+import re
 
 from generated import (
     ai_flags,
@@ -95,3 +96,9 @@ def derive_data_flags(party: list[dict]) -> TrainerDataFlags:
         has_items |= bool(mon.get('item', None))
 
     return TrainerDataFlags(has_moves, has_items)
+
+def parse_naix(filepath: str) -> dict:
+    with open(filepath) as file:
+        matches = re.findall(r'#define (\S+) (\d+)', file.read())
+        naix_dict = dict((x, int(y)) for x, y in matches)
+        return naix_dict
