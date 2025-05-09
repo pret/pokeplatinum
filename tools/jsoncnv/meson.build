@@ -5,6 +5,7 @@ jsoncnv_env.set('PYTHONPATH', meson.project_build_root()) # access to constants 
 movedata_py = find_program('movedata.py', native: true)
 
 # New single-file-parser scripts
+area_data_py = find_program('area_data.py', native: true)
 encounter_py = find_program('encounter.py', native: true)
 event_py = find_program('event.py', native: true)
 encdata_ex_elusive_rod_py = find_program('encdata_ex_elusive_rod.py', native: true)
