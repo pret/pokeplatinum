@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020F1DB8.h"
-
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
@@ -13,6 +11,7 @@
 #include "overlay013/struct_ov13_022213F0.h"
 #include "overlay013/struct_ov13_02221ED0.h"
 
+#include "byte_flag_set.h"
 #include "gx_layers.h"
 #include "item.h"
 #include "move_table.h"

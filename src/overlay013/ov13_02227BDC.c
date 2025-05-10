@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020F1DB8.h"
-
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/ov16_0226DE44.h"
@@ -14,6 +12,7 @@
 #include "overlay013/ov13_02228A38.h"
 #include "overlay013/struct_ov13_02227244.h"
 
+#include "byte_flag_set.h"
 #include "gx_layers.h"
 #include "item.h"
 #include "narc.h"
