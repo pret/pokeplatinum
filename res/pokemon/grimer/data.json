@@ -103,6 +103,7 @@
             "SPECIES_MUK"
         ]
     ],
+    "offspring": "SPECIES_GRIMER",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

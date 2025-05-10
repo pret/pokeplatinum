@@ -24,6 +24,7 @@
  *   - ppark.narc
  *   - height.narc
  *   - pl_poke_data.narc
+ *   - pms.narc
  *   - tutorable_moves.h
  *   - species_learnsets_by_tutor.h
  *   - species_footprints.h
@@ -276,6 +277,22 @@ static std::optional<SpeciesPalPark> TryParsePalPark(rapidjson::Document &root)
     return palPark;
 }
 
+static u16 TryParseOffspring(rapidjson::Document &root, u16 personalValue)
+{
+    if (!root.HasMember("offspring")) {
+        return personalValue;
+    }
+
+    return LookupConst(root["offspring"].GetString(), Species);
+}
+
+
+static void PackOffspring(std::vector<u16> offspringData, fs::path path)
+{
+    std::ofstream ofs(path);
+    ofs.write(reinterpret_cast<char*>(&offspringData[0]), offspringData.size() * sizeof(u16));
+}
+
 static std::vector<Move> EmitTutorableMoves(fs::path &tutorSchemaFname, fs::path outFname)
 {
     std::string tutorSchema = ReadWholeFile(tutorSchemaFname);
@@ -493,8 +510,10 @@ int main(int argc, char **argv)
     vfs_pack_ctx *wotblVFS = narc_pack_start();
     vfs_pack_ctx *heightVFS = narc_pack_start();
     std::vector<SpeciesPalPark> palParkData;
+    std::vector<u16> offspringData;
     std::vector<ArchivedPokeSpriteData> pokeSpriteData;
 
+    u16 personalValue = 0;
     rapidjson::Document doc;
     for (auto &species : speciesRegistry) {
         fs::path speciesDataPath = dataRoot / species / "data.json";
@@ -510,6 +529,7 @@ int main(int argc, char **argv)
             SpeciesEvolutionList evos = ParseEvolutions(doc);
             SpeciesLearnsetWithSize sizedLearnset = ParseLevelUpLearnset(doc);
             std::optional<SpeciesPalPark> palPark = TryParsePalPark(doc);
+            u16 offspring = TryParseOffspring(doc, personalValue);
             TryEmitTutorableLearnset(doc, byTutorMovesets, tutorableMoves, tutorableLearnsetSize);
             TryEmitFootprint(doc, footprints);
 
@@ -520,6 +540,8 @@ int main(int argc, char **argv)
             if (palPark.has_value()) {
                 palParkData.emplace_back(palPark.value());
             }
+
+            offspringData.emplace_back(offspring);
 
             // Mechanically-distinct forms do not have sprite_data.json files
             fs::path speciesSpriteDataPath = dataRoot / species / "sprite_data.json";
@@ -542,6 +564,7 @@ int main(int argc, char **argv)
             std::cerr << e.what() << std::endl;
             std::exit(EXIT_FAILURE);
         }
+        personalValue += 1;
     }
 
     byTutorMovesets << "};\n"
@@ -560,5 +583,6 @@ int main(int argc, char **argv)
     PackNarc(heightVFS, outputRoot / "height.narc");
     PackSingleFileNarc(palParkData, outputRoot / "ppark.narc");
     PackSingleFileNarc(pokeSpriteData, outputRoot / "pl_poke_data.narc");
+    PackOffspring(offspringData, outputRoot / "pms.narc");
     return EXIT_SUCCESS;
 }

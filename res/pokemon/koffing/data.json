@@ -97,6 +97,7 @@
             "SPECIES_WEEZING"
         ]
     ],
+    "offspring": "SPECIES_KOFFING",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

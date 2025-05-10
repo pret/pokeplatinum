@@ -107,6 +107,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SNOVER",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

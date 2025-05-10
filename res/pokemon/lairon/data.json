@@ -111,6 +111,7 @@
             "SPECIES_AGGRON"
         ]
     ],
+    "offspring": "SPECIES_ARON",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

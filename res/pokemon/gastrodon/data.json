@@ -95,6 +95,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SHELLOS",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

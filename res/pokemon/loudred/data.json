@@ -107,6 +107,7 @@
             "SPECIES_EXPLOUD"
         ]
     ],
+    "offspring": "SPECIES_WHISMUR",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

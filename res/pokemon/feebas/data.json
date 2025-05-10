@@ -76,6 +76,7 @@
             "SPECIES_MILOTIC"
         ]
     ],
+    "offspring": "SPECIES_FEEBAS",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

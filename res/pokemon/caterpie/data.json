@@ -47,6 +47,7 @@
             "SPECIES_METAPOD"
         ]
     ],
+    "offspring": "SPECIES_CATERPIE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

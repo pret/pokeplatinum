@@ -130,6 +130,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_DRATINI",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

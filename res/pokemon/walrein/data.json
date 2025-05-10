@@ -99,6 +99,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SPHEAL",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

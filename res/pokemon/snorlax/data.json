@@ -112,6 +112,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_MUNCHLAX",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

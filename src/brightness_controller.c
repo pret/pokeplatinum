@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "include/constants/screen.h"
+#include "constants/screen.h"
 
 #define IS_SCREEN_SELECTED(screenMask, screenConst) (screenMask & screenConst)
 

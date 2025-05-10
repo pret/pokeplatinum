@@ -95,6 +95,7 @@
             "SPECIES_MIGHTYENA"
         ]
     ],
+    "offspring": "SPECIES_POOCHYENA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

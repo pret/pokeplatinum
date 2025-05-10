@@ -107,6 +107,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SHROOMISH",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

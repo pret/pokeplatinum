@@ -109,6 +109,7 @@
             "SPECIES_FERALIGATR"
         ]
     ],
+    "offspring": "SPECIES_TOTODILE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

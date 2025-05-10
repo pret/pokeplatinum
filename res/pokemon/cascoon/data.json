@@ -46,6 +46,7 @@
             "SPECIES_DUSTOX"
         ]
     ],
+    "offspring": "SPECIES_WURMPLE",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

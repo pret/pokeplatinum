@@ -118,6 +118,7 @@
             "SPECIES_LICKILICKY"
         ]
     ],
+    "offspring": "SPECIES_LICKITUNG",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

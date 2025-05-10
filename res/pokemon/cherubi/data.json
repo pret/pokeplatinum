@@ -86,6 +86,7 @@
             "SPECIES_CHERRIM"
         ]
     ],
+    "offspring": "SPECIES_CHERUBI",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

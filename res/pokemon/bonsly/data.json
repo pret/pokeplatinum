@@ -93,6 +93,7 @@
             "SPECIES_SUDOWOODO"
         ]
     ],
+    "offspring": "SPECIES_BONSLY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

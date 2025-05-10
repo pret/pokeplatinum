@@ -99,6 +99,7 @@
             "SPECIES_MEGANIUM"
         ]
     ],
+    "offspring": "SPECIES_CHIKORITA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

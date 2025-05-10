@@ -103,6 +103,7 @@
             "SPECIES_HARIYAMA"
         ]
     ],
+    "offspring": "SPECIES_MAKUHITA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

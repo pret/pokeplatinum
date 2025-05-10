@@ -98,6 +98,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_EEVEE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

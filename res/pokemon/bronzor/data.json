@@ -104,6 +104,7 @@
             "SPECIES_BRONZONG"
         ]
     ],
+    "offspring": "SPECIES_BRONZOR",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

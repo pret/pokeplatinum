@@ -42,6 +42,7 @@
         "by_tutor": [  ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_WYNAUT",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

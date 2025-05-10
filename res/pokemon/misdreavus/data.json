@@ -107,6 +107,7 @@
             "SPECIES_MISMAGIUS"
         ]
     ],
+    "offspring": "SPECIES_MISDREAVUS",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

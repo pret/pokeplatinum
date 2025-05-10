@@ -47,6 +47,7 @@
             "SPECIES_KAKUNA"
         ]
     ],
+    "offspring": "SPECIES_WEEDLE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

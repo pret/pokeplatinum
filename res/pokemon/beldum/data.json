@@ -49,6 +49,7 @@
             "SPECIES_METANG"
         ]
     ],
+    "offspring": "SPECIES_BELDUM",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

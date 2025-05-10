@@ -97,6 +97,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_CHINCHOU",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

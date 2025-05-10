@@ -99,6 +99,7 @@
     "evolutions": [
         [ "EVO_LEVEL_HAPPINESS", "SPECIES_CROBAT" ]
     ],
+    "offspring": "SPECIES_ZUBAT",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

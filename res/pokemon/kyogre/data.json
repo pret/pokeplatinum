@@ -101,6 +101,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_KYOGRE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

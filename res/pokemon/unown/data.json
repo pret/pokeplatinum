@@ -39,6 +39,7 @@
         "by_tutor": [  ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_UNOWN",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

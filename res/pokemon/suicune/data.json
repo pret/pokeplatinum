@@ -99,6 +99,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SUICUNE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

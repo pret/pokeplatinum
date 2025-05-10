@@ -109,6 +109,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_GIBLE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

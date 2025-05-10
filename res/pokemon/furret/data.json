@@ -114,6 +114,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SENTRET",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

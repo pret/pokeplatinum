@@ -90,6 +90,7 @@
             "SPECIES_SWELLOW"
         ]
     ],
+    "offspring": "SPECIES_TAILLOW",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

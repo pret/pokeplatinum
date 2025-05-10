@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_BRIGHTNESS_CONTROLLER_H
 #define POKEPLATINUM_BRIGHTNESS_CONTROLLER_H
 
-#include "include/constants/screen.h"
+#include "constants/screen.h"
 
 #define BRIGHTNESS_NO_SCREENS   (0)
 #define BRIGHTNESS_MAIN_SCREEN  (1 << DS_SCREEN_MAIN)

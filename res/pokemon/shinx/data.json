@@ -91,6 +91,7 @@
             "SPECIES_LUXIO"
         ]
     ],
+    "offspring": "SPECIES_SHINX",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -53,6 +53,7 @@
             "SPECIES_MOTHIM"
         ]
     ],
+    "offspring": "SPECIES_BURMY",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

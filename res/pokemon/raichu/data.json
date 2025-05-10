@@ -89,6 +89,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_PICHU",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

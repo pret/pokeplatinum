@@ -107,6 +107,7 @@
             "SPECIES_HYPNO"
         ]
     ],
+    "offspring": "SPECIES_DROWZEE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

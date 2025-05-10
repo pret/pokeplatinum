@@ -1,63 +1,74 @@
-.PHONY: all release debug check rom data target format clean distclean purge update setup_release setup_debug configure meson
+.PHONY: all release debug check rom data target format clean distclean purge update setup_release setup_debug configure skrew meson
+
+SUBPROJ_DIR := subprojects
 
 MESON_VER := 1.7.0
-MESON_DIR := subprojects/meson-$(MESON_VER)
+MESON_DIR := $(SUBPROJ_DIR)/meson-$(MESON_VER)
 MESON_SUB := $(MESON_DIR)/meson.py
 
 MESON ?= $(MESON_SUB)
 NINJA ?= ninja
-WINELOADER ?= wine
 GIT ?= git
 
 BUILD ?= build
 ROOT_INI := $(BUILD)/root.ini
-DOT_MWCONFIG := $(BUILD)/.mwconfig
-
-TOOLS := tools
-WRAP := $(TOOLS)/cw
-WRAP_BUILD := $(WRAP)/build
-MWRAP := $(WRAP)/mwrap
 
 UNAME_R := $(shell uname -r)
 UNAME_S := $(shell uname -s)
 CWD := $(shell pwd)
 
+# Check for Windows-drive access
 ifneq (,$(findstring Microsoft,$(UNAME_R)))
-ifneq (,$(filter /mnt/%,$(CWD)))
-WSL_ACCESSING_WINDOWS := 0
+  ifneq (,$(filter /mnt/%,$(realpath $(CWD))))
+    WSL_ACCESSING_WINDOWS := 0
+  else
+    WSL_ACCESSING_WINDOWS := 1
+  endif
 else
-WSL_ACCESSING_WINDOWS := 1
-endif
-else
-WSL_ACCESSING_WINDOWS := 1
+  WSL_ACCESSING_WINDOWS := 1
 endif
 
-WRAP_CONFIG := 0
+# Set up the compiler toolchain dependency
+SKREW_GET := tools/devtools/get_metroskrew.sh
+SKREW_VER := 0.1.2
+SKREW_DIR := $(SUBPROJ_DIR)/metroskrew
+
 ifneq (,$(findstring Linux,$(UNAME_S)))
-ifeq (0,$(WSL_ACCESSING_WINDOWS))
-NATIVE := native.ini
-CROSS := cross_unix.ini
+  ifeq (0,$(WSL_ACCESSING_WINDOWS))
+    NATIVE := native.ini
+    CROSS := cross.ini
+    SKREW_SYS := windows
+    SKREW_EXE := $(SKREW_DIR)/bin/skrewrap.exe
+  else
+    NATIVE := native.ini
+    CROSS := cross_unix.ini
+    SKREW_SYS := linux
+    SKREW_EXE := $(SKREW_DIR)/bin/skrewrap
+  endif
 else
-NATIVE := native_unix.ini
-CROSS := cross_unix.ini
-endif
-else
-ifneq (,$(findstring Darwin,$(UNAME_S)))
-NATIVE := native_macos.ini
-CROSS := cross_unix.ini
-else
-ifneq (,$(findstring BSD, $(UNAME_S)))
-NATIVE := native_unix.ini 
-CROSS := cross_unix.ini
-else
-NATIVE := native.ini
-CROSS := cross.ini
-endif
-endif
+  ifneq (,$(findstring Darwin,$(UNAME_S)))
+    NATIVE := native_macos.ini
+    CROSS := cross_unix.ini
+    SKREW_SYS := wine
+    SKREW_EXE := $(SKREW_DIR)/bin/skrewrap
+  else
+    ifneq (,$(findstring BSD, $(UNAME_S)))
+      NATIVE := native.ini
+      CROSS := cross_unix.ini
+      SKREW_SYS := linux
+      SKREW_EXE := $(SKREW_DIR)/bin/skrewrap
+    else
+      NATIVE := native.ini
+      CROSS := cross.ini
+      SKREW_SYS := windows
+      SKREW_EXE := $(SKREW_DIR)/bin/skrewrap.exe
+    endif
+  endif
 endif
 
 export NINJA_STATUS := [%p %f/%t] 
 
+# Modders can delete the `check` dependency here after their first build.
 all: release check
 
 .NOTPARALLEL: release
@@ -82,22 +93,23 @@ rom: $(BUILD)/build.ninja data
 data: $(BUILD)/build.ninja
 	$(NINJA) -C $(BUILD) data
 
-target: $(BUILD)/build.ninja
-	$(MESON) compile -C $(BUILD) $(MESON_TARGET)
-
 format: $(BUILD)/build.ninja
 	$(NINJA) -C $(BUILD) clang-format
+
+target: $(BUILD)/build.ninja
+	$(MESON) compile -C $(BUILD) $(MESON_TARGET)
 
 clean: $(BUILD)/build.ninja
 	$(MESON) compile -C $(BUILD) --clean
 
 distclean:
-	rm -rf $(BUILD) $(MWRAP)
+	rm -rf $(BUILD)
 
 purge: distclean
+	rm -rf $(SKREW_DIR)
 ifeq ($(MESON),$(MESON_SUB))
 	! test -f $(MESON) || $(MESON) subprojects purge --confirm
-	rm -rf $(dir $(MESON_SUB))
+	rm -rf $(MESON_DIR)
 else
 	$(MESON) subprojects purge --confirm
 endif
@@ -113,49 +125,21 @@ setup_debug: $(BUILD)/build.ninja
 
 configure: $(BUILD)/build.ninja
 
-$(BUILD)/build.ninja: $(ROOT_INI) $(DOT_MWCONFIG) | $(BUILD) meson
-	MWCONFIG=$(abspath $(DOT_MWCONFIG)) $(MESON) setup \
-	         --wrap-mode=nopromote \
-	         --native-file=meson/$(NATIVE) \
-	         --native-file=$(ROOT_INI) \
-	         --cross-file=meson/$(CROSS) \
-	         --cross-file=$(ROOT_INI) \
-	         -- $(BUILD)
+$(BUILD)/build.ninja: $(ROOT_INI) | $(BUILD) $(SKREW_EXE) meson
+	$(MESON) setup \
+		--wrap-mode=nopromote \
+		--native-file=meson/$(NATIVE) \
+		--native-file=$(ROOT_INI) \
+		--cross-file=meson/$(CROSS) \
+		--cross-file=$(ROOT_INI) \
+		-- $(BUILD)
 
 $(ROOT_INI): | $(BUILD)
 	echo "[constants]" > $@
 	echo "root = '$$PWD'" >> $@
 
-$(DOT_MWCONFIG): $(MWRAP) | $(BUILD)
-ifneq (,$(filter native_%.ini,$(NATIVE)))
-	WINE="$$(command -v $(WINELOADER))"; \
-	BUILD="$(BUILD)"; \
-	MWCONFIG=$(abspath $(DOT_MWCONFIG)) $(MWRAP) -conf \
-	         -wine "$$WINE" \
-	         -path_unx "$$PWD" \
-	         -path_win "$$("$$WINE" winepath -w "$$PWD")" \
-	         -path_build_unx "$$BUILD" \
-	         -path_build_win "$$("$$WINE" winepath -w "$$BUILD")"
-else ifeq (0,$(WSL_ACCESSING_WINDOWS))
-	BUILD="$(BUILD)"; \
-	MWCONFIG=$(abspath $(DOT_MWCONFIG)) $(MWRAP) -conf \
-	         -path_unx "$$PWD" \
-	         -path_win "$$(wslpath -w "$$PWD")" \
-	         -path_build_unx "$$BUILD" \
-	         -path_build_win "$$(wslpath -w "$$PWD")"
-else
-	touch $(DOT_MWCONFIG)
-endif
-
 $(BUILD):
 	mkdir -p -- $(BUILD)
-
-$(MWRAP): | meson
-	rm -rf $(MWRAP) $(WRAP_BUILD)
-	$(MESON) setup $(WRAP_BUILD) $(WRAP)
-	$(MESON) compile -C $(WRAP_BUILD)
-	install -m755 $(WRAP_BUILD)/$(@F) $@
-	rm -rf $(WRAP_BUILD)
 
 meson: ;
 ifeq ($(MESON),$(MESON_SUB))
@@ -164,3 +148,8 @@ endif
 
 $(MESON_SUB):
 	$(GIT) clone --depth=1 -b $(MESON_VER) https://github.com/mesonbuild/meson $(@D)
+
+skrew: $(SKREW_EXE)
+
+$(SKREW_EXE):
+	SKREW_SYS=$(SKREW_SYS) SKREW_VER=$(SKREW_VER) SKREW_DIR=$(SKREW_DIR) $(SKREW_GET)

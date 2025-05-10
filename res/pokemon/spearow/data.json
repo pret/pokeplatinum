@@ -90,6 +90,7 @@
             "SPECIES_FEAROW"
         ]
     ],
+    "offspring": "SPECIES_SPEAROW",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

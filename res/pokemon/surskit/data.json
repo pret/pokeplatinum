@@ -87,6 +87,7 @@
             "SPECIES_MASQUERAIN"
         ]
     ],
+    "offspring": "SPECIES_SURSKIT",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

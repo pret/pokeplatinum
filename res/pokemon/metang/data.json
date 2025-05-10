@@ -114,6 +114,7 @@
             "SPECIES_METAGROSS"
         ]
     ],
+    "offspring": "SPECIES_BELDUM",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -98,6 +98,7 @@
             "SPECIES_CHARMELEON"
         ]
     ],
+    "offspring": "SPECIES_CHARMANDER",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

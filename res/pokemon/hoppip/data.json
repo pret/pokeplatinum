@@ -94,6 +94,7 @@
             "SPECIES_SKIPLOOM"
         ]
     ],
+    "offspring": "SPECIES_HOPPIP",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

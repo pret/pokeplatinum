@@ -129,6 +129,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_LARVITAR",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

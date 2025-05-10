@@ -129,6 +129,7 @@
             "SPECIES_RHYPERIOR"
         ]
     ],
+    "offspring": "SPECIES_RHYHORN",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

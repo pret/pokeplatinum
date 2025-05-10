@@ -106,6 +106,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SKORUPI",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

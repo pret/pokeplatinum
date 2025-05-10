@@ -108,6 +108,7 @@
             "SPECIES_BLAZIKEN"
         ]
     ],
+    "offspring": "SPECIES_TORCHIC",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

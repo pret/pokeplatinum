@@ -112,6 +112,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_PIPLUP",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

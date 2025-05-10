@@ -104,6 +104,7 @@
             "SPECIES_HONCHKROW"
         ]
     ],
+    "offspring": "SPECIES_MURKROW",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -101,6 +101,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_YANMA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

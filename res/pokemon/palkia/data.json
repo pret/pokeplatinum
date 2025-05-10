@@ -113,6 +113,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_PALKIA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

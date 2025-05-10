@@ -83,6 +83,7 @@
     "evolutions": [
         [ "EVO_LEVEL_HAPPINESS", "SPECIES_PIKACHU" ]
     ],
+    "offspring": "SPECIES_PICHU",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"
