@@ -543,8 +543,7 @@ static BOOL ov19_IsPreviewedMonHoldingMail(UnkStruct_ov19_021D5DF8 *param0, int 
         return TRUE;
     }
 
-    // This is either dead code, or checking for invalid types of mail
-    if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_MAIL_ID, NULL)) {
+    if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_BALL_CAPSULE_ID, NULL)) {
         *param1 = 29;
         return TRUE;
     }
@@ -2035,7 +2034,7 @@ static BOOL ov19_021D357C(UnkStruct_ov19_021D5DF8 *param0, int *param1)
         }
     }
 
-    if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_MAIL_ID, NULL)) {
+    if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_BALL_CAPSULE_ID, NULL)) {
         *param1 = 29;
         return FALSE;
     }

@@ -133,7 +133,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
                 continue;
             }
 
-            v5 = Pokemon_GetValue(v0->unk_00->unk_04[v4], MON_DATA_MAIL_ID, 0);
+            v5 = Pokemon_GetValue(v0->unk_00->unk_04[v4], MON_DATA_BALL_CAPSULE_ID, 0);
 
             if (v5 != 0) {
                 v0->unk_04[v5 - 1].unk_00 = v4;
@@ -384,7 +384,7 @@ static BOOL sub_02097F38(FieldTask *param0)
         if (v7->selectedMonSlot != 7) {
             v8 = sub_02097F00(v0->unk_08, v7->selectedMonSlot);
 
-            Pokemon_SetValue(v8, MON_DATA_MAIL_ID, (u8 *)&v13);
+            Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v13);
             Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(v1->unk_20, v13 - 1));
 
             v9 = sub_0202CA28(v1->unk_20, v13 - 1);
