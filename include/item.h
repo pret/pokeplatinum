@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_ITEM_DATA_H
 #define POKEPLATINUM_ITEM_DATA_H
 
+#include "constants/heap.h"
+
 #include "strbuf.h"
 
 typedef struct ItemPartyParam {
@@ -326,7 +328,7 @@ u8 Item_IsHerbalMedicine(u16 item);
  * @param heapID    The heap which will own the item table's allocation.
  * @return The full table of item data.
  */
-void *ItemTable_Load(int heapID);
+void *ItemTable_Load(enum HeapId heapID);
 
 /**
  * @brief Get the ItemData value at a given index from within a loaded table.

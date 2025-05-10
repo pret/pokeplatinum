@@ -89,6 +89,7 @@
             "SPECIES_VIBRAVA"
         ]
     ],
+    "offspring": "SPECIES_TRAPINCH",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -98,6 +98,7 @@
             "SPECIES_ELECTABUZZ"
         ]
     ],
+    "offspring": "SPECIES_ELEKID",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

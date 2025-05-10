@@ -117,6 +117,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_ZANGOOSE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

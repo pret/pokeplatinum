@@ -16,7 +16,7 @@
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay021/struct_ov21_021E7F40.h"
+#include "applications/pokedex/struct_ov21_021E7F40.h"
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"

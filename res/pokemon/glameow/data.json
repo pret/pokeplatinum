@@ -102,6 +102,7 @@
             "SPECIES_PURUGLY"
         ]
     ],
+    "offspring": "SPECIES_GLAMEOW",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

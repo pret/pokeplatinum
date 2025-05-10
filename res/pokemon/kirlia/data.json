@@ -118,6 +118,7 @@
             "SPECIES_GALLADE"
         ]
     ],
+    "offspring": "SPECIES_RALTS",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

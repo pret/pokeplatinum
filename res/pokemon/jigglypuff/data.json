@@ -119,6 +119,7 @@
             "SPECIES_WIGGLYTUFF"
         ]
     ],
+    "offspring": "SPECIES_IGGLYBUFF",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -88,6 +88,7 @@
             "SPECIES_VENOMOTH"
         ]
     ],
+    "offspring": "SPECIES_VENONAT",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

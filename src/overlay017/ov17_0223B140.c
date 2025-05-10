@@ -33,6 +33,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "sound.h"
@@ -46,7 +47,6 @@
 #include "touch_pad.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_020933F8.h"
@@ -318,7 +318,7 @@ int ov17_0223B580(OverlayManager *param0, int *param1)
     UnkStruct_ov17_02246F24 *v0 = OverlayManager_Data(param0);
     int v1;
 
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov12_0221FDF4(v0->unk_0C.unk_20);
     ov17_0223B9A4(v0);
@@ -537,7 +537,7 @@ static void ov17_0223B884(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 static void ov17_0223B8C4(UnkStruct_ov17_02246F24 *param0)

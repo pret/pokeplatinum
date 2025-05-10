@@ -99,6 +99,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_OMANYTE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -110,6 +110,7 @@
             "SPECIES_MEDICHAM"
         ]
     ],
+    "offspring": "SPECIES_MEDITITE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

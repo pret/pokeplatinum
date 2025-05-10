@@ -94,6 +94,7 @@
             "SPECIES_LOUDRED"
         ]
     ],
+    "offspring": "SPECIES_WHISMUR",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -86,6 +86,7 @@
             "SPECIES_FLAAFFY"
         ]
     ],
+    "offspring": "SPECIES_MAREEP",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

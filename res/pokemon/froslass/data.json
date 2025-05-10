@@ -106,6 +106,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SNORUNT",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

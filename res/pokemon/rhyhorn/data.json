@@ -111,6 +111,7 @@
             "SPECIES_RHYDON"
         ]
     ],
+    "offspring": "SPECIES_RHYHORN",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -89,6 +89,7 @@
             "SPECIES_CLOYSTER"
         ]
     ],
+    "offspring": "SPECIES_SHELLDER",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

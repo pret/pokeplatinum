@@ -96,6 +96,7 @@
             "SPECIES_LANTURN"
         ]
     ],
+    "offspring": "SPECIES_CHINCHOU",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

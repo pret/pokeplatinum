@@ -118,6 +118,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_DARKRAI",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

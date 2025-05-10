@@ -97,6 +97,7 @@
     "evolutions": [
         [ "EVO_LEVEL_MAGNETIC_FIELD", "SPECIES_MAGNEZONE" ]
     ],
+    "offspring": "SPECIES_MAGNEMITE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

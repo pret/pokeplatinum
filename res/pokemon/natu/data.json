@@ -110,6 +110,7 @@
             "SPECIES_XATU"
         ]
     ],
+    "offspring": "SPECIES_NATU",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

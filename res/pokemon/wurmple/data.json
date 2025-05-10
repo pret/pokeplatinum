@@ -53,6 +53,7 @@
             "SPECIES_CASCOON"
         ]
     ],
+    "offspring": "SPECIES_WURMPLE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

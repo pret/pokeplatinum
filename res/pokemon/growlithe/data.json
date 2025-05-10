@@ -94,6 +94,7 @@
             "SPECIES_ARCANINE"
         ]
     ],
+    "offspring": "SPECIES_GROWLITHE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

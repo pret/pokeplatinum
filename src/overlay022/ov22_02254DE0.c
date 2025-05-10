@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02015214_decl.h"
 
-#include "overlay021/struct_ov21_021E7F40.h"
+#include "applications/pokedex/struct_ov21_021E7F40.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/struct_ov22_02254DE0.h"
 #include "overlay022/struct_ov22_0225500C.h"

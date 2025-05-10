@@ -112,6 +112,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_MANKEY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

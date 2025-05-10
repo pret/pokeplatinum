@@ -99,6 +99,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_REGIGIGAS",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

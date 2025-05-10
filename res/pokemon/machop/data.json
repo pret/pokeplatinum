@@ -102,6 +102,7 @@
             "SPECIES_MACHOKE"
         ]
     ],
+    "offspring": "SPECIES_MACHOP",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

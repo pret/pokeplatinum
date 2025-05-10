@@ -99,6 +99,7 @@
             "SPECIES_KABUTOPS"
         ]
     ],
+    "offspring": "SPECIES_KABUTO",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

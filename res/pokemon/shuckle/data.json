@@ -88,6 +88,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SHUCKLE",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

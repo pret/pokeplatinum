@@ -114,6 +114,7 @@
             "SPECIES_INFERNAPE"
         ]
     ],
+    "offspring": "SPECIES_CHIMCHAR",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

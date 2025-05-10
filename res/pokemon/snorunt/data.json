@@ -93,6 +93,7 @@
             "SPECIES_FROSLASS"
         ]
     ],
+    "offspring": "SPECIES_SNORUNT",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

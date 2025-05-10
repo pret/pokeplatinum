@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
-
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
@@ -30,6 +28,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
@@ -39,7 +38,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_02014000.h"
 #include "unk_02030494.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
@@ -564,8 +562,8 @@ static void ov104_02237C0C(UnkStruct_ov104_0222E930 *param0, UnkStruct_ov104_022
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(param0->unk_00);
-    UnkStruct_02014014 *v2 = ov104_0223D6D0(v1->unk_10, 0);
-    sub_020146F4(v2, param2, ov104_02237C30, param1);
+    ParticleSystem *v2 = ov104_0223D6D0(v1->unk_10, 0);
+    ParticleSystem_CreateEmitterWithCallback(v2, param2, ov104_02237C30, param1);
 
     return;
 }
@@ -574,11 +572,11 @@ static void ov104_02237C30(SPLEmitter *param0)
 {
     VecFx32 v0;
     VecFx16 v1;
-    UnkStruct_ov104_0223BFFC *v2 = sub_02014764();
+    UnkStruct_ov104_0223BFFC *v2 = ParticleSystem_GetEmitterCallbackParam();
     const VecFx32 v3[] = { FX32_ONE * -1, 0, 0 };
 
     if (v2->unk_A7A == 1) {
-        sub_02014798(param0, &v1);
+        ParticleSystem_GetEmitterAxis(param0, &v1);
         v1.x *= -1;
 
         SPLEmitter_SetAxis(param0, &v1);

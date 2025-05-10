@@ -107,6 +107,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_SHUPPET",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

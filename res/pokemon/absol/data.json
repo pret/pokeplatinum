@@ -125,6 +125,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_ABSOL",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

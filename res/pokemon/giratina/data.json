@@ -114,6 +114,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_GIRATINA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

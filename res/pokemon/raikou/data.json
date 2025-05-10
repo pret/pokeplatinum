@@ -97,6 +97,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_RAIKOU",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -102,6 +102,7 @@
             "SPECIES_RATICATE"
         ]
     ],
+    "offspring": "SPECIES_RATTATA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

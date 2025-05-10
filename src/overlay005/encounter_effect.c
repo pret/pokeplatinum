@@ -7,7 +7,6 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -33,6 +32,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -41,7 +41,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
-#include "unk_02014000.h"
 #include "unk_02054884.h"
 
 enum ScreenFlashState {
@@ -80,7 +79,7 @@ typedef struct UnkStruct_ov5_02202120 {
     u8 unk_02;
     u8 unk_03;
     FieldSystem *fieldSystem;
-    UnkStruct_02014014 *unk_08;
+    ParticleSystem *unk_08;
     void *unk_0C;
     u32 unk_10;
     u32 unk_14;
@@ -1397,14 +1396,14 @@ void ov5_021DF070(void)
         return;
     }
 
-    sub_0201469C();
+    ParticleSystem_DrawAll();
 }
 
 void ov5_021DF084(void)
 {
     GF_ASSERT(Unk_ov5_02202120);
 
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov5_021DF3D4(Unk_ov5_02202120->fieldSystem);
     ov5_021D16F4(Unk_ov5_02202120->fieldSystem, 1);
@@ -1423,16 +1422,16 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     GF_ASSERT(Unk_ov5_02202120->unk_08 == NULL);
 
     Unk_ov5_02202120->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELD, 0x4800);
-    Unk_ov5_02202120->unk_08 = sub_02014014(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, HEAP_ID_FIELD);
+    Unk_ov5_02202120->unk_08 = ParticleSystem_New(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, HEAP_ID_FIELD);
     GF_ASSERT(Unk_ov5_02202120->unk_08);
 
-    sub_02014788(Unk_ov5_02202120->unk_08, 1);
+    ParticleSystem_SetCameraProjection(Unk_ov5_02202120->unk_08, 1);
 
-    v1 = sub_02014784(Unk_ov5_02202120->unk_08);
+    v1 = ParticleSystem_GetCamera(Unk_ov5_02202120->unk_08);
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, v1);
 
     v0 = LoadMemberFromOpenNARC(param0, param1, 0, HEAP_ID_FIELD, 0);
-    sub_020144CC(Unk_ov5_02202120->unk_08, v0, 0 | 0, 0);
+    ParticleSystem_SetResource(Unk_ov5_02202120->unk_08, v0, 0 | 0, 0);
 }
 
 void ov5_021DF17C(u32 param0)
@@ -1444,7 +1443,7 @@ void ov5_021DF17C(u32 param0)
     GF_ASSERT(Unk_ov5_02202120->unk_08);
 
     for (v0 = 0; v0 < param0; v0++) {
-        sub_020146E4(Unk_ov5_02202120->unk_08, v0, &v1);
+        ParticleSystem_CreateEmitter(Unk_ov5_02202120->unk_08, v0, &v1);
     }
 }
 
@@ -1456,9 +1455,9 @@ BOOL ov5_021DF1CC(void)
         return 1;
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
 
-    if (sub_02014710(Unk_ov5_02202120->unk_08) == 0) {
+    if (ParticleSystem_GetActiveEmitterCount(Unk_ov5_02202120->unk_08) == 0) {
         return 1;
     }
 
@@ -1467,7 +1466,7 @@ BOOL ov5_021DF1CC(void)
 
 BOOL ov5_021DF208(void)
 {
-    if (sub_02014710(Unk_ov5_02202120->unk_08) == 0) {
+    if (ParticleSystem_GetActiveEmitterCount(Unk_ov5_02202120->unk_08) == 0) {
         return 1;
     }
 
@@ -1478,7 +1477,7 @@ void ov5_021DF224(void)
 {
     GF_ASSERT(Unk_ov5_02202120);
 
-    sub_0201411C(Unk_ov5_02202120->unk_08);
+    ParticleSystem_Free(Unk_ov5_02202120->unk_08);
     Heap_FreeToHeap(Unk_ov5_02202120->unk_0C);
 
     Unk_ov5_02202120->unk_08 = NULL;
@@ -1510,7 +1509,7 @@ static void ov5_021DF28C(SysTask *param0, void *param1)
     switch (v0->unk_00) {
     case 2:
 
-        sub_02014000();
+        ParticleSystem_ZeroAll();
 
         {
             VecFx32 v1 = { 0 };

@@ -5,7 +5,6 @@
 
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 
@@ -68,6 +67,7 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
@@ -83,7 +83,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200F174.h"
-#include "unk_02014000.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
@@ -2555,13 +2554,13 @@ static BOOL ov104_02231B74(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
     u16 v2, v3;
-    UnkStruct_02014014 *v4;
+    ParticleSystem *v4;
 
     v2 = ov104_0222FC00(param0);
     v3 = ov104_0222FC00(param0);
     v4 = ov104_0223D6D0(v1->unk_10, v2);
 
-    sub_020146F4(v4, v3, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(v4, v3, NULL, NULL);
 
     return 0;
 }

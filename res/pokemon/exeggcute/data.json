@@ -101,6 +101,7 @@
             "SPECIES_EXEGGUTOR"
         ]
     ],
+    "offspring": "SPECIES_EXEGGCUTE",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

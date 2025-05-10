@@ -115,6 +115,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_CHARMANDER",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

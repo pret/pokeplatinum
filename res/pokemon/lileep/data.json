@@ -96,6 +96,7 @@
             "SPECIES_CRADILY"
         ]
     ],
+    "offspring": "SPECIES_LILEEP",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

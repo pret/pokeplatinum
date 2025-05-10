@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "battle/ov16_0223DF00.h"
@@ -34,6 +33,7 @@
 #include "inlines.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
@@ -46,7 +46,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02014000.h"
 #include "vram_transfer.h"
 
 typedef struct UnkStruct_ov12_02223178_t {
@@ -62,7 +61,7 @@ typedef struct UnkStruct_ov12_02223178_t {
     u16 unk_14;
     u16 unk_16;
     int unk_18;
-    UnkStruct_02014014 *unk_1C[16];
+    ParticleSystem *unk_1C[16];
     SPLEmitter *unk_5C[20];
     SpriteSystem *unk_AC;
     UnkStruct_ov16_0223E0C8 *unk_B0[4];
@@ -703,12 +702,12 @@ u16 ov12_02220248(UnkStruct_ov12_0221FCDC *param0)
     return param0->unk_BC->unk_16;
 }
 
-UnkStruct_02014014 *ov12_02220250(UnkStruct_ov12_0221FCDC *param0)
+ParticleSystem *ov12_02220250(UnkStruct_ov12_0221FCDC *param0)
 {
     return param0->unk_BC->unk_1C[param0->unk_BC->unk_18];
 }
 
-UnkStruct_02014014 *ov12_02220260(UnkStruct_ov12_0221FCDC *param0, int param1)
+ParticleSystem *ov12_02220260(UnkStruct_ov12_0221FCDC *param0, int param1)
 {
     return param0->unk_BC->unk_1C[param1];
 }
@@ -1240,7 +1239,7 @@ static void ov12_02220798(UnkStruct_ov12_0221FCDC *param0)
 
     for (v0 = 0; v0 < 16; v0++) {
         if (param0->unk_BC->unk_1C[v0]) {
-            v1 += sub_02014710(param0->unk_BC->unk_1C[v0]);
+            v1 += ParticleSystem_GetActiveEmitterCount(param0->unk_BC->unk_1C[v0]);
         }
     }
 
@@ -1344,12 +1343,12 @@ static void ov12_022209A8(UnkStruct_ov12_0221FCDC *param0)
     if (param0->unk_78[v2] != 0) {
         VecFx32 v3;
 
-        sub_02014734(param0->unk_BC->unk_1C[v2], &v3);
+        ParticleSystem_GetCameraUp(param0->unk_BC->unk_1C[v2], &v3);
         v3.y *= -1;
-        sub_02014744(param0->unk_BC->unk_1C[v2], &v3);
+        ParticleSystem_SetCameraUp(param0->unk_BC->unk_1C[v2], &v3);
     }
 
-    sub_02014788(param0->unk_BC->unk_1C[v2], param0->unk_68[v2]);
+    ParticleSystem_SetCameraProjection(param0->unk_BC->unk_1C[v2], param0->unk_68[v2]);
 
     param0->unk_BC->unk_5C[0] = ov12_02223880(param0->unk_BC->unk_1C[v2], v0, v1, param0);
 }
@@ -1380,12 +1379,12 @@ static void ov12_02220A3C(UnkStruct_ov12_0221FCDC *param0)
     if (param0->unk_78[v2] != 0) {
         VecFx32 v4;
 
-        sub_02014734(param0->unk_BC->unk_1C[v2], &v4);
+        ParticleSystem_GetCameraUp(param0->unk_BC->unk_1C[v2], &v4);
         v4.y *= -1;
-        sub_02014744(param0->unk_BC->unk_1C[v2], &v4);
+        ParticleSystem_SetCameraUp(param0->unk_BC->unk_1C[v2], &v4);
     }
 
-    sub_02014788(param0->unk_BC->unk_1C[v2], param0->unk_68[v2]);
+    ParticleSystem_SetCameraProjection(param0->unk_BC->unk_1C[v2], param0->unk_68[v2]);
 
     param0->unk_BC->unk_5C[v3] = ov12_02223880(param0->unk_BC->unk_1C[v2], v0, v1, param0);
 }
@@ -1465,9 +1464,9 @@ static void ov12_02220B8C(UnkStruct_ov12_0221FCDC *param0)
     if (param0->unk_78[v3] != 0) {
         VecFx32 v5;
 
-        sub_02014734(param0->unk_BC->unk_1C[v3], &v5);
+        ParticleSystem_GetCameraUp(param0->unk_BC->unk_1C[v3], &v5);
         v5.y *= -1;
-        sub_02014744(param0->unk_BC->unk_1C[v3], &v5);
+        ParticleSystem_SetCameraUp(param0->unk_BC->unk_1C[v3], &v5);
     }
 
     {
@@ -1477,7 +1476,7 @@ static void ov12_02220B8C(UnkStruct_ov12_0221FCDC *param0)
         v4 = v1[v6];
     }
 
-    sub_02014788(param0->unk_BC->unk_1C[v3], param0->unk_68[v3]);
+    ParticleSystem_SetCameraProjection(param0->unk_BC->unk_1C[v3], param0->unk_68[v3]);
     param0->unk_BC->unk_5C[0] = ov12_02223880(param0->unk_BC->unk_1C[v3], v4, v2, param0);
 }
 
@@ -1506,9 +1505,9 @@ static void ov12_02220C44(UnkStruct_ov12_0221FCDC *param0)
     if (param0->unk_78[v3] != 0) {
         VecFx32 v5;
 
-        sub_02014734(param0->unk_BC->unk_1C[v3], &v5);
+        ParticleSystem_GetCameraUp(param0->unk_BC->unk_1C[v3], &v5);
         v5.y *= -1;
-        sub_02014744(param0->unk_BC->unk_1C[v3], &v5);
+        ParticleSystem_SetCameraUp(param0->unk_BC->unk_1C[v3], &v5);
     }
 
     {
@@ -1518,7 +1517,7 @@ static void ov12_02220C44(UnkStruct_ov12_0221FCDC *param0)
         v4 = v1[v6];
     }
 
-    sub_02014788(param0->unk_BC->unk_1C[v3], param0->unk_68[v3]);
+    ParticleSystem_SetCameraProjection(param0->unk_BC->unk_1C[v3], param0->unk_68[v3]);
     param0->unk_BC->unk_5C[0] = ov12_02223880(param0->unk_BC->unk_1C[v3], v4, v2, param0);
 }
 
@@ -1532,7 +1531,7 @@ static void ov12_02220CFC(UnkStruct_ov12_0221FCDC *param0)
             continue;
         }
 
-        v1 += sub_02014710(param0->unk_BC->unk_1C[v0]);
+        v1 += ParticleSystem_GetActiveEmitterCount(param0->unk_BC->unk_1C[v0]);
     }
 
     if (v1 == 0) {

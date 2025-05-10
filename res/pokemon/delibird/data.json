@@ -80,6 +80,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_DELIBIRD",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

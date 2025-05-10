@@ -46,6 +46,7 @@
             "SPECIES_BUTTERFREE"
         ]
     ],
+    "offspring": "SPECIES_CATERPIE",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

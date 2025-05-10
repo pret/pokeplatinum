@@ -92,6 +92,7 @@
             "SPECIES_CAMERUPT"
         ]
     ],
+    "offspring": "SPECIES_NUMEL",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

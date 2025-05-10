@@ -99,6 +99,7 @@
             "SPECIES_SHARPEDO"
         ]
     ],
+    "offspring": "SPECIES_CARVANHA",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

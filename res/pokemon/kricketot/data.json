@@ -52,6 +52,7 @@
             "SPECIES_KRICKETUNE"
         ]
     ],
+    "offspring": "SPECIES_KRICKETOT",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

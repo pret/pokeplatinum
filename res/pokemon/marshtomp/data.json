@@ -105,6 +105,7 @@
             "SPECIES_SWAMPERT"
         ]
     ],
+    "offspring": "SPECIES_MUDKIP",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

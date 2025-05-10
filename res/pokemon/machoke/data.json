@@ -99,6 +99,7 @@
     "evolutions": [
         [ "EVO_TRADE", "SPECIES_MACHAMP" ]
     ],
+    "offspring": "SPECIES_MACHOP",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

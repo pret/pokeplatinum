@@ -91,6 +91,7 @@
             "SPECIES_STARAVIA"
         ]
     ],
+    "offspring": "SPECIES_STARLY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

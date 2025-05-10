@@ -27,6 +27,7 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
@@ -40,7 +41,6 @@
 #include "touch_screen.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202C9F4.h"
@@ -410,7 +410,7 @@ void ov76_0223BF10(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 void ov76_0223BF50(void)
@@ -420,14 +420,14 @@ void ov76_0223BF50(void)
 
     sub_020241B4();
 
-    v0 = sub_0201469C();
+    v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
         sub_020241B4();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 

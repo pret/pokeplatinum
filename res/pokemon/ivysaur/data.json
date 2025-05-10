@@ -96,6 +96,7 @@
             "SPECIES_VENUSAUR"
         ]
     ],
+    "offspring": "SPECIES_BULBASAUR",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

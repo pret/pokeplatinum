@@ -103,6 +103,7 @@
             "SPECIES_VIGOROTH"
         ]
     ],
+    "offspring": "SPECIES_SLAKOTH",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

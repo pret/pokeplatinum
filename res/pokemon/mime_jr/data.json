@@ -115,6 +115,7 @@
             "SPECIES_MR_MIME"
         ]
     ],
+    "offspring": "SPECIES_MIME_JR",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

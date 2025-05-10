@@ -6,7 +6,6 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -32,6 +31,7 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
@@ -50,7 +50,6 @@
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202F1D4.h"
@@ -98,7 +97,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     UnkStruct_02012744 *unk_B38;
     FontOAM *unk_B3C[4];
     GenericPointerData *unk_B4C;
-    UnkStruct_02014014 *unk_B50;
+    ParticleSystem *unk_B50;
     void *unk_B54;
     u8 unk_B58[4];
     u8 unk_B5C[4];
@@ -1731,22 +1730,22 @@ static void ov10_022217CC(UnkStruct_ov10_0221FB28 *param0)
     param0->unk_B4C = sub_02024220(param0->unk_00->heapID, 0, 4, 0, 2, NULL);
 
     G3X_AlphaBlend(1);
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 
     param0->unk_B54 = Heap_AllocFromHeap(param0->unk_00->heapID, 0x4800);
-    param0->unk_B50 = sub_02014014(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800, 1, param0->unk_00->heapID);
+    param0->unk_B50 = ParticleSystem_New(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800, 1, param0->unk_00->heapID);
 
-    camera = sub_02014784(param0->unk_B50);
+    camera = ParticleSystem_GetCamera(param0->unk_B50);
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
-    v1 = sub_020144C4(61, 2, param0->unk_00->heapID);
-    sub_020144CC(param0->unk_B50, v1, (1 << 1) | (1 << 3), 1);
+    v1 = ParticleSystem_LoadResourceFromNARC(61, 2, param0->unk_00->heapID);
+    ParticleSystem_SetResource(param0->unk_B50, v1, (1 << 1) | (1 << 3), 1);
 
-    sub_020146F4(param0->unk_B50, 0, NULL, NULL);
-    sub_020146F4(param0->unk_B50, 1, NULL, NULL);
-    sub_020146F4(param0->unk_B50, 2, NULL, NULL);
-    sub_020146F4(param0->unk_B50, 3, NULL, NULL);
-    sub_020146F4(param0->unk_B50, 4, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(param0->unk_B50, 0, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(param0->unk_B50, 1, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(param0->unk_B50, 2, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(param0->unk_B50, 3, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(param0->unk_B50, 4, NULL, NULL);
 }
 
 static int ov10_022218BC(UnkStruct_ov10_0221FB28 *param0)
@@ -1760,12 +1759,12 @@ static int ov10_022218BC(UnkStruct_ov10_0221FB28 *param0)
 
     sub_020241B4();
 
-    if (sub_02014710(param0->unk_B50) == 0) {
+    if (ParticleSystem_GetActiveEmitterCount(param0->unk_B50) == 0) {
         return 0;
     }
 
-    sub_0201469C();
-    sub_020146C0();
+    ParticleSystem_DrawAll();
+    ParticleSystem_UpdateAll();
 
     return 1;
 }
@@ -1776,7 +1775,7 @@ static void ov10_022218F4(UnkStruct_ov10_0221FB28 *param0)
         return;
     }
 
-    sub_0201411C(param0->unk_B50);
+    ParticleSystem_Free(param0->unk_B50);
     Heap_FreeToHeap(param0->unk_B54);
     sub_020242C4(param0->unk_B4C);
 }
@@ -1787,7 +1786,7 @@ static u32 ov10_02221928(u32 param0, BOOL param1)
     NNSGfdTexKey v1;
 
     v1 = NNS_GfdAllocTexVram(param0, param1, 0);
-    sub_020145B4(v1);
+    ParticleSystem_RegisterTextureKey(v1);
 
     GF_ASSERT(v1 != NNS_GFD_ALLOC_ERROR_TEXKEY);
     v0 = NNS_GfdGetTexKeyAddr(v1);
@@ -1801,7 +1800,7 @@ static u32 ov10_0222194C(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocPlttVram(param0, param1, NNS_GFD_ALLOC_FROM_LOW);
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
 
     if (v0 == NNS_GFD_ALLOC_ERROR_PLTTKEY) {
         GF_ASSERT(0);

@@ -93,6 +93,7 @@
             "SPECIES_SUNFLORA"
         ]
     ],
+    "offspring": "SPECIES_SUNKERN",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

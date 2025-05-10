@@ -1,0 +1,330 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="10786" />
+	<row id="MysteryGiftMenu_Text_Welcome" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to Mystery Gift!</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ChooseHowToReceiveGift" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please choose how you want to\nreceive your gift.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_WirelessCommunicationsWillBeLaunched" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DS Wireless Communications will\nbe launched.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_SearchingForGift" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Searching for a gift.\nPlease wait...</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ReceiveThisGift" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Receive this gift?</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_SearchForDifferentGift" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Search for a different gift?</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_RequestSentPleaseWait" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your request has been sent.\nPlease wait a moment...</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ReceivingGiftDontTurnOff" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Receiving your gift.\nDon’t turn off the power.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_GiftReceivedPickUpInPokeMart" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The gift has been received!\rPlease pick up your gift from the\ndeliveryman in any Poké Mart.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_GiftBeingSharedByAnotherPerson" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This gift is being shared by\nanother person.\rYou may accept this gift, but you\nwill not be able to distribute it\fto your friends.\rWill you accept this gift?</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Unused10" index="10">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_PokemonRangerManaphyEggTransfer" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Ranger\nMANAPHY Egg Transfer</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ReceiveGift" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">RECEIVE GIFT</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_CheckCard" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CHECK CARD</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Exit_MysteryGift" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_GetFromFriend" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GET FROM A FRIEND</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_GetViaWFC" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GET VIA NINTENDO WFC</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Cancel_MysteryGift" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Yes_MysteryGift" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_No_MysteryGift" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_GetViaWireless" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GET VIA WIRELESS</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_DeliveryManOverloaded" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Our deliveryman is overloaded with\ngifts for you!\rPlease see him at any Poké Mart and\npick up some of your gifts.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_AlreadyReceivedCantGetAnotherOne" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve already received this gift.\nYou may not get another one.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_NoGiftsToBeFound" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There were no gifts to be found.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_RequestTurnedDown" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your request was turned down.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_OutOfRoomForWonderCards" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You are out of room for\nWonder Cards.\rYou may not accept another gift.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ProblemWithReceivingTheGift" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There was a problem with\nreceiving the gift.\rPress the A Button to return to\nthe title screen.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_GiftCannotBeReceivedInThisVersion" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A gift has been found, but it cannot\nbe received using this version.\rPress the A Button to return to\nthe menu.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_PersonSharingDisconnected" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The person sharing has\nbeen disconnected...</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Unused29" index="29">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_PressAButton" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Press the A Button.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Unused31" index="31">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Unused32" index="32">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Unused33" index="33">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_PleaseTouchRangerGameScreen" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please touch Pokémon Ranger’s\ngame screen.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Unused35" index="35">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_WonderCard" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wonder Card</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_PleasePickUpInPokeMart" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please pick up your gift from the\ndeliveryman in any Poké Mart.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_AlreadyReceivedBefore" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You have already received\nthis gift before.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_NoGiftAttached" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This card does not have\na gift attached.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_DateReceived" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Date received</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_CanBeDistributedNTimes" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This gift can be distributed {STRVAR_1 52, 0, 0} time(s).</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Info" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">INFO</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Share" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SHARE</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Trash" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TRASH</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Exit_WonderCards" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_WouldYouLikeToShareThisGift" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to share this gift?</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Yes_MysteryGift2" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_No_MysteryGift2" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_DateTemplate" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, {STRVAR_1 53, 0, 0}</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Unused50" index="50">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_CanBeSharedAsManyFriendsAsYouLike" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This gift can be shared with as\nmany friends as you like.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_PalDistributionRegitration" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pal Distribution Registration</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_TrainerNameTemplate" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_TrainerIdTemplate" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">IDNo.{STRVAR_1 54, 0, 0}</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_CurrentEntries" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Current\nentries</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_EntriesCountTemplate" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}{STRVAR_1 50, 0, 0}{COLOR 0}/4</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Send" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SEND</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Cancel_WonderCards" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_GiftDistributionUnderWay" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gift distribution under way...\nDon’t turn off the power.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_GiftDistributionSuccessful" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your gift distribution\nwas successful.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ThrowCardAway" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Throw this card away?</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_HaventReceivedGiftYet" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You haven’t received your gift yet.\nDo you want to discard this card?</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_DiscardingDontTurnOff" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Discarding...\nDon’t turn off the power.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Yes_WonderCards" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_No_WonderCards" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_TrainerNameAndIdTemplate" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 3}{STRVAR_1 3, 0, 0}{COLOR 2} {COLOR 0}IDNo.{STRVAR_1 54, 1, 0}</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_Unused67" index="67">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXX</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ApplicationNumber" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Application No.:</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ApplicationNumberTemplate" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 53, 0, 0}-{STRVAR_1 53, 1, 0}</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ReceivingRecruitmentMsgFromRanger" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Receiving a Recruitment Message\nfrom a Pokémon Ranger.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_AwaitingTransferFromRanger" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Awaiting transfer from Pokémon\nRanger.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ReceivingManaphyEgg" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Receiving the MANAPHY Egg...\nDon’t turn off the power.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_TransferCompleted" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The transfer has been completed.\nA Button: title screen.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ConnectionWithRangerLost" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The connection with Pokémon Ranger\nhas been lost... Press the A Button.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ManaphyEggWonderCardDescription" index="75">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ManaphyEggWonderCardTitle" index="76">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXX</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_WirelessCommunicationsWillBeLaunched2" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DS Wireless Communications\nwill be launched.</language>
+	</row>
+	<row id="MysteryGiftMenu_Text_ConnectToWFC" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Connect to Nintendo Wi-Fi Connection?</language>
+	</row>
+</body>

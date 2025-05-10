@@ -94,6 +94,7 @@
             "SPECIES_PARASECT"
         ]
     ],
+    "offspring": "SPECIES_PARAS",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"
