@@ -6,6 +6,7 @@
 
 #include "map_header.h" // Only for Intellisense/LSPs
 
+#include "res/field/area_data/area_data.naix"
 #include "res/field/events/zone_event.naix"
 #include "res/field/matrices/map_matrix.naix"
 #include "res/field/scripts/scr_seq.naix"
@@ -13,7 +14,7 @@
 
 static const MapHeader sMapHeaders[] = {
     [MAP_HEADER_EVERYWHERE] = {
-        .areaDataArchiveID = 0x0,
+        .areaDataArchiveID = area_data_000,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -35,7 +36,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_NOTHING] = {
-        .areaDataArchiveID = 0x0,
+        .areaDataArchiveID = area_data_000,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -57,7 +58,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNDERGROUND] = {
-        .areaDataArchiveID = 0x2,
+        .areaDataArchiveID = area_data_002,
         .unk_01 = 0x2,
         .mapMatrixID = map_matrix_002,
         .scriptsArchiveID = scripts_underground,
@@ -79,7 +80,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY] = {
-        .areaDataArchiveID = 0x6,
+        .areaDataArchiveID = area_data_006,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_jubilife_city,
@@ -101,7 +102,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_JUBILIFE_CITY_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_jubilife_city_mart,
@@ -123,7 +124,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_1] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0x14,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_jubilife_city_unknown_house_1,
@@ -145,7 +146,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_jubilife_city_pokecenter_1f,
@@ -167,7 +168,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_jubilife_city_pokecenter_2f,
@@ -189,7 +190,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKETCH_CO_1F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_141,
         .scriptsArchiveID = scripts_poketch_co_1f,
@@ -211,7 +212,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKETCH_CO_2F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_142,
         .scriptsArchiveID = scripts_poketch_co_2f,
@@ -233,7 +234,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKETCH_CO_3F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_143,
         .scriptsArchiveID = scripts_poketch_co_3f,
@@ -255,7 +256,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_TV_1F] = {
-        .areaDataArchiveID = 34,
+        .areaDataArchiveID = area_data_034,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_148,
         .scriptsArchiveID = scripts_jubilife_tv_1f,
@@ -277,7 +278,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_TV_2F] = {
-        .areaDataArchiveID = 34,
+        .areaDataArchiveID = area_data_034,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_149,
         .scriptsArchiveID = scripts_jubilife_tv_2f,
@@ -299,7 +300,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_TV_3F] = {
-        .areaDataArchiveID = 34,
+        .areaDataArchiveID = area_data_034,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_150,
         .scriptsArchiveID = scripts_jubilife_tv_3f,
@@ -321,7 +322,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_TV_4F] = {
-        .areaDataArchiveID = 34,
+        .areaDataArchiveID = area_data_034,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_151,
         .scriptsArchiveID = scripts_jubilife_tv_4f,
@@ -343,7 +344,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_TV_2F_GALLERY] = {
-        .areaDataArchiveID = 34,
+        .areaDataArchiveID = area_data_034,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_152,
         .scriptsArchiveID = scripts_jubilife_tv_2f_gallery,
@@ -365,7 +366,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM] = {
-        .areaDataArchiveID = 34,
+        .areaDataArchiveID = area_data_034,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_153,
         .scriptsArchiveID = scripts_jubilife_tv_3f_global_ranking_room,
@@ -387,7 +388,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_TV_3F_GROUP_RANKING_ROOM] = {
-        .areaDataArchiveID = 34,
+        .areaDataArchiveID = area_data_034,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_154,
         .scriptsArchiveID = scripts_jubilife_tv_3f_group_ranking_room,
@@ -409,7 +410,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_TV_ELEVATOR] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_207,
         .scriptsArchiveID = scripts_jubilife_tv_elevator,
@@ -431,7 +432,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_1F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_132,
         .scriptsArchiveID = scripts_jubilife_city_south_house_1f,
@@ -453,7 +454,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_2F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_jubilife_city_south_house_2f,
@@ -475,7 +476,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_3F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_jubilife_city_south_house_3f,
@@ -497,7 +498,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_4F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_empty,
@@ -519,7 +520,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_2] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0x14,
         .mapMatrixID = map_matrix_125,
         .scriptsArchiveID = scripts_jubilife_city_unknown_house_2,
@@ -541,7 +542,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_1F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_132,
         .scriptsArchiveID = scripts_jubilife_city_condominiums_1f,
@@ -563,7 +564,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_2F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_jubilife_city_condominiums_2f,
@@ -585,7 +586,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_3F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_jubilife_city_condominiums_3f,
@@ -607,7 +608,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_4F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_jubilife_city_condominiums_4f,
@@ -629,7 +630,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GLOBAL_TERMINAL_1F] = {
-        .areaDataArchiveID = 40,
+        .areaDataArchiveID = area_data_040,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_205,
         .scriptsArchiveID = scripts_global_terminal_1f,
@@ -651,7 +652,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TRAINERS_SCHOOL] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_140,
         .scriptsArchiveID = scripts_trainers_school,
@@ -673,7 +674,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_SOUTHWEST_HOUSE_1F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_132,
         .scriptsArchiveID = scripts_jubilife_city_southwest_house_1f,
@@ -695,7 +696,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_3] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0x14,
         .mapMatrixID = map_matrix_125,
         .scriptsArchiveID = scripts_jubilife_city_unknown_house_3,
@@ -717,7 +718,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_4] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0x14,
         .mapMatrixID = map_matrix_125,
         .scriptsArchiveID = scripts_jubilife_city_unknown_house_4,
@@ -739,7 +740,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_CITY] = {
-        .areaDataArchiveID = 15,
+        .areaDataArchiveID = area_data_015,
         .unk_01 = 9,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_canalave_city,
@@ -761,7 +762,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_CANALAVE_CITY_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_canalave_city_mart,
@@ -783,7 +784,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_CITY_GYM] = {
-        .areaDataArchiveID = 0x18,
+        .areaDataArchiveID = area_data_024,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_112,
         .scriptsArchiveID = scripts_canalave_city_gym,
@@ -805,7 +806,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_CITY_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_canalave_city_pokecenter_1f,
@@ -827,7 +828,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_CITY_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_canalave_city_pokecenter_2f,
@@ -849,7 +850,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_LIBRARY_1F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_217,
         .scriptsArchiveID = scripts_canalave_library_1f,
@@ -871,7 +872,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_LIBRARY_2F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_218,
         .scriptsArchiveID = scripts_canalave_library_2f,
@@ -893,7 +894,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_LIBRARY_3F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_219,
         .scriptsArchiveID = scripts_canalave_library_3f,
@@ -915,7 +916,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_CITY_SOUTHEAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_canalave_city_southeast_house,
@@ -937,7 +938,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_CITY_EAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_canalave_city_east_house,
@@ -959,7 +960,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_CITY_HARBOR_INN] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_243,
         .scriptsArchiveID = scripts_canalave_city_harbor_inn,
@@ -981,7 +982,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_243,
         .scriptsArchiveID = scripts_canalave_city_sailor_eldritch_house,
@@ -1003,7 +1004,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY] = {
-        .areaDataArchiveID = 0x7,
+        .areaDataArchiveID = area_data_007,
         .unk_01 = 0x1,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_oreburgh_city,
@@ -1025,7 +1026,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_OREBURGH_CITY_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_oreburgh_city_mart,
@@ -1047,7 +1048,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_GYM] = {
-        .areaDataArchiveID = 0x19,
+        .areaDataArchiveID = area_data_025,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_113,
         .scriptsArchiveID = scripts_oreburgh_city_gym,
@@ -1069,7 +1070,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_oreburgh_city_pokecenter_1f,
@@ -1091,7 +1092,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_oreburgh_city_pokecenter_2f,
@@ -1113,7 +1114,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_1F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_132,
         .scriptsArchiveID = scripts_oreburgh_city_northwest_house_1f,
@@ -1135,7 +1136,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_2F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_oreburgh_city_northwest_house_2f,
@@ -1157,7 +1158,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_3F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_136,
         .scriptsArchiveID = scripts_oreburgh_city_northwest_house_3f,
@@ -1179,7 +1180,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_4F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_oreburgh_city_northwest_house_4f,
@@ -1201,7 +1202,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_1F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_132,
         .scriptsArchiveID = scripts_oreburgh_city_north_house_1f,
@@ -1223,7 +1224,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_2F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_oreburgh_city_north_house_2f,
@@ -1245,7 +1246,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_3F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_136,
         .scriptsArchiveID = scripts_oreburgh_city_north_house_3f,
@@ -1267,7 +1268,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_4F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_oreburgh_city_north_house_4f,
@@ -1289,7 +1290,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_MIDDLE_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_oreburgh_city_middle_house,
@@ -1311,7 +1312,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MINING_MUSEUM] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_155,
         .scriptsArchiveID = scripts_mining_museum,
@@ -1333,7 +1334,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_WEST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_oreburgh_city_west_house,
@@ -1355,7 +1356,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_1F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_132,
         .scriptsArchiveID = scripts_oreburgh_city_east_house_1f,
@@ -1377,7 +1378,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_2F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_oreburgh_city_east_house_2f,
@@ -1399,7 +1400,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_3F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_oreburgh_city_east_house_3f,
@@ -1421,7 +1422,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_SOUTH_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_oreburgh_city_south_house,
@@ -1443,7 +1444,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY] = {
-        .areaDataArchiveID = 0x8,
+        .areaDataArchiveID = area_data_008,
         .unk_01 = 0x2,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_eterna_city,
@@ -1465,7 +1466,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ETERNA_CITY_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_eterna_city_mart,
@@ -1487,7 +1488,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_GYM] = {
-        .areaDataArchiveID = 0x1A,
+        .areaDataArchiveID = area_data_026,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_220,
         .scriptsArchiveID = scripts_eterna_city_gym,
@@ -1509,7 +1510,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_DP_GYM] = {
-        .areaDataArchiveID = 0x1A,
+        .areaDataArchiveID = area_data_026,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_221,
         .scriptsArchiveID = scripts_eterna_city_dp_gym,
@@ -1531,7 +1532,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_eterna_city_pokecenter_1f,
@@ -1553,7 +1554,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_eterna_city_pokecenter_2f,
@@ -1575,7 +1576,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CYCLE_SHOP] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_138,
         .scriptsArchiveID = scripts_cycle_shop,
@@ -1597,7 +1598,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_266,
         .scriptsArchiveID = scripts_team_galactic_eterna_building_1f,
@@ -1619,7 +1620,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_2F] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_162,
         .scriptsArchiveID = scripts_team_galactic_eterna_building_2f,
@@ -1641,7 +1642,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_163,
         .scriptsArchiveID = scripts_team_galactic_eterna_building_3f,
@@ -1663,7 +1664,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_4F] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_164,
         .scriptsArchiveID = scripts_team_galactic_eterna_building_4f,
@@ -1685,7 +1686,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_1F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_132,
         .scriptsArchiveID = scripts_eterna_city_condominiums_1f,
@@ -1707,7 +1708,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_2F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_135,
         .scriptsArchiveID = scripts_eterna_city_condominiums_2f,
@@ -1729,7 +1730,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_3F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_eterna_city_condominiums_3f,
@@ -1751,7 +1752,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_4F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_eterna_city_condominiums_4f,
@@ -1773,7 +1774,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_259,
         .scriptsArchiveID = scripts_route_206_cycling_road_north_gate,
@@ -1795,7 +1796,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_NORTH_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_170,
         .scriptsArchiveID = scripts_eterna_city_north_house,
@@ -1817,7 +1818,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_SOUTH_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_124,
         .scriptsArchiveID = scripts_eterna_city_south_house,
@@ -1839,7 +1840,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_EAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_124,
         .scriptsArchiveID = scripts_eterna_city_east_house,
@@ -1861,7 +1862,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_UNDERGROUND_MAN_HOUSE] = {
-        .areaDataArchiveID = 43,
+        .areaDataArchiveID = area_data_043,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_248,
         .scriptsArchiveID = scripts_eterna_city_underground_man_house,
@@ -1883,7 +1884,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_UNKNOWN_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0x14,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_empty,
@@ -1905,7 +1906,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY] = {
-        .areaDataArchiveID = 0x9,
+        .areaDataArchiveID = area_data_009,
         .unk_01 = 0x3,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_hearthome_city,
@@ -1927,7 +1928,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_HEARTHOME_CITY_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_hearthome_city_mart,
@@ -1949,7 +1950,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_222,
         .scriptsArchiveID = scripts_hearthome_city_gym_entrance_room,
@@ -1971,7 +1972,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_1] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_223,
         .scriptsArchiveID = scripts_hearthome_city_gym_trainer_room_1,
@@ -1993,7 +1994,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_224,
         .scriptsArchiveID = scripts_hearthome_city_gym_trainer_room_2,
@@ -2015,7 +2016,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_225,
         .scriptsArchiveID = scripts_hearthome_city_gym_leader_room,
@@ -2037,7 +2038,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_1] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_223,
         .scriptsArchiveID = scripts_empty,
@@ -2059,7 +2060,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_1] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_224,
         .scriptsArchiveID = scripts_hearthome_city_dp_gym_elevator_room_1,
@@ -2081,7 +2082,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_2] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_223,
         .scriptsArchiveID = scripts_empty,
@@ -2103,7 +2104,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_2] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_224,
         .scriptsArchiveID = scripts_hearthome_city_dp_gym_elevator_room_2,
@@ -2125,7 +2126,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_3] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_223,
         .scriptsArchiveID = scripts_empty,
@@ -2147,7 +2148,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_4] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_223,
         .scriptsArchiveID = scripts_empty,
@@ -2169,7 +2170,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_5] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_223,
         .scriptsArchiveID = scripts_empty,
@@ -2191,7 +2192,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_6] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_223,
         .scriptsArchiveID = scripts_empty,
@@ -2213,7 +2214,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_DP_GYM_LEADER_ROOM] = {
-        .areaDataArchiveID = 0x1B,
+        .areaDataArchiveID = area_data_027,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_225,
         .scriptsArchiveID = scripts_hearthome_city_dp_gym_leader_room,
@@ -2235,7 +2236,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_hearthome_city_pokecenter_1f,
@@ -2257,7 +2258,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_hearthome_city_pokecenter_2f,
@@ -2279,7 +2280,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_209,
         .scriptsArchiveID = scripts_hearthome_city_southeast_house_1f,
@@ -2301,7 +2302,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_2F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_210,
         .scriptsArchiveID = scripts_hearthome_city_southeast_house_2f,
@@ -2323,7 +2324,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_ELEVATOR] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_207,
         .scriptsArchiveID = scripts_hearthome_city_southeast_house_elevator,
@@ -2345,7 +2346,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_POKEMON_FAN_CLUB] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_156,
         .scriptsArchiveID = scripts_hearthome_city_pokemon_fan_club,
@@ -2367,7 +2368,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_157,
         .scriptsArchiveID = scripts_hearthome_city_west_gate_to_amity_square,
@@ -2389,7 +2390,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_EAST_GATE_TO_AMITY_SQUARE] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_157,
         .scriptsArchiveID = scripts_hearthome_city_east_gate_to_amity_square,
@@ -2411,7 +2412,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_208_GATE_TO_HEARTHOME_CITY] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_258,
         .scriptsArchiveID = scripts_route_208_gate_to_hearthome_city,
@@ -2433,7 +2434,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_209_GATE_TO_HEARTHOME_CITY] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_258,
         .scriptsArchiveID = scripts_route_209_gate_to_hearthome_city,
@@ -2455,7 +2456,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_212_GATE_TO_HEARTHOME_CITY] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_257,
         .scriptsArchiveID = scripts_route_212_gate_to_hearthome_city,
@@ -2477,7 +2478,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_1F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_209,
         .scriptsArchiveID = scripts_hearthome_city_northeast_house_1f,
@@ -2499,7 +2500,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_2F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_210,
         .scriptsArchiveID = scripts_hearthome_city_northeast_house_2f,
@@ -2521,7 +2522,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_ELEVATOR] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_207,
         .scriptsArchiveID = scripts_hearthome_city_northeast_house_elevator,
@@ -2543,7 +2544,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_NORTHWEST_HOUSE] = {
-        .areaDataArchiveID = 43,
+        .areaDataArchiveID = area_data_043,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_245,
         .scriptsArchiveID = scripts_hearthome_city_northwest_house,
@@ -2565,7 +2566,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POFFIN_HOUSE] = {
-        .areaDataArchiveID = 37,
+        .areaDataArchiveID = area_data_037,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_237,
         .scriptsArchiveID = scripts_poffin_house,
@@ -2587,7 +2588,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CONTEST_HALL_LOBBY] = {
-        .areaDataArchiveID = 32,
+        .areaDataArchiveID = area_data_032,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_165,
         .scriptsArchiveID = scripts_contest_hall_lobby,
@@ -2609,7 +2610,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST] = {
-        .areaDataArchiveID = 32,
+        .areaDataArchiveID = area_data_032,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_166,
         .scriptsArchiveID = scripts_contest_hall_stage_ongoing_contest,
@@ -2631,7 +2632,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FOREIGN_BUILDING] = {
-        .areaDataArchiveID = 35,
+        .areaDataArchiveID = area_data_035,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_167,
         .scriptsArchiveID = scripts_foreign_building,
@@ -2653,7 +2654,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY] = {
-        .areaDataArchiveID = 0xC,
+        .areaDataArchiveID = area_data_012,
         .unk_01 = 0x6,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_pastoria_city,
@@ -2675,7 +2676,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_PASTORIA_CITY_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_206,
         .scriptsArchiveID = scripts_pastoria_city_mart,
@@ -2697,7 +2698,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY_GYM] = {
-        .areaDataArchiveID = 0x17,
+        .areaDataArchiveID = area_data_023,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_111,
         .scriptsArchiveID = scripts_pastoria_city_gym,
@@ -2719,7 +2720,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_pastoria_city_pokecenter_1f,
@@ -2741,7 +2742,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_pastoria_city_pokecenter_2f,
@@ -2763,7 +2764,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F] = {
-        .areaDataArchiveID = 39,
+        .areaDataArchiveID = area_data_039,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_181,
         .scriptsArchiveID = scripts_pastoria_city_observatory_gate_1f,
@@ -2785,7 +2786,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_2F] = {
-        .areaDataArchiveID = 39,
+        .areaDataArchiveID = area_data_039,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_182,
         .scriptsArchiveID = scripts_pastoria_city_observatory_gate_2f,
@@ -2807,7 +2808,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY_SOUTHWEST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_pastoria_city_southwest_house,
@@ -2829,7 +2830,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY_MIDDLE_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_pastoria_city_middle_house,
@@ -2851,7 +2852,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY_EAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_125,
         .scriptsArchiveID = scripts_pastoria_city_east_house,
@@ -2873,7 +2874,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY_NORTH_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_pastoria_city_north_house,
@@ -2895,7 +2896,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY_NORTHEAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_pastoria_city_northeast_house,
@@ -2917,7 +2918,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_CITY] = {
-        .areaDataArchiveID = 11,
+        .areaDataArchiveID = area_data_011,
         .unk_01 = 0x5,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_veilstone_city,
@@ -2939,7 +2940,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_VEILSTONE_CITY_GYM] = {
-        .areaDataArchiveID = 29,
+        .areaDataArchiveID = area_data_029,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_115,
         .scriptsArchiveID = scripts_veilstone_city_gym,
@@ -2961,7 +2962,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_veilstone_city_pokecenter_1f,
@@ -2983,7 +2984,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_CITY_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_veilstone_city_pokecenter_2f,
@@ -3005,7 +3006,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GAME_CORNER] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_139,
         .scriptsArchiveID = scripts_game_corner,
@@ -3027,7 +3028,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_STORE_1F] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_172,
         .scriptsArchiveID = scripts_veilstone_store_1f,
@@ -3049,7 +3050,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_STORE_2F] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_173,
         .scriptsArchiveID = scripts_veilstone_store_2f,
@@ -3071,7 +3072,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_STORE_3F] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_174,
         .scriptsArchiveID = scripts_veilstone_store_3f,
@@ -3093,7 +3094,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_STORE_4F] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_175,
         .scriptsArchiveID = scripts_veilstone_store_4f,
@@ -3115,7 +3116,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_STORE_5F] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_176,
         .scriptsArchiveID = scripts_veilstone_store_5f,
@@ -3137,7 +3138,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_STORE_ELEVATOR] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_207,
         .scriptsArchiveID = scripts_veilstone_store_elevator,
@@ -3159,7 +3160,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_177,
         .scriptsArchiveID = scripts_veilstone_city_galactic_warehouse,
@@ -3181,7 +3182,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_204,
         .scriptsArchiveID = scripts_veilstone_city_prize_exchange,
@@ -3203,7 +3204,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_CITY_SOUTHEAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_125,
         .scriptsArchiveID = scripts_veilstone_city_southeast_house,
@@ -3225,7 +3226,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_CITY_NORTHWEST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_125,
         .scriptsArchiveID = scripts_veilstone_city_northwest_house,
@@ -3247,7 +3248,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_CITY_NORTHEAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_veilstone_city_northeast_house,
@@ -3269,7 +3270,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_CITY_SOUTHWEST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_veilstone_city_southwest_house,
@@ -3291,7 +3292,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_258,
         .scriptsArchiveID = scripts_route_215_gate_to_veilstone_city,
@@ -3313,7 +3314,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY] = {
-        .areaDataArchiveID = 0xD,
+        .areaDataArchiveID = area_data_013,
         .unk_01 = 0x7,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_sunyshore_city,
@@ -3335,7 +3336,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_sunyshore_city_pokecenter_1f,
@@ -3357,7 +3358,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_sunyshore_city_pokecenter_2f,
@@ -3379,7 +3380,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_sunyshore_city_mart,
@@ -3401,7 +3402,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1] = {
-        .areaDataArchiveID = 30,
+        .areaDataArchiveID = area_data_030,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_226,
         .scriptsArchiveID = scripts_sunyshore_city_gym_room_1,
@@ -3423,7 +3424,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_2] = {
-        .areaDataArchiveID = 30,
+        .areaDataArchiveID = area_data_030,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_227,
         .scriptsArchiveID = scripts_sunyshore_city_gym_room_2,
@@ -3445,7 +3446,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_3] = {
-        .areaDataArchiveID = 30,
+        .areaDataArchiveID = area_data_030,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_228,
         .scriptsArchiveID = scripts_sunyshore_city_gym_room_3,
@@ -3467,7 +3468,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_MARKET] = {
-        .areaDataArchiveID = 38,
+        .areaDataArchiveID = area_data_038,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_203,
         .scriptsArchiveID = scripts_sunyshore_market,
@@ -3489,7 +3490,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_NORTHEAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_243,
         .scriptsArchiveID = scripts_sunyshore_city_northeast_house,
@@ -3511,7 +3512,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_WEST_HOUSE] = {
-        .areaDataArchiveID = 43,
+        .areaDataArchiveID = area_data_043,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_248,
         .scriptsArchiveID = scripts_sunyshore_city_west_house,
@@ -3533,7 +3534,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_NORTHWEST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_243,
         .scriptsArchiveID = scripts_sunyshore_city_northwest_house,
@@ -3555,7 +3556,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_UNKNOWN_HOUSE_1] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_243,
         .scriptsArchiveID = scripts_sunyshore_city_unknown_house_1,
@@ -3577,7 +3578,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_UNKNOWN_HOUSE_2] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_243,
         .scriptsArchiveID = scripts_sunyshore_city_unknown_house_2,
@@ -3599,7 +3600,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_EAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_125,
         .scriptsArchiveID = scripts_sunyshore_city_east_house,
@@ -3621,7 +3622,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VISTA_LIGHTHOUSE] = {
-        .areaDataArchiveID = 39,
+        .areaDataArchiveID = area_data_039,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_230,
         .scriptsArchiveID = scripts_vista_lighthouse,
@@ -3643,7 +3644,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_CITY] = {
-        .areaDataArchiveID = 0xE,
+        .areaDataArchiveID = area_data_014,
         .unk_01 = 0x8,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_snowpoint_city,
@@ -3665,7 +3666,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_SNOWPOINT_CITY_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_snowpoint_city_mart,
@@ -3687,7 +3688,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_CITY_GYM] = {
-        .areaDataArchiveID = 0x1C,
+        .areaDataArchiveID = area_data_028,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_114,
         .scriptsArchiveID = scripts_snowpoint_city_gym,
@@ -3709,7 +3710,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_snowpoint_city_pokecenter_1f,
@@ -3731,7 +3732,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_CITY_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_snowpoint_city_pokecenter_2f,
@@ -3753,7 +3754,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_snowpoint_city_west_house,
@@ -3775,7 +3776,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_244,
         .scriptsArchiveID = scripts_snowpoint_city_east_house,
@@ -3797,7 +3798,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE] = {
-        .areaDataArchiveID = 0xD,
+        .areaDataArchiveID = area_data_013,
         .unk_01 = 0xA,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_pokemon_league,
@@ -3819,7 +3820,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_pokemon_league_south_pokecenter_1f,
@@ -3841,7 +3842,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_pokemon_league_south_pokecenter_2f,
@@ -3863,7 +3864,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_144,
         .scriptsArchiveID = scripts_pokemon_league_north_pokecenter_1f,
@@ -3885,7 +3886,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_AARON_ROOM] = {
-        .areaDataArchiveID = 36,
+        .areaDataArchiveID = area_data_036,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_187,
         .scriptsArchiveID = scripts_pokemon_league_elevator_to_aaron_room,
@@ -3907,7 +3908,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_AARON_ROOM] = {
-        .areaDataArchiveID = 36,
+        .areaDataArchiveID = area_data_036,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_183,
         .scriptsArchiveID = scripts_pokemon_league_aaron_room,
@@ -3929,7 +3930,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_BERTHA_ROOM] = {
-        .areaDataArchiveID = 36,
+        .areaDataArchiveID = area_data_036,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_188,
         .scriptsArchiveID = scripts_pokemon_league_elevator_to_bertha_room,
@@ -3951,7 +3952,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_BERTHA_ROOM] = {
-        .areaDataArchiveID = 36,
+        .areaDataArchiveID = area_data_036,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_184,
         .scriptsArchiveID = scripts_pokemon_league_bertha_room,
@@ -3973,7 +3974,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_FLINT_ROOM] = {
-        .areaDataArchiveID = 36,
+        .areaDataArchiveID = area_data_036,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_188,
         .scriptsArchiveID = scripts_pokemon_league_elevator_to_flint_room,
@@ -3995,7 +3996,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_FLINT_ROOM] = {
-        .areaDataArchiveID = 36,
+        .areaDataArchiveID = area_data_036,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_185,
         .scriptsArchiveID = scripts_pokemon_league_flint_room,
@@ -4017,7 +4018,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_LUCIAN_ROOM] = {
-        .areaDataArchiveID = 36,
+        .areaDataArchiveID = area_data_036,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_188,
         .scriptsArchiveID = scripts_pokemon_league_elevator_to_lucian_room,
@@ -4039,7 +4040,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_LUCIAN_ROOM] = {
-        .areaDataArchiveID = 36,
+        .areaDataArchiveID = area_data_036,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_186,
         .scriptsArchiveID = scripts_pokemon_league_lucian_room,
@@ -4061,7 +4062,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_CHAMPION_ROOM] = {
-        .areaDataArchiveID = 36,
+        .areaDataArchiveID = area_data_036,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_189,
         .scriptsArchiveID = scripts_pokemon_league_elevator_to_champion_room,
@@ -4083,7 +4084,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_CHAMPION_ROOM] = {
-        .areaDataArchiveID = 36,
+        .areaDataArchiveID = area_data_036,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_190,
         .scriptsArchiveID = scripts_pokemon_league_champion_room,
@@ -4105,7 +4106,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_HALL_OF_FAME] = {
-        .areaDataArchiveID = 36,
+        .areaDataArchiveID = area_data_036,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_192,
         .scriptsArchiveID = scripts_pokemon_league_elevator_to_hall_of_fame,
@@ -4127,7 +4128,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_HALL_OF_FAME] = {
-        .areaDataArchiveID = 36,
+        .areaDataArchiveID = area_data_036,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_191,
         .scriptsArchiveID = scripts_pokemon_league_hall_of_fame,
@@ -4149,7 +4150,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FIGHT_AREA] = {
-        .areaDataArchiveID = 0x13,
+        .areaDataArchiveID = area_data_019,
         .unk_01 = 0xD,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_fight_area,
@@ -4171,7 +4172,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_FIGHT_AREA_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_fight_area_pokecenter_1f,
@@ -4193,7 +4194,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FIGHT_AREA_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_fight_area_pokecenter_2f,
@@ -4215,7 +4216,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FIGHT_AREA_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_fight_area_mart,
@@ -4237,7 +4238,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_PARK_GATE_TO_FIGHT_AREA] = {
-        .areaDataArchiveID = 44,
+        .areaDataArchiveID = area_data_044,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_250,
         .scriptsArchiveID = scripts_battle_park_gate_to_fight_area,
@@ -4259,7 +4260,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_225_GATE_TO_FIGHT_AREA] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_257,
         .scriptsArchiveID = scripts_route_225_gate_to_fight_area,
@@ -4281,7 +4282,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FIGHT_AREA_MIDDLE_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_fight_area_middle_house,
@@ -4303,7 +4304,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FIGHT_AREA_SOUTH_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_fight_area_south_house,
@@ -4325,7 +4326,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FIGHT_AREA_UNKNOWN_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_empty,
@@ -4347,7 +4348,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_197] = {
-        .areaDataArchiveID = 55,
+        .areaDataArchiveID = area_data_055,
         .unk_01 = 55,
         .mapMatrixID = map_matrix_005,
         .scriptsArchiveID = scripts_empty,
@@ -4369,7 +4370,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_MINE_B1F] = {
-        .areaDataArchiveID = 55,
+        .areaDataArchiveID = area_data_055,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_005,
         .scriptsArchiveID = scripts_oreburgh_mine_b1f,
@@ -4391,7 +4392,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_MINE_B2F] = {
-        .areaDataArchiveID = 55,
+        .areaDataArchiveID = area_data_055,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_006,
         .scriptsArchiveID = scripts_oreburgh_mine_b2f,
@@ -4413,7 +4414,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE] = {
-        .areaDataArchiveID = 0x8,
+        .areaDataArchiveID = area_data_008,
         .unk_01 = 0x2,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_valley_windworks_outside,
@@ -4435,7 +4436,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_VALLEY_WINDWORKS_BUILDING] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_234,
         .scriptsArchiveID = scripts_valley_windworks_building,
@@ -4457,7 +4458,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_FOREST_OUTSIDE] = {
-        .areaDataArchiveID = 0x8,
+        .areaDataArchiveID = area_data_008,
         .unk_01 = 0x2,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_eterna_forest_outside,
@@ -4479,7 +4480,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ETERNA_FOREST] = {
-        .areaDataArchiveID = 54,
+        .areaDataArchiveID = area_data_054,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_007,
         .scriptsArchiveID = scripts_eterna_forest,
@@ -4501,7 +4502,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE] = {
-        .areaDataArchiveID = 0x8,
+        .areaDataArchiveID = area_data_008,
         .unk_01 = 0x2,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_fuego_ironworks_outside,
@@ -4523,7 +4524,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_FUEGO_IRONWORKS_BUILDING] = {
-        .areaDataArchiveID = 67,
+        .areaDataArchiveID = area_data_067,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_008,
         .scriptsArchiveID = scripts_fuego_ironworks_building,
@@ -4545,7 +4546,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_206] = {
-        .areaDataArchiveID = 0x6,
+        .areaDataArchiveID = area_data_006,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -4567,7 +4568,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MT_CORONET_1F_SOUTH] = {
-        .areaDataArchiveID = 0x45,
+        .areaDataArchiveID = area_data_069,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_009,
         .scriptsArchiveID = scripts_mt_coronet_1f_south,
@@ -4589,7 +4590,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MT_CORONET_2F] = {
-        .areaDataArchiveID = 0x45,
+        .areaDataArchiveID = area_data_069,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_010,
         .scriptsArchiveID = scripts_mt_coronet_2f,
@@ -4611,7 +4612,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MT_CORONET_3F] = {
-        .areaDataArchiveID = 0x45,
+        .areaDataArchiveID = area_data_069,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_011,
         .scriptsArchiveID = scripts_empty,
@@ -4633,7 +4634,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MT_CORONET_OUTSIDE_NORTH] = {
-        .areaDataArchiveID = 0xE,
+        .areaDataArchiveID = area_data_014,
         .unk_01 = 0x8,
         .mapMatrixID = map_matrix_012,
         .scriptsArchiveID = scripts_empty,
@@ -4655,7 +4656,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH] = {
-        .areaDataArchiveID = 0xE,
+        .areaDataArchiveID = area_data_014,
         .unk_01 = 0x8,
         .mapMatrixID = map_matrix_013,
         .scriptsArchiveID = scripts_empty,
@@ -4677,7 +4678,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2] = {
-        .areaDataArchiveID = 70,
+        .areaDataArchiveID = area_data_070,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_014,
         .scriptsArchiveID = scripts_empty,
@@ -4699,7 +4700,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MT_CORONET_4F_ROOM_3] = {
-        .areaDataArchiveID = 70,
+        .areaDataArchiveID = area_data_070,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_015,
         .scriptsArchiveID = scripts_empty,
@@ -4721,7 +4722,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MT_CORONET_5F] = {
-        .areaDataArchiveID = 70,
+        .areaDataArchiveID = area_data_070,
         .unk_01 = 15,
         .mapMatrixID = map_matrix_016,
         .scriptsArchiveID = scripts_empty,
@@ -4743,7 +4744,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MT_CORONET_6F] = {
-        .areaDataArchiveID = 70,
+        .areaDataArchiveID = area_data_070,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_017,
         .scriptsArchiveID = scripts_mt_coronet_6f,
@@ -4765,7 +4766,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM] = {
-        .areaDataArchiveID = 0x45,
+        .areaDataArchiveID = area_data_069,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_018,
         .scriptsArchiveID = scripts_mt_coronet_1f_tunnel_room,
@@ -4787,7 +4788,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_2] = {
-        .areaDataArchiveID = 0x45,
+        .areaDataArchiveID = area_data_069,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_019,
         .scriptsArchiveID = scripts_mt_coronet_1f_north_room_2,
@@ -4809,7 +4810,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1] = {
-        .areaDataArchiveID = 0x45,
+        .areaDataArchiveID = area_data_069,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_020,
         .scriptsArchiveID = scripts_mt_coronet_1f_north_room_1,
@@ -4831,7 +4832,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MT_CORONET_B1F] = {
-        .areaDataArchiveID = 0x45,
+        .areaDataArchiveID = area_data_069,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_021,
         .scriptsArchiveID = scripts_empty,
@@ -4853,7 +4854,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SPEAR_PILLAR] = {
-        .areaDataArchiveID = 0x3C,
+        .areaDataArchiveID = area_data_060,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_022,
         .scriptsArchiveID = scripts_spear_pillar,
@@ -4875,7 +4876,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SPEAR_PILLAR_DISTORTED] = {
-        .areaDataArchiveID = 0x3C,
+        .areaDataArchiveID = area_data_060,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_023,
         .scriptsArchiveID = scripts_spear_pillar_distorted,
@@ -4897,7 +4898,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_222] = {
-        .areaDataArchiveID = 0xC,
+        .areaDataArchiveID = area_data_012,
         .unk_01 = 0x6,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -4919,7 +4920,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY_DP_GREAT_MARSH] = {
-        .areaDataArchiveID = 63,
+        .areaDataArchiveID = area_data_063,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_024,
         .scriptsArchiveID = scripts_empty,
@@ -4941,7 +4942,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_224] = {
-        .areaDataArchiveID = 0xA,
+        .areaDataArchiveID = area_data_010,
         .unk_01 = 0x4,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -4963,7 +4964,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_025,
         .scriptsArchiveID = scripts_solaceon_ruins_maniac_tunnel_room,
@@ -4985,7 +4986,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_1] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_026,
         .scriptsArchiveID = scripts_solaceon_ruins_room_1,
@@ -5007,7 +5008,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_040,
         .scriptsArchiveID = scripts_empty,
@@ -5029,7 +5030,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_035,
         .scriptsArchiveID = scripts_empty,
@@ -5051,7 +5052,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_2] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_039,
         .scriptsArchiveID = scripts_solaceon_ruins_room_2,
@@ -5073,7 +5074,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_031,
         .scriptsArchiveID = scripts_empty,
@@ -5095,7 +5096,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_3] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_034,
         .scriptsArchiveID = scripts_empty,
@@ -5117,7 +5118,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_031,
         .scriptsArchiveID = scripts_empty,
@@ -5139,7 +5140,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_040,
         .scriptsArchiveID = scripts_empty,
@@ -5161,7 +5162,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_042,
         .scriptsArchiveID = scripts_empty,
@@ -5183,7 +5184,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_035,
         .scriptsArchiveID = scripts_empty,
@@ -5205,7 +5206,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_035,
         .scriptsArchiveID = scripts_empty,
@@ -5227,7 +5228,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_4] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_036,
         .scriptsArchiveID = scripts_empty,
@@ -5249,7 +5250,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_6] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_034,
         .scriptsArchiveID = scripts_empty,
@@ -5271,7 +5272,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_5] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_030,
         .scriptsArchiveID = scripts_empty,
@@ -5293,7 +5294,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_7] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_041,
         .scriptsArchiveID = scripts_solaceon_ruins_room_7,
@@ -5315,7 +5316,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_031,
         .scriptsArchiveID = scripts_empty,
@@ -5337,7 +5338,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_035,
         .scriptsArchiveID = scripts_empty,
@@ -5359,7 +5360,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_243] = {
-        .areaDataArchiveID = 0xE,
+        .areaDataArchiveID = area_data_014,
         .unk_01 = 0x8,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -5381,7 +5382,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VICTORY_ROAD_1F] = {
-        .areaDataArchiveID = 71,
+        .areaDataArchiveID = area_data_071,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_043,
         .scriptsArchiveID = scripts_victory_road_1f,
@@ -5403,7 +5404,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VICTORY_ROAD_2F] = {
-        .areaDataArchiveID = 71,
+        .areaDataArchiveID = area_data_071,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_044,
         .scriptsArchiveID = scripts_empty,
@@ -5425,7 +5426,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VICTORY_ROAD_B1F] = {
-        .areaDataArchiveID = 71,
+        .areaDataArchiveID = area_data_071,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_045,
         .scriptsArchiveID = scripts_empty,
@@ -5447,7 +5448,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VICTORY_ROAD_1F_ROOM_2] = {
-        .areaDataArchiveID = 71,
+        .areaDataArchiveID = area_data_071,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_046,
         .scriptsArchiveID = scripts_victory_road_1f_room_2,
@@ -5469,7 +5470,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VICTORY_ROAD_1F_ROOM_1] = {
-        .areaDataArchiveID = 71,
+        .areaDataArchiveID = area_data_071,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_047,
         .scriptsArchiveID = scripts_empty,
@@ -5491,7 +5492,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VICTORY_ROAD_1F_ROOM_3] = {
-        .areaDataArchiveID = 71,
+        .areaDataArchiveID = area_data_071,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_048,
         .scriptsArchiveID = scripts_empty,
@@ -5513,7 +5514,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_250] = {
-        .areaDataArchiveID = 0x4,
+        .areaDataArchiveID = area_data_004,
         .unk_01 = 0x4,
         .mapMatrixID = map_matrix_049,
         .scriptsArchiveID = scripts_empty,
@@ -5535,7 +5536,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PAL_PARK] = {
-        .areaDataArchiveID = 61,
+        .areaDataArchiveID = area_data_061,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_049,
         .scriptsArchiveID = scripts_pal_park,
@@ -5557,7 +5558,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_252] = {
-        .areaDataArchiveID = 0x9,
+        .areaDataArchiveID = area_data_009,
         .unk_01 = 0x3,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -5579,7 +5580,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_AMITY_SQUARE] = {
-        .areaDataArchiveID = 59,
+        .areaDataArchiveID = area_data_059,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_050,
         .scriptsArchiveID = scripts_amity_square,
@@ -5601,7 +5602,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_RAVAGED_PATH] = {
-        .areaDataArchiveID = 53,
+        .areaDataArchiveID = area_data_053,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_051,
         .scriptsArchiveID = scripts_ravaged_path,
@@ -5623,7 +5624,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_255] = {
-        .areaDataArchiveID = 54,
+        .areaDataArchiveID = area_data_054,
         .unk_01 = 54,
         .mapMatrixID = map_matrix_052,
         .scriptsArchiveID = scripts_empty,
@@ -5645,7 +5646,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FLOAROMA_MEADOW] = {
-        .areaDataArchiveID = 0x8,
+        .areaDataArchiveID = area_data_008,
         .unk_01 = 0x2,
         .mapMatrixID = map_matrix_052,
         .scriptsArchiveID = scripts_floaroma_meadow,
@@ -5667,7 +5668,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_FLOAROMA_MEADOW_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_floaroma_meadow_house,
@@ -5689,7 +5690,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_GATE_1F] = {
-        .areaDataArchiveID = 53,
+        .areaDataArchiveID = area_data_053,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_003,
         .scriptsArchiveID = scripts_oreburgh_gate_1f,
@@ -5711,7 +5712,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_GATE_B1F] = {
-        .areaDataArchiveID = 53,
+        .areaDataArchiveID = area_data_053,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_004,
         .scriptsArchiveID = scripts_oreburgh_gate_b1f,
@@ -5733,7 +5734,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FULLMOON_ISLAND] = {
-        .areaDataArchiveID = 0xF,
+        .areaDataArchiveID = area_data_015,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_fullmoon_island,
@@ -5755,7 +5756,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FULLMOON_ISLAND_FOREST] = {
-        .areaDataArchiveID = 54,
+        .areaDataArchiveID = area_data_054,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_053,
         .scriptsArchiveID = scripts_fullmoon_island_forest,
@@ -5777,7 +5778,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_STARK_MOUNTAIN_OUTSIDE] = {
-        .areaDataArchiveID = 0x11,
+        .areaDataArchiveID = area_data_017,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_stark_mountain_outside,
@@ -5799,7 +5800,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_STARK_MOUNTAIN_ROOM_1] = {
-        .areaDataArchiveID = 0x39,
+        .areaDataArchiveID = area_data_057,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_057,
         .scriptsArchiveID = scripts_stark_mountain_room_1,
@@ -5821,7 +5822,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_STARK_MOUNTAIN_ROOM_2] = {
-        .areaDataArchiveID = 0x39,
+        .areaDataArchiveID = area_data_057,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_058,
         .scriptsArchiveID = scripts_stark_mountain_room_2,
@@ -5843,7 +5844,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_STARK_MOUNTAIN_ROOM_3] = {
-        .areaDataArchiveID = 0x39,
+        .areaDataArchiveID = area_data_057,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_059,
         .scriptsArchiveID = scripts_stark_mountain_room_3,
@@ -5865,7 +5866,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_266] = {
-        .areaDataArchiveID = 0x12,
+        .areaDataArchiveID = area_data_018,
         .unk_01 = 0xC,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -5887,7 +5888,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SENDOFF_SPRING] = {
-        .areaDataArchiveID = 62,
+        .areaDataArchiveID = area_data_062,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_060,
         .scriptsArchiveID = scripts_sendoff_spring,
@@ -5909,7 +5910,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_TURNBACK_CAVE_ENTRANCE] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_061,
         .scriptsArchiveID = scripts_turnback_cave_entrance,
@@ -5931,7 +5932,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_ROOM] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_062,
         .scriptsArchiveID = scripts_turnback_cave_pillar_room,
@@ -5953,7 +5954,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_GIRATINA_ROOM] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_063,
         .scriptsArchiveID = scripts_turnback_cave_giratina_room,
@@ -5975,7 +5976,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_1] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_turnback_cave_pillar_1_room_1,
@@ -5997,7 +5998,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_2] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_turnback_cave_pillar_1_room_2,
@@ -6019,7 +6020,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_3] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_turnback_cave_pillar_1_room_3,
@@ -6041,7 +6042,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FLOWER_PARADISE] = {
-        .areaDataArchiveID = 0xD,
+        .areaDataArchiveID = area_data_013,
         .unk_01 = 0xA,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_flower_paradise,
@@ -6063,7 +6064,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_UNKNOWN_275] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_empty,
@@ -6085,7 +6086,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_276] = {
-        .areaDataArchiveID = 11,
+        .areaDataArchiveID = area_data_011,
         .unk_01 = 0x5,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -6107,7 +6108,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_277] = {
-        .areaDataArchiveID = 11,
+        .areaDataArchiveID = area_data_011,
         .unk_01 = 0x5,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -6129,7 +6130,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_TEMPLE_1F] = {
-        .areaDataArchiveID = 65,
+        .areaDataArchiveID = area_data_065,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_068,
         .scriptsArchiveID = scripts_snowpoint_temple_1f,
@@ -6151,7 +6152,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_TEMPLE_B1F] = {
-        .areaDataArchiveID = 65,
+        .areaDataArchiveID = area_data_065,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_069,
         .scriptsArchiveID = scripts_empty,
@@ -6173,7 +6174,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_TEMPLE_B2F] = {
-        .areaDataArchiveID = 65,
+        .areaDataArchiveID = area_data_065,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_070,
         .scriptsArchiveID = scripts_empty,
@@ -6195,7 +6196,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_TEMPLE_B3F] = {
-        .areaDataArchiveID = 65,
+        .areaDataArchiveID = area_data_065,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_071,
         .scriptsArchiveID = scripts_empty,
@@ -6217,7 +6218,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_TEMPLE_B4F] = {
-        .areaDataArchiveID = 65,
+        .areaDataArchiveID = area_data_065,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_072,
         .scriptsArchiveID = scripts_empty,
@@ -6239,7 +6240,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_TEMPLE_B5F] = {
-        .areaDataArchiveID = 65,
+        .areaDataArchiveID = area_data_065,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_073,
         .scriptsArchiveID = scripts_snowpoint_temple_b5f,
@@ -6261,7 +6262,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_WAYWARD_CAVE_1F] = {
-        .areaDataArchiveID = 53,
+        .areaDataArchiveID = area_data_053,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_074,
         .scriptsArchiveID = scripts_wayward_cave_1f,
@@ -6283,7 +6284,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_WAYWARD_CAVE_B1F] = {
-        .areaDataArchiveID = 53,
+        .areaDataArchiveID = area_data_053,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_075,
         .scriptsArchiveID = scripts_empty,
@@ -6305,7 +6306,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_RUIN_MANIAC_CAVE_SHORT] = {
-        .areaDataArchiveID = 53,
+        .areaDataArchiveID = area_data_053,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_076,
         .scriptsArchiveID = scripts_ruin_maniac_cave_short,
@@ -6327,7 +6328,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TROPHY_GARDEN] = {
-        .areaDataArchiveID = 0xC,
+        .areaDataArchiveID = area_data_012,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_079,
         .scriptsArchiveID = scripts_empty,
@@ -6349,7 +6350,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_IRON_ISLAND] = {
-        .areaDataArchiveID = 0xF,
+        .areaDataArchiveID = area_data_015,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_iron_island,
@@ -6371,7 +6372,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_IRON_ISLAND_1F] = {
-        .areaDataArchiveID = 0x48,
+        .areaDataArchiveID = area_data_072,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_080,
         .scriptsArchiveID = scripts_iron_island_1f,
@@ -6393,7 +6394,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_IRON_ISLAND_B1F_LEFT_ROOM] = {
-        .areaDataArchiveID = 0x48,
+        .areaDataArchiveID = area_data_072,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_081,
         .scriptsArchiveID = scripts_empty,
@@ -6415,7 +6416,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM] = {
-        .areaDataArchiveID = 0x48,
+        .areaDataArchiveID = area_data_072,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_082,
         .scriptsArchiveID = scripts_iron_island_b1f_right_room,
@@ -6437,7 +6438,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM] = {
-        .areaDataArchiveID = 0x48,
+        .areaDataArchiveID = area_data_072,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_083,
         .scriptsArchiveID = scripts_empty,
@@ -6459,7 +6460,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM] = {
-        .areaDataArchiveID = 0x48,
+        .areaDataArchiveID = area_data_072,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_084,
         .scriptsArchiveID = scripts_iron_island_b2f_left_room,
@@ -6481,7 +6482,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_IRON_ISLAND_B3F] = {
-        .areaDataArchiveID = 0x48,
+        .areaDataArchiveID = area_data_072,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_085,
         .scriptsArchiveID = scripts_iron_island_b3f,
@@ -6503,7 +6504,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OLD_CHATEAU] = {
-        .areaDataArchiveID = 66,
+        .areaDataArchiveID = area_data_066,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_086,
         .scriptsArchiveID = scripts_old_chateau,
@@ -6525,7 +6526,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OLD_CHATEAU_DINING_AREA] = {
-        .areaDataArchiveID = 66,
+        .areaDataArchiveID = area_data_066,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_087,
         .scriptsArchiveID = scripts_old_chateau_dining_area,
@@ -6547,7 +6548,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS] = {
-        .areaDataArchiveID = 66,
+        .areaDataArchiveID = area_data_066,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_088,
         .scriptsArchiveID = scripts_old_chateau_side_rooms,
@@ -6569,7 +6570,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OLD_CHATEAU_CORRIDOR] = {
-        .areaDataArchiveID = 66,
+        .areaDataArchiveID = area_data_066,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_089,
         .scriptsArchiveID = scripts_empty,
@@ -6591,7 +6592,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM] = {
-        .areaDataArchiveID = 66,
+        .areaDataArchiveID = area_data_066,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_090,
         .scriptsArchiveID = scripts_empty,
@@ -6613,7 +6614,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM] = {
-        .areaDataArchiveID = 66,
+        .areaDataArchiveID = area_data_066,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_091,
         .scriptsArchiveID = scripts_old_chateau_back_middle_west_room,
@@ -6635,7 +6636,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM] = {
-        .areaDataArchiveID = 66,
+        .areaDataArchiveID = area_data_066,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_092,
         .scriptsArchiveID = scripts_empty,
@@ -6657,7 +6658,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM] = {
-        .areaDataArchiveID = 66,
+        .areaDataArchiveID = area_data_066,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_093,
         .scriptsArchiveID = scripts_old_chateau_back_middle_east_room,
@@ -6679,7 +6680,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM] = {
-        .areaDataArchiveID = 66,
+        .areaDataArchiveID = area_data_066,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_094,
         .scriptsArchiveID = scripts_empty,
@@ -6701,7 +6702,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_304] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0x1F,
         .mapMatrixID = map_matrix_157,
         .scriptsArchiveID = scripts_empty,
@@ -6723,7 +6724,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GALACTIC_HQ_1F] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_095,
         .scriptsArchiveID = scripts_galactic_hq_1f,
@@ -6745,7 +6746,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GALACTIC_HQ_2F] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_096,
         .scriptsArchiveID = scripts_galactic_hq_2f,
@@ -6767,7 +6768,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GALACTIC_HQ_3F] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_097,
         .scriptsArchiveID = scripts_galactic_hq_3f,
@@ -6789,7 +6790,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GALACTIC_HQ_4F] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_098,
         .scriptsArchiveID = scripts_galactic_hq_4f,
@@ -6811,7 +6812,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GALACTIC_HQ_B1F] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_100,
         .scriptsArchiveID = scripts_galactic_hq_b1f,
@@ -6833,7 +6834,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GALACTIC_HQ_B2F] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_099,
         .scriptsArchiveID = scripts_galactic_hq_b2f,
@@ -6855,7 +6856,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_LAKE_VERITY_LOW_WATER] = {
-        .areaDataArchiveID = 62,
+        .areaDataArchiveID = area_data_062,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_101,
         .scriptsArchiveID = scripts_lake_verity_low_water,
@@ -6877,7 +6878,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_LAKE_VERITY] = {
-        .areaDataArchiveID = 62,
+        .areaDataArchiveID = area_data_062,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_102,
         .scriptsArchiveID = scripts_lake_verity,
@@ -6899,7 +6900,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_VERITY_CAVERN] = {
-        .areaDataArchiveID = 53,
+        .areaDataArchiveID = area_data_053,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_103,
         .scriptsArchiveID = scripts_verity_cavern,
@@ -6921,7 +6922,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_LAKE_VALOR_DRAINED] = {
-        .areaDataArchiveID = 62,
+        .areaDataArchiveID = area_data_062,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_104,
         .scriptsArchiveID = scripts_lake_valor_drained,
@@ -6943,7 +6944,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_LAKE_VALOR] = {
-        .areaDataArchiveID = 62,
+        .areaDataArchiveID = area_data_062,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_105,
         .scriptsArchiveID = scripts_lake_valor,
@@ -6965,7 +6966,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_VALOR_CAVERN] = {
-        .areaDataArchiveID = 53,
+        .areaDataArchiveID = area_data_053,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_106,
         .scriptsArchiveID = scripts_valor_cavern,
@@ -6987,7 +6988,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_LAKE_ACUITY_LOW_WATER] = {
-        .areaDataArchiveID = 0xE,
+        .areaDataArchiveID = area_data_014,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_107,
         .scriptsArchiveID = scripts_lake_acuity_low_water,
@@ -7009,7 +7010,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_LAKE_ACUITY] = {
-        .areaDataArchiveID = 0xE,
+        .areaDataArchiveID = area_data_014,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_108,
         .scriptsArchiveID = scripts_lake_acuity,
@@ -7031,7 +7032,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ACUITY_CAVERN] = {
-        .areaDataArchiveID = 53,
+        .areaDataArchiveID = area_data_053,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_109,
         .scriptsArchiveID = scripts_acuity_cavern,
@@ -7053,7 +7054,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_NEWMOON_ISLAND] = {
-        .areaDataArchiveID = 0xF,
+        .areaDataArchiveID = area_data_015,
         .unk_01 = 0x9,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_newmoon_island,
@@ -7075,7 +7076,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_NEWMOON_ISLAND_FOREST] = {
-        .areaDataArchiveID = 54,
+        .areaDataArchiveID = area_data_054,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_110,
         .scriptsArchiveID = scripts_newmoon_island_forest,
@@ -7097,7 +7098,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_PARK] = {
-        .areaDataArchiveID = 64,
+        .areaDataArchiveID = area_data_064,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_229,
         .scriptsArchiveID = scripts_battle_park,
@@ -7119,7 +7120,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_BATTLE_PARK_EXCHANGE_SERVICE_CORNER] = {
-        .areaDataArchiveID = 41,
+        .areaDataArchiveID = area_data_041,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_231,
         .scriptsArchiveID = scripts_battle_park_exchange_service_corner,
@@ -7141,7 +7142,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_324] = {
-        .areaDataArchiveID = 33,
+        .areaDataArchiveID = area_data_033,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_232,
         .scriptsArchiveID = scripts_empty,
@@ -7163,7 +7164,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_325] = {
-        .areaDataArchiveID = 33,
+        .areaDataArchiveID = area_data_033,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_233,
         .scriptsArchiveID = scripts_empty,
@@ -7185,7 +7186,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_TOWER] = {
-        .areaDataArchiveID = 33,
+        .areaDataArchiveID = area_data_033,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_193,
         .scriptsArchiveID = scripts_battle_tower,
@@ -7207,7 +7208,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_TOWER_ELEVATOR] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_207,
         .scriptsArchiveID = scripts_battle_tower_elevator,
@@ -7229,7 +7230,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_TOWER_CORRIDOR] = {
-        .areaDataArchiveID = 33,
+        .areaDataArchiveID = area_data_033,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_194,
         .scriptsArchiveID = scripts_battle_tower_corridor,
@@ -7251,7 +7252,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_TOWER_CORRIDOR_MULTI] = {
-        .areaDataArchiveID = 33,
+        .areaDataArchiveID = area_data_033,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_195,
         .scriptsArchiveID = scripts_battle_tower_corridor_multi,
@@ -7273,7 +7274,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_TOWER_BATTLE_ROOM] = {
-        .areaDataArchiveID = 33,
+        .areaDataArchiveID = area_data_033,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_197,
         .scriptsArchiveID = scripts_battle_tower_battle_room,
@@ -7295,7 +7296,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_TOWER_MULTI_BATTLE_ROOM] = {
-        .areaDataArchiveID = 33,
+        .areaDataArchiveID = area_data_033,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_198,
         .scriptsArchiveID = scripts_battle_tower_multi_battle_room,
@@ -7317,7 +7318,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_COMMUNICATION_CLUB_COLOSSEUM_2P] = {
-        .areaDataArchiveID = 0x5,
+        .areaDataArchiveID = area_data_005,
         .unk_01 = 0xE,
         .mapMatrixID = map_matrix_118,
         .scriptsArchiveID = scripts_communication_club_colosseum_2p,
@@ -7339,7 +7340,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_COMMUNICATION_CLUB_COLOSSEUM_4P] = {
-        .areaDataArchiveID = 0x5,
+        .areaDataArchiveID = area_data_005,
         .unk_01 = 0xE,
         .mapMatrixID = map_matrix_121,
         .scriptsArchiveID = scripts_communication_club_colosseum_4p,
@@ -7361,7 +7362,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VERITY_LAKEFRONT] = {
-        .areaDataArchiveID = 0x6,
+        .areaDataArchiveID = area_data_006,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_verity_lakefront,
@@ -7383,7 +7384,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_VERITY_LAKEFRONT_UNKNOWN_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0x14,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_verity_lakefront_unknown_house,
@@ -7405,7 +7406,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VALOR_LAKEFRONT] = {
-        .areaDataArchiveID = 0x12,
+        .areaDataArchiveID = area_data_018,
         .unk_01 = 0xC,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_valor_lakefront,
@@ -7427,7 +7428,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_RESTAURANT] = {
-        .areaDataArchiveID = 35,
+        .areaDataArchiveID = area_data_035,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_147,
         .scriptsArchiveID = scripts_restaurant,
@@ -7449,7 +7450,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE] = {
-        .areaDataArchiveID = 35,
+        .areaDataArchiveID = area_data_035,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_146,
         .scriptsArchiveID = scripts_grand_lake_valor_lakefront_east_house,
@@ -7471,7 +7472,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_WEST_HOUSE] = {
-        .areaDataArchiveID = 35,
+        .areaDataArchiveID = area_data_035,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_146,
         .scriptsArchiveID = scripts_grand_lake_valor_lakefront_west_house,
@@ -7493,7 +7494,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ACUITY_LAKEFRONT] = {
-        .areaDataArchiveID = 0xE,
+        .areaDataArchiveID = area_data_014,
         .unk_01 = 0x8,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_acuity_lakefront,
@@ -7515,7 +7516,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_SPRING_PATH] = {
-        .areaDataArchiveID = 0x12,
+        .areaDataArchiveID = area_data_018,
         .unk_01 = 0xC,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -7537,7 +7538,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_201] = {
-        .areaDataArchiveID = 0x6,
+        .areaDataArchiveID = area_data_006,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_201,
@@ -7559,7 +7560,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_202] = {
-        .areaDataArchiveID = 0x6,
+        .areaDataArchiveID = area_data_006,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_202,
@@ -7581,7 +7582,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_203] = {
-        .areaDataArchiveID = 0x6,
+        .areaDataArchiveID = area_data_006,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_203,
@@ -7603,7 +7604,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_204_SOUTH] = {
-        .areaDataArchiveID = 0x6,
+        .areaDataArchiveID = area_data_006,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_204_south,
@@ -7625,7 +7626,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_204_NORTH] = {
-        .areaDataArchiveID = 0x8,
+        .areaDataArchiveID = area_data_008,
         .unk_01 = 0x2,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_204_north,
@@ -7647,7 +7648,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_205_SOUTH] = {
-        .areaDataArchiveID = 0x8,
+        .areaDataArchiveID = area_data_008,
         .unk_01 = 0x2,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_205_south,
@@ -7669,7 +7670,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_205_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_243,
         .scriptsArchiveID = scripts_route_205_house,
@@ -7691,7 +7692,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_205_NORTH] = {
-        .areaDataArchiveID = 0x8,
+        .areaDataArchiveID = area_data_008,
         .unk_01 = 0x2,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_205_north,
@@ -7713,7 +7714,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_206] = {
-        .areaDataArchiveID = 0x7,
+        .areaDataArchiveID = area_data_007,
         .unk_01 = 0x1,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_206,
@@ -7735,7 +7736,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_260,
         .scriptsArchiveID = scripts_route_206_cycling_road_south_gate,
@@ -7757,7 +7758,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GATE_BETWEEN_ETERNA_CITY_ROUTE_206] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0x1F,
         .mapMatrixID = map_matrix_157,
         .scriptsArchiveID = scripts_gate_between_eterna_city_route_206,
@@ -7779,7 +7780,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_207] = {
-        .areaDataArchiveID = 0x7,
+        .areaDataArchiveID = area_data_007,
         .unk_01 = 0x1,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_207,
@@ -7801,7 +7802,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_208] = {
-        .areaDataArchiveID = 0x9,
+        .areaDataArchiveID = area_data_009,
         .unk_01 = 0x3,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_208,
@@ -7823,7 +7824,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_208_HOUSE] = {
-        .areaDataArchiveID = 43,
+        .areaDataArchiveID = area_data_043,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_249,
         .scriptsArchiveID = scripts_route_208_house,
@@ -7845,7 +7846,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_209] = {
-        .areaDataArchiveID = 0xA,
+        .areaDataArchiveID = area_data_010,
         .unk_01 = 0x4,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_209,
@@ -7867,7 +7868,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_209_LOST_TOWER_1F] = {
-        .areaDataArchiveID = 42,
+        .areaDataArchiveID = area_data_042,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_212,
         .scriptsArchiveID = scripts_route_209_lost_tower_1f,
@@ -7889,7 +7890,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_209_LOST_TOWER_2F] = {
-        .areaDataArchiveID = 42,
+        .areaDataArchiveID = area_data_042,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_213,
         .scriptsArchiveID = scripts_empty,
@@ -7911,7 +7912,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_209_LOST_TOWER_3F] = {
-        .areaDataArchiveID = 42,
+        .areaDataArchiveID = area_data_042,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_214,
         .scriptsArchiveID = scripts_empty,
@@ -7933,7 +7934,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_209_LOST_TOWER_4F] = {
-        .areaDataArchiveID = 42,
+        .areaDataArchiveID = area_data_042,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_215,
         .scriptsArchiveID = scripts_empty,
@@ -7955,7 +7956,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_209_LOST_TOWER_5F] = {
-        .areaDataArchiveID = 42,
+        .areaDataArchiveID = area_data_042,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_216,
         .scriptsArchiveID = scripts_route_209_lost_tower_5f,
@@ -7977,7 +7978,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_210_SOUTH] = {
-        .areaDataArchiveID = 0xA,
+        .areaDataArchiveID = area_data_010,
         .unk_01 = 0x4,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_210_south,
@@ -7999,7 +8000,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_210_NORTH] = {
-        .areaDataArchiveID = 0xA,
+        .areaDataArchiveID = area_data_010,
         .unk_01 = 0x4,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_210_north,
@@ -8021,7 +8022,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_210_GRANDMA_WILMA_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_route_210_grandma_wilma_house,
@@ -8043,7 +8044,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_211_WEST] = {
-        .areaDataArchiveID = 0x8,
+        .areaDataArchiveID = area_data_008,
         .unk_01 = 0x2,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_211_west,
@@ -8065,7 +8066,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_211_EAST] = {
-        .areaDataArchiveID = 0xA,
+        .areaDataArchiveID = area_data_010,
         .unk_01 = 0x4,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_211_east,
@@ -8087,7 +8088,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_212_NORTH] = {
-        .areaDataArchiveID = 0xC,
+        .areaDataArchiveID = area_data_012,
         .unk_01 = 0x6,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_212_north,
@@ -8109,7 +8110,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_POKEMON_MANSION] = {
-        .areaDataArchiveID = 35,
+        .areaDataArchiveID = area_data_035,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_178,
         .scriptsArchiveID = scripts_pokemon_mansion,
@@ -8131,7 +8132,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_MANSION_MAIDS_ROOM] = {
-        .areaDataArchiveID = 35,
+        .areaDataArchiveID = area_data_035,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_179,
         .scriptsArchiveID = scripts_pokemon_mansion_maids_room,
@@ -8153,7 +8154,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_MANSION_OFFICE] = {
-        .areaDataArchiveID = 35,
+        .areaDataArchiveID = area_data_035,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_180,
         .scriptsArchiveID = scripts_pokemon_mansion_office,
@@ -8175,7 +8176,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_212_SOUTH] = {
-        .areaDataArchiveID = 0xC,
+        .areaDataArchiveID = area_data_012,
         .unk_01 = 0x6,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_212_south,
@@ -8197,7 +8198,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_212_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_244,
         .scriptsArchiveID = scripts_route_212_house,
@@ -8219,7 +8220,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_213] = {
-        .areaDataArchiveID = 0x12,
+        .areaDataArchiveID = area_data_018,
         .unk_01 = 0xC,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_213,
@@ -8241,7 +8242,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_213_GATE_TO_PASTORIA_CITY] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_258,
         .scriptsArchiveID = scripts_route_213_gate_to_pastoria_city,
@@ -8263,7 +8264,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FOOTSTEP_HOUSE] = {
-        .areaDataArchiveID = 43,
+        .areaDataArchiveID = area_data_043,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_247,
         .scriptsArchiveID = scripts_footstep_house,
@@ -8285,7 +8286,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GRAND_LAKE_ROUTE_213_LOBBY] = {
-        .areaDataArchiveID = 35,
+        .areaDataArchiveID = area_data_035,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_145,
         .scriptsArchiveID = scripts_grand_lake_route_213_lobby,
@@ -8307,7 +8308,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GRAND_LAKE_ROUTE_213_EAST_HOUSE] = {
-        .areaDataArchiveID = 35,
+        .areaDataArchiveID = area_data_035,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_146,
         .scriptsArchiveID = scripts_grand_lake_route_213_east_house,
@@ -8329,7 +8330,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE] = {
-        .areaDataArchiveID = 35,
+        .areaDataArchiveID = area_data_035,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_146,
         .scriptsArchiveID = scripts_grand_lake_route_213_northwest_house,
@@ -8351,7 +8352,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHEAST_HOUSE] = {
-        .areaDataArchiveID = 35,
+        .areaDataArchiveID = area_data_035,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_146,
         .scriptsArchiveID = scripts_grand_lake_route_213_northeast_house,
@@ -8373,7 +8374,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_214] = {
-        .areaDataArchiveID = 0x12,
+        .areaDataArchiveID = area_data_018,
         .unk_01 = 0xC,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_214,
@@ -8395,7 +8396,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_257,
         .scriptsArchiveID = scripts_route_214_gate_to_veilstone_city,
@@ -8417,7 +8418,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_215] = {
-        .areaDataArchiveID = 0xA,
+        .areaDataArchiveID = area_data_010,
         .unk_01 = 0x4,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_215,
@@ -8439,7 +8440,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_216] = {
-        .areaDataArchiveID = 0xE,
+        .areaDataArchiveID = area_data_014,
         .unk_01 = 0x8,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_216,
@@ -8461,7 +8462,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_216_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_243,
         .scriptsArchiveID = scripts_route_216_house,
@@ -8483,7 +8484,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_217] = {
-        .areaDataArchiveID = 0xE,
+        .areaDataArchiveID = area_data_014,
         .unk_01 = 0x8,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_217,
@@ -8505,7 +8506,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_217_WEST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_124,
         .scriptsArchiveID = scripts_route_217_west_house,
@@ -8527,7 +8528,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_217_NORTHEAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_124,
         .scriptsArchiveID = scripts_route_217_northeast_house,
@@ -8549,7 +8550,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_218] = {
-        .areaDataArchiveID = 0xF,
+        .areaDataArchiveID = area_data_015,
         .unk_01 = 0x9,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_218,
@@ -8571,7 +8572,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_258,
         .scriptsArchiveID = scripts_route_218_gate_to_jubilife_city,
@@ -8593,7 +8594,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_258,
         .scriptsArchiveID = scripts_route_218_gate_to_canalave_city,
@@ -8615,7 +8616,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_219] = {
-        .areaDataArchiveID = 0x6,
+        .areaDataArchiveID = area_data_006,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_219,
@@ -8637,7 +8638,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_221] = {
-        .areaDataArchiveID = 0x6,
+        .areaDataArchiveID = area_data_006,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_221,
@@ -8659,7 +8660,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_PAL_PARK_LOBBY] = {
-        .areaDataArchiveID = 39,
+        .areaDataArchiveID = area_data_039,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_201,
         .scriptsArchiveID = scripts_pal_park_lobby,
@@ -8681,7 +8682,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_221_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_244,
         .scriptsArchiveID = scripts_route_221_house,
@@ -8703,7 +8704,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_222] = {
-        .areaDataArchiveID = 0x12,
+        .areaDataArchiveID = area_data_018,
         .unk_01 = 0xC,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_222,
@@ -8725,7 +8726,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_222_WEST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_route_222_west_house,
@@ -8747,7 +8748,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_222_EAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_route_222_east_house,
@@ -8769,7 +8770,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_222_GATE_TO_SUNYSHORE_CITY] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_258,
         .scriptsArchiveID = scripts_route_222_gate_to_sunyshore_city,
@@ -8791,7 +8792,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_224] = {
-        .areaDataArchiveID = 0xD,
+        .areaDataArchiveID = area_data_013,
         .unk_01 = 0xA,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_224,
@@ -8813,7 +8814,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_225] = {
-        .areaDataArchiveID = 0x11,
+        .areaDataArchiveID = area_data_017,
         .unk_01 = 11,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_225,
@@ -8835,7 +8836,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_UNKNOWN_401] = {
-        .areaDataArchiveID = 0x11,
+        .areaDataArchiveID = area_data_017,
         .unk_01 = 11,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -8857,7 +8858,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_402] = {
-        .areaDataArchiveID = 0x11,
+        .areaDataArchiveID = area_data_017,
         .unk_01 = 11,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -8879,7 +8880,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_227] = {
-        .areaDataArchiveID = 0x11,
+        .areaDataArchiveID = area_data_017,
         .unk_01 = 11,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_227,
@@ -8901,7 +8902,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_UNKNOWN_404] = {
-        .areaDataArchiveID = 0x11,
+        .areaDataArchiveID = area_data_017,
         .unk_01 = 11,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -8923,7 +8924,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_405] = {
-        .areaDataArchiveID = 0x11,
+        .areaDataArchiveID = area_data_017,
         .unk_01 = 11,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -8945,7 +8946,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_228] = {
-        .areaDataArchiveID = 0x13,
+        .areaDataArchiveID = area_data_019,
         .unk_01 = 0xD,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_228,
@@ -8967,7 +8968,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_229] = {
-        .areaDataArchiveID = 0x13,
+        .areaDataArchiveID = area_data_019,
         .unk_01 = 0xD,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_229,
@@ -8989,7 +8990,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_UNKNOWN_408] = {
-        .areaDataArchiveID = 0x13,
+        .areaDataArchiveID = area_data_019,
         .unk_01 = 0xD,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -9011,7 +9012,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_409] = {
-        .areaDataArchiveID = 0x13,
+        .areaDataArchiveID = area_data_019,
         .unk_01 = 0xD,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -9033,7 +9034,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_RECORD_MIXING_ROOM] = {
-        .areaDataArchiveID = 0x5,
+        .areaDataArchiveID = area_data_005,
         .unk_01 = 0xE,
         .mapMatrixID = map_matrix_119,
         .scriptsArchiveID = scripts_empty,
@@ -9055,7 +9056,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TWINLEAF_TOWN] = {
-        .areaDataArchiveID = 0x6,
+        .areaDataArchiveID = area_data_006,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_twinleaf_town,
@@ -9077,7 +9078,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_126,
         .scriptsArchiveID = scripts_twinleaf_town_rival_house_1f,
@@ -9099,7 +9100,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_2F] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_127,
         .scriptsArchiveID = scripts_twinleaf_town_rival_house_2f,
@@ -9121,7 +9122,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_128,
         .scriptsArchiveID = scripts_twinleaf_town_player_house_1f,
@@ -9143,7 +9144,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_2F] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_129,
         .scriptsArchiveID = scripts_twinleaf_town_player_house_2f,
@@ -9165,7 +9166,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TWINLEAF_TOWN_NORTHEAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_twinleaf_town_northeast_house,
@@ -9187,7 +9188,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_twinleaf_town_southwest_house,
@@ -9209,7 +9210,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SANDGEM_TOWN] = {
-        .areaDataArchiveID = 0x6,
+        .areaDataArchiveID = area_data_006,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_sandgem_town,
@@ -9231,7 +9232,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_SANDGEM_TOWN_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_sandgem_town_mart,
@@ -9253,7 +9254,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SANDGEM_TOWN_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_sandgem_town_pokecenter_1f,
@@ -9275,7 +9276,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SANDGEM_TOWN_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_sandgem_town_pokecenter_2f,
@@ -9297,7 +9298,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_160,
         .scriptsArchiveID = scripts_sandgem_town_pokemon_research_lab,
@@ -9319,7 +9320,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SANDGEM_TOWN_COUNTERPART_HOUSE_1F] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_130,
         .scriptsArchiveID = scripts_sandgem_town_counterpart_house_1f,
@@ -9341,7 +9342,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SANDGEM_TOWN_COUNTERPART_HOUSE_2F] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_131,
         .scriptsArchiveID = scripts_sandgem_town_counterpart_house_2f,
@@ -9363,7 +9364,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SANDGEM_TOWN_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_sandgem_town_house,
@@ -9385,7 +9386,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FLOAROMA_TOWN] = {
-        .areaDataArchiveID = 0x8,
+        .areaDataArchiveID = area_data_008,
         .unk_01 = 0x2,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_floaroma_town,
@@ -9407,7 +9408,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_FLOAROMA_TOWN_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_floaroma_town_mart,
@@ -9429,7 +9430,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_floaroma_town_pokecenter_1f,
@@ -9451,7 +9452,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FLOAROMA_TOWN_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_floaroma_town_pokecenter_2f,
@@ -9473,7 +9474,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FLOWER_SHOP] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_236,
         .scriptsArchiveID = scripts_flower_shop,
@@ -9495,7 +9496,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FLOAROMA_TOWN_SOUTHEAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_floaroma_town_southeast_house,
@@ -9517,7 +9518,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_floaroma_town_middle_house,
@@ -9539,7 +9540,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_TOWN] = {
-        .areaDataArchiveID = 0xA,
+        .areaDataArchiveID = area_data_010,
         .unk_01 = 0x4,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_solaceon_town,
@@ -9561,7 +9562,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_SOLACEON_TOWN_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_solaceon_town_mart,
@@ -9583,7 +9584,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_solaceon_town_pokecenter_1f,
@@ -9605,7 +9606,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_TOWN_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_solaceon_town_pokecenter_2f,
@@ -9627,7 +9628,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_DAY_CARE] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_137,
         .scriptsArchiveID = scripts_pokemon_day_care,
@@ -9649,7 +9650,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_TOWN_NORTHEAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_solaceon_town_northeast_house,
@@ -9671,7 +9672,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_TOWN_POKEMON_NEWS_PRESS] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_244,
         .scriptsArchiveID = scripts_solaceon_town_pokemon_news_press,
@@ -9693,7 +9694,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_TOWN_NORTH_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_solaceon_town_north_house,
@@ -9715,7 +9716,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_TOWN_EAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_solaceon_town_east_house,
@@ -9737,7 +9738,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CELESTIC_TOWN] = {
-        .areaDataArchiveID = 0xA,
+        .areaDataArchiveID = area_data_010,
         .unk_01 = 0x4,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_celestic_town,
@@ -9759,7 +9760,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_celestic_town_pokecenter_1f,
@@ -9781,7 +9782,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CELESTIC_TOWN_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_celestic_town_pokecenter_2f,
@@ -9803,7 +9804,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CELESTIC_TOWN_NORTH_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_168,
         .scriptsArchiveID = scripts_celestic_town_north_house,
@@ -9825,7 +9826,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_170,
         .scriptsArchiveID = scripts_celestic_town_northwest_house,
@@ -9847,7 +9848,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CELESTIC_TOWN_NORTHEAST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_124,
         .scriptsArchiveID = scripts_celestic_town_northeast_house,
@@ -9869,7 +9870,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CELESTIC_TOWN_SOUTHWEST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_124,
         .scriptsArchiveID = scripts_celestic_town_southwest_house,
@@ -9891,7 +9892,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CELESTIC_TOWN_CAVE] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_169,
         .scriptsArchiveID = scripts_celestic_town_cave,
@@ -9913,7 +9914,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SURVIVAL_AREA] = {
-        .areaDataArchiveID = 0x11,
+        .areaDataArchiveID = area_data_017,
         .unk_01 = 11,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_survival_area,
@@ -9935,7 +9936,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_SURVIVAL_AREA_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_survival_area_mart,
@@ -9957,7 +9958,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SURVIVAL_AREA_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_survival_area_pokecenter_1f,
@@ -9979,7 +9980,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SURVIVAL_AREA_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_survival_area_pokecenter_2f,
@@ -10001,7 +10002,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLEGROUND] = {
-        .areaDataArchiveID = 52,
+        .areaDataArchiveID = area_data_052,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_265,
         .scriptsArchiveID = scripts_battleground,
@@ -10023,7 +10024,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_125,
         .scriptsArchiveID = scripts_survival_area_south_house,
@@ -10045,7 +10046,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SURVIVAL_AREA_NORTH_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_244,
         .scriptsArchiveID = scripts_survival_area_north_house,
@@ -10067,7 +10068,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_RESORT_AREA] = {
-        .areaDataArchiveID = 0x13,
+        .areaDataArchiveID = area_data_019,
         .unk_01 = 0xD,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_resort_area,
@@ -10089,7 +10090,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_RESORT_AREA_MART] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_122,
         .scriptsArchiveID = scripts_resort_area_mart,
@@ -10111,7 +10112,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_RESORT_AREA_POKECENTER_1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_116,
         .scriptsArchiveID = scripts_resort_area_pokecenter_1f,
@@ -10133,7 +10134,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_RESORT_AREA_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_resort_area_pokecenter_2f,
@@ -10155,7 +10156,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_1F] = {
-        .areaDataArchiveID = 38,
+        .areaDataArchiveID = area_data_038,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_199,
         .scriptsArchiveID = scripts_resort_area_ribbon_syndicate_1f,
@@ -10177,7 +10178,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_2F] = {
-        .areaDataArchiveID = 38,
+        .areaDataArchiveID = area_data_038,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_200,
         .scriptsArchiveID = scripts_resort_area_ribbon_syndicate_2f,
@@ -10199,7 +10200,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_ELEVATOR] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_207,
         .scriptsArchiveID = scripts_resort_area_ribbon_syndicate_elevator,
@@ -10221,7 +10222,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VILLA] = {
-        .areaDataArchiveID = 51,
+        .areaDataArchiveID = area_data_051,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_264,
         .scriptsArchiveID = scripts_villa,
@@ -10243,7 +10244,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_RESORT_AREA_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_resort_area_house,
@@ -10265,7 +10266,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNION_ROOM] = {
-        .areaDataArchiveID = 0x5,
+        .areaDataArchiveID = area_data_005,
         .unk_01 = 0xE,
         .mapMatrixID = map_matrix_120,
         .scriptsArchiveID = scripts_union_room,
@@ -10287,7 +10288,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_220] = {
-        .areaDataArchiveID = 0x6,
+        .areaDataArchiveID = area_data_006,
         .unk_01 = 0x0,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -10309,7 +10310,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_223] = {
-        .areaDataArchiveID = 0xD,
+        .areaDataArchiveID = area_data_013,
         .unk_01 = 0x7,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -10331,7 +10332,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_ROUTE_226] = {
-        .areaDataArchiveID = 0x11,
+        .areaDataArchiveID = area_data_017,
         .unk_01 = 11,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_226,
@@ -10353,7 +10354,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_UNKNOWN_470] = {
-        .areaDataArchiveID = 0x13,
+        .areaDataArchiveID = area_data_019,
         .unk_01 = 0xD,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -10375,7 +10376,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_230] = {
-        .areaDataArchiveID = 0x13,
+        .areaDataArchiveID = area_data_019,
         .unk_01 = 0xD,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_route_230,
@@ -10397,7 +10398,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_SEABREAK_PATH] = {
-        .areaDataArchiveID = 0xD,
+        .areaDataArchiveID = area_data_013,
         .unk_01 = 0xD,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -10419,7 +10420,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_UNKNOWN_473] = {
-        .areaDataArchiveID = 0x13,
+        .areaDataArchiveID = area_data_019,
         .unk_01 = 0xD,
         .mapMatrixID = map_matrix_000,
         .scriptsArchiveID = scripts_empty,
@@ -10441,7 +10442,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_jubilife_city_pokecenter_b1f,
@@ -10463,7 +10464,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_CITY_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_canalave_city_pokecenter_b1f,
@@ -10485,7 +10486,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_OREBURGH_CITY_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_oreburgh_city_pokecenter_b1f,
@@ -10507,7 +10508,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ETERNA_CITY_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_eterna_city_pokecenter_b1f,
@@ -10529,7 +10530,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HEARTHOME_CITY_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_hearthome_city_pokecenter_b1f,
@@ -10551,7 +10552,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_PASTORIA_CITY_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_pastoria_city_pokecenter_b1f,
@@ -10573,7 +10574,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_CITY_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_veilstone_city_pokecenter_b1f,
@@ -10595,7 +10596,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SUNYSHORE_CITY_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_sunyshore_city_pokecenter_b1f,
@@ -10617,7 +10618,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SNOWPOINT_CITY_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_snowpoint_city_pokecenter_b1f,
@@ -10639,7 +10640,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_pokemon_league_south_pokecenter_b1f,
@@ -10661,7 +10662,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FIGHT_AREA_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_fight_area_pokecenter_b1f,
@@ -10683,7 +10684,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SANDGEM_TOWN_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_sandgem_town_pokecenter_b1f,
@@ -10705,7 +10706,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_FLOAROMA_TOWN_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_floaroma_town_pokecenter_b1f,
@@ -10727,7 +10728,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_TOWN_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_solaceon_town_pokecenter_b1f,
@@ -10749,7 +10750,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CELESTIC_TOWN_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_celestic_town_pokecenter_b1f,
@@ -10771,7 +10772,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SURVIVAL_AREA_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_survival_area_pokecenter_b1f,
@@ -10793,7 +10794,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_RESORT_AREA_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_resort_area_pokecenter_b1f,
@@ -10815,7 +10816,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CANALAVE_CITY_WEST_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_124,
         .scriptsArchiveID = scripts_canalave_city_west_house,
@@ -10837,7 +10838,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CAFE] = {
-        .areaDataArchiveID = 35,
+        .areaDataArchiveID = area_data_035,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_171,
         .scriptsArchiveID = scripts_cafe,
@@ -10859,7 +10860,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_TOWER_BATTLE_SALON] = {
-        .areaDataArchiveID = 33,
+        .areaDataArchiveID = area_data_033,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_196,
         .scriptsArchiveID = scripts_battle_tower_battle_salon,
@@ -10881,7 +10882,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GALACTIC_HQ_CONTROL_ROOM] = {
-        .areaDataArchiveID = 68,
+        .areaDataArchiveID = area_data_068,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_238,
         .scriptsArchiveID = scripts_galactic_hq_control_room,
@@ -10903,7 +10904,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_2F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_117,
         .scriptsArchiveID = scripts_pokemon_league_north_pokecenter_2f,
@@ -10925,7 +10926,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_B1F] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_235,
         .scriptsArchiveID = scripts_pokemon_league_north_pokecenter_b1f,
@@ -10947,7 +10948,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GALACTIC_HQ_LABORATORY] = {
-        .areaDataArchiveID = 68,
+        .areaDataArchiveID = area_data_068,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_239,
         .scriptsArchiveID = scripts_galactic_hq_laboratory,
@@ -10969,7 +10970,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_225_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_123,
         .scriptsArchiveID = scripts_route_225_house,
@@ -10991,7 +10992,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_226_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_244,
         .scriptsArchiveID = scripts_route_226_house,
@@ -11013,7 +11014,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_227_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_243,
         .scriptsArchiveID = scripts_route_227_house,
@@ -11035,7 +11036,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_228_GATE_TO_ROUTE_226] = {
-        .areaDataArchiveID = 50,
+        .areaDataArchiveID = area_data_050,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_258,
         .scriptsArchiveID = scripts_route_228_gate_to_route_226,
@@ -11057,7 +11058,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_228_NORTH_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_244,
         .scriptsArchiveID = scripts_route_228_north_house,
@@ -11079,7 +11080,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_228_SOUTH_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_125,
         .scriptsArchiveID = scripts_route_228_south_house,
@@ -11101,7 +11102,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GREAT_MARSH_1] = {
-        .areaDataArchiveID = 63,
+        .areaDataArchiveID = area_data_063,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_240,
         .scriptsArchiveID = scripts_great_marsh_1,
@@ -11123,7 +11124,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GREAT_MARSH_2] = {
-        .areaDataArchiveID = 63,
+        .areaDataArchiveID = area_data_063,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_240,
         .scriptsArchiveID = scripts_great_marsh_2,
@@ -11145,7 +11146,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GREAT_MARSH_3] = {
-        .areaDataArchiveID = 63,
+        .areaDataArchiveID = area_data_063,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_240,
         .scriptsArchiveID = scripts_great_marsh_3,
@@ -11167,7 +11168,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GREAT_MARSH_4] = {
-        .areaDataArchiveID = 63,
+        .areaDataArchiveID = area_data_063,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_240,
         .scriptsArchiveID = scripts_great_marsh_4,
@@ -11189,7 +11190,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GREAT_MARSH_5] = {
-        .areaDataArchiveID = 63,
+        .areaDataArchiveID = area_data_063,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_240,
         .scriptsArchiveID = scripts_great_marsh_5,
@@ -11211,7 +11212,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GREAT_MARSH_6] = {
-        .areaDataArchiveID = 63,
+        .areaDataArchiveID = area_data_063,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_240,
         .scriptsArchiveID = scripts_great_marsh_6,
@@ -11233,7 +11234,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_HALL_OF_ORIGIN] = {
-        .areaDataArchiveID = 0x3C,
+        .areaDataArchiveID = area_data_060,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_241,
         .scriptsArchiveID = scripts_hall_of_origin,
@@ -11255,7 +11256,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_511] = {
-        .areaDataArchiveID = 0x3C,
+        .areaDataArchiveID = area_data_060,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_242,
         .scriptsArchiveID = scripts_empty,
@@ -11277,7 +11278,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_RUIN_MANIAC_CAVE_LONG] = {
-        .areaDataArchiveID = 53,
+        .areaDataArchiveID = area_data_053,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_077,
         .scriptsArchiveID = scripts_ruin_maniac_cave_long,
@@ -11299,7 +11300,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MANIAC_TUNNEL] = {
-        .areaDataArchiveID = 53,
+        .areaDataArchiveID = area_data_053,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_078,
         .scriptsArchiveID = scripts_maniac_tunnel,
@@ -11321,7 +11322,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_IRON_ISLAND_HOUSE] = {
-        .areaDataArchiveID = 0x14,
+        .areaDataArchiveID = area_data_020,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_243,
         .scriptsArchiveID = scripts_iron_island_house,
@@ -11343,7 +11344,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_031,
         .scriptsArchiveID = scripts_empty,
@@ -11365,7 +11366,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VISTA_LIGHTHOUSE_ELEVATOR] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_207,
         .scriptsArchiveID = scripts_vista_lighthouse_elevator,
@@ -11387,7 +11388,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_JUBILIFE_CITY_SOUTHWEST_HOUSE_2F] = {
-        .areaDataArchiveID = 0x1F,
+        .areaDataArchiveID = area_data_031,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_208,
         .scriptsArchiveID = scripts_jubilife_city_southwest_house_2f,
@@ -11409,7 +11410,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_4] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_turnback_cave_pillar_1_room_4,
@@ -11431,7 +11432,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_5] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_turnback_cave_pillar_1_room_5,
@@ -11453,7 +11454,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_6] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_turnback_cave_pillar_1_room_6,
@@ -11475,7 +11476,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_1] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_turnback_cave_pillar_2_room_1,
@@ -11497,7 +11498,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_2] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_turnback_cave_pillar_2_room_2,
@@ -11519,7 +11520,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_3] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_turnback_cave_pillar_2_room_3,
@@ -11541,7 +11542,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_4] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_turnback_cave_pillar_2_room_4,
@@ -11563,7 +11564,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_5] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_turnback_cave_pillar_2_room_5,
@@ -11585,7 +11586,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_6] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_turnback_cave_pillar_2_room_6,
@@ -11607,7 +11608,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_1] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_turnback_cave_pillar_3_room_1,
@@ -11629,7 +11630,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_2] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_turnback_cave_pillar_3_room_2,
@@ -11651,7 +11652,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_3] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_turnback_cave_pillar_3_room_3,
@@ -11673,7 +11674,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_4] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_turnback_cave_pillar_3_room_4,
@@ -11695,7 +11696,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_5] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_turnback_cave_pillar_3_room_5,
@@ -11717,7 +11718,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_6] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_turnback_cave_pillar_3_room_6,
@@ -11739,7 +11740,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_533] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_empty,
@@ -11761,7 +11762,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_534] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_empty,
@@ -11783,7 +11784,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_535] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_empty,
@@ -11805,7 +11806,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_536] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_empty,
@@ -11827,7 +11828,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_537] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_empty,
@@ -11849,7 +11850,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_538] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_empty,
@@ -11871,7 +11872,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_539] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_empty,
@@ -11893,7 +11894,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_540] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_empty,
@@ -11915,7 +11916,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_541] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_empty,
@@ -11937,7 +11938,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_542] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_empty,
@@ -11959,7 +11960,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_543] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_empty,
@@ -11981,7 +11982,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_544] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_empty,
@@ -12003,7 +12004,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_545] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_empty,
@@ -12025,7 +12026,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_546] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_empty,
@@ -12047,7 +12048,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_547] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_empty,
@@ -12069,7 +12070,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_548] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_empty,
@@ -12091,7 +12092,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_549] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_empty,
@@ -12113,7 +12114,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_550] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_empty,
@@ -12135,7 +12136,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_551] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_empty,
@@ -12157,7 +12158,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_552] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_064,
         .scriptsArchiveID = scripts_empty,
@@ -12179,7 +12180,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_553] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_empty,
@@ -12201,7 +12202,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_554] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_065,
         .scriptsArchiveID = scripts_empty,
@@ -12223,7 +12224,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_555] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_empty,
@@ -12245,7 +12246,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_556] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_empty,
@@ -12267,7 +12268,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_557] = {
-        .areaDataArchiveID = 56,
+        .areaDataArchiveID = area_data_056,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_066,
         .scriptsArchiveID = scripts_empty,
@@ -12289,7 +12290,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_CONTEST_HALL_STAGE_NO_CONTEST] = {
-        .areaDataArchiveID = 32,
+        .areaDataArchiveID = area_data_032,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_166,
         .scriptsArchiveID = scripts_contest_hall_stage_no_contest,
@@ -12311,7 +12312,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_FRONTIER] = {
-        .areaDataArchiveID = 73,
+        .areaDataArchiveID = area_data_073,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_256,
         .scriptsArchiveID = scripts_battle_frontier,
@@ -12333,7 +12334,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = TRUE,
     },
     [MAP_HEADER_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA] = {
-        .areaDataArchiveID = 44,
+        .areaDataArchiveID = area_data_044,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_250,
         .scriptsArchiveID = scripts_battle_frontier_gate_to_fight_area,
@@ -12355,7 +12356,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_561] = {
-        .areaDataArchiveID = 45,
+        .areaDataArchiveID = area_data_045,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_251,
         .scriptsArchiveID = scripts_empty,
@@ -12377,7 +12378,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_FACTORY] = {
-        .areaDataArchiveID = 46,
+        .areaDataArchiveID = area_data_046,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_252,
         .scriptsArchiveID = scripts_battle_factory,
@@ -12399,7 +12400,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_HALL] = {
-        .areaDataArchiveID = 47,
+        .areaDataArchiveID = area_data_047,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_253,
         .scriptsArchiveID = scripts_battle_hall,
@@ -12421,7 +12422,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_CASTLE] = {
-        .areaDataArchiveID = 48,
+        .areaDataArchiveID = area_data_048,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_254,
         .scriptsArchiveID = scripts_battle_castle,
@@ -12443,7 +12444,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_BATTLE_ARCADE] = {
-        .areaDataArchiveID = 49,
+        .areaDataArchiveID = area_data_049,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_255,
         .scriptsArchiveID = scripts_battle_arcade,
@@ -12465,7 +12466,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_VEILSTONE_STORE_B1F] = {
-        .areaDataArchiveID = 0x16,
+        .areaDataArchiveID = area_data_022,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_246,
         .scriptsArchiveID = scripts_veilstone_store_b1f,
@@ -12487,7 +12488,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GLOBAL_TERMINAL_2F] = {
-        .areaDataArchiveID = 40,
+        .areaDataArchiveID = area_data_040,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_262,
         .scriptsArchiveID = scripts_global_terminal_2f,
@@ -12509,7 +12510,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GLOBAL_TERMINAL_3F] = {
-        .areaDataArchiveID = 40,
+        .areaDataArchiveID = area_data_040,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_263,
         .scriptsArchiveID = scripts_global_terminal_3f,
@@ -12531,7 +12532,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_GALACTIC_HQ_HALL] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_261,
         .scriptsArchiveID = scripts_galactic_hq_hall,
@@ -12553,7 +12554,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_570] = {
-        .areaDataArchiveID = 0x4A,
+        .areaDataArchiveID = area_data_074,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_268,
         .scriptsArchiveID = scripts_empty,
@@ -12575,7 +12576,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROTOMS_ROOM] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_267,
         .scriptsArchiveID = scripts_rotoms_room,
@@ -12597,7 +12598,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_572] = {
-        .areaDataArchiveID = 58,
+        .areaDataArchiveID = area_data_058,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_266,
         .scriptsArchiveID = scripts_empty,
@@ -12619,7 +12620,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_DISTORTION_WORLD_1F] = {
-        .areaDataArchiveID = 0x4A,
+        .areaDataArchiveID = area_data_074,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_269,
         .scriptsArchiveID = scripts_distortion_world_1f,
@@ -12641,7 +12642,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_DISTORTION_WORLD_B1F] = {
-        .areaDataArchiveID = 0x4A,
+        .areaDataArchiveID = area_data_074,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_270,
         .scriptsArchiveID = scripts_distortion_world_b1f,
@@ -12663,7 +12664,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_DISTORTION_WORLD_B2F] = {
-        .areaDataArchiveID = 0x4A,
+        .areaDataArchiveID = area_data_074,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_271,
         .scriptsArchiveID = scripts_distortion_world_b2f,
@@ -12685,7 +12686,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_DISTORTION_WORLD_B3F] = {
-        .areaDataArchiveID = 0x4A,
+        .areaDataArchiveID = area_data_074,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_272,
         .scriptsArchiveID = scripts_distortion_world_b3f,
@@ -12707,7 +12708,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_DISTORTION_WORLD_B4F] = {
-        .areaDataArchiveID = 0x4A,
+        .areaDataArchiveID = area_data_074,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_273,
         .scriptsArchiveID = scripts_distortion_world_b4f,
@@ -12729,7 +12730,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_UNKNOWN_578] = {
-        .areaDataArchiveID = 0x4A,
+        .areaDataArchiveID = area_data_074,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_274,
         .scriptsArchiveID = scripts_map_header_unknown_578,
@@ -12751,7 +12752,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_DISTORTION_WORLD_B5F] = {
-        .areaDataArchiveID = 0x4A,
+        .areaDataArchiveID = area_data_074,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_275,
         .scriptsArchiveID = scripts_distortion_world_b5f,
@@ -12773,7 +12774,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_DISTORTION_WORLD_B6F] = {
-        .areaDataArchiveID = 0x4A,
+        .areaDataArchiveID = area_data_074,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_276,
         .scriptsArchiveID = scripts_distortion_world_b6f,
@@ -12795,7 +12796,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_DISTORTION_WORLD_B7F] = {
-        .areaDataArchiveID = 0x4A,
+        .areaDataArchiveID = area_data_074,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_277,
         .scriptsArchiveID = scripts_distortion_world_b7f,
@@ -12817,7 +12818,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM] = {
-        .areaDataArchiveID = 0x4A,
+        .areaDataArchiveID = area_data_074,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_278,
         .scriptsArchiveID = scripts_distortion_world_giratina_room,
@@ -12839,7 +12840,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM] = {
-        .areaDataArchiveID = 0x4A,
+        .areaDataArchiveID = area_data_074,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_279,
         .scriptsArchiveID = scripts_distortion_world_turnback_cave_room,
@@ -12861,7 +12862,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SPEAR_PILLAR_DIALGA] = {
-        .areaDataArchiveID = 0x3C,
+        .areaDataArchiveID = area_data_060,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_280,
         .scriptsArchiveID = scripts_spear_pillar_dialga,
@@ -12883,7 +12884,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_SPEAR_PILLAR_PALKIA] = {
-        .areaDataArchiveID = 0x3C,
+        .areaDataArchiveID = area_data_060,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_281,
         .scriptsArchiveID = scripts_spear_pillar_palkia,
@@ -12905,7 +12906,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_WIFI_PLAZA_ENTRANCE] = {
-        .areaDataArchiveID = 0x15,
+        .areaDataArchiveID = area_data_021,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_282,
         .scriptsArchiveID = scripts_wifi_plaza_entrance,
@@ -12927,7 +12928,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_IRON_ISLAND_IRON_RUINS] = {
-        .areaDataArchiveID = 0x48,
+        .areaDataArchiveID = area_data_072,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_283,
         .scriptsArchiveID = scripts_empty,
@@ -12949,7 +12950,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_IRON_RUINS] = {
-        .areaDataArchiveID = 0x48,
+        .areaDataArchiveID = area_data_072,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_284,
         .scriptsArchiveID = scripts_iron_ruins,
@@ -12971,7 +12972,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_MT_CORONET_ICEBERG_RUINS] = {
-        .areaDataArchiveID = 0x45,
+        .areaDataArchiveID = area_data_069,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_285,
         .scriptsArchiveID = scripts_empty,
@@ -12993,7 +12994,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ICEBERG_RUINS] = {
-        .areaDataArchiveID = 0x45,
+        .areaDataArchiveID = area_data_069,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_286,
         .scriptsArchiveID = scripts_iceberg_ruins,
@@ -13015,7 +13016,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROUTE_228_ROCK_PEAK_RUINS] = {
-        .areaDataArchiveID = 0x39,
+        .areaDataArchiveID = area_data_057,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_287,
         .scriptsArchiveID = scripts_empty,
@@ -13037,7 +13038,7 @@ static const MapHeader sMapHeaders[] = {
         .isFlyAllowed = FALSE,
     },
     [MAP_HEADER_ROCK_PEAK_RUINS] = {
-        .areaDataArchiveID = 0x39,
+        .areaDataArchiveID = area_data_057,
         .unk_01 = 0xF,
         .mapMatrixID = map_matrix_288,
         .scriptsArchiveID = scripts_rock_peak_ruins,
