@@ -1,0 +1,25 @@
+{
+    "mapPropModels": [
+        "MAP_PROP_MODEL_004",
+        "MAP_PROP_MODEL_005",
+        "MAP_PROP_MODEL_008",
+        "MAP_PROP_MODEL_039",
+        "MAP_PROP_MODEL_040",
+        "MAP_PROP_MODEL_HONEY_TREE",
+        "MAP_PROP_MODEL_POKECENTER_DOOR",
+        "MAP_PROP_MODEL_188",
+        "MAP_PROP_MODEL_189",
+        "MAP_PROP_MODEL_190",
+        "MAP_PROP_MODEL_191",
+        "MAP_PROP_MODEL_264",
+        "MAP_PROP_MODEL_193",
+        "MAP_PROP_MODEL_194",
+        "MAP_PROP_MODEL_GYM_DOOR",
+        "MAP_PROP_MODEL_306",
+        "MAP_PROP_MODEL_VEILSTONE_DPT_STORE_DOOR",
+        "MAP_PROP_MODEL_443",
+        "MAP_PROP_MODEL_BROWN_WOODEN_DOOR",
+        "MAP_PROP_MODEL_BLUE_WOODEN_DOOR",
+        "MAP_PROP_MODEL_BLUE_DOOR"
+    ]
+}

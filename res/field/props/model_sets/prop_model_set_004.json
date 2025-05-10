@@ -1,0 +1,32 @@
+{
+    "mapPropModels": [
+        "MAP_PROP_MODEL_004",
+        "MAP_PROP_MODEL_005",
+        "MAP_PROP_MODEL_008",
+        "MAP_PROP_MODEL_039",
+        "MAP_PROP_MODEL_040",
+        "MAP_PROP_MODEL_HONEY_TREE",
+        "MAP_PROP_MODEL_037",
+        "MAP_PROP_MODEL_038",
+        "MAP_PROP_MODEL_056",
+        "MAP_PROP_MODEL_057",
+        "MAP_PROP_MODEL_020",
+        "MAP_PROP_MODEL_245",
+        "MAP_PROP_MODEL_061",
+        "MAP_PROP_MODEL_062",
+        "MAP_PROP_MODEL_063",
+        "MAP_PROP_MODEL_064",
+        "MAP_PROP_MODEL_065",
+        "MAP_PROP_MODEL_146",
+        "MAP_PROP_MODEL_148",
+        "MAP_PROP_MODEL_265",
+        "MAP_PROP_MODEL_POKECENTER_DOOR",
+        "MAP_PROP_MODEL_GYM_DOOR",
+        "MAP_PROP_MODEL_YELLOW_WOODEN_DOOR",
+        "MAP_PROP_MODEL_439",
+        "MAP_PROP_MODEL_440",
+        "MAP_PROP_MODEL_BLUE_WOODEN_DOOR",
+        "MAP_PROP_MODEL_IRON_DOOR",
+        "MAP_PROP_MODEL_JUBILIFE_CITY_BUILDING_DOOR"
+    ]
+}
