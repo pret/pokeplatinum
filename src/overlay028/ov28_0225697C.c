@@ -3,12 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay025/ov25_02254560.h"
-#include "overlay025/ov25_02255090.h"
-#include "overlay025/poketch_system.h"
 #include "overlay028/ov28_02256E9C.h"
 #include "overlay028/struct_ov28_0225697C_1.h"
 #include "overlay028/struct_ov28_0225697C_decl.h"
+#include "poketch/poketch_graphics.h"
+#include "poketch/poketch_system.h"
+#include "poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "graphics.h"
@@ -544,7 +544,7 @@ static void ov28_02256A08(SysTask *param0, void *param1)
     Graphics_LoadTilemapToBgLayer(12, 17, v3->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
     ov28_02256AA4(v3);
-    Poketch_LoadActivePalette(0, 0);
+    PoketchGraphics_LoadActivePalette(0, 0);
 
     Bg_CopyTilemapBufferToVRAM(v3->unk_04, 6);
 

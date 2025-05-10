@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_POKETCH_APP_PEDOMETER_H
 #define POKEPLATINUM_POKETCH_APP_PEDOMETER_H
 
+#include "bg_window.h"
+
 typedef struct {
     u32 unk_00;
     u32 unk_04;
