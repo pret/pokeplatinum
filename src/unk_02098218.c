@@ -221,7 +221,7 @@ static BOOL sub_0209843C(FieldTask *param0)
         }
 
         {
-            sub_0202F180(FieldSystem_GetSaveData(fieldSystem), v0->unk_0C.unk_00);
+            SaveData_UpdateCatchRecords(FieldSystem_GetSaveData(fieldSystem), v0->unk_0C.unk_00);
         }
 
         if (v0->unk_04 == 1) {

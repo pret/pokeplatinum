@@ -31,7 +31,7 @@
 #include "unk_0200F174.h"
 #include "unk_0202D05C.h"
 
-#include "res/text/bank/common_strings_2.h"
+#include "res/text/bank/menu_entries.h"
 #include "res/text/bank/unk_0543.h"
 
 #define MENU_LOOPAROUND_MIN_OPTIONS 4
@@ -85,7 +85,7 @@ static void FieldMenuManager_Init(FieldSystem *fieldSystem, FieldMenuManager *me
     int i;
 
     if (messageLoader == NULL) {
-        menuManager->messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS_2, HEAP_ID_FIELD);
+        menuManager->messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD);
         menuManager->freeMsgLoaderOnDelete = TRUE;
     } else {
         menuManager->messageLoader = messageLoader;
@@ -754,7 +754,7 @@ void FieldMenu_PrintCoinsToWindow(FieldSystem *fieldSystem, Window *window)
 {
     Window_FillTilemap(window, 15);
 
-    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS_2, HEAP_ID_FIELD);
+    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD);
     StringTemplate *stringTemplate = StringTemplate_Default(HEAP_ID_FIELD);
     Strbuf *strbuf = Strbuf_Init(16, HEAP_ID_FIELD);
     Strbuf *fmtString = MessageLoader_GetNewStrbuf(messageLoader, pl_msg_00000361_00197);
@@ -790,7 +790,7 @@ void FieldMenu_PrintBPToWindow(FieldSystem *fieldSystem, Window *window)
 {
     Window_FillTilemap(window, 15);
 
-    MessageLoader *messageLaoder = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS_2, HEAP_ID_FIELD);
+    MessageLoader *messageLaoder = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD);
     StringTemplate *stringTemplate = StringTemplate_Default(HEAP_ID_FIELD);
     Strbuf *strbuf = Strbuf_Init(16, HEAP_ID_FIELD);
     Strbuf *fmtString = MessageLoader_GetNewStrbuf(messageLaoder, pl_msg_00000361_00230);
