@@ -2,10 +2,10 @@
 #define POKEPLATINUM_BYTE_FLAG_SET_H
 
 typedef struct ByteFlagSet {
-    u8 flagA;
-    u8 flagB;
-    u8 flagC;
-    u8 flagD;
+    u8 xCoord;
+    u8 yCoord;
+    u8 subXCoord;
+    u8 subYCoord;
     u8 upIndex;
     u8 downIndex;
     u8 leftIndex;
@@ -20,8 +20,8 @@ enum ByteFlagSetDirection {
     BYTE_FLAG_SET_DIRECTION_NONE,
 };
 
-void ReadABByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagA, u8 *flagB);
-void ReadCDByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagC, u8 *flagD);
-u8 ReadByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagA, u8 *flagB, u8 *flagC, u8 *flagD, u8 setIndex, u8 direction);
+void ReadABByteFlags(const ByteFlagSet *byteFlagSet, u8 *xCoord, u8 *yCoord);
+void ReadCDByteFlags(const ByteFlagSet *byteFlagSet, u8 *subXCoord, u8 *subYCoord);
+u8 ReadByteFlags(const ByteFlagSet *byteFlagSet, u8 *xCoord, u8 *yCoord, u8 *subXCoord, u8 *subYCoord, u8 setIndex, u8 direction);
 
 #endif // POKEPLATINUM_BYTE_FLAG_SET_H

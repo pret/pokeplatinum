@@ -58,7 +58,7 @@ void ov13_02228A68(UnkStruct_ov13_02228A50 *param0, u8 param1)
     param0->unk_09 = param1;
 
     if (param0->unk_08 == 1) {
-        ov16_0226DD7C(param0->unk_00, param0->unk_04[param0->unk_09].flagA, param0->unk_04[param0->unk_09].flagC, param0->unk_04[param0->unk_09].flagB, param0->unk_04[param0->unk_09].flagD);
+        ov16_0226DD7C(param0->unk_00, param0->unk_04[param0->unk_09].xCoord, param0->unk_04[param0->unk_09].subXCoord, param0->unk_04[param0->unk_09].yCoord, param0->unk_04[param0->unk_09].subYCoord);
     }
 }
 
@@ -76,7 +76,7 @@ void ov13_02228A9C(UnkStruct_ov13_02228A50 *param0, const ByteFlagSet *param1)
     param0->unk_0C = 0xffffffff;
 
     if (param0->unk_08 == 1) {
-        ov16_0226DD7C(param0->unk_00, param0->unk_04[0].flagA, param0->unk_04[0].flagC, param0->unk_04[0].flagB, param0->unk_04[0].flagD);
+        ov16_0226DD7C(param0->unk_00, param0->unk_04[0].xCoord, param0->unk_04[0].subXCoord, param0->unk_04[0].yCoord, param0->unk_04[0].subYCoord);
     }
 }
 
@@ -94,7 +94,7 @@ static u8 ov13_02228ACC(UnkStruct_ov13_02228A50 *param0)
     if (gSystem.pressedKeys & (PAD_KEY | PAD_BUTTON_B | PAD_BUTTON_A)) {
         param0->unk_08 = 1;
 
-        ov16_0226DD7C(param0->unk_00, param0->unk_04[param0->unk_09].flagA, param0->unk_04[param0->unk_09].flagC, param0->unk_04[param0->unk_09].flagB, param0->unk_04[param0->unk_09].flagD);
+        ov16_0226DD7C(param0->unk_00, param0->unk_04[param0->unk_09].xCoord, param0->unk_04[param0->unk_09].subXCoord, param0->unk_04[param0->unk_09].yCoord, param0->unk_04[param0->unk_09].subYCoord);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 

@@ -1,18 +1,18 @@
 #include "byte_flag_set.h"
 
-void ReadABByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagA, u8 *flagB)
+void ReadABByteFlags(const ByteFlagSet *byteFlagSet, u8 *xCoord, u8 *yCoord)
 {
-    *flagA = byteFlagSet->flagA;
-    *flagB = byteFlagSet->flagB;
+    *xCoord = byteFlagSet->xCoord;
+    *yCoord = byteFlagSet->yCoord;
 }
 
-void ReadCDByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagC, u8 *flagD)
+void ReadCDByteFlags(const ByteFlagSet *byteFlagSet, u8 *subXCoord, u8 *subYCoord)
 {
-    *flagC = byteFlagSet->flagC;
-    *flagD = byteFlagSet->flagD;
+    *subXCoord = byteFlagSet->subXCoord;
+    *subYCoord = byteFlagSet->subYCoord;
 }
 
-u8 ReadByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagA, u8 *flagB, u8 *flagC, u8 *flagD, u8 setIndex, u8 direction)
+u8 ReadByteFlags(const ByteFlagSet *byteFlagSet, u8 *xCoord, u8 *yCoord, u8 *subXCoord, u8 *subYCoord, u8 setIndex, u8 direction)
 {
     u8 index = setIndex;
 
@@ -31,20 +31,20 @@ u8 ReadByteFlags(const ByteFlagSet *byteFlagSet, u8 *flagA, u8 *flagB, u8 *flagC
         break;
     }
 
-    if (flagA != NULL) {
-        *flagA = byteFlagSet[index].flagA;
+    if (xCoord != NULL) {
+        *xCoord = byteFlagSet[index].xCoord;
     }
 
-    if (flagB != NULL) {
-        *flagB = byteFlagSet[index].flagB;
+    if (yCoord != NULL) {
+        *yCoord = byteFlagSet[index].yCoord;
     }
 
-    if (flagC != NULL) {
-        *flagC = byteFlagSet[index].flagC;
+    if (subXCoord != NULL) {
+        *subXCoord = byteFlagSet[index].subXCoord;
     }
 
-    if (flagD != NULL) {
-        *flagD = byteFlagSet[index].flagD;
+    if (subYCoord != NULL) {
+        *subYCoord = byteFlagSet[index].subYCoord;
     }
 
     return index;
