@@ -3,12 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/pokedex/ov21_021D1FA4.h"
 #include "applications/pokedex/ov21_021D4340.h"
 #include "applications/pokedex/ov21_021D5AEC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
-#include "applications/pokedex/pokedex_graphic_data.h"
+#include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_graphics_manager.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokedex/pokedex_sort.h"
@@ -534,19 +533,19 @@ static void ov21_021D7CD8(PokedexGraphicData **param0, const UnkStruct_ov21_021D
     NNSG2dScreenData *v1;
     BgConfig *v2 = (*param0)->bgConfig;
 
-    ov21_021D276C(*param0, 0, 4, 0, 0, heapID);
+    PokedexGraphics_LoadGraphicNarcPaletteData(*param0, 0, 4, 0, 0, heapID);
 
     if (param1->unk_1C->unk_04->unk_1740 == 1) {
-        ov21_021D276C(*param0, 1, 4, 3 * 32, 32, heapID);
+        PokedexGraphics_LoadGraphicNarcPaletteData(*param0, 1, 4, 3 * 32, 32, heapID);
     } else {
         if (PokedexSort_IsNationalDex(param1->unk_1C->unk_04) == 1) {
-            ov21_021D276C(*param0, 25, 4, 3 * 32, 32, heapID);
+            PokedexGraphics_LoadGraphicNarcPaletteData(*param0, 25, 4, 3 * 32, 32, heapID);
         }
     }
 
-    ov21_021D2724(*param0, 29, v2, 6, 0, 0, 1, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, 29, v2, 6, 0, 0, 1, heapID);
 
-    v0 = ov21_021D27B8(*param0, 41, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 41, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect(v2, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
@@ -556,7 +555,7 @@ static void ov21_021D7CD8(PokedexGraphicData **param0, const UnkStruct_ov21_021D
 static void ov21_021D7D8C(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **param1, int param2)
 {
     PokedexGraphicData *v0 = *param1;
-    NARC *v1 = ov21_021D26E0(*param1);
+    NARC *v1 = PokedexGraphics_PokedexGraphicsNARC(*param1);
 
     param0->unk_2C[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 84, 1, 84 + 1000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
@@ -677,7 +676,7 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **
 
     v2 = SpriteResourceCollection_Find(v3->spriteResourceCollection[1], 3 + 1000);
 
-    displayBox.textMan = v3->unk_14C;
+    displayBox.textMan = v3->textMan;
     displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(v2, NULL);
     displayBox.x = -40;
     displayBox.y = -14;
@@ -687,9 +686,9 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **
     displayBox.heapID = param3;
 
     v4 = PlttTransfer_GetPlttOffset(displayBox.paletteProxy, NNS_G2D_VRAM_TYPE_2DSUB);
-    v0 = PokedexTextManager_NewWindow(v3->unk_14C, 10, 4);
+    v0 = PokedexTextManager_NewWindow(v3->textMan, 10, 4);
 
-    PokedexTextManager_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_search, 0, 0);
+    PokedexTextManager_DisplayMessage(v3->textMan, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_search, 0, 0);
 
     displayBox.window = v0;
     displayBox.sprite = param0->unk_00[0];
@@ -702,8 +701,8 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **
     }
 
     PokedexTextManager_FreeWindow(v0);
-    v0 = PokedexTextManager_NewWindow(v3->unk_14C, 10, 4);
-    PokedexTextManager_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_switch, 0, 0);
+    v0 = PokedexTextManager_NewWindow(v3->textMan, 10, 4);
+    PokedexTextManager_DisplayMessage(v3->textMan, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_switch, 0, 0);
 
     displayBox.window = v0;
     displayBox.sprite = param0->unk_00[1];
@@ -716,8 +715,8 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **
     }
 
     PokedexTextManager_FreeWindow(v0);
-    v0 = PokedexTextManager_NewWindow(v3->unk_14C, 10, 4);
-    PokedexTextManager_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_check, 0, 0);
+    v0 = PokedexTextManager_NewWindow(v3->textMan, 10, 4);
+    PokedexTextManager_DisplayMessage(v3->textMan, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_check, 0, 0);
 
     displayBox.window = v0;
     displayBox.sprite = param0->unk_00[2];
@@ -726,12 +725,12 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **
     sub_02012A60(param0->unk_0C[2]->fontOAM, v4 + 2);
     PokedexTextManager_FreeWindow(v0);
 
-    v0 = PokedexTextManager_NewWindow(v3->unk_14C, 14, 2);
+    v0 = PokedexTextManager_NewWindow(v3->textMan, 14, 2);
 
     if (param2->unk_1C->unk_04->unk_1740 == 0) {
-        PokedexTextManager_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_quit, 0, 0);
+        PokedexTextManager_DisplayMessage(v3->textMan, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_quit, 0, 0);
     } else {
-        PokedexTextManager_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_cancel, 0, 0);
+        PokedexTextManager_DisplayMessage(v3->textMan, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_cancel, 0, 0);
     }
 
     displayBox.window = v0;
@@ -758,9 +757,9 @@ static void ov21_021D820C(PokedexGraphicData **param0, int heapID)
     NNSG2dScreenData *v1;
     BgConfig *v2 = (*param0)->bgConfig;
 
-    ov21_021D2724(*param0, 27, v2, 7, 0, 0, 1, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, 27, v2, 7, 0, 0, 1, heapID);
 
-    v0 = ov21_021D27B8(*param0, 37, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 37, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect(v2, 7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);

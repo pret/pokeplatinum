@@ -7,11 +7,10 @@
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02015214_decl.h"
 
-#include "applications/pokedex/ov21_021D1FA4.h"
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
-#include "applications/pokedex/pokedex_graphic_data.h"
+#include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_graphics_manager.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokedex/pokedex_sort.h"
@@ -472,10 +471,10 @@ static void ov21_021E771C(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 
     if (ov21_021E2A54(param2->unk_04)) {
         if (param3) {
-            ov21_021D23F8(&param1->unk_00->unk_168, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0, 0);
-            ov21_021E8400(param0, -ov21_021D24B8(&param1->unk_00->unk_168), 0);
+            PokedexGraphics_InitFadeTransition(&param1->unk_00->fadeMain, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0, 0);
+            ov21_021E8400(param0, -PokedexGraphics_FadeScreen(&param1->unk_00->fadeMain), 0);
         } else {
-            ov21_021D23F8(&param1->unk_00->unk_168, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0, 0);
+            PokedexGraphics_InitFadeTransition(&param1->unk_00->fadeMain, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0, 0);
         }
     }
 }
@@ -485,9 +484,9 @@ static BOOL ov21_021E77A4(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     BOOL v0;
 
     if (ov21_021E2A54(param2->unk_04)) {
-        v0 = ov21_021D2424(&param1->unk_00->unk_168);
+        v0 = PokedexGraphics_TakeFadeTransitionStep(&param1->unk_00->fadeMain);
     } else {
-        v0 = ov21_021D24EC(&param1->unk_00->unk_168);
+        v0 = PokedexGraphics_FadeTransitionComplete(&param1->unk_00->fadeMain);
     }
 
     if (v0) {
@@ -497,7 +496,7 @@ static BOOL ov21_021E77A4(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 
         return 1;
     } else {
-        ov21_021E8400(param0, -ov21_021D24B8(&param1->unk_00->unk_168), 0);
+        ov21_021E8400(param0, -PokedexGraphics_FadeScreen(&param1->unk_00->fadeMain), 0);
     }
 
     return 0;
@@ -534,9 +533,9 @@ static void ov21_021E789C(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_
     void *v0;
     NNSG2dScreenData *v1;
 
-    ov21_021D2724(param0->unk_00, 33, param0->unk_00->bgConfig, 3, 0, 0, 1, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(param0->unk_00, 33, param0->unk_00->bgConfig, 3, 0, 0, 1, heapID);
 
-    v0 = ov21_021D27B8(param0->unk_00, 73, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 73, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
@@ -549,7 +548,7 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     int v1, v2, v3, v4;
     int species = PokedexSort_CurrentSpecies(param2->unk_00);
     BOOL v6;
-    NARC *v7 = ov21_021D26E0(param1->unk_00);
+    NARC *v7 = PokedexGraphics_PokedexGraphicsNARC(param1->unk_00);
     int v8;
     NARC *v9 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, heapID);
     v8 = PokedexSort_DefaultForm(param2->unk_00, species);
@@ -763,8 +762,8 @@ static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, int heapID)
     UnkStruct_ov22_022557A0 v0;
     UnkStruct_ov22_02255800 v1;
 
-    param0->unk_10 = ov21_021D2808(param0->unk_00, 36, 1, &param0->unk_18, heapID);
-    param0->unk_14 = ov21_021D27E0(param0->unk_00, 6, &param0->unk_1C, heapID);
+    param0->unk_10 = PokedexGraphics_GetGraphicNarcCharacterData(param0->unk_00, 36, 1, &param0->unk_18, heapID);
+    param0->unk_14 = PokedexGraphics_GetGraphicNarcPaletteData(param0->unk_00, 6, &param0->unk_1C, heapID);
 
     v0.unk_00 = param0->unk_00->unk_164;
     v0.unk_04 = param0->unk_18;
