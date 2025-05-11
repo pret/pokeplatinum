@@ -3,7 +3,7 @@
 
 typedef struct PoketchGraphics_TaskData PoketchGraphics_TaskData;
 
-typedef struct {
+typedef struct PoketchGraphics_ConstTaskData {
     u32 lastAppID;
 } PoketchGraphics_ConstTaskData;
 

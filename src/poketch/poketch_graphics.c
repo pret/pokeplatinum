@@ -19,10 +19,33 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
+#define POKETCH_PALETTE_NARC_IDX                0
+#define POKETCH_DIGIT_TILES_NARC_IDX            2
+#define POKETCH_DIGIT_SPRITE_NARC_IDX           3
+#define POKETCH_DIGIT_SPRITE_ANIMATION_NARC_IDX 4
+#define POKETCH_BUTTON_PALETTE_NARC_IDX         13
+#define POKETCH_DISPLAY_TILES_NARC_IDX          14
+#define POKETCH_DISPLAY_TILEMAP_NARC_IDX        15
+
+#define NUM_PALETTES                        16
+#define NUM_PALETTES_PER_PALETTE_COLOUR_SET 2
+#define NUM_PALETTE_COLOUR_SETS             (NUM_PALETTES / NUM_PALETTES_PER_PALETTE_COLOUR_SET)
+#define SLOTS_PER_PALETTE_COLOUR_SET        (SLOTS_PER_PALETTE * NUM_PALETTES_PER_PALETTE_COLOUR_SET)
+#define BACKLIGHT_PALETTE_SLOT_OFFSET       (SLOTS_PER_PALETTE)
+
+#define NUM_TASK_SLOTS 8
+
+#define BUTTON_TILEMAP_WIDTH  4
+#define BUTTON_TILEMAP_HEIGHT 8
+#define BUTTON_TILEMAP_SIZE   (BUTTON_TILEMAP_WIDTH * BUTTON_TILEMAP_HEIGHT)
+
+#define TENS_DIGIT_IDX 0
+#define ONES_DIGIT_IDX 1
+
 #define GENERATE_UP_BUTTON_SPRITE(__dst, __value)   PoketchGraphics_GeneratePoketchButtonSprite((__dst), 64 + (__value), 4, 6)
 #define GENERATE_DOWN_BUTTON_SPRITE(__dst, __value) PoketchGraphics_GeneratePoketchButtonSprite((__dst), 64 + (__value), 2, 4)
 
-typedef struct {
+typedef struct PoketchGraphics_AppCounterAnimationData {
     BOOL animationLoaded;
     PoketchAnimation_AnimationManager *animMan;
     PoketchAnimation_SpriteData spriteData;
@@ -49,7 +72,7 @@ struct PoketchGraphics_TaskData {
     u16 palette[SLOTS_PER_PALETTE];
 };
 
-typedef struct {
+typedef struct PoketchGraphics_ExtraTaskData {
     u16 iterationTracker;
     u16 heightCounter;
 } PoketchGraphics_ExtraTaskData;
@@ -81,8 +104,6 @@ static void PoketchGraphics_UnloadAppCounterAnim(PoketchGraphics_AppCounterAnima
 static void PoketchGraphics_UnusedTask_3(SysTask *task, void *taskMan);
 static void PoketchGraphics_UnusedTask_4(SysTask *task, void *taskMan);
 static void PoketchGraphics_FreeTilemapBufferTask(SysTask *task, void *taskMan);
-struct PoketchSystem *FieldSystem_GetPoketchSystem(void);
-SysTask *SysTask_ExecuteAfterVBlank(SysTaskFunc callback, void *param, u32 priority);
 
 BOOL PoketchGraphics_Main(PoketchGraphics_TaskData **taskDataPtr, const PoketchGraphics_ConstTaskData *constTaskData, NNSG2dOamManagerInstance *oamMan, PoketchSystem *poketchSys)
 {
@@ -228,27 +249,29 @@ static void PoketchGraphics_GeneratePoketchButtonSprite(u16 *dst, u32 param1, in
     }
 }
 
+// clang-format off
 static const PoketchTask poketchTasks[] = {
-    { TASK_SETUP_BACKGROUND, PoketchGraphics_SetupBackgroundTask, NULL },
-    { TASK_REVEAL_SCREEN_1, PoketchGraphics_screenRevealAnimationTask, sizeof(PoketchGraphics_ExtraTaskData) },
-    { TASK_REVEAL_SCREEN_2, PoketchGraphics_screenRevealAnimationTask, sizeof(PoketchGraphics_ExtraTaskData) },
-    { TASK_UNUSED_1, PoketchGraphics_UnusedTask_1, sizeof(PoketchGraphics_ExtraTaskData) },
-    { TASK_CONCEAL_SCREEN, PoketchGraphics_screenConcealAnimationTask, sizeof(PoketchGraphics_ExtraTaskData) },
-    { TASK_UNUSED_2, PoketchGraphics_UnusedTask_2, sizeof(PoketchGraphics_ExtraTaskData) },
-    { TASK_UP_HALF_PRESSED, PoketchGraphics_UpBtnHalfPressed_Task, NULL },
-    { TASK_UP_PRESSED, PoketchGraphics_UpBtnPressed_Task, NULL },
-    { TASK_UP_RELEASED, PoketchGraphics_UpBtnReleased_Task, NULL },
-    { TASK_DOWN_HALF_PRESSED, PoketchGraphics_DownBtnHalfPressed_Task, NULL },
-    { TASK_DOWN_PRESSED, PoketchGraphics_DownBtnPressed_Task, NULL },
-    { TASK_DOWN_RELEASED, PoketchGraphics_DownBtnReleased_Task, NULL },
-    { TASK_LOAD_APP_COUNTER, PoketchGraphics_LoadAppCounterTask, NULL },
+    { TASK_SETUP_BACKGROUND,   PoketchGraphics_SetupBackgroundTask,        NULL },
+    { TASK_REVEAL_SCREEN_1,    PoketchGraphics_screenRevealAnimationTask,  sizeof(PoketchGraphics_ExtraTaskData) },
+    { TASK_REVEAL_SCREEN_2,    PoketchGraphics_screenRevealAnimationTask,  sizeof(PoketchGraphics_ExtraTaskData) },
+    { TASK_UNUSED_1,           PoketchGraphics_UnusedTask_1,               sizeof(PoketchGraphics_ExtraTaskData) },
+    { TASK_CONCEAL_SCREEN,     PoketchGraphics_screenConcealAnimationTask, sizeof(PoketchGraphics_ExtraTaskData) },
+    { TASK_UNUSED_2,           PoketchGraphics_UnusedTask_2,               sizeof(PoketchGraphics_ExtraTaskData) },
+    { TASK_UP_HALF_PRESSED,    PoketchGraphics_UpBtnHalfPressed_Task,      NULL },
+    { TASK_UP_PRESSED,         PoketchGraphics_UpBtnPressed_Task,          NULL },
+    { TASK_UP_RELEASED,        PoketchGraphics_UpBtnReleased_Task,         NULL },
+    { TASK_DOWN_HALF_PRESSED,  PoketchGraphics_DownBtnHalfPressed_Task,    NULL },
+    { TASK_DOWN_PRESSED,       PoketchGraphics_DownBtnPressed_Task,        NULL },
+    { TASK_DOWN_RELEASED,      PoketchGraphics_DownBtnReleased_Task,       NULL },
+    { TASK_LOAD_APP_COUNTER,   PoketchGraphics_LoadAppCounterTask,         NULL },
     { TASK_UPDATE_APP_COUNTER, PoketchGraphics_UpdateAppCounterDigitsTask, NULL },
-    { TASK_UNLOAD_APP_COUNTER, PoketchGraphics_UnloadAppCounterAnimTask, NULL },
-    { TASK_UNUSED_3, PoketchGraphics_UnusedTask_3, NULL },
-    { TASK_UNUSED_4, PoketchGraphics_UnusedTask_4, NULL },
-    { TASK_FREE_TILEMAP, PoketchGraphics_FreeTilemapBufferTask, NULL },
-    { POKETCH_EMPTY_TASK, NULL, NULL }
+    { TASK_UNLOAD_APP_COUNTER, PoketchGraphics_UnloadAppCounterAnimTask,   NULL },
+    { TASK_UNUSED_3,           PoketchGraphics_UnusedTask_3,               NULL },
+    { TASK_UNUSED_4,           PoketchGraphics_UnusedTask_4,               NULL },
+    { TASK_FREE_TILEMAP,       PoketchGraphics_FreeTilemapBufferTask,      NULL },
+    { POKETCH_EMPTY_TASK,      NULL,                                       NULL }
 };
+// clang-format on
 
 void PoketchGraphics_StartTask(PoketchGraphics_TaskData *taskData, u32 taskId)
 {

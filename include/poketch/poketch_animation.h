@@ -13,7 +13,7 @@
 typedef struct PoketchAnimation_AnimationManager PoketchAnimation_AnimationManager;
 typedef struct PoketchAnimation_AnimatedSpriteData PoketchAnimation_AnimatedSpriteData;
 
-typedef struct {
+typedef struct PoketchAnimation_AnimationData {
     NNSG2dFVec2 translation;
     u16 animIdx;
     u8 flip;
@@ -22,7 +22,7 @@ typedef struct {
     u8 hasAffineTransform;
 } PoketchAnimation_AnimationData;
 
-typedef struct {
+typedef struct PoketchAnimation_SpriteData {
     void *compressedSprite;
     void *compressedAnim;
     NNSG2dCellDataBank *sprite;
