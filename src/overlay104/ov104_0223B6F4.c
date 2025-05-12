@@ -19,13 +19,13 @@
 #include "math_util.h"
 #include "message.h"
 #include "party.h"
+#include "party_use_item.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
-#include "unk_02096420.h"
 
 static int ov104_0223B6F4(u8 param0, int param1, int param2);
 void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3);

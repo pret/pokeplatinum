@@ -1,4 +1,4 @@
-#include "unk_02096420.h"
+#include "party_use_item.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -582,7 +582,6 @@ u8 PartyUseItem_ApplyItemEffectsToPokemon(Pokemon *mon, u16 itemId, u16 moveSlot
 u8 PartyUseItem_ApplyItemEffectsToPartyMon(Party *party, u16 itemId, u8 partySlot, u8 moveSlot, u16 location, enum HeapId heapID)
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
-
     return PartyUseItem_ApplyItemEffectsToPokemon(mon, itemId, moveSlot, location, heapID);
 }
 

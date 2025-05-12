@@ -30,6 +30,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "party.h"
+#include "party_use_item.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "sound.h"
@@ -57,7 +58,6 @@
 #include "unk_02083370.h"
 #include "unk_02084B70.h"
 #include "unk_0208C098.h"
-#include "unk_02096420.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F1E88.h"

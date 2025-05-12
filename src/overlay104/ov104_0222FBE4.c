@@ -69,6 +69,7 @@
 #include "palette.h"
 #include "particle_system.h"
 #include "party.h"
+#include "party_use_item.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "save_player.h"
@@ -92,7 +93,6 @@
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
 #include "unk_0208694C.h"
-#include "unk_02096420.h"
 #include "unk_0209B6F8.h"
 #include "vars_flags.h"
 

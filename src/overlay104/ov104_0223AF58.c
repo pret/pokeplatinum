@@ -17,10 +17,10 @@
 #include "heap.h"
 #include "math_util.h"
 #include "party.h"
+#include "party_use_item.h"
 #include "pokemon.h"
 #include "trainer_info.h"
 #include "unk_02030108.h"
-#include "unk_02096420.h"
 
 typedef struct {
     u8 unk_00;

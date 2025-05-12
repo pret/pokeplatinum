@@ -17,11 +17,11 @@
 #include "math_util.h"
 #include "message.h"
 #include "party.h"
+#include "party_use_item.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02096420.h"
 
 u8 ov104_0223BD70(u8 param0, BOOL param1);
 u8 ov104_0223BDA4(u8 param0, BOOL param1);

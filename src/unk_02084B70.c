@@ -18,6 +18,7 @@
 #include "message.h"
 #include "move_table.h"
 #include "party.h"
+#include "party_use_item.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "sound_playback.h"
@@ -29,7 +30,6 @@
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
-#include "unk_02096420.h"
 
 static int sub_02085384(void *param0);
 static int sub_02085424(void *param0);

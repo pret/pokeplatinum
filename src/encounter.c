@@ -36,6 +36,7 @@
 #include "location.h"
 #include "map_object.h"
 #include "party.h"
+#include "party_use_item.h"
 #include "pc_boxes.h"
 #include "pokemon.h"
 #include "pokeradar.h"
@@ -50,7 +51,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_020528D0.h"
 #include "unk_0206CCB0.h"
-#include "unk_02096420.h"
 #include "vars_flags.h"
 
 typedef struct Encounter {

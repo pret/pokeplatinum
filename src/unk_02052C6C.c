@@ -25,6 +25,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "party.h"
+#include "party_use_item.h"
 #include "pokedex.h"
 #include "render_window.h"
 #include "rtc.h"
@@ -40,7 +41,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_02054884.h"
 #include "unk_020559DC.h"
-#include "unk_02096420.h"
 #include "vars_flags.h"
 
 typedef struct {

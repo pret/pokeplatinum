@@ -20,10 +20,10 @@
 #include "math_util.h"
 #include "message.h"
 #include "party.h"
+#include "party_use_item.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02096420.h"
 
 static const struct {
     u16 unk_00;
