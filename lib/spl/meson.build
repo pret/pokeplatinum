@@ -1,8 +1,8 @@
 
 libspl_c_args = [
     '-nothumb',
-    '-wrap:ver', '1.2/base_b73',
-    '-wrap:noipa'
+    '-wrap:sdk', '1.2/base_b73',
+    '-wrap:noipa',
 ]
 
 libspl_link_args = [
@@ -31,6 +31,6 @@ libspl = static_library('spl',
     c_args: libspl_c_args,
     link_args: libspl_link_args,
     include_directories: [public_includes, libspl_public_includes],
-    dependencies: [ nitrosdk_dep, nitrosystem_dep ],
+    dependencies: [nitrosdk_dep, nitrosystem_dep],
     pic: false
 )

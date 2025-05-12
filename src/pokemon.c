@@ -1,4 +1,4 @@
-#include "constants/pokemon.h"
+#include "pokemon.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -9,6 +9,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/narc.h"
+#include "constants/pokemon.h"
 #include "constants/sound.h"
 #include "generated/abilities.h"
 #include "generated/evolution_methods.h"
@@ -41,7 +42,6 @@
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
-#include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "rtc.h"
 #include "sound_chatot.h"

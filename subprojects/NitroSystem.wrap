@@ -1,6 +1,6 @@
 [wrap-git]
 url = https://github.com/ntrtwl/NitroSystem.git
-revision = 507acff1585505bdac3f996551ca5123f8408073
+revision = 7a089c4aa15184380dfea76e8b28663f5c779613
 depth = 1
 directory = NitroSystem-071126.1
 
