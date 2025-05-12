@@ -135,7 +135,7 @@ typedef struct BoxPokemon {
 typedef struct PartyPokemon {
     u32 status; //!< The Pokemon's current status condition.
     u8 level; //!< The Pokemon's current level, as computed from its total EXP value and its species' level curve.
-    u8 mail; //!< The ID of the mail the Pokemon is holding.
+    u8 ballCapsuleID; //!< The ID of the ball capsule attached to the Pokemon.
     u16 hp; //!< The Pokemon's current HP.
     u16 maxHP; //!< The Pokemon's maximum HP.
     u16 attack; //!< The Pokemon's Attack stat.

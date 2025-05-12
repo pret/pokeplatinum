@@ -982,7 +982,7 @@ static void ov19_021D6E48(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    ov19_021DB448(&(v0->unk_6658), ov19_021D5E94(v2));
+    ov19_021DB448(&(v0->unk_6658), ov19_GetBoxMessageID(v2));
     ov19_021D6640(v1);
 }
 
@@ -996,7 +996,7 @@ static void ov19_021D6E70(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    ov19_021DB448(&(v0->unk_6658), ov19_021D5E94(v2));
+    ov19_021DB448(&(v0->unk_6658), ov19_GetBoxMessageID(v2));
     ov19_021DB57C(&(v0->unk_6658), &(v2->unk_74));
     ov19_021D6640(v1);
 }

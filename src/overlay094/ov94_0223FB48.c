@@ -738,7 +738,7 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
 
                 v2 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
-                if (Pokemon_GetValue(v2, MON_DATA_MAIL_ID, NULL)) {
+                if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                     v1 = 1;
                     param0->unk_2C = 14;
                 }
@@ -830,7 +830,7 @@ static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
 
                 v2 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
-                if (Pokemon_GetValue(v2, MON_DATA_MAIL_ID, NULL)) {
+                if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                     v1 = 1;
                     param0->unk_2C = 11;
                 }
@@ -1157,7 +1157,7 @@ static void ov94_02240FA0(UnkStruct_ov94_0223FD4C *param0, int param1)
             ov94_02240E50(v4, &param0->unk_1108->unk_00[v1]);
             ov94_02240EAC(v4, param0->unk_E28[v1], param0->unk_EA0[v1], &v0[v1], v1, v6, &param0->unk_1108->unk_00[v1], &v7[v1]);
 
-            if (Pokemon_GetValue(v3, MON_DATA_MAIL_ID, NULL)) {
+            if (Pokemon_GetValue(v3, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                 Sprite_SetDrawFlag(param0->unk_F18[v1], 1);
             } else {
                 Sprite_SetDrawFlag(param0->unk_F18[v1], 0);

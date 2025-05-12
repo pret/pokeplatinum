@@ -1053,7 +1053,7 @@ u8 sub_0207EF14(GameWindowLayout *param0, u8 param1)
     param0->unk_704[param1].unk_08 = (u16)Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
     param0->unk_704[param1].unk_0A = (u16)Pokemon_GetValue(v0, MON_DATA_LEVEL, NULL);
     param0->unk_704[param1].unk_0C = (u16)Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
-    param0->unk_704[param1].unk_12 = (u16)Pokemon_GetValue(v0, MON_DATA_MAIL_ID, NULL);
+    param0->unk_704[param1].unk_12 = (u16)Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL);
     param0->unk_704[param1].unk_10 = (u8)Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
     param0->unk_704[param1].unk_11 = (u8)Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 

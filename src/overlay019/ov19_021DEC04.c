@@ -29,6 +29,8 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
+#include "res/text/bank/box_messages.h"
+
 struct UnkStruct_ov19_021DEC04_t {
     BOOL unk_00;
     UnkStruct_ov19_021D61B0 *unk_04;
@@ -47,7 +49,7 @@ struct UnkStruct_ov19_021DEC04_t {
     NNSG2dAnimBankData *unk_68;
     MessageLoader *unk_6C;
     MessageLoader *unk_70;
-    Strbuf *unk_74;
+    Strbuf *boxDisplayText;
     Window unk_78[7];
     u8 unk_E8[640];
     NNSG2dScreenData *unk_368;
@@ -101,7 +103,7 @@ BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *pa
             v0->unk_374 = Graphics_GetScrnDataFromOpenNARC(param6, 8, 1, &(v0->unk_36C), HEAP_ID_10);
             v0->unk_6C = param5;
             v0->unk_70 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_10);
-            v0->unk_74 = Strbuf_Init(32, HEAP_ID_10);
+            v0->boxDisplayText = Strbuf_Init(32, HEAP_ID_10);
             v0->unk_380 = NULL;
             *param0 = v0;
             return 1;
@@ -119,7 +121,7 @@ void ov19_021DECAC(UnkStruct_ov19_021DEC04 *param0)
         MessageLoader_Free(param0->unk_70);
         ov19_021DF7D0(param0);
         ov19_021DF03C(param0);
-        Strbuf_Free(param0->unk_74);
+        Strbuf_Free(param0->boxDisplayText);
         Heap_FreeToHeap(param0);
     }
 }
@@ -386,7 +388,7 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int param1)
     const PCCompareMon *compareMon;
     BOOL isMonUnderCursor, v3, v4;
 
-    compareMon = GetCompareMonFrom(param0->unk_08, param1);
+    compareMon = ov19_GetCompareMonFrom(param0->unk_08, param1);
     isMonUnderCursor = ov19_IsMonUnderCursor(param0->unk_08);
     v3 = (ov19_021D5F9C(param0->unk_08) == param1);
     v4 = ov19_021D5FB8(param0->unk_08, param1);
@@ -459,15 +461,15 @@ static inline u32 inline_ov19_021DF3AC(Window *param0, u32 param1, const Strbuf 
 
 static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 *param0)
 {
-    static const u16 v0[] = {
-        35,
-        36,
-        37,
-        38,
-        39,
-        40,
-        41,
-        42,
+    static const u16 compareMessages[] = {
+        BoxText_Nature,
+        BoxText_Level,
+        BoxText_HP,
+        BoxText_Attack,
+        BoxText_Defense,
+        BoxText_SpecialAttack,
+        BoxText_SpecialDefense,
+        BoxText_Speed,
     };
     Window *v1 = &param0->unk_78[2];
     int v2;
@@ -476,14 +478,14 @@ static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 *param0)
 
     switch (ov19_021D5FA4(param0->unk_08)) {
     case 0:
-        for (v2 = 0; v2 < NELEMS(v0); v2++) {
-            MessageLoader_GetStrbuf(param0->unk_6C, v0[v2], param0->unk_74);
-            Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v1, 0, param0->unk_74), 0 + 16 * v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        for (v2 = 0; v2 < NELEMS(compareMessages); v2++) {
+            MessageLoader_GetStrbuf(param0->unk_6C, compareMessages[v2], param0->boxDisplayText);
+            Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v1, 0, param0->boxDisplayText), 0 + 16 * v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         }
         break;
     case 2:
-        MessageLoader_GetStrbuf(param0->unk_6C, 43, param0->unk_74);
-        Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v1, 0, param0->unk_74), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        MessageLoader_GetStrbuf(param0->unk_6C, BoxText_Move, param0->boxDisplayText);
+        Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v1, 0, param0->boxDisplayText), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         break;
     }
 
@@ -498,73 +500,73 @@ static void ov19_021DF394(UnkStruct_ov19_021DEC04 *param0)
     Window_LoadTiles(v0);
 }
 
-static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int param1)
+static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
 {
-    Window *v0;
+    Window *window;
     const PCCompareMon *compareMon;
-    BOOL isMonUnderCursor, v3, v4;
+    BOOL isMonUnderCursor, compareSlot, v4;
 
-    v0 = &(param0->unk_78[3 + param1]);
-    compareMon = GetCompareMonFrom(param0->unk_08, param1);
+    window = &(param0->unk_78[3 + compareMonSlot]);
+    compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
     isMonUnderCursor = ov19_IsMonUnderCursor(param0->unk_08);
-    v3 = ov19_021D5F9C(param0->unk_08) == param1;
-    v4 = ov19_021D5FB8(param0->unk_08, param1);
+    compareSlot = ov19_021D5F9C(param0->unk_08) == compareMonSlot;
+    v4 = ov19_021D5FB8(param0->unk_08, compareMonSlot);
 
-    Window_FillTilemap(v0, 0);
+    Window_FillTilemap(window, 0);
 
-    if (((isMonUnderCursor == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) {
+    if (((isMonUnderCursor == TRUE) && (compareSlot == 1)) || ((compareSlot == 0) && (v4 == 1))) {
         int v5;
 
         if (compareMon->isEgg == FALSE) {
             const u16 *v6 = &compareMon->level;
 
-            Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, compareMon->nature, inline_ov19_021DF3AC(v0, 0, compareMon->nature), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->nature, inline_ov19_021DF3AC(window, 0, compareMon->nature), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
             for (v5 = 0; v5 < 7; v5++) {
-                Strbuf_FormatInt(param0->unk_74, v6[v5], 3, 0, 1);
-                Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), (1 + v5) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+                Strbuf_FormatInt(param0->boxDisplayText, v6[v5], 3, 0, 1);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(window, 0, param0->boxDisplayText), (1 + v5) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
             }
         } else {
-            MessageLoader_GetStrbuf(param0->unk_6C, 44, param0->unk_74);
+            MessageLoader_GetStrbuf(param0->unk_6C, 44, param0->boxDisplayText);
 
             for (v5 = 0; v5 < 8; v5++) {
-                Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), v5 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(window, 0, param0->boxDisplayText), v5 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
             }
         }
     }
 
-    Window_LoadTiles(v0);
+    Window_LoadTiles(window);
 }
 
-static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int param1)
+static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
 {
     Window *v0;
     const PCCompareMon *compareMon;
     BOOL isMonUnderCursor, v3, v4;
 
-    v0 = &(param0->unk_78[5 + param1]);
-    compareMon = GetCompareMonFrom(param0->unk_08, param1);
+    v0 = &(param0->unk_78[5 + compareMonSlot]);
+    compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
     isMonUnderCursor = ov19_IsMonUnderCursor(param0->unk_08);
-    v3 = (ov19_021D5F9C(param0->unk_08) == param1);
-    v4 = ov19_021D5FB8(param0->unk_08, param1);
+    v3 = (ov19_021D5F9C(param0->unk_08) == compareMonSlot);
+    v4 = ov19_021D5FB8(param0->unk_08, compareMonSlot);
 
     Window_FillTilemap(v0, 0);
 
-    if (((isMonUnderCursor == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) {
+    if (((isMonUnderCursor == TRUE) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) {
         int i;
 
         if (compareMon->isEgg == FALSE) {
             for (i = 0; i < LEARNED_MOVES_MAX; i++) {
                 if (compareMon->moves[i]) {
-                    MessageLoader_GetStrbuf(param0->unk_70, compareMon->moves[i], param0->unk_74);
-                    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+                    MessageLoader_GetStrbuf(param0->unk_70, compareMon->moves[i], param0->boxDisplayText);
+                    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v0, 0, param0->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
                 }
             }
         } else {
-            MessageLoader_GetStrbuf(param0->unk_6C, 44, param0->unk_74);
+            MessageLoader_GetStrbuf(param0->unk_6C, 44, param0->boxDisplayText);
 
             for (i = 0; i < 4; i++) {
-                Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v0, 0, param0->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
             }
         }
     }
@@ -665,20 +667,20 @@ static void ov19_021DF7D0(UnkStruct_ov19_021DEC04 *param0)
 
 static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0)
 {
-    int v0 = ov19_021D5F9C(param0->unk_08);
-    const PCCompareMon *compareMon = GetCompareMonFrom(param0->unk_08, v0);
-    Sprite *v2 = param0->unk_20[v0];
-    BoxPokemon *v3 = compareMon->mon;
+    int compareMonSlot = ov19_021D5F9C(param0->unk_08);
+    const PCCompareMon *compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
+    Sprite *v2 = param0->unk_20[compareMonSlot];
+    BoxPokemon *boxMon = compareMon->mon;
     NNSG2dCharacterData *v4;
 
     if (ov19_IsMonUnderCursor(param0->unk_08)) {
         u32 v5 = 4 + PokeIconPaletteIndex(compareMon->species, compareMon->form, compareMon->isEgg);
 
-        ov19_021DA744(param0->unk_14, param0->unk_E8, BoxPokemon_IconSpriteIndex(v3), sizeof(param0->unk_E8));
+        ov19_021DA744(param0->unk_14, param0->unk_E8, BoxPokemon_IconSpriteIndex(boxMon), sizeof(param0->unk_E8));
 
         NNS_G2dGetUnpackedCharacterData(param0->unk_E8, &v4);
         DC_FlushRange(v4->pRawData, (4 * 4) * 0x20);
-        GXS_LoadOBJ(v4->pRawData, param0->unk_18[v0], (4 * 4) * 0x20);
+        GXS_LoadOBJ(v4->pRawData, param0->unk_18[compareMonSlot], (4 * 4) * 0x20);
 
         Sprite_SetExplicitPalette(v2, v5);
         Sprite_SetDrawFlag(v2, 1);
@@ -687,21 +689,21 @@ static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int param1)
+static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
 {
-    Window *v0;
+    Window *window;
 
-    param1 = ov19_021D5F9C(param0->unk_08);
-    v0 = &(param0->unk_78[0 + param1]);
+    compareMonSlot = ov19_021D5F9C(param0->unk_08);
+    window = &(param0->unk_78[0 + compareMonSlot]);
 
-    Window_FillTilemap(v0, 0);
+    Window_FillTilemap(window, 0);
 
     if (ov19_IsMonUnderCursor(param0->unk_08)) {
-        const PCCompareMon *compareMon = GetCompareMonFrom(param0->unk_08, param1);
-        Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, compareMon->monName, inline_ov19_021DF3AC(v0, 0, compareMon->monName), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        const PCCompareMon *compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->monName, inline_ov19_021DF3AC(window, 0, compareMon->monName), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     }
 
-    Window_LoadTiles(v0);
+    Window_LoadTiles(window);
 }
 
 static void ov19_021DF930(SysTask *param0, void *param1)

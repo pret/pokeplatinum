@@ -726,7 +726,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 v3 = sub_0202818C(param0->heapID);
                 Pokemon_SetValue(v1, MON_DATA_MAIL, v3);
                 Heap_FreeToHeap(v3);
-                Pokemon_SetValue(v1, MON_DATA_MAIL_ID, &v2);
+                Pokemon_SetValue(v1, MON_DATA_BALL_CAPSULE_ID, &v2);
 
                 MI_CpuClearFast(&v4, sizeof(UnkStruct_0202CA28));
 
