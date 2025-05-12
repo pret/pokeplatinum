@@ -253,8 +253,8 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
         break;
     }
 
-    HealAllPokemonInParty(param0->unk_70);
-    HealAllPokemonInParty(param0->unk_74);
+    Party_HealAllPokemon(param0->unk_70);
+    Party_HealAllPokemon(param0->unk_74);
 
     return v5;
 }

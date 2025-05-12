@@ -198,7 +198,7 @@ static BOOL FieldTask_Encounter(FieldTask *task)
         }
 
         if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
-            HealAllPokemonInParty(SaveData_GetParty(fieldSystem->saveData));
+            Party_HealAllPokemon(SaveData_GetParty(fieldSystem->saveData));
         }
 
         UpdateGameRecords(fieldSystem, encounter->dto);
@@ -399,7 +399,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
         }
 
         if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
-            HealAllPokemonInParty(SaveData_GetParty(fieldSystem->saveData));
+            Party_HealAllPokemon(SaveData_GetParty(fieldSystem->saveData));
         }
 
         UpdateGameRecords(fieldSystem, encounter->dto);

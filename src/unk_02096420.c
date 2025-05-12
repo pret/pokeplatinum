@@ -3,6 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle/condition.h"
+#include "constants/items.h"
+#include "constants/moves.h"
+#include "generated/item_hold_effects.h"
+#include "generated/moves.h"
 #include "generated/species.h"
 
 #include "heap.h"
@@ -11,779 +16,803 @@
 #include "party.h"
 #include "pokemon.h"
 
-static u8 CheckMovePPAvailability(Pokemon *param0, u32 param1);
-static u8 UpdatePokemonMovePP(Pokemon *param0, u32 param1, u32 param2);
-static u8 IncreaseMovePPUps(Pokemon *param0, u32 param1, u32 param2);
-static void RestorePokemonHP(Pokemon *param0, u32 param1, u32 param2, u32 param3);
-static s32 CalculateEVUpdate(s32 param0, s32 param1, s32 param2);
-static u8 UpdatePokemonFriendship(Pokemon *param0, s32 param1, s32 param2, u16 param3, u32 param4);
-static u8 CheckFriendshipItemEffect(Pokemon *param0, ItemData *param1);
+#define MAX_EV_VITAMIN       100
+#define MAX_PP_UP            3
+#define PP_UP_MININUM_MAX_PP 5
 
-u8 CheckItemEffectsOnPokemon(Pokemon *param0, u16 param1, u16 param2, u32 param3)
+#define HEAL_FULL_HP    255
+#define HEAL_HALF_HP    254
+#define HEAL_QUARTER_HP 253
+
+#define EV_UNCHANGED -1
+
+#define HEAL_FULL_PP 127
+
+enum CheckEffectsVarsIndex {
+    CHECK_EFFECTS_STATUS = 0,
+
+    CHECK_EFFECTS_CURRENT_HP = 0,
+
+    CHECK_EFFECTS_MOVE_INDEX = 0,
+
+    CHECK_EFFECTS_HP_EV = 0,
+    CHECK_EFFECTS_ATK_EV,
+    CHECK_EFFECTS_DEF_EV,
+    CHECK_EFFECTS_SPEED_EV,
+    CHECK_EFFECTS_SPATK_EV,
+    CHECK_EFFECTS_SPDEF_EV,
+    CHECK_EFFECTS_EV_CHANGE,
+};
+
+enum ApplyEffectsVarsIndex {
+    APPLY_EFFECTS_STATUS = 0,
+    APPLY_EFFECTS_STATUS_TMP,
+
+    APPLY_EFFECTS_CURRENT_HP = 0,
+    APPLY_EFFECTS_MAX_HP,
+    APPLY_EFFECTS_LEVEL,
+    APPLY_EFFECTS_MAX_HP_LVL_UP,
+
+    APPLY_EFFECTS_MOVE_INDEX = 0,
+
+    APPLY_EFFECTS_HP_EV = 0,
+    APPLY_EFFECTS_ATK_EV,
+    APPLY_EFFECTS_DEF_EV,
+    APPLY_EFFECTS_SPEED_EV,
+    APPLY_EFFECTS_SPATK_EV,
+    APPLY_EFFECTS_SPDEF_EV,
+    APPLY_EFFECTS_NEW_EV,
+    APPLY_EFFECTS_EV_CHANGE,
+
+    APPLY_EFFECTS_FRIENDSHIP = 0,
+};
+
+static u8 IsMoveMissingPP(Pokemon *mon, u32 moveSlot);
+static u8 RestorePokemonMovePP(Pokemon *mon, u32 moveSlot, u32 amount);
+static u8 IncreaseMovePPUps(Pokemon *mon, u32 moveSlot, u32 amount);
+static void RestorePokemonHP(Pokemon *mon, u32 currentHp, u32 maxHp, u32 amount);
+static s32 CalculateEVUpdate(s32 current, s32 sumOthers, s32 change);
+static u8 CheckFriendshipItemEffect(Pokemon *mon, ItemData *item);
+static u8 UpdatePokemonFriendship(Pokemon *mon, s32 current, s32 change, u16 location, enum HeapId heapID);
+
+u8 PartyUseItem_CheckItemEffectsOnPokemon(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId heapID)
 {
-    ItemData *v0;
-    s32 v1[8];
+    // For some reason, the original developer decided to use an array to store what should have been individual variables
+    s32 vars[8];
 
-    v0 = Item_Load(param1, 0, param3);
+    ItemData *item = Item_Load(itemId, ITEM_FILE_TYPE_DATA, heapID);
 
-    if (Item_Get(v0, 14) != 1) {
-        Heap_FreeToHeap(v0);
-        return 0;
+    if (Item_Get(item, ITEM_PARAM_PARTY_USE) != TRUE) {
+        Heap_FreeToHeap(item);
+        return FALSE;
     }
 
-    v1[0] = Pokemon_GetValue(param0, MON_DATA_STATUS_CONDITION, NULL);
+    vars[CHECK_EFFECTS_STATUS] = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
 
-    if (Item_Get(v0, 15) != 0) {
-        if ((v1[0] & 0x7) != 0) {
-            Heap_FreeToHeap(v0);
-            return 1;
+    if (Item_Get(item, ITEM_PARAM_HEAL_SLEEP) != FALSE) {
+        if ((vars[CHECK_EFFECTS_STATUS] & MON_CONDITION_SLEEP) != 0) {
+            Heap_FreeToHeap(item);
+            return TRUE;
         }
     }
 
-    if (Item_Get(v0, 16) != 0) {
-        if ((v1[0] & (0x8 | 0x80)) != 0) {
-            Heap_FreeToHeap(v0);
-            return 1;
+    if (Item_Get(item, ITEM_PARAM_HEAL_POISON) != FALSE) {
+        if ((vars[CHECK_EFFECTS_STATUS] & (MON_CONDITION_POISON | MON_CONDITION_TOXIC)) != 0) {
+            Heap_FreeToHeap(item);
+            return TRUE;
         }
     }
 
-    if (Item_Get(v0, 17) != 0) {
-        if ((v1[0] & 0x10) != 0) {
-            Heap_FreeToHeap(v0);
-            return 1;
+    if (Item_Get(item, ITEM_PARAM_HEAL_BURN) != FALSE) {
+        if ((vars[CHECK_EFFECTS_STATUS] & MON_CONDITION_BURN) != 0) {
+            Heap_FreeToHeap(item);
+            return TRUE;
         }
     }
 
-    if (Item_Get(v0, 18) != 0) {
-        if ((v1[0] & 0x20) != 0) {
-            Heap_FreeToHeap(v0);
-            return 1;
+    if (Item_Get(item, ITEM_PARAM_HEAL_FREEZE) != FALSE) {
+        if ((vars[CHECK_EFFECTS_STATUS] & MON_CONDITION_FREEZE) != 0) {
+            Heap_FreeToHeap(item);
+            return TRUE;
         }
     }
 
-    if (Item_Get(v0, 19) != 0) {
-        if ((v1[0] & 0x40) != 0) {
-            Heap_FreeToHeap(v0);
-            return 1;
+    if (Item_Get(item, ITEM_PARAM_HEAL_PARALYSIS) != FALSE) {
+        if ((vars[CHECK_EFFECTS_STATUS] & MON_CONDITION_PARALYSIS) != 0) {
+            Heap_FreeToHeap(item);
+            return TRUE;
         }
     }
 
-    v1[0] = Pokemon_GetValue(param0, MON_DATA_CURRENT_HP, NULL);
+    vars[CHECK_EFFECTS_CURRENT_HP] = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
 
-    if (((Item_Get(v0, 23) != 0) || (Item_Get(v0, 24) != 0)) && (Item_Get(v0, 25) == 0)) {
-        if (v1[0] == 0) {
-            Heap_FreeToHeap(v0);
-            return 1;
+    if (((Item_Get(item, ITEM_PARAM_REVIVE) != FALSE) || (Item_Get(item, ITEM_PARAM_REVIVE_ALL) != FALSE)) && (Item_Get(item, ITEM_PARAM_LEVEL_UP) == FALSE)) {
+        if (vars[CHECK_EFFECTS_CURRENT_HP] == 0) {
+            Heap_FreeToHeap(item);
+            return TRUE;
         }
-    } else if (Item_Get(v0, 38) != 0) {
-        if ((v1[0] != 0) && (v1[0] < Pokemon_GetValue(param0, MON_DATA_MAX_HP, NULL))) {
-            Heap_FreeToHeap(v0);
-            return 1;
-        }
-    }
-
-    if (Item_Get(v0, 25) != 0) {
-        if (Pokemon_GetValue(param0, MON_DATA_LEVEL, NULL) < 100) {
-            Heap_FreeToHeap(v0);
-            return 1;
+    } else if (Item_Get(item, ITEM_PARAM_HP_RESTORE) != FALSE) {
+        if ((vars[CHECK_EFFECTS_CURRENT_HP] != 0) && (vars[CHECK_EFFECTS_CURRENT_HP] < Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL))) {
+            Heap_FreeToHeap(item);
+            return TRUE;
         }
     }
 
-    if (Item_Get(v0, 26) != 0) {
-        if (Pokemon_GetEvolutionTargetSpecies(NULL, param0, EVO_CLASS_BY_ITEM, param1, NULL) != 0) {
-            Heap_FreeToHeap(v0);
-            return 1;
+    if (Item_Get(item, ITEM_PARAM_LEVEL_UP) != FALSE) {
+        if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) < MAX_POKEMON_LEVEL) {
+            Heap_FreeToHeap(item);
+            return TRUE;
         }
     }
 
-    if ((Item_Get(v0, 34) != 0) || (Item_Get(v0, 35) != 0)) {
-        if ((Pokemon_GetValue(param0, MON_DATA_MOVE1_PP_UPS + param2, NULL) < 3) && (MoveTable_CalcMaxPP(Pokemon_GetValue(param0, MON_DATA_MOVE1 + param2, NULL), 0) >= 5)) {
-            Heap_FreeToHeap(v0);
-            return 1;
+    if (Item_Get(item, ITEM_PARAM_EVOLVE) != FALSE) {
+        if (Pokemon_GetEvolutionTargetSpecies(NULL, mon, EVO_CLASS_BY_ITEM, itemId, NULL) != SPECIES_NONE) {
+            Heap_FreeToHeap(item);
+            return TRUE;
         }
     }
 
-    if (Item_Get(v0, 36) != 0) {
-        if (CheckMovePPAvailability(param0, param2) == 1) {
-            Heap_FreeToHeap(v0);
-            return 1;
+    if ((Item_Get(item, ITEM_PARAM_PP_UP) != FALSE) || (Item_Get(item, ITEM_PARAM_PP_MAX) != FALSE)) {
+        if ((Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL) < MAX_PP_UP) && (MoveTable_CalcMaxPP(Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL), 0) >= PP_UP_MININUM_MAX_PP)) {
+            Heap_FreeToHeap(item);
+            return TRUE;
         }
     }
 
-    if (Item_Get(v0, 37) != 0) {
-        for (v1[0] = 0; v1[0] < 4; v1[0]++) {
-            if (CheckMovePPAvailability(param0, v1[0]) == 1) {
-                Heap_FreeToHeap(v0);
-                return 1;
+    if (Item_Get(item, ITEM_PARAM_PP_RESTORE) != FALSE) {
+        if (IsMoveMissingPP(mon, moveSlot) == TRUE) {
+            Heap_FreeToHeap(item);
+            return TRUE;
+        }
+    }
+
+    if (Item_Get(item, ITEM_PARAM_PP_RESTORE_ALL) != FALSE) {
+        for (vars[CHECK_EFFECTS_MOVE_INDEX] = 0; vars[CHECK_EFFECTS_MOVE_INDEX] < LEARNED_MOVES_MAX; vars[CHECK_EFFECTS_MOVE_INDEX]++) {
+            if (IsMoveMissingPP(mon, vars[CHECK_EFFECTS_MOVE_INDEX]) == TRUE) {
+                Heap_FreeToHeap(item);
+                return TRUE;
             }
         }
     }
 
-    v1[0] = Pokemon_GetValue(param0, MON_DATA_HP_EV, NULL);
-    v1[1] = Pokemon_GetValue(param0, MON_DATA_ATK_EV, NULL);
-    v1[2] = Pokemon_GetValue(param0, MON_DATA_DEF_EV, NULL);
-    v1[3] = Pokemon_GetValue(param0, MON_DATA_SPEED_EV, NULL);
-    v1[4] = Pokemon_GetValue(param0, MON_DATA_SPATK_EV, NULL);
-    v1[5] = Pokemon_GetValue(param0, MON_DATA_SPDEF_EV, NULL);
+    vars[CHECK_EFFECTS_HP_EV] = Pokemon_GetValue(mon, MON_DATA_HP_EV, NULL);
+    vars[CHECK_EFFECTS_ATK_EV] = Pokemon_GetValue(mon, MON_DATA_ATK_EV, NULL);
+    vars[CHECK_EFFECTS_DEF_EV] = Pokemon_GetValue(mon, MON_DATA_DEF_EV, NULL);
+    vars[CHECK_EFFECTS_SPEED_EV] = Pokemon_GetValue(mon, MON_DATA_SPEED_EV, NULL);
+    vars[CHECK_EFFECTS_SPATK_EV] = Pokemon_GetValue(mon, MON_DATA_SPATK_EV, NULL);
+    vars[CHECK_EFFECTS_SPDEF_EV] = Pokemon_GetValue(mon, MON_DATA_SPDEF_EV, NULL);
 
-    if (Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL) != SPECIES_SHEDINJA) {
-        if (Item_Get(v0, 39) != 0) {
-            v1[6] = Item_Get(v0, 48);
+    if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_SHEDINJA) {
+        if (Item_Get(item, ITEM_PARAM_GIVE_HP_EVS) != FALSE) {
+            vars[CHECK_EFFECTS_EV_CHANGE] = Item_Get(item, ITEM_PARAM_HP_EVS);
 
-            if (v1[6] > 0) {
-                if ((v1[0] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                    Heap_FreeToHeap(v0);
-                    return 1;
+            if (vars[CHECK_EFFECTS_EV_CHANGE] > 0) {
+                if ((vars[CHECK_EFFECTS_HP_EV] < MAX_EV_VITAMIN) && ((vars[CHECK_EFFECTS_HP_EV] + vars[CHECK_EFFECTS_ATK_EV] + vars[CHECK_EFFECTS_DEF_EV] + vars[CHECK_EFFECTS_SPEED_EV] + vars[CHECK_EFFECTS_SPATK_EV] + vars[CHECK_EFFECTS_SPDEF_EV]) < MAX_EVS_ALL_STATS)) {
+                    Heap_FreeToHeap(item);
+                    return TRUE;
                 }
-            } else if (v1[6] < 0) {
-                if (v1[0] > 0) {
-                    Heap_FreeToHeap(v0);
-                    return 1;
+            } else if (vars[CHECK_EFFECTS_EV_CHANGE] < 0) {
+                if (vars[CHECK_EFFECTS_HP_EV] > 0) {
+                    Heap_FreeToHeap(item);
+                    return TRUE;
                 }
 
-                if (CheckFriendshipItemEffect(param0, v0) == 1) {
-                    Heap_FreeToHeap(v0);
-                    return 1;
+                if (CheckFriendshipItemEffect(mon, item) == TRUE) {
+                    Heap_FreeToHeap(item);
+                    return TRUE;
                 }
             }
         }
     }
 
-    if (Item_Get(v0, 40) != 0) {
-        v1[6] = Item_Get(v0, 49);
+    if (Item_Get(item, ITEM_PARAM_GIVE_ATK_EVS) != FALSE) {
+        vars[CHECK_EFFECTS_EV_CHANGE] = Item_Get(item, ITEM_PARAM_ATK_EVS);
 
-        if (v1[6] > 0) {
-            if ((v1[1] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                Heap_FreeToHeap(v0);
-                return 1;
+        if (vars[CHECK_EFFECTS_EV_CHANGE] > 0) {
+            if ((vars[CHECK_EFFECTS_ATK_EV] < MAX_EV_VITAMIN) && ((vars[CHECK_EFFECTS_HP_EV] + vars[CHECK_EFFECTS_ATK_EV] + vars[CHECK_EFFECTS_DEF_EV] + vars[CHECK_EFFECTS_SPEED_EV] + vars[CHECK_EFFECTS_SPATK_EV] + vars[CHECK_EFFECTS_SPDEF_EV]) < MAX_EVS_ALL_STATS)) {
+                Heap_FreeToHeap(item);
+                return TRUE;
             }
-        } else if (v1[6] < 0) {
-            if (v1[1] > 0) {
-                Heap_FreeToHeap(v0);
-                return 1;
-            }
-
-            if (CheckFriendshipItemEffect(param0, v0) == 1) {
-                Heap_FreeToHeap(v0);
-                return 1;
-            }
-        }
-    }
-
-    if (Item_Get(v0, 41) != 0) {
-        v1[6] = Item_Get(v0, 50);
-
-        if (v1[6] > 0) {
-            if ((v1[2] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                Heap_FreeToHeap(v0);
-                return 1;
-            }
-        } else if (v1[6] < 0) {
-            if (v1[2] > 0) {
-                Heap_FreeToHeap(v0);
-                return 1;
+        } else if (vars[CHECK_EFFECTS_EV_CHANGE] < 0) {
+            if (vars[CHECK_EFFECTS_ATK_EV] > 0) {
+                Heap_FreeToHeap(item);
+                return TRUE;
             }
 
-            if (CheckFriendshipItemEffect(param0, v0) == 1) {
-                Heap_FreeToHeap(v0);
-                return 1;
+            if (CheckFriendshipItemEffect(mon, item) == TRUE) {
+                Heap_FreeToHeap(item);
+                return TRUE;
             }
         }
     }
 
-    if (Item_Get(v0, 42) != 0) {
-        v1[6] = Item_Get(v0, 51);
+    if (Item_Get(item, ITEM_PARAM_GIVE_DEF_EVS) != FALSE) {
+        vars[CHECK_EFFECTS_EV_CHANGE] = Item_Get(item, ITEM_PARAM_DEF_EVS);
 
-        if (v1[6] > 0) {
-            if ((v1[3] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                Heap_FreeToHeap(v0);
-                return 1;
+        if (vars[CHECK_EFFECTS_EV_CHANGE] > 0) {
+            if ((vars[CHECK_EFFECTS_DEF_EV] < MAX_EV_VITAMIN) && ((vars[CHECK_EFFECTS_HP_EV] + vars[CHECK_EFFECTS_ATK_EV] + vars[CHECK_EFFECTS_DEF_EV] + vars[CHECK_EFFECTS_SPEED_EV] + vars[CHECK_EFFECTS_SPATK_EV] + vars[CHECK_EFFECTS_SPDEF_EV]) < MAX_EVS_ALL_STATS)) {
+                Heap_FreeToHeap(item);
+                return TRUE;
             }
-        } else if (v1[6] < 0) {
-            if (v1[3] > 0) {
-                Heap_FreeToHeap(v0);
-                return 1;
-            }
-
-            if (CheckFriendshipItemEffect(param0, v0) == 1) {
-                Heap_FreeToHeap(v0);
-                return 1;
-            }
-        }
-    }
-
-    if (Item_Get(v0, 43) != 0) {
-        v1[6] = Item_Get(v0, 52);
-
-        if (v1[6] > 0) {
-            if ((v1[4] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                Heap_FreeToHeap(v0);
-                return 1;
-            }
-        } else if (v1[6] < 0) {
-            if (v1[4] > 0) {
-                Heap_FreeToHeap(v0);
-                return 1;
+        } else if (vars[CHECK_EFFECTS_EV_CHANGE] < 0) {
+            if (vars[CHECK_EFFECTS_DEF_EV] > 0) {
+                Heap_FreeToHeap(item);
+                return TRUE;
             }
 
-            if (CheckFriendshipItemEffect(param0, v0) == 1) {
-                Heap_FreeToHeap(v0);
-                return 1;
+            if (CheckFriendshipItemEffect(mon, item) == TRUE) {
+                Heap_FreeToHeap(item);
+                return TRUE;
             }
         }
     }
 
-    if (Item_Get(v0, 44) != 0) {
-        v1[6] = Item_Get(v0, 53);
+    if (Item_Get(item, ITEM_PARAM_GIVE_SPEED_EVS) != FALSE) {
+        vars[CHECK_EFFECTS_EV_CHANGE] = Item_Get(item, ITEM_PARAM_SPEED_EVS);
 
-        if (v1[6] > 0) {
-            if ((v1[5] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                Heap_FreeToHeap(v0);
-                return 1;
+        if (vars[CHECK_EFFECTS_EV_CHANGE] > 0) {
+            if ((vars[CHECK_EFFECTS_SPEED_EV] < MAX_EV_VITAMIN) && ((vars[CHECK_EFFECTS_HP_EV] + vars[CHECK_EFFECTS_ATK_EV] + vars[CHECK_EFFECTS_DEF_EV] + vars[CHECK_EFFECTS_SPEED_EV] + vars[CHECK_EFFECTS_SPATK_EV] + vars[CHECK_EFFECTS_SPDEF_EV]) < MAX_EVS_ALL_STATS)) {
+                Heap_FreeToHeap(item);
+                return TRUE;
             }
-        } else if (v1[6] < 0) {
-            if (v1[5] > 0) {
-                Heap_FreeToHeap(v0);
-                return 1;
+        } else if (vars[CHECK_EFFECTS_EV_CHANGE] < 0) {
+            if (vars[CHECK_EFFECTS_SPEED_EV] > 0) {
+                Heap_FreeToHeap(item);
+                return TRUE;
             }
 
-            if (CheckFriendshipItemEffect(param0, v0) == 1) {
-                Heap_FreeToHeap(v0);
-                return 1;
+            if (CheckFriendshipItemEffect(mon, item) == TRUE) {
+                Heap_FreeToHeap(item);
+                return TRUE;
             }
         }
     }
 
-    Heap_FreeToHeap(v0);
+    if (Item_Get(item, ITEM_PARAM_GIVE_SPATK_EVS) != FALSE) {
+        vars[CHECK_EFFECTS_EV_CHANGE] = Item_Get(item, ITEM_PARAM_SPATK_EVS);
 
-    return 0;
+        if (vars[CHECK_EFFECTS_EV_CHANGE] > 0) {
+            if ((vars[CHECK_EFFECTS_SPATK_EV] < MAX_EV_VITAMIN) && ((vars[CHECK_EFFECTS_HP_EV] + vars[CHECK_EFFECTS_ATK_EV] + vars[CHECK_EFFECTS_DEF_EV] + vars[CHECK_EFFECTS_SPEED_EV] + vars[CHECK_EFFECTS_SPATK_EV] + vars[CHECK_EFFECTS_SPDEF_EV]) < MAX_EVS_ALL_STATS)) {
+                Heap_FreeToHeap(item);
+                return TRUE;
+            }
+        } else if (vars[CHECK_EFFECTS_EV_CHANGE] < 0) {
+            if (vars[CHECK_EFFECTS_SPATK_EV] > 0) {
+                Heap_FreeToHeap(item);
+                return TRUE;
+            }
+
+            if (CheckFriendshipItemEffect(mon, item) == TRUE) {
+                Heap_FreeToHeap(item);
+                return TRUE;
+            }
+        }
+    }
+
+    if (Item_Get(item, ITEM_PARAM_GIVE_SPDEF_EVS) != FALSE) {
+        vars[CHECK_EFFECTS_EV_CHANGE] = Item_Get(item, ITEM_PARAM_SPDEF_EVS);
+
+        if (vars[CHECK_EFFECTS_EV_CHANGE] > 0) {
+            if ((vars[CHECK_EFFECTS_SPDEF_EV] < MAX_EV_VITAMIN) && ((vars[CHECK_EFFECTS_HP_EV] + vars[CHECK_EFFECTS_ATK_EV] + vars[CHECK_EFFECTS_DEF_EV] + vars[CHECK_EFFECTS_SPEED_EV] + vars[CHECK_EFFECTS_SPATK_EV] + vars[CHECK_EFFECTS_SPDEF_EV]) < MAX_EVS_ALL_STATS)) {
+                Heap_FreeToHeap(item);
+                return TRUE;
+            }
+        } else if (vars[CHECK_EFFECTS_EV_CHANGE] < 0) {
+            if (vars[CHECK_EFFECTS_SPDEF_EV] > 0) {
+                Heap_FreeToHeap(item);
+                return TRUE;
+            }
+
+            if (CheckFriendshipItemEffect(mon, item) == TRUE) {
+                Heap_FreeToHeap(item);
+                return TRUE;
+            }
+        }
+    }
+
+    Heap_FreeToHeap(item);
+
+    return FALSE;
 }
 
-u8 CheckItemEffectsOnPartyMember(Party *param0, u16 param1, u8 param2, u8 param3, u32 param4)
+u8 PartyUseItem_CheckItemEffectsOnPartyMember(Party *party, u16 itemId, u8 partySlot, u8 moveSlot, enum HeapId heapID)
 {
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0, param2);
-    return CheckItemEffectsOnPokemon(v0, param1, param3, param4);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
+    return PartyUseItem_CheckItemEffectsOnPokemon(mon, itemId, moveSlot, heapID);
 }
 
-u8 ApplyItemEffectsToPokemon(Pokemon *param0, u16 param1, u16 param2, u16 param3, u32 param4)
+u8 PartyUseItem_ApplyItemEffectsToPokemon(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location, enum HeapId heapID)
 {
-    ItemData *v0;
-    s32 v1[8];
-    u8 v2;
-    u8 v3;
+    // For some reason, the original developer decided to use an array to store what should have been individual variables
+    s32 vars[8];
 
-    v0 = Item_Load(param1, 0, param4);
+    ItemData *item = Item_Load(itemId, ITEM_FILE_TYPE_DATA, heapID);
 
-    if (Item_Get(v0, 14) != 1) {
-        Heap_FreeToHeap(v0);
+    if (Item_Get(item, ITEM_PARAM_PARTY_USE) != TRUE) {
+        Heap_FreeToHeap(item);
+        return FALSE;
+    }
+
+    u8 effectApplied = FALSE;
+    u8 effectFound = FALSE;
+
+    vars[APPLY_EFFECTS_STATUS] = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+    vars[APPLY_EFFECTS_STATUS_TMP] = vars[APPLY_EFFECTS_STATUS];
+
+    if (Item_Get(item, ITEM_PARAM_HEAL_SLEEP) != FALSE) {
+        vars[APPLY_EFFECTS_STATUS_TMP] &= ~MON_CONDITION_SLEEP;
+        effectFound = TRUE;
+    }
+
+    if (Item_Get(item, ITEM_PARAM_HEAL_POISON) != FALSE) {
+        vars[APPLY_EFFECTS_STATUS_TMP] &= ~MON_CONDITION_ANY_POISON;
+        effectFound = TRUE;
+    }
+
+    if (Item_Get(item, ITEM_PARAM_HEAL_BURN) != FALSE) {
+        vars[APPLY_EFFECTS_STATUS_TMP] &= ~MON_CONDITION_BURN;
+        effectFound = TRUE;
+    }
+
+    if (Item_Get(item, ITEM_PARAM_HEAL_FREEZE) != FALSE) {
+        vars[APPLY_EFFECTS_STATUS_TMP] &= ~MON_CONDITION_FREEZE;
+        effectFound = TRUE;
+    }
+
+    if (Item_Get(item, ITEM_PARAM_HEAL_PARALYSIS) != FALSE) {
+        vars[APPLY_EFFECTS_STATUS_TMP] &= ~MON_CONDITION_PARALYSIS;
+        effectFound = TRUE;
+    }
+
+    if (vars[APPLY_EFFECTS_STATUS] != vars[APPLY_EFFECTS_STATUS_TMP]) {
+        Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &vars[APPLY_EFFECTS_STATUS_TMP]);
+        effectApplied = TRUE;
+    }
+
+    vars[APPLY_EFFECTS_CURRENT_HP] = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+    vars[APPLY_EFFECTS_MAX_HP] = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+
+    if (((Item_Get(item, ITEM_PARAM_REVIVE) != FALSE) || (Item_Get(item, ITEM_PARAM_REVIVE_ALL) != FALSE)) && (Item_Get(item, ITEM_PARAM_LEVEL_UP) != FALSE)) {
+        if (vars[APPLY_EFFECTS_CURRENT_HP] == 0) {
+            RestorePokemonHP(mon, vars[APPLY_EFFECTS_CURRENT_HP], vars[APPLY_EFFECTS_MAX_HP], Item_Get(item, ITEM_PARAM_HP_RESTORED));
+            effectApplied = TRUE;
+        }
+
+        effectFound = TRUE;
+    } else if (Item_Get(item, ITEM_PARAM_HP_RESTORE) != FALSE) {
+        if (vars[APPLY_EFFECTS_CURRENT_HP] < vars[APPLY_EFFECTS_MAX_HP]) {
+            RestorePokemonHP(mon, vars[APPLY_EFFECTS_CURRENT_HP], vars[APPLY_EFFECTS_MAX_HP], Item_Get(item, ITEM_PARAM_HP_RESTORED));
+            effectApplied = TRUE;
+        }
+
+        effectFound = TRUE;
+    }
+
+    vars[APPLY_EFFECTS_LEVEL] = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+
+    if (Item_Get(item, ITEM_PARAM_LEVEL_UP) != FALSE) {
+        if (vars[APPLY_EFFECTS_LEVEL] < MAX_POKEMON_LEVEL) {
+            Pokemon_IncreaseValue(mon, MON_DATA_EXP, Pokemon_GetExpToNextLevel(mon));
+            Pokemon_CalcLevelAndStats(mon);
+
+            if (vars[APPLY_EFFECTS_CURRENT_HP] == 0) {
+                vars[APPLY_EFFECTS_MAX_HP_LVL_UP] = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+                RestorePokemonHP(mon, vars[APPLY_EFFECTS_CURRENT_HP], vars[APPLY_EFFECTS_MAX_HP_LVL_UP], vars[APPLY_EFFECTS_MAX_HP_LVL_UP] - vars[APPLY_EFFECTS_MAX_HP]);
+            }
+
+            effectApplied = TRUE;
+        }
+
+        effectFound = TRUE;
+    }
+
+    if (Item_Get(item, ITEM_PARAM_EVOLVE) != FALSE) {
+        effectFound = TRUE;
+    }
+
+    if (Item_Get(item, ITEM_PARAM_PP_UP) != FALSE) {
+        if (IncreaseMovePPUps(mon, moveSlot, 1) == TRUE) {
+            effectApplied = TRUE;
+        }
+
+        effectFound = TRUE;
+    } else if (Item_Get(item, ITEM_PARAM_PP_MAX) != FALSE) {
+        if (IncreaseMovePPUps(mon, moveSlot, MAX_PP_UP) == TRUE) {
+            effectApplied = TRUE;
+        }
+
+        effectFound = TRUE;
+    }
+
+    if (Item_Get(item, ITEM_PARAM_PP_RESTORE) != FALSE) {
+        if (RestorePokemonMovePP(mon, moveSlot, Item_Get(item, ITEM_PARAM_PP_RESTORED)) == TRUE) {
+            effectApplied = TRUE;
+        }
+
+        effectFound = TRUE;
+    } else if (Item_Get(item, ITEM_PARAM_PP_RESTORE_ALL) != FALSE) {
+        for (vars[APPLY_EFFECTS_MOVE_INDEX] = 0; vars[APPLY_EFFECTS_MOVE_INDEX] < LEARNED_MOVES_MAX; vars[APPLY_EFFECTS_MOVE_INDEX]++) {
+            if (RestorePokemonMovePP(mon, vars[APPLY_EFFECTS_MOVE_INDEX], Item_Get(item, ITEM_PARAM_PP_RESTORED)) == TRUE) {
+                effectApplied = TRUE;
+            }
+        }
+
+        effectFound = TRUE;
+    }
+
+    vars[APPLY_EFFECTS_HP_EV] = Pokemon_GetValue(mon, MON_DATA_HP_EV, NULL);
+    vars[APPLY_EFFECTS_ATK_EV] = Pokemon_GetValue(mon, MON_DATA_ATK_EV, NULL);
+    vars[APPLY_EFFECTS_DEF_EV] = Pokemon_GetValue(mon, MON_DATA_DEF_EV, NULL);
+    vars[APPLY_EFFECTS_SPEED_EV] = Pokemon_GetValue(mon, MON_DATA_SPEED_EV, NULL);
+    vars[APPLY_EFFECTS_SPATK_EV] = Pokemon_GetValue(mon, MON_DATA_SPATK_EV, NULL);
+    vars[APPLY_EFFECTS_SPDEF_EV] = Pokemon_GetValue(mon, MON_DATA_SPDEF_EV, NULL);
+
+    if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_SHEDINJA) {
+        if (Item_Get(item, ITEM_PARAM_GIVE_HP_EVS) != FALSE) {
+            vars[APPLY_EFFECTS_EV_CHANGE] = Item_Get(item, ITEM_PARAM_HP_EVS);
+            vars[APPLY_EFFECTS_NEW_EV] = CalculateEVUpdate(vars[APPLY_EFFECTS_HP_EV], (vars[APPLY_EFFECTS_ATK_EV] + vars[APPLY_EFFECTS_DEF_EV] + vars[APPLY_EFFECTS_SPEED_EV] + vars[APPLY_EFFECTS_SPATK_EV] + vars[APPLY_EFFECTS_SPDEF_EV]), vars[APPLY_EFFECTS_EV_CHANGE]);
+
+            if (vars[APPLY_EFFECTS_NEW_EV] != EV_UNCHANGED) {
+                vars[APPLY_EFFECTS_HP_EV] = vars[APPLY_EFFECTS_NEW_EV];
+                Pokemon_SetValue(mon, MON_DATA_HP_EV, &vars[APPLY_EFFECTS_HP_EV]);
+                Pokemon_CalcLevelAndStats(mon);
+                effectApplied = TRUE;
+            }
+
+            if (vars[APPLY_EFFECTS_EV_CHANGE] > 0) {
+                effectFound = TRUE;
+            }
+        }
+    }
+
+    if (Item_Get(item, ITEM_PARAM_GIVE_ATK_EVS) != FALSE) {
+        vars[APPLY_EFFECTS_EV_CHANGE] = Item_Get(item, ITEM_PARAM_ATK_EVS);
+        vars[APPLY_EFFECTS_NEW_EV] = CalculateEVUpdate(vars[APPLY_EFFECTS_ATK_EV], (vars[APPLY_EFFECTS_HP_EV] + vars[APPLY_EFFECTS_DEF_EV] + vars[APPLY_EFFECTS_SPEED_EV] + vars[APPLY_EFFECTS_SPATK_EV] + vars[APPLY_EFFECTS_SPDEF_EV]), vars[APPLY_EFFECTS_EV_CHANGE]);
+
+        if (vars[APPLY_EFFECTS_NEW_EV] != EV_UNCHANGED) {
+            vars[APPLY_EFFECTS_ATK_EV] = vars[APPLY_EFFECTS_NEW_EV];
+            Pokemon_SetValue(mon, MON_DATA_ATK_EV, &vars[APPLY_EFFECTS_ATK_EV]);
+            Pokemon_CalcLevelAndStats(mon);
+            effectApplied = TRUE;
+        }
+
+        if (vars[APPLY_EFFECTS_EV_CHANGE] > 0) {
+            effectFound = TRUE;
+        }
+    }
+
+    if (Item_Get(item, ITEM_PARAM_GIVE_DEF_EVS) != FALSE) {
+        vars[APPLY_EFFECTS_EV_CHANGE] = Item_Get(item, ITEM_PARAM_DEF_EVS);
+        vars[APPLY_EFFECTS_NEW_EV] = CalculateEVUpdate(vars[APPLY_EFFECTS_DEF_EV], (vars[APPLY_EFFECTS_HP_EV] + vars[APPLY_EFFECTS_ATK_EV] + vars[APPLY_EFFECTS_SPEED_EV] + vars[APPLY_EFFECTS_SPATK_EV] + vars[APPLY_EFFECTS_SPDEF_EV]), vars[APPLY_EFFECTS_EV_CHANGE]);
+
+        if (vars[APPLY_EFFECTS_NEW_EV] != EV_UNCHANGED) {
+            vars[APPLY_EFFECTS_DEF_EV] = vars[APPLY_EFFECTS_NEW_EV];
+            Pokemon_SetValue(mon, MON_DATA_DEF_EV, &vars[APPLY_EFFECTS_DEF_EV]);
+            Pokemon_CalcLevelAndStats(mon);
+            effectApplied = TRUE;
+        }
+
+        if (vars[APPLY_EFFECTS_EV_CHANGE] > 0) {
+            effectFound = TRUE;
+        }
+    }
+
+    if (Item_Get(item, ITEM_PARAM_GIVE_SPEED_EVS) != FALSE) {
+        vars[APPLY_EFFECTS_EV_CHANGE] = Item_Get(item, ITEM_PARAM_SPEED_EVS);
+        vars[APPLY_EFFECTS_NEW_EV] = CalculateEVUpdate(vars[APPLY_EFFECTS_SPEED_EV], (vars[APPLY_EFFECTS_HP_EV] + vars[APPLY_EFFECTS_ATK_EV] + vars[APPLY_EFFECTS_DEF_EV] + vars[APPLY_EFFECTS_SPATK_EV] + vars[APPLY_EFFECTS_SPDEF_EV]), vars[APPLY_EFFECTS_EV_CHANGE]);
+
+        if (vars[APPLY_EFFECTS_NEW_EV] != EV_UNCHANGED) {
+            vars[APPLY_EFFECTS_SPEED_EV] = vars[APPLY_EFFECTS_NEW_EV];
+            Pokemon_SetValue(mon, MON_DATA_SPEED_EV, &vars[APPLY_EFFECTS_SPEED_EV]);
+            Pokemon_CalcLevelAndStats(mon);
+            effectApplied = TRUE;
+        }
+
+        if (vars[APPLY_EFFECTS_EV_CHANGE] > 0) {
+            effectFound = TRUE;
+        }
+    }
+
+    if (Item_Get(item, ITEM_PARAM_GIVE_SPATK_EVS) != FALSE) {
+        vars[APPLY_EFFECTS_EV_CHANGE] = Item_Get(item, ITEM_PARAM_SPATK_EVS);
+        vars[APPLY_EFFECTS_NEW_EV] = CalculateEVUpdate(vars[APPLY_EFFECTS_SPATK_EV], (vars[APPLY_EFFECTS_HP_EV] + vars[APPLY_EFFECTS_ATK_EV] + vars[APPLY_EFFECTS_DEF_EV] + vars[APPLY_EFFECTS_SPEED_EV] + vars[APPLY_EFFECTS_SPDEF_EV]), vars[APPLY_EFFECTS_EV_CHANGE]);
+
+        if (vars[APPLY_EFFECTS_NEW_EV] != EV_UNCHANGED) {
+            vars[APPLY_EFFECTS_SPATK_EV] = vars[APPLY_EFFECTS_NEW_EV];
+            Pokemon_SetValue(mon, MON_DATA_SPATK_EV, &vars[APPLY_EFFECTS_SPATK_EV]);
+            Pokemon_CalcLevelAndStats(mon);
+            effectApplied = TRUE;
+        }
+
+        if (vars[APPLY_EFFECTS_EV_CHANGE] > 0) {
+            effectFound = TRUE;
+        }
+    }
+
+    if (Item_Get(item, ITEM_PARAM_GIVE_SPDEF_EVS) != FALSE) {
+        vars[APPLY_EFFECTS_EV_CHANGE] = Item_Get(item, ITEM_PARAM_SPDEF_EVS);
+        vars[APPLY_EFFECTS_NEW_EV] = CalculateEVUpdate(vars[APPLY_EFFECTS_SPDEF_EV], (vars[APPLY_EFFECTS_HP_EV] + vars[APPLY_EFFECTS_ATK_EV] + vars[APPLY_EFFECTS_DEF_EV] + vars[APPLY_EFFECTS_SPEED_EV] + vars[APPLY_EFFECTS_SPATK_EV]), vars[APPLY_EFFECTS_EV_CHANGE]);
+
+        if (vars[APPLY_EFFECTS_NEW_EV] != EV_UNCHANGED) {
+            vars[APPLY_EFFECTS_SPDEF_EV] = vars[APPLY_EFFECTS_NEW_EV];
+            Pokemon_SetValue(mon, MON_DATA_SPDEF_EV, &vars[APPLY_EFFECTS_SPDEF_EV]);
+            Pokemon_CalcLevelAndStats(mon);
+            effectApplied = TRUE;
+        }
+
+        if (vars[APPLY_EFFECTS_EV_CHANGE] > 0) {
+            effectFound = TRUE;
+        }
+    }
+
+    if ((effectApplied == FALSE) && (effectFound == TRUE)) {
+        Heap_FreeToHeap(item);
         return 0;
     }
 
-    v2 = 0;
-    v3 = 0;
+    vars[APPLY_EFFECTS_FRIENDSHIP] = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
-    v1[0] = Pokemon_GetValue(param0, MON_DATA_STATUS_CONDITION, NULL);
-    v1[1] = v1[0];
-
-    if (Item_Get(v0, 15) != 0) {
-        v1[1] &= (0x7 ^ 0xffffffff);
-        v3 = 1;
-    }
-
-    if (Item_Get(v0, 16) != 0) {
-        v1[1] &= ((0x8 | 0x80 | 0xf00) ^ 0xffffffff);
-        v3 = 1;
-    }
-
-    if (Item_Get(v0, 17) != 0) {
-        v1[1] &= (0x10 ^ 0xffffffff);
-        v3 = 1;
-    }
-
-    if (Item_Get(v0, 18) != 0) {
-        v1[1] &= (0x20 ^ 0xffffffff);
-        v3 = 1;
-    }
-
-    if (Item_Get(v0, 19) != 0) {
-        v1[1] &= (0x40 ^ 0xffffffff);
-        v3 = 1;
-    }
-
-    if (v1[0] != v1[1]) {
-        Pokemon_SetValue(param0, MON_DATA_STATUS_CONDITION, &v1[1]);
-        v2 = 1;
-    }
-
-    v1[0] = Pokemon_GetValue(param0, MON_DATA_CURRENT_HP, NULL);
-    v1[1] = Pokemon_GetValue(param0, MON_DATA_MAX_HP, NULL);
-
-    if (((Item_Get(v0, 23) != 0) || (Item_Get(v0, 24) != 0)) && (Item_Get(v0, 25) != 0)) {
-        if (v1[0] == 0) {
-            RestorePokemonHP(param0, v1[0], v1[1], Item_Get(v0, 54));
-            v2 = 1;
-        }
-
-        v3 = 1;
-    } else if (Item_Get(v0, 38) != 0) {
-        if (v1[0] < v1[1]) {
-            RestorePokemonHP(param0, v1[0], v1[1], Item_Get(v0, 54));
-            v2 = 1;
-        }
-
-        v3 = 1;
-    }
-
-    v1[2] = Pokemon_GetValue(param0, MON_DATA_LEVEL, NULL);
-
-    if (Item_Get(v0, 25) != 0) {
-        if (v1[2] < 100) {
-            Pokemon_IncreaseValue(param0, MON_DATA_EXP, Pokemon_GetExpToNextLevel(param0));
-            Pokemon_CalcLevelAndStats(param0);
-
-            if (v1[0] == 0) {
-                v1[3] = Pokemon_GetValue(param0, MON_DATA_MAX_HP, NULL);
-                RestorePokemonHP(param0, v1[0], v1[3], v1[3] - v1[1]);
-            }
-
-            v2 = 1;
-        }
-
-        v3 = 1;
-    }
-
-    if (Item_Get(v0, 26) != 0) {
-        v3 = 1;
-    }
-
-    if (Item_Get(v0, 34) != 0) {
-        if (IncreaseMovePPUps(param0, param2, 1) == 1) {
-            v2 = 1;
-        }
-
-        v3 = 1;
-    } else if (Item_Get(v0, 35) != 0) {
-        if (IncreaseMovePPUps(param0, param2, 3) == 1) {
-            v2 = 1;
-        }
-
-        v3 = 1;
-    }
-
-    if (Item_Get(v0, 36) != 0) {
-        if (UpdatePokemonMovePP(param0, param2, Item_Get(v0, 55)) == 1) {
-            v2 = 1;
-        }
-
-        v3 = 1;
-    } else if (Item_Get(v0, 37) != 0) {
-        for (v1[0] = 0; v1[0] < 4; v1[0]++) {
-            if (UpdatePokemonMovePP(param0, v1[0], Item_Get(v0, 55)) == 1) {
-                v2 = 1;
+    if (vars[APPLY_EFFECTS_FRIENDSHIP] < FRIENDSHIP_LOW_LIMIT) {
+        if (Item_Get(item, ITEM_PARAM_GIVE_FRIENDSHIP_LOW) != FALSE) {
+            if (UpdatePokemonFriendship(mon, vars[APPLY_EFFECTS_FRIENDSHIP], Item_Get(item, ITEM_PARAM_FRIENDSHIP_LOW), location, heapID) == 0) {
+                Heap_FreeToHeap(item);
+                return effectApplied;
             }
         }
-
-        v3 = 1;
-    }
-
-    v1[0] = Pokemon_GetValue(param0, MON_DATA_HP_EV, NULL);
-    v1[1] = Pokemon_GetValue(param0, MON_DATA_ATK_EV, NULL);
-    v1[2] = Pokemon_GetValue(param0, MON_DATA_DEF_EV, NULL);
-    v1[3] = Pokemon_GetValue(param0, MON_DATA_SPEED_EV, NULL);
-    v1[4] = Pokemon_GetValue(param0, MON_DATA_SPATK_EV, NULL);
-    v1[5] = Pokemon_GetValue(param0, MON_DATA_SPDEF_EV, NULL);
-
-    if (Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL) != SPECIES_SHEDINJA) {
-        if (Item_Get(v0, 39) != 0) {
-            v1[7] = Item_Get(v0, 48);
-            v1[6] = CalculateEVUpdate(v1[0], (v1[1] + v1[2] + v1[3] + v1[4] + v1[5]), v1[7]);
-
-            if (v1[6] != -1) {
-                v1[0] = v1[6];
-                Pokemon_SetValue(param0, MON_DATA_HP_EV, &v1[0]);
-                Pokemon_CalcLevelAndStats(param0);
-                v2 = 1;
+    } else if ((vars[APPLY_EFFECTS_FRIENDSHIP] >= FRIENDSHIP_LOW_LIMIT) && (vars[APPLY_EFFECTS_FRIENDSHIP] < FRIENDSHIP_MEDIUM_LIMIT)) {
+        if (Item_Get(item, ITEM_PARAM_GIVE_FRIENDSHIP_MED) != FALSE) {
+            if (UpdatePokemonFriendship(mon, vars[APPLY_EFFECTS_FRIENDSHIP], Item_Get(item, ITEM_PARAM_FRIENDSHIP_MED), location, heapID) == 0) {
+                Heap_FreeToHeap(item);
+                return effectApplied;
             }
-
-            if (v1[7] > 0) {
-                v3 = 1;
+        }
+    } else if ((vars[APPLY_EFFECTS_FRIENDSHIP] >= FRIENDSHIP_MEDIUM_LIMIT) && (vars[APPLY_EFFECTS_FRIENDSHIP] <= FRIENDSHIP_HIGH_LIMIT)) {
+        if (Item_Get(item, ITEM_PARAM_GIVE_FRIENDSHIP_HIGH) != FALSE) {
+            if (UpdatePokemonFriendship(mon, vars[APPLY_EFFECTS_FRIENDSHIP], Item_Get(item, ITEM_PARAM_FRIENDSHIP_HIGH), location, heapID) == 0) {
+                Heap_FreeToHeap(item);
+                return effectApplied;
             }
         }
     }
 
-    if (Item_Get(v0, 40) != 0) {
-        v1[7] = Item_Get(v0, 49);
-        v1[6] = CalculateEVUpdate(v1[1], (v1[0] + v1[2] + v1[3] + v1[4] + v1[5]), v1[7]);
-
-        if (v1[6] != -1) {
-            v1[1] = v1[6];
-            Pokemon_SetValue(param0, MON_DATA_ATK_EV, &v1[1]);
-            Pokemon_CalcLevelAndStats(param0);
-            v2 = 1;
-        }
-
-        if (v1[7] > 0) {
-            v3 = 1;
-        }
-    }
-
-    if (Item_Get(v0, 41) != 0) {
-        v1[7] = Item_Get(v0, 50);
-        v1[6] = CalculateEVUpdate(v1[2], (v1[0] + v1[1] + v1[3] + v1[4] + v1[5]), v1[7]);
-
-        if (v1[6] != -1) {
-            v1[2] = v1[6];
-            Pokemon_SetValue(param0, MON_DATA_DEF_EV, &v1[2]);
-            Pokemon_CalcLevelAndStats(param0);
-            v2 = 1;
-        }
-
-        if (v1[7] > 0) {
-            v3 = 1;
-        }
-    }
-
-    if (Item_Get(v0, 42) != 0) {
-        v1[7] = Item_Get(v0, 51);
-        v1[6] = CalculateEVUpdate(v1[3], (v1[0] + v1[1] + v1[2] + v1[4] + v1[5]), v1[7]);
-
-        if (v1[6] != -1) {
-            v1[3] = v1[6];
-            Pokemon_SetValue(param0, MON_DATA_SPEED_EV, &v1[3]);
-            Pokemon_CalcLevelAndStats(param0);
-            v2 = 1;
-        }
-
-        if (v1[7] > 0) {
-            v3 = 1;
-        }
-    }
-
-    if (Item_Get(v0, 43) != 0) {
-        v1[7] = Item_Get(v0, 52);
-        v1[6] = CalculateEVUpdate(v1[4], (v1[0] + v1[1] + v1[2] + v1[3] + v1[5]), v1[7]);
-
-        if (v1[6] != -1) {
-            v1[4] = v1[6];
-            Pokemon_SetValue(param0, MON_DATA_SPATK_EV, &v1[4]);
-            Pokemon_CalcLevelAndStats(param0);
-            v2 = 1;
-        }
-
-        if (v1[7] > 0) {
-            v3 = 1;
-        }
-    }
-
-    if (Item_Get(v0, 44) != 0) {
-        v1[7] = Item_Get(v0, 53);
-        v1[6] = CalculateEVUpdate(v1[5], (v1[0] + v1[1] + v1[2] + v1[3] + v1[4]), v1[7]);
-
-        if (v1[6] != -1) {
-            v1[5] = v1[6];
-            Pokemon_SetValue(param0, MON_DATA_SPDEF_EV, &v1[5]);
-            Pokemon_CalcLevelAndStats(param0);
-            v2 = 1;
-        }
-
-        if (v1[7] > 0) {
-            v3 = 1;
-        }
-    }
-
-    if ((v2 == 0) && (v3 == 1)) {
-        Heap_FreeToHeap(v0);
-        return 0;
-    }
-
-    v1[0] = Pokemon_GetValue(param0, MON_DATA_FRIENDSHIP, NULL);
-
-    if (v1[0] < 100) {
-        if (Item_Get(v0, 45) != 0) {
-            if (UpdatePokemonFriendship(param0, v1[0], Item_Get(v0, 56), param3, param4) == 0) {
-                Heap_FreeToHeap(v0);
-                return v2;
-            }
-        }
-    } else if ((v1[0] >= 100) && (v1[0] < 200)) {
-        if (Item_Get(v0, 46) != 0) {
-            if (UpdatePokemonFriendship(param0, v1[0], Item_Get(v0, 57), param3, param4) == 0) {
-                Heap_FreeToHeap(v0);
-                return v2;
-            }
-        }
-    } else if ((v1[0] >= 200) && (v1[0] <= 255)) {
-        if (Item_Get(v0, 47) != 0) {
-            if (UpdatePokemonFriendship(param0, v1[0], Item_Get(v0, 58), param3, param4) == 0) {
-                Heap_FreeToHeap(v0);
-                return v2;
-            }
-        }
-    }
-
-    Heap_FreeToHeap(v0);
-    return v2;
+    Heap_FreeToHeap(item);
+    return effectApplied;
 }
 
-u8 sub_02096F14(Party *param0, u16 param1, u8 param2, u8 param3, u16 param4, u32 param5)
+u8 PartyUseItem_ApplyItemEffectsToPartyMon(Party *party, u16 itemId, u8 partySlot, u8 moveSlot, u16 location, enum HeapId heapID)
 {
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0, param2);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
-    return ApplyItemEffectsToPokemon(v0, param1, param3, param4, param5);
+    return PartyUseItem_ApplyItemEffectsToPokemon(mon, itemId, moveSlot, location, heapID);
 }
 
-static u8 CheckMovePPAvailability(Pokemon *mon, u32 moveIDX) // param0,1
+static u8 IsMoveMissingPP(Pokemon *mon, u32 moveSlot)
 {
-    u16 move; // v0
-    u8 ppCurr; // v1
-    u8 ppUps; // v2
+    u16 move = Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
 
-    move = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveIDX, NULL);
-
-    if (move == 0) {
-        return 0;
+    if (move == MOVE_NONE) {
+        return FALSE;
     }
 
-    ppCurr = (u8)Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveIDX, NULL);
-    ppUps = (u8)Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveIDX, NULL);
+    u8 ppCurr = Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL);
+    u8 ppUps = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL);
 
     if (ppCurr < MoveTable_CalcMaxPP(move, ppUps)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static u8 UpdatePokemonMovePP(Pokemon *mon, u32 moveIDX, u32 pp)
+static u8 RestorePokemonMovePP(Pokemon *mon, u32 moveSlot, u32 amount)
 {
-    u16 move;
-    u8 ppCurr;
-    u8 ppMax;
+    u16 move = Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
 
-    move = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveIDX, NULL);
-
-    if (move == 0) {
-        return 0;
+    if (move == MOVE_NONE) {
+        return FALSE;
     }
 
-    ppCurr = (u8)Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveIDX, NULL);
-    ppMax = (u8)MoveTable_CalcMaxPP(move, Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveIDX, NULL));
+    u8 ppCurr = Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL);
+    u8 ppMax = MoveTable_CalcMaxPP(move, Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL));
 
     if (ppCurr < ppMax) {
-        if (pp == 127) { // case from healing function
-            ppCurr = ppMax; // ppCurr = max pp
+        if (amount == HEAL_FULL_PP) {
+            ppCurr = ppMax;
         } else {
-            ppCurr += pp;
+            ppCurr += amount;
 
             if (ppCurr > ppMax) {
                 ppCurr = ppMax;
             }
         }
 
-        Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + moveIDX, &ppCurr); // set the pp of the move
-        return 1;
+        Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, &ppCurr);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static u8 IncreaseMovePPUps(Pokemon *param0, u32 param1, u32 param2)
+static u8 IncreaseMovePPUps(Pokemon *mon, u32 moveSlot, u32 amount)
 {
-    u16 v0;
-    u8 v1;
-    u8 v2;
-    u8 v3;
+    u8 currPp; // forward declaration required to match
 
-    v2 = Pokemon_GetValue(param0, MON_DATA_MOVE1_PP_UPS + param1, NULL);
+    u8 currPpUps = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL);
 
-    if (v2 == 3) {
-        return 0;
+    if (currPpUps == MAX_PP_UP) {
+        return FALSE;
     }
 
-    v0 = (u16)Pokemon_GetValue(param0, MON_DATA_MOVE1 + param1, NULL);
+    u16 moveId = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
 
-    if (MoveTable_CalcMaxPP(v0, 0) < 5) {
-        return 0;
+    if (MoveTable_CalcMaxPP(moveId, 0) < PP_UP_MININUM_MAX_PP) {
+        return FALSE;
     }
 
-    v1 = (u8)Pokemon_GetValue(param0, MON_DATA_MOVE1_CUR_PP + param1, NULL);
-    v3 = (u8)MoveTable_CalcMaxPP(v0, v2);
+    currPp = (u8)Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL);
+    u8 maxPp = (u8)MoveTable_CalcMaxPP(moveId, currPpUps);
 
-    if (v2 + param2 > 3) {
-        v2 = 3;
+    if (currPpUps + amount > MAX_PP_UP) {
+        currPpUps = MAX_PP_UP;
     } else {
-        v2 = v2 + param2;
+        currPpUps = currPpUps + amount;
     }
 
-    v1 = v1 + MoveTable_CalcMaxPP(v0, v2) - v3;
+    currPp = currPp + MoveTable_CalcMaxPP(moveId, currPpUps) - maxPp;
 
-    Pokemon_SetValue(param0, MON_DATA_MOVE1_PP_UPS + param1, &v2);
-    Pokemon_SetValue(param0, MON_DATA_MOVE1_CUR_PP + param1, &v1);
+    Pokemon_SetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, &currPpUps);
+    Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, &currPp);
 
-    return 1;
+    return TRUE;
 }
 
-static void RestorePokemonHP(Pokemon *mon, u32 param1, u32 param2, u32 param3)
+static void RestorePokemonHP(Pokemon *mon, u32 currentHp, u32 maxHp, u32 amount)
 {
-    if (param2 == 1) {
-        param3 = 1;
-    } else if (param3 == 255) {
-        param3 = param2;
-    } else if (param3 == 254) {
-        param3 = param2 / 2;
-    } else if (param3 == 253) {
-        param3 = param2 / 4;
+    if (maxHp == 1) {
+        amount = 1;
+    } else if (amount == HEAL_FULL_HP) {
+        amount = maxHp;
+    } else if (amount == HEAL_HALF_HP) {
+        amount = maxHp / 2;
+    } else if (amount == HEAL_QUARTER_HP) {
+        amount = maxHp / 4;
     }
 
-    if (param1 + param3 > param2) {
-        param1 = param2;
+    if (currentHp + amount > maxHp) {
+        currentHp = maxHp;
     } else {
-        param1 += param3;
+        currentHp += amount;
     }
 
-    Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &param1);
+    Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &currentHp);
 }
 
-static s32 CalculateEVUpdate(s32 param0, s32 param1, s32 param2)
+static s32 CalculateEVUpdate(s32 current, s32 sumOthers, s32 change)
 {
-    if ((param0 == 0) && (param2 < 0)) {
-        return -1;
+    if ((current == 0) && (change < 0)) {
+        return EV_UNCHANGED;
     }
 
-    if ((param0 >= 100) && (param2 > 0)) {
-        return -1;
+    if ((current >= MAX_EV_VITAMIN) && (change > 0)) {
+        return EV_UNCHANGED;
     }
 
-    if (((param0 + param1) >= 510) && (param2 > 0)) {
-        return -1;
+    if (((current + sumOthers) >= MAX_EVS_ALL_STATS) && (change > 0)) {
+        return EV_UNCHANGED;
     }
 
-    param0 += param2;
+    current += change;
 
-    if (param0 > 100) {
-        param0 = 100;
-    } else if (param0 < 0) {
-        param0 = 0;
+    if (current > MAX_EV_VITAMIN) {
+        current = MAX_EV_VITAMIN;
+    } else if (current < 0) {
+        current = 0;
     }
 
-    if ((param0 + param1) > 510) {
-        param0 = 510 - param1;
+    if ((current + sumOthers) > MAX_EVS_ALL_STATS) {
+        current = MAX_EVS_ALL_STATS - sumOthers;
     }
 
-    return param0;
+    return current;
 }
 
-static u8 CheckFriendshipItemEffect(Pokemon *param0, ItemData *param1)
+static u8 CheckFriendshipItemEffect(Pokemon *mon, ItemData *item)
 {
-    s32 v0;
-    s32 v1;
+    s32 friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
-    v0 = Pokemon_GetValue(param0, MON_DATA_FRIENDSHIP, NULL);
-
-    if (v0 >= 255) {
-        return 0;
+    if (friendship >= MAX_POKEMON_FRIENDSHIP) {
+        return FALSE;
     }
 
-    if (v0 < 100) {
-        if (Item_Get(param1, 45) != 0) {
-            if (Item_Get(param1, 56) > 0) {
-                return 1;
+    if (friendship < FRIENDSHIP_LOW_LIMIT) {
+        if (Item_Get(item, ITEM_PARAM_GIVE_FRIENDSHIP_LOW) != 0) {
+            if (Item_Get(item, ITEM_PARAM_FRIENDSHIP_LOW) > 0) {
+                return TRUE;
             }
         }
 
-        return 0;
-    } else if ((v0 >= 100) && (v0 < 200)) {
-        if (Item_Get(param1, 46) != 0) {
-            if (Item_Get(param1, 57) > 0) {
-                return 1;
+        return FALSE;
+    } else if ((friendship >= FRIENDSHIP_LOW_LIMIT) && (friendship < FRIENDSHIP_MEDIUM_LIMIT)) {
+        if (Item_Get(item, ITEM_PARAM_GIVE_FRIENDSHIP_MED) != 0) {
+            if (Item_Get(item, ITEM_PARAM_FRIENDSHIP_MED) > 0) {
+                return TRUE;
             }
         }
 
-        return 0;
-    } else if ((v0 >= 200) && (v0 < 255)) {
-        if (Item_Get(param1, 47) != 0) {
-            if (Item_Get(param1, 58) > 0) {
-                return 1;
+        return FALSE;
+    } else if ((friendship >= FRIENDSHIP_MEDIUM_LIMIT) && (friendship < FRIENDSHIP_HIGH_LIMIT)) {
+        if (Item_Get(item, ITEM_PARAM_GIVE_FRIENDSHIP_HIGH) != 0) {
+            if (Item_Get(item, ITEM_PARAM_FRIENDSHIP_HIGH) > 0) {
+                return TRUE;
             }
         }
 
-        return 0;
+        return FALSE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static u8 UpdatePokemonFriendship(Pokemon *param0, s32 param1, s32 param2, u16 param3, u32 param4)
+static u8 UpdatePokemonFriendship(Pokemon *mon, s32 current, s32 change, u16 location, enum HeapId heapID)
 {
-    if ((param1 == 255) && (param2 > 0)) {
-        return 0;
+    if ((current == MAX_POKEMON_FRIENDSHIP) && (change > 0)) {
+        return FALSE;
     }
 
-    if ((param1 == 0) && (param2 < 0)) {
-        return 0;
+    if ((current == 0) && (change < 0)) {
+        return FALSE;
     }
 
-    if (param2 > 0) {
-        if (Item_LoadParam(Pokemon_GetValue(param0, MON_DATA_HELD_ITEM, NULL), 1, param4) == 53) {
-            param2 = param2 * 150 / 100;
+    if (change > 0) {
+        if (Item_LoadParam(Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_HOLD_EFFECT, heapID) == HOLD_EFFECT_FRIENDSHIP_UP) {
+            change = change * HELD_ITEM_FRIENDSHIP_UP_MULTIPLIER;
         }
 
-        if (Pokemon_GetValue(param0, MON_DATA_POKEBALL, NULL) == 11) {
-            param2++;
+        if (Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL) == ITEM_LUXURY_BALL) {
+            change++;
         }
 
-        if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == param3) {
-            param2++;
+        if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == location) {
+            change++;
         }
     }
 
-    param2 += param1;
+    change += current;
 
-    if (param2 > 255) {
-        param2 = 255;
+    if (change > MAX_POKEMON_FRIENDSHIP) {
+        change = MAX_POKEMON_FRIENDSHIP;
     }
 
-    if (param2 < 0) {
-        param2 = 0;
+    if (change < 0) {
+        change = 0;
     }
 
-    Pokemon_SetValue(param0, MON_DATA_FRIENDSHIP, &param2);
-    return 1;
+    Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &change);
+    return TRUE;
 }
 
-void HealAllPokemonInParty(Party *party)
+void Party_HealAllPokemon(Party *party)
 {
-    int i, j, monCount;
-    u32 tmp;
-    Pokemon *mon;
+    int j; // forward declaration required to match
 
-    monCount = Party_GetCurrentCount(party);
+    int monCount = Party_GetCurrentCount(party);
 
-    // loop through party
-    for (i = 0; i < monCount; i++) {
-        // set mon pointer to current pokemon
-        mon = Party_GetPokemonBySlotIndex(party, i);
+    for (int i = 0; i < monCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-        // data sanity?
         if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
             continue;
         }
 
-        // set tmp variable to max hp value
-        tmp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
-        // set mon's current hp to max hp
+        u32 tmp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
         Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &tmp);
 
-        // set tmp variable to 0
-        tmp = 0;
-        // clear mon's status condition
+        tmp = MON_CONDITION_NONE;
         Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &tmp);
 
-        // loop through mon's moves
-        for (j = 0; j < 4; j++) {
-            // check if move is at max pp
-            if (CheckMovePPAvailability(mon, j) == 1) {
-                UpdatePokemonMovePP(mon, j, 127); // set
+        for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+            if (IsMoveMissingPP(mon, j) == TRUE) {
+                RestorePokemonMovePP(mon, j, HEAL_FULL_PP);
             }
         }
     }

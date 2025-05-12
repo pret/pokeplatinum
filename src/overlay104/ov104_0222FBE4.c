@@ -1956,7 +1956,7 @@ static BOOL ov104_02231050(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
 
-    HealAllPokemonInParty(SaveData_GetParty(v0->saveData));
+    Party_HealAllPokemon(SaveData_GetParty(v0->saveData));
     return 0;
 }
 

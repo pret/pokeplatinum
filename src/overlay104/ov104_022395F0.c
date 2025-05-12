@@ -347,7 +347,7 @@ BOOL ov104_02239B14(UnkStruct_ov104_0222E930 *param0)
         sub_0204A4C8(v1, v2->saveData);
     }
 
-    HealAllPokemonInParty(SaveData_GetParty(v2->saveData));
+    Party_HealAllPokemon(SaveData_GetParty(v2->saveData));
     sub_0209BA80(v1);
 
     v1->unk_8D4 = 0;
