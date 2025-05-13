@@ -78,7 +78,7 @@ Static main
 	Object main.nef.p/src_vram_transfer.c.o
 	Object main.nef.p/src_cell_transfer.c.o
 	Object main.nef.p/src_unk_0201DD00.c.o
-	Object main.nef.p/src_byte_flag_set.c.o
+	Object main.nef.p/src_cursor_info.c.o
 	Object main.nef.p/src_ascii_util.c.o
 	Object main.nef.p/src_fx_util.c.o
 	Object main.nef.p/src_int_distance.c.o

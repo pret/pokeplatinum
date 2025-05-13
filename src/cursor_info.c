@@ -1,32 +1,32 @@
-#include "byte_flag_set.h"
+#include "cursor_info.h"
 
-void ReadABByteFlags(const ByteFlagSet *byteFlagSet, u8 *xCoord, u8 *yCoord)
+void ReadCursorXYCoords(const CursorInfo *byteFlagSet, u8 *xCoord, u8 *yCoord)
 {
     *xCoord = byteFlagSet->xCoord;
     *yCoord = byteFlagSet->yCoord;
 }
 
-void ReadCDByteFlags(const ByteFlagSet *byteFlagSet, u8 *subXCoord, u8 *subYCoord)
+void ReadCursorSubXYCoords(const CursorInfo *byteFlagSet, u8 *subXCoord, u8 *subYCoord)
 {
     *subXCoord = byteFlagSet->subXCoord;
     *subYCoord = byteFlagSet->subYCoord;
 }
 
-u8 ReadByteFlags(const ByteFlagSet *byteFlagSet, u8 *xCoord, u8 *yCoord, u8 *subXCoord, u8 *subYCoord, u8 setIndex, u8 direction)
+u8 ReadCursorCoords(const CursorInfo *byteFlagSet, u8 *xCoord, u8 *yCoord, u8 *subXCoord, u8 *subYCoord, u8 setIndex, u8 direction)
 {
     u8 index = setIndex;
 
     switch (direction) {
-    case BYTE_FLAG_SET_DIRECTION_UP:
+    case CURSOR_INFO_DIRECTION_UP:
         index = byteFlagSet[setIndex].upIndex;
         break;
-    case BYTE_FLAG_SET_DIRECTION_DOWN:
+    case CURSOR_INFO_DIRECTION_DOWN:
         index = byteFlagSet[setIndex].downIndex;
         break;
-    case BYTE_FLAG_SET_DIRECTION_LEFT:
+    case CURSOR_INFO_DIRECTION_LEFT:
         index = byteFlagSet[setIndex].leftIndex;
         break;
-    case BYTE_FLAG_SET_DIRECTION_RIGHT:
+    case CURSOR_INFO_DIRECTION_RIGHT:
         index = byteFlagSet[setIndex].rightIndex;
         break;
     }

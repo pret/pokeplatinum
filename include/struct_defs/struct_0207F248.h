@@ -13,7 +13,7 @@
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
 
 #include "bg_window.h"
-#include "byte_flag_set.h"
+#include "cursor_info.h"
 #include "menu.h"
 #include "message.h"
 #include "sprite.h"
@@ -44,7 +44,7 @@ typedef struct {
     StringList *unk_6FC;
     Menu *unk_700;
     StrBufWrapper unk_704[6];
-    const ByteFlagSet *unk_7F4;
+    const CursorInfo *unk_7F4;
     DualArrayShortData unk_7F8;
     GenericFunctionPtr unk_B00;
     FunctionPtrPair unk_B04;
