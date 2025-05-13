@@ -73,7 +73,7 @@ pokeplatinum_c = files(
     'vram_transfer.c',
     'cell_transfer.c',
     'unk_0201DD00.c',
-    'cursor_info.c',
+    'party_menu_cursor.c',
     'ascii_util.c',
     'fx_util.c',
     'int_distance.c',

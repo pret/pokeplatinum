@@ -7,14 +7,14 @@
 #include "battle/struct_ov16_0226DC24_decl.h"
 #include "overlay013/struct_ov13_02228A50_decl.h"
 
-#include "cursor_info.h"
 #include "heap.h"
+#include "party_menu_cursor.h"
 #include "sound_playback.h"
 #include "system.h"
 
 struct UnkStruct_ov13_02228A50_t {
     UnkStruct_ov16_0226DC24 *unk_00;
-    const CursorInfo *unk_04;
+    const PartyMenuCursor *unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -68,7 +68,7 @@ void ov13_02228A90(UnkStruct_ov13_02228A50 *param0)
     param0->unk_0A = 0xff;
 }
 
-void ov13_02228A9C(UnkStruct_ov13_02228A50 *param0, const CursorInfo *param1)
+void ov13_02228A9C(UnkStruct_ov13_02228A50 *param0, const PartyMenuCursor *param1)
 {
     ov13_02228A90(param0);
 
@@ -101,25 +101,25 @@ static u8 ov13_02228ACC(UnkStruct_ov13_02228A50 *param0)
     return 0;
 }
 
-static BOOL ov13_02228B18(const CursorInfo *byteFlagSet, u8 direction)
+static BOOL ov13_02228B18(const PartyMenuCursor *byteFlagSet, u8 direction)
 {
     switch (direction) {
-    case CURSOR_INFO_DIRECTION_UP:
+    case PARTY_MENU_CURSOR_DIRECTION_UP:
         if (byteFlagSet->downIndex & 0x80) {
             return TRUE;
         }
         break;
-    case CURSOR_INFO_DIRECTION_DOWN:
+    case PARTY_MENU_CURSOR_DIRECTION_DOWN:
         if (byteFlagSet->upIndex & 0x80) {
             return TRUE;
         }
         break;
-    case CURSOR_INFO_DIRECTION_LEFT:
+    case PARTY_MENU_CURSOR_DIRECTION_LEFT:
         if (byteFlagSet->rightIndex & 0x80) {
             return TRUE;
         }
         break;
-    case CURSOR_INFO_DIRECTION_RIGHT:
+    case PARTY_MENU_CURSOR_DIRECTION_RIGHT:
         if (byteFlagSet->leftIndex & 0x80) {
             return TRUE;
         }
@@ -140,17 +140,17 @@ u32 ov13_02228B64(UnkStruct_ov13_02228A50 *param0)
     }
 
     if (gSystem.pressedKeys & PAD_KEY_UP) {
-        v4 = ReadCursorCoords(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, CURSOR_INFO_DIRECTION_UP);
-        v5 = CURSOR_INFO_DIRECTION_UP;
+        v4 = ReadPartyMenuCursorCoords(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, PARTY_MENU_CURSOR_DIRECTION_UP);
+        v5 = PARTY_MENU_CURSOR_DIRECTION_UP;
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-        v4 = ReadCursorCoords(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, CURSOR_INFO_DIRECTION_DOWN);
-        v5 = CURSOR_INFO_DIRECTION_DOWN;
+        v4 = ReadPartyMenuCursorCoords(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, PARTY_MENU_CURSOR_DIRECTION_DOWN);
+        v5 = PARTY_MENU_CURSOR_DIRECTION_DOWN;
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        v4 = ReadCursorCoords(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, CURSOR_INFO_DIRECTION_LEFT);
-        v5 = CURSOR_INFO_DIRECTION_LEFT;
+        v4 = ReadPartyMenuCursorCoords(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, PARTY_MENU_CURSOR_DIRECTION_LEFT);
+        v5 = PARTY_MENU_CURSOR_DIRECTION_LEFT;
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        v4 = ReadCursorCoords(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, CURSOR_INFO_DIRECTION_RIGHT);
-        v5 = CURSOR_INFO_DIRECTION_RIGHT;
+        v4 = ReadPartyMenuCursorCoords(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, PARTY_MENU_CURSOR_DIRECTION_RIGHT);
+        v5 = PARTY_MENU_CURSOR_DIRECTION_RIGHT;
     } else {
         v4 = 0xffffffff;
     }
@@ -174,7 +174,7 @@ u32 ov13_02228B64(UnkStruct_ov13_02228A50 *param0)
             }
 
             v6 = 0;
-            v7 = ReadCursorCoords(param0->unk_04, NULL, NULL, NULL, NULL, v4, v5) & (0xff ^ 0x80);
+            v7 = ReadPartyMenuCursorCoords(param0->unk_04, NULL, NULL, NULL, NULL, v4, v5) & (0xff ^ 0x80);
 
             if ((v7 == v4) || (v7 == param0->unk_09)) {
                 v4 = param0->unk_09;
@@ -185,8 +185,8 @@ u32 ov13_02228B64(UnkStruct_ov13_02228A50 *param0)
         }
 
         if (param0->unk_09 != v4) {
-            ReadCursorXYCoords(&param0->unk_04[v4], &v0, &v1);
-            ReadCursorSubXYCoords(&param0->unk_04[v4], &v2, &v3);
+            ReadPartyMenuCursorXYCoords(&param0->unk_04[v4], &v0, &v1);
+            ReadPartyMenuCursorSubXYCoords(&param0->unk_04[v4], &v2, &v3);
 
             if ((ov13_02228B18(&param0->unk_04[v4], v5) == TRUE) && (v6 != 0)) {
                 param0->unk_0A = param0->unk_09;
