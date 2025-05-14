@@ -5508,7 +5508,7 @@ static BOOL ScrCmd_HealParty(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(ctx->task);
 
-    Party_HealAllPokemon(SaveData_GetParty(fieldSystem->saveData));
+    Party_HealAllMembers(SaveData_GetParty(fieldSystem->saveData));
     return FALSE;
 }
 

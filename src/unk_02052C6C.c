@@ -122,7 +122,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
     case 4: {
         int v6;
 
-        Party_HealAllPokemon(SaveData_GetParty(fieldSystem->saveData));
+        Party_HealAllMembers(SaveData_GetParty(fieldSystem->saveData));
         SaveData_SetFullSaveRequired();
         v6 = SaveData_Save(fieldSystem->saveData);
         sub_02052C6C(fieldSystem, v3->unk_00);

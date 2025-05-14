@@ -2574,7 +2574,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
         return 6;
     }
 
-    if (PartyUseItem_CheckItemEffectsOnPartyMember(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
+    if (Party_CheckItemEffectsOnMember(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
         Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, HEAP_ID_12);
 
         if (Item_Get(v0, 26) != 0) {
