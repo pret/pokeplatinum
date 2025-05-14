@@ -1,4 +1,4 @@
-#include "party_use_item.h"
+#include "item_use_pokemon.h"
 
 #include <nitro.h>
 #include <string.h>

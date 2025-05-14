@@ -18,8 +18,8 @@
 
 #include "communication_system.h"
 #include "heap.h"
+#include "item_use_pokemon.h"
 #include "party.h"
-#include "party_use_item.h"
 #include "unk_0202D05C.h"
 #include "unk_02030108.h"
 #include "unk_0203061C.h"

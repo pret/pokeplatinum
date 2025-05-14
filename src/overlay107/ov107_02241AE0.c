@@ -61,7 +61,7 @@
 #include "unk_020393C8.h"
 #include "unk_0205DFC4.h"
 #include "unk_0208C098.h"
-#include "party_use_item.h"
+#include "item_use_pokemon.h"
 #include "unk_0209BA80.h"
 
 FS_EXTERN_OVERLAY(overlay104);
