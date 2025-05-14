@@ -7,6 +7,7 @@
 #include "constants/battle.h"
 #include "constants/daycare.h"
 #include "constants/field/dynamic_map_features.h"
+#include "constants/field/window.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/overworld_weather.h"
@@ -756,14 +757,14 @@ static const u8 sConditionTable[6][3] = {
     { TRUE, FALSE, TRUE }, //  !=
 };
 
-static const WindowTemplate YesNoWindowTemplate = {
-    0x3,
-    0x19,
-    0xD,
-    0x6,
-    0x4,
-    0xD,
-    0x21F
+static const WindowTemplate sYesNoWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_3,
+    .tilemapLeft = 25,
+    .tilemapTop = 13,
+    .width = 6,
+    .height = 4,
+    .palette = FIELD_MESSAGE_PALETTE_INDEX,
+    .baseTile = 0x21F,
 };
 
 const ScrCmdFunc Unk_020EAC58[] = {
@@ -2599,7 +2600,7 @@ static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx)
 
     LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD);
 
-    *menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &YesNoWindowTemplate, 1024 - (18 + 12) - 9, 11, 4);
+    *menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &sYesNoWindowTemplate, 1024 - (18 + 12) - 9, 11, 4);
     ctx->data[0] = destVarID;
 
     ScriptContext_Pause(ctx, ScriptContext_WaitForYesNoResult);
