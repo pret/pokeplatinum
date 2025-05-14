@@ -7,17 +7,17 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
-#include "overlay013/ov13_02228A38.h"
+#include "overlay013/battle_sub_menu_cursor.h"
 #include "overlay013/struct_ov13_022213F0.h"
 #include "overlay013/struct_ov13_02221ED0.h"
 
+#include "battle_sub_menu_cursor_position.h"
 #include "gx_layers.h"
 #include "item.h"
 #include "move_table.h"
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
-#include "party_menu_cursor.h"
 #include "pokemon_icon.h"
 #include "sprite_system.h"
 #include "unk_0207C908.h"
@@ -789,16 +789,16 @@ static void ov13_0222554C(UnkStruct_ov13_022213F0 *param0)
     ov16_0226DB7C(v0, param0->unk_1FB0, param0->unk_1E4, param0->unk_00->heapID, 45080, 45068, 45068, 45068);
     v1 = ov16_0226DC24(v0, param0->unk_1FB0, param0->unk_00->heapID, 45080, 45068, 45068, 45068, 0, 1);
 
-    ov13_02228A64(param0->unk_2084, v1);
+    SetBattleSubMenuCursorSprites(param0->unk_2084, v1);
 }
 
 static void ov13_022255B8(UnkStruct_ov13_022213F0 *param0)
 {
-    ov16_0226DCA8(ov13_02228A58(param0->unk_2084));
+    ov16_0226DCA8(GetBattleSubMenuCursorSprites(param0->unk_2084));
     ov16_0226DBFC(param0->unk_1FB0, 45080, 45068, 45068, 45068);
 }
 
-static const PartyMenuCursor Unk_ov13_02229464[] = {
+static const BattleSubMenuCursorPosition Unk_ov13_02229464[] = {
     { 0x8, 0x8, 0x78, 0x28, 0x6, 0x2, 0x6, 0x1 },
     { 0x88, 0x10, 0xF8, 0x30, 0x4, 0x3, 0x0, 0x2 },
     { 0x8, 0x38, 0x78, 0x58, 0x0, 0x4, 0x1, 0x3 },
@@ -808,21 +808,21 @@ static const PartyMenuCursor Unk_ov13_02229464[] = {
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x5, 0x0, 0x5, 0x0 }
 };
 
-static const PartyMenuCursor Unk_ov13_02229344[] = {
+static const BattleSubMenuCursorPosition Unk_ov13_02229344[] = {
     { 0x10, 0x10, 0xF0, 0x88, 0x0, 0x81, 0x0, 0x0 },
     { 0x8, 0xA0, 0x60, 0xB8, 0x0, 0x1, 0x1, 0x2 },
     { 0x70, 0xA0, 0xC8, 0xB8, 0x0, 0x2, 0x1, 0x3 },
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x0, 0x3, 0x2, 0x3 }
 };
 
-static const PartyMenuCursor Unk_ov13_02229304[] = {
+static const BattleSubMenuCursorPosition Unk_ov13_02229304[] = {
     { 0x8, 0xA0, 0x20, 0xB8, 0x0, 0x0, 0x0, 0x1 },
     { 0x30, 0xA0, 0x48, 0xB8, 0x1, 0x1, 0x0, 0x2 },
     { 0x68, 0xA0, 0xC0, 0xB8, 0x2, 0x2, 0x1, 0x3 },
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x3, 0x3, 0x2, 0x3 }
 };
 
-static const PartyMenuCursor Unk_ov13_022294D4[] = {
+static const BattleSubMenuCursorPosition Unk_ov13_022294D4[] = {
     { 0x8, 0x38, 0x78, 0x58, 0x0, 0x2, 0x0, 0x1 },
     { 0x88, 0x38, 0xF8, 0x58, 0x1, 0x3, 0x0, 0x1 },
     { 0x8, 0x68, 0x78, 0x88, 0x0, 0x84, 0x2, 0x3 },
@@ -833,7 +833,7 @@ static const PartyMenuCursor Unk_ov13_022294D4[] = {
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x3, 0x7, 0x6, 0x7 }
 };
 
-static const PartyMenuCursor Unk_ov13_02229364[] = {
+static const BattleSubMenuCursorPosition Unk_ov13_02229364[] = {
     { 0x5C, 0x9D, 0x7C, 0xA5, 0x0, 0x2, 0x0, 0x1 },
     { 0x84, 0x9D, 0xA4, 0xA5, 0x1, 0x3, 0x0, 0x4 },
     { 0x5C, 0xAD, 0x7C, 0xB5, 0x0, 0x2, 0x2, 0x3 },
@@ -841,7 +841,7 @@ static const PartyMenuCursor Unk_ov13_02229364[] = {
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x4, 0x4, 0x83, 0x4 }
 };
 
-static const PartyMenuCursor Unk_ov13_0222949C[] = {
+static const BattleSubMenuCursorPosition Unk_ov13_0222949C[] = {
     { 0x8, 0x38, 0x78, 0x58, 0x5, 0x2, 0x0, 0x1 },
     { 0x88, 0x38, 0xF8, 0x58, 0x5, 0x3, 0x0, 0x1 },
     { 0x8, 0x68, 0x78, 0x88, 0x0, 0x4, 0x2, 0x3 },
@@ -851,13 +851,13 @@ static const PartyMenuCursor Unk_ov13_0222949C[] = {
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x3, 0x6, 0x4, 0x6 }
 };
 
-static const PartyMenuCursor Unk_ov13_022292D4[] = {
+static const BattleSubMenuCursorPosition Unk_ov13_022292D4[] = {
     { 0x8, 0xA0, 0xC8, 0xB8, 0x1, 0x0, 0x0, 0x2 },
     { 0xC0, 0x8, 0xF8, 0x18, 0x1, 0x82, 0x0, 0x1 },
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x1, 0x2, 0x0, 0x2 }
 };
 
-static const PartyMenuCursor Unk_ov13_022293B4[] = {
+static const BattleSubMenuCursorPosition Unk_ov13_022293B4[] = {
     { 0x8, 0x38, 0x78, 0x58, 0x0, 0x2, 0x0, 0x1 },
     { 0x88, 0x38, 0xF8, 0x58, 0x1, 0x3, 0x0, 0x1 },
     { 0x8, 0x68, 0x78, 0x88, 0x0, 0x4, 0x2, 0x3 },
@@ -865,7 +865,7 @@ static const PartyMenuCursor Unk_ov13_022293B4[] = {
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x83, 0x4, 0x4, 0x4 }
 };
 
-static const PartyMenuCursor *const Unk_ov13_0222938C[] = {
+static const BattleSubMenuCursorPosition *const Unk_ov13_0222938C[] = {
     Unk_ov13_02229464,
     Unk_ov13_02229344,
     Unk_ov13_02229304,
@@ -881,55 +881,55 @@ static const PartyMenuCursor *const Unk_ov13_0222938C[] = {
 static void ov13_022255EC(UnkStruct_ov13_022213F0 *param0)
 {
     if (param0->unk_2073_4 == 0) {
-        ov13_02228AC8(param0->unk_2084, 0x5f);
+        SetBattleSubMenuCursorEnabledPositionsMask(param0->unk_2084, 0x5f);
     } else {
-        ov13_02228AC8(param0->unk_2084, 0x7f);
+        SetBattleSubMenuCursorEnabledPositionsMask(param0->unk_2084, 0x7f);
     }
 }
 
 static void ov13_02225614(UnkStruct_ov13_022213F0 *param0)
 {
     if (param0->unk_2073_4 == 0) {
-        ov13_02228AC8(param0->unk_2084, 5);
+        SetBattleSubMenuCursorEnabledPositionsMask(param0->unk_2084, 5);
     } else {
-        ov13_02228AC8(param0->unk_2084, 7);
+        SetBattleSubMenuCursorEnabledPositionsMask(param0->unk_2084, 7);
     }
 }
 
 void ov13_0222563C(UnkStruct_ov13_022213F0 *param0, u8 param1)
 {
-    ov13_02228A9C(param0->unk_2084, Unk_ov13_0222938C[param1]);
+    SetBattleSubMenuCursorPositions(param0->unk_2084, Unk_ov13_0222938C[param1]);
 
     switch (param1) {
     case 0:
-        ov13_02228A68(param0->unk_2084, param0->unk_00->unk_11);
+        SetBattleSubMenuCursorCurrentPosition(param0->unk_2084, param0->unk_00->unk_11);
         param0->unk_2088 = 0;
         param0->unk_00->unk_34 = 0;
         break;
     case 1:
-        ov13_02228A68(param0->unk_2084, param0->unk_2088);
+        SetBattleSubMenuCursorCurrentPosition(param0->unk_2084, param0->unk_2088);
         param0->unk_00->unk_34 = 0;
         break;
     case 3:
     case 4:
-        ov13_02228A68(param0->unk_2084, param0->unk_00->unk_34);
+        SetBattleSubMenuCursorCurrentPosition(param0->unk_2084, param0->unk_00->unk_34);
         break;
     case 6:
     case 8:
         ov13_022255EC(param0);
-        ov13_02228A68(param0->unk_2084, param0->unk_2089);
+        SetBattleSubMenuCursorCurrentPosition(param0->unk_2084, param0->unk_2089);
         break;
     case 7:
     case 9:
         ov13_02225614(param0);
-        ov13_02228A68(param0->unk_2084, param0->unk_208A);
+        SetBattleSubMenuCursorCurrentPosition(param0->unk_2084, param0->unk_208A);
         break;
     }
 }
 
 void ov13_022256E8(UnkStruct_ov13_022213F0 *param0)
 {
-    ov13_02228A60(param0->unk_2084, 0);
-    ov13_02228A90(param0->unk_2084);
-    ov16_0226DDE8(ov13_02228A58(param0->unk_2084));
+    SetBattleSubMenuCursorVisibility(param0->unk_2084, 0);
+    ResetBattleSubMenuCursorCurrentPosition(param0->unk_2084);
+    ov16_0226DDE8(GetBattleSubMenuCursorSprites(param0->unk_2084));
 }
