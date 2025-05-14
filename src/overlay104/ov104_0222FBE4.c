@@ -62,6 +62,7 @@
 #include "field_comm_manager.h"
 #include "game_records.h"
 #include "heap.h"
+#include "item_use_pokemon.h"
 #include "math_util.h"
 #include "menu.h"
 #include "message.h"
@@ -92,7 +93,6 @@
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
 #include "unk_0208694C.h"
-#include "unk_02096420.h"
 #include "unk_0209B6F8.h"
 #include "vars_flags.h"
 
@@ -1956,7 +1956,7 @@ static BOOL ov104_02231050(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
 
-    HealAllPokemonInParty(SaveData_GetParty(v0->saveData));
+    Party_HealAllMembers(SaveData_GetParty(v0->saveData));
     return 0;
 }
 

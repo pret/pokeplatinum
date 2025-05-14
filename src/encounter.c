@@ -32,6 +32,7 @@
 #include "field_transition.h"
 #include "game_records.h"
 #include "heap.h"
+#include "item_use_pokemon.h"
 #include "journal.h"
 #include "location.h"
 #include "map_object.h"
@@ -50,7 +51,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_020528D0.h"
 #include "unk_0206CCB0.h"
-#include "unk_02096420.h"
 #include "vars_flags.h"
 
 typedef struct Encounter {
@@ -198,7 +198,7 @@ static BOOL FieldTask_Encounter(FieldTask *task)
         }
 
         if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
-            HealAllPokemonInParty(SaveData_GetParty(fieldSystem->saveData));
+            Party_HealAllMembers(SaveData_GetParty(fieldSystem->saveData));
         }
 
         UpdateGameRecords(fieldSystem, encounter->dto);
@@ -399,7 +399,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
         }
 
         if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
-            HealAllPokemonInParty(SaveData_GetParty(fieldSystem->saveData));
+            Party_HealAllMembers(SaveData_GetParty(fieldSystem->saveData));
         }
 
         UpdateGameRecords(fieldSystem, encounter->dto);
