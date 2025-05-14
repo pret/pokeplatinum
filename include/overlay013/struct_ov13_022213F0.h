@@ -3,9 +3,9 @@
 
 #include "struct_decls/struct_0200C440_decl.h"
 
+#include "overlay013/battle_sub_menu_cursor.h"
 #include "overlay013/struct_ov13_0221FC20.h"
 #include "overlay013/struct_ov13_02221ED0.h"
-#include "overlay013/struct_ov13_02228A50_decl.h"
 
 #include "bg_window.h"
 #include "message.h"
@@ -58,7 +58,7 @@ typedef struct {
     u8 unk_2079;
     u16 unk_207A;
     u16 unk_207C[4];
-    UnkStruct_ov13_02228A50 *unk_2084;
+    BattleSubMenuCursor *unk_2084;
     u8 unk_2088;
     u8 unk_2089;
     u8 unk_208A;
