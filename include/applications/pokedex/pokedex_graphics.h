@@ -12,10 +12,10 @@
 #include "heap.h"
 #include "narc.h"
 #include "pokemon_sprite.h"
+#include "species.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "sys_task_manager.h"
-#include "species.h"
 
 typedef struct PokedexSpeciesLabel {
     Sprite *nameTag; // displays caughtIcon, dex number, and name
