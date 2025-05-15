@@ -658,7 +658,7 @@ static void ov21_021E20A4(PokedexGraphicData **param0, int heapID)
 static void ov21_021E2180(UnkStruct_ov21_021E2588 *param0, PokedexGraphicData **param1, int param2)
 {
     PokedexGraphicData *v0 = *param1;
-    NARC *v1 = PokedexGraphics_PokedexGraphicsNARC(v0);
+    NARC *v1 = PokedexGraphics_GetNARC(v0);
 
     param0->unk_40[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 102, 1, 102 + 5000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
@@ -873,9 +873,9 @@ static void ov21_021E25F8(UnkStruct_ov21_021E2588 *param0, PokedexGraphicData **
 
     if (ov21_021E33A4(param2->unk_14)) {
         if (param3) {
-            PokedexGraphics_InitFadeTransition(&(*param1)->fadeSub, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 1);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendSub, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 1);
         } else {
-            PokedexGraphics_InitFadeTransition(&(*param1)->fadeSub, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 1);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendSub, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 1);
         }
     }
 }
@@ -885,7 +885,7 @@ static BOOL ov21_021E2664(UnkStruct_ov21_021E2588 *param0, PokedexGraphicData **
     BOOL v0;
 
     if (ov21_021E33A4(param2->unk_14)) {
-        v0 = PokedexGraphics_TakeFadeTransitionStep(&(*param1)->fadeSub);
+        v0 = PokedexGraphics_TakeBlendTransitionStep(&(*param1)->blendSub);
     } else {
         v0 = BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN);
     }

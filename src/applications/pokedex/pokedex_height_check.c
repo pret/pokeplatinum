@@ -269,9 +269,9 @@ static void ov21_021E628C(HeightCheckVisuals *heightCheckVisuals, PokedexGraphic
 
     if (ov21_021E2A54(param2->unk_08)) {
         if (param3) {
-            PokedexGraphics_InitFadeTransition(&(*param1)->fadeMain, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendMain, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
         } else {
-            PokedexGraphics_InitFadeTransition(&(*param1)->fadeMain, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendMain, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
         }
     }
 }
@@ -281,9 +281,9 @@ static BOOL ov21_021E62F8(HeightCheckVisuals *heightCheckVisuals, PokedexGraphic
     BOOL v0;
 
     if (ov21_021E2A54(param2->unk_08)) {
-        v0 = PokedexGraphics_TakeFadeTransitionStep(&(*param1)->fadeMain);
+        v0 = PokedexGraphics_TakeBlendTransitionStep(&(*param1)->blendMain);
     } else {
-        v0 = PokedexGraphics_FadeTransitionComplete(&(*param1)->fadeMain);
+        v0 = PokedexGraphics_BlendTransitionComplete(&(*param1)->blendMain);
     }
 
     if (v0) {
@@ -336,7 +336,7 @@ static void DisplayBackground(PokedexGraphicData **param0, const UnkStruct_ov21_
 static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, enum HeapId heapID)
 {
     PokedexGraphicData *v0 = *param1;
-    NARC *pokedexGraphicsNarc = PokedexGraphics_PokedexGraphicsNARC(v0);
+    NARC *pokedexGraphicsNarc = PokedexGraphics_GetNARC(v0);
 
     heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], pokedexGraphicsNarc, 93, 1, 93 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 

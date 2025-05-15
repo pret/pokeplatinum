@@ -555,7 +555,7 @@ static void ov21_021D7CD8(PokedexGraphicData **param0, const UnkStruct_ov21_021D
 static void ov21_021D7D8C(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **param1, int param2)
 {
     PokedexGraphicData *v0 = *param1;
-    NARC *v1 = PokedexGraphics_PokedexGraphicsNARC(*param1);
+    NARC *v1 = PokedexGraphics_GetNARC(*param1);
 
     param0->unk_2C[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 84, 1, 84 + 1000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 

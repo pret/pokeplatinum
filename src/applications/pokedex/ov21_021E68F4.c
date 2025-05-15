@@ -371,9 +371,9 @@ static void ov21_021E6CB0(UnkStruct_ov21_021E6C60 *param0, PokedexGraphicData **
 
     if (ov21_021E33A4(param2->unk_0C)) {
         if (param3) {
-            PokedexGraphics_InitFadeTransition(&(*param1)->fadeSub, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 1);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendSub, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 1);
         } else {
-            PokedexGraphics_InitFadeTransition(&(*param1)->fadeSub, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 1);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendSub, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 1);
         }
     }
 }
@@ -383,7 +383,7 @@ static BOOL ov21_021E6D1C(UnkStruct_ov21_021E6C60 *param0, PokedexGraphicData **
     BOOL v0;
 
     if (ov21_021E33A4(param2->unk_0C)) {
-        v0 = PokedexGraphics_TakeFadeTransitionStep(&(*param1)->fadeSub);
+        v0 = PokedexGraphics_TakeBlendTransitionStep(&(*param1)->blendSub);
     } else {
         v0 = BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN);
     }
@@ -526,7 +526,7 @@ static void ov21_021E6EF0(PokedexGraphicData **param0, int heapID)
 static void ov21_021E6F58(UnkStruct_ov21_021E6C60 *param0, PokedexGraphicData **param1, int param2)
 {
     PokedexGraphicData *v0 = *param1;
-    NARC *v1 = PokedexGraphics_PokedexGraphicsNARC(*param1);
+    NARC *v1 = PokedexGraphics_GetNARC(*param1);
 
     param0->unk_10[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 102, 1, 102 + 9000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 

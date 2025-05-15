@@ -406,13 +406,13 @@ static void ov21_021E43C8(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E41
 
     if (ov21_021E2A54(param2->unk_08)) {
         if (param3) {
-            PokedexGraphics_InitFadeTransition(&param1->unk_00->fadeMain, 3, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
+            PokedexGraphics_InitBlendTransition(&param1->unk_00->blendMain, 3, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
         } else {
-            PokedexGraphics_InitFadeTransition(&param1->unk_00->fadeMain, 3, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
+            PokedexGraphics_InitBlendTransition(&param1->unk_00->blendMain, 3, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
         }
     }
 
-    PokedexGraphics_FadePokemonChar(param1->unk_00, &param1->unk_00->fadeMain);
+    PokedexGraphics_BlendPokemonChar(param1->unk_00, &param1->unk_00->blendMain);
 }
 
 static BOOL ov21_021E4440(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E4108 *param1, const UnkStruct_ov21_021E40F4 *param2, BOOL param3)
@@ -420,9 +420,9 @@ static BOOL ov21_021E4440(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E41
     BOOL v0;
 
     if (ov21_021E2A54(param2->unk_08)) {
-        v0 = PokedexGraphics_TakeFadeTransitionStep(&param1->unk_00->fadeMain);
+        v0 = PokedexGraphics_TakeBlendTransitionStep(&param1->unk_00->blendMain);
     } else {
-        v0 = PokedexGraphics_FadeTransitionComplete(&param1->unk_00->fadeMain);
+        v0 = PokedexGraphics_BlendTransitionComplete(&param1->unk_00->blendMain);
     }
 
     if (v0) {
@@ -432,7 +432,7 @@ static BOOL ov21_021E4440(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E41
 
         return 1;
     } else {
-        PokedexGraphics_FadePokemonChar(param1->unk_00, &param1->unk_00->fadeMain);
+        PokedexGraphics_BlendPokemonChar(param1->unk_00, &param1->unk_00->blendMain);
     }
 
     return 0;
@@ -448,9 +448,9 @@ static void ov21_021E448C(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E41
 
     if (ov21_021E2A54(param2->unk_08)) {
         if (param3) {
-            PokedexGraphics_InitFadeTransition(&param1->unk_00->fadeMain, param1->unk_10, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
+            PokedexGraphics_InitBlendTransition(&param1->unk_00->blendMain, param1->unk_10, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
         } else {
-            PokedexGraphics_InitFadeTransition(&param1->unk_00->fadeMain, param1->unk_10, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
+            PokedexGraphics_InitBlendTransition(&param1->unk_00->blendMain, param1->unk_10, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
         }
     }
 }
@@ -468,9 +468,9 @@ static BOOL ov21_021E4518(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E41
     }
 
     if (ov21_021E2A54(param2->unk_08)) {
-        v0[1] = PokedexGraphics_TakeFadeTransitionStep(&param1->unk_00->fadeMain);
+        v0[1] = PokedexGraphics_TakeBlendTransitionStep(&param1->unk_00->blendMain);
     } else {
-        v0[1] = PokedexGraphics_FadeTransitionComplete(&param1->unk_00->fadeMain);
+        v0[1] = PokedexGraphics_BlendTransitionComplete(&param1->unk_00->blendMain);
     }
 
     for (v1 = 0; v1 < 2; v1++) {
@@ -533,7 +533,7 @@ static void ov21_021E4664(UnkStruct_ov21_021E4108 *param0)
 static void ov21_021E46A8(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E4108 *param1, int param2)
 {
     PokedexGraphicData *v0 = param1->unk_00;
-    NARC *v1 = PokedexGraphics_PokedexGraphicsNARC(param1->unk_00);
+    NARC *v1 = PokedexGraphics_GetNARC(param1->unk_00);
 
     param0->unk_314[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 116, 1, 116 + 11000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 

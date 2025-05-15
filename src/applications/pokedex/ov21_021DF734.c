@@ -515,7 +515,7 @@ static void ov21_021DFD00(UnkStruct_ov21_021DF858 *param0)
 static void ov21_021DFD1C(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, int param2)
 {
     PokedexGraphicData *v0 = param1->unk_00;
-    NARC *v1 = PokedexGraphics_PokedexGraphicsNARC(param1->unk_00);
+    NARC *v1 = PokedexGraphics_GetNARC(param1->unk_00);
 
     param0->unk_10[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 122, 1, 122 + 14000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
@@ -607,9 +607,9 @@ static void ov21_021DFF38(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
 
     if (ov21_021E2A54(param2->unk_08)) {
         if (param3) {
-            PokedexGraphics_InitFadeTransition(&param1->unk_00->fadeMain, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), GX_BLEND_PLANEMASK_BG3, 0);
+            PokedexGraphics_InitBlendTransition(&param1->unk_00->blendMain, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), GX_BLEND_PLANEMASK_BG3, 0);
         } else {
-            PokedexGraphics_InitFadeTransition(&param1->unk_00->fadeMain, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), GX_BLEND_PLANEMASK_BG3, 0);
+            PokedexGraphics_InitBlendTransition(&param1->unk_00->blendMain, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), GX_BLEND_PLANEMASK_BG3, 0);
         }
     }
 
@@ -621,9 +621,9 @@ static BOOL ov21_021DFFA8(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
     BOOL v0;
 
     if (ov21_021E2A54(param2->unk_08)) {
-        v0 = PokedexGraphics_TakeFadeTransitionStep(&param1->unk_00->fadeMain);
+        v0 = PokedexGraphics_TakeBlendTransitionStep(&param1->unk_00->blendMain);
     } else {
-        v0 = PokedexGraphics_FadeTransitionComplete(&param1->unk_00->fadeMain);
+        v0 = PokedexGraphics_BlendTransitionComplete(&param1->unk_00->blendMain);
     }
 
     if (v0 == 1) {
@@ -674,7 +674,7 @@ static void ov21_021E0078(UnkStruct_ov21_021DF858 *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        PokedexGraphics_FadePokemonSprite(param0->unk_00, &param0->unk_00->fadeMain, v0);
+        PokedexGraphics_BlendPokemonSprite(param0->unk_00, &param0->unk_00->blendMain, v0);
     }
 }
 

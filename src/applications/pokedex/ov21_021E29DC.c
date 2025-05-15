@@ -365,11 +365,11 @@ static int ov21_021E2C64(void *graphics, PokedexGraphicsManager *graphicsMan, co
     case 1:
         ov21_021E3080(v2, v3, v0, graphicsMan->heapID);
         ov21_021E3BE0(v3);
-        PokedexGraphics_InitFadeTransition(&(*v2)->fadeMain, 4, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
+        PokedexGraphics_InitBlendTransition(&(*v2)->blendMain, 4, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
         graphicsMan->state++;
         break;
     case 2:
-        if (PokedexGraphics_TakeFadeTransitionStep(&(*v2)->fadeMain)) {
+        if (PokedexGraphics_TakeBlendTransitionStep(&(*v2)->blendMain)) {
             graphicsMan->state++;
         }
         break;
@@ -409,14 +409,14 @@ static int ov21_021E2D38(void *graphics, PokedexGraphicsManager *graphicsMan, co
         if (v0->unk_2C) {
             ov21_021E3BE0(v3);
 
-            PokedexGraphics_InitFadeTransition(&(*v2)->fadeMain, 4, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
+            PokedexGraphics_InitBlendTransition(&(*v2)->blendMain, 4, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
         } else {
-            PokedexGraphics_InitFadeTransition(&(*v2)->fadeMain, 4, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 0, 0);
+            PokedexGraphics_InitBlendTransition(&(*v2)->blendMain, 4, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 0, 0);
         }
         graphicsMan->state++;
         break;
     case 1:
-        if (PokedexGraphics_TakeFadeTransitionStep(&(*v2)->fadeMain)) {
+        if (PokedexGraphics_TakeBlendTransitionStep(&(*v2)->blendMain)) {
             graphicsMan->state++;
         }
         break;
@@ -645,7 +645,7 @@ static void ov21_021E30E4(PokedexGraphicData **param0, const UnkStruct_ov21_021E
 static void ov21_021E3178(PokedexGraphicData **param0, UnkStruct_ov21_021E326C *param1, int param2)
 {
     PokedexGraphicData *v0 = *param0;
-    NARC *v1 = PokedexGraphics_PokedexGraphicsNARC(*param0);
+    NARC *v1 = PokedexGraphics_GetNARC(*param0);
 
     param1->unk_18[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 87, 1, 87 + 2000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
@@ -1216,7 +1216,7 @@ static void ov21_021E3960(PokedexGraphicData **param0, const UnkStruct_ov21_021E
 static void ov21_021E39FC(UnkStruct_ov21_021E3900 *param0, PokedexGraphicData **param1, int param2)
 {
     PokedexGraphicData *v0 = *param1;
-    NARC *v1 = PokedexGraphics_PokedexGraphicsNARC(*param1);
+    NARC *v1 = PokedexGraphics_GetNARC(*param1);
 
     param0->unk_18[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 96, 1, 96 + 2100, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 

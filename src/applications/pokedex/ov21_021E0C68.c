@@ -477,7 +477,7 @@ static void ov21_021E1260(PokedexGraphicData **param0)
 static void ov21_021E127C(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **param1, int param2)
 {
     PokedexGraphicData *v0 = *param1;
-    NARC *v1 = PokedexGraphics_PokedexGraphicsNARC(*param1);
+    NARC *v1 = PokedexGraphics_GetNARC(*param1);
 
     param0->unk_08[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 90, 1, 90 + 4000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
@@ -586,9 +586,9 @@ static void ov21_021E14D4(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **
 
     if (ov21_021E2A54(param2->unk_10)) {
         if (param3) {
-            PokedexGraphics_InitFadeTransition(&(*param1)->fadeMain, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), GX_BLEND_PLANEMASK_BG3, 0);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendMain, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), GX_BLEND_PLANEMASK_BG3, 0);
         } else {
-            PokedexGraphics_InitFadeTransition(&(*param1)->fadeMain, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), GX_BLEND_PLANEMASK_BG3, 0);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendMain, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), GX_BLEND_PLANEMASK_BG3, 0);
         }
     }
 
@@ -600,9 +600,9 @@ static BOOL ov21_021E1550(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **
     BOOL v0;
 
     if (ov21_021E2A54(param2->unk_10)) {
-        v0 = PokedexGraphics_TakeFadeTransitionStep(&(*param1)->fadeMain);
+        v0 = PokedexGraphics_TakeBlendTransitionStep(&(*param1)->blendMain);
     } else {
-        v0 = PokedexGraphics_FadeTransitionComplete(&(*param1)->fadeMain);
+        v0 = PokedexGraphics_BlendTransitionComplete(&(*param1)->blendMain);
     }
 
     if (v0 == 1) {
@@ -631,9 +631,9 @@ static void ov21_021E15AC(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **
 
     if (ov21_021E2A54(param2->unk_10)) {
         if (param3) {
-            PokedexGraphics_InitFadeTransition(&(*param1)->fadeMain, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendMain, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
         } else {
-            PokedexGraphics_InitFadeTransition(&(*param1)->fadeMain, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendMain, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
         }
     }
 }
@@ -653,9 +653,9 @@ static BOOL ov21_021E1630(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **
     }
 
     if (ov21_021E2A54(param2->unk_10)) {
-        v0[2] = PokedexGraphics_TakeFadeTransitionStep(&(*param1)->fadeMain);
+        v0[2] = PokedexGraphics_TakeBlendTransitionStep(&(*param1)->blendMain);
     } else {
-        v0[2] = PokedexGraphics_FadeTransitionComplete(&(*param1)->fadeMain);
+        v0[2] = PokedexGraphics_BlendTransitionComplete(&(*param1)->blendMain);
     }
 
     for (v1 = 0; v1 < 3; v1++) {
@@ -686,9 +686,9 @@ static void ov21_021E16A8(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **
 
     if (ov21_021E2A54(param2->unk_10)) {
         if (param3) {
-            PokedexGraphics_InitFadeTransition(&(*param1)->fadeMain, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendMain, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
         } else {
-            PokedexGraphics_InitFadeTransition(&(*param1)->fadeMain, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendMain, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 0);
         }
     }
 }
@@ -705,9 +705,9 @@ static BOOL ov21_021E1730(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **
     }
 
     if (ov21_021E2A54(param2->unk_10)) {
-        v0[1] = PokedexGraphics_TakeFadeTransitionStep(&(*param1)->fadeMain);
+        v0[1] = PokedexGraphics_TakeBlendTransitionStep(&(*param1)->blendMain);
     } else {
-        v0[1] = PokedexGraphics_FadeTransitionComplete(&(*param1)->fadeMain);
+        v0[1] = PokedexGraphics_BlendTransitionComplete(&(*param1)->blendMain);
     }
 
     for (v1 = 0; v1 < 2; v1++) {
@@ -744,7 +744,7 @@ static void ov21_021E17C4(UnkStruct_ov21_021E14D4 *param0)
 
 static void ov21_021E17DC(PokedexGraphicData **param0)
 {
-    PokedexGraphics_FadePokemonChar(*param0, &(*param0)->fadeMain);
+    PokedexGraphics_BlendPokemonChar(*param0, &(*param0)->blendMain);
 }
 
 static void ov21_021E17EC(UnkStruct_ov21_021E14D4 *param0, int param1, int param2, int param3)

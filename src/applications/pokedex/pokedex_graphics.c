@@ -133,7 +133,7 @@ void PokedexGraphics_SetPokemonCharHide(const PokedexGraphicData *pokedexGraphic
     PokedexGraphics_SetPokemonSpriteHide(pokedexGraphicData, unhidden, SPRITE_RESOURCE_CHAR);
 }
 
-void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, int species, int gender, int face, int shiny, u8 form, u32 personality, int x, int y, enum SpriteResourceType spriteResourceType)
+void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum Species species, int gender, int face, int shiny, u8 form, u32 personality, int x, int y, enum SpriteResourceType spriteResourceType)
 {
     PokemonSpriteTemplate spriteTemplate;
     s16 yOffset;
@@ -200,14 +200,14 @@ Sprite *PokedexGraphics_GetCaughtIcon(const PokedexGraphicData *pokedexGraphicDa
     return pokedexGraphicData->pokedexSpeciesLabel.caughtIcon;
 }
 
-void PokedexGraphics_UpdatePokedexSpeciesLabel(PokedexGraphicData *pokedexGraphicData, PokedexDisplayBox *displayBox, int size, int species, u32 isNationalDex)
+void PokedexGraphics_UpdatePokedexSpeciesLabel(PokedexGraphicData *pokedexGraphicData, PokedexDisplayBox *displayBox, int size, enum Species species, BOOL isNationalDex)
 {
     PokedexGraphics_UpdateSpeciesLabel(&pokedexGraphicData->pokedexSpeciesLabel, displayBox, size, species, isNationalDex);
 }
 
-void PokedexGraphics_UpdateSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel, PokedexDisplayBox *displayBox, int size, int species, u32 isNationalDex)
+void PokedexGraphics_UpdateSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel, PokedexDisplayBox *displayBox, int size, enum Species species, BOOL isNationalDex)
 {
-    if ((species == pokedexSpeciesLabel->species) && (isNationalDex == pokedexSpeciesLabel->isNationalDex)) {
+    if (species == pokedexSpeciesLabel->species && isNationalDex == pokedexSpeciesLabel->isNationalDex) {
         sub_020129D0(pokedexSpeciesLabel->textData->fontOAM, TRUE);
         return;
     } else {
@@ -261,69 +261,69 @@ void PokedexGraphics_SetPokedexSpeciesLabelDraw(const PokedexGraphicData *pokede
     }
 }
 
-void PokedexGraphics_InitFadeTransition(FadeTransition *fadeTransition, u8 numSteps, int startBackgroundBrightness, int endBackgroundBrightness, int startSpriteBrightness, int endSpriteBrightness, GXBlendPlaneMask plane1, GXBlendPlaneMask plane2, BOOL isSubscreen)
+void PokedexGraphics_InitBlendTransition(PokedexBlendTransition *blendTransition, u8 numSteps, int startBackgroundBrightness, int endBackgroundBrightness, int startSpriteBrightness, int endSpriteBrightness, GXBlendPlaneMask plane1, GXBlendPlaneMask plane2, BOOL isSubscreen)
 {
-    fadeTransition->isSubscreen = isSubscreen;
-    fadeTransition->plane1 = plane1;
-    fadeTransition->plane2 = plane2 | GX_BLEND_PLANEMASK_BD;
-    fadeTransition->startBackgroundBrightness = startBackgroundBrightness;
-    fadeTransition->deltaBackgroundBrightness = endBackgroundBrightness - startBackgroundBrightness;
-    fadeTransition->startSpriteBrightness = startSpriteBrightness;
-    fadeTransition->deltaSpriteBrightness = endSpriteBrightness - startSpriteBrightness;
-    fadeTransition->numSteps = numSteps;
-    fadeTransition->step = 0;
+    blendTransition->isSubscreen = isSubscreen;
+    blendTransition->plane1 = plane1;
+    blendTransition->plane2 = plane2 | GX_BLEND_PLANEMASK_BD;
+    blendTransition->startBackgroundBrightness = startBackgroundBrightness;
+    blendTransition->deltaBackgroundBrightness = endBackgroundBrightness - startBackgroundBrightness;
+    blendTransition->startSpriteBrightness = startSpriteBrightness;
+    blendTransition->deltaSpriteBrightness = endSpriteBrightness - startSpriteBrightness;
+    blendTransition->numSteps = numSteps;
+    blendTransition->step = 0;
 }
 
-BOOL PokedexGraphics_TakeFadeTransitionStep(FadeTransition *fadeTransition)
+BOOL PokedexGraphics_TakeBlendTransitionStep(PokedexBlendTransition *blendTransition)
 {
-    if (PokedexGraphics_FadeTransitionComplete(fadeTransition) == FALSE) {
-        int ev1 = PokedexGraphics_FadeSprites(fadeTransition);
-        int brightness = PokedexGraphics_FadeScreen(fadeTransition);
+    if (PokedexGraphics_BlendTransitionComplete(blendTransition) == FALSE) {
+        int ev1 = PokedexGraphics_BlendSprites(blendTransition);
+        int brightness = PokedexGraphics_BlendScreen(blendTransition);
 
-        if (fadeTransition->isSubscreen == FALSE) {
-            G2_SetBlendBrightnessExt(fadeTransition->plane1, fadeTransition->plane2, ev1, 0, brightness);
+        if (blendTransition->isSubscreen == FALSE) {
+            G2_SetBlendBrightnessExt(blendTransition->plane1, blendTransition->plane2, ev1, 0, brightness);
         } else {
-            G2S_SetBlendBrightnessExt(fadeTransition->plane1, fadeTransition->plane2, ev1, 0, brightness);
+            G2S_SetBlendBrightnessExt(blendTransition->plane1, blendTransition->plane2, ev1, 0, brightness);
         }
 
-        fadeTransition->step++;
+        blendTransition->step++;
     }
 
-    return PokedexGraphics_FadeTransitionComplete(fadeTransition);
+    return PokedexGraphics_BlendTransitionComplete(blendTransition);
 }
 
-int PokedexGraphics_FadeSprites(FadeTransition *fadeTransition)
+int PokedexGraphics_BlendSprites(PokedexBlendTransition *blendTransition)
 {
-    fx32 spriteBrightness = FX_Mul(fadeTransition->deltaSpriteBrightness << FX32_SHIFT, fadeTransition->step << FX32_SHIFT);
-    spriteBrightness = FX_Div(spriteBrightness, fadeTransition->numSteps << FX32_SHIFT);
+    fx32 spriteBrightness = FX_Mul(blendTransition->deltaSpriteBrightness << FX32_SHIFT, blendTransition->step << FX32_SHIFT);
+    spriteBrightness = FX_Div(spriteBrightness, blendTransition->numSteps << FX32_SHIFT);
 
-    return (spriteBrightness >> FX32_SHIFT) + fadeTransition->startSpriteBrightness;
+    return (spriteBrightness >> FX32_SHIFT) + blendTransition->startSpriteBrightness;
 }
 
-int PokedexGraphics_FadeScreen(FadeTransition *fadeTransition)
+int PokedexGraphics_BlendScreen(PokedexBlendTransition *blendTransition)
 {
-    fx32 backgroundBrightness = FX_Mul(fadeTransition->deltaBackgroundBrightness << FX32_SHIFT, fadeTransition->step << FX32_SHIFT);
-    backgroundBrightness = FX_Div(backgroundBrightness, fadeTransition->numSteps << FX32_SHIFT);
+    fx32 backgroundBrightness = FX_Mul(blendTransition->deltaBackgroundBrightness << FX32_SHIFT, blendTransition->step << FX32_SHIFT);
+    backgroundBrightness = FX_Div(backgroundBrightness, blendTransition->numSteps << FX32_SHIFT);
 
-    return (backgroundBrightness >> FX32_SHIFT) + fadeTransition->startBackgroundBrightness;
+    return (backgroundBrightness >> FX32_SHIFT) + blendTransition->startBackgroundBrightness;
 }
 
-BOOL PokedexGraphics_FadeTransitionComplete(FadeTransition *fadeTransition)
+BOOL PokedexGraphics_BlendTransitionComplete(PokedexBlendTransition *blendTransition)
 {
-    return fadeTransition->step > fadeTransition->numSteps;
+    return blendTransition->step > blendTransition->numSteps;
 }
 
-void PokedexGraphics_FadePokemonChar(const PokedexGraphicData *pokedexGraphicData, FadeTransition *fadeTransition)
+void PokedexGraphics_BlendPokemonChar(const PokedexGraphicData *pokedexGraphicData, PokedexBlendTransition *blendTransition)
 {
-    int oppBackgroundBrightness = -PokedexGraphics_FadeScreen(fadeTransition);
+    int oppBackgroundBrightness = -PokedexGraphics_BlendScreen(blendTransition);
     PokemonSprite *pokemonSprite = PokemonGraphics_GetPokemonChar(pokedexGraphicData);
 
     PokemonSprite_StartFade(pokemonSprite, oppBackgroundBrightness, oppBackgroundBrightness, 0, 0);
 }
 
-void PokedexGraphics_FadePokemonSprite(const PokedexGraphicData *pokedexGraphicData, FadeTransition *fadeTransition, enum SpriteResourceType spriteResourceType)
+void PokedexGraphics_BlendPokemonSprite(const PokedexGraphicData *pokedexGraphicData, PokedexBlendTransition *blendTransition, enum SpriteResourceType spriteResourceType)
 {
-    int oppBackgroundBrightness = -PokedexGraphics_FadeScreen(fadeTransition);
+    int oppBackgroundBrightness = -PokedexGraphics_BlendScreen(blendTransition);
     PokemonSprite *pokemonSprite = PokedexGraphics_GetPokemonSprite(pokedexGraphicData, spriteResourceType);
 
     PokemonSprite_StartFade(pokemonSprite, oppBackgroundBrightness, oppBackgroundBrightness, 0, 0);
@@ -420,12 +420,12 @@ BOOL PokedexGraphics_TakeCursorTransformStep(CursorTransformation *cursorTransfo
     return TRUE;
 }
 
-NARC *PokedexGraphics_PokedexGraphicsNARC(PokedexGraphicData *pokedexGraphicData)
+NARC *PokedexGraphics_GetNARC(PokedexGraphicData *pokedexGraphicData)
 {
     return pokedexGraphicData->pokedexGraphics;
 }
 
-static void *GetGraphicFile(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, enum HeapId heapID)
+static void *LoadGraphicsFile(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, enum HeapId heapID)
 {
     void *graphicFile = NARC_AllocAndReadWholeMember(pokedexGraphicData->pokedexGraphics, memberIndex, heapID);
 
@@ -447,7 +447,7 @@ static void *GetGraphicFile(PokedexGraphicData *pokedexGraphicData, u32 memberIn
 
 u32 PokedexGraphics_LoadGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BgConfig *bgConfig, u32 bgLayer, u32 tileStart, u32 size, BOOL isCompressed, enum HeapId heapID)
 {
-    void *graphicFile = GetGraphicFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
+    void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
 
     if (graphicFile != NULL) {
         NNSG2dCharacterData *charData;
@@ -479,7 +479,7 @@ void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraph
         GXS_LoadOBJExtPltt
     };
 
-    void *graphicFile = GetGraphicFile(pokedexGraphicData, memberIndex, FALSE, heapID);
+    void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, FALSE, heapID);
 
     if (graphicFile != NULL) {
         NNSG2dPaletteData *paletteData;
@@ -499,7 +499,7 @@ void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraph
 
 void *PokedexGraphics_GetGraphicNarcScreenData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dScreenData **screenData, enum HeapId heapID)
 {
-    void *graphicFile = GetGraphicFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
+    void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
 
     if (graphicFile != NULL) {
         if (NNS_G2dGetUnpackedScreenData(graphicFile, screenData) == FALSE) {
@@ -513,7 +513,7 @@ void *PokedexGraphics_GetGraphicNarcScreenData(PokedexGraphicData *pokedexGraphi
 
 void *PokedexGraphics_GetGraphicNarcPaletteData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, NNSG2dPaletteData **paletteData, enum HeapId heapID)
 {
-    void *graphicFile = GetGraphicFile(pokedexGraphicData, memberIndex, FALSE, heapID);
+    void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, FALSE, heapID);
 
     if (graphicFile != NULL) {
         if (NNS_G2dGetUnpackedPaletteData(graphicFile, paletteData) == FALSE) {
@@ -527,7 +527,7 @@ void *PokedexGraphics_GetGraphicNarcPaletteData(PokedexGraphicData *pokedexGraph
 
 void *PokedexGraphics_GetGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dCharacterData **characterData, enum HeapId heapID)
 {
-    void *graphicFile = GetGraphicFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
+    void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
 
     if (graphicFile != NULL) {
         if (NNS_G2dGetUnpackedBGCharacterData(graphicFile, characterData) == FALSE) {
@@ -541,150 +541,138 @@ void *PokedexGraphics_GetGraphicNarcCharacterData(PokedexGraphicData *pokedexGra
 
 static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID)
 {
-    {
-        BgTemplate bgT0 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
-        };
+    BgTemplate bgT0 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = 1,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x0000,
+        .charBase = GX_BG_CHARBASE_0x04000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = 0
+    };
 
-        Bg_InitFromTemplate(bgConfig, 1, &bgT0, 0);
-        Bg_ClearTilesRange(1, 32, 0, heapID);
-        Bg_ClearTilemap(bgConfig, 1);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgT0, BG_TYPE_STATIC);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, heapID);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
 
-    {
-        BgTemplate bgT1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0800,
-            GX_BG_CHARBASE_0x0c000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
-        };
+    BgTemplate bgT1 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = 1,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x0800,
+        .charBase = GX_BG_CHARBASE_0x0c000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = 0
+    };
 
-        Bg_InitFromTemplate(bgConfig, 2, &bgT1, 0);
-        Bg_ClearTilesRange(2, 32, 0, heapID);
-        Bg_ClearTilemap(bgConfig, 2);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgT1, BG_TYPE_STATIC);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, heapID);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
 
     Bg_SetPriority(0, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
-    {
-        BgTemplate bgT2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x1000,
-            GX_BG_CHARBASE_0x14000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
-        };
+    BgTemplate bgT2 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = 1,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x1000,
+        .charBase = GX_BG_CHARBASE_0x14000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = 0
+    };
 
-        Bg_InitFromTemplate(bgConfig, 3, &bgT2, 0);
-        Bg_ClearTilesRange(3, 32, 0, heapID);
-        Bg_ClearTilemap(bgConfig, 3);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &bgT2, BG_TYPE_STATIC);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, heapID);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_3);
 
-    {
-        BgTemplate bgT3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
-        };
+    BgTemplate bgT3 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = 1,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x0000,
+        .charBase = GX_BG_CHARBASE_0x04000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = 0
+    };
 
-        Bg_InitFromTemplate(bgConfig, 5, &bgT3, 0);
-        Bg_ClearTilesRange(5, 32, 0, heapID);
-        Bg_ClearTilemap(bgConfig, 5);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &bgT3, BG_TYPE_STATIC);
+    Bg_ClearTilesRange(BG_LAYER_SUB_1, 32, 0, heapID);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_1);
 
-    {
-        BgTemplate bgT4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x1000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
-        };
+    BgTemplate bgT4 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = 1,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x1000,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = 0
+    };
 
-        Bg_InitFromTemplate(bgConfig, 6, &bgT4, 0);
-        Bg_ClearTilesRange(6, 32, 0, heapID);
-        Bg_ClearTilemap(bgConfig, 6);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_2, &bgT4, BG_TYPE_STATIC);
+    Bg_ClearTilesRange(BG_LAYER_SUB_2, 32, 0, heapID);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_2);
 
-    {
-        BgTemplate bgT5 = {
-            0,
-            0,
-            0x400,
-            0,
-            1,
-            GX_BG_COLORMODE_256,
-            GX_BG_SCRBASE_0x0800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
-        };
+    BgTemplate bgT5 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x400,
+        .baseTile = 0,
+        .screenSize = 1,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0x0800,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = 0
+    };
 
-        Bg_InitFromTemplate(bgConfig, 7, &bgT5, 1);
-        Bg_ClearTilesRange(7, 64, 0, heapID);
-        Bg_ClearTilemap(bgConfig, 7);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_3, &bgT5, BG_TYPE_AFFINE);
+    Bg_ClearTilesRange(BG_LAYER_SUB_3, 64, 0, heapID);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_3);
 }
 
 static void FreeBackgrounds(BgConfig *bgConfig)
 {
-    Bg_FreeTilemapBuffer(bgConfig, 1);
-    Bg_FreeTilemapBuffer(bgConfig, 2);
-    Bg_FreeTilemapBuffer(bgConfig, 3);
-    Bg_FreeTilemapBuffer(bgConfig, 5);
-    Bg_FreeTilemapBuffer(bgConfig, 7);
-    Bg_FreeTilemapBuffer(bgConfig, 6);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_2);
 }
 
 static void InitWindow(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
@@ -709,7 +697,7 @@ static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapId
     PokemonSpriteManager_SetCharBaseAddrAndSize(pokedexGraphicData->spriteMan, NNS_GfdGetTexKeyAddr(texKey), NNS_GfdGetTexKeySize(texKey));
     PokemonSpriteManager_SetPlttBaseAddrAndSize(pokedexGraphicData->spriteMan, NNS_GfdGetPlttKeyAddr(plttKey), NNS_GfdGetPlttKeySize(plttKey));
 
-    for (int spriteResourceType = 0; spriteResourceType < 4; spriteResourceType++) {
+    for (int spriteResourceType = 0; spriteResourceType < MAX_SPRITE_RESOURCE_DS; spriteResourceType++) {
         pokedexGraphicData->pokemonSprite[spriteResourceType] = NULL;
     }
 
@@ -728,7 +716,7 @@ static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapId
 
 static void FreePokemonSprite(PokedexGraphicData *pokedexGraphicData)
 {
-    for (int spriteResourceType = 0; spriteResourceType < 4; spriteResourceType++) {
+    for (int spriteResourceType = 0; spriteResourceType < MAX_SPRITE_RESOURCE_DS; spriteResourceType++) {
         if (pokedexGraphicData->pokemonSprite[spriteResourceType]) {
             PokemonSprite_Delete(pokedexGraphicData->pokemonSprite[spriteResourceType]);
         }
@@ -741,7 +729,7 @@ static void FreePokemonSprite(PokedexGraphicData *pokedexGraphicData)
 static void InitSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
 {
     PokedexSpeciesLabel *pokedexSpeciesLabel = &pokedexGraphicData->pokedexSpeciesLabel;
-    NARC *pokedexGraphicsNARC = PokedexGraphics_PokedexGraphicsNARC(pokedexGraphicData);
+    NARC *pokedexGraphicsNARC = PokedexGraphics_GetNARC(pokedexGraphicData);
 
     pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_CHAR], pokedexGraphicsNARC, 78, 1, 3000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
@@ -909,7 +897,7 @@ void PokedexGraphics_SetSpeciesLabelDraw(PokedexSpeciesLabel *pokedexSpeciesLabe
 static void InitCursorGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
 {
     PokedexCursorGraphics *pokedexCursorGraphics = &pokedexGraphicData->cursorGraphics;
-    NARC *pokedexGraphicsNARC = PokedexGraphics_PokedexGraphicsNARC(pokedexGraphicData);
+    NARC *pokedexGraphicsNARC = PokedexGraphics_GetNARC(pokedexGraphicData);
 
     pokedexCursorGraphics->spriteResource[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_CHAR], pokedexGraphicsNARC, 119, 1, 12000, NNS_G2D_VRAM_TYPE_2DSUB, heapID);
 

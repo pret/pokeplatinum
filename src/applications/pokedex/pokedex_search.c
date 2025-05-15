@@ -587,7 +587,7 @@ static void ov21_021D8C00(PokedexGraphicData **param0)
 static void GetSearchGraphics(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, enum HeapId heapID)
 {
     PokedexGraphicData *v0 = *param1;
-    NARC *pokedexGraphics = PokedexGraphics_PokedexGraphicsNARC(v0);
+    NARC *pokedexGraphics = PokedexGraphics_GetNARC(v0);
 
     searchDisplay->searchGraphics[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], pokedexGraphics, 81, 1, 81 + 15000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
