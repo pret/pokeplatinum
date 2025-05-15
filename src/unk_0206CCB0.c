@@ -27,7 +27,7 @@
 #include "overlay006/ov6_02246444.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
 #include "overlay006/swarm.h"
-#include "overlay025/poketch_system.h"
+#include "poketch/poketch_system.h"
 #include "savedata/save_table.h"
 
 #include "bag.h"

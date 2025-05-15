@@ -5,10 +5,10 @@
 #include "struct_defs/daycare.h"
 
 #include "overlay005/daycare.h"
-#include "overlay025/poketch_system.h"
 #include "overlay040/ov40_0225645C.h"
 #include "overlay040/struct_ov40_0225645C_1.h"
 #include "overlay040/struct_ov40_0225645C_decl.h"
+#include "poketch/poketch_system.h"
 
 #include "bg_window.h"
 #include "daycare_save.h"

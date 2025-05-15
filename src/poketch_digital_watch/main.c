@@ -2,8 +2,8 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "overlay025/poketch_button.h"
-#include "overlay025/poketch_system.h"
+#include "poketch/poketch_button.h"
+#include "poketch/poketch_system.h"
 #include "poketch_digital_watch/display.h"
 
 #include "bg_window.h"

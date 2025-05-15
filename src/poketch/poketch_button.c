@@ -1,4 +1,4 @@
-#include "overlay025/poketch_button.h"
+#include "poketch/poketch_button.h"
 
 #include <nitro.h>
 #include <string.h>
