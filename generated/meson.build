@@ -59,6 +59,7 @@ metang_generators = {
     'journal_online_events': { 'type': 'enum', 'tag': 'JournalOnlineEventType' },
     'map_headers': { 'type': 'enum', 'tag': 'MapHeader' },
     'maps': { 'type': 'enum', 'tag': 'MapID' },
+    'map_prop_models': { 'type': 'enum', 'tag': 'MapPropModelID' },
     'move_attributes': { 'type': 'enum', 'tag': 'MoveAttribute' },
     'move_classes': { 'type': 'enum', 'tag': 'MoveClass' },
     'move_flags': { 'type': 'mask', 'tag': 'MoveFlag' },
@@ -141,6 +142,7 @@ npc_trades_txt = files('npc_trades.txt')
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
 trainers_txt = files('trainers.txt')
+map_prop_models_txt = files('map_prop_models.txt')
 
 py_consts_env = environment()
 py_consts_env.append('PYTHONPATH', meson.project_build_root())
