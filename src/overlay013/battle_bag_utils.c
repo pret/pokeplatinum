@@ -52,14 +52,6 @@ void SetPositionToLastUsedItem(UnkStruct_ov13_02227244 *param0)
     }
 }
 
-static const u8 Unk_ov13_02229BB0[] = {
-    0x2,
-    0x3,
-    0x0,
-    0x1,
-    0x0
-};
-
 void InitializeBattleBag(UnkStruct_ov13_02227244 *param0)
 {
     BagItem *bagItem;
