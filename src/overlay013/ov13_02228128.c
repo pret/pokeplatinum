@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay013/ov13_02227A4C.h"
+#include "overlay013/battle_bag_utils.h"
 #include "overlay013/struct_ov13_02227244.h"
 
 #include "bg_window.h"

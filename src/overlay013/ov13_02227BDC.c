@@ -8,7 +8,7 @@
 #include "battle/ov16_0226DE44.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
 #include "battle/struct_ov16_0226DEEC_decl.h"
-#include "overlay013/ov13_02227A4C.h"
+#include "overlay013/battle_bag_utils.h"
 #include "overlay013/ov13_02228A38.h"
 #include "overlay013/struct_ov13_02227244.h"
 
