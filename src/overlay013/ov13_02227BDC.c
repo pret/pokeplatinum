@@ -201,7 +201,7 @@ static void ov13_02227EE0(UnkStruct_ov13_02227244 *param0)
     u16 v1;
 
     for (v0 = 0; v0 < 6; v0++) {
-        v1 = ov13_02227BA8(param0, v0);
+        v1 = GetBattleBagItem(param0, v0);
 
         if (v1 == 0) {
             continue;
@@ -215,7 +215,7 @@ static void ov13_02227EE0(UnkStruct_ov13_02227244 *param0)
 
 static void ov13_02227F38(UnkStruct_ov13_02227244 *param0)
 {
-    u16 v0 = ov13_02227BA8(param0, param0->unk_00->unk_27[param0->unk_114D]);
+    u16 v0 = GetBattleBagItem(param0, param0->unk_00->unk_27[param0->unk_114D]);
 
     ov13_02227D10(param0, v0, 46263);
     ov13_02227D48(param0, v0, 0, 46263);

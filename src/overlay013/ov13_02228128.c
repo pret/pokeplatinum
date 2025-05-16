@@ -476,7 +476,7 @@ void ov13_02228924(UnkStruct_ov13_02227244 *param0, u8 param1)
         u32 v0;
 
         for (v0 = 0; v0 < 6; v0++) {
-            if (ov13_02227BA8(param0, v0) == 0) {
+            if (GetBattleBagItem(param0, v0) == 0) {
                 ov13_022286B8(param0, 6 + v0, 3, param1);
             } else {
                 ov13_022286B8(param0, 6 + v0, 0, param1);

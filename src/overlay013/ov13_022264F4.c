@@ -122,7 +122,7 @@ void ov13_022264F4(UnkStruct_ov13_022264F4 *param0)
         v0->unk_00->unk_1F = BagCursor_GetLastUsedBattleItemCategory(v1);
     }
 
-    ov13_02227A4C(v0);
+    IsLastUsedItemUsable(v0);
 
     if (BattleSystem_BattleType(v0->unk_00->unk_00) & BATTLE_TYPE_CATCH_TUTORIAL) {
         v0->unk_00->unk_14 = 1;
@@ -199,7 +199,7 @@ static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)
 
     param0->unk_114D = (u8)BagCursor_GetBattleCurrentCategory(BattleSystem_BagCursor(param0->unk_00->unk_00));
 
-    ov13_02227AC8(param0);
+    InitializeBattleBag(param0);
     ov13_02228924(param0, param0->unk_114C);
     ov13_02227288(param0);
     ov13_02227350(param0, param0->unk_114C);
@@ -255,7 +255,7 @@ static u8 ov13_02226760(UnkStruct_ov13_02227244 *param0)
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 param0->unk_114D = param0->unk_00->unk_1F;
                 param0->unk_114B = 6;
-                ov13_02227A7C(param0);
+                SetPositionToLastUsedItem(param0);
                 ov13_0222880C(param0, 4, 0);
                 return 11;
             }
@@ -294,7 +294,7 @@ static u8 ov13_02226838(UnkStruct_ov13_02227244 *param0)
         case 3:
         case 4:
         case 5:
-            if (ov13_02227BA8(param0, v0) != 0) {
+            if (GetBattleBagItem(param0, v0) != 0) {
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 param0->unk_00->unk_27[param0->unk_114D] = (u8)v0;
                 param0->unk_114B = 6;
@@ -372,7 +372,7 @@ static u8 ov13_022269C0(UnkStruct_ov13_02227244 *param0)
         switch (v0) {
         case 0:
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-            param0->unk_00->unk_1C = ov13_02227BA8(param0, param0->unk_00->unk_27[param0->unk_114D]);
+            param0->unk_00->unk_1C = GetBattleBagItem(param0, param0->unk_00->unk_27[param0->unk_114D]);
             param0->unk_00->unk_1E = param0->unk_114D;
             ov13_0222880C(param0, 15, 0);
             return ov13_02226A5C(param0);
@@ -615,7 +615,7 @@ static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0)
     case 4:
         if (ov16_0226DFD4(param0->unk_38) == 1) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-            param0->unk_00->unk_1C = ov13_02227BA8(param0, param0->unk_00->unk_27[param0->unk_114D]);
+            param0->unk_00->unk_1C = GetBattleBagItem(param0, param0->unk_00->unk_27[param0->unk_114D]);
             param0->unk_00->unk_1E = param0->unk_114D;
             ov13_0222880C(param0, 15, 0);
             return ov13_02226A5C(param0);
