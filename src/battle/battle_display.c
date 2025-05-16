@@ -3550,7 +3550,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                 v0->unk_04->unk_04 = BattleSystem_TrainerInfo(v0->unk_00, v0->unk_0D);
                 v0->unk_04->heapID = HEAP_ID_BATTLE;
                 v0->unk_04->unk_26 = 0;
-                v0->unk_04->unk_08 = BattleSystem_Bag(v0->unk_00);
+                v0->unk_04->bag = BattleSystem_Bag(v0->unk_00);
                 v0->unk_04->unk_10 = v0->unk_0D;
                 v0->unk_04->unk_25 = v0->unk_10;
                 v0->unk_04->unk_22 = v0->unk_14;
