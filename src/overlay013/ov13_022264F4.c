@@ -122,7 +122,7 @@ void ov13_022264F4(UnkStruct_ov13_022264F4 *param0)
         v0->unk_00->lastUsedItemPocket = BagCursor_GetLastUsedBattleItemCategory(v1);
     }
 
-    IsLastUsedItemUsable(v0);
+    IsLastUsedBattleBagItemUsable(v0);
 
     if (BattleSystem_BattleType(v0->unk_00->unk_00) & BATTLE_TYPE_CATCH_TUTORIAL) {
         v0->unk_00->unk_14 = 1;
@@ -255,7 +255,7 @@ static u8 ov13_02226760(UnkStruct_ov13_02227244 *param0)
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 param0->currentBattleBagPocket = param0->unk_00->lastUsedItemPocket;
                 param0->unk_114B = 6;
-                SetPocketPositionToLastUsedItem(param0);
+                SetBattleBagPocketPositionToLastUsedItem(param0);
                 ov13_0222880C(param0, 4, 0);
                 return 11;
             }

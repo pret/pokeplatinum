@@ -24,7 +24,7 @@ static const u8 battleBagPocketMasks[] = {
     BATTLE_BAG_POCKET_MASK_UNUSUED
 };
 
-BOOL IsLastUsedItemUsable(UnkStruct_ov13_02227244 *param0)
+BOOL IsLastUsedBattleBagItemUsable(UnkStruct_ov13_02227244 *param0)
 {
     if (param0->unk_00->lastUsedItem == ITEM_NONE) {
         return FALSE;
@@ -39,7 +39,7 @@ BOOL IsLastUsedItemUsable(UnkStruct_ov13_02227244 *param0)
     return TRUE;
 }
 
-void SetPocketPositionToLastUsedItem(UnkStruct_ov13_02227244 *param0)
+void SetBattleBagPocketPositionToLastUsedItem(UnkStruct_ov13_02227244 *param0)
 {
     u32 i;
 

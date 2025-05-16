@@ -5,8 +5,8 @@
 
 #define BATTLE_BAG_ITEMS_PER_POCKET_PAGE 6
 
-BOOL IsLastUsedItemUsable(UnkStruct_ov13_02227244 *param0);
-void SetPocketPositionToLastUsedItem(UnkStruct_ov13_02227244 *param0);
+BOOL IsLastUsedBattleBagItemUsable(UnkStruct_ov13_02227244 *param0);
+void SetBattleBagPocketPositionToLastUsedItem(UnkStruct_ov13_02227244 *param0);
 void InitializeBattleBag(UnkStruct_ov13_02227244 *param0);
 u16 GetBattleBagItem(UnkStruct_ov13_02227244 *param0, u32 pagePosition);
 
