@@ -24,29 +24,29 @@ static const u8 battleBagPocketMasks[] = {
     BATTLE_BAG_POCKET_MASK_UNUSUED
 };
 
-u8 IsLastUsedItemUsable(UnkStruct_ov13_02227244 *param0)
+BOOL IsLastUsedItemUsable(UnkStruct_ov13_02227244 *param0)
 {
-    if (param0->unk_00->unk_20 == ITEM_NONE) {
+    if (param0->unk_00->lastUsedItem == ITEM_NONE) {
         return FALSE;
     }
 
-    if (Bag_CanRemoveItem(param0->unk_00->unk_08, param0->unk_00->unk_20, 1, param0->unk_00->heapID) == FALSE) {
-        param0->unk_00->unk_20 = ITEM_NONE;
-        param0->unk_00->unk_1F = ITEM_BATTLE_CATEGORY_RECOVER_HP;
+    if (Bag_CanRemoveItem(param0->unk_00->bag, param0->unk_00->lastUsedItem, 1, param0->unk_00->heapID) == FALSE) {
+        param0->unk_00->lastUsedItem = ITEM_NONE;
+        param0->unk_00->lastUsedItemPocket = ITEM_BATTLE_CATEGORY_RECOVER_HP;
         return FALSE;
     }
 
     return TRUE;
 }
 
-void SetPositionToLastUsedItem(UnkStruct_ov13_02227244 *param0)
+void SetPocketPositionToLastUsedItem(UnkStruct_ov13_02227244 *param0)
 {
     u32 i;
 
     for (i = 0; i < BATTLE_BAG_POCKET_SIZE; i++) {
-        if (param0->unk_00->unk_20 == param0->unk_3C[param0->unk_114D][i].item) {
-            param0->unk_00->unk_27[param0->unk_114D] = i % BATTLE_BAG_ITEMS_PER_POCKET_PAGE;
-            param0->unk_00->unk_2C[param0->unk_114D] = i / BATTLE_BAG_ITEMS_PER_POCKET_PAGE;
+        if (param0->unk_00->lastUsedItem == param0->battleBagItems[param0->currentBattleBagPocket][i].item) {
+            param0->unk_00->pocketCurrentPagePositions[param0->currentBattleBagPocket] = i % BATTLE_BAG_ITEMS_PER_POCKET_PAGE;
+            param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] = i / BATTLE_BAG_ITEMS_PER_POCKET_PAGE;
             break;
         }
     }
@@ -62,7 +62,7 @@ void InitializeBattleBag(UnkStruct_ov13_02227244 *param0)
         currentPocketSlot = 0;
 
         while (TRUE) {
-            bagItem = Bag_GetItemSlot(param0->unk_00->unk_08, i, currentPocketSlot);
+            bagItem = Bag_GetItemSlot(param0->unk_00->bag, i, currentPocketSlot);
 
             if (bagItem == NULL) {
                 break;
@@ -76,8 +76,8 @@ void InitializeBattleBag(UnkStruct_ov13_02227244 *param0)
                         continue;
                     }
 
-                    param0->unk_3C[battleBagPocketMasks[l]][param0->unk_114F[battleBagPocketMasks[l]]] = *bagItem;
-                    param0->unk_114F[battleBagPocketMasks[l]]++;
+                    param0->battleBagItems[battleBagPocketMasks[l]][param0->numBattleBagPocketItems[battleBagPocketMasks[l]]] = *bagItem;
+                    param0->numBattleBagPocketItems[battleBagPocketMasks[l]]++;
                 }
             }
 
@@ -86,22 +86,22 @@ void InitializeBattleBag(UnkStruct_ov13_02227244 *param0)
     }
 
     for (i = 0; i < BATTLE_BAG_POCKET_NUM; i++) {
-        if (param0->unk_114F[i] == 0) {
-            param0->unk_1154[i] = 0;
+        if (param0->numBattleBagPocketItems[i] == 0) {
+            param0->numBattleBagPocketPages[i] = 0;
         } else {
-            param0->unk_1154[i] = (param0->unk_114F[i] - 1) / BATTLE_BAG_ITEMS_PER_POCKET_PAGE;
+            param0->numBattleBagPocketPages[i] = (param0->numBattleBagPocketItems[i] - 1) / BATTLE_BAG_ITEMS_PER_POCKET_PAGE;
         }
 
-        if (param0->unk_1154[i] < param0->unk_00->unk_2C[i]) {
-            param0->unk_00->unk_2C[i] = param0->unk_1154[i];
+        if (param0->numBattleBagPocketPages[i] < param0->unk_00->pocketCurrentPages[i]) {
+            param0->unk_00->pocketCurrentPages[i] = param0->numBattleBagPocketPages[i];
         }
     }
 }
 
 u16 GetBattleBagItem(UnkStruct_ov13_02227244 *param0, u32 pagePosition)
 {
-    if ((param0->unk_3C[param0->unk_114D][param0->unk_00->unk_2C[param0->unk_114D] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].item != ITEM_NONE) && (param0->unk_3C[param0->unk_114D][param0->unk_00->unk_2C[param0->unk_114D] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].quantity != 0)) {
-        return param0->unk_3C[param0->unk_114D][param0->unk_00->unk_2C[param0->unk_114D] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].item;
+    if ((param0->battleBagItems[param0->currentBattleBagPocket][param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].item != ITEM_NONE) && (param0->battleBagItems[param0->currentBattleBagPocket][param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].quantity != 0)) {
+        return param0->battleBagItems[param0->currentBattleBagPocket][param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].item;
     }
 
     return ITEM_NONE;

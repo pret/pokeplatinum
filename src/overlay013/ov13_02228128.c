@@ -283,10 +283,10 @@ static u16 ov13_02228558(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2, 
     case 9:
     case 10:
     case 11:
-        return 8 + param0->unk_114D;
+        return 8 + param0->currentBattleBagPocket;
     case 15:
         if (param3 == 2) {
-            return 8 + param0->unk_114D;
+            return 8 + param0->currentBattleBagPocket;
         } else {
             return 1;
         }
@@ -464,7 +464,7 @@ void ov13_02228924(UnkStruct_ov13_02227244 *param0, u8 param1)
         ov13_022286B8(param0, 2, 0, param1);
         ov13_022286B8(param0, 3, 0, param1);
 
-        if (param0->unk_00->unk_20 == 0) {
+        if (param0->unk_00->lastUsedItem == ITEM_NONE) {
             ov13_022286B8(param0, 4, 3, param1);
         } else {
             ov13_022286B8(param0, 4, 0, param1);
@@ -475,8 +475,8 @@ void ov13_02228924(UnkStruct_ov13_02227244 *param0, u8 param1)
     case 1: {
         u32 v0;
 
-        for (v0 = 0; v0 < 6; v0++) {
-            if (GetBattleBagItem(param0, v0) == 0) {
+        for (v0 = 0; v0 < BATTLE_BAG_ITEMS_PER_POCKET_PAGE; v0++) {
+            if (GetBattleBagItem(param0, v0) == ITEM_NONE) {
                 ov13_022286B8(param0, 6 + v0, 3, param1);
             } else {
                 ov13_022286B8(param0, 6 + v0, 0, param1);
@@ -484,7 +484,7 @@ void ov13_02228924(UnkStruct_ov13_02227244 *param0, u8 param1)
         }
     }
 
-        if (param0->unk_1154[param0->unk_114D] == 0) {
+        if (param0->numBattleBagPocketPages[param0->currentBattleBagPocket] == 0) {
             ov13_022286B8(param0, 12, 3, param1);
             ov13_022286B8(param0, 13, 3, param1);
         } else {
