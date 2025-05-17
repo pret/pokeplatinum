@@ -68,7 +68,7 @@ void InitializeBattleBag(UnkStruct_ov13_02227244 *param0)
                 break;
             }
 
-            if (!((bagItem->item == ITEM_NONE) || (bagItem->quantity == 0))) {
+            if (!(bagItem->item == ITEM_NONE || bagItem->quantity == 0)) {
                 bagItemBattlePocketMask = Item_LoadParam(bagItem->item, ITEM_PARAM_BATTLE_POCKET, param0->unk_00->heapID);
 
                 for (l = 0; l < BATTLE_BAG_POCKET_NUM; l++) {
@@ -100,7 +100,7 @@ void InitializeBattleBag(UnkStruct_ov13_02227244 *param0)
 
 u16 GetBattleBagItem(UnkStruct_ov13_02227244 *param0, u32 pagePosition)
 {
-    if ((param0->battleBagItems[param0->currentBattleBagPocket][param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].item != ITEM_NONE) && (param0->battleBagItems[param0->currentBattleBagPocket][param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].quantity != 0)) {
+    if (param0->battleBagItems[param0->currentBattleBagPocket][param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].item != ITEM_NONE && param0->battleBagItems[param0->currentBattleBagPocket][param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].quantity != 0) {
         return param0->battleBagItems[param0->currentBattleBagPocket][param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].item;
     }
 
