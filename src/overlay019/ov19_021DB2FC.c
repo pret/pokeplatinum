@@ -103,12 +103,12 @@ void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
     LoadMessageBoxGraphics(param0->unk_00, 1, 521, 8, param0->unk_20, HEAP_ID_10);
 }
 
-void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 param1)
+void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 boxMessageID)
 {
     Window_PutToTilemap(&param0->unk_18[0]);
     ov19_021DB4B4(param0->unk_00, param0->unk_18[0].bgLayer, param0->unk_18[0].tilemapLeft, param0->unk_18[0].tilemapTop, param0->unk_18[0].width, param0->unk_18[0].height);
     Window_FillTilemap(&param0->unk_18[0], 15);
-    MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_30);
+    MessageLoader_GetStrbuf(param0->unk_10, boxMessageID, param0->unk_30);
     StringTemplate_Format(param0->unk_2C, param0->unk_34, param0->unk_30);
     Text_AddPrinterWithParams(&(param0->unk_18[0]), FONT_MESSAGE, param0->unk_34, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_LoadTiles(&(param0->unk_18[0]));

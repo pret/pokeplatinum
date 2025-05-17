@@ -118,7 +118,7 @@ install to a more recent version of `Ubuntu`:
 registry:
 
     ```bash
-    sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3
+    sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3 p7zip
     ```
 
 2. [Download the repository](#2-downloading-the-repository).
@@ -135,7 +135,7 @@ and install it on your system.
 To update your package registry, enter the following command:
 
     ```bash
-    sudo pacman -Syu
+    pacman -Syu
     ```
 
     Press 'Y' when prompted to confirm the update. This process may take a few
@@ -147,7 +147,7 @@ the following commands to install necessary build dependencies:
     ```bash
     echo 'export PATH=${PATH}:/mingw64/bin' >> ~/.bashrc
     source ~/.bashrc
-    sudo pacman -S bison flex gcc git make ninja python mingw-w64-x86_64-arm-none-eabi-gcc
+    pacman -S bison flex gcc git make ninja python mingw-w64-x86_64-arm-none-eabi-gcc p7zip
     ```
 
     Press 'Y' when prompted to confirm the installation.
@@ -163,24 +163,29 @@ to install these, run:
     xcode-select --install
     ```
 
-2. Additional packages can be installed using Homebrew; if you do not already have
-Homebrew installed, [do so](https://brew.sh/). Once Homebrew is installed, run
-the following commands:
+2. Install [Homebrew](https://brew.sh/).
+
+3. Run the following commands to install additional dependencies:
 
     ```zsh
     brew update
-    brew install gcc@14 ninja libpng pkg-config arm-none-eabi-gcc
+    brew install gcc@14 ninja libpng pkg-config arm-none-eabi-gcc xz
     brew install --cask wine-stable
     ```
 
-3. If your MacOS installation is Monterey (12) or earlier, then you may also need
+4. You may need to authorize the Wine installation to satisfy MacOS security
+requirements. To do this, open the Applications folder in Finder and locate the
+Wine Stable application. Control-Click on this icon to open the context menu,
+then Control-Click on Open and grant the requested permissions.
+
+5. If your MacOS installation is Monterey (12) or earlier, then you may also need
 GNU `coreutils` installed to run the build scripts:
 
     ```zsh
     brew install coreutils
     ```
 
-4. [Download the repository](#2-downloading-the-repository).
+6. [Download the repository](#2-downloading-the-repository).
 
 ### Linux
 
@@ -189,79 +194,37 @@ GNU `coreutils` installed to run the build scripts:
 > package registry. A handful of common distributions are listed below for
 > convenience.
 
-> [!IMPORTANT]
-> This project requires `meson` version `1.5.0` or higher. If the version of
-> `meson` provided by your package manager is out of date, then follow
-> [these instructions](https://mesonbuild.com/Getting-meson.html) to get the
-> most recent version.
-
-Once you have installed all the above dependencies, proceed to [downloading
+Once you have installed all of the listed dependencies, proceed to [downloading
 the repository](#2-downloading-the-repository).
 
-#### Ubuntu (and other Debian derivatives)
+#### Debian (and derivatives, e.g., Ubuntu, Mint)
 
-1. Install `wine`:
+1. Enable 32-bit installations using `dpkg`:
 
     ```bash
     sudo dpkg --add-architecture i386
-    sudo mkdir -pm755 /etc/apt/keyrings
-    sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-    sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources
-    sudo apt update
-    sudo apt install --install-recommends wine-stable
     ```
 
 2. Install the following packages via `apt`:
 
-```bash
-sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3
-```
+    ```bash
+    sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config wget python3 xz-utils libc6:i386
+    ```
 
-#### Arch Linux (and derivatives)
+#### Arch Linux (and derivatives, e.g., Manjaro, Endeavour)
 
-Enable the [multilib repository](https://wiki.archlinux.org/title/Multilib).
+1. Enable the [multilib repository](https://wiki.archlinux.org/title/Multilib).
 
-Install dependencies via `pacman`:
+2. Install dependencies via `pacman`:
 
-```bash
-sudo pacman -S arm-none-eabi-gcc bison flex gcc git make ninja python wine
-```
+    ```bash
+    sudo pacman -S arm-none-eabi-gcc bison flex gcc git make ninja python wget xz lib32-glibc
+    ```
 
-#### Fedora (and derivatives)
-
-```bash
-sudo dnf install arm-none-eabi-gcc-cs bison flex gcc-c++ git make ninja-build python3 wine-core.i686 wine-core.x86_64
-```
-
-### Docker
-
-> [!CAUTION]
-> The Docker build method is currently unmaintained and unsupported. Proceed at
-> your own risk, and know that you may not receive much support from repository
-> maintainers.
-
-A `Dockerfile` is provided with the repository should you choose to build the
-project as a container. If you do not have `docker` installed on your machine
-and wish to make use of this feature, follow the instructions [here](https://docs.docker.com/desktop/).
-
-Once `docker` is installed, to the build environment, run:
+#### Fedora (and derivatives, e.g., AlmaLinux, Red Hat Enterprise Linux)
 
 ```bash
-make clean # only if you have an existing development environment
-docker build . -t pret/pokeplatinum
-```
-
-Then, run the following to build the ROM:
-
-```bash
-docker run -u $USER -w /rom -v .:/rom pret/pokeplatinum make
-```
-
-If you wish to stop using the `docker` build feature and switch back to a native
-build environment, then run the following:
-
-```bash
-docker run -u $USER -w /rom -v .:/rom pret/pokeplatinum make clean
+sudo dnf install arm-none-eabi-gcc-cs bison flex gcc-c++ git make ninja-build python3 wget2 xz glibc32
 ```
 
 ## 2. Downloading the Repository
@@ -320,33 +283,3 @@ make update
 ```
 
 And then try rebuilding.
-
-### Meson Replies With `ERROR: Unknown compiler(s)`
-
-Example error message:
-
-```
-meson.build:1:0: ERROR: Unknown compiler(s): [['/mnt/c/pokeplatinum/tools/cw/mwrap', 'mwccarm']]
-```
-
-Meson provides some basic logging for its configuration process in
-`build/meson-logs/meson-log.txt`. In that file, you should see some entries that
-begin with `Detecting compiler via: ...`, which will give some insight into the
-root of the error. For example:
-
-```
-Detecting compiler via: `/mnt/c/pokeplatinum/tools/cw/mwrap mwccarm --version` -> 1
-stderr:
-wine: '/home/<USER>/.wine' is a 64-bit installation, it cannot be used with a 32-bit wineserver.
------------
-
-meson.build:1:0: ERROR: Unknown compiler(s): [['/mnt/c/pokeplatinum/tools/cw/mwrap', 'mwccarm']]
-```
-
-In this instance, the user has installed 64-bit `wine`. Ensure that you have
-installed 32-bit `wine`, then rebuild _after_ removing the prefix directory
-using the following command:
-
-```
-rm -rf ~/.wine
-```

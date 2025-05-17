@@ -1,4 +1,4 @@
-#include "constants/pokemon.h"
+#include "pokemon.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -9,6 +9,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/narc.h"
+#include "constants/pokemon.h"
 #include "constants/sound.h"
 #include "generated/abilities.h"
 #include "generated/evolution_methods.h"
@@ -41,7 +42,6 @@
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
-#include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "rtc.h"
 #include "sound_chatot.h"
@@ -237,7 +237,7 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
     Heap_FreeToHeap(v1);
 
     u32 zero = 0;
-    Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &zero);
+    Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
 
     UnkStruct_0202CA28 v2;
     MI_CpuClearFast(&v2, sizeof(UnkStruct_0202CA28));
@@ -531,8 +531,8 @@ static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, vo
         result = mon->party.level;
         break;
 
-    case MON_DATA_MAIL_ID:
-        result = mon->party.mail;
+    case MON_DATA_BALL_CAPSULE_ID:
+        result = mon->party.ballCapsuleID;
         break;
 
     case MON_DATA_CURRENT_HP:
@@ -1121,8 +1121,8 @@ static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, c
         mon->party.level = *u8Value;
         break;
 
-    case MON_DATA_MAIL_ID:
-        mon->party.mail = *u8Value;
+    case MON_DATA_BALL_CAPSULE_ID:
+        mon->party.ballCapsuleID = *u8Value;
         break;
 
     case MON_DATA_CURRENT_HP:
@@ -1674,7 +1674,7 @@ static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam par
         break;
     case MON_DATA_STATUS_CONDITION:
     case MON_DATA_LEVEL:
-    case MON_DATA_MAIL_ID:
+    case MON_DATA_BALL_CAPSULE_ID:
     case MON_DATA_MAX_HP:
     case MON_DATA_ATK:
     case MON_DATA_DEF:
@@ -3757,7 +3757,7 @@ void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
     Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
     Heap_FreeToHeap(v1);
 
-    Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &zero);
+    Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
 
     UnkStruct_0202CA28 v2;
     MI_CpuClearFast(&v2, sizeof(UnkStruct_0202CA28));
@@ -4829,7 +4829,7 @@ void sub_0207893C(Pokemon *mon)
     UnkStruct_0202CA28 v1;
     MI_CpuClearFast(&v1, sizeof(UnkStruct_0202CA28));
 
-    Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &zero);
+    Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
     Pokemon_SetValue(mon, MON_DATA_171, &v1);
 }
 
@@ -4925,7 +4925,7 @@ BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID)
 
     UnkStruct_0202CA28 v2;
     NARC_ReadFromMember(narc, 0, v0 * sizeof(UnkStruct_0202CA28), sizeof(UnkStruct_0202CA28), &v2);
-    Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &one);
+    Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &one);
     Pokemon_SetValue(mon, MON_DATA_171, &v2);
     NARC_dtor(narc);
 
@@ -4995,7 +4995,7 @@ void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1)
 
     param1->unk_5C = mon->party.status;
     param1->level = mon->party.level;
-    param1->unk_61 = mon->party.mail;
+    param1->unk_61 = mon->party.ballCapsuleID;
     param1->unk_62 = mon->party.hp;
     param1->unk_64 = mon->party.maxHP;
     param1->unk_66 = mon->party.attack;
@@ -5071,7 +5071,7 @@ void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon)
 
     mon->party.status = param0->unk_5C;
     mon->party.level = param0->level;
-    mon->party.mail = param0->unk_61;
+    mon->party.ballCapsuleID = param0->unk_61;
     mon->party.hp = param0->unk_62;
     mon->party.maxHP = param0->unk_64;
     mon->party.attack = param0->unk_66;

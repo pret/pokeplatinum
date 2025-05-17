@@ -608,7 +608,7 @@ static void sub_0202FD30(UnkStruct_0202FD30 *param0, Party *party)
 
     for (v0 = 0; v0 < param0->unk_02; v0++) {
         sub_02078E0C(&param0->unk_04[v0], v1);
-        Pokemon_SetValue(v1, MON_DATA_MAIL_ID, &v2);
+        Pokemon_SetValue(v1, MON_DATA_BALL_CAPSULE_ID, &v2);
         Party_AddPokemon(party, v1);
     }
 
