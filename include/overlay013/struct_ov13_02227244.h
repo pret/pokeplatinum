@@ -30,7 +30,7 @@ typedef struct {
     u8 unk_32;
     UnkStruct_ov13_02228A50 *unk_34;
     UnkStruct_ov16_0226DEEC *unk_38;
-    BagItem unk_3C[5][36];
+    BagItem battleBagItems[5][36];
     SpriteManager *unk_30C;
     ManagedSprite *unk_310[6];
     u16 unk_328[3][144];
@@ -52,10 +52,10 @@ typedef struct {
     u8 unk_114A;
     u8 unk_114B;
     u8 unk_114C;
-    u8 unk_114D;
+    u8 currentBattleBagPocket;
     s8 unk_114E;
-    u8 unk_114F[5];
-    u8 unk_1154[5];
+    u8 numBattleBagPocketItems[5];
+    u8 numBattleBagPocketPages[5];
     u8 unk_1159;
     u8 unk_115A;
 } UnkStruct_ov13_02227244;
