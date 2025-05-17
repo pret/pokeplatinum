@@ -21,7 +21,8 @@ enum CornerType {
     CORNER_TYPE_TOP_LEFT = 0,
     CORNER_TYPE_TOP_RIGHT,
     CORNER_TYPE_BOTTOM_LEFT,
-    CORNER_TYPE_BOTTOM_RIGHT
+    CORNER_TYPE_BOTTOM_RIGHT,
+    MAX_CORNER_TYPE
 };
 
 typedef struct PokedexCursorData {
