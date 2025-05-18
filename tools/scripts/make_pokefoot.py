@@ -88,6 +88,8 @@ for i, subdir in enumerate(args.subdirs):
     if subdir in ['egg', 'bad_egg']:
         continue
 
+    (output_dir / subdir).mkdir(parents=True, exist_ok=True)
+
     src = source_dir / subdir / 'footprint.png'
     dst = output_dir / subdir / 'footprint.NCGR'
     subprocess.run([

@@ -3,11 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/pokedex/pokedex_foot.h"
 #include "applications/pokedex/ov21_021D1FA4.h"
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
+#include "applications/pokedex/pokedex_foot.h"
 #include "applications/pokedex/pokedex_graphic_data.h"
 #include "applications/pokedex/pokedex_graphics_manager.h"
 #include "applications/pokedex/pokedex_main.h"

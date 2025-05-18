@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/pokedex/pokedex_foot.h"
 #include "applications/pokedex/ov21_021D1FA4.h"
 #include "applications/pokedex/ov21_021DE668.h"
+#include "applications/pokedex/pokedex_foot.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokedex/pokedex_text_manager.h"
 #include "applications/pokedex/struct_ov21_021D22F8.h"
