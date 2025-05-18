@@ -697,7 +697,7 @@ static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapId
     PokemonSpriteManager_SetCharBaseAddrAndSize(pokedexGraphicData->spriteMan, NNS_GfdGetTexKeyAddr(texKey), NNS_GfdGetTexKeySize(texKey));
     PokemonSpriteManager_SetPlttBaseAddrAndSize(pokedexGraphicData->spriteMan, NNS_GfdGetPlttKeyAddr(plttKey), NNS_GfdGetPlttKeySize(plttKey));
 
-    for (int spriteResourceType = 0; spriteResourceType < MAX_SPRITE_RESOURCE_DS; spriteResourceType++) {
+    for (int spriteResourceType = 0; spriteResourceType < MAX_SPRITE_RESOURCE_GEN4; spriteResourceType++) {
         pokedexGraphicData->pokemonSprite[spriteResourceType] = NULL;
     }
 
@@ -716,7 +716,7 @@ static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapId
 
 static void FreePokemonSprite(PokedexGraphicData *pokedexGraphicData)
 {
-    for (int spriteResourceType = 0; spriteResourceType < MAX_SPRITE_RESOURCE_DS; spriteResourceType++) {
+    for (int spriteResourceType = 0; spriteResourceType < MAX_SPRITE_RESOURCE_GEN4; spriteResourceType++) {
         if (pokedexGraphicData->pokemonSprite[spriteResourceType]) {
             PokemonSprite_Delete(pokedexGraphicData->pokemonSprite[spriteResourceType]);
         }

@@ -21,7 +21,7 @@ typedef struct PokedexSpeciesLabel {
     Sprite *nameTag; // displays caughtIcon, dex number, and name
     Sprite *caughtIcon;
     PokedexTextData *textData;
-    SpriteResource *spriteResource[MAX_SPRITE_RESOURCE_DS];
+    SpriteResource *spriteResource[MAX_SPRITE_RESOURCE_GEN4];
     VecFx32 dummy;
     enum Species species;
     BOOL isNationalDex;
@@ -40,8 +40,8 @@ typedef struct PokedexBlendTransition {
 } PokedexBlendTransition;
 
 typedef struct PokedexCursorGraphics {
-    Sprite *sprite[MAX_SPRITE_RESOURCE_DS];
-    SpriteResource *spriteResource[MAX_SPRITE_RESOURCE_DS];
+    Sprite *sprite[MAX_SPRITE_RESOURCE_GEN4];
+    SpriteResource *spriteResource[MAX_SPRITE_RESOURCE_GEN4];
     int x;
     int y;
     int width;
@@ -77,10 +77,10 @@ typedef struct PokedexGraphicData {
     Window window;
     G2dRenderer g2Renderer;
     SpriteList *spriteList;
-    SpriteResourceCollection *spriteResourceCollection[MAX_SPRITE_RESOURCE_DS];
+    SpriteResourceCollection *spriteResourceCollection[MAX_SPRITE_RESOURCE_GEN4];
     PokedexTextManager *textMan;
     PokemonSpriteManager *spriteMan;
-    PokemonSprite *pokemonSprite[MAX_SPRITE_RESOURCE_DS];
+    PokemonSprite *pokemonSprite[MAX_SPRITE_RESOURCE_GEN4];
     UnkStruct_02015064 *unk_164;
     PokedexBlendTransition blendMain;
     PokedexBlendTransition blendSub;
