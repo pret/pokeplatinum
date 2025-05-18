@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/pokedex/ov21_021D1F90.h"
+#include "applications/pokedex/pokedex_foot.h"
 #include "applications/pokedex/ov21_021D1FA4.h"
 #include "applications/pokedex/ov21_021DE668.h"
 #include "applications/pokedex/pokedex_main.h"
@@ -470,11 +470,11 @@ static void ov21_021E93F8(SpriteResource **param0, SpriteResourceCollection **pa
 
 static void ov21_021E9458(UnkStruct_ov21_021E94F8 *param0, SpriteResourceCollection **param1, int param2, int param3)
 {
-    int v0 = ov21_021D1F90();
-    int v1 = ov21_021D1F94(param2);
-    int v2 = ov21_021D1F98();
-    int v3 = ov21_021D1F9C();
-    int v4 = ov21_021D1FA0();
+    int v0 = PokedexFoot_NARC();
+    int v1 = PokedexFoot_Char(param2);
+    int v2 = PokedexFoot_Palette();
+    int v3 = PokedexFoot_Cell();
+    int v4 = PokedexFoot_Animation();
 
     ov21_021E92C4(param0->unk_04, param1, param3, v0, v1, v2, v3, v4, 1, 4000);
 }

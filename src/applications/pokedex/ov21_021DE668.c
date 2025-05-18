@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/pokedex/ov21_021D1F90.h"
+#include "applications/pokedex/pokedex_foot.h"
 #include "applications/pokedex/ov21_021D1FA4.h"
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
@@ -492,11 +492,11 @@ static void ov21_021DED68(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
 static void ov21_021DED7C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, int param2, int param3)
 {
     PokedexGraphicData *v0 = *param1;
-    int v1 = ov21_021D1F90();
-    int v2 = ov21_021D1F94(param3);
-    int v3 = ov21_021D1F98();
-    int v4 = ov21_021D1F9C();
-    int v5 = ov21_021D1FA0();
+    int v1 = PokedexFoot_NARC();
+    int v2 = PokedexFoot_Char(param3);
+    int v3 = PokedexFoot_Palette();
+    int v4 = PokedexFoot_Cell();
+    int v5 = PokedexFoot_Animation();
 
     param0->unk_24[0] = SpriteResourceCollection_AddTiles(v0->spriteResourceCollection[0], v1, v2, 1, 4000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
