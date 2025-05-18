@@ -112,6 +112,7 @@
 #include "great_marsh_lookout.h"
 #include "heap.h"
 #include "inlines.h"
+#include "item_use_pokemon.h"
 #include "items.h"
 #include "journal.h"
 #include "location.h"
@@ -215,7 +216,6 @@
 #include "unk_02071D40.h"
 #include "unk_020722AC.h"
 #include "unk_0207DA28.h"
-#include "unk_02096420.h"
 #include "unk_02097B18.h"
 #include "unk_020985E4.h"
 #include "unk_02099500.h"
@@ -5508,7 +5508,7 @@ static BOOL ScrCmd_HealParty(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(ctx->task);
 
-    HealAllPokemonInParty(SaveData_GetParty(fieldSystem->saveData));
+    Party_HealAllMembers(SaveData_GetParty(fieldSystem->saveData));
     return FALSE;
 }
 
