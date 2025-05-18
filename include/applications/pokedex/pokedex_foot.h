@@ -2,6 +2,7 @@
 #define POKEPLATINUM_POKEDEX_FOOT_H
 
 #include "constants/narc.h"
+
 #include "species.h"
 
 enum NarcID PokedexFoot_NarcID(void);
