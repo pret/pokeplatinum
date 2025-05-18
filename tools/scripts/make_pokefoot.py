@@ -35,8 +35,6 @@ output_dir = pathlib.Path(args.output_dir)
 
 private_dir.mkdir(parents=True, exist_ok=True)
 
-num_digits = len(str(len(args.subdirs) + 3))
-
 # palette
 src = source_dir / '.shared/pokefoot.pal'
 dst = private_dir / '00000.NCLR'

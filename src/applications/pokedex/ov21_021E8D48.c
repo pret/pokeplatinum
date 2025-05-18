@@ -470,11 +470,11 @@ static void ov21_021E93F8(SpriteResource **param0, SpriteResourceCollection **pa
 
 static void ov21_021E9458(UnkStruct_ov21_021E94F8 *param0, SpriteResourceCollection **param1, int param2, int param3)
 {
-    int v0 = PokedexFoot_NARC();
-    int v1 = PokedexFoot_Char(param2);
-    int v2 = PokedexFoot_Palette();
-    int v3 = PokedexFoot_Cell();
-    int v4 = PokedexFoot_Animation();
+    int v0 = PokedexFoot_NarcID();
+    int v1 = PokedexFoot_CharIdx(param2);
+    int v2 = PokedexFoot_PaletteIdx();
+    int v3 = PokedexFoot_CellIdx();
+    int v4 = PokedexFoot_AnimIdx();
 
     ov21_021E92C4(param0->unk_04, param1, param3, v0, v1, v2, v3, v4, 1, 4000);
 }

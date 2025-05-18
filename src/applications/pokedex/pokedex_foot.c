@@ -3,29 +3,27 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/narc.h"
-
-int PokedexFoot_NARC(void)
+enum NarcID PokedexFoot_NarcID(void)
 {
     return NARC_INDEX_POKETOOL__POKEFOOT__POKEFOOT;
 }
 
-int PokedexFoot_Char(enum Species species)
+int PokedexFoot_CharIdx(enum Species species)
 {
     return 3 + species;
 }
 
-int PokedexFoot_Palette(void)
+int PokedexFoot_PaletteIdx(void)
 {
     return 0;
 }
 
-int PokedexFoot_Cell(void)
+int PokedexFoot_CellIdx(void)
 {
     return 2;
 }
 
-int PokedexFoot_Animation(void)
+int PokedexFoot_AnimIdx(void)
 {
     return 1;
 }
