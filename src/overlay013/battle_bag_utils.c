@@ -5,23 +5,20 @@
 #include "bag.h"
 #include "item.h"
 
-#define BATTLE_BAG_POCKET_SIZE 36
-#define BATTLE_BAG_POCKET_NUM  5
-
-enum BattleBagPocketMask {
-    BATTLE_BAG_POCKET_MASK_POKE_BALLS = 0x0,
-    BATTLE_BAG_POCKET_MASK_BATTLE_ITEMS,
-    BATTLE_BAG_POCKET_MASK_RECOVER_HP,
-    BATTLE_BAG_POCKET_MASK_RECOVER_STATUS,
-    BATTLE_BAG_POCKET_MASK_UNUSUED = 0x0,
+enum BattlePocketMask {
+    BATTLE_POCKET_MASK_POKE_BALLS = 0x0,
+    BATTLE_POCKET_MASK_BATTLE_ITEMS,
+    BATTLE_POCKET_MASK_RECOVER_HP,
+    BATTLE_POCKET_MASK_RECOVER_STATUS,
+    BATTLE_POCKET_MASK_UNUSUED = 0x0,
 };
 
-static const u8 battleBagPocketMasks[] = {
-    BATTLE_BAG_POCKET_MASK_RECOVER_HP,
-    BATTLE_BAG_POCKET_MASK_RECOVER_STATUS,
-    BATTLE_BAG_POCKET_MASK_POKE_BALLS,
-    BATTLE_BAG_POCKET_MASK_BATTLE_ITEMS,
-    BATTLE_BAG_POCKET_MASK_UNUSUED
+static const u8 battlePocketMasks[] = {
+    BATTLE_POCKET_MASK_RECOVER_HP,
+    BATTLE_POCKET_MASK_RECOVER_STATUS,
+    BATTLE_POCKET_MASK_POKE_BALLS,
+    BATTLE_POCKET_MASK_BATTLE_ITEMS,
+    BATTLE_POCKET_MASK_UNUSUED
 };
 
 BOOL IsLastUsedBattleBagItemUsable(UnkStruct_ov13_02227244 *param0)
@@ -39,14 +36,14 @@ BOOL IsLastUsedBattleBagItemUsable(UnkStruct_ov13_02227244 *param0)
     return TRUE;
 }
 
-void SetBattleBagPocketPositionToLastUsedItem(UnkStruct_ov13_02227244 *param0)
+void SetBattlePocketPositionToLastUsedItem(UnkStruct_ov13_02227244 *param0)
 {
     u32 i;
 
-    for (i = 0; i < BATTLE_BAG_POCKET_SIZE; i++) {
-        if (param0->unk_00->lastUsedItem == param0->battleBagItems[param0->currentBattleBagPocket][i].item) {
-            param0->unk_00->pocketCurrentPagePositions[param0->currentBattleBagPocket] = i % BATTLE_BAG_ITEMS_PER_POCKET_PAGE;
-            param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] = i / BATTLE_BAG_ITEMS_PER_POCKET_PAGE;
+    for (i = 0; i < BATTLE_POCKET_SIZE; i++) {
+        if (param0->unk_00->lastUsedItem == param0->battleBagItems[param0->currentBattlePocket][i].item) {
+            param0->unk_00->pocketCurrentPagePositions[param0->currentBattlePocket] = i % BATTLE_POCKET_ITEMS_PER_PAGE;
+            param0->unk_00->pocketCurrentPages[param0->currentBattlePocket] = i / BATTLE_POCKET_ITEMS_PER_PAGE;
             break;
         }
     }
@@ -71,13 +68,13 @@ void InitializeBattleBag(UnkStruct_ov13_02227244 *param0)
             if (!(bagItem->item == ITEM_NONE || bagItem->quantity == 0)) {
                 bagItemBattlePocketMask = Item_LoadParam(bagItem->item, ITEM_PARAM_BATTLE_POCKET, param0->unk_00->heapID);
 
-                for (l = 0; l < BATTLE_BAG_POCKET_NUM; l++) {
+                for (l = 0; l < BATTLE_POCKET_MAX; l++) {
                     if ((bagItemBattlePocketMask & (1 << l)) == FALSE) {
                         continue;
                     }
 
-                    param0->battleBagItems[battleBagPocketMasks[l]][param0->numBattleBagPocketItems[battleBagPocketMasks[l]]] = *bagItem;
-                    param0->numBattleBagPocketItems[battleBagPocketMasks[l]]++;
+                    param0->battleBagItems[battlePocketMasks[l]][param0->numBattlePocketItems[battlePocketMasks[l]]] = *bagItem;
+                    param0->numBattlePocketItems[battlePocketMasks[l]]++;
                 }
             }
 
@@ -85,23 +82,23 @@ void InitializeBattleBag(UnkStruct_ov13_02227244 *param0)
         }
     }
 
-    for (i = 0; i < BATTLE_BAG_POCKET_NUM; i++) {
-        if (param0->numBattleBagPocketItems[i] == 0) {
-            param0->numBattleBagPocketPages[i] = 0;
+    for (i = 0; i < BATTLE_POCKET_MAX; i++) {
+        if (param0->numBattlePocketItems[i] == 0) {
+            param0->numBattlePocketPages[i] = 0;
         } else {
-            param0->numBattleBagPocketPages[i] = (param0->numBattleBagPocketItems[i] - 1) / BATTLE_BAG_ITEMS_PER_POCKET_PAGE;
+            param0->numBattlePocketPages[i] = (param0->numBattlePocketItems[i] - 1) / BATTLE_POCKET_ITEMS_PER_PAGE;
         }
 
-        if (param0->numBattleBagPocketPages[i] < param0->unk_00->pocketCurrentPages[i]) {
-            param0->unk_00->pocketCurrentPages[i] = param0->numBattleBagPocketPages[i];
+        if (param0->numBattlePocketPages[i] < param0->unk_00->pocketCurrentPages[i]) {
+            param0->unk_00->pocketCurrentPages[i] = param0->numBattlePocketPages[i];
         }
     }
 }
 
 u16 GetBattleBagItem(UnkStruct_ov13_02227244 *param0, u32 pagePosition)
 {
-    if (param0->battleBagItems[param0->currentBattleBagPocket][param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].item != ITEM_NONE && param0->battleBagItems[param0->currentBattleBagPocket][param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].quantity != 0) {
-        return param0->battleBagItems[param0->currentBattleBagPocket][param0->unk_00->pocketCurrentPages[param0->currentBattleBagPocket] * BATTLE_BAG_ITEMS_PER_POCKET_PAGE + pagePosition].item;
+    if (param0->battleBagItems[param0->currentBattlePocket][param0->unk_00->pocketCurrentPages[param0->currentBattlePocket] * BATTLE_POCKET_ITEMS_PER_PAGE + pagePosition].item != ITEM_NONE && param0->battleBagItems[param0->currentBattlePocket][param0->unk_00->pocketCurrentPages[param0->currentBattlePocket] * BATTLE_POCKET_ITEMS_PER_PAGE + pagePosition].quantity != 0) {
+        return param0->battleBagItems[param0->currentBattlePocket][param0->unk_00->pocketCurrentPages[param0->currentBattlePocket] * BATTLE_POCKET_ITEMS_PER_PAGE + pagePosition].item;
     }
 
     return ITEM_NONE;

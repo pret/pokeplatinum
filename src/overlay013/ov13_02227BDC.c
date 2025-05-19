@@ -200,7 +200,7 @@ static void ov13_02227EE0(UnkStruct_ov13_02227244 *param0)
     u32 v0;
     u16 v1;
 
-    for (v0 = 0; v0 < BATTLE_BAG_ITEMS_PER_POCKET_PAGE; v0++) {
+    for (v0 = 0; v0 < BATTLE_POCKET_ITEMS_PER_PAGE; v0++) {
         v1 = GetBattleBagItem(param0, v0);
 
         if (v1 == ITEM_NONE) {
@@ -215,7 +215,7 @@ static void ov13_02227EE0(UnkStruct_ov13_02227244 *param0)
 
 static void ov13_02227F38(UnkStruct_ov13_02227244 *param0)
 {
-    u16 v0 = GetBattleBagItem(param0, param0->unk_00->pocketCurrentPagePositions[param0->currentBattleBagPocket]);
+    u16 v0 = GetBattleBagItem(param0, param0->unk_00->pocketCurrentPagePositions[param0->currentBattlePocket]);
 
     ov13_02227D10(param0, v0, 46263);
     ov13_02227D48(param0, v0, 0, 46263);
@@ -278,10 +278,10 @@ void ov13_02228008(UnkStruct_ov13_02227244 *param0, u8 param1)
 
     switch (param1) {
     case 0:
-        ov13_02228A68(param0->unk_34, param0->currentBattleBagPocket);
+        ov13_02228A68(param0->unk_34, param0->currentBattlePocket);
         break;
     case 1:
-        ov13_02228A68(param0->unk_34, param0->unk_00->pocketCurrentPagePositions[param0->currentBattleBagPocket]);
+        ov13_02228A68(param0->unk_34, param0->unk_00->pocketCurrentPagePositions[param0->currentBattlePocket]);
         break;
     case 2:
         break;

@@ -16,6 +16,10 @@
 #define POCKET_KEY_ITEMS    7
 #define POCKET_MAX          8
 
+#define BATTLE_POCKET_MAX            5
+#define BATTLE_POCKET_SIZE           36
+#define BATTLE_POCKET_ITEMS_PER_PAGE 6
+
 #define ITEM_RECOVER_CONFUSION (1 << 0)
 #define ITEM_RECOVER_PARALYSIS (1 << 1)
 #define ITEM_RECOVER_FREEZE    (1 << 2)
