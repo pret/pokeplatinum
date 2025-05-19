@@ -2,7 +2,7 @@
 subdir('csv2bin')
 subdir('datagen')
 subdir('fixrom')
-subdir('json2bin')
+subdir('jsoncnv')
 subdir('msgenc')
 subdir('ordergen')
 subdir('postconf')

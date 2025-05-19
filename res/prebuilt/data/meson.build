@@ -2,7 +2,6 @@ subdir('mmodel')
 subdir('sound')
 
 prebuilt_files = [
-    'arealight.narc',
     'battle_win.NSCR',
     'btower_canm.resdat',
     'btower_celact.cldat',

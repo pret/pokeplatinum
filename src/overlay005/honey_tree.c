@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/field/map_prop.h"
 #include "constants/map_object.h"
 #include "generated/map_headers.h"
+#include "generated/map_prop_models.h"
 
 #include "field/field_system.h"
 #include "overlay005/land_data.h"
