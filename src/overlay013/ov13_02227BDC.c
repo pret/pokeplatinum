@@ -12,7 +12,7 @@
 #include "overlay013/ov13_02227A4C.h"
 #include "overlay013/struct_ov13_02227244.h"
 
-#include "battle_sub_menu_cursor_position.h"
+#include "grid_menu_cursor_position.h"
 #include "gx_layers.h"
 #include "item.h"
 #include "narc.h"
@@ -240,7 +240,7 @@ static void ov13_02227FDC(UnkStruct_ov13_02227244 *param0)
     ov16_0226DBFC(param0->unk_30C, 46270, 46270, 46265, 46265);
 }
 
-static const BattleSubMenuCursorPosition Unk_ov13_02229C14[] = {
+static const GridMenuCursorPosition Unk_ov13_02229C14[] = {
     { 0x8, 0x10, 0x78, 0x48, 0x0, 0x1, 0x0, 0x2 },
     { 0x8, 0x58, 0x78, 0x90, 0x0, 0x4, 0x1, 0x3 },
     { 0x88, 0x10, 0xF8, 0x48, 0x2, 0x3, 0x0, 0x2 },
@@ -249,7 +249,7 @@ static const BattleSubMenuCursorPosition Unk_ov13_02229C14[] = {
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x83, 0x5, 0x4, 0x5 }
 };
 
-static const BattleSubMenuCursorPosition Unk_ov13_02229C74[] = {
+static const GridMenuCursorPosition Unk_ov13_02229C74[] = {
     { 0x8, 0x10, 0x78, 0x30, 0x0, 0x2, 0x0, 0x1 },
     { 0x88, 0x10, 0xF8, 0x30, 0x1, 0x3, 0x0, 0x1 },
     { 0x8, 0x40, 0x78, 0x60, 0x0, 0x4, 0x2, 0x3 },
@@ -261,12 +261,12 @@ static const BattleSubMenuCursorPosition Unk_ov13_02229C74[] = {
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x5, 0x8, 0x7, 0x8 }
 };
 
-static const BattleSubMenuCursorPosition Unk_ov13_02229BD4[] = {
+static const GridMenuCursorPosition Unk_ov13_02229BD4[] = {
     { 0x8, 0xA0, 0xC8, 0xB8, 0x0, 0x0, 0x0, 0x1 },
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x1, 0x1, 0x0, 0x1 }
 };
 
-static const BattleSubMenuCursorPosition *const Unk_ov13_02229BC8[] = {
+static const GridMenuCursorPosition *const Unk_ov13_02229BC8[] = {
     Unk_ov13_02229C14,
     Unk_ov13_02229C74,
     Unk_ov13_02229BD4

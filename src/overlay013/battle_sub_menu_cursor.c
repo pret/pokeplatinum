@@ -58,7 +58,7 @@ void ResetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor)
     cursor->previousPositionIndex = NULL_POSITION_INDEX;
 }
 
-void SetBattleSubMenuCursorPositions(BattleSubMenuCursor *cursor, const BattleSubMenuCursorPosition *positions)
+void SetBattleSubMenuCursorPositions(BattleSubMenuCursor *cursor, const GridMenuCursorPosition *positions)
 {
     ResetBattleSubMenuCursorCurrentPosition(cursor);
 
@@ -81,7 +81,7 @@ static u8 IsCursorVisible(BattleSubMenuCursor *cursor)
         return TRUE;
     }
 
-    if (gSystem.pressedKeys & (PAD_KEY | PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (JOY_NEW(PAD_KEY | PAD_BUTTON_B | PAD_BUTTON_A)) {
         cursor->isVisible = TRUE;
 
         ov16_0226DD7C(cursor->sprites, cursor->positions[cursor->currentPositionIndex].xCoord1, cursor->positions[cursor->currentPositionIndex].xCoord2, cursor->positions[cursor->currentPositionIndex].yCoord1, cursor->positions[cursor->currentPositionIndex].yCoord2);
@@ -91,25 +91,25 @@ static u8 IsCursorVisible(BattleSubMenuCursor *cursor)
     return FALSE;
 }
 
-static BOOL CheckShouldStorePreviousPosition(const BattleSubMenuCursorPosition *newPosition, u8 incomingDirection)
+static BOOL CheckShouldStorePreviousPosition(const GridMenuCursorPosition *newPosition, u8 incomingDirection)
 {
     switch (incomingDirection) {
-    case BATTLE_SUB_MENU_CURSOR_POSITION_DIRECTION_UP:
+    case GRID_MENU_CURSOR_POSITION_DIRECTION_UP:
         if (newPosition->downIndex & GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
             return TRUE;
         }
         break;
-    case BATTLE_SUB_MENU_CURSOR_POSITION_DIRECTION_DOWN:
+    case GRID_MENU_CURSOR_POSITION_DIRECTION_DOWN:
         if (newPosition->upIndex & GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
             return TRUE;
         }
         break;
-    case BATTLE_SUB_MENU_CURSOR_POSITION_DIRECTION_LEFT:
+    case GRID_MENU_CURSOR_POSITION_DIRECTION_LEFT:
         if (newPosition->rightIndex & GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
             return TRUE;
         }
         break;
-    case BATTLE_SUB_MENU_CURSOR_POSITION_DIRECTION_RIGHT:
+    case GRID_MENU_CURSOR_POSITION_DIRECTION_RIGHT:
         if (newPosition->leftIndex & GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
             return TRUE;
         }
@@ -129,17 +129,17 @@ u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
     }
 
     if (gSystem.pressedKeys & PAD_KEY_UP) {
-        nextPositionIndex = CheckBattleSubMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, BATTLE_SUB_MENU_CURSOR_POSITION_DIRECTION_UP);
-        pressedDirection = BATTLE_SUB_MENU_CURSOR_POSITION_DIRECTION_UP;
+        nextPositionIndex = CheckGridMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, GRID_MENU_CURSOR_POSITION_DIRECTION_UP);
+        pressedDirection = GRID_MENU_CURSOR_POSITION_DIRECTION_UP;
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-        nextPositionIndex = CheckBattleSubMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, BATTLE_SUB_MENU_CURSOR_POSITION_DIRECTION_DOWN);
-        pressedDirection = BATTLE_SUB_MENU_CURSOR_POSITION_DIRECTION_DOWN;
+        nextPositionIndex = CheckGridMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, GRID_MENU_CURSOR_POSITION_DIRECTION_DOWN);
+        pressedDirection = GRID_MENU_CURSOR_POSITION_DIRECTION_DOWN;
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        nextPositionIndex = CheckBattleSubMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, BATTLE_SUB_MENU_CURSOR_POSITION_DIRECTION_LEFT);
-        pressedDirection = BATTLE_SUB_MENU_CURSOR_POSITION_DIRECTION_LEFT;
+        nextPositionIndex = CheckGridMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, GRID_MENU_CURSOR_POSITION_DIRECTION_LEFT);
+        pressedDirection = GRID_MENU_CURSOR_POSITION_DIRECTION_LEFT;
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        nextPositionIndex = CheckBattleSubMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, BATTLE_SUB_MENU_CURSOR_POSITION_DIRECTION_RIGHT);
-        pressedDirection = BATTLE_SUB_MENU_CURSOR_POSITION_DIRECTION_RIGHT;
+        nextPositionIndex = CheckGridMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, GRID_MENU_CURSOR_POSITION_DIRECTION_RIGHT);
+        pressedDirection = GRID_MENU_CURSOR_POSITION_DIRECTION_RIGHT;
     } else {
         nextPositionIndex = BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX;
     }
@@ -163,7 +163,7 @@ u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
             }
 
             nextPositionIsEnabled = FALSE;
-            replacementPositionIndex = CheckBattleSubMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, nextPositionIndex, pressedDirection) & (NULL_POSITION_INDEX ^ GO_TO_PREVIOUS_POSITION_INDEX_MASK);
+            replacementPositionIndex = CheckGridMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, nextPositionIndex, pressedDirection) & (NULL_POSITION_INDEX ^ GO_TO_PREVIOUS_POSITION_INDEX_MASK);
 
             if ((replacementPositionIndex == nextPositionIndex) || (replacementPositionIndex == cursor->currentPositionIndex)) {
                 nextPositionIndex = cursor->currentPositionIndex;
@@ -176,8 +176,8 @@ u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
         if (cursor->currentPositionIndex != nextPositionIndex) {
             u8 x1, y1, x2, y2;
 
-            GetBattleSubMenuCursorPositionFirstCoords(&cursor->positions[nextPositionIndex], &x1, &y1);
-            GetBattleSubMenuCursorPositionSecondCoords(&cursor->positions[nextPositionIndex], &x2, &y2);
+            GetGridMenuCursorPositionFirstCoords(&cursor->positions[nextPositionIndex], &x1, &y1);
+            GetGridMenuCursorPositionSecondCoords(&cursor->positions[nextPositionIndex], &x2, &y2);
 
             if ((CheckShouldStorePreviousPosition(&cursor->positions[nextPositionIndex], pressedDirection) == TRUE) && (nextPositionIsEnabled != FALSE)) {
                 cursor->previousPositionIndex = cursor->currentPositionIndex;

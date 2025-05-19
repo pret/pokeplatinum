@@ -12,8 +12,8 @@
 #include "functypes/funcptr_0207F248.h"
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
 
-#include "battle_sub_menu_cursor_position.h"
 #include "bg_window.h"
+#include "grid_menu_cursor_position.h"
 #include "menu.h"
 #include "message.h"
 #include "sprite.h"
@@ -44,7 +44,7 @@ typedef struct {
     StringList *unk_6FC;
     Menu *unk_700;
     StrBufWrapper unk_704[6];
-    const BattleSubMenuCursorPosition *unk_7F4;
+    const GridMenuCursorPosition *unk_7F4;
     DualArrayShortData unk_7F8;
     GenericFunctionPtr unk_B00;
     FunctionPtrPair unk_B04;
