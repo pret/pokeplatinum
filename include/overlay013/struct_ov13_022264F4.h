@@ -23,8 +23,8 @@ typedef struct {
     u8 unk_24;
     u8 unk_25;
     u8 unk_26;
-    u8 pocketCurrentPagePositions[5];
-    u8 pocketCurrentPages[5];
+    u8 pocketCurrentPagePositions[BATTLE_POCKET_MAX];
+    u8 pocketCurrentPages[BATTLE_POCKET_MAX];
 } UnkStruct_ov13_022264F4;
 
 #endif // POKEPLATINUM_STRUCT_OV13_022264F4_H
