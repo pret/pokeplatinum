@@ -7,7 +7,7 @@
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
-#include "applications/pokedex/pokedex_foot.h"
+#include "applications/pokedex/pokedex_footprint.h"
 #include "applications/pokedex/pokedex_graphic_data.h"
 #include "applications/pokedex/pokedex_graphics_manager.h"
 #include "applications/pokedex/pokedex_main.h"
@@ -492,11 +492,11 @@ static void ov21_021DED68(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
 static void ov21_021DED7C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, int param2, int param3)
 {
     PokedexGraphicData *v0 = *param1;
-    int v1 = PokedexFoot_NarcID();
-    int v2 = PokedexFoot_CharIdx(param3);
-    int v3 = PokedexFoot_PaletteIdx();
-    int v4 = PokedexFoot_CellIdx();
-    int v5 = PokedexFoot_AnimIdx();
+    int v1 = GetPokedexFootprintsNarcID();
+    int v2 = GetSpeciesFootprintTiles(param3);
+    int v3 = GetSharedFootprintPalette();
+    int v4 = GetSharedFootprintCells();
+    int v5 = GetSharedFootprintAnims();
 
     param0->unk_24[0] = SpriteResourceCollection_AddTiles(v0->spriteResourceCollection[0], v1, v2, 1, 4000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 

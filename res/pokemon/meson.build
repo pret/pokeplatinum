@@ -336,8 +336,9 @@ pokefoot_narc = custom_target('pokefoot.narc',
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
-        species_dirnames,
-    ]
+    ],
+    env: species_env,
+    depends: [ py_consts_generators ],
 )
 
 nitrofs_files += datagen_species_out

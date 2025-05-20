@@ -5,7 +5,7 @@
 
 #include "applications/pokedex/ov21_021D1FA4.h"
 #include "applications/pokedex/ov21_021DE668.h"
-#include "applications/pokedex/pokedex_foot.h"
+#include "applications/pokedex/pokedex_footprint.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokedex/pokedex_text_manager.h"
 #include "applications/pokedex/struct_ov21_021D22F8.h"
@@ -470,11 +470,11 @@ static void ov21_021E93F8(SpriteResource **param0, SpriteResourceCollection **pa
 
 static void ov21_021E9458(UnkStruct_ov21_021E94F8 *param0, SpriteResourceCollection **param1, int param2, int param3)
 {
-    int v0 = PokedexFoot_NarcID();
-    int v1 = PokedexFoot_CharIdx(param2);
-    int v2 = PokedexFoot_PaletteIdx();
-    int v3 = PokedexFoot_CellIdx();
-    int v4 = PokedexFoot_AnimIdx();
+    int v0 = GetPokedexFootprintsNarcID();
+    int v1 = GetSpeciesFootprintTiles(param2);
+    int v2 = GetSharedFootprintPalette();
+    int v3 = GetSharedFootprintCells();
+    int v4 = GetSharedFootprintAnims();
 
     ov21_021E92C4(param0->unk_04, param1, param3, v0, v1, v2, v3, v4, 1, 4000);
 }

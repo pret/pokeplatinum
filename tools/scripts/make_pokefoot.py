@@ -2,8 +2,12 @@
 
 import argparse
 import pathlib
-import shutil
+import os
 import subprocess
+
+from generated.species import Species
+
+SPECIES_DIRS = os.environ['SPECIES'].split(';')
 
 argparser = argparse.ArgumentParser(
     prog='pokefoot.narc packer',
@@ -24,9 +28,6 @@ argparser.add_argument('-p', '--private-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the NARC will be made)')
-argparser.add_argument('subdirs',
-                       nargs='+',
-                       help='List of subdirectories to process in-order')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -34,10 +35,15 @@ private_dir = pathlib.Path(args.private_dir)
 output_dir = pathlib.Path(args.output_dir)
 
 private_dir.mkdir(parents=True, exist_ok=True)
+(output_dir / '.shared').mkdir(parents=True, exist_ok=True)
+
+palette_file = 'footprint.NCLR'
+anim_file = 'footprint.NANR.lz'
+cell_file = 'footprint.NCER.lz'
 
 # palette
-src = source_dir / '.shared/pokefoot.pal'
-dst = private_dir / '00000.NCLR'
+src = source_dir / '.shared' / 'pokefoot.pal'
+dst = private_dir / palette_file
 subprocess.run([
     args.nitrogfx,
     src,
@@ -45,8 +51,8 @@ subprocess.run([
 ])
 
 # anim
-src = source_dir / '.shared/pokefoot_anim.json'
-dst = output_dir / 'footprints.NANR'
+src = source_dir / '.shared' / 'pokefoot_anim.json'
+dst = output_dir / '.shared' / 'footprints.NANR'
 subprocess.run([
     args.nitrogfx,
     src,
@@ -54,7 +60,7 @@ subprocess.run([
 ])
 
 src = dst
-dst = private_dir / '00001.NANR.lz'
+dst = private_dir / anim_file
 subprocess.run([
     args.nitrogfx,
     src,
@@ -63,8 +69,8 @@ subprocess.run([
 ])
 
 # cell
-src = source_dir / '.shared/pokefoot_cell.json'
-dst = output_dir / 'footprints.NCER'
+src = source_dir / '.shared' / 'pokefoot_cell.json'
+dst = output_dir / '.shared' / 'footprints.NCER'
 subprocess.run([
     args.nitrogfx,
     src,
@@ -72,7 +78,7 @@ subprocess.run([
 ])
 
 src = dst
-dst = private_dir / '00002.NCER.lz'
+dst = private_dir / cell_file
 subprocess.run([
     args.nitrogfx,
     src,
@@ -80,32 +86,40 @@ subprocess.run([
     '-nopad',
 ])
 
-# char
-for i, subdir in enumerate(args.subdirs):
-    # Do not attempt to process either egg or bad_egg
-    if subdir in ['egg', 'bad_egg']:
-        continue
+with open(output_dir / 'pokefoot.order', "w", encoding="utf-8") as order_file:
+    print(palette_file, file=order_file)
+    print(anim_file, file=order_file)
+    print(cell_file, file=order_file)
 
-    (output_dir / subdir).mkdir(parents=True, exist_ok=True)
+    # char
+    for i, subdir in enumerate(SPECIES_DIRS):
+        # Do not attempt to process either egg or bad_egg
+        if subdir in ['egg', 'bad_egg']:
+            continue
 
-    src = source_dir / subdir / 'footprint.png'
-    dst = output_dir / subdir / 'footprint.NCGR'
-    subprocess.run([
-        args.nitrogfx,
-        src,
-        dst,
-        '-version101',
-        '-clobbersize',
-        '-mappingtype', '128',
-    ])
+        char_file = f'footprint_{subdir}.NCGR.lz'
 
-    src = dst
-    dst = private_dir / f'{(3+i):05}.NCGR.lz'
-    subprocess.run([
-        args.nitrogfx,
-        src,
-        dst,
-        '-nopad',
-    ])
+        print(char_file, file=order_file)
+        (output_dir / subdir).mkdir(parents=True, exist_ok=True)
 
-subprocess.run([args.narc, 'create', '--output', output_dir / 'pokefoot.narc', private_dir])
+        src = source_dir / subdir / 'footprint.png'
+        dst = output_dir / subdir / 'footprint.NCGR'
+        subprocess.run([
+            args.nitrogfx,
+            src,
+            dst,
+            '-version101',
+            '-clobbersize',
+            '-mappingtype', '128',
+        ])
+
+        src = dst
+        dst = private_dir / char_file
+        subprocess.run([
+            args.nitrogfx,
+            src,
+            dst,
+            '-nopad',
+        ])
+
+subprocess.run([args.narc, 'create', '--naix', '--order', output_dir / 'pokefoot.order', '--output', output_dir / 'pokefoot.narc', private_dir])
