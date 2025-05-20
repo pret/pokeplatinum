@@ -3,11 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/pokedex/ov21_021D1FA4.h"
 #include "applications/pokedex/ov21_021D4340.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
-#include "applications/pokedex/pokedex_graphic_data.h"
+#include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_graphics_manager.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokedex/pokedex_sort.h"
@@ -553,8 +552,8 @@ static void ClearScreen(PokedexSearchDisplay *searchDisplay, PokedexGraphicData 
 
 static void ov21_021D8B8C(PokedexGraphicData **param0, const PokedexSearchSettings *searchSettings, enum HeapId heapID)
 {
-    ov21_021D2724(*param0, 28, (*param0)->bgConfig, 3, 0, 0, 1, heapID);
-    ov21_021D276C(*param0, 5, 0, 0, 32, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, 28, (*param0)->bgConfig, 3, 0, 0, 1, heapID);
+    PokedexGraphics_LoadGraphicNarcPaletteData(*param0, 5, 0, 0, 32, heapID);
 }
 
 static void GetDisplayMap(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, const PokedexSearchSettings *searchSettings, enum HeapId heapID, int param4)
@@ -567,7 +566,7 @@ static void GetDisplayMap(PokedexSearchDisplay *searchDisplay, PokedexGraphicDat
         mapIndex = 40;
     }
 
-    searchDisplay->tileMap = ov21_021D27B8(*param1, mapIndex, 1, &searchDisplay->screenData, heapID);
+    searchDisplay->tileMap = PokedexGraphics_GetGraphicNarcScreenData(*param1, mapIndex, 1, &searchDisplay->screenData, heapID);
 }
 
 static void FreeDisplayMap(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1)
@@ -579,7 +578,7 @@ static void FreeDisplayMap(PokedexSearchDisplay *searchDisplay, PokedexGraphicDa
 
 static void ov21_021D8C00(PokedexGraphicData **param0)
 {
-    PokemonSprite *v0 = ov21_021D2170(*param0);
+    PokemonSprite *v0 = PokemonGraphics_GetPokemonChar(*param0);
 
     PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 1);
     PokemonSprite_ClearFade(v0);
@@ -588,7 +587,7 @@ static void ov21_021D8C00(PokedexGraphicData **param0)
 static void GetSearchGraphics(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, enum HeapId heapID)
 {
     PokedexGraphicData *v0 = *param1;
-    NARC *pokedexGraphics = ov21_021D26E0(v0);
+    NARC *pokedexGraphics = PokedexGraphics_GetNARC(v0);
 
     searchDisplay->searchGraphics[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], pokedexGraphics, 81, 1, 81 + 15000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
@@ -761,7 +760,7 @@ static void FilterMethodMap(PokedexGraphicData **param0, int filterMethod, enum 
     int y;
     int mapIndex;
 
-    v0 = ov21_021D27B8(*param0, 43, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 43, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
@@ -787,7 +786,7 @@ static void FilterMethodMap(PokedexGraphicData **param0, int filterMethod, enum 
         break;
     }
 
-    v0 = ov21_021D27B8(*param0, mapIndex, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, mapIndex, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 3, v1->rawData, 6, y, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);

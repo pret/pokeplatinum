@@ -15,12 +15,12 @@
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
+#include "item_use_pokemon.h"
 #include "math_util.h"
 #include "party.h"
 #include "pokemon.h"
 #include "trainer_info.h"
 #include "unk_02030108.h"
-#include "unk_02096420.h"
 
 typedef struct {
     u8 unk_00;
@@ -1585,7 +1585,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     v5 = ov104_0223B50C(param0->unk_04);
     v13 = SaveData_GetParty(param0->unk_6FC);
 
-    HealAllPokemonInParty(v13);
+    Party_HealAllMembers(v13);
 
     v8 = FieldBattleDTO_New(11, ov104_0223B4D4(param0->unk_04));
     FieldBattleDTO_InitFromGameState(v8, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);

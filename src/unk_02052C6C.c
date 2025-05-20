@@ -21,6 +21,7 @@
 #include "game_records.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "item_use_pokemon.h"
 #include "location.h"
 #include "message.h"
 #include "message_util.h"
@@ -40,7 +41,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_02054884.h"
 #include "unk_020559DC.h"
-#include "unk_02096420.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -122,7 +122,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
     case 4: {
         int v6;
 
-        HealAllPokemonInParty(SaveData_GetParty(fieldSystem->saveData));
+        Party_HealAllMembers(SaveData_GetParty(fieldSystem->saveData));
         SaveData_SetFullSaveRequired();
         v6 = SaveData_Save(fieldSystem->saveData);
         sub_02052C6C(fieldSystem, v3->unk_00);

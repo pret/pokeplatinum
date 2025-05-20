@@ -6,11 +6,10 @@
 #include "struct_decls/pokedexdata_decl.h"
 
 #include "applications/pokedex/pokedex_app.h"
-#include "applications/pokedex/pokedex_graphic_data.h"
+#include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_sort_data.h"
 #include "applications/pokedex/pokedex_text_manager.h"
 #include "applications/pokedex/pokedex_updater.h"
-#include "applications/pokedex/struct_ov21_021D22F8.h"
 #include "applications/pokedex/struct_ov21_021D423C_decl.h"
 #include "applications/pokedex/struct_ov21_021E68F4.h"
 
@@ -83,7 +82,7 @@ Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, int h
 Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, int heapID, int species);
 void PokedexMain_EntryNameNumber(PokedexGraphicData *param0, const PokedexSortData *pokedexSortData, int heapID, int statusIndex, fx32 x, fx32 y);
 void ov21_021D1848(PokedexGraphicData *pokedexGraphicData, int param1, int param2);
-void ov21_021D1858(UnkStruct_ov21_021D22F8 *param0, int param1, int param2);
+void ov21_021D1858(PokedexSpeciesLabel *param0, int param1, int param2);
 void PokedexMain_DisplayPokemonSprite(PokedexGraphicData *pokedexGraphicData, PokedexSortData *pokedexSortData, int species, int face, int param4, int param5);
 u32 PokedexMain_DisplaySpeciesSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int species, int face, int param4, int param5, int formIndex, int param7);
 u32 PokedexMain_DisplayUnownSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6);

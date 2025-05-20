@@ -23,6 +23,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
+#include "item_use_pokemon.h"
 #include "journal.h"
 #include "menu.h"
 #include "message.h"
@@ -56,7 +57,6 @@
 #include "unk_02083370.h"
 #include "unk_02084B70.h"
 #include "unk_0208C098.h"
-#include "unk_02096420.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F1E88.h"
@@ -2573,7 +2573,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
         return 6;
     }
 
-    if (CheckItemEffectsOnPartyMember(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
+    if (Party_CheckItemEffectsOnMember(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
         Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, HEAP_ID_12);
 
         if (Item_Get(v0, 26) != 0) {

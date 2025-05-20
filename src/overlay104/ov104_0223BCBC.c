@@ -14,6 +14,7 @@
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
+#include "item_use_pokemon.h"
 #include "math_util.h"
 #include "message.h"
 #include "party.h"
@@ -21,7 +22,6 @@
 #include "save_player.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02096420.h"
 
 u8 ov104_0223BD70(u8 param0, BOOL param1);
 u8 ov104_0223BDA4(u8 param0, BOOL param1);
@@ -253,8 +253,8 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
         break;
     }
 
-    HealAllPokemonInParty(param0->unk_70);
-    HealAllPokemonInParty(param0->unk_74);
+    Party_HealAllMembers(param0->unk_70);
+    Party_HealAllMembers(param0->unk_74);
 
     return v5;
 }

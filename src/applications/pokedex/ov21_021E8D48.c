@@ -3,12 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/pokedex/ov21_021D1FA4.h"
 #include "applications/pokedex/ov21_021DE668.h"
+#include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_footprint.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokedex/pokedex_text_manager.h"
-#include "applications/pokedex/struct_ov21_021D22F8.h"
 #include "applications/pokedex/struct_ov21_021E8E0C.h"
 
 #include "bg_window.h"
@@ -67,7 +66,7 @@ typedef struct UnkStruct_ov21_021E8D48_t {
     SpriteList *unk_19C;
     SpriteResourceCollection *unk_1A0[4];
     PokedexTextManager *unk_1B0;
-    UnkStruct_ov21_021D22F8 unk_1B4;
+    PokedexSpeciesLabel unk_1B4;
     UnkStruct_ov21_021E94F8 unk_1E4;
     UnkStruct_ov21_021E95B0 unk_1F8;
     UnkStruct_ov21_021E968C unk_200;
@@ -91,8 +90,8 @@ static Window *ov21_021E91B0(BgConfig *param0, int param1);
 static void ov21_021E91F0(Window *param0);
 static void ov21_021E9208(SpriteResourceCollection **param0, int param1);
 static void ov21_021E9228(SpriteResourceCollection **param0);
-static void ov21_021E9240(UnkStruct_ov21_021D22F8 *param0, PokedexTextManager *textMan, int param2, int param3, int param4);
-static void ov21_021E92B0(UnkStruct_ov21_021D22F8 *param0);
+static void ov21_021E9240(PokedexSpeciesLabel *param0, PokedexTextManager *textMan, int param2, int param3, int param4);
+static void ov21_021E92B0(PokedexSpeciesLabel *param0);
 static PokemonSprite *ov21_021E99E0(PokemonSpriteManager *param0, Pokemon *param1, int param2, int param3, int param4);
 static void ov21_021E92C4(SpriteResource **param0, SpriteResourceCollection **param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov21_021E9344(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9);
@@ -209,11 +208,11 @@ static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_
     param0->unk_04 = ov21_021E91B0(param0->unk_00, param1->heapID);
 
     ov21_021E9208(param0->unk_1A0, param1->heapID);
-    ov21_021D2B88(&param0->unk_1B4, param0->unk_1A0, param1->heapID, v1);
-    ov21_021D2D88(&param0->unk_1B4, param0->unk_19C, param0->unk_1A0, param1->heapID, 2);
+    PokedexGraphics_InitSpeciesLabelGraphics(&param0->unk_1B4, param0->unk_1A0, param1->heapID, v1);
+    PokedexGraphics_NewSpeciesLabel(&param0->unk_1B4, param0->unk_19C, param0->unk_1A0, param1->heapID, 2);
     ov21_021E9240(&param0->unk_1B4, param0->unk_1B0, param1->heapID, param0->unk_220, param1->unk_14);
     ov21_021D1858(&param0->unk_1B4, 172, 32);
-    ov21_021D2E44(&param0->unk_1B4, 1);
+    PokedexGraphics_SetSpeciesLabelDraw(&param0->unk_1B4, 1);
 
     {
         int v3;
@@ -231,7 +230,7 @@ static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_
     ov21_021E95BC(&param0->unk_200, param0->unk_1A0, param0->unk_220, param1->heapID, v1);
     ov21_021E95F8(&param0->unk_200, param0->unk_19C, param0->unk_1A0, param1->heapID, param0->unk_220);
     ov21_021E9504(&param0->unk_1F8, param0->unk_19C, param0->unk_1A0, param1->heapID, param0->unk_200.unk_08);
-    ov21_021E9560(&param0->unk_1F8, param0->unk_1B0, param1->heapID, param0->unk_220, param0->unk_1B4.unk_0C[1]);
+    ov21_021E9560(&param0->unk_1F8, param0->unk_1B0, param1->heapID, param0->unk_220, param0->unk_1B4.spriteResource[1]);
     ov21_021E96A8(param0->unk_00, param1->heapID, v1);
     ov21_021E97C4(param0->unk_00, param1->heapID, v1);
     ov21_021E9968(param0->unk_04, param1->heapID, param0->unk_220);
@@ -252,8 +251,8 @@ static void ov21_021E900C(UnkStruct_ov21_021E8D48 *param0)
     ov21_021E94F8(&param0->unk_1E4);
     ov21_021E94A4(&param0->unk_1E4, param0->unk_1A0);
     ov21_021E92B0(&param0->unk_1B4);
-    ov21_021D2E1C(&param0->unk_1B4);
-    ov21_021D2C58(&param0->unk_1B4, param0->unk_1A0);
+    PokedexGraphics_FreeSpeciesLabel(&param0->unk_1B4);
+    PokedexGraphics_FreeSpeciesLabelGraphics(&param0->unk_1B4, param0->unk_1A0);
     ov21_021E9228(param0->unk_1A0);
 
     SpriteList_Delete(param0->unk_19C);
@@ -384,39 +383,39 @@ static void ov21_021E9228(SpriteResourceCollection **param0)
     }
 }
 
-static void ov21_021E9240(UnkStruct_ov21_021D22F8 *param0, PokedexTextManager *textMan, int param2, int param3, int param4)
+static void ov21_021E9240(PokedexSpeciesLabel *pokedexSpeciesLabel, PokedexTextManager *textMan, int heapID, int species, int isNatDex)
 {
     PokedexDisplayBox displayBox;
-    Window *v1;
-    SpriteResource *v2 = param0->unk_0C[1];
+    Window *window;
+    SpriteResource *spriteResource = pokedexSpeciesLabel->spriteResource[1];
 
     displayBox.textMan = textMan;
-    displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(v2, NULL);
-    displayBox.sprite = param0->unk_00;
+    displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(spriteResource, NULL);
+    displayBox.sprite = pokedexSpeciesLabel->nameTag;
     displayBox.x = -(128 / 2);
     displayBox.y = -(16 / 2);
     displayBox.spriteResourcePriority = 2;
     displayBox.spriteListPriority = 0;
     displayBox.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    displayBox.heapID = param2;
+    displayBox.heapID = heapID;
 
-    if (param4 == 0) {
-        v1 = PokedexMain_DisplayNameNumberLocal(textMan, param2, param3);
+    if (isNatDex == FALSE) {
+        window = PokedexMain_DisplayNameNumberLocal(textMan, heapID, species);
     } else {
-        v1 = PokedexMain_DisplayNameNumberNational(textMan, param2, param3);
+        window = PokedexMain_DisplayNameNumberNational(textMan, heapID, species);
     }
 
-    displayBox.window = v1;
+    displayBox.window = window;
 
-    ov21_021D22F8(param0, &displayBox, 0, param3, param4);
-    PokedexTextManager_FreeWindow(v1);
+    PokedexGraphics_UpdateSpeciesLabel(pokedexSpeciesLabel, &displayBox, 0, species, isNatDex);
+    PokedexTextManager_FreeWindow(window);
 }
 
-static void ov21_021E92B0(UnkStruct_ov21_021D22F8 *param0)
+static void ov21_021E92B0(PokedexSpeciesLabel *pokedexSpeciesLabel)
 {
-    if (param0->unk_08) {
-        PokedexTextManager_FreeTextData(param0->unk_08);
-        param0->unk_08 = NULL;
+    if (pokedexSpeciesLabel->textData) {
+        PokedexTextManager_FreeTextData(pokedexSpeciesLabel->textData);
+        pokedexSpeciesLabel->textData = NULL;
     }
 }
 

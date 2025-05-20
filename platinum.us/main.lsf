@@ -331,7 +331,7 @@ Static main
 	Object main.nef.p/src_unk_02095CD4.c.o
 	Object main.nef.p/src_unk_02095E98.c.o
 	Object main.nef.p/src_unk_020961E8.c.o
-	Object main.nef.p/src_unk_02096420.c.o
+	Object main.nef.p/src_item_use_pokemon.c.o
 	Object main.nef.p/src_unk_020972FC.c.o
 	Object main.nef.p/src_berry_data.c.o
 	Object main.nef.p/src_unk_0209747C.c.o
@@ -783,7 +783,7 @@ Overlay pokedex
 	After main
 	Object main.nef.p/src_applications_pokedex_pokedex_main.c.o
 	Object main.nef.p/src_applications_pokedex_pokedex_footprint.c.o
-	Object main.nef.p/src_applications_pokedex_ov21_021D1FA4.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_graphics.c.o
 	Object main.nef.p/src_applications_pokedex_pokedex_sort.c.o
 	Object main.nef.p/src_applications_pokedex_pokedex_updater.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021D423C.c.o
