@@ -11,7 +11,7 @@
 
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/save_info_window.h"
-#include "overlay025/poketch_system.h"
+#include "poketch/poketch_system.h"
 
 #include "bg_window.h"
 #include "field_overworld_state.h"
