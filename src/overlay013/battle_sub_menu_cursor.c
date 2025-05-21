@@ -128,17 +128,17 @@ u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
         return BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX;
     }
 
-    if (gSystem.pressedKeys & PAD_KEY_UP) {
-        nextPositionIndex = CheckGridMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, GRID_MENU_CURSOR_POSITION_DIRECTION_UP);
+    if (JOY_NEW(PAD_KEY_UP)) {
+        nextPositionIndex = GridMenuCursor_CheckNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, GRID_MENU_CURSOR_POSITION_DIRECTION_UP);
         pressedDirection = GRID_MENU_CURSOR_POSITION_DIRECTION_UP;
-    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-        nextPositionIndex = CheckGridMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, GRID_MENU_CURSOR_POSITION_DIRECTION_DOWN);
+    } else if (JOY_NEW(PAD_KEY_DOWN)) {
+        nextPositionIndex = GridMenuCursor_CheckNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, GRID_MENU_CURSOR_POSITION_DIRECTION_DOWN);
         pressedDirection = GRID_MENU_CURSOR_POSITION_DIRECTION_DOWN;
-    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        nextPositionIndex = CheckGridMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, GRID_MENU_CURSOR_POSITION_DIRECTION_LEFT);
+    } else if (JOY_NEW(PAD_KEY_LEFT)) {
+        nextPositionIndex = GridMenuCursor_CheckNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, GRID_MENU_CURSOR_POSITION_DIRECTION_LEFT);
         pressedDirection = GRID_MENU_CURSOR_POSITION_DIRECTION_LEFT;
-    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        nextPositionIndex = CheckGridMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, GRID_MENU_CURSOR_POSITION_DIRECTION_RIGHT);
+    } else if (JOY_NEW(PAD_KEY_RIGHT)) {
+        nextPositionIndex = GridMenuCursor_CheckNavigation(cursor->positions, NULL, NULL, NULL, NULL, cursor->currentPositionIndex, GRID_MENU_CURSOR_POSITION_DIRECTION_RIGHT);
         pressedDirection = GRID_MENU_CURSOR_POSITION_DIRECTION_RIGHT;
     } else {
         nextPositionIndex = BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX;
@@ -163,7 +163,7 @@ u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
             }
 
             nextPositionIsEnabled = FALSE;
-            replacementPositionIndex = CheckGridMenuCursorPositionNavigation(cursor->positions, NULL, NULL, NULL, NULL, nextPositionIndex, pressedDirection) & (NULL_POSITION_INDEX ^ GO_TO_PREVIOUS_POSITION_INDEX_MASK);
+            replacementPositionIndex = GridMenuCursor_CheckNavigation(cursor->positions, NULL, NULL, NULL, NULL, nextPositionIndex, pressedDirection) & (NULL_POSITION_INDEX ^ GO_TO_PREVIOUS_POSITION_INDEX_MASK);
 
             if ((replacementPositionIndex == nextPositionIndex) || (replacementPositionIndex == cursor->currentPositionIndex)) {
                 nextPositionIndex = cursor->currentPositionIndex;
@@ -176,8 +176,8 @@ u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
         if (cursor->currentPositionIndex != nextPositionIndex) {
             u8 x1, y1, x2, y2;
 
-            GetGridMenuCursorPositionFirstCoords(&cursor->positions[nextPositionIndex], &x1, &y1);
-            GetGridMenuCursorPositionSecondCoords(&cursor->positions[nextPositionIndex], &x2, &y2);
+            GridMenuCursor_GetFirstCoords(&cursor->positions[nextPositionIndex], &x1, &y1);
+            GridMenuCursor_GetSecondCoords(&cursor->positions[nextPositionIndex], &x2, &y2);
 
             if ((CheckShouldStorePreviousPosition(&cursor->positions[nextPositionIndex], pressedDirection) == TRUE) && (nextPositionIsEnabled != FALSE)) {
                 cursor->previousPositionIndex = cursor->currentPositionIndex;
@@ -194,11 +194,11 @@ u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
         return BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX;
     }
 
-    if (gSystem.pressedKeys & PAD_BUTTON_A) {
+    if (JOY_NEW(PAD_BUTTON_A)) {
         return cursor->currentPositionIndex;
     }
 
-    if (gSystem.pressedKeys & PAD_BUTTON_B) {
+    if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return BATTLE_SUB_MENU_CURSOR_BACK_INDEX;
     }

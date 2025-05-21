@@ -20,8 +20,8 @@ enum GridMenuCursorPositionDirection {
     GRID_MENU_CURSOR_POSITION_DIRECTION_NONE,
 };
 
-void GetGridMenuCursorPositionFirstCoords(const GridMenuCursorPosition *position, u8 *xCoord, u8 *yCoord);
-void GetGridMenuCursorPositionSecondCoords(const GridMenuCursorPosition *position, u8 *xCoord, u8 *yCoord);
-u8 CheckGridMenuCursorPositionNavigation(const GridMenuCursorPosition *positions, u8 *xCoord1, u8 *yCoord1, u8 *xCoord2, u8 *yCoord2, u8 currentPositionIndex, u8 directionToMove);
+void GridMenuCursor_GetFirstCoords(const GridMenuCursorPosition *position, u8 *xCoord, u8 *yCoord);
+void GridMenuCursor_GetSecondCoords(const GridMenuCursorPosition *position, u8 *xCoord, u8 *yCoord);
+u8 GridMenuCursor_CheckNavigation(const GridMenuCursorPosition *positions, u8 *xCoord1, u8 *yCoord1, u8 *xCoord2, u8 *yCoord2, u8 currentPositionIndex, u8 directionToMove);
 
 #endif // POKEPLATINUM_GRID_MENU_CURSOR_POSITION_H

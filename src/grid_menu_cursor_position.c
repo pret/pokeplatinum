@@ -1,18 +1,18 @@
 #include "grid_menu_cursor_position.h"
 
-void GetGridMenuCursorPositionFirstCoords(const GridMenuCursorPosition *position, u8 *xCoord, u8 *yCoord)
+void GridMenuCursor_GetFirstCoords(const GridMenuCursorPosition *position, u8 *xCoord, u8 *yCoord)
 {
     *xCoord = position->xCoord1;
     *yCoord = position->yCoord1;
 }
 
-void GetGridMenuCursorPositionSecondCoords(const GridMenuCursorPosition *position, u8 *xCoord, u8 *yCoord)
+void GridMenuCursor_GetSecondCoords(const GridMenuCursorPosition *position, u8 *xCoord, u8 *yCoord)
 {
     *xCoord = position->xCoord2;
     *yCoord = position->yCoord2;
 }
 
-u8 CheckGridMenuCursorPositionNavigation(const GridMenuCursorPosition *positions, u8 *xCoord1, u8 *yCoord1, u8 *xCoord2, u8 *yCoord2, u8 currentPositionIndex, u8 directionToMove)
+u8 GridMenuCursor_CheckNavigation(const GridMenuCursorPosition *positions, u8 *xCoord1, u8 *yCoord1, u8 *xCoord2, u8 *yCoord2, u8 currentPositionIndex, u8 directionToMove)
 {
     u8 index = currentPositionIndex;
 

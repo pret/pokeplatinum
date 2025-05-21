@@ -1375,7 +1375,7 @@ static void sub_0207F9A0(GameWindowLayout *param0)
 {
     u8 v0, v1;
 
-    CheckGridMenuCursorPositionNavigation(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->unk_B11, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
+    GridMenuCursor_CheckNavigation(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->unk_B11, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
     Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B11));
     Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);
 }
@@ -1480,7 +1480,7 @@ static u8 sub_0207FBE0(GameWindowLayout *param0, u8 *param1, u8 *param2, u8 para
     u8 v0 = param0->unk_B11;
 
     while (TRUE) {
-        v0 = CheckGridMenuCursorPositionNavigation(param0->unk_7F4, param1, param2, NULL, NULL, v0, param3);
+        v0 = GridMenuCursor_CheckNavigation(param0->unk_7F4, param1, param2, NULL, NULL, v0, param3);
 
         if ((v0 == 6) || (v0 == 7) || (v0 == 0xff)) {
             break;
@@ -1504,14 +1504,14 @@ static u8 sub_0207FC30(GameWindowLayout *param0, u8 *param1, u8 *param2, const u
         }
 
         if (sub_0207EF04(param0, param3[v0]) != 0) {
-            CheckGridMenuCursorPositionNavigation(param0->unk_7F4, param1, param2, NULL, NULL, param3[v0], GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
+            GridMenuCursor_CheckNavigation(param0->unk_7F4, param1, param2, NULL, NULL, param3[v0], GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
             return param3[v0];
         }
 
         v0++;
     }
 
-    CheckGridMenuCursorPositionNavigation(param0->unk_7F4, param1, param2, NULL, NULL, 0, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
+    GridMenuCursor_CheckNavigation(param0->unk_7F4, param1, param2, NULL, NULL, 0, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
     return 0;
 }
 
@@ -1533,7 +1533,7 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
             UpdateWindowLayout(param0, v3, 0);
         }
 
-        CheckGridMenuCursorPositionNavigation(param0->unk_7F4, &v1, &v2, NULL, NULL, param0->unk_B11, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
+        GridMenuCursor_CheckNavigation(param0->unk_7F4, &v1, &v2, NULL, NULL, param0->unk_B11, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
         Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B11));
         Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
         Sprite_SetPositionXY(param0->unk_5B0[6], v1, v2);
@@ -1560,7 +1560,7 @@ void sub_0207FD68(GameWindowLayout *param0, u8 param1)
     } else {
         u8 v0, v1;
 
-        CheckGridMenuCursorPositionNavigation(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->unk_B11, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
+        GridMenuCursor_CheckNavigation(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->unk_B11, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
         Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
         Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
         Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);
