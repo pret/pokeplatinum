@@ -8,15 +8,15 @@
 #include "battle/ov16_0226DE44.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
 #include "battle/struct_ov16_0226DEEC_decl.h"
+#include "overlay013/battle_sub_menu_cursor.h"
 #include "overlay013/ov13_02227A4C.h"
-#include "overlay013/ov13_02228A38.h"
 #include "overlay013/struct_ov13_02227244.h"
 
+#include "grid_menu_cursor_position.h"
 #include "gx_layers.h"
 #include "item.h"
 #include "narc.h"
 #include "palette.h"
-#include "party_menu_cursor.h"
 #include "sprite_system.h"
 
 static void ov13_02227C08(UnkStruct_ov13_02227244 *param0);
@@ -231,16 +231,16 @@ static void ov13_02227F7C(UnkStruct_ov13_02227244 *param0)
     ov16_0226DB7C(v0, param0->unk_30C, param0->unk_08, param0->unk_00->heapID, 46270, 46270, 46265, 46265);
     v1 = ov16_0226DC24(v0, param0->unk_30C, param0->unk_00->heapID, 46270, 46270, 46265, 46265, 0, 1);
 
-    ov13_02228A64(param0->unk_34, v1);
+    SetBattleSubMenuCursorSprites(param0->unk_34, v1);
 }
 
 static void ov13_02227FDC(UnkStruct_ov13_02227244 *param0)
 {
-    ov16_0226DCA8(ov13_02228A58(param0->unk_34));
+    ov16_0226DCA8(GetBattleSubMenuCursorSprites(param0->unk_34));
     ov16_0226DBFC(param0->unk_30C, 46270, 46270, 46265, 46265);
 }
 
-static const PartyMenuCursor Unk_ov13_02229C14[] = {
+static const GridMenuCursorPosition Unk_ov13_02229C14[] = {
     { 0x8, 0x10, 0x78, 0x48, 0x0, 0x1, 0x0, 0x2 },
     { 0x8, 0x58, 0x78, 0x90, 0x0, 0x4, 0x1, 0x3 },
     { 0x88, 0x10, 0xF8, 0x48, 0x2, 0x3, 0x0, 0x2 },
@@ -249,7 +249,7 @@ static const PartyMenuCursor Unk_ov13_02229C14[] = {
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x83, 0x5, 0x4, 0x5 }
 };
 
-static const PartyMenuCursor Unk_ov13_02229C74[] = {
+static const GridMenuCursorPosition Unk_ov13_02229C74[] = {
     { 0x8, 0x10, 0x78, 0x30, 0x0, 0x2, 0x0, 0x1 },
     { 0x88, 0x10, 0xF8, 0x30, 0x1, 0x3, 0x0, 0x1 },
     { 0x8, 0x40, 0x78, 0x60, 0x0, 0x4, 0x2, 0x3 },
@@ -261,12 +261,12 @@ static const PartyMenuCursor Unk_ov13_02229C74[] = {
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x5, 0x8, 0x7, 0x8 }
 };
 
-static const PartyMenuCursor Unk_ov13_02229BD4[] = {
+static const GridMenuCursorPosition Unk_ov13_02229BD4[] = {
     { 0x8, 0xA0, 0xC8, 0xB8, 0x0, 0x0, 0x0, 0x1 },
     { 0xE0, 0xA0, 0xF8, 0xB8, 0x1, 0x1, 0x0, 0x1 }
 };
 
-static const PartyMenuCursor *const Unk_ov13_02229BC8[] = {
+static const GridMenuCursorPosition *const Unk_ov13_02229BC8[] = {
     Unk_ov13_02229C14,
     Unk_ov13_02229C74,
     Unk_ov13_02229BD4
@@ -274,14 +274,14 @@ static const PartyMenuCursor *const Unk_ov13_02229BC8[] = {
 
 void ov13_02228008(UnkStruct_ov13_02227244 *param0, u8 param1)
 {
-    ov13_02228A9C(param0->unk_34, Unk_ov13_02229BC8[param1]);
+    SetBattleSubMenuCursorPositions(param0->unk_34, Unk_ov13_02229BC8[param1]);
 
     switch (param1) {
     case 0:
-        ov13_02228A68(param0->unk_34, param0->unk_114D);
+        SetBattleSubMenuCursorCurrentPosition(param0->unk_34, param0->unk_114D);
         break;
     case 1:
-        ov13_02228A68(param0->unk_34, param0->unk_00->unk_27[param0->unk_114D]);
+        SetBattleSubMenuCursorCurrentPosition(param0->unk_34, param0->unk_00->unk_27[param0->unk_114D]);
         break;
     case 2:
         break;
@@ -290,9 +290,9 @@ void ov13_02228008(UnkStruct_ov13_02227244 *param0, u8 param1)
 
 void ov13_02228050(UnkStruct_ov13_02227244 *param0)
 {
-    ov13_02228A60(param0->unk_34, 0);
-    ov13_02228A90(param0->unk_34);
-    ov16_0226DDE8(ov13_02228A58(param0->unk_34));
+    SetBattleSubMenuCursorVisibility(param0->unk_34, 0);
+    ResetBattleSubMenuCursorCurrentPosition(param0->unk_34);
+    ov16_0226DDE8(GetBattleSubMenuCursorSprites(param0->unk_34));
 }
 
 static void ov13_02228070(UnkStruct_ov13_02227244 *param0)
