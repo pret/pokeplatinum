@@ -2,6 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV13_02221ED0_H
 
 #include "overlay013/struct_ov13_022236B8.h"
+#include "applications/pokemon_summary_screen/main.h"
 
 #include "pokemon.h"
 
@@ -13,14 +14,14 @@ typedef struct {
     u16 unk_0A;
     u16 unk_0C;
     u16 unk_0E;
-    u16 unk_10;
+    u16 curHP;
     u16 unk_12;
     u8 unk_14;
     u8 unk_15;
     u8 unk_16_0 : 7;
     u8 unk_16_7 : 1;
     u8 unk_17_0 : 3;
-    u8 unk_17_3 : 4;
+    SummaryStatus summaryStatus : 4;
     u8 unk_17_7 : 1;
     u16 unk_18;
     u16 unk_1A;
