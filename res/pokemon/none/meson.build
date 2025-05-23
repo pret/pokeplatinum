@@ -11,3 +11,5 @@ pokegra_files += files('male_front.png')
 # rather than being derived from the decompiled PNGs.
 pokegra_files += files('normal_pal.NCLR')
 pokegra_files += files('shiny_pal.NCLR')
+
+pokefoot_files += files('footprint.png')

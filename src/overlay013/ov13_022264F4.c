@@ -10,10 +10,10 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DE44.h"
 #include "overlay013/battle_bag_utils.h"
+#include "overlay013/battle_sub_menu_cursor.h"
 #include "overlay013/ov13_02227288.h"
 #include "overlay013/ov13_02227BDC.h"
 #include "overlay013/ov13_02228128.h"
-#include "overlay013/ov13_02228A38.h"
 #include "overlay013/struct_ov13_022264F4.h"
 #include "overlay013/struct_ov13_02227244.h"
 
@@ -190,7 +190,7 @@ static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)
 {
     G2S_BlendNone();
 
-    param0->unk_34 = ov13_02228A38(param0->unk_00->heapID);
+    param0->unk_34 = MakeBattleSubMenuCursor(param0->unk_00->heapID);
 
     ov13_02226ED0(param0);
     ov13_02226FC4(param0);
@@ -207,7 +207,7 @@ static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)
     ov13_02227E68(param0, param0->unk_114C);
 
     if (param0->unk_00->unk_25 != 0) {
-        ov13_02228A60(param0->unk_34, 1);
+        SetBattleSubMenuCursorVisibility(param0->unk_34, 1);
     }
 
     ov13_02228008(param0, param0->unk_114C);
@@ -231,9 +231,9 @@ static u8 ov13_02226760(UnkStruct_ov13_02227244 *param0)
         int v0 = ov13_02227238(param0, Unk_ov13_02229A1C);
 
         if (v0 == 0xffffffff) {
-            v0 = ov13_02228B64(param0->unk_34);
+            v0 = BattleSubMenuCursorTick(param0->unk_34);
 
-            if (v0 == 0xfffffffe) {
+            if (v0 == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
                 v0 = 5;
             }
         } else {
@@ -278,9 +278,9 @@ static u8 ov13_02226838(UnkStruct_ov13_02227244 *param0)
         int v0 = ov13_02227238(param0, Unk_ov13_02229A38);
 
         if (v0 == 0xffffffff) {
-            v0 = ov13_02228B64(param0->unk_34);
+            v0 = BattleSubMenuCursorTick(param0->unk_34);
 
-            if (v0 == 0xfffffffe) {
+            if (v0 == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
                 v0 = 8;
             }
         } else {
@@ -360,9 +360,9 @@ static u8 ov13_022269C0(UnkStruct_ov13_02227244 *param0)
         int v0 = ov13_02227238(param0, Unk_ov13_022299AC);
 
         if (v0 == 0xffffffff) {
-            v0 = ov13_02228B64(param0->unk_34);
+            v0 = BattleSubMenuCursorTick(param0->unk_34);
 
-            if (v0 == 0xfffffffe) {
+            if (v0 == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
                 v0 = 1;
             }
         } else {
@@ -546,9 +546,9 @@ static u8 ov13_02226CFC(SysTask *param0, UnkStruct_ov13_02227244 *param1)
     ov13_022270F8(param1);
     ov13_02226F9C(param1->unk_04);
 
-    param1->unk_00->unk_25 = ov13_02228A5C(param1->unk_34);
+    param1->unk_00->unk_25 = IsBattleSubMenuCursorVisible(param1->unk_34);
 
-    ov13_02228A50(param1->unk_34);
+    DeleteBattleSubMenuCursor(param1->unk_34);
     Font_Free(FONT_SUBSCREEN);
 
     if (param1->unk_00->unk_1C != 0) {

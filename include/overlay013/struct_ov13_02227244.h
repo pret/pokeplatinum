@@ -4,8 +4,8 @@
 #include "struct_decls/struct_0200C440_decl.h"
 
 #include "battle/struct_ov16_0226DEEC_decl.h"
+#include "overlay013/battle_sub_menu_cursor.h"
 #include "overlay013/struct_ov13_022264F4.h"
-#include "overlay013/struct_ov13_02228A50_decl.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -28,7 +28,7 @@ typedef struct {
     u8 unk_30;
     u8 unk_31;
     u8 unk_32;
-    UnkStruct_ov13_02228A50 *unk_34;
+    BattleSubMenuCursor *unk_34;
     UnkStruct_ov16_0226DEEC *unk_38;
     BagItem battleBagItems[BATTLE_POCKET_MAX][BATTLE_POCKET_SIZE];
     SpriteManager *unk_30C;

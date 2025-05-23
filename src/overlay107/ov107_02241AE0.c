@@ -61,7 +61,7 @@
 #include "unk_020393C8.h"
 #include "unk_0205DFC4.h"
 #include "unk_0208C098.h"
-#include "unk_02096420.h"
+#include "item_use_pokemon.h"
 #include "unk_0209BA80.h"
 
 FS_EXTERN_OVERLAY(overlay104);
@@ -3533,7 +3533,7 @@ void ov107_02245438 (int param0, int param1, void * param2, void * param3)
 
 static void ov107_02245454 (Pokemon * param0, u16 param1)
 {
-    ApplyItemEffectsToPokemon(param0, param1, 0, 0, 100);
+    Pokemon_ApplyItemEffects(param0, param1, 0, 0, 100);
     return;
 }
 

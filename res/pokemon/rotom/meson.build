@@ -41,3 +41,5 @@ otherpoke_index += {
     '242': files('forms/mow/normal.pal'),
     '243': files('forms/mow/shiny.pal'),
 }
+
+pokefoot_files += files('footprint.png')

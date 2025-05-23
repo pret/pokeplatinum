@@ -16,6 +16,7 @@
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
+#include "item_use_pokemon.h"
 #include "math_util.h"
 #include "message.h"
 #include "party.h"
@@ -25,7 +26,6 @@
 #include "trainer_info.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
-#include "unk_02096420.h"
 
 static int ov104_0223B6F4(u8 param0, int param1, int param2);
 void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3);
@@ -170,7 +170,7 @@ FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104
     v2 = ov104_0223B7A8(param0->unk_10, 0);
     v3 = ov104_0223B7DC(param0->unk_10, 0);
 
-    HealAllPokemonInParty(param0->unk_2C);
+    Party_HealAllMembers(param0->unk_2C);
     v5 = FieldBattleDTO_New(11, ov104_0223B9E4(param0->unk_10));
     FieldBattleDTO_InitFromGameState(v5, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
