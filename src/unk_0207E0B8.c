@@ -1334,32 +1334,32 @@ static void sub_0207F884(GameWindowLayout *param0, u8 param1, s16 param2, s16 pa
     sub_02083104(param0, param1);
 }
 
-void sub_0207F8F8(GameWindowLayout *param0, u8 param1)
+void sub_0207F8F8(GameWindowLayout *param0, u8 partySlot)
 {
-    Pokemon *v0;
+    Pokemon *mon;
     u8 v1;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
+    mon = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, partySlot);
 
-    if ((param0->unk_B0F_6 == 1) && ((param1 == param0->unk_B11) || (param1 == param0->unk_B0F_0))) {
+    if ((param0->unk_B0F_6 == 1) && ((partySlot == param0->unk_B11) || (partySlot == param0->unk_B0F_0))) {
         v1 = 3 + 4;
     } else {
-        if (param1 == param0->unk_B11) {
+        if (partySlot == param0->unk_B11) {
             v1 = 4;
         } else {
             v1 = 0;
         }
 
-        if (Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, 0) == 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, 0) == 0) {
             v1 += 2;
-        } else if (sub_0207F984(param0, param1) == 1) {
+        } else if (sub_0207F984(param0, partySlot) == 1) {
             v1 += 1;
         } else {
             v1 += 0;
         }
     }
 
-    Bg_LoadPalette(2, &param0->unk_4A4[v1 * 16], 8 * 2, (3 + param1) * 32);
+    Bg_LoadPalette(2, &param0->unk_4A4[v1 * 16], 8 * 2, (3 + partySlot) * 32);
 }
 
 static u8 sub_0207F984(GameWindowLayout *param0, u8 param1)
