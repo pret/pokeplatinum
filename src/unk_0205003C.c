@@ -244,13 +244,13 @@ static int sub_0205037C(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, in
 
     MI_CpuClearFast(v1, sizeof(PartyManagementData));
 
-    v1->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    v1->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v1->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    v1->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
+    v1->party = SaveData_GetParty(fieldSystem->saveData);
+    v1->bag = SaveData_GetBag(fieldSystem->saveData);
+    v1->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    v1->options = SaveData_GetOptions(fieldSystem->saveData);
     v1->unk_21 = 0;
     v1->unk_20 = 23;
-    v1->unk_1C = fieldSystem;
+    v1->fieldSystem = fieldSystem;
     v1->selectedMonSlot = param0->unk_05;
 
     for (v0 = 0; v0 < 3; v0++) {

@@ -171,17 +171,17 @@ static void sub_020834B0(GameWindowLayout *param0, int *param1)
     Menu_Free(param0->unk_700, NULL);
     StringList_Free(param0->unk_6FC);
 
-    fieldSystem = param0->partyManagementData->unk_1C;
+    fieldSystem = param0->partyManagementData->fieldSystem;
 
     if (param0->unk_704[param0->unk_B11].unk_0C == 0) {
-        mon = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
+        mon = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->unk_B11);
         MessageLoader_GetStrbuf(param0->unk_69C, 81, param0->unk_6A8);
         StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
-    } else if (Bag_TryAddItem(param0->partyManagementData->unk_04, param0->unk_704[param0->unk_B11].unk_0C, 1, HEAP_ID_12) == TRUE) {
+    } else if (Bag_TryAddItem(param0->partyManagementData->bag, param0->unk_704[param0->unk_B11].unk_0C, 1, HEAP_ID_12) == TRUE) {
         u32 v4;
 
-        mon = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
+        mon = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->unk_B11);
         v4 = 0;
 
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &v4);
@@ -307,9 +307,9 @@ static int sub_0208384C(void *param0)
     Pokemon *v1;
 
     v0 = param0;
-    v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->unk_00, v0->unk_B11);
+    v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->party, v0->unk_B11);
 
-    if (sub_02097788(v0->partyManagementData->unk_08, v1, HEAP_ID_12) != 0xFFFFFFFF) {
+    if (sub_02097788(v0->partyManagementData->mailBox, v1, HEAP_ID_12) != 0xFFFFFFFF) {
         v0->unk_704[v0->unk_B11].unk_0C = 0;
         sub_02083040(v0, v0->unk_B11, v0->unk_704[v0->unk_B11].unk_0C);
         sub_02082708(v0, 46, 0);
@@ -339,11 +339,11 @@ static int sub_020838F4(void *param0)
 {
     GameWindowLayout *v0 = param0;
 
-    if (Bag_TryAddItem(v0->partyManagementData->unk_04, v0->unk_704[v0->unk_B11].unk_0C, 1, HEAP_ID_12) == TRUE) {
+    if (Bag_TryAddItem(v0->partyManagementData->bag, v0->unk_704[v0->unk_B11].unk_0C, 1, HEAP_ID_12) == TRUE) {
         Pokemon *mon;
         u32 item;
 
-        mon = Party_GetPokemonBySlotIndex(v0->partyManagementData->unk_00, v0->unk_B11);
+        mon = Party_GetPokemonBySlotIndex(v0->partyManagementData->party, v0->unk_B11);
         item = 0;
 
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
@@ -411,7 +411,7 @@ int sub_02083A78(void *param0)
     Pokemon *v1;
 
     v0 = param0;
-    v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->unk_00, v0->unk_B11);
+    v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->party, v0->unk_B11);
 
     sub_0207893C(v1);
 
@@ -552,7 +552,7 @@ BOOL sub_02083D1C(GameWindowLayout *param0)
         break;
 
     case 4:
-        Party_SwapSlots(param0->partyManagementData->unk_00, v0->unk_300[0], v0->unk_300[1]);
+        Party_SwapSlots(param0->partyManagementData->party, v0->unk_300[0], v0->unk_300[1]);
         Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
 
         v0->unk_304 = 0;
@@ -842,7 +842,7 @@ static void sub_02084760(GameWindowLayout *param0, int *param1)
 
 int sub_02084780(GameWindowLayout *param0)
 {
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
+    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->unk_B11);
 
     if (Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL) == 0) {
         MessageLoader_GetStrbuf(param0->unk_69C, 129, param0->unk_6A4);
@@ -869,7 +869,7 @@ static void sub_02084808(GameWindowLayout *param0, int *param1)
     v0 = (FieldMoveErrContext)FieldMove_GetTaskOrError(FIELD_MOVE_ERROR, param0->partyManagementData->unk_23 - 11);
 
     if (v0 != NULL) {
-        v1 = v0(param0->partyManagementData->unk_18);
+        v1 = v0(param0->partyManagementData->fieldMoveContext);
     } else {
         v1 = 1;
     }

@@ -1267,15 +1267,15 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         v6 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
         memset(v6, 0, sizeof(PartyManagementData));
 
-        v6->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-        v6->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-        v6->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-        v6->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-        v6->unk_18 = &menu->fieldMoveContext;
+        v6->party = SaveData_GetParty(fieldSystem->saveData);
+        v6->bag = SaveData_GetBag(fieldSystem->saveData);
+        v6->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+        v6->options = SaveData_GetOptions(fieldSystem->saveData);
+        v6->fieldMoveContext = &menu->fieldMoveContext;
         v6->unk_21 = 0;
         v6->unk_20 = 9;
         v6->usedItemID = sub_0207CB94(v2);
-        v6->unk_1C = fieldSystem;
+        v6->fieldSystem = fieldSystem;
 
         FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v6);
         menu->taskData = v6;
@@ -1308,15 +1308,15 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             v13 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
             memset(v13, 0, sizeof(PartyManagementData));
 
-            v13->unk_00 = v7;
-            v13->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-            v13->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-            v13->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-            v13->unk_18 = &menu->fieldMoveContext;
+            v13->party = v7;
+            v13->bag = SaveData_GetBag(fieldSystem->saveData);
+            v13->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+            v13->options = SaveData_GetOptions(fieldSystem->saveData);
+            v13->fieldMoveContext = &menu->fieldMoveContext;
             v13->unk_21 = 0;
             v13->usedItemID = sub_0207CB94(v2);
             v13->selectedMonSlot = (u8)v9;
-            v13->unk_1C = fieldSystem;
+            v13->fieldSystem = fieldSystem;
 
             if (v13->usedItemID == 0) {
                 v13->unk_20 = 0;
@@ -1589,13 +1589,13 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
 
         memset(v3, 0, sizeof(PartyManagementData));
 
-        v3->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-        v3->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-        v3->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-        v3->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-        v3->unk_18 = &menu->fieldMoveContext;
+        v3->party = SaveData_GetParty(fieldSystem->saveData);
+        v3->bag = SaveData_GetBag(fieldSystem->saveData);
+        v3->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+        v3->options = SaveData_GetOptions(fieldSystem->saveData);
+        v3->fieldMoveContext = &menu->fieldMoveContext;
         v3->unk_21 = 0;
-        v3->unk_1C = fieldSystem;
+        v3->fieldSystem = fieldSystem;
 
         if (v4->unk_00 != 0) {
             v3->unk_20 = 7;
@@ -1809,18 +1809,18 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 param2)
     partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memset(partyMan, 0, sizeof(PartyManagementData));
-    partyMan->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    partyMan->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    partyMan->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-    partyMan->unk_18 = &menu->fieldMoveContext;
+    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMan->fieldMoveContext = &menu->fieldMoveContext;
     partyMan->unk_21 = 0;
     partyMan->usedItemID = v0->unk_00;
     partyMan->selectedMonSlot = v0->unk_02;
     partyMan->unk_20 = param2;
-    partyMan->unk_1C = fieldSystem;
+    partyMan->fieldSystem = fieldSystem;
 
-    sub_02097750(menu->taskData, Party_GetPokemonBySlotIndex(partyMan->unk_00, v0->unk_02));
+    sub_02097750(menu->taskData, Party_GetPokemonBySlotIndex(partyMan->party, v0->unk_02));
     sub_02097770(menu->taskData);
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 

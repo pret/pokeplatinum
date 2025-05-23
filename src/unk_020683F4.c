@@ -339,15 +339,15 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     memset(v2, 0, sizeof(PartyManagementData));
 
-    v2->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v2->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    v2->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-    v2->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    v2->unk_18 = &menu->fieldMoveContext;
+    v2->party = SaveData_GetParty(fieldSystem->saveData);
+    v2->bag = SaveData_GetBag(fieldSystem->saveData);
+    v2->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    v2->options = SaveData_GetOptions(fieldSystem->saveData);
+    v2->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    v2->fieldMoveContext = &menu->fieldMoveContext;
     v2->unk_21 = 0;
     v2->unk_20 = 5;
-    v2->unk_1C = fieldSystem;
+    v2->fieldSystem = fieldSystem;
     v2->usedItemID = param0->unk_04;
     v2->selectedMonSlot = param0->unk_06;
 
@@ -588,14 +588,14 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     memset(v2, 0, sizeof(PartyManagementData));
 
-    v2->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v2->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    v2->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-    v2->unk_18 = &menu->fieldMoveContext;
+    v2->party = SaveData_GetParty(fieldSystem->saveData);
+    v2->bag = SaveData_GetBag(fieldSystem->saveData);
+    v2->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    v2->options = SaveData_GetOptions(fieldSystem->saveData);
+    v2->fieldMoveContext = &menu->fieldMoveContext;
     v2->unk_21 = 0;
     v2->unk_20 = 6;
-    v2->unk_1C = fieldSystem;
+    v2->fieldSystem = fieldSystem;
     v2->usedItemID = param0->unk_04;
     v2->selectedMonSlot = param0->unk_06;
     v2->unk_26 = Item_MoveForTMHM(param0->unk_04);
@@ -976,12 +976,12 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     memset(v2, 0, sizeof(PartyManagementData));
 
-    v2->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v2->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    v2->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-    v2->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    v2->unk_18 = &menu->fieldMoveContext;
+    v2->party = SaveData_GetParty(fieldSystem->saveData);
+    v2->bag = SaveData_GetBag(fieldSystem->saveData);
+    v2->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    v2->options = SaveData_GetOptions(fieldSystem->saveData);
+    v2->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    v2->fieldMoveContext = &menu->fieldMoveContext;
     v2->unk_21 = 0;
     v2->unk_20 = 16;
     v2->usedItemID = param0->unk_04;

@@ -76,7 +76,7 @@ void sub_02082CEC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3, N
     SpriteTemplateFromResourceHeader v1;
     u32 v2;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param1);
 
     param0->unk_704[param1].unk_16 = param2;
     param0->unk_704[param1].unk_18 = param3;
@@ -111,7 +111,7 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
     NNSG2dCharacterData *v6;
     BOOL v7;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param1);
     v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);

@@ -1,18 +1,25 @@
 #ifndef POKEPLATINUM_STRUCT_02098C44_H
 #define POKEPLATINUM_STRUCT_02098C44_H
 
+#include "struct_defs/struct_0202440C.h"
+#include "struct_defs/struct_02028430.h"
+
+#include "field/field_system_decl.h"
+
+#include "bag.h"
+#include "field_move_tasks.h"
 #include "game_options.h"
 #include "party.h"
 
 typedef struct {
-    Party *unk_00;
-    void *unk_04;
-    void *unk_08;
-    Options *unk_0C;
-    void *unk_10;
+    Party *party;
+    Bag *bag;
+    MailBox *mailBox;
+    Options *options;
+    TVBroadcast *broadcast;
     void *unk_14;
-    void *unk_18;
-    void *unk_1C;
+    FieldMoveContext *fieldMoveContext;
+    FieldSystem *fieldSystem;
     u8 unk_20;
     u8 unk_21;
     u8 selectedMonSlot;

@@ -359,13 +359,13 @@ static BOOL sub_02097F38(FieldTask *param0)
     case 3: {
         PartyManagementData *v6 = v0->unk_0C;
 
-        v6->unk_00 = v1->unk_1C;
-        v6->unk_04 = SaveData_GetBag(v0->saveData);
-        v6->unk_08 = SaveData_GetMailBox(v0->saveData);
+        v6->party = v1->unk_1C;
+        v6->bag = SaveData_GetBag(v0->saveData);
+        v6->mailBox = SaveData_GetMailBox(v0->saveData);
         v6->selectedMonSlot = 0;
         v6->unk_21 = 0;
         v6->unk_20 = 15;
-        v6->unk_0C = v1->unk_24;
+        v6->options = v1->unk_24;
 
         FieldTask_RunApplication(param0, &Unk_020F1E88, v6);
         v0->unk_14 = 4;

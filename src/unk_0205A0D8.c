@@ -153,10 +153,10 @@ static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
 
     MI_CpuClear8(v1, sizeof(PartyManagementData));
 
-    v1->unk_0C = SaveData_GetOptions(param0->fieldSystem->saveData);
+    v1->options = SaveData_GetOptions(param0->fieldSystem->saveData);
     v1->unk_14 = (void *)param0->fieldSystem->unk_B0;
-    v1->unk_00 = SaveData_GetParty(param0->fieldSystem->saveData);
-    v1->unk_04 = SaveData_GetBag(param0->fieldSystem->saveData);
+    v1->party = SaveData_GetParty(param0->fieldSystem->saveData);
+    v1->bag = SaveData_GetBag(param0->fieldSystem->saveData);
     v1->unk_21 = 0;
     v1->unk_20 = 2;
 
