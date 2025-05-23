@@ -18,7 +18,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"

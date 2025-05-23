@@ -18,7 +18,7 @@
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
-#include "unk_02023FCC.h"
+#include "touch_screen_actions.h"
 
 static inline void inline_ov62_02247CE0(UnkStruct_ov62_02246BF4 *param0, int param1, s16 param2, s16 param3);
 
@@ -163,7 +163,7 @@ BOOL ov62_02246D78(UnkStruct_ov62_02246BF4 *param0)
 
 BOOL ov62_02246DB8(UnkStruct_ov62_02246BF4 *param0)
 {
-    sub_02024034(param0->unk_220.unk_14);
+    TouchScreenActions_Free(param0->unk_220.unk_14);
     ov62_02247694(param0);
 
     return 1;
@@ -177,7 +177,7 @@ BOOL ov62_02246DD0(UnkStruct_ov62_02246BF4 *param0)
         break;
     default:
         ov62_022474A8(param0);
-        sub_0202404C(param0->unk_220.unk_14);
+        TouchScreenActions_HandleAction(param0->unk_220.unk_14);
         break;
     }
 
@@ -422,10 +422,10 @@ void ov62_02247220(UnkStruct_ov62_02246BF4 *param0)
         param0->unk_220.unk_18[23].rect.right = 224;
     }
 
-    param0->unk_220.unk_14 = sub_02023FCC(param0->unk_220.unk_18, 24, ov62_0224730C, param0, HEAP_ID_102);
+    param0->unk_220.unk_14 = TouchScreenActions_RegisterHandler(param0->unk_220.unk_18, 24, ov62_0224730C, param0, HEAP_ID_102);
 }
 
-void ov62_0224730C(u32 param0, u32 param1, void *param2)
+void ov62_0224730C(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_ov62_02246BF4 *v0 = param2;
 
@@ -437,7 +437,7 @@ void ov62_0224730C(u32 param0, u32 param1, void *param2)
         v0->unk_220.unk_78 = 1;
     }
 
-    if (param1 == 0) {
+    if (param1 == TOUCH_BUTTON_PRESSED) {
         if ((param0 >= 0) && (param0 <= 11)) {
             if (v0->unk_00[param0].unk_08 == 1) {
                 v0->unk_29C.unk_00 = 2;

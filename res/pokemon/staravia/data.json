@@ -92,6 +92,7 @@
             "SPECIES_STARAPTOR"
         ]
     ],
+    "offspring": "SPECIES_STARLY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

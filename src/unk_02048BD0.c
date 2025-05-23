@@ -5,7 +5,7 @@
 
 #include "field_script_context.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "record_mixed_rng.h"
 #include "save_player.h"
 #include "savedata.h"

@@ -22,9 +22,9 @@
 #include "savedata.h"
 #include "sound_playback.h"
 #include "sys_task.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0201E3D8.h"
 
 FS_EXTERN_OVERLAY(poketch_digital_watch);
 FS_EXTERN_OVERLAY(overlay27);
@@ -133,8 +133,8 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
         new_system->oamManager = oamManager;
 
         if (PoketchSystem_InitInternal(new_system)) {
-            sub_0201E3D8();
-            sub_0201E450(4);
+            EnableTouchPad();
+            InitializeTouchPad(4);
 
             new_system->poketchSysPtr = poketchSys;
             new_system->unk_38 = SysTask_Start(PoketchSystem_PostRender, new_system, 4);
@@ -450,7 +450,7 @@ static void PoketchEvent_OnShutdown(PoketchSystem *poketchSys)
     case 3:
         if (ov25_02254800(poketchSys->unk_1C)) {
             PoketchSystem_UnloadApp(poketchSys);
-            sub_0201E530();
+            DisableTouchPad();
             PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_UNLOAD);
         }
         break;

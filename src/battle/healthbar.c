@@ -12,7 +12,7 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"

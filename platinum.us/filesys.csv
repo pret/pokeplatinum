@@ -161,7 +161,7 @@ res/pokemon/pl_personal.narc,/poketool/personal/pl_personal.narc
 res/pokemon/evo.narc,/poketool/personal/evo.narc
 res/prebuilt/poketool/personal/growtbl.narc,/poketool/personal/growtbl.narc
 res/pokemon/pl_growtbl.narc,/poketool/personal/pl_growtbl.narc
-res/prebuilt/poketool/personal/pms.narc,/poketool/personal/pms.narc
+res/pokemon/pms.narc,/poketool/personal/pms.narc
 res/pokemon/wotbl.narc,/poketool/personal/wotbl.narc
 res/trainers/trdata.narc,/poketool/trainer/trdata.narc
 res/trainers/trpoke.narc,/poketool/trainer/trpoke.narc
@@ -251,7 +251,7 @@ res/items/nuts_data.narc,/itemtool/itemdata/nuts_data.narc
 res/items/pl_item_data.narc,/itemtool/itemdata/pl_item_data.narc
 res/pokemon/pl_poke_icon.narc,/poketool/icongra/pl_poke_icon.narc
 res/prebuilt/poketool/icongra/poke_icon.narc,/poketool/icongra/poke_icon.narc
-res/prebuilt/poketool/pokefoot/pokefoot.narc,/poketool/pokefoot/pokefoot.narc
+res/pokemon/pokefoot.narc,/poketool/pokefoot/pokefoot.narc
 res/prebuilt/data/mmodel/mmodel.narc,/data/mmodel/mmodel.narc
 res/prebuilt/data/mmodel/fldeff.narc,/data/mmodel/fldeff.narc
 res/prebuilt/wazaeffect/effectdata/ball_particle.narc,/wazaeffect/effectdata/ball_particle.narc

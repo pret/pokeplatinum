@@ -3,9 +3,10 @@
 
 #include "bg_window.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "strbuf.h"
 
-void FieldMessage_LoadTextPalettes(u32 palLocation, u32 resetPrinters);
+void FieldMessage_LoadTextPalettes(enum PaletteLoadLocation palLocation, u32 resetPrinters);
 void FieldMessage_AddWindow(BgConfig *bgConfig, Window *window, u32 bgLayer);
 void FieldMessage_DrawWindow(Window *window, const Options *options);
 void FieldMessage_ClearWindow(Window *window);

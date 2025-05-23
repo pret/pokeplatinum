@@ -48,11 +48,12 @@
 #include "gx_layers.h"
 #include "hardware_palette.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
@@ -69,13 +70,12 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
-#include "unk_02014000.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202F1D4.h"
@@ -94,7 +94,7 @@ FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(overlay12);
 FS_EXTERN_OVERLAY(overlay13);
 FS_EXTERN_OVERLAY(trainer_ai);
-FS_EXTERN_OVERLAY(overlay21);
+FS_EXTERN_OVERLAY(pokedex);
 
 static const u32 BattleServerVersion = 0x140;
 
@@ -609,8 +609,8 @@ static void ov16_0223B790(OverlayManager *param0)
 
     ov16_0223C210(battleSys);
 
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
 
     battleSys->unk_0C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
     battleSys->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVES_USED_IN_BATTLE, HEAP_ID_BATTLE);
@@ -760,7 +760,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     MessageLoader_Free(battleSystem->unk_10);
     StringTemplate_Free(battleSystem->strFormatter);
     sub_02015FB8(battleSystem->unk_1C4);
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov12_0221FDF4(battleSystem->unk_8C);
     BattleContext_Free(battleSystem->battleCtx);
@@ -786,7 +786,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     Font_Free(FONT_SUBSCREEN);
     SysTask_Done(battleSystem->unk_1C);
     SysTask_Done(battleSystem->unk_20);
-    sub_0201E530();
+    DisableTouchPad();
 
     ov16_0223CE20(battleSystem->unk_00);
 
@@ -811,7 +811,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
 
     if (!sub_020389B8()) {
-        Overlay_UnloadByID(FS_OVERLAY_ID(overlay21));
+        Overlay_UnloadByID(FS_OVERLAY_ID(pokedex));
     }
 }
 
@@ -1461,7 +1461,7 @@ static void ov16_0223CE28(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 static void ov16_0223CE68(void *param0)
@@ -1632,7 +1632,7 @@ static void ov16_0223D0C4(SysTask *param0, void *param1)
 static void NitroStaticInit(void)
 {
     if (!sub_020389B8()) {
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay21), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(pokedex), 2);
     }
 }
 

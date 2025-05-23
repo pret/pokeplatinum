@@ -92,6 +92,7 @@
             "SPECIES_WEEPINBELL"
         ]
     ],
+    "offspring": "SPECIES_BELLSPROUT",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

@@ -9,7 +9,7 @@
 
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "savedata_misc.h"
 #include "system.h"
 #include "unk_0209A74C.h"

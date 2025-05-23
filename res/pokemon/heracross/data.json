@@ -97,6 +97,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_HERACROSS",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

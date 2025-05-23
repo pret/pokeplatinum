@@ -98,6 +98,7 @@
     "evolutions": [
         [ "EVO_LEVEL_HAPPINESS", "SPECIES_LOPUNNY" ]
     ],
+    "offspring": "SPECIES_BUNEARY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

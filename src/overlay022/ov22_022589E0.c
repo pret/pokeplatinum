@@ -19,7 +19,7 @@
 #include "overlay022/struct_ov22_0225A428.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "sound_playback.h"
 #include "sys_task_manager.h"
 #include "system.h"

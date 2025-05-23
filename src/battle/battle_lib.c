@@ -27,7 +27,6 @@
 #include "battle/battle_mon.h"
 #include "battle/common.h"
 #include "battle/ov16_0223DF00.h"
-#include "battle/scripts/sub_seq.naix"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 
 #include "charcode_util.h"
@@ -45,6 +44,8 @@
 #include "trainer_info.h"
 #include "unk_020366A0.h"
 #include "unk_0208C098.h"
+
+#include "res/battle/scripts/sub_seq.naix.h"
 
 static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defender, int chartEntry);
 static int MapSideEffectToSubscript(BattleContext *battleCtx, enum BattleSideEffectType type, u32 effect);

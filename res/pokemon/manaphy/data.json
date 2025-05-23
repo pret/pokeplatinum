@@ -102,6 +102,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_MANAPHY",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

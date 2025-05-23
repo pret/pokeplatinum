@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV62_0223118C_H
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay062/struct_ov62_0223118C_sub1.h"
@@ -17,6 +16,7 @@
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "touch_screen.h"
+#include "touch_screen_actions.h"
 
 typedef struct {
     NARC *unk_00;
@@ -25,7 +25,7 @@ typedef struct {
     u8 padding_0C[4];
     BgConfig *unk_10;
     PaletteData *unk_14;
-    UnkStruct_02023FCC *unk_18;
+    TouchScreenActions *unk_18;
     TouchScreenRect unk_1C[5];
     BOOL unk_30;
     MessageLoader *unk_34;

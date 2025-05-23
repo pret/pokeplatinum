@@ -100,6 +100,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_TROPIUS",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

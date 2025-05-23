@@ -108,6 +108,7 @@
     "evolutions": [
         [ "EVO_TRADE", "SPECIES_ALAKAZAM" ]
     ],
+    "offspring": "SPECIES_ABRA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

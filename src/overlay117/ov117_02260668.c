@@ -35,6 +35,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "sound_playback.h"
@@ -46,11 +47,10 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
@@ -211,8 +211,8 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     VramTransfer_New(64, HEAP_ID_110);
     SetAutorepeat(4, 8);
     ov117_022610D8(v0->unk_2C);
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     ov117_02260EC0(v0);
 
     v0->unk_24 = SpriteSystem_Alloc(HEAP_ID_110);
@@ -477,7 +477,7 @@ int ov117_02260C10(OverlayManager *param0, int *param1)
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
     ov117_02260EB8(v0->unk_98);
-    sub_0201E530();
+    DisableTouchPad();
     OverlayManager_FreeData(param0);
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
@@ -613,13 +613,13 @@ static void ov117_02260F7C(SysTask *param0, void *param1)
         int v4;
 
         sub_020241B4();
-        v4 = sub_0201469C();
+        v4 = ParticleSystem_DrawAll();
 
         if (v4 > 0) {
             sub_020241B4();
         }
 
-        sub_020146C0();
+        ParticleSystem_UpdateAll();
     }
 
     SpriteSystem_DrawSprites(v0->unk_28);
@@ -901,22 +901,22 @@ static void ov117_02261574(UnkStruct_ov117_02261280 *param0)
     Camera *camera;
     void *v2;
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 
     v0 = Heap_AllocFromHeap(HEAP_ID_110, 0x4800);
-    param0->unk_A4 = sub_02014014(ov117_02261644, ov117_02261668, v0, 0x4800, 1, HEAP_ID_110);
-    camera = sub_02014784(param0->unk_A4);
+    param0->unk_A4 = ParticleSystem_New(ov117_02261644, ov117_02261668, v0, 0x4800, 1, HEAP_ID_110);
+    camera = ParticleSystem_GetCamera(param0->unk_A4);
 
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
-    v2 = sub_020144C4(190, 0, 110);
-    sub_020144CC(param0->unk_A4, v2, (1 << 1) | (1 << 3), 1);
+    v2 = ParticleSystem_LoadResourceFromNARC(190, 0, 110);
+    ParticleSystem_SetResource(param0->unk_A4, v2, (1 << 1) | (1 << 3), 1);
 }
 
 static void ov117_022615E0(UnkStruct_ov117_02261280 *param0)
 {
-    void *v0 = sub_02014730(param0->unk_A4);
+    void *v0 = ParticleSystem_GetHeapStart(param0->unk_A4);
 
-    sub_0201411C(param0->unk_A4);
+    ParticleSystem_Free(param0->unk_A4);
     Heap_FreeToHeap(v0);
 }
 
@@ -924,13 +924,13 @@ void ov117_02261600(UnkStruct_ov117_02261280 *param0, int param1)
 {
     switch (param1) {
     case 0:
-        sub_020146F4(param0->unk_A4, 0, NULL, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_A4, 0, NULL, param0);
         break;
     case 1:
-        sub_020146F4(param0->unk_A4, 1, NULL, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_A4, 1, NULL, param0);
         break;
     case 2:
-        sub_020146F4(param0->unk_A4, 2, NULL, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_A4, 2, NULL, param0);
         break;
     default:
         GF_ASSERT(0);
@@ -944,7 +944,7 @@ static u32 ov117_02261644(u32 param0, BOOL param1)
 
     v0 = NNS_GfdAllocTexVram(param0, param1, 0);
     GF_ASSERT(v0 != NNS_GFD_ALLOC_ERROR_TEXKEY);
-    sub_020145B4(v0);
+    ParticleSystem_RegisterTextureKey(v0);
 
     return NNS_GfdGetTexKeyAddr(v0);
 }
@@ -956,7 +956,7 @@ static u32 ov117_02261668(u32 param0, BOOL param1)
     v0 = NNS_GfdAllocPlttVram(param0, param1, NNS_GFD_ALLOC_FROM_LOW);
     GF_ASSERT(v0 != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
 
     return NNS_GfdGetPlttKeyAddr(v0);
 }

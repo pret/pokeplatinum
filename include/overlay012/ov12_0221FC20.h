@@ -2,7 +2,6 @@
 #define POKEPLATINUM_OV12_0221FC20_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_02014014_decl.h"
 
 #include "battle/struct_ov16_02264408.h"
 #include "battle/struct_ov16_02265BBC.h"
@@ -14,6 +13,7 @@
 
 #include "bg_window.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon_sprite.h"
 #include "spl.h"
 #include "sprite_system.h"
@@ -36,8 +36,8 @@ void ov12_02220220(UnkStruct_ov12_0221FCDC *param0, SysTask *param1);
 void ov12_02220230(UnkStruct_ov12_0221FCDC *param0, SysTask *param1);
 u16 ov12_02220240(UnkStruct_ov12_0221FCDC *param0);
 u16 ov12_02220248(UnkStruct_ov12_0221FCDC *param0);
-UnkStruct_02014014 *ov12_02220250(UnkStruct_ov12_0221FCDC *param0);
-UnkStruct_02014014 *ov12_02220260(UnkStruct_ov12_0221FCDC *param0, int param1);
+ParticleSystem *ov12_02220250(UnkStruct_ov12_0221FCDC *param0);
+ParticleSystem *ov12_02220260(UnkStruct_ov12_0221FCDC *param0, int param1);
 SPLEmitter *ov12_0222026C(UnkStruct_ov12_0221FCDC *param0, int param1);
 BgConfig *ov12_02220278(UnkStruct_ov12_0221FCDC *param0);
 s32 ov12_02220280(UnkStruct_ov12_0221FCDC *param0, int param1);

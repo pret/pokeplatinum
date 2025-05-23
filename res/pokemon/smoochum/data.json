@@ -106,6 +106,7 @@
             "SPECIES_JYNX"
         ]
     ],
+    "offspring": "SPECIES_SMOOCHUM",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

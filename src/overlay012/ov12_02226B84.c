@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
-
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
@@ -23,15 +21,15 @@
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pltt_transfer.h"
 #include "pokemon_sprite.h"
 #include "spl.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
-#include "unk_02014000.h"
 
 typedef struct {
     int unk_00;
@@ -344,7 +342,7 @@ typedef struct {
     int unk_28;
     int unk_2C;
     int unk_30;
-    UnkStruct_02014014 *unk_34;
+    ParticleSystem *unk_34;
     SPLEmitter *unk_38;
     UnkStruct_ov12_0223595C unk_3C;
     UnkStruct_ov12_02235998 unk_58[4];
@@ -366,7 +364,7 @@ typedef struct {
     int unk_28;
     int unk_2C;
     int unk_30;
-    UnkStruct_02014014 *unk_34;
+    ParticleSystem *unk_34;
     SPLEmitter *unk_38;
     UnkStruct_ov12_0223595C unk_3C;
     UnkStruct_ov12_02225F6C unk_58;
@@ -2881,7 +2879,7 @@ static void ov12_02229A6C(SysTask *param0, void *param1)
     }
 
     if ((ov12_02225C14(&v0->unk_A8[0]) == 0) && (v1 == 0)) {
-        sub_02014724(v0->unk_34, v0->unk_38);
+        ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
         ov12_02220220(v0->unk_3C.unk_04, param0);
         ov12_02235E80(v0);
         (v0) = NULL;
@@ -3026,7 +3024,7 @@ static void ov12_02229DF0(SysTask *param0, void *param1)
     BOOL v1 = ov12_02229A50(v0->unk_38);
 
     if ((ov12_02225CE4(&v0->unk_A8[0], &v0->unk_A8[1]) == 0) && (v1 == 0)) {
-        sub_02014724(v0->unk_34, v0->unk_38);
+        ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
         ov12_02220220(v0->unk_3C.unk_04, param0);
         ov12_02235E80(v0);
         (v0) = NULL;
@@ -3083,7 +3081,7 @@ static void ov12_02229F9C(SysTask *param0, void *param1)
     BOOL v1 = ov12_02229A50(v0->unk_38);
 
     if ((ov12_02225AE0(&v0->unk_58) == 0) && (v1 == 0)) {
-        sub_02014724(v0->unk_34, v0->unk_38);
+        ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
         ov12_02220220(v0->unk_3C.unk_04, param0);
         Heap_FreeToHeap(v0);
     } else {

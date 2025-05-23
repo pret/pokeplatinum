@@ -67,7 +67,7 @@ pl_winframe_order = files('pl_winframe.order')
 pl_winframe_narc = custom_target('pl_winframe.narc',
     output: [
         'pl_winframe.narc',
-        'pl_winframe.naix',
+        'pl_winframe.naix.h',
     ],
     input: [
         pl_winframe_ncgrs_sopc_v101,

@@ -113,6 +113,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_CELEBI",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

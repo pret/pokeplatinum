@@ -36,7 +36,7 @@
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_tile_behavior.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"

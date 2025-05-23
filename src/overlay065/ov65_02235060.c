@@ -25,7 +25,7 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "sprite.h"
 #include "sprite_resource.h"

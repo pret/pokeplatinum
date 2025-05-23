@@ -24,6 +24,7 @@
  *   - ppark.narc
  *   - height.narc
  *   - pl_poke_data.narc
+ *   - pms.narc
  *   - tutorable_moves.h
  *   - species_learnsets_by_tutor.h
  *   - species_footprints.h
@@ -276,6 +277,22 @@ static std::optional<SpeciesPalPark> TryParsePalPark(rapidjson::Document &root)
     return palPark;
 }
 
+static u16 TryParseOffspring(rapidjson::Document &root, u16 personalValue)
+{
+    if (!root.HasMember("offspring")) {
+        return personalValue;
+    }
+
+    return LookupConst(root["offspring"].GetString(), Species);
+}
+
+
+static void PackOffspring(std::vector<u16> offspringData, fs::path path)
+{
+    std::ofstream ofs(path);
+    ofs.write(reinterpret_cast<char*>(&offspringData[0]), offspringData.size() * sizeof(u16));
+}
+
 static std::vector<Move> EmitTutorableMoves(fs::path &tutorSchemaFname, fs::path outFname)
 {
     std::string tutorSchema = ReadWholeFile(tutorSchemaFname);
@@ -429,8 +446,6 @@ static ArchivedPokeSpriteData ParsePokeSprite(const rapidjson::Document &root)
     const rapidjson::Value &back = root["back"];
     const rapidjson::Value &shadow = root["shadow"];
 
-    std::cout << "here" << std::endl;
-
     data.faces[0] = ParsePokeSpriteFace(front);
     data.faces[1] = ParsePokeSpriteFace(back);
     data.yOffset = front["addl_y_offset"].GetInt();
@@ -495,19 +510,26 @@ int main(int argc, char **argv)
     vfs_pack_ctx *wotblVFS = narc_pack_start();
     vfs_pack_ctx *heightVFS = narc_pack_start();
     std::vector<SpeciesPalPark> palParkData;
+    std::vector<u16> offspringData;
     std::vector<ArchivedPokeSpriteData> pokeSpriteData;
 
+    u16 personalValue = 0;
     rapidjson::Document doc;
     for (auto &species : speciesRegistry) {
-        try {
-            fs::path speciesDataPath = dataRoot / species / "data.json";
-            std::string json = ReadWholeFile(speciesDataPath);
-            doc.Parse(json.c_str());
+        fs::path speciesDataPath = dataRoot / species / "data.json";
+        std::string json = ReadWholeFile(speciesDataPath);
+        rapidjson::ParseResult ok = doc.Parse(json.c_str(), json.length());
+        if (!ok) {
+            ReportJsonError(ok, json, speciesDataPath);
+            std::exit(EXIT_FAILURE);
+        }
 
+        try {
             SpeciesData data = ParseSpeciesData(doc);
             SpeciesEvolutionList evos = ParseEvolutions(doc);
             SpeciesLearnsetWithSize sizedLearnset = ParseLevelUpLearnset(doc);
             std::optional<SpeciesPalPark> palPark = TryParsePalPark(doc);
+            u16 offspring = TryParseOffspring(doc, personalValue);
             TryEmitTutorableLearnset(doc, byTutorMovesets, tutorableMoves, tutorableLearnsetSize);
             TryEmitFootprint(doc, footprints);
 
@@ -519,11 +541,18 @@ int main(int argc, char **argv)
                 palParkData.emplace_back(palPark.value());
             }
 
+            offspringData.emplace_back(offspring);
+
+            // Mechanically-distinct forms do not have sprite_data.json files
             fs::path speciesSpriteDataPath = dataRoot / species / "sprite_data.json";
-            std::ifstream spriteDataIFS(speciesSpriteDataPath);
+            std::ifstream spriteDataIFS(speciesSpriteDataPath, std::ios::in);
             if (spriteDataIFS.good()) {
                 std::string spriteData = ReadWholeFile(spriteDataIFS);
-                doc.Parse(spriteData.c_str());
+                ok = doc.Parse(spriteData.c_str());
+                if (!ok) {
+                    ReportJsonError(ok, json, speciesSpriteDataPath);
+                    std::exit(EXIT_FAILURE);
+                }
 
                 u8 genderRatio = species != "none" ? data.genderRatio : GENDER_RATIO_FEMALE_50; // treat SPECIES_NONE as if it has two genders.
                 PackHeights(heightVFS, doc, genderRatio);
@@ -531,11 +560,11 @@ int main(int argc, char **argv)
                 ArchivedPokeSpriteData pokeSprite = ParsePokeSprite(doc);
                 pokeSpriteData.emplace_back(pokeSprite);
             }
-        } catch (std::exception &e) {
-            std::cerr << "exception parsing data file for " + species << std::endl;
+        } catch (const std::exception &e) {
             std::cerr << e.what() << std::endl;
             std::exit(EXIT_FAILURE);
         }
+        personalValue += 1;
     }
 
     byTutorMovesets << "};\n"
@@ -554,5 +583,6 @@ int main(int argc, char **argv)
     PackNarc(heightVFS, outputRoot / "height.narc");
     PackSingleFileNarc(palParkData, outputRoot / "ppark.narc");
     PackSingleFileNarc(pokeSpriteData, outputRoot / "pl_poke_data.narc");
+    PackOffspring(offspringData, outputRoot / "pms.narc");
     return EXIT_SUCCESS;
 }

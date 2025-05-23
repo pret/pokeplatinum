@@ -2,8 +2,14 @@
 import argparse
 import json
 import os
+import sys
 import pathlib
 import xml.etree.ElementTree as ET
+
+ANSI_BOLD_WHITE = "\033[1;37m"
+ANSI_BOLD_RED = "\033[1;31m"
+ANSI_RED = "\033[31m"
+ANSI_CLEAR = "\033[0m"
 
 SPECIES_DIRS = os.environ['SPECIES'].split(';')
 
@@ -98,12 +104,26 @@ def Full_Width_Number(value):
     return f'{num:０>{len(str(NUM_POKEMON))}}'
 
 # collect data
+errors = ""
 for i, species_dir in enumerate(SPECIES_DIRS):
     file = source_dir / species_dir / 'data.json'
-    with open(file, 'r', encoding='utf-8') as data_file:
-        pkdata = json.load(data_file)
-    pokemon_name = pkdata['pokedex_data']['en']['name']
-    
+    try:
+        with open(file, 'r', encoding='utf-8') as data_file:
+            pkdata = json.load(data_file)
+        pokemon_name = pkdata['pokedex_data']['en']['name']
+    except json.decoder.JSONDecodeError as e:
+        doc_lines = e.doc.splitlines()
+        start_line = max(e.lineno - 2, 0)
+        end_line = min(e.lineno + 1, len(doc_lines))
+
+        error_lines = [f"{line_num:>4} | {line}" for line_num, line in zip(list(range(start_line + 1, end_line + 1)), doc_lines[start_line : end_line])][ : end_line - start_line]
+        error_line_index = e.lineno - start_line - 1
+        error_lines[error_line_index] = error_lines[error_line_index][ : 5] + f"{ANSI_RED}{error_lines[error_line_index][5 : ]}{ANSI_CLEAR}"
+        error_out = "\n".join(error_lines)
+
+        print(f"{ANSI_BOLD_WHITE}{file}:{e.lineno}:{e.colno}: {ANSI_BOLD_RED}error: {ANSI_BOLD_WHITE}{e.msg}{ANSI_CLEAR}\n{error_out}", file=sys.stderr)
+        continue
+
     # species_names
     species_name[i] = pokemon_name
 
@@ -150,6 +170,10 @@ for i, species_dir in enumerate(SPECIES_DIRS):
 
         # category
         species_category[j][i] = pkdexdata[lang]['category']
+
+if errors:
+    print(errors, file=sys.stderr)
+    sys.exit(1)
 
 # SPECIES_NONE
 species_name[0] = '-----'

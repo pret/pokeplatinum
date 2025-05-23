@@ -99,6 +99,7 @@
             "SPECIES_DRAGONAIR"
         ]
     ],
+    "offspring": "SPECIES_DRATINI",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

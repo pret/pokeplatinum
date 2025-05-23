@@ -115,6 +115,7 @@
             "SPECIES_WEAVILE"
         ]
     ],
+    "offspring": "SPECIES_SNEASEL",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

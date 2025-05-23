@@ -108,6 +108,7 @@
             "SPECIES_SCEPTILE"
         ]
     ],
+    "offspring": "SPECIES_TREECKO",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

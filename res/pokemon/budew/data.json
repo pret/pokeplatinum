@@ -83,6 +83,7 @@
     "evolutions": [
         [ "EVO_LEVEL_HAPPINESS_DAY", "SPECIES_ROSELIA" ]
     ],
+    "offspring": "SPECIES_BUDEW",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_SMALL"

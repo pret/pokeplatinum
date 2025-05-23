@@ -431,7 +431,7 @@ enum {
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0);
 MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
-void ov97_02231FFC(BgConfig *param0, void *, int heapID);
+void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapId heapID);
 
 static u16 ov97_0222C174(u16 param0)
 {
@@ -745,7 +745,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
 
-        ov97_02231FFC(v0->unk_04, &v0->unk_3180, HEAP_ID_85);
+        WonderCardsApp_ShowWondercard(v0->unk_04, &v0->unk_3180, HEAP_ID_85);
         ov97_02237790(1, UnkEnum_ov97_0222C78C_06, param1, UnkEnum_ov97_0222C78C_13);
         v0->unk_3180.metadata.saveWonderCard = 0;
         break;
@@ -791,7 +791,7 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
 
     MI_CpuClear8(v4, sizeof(WonderCard));
 
-    v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0421, param0->heapID);
+    v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, param0->heapID);
     v2 = StringTemplate_Default(param0->heapID);
 
     v4->pgt.type = 7;
@@ -813,11 +813,11 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     Strbuf_ToChars((const Strbuf *)v1, v4->description, 250);
     Strbuf_Free(v1);
 
-    v4->redistributionsLeft = 0;
+    v4->sharesLeft = 0;
     v4->spritesSpecies[0] = 490;
     v4->spritesSpecies[1] = 0;
     v4->spritesSpecies[2] = 0;
-    v4->redistributionCount = 0;
+    v4->timesShared = 0;
     GetCurrentDate(&v0);
     v4->receivedDate = RTC_ConvertDateToDay(&v0);
 

@@ -22,6 +22,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon_sprite.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -32,10 +33,9 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "touch_pad.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
-#include "unk_0201E3D8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_020933F8.h"
@@ -172,8 +172,8 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
 
     ov17_0224FB34(v0->unk_10.unk_20);
 
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_24);
 
     v0->unk_10.unk_18 = SpriteSystem_Alloc(HEAP_ID_24);
@@ -277,7 +277,7 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
     UnkStruct_ov17_0224FCA0 *v0 = OverlayManager_Data(param0);
     int v1;
 
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov17_0224FE50(v0);
     ov17_0224FE5C(v0);
@@ -321,7 +321,7 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
 
     ov17_0223F1E0(v0->unk_0C);
 
-    sub_0201E530();
+    DisableTouchPad();
     OverlayManager_FreeData(param0);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -561,7 +561,7 @@ static void ov17_0224FDDC(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 static void ov17_0224FE1C(UnkStruct_ov17_0224FCA0 *param0)

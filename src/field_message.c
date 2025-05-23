@@ -14,7 +14,7 @@
 #include "strbuf.h"
 #include "text.h"
 
-void FieldMessage_LoadTextPalettes(u32 palLocation, u32 resetPrinters)
+void FieldMessage_LoadTextPalettes(enum PaletteLoadLocation palLocation, u32 resetPrinters)
 {
     if (resetPrinters == TRUE) {
         Text_ResetAllPrinters();

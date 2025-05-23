@@ -99,6 +99,7 @@
             "SPECIES_KADABRA"
         ]
     ],
+    "offspring": "SPECIES_ABRA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

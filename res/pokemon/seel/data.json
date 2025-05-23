@@ -94,6 +94,7 @@
             "SPECIES_DEWGONG"
         ]
     ],
+    "offspring": "SPECIES_SEEL",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

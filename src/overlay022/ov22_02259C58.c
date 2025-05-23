@@ -31,8 +31,8 @@
 #include "strbuf.h"
 #include "text.h"
 #include "touch_screen.h"
+#include "touch_screen_actions.h"
 #include "unk_02012744.h"
-#include "unk_02023FCC.h"
 
 static void ov22_02259D94(UnkStruct_ov22_02259C58 *param0, void *param1);
 static void ov22_0225A0E4(UnkStruct_ov22_02259C58 *param0, int param1, UnkStruct_ov22_0225A0E4 *param2, int param3, int param4, int param5, int param6);
@@ -47,7 +47,7 @@ static void ov22_0225A338(UnkStruct_ov22_02259C58 *param0, int param1, int param
 static void ov22_0225A2F4(UnkStruct_ov22_0225A154 *param0, int param1);
 static void ov22_0225A3DC(UnkStruct_ov22_02259C58 *param0, int param1, int param2);
 static void ov22_0225A418(UnkStruct_ov22_0225A154 *param0, int param1, int param2);
-static void ov22_0225A02C(u32 param0, u32 param1, void *param2);
+static void ov22_0225A02C(u32 param0, enum TouchScreenButtonState param1, void *param2);
 
 void ov22_02259C58(UnkStruct_ov22_02259C58 *param0, UnkStruct_ov22_02259C58_1 *param1)
 {
@@ -197,7 +197,7 @@ void ov22_02259DBC(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *par
     ov22_0225A2A8(param1);
     ov22_02259D98(&param0->unk_00[2]);
 
-    param0->unk_68 = sub_02023FCC(param0->unk_6C, 5, ov22_0225A02C, param0, HEAP_ID_13);
+    param0->unk_68 = TouchScreenActions_RegisterHandler(param0->unk_6C, 5, ov22_0225A02C, param0, HEAP_ID_13);
 }
 
 void ov22_02259F24(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *param1)
@@ -220,7 +220,7 @@ void ov22_02259F24(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *par
     CharTransfer_ClearRange(&param0->unk_40.unk_14);
     ov22_02259D00(&param0->unk_40);
     sub_020127BC(param0->unk_64);
-    sub_02024034(param0->unk_68);
+    TouchScreenActions_Free(param0->unk_68);
 
     param0->unk_68 = NULL;
 }
@@ -228,7 +228,7 @@ void ov22_02259F24(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *par
 void ov22_02259F88(UnkStruct_ov22_02259D2C *param0)
 {
     GF_ASSERT(param0->unk_68);
-    sub_0202404C(param0->unk_68);
+    TouchScreenActions_HandleAction(param0->unk_68);
 }
 
 void ov22_02259FA0(UnkStruct_ov22_02259D2C *param0)
@@ -262,7 +262,7 @@ void ov22_02259FF4(UnkStruct_ov22_02259D2C *param0, int param1, UnkFuncPtr_ov22_
     }
 }
 
-static void ov22_0225A02C(u32 param0, u32 param1, void *param2)
+static void ov22_0225A02C(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_ov22_02259D2C *v0 = param2;
 

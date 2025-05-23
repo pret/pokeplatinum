@@ -12,7 +12,6 @@
 
 #include "overlay072/struct_ov72_0223DB98_decl.h"
 #include "overlay072/struct_ov72_0223DB98_t.h"
-#include "overlay072/struct_ov72_0223E2A8.h"
 #include "overlay072/struct_ov72_0223E7D8.h"
 #include "overlay072/struct_ov72_0223E80C.h"
 #include "overlay072/struct_ov72_0223EAD8.h"
@@ -27,7 +26,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -46,11 +45,11 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202C7FC.h"
 #include "vram_transfer.h"
 
@@ -145,8 +144,8 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
 
         ov72_0223DCA8(v0, v1);
 
-        sub_0201E3D8();
-        sub_0201E450(1);
+        EnableTouchPad();
+        InitializeTouchPad(1);
         SetVBlankCallback(ov72_0223DA48, v0->unk_00);
         Font_InitManager(FONT_SUBSCREEN, HEAP_ID_39);
 
@@ -226,7 +225,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
     ov72_0223E260(v0);
     Font_Free(FONT_SUBSCREEN);
     ov72_0223DC6C(v0->unk_00);
-    sub_0201E530();
+    DisableTouchPad();
     MessageLoader_Free(v0->unk_14);
     StringTemplate_Free(v0->unk_10);
     ov72_0223DC34(v0);
@@ -671,16 +670,16 @@ static void ov72_0223E2A8(UnkStruct_ov72_0223DB98 *param0)
     }
 
     {
-        UnkStruct_ov72_0223E2A8 v2;
+        TouchPadDataBuffer v2;
         int v3;
 
-        if (sub_0201E564(&v2, 4, 1) == 1) {
-            for (v3 = 0; v3 < v2.unk_00; v3++) {
-                param0->unk_4380.unk_00[v3] = v2.unk_02[v3].x;
-                param0->unk_4380.unk_08[v3] = v2.unk_02[v3].y;
+        if (WriteAutoSamplingDataToBuffer(&v2, TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ALL_DATA_WITHOUT_WRAPPING, 1) == 1) {
+            for (v3 = 0; v3 < v2.bufferSize; v3++) {
+                param0->unk_4380.unk_00[v3] = v2.buffer[v3].x;
+                param0->unk_4380.unk_08[v3] = v2.buffer[v3].y;
             }
 
-            param0->unk_4380.unk_10_4 = v2.unk_00;
+            param0->unk_4380.unk_10_4 = v2.bufferSize;
             param0->unk_4380.unk_10_0 = param0->unk_437E;
         }
     }

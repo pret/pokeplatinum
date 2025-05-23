@@ -46,6 +46,7 @@
             "SPECIES_BEEDRILL"
         ]
     ],
+    "offspring": "SPECIES_WEEDLE",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

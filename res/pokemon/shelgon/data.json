@@ -101,6 +101,7 @@
             "SPECIES_SALAMENCE"
         ]
     ],
+    "offspring": "SPECIES_BAGON",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

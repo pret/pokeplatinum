@@ -51,6 +51,7 @@
             "SPECIES_WOBBUFFET"
         ]
     ],
+    "offspring": "SPECIES_WYNAUT",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

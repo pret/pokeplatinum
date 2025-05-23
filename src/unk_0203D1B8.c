@@ -40,6 +40,7 @@
 
 #include "applications/journal_display/journal_controller.h"
 #include "applications/options_menu.h"
+#include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223B140.h"
 #include "choose_starter/choose_starter_app.h"
@@ -51,7 +52,6 @@
 #include "overlay007/accessory_shop.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay020/ov20_021D0D80.h"
-#include "overlay021/pokedex_main.h"
 #include "overlay022/ov22_02255D44.h"
 #include "overlay022/ov22_0225B660.h"
 #include "overlay058/ov58_021D0D80.h"
@@ -95,7 +95,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "overlay_manager.h"
 #include "party.h"
 #include "player_avatar.h"
@@ -148,7 +148,7 @@
 FS_EXTERN_OVERLAY(battle);
 FS_EXTERN_OVERLAY(overlay19);
 FS_EXTERN_OVERLAY(overlay20);
-FS_EXTERN_OVERLAY(overlay21);
+FS_EXTERN_OVERLAY(pokedex);
 FS_EXTERN_OVERLAY(overlay22);
 FS_EXTERN_OVERLAY(overlay58);
 FS_EXTERN_OVERLAY(overlay59);
@@ -1290,13 +1290,13 @@ void sub_0203E09C(FieldSystem *fieldSystem, TrainerCard *param1)
 
 BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1)
 {
-    FS_EXTERN_OVERLAY(overlay21);
+    FS_EXTERN_OVERLAY(pokedex);
 
     static const OverlayManagerTemplate template = {
         PokedexMain_Init,
         PokedexMain_Main,
         PokedexMain_Exit,
-        FS_OVERLAY_ID(overlay21)
+        FS_OVERLAY_ID(pokedex)
     };
 
     FieldSystem_StartChildProcess(fieldSystem, &template, param1);

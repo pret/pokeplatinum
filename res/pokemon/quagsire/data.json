@@ -103,6 +103,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_WOOPER",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

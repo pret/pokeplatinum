@@ -32,6 +32,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
@@ -44,10 +45,9 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "touch_pad.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
-#include "unk_0201E3D8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_020933F8.h"
@@ -262,8 +262,8 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
 
     ov17_0223E250(v0->unk_14.unk_60);
 
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_23);
 
     v0->unk_14.unk_58 = SpriteSystem_Alloc(23);
@@ -389,10 +389,10 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
     UnkStruct_ov17_0224DF54 *v0 = OverlayManager_Data(param0);
     int v1;
 
-    GF_ASSERT(sub_02014710(v0->unk_0C) == 0);
+    GF_ASSERT(ParticleSystem_GetActiveEmitterCount(v0->unk_0C) == 0);
 
     ov17_0223E7E0(v0);
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov17_0224A95C(&v0->unk_14);
     ov17_0224AA58(v0);
@@ -439,7 +439,7 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
 
     ov17_0223F1E0(v0->unk_10);
 
-    sub_0201E530();
+    DisableTouchPad();
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -697,7 +697,7 @@ static BOOL ov17_0223E3CC(UnkStruct_ov17_0224DF54 *param0, int *param1, int *par
 
 static void ov17_0223E450(void)
 {
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 static void ov17_0223E458(UnkStruct_ov17_0224DF54 *param0)
@@ -831,19 +831,19 @@ static void ov17_0223E778(UnkStruct_ov17_0224DF54 *param0)
     GF_ASSERT(param0->unk_0C == NULL);
 
     v0 = Heap_AllocFromHeap(HEAP_ID_23, 0x4800);
-    param0->unk_0C = sub_02014014(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, HEAP_ID_23);
+    param0->unk_0C = ParticleSystem_New(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, HEAP_ID_23);
 
-    camera = sub_02014784(param0->unk_0C);
+    camera = ParticleSystem_GetCamera(param0->unk_0C);
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
-    v2 = sub_020144C4(61, 3, 23);
-    sub_020144CC(param0->unk_0C, v2, (1 << 1) | (1 << 3), 1);
+    v2 = ParticleSystem_LoadResourceFromNARC(61, 3, 23);
+    ParticleSystem_SetResource(param0->unk_0C, v2, (1 << 1) | (1 << 3), 1);
 }
 
 static void ov17_0223E7E0(UnkStruct_ov17_0224DF54 *param0)
 {
-    void *v0 = sub_02014730(param0->unk_0C);
-    sub_0201411C(param0->unk_0C);
+    void *v0 = ParticleSystem_GetHeapStart(param0->unk_0C);
+    ParticleSystem_Free(param0->unk_0C);
     Heap_FreeToHeap(v0);
 
     param0->unk_0C = NULL;
@@ -855,7 +855,7 @@ static u32 ov17_0223E800(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocTexVram(param0, param1, 0);
-    sub_020145B4(v0);
+    ParticleSystem_RegisterTextureKey(v0);
 
     v1 = NNS_GfdGetTexKeyAddr(v0);
     return v1;
@@ -867,7 +867,7 @@ static u32 ov17_0223E81C(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocPlttVram(param0, param1, 0);
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
 
     v1 = NNS_GfdGetPlttKeyAddr(v0);
     return v1;

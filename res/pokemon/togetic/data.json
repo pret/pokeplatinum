@@ -122,6 +122,7 @@
             "SPECIES_TOGEKISS"
         ]
     ],
+    "offspring": "SPECIES_TOGEPI",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

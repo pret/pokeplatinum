@@ -9,6 +9,7 @@
 #     - height - Y offsets applied to each species' front and back sprites
 #     - pl_poke_data - Sprite animation sequences, frame data, and shadow sizes
 #       applied to a species' front and back sprites
+#     - pms - table of offspring for each species
 #     - tutorable_moves.h - a table of moves which can be tutored, including the
 #       cost of each shard to tutor it and which tutor provides it; ordinarily,
 #       this might be move-level data, but it is kept here for simplicity in
@@ -54,6 +55,12 @@ form_sprites_shared = files(
     '.shared/substitute.pal',
     '.shared/shadows.png',
     '.shared/shadows.pal',
+)
+
+pokefoot_files = files(
+    '.shared/pokefoot.pal',
+    '.shared/pokefoot_anim.json',
+    '.shared/pokefoot_cell.json',
 )
 
 sinnoh_pokedex = files('sinnoh_pokedex.json')
@@ -174,6 +181,7 @@ datagen_species_out = custom_target('datagen_species_out',
         'ppark.narc',
         'height.narc',
         'pl_poke_data.narc',
+        'pms.narc',
         'tutorable_moves.h',
         'species_learnsets_by_tutor.h',
         'species_footprints.h',
@@ -230,7 +238,7 @@ pl_pokegra_narc = custom_target('pl_pokegra.narc',
 pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
     output: [
         'pl_otherpoke.narc',
-        'pl_otherpoke.naix',
+        'pl_otherpoke.naix.h',
     ],
     input: [
         otherpoke_files,
@@ -248,6 +256,7 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
         form_sprites_shared,
     ]
 )
+naix_headers += pl_otherpoke_narc[1]
 
 pl_pokezukan_narc = custom_target('pl_pokezukan.narc',
     output: 'pl_pokezukan.narc',
@@ -318,6 +327,25 @@ pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
     depend_files: [ species_data_files ],
 )
 
+pokefoot_narc = custom_target('pokefoot.narc',
+    output: [
+        'pokefoot.narc',
+        'pokefoot.naix.h',
+    ],
+    input: pokefoot_files,
+    command: [
+        make_pokefoot_py,
+        '--nitrogfx', nitrogfx_exe,
+        '--narc', narc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+    ],
+    env: species_env,
+    depends: [ py_consts_generators ],
+)
+naix_headers += pokefoot_narc[1]
+
 nitrofs_files += datagen_species_out
 
 nitrofs_files += pl_poke_icon_narc
@@ -328,3 +356,4 @@ nitrofs_files += shinzukan_narc
 nitrofs_files += pl_growtbl_narc
 nitrofs_files += pokedex_data_narc
 nitrofs_files += pokedex_data_giratina_altered_narc
+nitrofs_files += pokefoot_narc

@@ -72,7 +72,7 @@ field_board_order = files('field_board.order')
 field_board_narc = custom_target('field_board.narc',
     output: [
         'field_board.narc',
-        'field_board.naix',
+        'field_board.naix.h',
     ],
     input: [
         field_board_ncgrs,

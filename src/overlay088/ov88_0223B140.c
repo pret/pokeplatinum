@@ -35,7 +35,7 @@
 #include "item.h"
 #include "journal.h"
 #include "list_menu.h"
-#include "math.h"
+#include "math_util.h"
 #include "menu.h"
 #include "message.h"
 #include "message_util.h"
@@ -750,7 +750,7 @@ static void ov88_0223BD18(Pokemon *param0, UnkStruct_ov88_0223C8AC *param1)
     param1->unk_06 = Pokemon_GetValue(param0, MON_DATA_FORM, NULL);
     param1->unk_05 = Pokemon_GetValue(param0, MON_DATA_IS_EGG, NULL);
     param1->unk_08 = Pokemon_GetValue(param0, MON_DATA_GENDER, NULL);
-    param1->unk_0C = Pokemon_GetValue(param0, MON_DATA_MAIL_ID, NULL);
+    param1->unk_0C = Pokemon_GetValue(param0, MON_DATA_BALL_CAPSULE_ID, NULL);
 
     v1 = Pokemon_GetValue(param0, MON_DATA_HELD_ITEM, NULL);
 

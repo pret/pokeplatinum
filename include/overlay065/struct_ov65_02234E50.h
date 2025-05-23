@@ -4,13 +4,13 @@
 #include <nnsys.h>
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02023FCC_decl.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "string_template.h"
+#include "touch_screen_actions.h"
 
 typedef struct {
     StringTemplate *unk_00;
@@ -20,7 +20,7 @@ typedef struct {
     NNSG2dScreenData *unk_28[7];
     void *unk_44;
     NNSG2dScreenData *unk_48;
-    UnkStruct_02023FCC *unk_4C;
+    TouchScreenActions *unk_4C;
     u8 unk_50[32];
     u8 unk_70;
     u8 unk_71;
@@ -41,7 +41,7 @@ typedef struct {
     u32 unk_238;
     u32 unk_23C;
     u32 unk_240;
-    UnkStruct_02023FCC *unk_244;
+    TouchScreenActions *unk_244;
 } UnkStruct_ov65_02234E50;
 
 #endif // POKEPLATINUM_STRUCT_OV65_02234E50_H

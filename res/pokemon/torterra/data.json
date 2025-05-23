@@ -107,6 +107,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_TURTWIG",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

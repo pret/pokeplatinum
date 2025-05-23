@@ -15,7 +15,7 @@
 #include "overlay101/struct_ov101_021D93D4.h"
 
 #include "enums.h"
-#include "math.h"
+#include "math_util.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sys_task.h"

@@ -7,10 +7,10 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223DF00.h"
+#include "overlay013/battle_sub_menu_cursor.h"
 #include "overlay013/ov13_02221A88.h"
 #include "overlay013/ov13_02224500.h"
 #include "overlay013/ov13_02225710.h"
-#include "overlay013/ov13_02228A38.h"
 #include "overlay013/struct_ov13_0221FC20.h"
 #include "overlay013/struct_ov13_022213F0.h"
 #include "overlay013/struct_ov13_02221ED0.h"
@@ -301,7 +301,7 @@ static u8 ov13_0221FE5C(UnkStruct_ov13_022213F0 *param0)
         v0 = 1;
     }
 
-    param0->unk_2084 = ov13_02228A38(param0->unk_00->heapID);
+    param0->unk_2084 = MakeBattleSubMenuCursor(param0->unk_00->heapID);
 
     ov13_02220F98(param0);
     ov13_02220C0C(param0);
@@ -319,7 +319,7 @@ static u8 ov13_0221FE5C(UnkStruct_ov13_022213F0 *param0)
     ov13_02221BF8(param0, param0->unk_2076);
 
     if (param0->unk_00->unk_32 != 0) {
-        ov13_02228A60(param0->unk_2084, 1);
+        SetBattleSubMenuCursorVisibility(param0->unk_2084, 1);
     }
 
     if ((param0->unk_2076 == 0) && (ov13_022219AC(param0, 0) == 1)) {
@@ -591,9 +591,9 @@ static u8 ov13_02220418(UnkStruct_ov13_022213F0 *param0)
     int v0 = ov13_022213E4(param0, Unk_ov13_02228E0C);
 
     if (v0 == 0xffffffff) {
-        v0 = ov13_02228B64(param0->unk_2084);
+        v0 = BattleSubMenuCursorTick(param0->unk_2084);
 
-        if (v0 == 0xfffffffe) {
+        if (v0 == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
             v0 = 6;
         }
     } else {
@@ -639,9 +639,9 @@ static u8 ov13_0222050C(UnkStruct_ov13_022213F0 *param0)
     int v0 = ov13_022213E4(param0, Unk_ov13_02228D14);
 
     if (v0 == 0xffffffff) {
-        v0 = ov13_02228B64(param0->unk_2084);
+        v0 = BattleSubMenuCursorTick(param0->unk_2084);
 
-        if (v0 == 0xfffffffe) {
+        if (v0 == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
             v0 = 2;
         }
     } else {
@@ -704,9 +704,9 @@ static u8 ov13_02220628(UnkStruct_ov13_022213F0 *param0)
     v1 = ov13_022213E4(param0, Unk_ov13_02228D64);
 
     if (v1 == 0xffffffff) {
-        v1 = ov13_02228B64(param0->unk_2084);
+        v1 = BattleSubMenuCursorTick(param0->unk_2084);
 
-        if (v1 == 0xfffffffe) {
+        if (v1 == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
             v1 = 4;
         }
     } else {
@@ -999,9 +999,9 @@ static u8 ov13_02220BA4(SysTask *param0, UnkStruct_ov13_022213F0 *param1)
     ov13_02221BC8(param1);
     ov13_02220D1C(param1->unk_1E0);
 
-    param1->unk_00->unk_32 = ov13_02228A5C(param1->unk_2084);
+    param1->unk_00->unk_32 = IsBattleSubMenuCursorVisible(param1->unk_2084);
 
-    ov13_02228A50(param1->unk_2084);
+    DeleteBattleSubMenuCursor(param1->unk_2084);
     Font_Free(FONT_SUBSCREEN);
 
     param1->unk_00->unk_36 = 1;
@@ -1236,7 +1236,7 @@ static void ov13_02220F98(UnkStruct_ov13_022213F0 *param0)
         param0->unk_04[v0].unk_2A = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_CUTE, NULL);
         param0->unk_04[v0].unk_2B = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_SMART, NULL);
         param0->unk_04[v0].unk_2C = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_TOUGH, NULL);
-        param0->unk_04[v0].unk_2D = (u16)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_MAIL_ID, NULL);
+        param0->unk_04[v0].unk_2D = (u16)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_BALL_CAPSULE_ID, NULL);
         param0->unk_04[v0].unk_2E = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_FORM, NULL);
 
         for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
@@ -1264,11 +1264,11 @@ static u8 ov13_0222124C(UnkStruct_ov13_022213F0 *param0)
     int v0 = ov13_022213E4(param0, Unk_ov13_02228DEC);
 
     if (v0 == 0xffffffff) {
-        v0 = ov13_02228B64(param0->unk_2084);
+        v0 = BattleSubMenuCursorTick(param0->unk_2084);
 
-        if (v0 == 0xfffffffe) {
+        if (v0 == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
             v0 = 6;
-        } else if (v0 == 0xffffffff) {
+        } else if (v0 == BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX) {
             return 0;
         }
 
@@ -1293,11 +1293,11 @@ static u8 ov13_022212C4(UnkStruct_ov13_022213F0 *param0)
     int v0 = ov13_022213E4(param0, Unk_ov13_02228D24);
 
     if (v0 == 0xffffffff) {
-        v0 = ov13_02228B64(param0->unk_2084);
+        v0 = BattleSubMenuCursorTick(param0->unk_2084);
 
-        if (v0 == 0xfffffffe) {
+        if (v0 == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
             v0 = 3;
-        } else if (v0 == 0xffffffff) {
+        } else if (v0 == BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX) {
             return 0xff;
         }
     } else {
@@ -1312,11 +1312,11 @@ static u8 ov13_0222130C(UnkStruct_ov13_022213F0 *param0)
     int v0 = ov13_022213E4(param0, Unk_ov13_02228D38);
 
     if (v0 == 0xffffffff) {
-        v0 = ov13_02228B64(param0->unk_2084);
+        v0 = BattleSubMenuCursorTick(param0->unk_2084);
 
-        if (v0 == 0xfffffffe) {
+        if (v0 == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
             v0 = 3;
-        } else if (v0 == 0xffffffff) {
+        } else if (v0 == BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX) {
             return 0xff;
         }
     } else {
@@ -1331,11 +1331,11 @@ static u8 ov13_02221354(UnkStruct_ov13_022213F0 *param0)
     int v0 = ov13_022213E4(param0, Unk_ov13_02228E2C);
 
     if (v0 == 0xffffffff) {
-        v0 = ov13_02228B64(param0->unk_2084);
+        v0 = BattleSubMenuCursorTick(param0->unk_2084);
 
-        if (v0 == 0xfffffffe) {
+        if (v0 == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
             v0 = 7;
-        } else if (v0 == 0xffffffff) {
+        } else if (v0 == BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX) {
             return 0xff;
         }
     } else {
@@ -1350,11 +1350,11 @@ static u8 ov13_0222139C(UnkStruct_ov13_022213F0 *param0)
     int v0 = ov13_022213E4(param0, Unk_ov13_02228D4C);
 
     if (v0 == 0xffffffff) {
-        v0 = ov13_02228B64(param0->unk_2084);
+        v0 = BattleSubMenuCursorTick(param0->unk_2084);
 
-        if (v0 == 0xfffffffe) {
+        if (v0 == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
             v0 = 4;
-        } else if (v0 == 0xffffffff) {
+        } else if (v0 == BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX) {
             return 0xff;
         }
     } else {

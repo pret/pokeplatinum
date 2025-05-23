@@ -17,13 +17,13 @@
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
-#include "math.h"
+#include "item_use_pokemon.h"
+#include "math_util.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02096420.h"
 
 static const struct {
     u16 unk_00;
@@ -352,8 +352,8 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
     v2 = ov104_0223AA50(param0->unk_04);
     v3 = ov104_0223AA74(param0->unk_04, 0);
 
-    HealAllPokemonInParty(param0->unk_4D4);
-    HealAllPokemonInParty(param0->unk_4D8);
+    Party_HealAllMembers(param0->unk_4D4);
+    Party_HealAllMembers(param0->unk_4D8);
 
     v4 = FieldBattleDTO_New(11, ov104_0223AD74(param0->unk_04));
     FieldBattleDTO_InitFromGameState(v4, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);

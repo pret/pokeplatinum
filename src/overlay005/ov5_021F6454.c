@@ -28,7 +28,7 @@
 #include "inlines.h"
 #include "list_menu.h"
 #include "map_object.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"

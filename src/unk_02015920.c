@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_02015958.h"
 
 #include "bg_window.h"
@@ -13,7 +12,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_02023FCC.h"
+#include "touch_screen_actions.h"
 
 typedef struct {
     const fx32 *unk_00;
@@ -63,7 +62,7 @@ typedef struct {
 } UnkStruct_02015E1C;
 
 typedef struct UnkStruct_02015920_t {
-    UnkStruct_02023FCC *unk_00;
+    TouchScreenActions *unk_00;
     TouchScreenHitTable unk_04[2];
     UnkStruct_02015C38 unk_0C[2];
     BgConfig *unk_7C;
@@ -82,7 +81,7 @@ static void sub_02015AC0(UnkStruct_02015920 *param0, const UnkStruct_02015958 *p
 static void sub_02015AE4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1);
 static void sub_02015B14(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1);
 static void sub_02015BA4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1);
-static void sub_02015C08(u32 param0, u32 param1, void *param2);
+static void sub_02015C08(u32 param0, enum TouchScreenButtonState param1, void *param2);
 static void sub_02015C38(UnkStruct_02015C38 *param0, const UnkStruct_02015B14 *param1, u32 param2);
 static BOOL sub_02015CC0(UnkStruct_02015C38 *param0);
 static void sub_02015D00(UnkStruct_02015C38 *param0);
@@ -159,7 +158,7 @@ u32 sub_020159FC(UnkStruct_02015920 *param0)
     GF_ASSERT(param0->unk_9B_0 == 1);
 
     if (param0->unk_9A == 3) {
-        sub_0202404C(param0->unk_00);
+        TouchScreenActions_HandleAction(param0->unk_00);
     }
 
     v0 = 0;
@@ -183,7 +182,7 @@ void sub_02015A54(UnkStruct_02015920 *param0)
 {
     int v0;
 
-    sub_02024034(param0->unk_00);
+    TouchScreenActions_Free(param0->unk_00);
 
     for (v0 = 0; v0 < 2; v0++) {
         sub_02015D00(&param0->unk_0C[v0]);
@@ -261,16 +260,16 @@ static void sub_02015BA4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *p
         param0->unk_04[v0].rect.right = (param0->unk_98 * 8) + (6 * 8);
     }
 
-    param0->unk_00 = sub_02023FCC(param0->unk_04, 2, sub_02015C08, param0, param0->heapID);
+    param0->unk_00 = TouchScreenActions_RegisterHandler(param0->unk_04, 2, sub_02015C08, param0, param0->heapID);
 }
 
-static void sub_02015C08(u32 param0, u32 param1, void *param2)
+static void sub_02015C08(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_02015920 *v0 = param2;
 
     v0->unk_9B_4 = param1;
 
-    if (param1 == 0) {
+    if (param1 == TOUCH_BUTTON_PRESSED) {
         v0->unk_9A = param0;
 
         Sound_PlayEffect(SEQ_SE_DP_BUTTON9);

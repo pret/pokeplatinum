@@ -99,6 +99,7 @@
             "SPECIES_CHARIZARD"
         ]
     ],
+    "offspring": "SPECIES_CHARMANDER",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

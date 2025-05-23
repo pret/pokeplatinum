@@ -7,7 +7,7 @@
 #include "generated/genders.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "sprite.h"

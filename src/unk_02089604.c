@@ -12,8 +12,8 @@
 #include "strbuf.h"
 #include "system.h"
 #include "touch_screen.h"
+#include "touch_screen_actions.h"
 #include "unk_0200F174.h"
-#include "unk_02023FCC.h"
 #include "unk_020393C8.h"
 #include "unk_0208A3F4.h"
 
@@ -162,7 +162,7 @@ BOOL sub_02089938(UnkStruct_02089688 *param0)
         break;
     default:
         sub_0208A328(param0);
-        sub_0202404C(param0->unk_2C0.unk_14);
+        TouchScreenActions_HandleAction(param0->unk_2C0.unk_14);
         sub_02089C20(param0);
         break;
     }
@@ -844,10 +844,10 @@ void sub_0208A0B8(UnkStruct_02089688 *param0)
         }
     }
 
-    param0->unk_2C0.unk_14 = sub_02023FCC(param0->unk_2C0.unk_18, 0x1c, sub_0208A180, param0, HEAP_ID_101);
+    param0->unk_2C0.unk_14 = TouchScreenActions_RegisterHandler(param0->unk_2C0.unk_18, 0x1c, sub_0208A180, param0, HEAP_ID_101);
 }
 
-void sub_0208A180(u32 param0, u32 param1, void *param2)
+void sub_0208A180(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_02089688 *v0 = param2;
 
@@ -859,7 +859,7 @@ void sub_0208A180(u32 param0, u32 param1, void *param2)
         v0->unk_2C0.unk_88 = 1;
     }
 
-    if (param1 == 0) {
+    if (param1 == TOUCH_BUTTON_PRESSED) {
         if ((param0 >= 0) && (param0 < 16)) {
             if (param0 < v0->unk_3C4) {
                 return;

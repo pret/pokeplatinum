@@ -19,6 +19,8 @@
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/trainer.h"
 
+#include "applications/pokedex/ov21_021E8D48.h"
+#include "applications/pokedex/struct_ov21_021E8E0C.h"
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
 #include "battle/battle_display.h"
@@ -31,13 +33,10 @@
 #include "battle/ov16_0223B140.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_02268520.h"
-#include "battle/scripts/sub_seq.naix"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
 #include "overlay012/ov12_02235E94.h"
 #include "overlay012/struct_ov12_02237728.h"
-#include "overlay021/ov21_021E8D48.h"
-#include "overlay021/struct_ov21_021E8E0C.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"
@@ -74,6 +73,7 @@
 #include "unk_0208C098.h"
 
 #include "constdata/const_020F2DAC.h"
+#include "res/battle/scripts/sub_seq.naix.h"
 
 typedef BOOL (*BtlCmd)(BattleSystem *, BattleContext *);
 

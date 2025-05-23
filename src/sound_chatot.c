@@ -7,7 +7,7 @@
 
 #include "struct_defs/chatot_cry.h"
 
-#include "math.h"
+#include "math_util.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sound_system.h"

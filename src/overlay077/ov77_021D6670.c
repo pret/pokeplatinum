@@ -6,7 +6,7 @@
 #include "char_transfer.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "sprite.h"

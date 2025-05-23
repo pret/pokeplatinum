@@ -109,6 +109,7 @@
             "SPECIES_MONFERNO"
         ]
     ],
+    "offspring": "SPECIES_CHIMCHAR",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

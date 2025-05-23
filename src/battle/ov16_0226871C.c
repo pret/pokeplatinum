@@ -31,7 +31,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "message_util.h"
 #include "move_table.h"

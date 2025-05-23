@@ -34,10 +34,10 @@
 #include "savedata.h"
 #include "sound.h"
 #include "system.h"
+#include "touch_pad.h"
+#include "touch_screen_actions.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
-#include "unk_0201E3D8.h"
-#include "unk_02023FCC.h"
 #include "unk_02024220.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
@@ -133,7 +133,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
                 continue;
             }
 
-            v5 = Pokemon_GetValue(v0->unk_00->unk_04[v4], MON_DATA_MAIL_ID, 0);
+            v5 = Pokemon_GetValue(v0->unk_00->unk_04[v4], MON_DATA_BALL_CAPSULE_ID, 0);
 
             if (v5 != 0) {
                 v0->unk_04[v5 - 1].unk_00 = v4;
@@ -169,8 +169,8 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     {
         u32 v8;
 
-        sub_0201E3D8();
-        v8 = sub_0201E450(4);
+        EnableTouchPad();
+        v8 = InitializeTouchPad(4);
 
         if (v8 != 1) {
             (void)0;
@@ -244,7 +244,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     sub_02097F20(v0->unk_00, v0->unk_3C4[0]);
     Heap_FreeToHeap(v0->unk_428);
     ov76_0223B678(v0);
-    sub_02024034(v0->unk_D4.unk_F8);
+    TouchScreenActions_Free(v0->unk_D4.unk_F8);
     PokemonSpriteManager_Free(v0->unk_D4.unk_D0);
     sub_02015FB8(v0->unk_D4.unk_188);
     ov76_0223B8C4(v0);
@@ -258,7 +258,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     {
         u32 v1;
 
-        v1 = sub_0201E530();
+        v1 = DisableTouchPad();
 
         if (v1 != 1) {
             (void)0;
@@ -384,7 +384,7 @@ static BOOL sub_02097F38(FieldTask *param0)
         if (v7->selectedMonSlot != 7) {
             v8 = sub_02097F00(v0->unk_08, v7->selectedMonSlot);
 
-            Pokemon_SetValue(v8, MON_DATA_MAIL_ID, (u8 *)&v13);
+            Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v13);
             Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(v1->unk_20, v13 - 1));
 
             v9 = sub_0202CA28(v1->unk_20, v13 - 1);

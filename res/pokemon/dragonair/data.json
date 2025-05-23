@@ -101,6 +101,7 @@
             "SPECIES_DRAGONITE"
         ]
     ],
+    "offspring": "SPECIES_DRATINI",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

@@ -98,6 +98,7 @@
             "SPECIES_MAGMORTAR"
         ]
     ],
+    "offspring": "SPECIES_MAGBY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

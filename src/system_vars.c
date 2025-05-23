@@ -6,7 +6,7 @@
 
 #include "field_overworld_state.h"
 #include "location.h"
-#include "math.h"
+#include "math_util.h"
 #include "record_mixed_rng.h"
 #include "savedata.h"
 #include "system_flags.h"

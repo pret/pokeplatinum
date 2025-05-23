@@ -9,7 +9,7 @@
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02015214_decl.h"
 
-#include "overlay021/struct_ov21_021E7F40.h"
+#include "applications/pokedex/struct_ov21_021E7F40.h"
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"

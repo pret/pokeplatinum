@@ -109,6 +109,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_NATU",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

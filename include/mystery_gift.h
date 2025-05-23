@@ -75,10 +75,10 @@ typedef struct WonderCard {
     PGT pgt;
     WonderCardMetadata metadata;
     u16 description[WONDERCARD_DESCRIPTION_LENGTH];
-    u8 redistributionsLeft;
+    u8 sharesLeft;
     u8 padding_349;
     u16 spritesSpecies[NUM_WONDERCARD_SPRITES];
-    u8 redistributionCount;
+    u8 timesShared;
     u8 padding_351[3];
     s32 receivedDate;
 } WonderCard;

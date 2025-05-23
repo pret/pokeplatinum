@@ -1,6 +1,6 @@
 #include "constants/battle.h"
 
-#include "battle/scripts/sub_seq.naix"
+#include "res/battle/scripts/sub_seq.naix.h"
 
 // clang-format off
 static const int sSideEffectSubscripts[] = {

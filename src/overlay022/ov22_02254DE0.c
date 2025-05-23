@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02015214_decl.h"
 
-#include "overlay021/struct_ov21_021E7F40.h"
+#include "applications/pokedex/struct_ov21_021E7F40.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/struct_ov22_02254DE0.h"
 #include "overlay022/struct_ov22_0225500C.h"
@@ -95,7 +95,7 @@ BOOL ov22_02254EDC(UnkStruct_ov22_02255040 *param0, int param1, int param2)
     TouchScreenHitTable v0;
 
     ov22_02255040(param0, &v0);
-    return sub_02022830(&v0, param1, param2);
+    return TouchScreen_IsTouchInHitTable(&v0, param1, param2);
 }
 
 void ov22_02254EF4(UnkStruct_ov22_02255040 *param0, s16 param1, s16 param2)

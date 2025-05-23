@@ -107,6 +107,7 @@
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_TANGELA",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_LARGE"

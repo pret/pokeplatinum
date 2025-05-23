@@ -9,6 +9,12 @@
 
 #define TEXT_WINDOW_SIZE 30
 
+#define NUM_TILES_SYSTEM_WINDOW_BORDER 9
+#define NUM_TILES_FIELD_WINDOW_BORDER  9
+#define NUM_TILES_MESSAGE_BOX_BORDER   (18 + 12)
+
+typedef struct WaitDial WaitDial;
+
 enum StandardWindowType {
     STANDARD_WINDOW_SYSTEM = 0,
     STANDARD_WINDOW_FIELD,

@@ -109,6 +109,7 @@
             "SPECIES_DELCATTY"
         ]
     ],
+    "offspring": "SPECIES_SKITTY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

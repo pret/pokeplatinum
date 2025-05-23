@@ -108,6 +108,7 @@
             "SPECIES_HAUNTER"
         ]
     ],
+    "offspring": "SPECIES_GASTLY",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

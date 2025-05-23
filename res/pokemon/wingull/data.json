@@ -98,6 +98,7 @@
             "SPECIES_PELIPPER"
         ]
     ],
+    "offspring": "SPECIES_WINGULL",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

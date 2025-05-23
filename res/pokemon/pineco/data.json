@@ -95,6 +95,7 @@
             "SPECIES_FORRETRESS"
         ]
     ],
+    "offspring": "SPECIES_PINECO",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

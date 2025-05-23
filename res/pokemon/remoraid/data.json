@@ -98,6 +98,7 @@
             "SPECIES_OCTILLERY"
         ]
     ],
+    "offspring": "SPECIES_REMORAID",
     "footprint": {
         "has": false,
         "size": "FOOTPRINT_LARGE"

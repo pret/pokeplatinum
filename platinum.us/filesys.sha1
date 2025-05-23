@@ -160,7 +160,7 @@ e32324642d5ec29155743970ac8bc14dd74f63e1 *res/prebuilt/poketool/trgra/trfgra.nar
 7755e3a884a11b098122ca9dd656223fd4b02dd0 *res/pokemon/evo.narc
 fbbf1287b2ac10c5212be0e4a69461507e860005 *res/prebuilt/poketool/personal/growtbl.narc
 fbbf1287b2ac10c5212be0e4a69461507e860005 *res/pokemon/pl_growtbl.narc
-de5c1035595e3cb52990b183497e513246bd0efe *res/prebuilt/poketool/personal/pms.narc
+de5c1035595e3cb52990b183497e513246bd0efe *res/pokemon/pms.narc
 cd4b737f173cc6ac1a25636efa4edfd83da79599 *res/pokemon/wotbl.narc
 59f49fe682ef8cf4dfb8f6b7da2e0f51401b50cc *res/trainers/trdata.narc
 da4dc734c7051754a3280d9e918942c42d183adb *res/trainers/trpoke.narc
@@ -250,7 +250,7 @@ a2eca9df316b9cad191ace16d08a90603966e892 *res/prebuilt/graphic/worldtrade.narc
 70d103831556bb58ae8e602adbcce99333a22889 *res/items/pl_item_data.narc
 6d861f9f35d1b267cd7b84368a1b7dc76b4e9669 *res/pokemon/pl_poke_icon.narc
 0622e95a5dc830735e711852032b829ead7d21e6 *res/prebuilt/poketool/icongra/poke_icon.narc
-7fb44c0bcde2ac5ae042835146c21b84159f5693 *res/prebuilt/poketool/pokefoot/pokefoot.narc
+7fb44c0bcde2ac5ae042835146c21b84159f5693 *res/pokemon/pokefoot.narc
 21bd9b9e352c828de0a93979589f7ea487c846d6 *res/prebuilt/data/mmodel/mmodel.narc
 70d483c69d9f83dc52de91f2451c6cdfba6a046c *res/prebuilt/data/mmodel/fldeff.narc
 5de52d02105237dc02fb4c87c9b8378a5da93217 *res/prebuilt/wazaeffect/effectdata/ball_particle.narc

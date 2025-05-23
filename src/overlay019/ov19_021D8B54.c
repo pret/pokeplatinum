@@ -19,7 +19,7 @@
 
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "sprite.h"
 #include "sys_task.h"

@@ -112,6 +112,7 @@
             "SPECIES_GLISCOR"
         ]
     ],
+    "offspring": "SPECIES_GLIGAR",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

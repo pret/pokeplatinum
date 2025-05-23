@@ -545,7 +545,7 @@ events_order = files('zone_event.order')
 events_narc = custom_target('zone_event.narc',
     output: [
         'zone_event.narc',
-        'zone_event.naix',
+        'zone_event.naix.h',
     ],
     input: event_bin_gen.process(events_files, env: json2bin_env),
     depends: [ py_consts_generators ],

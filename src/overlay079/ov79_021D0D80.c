@@ -28,10 +28,10 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200F174.h"
 #include "unk_020158A8.h"
-#include "unk_0201E3D8.h"
 #include "unk_0208C098.h"
 #include "unk_02098FFC.h"
 #include "vram_transfer.h"
@@ -133,8 +133,8 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         sub_0200F344(1, 0x0);
         sub_0200F32C(0);
         sub_0200F32C(1);
-        sub_0201E3D8();
-        sub_0201E450(4);
+        EnableTouchPad();
+        InitializeTouchPad(4);
         break;
     case 1:
         if (!ov79_021D122C(param0)) {
@@ -174,7 +174,7 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         }
         break;
     case 6:
-        sub_0201E530();
+        DisableTouchPad();
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         SetVBlankCallback(NULL, NULL);

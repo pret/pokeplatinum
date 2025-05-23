@@ -114,6 +114,7 @@
             "SPECIES_PRIMEAPE"
         ]
     ],
+    "offspring": "SPECIES_MANKEY",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

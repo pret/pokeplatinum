@@ -39,7 +39,7 @@
 #include "inlines.h"
 #include "map_header.h"
 #include "map_header_util.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "party.h"
 #include "pokedex.h"

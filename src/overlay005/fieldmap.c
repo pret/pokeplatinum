@@ -60,6 +60,7 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "game_overlay.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
@@ -199,7 +200,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         GXLayers_SwapDisplay();
         fieldSystem->bgConfig = BgConfig_New(HEAP_ID_FIELD);
         ov5_021D1444(fieldSystem->bgConfig);
-        FieldMessage_LoadTextPalettes(0, TRUE);
+        FieldMessage_LoadTextPalettes(PAL_LOAD_MAIN_BG, TRUE);
         sub_0203F5C0(fieldSystem, 4);
         break;
     case 1:

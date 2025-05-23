@@ -24,16 +24,16 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "main.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "particle_system.h"
 #include "render_oam.h"
 #include "sound.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_0200F174.h"
-#include "unk_02014000.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"
@@ -1825,8 +1825,8 @@ static void ov77_021D4188(UnkStruct_ov77_021D37C0 *param0)
     if (param0->unk_25D == 1) {
         NNS_G3dGeFlushBuffer();
         sub_020241B4();
-        sub_0201469C();
-        sub_020146C0();
+        ParticleSystem_DrawAll();
+        ParticleSystem_UpdateAll();
     }
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
@@ -1883,7 +1883,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
             param1->unk_25B = 1;
             param1->unk_25D = 0;
             param1->unk_25C = 1;
-            GF_ASSERT(sub_02014710(ov77_021D6CBC(param1->unk_1C)) == 0);
+            GF_ASSERT(ParticleSystem_GetActiveEmitterCount(ov77_021D6CBC(param1->unk_1C)) == 0);
         }
 
         if (param2 == 945) {

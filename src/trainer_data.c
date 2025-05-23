@@ -11,7 +11,7 @@
 #include "charcode_util.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"

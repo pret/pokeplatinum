@@ -38,6 +38,7 @@
         "by_tm": [  ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_EGG",
     "pokedex_data": {
         "height": 0,
         "weight": 0,

@@ -70,13 +70,13 @@ const PCMonPreview *ov19_GetPCMonPreview(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetPreviewedMonHeldItem(const UnkStruct_ov19_021D4DF0 *param0);
 const BoxCustomization *ov19_GetBoxCustomization(const UnkStruct_ov19_021D4DF0 *param0);
 const PCBoxes *ov19_GetPCBoxes(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5E94(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetBoxMessageID(const UnkStruct_ov19_021D4DF0 *param0);
 BoxPokemon *ov19_GetPreviewedBoxMon(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetPreviewedMonMarkings(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5EA8(const UnkStruct_ov19_021D4DF0 *param0);
 s32 ov19_021D5EB0(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5EB8(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5EC0(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetMarkingsButtonsScrollOffset(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetMonSpriteTransparencyMask(const UnkStruct_ov19_021D4DF0 *param0);
 BOOL ov19_IsCursorFastMode(const UnkStruct_ov19_021D4DF0 *param0);
 void ov19_GetMultiSelectBoundingBox(const UnkStruct_ov19_021D4DF0 *param0, u32 *leftCol, u32 *rightCol, u32 *topCol, u32 *bottomCol);
@@ -87,9 +87,9 @@ u32 ov19_GetCursorItem(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetCursorOrPreviewedItem(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5F9C(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5FA4(const UnkStruct_ov19_021D4DF0 *param0);
-const PCCompareMon *GetCompareMonFrom(const UnkStruct_ov19_021D4DF0 *param0, int compareSlot);
+const PCCompareMon *ov19_GetCompareMonFrom(const UnkStruct_ov19_021D4DF0 *param0, int compareSlot);
 BOOL ov19_021D5FB8(const UnkStruct_ov19_021D4DF0 *param0, int param1);
-BOOL ov19_021D5FC0(const UnkStruct_ov19_021D4DF0 *param0);
+BOOL ov19_IsCompareButtonPressed(const UnkStruct_ov19_021D4DF0 *param0);
 BOOL ov19_IsPreviewedMonEgg(const UnkStruct_ov19_021D4DF0 *param0);
 
 #endif // POKEPLATINUM_OV19_021D0D80_H

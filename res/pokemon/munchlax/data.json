@@ -111,6 +111,7 @@
     "evolutions": [
         [ "EVO_LEVEL_HAPPINESS", "SPECIES_SNORLAX" ]
     ],
+    "offspring": "SPECIES_MUNCHLAX",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

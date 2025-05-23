@@ -106,6 +106,7 @@
             "SPECIES_SHIFTRY"
         ]
     ],
+    "offspring": "SPECIES_SEEDOT",
     "footprint": {
         "has": true,
         "size": "FOOTPRINT_MEDIUM"

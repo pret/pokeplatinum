@@ -7,6 +7,7 @@
 #include "struct_defs/struct_020831B4.h"
 
 #include "graphics.h"
+#include "grid_menu_cursor_position.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
@@ -17,7 +18,6 @@
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
-#include "unk_0201E010.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
@@ -344,7 +344,7 @@ void sub_0208327C(GameWindowLayout *param0, u8 param1, u8 param2)
 {
     u8 v0, v1;
 
-    sub_0201E010(&param0->unk_7F4[param1], &v0, &v1);
+    GridMenuCursor_GetFirstCoords(&param0->unk_7F4[param1], &v0, &v1);
     Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
     Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
     Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);

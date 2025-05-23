@@ -19,7 +19,7 @@
 #include "game_records.h"
 #include "heap.h"
 #include "item.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "message_util.h"
 #include "party.h"
@@ -507,7 +507,7 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
     // TM/HM moves from the father
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (builder->fatherMoves[i] != MOVE_NONE) {
-            for (j = 0; j < MAX_TMHM; j++) {
+            for (j = 0; j < NUM_TMHMS; j++) {
                 if (builder->fatherMoves[i] == Item_MoveForTMHM(ITEM_TM01 + j)) {
                     if (CanPokemonFormLearnTM(species, form, j)) {
                         if (Pokemon_AddMove(egg, builder->fatherMoves[i]) == LEARNSET_ALL_SLOTS_FILLED) {
