@@ -5,20 +5,20 @@
 #include "bag.h"
 #include "item.h"
 
-enum BattlePocketMask {
-    BATTLE_POCKET_MASK_POKE_BALLS = 0x0,
-    BATTLE_POCKET_MASK_BATTLE_ITEMS,
-    BATTLE_POCKET_MASK_RECOVER_HP,
-    BATTLE_POCKET_MASK_RECOVER_STATUS,
-    BATTLE_POCKET_MASK_UNUSUED = 0x0,
+enum BattlePocketIndex {
+    BATTLE_POCKET_INDEX_RECOVER_HP_PP = 0,
+    BATTLE_POCKET_INDEX_STATUS,
+    BATTLE_POCKET_INDEX_POKE_BALLS,
+    BATTLE_POCKET_INDEX_BATTLE_ITEMS,
 };
 
-static const u8 battlePocketMasks[] = {
-    BATTLE_POCKET_MASK_RECOVER_HP,
-    BATTLE_POCKET_MASK_RECOVER_STATUS,
-    BATTLE_POCKET_MASK_POKE_BALLS,
-    BATTLE_POCKET_MASK_BATTLE_ITEMS,
-    BATTLE_POCKET_MASK_UNUSUED
+// Order is dictated by the bit shifts associated with each pocket. See items.h
+static const u8 sbattlePocketIndexes[] = {
+    BATTLE_POCKET_INDEX_POKE_BALLS,
+    BATTLE_POCKET_INDEX_BATTLE_ITEMS,
+    BATTLE_POCKET_INDEX_RECOVER_HP_PP,
+    BATTLE_POCKET_INDEX_STATUS,
+    BATTLE_POCKET_INDEX_RECOVER_HP_PP,
 };
 
 BOOL IsLastUsedBattleBagItemUsable(UnkStruct_ov13_02227244 *param0)
@@ -73,8 +73,8 @@ void InitializeBattleBag(UnkStruct_ov13_02227244 *param0)
                         continue;
                     }
 
-                    param0->battleBagItems[battlePocketMasks[l]][param0->numBattlePocketItems[battlePocketMasks[l]]] = *bagItem;
-                    param0->numBattlePocketItems[battlePocketMasks[l]]++;
+                    param0->battleBagItems[sbattlePocketIndexes[l]][param0->numBattlePocketItems[sbattlePocketIndexes[l]]] = *bagItem;
+                    param0->numBattlePocketItems[sbattlePocketIndexes[l]]++;
                 }
             }
 
