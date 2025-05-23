@@ -34,7 +34,7 @@
 static int sub_02085384(void *param0);
 static int sub_02085424(void *param0);
 static int sub_020855C4(void *param0);
-static int sub_02085704(void *param0);
+static int PokemonSummaryScreen_UpdateHPBar(GameWindowLayout *param0);
 static int sub_02085A70(void *param0);
 static int sub_02085C50(void *param0);
 static void sub_02086590(GameWindowLayout *param0, Pokemon *param1, u32 param2);
@@ -50,170 +50,176 @@ static int sub_020860AC(void *param0);
 
 static u8 sub_02084B70(u16 param0)
 {
-    ItemData *v0;
+    ItemData *item;
     s32 v1;
 
-    v0 = Item_Load(param0, 0, 12);
+    item = Item_Load(param0, 0, HEAP_ID_12);
 
-    if (Item_Get(v0, 14) != 1) {
-        Heap_FreeToHeap(v0);
+    if (Item_Get(item, ITEM_PARAM_PARTY_USE) != 1) {
+        Heap_FreeToHeap(item);
         return 28;
     }
 
-    if ((Item_Get(v0, 27) != 0) || (Item_Get(v0, 28) != 0) || (Item_Get(v0, 29) != 0) || (Item_Get(v0, 30) != 0) || (Item_Get(v0, 31) != 0) || (Item_Get(v0, 32) != 0) || (Item_Get(v0, 33) != 0)) {
-        Heap_FreeToHeap(v0);
+    if ((Item_Get(item, ITEM_PARAM_ATK_STAGES) != 0) || 
+    (Item_Get(item, ITEM_PARAM_DEF_STAGES) != 0) || 
+    (Item_Get(item, ITEM_PARAM_SPATK_STAGES) != 0) || 
+    (Item_Get(item, ITEM_PARAM_SPDEF_STAGES) != 0) || 
+    (Item_Get(item, ITEM_PARAM_SPEED_STAGES) != 0) || 
+    (Item_Get(item, ITEM_PARAM_ACC_STAGES) != 0) || 
+    (Item_Get(item, ITEM_PARAM_CRIT_STAGES) != 0)) {
+        Heap_FreeToHeap(item);
         return 0;
     }
 
-    if (Item_Get(v0, 24) != 0) {
-        Heap_FreeToHeap(v0);
+    if (Item_Get(item, ITEM_PARAM_REVIVE_ALL) != 0) {
+        Heap_FreeToHeap(item);
         return 1;
     }
 
-    if (Item_Get(v0, 25) != 0) {
-        Heap_FreeToHeap(v0);
+    if (Item_Get(item, ITEM_PARAM_LEVEL_UP) != 0) {
+        Heap_FreeToHeap(item);
         return 2;
     }
 
-    v1 = Item_Get(v0, 15);
-    v1 += (Item_Get(v0, 16) << 1);
-    v1 += (Item_Get(v0, 17) << 2);
-    v1 += (Item_Get(v0, 18) << 3);
-    v1 += (Item_Get(v0, 19) << 4);
-    v1 += (Item_Get(v0, 20) << 5);
+    v1 = Item_Get(item, ITEM_PARAM_HEAL_SLEEP);
+    v1 += (Item_Get(item, ITEM_PARAM_HEAL_POISON) << 1);
+    v1 += (Item_Get(item, ITEM_PARAM_HEAL_BURN) << 2);
+    v1 += (Item_Get(item, ITEM_PARAM_HEAL_FREEZE) << 3);
+    v1 += (Item_Get(item, ITEM_PARAM_HEAL_PARALYSIS) << 4);
+    v1 += (Item_Get(item, ITEM_PARAM_HEAL_CONFUSION) << 5);
 
     switch (v1) {
     case 0x1:
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 3;
     case 0x2:
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 4;
     case 0x4:
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 5;
     case 0x8:
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 6;
     case 0x10:
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 7;
     case 0x20:
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 8;
     case 0x3f:
-        if (Item_Get(v0, 38) != 0) {
-            Heap_FreeToHeap(v0);
-            return 11;
+        if (Item_Get(item, ITEM_PARAM_HP_RESTORE) != 0) {
+            Heap_FreeToHeap(item);
+            return 11; // Full Restore
         } else {
-            Heap_FreeToHeap(v0);
-            return 9;
+            Heap_FreeToHeap(item);
+            return 9; // Full Heal
         }
     }
 
-    if (Item_Get(v0, 21) != 0) {
-        Heap_FreeToHeap(v0);
+    if (Item_Get(item, ITEM_PARAM_HEAL_ATTRACT) != 0) {
+        Heap_FreeToHeap(item);
         return 10;
     }
 
-    if (Item_Get(v0, 38) != 0) {
-        Heap_FreeToHeap(v0);
+    if (Item_Get(item, ITEM_PARAM_HP_RESTORE) != 0) {
+        Heap_FreeToHeap(item);
         return 11;
     }
 
-    v1 = Item_Get(v0, 48);
+    v1 = Item_Get(item, ITEM_PARAM_HP_EVS);
 
     if (v1 > 0) {
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 12;
     }
 
     if (v1 < 0) {
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 18;
     }
 
-    v1 = Item_Get(v0, 49);
+    v1 = Item_Get(item, ITEM_PARAM_ATK_EVS);
 
     if (v1 > 0) {
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 13;
     }
 
     if (v1 < 0) {
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 19;
     }
 
-    v1 = Item_Get(v0, 50);
+    v1 = Item_Get(item, ITEM_PARAM_DEF_EVS);
 
     if (v1 > 0) {
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 14;
     }
 
     if (v1 < 0) {
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 20;
     }
 
-    v1 = Item_Get(v0, 51);
+    v1 = Item_Get(item, ITEM_PARAM_SPEED_EVS);
 
     if (v1 > 0) {
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 15;
     }
 
     if (v1 < 0) {
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 21;
     }
 
-    v1 = Item_Get(v0, 52);
+    v1 = Item_Get(item, ITEM_PARAM_SPATK_EVS);
 
     if (v1 > 0) {
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 16;
     }
 
     if (v1 < 0) {
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 22;
     }
 
-    v1 = Item_Get(v0, 53);
+    v1 = Item_Get(item, ITEM_PARAM_SPDEF_EVS);
 
     if (v1 > 0) {
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 17;
     }
 
     if (v1 < 0) {
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(item);
         return 23;
     }
 
-    if (Item_Get(v0, 26) != 0) {
-        Heap_FreeToHeap(v0);
+    if (Item_Get(item, ITEM_PARAM_EVOLVE) != 0) {
+        Heap_FreeToHeap(item);
         return 24;
     }
 
-    if (Item_Get(v0, 34) != 0) {
-        Heap_FreeToHeap(v0);
+    if (Item_Get(item, ITEM_PARAM_PP_UP) != 0) {
+        Heap_FreeToHeap(item);
         return 25;
     }
 
-    if (Item_Get(v0, 35) != 0) {
-        Heap_FreeToHeap(v0);
+    if (Item_Get(item, ITEM_PARAM_PP_MAX) != 0) {
+        Heap_FreeToHeap(item);
         return 26;
     }
 
-    if ((Item_Get(v0, 36) != 0) || (Item_Get(v0, 37) != 0)) {
-        Heap_FreeToHeap(v0);
+    if ((Item_Get(item, ITEM_PARAM_PP_RESTORE) != 0) || (Item_Get(item, ITEM_PARAM_PP_RESTORE_ALL) != 0)) {
+        Heap_FreeToHeap(item);
         return 27;
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_FreeToHeap(item);
     return 28;
 }
 
@@ -222,7 +228,7 @@ static void sub_02084E58(GameWindowLayout *param0, u16 param1, u32 param2)
     Pokemon *v0;
     Strbuf *v1;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
     StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
 
     switch (sub_02084B70(param1)) {
@@ -355,7 +361,7 @@ static void sub_02084E58(GameWindowLayout *param0, u16 param1, u32 param2)
 
 void sub_020852B8(GameWindowLayout *param0)
 {
-    switch (sub_02084B70(param0->unk_5A4->unk_24)) {
+    switch (sub_02084B70(param0->partyManagementData->usedItemID)) {
     case 0:
     case 28:
         break;
@@ -406,7 +412,7 @@ int sub_02085348(void *param0)
     }
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        v0->unk_5A4->unk_23 = 0;
+        v0->partyManagementData->unk_23 = 0;
         return 32;
     }
 
@@ -417,12 +423,12 @@ static int sub_02085384(void *param0)
 {
     GameWindowLayout *v0 = (GameWindowLayout *)param0;
 
-    Party_ApplyItemEffectsToMember(v0->unk_5A4->unk_00, v0->unk_5A4->unk_24, v0->unk_B11, 0, sub_02086930(v0), 12);
+    Party_ApplyItemEffectsToMember(v0->partyManagementData->unk_00, v0->partyManagementData->usedItemID, v0->unk_B11, 0, sub_02086930(v0), 12);
     sub_0207EF14(v0, v0->unk_B11);
     sub_020821F8(v0, v0->unk_B11);
     sub_020822BC(v0, v0->unk_B11);
     sub_02083014(v0, v0->unk_B11, v0->unk_704[v0->unk_B11].unk_0E_0);
-    sub_02084E58(v0, v0->unk_5A4->unk_24, 0);
+    sub_02084E58(v0, v0->partyManagementData->usedItemID, 0);
     sub_02082708(v0, 0xffffffff, 1);
     Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
 
@@ -438,7 +444,7 @@ static int sub_02085424(void *param0)
     u8 v2[7];
 
     v0 = (GameWindowLayout *)param0;
-    v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
+    v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->unk_00, v0->unk_B11);
 
     v2[0] = Pokemon_GetValue(v1, MON_DATA_HP_EV, NULL);
     v2[1] = Pokemon_GetValue(v1, MON_DATA_ATK_EV, NULL);
@@ -448,7 +454,7 @@ static int sub_02085424(void *param0)
     v2[5] = Pokemon_GetValue(v1, MON_DATA_SPDEF_EV, NULL);
     v2[6] = Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL);
 
-    Party_ApplyItemEffectsToMember(v0->unk_5A4->unk_00, v0->unk_5A4->unk_24, v0->unk_B11, 0, sub_02086930(v0), 12);
+    Party_ApplyItemEffectsToMember(v0->partyManagementData->unk_00, v0->partyManagementData->usedItemID, v0->unk_B11, 0, sub_02086930(v0), 12);
     sub_0207EF14(v0, v0->unk_B11);
     sub_020821F8(v0, v0->unk_B11);
     sub_020822BC(v0, v0->unk_B11);
@@ -456,12 +462,12 @@ static int sub_02085424(void *param0)
 
     if ((v2[0] != Pokemon_GetValue(v1, MON_DATA_HP_EV, NULL)) || (v2[1] != Pokemon_GetValue(v1, MON_DATA_ATK_EV, NULL)) || (v2[2] != Pokemon_GetValue(v1, MON_DATA_DEF_EV, NULL)) || (v2[3] != Pokemon_GetValue(v1, MON_DATA_SPEED_EV, NULL)) || (v2[4] != Pokemon_GetValue(v1, MON_DATA_SPATK_EV, NULL)) || (v2[5] != Pokemon_GetValue(v1, MON_DATA_SPDEF_EV, NULL))) {
         if (v2[6] != Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL)) {
-            sub_02084E58(v0, v0->unk_5A4->unk_24, 0);
+            sub_02084E58(v0, v0->partyManagementData->usedItemID, 0);
         } else {
-            sub_02084E58(v0, v0->unk_5A4->unk_24, 1);
+            sub_02084E58(v0, v0->partyManagementData->usedItemID, 1);
         }
     } else {
-        sub_02084E58(v0, v0->unk_5A4->unk_24, 2);
+        sub_02084E58(v0, v0->partyManagementData->usedItemID, 2);
     }
 
     sub_02082708(v0, 0xffffffff, 1);
@@ -480,9 +486,9 @@ static int sub_020855C4(void *param0)
 
     v0 = (GameWindowLayout *)param0;
 
-    Party_ApplyItemEffectsToMember(v0->unk_5A4->unk_00, v0->unk_5A4->unk_24, v0->unk_B11, 0, sub_02086930(v0), 12);
+    Party_ApplyItemEffectsToMember(v0->partyManagementData->unk_00, v0->partyManagementData->usedItemID, v0->unk_B11, 0, sub_02086930(v0), 12);
 
-    v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
+    v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->unk_00, v0->unk_B11);
     v3 = Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL);
 
     if (v0->unk_704[v0->unk_B11].unk_06 == 0) {
@@ -507,33 +513,33 @@ static int sub_020855C4(void *param0)
     }
 
     sub_0207F8F8(v0, v0->unk_B11);
-    v0->unk_B00 = sub_02085704;
+    v0->unk_B00 = PokemonSummaryScreen_UpdateHPBar;
     Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
 
     return 5;
 }
 
-static int sub_02085704(void *param0)
+static int PokemonSummaryScreen_UpdateHPBar(GameWindowLayout *param0)
 {
-    GameWindowLayout *v0 = (GameWindowLayout *)param0;
+    GameWindowLayout *gameWindowLayout = (GameWindowLayout *)param0;
     Pokemon *v1;
     u32 v2;
 
-    v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
+    v1 = Party_GetPokemonBySlotIndex(gameWindowLayout->partyManagementData->unk_00, gameWindowLayout->unk_B11);
     v2 = Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL);
 
-    if (v0->unk_704[v0->unk_B11].unk_06 != v2) {
-        v0->unk_704[v0->unk_B11].unk_06++;
+    if (gameWindowLayout->unk_704[gameWindowLayout->unk_B11].unk_06 != v2) {
+        gameWindowLayout->unk_704[gameWindowLayout->unk_B11].unk_06++;
     }
 
-    sub_02082098(v0, v0->unk_B11);
-    Window_FillTilemap(&v0->unk_04[3 + v0->unk_B11 * 5], 0);
-    sub_02082058(v0, v0->unk_B11);
-    sub_02082104(v0, v0->unk_B11);
+    sub_02082098(gameWindowLayout, gameWindowLayout->unk_B11);
+    Window_FillTilemap(&gameWindowLayout->unk_04[3 + gameWindowLayout->unk_B11 * 5], 0);
+    sub_02082058(gameWindowLayout, gameWindowLayout->unk_B11);
+    sub_02082104(gameWindowLayout, gameWindowLayout->unk_B11);
 
-    if (v0->unk_704[v0->unk_B11].unk_06 == v2) {
-        sub_02082708(v0, 0xffffffff, 1);
-        v0->unk_B00 = sub_02085348;
+    if (gameWindowLayout->unk_704[gameWindowLayout->unk_B11].unk_06 == v2) {
+        sub_02082708(gameWindowLayout, 0xffffffff, 1);
+        gameWindowLayout->unk_B00 = sub_02085348;
     }
 
     return 5;
@@ -591,8 +597,8 @@ int sub_02085804(GameWindowLayout *param0)
         }
     case 1:
 
-        v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-        Pokemon_ApplyItemEffects(v0, param0->unk_5A4->unk_24, 0, sub_02086930(param0), 12);
+        v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
+        Pokemon_ApplyItemEffects(v0, param0->partyManagementData->usedItemID, 0, sub_02086930(param0), 12);
 
         v2 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 70);
@@ -612,7 +618,7 @@ int sub_02085804(GameWindowLayout *param0)
         param0->unk_B0E++;
         break;
     case 2:
-        v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+        v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
         v2 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
 
         param0->unk_704[param0->unk_B11].unk_06++;
@@ -642,8 +648,8 @@ int sub_02085804(GameWindowLayout *param0)
                 sub_0207F8F8(param0, v3);
                 param0->unk_B0E = 1;
             } else {
-                Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, HEAP_ID_12);
-                param0->unk_5A4->unk_23 = 0;
+                Bag_TryRemoveItem(param0->partyManagementData->unk_04, param0->partyManagementData->usedItemID, 1, HEAP_ID_12);
+                param0->partyManagementData->unk_23 = 0;
                 param0->unk_B11 = 7;
                 return 32;
             }
@@ -663,7 +669,7 @@ static int sub_02085A70(void *param0)
     u32 v4;
 
     v0 = (GameWindowLayout *)param0;
-    v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
+    v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->unk_00, v0->unk_B11);
 
     v0->unk_B14[0] = (u16)Pokemon_GetValue(v1, MON_DATA_MAX_HP, NULL);
     v0->unk_B14[1] = (u16)Pokemon_GetValue(v1, MON_DATA_ATK, NULL);
@@ -672,7 +678,7 @@ static int sub_02085A70(void *param0)
     v0->unk_B14[4] = (u16)Pokemon_GetValue(v1, MON_DATA_SP_DEF, NULL);
     v0->unk_B14[5] = (u16)Pokemon_GetValue(v1, MON_DATA_SPEED, NULL);
 
-    Party_ApplyItemEffectsToMember(v0->unk_5A4->unk_00, v0->unk_5A4->unk_24, v0->unk_B11, 0, sub_02086930(v0), 12);
+    Party_ApplyItemEffectsToMember(v0->partyManagementData->unk_00, v0->partyManagementData->usedItemID, v0->unk_B11, 0, sub_02086930(v0), 12);
 
     v0->unk_704[v0->unk_B11].unk_0A = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
     v0->unk_704[v0->unk_B11].unk_06 = Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL);
@@ -695,7 +701,7 @@ static int sub_02085A70(void *param0)
 
     sub_0207F8F8(v0, v0->unk_B11);
 
-    v0->unk_B00 = sub_02085704;
+    v0->unk_B00 = PokemonSummaryScreen_UpdateHPBar;
 
     sub_020821F8(v0, v0->unk_B11);
     sub_020822BC(v0, v0->unk_B11);
@@ -737,19 +743,19 @@ static int sub_02085C50(void *param0)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             sub_02082C10(v0);
             v0->unk_B13 = 3;
-            v0->unk_5A4->unk_34 = 0;
+            v0->partyManagementData->unk_34 = 0;
         }
         break;
     case 3:
-        v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
+        v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->unk_00, v0->unk_B11);
 
-        switch (Pokemon_LevelUpMove(v1, &v0->unk_5A4->unk_34, &v0->unk_5A4->unk_26)) {
+        switch (Pokemon_LevelUpMove(v1, &v0->partyManagementData->unk_34, &v0->partyManagementData->unk_26)) {
         case 0x0:
             v0->unk_B13 = 6;
             break;
         case 0xffff:
             StringTemplate_SetNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
-            StringTemplate_SetMoveName(v0->unk_6A0, 1, v0->unk_5A4->unk_26);
+            StringTemplate_SetMoveName(v0->unk_6A0, 1, v0->partyManagementData->unk_26);
 
             v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 52);
 
@@ -766,7 +772,7 @@ static int sub_02085C50(void *param0)
             break;
         default:
             StringTemplate_SetNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
-            StringTemplate_SetMoveName(v0->unk_6A0, 1, v0->unk_5A4->unk_26);
+            StringTemplate_SetMoveName(v0->unk_6A0, 1, v0->partyManagementData->unk_26);
 
             v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 194);
 
@@ -787,11 +793,11 @@ static int sub_02085C50(void *param0)
         break;
     case 5:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
-            sub_02086590(v0, v1, v0->unk_5A4->unk_28);
+            v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->unk_00, v0->unk_B11);
+            sub_02086590(v0, v1, v0->partyManagementData->unk_28);
             v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 61);
 
-            StringTemplate_SetMoveName(v0->unk_6A0, 1, v0->unk_5A4->unk_26);
+            StringTemplate_SetMoveName(v0->unk_6A0, 1, v0->partyManagementData->unk_26);
             StringTemplate_Format(v0->unk_6A0, v0->unk_6A4, v2);
             Strbuf_Free(v2);
             sub_02082708(v0, 0xffffffff, 0);
@@ -804,15 +810,15 @@ static int sub_02085C50(void *param0)
         FieldSystem *fieldSystem;
         int v5;
 
-        v3 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
-        fieldSystem = v0->unk_5A4->unk_1C;
+        v3 = Party_GetPokemonBySlotIndex(v0->partyManagementData->unk_00, v0->unk_B11);
+        fieldSystem = v0->partyManagementData->unk_1C;
         v5 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
-        v0->unk_5A4->unk_38 = Pokemon_GetEvolutionTargetSpecies(v0->unk_5A4->unk_00, v3, EVO_CLASS_BY_LEVEL, v5, &v0->unk_5A4->unk_3C);
+        v0->partyManagementData->unk_38 = Pokemon_GetEvolutionTargetSpecies(v0->partyManagementData->unk_00, v3, EVO_CLASS_BY_LEVEL, v5, &v0->partyManagementData->unk_3C);
 
-        if (v0->unk_5A4->unk_38 != 0) {
-            v0->unk_5A4->unk_23 = 9;
+        if (v0->partyManagementData->unk_38 != 0) {
+            v0->partyManagementData->unk_23 = 9;
         } else {
-            v0->unk_5A4->unk_23 = 0;
+            v0->partyManagementData->unk_23 = 0;
         }
     }
         return 32;
@@ -829,15 +835,15 @@ int sub_02085EF4(GameWindowLayout *param0)
     param0->unk_B00 = sub_02085C50;
     param0->unk_B13 = 3;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
     StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
 
-    if (param0->unk_5A4->unk_28 == 4) {
-        StringTemplate_SetMoveName(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
+    if (param0->partyManagementData->unk_28 == 4) {
+        StringTemplate_SetMoveName(param0->unk_6A0, 1, param0->partyManagementData->unk_26);
         return sub_02086008(param0);
     }
 
-    StringTemplate_SetMoveName(param0->unk_6A0, 1, Pokemon_GetValue(v0, 54 + param0->unk_5A4->unk_28, NULL));
+    StringTemplate_SetMoveName(param0->unk_6A0, 1, Pokemon_GetValue(v0, 54 + param0->partyManagementData->unk_28, NULL));
     v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 60);
     StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
     Strbuf_Free(v1);
@@ -861,7 +867,7 @@ static int sub_02085FB4(void *param0)
     Strbuf_Free(v1);
     sub_02082708(v0, 0xffffffff, 0);
 
-    v0->unk_5A4->unk_23 = 5;
+    v0->partyManagementData->unk_23 = 5;
     v0->unk_B0E = 25;
 
     return 24;
@@ -931,7 +937,7 @@ u8 sub_02086104(GameWindowLayout *param0, Pokemon *param1)
     for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
         v0 = (u16)Pokemon_GetValue(param1, MON_DATA_MOVE1 + v1, NULL);
 
-        if (v0 == param0->unk_5A4->unk_26) {
+        if (v0 == param0->partyManagementData->unk_26) {
             return 0xfd;
         }
 
@@ -940,7 +946,7 @@ u8 sub_02086104(GameWindowLayout *param0, Pokemon *param1)
         }
     }
 
-    if (Pokemon_CanLearnTM(param1, Item_TMHMNumber(param0->unk_5A4->unk_24)) == 0) {
+    if (Pokemon_CanLearnTM(param1, Item_TMHMNumber(param0->partyManagementData->usedItemID)) == 0) {
         return 0xff;
     }
 
@@ -957,11 +963,11 @@ int sub_0208615C(GameWindowLayout *param0)
     Strbuf *v1;
     u32 v2;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
     v2 = sub_02086104(param0, v0);
 
     StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
-    StringTemplate_SetMoveName(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
+    StringTemplate_SetMoveName(param0->unk_6A0, 1, param0->partyManagementData->unk_26);
 
     switch (v2) {
     case 0:
@@ -973,7 +979,7 @@ int sub_0208615C(GameWindowLayout *param0)
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         sub_02082708(param0, 0xffffffff, 1);
-        param0->unk_5A4->unk_23 = 0;
+        param0->partyManagementData->unk_23 = 0;
         param0->unk_B0E = 25;
         break;
     case 0xfd:
@@ -981,7 +987,7 @@ int sub_0208615C(GameWindowLayout *param0)
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         sub_02082708(param0, 0xffffffff, 1);
-        param0->unk_5A4->unk_23 = 0;
+        param0->partyManagementData->unk_23 = 0;
         param0->unk_B0E = 25;
         break;
     case 0xfe:
@@ -1000,7 +1006,7 @@ int sub_0208615C(GameWindowLayout *param0)
         Strbuf_Free(v1);
         sub_02082708(param0, 0xffffffff, 1);
 
-        param0->unk_5A4->unk_23 = 0;
+        param0->partyManagementData->unk_23 = 0;
         param0->unk_B0E = 25;
         break;
     }
@@ -1013,15 +1019,15 @@ int sub_020862F8(GameWindowLayout *param0)
     Pokemon *v0;
     Strbuf *v1;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
     StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
 
-    if (param0->unk_5A4->unk_28 == 4) {
-        StringTemplate_SetMoveName(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
+    if (param0->partyManagementData->unk_28 == 4) {
+        StringTemplate_SetMoveName(param0->unk_6A0, 1, param0->partyManagementData->unk_26);
         return sub_0208648C(param0);
     }
 
-    StringTemplate_SetMoveName(param0->unk_6A0, 1, Pokemon_GetValue(v0, 54 + param0->unk_5A4->unk_28, NULL));
+    StringTemplate_SetMoveName(param0->unk_6A0, 1, Pokemon_GetValue(v0, 54 + param0->partyManagementData->unk_28, NULL));
     v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 60);
     StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
     Strbuf_Free(v1);
@@ -1037,16 +1043,16 @@ int sub_020863A0(GameWindowLayout *param0)
     Strbuf *v1;
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+        v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
 
-        sub_02086590(param0, v0, param0->unk_5A4->unk_28);
+        sub_02086590(param0, v0, param0->partyManagementData->unk_28);
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 61);
-        StringTemplate_SetMoveName(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
+        StringTemplate_SetMoveName(param0->unk_6A0, 1, param0->partyManagementData->unk_26);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         sub_02082708(param0, 0xffffffff, 0);
 
-        param0->unk_5A4->unk_23 = 0;
+        param0->partyManagementData->unk_23 = 0;
         param0->unk_B0E = 25;
 
         return 24;
@@ -1067,7 +1073,7 @@ static int sub_02086438(void *param0)
     Strbuf_Free(v1);
     sub_02082708(v0, 0xffffffff, 0);
 
-    v0->unk_5A4->unk_23 = 4;
+    v0->partyManagementData->unk_23 = 4;
     v0->unk_B0E = 25;
 
     return 24;
@@ -1104,7 +1110,7 @@ static int sub_020864E4(void *param0)
     Strbuf_Free(v1);
     sub_02082708(v0, 0xffffffff, 0);
 
-    v0->unk_5A4->unk_23 = 0;
+    v0->partyManagementData->unk_23 = 0;
     v0->unk_B0E = 25;
 
     return 24;
@@ -1131,18 +1137,18 @@ static int sub_02086538(void *param0)
 
 static void sub_02086590(GameWindowLayout *param0, Pokemon *param1, u32 param2)
 {
-    u32 v0 = param0->unk_5A4->unk_26;
+    u32 v0 = param0->partyManagementData->unk_26;
     Pokemon_SetValue(param1, MON_DATA_MOVE1 + param2, &v0);
 
     v0 = 0;
     Pokemon_SetValue(param1, MON_DATA_MOVE1_PP_UPS + param2, &v0);
 
-    v0 = MoveTable_CalcMaxPP(param0->unk_5A4->unk_26, 0);
+    v0 = MoveTable_CalcMaxPP(param0->partyManagementData->unk_26, 0);
     Pokemon_SetValue(param1, MON_DATA_MOVE1_CUR_PP + param2, &v0);
 
-    if (param0->unk_5A4->unk_24 != 0) {
-        if (Item_IsHMMove(param0->unk_5A4->unk_26) == 0) {
-            Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, HEAP_ID_12);
+    if (param0->partyManagementData->usedItemID != 0) {
+        if (Item_IsHMMove(param0->partyManagementData->unk_26) == 0) {
+            Bag_TryRemoveItem(param0->partyManagementData->unk_04, param0->partyManagementData->usedItemID, 1, HEAP_ID_12);
         }
 
         Pokemon_UpdateFriendship(param1, 4, (u16)sub_02086930(param0));
@@ -1155,7 +1161,7 @@ static u8 sub_02086614(GameWindowLayout *param0, u8 param1)
     Strbuf *v1;
     u16 v2;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
     v2 = (u16)Pokemon_GetValue(v0, MON_DATA_MOVE1 + param1, NULL);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 162 + param1);
 
@@ -1228,10 +1234,10 @@ int sub_02086774(GameWindowLayout *param0)
         Menu_Free(param0->unk_700, NULL);
         StringList_Free(param0->unk_6FC);
 
-        if (Party_ApplyItemEffectsToMember(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, (u8)v0, sub_02086930(param0), 12) == 1) {
-            Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-            sub_02084E58(param0, param0->unk_5A4->unk_24, Pokemon_GetValue(v1, MON_DATA_MOVE1 + v0, NULL));
-            Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, HEAP_ID_12);
+        if (Party_ApplyItemEffectsToMember(param0->partyManagementData->unk_00, param0->partyManagementData->usedItemID, param0->unk_B11, (u8)v0, sub_02086930(param0), 12) == 1) {
+            Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
+            sub_02084E58(param0, param0->partyManagementData->usedItemID, Pokemon_GetValue(v1, MON_DATA_MOVE1 + v0, NULL));
+            Bag_TryRemoveItem(param0->partyManagementData->unk_04, param0->partyManagementData->usedItemID, 1, HEAP_ID_12);
             Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
         } else {
             MessageLoader_GetStrbuf(param0->unk_69C, 105, param0->unk_6A4);
@@ -1239,7 +1245,7 @@ int sub_02086774(GameWindowLayout *param0)
 
         sub_02082708(param0, 0xffffffff, 1);
 
-        param0->unk_5A4->unk_23 = 0;
+        param0->partyManagementData->unk_23 = 0;
         param0->unk_B0E = 25;
 
         return 24;
@@ -1262,12 +1268,12 @@ void sub_020868B0(GameWindowLayout *param0)
 
     sub_02082708(param0, 0xffffffff, 1);
 
-    param0->unk_5A4->unk_23 = 0;
+    param0->partyManagementData->unk_23 = 0;
     param0->unk_B0E = 25;
 }
 
 static u16 sub_02086930(GameWindowLayout *param0)
 {
-    FieldSystem *fieldSystem = param0->unk_5A4->unk_1C;
+    FieldSystem *fieldSystem = param0->partyManagementData->unk_1C;
     return (u16)MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
 }

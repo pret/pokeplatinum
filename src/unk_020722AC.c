@@ -1208,7 +1208,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
         v0->unk_08 = SaveData_GetMailBox(param0->fieldSystem->saveData);
         v0->unk_21 = 0;
         v0->unk_20 = param1;
-        v0->unk_24 = param0->unk_1C[param0->unk_18].item;
+        v0->usedItemID = param0->unk_1C[param0->unk_18].item;
 
         if (param1 == 11) {
             v0->selectedMonSlot = param0->unk_17;

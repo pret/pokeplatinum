@@ -30,7 +30,7 @@ typedef struct {
     u16 unk_324[96];
     u16 unk_3E4[96];
     u16 unk_4A4[128];
-    PartyManagementData *unk_5A4;
+    PartyManagementData *partyManagementData;
     SpriteSystem *unk_5A8;
     SpriteManager *unk_5AC;
     Sprite *unk_5B0[29];

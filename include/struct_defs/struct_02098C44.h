@@ -17,7 +17,7 @@ typedef struct {
     u8 unk_21;
     u8 selectedMonSlot;
     u8 unk_23;
-    u16 unk_24;
+    u16 usedItemID;
     u16 unk_26;
     u8 unk_28;
     u8 unk_29;

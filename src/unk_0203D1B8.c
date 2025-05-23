@@ -1723,7 +1723,7 @@ PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int para
     v0->unk_18 = NULL;
     v0->unk_21 = 0;
     v0->unk_20 = 5;
-    v0->unk_24 = param2;
+    v0->usedItemID = param2;
     v0->selectedMonSlot = 0;
     v0->unk_1C = fieldSystem;
 

@@ -117,7 +117,7 @@ void sub_02081A24(GameWindowLayout *param0)
     sub_020819DC(param0->unk_00, &param0->unk_04[10], &v0[10]);
     sub_020819DC(param0->unk_00, &param0->unk_04[20], &v0[20]);
 
-    if (param0->unk_5A4->unk_21 == 2) {
+    if (param0->partyManagementData->unk_21 == 2) {
         sub_020819DC(param0->unk_00, &param0->unk_04[5], &v0[30]);
         sub_020819DC(param0->unk_00, &param0->unk_04[15], &v0[35]);
         sub_020819DC(param0->unk_00, &param0->unk_04[25], &v0[40]);
@@ -127,7 +127,7 @@ void sub_02081A24(GameWindowLayout *param0)
         sub_020819DC(param0->unk_00, &param0->unk_04[25], &v0[25]);
     }
 
-    if ((param0->unk_5A4->unk_20 == 2) || (param0->unk_5A4->unk_20 == 17) || (param0->unk_5A4->unk_20 == 23) || (param0->unk_5A4->unk_20 == 22)) {
+    if ((param0->partyManagementData->unk_20 == 2) || (param0->partyManagementData->unk_20 == 17) || (param0->partyManagementData->unk_20 == 23) || (param0->partyManagementData->unk_20 == 22)) {
         WindowTemplate v2;
 
         v2 = Unk_020F1ED0[0];
@@ -232,12 +232,12 @@ void sub_02081E08(GameWindowLayout *param0)
     Pokemon *v0;
     Strbuf *v1;
 
-    if (param0->unk_5A4->unk_20 == 15) {
+    if (param0->partyManagementData->unk_20 == 15) {
         MessageLoader_GetStrbuf(param0->unk_69C, 42, param0->unk_6A4);
-    } else if ((param0->unk_5A4->unk_20 == 21) && (param0->unk_704[param0->unk_B11].unk_10 == 1)) {
+    } else if ((param0->partyManagementData->unk_20 == 21) && (param0->unk_704[param0->unk_B11].unk_10 == 1)) {
         MessageLoader_GetStrbuf(param0->unk_69C, 198, param0->unk_6A4);
     } else {
-        v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+        v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 37);
 
         StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
@@ -434,9 +434,9 @@ void sub_0208232C(GameWindowLayout *param0, u8 param1)
 
     sub_02081FFC(param0, param1);
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param1);
 
-    if (Pokemon_GetEvolutionTargetSpecies(NULL, v0, EVO_CLASS_BY_ITEM, param0->unk_5A4->unk_24, NULL) == 0) {
+    if (Pokemon_GetEvolutionTargetSpecies(NULL, v0, EVO_CLASS_BY_ITEM, param0->partyManagementData->usedItemID, NULL) == 0) {
         sub_02082810(param0, param1, 1);
     } else {
         sub_02082810(param0, param1, 0);
@@ -459,7 +459,7 @@ void sub_020823C4(GameWindowLayout *param0, u8 param1)
 
     sub_02081FFC(param0, param1);
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param1);
     v1 = sub_02086104(param0, v0);
 
     if (v1 == 0xff) {
@@ -505,19 +505,19 @@ void sub_02082508(GameWindowLayout *param0, u8 param1)
 {
     u8 v0;
 
-    for (v0 = 0; v0 < param0->unk_5A4->unk_32_4; v0++) {
-        if (param0->unk_5A4->unk_2C[v0] == param1 + 1) {
+    for (v0 = 0; v0 < param0->partyManagementData->unk_32_4; v0++) {
+        if (param0->partyManagementData->unk_2C[v0] == param1 + 1) {
             sub_02082964(param0, param1, v0);
             return;
         }
     }
 
-    if (param0->unk_5A4->unk_20 == 22) {
+    if (param0->partyManagementData->unk_20 == 22) {
         if (sub_02080404(param0, param1) == 0) {
             sub_02082964(param0, param1, 8);
             return;
         }
-    } else if (param0->unk_5A4->unk_20 == 23) {
+    } else if (param0->partyManagementData->unk_20 == 23) {
         if (sub_02080488(param0, param1) == 0) {
             sub_02082964(param0, param1, 8);
             return;
@@ -609,7 +609,7 @@ void sub_0208274C(GameWindowLayout *param0)
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
     param0->unk_B10 = Text_AddPrinterWithParams(
-        &param0->unk_04[34], FONT_MESSAGE, param0->unk_6A4, 0, 0, Options_TextFrameDelay(param0->unk_5A4->unk_0C), sub_0208279C);
+        &param0->unk_04[34], FONT_MESSAGE, param0->unk_6A4, 0, 0, Options_TextFrameDelay(param0->partyManagementData->unk_0C), sub_0208279C);
 }
 
 static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
@@ -736,7 +736,7 @@ void sub_020829DC(GameWindowLayout *param0)
     u32 v2;
     u16 v3[6];
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
 
     v3[0] = (u16)Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
     v3[1] = (u16)Pokemon_GetValue(v0, MON_DATA_ATK, NULL);
