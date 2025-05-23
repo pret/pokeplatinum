@@ -9,7 +9,6 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
-#include "graphics/pokemon_summary_screen/pl_pst_gra.naix"
 
 #include "bg_window.h"
 #include "gx_layers.h"
@@ -21,6 +20,8 @@
 #include "sprite_system.h"
 #include "unk_0207C908.h"
 #include "vram_transfer.h"
+
+#include "res/graphics/pokemon_summary_screen/pl_pst_gra.naix.h"
 
 static void SetTypeIcon(PokemonSummaryScreen *summaryScreen, u8 spriteIndex, u8 param2, u8 type);
 static void SetMonAndTypeIcons(PokemonSummaryScreen *summaryScreen);

@@ -8,8 +8,6 @@
 
 #include "struct_defs/struct_02013610.h"
 
-#include "graphics/signposts/field_board.naix"
-#include "graphics/windows/pl_winframe.naix"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/struct_ov5_021D30A8.h"
 
@@ -30,6 +28,9 @@
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
 #include "unk_020131EC.h"
+
+#include "res/graphics/signposts/field_board.naix.h"
+#include "res/graphics/windows/pl_winframe.naix.h"
 
 #define SIGNPOST_CONTENT_WIDTH_TILES  6
 #define SIGNPOST_CONTENT_HEIGHT_TILES 4

@@ -238,7 +238,7 @@ pl_pokegra_narc = custom_target('pl_pokegra.narc',
 pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
     output: [
         'pl_otherpoke.narc',
-        'pl_otherpoke.naix',
+        'pl_otherpoke.naix.h',
     ],
     input: [
         otherpoke_files,
@@ -330,7 +330,7 @@ pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
 pokefoot_narc = custom_target('pokefoot.narc',
     output: [
         'pokefoot.narc',
-        'pokefoot.naix',
+        'pokefoot.naix.h',
     ],
     input: pokefoot_files,
     command: [
