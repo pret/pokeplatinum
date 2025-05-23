@@ -21,7 +21,7 @@ typedef struct {
     u8 unk_16_0 : 7;
     u8 unk_16_7 : 1;
     u8 unk_17_0 : 3;
-    SummaryStatus summaryStatus : 4;
+    u8 summaryStatus : 4;
     u8 unk_17_7 : 1;
     u16 unk_18;
     u16 unk_1A;

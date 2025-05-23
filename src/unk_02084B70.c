@@ -513,7 +513,7 @@ static int sub_020855C4(void *param0)
     }
 
     sub_0207F8F8(v0, v0->unk_B11);
-    v0->unk_B00 = PokemonSummaryScreen_UpdateHPBar;
+    v0->unk_B00 = (void*) PokemonSummaryScreen_UpdateHPBar;
     Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
 
     return 5;
@@ -701,7 +701,7 @@ static int sub_02085A70(void *param0)
 
     sub_0207F8F8(v0, v0->unk_B11);
 
-    v0->unk_B00 = PokemonSummaryScreen_UpdateHPBar;
+    v0->unk_B00 = (void*) PokemonSummaryScreen_UpdateHPBar;
 
     sub_020821F8(v0, v0->unk_B11);
     sub_020822BC(v0, v0->unk_B11);

@@ -69,7 +69,7 @@ void ov118_021D0D80(GameWindowLayout *param0)
 int ov118_021D0DBC(GameWindowLayout *param0)
 {
     OverlayMetadata *v0 = param0->unk_B24;
-    Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyManagementData->unk_00, param0->unk_B11);
 
     switch (v0->unk_00) {
     case 0: {
@@ -92,7 +92,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
             break;
         }
 
-        Pokedex_Capture(SaveData_GetPokedex(FieldSystem_GetSaveData(param0->unk_5A4->unk_1C)), v1);
+        Pokedex_Capture(SaveData_GetPokedex(FieldSystem_GetSaveData(param0->partyManagementData->unk_1C)), v1);
     }
         v0->unk_00++;
         break;
@@ -150,7 +150,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
     case 10:
         if (Text_IsPrinterActive(param0->unk_B10) == 0) {
             ov118_021D0F70(param0);
-            param0->unk_5A4->unk_23 = 0;
+            param0->partyManagementData->unk_23 = 0;
             return 1;
         }
 
