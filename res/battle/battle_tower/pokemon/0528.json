@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_FROSLASS",
+    "moves": [
+        "MOVE_ICE_PUNCH",
+        "MOVE_SUCKER_PUNCH",
+        "MOVE_SWAGGER",
+        "MOVE_PSYCH_UP"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_RAMPARDOS",
+    "moves": [
+        "MOVE_ROCK_SLIDE",
+        "MOVE_FACADE",
+        "MOVE_CRUNCH",
+        "MOVE_SCREECH"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_TOXIC_ORB",
+    "form": 0
+}

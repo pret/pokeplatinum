@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_RAPIDASH",
+    "moves": [
+        "MOVE_FIRE_BLAST",
+        "MOVE_SOLAR_BEAM",
+        "MOVE_SUNNY_DAY",
+        "MOVE_REST"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

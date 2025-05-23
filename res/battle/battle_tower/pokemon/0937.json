@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ARTICUNO",
+    "moves": [
+        "MOVE_ICE_BEAM",
+        "MOVE_AIR_CUTTER",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_SHEER_COLD"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_CHARTI_BERRY",
+    "form": 0
+}

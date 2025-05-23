@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_INFERNAPE",
+    "moves": [
+        "MOVE_FLAMETHROWER",
+        "MOVE_FOCUS_BLAST",
+        "MOVE_SOLAR_BEAM",
+        "MOVE_SUNNY_DAY"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

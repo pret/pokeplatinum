@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_YANMEGA",
+    "moves": [
+        "MOVE_AERIAL_ACE",
+        "MOVE_U_TURN",
+        "MOVE_NIGHT_SLASH",
+        "MOVE_STEEL_WING"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_MUSCLE_BAND",
+    "form": 0
+}

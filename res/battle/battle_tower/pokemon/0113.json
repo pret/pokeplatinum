@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MAGBY",
+    "moves": [
+        "MOVE_FIRE_PUNCH",
+        "MOVE_MACH_PUNCH",
+        "MOVE_LEER",
+        "MOVE_SMOKE_SCREEN"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_PECHA_BERRY",
+    "form": 0
+}

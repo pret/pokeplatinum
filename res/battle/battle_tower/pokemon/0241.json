@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_OCTILLERY",
+    "moves": [
+        "MOVE_OCTAZOOKA",
+        "MOVE_ICY_WIND",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_FOCUS_ENERGY"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WACAN_BERRY",
+    "form": 0
+}

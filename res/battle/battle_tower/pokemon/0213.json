@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PRIMEAPE",
+    "moves": [
+        "MOVE_KARATE_CHOP",
+        "MOVE_FURY_SWIPES",
+        "MOVE_FORESIGHT",
+        "MOVE_FOCUS_ENERGY"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

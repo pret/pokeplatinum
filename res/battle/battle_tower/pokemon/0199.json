@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SOLROCK",
+    "moves": [
+        "MOVE_PSYWAVE",
+        "MOVE_ROCK_TOMB",
+        "MOVE_COSMIC_POWER",
+        "MOVE_LIGHT_SCREEN"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SITRUS_BERRY",
+    "form": 0
+}

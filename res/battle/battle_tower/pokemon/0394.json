@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HYPNO",
+    "moves": [
+        "MOVE_PSYCHO_CUT",
+        "MOVE_FLING",
+        "MOVE_HYPNOSIS",
+        "MOVE_TRICK_ROOM"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_BRAVE",
+    "item": "ITEM_IRON_BALL",
+    "form": 0
+}

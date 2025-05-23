@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ABSOL",
+    "moves": [
+        "MOVE_NIGHT_SLASH",
+        "MOVE_SUPERPOWER",
+        "MOVE_GIGA_IMPACT",
+        "MOVE_ZEN_HEADBUTT"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHOICE_BAND",
+    "form": 0
+}

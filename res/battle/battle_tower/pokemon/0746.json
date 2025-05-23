@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_KINGDRA",
+    "moves": [
+        "MOVE_WATERFALL",
+        "MOVE_OUTRAGE",
+        "MOVE_IRON_HEAD",
+        "MOVE_DRAGON_DANCE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

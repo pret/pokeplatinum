@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_OMASTAR",
+    "moves": [
+        "MOVE_WATER_GUN",
+        "MOVE_ROLLOUT",
+        "MOVE_WITHDRAW",
+        "MOVE_SPIKES"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_BRAVE",
+    "item": "ITEM_METRONOME",
+    "form": 0
+}

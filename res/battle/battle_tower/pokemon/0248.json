@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_KABUTOPS",
+    "moves": [
+        "MOVE_AQUA_JET",
+        "MOVE_ROCK_TOMB",
+        "MOVE_HARDEN",
+        "MOVE_METAL_SOUND"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_SEA_INCENSE",
+    "form": 0
+}

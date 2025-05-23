@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SUICUNE",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_ICY_WIND",
+        "MOVE_OMINOUS_WIND",
+        "MOVE_MIRROR_COAT"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_FOCUS_SASH",
+    "form": 0
+}

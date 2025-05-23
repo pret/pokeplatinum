@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_AMPHAROS",
+    "moves": [
+        "MOVE_CHARGE_BEAM",
+        "MOVE_HYPER_BEAM",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_REST"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

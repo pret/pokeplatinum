@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DRAPION",
+    "moves": [
+        "MOVE_PAYBACK",
+        "MOVE_POISON_JAB",
+        "MOVE_FLING",
+        "MOVE_KNOCK_OFF"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_IRON_BALL",
+    "form": 0
+}

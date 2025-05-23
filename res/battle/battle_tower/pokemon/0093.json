@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MANTYKE",
+    "moves": [
+        "MOVE_BUBBLE_BEAM",
+        "MOVE_AERIAL_ACE",
+        "MOVE_ICY_WIND",
+        "MOVE_AGILITY"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_DOCILE",
+    "item": "ITEM_MYSTIC_WATER",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SHELLOS",
+    "moves": [
+        "MOVE_WATER_PULSE",
+        "MOVE_MUD_SLAP",
+        "MOVE_ICY_WIND",
+        "MOVE_HARDEN"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

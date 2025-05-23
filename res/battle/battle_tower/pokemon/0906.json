@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HEATRAN",
+    "moves": [
+        "MOVE_HEAT_WAVE",
+        "MOVE_FLASH_CANNON",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SHUCA_BERRY",
+    "form": 0
+}

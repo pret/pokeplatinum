@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DRAGONAIR",
+    "moves": [
+        "MOVE_DRAGON_PULSE",
+        "MOVE_AQUA_TAIL",
+        "MOVE_SLAM",
+        "MOVE_DRAGON_DANCE"
+    ],
+    "evFlag": 18,
+    "nature": "NATURE_QUIRCKY",
+    "item": "ITEM_HABAN_BERRY",
+    "form": 0
+}

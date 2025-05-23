@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LUMINEON",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_SILVER_WIND",
+        "MOVE_ATTRACT",
+        "MOVE_AQUA_RING"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SHELL_BELL",
+    "form": 0
+}

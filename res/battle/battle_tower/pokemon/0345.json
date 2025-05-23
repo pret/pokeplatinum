@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ELECTABUZZ",
+    "moves": [
+        "MOVE_THUNDERBOLT",
+        "MOVE_PSYCHIC",
+        "MOVE_FOCUS_BLAST",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

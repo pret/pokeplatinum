@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MASQUERAIN",
+    "moves": [
+        "MOVE_BUG_BUZZ",
+        "MOVE_AIR_SLASH",
+        "MOVE_SHADOW_BALL",
+        "MOVE_STUN_SPORE"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_PETAYA_BERRY",
+    "form": 0
+}

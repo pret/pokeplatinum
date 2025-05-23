@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BLASTOISE",
+    "moves": [
+        "MOVE_HYDRO_PUMP",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_ICY_WIND",
+        "MOVE_MIRROR_COAT"
+    ],
+    "evFlag": 52,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_MYSTIC_WATER",
+    "form": 0
+}

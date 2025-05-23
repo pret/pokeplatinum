@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_STARLY",
+    "moves": [
+        "MOVE_WING_ATTACK",
+        "MOVE_QUICK_ATTACK",
+        "MOVE_ENDEAVOR",
+        "MOVE_GROWL"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SHARP_BEAK",
+    "form": 0
+}

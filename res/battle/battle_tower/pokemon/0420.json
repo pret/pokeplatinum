@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_AMPHAROS",
+    "moves": [
+        "MOVE_THUNDERBOLT",
+        "MOVE_POWER_GEM",
+        "MOVE_LIGHT_SCREEN",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SHUCA_BERRY",
+    "form": 0
+}

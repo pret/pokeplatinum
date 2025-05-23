@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_STANTLER",
+    "moves": [
+        "MOVE_FRUSTRATION",
+        "MOVE_ZEN_HEADBUTT",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHOPLE_BERRY",
+    "form": 0
+}

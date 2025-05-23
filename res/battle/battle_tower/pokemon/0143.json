@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TOGETIC",
+    "moves": [
+        "MOVE_AIR_CUTTER",
+        "MOVE_SWIFT",
+        "MOVE_MAGICAL_LEAF",
+        "MOVE_WISH"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

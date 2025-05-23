@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GROVYLE",
+    "moves": [
+        "MOVE_MAGICAL_LEAF",
+        "MOVE_SWIFT",
+        "MOVE_MUD_SLAP",
+        "MOVE_DETECT"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_COBA_BERRY",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_FORRETRESS",
+    "moves": [
+        "MOVE_PAYBACK",
+        "MOVE_STEALTH_ROCK",
+        "MOVE_TOXIC_SPIKES",
+        "MOVE_SPIKES"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_BRAVE",
+    "item": "ITEM_SITRUS_BERRY",
+    "form": 0
+}

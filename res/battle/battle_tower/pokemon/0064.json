@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_EEVEE",
+    "moves": [
+        "MOVE_TAKE_DOWN",
+        "MOVE_BITE",
+        "MOVE_FLAIL",
+        "MOVE_ENDURE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_SALAC_BERRY",
+    "form": 0
+}

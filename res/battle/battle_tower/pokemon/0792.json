@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_VILEPLUME",
+    "moves": [
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_ENERGY_BALL",
+        "MOVE_HYPER_BEAM",
+        "MOVE_SYNTHESIS"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WISE_GLASSES",
+    "form": 0
+}

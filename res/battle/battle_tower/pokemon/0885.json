@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ELECTIVIRE",
+    "moves": [
+        "MOVE_THUNDER_PUNCH",
+        "MOVE_FIRE_PUNCH",
+        "MOVE_ICE_PUNCH",
+        "MOVE_EARTHQUAKE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SHUCA_BERRY",
+    "form": 0
+}

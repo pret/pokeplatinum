@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GRANBULL",
+    "moves": [
+        "MOVE_FACADE",
+        "MOVE_FIRE_FANG",
+        "MOVE_THUNDER_FANG",
+        "MOVE_ICE_FANG"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_QUICK_CLAW",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_INFERNAPE",
+    "moves": [
+        "MOVE_CLOSE_COMBAT",
+        "MOVE_FIRE_PUNCH",
+        "MOVE_U_TURN",
+        "MOVE_FAKE_OUT"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_COBA_BERRY",
+    "form": 0
+}

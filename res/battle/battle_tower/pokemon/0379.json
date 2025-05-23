@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DEWGONG",
+    "moves": [
+        "MOVE_WATERFALL",
+        "MOVE_AVALANCHE",
+        "MOVE_HEADBUTT",
+        "MOVE_FAKE_OUT"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_RAZOR_FANG",
+    "form": 0
+}

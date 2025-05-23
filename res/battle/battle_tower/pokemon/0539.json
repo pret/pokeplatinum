@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MILTANK",
+    "moves": [
+        "MOVE_FACADE",
+        "MOVE_ZEN_HEADBUTT",
+        "MOVE_REVERSAL",
+        "MOVE_ENDURE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SALAC_BERRY",
+    "form": 0
+}

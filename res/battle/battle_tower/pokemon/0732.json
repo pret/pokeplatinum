@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HIPPOWDON",
+    "moves": [
+        "MOVE_SUPERPOWER",
+        "MOVE_FIRE_FANG",
+        "MOVE_ICE_FANG",
+        "MOVE_FISSURE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

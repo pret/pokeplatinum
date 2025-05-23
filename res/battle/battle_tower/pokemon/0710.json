@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HONCHKROW",
+    "moves": [
+        "MOVE_DARK_PULSE",
+        "MOVE_AIR_CUTTER",
+        "MOVE_PSYCHIC",
+        "MOVE_SHADOW_BALL"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LIFE_ORB",
+    "form": 0
+}

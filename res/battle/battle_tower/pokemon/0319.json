@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DUSCLOPS",
+    "moves": [
+        "MOVE_SHADOW_PUNCH",
+        "MOVE_PAYBACK",
+        "MOVE_BRICK_BREAK",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_COLBUR_BERRY",
+    "form": 0
+}

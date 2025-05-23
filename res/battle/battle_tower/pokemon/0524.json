@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SHIFTRY",
+    "moves": [
+        "MOVE_GIGA_DRAIN",
+        "MOVE_LEECH_SEED",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_SYNTHESIS"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

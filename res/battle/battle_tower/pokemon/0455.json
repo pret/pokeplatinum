@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ESPEON",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_REFLECT",
+        "MOVE_CALM_MIND",
+        "MOVE_BATON_PASS"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

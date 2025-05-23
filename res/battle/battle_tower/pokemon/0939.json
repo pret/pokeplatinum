@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MOLTRES",
+    "moves": [
+        "MOVE_OVERHEAT",
+        "MOVE_AIR_SLASH",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_OMINOUS_WIND"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

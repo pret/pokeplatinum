@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MR_MIME",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_CHARGE_BEAM",
+        "MOVE_SHADOW_BALL",
+        "MOVE_FOCUS_BLAST"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_CHOICE_SPECS",
+    "form": 0
+}

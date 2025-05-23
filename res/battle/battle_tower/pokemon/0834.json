@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HOUNDOOM",
+    "moves": [
+        "MOVE_OVERHEAT",
+        "MOVE_DARK_PULSE",
+        "MOVE_SOLAR_BEAM",
+        "MOVE_SUNNY_DAY"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

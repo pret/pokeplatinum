@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_VENUSAUR",
+    "moves": [
+        "MOVE_LEAF_STORM",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_AMNESIA",
+        "MOVE_SLEEP_POWDER"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PERSIAN",
+    "moves": [
+        "MOVE_SLASH",
+        "MOVE_SHADOW_CLAW",
+        "MOVE_BITE",
+        "MOVE_FAKE_OUT"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

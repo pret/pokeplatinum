@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BALTOY",
+    "moves": [
+        "MOVE_PSYBEAM",
+        "MOVE_MUD_SLAP",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_LIGHT_SCREEN"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_TWISTEDSPOON",
+    "form": 0
+}

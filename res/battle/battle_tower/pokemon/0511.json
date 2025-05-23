@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_WHISCASH",
+    "moves": [
+        "MOVE_AQUA_TAIL",
+        "MOVE_EARTHQUAKE",
+        "MOVE_ROCK_SLIDE",
+        "MOVE_THRASH"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_PERSIM_BERRY",
+    "form": 0
+}

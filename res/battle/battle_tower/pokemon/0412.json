@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_FLOATZEL",
+    "moves": [
+        "MOVE_WATERFALL",
+        "MOVE_ICE_PUNCH",
+        "MOVE_QUICK_ATTACK",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_SITRUS_BERRY",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LAPRAS",
+    "moves": [
+        "MOVE_AQUA_TAIL",
+        "MOVE_AVALANCHE",
+        "MOVE_ICE_SHARD",
+        "MOVE_CURSE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

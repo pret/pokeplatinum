@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CHARIZARD",
+    "moves": [
+        "MOVE_FLAMETHROWER",
+        "MOVE_AIR_SLASH",
+        "MOVE_SMOKE_SCREEN",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_PETAYA_BERRY",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_COMBEE",
+    "moves": [
+        "MOVE_BUG_BITE",
+        "MOVE_GUST",
+        "MOVE_OMINOUS_WIND",
+        "MOVE_SWEET_SCENT"
+    ],
+    "evFlag": 26,
+    "nature": "NATURE_SERIOUS",
+    "item": "ITEM_SILVERPOWDER",
+    "form": 0
+}

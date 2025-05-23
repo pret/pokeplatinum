@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_FORRETRESS",
+    "moves": [
+        "MOVE_EXPLOSION",
+        "MOVE_DOUBLE_EDGE",
+        "MOVE_EARTHQUAKE",
+        "MOVE_ROCK_SLIDE"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

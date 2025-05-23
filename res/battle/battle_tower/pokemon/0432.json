@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DRAPION",
+    "moves": [
+        "MOVE_POISON_JAB",
+        "MOVE_CRUNCH",
+        "MOVE_AQUA_TAIL",
+        "MOVE_ACUPRESSURE"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

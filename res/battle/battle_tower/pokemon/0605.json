@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_RHYPERIOR",
+    "moves": [
+        "MOVE_FIRE_PUNCH",
+        "MOVE_THUNDER_PUNCH",
+        "MOVE_ICE_PUNCH",
+        "MOVE_AQUA_TAIL"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_EXPERT_BELT",
+    "form": 0
+}

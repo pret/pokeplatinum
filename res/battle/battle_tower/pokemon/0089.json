@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_VIBRAVA",
+    "moves": [
+        "MOVE_DRAGON_BREATH",
+        "MOVE_MUD_SLAP",
+        "MOVE_OMINOUS_WIND",
+        "MOVE_SUPERSONIC"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_ASPEAR_BERRY",
+    "form": 0
+}

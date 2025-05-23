@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SCYTHER",
+    "moves": [
+        "MOVE_X_SCISSOR",
+        "MOVE_AERIAL_ACE",
+        "MOVE_NIGHT_SLASH",
+        "MOVE_SWORDS_DANCE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

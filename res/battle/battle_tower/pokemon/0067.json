@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_STUNKY",
+    "moves": [
+        "MOVE_PURSUIT",
+        "MOVE_TOXIC",
+        "MOVE_SLASH",
+        "MOVE_SMOKE_SCREEN"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BLACKGLASSES",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HYPNO",
+    "moves": [
+        "MOVE_DREAM_EATER",
+        "MOVE_NIGHTMARE",
+        "MOVE_DRAIN_PUNCH",
+        "MOVE_HYPNOSIS"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_HARDY",
+    "item": "ITEM_PERSIM_BERRY",
+    "form": 0
+}

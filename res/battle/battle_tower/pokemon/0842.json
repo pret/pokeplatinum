@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_NINETALES",
+    "moves": [
+        "MOVE_FLAMETHROWER",
+        "MOVE_EXTRASENSORY",
+        "MOVE_ENERGY_BALL",
+        "MOVE_CALM_MIND"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_PASSHO_BERRY",
+    "form": 0
+}

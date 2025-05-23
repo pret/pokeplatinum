@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DUSKULL",
+    "moves": [
+        "MOVE_SHADOW_SNEAK",
+        "MOVE_PAIN_SPLIT",
+        "MOVE_WILL_O_WISP",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 36,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SPELL_TAG",
+    "form": 0
+}

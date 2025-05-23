@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BLAZIKEN",
+    "moves": [
+        "MOVE_BLAZE_KICK",
+        "MOVE_EARTHQUAKE",
+        "MOVE_SHADOW_CLAW",
+        "MOVE_STONE_EDGE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_PASSHO_BERRY",
+    "form": 0
+}

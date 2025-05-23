@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CRAWDAUNT",
+    "moves": [
+        "MOVE_CRABHAMMER",
+        "MOVE_CRUNCH",
+        "MOVE_X_SCISSOR",
+        "MOVE_SWORDS_DANCE"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_QUICK_CLAW",
+    "form": 0
+}

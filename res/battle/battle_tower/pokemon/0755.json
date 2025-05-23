@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SALAMENCE",
+    "moves": [
+        "MOVE_DRACO_METEOR",
+        "MOVE_HYDRO_PUMP",
+        "MOVE_FLAMETHROWER",
+        "MOVE_OMINOUS_WIND"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WISE_GLASSES",
+    "form": 0
+}

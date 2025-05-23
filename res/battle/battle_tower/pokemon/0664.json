@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_FROSLASS",
+    "moves": [
+        "MOVE_ICE_BEAM",
+        "MOVE_THUNDERBOLT",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_DESTINY_BOND"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_EXPERT_BELT",
+    "form": 0
+}

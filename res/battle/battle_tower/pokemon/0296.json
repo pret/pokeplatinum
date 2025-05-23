@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SEADRA",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_ICE_BEAM",
+        "MOVE_TWISTER",
+        "MOVE_SMOKE_SCREEN"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SHELL_BELL",
+    "form": 0
+}

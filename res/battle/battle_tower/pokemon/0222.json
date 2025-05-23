@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SEVIPER",
+    "moves": [
+        "MOVE_POISON_TAIL",
+        "MOVE_LICK",
+        "MOVE_KNOCK_OFF",
+        "MOVE_GLARE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

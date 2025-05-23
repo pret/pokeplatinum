@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_WALREIN",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_ICE_BEAM",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_HAIL"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

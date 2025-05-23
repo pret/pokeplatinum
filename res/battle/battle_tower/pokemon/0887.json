@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TOGEKISS",
+    "moves": [
+        "MOVE_HYPER_BEAM",
+        "MOVE_AIR_SLASH",
+        "MOVE_AURA_SPHERE",
+        "MOVE_PSYCHIC"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_EXPERT_BELT",
+    "form": 0
+}

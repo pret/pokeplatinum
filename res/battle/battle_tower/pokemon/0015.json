@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BURMY",
+    "moves": [
+        "MOVE_BUG_BITE",
+        "MOVE_TACKLE",
+        "MOVE_SNORE",
+        "MOVE_PROTECT"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SITRUS_BERRY",
+    "form": 0
+}

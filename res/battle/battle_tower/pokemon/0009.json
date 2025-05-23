@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MUDKIP",
+    "moves": [
+        "MOVE_WATER_PULSE",
+        "MOVE_ICY_WIND",
+        "MOVE_MUD_SLAP",
+        "MOVE_GROWL"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_MYSTIC_WATER",
+    "form": 0
+}

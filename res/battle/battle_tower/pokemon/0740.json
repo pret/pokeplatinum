@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MAGNEZONE",
+    "moves": [
+        "MOVE_CHARGE_BEAM",
+        "MOVE_FLASH_CANNON",
+        "MOVE_MAGNET_RISE",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

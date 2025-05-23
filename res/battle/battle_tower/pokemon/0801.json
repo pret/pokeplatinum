@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_AMBIPOM",
+    "moves": [
+        "MOVE_DOUBLE_HIT",
+        "MOVE_FIRE_PUNCH",
+        "MOVE_THUNDER_PUNCH",
+        "MOVE_ICE_PUNCH"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LIFE_ORB",
+    "form": 0
+}

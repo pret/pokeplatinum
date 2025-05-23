@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ARBOK",
+    "moves": [
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_MUD_BOMB",
+        "MOVE_CRUNCH",
+        "MOVE_GLARE"
+    ],
+    "evFlag": 18,
+    "nature": "NATURE_QUIRCKY",
+    "item": "ITEM_PAYAPA_BERRY",
+    "form": 0
+}

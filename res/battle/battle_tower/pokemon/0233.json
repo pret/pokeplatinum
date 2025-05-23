@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PIDGEOT",
+    "moves": [
+        "MOVE_WING_ATTACK",
+        "MOVE_FACADE",
+        "MOVE_TAILWIND",
+        "MOVE_SAND_ATTACK"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHERI_BERRY",
+    "form": 0
+}

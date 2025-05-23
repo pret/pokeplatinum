@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SHIFTRY",
+    "moves": [
+        "MOVE_SEED_BOMB",
+        "MOVE_FAINT_ATTACK",
+        "MOVE_X_SCISSOR",
+        "MOVE_FAKE_OUT"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_PERSIM_BERRY",
+    "form": 0
+}

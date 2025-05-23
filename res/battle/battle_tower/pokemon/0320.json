@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_NINJASK",
+    "moves": [
+        "MOVE_X_SCISSOR",
+        "MOVE_AERIAL_ACE",
+        "MOVE_NIGHT_SLASH",
+        "MOVE_BATON_PASS"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_FANG",
+    "form": 0
+}

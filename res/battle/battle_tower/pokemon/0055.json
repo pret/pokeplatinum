@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CUBONE",
+    "moves": [
+        "MOVE_BONE_CLUB",
+        "MOVE_HEADBUTT",
+        "MOVE_BRICK_BREAK",
+        "MOVE_LEER"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SOFT_SAND",
+    "form": 0
+}

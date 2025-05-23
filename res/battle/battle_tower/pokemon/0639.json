@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GRANBULL",
+    "moves": [
+        "MOVE_FIRE_PUNCH",
+        "MOVE_THUNDER_PUNCH",
+        "MOVE_ICE_PUNCH",
+        "MOVE_PAYBACK"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_MUSCLE_BAND",
+    "form": 0
+}

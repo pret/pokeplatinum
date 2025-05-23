@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GARDEVOIR",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_SHADOW_BALL",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

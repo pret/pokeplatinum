@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_POLITOED",
+    "moves": [
+        "MOVE_DIVE",
+        "MOVE_BRICK_BREAK",
+        "MOVE_HYPNOSIS",
+        "MOVE_PERISH_SONG"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

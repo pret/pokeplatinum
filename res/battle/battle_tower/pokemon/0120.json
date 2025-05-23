@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BUTTERFREE",
+    "moves": [
+        "MOVE_SILVER_WIND",
+        "MOVE_AIR_CUTTER",
+        "MOVE_PSYBEAM",
+        "MOVE_TAILWIND"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_PECHA_BERRY",
+    "form": 0
+}

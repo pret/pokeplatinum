@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CRESSELIA",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_ICE_BEAM",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_MOONLIGHT"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

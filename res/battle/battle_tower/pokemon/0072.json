@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HOUNDOUR",
+    "moves": [
+        "MOVE_FIRE_FANG",
+        "MOVE_BITE",
+        "MOVE_ROAR",
+        "MOVE_WILL_O_WISP"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHARCOAL",
+    "form": 0
+}

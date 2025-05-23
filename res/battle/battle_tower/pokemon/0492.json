@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_FERALIGATR",
+    "moves": [
+        "MOVE_AQUA_TAIL",
+        "MOVE_SUPERPOWER",
+        "MOVE_DRAGON_CLAW",
+        "MOVE_SHADOW_CLAW"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

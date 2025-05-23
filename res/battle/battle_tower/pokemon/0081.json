@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SNOVER",
+    "moves": [
+        "MOVE_ICE_PUNCH",
+        "MOVE_RAZOR_LEAF",
+        "MOVE_GRASS_WHISTLE",
+        "MOVE_INGRAIN"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_NEVERMELTICE",
+    "form": 0
+}

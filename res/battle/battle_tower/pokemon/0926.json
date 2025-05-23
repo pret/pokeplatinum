@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_RAIKOU",
+    "moves": [
+        "MOVE_THUNDER",
+        "MOVE_EXTRASENSORY",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WISE_GLASSES",
+    "form": 0
+}

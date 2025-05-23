@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TENTACOOL",
+    "moves": [
+        "MOVE_BUBBLE_BEAM",
+        "MOVE_ACID",
+        "MOVE_SUPERSONIC",
+        "MOVE_BARRIER"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_CHERI_BERRY",
+    "form": 0
+}

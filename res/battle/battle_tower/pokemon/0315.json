@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HITMONCHAN",
+    "moves": [
+        "MOVE_SKY_UPPERCUT",
+        "MOVE_MEGA_PUNCH",
+        "MOVE_BULLET_PUNCH",
+        "MOVE_COUNTER"
+    ],
+    "evFlag": 42,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_KINGS_ROCK",
+    "form": 0
+}

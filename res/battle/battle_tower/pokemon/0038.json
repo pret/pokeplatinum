@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BAGON",
+    "moves": [
+        "MOVE_DRAGON_BREATH",
+        "MOVE_HEADBUTT",
+        "MOVE_BRICK_BREAK",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_NAUGHTY",
+    "item": "ITEM_DRAGON_FANG",
+    "form": 0
+}

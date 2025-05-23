@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HERACROSS",
+    "moves": [
+        "MOVE_CLOSE_COMBAT",
+        "MOVE_AERIAL_ACE",
+        "MOVE_NIGHT_SLASH",
+        "MOVE_BULK_UP"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

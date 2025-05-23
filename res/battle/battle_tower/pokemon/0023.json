@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CHINGLING",
+    "moves": [
+        "MOVE_CONFUSION",
+        "MOVE_SWIFT",
+        "MOVE_DISABLE",
+        "MOVE_GROWL"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_TWISTEDSPOON",
+    "form": 0
+}

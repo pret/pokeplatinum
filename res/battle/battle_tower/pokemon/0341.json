@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_OCTILLERY",
+    "moves": [
+        "MOVE_OCTAZOOKA",
+        "MOVE_FLAMETHROWER",
+        "MOVE_PSYCHIC",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LIFE_ORB",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SWALOT",
+    "moves": [
+        "MOVE_SLUDGE",
+        "MOVE_STOCKPILE",
+        "MOVE_SWALLOW",
+        "MOVE_SPIT_UP"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

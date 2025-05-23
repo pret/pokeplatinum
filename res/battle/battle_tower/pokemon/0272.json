@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_FURRET",
+    "moves": [
+        "MOVE_FRUSTRATION",
+        "MOVE_SHADOW_CLAW",
+        "MOVE_TRICK",
+        "MOVE_ASSIST"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHOICE_BAND",
+    "form": 0
+}

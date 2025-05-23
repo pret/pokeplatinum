@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_STARMIE",
+    "moves": [
+        "MOVE_HYDRO_PUMP",
+        "MOVE_BLIZZARD",
+        "MOVE_THUNDER",
+        "MOVE_RECOVER"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_WIDE_LENS",
+    "form": 0
+}

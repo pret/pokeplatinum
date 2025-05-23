@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SNORLAX",
+    "moves": [
+        "MOVE_RETURN",
+        "MOVE_ROCK_SLIDE",
+        "MOVE_CURSE",
+        "MOVE_YAWN"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

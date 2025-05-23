@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DUGTRIO",
+    "moves": [
+        "MOVE_EARTH_POWER",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_TRI_ATTACK",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GARCHOMP",
+    "moves": [
+        "MOVE_DRACO_METEOR",
+        "MOVE_EARTH_POWER",
+        "MOVE_FLAMETHROWER",
+        "MOVE_SURF"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

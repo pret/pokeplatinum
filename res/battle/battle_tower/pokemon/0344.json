@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_RELICANTH",
+    "moves": [
+        "MOVE_AQUA_TAIL",
+        "MOVE_ROCK_SLIDE",
+        "MOVE_REST",
+        "MOVE_YAWN"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

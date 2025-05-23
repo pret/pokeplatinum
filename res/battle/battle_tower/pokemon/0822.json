@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DRIFBLIM",
+    "moves": [
+        "MOVE_SHADOW_BALL",
+        "MOVE_AIR_CUTTER",
+        "MOVE_SILVER_WIND",
+        "MOVE_EXPLOSION"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_QUIRCKY",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

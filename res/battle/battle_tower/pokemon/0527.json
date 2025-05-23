@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LOPUNNY",
+    "moves": [
+        "MOVE_FOCUS_PUNCH",
+        "MOVE_SWEET_KISS",
+        "MOVE_ATTRACT",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlag": 9,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

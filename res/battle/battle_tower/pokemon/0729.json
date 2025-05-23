@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LEAFEON",
+    "moves": [
+        "MOVE_LEAF_BLADE",
+        "MOVE_X_SCISSOR",
+        "MOVE_SYNTHESIS",
+        "MOVE_SUNNY_DAY"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_HEAT_ROCK",
+    "form": 0
+}

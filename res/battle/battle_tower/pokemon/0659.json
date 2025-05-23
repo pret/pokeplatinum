@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LUDICOLO",
+    "moves": [
+        "MOVE_HYDRO_PUMP",
+        "MOVE_GRASS_KNOT",
+        "MOVE_BLIZZARD",
+        "MOVE_FOCUS_BLAST"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WIDE_LENS",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_FROSLASS",
+    "moves": [
+        "MOVE_ICE_BEAM",
+        "MOVE_OMINOUS_WIND",
+        "MOVE_CONFUSE_RAY",
+        "MOVE_ATTRACT"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_CHERI_BERRY",
+    "form": 0
+}

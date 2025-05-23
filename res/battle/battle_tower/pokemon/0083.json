@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CACNEA",
+    "moves": [
+        "MOVE_NEEDLE_ARM",
+        "MOVE_FAINT_ATTACK",
+        "MOVE_COTTON_SPORE",
+        "MOVE_GRASS_WHISTLE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_ASPEAR_BERRY",
+    "form": 0
+}

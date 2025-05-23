@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_KABUTOPS",
+    "moves": [
+        "MOVE_WATERFALL",
+        "MOVE_ROCK_SLIDE",
+        "MOVE_SLASH",
+        "MOVE_SWORDS_DANCE"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

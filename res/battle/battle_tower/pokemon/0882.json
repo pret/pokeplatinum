@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_KINGDRA",
+    "moves": [
+        "MOVE_HYDRO_PUMP",
+        "MOVE_DRACO_METEOR",
+        "MOVE_BLIZZARD",
+        "MOVE_SIGNAL_BEAM"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WIDE_LENS",
+    "form": 0
+}

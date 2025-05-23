@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ALTARIA",
+    "moves": [
+        "MOVE_DRACO_METEOR",
+        "MOVE_AIR_CUTTER",
+        "MOVE_FLAMETHROWER",
+        "MOVE_ICE_BEAM"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

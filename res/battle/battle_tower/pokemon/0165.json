@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PUPITAR",
+    "moves": [
+        "MOVE_ROCK_TOMB",
+        "MOVE_DIG",
+        "MOVE_SCARY_FACE",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_HARD_STONE",
+    "form": 0
+}

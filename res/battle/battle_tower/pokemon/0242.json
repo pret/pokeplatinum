@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HUNTAIL",
+    "moves": [
+        "MOVE_WATER_PULSE",
+        "MOVE_BITE",
+        "MOVE_SCREECH",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_QUIRCKY",
+    "item": "ITEM_MYSTIC_WATER",
+    "form": 0
+}

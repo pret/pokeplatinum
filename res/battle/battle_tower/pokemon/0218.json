@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BANETTE",
+    "moves": [
+        "MOVE_SHADOW_SNEAK",
+        "MOVE_KNOCK_OFF",
+        "MOVE_WILL_O_WISP",
+        "MOVE_SPITE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAWST_BERRY",
+    "form": 0
+}

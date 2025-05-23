@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MEGANIUM",
+    "moves": [
+        "MOVE_SOLAR_BEAM",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_SYNTHESIS",
+        "MOVE_SUNNY_DAY"
+    ],
+    "evFlag": 36,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_HEAT_ROCK",
+    "form": 0
+}

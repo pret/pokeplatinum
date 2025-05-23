@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HONCHKROW",
+    "moves": [
+        "MOVE_SUPERPOWER",
+        "MOVE_PLUCK",
+        "MOVE_CONFUSE_RAY",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

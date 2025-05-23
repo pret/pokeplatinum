@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GOLDUCK",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_PSYCHIC",
+        "MOVE_CONFUSE_RAY",
+        "MOVE_CALM_MIND"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_RINDO_BERRY",
+    "form": 0
+}

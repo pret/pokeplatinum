@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CHANSEY",
+    "moves": [
+        "MOVE_EGG_BOMB",
+        "MOVE_FOCUS_PUNCH",
+        "MOVE_SING",
+        "MOVE_SOFTBOILED"
+    ],
+    "evFlag": 33,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_LUCKY_PUNCH",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_NUMEL",
+    "moves": [
+        "MOVE_MAGNITUDE",
+        "MOVE_EMBER",
+        "MOVE_ROCK_TOMB",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlag": 18,
+    "nature": "NATURE_SERIOUS",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

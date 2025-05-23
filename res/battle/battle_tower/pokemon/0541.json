@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TOXICROAK",
+    "moves": [
+        "MOVE_DYNAMIC_PUNCH",
+        "MOVE_POISON_JAB",
+        "MOVE_THUNDER_PUNCH",
+        "MOVE_ICE_PUNCH"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_WIDE_LENS",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BLISSEY",
+    "moves": [
+        "MOVE_FLAMETHROWER",
+        "MOVE_THUNDERBOLT",
+        "MOVE_ICE_BEAM",
+        "MOVE_CALM_MIND"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

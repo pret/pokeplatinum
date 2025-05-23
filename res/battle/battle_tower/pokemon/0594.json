@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GLACEON",
+    "moves": [
+        "MOVE_ICE_BEAM",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_YAWN",
+        "MOVE_HAIL"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

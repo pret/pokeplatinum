@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TENTACRUEL",
+    "moves": [
+        "MOVE_TOXIC",
+        "MOVE_GIGA_DRAIN",
+        "MOVE_ATTRACT",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 33,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_BLACK_SLUDGE",
+    "form": 0
+}

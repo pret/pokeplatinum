@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_NIDORINO",
+    "moves": [
+        "MOVE_TOXIC",
+        "MOVE_DOUBLE_KICK",
+        "MOVE_FACADE",
+        "MOVE_FLATTER"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

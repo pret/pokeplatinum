@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LAPRAS",
+    "moves": [
+        "MOVE_SHEER_COLD",
+        "MOVE_PERISH_SONG",
+        "MOVE_SING",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 36,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_QUICK_CLAW",
+    "form": 0
+}

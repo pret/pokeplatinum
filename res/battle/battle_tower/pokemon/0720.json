@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GALLADE",
+    "moves": [
+        "MOVE_PSYCHO_CUT",
+        "MOVE_STONE_EDGE",
+        "MOVE_AERIAL_ACE",
+        "MOVE_X_SCISSOR"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

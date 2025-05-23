@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SHELGON",
+    "moves": [
+        "MOVE_DRAGON_BREATH",
+        "MOVE_HEADBUTT",
+        "MOVE_PROTECT",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlag": 18,
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_ASPEAR_BERRY",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SLOWKING",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_SURF",
+        "MOVE_ICE_BEAM",
+        "MOVE_FLAMETHROWER"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WISE_GLASSES",
+    "form": 0
+}

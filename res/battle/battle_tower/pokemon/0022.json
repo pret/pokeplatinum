@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BUDEW",
+    "moves": [
+        "MOVE_MEGA_DRAIN",
+        "MOVE_TOXIC",
+        "MOVE_GROWTH",
+        "MOVE_WORRY_SEED"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_BIG_ROOT",
+    "form": 0
+}

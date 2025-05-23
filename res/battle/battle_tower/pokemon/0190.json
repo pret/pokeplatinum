@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PELIPPER",
+    "moves": [
+        "MOVE_WATER_PULSE",
+        "MOVE_AIR_CUTTER",
+        "MOVE_STOCKPILE",
+        "MOVE_SWALLOW"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

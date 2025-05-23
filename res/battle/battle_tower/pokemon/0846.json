@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HONCHKROW",
+    "moves": [
+        "MOVE_NIGHT_SLASH",
+        "MOVE_DRILL_PECK",
+        "MOVE_SUCKER_PUNCH",
+        "MOVE_STEEL_WING"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

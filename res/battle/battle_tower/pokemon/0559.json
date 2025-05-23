@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SCIZOR",
+    "moves": [
+        "MOVE_METAL_CLAW",
+        "MOVE_NIGHT_SLASH",
+        "MOVE_IRON_DEFENSE",
+        "MOVE_ROOST"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_SITRUS_BERRY",
+    "form": 0
+}

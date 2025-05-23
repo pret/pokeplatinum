@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BELLOSSOM",
+    "moves": [
+        "MOVE_MAGICAL_LEAF",
+        "MOVE_ACID",
+        "MOVE_TICKLE",
+        "MOVE_STUN_SPORE"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_PETAYA_BERRY",
+    "form": 0
+}

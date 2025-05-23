@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LICKILICKY",
+    "moves": [
+        "MOVE_RETURN",
+        "MOVE_GYRO_BALL",
+        "MOVE_CURSE",
+        "MOVE_REST"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_BRAVE",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PINSIR",
+    "moves": [
+        "MOVE_X_SCISSOR",
+        "MOVE_SUPERPOWER",
+        "MOVE_STONE_EDGE",
+        "MOVE_GIGA_IMPACT"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

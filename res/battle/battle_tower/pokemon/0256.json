@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CROCONAW",
+    "moves": [
+        "MOVE_AQUA_TAIL",
+        "MOVE_CRUNCH",
+        "MOVE_ROCK_SLIDE",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

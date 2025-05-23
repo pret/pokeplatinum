@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PRINPLUP",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_DRILL_PECK",
+        "MOVE_METAL_CLAW",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlag": 18,
+    "nature": "NATURE_BASHFUL",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

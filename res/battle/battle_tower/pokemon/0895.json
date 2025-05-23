@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ARTICUNO",
+    "moves": [
+        "MOVE_BLIZZARD",
+        "MOVE_FLY",
+        "MOVE_ROOST",
+        "MOVE_HAIL"
+    ],
+    "evFlag": 18,
+    "nature": "NATURE_QUIRCKY",
+    "item": "ITEM_ICY_ROCK",
+    "form": 0
+}

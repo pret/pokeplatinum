@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_VICTREEBEL",
+    "moves": [
+        "MOVE_SEED_BOMB",
+        "MOVE_SPIT_UP",
+        "MOVE_SWALLOW",
+        "MOVE_STOCKPILE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BLACK_SLUDGE",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BRONZONG",
+    "moves": [
+        "MOVE_ZEN_HEADBUTT",
+        "MOVE_IRON_HEAD",
+        "MOVE_EARTHQUAKE",
+        "MOVE_EXPLOSION"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_QUICK_CLAW",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_EMPOLEON",
+    "moves": [
+        "MOVE_DRILL_PECK",
+        "MOVE_AQUA_JET",
+        "MOVE_SHADOW_CLAW",
+        "MOVE_ROCK_SLIDE"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

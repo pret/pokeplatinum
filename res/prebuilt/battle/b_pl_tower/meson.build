@@ -1,5 +1,4 @@
 prebuilt_files = [
-    'pl_btdpm.narc',
     'pl_btdtr.narc'
 ]
 

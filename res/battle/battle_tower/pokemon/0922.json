@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_REGIGIGAS",
+    "moves": [
+        "MOVE_FACADE",
+        "MOVE_ZEN_HEADBUTT",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_SUBSTITUTE"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

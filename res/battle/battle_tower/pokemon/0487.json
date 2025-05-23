@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_VENUSAUR",
+    "moves": [
+        "MOVE_GIGA_DRAIN",
+        "MOVE_INGRAIN",
+        "MOVE_LEECH_SEED",
+        "MOVE_SLEEP_POWDER"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_BIG_ROOT",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GOLDUCK",
+    "moves": [
+        "MOVE_HYDRO_PUMP",
+        "MOVE_PSYCHIC",
+        "MOVE_ICE_BEAM",
+        "MOVE_SIGNAL_BEAM"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WACAN_BERRY",
+    "form": 0
+}

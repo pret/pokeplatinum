@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SEVIPER",
+    "moves": [
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_CRUNCH",
+        "MOVE_AQUA_TAIL",
+        "MOVE_SWAGGER"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BLACK_SLUDGE",
+    "form": 0
+}

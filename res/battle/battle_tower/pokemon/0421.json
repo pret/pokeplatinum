@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_POLITOED",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_HYPER_VOICE",
+        "MOVE_MUD_BOMB",
+        "MOVE_SWAGGER"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

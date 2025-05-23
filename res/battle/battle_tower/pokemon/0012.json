@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PIPLUP",
+    "moves": [
+        "MOVE_BUBBLE_BEAM",
+        "MOVE_AERIAL_ACE",
+        "MOVE_GROWL",
+        "MOVE_SUPERSONIC"
+    ],
+    "evFlag": 18,
+    "nature": "NATURE_BASHFUL",
+    "item": "ITEM_RINDO_BERRY",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LATIOS",
+    "moves": [
+        "MOVE_LUSTER_PURGE",
+        "MOVE_DRACO_METEOR",
+        "MOVE_HYPER_BEAM",
+        "MOVE_SURF"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

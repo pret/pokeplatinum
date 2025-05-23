@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HITMONLEE",
+    "moves": [
+        "MOVE_ROLLING_KICK",
+        "MOVE_FACADE",
+        "MOVE_FORESIGHT",
+        "MOVE_FOCUS_ENERGY"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_BLACK_BELT",
+    "form": 0
+}

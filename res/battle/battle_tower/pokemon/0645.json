@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SKARMORY",
+    "moves": [
+        "MOVE_DRILL_PECK",
+        "MOVE_SLASH",
+        "MOVE_PAYBACK",
+        "MOVE_NIGHT_SLASH"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

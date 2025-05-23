@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MR_MIME",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_COPYCAT",
+        "MOVE_MIMIC"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_CHERI_BERRY",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SWAMPERT",
+    "moves": [
+        "MOVE_WATERFALL",
+        "MOVE_EARTHQUAKE",
+        "MOVE_ICE_PUNCH",
+        "MOVE_PROTECT"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SHELL_BELL",
+    "form": 0
+}

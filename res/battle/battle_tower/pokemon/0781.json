@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SKARMORY",
+    "moves": [
+        "MOVE_BRAVE_BIRD",
+        "MOVE_STEEL_WING",
+        "MOVE_X_SCISSOR",
+        "MOVE_ROCK_SLIDE"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LIFE_ORB",
+    "form": 0
+}

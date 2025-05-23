@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CLAMPERL",
+    "moves": [
+        "MOVE_WHIRLPOOL",
+        "MOVE_TOXIC",
+        "MOVE_IRON_DEFENSE",
+        "MOVE_PROTECT"
+    ],
+    "evFlag": 5,
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_DEEPSEASCALE",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_METAGROSS",
+    "moves": [
+        "MOVE_ZEN_HEADBUTT",
+        "MOVE_BULLET_PUNCH",
+        "MOVE_FACADE",
+        "MOVE_LIGHT_SCREEN"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

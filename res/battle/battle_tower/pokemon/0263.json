@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SUDOWOODO",
+    "moves": [
+        "MOVE_STONE_EDGE",
+        "MOVE_EARTHQUAKE",
+        "MOVE_MIMIC",
+        "MOVE_SELFDESTRUCT"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LIFE_ORB",
+    "form": 0
+}

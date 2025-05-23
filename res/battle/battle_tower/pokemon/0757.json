@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GARCHOMP",
+    "moves": [
+        "MOVE_DRAGON_RUSH",
+        "MOVE_STONE_EDGE",
+        "MOVE_AQUA_TAIL",
+        "MOVE_AERIAL_ACE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_SASH",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SCEPTILE",
+    "moves": [
+        "MOVE_GIGA_DRAIN",
+        "MOVE_LEECH_SEED",
+        "MOVE_TOXIC",
+        "MOVE_DOUBLE_TEAM"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}
