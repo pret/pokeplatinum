@@ -88,7 +88,7 @@ pl_font_ignore = files('pl_font.ignore')
 pl_font_narc = custom_target('pl_font.narc',
     output: [
         'pl_font.narc',
-        'pl_font.naix',
+        'pl_font.naix.h',
     ],
     input: [
         font_nfgrs,

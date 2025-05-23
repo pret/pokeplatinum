@@ -46,7 +46,7 @@ shop_gra_order = files('shop_gra.order')
 shop_gra_narc = custom_target('shop_gra.narc',
     output: [
         'shop_gra.narc',
-        'shop_gra.naix',
+        'shop_gra.naix.h',
     ],
     input: [
         tiles_ncgr,

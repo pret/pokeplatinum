@@ -6,8 +6,8 @@
 
 #include "map_header.h" // Only for Intellisense/LSPs
 
-#include "res/field/events/zone_event.naix"
-#include "res/field/scripts/scr_seq.naix"
+#include "res/field/events/zone_event.naix.h"
+#include "res/field/scripts/scr_seq.naix.h"
 #include "res/text/bank/location_names.h"
 
 static const MapHeader sMapHeaders[] = {

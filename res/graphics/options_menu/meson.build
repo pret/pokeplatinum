@@ -11,7 +11,7 @@ config_gra_order = files('config_gra.order')
 config_gra_narc = custom_target('config_gra.narc',
     output: [
         'config_gra.narc',
-        'config_gra.naix',
+        'config_gra.naix.h',
     ],
     input: [
         tiles_ncgr,
