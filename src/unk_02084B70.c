@@ -409,7 +409,7 @@ int sub_02085348(void *param0)
     }
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        windowLayout->partyManagementData->unk_23 = 0;
+        windowLayout->partyManagementData->menuSelectionResult = 0;
         return 32;
     }
 
@@ -646,7 +646,7 @@ int sub_02085804(GameWindowLayout *windowLayout)
                 windowLayout->unk_B0E = 1;
             } else {
                 Bag_TryRemoveItem(windowLayout->partyManagementData->bag, windowLayout->partyManagementData->usedItemID, 1, HEAP_ID_12);
-                windowLayout->partyManagementData->unk_23 = 0;
+                windowLayout->partyManagementData->menuSelectionResult = 0;
                 windowLayout->partySlot = 7;
                 return 32;
             }
@@ -791,7 +791,7 @@ static int sub_02085C50(void *windowLayoutPtr)
     case 5:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
-            TeachMove(windowLayout, mon, windowLayout->partyManagementData->unk_28);
+            TeachMove(windowLayout, mon, windowLayout->partyManagementData->selectedMoveSlot);
             strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 61);
 
             StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyManagementData->learnedMove);
@@ -813,9 +813,9 @@ static int sub_02085C50(void *windowLayoutPtr)
         windowLayout->partyManagementData->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(windowLayout->partyManagementData->party, mon, EVO_CLASS_BY_LEVEL, v5, &windowLayout->partyManagementData->unk_3C);
 
         if (windowLayout->partyManagementData->evoTargetSpecies != 0) {
-            windowLayout->partyManagementData->unk_23 = 9;
+            windowLayout->partyManagementData->menuSelectionResult = 9;
         } else {
-            windowLayout->partyManagementData->unk_23 = 0;
+            windowLayout->partyManagementData->menuSelectionResult = 0;
         }
     }
         return 32;
@@ -835,12 +835,12 @@ int sub_02085EF4(GameWindowLayout *windowLayout)
     mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
     StringTemplate_SetNickname(windowLayout->template, 0, Pokemon_GetBoxPokemon(mon));
 
-    if (windowLayout->partyManagementData->unk_28 == 4) {
+    if (windowLayout->partyManagementData->selectedMoveSlot == 4) {
         StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyManagementData->learnedMove);
         return sub_02086008(windowLayout);
     }
 
-    StringTemplate_SetMoveName(windowLayout->template, 1, Pokemon_GetValue(mon, 54 + windowLayout->partyManagementData->unk_28, NULL));
+    StringTemplate_SetMoveName(windowLayout->template, 1, Pokemon_GetValue(mon, 54 + windowLayout->partyManagementData->selectedMoveSlot, NULL));
     strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 60);
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
@@ -864,7 +864,7 @@ static int sub_02085FB4(void *windowLayoutPtr)
     Strbuf_Free(strBuf);
     sub_02082708(windowLayout, 0xffffffff, 0);
 
-    windowLayout->partyManagementData->unk_23 = 5;
+    windowLayout->partyManagementData->menuSelectionResult = 5;
     windowLayout->unk_B0E = 25;
 
     return 24;
@@ -976,7 +976,7 @@ int sub_0208615C(GameWindowLayout *windowLayout)
         StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
         Strbuf_Free(strBuf);
         sub_02082708(windowLayout, 0xffffffff, 1);
-        windowLayout->partyManagementData->unk_23 = 0;
+        windowLayout->partyManagementData->menuSelectionResult = 0;
         windowLayout->unk_B0E = 25;
         break;
     case 0xfd:
@@ -984,7 +984,7 @@ int sub_0208615C(GameWindowLayout *windowLayout)
         StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
         Strbuf_Free(strBuf);
         sub_02082708(windowLayout, 0xffffffff, 1);
-        windowLayout->partyManagementData->unk_23 = 0;
+        windowLayout->partyManagementData->menuSelectionResult = 0;
         windowLayout->unk_B0E = 25;
         break;
     case 0xfe:
@@ -1003,7 +1003,7 @@ int sub_0208615C(GameWindowLayout *windowLayout)
         Strbuf_Free(strBuf);
         sub_02082708(windowLayout, 0xffffffff, 1);
 
-        windowLayout->partyManagementData->unk_23 = 0;
+        windowLayout->partyManagementData->menuSelectionResult = 0;
         windowLayout->unk_B0E = 25;
         break;
     }
@@ -1019,12 +1019,12 @@ int sub_020862F8(GameWindowLayout *windowLayout)
     mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
     StringTemplate_SetNickname(windowLayout->template, 0, Pokemon_GetBoxPokemon(mon));
 
-    if (windowLayout->partyManagementData->unk_28 == 4) {
+    if (windowLayout->partyManagementData->selectedMoveSlot == 4) {
         StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyManagementData->learnedMove);
         return sub_0208648C(windowLayout);
     }
 
-    StringTemplate_SetMoveName(windowLayout->template, 1, Pokemon_GetValue(mon, 54 + windowLayout->partyManagementData->unk_28, NULL));
+    StringTemplate_SetMoveName(windowLayout->template, 1, Pokemon_GetValue(mon, 54 + windowLayout->partyManagementData->selectedMoveSlot, NULL));
     strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 60);
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
@@ -1042,14 +1042,14 @@ int sub_020863A0(GameWindowLayout *windowLayout)
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
 
-        TeachMove(windowLayout, mon, windowLayout->partyManagementData->unk_28);
+        TeachMove(windowLayout, mon, windowLayout->partyManagementData->selectedMoveSlot);
         strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 61);
         StringTemplate_SetMoveName(windowLayout->template, 1, windowLayout->partyManagementData->learnedMove);
         StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
         Strbuf_Free(strBuf);
         sub_02082708(windowLayout, 0xffffffff, 0);
 
-        windowLayout->partyManagementData->unk_23 = 0;
+        windowLayout->partyManagementData->menuSelectionResult = 0;
         windowLayout->unk_B0E = 25;
 
         return 24;
@@ -1070,7 +1070,7 @@ static int sub_02086438(void *windowLayoutPtr)
     Strbuf_Free(strBuf);
     sub_02082708(windowLayout, 0xffffffff, 0);
 
-    windowLayout->partyManagementData->unk_23 = 4;
+    windowLayout->partyManagementData->menuSelectionResult = 4;
     windowLayout->unk_B0E = 25;
 
     return 24;
@@ -1107,7 +1107,7 @@ static int sub_020864E4(void *windowLayoutPtr)
     Strbuf_Free(strBuf);
     sub_02082708(windowLayout, 0xffffffff, 0);
 
-    windowLayout->partyManagementData->unk_23 = 0;
+    windowLayout->partyManagementData->menuSelectionResult = 0;
     windowLayout->unk_B0E = 25;
 
     return 24;
@@ -1242,7 +1242,7 @@ int sub_02086774(GameWindowLayout *windowLayout)
 
         sub_02082708(windowLayout, 0xffffffff, 1);
 
-        windowLayout->partyManagementData->unk_23 = 0;
+        windowLayout->partyManagementData->menuSelectionResult = 0;
         windowLayout->unk_B0E = 25;
 
         return 24;
@@ -1265,7 +1265,7 @@ void sub_020868B0(GameWindowLayout *windowLayout)
 
     sub_02082708(windowLayout, 0xffffffff, 1);
 
-    windowLayout->partyManagementData->unk_23 = 0;
+    windowLayout->partyManagementData->menuSelectionResult = 0;
     windowLayout->unk_B0E = 25;
 }
 

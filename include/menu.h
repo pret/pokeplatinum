@@ -26,6 +26,41 @@ enum MenuExternalInput {
     MENU_INPUT_MOVE_RIGHT,
 };
 
+// Results for party menu actions
+enum PartyMenuSelectionResult {
+    MENU_SELECTION_NONE = 0,
+    MENU_SELECTION_STATUS, // Check Summary
+    MENU_SELECTION_SWITCH, // Switch
+    MENU_SELECTION_ITEMSET, // Give Item
+
+    MENU_SELECTION_LEARN_MOVE_TM, // Learn Move (TM)
+    MENU_SELECTION_LEARN_MOVE_LVLUP, // Learn Move (Level Up/Rare Candy)
+    MENU_SELECTION_SET_MAIL, // Set Mail
+    MENU_SELECTION_READ_MAIL, // Read Mail
+
+    MENU_SELECTION_EVO_ITEM, // Evolve (Item) <- Not 100% sure if this is correct
+    MENU_SELECTION_EVOLUTION, // Evolve (Level)
+
+    MENU_SELECTION_BAG, // Return to Bag
+
+    // Field Moves
+    MENU_SELECTION_CUT, // Cut
+    MENU_SELECTION_FLY, // Fly
+    MENU_SELECTION_SURF, // Surf
+    MENU_SELECTION_STRENGTH, // Strength
+    MENU_SELECTION_DEFOG, // Defog
+    MENU_SELECTION_ROCK_SMASH, // Rock Smash
+    MENU_SELECTION_WATERFALL, // Waterfall
+    MENU_SELECTION_ROCK_CLIMB, // Rock Climb
+    MENU_SELECTION_FLASH, // Flash
+    MENU_SELECTION_TELEPORT, // Teleport
+    MENU_SELECTION_DIG, // Dig
+    MENU_SELECTION_SWEET_SCENT, // Sweet Scent
+    MENU_SELECTION_CHATTER, // Chatter
+    MENU_SELECTION_MILK_DRINK, // Milk Drink
+    MENU_SELECTION_SOFTBOILED, // Softboiled
+};
+
 typedef struct MenuTemplate {
     StringList *choices;
     Window *window;

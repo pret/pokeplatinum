@@ -1012,7 +1012,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     memcpy(partyMan, menu->taskData, sizeof(PartyManagementData));
     Heap_FreeToHeap(menu->taskData);
 
-    switch (partyMan->unk_23) {
+    switch (partyMan->menuSelectionResult) {
     case 1: {
         PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
@@ -1170,7 +1170,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         FieldMoveTaskContext v16;
         FieldMovePokemon fieldMoveMon;
 
-        fieldMoveMon.fieldMove = partyMan->unk_23 - 11;
+        fieldMoveMon.fieldMove = partyMan->menuSelectionResult - 11;
         fieldMoveMon.fieldMonId = partyMan->selectedMonSlot;
         fieldMoveMon.fieldTask = taskMan;
 
@@ -1608,7 +1608,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         v3->usedItemID = v4->unk_00;
         v3->selectedMonSlot = v2->monIndex;
         v3->learnedMove = v2->move;
-        v3->unk_28 = v2->selectedMoveSlot;
+        v3->selectedMoveSlot = v2->selectedMoveSlot;
 
         FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v3);
         Heap_FreeToHeap(menu->unk_260);

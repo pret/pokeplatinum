@@ -488,7 +488,7 @@ static int sub_0207E518(GameWindowLayout *param0)
 
     if (v0 == 0) {
         if ((param0->partyManagementData->unk_20 == 3) || (param0->partyManagementData->unk_20 == 20)) {
-            param0->partyManagementData->unk_23 = 0;
+            param0->partyManagementData->menuSelectionResult = 0;
             return 32;
         } else if (param0->partyManagementData->unk_20 == 14) {
             sub_020868B0(param0);
@@ -501,11 +501,11 @@ static int sub_0207E518(GameWindowLayout *param0)
     } else if (v0 == 4) {
         return HandleGameWindowEvent(param0);
     } else if (v0 == 3) {
-        param0->partyManagementData->unk_23 = 0;
+        param0->partyManagementData->menuSelectionResult = 0;
         return 32;
     } else if (v0 == 2) {
         if (param0->partyManagementData->unk_20 != 15) {
-            param0->partyManagementData->unk_23 = 1;
+            param0->partyManagementData->menuSelectionResult = 1;
             return 32;
         } else {
             Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
@@ -524,7 +524,7 @@ static int sub_0207E5B4(GameWindowLayout *param0)
         Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
         return ApplyItemEffectOnPokemon(param0);
     } else if (v0 == 3) {
-        param0->partyManagementData->unk_23 = 0;
+        param0->partyManagementData->menuSelectionResult = 0;
         return 32;
     }
 
@@ -539,7 +539,7 @@ static int sub_0207E5F4(GameWindowLayout *param0)
         Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
         return ProcessItemApplication(param0);
     } else if (v0 == 3) {
-        param0->partyManagementData->unk_23 = 0;
+        param0->partyManagementData->menuSelectionResult = 0;
         return 32;
     }
 
@@ -624,13 +624,13 @@ static int sub_0207E750(GameWindowLayout *param0)
             return sub_0208615C(param0);
         } else {
             sub_02082708(param0, 0xffffffff, 1);
-            param0->partyManagementData->unk_23 = 0;
+            param0->partyManagementData->menuSelectionResult = 0;
             param0->unk_B0E = 25;
             MessageLoader_GetStrbuf(param0->messageLoader, 105, param0->unk_6A4);
             return 24;
         }
     } else if (v0 == 3) {
-        param0->partyManagementData->unk_23 = 0;
+        param0->partyManagementData->menuSelectionResult = 0;
         return 32;
     }
 
@@ -946,7 +946,7 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
     v0->partyManagementData = OverlayManager_Args(param0);
     v0->unk_00 = BgConfig_New(HEAP_ID_12);
 
-    if ((v0->partyManagementData->unk_20 == 2) && (v0->partyManagementData->unk_14 != NULL)) {
+    if ((v0->partyManagementData->unk_20 == 2) && (v0->partyManagementData->battleRegulation != NULL)) {
         v0->unk_B20 = sub_0207A2A8(HEAP_ID_12);
     } else {
         v0->unk_B20 = NULL;
@@ -1889,10 +1889,10 @@ u8 sub_02080354(GameWindowLayout *windowLayout, u8 partySlot)
 {
     u8 v0;
 
-    if (windowLayout->partyManagementData->unk_14 != NULL) {
+    if (windowLayout->partyManagementData->battleRegulation != NULL) {
         Pokemon *v1 = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, partySlot);
 
-        if (sub_0207A2D0(windowLayout->partyManagementData->unk_14, v1, windowLayout->unk_B20) == 0) {
+        if (sub_0207A2D0(windowLayout->partyManagementData->battleRegulation, v1, windowLayout->unk_B20) == 0) {
             return 0;
         }
     }
@@ -2084,8 +2084,8 @@ static int HandleGameWindowEvent(GameWindowLayout *param0)
         }
     }
 
-    if (param0->partyManagementData->unk_14 != NULL) {
-        switch (sub_0207A3AC(param0->partyManagementData->unk_14, param0->partyManagementData->party, param0->unk_B20, param0->partyManagementData->unk_2C)) {
+    if (param0->partyManagementData->battleRegulation != NULL) {
+        switch (sub_0207A3AC(param0->partyManagementData->battleRegulation, param0->partyManagementData->party, param0->unk_B20, param0->partyManagementData->unk_2C)) {
         case 0:
             break;
 
@@ -2094,7 +2094,7 @@ static int HandleGameWindowEvent(GameWindowLayout *param0)
             int v2;
 
             v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 184);
-            v2 = sub_02026074(param0->partyManagementData->unk_14, 3);
+            v2 = sub_02026074(param0->partyManagementData->battleRegulation, 3);
 
             StringTemplate_SetNumber(param0->template, 0, v2, 3, 0, 1);
             StringTemplate_Format(param0->template, param0->unk_6A4, v1);
@@ -2158,7 +2158,7 @@ static int HandleGameWindowEvent(GameWindowLayout *param0)
         }
     }
 
-    param0->partyManagementData->unk_23 = 0;
+    param0->partyManagementData->menuSelectionResult = 0;
     Sound_PlayEffect(SEQ_SE_CONFIRM);
     return 32;
 }
@@ -2580,7 +2580,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
             Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
 
             param0->partyManagementData->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_ITEM, param0->partyManagementData->usedItemID, &param0->partyManagementData->unk_3C);
-            param0->partyManagementData->unk_23 = 8;
+            param0->partyManagementData->menuSelectionResult = 8;
             Heap_FreeToHeap(v0);
             return 32;
         }
@@ -2644,7 +2644,7 @@ static int ProcessItemApplication(GameWindowLayout *param0)
         switch (CheckItemUsageValidity(param0)) {
         case 0:
             if (Item_IsMail(param0->partyManagementData->usedItemID) == 1) {
-                param0->partyManagementData->unk_23 = 6;
+                param0->partyManagementData->menuSelectionResult = 6;
                 return 32;
             }
 
@@ -2781,7 +2781,7 @@ static int ProcessPokemonItemSwap(GameWindowLayout *param0)
             if (Item_IsMail(param0->partyManagementData->usedItemID) == 1) {
                 Bag_TryRemoveItem(param0->partyManagementData->bag, (u16)v5, 1, HEAP_ID_12);
                 SwapPokemonItem(param0, v2, v4, v5);
-                param0->partyManagementData->unk_23 = 6;
+                param0->partyManagementData->menuSelectionResult = 6;
                 return 32;
             }
 
@@ -2818,7 +2818,7 @@ static int ResetWindowOnInput(GameWindowLayout *param0)
         return 1;
     }
 
-    param0->partyManagementData->unk_23 = 10;
+    param0->partyManagementData->menuSelectionResult = 10;
     return 32;
 }
 
@@ -2867,7 +2867,7 @@ static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
 static int CheckForItemApplication(GameWindowLayout *param0)
 {
     if (param0->unk_704[param0->partySlot].unk_12 == 0) {
-        param0->partyManagementData->unk_23 = 0;
+        param0->partyManagementData->menuSelectionResult = 0;
         return 32;
     }
 

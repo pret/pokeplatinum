@@ -605,7 +605,7 @@ static void sub_02072878(SysTask *param0, void *param1)
         }
 
         v1 = v4->unk_1B4->selectedMonSlot;
-        v2 = v4->unk_1B4->unk_23;
+        v2 = v4->unk_1B4->menuSelectionResult;
 
         Heap_FreeToHeap(v4->unk_1B4);
 

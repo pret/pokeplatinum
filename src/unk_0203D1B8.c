@@ -438,7 +438,7 @@ void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2)
 int sub_0203D438(void *param0)
 {
     PartyManagementData *v0 = param0;
-    return v0->unk_23;
+    return v0->menuSelectionResult;
 }
 
 int sub_0203D440(void *param0)
@@ -510,7 +510,7 @@ void *sub_0203D50C(FieldTask *taskMan, int heapID)
     v1->unk_32_0 = 2;
     v1->unk_32_4 = 2;
     v1->unk_33 = 30;
-    v1->unk_14 = NULL;
+    v1->battleRegulation = NULL;
     v0->unk_04 = v1;
 
     FieldTask_InitCall(taskMan, sub_0203D444, v0);

@@ -150,7 +150,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
     case 10:
         if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
             ov118_021D0F70(param0);
-            param0->partyManagementData->unk_23 = 0;
+            param0->partyManagementData->menuSelectionResult = 0;
             return 1;
         }
 

@@ -74,7 +74,7 @@ static void sub_020845E8(GameWindowLayout *param0, int *param1);
 static void sub_020846FC(GameWindowLayout *param0, int *param1);
 static void sub_020839FC(GameWindowLayout *param0, int *param1);
 
-static const u32 Unk_020F2458[] = {
+static const u32 sMenuSelectionTable[] = {
     (const u32)sub_02083AD0,
     (const u32)sub_0208472C,
     (const u32)sub_020833BC,
@@ -109,9 +109,9 @@ static const u32 Unk_020F2458[] = {
     0xFFFFFFFE
 };
 
-u32 sub_02083370(u8 param0)
+u32 PartyMenu_MakeSelection(u8 selection)
 {
-    return Unk_020F2458[param0];
+    return sMenuSelectionTable[selection];
 }
 
 void sub_0208337C(GameWindowLayout *param0)
@@ -132,9 +132,9 @@ static void sub_020833BC(GameWindowLayout *param0, int *param1)
 
     param0->unk_6FC = StringList_New(3, 12);
 
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[3], sub_02083370(3));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[4], sub_02083370(4));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], sub_02083370(9));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[3], PartyMenu_MakeSelection(3));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[4], PartyMenu_MakeSelection(4));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], PartyMenu_MakeSelection(9));
 
     v0.choices = param0->unk_6FC;
     v0.window = &param0->unk_04[35];
@@ -156,7 +156,7 @@ static void sub_0208347C(GameWindowLayout *param0, int *param1)
     Menu_Free(param0->unk_700, NULL);
     StringList_Free(param0->unk_6FC);
 
-    param0->partyManagementData->unk_23 = 3;
+    param0->partyManagementData->menuSelectionResult = MENU_SELECTION_ITEMSET;
     *param1 = 32;
 }
 
@@ -260,9 +260,9 @@ static void sub_02083700(GameWindowLayout *param0, int *param1)
 
     param0->unk_6FC = StringList_New(3, 12);
 
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[6], sub_02083370(6));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[7], sub_02083370(7));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], sub_02083370(9));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[6], PartyMenu_MakeSelection(MENU_SELECTION_SET_MAIL));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[7], PartyMenu_MakeSelection(MENU_SELECTION_READ_MAIL));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], PartyMenu_MakeSelection(MENU_SELECTION_EVOLUTION));
 
     v0.choices = param0->unk_6FC;
     v0.window = &param0->unk_04[35];
@@ -284,7 +284,7 @@ static void sub_020837C0(GameWindowLayout *param0, int *param1)
     Menu_Free(param0->unk_700, NULL);
     StringList_Free(param0->unk_6FC);
 
-    param0->partyManagementData->unk_23 = 7;
+    param0->partyManagementData->menuSelectionResult = 7;
     *param1 = 32;
 }
 
@@ -391,7 +391,7 @@ static void sub_020839FC(GameWindowLayout *param0, int *param1)
     if (param0->unk_704[param0->partySlot].unk_12 == 0) {
         Menu_Free(param0->unk_700, NULL);
         StringList_Free(param0->unk_6FC);
-        param0->partyManagementData->unk_23 = 0;
+        param0->partyManagementData->menuSelectionResult = 0;
         *param1 = 32;
         return;
     }
@@ -415,7 +415,7 @@ int sub_02083A78(void *param0)
 
     sub_0207893C(v1);
 
-    v0->partyManagementData->unk_23 = 0;
+    v0->partyManagementData->menuSelectionResult = 0;
     return 32;
 }
 
@@ -804,7 +804,7 @@ static void sub_020845E8(GameWindowLayout *param0, int *param1)
 
 static void sub_020846CC(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 0;
+    param0->partyManagementData->menuSelectionResult = 0;
 
     Menu_Free(param0->unk_700, NULL);
     StringList_Free(param0->unk_6FC);
@@ -814,7 +814,7 @@ static void sub_020846CC(GameWindowLayout *param0, int *param1)
 
 static void sub_020846FC(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 0;
+    param0->partyManagementData->menuSelectionResult = 0;
 
     Menu_Free(param0->unk_700, NULL);
     StringList_Free(param0->unk_6FC);
@@ -824,7 +824,7 @@ static void sub_020846FC(GameWindowLayout *param0, int *param1)
 
 static void sub_0208472C(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 1;
+    param0->partyManagementData->menuSelectionResult = 1;
 
     Menu_Free(param0->unk_700, NULL);
     StringList_Free(param0->unk_6FC);
@@ -854,30 +854,30 @@ int sub_02084780(GameWindowLayout *param0)
 
     sub_02082708(param0, 0xffffffff, 1);
 
-    param0->partyManagementData->unk_23 = 0;
+    param0->partyManagementData->menuSelectionResult = 0;
     param0->unk_B0E = 25;
 
     return 24;
 }
 
-static void sub_02084808(GameWindowLayout *param0, int *param1)
+static void sub_02084808(GameWindowLayout *windowLayout, int *param1)
 {
-    FieldMoveErrContext v0;
+    FieldMoveErrContext fieldMoveErrorCtx;
     u32 v1;
     u32 v2;
 
-    v0 = (FieldMoveErrContext)FieldMove_GetTaskOrError(FIELD_MOVE_ERROR, param0->partyManagementData->unk_23 - 11);
+    fieldMoveErrorCtx = (FieldMoveErrContext)FieldMove_GetTaskOrError(FIELD_MOVE_ERROR, windowLayout->partyManagementData->menuSelectionResult - 11);
 
-    if (v0 != NULL) {
-        v1 = v0(param0->partyManagementData->fieldMoveContext);
+    if (fieldMoveErrorCtx != NULL) {
+        v1 = fieldMoveErrorCtx(windowLayout->partyManagementData->fieldMoveContext);
     } else {
         v1 = 1;
     }
 
     switch (v1) {
     case 0:
-        Menu_Free(param0->unk_700, NULL);
-        StringList_Free(param0->unk_6FC);
+        Menu_Free(windowLayout->unk_700, NULL);
+        StringList_Free(windowLayout->unk_6FC);
         *param1 = 32;
         return;
     case 1:
@@ -894,89 +894,89 @@ static void sub_02084808(GameWindowLayout *param0, int *param1)
         break;
     }
 
-    Window_EraseMessageBox(&param0->unk_04[33], 1);
-    sub_0208337C(param0);
-    sub_02082708(param0, v2, 1);
+    Window_EraseMessageBox(&windowLayout->unk_04[33], 1);
+    sub_0208337C(windowLayout);
+    sub_02082708(windowLayout, v2, 1);
 
-    param0->unk_B0E = 3;
+    windowLayout->unk_B0E = 3;
     *param1 = 24;
 }
 
 static void sub_020848A8(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 11;
+    param0->partyManagementData->menuSelectionResult = 11;
     sub_02084808(param0, param1);
 }
 
 static void sub_020848C0(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 16;
+    param0->partyManagementData->menuSelectionResult = 16;
     sub_02084808(param0, param1);
 }
 
 static void sub_020848D8(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 14;
+    param0->partyManagementData->menuSelectionResult = 14;
     sub_02084808(param0, param1);
 }
 
 static void sub_020848F0(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 13;
+    param0->partyManagementData->menuSelectionResult = 13;
     sub_02084808(param0, param1);
 }
 
 static void sub_02084908(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 15;
+    param0->partyManagementData->menuSelectionResult = 15;
     sub_02084808(param0, param1);
 }
 
 static void sub_02084920(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 18;
+    param0->partyManagementData->menuSelectionResult = 18;
     sub_02084808(param0, param1);
 }
 
 static void sub_02084938(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 12;
+    param0->partyManagementData->menuSelectionResult = 12;
     sub_02084808(param0, param1);
 }
 
 static void sub_02084950(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 17;
+    param0->partyManagementData->menuSelectionResult = 17;
     sub_02084808(param0, param1);
 }
 
 static void sub_02084968(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 19;
+    param0->partyManagementData->menuSelectionResult = 19;
     sub_02084808(param0, param1);
 }
 
 static void sub_02084980(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 20;
+    param0->partyManagementData->menuSelectionResult = 20;
     sub_02084808(param0, param1);
 }
 
 static void sub_02084998(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 21;
+    param0->partyManagementData->menuSelectionResult = 21;
     sub_02084808(param0, param1);
 }
 
 static void sub_020849B0(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 22;
+    param0->partyManagementData->menuSelectionResult = 22;
     sub_02084808(param0, param1);
 }
 
 static void sub_020849C8(GameWindowLayout *param0, int *param1)
 {
-    param0->partyManagementData->unk_23 = 23;
+    param0->partyManagementData->menuSelectionResult = 23;
     sub_02084808(param0, param1);
 }
 
