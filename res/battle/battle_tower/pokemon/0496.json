@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TORTERRA",
+    "moves": [
+        "MOVE_GIGA_DRAIN",
+        "MOVE_LEECH_SEED",
+        "MOVE_SYNTHESIS",
+        "MOVE_AMNESIA"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_SASSY",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

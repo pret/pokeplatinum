@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BEEDRILL",
+    "moves": [
+        "MOVE_TWINEEDLE",
+        "MOVE_TOXIC",
+        "MOVE_ASSURANCE",
+        "MOVE_AGILITY"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

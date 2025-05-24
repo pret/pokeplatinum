@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PORYGON2",
+    "moves": [
+        "MOVE_TRI_ATTACK",
+        "MOVE_CHARGE_BEAM",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_RECYCLE"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_CHERI_BERRY",
+    "form": 0
+}

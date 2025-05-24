@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MARSHTOMP",
+    "moves": [
+        "MOVE_MUDDY_WATER",
+        "MOVE_EARTHQUAKE",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_PROTECT"
+    ],
+    "evFlag": 18,
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_PERSIM_BERRY",
+    "form": 0
+}

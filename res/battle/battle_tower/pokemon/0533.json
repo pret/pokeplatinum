@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SLOWBRO",
+    "moves": [
+        "MOVE_ZEN_HEADBUTT",
+        "MOVE_AQUA_TAIL",
+        "MOVE_EARTHQUAKE",
+        "MOVE_AVALANCHE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_EXPERT_BELT",
+    "form": 0
+}

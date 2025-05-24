@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TORKOAL",
+    "moves": [
+        "MOVE_EMBER",
+        "MOVE_MUD_SLAP",
+        "MOVE_SMOG",
+        "MOVE_AMNESIA"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_PETAYA_BERRY",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ELECTRODE",
+    "moves": [
+        "MOVE_CHARGE_BEAM",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_FLASH",
+        "MOVE_SWAGGER"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

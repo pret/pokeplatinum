@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_RIOLU",
+    "moves": [
+        "MOVE_BRICK_BREAK",
+        "MOVE_BULLET_PUNCH",
+        "MOVE_FORESIGHT",
+        "MOVE_COUNTER"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_EXPERT_BELT",
+    "form": 0
+}

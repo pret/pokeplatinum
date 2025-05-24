@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ALTARIA",
+    "moves": [
+        "MOVE_DRAGON_CLAW",
+        "MOVE_AERIAL_ACE",
+        "MOVE_DRAGON_DANCE",
+        "MOVE_REST"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

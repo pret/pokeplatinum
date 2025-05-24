@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SLOWBRO",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_SURF",
+        "MOVE_CALM_MIND",
+        "MOVE_YAWN"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

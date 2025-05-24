@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_EXEGGCUTE",
+    "moves": [
+        "MOVE_CONFUSION",
+        "MOVE_GRASS_KNOT",
+        "MOVE_LEECH_SEED",
+        "MOVE_LIGHT_SCREEN"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_ODD_INCENSE",
+    "form": 0
+}

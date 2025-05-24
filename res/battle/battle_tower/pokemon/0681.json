@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CRADILY",
+    "moves": [
+        "MOVE_GIGA_DRAIN",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_RECOVER",
+        "MOVE_INGRAIN"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_BIG_ROOT",
+    "form": 0
+}

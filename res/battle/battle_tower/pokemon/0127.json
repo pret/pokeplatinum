@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_WEEPINBELL",
+    "moves": [
+        "MOVE_RAZOR_LEAF",
+        "MOVE_ACID",
+        "MOVE_WRAP",
+        "MOVE_SWEET_SCENT"
+    ],
+    "evFlag": 18,
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

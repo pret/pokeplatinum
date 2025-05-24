@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BASTIODON",
+    "moves": [
+        "MOVE_METAL_BURST",
+        "MOVE_STONE_EDGE",
+        "MOVE_AVALANCHE",
+        "MOVE_CURSE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_SASH",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HARIYAMA",
+    "moves": [
+        "MOVE_DYNAMIC_PUNCH",
+        "MOVE_FIRE_PUNCH",
+        "MOVE_THUNDER_PUNCH",
+        "MOVE_ICE_PUNCH"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LIFE_ORB",
+    "form": 0
+}

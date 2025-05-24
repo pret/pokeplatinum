@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_VENOMOTH",
+    "moves": [
+        "MOVE_SILVER_WIND",
+        "MOVE_PSYBEAM",
+        "MOVE_SLEEP_POWDER",
+        "MOVE_ATTRACT"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_BLACK_SLUDGE",
+    "form": 0
+}

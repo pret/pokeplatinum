@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SEAKING",
+    "moves": [
+        "MOVE_WATER_PULSE",
+        "MOVE_PSYBEAM",
+        "MOVE_SUPERSONIC",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_PECHA_BERRY",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_POLIWRATH",
+    "moves": [
+        "MOVE_WATERFALL",
+        "MOVE_DYNAMIC_PUNCH",
+        "MOVE_POISON_JAB",
+        "MOVE_BULK_UP"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

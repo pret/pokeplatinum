@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LATIAS",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_DRAGON_PULSE",
+        "MOVE_ATTRACT",
+        "MOVE_CALM_MIND"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

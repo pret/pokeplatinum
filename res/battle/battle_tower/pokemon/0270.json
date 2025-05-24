@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_RATICATE",
+    "moves": [
+        "MOVE_SUPER_FANG",
+        "MOVE_HYPER_FANG",
+        "MOVE_SHADOW_BALL",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlag": 26,
+    "nature": "NATURE_BASHFUL",
+    "item": "ITEM_CHOPLE_BERRY",
+    "form": 0
+}

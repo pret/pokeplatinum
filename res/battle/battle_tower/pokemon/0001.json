@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BULBASAUR",
+    "moves": [
+        "MOVE_MAGICAL_LEAF",
+        "MOVE_TOXIC",
+        "MOVE_LEECH_SEED",
+        "MOVE_SWEET_SCENT"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

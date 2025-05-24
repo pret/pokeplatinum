@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_RAPIDASH",
+    "moves": [
+        "MOVE_OVERHEAT",
+        "MOVE_SOLAR_BEAM",
+        "MOVE_SWIFT",
+        "MOVE_SUNNY_DAY"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

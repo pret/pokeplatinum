@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SUDOWOODO",
+    "moves": [
+        "MOVE_ROCK_SLIDE",
+        "MOVE_FAINT_ATTACK",
+        "MOVE_SANDSTORM",
+        "MOVE_BLOCK"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_HARD_STONE",
+    "form": 0
+}

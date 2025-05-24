@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MAGNEZONE",
+    "moves": [
+        "MOVE_THUNDERBOLT",
+        "MOVE_MIRROR_SHOT",
+        "MOVE_LIGHT_SCREEN",
+        "MOVE_REFLECT"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_LIGHT_CLAY",
+    "form": 0
+}

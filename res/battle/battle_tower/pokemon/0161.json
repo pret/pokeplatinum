@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MONFERNO",
+    "moves": [
+        "MOVE_MACH_PUNCH",
+        "MOVE_FLAME_WHEEL",
+        "MOVE_FURY_SWIPES",
+        "MOVE_TAUNT"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_COBA_BERRY",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CRADILY",
+    "moves": [
+        "MOVE_STONE_EDGE",
+        "MOVE_SEED_BOMB",
+        "MOVE_EARTHQUAKE",
+        "MOVE_MIRROR_COAT"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

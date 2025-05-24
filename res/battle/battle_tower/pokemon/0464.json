@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_WALREIN",
+    "moves": [
+        "MOVE_ICE_FANG",
+        "MOVE_AQUA_TAIL",
+        "MOVE_SWAGGER",
+        "MOVE_ENCORE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHOPLE_BERRY",
+    "form": 0
+}

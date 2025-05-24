@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LATIAS",
+    "moves": [
+        "MOVE_DRAGON_CLAW",
+        "MOVE_ZEN_HEADBUTT",
+        "MOVE_EARTHQUAKE",
+        "MOVE_AERIAL_ACE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_EXPERT_BELT",
+    "form": 0
+}

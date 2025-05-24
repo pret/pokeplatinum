@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_WAILMER",
+    "moves": [
+        "MOVE_WATER_PULSE",
+        "MOVE_ICY_WIND",
+        "MOVE_ROAR",
+        "MOVE_MIST"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SEA_INCENSE",
+    "form": 0
+}

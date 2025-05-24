@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CHARMELEON",
+    "moves": [
+        "MOVE_FIRE_FANG",
+        "MOVE_SLASH",
+        "MOVE_SMOKE_SCREEN",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_NAUGHTY",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

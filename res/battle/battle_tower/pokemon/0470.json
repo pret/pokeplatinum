@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TANGROWTH",
+    "moves": [
+        "MOVE_ENERGY_BALL",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_FOCUS_BLAST",
+        "MOVE_SLEEP_POWDER"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_COBA_BERRY",
+    "form": 0
+}

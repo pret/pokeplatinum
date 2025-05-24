@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PROBOPASS",
+    "moves": [
+        "MOVE_IRON_HEAD",
+        "MOVE_FIRE_PUNCH",
+        "MOVE_THUNDER_PUNCH",
+        "MOVE_ICE_PUNCH"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHOPLE_BERRY",
+    "form": 0
+}

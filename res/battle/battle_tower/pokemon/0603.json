@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CROBAT",
+    "moves": [
+        "MOVE_AIR_SLASH",
+        "MOVE_ZEN_HEADBUTT",
+        "MOVE_BITE",
+        "MOVE_TWISTER"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_DOCILE",
+    "item": "ITEM_RAZOR_FANG",
+    "form": 0
+}

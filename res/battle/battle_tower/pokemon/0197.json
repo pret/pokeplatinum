@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_VIGOROTH",
+    "moves": [
+        "MOVE_SLASH",
+        "MOVE_PURSUIT",
+        "MOVE_ENCORE",
+        "MOVE_COUNTER"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

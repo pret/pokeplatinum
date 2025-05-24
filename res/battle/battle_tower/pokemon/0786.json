@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_RAICHU",
+    "moves": [
+        "MOVE_VOLT_TACKLE",
+        "MOVE_RETURN",
+        "MOVE_BRICK_BREAK",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

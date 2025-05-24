@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SMOOCHUM",
+    "moves": [
+        "MOVE_CONFUSION",
+        "MOVE_ICY_WIND",
+        "MOVE_FAKE_OUT",
+        "MOVE_SWEET_KISS"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MILD",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

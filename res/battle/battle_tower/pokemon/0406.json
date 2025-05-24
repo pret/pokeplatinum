@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ABOMASNOW",
+    "moves": [
+        "MOVE_GIGA_DRAIN",
+        "MOVE_ICE_BEAM",
+        "MOVE_WATER_PULSE",
+        "MOVE_GRASS_WHISTLE"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

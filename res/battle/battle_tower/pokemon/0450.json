@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_STARMIE",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_PSYCHIC",
+        "MOVE_CONFUSE_RAY",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

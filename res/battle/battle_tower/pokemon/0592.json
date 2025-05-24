@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_UMBREON",
+    "moves": [
+        "MOVE_TOXIC",
+        "MOVE_MEAN_LOOK",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 36,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

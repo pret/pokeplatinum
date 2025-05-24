@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MAROWAK",
+    "moves": [
+        "MOVE_BONE_RUSH",
+        "MOVE_BRICK_BREAK",
+        "MOVE_IRON_TAIL",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DRIFBLIM",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_THUNDERBOLT",
+        "MOVE_ICY_WIND",
+        "MOVE_DESTINY_BOND"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WISE_GLASSES",
+    "form": 0
+}

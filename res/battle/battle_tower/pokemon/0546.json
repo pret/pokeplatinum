@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ARMALDO",
+    "moves": [
+        "MOVE_CRUSH_CLAW",
+        "MOVE_AQUA_TAIL",
+        "MOVE_AERIAL_ACE",
+        "MOVE_SWAGGER"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

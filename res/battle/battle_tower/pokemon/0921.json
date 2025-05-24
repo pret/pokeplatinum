@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CRESSELIA",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_TOXIC",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_MOONLIGHT"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

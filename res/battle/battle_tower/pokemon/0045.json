@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CARVANHA",
+    "moves": [
+        "MOVE_AQUA_JET",
+        "MOVE_BITE",
+        "MOVE_SCARY_FACE",
+        "MOVE_SWAGGER"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHERI_BERRY",
+    "form": 0
+}

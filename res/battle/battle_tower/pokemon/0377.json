@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_VESPIQUEN",
+    "moves": [
+        "MOVE_SILVER_WIND",
+        "MOVE_AIR_CUTTER",
+        "MOVE_OMINOUS_WIND",
+        "MOVE_SWAGGER"
+    ],
+    "evFlag": 36,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

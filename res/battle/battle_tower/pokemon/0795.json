@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LUDICOLO",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_GIGA_DRAIN",
+        "MOVE_ICE_BEAM",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

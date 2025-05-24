@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GIRAFARIG",
+    "moves": [
+        "MOVE_ZEN_HEADBUTT",
+        "MOVE_DOUBLE_HIT",
+        "MOVE_CRUNCH",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

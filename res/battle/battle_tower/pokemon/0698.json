@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HOUNDOOM",
+    "moves": [
+        "MOVE_FLAMETHROWER",
+        "MOVE_SHADOW_BALL",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_WILL_O_WISP"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_PASSHO_BERRY",
+    "form": 0
+}

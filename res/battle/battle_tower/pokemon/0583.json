@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GARDEVOIR",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_THUNDERBOLT",
+        "MOVE_CALM_MIND",
+        "MOVE_REST"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

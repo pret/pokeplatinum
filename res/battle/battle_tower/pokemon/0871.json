@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_AGGRON",
+    "moves": [
+        "MOVE_METAL_BURST",
+        "MOVE_STONE_EDGE",
+        "MOVE_EARTHQUAKE",
+        "MOVE_SHADOW_CLAW"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_SASH",
+    "form": 0
+}

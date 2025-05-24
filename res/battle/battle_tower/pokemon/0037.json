@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SNORUNT",
+    "moves": [
+        "MOVE_ICE_FANG",
+        "MOVE_HEADBUTT",
+        "MOVE_BITE",
+        "MOVE_PROTECT"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_KINGS_ROCK",
+    "form": 0
+}

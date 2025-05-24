@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_RAIKOU",
+    "moves": [
+        "MOVE_THUNDERBOLT",
+        "MOVE_SHADOW_BALL",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_LIGHT_SCREEN"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

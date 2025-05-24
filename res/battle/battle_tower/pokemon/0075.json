@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SPOINK",
+    "moves": [
+        "MOVE_PSYWAVE",
+        "MOVE_SWIFT",
+        "MOVE_MAGIC_COAT",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SITRUS_BERRY",
+    "form": 0
+}

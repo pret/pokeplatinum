@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_NIDOKING",
+    "moves": [
+        "MOVE_FOCUS_PUNCH",
+        "MOVE_DRAGON_PULSE",
+        "MOVE_HORN_DRILL",
+        "MOVE_SUBSTITUTE"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

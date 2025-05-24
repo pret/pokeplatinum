@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GYARADOS",
+    "moves": [
+        "MOVE_WATERFALL",
+        "MOVE_EARTHQUAKE",
+        "MOVE_REST",
+        "MOVE_DRAGON_DANCE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

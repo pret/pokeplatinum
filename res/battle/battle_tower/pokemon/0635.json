@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DUGTRIO",
+    "moves": [
+        "MOVE_FISSURE",
+        "MOVE_GIGA_IMPACT",
+        "MOVE_AERIAL_ACE",
+        "MOVE_NIGHT_SLASH"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

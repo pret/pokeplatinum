@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ALAKAZAM",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_SHADOW_BALL",
+        "MOVE_CALM_MIND",
+        "MOVE_FUTURE_SIGHT"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

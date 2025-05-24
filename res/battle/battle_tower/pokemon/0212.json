@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GOLBAT",
+    "moves": [
+        "MOVE_AERIAL_ACE",
+        "MOVE_TOXIC",
+        "MOVE_STEEL_WING",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_PAYAPA_BERRY",
+    "form": 0
+}

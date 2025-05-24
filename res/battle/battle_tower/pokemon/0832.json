@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_HERACROSS",
+    "moves": [
+        "MOVE_MEGAHORN",
+        "MOVE_EARTHQUAKE",
+        "MOVE_REVERSAL",
+        "MOVE_ENDURE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_SALAC_BERRY",
+    "form": 0
+}

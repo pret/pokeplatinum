@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MANTINE",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_AIR_CUTTER",
+        "MOVE_ICE_BEAM",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SHELL_BELL",
+    "form": 0
+}

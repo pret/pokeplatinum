@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GOLEM",
+    "moves": [
+        "MOVE_GYRO_BALL",
+        "MOVE_EARTHQUAKE",
+        "MOVE_HAMMER_ARM",
+        "MOVE_FLING"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_BRAVE",
+    "item": "ITEM_IRON_BALL",
+    "form": 0
+}

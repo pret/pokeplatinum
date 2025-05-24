@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_FLOATZEL",
+    "moves": [
+        "MOVE_WATERFALL",
+        "MOVE_FOCUS_PUNCH",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_ATTRACT"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

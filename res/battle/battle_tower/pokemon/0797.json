@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_EXPLOUD",
+    "moves": [
+        "MOVE_HYPER_VOICE",
+        "MOVE_OVERHEAT",
+        "MOVE_SURF",
+        "MOVE_ICE_BEAM"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

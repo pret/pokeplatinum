@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TYRANITAR",
+    "moves": [
+        "MOVE_STONE_EDGE",
+        "MOVE_CRUNCH",
+        "MOVE_EARTHQUAKE",
+        "MOVE_DRAGON_DANCE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHOPLE_BERRY",
+    "form": 0
+}

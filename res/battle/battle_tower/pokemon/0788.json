@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MANECTRIC",
+    "moves": [
+        "MOVE_THUNDERBOLT",
+        "MOVE_FLAMETHROWER",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_SWIFT"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

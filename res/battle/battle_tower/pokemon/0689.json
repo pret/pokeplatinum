@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_RAPIDASH",
+    "moves": [
+        "MOVE_FLARE_BLITZ",
+        "MOVE_POISON_JAB",
+        "MOVE_IRON_TAIL",
+        "MOVE_HORN_DRILL"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

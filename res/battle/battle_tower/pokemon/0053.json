@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ODDISH",
+    "moves": [
+        "MOVE_MEGA_DRAIN",
+        "MOVE_ACID",
+        "MOVE_SWEET_SCENT",
+        "MOVE_MOONLIGHT"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_ROSE_INCENSE",
+    "form": 0
+}

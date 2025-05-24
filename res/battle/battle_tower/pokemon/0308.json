@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_JUMPLUFF",
+    "moves": [
+        "MOVE_SEED_BOMB",
+        "MOVE_BOUNCE",
+        "MOVE_SLEEP_POWDER",
+        "MOVE_SYNTHESIS"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SITRUS_BERRY",
+    "form": 0
+}

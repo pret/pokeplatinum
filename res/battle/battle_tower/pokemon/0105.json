@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_AIPOM",
+    "moves": [
+        "MOVE_DOUBLE_HIT",
+        "MOVE_U_TURN",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_FAKE_OUT"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SILK_SCARF",
+    "form": 0
+}

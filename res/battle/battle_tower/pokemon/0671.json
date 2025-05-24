@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_KANGASKHAN",
+    "moves": [
+        "MOVE_DOUBLE_HIT",
+        "MOVE_HAMMER_ARM",
+        "MOVE_SHADOW_CLAW",
+        "MOVE_ROCK_SLIDE"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_LIFE_ORB",
+    "form": 0
+}

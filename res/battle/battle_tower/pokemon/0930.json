@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_REGICE",
+    "moves": [
+        "MOVE_ICE_BEAM",
+        "MOVE_FLASH_CANNON",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_REST"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

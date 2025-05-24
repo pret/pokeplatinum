@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_YANMEGA",
+    "moves": [
+        "MOVE_SILVER_WIND",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_OMINOUS_WIND",
+        "MOVE_GIGA_DRAIN"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PHANPY",
+    "moves": [
+        "MOVE_ROLLOUT",
+        "MOVE_ROCK_TOMB",
+        "MOVE_DEFENSE_CURL",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_METRONOME",
+    "form": 0
+}

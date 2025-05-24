@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LOUDRED",
+    "moves": [
+        "MOVE_STOMP",
+        "MOVE_BITE",
+        "MOVE_HOWL",
+        "MOVE_SUPERSONIC"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_PERSIM_BERRY",
+    "form": 0
+}

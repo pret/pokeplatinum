@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DRAGONITE",
+    "moves": [
+        "MOVE_DRAGON_RUSH",
+        "MOVE_FIRE_PUNCH",
+        "MOVE_THUNDER_PUNCH",
+        "MOVE_ICE_PUNCH"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

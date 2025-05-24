@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_VICTREEBEL",
+    "moves": [
+        "MOVE_LEAF_STORM",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_SLEEP_POWDER",
+        "MOVE_GASTRO_ACID"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_PAYAPA_BERRY",
+    "form": 0
+}

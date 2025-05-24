@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SKARMORY",
+    "moves": [
+        "MOVE_FLY",
+        "MOVE_TOXIC",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_ROOST"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

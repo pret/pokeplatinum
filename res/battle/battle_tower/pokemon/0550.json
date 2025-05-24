@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DRIFBLIM",
+    "moves": [
+        "MOVE_PAYBACK",
+        "MOVE_FACADE",
+        "MOVE_WILL_O_WISP",
+        "MOVE_TRICK"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BLACK_SLUDGE",
+    "form": 0
+}

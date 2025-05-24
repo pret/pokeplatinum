@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PIDGEOT",
+    "moves": [
+        "MOVE_RETURN",
+        "MOVE_AERIAL_ACE",
+        "MOVE_STEEL_WING",
+        "MOVE_U_TURN"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

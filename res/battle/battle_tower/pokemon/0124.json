@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LICKITUNG",
+    "moves": [
+        "MOVE_SECRET_POWER",
+        "MOVE_ROCK_TOMB",
+        "MOVE_LICK",
+        "MOVE_SCREECH"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

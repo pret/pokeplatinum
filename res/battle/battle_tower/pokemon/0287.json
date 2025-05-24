@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_QWILFISH",
+    "moves": [
+        "MOVE_AQUA_TAIL",
+        "MOVE_POISON_JAB",
+        "MOVE_REVENGE",
+        "MOVE_DESTINY_BOND"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

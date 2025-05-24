@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ARMALDO",
+    "moves": [
+        "MOVE_STONE_EDGE",
+        "MOVE_X_SCISSOR",
+        "MOVE_EARTHQUAKE",
+        "MOVE_CROSS_POISON"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LIFE_ORB",
+    "form": 0
+}

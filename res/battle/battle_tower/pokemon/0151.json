@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_IVYSAUR",
+    "moves": [
+        "MOVE_RAZOR_LEAF",
+        "MOVE_POISON_POWDER",
+        "MOVE_TAKE_DOWN",
+        "MOVE_LEECH_SEED"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_SALAC_BERRY",
+    "form": 0
+}

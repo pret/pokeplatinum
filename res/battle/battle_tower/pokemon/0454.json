@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_FLAREON",
+    "moves": [
+        "MOVE_FIRE_FANG",
+        "MOVE_SUPERPOWER",
+        "MOVE_CURSE",
+        "MOVE_BATON_PASS"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_QUICK_CLAW",
+    "form": 0
+}

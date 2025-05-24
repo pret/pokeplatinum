@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MAGNEMITE",
+    "moves": [
+        "MOVE_SHOCK_WAVE",
+        "MOVE_MIRROR_SHOT",
+        "MOVE_METAL_SOUND",
+        "MOVE_REFLECT"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_RAWST_BERRY",
+    "form": 0
+}

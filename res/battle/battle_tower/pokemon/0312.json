@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GOLBAT",
+    "moves": [
+        "MOVE_POISON_FANG",
+        "MOVE_AERIAL_ACE",
+        "MOVE_ZEN_HEADBUTT",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BLACK_SLUDGE",
+    "form": 0
+}

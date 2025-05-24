@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_KINGDRA",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_DRAGON_PULSE",
+        "MOVE_SMOKE_SCREEN",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_RAZOR_FANG",
+    "form": 0
+}

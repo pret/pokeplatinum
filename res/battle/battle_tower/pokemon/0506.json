@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LANTURN",
+    "moves": [
+        "MOVE_DIVE",
+        "MOVE_CONFUSE_RAY",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_ATTRACT"
+    ],
+    "evFlag": 33,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

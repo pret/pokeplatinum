@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MR_MIME",
+    "moves": [
+        "MOVE_DREAM_EATER",
+        "MOVE_HYPNOSIS",
+        "MOVE_LIGHT_SCREEN",
+        "MOVE_REFLECT"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LIGHT_CLAY",
+    "form": 0
+}

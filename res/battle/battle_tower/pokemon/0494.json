@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BLAZIKEN",
+    "moves": [
+        "MOVE_BLAST_BURN",
+        "MOVE_FOCUS_BLAST",
+        "MOVE_SOLAR_BEAM",
+        "MOVE_SUNNY_DAY"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

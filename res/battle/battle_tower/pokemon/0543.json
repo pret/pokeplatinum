@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_NIDOQUEEN",
+    "moves": [
+        "MOVE_POISON_JAB",
+        "MOVE_FIRE_PUNCH",
+        "MOVE_THUNDER_PUNCH",
+        "MOVE_ICE_PUNCH"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

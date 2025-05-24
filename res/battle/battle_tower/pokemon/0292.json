@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TANGELA",
+    "moves": [
+        "MOVE_GIGA_DRAIN",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_WRING_OUT",
+        "MOVE_INGRAIN"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_PECHA_BERRY",
+    "form": 0
+}

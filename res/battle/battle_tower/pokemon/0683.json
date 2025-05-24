@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BASTIODON",
+    "moves": [
+        "MOVE_IRON_HEAD",
+        "MOVE_FISSURE",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_IRON_DEFENSE"
+    ],
+    "evFlag": 33,
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MILOTIC",
+    "moves": [
+        "MOVE_HYDRO_PUMP",
+        "MOVE_BLIZZARD",
+        "MOVE_MIRROR_COAT",
+        "MOVE_RECOVER"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_WIDE_LENS",
+    "form": 0
+}

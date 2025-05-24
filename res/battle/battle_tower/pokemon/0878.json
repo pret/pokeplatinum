@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TANGROWTH",
+    "moves": [
+        "MOVE_POWER_WHIP",
+        "MOVE_EARTHQUAKE",
+        "MOVE_AERIAL_ACE",
+        "MOVE_BRICK_BREAK"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

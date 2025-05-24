@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SLAKING",
+    "moves": [
+        "MOVE_FACADE",
+        "MOVE_SHADOW_CLAW",
+        "MOVE_SLACK_OFF",
+        "MOVE_YAWN"
+    ],
+    "evFlag": 5,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

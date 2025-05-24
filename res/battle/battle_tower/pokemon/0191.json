@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LAIRON",
+    "moves": [
+        "MOVE_METAL_CLAW",
+        "MOVE_ROCK_TOMB",
+        "MOVE_IRON_DEFENSE",
+        "MOVE_PROTECT"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_METAL_COAT",
+    "form": 0
+}

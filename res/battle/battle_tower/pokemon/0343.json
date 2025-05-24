@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GOREBYSS",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_PSYCHIC",
+        "MOVE_ICE_BEAM",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SHELL_BELL",
+    "form": 0
+}

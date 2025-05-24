@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_REGISTEEL",
+    "moves": [
+        "MOVE_FLASH_CANNON",
+        "MOVE_THUNDERBOLT",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_AMNESIA"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

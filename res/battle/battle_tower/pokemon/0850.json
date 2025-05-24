@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TENTACRUEL",
+    "moves": [
+        "MOVE_HYDRO_PUMP",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_ICE_BEAM",
+        "MOVE_WRING_OUT"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

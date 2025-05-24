@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_STANTLER",
+    "moves": [
+        "MOVE_STOMP",
+        "MOVE_BITE",
+        "MOVE_IMPRISON",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LIECHI_BERRY",
+    "form": 0
+}

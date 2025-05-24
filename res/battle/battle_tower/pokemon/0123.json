@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ONIX",
+    "moves": [
+        "MOVE_ROCK_SLIDE",
+        "MOVE_DIG",
+        "MOVE_SCREECH",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_HARD_STONE",
+    "form": 0
+}

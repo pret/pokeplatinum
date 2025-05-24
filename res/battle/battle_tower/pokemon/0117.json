@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SABLEYE",
+    "moves": [
+        "MOVE_FAINT_ATTACK",
+        "MOVE_SHADOW_SNEAK",
+        "MOVE_FAKE_OUT",
+        "MOVE_DETECT"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_BLACKGLASSES",
+    "form": 0
+}

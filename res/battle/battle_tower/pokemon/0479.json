@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TOGEKISS",
+    "moves": [
+        "MOVE_SKY_ATTACK",
+        "MOVE_EXTREME_SPEED",
+        "MOVE_DRAIN_PUNCH",
+        "MOVE_ROOST"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_POWER_HERB",
+    "form": 0
+}

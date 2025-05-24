@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_FLOATZEL",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_ICE_BEAM",
+        "MOVE_FOCUS_BLAST",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WAVE_INCENSE",
+    "form": 0
+}

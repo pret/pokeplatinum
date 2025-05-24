@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SKUNTANK",
+    "moves": [
+        "MOVE_CRUNCH",
+        "MOVE_TOXIC",
+        "MOVE_SWAGGER",
+        "MOVE_DOUBLE_TEAM"
+    ],
+    "evFlag": 9,
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

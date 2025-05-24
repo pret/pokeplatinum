@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GENGAR",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_ENERGY_BALL",
+        "MOVE_FOCUS_BLAST",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

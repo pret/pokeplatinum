@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BELLOSSOM",
+    "moves": [
+        "MOVE_SOLAR_BEAM",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_SUNNY_DAY",
+        "MOVE_SYNTHESIS"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

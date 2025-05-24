@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PINSIR",
+    "moves": [
+        "MOVE_X_SCISSOR",
+        "MOVE_EARTHQUAKE",
+        "MOVE_CLOSE_COMBAT",
+        "MOVE_GUILLOTINE"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

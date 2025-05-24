@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CRADILY",
+    "moves": [
+        "MOVE_ANCIENT_POWER",
+        "MOVE_ENERGY_BALL",
+        "MOVE_CONFUSE_RAY",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

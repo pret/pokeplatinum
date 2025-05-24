@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ARIADOS",
+    "moves": [
+        "MOVE_BUG_BITE",
+        "MOVE_TOXIC",
+        "MOVE_SHADOW_SNEAK",
+        "MOVE_SPIDER_WEB"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SILVERPOWDER",
+    "form": 0
+}

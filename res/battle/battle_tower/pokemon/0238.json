@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_KINGLER",
+    "moves": [
+        "MOVE_BUBBLE_BEAM",
+        "MOVE_VICE_GRIP",
+        "MOVE_HARDEN",
+        "MOVE_MUD_SPORT"
+    ],
+    "evFlag": 20,
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_WACAN_BERRY",
+    "form": 0
+}

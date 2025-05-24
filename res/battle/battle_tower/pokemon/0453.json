@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_JOLTEON",
+    "moves": [
+        "MOVE_THUNDERBOLT",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_AGILITY",
+        "MOVE_BATON_PASS"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_FOCUS_SASH",
+    "form": 0
+}

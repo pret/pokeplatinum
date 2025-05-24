@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CHIMECHO",
+    "moves": [
+        "MOVE_PSYWAVE",
+        "MOVE_ICY_WIND",
+        "MOVE_HEAL_BELL",
+        "MOVE_SAFEGUARD"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_PECHA_BERRY",
+    "form": 0
+}

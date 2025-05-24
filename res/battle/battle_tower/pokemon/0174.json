@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CHERRIM",
+    "moves": [
+        "MOVE_MAGICAL_LEAF",
+        "MOVE_LEECH_SEED",
+        "MOVE_GRASS_WHISTLE",
+        "MOVE_SYNTHESIS"
+    ],
+    "evFlag": 40,
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_PERSIM_BERRY",
+    "form": 0
+}

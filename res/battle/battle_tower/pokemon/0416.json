@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_POLIWRATH",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_VACUUM_WAVE",
+        "MOVE_PSYCHIC",
+        "MOVE_DOUBLE_TEAM"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_RINDO_BERRY",
+    "form": 0
+}

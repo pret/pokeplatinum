@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PORYGON_Z",
+    "moves": [
+        "MOVE_TRI_ATTACK",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_RECOVER",
+        "MOVE_TRICK"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_CHOICE_SCARF",
+    "form": 0
+}

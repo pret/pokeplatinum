@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_WARTORTLE",
+    "moves": [
+        "MOVE_AQUA_JET",
+        "MOVE_BITE",
+        "MOVE_RAPID_SPIN",
+        "MOVE_YAWN"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

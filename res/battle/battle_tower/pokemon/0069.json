@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CHINCHOU",
+    "moves": [
+        "MOVE_SHOCK_WAVE",
+        "MOVE_BUBBLE_BEAM",
+        "MOVE_ICY_WIND",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_MAGNET",
+    "form": 0
+}

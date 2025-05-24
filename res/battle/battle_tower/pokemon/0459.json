@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LUCARIO",
+    "moves": [
+        "MOVE_AURA_SPHERE",
+        "MOVE_FLASH_CANNON",
+        "MOVE_WATER_PULSE",
+        "MOVE_ROAR"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

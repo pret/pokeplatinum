@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BEAUTIFLY",
+    "moves": [
+        "MOVE_SILVER_WIND",
+        "MOVE_AIR_CUTTER",
+        "MOVE_MEGA_DRAIN",
+        "MOVE_ATTRACT"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SILVERPOWDER",
+    "form": 0
+}

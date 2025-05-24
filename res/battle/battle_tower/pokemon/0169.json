@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MACHOKE",
+    "moves": [
+        "MOVE_KARATE_CHOP",
+        "MOVE_ROCK_TOMB",
+        "MOVE_FORESIGHT",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

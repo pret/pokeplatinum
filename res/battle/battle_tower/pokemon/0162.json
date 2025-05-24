@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_PRINPLUP",
+    "moves": [
+        "MOVE_BUBBLE_BEAM",
+        "MOVE_METAL_CLAW",
+        "MOVE_PECK",
+        "MOVE_DOUBLE_TEAM"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_WACAN_BERRY",
+    "form": 0
+}

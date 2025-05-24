@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TOTODILE",
+    "moves": [
+        "MOVE_DIVE",
+        "MOVE_SLASH",
+        "MOVE_SCREECH",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

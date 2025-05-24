@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MISMAGIUS",
+    "moves": [
+        "MOVE_SHADOW_BALL",
+        "MOVE_PSYCHIC",
+        "MOVE_THUNDERBOLT",
+        "MOVE_DESTINY_BOND"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_FOCUS_SASH",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_TOGEKISS",
+    "moves": [
+        "MOVE_AIR_SLASH",
+        "MOVE_HEAT_WAVE",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_MAGICAL_LEAF"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WISE_GLASSES",
+    "form": 0
+}

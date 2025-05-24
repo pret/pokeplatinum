@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_EMPOLEON",
+    "moves": [
+        "MOVE_HYDRO_CANNON",
+        "MOVE_FLASH_CANNON",
+        "MOVE_DRILL_PECK",
+        "MOVE_EARTHQUAKE"
+    ],
+    "evFlag": 18,
+    "nature": "NATURE_BRAVE",
+    "item": "ITEM_QUICK_CLAW",
+    "form": 0
+}

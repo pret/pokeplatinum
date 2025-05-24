@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LUVDISC",
+    "moves": [
+        "MOVE_WATER_PULSE",
+        "MOVE_ATTRACT",
+        "MOVE_SWEET_KISS",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_DAMP_ROCK",
+    "form": 0
+}

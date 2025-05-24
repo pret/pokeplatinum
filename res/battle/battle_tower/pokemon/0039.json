@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BRONZOR",
+    "moves": [
+        "MOVE_CONFUSION",
+        "MOVE_GYRO_BALL",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_IMPRISON"
+    ],
+    "evFlag": 18,
+    "nature": "NATURE_BRAVE",
+    "item": "ITEM_ODD_INCENSE",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ABSOL",
+    "moves": [
+        "MOVE_PUNISHMENT",
+        "MOVE_SWAGGER",
+        "MOVE_ATTRACT",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_QUICK_CLAW",
+    "form": 0
+}

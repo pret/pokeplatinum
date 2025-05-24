@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_XATU",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_AIR_CUTTER",
+        "MOVE_OMINOUS_WIND",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_COLBUR_BERRY",
+    "form": 0
+}

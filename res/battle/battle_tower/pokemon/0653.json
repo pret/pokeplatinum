@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_STARAPTOR",
+    "moves": [
+        "MOVE_BRAVE_BIRD",
+        "MOVE_RETURN",
+        "MOVE_STEEL_WING",
+        "MOVE_PURSUIT"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_MUSCLE_BAND",
+    "form": 0
+}

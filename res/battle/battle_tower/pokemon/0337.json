@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_CLEFABLE",
+    "moves": [
+        "MOVE_RETURN",
+        "MOVE_METEOR_MASH",
+        "MOVE_ZEN_HEADBUTT",
+        "MOVE_SING"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

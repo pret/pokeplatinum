@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_REGIGIGAS",
+    "moves": [
+        "MOVE_RETURN",
+        "MOVE_AERIAL_ACE",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

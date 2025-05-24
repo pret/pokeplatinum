@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ZAPDOS",
+    "moves": [
+        "MOVE_THUNDERBOLT",
+        "MOVE_AIR_CUTTER",
+        "MOVE_HEAT_WAVE",
+        "MOVE_SIGNAL_BEAM"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

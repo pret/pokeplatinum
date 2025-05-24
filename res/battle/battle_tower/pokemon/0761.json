@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_BLASTOISE",
+    "moves": [
+        "MOVE_HYDRO_CANNON",
+        "MOVE_ICE_BEAM",
+        "MOVE_HYPER_BEAM",
+        "MOVE_FOCUS_BLAST"
+    ],
+    "evFlag": 17,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SHELL_BELL",
+    "form": 0
+}

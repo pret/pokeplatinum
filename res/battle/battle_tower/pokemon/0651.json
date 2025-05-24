@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_DEWGONG",
+    "moves": [
+        "MOVE_SHEER_COLD",
+        "MOVE_HORN_DRILL",
+        "MOVE_REST",
+        "MOVE_SLEEP_TALK"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_SALAC_BERRY",
+    "form": 0
+}

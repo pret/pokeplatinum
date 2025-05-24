@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_SQUIRTLE",
+    "moves": [
+        "MOVE_AQUA_JET",
+        "MOVE_BITE",
+        "MOVE_WITHDRAW",
+        "MOVE_PROTECT"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SEA_INCENSE",
+    "form": 0
+}

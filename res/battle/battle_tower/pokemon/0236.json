@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_GRUMPIG",
+    "moves": [
+        "MOVE_PSYBEAM",
+        "MOVE_GRASS_KNOT",
+        "MOVE_FUTURE_SIGHT",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_PETAYA_BERRY",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_LILEEP",
+    "moves": [
+        "MOVE_ANCIENT_POWER",
+        "MOVE_GRASS_KNOT",
+        "MOVE_INGRAIN",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlag": 37,
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_KRICKETUNE",
+    "moves": [
+        "MOVE_FURY_CUTTER",
+        "MOVE_ROCK_SMASH",
+        "MOVE_KNOCK_OFF",
+        "MOVE_FOCUS_ENERGY"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_METRONOME",
+    "form": 0
+}

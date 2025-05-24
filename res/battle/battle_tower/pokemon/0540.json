@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ALTARIA",
+    "moves": [
+        "MOVE_DRAGON_PULSE",
+        "MOVE_OMINOUS_WIND",
+        "MOVE_SING",
+        "MOVE_PERISH_SONG"
+    ],
+    "evFlag": 48,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SHELL_BELL",
+    "form": 0
+}

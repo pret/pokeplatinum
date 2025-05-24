@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MUK",
+    "moves": [
+        "MOVE_GUNK_SHOT",
+        "MOVE_PAYBACK",
+        "MOVE_SHADOW_SNEAK",
+        "MOVE_CURSE"
+    ],
+    "evFlag": 3,
+    "nature": "NATURE_BRAVE",
+    "item": "ITEM_ZOOM_LENS",
+    "form": 0
+}

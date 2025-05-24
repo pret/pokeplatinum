@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MAGNEZONE",
+    "moves": [
+        "MOVE_IRON_HEAD",
+        "MOVE_EXPLOSION",
+        "MOVE_SWAGGER",
+        "MOVE_PSYCH_UP"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

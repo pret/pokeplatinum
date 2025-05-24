@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_MILTANK",
+    "moves": [
+        "MOVE_RETURN",
+        "MOVE_IRON_HEAD",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_MILK_DRINK"
+    ],
+    "evFlag": 6,
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_CHERI_BERRY",
+    "form": 0
+}

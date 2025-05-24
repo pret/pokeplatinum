@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_STARMIE",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_PSYCHIC",
+        "MOVE_POWER_GEM",
+        "MOVE_SIGNAL_BEAM"
+    ],
+    "evFlag": 24,
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WISE_GLASSES",
+    "form": 0
+}

@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_FLOATZEL",
+    "moves": [
+        "MOVE_AQUA_TAIL",
+        "MOVE_ICE_FANG",
+        "MOVE_CRUNCH",
+        "MOVE_BRICK_BREAK"
+    ],
+    "evFlag": 10,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_FANG",
+    "form": 0
+}

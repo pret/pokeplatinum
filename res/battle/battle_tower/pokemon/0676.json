@@ -1,0 +1,13 @@
+{
+    "species": "SPECIES_ALTARIA",
+    "moves": [
+        "MOVE_DRAGON_RUSH",
+        "MOVE_SKY_ATTACK",
+        "MOVE_EARTHQUAKE",
+        "MOVE_DRAGON_DANCE"
+    ],
+    "evFlag": 34,
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}
