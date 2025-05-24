@@ -498,7 +498,7 @@ static void ov13_02224C14(UnkStruct_ov13_022213F0 *param0)
         }
 
         ov13_022249AC(param0->unk_1FB4[7 + v0], Unk_ov13_02229404[v0][0], Unk_ov13_02229404[v0][1]);
-        ov13_02224AB0(param0->unk_04[v0].unk_17_3, param0->unk_1FB4[13 + v0], Unk_ov13_02229434[v0][0], Unk_ov13_02229434[v0][1]);
+        ov13_02224AB0(param0->unk_04[v0].summaryStatus, param0->unk_1FB4[13 + v0], Unk_ov13_02229434[v0][0], Unk_ov13_02229434[v0][1]);
         ov13_02224B28(param0->unk_04[v0].unk_1A, param0->unk_1FB4[0 + v0], Unk_ov13_02229404[v0][0] + 8, Unk_ov13_02229404[v0][1] + 8);
         ov13_02224B5C(param0->unk_04[v0].unk_2D, param0->unk_1FB4[32 + v0], Unk_ov13_02229404[v0][0] + 16, Unk_ov13_02229404[v0][1] + 8);
     }
@@ -524,7 +524,7 @@ static void ov13_02224D08(UnkStruct_ov13_022213F0 *param0)
     v0 = &param0->unk_04[param0->unk_00->unk_11];
 
     ov13_022249AC(param0->unk_1FB4[7 + param0->unk_00->unk_11], Unk_ov13_0222923C[0], Unk_ov13_0222923C[1]);
-    ov13_02224AB0(v0->unk_17_3, param0->unk_1FB4[13 + param0->unk_00->unk_11], Unk_ov13_0222924C[0], Unk_ov13_0222924C[1]);
+    ov13_02224AB0(v0->summaryStatus, param0->unk_1FB4[13 + param0->unk_00->unk_11], Unk_ov13_0222924C[0], Unk_ov13_0222924C[1]);
     ov13_02224AD4(param0, v0, &Unk_ov13_022292C4[0][0]);
     ov13_02224B28(v0->unk_1A, param0->unk_1FB4[0 + param0->unk_00->unk_11], Unk_ov13_0222923C[0] + 8, Unk_ov13_0222923C[1] + 8);
     ov13_02224B5C(v0->unk_2D, param0->unk_1FB4[32 + param0->unk_00->unk_11], Unk_ov13_0222923C[0] + 16, Unk_ov13_0222923C[1] + 8);
@@ -539,7 +539,7 @@ static void ov13_02224DA0(UnkStruct_ov13_022213F0 *param0)
     v0 = &param0->unk_04[param0->unk_00->unk_11];
 
     ov13_022249AC(param0->unk_1FB4[7 + param0->unk_00->unk_11], Unk_ov13_02229244[0], Unk_ov13_02229244[1]);
-    ov13_02224AB0(v0->unk_17_3, param0->unk_1FB4[13 + param0->unk_00->unk_11], Unk_ov13_02229254[0], Unk_ov13_02229254[1]);
+    ov13_02224AB0(v0->summaryStatus, param0->unk_1FB4[13 + param0->unk_00->unk_11], Unk_ov13_02229254[0], Unk_ov13_02229254[1]);
     ov13_02224AD4(param0, v0, &Unk_ov13_022292A4[0][0]);
     ov13_02224B28(v0->unk_1A, param0->unk_1FB4[0 + param0->unk_00->unk_11], Unk_ov13_02229244[0] + 8, Unk_ov13_02229244[1] + 8);
     ov13_02224B5C(v0->unk_2D, param0->unk_1FB4[32 + param0->unk_00->unk_11], Unk_ov13_02229244[0] + 16, Unk_ov13_02229244[1] + 8);
@@ -559,7 +559,7 @@ static void ov13_02224E78(UnkStruct_ov13_022213F0 *param0)
     UnkStruct_ov13_02221ED0 *v0 = &param0->unk_04[param0->unk_00->unk_11];
 
     ov13_022249AC(param0->unk_1FB4[7 + param0->unk_00->unk_11], Unk_ov13_02229264[0], Unk_ov13_02229264[1]);
-    ov13_02224AB0(v0->unk_17_3, param0->unk_1FB4[13 + param0->unk_00->unk_11], Unk_ov13_02229224[0], Unk_ov13_02229224[1]);
+    ov13_02224AB0(v0->summaryStatus, param0->unk_1FB4[13 + param0->unk_00->unk_11], Unk_ov13_02229224[0], Unk_ov13_02229224[1]);
     ov13_02224AD4(param0, v0, &Unk_ov13_022292B4[0][0]);
     ov13_022249AC(param0->unk_1FB4[21 + param0->unk_00->unk_34], Unk_ov13_0222922C[0], Unk_ov13_0222922C[1]);
     ov13_02224B28(v0->unk_1A, param0->unk_1FB4[0 + param0->unk_00->unk_11], Unk_ov13_02229264[0] + 8, Unk_ov13_02229264[1] + 8);
@@ -700,28 +700,28 @@ static void ov13_02225304(ManagedSprite *param0, u8 param1)
     ManagedSprite_SetAnim(param0, param1);
 }
 
-static u8 ov13_02225324(UnkStruct_ov13_02221ED0 *param0)
+static u8 PartyScreen_GetHealthBarColor(UnkStruct_ov13_02221ED0 *param0)
 {
-    if (param0->unk_10 == 0) {
-        return 0;
+    if (param0->curHP == 0) {
+        return BARCOLOR_EMPTY;
     }
 
-    if ((param0->unk_17_3 != 7) && (param0->unk_17_3 != 6)) {
+    if ((param0->summaryStatus != SUMMARY_CONDITION_NONE) && (param0->summaryStatus != SUMMARY_CONDITION_FAINTED)) {
         return 5;
     }
 
-    switch (HealthBar_Color(param0->unk_10, param0->unk_12, 48)) {
+    switch (HealthBar_Color(param0->curHP, param0->unk_12, 48)) {
     case 4:
-        return 1;
+        return BARCOLOR_RED;
     case 3:
-        return 2;
+        return BARCOLOR_YELLOW;
     case 2:
-        return 3;
+        return BARCOLOR_GREEN;
     case 1:
-        return 4;
+        return BARCOLOR_MAX;
     }
 
-    return 0;
+    return BARCOLOR_EMPTY;
 }
 
 void ov13_0222537C(UnkStruct_ov13_022213F0 *param0)
@@ -734,7 +734,7 @@ void ov13_0222537C(UnkStruct_ov13_022213F0 *param0)
             continue;
         }
 
-        v1 = ov13_02225324(&param0->unk_04[v0]);
+        v1 = PartyScreen_GetHealthBarColor(&param0->unk_04[v0]);
 
         ov13_02225304(param0->unk_1FB4[7 + v0], v1);
         ManagedSprite_TickNFrames(param0->unk_1FB4[7 + v0], FX32_ONE);

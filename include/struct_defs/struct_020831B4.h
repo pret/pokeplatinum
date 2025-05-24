@@ -7,9 +7,9 @@
 typedef struct {
     Strbuf *unk_00;
     u16 unk_04;
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0A;
+    u16 curHP;
+    u16 maxHP;
+    u16 level;
     u16 unk_0C;
     u16 unk_0E_0 : 12;
     u16 unk_0E_12 : 1;

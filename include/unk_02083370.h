@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_0207F248.h"
 
-u32 sub_02083370(u8 param0);
+u32 PartyMenu_MakeSelection(u8 param0);
 void sub_0208337C(GameWindowLayout *param0);
 int sub_02083658(GameWindowLayout *param0);
 int sub_020836A8(GameWindowLayout *param0);

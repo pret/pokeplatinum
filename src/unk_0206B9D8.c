@@ -75,9 +75,9 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
     saveData = fieldSystem->saveData;
     MI_CpuClear8(v2, sizeof(PartyManagementData));
 
-    v2->unk_0C = SaveData_GetOptions(saveData);
-    v2->unk_00 = SaveData_GetParty(saveData);
-    v2->unk_04 = SaveData_GetBag(saveData);
+    v2->options = SaveData_GetOptions(saveData);
+    v2->party = SaveData_GetParty(saveData);
+    v2->bag = SaveData_GetBag(saveData);
     v2->unk_21 = 0;
     v2->unk_20 = param0->unk_08;
     v2->unk_32_0 = param0->unk_0A;

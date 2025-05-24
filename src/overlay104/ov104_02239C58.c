@@ -111,10 +111,10 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->unk_A8 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
     MI_CpuClearFast(param1->unk_A8, sizeof(PartyManagementData));
 
-    param1->unk_A8->unk_00 = SaveData_GetParty(param1->saveData);
-    param1->unk_A8->unk_04 = SaveData_GetBag(param1->saveData);
-    param1->unk_A8->unk_08 = SaveData_GetMailBox(param1->saveData);
-    param1->unk_A8->unk_0C = SaveData_GetOptions(param1->saveData);
+    param1->unk_A8->party = SaveData_GetParty(param1->saveData);
+    param1->unk_A8->bag = SaveData_GetBag(param1->saveData);
+    param1->unk_A8->mailBox = SaveData_GetMailBox(param1->saveData);
+    param1->unk_A8->options = SaveData_GetOptions(param1->saveData);
     param1->unk_A8->unk_21 = 0;
 
     if (param1->unk_A0 == 1) {
@@ -129,7 +129,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
         GF_ASSERT(0);
     }
 
-    param1->unk_A8->unk_1C = fieldSystem;
+    param1->unk_A8->fieldSystem = fieldSystem;
     param1->unk_A8->selectedMonSlot = param1->unk_9F;
 
     for (v0 = 0; v0 < 2; v0++) {

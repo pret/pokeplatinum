@@ -381,13 +381,13 @@ static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, i
 
     MI_CpuClearFast(v0, sizeof(PartyManagementData));
 
-    v0->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    v0->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
+    v0->party = SaveData_GetParty(fieldSystem->saveData);
+    v0->bag = SaveData_GetBag(fieldSystem->saveData);
+    v0->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    v0->options = SaveData_GetOptions(fieldSystem->saveData);
     v0->unk_21 = param2;
     v0->unk_20 = param3;
-    v0->unk_1C = fieldSystem;
+    v0->fieldSystem = fieldSystem;
 
     return v0;
 }
@@ -396,7 +396,7 @@ void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2
 {
     PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 0);
 
-    v0->unk_18 = param1;
+    v0->fieldMoveContext = param1;
     v0->selectedMonSlot = param2;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
@@ -438,7 +438,7 @@ void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2)
 int sub_0203D438(void *param0)
 {
     PartyManagementData *v0 = param0;
-    return v0->unk_23;
+    return v0->menuSelectionResult;
 }
 
 int sub_0203D440(void *param0)
@@ -510,7 +510,7 @@ void *sub_0203D50C(FieldTask *taskMan, int heapID)
     v1->unk_32_0 = 2;
     v1->unk_32_4 = 2;
     v1->unk_33 = 30;
-    v1->unk_14 = NULL;
+    v1->battleRegulation = NULL;
     v0->unk_04 = v1;
 
     FieldTask_InitCall(taskMan, sub_0203D444, v0);
@@ -1715,17 +1715,17 @@ PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int para
     PartyManagementData *v0 = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
     memset(v0, 0, sizeof(PartyManagementData));
 
-    v0->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    v0->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-    v0->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    v0->unk_18 = NULL;
+    v0->party = SaveData_GetParty(fieldSystem->saveData);
+    v0->bag = SaveData_GetBag(fieldSystem->saveData);
+    v0->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    v0->options = SaveData_GetOptions(fieldSystem->saveData);
+    v0->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    v0->fieldMoveContext = NULL;
     v0->unk_21 = 0;
     v0->unk_20 = 5;
-    v0->unk_24 = param2;
+    v0->usedItemID = param2;
     v0->selectedMonSlot = 0;
-    v0->unk_1C = fieldSystem;
+    v0->fieldSystem = fieldSystem;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
 

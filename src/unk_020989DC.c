@@ -285,11 +285,11 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
 
     v0 = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
     MI_CpuClear8(v0, sizeof(PartyManagementData));
-    v0->unk_00 = param0->unk_0C->unk_10;
-    v0->unk_04 = param0->unk_0C->unk_14;
+    v0->party = param0->unk_0C->unk_10;
+    v0->bag = param0->unk_0C->unk_14;
     v0->unk_21 = 0;
     v0->unk_20 = 20;
-    v0->unk_0C = param0->unk_0C->unk_18;
+    v0->options = param0->unk_0C->unk_18;
 
     param0->unk_14 = OverlayManager_New(&Unk_020F1E88, v0, param0->heapID);
     param0->unk_10 = (void *)v0;

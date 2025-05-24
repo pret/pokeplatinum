@@ -605,7 +605,7 @@ static void sub_02072878(SysTask *param0, void *param1)
         }
 
         v1 = v4->unk_1B4->selectedMonSlot;
-        v2 = v4->unk_1B4->unk_23;
+        v2 = v4->unk_1B4->menuSelectionResult;
 
         Heap_FreeToHeap(v4->unk_1B4);
 
@@ -1202,13 +1202,13 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
         v0 = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
         MI_CpuClear8(v0, sizeof(PartyManagementData));
 
-        v0->unk_00 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_04 = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_0C = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_08 = SaveData_GetMailBox(param0->fieldSystem->saveData);
+        v0->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
+        v0->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
+        v0->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
+        v0->mailBox = SaveData_GetMailBox(param0->fieldSystem->saveData);
         v0->unk_21 = 0;
         v0->unk_20 = param1;
-        v0->unk_24 = param0->unk_1C[param0->unk_18].item;
+        v0->usedItemID = param0->unk_1C[param0->unk_18].item;
 
         if (param1 == 11) {
             v0->selectedMonSlot = param0->unk_17;
