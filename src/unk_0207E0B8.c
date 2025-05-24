@@ -862,21 +862,21 @@ static void sub_0207EA24(BgConfig *param0)
     Heap_FreeToHeapExplicit(HEAP_ID_12, param0);
 }
 
-void sub_0207EA74(GameWindowLayout *param0, int param1)
+void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
 {
     if (param1 == 0) {
         Bg_ToggleLayer(0, 0);
-        Bg_FreeTilemapBuffer(param0->unk_00, 0);
+        Bg_FreeTilemapBuffer(windowLayout->unk_00, 0);
 
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
-        param0->unk_B28 = sub_0207EAD4(HEAP_ID_12);
+        windowLayout->unk_B28 = sub_0207EAD4(HEAP_ID_12);
     } else {
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        sub_0207EB64(param0->unk_B28);
+        sub_0207EB64(windowLayout->unk_B28);
 
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_2D);
 
-        sub_0207E8E0(param0->unk_00);
+        sub_0207E8E0(windowLayout->unk_00);
         Bg_ClearTilesRange(0, 32, 0, HEAP_ID_12);
     }
 }
@@ -1021,9 +1021,9 @@ static void sub_0207EE14(GameWindowLayout *param0)
     sub_020825B4(param0, v0);
 }
 
-u8 sub_0207EF04(GameWindowLayout *param0, u8 param1)
+u8 sub_0207EF04(GameWindowLayout *windowLayout, u8 param1)
 {
-    return param0->unk_704[param1].unk_29;
+    return windowLayout->unk_704[param1].unk_29;
 }
 
 u8 sub_0207EF14(GameWindowLayout *windowLayout, u8 partySlot)
@@ -1139,9 +1139,9 @@ static u32 sub_0207F134(Pokemon *param0, u8 param1)
     return v0;
 }
 
-const u16 *sub_0207F248(GameWindowLayout *param0)
+const u16 *sub_0207F248(GameWindowLayout *windowLayout)
 {
-    return &param0->unk_324[3 * 16 + 6];
+    return &windowLayout->unk_324[3 * 16 + 6];
 }
 
 static void sub_0207F250(GameWindowLayout *param0, u8 param1, u8 param2, u8 param3, u8 param4)
@@ -1334,17 +1334,17 @@ static void sub_0207F884(GameWindowLayout *param0, u8 param1, s16 param2, s16 pa
     sub_02083104(param0, param1);
 }
 
-void sub_0207F8F8(GameWindowLayout *param0, u8 partySlot)
+void sub_0207F8F8(GameWindowLayout *windowLayout, u8 partySlot)
 {
     Pokemon *mon;
     u8 v1;
 
-    mon = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, partySlot);
+    mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, partySlot);
 
-    if ((param0->unk_B0F_6 == 1) && ((partySlot == param0->partySlot) || (partySlot == param0->unk_B0F_0))) {
+    if ((windowLayout->unk_B0F_6 == 1) && ((partySlot == windowLayout->partySlot) || (partySlot == windowLayout->unk_B0F_0))) {
         v1 = 3 + 4;
     } else {
-        if (partySlot == param0->partySlot) {
+        if (partySlot == windowLayout->partySlot) {
             v1 = 4;
         } else {
             v1 = 0;
@@ -1352,14 +1352,14 @@ void sub_0207F8F8(GameWindowLayout *param0, u8 partySlot)
 
         if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, 0) == 0) {
             v1 += 2;
-        } else if (sub_0207F984(param0, partySlot) == 1) {
+        } else if (sub_0207F984(windowLayout, partySlot) == 1) {
             v1 += 1;
         } else {
             v1 += 0;
         }
     }
 
-    Bg_LoadPalette(2, &param0->unk_4A4[v1 * 16], 8 * 2, (3 + partySlot) * 32);
+    Bg_LoadPalette(2, &windowLayout->unk_4A4[v1 * 16], 8 * 2, (3 + partySlot) * 32);
 }
 
 static u8 sub_0207F984(GameWindowLayout *param0, u8 param1)
@@ -1553,29 +1553,29 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
     return 0;
 }
 
-void sub_0207FD68(GameWindowLayout *param0, u8 param1)
+void sub_0207FD68(GameWindowLayout *windowLayout, u8 partySlot)
 {
-    if ((param1 == 6) || (param1 == 7)) {
-        Sprite_SetDrawFlag(param0->unk_5B0[6], 0);
+    if ((partySlot == 6) || (partySlot == 7)) {
+        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], 0);
     } else {
         u8 v0, v1;
 
-        GridMenuCursor_CheckNavigation(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->partySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
-        Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, param1));
-        Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
-        Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);
+        GridMenuCursor_CheckNavigation(windowLayout->unk_7F4, &v0, &v1, NULL, NULL, windowLayout->partySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
+        Sprite_SetAnim(windowLayout->unk_5B0[6], sub_020805D0(windowLayout->partyManagementData->unk_21, partySlot));
+        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], 1);
+        Sprite_SetPositionXY(windowLayout->unk_5B0[6], v0, v1);
     }
 
     {
-        u8 v2 = param0->partySlot;
-        param0->partySlot = param1;
+        u8 v2 = windowLayout->partySlot;
+        windowLayout->partySlot = partySlot;
 
-        sub_02080500(param0, v2, 0);
-        sub_02080500(param0, param0->partySlot, 1);
+        sub_02080500(windowLayout, v2, 0);
+        sub_02080500(windowLayout, windowLayout->partySlot, 1);
 
         if (v2 < 6) {
-            UpdateWindowLayout(param0, v2, 0);
-            Bg_ScheduleTilemapTransfer(param0->unk_00, 4);
+            UpdateWindowLayout(windowLayout, v2, 0);
+            Bg_ScheduleTilemapTransfer(windowLayout->unk_00, 4);
         }
     }
 }
@@ -1885,77 +1885,77 @@ static u8 sub_0208031C(GameWindowLayout *param0, u8 *param1)
     return 2;
 }
 
-u8 sub_02080354(GameWindowLayout *param0, u8 param1)
+u8 sub_02080354(GameWindowLayout *windowLayout, u8 partySlot)
 {
     u8 v0;
 
-    if (param0->partyManagementData->unk_14 != NULL) {
-        Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param1);
+    if (windowLayout->partyManagementData->unk_14 != NULL) {
+        Pokemon *v1 = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, partySlot);
 
-        if (sub_0207A2D0(param0->partyManagementData->unk_14, v1, param0->unk_B20) == 0) {
+        if (sub_0207A2D0(windowLayout->partyManagementData->unk_14, v1, windowLayout->unk_B20) == 0) {
             return 0;
         }
     }
 
-    if (param0->partyManagementData->unk_20 == 17) {
-        if (sub_02078804(param0->unk_704[param1].unk_04) == 1) {
+    if (windowLayout->partyManagementData->unk_20 == 17) {
+        if (sub_02078804(windowLayout->unk_704[partySlot].unk_04) == 1) {
             return 0;
         }
     }
 
-    for (v0 = 0; v0 < param0->partyManagementData->unk_32_4; v0++) {
-        if (param0->partyManagementData->unk_2C[v0] == param1 + 1) {
+    for (v0 = 0; v0 < windowLayout->partyManagementData->unk_32_4; v0++) {
+        if (windowLayout->partyManagementData->unk_2C[v0] == partySlot + 1) {
             return 2;
         }
     }
 
-    if ((param0->unk_704[param1].unk_10 == 1) || (param0->unk_704[param1].level > param0->partyManagementData->unk_33)) {
+    if ((windowLayout->unk_704[partySlot].unk_10 == 1) || (windowLayout->unk_704[partySlot].level > windowLayout->partyManagementData->unk_33)) {
         return 0;
     }
 
     return 1;
 }
 
-u8 sub_02080404(GameWindowLayout *param0, u8 param1)
+u8 sub_02080404(GameWindowLayout *windowLayout, u8 partySlot)
 {
     u8 v0;
 
-    if (param0->partyManagementData->unk_20 == 22) {
-        if (sub_02078804(param0->unk_704[param1].unk_04) == 1) {
+    if (windowLayout->partyManagementData->unk_20 == 22) {
+        if (sub_02078804(windowLayout->unk_704[partySlot].unk_04) == 1) {
             return 0;
         }
     }
 
-    for (v0 = 0; v0 < param0->partyManagementData->unk_32_4; v0++) {
-        if (param0->partyManagementData->unk_2C[v0] == param1 + 1) {
+    for (v0 = 0; v0 < windowLayout->partyManagementData->unk_32_4; v0++) {
+        if (windowLayout->partyManagementData->unk_2C[v0] == partySlot + 1) {
             return 2;
         }
     }
 
-    if ((param0->unk_704[param1].unk_10 == 1) || (param0->unk_704[param1].level < param0->partyManagementData->unk_33)) {
+    if ((windowLayout->unk_704[partySlot].unk_10 == 1) || (windowLayout->unk_704[partySlot].level < windowLayout->partyManagementData->unk_33)) {
         return 0;
     }
 
     return 1;
 }
 
-u8 sub_02080488(GameWindowLayout *param0, u8 param1)
+u8 sub_02080488(GameWindowLayout *windowLayout, u8 partySlot)
 {
     u8 v0;
 
-    if (param0->partyManagementData->unk_20 == 23) {
-        if (sub_02078804(param0->unk_704[param1].unk_04) == 1) {
+    if (windowLayout->partyManagementData->unk_20 == 23) {
+        if (sub_02078804(windowLayout->unk_704[partySlot].unk_04) == 1) {
             return 0;
         }
     }
 
-    for (v0 = 0; v0 < param0->partyManagementData->unk_32_4; v0++) {
-        if (param0->partyManagementData->unk_2C[v0] == param1 + 1) {
+    for (v0 = 0; v0 < windowLayout->partyManagementData->unk_32_4; v0++) {
+        if (windowLayout->partyManagementData->unk_2C[v0] == partySlot + 1) {
             return 2;
         }
     }
 
-    if (param0->unk_704[param1].unk_10 == 1) {
+    if (windowLayout->unk_704[partySlot].unk_10 == 1) {
         return 0;
     }
 
@@ -2928,13 +2928,13 @@ void LoadScreenDataFromNARC(u32 param0, u16 *param1, u16 *param2, u16 *param3)
     Heap_FreeToHeap(v1);
 }
 
-void LoadOverlay118(GameWindowLayout *param0)
+void LoadOverlay118(GameWindowLayout *windowLayout)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay118), 2);
-    ov118_021D0D80(param0);
+    ov118_021D0D80(windowLayout);
 }
 
-void UnloadOverlay118(GameWindowLayout *param0)
+void UnloadOverlay118(GameWindowLayout *windowLayout)
 {
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay118));
 }
