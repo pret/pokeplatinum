@@ -9,8 +9,8 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/wi_fi_history.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0207DFAC.h"
 #include "struct_defs/struct_0207E060.h"
@@ -1790,7 +1790,7 @@ static void ov65_0222F4C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     TrainerInfo *v0 = SaveData_GetTrainerInfo(param0->saveData);
     Pokedex *v1 = SaveData_GetPokedex(param0->saveData);
     Party *v2 = SaveData_GetParty(param0->saveData);
-    UnkStruct_0202C878 *v3 = sub_0202C878(param0->saveData);
+    WiFiHistory *wiFiHistory = SaveData_WiFiHistory(param0->saveData);
     int v4, v5;
 
     GF_ASSERT((sizeof(UnkStruct_0207E060)) == sizeof(UnkStruct_0207E060));
@@ -1814,8 +1814,8 @@ static void ov65_0222F4C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     param0->unk_04->unk_00.unk_1C = 0;
     param0->unk_04->unk_00.unk_1D = TrainerInfo_Appearance(v0);
     param0->unk_04->unk_00.unk_1E = TrainerInfo_Gender(v0);
-    param0->unk_04->unk_00.unk_1F = sub_0202C8C0(v3);
-    param0->unk_04->unk_00.unk_20 = sub_0202C8C4(v3);
+    param0->unk_04->unk_00.unk_1F = WiFiHistory_GetCountry(wiFiHistory);
+    param0->unk_04->unk_00.unk_20 = sub_0202C8C4(wiFiHistory);
     param0->unk_04->unk_00.unk_21 = 1;
     param0->unk_04->unk_00.unk_22 = 1;
 

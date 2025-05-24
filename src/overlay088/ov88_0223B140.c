@@ -1145,7 +1145,7 @@ static void ov88_0223C370(UnkStruct_02095E80 *param0, OverlayManager *param1)
     param0->unk_18C = TrainerInfo_NameNewStrbuf(v0->unk_04, 26);
     param0->unk_190 = MessageLoader_GetNewStrbuf(param0->unk_184, 42);
 
-    sub_02038F8C(v0->unk_14);
+    sub_02038F8C(v0->wiFiHistory);
 }
 
 static void ov88_0223C44C(BgConfig *param0)

@@ -8,10 +8,10 @@
 #include "generated/species.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EB1A0.h"
@@ -1121,9 +1121,9 @@ BOOL ScrCmd_339(ScriptContext *ctx)
 
 BOOL ScrCmd_330(ScriptContext *ctx)
 {
-    UnkStruct_0202C878 *v0 = sub_0202C878(ctx->fieldSystem->saveData);
+    WiFiHistory *wiFiHistory = SaveData_WiFiHistory(ctx->fieldSystem->saveData);
 
-    sub_02038F8C(v0);
+    sub_02038F8C(wiFiHistory);
     return 1;
 }
 
