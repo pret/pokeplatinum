@@ -180,7 +180,7 @@ int ov98_02246DC0(ApplicationManager *appMan, int *param1)
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_108);
     Heap_Destroy(HEAP_ID_91);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
 
     return 1;
 }

@@ -88,7 +88,7 @@ static BOOL ExecuteFieldProcesses(ApplicationManager *appMan, int *state)
 static BOOL ReturnToTitleScreen(ApplicationManager *appMan, int *state)
 {
     TeardownFieldSystem(appMan);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
     return TRUE;
 }
 
@@ -137,11 +137,11 @@ BOOL FieldSystem_HasChildProcess(FieldSystem *fieldSystem)
     return fieldSystem->processManager->child != NULL;
 }
 
-void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const ApplicationManagerTemplate *overlayTemplate, void *overlayArgs)
+void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const ApplicationManagerTemplate *appTemplate, void *appArgs)
 {
     GF_ASSERT(fieldSystem->processManager->child == NULL);
     FieldSystem_FlagNotRunningFieldMap(fieldSystem);
-    fieldSystem->processManager->child = ApplicationManager_New(overlayTemplate, overlayArgs, HEAP_ID_FIELDMAP);
+    fieldSystem->processManager->child = ApplicationManager_New(appTemplate, appArgs, HEAP_ID_FIELDMAP);
 }
 
 static FieldSystem *InitFieldSystem(ApplicationManager *appMan)

@@ -179,9 +179,9 @@ static void ov77_021D5308(UnkStruct_ov77_021D5308 *param0);
 static BOOL ov77_021D5390(UnkStruct_ov77_021D5308 *param0, const int param1);
 static void ov77_021D5478(UnkStruct_ov77_021D2E9C *param0);
 
-extern const ApplicationManagerTemplate gTitleScreenOverlayTemplate;
+extern const ApplicationManagerTemplate gTitleScreenAppTemplate;
 
-const ApplicationManagerTemplate gOpeningCutsceneOverlayTemplate = {
+const ApplicationManagerTemplate gOpeningCutsceneAppTemplate = {
     ov77_021D2D08,
     ov77_021D2D94,
     ov77_021D2E60,
@@ -1016,7 +1016,7 @@ static int ov77_021D2E60(ApplicationManager *appMan, int *param1)
     LCRNG_SetSeed(v0->unk_14);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_76);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
 
     return 1;
 }

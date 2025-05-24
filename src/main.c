@@ -63,7 +63,7 @@ static Application sApplication;
 // repeatedly try to restore the backlight to its saved state.
 static PMBackLightSwitch sSavedBacklightState;
 BOOL gIgnoreCartridgeForWake;
-extern const ApplicationManagerTemplate gOpeningCutsceneOverlayTemplate;
+extern const ApplicationManagerTemplate gOpeningCutsceneAppTemplate;
 
 void NitroMain(void)
 {
@@ -98,14 +98,14 @@ void NitroMain(void)
         switch (OS_GetResetParameter()) {
         case RESET_CLEAN:
             sApplication.args.error = FALSE;
-            EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneOverlayTemplate);
+            EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneAppTemplate);
             break;
 
         case RESET_ERROR:
             sub_0200F344(0, 0x0);
             sub_0200F344(1, 0x0);
             sApplication.args.error = TRUE;
-            EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveOverlayTemplate);
+            EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveAppTemplate);
             break;
 
         default:

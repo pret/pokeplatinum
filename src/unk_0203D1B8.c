@@ -245,7 +245,7 @@ static BOOL OverlayExit_Battle(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-const ApplicationManagerTemplate gBattleOverlayTemplate = {
+const ApplicationManagerTemplate gBattleApplicationTemplate = {
     OverlayInit_Battle,
     OverlayMain_Battle,
     OverlayExit_Battle,
@@ -254,7 +254,7 @@ const ApplicationManagerTemplate gBattleOverlayTemplate = {
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &gBattleOverlayTemplate, dto);
+    FieldSystem_StartChildProcess(fieldSystem, &gBattleApplicationTemplate, dto);
 }
 
 static const u8 Unk_020EA164[] = {
@@ -370,9 +370,9 @@ void sub_0203D30C(FieldSystem *fieldSystem, void *param1)
     FieldSystem_StartChildProcess(fieldSystem, &template, fieldSystem->saveData);
 }
 
-void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *overlayArgs)
+void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, overlayArgs);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, appArgs);
 }
 
 static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, int param2, int param3)

@@ -117,7 +117,7 @@ typedef struct {
 
 extern const ApplicationManagerTemplate Unk_020F8A48;
 extern const ApplicationManagerTemplate Unk_020F8AB4;
-extern const ApplicationManagerTemplate gOpeningCutsceneOverlayTemplate;
+extern const ApplicationManagerTemplate gOpeningCutsceneAppTemplate;
 
 static void ov77_021D1D48(BgConfig *param0, int param1);
 void EnqueueApplication(FSOverlayID param0, const ApplicationManagerTemplate *param1);
@@ -148,7 +148,7 @@ static void ov77_021D2428(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 
 static void ov77_021D24C8(UnkStruct_ov77_021D1568 *param0);
 static void ov77_021D2438(UnkStruct_ov77_021D1568 *param0);
 
-const ApplicationManagerTemplate gTitleScreenOverlayTemplate = {
+const ApplicationManagerTemplate gTitleScreenAppTemplate = {
     ov77_021D0D80,
     ov77_021D0E3C,
     ov77_021D10FC,
@@ -338,7 +338,7 @@ static int ov77_021D10FC(ApplicationManager *appMan, int *param1)
         break;
     case 3:
         Sound_SetScene(SOUND_SCENE_NONE);
-        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneOverlayTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneAppTemplate);
         break;
     }
 

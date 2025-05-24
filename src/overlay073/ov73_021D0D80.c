@@ -110,7 +110,7 @@ int ov73_021D3250(ApplicationManager *appMan, int *param1);
 int ov73_021D3280(ApplicationManager *appMan, int *param1);
 int ov73_021D3404(ApplicationManager *appMan, int *param1);
 
-const ApplicationManagerTemplate dummy_OverlayManagerTemplate = {
+const ApplicationManagerTemplate dummy_ApplicationManagerTemplate = {
     ov73_021D0D80,
     ov73_021D0E20,
     ov73_021D0F7C,
@@ -248,7 +248,7 @@ int ov73_021D0F7C(ApplicationManager *appMan, int *param1)
     sub_0208716C(v0->unk_74);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
-    EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveOverlayTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveAppTemplate);
 
     return 1;
 }

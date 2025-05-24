@@ -3,8 +3,8 @@
 
 #include "overlay_manager.h"
 
-extern const ApplicationManagerTemplate gGameStartLoadSaveOverlayTemplate;
-extern const ApplicationManagerTemplate gGameStartNewSaveOverlayTemplate;
-extern const ApplicationManagerTemplate gGameStartRowanIntroOverlayTemplate;
+extern const ApplicationManagerTemplate gGameStartLoadSaveAppTemplate;
+extern const ApplicationManagerTemplate gGameStartNewSaveAppTemplate;
+extern const ApplicationManagerTemplate gGameStartRowanIntroAppTemplate;
 
 #endif // POKEPLATINUM_GAME_START_H

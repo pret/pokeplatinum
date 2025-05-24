@@ -1642,7 +1642,7 @@ static BOOL ov104_02230B50(UnkStruct_ov104_0222E930 *param0)
 
     sub_0202F298(v2->saveData, 11, &v0, v1, 0);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
-    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v1, 1, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v1, 1, NULL);
 
     return 1;
 }

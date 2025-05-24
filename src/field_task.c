@@ -10,8 +10,8 @@
 
 typedef struct FieldTaskEnv {
     int state;
-    const ApplicationManagerTemplate *overlayTemplate;
-    void *overlayArgs;
+    const ApplicationManagerTemplate *appTemplate;
+    void *appArgs;
 } FieldTaskEnv;
 
 static FieldTask *CreateTaskManager(FieldSystem *fieldSys, FieldTaskFunc taskFunc, void *taskEnv)
@@ -119,7 +119,7 @@ static BOOL RunChildApplication(FieldTask *task)
 
     switch (env->state) {
     case 0:
-        FieldSystem_StartChildProcess(fieldSys, env->overlayTemplate, env->overlayArgs);
+        FieldSystem_StartChildProcess(fieldSys, env->appTemplate, env->appArgs);
         env->state++;
         break;
 
@@ -135,12 +135,12 @@ static BOOL RunChildApplication(FieldTask *task)
     return FALSE;
 }
 
-void FieldTask_RunApplication(FieldTask *task, const ApplicationManagerTemplate *overlayTemplate, void *overlayArgs)
+void FieldTask_RunApplication(FieldTask *task, const ApplicationManagerTemplate *appTemplate, void *appArgs)
 {
     FieldTaskEnv *env = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD_TASK, sizeof(FieldTaskEnv));
     env->state = 0;
-    env->overlayTemplate = overlayTemplate;
-    env->overlayArgs = overlayArgs;
+    env->appTemplate = appTemplate;
+    env->appArgs = appArgs;
 
     FieldTask_InitCall(task, RunChildApplication, env);
 }

@@ -28,7 +28,7 @@ BOOL FieldSystem_IsRunningTask(FieldSystem *fieldSys);
 BOOL FieldSystem_IsRunningApplication(FieldSystem *fieldSys);
 void FieldSystem_StartFieldMap(FieldSystem *fieldSys);
 BOOL FieldSystem_IsRunningFieldMap(FieldSystem *fieldSys);
-void FieldTask_RunApplication(FieldTask *task, const ApplicationManagerTemplate *overlayTemplate, void *overlayArgs);
+void FieldTask_RunApplication(FieldTask *task, const ApplicationManagerTemplate *appTemplate, void *appArgs);
 FieldSystem *FieldTask_GetFieldSystem(FieldTask *task);
 void *FieldTask_GetEnv(FieldTask *task);
 int *FieldTask_GetState(FieldTask *task);

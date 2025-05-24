@@ -2429,7 +2429,7 @@ static int ov97_022301BC(ApplicationManager *appMan, int *param1)
     UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_440 == 0) {
-        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
     } else if (v0->unk_440 == 1) {
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &gWonderCardsAppTemplate);
     }

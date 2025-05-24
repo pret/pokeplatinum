@@ -774,7 +774,7 @@ static int ov97_0222C78C(ApplicationManager *appMan, int *param1)
 static int ov97_0222C948(ApplicationManager *appMan, int *param1)
 {
     Heap_Destroy(HEAP_ID_91);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_85);
 

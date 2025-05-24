@@ -2190,7 +2190,7 @@ static int GBAMigrator_Exit(ApplicationManager *appMan, int *state)
     Strbuf_Free(migrator->unk_12668);
     Strbuf_Free(migrator->unk_1266C);
     Heap_FreeToHeap(migrator->bgConfig);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_MIGRATE_FROM_GBA);
 
@@ -2199,7 +2199,7 @@ static int GBAMigrator_Exit(ApplicationManager *appMan, int *state)
     return 1;
 }
 
-const ApplicationManagerTemplate gGBAMigratorOverlayTemplate = {
+const ApplicationManagerTemplate gGBAMigratorAppTemplate = {
     GBAMigrator_Init,
     GBAMigrator_Main,
     GBAMigrator_Exit,

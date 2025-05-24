@@ -48,7 +48,7 @@ static void sub_0209A0E0(UnkStruct_02099DFC *param0);
 static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0);
 static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int param3);
 
-extern const ApplicationManagerTemplate gTitleScreenOverlayTemplate;
+extern const ApplicationManagerTemplate gTitleScreenAppTemplate;
 
 const ApplicationManagerTemplate Unk_020F8A48 = {
     sub_02099DFC,

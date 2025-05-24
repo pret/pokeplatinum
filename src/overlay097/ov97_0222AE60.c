@@ -1148,7 +1148,7 @@ static int ov97_0222BE24(ApplicationManager *appMan, int *param1)
 }
 
 extern const ApplicationManagerTemplate Unk_ov97_0223D71C;
-extern const ApplicationManagerTemplate gGBAMigratorOverlayTemplate;
+extern const ApplicationManagerTemplate gGBAMigratorAppTemplate;
 extern const ApplicationManagerTemplate Unk_ov97_0223D6BC;
 extern const ApplicationManagerTemplate Unk_020F6DF0;
 extern const ApplicationManagerTemplate Unk_ov98_02249BAC;
@@ -1157,16 +1157,16 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
 {
     switch (param0->unk_58) {
     case 1:
-        EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveOverlayTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveAppTemplate);
         break;
     case 2:
-        EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartRowanIntroOverlayTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartRowanIntroAppTemplate);
         break;
     case 3:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
         break;
     case 5:
-        EnqueueApplication(FS_OVERLAY_ID(overlay97), &gGBAMigratorOverlayTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &gGBAMigratorAppTemplate);
         break;
     case 4:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D6BC);
@@ -1183,7 +1183,7 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         EnqueueApplication(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
         break;
     case 0:
-        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
         break;
     }
 }

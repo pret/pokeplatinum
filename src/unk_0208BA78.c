@@ -294,7 +294,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
             Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
         }
     }
-        param0->appMan = ApplicationManager_New(&gBattleOverlayTemplate, param0->unk_10, heapID);
+        param0->appMan = ApplicationManager_New(&gBattleApplicationTemplate, param0->unk_10, heapID);
         param0->unk_00++;
         break;
     default:
