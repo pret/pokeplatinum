@@ -33,23 +33,23 @@ _000E:
 
     .balign 4, 0
 _0060:
-    MoveAction_034
-    MoveAction_075
+    MoveAction_WalkOnSpotNormalWest
+    MoveAction_ExclamationPoint
     EndMovement
 
     .balign 4, 0
 _006C:
-    MoveAction_018 4
-    MoveAction_016
-    MoveAction_018 3
-    MoveAction_069
+    MoveAction_WalkFastWest 4
+    MoveAction_WalkFastNorth
+    MoveAction_WalkFastWest 3
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _0080:
-    MoveAction_063 2
-    MoveAction_013
-    MoveAction_032
+    MoveAction_Delay8 2
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
 _0090:

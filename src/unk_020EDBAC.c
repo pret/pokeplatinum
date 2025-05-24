@@ -11,58 +11,58 @@
 #include "unk_020677F4.h"
 #include "unk_02069BE0.h"
 
-extern int (*const gMovementActionFuncs_000[])(MapObject *);
-extern int (*const gMovementActionFuncs_001[])(MapObject *);
-extern int (*const gMovementActionFuncs_002[])(MapObject *);
-extern int (*const gMovementActionFuncs_003[])(MapObject *);
-extern int (*const gMovementActionFuncs_004[])(MapObject *);
-extern int (*const gMovementActionFuncs_005[])(MapObject *);
-extern int (*const gMovementActionFuncs_006[])(MapObject *);
-extern int (*const gMovementActionFuncs_007[])(MapObject *);
-extern int (*const gMovementActionFuncs_008[])(MapObject *);
-extern int (*const gMovementActionFuncs_009[])(MapObject *);
-extern int (*const gMovementActionFuncs_010[])(MapObject *);
-extern int (*const gMovementActionFuncs_011[])(MapObject *);
-extern int (*const gMovementActionFuncs_012[])(MapObject *);
-extern int (*const gMovementActionFuncs_013[])(MapObject *);
-extern int (*const gMovementActionFuncs_014[])(MapObject *);
-extern int (*const gMovementActionFuncs_015[])(MapObject *);
-extern int (*const gMovementActionFuncs_016[])(MapObject *);
-extern int (*const gMovementActionFuncs_017[])(MapObject *);
-extern int (*const gMovementActionFuncs_018[])(MapObject *);
-extern int (*const gMovementActionFuncs_019[])(MapObject *);
-extern int (*const gMovementActionFuncs_020[])(MapObject *);
-extern int (*const gMovementActionFuncs_021[])(MapObject *);
-extern int (*const gMovementActionFuncs_022[])(MapObject *);
-extern int (*const gMovementActionFuncs_023[])(MapObject *);
-extern int (*const gMovementActionFuncs_084[])(MapObject *);
-extern int (*const gMovementActionFuncs_085[])(MapObject *);
-extern int (*const gMovementActionFuncs_086[])(MapObject *);
-extern int (*const gMovementActionFuncs_087[])(MapObject *);
-extern int (*const gMovementActionFuncs_088[])(MapObject *);
-extern int (*const gMovementActionFuncs_089[])(MapObject *);
-extern int (*const gMovementActionFuncs_090[])(MapObject *);
-extern int (*const gMovementActionFuncs_091[])(MapObject *);
-extern int (*const gMovementActionFuncs_024[])(MapObject *);
-extern int (*const gMovementActionFuncs_025[])(MapObject *);
-extern int (*const gMovementActionFuncs_026[])(MapObject *);
-extern int (*const gMovementActionFuncs_027[])(MapObject *);
-extern int (*const gMovementActionFuncs_028[])(MapObject *);
-extern int (*const gMovementActionFuncs_029[])(MapObject *);
-extern int (*const gMovementActionFuncs_030[])(MapObject *);
-extern int (*const gMovementActionFuncs_031[])(MapObject *);
-extern int (*const gMovementActionFuncs_032[])(MapObject *);
-extern int (*const gMovementActionFuncs_033[])(MapObject *);
-extern int (*const gMovementActionFuncs_034[])(MapObject *);
-extern int (*const gMovementActionFuncs_035[])(MapObject *);
-extern int (*const gMovementActionFuncs_036[])(MapObject *);
-extern int (*const gMovementActionFuncs_037[])(MapObject *);
-extern int (*const gMovementActionFuncs_038[])(MapObject *);
-extern int (*const gMovementActionFuncs_039[])(MapObject *);
-extern int (*const gMovementActionFuncs_040[])(MapObject *);
-extern int (*const gMovementActionFuncs_041[])(MapObject *);
-extern int (*const gMovementActionFuncs_042[])(MapObject *);
-extern int (*const gMovementActionFuncs_043[])(MapObject *);
+extern int (*const gMovementActionFuncs_FaceNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_FaceSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_FaceWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_FaceEast[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkSlowerNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkSlowerSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkSlowerWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkSlowerEast[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkSlowNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkSlowSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkSlowWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkSlowEast[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkNormalNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkNormalSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkNormalWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkNormalEast[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkFastNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkFastSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkFastWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkFastEast[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkFasterNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkFasterSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkFasterWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkFasterEast[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkFastestNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkFastestSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkFastestWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkFastestEast[])(MapObject *);
+extern int (*const gMovementActionFuncs_RunNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_RunSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_RunWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_RunEast[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotSlowerNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotSlowerSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotSlowerWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotSlowerEast[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotSlowNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotSlowSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotSlowWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotSlowEast[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotNormalNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotNormalSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotNormalWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotNormalEast[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotFastNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotFastSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotFastWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotFastEast[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotFasterNorth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotFasterSouth[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotFasterWest[])(MapObject *);
+extern int (*const gMovementActionFuncs_WalkOnSpotFasterEast[])(MapObject *);
 extern int (*const gMovementActionFuncs_044[])(MapObject *);
 extern int (*const gMovementActionFuncs_045[])(MapObject *);
 extern int (*const gMovementActionFuncs_046[])(MapObject *);
@@ -87,22 +87,22 @@ extern int (*const gMovementActionFuncs_117[])(MapObject *);
 extern int (*const gMovementActionFuncs_118[])(MapObject *);
 extern int (*const gMovementActionFuncs_119[])(MapObject *);
 extern int (*const gMovementActionFuncs_120[])(MapObject *);
-extern int (*const gMovementActionFuncs_060[])(MapObject *);
-extern int (*const gMovementActionFuncs_061[])(MapObject *);
-extern int (*const gMovementActionFuncs_062[])(MapObject *);
-extern int (*const gMovementActionFuncs_063[])(MapObject *);
-extern int (*const gMovementActionFuncs_064[])(MapObject *);
-extern int (*const gMovementActionFuncs_065[])(MapObject *);
-extern int (*const gMovementActionFuncs_066[])(MapObject *);
+extern int (*const gMovementActionFuncs_Delay1[])(MapObject *);
+extern int (*const gMovementActionFuncs_Delay2[])(MapObject *);
+extern int (*const gMovementActionFuncs_Delay4[])(MapObject *);
+extern int (*const gMovementActionFuncs_Delay8[])(MapObject *);
+extern int (*const gMovementActionFuncs_Delay15[])(MapObject *);
+extern int (*const gMovementActionFuncs_Delay16[])(MapObject *);
+extern int (*const gMovementActionFuncs_Delay32[])(MapObject *);
 extern int (*const gMovementActionFuncs_067[])(MapObject *);
 extern int (*const gMovementActionFuncs_068[])(MapObject *);
-extern int (*const gMovementActionFuncs_069[])(MapObject *);
-extern int (*const gMovementActionFuncs_070[])(MapObject *);
-extern int (*const gMovementActionFuncs_071[])(MapObject *);
-extern int (*const gMovementActionFuncs_072[])(MapObject *);
+extern int (*const gMovementActionFuncs_SetInvisible[])(MapObject *);
+extern int (*const gMovementActionFuncs_SetVisible[])(MapObject *);
+extern int (*const gMovementActionFuncs_LockDir[])(MapObject *);
+extern int (*const gMovementActionFuncs_UnlockDir[])(MapObject *);
 extern int (*const gMovementActionFuncs_073[])(MapObject *);
 extern int (*const gMovementActionFuncs_074[])(MapObject *);
-extern int (*const gMovementActionFuncs_075[])(MapObject *);
+extern int (*const gMovementActionFuncs_ExclamationPoint[])(MapObject *);
 extern int (*const gMovementActionFuncs_103[])(MapObject *);
 extern int (*const gMovementActionFuncs_076[])(MapObject *);
 extern int (*const gMovementActionFuncs_077[])(MapObject *);
@@ -781,162 +781,164 @@ const UnkStruct_020EDF0C *const Unk_020EE3A8[] = {
     &Unk_020EE2B8
 };
 
+// clang-format off
 int (*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])(MapObject *) = {
-    gMovementActionFuncs_000,
-    gMovementActionFuncs_001,
-    gMovementActionFuncs_002,
-    gMovementActionFuncs_003,
-    gMovementActionFuncs_004,
-    gMovementActionFuncs_005,
-    gMovementActionFuncs_006,
-    gMovementActionFuncs_007,
-    gMovementActionFuncs_008,
-    gMovementActionFuncs_009,
-    gMovementActionFuncs_010,
-    gMovementActionFuncs_011,
-    gMovementActionFuncs_012,
-    gMovementActionFuncs_013,
-    gMovementActionFuncs_014,
-    gMovementActionFuncs_015,
-    gMovementActionFuncs_016,
-    gMovementActionFuncs_017,
-    gMovementActionFuncs_018,
-    gMovementActionFuncs_019,
-    gMovementActionFuncs_020,
-    gMovementActionFuncs_021,
-    gMovementActionFuncs_022,
-    gMovementActionFuncs_023,
-    gMovementActionFuncs_024,
-    gMovementActionFuncs_025,
-    gMovementActionFuncs_026,
-    gMovementActionFuncs_027,
-    gMovementActionFuncs_028,
-    gMovementActionFuncs_029,
-    gMovementActionFuncs_030,
-    gMovementActionFuncs_031,
-    gMovementActionFuncs_032,
-    gMovementActionFuncs_033,
-    gMovementActionFuncs_034,
-    gMovementActionFuncs_035,
-    gMovementActionFuncs_036,
-    gMovementActionFuncs_037,
-    gMovementActionFuncs_038,
-    gMovementActionFuncs_039,
-    gMovementActionFuncs_040,
-    gMovementActionFuncs_041,
-    gMovementActionFuncs_042,
-    gMovementActionFuncs_043,
-    gMovementActionFuncs_044,
-    gMovementActionFuncs_045,
-    gMovementActionFuncs_046,
-    gMovementActionFuncs_047,
-    gMovementActionFuncs_048,
-    gMovementActionFuncs_049,
-    gMovementActionFuncs_050,
-    gMovementActionFuncs_051,
-    gMovementActionFuncs_052,
-    gMovementActionFuncs_053,
-    gMovementActionFuncs_054,
-    gMovementActionFuncs_055,
-    gMovementActionFuncs_056,
-    gMovementActionFuncs_057,
-    gMovementActionFuncs_058,
-    gMovementActionFuncs_059,
-    gMovementActionFuncs_060,
-    gMovementActionFuncs_061,
-    gMovementActionFuncs_062,
-    gMovementActionFuncs_063,
-    gMovementActionFuncs_064,
-    gMovementActionFuncs_065,
-    gMovementActionFuncs_066,
-    gMovementActionFuncs_067,
-    gMovementActionFuncs_068,
-    gMovementActionFuncs_069,
-    gMovementActionFuncs_070,
-    gMovementActionFuncs_071,
-    gMovementActionFuncs_072,
-    gMovementActionFuncs_073,
-    gMovementActionFuncs_074,
-    gMovementActionFuncs_075,
-    gMovementActionFuncs_076,
-    gMovementActionFuncs_077,
-    gMovementActionFuncs_078,
-    gMovementActionFuncs_079,
-    gMovementActionFuncs_080,
-    gMovementActionFuncs_081,
-    gMovementActionFuncs_082,
-    gMovementActionFuncs_083,
-    gMovementActionFuncs_084,
-    gMovementActionFuncs_085,
-    gMovementActionFuncs_086,
-    gMovementActionFuncs_087,
-    gMovementActionFuncs_088,
-    gMovementActionFuncs_089,
-    gMovementActionFuncs_090,
-    gMovementActionFuncs_091,
-    gMovementActionFuncs_092,
-    gMovementActionFuncs_093,
-    gMovementActionFuncs_094,
-    gMovementActionFuncs_095,
-    gMovementActionFuncs_096,
-    gMovementActionFuncs_097,
-    gMovementActionFuncs_098,
-    gMovementActionFuncs_099,
-    gMovementActionFuncs_100,
-    gMovementActionFuncs_101,
-    gMovementActionFuncs_102,
-    gMovementActionFuncs_103,
-    gMovementActionFuncs_104,
-    gMovementActionFuncs_105,
-    gMovementActionFuncs_106,
-    gMovementActionFuncs_107,
-    gMovementActionFuncs_108,
-    gMovementActionFuncs_109,
-    gMovementActionFuncs_110,
-    gMovementActionFuncs_111,
-    gMovementActionFuncs_112,
-    gMovementActionFuncs_113,
-    gMovementActionFuncs_114,
-    gMovementActionFuncs_115,
-    gMovementActionFuncs_116,
-    gMovementActionFuncs_117,
-    gMovementActionFuncs_118,
-    gMovementActionFuncs_119,
-    gMovementActionFuncs_120,
-    gMovementActionFuncs_121,
-    gMovementActionFuncs_122,
-    gMovementActionFuncs_123,
-    gMovementActionFuncs_124,
-    gMovementActionFuncs_125,
-    gMovementActionFuncs_126,
-    gMovementActionFuncs_127,
-    gMovementActionFuncs_128,
-    gMovementActionFuncs_129,
-    gMovementActionFuncs_130,
-    gMovementActionFuncs_131,
-    gMovementActionFuncs_132,
-    gMovementActionFuncs_133,
-    gMovementActionFuncs_134,
-    gMovementActionFuncs_135,
-    gMovementActionFuncs_136,
-    gMovementActionFuncs_137,
-    gMovementActionFuncs_138,
-    gMovementActionFuncs_139,
-    gMovementActionFuncs_140,
-    gMovementActionFuncs_141,
-    gMovementActionFuncs_142,
-    gMovementActionFuncs_143,
-    gMovementActionFuncs_144,
-    gMovementActionFuncs_145,
-    gMovementActionFuncs_146,
-    gMovementActionFuncs_147,
-    gMovementActionFuncs_148,
-    gMovementActionFuncs_149,
-    gMovementActionFuncs_150,
-    gMovementActionFuncs_151,
-    gMovementActionFuncs_152,
-    gMovementActionFuncs_153,
+    [MOVEMENT_ACTION_FACE_NORTH]                = gMovementActionFuncs_FaceNorth,
+    [MOVEMENT_ACTION_FACE_SOUTH]                = gMovementActionFuncs_FaceSouth,
+    [MOVEMENT_ACTION_FACE_WEST]                 = gMovementActionFuncs_FaceWest,
+    [MOVEMENT_ACTION_FACE_EAST]                 = gMovementActionFuncs_FaceEast,
+    [MOVEMENT_ACTION_WALK_SLOWER_NORTH]         = gMovementActionFuncs_WalkSlowerNorth,
+    [MOVEMENT_ACTION_WALK_SLOWER_SOUTH]         = gMovementActionFuncs_WalkSlowerSouth,
+    [MOVEMENT_ACTION_WALK_SLOWER_WEST]          = gMovementActionFuncs_WalkSlowerWest,
+    [MOVEMENT_ACTION_WALK_SLOWER_EAST]          = gMovementActionFuncs_WalkSlowerEast,
+    [MOVEMENT_ACTION_WALK_SLOW_NORTH]           = gMovementActionFuncs_WalkSlowNorth,
+    [MOVEMENT_ACTION_WALK_SLOW_SOUTH]           = gMovementActionFuncs_WalkSlowSouth,
+    [MOVEMENT_ACTION_WALK_SLOW_WEST]            = gMovementActionFuncs_WalkSlowWest,
+    [MOVEMENT_ACTION_WALK_SLOW_EAST]            = gMovementActionFuncs_WalkSlowEast,
+    [MOVEMENT_ACTION_WALK_NORMAL_NORTH]         = gMovementActionFuncs_WalkNormalNorth,
+    [MOVEMENT_ACTION_WALK_NORMAL_SOUTH]         = gMovementActionFuncs_WalkNormalSouth,
+    [MOVEMENT_ACTION_WALK_NORMAL_WEST]          = gMovementActionFuncs_WalkNormalWest,
+    [MOVEMENT_ACTION_WALK_NORMAL_EAST]          = gMovementActionFuncs_WalkNormalEast,
+    [MOVEMENT_ACTION_WALK_FAST_NORTH]           = gMovementActionFuncs_WalkFastNorth,
+    [MOVEMENT_ACTION_WALK_FAST_SOUTH]           = gMovementActionFuncs_WalkFastSouth,
+    [MOVEMENT_ACTION_WALK_FAST_WEST]            = gMovementActionFuncs_WalkFastWest,
+    [MOVEMENT_ACTION_WALK_FAST_EAST]            = gMovementActionFuncs_WalkFastEast,
+    [MOVEMENT_ACTION_WALK_FASTER_NORTH]         = gMovementActionFuncs_WalkFasterNorth,
+    [MOVEMENT_ACTION_WALK_FASTER_SOUTH]         = gMovementActionFuncs_WalkFasterSouth,
+    [MOVEMENT_ACTION_WALK_FASTER_WEST]          = gMovementActionFuncs_WalkFasterWest,
+    [MOVEMENT_ACTION_WALK_FASTER_EAST]          = gMovementActionFuncs_WalkFasterEast,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_SLOWER_NORTH] = gMovementActionFuncs_WalkOnSpotSlowerNorth,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_SLOWER_SOUTH] = gMovementActionFuncs_WalkOnSpotSlowerSouth,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_SLOWER_WEST]  = gMovementActionFuncs_WalkOnSpotSlowerWest,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_SLOWER_EAST]  = gMovementActionFuncs_WalkOnSpotSlowerEast,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH]   = gMovementActionFuncs_WalkOnSpotSlowNorth,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_SOUTH]   = gMovementActionFuncs_WalkOnSpotSlowSouth,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_WEST]    = gMovementActionFuncs_WalkOnSpotSlowWest,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_EAST]    = gMovementActionFuncs_WalkOnSpotSlowEast,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_NORMAL_NORTH] = gMovementActionFuncs_WalkOnSpotNormalNorth,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_NORMAL_SOUTH] = gMovementActionFuncs_WalkOnSpotNormalSouth,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_NORMAL_WEST]  = gMovementActionFuncs_WalkOnSpotNormalWest,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_NORMAL_EAST]  = gMovementActionFuncs_WalkOnSpotNormalEast,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH]   = gMovementActionFuncs_WalkOnSpotFastNorth,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_FAST_SOUTH]   = gMovementActionFuncs_WalkOnSpotFastSouth,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_FAST_WEST]    = gMovementActionFuncs_WalkOnSpotFastWest,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_FAST_EAST]    = gMovementActionFuncs_WalkOnSpotFastEast,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH] = gMovementActionFuncs_WalkOnSpotFasterNorth,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_SOUTH] = gMovementActionFuncs_WalkOnSpotFasterSouth,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_WEST]  = gMovementActionFuncs_WalkOnSpotFasterWest,
+    [MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_EAST]  = gMovementActionFuncs_WalkOnSpotFasterEast,
+    [MOVEMENT_ACTION_044]                       = gMovementActionFuncs_044,
+    [MOVEMENT_ACTION_045]                       = gMovementActionFuncs_045,
+    [MOVEMENT_ACTION_046]                       = gMovementActionFuncs_046,
+    [MOVEMENT_ACTION_047]                       = gMovementActionFuncs_047,
+    [MOVEMENT_ACTION_048]                       = gMovementActionFuncs_048,
+    [MOVEMENT_ACTION_049]                       = gMovementActionFuncs_049,
+    [MOVEMENT_ACTION_050]                       = gMovementActionFuncs_050,
+    [MOVEMENT_ACTION_051]                       = gMovementActionFuncs_051,
+    [MOVEMENT_ACTION_052]                       = gMovementActionFuncs_052,
+    [MOVEMENT_ACTION_053]                       = gMovementActionFuncs_053,
+    [MOVEMENT_ACTION_054]                       = gMovementActionFuncs_054,
+    [MOVEMENT_ACTION_055]                       = gMovementActionFuncs_055,
+    [MOVEMENT_ACTION_056]                       = gMovementActionFuncs_056,
+    [MOVEMENT_ACTION_057]                       = gMovementActionFuncs_057,
+    [MOVEMENT_ACTION_058]                       = gMovementActionFuncs_058,
+    [MOVEMENT_ACTION_059]                       = gMovementActionFuncs_059,
+    [MOVEMENT_ACTION_DELAY_1]                   = gMovementActionFuncs_Delay1,
+    [MOVEMENT_ACTION_DELAY_2]                   = gMovementActionFuncs_Delay2,
+    [MOVEMENT_ACTION_DELAY_4]                   = gMovementActionFuncs_Delay4,
+    [MOVEMENT_ACTION_DELAY_8]                   = gMovementActionFuncs_Delay8,
+    [MOVEMENT_ACTION_DELAY_15]                  = gMovementActionFuncs_Delay15,
+    [MOVEMENT_ACTION_DELAY_16]                  = gMovementActionFuncs_Delay16,
+    [MOVEMENT_ACTION_DELAY_32]                  = gMovementActionFuncs_Delay32,
+    [MOVEMENT_ACTION_067]                       = gMovementActionFuncs_067,
+    [MOVEMENT_ACTION_068]                       = gMovementActionFuncs_068,
+    [MOVEMENT_ACTION_SET_INVISIBLE]             = gMovementActionFuncs_SetInvisible,
+    [MOVEMENT_ACTION_SET_VISIBLE]               = gMovementActionFuncs_SetVisible,
+    [MOVEMENT_ACTION_LOCK_DIR]                  = gMovementActionFuncs_LockDir,
+    [MOVEMENT_ACTION_UNLOCK_DIR]                = gMovementActionFuncs_UnlockDir,
+    [MOVEMENT_ACTION_073]                       = gMovementActionFuncs_073,
+    [MOVEMENT_ACTION_074]                       = gMovementActionFuncs_074,
+    [MOVEMENT_ACTION_EXCLAMATION_POINT]         = gMovementActionFuncs_ExclamationPoint,
+    [MOVEMENT_ACTION_076]                       = gMovementActionFuncs_076,
+    [MOVEMENT_ACTION_077]                       = gMovementActionFuncs_077,
+    [MOVEMENT_ACTION_078]                       = gMovementActionFuncs_078,
+    [MOVEMENT_ACTION_079]                       = gMovementActionFuncs_079,
+    [MOVEMENT_ACTION_080]                       = gMovementActionFuncs_080,
+    [MOVEMENT_ACTION_081]                       = gMovementActionFuncs_081,
+    [MOVEMENT_ACTION_082]                       = gMovementActionFuncs_082,
+    [MOVEMENT_ACTION_083]                       = gMovementActionFuncs_083,
+    [MOVEMENT_ACTION_WALK_FASTEST_NORTH]        = gMovementActionFuncs_WalkFastestNorth,
+    [MOVEMENT_ACTION_WALK_FASTEST_SOUTH]        = gMovementActionFuncs_WalkFastestSouth,
+    [MOVEMENT_ACTION_WALK_FASTEST_WEST]         = gMovementActionFuncs_WalkFastestWest,
+    [MOVEMENT_ACTION_WALK_FASTEST_EAST]         = gMovementActionFuncs_WalkFastestEast,
+    [MOVEMENT_ACTION_RUN_NORTH]                 = gMovementActionFuncs_RunNorth,
+    [MOVEMENT_ACTION_RUN_SOUTH]                 = gMovementActionFuncs_RunSouth,
+    [MOVEMENT_ACTION_RUN_WEST]                  = gMovementActionFuncs_RunWest,
+    [MOVEMENT_ACTION_RUN_EAST]                  = gMovementActionFuncs_RunEast,
+    [MOVEMENT_ACTION_092]                       = gMovementActionFuncs_092,
+    [MOVEMENT_ACTION_093]                       = gMovementActionFuncs_093,
+    [MOVEMENT_ACTION_094]                       = gMovementActionFuncs_094,
+    [MOVEMENT_ACTION_095]                       = gMovementActionFuncs_095,
+    [MOVEMENT_ACTION_096]                       = gMovementActionFuncs_096,
+    [MOVEMENT_ACTION_097]                       = gMovementActionFuncs_097,
+    [MOVEMENT_ACTION_098]                       = gMovementActionFuncs_098,
+    [MOVEMENT_ACTION_099]                       = gMovementActionFuncs_099,
+    [MOVEMENT_ACTION_100]                       = gMovementActionFuncs_100,
+    [MOVEMENT_ACTION_101]                       = gMovementActionFuncs_101,
+    [MOVEMENT_ACTION_102]                       = gMovementActionFuncs_102,
+    [MOVEMENT_ACTION_103]                       = gMovementActionFuncs_103,
+    [MOVEMENT_ACTION_104]                       = gMovementActionFuncs_104,
+    [MOVEMENT_ACTION_105]                       = gMovementActionFuncs_105,
+    [MOVEMENT_ACTION_106]                       = gMovementActionFuncs_106,
+    [MOVEMENT_ACTION_107]                       = gMovementActionFuncs_107,
+    [MOVEMENT_ACTION_108]                       = gMovementActionFuncs_108,
+    [MOVEMENT_ACTION_109]                       = gMovementActionFuncs_109,
+    [MOVEMENT_ACTION_110]                       = gMovementActionFuncs_110,
+    [MOVEMENT_ACTION_111]                       = gMovementActionFuncs_111,
+    [MOVEMENT_ACTION_112]                       = gMovementActionFuncs_112,
+    [MOVEMENT_ACTION_113]                       = gMovementActionFuncs_113,
+    [MOVEMENT_ACTION_114]                       = gMovementActionFuncs_114,
+    [MOVEMENT_ACTION_115]                       = gMovementActionFuncs_115,
+    [MOVEMENT_ACTION_116]                       = gMovementActionFuncs_116,
+    [MOVEMENT_ACTION_117]                       = gMovementActionFuncs_117,
+    [MOVEMENT_ACTION_118]                       = gMovementActionFuncs_118,
+    [MOVEMENT_ACTION_119]                       = gMovementActionFuncs_119,
+    [MOVEMENT_ACTION_120]                       = gMovementActionFuncs_120,
+    [MOVEMENT_ACTION_121]                       = gMovementActionFuncs_121,
+    [MOVEMENT_ACTION_122]                       = gMovementActionFuncs_122,
+    [MOVEMENT_ACTION_123]                       = gMovementActionFuncs_123,
+    [MOVEMENT_ACTION_124]                       = gMovementActionFuncs_124,
+    [MOVEMENT_ACTION_125]                       = gMovementActionFuncs_125,
+    [MOVEMENT_ACTION_126]                       = gMovementActionFuncs_126,
+    [MOVEMENT_ACTION_127]                       = gMovementActionFuncs_127,
+    [MOVEMENT_ACTION_128]                       = gMovementActionFuncs_128,
+    [MOVEMENT_ACTION_129]                       = gMovementActionFuncs_129,
+    [MOVEMENT_ACTION_130]                       = gMovementActionFuncs_130,
+    [MOVEMENT_ACTION_131]                       = gMovementActionFuncs_131,
+    [MOVEMENT_ACTION_132]                       = gMovementActionFuncs_132,
+    [MOVEMENT_ACTION_133]                       = gMovementActionFuncs_133,
+    [MOVEMENT_ACTION_134]                       = gMovementActionFuncs_134,
+    [MOVEMENT_ACTION_135]                       = gMovementActionFuncs_135,
+    [MOVEMENT_ACTION_136]                       = gMovementActionFuncs_136,
+    [MOVEMENT_ACTION_137]                       = gMovementActionFuncs_137,
+    [MOVEMENT_ACTION_138]                       = gMovementActionFuncs_138,
+    [MOVEMENT_ACTION_139]                       = gMovementActionFuncs_139,
+    [MOVEMENT_ACTION_140]                       = gMovementActionFuncs_140,
+    [MOVEMENT_ACTION_141]                       = gMovementActionFuncs_141,
+    [MOVEMENT_ACTION_142]                       = gMovementActionFuncs_142,
+    [MOVEMENT_ACTION_143]                       = gMovementActionFuncs_143,
+    [MOVEMENT_ACTION_144]                       = gMovementActionFuncs_144,
+    [MOVEMENT_ACTION_145]                       = gMovementActionFuncs_145,
+    [MOVEMENT_ACTION_146]                       = gMovementActionFuncs_146,
+    [MOVEMENT_ACTION_147]                       = gMovementActionFuncs_147,
+    [MOVEMENT_ACTION_148]                       = gMovementActionFuncs_148,
+    [MOVEMENT_ACTION_149]                       = gMovementActionFuncs_149,
+    [MOVEMENT_ACTION_150]                       = gMovementActionFuncs_150,
+    [MOVEMENT_ACTION_151]                       = gMovementActionFuncs_151,
+    [MOVEMENT_ACTION_152]                       = gMovementActionFuncs_152,
+    [MOVEMENT_ACTION_153]                       = gMovementActionFuncs_153,
 };
+// clang-format on
 
 static const int Unk_020EDD5C[] = {
     0x0,

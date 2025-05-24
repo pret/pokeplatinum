@@ -172,8 +172,8 @@ _0232:
 
     .balign 4, 0
 _0244:
-    MoveAction_033
-    MoveAction_075
+    MoveAction_WalkOnSpotNormalSouth
+    MoveAction_ExclamationPoint
     EndMovement
 
     .balign 4, 0
@@ -183,13 +183,13 @@ _0250:
 
     .balign 4, 0
 _0258:
-    MoveAction_033
-    MoveAction_075
+    MoveAction_WalkOnSpotNormalSouth
+    MoveAction_ExclamationPoint
     EndMovement
 
     .balign 4, 0
 _0264:
-    MoveAction_032
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
@@ -200,15 +200,15 @@ _026C:
     .balign 4, 0
 _0274:
     MoveAction_118
-    MoveAction_013 5
+    MoveAction_WalkNormalSouth 5
     EndMovement
 
     .balign 4, 0
 _0280:
-    MoveAction_013 5
+    MoveAction_WalkNormalSouth 5
     EndMovement
 
     .balign 4, 0
 _0288:
-    MoveAction_012 5
+    MoveAction_WalkNormalNorth 5
     EndMovement

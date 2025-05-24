@@ -63,13 +63,13 @@ _007B:
 
     .balign 4, 0
 _00B4:
-    MoveAction_063
-    MoveAction_032
+    MoveAction_Delay8
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _00C0:
-    MoveAction_033
-    MoveAction_075
-    MoveAction_013
+    MoveAction_WalkOnSpotNormalSouth
+    MoveAction_ExclamationPoint
+    MoveAction_WalkNormalSouth
     EndMovement

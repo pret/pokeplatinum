@@ -472,66 +472,66 @@ _07C8:
 
     .balign 4, 0
 _07D4:
-    MoveAction_014 4
-    MoveAction_013 3
-    MoveAction_069
+    MoveAction_WalkNormalWest 4
+    MoveAction_WalkNormalSouth 3
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _07E4:
-    MoveAction_014 2
-    MoveAction_012
-    MoveAction_014 2
-    MoveAction_013 3
-    MoveAction_069
+    MoveAction_WalkNormalWest 2
+    MoveAction_WalkNormalNorth
+    MoveAction_WalkNormalWest 2
+    MoveAction_WalkNormalSouth 3
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _07FC:
-    MoveAction_014 3
-    MoveAction_013 3
-    MoveAction_069
+    MoveAction_WalkNormalWest 3
+    MoveAction_WalkNormalSouth 3
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _080C:
-    MoveAction_014
-    MoveAction_012
-    MoveAction_014 2
-    MoveAction_013 3
-    MoveAction_069
+    MoveAction_WalkNormalWest
+    MoveAction_WalkNormalNorth
+    MoveAction_WalkNormalWest 2
+    MoveAction_WalkNormalSouth 3
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _0824:
-    MoveAction_023 4
-    MoveAction_020 3
-    MoveAction_002
-    MoveAction_070
+    MoveAction_WalkFasterEast 4
+    MoveAction_WalkFasterNorth 3
+    MoveAction_FaceWest
+    MoveAction_SetVisible
     EndMovement
 
     .balign 4, 0
 _0838:
-    MoveAction_023 2
-    MoveAction_021
-    MoveAction_023 2
-    MoveAction_020 3
-    MoveAction_002
-    MoveAction_070
+    MoveAction_WalkFasterEast 2
+    MoveAction_WalkFasterSouth
+    MoveAction_WalkFasterEast 2
+    MoveAction_WalkFasterNorth 3
+    MoveAction_FaceWest
+    MoveAction_SetVisible
     EndMovement
 
     .balign 4, 0
 _0854:
-    MoveAction_020 3
-    MoveAction_023 3
-    MoveAction_070
+    MoveAction_WalkFasterNorth 3
+    MoveAction_WalkFasterEast 3
+    MoveAction_SetVisible
     EndMovement
 
     .balign 4, 0
 _0864:
-    MoveAction_020 2
-    MoveAction_023 3
-    MoveAction_070
+    MoveAction_WalkFasterNorth 2
+    MoveAction_WalkFasterEast 3
+    MoveAction_SetVisible
     EndMovement
 
 _0874:

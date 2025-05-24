@@ -132,38 +132,38 @@ _0159:
 
     .balign 4, 0
 _019C:
-    MoveAction_035
-    MoveAction_075
-    MoveAction_015
-    MoveAction_012
-    MoveAction_035
+    MoveAction_WalkOnSpotNormalEast
+    MoveAction_ExclamationPoint
+    MoveAction_WalkNormalEast
+    MoveAction_WalkNormalNorth
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01B4:
-    MoveAction_033
-    MoveAction_032
-    MoveAction_035
+    MoveAction_WalkOnSpotNormalSouth
+    MoveAction_WalkOnSpotNormalNorth
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01C4:
-    MoveAction_034
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _01CC:
-    MoveAction_035
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01D4:
-    MoveAction_063 2
-    MoveAction_015 2
+    MoveAction_Delay8 2
+    MoveAction_WalkNormalEast 2
     EndMovement
 
     .balign 4, 0
 _01E0:
-    MoveAction_013
-    MoveAction_032
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement

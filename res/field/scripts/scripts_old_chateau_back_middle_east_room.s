@@ -29,11 +29,11 @@ _002E:
 
     .balign 4, 0
 _004C:
-    MoveAction_065
-    MoveAction_001
-    MoveAction_065
+    MoveAction_Delay16
+    MoveAction_FaceSouth
+    MoveAction_Delay16
     MoveAction_073
-    MoveAction_013 2
+    MoveAction_WalkNormalSouth 2
     MoveAction_074
-    MoveAction_069
+    MoveAction_SetInvisible
     EndMovement

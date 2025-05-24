@@ -112,22 +112,22 @@ VerityCavern_ResetRoamingMespritState:
 
     .balign 4, 0
 _0190:
-    MoveAction_012 7
+    MoveAction_WalkNormalNorth 7
     EndMovement
 
     .balign 4, 0
 _0198:
-    MoveAction_033
-    MoveAction_063 2
-    MoveAction_032
+    MoveAction_WalkOnSpotNormalSouth
+    MoveAction_Delay8 2
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _01A8:
-    MoveAction_013 9
+    MoveAction_WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
 _01B0:
-    MoveAction_001
+    MoveAction_FaceSouth
     EndMovement

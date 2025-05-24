@@ -91,11 +91,11 @@ _0118:
 
     .balign 4, 0
 _0120:
-    MoveAction_071
-    MoveAction_033 3
-    MoveAction_037 4
-    MoveAction_041 2
-    MoveAction_072
+    MoveAction_LockDir
+    MoveAction_WalkOnSpotNormalSouth 3
+    MoveAction_WalkOnSpotFastSouth 4
+    MoveAction_WalkOnSpotFasterSouth 2
+    MoveAction_UnlockDir
     EndMovement
 
 _0138:
@@ -111,5 +111,5 @@ _0138:
 
     .balign 4, 0
 _015C:
-    MoveAction_012 2
+    MoveAction_WalkNormalNorth 2
     EndMovement

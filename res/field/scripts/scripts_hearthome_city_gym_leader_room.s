@@ -116,50 +116,50 @@ _01A0:
 
     .balign 4, 0
 _01B8:
-    MoveAction_002 4
-    MoveAction_000 4
-    MoveAction_003 4
-    MoveAction_001 4
-    MoveAction_002 4
-    MoveAction_000 4
-    MoveAction_003 4
-    MoveAction_001 4
+    MoveAction_FaceWest 4
+    MoveAction_FaceNorth 4
+    MoveAction_FaceEast 4
+    MoveAction_FaceSouth 4
+    MoveAction_FaceWest 4
+    MoveAction_FaceNorth 4
+    MoveAction_FaceEast 4
+    MoveAction_FaceSouth 4
     EndMovement
 
     .balign 4, 0
 _01DC:
-    MoveAction_003 4
-    MoveAction_001 4
-    MoveAction_002 4
-    MoveAction_000 4
-    MoveAction_003 4
-    MoveAction_001 4
-    MoveAction_002 4
-    MoveAction_000 4
+    MoveAction_FaceEast 4
+    MoveAction_FaceSouth 4
+    MoveAction_FaceWest 4
+    MoveAction_FaceNorth 4
+    MoveAction_FaceEast 4
+    MoveAction_FaceSouth 4
+    MoveAction_FaceWest 4
+    MoveAction_FaceNorth 4
     EndMovement
 
     .balign 4, 0
 _0200:
-    MoveAction_000 4
-    MoveAction_002 4
-    MoveAction_001 4
-    MoveAction_003 4
-    MoveAction_000 4
-    MoveAction_002 4
-    MoveAction_001 4
-    MoveAction_003 4
+    MoveAction_FaceNorth 4
+    MoveAction_FaceWest 4
+    MoveAction_FaceSouth 4
+    MoveAction_FaceEast 4
+    MoveAction_FaceNorth 4
+    MoveAction_FaceWest 4
+    MoveAction_FaceSouth 4
+    MoveAction_FaceEast 4
     EndMovement
 
     .balign 4, 0
 _0224:
-    MoveAction_000 4
-    MoveAction_003 4
-    MoveAction_001 4
-    MoveAction_002 4
-    MoveAction_000 4
-    MoveAction_003 4
-    MoveAction_001 4
-    MoveAction_002 4
+    MoveAction_FaceNorth 4
+    MoveAction_FaceEast 4
+    MoveAction_FaceSouth 4
+    MoveAction_FaceWest 4
+    MoveAction_FaceNorth 4
+    MoveAction_FaceEast 4
+    MoveAction_FaceSouth 4
+    MoveAction_FaceWest 4
     EndMovement
 
 _0248:

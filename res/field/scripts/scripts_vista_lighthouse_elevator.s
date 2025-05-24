@@ -45,12 +45,12 @@ _009C:
 
     .balign 4, 0
 _00B8:
-    MoveAction_012 2
-    MoveAction_033
+    MoveAction_WalkNormalNorth 2
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _00C4:
-    MoveAction_013 2
-    MoveAction_033
+    MoveAction_WalkNormalSouth 2
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement

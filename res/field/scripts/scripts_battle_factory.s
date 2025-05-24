@@ -300,68 +300,68 @@ _04B2:
 
     .balign 4, 0
 _04C8:
-    MoveAction_012 3
-    MoveAction_015
-    MoveAction_012 4
-    MoveAction_069
+    MoveAction_WalkNormalNorth 3
+    MoveAction_WalkNormalEast
+    MoveAction_WalkNormalNorth 4
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _04DC:
-    MoveAction_012 3
-    MoveAction_014
-    MoveAction_012 4
-    MoveAction_069
+    MoveAction_WalkNormalNorth 3
+    MoveAction_WalkNormalWest
+    MoveAction_WalkNormalNorth 4
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _04F0:
-    MoveAction_012 2
-    MoveAction_015
-    MoveAction_012 4
-    MoveAction_069
+    MoveAction_WalkNormalNorth 2
+    MoveAction_WalkNormalEast
+    MoveAction_WalkNormalNorth 4
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _0504:
-    MoveAction_012 2
-    MoveAction_014
-    MoveAction_012 4
-    MoveAction_069
+    MoveAction_WalkNormalNorth 2
+    MoveAction_WalkNormalWest
+    MoveAction_WalkNormalNorth 4
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _0518:
-    MoveAction_021 3
-    MoveAction_022
-    MoveAction_021 4
-    MoveAction_000
-    MoveAction_070
+    MoveAction_WalkFasterSouth 3
+    MoveAction_WalkFasterWest
+    MoveAction_WalkFasterSouth 4
+    MoveAction_FaceNorth
+    MoveAction_SetVisible
     EndMovement
 
     .balign 4, 0
 _0530:
-    MoveAction_021 3
-    MoveAction_023
-    MoveAction_021 4
-    MoveAction_000
-    MoveAction_070
+    MoveAction_WalkFasterSouth 3
+    MoveAction_WalkFasterEast
+    MoveAction_WalkFasterSouth 4
+    MoveAction_FaceNorth
+    MoveAction_SetVisible
     EndMovement
 
     .balign 4, 0
 _0548:
-    MoveAction_021 2
-    MoveAction_022
-    MoveAction_021 4
-    MoveAction_070
+    MoveAction_WalkFasterSouth 2
+    MoveAction_WalkFasterWest
+    MoveAction_WalkFasterSouth 4
+    MoveAction_SetVisible
     EndMovement
 
     .balign 4, 0
 _055C:
-    MoveAction_021 2
-    MoveAction_023
-    MoveAction_021 4
-    MoveAction_070
+    MoveAction_WalkFasterSouth 2
+    MoveAction_WalkFasterEast
+    MoveAction_WalkFasterSouth 4
+    MoveAction_SetVisible
     EndMovement
 
 _0570:

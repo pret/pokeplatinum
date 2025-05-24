@@ -213,7 +213,7 @@ _02D4:
     .balign 4, 0
 _02E0:
     MoveAction_100
-    MoveAction_062
+    MoveAction_Delay4
     EndMovement
 
     .balign 4, 0
@@ -1333,17 +1333,17 @@ _1245:
 
     .balign 4, 0
 _1250:
-    MoveAction_002
+    MoveAction_FaceWest
     EndMovement
 
     .balign 4, 0
 _1258:
-    MoveAction_003
+    MoveAction_FaceEast
     EndMovement
 
     .balign 4, 0
 _1260:
-    MoveAction_002
+    MoveAction_FaceWest
     EndMovement
 
     .byte 0
@@ -1365,7 +1365,7 @@ _1260:
 
     .balign 4, 0
 _1278:
-    MoveAction_001
+    MoveAction_FaceSouth
     EndMovement
 
 _1280:

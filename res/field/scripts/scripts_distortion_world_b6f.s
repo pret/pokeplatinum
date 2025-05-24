@@ -101,18 +101,18 @@ _00F6:
 
     .balign 4, 0
 _0108:
-    MoveAction_066
-    MoveAction_033
-    MoveAction_075
-    MoveAction_066
+    MoveAction_Delay32
+    MoveAction_WalkOnSpotNormalSouth
+    MoveAction_ExclamationPoint
+    MoveAction_Delay32
     EndMovement
 
     .balign 4, 0
 _011C:
-    MoveAction_013
+    MoveAction_WalkNormalSouth
     MoveAction_118
-    MoveAction_014
-    MoveAction_035
+    MoveAction_WalkNormalWest
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0

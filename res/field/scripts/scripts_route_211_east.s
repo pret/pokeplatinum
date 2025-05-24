@@ -42,7 +42,7 @@ _0073:
 
     .balign 4, 0
 _0080:
-    MoveAction_075
+    MoveAction_ExclamationPoint
     EndMovement
 
 _0088:

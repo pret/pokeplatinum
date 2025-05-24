@@ -81,31 +81,31 @@ _00F1:
 
     .balign 4, 0
 _010C:
-    MoveAction_015
-    MoveAction_064
+    MoveAction_WalkNormalEast
+    MoveAction_Delay15
     EndMovement
 
     .balign 4, 0
 _0118:
-    MoveAction_069
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _0120:
-    MoveAction_013
-    MoveAction_015 2
-    MoveAction_064
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkNormalEast 2
+    MoveAction_Delay15
     EndMovement
 
     .balign 4, 0
 _0130:
-    MoveAction_015 2
-    MoveAction_064
+    MoveAction_WalkNormalEast 2
+    MoveAction_Delay15
     EndMovement
 
     .balign 4, 0
 _013C:
-    MoveAction_012
-    MoveAction_015 2
-    MoveAction_064
+    MoveAction_WalkNormalNorth
+    MoveAction_WalkNormalEast 2
+    MoveAction_Delay15
     EndMovement
