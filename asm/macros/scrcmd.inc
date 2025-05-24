@@ -2,6 +2,7 @@
 #include "generated/badges.h"
 #include "generated/catching_show_points_category.h"
 #include "generated/days_of_week.h"
+#include "generated/facing_directions.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
 #include "generated/items.h"
@@ -2183,10 +2184,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_189 arg0, arg1
+    .macro SetObjectEventDir localID, dir
     .short 393
-    .short \arg0
-    .short \arg1
+    .short \localID
+    .short \dir
     .endm
 
     .macro SetWarpEventPos index, x, z
@@ -2625,10 +2626,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1D6 arg0, arg1
+    // destVarID will be set to TRUE if the player has the specified backdrop
+    .macro CheckBackdrop backdrop, destVar
     .short 470
-    .short \arg0
-    .short \arg1
+    .short \backdrop
+    .short \destVar
     .endm
 
     .macro ScrCmd_1D7 arg0
@@ -3384,22 +3386,31 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_252 arg0
+    .macro GetPCBoxesFreeSlotCount destVar
     .short 594
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_253 arg0
+    .macro SetClearInCatchingShowFlag getClear
     .short 595
-    .short \arg0
+    .short \getClear
     .endm
 
-    .macro ScrCmd_254 arg0
-    .short 596
-    .short \arg0
+    .macro SetInCatchingShowFlag
+    SetClearInCatchingShowFlag 0
     .endm
 
-    .macro ScrCmd_255
+    .macro ClearInCatchingShowFlag
+    SetClearInCatchingShowFlag 1
+    .endm
+
+    .macro GoToIfNotEnoughMonForCatchingShow offset
+    .short 596 /* CheckHasEnoughMonForCatchingShow */
+    .short VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, \offset
+    .endm
+
+    .macro MoveCatchingShowMonsToPCBoxes
     .short 597
     .endm
 

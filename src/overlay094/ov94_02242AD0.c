@@ -1276,7 +1276,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 {
     int v0 = Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
 
-    sub_0202F180(param0->unk_00->saveData, param1);
+    SaveData_UpdateCatchRecords(param0->unk_00->saveData, param1);
     param2 = 18;
 
     if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
@@ -1325,7 +1325,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
 static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2)
 {
-    sub_0202F180(param0->unk_00->saveData, param1);
+    SaveData_UpdateCatchRecords(param0->unk_00->saveData, param1);
 
     param2 = 18;
 
