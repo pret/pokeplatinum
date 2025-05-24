@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/pc_boxes_decl.h"
+#include "struct_defs/pc_boxes.h"
 
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/pc_mon_preview.h"

@@ -2,8 +2,8 @@
 
 #include "generated/badges.h"
 
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
+#include "struct_defs/pokedex.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field_overworld_state.h"

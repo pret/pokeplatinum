@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0208737C_H
 #define POKEPLATINUM_STRUCT_0208737C_H
 
-#include "struct_decls/pc_boxes_decl.h"
+#include "struct_defs/pc_boxes.h"
 
 #include "game_options.h"
 #include "strbuf.h"

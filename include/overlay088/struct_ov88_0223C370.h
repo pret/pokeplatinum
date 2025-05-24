@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV88_0223C370_H
 #define POKEPLATINUM_STRUCT_OV88_0223C370_H
 
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
+#include "struct_defs/pokedex.h"
 
 #include "field/field_system_decl.h"
 

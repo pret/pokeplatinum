@@ -12,14 +12,6 @@
 
 #include "res/text/bank/pokemon_storage_system.h"
 
-typedef struct PCBoxes {
-    u32 currentBoxID;
-    BoxPokemon boxMons[MAX_PC_BOXES][MAX_MONS_PER_BOX];
-    u16 names[MAX_PC_BOXES][PC_BOX_NAME_BUFFER_LEN];
-    u8 wallpapers[MAX_PC_BOXES];
-    u8 unlockedWallpapers;
-} PCBoxes;
-
 static void PCBoxes_InitInternal(PCBoxes *pcBoxes);
 
 void PCBoxes_Init(PCBoxes *pcBoxes)

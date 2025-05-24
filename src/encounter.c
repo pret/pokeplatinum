@@ -10,8 +10,8 @@
 #include "generated/map_headers.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
+#include "struct_defs/pc_boxes.h"
 #include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system.h"

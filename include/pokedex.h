@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_POKEDEX_H
 #define POKEPLATINUM_POKEDEX_H
 
-#include "struct_decls/pokedexdata_decl.h"
+#include "struct_defs/pokedex.h"
 
 #include "pokemon.h"
 #include "savedata.h"

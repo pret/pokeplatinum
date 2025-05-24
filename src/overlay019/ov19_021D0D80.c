@@ -6,9 +6,9 @@
 #include "constants/items.h"
 #include "constants/species.h"
 
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pc_boxes.h"
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0208737C.h"
 

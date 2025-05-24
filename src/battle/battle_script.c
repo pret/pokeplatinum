@@ -12,9 +12,9 @@
 #include "generated/genders.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/fraction.h"
+#include "struct_defs/pc_boxes.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/trainer.h"

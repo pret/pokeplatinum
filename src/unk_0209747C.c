@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
+#include "struct_defs/pokedex.h"
 #include "struct_defs/sentence.h"
 
 #include "game_options.h"

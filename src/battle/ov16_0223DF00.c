@@ -11,12 +11,12 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pc_boxes.h"
+#include "struct_defs/pokedex.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"

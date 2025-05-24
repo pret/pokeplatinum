@@ -4,7 +4,7 @@
 #include "generated/abilities.h"
 #include "generated/genders.h"
 
-#include "struct_decls/pc_boxes_decl.h"
+#include "struct_defs/pc_boxes.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/trainer.h"
 

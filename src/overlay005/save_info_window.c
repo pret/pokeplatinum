@@ -7,7 +7,7 @@
 #include "constants/narc.h"
 #include "generated/map_headers.h"
 
-#include "struct_decls/pokedexdata_decl.h"
+#include "struct_defs/pokedex.h"
 
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/save_info_window.h"
