@@ -119,9 +119,9 @@ struct UnkStruct_ov111_021D0F7C_t {
     u8 unk_466[38400];
 };
 
-int ov111_021D0D80(OverlayManager *param0, int *param1);
-int ov111_021D0E34(OverlayManager *param0, int *param1);
-int ov111_021D0F40(OverlayManager *param0, int *param1);
+int ov111_021D0D80(OverlayManager *overlayMan, int *param1);
+int ov111_021D0E34(OverlayManager *overlayMan, int *param1);
+int ov111_021D0F40(OverlayManager *overlayMan, int *param1);
 static BOOL ov111_021D0F7C(UnkStruct_ov111_021D0F7C *param0);
 static BOOL ov111_021D0FC8(UnkStruct_ov111_021D0F7C *param0);
 static BOOL ov111_021D10B8(UnkStruct_ov111_021D0F7C *param0);
@@ -317,7 +317,7 @@ static const UnkStruct_ov111_021D3620 Unk_ov111_021D374C[9] = {
     { 0xBD, 0x78 }
 };
 
-int ov111_021D0D80(OverlayManager *param0, int *param1)
+int ov111_021D0D80(OverlayManager *overlayMan, int *param1)
 {
     int v0;
     UnkStruct_ov111_021D0F7C *v1;
@@ -326,12 +326,12 @@ int ov111_021D0D80(OverlayManager *param0, int *param1)
     ov111_021D1D30();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_115, 0x48000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov111_021D0F7C), HEAP_ID_115);
+    v1 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov111_021D0F7C), HEAP_ID_115);
     memset(v1, 0, sizeof(UnkStruct_ov111_021D0F7C));
 
     v1->unk_58 = BgConfig_New(HEAP_ID_115);
-    v1->unk_00 = param0;
-    v2 = (UnkStruct_0203E608 *)OverlayManager_Args(param0);
+    v1->unk_00 = overlayMan;
+    v2 = (UnkStruct_0203E608 *)OverlayManager_Args(overlayMan);
     v1->saveData = v2->saveData;
     v1->unk_09 = v2->unk_04;
     v1->unk_3D8 = &v2->unk_14;
@@ -355,9 +355,9 @@ int ov111_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov111_021D0E34(OverlayManager *param0, int *param1)
+int ov111_021D0E34(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov111_021D0F7C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov111_021D0F7C *v0 = OverlayManager_Data(overlayMan);
 
     switch (*param1) {
     case 0:
@@ -420,10 +420,10 @@ int ov111_021D0E34(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov111_021D0F40(OverlayManager *param0, int *param1)
+int ov111_021D0F40(OverlayManager *overlayMan, int *param1)
 {
     int v0;
-    UnkStruct_ov111_021D0F7C *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov111_021D0F7C *v1 = OverlayManager_Data(overlayMan);
 
     DisableTouchPad();
     *(v1->unk_3D8) = v1->unk_0C;
@@ -431,7 +431,7 @@ int ov111_021D0F40(OverlayManager *param0, int *param1)
 
     ov111_021D1C0C(v1);
 
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_115);
 

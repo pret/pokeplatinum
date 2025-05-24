@@ -32,7 +32,7 @@ static const OverlayManagerTemplate Unk_020E5664 = {
     0xffffffff,
 };
 
-int sub_02017498(OverlayManager *param0, int *param1)
+int sub_02017498(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_02017498 *v0;
 
@@ -50,18 +50,18 @@ int sub_02017498(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_116, (0x20000 + 0x8000));
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02017498), HEAP_ID_116);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_02017498), HEAP_ID_116);
     MI_CpuClear8(v0, sizeof(UnkStruct_02017498));
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = OverlayManager_Args(overlayMan);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
 
     return 1;
 }
 
-int sub_02017524(OverlayManager *param0, int *param1)
+int sub_02017524(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_02017498 *v0 = OverlayManager_Data(param0);
+    UnkStruct_02017498 *v0 = OverlayManager_Data(overlayMan);
 
     switch (*param1) {
     case 0:
@@ -79,12 +79,12 @@ int sub_02017524(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        v0->unk_14 = OverlayManager_New(&Unk_020E5664, v0, 116);
+        v0->overlayMan = OverlayManager_New(&Unk_020E5664, v0, 116);
         (*param1)++;
         break;
     case 3:
-        if (OverlayManager_Exec(v0->unk_14) == 1) {
-            OverlayManager_Free(v0->unk_14);
+        if (OverlayManager_Exec(v0->overlayMan) == 1) {
+            OverlayManager_Free(v0->overlayMan);
 
             if (v0->unk_8C == 1) {
                 v0->unk_10 = 1;
@@ -98,22 +98,22 @@ int sub_02017524(OverlayManager *param0, int *param1)
         const OverlayManagerTemplate *v1;
 
         v1 = sub_0208BE5C(v0->unk_00->unk_0C);
-        v0->unk_14 = OverlayManager_New(v1, v0->unk_00->fieldSystem, 116);
+        v0->overlayMan = OverlayManager_New(v1, v0->unk_00->fieldSystem, 116);
         (*param1)++;
     } break;
     case 5:
-        if (OverlayManager_Exec(v0->unk_14) == 1) {
-            OverlayManager_Free(v0->unk_14);
+        if (OverlayManager_Exec(v0->overlayMan) == 1) {
+            OverlayManager_Free(v0->overlayMan);
             (*param1)++;
         }
         break;
     case 6:
-        v0->unk_14 = OverlayManager_New(&Unk_020E5664, v0, 116);
+        v0->overlayMan = OverlayManager_New(&Unk_020E5664, v0, 116);
         (*param1)++;
         break;
     case 7:
-        if (OverlayManager_Exec(v0->unk_14) == 1) {
-            OverlayManager_Free(v0->unk_14);
+        if (OverlayManager_Exec(v0->overlayMan) == 1) {
+            OverlayManager_Free(v0->overlayMan);
             v0->unk_10 = 0;
             (*param1)++;
         }
@@ -130,13 +130,13 @@ int sub_02017524(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int sub_02017658(OverlayManager *param0, int *param1)
+int sub_02017658(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_02017498 *v0 = OverlayManager_Data(param0);
+    UnkStruct_02017498 *v0 = OverlayManager_Data(overlayMan);
 
     sub_020176B4(v0);
     Heap_FreeToHeap(v0->unk_00);
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_116);
 
     return 1;

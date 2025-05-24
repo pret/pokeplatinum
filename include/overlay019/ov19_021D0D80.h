@@ -47,9 +47,9 @@ enum CursorMovementState {
     CURSOR_MOVE_TO_RIGHT_BOX
 };
 
-int ov19_021D0D80(OverlayManager *param0, int *param1);
-int ov19_021D0DEC(OverlayManager *param0, int *param1);
-int ov19_021D0E58(OverlayManager *param0, int *param1);
+int ov19_021D0D80(OverlayManager *overlayMan, int *param1);
+int ov19_021D0DEC(OverlayManager *overlayMan, int *param1);
+int ov19_021D0E58(OverlayManager *overlayMan, int *param1);
 BOOL ov19_021D3B18(const UnkStruct_ov19_021D5DF8 *param0);
 BOOL ov19_021D3B20(const UnkStruct_ov19_021D5DF8 *param0);
 MessageLoader *ov19_GetBoxMessagesLoader(const UnkStruct_ov19_021D5DF8 *param0);

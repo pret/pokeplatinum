@@ -123,7 +123,7 @@ static const struct {
     { ov95_0224B3D8, ov95_0224B49C, ov95_0224B438, 1 | 4 },
 };
 
-int ov95_02246C20(OverlayManager *param0, int *param1)
+int ov95_02246C20(OverlayManager *overlayMan, int *param1)
 {
     if (IsScreenTransitionDone()) {
         UnkStruct_ov95_02247628 *v0;
@@ -133,10 +133,10 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
         ov95_02247688();
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_3, SEQ_KOUKAN, 1);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov95_02247628), HEAP_ID_57);
+        v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov95_02247628), HEAP_ID_57);
 
         if (v0) {
-            v0->unk_00 = OverlayManager_Args(param0);
+            v0->unk_00 = OverlayManager_Args(overlayMan);
             v0->unk_04 = 0;
             v0->unk_08 = BgConfig_New(HEAP_ID_57);
             v0->unk_14 = Strbuf_Init(400, HEAP_ID_57);
@@ -197,13 +197,13 @@ static BOOL DoesMonSpeciesFlipsSprite(BoxPokemon *boxMon)
     return SpeciesData_GetFormValue(species, form, SPECIES_DATA_FLIP_SPRITE) == FALSE;
 }
 
-int ov95_02246E1C(OverlayManager *param0, int *param1)
+int ov95_02246E1C(OverlayManager *overlayMan, int *param1)
 {
     OSIntrMode v0;
     UnkStruct_ov95_02247628 *v1;
 
     v0 = OS_DisableInterrupts();
-    v1 = OverlayManager_Data(param0);
+    v1 = OverlayManager_Data(overlayMan);
 
     SysTask_Done(v1->unk_1A8);
     sub_02039794();
@@ -213,7 +213,7 @@ int ov95_02246E1C(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v1->unk_08);
     SpriteList_Delete(v1->unk_18);
     RenderOam_Free();
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_57);
     Heap_Destroy(HEAP_ID_58);
 
@@ -222,9 +222,9 @@ int ov95_02246E1C(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov95_02246E7C(OverlayManager *param0, int *param1)
+int ov95_02246E7C(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov95_02247628 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov95_02247628 *v0 = OverlayManager_Data(overlayMan);
 
     if (v0->unk_04 < NELEMS(Unk_ov95_0224BE8C)) {
         if (Unk_ov95_0224BE8C[v0->unk_04].unk_0C & v0->unk_00->unk_10) {

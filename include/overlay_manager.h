@@ -9,7 +9,7 @@
 
 typedef struct OverlayManager OverlayManager;
 
-typedef BOOL (*OverlayFunc)(OverlayManager *ovyManager, int *state);
+typedef BOOL (*OverlayFunc)(OverlayManager *overlayMan, int *state);
 
 typedef struct OverlayManagerTemplate {
     OverlayFunc init;
@@ -29,11 +29,11 @@ struct OverlayManager {
 };
 
 OverlayManager *OverlayManager_New(const OverlayManagerTemplate *template, void *args, const enum HeapId heapID);
-void OverlayManager_Free(OverlayManager *ovyManager);
-void *OverlayManager_NewData(OverlayManager *ovyManager, u32 size, enum HeapId heapID);
-void *OverlayManager_Data(OverlayManager *ovyManager);
-void OverlayManager_FreeData(OverlayManager *ovyManager);
-void *OverlayManager_Args(OverlayManager *ovyManager);
-BOOL OverlayManager_Exec(OverlayManager *ovyManager);
+void OverlayManager_Free(OverlayManager *overlayMan);
+void *OverlayManager_NewData(OverlayManager *overlayMan, u32 size, enum HeapId heapID);
+void *OverlayManager_Data(OverlayManager *overlayMan);
+void OverlayManager_FreeData(OverlayManager *overlayMan);
+void *OverlayManager_Args(OverlayManager *overlayMan);
+BOOL OverlayManager_Exec(OverlayManager *overlayMan);
 
 #endif // POKEPLATINUM_OVERLAY_MANAGER_H

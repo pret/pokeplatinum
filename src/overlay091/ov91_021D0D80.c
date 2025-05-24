@@ -53,7 +53,7 @@ typedef struct {
     SpriteManager *unk_114;
     ManagedSprite *unk_118[13];
     PokemonSummary unk_14C;
-    OverlayManager *unk_17C;
+    OverlayManager *overlayMan;
     int unk_180;
     u8 unk_184;
     u8 unk_185;
@@ -339,15 +339,15 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
     },
 };
 
-int ov91_021D0D80(OverlayManager *param0, int *param1)
+int ov91_021D0D80(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov91_021D0ED8 *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_67, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov91_021D0ED8), HEAP_ID_67);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov91_021D0ED8), HEAP_ID_67);
     memset(v0, 0, sizeof(UnkStruct_ov91_021D0ED8));
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = OverlayManager_Args(overlayMan);
 
     ov91_021D0ED8(v0);
     ov91_021D2548(v0, v0->unk_00->unk_10, 0);
@@ -363,9 +363,9 @@ int ov91_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov91_021D0E08(OverlayManager *param0, int *param1)
+int ov91_021D0E08(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov91_021D0ED8 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov91_021D0ED8 *v0 = OverlayManager_Data(overlayMan);
 
     switch (*param1) {
     case 0:
@@ -414,13 +414,13 @@ int ov91_021D0E08(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov91_021D0EBC(OverlayManager *param0, int *param1)
+int ov91_021D0EBC(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov91_021D0ED8 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov91_021D0ED8 *v0 = OverlayManager_Data(overlayMan);
 
     ov91_021D0F6C(v0);
 
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_67);
 
     return 1;
@@ -1505,14 +1505,14 @@ static int ov91_021D261C(UnkStruct_ov91_021D0ED8 *param0)
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_14C, v0);
 
-    param0->unk_17C = OverlayManager_New(&gPokemonSummaryScreenApp, &param0->unk_14C, 67);
+    param0->overlayMan = OverlayManager_New(&gPokemonSummaryScreenApp, &param0->unk_14C, 67);
     return 12;
 }
 
 static int ov91_021D26AC(UnkStruct_ov91_021D0ED8 *param0)
 {
-    if (OverlayManager_Exec(param0->unk_17C)) {
-        OverlayManager_Free(param0->unk_17C);
+    if (OverlayManager_Exec(param0->overlayMan)) {
+        OverlayManager_Free(param0->overlayMan);
         ov91_021D0ED8(param0);
         ov91_021D2548(param0, param0->unk_00->unk_10, 1);
         ov91_021D2574(param0, 0);

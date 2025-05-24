@@ -884,10 +884,10 @@ static void ov97_0222BC1C(UnkStruct_0222AE60 *param0)
     Sprite_SetDrawFlag(param0->unk_168[1], v2);
 }
 
-static void ov97_0222BC9C(OverlayManager *param0)
+static void ov97_0222BC9C(OverlayManager *overlayMan)
 {
     int v0;
-    UnkStruct_0222AE60 *v1 = OverlayManager_Data(param0);
+    UnkStruct_0222AE60 *v1 = OverlayManager_Data(overlayMan);
 
     if (v1->unk_168[0] || v1->unk_168[1]) {
         Sprite_Delete(v1->unk_168[0]);
@@ -963,20 +963,20 @@ static void ov97_0222BD48(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static int ov97_0222BD70(OverlayManager *param0, int *param1)
+static int ov97_0222BD70(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_0222AE60 *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_81, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0222AE60), HEAP_ID_81);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_0222AE60), HEAP_ID_81);
     memset(v0, 0, sizeof(UnkStruct_0222AE60));
     v0->unk_00 = BgConfig_New(HEAP_ID_81);
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(overlayMan))->saveData;
     v0->unk_14 = SaveData_GetMysteryGift(v0->saveData);
     v0->unk_11C = FX32_ONE * 0;
     v0->unk_120 = FX32_ONE * 0;
@@ -999,10 +999,10 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int ov97_0222BE24(OverlayManager *param0, int *param1)
+static int ov97_0222BE24(OverlayManager *overlayMan, int *param1)
 {
     int v0;
-    UnkStruct_0222AE60 *v1 = OverlayManager_Data(param0);
+    UnkStruct_0222AE60 *v1 = OverlayManager_Data(overlayMan);
 
     v1->unk_18++;
     CTRDG_IsExisting();
@@ -1129,7 +1129,7 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
         }
         break;
     case 7:
-        ov97_0222BC9C(param0);
+        ov97_0222BC9C(overlayMan);
         return 1;
         break;
     case 8:
@@ -1188,13 +1188,13 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
     }
 }
 
-static int ov97_0222C150(OverlayManager *param0, int *param1)
+static int ov97_0222C150(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_0222AE60 *v0 = OverlayManager_Data(param0);
+    UnkStruct_0222AE60 *v0 = OverlayManager_Data(overlayMan);
 
     ov97_0222C094(v0);
 
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_81);
 
     ov97_02238400(0);

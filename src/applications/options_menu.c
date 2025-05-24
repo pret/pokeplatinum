@@ -148,14 +148,14 @@ static void TeardownBgs(OptionsMenuData *menuData);
 static void TeardownTilemaps(OptionsMenuData *menuData);
 static void TeardownWindows(OptionsMenuData *menuData);
 
-BOOL OptionsMenu_Init(OverlayManager *ovyManager, int *state)
+BOOL OptionsMenu_Init(OverlayManager *overlayMan, int *state)
 {
     OptionsMenuData *menuData = NULL;
-    Options *options = OverlayManager_Args(ovyManager);
+    Options *options = OverlayManager_Args(overlayMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_OPTIONS_MENU, HEAP_ALLOCATION_SIZE);
 
-    menuData = OverlayManager_NewData(ovyManager, sizeof(OptionsMenuData), HEAP_ID_OPTIONS_MENU);
+    menuData = OverlayManager_NewData(overlayMan, sizeof(OptionsMenuData), HEAP_ID_OPTIONS_MENU);
     memset(menuData, 0, sizeof(OptionsMenuData));
 
     menuData->options.textSpeed = Options_TextSpeed(options);
@@ -172,9 +172,9 @@ BOOL OptionsMenu_Init(OverlayManager *ovyManager, int *state)
     return TRUE;
 }
 
-BOOL OptionsMenu_Exit(OverlayManager *ovyManager, int *state)
+BOOL OptionsMenu_Exit(OverlayManager *overlayMan, int *state)
 {
-    OptionsMenuData *menuData = OverlayManager_Data(ovyManager);
+    OptionsMenuData *menuData = OverlayManager_Data(overlayMan);
 
     if (menuData->saveSelections == 1) {
         menuData->options.textSpeed = menuData->entries.textSpeed.selected;
@@ -196,7 +196,7 @@ BOOL OptionsMenu_Exit(OverlayManager *ovyManager, int *state)
 
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
 
-    OverlayManager_FreeData(ovyManager);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(menuData->heapID);
 
     return TRUE;
@@ -214,9 +214,9 @@ enum OptonsMenuState {
     STATE_TEARDOWN,
 };
 
-BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
+BOOL OptionsMenu_Main(OverlayManager *overlayMan, int *state)
 {
-    OptionsMenuData *menuData = OverlayManager_Data(ovyManager);
+    OptionsMenuData *menuData = OverlayManager_Data(overlayMan);
     u32 choiceYesNo;
 
     switch (menuData->state) {

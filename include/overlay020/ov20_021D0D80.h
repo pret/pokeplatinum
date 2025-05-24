@@ -6,9 +6,9 @@
 #include "overlay_manager.h"
 #include "strbuf.h"
 
-int ov20_021D0D80(OverlayManager *param0, int *param1);
-int ov20_021D0DF8(OverlayManager *param0, int *param1);
-int ov20_021D0EA8(OverlayManager *param0, int *param1);
+int ov20_021D0D80(OverlayManager *overlayMan, int *param1);
+int ov20_021D0DF8(OverlayManager *overlayMan, int *param1);
+int ov20_021D0EA8(OverlayManager *overlayMan, int *param1);
 u32 ov20_021D1F84(const UnkStruct_ov20_021D16E8 *param0);
 u32 ov20_021D1F88(const UnkStruct_ov20_021D16E8 *param0);
 u32 ov20_021D1F94(const UnkStruct_ov20_021D16E8 *param0);

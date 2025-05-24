@@ -3,9 +3,9 @@
 
 #include "overlay_manager.h"
 
-int ov108_02241AE0(OverlayManager *param0, int *param1);
-int ov108_02241C38(OverlayManager *param0, int *param1);
-int ov108_02241D70(OverlayManager *param0, int *param1);
+int ov108_02241AE0(OverlayManager *overlayMan, int *param1);
+int ov108_02241C38(OverlayManager *overlayMan, int *param1);
+int ov108_02241D70(OverlayManager *overlayMan, int *param1);
 void ov108_02242AB0(int param0, int param1, void *param2, void *param3);
 void ov108_02242B24(int param0, int param1, void *param2, void *param3);
 void ov108_02242B84(int param0, int param1, void *param2, void *param3);

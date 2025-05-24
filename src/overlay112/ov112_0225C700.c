@@ -321,13 +321,13 @@ static u32 Unk_ov112_0225D968[4] = {
     0x5E3
 };
 
-int ov112_0225C700(OverlayManager *param0, int *param1)
+int ov112_0225C700(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov112_0225C970 *v0;
-    UnkStruct_ov66_02230FA0 *v1 = OverlayManager_Args(param0);
+    UnkStruct_ov66_02230FA0 *v1 = OverlayManager_Args(overlayMan);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_107, 0x50000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov112_0225C970), HEAP_ID_107);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov112_0225C970), HEAP_ID_107);
     memset(v0, 0, sizeof(UnkStruct_ov112_0225C970));
 
     v0->unk_00 = v1->unk_00;
@@ -346,14 +346,14 @@ int ov112_0225C700(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov112_0225C7C4(OverlayManager *param0, int *param1)
+int ov112_0225C7C4(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov112_0225C970 *v0;
     UnkStruct_ov66_02230FA0 *v1;
     BOOL v2;
 
-    v0 = OverlayManager_Data(param0);
-    v1 = OverlayManager_Args(param0);
+    v0 = OverlayManager_Data(overlayMan);
+    v1 = OverlayManager_Args(overlayMan);
 
     switch (*param1) {
     case 0:
@@ -412,13 +412,13 @@ int ov112_0225C7C4(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov112_0225C8FC(OverlayManager *param0, int *param1)
+int ov112_0225C8FC(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov112_0225C970 *v0;
     UnkStruct_ov66_02230FA0 *v1;
 
-    v0 = OverlayManager_Data(param0);
-    v1 = OverlayManager_Args(param0);
+    v0 = OverlayManager_Data(overlayMan);
+    v1 = OverlayManager_Args(overlayMan);
 
     ov112_0225D6DC(&v0->unk_264);
     ov112_0225CDF8(&v0->unk_1B8);
@@ -431,7 +431,7 @@ int ov112_0225C8FC(OverlayManager *param0, int *param1)
 
     ov112_0225C9F4(&v0->unk_08);
 
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_107);
 
     return 1;

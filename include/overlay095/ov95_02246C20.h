@@ -15,9 +15,9 @@
 #include "sprite.h"
 #include "string_template.h"
 
-int ov95_02246C20(OverlayManager *param0, int *param1);
-int ov95_02246E1C(OverlayManager *param0, int *param1);
-int ov95_02246E7C(OverlayManager *param0, int *param1);
+int ov95_02246C20(OverlayManager *overlayMan, int *param1);
+int ov95_02246E1C(OverlayManager *overlayMan, int *param1);
+int ov95_02246E7C(OverlayManager *overlayMan, int *param1);
 UnkStruct_ov95_02247004 *ov95_02246F30(BOOL *param0, int param1);
 void ov95_02247004(UnkStruct_ov95_02247004 *param0);
 void ov95_02247018(UnkStruct_ov95_02247004 *param0);

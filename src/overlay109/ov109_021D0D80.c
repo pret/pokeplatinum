@@ -425,10 +425,10 @@ static const fx32 Unk_ov109_021D5A98[5 + 1];
 static int (*const Unk_ov109_021D5CBC[54])(UnkStruct_ov109_021D0F70 *);
 static int (*const Unk_ov109_021D59D8[3])(UnkStruct_ov109_021D2FE0 *);
 
-int ov109_021D0D80(OverlayManager *param0, int *param1)
+int ov109_021D0D80(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov109_021D0F70 *v0;
-    UnkStruct_0209C194 *v1 = OverlayManager_Args(param0);
+    UnkStruct_0209C194 *v1 = OverlayManager_Args(overlayMan);
 
     CommMan_SetErrorHandling(1, 1);
     SetVBlankCallback(NULL, NULL);
@@ -436,7 +436,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     ResetLock(RESET_LOCK_0x2);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_95, 0x80000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D0F70), HEAP_ID_95);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov109_021D0F70), HEAP_ID_95);
     memset(v0, 0, sizeof(UnkStruct_ov109_021D0F70));
 
     v1->unk_38 = v0;
@@ -486,9 +486,9 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov109_021D0EB4(OverlayManager *param0, int *param1)
+int ov109_021D0EB4(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov109_021D0F70 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov109_021D0F70 *v0 = OverlayManager_Data(overlayMan);
 
     if (DisableTouchPad() != 1) {
         GF_ASSERT(0);
@@ -507,17 +507,17 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     VramTransfer_Free();
     NARC_dtor(v0->unk_D80);
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_95);
     ResetUnlock(RESET_LOCK_0x2);
 
     return 1;
 }
 
-int ov109_021D0F2C(OverlayManager *param0, int *param1)
+int ov109_021D0F2C(OverlayManager *overlayMan, int *param1)
 {
     int v0;
-    UnkStruct_ov109_021D0F70 *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov109_021D0F70 *v1 = OverlayManager_Data(overlayMan);
 
     ov109_021D294C(v1);
 

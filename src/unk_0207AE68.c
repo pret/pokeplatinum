@@ -511,8 +511,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 23:
-        if (OverlayManager_Exec(param0->unk_38)) {
-            OverlayManager_Free(param0->unk_38);
+        if (OverlayManager_Exec(param0->overlayMan)) {
+            OverlayManager_Free(param0->overlayMan);
             sub_0207C1CC(param0, param0->unk_00);
             Window_DrawMessageBoxWithScrollCursor(param0->unk_04, 0, 1, 10);
             PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_HIDE, 0);
@@ -1009,5 +1009,5 @@ static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
 
 static void sub_0207C624(UnkStruct_0207AE68 *param0)
 {
-    param0->unk_38 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_3C, param0->heapID);
+    param0->overlayMan = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_3C, param0->heapID);
 }

@@ -13,7 +13,7 @@
 #include "strbuf.h"
 
 typedef struct {
-    OverlayManager *unk_00;
+    OverlayManager *overlayMan;
     SaveData *saveData;
     Options *unk_08;
     void *unk_0C;

@@ -60,7 +60,7 @@ static void DWWarp_Setup3D(void);
 static void DWWarp_Exit3D(GenericPointerData *param0);
 static void DWWarp_CameraMove(DistortionWorldWarp *warp);
 
-BOOL DWWarp_Init(OverlayManager *ovy, int *state)
+BOOL DWWarp_Init(OverlayManager *overlayMan, int *state)
 {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -76,7 +76,7 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_DISTORTION_WORLD_WARP, HEAP_SIZE_DISTORTION_WORLD_WARP);
 
-    DistortionWorldWarp *dww = OverlayManager_NewData(ovy, sizeof(DistortionWorldWarp), HEAP_ID_DISTORTION_WORLD_WARP);
+    DistortionWorldWarp *dww = OverlayManager_NewData(overlayMan, sizeof(DistortionWorldWarp), HEAP_ID_DISTORTION_WORLD_WARP);
     MI_CpuClear8(dww, sizeof(DistortionWorldWarp));
     dww->p3DCallback = DWWarp_Init3D(HEAP_ID_DISTORTION_WORLD_WARP);
 
@@ -110,9 +110,9 @@ enum DWWarpState {
     DWARP_SEQ_WAIT
 };
 
-BOOL DWWarp_Main(OverlayManager *ovy, int *state)
+BOOL DWWarp_Main(OverlayManager *overlayMan, int *state)
 {
-    DistortionWorldWarp *warp = OverlayManager_Data(ovy);
+    DistortionWorldWarp *warp = OverlayManager_Data(overlayMan);
 
     switch (*state) {
     case DWARP_SEQ_SCREENWIPE:
@@ -148,9 +148,9 @@ BOOL DWWarp_Main(OverlayManager *ovy, int *state)
     return FALSE;
 }
 
-BOOL DWWarp_Exit(OverlayManager *ovy, int *state)
+BOOL DWWarp_Exit(OverlayManager *overlayMan, int *state)
 {
-    DistortionWorldWarp *warp = OverlayManager_Data(ovy);
+    DistortionWorldWarp *warp = OverlayManager_Data(overlayMan);
 
     SysTask_Done(warp->task);
 
@@ -164,7 +164,7 @@ BOOL DWWarp_Exit(OverlayManager *ovy, int *state)
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
-    OverlayManager_FreeData(ovy);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_DISTORTION_WORLD_WARP);
 
     return TRUE;

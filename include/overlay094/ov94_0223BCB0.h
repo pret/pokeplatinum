@@ -8,9 +8,9 @@
 #include "overlay_manager.h"
 #include "sprite.h"
 
-int ov94_0223BCB0(OverlayManager *param0, int *param1);
-int ov94_0223BE2C(OverlayManager *param0, int *param1);
-int ov94_0223BF54(OverlayManager *param0, int *param1);
+int ov94_0223BCB0(OverlayManager *overlayMan, int *param1);
+int ov94_0223BE2C(OverlayManager *overlayMan, int *param1);
+int ov94_0223BF54(OverlayManager *overlayMan, int *param1);
 void ov94_0223C300(AffineSpriteListTemplate *param0, UnkStruct_ov94_0223FD4C *param1, SpriteResourcesHeader *param2, int param3);
 Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2);
 void ov94_0223C3F4(UnkStruct_ov94_0223FD4C *param0, int param1, int param2);

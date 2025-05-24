@@ -37,9 +37,9 @@ typedef struct {
 } UnkStruct_ov102_021D0F8C;
 
 void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
-int ov102_021D0D80(OverlayManager *param0, int *param1);
-int ov102_021D0E2C(OverlayManager *param0, int *param1);
-int ov102_021D0F50(OverlayManager *param0, int *param1);
+int ov102_021D0D80(OverlayManager *overlayMan, int *param1);
+int ov102_021D0E2C(OverlayManager *overlayMan, int *param1);
+int ov102_021D0F50(OverlayManager *overlayMan, int *param1);
 static void ov102_021D0F80(void *param0);
 static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C *param0);
 static void ov102_021D10F8(UnkStruct_ov102_021D0F8C *param0);
@@ -50,19 +50,19 @@ static void ov102_021D1230(UnkStruct_ov102_021D0F8C *param0);
 static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0);
 static void ov102_021D1420(UnkStruct_ov102_021D0F8C *param0);
 
-int ov102_021D0D80(OverlayManager *param0, int *param1)
+int ov102_021D0D80(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov102_021D0F8C *v0;
     int heapID = HEAP_ID_84;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov102_021D0F8C), heapID);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov102_021D0F8C), heapID);
     memset(v0, 0, sizeof(UnkStruct_ov102_021D0F8C));
     v0->heapID = heapID;
 
     {
-        UnkStruct_0203E53C *v2 = (UnkStruct_0203E53C *)OverlayManager_Args(param0);
+        UnkStruct_0203E53C *v2 = (UnkStruct_0203E53C *)OverlayManager_Args(overlayMan);
 
         v0->saveData = v2->saveData;
         v0->unk_04 = v2->unk_04;
@@ -90,9 +90,9 @@ int ov102_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov102_021D0E2C(OverlayManager *param0, int *param1)
+int ov102_021D0E2C(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov102_021D0F8C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov102_021D0F8C *v0 = OverlayManager_Data(overlayMan);
     int v1 = 0;
 
     switch (*param1) {
@@ -155,16 +155,16 @@ int ov102_021D0E2C(OverlayManager *param0, int *param1)
     return v1;
 }
 
-int ov102_021D0F50(OverlayManager *param0, int *param1)
+int ov102_021D0F50(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov102_021D0F8C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov102_021D0F8C *v0 = OverlayManager_Data(overlayMan);
     int heapID = v0->heapID;
 
     ov102_021D1204(v0);
     ov102_021D10F8(v0);
 
     SetVBlankCallback(NULL, NULL);
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(heapID);
 
     return 1;

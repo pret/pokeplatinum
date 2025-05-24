@@ -5,9 +5,9 @@
 
 #include "overlay_manager.h"
 
-int ov106_02241AE0(OverlayManager *param0, int *param1);
-int ov106_02241B9C(OverlayManager *param0, int *param1);
-int ov106_02241CF0(OverlayManager *param0, int *param1);
+int ov106_02241AE0(OverlayManager *overlayMan, int *param1);
+int ov106_02241B9C(OverlayManager *overlayMan, int *param1);
+int ov106_02241CF0(OverlayManager *overlayMan, int *param1);
 void ov106_02243118(UnkStruct_ov106_02243118 *param0, u16 param1);
 void ov106_02243130(int param0, int param1, void *param2, void *param3);
 void ov106_0224313C(UnkStruct_ov106_02243118 *param0, u16 param1, u16 param2);

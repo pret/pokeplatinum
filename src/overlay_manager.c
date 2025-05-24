@@ -8,44 +8,44 @@
 
 OverlayManager *OverlayManager_New(const OverlayManagerTemplate *template, void *args, const enum HeapId heapID)
 {
-    OverlayManager *ovyManager = Heap_AllocFromHeap(heapID, sizeof(OverlayManager));
+    OverlayManager *overlayMan = Heap_AllocFromHeap(heapID, sizeof(OverlayManager));
 
-    ovyManager->template = *template;
-    ovyManager->execState = 0;
-    ovyManager->procState = 0;
-    ovyManager->args = args;
-    ovyManager->data = NULL;
-    ovyManager->parent = NULL;
-    ovyManager->child = NULL;
+    overlayMan->template = *template;
+    overlayMan->execState = 0;
+    overlayMan->procState = 0;
+    overlayMan->args = args;
+    overlayMan->data = NULL;
+    overlayMan->parent = NULL;
+    overlayMan->child = NULL;
 
-    return ovyManager;
+    return overlayMan;
 }
 
-void OverlayManager_Free(OverlayManager *ovyManager)
+void OverlayManager_Free(OverlayManager *overlayMan)
 {
-    Heap_FreeToHeap(ovyManager);
+    Heap_FreeToHeap(overlayMan);
 }
 
-void *OverlayManager_NewData(OverlayManager *ovyManager, u32 size, enum HeapId heapID)
+void *OverlayManager_NewData(OverlayManager *overlayMan, u32 size, enum HeapId heapID)
 {
-    ovyManager->data = Heap_AllocFromHeap(heapID, size);
-    return ovyManager->data;
+    overlayMan->data = Heap_AllocFromHeap(heapID, size);
+    return overlayMan->data;
 }
 
-void *OverlayManager_Data(OverlayManager *ovyManager)
+void *OverlayManager_Data(OverlayManager *overlayMan)
 {
-    return ovyManager->data;
+    return overlayMan->data;
 }
 
-void OverlayManager_FreeData(OverlayManager *ovyManager)
+void OverlayManager_FreeData(OverlayManager *overlayMan)
 {
-    Heap_FreeToHeap(ovyManager->data);
-    ovyManager->data = NULL;
+    Heap_FreeToHeap(overlayMan->data);
+    overlayMan->data = NULL;
 }
 
-void *OverlayManager_Args(OverlayManager *ovyManager)
+void *OverlayManager_Args(OverlayManager *overlayMan)
 {
-    return ovyManager->args;
+    return overlayMan->args;
 }
 
 enum OverlayExecState {
@@ -55,34 +55,34 @@ enum OverlayExecState {
     OVERLAY_EXEC_EXIT,
 };
 
-BOOL OverlayManager_Exec(OverlayManager *ovyManager)
+BOOL OverlayManager_Exec(OverlayManager *overlayMan)
 {
-    switch (ovyManager->execState) {
+    switch (overlayMan->execState) {
     case OVERLAY_EXEC_LOAD:
-        if (ovyManager->template.overlayID != FS_OVERLAY_ID_NONE) {
-            Overlay_LoadByID(ovyManager->template.overlayID, 2);
+        if (overlayMan->template.overlayID != FS_OVERLAY_ID_NONE) {
+            Overlay_LoadByID(overlayMan->template.overlayID, 2);
         }
 
-        ovyManager->execState = OVERLAY_EXEC_INIT;
+        overlayMan->execState = OVERLAY_EXEC_INIT;
 
     case OVERLAY_EXEC_INIT:
-        if (ovyManager->template.init(ovyManager, &ovyManager->procState) == TRUE) {
-            ovyManager->execState = OVERLAY_EXEC_MAIN;
-            ovyManager->procState = 0;
+        if (overlayMan->template.init(overlayMan, &overlayMan->procState) == TRUE) {
+            overlayMan->execState = OVERLAY_EXEC_MAIN;
+            overlayMan->procState = 0;
         }
         break;
 
     case OVERLAY_EXEC_MAIN:
-        if (ovyManager->template.main(ovyManager, &ovyManager->procState) == TRUE) {
-            ovyManager->execState = OVERLAY_EXEC_EXIT;
-            ovyManager->procState = 0;
+        if (overlayMan->template.main(overlayMan, &overlayMan->procState) == TRUE) {
+            overlayMan->execState = OVERLAY_EXEC_EXIT;
+            overlayMan->procState = 0;
         }
         break;
 
     case OVERLAY_EXEC_EXIT:
-        if (ovyManager->template.exit(ovyManager, &ovyManager->procState) == TRUE) {
-            if (ovyManager->template.overlayID != FS_OVERLAY_ID_NONE) {
-                Overlay_UnloadByID(ovyManager->template.overlayID);
+        if (overlayMan->template.exit(overlayMan, &overlayMan->procState) == TRUE) {
+            if (overlayMan->template.overlayID != FS_OVERLAY_ID_NONE) {
+                Overlay_UnloadByID(overlayMan->template.overlayID);
             }
 
             return TRUE;

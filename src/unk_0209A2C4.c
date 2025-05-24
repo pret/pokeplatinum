@@ -36,9 +36,9 @@ typedef struct {
     u32 unk_3C;
 } UnkStruct_0209A3D0;
 
-int sub_0209A2C4(OverlayManager *param0, int *param1);
-int sub_0209A300(OverlayManager *param0, int *param1);
-int sub_0209A3A4(OverlayManager *param0, int *param1);
+int sub_0209A2C4(OverlayManager *overlayMan, int *param1);
+int sub_0209A300(OverlayManager *overlayMan, int *param1);
+int sub_0209A3A4(OverlayManager *overlayMan, int *param1);
 static void sub_0209A3D0(UnkStruct_0209A3D0 *param0);
 static void sub_0209A490(UnkStruct_0209A3D0 *param0);
 static void sub_0209A4E4(UnkStruct_0209A3D0 *param0);
@@ -65,26 +65,26 @@ const OverlayManagerTemplate Unk_020F8AB4 = {
     0xFFFFFFFF
 };
 
-int sub_0209A2C4(OverlayManager *param0, int *param1)
+int sub_0209A2C4(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_0209A3D0 *v0;
     int heapID = HEAP_ID_88;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0209A3D0), heapID);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_0209A3D0), heapID);
     memset(v0, 0, sizeof(UnkStruct_0209A3D0));
 
     v0->heapID = heapID;
     v0->unk_04 = 0;
-    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(overlayMan))->saveData;
 
     return 1;
 }
 
-int sub_0209A300(OverlayManager *param0, int *param1)
+int sub_0209A300(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_0209A3D0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_0209A3D0 *v0 = OverlayManager_Data(overlayMan);
     int v1 = 0;
 
     switch (*param1) {
@@ -119,12 +119,12 @@ int sub_0209A300(OverlayManager *param0, int *param1)
     return v1;
 }
 
-int sub_0209A3A4(OverlayManager *param0, int *param1)
+int sub_0209A3A4(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_0209A3D0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_0209A3D0 *v0 = OverlayManager_Data(overlayMan);
     int heapID = v0->heapID;
 
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(heapID);
     EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D674);
 

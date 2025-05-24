@@ -127,9 +127,9 @@ enum SummaryPageState {
 
 #define RIBBON_INFO_SCROLL_INCREMENT 16
 
-static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state);
-static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state);
-static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state);
+static int PokemonSummaryScreen_Init(OverlayManager *overlayMan, int *state);
+static int PokemonSummaryScreen_Main(OverlayManager *overlayMan, int *state);
+static int PokemonSummaryScreen_Exit(OverlayManager *overlayMan, int *state);
 static int WaitSummaryScreenTransition(PokemonSummaryScreen *summaryScreen);
 static int HandleInput_Main(PokemonSummaryScreen *summaryScreen);
 static int WaitSetupBattleMoveInfo(PokemonSummaryScreen *summaryScreen);
@@ -205,7 +205,7 @@ BOOL PokemonSummaryScreen_ShowContestData(SaveData *saveData)
     return SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(saveData));
 }
 
-static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
+static int PokemonSummaryScreen_Init(OverlayManager *overlayMan, int *state)
 {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -223,11 +223,11 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKEMON_SUMMARY_SCREEN, HEAP_ALLOCATION_SIZE);
 
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    PokemonSummaryScreen *summaryScreen = OverlayManager_NewData(ovyManager, sizeof(PokemonSummaryScreen), HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    PokemonSummaryScreen *summaryScreen = OverlayManager_NewData(overlayMan, sizeof(PokemonSummaryScreen), HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     memset(summaryScreen, 0, sizeof(PokemonSummaryScreen));
 
-    summaryScreen->data = OverlayManager_Args(ovyManager);
+    summaryScreen->data = OverlayManager_Args(overlayMan);
     summaryScreen->bgConfig = BgConfig_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->monSprite.animationSys = sub_02015F84(HEAP_ID_POKEMON_SUMMARY_SCREEN, 1, 1);
     summaryScreen->narcPlPokeData = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_POKEMON_SUMMARY_SCREEN);
@@ -261,9 +261,9 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     return TRUE;
 }
 
-static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state)
+static int PokemonSummaryScreen_Main(OverlayManager *overlayMan, int *state)
 {
-    PokemonSummaryScreen *summaryScreen = OverlayManager_Data(ovyManager);
+    PokemonSummaryScreen *summaryScreen = OverlayManager_Data(overlayMan);
 
     switch (*state) {
     case SUMMARY_STATE_TRANSITION_IN:
@@ -340,9 +340,9 @@ static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state)
     return FALSE;
 }
 
-static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state)
+static int PokemonSummaryScreen_Exit(OverlayManager *overlayMan, int *state)
 {
-    PokemonSummaryScreen *summaryScreen = OverlayManager_Data(ovyManager);
+    PokemonSummaryScreen *summaryScreen = OverlayManager_Data(overlayMan);
 
     SetVBlankCallback(NULL, NULL);
     PokemonSummaryScreen_FreeCameraAndMonSprite(summaryScreen);
@@ -357,7 +357,7 @@ static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state)
 
     G2_BlendNone();
 
-    OverlayManager_FreeData(ovyManager);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     return TRUE;

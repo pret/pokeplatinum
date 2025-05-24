@@ -13,7 +13,7 @@
 #include "sprite.h"
 
 void ov97_02237694(int heapID);
-void *ov97_022376C4(OverlayManager *param0, int heapID, int param2, int param3);
+void *ov97_022376C4(OverlayManager *overlayMan, int heapID, int param2, int param3);
 void ov97_022376FC(BgConfig *param0, int param1, u8 param2, u32 param3, u32 param4);
 void ov97_02237784(int param0);
 void ov97_02237790(int param0, int param1, int *param2, int param3);

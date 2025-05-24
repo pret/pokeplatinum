@@ -226,21 +226,21 @@ typedef struct {
 static void sub_0203DF68(FieldTask *taskMan);
 static u8 sub_0203E484(SaveData *saveData, u8 slotMachineID);
 
-static BOOL OverlayInit_Battle(OverlayManager *ovyManager, int *state)
+static BOOL OverlayInit_Battle(OverlayManager *overlayMan, int *state)
 {
     return TRUE;
 }
 
-static BOOL OverlayMain_Battle(OverlayManager *ovyManager, int *state)
+static BOOL OverlayMain_Battle(OverlayManager *overlayMan, int *state)
 {
-    if (Battle_Main(ovyManager, state)) {
+    if (Battle_Main(overlayMan, state)) {
         return TRUE;
     } else {
         return FALSE;
     }
 }
 
-static BOOL OverlayExit_Battle(OverlayManager *ovyManager, int *state)
+static BOOL OverlayExit_Battle(OverlayManager *overlayMan, int *state)
 {
     return TRUE;
 }

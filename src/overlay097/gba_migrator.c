@@ -1815,13 +1815,13 @@ static BOOL ov97_02235590(GBAMigrator *migrator, int param1)
     return FALSE;
 }
 
-static int GBAMigrator_Init(OverlayManager *param0, int *state)
+static int GBAMigrator_Init(OverlayManager *overlayMan, int *state)
 {
     GBAMigrator *migrator;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_MIGRATE_FROM_GBA, HEAP_SIZE_MIGRATE_FROM_GBA);
 
-    migrator = OverlayManager_NewData(param0, sizeof(GBAMigrator), HEAP_ID_MIGRATE_FROM_GBA);
+    migrator = OverlayManager_NewData(overlayMan, sizeof(GBAMigrator), HEAP_ID_MIGRATE_FROM_GBA);
     memset(migrator, 0, sizeof(GBAMigrator));
 
     migrator->bgConfig = BgConfig_New(HEAP_ID_MIGRATE_FROM_GBA);
@@ -1830,7 +1830,7 @@ static int GBAMigrator_Init(OverlayManager *param0, int *state)
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    migrator->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    migrator->saveData = ((ApplicationArgs *)OverlayManager_Args(overlayMan))->saveData;
     migrator->unk_14 = SaveData_GetTrainerInfo(migrator->saveData);
     migrator->options = SaveData_GetOptions(migrator->saveData);
     migrator->messageBoxFrame = Options_Frame(migrator->options);
@@ -1851,10 +1851,10 @@ static int GBAMigrator_Init(OverlayManager *param0, int *state)
 
 extern int gIgnoreCartridgeForWake;
 
-static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
+static int GBAMigrator_Main(OverlayManager *overlayMan, int *state)
 {
     int boxPos, gbaMonValidity, v2;
-    GBAMigrator *migrator = OverlayManager_Data(ovyManager);
+    GBAMigrator *migrator = OverlayManager_Data(overlayMan);
 
     CTRDG_IsExisting();
 
@@ -2181,17 +2181,17 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
     return 0;
 }
 
-static int GBAMigrator_Exit(OverlayManager *ovyManager, int *state)
+static int GBAMigrator_Exit(OverlayManager *overlayMan, int *state)
 {
     FS_EXTERN_OVERLAY(overlay77);
 
-    GBAMigrator *migrator = OverlayManager_Data(ovyManager);
+    GBAMigrator *migrator = OverlayManager_Data(overlayMan);
 
     Strbuf_Free(migrator->unk_12668);
     Strbuf_Free(migrator->unk_1266C);
     Heap_FreeToHeap(migrator->bgConfig);
     EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
-    OverlayManager_FreeData(ovyManager);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_MIGRATE_FROM_GBA);
 
     ov97_02238400(FALSE);

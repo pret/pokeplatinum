@@ -5,7 +5,7 @@
 
 #include "overlay_manager.h"
 
-BOOL Battle_Main(OverlayManager *param0, int *param1);
+BOOL Battle_Main(OverlayManager *overlayMan, int *param1);
 void ov16_0223B384(BattleSystem *battleSys);
 void ov16_0223B3E4(BattleSystem *battleSys);
 void ov16_0223B430(BattleSystem *battleSys);

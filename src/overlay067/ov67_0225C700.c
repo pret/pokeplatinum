@@ -163,16 +163,16 @@ static const WindowTemplate Unk_ov67_0225D3EC = {
     0x204
 };
 
-int ov67_0225C700(OverlayManager *param0, int *param1)
+int ov67_0225C700(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov67_0225D154 *v0;
     UnkStruct_ov66_02231024 *v1;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_112, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov67_0225D154), HEAP_ID_112);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov67_0225D154), HEAP_ID_112);
     memset(v0, 0, sizeof(UnkStruct_ov67_0225D154));
-    v1 = OverlayManager_Args(param0);
+    v1 = OverlayManager_Args(overlayMan);
 
     v0->saveData = v1->saveData;
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 0);
@@ -191,13 +191,13 @@ int ov67_0225C700(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov67_0225C820(OverlayManager *param0, int *param1)
+int ov67_0225C820(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov67_0225D154 *v0;
     UnkStruct_ov66_02231024 *v1;
 
-    v0 = OverlayManager_Data(param0);
-    v1 = OverlayManager_Args(param0);
+    v0 = OverlayManager_Data(overlayMan);
+    v1 = OverlayManager_Args(overlayMan);
 
     switch (*param1) {
     case 0:
@@ -378,9 +378,9 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov67_0225CB1C(OverlayManager *param0, int *param1)
+int ov67_0225CB1C(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov67_0225D154 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov67_0225D154 *v0 = OverlayManager_Data(overlayMan);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -401,17 +401,17 @@ int ov67_0225CB1C(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov67_0225CB8C(OverlayManager *param0, int *param1)
+int ov67_0225CB8C(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov67_0225D154 *v0;
     UnkStruct_ov66_02231300 *v1;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_112, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov67_0225D154), HEAP_ID_112);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov67_0225D154), HEAP_ID_112);
     memset(v0, 0, sizeof(UnkStruct_ov67_0225D154));
 
-    v1 = OverlayManager_Args(param0);
+    v1 = OverlayManager_Args(overlayMan);
     v0->saveData = v1->saveData;
 
     ov67_0225CE30(v0, 112);
@@ -427,13 +427,13 @@ int ov67_0225CB8C(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov67_0225CC6C(OverlayManager *param0, int *param1)
+int ov67_0225CC6C(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov67_0225D154 *v0;
     UnkStruct_ov66_02231300 *v1;
 
-    v0 = OverlayManager_Data(param0);
-    v1 = OverlayManager_Args(param0);
+    v0 = OverlayManager_Data(overlayMan);
+    v1 = OverlayManager_Args(overlayMan);
 
     switch (*param1) {
     case 0:
@@ -513,9 +513,9 @@ int ov67_0225CC6C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov67_0225CDC0(OverlayManager *param0, int *param1)
+int ov67_0225CDC0(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov67_0225D154 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov67_0225D154 *v0 = OverlayManager_Data(overlayMan);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();

@@ -124,9 +124,9 @@ typedef struct {
 
 BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int param4);
 BOOL ov92_021D2854(int param0);
-int ov92_021D0D80(OverlayManager *param0, int *param1);
-int ov92_021D0EB8(OverlayManager *param0, int *param1);
-int ov92_021D1478(OverlayManager *param0, int *param1);
+int ov92_021D0D80(OverlayManager *overlayMan, int *param1);
+int ov92_021D0EB8(OverlayManager *overlayMan, int *param1);
+int ov92_021D1478(OverlayManager *overlayMan, int *param1);
 static void ov92_021D14F0(void);
 static void ov92_021D1510(void);
 static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1);
@@ -299,7 +299,7 @@ static const ListMenuTemplate Unk_ov92_021D29C8 = {
     0x0
 };
 
-int ov92_021D0D80(OverlayManager *param0, int *param1)
+int ov92_021D0D80(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov92_021D1B24 *v0;
     int heapID = HEAP_ID_50;
@@ -314,7 +314,7 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x80000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov92_021D1B24), heapID);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov92_021D1B24), heapID);
     memset(v0, 0, sizeof(UnkStruct_ov92_021D1B24));
     v0->heapID = heapID;
 
@@ -325,7 +325,7 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
     }
 
     {
-        SaveData *saveData = OverlayManager_Args(param0);
+        SaveData *saveData = OverlayManager_Args(overlayMan);
 
         v0->unk_04 = sub_0202C878(saveData);
         v0->unk_BB14 = sub_0202C8C0(v0->unk_04);
@@ -360,9 +360,9 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov92_021D0EB8(OverlayManager *param0, int *param1)
+int ov92_021D0EB8(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov92_021D1B24 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov92_021D1B24 *v0 = OverlayManager_Data(overlayMan);
     int v1 = 0;
     NARC *v2;
 
@@ -667,9 +667,9 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
     return v1;
 }
 
-int ov92_021D1478(OverlayManager *param0, int *param1)
+int ov92_021D1478(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov92_021D1B24 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov92_021D1B24 *v0 = OverlayManager_Data(overlayMan);
     int heapID = v0->heapID;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -681,7 +681,7 @@ int ov92_021D1478(OverlayManager *param0, int *param1)
     Easy3D_Shutdown();
     Heap_FreeToHeap(v0->unk_B810);
     SetVBlankCallback(NULL, NULL);
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(heapID);
 
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;

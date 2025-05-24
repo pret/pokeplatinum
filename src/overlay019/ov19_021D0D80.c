@@ -271,17 +271,17 @@ static void ov19_ToggleCursorFastMode(UnkStruct_ov19_021D4DF0 *param0);
 static u32 ov19_GetPreviewedMonValue(UnkStruct_ov19_021D4DF0 *param0, enum PokemonDataParam value, void *dest);
 static u32 ov19_GetPreviewedOrSelectedMonValue(UnkStruct_ov19_021D4DF0 *param0, enum PokemonDataParam value, void *dest);
 
-int ov19_021D0D80(OverlayManager *param0, int *param1)
+int ov19_021D0D80(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov19_021D5DF8 *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_9, 16384);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov19_021D5DF8), HEAP_ID_9);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov19_021D5DF8), HEAP_ID_9);
 
     if (v0 != NULL) {
-        ov19_021D4BE0(v0, OverlayManager_Args(param0));
+        ov19_021D4BE0(v0, OverlayManager_Args(overlayMan));
         ov19_021D61B0(&(v0->unk_114), &v0->unk_00, v0);
 
         v0->unk_1B0 = 0;
@@ -293,9 +293,9 @@ int ov19_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov19_021D0DEC(OverlayManager *param0, int *param1)
+int ov19_021D0DEC(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov19_021D5DF8 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov19_021D5DF8 *v0 = OverlayManager_Data(overlayMan);
 
     if (v0->unk_1AC != NULL) {
         v0->unk_1AC(v0, &(v0->unk_1B4));
@@ -318,9 +318,9 @@ int ov19_021D0DEC(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov19_021D0E58(OverlayManager *param0, int *param1)
+int ov19_021D0E58(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov19_021D5DF8 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov19_021D5DF8 *v0 = OverlayManager_Data(overlayMan);
 
     if (Party_HasSpecies(v0->party, SPECIES_CHATOT) == 0) {
         ChatotCry *chatotCry = SaveData_GetChatotCry(v0->saveData);

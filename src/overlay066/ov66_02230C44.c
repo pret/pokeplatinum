@@ -50,7 +50,7 @@ typedef struct {
 } UnkStruct_ov66_02230E4C;
 
 typedef struct UnkStruct_ov66_02230C90_t {
-    OverlayManager *unk_00;
+    OverlayManager *overlayMan;
     UnkStruct_ov66_02230E4C unk_04[13];
     u8 unk_38;
     u8 unk_39;
@@ -158,12 +158,12 @@ int ov66_02230CB8(UnkStruct_ov66_02230C90 *param0)
     BOOL v0;
     u32 v1 = 0;
 
-    if (param0->unk_00) {
-        v0 = OverlayManager_Exec(param0->unk_00);
+    if (param0->overlayMan) {
+        v0 = OverlayManager_Exec(param0->overlayMan);
 
         if (v0) {
-            OverlayManager_Free(param0->unk_00);
-            param0->unk_00 = NULL;
+            OverlayManager_Free(param0->overlayMan);
+            param0->overlayMan = NULL;
             v1 = ov66_02230D7C(param0, param0->unk_38);
         }
     }
@@ -178,8 +178,8 @@ void ov66_02230CE8(UnkStruct_ov66_02230C90 *param0)
 
 static void ov66_02230CEC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, const OverlayManagerTemplate *param2)
 {
-    GF_ASSERT(param0->unk_00 == NULL);
-    param0->unk_00 = OverlayManager_New(param2, param1->unk_00, param0->heapID);
+    GF_ASSERT(param0->overlayMan == NULL);
+    param0->overlayMan = OverlayManager_New(param2, param1->unk_00, param0->heapID);
 }
 
 static void ov66_02230D0C(UnkStruct_ov66_02230C90 *param0, u32 param1, u32 heapID)

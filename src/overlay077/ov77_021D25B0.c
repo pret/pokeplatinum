@@ -138,9 +138,9 @@ typedef struct {
 } UnkStruct_ov77_021D2E9C;
 
 void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
-static int ov77_021D2D08(OverlayManager *param0, int *param1);
-static int ov77_021D2D94(OverlayManager *param0, int *param1);
-static int ov77_021D2E60(OverlayManager *param0, int *param1);
+static int ov77_021D2D08(OverlayManager *overlayMan, int *param1);
+static int ov77_021D2D94(OverlayManager *overlayMan, int *param1);
+static int ov77_021D2E60(OverlayManager *overlayMan, int *param1);
 static BOOL ov77_021D2E9C(UnkStruct_ov77_021D2E9C *param0);
 static BOOL ov77_021D33F0(UnkStruct_ov77_021D2E9C *param0);
 static BOOL ov77_021D5254(UnkStruct_ov77_021D2E9C *param0);
@@ -925,7 +925,7 @@ static void ov77_021D2CE8(void)
     GXS_SetVisibleWnd(0);
 }
 
-static int ov77_021D2D08(OverlayManager *param0, int *param1)
+static int ov77_021D2D08(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov77_021D2E9C *v0;
     int heapID = HEAP_ID_76;
@@ -940,7 +940,7 @@ static int ov77_021D2D08(OverlayManager *param0, int *param1)
     SetAutorepeat(4, 8);
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0xa0000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov77_021D2E9C), heapID);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov77_021D2E9C), heapID);
     memset(v0, 0, sizeof(UnkStruct_ov77_021D2E9C));
 
     v0->unk_00 = heapID;
@@ -956,9 +956,9 @@ static int ov77_021D2D08(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int ov77_021D2D94(OverlayManager *param0, int *param1)
+static int ov77_021D2D94(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov77_021D2E9C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov77_021D2E9C *v0 = OverlayManager_Data(overlayMan);
 
     if ((v0->unk_2A8) && ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_BUTTON_START))) {
         v0->unk_08 = 1;
@@ -1005,16 +1005,16 @@ static int ov77_021D2D94(OverlayManager *param0, int *param1)
     return 0;
 }
 
-static int ov77_021D2E60(OverlayManager *param0, int *param1)
+static int ov77_021D2E60(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov77_021D2E9C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov77_021D2E9C *v0 = OverlayManager_Data(overlayMan);
 
     if (IsScreenTransitionDone() == 0) {
         sub_0200F2C0();
     }
 
     LCRNG_SetSeed(v0->unk_14);
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(HEAP_ID_76);
     EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
 

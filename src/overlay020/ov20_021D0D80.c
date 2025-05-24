@@ -78,11 +78,11 @@ typedef struct UnkStruct_ov20_021D16E8_t {
 } UnkStruct_ov20_021D16E8;
 
 static void ov20_021D0E38(u32 param0, enum TouchScreenButtonState param1, void *param2);
-static UnkStruct_ov20_021D16E8 *ov20_021D0EC8(OverlayManager *param0);
+static UnkStruct_ov20_021D16E8 *ov20_021D0EC8(OverlayManager *overlayMan);
 static void ov20_021D0F64(UnkStruct_ov20_021D0F64 *param0, Sentence *param1);
 static void ov20_021D0F88(UnkStruct_ov20_021D0F64 *param0, Sentence *param1);
 static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 *param0, Sentence *param1);
-static void ov20_021D1014(UnkStruct_ov20_021D16E8 *param0, OverlayManager *param1);
+static void ov20_021D1014(UnkStruct_ov20_021D16E8 *param0, OverlayManager *overlayMan);
 static void ov20_021D1034(UnkStruct_ov20_021D16E8 *param0, UnkFuncPtr_ov20_021D1034 param1);
 static int ov20_021D103C(UnkStruct_ov20_021D16E8 *param0, int *param1);
 static int ov20_021D1050(UnkStruct_ov20_021D16E8 *param0, int *param1);
@@ -118,7 +118,7 @@ static int ov20_021D1EDC(UnkStruct_ov20_021D1F34 *param0, u16 param1);
 static u32 ov20_021D1F34(const UnkStruct_ov20_021D1F34 *param0);
 static void ov20_021D1F38(UnkStruct_ov20_021D16E8 *param0, int *param1);
 
-int ov20_021D0D80(OverlayManager *param0, int *param1)
+int ov20_021D0D80(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov20_021D16E8 *v0;
 
@@ -127,12 +127,12 @@ int ov20_021D0D80(OverlayManager *param0, int *param1)
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_62, SEQ_NONE, 0);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_34, 32768);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_35, 163840);
-        v0 = ov20_021D0EC8(param0);
+        v0 = ov20_021D0EC8(overlayMan);
         ov20_021D21A0(v0->unk_14, 0);
         (*param1)++;
         break;
     case 1:
-        v0 = OverlayManager_Data(param0);
+        v0 = OverlayManager_Data(overlayMan);
 
         if (ov20_021D21F8(v0->unk_14)) {
             if (v0->unk_04 == 2) {
@@ -149,9 +149,9 @@ int ov20_021D0D80(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov20_021D0DF8(OverlayManager *param0, int *param1)
+int ov20_021D0DF8(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov20_021D16E8 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov20_021D16E8 *v0 = OverlayManager_Data(overlayMan);
 
     v0->unk_30 = gSystem.pressedKeys;
     v0->unk_32 = gSystem.heldKeys;
@@ -211,9 +211,9 @@ static void ov20_021D0E38(u32 param0, enum TouchScreenButtonState param1, void *
     }
 }
 
-int ov20_021D0EA8(OverlayManager *param0, int *param1)
+int ov20_021D0EA8(OverlayManager *overlayMan, int *param1)
 {
-    ov20_021D1014(OverlayManager_Data(param0), param0);
+    ov20_021D1014(OverlayManager_Data(overlayMan), overlayMan);
 
     Heap_Destroy(HEAP_ID_34);
     Heap_Destroy(HEAP_ID_35);
@@ -221,7 +221,7 @@ int ov20_021D0EA8(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static UnkStruct_ov20_021D16E8 *ov20_021D0EC8(OverlayManager *param0)
+static UnkStruct_ov20_021D16E8 *ov20_021D0EC8(OverlayManager *overlayMan)
 {
     static const TouchScreenHitTable v0[] = {
         { 24, 80, 24, 112 },
@@ -230,9 +230,9 @@ static UnkStruct_ov20_021D16E8 *ov20_021D0EC8(OverlayManager *param0)
         { 120, 152, 176, 208 },
         { 0xff, 0, 0, 0 },
     };
-    UnkStruct_ov20_021D16E8 *v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov20_021D16E8), HEAP_ID_34);
+    UnkStruct_ov20_021D16E8 *v1 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov20_021D16E8), HEAP_ID_34);
 
-    v1->unk_00 = OverlayManager_Args(param0);
+    v1->unk_00 = OverlayManager_Args(overlayMan);
     v1->unk_04 = sub_02097550(v1->unk_00);
 
     sub_0209756C(v1->unk_00, v1->unk_10, &v1->unk_08);
@@ -301,12 +301,12 @@ static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
     sub_02014CE0(param1, param0->unk_00, param0->unk_02);
 }
 
-static void ov20_021D1014(UnkStruct_ov20_021D16E8 *param0, OverlayManager *param1)
+static void ov20_021D1014(UnkStruct_ov20_021D16E8 *param0, OverlayManager *overlayMan)
 {
     TouchScreenActions_Free(param0->unk_40);
     ov20_021D2128(param0->unk_14);
     sub_0209992C(param0->unk_18);
-    OverlayManager_FreeData(param1);
+    OverlayManager_FreeData(overlayMan);
 }
 
 static void ov20_021D1034(UnkStruct_ov20_021D16E8 *param0, UnkFuncPtr_ov20_021D1034 param1)

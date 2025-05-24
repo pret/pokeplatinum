@@ -121,9 +121,9 @@ extern const OverlayManagerTemplate gOpeningCutsceneOverlayTemplate;
 
 static void ov77_021D1D48(BgConfig *param0, int param1);
 void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
-static int ov77_021D0D80(OverlayManager *param0, int *param1);
-static int ov77_021D0E3C(OverlayManager *param0, int *param1);
-static int ov77_021D10FC(OverlayManager *param0, int *param1);
+static int ov77_021D0D80(OverlayManager *overlayMan, int *param1);
+static int ov77_021D0E3C(OverlayManager *overlayMan, int *param1);
+static int ov77_021D10FC(OverlayManager *overlayMan, int *param1);
 static void ov77_021D1178(void *param0);
 static void ov77_021D1184(void);
 static void ov77_021D17B4(UnkStruct_ov77_021D17B4 *param0);
@@ -155,7 +155,7 @@ const OverlayManagerTemplate gTitleScreenOverlayTemplate = {
     0xffffffff
 };
 
-static int ov77_021D0D80(OverlayManager *param0, int *param1)
+static int ov77_021D0D80(OverlayManager *overlayMan, int *param1)
 {
     UnkStruct_ov77_021D17B4 *v0;
     int heapID = HEAP_ID_DISTORTION_WORLD_WARP;
@@ -178,7 +178,7 @@ static int ov77_021D0D80(OverlayManager *param0, int *param1)
     SetAutorepeat(4, 8);
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov77_021D17B4), heapID);
+    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov77_021D17B4), heapID);
     memset(v0, 0, sizeof(UnkStruct_ov77_021D17B4));
 
     v0->heapID = heapID;
@@ -195,9 +195,9 @@ static int ov77_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int ov77_021D0E3C(OverlayManager *param0, int *param1)
+static int ov77_021D0E3C(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov77_021D17B4 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov77_021D17B4 *v0 = OverlayManager_Data(overlayMan);
 
     switch (*param1) {
     case 0:
@@ -314,9 +314,9 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-static int ov77_021D10FC(OverlayManager *param0, int *param1)
+static int ov77_021D10FC(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_ov77_021D17B4 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov77_021D17B4 *v0 = OverlayManager_Data(overlayMan);
     int heapID = v0->heapID;
     int v2 = v0->unk_4E8;
 
@@ -325,7 +325,7 @@ static int ov77_021D10FC(OverlayManager *param0, int *param1)
     ov77_021D11FC(v0);
     ov77_021D1908(v0);
 
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(overlayMan);
     Heap_Destroy(heapID);
 
     switch (v2) {
