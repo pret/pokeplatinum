@@ -10,7 +10,7 @@
 
 typedef struct FieldTaskEnv {
     int state;
-    const OverlayManagerTemplate *overlayTemplate;
+    const ApplicationManagerTemplate *overlayTemplate;
     void *overlayArgs;
 } FieldTaskEnv;
 
@@ -135,7 +135,7 @@ static BOOL RunChildApplication(FieldTask *task)
     return FALSE;
 }
 
-void FieldTask_RunApplication(FieldTask *task, const OverlayManagerTemplate *overlayTemplate, void *overlayArgs)
+void FieldTask_RunApplication(FieldTask *task, const ApplicationManagerTemplate *overlayTemplate, void *overlayArgs)
 {
     FieldTaskEnv *env = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD_TASK, sizeof(FieldTaskEnv));
     env->state = 0;

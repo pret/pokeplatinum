@@ -136,7 +136,7 @@ static const int Unk_ov71_0223D604[16] = {
     0x3F
 };
 
-int ov71_0223B140(OverlayManager *overlayMan, int *param1)
+int ov71_0223B140(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov71_0223B620 *v0;
     NARC *v1;
@@ -153,11 +153,11 @@ int ov71_0223B140(OverlayManager *overlayMan, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_25, 0x28000);
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__TRAINER_CASE, HEAP_ID_25);
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov71_0223B620), HEAP_ID_25);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov71_0223B620), HEAP_ID_25);
 
     memset(v0, 0, sizeof(UnkStruct_ov71_0223B620));
 
-    v0->unk_B4 = OverlayManager_Args(overlayMan);
+    v0->unk_B4 = ApplicationManager_Args(appMan);
     v0->unk_00 = BgConfig_New(HEAP_ID_25);
 
     ov71_0223B620(v0);
@@ -251,9 +251,9 @@ int ov71_0223B140(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov71_0223B388(OverlayManager *overlayMan, int *param1)
+int ov71_0223B388(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov71_0223B620 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov71_0223B620 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -375,9 +375,9 @@ int ov71_0223B388(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov71_0223B5B8(OverlayManager *overlayMan, int *param1)
+int ov71_0223B5B8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov71_0223B620 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov71_0223B620 *v0 = ApplicationManager_Data(appMan);
 
     ov71_0223C288();
     ov71_0223B668(v0);
@@ -390,7 +390,7 @@ int ov71_0223B5B8(OverlayManager *overlayMan, int *param1)
     ov71_0223BBDC(v0->unk_00);
 
     DisableTouchPad();
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_25);
     Sound_SetPlayerVolume(1, 127);

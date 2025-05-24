@@ -30,7 +30,7 @@ FS_EXTERN_OVERLAY(overlay105);
 
 typedef struct UnkStruct_0209B75C_t {
     UnkStruct_ov104_02230BE4 *unk_00;
-    OverlayManager *overlayMan;
+    ApplicationManager *appMan;
     void *unk_08;
     UnkFuncPtr_0209B988 unk_0C;
     u8 unk_10;
@@ -47,36 +47,36 @@ typedef struct UnkStruct_0209B75C_t {
     UnkStruct_ov104_0223D3B0 unk_98C;
 } UnkStruct_0209B75C;
 
-int sub_0209B6F8(OverlayManager *overlayMan, int *param1);
-int sub_0209B75C(OverlayManager *overlayMan, int *param1);
-int sub_0209B8A4(OverlayManager *overlayMan, int *param1);
+int sub_0209B6F8(ApplicationManager *appMan, int *param1);
+int sub_0209B75C(ApplicationManager *appMan, int *param1);
+int sub_0209B8A4(ApplicationManager *appMan, int *param1);
 static void sub_0209B8C8(UnkStruct_0209B75C *param0);
 static void sub_0209B8D8(UnkStruct_0209B75C *param0);
 static void sub_0209B924(void);
 static void sub_0209B94C(void);
 static void sub_0209B8E8(UnkStruct_0209B75C *param0);
 
-const OverlayManagerTemplate Unk_020F8BE0 = {
+const ApplicationManagerTemplate Unk_020F8BE0 = {
     sub_0209B6F8,
     sub_0209B75C,
     sub_0209B8A4,
     0xffffffff
 };
 
-int sub_0209B6F8(OverlayManager *overlayMan, int *param1)
+int sub_0209B6F8(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_0209B75C *v0;
     int v1;
 
     sub_0209B924();
 
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_0209B75C), HEAP_ID_FIELDMAP);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0209B75C), HEAP_ID_FIELDMAP);
     MI_CpuClear8(v0, sizeof(UnkStruct_0209B75C));
 
     sub_0209B8E8(v0);
     sub_0209B9EC(v0);
 
-    v0->unk_00 = OverlayManager_Args(overlayMan);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     GF_ASSERT(v0->unk_00 != NULL);
 
     v0->unk_14 = ov104_0222E63C(v0, HEAP_ID_FIELDMAP, v0->unk_00->unk_24);
@@ -87,9 +87,9 @@ int sub_0209B6F8(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int sub_0209B75C(OverlayManager *overlayMan, int *param1)
+int sub_0209B75C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_0209B75C *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_0209B75C *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     switch (*param1) {
@@ -117,7 +117,7 @@ int sub_0209B75C(OverlayManager *overlayMan, int *param1)
             }
         }
 
-        if (v0->overlayMan != NULL) {
+        if (v0->appMan != NULL) {
             *param1 = 3;
         }
         break;
@@ -130,8 +130,8 @@ int sub_0209B75C(OverlayManager *overlayMan, int *param1)
         *param1 = 4;
         break;
     case 4:
-        if (OverlayManager_Exec(v0->overlayMan) == 1) {
-            OverlayManager_Free(v0->overlayMan);
+        if (ApplicationManager_Exec(v0->appMan) == 1) {
+            ApplicationManager_Free(v0->appMan);
             sub_0209B924();
 
             if (v0->unk_0C != NULL) {
@@ -142,7 +142,7 @@ int sub_0209B75C(OverlayManager *overlayMan, int *param1)
                 Heap_FreeToHeap(v0->unk_08);
             }
 
-            v0->overlayMan = NULL;
+            v0->appMan = NULL;
             v0->unk_0C = NULL;
             v0->unk_08 = NULL;
 
@@ -180,14 +180,14 @@ int sub_0209B75C(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int sub_0209B8A4(OverlayManager *overlayMan, int *param1)
+int sub_0209B8A4(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_0209B75C *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_0209B75C *v0 = ApplicationManager_Data(appMan);
 
     ov104_0222E710(v0->unk_14);
 
     sub_0209B8D8(v0);
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     sub_0209B94C();
 
     return 1;
@@ -254,10 +254,10 @@ void sub_0209B980(UnkStruct_0209B75C *param0, void *param1)
     param0->unk_00->unk_00 = param1;
 }
 
-void sub_0209B988(UnkStruct_0209B75C *param0, const OverlayManagerTemplate *param1, void *param2, int param3, UnkFuncPtr_0209B988 param4)
+void sub_0209B988(UnkStruct_0209B75C *param0, const ApplicationManagerTemplate *param1, void *param2, int param3, UnkFuncPtr_0209B988 param4)
 {
-    GF_ASSERT(param0->overlayMan == NULL);
-    param0->overlayMan = OverlayManager_New(param1, param2, 11);
+    GF_ASSERT(param0->appMan == NULL);
+    param0->appMan = ApplicationManager_New(param1, param2, 11);
     param0->unk_08 = param2;
     param0->unk_10 = param3;
     param0->unk_0C = param4;

@@ -115,15 +115,15 @@ typedef struct {
     int unk_4FC;
 } UnkStruct_ov77_021D17B4;
 
-extern const OverlayManagerTemplate Unk_020F8A48;
-extern const OverlayManagerTemplate Unk_020F8AB4;
-extern const OverlayManagerTemplate gOpeningCutsceneOverlayTemplate;
+extern const ApplicationManagerTemplate Unk_020F8A48;
+extern const ApplicationManagerTemplate Unk_020F8AB4;
+extern const ApplicationManagerTemplate gOpeningCutsceneOverlayTemplate;
 
 static void ov77_021D1D48(BgConfig *param0, int param1);
-void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
-static int ov77_021D0D80(OverlayManager *overlayMan, int *param1);
-static int ov77_021D0E3C(OverlayManager *overlayMan, int *param1);
-static int ov77_021D10FC(OverlayManager *overlayMan, int *param1);
+void EnqueueApplication(FSOverlayID param0, const ApplicationManagerTemplate *param1);
+static int ov77_021D0D80(ApplicationManager *appMan, int *param1);
+static int ov77_021D0E3C(ApplicationManager *appMan, int *param1);
+static int ov77_021D10FC(ApplicationManager *appMan, int *param1);
 static void ov77_021D1178(void *param0);
 static void ov77_021D1184(void);
 static void ov77_021D17B4(UnkStruct_ov77_021D17B4 *param0);
@@ -148,14 +148,14 @@ static void ov77_021D2428(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 
 static void ov77_021D24C8(UnkStruct_ov77_021D1568 *param0);
 static void ov77_021D2438(UnkStruct_ov77_021D1568 *param0);
 
-const OverlayManagerTemplate gTitleScreenOverlayTemplate = {
+const ApplicationManagerTemplate gTitleScreenOverlayTemplate = {
     ov77_021D0D80,
     ov77_021D0E3C,
     ov77_021D10FC,
     0xffffffff
 };
 
-static int ov77_021D0D80(OverlayManager *overlayMan, int *param1)
+static int ov77_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov77_021D17B4 *v0;
     int heapID = HEAP_ID_DISTORTION_WORLD_WARP;
@@ -178,7 +178,7 @@ static int ov77_021D0D80(OverlayManager *overlayMan, int *param1)
     SetAutorepeat(4, 8);
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x40000);
 
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov77_021D17B4), heapID);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov77_021D17B4), heapID);
     memset(v0, 0, sizeof(UnkStruct_ov77_021D17B4));
 
     v0->heapID = heapID;
@@ -195,9 +195,9 @@ static int ov77_021D0D80(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-static int ov77_021D0E3C(OverlayManager *overlayMan, int *param1)
+static int ov77_021D0E3C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov77_021D17B4 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov77_021D17B4 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -314,9 +314,9 @@ static int ov77_021D0E3C(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-static int ov77_021D10FC(OverlayManager *overlayMan, int *param1)
+static int ov77_021D10FC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov77_021D17B4 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov77_021D17B4 *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
     int v2 = v0->unk_4E8;
 
@@ -325,7 +325,7 @@ static int ov77_021D10FC(OverlayManager *overlayMan, int *param1)
     ov77_021D11FC(v0);
     ov77_021D1908(v0);
 
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
 
     switch (v2) {

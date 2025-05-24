@@ -16,9 +16,9 @@
 #include "strbuf.h"
 #include "string_list.h"
 
-int ov70_0225D9A4(OverlayManager *overlayMan, int *param1);
-int ov70_0225DB90(OverlayManager *overlayMan, int *param1);
-int ov70_0225DDF8(OverlayManager *overlayMan, int *param1);
+int ov70_0225D9A4(ApplicationManager *appMan, int *param1);
+int ov70_0225DB90(ApplicationManager *appMan, int *param1);
+int ov70_0225DDF8(ApplicationManager *appMan, int *param1);
 UnkStruct_ov66_0222DFF8 *ov70_0225DEE8(UnkStruct_ov70_0225DEE8 *param0);
 UnkStruct_ov70_02263910 *ov70_0225DEEC(UnkStruct_ov70_0225DEE8 *param0);
 UnkStruct_ov70_0225CA20 *ov70_0225DEF0(UnkStruct_ov70_0225DEE8 *param0);

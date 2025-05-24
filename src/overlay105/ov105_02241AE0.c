@@ -65,8 +65,8 @@
 FS_EXTERN_OVERLAY(overlay104);
 
 struct UnkStruct_ov105_02241FF4_t {
-    OverlayManager *unk_00;
-    OverlayManager *unk_04;
+    ApplicationManager *unk_00;
+    ApplicationManager *unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -127,9 +127,9 @@ struct UnkStruct_ov105_02241FF4_t {
     u32 unk_3C0;
 };
 
-int ov105_02241AE0(OverlayManager *overlayMan, int *param1);
-int ov105_02241BD8(OverlayManager *overlayMan, int *param1);
-int ov105_02241F54(OverlayManager *overlayMan, int *param1);
+int ov105_02241AE0(ApplicationManager *appMan, int *param1);
+int ov105_02241BD8(ApplicationManager *appMan, int *param1);
+int ov105_02241F54(ApplicationManager *appMan, int *param1);
 static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0);
 static BOOL ov105_022421F0(UnkStruct_ov105_02241FF4 *param0);
 static BOOL ov105_02242698(UnkStruct_ov105_02241FF4 *param0);
@@ -344,7 +344,7 @@ static const u8 Unk_ov105_022462DC[] = {
     0x8
 };
 
-int ov105_02241AE0(OverlayManager *overlayMan, int *param1)
+int ov105_02241AE0(ApplicationManager *appMan, int *param1)
 {
     int v0;
     UnkStruct_ov105_02241FF4 *v1;
@@ -354,14 +354,14 @@ int ov105_02241AE0(OverlayManager *overlayMan, int *param1)
     ov105_022452E4();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_93, 0x20000);
 
-    v1 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov105_02241FF4), HEAP_ID_93);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov105_02241FF4), HEAP_ID_93);
     memset(v1, 0, sizeof(UnkStruct_ov105_02241FF4));
 
     v1->unk_124 = sub_02024220(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);
     v1->unk_4C = BgConfig_New(HEAP_ID_93);
-    v1->unk_00 = overlayMan;
+    v1->unk_00 = appMan;
 
-    v2 = (UnkStruct_ov104_02234130 *)OverlayManager_Args(overlayMan);
+    v2 = (UnkStruct_ov104_02234130 *)ApplicationManager_Args(appMan);
 
     v1->saveData = v2->saveData;
     v1->unk_09 = v2->unk_04;
@@ -398,9 +398,9 @@ int ov105_02241AE0(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov105_02241BD8(OverlayManager *overlayMan, int *param1)
+int ov105_02241BD8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov105_02241FF4 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov105_02241FF4 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_3B4 == 1) {
         switch (*param1) {
@@ -575,10 +575,10 @@ int ov105_02241BD8(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov105_02241F54(OverlayManager *overlayMan, int *param1)
+int ov105_02241F54(ApplicationManager *appMan, int *param1)
 {
     int v0;
-    UnkStruct_ov105_02241FF4 *v1 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov105_02241FF4 *v1 = ApplicationManager_Data(appMan);
 
     if (ov105_022454F8(v1, 0) == 1) {
         for (v0 = 0; v0 < ov105_02245508(v1->unk_09); v0++) {
@@ -597,7 +597,7 @@ int ov105_02241F54(OverlayManager *overlayMan, int *param1)
 
     ov105_022451B4(v1);
 
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_93);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
@@ -856,7 +856,7 @@ static BOOL ov105_02242698(UnkStruct_ov105_02241FF4 *param0)
     switch (param0->unk_08) {
     case 0:
 
-        if (OverlayManager_Exec(param0->unk_04) == 1) {
+        if (ApplicationManager_Exec(param0->unk_04) == 1) {
             param0->unk_334 = param0->unk_140->monIndex;
             Heap_FreeToHeap(param0->unk_140);
             Heap_FreeToHeap(param0->unk_04);
@@ -967,7 +967,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         if (IsScreenTransitionDone() == 1) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
-            param0->unk_04 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_140, 93);
+            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, 93);
             param0->unk_13_1 = 1;
             return 1;
         }
@@ -1482,7 +1482,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
         if (IsScreenTransitionDone() == 1) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
-            param0->unk_04 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_140, 93);
+            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, 93);
             param0->unk_13_1 = 1;
             return 1;
         }

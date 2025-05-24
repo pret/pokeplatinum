@@ -64,7 +64,7 @@ static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1);
 static void ov72_0223DDA8(void);
 static void ov72_0223DDD8(UnkStruct_ov72_0223DB98 *param0, NARC *param1);
 static void ov72_0223DF58(UnkStruct_ov72_0223DB98 *param0);
-static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 *param0, OverlayManager *overlayMan);
+static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 *param0, ApplicationManager *appMan);
 static void ov72_0223E260(UnkStruct_ov72_0223DB98 *param0);
 static void ov72_0223E2A4(UnkStruct_ov72_0223DB98 *param0);
 static void ov72_0223E2A8(UnkStruct_ov72_0223DB98 *param0);
@@ -103,7 +103,7 @@ static int (*Unk_ov72_0223ED40[])(UnkStruct_ov72_0223DB98 *, int) = {
     ov72_0223E528,
 };
 
-int ov72_0223D7A0(OverlayManager *overlayMan, int *param1)
+int ov72_0223D7A0(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov72_0223DB98 *v0;
     NARC *v1;
@@ -122,7 +122,7 @@ int ov72_0223D7A0(OverlayManager *overlayMan, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_39, 0x40000);
 
-        v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov72_0223DB98), HEAP_ID_39);
+        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov72_0223DB98), HEAP_ID_39);
         memset(v0, 0, sizeof(UnkStruct_ov72_0223DB98));
         v0->unk_00 = BgConfig_New(HEAP_ID_39);
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__MYSIGN, HEAP_ID_39);
@@ -135,11 +135,11 @@ int ov72_0223D7A0(OverlayManager *overlayMan, int *param1)
         StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_39);
 
         {
-            SaveData *saveData = (SaveData *)OverlayManager_Args(overlayMan);
+            SaveData *saveData = (SaveData *)ApplicationManager_Args(appMan);
 
             v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(saveData));
-            v0->records = (GameRecords *)SaveData_GetGameRecords((SaveData *)OverlayManager_Args(overlayMan));
-            v0->unk_0C = (Options *)SaveData_GetOptions((SaveData *)OverlayManager_Args(overlayMan));
+            v0->records = (GameRecords *)SaveData_GetGameRecords((SaveData *)ApplicationManager_Args(appMan));
+            v0->unk_0C = (Options *)SaveData_GetOptions((SaveData *)ApplicationManager_Args(appMan));
         }
 
         ov72_0223DCA8(v0, v1);
@@ -153,7 +153,7 @@ int ov72_0223D7A0(OverlayManager *overlayMan, int *param1)
         ov72_0223DDA8();
         ov72_0223DDD8(v0, v1);
         ov72_0223DF58(v0);
-        ov72_0223E0A0(v0, overlayMan);
+        ov72_0223E0A0(v0, appMan);
 
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_56, SEQ_NONE, 0);
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
@@ -161,7 +161,7 @@ int ov72_0223D7A0(OverlayManager *overlayMan, int *param1)
         (*param1)++;
         break;
     case 1:
-        v0 = OverlayManager_Data(overlayMan);
+        v0 = ApplicationManager_Data(appMan);
         (*param1) = 0;
         return 1;
         break;
@@ -170,9 +170,9 @@ int ov72_0223D7A0(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov72_0223D920(OverlayManager *overlayMan, int *param1)
+int ov72_0223D920(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov72_0223DB98 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov72_0223DB98 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -200,9 +200,9 @@ int ov72_0223D920(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov72_0223D984(OverlayManager *overlayMan, int *param1)
+int ov72_0223D984(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov72_0223DB98 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov72_0223DB98 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     ov72_0223E9B4(v0->unk_5BFC, v0->unk_328.pixels);
@@ -229,7 +229,7 @@ int ov72_0223D984(OverlayManager *overlayMan, int *param1)
     MessageLoader_Free(v0->unk_14);
     StringTemplate_Free(v0->unk_10);
     ov72_0223DC34(v0);
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
@@ -556,7 +556,7 @@ static void *ov72_0223E060(Window *param0, Strbuf *param1, int param2, u8 param3
     return param0->pixels;
 }
 
-static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 *param0, OverlayManager *overlayMan)
+static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 *param0, ApplicationManager *appMan)
 {
     Window_Add(param0->unk_00, &param0->unk_338, 0, 2, 1, 27, 4, 13, 1 + (18 + 12) + 9);
     Window_FillTilemap(&param0->unk_338, 0xf0f);

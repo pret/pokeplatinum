@@ -66,12 +66,12 @@ typedef struct {
     u16 unk_0A;
     UnkStruct_0203D9B8 *unk_0C;
     void *unk_10;
-    OverlayManager *overlayMan;
+    ApplicationManager *appMan;
 } UnkStruct_02098BE4;
 
-static int sub_02098B1C(OverlayManager *overlayMan, int *param1);
-static int sub_02098B50(OverlayManager *overlayMan, int *param1);
-static int sub_02098BC4(OverlayManager *overlayMan, int *param1);
+static int sub_02098B1C(ApplicationManager *appMan, int *param1);
+static int sub_02098B50(ApplicationManager *appMan, int *param1);
+static int sub_02098BC4(ApplicationManager *appMan, int *param1);
 static void sub_02098BE4(UnkStruct_02098BE4 *param0);
 static int sub_02098C2C(UnkStruct_02098BE4 *param0);
 static int sub_02098C44(UnkStruct_02098BE4 *param0);
@@ -82,7 +82,7 @@ static int sub_02098DE8(UnkStruct_02098BE4 *param0);
 static int sub_02098E0C(UnkStruct_02098BE4 *param0);
 static int sub_02098E88(UnkStruct_02098BE4 *param0);
 
-const OverlayManagerTemplate Unk_020F6890 = {
+const ApplicationManagerTemplate Unk_020F6890 = {
     sub_02098B1C,
     sub_02098B50,
     sub_02098BC4,
@@ -157,12 +157,12 @@ void sub_02098AF0(UnkStruct_0203D9B8 *param0)
     Heap_FreeToHeap(param0);
 }
 
-static BOOL sub_02098AF8(OverlayManager **overlayManPtr)
+static BOOL sub_02098AF8(ApplicationManager **appManPtr)
 {
-    if (*overlayManPtr) {
-        if (OverlayManager_Exec(*overlayManPtr)) {
-            OverlayManager_Free(*overlayManPtr);
-            *overlayManPtr = NULL;
+    if (*appManPtr) {
+        if (ApplicationManager_Exec(*appManPtr)) {
+            ApplicationManager_Free(*appManPtr);
+            *appManPtr = NULL;
             return 1;
         }
     }
@@ -170,14 +170,14 @@ static BOOL sub_02098AF8(OverlayManager **overlayManPtr)
     return 0;
 }
 
-static int sub_02098B1C(OverlayManager *overlayMan, int *param1)
+static int sub_02098B1C(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_02098BE4 *v0 = NULL;
-    void *v1 = OverlayManager_Args(overlayMan);
+    void *v1 = ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_44, 0x1000);
 
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_02098BE4), HEAP_ID_44);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02098BE4), HEAP_ID_44);
     MI_CpuClear8(v0, sizeof(UnkStruct_02098BE4));
 
     v0->heapID = HEAP_ID_44;
@@ -186,9 +186,9 @@ static int sub_02098B1C(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-static int sub_02098B50(OverlayManager *overlayMan, int *param1)
+static int sub_02098B50(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02098BE4 *v0 = (UnkStruct_02098BE4 *)OverlayManager_Data(overlayMan);
+    UnkStruct_02098BE4 *v0 = (UnkStruct_02098BE4 *)ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -222,12 +222,12 @@ static int sub_02098B50(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-static int sub_02098BC4(OverlayManager *overlayMan, int *param1)
+static int sub_02098BC4(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02098BE4 *v0 = (UnkStruct_02098BE4 *)OverlayManager_Data(overlayMan);
+    UnkStruct_02098BE4 *v0 = (UnkStruct_02098BE4 *)ApplicationManager_Data(appMan);
 
     sub_02098BE4(v0);
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(v0->heapID);
 
     return 1;
@@ -258,14 +258,14 @@ static int sub_02098C2C(UnkStruct_02098BE4 *param0)
 {
     FS_EXTERN_OVERLAY(overlay79);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov79_021D0D80,
         ov79_021D0DC4,
         ov79_021D0DDC,
         FS_OVERLAY_ID(overlay79),
     };
 
-    param0->overlayMan = OverlayManager_New(&v0, param0->unk_0C, param0->heapID);
+    param0->appMan = ApplicationManager_New(&v0, param0->unk_0C, param0->heapID);
     return 1;
 }
 
@@ -273,7 +273,7 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
 {
     PartyManagementData *v0;
 
-    if (!sub_02098AF8(&param0->overlayMan)) {
+    if (!sub_02098AF8(&param0->appMan)) {
         return 1;
     }
 
@@ -291,7 +291,7 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
     v0->unk_20 = 20;
     v0->unk_0C = param0->unk_0C->unk_18;
 
-    param0->overlayMan = OverlayManager_New(&Unk_020F1E88, v0, param0->heapID);
+    param0->appMan = ApplicationManager_New(&Unk_020F1E88, v0, param0->heapID);
     param0->unk_10 = (void *)v0;
 
     return 2;
@@ -306,7 +306,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
         4, 7, 8
     };
 
-    if (!sub_02098AF8(&param0->overlayMan)) {
+    if (!sub_02098AF8(&param0->appMan)) {
         return 2;
     }
 
@@ -334,7 +334,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     PokemonSummaryScreen_FlagVisiblePages(v2, v3);
     PokemonSummaryScreen_SetPlayerProfile(v2, param0->unk_0C->unk_0C);
 
-    param0->overlayMan = OverlayManager_New(&gPokemonSummaryScreenApp, v1, param0->heapID);
+    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, v1, param0->heapID);
     param0->unk_10 = (void *)v2;
 
     return 3;
@@ -344,7 +344,7 @@ static int sub_02098D38(UnkStruct_02098BE4 *param0)
 {
     PokemonSummary *summaryScreen;
 
-    if (!sub_02098AF8(&param0->overlayMan)) {
+    if (!sub_02098AF8(&param0->appMan)) {
         return 3;
     }
 
@@ -369,7 +369,7 @@ static int sub_02098D7C(UnkStruct_02098BE4 *param0)
 {
     FS_EXTERN_OVERLAY(overlay79);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov79_021D22AC,
         ov79_021D22E4,
         ov79_021D2460,
@@ -384,7 +384,7 @@ static int sub_02098D7C(UnkStruct_02098BE4 *param0)
     v1->unk_0A = Options_TextFrameDelay(param0->unk_0C->unk_18);
     v1->unk_0B = Options_Frame(param0->unk_0C->unk_18);
 
-    param0->overlayMan = OverlayManager_New(&v0, v1, param0->heapID);
+    param0->appMan = ApplicationManager_New(&v0, v1, param0->heapID);
     param0->unk_10 = v1;
 
     return 5;
@@ -394,7 +394,7 @@ static int sub_02098DE8(UnkStruct_02098BE4 *param0)
 {
     UnkStruct_02098DE8 *v0;
 
-    if (!sub_02098AF8(&param0->overlayMan)) {
+    if (!sub_02098AF8(&param0->appMan)) {
         return 5;
     }
 
@@ -432,7 +432,7 @@ static int sub_02098E0C(UnkStruct_02098BE4 *param0)
     PokemonSummaryScreen_FlagVisiblePages(v1, v3);
     PokemonSummaryScreen_SetPlayerProfile(v1, param0->unk_0C->unk_0C);
 
-    param0->overlayMan = OverlayManager_New(&gPokemonSummaryScreenApp, v1, param0->heapID);
+    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, v1, param0->heapID);
     param0->unk_10 = (void *)v1;
 
     return 7;
@@ -444,7 +444,7 @@ static int sub_02098E88(UnkStruct_02098BE4 *param0)
     PokemonSummary *v1;
     Poffin *v2;
 
-    if (!sub_02098AF8(&param0->overlayMan)) {
+    if (!sub_02098AF8(&param0->appMan)) {
         return 7;
     }
 

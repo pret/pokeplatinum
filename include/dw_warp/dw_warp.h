@@ -3,8 +3,8 @@
 
 #include "overlay_manager.h"
 
-BOOL DWWarp_Init(OverlayManager *overlayMan, int *seq);
-BOOL DWWarp_Main(OverlayManager *overlayMan, int *seq);
-BOOL DWWarp_Exit(OverlayManager *overlayMan, int *seq);
+BOOL DWWarp_Init(ApplicationManager *appMan, int *seq);
+BOOL DWWarp_Main(ApplicationManager *appMan, int *seq);
+BOOL DWWarp_Exit(ApplicationManager *appMan, int *seq);
 
 #endif // POKEPLATINUM_DWWARP_H

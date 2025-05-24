@@ -63,15 +63,15 @@ static void ov115_02260B30(UnkStruct_ov115_0226095C *param0);
 static void ov115_02260B44(UnkStruct_ov115_0226095C *param0, UnkStruct_ov115_02260440 *param1);
 static BOOL ov115_02260BA0(UnkStruct_ov115_0226095C *param0, int param1, const void *param2, int param3);
 
-int ov115_02260440(OverlayManager *overlayMan, int *param1)
+int ov115_02260440(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov115_0226095C *v0;
-    UnkStruct_ov115_02260440 *v1 = OverlayManager_Args(overlayMan);
+    UnkStruct_ov115_02260440 *v1 = ApplicationManager_Args(appMan);
     BOOL v2;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_99, 0x60000);
 
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov115_0226095C), HEAP_ID_99);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov115_0226095C), HEAP_ID_99);
     memset(v0, 0, sizeof(UnkStruct_ov115_0226095C));
 
     ov114_0225C700(&v0->unk_08, v1->unk_39, v1->saveData, v1->unk_38, &v1->unk_00);
@@ -80,10 +80,10 @@ int ov115_02260440(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov115_0226048C(OverlayManager *overlayMan, int *param1)
+int ov115_0226048C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov115_0226095C *v0 = OverlayManager_Data(overlayMan);
-    UnkStruct_ov115_02260440 *v1 = OverlayManager_Args(overlayMan);
+    UnkStruct_ov115_0226095C *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_ov115_02260440 *v1 = ApplicationManager_Args(appMan);
     BOOL v2;
     u32 v3;
 
@@ -365,10 +365,10 @@ int ov115_0226048C(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov115_022608E4(OverlayManager *overlayMan, int *param1)
+int ov115_022608E4(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov115_0226095C *v0 = OverlayManager_Data(overlayMan);
-    UnkStruct_ov115_02260440 *v1 = OverlayManager_Args(overlayMan);
+    UnkStruct_ov115_0226095C *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_ov115_02260440 *v1 = ApplicationManager_Args(appMan);
     BOOL v2;
 
     switch (*param1) {
@@ -377,7 +377,7 @@ int ov115_022608E4(OverlayManager *overlayMan, int *param1)
 
         ov115_02260B30(v0);
 
-        OverlayManager_FreeData(overlayMan);
+        ApplicationManager_FreeData(appMan);
         Heap_Destroy(HEAP_ID_99);
         CommMan_SetErrorHandling(0, 1);
 

@@ -6,9 +6,9 @@
 
 #include "overlay_manager.h"
 
-int ov117_02260668(OverlayManager *overlayMan, int *param1);
-int ov117_0226098C(OverlayManager *overlayMan, int *param1);
-int ov117_02260C10(OverlayManager *overlayMan, int *param1);
+int ov117_02260668(ApplicationManager *appMan, int *param1);
+int ov117_0226098C(ApplicationManager *appMan, int *param1);
+int ov117_02260C10(ApplicationManager *appMan, int *param1);
 void ov117_02261600(UnkStruct_ov117_02261280 *param0, int param1);
 BOOL ov117_02261E38(UnkStruct_ov117_02261280 *param0, int param1);
 BOOL ov117_02261FF4(UnkStruct_ov117_02261280 *param0);

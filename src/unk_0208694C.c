@@ -141,22 +141,22 @@ typedef struct {
     u8 : 3;
 } UnkStruct_020F2A14;
 
-static int sub_0208694C(OverlayManager *overlayMan, int *param1);
-static int sub_02086B64(OverlayManager *overlayMan, int *param1);
-static int sub_02086F3C(OverlayManager *overlayMan, int *param1);
+static int sub_0208694C(ApplicationManager *appMan, int *param1);
+static int sub_02086B64(ApplicationManager *appMan, int *param1);
+static int sub_02086F3C(ApplicationManager *appMan, int *param1);
 static void sub_02087190(void *param0);
 static void sub_020871CC(void);
 static void sub_020871EC(BgConfig *param0);
 static void sub_0208765C(BgConfig *param0, Window *param1);
 static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1);
 static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int param3, int *param4, VecFx32 param5[], Sprite **param6, void *param7);
-static void sub_0208737C(UnkStruct_02087A10 *param0, OverlayManager *overlayMan);
+static void sub_0208737C(UnkStruct_02087A10 *param0, ApplicationManager *appMan);
 static void sub_02088240(BgConfig *param0, int param1, VecFx32 param2[]);
 static void sub_02088260(VecFx32 param0[], int param1);
 static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1);
 static void sub_02087A10(UnkStruct_02087A10 *param0);
 static void sub_020877C4(void);
-static void sub_02087FC0(UnkStruct_02087A10 *param0, OverlayManager *overlayMan, NARC *param2);
+static void sub_02087FC0(UnkStruct_02087A10 *param0, ApplicationManager *appMan, NARC *param2);
 static void sub_02088350(UnkStruct_02087A10 *param0);
 static void sub_02088514(u16 *param0);
 static void sub_02088554(Window *param0, const u16 *param1, int param2, int param3, int param4, int param5, TextColor param6, u8 *param7);
@@ -175,7 +175,7 @@ static void sub_020879DC(SysTask *param0, void *param1);
 static void sub_02087CDC(SysTask *param0, void *param1);
 static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1, int param2, int param3);
 static void sub_0208732C(int param0);
-static void sub_02087544(UnkStruct_02087A10 *param0, OverlayManager *overlayMan);
+static void sub_02087544(UnkStruct_02087A10 *param0, ApplicationManager *appMan);
 static void sub_02087BE4(UnkStruct_02087A10 *param0, AffineSpriteListTemplate *param1);
 static void sub_02086E6C(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1);
 static void sub_02087F48(Window *param0, int param1, Strbuf *param2);
@@ -859,7 +859,7 @@ static const int Unk_020F2850[] = {
     0x3
 };
 
-const OverlayManagerTemplate Unk_020F2DAC = {
+const ApplicationManagerTemplate Unk_020F2DAC = {
     sub_0208694C,
     sub_02086B64,
     sub_02086F3C,
@@ -868,7 +868,7 @@ const OverlayManagerTemplate Unk_020F2DAC = {
 
 static UnkStruct_02087A10 *Unk_021C0A30;
 
-static int sub_0208694C(OverlayManager *overlayMan, int *param1)
+static int sub_0208694C(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_02087A10 *v0;
     NARC *v1;
@@ -885,7 +885,7 @@ static int sub_0208694C(OverlayManager *overlayMan, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_18, 0x20000 + 0x8000);
 
-        v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_02087A10), HEAP_ID_18);
+        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02087A10), HEAP_ID_18);
         memset(v0, 0, sizeof(UnkStruct_02087A10));
         v0->unk_160 = BgConfig_New(HEAP_ID_18);
         v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, HEAP_ID_18);
@@ -898,16 +898,16 @@ static int sub_0208694C(OverlayManager *overlayMan, int *param1)
         SetAutorepeat(4, 8);
         sub_020871CC();
         sub_020871EC(v0->unk_160);
-        sub_020871B0(v0, (UnkStruct_0208737C *)OverlayManager_Args(overlayMan));
+        sub_020871B0(v0, (UnkStruct_0208737C *)ApplicationManager_Args(appMan));
         sub_0208769C(v0, v1);
         Font_InitManager(FONT_SUBSCREEN, HEAP_ID_18);
         SetVBlankCallback(sub_02087190, NULL);
-        sub_0208737C(v0, overlayMan);
+        sub_0208737C(v0, appMan);
         Font_UseImmediateGlyphAccess(FONT_SYSTEM, 18);
         sub_020877C4();
         sub_020877F4(v0, v1);
         sub_02087A10(v0);
-        sub_02087FC0(v0, overlayMan, v1);
+        sub_02087FC0(v0, appMan, v1);
         sub_02088754(&v0->unk_41C[4], v0->unk_D8, v0->unk_158, v0->unk_15A, v0->unk_528, v0->unk_17C);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
         StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_18);
@@ -922,7 +922,7 @@ static int sub_0208694C(OverlayManager *overlayMan, int *param1)
         (*param1)++;
         break;
     case 1:
-        v0 = OverlayManager_Data(overlayMan);
+        v0 = ApplicationManager_Data(appMan);
 
         if (v0->unk_00 == 1) {
             sub_02086B30(v0->unk_51C, v0->unk_524, v0->unk_04, v0->unk_08);
@@ -948,9 +948,9 @@ static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1,
     GX_LoadOBJPltt((void *)(v0 + PokeIconPaletteIndex(param2, param3, 0) * 0x20), 6 * 0x20, 0x20);
 }
 
-static int sub_02086B64(OverlayManager *overlayMan, int *param1)
+static int sub_02086B64(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02087A10 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_02087A10 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -977,7 +977,7 @@ static int sub_02086B64(OverlayManager *overlayMan, int *param1)
             sub_02088FD0(v0);
             break;
         case 5:
-            sub_02087544(v0, overlayMan);
+            sub_02087544(v0, appMan);
             Window_FillTilemap(&v0->unk_41C[9], 0xf0f);
             Window_DrawMessageBoxWithScrollCursor(&v0->unk_41C[9], 0, (32 * 8), 10);
             v0->unk_4BC = Text_AddPrinterWithParams(&v0->unk_41C[9], FONT_MESSAGE, v0->unk_180, 0, 0, TEXT_SPEED_FAST, NULL);
@@ -1108,10 +1108,10 @@ static int sub_02086F14(u16 *param0)
     return v0;
 }
 
-static int sub_02086F3C(OverlayManager *overlayMan, int *param1)
+static int sub_02086F3C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02087A10 *v0 = OverlayManager_Data(overlayMan);
-    UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)OverlayManager_Args(overlayMan);
+    UnkStruct_02087A10 *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)ApplicationManager_Args(appMan);
     int v2;
 
     v0->unk_D8[v0->unk_158] = 0xffff;
@@ -1177,7 +1177,7 @@ static int sub_02086F3C(OverlayManager *overlayMan, int *param1)
     MessageLoader_Free(v0->unk_170);
     MessageLoader_Free(v0->unk_16C);
     StringTemplate_Free(v0->unk_168);
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_18);
 
@@ -1373,9 +1373,9 @@ static void sub_0208732C(int param0)
     GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_OBJ, 0);
 }
 
-static void sub_0208737C(UnkStruct_02087A10 *param0, OverlayManager *overlayMan)
+static void sub_0208737C(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
 {
-    UnkStruct_0208737C *v0 = (UnkStruct_0208737C *)OverlayManager_Args(overlayMan);
+    UnkStruct_0208737C *v0 = (UnkStruct_0208737C *)ApplicationManager_Args(appMan);
 
     param0->unk_4C0 = 4;
 
@@ -1439,10 +1439,10 @@ static void sub_0208737C(UnkStruct_02087A10 *param0, OverlayManager *overlayMan)
     }
 }
 
-static void sub_02087544(UnkStruct_02087A10 *param0, OverlayManager *overlayMan)
+static void sub_02087544(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
 {
     Strbuf *v0 = NULL;
-    UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)OverlayManager_Args(overlayMan);
+    UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)ApplicationManager_Args(appMan);
 
     if (v1->unk_44 != 0) {
         int v2, v3;
@@ -1819,7 +1819,7 @@ static void sub_02087F78(Window *param0, int param1, Strbuf *param2)
     Window_CopyToVRAM(param0);
 }
 
-static void sub_02087FC0(UnkStruct_02087A10 *param0, OverlayManager *overlayMan, NARC *param2)
+static void sub_02087FC0(UnkStruct_02087A10 *param0, ApplicationManager *appMan, NARC *param2)
 {
     Window_Add(param0->unk_160, &param0->unk_41C[0], 0, 2, 1, 26, 12, 1, (32 * 8));
     Window_Add(param0->unk_160, &param0->unk_41C[1], 1, 2, 1, 26, 12, 1, ((32 * 8) + (26 * 12)));
@@ -1856,7 +1856,7 @@ static void sub_02087FC0(UnkStruct_02087A10 *param0, OverlayManager *overlayMan,
     sub_02087F48(&param0->unk_41C[9], param0->unk_00, param0->unk_178);
 
     {
-        UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)OverlayManager_Args(overlayMan);
+        UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)ApplicationManager_Args(appMan);
 
         if (param0->unk_118[0] != 0xffff) {
             CharCode_Copy(param0->unk_D8, param0->unk_118);

@@ -117,7 +117,7 @@ static const SpriteResourceCapacities Unk_ov17_02252EC8 = {
     0x8
 };
 
-int ov17_0223CB1C(OverlayManager *overlayMan, int *param1)
+int ov17_0223CB1C(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_02247A48 *v0;
 
@@ -135,11 +135,11 @@ int ov17_0223CB1C(OverlayManager *overlayMan, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_22, 0x70000);
 
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov17_02247A48), HEAP_ID_22);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov17_02247A48), HEAP_ID_22);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02247A48));
 
     v0->unk_08 = ov17_0223F140(HEAP_ID_22);
-    v0->unk_00 = OverlayManager_Args(overlayMan);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     v0->unk_00->unk_150 = v0;
     v0->unk_00->unk_154 = 0;
     v0->unk_0C.unk_00 = &v0->unk_00->unk_00;
@@ -222,9 +222,9 @@ int ov17_0223CB1C(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov17_0223CDDC(OverlayManager *overlayMan, int *param1)
+int ov17_0223CDDC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov17_02247A48 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov17_02247A48 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     sub_02094E98(v0->unk_00);
@@ -281,9 +281,9 @@ int ov17_0223CDDC(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov17_0223CF8C(OverlayManager *overlayMan, int *param1)
+int ov17_0223CF8C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov17_02247A48 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov17_02247A48 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     ParticleSystem_FreeAll();
@@ -333,7 +333,7 @@ int ov17_0223CF8C(OverlayManager *overlayMan, int *param1)
     ov17_0223F1E0(v0->unk_08);
 
     DisableTouchPad();
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(HEAP_ID_22);

@@ -316,14 +316,14 @@ static void (*Unk_ov68_0225DEA0[2])(UnkUnion_ov68_0225CCA8 *, UnkStruct_ov68_022
     ov68_0225D380
 };
 
-int ov68_0225C700(OverlayManager *overlayMan, int *param1)
+int ov68_0225C700(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov68_0225C700 *v0;
-    UnkStruct_ov66_02231374 *v1 = OverlayManager_Args(overlayMan);
+    UnkStruct_ov66_02231374 *v1 = ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_122, 0x50000);
 
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov68_0225C700), HEAP_ID_122);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov68_0225C700), HEAP_ID_122);
     memset(v0, 0, sizeof(UnkStruct_ov68_0225C700));
 
     ov68_0225C91C(&v0->unk_00, v1->saveData, 122);
@@ -339,14 +339,14 @@ int ov68_0225C700(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov68_0225C798(OverlayManager *overlayMan, int *param1)
+int ov68_0225C798(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov68_0225C700 *v0;
     UnkStruct_ov66_02231374 *v1;
     BOOL v2;
 
-    v0 = OverlayManager_Data(overlayMan);
-    v1 = OverlayManager_Args(overlayMan);
+    v0 = ApplicationManager_Data(appMan);
+    v1 = ApplicationManager_Args(appMan);
 
     switch (*param1) {
     case 0:
@@ -399,13 +399,13 @@ int ov68_0225C798(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov68_0225C8A8(OverlayManager *overlayMan, int *param1)
+int ov68_0225C8A8(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov68_0225C700 *v0;
     UnkStruct_ov66_02231374 *v1;
 
-    v0 = OverlayManager_Data(overlayMan);
-    v1 = OverlayManager_Args(overlayMan);
+    v0 = ApplicationManager_Data(appMan);
+    v1 = ApplicationManager_Args(appMan);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -416,7 +416,7 @@ int ov68_0225C8A8(OverlayManager *overlayMan, int *param1)
     ov68_0225CBC0(&v0->unk_1A8);
     ov68_0225C960(&v0->unk_00);
 
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_122);
     Sound_StopAllEffects(0);
 

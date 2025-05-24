@@ -107,18 +107,18 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0);
 static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0);
 static void ov75_021D1CB8(UnkStruct_ov75_021D1184 *param0);
 
-int ov75_021D0D80(OverlayManager *overlayMan, int *param1)
+int ov75_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_020978D8 *v0;
-    UnkStruct_ov75_021D1184 *v1 = (UnkStruct_ov75_021D1184 *)OverlayManager_Data(overlayMan);
+    UnkStruct_ov75_021D1184 *v1 = (UnkStruct_ov75_021D1184 *)ApplicationManager_Data(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_41, 0x20000);
-    v1 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov75_021D1184), HEAP_ID_41);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov75_021D1184), HEAP_ID_41);
     memset(v1, 0, sizeof(UnkStruct_ov75_021D1184));
 
     v1->heapID = HEAP_ID_41;
 
-    v1->unk_1C = (UnkStruct_020978D8 *)OverlayManager_Args(overlayMan);
+    v1->unk_1C = (UnkStruct_020978D8 *)ApplicationManager_Args(appMan);
     v1->unk_0D = v1->unk_0C = v1->unk_1C->unk_00;
     v1->unk_11 = v1->unk_1C->unk_02;
     v1->unk_12 = v1->unk_1C->unk_03;
@@ -131,9 +131,9 @@ int ov75_021D0D80(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov75_021D0DF8(OverlayManager *overlayMan, int *param1)
+int ov75_021D0DF8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)OverlayManager_Data(overlayMan);
+    UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)ApplicationManager_Data(appMan);
 
     if (ov75_021D1184(v0)) {
         return 1;
@@ -142,16 +142,16 @@ int ov75_021D0DF8(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov75_021D0E10(OverlayManager *overlayMan, int *param1)
+int ov75_021D0E10(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)OverlayManager_Data(overlayMan);
+    UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)ApplicationManager_Data(appMan);
     int heapID;
 
     RenderControlFlags_SetCanABSpeedUpPrint(0);
 
     heapID = v0->heapID;
 
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
 
     return 1;

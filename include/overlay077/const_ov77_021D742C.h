@@ -3,6 +3,6 @@
 
 #include "overlay_manager.h"
 
-extern const OverlayManagerTemplate gTitleScreenOverlayTemplate;
+extern const ApplicationManagerTemplate gTitleScreenOverlayTemplate;
 
 #endif // POKEPLATINUM_CONST_OV77_021D742C_H

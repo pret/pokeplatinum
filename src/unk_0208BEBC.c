@@ -23,32 +23,32 @@
 
 FS_EXTERN_OVERLAY(overlay62);
 
-static int sub_0208BF38(OverlayManager *overlayMan, int *param1);
-static int sub_0208BF44(OverlayManager *overlayMan, int *param1);
-static int sub_0208BEBC(OverlayManager *overlayMan, int *param1, int param2);
-static int sub_0208BF50(OverlayManager *overlayMan, int *param1);
-static int sub_0208BF6C(OverlayManager *overlayMan, int *param1);
+static int sub_0208BF38(ApplicationManager *appMan, int *param1);
+static int sub_0208BF44(ApplicationManager *appMan, int *param1);
+static int sub_0208BEBC(ApplicationManager *appMan, int *param1, int param2);
+static int sub_0208BF50(ApplicationManager *appMan, int *param1);
+static int sub_0208BF6C(ApplicationManager *appMan, int *param1);
 
-const OverlayManagerTemplate Unk_020F3050 = {
+const ApplicationManagerTemplate Unk_020F3050 = {
     sub_0208BF38,
     sub_0208BF50,
     sub_0208BF6C,
     FS_OVERLAY_ID(overlay62)
 };
 
-const OverlayManagerTemplate Unk_020F3060 = {
+const ApplicationManagerTemplate Unk_020F3060 = {
     sub_0208BF44,
     sub_0208BF50,
     sub_0208BF6C,
     FS_OVERLAY_ID(overlay62)
 };
 
-static int sub_0208BEBC(OverlayManager *overlayMan, int *param1, int param2)
+static int sub_0208BEBC(ApplicationManager *appMan, int *param1, int param2)
 {
     UnkStruct_0208C06C *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_102, 0x55000);
-    v0 = sub_0208BA78(overlayMan);
+    v0 = sub_0208BA78(appMan);
     ov62_02230060(v0);
     Sound_SetPlayerVolume(1, (127 / 3));
 
@@ -77,20 +77,20 @@ static int sub_0208BEBC(OverlayManager *overlayMan, int *param1, int param2)
     return 1;
 }
 
-static int sub_0208BF38(OverlayManager *overlayMan, int *param1)
+static int sub_0208BF38(ApplicationManager *appMan, int *param1)
 {
-    return sub_0208BEBC(overlayMan, param1, 0);
+    return sub_0208BEBC(appMan, param1, 0);
 }
 
-static int sub_0208BF44(OverlayManager *overlayMan, int *param1)
+static int sub_0208BF44(ApplicationManager *appMan, int *param1)
 {
-    return sub_0208BEBC(overlayMan, param1, 1);
+    return sub_0208BEBC(appMan, param1, 1);
 }
 
-static int sub_0208BF50(OverlayManager *overlayMan, int *param1)
+static int sub_0208BF50(ApplicationManager *appMan, int *param1)
 {
     BOOL v0 = 0;
-    UnkStruct_0208C06C *v1 = sub_0208BA78(overlayMan);
+    UnkStruct_0208C06C *v1 = sub_0208BA78(appMan);
 
     v1->unk_10 = param1;
     v0 = ov62_0222F910(v1, param1);
@@ -98,9 +98,9 @@ static int sub_0208BF50(OverlayManager *overlayMan, int *param1)
     return (v0) ? 1 : 0;
 }
 
-static int sub_0208BF6C(OverlayManager *overlayMan, int *param1)
+static int sub_0208BF6C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_0208C06C *v0 = sub_0208BA78(overlayMan);
+    UnkStruct_0208C06C *v0 = sub_0208BA78(appMan);
 
     switch (*param1) {
     case 0:

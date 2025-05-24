@@ -50,9 +50,9 @@ typedef struct {
     int unk_04;
 } UnkStruct_ov83_0224024C;
 
-int ov83_0223B5B0(OverlayManager *overlayMan, int *param1);
-int ov83_0223B65C(OverlayManager *overlayMan, int *param1);
-int ov83_0223B710(OverlayManager *overlayMan, int *param1);
+int ov83_0223B5B0(ApplicationManager *appMan, int *param1);
+int ov83_0223B65C(ApplicationManager *appMan, int *param1);
+int ov83_0223B710(ApplicationManager *appMan, int *param1);
 static int ov83_0223C344(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
 static int ov83_0223B78C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
 static int ov83_0223B920(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
@@ -102,13 +102,13 @@ static void ov83_0223B5A0(void *param0)
     VramTransfer_Process();
 }
 
-int ov83_0223B5B0(OverlayManager *overlayMan, int *param1)
+int ov83_0223B5B0(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov83_0223C344 *v0 = OverlayManager_Args(overlayMan);
+    UnkStruct_ov83_0223C344 *v0 = ApplicationManager_Args(appMan);
     UnkStruct_ov83_0223B784 *v1;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_56, 0x20000);
-    v1 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov83_0223B784), HEAP_ID_56);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov83_0223B784), HEAP_ID_56);
     memset(v1, 0, sizeof(UnkStruct_ov83_0223B784));
 
     v0->unk_18 = v1;
@@ -139,11 +139,11 @@ int ov83_0223B5B0(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov83_0223B65C(OverlayManager *overlayMan, int *param1)
+int ov83_0223B65C(ApplicationManager *appMan, int *param1)
 {
     int v0, v1;
-    UnkStruct_ov83_0223C344 *v2 = OverlayManager_Args(overlayMan);
-    UnkStruct_ov83_0223B784 *v3 = (UnkStruct_ov83_0223B784 *)OverlayManager_Data(overlayMan);
+    UnkStruct_ov83_0223C344 *v2 = ApplicationManager_Args(appMan);
+    UnkStruct_ov83_0223B784 *v3 = (UnkStruct_ov83_0223B784 *)ApplicationManager_Data(appMan);
     const UnkStruct_ov83_0224024C *v4;
 
     v0 = v3->unk_0C;
@@ -204,11 +204,11 @@ int ov83_0223B65C(OverlayManager *overlayMan, int *param1)
     }
 }
 
-int ov83_0223B710(OverlayManager *overlayMan, int *param1)
+int ov83_0223B710(ApplicationManager *appMan, int *param1)
 {
     int heapID;
-    UnkStruct_ov83_0223C344 *v1 = OverlayManager_Args(overlayMan);
-    UnkStruct_ov83_0223B784 *v2 = (UnkStruct_ov83_0223B784 *)OverlayManager_Data(overlayMan);
+    UnkStruct_ov83_0223C344 *v1 = ApplicationManager_Args(appMan);
+    UnkStruct_ov83_0223B784 *v2 = (UnkStruct_ov83_0223B784 *)ApplicationManager_Data(appMan);
 
     heapID = v2->heapID;
 
@@ -224,7 +224,7 @@ int ov83_0223B710(OverlayManager *overlayMan, int *param1)
     DisableHBlank();
     VramTransfer_Free();
     MI_CpuClear8(v2, sizeof(UnkStruct_ov83_0223B784));
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
 
     v1->unk_18 = NULL;
 

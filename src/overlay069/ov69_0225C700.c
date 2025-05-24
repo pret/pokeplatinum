@@ -675,13 +675,13 @@ static const UnkStruct_ov69_0225F118 Unk_ov69_0225F118[5] = {
     },
 };
 
-int ov69_0225C700(OverlayManager *overlayMan, int *param1)
+int ov69_0225C700(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov69_0225CE64 *v0;
-    UnkStruct_ov66_02230F50 *v1 = OverlayManager_Args(overlayMan);
+    UnkStruct_ov66_02230F50 *v1 = ApplicationManager_Args(appMan);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_105, 0x50000);
 
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov69_0225CE64), HEAP_ID_105);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov69_0225CE64), HEAP_ID_105);
     memset(v0, 0, sizeof(UnkStruct_ov69_0225CE64));
 
     v0->unk_0C = sub_0202C878(v1->saveData);
@@ -707,14 +707,14 @@ int ov69_0225C700(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov69_0225C820(OverlayManager *overlayMan, int *param1)
+int ov69_0225C820(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov69_0225CE64 *v0;
     UnkStruct_ov66_02230F50 *v1;
     BOOL v2;
 
-    v0 = OverlayManager_Data(overlayMan);
-    v1 = OverlayManager_Args(overlayMan);
+    v0 = ApplicationManager_Data(appMan);
+    v1 = ApplicationManager_Args(appMan);
 
     switch (*param1) {
     case 0:
@@ -764,13 +764,13 @@ int ov69_0225C820(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov69_0225C8FC(OverlayManager *overlayMan, int *param1)
+int ov69_0225C8FC(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov69_0225CE64 *v0;
     UnkStruct_ov66_02230F50 *v1;
 
-    v0 = OverlayManager_Data(overlayMan);
-    v1 = OverlayManager_Args(overlayMan);
+    v0 = ApplicationManager_Data(appMan);
+    v1 = ApplicationManager_Args(appMan);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -784,7 +784,7 @@ int ov69_0225C8FC(OverlayManager *overlayMan, int *param1)
     ov69_0225EF54(&v0->unk_1CC);
     ov69_0225D35C(&v0->unk_20);
 
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_105);
 
     return 1;

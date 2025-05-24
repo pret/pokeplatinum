@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_CONST_020F55DC_H
 #define POKEPLATINUM_CONST_020F55DC_H
 
-extern const OverlayManagerTemplate Unk_020F55DC;
+extern const ApplicationManagerTemplate Unk_020F55DC;
 
 #endif // POKEPLATINUM_CONST_020F55DC_H

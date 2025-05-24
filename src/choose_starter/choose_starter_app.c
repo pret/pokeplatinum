@@ -311,17 +311,17 @@ static void StartCursorMovement(ChooseStarterCursor *param0);
 static void ov78_021D23E8(SysTask *param0, void *param1);
 static void ov78_021D241C(ChooseStarterCursor *param0);
 
-BOOL ChooseStarter_Init(OverlayManager *overlayMan, int *param1)
+BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_CHOOSE_STARTER_APP, HEAP_SIZE_CHOOSE_STARTER_APP);
 
-    ChooseStarterApp *app = OverlayManager_NewData(overlayMan, sizeof(ChooseStarterApp), HEAP_ID_CHOOSE_STARTER_APP);
+    ChooseStarterApp *app = ApplicationManager_NewData(appMan, sizeof(ChooseStarterApp), HEAP_ID_CHOOSE_STARTER_APP);
     GF_ASSERT(app);
     memset(app, 0, sizeof(ChooseStarterApp));
 
     Heap_FndInitAllocatorForExpHeap(&app->unk_2B4, HEAP_ID_CHOOSE_STARTER_APP, 32);
 
-    ChooseStarterData *data = OverlayManager_Args(overlayMan);
+    ChooseStarterData *data = ApplicationManager_Args(appMan);
     app->messageFrame = Options_Frame(data->options);
     app->unk_704 = Options_TextFrameDelay(data->options);
 
@@ -379,9 +379,9 @@ enum ChooseStarterAppState {
     CHOOSE_STARTER_MAIN_WAIT_FADE_OUT,
 };
 
-BOOL ChooseStarter_Main(OverlayManager *overlayMan, int *state)
+BOOL ChooseStarter_Main(ApplicationManager *appMan, int *state)
 {
-    ChooseStarterApp *app = OverlayManager_Data(overlayMan);
+    ChooseStarterApp *app = ApplicationManager_Data(appMan);
     BOOL selectionMade;
     u16 palette = 0x08C3;
 
@@ -428,10 +428,10 @@ BOOL ChooseStarter_Main(OverlayManager *overlayMan, int *state)
     return FALSE;
 }
 
-BOOL ChooseStarter_Exit(OverlayManager *overlayMan, int *param1)
+BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
 {
-    ChooseStarterApp *v0 = OverlayManager_Data(overlayMan);
-    ChooseStarterData *v1 = OverlayManager_Args(overlayMan);
+    ChooseStarterApp *v0 = ApplicationManager_Data(appMan);
+    ChooseStarterData *v1 = ApplicationManager_Args(appMan);
     BOOL v2;
 
     SetVBlankCallback(NULL, NULL);
@@ -459,7 +459,7 @@ BOOL ChooseStarter_Exit(OverlayManager *overlayMan, int *param1)
     ov78_021D10DC();
 
     VramTransfer_Free();
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_CHOOSE_STARTER_APP);
 
     return TRUE;

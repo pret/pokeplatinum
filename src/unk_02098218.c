@@ -46,18 +46,18 @@
 
 FS_EXTERN_OVERLAY(overlay119);
 
-static int sub_02098218(OverlayManager *overlayMan, int *param1);
-static int sub_02098304(OverlayManager *overlayMan, int *param1);
-static int sub_02098388(OverlayManager *overlayMan, int *param1);
+static int sub_02098218(ApplicationManager *appMan, int *param1);
+static int sub_02098304(ApplicationManager *appMan, int *param1);
+static int sub_02098388(ApplicationManager *appMan, int *param1);
 
-const OverlayManagerTemplate Unk_020F67FC = {
+const ApplicationManagerTemplate Unk_020F67FC = {
     sub_02098218,
     sub_02098304,
     sub_02098388,
     FS_OVERLAY_ID(overlay119)
 };
 
-static int sub_02098218(OverlayManager *overlayMan, int *param1)
+static int sub_02098218(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_0209843C *v0;
     UnkStruct_ov119_021D0FD0 *v1;
@@ -66,10 +66,10 @@ static int sub_02098218(OverlayManager *overlayMan, int *param1)
     DisableHBlank();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_71, 0x40000);
 
-    v1 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov119_021D0FD0), HEAP_ID_71);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov119_021D0FD0), HEAP_ID_71);
     memset(v1, 0, sizeof(UnkStruct_ov119_021D0FD0));
 
-    v0 = OverlayManager_Args(overlayMan);
+    v0 = ApplicationManager_Args(appMan);
 
     v1->unk_00 = v0;
     v1->unk_04.unk_0C = Options_TextFrameDelay(v1->unk_00->unk_0C.unk_04);
@@ -103,9 +103,9 @@ static int sub_02098218(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-static int sub_02098304(OverlayManager *overlayMan, int *param1)
+static int sub_02098304(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov119_021D0FD0 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov119_021D0FD0 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -151,9 +151,9 @@ static int sub_02098304(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-static int sub_02098388(OverlayManager *overlayMan, int *param1)
+static int sub_02098388(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov119_021D0FD0 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov119_021D0FD0 *v0 = ApplicationManager_Data(appMan);
 
     sub_020242C4(v0->unk_04.unk_34);
 
@@ -181,7 +181,7 @@ static int sub_02098388(OverlayManager *overlayMan, int *param1)
 
     ov119_021D1844(&v0->unk_04);
 
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_71);
 
     SetVBlankCallback(NULL, NULL);

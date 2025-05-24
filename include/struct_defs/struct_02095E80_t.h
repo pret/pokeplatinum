@@ -37,7 +37,7 @@ struct UnkStruct_02095E80_t {
     UnkStruct_ov88_0223C370 *unk_08;
     PokemonSummary unk_0C;
     int unk_3C;
-    OverlayManager *overlayMan;
+    ApplicationManager *appMan;
     int unk_44;
     int unk_48;
     int unk_4C;

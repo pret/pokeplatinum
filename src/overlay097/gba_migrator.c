@@ -1815,13 +1815,13 @@ static BOOL ov97_02235590(GBAMigrator *migrator, int param1)
     return FALSE;
 }
 
-static int GBAMigrator_Init(OverlayManager *overlayMan, int *state)
+static int GBAMigrator_Init(ApplicationManager *appMan, int *state)
 {
     GBAMigrator *migrator;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_MIGRATE_FROM_GBA, HEAP_SIZE_MIGRATE_FROM_GBA);
 
-    migrator = OverlayManager_NewData(overlayMan, sizeof(GBAMigrator), HEAP_ID_MIGRATE_FROM_GBA);
+    migrator = ApplicationManager_NewData(appMan, sizeof(GBAMigrator), HEAP_ID_MIGRATE_FROM_GBA);
     memset(migrator, 0, sizeof(GBAMigrator));
 
     migrator->bgConfig = BgConfig_New(HEAP_ID_MIGRATE_FROM_GBA);
@@ -1830,7 +1830,7 @@ static int GBAMigrator_Init(OverlayManager *overlayMan, int *state)
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    migrator->saveData = ((ApplicationArgs *)OverlayManager_Args(overlayMan))->saveData;
+    migrator->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     migrator->unk_14 = SaveData_GetTrainerInfo(migrator->saveData);
     migrator->options = SaveData_GetOptions(migrator->saveData);
     migrator->messageBoxFrame = Options_Frame(migrator->options);
@@ -1851,10 +1851,10 @@ static int GBAMigrator_Init(OverlayManager *overlayMan, int *state)
 
 extern int gIgnoreCartridgeForWake;
 
-static int GBAMigrator_Main(OverlayManager *overlayMan, int *state)
+static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
 {
     int boxPos, gbaMonValidity, v2;
-    GBAMigrator *migrator = OverlayManager_Data(overlayMan);
+    GBAMigrator *migrator = ApplicationManager_Data(appMan);
 
     CTRDG_IsExisting();
 
@@ -2181,17 +2181,17 @@ static int GBAMigrator_Main(OverlayManager *overlayMan, int *state)
     return 0;
 }
 
-static int GBAMigrator_Exit(OverlayManager *overlayMan, int *state)
+static int GBAMigrator_Exit(ApplicationManager *appMan, int *state)
 {
     FS_EXTERN_OVERLAY(overlay77);
 
-    GBAMigrator *migrator = OverlayManager_Data(overlayMan);
+    GBAMigrator *migrator = ApplicationManager_Data(appMan);
 
     Strbuf_Free(migrator->unk_12668);
     Strbuf_Free(migrator->unk_1266C);
     Heap_FreeToHeap(migrator->bgConfig);
     EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_MIGRATE_FROM_GBA);
 
     ov97_02238400(FALSE);
@@ -2199,7 +2199,7 @@ static int GBAMigrator_Exit(OverlayManager *overlayMan, int *state)
     return 1;
 }
 
-const OverlayManagerTemplate gGBAMigratorOverlayTemplate = {
+const ApplicationManagerTemplate gGBAMigratorOverlayTemplate = {
     GBAMigrator_Init,
     GBAMigrator_Main,
     GBAMigrator_Exit,

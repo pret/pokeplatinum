@@ -11,7 +11,7 @@
 typedef struct {
     UnkStruct_0203E6C0 *unk_00;
     BOOL unk_10;
-    OverlayManager *overlayMan;
+    ApplicationManager *appMan;
     void *unk_18;
     NNSFndHeapHandle unk_1C;
     DWCInetControl unk_20;

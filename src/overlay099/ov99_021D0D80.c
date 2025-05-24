@@ -85,7 +85,7 @@ static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1580(BgConfig *param0);
 
-int ov99_021D0D80(OverlayManager *overlayMan, int *param1)
+int ov99_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov99_021D2CB0 *v0;
 
@@ -103,10 +103,10 @@ int ov99_021D0D80(OverlayManager *overlayMan, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_75, 0x80000);
 
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov99_021D2CB0), HEAP_ID_75);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov99_021D2CB0), HEAP_ID_75);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov99_021D2CB0));
 
-    v0->unk_00 = OverlayManager_Args(overlayMan);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     v0->unk_10 = ov99_021D19AC(HEAP_ID_75);
     v0->unk_0C = PaletteData_New(HEAP_ID_75);
 
@@ -179,9 +179,9 @@ int ov99_021D0D80(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov99_021D1028(OverlayManager *overlayMan, int *param1)
+int ov99_021D1028(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov99_021D2CB0 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov99_021D2CB0 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_1108 != NULL) {
         ov99_021D3F6C(v0->unk_1108, 1);
@@ -254,9 +254,9 @@ int ov99_021D1028(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov99_021D11A8(OverlayManager *overlayMan, int *param1)
+int ov99_021D11A8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov99_021D2CB0 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov99_021D2CB0 *v0 = ApplicationManager_Data(appMan);
 
     SysTask_Done(v0->unk_14);
 
@@ -282,7 +282,7 @@ int ov99_021D11A8(OverlayManager *overlayMan, int *param1)
     DisableHBlank();
     VramTransfer_Free();
     DisableTouchPad();
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_75);
 
     return 1;

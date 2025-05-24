@@ -95,35 +95,35 @@ static void sub_02094B30(SysTask *param0, void *param1);
 static int sub_02093B2C(Pokemon *param0, int param1);
 static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2);
 
-const OverlayManagerTemplate Unk_020F560C = {
+const ApplicationManagerTemplate Unk_020F560C = {
     ov17_0223B140,
     ov17_0223B444,
     ov17_0223B580,
     FS_OVERLAY_ID(overlay17)
 };
 
-const OverlayManagerTemplate Unk_020F561C = {
+const ApplicationManagerTemplate Unk_020F561C = {
     ov17_0223DAD0,
     ov17_0223DDD4,
     ov17_0223DF0C,
     FS_OVERLAY_ID(overlay17)
 };
 
-const OverlayManagerTemplate Unk_020F55EC = {
+const ApplicationManagerTemplate Unk_020F55EC = {
     ov17_0223CB1C,
     ov17_0223CDDC,
     ov17_0223CF8C,
     FS_OVERLAY_ID(overlay17)
 };
 
-const OverlayManagerTemplate Unk_020F55DC = {
+const ApplicationManagerTemplate Unk_020F55DC = {
     ov17_0224F4D4,
     ov17_0224F754,
     ov17_0224F86C,
     FS_OVERLAY_ID(overlay17)
 };
 
-const OverlayManagerTemplate Unk_020F55FC = {
+const ApplicationManagerTemplate Unk_020F55FC = {
     ov22_02256174,
     ov22_022562EC,
     ov22_02256600,

@@ -6,46 +6,46 @@
 #include "game_overlay.h"
 #include "heap.h"
 
-OverlayManager *OverlayManager_New(const OverlayManagerTemplate *template, void *args, const enum HeapId heapID)
+ApplicationManager *ApplicationManager_New(const ApplicationManagerTemplate *template, void *args, const enum HeapId heapID)
 {
-    OverlayManager *overlayMan = Heap_AllocFromHeap(heapID, sizeof(OverlayManager));
+    ApplicationManager *appMan = Heap_AllocFromHeap(heapID, sizeof(ApplicationManager));
 
-    overlayMan->template = *template;
-    overlayMan->execState = 0;
-    overlayMan->procState = 0;
-    overlayMan->args = args;
-    overlayMan->data = NULL;
-    overlayMan->parent = NULL;
-    overlayMan->child = NULL;
+    appMan->template = *template;
+    appMan->execState = 0;
+    appMan->procState = 0;
+    appMan->args = args;
+    appMan->data = NULL;
+    appMan->parent = NULL;
+    appMan->child = NULL;
 
-    return overlayMan;
+    return appMan;
 }
 
-void OverlayManager_Free(OverlayManager *overlayMan)
+void ApplicationManager_Free(ApplicationManager *appMan)
 {
-    Heap_FreeToHeap(overlayMan);
+    Heap_FreeToHeap(appMan);
 }
 
-void *OverlayManager_NewData(OverlayManager *overlayMan, u32 size, enum HeapId heapID)
+void *ApplicationManager_NewData(ApplicationManager *appMan, u32 size, enum HeapId heapID)
 {
-    overlayMan->data = Heap_AllocFromHeap(heapID, size);
-    return overlayMan->data;
+    appMan->data = Heap_AllocFromHeap(heapID, size);
+    return appMan->data;
 }
 
-void *OverlayManager_Data(OverlayManager *overlayMan)
+void *ApplicationManager_Data(ApplicationManager *appMan)
 {
-    return overlayMan->data;
+    return appMan->data;
 }
 
-void OverlayManager_FreeData(OverlayManager *overlayMan)
+void ApplicationManager_FreeData(ApplicationManager *appMan)
 {
-    Heap_FreeToHeap(overlayMan->data);
-    overlayMan->data = NULL;
+    Heap_FreeToHeap(appMan->data);
+    appMan->data = NULL;
 }
 
-void *OverlayManager_Args(OverlayManager *overlayMan)
+void *ApplicationManager_Args(ApplicationManager *appMan)
 {
-    return overlayMan->args;
+    return appMan->args;
 }
 
 enum OverlayExecState {
@@ -55,34 +55,34 @@ enum OverlayExecState {
     OVERLAY_EXEC_EXIT,
 };
 
-BOOL OverlayManager_Exec(OverlayManager *overlayMan)
+BOOL ApplicationManager_Exec(ApplicationManager *appMan)
 {
-    switch (overlayMan->execState) {
+    switch (appMan->execState) {
     case OVERLAY_EXEC_LOAD:
-        if (overlayMan->template.overlayID != FS_OVERLAY_ID_NONE) {
-            Overlay_LoadByID(overlayMan->template.overlayID, 2);
+        if (appMan->template.overlayID != FS_OVERLAY_ID_NONE) {
+            Overlay_LoadByID(appMan->template.overlayID, 2);
         }
 
-        overlayMan->execState = OVERLAY_EXEC_INIT;
+        appMan->execState = OVERLAY_EXEC_INIT;
 
     case OVERLAY_EXEC_INIT:
-        if (overlayMan->template.init(overlayMan, &overlayMan->procState) == TRUE) {
-            overlayMan->execState = OVERLAY_EXEC_MAIN;
-            overlayMan->procState = 0;
+        if (appMan->template.init(appMan, &appMan->procState) == TRUE) {
+            appMan->execState = OVERLAY_EXEC_MAIN;
+            appMan->procState = 0;
         }
         break;
 
     case OVERLAY_EXEC_MAIN:
-        if (overlayMan->template.main(overlayMan, &overlayMan->procState) == TRUE) {
-            overlayMan->execState = OVERLAY_EXEC_EXIT;
-            overlayMan->procState = 0;
+        if (appMan->template.main(appMan, &appMan->procState) == TRUE) {
+            appMan->execState = OVERLAY_EXEC_EXIT;
+            appMan->procState = 0;
         }
         break;
 
     case OVERLAY_EXEC_EXIT:
-        if (overlayMan->template.exit(overlayMan, &overlayMan->procState) == TRUE) {
-            if (overlayMan->template.overlayID != FS_OVERLAY_ID_NONE) {
-                Overlay_UnloadByID(overlayMan->template.overlayID);
+        if (appMan->template.exit(appMan, &appMan->procState) == TRUE) {
+            if (appMan->template.overlayID != FS_OVERLAY_ID_NONE) {
+                Overlay_UnloadByID(appMan->template.overlayID);
             }
 
             return TRUE;

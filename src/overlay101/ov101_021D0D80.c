@@ -73,7 +73,7 @@ static void ov101_021D19D4(UnkStruct_ov101_021D13C8 *param0);
 static const WindowTemplate Unk_ov101_021D8588[1];
 static void ov101_021D1458(UnkStruct_ov101_021D13C8 *param0);
 
-int ov101_021D0D80(OverlayManager *overlayMan, int *param1)
+int ov101_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov101_021D0F3C *v0;
     UnkStruct_ov101_021D13C8 *v1;
@@ -85,9 +85,9 @@ int ov101_021D0D80(OverlayManager *overlayMan, int *param1)
     GXLayers_DisableEngineBLayers();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_79, 0x80000);
 
-    v0 = OverlayManager_NewData(overlayMan, (sizeof(UnkStruct_ov101_021D0F3C)), HEAP_ID_79);
+    v0 = ApplicationManager_NewData(appMan, (sizeof(UnkStruct_ov101_021D0F3C)), HEAP_ID_79);
     memset(v0, 0, (sizeof(UnkStruct_ov101_021D0F3C)));
-    v2 = OverlayManager_Args(overlayMan);
+    v2 = ApplicationManager_Args(appMan);
     v0->unk_00 = v2;
     v1 = ov101_021D0F6C(v0->unk_00);
     v0->unk_04 = v1;
@@ -110,9 +110,9 @@ int ov101_021D0D80(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov101_021D0E40(OverlayManager *overlayMan, int *param1)
+int ov101_021D0E40(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov101_021D0F3C *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov101_021D0F3C *v0 = ApplicationManager_Data(appMan);
     UnkStruct_ov101_021D13C8 *v1 = v0->unk_04;
 
     switch (*param1) {
@@ -145,9 +145,9 @@ int ov101_021D0E40(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov101_021D0EE4(OverlayManager *overlayMan, int *param1)
+int ov101_021D0EE4(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov101_021D0F3C *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov101_021D0F3C *v0 = ApplicationManager_Data(appMan);
     UnkStruct_ov101_021D13C8 *v1 = v0->unk_04;
 
     SetVBlankCallback(NULL, NULL);
@@ -164,7 +164,7 @@ int ov101_021D0EE4(OverlayManager *overlayMan, int *param1)
     ov101_021D19D4(v1);
     ov101_021D0F94(v1);
 
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_79);
 
     return 1;

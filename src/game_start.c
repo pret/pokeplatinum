@@ -28,94 +28,94 @@
 #include "constdata/const_020EA11C.h"
 #include "constdata/const_020F6824.h"
 
-static int GameStartRowanIntro_Init(OverlayManager *overlayMan, int *state);
-static int GameStartRowanIntro_Main(OverlayManager *overlayMan, int *state);
-static int GameStartRowanIntro_Exit(OverlayManager *overlayMan, int *state);
-static int GameStartNewSave_Init(OverlayManager *overlayMan, int *state);
-static int GameStartNewSave_Main(OverlayManager *overlayMan, int *state);
-static int GameStartNewSave_Exit(OverlayManager *overlayMan, int *state);
-static int GameStartLoadSave_Init(OverlayManager *overlayMan, int *state);
-static int GameStartLoadSave_Main(OverlayManager *overlayMan, int *state);
-static int GameStartLoadSave_Exit(OverlayManager *overlayMan, int *state);
+static int GameStartRowanIntro_Init(ApplicationManager *appMan, int *state);
+static int GameStartRowanIntro_Main(ApplicationManager *appMan, int *state);
+static int GameStartRowanIntro_Exit(ApplicationManager *appMan, int *state);
+static int GameStartNewSave_Init(ApplicationManager *appMan, int *state);
+static int GameStartNewSave_Main(ApplicationManager *appMan, int *state);
+static int GameStartNewSave_Exit(ApplicationManager *appMan, int *state);
+static int GameStartLoadSave_Init(ApplicationManager *appMan, int *state);
+static int GameStartLoadSave_Main(ApplicationManager *appMan, int *state);
+static int GameStartLoadSave_Exit(ApplicationManager *appMan, int *state);
 
 static void InitializeNewSave(enum HeapId heapID, SaveData *saveData, BOOL setTrainerID);
 static void TryLoadingSave(int unused, SaveData *saveData);
 static void StartNewSave(int unused, SaveData *saveData);
 
-const OverlayManagerTemplate gGameStartRowanIntroOverlayTemplate = {
+const ApplicationManagerTemplate gGameStartRowanIntroOverlayTemplate = {
     .init = GameStartRowanIntro_Init,
     .main = GameStartRowanIntro_Main,
     .exit = GameStartRowanIntro_Exit,
     .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-const OverlayManagerTemplate gGameStartNewSaveOverlayTemplate = {
+const ApplicationManagerTemplate gGameStartNewSaveOverlayTemplate = {
     .init = GameStartNewSave_Init,
     .main = GameStartNewSave_Main,
     .exit = GameStartNewSave_Exit,
     .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-const OverlayManagerTemplate gGameStartLoadSaveOverlayTemplate = {
+const ApplicationManagerTemplate gGameStartLoadSaveOverlayTemplate = {
     .init = GameStartLoadSave_Init,
     .main = GameStartLoadSave_Main,
     .exit = GameStartLoadSave_Exit,
     .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-static BOOL GameStartRowanIntro_Init(OverlayManager *overlayMan, int *state)
+static BOOL GameStartRowanIntro_Init(ApplicationManager *appMan, int *state)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_GAME_START, HEAP_SIZE_GAME_START);
     InitRNG();
     return TRUE;
 }
 
-static BOOL GameStartRowanIntro_Main(OverlayManager *overlayMan, int *state)
+static BOOL GameStartRowanIntro_Main(ApplicationManager *appMan, int *state)
 {
-    SaveData *saveData = ((ApplicationArgs *)OverlayManager_Args(overlayMan))->saveData;
+    SaveData *saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     StartNewSave(HEAP_ID_GAME_START, saveData);
     return TRUE;
 }
 
-static int GameStartRowanIntro_Exit(OverlayManager *overlayMan, int *state)
+static int GameStartRowanIntro_Exit(ApplicationManager *appMan, int *state)
 {
     Heap_Destroy(HEAP_ID_GAME_START);
     EnqueueApplication(FS_OVERLAY_ID_NONE, &Unk_020F6824);
     return TRUE;
 }
 
-static int GameStartNewSave_Init(OverlayManager *overlayMan, int *state)
+static int GameStartNewSave_Init(ApplicationManager *appMan, int *state)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_GAME_START, HEAP_SIZE_GAME_START);
     InitRNG();
     return TRUE;
 }
 
-static int GameStartNewSave_Main(OverlayManager *overlayMan, int *state)
+static int GameStartNewSave_Main(ApplicationManager *appMan, int *state)
 {
-    SaveData *saveData = ((ApplicationArgs *)OverlayManager_Args(overlayMan))->saveData;
+    SaveData *saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     InitializeNewSave(HEAP_ID_GAME_START, saveData, 1);
     PlayTime_Start(SaveData_GetPlayTime(saveData));
     return TRUE;
 }
 
-static int GameStartNewSave_Exit(OverlayManager *overlayMan, int *state)
+static int GameStartNewSave_Exit(ApplicationManager *appMan, int *state)
 {
     Heap_Destroy(HEAP_ID_GAME_START);
     EnqueueApplication(FS_OVERLAY_ID_NONE, &gFieldSystemNewGameTemplate);
     return TRUE;
 }
 
-static int GameStartLoadSave_Init(OverlayManager *overlayMan, int *state)
+static int GameStartLoadSave_Init(ApplicationManager *appMan, int *state)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_GAME_START, HEAP_SIZE_GAME_START);
     InitRNG();
     return TRUE;
 }
 
-static int GameStartLoadSave_Main(OverlayManager *overlayMan, int *state)
+static int GameStartLoadSave_Main(ApplicationManager *appMan, int *state)
 {
-    SaveData *saveData = ((ApplicationArgs *)OverlayManager_Args(overlayMan))->saveData;
+    SaveData *saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     SystemData *systemData = SaveData_GetSystemData(saveData);
 
     TryLoadingSave(HEAP_ID_GAME_START, saveData);
@@ -131,7 +131,7 @@ static int GameStartLoadSave_Main(OverlayManager *overlayMan, int *state)
     return TRUE;
 }
 
-static int GameStartLoadSave_Exit(OverlayManager *overlayMan, int *state)
+static int GameStartLoadSave_Exit(ApplicationManager *appMan, int *state)
 {
     Heap_Destroy(HEAP_ID_GAME_START);
     EnqueueApplication(FS_OVERLAY_ID_NONE, &gFieldSystemContinueTemplate);

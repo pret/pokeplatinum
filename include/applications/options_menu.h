@@ -13,8 +13,8 @@ typedef struct OptionsMenu {
     u16 : 1;
 } OptionsMenu;
 
-BOOL OptionsMenu_Init(OverlayManager *overlayMan, int *state);
-BOOL OptionsMenu_Exit(OverlayManager *overlayMan, int *state);
-BOOL OptionsMenu_Main(OverlayManager *overlayMan, int *state);
+BOOL OptionsMenu_Init(ApplicationManager *appMan, int *state);
+BOOL OptionsMenu_Exit(ApplicationManager *appMan, int *state);
+BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state);
 
 #endif // POKEPLATINUM_APPLICATIONS_OPTIONS_MENU_H

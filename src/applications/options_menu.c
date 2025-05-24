@@ -148,14 +148,14 @@ static void TeardownBgs(OptionsMenuData *menuData);
 static void TeardownTilemaps(OptionsMenuData *menuData);
 static void TeardownWindows(OptionsMenuData *menuData);
 
-BOOL OptionsMenu_Init(OverlayManager *overlayMan, int *state)
+BOOL OptionsMenu_Init(ApplicationManager *appMan, int *state)
 {
     OptionsMenuData *menuData = NULL;
-    Options *options = OverlayManager_Args(overlayMan);
+    Options *options = ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_OPTIONS_MENU, HEAP_ALLOCATION_SIZE);
 
-    menuData = OverlayManager_NewData(overlayMan, sizeof(OptionsMenuData), HEAP_ID_OPTIONS_MENU);
+    menuData = ApplicationManager_NewData(appMan, sizeof(OptionsMenuData), HEAP_ID_OPTIONS_MENU);
     memset(menuData, 0, sizeof(OptionsMenuData));
 
     menuData->options.textSpeed = Options_TextSpeed(options);
@@ -172,9 +172,9 @@ BOOL OptionsMenu_Init(OverlayManager *overlayMan, int *state)
     return TRUE;
 }
 
-BOOL OptionsMenu_Exit(OverlayManager *overlayMan, int *state)
+BOOL OptionsMenu_Exit(ApplicationManager *appMan, int *state)
 {
-    OptionsMenuData *menuData = OverlayManager_Data(overlayMan);
+    OptionsMenuData *menuData = ApplicationManager_Data(appMan);
 
     if (menuData->saveSelections == 1) {
         menuData->options.textSpeed = menuData->entries.textSpeed.selected;
@@ -196,7 +196,7 @@ BOOL OptionsMenu_Exit(OverlayManager *overlayMan, int *state)
 
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
 
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(menuData->heapID);
 
     return TRUE;
@@ -214,9 +214,9 @@ enum OptonsMenuState {
     STATE_TEARDOWN,
 };
 
-BOOL OptionsMenu_Main(OverlayManager *overlayMan, int *state)
+BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
 {
-    OptionsMenuData *menuData = OverlayManager_Data(overlayMan);
+    OptionsMenuData *menuData = ApplicationManager_Data(appMan);
     u32 choiceYesNo;
 
     switch (menuData->state) {

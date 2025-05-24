@@ -80,7 +80,7 @@ static UnkStruct_ov93_021D15C8 Unk_ov93_021D15C8[4] = {
     },
 };
 
-int ov93_021D111C(OverlayManager *overlayMan, int *param1)
+int ov93_021D111C(ApplicationManager *appMan, int *param1)
 {
     u8 v0;
     UnkStruct_ov93_021D13C0 *v1;
@@ -88,10 +88,10 @@ int ov93_021D111C(OverlayManager *overlayMan, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_72, 0x20000);
 
-    v1 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov93_021D13C0), HEAP_ID_72);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov93_021D13C0), HEAP_ID_72);
     memset(v1, 0, sizeof(UnkStruct_ov93_021D13C0));
 
-    v2 = OverlayManager_Args(overlayMan);
+    v2 = ApplicationManager_Args(appMan);
 
     v1->unk_94 = v2->unk_00;
     v1->unk_95 = 0;
@@ -120,7 +120,7 @@ int ov93_021D111C(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov93_021D120C(OverlayManager *overlayMan, int *param1)
+int ov93_021D120C(ApplicationManager *appMan, int *param1)
 {
     u8 v0;
     BOOL v1;
@@ -145,7 +145,7 @@ int ov93_021D120C(OverlayManager *overlayMan, int *param1)
         0,
         0
     };
-    UnkStruct_ov93_021D13C0 *v5 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov93_021D13C0 *v5 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -179,10 +179,10 @@ int ov93_021D120C(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov93_021D12F0(OverlayManager *overlayMan, int *param1)
+int ov93_021D12F0(ApplicationManager *appMan, int *param1)
 {
     u8 v0;
-    UnkStruct_ov93_021D13C0 *v1 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov93_021D13C0 *v1 = ApplicationManager_Data(appMan);
 
     for (v0 = 0; v0 < 3; v0++) {
         NNS_G3dFreeAnmObj(&v1->unk_6C, v1->unk_7C[v0]);
@@ -191,7 +191,7 @@ int ov93_021D12F0(OverlayManager *overlayMan, int *param1)
 
     Heap_FreeToHeap(v1->unk_5C);
     Camera_Delete(v1->camera);
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Easy3D_Shutdown();
     Heap_Destroy(HEAP_ID_72);
 

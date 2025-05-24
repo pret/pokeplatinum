@@ -59,17 +59,17 @@ void sub_020995C4(void)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay60));
 }
 
-static int sub_020995D4(OverlayManager *overlayMan, int *param1)
+static int sub_020995D4(ApplicationManager *appMan, int *param1)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_49, 0x41000);
-    sub_02099590(((ApplicationArgs *)OverlayManager_Args(overlayMan))->saveData, HEAP_ID_49);
+    sub_02099590(((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData, HEAP_ID_49);
     Heap_Destroy(HEAP_ID_49);
 
     OS_ResetSystem(0);
     return 1;
 }
 
-const OverlayManagerTemplate Unk_020F6DF0 = {
+const ApplicationManagerTemplate Unk_020F6DF0 = {
     sub_020995D4,
     NULL,
     NULL,

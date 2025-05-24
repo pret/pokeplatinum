@@ -329,7 +329,7 @@ static const SpriteTemplate Unk_ov113_022609D0 = {
     0x0
 };
 
-int ov113_0225C700(OverlayManager *overlayMan, int *param1)
+int ov113_0225C700(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov113_0225DBCC *v0;
 
@@ -347,10 +347,10 @@ int ov113_0225C700(OverlayManager *overlayMan, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_118, 0x50000);
 
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov113_0225DBCC), HEAP_ID_118);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov113_0225DBCC), HEAP_ID_118);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov113_0225DBCC));
 
-    v0->unk_00 = OverlayManager_Args(overlayMan);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     v0->saveData = ov66_0222E0C4(v0->unk_00->unk_00);
     v0->unk_19E0 = ov66_0222E0C8(v0->unk_00->unk_00);
 
@@ -444,9 +444,9 @@ int ov113_0225C700(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov113_0225CA04(OverlayManager *overlayMan, int *param1)
+int ov113_0225CA04(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov113_0225DBCC *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov113_0225DBCC *v0 = ApplicationManager_Data(appMan);
 
     ov113_0225E3F0(&v0->unk_194, v0->camera, v0->unk_9BC, v0->unk_00->unk_04);
 
@@ -616,9 +616,9 @@ int ov113_0225CA04(OverlayManager *overlayMan, int *param1)
     return 0;
 }
 
-int ov113_0225CDFC(OverlayManager *overlayMan, int *param1)
+int ov113_0225CDFC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov113_0225DBCC *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov113_0225DBCC *v0 = ApplicationManager_Data(appMan);
 
     SysTask_Done(v0->unk_18);
     ov113_0225D5D8(v0);
@@ -658,7 +658,7 @@ int ov113_0225CDFC(OverlayManager *overlayMan, int *param1)
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_118);
 
     return 1;

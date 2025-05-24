@@ -44,9 +44,9 @@ FS_EXTERN_OVERLAY(overlay77);
 
 typedef struct Application {
     FSOverlayID currOverlayID;
-    OverlayManager *currOverlay;
+    ApplicationManager *currApplication;
     FSOverlayID nextOverlayID;
-    const OverlayManagerTemplate *nextOverlay;
+    const ApplicationManagerTemplate *nextApplication;
     ApplicationArgs args;
 } Application;
 
@@ -63,7 +63,7 @@ static Application sApplication;
 // repeatedly try to restore the backlight to its saved state.
 static PMBackLightSwitch sSavedBacklightState;
 BOOL gIgnoreCartridgeForWake;
-extern const OverlayManagerTemplate gOpeningCutsceneOverlayTemplate;
+extern const ApplicationManagerTemplate gOpeningCutsceneOverlayTemplate;
 
 void NitroMain(void)
 {
@@ -168,15 +168,15 @@ void NitroMain(void)
 static void InitApplication()
 {
     sApplication.currOverlayID = FS_OVERLAY_ID_NONE;
-    sApplication.currOverlay = NULL;
+    sApplication.currApplication = NULL;
     sApplication.nextOverlayID = FS_OVERLAY_ID_NONE;
-    sApplication.nextOverlay = NULL;
+    sApplication.nextApplication = NULL;
 }
 
 static void RunApplication(void)
 {
-    if (sApplication.currOverlay == NULL) {
-        if (sApplication.nextOverlay == NULL) {
+    if (sApplication.currApplication == NULL) {
+        if (sApplication.nextApplication == NULL) {
             return;
         }
 
@@ -185,14 +185,14 @@ static void RunApplication(void)
         }
 
         sApplication.currOverlayID = sApplication.nextOverlayID;
-        sApplication.currOverlay = OverlayManager_New(sApplication.nextOverlay, &sApplication.args, HEAP_ID_SYSTEM);
+        sApplication.currApplication = ApplicationManager_New(sApplication.nextApplication, &sApplication.args, HEAP_ID_SYSTEM);
         sApplication.nextOverlayID = FS_OVERLAY_ID_NONE;
-        sApplication.nextOverlay = NULL;
+        sApplication.nextApplication = NULL;
     }
 
-    if (OverlayManager_Exec(sApplication.currOverlay)) {
-        OverlayManager_Free(sApplication.currOverlay);
-        sApplication.currOverlay = NULL;
+    if (ApplicationManager_Exec(sApplication.currApplication)) {
+        ApplicationManager_Free(sApplication.currApplication);
+        sApplication.currApplication = NULL;
 
         if (sApplication.currOverlayID != FS_OVERLAY_ID_NONE) {
             Overlay_UnloadByID(sApplication.currOverlayID);
@@ -200,12 +200,12 @@ static void RunApplication(void)
     }
 }
 
-void EnqueueApplication(FSOverlayID overlayID, const OverlayManagerTemplate *template)
+void EnqueueApplication(FSOverlayID overlayID, const ApplicationManagerTemplate *template)
 {
-    GF_ASSERT(sApplication.nextOverlay == NULL);
+    GF_ASSERT(sApplication.nextApplication == NULL);
 
     sApplication.nextOverlayID = overlayID;
-    sApplication.nextOverlay = template;
+    sApplication.nextApplication = template;
 }
 
 static void WaitFrame(void)

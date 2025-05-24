@@ -25,7 +25,7 @@ static TrainerInfo *ov94_02244870(UnkStruct_ov94_0223BA88 *param0);
 static Pokemon *ov94_022448AC(UnkStruct_ov94_0223FD4C *param0, int param1);
 static void ov94_022448E8(UnkStruct_ov94_0223FD4C *param0);
 
-static const OverlayManagerTemplate Unk_ov94_0224636C = {
+static const ApplicationManagerTemplate Unk_ov94_0224636C = {
     ov95_02246C20,
     ov95_02246E7C,
     ov95_02246E1C,
@@ -74,7 +74,7 @@ int ov94_022444C8(UnkStruct_ov94_0223FD4C *param0, int param1)
     }
 
     param0->unk_E8.unk_14 = param0->unk_00->unk_24;
-    param0->overlayMan = OverlayManager_New(&Unk_ov94_0224636C, &param0->unk_E8, 62);
+    param0->appMan = ApplicationManager_New(&Unk_ov94_0224636C, &param0->unk_E8, 62);
     param0->unk_104 = 1;
 
     return 2;
@@ -86,8 +86,8 @@ int ov94_02244678(UnkStruct_ov94_0223FD4C *param0, int param1)
 
     switch (param0->unk_2C) {
     case 0:
-        if (OverlayManager_Exec(param0->overlayMan)) {
-            OverlayManager_Free(param0->overlayMan);
+        if (ApplicationManager_Exec(param0->appMan)) {
+            ApplicationManager_Free(param0->appMan);
 
             if (param0->unk_24 == 9) {
                 Pokemon *v1 = ov94_022448AC(param0, param0->unk_24);

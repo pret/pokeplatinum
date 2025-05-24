@@ -118,7 +118,7 @@ BOOL ov104_0223740C(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay108);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         ov108_02241AE0,
         ov108_02241C38,
         ov108_02241D70,

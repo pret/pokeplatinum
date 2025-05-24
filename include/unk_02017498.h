@@ -3,8 +3,8 @@
 
 #include "overlay_manager.h"
 
-int sub_02017498(OverlayManager *overlayMan, int *param1);
-int sub_02017524(OverlayManager *overlayMan, int *param1);
-int sub_02017658(OverlayManager *overlayMan, int *param1);
+int sub_02017498(ApplicationManager *appMan, int *param1);
+int sub_02017524(ApplicationManager *appMan, int *param1);
+int sub_02017658(ApplicationManager *appMan, int *param1);
 
 #endif // POKEPLATINUM_UNK_02017498_H

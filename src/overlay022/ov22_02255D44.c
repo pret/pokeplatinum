@@ -188,7 +188,7 @@ static BOOL ov22_0225771C(UnkStruct_ov22_02256FD8_sub1 *param0, UnkStruct_ov22_0
 static void ov22_02257778(UnkStruct_ov22_02256FD8 *param0, UnkStruct_ov22_02259560 *param1, u32 param2);
 static void ov22_022577A0(UnkStruct_ov22_02255D44 *param0);
 
-int ov22_02255D44(OverlayManager *overlayMan, int *param1)
+int ov22_02255D44(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov22_02255D44 *v0;
     u32 v1;
@@ -197,13 +197,13 @@ int ov22_02255D44(OverlayManager *overlayMan, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_13, 0x20000);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_14, 0x40000);
 
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov22_02255D44), HEAP_ID_13);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov22_02255D44), HEAP_ID_13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
 
     SetVBlankCallback(ov22_02256940, v0);
     DisableHBlank();
 
-    v2 = OverlayManager_Args(overlayMan);
+    v2 = ApplicationManager_Args(appMan);
     v0->unk_738 = v2->unk_0C;
     EnableTouchPad();
     v1 = InitializeTouchPad(4);
@@ -234,11 +234,11 @@ int ov22_02255D44(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov22_02255E50(OverlayManager *overlayMan, int *param1)
+int ov22_02255E50(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov22_02255D44 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov22_02255D44 *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
-    UnkStruct_0203DA00 *v2 = OverlayManager_Args(overlayMan);
+    UnkStruct_0203DA00 *v2 = ApplicationManager_Args(appMan);
 
     switch (*param1) {
     case 0:
@@ -355,11 +355,11 @@ int ov22_02255E50(OverlayManager *overlayMan, int *param1)
     return v1;
 }
 
-int ov22_02256098(OverlayManager *overlayMan, int *param1)
+int ov22_02256098(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov22_02255D44 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov22_02255D44 *v0 = ApplicationManager_Data(appMan);
     u32 v1;
-    UnkStruct_0203DA00 *v2 = OverlayManager_Args(overlayMan);
+    UnkStruct_0203DA00 *v2 = ApplicationManager_Args(appMan);
 
     if (v0->unk_71C == 1) {
         GameRecords_IncrementTrainerScore(v2->records, TRAINER_SCORE_EVENT_UNK_07);
@@ -396,14 +396,14 @@ int ov22_02256098(OverlayManager *overlayMan, int *param1)
     v1 = DisableTouchPad();
     GF_ASSERT(v1 == 1);
 
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_13);
     Heap_Destroy(HEAP_ID_14);
 
     return 1;
 }
 
-int ov22_02256174(OverlayManager *overlayMan, int *param1)
+int ov22_02256174(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov22_02255D44 *v0;
     u32 v1;
@@ -412,13 +412,13 @@ int ov22_02256174(OverlayManager *overlayMan, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_13, 0x20000);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_14, 0x40000);
 
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_ov22_02255D44), HEAP_ID_13);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov22_02255D44), HEAP_ID_13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
 
     SetVBlankCallback(ov22_02256940, v0);
     DisableHBlank();
 
-    v2 = OverlayManager_Args(overlayMan);
+    v2 = ApplicationManager_Args(appMan);
 
     v0->unk_724 = v2->unk_0C;
     v0->unk_728 = v2->unk_10;
@@ -468,9 +468,9 @@ int ov22_02256174(OverlayManager *overlayMan, int *param1)
     return 1;
 }
 
-int ov22_022562EC(OverlayManager *overlayMan, int *param1)
+int ov22_022562EC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov22_02255D44 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov22_02255D44 *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
     int v2;
 
@@ -627,11 +627,11 @@ int ov22_022562EC(OverlayManager *overlayMan, int *param1)
     return v1;
 }
 
-int ov22_02256600(OverlayManager *overlayMan, int *param1)
+int ov22_02256600(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov22_02255D44 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_ov22_02255D44 *v0 = ApplicationManager_Data(appMan);
     u32 v1;
-    UnkStruct_02093BBC *v2 = OverlayManager_Args(overlayMan);
+    UnkStruct_02093BBC *v2 = ApplicationManager_Args(appMan);
 
     ov22_02256FD8(v2->unk_04, &v0->unk_458, v0->unk_724, v2->unk_24);
 
@@ -657,7 +657,7 @@ int ov22_02256600(OverlayManager *overlayMan, int *param1)
     v1 = DisableTouchPad();
     GF_ASSERT(v1 == 1);
 
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_13);
     Heap_Destroy(HEAP_ID_14);
     sub_02095A24();

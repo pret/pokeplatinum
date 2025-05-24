@@ -36,9 +36,9 @@ typedef struct {
     u32 unk_3C;
 } UnkStruct_0209A3D0;
 
-int sub_0209A2C4(OverlayManager *overlayMan, int *param1);
-int sub_0209A300(OverlayManager *overlayMan, int *param1);
-int sub_0209A3A4(OverlayManager *overlayMan, int *param1);
+int sub_0209A2C4(ApplicationManager *appMan, int *param1);
+int sub_0209A300(ApplicationManager *appMan, int *param1);
+int sub_0209A3A4(ApplicationManager *appMan, int *param1);
 static void sub_0209A3D0(UnkStruct_0209A3D0 *param0);
 static void sub_0209A490(UnkStruct_0209A3D0 *param0);
 static void sub_0209A4E4(UnkStruct_0209A3D0 *param0);
@@ -46,7 +46,7 @@ static void sub_0209A530(UnkStruct_0209A3D0 *param0);
 static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0);
 static BOOL sub_0209A688(UnkStruct_0209A3D0 *param0, u32 param1, int param2, int param3);
 
-extern const OverlayManagerTemplate Unk_ov97_0223D674;
+extern const ApplicationManagerTemplate Unk_ov97_0223D674;
 
 static const WindowTemplate Unk_020F8A58 = {
     0x0,
@@ -58,33 +58,33 @@ static const WindowTemplate Unk_020F8A58 = {
     0x16D
 };
 
-const OverlayManagerTemplate Unk_020F8AB4 = {
+const ApplicationManagerTemplate Unk_020F8AB4 = {
     sub_0209A2C4,
     sub_0209A300,
     sub_0209A3A4,
     0xFFFFFFFF
 };
 
-int sub_0209A2C4(OverlayManager *overlayMan, int *param1)
+int sub_0209A2C4(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_0209A3D0 *v0;
     int heapID = HEAP_ID_88;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x20000);
 
-    v0 = OverlayManager_NewData(overlayMan, sizeof(UnkStruct_0209A3D0), heapID);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0209A3D0), heapID);
     memset(v0, 0, sizeof(UnkStruct_0209A3D0));
 
     v0->heapID = heapID;
     v0->unk_04 = 0;
-    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(overlayMan))->saveData;
+    v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
 
     return 1;
 }
 
-int sub_0209A300(OverlayManager *overlayMan, int *param1)
+int sub_0209A300(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_0209A3D0 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_0209A3D0 *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
 
     switch (*param1) {
@@ -119,12 +119,12 @@ int sub_0209A300(OverlayManager *overlayMan, int *param1)
     return v1;
 }
 
-int sub_0209A3A4(OverlayManager *overlayMan, int *param1)
+int sub_0209A3A4(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_0209A3D0 *v0 = OverlayManager_Data(overlayMan);
+    UnkStruct_0209A3D0 *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
 
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
     EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D674);
 

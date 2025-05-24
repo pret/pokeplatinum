@@ -41,8 +41,8 @@ typedef struct JournalManager {
     u8 unused[3];
 } JournalManager;
 
-int JournalController_Init(OverlayManager *overlayMan, int *state);
-int JournalController_Main(OverlayManager *overlayMan, int *state);
-int JournalController_Exit(OverlayManager *overlayMan, int *state);
+int JournalController_Init(ApplicationManager *appMan, int *state);
+int JournalController_Main(ApplicationManager *appMan, int *state);
+int JournalController_Exit(ApplicationManager *appMan, int *state);
 
 #endif // POKEPLATINUM_JOURNAL_CONTROLLER_H
