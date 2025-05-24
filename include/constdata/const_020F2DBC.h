@@ -3,6 +3,6 @@
 
 #include "overlay_manager.h"
 
-extern const OverlayManagerTemplate Unk_020F2DBC;
+extern const ApplicationManagerTemplate Unk_020F2DBC;
 
 #endif // POKEPLATINUM_CONST_020F2DBC_H

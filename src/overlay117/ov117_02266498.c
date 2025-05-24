@@ -18,18 +18,18 @@ typedef struct {
     UnkStruct_ov114_0225E854 *unk_08;
 } UnkStruct_ov117_02266498;
 
-int ov117_02266498(OverlayManager *param0, int *param1)
+int ov117_02266498(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov117_02266498 *v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_02266498), HEAP_ID_110);
+    UnkStruct_ov117_02266498 *v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov117_02266498), HEAP_ID_110);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_02266498));
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
 
     return 1;
 }
 
-int ov117_022664BC(OverlayManager *param0, int *param1)
+int ov117_022664BC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov117_02266498 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov117_02266498 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_00->unk_3D == 1) {
         switch (v0->unk_00->unk_3E) {
@@ -105,10 +105,10 @@ int ov117_022664BC(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov117_022665E8(OverlayManager *param0, int *param1)
+int ov117_022665E8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov117_02266498 *v0 = OverlayManager_Data(param0);
-    OverlayManager_FreeData(param0);
+    UnkStruct_ov117_02266498 *v0 = ApplicationManager_Data(appMan);
+    ApplicationManager_FreeData(appMan);
 
     return 1;
 }

@@ -127,7 +127,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov17_02254AB4[] = {
     0xF
 };
 
-int ov17_0224F4D4(OverlayManager *param0, int *param1)
+int ov17_0224F4D4(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224FCA0 *v0;
 
@@ -145,11 +145,11 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_24, 0x70000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_0224FCA0), HEAP_ID_24);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov17_0224FCA0), HEAP_ID_24);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224FCA0));
 
     v0->unk_0C = ov17_0223F140(HEAP_ID_24);
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     v0->unk_00->unk_150 = v0;
     v0->unk_00->unk_154 = 3;
     v0->unk_10.unk_00 = &v0->unk_00->unk_00;
@@ -220,9 +220,9 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov17_0224F754(OverlayManager *param0, int *param1)
+int ov17_0224F754(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov17_0224FCA0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov17_0224FCA0 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     sub_02094E98(v0->unk_00);
@@ -272,9 +272,9 @@ int ov17_0224F754(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov17_0224F86C(OverlayManager *param0, int *param1)
+int ov17_0224F86C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov17_0224FCA0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov17_0224FCA0 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     ParticleSystem_FreeAll();
@@ -322,7 +322,7 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
     ov17_0223F1E0(v0->unk_0C);
 
     DisableTouchPad();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);

@@ -69,7 +69,7 @@ static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1);
 static void ov59_021D1474(void);
 static void ov59_021D14A4(UnkStruct_020961E8 *param0, NARC *param1);
 static void ov59_021D1598(UnkStruct_020961E8 *param0);
-static void ov59_021D16A0(UnkStruct_020961E8 *param0, OverlayManager *param1);
+static void ov59_021D16A0(UnkStruct_020961E8 *param0, ApplicationManager *appMan);
 static void ov59_021D17C8(UnkStruct_020961E8 *param0);
 static void ov59_021D1994(UnkStruct_020961E8 *param0);
 static void ov59_021D23B0(u16 *param0);
@@ -158,7 +158,7 @@ static int (*Unk_ov59_021D3480[])(UnkStruct_020961E8 *, int) = {
     ov59_021D19C0,
 };
 
-int ov59_021D0D80(OverlayManager *param0, int *param1)
+int ov59_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_020961E8 *v0;
     NARC *v1;
@@ -176,12 +176,12 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_51, 0x41000);
 
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__RECORD, HEAP_ID_51);
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_020961E8), HEAP_ID_51);
+        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_020961E8), HEAP_ID_51);
 
         memset(v0, 0, sizeof(UnkStruct_020961E8));
 
         v0->unk_00 = BgConfig_New(HEAP_ID_51);
-        v0->unk_08 = (UnkStruct_0203DE34 *)OverlayManager_Args(param0);
+        v0->unk_08 = (UnkStruct_0203DE34 *)ApplicationManager_Args(appMan);
         v0->saveData = v0->unk_08->saveData;
         v0->unk_24 = StringTemplate_Default(HEAP_ID_51);
         v0->unk_28 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0533, HEAP_ID_51);
@@ -202,7 +202,7 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
         ov59_021D1474();
         ov59_021D14A4(v0, v1);
         ov59_021D1598(v0);
-        ov59_021D16A0(v0, param0);
+        ov59_021D16A0(v0, appMan);
 
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
         sub_020961E8(v0);
@@ -222,7 +222,7 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 1:
-        v0 = OverlayManager_Data(param0);
+        v0 = ApplicationManager_Data(appMan);
         (*param1) = 0;
         return 1;
         break;
@@ -231,9 +231,9 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov59_021D0F00(OverlayManager *param0, int *param1)
+int ov59_021D0F00(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_020961E8 *v0 = OverlayManager_Data(param0);
+    UnkStruct_020961E8 *v0 = ApplicationManager_Data(appMan);
 
     if ((CommSys_CurNetId() == 0) && (v0->unk_4AB4 != 0)) {
         v0->unk_4AB4 &= sub_020318EC();
@@ -287,9 +287,9 @@ int ov59_021D0F00(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov59_021D0FF4(OverlayManager *param0, int *param1)
+int ov59_021D0FF4(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_020961E8 *v0 = OverlayManager_Data(param0);
+    UnkStruct_020961E8 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     SysTask_Done(v0->unk_20);
@@ -315,7 +315,7 @@ int ov59_021D0FF4(OverlayManager *param0, int *param1)
     StringTemplate_Free(v0->unk_24);
 
     ov59_021D131C(v0);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
@@ -676,7 +676,7 @@ static void ov59_021D1598(UnkStruct_020961E8 *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov59_021D16A0(UnkStruct_020961E8 *param0, OverlayManager *param1)
+static void ov59_021D16A0(UnkStruct_020961E8 *param0, ApplicationManager *appMan)
 {
     Window_Add(param0->unk_00, &param0->unk_35C, 5, 26, 20, 6, 2, 13, 1 + 30 * 15);
     Window_FillTilemap(&param0->unk_35C, 0x0);

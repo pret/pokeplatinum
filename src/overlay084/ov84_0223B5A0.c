@@ -154,7 +154,7 @@ static BOOL ov84_0223ED64(UnkStruct_ov84_0223B5A0 *param0, u16 param1);
 static BOOL ov84_0223EE80(UnkStruct_ov84_0223B5A0 *param0, u16 param1);
 static BOOL ov84_0223EF9C(UnkStruct_ov84_0223B5A0 *param0, u8 param1);
 
-const OverlayManagerTemplate Unk_ov84_02241130 = {
+const ApplicationManagerTemplate Unk_ov84_02241130 = {
     ov84_0223B5A0,
     ov84_0223B76C,
     ov84_0223B900,
@@ -382,7 +382,7 @@ static const TouchScreenHitTable Unk_ov84_02240EB4[] = {
     { TOUCHSCREEN_TABLE_TERMINATOR, 0x0, 0x0, 0x0 }
 };
 
-int ov84_0223B5A0(OverlayManager *param0, int *param1)
+int ov84_0223B5A0(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov84_0223B5A0 *v0;
 
@@ -398,9 +398,9 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_6, 0x30000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov84_0223B5A0), HEAP_ID_6);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov84_0223B5A0), HEAP_ID_6);
     memset(v0, 0, sizeof(UnkStruct_ov84_0223B5A0));
-    v0->unk_C4 = OverlayManager_Args(param0);
+    v0->unk_C4 = ApplicationManager_Args(appMan);
 
     ov84_0223B9AC(v0);
 
@@ -448,9 +448,9 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov84_0223B76C(OverlayManager *param0, int *param1)
+int ov84_0223B76C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov84_0223B5A0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov84_0223B5A0 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -561,9 +561,9 @@ int ov84_0223B76C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov84_0223B900(OverlayManager *param0, int *param1)
+int ov84_0223B900(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov84_0223B5A0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov84_0223B5A0 *v0 = ApplicationManager_Data(appMan);
 
     ov84_02240A88(v0);
     ov84_0223C4E0(v0);
@@ -586,7 +586,7 @@ int ov84_0223B900(OverlayManager *param0, int *param1)
     sub_0200C560(v0->unk_110);
     StringTemplate_Free(v0->unk_118);
     NARC_dtor(v0->unk_D4);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_6);
     SetAutorepeat(4, 8);

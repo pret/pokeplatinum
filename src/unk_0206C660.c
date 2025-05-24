@@ -35,7 +35,7 @@ void sub_0206C660(FieldTask *param0)
     {
         FS_EXTERN_OVERLAY(overlay95);
 
-        static const OverlayManagerTemplate v2 = {
+        static const ApplicationManagerTemplate v2 = {
             ov95_02246C20,
             ov95_02246E7C,
             ov95_02246E1C,

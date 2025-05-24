@@ -115,13 +115,13 @@ static void ov90_021D1C28(UnkStruct_ov90_021D0ECC *param0);
 static void ov90_021D1C44(UnkStruct_ov90_021D0ECC *param0, BOOL param1);
 static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2, u8 param3);
 
-int ov90_021D0D80(OverlayManager *param0, int *param1)
+int ov90_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov90_021D0ECC *v0 = NULL;
-    UnkStruct_ov90_021D0D80 *v1 = (UnkStruct_ov90_021D0D80 *)OverlayManager_Args(param0);
+    UnkStruct_ov90_021D0D80 *v1 = (UnkStruct_ov90_021D0D80 *)ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_74, 0x10000);
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov90_021D0ECC), HEAP_ID_74);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov90_021D0ECC), HEAP_ID_74);
     memset(v0, 0, sizeof(UnkStruct_ov90_021D0ECC));
 
     v0->unk_08 = v1->unk_04;
@@ -137,20 +137,20 @@ int ov90_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov90_021D0DE8(OverlayManager *param0, int *param1)
+int ov90_021D0DE8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov90_021D0ECC *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov90_021D0ECC *v0 = ApplicationManager_Data(appMan);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(v0->heapID);
 
     return 1;
 }
 
-int ov90_021D0E04(OverlayManager *param0, int *param1)
+int ov90_021D0E04(ApplicationManager *appMan, int *param1)
 {
     int v0 = 0;
-    UnkStruct_ov90_021D0ECC *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov90_021D0ECC *v1 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:

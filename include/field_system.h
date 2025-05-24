@@ -13,7 +13,7 @@ void FieldSystem_FlagNotRunningFieldMap(FieldSystem *fieldSystem);
 BOOL FieldSystem_HasParentProcess(FieldSystem *fieldSystem);
 BOOL FieldSystem_IsRunningFieldMapInner(FieldSystem *fieldSystem);
 BOOL FieldSystem_HasChildProcess(FieldSystem *fieldSystem);
-void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const OverlayManagerTemplate *overlayTemplate, void *overlayArgs);
+void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const ApplicationManagerTemplate *appTemplate, void *appArgs);
 void FieldSystem_PauseProcessing(void);
 void FieldSystem_ResumeProcessing(void);
 PoketchSystem *FieldSystem_GetPoketchSystem(void);

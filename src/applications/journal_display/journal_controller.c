@@ -62,7 +62,7 @@ static const u8 Unk_ov81_021D33E8[9][32] = {
     { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
 };
 
-int JournalController_Init(OverlayManager *ovyManager, int *state)
+int JournalController_Init(ApplicationManager *appMan, int *state)
 {
     JournalManager *journalManager;
     SaveData *saveData;
@@ -80,8 +80,8 @@ int JournalController_Init(OverlayManager *ovyManager, int *state)
     SetAutorepeat(4, 8);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_JOURNAL, 0x20000);
 
-    saveData = OverlayManager_Args(ovyManager);
-    journalManager = OverlayManager_NewData(ovyManager, sizeof(JournalManager), HEAP_ID_JOURNAL);
+    saveData = ApplicationManager_Args(appMan);
+    journalManager = ApplicationManager_NewData(appMan, sizeof(JournalManager), HEAP_ID_JOURNAL);
     memset(journalManager, 0, sizeof(JournalManager));
     journalManager->bgConfig = BgConfig_New(HEAP_ID_JOURNAL);
 
@@ -109,9 +109,9 @@ int JournalController_Init(OverlayManager *ovyManager, int *state)
     return TRUE;
 }
 
-int JournalController_Main(OverlayManager *ovyManager, int *state)
+int JournalController_Main(ApplicationManager *appMan, int *state)
 {
-    JournalManager *journalManager = OverlayManager_Data(ovyManager);
+    JournalManager *journalManager = ApplicationManager_Data(appMan);
 
     switch (*state) {
     case JOURNAL_STATE_OPEN:
@@ -135,9 +135,9 @@ int JournalController_Main(OverlayManager *ovyManager, int *state)
     return FALSE;
 }
 
-int JournalController_Exit(OverlayManager *ovyManager, int *state)
+int JournalController_Exit(ApplicationManager *appMan, int *state)
 {
-    JournalManager *journalManager = OverlayManager_Data(ovyManager);
+    JournalManager *journalManager = ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
 
@@ -146,7 +146,7 @@ int JournalController_Exit(OverlayManager *ovyManager, int *state)
     JournalController_FreeStringUtil(journalManager);
 
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
-    OverlayManager_FreeData(ovyManager);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_JOURNAL);
 
     return TRUE;

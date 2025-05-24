@@ -7,33 +7,33 @@
 
 #define FS_OVERLAY_ID_NONE -1
 
-typedef struct OverlayManager OverlayManager;
+typedef struct ApplicationManager ApplicationManager;
 
-typedef BOOL (*OverlayFunc)(OverlayManager *ovyManager, int *state);
+typedef BOOL (*OverlayFunc)(ApplicationManager *appMan, int *state);
 
-typedef struct OverlayManagerTemplate {
+typedef struct ApplicationManagerTemplate {
     OverlayFunc init;
     OverlayFunc main;
     OverlayFunc exit;
     const FSOverlayID overlayID;
-} OverlayManagerTemplate;
+} ApplicationManagerTemplate;
 
-struct OverlayManager {
-    OverlayManagerTemplate template;
+struct ApplicationManager {
+    ApplicationManagerTemplate template;
     int execState;
     int procState;
     void *args;
     void *data;
-    OverlayManager *parent;
-    OverlayManager *child;
+    ApplicationManager *parent;
+    ApplicationManager *child;
 };
 
-OverlayManager *OverlayManager_New(const OverlayManagerTemplate *template, void *args, const enum HeapId heapID);
-void OverlayManager_Free(OverlayManager *ovyManager);
-void *OverlayManager_NewData(OverlayManager *ovyManager, u32 size, enum HeapId heapID);
-void *OverlayManager_Data(OverlayManager *ovyManager);
-void OverlayManager_FreeData(OverlayManager *ovyManager);
-void *OverlayManager_Args(OverlayManager *ovyManager);
-BOOL OverlayManager_Exec(OverlayManager *ovyManager);
+ApplicationManager *ApplicationManager_New(const ApplicationManagerTemplate *template, void *args, const enum HeapId heapID);
+void ApplicationManager_Free(ApplicationManager *appMan);
+void *ApplicationManager_NewData(ApplicationManager *appMan, u32 size, enum HeapId heapID);
+void *ApplicationManager_Data(ApplicationManager *appMan);
+void ApplicationManager_FreeData(ApplicationManager *appMan);
+void *ApplicationManager_Args(ApplicationManager *appMan);
+BOOL ApplicationManager_Exec(ApplicationManager *appMan);
 
 #endif // POKEPLATINUM_OVERLAY_MANAGER_H

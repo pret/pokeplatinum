@@ -52,7 +52,7 @@ typedef struct {
     Options *unk_08;
     int unk_0C;
     int unk_10;
-    OverlayManager *unk_14;
+    ApplicationManager *appMan;
     BgConfig *unk_18;
     Window unk_1C;
     int unk_2C;
@@ -89,10 +89,10 @@ typedef struct {
     u16 *unk_BC;
 } UnkStruct_ov73_021D1058;
 
-void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
-int ov73_021D0D80(OverlayManager *param0, int *param1);
-int ov73_021D0E20(OverlayManager *param0, int *param1);
-int ov73_021D0F7C(OverlayManager *param0, int *param1);
+void EnqueueApplication(FSOverlayID param0, const ApplicationManagerTemplate *param1);
+int ov73_021D0D80(ApplicationManager *appMan, int *param1);
+int ov73_021D0E20(ApplicationManager *appMan, int *param1);
+int ov73_021D0F7C(ApplicationManager *appMan, int *param1);
 static void ov73_021D0FF0(void *param0);
 static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0);
 static void ov73_021D1238(UnkStruct_ov73_021D1058 *param0);
@@ -106,40 +106,40 @@ static void ov73_021D1A20(UnkStruct_ov73_021D1058 *param0);
 static void ov73_021D1B14(UnkStruct_ov73_021D1058 *param0);
 static void ov73_021D1CE0(UnkStruct_ov73_021D1058 *param0);
 static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0);
-int ov73_021D3250(OverlayManager *param0, int *param1);
-int ov73_021D3280(OverlayManager *param0, int *param1);
-int ov73_021D3404(OverlayManager *param0, int *param1);
+int ov73_021D3250(ApplicationManager *appMan, int *param1);
+int ov73_021D3280(ApplicationManager *appMan, int *param1);
+int ov73_021D3404(ApplicationManager *appMan, int *param1);
 
-const OverlayManagerTemplate dummy_OverlayManagerTemplate = {
+const ApplicationManagerTemplate dummy_ApplicationManagerTemplate = {
     ov73_021D0D80,
     ov73_021D0E20,
     ov73_021D0F7C,
     0xffffffff
 };
 
-static const OverlayManagerTemplate Unk_ov72_021D3820 = {
+static const ApplicationManagerTemplate Unk_ov72_021D3820 = {
     ov73_021D3250,
     ov73_021D3280,
     ov73_021D3404,
     0xffffffff
 };
 
-int ov73_021D0D80(OverlayManager *param0, int *param1)
+int ov73_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov73_021D1058 *v0;
     int childHeapID = HEAP_ID_82;
 
     Heap_Create(HEAP_ID_APPLICATION, childHeapID, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov73_021D1058), childHeapID);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov73_021D1058), childHeapID);
     memset(v0, 0, sizeof(UnkStruct_ov73_021D1058));
 
     v0->heapID = childHeapID;
-    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     v0->unk_08 = SaveData_GetOptions(v0->saveData);
     v0->unk_0C = 0;
     v0->unk_10 = 0;
-    v0->unk_14 = NULL;
+    v0->appMan = NULL;
     v0->unk_70 = sub_0208712C(childHeapID, 0, 0, 7, v0->unk_08);
     v0->unk_74 = sub_0208712C(childHeapID, 3, 0, 7, v0->unk_08);
     v0->unk_88 = 0;
@@ -153,9 +153,9 @@ int ov73_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov73_021D0E20(OverlayManager *param0, int *param1)
+int ov73_021D0E20(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov73_021D1058 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov73_021D1058 *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
 
     switch (*param1) {
@@ -188,7 +188,7 @@ int ov73_021D0E20(OverlayManager *param0, int *param1)
             *param1 = 2;
         }
 
-        if (v0->unk_14 != NULL) {
+        if (v0->appMan != NULL) {
             StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->heapID);
             *param1 = 3;
         }
@@ -213,9 +213,9 @@ int ov73_021D0E20(OverlayManager *param0, int *param1)
         }
         break;
     case 4:
-        if (OverlayManager_Exec(v0->unk_14) == 1) {
-            OverlayManager_Free(v0->unk_14);
-            v0->unk_14 = NULL;
+        if (ApplicationManager_Exec(v0->appMan) == 1) {
+            ApplicationManager_Free(v0->appMan);
+            v0->appMan = NULL;
             *param1 = 5;
         }
         break;
@@ -227,9 +227,9 @@ int ov73_021D0E20(OverlayManager *param0, int *param1)
     return v1;
 }
 
-int ov73_021D0F7C(OverlayManager *param0, int *param1)
+int ov73_021D0F7C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov73_021D1058 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov73_021D1058 *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
 
     Heap_FreeToHeap(v0->unk_B8);
@@ -246,9 +246,9 @@ int ov73_021D0F7C(OverlayManager *param0, int *param1)
 
     sub_0208716C(v0->unk_70);
     sub_0208716C(v0->unk_74);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
-    EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveOverlayTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveAppTemplate);
 
     return 1;
 }
@@ -1974,7 +1974,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         break;
     case 76:
         param0->unk_70->unk_04 = param0->unk_84;
-        param0->unk_14 = OverlayManager_New(&Unk_020F2DAC, param0->unk_70, param0->heapID);
+        param0->appMan = ApplicationManager_New(&Unk_020F2DAC, param0->unk_70, param0->heapID);
         param0->unk_0C = 77;
         break;
     case 77:
@@ -2125,7 +2125,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         }
         break;
     case 92:
-        param0->unk_14 = OverlayManager_New(&Unk_020F2DAC, param0->unk_74, param0->heapID);
+        param0->appMan = ApplicationManager_New(&Unk_020F2DAC, param0->unk_74, param0->heapID);
         param0->unk_0C = 93;
         break;
     case 93:
@@ -2233,7 +2233,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         }
         break;
     case 108:
-        param0->unk_14 = OverlayManager_New(&Unk_ov72_021D3820, NULL, param0->heapID);
+        param0->appMan = ApplicationManager_New(&Unk_ov72_021D3820, NULL, param0->heapID);
         param0->unk_0C = 109;
         break;
     case 109:

@@ -184,7 +184,7 @@ void ov97_0222D200(UnkStruct_ov97_0222D04C *param0, int param1)
         return;
     }
 
-    saveData = ((ApplicationArgs *)OverlayManager_Args(ov97_022301A4()))->saveData;
+    saveData = ((ApplicationArgs *)ApplicationManager_Args(ov97_022301A4()))->saveData;
     sub_02036C1C(saveData, param1);
 
     ov97_0222D04C(param0);

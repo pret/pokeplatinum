@@ -56,7 +56,7 @@ BOOL sub_0209862C(FieldTask *param0)
         }
 
         {
-            static const OverlayManagerTemplate v2 = {
+            static const ApplicationManagerTemplate v2 = {
                 ov100_021D0D80,
                 ov100_021D0EA8,
                 ov100_021D0F44,

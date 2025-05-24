@@ -6,9 +6,9 @@
 #include "enums.h"
 #include "overlay_manager.h"
 
-int ov101_021D0D80(OverlayManager *param0, int *param1);
-int ov101_021D0E40(OverlayManager *param0, int *param1);
-int ov101_021D0EE4(OverlayManager *param0, int *param1);
+int ov101_021D0D80(ApplicationManager *appMan, int *param1);
+int ov101_021D0E40(ApplicationManager *appMan, int *param1);
+int ov101_021D0EE4(ApplicationManager *appMan, int *param1);
 void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0);
 void ov101_021D148C(UnkStruct_ov101_021D13C8 *param0, u32 param1);
 void ov101_021D14E4(UnkStruct_ov101_021D13C8 *param0);

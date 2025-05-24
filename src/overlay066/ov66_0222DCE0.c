@@ -30,7 +30,7 @@ typedef struct {
 
 static void ov66_0222DDDC(SysTask *param0, void *param1);
 
-int ov66_0222DCE0(OverlayManager *param0, int *param1)
+int ov66_0222DCE0(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov66_0222DD90 *v0;
     UnkStruct_ov66_0222DCE0 *v1;
@@ -44,10 +44,10 @@ int ov66_0222DCE0(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_104, 0x5000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov66_0222DD90), HEAP_ID_104);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov66_0222DD90), HEAP_ID_104);
     memset(v0, 0, sizeof(UnkStruct_ov66_0222DD90));
 
-    v1 = OverlayManager_Args(param0);
+    v1 = ApplicationManager_Args(appMan);
 
     v0->saveData = v1->saveData;
     v0->unk_04 = ov66_0222DDF0(v0->saveData, HEAP_ID_104);
@@ -63,12 +63,12 @@ int ov66_0222DCE0(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov66_0222DD6C(OverlayManager *param0, int *param1)
+int ov66_0222DD6C(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov66_0222DD90 *v0;
     int v1;
 
-    v0 = OverlayManager_Data(param0);
+    v0 = ApplicationManager_Data(appMan);
     v1 = ov66_02230CB8(v0->unk_08);
 
     ov66_0222DF58(v0->unk_04);
@@ -80,9 +80,9 @@ int ov66_0222DD6C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov66_0222DD90(OverlayManager *param0, int *param1)
+int ov66_0222DD90(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov66_0222DD90 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov66_0222DD90 *v0 = ApplicationManager_Data(appMan);
 
     SysTask_Done(v0->unk_0C);
     SetVBlankCallback(NULL, NULL);
@@ -91,7 +91,7 @@ int ov66_0222DD90(OverlayManager *param0, int *param1)
     ov66_02230C90(v0->unk_08);
     ov66_0222DEEC(v0->unk_04);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_104);
 
     {

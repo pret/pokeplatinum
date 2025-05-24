@@ -18,14 +18,14 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 
-static const OverlayManagerTemplate Unk_ov117_022668F8 = {
+static const ApplicationManagerTemplate Unk_ov117_022668F8 = {
     ov117_02260668,
     ov117_0226098C,
     ov117_02260C10,
     0xFFFFFFFF
 };
 
-static const OverlayManagerTemplate Unk_ov117_02266908 = {
+static const ApplicationManagerTemplate Unk_ov117_02266908 = {
     ov117_02266498,
     ov117_022664BC,
     ov117_022665E8,
@@ -35,24 +35,24 @@ static const OverlayManagerTemplate Unk_ov117_02266908 = {
 static void ov117_022605D8(UnkStruct_ov117_022605C0 *param0, UnkStruct_ov117_02260440 *param1);
 static BOOL ov117_02260630(UnkStruct_ov117_022605C0 *param0);
 
-int ov117_02260440(OverlayManager *param0, int *param1)
+int ov117_02260440(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov117_02260440 *v0 = OverlayManager_Args(param0);
+    UnkStruct_ov117_02260440 *v0 = ApplicationManager_Args(appMan);
     UnkStruct_ov117_022605C0 *v1;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_110, 0x60000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_022605C0), HEAP_ID_110);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov117_022605C0), HEAP_ID_110);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov117_022605C0));
     ov117_022605D8(v1, v0);
 
     return 1;
 }
 
-int ov117_02260474(OverlayManager *param0, int *param1)
+int ov117_02260474(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov117_022605C0 *v0 = OverlayManager_Data(param0);
-    UnkStruct_ov117_02260440 *v1 = OverlayManager_Args(param0);
+    UnkStruct_ov117_022605C0 *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_ov117_02260440 *v1 = ApplicationManager_Args(appMan);
 
     if (ov117_02260630(v0) == 1) {
         return 1;
@@ -61,25 +61,25 @@ int ov117_02260474(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
         v0->unk_31 = 0;
-        v0->unk_28 = OverlayManager_New(&Unk_ov117_02266908, v0, 110);
+        v0->appMan = ApplicationManager_New(&Unk_ov117_02266908, v0, 110);
         (*param1)++;
         break;
     case 1:
-        if (OverlayManager_Exec(v0->unk_28) == 1) {
-            OverlayManager_Free(v0->unk_28);
-            v0->unk_28 = NULL;
+        if (ApplicationManager_Exec(v0->appMan) == 1) {
+            ApplicationManager_Free(v0->appMan);
+            v0->appMan = NULL;
             (*param1)++;
         }
         break;
     case 2:
         v0->unk_31 = 1;
-        v0->unk_28 = OverlayManager_New(&Unk_ov117_022668F8, v0, 110);
+        v0->appMan = ApplicationManager_New(&Unk_ov117_022668F8, v0, 110);
         (*param1)++;
         break;
     case 3:
-        if (OverlayManager_Exec(v0->unk_28) == 1) {
-            OverlayManager_Free(v0->unk_28);
-            v0->unk_28 = NULL;
+        if (ApplicationManager_Exec(v0->appMan) == 1) {
+            ApplicationManager_Free(v0->appMan);
+            v0->appMan = NULL;
             (*param1)++;
         }
         break;
@@ -89,13 +89,13 @@ int ov117_02260474(OverlayManager *param0, int *param1)
         }
 
         v0->unk_31 = 2;
-        v0->unk_28 = OverlayManager_New(&Unk_ov117_02266908, v0, 110);
+        v0->appMan = ApplicationManager_New(&Unk_ov117_02266908, v0, 110);
         (*param1)++;
         break;
     case 5:
-        if (OverlayManager_Exec(v0->unk_28) == 1) {
-            OverlayManager_Free(v0->unk_28);
-            v0->unk_28 = NULL;
+        if (ApplicationManager_Exec(v0->appMan) == 1) {
+            ApplicationManager_Free(v0->appMan);
+            v0->appMan = NULL;
 
             if (v0->unk_38 == 1) {
                 (*param1) = 0;
@@ -123,11 +123,11 @@ int ov117_02260474(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov117_022605C0(OverlayManager *param0, int *param1)
+int ov117_022605C0(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov117_022605C0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov117_022605C0 *v0 = ApplicationManager_Data(appMan);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_110);
 
     return 1;
@@ -170,7 +170,7 @@ static BOOL ov117_02260630(UnkStruct_ov117_022605C0 *param0)
     }
 
     if (param0->unk_3D == 1) {
-        if (param0->unk_28 == NULL) {
+        if (param0->appMan == NULL) {
             return 1;
         }
     }

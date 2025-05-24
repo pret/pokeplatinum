@@ -17,7 +17,7 @@ typedef struct ApplicationArgs {
     SaveData *saveData;
 } ApplicationArgs;
 
-void EnqueueApplication(FSOverlayID overlayID, const OverlayManagerTemplate *template);
+void EnqueueApplication(FSOverlayID overlayID, const ApplicationManagerTemplate *template);
 void InitRNG(void);
 void HandleConsoleFold(void);
 

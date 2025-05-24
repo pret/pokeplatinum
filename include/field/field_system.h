@@ -60,8 +60,8 @@ typedef struct FieldWildBattleMetadata {
 } FieldWildBattleMetadata;
 
 typedef struct FieldProcessManager {
-    OverlayManager *parent;
-    OverlayManager *child;
+    ApplicationManager *parent;
+    ApplicationManager *child;
     BOOL pause;
     BOOL kill;
 } FieldProcessManager;

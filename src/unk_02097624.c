@@ -33,14 +33,14 @@ typedef struct {
     u16 unk_04;
     u16 unk_06;
     void *unk_08;
-    OverlayManager *unk_0C;
+    ApplicationManager *appMan;
     UnkStruct_020978D8 *unk_10;
     Sentence unk_14;
 } UnkStruct_02097944;
 
-static int sub_02097944(OverlayManager *param0, int *param1);
-static int sub_020979A8(OverlayManager *param0, int *param1);
-static int sub_02097AF8(OverlayManager *param0, int *param1);
+static int sub_02097944(ApplicationManager *appMan, int *param1);
+static int sub_020979A8(ApplicationManager *appMan, int *param1);
+static int sub_02097AF8(ApplicationManager *appMan, int *param1);
 UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 param3, int param4);
 UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, int param3);
 UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, int param2);
@@ -52,7 +52,7 @@ void sub_02097770(UnkStruct_02097728 *param0);
 void sub_020978D8(UnkStruct_020978D8 *param0);
 void sub_020978F0(Mail *param0, UnkStruct_020978D8 *param1);
 
-const OverlayManagerTemplate Unk_020F64B0 = {
+const ApplicationManagerTemplate Unk_020F64B0 = {
     sub_02097944,
     sub_020979A8,
     sub_02097AF8,
@@ -258,12 +258,12 @@ void sub_020978F0(Mail *param0, UnkStruct_020978D8 *param1)
     sub_02028318(param0, param1->unk_0F);
 }
 
-static BOOL sub_02097920(OverlayManager **param0)
+static BOOL sub_02097920(ApplicationManager **appManPtr)
 {
-    if (*param0) {
-        if (OverlayManager_Exec(*param0)) {
-            OverlayManager_Free(*param0);
-            *param0 = NULL;
+    if (*appManPtr) {
+        if (ApplicationManager_Exec(*appManPtr)) {
+            ApplicationManager_Free(*appManPtr);
+            *appManPtr = NULL;
             return 1;
         }
     }
@@ -271,13 +271,13 @@ static BOOL sub_02097920(OverlayManager **param0)
     return 0;
 }
 
-static int sub_02097944(OverlayManager *param0, int *param1)
+static int sub_02097944(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_02097944 *v0 = NULL;
-    UnkStruct_02097728 *v1 = (UnkStruct_02097728 *)OverlayManager_Args(param0);
+    UnkStruct_02097728 *v1 = (UnkStruct_02097728 *)ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_40, 0x1000);
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02097944), HEAP_ID_40);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02097944), HEAP_ID_40);
     MI_CpuClear8(v0, sizeof(UnkStruct_02097944));
 
     v0->heapID = HEAP_ID_40;
@@ -297,21 +297,21 @@ static int sub_02097944(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int sub_020979A8(OverlayManager *param0, int *param1)
+static int sub_020979A8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02097944 *v0 = OverlayManager_Data(param0);
-    UnkStruct_02097728 *v1 = (UnkStruct_02097728 *)OverlayManager_Args(param0);
+    UnkStruct_02097944 *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_02097728 *v1 = (UnkStruct_02097728 *)ApplicationManager_Args(appMan);
 
     FS_EXTERN_OVERLAY(overlay75);
     FS_EXTERN_OVERLAY(overlay20);
 
-    static const OverlayManagerTemplate v2 = {
+    static const ApplicationManagerTemplate v2 = {
         ov75_021D0D80,
         ov75_021D0DF8,
         ov75_021D0E10,
         FS_OVERLAY_ID(overlay75),
     };
-    static const OverlayManagerTemplate v3 = {
+    static const ApplicationManagerTemplate v3 = {
         ov20_021D0D80,
         ov20_021D0DF8,
         ov20_021D0EA8,
@@ -321,11 +321,11 @@ static int sub_020979A8(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
         v0->unk_10->unk_00 = v1->unk_00;
-        v0->unk_0C = OverlayManager_New(&v2, v0->unk_10, v0->heapID);
+        v0->appMan = ApplicationManager_New(&v2, v0->unk_10, v0->heapID);
         *param1 = 1;
         break;
     case 1:
-        if (!sub_02097920(&v0->unk_0C)) {
+        if (!sub_02097920(&v0->appMan)) {
             break;
         }
 
@@ -365,11 +365,11 @@ static int sub_020979A8(OverlayManager *param0, int *param1)
         }
 
         sub_02097500(v0->unk_08, &(v0->unk_14));
-        v0->unk_0C = OverlayManager_New(&v3, v0->unk_08, v0->heapID);
+        v0->appMan = ApplicationManager_New(&v3, v0->unk_08, v0->heapID);
         *param1 = 4;
         break;
     case 4:
-        if (!sub_02097920(&v0->unk_0C)) {
+        if (!sub_02097920(&v0->appMan)) {
             break;
         }
 
@@ -385,12 +385,12 @@ static int sub_020979A8(OverlayManager *param0, int *param1)
     return 0;
 }
 
-static int sub_02097AF8(OverlayManager *param0, int *param1)
+static int sub_02097AF8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02097944 *v0 = OverlayManager_Data(param0);
+    UnkStruct_02097944 *v0 = ApplicationManager_Data(appMan);
 
     sub_020978D8(v0->unk_10);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(v0->heapID);
 
     return 1;

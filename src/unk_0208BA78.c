@@ -40,7 +40,7 @@ FS_EXTERN_OVERLAY(overlay62);
 typedef struct {
     int unk_00;
     int unk_04;
-    OverlayManager *unk_08;
+    ApplicationManager *appMan;
     SaveData *saveData;
     FieldBattleDTO *unk_10;
     UnkStruct_0208C06C *unk_14;
@@ -48,24 +48,24 @@ typedef struct {
     FieldSystem *fieldSystem;
 } UnkStruct_0208BC3C;
 
-static void sub_0208BAAC(OverlayManager *param0, int param1);
-static int sub_0208BB6C(OverlayManager *param0, int *param1);
-static int sub_0208BB78(OverlayManager *param0, int *param1);
-static int sub_0208BB84(OverlayManager *param0, int *param1);
-static int sub_0208BB90(OverlayManager *param0, int *param1);
-static int sub_0208BB9C(OverlayManager *param0, int *param1);
-static int sub_0208BBA8(OverlayManager *param0, int *param1);
-static int sub_0208BBB4(OverlayManager *param0, int *param1);
-static int sub_0208BBC0(OverlayManager *param0, int *param1);
-static int sub_0208BC08(OverlayManager *param0, int *param1);
+static void sub_0208BAAC(ApplicationManager *appMan, int param1);
+static int sub_0208BB6C(ApplicationManager *appMan, int *param1);
+static int sub_0208BB78(ApplicationManager *appMan, int *param1);
+static int sub_0208BB84(ApplicationManager *appMan, int *param1);
+static int sub_0208BB90(ApplicationManager *appMan, int *param1);
+static int sub_0208BB9C(ApplicationManager *appMan, int *param1);
+static int sub_0208BBA8(ApplicationManager *appMan, int *param1);
+static int sub_0208BBB4(ApplicationManager *appMan, int *param1);
+static int sub_0208BBC0(ApplicationManager *appMan, int *param1);
+static int sub_0208BC08(ApplicationManager *appMan, int *param1);
 static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int param1);
 static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID);
 static BOOL sub_0208BE80(int param0);
 
-UnkStruct_0208C06C *sub_0208BA78(OverlayManager *param0)
+UnkStruct_0208C06C *sub_0208BA78(ApplicationManager *appMan)
 {
     UnkStruct_0208C06C *v0;
-    UnkStruct_0208BC3C *v1 = OverlayManager_Args(param0);
+    UnkStruct_0208BC3C *v1 = ApplicationManager_Args(appMan);
 
     return v1->unk_14;
 }
@@ -84,16 +84,16 @@ static void sub_0208BA8C(SaveData *saveData, int param1, u32 param2)
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
-static void sub_0208BAAC(OverlayManager *param0, int param1)
+static void sub_0208BAAC(ApplicationManager *appMan, int param1)
 {
     UnkStruct_0208BC3C *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_119, 0x10000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0208BC3C), HEAP_ID_119);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0208BC3C), HEAP_ID_119);
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_0208BC3C));
 
-    v0->fieldSystem = OverlayManager_Args(param0);
+    v0->fieldSystem = ApplicationManager_Args(appMan);
     v0->saveData = v0->fieldSystem->saveData;
     v0->unk_14 = Heap_AllocFromHeap(HEAP_ID_119, sizeof(UnkStruct_0208C06C));
 
@@ -129,52 +129,52 @@ static void sub_0208BAAC(OverlayManager *param0, int param1)
     sub_0208BA8C(v0->saveData, 119, eventType);
 }
 
-static int sub_0208BB6C(OverlayManager *param0, int *param1)
+static int sub_0208BB6C(ApplicationManager *appMan, int *param1)
 {
-    sub_0208BAAC(param0, 0);
+    sub_0208BAAC(appMan, 0);
     return 1;
 }
 
-static int sub_0208BB78(OverlayManager *param0, int *param1)
+static int sub_0208BB78(ApplicationManager *appMan, int *param1)
 {
-    sub_0208BAAC(param0, 1);
+    sub_0208BAAC(appMan, 1);
     return 1;
 }
 
-static int sub_0208BB84(OverlayManager *param0, int *param1)
+static int sub_0208BB84(ApplicationManager *appMan, int *param1)
 {
-    sub_0208BAAC(param0, 2);
+    sub_0208BAAC(appMan, 2);
     return 1;
 }
 
-static int sub_0208BB90(OverlayManager *param0, int *param1)
+static int sub_0208BB90(ApplicationManager *appMan, int *param1)
 {
-    sub_0208BAAC(param0, 3);
+    sub_0208BAAC(appMan, 3);
     return 1;
 }
 
-static int sub_0208BB9C(OverlayManager *param0, int *param1)
+static int sub_0208BB9C(ApplicationManager *appMan, int *param1)
 {
-    sub_0208BAAC(param0, 4);
+    sub_0208BAAC(appMan, 4);
     return 1;
 }
 
-static int sub_0208BBA8(OverlayManager *param0, int *param1)
+static int sub_0208BBA8(ApplicationManager *appMan, int *param1)
 {
-    sub_0208BAAC(param0, 5);
+    sub_0208BAAC(appMan, 5);
     return 1;
 }
 
-static int sub_0208BBB4(OverlayManager *param0, int *param1)
+static int sub_0208BBB4(ApplicationManager *appMan, int *param1)
 {
-    sub_0208BAAC(param0, 6);
+    sub_0208BAAC(appMan, 6);
     return 1;
 }
 
-static int sub_0208BBC0(OverlayManager *param0, int *param1)
+static int sub_0208BBC0(ApplicationManager *appMan, int *param1)
 {
     BOOL v0;
-    UnkStruct_0208BC3C *v1 = OverlayManager_Data(param0);
+    UnkStruct_0208BC3C *v1 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -202,16 +202,16 @@ static int sub_0208BBC0(OverlayManager *param0, int *param1)
     return 0;
 }
 
-static int sub_0208BC08(OverlayManager *param0, int *param1)
+static int sub_0208BC08(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_0208BC3C *v0 = OverlayManager_Data(param0);
+    UnkStruct_0208BC3C *v0 = ApplicationManager_Data(appMan);
 
     if (sub_0202F250() == 1) {
         sub_0202F22C();
     }
 
     Heap_FreeToHeap(v0->unk_14);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Sound_SetPlayerVolume(1, 127);
     Heap_Destroy(HEAP_ID_119);
 
@@ -223,19 +223,19 @@ static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int param1)
     switch (param0->unk_00) {
     case 0:
         if (param0->unk_14->unk_00 == 0) {
-            param0->unk_08 = OverlayManager_New(&Unk_020F3050, param0, param1);
+            param0->appMan = ApplicationManager_New(&Unk_020F3050, param0, param1);
         } else {
-            param0->unk_08 = OverlayManager_New(&Unk_020F3060, param0, param1);
+            param0->appMan = ApplicationManager_New(&Unk_020F3060, param0, param1);
         }
 
         param0->unk_00++;
         break;
     default:
-        if (OverlayManager_Exec(param0->unk_08) == 0) {
+        if (ApplicationManager_Exec(param0->appMan) == 0) {
             break;
         }
 
-        OverlayManager_Free(param0->unk_08);
+        ApplicationManager_Free(param0->appMan);
         return 1;
     }
 
@@ -294,11 +294,11 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
             Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
         }
     }
-        param0->unk_08 = OverlayManager_New(&gBattleOverlayTemplate, param0->unk_10, heapID);
+        param0->appMan = ApplicationManager_New(&gBattleApplicationTemplate, param0->unk_10, heapID);
         param0->unk_00++;
         break;
     default:
-        if (OverlayManager_Exec(param0->unk_08) == 0) {
+        if (ApplicationManager_Exec(param0->appMan) == 0) {
             break;
         }
 
@@ -312,7 +312,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
 
         Heap_FreeToHeap(param0->unk_10->bagCursor);
         FieldBattleDTO_Free(param0->unk_10);
-        OverlayManager_Free(param0->unk_08);
+        ApplicationManager_Free(param0->appMan);
 
         {
             u16 bgmID;
@@ -339,56 +339,56 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
     return 0;
 }
 
-const OverlayManagerTemplate Unk_020F2FCC = {
+const ApplicationManagerTemplate Unk_020F2FCC = {
     sub_0208BB6C,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-const OverlayManagerTemplate Unk_020F302C = {
+const ApplicationManagerTemplate Unk_020F302C = {
     sub_0208BB78,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-const OverlayManagerTemplate Unk_020F301C = {
+const ApplicationManagerTemplate Unk_020F301C = {
     sub_0208BB84,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-const OverlayManagerTemplate Unk_020F300C = {
+const ApplicationManagerTemplate Unk_020F300C = {
     sub_0208BB90,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-const OverlayManagerTemplate Unk_020F2FFC = {
+const ApplicationManagerTemplate Unk_020F2FFC = {
     sub_0208BB9C,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-const OverlayManagerTemplate Unk_020F2FEC = {
+const ApplicationManagerTemplate Unk_020F2FEC = {
     sub_0208BBA8,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-const OverlayManagerTemplate Unk_020F2FDC = {
+const ApplicationManagerTemplate Unk_020F2FDC = {
     sub_0208BBB4,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-static const OverlayManagerTemplate *Unk_02100CF0[] = {
+static const ApplicationManagerTemplate *Unk_02100CF0[] = {
     &Unk_020F2FCC,
     &Unk_020F302C,
     &Unk_020F301C,
@@ -398,9 +398,9 @@ static const OverlayManagerTemplate *Unk_02100CF0[] = {
     &Unk_020F2FDC,
 };
 
-const OverlayManagerTemplate *sub_0208BE5C(int param0)
+const ApplicationManagerTemplate *sub_0208BE5C(int param0)
 {
-    const OverlayManagerTemplate *v0 = Unk_02100CF0[param0];
+    const ApplicationManagerTemplate *v0 = Unk_02100CF0[param0];
     return v0;
 }
 

@@ -70,7 +70,7 @@ static void ov58_021D142C(UnkStruct_02095EAC *param0, NARC *param1);
 static void ov58_021D1524(void);
 static void ov58_021D1554(UnkStruct_02095EAC *param0, NARC *param1);
 static void ov58_021D16D8(UnkStruct_02095EAC *param0);
-static void ov58_021D18AC(UnkStruct_02095EAC *param0, OverlayManager *param1);
+static void ov58_021D18AC(UnkStruct_02095EAC *param0, ApplicationManager *appMan);
 static void ov58_021D19D4(UnkStruct_02095EAC *param0);
 static void ov58_021D1A10(Sprite *param0, int param1, int param2);
 static void ov58_021D1A80(UnkStruct_02095EAC *param0);
@@ -150,7 +150,7 @@ static UnkStruct_ov58_021D3180 Unk_ov58_021D3180[] = {
     { ov58_021D23C8, 0x1 }
 };
 
-int ov58_021D0D80(OverlayManager *param0, int *param1)
+int ov58_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_02095EAC *v0;
     NARC *v1;
@@ -167,7 +167,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_39, 0x40000);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02095EAC), HEAP_ID_39);
+        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02095EAC), HEAP_ID_39);
         memset(v0, 0, sizeof(UnkStruct_02095EAC));
         v0->unk_00 = BgConfig_New(HEAP_ID_39);
 
@@ -184,7 +184,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
         StartScreenTransition(0, 17, 17, 0x0, 16, 1, HEAP_ID_39);
 
         {
-            UnkStruct_0203DDFC *v2 = (UnkStruct_0203DDFC *)OverlayManager_Args(param0);
+            UnkStruct_0203DDFC *v2 = (UnkStruct_0203DDFC *)ApplicationManager_Args(appMan);
             v0->unk_08 = v2;
         }
 
@@ -200,7 +200,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
         ov58_021D1524();
         ov58_021D1554(v0, v1);
         ov58_021D16D8(v0);
-        ov58_021D18AC(v0, param0);
+        ov58_021D18AC(v0, appMan);
 
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
 
@@ -224,7 +224,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 1:
-        v0 = OverlayManager_Data(param0);
+        v0 = ApplicationManager_Data(appMan);
         (*param1) = 0;
         return 1;
         break;
@@ -233,9 +233,9 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov58_021D0F08(OverlayManager *param0, int *param1)
+int ov58_021D0F08(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02095EAC *v0 = OverlayManager_Data(param0);
+    UnkStruct_02095EAC *v0 = ApplicationManager_Data(appMan);
 
     if ((CommSys_CurNetId() == 0) && (v0->unk_9418 != 0)) {
         v0->unk_9418 &= sub_020318EC();
@@ -293,10 +293,10 @@ int ov58_021D0F08(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov58_021D1018(OverlayManager *param0, int *param1)
+int ov58_021D1018(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02095EAC *v0 = OverlayManager_Data(param0);
-    UnkStruct_0203DDFC *v1 = (UnkStruct_0203DDFC *)OverlayManager_Args(param0);
+    UnkStruct_02095EAC *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_0203DDFC *v1 = (UnkStruct_0203DDFC *)ApplicationManager_Args(appMan);
     int v2;
     void *journalEntryOnlineEvent;
 
@@ -354,7 +354,7 @@ int ov58_021D1018(OverlayManager *param0, int *param1)
         ov58_021D13B4(v0);
 
         Heap_FreeToHeap(v0->unk_08);
-        OverlayManager_FreeData(param0);
+        ApplicationManager_FreeData(appMan);
         SetVBlankCallback(NULL, NULL);
         Heap_Destroy(HEAP_ID_39);
         sub_02037B58(2);
@@ -722,7 +722,7 @@ static void ov58_021D16D8(UnkStruct_02095EAC *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov58_021D18AC(UnkStruct_02095EAC *param0, OverlayManager *param1)
+static void ov58_021D18AC(UnkStruct_02095EAC *param0, ApplicationManager *appMan)
 {
     Window_Add(param0->unk_00, &param0->unk_33C, 0, 2, 1, 27, 4, 13, 1 + (18 + 12) + 9);
     Window_FillTilemap(&param0->unk_33C, 0xf0f);

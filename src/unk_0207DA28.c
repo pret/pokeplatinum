@@ -63,14 +63,14 @@ static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 para
 static void sub_0207DF88(UnkStruct_ov115_02260440 *param0);
 static void sub_0207DF9C(FieldSystem *fieldSystem);
 
-static const OverlayManagerTemplate Unk_020F1B98 = {
+static const ApplicationManagerTemplate Unk_020F1B98 = {
     ov65_0222E2A8,
     ov65_0222E3FC,
     ov65_0222E548,
     FS_OVERLAY_ID(overlay65)
 };
 
-static const OverlayManagerTemplate Unk_020F1B88 = {
+static const ApplicationManagerTemplate Unk_020F1B88 = {
     ov65_0223648C,
     ov65_02236548,
     ov65_0223668C,
@@ -378,7 +378,7 @@ static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 heap
     FS_EXTERN_OVERLAY(overlay114);
 
     {
-        static const OverlayManagerTemplate v1 = {
+        static const ApplicationManagerTemplate v1 = {
             ov115_02260440,
             ov115_0226048C,
             ov115_022608E4,
@@ -413,7 +413,7 @@ static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 heapI
     FS_EXTERN_OVERLAY(overlay116);
     FS_EXTERN_OVERLAY(overlay114);
     {
-        static const OverlayManagerTemplate v1 = {
+        static const ApplicationManagerTemplate v1 = {
             ov116_022609B4,
             ov116_02260CF4,
             ov116_0226126C,
@@ -448,7 +448,7 @@ static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 heap
     FS_EXTERN_OVERLAY(overlay114);
 
     {
-        static const OverlayManagerTemplate v1 = {
+        static const ApplicationManagerTemplate v1 = {
             ov117_02260440,
             ov117_02260474,
             ov117_022605C0,

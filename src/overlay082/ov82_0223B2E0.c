@@ -26,9 +26,9 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0);
 static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0);
 static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0);
 static int ov82_0223B510(UnkStruct_ov83_0223C344 *param0);
-int ov83_0223B5B0(OverlayManager *param0, int *param1);
-int ov83_0223B65C(OverlayManager *param0, int *param1);
-int ov83_0223B710(OverlayManager *param0, int *param1);
+int ov83_0223B5B0(ApplicationManager *appMan, int *param1);
+int ov83_0223B65C(ApplicationManager *appMan, int *param1);
+int ov83_0223B710(ApplicationManager *appMan, int *param1);
 
 int ov82_0223B2E0(UnkStruct_ov83_0223C344 *param0, int *param1)
 {
@@ -58,20 +58,20 @@ int ov82_0223B330(UnkStruct_ov83_0223C344 *param0, int *param1)
 {
     FS_EXTERN_OVERLAY(overlay83);
 
-    const OverlayManagerTemplate v0 = {
+    const ApplicationManagerTemplate v0 = {
         ov83_0223B5B0,
         ov83_0223B65C,
         ov83_0223B710,
         FS_OVERLAY_ID(overlay83)
     };
 
-    param0->unk_1C = OverlayManager_New(&v0, param0, param0->heapID);
+    param0->appMan = ApplicationManager_New(&v0, param0, param0->heapID);
     return 2;
 }
 
 int ov82_0223B35C(UnkStruct_ov83_0223C344 *param0, int *param1)
 {
-    if (ov82_0223B140(&param0->unk_1C) == 0) {
+    if (ov82_0223B140(&param0->appMan) == 0) {
         return 2;
     }
 
@@ -94,7 +94,7 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
 
     FS_EXTERN_OVERLAY(overlay84);
 
-    const OverlayManagerTemplate Unk_ov84_02241130 = {
+    const ApplicationManagerTemplate Unk_ov84_02241130 = {
         ov84_0223B5A0, ov84_0223B76C, ov84_0223B900, FS_OVERLAY_ID(overlay84)
     };
     static const u8 v3[] = {
@@ -111,7 +111,7 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
 
     sub_0207CB2C(v0, param0->unk_10->saveData, v1, param0->unk_0C);
 
-    param0->unk_1C = OverlayManager_New(&Unk_ov84_02241130, v0, param0->heapID);
+    param0->appMan = ApplicationManager_New(&Unk_ov84_02241130, v0, param0->heapID);
     param0->unk_18 = v0;
 
     return 1;
@@ -122,7 +122,7 @@ static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
     UnkStruct_0207CB08 *v0 = NULL;
     BOOL v1;
 
-    if (!ov82_0223B140(&param0->unk_1C)) {
+    if (!ov82_0223B140(&param0->appMan)) {
         return 1;
     }
 
@@ -165,7 +165,7 @@ static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0)
 
     FS_EXTERN_OVERLAY(overlay85);
 
-    const OverlayManagerTemplate v6 = {
+    const ApplicationManagerTemplate v6 = {
         ov85_02241440, ov85_0224154C, ov85_022415A0, FS_OVERLAY_ID(overlay85)
     };
 
@@ -186,7 +186,7 @@ static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0)
     BagCursor_GetFieldPocketPosition(param0->unk_0C, 4, &v2, &v1);
     sub_0209733C(param0->unk_18, v1, v2, v3 + 2);
 
-    param0->unk_1C = OverlayManager_New(&v6, param0->unk_18, param0->heapID);
+    param0->appMan = ApplicationManager_New(&v6, param0->unk_18, param0->heapID);
     return 3;
 }
 
@@ -194,7 +194,7 @@ static int ov82_0223B510(UnkStruct_ov83_0223C344 *param0)
 {
     u8 v0, v1;
 
-    if (!ov82_0223B140(&param0->unk_1C)) {
+    if (!ov82_0223B140(&param0->appMan)) {
         return 3;
     }
 
