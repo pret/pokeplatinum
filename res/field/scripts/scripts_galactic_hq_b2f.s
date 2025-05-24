@@ -70,10 +70,10 @@ _00B3:
 
     .balign 4, 0
 _00BC:
-    MoveAction_018
+    MoveAction_WalkFastWest
     EndMovement
 
     .balign 4, 0
 _00C4:
-    MoveAction_019
+    MoveAction_WalkFastEast
     EndMovement

@@ -374,36 +374,36 @@ _070C:
 
     .balign 4, 0
 _0718:
-    MoveAction_015 3
-    MoveAction_069
+    MoveAction_WalkNormalEast 3
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _0724:
-    MoveAction_015 4
-    MoveAction_069
+    MoveAction_WalkNormalEast 4
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _0730:
-    MoveAction_014 3
-    MoveAction_069
+    MoveAction_WalkNormalWest 3
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _073C:
-    MoveAction_014 4
-    MoveAction_069
+    MoveAction_WalkNormalWest 4
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _0748:
-    MoveAction_070
-    MoveAction_015 3
+    MoveAction_SetVisible
+    MoveAction_WalkNormalEast 3
     EndMovement
 
     .balign 4, 0
 _0754:
-    MoveAction_070
-    MoveAction_014 3
+    MoveAction_SetVisible
+    MoveAction_WalkNormalWest 3
     EndMovement

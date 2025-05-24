@@ -224,87 +224,87 @@ _0312:
 
     .balign 4, 0
 _0328:
-    MoveAction_012
-    MoveAction_034
+    MoveAction_WalkNormalNorth
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0334:
-    MoveAction_013
-    MoveAction_034
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0340:
-    MoveAction_013
-    MoveAction_034
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _034C:
-    MoveAction_012
-    MoveAction_034
+    MoveAction_WalkNormalNorth
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0358:
-    MoveAction_015 6
-    MoveAction_012 2
-    MoveAction_033
+    MoveAction_WalkNormalEast 6
+    MoveAction_WalkNormalNorth 2
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0368:
-    MoveAction_015 6
-    MoveAction_012 3
-    MoveAction_033
+    MoveAction_WalkNormalEast 6
+    MoveAction_WalkNormalNorth 3
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0378:
-    MoveAction_015 6
-    MoveAction_012 4
-    MoveAction_033
+    MoveAction_WalkNormalEast 6
+    MoveAction_WalkNormalNorth 4
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0388:
-    MoveAction_032
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0390:
-    MoveAction_012
-    MoveAction_069
+    MoveAction_WalkNormalNorth
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _039C:
-    MoveAction_015 7
-    MoveAction_012
+    MoveAction_WalkNormalEast 7
+    MoveAction_WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _03A8:
-    MoveAction_015 7
-    MoveAction_012 2
+    MoveAction_WalkNormalEast 7
+    MoveAction_WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _03B4:
-    MoveAction_015 7
-    MoveAction_012 3
+    MoveAction_WalkNormalEast 7
+    MoveAction_WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _03C0:
-    MoveAction_012 2
-    MoveAction_069
+    MoveAction_WalkNormalNorth 2
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _03CC:
-    MoveAction_014
+    MoveAction_WalkNormalWest
     EndMovement
 
 _03D4:

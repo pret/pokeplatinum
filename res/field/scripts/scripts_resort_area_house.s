@@ -22,7 +22,7 @@ _000E:
 
     .balign 4, 0
 _002C:
-    MoveAction_032
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
 _0034:

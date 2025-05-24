@@ -49,17 +49,17 @@ _0088:
 
     .balign 4, 0
 _009C:
-    MoveAction_034
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _00A4:
-    MoveAction_033
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _00AC:
-    MoveAction_013
+    MoveAction_WalkNormalSouth
     EndMovement
 
 _00B4:
@@ -117,17 +117,17 @@ _011B:
 
     .balign 4, 0
 _015C:
-    MoveAction_001
+    MoveAction_FaceSouth
     EndMovement
 
     .balign 4, 0
 _0164:
-    MoveAction_033
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _016C:
-    MoveAction_012 7
+    MoveAction_WalkNormalNorth 7
     EndMovement
 
 _0174:
@@ -271,40 +271,40 @@ _02A0:
 
     .balign 4, 0
 _030C:
-    MoveAction_075
-    MoveAction_032
+    MoveAction_ExclamationPoint
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0318:
-    MoveAction_033
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0320:
-    MoveAction_014 4
-    MoveAction_013 2
-    MoveAction_014 6
-    MoveAction_013 2
+    MoveAction_WalkNormalWest 4
+    MoveAction_WalkNormalSouth 2
+    MoveAction_WalkNormalWest 6
+    MoveAction_WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
 _0334:
-    MoveAction_015
+    MoveAction_WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _033C:
-    MoveAction_014
-    MoveAction_033
+    MoveAction_WalkNormalWest
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0348:
-    MoveAction_012 2
-    MoveAction_015 3
-    MoveAction_012 2
-    MoveAction_015 7
+    MoveAction_WalkNormalNorth 2
+    MoveAction_WalkNormalEast 3
+    MoveAction_WalkNormalNorth 2
+    MoveAction_WalkNormalEast 7
     EndMovement
 
 _035C:
@@ -325,17 +325,17 @@ _0376:
 
     .balign 4, 0
 _0390:
-    MoveAction_001
-    MoveAction_064
+    MoveAction_FaceSouth
+    MoveAction_Delay15
     EndMovement
 
     .balign 4, 0
 _039C:
-    MoveAction_069
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _03A4:
-    MoveAction_013
-    MoveAction_064
+    MoveAction_WalkNormalSouth
+    MoveAction_Delay15
     EndMovement

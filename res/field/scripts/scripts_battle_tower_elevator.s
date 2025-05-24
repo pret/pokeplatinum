@@ -128,26 +128,26 @@ _0194:
 
     .balign 4, 0
 _01BC:
-    MoveAction_012 2
-    MoveAction_001
+    MoveAction_WalkNormalNorth 2
+    MoveAction_FaceSouth
     EndMovement
 
     .balign 4, 0
 _01C8:
-    MoveAction_013
-    MoveAction_002
-    MoveAction_014
-    MoveAction_001
-    MoveAction_013
-    MoveAction_069
+    MoveAction_WalkNormalSouth
+    MoveAction_FaceWest
+    MoveAction_WalkNormalWest
+    MoveAction_FaceSouth
+    MoveAction_WalkNormalSouth
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _01E4:
-    MoveAction_063 2
-    MoveAction_061
-    MoveAction_013 2
-    MoveAction_069
+    MoveAction_Delay8 2
+    MoveAction_Delay2
+    MoveAction_WalkNormalSouth 2
+    MoveAction_SetInvisible
     EndMovement
 
 _01F8:

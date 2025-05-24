@@ -20,5 +20,5 @@ _0006:
 
     .balign 4, 0
 _0024:
-    MoveAction_000
+    MoveAction_FaceNorth
     EndMovement

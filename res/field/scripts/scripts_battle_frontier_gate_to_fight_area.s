@@ -260,23 +260,23 @@ _02F5:
 
     .balign 4, 0
 _0334:
-    MoveAction_001
+    MoveAction_FaceSouth
     EndMovement
 
     .balign 4, 0
 _033C:
-    MoveAction_003
+    MoveAction_FaceEast
     EndMovement
 
     .balign 4, 0
 _0344:
-    MoveAction_002
+    MoveAction_FaceWest
     EndMovement
 
     .balign 4, 0
 _034C:
-    MoveAction_012 3
-    MoveAction_034
+    MoveAction_WalkNormalNorth 3
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
 _0358:

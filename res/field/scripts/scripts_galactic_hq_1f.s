@@ -141,12 +141,12 @@ _015E:
 
     .balign 4, 0
 _0164:
-    MoveAction_018
+    MoveAction_WalkFastWest
     EndMovement
 
     .balign 4, 0
 _016C:
-    MoveAction_019
+    MoveAction_WalkFastEast
     EndMovement
 
 _0174:

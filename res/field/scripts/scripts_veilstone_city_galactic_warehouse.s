@@ -63,12 +63,12 @@ _00C2:
 
     .balign 4, 0
 _00C8:
-    MoveAction_018
+    MoveAction_WalkFastWest
     EndMovement
 
     .balign 4, 0
 _00D0:
-    MoveAction_019
+    MoveAction_WalkFastEast
     EndMovement
 
 _00D8:
@@ -96,39 +96,39 @@ _00D8:
 
     .balign 4, 0
 _012C:
-    MoveAction_012 2
+    MoveAction_WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _0134:
-    MoveAction_013 2
-    MoveAction_034
-    MoveAction_063 2
-    MoveAction_035
-    MoveAction_063 2
-    MoveAction_015 5
-    MoveAction_032
-    MoveAction_075
-    MoveAction_034
+    MoveAction_WalkNormalSouth 2
+    MoveAction_WalkOnSpotNormalWest
+    MoveAction_Delay8 2
+    MoveAction_WalkOnSpotNormalEast
+    MoveAction_Delay8 2
+    MoveAction_WalkNormalEast 5
+    MoveAction_WalkOnSpotNormalNorth
+    MoveAction_ExclamationPoint
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _015C:
-    MoveAction_014 5
-    MoveAction_033
+    MoveAction_WalkNormalWest 5
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0168:
-    MoveAction_063 9
-    MoveAction_035
+    MoveAction_Delay8 9
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0174:
-    MoveAction_063 4
-    MoveAction_061
-    MoveAction_032
+    MoveAction_Delay8 4
+    MoveAction_Delay2
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
 _0184:
@@ -213,65 +213,65 @@ _02AE:
 
     .balign 4, 0
 _02C4:
-    MoveAction_063 4
-    MoveAction_035
+    MoveAction_Delay8 4
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _02D0:
-    MoveAction_063 3
-    MoveAction_034
+    MoveAction_Delay8 3
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _02DC:
-    MoveAction_063
-    MoveAction_032
+    MoveAction_Delay8
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _02E8:
-    MoveAction_012 2
-    MoveAction_015
-    MoveAction_012
-    MoveAction_034
+    MoveAction_WalkNormalNorth 2
+    MoveAction_WalkNormalEast
+    MoveAction_WalkNormalNorth
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _02FC:
-    MoveAction_012 3
-    MoveAction_035
+    MoveAction_WalkNormalNorth 3
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0308:
-    MoveAction_032
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0310:
-    MoveAction_035
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0318:
-    MoveAction_034
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0320:
-    MoveAction_012 5
-    MoveAction_038
-    MoveAction_039
-    MoveAction_063 2
-    MoveAction_019 6
+    MoveAction_WalkNormalNorth 5
+    MoveAction_WalkOnSpotFastWest
+    MoveAction_WalkOnSpotFastEast
+    MoveAction_Delay8 2
+    MoveAction_WalkFastEast 6
     EndMovement
 
     .balign 4, 0
 _0338:
-    MoveAction_012 5
-    MoveAction_038
-    MoveAction_039
-    MoveAction_063 2
-    MoveAction_019 7
+    MoveAction_WalkNormalNorth 5
+    MoveAction_WalkOnSpotFastWest
+    MoveAction_WalkOnSpotFastEast
+    MoveAction_Delay8 2
+    MoveAction_WalkFastEast 7
     EndMovement

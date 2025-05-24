@@ -109,72 +109,72 @@ _015A:
 
     .balign 4, 0
 _0168:
-    MoveAction_075
-    MoveAction_015
-    MoveAction_012 2
-    MoveAction_035
+    MoveAction_ExclamationPoint
+    MoveAction_WalkNormalEast
+    MoveAction_WalkNormalNorth 2
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _017C:
-    MoveAction_075
-    MoveAction_015
-    MoveAction_012
-    MoveAction_035
+    MoveAction_ExclamationPoint
+    MoveAction_WalkNormalEast
+    MoveAction_WalkNormalNorth
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0190:
-    MoveAction_075
-    MoveAction_015
+    MoveAction_ExclamationPoint
+    MoveAction_WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _019C:
-    MoveAction_075
-    MoveAction_015
-    MoveAction_013
-    MoveAction_035
+    MoveAction_ExclamationPoint
+    MoveAction_WalkNormalEast
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01B0:
-    MoveAction_075
-    MoveAction_015
-    MoveAction_013 2
-    MoveAction_035
+    MoveAction_ExclamationPoint
+    MoveAction_WalkNormalEast
+    MoveAction_WalkNormalSouth 2
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01C4:
-    MoveAction_013 2
-    MoveAction_015 4
+    MoveAction_WalkNormalSouth 2
+    MoveAction_WalkNormalEast 4
     EndMovement
 
     .balign 4, 0
 _01D0:
-    MoveAction_013
-    MoveAction_015 4
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkNormalEast 4
     EndMovement
 
     .balign 4, 0
 _01DC:
-    MoveAction_012
-    MoveAction_015 3
-    MoveAction_013
-    MoveAction_015
+    MoveAction_WalkNormalNorth
+    MoveAction_WalkNormalEast 3
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _01F0:
-    MoveAction_012
-    MoveAction_015 4
+    MoveAction_WalkNormalNorth
+    MoveAction_WalkNormalEast 4
     EndMovement
 
     .balign 4, 0
 _01FC:
-    MoveAction_012 2
-    MoveAction_015 4
+    MoveAction_WalkNormalNorth 2
+    MoveAction_WalkNormalEast 4
     EndMovement
 
 _0208:

@@ -149,7 +149,7 @@ _01C0:
 
     .balign 4, 0
 _01C8:
-    MoveAction_035
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
 _01D0:
@@ -182,9 +182,9 @@ _0211:
 
     .balign 4, 0
 _0220:
-    MoveAction_033
-    MoveAction_075
-    MoveAction_013
+    MoveAction_WalkOnSpotNormalSouth
+    MoveAction_ExclamationPoint
+    MoveAction_WalkNormalSouth
     EndMovement
 
 _0230:
@@ -255,17 +255,17 @@ _02DB:
 
     .balign 4, 0
 _02F4:
-    MoveAction_035
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _02FC:
-    MoveAction_033
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0304:
-    MoveAction_034
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
 _030C:

@@ -30,18 +30,18 @@ _002E:
 
     .balign 4, 0
 _0054:
-    MoveAction_012
-    MoveAction_066
-    MoveAction_002
+    MoveAction_WalkNormalNorth
+    MoveAction_Delay32
+    MoveAction_FaceWest
     EndMovement
 
     .balign 4, 0
 _0064:
-    MoveAction_063
-    MoveAction_002
-    MoveAction_065
+    MoveAction_Delay8
+    MoveAction_FaceWest
+    MoveAction_Delay16
     MoveAction_073
-    MoveAction_014 10
+    MoveAction_WalkNormalWest 10
     MoveAction_074
-    MoveAction_069
+    MoveAction_SetInvisible
     EndMovement

@@ -79,15 +79,15 @@ _00B6:
 
     .balign 4, 0
 _00DC:
-    MoveAction_075
-    MoveAction_063
-    MoveAction_014
-    MoveAction_013
+    MoveAction_ExclamationPoint
+    MoveAction_Delay8
+    MoveAction_WalkNormalWest
+    MoveAction_WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _00F0:
-    MoveAction_012
-    MoveAction_015
-    MoveAction_033
+    MoveAction_WalkNormalNorth
+    MoveAction_WalkNormalEast
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
