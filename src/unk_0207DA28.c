@@ -299,10 +299,10 @@ static BOOL sub_0207DA28(FieldTask *task)
 
 static UnkStruct_0207DE40 *sub_0207DD94(void)
 {
-    UnkStruct_0207DE40 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0207DE40));
+    UnkStruct_0207DE40 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0207DE40));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_0207DE40));
-    v0->unk_00 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov98_02247168));
+    v0->unk_00 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov98_02247168));
     MI_CpuClear8(v0->unk_00, sizeof(UnkStruct_ov98_02247168));
     return v0;
 }

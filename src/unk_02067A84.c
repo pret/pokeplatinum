@@ -412,7 +412,7 @@ void sub_02067FE8(SysTask *task)
 static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7)
 {
     SysTask *v0;
-    UnkStruct_020EF6D0 *v1 = Heap_AllocFromHeapAtEnd(4, (sizeof(UnkStruct_020EF6D0)));
+    UnkStruct_020EF6D0 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_020EF6D0)));
     GF_ASSERT(v1 != NULL);
 
     memset(v1, 0, (sizeof(UnkStruct_020EF6D0)));

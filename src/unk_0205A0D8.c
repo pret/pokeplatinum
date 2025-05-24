@@ -658,7 +658,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
         return;
     }
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205A0D8));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205A0D8));
     MI_CpuClear8(v0, sizeof(UnkStruct_0205A0D8));
 
     v0->unk_43 = 5;
@@ -686,8 +686,8 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     case 3: {
         u32 v2 = sub_0205B0E4();
 
-        v0->unk_4C = Heap_AllocFromHeapAtEnd(11, v2);
-        v0->unk_48 = Heap_AllocFromHeapAtEnd(11, v2);
+        v0->unk_4C = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v2);
+        v0->unk_48 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v2);
         v0->unk_50 = Party_New(HEAP_ID_FIELDMAP);
 
         Party_InitWithCapacity(v0->unk_50, 3);
@@ -1084,7 +1084,7 @@ void sub_0205B2D4(FieldSystem *fieldSystem)
         }
 
         if ((v2 == CommPlayer_XPos(v0)) && (v3 == CommPlayer_ZPos(v0))) {
-            UnkStruct_0205B2D4 *v4 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205B2D4));
+            UnkStruct_0205B2D4 *v4 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205B2D4));
 
             v4->unk_24 = v0;
             v4->unk_28 = 0;

@@ -153,7 +153,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
 
 static void *ov5_021E132C(int param0)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(4, param0);
+    void *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);

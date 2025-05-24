@@ -363,7 +363,7 @@ void ov8_0224997C(FieldSystem *fieldSystem)
         v7 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
         v8 = (UnkStruct_02071B10 *)PersistedMapFeatures_GetBuffer(v7, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
 
-        v6 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
+        v6 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov8_0224997C));
         v6->unk_00 = 0;
 
         if (v4 == 239) {
@@ -744,7 +744,7 @@ void include_ov8_02249960(void)
 
 void ov8_02249FB8(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224997C *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
+    UnkStruct_ov8_0224997C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov8_0224997C));
     v0->unk_00 = 0;
 
     {
@@ -1242,7 +1242,7 @@ static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1)
 
     v3 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(param0->fieldSystem));
     v4 = (UnkStruct_02071B30 *)PersistedMapFeatures_GetBuffer(v3, DYNAMIC_MAP_FEATURES_CANALAVE_GYM);
-    v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
+    v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov8_0224997C));
 
     v2->unk_00 = 0;
     param0->unk_E8 = param1;
@@ -2157,7 +2157,7 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
     v2 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     v3 = (UnkStruct_02071B6C *)PersistedMapFeatures_GetBuffer(v2, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
     v1 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov8_0224997C));
 
     v0->unk_00 = 0;
 
@@ -3462,7 +3462,7 @@ static int (*const Unk_ov8_0224C818[11])(UnkStruct_ov8_0224C098 *) = {
 
 static UnkStruct_ov8_0224C098 *ov8_0224BED8(UnkStruct_ov8_0224B8D0 *param0, UnkStruct_ov8_0224BCA8 *param1, int param2)
 {
-    UnkStruct_ov8_0224C098 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224C098));
+    UnkStruct_ov8_0224C098 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov8_0224C098));
     GF_ASSERT(v0 != NULL);
 
     memset(v0, 0, sizeof(UnkStruct_ov8_0224C098));

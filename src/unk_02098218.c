@@ -274,7 +274,7 @@ void sub_020985AC(FieldTask *param0, void *param1)
     UnkStruct_0209843C *v0;
     UnkStruct_0203E2FC *v1;
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0209843C));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209843C));
     memset(v0, 0, sizeof(UnkStruct_0209843C));
 
     v1 = (UnkStruct_0203E2FC *)param1;

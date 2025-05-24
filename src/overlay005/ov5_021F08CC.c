@@ -473,7 +473,7 @@ static int (*const Unk_ov5_021FFA0C[])(UnkStruct_ov5_021F0D6C *, PlayerAvatar *,
 
 static void *ov5_021F0D1C(u32 param0)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(4, param0);
+    void *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);

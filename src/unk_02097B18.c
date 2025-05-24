@@ -414,7 +414,7 @@ static BOOL sub_02097F38(FieldTask *param0)
 
 void sub_020980DC(FieldTask *param0, SaveData *param1)
 {
-    UnkStruct_02097F38 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02097F38));
+    UnkStruct_02097F38 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02097F38));
 
     memset(v0, 0, sizeof(UnkStruct_02097F38));
     v0->unk_10 = param1;
