@@ -5,7 +5,7 @@
 
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0202FF58.h"
 #include "struct_defs/struct_020300F4.h"
 #include "struct_defs/struct_0204B184.h"
@@ -359,12 +359,12 @@ void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
     u16 v6[4];
     u32 v7[4];
     u32 v8, v9, v10;
-    BattleFrontier *v11;
+    BattleFrontier *frontier;
     Pokemon *v12;
     UnkStruct_0202FF58 *v13 = param0->unk_4F4;
     UnkStruct_020300F4 *v14 = sub_020300F4(param0->saveData);
 
-    v11 = SaveData_GetBattleFrontier(param0->saveData);
+    frontier = SaveData_GetBattleFrontier(param0->saveData);
     v3 = ov104_0223AA50(param0->unk_04);
     v4 = ov104_0223AA74(param0->unk_04, 1);
 
@@ -377,18 +377,18 @@ void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
 
     v5[0] = param0->unk_06;
     sub_0202FF84(param0->unk_4F4, 2, 0, v5);
-    sub_020306E4(v11, sub_0205E488(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E488(param0->unk_05, param0->unk_04)), param0->unk_08);
-    sub_020306E4(v11, sub_0205E430(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E430(param0->unk_05, param0->unk_04)), param0->unk_0C);
+    sub_020306E4(frontier, sub_0205E488(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E488(param0->unk_05, param0->unk_04)), param0->unk_08);
+    sub_020306E4(frontier, sub_0205E430(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E430(param0->unk_05, param0->unk_04)), param0->unk_0C);
 
     if (param1 != 2) {
-        v1 = sub_02030698(v11, sub_0205E45C(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E45C(param0->unk_05, param0->unk_04)));
-        v8 = sub_02030848(v11, sub_0205E45C(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E45C(param0->unk_05, param0->unk_04)), param0->unk_0C);
-        v2 = sub_02030698(v11, sub_0205E45C(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E45C(param0->unk_05, param0->unk_04)));
+        v1 = sub_02030698(frontier, sub_0205E45C(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E45C(param0->unk_05, param0->unk_04)));
+        v8 = sub_02030848(frontier, sub_0205E45C(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E45C(param0->unk_05, param0->unk_04)), param0->unk_0C);
+        v2 = sub_02030698(frontier, sub_0205E45C(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E45C(param0->unk_05, param0->unk_04)));
 
         if (param0->unk_0C == v1) {
-            sub_02030848(v11, sub_0205E4B4(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E4B4(param0->unk_05, param0->unk_04)), param0->unk_08);
+            sub_02030848(frontier, sub_0205E4B4(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E4B4(param0->unk_05, param0->unk_04)), param0->unk_08);
         } else if (v1 < v2) {
-            sub_020306E4(v11, sub_0205E4B4(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E4B4(param0->unk_05, param0->unk_04)), param0->unk_08);
+            sub_020306E4(frontier, sub_0205E4B4(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E4B4(param0->unk_05, param0->unk_04)), param0->unk_08);
         }
 
         v5[0] = param0->unk_0A;
@@ -401,7 +401,7 @@ void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
                 v10 = 104;
             }
 
-            sub_020306E4(v11, v10, sub_0205E6A8(v10), param0->unk_0A);
+            sub_020306E4(frontier, v10, sub_0205E6A8(v10), param0->unk_0A);
         }
     }
 
