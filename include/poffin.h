@@ -47,15 +47,15 @@ int sub_0202A9E4(Poffin *poffin, u8 *param1, u8 param2, BOOL isFoul);
 void Poffin_StoreAttributesToArray(Poffin *poffin, u8 *dest);
 u8 Poffin_CalcLevel(Poffin *poffin);
 PoffinCase *SaveData_GetPoffinCase(SaveData *saveData);
-int Poffin_SaveSize(void);
-void Poffin_Init(PoffinCase *poffinCase);
-u16 Poffin_GetEmptyCaseSlot(PoffinCase *poffinCase);
-u16 Poffin_AddToCase(PoffinCase *poffinCase, Poffin *poffin);
-BOOL Poffin_ClearCaseSlot(PoffinCase *poffinCase, u16 slot);
-void Poffin_CompactCase(PoffinCase *poffinCase);
-void Poffin_CopyToCaseSlot(PoffinCase *poffinCase, u16 destSlot, Poffin *poffin);
-Poffin *Poffin_AllocateForCaseSlot(PoffinCase *poffinCase, u16 destSlot, int heapID);
-u16 Poffin_GetNumberOfFilledSlots(PoffinCase *poffinCase);
-u16 Poffin_GetNumberOfEmptySlots(PoffinCase *poffinCase);
+int PoffinCase_SaveSize(void);
+void PoffinCase_Init(PoffinCase *poffinCase);
+u16 PoffinCase_GetEmptySlot(PoffinCase *poffinCase);
+u16 PoffinCase_AddPoffin(PoffinCase *poffinCase, Poffin *poffin);
+BOOL PoffinCase_ClearSlot(PoffinCase *poffinCase, u16 slot);
+void PoffinCase_Compact(PoffinCase *poffinCase);
+void PoffinCase_CopyPoffinToSlot(PoffinCase *poffinCase, u16 destSlot, Poffin *poffin);
+Poffin *PoffinCase_AllocateForSlot(PoffinCase *poffinCase, u16 destSlot, int heapID);
+u16 PoffinCase_GetNumberOfFilledSlots(PoffinCase *poffinCase);
+u16 PoffinCase_GetNumberOfEmptySlots(PoffinCase *poffinCase);
 
 #endif // POKEPLATINUM_POFFIN_H
