@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV94_022414B8_H
 #define POKEPLATINUM_OV94_022414B8_H
 
-#include "struct_decls/pokedexdata_decl.h"
+#include "struct_defs/pokedex.h"
 
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223BA88_sub3.h"

@@ -3,7 +3,7 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/pokedexdata_decl.h"
+#include "struct_defs/pokedex.h"
 
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_graphics.h"

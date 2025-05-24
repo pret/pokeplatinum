@@ -19,12 +19,12 @@
 #include "generated/species_data_params.h"
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/sprite_animation_frame.h"
+#include "struct_defs/strbuf.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_02078B40.h"
 

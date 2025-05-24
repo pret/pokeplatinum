@@ -6,7 +6,7 @@
 #include "constants/heap.h"
 #include "generated/species.h"
 
-#include "struct_decls/pc_boxes_decl.h"
+#include "struct_defs/pc_boxes.h"
 
 #include "field/field_system.h"
 #include "overlay005/daycare.h"

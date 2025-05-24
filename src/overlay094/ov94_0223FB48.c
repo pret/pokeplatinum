@@ -7,7 +7,7 @@
 #include "generated/items.h"
 #include "generated/species.h"
 
-#include "struct_decls/pc_boxes_decl.h"
+#include "struct_defs/pc_boxes.h"
 
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_022414B8.h"

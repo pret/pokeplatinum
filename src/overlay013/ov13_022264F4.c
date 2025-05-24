@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/pc_boxes_decl.h"
+#include "struct_defs/pc_boxes.h"
 
 #include "battle/battle_lib.h"
 #include "battle/ov16_0223DF00.h"

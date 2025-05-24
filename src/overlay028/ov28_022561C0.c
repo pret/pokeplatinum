@@ -4,7 +4,7 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/pokedexdata_decl.h"
+#include "struct_defs/pokedex.h"
 
 #include "overlay025/poketch_button.h"
 #include "overlay025/poketch_system.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021D4DF0_H
 #define POKEPLATINUM_STRUCT_OV19_021D4DF0_H
 
-#include "struct_decls/pc_boxes_decl.h"
+#include "struct_defs/pc_boxes.h"
 
 #include "overlay019/box_cursor.h"
 #include "overlay019/box_customization.h"

@@ -11,7 +11,7 @@
 #include "generated/genders.h"
 #include "generated/moves.h"
 
-#include "struct_decls/pc_boxes_decl.h"
+#include "struct_defs/pc_boxes.h"
 #include "struct_defs/trainer.h"
 
 #include "charcode.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0203E274_H
 #define POKEPLATINUM_STRUCT_0203E274_H
 
-#include "struct_decls/pokedexdata_decl.h"
+#include "struct_defs/pokedex.h"
 
 typedef struct {
     int unk_00;
