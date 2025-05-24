@@ -36,7 +36,7 @@ static u32 ov70_0226C848(PPW_LOBBY_TIME_EVENT param0);
 static u32 ov70_0226C87C(PPW_LOBBY_TIME_EVENT param0);
 static void ov70_0226C8A8(UnkStruct_ov70_0226C6F8 *param0);
 
-UnkStruct_ov70_0226C6F8 *ov70_0226C60C(u32 heapID, UnkStruct_ov70_0225DEE8 *param1)
+UnkStruct_ov70_0226C6F8 *ov70_0226C60C(enum HeapId heapID, UnkStruct_ov70_0225DEE8 *param1)
 {
     UnkStruct_ov70_0226C6F8 *v0;
     u32 v1, v2, v3;

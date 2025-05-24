@@ -15,7 +15,7 @@
 
 typedef struct UnkStruct_ov65_02235130_t {
     BOOL unk_00;
-    u32 heapID;
+    enum HeapId heapID;
     u32 unk_08;
     BOOL unk_0C;
     BgConfig *unk_10;

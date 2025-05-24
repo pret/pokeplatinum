@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_POKEDEX_MEMORY_H
 #define POKEPLATINUM_POKEDEX_MEMORY_H
 
+#include "constants/heap.h"
+
 typedef struct PokedexMemory {
     u32 currentSpecies;
     u32 bootMode;
@@ -12,7 +14,7 @@ enum PokedexBootMode {
     POKEDEX_BOOT_DEFAULT
 };
 
-PokedexMemory *PokedexMemory_New(u32 heapID);
+PokedexMemory *PokedexMemory_New(enum HeapId heapID);
 void PokedexMemory_Free(PokedexMemory *pokedexMemory);
 u32 PokedexMemory_GetCurrentSpecies(const PokedexMemory *pokedexMemory);
 void PokedexMemory_SetCurrentSpecies(PokedexMemory *pokedexMemory, u32 species);

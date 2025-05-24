@@ -8,7 +8,7 @@
 #include "heap.h"
 #include "pokemon.h"
 
-UnkStruct_020997B8 *sub_020997B8(u32 heapID)
+UnkStruct_020997B8 *sub_020997B8(enum HeapId heapID)
 {
     UnkStruct_020997B8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020997B8));
 

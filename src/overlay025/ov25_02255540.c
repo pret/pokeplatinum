@@ -45,7 +45,7 @@ struct UnkStruct_ov25_022555E8_t {
     u16 unk_10;
     u16 unk_12;
     GXOamAttr *unk_14;
-    u32 heapID;
+    enum HeapId heapID;
 };
 
 static void ov25_022559D8(UnkStruct_ov25_022558C4 **param0, UnkStruct_ov25_022558C4 *param1, u32 param2);

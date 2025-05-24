@@ -67,7 +67,7 @@ typedef struct UnkStruct_02015920_t {
     UnkStruct_02015C38 unk_0C[2];
     BgConfig *unk_7C;
     u32 unk_80;
-    u32 heapID;
+    enum HeapId heapID;
     fx32 unk_88[4];
     u8 unk_98;
     u8 unk_99;

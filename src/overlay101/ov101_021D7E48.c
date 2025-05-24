@@ -21,7 +21,7 @@ typedef struct {
 } UnkStruct_ov101_021D7E48_sub1;
 
 typedef struct UnkStruct_ov101_021D7E48_t {
-    u32 heapID;
+    enum HeapId heapID;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;

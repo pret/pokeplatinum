@@ -3,10 +3,12 @@
 
 #include <nitro/fx/fx.h>
 
+#include "constants/heap.h"
+
 #include "overlay105/struct_ov105_02245AAC.h"
 #include "overlay105/struct_ov105_02245EA8_decl.h"
 
-UnkStruct_ov105_02245EA8 *ov105_02245E54(UnkStruct_ov105_02245AAC *param0, int param1, int param2, u32 heapID);
+UnkStruct_ov105_02245EA8 *ov105_02245E54(UnkStruct_ov105_02245AAC *param0, int param1, int param2, enum HeapId heapID);
 void *ov105_02245EA8(UnkStruct_ov105_02245EA8 *param0);
 void ov105_02245EBC(UnkStruct_ov105_02245EA8 *param0, int param1);
 VecFx32 ov105_02245EC8(UnkStruct_ov105_02245EA8 *param0, int param1, int param2);

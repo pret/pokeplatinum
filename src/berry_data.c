@@ -7,12 +7,12 @@
 #include "narc.h"
 #include "strbuf.h"
 
-NARC *BerryData_NARC_ctor(u32 heapID)
+NARC *BerryData_NARC_ctor(enum HeapId heapID)
 {
     return NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__NUTS_DATA, heapID);
 }
 
-BerryData *BerryData_LoadFromOpenNARC(NARC *narc, u32 memberIdx, u32 heapID)
+BerryData *BerryData_LoadFromOpenNARC(NARC *narc, u32 memberIdx, enum HeapId heapID)
 {
     return NARC_AllocAndReadWholeMember(narc, memberIdx, heapID);
 }
@@ -22,12 +22,12 @@ void BerryData_NARC_dtor(NARC *narc)
     NARC_dtor(narc);
 }
 
-BerryData *BerryData_Load(u32 memberIdx, u32 heapID)
+BerryData *BerryData_Load(u32 memberIdx, enum HeapId heapID)
 {
     return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__NUTS_DATA, memberIdx, heapID);
 }
 
-BerryData *BerryData_LoadDataByItemID(u32 itemID, u32 heapID)
+BerryData *BerryData_LoadDataByItemID(u32 itemID, enum HeapId heapID)
 {
     return BerryData_Load(itemID - FIRST_BERRY_IDX, heapID);
 }
@@ -62,7 +62,7 @@ u32 BerryData_GetAttribute(BerryData *berryData, u32 attributeID)
     return 0;
 }
 
-Strbuf *BerryData_AllocAndGetName(u16 memberIdx, u32 heapID)
+Strbuf *BerryData_AllocAndGetName(u16 memberIdx, enum HeapId heapID)
 {
     MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BERRY_NAMES, heapID);
     Strbuf *name = MessageLoader_GetNewStrbuf(loader, memberIdx);

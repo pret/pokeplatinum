@@ -11,7 +11,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    u32 heapID;
+    enum HeapId heapID;
     int unk_04;
     int unk_08;
     int unk_0C;

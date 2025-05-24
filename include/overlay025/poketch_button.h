@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_POKETCH_BUTTON_H
 #define POKEPLATINUM_POKETCH_BUTTON_H
 
+#include "constants/heap.h"
+
 #include "touch_screen.h"
 
 #define BUTTON_TIMER_MAX                     0xffff
@@ -49,7 +51,7 @@ typedef struct PoketchButton {
 typedef struct PoketchButtonManager {
     const TouchScreenHitTable *hitTable;
     PoketchButtonCallback callback;
-    u32 heapID;
+    enum HeapId heapID;
     u32 numButtons;
     void *buttonCallbackData;
     PoketchButton *buttons;

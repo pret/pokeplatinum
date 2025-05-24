@@ -4,8 +4,6 @@
 #include "field/field_system_decl.h"
 #include "overlay006/struct_ov6_02246254.h"
 
-#include "pokemon.h"
-
 typedef struct NpcTradeMon {
     u32 species;
     u32 hpIV;
@@ -34,7 +32,7 @@ typedef struct NpcTradeData {
     Pokemon *mon;
     TrainerInfo *trainerInfo;
     u32 npcTradeID;
-    u32 heapID;
+    enum HeapId heapID;
 } NpcTradeData;
 
 NpcTradeData *NpcTrade_Init(u32 heapID, u32 entryID);

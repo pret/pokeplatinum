@@ -71,7 +71,7 @@ void Pocket_Sort(BagItem *pocket, const u32 size); // Same as Pocket_SortEmpty, 
 void *sub_0207D824(Bag *bag, const u8 *pockets, enum HeapId heapID);
 BagItem *Bag_GetItemSlot(Bag *bag, u16 pocketID, u16 slot);
 Bag *SaveData_GetBag(SaveData *saveData);
-BagCursor *BagCursor_New(u32 heapID);
+BagCursor *BagCursor_New(enum HeapId heapID);
 void BagCursor_GetFieldPocketPosition(BagCursor *cursor, u32 pocket, u8 *outIndex, u8 *outScroll);
 u16 BagCursor_GetFieldPocket(BagCursor *cursor);
 void BagCursor_SetFieldPocketPosition(BagCursor *cursor, u32 pocket, u8 index, u8 scroll);

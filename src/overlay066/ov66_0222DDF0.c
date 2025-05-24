@@ -244,7 +244,7 @@ typedef struct UnkStruct_ov66_0222DFF8_t {
     UnkStruct_ov66_02230A6C unk_4BC;
     UnkStruct_ov66_0222FBF0 unk_508;
     UnkStruct_ov66_0222DFF8_sub3 unk_510;
-    u32 heapID;
+    enum HeapId heapID;
     u32 unk_52C;
 } UnkStruct_ov66_0222DFF8;
 

@@ -384,7 +384,7 @@ Menu *Menu_MakeYesNoChoice(BgConfig *bgConfig, const WindowTemplate *winTemplate
     return Menu_MakeYesNoChoiceWithCursorAt(bgConfig, winTemplate, borderTileStart, borderPalette, 0, heapID);
 }
 
-u32 Menu_ProcessInputAndHandleExit(Menu *menu, u32 heapID)
+u32 Menu_ProcessInputAndHandleExit(Menu *menu, enum HeapId heapID)
 {
     u32 result = Menu_ProcessInput(menu);
     if (result != MENU_NOTHING_CHOSEN) {

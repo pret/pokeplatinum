@@ -30,7 +30,7 @@ static void sub_02015858(void *param0, u16 *param1);
 static void sub_02015870(void *param0, u16 *param1);
 static void sub_0201588C(void *param0, u16 *param1);
 
-void *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, u32 heapID)
+void *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, enum HeapId heapID)
 {
     UnkStruct_020157E4 *v0;
     SysTask *v1;

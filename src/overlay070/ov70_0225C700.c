@@ -26,7 +26,7 @@ void ov70_0225C714(const VecFx32 *param0, UnkStruct_ov63_0222CC3C *param1)
     param1->unk_02 = param0->z / (FX32_ONE);
 }
 
-void ov70_0225C730(void **param0, NARC *param1, u32 param2, u32 heapID)
+void ov70_0225C730(void **param0, NARC *param1, u32 param2, enum HeapId heapID)
 {
     u32 v0;
     void *v1;

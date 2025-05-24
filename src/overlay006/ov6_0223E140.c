@@ -211,7 +211,7 @@ typedef struct UnkStruct_ov6_022401B8_t {
     UnkStruct_ov6_02240240 unk_08;
     UnkStruct_ov6_02240260 unk_34;
     NNSFndAllocator unk_10C;
-    u32 heapID;
+    enum HeapId heapID;
 } UnkStruct_ov6_022401B8;
 
 typedef struct {

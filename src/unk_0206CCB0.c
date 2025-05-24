@@ -683,7 +683,7 @@ void sub_0206D158(UnkStruct_0206D140 *param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_0206D160(UnkStruct_0206D140 *param0, Pokemon *param1, int param2, int param3, u32 heapID)
+void sub_0206D160(UnkStruct_0206D140 *param0, Pokemon *param1, int param2, int param3, enum HeapId heapID)
 {
     MI_CpuClear32(param0, sizeof(UnkStruct_0206D140));
 

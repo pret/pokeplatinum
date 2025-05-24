@@ -258,7 +258,7 @@ typedef struct {
     s16 unk_96;
     u16 unk_98;
     s16 unk_9A;
-    u32 heapID;
+    enum HeapId heapID;
 } UnkStruct_ov115_02265788;
 
 typedef struct {

@@ -9,7 +9,7 @@ typedef struct {
     FieldBattleDTO *unk_00;
     Party *unk_04[4];
     Strbuf *unk_14[4];
-    u32 heapID;
+    enum HeapId heapID;
     u8 unk_28;
     u8 unk_29;
     u8 unk_2A;

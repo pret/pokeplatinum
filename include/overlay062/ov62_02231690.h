@@ -19,7 +19,7 @@
 #include "sprite_system.h"
 #include "strbuf.h"
 
-StringTemplate *ov62_02231690(u32 heapID);
+StringTemplate *ov62_02231690(enum HeapId heapID);
 int ov62_022316A0(UnkStruct_0208C06C *param0);
 int ov62_022316D0(UnkStruct_0208C06C *param0);
 int ov62_02231710(UnkStruct_0208C06C *param0, int param1);

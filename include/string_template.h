@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_STRING_TEMPLATE_H
 #define POKEPLATINUM_STRING_TEMPLATE_H
 
+#include "constants/heap.h"
 #include "generated/abilities.h"
 #include "generated/genders.h"
 
@@ -30,13 +31,13 @@ typedef struct StringTemplateArg {
 
 typedef struct StringTemplate {
     u32 maxArgs;
-    u32 heapID;
+    enum HeapId heapID;
     StringTemplateArg *args;
     Strbuf *templateBuf;
 } StringTemplate;
 
-StringTemplate *StringTemplate_Default(u32 heapID);
-StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, u32 heapID);
+StringTemplate *StringTemplate_Default(enum HeapId heapID);
+StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, enum HeapId heapID);
 void StringTemplate_Free(StringTemplate *template);
 void StringTemplate_SetStrbuf(StringTemplate *template, u32 idx, const Strbuf *argVal, u32 unused3, BOOL unused4, u32 unused5);
 void StringTemplate_SetPlayerName(StringTemplate *template, u32 idx, const TrainerInfo *playerInfo);

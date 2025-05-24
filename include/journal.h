@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_JOURNAL_H
 #define POKEPLATINUM_JOURNAL_H
 
+#include "constants/heap.h"
+
 #include "play_time.h"
 #include "savedata.h"
 #include "trainer_info.h"
@@ -76,52 +78,52 @@ JournalEntry *SaveData_GetJournal(SaveData *saveData);
 JournalEntry *Journal_GetSavedPage(JournalEntry *journalEntry, BOOL journalAcquired);
 BOOL Journal_CheckOpenOnContinue(JournalEntry *journalEntry, BOOL journalAcquired);
 void JournalEntry_SaveData(JournalEntry *journalEntry, void *data, u8 dataType);
-void *JournalEntry_CreateTitle(u16 mapID, u32 heapID);
-void *JournalEntry_CreateEventRestedAtHome(u32 heapID);
-void *JournalEntry_CreateEventLeftResearchLab(u32 heapID);
-void *JournalEntry_CreateEventUsedPCBox(u32 heapID);
-void *JournalEntry_CreateEventShoppedAtMart(u32 heapID);
-void *JournalEntry_CreateEventLotsOfShopping(u32 heapID);
-void *JournalEntry_CreateEventSoldALittle(u32 heapID);
-void *JournalEntry_CreateEventSoldALot(u32 heapID);
-void *JournalEntry_CreateEventBusinessAtMart(u32 heapID);
-void *JournalEntry_CreateEventGymTooTough(u16 defeatedGym, u32 heapID);
-void *JournalEntry_CreateEventGymLeader(u16 trainerType, u16 trainerID, u32 heapID);
-void *JournalEntry_CreateEventEliteFour(u16 trainerID, u32 heapID);
-void *JournalEntry_CreateEventChampion(u16 trainerID, u32 heapID);
-void *JournalEntry_CreateEventArrivedInLocation(u16 mapID, u32 heapID);
-void *JournalEntry_CreateEventLeftCave(u16 mapLabelTextID, u32 heapID);
-void *JournalEntry_CreateEventLeftBuilding(u16 mapLabelTextID, u32 heapID);
-void *JournalEntry_CreateEventGameCorner(u32 heapID);
-void *JournalEntry_CreateEventSafariGame(u32 heapID);
-void *JournalEntry_CreateEventObtainedItem(u16 item, u32 heapID);
-void *JournalEntry_CreateEventUsedMove(u8 moveIndex, u16 mapID, u32 heapID);
-void *JournalEntry_CreateEventDugUnderground(u32 heapID);
-void *JournalEntry_CreateEventBuiltSecretBase(u32 heapID);
-void *JournalEntry_CreateEventBattleFacility(u32 heapID, u32 eventType);
-void *JournalEntry_CreateEventMonCaught(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID);
-void *JournalEntry_CreateEventMonDefeated(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID);
-void *JournalEntry_CreateEventStandardTrainer(u16 mapID, u16 trainerID, u32 heapID);
-void *JournalEntry_CreateEventSingleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID);
-void *JournalEntry_CreateEventDoubleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID);
-void *JournalEntry_CreateEventMultiBattle(u16 *opponentName1, u16 *opponentName2, u8 opponentGender1, u8 opponentGender2, u8 battleResult, u32 heapID);
-void *JournalEntry_CreateEventMixSingleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID);
-void *JournalEntry_CreateEventGreetedInUnionRoom(u16 *trainerName, u8 trainerGender, u32 heapID);
-void *JournalEntry_CreateEventGotPokemonFromTrade(u16 *otName, u8 otGender, u16 *pokemonName, u8 pokemonGender, u32 heapID);
-void *JournalEntry_CreateEventDrewPictures(u32 heapID);
-void *JournalEntry_CreateEventUnionBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID);
-void *JournalEntry_CreateEventMixedRecords(u32 heapID);
-void *JournalEntry_CreateEventPlacedInContest(u8 placement, u32 heapID);
-void *JournalEntry_CreateEventMadePoffins(u32 heapID);
-void *JournalEntry_CreateEventGotPokemonGTS(u16 *otName, u8 otGender, u16 *pokemonName, u8 pokemonGender, u32 heapID);
-void *JournalEntry_CreateEventBattleRoom(u32 heapID);
-void *JournalEntry_CreateEventMisc(u32 heapID, u32 eventType);
-void *JournalEntry_CreateEventInteraction(const u16 *playerName, u8 playerGender, u32 heapID, u32 eventType);
-void *JournalEntry_CreateEventPlazaMinigame(int minigame, u32 heapID, u32 eventType);
+void *JournalEntry_CreateTitle(u16 mapID, enum HeapId heapID);
+void *JournalEntry_CreateEventRestedAtHome(enum HeapId heapID);
+void *JournalEntry_CreateEventLeftResearchLab(enum HeapId heapID);
+void *JournalEntry_CreateEventUsedPCBox(enum HeapId heapID);
+void *JournalEntry_CreateEventShoppedAtMart(enum HeapId heapID);
+void *JournalEntry_CreateEventLotsOfShopping(enum HeapId heapID);
+void *JournalEntry_CreateEventSoldALittle(enum HeapId heapID);
+void *JournalEntry_CreateEventSoldALot(enum HeapId heapID);
+void *JournalEntry_CreateEventBusinessAtMart(enum HeapId heapID);
+void *JournalEntry_CreateEventGymTooTough(u16 defeatedGym, enum HeapId heapID);
+void *JournalEntry_CreateEventGymLeader(u16 trainerType, u16 trainerID, enum HeapId heapID);
+void *JournalEntry_CreateEventEliteFour(u16 trainerID, enum HeapId heapID);
+void *JournalEntry_CreateEventChampion(u16 trainerID, enum HeapId heapID);
+void *JournalEntry_CreateEventArrivedInLocation(u16 mapID, enum HeapId heapID);
+void *JournalEntry_CreateEventLeftCave(u16 mapLabelTextID, enum HeapId heapID);
+void *JournalEntry_CreateEventLeftBuilding(u16 mapLabelTextID, enum HeapId heapID);
+void *JournalEntry_CreateEventGameCorner(enum HeapId heapID);
+void *JournalEntry_CreateEventSafariGame(enum HeapId heapID);
+void *JournalEntry_CreateEventObtainedItem(u16 item, enum HeapId heapID);
+void *JournalEntry_CreateEventUsedMove(u8 moveIndex, u16 mapID, enum HeapId heapID);
+void *JournalEntry_CreateEventDugUnderground(enum HeapId heapID);
+void *JournalEntry_CreateEventBuiltSecretBase(enum HeapId heapID);
+void *JournalEntry_CreateEventBattleFacility(enum HeapId heapID, u32 eventType);
+void *JournalEntry_CreateEventMonCaught(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, enum HeapId heapID);
+void *JournalEntry_CreateEventMonDefeated(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, enum HeapId heapID);
+void *JournalEntry_CreateEventStandardTrainer(u16 mapID, u16 trainerID, enum HeapId heapID);
+void *JournalEntry_CreateEventSingleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, enum HeapId heapID);
+void *JournalEntry_CreateEventDoubleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, enum HeapId heapID);
+void *JournalEntry_CreateEventMultiBattle(u16 *opponentName1, u16 *opponentName2, u8 opponentGender1, u8 opponentGender2, u8 battleResult, enum HeapId heapID);
+void *JournalEntry_CreateEventMixSingleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, enum HeapId heapID);
+void *JournalEntry_CreateEventGreetedInUnionRoom(u16 *trainerName, u8 trainerGender, enum HeapId heapID);
+void *JournalEntry_CreateEventGotPokemonFromTrade(u16 *otName, u8 otGender, u16 *pokemonName, u8 pokemonGender, enum HeapId heapID);
+void *JournalEntry_CreateEventDrewPictures(enum HeapId heapID);
+void *JournalEntry_CreateEventUnionBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, enum HeapId heapID);
+void *JournalEntry_CreateEventMixedRecords(enum HeapId heapID);
+void *JournalEntry_CreateEventPlacedInContest(u8 placement, enum HeapId heapID);
+void *JournalEntry_CreateEventMadePoffins(enum HeapId heapID);
+void *JournalEntry_CreateEventGotPokemonGTS(u16 *otName, u8 otGender, u16 *pokemonName, u8 pokemonGender, enum HeapId heapID);
+void *JournalEntry_CreateEventBattleRoom(enum HeapId heapID);
+void *JournalEntry_CreateEventMisc(enum HeapId heapID, u32 eventType);
+void *JournalEntry_CreateEventInteraction(const u16 *playerName, u8 playerGender, enum HeapId heapID, u32 eventType);
+void *JournalEntry_CreateEventPlazaMinigame(int minigame, enum HeapId heapID, u32 eventType);
 void JournalEntry_GetData(JournalEntry *journalEntry, void *dest, u8 dataType, u8 page);
-void JournalEntry_CreateAndSaveEventMapTransition(TrainerInfo *trainerInfo, JournalEntry *journalEntry, u32 currMapID, u32 prevMapID, u32 heapID);
+void JournalEntry_CreateAndSaveEventMapTransition(TrainerInfo *trainerInfo, JournalEntry *journalEntry, u32 currMapID, u32 prevMapID, enum HeapId heapID);
 u32 Journal_DoesBuildingUseExitedMessage(u32 mapLabelTextID);
-void JournalEntry_CreateAndSaveEventArrivedInLocation(JournalEntry *journalEntry, u32 mapID, u32 heapID);
-void JournalEntry_CreateAndSaveEventTrainer(JournalEntry *journalEntry, u16 mapID, u16 trainerID, u32 heapID);
+void JournalEntry_CreateAndSaveEventArrivedInLocation(JournalEntry *journalEntry, u32 mapID, enum HeapId heapID);
+void JournalEntry_CreateAndSaveEventTrainer(JournalEntry *journalEntry, u16 mapID, u16 trainerID, enum HeapId heapID);
 
 #endif // POKEPLATINUM_JOURNAL_H

@@ -74,7 +74,7 @@ static const UnkStruct_ov70_0226E774 Unk_ov70_0226E774[5] = {
     { 0x97, 0x97, 0xFFFE, 0x5B4, 0x5BB, 0x5B4 }
 };
 
-UnkStruct_ov70_0226CF38 *ov70_0226CE54(UnkStruct_ov70_0225DEE8 *param0, u32 heapID)
+UnkStruct_ov70_0226CF38 *ov70_0226CE54(UnkStruct_ov70_0225DEE8 *param0, enum HeapId heapID)
 {
     UnkStruct_ov70_0226CF38 *v0;
     int v1;

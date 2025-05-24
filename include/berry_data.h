@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_BERRY_DATA_H
 #define POKEPLATINUM_BERRY_DATA_H
 
+#include "constants/heap.h"
+
 #include "narc.h"
 #include "strbuf.h"
 
@@ -39,13 +41,13 @@ typedef struct BerryData {
     u8 smoothness;
 } BerryData;
 
-NARC *BerryData_NARC_ctor(u32 heapID);
-BerryData *BerryData_LoadFromOpenNARC(NARC *narc, u32 memberIdx, u32 heapID);
+NARC *BerryData_NARC_ctor(enum HeapId heapID);
+BerryData *BerryData_LoadFromOpenNARC(NARC *narc, u32 memberIdx, enum HeapId heapID);
 void BerryData_NARC_dtor(NARC *narc);
-BerryData *BerryData_Load(u32 memberIdx, u32 heapID);
-BerryData *BerryData_LoadDataByItemID(u32 itemID, u32 heapID);
+BerryData *BerryData_Load(u32 memberIdx, enum HeapId heapID);
+BerryData *BerryData_LoadDataByItemID(u32 itemID, enum HeapId heapID);
 u32 BerryData_GetAttribute(BerryData *berryData, u32 attributeID);
-Strbuf *BerryData_AllocAndGetName(u16 memberIdx, u32 heapID);
+Strbuf *BerryData_AllocAndGetName(u16 memberIdx, enum HeapId heapID);
 Strbuf *BerryData_AllocAndGetDescription(u16 memberIdx, u16 heapID);
 
 #endif // POKEPLATINUM_BERRY_DATA_H

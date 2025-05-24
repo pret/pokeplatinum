@@ -199,7 +199,7 @@ u16 Item_IconNANRFile(void);
  * @param heapID    ID of the heap to own the allocated memory.
  * @return The loaded data structure.
  */
-void *Item_Load(u16 item, enum ItemFileType type, u32 heapID);
+void *Item_Load(u16 item, enum ItemFileType type, enum HeapId heapID);
 
 /**
  * @brief Load the name of the item into a string buffer.
@@ -208,7 +208,7 @@ void *Item_Load(u16 item, enum ItemFileType type, u32 heapID);
  * @param item      The item whose name we should load.
  * @param heapID    ID of the heap to own memory needed for the text archive.
  */
-void Item_LoadName(Strbuf *dst, u16 item, u32 heapID);
+void Item_LoadName(Strbuf *dst, u16 item, enum HeapId heapID);
 
 /**
  * @brief Load the description of the item into a string buffer.
@@ -227,7 +227,7 @@ void Item_LoadDescription(Strbuf *dst, u16 item, u16 heapID);
  * @param heapID    The heap on which to load the item data.
  * @return Parameter value from the loaded item.
  */
-s32 Item_LoadParam(u16 item, enum ItemDataParam param, u32 heapID);
+s32 Item_LoadParam(u16 item, enum ItemDataParam param, enum HeapId heapID);
 
 /**
  * @brief Get a param value from a loaded item.

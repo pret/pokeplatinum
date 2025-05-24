@@ -38,12 +38,12 @@
 static void InitStringTemplateArgHeader(StringTemplateArgHeader *header);
 static void SetStringTemplateArg(StringTemplate *template, u32 idx, const Strbuf *argVal, const StringTemplateArgHeader *newHeader);
 
-StringTemplate *StringTemplate_Default(u32 heapID)
+StringTemplate *StringTemplate_Default(enum HeapId heapID)
 {
     return StringTemplate_New(STRING_TEMPLATE_DEFAULT_MAX_ARGS, STRING_TEMPLATE_DEFAULT_MAX_LENGTH, heapID);
 }
 
-StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, u32 heapID)
+StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, enum HeapId heapID)
 {
     StringTemplate *template = NULL;
 

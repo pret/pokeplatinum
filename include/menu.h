@@ -63,7 +63,7 @@ u8 Menu_GetCursorPos(Menu *menu);
 u8 Menu_GetLastAction(Menu *menu);
 Menu *Menu_MakeYesNoChoiceWithCursorAt(BgConfig *bgConfig, const WindowTemplate *winTemplate, u16 borderTileStart, u8 borderPalette, u8 cursorStart, u32 heapID);
 Menu *Menu_MakeYesNoChoice(BgConfig *bgConfig, const WindowTemplate *winTemplate, u16 borderTileStart, u8 borderPalette, u32 heapID);
-u32 Menu_ProcessInputAndHandleExit(Menu *menu, u32 heapID);
+u32 Menu_ProcessInputAndHandleExit(Menu *menu, enum HeapId heapID);
 u32 Menu_ProcessExternalInputAndHandleExit(Menu *menu, u8 input, u32 heapID);
 void Menu_DestroyForExit(Menu *menu, u32 heapID);
 void Window_DrawMenuCursor(Window *window, u32 x, u32 y);

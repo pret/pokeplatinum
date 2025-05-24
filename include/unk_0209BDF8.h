@@ -1,10 +1,12 @@
 #ifndef POKEPLATINUM_UNK_0209BDF8_H
 #define POKEPLATINUM_UNK_0209BDF8_H
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_0209C194_decl.h"
 #include "struct_defs/struct_0209BDF8.h"
 
-UnkStruct_0209BDF8 *sub_0209BDF8(UnkStruct_0209C194 *param0, u32 heapID);
+UnkStruct_0209BDF8 *sub_0209BDF8(UnkStruct_0209C194 *param0, enum HeapId heapID);
 void sub_0209BE38(UnkStruct_0209BDF8 *param0);
 void sub_0209BE50(UnkStruct_0209BDF8 *param0);
 void sub_0209BE64(UnkStruct_0209BDF8 *param0);

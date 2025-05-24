@@ -44,7 +44,7 @@ static void UpdateBgAffineRotationCenterWithVal(Background *bg, enum BgAffineUpd
 static void RunScheduledScrolls(BgConfig *bgConfig);
 static void RunScheduledTilemapTransfers(BgConfig *bgConfig);
 
-BgConfig *BgConfig_New(u32 heapID)
+BgConfig *BgConfig_New(enum HeapId heapID)
 {
     BgConfig *bgConfig = Heap_AllocFromHeap(heapID, sizeof(BgConfig));
 

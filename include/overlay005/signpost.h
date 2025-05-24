@@ -13,7 +13,7 @@ typedef struct Signpost {
     u8 active : 1;
 } Signpost;
 
-void *Signpost_Init(u32 heapID);
+void *Signpost_Init(enum HeapId heapID);
 void Signpost_Free(Signpost *signpost);
 void Signpost_SetTypeAndNARCMemberIdx(Signpost *signpost, u16 signpostType, u16 signpostNARCMemberIdx);
 void Signpost_SetCommand(Signpost *signpost, u8 param1);

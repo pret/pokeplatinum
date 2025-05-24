@@ -601,7 +601,7 @@ void Window_EraseSignpost(Window *window, u8 signpostType, u8 skipTransfer)
 void *Window_AddWaitDial(Window *window, u32 baseTile)
 {
     WaitDial *dial;
-    u32 heapID;
+    enum HeapId heapID;
     u8 *bgCharPtr;
     u8 *dialTiles;
     u8 *tmp;

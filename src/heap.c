@@ -151,7 +151,7 @@ static BOOL CreateHeapInternal(u32 parent, u32 child, u32 size, s32 alignment)
     return FALSE;
 }
 
-void Heap_Destroy(u32 heapID)
+void Heap_Destroy(enum HeapId heapID)
 {
     GF_ASSERT(OS_GetProcMode() != OS_PROCMODE_IRQ);
 
@@ -343,7 +343,7 @@ void Heap_ReallocFromHeap(void *ptr, u32 newSize)
     }
 }
 
-BOOL GF_heap_c_dummy_return_true(u32 heapID)
+BOOL GF_heap_c_dummy_return_true(enum HeapId heapID)
 {
     return TRUE;
 }

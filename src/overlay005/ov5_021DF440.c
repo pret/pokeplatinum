@@ -40,7 +40,7 @@ typedef struct UnkStruct_ov5_021DF8FC_t UnkStruct_ov5_021DF8FC;
 typedef struct UnkStruct_ov5_021DF8C8_t UnkStruct_ov5_021DF8C8;
 
 typedef struct UnkStruct_ov5_021DF47C_t {
-    u32 heapID;
+    enum HeapId heapID;
     u32 unk_04;
     u32 unk_08;
     u32 unk_0C;
@@ -57,7 +57,7 @@ typedef struct UnkStruct_ov5_021DF6AC_t {
 } UnkStruct_ov5_021DF6AC;
 
 typedef struct UnkStruct_ov5_021DF8FC_t {
-    u32 heapID;
+    enum HeapId heapID;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;

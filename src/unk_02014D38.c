@@ -120,7 +120,7 @@ static const struct {
 };
 
 typedef struct UnkStruct_02014D38_t {
-    u32 heapID;
+    enum HeapId heapID;
     MessageLoader *unk_04[11];
 } UnkStruct_02014D38;
 

@@ -7,7 +7,7 @@
 #include "message.h"
 #include "strbuf.h"
 
-static StringList *FindFirstEmptyEntry(StringList *list, u32 *outHeapID);
+static StringList *FindFirstEmptyEntry(StringList *list, enum HeapId *outHeapID);
 static void FreeEntries(StringList *list);
 
 StringList *StringList_New(u32 capacity, u32 heapID)
@@ -38,7 +38,7 @@ void StringList_Free(StringList *list)
 
 void StringList_AddFromMessageBank(StringList *list, const MessageLoader *loader, u32 bankEntry, u32 index)
 {
-    u32 tmp;
+    enum HeapId tmp;
     list = FindFirstEmptyEntry(list, &tmp);
 
     if (list) {
@@ -49,7 +49,7 @@ void StringList_AddFromMessageBank(StringList *list, const MessageLoader *loader
 
 void StringList_AddFromStrbuf(StringList *list, const Strbuf *strbuf, u32 index)
 {
-    u32 heapID;
+    enum HeapId heapID;
     list = FindFirstEmptyEntry(list, &heapID);
 
     if (list) {
@@ -60,7 +60,7 @@ void StringList_AddFromStrbuf(StringList *list, const Strbuf *strbuf, u32 index)
 
 void StringList_AddFromEntry(StringList *list, const StringList *entry)
 {
-    u32 tmp;
+    enum HeapId tmp;
     list = FindFirstEmptyEntry(list, &tmp);
 
     if (list) {
@@ -69,7 +69,7 @@ void StringList_AddFromEntry(StringList *list, const StringList *entry)
     }
 }
 
-static StringList *FindFirstEmptyEntry(StringList *list, u32 *outHeapID)
+static StringList *FindFirstEmptyEntry(StringList *list, enum HeapId *outHeapID)
 {
     while (list->entry != NULL) {
         if (list->entry == STRING_LIST_TERMINATOR) {

@@ -33,7 +33,7 @@ int ov105_02245F8C(UnkStruct_ov105_02245EA8 *param0);
 void ov105_02245F90(UnkStruct_ov105_02245EA8 *param0, u32 param1);
 void ov105_02245FAC(UnkStruct_ov105_02245EA8 *param0, u32 param1);
 
-UnkStruct_ov105_02245EA8 *ov105_02245E54(UnkStruct_ov105_02245AAC *param0, int param1, int param2, u32 heapID)
+UnkStruct_ov105_02245EA8 *ov105_02245E54(UnkStruct_ov105_02245AAC *param0, int param1, int param2, enum HeapId heapID)
 {
     UnkStruct_ov105_02245EA8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov105_02245EA8));
     memset(v0, 0, sizeof(UnkStruct_ov105_02245EA8));

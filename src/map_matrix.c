@@ -62,7 +62,7 @@ MapMatrix *MapMatrix_New(void)
     return MapMatrix_NewWithHeapID(HEAP_ID_FIELDMAP);
 }
 
-MapMatrix *MapMatrix_NewWithHeapID(u32 heapID)
+MapMatrix *MapMatrix_NewWithHeapID(enum HeapId heapID)
 {
     MapMatrix *mapMatrix = Heap_AllocFromHeap(heapID, sizeof(MapMatrix));
     mapMatrix->width = 0;
@@ -146,7 +146,7 @@ int MapMatrix_GetAltitudeAtCoords(const MapMatrix *mapMatrix, const int param1, 
     return mapMatrix->data.altitudes[x + y * width];
 }
 
-MainMapMatrixData *MainMapMatrixData_Load(const u32 heapID)
+MainMapMatrixData *MainMapMatrixData_Load(const enum HeapId heapID)
 {
     MainMapMatrixData *mainMapMatrixData = Heap_AllocFromHeap(heapID, sizeof(MainMapMatrixData));
     void *buffer = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MAPMATRIX__MAP_MATRIX, 0, heapID);

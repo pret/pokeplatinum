@@ -3,6 +3,7 @@
 
 #include <nitro/fx/fx.h>
 #include <nitro/gx.h>
+#include "constants/heap.h"
 
 #define TILE_SIZE_4BPP 0x20
 #define TILE_SIZE_8BPP 0x40
@@ -133,7 +134,7 @@ typedef struct Background {
 } Background;
 
 typedef struct BgConfig {
-    u32 heapID;
+    enum HeapId heapID;
     u16 scrollScheduled;
     u16 bufferTransferScheduled;
     Background bgs[8];
@@ -172,7 +173,7 @@ typedef struct GraphicsModes {
 void SetAllGraphicsModes(const GraphicsModes *graphicsModes);
 void SetScreenGraphicsModes(const GraphicsModes *graphicsModes, u8 screen);
 
-BgConfig *BgConfig_New(u32 heapID);
+BgConfig *BgConfig_New(enum HeapId heapID);
 u32 BgConfig_GetHeapID(BgConfig *bgConfig);
 void Bg_InitFromTemplate(BgConfig *bgConfig, u8 bgLayer, const BgTemplate *bgTemplate, u8 bgType);
 void Bg_SetControlParam(BgConfig *bgConfig, u8 bgLayer, enum BgControlParam bgControlParam, u8 val);

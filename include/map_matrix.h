@@ -2,6 +2,7 @@
 #define POKEPLATINUM_MAP_MATRIX_H
 
 #include "constants/field/map_matrix.h"
+#include "constants/heap.h"
 
 typedef struct MapMatrixData {
     u8 height;
@@ -24,7 +25,7 @@ typedef struct MainMapMatrixData {
 } MainMapMatrixData;
 
 MapMatrix *MapMatrix_New(void);
-MapMatrix *MapMatrix_NewWithHeapID(u32 heapID);
+MapMatrix *MapMatrix_NewWithHeapID(enum HeapId heapID);
 void MapMatrix_Load(const int mapHeaderID, MapMatrix *mapMatrix);
 void MapMatrix_Free(MapMatrix *const mapMatrix);
 void MapMatrix_Copy(MapMatrix *src, MapMatrix *dest);
@@ -41,7 +42,7 @@ void MapMatrix_RevealSeabreakPath(MapMatrix *mapMatrix);
 
 int MapMatrixData_GetMapHeaderIDAtCoords(const int mapMatrixID, const u16 x, const u16 y);
 
-MainMapMatrixData *MainMapMatrixData_Load(const u32 heapID);
+MainMapMatrixData *MainMapMatrixData_Load(const enum HeapId heapID);
 void MainMapMatrixData_Free(MainMapMatrixData *mainMapMatrixData);
 int MainMapMatrixData_GetMapHeaderIDAtCoords(const MainMapMatrixData *mainMapMatrixData, const u32 x, const u32 y);
 
