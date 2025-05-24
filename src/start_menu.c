@@ -1043,7 +1043,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->dataType = SUMMARY_DATA_PARTY_MON;
         summary->monIndex = partyMan->selectedMonSlot;
         summary->monMax = 1;
-        summary->move = partyMan->levelUpMove;
+        summary->move = partyMan->learnedMove;
         summary->mode = SUMMARY_MODE_SELECT_MOVE;
         summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
@@ -1070,7 +1070,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->dataType = SUMMARY_DATA_PARTY_MON;
         summary->monIndex = partyMan->selectedMonSlot;
         summary->monMax = 1;
-        summary->move = partyMan->levelUpMove;
+        summary->move = partyMan->learnedMove;
         summary->mode = SUMMARY_MODE_SELECT_MOVE;
         summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
@@ -1607,7 +1607,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
 
         v3->usedItemID = v4->unk_00;
         v3->selectedMonSlot = v2->monIndex;
-        v3->levelUpMove = v2->move;
+        v3->learnedMove = v2->move;
         v3->unk_28 = v2->selectedMoveSlot;
 
         FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v3);

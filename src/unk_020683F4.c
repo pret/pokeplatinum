@@ -580,28 +580,28 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 {
     FieldSystem *fieldSystem;
     StartMenu *menu;
-    PartyManagementData *v2;
+    PartyManagementData *partyMan;
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     menu = FieldTask_GetEnv(param0->unk_00);
-    v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+    partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
-    memset(v2, 0, sizeof(PartyManagementData));
+    memset(partyMan, 0, sizeof(PartyManagementData));
 
-    v2->party = SaveData_GetParty(fieldSystem->saveData);
-    v2->bag = SaveData_GetBag(fieldSystem->saveData);
-    v2->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
-    v2->options = SaveData_GetOptions(fieldSystem->saveData);
-    v2->fieldMoveContext = &menu->fieldMoveContext;
-    v2->unk_21 = 0;
-    v2->unk_20 = 6;
-    v2->fieldSystem = fieldSystem;
-    v2->usedItemID = param0->unk_04;
-    v2->selectedMonSlot = param0->unk_06;
-    v2->levelUpMove = Item_MoveForTMHM(param0->unk_04);
+    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMan->fieldMoveContext = &menu->fieldMoveContext;
+    partyMan->unk_21 = 0;
+    partyMan->unk_20 = 6;
+    partyMan->fieldSystem = fieldSystem;
+    partyMan->usedItemID = param0->unk_04;
+    partyMan->selectedMonSlot = param0->unk_06;
+    partyMan->learnedMove = Item_MoveForTMHM(param0->unk_04);
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
-    menu->taskData = v2;
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    menu->taskData = partyMan;
     sub_0203B674(menu, sub_0203B7C0);
 }
 
