@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "party.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -211,7 +211,7 @@ const u16 Unk_ov107_02249E12[] = {
 
 struct UnkStruct_ov107_02241D6C_t {
     OverlayManager * unk_00;
-    BattleFrontier * unk_04;
+    BattleFrontier *frontier;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -473,7 +473,7 @@ int ov107_02241AE0 (OverlayManager * param0, int * param1)
     v1->unk_43C = v2->unk_18;
     v1->unk_12 = 0xff;
     v1->unk_49A = v2->unk_28;
-    v1->unk_04 = SaveData_GetBattleFrontier(v1->saveData);
+    v1->frontier = SaveData_GetBattleFrontier(v1->saveData);
 
     for (v0 = 0; v0 < 3; v0++) {
         v1->unk_497[v0] = 1;
@@ -816,7 +816,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
             } else {
                 param0->unk_13 = v6;
                 ov107_02244094(param0);
-                v3 = sub_02030698(param0->unk_04, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
+                v3 = sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
                 ov107_02244A74(param0, 0, Unk_ov107_02249E46[0][v2], 4, 0);
                 param0->unk_0A = ov107_02243918(param0, 38, FONT_MESSAGE);
                 ov107_022441DC(param0);
@@ -835,7 +835,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
             v7 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param0->unk_0D));
             ov107_02245618(param0);
 
-            v3 = sub_02030698(param0->unk_04, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
+            v3 = sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
             v2 = ov107_02249CAC(param0->saveData, param0->unk_09, 0);
 
             if (v2 < Unk_ov107_02249FF0[param0->unk_16][0]) {
@@ -875,7 +875,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
             ov107_02245288(&param0->unk_50[6]);
 
             if (ov104_0223BA14(param0->unk_09) == 0) {
-                ov104_0223BC2C(param0->unk_04, param0->unk_09, Unk_ov107_02249E0C[param0->unk_13 - 1]);
+                ov104_0223BC2C(param0->frontier, param0->unk_09, Unk_ov107_02249E0C[param0->unk_13 - 1]);
                 ov107_02245780(param0, &param0->unk_50[0]);
                 ov107_022454F8(param0, param0->unk_0D, param0->unk_13);
                 param0->unk_08 = 18;
@@ -902,7 +902,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         case 0:
             ov107_02245618(param0);
 
-            v3 = sub_02030698(param0->unk_04, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
+            v3 = sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
             v2 = ov107_02249CAC(param0->saveData, param0->unk_09, 0);
 
             if (v3 < Unk_ov107_02249E46[0][v2]) {
@@ -1047,7 +1047,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
             break;
         case 0:
             ov107_02245618(param0);
-            v3 = sub_02030698(param0->unk_04, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
+            v3 = sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
 
             if (v3 < ov107_02244D5C(param0, param0->unk_16, param0->unk_13)) {
                 ov107_02249DBC(&param0->unk_50[6], Options_Frame(param0->unk_1C8));
@@ -1062,7 +1062,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
                 if (ov104_0223BA14(param0->unk_09) == 0) {
                     ov107_02244120(param0);
                     ov107_02249DBC(&param0->unk_50[6], Options_Frame(param0->unk_1C8));
-                    ov104_0223BC2C(param0->unk_04, param0->unk_09, ov107_02244D5C(param0, param0->unk_16, param0->unk_13));
+                    ov104_0223BC2C(param0->frontier, param0->unk_09, ov107_02244D5C(param0, param0->unk_16, param0->unk_13));
                     ov107_02245780(param0, &param0->unk_50[0]);
                     ov107_022455A0(param0, param0->unk_0D, ov107_02244DE0(param0, param0->unk_16, param0->unk_13));
                     param0->unk_08 = 18;
@@ -1097,7 +1097,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         case 0:
             ov107_02245618(param0);
 
-            v3 = sub_02030698(param0->unk_04, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
+            v3 = sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
             v2 = ov107_02249CAC(param0->saveData, param0->unk_09, 1);
 
             if (v3 < Unk_ov107_02249E46[1][v2]) {
@@ -1175,7 +1175,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
             if (ov104_0223BA14(param0->unk_09) == 0) {
                 ov107_02244120(param0);
                 ov107_02249DBC(&param0->unk_50[6], Options_Frame(param0->unk_1C8));
-                ov104_0223BC2C(param0->unk_04, param0->unk_09, ov107_02244D5C(param0, param0->unk_16, param0->unk_13));
+                ov104_0223BC2C(param0->frontier, param0->unk_09, ov107_02244D5C(param0, param0->unk_16, param0->unk_13));
                 ov107_02245780(param0, &param0->unk_50[0]);
                 ov107_022455A0(param0, param0->unk_0D, ov107_02244DE0(param0, param0->unk_16, param0->unk_13));
                 param0->unk_08 = 18;
@@ -2236,7 +2236,7 @@ static void ov107_02243DE4 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
 
 static void ov107_02243E74 (UnkStruct_ov107_02241D6C * param0, Window * param1)
 {
-    u16 v0 = sub_02030698(param0->unk_04, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
+    u16 v0 = sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
 
     ov107_02249D84(param0->unk_4C, param1);
     Window_FillTilemap(param1, 15);
@@ -4001,7 +4001,7 @@ static void ov107_022459D0 (UnkStruct_ov107_02241D6C * param0, u8 param1, u8 par
     if (CommSys_CurNetId() == 0) {
         if (param1 < v1) {
             ov107_02244A98(param0, 5);
-            ov104_0223BC2C(param0->unk_04, param0->unk_09, v2);
+            ov104_0223BC2C(param0->frontier, param0->unk_09, v2);
         } else {
             ov107_02249CF4(param0->unk_24, 5);
             param0->unk_49A -= v2;
@@ -4012,7 +4012,7 @@ static void ov107_022459D0 (UnkStruct_ov107_02241D6C * param0, u8 param1, u8 par
             param0->unk_49A -= v2;
         } else {
             ov107_02244A98(param0, 5);
-            ov104_0223BC2C(param0->unk_04, param0->unk_09, v2);
+            ov104_0223BC2C(param0->frontier, param0->unk_09, v2);
         }
     }
 
@@ -4139,7 +4139,7 @@ static void ov107_02245C94 (UnkStruct_ov107_02241D6C * param0, u8 param1, u8 par
             ov107_02244A98(param0, 5);
 
             v4 = ov107_02249CAC(param0->saveData, param0->unk_09, v2);
-            ov104_0223BC2C(param0->unk_04, param0->unk_09, Unk_ov107_02249E46[v2][v4]);
+            ov104_0223BC2C(param0->frontier, param0->unk_09, Unk_ov107_02249E46[v2][v4]);
 
             v4 = ov107_02249CAC(param0->saveData, param0->unk_09, v2);
             v5[0] = (v4 + 1);
@@ -4168,7 +4168,7 @@ static void ov107_02245C94 (UnkStruct_ov107_02241D6C * param0, u8 param1, u8 par
             ov107_02244A98(param0, 5);
             v4 = ov107_02249CAC(param0->saveData, param0->unk_09, v2);
 
-            ov104_0223BC2C(param0->unk_04, param0->unk_09, Unk_ov107_02249E46[v2][v4]);
+            ov104_0223BC2C(param0->frontier, param0->unk_09, Unk_ov107_02249E46[v2][v4]);
             v4 = ov107_02249CAC(param0->saveData, param0->unk_09, v2);
 
             v5[0] = (v4 + 1);

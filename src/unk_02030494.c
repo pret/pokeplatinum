@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_020304A0.h"
 #include "struct_defs/struct_020305B8.h"
-#include "struct_defs/struct_0203068C.h"
 
 #include "savedata.h"
 
@@ -26,8 +26,8 @@ void sub_02030494(UnkStruct_020304A0 *param0)
 
 UnkStruct_020304A0 *sub_020304A0(SaveData *saveData)
 {
-    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &v0->unk_8E0_val5;
+    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    return &frontier->unk_8E0_val5;
 }
 
 BOOL sub_020304B0(UnkStruct_020304A0 *param0)
@@ -115,8 +115,8 @@ void sub_020305AC(UnkStruct_020305B8 *param0)
 
 UnkStruct_020305B8 *sub_020305B8(SaveData *saveData)
 {
-    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &v0->unk_1620.unk_00;
+    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    return &frontier->unk_1620.unk_00;
 }
 
 void sub_020305CC(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, const void *param4)

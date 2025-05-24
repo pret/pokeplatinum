@@ -5,7 +5,7 @@
 
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0202E858.h"
 #include "struct_defs/struct_0202E8C0.h"
 #include "struct_defs/struct_0202E91C.h"
@@ -121,7 +121,7 @@ static u32 *sub_0202E924(SaveData *saveData, int heapID)
     int v0;
     u32 v1;
     GameRecords *v2;
-    BattleFrontier *v3;
+    BattleFrontier *frontier;
     u32 *v4;
     static const int v5[] = {
         0x0,
@@ -140,7 +140,7 @@ static u32 *sub_0202E924(SaveData *saveData, int heapID)
     };
 
     v2 = SaveData_GetGameRecords(saveData);
-    v3 = SaveData_GetBattleFrontier(saveData);
+    frontier = SaveData_GetBattleFrontier(saveData);
     v4 = Heap_AllocFromHeapAtEnd(heapID, 4 * 13);
 
     for (v0 = 0; v0 < 13; v0++) {
@@ -171,7 +171,7 @@ static u32 *sub_0202E924(SaveData *saveData, int heapID)
             break;
         default:
             if ((v0 >= 0) && (v0 <= 4)) {
-                v4[v0] = sub_02030698(v3, v5[v0], 0xff);
+                v4[v0] = sub_02030698(frontier, v5[v0], 0xff);
             } else {
                 v4[v0] = GameRecords_GetRecordValue(v2, v5[v0]);
             }

@@ -5,7 +5,7 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 
 #include "savedata/save_table.h"
 
@@ -119,7 +119,7 @@ static u16 sub_02030954(SaveData *saveData, BattleFrontierStage *param1, int par
 
 BOOL sub_020309A0(SaveData *saveData, int param1, int param2, int param3, int param4, enum HeapId heapID, int *param6, int *param7)
 {
-    BattleFrontier *v0;
+    BattleFrontier *frontier;
     BattleFrontierStage *v1;
     u16 v2, v3, v4;
     int v5;
@@ -139,9 +139,9 @@ BOOL sub_020309A0(SaveData *saveData, int param1, int param2, int param3, int pa
         return v6;
     }
 
-    v0 = SaveData_GetBattleFrontier(saveData);
-    v3 = sub_02030698(v0, param1, param3);
-    v5 = sub_02030698(v0, param2, param3);
+    frontier = SaveData_GetBattleFrontier(saveData);
+    v3 = sub_02030698(frontier, param1, param3);
+    v5 = sub_02030698(frontier, param2, param3);
     v1 = sub_020308A0(saveData, heapID, param6);
 
     if (*param6 != 1) {
