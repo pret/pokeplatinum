@@ -36,8 +36,8 @@ typedef struct {
     Sprite *unk_5B0[29];
     ManagedSprite *unk_624[29];
     UnkStruct_0200C440 *unk_698;
-    MessageLoader *unk_69C;
-    StringTemplate *unk_6A0;
+    MessageLoader *messageLoader;
+    StringTemplate *template;
     Strbuf *unk_6A4;
     Strbuf *unk_6A8;
     Strbuf *unk_6AC[20];
@@ -54,11 +54,11 @@ typedef struct {
     u8 unk_B0F_0 : 6;
     u8 unk_B0F_6 : 1;
     u8 unk_B0F_7 : 1;
-    u8 unk_B10;
-    u8 unk_B11;
+    u8 textPrinterID;
+    u8 partySlot;
     u8 unk_B12;
     u8 unk_B13;
-    u16 unk_B14[6];
+    u16 monStats[6];
     HeightWeightData *unk_B20;
     OverlayMetadata *unk_B24;
     GenericPointerData *unk_B28;

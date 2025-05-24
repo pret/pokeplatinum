@@ -598,7 +598,7 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v2->fieldSystem = fieldSystem;
     v2->usedItemID = param0->unk_04;
     v2->selectedMonSlot = param0->unk_06;
-    v2->unk_26 = Item_MoveForTMHM(param0->unk_04);
+    v2->levelUpMove = Item_MoveForTMHM(param0->unk_04);
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
     menu->taskData = v2;

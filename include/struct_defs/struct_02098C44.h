@@ -25,7 +25,7 @@ typedef struct {
     u8 selectedMonSlot;
     u8 unk_23;
     u16 usedItemID;
-    u16 unk_26;
+    u16 learnedMove;
     u8 unk_28;
     u8 unk_29;
     u8 unk_2A;
@@ -35,7 +35,7 @@ typedef struct {
     u8 unk_32_4 : 4;
     u8 unk_33;
     int unk_34;
-    u16 unk_38;
+    u16 evoTargetSpecies;
     u8 padding_3A[2];
     int unk_3C;
 } PartyManagementData;

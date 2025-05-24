@@ -63,13 +63,13 @@ void ov118_021D0D80(GameWindowLayout *param0)
 
     param0->unk_B24 = Heap_AllocFromHeap(HEAP_ID_12, sizeof(OverlayMetadata));
     MI_CpuClear8(param0->unk_B24, sizeof(OverlayMetadata));
-    param0->unk_B24->unk_14 = param0->unk_B11;
+    param0->unk_B24->unk_14 = param0->partySlot;
 }
 
 int ov118_021D0DBC(GameWindowLayout *param0)
 {
     OverlayMetadata *v0 = param0->unk_B24;
-    Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->unk_B11);
+    Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
 
     switch (v0->unk_00) {
     case 0: {
@@ -113,7 +113,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
         v0->unk_04++;
 
         if (v0->unk_04 == v0->unk_08) {
-            sub_02082DA8(param0, param0->unk_B11);
+            sub_02082DA8(param0, param0->partySlot);
         }
 
         ov118_021D10E8();
@@ -138,17 +138,17 @@ int ov118_021D0DBC(GameWindowLayout *param0)
     case 9: {
         Strbuf *v2;
 
-        v2 = MessageLoader_GetNewStrbuf(param0->unk_69C, 202);
+        v2 = MessageLoader_GetNewStrbuf(param0->messageLoader, 202);
 
-        StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
-        StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v2);
+        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(v1));
+        StringTemplate_Format(param0->template, param0->unk_6A4, v2);
         Strbuf_Free(v2);
         sub_02082708(param0, 0xffffffff, 1);
     }
         v0->unk_00++;
         break;
     case 10:
-        if (Text_IsPrinterActive(param0->unk_B10) == 0) {
+        if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
             ov118_021D0F70(param0);
             param0->partyManagementData->unk_23 = 0;
             return 1;

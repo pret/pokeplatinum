@@ -274,10 +274,10 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     sub_02082E58(v0);
     sub_0207EE14(v0);
     sub_0207F308(v0);
-    sub_02080500(v0, v0->unk_B11, 1);
+    sub_02080500(v0, v0->partySlot, 1);
 
     if ((v0->partyManagementData->unk_20 == 5) || (v0->partyManagementData->unk_20 == 16)) {
-        if (sub_020857A8(v0->partyManagementData->usedItemID) == 0) {
+        if (CheckItemSacredAsh(v0->partyManagementData->usedItemID) == 0) {
             sub_020826E0(v0, 32, 1);
         }
     } else if (v0->partyManagementData->unk_20 == 6) {
@@ -438,7 +438,7 @@ static int sub_0207E2A8(OverlayManager *param0, int *param1)
         break;
     case 33:
         if (IsScreenTransitionDone() == 1) {
-            v0->partyManagementData->selectedMonSlot = v0->unk_B11;
+            v0->partyManagementData->selectedMonSlot = v0->partySlot;
             return 1;
         }
         break;
@@ -456,7 +456,7 @@ static int sub_0207E490(GameWindowLayout *param0)
 {
     if (IsScreenTransitionDone() == 1) {
         if ((param0->partyManagementData->unk_20 == 5) || (param0->partyManagementData->unk_20 == 16)) {
-            if (sub_020857A8(param0->partyManagementData->usedItemID) == 1) {
+            if (CheckItemSacredAsh(param0->partyManagementData->usedItemID) == 1) {
                 param0->unk_B0E = 0;
                 return 7;
             }
@@ -578,7 +578,7 @@ static int sub_0207E634(GameWindowLayout *param0)
 
 static int sub_0207E6C0(GameWindowLayout *param0)
 {
-    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         return param0->unk_B0E;
     }
 
@@ -620,13 +620,13 @@ static int sub_0207E750(GameWindowLayout *param0)
     if ((v0 == 0) || (v0 == 2)) {
         Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
 
-        if (param0->unk_704[param0->unk_B11].unk_10 != 1) {
+        if (param0->unk_704[param0->partySlot].unk_10 != 1) {
             return sub_0208615C(param0);
         } else {
             sub_02082708(param0, 0xffffffff, 1);
             param0->partyManagementData->unk_23 = 0;
             param0->unk_B0E = 25;
-            MessageLoader_GetStrbuf(param0->unk_69C, 105, param0->unk_6A4);
+            MessageLoader_GetStrbuf(param0->messageLoader, 105, param0->unk_6A4);
             return 24;
         }
     } else if (v0 == 3) {
@@ -660,9 +660,9 @@ static int sub_0207E7E0(OverlayManager *param0, int *param1)
         Strbuf_Free(v0->unk_6AC[v1]);
     }
 
-    MessageLoader_Free(v0->unk_69C);
+    MessageLoader_Free(v0->messageLoader);
     sub_0200C560(v0->unk_698);
-    StringTemplate_Free(v0->unk_6A0);
+    StringTemplate_Free(v0->template);
 
     if (v0->unk_B20 != NULL) {
         sub_0207A2C0(v0->unk_B20);
@@ -952,9 +952,9 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
         v0->unk_B20 = NULL;
     }
 
-    v0->unk_69C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0453, HEAP_ID_12);
+    v0->messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0453, HEAP_ID_12);
     v0->unk_698 = sub_0200C440(15, 14, 0, HEAP_ID_12);
-    v0->unk_6A0 = StringTemplate_Default(HEAP_ID_12);
+    v0->template = StringTemplate_Default(HEAP_ID_12);
 
     for (v1 = 0; v1 < 6; v1++) {
         v0->unk_704[v1].unk_00 = Strbuf_Init(10 + 1, HEAP_ID_12);
@@ -967,8 +967,8 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
         v0->unk_6AC[v1] = Strbuf_Init(32, HEAP_ID_12);
     }
 
-    v0->unk_B11 = v0->partyManagementData->selectedMonSlot;
-    v0->unk_B12 = v0->unk_B11;
+    v0->partySlot = v0->partyManagementData->selectedMonSlot;
+    v0->unk_B12 = v0->partySlot;
 
     return v0;
 }
@@ -1026,47 +1026,47 @@ u8 sub_0207EF04(GameWindowLayout *param0, u8 param1)
     return param0->unk_704[param1].unk_29;
 }
 
-u8 sub_0207EF14(GameWindowLayout *windowLayout, u8 param1)
+u8 sub_0207EF14(GameWindowLayout *windowLayout, u8 partySlot)
 {
-    Pokemon *v0;
+    Pokemon *mon;
     u32 v1;
-    u16 v2;
+    u16 species;
 
-    windowLayout->unk_704[param1].unk_29 = 0;
+    windowLayout->unk_704[partySlot].unk_29 = 0;
 
-    if (Party_GetCurrentCount(windowLayout->partyManagementData->party) <= param1) {
+    if (Party_GetCurrentCount(windowLayout->partyManagementData->party) <= partySlot) {
         return 0;
     }
 
-    v0 = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, param1);
-    v2 = (u16)Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+    mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, partySlot);
+    species = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
-    if (v2 == 0) {
+    if (species == 0) {
         return 0;
     }
 
-    sub_02081ED8(windowLayout, v0, param1);
+    sub_02081ED8(windowLayout, mon, partySlot);
 
-    windowLayout->unk_704[param1].unk_04 = v2;
-    windowLayout->unk_704[param1].unk_06 = (u16)Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
-    windowLayout->unk_704[param1].unk_08 = (u16)Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
-    windowLayout->unk_704[param1].unk_0A = (u16)Pokemon_GetValue(v0, MON_DATA_LEVEL, NULL);
-    windowLayout->unk_704[param1].unk_0C = (u16)Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
-    windowLayout->unk_704[param1].unk_12 = (u16)Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL);
-    windowLayout->unk_704[param1].unk_10 = (u8)Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
-    windowLayout->unk_704[param1].unk_11 = (u8)Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+    windowLayout->unk_704[partySlot].unk_04 = species;
+    windowLayout->unk_704[partySlot].curHP = (u16)Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+    windowLayout->unk_704[partySlot].maxHP = (u16)Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+    windowLayout->unk_704[partySlot].level = (u16)Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+    windowLayout->unk_704[partySlot].unk_0C = (u16)Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+    windowLayout->unk_704[partySlot].unk_12 = (u16)Pokemon_GetValue(mon, MON_DATA_BALL_CAPSULE_ID, NULL);
+    windowLayout->unk_704[partySlot].unk_10 = (u8)Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
+    windowLayout->unk_704[partySlot].unk_11 = (u8)Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-    if (Pokemon_GetValue(v0, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) {
-        windowLayout->unk_704[param1].unk_0E_12 = 0;
+    if (Pokemon_GetValue(mon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) {
+        windowLayout->unk_704[partySlot].unk_0E_12 = 0;
     } else {
-        windowLayout->unk_704[param1].unk_0E_12 = 1;
+        windowLayout->unk_704[partySlot].unk_0E_12 = 1;
     }
 
-    windowLayout->unk_704[param1].unk_0E_13 = Pokemon_GetGender(v0);
-    windowLayout->unk_704[param1].unk_29 = 1;
-    windowLayout->unk_704[param1].unk_0E_0 = (u8)PokemonSummaryScreen_StatusIconAnimIdx(v0);
+    windowLayout->unk_704[partySlot].unk_0E_13 = Pokemon_GetGender(mon);
+    windowLayout->unk_704[partySlot].unk_29 = 1;
+    windowLayout->unk_704[partySlot].unk_0E_0 = (u8)PokemonSummaryScreen_StatusIconAnimIdx(mon);
 
-    sub_0207F094(windowLayout, v0, param1);
+    sub_0207F094(windowLayout, mon, partySlot);
 
     return 1;
 }
@@ -1080,7 +1080,7 @@ static void sub_0207F094(GameWindowLayout *param0, Pokemon *param1, u8 param2)
         return;
     }
 
-    if ((param0->unk_704[param2].unk_10 == 1) || (param0->unk_704[param2].unk_06 == 0)) {
+    if ((param0->unk_704[param2].unk_10 == 1) || (param0->unk_704[param2].curHP == 0)) {
         param0->unk_704[param2].unk_0E_15 = 0;
         return;
     }
@@ -1341,10 +1341,10 @@ void sub_0207F8F8(GameWindowLayout *param0, u8 partySlot)
 
     mon = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, partySlot);
 
-    if ((param0->unk_B0F_6 == 1) && ((partySlot == param0->unk_B11) || (partySlot == param0->unk_B0F_0))) {
+    if ((param0->unk_B0F_6 == 1) && ((partySlot == param0->partySlot) || (partySlot == param0->unk_B0F_0))) {
         v1 = 3 + 4;
     } else {
-        if (partySlot == param0->unk_B11) {
+        if (partySlot == param0->partySlot) {
             v1 = 4;
         } else {
             v1 = 0;
@@ -1375,8 +1375,8 @@ static void sub_0207F9A0(GameWindowLayout *param0)
 {
     u8 v0, v1;
 
-    GridMenuCursor_CheckNavigation(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->unk_B11, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
-    Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, param0->unk_B11));
+    GridMenuCursor_CheckNavigation(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->partySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
+    Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, param0->partySlot));
     Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);
 }
 
@@ -1422,7 +1422,7 @@ static u8 sub_0207FA24(GameWindowLayout *param0)
         return 0;
     }
 
-    v0 = param0->unk_B11;
+    v0 = param0->partySlot;
 
     if (v0 == 6) {
         if (v1 == GRID_MENU_CURSOR_POSITION_DIRECTION_UP) {
@@ -1442,7 +1442,7 @@ static u8 sub_0207FA24(GameWindowLayout *param0)
         v0 = sub_0207FBE0(param0, &v2, &v3, v1);
     }
 
-    if ((v0 != param0->unk_B11) && (v0 != 0xff)) {
+    if ((v0 != param0->partySlot) && (v0 != 0xff)) {
         if ((v0 == 6) || (v0 == 7)) {
             Sprite_SetDrawFlag(param0->unk_5B0[6], 0);
         } else {
@@ -1452,11 +1452,11 @@ static u8 sub_0207FA24(GameWindowLayout *param0)
         }
 
         {
-            u8 v4 = param0->unk_B11;
-            param0->unk_B11 = v0;
+            u8 v4 = param0->partySlot;
+            param0->partySlot = v0;
 
             sub_02080500(param0, v4, 0);
-            sub_02080500(param0, param0->unk_B11, 1);
+            sub_02080500(param0, param0->partySlot, 1);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (v4 < 6) {
@@ -1477,7 +1477,7 @@ static u8 sub_0207FA24(GameWindowLayout *param0)
 
 static u8 sub_0207FBE0(GameWindowLayout *param0, u8 *param1, u8 *param2, u8 param3)
 {
-    u8 v0 = param0->unk_B11;
+    u8 v0 = param0->partySlot;
 
     while (TRUE) {
         v0 = GridMenuCursor_CheckNavigation(param0->unk_7F4, param1, param2, NULL, NULL, v0, param3);
@@ -1523,23 +1523,23 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
         u8 v1, v2;
         u8 v3;
 
-        v3 = param0->unk_B11;
-        param0->unk_B11 = (u8)v0;
+        v3 = param0->partySlot;
+        param0->partySlot = (u8)v0;
 
         sub_02080500(param0, v3, 0);
-        sub_02080500(param0, param0->unk_B11, 1);
+        sub_02080500(param0, param0->partySlot, 1);
 
         if (v3 < 6) {
             UpdateWindowLayout(param0, v3, 0);
         }
 
-        GridMenuCursor_CheckNavigation(param0->unk_7F4, &v1, &v2, NULL, NULL, param0->unk_B11, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
-        Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, param0->unk_B11));
+        GridMenuCursor_CheckNavigation(param0->unk_7F4, &v1, &v2, NULL, NULL, param0->partySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
+        Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, param0->partySlot));
         Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
         Sprite_SetPositionXY(param0->unk_5B0[6], v1, v2);
 
         param0->unk_B0C = 1;
-        param0->unk_B0D = param0->unk_B11;
+        param0->unk_B0D = param0->partySlot;
 
         Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
 
@@ -1560,18 +1560,18 @@ void sub_0207FD68(GameWindowLayout *param0, u8 param1)
     } else {
         u8 v0, v1;
 
-        GridMenuCursor_CheckNavigation(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->unk_B11, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
+        GridMenuCursor_CheckNavigation(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->partySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
         Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, param1));
         Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
         Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);
     }
 
     {
-        u8 v2 = param0->unk_B11;
-        param0->unk_B11 = param1;
+        u8 v2 = param0->partySlot;
+        param0->partySlot = param1;
 
         sub_02080500(param0, v2, 0);
-        sub_02080500(param0, param0->unk_B11, 1);
+        sub_02080500(param0, param0->partySlot, 1);
 
         if (v2 < 6) {
             UpdateWindowLayout(param0, v2, 0);
@@ -1610,9 +1610,9 @@ static u8 sub_0207FE98(GameWindowLayout *param0)
     u8 v0;
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        if (param0->unk_B11 == 6) {
+        if (param0->partySlot == 6) {
             return 4;
-        } else if (param0->unk_B11 == 7) {
+        } else if (param0->partySlot == 7) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (param0->unk_B0F_7 == 0) {
@@ -1622,7 +1622,7 @@ static u8 sub_0207FE98(GameWindowLayout *param0)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             return 0;
         } else if ((param0->partyManagementData->unk_20 == 20) || (param0->partyManagementData->unk_20 == 14)) {
-            if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
+            if (param0->unk_704[param0->partySlot].unk_10 == 0) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 return 0;
             } else {
@@ -1630,7 +1630,7 @@ static u8 sub_0207FE98(GameWindowLayout *param0)
                 return 5;
             }
         } else if (param0->partyManagementData->unk_20 == 15) {
-            if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
+            if (param0->unk_704[param0->partySlot].unk_10 == 0) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 sub_0207FFC8(param0);
                 return 0;
@@ -1652,7 +1652,7 @@ static u8 sub_0207FE98(GameWindowLayout *param0)
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         if (param0->unk_B0F_7 == 0) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            param0->unk_B11 = 7;
+            param0->partySlot = 7;
             return 3;
         }
     }
@@ -1661,7 +1661,7 @@ static u8 sub_0207FE98(GameWindowLayout *param0)
 
     if (v0 == 2) {
         if ((param0->partyManagementData->unk_20 == 20) || (param0->partyManagementData->unk_20 == 14) || (param0->partyManagementData->unk_20 == 15)) {
-            if (param0->unk_704[param0->unk_B11].unk_10 != 0) {
+            if (param0->unk_704[param0->partySlot].unk_10 != 0) {
                 Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                 return 5;
             }
@@ -1716,7 +1716,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
 
 static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1)
 {
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->unk_B11);
+    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
     u16 v1;
     u8 v2 = 0, v3, v4 = 0, v5;
 
@@ -1724,7 +1724,7 @@ static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1)
     v4++;
 
     if (sub_0206C0D0(param0->partyManagementData->fieldSystem) == 0) {
-        if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
+        if (param0->unk_704[param0->partySlot].unk_10 == 0) {
             for (v3 = 0; v3 < 4; v3++) {
                 v1 = (u16)Pokemon_GetValue(v0, MON_DATA_MOVE1 + v3, NULL);
 
@@ -1745,7 +1745,7 @@ static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1)
             param1[v4] = 0;
             v4++;
 
-            if (Item_IsMail(param0->unk_704[param0->unk_B11].unk_0C) == 1) {
+            if (Item_IsMail(param0->unk_704[param0->partySlot].unk_0C) == 1) {
                 param1[v4] = 5;
             } else {
                 param1[v4] = 2;
@@ -1774,7 +1774,7 @@ static u8 sub_020801AC(GameWindowLayout *param0, u8 *param1)
 
 static u8 sub_020801B8(GameWindowLayout *param0, u8 *param1)
 {
-    if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
+    if (param0->unk_704[param0->partySlot].unk_10 == 0) {
         param1[0] = 8;
         param1[1] = 1;
         param1[2] = 9;
@@ -1790,7 +1790,7 @@ static u8 sub_020801B8(GameWindowLayout *param0, u8 *param1)
 
 static u8 sub_020801F0(GameWindowLayout *param0, u8 *param1)
 {
-    if (param0->unk_704[param0->unk_B11].unk_0E_15 == 1) {
+    if (param0->unk_704[param0->partySlot].unk_0E_15 == 1) {
         param1[0] = 13;
         param1[1] = 1;
         param1[2] = 9;
@@ -1806,7 +1806,7 @@ static u8 sub_020801F0(GameWindowLayout *param0, u8 *param1)
 
 static u8 sub_0208022C(GameWindowLayout *param0, u8 *param1)
 {
-    switch (sub_02080354(param0, param0->unk_B11)) {
+    switch (sub_02080354(param0, param0->partySlot)) {
     case 0:
         param1[0] = 1;
         param1[1] = 9;
@@ -1828,7 +1828,7 @@ static u8 sub_0208022C(GameWindowLayout *param0, u8 *param1)
 
 static u8 sub_0208027C(GameWindowLayout *param0, u8 *param1)
 {
-    switch (sub_02080404(param0, param0->unk_B11)) {
+    switch (sub_02080404(param0, param0->partySlot)) {
     case 0:
         param1[0] = 1;
         param1[1] = 9;
@@ -1850,7 +1850,7 @@ static u8 sub_0208027C(GameWindowLayout *param0, u8 *param1)
 
 static u8 sub_020802CC(GameWindowLayout *param0, u8 *param1)
 {
-    switch (sub_02080488(param0, param0->unk_B11)) {
+    switch (sub_02080488(param0, param0->partySlot)) {
     case 0:
         param1[0] = 1;
         param1[1] = 9;
@@ -1872,7 +1872,7 @@ static u8 sub_020802CC(GameWindowLayout *param0, u8 *param1)
 
 static u8 sub_0208031C(GameWindowLayout *param0, u8 *param1)
 {
-    if (param0->unk_704[param0->unk_B11].unk_10 == 1) {
+    if (param0->unk_704[param0->partySlot].unk_10 == 1) {
         param1[0] = 1;
         param1[1] = 15;
         param1[2] = 9;
@@ -1909,7 +1909,7 @@ u8 sub_02080354(GameWindowLayout *param0, u8 param1)
         }
     }
 
-    if ((param0->unk_704[param1].unk_10 == 1) || (param0->unk_704[param1].unk_0A > param0->partyManagementData->unk_33)) {
+    if ((param0->unk_704[param1].unk_10 == 1) || (param0->unk_704[param1].level > param0->partyManagementData->unk_33)) {
         return 0;
     }
 
@@ -1932,7 +1932,7 @@ u8 sub_02080404(GameWindowLayout *param0, u8 param1)
         }
     }
 
-    if ((param0->unk_704[param1].unk_10 == 1) || (param0->unk_704[param1].unk_0A < param0->partyManagementData->unk_33)) {
+    if ((param0->unk_704[param1].unk_10 == 1) || (param0->unk_704[param1].level < param0->partyManagementData->unk_33)) {
         return 0;
     }
 
@@ -2021,7 +2021,7 @@ static u8 sub_020805E4(GameWindowLayout *param0)
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-        if ((param0->unk_B11 >= 6) || (param0->unk_B11 == param0->unk_B0F_0)) {
+        if ((param0->partySlot >= 6) || (param0->partySlot == param0->unk_B0F_0)) {
             sub_02083B88(param0);
             return 3;
         } else {
@@ -2039,7 +2039,7 @@ static u8 sub_020805E4(GameWindowLayout *param0)
     v0 = sub_0207FA00(param0);
 
     if (v0 == 2) {
-        if (param0->unk_B11 == param0->unk_B0F_0) {
+        if (param0->partySlot == param0->unk_B0F_0) {
             sub_02083B88(param0);
             return 3;
         } else {
@@ -2093,11 +2093,11 @@ static int HandleGameWindowEvent(GameWindowLayout *param0)
             Strbuf *v1;
             int v2;
 
-            v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 184);
+            v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 184);
             v2 = sub_02026074(param0->partyManagementData->unk_14, 3);
 
-            StringTemplate_SetNumber(param0->unk_6A0, 0, v2, 3, 0, 1);
-            StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
+            StringTemplate_SetNumber(param0->template, 0, v2, 3, 0, 1);
+            StringTemplate_Format(param0->template, param0->unk_6A4, v1);
             Strbuf_Free(v1);
         }
             sub_02082708(param0, 0xffffffff, 1);
@@ -2346,10 +2346,10 @@ u8 GetElementIndex(u16 param0)
 
 static int ProcessWindowInput(GameWindowLayout *param0)
 {
-    switch (param0->unk_B14[1]) {
+    switch (param0->monStats[1]) {
     case 0:
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            if (param0->unk_B11 >= 6) {
+            if (param0->partySlot >= 6) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 sub_02083B88(param0);
                 return 1;
@@ -2359,16 +2359,16 @@ static int ProcessWindowInput(GameWindowLayout *param0)
                     Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
                     Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
 
-                    if (param0->unk_704[param0->unk_B11].unk_08 - param0->unk_704[param0->unk_B11].unk_06 < param0->unk_B14[0]) {
-                        param0->unk_B14[0] = param0->unk_704[param0->unk_B11].unk_08 - param0->unk_704[param0->unk_B11].unk_06;
+                    if (param0->unk_704[param0->partySlot].maxHP - param0->unk_704[param0->partySlot].curHP < param0->monStats[0]) {
+                        param0->monStats[0] = param0->unk_704[param0->partySlot].maxHP - param0->unk_704[param0->partySlot].curHP;
                     }
 
-                    param0->unk_B14[1] = 2;
-                    param0->unk_B14[2] = 0;
+                    param0->monStats[1] = 2;
+                    param0->monStats[2] = 0;
                     break;
                 case 1:
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
-                    param0->unk_B14[1] = 1;
+                    param0->monStats[1] = 1;
                     return 24;
                 case 2:
                     Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
@@ -2384,7 +2384,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
         }
 
         if (sub_0207FA00(param0) == 2) {
-            if (param0->unk_B11 == param0->unk_B0F_0) {
+            if (param0->partySlot == param0->unk_B0F_0) {
                 sub_02083B88(param0);
                 return 1;
             } else {
@@ -2393,15 +2393,15 @@ static int ProcessWindowInput(GameWindowLayout *param0)
                     Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
                     Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
 
-                    if (param0->unk_704[param0->unk_B11].unk_08 - param0->unk_704[param0->unk_B11].unk_06 < param0->unk_B14[0]) {
-                        param0->unk_B14[0] = param0->unk_704[param0->unk_B11].unk_08 - param0->unk_704[param0->unk_B11].unk_06;
+                    if (param0->unk_704[param0->partySlot].maxHP - param0->unk_704[param0->partySlot].curHP < param0->monStats[0]) {
+                        param0->monStats[0] = param0->unk_704[param0->partySlot].maxHP - param0->unk_704[param0->partySlot].curHP;
                     }
 
-                    param0->unk_B14[1] = 2;
-                    param0->unk_B14[2] = 0;
+                    param0->monStats[1] = 2;
+                    param0->monStats[2] = 0;
                     break;
                 case 1:
-                    param0->unk_B14[1] = 1;
+                    param0->monStats[1] = 1;
                     return 24;
                 case 2:
                     Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
@@ -2416,36 +2416,36 @@ static int ProcessWindowInput(GameWindowLayout *param0)
             Window_EraseMessageBox(&param0->unk_04[34], 1);
             Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
             sub_020826E0(param0, 36, 1);
-            param0->unk_B14[1] = 0;
+            param0->monStats[1] = 0;
         }
         break;
     case 2:
         if (UpdatePokemonStatus(param0, param0->unk_B0F_0, -1) == 1) {
             Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
-            param0->unk_B14[1] = 3;
-            param0->unk_B14[2] = 0;
+            param0->monStats[1] = 3;
+            param0->monStats[2] = 0;
         }
         break;
     case 3:
-        if (UpdatePokemonStatus(param0, param0->unk_B11, 1) == 1) {
+        if (UpdatePokemonStatus(param0, param0->partySlot, 1) == 1) {
             Pokemon *mon;
             Strbuf *v1;
             void *journalEntryLocationEvent;
             FieldSystem *fieldSystem;
 
-            mon = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->unk_B11);
-            v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 64);
+            mon = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
+            v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 64);
 
-            StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(mon));
-            StringTemplate_SetNumber(param0->unk_6A0, 1, param0->unk_B14[2], 3, 0, 1);
-            StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
+            StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
+            StringTemplate_SetNumber(param0->template, 1, param0->monStats[2], 3, 0, 1);
+            StringTemplate_Format(param0->template, param0->unk_6A4, v1);
             Strbuf_Free(v1);
             sub_02082708(param0, 0xffffffff, 1);
 
-            journalEntryLocationEvent = JournalEntry_CreateEventUsedMove((u8)param0->unk_B14[3], 0, 12);
+            journalEntryLocationEvent = JournalEntry_CreateEventUsedMove((u8)param0->monStats[3], 0, 12);
             fieldSystem = param0->partyManagementData->fieldSystem;
             JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
-            param0->unk_B14[1] = 4;
+            param0->monStats[1] = 4;
             param0->unk_B0E = 30;
             return 24;
         }
@@ -2466,15 +2466,15 @@ static int ProcessWindowInput(GameWindowLayout *param0)
 
 static u8 CheckPokemonCondition(GameWindowLayout *param0)
 {
-    if (param0->unk_704[param0->unk_B11].unk_10 != 0) {
+    if (param0->unk_704[param0->partySlot].unk_10 != 0) {
         return 2;
     }
 
-    if ((param0->unk_B11 == param0->unk_B0F_0) || (param0->unk_704[param0->unk_B11].unk_06 == 0) || (param0->unk_704[param0->unk_B11].unk_06 == param0->unk_704[param0->unk_B11].unk_08)) {
+    if ((param0->partySlot == param0->unk_B0F_0) || (param0->unk_704[param0->partySlot].curHP == 0) || (param0->unk_704[param0->partySlot].curHP == param0->unk_704[param0->partySlot].maxHP)) {
         Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
         sub_02082708(param0, 131, 1);
 
-        param0->unk_B14[1] = 1;
+        param0->monStats[1] = 1;
         param0->unk_B0E = 30;
 
         return 1;
@@ -2485,20 +2485,20 @@ static u8 CheckPokemonCondition(GameWindowLayout *param0)
 
 static BOOL UpdatePokemonStatus(GameWindowLayout *param0, u8 slot, s8 param2)
 {
-    param0->unk_704[slot].unk_06 += param2;
-    param0->unk_B14[2]++;
+    param0->unk_704[slot].curHP += param2;
+    param0->monStats[2]++;
 
     sub_02082098(param0, slot);
     Window_FillTilemap(&param0->unk_04[3 + slot * 5], 0);
     sub_02082058(param0, slot);
     sub_02082104(param0, slot);
 
-    if ((param0->unk_B14[0] == param0->unk_B14[2]) || (param0->unk_704[slot].unk_06 == param0->unk_704[slot].unk_08)) {
+    if ((param0->monStats[0] == param0->monStats[2]) || (param0->unk_704[slot].curHP == param0->unk_704[slot].maxHP)) {
         Pokemon *mon;
         u32 v1;
 
         mon = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, slot);
-        v1 = param0->unk_704[slot].unk_06;
+        v1 = param0->unk_704[slot].curHP;
         Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &v1);
         return 1;
     }
@@ -2511,13 +2511,13 @@ static u8 HandleSpecialInput(GameWindowLayout *param0)
     u8 v0;
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        if (param0->unk_B11 == 7) {
+        if (param0->partySlot == 7) {
             if (param0->unk_B0F_7 == 0) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 return 3;
             }
         } else {
-            if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
+            if (param0->unk_704[param0->partySlot].unk_10 == 0) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 return 0;
             } else {
@@ -2531,7 +2531,7 @@ static u8 HandleSpecialInput(GameWindowLayout *param0)
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         if (param0->unk_B0F_7 == 0) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            param0->unk_B11 = 7;
+            param0->partySlot = 7;
             return 3;
         }
 
@@ -2541,7 +2541,7 @@ static u8 HandleSpecialInput(GameWindowLayout *param0)
     v0 = sub_0207FA00(param0);
 
     if (v0 == 2) {
-        if (param0->unk_704[param0->unk_B11].unk_10 != 0) {
+        if (param0->unk_704[param0->partySlot].unk_10 != 0) {
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 5;
         }
@@ -2554,8 +2554,8 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
 {
     ItemData *v0 = Item_Load(param0->partyManagementData->usedItemID, 0, 12);
 
-    if ((param0->partyManagementData->usedItemID == 466) && (Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->unk_B11)) == 1)) {
-        param0->partyManagementData->unk_38 = 1;
+    if ((param0->partyManagementData->usedItemID == 466) && (Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot)) == 1)) {
+        param0->partyManagementData->evoTargetSpecies = 1;
         Heap_FreeToHeap(v0);
         LoadOverlay118(param0);
         return 31;
@@ -2573,27 +2573,27 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
         return 6;
     }
 
-    if (Party_CheckItemEffectsOnMember(param0->partyManagementData->party, param0->partyManagementData->usedItemID, param0->unk_B11, 0, 12) == 1) {
+    if (Party_CheckItemEffectsOnMember(param0->partyManagementData->party, param0->partyManagementData->usedItemID, param0->partySlot, 0, 12) == 1) {
         Bag_TryRemoveItem(param0->partyManagementData->bag, param0->partyManagementData->usedItemID, 1, HEAP_ID_12);
 
         if (Item_Get(v0, 26) != 0) {
-            Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->unk_B11);
+            Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
 
-            param0->partyManagementData->unk_38 = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_ITEM, param0->partyManagementData->usedItemID, &param0->partyManagementData->unk_3C);
+            param0->partyManagementData->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_ITEM, param0->partyManagementData->usedItemID, &param0->partyManagementData->unk_3C);
             param0->partyManagementData->unk_23 = 8;
             Heap_FreeToHeap(v0);
             return 32;
         }
 
         if ((Item_IsHerbalMedicine(param0->partyManagementData->usedItemID) == 1) && (param0->partyManagementData->broadcast != NULL)) {
-            Pokemon *v2 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->unk_B11);
+            Pokemon *v2 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
             sub_0206D90C(param0->partyManagementData->broadcast, v2, param0->partyManagementData->usedItemID);
         }
 
         sub_020852B8(param0);
     } else {
         sub_02082708(param0, 105, 1);
-        param0->unk_B11 = 7;
+        param0->partySlot = 7;
         param0->unk_B00 = sub_02085348;
     }
 
@@ -2603,9 +2603,9 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
 
 static u8 CheckItemUsageValidity(GameWindowLayout *param0)
 {
-    if (param0->unk_704[param0->unk_B11].unk_0C == 0) {
+    if (param0->unk_704[param0->partySlot].unk_0C == 0) {
         return 0;
-    } else if (Item_IsMail(param0->unk_704[param0->unk_B11].unk_0C) == 1) {
+    } else if (Item_IsMail(param0->unk_704[param0->partySlot].unk_0C) == 1) {
         return 2;
     }
 
@@ -2619,22 +2619,22 @@ static int ProcessItemApplication(GameWindowLayout *param0)
     int v2 = -1, v3;
     FieldSystem *fieldSystem;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->unk_B11);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
     v1 = &param0->unk_04[34];
     fieldSystem = param0->partyManagementData->fieldSystem;
 
     if (param0->partyManagementData->usedItemID == 112) {
         if (Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
-            MessageLoader_GetStrbuf(param0->unk_69C, 203, param0->unk_6A8);
-            StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
-            StringTemplate_SetItemNameWithArticle(param0->unk_6A0, 1, param0->partyManagementData->usedItemID);
-            StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+            MessageLoader_GetStrbuf(param0->messageLoader, 203, param0->unk_6A8);
+            StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(v0));
+            StringTemplate_SetItemNameWithArticle(param0->template, 1, param0->partyManagementData->usedItemID);
+            StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
             v2 = 11;
         } else if (fieldSystem != NULL) {
             if (fieldSystem->location->mapId == 466) {
-                MessageLoader_GetStrbuf(param0->unk_69C, 204, param0->unk_6A8);
-                StringTemplate_SetItemName(param0->unk_6A0, 0, param0->partyManagementData->usedItemID);
-                StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+                MessageLoader_GetStrbuf(param0->messageLoader, 204, param0->unk_6A8);
+                StringTemplate_SetItemName(param0->template, 0, param0->partyManagementData->usedItemID);
+                StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
                 v2 = 11;
             }
         }
@@ -2650,20 +2650,20 @@ static int ProcessItemApplication(GameWindowLayout *param0)
 
             v2 = UpdatePokemonWithItem(param0, v0, &v3);
 
-            MessageLoader_GetStrbuf(param0->unk_69C, 118, param0->unk_6A8);
-            StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
-            StringTemplate_SetItemName(param0->unk_6A0, 1, param0->partyManagementData->usedItemID);
-            StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+            MessageLoader_GetStrbuf(param0->messageLoader, 118, param0->unk_6A8);
+            StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(v0));
+            StringTemplate_SetItemName(param0->template, 1, param0->partyManagementData->usedItemID);
+            StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
             break;
         case 1:
-            MessageLoader_GetStrbuf(param0->unk_69C, 78, param0->unk_6A8);
-            StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
-            StringTemplate_SetItemNameWithArticle(param0->unk_6A0, 1, param0->unk_704[param0->unk_B11].unk_0C);
-            StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+            MessageLoader_GetStrbuf(param0->messageLoader, 78, param0->unk_6A8);
+            StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(v0));
+            StringTemplate_SetItemNameWithArticle(param0->template, 1, param0->unk_704[param0->partySlot].unk_0C);
+            StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
             v2 = 9;
             break;
         case 2:
-            MessageLoader_GetStrbuf(param0->unk_69C, 77, param0->unk_6A4);
+            MessageLoader_GetStrbuf(param0->messageLoader, 77, param0->unk_6A4);
             v2 = 11;
             break;
         }
@@ -2691,8 +2691,8 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *mon, int *pa
         *param2 = -1;
     }
 
-    param0->unk_704[param0->unk_B11].unk_0C = param0->partyManagementData->usedItemID;
-    sub_02083040(param0, param0->unk_B11, param0->unk_704[param0->unk_B11].unk_0C);
+    param0->unk_704[param0->partySlot].unk_0C = param0->partyManagementData->usedItemID;
+    sub_02083040(param0, param0->partySlot, param0->unk_704[param0->partySlot].unk_0C);
 
     if (item == ITEM_GRISEOUS_ORB && ((*param2) != -1)) {
         return 12;
@@ -2707,13 +2707,13 @@ static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *mon, u32 param2, 
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &param3);
     Pokemon_SetArceusForm(mon);
     Pokemon_SetGiratinaFormByHeldItem(mon);
-    param0->unk_704[param0->unk_B11].unk_0C = (u16)param3;
-    sub_02083040(param0, param0->unk_B11, param0->unk_704[param0->unk_B11].unk_0C);
+    param0->unk_704[param0->partySlot].unk_0C = (u16)param3;
+    sub_02083040(param0, param0->partySlot, param0->unk_704[param0->partySlot].unk_0C);
 }
 
 static int HandleMessageCompletion(GameWindowLayout *param0)
 {
-    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             return ResetWindowOnInput(param0);
         }
@@ -2724,7 +2724,7 @@ static int HandleMessageCompletion(GameWindowLayout *param0)
 
 static int ProcessMessageResult(GameWindowLayout *param0)
 {
-    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&param0->unk_04[34], 1);
             LoadOverlay118(param0);
@@ -2748,7 +2748,7 @@ static int HandleOverlayCompletion(GameWindowLayout *param0)
 
 static int FinalizeMessageProcessing(GameWindowLayout *param0)
 {
-    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         sub_020827EC(param0);
         return 10;
     }
@@ -2767,15 +2767,15 @@ static int ProcessPokemonItemSwap(GameWindowLayout *param0)
         u32 v4;
         u32 v5;
 
-        v2 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->unk_B11);
+        v2 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
         v3 = &param0->unk_04[34];
         v4 = param0->partyManagementData->usedItemID;
-        v5 = param0->unk_704[param0->unk_B11].unk_0C;
+        v5 = param0->unk_704[param0->partySlot].unk_0C;
         v0 = UpdatePokemonWithItem(param0, v2, &v1);
 
         if (Bag_TryAddItem(param0->partyManagementData->bag, (u16)v5, 1, HEAP_ID_12) == FALSE) {
             SwapPokemonItem(param0, v2, v4, v5);
-            MessageLoader_GetStrbuf(param0->unk_69C, 83, param0->unk_6A4);
+            MessageLoader_GetStrbuf(param0->messageLoader, 83, param0->unk_6A4);
             v0 = 11;
         } else {
             if (Item_IsMail(param0->partyManagementData->usedItemID) == 1) {
@@ -2785,10 +2785,10 @@ static int ProcessPokemonItemSwap(GameWindowLayout *param0)
                 return 32;
             }
 
-            MessageLoader_GetStrbuf(param0->unk_69C, 84, param0->unk_6A8);
-            StringTemplate_SetItemName(param0->unk_6A0, 1, v5);
-            StringTemplate_SetItemName(param0->unk_6A0, 2, v4);
-            StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+            MessageLoader_GetStrbuf(param0->messageLoader, 84, param0->unk_6A8);
+            StringTemplate_SetItemName(param0->template, 1, v5);
+            StringTemplate_SetItemName(param0->template, 2, v4);
+            StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
 
             if ((v4 != 112) && (v5 == 112) && (v1 != -1)) {
                 v0 = 12;
@@ -2830,10 +2830,10 @@ static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
     u32 item;
     int v4, v5;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->unk_B11);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
     v1 = &param0->unk_04[34];
     v2 = param0->partyManagementData->usedItemID;
-    item = param0->unk_704[param0->unk_B11].unk_0C;
+    item = param0->unk_704[param0->partySlot].unk_0C;
     v4 = UpdatePokemonWithItem(param0, v0, &v5);
 
     if ((item == ITEM_GRISEOUS_ORB) && (v4 == 11) && (v5 == 0)) {
@@ -2841,16 +2841,16 @@ static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
     }
 
     if (item == ITEM_NONE) {
-        MessageLoader_GetStrbuf(param0->unk_69C, 118, param0->unk_6A8);
-        StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
-        StringTemplate_SetItemName(param0->unk_6A0, 1, param0->partyManagementData->usedItemID);
-        StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+        MessageLoader_GetStrbuf(param0->messageLoader, 118, param0->unk_6A8);
+        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(v0));
+        StringTemplate_SetItemName(param0->template, 1, param0->partyManagementData->usedItemID);
+        StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
     } else {
         Bag_TryAddItem(param0->partyManagementData->bag, (u16)item, 1, HEAP_ID_12);
-        MessageLoader_GetStrbuf(param0->unk_69C, 84, param0->unk_6A8);
-        StringTemplate_SetItemName(param0->unk_6A0, 1, item);
-        StringTemplate_SetItemName(param0->unk_6A0, 2, v2);
-        StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+        MessageLoader_GetStrbuf(param0->messageLoader, 84, param0->unk_6A8);
+        StringTemplate_SetItemName(param0->template, 1, item);
+        StringTemplate_SetItemName(param0->template, 2, v2);
+        StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
     }
 
     Window_DrawMessageBoxWithScrollCursor(v1, 1, (1 + 9), 15);
@@ -2866,7 +2866,7 @@ static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
 
 static int CheckForItemApplication(GameWindowLayout *param0)
 {
-    if (param0->unk_704[param0->unk_B11].unk_12 == 0) {
+    if (param0->unk_704[param0->partySlot].unk_12 == 0) {
         param0->partyManagementData->unk_23 = 0;
         return 32;
     }

@@ -282,7 +282,7 @@ static void sub_02083138(Sprite *param0, u8 param1)
 
 static u8 sub_02083158(StrBufWrapper *param0)
 {
-    if (param0->unk_06 == 0) {
+    if (param0->curHP == 0) {
         return 0;
     }
 
@@ -290,7 +290,7 @@ static u8 sub_02083158(StrBufWrapper *param0)
         return 5;
     }
 
-    switch (HealthBar_Color(param0->unk_06, param0->unk_08, 48)) {
+    switch (HealthBar_Color(param0->curHP, param0->maxHP, 48)) {
     case 4:
         return 1;
     case 3:
@@ -326,7 +326,7 @@ void sub_020831B4(GameWindowLayout *param0)
         sub_02083138(v0->unk_24, v2);
         Sprite_UpdateAnim(v0->unk_24, FX32_ONE);
 
-        if ((param0->unk_B11 == v1) && (v2 != 0) && (v2 != 5)) {
+        if ((param0->partySlot == v1) && (v2 != 0) && (v2 != 5)) {
             if (Sprite_GetAnimFrame(v0->unk_24) == 0) {
                 Sprite_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 - 3);
             } else {

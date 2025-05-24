@@ -1043,7 +1043,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->dataType = SUMMARY_DATA_PARTY_MON;
         summary->monIndex = partyMan->selectedMonSlot;
         summary->monMax = 1;
-        summary->move = partyMan->unk_26;
+        summary->move = partyMan->levelUpMove;
         summary->mode = SUMMARY_MODE_SELECT_MOVE;
         summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
@@ -1070,7 +1070,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->dataType = SUMMARY_DATA_PARTY_MON;
         summary->monIndex = partyMan->selectedMonSlot;
         summary->monMax = 1;
-        summary->move = partyMan->unk_26;
+        summary->move = partyMan->levelUpMove;
         summary->mode = SUMMARY_MODE_SELECT_MOVE;
         summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
@@ -1137,7 +1137,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v14->unk_02 = partyMan->usedItemID;
         v14->unk_01 = 3;
         v14->unk_00 = partyMan->selectedMonSlot;
-        v14->unk_04 = partyMan->unk_38;
+        v14->unk_04 = partyMan->evoTargetSpecies;
         v14->unk_08 = partyMan->unk_3C;
 
         menu->taskData = v14;
@@ -1149,7 +1149,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v15->unk_02 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
         v15->unk_01 = 0;
         v15->unk_00 = partyMan->selectedMonSlot;
-        v15->unk_04 = partyMan->unk_38;
+        v15->unk_04 = partyMan->evoTargetSpecies;
         v15->unk_08 = partyMan->unk_3C;
         menu->taskData = v15;
         menu->state = START_MENU_STATE_EVOLVE_INIT;
@@ -1607,7 +1607,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
 
         v3->usedItemID = v4->unk_00;
         v3->selectedMonSlot = v2->monIndex;
-        v3->unk_26 = v2->move;
+        v3->levelUpMove = v2->move;
         v3->unk_28 = v2->selectedMoveSlot;
 
         FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v3);
