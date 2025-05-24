@@ -9,22 +9,22 @@
 typedef struct {
     BattleSystem *unk_00;
     TrainerInfo *unk_04;
-    Bag *unk_08;
+    Bag *bag;
     u32 heapID;
     s32 unk_10;
     u32 unk_14;
     u32 unk_18;
     u16 unk_1C;
     u8 unk_1E;
-    u8 unk_1F;
-    u16 unk_20; // Item?
+    u8 lastUsedItemPocket;
+    u16 lastUsedItem;
     u8 unk_22;
     u8 unk_23;
     u8 unk_24;
     u8 unk_25;
     u8 unk_26;
-    u8 unk_27[5];
-    u8 unk_2C[5];
+    u8 pocketCurrentPagePositions[BATTLE_POCKET_MAX];
+    u8 pocketCurrentPages[BATTLE_POCKET_MAX];
 } UnkStruct_ov13_022264F4;
 
 #endif // POKEPLATINUM_STRUCT_OV13_022264F4_H
