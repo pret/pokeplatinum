@@ -325,13 +325,13 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
     }
 
     {
-        SaveData *v2 = OverlayManager_Args(param0);
+        SaveData *saveData = OverlayManager_Args(param0);
 
-        v0->unk_04 = sub_0202C878(v2);
+        v0->unk_04 = sub_0202C878(saveData);
         v0->unk_BB14 = sub_0202C8C0(v0->unk_04);
         v0->unk_BB18 = sub_0202C8C4(v0->unk_04);
         v0->unk_BB24 = sub_0202C990(v0->unk_04);
-        v0->unk_08 = SaveData_GetOptions(v2);
+        v0->unk_08 = SaveData_GetOptions(saveData);
     }
 
     ov92_021D14F0();

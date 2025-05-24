@@ -82,7 +82,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov113_0225DBCC_t {
     UnkStruct_ov66_0223127C *unk_00;
-    SaveData *unk_04;
+    SaveData *saveData;
     BgConfig *unk_08;
     PaletteData *unk_0C;
     UnkStruct_02012744 *unk_10;
@@ -147,7 +147,7 @@ static void ov113_0225DB08(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225E364(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DD14(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DD24(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225CA04 *param1);
-static void ov113_0225DD4C(int param0, SaveData *param1, UnkStruct_ov113_02260818 *param2);
+static void ov113_0225DD4C(int param0, SaveData *saveData, UnkStruct_ov113_02260818 *param2);
 static void ov113_0225D304(UnkStruct_ov113_0225DBCC *param0, NARC *param1);
 static void ov113_0225D630(UnkStruct_ov113_0225DBCC *param0, NARC *param1);
 static void ov113_0225D484(UnkStruct_ov113_0225DBCC *param0);
@@ -351,11 +351,11 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_ov113_0225DBCC));
 
     v0->unk_00 = OverlayManager_Args(param0);
-    v0->unk_04 = ov66_0222E0C4(v0->unk_00->unk_00);
+    v0->saveData = ov66_0222E0C4(v0->unk_00->unk_00);
     v0->unk_19E0 = ov66_0222E0C8(v0->unk_00->unk_00);
 
     ov113_0225DD14(v0);
-    ov113_0225DD4C(v0->unk_00->unk_04, v0->unk_04, v0->unk_8D8);
+    ov113_0225DD4C(v0->unk_00->unk_04, v0->saveData, v0->unk_8D8);
 
     v0->unk_19D4 = (32 << 8);
     v0->unk_19D8 = v0->unk_19D4;
@@ -499,7 +499,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         Window_FillTilemap(&v0->unk_B4, 0xf);
         Window_DrawMessageBoxWithScrollCursor(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 2, v0->unk_C4);
-        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->saveData)), NULL);
         (*param1)++;
         break;
     case 4:
@@ -549,7 +549,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         Window_FillTilemap(&v0->unk_B4, 0xf);
         Window_DrawMessageBoxWithScrollCursor(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 3, v0->unk_C4);
-        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->saveData)), NULL);
         (*param1)++;
         break;
     case 7:
@@ -900,7 +900,7 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
 
     {
         int v2;
-        v2 = Options_Frame(SaveData_GetOptions(param0->unk_04));
+        v2 = Options_Frame(SaveData_GetOptions(param0->saveData));
 
         PaletteData_LoadBufferFromFileStart(param0->unk_0C, 38, GetMessageBoxPaletteNARCMember(v2), 118, 0, 0x20, 14 * 16);
         LoadMessageBoxGraphics(param0->unk_08, 1, 1, 14, v2, HEAP_ID_118);
@@ -1311,7 +1311,7 @@ UnkStruct_ov113_022607EC *ov113_0225DD44(UnkStruct_ov113_0225DBCC *param0)
     return &param0->unk_168;
 }
 
-static void ov113_0225DD4C(int param0, SaveData *param1, UnkStruct_ov113_02260818 *param2)
+static void ov113_0225DD4C(int param0, SaveData *saveData, UnkStruct_ov113_02260818 *param2)
 {
     Party *v0;
     int v1;
@@ -1320,7 +1320,7 @@ static void ov113_0225DD4C(int param0, SaveData *param1, UnkStruct_ov113_0226081
 
     MI_CpuClear8(param2, sizeof(UnkStruct_ov113_02260818) * 6);
 
-    v0 = SaveData_GetParty(param1);
+    v0 = SaveData_GetParty(saveData);
     v1 = Party_GetCurrentCount(v0);
 
     for (v3 = 0; v3 < v1; v3++) {

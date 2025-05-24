@@ -417,21 +417,21 @@ BOOL ScrCmd_UpdateBPDisplay(ScriptContext *param0)
 BOOL ScrCmd_297(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
+    SaveData *saveData = fieldSystem->saveData;
     u16 *v2 = ScriptContext_GetVarPointer(param0);
 
-    *v2 = sub_0202D230(sub_0202D750(v1), 0, 0);
+    *v2 = sub_0202D230(sub_0202D750(saveData), 0, 0);
     return 0;
 }
 
 BOOL ScrCmd_298(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
+    SaveData *saveData = fieldSystem->saveData;
     u16 v2 = ScriptContext_GetVar(param0);
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(param0->fieldSystem->saveData), RECORD_UNK_068, v2);
-    sub_0202D230(sub_0202D750(v1), v2, 5);
+    sub_0202D230(sub_0202D750(saveData), v2, 5);
 
     return 0;
 }
@@ -439,11 +439,11 @@ BOOL ScrCmd_298(ScriptContext *param0)
 BOOL ScrCmd_299(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
+    SaveData *saveData = fieldSystem->saveData;
     u16 v2 = ScriptContext_GetVar(param0);
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(param0->fieldSystem->saveData), RECORD_UNK_069, v2);
-    sub_0202D230(sub_0202D750(v1), v2, 6);
+    sub_0202D230(sub_0202D750(saveData), v2, 6);
 
     return 0;
 }
@@ -452,12 +452,12 @@ BOOL ScrCmd_29A(ScriptContext *param0)
 {
     u16 v0;
     FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v2 = fieldSystem->saveData;
+    SaveData *saveData = fieldSystem->saveData;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 *v4 = ScriptContext_GetVarPointer(param0);
 
     v0 = sub_0202D230(
-        sub_0202D750(v2), 0, 0);
+        sub_0202D750(saveData), 0, 0);
 
     if (v0 < v3) {
         *v4 = 0;

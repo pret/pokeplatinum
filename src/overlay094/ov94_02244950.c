@@ -107,7 +107,7 @@ int ov94_02244950(UnkStruct_ov94_0223FD4C *param0, int param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-    sub_02038438(param0->unk_00->unk_20);
+    sub_02038438(param0->unk_00->saveData);
 
     ov94_02245934(param0);
 
@@ -632,7 +632,7 @@ static int ov94_02245300(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022453B8(UnkStruct_ov94_0223FD4C *param0)
 {
-    sub_02030E78(param0->unk_00->unk_20, &param0->unk_1144);
+    sub_02030E78(param0->unk_00->saveData, &param0->unk_1144);
     ov94_0223BB84(&param0->unk_1144, &param0->unk_11A8);
 
     param0->unk_2C = 10;

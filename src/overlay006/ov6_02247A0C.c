@@ -126,10 +126,10 @@ void *ov6_02247A90(void *param0)
     BgConfig *v1;
     Strbuf *v2, *v3;
     int v4, v5, v6, v7;
-    SaveData *v8;
+    SaveData *saveData;
 
     v1 = FieldSystem_GetBgConfig(param0);
-    v8 = FieldSystem_GetSaveData(param0);
+    saveData = FieldSystem_GetSaveData(param0);
     v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov6_02247A90));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A90));
@@ -145,7 +145,7 @@ void *ov6_02247A90(void *param0)
     v3 = Strbuf_Init(100, HEAP_ID_FIELDMAP);
     v2 = MessageLoader_GetNewStrbuf(v0->unk_10, 0);
 
-    StringTemplate_SetPlayerName(v0->unk_14, 0, SaveData_GetTrainerInfo(v8));
+    StringTemplate_SetPlayerName(v0->unk_14, 0, SaveData_GetTrainerInfo(saveData));
     StringTemplate_Format(v0->unk_14, v3, v2);
 
     v4 = ov6_02247CF4(v3, 0, 1, (15 * 8));
@@ -175,7 +175,7 @@ void *ov6_02247A90(void *param0)
 
     for (v7 = 0; v7 < 5; v7++) {
         for (v6 = 0; v6 < 4; v6++) {
-            v5 = sub_0202F160(v8, v7, v6);
+            v5 = sub_0202F160(saveData, v7, v6);
             v2 = MessageLoader_GetNewStrbuf(v0->unk_10, Unk_ov6_0224971C[v7][v6].unk_00);
             StringTemplate_SetNumber(v0->unk_14, 0, v5, 4, 1, 1);
             StringTemplate_Format(v0->unk_14, v3, v2);

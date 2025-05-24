@@ -1963,7 +1963,7 @@ void ov62_02233664(UnkStruct_ov62_0223359C *param0)
 
 void ov62_02233704(UnkStruct_0208C06C *param0, u32 param1)
 {
-    GameRecords *v0 = SaveData_GetGameRecords(param0->unk_830);
+    GameRecords *v0 = SaveData_GetGameRecords(param0->saveData);
     GameRecords_IncrementTrainerScore(v0, param1);
 }
 
@@ -1971,13 +1971,13 @@ void ov62_0223371C(UnkStruct_0208C06C *param0)
 {
     int v0;
 
-    sub_0202F1F8(param0->unk_830, HEAP_ID_119, &v0);
+    sub_0202F1F8(param0->saveData, HEAP_ID_119, &v0);
 
     {
         UnkStruct_02030A80 *v1 = (UnkStruct_02030A80 *)(&param0->unk_8B4.unk_00->unk_00);
         UnkStruct_0202F41C *v2 = (UnkStruct_0202F41C *)(&param0->unk_8B4.unk_00->unk_80);
         UnkStruct_0202F298 *v3 = (UnkStruct_0202F298 *)(&param0->unk_8B4.unk_00->unk_E4);
-        sub_0202FE20(v1, v2, v3, NULL, param0->unk_830);
+        sub_0202FE20(v1, v2, v3, NULL, param0->saveData);
     }
 }
 
@@ -2036,7 +2036,7 @@ void ov62_022337D4(UnkStruct_0208C06C *param0)
 
 BOOL ov62_022337F0(UnkStruct_0208C06C *param0, int param1, u8 param2)
 {
-    int v0 = ov62_02248598(param0->unk_830, param1, param2, &param0->unk_834, &param0->unk_836);
+    int v0 = ov62_02248598(param0->saveData, param1, param2, &param0->unk_834, &param0->unk_836);
 
     if ((v0 == 0) || (v0 == 1)) {
         return 0;
@@ -2078,7 +2078,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
     int v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0202F298(param0->unk_830, 102, &v1, NULL, v0);
+        sub_0202F298(param0->saveData, 102, &v1, NULL, v0);
 
         switch (v1) {
         case 0:
@@ -2087,7 +2087,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
 
             if (v0 == 0) {
                 param0->unk_88C[v0] = sub_02030A80(HEAP_ID_102);
-                sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
+                sub_02030AA0(param0->unk_88C[v0], param0->saveData);
             }
             break;
         case 2:
@@ -2096,7 +2096,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
 
             if (v0 == 0) {
                 param0->unk_88C[v0] = sub_02030A80(HEAP_ID_102);
-                sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
+                sub_02030AA0(param0->unk_88C[v0], param0->saveData);
             }
             break;
         case 3:
@@ -2105,7 +2105,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
 
             if (v0 == 0) {
                 param0->unk_88C[v0] = sub_02030A80(HEAP_ID_102);
-                sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
+                sub_02030AA0(param0->unk_88C[v0], param0->saveData);
             }
             break;
         case 1:
@@ -2113,7 +2113,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
 
             if (v0 == 0) {
                 param0->unk_88C[v0] = sub_02030A80(HEAP_ID_102);
-                sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
+                sub_02030AA0(param0->unk_88C[v0], param0->saveData);
             } else {
                 param0->unk_88C[v0] = sub_0202FDB8(HEAP_ID_102);
             }
@@ -2646,7 +2646,7 @@ void ov62_022342BC(UnkStruct_0208C06C *param0)
 
 BOOL ov62_022342CC(UnkStruct_0208C06C *param0)
 {
-    MiscSaveBlock *v0 = SaveData_MiscSaveBlock(param0->unk_830);
+    MiscSaveBlock *v0 = SaveData_MiscSaveBlock(param0->saveData);
     u32 v1, v2;
     u8 v3;
 

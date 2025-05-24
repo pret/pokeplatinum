@@ -76,9 +76,9 @@ void sub_0208BA84(UnkStruct_0208BA84 *param0, BOOL param1, int param2)
     param0->unk_04 = param2;
 }
 
-static void sub_0208BA8C(SaveData *param0, int param1, u32 param2)
+static void sub_0208BA8C(SaveData *saveData, int param1, u32 param2)
 {
-    JournalEntry *journalEntry = SaveData_GetJournal(param0);
+    JournalEntry *journalEntry = SaveData_GetJournal(saveData);
     void *journalEntryOnlineEvent = JournalEntry_CreateEventMisc(param1, param2);
 
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
@@ -100,7 +100,7 @@ static void sub_0208BAAC(OverlayManager *param0, int param1)
     MI_CpuFill8(v0->unk_14, 0, sizeof(UnkStruct_0208C06C));
 
     v0->unk_14->unk_868 = &v0->unk_18;
-    v0->unk_14->unk_830 = v0->saveData;
+    v0->unk_14->saveData = v0->saveData;
     v0->unk_14->unk_00 = param1;
     v0->unk_14->unk_81C[v0->unk_14->unk_534.unk_1A4] = sub_0208C034(v0->unk_14, v0->unk_14->unk_00);
 
@@ -406,7 +406,7 @@ const OverlayManagerTemplate *sub_0208BE5C(int param0)
 
 BOOL sub_0208BE68(UnkStruct_0208C06C *param0)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(param0->unk_830);
+    VarsFlags *v0 = SaveData_GetVarsFlags(param0->saveData);
     return SystemFlag_HandleFirstArrivalToZone(v0, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_BATTLE_PARK);
 }
 

@@ -10,7 +10,7 @@
 
 #include "savedata.h"
 
-int ov4_021D0D80(SaveData *param0, int heapID, int param2, int param3);
+int ov4_021D0D80(SaveData *saveData, int heapID, int param2, int param3);
 void ov4_021D0F68();
 int ov4_021D0FEC();
 void ov4_021D1104(UnkFuncPtr_ov4_021D1104 param0, UnkFuncPtr_ov4_021D1104 param1);

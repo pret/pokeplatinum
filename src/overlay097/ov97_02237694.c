@@ -50,7 +50,7 @@ typedef struct {
     int unk_0C;
     int unk_10;
     int unk_14;
-    SaveData *unk_18;
+    SaveData *saveData;
     void *unk_1C;
     int unk_20;
     BOOL unk_24[4];
@@ -823,11 +823,11 @@ void ov97_02238440(void)
     OS_EnableIrq();
 }
 
-void ov97_0223846C(SaveData *param0)
+void ov97_0223846C(SaveData *saveData)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
-    v0->unk_18 = param0;
+    v0->saveData = saveData;
     v0->unk_14 = 0;
 }
 
@@ -839,11 +839,11 @@ int ov97_0223847C(void)
     switch (v1->unk_14) {
     case 0:
         ResetLock(RESET_LOCK_SOFT_RESET);
-        SaveData_SaveStateInit(v1->unk_18, 2);
+        SaveData_SaveStateInit(v1->saveData, 2);
         v1->unk_14++;
         break;
     case 1:
-        v0 = SaveData_SaveStateMain(v1->unk_18);
+        v0 = SaveData_SaveStateMain(v1->saveData);
 
         if (v0 == 3) {
             v1->unk_14 = 3;
@@ -883,7 +883,7 @@ void ov97_0223850C(void)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
-    SaveData_SaveStateCancel(v0->unk_18);
+    SaveData_SaveStateCancel(v0->saveData);
     v0->unk_14 = 3;
     ResetUnlock(RESET_LOCK_SOFT_RESET);
 }

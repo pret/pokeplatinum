@@ -304,7 +304,7 @@ void ov104_0223BA24(Party *param0)
 
 void ov104_0223BA7C(UnkStruct_ov104_0223BA10 *param0, Pokemon *param1)
 {
-    Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0->unk_04), 4, 0, 0, 11);
+    Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0->saveData), 4, 0, 0, 11);
     return;
 }
 

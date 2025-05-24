@@ -1583,7 +1583,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     v6 = (param0->unk_05 * 2);
     v4 = ov104_0223B500(param0->unk_04);
     v5 = ov104_0223B50C(param0->unk_04);
-    v13 = SaveData_GetParty(param0->unk_6FC);
+    v13 = SaveData_GetParty(param0->saveData);
 
     Party_HealAllMembers(v13);
 
@@ -1805,7 +1805,7 @@ u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0)
     Party *v2;
     Pokemon *v3;
 
-    v2 = SaveData_GetParty(param0->unk_6FC);
+    v2 = SaveData_GetParty(param0->saveData);
     v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_260[0]);
     v1 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
 
@@ -1862,7 +1862,7 @@ u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0)
     Pokemon *v1;
     u16 v2, v3;
 
-    v0 = SaveData_GetParty(param0->unk_6FC);
+    v0 = SaveData_GetParty(param0->saveData);
     v1 = Party_GetPokemonBySlotIndex(v0, param0->unk_260[0]);
     v2 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 

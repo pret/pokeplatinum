@@ -36,7 +36,7 @@ void sub_0206D340(FieldSystem *fieldSystem, BOOL param1, u16 param2, Pokemon *pa
 void sub_0206D424(FieldSystem *fieldSystem);
 void sub_0206D430(FieldSystem *fieldSystem);
 void sub_0206D4AC(FieldSystem *fieldSystem, u16 param1);
-void sub_0206D504(SaveData *param0, u16 param1, u8 param2);
+void sub_0206D504(SaveData *saveData, u16 param1, u8 param2);
 void sub_0206D578(FieldSystem *fieldSystem, Pokemon *param1);
 void sub_0206D60C(FieldSystem *fieldSystem, Pokemon *param1);
 void sub_0206D6C8(FieldSystem *fieldSystem, int param1, int param2);
@@ -49,14 +49,14 @@ void sub_0206DAB8(FieldSystem *fieldSystem, const TrainerInfo *param1);
 void sub_0206DAD4(FieldSystem *fieldSystem, const TrainerInfo *param1);
 void sub_0206DB20(FieldSystem *fieldSystem);
 void sub_0206DB5C(FieldSystem *fieldSystem, u8 param1);
-void sub_0206DBB0(SaveData *param0, u32 param1, Pokemon *param2, BOOL param3);
+void sub_0206DBB0(SaveData *saveData, u32 param1, Pokemon *param2, BOOL param3);
 void sub_0206DC6C(FieldSystem *fieldSystem, u32 param1, Pokemon *param2);
 void sub_0206DD38(FieldSystem *fieldSystem, u32 param1, u32 param2, u32 param3);
 void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 monDataParam);
 void sub_0206DEEC(FieldSystem *fieldSystem, u16 param1, u16 param2);
 void sub_0206DF60(FieldSystem *fieldSystem, u16 param1);
-void sub_0206DFE0(SaveData *param0);
-void sub_0206E060(SaveData *param0);
+void sub_0206DFE0(SaveData *saveData);
+void sub_0206E060(SaveData *saveData);
 void sub_0206E0E0(FieldSystem *fieldSystem, u16 param1);
 void sub_0206E174(FieldSystem *fieldSystem, u16 param1);
 void sub_0206E264(FieldSystem *fieldSystem, u16 param1);
@@ -71,6 +71,6 @@ void sub_0206E6A8(FieldSystem *fieldSystem, u16 param1);
 void sub_0206E6E8(FieldSystem *fieldSystem, u16 param1);
 void sub_0206E728(FieldSystem *fieldSystem, u16 param1);
 void sub_0206E768(FieldSystem *fieldSystem, u16 param1);
-void sub_0206F2F0(SaveData *param0);
+void sub_0206F2F0(SaveData *saveData);
 
 #endif // POKEPLATINUM_UNK_0206CCB0_H

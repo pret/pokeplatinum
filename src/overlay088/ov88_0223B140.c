@@ -123,7 +123,7 @@ static void ov88_0223CB34(Window *param0, int param1, UnkStruct_02095E80 *param2
 static void ov88_0223BD18(Pokemon *param0, UnkStruct_ov88_0223C8AC *param1);
 static void ov88_0223E87C(Sprite *param0, int param1, int param2);
 static int ov88_0223C8AC(UnkStruct_ov88_0223C8AC *param0, Party *param1, int param2, int param3);
-static void ov88_0223D0C0(SaveData *param0);
+static void ov88_0223D0C0(SaveData *saveData);
 static int ov88_0223B914(UnkStruct_02095E80 *param0);
 static int ov88_0223BED8(UnkStruct_02095E80 *param0);
 static void ov88_0223B7A0(Party *param0, int param1, UnkStruct_02095E80 *param2);
@@ -588,7 +588,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
                 ov88_0223D044(CommSys_CurNetId(), 31, LCRNG_RandMod(60) + 3);
             }
 
-            ov88_0223D0C0(param0->unk_04);
+            ov88_0223D0C0(param0->saveData);
             ov88_0223E984(param0);
         }
         break;
@@ -609,7 +609,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         param0->unk_4C++;
         break;
     case 5:
-        if (sub_02038EDC(param0->unk_04, 2, &param0->unk_36F4)) {
+        if (sub_02038EDC(param0->saveData, 2, &param0->unk_36F4)) {
             param0->unk_4C++;
         }
         break;
@@ -675,7 +675,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         }
         break;
     case 14:
-        ov88_0223D140(SaveData_GetChatotCry(param0->unk_04));
+        ov88_0223D140(SaveData_GetChatotCry(param0->saveData));
         param0->unk_4C++;
         break;
     case 15:
@@ -1136,7 +1136,7 @@ static void ov88_0223C370(UnkStruct_02095E80 *param0, OverlayManager *param1)
     param0->unk_3708 = 0;
     param0->unk_2270 = v0->unk_08;
     param0->unk_227C = v0->unk_0C;
-    param0->unk_04 = v0->unk_10;
+    param0->saveData = v0->saveData;
     param0->unk_2274 = Heap_AllocFromHeap(HEAP_ID_26, Party_SaveSize());
 
     Party_InitWithCapacity(param0->unk_2274, 6);
@@ -1509,7 +1509,7 @@ static void ov88_0223CE74(UnkStruct_02095E80 *param0)
         form = param0->unk_6F4[param0->unk_88[0]].unk_06;
 
         if (species == SPECIES_CHATOT) {
-            Sound_PlayChatotCry(SaveData_GetChatotCry(param0->unk_04), 0, 100, 0);
+            Sound_PlayChatotCry(SaveData_GetChatotCry(param0->saveData), 0, 100, 0);
         } else {
             Sound_PlayPokemonCry(species, form);
         }
@@ -1637,9 +1637,9 @@ void ov88_0223D098(int param0, Party *param1, int param2)
     }
 }
 
-static void ov88_0223D0C0(SaveData *param0)
+static void ov88_0223D0C0(SaveData *saveData)
 {
-    u8 *v0 = sub_0202D79C(param0);
+    u8 *v0 = sub_0202D79C(saveData);
     int v1;
 
     CommSys_SendData(32, v0, 14);
@@ -1728,10 +1728,10 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
     param0->unk_0C.monIndex = param0->unk_88[0] % 6;
     param0->unk_0C.mode = SUMMARY_MODE_LOCK_MOVES;
     param0->unk_0C.move = 0;
-    param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->unk_10);
+    param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->saveData);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
     param0->unk_0C.options = param0->unk_08->unk_18;
-    param0->unk_0C.specialRibbons = sub_0202D79C(param0->unk_08->unk_10);
+    param0->unk_0C.specialRibbons = sub_0202D79C(param0->unk_08->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 
@@ -1823,9 +1823,9 @@ static int ov88_0223D514(UnkStruct_02095E80 *param0)
 
     switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
     case 0:
-        sub_02030788(SaveData_GetBattleFrontier(param0->unk_04), param0->unk_36C8);
+        sub_02030788(SaveData_GetBattleFrontier(param0->saveData), param0->unk_36C8);
         sub_0202AFD4(param0->unk_36EC, param0->unk_36C8);
-        sub_02039298(param0->unk_04, param0->unk_36C4, 32 - 1, HEAP_ID_26, 0);
+        sub_02039298(param0->saveData, param0->unk_36C4, 32 - 1, HEAP_ID_26, 0);
         param0->unk_226C = ov88_0223D854;
         break;
     case 0xfffffffe:
@@ -1945,7 +1945,7 @@ static int ov88_0223D7AC(UnkStruct_02095E80 *param0)
 
         for (v0 = 0; v0 < 32; v0++) {
             if (!sub_0202AF78(param0->unk_36EC, v0)) {
-                sub_02039298(param0->unk_04, param0->unk_36C4, v0, HEAP_ID_26, 0);
+                sub_02039298(param0->saveData, param0->unk_36C4, v0, HEAP_ID_26, 0);
                 break;
             }
         }
@@ -2000,7 +2000,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
         return 0;
     }
 
-    if (Bag_CanRemoveItem(SaveData_GetBag(param0->unk_04), ITEM_PAL_PAD, 1, HEAP_ID_26) == TRUE) {
+    if (Bag_CanRemoveItem(SaveData_GetBag(param0->saveData), ITEM_PAL_PAD, 1, HEAP_ID_26) == TRUE) {
         v1 = CommInfo_TrainerInfo(param0->unk_36C4);
         StringTemplate_SetPlayerName(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 57);
@@ -2009,11 +2009,11 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
     }
 
     {
-        WiFiList *v2 = SaveData_GetWiFiList(param0->unk_04);
+        WiFiList *v2 = SaveData_GetWiFiList(param0->saveData);
 
         for (v0 = 0; v0 < 32; v0++) {
             if (!sub_0202AF78(v2, v0)) {
-                sub_02039298(param0->unk_04, param0->unk_36C4, v0, HEAP_ID_26, 0);
+                sub_02039298(param0->saveData, param0->unk_36C4, v0, HEAP_ID_26, 0);
                 break;
             }
         }
@@ -2025,7 +2025,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
 
 static int ov88_0223D96C(UnkStruct_02095E80 *param0)
 {
-    if (0 == sub_020391DC(param0->unk_04, param0->unk_3644, HEAP_ID_26)) {
+    if (0 == sub_020391DC(param0->saveData, param0->unk_3644, HEAP_ID_26)) {
         CommTiming_StartSync(19);
         ov88_0223ECBC(&param0->unk_49C[23], 28, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D840;
@@ -2034,7 +2034,7 @@ static int ov88_0223D96C(UnkStruct_02095E80 *param0)
 
     param0->unk_36CC = StringTemplate_Default(HEAP_ID_26);
     param0->unk_36D0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_26);
-    param0->unk_36EC = SaveData_GetWiFiList(param0->unk_04);
+    param0->unk_36EC = SaveData_GetWiFiList(param0->saveData);
     param0->unk_226C = ov88_0223D854;
 
     return 0;
@@ -2400,7 +2400,7 @@ static int ov88_0223E41C(UnkStruct_02095E80 *param0)
 
 static int ov88_0223E478(UnkStruct_02095E80 *param0)
 {
-    CommInfo_SetTradeResult(param0->unk_04, 1);
+    CommInfo_SetTradeResult(param0->saveData, 1);
     ov88_0223E694(param0->unk_2270, param0->unk_2274, param0->unk_88[0], param0->unk_88[1] - 6, param0->unk_08);
     param0->unk_226C = ov88_0223D3E0;
     return 2;
@@ -2474,7 +2474,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
 
     if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-            VarsFlags *v2 = SaveData_GetVarsFlags(param4->unk_10);
+            VarsFlags *v2 = SaveData_GetVarsFlags(param4->saveData);
 
             if (SystemVars_GetArceusEventState(v2) == 0) {
                 SystemVars_SetArceusEventState(v2, 1);
@@ -2498,11 +2498,11 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
     param4->unk_2C = param2;
 
     if (Party_HasSpecies(param0, SPECIES_CHATOT) == 0) {
-        ChatotCry *v4 = SaveData_GetChatotCry(param4->unk_10);
+        ChatotCry *v4 = SaveData_GetChatotCry(param4->saveData);
         ResetChatotCryDataStatus(v4);
     }
 
-    sub_0202F180(param4->unk_10, v1);
+    sub_0202F180(param4->saveData, v1);
     Pokemon_Copy(v1, Party_GetPokemonBySlotIndex(param0, param2));
     Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param1, param3));
     ov88_0223E7F0(param4->unk_1C, v1);

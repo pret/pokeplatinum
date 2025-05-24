@@ -46,7 +46,7 @@ typedef struct {
 
 BOOL ScrCmd_2D9(ScriptContext *param0);
 BOOL ScrCmd_2DC(ScriptContext *param0);
-static void sub_02050174(SaveData *param0, UnkStruct_020305B8 *param1, u8 param2);
+static void sub_02050174(SaveData *saveData, UnkStruct_020305B8 *param1, u8 param2);
 void sub_020502E0(FieldTask *param0, void **param1, u8 param2);
 static BOOL sub_02050314(FieldTask *param0);
 static int sub_0205037C(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, int param2);
@@ -124,7 +124,7 @@ BOOL ScrCmd_2DC(ScriptContext *param0)
     return 0;
 }
 
-static void sub_02050174(SaveData *param0, UnkStruct_020305B8 *param1, u8 param2)
+static void sub_02050174(SaveData *saveData, UnkStruct_020305B8 *param1, u8 param2)
 {
     int v0;
     u16 v1[4];
@@ -134,10 +134,10 @@ static void sub_02050174(SaveData *param0, UnkStruct_020305B8 *param1, u8 param2
     sub_020305CC(param1, 8, param2, 0, v2);
 
     if (param2 == 3) {
-        sub_020306E4(SaveData_GetBattleFrontier(param0), 110, sub_0205E6A8(110), 0);
+        sub_020306E4(SaveData_GetBattleFrontier(saveData), 110, sub_0205E6A8(110), 0);
     }
 
-    sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E700(param2), sub_0205E6A8(sub_0205E700(param2)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(saveData), sub_0205E700(param2), sub_0205E6A8(sub_0205E700(param2)), 0);
     return;
 }
 
@@ -303,29 +303,29 @@ static int sub_02050448(UnkStruct_0205037C *param0, FieldSystem *fieldSystem)
 static int sub_02050498(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, int heapID)
 {
     PokemonSummary *v0;
-    SaveData *v1;
+    SaveData *saveData;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    v1 = fieldSystem->saveData;
+    saveData = fieldSystem->saveData;
     v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
-    v0->options = SaveData_GetOptions(v1);
-    v0->monData = SaveData_GetParty(v1);
-    v0->dexMode = SaveData_GetDexMode(v1);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
+    v0->options = SaveData_GetOptions(saveData);
+    v0->monData = SaveData_GetParty(saveData);
+    v0->dexMode = SaveData_GetDexMode(saveData);
+    v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
     v0->dataType = 1;
     v0->monIndex = param0->unk_05;
     v0->monMax = (u8)Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = SUMMARY_MODE_NORMAL;
-    v0->specialRibbons = sub_0202D79C(v1);
+    v0->specialRibbons = sub_0202D79C(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
+    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
 
     *(param0->unk_0C) = v0;

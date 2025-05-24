@@ -9,7 +9,7 @@
 #include "savedata.h"
 
 typedef struct {
-    SaveData *unk_00;
+    SaveData *saveData;
     void *unk_04;
     u16 unk_08[40];
     u8 unk_58;

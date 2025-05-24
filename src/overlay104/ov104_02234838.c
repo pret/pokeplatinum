@@ -110,7 +110,7 @@ BOOL ov104_022348BC(UnkStruct_ov104_0222E930 *param0)
 
     MI_CpuClear8(v4, sizeof(UnkStruct_ov104_02235208));
 
-    v4->unk_00 = v5->saveData;
+    v4->saveData = v5->saveData;
     v4->unk_04 = v3->unk_04;
     v4->unk_10 = v3;
     v4->unk_08 = &v3->unk_704[v3->unk_04][0];

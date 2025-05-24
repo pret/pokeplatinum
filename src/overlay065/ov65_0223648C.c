@@ -744,7 +744,7 @@ static void ov65_02236A28(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
     Font_LoadScreenIndicatorsPalette(0, 1 * 0x20, param2);
 
-    v0 = Options_Frame(SaveData_GetOptions(param1->unk_08));
+    v0 = Options_Frame(SaveData_GetOptions(param1->saveData));
 
     LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v0, param2);
     LoadStandardWindowGraphics(param0->unk_00, 1, (1 + (18 + 12)), 3, 0, param2);
@@ -790,7 +790,7 @@ static void ov65_02236C10(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     param0->unk_0C = Strbuf_Init(256, heapID);
     param0->unk_10 = Strbuf_Init(256, heapID);
     param0->unk_14 = 0xff;
-    param0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(param1->unk_08));
+    param0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(param1->saveData));
 }
 
 static void ov65_02236C5C(UnkStruct_ov65_02236840 *param0)
@@ -906,7 +906,7 @@ static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     Window_ScheduleCopyToVRAM(&param0->unk_1F0);
     Strbuf_Free(v0);
 
-    v1 = Options_Frame(SaveData_GetOptions(param1->unk_08));
+    v1 = Options_Frame(SaveData_GetOptions(param1->saveData));
 
     LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v1, heapID);
 
@@ -1500,7 +1500,7 @@ static void ov65_022378C4(UnkStruct_ov65_022367A8 *param0, const UnkStruct_0207D
     DestroyWaitDial(param0->unk_30.unk_24C);
 
     param0->unk_30.unk_24C = NULL;
-    v0 = Options_Frame(SaveData_GetOptions(param1->unk_08));
+    v0 = Options_Frame(SaveData_GetOptions(param1->saveData));
 
     LoadMessageBoxGraphics(param0->unk_30.unk_00, 1, 1, 2, v0, param2);
 }
@@ -1601,7 +1601,7 @@ static void ov65_02237A24(UnkStruct_0207DE04 *param0, u32 heapID)
     JournalEntry *journalEntry;
     UnkStruct_0207E060 *v2;
 
-    journalEntry = SaveData_GetJournal(param0->unk_08);
+    journalEntry = SaveData_GetJournal(param0->saveData);
     journalEntryOnlineEvent = JournalEntry_CreateEventMisc(heapID, ONLINE_EVENT_WIFI_CLUB);
 
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
@@ -2700,7 +2700,7 @@ static BOOL ov65_022387E8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 static BOOL ov65_02238838(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
     if (IsScreenTransitionDone()) {
-        CommInfo_Init(param1->unk_08, NULL);
+        CommInfo_Init(param1->saveData, NULL);
 
         param0->unk_00.unk_27 = 1;
 

@@ -60,7 +60,7 @@ typedef struct {
     UnkStruct_02097F38_sub1 *unk_04;
     UnkStruct_02097F18 *unk_08;
     PartyManagementData *unk_0C;
-    SaveData *unk_10;
+    SaveData *saveData;
     int unk_14;
 } UnkStruct_02097F38;
 
@@ -314,14 +314,14 @@ static BOOL sub_02097F38(FieldTask *param0)
     case 0:
 
         FieldTransition_FinishMap(param0);
-        v1->unk_20 = SaveData_GetBallSeals(v0->unk_10);
+        v1->unk_20 = SaveData_GetBallSeals(v0->saveData);
         sub_02097F20(v1, 0);
 
         {
             int v3;
             int v4;
 
-            v1->unk_1C = SaveData_GetParty(v0->unk_10);
+            v1->unk_1C = SaveData_GetParty(v0->saveData);
             v4 = Party_GetCurrentCount(v1->unk_1C);
             v1->unk_00 = v4;
 
@@ -360,8 +360,8 @@ static BOOL sub_02097F38(FieldTask *param0)
         PartyManagementData *v6 = v0->unk_0C;
 
         v6->unk_00 = v1->unk_1C;
-        v6->unk_04 = SaveData_GetBag(v0->unk_10);
-        v6->unk_08 = SaveData_GetMailBox(v0->unk_10);
+        v6->unk_04 = SaveData_GetBag(v0->saveData);
+        v6->unk_08 = SaveData_GetMailBox(v0->saveData);
         v6->selectedMonSlot = 0;
         v6->unk_21 = 0;
         v6->unk_20 = 15;
@@ -412,16 +412,16 @@ static BOOL sub_02097F38(FieldTask *param0)
     return 0;
 }
 
-void sub_020980DC(FieldTask *param0, SaveData *param1)
+void sub_020980DC(FieldTask *param0, SaveData *saveData)
 {
     UnkStruct_02097F38 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02097F38));
 
     memset(v0, 0, sizeof(UnkStruct_02097F38));
-    v0->unk_10 = param1;
+    v0->saveData = saveData;
     v0->unk_08 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02097F18));
     memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
-    v0->unk_08->unk_24 = SaveData_GetOptions(param1);
-    v0->unk_08->unk_28 = param1;
+    v0->unk_08->unk_24 = SaveData_GetOptions(saveData);
+    v0->unk_08->saveData = saveData;
     v0->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
     memset(v0->unk_0C, 0, sizeof(PartyManagementData));
 

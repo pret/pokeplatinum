@@ -31,7 +31,7 @@ typedef struct {
     MessageLoader *unk_1C;
     Window unk_20;
     Menu *unk_30;
-    SaveData *unk_34;
+    SaveData *saveData;
     void *unk_38;
     u32 unk_3C;
 } UnkStruct_0209A3D0;
@@ -77,7 +77,7 @@ int sub_0209A2C4(OverlayManager *param0, int *param1)
 
     v0->heapID = heapID;
     v0->unk_04 = 0;
-    v0->unk_34 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
 
     return 1;
 }
@@ -223,7 +223,7 @@ static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0)
 
     switch (param0->unk_04) {
     case 0: {
-        param0->unk_3C = SaveData_LoadCheckStatus(param0->unk_34);
+        param0->unk_3C = SaveData_LoadCheckStatus(param0->saveData);
 
         if (param0->unk_3C == 0) {
             param0->unk_04 = 6;

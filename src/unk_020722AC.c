@@ -142,7 +142,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2);
 static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2);
 static void sub_02072DB8(UnkStruct_02072334 *param0);
 static void sub_02072E4C(UnkStruct_02072334 *param0);
-static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int heapID);
+static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int heapID);
 static void sub_02073020(UnkStruct_02072334 *param0, u8 param1);
 static BOOL sub_02073060(UnkStruct_02072334 *param0);
 static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2);
@@ -193,7 +193,7 @@ static const UnkStruct_020F0524 Unk_020F0524[] = {
 void sub_020722AC(void *param0, int *param1)
 {
     UnkStruct_02072334 *v0 = NULL;
-    SaveData *v1;
+    SaveData *saveData;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_43, 0x5000);
 
@@ -201,17 +201,17 @@ void sub_020722AC(void *param0, int *param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_02072334));
     v0->unk_04 = param1;
 
-    v1 = FieldSystem_GetSaveData(param0);
+    saveData = FieldSystem_GetSaveData(param0);
 
     v0->fieldSystem = (FieldSystem *)param0;
     v0->heapID = HEAP_ID_43;
     v0->unk_19 = 0;
     v0->unk_1A = 0xFF;
-    v0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(v1));
-    v0->unk_14 = Options_Frame(SaveData_GetOptions(v1));
+    v0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
+    v0->unk_14 = Options_Frame(SaveData_GetOptions(saveData));
 
     sub_02072ED0(v0->unk_1C, 20, v0->heapID);
-    sub_02072F30(v0, v1, v0->heapID);
+    sub_02072F30(v0, saveData, v0->heapID);
     sub_02073130(v0);
 
     v0->unk_08 = SysTask_Start(sub_02072370, v0, 0);
@@ -895,7 +895,7 @@ static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1)
     }
 }
 
-static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int heapID)
+static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int heapID)
 {
     u8 v0 = 0, v1 = 0, v2 = 0xFF, v3 = 0;
     int v4;
@@ -903,10 +903,10 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int heapI
     Mail *v6;
     UnkStruct_02072EB8 *v7, *v8;
 
-    v5 = SaveData_GetMailBox(param1);
+    v5 = SaveData_GetMailBox(saveData);
 
     param0->unk_1AC = v5;
-    param0->bag = SaveData_GetBag(param1);
+    param0->bag = SaveData_GetBag(saveData);
 
     v6 = sub_0202818C(heapID);
 

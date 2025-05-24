@@ -58,7 +58,7 @@ static int sub_0208BEBC(OverlayManager *param0, int *param1, int param2)
 
     if (param2 == 0) {
         {
-            MiscSaveBlock *v1 = SaveData_MiscSaveBlock(v0->unk_830);
+            MiscSaveBlock *v1 = SaveData_MiscSaveBlock(v0->saveData);
 
             MiscSaveBlock_VsRecorderColor(v1, &v0->unk_14.unk_48);
 

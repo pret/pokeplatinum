@@ -46,7 +46,7 @@ typedef struct {
 
 BOOL ScrCmd_2D2(ScriptContext *param0);
 BOOL ScrCmd_2D5(ScriptContext *param0);
-static void sub_0204FBEC(SaveData *param0, UnkStruct_0203041C *param1, u8 param2);
+static void sub_0204FBEC(SaveData *saveData, UnkStruct_0203041C *param1, u8 param2);
 static void sub_0204FDB4(FieldTask *param0, void **param1, u8 param2);
 static BOOL sub_0204FDE8(FieldTask *param0);
 static int sub_0204FE50(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, int param2);
@@ -124,7 +124,7 @@ BOOL ScrCmd_2D5(ScriptContext *param0)
     return 0;
 }
 
-static void sub_0204FBEC(SaveData *param0, UnkStruct_0203041C *param1, u8 param2)
+static void sub_0204FBEC(SaveData *saveData, UnkStruct_0203041C *param1, u8 param2)
 {
     int v0;
     u16 v1[4];
@@ -134,16 +134,16 @@ static void sub_0204FBEC(SaveData *param0, UnkStruct_0203041C *param1, u8 param2
     sub_02030430(param1, 9, param2, 0, v2);
 
     if (param2 == 3) {
-        sub_020306E4(SaveData_GetBattleFrontier(param0), 108, sub_0205E6A8(108), 0);
+        sub_020306E4(SaveData_GetBattleFrontier(saveData), 108, sub_0205E6A8(108), 0);
     }
 
-    sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E5E0(param2), sub_0205E6A8(sub_0205E5E0(param2)), 0);
-    sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E630(param2), sub_0205E6A8(sub_0205E630(param2)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(saveData), sub_0205E5E0(param2), sub_0205E6A8(sub_0205E5E0(param2)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(saveData), sub_0205E630(param2), sub_0205E6A8(sub_0205E630(param2)), 0);
 
     v1[0] = 1;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E5B4(param2, v0), sub_0205E6A8(sub_0205E5B4(param2, v0)), 1);
+        sub_020306E4(SaveData_GetBattleFrontier(saveData), sub_0205E5B4(param2, v0), sub_0205E6A8(sub_0205E5B4(param2, v0)), 1);
     }
 
     return;
@@ -315,29 +315,29 @@ static int sub_0204FF1C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem)
 static int sub_0204FF6C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, int heapID)
 {
     PokemonSummary *v0;
-    SaveData *v1;
+    SaveData *saveData;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    v1 = fieldSystem->saveData;
+    saveData = fieldSystem->saveData;
     v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
-    v0->options = SaveData_GetOptions(v1);
-    v0->monData = SaveData_GetParty(v1);
-    v0->dexMode = SaveData_GetDexMode(v1);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
+    v0->options = SaveData_GetOptions(saveData);
+    v0->monData = SaveData_GetParty(saveData);
+    v0->dexMode = SaveData_GetDexMode(saveData);
+    v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
     v0->dataType = SUMMARY_DATA_PARTY_MON;
     v0->monIndex = param0->unk_05;
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = SUMMARY_MODE_NORMAL;
-    v0->specialRibbons = sub_0202D79C(v1);
+    v0->specialRibbons = sub_0202D79C(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
+    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
 
     *(param0->unk_0C) = v0;

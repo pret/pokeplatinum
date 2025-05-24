@@ -182,7 +182,7 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
 
         v0->unk_00 = BgConfig_New(HEAP_ID_51);
         v0->unk_08 = (UnkStruct_0203DE34 *)OverlayManager_Args(param0);
-        v0->unk_4A9C = v0->unk_08->unk_00;
+        v0->saveData = v0->unk_08->saveData;
         v0->unk_24 = StringTemplate_Default(HEAP_ID_51);
         v0->unk_28 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0533, HEAP_ID_51);
 
@@ -214,7 +214,7 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
         }
 
         sub_02039734();
-        ov59_021D30E0(v0->unk_4A9C, &v0->unk_418);
+        ov59_021D30E0(v0->saveData, &v0->unk_418);
 
         v0->unk_20 = SysTask_ExecuteOnVBlank(ov59_021D109C, v0, 5);
 
@@ -1067,7 +1067,7 @@ static int ov59_021D1D70(UnkStruct_020961E8 *param0, int param1)
 
 static int ov59_021D1DA0(UnkStruct_020961E8 *param0, int param1)
 {
-    ov59_021D313C(param0->unk_4A9C, param0->unk_FD8);
+    ov59_021D313C(param0->saveData, param0->unk_FD8);
 
     param0->unk_3A8 = 27;
 
@@ -1094,7 +1094,7 @@ static int ov59_021D1E0C(UnkStruct_020961E8 *param0, int param1)
         (void)0;
     }
 
-    if (sub_02038EDC(param0->unk_08->unk_00, 2, &param0->unk_404)) {
+    if (sub_02038EDC(param0->unk_08->saveData, 2, &param0->unk_404)) {
         Sound_StopEffect(1624, 8);
         ov59_021D2628(param0, 13, 0);
         ov59_021D19B0(param0, 29);

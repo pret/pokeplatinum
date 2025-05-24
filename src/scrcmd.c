@@ -4128,7 +4128,7 @@ static BOOL ScrCmd_1D9(ScriptContext *ctx)
 
     v0->unk_04 = v1;
     v0->unk_06 = v2;
-    v0->unk_00 = ctx->fieldSystem->saveData;
+    v0->saveData = ctx->fieldSystem->saveData;
 
     sub_0203D9D8(ctx->fieldSystem, *v3);
     ScriptContext_Pause(ctx, sub_02041CC8);
@@ -4141,7 +4141,7 @@ static BOOL ScrCmd_0AB(ScriptContext *ctx)
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     UnkStruct_02042434 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02042434));
 
-    v1->unk_00 = ctx->fieldSystem->saveData;
+    v1->saveData = ctx->fieldSystem->saveData;
     v1->boxMode = ScriptContext_ReadByte(ctx);
     *v0 = v1;
 
@@ -6455,11 +6455,11 @@ static BOOL ScrCmd_249(ScriptContext *ctx)
 static BOOL ScrCmd_24A(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
+    SaveData *saveData = fieldSystem->saveData;
     SecretBaseRecord *v2;
     u16 *v3 = ScriptContext_GetVarPointer(ctx);
 
-    v2 = SaveData_SecretBaseRecord(v1);
+    v2 = SaveData_SecretBaseRecord(saveData);
     *v3 = sub_020295B8(v2);
 
     return FALSE;

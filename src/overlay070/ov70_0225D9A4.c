@@ -228,7 +228,7 @@ typedef struct UnkStruct_ov70_0225DEE8_t {
 } UnkStruct_ov70_0225DEE8;
 
 static void ov70_0225E4C8(void *param0);
-static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32 heapID);
+static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *saveData, u32 heapID);
 static void ov70_0225E6C0(UnkStruct_ov70_0225E4EC *param0);
 static void ov70_0225E6D0(UnkStruct_ov70_0225E4EC *param0);
 static void ov70_0225E740(UnkStruct_ov70_0225E4EC *param0);
@@ -236,7 +236,7 @@ static void ov70_0225E754(void);
 static void ov70_0225E88C(UnkStruct_ov70_0225DEE8 *param0);
 static void ov70_0225E92C(UnkStruct_ov70_0225DEE8 *param0);
 static void ov70_0225E970(UnkStruct_ov70_0225DEE8 *param0);
-static void ov70_0225E9C8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4EC *param1, SaveData *param2, u32 heapID);
+static void ov70_0225E9C8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4EC *param1, SaveData *saveData, u32 heapID);
 static void ov70_0225EA14(UnkStruct_ov70_0225E9C8 *param0);
 static void ov70_0225EA44(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1);
 static void ov70_0225EAA4(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1);
@@ -246,7 +246,7 @@ static void ov70_0225EB38(UnkStruct_ov70_0225E9C8 *param0);
 static BOOL ov70_0225EB4C(const UnkStruct_ov70_0225E9C8 *param0);
 static BOOL ov70_0225EB5C(const UnkStruct_ov70_0225E9C8 *param0);
 static void ov70_0225EB74(UnkStruct_ov70_0225E9C8 *param0);
-static void ov70_0225EBA8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4EC *param1, SaveData *param2, u32 heapID);
+static void ov70_0225EBA8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4EC *param1, SaveData *saveData, u32 heapID);
 static void ov70_0225EBBC(UnkStruct_ov70_0225E9C8 *param0);
 static void ov70_0225EBC4(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1);
 static void ov70_0225EC20(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4EC *param1, u32 heapID);
@@ -603,8 +603,8 @@ int ov70_0225D9A4(OverlayManager *param0, int *param1)
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
 
-    v0->unk_458 = SaveData_GetTrainerInfo(v1->unk_00);
-    ov70_0225E4EC(&v0->unk_3C, v1->unk_00, HEAP_ID_112);
+    v0->unk_458 = SaveData_GetTrainerInfo(v1->saveData);
+    ov70_0225E4EC(&v0->unk_3C, v1->saveData, HEAP_ID_112);
     v0->unk_44C = ov70_0225C858(HEAP_ID_112);
 
     {
@@ -617,8 +617,8 @@ int ov70_0225D9A4(OverlayManager *param0, int *param1)
     v0->unk_448 = ov70_02261E10(v1->unk_04, v1->unk_08, v0->unk_44C, HEAP_ID_112, HEAP_ID_113);
     v0->unk_450 = ov70_02260A70(HEAP_ID_112);
 
-    ov70_0225E9C8(&v0->unk_35C, &v0->unk_3C, v1->unk_00, HEAP_ID_112);
-    ov70_0225EBA8(&v0->unk_37C, &v0->unk_3C, v1->unk_00, HEAP_ID_112);
+    ov70_0225E9C8(&v0->unk_35C, &v0->unk_3C, v1->saveData, HEAP_ID_112);
+    ov70_0225EBA8(&v0->unk_37C, &v0->unk_3C, v1->saveData, HEAP_ID_112);
     ov70_0225EC20(&v0->unk_39C, &v0->unk_3C, HEAP_ID_112);
     ov70_0225F114(&v0->unk_3F4, &v0->unk_3C, HEAP_ID_112);
     ov70_0225EFD4(&v0->unk_428, &v0->unk_3C, HEAP_ID_112);
@@ -1249,7 +1249,7 @@ static void ov70_0225E4C8(void *param0)
     ov70_0225E740(&v0->unk_3C);
 }
 
-static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32 heapID)
+static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *saveData, u32 heapID)
 {
     G2_BlendNone();
     G2S_BlendNone();
@@ -1280,7 +1280,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
         Options *v1;
         u8 v2;
 
-        v1 = SaveData_GetOptions(param1);
+        v1 = SaveData_GetOptions(saveData);
         v2 = Options_Frame(v1);
 
         Font_LoadTextPalette(0, 5 * 32, heapID);
@@ -1502,7 +1502,7 @@ static void ov70_0225E970(UnkStruct_ov70_0225DEE8 *param0)
     }
 }
 
-static void ov70_0225E9C8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4EC *param1, SaveData *param2, u32 heapID)
+static void ov70_0225E9C8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4EC *param1, SaveData *saveData, u32 heapID)
 {
     Window_Add(param1->unk_00, &param0->unk_00, Unk_ov70_0226D5CC[0], 2, 19, 27, 4, 4, (((1 + (18 + 12)) + ((18 + 12) + 24)) + 9));
     Window_FillTilemap(&param0->unk_00, 15);
@@ -1512,7 +1512,7 @@ static void ov70_0225E9C8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4
     {
         Options *v0;
 
-        v0 = SaveData_GetOptions(param2);
+        v0 = SaveData_GetOptions(saveData);
         param0->unk_14 = Options_TextFrameDelay(v0);
     }
 }
@@ -1608,9 +1608,9 @@ static void ov70_0225EB74(UnkStruct_ov70_0225E9C8 *param0)
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_00);
 }
 
-static void ov70_0225EBA8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4EC *param1, SaveData *param2, u32 heapID)
+static void ov70_0225EBA8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4EC *param1, SaveData *saveData, u32 heapID)
 {
-    ov70_0225E9C8(param0, param1, param2, heapID);
+    ov70_0225E9C8(param0, param1, saveData, heapID);
     Window_SetPalette(&param0->unk_00, 2);
 }
 

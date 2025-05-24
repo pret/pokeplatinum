@@ -3118,10 +3118,10 @@ static void ov19_BoxTouchScreenMarkingsButtonHandler(u32 buttonIndex, enum Touch
 
 static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *param1)
 {
-    param0->pcBoxes = SaveData_GetPCBoxes(param1->unk_00);
-    param0->saveData = param1->unk_00;
-    param0->party = SaveData_GetParty(param1->unk_00);
-    param0->options = SaveData_GetOptions(param1->unk_00);
+    param0->pcBoxes = SaveData_GetPCBoxes(param1->saveData);
+    param0->saveData = param1->saveData;
+    param0->party = SaveData_GetParty(param1->saveData);
+    param0->options = SaveData_GetOptions(param1->saveData);
     param0->unk_118 = param1;
     param1->unk_08 = 0;
     param0->boxMessagesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BOX_MESSAGES, HEAP_ID_9);

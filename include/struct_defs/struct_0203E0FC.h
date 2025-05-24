@@ -25,7 +25,7 @@ typedef struct {
     WiFiList *unk_14;
     UnkStruct_0202C878 *unk_18;
     TrainerInfo *unk_1C;
-    SaveData *unk_20;
+    SaveData *saveData;
     Options *unk_24;
     GameRecords *records;
     JournalEntry *unk_2C;

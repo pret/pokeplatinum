@@ -125,7 +125,7 @@ static int ov109_021D4D20(UnkStruct_ov109_021D5140 *param0, int param1);
 static int ov109_021D4D80(UnkStruct_ov109_021D5140 *param0, int param1);
 static int ov109_021D4F28(UnkStruct_ov109_021D5140 *param0, int param1);
 static int ov109_021D510C(UnkStruct_ov109_021D5140 *param0, int param1);
-static void ov109_021D59A8(SaveData *param0, const UnkStruct_ov109_021D5140_sub2 *param1);
+static void ov109_021D59A8(SaveData *saveData, const UnkStruct_ov109_021D5140_sub2 *param1);
 
 static int (*const Unk_ov109_021D5E9C[])(UnkStruct_ov109_021D5140 *, int) = {
     ov109_021D474C,
@@ -1038,7 +1038,7 @@ static int ov109_021D4C7C(UnkStruct_ov109_021D5140 *param0, int param1)
 
 static int ov109_021D4CA8(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    ov109_021D59A8(param0->unk_0C->unk_14.unk_08, param0->unk_FE4);
+    ov109_021D59A8(param0->unk_0C->unk_14.saveData, param0->unk_FE4);
 
     param0->unk_3B8 = 27;
 
@@ -1069,7 +1069,7 @@ static int ov109_021D4D20(UnkStruct_ov109_021D5140 *param0, int param1)
         (void)0;
     }
 
-    if (sub_02038EDC(param0->unk_0C->unk_14.unk_08, 2, &param0->unk_414)) {
+    if (sub_02038EDC(param0->unk_0C->unk_14.saveData, 2, &param0->unk_414)) {
         Sound_StopEffect(1624, 8);
         ov109_021D55A8(param0, 13, 0);
         ov109_021D48EC(param0, 29);
@@ -1772,7 +1772,7 @@ static int ov109_021D58AC(UnkStruct_ov109_021D5140 *param0, int param1)
     return 1;
 }
 
-void ov109_021D59A8(SaveData *param0, const UnkStruct_ov109_021D5140_sub2 *param1)
+void ov109_021D59A8(SaveData *saveData, const UnkStruct_ov109_021D5140_sub2 *param1)
 {
     return;
 }

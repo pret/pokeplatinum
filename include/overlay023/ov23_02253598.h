@@ -11,7 +11,7 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
-void ov23_02253598(UnkStruct_ov23_02253598 *param0, SecretBaseRecord *param1, SaveData *param2);
+void ov23_02253598(UnkStruct_ov23_02253598 *param0, SecretBaseRecord *param1, SaveData *saveData);
 void ov23_022535CC(void);
 void ov23_022535EC(void);
 void ov23_02253604(void);

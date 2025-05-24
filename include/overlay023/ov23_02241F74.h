@@ -42,7 +42,7 @@ void ov23_02242CB4(void);
 void ov23_02242D08(void);
 void ov23_02242D44(FieldSystem *fieldSystem);
 BOOL ov23_02242D60(Strbuf *param0);
-UnkStruct_02029894 *ov23_02242E10(SaveData *param0);
+UnkStruct_02029894 *ov23_02242E10(SaveData *saveData);
 int ov23_02242E28(void);
 int ov23_02242E40(void);
 BOOL ov23_02242E58(int param0, int param1);

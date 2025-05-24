@@ -67,7 +67,7 @@ void *sub_0209C1EC(FieldSystem *fieldSystem)
     memset(v0, 0, sizeof(UnkStruct_0209C1EC));
 
     v0->fieldSystem = fieldSystem;
-    v0->unk_08.unk_08 = fieldSystem->saveData;
+    v0->unk_08.saveData = fieldSystem->saveData;
     v0->unk_08.unk_0C = fieldSystem->unk_80;
     v0->unk_08.unk_10 = SaveData_GetOptions(fieldSystem->saveData);
     v0->unk_08.records = SaveData_GetGameRecords(fieldSystem->saveData);

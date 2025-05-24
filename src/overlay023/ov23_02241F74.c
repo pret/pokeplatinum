@@ -877,13 +877,13 @@ BOOL ov23_02242D60(Strbuf *param0)
     return 0;
 }
 
-UnkStruct_02029894 *ov23_02242E10(SaveData *param0)
+UnkStruct_02029894 *ov23_02242E10(SaveData *saveData)
 {
     if (!sCommManUnderground) {
         return NULL;
     }
 
-    return ov23_0224D130(param0);
+    return ov23_0224D130(saveData);
 }
 
 int ov23_02242E28(void)

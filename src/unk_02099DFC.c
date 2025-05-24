@@ -32,7 +32,7 @@ typedef struct {
     MessageLoader *unk_18;
     Window unk_1C;
     Menu *unk_2C;
-    SaveData *unk_30;
+    SaveData *saveData;
     void *unk_34;
 } UnkStruct_02099DFC;
 
@@ -89,7 +89,7 @@ int sub_02099DFC(OverlayManager *param0, int *param1)
 
     v0->heapID = heapID;
     v0->unk_04 = 0;
-    v0->unk_30 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
 
     return 1;
 }
@@ -298,7 +298,7 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
         }
         break;
     case 5:
-        SaveData_Erase(param0->unk_30);
+        SaveData_Erase(param0->saveData);
         DestroyWaitDial(param0->unk_34);
         param0->unk_04 = 6;
         break;

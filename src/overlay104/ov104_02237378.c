@@ -129,7 +129,7 @@ BOOL ov104_0223740C(UnkStruct_ov104_0222E930 *param0)
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02238240));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02238240));
-    v2->unk_00 = v3->saveData;
+    v2->saveData = v3->saveData;
 
     ov104_02237634(v2, v1);
     sub_0209B988(param0->unk_00->unk_00, &v4, v2, 0, ov104_0223770C);

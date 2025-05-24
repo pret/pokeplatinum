@@ -44,7 +44,7 @@ typedef struct {
 
 typedef void (*UnkFuncPtr_ov104_02238B88)(UnkStruct_ov104_0223BFFC *, Party *, u8);
 
-UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6);
+UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *saveData, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6);
 void ov104_0223806C(UnkStruct_ov104_0223BFFC *param0, u16 param1);
 static void ov104_02238080(UnkStruct_ov104_0223BFFC *param0);
 static void ov104_02238114(UnkStruct_ov104_0223BFFC *param0);
@@ -140,7 +140,7 @@ static const u8 Unk_ov104_0223FAF8[][2] = {
     { 0x0, 0x3 }
 };
 
-UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6)
+UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *saveData, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6)
 {
     u32 v0, v1;
     Party *v2;
@@ -154,8 +154,8 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2
     v9 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223BFFC));
     MI_CpuClear8(v9, sizeof(UnkStruct_ov104_0223BFFC));
 
-    v9->unk_08 = sub_020304A0(param0);
-    v9->unk_04 = param0;
+    v9->unk_08 = sub_020304A0(saveData);
+    v9->saveData = saveData;
     v9->unk_00 = 11;
     v9->unk_70 = Party_New(HEAP_ID_FIELDMAP);
     v9->unk_74 = Party_New(HEAP_ID_FIELDMAP);
@@ -163,7 +163,7 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2
     v9->unk_13 = 32;
 
     v4 = v9->unk_08;
-    v10 = sub_020305B8(param0);
+    v10 = sub_020305B8(saveData);
 
     if (param1 == 0) {
         v9->unk_10 = param2;
@@ -174,13 +174,13 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2
         sub_02030494(v4);
 
         if (v9->unk_10 == 3) {
-            v5 = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(v9->unk_04));
+            v5 = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(v9->saveData));
         } else {
             v5 = (u8)sub_02030600(v10, 8, v9->unk_10, 0, NULL);
         }
 
         if (v5 == 1) {
-            v9->unk_18 = sub_02030698(SaveData_GetBattleFrontier(v9->unk_04), sub_0205E700(v9->unk_10), sub_0205E6A8(sub_0205E700(v9->unk_10)));
+            v9->unk_18 = sub_02030698(SaveData_GetBattleFrontier(v9->saveData), sub_0205E700(v9->unk_10), sub_0205E6A8(sub_0205E700(v9->unk_10)));
         } else {
             v9->unk_18 = 0;
         }
@@ -196,7 +196,7 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2
         v9->unk_11 = (u8)sub_0203054C(v4, 2, 0, 0, NULL);
         v9->unk_1C = (u8)sub_0203054C(v4, 3, 0, 0, NULL);
         v9->unk_12 = (u8)sub_0203054C(v4, 1, 0, 0, NULL);
-        v9->unk_18 = sub_02030698(SaveData_GetBattleFrontier(v9->unk_04), sub_0205E700(v9->unk_10), sub_0205E6A8(sub_0205E700(v9->unk_10)));
+        v9->unk_18 = sub_02030698(SaveData_GetBattleFrontier(v9->saveData), sub_0205E700(v9->unk_10), sub_0205E6A8(sub_0205E700(v9->unk_10)));
         v9->unk_1A = (u16)(v9->unk_18 / 7);
 
         for (v7 = 0; v7 < 3; v7++) {
@@ -205,11 +205,11 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2
     }
 
     for (v7 = 0; v7 < 3; v7++) {
-        v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(v9->unk_04), v9->unk_2C[v7]);
+        v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(v9->saveData), v9->unk_2C[v7]);
         v9->unk_412[v7] = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
     }
 
-    v2 = SaveData_GetParty(v9->unk_04);
+    v2 = SaveData_GetParty(v9->saveData);
     v6 = ov104_0223BD70(v9->unk_10, 0);
 
     for (v7 = 0; v7 < v6; v7++) {
@@ -228,7 +228,7 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2
     }
 
     if (ov104_0223C000(v9->unk_10) == 1) {
-        ov104_0222E630(v9->unk_04);
+        ov104_0222E630(v9->saveData);
     }
 
     return v9;
@@ -392,7 +392,7 @@ void ov104_02238278(UnkStruct_ov104_0223BFFC *param0, u8 param1)
     u32 v5, v6;
     Pokemon *v7;
     UnkStruct_020304A0 *v8 = param0->unk_08;
-    UnkStruct_020305B8 *v9 = sub_020305B8(param0->unk_04);
+    UnkStruct_020305B8 *v9 = sub_020305B8(param0->saveData);
 
     v1 = ov104_0223BDA4(param0->unk_10, 1);
 
@@ -408,16 +408,16 @@ void ov104_02238278(UnkStruct_ov104_0223BFFC *param0, u8 param1)
 
     v2[0] = param0->unk_12;
     sub_020304CC(param0->unk_08, 1, 0, 0, v2);
-    sub_020306E4(SaveData_GetBattleFrontier(param0->unk_04), sub_0205E700(param0->unk_10), sub_0205E6A8(sub_0205E700(param0->unk_10)), param0->unk_18);
+    sub_020306E4(SaveData_GetBattleFrontier(param0->saveData), sub_0205E700(param0->unk_10), sub_0205E6A8(sub_0205E700(param0->unk_10)), param0->unk_18);
 
     if (param1 != 2) {
-        v5 = sub_02030848(SaveData_GetBattleFrontier(param0->unk_04), sub_0205E728(param0->unk_10), sub_0205E6A8(sub_0205E728(param0->unk_10)), param0->unk_18);
+        v5 = sub_02030848(SaveData_GetBattleFrontier(param0->saveData), sub_0205E728(param0->unk_10), sub_0205E6A8(sub_0205E728(param0->unk_10)), param0->unk_18);
 
         v2[0] = param0->unk_2F;
         sub_020305CC(v9, 8, param0->unk_10, 0, v2);
 
         if (param0->unk_10 == 3) {
-            sub_020306E4(SaveData_GetBattleFrontier(param0->unk_04), 110, sub_0205E6A8(110), param0->unk_2F);
+            sub_020306E4(SaveData_GetBattleFrontier(param0->saveData), 110, sub_0205E6A8(110), param0->unk_2F);
         }
     }
 

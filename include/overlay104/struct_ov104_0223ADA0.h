@@ -40,7 +40,7 @@ typedef struct {
     u16 unk_4DC[6];
     u16 unk_4E8[6];
     UnkStruct_0202FF58 *unk_4F4;
-    SaveData *unk_4F8;
+    SaveData *saveData;
     void *unk_4FC;
     SysTask *unk_500;
     u16 unk_504[60];
