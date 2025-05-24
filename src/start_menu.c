@@ -1138,7 +1138,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v14->unk_01 = 3;
         v14->unk_00 = partyMan->selectedMonSlot;
         v14->unk_04 = partyMan->evoTargetSpecies;
-        v14->unk_08 = partyMan->unk_3C;
+        v14->unk_08 = partyMan->evoType;
 
         menu->taskData = v14;
         menu->state = START_MENU_STATE_EVOLVE_INIT;
@@ -1150,7 +1150,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v15->unk_01 = 0;
         v15->unk_00 = partyMan->selectedMonSlot;
         v15->unk_04 = partyMan->evoTargetSpecies;
-        v15->unk_08 = partyMan->unk_3C;
+        v15->unk_08 = partyMan->evoType;
         menu->taskData = v15;
         menu->state = START_MENU_STATE_EVOLVE_INIT;
     } break;

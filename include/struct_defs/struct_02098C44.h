@@ -38,7 +38,7 @@ typedef struct {
     int unk_34;
     u16 evoTargetSpecies;
     u8 padding_3A[2];
-    int unk_3C;
+    int evoType;
 } PartyManagementData;
 
 #endif // POKEPLATINUM_STRUCT_02098C44_H

@@ -2579,7 +2579,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
         if (Item_Get(v0, 26) != 0) {
             Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
 
-            param0->partyManagementData->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_ITEM, param0->partyManagementData->usedItemID, &param0->partyManagementData->unk_3C);
+            param0->partyManagementData->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_ITEM, param0->partyManagementData->usedItemID, &param0->partyManagementData->evoType);
             param0->partyManagementData->menuSelectionResult = 8;
             Heap_FreeToHeap(v0);
             return 32;

@@ -810,7 +810,7 @@ static int sub_02085C50(void *windowLayoutPtr)
         mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
         fieldSystem = windowLayout->partyManagementData->fieldSystem;
         v5 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
-        windowLayout->partyManagementData->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(windowLayout->partyManagementData->party, mon, EVO_CLASS_BY_LEVEL, v5, &windowLayout->partyManagementData->unk_3C);
+        windowLayout->partyManagementData->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(windowLayout->partyManagementData->party, mon, EVO_CLASS_BY_LEVEL, v5, &windowLayout->partyManagementData->evoType);
 
         if (windowLayout->partyManagementData->evoTargetSpecies != 0) {
             windowLayout->partyManagementData->menuSelectionResult = 9;
