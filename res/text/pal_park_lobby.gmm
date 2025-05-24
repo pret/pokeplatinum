@@ -25,7 +25,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pal Park is so scintillating!\rTrainers and Pokémon are so full of\nintensity here!\r</language>
 	</row>
-	<row id="PalParkLobby_Text_IveNeverSeenSomePokemonWouldYouShowMeIfyouHadOne" index="6">
+	<row id="PalParkLobby_Text_IveNeverSeenSomePokemon" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’ve never seen some Pokémon.\nWould you show me if you had one?\r</language>
 	</row>
@@ -127,11 +127,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Aww, that’s too bad.\rWell, just give me a shout if you’d\nlike to participate.</language>
 	</row>
-	<row id="PalParkLobby_Text_HiTherePlayerDidYouComeToParticipateInACatchingShow_PlayerMale" index="30">
+	<row id="PalParkLobby_Text_Greeting_PlayerMale" index="30">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hi there, {STRVAR_1 3, 0, 0}!\rDid you come to participate in\na Catching Show?</language>
 	</row>
-	<row id="PalParkLobby_Text_HiTherePlayerDidYouComeToParticipateInACatchingShow_PlayerFemale" index="31">
+	<row id="PalParkLobby_Text_Greeting_PlayerFemale" index="31">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hi there, {STRVAR_1 3, 0, 0}!\rDid you come to participate in\na Catching Show?</language>
 	</row>
@@ -171,7 +171,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Good! That’s a decent record.\nProps to you!\r</language>
 	</row>
-	<row id="PalParkLobby_Text_WouldYouLikeToPutAllThePokemonYouveCaughtInPCBoxes" index="41">
+	<row id="PalParkLobby_Text_AskToStoreCaughtMon" index="41">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Would you like to put all the Pokémon\nyou’ve caught in PC Boxes?</language>
 	</row>
@@ -191,7 +191,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">It’s time for your prize!\nHere you are!\r</language>
 	</row>
-	<row id="PalParkLobby_Text_WouldYouLikeToDoAnotherCatchingShowWithTheSamePokemon" index="46">
+	<row id="PalParkLobby_Text_AskToRedoCatchingShow" index="46">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Would you like to do another Catching\nShow with the same Pokémon?</language>
 	</row>

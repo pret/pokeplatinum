@@ -122,12 +122,12 @@ PalParkLobby_Receptionist_DontParticipate:
 
 PalParkLobby_Receptionist_DidYouComeToParticipate_PlayerMale:
     BufferPlayerName 0
-    Message PalParkLobby_Text_HiTherePlayerDidYouComeToParticipateInACatchingShow_PlayerMale
+    Message PalParkLobby_Text_Greeting_PlayerMale
     GoTo PalParkLobby_Receptionist_OpenCatchingShowMenu
 
 PalParkLobby_Receptionist_DidYouComeToParticipate_PlayerFemale:
     BufferPlayerName 0
-    Message PalParkLobby_Text_HiTherePlayerDidYouComeToParticipateInACatchingShow_PlayerFemale
+    Message PalParkLobby_Text_Greeting_PlayerFemale
     GoTo PalParkLobby_Receptionist_OpenCatchingShowMenu
 
 PalParkLobby_Receptionist_OpenCatchingShowMenu:
@@ -238,10 +238,10 @@ PalParkLobby_Receptionist_RecordBroken:
     GoTo PalParkLobby_Receptionist_AskToStoreCaughtMon
 
 PalParkLobby_Receptionist_AskToStoreCaughtMon:
-    Message PalParkLobby_Text_WouldYouLikeToPutAllThePokemonYouveCaughtInPCBoxes
+    Message PalParkLobby_Text_AskToStoreCaughtMon
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, PalParkLobby_Receptionist_StoreCaughtMon
-    Message PalParkLobby_Text_WouldYouLikeToDoAnotherCatchingShowWithTheSamePokemon
+    Message PalParkLobby_Text_AskToRedoCatchingShow
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, PalParkLobby_Receptionist_DontStoreCaughtMon
     GoTo PalParkLobby_Receptionist_AskToStoreCaughtMon
@@ -448,7 +448,7 @@ PalParkLobby_PoketchAppLady:
     CheckPoketchAppRegistered POKETCH_APPID_COLORCHANGER, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, PalParkLobby_PoketchAppLady_ReceivedAllPoketchApps
     Message PalParkLobby_Text_PalParkIsSoScintillating
-    Message PalParkLobby_Text_IveNeverSeenSomePokemonWouldYouShowMeIfyouHadOne
+    Message PalParkLobby_Text_IveNeverSeenSomePokemon
     CheckPoketchAppRegistered POKETCH_APPID_KITCHENTIMER, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, PalParkLobby_PoketchAppLady_CheckKecleon
     Message PalParkLobby_Text_APokemonThatDoesNothingButEatAndSleep
