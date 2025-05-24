@@ -937,7 +937,7 @@ static void ov23_0224BC5C(FieldSystem *fieldSystem, int param1, int param2, int 
     UnkStruct_ov23_0224BA48 *v0 = NULL;
 
     ov23_0224DC08();
-    v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov23_0224BA48));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_0224BA48));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
     v0->unk_18 = -1;
@@ -959,7 +959,7 @@ static UnkStruct_ov23_0224BA48 *ov23_0224BCC4(FieldSystem *fieldSystem, int para
     UnkStruct_ov23_0224BA48 *v0 = NULL;
 
     if (fieldSystem->task == NULL) {
-        v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0224BA48));
+        v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0224BA48));
         MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
         v0->unk_18 = -1;
@@ -1167,7 +1167,7 @@ static void ov23_0224C090(FieldSystem *fieldSystem, int param1, int param2, int 
 {
     UnkStruct_ov23_0224BA48 *v0 = NULL;
 
-    v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov23_0224BA48));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_0224BA48));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
     v0->unk_18 = -1;
@@ -1962,7 +1962,7 @@ static void ov23_0224CEC8(void)
 
     ov23_0224DC08();
 
-    v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov23_0224CB1C));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_0224CB1C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224CB1C));
 
     v0->unk_0C = 0;
@@ -2080,7 +2080,7 @@ BOOL ov23_0224D020(Strbuf *param0)
     return 0;
 }
 
-UnkStruct_02029894 *ov23_0224D130(SaveData *param0)
+UnkStruct_02029894 *ov23_0224D130(SaveData *saveData)
 {
     if (Unk_ov23_022577AC) {
         if (Unk_ov23_022577AC->unk_A00) {

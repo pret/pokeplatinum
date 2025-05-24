@@ -527,7 +527,7 @@ static u32 ov62_0223D124 (UnkStruct_0208C06C * param0, int param1)
 
     GF_ASSERT(Unk_ov62_022497E8[v1] != 0xFFFF);
 
-    v0 = GameRecords_GetRecordValue(SaveData_GetGameRecords(param0->unk_830), Unk_ov62_022497E8[v1]);
+    v0 = GameRecords_GetRecordValue(SaveData_GetGameRecords(param0->saveData), Unk_ov62_022497E8[v1]);
 
     return v0;
 }
@@ -992,9 +992,9 @@ static BOOL ov62_0223D744 (UnkStruct_0208C06C * param0)
         } else {
             {
                 v0->unk_71C = &v0->unk_710;
-                v0->unk_720.unk_08.unk_00 = PlayTime_GetHours(SaveData_GetPlayTime(param0->unk_830));
-                v0->unk_720.unk_08.unk_02 = PlayTime_GetMinutes(SaveData_GetPlayTime(param0->unk_830));
-                v0->unk_720.unk_08.unk_03 = PlayTime_GetSeconds(SaveData_GetPlayTime(param0->unk_830));
+                v0->unk_720.unk_08.unk_00 = PlayTime_GetHours(SaveData_GetPlayTime(param0->saveData));
+                v0->unk_720.unk_08.unk_02 = PlayTime_GetMinutes(SaveData_GetPlayTime(param0->saveData));
+                v0->unk_720.unk_08.unk_03 = PlayTime_GetSeconds(SaveData_GetPlayTime(param0->saveData));
                 v0->unk_720.unk_0C[0].unk_00 = v0->unk_71C->unk_00[0];
                 v0->unk_720.unk_0C[1].unk_00 = v0->unk_71C->unk_00[1];
                 v0->unk_720.unk_0C[2].unk_00 = v0->unk_71C->unk_00[2];

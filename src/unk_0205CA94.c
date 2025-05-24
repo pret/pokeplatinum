@@ -460,7 +460,7 @@ static int sub_0205D1C4(SpriteResourceCollection *param0, SpriteResourceList **p
     int v2;
     void *v3;
 
-    v0 = Heap_AllocFromHeapAtEnd(4, SpriteResourceTable_Size());
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, SpriteResourceTable_Size());
     v3 = LoadMemberFromNARC(177, param2, 0, 4, 0);
 
     SpriteResourceTable_LoadFromBinary(v3, v0, HEAP_ID_FIELD);

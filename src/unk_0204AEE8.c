@@ -102,7 +102,7 @@ static const u16 Unk_020EBD98[][2] = {
     { 0x16, 0x47 }
 };
 
-StringTemplate *sub_0204AEE8(SaveData *param0, u16 param1, u16 param2, u8 param3, u8 *param4)
+StringTemplate *sub_0204AEE8(SaveData *saveData, u16 param1, u16 param2, u8 param3, u8 *param4)
 {
     u8 v0;
     u16 v1;
@@ -113,7 +113,7 @@ StringTemplate *sub_0204AEE8(SaveData *param0, u16 param1, u16 param2, u8 param3
 
     v2 = Strbuf_Init(12 + 2, HEAP_ID_FIELD);
     v3 = Strbuf_Init(2, HEAP_ID_FIELD);
-    pokedex = SaveData_GetPokedex(param0);
+    pokedex = SaveData_GetPokedex(saveData);
     v6 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD);
     v5 = StringTemplate_New(18 + 1, 12 + 2, HEAP_ID_FIELD);
 
@@ -196,15 +196,15 @@ u16 sub_0204B044(FieldSystem *fieldSystem, const u16 *param1)
     return 0;
 }
 
-void sub_0204B060(UnkStruct_0204AFC4 *param0, SaveData *param1)
+void sub_0204B060(UnkStruct_0204AFC4 *param0, SaveData *saveData)
 {
     int v0;
     Party *v1;
     Pokemon *v2;
-    TrainerInfo *v3 = SaveData_GetTrainerInfo(param1);
+    TrainerInfo *v3 = SaveData_GetTrainerInfo(saveData);
 
     param0->unk_83E[0] = TrainerInfo_Gender(v3);
-    v1 = SaveData_GetParty(param1);
+    v1 = SaveData_GetParty(saveData);
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_83E[1 + v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), MON_DATA_SPECIES, NULL);

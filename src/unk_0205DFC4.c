@@ -56,7 +56,7 @@ int sub_0205E658(u8 param0);
 int sub_0205E680(u8 param0);
 int sub_0205E6A8(u32 param0);
 u8 sub_0205E6B8(void);
-u8 sub_0205E6D8(SaveData *param0);
+u8 sub_0205E6D8(SaveData *saveData);
 int sub_0205E700(u8 param0);
 int sub_0205E728(u8 param0);
 int sub_0205E750(u8 param0);
@@ -251,14 +251,14 @@ u16 SaveData_GetFirstNonEggInParty(SaveData *saveData)
     return 0;
 }
 
-BOOL HasAllLegendaryTitansInParty(SaveData *param0)
+BOOL HasAllLegendaryTitansInParty(SaveData *saveData)
 {
     int v0, v1, v2, v3 = 0;
     Party *v4;
     static const u16 v5[] = { 377, 378, 379 };
     u16 v6[6];
 
-    v4 = SaveData_GetParty(param0);
+    v4 = SaveData_GetParty(saveData);
     v2 = Party_GetCurrentCount(v4);
 
     for (v0 = 0; v0 < v2; v0++) {
@@ -315,7 +315,7 @@ static BOOL sub_0205E268(FieldTask *param0)
 void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E268 *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E268));
+    UnkStruct_0205E268 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205E268));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E268));
 
@@ -351,7 +351,7 @@ static BOOL sub_0205E3AC(FieldTask *param0)
 void sub_0205E3F4(FieldTask *param0, MapObject *param1, u16 param2, u16 param3)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E3AC *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E3AC));
+    UnkStruct_0205E3AC *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205E3AC));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E3AC));
 
@@ -713,9 +713,9 @@ u8 sub_0205E6B8(void)
     return TrainerInfo_GameCode(v0);
 }
 
-u8 sub_0205E6D8(SaveData *param0)
+u8 sub_0205E6D8(SaveData *saveData)
 {
-    if (TrainerInfo_GameCode(SaveData_GetTrainerInfo(param0)) == 0) {
+    if (TrainerInfo_GameCode(SaveData_GetTrainerInfo(saveData)) == 0) {
         return 1;
     }
 

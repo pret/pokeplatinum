@@ -1129,7 +1129,7 @@ static void ov94_02240FA0(UnkStruct_ov94_0223FD4C *param0, int param1)
     NARC *v6;
     UnkStruct_ov94_02240FA0 *v7;
 
-    param0->unk_1114 = v7 = Heap_AllocFromHeapAtEnd(3, sizeof(UnkStruct_ov94_02240FA0) * 30);
+    param0->unk_1114 = v7 = Heap_AllocFromHeapAtEnd(HEAP_ID_APPLICATION, sizeof(UnkStruct_ov94_02240FA0) * 30);
     v6 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_62);
 
     if ((param1 >= 0) && (param1 < 18)) {

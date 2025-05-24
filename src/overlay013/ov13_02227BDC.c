@@ -8,8 +8,8 @@
 #include "battle/ov16_0226DE44.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
 #include "battle/struct_ov16_0226DEEC_decl.h"
+#include "overlay013/battle_bag_utils.h"
 #include "overlay013/battle_sub_menu_cursor.h"
-#include "overlay013/ov13_02227A4C.h"
 #include "overlay013/struct_ov13_02227244.h"
 
 #include "grid_menu_cursor_position.h"
@@ -188,9 +188,9 @@ static void ov13_02227EAC(UnkStruct_ov13_02227244 *param0)
 {
     u16 v0;
 
-    if (param0->unk_00->unk_20 != 0) {
-        ov13_02227D10(param0, param0->unk_00->unk_20, 46263);
-        ov13_02227D48(param0, param0->unk_00->unk_20, 0, 46263);
+    if (param0->unk_00->lastUsedItem != ITEM_NONE) {
+        ov13_02227D10(param0, param0->unk_00->lastUsedItem, 46263);
+        ov13_02227D48(param0, param0->unk_00->lastUsedItem, 0, 46263);
         ov13_02227E48(param0->unk_310[0], Unk_ov13_02229BC0[0], Unk_ov13_02229BC0[1]);
     }
 }
@@ -200,10 +200,10 @@ static void ov13_02227EE0(UnkStruct_ov13_02227244 *param0)
     u32 v0;
     u16 v1;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v1 = ov13_02227BA8(param0, v0);
+    for (v0 = 0; v0 < BATTLE_POCKET_ITEMS_PER_PAGE; v0++) {
+        v1 = GetBattleBagItem(param0, v0);
 
-        if (v1 == 0) {
+        if (v1 == ITEM_NONE) {
             continue;
         }
 
@@ -215,7 +215,7 @@ static void ov13_02227EE0(UnkStruct_ov13_02227244 *param0)
 
 static void ov13_02227F38(UnkStruct_ov13_02227244 *param0)
 {
-    u16 v0 = ov13_02227BA8(param0, param0->unk_00->unk_27[param0->unk_114D]);
+    u16 v0 = GetBattleBagItem(param0, param0->unk_00->pocketCurrentPagePositions[param0->currentBattlePocket]);
 
     ov13_02227D10(param0, v0, 46263);
     ov13_02227D48(param0, v0, 0, 46263);
@@ -278,10 +278,10 @@ void ov13_02228008(UnkStruct_ov13_02227244 *param0, u8 param1)
 
     switch (param1) {
     case 0:
-        SetBattleSubMenuCursorCurrentPosition(param0->unk_34, param0->unk_114D);
+        SetBattleSubMenuCursorCurrentPosition(param0->unk_34, param0->currentBattlePocket);
         break;
     case 1:
-        SetBattleSubMenuCursorCurrentPosition(param0->unk_34, param0->unk_00->unk_27[param0->unk_114D]);
+        SetBattleSubMenuCursorCurrentPosition(param0->unk_34, param0->unk_00->pocketCurrentPagePositions[param0->currentBattlePocket]);
         break;
     case 2:
         break;

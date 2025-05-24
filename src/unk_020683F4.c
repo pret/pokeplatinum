@@ -709,7 +709,7 @@ static void sub_02068BF8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     menu = FieldTask_GetEnv(param0->unk_00);
-    v2 = Heap_AllocFromHeapAtEnd(11, sizeof(int));
+    v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(int));
 
     (*v2) = 0;
     FieldSystem_StartFieldMap(fieldSystem);
@@ -721,7 +721,7 @@ static void sub_02068BF8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
 static BOOL sub_02068C38(UnkStruct_02068870 *param0)
 {
-    int *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(int));
+    int *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(int));
 
     *v0 = 0;
     FieldSystem_CreateTask(param0->fieldSystem, RefreshRadarChain, v0);

@@ -442,7 +442,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     v1->unk_38 = v0;
     v0->unk_CC = v1;
     v0->unk_D0 = v1->unk_34;
-    v0->unk_24 = SaveData_GetParty(v0->unk_CC->unk_14.unk_08);
+    v0->unk_24 = SaveData_GetParty(v0->unk_CC->unk_14.saveData);
     v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, HEAP_ID_95);
 
     VramTransfer_New(8, HEAP_ID_95);
@@ -1286,7 +1286,7 @@ static int ov109_021D1918(UnkStruct_ov109_021D0F70 *param0)
 
         ov109_021D2714(param0, 3, v0);
 
-        BOOL removedItem = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, HEAP_ID_95);
+        BOOL removedItem = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.saveData), v0, 1, HEAP_ID_95);
         Sound_PlayFanfare(SEQ_FANFA4);
 
         if (removedItem == TRUE) {
@@ -1367,7 +1367,7 @@ static int ov109_021D1A6C(UnkStruct_ov109_021D0F70 *param0)
 static int ov109_021D1AA8(UnkStruct_ov109_021D0F70 *param0)
 {
     int v0 = sub_02038EDC(
-        param0->unk_CC->unk_14.unk_08, 2, &param0->unk_04);
+        param0->unk_CC->unk_14.saveData, 2, &param0->unk_04);
 
     if (v0) {
         gSystem.inhibitReset = 0;
@@ -2588,7 +2588,7 @@ static SysTask *ov109_021D2FE0(UnkStruct_ov109_021D0F70 *param0, int param1, int
     param6->unk_00 = 1;
     param6->unk_08 = 0;
 
-    v1 = Heap_AllocFromHeapAtEnd(95, sizeof(UnkStruct_ov109_021D2FE0));
+    v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_95, sizeof(UnkStruct_ov109_021D2FE0));
     memset(v1, 0, sizeof(UnkStruct_ov109_021D2FE0));
     v1->unk_14 = param0;
     v1->unk_10 = param6;
@@ -3080,7 +3080,7 @@ static void ov109_021D3600(SysTask *param0, void *param1)
 static SysTask *ov109_021D3684(UnkStruct_ov109_021D0F70 *param0)
 {
     SpriteTemplate v0;
-    UnkStruct_ov109_021D3600 *v1 = Heap_AllocFromHeapAtEnd(95, sizeof(UnkStruct_ov109_021D3600));
+    UnkStruct_ov109_021D3600 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_95, sizeof(UnkStruct_ov109_021D3600));
 
     memset(v1, 0, sizeof(UnkStruct_ov109_021D3600));
 
@@ -3302,7 +3302,7 @@ static void ov109_021D3990(UnkStruct_ov109_021D0F70 *param0, int param1)
 {
     SysTask *v0;
     u32 v1[2] = { 0, 8 };
-    UnkStruct_ov109_021D3948 *v2 = Heap_AllocFromHeapAtEnd(95, sizeof(UnkStruct_ov109_021D3948));
+    UnkStruct_ov109_021D3948 *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_95, sizeof(UnkStruct_ov109_021D3948));
 
     v2->unk_00 = param0;
     v2->unk_04 = param1;
@@ -3349,7 +3349,7 @@ static void *ov109_021D3A2C(UnkStruct_ov109_021D0F70 *param0, u32 param1, BOOL p
     if (param2 == 1) {
         v0 = Heap_AllocFromHeap(HEAP_ID_95, v1);
     } else {
-        v0 = Heap_AllocFromHeapAtEnd(95, v1);
+        v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_95, v1);
     }
 
     NARC_ReadWholeMember(param0->unk_D80, param1, v0);

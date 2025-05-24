@@ -299,10 +299,10 @@ static BOOL sub_0207DA28(FieldTask *task)
 
 static UnkStruct_0207DE40 *sub_0207DD94(void)
 {
-    UnkStruct_0207DE40 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0207DE40));
+    UnkStruct_0207DE40 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0207DE40));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_0207DE40));
-    v0->unk_00 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov98_02247168));
+    v0->unk_00 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov98_02247168));
     MI_CpuClear8(v0->unk_00, sizeof(UnkStruct_ov98_02247168));
     return v0;
 }
@@ -334,7 +334,7 @@ static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u
     v0->unk_02 = Unk_020F1B64[param3];
     v0->unk_03 = 0;
     v0->unk_04 = 0;
-    v0->unk_08 = fieldSystem->saveData;
+    v0->saveData = fieldSystem->saveData;
 
     param0->unk_10 = v0;
 
@@ -390,7 +390,7 @@ static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 heap
 
         v0->unk_38 = param2;
         v0->unk_39 = 0;
-        v0->unk_34 = fieldSystem->saveData;
+        v0->saveData = fieldSystem->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
         FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
@@ -424,7 +424,7 @@ static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 heapI
         memset(v0, 0, sizeof(UnkStruct_ov66_02231134));
         v0->unk_3C = param2;
         v0->unk_38 = 0;
-        v0->unk_34 = fieldSystem->saveData;
+        v0->saveData = fieldSystem->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
         FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
@@ -460,7 +460,7 @@ static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 heap
 
         v0->unk_38 = param2;
         v0->unk_39 = 0;
-        v0->unk_34 = fieldSystem->saveData;
+        v0->saveData = fieldSystem->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
         FieldSystem_StartChildProcess(fieldSystem, &v1, v0);

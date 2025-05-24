@@ -596,14 +596,14 @@ int ov84_0223B900(OverlayManager *param0, int *param1)
 
 static void ov84_0223B9AC(UnkStruct_ov84_0223B5A0 *param0)
 {
-    param0->unk_C8 = SaveData_GetBag(param0->unk_C4->unk_00);
-    param0->unk_CC = SaveData_GetTrainerInfo(param0->unk_C4->unk_00);
-    param0->unk_D0 = SaveData_GetOptions(param0->unk_C4->unk_00);
+    param0->unk_C8 = SaveData_GetBag(param0->unk_C4->saveData);
+    param0->unk_CC = SaveData_GetTrainerInfo(param0->unk_C4->saveData);
+    param0->unk_D0 = SaveData_GetOptions(param0->unk_C4->saveData);
 }
 
 static SpecialEncounter *ov84_0223B9E4(UnkStruct_ov84_0223B5A0 *param0)
 {
-    return SaveData_GetSpecialEncounters(param0->unk_C4->unk_00);
+    return SaveData_GetSpecialEncounters(param0->unk_C4->saveData);
 }
 
 static void SetRepelSteps(UnkStruct_ov84_0223B5A0 *param0, u8 stepCount)
@@ -2147,7 +2147,7 @@ static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 *param0)
         return 13;
     }
 
-    if (sub_0207CC10(param0->unk_C4->unk_00, param0->unk_3F8, param0->unk_C4->unk_66, 6) == 1) {
+    if (sub_0207CC10(param0->unk_C4->saveData, param0->unk_3F8, param0->unk_C4->unk_66, 6) == 1) {
         Window_FillTilemap(&param0->unk_04[6], 15);
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
         param0->unk_426 = ov84_022400A0(param0);

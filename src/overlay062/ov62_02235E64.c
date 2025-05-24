@@ -383,7 +383,7 @@ static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
             v0->unk_198 = 1;
             ov62_02234520(param0);
 
-            if (SaveData_FullSaveRequired(param0->unk_830)) {
+            if (SaveData_FullSaveRequired(param0->saveData)) {
                 ov62_02231B3C(param0, 298);
             } else {
                 ov62_02231B3C(param0, 299);
@@ -399,7 +399,7 @@ static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
 
         break;
     case 5:
-        SaveData_Save(param0->unk_830);
+        SaveData_Save(param0->saveData);
         param0->unk_08++;
         break;
     case 6:
@@ -451,8 +451,8 @@ static BOOL ov62_02236624(UnkStruct_0208C06C *param0)
                 int v1;
                 int v2;
 
-                sub_0202F298(param0->unk_830, 102, &v1, NULL, param0->unk_86C);
-                v2 = ov62_022486A4(param0->unk_830, param0->unk_86C);
+                sub_0202F298(param0->saveData, 102, &v1, NULL, param0->unk_86C);
+                v2 = ov62_022486A4(param0->saveData, param0->unk_86C);
                 sub_0202F22C();
 
                 ov62_022339A0(param0);

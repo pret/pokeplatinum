@@ -25,7 +25,7 @@
 typedef struct {
     int heapID;
     int unk_04;
-    SaveData *unk_08;
+    SaveData *saveData;
     TrainerInfo *unk_0C;
     BgConfig *unk_10;
     Window unk_14;
@@ -64,9 +64,9 @@ int ov102_021D0D80(OverlayManager *param0, int *param1)
     {
         UnkStruct_0203E53C *v2 = (UnkStruct_0203E53C *)OverlayManager_Args(param0);
 
-        v0->unk_08 = v2->unk_00;
+        v0->saveData = v2->saveData;
         v0->unk_04 = v2->unk_04;
-        v0->unk_0C = SaveData_GetTrainerInfo(v0->unk_08);
+        v0->unk_0C = SaveData_GetTrainerInfo(v0->saveData);
     }
 
     sub_0200F344(0, 0x0);

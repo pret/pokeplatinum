@@ -56,7 +56,7 @@ typedef struct UnkStruct_ov66_02230C90_t {
     u8 unk_39;
     u16 heapID;
     UnkStruct_ov66_0222DFF8 *unk_3C;
-    SaveData *unk_40;
+    SaveData *saveData;
     UnkStruct_ov66_0222DCE0_sub1 *unk_44;
 } UnkStruct_ov66_02230C90;
 
@@ -113,13 +113,13 @@ static void ov66_022313E8(UnkStruct_ov66_02230E4C *param0);
 static void ov66_022313F4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 static int ov66_02231404(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 
-UnkStruct_ov66_02230C90 *ov66_02230C44(BOOL param0, SaveData *param1, UnkStruct_ov66_0222DCE0_sub1 *param2, UnkStruct_ov66_0222DFF8 *param3, u32 heapID)
+UnkStruct_ov66_02230C90 *ov66_02230C44(BOOL param0, SaveData *saveData, UnkStruct_ov66_0222DCE0_sub1 *param2, UnkStruct_ov66_0222DFF8 *param3, u32 heapID)
 {
     UnkStruct_ov66_02230C90 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02230C90));
     memset(v0, 0, sizeof(UnkStruct_ov66_02230C90));
 
     v0->unk_3C = param3;
-    v0->unk_40 = param1;
+    v0->saveData = saveData;
     v0->unk_44 = param2;
     v0->unk_39 = param0;
     v0->heapID = heapID;
@@ -323,7 +323,7 @@ static void ov66_02230E28(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02230E68));
 
     v0 = param1->unk_00;
-    v0->unk_00 = param0->unk_40;
+    v0->saveData = param0->saveData;
     v0->unk_1C = param0->unk_3C;
 }
 
@@ -406,7 +406,7 @@ static void ov66_02230F1C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
     v0 = param1->unk_00;
 
-    v0->unk_04 = param0->unk_40;
+    v0->saveData = param0->saveData;
     v0->unk_0C = param0->unk_3C;
 }
 
@@ -494,7 +494,7 @@ static void ov66_02231024(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
     v0 = param1->unk_00;
 
-    v0->unk_00 = param0->unk_40;
+    v0->saveData = param0->saveData;
     v0->unk_04 = param0->unk_3C;
     v0->unk_08 = param0->unk_39;
     v0->unk_0C = param0->unk_44;
@@ -540,7 +540,7 @@ static void ov66_0223108C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
     v0->unk_38 = 0;
     v0->unk_39 = 1;
-    v0->unk_34 = param0->unk_40;
+    v0->saveData = param0->saveData;
 
     ov66_02230DA0(&v0->unk_00, heapID);
 }
@@ -607,7 +607,7 @@ static void ov66_02231134(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
     v0->unk_3C = 0;
     v0->unk_38 = 1;
-    v0->unk_34 = param0->unk_40;
+    v0->saveData = param0->saveData;
 
     ov66_02230DA0(&v0->unk_00, heapID);
 }
@@ -673,7 +673,7 @@ static void ov66_022311D4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     v0 = param1->unk_00;
     v0->unk_38 = 0;
     v0->unk_39 = 1;
-    v0->unk_34 = param0->unk_40;
+    v0->saveData = param0->saveData;
 
     ov66_02230DA0(&v0->unk_00, heapID);
 }
@@ -802,7 +802,7 @@ static void ov66_02231300(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231300));
 
     v0 = param1->unk_00;
-    v0->unk_00 = param0->unk_40;
+    v0->saveData = param0->saveData;
     v0->unk_04 = param0->unk_3C;
 }
 
@@ -852,7 +852,7 @@ static void ov66_02231374(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231374));
 
     v0 = param1->unk_00;
-    v0->unk_00 = param0->unk_40;
+    v0->saveData = param0->saveData;
     v0->unk_04 = param0->unk_3C;
     v0->unk_08 = 0;
 }
@@ -865,7 +865,7 @@ static void ov66_022313AC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231374));
 
     v0 = param1->unk_00;
-    v0->unk_00 = param0->unk_40;
+    v0->saveData = param0->saveData;
     v0->unk_04 = param0->unk_3C;
     v0->unk_08 = 1;
 }

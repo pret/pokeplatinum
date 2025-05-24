@@ -256,7 +256,7 @@ int ov116_022609B4(OverlayManager *param0, int *param1)
         }
     }
 
-    ov114_0225C700(&v0->unk_84, v0->unk_80->unk_38, v0->unk_80->unk_34, v0->unk_80->unk_3C, &v0->unk_80->unk_00);
+    ov114_0225C700(&v0->unk_84, v0->unk_80->unk_38, v0->unk_80->saveData, v0->unk_80->unk_3C, &v0->unk_80->unk_00);
     return 1;
 }
 

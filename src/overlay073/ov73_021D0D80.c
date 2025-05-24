@@ -48,7 +48,7 @@ FS_EXTERN_OVERLAY(game_start);
 
 typedef struct {
     int heapID;
-    SaveData *unk_04;
+    SaveData *saveData;
     Options *unk_08;
     int unk_0C;
     int unk_10;
@@ -135,8 +135,8 @@ int ov73_021D0D80(OverlayManager *param0, int *param1)
     memset(v0, 0, sizeof(UnkStruct_ov73_021D1058));
 
     v0->heapID = childHeapID;
-    v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_08 = SaveData_GetOptions(v0->unk_04);
+    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->unk_08 = SaveData_GetOptions(v0->saveData);
     v0->unk_0C = 0;
     v0->unk_10 = 0;
     v0->unk_14 = NULL;
@@ -235,11 +235,11 @@ int ov73_021D0F7C(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->unk_B8);
     Heap_FreeToHeap(v0->unk_BC);
 
-    TrainerInfo_SetNameFromStrbuf(SaveData_GetTrainerInfo(v0->unk_04), v0->unk_70->unk_18);
-    TrainerInfo_SetGender(SaveData_GetTrainerInfo(v0->unk_04), v0->unk_70->unk_04);
+    TrainerInfo_SetNameFromStrbuf(SaveData_GetTrainerInfo(v0->saveData), v0->unk_70->unk_18);
+    TrainerInfo_SetGender(SaveData_GetTrainerInfo(v0->saveData), v0->unk_70->unk_04);
 
     {
-        MiscSaveBlock *v2 = SaveData_MiscSaveBlock(v0->unk_04);
+        MiscSaveBlock *v2 = SaveData_MiscSaveBlock(v0->saveData);
 
         MiscSaveBlock_SetRivalName(v2, v0->unk_74->unk_18);
     }

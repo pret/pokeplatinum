@@ -135,9 +135,9 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_39);
 
         {
-            SaveData *v2 = (SaveData *)OverlayManager_Args(param0);
+            SaveData *saveData = (SaveData *)OverlayManager_Args(param0);
 
-            v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(v2));
+            v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(saveData));
             v0->records = (GameRecords *)SaveData_GetGameRecords((SaveData *)OverlayManager_Args(param0));
             v0->unk_0C = (Options *)SaveData_GetOptions((SaveData *)OverlayManager_Args(param0));
         }

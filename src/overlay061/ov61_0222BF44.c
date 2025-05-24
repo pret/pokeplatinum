@@ -433,7 +433,7 @@ static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_117);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_117);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_117);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(SaveData_GetOptions(param0->unk_00->unk_00->unk_04)), HEAP_ID_117);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(SaveData_GetOptions(param0->unk_00->unk_00->saveData)), HEAP_ID_117);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_117);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_117);
@@ -651,7 +651,7 @@ static int ov61_0222CA20(UnkStruct_ov61_0222C664 *param0)
 {
     switch (param0->unk_90) {
     case 0:
-        sub_02038438(param0->unk_00->unk_00->unk_04);
+        sub_02038438(param0->unk_00->unk_00->saveData);
         sub_02039734();
         ov61_0222C8B8(param0, param0->unk_28, 1, TEXT_SPEED_FAST, 0xf0f);
         ov61_0222C850(param0);
@@ -798,8 +798,8 @@ static int ov61_0222CBF0(UnkStruct_ov61_0222C664 *param0)
     DWCUserData *v0;
     s32 v1;
     SystemData *v2;
-    WiFiList *v3 = SaveData_GetWiFiList(param0->unk_00->unk_00->unk_04);
-    v2 = SaveData_GetSystemData(param0->unk_00->unk_00->unk_04);
+    WiFiList *v3 = SaveData_GetWiFiList(param0->unk_00->unk_00->saveData);
+    v2 = SaveData_GetSystemData(param0->unk_00->unk_00->saveData);
     v0 = sub_0202AD28(v3);
     v1 = sub_02025D74(v2);
 

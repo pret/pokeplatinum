@@ -62,7 +62,7 @@ enum {
 };
 
 BOOL ScrCmd_2CC(ScriptContext *param0);
-static BOOL sub_0204F268(u16 param0, SaveData *param1);
+static BOOL sub_0204F268(u16 param0, SaveData *saveData);
 BOOL ScrCmd_2D1(ScriptContext *param0);
 
 BOOL ScrCmd_2CF(ScriptContext *param0);
@@ -148,7 +148,7 @@ BOOL ScrCmd_2CC(ScriptContext *param0)
     return 0;
 }
 
-static BOOL sub_0204F268(u16 param0, SaveData *param1)
+static BOOL sub_0204F268(u16 param0, SaveData *saveData)
 {
     u8 v0, v1, v2, v3;
     u16 v4, v5;
@@ -156,7 +156,7 @@ static BOOL sub_0204F268(u16 param0, SaveData *param1)
     Pokemon *v7;
     u16 v8[6];
 
-    v6 = SaveData_GetParty(param1);
+    v6 = SaveData_GetParty(saveData);
     v3 = Party_GetCurrentCount(v6);
 
     if (v3 < param0) {
@@ -399,7 +399,7 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
 static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int heapID)
 {
     PokemonSummary *v0;
-    SaveData *v1;
+    SaveData *saveData;
 
     static const u8 v2[] = {
         0,
@@ -413,24 +413,24 @@ static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
         8
     };
 
-    v1 = fieldSystem->saveData;
+    saveData = fieldSystem->saveData;
 
     v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
-    v0->options = SaveData_GetOptions(v1);
-    v0->monData = SaveData_GetParty(v1);
-    v0->dexMode = SaveData_GetDexMode(v1);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
+    v0->options = SaveData_GetOptions(saveData);
+    v0->monData = SaveData_GetParty(saveData);
+    v0->dexMode = SaveData_GetDexMode(saveData);
+    v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
     v0->dataType = SUMMARY_DATA_PARTY_MON;
     v0->monIndex = param0->unk_05;
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = SUMMARY_MODE_NORMAL;
-    v0->specialRibbons = sub_0202D79C(v1);
+    v0->specialRibbons = sub_0202D79C(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
+    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
 

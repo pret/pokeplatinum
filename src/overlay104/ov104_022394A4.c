@@ -9,13 +9,12 @@
 #include "savedata.h"
 #include "unk_0206B9D8.h"
 
-void ov104_022394A4(UnkStruct_0204AFC4 *param0, SaveData *param1);
 u16 ov104_02239588(UnkStruct_0204AFC4 *param0, u16 param1);
 void ov104_022395A0(UnkStruct_0204AFC4 *param0, u16 param1);
 u16 ov104_022395B4(UnkStruct_0204AFC4 *param0);
 u16 ov104_022395D8(UnkStruct_0204AFC4 *param0);
 
-void ov104_022394A4(UnkStruct_0204AFC4 *param0, SaveData *param1)
+void ov104_022394A4(UnkStruct_0204AFC4 *param0, SaveData *saveData)
 {
     int v0;
     u16 v1[2];
@@ -24,7 +23,7 @@ void ov104_022394A4(UnkStruct_0204AFC4 *param0, SaveData *param1)
     switch (param0->unk_0F) {
     case 4:
     case 5:
-        ov104_0223A30C(param1, param0->unk_78, param0->unk_0C - 1);
+        ov104_0223A30C(saveData, param0->unk_78, param0->unk_0C - 1);
         break;
     case 2:
     case 3:

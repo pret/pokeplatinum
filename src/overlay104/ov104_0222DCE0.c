@@ -37,7 +37,7 @@
 #include "unk_0208C098.h"
 #include "unk_02092494.h"
 
-void ov104_0222E1C0(SaveData *param0, Party *param1, Pokemon *param2);
+void ov104_0222E1C0(SaveData *saveData, Party *param1, Pokemon *param2);
 void ov104_0222E1D8(Sprite *param0, u8 param1);
 void ov104_0222E204(Sprite *param0, s16 param1, s16 param2, u8 param3);
 u8 ov104_0222E240(u16 param0, u16 param1);
@@ -345,19 +345,17 @@ u16 ov104_0222E10C(u8 param0)
     return 0x3;
 }
 
-void ov104_0222E134(SaveData *param0, Pokemon *param1);
-
-void ov104_0222E134(SaveData *param0, Pokemon *param1)
+void ov104_0222E134(SaveData *saveData, Pokemon *param1)
 {
     u32 v0;
     Strbuf *v1;
     MessageLoader *v2;
     int v3;
     int v4 = 0;
-    TrainerInfo *v5 = SaveData_GetTrainerInfo(param0);
+    TrainerInfo *v5 = SaveData_GetTrainerInfo(saveData);
 
     v0 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0), 4, 0, 0, 11);
+    Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(saveData), 4, 0, 0, 11);
 
     v3 = MapHeader_GetMapLabelTextID(562);
     UpdateMonStatusAndTrainerInfo(param1, v5, v4, v3, HEAP_ID_FIELDMAP);
@@ -374,10 +372,10 @@ void ov104_0222E134(SaveData *param0, Pokemon *param1)
     return;
 }
 
-void ov104_0222E1C0(SaveData *param0, Party *param1, Pokemon *param2)
+void ov104_0222E1C0(SaveData *saveData, Party *party, Pokemon *param2)
 {
-    ov104_0222E134(param0, param2);
-    Party_AddPokemon(param1, param2);
+    ov104_0222E134(saveData, param2);
+    Party_AddPokemon(party, param2);
     return;
 }
 
@@ -636,9 +634,9 @@ int ov104_0222E5F0(const TrainerInfo *param0)
     return v1;
 }
 
-void ov104_0222E630(SaveData *param0)
+void ov104_0222E630(SaveData *saveData)
 {
-    UnkStruct_0202C878 *v0 = sub_0202C878(param0);
+    UnkStruct_0202C878 *v0 = sub_0202C878(saveData);
 
     sub_02038F8C(v0);
     return;

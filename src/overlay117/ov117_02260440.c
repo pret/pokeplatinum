@@ -158,7 +158,7 @@ static void ov117_022605D8(UnkStruct_ov117_022605C0 *param0, UnkStruct_ov117_022
     param0->unk_30 = v1;
     param0->unk_3C = param1->unk_38;
 
-    ov114_0225C700(&param0->unk_00, param1->unk_39, param1->unk_34, param1->unk_38, &param1->unk_00);
+    ov114_0225C700(&param0->unk_00, param1->unk_39, param1->saveData, param1->unk_38, &param1->unk_00);
 }
 
 static BOOL ov117_02260630(UnkStruct_ov117_022605C0 *param0)

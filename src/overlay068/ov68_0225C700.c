@@ -122,7 +122,7 @@ typedef struct {
 } UnkStruct_ov68_0225C700;
 
 static void ov68_0225C914(void *param0);
-static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *param1, u32 param2);
+static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *saveData, u32 param2);
 static void ov68_0225C960(UnkStruct_ov68_0225C91C *param0);
 static void ov68_0225C980(UnkStruct_ov68_0225C91C *param0);
 static void ov68_0225C98C(UnkStruct_ov68_0225C91C *param0);
@@ -163,7 +163,7 @@ static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_
 static void ov68_0225DA30(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_0225DC74 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3);
 static BOOL ov68_0225DA74(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225C91C *param1);
 static void ov68_0225DB3C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3);
-static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *param2, u32 param3);
+static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *saveData, u32 param3);
 static void ov68_0225D178(UnkStruct_ov68_0225D128 *param0, u32 param1);
 static void ov68_0225D1B4(UnkStruct_ov68_0225D128 *param0, const Strbuf *param1);
 static void ov68_0225D218(UnkStruct_ov68_0225D128 *param0, const Strbuf *param1);
@@ -326,9 +326,9 @@ int ov68_0225C700(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov68_0225C700), HEAP_ID_122);
     memset(v0, 0, sizeof(UnkStruct_ov68_0225C700));
 
-    ov68_0225C91C(&v0->unk_00, v1->unk_00, 122);
+    ov68_0225C91C(&v0->unk_00, v1->saveData, 122);
     ov68_0225CB70(&v0->unk_1A8, v1->unk_04, 122);
-    ov68_0225D128(&v0->unk_2CC, &v0->unk_00, v1->unk_00, 122);
+    ov68_0225D128(&v0->unk_2CC, &v0->unk_00, v1->saveData, 122);
 
     GF_ASSERT(v1->unk_08 < 2);
     Unk_ov68_0225DEB0[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00, v1, 122);
@@ -429,9 +429,9 @@ static void ov68_0225C914(void *param0)
     ov68_0225C98C(&v0->unk_00);
 }
 
-static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *param1, u32 heapID)
+static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *saveData, u32 heapID)
 {
-    Options *v0 = SaveData_GetOptions(param1);
+    Options *v0 = SaveData_GetOptions(saveData);
     param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, heapID);
 
     VramTransfer_New(32, heapID);
@@ -893,7 +893,7 @@ static void ov68_0225D11C(UnkStruct_ov68_0225D0F8 *param0)
     Sprite_SetAnimateFlag(param0->unk_14, 1);
 }
 
-static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *param2, u32 heapID)
+static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *saveData, u32 heapID)
 {
     Window_Add(param1->unk_00, &param0->unk_08, 1, 2, 19, 27, 4, 4, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(&param0->unk_08, 15);
@@ -903,7 +903,7 @@ static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C9
     {
         Options *v0;
 
-        v0 = SaveData_GetOptions(param2);
+        v0 = SaveData_GetOptions(saveData);
         param0->unk_04 = Options_TextFrameDelay(v0);
     }
 }
@@ -1221,7 +1221,7 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         WiFiQuestions *v8;
         BOOL v9;
 
-        v8 = SaveData_GetWiFiQuestions(param4->unk_00);
+        v8 = SaveData_GetWiFiQuestions(param4->saveData);
         v7.unk_00 = sub_02030ED0(v8);
         v7.unk_04 = sub_02030ED4(v8);
         v9 = ov66_0222E924(param4->unk_04, ov66_0222E338(param4->unk_04));
