@@ -19,7 +19,7 @@
 
 typedef struct {
     BgConfig *unk_00;
-    SaveData *unk_04;
+    SaveData *saveData;
     Options *unk_08;
     StringTemplate *unk_0C;
     MessageLoader *unk_10;

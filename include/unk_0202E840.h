@@ -16,9 +16,9 @@ void Rankings_Init(UnkStruct_0202E8C0 *param0);
 UnkStruct_0202E8C0 *sub_0202E8C0(SaveData *saveData);
 void sub_0202E8D4(UnkStruct_0202E8C0 *param0, int param1, u8 param2);
 int sub_0202E91C(void);
-void *sub_0202E9FC(SaveData *param0, int heapID);
-void sub_0202ED0C(SaveData *param0, int param1, u8 param2, const void **param3, int heapID);
-UnkStruct_0202EE10 *sub_0202ED8C(SaveData *param0, int param1, int heapID);
+void *sub_0202E9FC(SaveData *saveData, int heapID);
+void sub_0202ED0C(SaveData *saveData, int param1, u8 param2, const void **param3, int heapID);
+UnkStruct_0202EE10 *sub_0202ED8C(SaveData *saveData, int param1, int heapID);
 UnkStruct_0202EE10 *sub_0202EE10(UnkStruct_0202E8C0 *param0, int param1, int param2);
 void sub_0202EE8C(UnkStruct_0202EE10 *param0);
 

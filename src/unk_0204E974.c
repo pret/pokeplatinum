@@ -15,13 +15,13 @@
 BOOL ScrCmd_083(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
+    SaveData *saveData = fieldSystem->saveData;
     UndergroundData *v2;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
-    v2 = SaveData_GetUndergroundData(v1);
+    v2 = SaveData_GetUndergroundData(saveData);
     *v5 = sub_0202895C(v2, v3);
 
     return 0;
@@ -40,13 +40,13 @@ BOOL ScrCmd_084(ScriptContext *param0)
 BOOL ScrCmd_085(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
+    SaveData *saveData = fieldSystem->saveData;
     UndergroundData *v2;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
-    v2 = SaveData_GetUndergroundData(v1);
+    v2 = SaveData_GetUndergroundData(saveData);
     *v5 = sub_02028984(v2, v3);
 
     return 0;
@@ -65,13 +65,13 @@ BOOL ScrCmd_086(ScriptContext *param0)
 BOOL ScrCmd_087(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
+    SaveData *saveData = fieldSystem->saveData;
     UndergroundData *v2;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
-    v2 = SaveData_GetUndergroundData(v1);
+    v2 = SaveData_GetUndergroundData(saveData);
     *v5 = sub_02028E84(v2, v3);
 
     return 0;
@@ -110,13 +110,13 @@ BOOL ScrCmd_08A(ScriptContext *param0)
 BOOL ScrCmd_08B(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
+    SaveData *saveData = fieldSystem->saveData;
     UndergroundData *v2;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
-    v2 = SaveData_GetUndergroundData(v1);
+    v2 = SaveData_GetUndergroundData(saveData);
 
     return 0;
 }
@@ -154,13 +154,13 @@ BOOL ScrCmd_08E(ScriptContext *param0)
 BOOL ScrCmd_08F(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    SaveData *v1 = fieldSystem->saveData;
+    SaveData *saveData = fieldSystem->saveData;
     UndergroundData *v2;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
-    v2 = SaveData_GetUndergroundData(v1);
+    v2 = SaveData_GetUndergroundData(saveData);
     *v5 = sub_02028CB0(v2, v3, v4);
     return 0;
 }

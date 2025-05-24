@@ -32,7 +32,7 @@ typedef struct {
     u8 unk_6F4;
     u8 unk_6F5;
     UnkStruct_02030114 *unk_6F8;
-    SaveData *unk_6FC;
+    SaveData *saveData;
     void *unk_700;
     u8 unk_704[4][9];
     u16 unk_728[2];

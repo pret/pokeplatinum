@@ -118,27 +118,27 @@ static BOOL sub_0205AD20(UnkStruct_0205A0D8 *param0);
 static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, Party *param2, int param3, int param4, int heapID)
 {
     PokemonSummary *v0;
-    SaveData *v1;
+    SaveData *saveData;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    v1 = fieldSystem->saveData;
+    saveData = fieldSystem->saveData;
     v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
 
-    v0->dexMode = SaveData_GetDexMode(v1);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
-    v0->options = SaveData_GetOptions(v1);
+    v0->dexMode = SaveData_GetDexMode(saveData);
+    v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
+    v0->options = SaveData_GetOptions(saveData);
     v0->monData = param2;
     v0->dataType = SUMMARY_DATA_PARTY_MON;
     v0->monIndex = param3;
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = param4;
-    v0->specialRibbons = sub_0202D79C(v1);
+    v0->specialRibbons = sub_0202D79C(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);

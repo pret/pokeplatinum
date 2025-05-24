@@ -83,7 +83,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     PaletteData *unk_15C;
     UnkStruct_0200C440 *unk_160;
     Options *unk_164;
-    SaveData *unk_168;
+    SaveData *saveData;
     UnkStruct_ov111_021D2F80 unk_16C;
     UnkStruct_ov111_021D33F4 *unk_35C[4];
     UnkStruct_ov111_021D33F4 *unk_36C[9];
@@ -332,10 +332,10 @@ int ov111_021D0D80(OverlayManager *param0, int *param1)
     v1->unk_58 = BgConfig_New(HEAP_ID_115);
     v1->unk_00 = param0;
     v2 = (UnkStruct_0203E608 *)OverlayManager_Args(param0);
-    v1->unk_168 = v2->unk_00;
+    v1->saveData = v2->saveData;
     v1->unk_09 = v2->unk_04;
     v1->unk_3D8 = &v2->unk_14;
-    v1->unk_164 = SaveData_GetOptions(v1->unk_168);
+    v1->unk_164 = SaveData_GetOptions(v1->saveData);
     v1->unk_3DC = &v2->unk_08[0];
     v1->unk_3E0 = &v2->unk_0E[0];
 

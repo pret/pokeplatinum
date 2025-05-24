@@ -195,7 +195,7 @@ struct UnkStruct_ov108_02241DB0_t {
     StringList unk_C4[2];
     PaletteData *unk_D4;
     Options *unk_D8;
-    SaveData *unk_DC;
+    SaveData *saveData;
     UnkStruct_020304A0 *unk_E0;
     UnkStruct_020305B8 *unk_E4;
     UnkStruct_ov108_02243030 unk_E8;
@@ -289,20 +289,20 @@ int ov108_02241AE0(OverlayManager *param0, int *param1)
 
     v2 = (UnkStruct_ov104_02238240 *)OverlayManager_Args(param0);
 
-    v1->unk_DC = v2->unk_00;
-    v1->unk_E0 = sub_020304A0(v1->unk_DC);
-    v1->unk_E4 = sub_020305B8(v1->unk_DC);
+    v1->saveData = v2->saveData;
+    v1->unk_E0 = sub_020304A0(v1->saveData);
+    v1->unk_E4 = sub_020305B8(v1->saveData);
     v1->unk_09 = v2->unk_04;
     v1->unk_2A = v2->unk_1E;
     v1->unk_28 = v2->unk_1C;
     v1->unk_426 = v2->unk_18;
     v1->unk_12 = v2->unk_07;
     v1->unk_3C4 = &v2->unk_38;
-    v1->unk_D8 = SaveData_GetOptions(v1->unk_DC);
+    v1->unk_D8 = SaveData_GetOptions(v1->saveData);
     v1->unk_3C8 = v2->unk_30;
     v1->unk_3CC = v2->unk_34;
     v1->unk_0E = 0xff;
-    v1->unk_04 = SaveData_GetBattleFrontier(v1->unk_DC);
+    v1->unk_04 = SaveData_GetBattleFrontier(v1->saveData);
     v1->unk_3C0 = v2->unk_08;
     v1->unk_1C = v2->unk_0C;
     v1->unk_20 = v2->unk_10;
@@ -1173,7 +1173,7 @@ void ov108_02242A7C(UnkStruct_ov108_02241DB0 *param0, u16 param1)
     TrainerInfo *v2;
 
     v1 = 0;
-    v2 = SaveData_GetTrainerInfo(param0->unk_DC);
+    v2 = SaveData_GetTrainerInfo(param0->saveData);
 
     param0->unk_3D4[v1] = param1;
 

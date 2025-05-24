@@ -41,10 +41,10 @@ typedef struct {
 static int sub_02097944(OverlayManager *param0, int *param1);
 static int sub_020979A8(OverlayManager *param0, int *param1);
 static int sub_02097AF8(OverlayManager *param0, int *param1);
-UnkStruct_02097728 *sub_02097624(SaveData *param0, int param1, u8 param2, u8 param3, int param4);
-UnkStruct_02097728 *sub_0209767C(SaveData *param0, int param1, u16 param2, int param3);
-UnkStruct_02097728 *sub_020976BC(SaveData *param0, Pokemon *param1, int param2);
-UnkStruct_02097728 *sub_020976F4(SaveData *param0, u8 param1, int param2);
+UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 param3, int param4);
+UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, int param3);
+UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, int param2);
+UnkStruct_02097728 *sub_020976F4(SaveData *saveData, u8 param1, int param2);
 BOOL sub_02097728(UnkStruct_02097728 *param0);
 int sub_0209772C(UnkStruct_02097728 *param0, int param1, u8 param2);
 int sub_02097750(UnkStruct_02097728 *param0, Pokemon *param1);
@@ -59,13 +59,13 @@ const OverlayManagerTemplate Unk_020F64B0 = {
     0xFFFFFFFF
 };
 
-UnkStruct_02097728 *sub_02097624(SaveData *param0, int param1, u8 param2, u8 param3, int heapID)
+UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 param3, int heapID)
 {
     UnkStruct_02097728 *v0;
     MailBox *v1;
     int v2;
 
-    v1 = SaveData_GetMailBox(param0);
+    v1 = SaveData_GetMailBox(saveData);
     v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
@@ -76,16 +76,16 @@ UnkStruct_02097728 *sub_02097624(SaveData *param0, int param1, u8 param2, u8 par
     v0->unk_00 = 1;
     v0->unk_08 = param1;
     v0->unk_0C = 0;
-    v0->unk_10 = param0;
+    v0->saveData = saveData;
     v0->unk_14 = sub_0202818C(heapID);
 
     sub_02028124(v0->unk_14);
-    sub_020281AC(v0->unk_14, 0xFFFF, param2, param0);
+    sub_020281AC(v0->unk_14, 0xFFFF, param2, saveData);
 
     return v0;
 }
 
-UnkStruct_02097728 *sub_0209767C(SaveData *param0, int param1, u16 param2, int heapID)
+UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, int heapID)
 {
     UnkStruct_02097728 *v0;
     MailBox *v1;
@@ -96,9 +96,9 @@ UnkStruct_02097728 *sub_0209767C(SaveData *param0, int param1, u16 param2, int h
     v0->unk_00 = 0;
     v0->unk_08 = param1;
     v0->unk_0C = param2;
-    v0->unk_10 = param0;
+    v0->saveData = saveData;
 
-    v1 = SaveData_GetMailBox(param0);
+    v1 = SaveData_GetMailBox(saveData);
 
     v0->unk_18 = v1;
     v0->unk_14 = sub_020284A8(v1, param1, param2, heapID);
@@ -106,26 +106,26 @@ UnkStruct_02097728 *sub_0209767C(SaveData *param0, int param1, u16 param2, int h
     return v0;
 }
 
-UnkStruct_02097728 *sub_020976BC(SaveData *param0, Pokemon *param1, int heapID)
+UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, int heapID)
 {
     UnkStruct_02097728 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
 
     v0->unk_00 = 0;
-    v0->unk_10 = param0;
+    v0->saveData = saveData;
     v0->unk_14 = sub_0202818C(heapID);
 
     Pokemon_GetValue(param1, MON_DATA_MAIL, v0->unk_14);
     return v0;
 }
 
-UnkStruct_02097728 *sub_020976F4(SaveData *param0, u8 param1, int heapID)
+UnkStruct_02097728 *sub_020976F4(SaveData *saveData, u8 param1, int heapID)
 {
     UnkStruct_02097728 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
 
     v0->unk_00 = 0;
-    v0->unk_10 = param0;
+    v0->saveData = saveData;
     v0->unk_14 = sub_0202818C(heapID);
 
     sub_02028318(v0->unk_14, param1);
@@ -282,7 +282,7 @@ static int sub_02097944(OverlayManager *param0, int *param1)
 
     v0->heapID = HEAP_ID_40;
     v0->unk_10 = sub_02097834(v1->unk_14, v0->heapID);
-    v0->unk_10->unk_04 = SaveData_GetOptions(v1->unk_10);
+    v0->unk_10->unk_04 = SaveData_GetOptions(v1->saveData);
 
     if (v1->unk_00 == 1) {
         v0->unk_10->unk_0F = v1->unk_0F;
@@ -346,8 +346,8 @@ static int sub_020979A8(OverlayManager *param0, int *param1)
             if (v0->unk_10->unk_00 == 3) {
                 sub_020978F0(v1->unk_14, v0->unk_10);
 
-                GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v1->unk_10), TRAINER_SCORE_EVENT_UNK_02);
-                GameRecords_IncrementRecordValue(SaveData_GetGameRecords(v1->unk_10), RECORD_UNK_045);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v1->saveData), TRAINER_SCORE_EVENT_UNK_02);
+                GameRecords_IncrementRecordValue(SaveData_GetGameRecords(v1->saveData), RECORD_UNK_045);
                 v1->unk_04 = 1;
             } else {
                 v1->unk_04 = 0;
@@ -356,7 +356,7 @@ static int sub_020979A8(OverlayManager *param0, int *param1)
 
         return 1;
     case 3:
-        v0->unk_08 = sub_0209747C(2, 0, v1->unk_10, v0->heapID);
+        v0->unk_08 = sub_0209747C(2, 0, v1->saveData, v0->heapID);
 
         if (sub_02014BBC(&(v0->unk_10->unk_1A[v0->unk_10->unk_02]))) {
             sub_02014CC0(&(v0->unk_14), &(v0->unk_10->unk_1A[v0->unk_10->unk_02]));

@@ -22,7 +22,7 @@
 FS_EXTERN_OVERLAY(overlay63);
 
 typedef struct {
-    SaveData *unk_00;
+    SaveData *saveData;
     UnkStruct_ov66_0222DFF8 *unk_04;
     UnkStruct_ov66_02230C90 *unk_08;
     SysTask *unk_0C;
@@ -49,9 +49,9 @@ int ov66_0222DCE0(OverlayManager *param0, int *param1)
 
     v1 = OverlayManager_Args(param0);
 
-    v0->unk_00 = v1->unk_04;
-    v0->unk_04 = ov66_0222DDF0(v0->unk_00, HEAP_ID_104);
-    v0->unk_08 = ov66_02230C44(v1->unk_08, v1->unk_04, v1->unk_00, v0->unk_04, HEAP_ID_104);
+    v0->saveData = v1->saveData;
+    v0->unk_04 = ov66_0222DDF0(v0->saveData, HEAP_ID_104);
+    v0->unk_08 = ov66_02230C44(v1->unk_08, v1->saveData, v1->unk_00, v0->unk_04, HEAP_ID_104);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();

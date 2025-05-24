@@ -103,7 +103,7 @@ typedef struct {
 
 void Strbuf_ToChars(const Strbuf *param0, u16 *param1, u32 param2);
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
-MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
+MysteryGift *SaveData_GetMysteryGift(SaveData *saveData);
 void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapId heapID);
 static int ov97_0222D474(OverlayManager *param0);
 static int ov97_0222D4D8(OverlayManager *param0);
@@ -422,7 +422,7 @@ static void ov97_0222D658(OverlayManager *param0)
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
     WonderCardMetadata *v3 = &v2->unk_8C.unk_00;
     WonderCard *v4 = &v2->unk_8C.unk_50;
-    SaveData *v5 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    SaveData *saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     MysteryGift *v6;
 
     if (v3->saveWonderCard == 0) {
@@ -441,7 +441,7 @@ static void ov97_0222D658(OverlayManager *param0)
         v4->receivedDate = RTC_ConvertDateToDay(&v7);
     }
 
-    v6 = SaveData_GetMysteryGift(v5);
+    v6 = SaveData_GetMysteryGift(saveData);
     MysteryGift_SetWcIDReceived(v6, v3->id);
 
     if (v0 == 0) {
@@ -450,7 +450,7 @@ static void ov97_0222D658(OverlayManager *param0)
         v1 = MysteryGift_TrySaveWondercard(v6, (const void *)v4);
     }
 
-    ov97_0223846C(v5);
+    ov97_0223846C(saveData);
 
     v2->unk_2A4C = 0;
     v2->unk_2A48 = ov97_0222D614;
@@ -659,7 +659,7 @@ static int ov97_0222DA84(OverlayManager *param0)
     Window *v0;
     SystemData *v1;
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
-    MysteryGift *v3 = SaveData_GetMysteryGift(v2->unk_04);
+    MysteryGift *v3 = SaveData_GetMysteryGift(v2->saveData);
 
     if (v2->unk_62C == 30) {
         v2->unk_630 = 1;
@@ -810,7 +810,7 @@ static void ov97_0222DDD0(OverlayManager *param0, int param1, u32 param2)
     Window *v1;
     UnkStruct_ov97_0223E5B8 v2[4];
     int v3, v4 = 0;
-    MysteryGift *v5 = SaveData_GetMysteryGift(v0->unk_04);
+    MysteryGift *v5 = SaveData_GetMysteryGift(v0->saveData);
 
     v1 = &v0->unk_28[0];
     v2[v4++] = Unk_ov97_0223E5B8[0];
@@ -1095,8 +1095,8 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
     }
 
     v0->unk_62C = 29;
-    v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_08 = SaveData_GetOptions(v0->unk_04);
+    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->unk_08 = SaveData_GetOptions(v0->saveData);
     v0->unk_68 = 0xff;
 
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
@@ -2010,7 +2010,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             ov97_0222D30C(v3, 0);
             ov97_0222D55C(param0);
 
-            v3->unk_80 = ov97_02232148(v3->unk_04, &v3->unk_8C);
+            v3->unk_80 = ov97_02232148(v3->saveData, &v3->unk_8C);
 
             if (v3->unk_80 == 1) {
                 ov97_0222D30C(v3, 0);
@@ -2123,7 +2123,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         if ((v3->unk_438 = ov97_0222D250(v3)) != -1) {
             ov97_0222D30C(v3, 0);
 
-            v3->unk_80 = ov97_02232148(v3->unk_04, &v3->unk_8C);
+            v3->unk_80 = ov97_02232148(v3->saveData, &v3->unk_8C);
 
             if (!Window_IsInUse(&v3->unk_58)) {
                 Window_Add(v3->unk_00, &v3->unk_58, 0, 3, 2, 26, 4, 0, ((((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8) + 6 * 4));
@@ -2283,7 +2283,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             ov97_0223764C(&v3->unk_8C, sizeof(UnkStruct_ov97_0223829C));
         }
 
-        v3->unk_80 = ov97_02232148(v3->unk_04, &v3->unk_8C);
+        v3->unk_80 = ov97_02232148(v3->saveData, &v3->unk_8C);
 
         if (v3->unk_80 == 1) {
             ov97_0222D30C(v3, 0);
@@ -2455,7 +2455,7 @@ static void ov97_02230224(UnkStruct_ov97_0222D04C *param0)
     case 29:
         break;
     case 28:
-        sub_02037D48(param0->unk_04);
+        sub_02037D48(param0->saveData);
         param0->unk_630 = (2 * 60);
         param0->unk_62C = 30;
         break;

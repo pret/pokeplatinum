@@ -227,7 +227,7 @@ static void ov62_0223712C(UnkStruct_0208C06C *param0)
     int v6[5];
 
     {
-        VarsFlags *v7 = SaveData_GetVarsFlags(param0->unk_830);
+        VarsFlags *v7 = SaveData_GetVarsFlags(param0->saveData);
 
         v6[0] = SystemVars_GetBattleTowerPrintState(v7);
         v6[1] = SystemVars_GetBattleFactoryPrintState(v7);
@@ -323,7 +323,7 @@ static void ov62_022371CC(UnkStruct_0208C06C *param0)
     v9.priority = 20;
 
     {
-        VarsFlags *v10 = SaveData_GetVarsFlags(param0->unk_830);
+        VarsFlags *v10 = SaveData_GetVarsFlags(param0->saveData);
 
         v3[0] = SystemVars_GetBattleTowerPrintState(v10);
         v3[1] = SystemVars_GetBattleFactoryPrintState(v10);
@@ -606,7 +606,7 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 1:
         if (ov62_02231664(&v0->unk_00, 1)) {
-            UnkStruct_0202D750 *v2 = sub_0202D750(param0->unk_830);
+            UnkStruct_0202D750 *v2 = sub_0202D750(param0->saveData);
 
             v0->unk_90 = sub_0202D230(v2, 0, 0);
             param0->unk_08++;

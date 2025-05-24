@@ -661,7 +661,7 @@ static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
             {
                 TVBroadcast *v2;
 
-                v2 = SaveData_GetTVBroadcast(param0->unk_00->unk_20);
+                v2 = SaveData_GetTVBroadcast(param0->unk_00->saveData);
                 sub_0206D104(v2);
             }
             break;
@@ -940,7 +940,7 @@ static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0)
     {
         TVBroadcast *v0;
 
-        v0 = SaveData_GetTVBroadcast(param0->unk_00->unk_20);
+        v0 = SaveData_GetTVBroadcast(param0->unk_00->saveData);
         sub_0206D104(v0);
     }
 
@@ -1160,7 +1160,7 @@ static int ov94_02243974(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02243990(UnkStruct_ov94_0223FD4C *param0)
 {
     SaveData_SetFullSaveRequired();
-    SaveData_SaveStateInit(param0->unk_00->unk_20, 2);
+    SaveData_SaveStateInit(param0->unk_00->saveData, 2);
 
     param0->unk_2C = 31;
     param0->unk_10E0 = LCRNG_RandMod(60) + 2;
@@ -1181,7 +1181,7 @@ static int ov94_022439CC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022439E4(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 1) {
+    if (SaveData_SaveStateMain(param0->unk_00->saveData) == 1) {
         param0->unk_2C = param0->unk_10E8;
     }
 
@@ -1190,7 +1190,7 @@ static int ov94_022439E4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02243A04(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 2) {
+    if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
         param0->unk_2C = param0->unk_10EA;
         ov94_0223C5F4(param0);
     }
@@ -1201,7 +1201,7 @@ static int ov94_02243A04(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02243A28(UnkStruct_ov94_0223FD4C *param0)
 {
     SaveData_SetFullSaveRequired();
-    SaveData_SaveStateInit(param0->unk_00->unk_20, 2);
+    SaveData_SaveStateInit(param0->unk_00->saveData, 2);
 
     param0->unk_2C = 35;
 
@@ -1210,7 +1210,7 @@ static int ov94_02243A28(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02243A44(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 2) {
+    if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
         ov94_0223C4C0(param0, 1, 0);
         ov94_0223C5F4(param0);
         ov94_02245824(param0, param0->unk_B90, param0->unk_28, TEXT_SPEED_FAST, 0xf0f);
@@ -1262,7 +1262,7 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
         Party_RemovePokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
         if (Party_HasSpecies(param0->unk_00->unk_08, 441) == 0) {
-            ChatotCry *v2 = SaveData_GetChatotCry(param0->unk_00->unk_20);
+            ChatotCry *v2 = SaveData_GetChatotCry(param0->unk_00->saveData);
             ResetChatotCryDataStatus(v2);
         }
     }
@@ -1276,7 +1276,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 {
     int v0 = Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
 
-    sub_0202F180(param0->unk_00->unk_20, param1);
+    sub_0202F180(param0->unk_00->saveData, param1);
     param2 = 18;
 
     if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
@@ -1288,7 +1288,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
         if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
             if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-                VarsFlags *v2 = SaveData_GetVarsFlags(param0->unk_00->unk_20);
+                VarsFlags *v2 = SaveData_GetVarsFlags(param0->unk_00->saveData);
 
                 if (SystemVars_GetArceusEventState(v2) == 0) {
                     SystemVars_SetArceusEventState(v2, 1);
@@ -1325,7 +1325,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
 static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2)
 {
-    sub_0202F180(param0->unk_00->unk_20, param1);
+    sub_0202F180(param0->unk_00->saveData, param1);
 
     param2 = 18;
 
@@ -1335,7 +1335,7 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
     if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-            VarsFlags *v0 = SaveData_GetVarsFlags(param0->unk_00->unk_20);
+            VarsFlags *v0 = SaveData_GetVarsFlags(param0->unk_00->saveData);
 
             if (SystemVars_GetArceusEventState(v0) == 0) {
                 SystemVars_SetArceusEventState(v0, 1);

@@ -53,7 +53,7 @@ typedef struct {
     Strbuf* unk_11C;
     PaletteData *unk_120;
     const Options * unk_124;
-    SaveData * unk_128;
+    SaveData *saveData;
     BattleFrontier * unk_12C;
 } UnkStruct_ov110_021D0F78;
 
@@ -114,12 +114,12 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
 
     v2 = (UnkStruct_0203E564 *)OverlayManager_Args(param0);
 
-    v1->unk_128 = v2->unk_00;
-    v1->unk_12C = SaveData_GetBattleFrontier(v1->unk_128);
+    v1->saveData = v2->saveData;
+    v1->unk_12C = SaveData_GetBattleFrontier(v1->saveData);
     v1->unk_05 = v2->unk_04;
     v1->unk_06 = v2->unk_05;
     v1->unk_08 = v2->unk_06;
-    v1->unk_124 = SaveData_GetOptions(v1->unk_128);
+    v1->unk_124 = SaveData_GetOptions(v1->saveData);
 
     ov110_021D1180(v1);
 
@@ -745,9 +745,9 @@ static u32 ov110_021D17AC (UnkStruct_ov110_021D0F78 * param0, u8 param1)
     }
 
     if (param0->unk_05 == 3) {
-        v0 = sub_02030698(SaveData_GetBattleFrontier(param0->unk_128), v1, sub_0205E6A8(v1));
+        v0 = sub_02030698(SaveData_GetBattleFrontier(param0->saveData), v1, sub_0205E6A8(v1));
     } else {
-        v0 = (u8)sub_020300E0(sub_020300F4(param0->unk_128), 10, (param1 * 4) + param0->unk_05, NULL);
+        v0 = (u8)sub_020300E0(sub_020300F4(param0->saveData), 10, (param1 * 4) + param0->unk_05, NULL);
     }
 
     if (v0 == 1) {
@@ -1205,9 +1205,9 @@ static u32 ov110_021D1BEC (UnkStruct_ov110_021D0F78 * param0)
     u8 v0;
 
     if (param0->unk_05 == 3) {
-        v0 = sub_02030698(SaveData_GetBattleFrontier(param0->unk_128), 108, sub_0205E6A8(108));
+        v0 = sub_02030698(SaveData_GetBattleFrontier(param0->saveData), 108, sub_0205E6A8(108));
     } else {
-        v0 = (u8)sub_02030470(sub_0203041C(param0->unk_128), 9, param0->unk_05, 0, NULL);
+        v0 = (u8)sub_02030470(sub_0203041C(param0->saveData), 9, param0->unk_05, 0, NULL);
     }
 
     if (v0 == 1) {
@@ -1361,9 +1361,9 @@ static u32 ov110_021D1D68 (UnkStruct_ov110_021D0F78 * param0)
     u8 v0;
 
     if (param0->unk_05 == 3) {
-        v0 = sub_02030698(SaveData_GetBattleFrontier(param0->unk_128), 110, sub_0205E6A8(110));
+        v0 = sub_02030698(SaveData_GetBattleFrontier(param0->saveData), 110, sub_0205E6A8(110));
     } else {
-        v0 = (u8)sub_02030600(sub_020305B8(param0->unk_128), 8, param0->unk_05, 0, NULL);
+        v0 = (u8)sub_02030600(sub_020305B8(param0->saveData), 8, param0->unk_05, 0, NULL);
     }
 
     if (v0 == 1) {
@@ -1733,7 +1733,7 @@ static u32 ov110_021D20CC (UnkStruct_ov110_021D0F78 * param0, u8 param1)
     int v1;
     UnkStruct_0202D750 * v2;
 
-    v2 = sub_0202D750(param0->unk_128);
+    v2 = sub_0202D750(param0->saveData);
 
     switch (param1) {
     case 0:

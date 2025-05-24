@@ -1515,7 +1515,7 @@ static BOOL ov62_02242748 (UnkStruct_0208C06C * param0, int param1)
         int v7;
         int v8 = 0;
         BOOL v9;
-        Pokedex * v10 = SaveData_GetPokedex(param0->unk_830);
+        Pokedex * v10 = SaveData_GetPokedex(param0->saveData);
 
         for (v7 = v3; v7 < v4; v7++) {
             v9 = Pokedex_HasSeenSpecies(v10, v1[v7]);
@@ -1559,7 +1559,7 @@ static void ov62_022427D0 (UnkStruct_0208C06C * param0, int param1)
         int v5;
         int v6 = 0;
         BOOL v7;
-        Pokedex * v8 = SaveData_GetPokedex(param0->unk_830);
+        Pokedex * v8 = SaveData_GetPokedex(param0->saveData);
 
         v4->unk_4C8.unk_00 = 0;
 
@@ -2703,7 +2703,7 @@ static BOOL ov62_02243FA8 (UnkStruct_0208C06C * param0)
         v2[0] = 2;
         v2[1] = 5;
         v2[2] = 5;
-        v0->unk_4AC = ov62_02246B00(HEAP_ID_102, 12, v2, SaveData_GetOptions(param0->unk_830));
+        v0->unk_4AC = ov62_02246B00(HEAP_ID_102, 12, v2, SaveData_GetOptions(param0->saveData));
         v1->unk_220.unk_00 = param0->unk_14.unk_00;
         v1->unk_220.unk_04 = param0->unk_14.unk_04;
         v1->unk_220.unk_08 = param0->unk_14.unk_08;
@@ -3587,9 +3587,9 @@ static BOOL ov62_0224536C (UnkStruct_0208C06C * param0)
         {
             int v2;
 
-            sub_0202F298(param0->unk_830, 102, &v2, NULL, 0);
+            sub_0202F298(param0->saveData, 102, &v2, NULL, 0);
             v0->unk_1D0 = sub_02030A80(HEAP_ID_102);
-            sub_02030AA0(v0->unk_1D0, param0->unk_830);
+            sub_02030AA0(v0->unk_1D0, param0->saveData);
 
             if (ov61_0222B338(ov62_0224112C(param0), v0->unk_1D0) == 1) {
                 sub_02030A98(v0->unk_1D0);

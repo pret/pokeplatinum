@@ -294,7 +294,7 @@ static void ov114_0225D1AC(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
 static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4);
 static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, Strbuf *param3, u32 param4);
 static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4, TextColor param5);
-static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *param2, BOOL param3, u32 param4);
+static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *saveData, BOOL param3, u32 param4);
 static void ov114_0225D338(UnkStruct_ov114_0225D338 *param0);
 static void ov114_0225D368(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225D084 *param1, u32 param2, u32 param3);
 static void ov114_0225D400(UnkStruct_ov114_0225D338 *param0, u32 param1);
@@ -776,7 +776,7 @@ static const UnkStruct_ov114_02260234 Unk_ov114_02260234[] = {
     { 0x13, 0x13 },
 };
 
-void ov114_0225C700(UnkStruct_ov114_0225C76C *param0, BOOL param1, SaveData *param2, BOOL param3, UnkStruct_ov66_02230DBC *param4)
+void ov114_0225C700(UnkStruct_ov114_0225C76C *param0, BOOL param1, SaveData *saveData, BOOL param3, UnkStruct_ov66_02230DBC *param4)
 {
     int v0;
     int v1;
@@ -808,7 +808,7 @@ void ov114_0225C700(UnkStruct_ov114_0225C76C *param0, BOOL param1, SaveData *par
         param0->unk_0B = 1;
     }
 
-    param0->unk_00 = param2;
+    param0->saveData = saveData;
     param0->unk_0A = param3;
     param0->unk_0C = param4;
 }
@@ -867,7 +867,7 @@ TrainerInfo *ov114_0225C7CC(const UnkStruct_ov114_0225C76C *param0, u32 param1)
         v0 = ov114_0225C76C(param0, param1);
 
         if (v0 == param0->unk_09) {
-            return SaveData_GetTrainerInfo(param0->unk_00);
+            return SaveData_GetTrainerInfo(param0->saveData);
         }
 
         return CommInfo_TrainerInfo(param1);
@@ -1513,9 +1513,9 @@ static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
     Text_AddPrinterWithParamsAndColor(param2, FONT_SYSTEM, param0->unk_08, param3, param4, TEXT_SPEED_NO_TRANSFER, param5, NULL);
 }
 
-static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *param2, BOOL param3, u32 heapID)
+static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *saveData, BOOL param3, u32 heapID)
 {
-    u32 v0 = Options_Frame(SaveData_GetOptions(param2));
+    u32 v0 = Options_Frame(SaveData_GetOptions(saveData));
     u32 v1;
     int v2;
     u8 v3;
@@ -1653,7 +1653,7 @@ static UnkStruct_ov114_0225D678 *ov114_0225D48C(const UnkStruct_ov114_0225C76C *
         v3 = ov114_0225C78C(&v0->unk_08, v0->unk_08.unk_09);
         v2 = ov114_0225C7A4(&v0->unk_08, v3);
 
-        ov114_0225D290(&v0->unk_4C, &v0->unk_30, v0->unk_08.unk_00, v2, heapID);
+        ov114_0225D290(&v0->unk_4C, &v0->unk_30, v0->unk_08.saveData, v2, heapID);
     }
 
     v0->unk_650 = SysTask_Start(ov114_0225D688, v0, 0);
@@ -2496,7 +2496,7 @@ static UnkStruct_ov114_0225E854 *ov114_0225E5A8(const UnkStruct_ov114_0225C76C *
 
         v3 = ov114_0225C78C(&v0->unk_0C, v0->unk_0C.unk_09);
         v2 = ov114_0225C7A4(&v0->unk_0C, v3);
-        ov114_0225D290(&v0->unk_68, &v0->unk_4C, v0->unk_0C.unk_00, v2, heapID);
+        ov114_0225D290(&v0->unk_68, &v0->unk_4C, v0->unk_0C.saveData, v2, heapID);
     }
 
     ov114_0225F234(&v0->unk_24C, &v0->unk_4C, v0->unk_0C.unk_0A, heapID);
@@ -3532,7 +3532,7 @@ static BOOL ov114_0225F860(UnkStruct_ov114_0225E854 *param0)
 
 static void ov114_0225F890(UnkStruct_ov114_0225E854 *param0)
 {
-    WiFiList *v0 = SaveData_GetWiFiList(param0->unk_0C.unk_00);
+    WiFiList *v0 = SaveData_GetWiFiList(param0->unk_0C.saveData);
     int v1;
     int v2, v3;
     int v4;
@@ -3541,7 +3541,7 @@ static void ov114_0225F890(UnkStruct_ov114_0225E854 *param0)
     for (v1 = 0; v1 < param0->unk_0C.unk_08; v1++) {
         v2 = param0->unk_0C.unk_04[v1];
         v5 = CommInfo_DWCFriendData(v2);
-        v3 = sub_0203909C(param0->unk_0C.unk_00, v5, &v4);
+        v3 = sub_0203909C(param0->unk_0C.saveData, v5, &v4);
 
         switch (v3) {
         case 0:

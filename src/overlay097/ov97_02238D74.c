@@ -204,7 +204,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
     case 4097:
         if (sub_020334A4()) {
             DWC_SetMemFunc(ov97_02238D74, ov97_02238D94);
-            sub_020384C0(v2->unk_04);
+            sub_020384C0(v2->saveData);
             *param1 = 4098;
         }
         break;

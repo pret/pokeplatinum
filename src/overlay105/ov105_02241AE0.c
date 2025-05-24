@@ -104,7 +104,7 @@ struct UnkStruct_ov105_02241FF4_t {
     PokemonSpriteManager *unk_128;
     PokemonSprite *unk_12C[3];
     Options *unk_138;
-    SaveData *unk_13C;
+    SaveData *saveData;
     PokemonSummary *unk_140;
     UnkStruct_ov105_02245AAC unk_144;
     UnkStruct_ov105_02245EA8 *unk_2F4[6];
@@ -363,14 +363,14 @@ int ov105_02241AE0(OverlayManager *param0, int *param1)
 
     v2 = (UnkStruct_ov104_02234130 *)OverlayManager_Args(param0);
 
-    v1->unk_13C = v2->unk_00;
+    v1->saveData = v2->saveData;
     v1->unk_09 = v2->unk_04;
     v1->unk_0A = v2->unk_05;
     v1->unk_0B = v2->unk_06;
     v1->unk_31C = v2->unk_08;
     v1->unk_320 = v2->unk_0C;
     v1->unk_330 = &v2->unk_10[0];
-    v1->unk_138 = SaveData_GetOptions(v1->unk_13C);
+    v1->unk_138 = SaveData_GetOptions(v1->saveData);
     v1->unk_14 = (4 * 2);
 
     if (ov105_022454F8(v1, 0) == 1) {
@@ -2090,7 +2090,7 @@ static BOOL ov105_02244424(UnkStruct_ov105_02241FF4 *param0)
         ov105_02244F00(param0, 2, v2);
         ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
 
-        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, Options_TextFrameDelay(SaveData_GetOptions(param0->unk_13C)), 1, 2, 15, FONT_MESSAGE);
+        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, Options_TextFrameDelay(SaveData_GetOptions(param0->saveData)), 1, 2, 15, FONT_MESSAGE);
 
         Window_ScheduleCopyToVRAM(&param0->unk_50[5]);
 
@@ -2630,7 +2630,7 @@ static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
     const TrainerInfo *v1;
     Strbuf *v2;
 
-    v1 = SaveData_GetTrainerInfo(param0->unk_13C);
+    v1 = SaveData_GetTrainerInfo(param0->saveData);
     v2 = Strbuf_Init((7 + 1), HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
@@ -2888,11 +2888,11 @@ static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
     param0->unk_140->monMax = param0->unk_12;
     param0->unk_140->monIndex = ov105_022461A0(param0->unk_30C);
     param0->unk_140->move = 0;
-    param0->unk_140->dexMode = SaveData_GetDexMode(param0->unk_13C);
+    param0->unk_140->dexMode = SaveData_GetDexMode(param0->saveData);
     param0->unk_140->showContest = FALSE;
 
     PokemonSummaryScreen_FlagVisiblePages(param0->unk_140, Unk_ov105_022462DC);
-    PokemonSummaryScreen_SetPlayerProfile(param0->unk_140, SaveData_GetTrainerInfo(param0->unk_13C));
+    PokemonSummaryScreen_SetPlayerProfile(param0->unk_140, SaveData_GetTrainerInfo(param0->saveData));
 
     return;
 }
@@ -3043,7 +3043,7 @@ BOOL ov105_02245620(UnkStruct_ov105_02241FF4 *param0, u16 param1, u16 param2)
 
 void ov105_02245684(UnkStruct_ov105_02241FF4 *param0, u16 param1)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(param0->unk_13C);
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(param0->saveData);
     param0->unk_33C[0] = param1;
 
     return;

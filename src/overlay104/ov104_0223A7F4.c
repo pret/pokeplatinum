@@ -456,7 +456,7 @@ void ov104_0223ADB0(UnkStruct_ov104_0223ADA0 *param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         ov104_0222DF40(&param0->unk_280[v0], v1, ov104_0223ADA0(param0));
-        ov104_0222E1C0(param0->unk_4F8, param0->unk_4D4, v1);
+        ov104_0222E1C0(param0->saveData, param0->unk_4D4, v1);
     }
 
     Heap_FreeToHeap(v1);
@@ -482,7 +482,7 @@ void ov104_0223AE30(UnkStruct_ov104_0223ADA0 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         ov104_0222DF40(&v3[v0], v2, ov104_0223ADA0(param0));
-        ov104_0222E1C0(param0->unk_4F8, param0->unk_4D4, v2);
+        ov104_0222E1C0(param0->saveData, param0->unk_4D4, v2);
         param0->unk_4E8[v0 + 2] = param0->unk_584[v0];
     }
 

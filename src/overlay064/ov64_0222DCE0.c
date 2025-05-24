@@ -265,9 +265,6 @@ static void ov64_0222E71C(UnkStruct_ov64_0222E21C *param0);
 static void ov64_0222E738(UnkStruct_ov64_0222E21C *param0, u32 param1);
 static void ov64_0222E7C8(UnkStruct_ov64_0222E21C *param0);
 static void ov64_0222E7F8(UnkStruct_ov64_0222E21C *param0, u64 param1);
-static void ov64_0222E880(UnkStruct_ov64_0222E21C *param0, SaveData *param1, u32 param2, u32 param3);
-static void ov64_0222E8C0(UnkStruct_ov64_0222E21C *param0, SaveData *param1, u32 param2, u32 param3);
-static BOOL ov64_0222E8FC(UnkStruct_ov64_0222E21C *param0, SaveData *param1, u32 param2);
 static void ov64_0222E970(UnkStruct_ov64_0222E21C *param0, u32 param1);
 static void ov64_0222E990(UnkStruct_ov64_0222E21C *param0, u32 param1);
 static void ov64_0222E9A4(UnkStruct_ov64_0222E21C *param0, u32 param1);
@@ -1100,12 +1097,12 @@ static void ov64_0222E7F8(UnkStruct_ov64_0222E21C *param0, u64 param1)
     StringTemplate_SetNumber(param0->unk_214, 3, v0, 4, 2, 1);
 }
 
-static void ov64_0222E880(UnkStruct_ov64_0222E21C *param0, SaveData *param1, u32 param2, u32 param3)
+static void ov64_0222E880(UnkStruct_ov64_0222E21C *param0, SaveData *saveData, u32 param2, u32 param3)
 {
     WiFiList *v0;
     TrainerInfo *v1;
 
-    v0 = SaveData_GetWiFiList(param1);
+    v0 = SaveData_GetWiFiList(saveData);
     v1 = TrainerInfo_New(param3);
 
     TrainerInfo_SetName(v1, sub_0202AEF0(v0, param2));
@@ -1113,19 +1110,19 @@ static void ov64_0222E880(UnkStruct_ov64_0222E21C *param0, SaveData *param1, u32
     Heap_FreeToHeap(v1);
 }
 
-static void ov64_0222E8C0(UnkStruct_ov64_0222E21C *param0, SaveData *param1, u32 param2, u32 param3)
+static void ov64_0222E8C0(UnkStruct_ov64_0222E21C *param0, SaveData *saveData, u32 param2, u32 param3)
 {
     TrainerInfo *v0 = TrainerInfo_New(param3);
-    WiFiList *v1 = SaveData_GetWiFiList(param1);
+    WiFiList *v1 = SaveData_GetWiFiList(saveData);
 
     TrainerInfo_SetName(v0, sub_0202AF34(v1, param2));
     StringTemplate_SetPlayerName(param0->unk_214, 0, v0);
     Heap_FreeToHeap(v0);
 }
 
-static BOOL ov64_0222E8FC(UnkStruct_ov64_0222E21C *param0, SaveData *param1, u32 param2)
+static BOOL ov64_0222E8FC(UnkStruct_ov64_0222E21C *param0, SaveData *saveData, u32 param2)
 {
-    WiFiList *v0 = SaveData_GetWiFiList(param1);
+    WiFiList *v0 = SaveData_GetWiFiList(saveData);
     u32 v1;
     BOOL v2 = 1;
 

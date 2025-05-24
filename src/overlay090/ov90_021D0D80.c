@@ -126,10 +126,10 @@ int ov90_021D0D80(OverlayManager *param0, int *param1)
 
     v0->unk_08 = v1->unk_04;
     v0->unk_0A = v1->unk_06;
-    v0->unk_18 = SaveData_GetOptions(v1->unk_00);
-    v0->unk_1C = SaveData_GetBattleFrontier(v1->unk_00);
-    v0->unk_20 = sub_0202D750(v1->unk_00);
-    v0->unk_24 = sub_0202D764(v1->unk_00);
+    v0->unk_18 = SaveData_GetOptions(v1->saveData);
+    v0->unk_1C = SaveData_GetBattleFrontier(v1->saveData);
+    v0->unk_20 = sub_0202D750(v1->saveData);
+    v0->unk_24 = sub_0202D764(v1->saveData);
     v0->heapID = HEAP_ID_74;
 
     SetAutorepeat(4, 8);

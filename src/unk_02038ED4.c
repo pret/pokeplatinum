@@ -11,7 +11,7 @@ void sub_02038ED4(int *param0)
     *param0 = 0;
 }
 
-int sub_02038EDC(SaveData *param0, int param1, int *param2)
+int sub_02038EDC(SaveData *saveData, int param1, int *param2)
 {
     int v0;
 
@@ -22,12 +22,12 @@ int sub_02038EDC(SaveData *param0, int param1, int *param2)
         break;
     case 1:
         if (CommTiming_IsSyncState(111)) {
-            SaveData_SaveStateInit(param0, param1);
+            SaveData_SaveStateInit(saveData, param1);
             *param2 = 2;
         }
         break;
     case 2:
-        v0 = SaveData_SaveStateMain(param0);
+        v0 = SaveData_SaveStateMain(saveData);
 
         GF_ASSERT(v0 != 2);
         GF_ASSERT(v0 != 3);
@@ -43,7 +43,7 @@ int sub_02038EDC(SaveData *param0, int param1, int *param2)
         }
         break;
     case 4:
-        v0 = SaveData_SaveStateMain(param0);
+        v0 = SaveData_SaveStateMain(saveData);
 
         GF_ASSERT(v0 != 3);
         GF_ASSERT(v0 != 1);

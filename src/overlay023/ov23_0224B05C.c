@@ -2080,7 +2080,7 @@ BOOL ov23_0224D020(Strbuf *param0)
     return 0;
 }
 
-UnkStruct_02029894 *ov23_0224D130(SaveData *param0)
+UnkStruct_02029894 *ov23_0224D130(SaveData *saveData)
 {
     if (Unk_ov23_022577AC) {
         if (Unk_ov23_022577AC->unk_A00) {

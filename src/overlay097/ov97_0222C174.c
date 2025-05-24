@@ -345,7 +345,7 @@ UnkStruct_ov97_0223E0B0 Unk_ov97_0223E0B0[] = {
 typedef struct {
     int heapID;
     BgConfig *unk_04;
-    SaveData *unk_08;
+    SaveData *saveData;
     Pokedex *unk_0C;
     TrainerInfo *unk_10;
     Options *unk_14;
@@ -430,7 +430,7 @@ enum {
 
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0);
-MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
+MysteryGift *SaveData_GetMysteryGift(SaveData *saveData);
 void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapId heapID);
 
 static u16 ov97_0222C174(u16 param0)
@@ -670,14 +670,14 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
 
     v0->heapID = HEAP_ID_85;
     v0->unk_04 = BgConfig_New(v0->heapID);
-    v0->unk_08 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
-    v0->unk_0C = SaveData_GetPokedex(v0->unk_08);
-    v0->unk_14 = SaveData_GetOptions(v0->unk_08);
+    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->unk_10 = SaveData_GetTrainerInfo(v0->saveData);
+    v0->unk_0C = SaveData_GetPokedex(v0->saveData);
+    v0->unk_14 = SaveData_GetOptions(v0->saveData);
 
     ov97_02237694(v0->heapID);
 
-    v0->unk_3174 = SaveData_GetMysteryGift(v0->unk_08);
+    v0->unk_3174 = SaveData_GetMysteryGift(v0->saveData);
     v0->unk_14C = UnkEnum_ov97_0222C78C_09;
     v0->unk_144 = ((1 + 9) + (18 + 12));
     v0->unk_154 = 0;
@@ -985,7 +985,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 72);
             param0->unk_34D8 = Window_AddWaitDial(&param0->unk_28, (1 + 9));
             ov97_0222C974(param0);
-            ov97_0223846C(param0->unk_08);
+            ov97_0223846C(param0->saveData);
             *v3 = UnkEnum_ov97_0222C6F8_14;
         }
         break;

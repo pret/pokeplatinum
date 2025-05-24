@@ -81,7 +81,7 @@ typedef struct {
 
 typedef struct {
     BgConfig *unk_00;
-    SaveData *unk_04;
+    SaveData *saveData;
     Pokedex *unk_08;
     TrainerInfo *unk_0C;
     PlayTime *playTime;
@@ -130,7 +130,7 @@ static BOOL ov97_0222B8E4(void *param0, int param1, UnkStruct_ov97_02237808 *par
 static BOOL ov97_0222B934(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
 static BOOL ov97_0222B978(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
 static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
+MysteryGift *SaveData_GetMysteryGift(SaveData *saveData);
 int ov23_0224AC0C(void);
 int TrainerInfo_Size(void);
 
@@ -259,7 +259,7 @@ static void ov97_0222AF8C(UnkStruct_0222AE60 *param0)
         param0->unk_124 = 11;
         break;
     case 11:
-        sub_02037D48(param0->unk_04);
+        sub_02037D48(param0->saveData);
 
         param0->unk_128 = (2 * 60);
         param0->unk_124 = 13;
@@ -652,7 +652,7 @@ static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *par
             v0->unk_34 = 1;
         }
 
-        if (sub_02025D64(SaveData_GetSystemData(v0->unk_04)) == 1) {
+        if (sub_02025D64(SaveData_GetSystemData(v0->saveData)) == 1) {
             v0->unk_34 = 1;
         }
 
@@ -976,20 +976,20 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_14 = SaveData_GetMysteryGift(v0->unk_04);
+    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->unk_14 = SaveData_GetMysteryGift(v0->saveData);
     v0->unk_11C = FX32_ONE * 0;
     v0->unk_120 = FX32_ONE * 0;
-    v0->unk_0C = SaveData_GetTrainerInfo(v0->unk_04);
-    v0->unk_08 = SaveData_GetPokedex(v0->unk_04);
-    v0->playTime = SaveData_GetPlayTime(v0->unk_04);
+    v0->unk_0C = SaveData_GetTrainerInfo(v0->saveData);
+    v0->unk_08 = SaveData_GetPokedex(v0->saveData);
+    v0->playTime = SaveData_GetPlayTime(v0->saveData);
     v0->unk_4C = Pokedex_IsObtained(v0->unk_08);
     v0->unk_50 = TrainerInfo_BadgeCount(v0->unk_0C);
     v0->unk_12C = 15;
 
     ov97_02237694(HEAP_ID_81);
 
-    if (!SaveData_DataExists(v0->unk_04)) {
+    if (!SaveData_DataExists(v0->saveData)) {
         v0->unk_14C = 1;
     }
 

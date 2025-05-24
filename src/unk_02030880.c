@@ -26,7 +26,6 @@ typedef struct BattleFrontierStage {
 } BattleFrontierStage;
 
 static u16 sub_02030908(BattleFrontierStage *param0, int param1, int param2, u16 param3);
-static u16 sub_02030954(SaveData *param0, BattleFrontierStage *param1, int param2, int param3, u16 param4);
 
 int Frontier_Extra_SaveSize(void)
 {
@@ -40,23 +39,23 @@ void Frontier_Extra_Init(BattleFrontierStage *param0)
     param0->unk_00 = 0xffffffff;
 }
 
-BattleFrontierStage *sub_020308A0(SaveData *param0, int param1, int *param2)
+BattleFrontierStage *sub_020308A0(SaveData *saveData, int heapID, int *param2)
 {
-    BattleFrontierStage *v0 = SaveData_BattleFrontierStage(param0, param1, param2);
+    BattleFrontierStage *v0 = SaveData_BattleFrontierStage(saveData, heapID, param2);
     return v0;
 }
 
-int sub_020308A8(SaveData *param0, BattleFrontierStage *param1)
+int sub_020308A8(SaveData *saveData, BattleFrontierStage *param1)
 {
-    int v0 = SaveData_SaveBattleFrontierStage(param0, param1);
-    v0 |= SaveData_Save(param0);
+    int v0 = SaveData_SaveBattleFrontierStage(saveData, param1);
+    v0 |= SaveData_Save(saveData);
 
     return v0;
 }
 
-u16 sub_020308BC(SaveData *param0, BattleFrontierStage *param1, int param2, int param3)
+u16 sub_020308BC(SaveData *saveData, BattleFrontierStage *param1, int param2, int param3)
 {
-    if (SaveData_MiscSaveBlock_InitFlag(param0) == 0) {
+    if (SaveData_MiscSaveBlock_InitFlag(saveData) == 0) {
         return 0;
     }
 
@@ -97,15 +96,15 @@ static u16 sub_02030908(BattleFrontierStage *param0, int param1, int param2, u16
     return param3;
 }
 
-static u16 sub_02030954(SaveData *param0, BattleFrontierStage *param1, int param2, int param3, u16 param4)
+static u16 sub_02030954(SaveData *saveData, BattleFrontierStage *param1, int param2, int param3, u16 param4)
 {
     u16 v0;
 
-    if (SaveData_MiscSaveBlock_InitFlag(param0) == 0) {
+    if (SaveData_MiscSaveBlock_InitFlag(saveData) == 0) {
         return 0;
     }
 
-    v0 = sub_020308BC(param0, param1, param2, param3);
+    v0 = sub_020308BC(saveData, param1, param2, param3);
 
     if (v0 < param4) {
         return sub_02030908(param1, param2, param3, param4);
@@ -118,7 +117,7 @@ static u16 sub_02030954(SaveData *param0, BattleFrontierStage *param1, int param
     }
 }
 
-BOOL sub_020309A0(SaveData *param0, int param1, int param2, int param3, int param4, int param5, int *param6, int *param7)
+BOOL sub_020309A0(SaveData *saveData, int param1, int param2, int param3, int param4, enum HeapId heapID, int *param6, int *param7)
 {
     BattleFrontier *v0;
     BattleFrontierStage *v1;
@@ -136,25 +135,25 @@ BOOL sub_020309A0(SaveData *param0, int param1, int param2, int param3, int para
         return v6;
     }
 
-    if (SaveData_MiscSaveBlock_InitFlag(param0) == 0) {
+    if (SaveData_MiscSaveBlock_InitFlag(saveData) == 0) {
         return v6;
     }
 
-    v0 = SaveData_GetBattleFrontier(param0);
+    v0 = SaveData_GetBattleFrontier(saveData);
     v3 = sub_02030698(v0, param1, param3);
     v5 = sub_02030698(v0, param2, param3);
-    v1 = sub_020308A0(param0, param5, param6);
+    v1 = sub_020308A0(saveData, heapID, param6);
 
     if (*param6 != 1) {
         v4 = 0;
     } else {
-        v4 = sub_020308BC(param0, v1, param4, v5);
+        v4 = sub_020308BC(saveData, v1, param4, v5);
     }
 
-    v2 = sub_02030954(param0, v1, param4, v5, v3);
+    v2 = sub_02030954(saveData, v1, param4, v5, v3);
 
     if (v3 != v4) {
-        *param7 = sub_020308A8(param0, v1);
+        *param7 = sub_020308A8(saveData, v1);
         v6 = 1;
     }
 
