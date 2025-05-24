@@ -226,12 +226,12 @@ typedef struct {
 static void sub_0203DF68(FieldTask *taskMan);
 static u8 sub_0203E484(SaveData *saveData, u8 slotMachineID);
 
-static BOOL OverlayInit_Battle(ApplicationManager *appMan, int *state)
+static BOOL ApplicationInit_Battle(ApplicationManager *appMan, int *state)
 {
     return TRUE;
 }
 
-static BOOL OverlayMain_Battle(ApplicationManager *appMan, int *state)
+static BOOL ApplicationMain_Battle(ApplicationManager *appMan, int *state)
 {
     if (Battle_Main(appMan, state)) {
         return TRUE;
@@ -240,16 +240,16 @@ static BOOL OverlayMain_Battle(ApplicationManager *appMan, int *state)
     }
 }
 
-static BOOL OverlayExit_Battle(ApplicationManager *appMan, int *state)
+static BOOL ApplicationExit_Battle(ApplicationManager *appMan, int *state)
 {
     return TRUE;
 }
 
 const ApplicationManagerTemplate gBattleApplicationTemplate = {
-    OverlayInit_Battle,
-    OverlayMain_Battle,
-    OverlayExit_Battle,
-    FS_OVERLAY_ID(battle)
+    .init = ApplicationInit_Battle,
+    .main = ApplicationMain_Battle,
+    .exit = ApplicationExit_Battle,
+    .overlayID = FS_OVERLAY_ID(battle)
 };
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto)
