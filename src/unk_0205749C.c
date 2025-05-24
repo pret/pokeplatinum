@@ -29,7 +29,7 @@ static const OverlayManagerTemplate Unk_020ED4CC = {
 
 void sub_0205749C(FieldTask *param0, BOOL param1)
 {
-    UnkStruct_0205749C *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205749C));
+    UnkStruct_0205749C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205749C));
     memset(v0, 0, sizeof(UnkStruct_0205749C));
 
     v0->unk_02 = param1;

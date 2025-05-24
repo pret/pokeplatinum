@@ -108,9 +108,9 @@ static void ov59_021D3068(const UnkStruct_ov59_021D2FBC *param0)
     ov59_021D2F60(v0, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
-static void *ov59_021D3088(SaveData *param0, int param1, u32 param2)
+static void *ov59_021D3088(SaveData *param0, int heapID, u32 param2)
 {
-    return sub_0202E9FC(param0, param1);
+    return sub_0202E9FC(param0, heapID);
 }
 
 static void ov59_021D3090(const UnkStruct_ov59_021D2FBC *param0)

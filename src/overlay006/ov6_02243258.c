@@ -1057,7 +1057,7 @@ void ov6_02243FC8(SysTask *param0)
 
 static UnkStruct_ov6_02243FFC *ov6_02243FDC(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov6_02243FFC *v0 = Heap_AllocFromHeapAtEnd(4, (sizeof(UnkStruct_ov6_02243FFC)));
+    UnkStruct_ov6_02243FFC *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02243FFC)));
 
     memset(v0, 0, (sizeof(UnkStruct_ov6_02243FFC)));
     v0->fieldSystem = fieldSystem;

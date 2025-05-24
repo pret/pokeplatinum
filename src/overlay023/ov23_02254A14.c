@@ -334,7 +334,7 @@ static BOOL ov23_02254C84(FieldTask *param0)
 
 void ov23_02254D98(FieldSystem *fieldSystem, FieldTask *param1)
 {
-    UnkStruct_ov23_02256098 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02256098));
+    UnkStruct_ov23_02256098 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_02256098));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_02256098));
     ov23_02255EBC(0, v0);

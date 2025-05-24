@@ -186,7 +186,7 @@ void sub_020656DC(MapObject *mapObj)
 SysTask *MapObject_StartAnimation(MapObject *mapObj, const MapObjectAnimCmd *param1)
 {
     SysTask *v0;
-    UnkStruct_020EEE54 *v1 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_020EEE54));
+    UnkStruct_020EEE54 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_020EEE54));
     GF_ASSERT(v1 != NULL);
 
     memset(v1, 0, sizeof(UnkStruct_020EEE54));

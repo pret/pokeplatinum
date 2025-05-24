@@ -65,7 +65,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
     int v4;
     int v5;
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206CAD0));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206CAD0));
 
     v0->unk_01 = param1;
     v0->unk_04 = param2;
@@ -131,7 +131,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
 
 static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, ModelAttributes *param2)
 {
-    UnkStruct_0206C8D4 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206C8D4));
+    UnkStruct_0206C8D4 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206C8D4));
 
     v0->unk_04 = param2;
     v0->unk_00 = param1;

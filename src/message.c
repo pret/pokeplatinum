@@ -101,7 +101,7 @@ void MessageBank_GetStrbuf(const MessageBank *bank, u32 entryID, Strbuf *strbuf)
         DecodeEntry(&entry, entryID, bank->seed);
 
         u32 size = entry.length * sizeof(charcode_t);
-        charcode_t *cstr = Heap_AllocFromHeapAtEnd(0, size);
+        charcode_t *cstr = Heap_AllocFromHeapAtEnd(HEAP_ID_SYSTEM, size);
         if (cstr) {
             MI_CpuCopy16(EntryOffsetAddress(bank, entry.offset), cstr, size);
             DecodeString(cstr, entry.length, entryID, bank->seed);

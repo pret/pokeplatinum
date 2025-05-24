@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+#include "constants/heap.h"
 
 #include "struct_defs/struct_0209BBA4.h"
 
@@ -23,7 +24,7 @@ static BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2);
 
 UnkStruct_ov104_02230BE4 *sub_0209BA18(FieldSystem *fieldSystem, void *param1)
 {
-    UnkStruct_ov104_02230BE4 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov104_02230BE4));
+    UnkStruct_ov104_02230BE4 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02230BE4));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_02230BE4));
 

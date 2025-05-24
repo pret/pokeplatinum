@@ -691,7 +691,7 @@ void *ov101_021D19E4(UnkStruct_ov101_021D13C8 *param0, u32 param1, int param2)
     if (param2 == 1) {
         v0 = Heap_AllocFromHeap(HEAP_ID_79, v1);
     } else {
-        v0 = Heap_AllocFromHeapAtEnd(79, v1);
+        v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_79, v1);
     }
 
     GF_ASSERT(v0 != NULL);

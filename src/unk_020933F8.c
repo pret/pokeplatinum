@@ -152,7 +152,7 @@ __attribute__((aligned(4))) static const u8 Unk_020F55D0[][6] = {
 
 void sub_020933F8(FieldTask *param0, UnkStruct_02095C48 *param1)
 {
-    UnkStruct_020933F8 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020933F8));
+    UnkStruct_020933F8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020933F8));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_020933F8));
     v0->unk_00 = param1;
@@ -1448,7 +1448,7 @@ void sub_02094A58(UnkStruct_02095C48 *param0, int param1)
 
     GF_ASSERT(param0->unk_19A0 == NULL);
 
-    v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_02094A58));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_02094A58));
     MI_CpuClear8(v0, sizeof(UnkStruct_02094A58));
     v0->unk_0C = sub_02095904(param1);
 

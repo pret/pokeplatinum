@@ -746,7 +746,7 @@ void *sub_0203D8AC(FieldSystem *fieldSystem)
     int v2 = 0, v3 = 0;
     sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203D8AC));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
 
     sub_0206B70C(fieldSystem, v0, 0);
     sub_0203D884(fieldSystem, v0);
@@ -770,7 +770,7 @@ static void OpenOptionsMenu(FieldSystem *fieldSystem, Options *options)
 
 void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem)
 {
-    OptionsMenu *optionsMenu = Heap_AllocFromHeapAtEnd(11, sizeof(OptionsMenu));
+    OptionsMenu *optionsMenu = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(OptionsMenu));
     Options *options = SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem));
     OpenOptionsMenu(fieldSystem, options);
 
@@ -1243,7 +1243,7 @@ void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int par
 {
     Pokemon *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0203DE98 *v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203DE98));
+    UnkStruct_0203DE98 *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203DE98));
 
     v2->unk_00 = 0;
     v2->unk_04 = param4;
@@ -1346,7 +1346,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
         FS_OVERLAY_ID(overlay94)
     };
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203E0FC));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203E0FC));
 
     v0->unk_00 = SaveData_GetGlobalTrade(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
@@ -1382,7 +1382,7 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
         FS_OVERLAY_ID(overlay96)
     };
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206BC70));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206BC70));
 
     v0->unk_00 = sub_0202D750(fieldSystem->saveData);
     v0->unk_04 = sub_0202D764(fieldSystem->saveData);
@@ -1796,7 +1796,7 @@ void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2)
         FS_OVERLAY_ID(overlay61)
     };
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203E6C0));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203E6C0));
     MI_CpuClear8(v0, sizeof(UnkStruct_0203E6C0));
 
     v0->fieldSystem = fieldSystem;

@@ -551,7 +551,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
     void *v3;
 
     v2 = (param4) ? 0x20 * 200 : 0x20 * 100;
-    v3 = Heap_AllocFromHeapAtEnd(57, v2);
+    v3 = Heap_AllocFromHeapAtEnd(HEAP_ID_57, v2);
 
     if (v3) {
         UnkStruct_02013610 v4 = {
