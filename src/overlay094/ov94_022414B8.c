@@ -1048,8 +1048,8 @@ void ov94_022425A8(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD4C *par
     CharCode_CopyNumChars(param0->unk_10C, TrainerInfo_Name(param1->unk_00->unk_1C), 8);
 
     param0->unk_11C = TrainerInfo_ID_LowHalf(param1->unk_00->unk_1C);
-    param0->unk_11E = sub_0202C8C0(param1->unk_00->unk_18);
-    param0->unk_11F = sub_0202C8C4(param1->unk_00->unk_18);
+    param0->unk_11E = WiFiHistory_GetCountry(param1->unk_00->wiFiHistory);
+    param0->unk_11F = sub_0202C8C4(param1->unk_00->wiFiHistory);
     param0->unk_120 = TrainerInfo_Appearance(param1->unk_00->unk_1C);
     param0->unk_F6 = TrainerInfo_Gender(param1->unk_00->unk_1C);
     param0->unk_122 = GAME_VERSION;

@@ -179,7 +179,7 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
         break;
     case 1:
         ov16_0223D10C(param0, v0);
-        sub_02038F8C(v0->unk_104);
+        sub_02038F8C(v0->wiFiHistory);
 
         if (!sub_020389B8()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_020);

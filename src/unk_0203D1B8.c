@@ -963,7 +963,7 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->unk_04 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     param0->unk_08 = SaveData_GetParty(fieldSystem->saveData);
     param0->unk_0C = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PAL_PAD);
-    param0->unk_14 = sub_0202C878(fieldSystem->saveData);
+    param0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
     param0->unk_18 = SaveData_GetOptions(fieldSystem->saveData);
     param0->unk_24 = SaveData_GetPokedex(fieldSystem->saveData);
     param0->unk_30 = SaveData_GetDexMode(fieldSystem->saveData);
@@ -1354,7 +1354,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_0C = SaveData_GetPCBoxes(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetPokedex(fieldSystem->saveData);
     v0->unk_14 = SaveData_GetWiFiList(fieldSystem->saveData);
-    v0->unk_18 = sub_0202C878(fieldSystem->saveData);
+    v0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_24 = SaveData_GetOptions(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecords(fieldSystem->saveData);

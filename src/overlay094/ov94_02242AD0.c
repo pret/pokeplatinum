@@ -9,9 +9,9 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -61,7 +61,7 @@ static void ov94_02242D84(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02242D98(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02243E48(JournalEntry *param0, UnkStruct_ov94_0223BA88 *param1);
 static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02243E2C(UnkStruct_0202C878 *param0, UnkStruct_ov94_0223BA88 *param1);
+static void ov94_02243E2C(WiFiHistory *wiFiHistory, UnkStruct_ov94_0223BA88 *param1);
 static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2);
 static void ov94_02243DE8(GlobalTrade *param0, int param1);
 static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1);
@@ -653,7 +653,7 @@ static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
 
             ov94_02243B08(param0, 0);
             ov94_02243CE4(param0, (Pokemon *)param0->unk_A4C.unk_00.unk_00, param0->unk_110);
-            ov94_02243E2C(param0->unk_00->unk_18, &param0->unk_A4C);
+            ov94_02243E2C(param0->unk_00->wiFiHistory, &param0->unk_A4C);
             GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
             ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_A4C);
             GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
@@ -931,7 +931,7 @@ static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0)
 {
     ov94_02243BC4(param0, (Pokemon *)param0->unk_12C.unk_00.unk_00, sub_0202DAAC(param0->unk_00->unk_00), param0->unk_12C.unk_121);
-    ov94_02243E2C(param0->unk_00->unk_18, &param0->unk_12C);
+    ov94_02243E2C(param0->unk_00->wiFiHistory, &param0->unk_12C);
 
     GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
     ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_12C);
@@ -1388,9 +1388,9 @@ static void ov94_02243DE8(GlobalTrade *param0, int param1)
     }
 }
 
-static void ov94_02243E2C(UnkStruct_0202C878 *param0, UnkStruct_ov94_0223BA88 *param1)
+static void ov94_02243E2C(WiFiHistory *wiFiHistory, UnkStruct_ov94_0223BA88 *param1)
 {
-    sub_02038FDC(param0, param1->unk_11E, param1->unk_11F, param1->unk_123);
+    sub_02038FDC(wiFiHistory, param1->unk_11E, param1->unk_11F, param1->unk_123);
 }
 
 static void ov94_02243E48(JournalEntry *journalEntry, UnkStruct_ov94_0223BA88 *param1)

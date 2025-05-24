@@ -7,10 +7,10 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "field/field_system_decl.h"
 
@@ -43,7 +43,7 @@ typedef struct FieldBattleDTO {
     PCBoxes *pcBoxes;
     ChatotCry *chatotCries[MAX_BATTLERS];
     Poketch *poketch;
-    UnkStruct_0202C878 *unk_104;
+    WiFiHistory *wiFiHistory;
     Options *options;
     UnkStruct_0206D140 *unk_10C;
     BattleRecords battleRecords;
