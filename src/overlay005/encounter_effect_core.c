@@ -39,6 +39,8 @@
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
+#include "res/trainers/classes/field_encounteffect.naix.h"
+
 // EncounterEffect_Grass_HigherLevel
 #define GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE     2
 #define GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES 6
@@ -680,7 +682,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
         ov5_021DE47C(&trainerEffect->unk_48, 2, 1);
 
         ov5_021DE4CC(
-            encEffect->narc, &trainerEffect->unk_48, &trainerEffect->unk_1E8, 0, 1, 5, 7, 6, 600000);
+            encEffect->narc, &trainerEffect->unk_48, &trainerEffect->unk_1E8, enc_trainer_NCLR, 1, enc_trainer_high_NCGR, enc_trainer_high_NCER, enc_trainer_high_NANR, 600000);
 
         for (i = 0; i < 2; i++) {
             trainerEffect->pokeballSprites[i] = ov5_021DE62C(
@@ -842,7 +844,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel(SysTask *param0, void *param1)
         ov5_021DE47C(&v1->unk_2C, 2, 1);
 
         ov5_021DE4CC(
-            encEffect->narc, &v1->unk_2C, &v1->unk_1CC, 0, 1, 2, 4, 3, 600000);
+            encEffect->narc, &v1->unk_2C, &v1->unk_1CC, enc_trainer_NCLR, 1, enc_trainer_low_NCGR, enc_trainer_low_NCER, enc_trainer_low_NANR, 600000);
 
         {
             int v4;
@@ -990,7 +992,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
         ov5_021DE47C(&v1->unk_50, 2, 1);
 
         ov5_021DE4CC(
-            v0->narc, &v1->unk_50, &v1->unk_1F0, 0, 1, 5, 7, 6, 600000);
+            v0->narc, &v1->unk_50, &v1->unk_1F0, enc_trainer_NCLR, 1, enc_trainer_high_NCGR, enc_trainer_high_NCER, enc_trainer_high_NANR, 600000);
 
         for (v5 = 0; v5 < 2; v5++) {
             v1->unk_224[v5] = ov5_021DE62C(
@@ -1161,7 +1163,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         ov5_021DE47C(&v1->unk_00, 3, 1);
 
         ov5_021DE4CC(
-            v0->narc, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
+            v0->narc, &v1->unk_00, &v1->unk_1A0, enc_trainer_NCLR, 1, enc_trainer_low_NCGR, enc_trainer_low_NCER, enc_trainer_low_NANR, 600000);
 
         for (v3 = 0; v3 < 3; v3++) {
             v1->unk_1D4[v3] = ov5_021DE62C(
@@ -1370,7 +1372,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
         ov5_021DE47C(&v1->unk_5C, 1, 1);
 
         ov5_021DE4CC(
-            v0->narc, &v1->unk_5C, &v1->unk_1FC, 0, 1, 2, 4, 3, 600000);
+            v0->narc, &v1->unk_5C, &v1->unk_1FC, enc_trainer_NCLR, 1, enc_trainer_low_NCGR, enc_trainer_low_NCER, enc_trainer_low_NANR, 600000);
 
         v1->unk_230 = ov5_021DE62C(
             &v1->unk_5C, &v1->unk_1FC, (128 * FX32_ONE), (-32 * FX32_ONE), 0, 0);
@@ -1496,7 +1498,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
         ov5_021DE47C(&v1->unk_00, 3, 1);
 
         ov5_021DE4CC(
-            v0->narc, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
+            v0->narc, &v1->unk_00, &v1->unk_1A0, enc_trainer_NCLR, 1, enc_trainer_low_NCGR, enc_trainer_low_NCER, enc_trainer_low_NANR, 600000);
 
         for (v4 = 0; v4 < 3; v4++) {
             v1->unk_1D4[v4] = ov5_021DE62C(
@@ -1720,7 +1722,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
         ov5_021DE47C(&v1->unk_2C, 1, 1);
 
         ov5_021DE4CC(
-            v0->narc, &v1->unk_2C, &v1->unk_1CC, 0, 1, 5, 7, 6, 600000);
+            v0->narc, &v1->unk_2C, &v1->unk_1CC, enc_trainer_NCLR, 1, enc_trainer_high_NCGR, enc_trainer_high_NCER, enc_trainer_high_NANR, 600000);
 
         v1->unk_200 = ov5_021DE62C(
             &v1->unk_2C, &v1->unk_1CC, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
@@ -1835,7 +1837,7 @@ void EncounterEffect_Double(SysTask *param0, void *param1)
         ov5_021DE47C(&v1->unk_00, 4, 1);
 
         ov5_021DE4CC(
-            v0->narc, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
+            v0->narc, &v1->unk_00, &v1->unk_1A0, enc_trainer_NCLR, 1, enc_trainer_low_NCGR, enc_trainer_low_NCER, enc_trainer_low_NANR, 600000);
 
         for (v3 = 0; v3 < 4; v3++) {
             v1->unk_1D4[v3] = ov5_021DE62C(
@@ -1989,7 +1991,7 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
         ov5_021DE47C(&v1->unk_00, 6, 1);
 
         ov5_021DE4CC(
-            v0->narc, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
+            v0->narc, &v1->unk_00, &v1->unk_1A0, enc_trainer_NCLR, 1, enc_trainer_low_NCGR, enc_trainer_low_NCER, enc_trainer_low_NANR, 600000);
 
         for (v3 = 0; v3 < 6; v3++) {
             v1->unk_1D4[v3] = ov5_021DE62C(
@@ -2135,7 +2137,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         ov5_021DE47C(&v1->unk_08, 1, 1);
 
         ov5_021DE4CC(
-            v0->narc, &v1->unk_08, &v1->unk_1A8, 1, 1, 8, 10, 9, 600000);
+            v0->narc, &v1->unk_08, &v1->unk_1A8, enc_galactic_NCLR, 1, enc_galactic_NCGR, enc_galactic_NCER, enc_galactic_NANR, 600000);
 
         v1->unk_1DC = ov5_021DE62C(
             &v1->unk_08, &v1->unk_1A8, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
@@ -2608,13 +2610,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 246,
         .trainerClass = TRAINER_CLASS_LEADER_ROARK,
         .unk_0A = 1,
-        .mugshotPlttIdx = 55,
-        .mugshotTileIdx = 56,
-        .mugshotCellIdx = 57,
-        .mugshotAnimIdx = 58,
-        .bannerPlttIdx = 15,
-        .bannerTileIdx = 16,
-        .bannerTilemapIdx = 17,
+        .mugshotPlttIdx = mugshot_leader_roark_NCLR,
+        .mugshotTileIdx = mugshot_leader_roark_NCGR,
+        .mugshotCellIdx = mugshot_leader_roark_NCER,
+        .mugshotAnimIdx = mugshot_leader_roark_NANR,
+        .bannerPlttIdx = banner_leader_roark_NCLR,
+        .bannerTileIdx = banner_leader_roark_NCGR,
+        .bannerTilemapIdx = banner_leader_roark_NSCR,
         .padding = 0,
     },
     {
@@ -2622,13 +2624,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 315,
         .trainerClass = TRAINER_CLASS_LEADER_GARDENIA,
         .unk_0A = 1,
-        .mugshotPlttIdx = 59,
-        .mugshotTileIdx = 60,
-        .mugshotCellIdx = 61,
-        .mugshotAnimIdx = 62,
-        .bannerPlttIdx = 18,
-        .bannerTileIdx = 19,
-        .bannerTilemapIdx = 20,
+        .mugshotPlttIdx = mugshot_leader_gardenia_NCLR,
+        .mugshotTileIdx = mugshot_leader_gardenia_NCGR,
+        .mugshotCellIdx = mugshot_leader_gardenia_NCER,
+        .mugshotAnimIdx = mugshot_leader_gardenia_NANR,
+        .bannerPlttIdx = banner_leader_gardenia_NCLR,
+        .bannerTileIdx = banner_leader_gardenia_NCGR,
+        .bannerTilemapIdx = banner_leader_gardenia_NSCR,
         .padding = 0,
     },
     {
@@ -2636,13 +2638,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 316,
         .trainerClass = TRAINER_CLASS_LEADER_WAKE,
         .unk_0A = 0,
-        .mugshotPlttIdx = 63,
-        .mugshotTileIdx = 64,
-        .mugshotCellIdx = 65,
-        .mugshotAnimIdx = 66,
-        .bannerPlttIdx = 21,
-        .bannerTileIdx = 22,
-        .bannerTilemapIdx = 23,
+        .mugshotPlttIdx = mugshot_leader_wake_NCLR,
+        .mugshotTileIdx = mugshot_leader_wake_NCGR,
+        .mugshotCellIdx = mugshot_leader_wake_NCER,
+        .mugshotAnimIdx = mugshot_leader_wake_NANR,
+        .bannerPlttIdx = banner_leader_wake_NCLR,
+        .bannerTileIdx = banner_leader_wake_NCGR,
+        .bannerTilemapIdx = banner_leader_wake_NSCR,
         .padding = 0,
     },
     {
@@ -2650,13 +2652,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 317,
         .trainerClass = TRAINER_CLASS_LEADER_MAYLENE,
         .unk_0A = 1,
-        .mugshotPlttIdx = 67,
-        .mugshotTileIdx = 68,
-        .mugshotCellIdx = 69,
-        .mugshotAnimIdx = 70,
-        .bannerPlttIdx = 24,
-        .bannerTileIdx = 25,
-        .bannerTilemapIdx = 26,
+        .mugshotPlttIdx = mugshot_leader_maylene_NCLR,
+        .mugshotTileIdx = mugshot_leader_maylene_NCGR,
+        .mugshotCellIdx = mugshot_leader_maylene_NCER,
+        .mugshotAnimIdx = mugshot_leader_maylene_NANR,
+        .bannerPlttIdx = banner_leader_maylene_NCLR,
+        .bannerTileIdx = banner_leader_maylene_NCGR,
+        .bannerTilemapIdx = banner_leader_maylene_NSCR,
         .padding = 0,
     },
     {
@@ -2664,13 +2666,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 318,
         .trainerClass = TRAINER_CLASS_LEADER_FANTINA,
         .unk_0A = 1,
-        .mugshotPlttIdx = 71,
-        .mugshotTileIdx = 72,
-        .mugshotCellIdx = 73,
-        .mugshotAnimIdx = 74,
-        .bannerPlttIdx = 27,
-        .bannerTileIdx = 28,
-        .bannerTilemapIdx = 29,
+        .mugshotPlttIdx = mugshot_leader_fantina_NCLR,
+        .mugshotTileIdx = mugshot_leader_fantina_NCGR,
+        .mugshotCellIdx = mugshot_leader_fantina_NCER,
+        .mugshotAnimIdx = mugshot_leader_fantina_NANR,
+        .bannerPlttIdx = banner_leader_fantina_NCLR,
+        .bannerTileIdx = banner_leader_fantina_NCGR,
+        .bannerTilemapIdx = banner_leader_fantina_NSCR,
         .padding = 0,
     },
     {
@@ -2678,13 +2680,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 319,
         .trainerClass = TRAINER_CLASS_LEADER_CANDICE,
         .unk_0A = 1,
-        .mugshotPlttIdx = 75,
-        .mugshotTileIdx = 76,
-        .mugshotCellIdx = 77,
-        .mugshotAnimIdx = 78,
-        .bannerPlttIdx = 30,
-        .bannerTileIdx = 31,
-        .bannerTilemapIdx = 32,
+        .mugshotPlttIdx = mugshot_leader_candice_NCLR,
+        .mugshotTileIdx = mugshot_leader_candice_NCGR,
+        .mugshotCellIdx = mugshot_leader_candice_NCER,
+        .mugshotAnimIdx = mugshot_leader_candice_NANR,
+        .bannerPlttIdx = banner_leader_candice_NCLR,
+        .bannerTileIdx = banner_leader_candice_NCGR,
+        .bannerTilemapIdx = banner_leader_candice_NSCR,
         .padding = 0,
     },
     {
@@ -2692,13 +2694,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 250,
         .trainerClass = TRAINER_CLASS_LEADER_BYRON,
         .unk_0A = 1,
-        .mugshotPlttIdx = 79,
-        .mugshotTileIdx = 80,
-        .mugshotCellIdx = 81,
-        .mugshotAnimIdx = 82,
-        .bannerPlttIdx = 33,
-        .bannerTileIdx = 34,
-        .bannerTilemapIdx = 35,
+        .mugshotPlttIdx = mugshot_leader_byron_NCLR,
+        .mugshotTileIdx = mugshot_leader_byron_NCGR,
+        .mugshotCellIdx = mugshot_leader_byron_NCER,
+        .mugshotAnimIdx = mugshot_leader_byron_NANR,
+        .bannerPlttIdx = banner_leader_byron_NCLR,
+        .bannerTileIdx = banner_leader_byron_NCGR,
+        .bannerTilemapIdx = banner_leader_byron_NSCR,
         .padding = 0,
     },
     {
@@ -2706,13 +2708,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 320,
         .trainerClass = TRAINER_CLASS_LEADER_VOLKNER,
         .unk_0A = 1,
-        .mugshotPlttIdx = 83,
-        .mugshotTileIdx = 84,
-        .mugshotCellIdx = 85,
-        .mugshotAnimIdx = 86,
-        .bannerPlttIdx = 36,
-        .bannerTileIdx = 37,
-        .bannerTilemapIdx = 38,
+        .mugshotPlttIdx = mugshot_leader_volkner_NCLR,
+        .mugshotTileIdx = mugshot_leader_volkner_NCGR,
+        .mugshotCellIdx = mugshot_leader_volkner_NCER,
+        .mugshotAnimIdx = mugshot_leader_volkner_NANR,
+        .bannerPlttIdx = banner_leader_volkner_NCLR,
+        .bannerTileIdx = banner_leader_volkner_NCGR,
+        .bannerTilemapIdx = banner_leader_volkner_NSCR,
         .padding = 0,
     },
 };
@@ -2726,28 +2728,28 @@ typedef struct EliterFourChampionEncounterParam {
 } EliterFourChampionEncounterParam;
 
 static const EliterFourChampionEncounterParam sEliteFourChampionEncounterParams[5] = {
-    { .mugshotPlttIdx = 87, // Narc indices of the Elite Four and Champion
-        .bannerPlttIdx = 39,
+    { .mugshotPlttIdx = mugshot_elite_four_aaron_NCLR, // Narc indices of the Elite Four and Champion
+        .bannerPlttIdx = banner_elite_four_aaron_NCLR,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_AARON,
         .trainerID = 261 },
-    { .mugshotPlttIdx = 91,
-        .bannerPlttIdx = 43,
+    { .mugshotPlttIdx = mugshot_elite_four_bertha_NCLR,
+        .bannerPlttIdx = banner_elite_four_bertha_NCLR,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_BERTHA,
         .trainerID = 262 },
-    { .mugshotPlttIdx = 95,
-        .bannerPlttIdx = 44,
+    { .mugshotPlttIdx = mugshot_elite_four_flint_NCLR,
+        .bannerPlttIdx = banner_elite_four_flint_NCLR,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_FLINT,
         .trainerID = 263 },
-    { .mugshotPlttIdx = 99,
-        .bannerPlttIdx = 45,
+    { .mugshotPlttIdx = mugshot_elite_four_lucian_NCLR,
+        .bannerPlttIdx = banner_elite_four_lucian_NCLR,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_LUCIAN,
         .trainerID = 264 },
-    { .mugshotPlttIdx = 103,
-        .bannerPlttIdx = 46,
+    { .mugshotPlttIdx = mugshot_champion_cynthia_NCLR,
+        .bannerPlttIdx = banner_champion_cynthia_NCLR,
         .facePanFrames = 9,
         .trainerClass = TRAINER_CLASS_CHAMPION_CYNTHIA,
         .trainerID = 267 },
@@ -2897,7 +2899,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
         memset(encEffect->param, 0, sizeof(UnkStruct_ov5_021E52A8));
         v0 = encEffect->param;
 
-        Graphics_LoadPaletteFromOpenNARC(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
+        Graphics_LoadPaletteFromOpenNARC(encEffect->narc, enc_fade_NCLR, 0, 2 * 0x20, 0x20, heapID);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         Window_Add(encEffect->fieldSystem->bgConfig, &v0->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
@@ -2912,7 +2914,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
             encEffect->narc, &v0->unk_44, &v0->unk_1E4[0], param->mugshotPlttIdx, 1, param->mugshotTileIdx, param->mugshotCellIdx, param->mugshotAnimIdx, 600000);
 
         ov5_021DE4CC(
-            encEffect->narc, &v0->unk_44, &v0->unk_1E4[1], 51, 1, 52, 53, 54, 600000 + 1);
+            encEffect->narc, &v0->unk_44, &v0->unk_1E4[1], league_vs_NCLR, 1, league_vs_NCGR, league_vs_NCER, league_vs_NANR, 600000 + 1);
 
         v0->unk_24C = ov5_021DE62C(
             &v0->unk_44, &v0->unk_1E4[0], (272 * FX32_ONE), (66 * FX32_ONE), 0, 0);
@@ -3219,12 +3221,12 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
 
         if (FieldSystem_GetTrainerGender(encEffect->fieldSystem) == 0) {
             ov5_021DE4CC(
-                encEffect->narc, &v0->unk_5C, &v0->unk_1FC[0], 147, 1, 148, 149, 150, 600000);
+                encEffect->narc, &v0->unk_5C, &v0->unk_1FC[0], mugshot_player_male_NCLR, 1, mugshot_player_male_NCGR, mugshot_player_male_NCER, mugshot_player_male_NANR, 600000);
 
             v0->unk_368 = 0;
         } else {
             ov5_021DE4CC(
-                encEffect->narc, &v0->unk_5C, &v0->unk_1FC[0], 151, 1, 152, 153, 154, 600000);
+                encEffect->narc, &v0->unk_5C, &v0->unk_1FC[0], mugshot_player_female_NCLR, 1, mugshot_player_female_NCGR, mugshot_player_female_NCER, mugshot_player_female_NANR, 600000);
             v0->unk_368 = 1;
         }
 
@@ -3232,10 +3234,10 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             encEffect->narc, &v0->unk_5C, &v0->unk_1FC[1], param->mugshotPlttIdx, 1, param->mugshotPlttIdx + 1, param->mugshotPlttIdx + 2, param->mugshotPlttIdx + 3, 600000 + 1);
 
         ov5_021DE4CC(
-            encEffect->narc, &v0->unk_5C, &v0->unk_1FC[2], param->bannerPlttIdx, 0xC, 40, 41, 42, 600000 + 2);
+            encEffect->narc, &v0->unk_5C, &v0->unk_1FC[2], param->bannerPlttIdx, 0xC, league_banner_NCGR, league_banner_NCER, league_banner_NANR, 600000 + 2);
 
         ov5_021DE4CC(
-            encEffect->narc, &v0->unk_5C, &v0->unk_1FC[3], 51, 1, 52, 53, 54, 600000 + 3);
+            encEffect->narc, &v0->unk_5C, &v0->unk_1FC[3], league_vs_NCLR, 1, league_vs_NCGR, league_vs_NCER, league_vs_NANR, 600000 + 3);
 
         encEffect->state++;
         break;
@@ -3300,7 +3302,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
 
     case 4:
         if (ov5_021DF054() == 1) {
-            ov5_021DF0CC(encEffect->narc, 107);
+            ov5_021DF0CC(encEffect->narc, elite_particle_1_spa);
 
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 0, 8);
             encEffect->state++;
@@ -3332,7 +3334,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         {
             Strbuf *v9;
 
-            Graphics_LoadPaletteFromOpenNARC(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
+            Graphics_LoadPaletteFromOpenNARC(encEffect->narc, enc_fade_NCLR, 0, 2 * 0x20, 0x20, heapID);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
             Window_Add(encEffect->fieldSystem->bgConfig, &v0->unk_358, 2, 21, 13, 11, 2, 2, 1);
@@ -3415,7 +3417,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             Sprite_SetAnimateFlag(v0->unk_2CC[3], 1);
             Sprite_SetAnimSpeed(v0->unk_2CC[3], FX32_ONE * 2);
 
-            ov5_021DF0CC(encEffect->narc, 108);
+            ov5_021DF0CC(encEffect->narc, elite_particle_2_spa);
 
             encEffect->state++;
         }

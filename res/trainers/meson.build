@@ -6,6 +6,8 @@
 #       AI behavior flags, and items on-hand.
 #     - trpoke - party information for individual trainers in-game
 
+subdir('classes')
+
 trainer_data_dir = meson.current_source_dir() / 'data'
 
 # 1. Build the list of trainer stems, which define the files to be scanned

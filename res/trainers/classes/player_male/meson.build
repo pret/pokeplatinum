@@ -1,0 +1,16 @@
+trainer_front_files += files('front.png')
+trainer_front_files += files('front_anim.json')
+trainer_front_files += files('front_cell.json')
+trainer_front_files += files('front_scan.png')
+trainer_front_files += files('front_scan.png.key')
+
+trainer_back_files += files('back.png')
+trainer_back_files += files('back_anim.json')
+trainer_back_files += files('back_cell.json')
+trainer_back_files += files('back_scan.png')
+trainer_back_files += files('back_scan.png.key')
+
+trainer_encounter_files += files('mugshot.pal')
+trainer_encounter_files += files('mugshot.png')
+trainer_encounter_files += files('mugshot_anim.json')
+trainer_encounter_files += files('mugshot_cell.json')

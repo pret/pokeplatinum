@@ -141,6 +141,7 @@ npc_trades_txt = files('npc_trades.txt')
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
 trainers_txt = files('trainers.txt')
+trainer_classes_txt = files('trainer_classes.txt')
 
 py_consts_env = environment()
 py_consts_env.append('PYTHONPATH', meson.project_build_root())
