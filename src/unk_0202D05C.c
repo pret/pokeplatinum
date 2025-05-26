@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202D060.h"
 #include "struct_defs/struct_0202D080.h"
@@ -10,7 +11,6 @@
 #include "struct_defs/struct_0202D63C.h"
 #include "struct_defs/struct_0202D750.h"
 #include "struct_defs/struct_0202D764.h"
-#include "struct_defs/struct_0203068C.h"
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_0204B404.h"
 
@@ -374,15 +374,15 @@ u32 sub_0202D474(UnkStruct_0202D750 *param0)
 
 void sub_0202D478(SaveData *saveData, int param1, Sentence *param2)
 {
-    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    sub_02014CC0(&(v0->unk_950.unk_168.unk_00[param1]), param2);
+    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    sub_02014CC0(&(frontier->unk_950.unk_168.unk_00[param1]), param2);
 }
 
 Sentence *sub_0202D498(SaveData *saveData, int param1)
 {
-    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
 
-    return &(v0->unk_950.unk_168.unk_00[param1]);
+    return &(frontier->unk_950.unk_168.unk_00[param1]);
 }
 
 void sub_0202D4B0(UnkStruct_0202D764 *param0, u8 param1, u8 param2, RTCDate *param3)
@@ -542,18 +542,18 @@ UnkStruct_ov90_021D1750 *sub_0202D71C(UnkStruct_0202D764 *param0, int heapID)
 
 UnkStruct_0202D060 *sub_0202D740(SaveData *saveData)
 {
-    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &v0->unk_8E0_val1;
+    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    return &frontier->unk_8E0_val1;
 }
 
 UnkStruct_0202D750 *sub_0202D750(SaveData *saveData)
 {
-    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &v0->unk_950.unk_00;
+    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    return &frontier->unk_950.unk_00;
 }
 
 UnkStruct_0202D764 *sub_0202D764(SaveData *saveData)
 {
-    BattleFrontier *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &v0->unk_950.unk_188;
+    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    return &frontier->unk_950.unk_188;
 }

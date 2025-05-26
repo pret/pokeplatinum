@@ -8,7 +8,7 @@
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -326,14 +326,14 @@ void sub_0206BD88(FieldTask *param0, u16 param1, u16 param2)
 
 u16 sub_0206BDBC(SaveData *saveData)
 {
-    BattleFrontier *v0;
+    BattleFrontier *frontier;
     UnkStruct_0202D750 *v1;
     UndergroundData *v2;
     u16 v3;
     u8 v4, v5, v6, v7, v8, v9;
 
-    v0 = SaveData_GetBattleFrontier(saveData);
-    v3 = sub_02030698(v0, 0, 0xff);
+    frontier = SaveData_GetBattleFrontier(saveData);
+    v3 = sub_02030698(frontier, 0, 0xff);
 
     if (v3 < 20) {
         return 0;
@@ -401,13 +401,13 @@ u16 sub_0206BDBC(SaveData *saveData)
 
 u16 sub_0206BF04(SaveData *saveData)
 {
-    BattleFrontier *v0;
+    BattleFrontier *frontier;
     UnkStruct_0202D750 *v1;
     u16 v2;
     u8 v3, v4, v5, v6, v7, v8;
 
-    v0 = SaveData_GetBattleFrontier(saveData);
-    v2 = sub_02030698(v0, 0, 0xff);
+    frontier = SaveData_GetBattleFrontier(saveData);
+    v2 = sub_02030698(frontier, 0, 0xff);
 
     if (v2 < 20) {
         return 0;

@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -320,7 +320,7 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *saveData, u16 param1, u16 param2)
     u8 v0;
     u16 v1, v2;
     UnkStruct_0204AFC4 *v3;
-    BattleFrontier *v4;
+    BattleFrontier *frontier;
     GameRecords *v5;
 
     v3 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204AFC4));
@@ -372,7 +372,7 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *saveData, u16 param1, u16 param2)
     v3->unk_11 = TrainerInfo_Gender(SaveData_GetTrainerInfo(saveData));
 
     if (v3->unk_0F != 5) {
-        v4 = SaveData_GetBattleFrontier(saveData);
+        frontier = SaveData_GetBattleFrontier(saveData);
         v5 = SaveData_GetGameRecords(saveData);
 
         if (v3->unk_0F == 6) {
@@ -384,10 +384,10 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *saveData, u16 param1, u16 param2)
         if (v2) {
             if (v3->unk_0F == 6) {
                 v3->unk_1A = sub_02030698(
-                    v4, 113, sub_0205E6A8(113));
+                    frontier, 113, sub_0205E6A8(113));
             } else {
                 v3->unk_1A = sub_02030698(
-                    v4, 1 + v3->unk_0F * 2, 0xff);
+                    frontier, 1 + v3->unk_0F * 2, 0xff);
             }
 
             v3->unk_1C = sub_0202D3B4(v3->unk_74, v3->unk_0F, 0);
@@ -597,7 +597,7 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *saveData)
     int v1;
     u16 v2, v3, v4;
     GameRecords *v5 = SaveData_GetGameRecords(saveData);
-    BattleFrontier *v6 = SaveData_GetBattleFrontier(saveData);
+    BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
 
     if (param0->unk_0F == 5) {
         return;
@@ -609,8 +609,8 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *saveData)
         v1 = param0->unk_0F * 2 + 0;
     }
 
-    v2 = sub_02030698(v6, v1, sub_0205E6A8(v1));
-    v3 = sub_02030848(v6, v1, sub_0205E6A8(v1), param0->unk_1A + param0->unk_0D);
+    v2 = sub_02030698(frontier, v1, sub_0205E6A8(v1));
+    v3 = sub_02030848(frontier, v1, sub_0205E6A8(v1), param0->unk_1A + param0->unk_0D);
 
     if (v3 > 1) {
         if ((v2 < v3) || ((v2 == v3) && (v3 % 7 == 0))) {
@@ -624,7 +624,7 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *saveData)
         v4 = sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 0);
     }
 
-    v0 = sub_020306E4(v6, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
+    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
 
     if (param0->unk_0F == 6) {
         sub_020306E4(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100), 0);
@@ -657,14 +657,14 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *saveData, JournalEntry *
     void *journalEntryOnlineEvent;
     u16 v3, v4, v5;
     GameRecords *v6;
-    BattleFrontier *v7;
+    BattleFrontier *frontier;
 
     if (param0->unk_0F == 5) {
         return;
     }
 
     v6 = SaveData_GetGameRecords(saveData);
-    v7 = SaveData_GetBattleFrontier(saveData);
+    frontier = SaveData_GetBattleFrontier(saveData);
 
     if (param0->unk_0F == 6) {
         v1 = 112;
@@ -678,7 +678,7 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *saveData, JournalEntry *
         v5 = sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 0);
     }
 
-    v0 = sub_020306E4(v7, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
+    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
 
     if (param0->unk_0F == 6) {
         sub_020306E4(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100), 1);
@@ -686,8 +686,8 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *saveData, JournalEntry *
         sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 1);
     }
 
-    v3 = sub_02030698(v7, v1, sub_0205E6A8(v1));
-    v4 = sub_02030848(v7, v1, sub_0205E6A8(v1), v0);
+    v3 = sub_02030698(frontier, v1, sub_0205E6A8(v1));
+    v4 = sub_02030848(frontier, v1, sub_0205E6A8(v1), v0);
 
     GameRecords_AddToRecordValue(v6, RECORD_UNK_029, 7);
     sub_0202D3B4(param0->unk_74, param0->unk_0F, 3);

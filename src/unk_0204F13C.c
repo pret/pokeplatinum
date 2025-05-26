@@ -8,8 +8,8 @@
 
 #include "struct_decls/struct_02030114_decl.h"
 #include "struct_decls/struct_0203026C_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204F3D0.h"
 #include "struct_defs/struct_02098C44.h"
@@ -518,7 +518,7 @@ BOOL ScrCmd_324(ScriptContext *param0)
     int v0;
     int v1;
     BattleFrontierStage *v2;
-    BattleFrontier *v3;
+    BattleFrontier *frontier;
     u32 v4, v5, v6;
     u16 v7, v8;
     FieldSystem *fieldSystem = param0->fieldSystem;
@@ -653,7 +653,7 @@ BOOL ScrCmd_326(ScriptContext *param0)
     int v0;
     int v1;
     BattleFrontierStage *v2;
-    BattleFrontier *v3;
+    BattleFrontier *frontier;
     u32 v4, v5;
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 *v7 = ScriptContext_GetVarPointer(param0);
