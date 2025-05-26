@@ -4106,7 +4106,7 @@ static BOOL ScrCmd_1D8(ScriptContext *ctx)
         return FALSE;
     }
 
-    if (PoffinCase_GetNumberOfFilledSlots(SaveData_GetPoffinCase(ctx->fieldSystem->saveData)) >= MAX_POFFINS) {
+    if (PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(ctx->fieldSystem->saveData)) >= MAX_POFFINS) {
         *v0 = 2;
         return FALSE;
     }
@@ -7097,7 +7097,7 @@ static BOOL ScrCmd_307(ScriptContext *ctx)
 {
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
     PoffinCase *poffinCase = SaveData_GetPoffinCase(ctx->fieldSystem->saveData);
-    *v1 = PoffinCase_GetNumberOfEmptySlots(poffinCase);
+    *v1 = PoffinCase_CountEmptySlots(poffinCase);
 
     return FALSE;
 }

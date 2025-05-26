@@ -55,7 +55,7 @@ BOOL PoffinCase_ClearSlot(PoffinCase *poffinCase, u16 slot);
 void PoffinCase_Compact(PoffinCase *poffinCase);
 void PoffinCase_CopyPoffinToSlot(PoffinCase *poffinCase, u16 destSlot, Poffin *poffin);
 Poffin *PoffinCase_AllocateForSlot(PoffinCase *poffinCase, u16 destSlot, int heapID);
-u16 PoffinCase_GetNumberOfFilledSlots(PoffinCase *poffinCase);
-u16 PoffinCase_GetNumberOfEmptySlots(PoffinCase *poffinCase);
+u16 PoffinCase_CountFilledSlots(PoffinCase *poffinCase);
+u16 PoffinCase_CountEmptySlots(PoffinCase *poffinCase);
 
 #endif // POKEPLATINUM_POFFIN_H

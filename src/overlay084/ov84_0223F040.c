@@ -687,7 +687,7 @@ void ov84_02240328(UnkStruct_ov84_0223B5A0 *param0)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 109);
-    StringTemplate_SetNumber(param0->unk_118, 0, PoffinCase_GetNumberOfFilledSlots(SaveData_GetPoffinCase(param0->unk_C4->saveData)), 3, 1, 1);
+    StringTemplate_SetNumber(param0->unk_118, 0, PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(param0->unk_C4->saveData)), 3, 1, 1);
     StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
     Strbuf_Free(v1);
 

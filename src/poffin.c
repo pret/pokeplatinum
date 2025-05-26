@@ -344,7 +344,7 @@ Poffin *PoffinCase_AllocateForSlot(PoffinCase *poffinCase, u16 destSlot, int hea
     return poffin;
 }
 
-u16 PoffinCase_GetNumberOfFilledSlots(PoffinCase *poffinCase)
+u16 PoffinCase_CountFilledSlots(PoffinCase *poffinCase)
 {
     u16 j = 0, i;
 
@@ -357,7 +357,7 @@ u16 PoffinCase_GetNumberOfFilledSlots(PoffinCase *poffinCase)
     return j;
 }
 
-u16 PoffinCase_GetNumberOfEmptySlots(PoffinCase *poffinCase)
+u16 PoffinCase_CountEmptySlots(PoffinCase *poffinCase)
 {
     u16 i, j = 0;
 
