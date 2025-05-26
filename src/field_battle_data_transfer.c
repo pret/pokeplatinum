@@ -108,7 +108,7 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
     dto->bagCursor = NULL;
     dto->subscreenCursorOn = NULL;
     dto->countSafariBalls = 0;
-    dto->unk_104 = NULL;
+    dto->wiFiHistory = NULL;
     dto->records = NULL;
     dto->journalEntry = NULL;
     dto->rulesetMask = 0;
@@ -272,7 +272,7 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
     dto->bagCursor = bagCursor;
     dto->subscreenCursorOn = subscreenCursorOn;
     dto->poketch = SaveData_GetPoketch(saveData);
-    dto->unk_104 = sub_0202C878(saveData);
+    dto->wiFiHistory = SaveData_WiFiHistory(saveData);
     dto->records = SaveData_GetGameRecords(saveData);
     dto->journalEntry = journalEntry;
     dto->unk_124 = SaveData_GetPalPad(saveData);
@@ -327,7 +327,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
     dto->bagCursor = fieldSystem->bagCursor;
     dto->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
     dto->poketch = SaveData_GetPoketch(fieldSystem->saveData);
-    dto->unk_104 = sub_0202C878(fieldSystem->saveData);
+    dto->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
     dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
     dto->unk_124 = SaveData_GetPalPad(fieldSystem->saveData);
@@ -392,7 +392,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     dto->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     dto->bagCursor = fieldSystem->bagCursor;
     dto->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
-    dto->unk_104 = sub_0202C878(fieldSystem->saveData);
+    dto->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
     dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
     dto->mapHeaderID = fieldSystem->location->mapId;

@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_02030CEC.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay096/struct_ov96_0223B574.h"
 
@@ -104,7 +104,7 @@ u32 sub_02030D98(SaveData *saveData, int param1)
 
 static void sub_02030DD0(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
 {
-    UnkStruct_0202C878 *v0 = sub_0202C878(saveData);
+    WiFiHistory *wiFiHistory = SaveData_WiFiHistory(saveData);
     TrainerInfo *v1 = SaveData_GetTrainerInfo(saveData);
     char *v2 = sub_02030D50(saveData);
 
@@ -112,8 +112,8 @@ static void sub_02030DD0(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
 
     param1->unk_00 = GAME_VERSION;
     param1->unk_01 = GAME_LANGUAGE;
-    param1->unk_02 = sub_0202C8C0(v0);
-    param1->unk_03 = sub_0202C8C4(v0);
+    param1->unk_02 = WiFiHistory_GetCountry(wiFiHistory);
+    param1->unk_03 = sub_0202C8C4(wiFiHistory);
     param1->unk_04 = TrainerInfo_ID(v1);
 
     CharCode_Copy(param1->unk_08, TrainerInfo_Name(v1));
