@@ -202,10 +202,10 @@ void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
 
     for (v1 = 0; v1 < param2; v1++) {
         if (param1[v1] >= 16) {
-            StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[16 + v2], PartyMenu_MakeSelection((u8)param1[v1]));
+            StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[16 + v2], sub_02083370((u8)param1[v1]));
             v2++;
         } else {
-            StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[param1[v1]], PartyMenu_MakeSelection((u8)param1[v1]));
+            StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[param1[v1]], sub_02083370((u8)param1[v1]));
         }
     }
 

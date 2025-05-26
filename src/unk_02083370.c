@@ -74,7 +74,7 @@ static void sub_020845E8(GameWindowLayout *param0, int *param1);
 static void sub_020846FC(GameWindowLayout *param0, int *param1);
 static void sub_020839FC(GameWindowLayout *param0, int *param1);
 
-static const u32 sMenuSelectionTable[] = {
+static const u32 Unk_020F2458[] = {
     (const u32)sub_02083AD0,
     (const u32)sub_0208472C,
     (const u32)sub_020833BC,
@@ -109,9 +109,9 @@ static const u32 sMenuSelectionTable[] = {
     0xFFFFFFFE
 };
 
-u32 PartyMenu_MakeSelection(u8 selection)
+u32 sub_02083370(u8 param0)
 {
-    return sMenuSelectionTable[selection];
+    return Unk_020F2458[param0];
 }
 
 void sub_0208337C(GameWindowLayout *param0)
@@ -132,9 +132,9 @@ static void sub_020833BC(GameWindowLayout *param0, int *param1)
 
     param0->unk_6FC = StringList_New(3, 12);
 
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[3], PartyMenu_MakeSelection(3));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[4], PartyMenu_MakeSelection(4));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], PartyMenu_MakeSelection(9));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[3], sub_02083370(3));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[4], sub_02083370(4));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], sub_02083370(9));
 
     v0.choices = param0->unk_6FC;
     v0.window = &param0->unk_04[35];
@@ -156,7 +156,7 @@ static void sub_0208347C(GameWindowLayout *param0, int *param1)
     Menu_Free(param0->unk_700, NULL);
     StringList_Free(param0->unk_6FC);
 
-    param0->partyManagementData->menuSelectionResult = MENU_SELECTION_ITEMSET;
+    param0->partyManagementData->menuSelectionResult = 3;
     *param1 = 32;
 }
 
@@ -260,9 +260,9 @@ static void sub_02083700(GameWindowLayout *param0, int *param1)
 
     param0->unk_6FC = StringList_New(3, 12);
 
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[6], PartyMenu_MakeSelection(MENU_SELECTION_SET_MAIL));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[7], PartyMenu_MakeSelection(MENU_SELECTION_READ_MAIL));
-    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], PartyMenu_MakeSelection(MENU_SELECTION_EVOLUTION));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[6], sub_02083370(6));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[7], sub_02083370(7));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], sub_02083370(9));
 
     v0.choices = param0->unk_6FC;
     v0.window = &param0->unk_04[35];
