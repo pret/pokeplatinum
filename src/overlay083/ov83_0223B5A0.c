@@ -712,7 +712,7 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
 
         if ((v0 == 1) || (v0 == 2)) {
             if (v0 == 1) {
-                if (Poffin_GetNumberOfFilledSlots(param0->unk_10->poffinCase) >= MAX_POFFINS) {
+                if (PoffinCase_CountFilledSlots(param0->unk_10->poffinCase) >= MAX_POFFINS) {
                     ov83_0223EC8C(&param1->unk_6A0, 2);
                     (*param2) = 10;
                     param1->unk_1C = (30 * 5);
@@ -1091,7 +1091,7 @@ static BOOL ov83_0223C8B0(UnkStruct_ov83_0223C344 *param0, Poffin *param1, int p
     TVBroadcast *v4 = SaveData_GetTVBroadcast(param0->unk_10->saveData);
 
     for (v0 = 0; v0 < param2; v0++) {
-        v1 = Poffin_AddToCase(param0->unk_10->poffinCase, param1);
+        v1 = PoffinCase_AddPoffin(param0->unk_10->poffinCase, param1);
 
         if (v1 == POFFIN_NONE) {
             v3 = 0;

@@ -3788,7 +3788,7 @@ static u32 ov65_022319B8(UnkStruct_ov65_0222EBE0 *param0)
         return 3;
     }
 
-    if (Poffin_GetNumberOfFilledSlots(SaveData_GetPoffinCase(param0->saveData)) >= MAX_POFFINS) {
+    if (PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(param0->saveData)) >= MAX_POFFINS) {
         return 2;
     }
 
