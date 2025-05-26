@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0204B184.h"
 
 #include "overlay104/ov104_0222DCE0.h"
@@ -427,17 +427,17 @@ u16 ov104_0223BC24(u16 param0)
     return param0;
 }
 
-void ov104_0223BC2C(BattleFrontier *param0, u8 param1, int param2)
+void ov104_0223BC2C(BattleFrontier *frontier, u8 param1, int param2)
 {
     u16 v0;
 
-    sub_02030824(param0, sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)), param2);
-    v0 = sub_02030698(param0, sub_0205E658(param1), sub_0205E6A8(sub_0205E658(param1)));
+    sub_02030824(frontier, sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)), param2);
+    v0 = sub_02030698(frontier, sub_0205E658(param1), sub_0205E6A8(sub_0205E658(param1)));
 
     if (v0 + param2 > 9999) {
-        sub_020306E4(param0, sub_0205E658(param1), sub_0205E6A8(sub_0205E658(param1)), 9999);
+        sub_020306E4(frontier, sub_0205E658(param1), sub_0205E6A8(sub_0205E658(param1)), 9999);
     } else {
-        sub_02030804(param0, sub_0205E658(param1), sub_0205E6A8(sub_0205E658(param1)), param2);
+        sub_02030804(frontier, sub_0205E658(param1), sub_0205E6A8(sub_0205E658(param1)), param2);
     }
 
     return;

@@ -9,7 +9,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/wi_fi_history.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0207DFAC.h"
@@ -6268,17 +6268,17 @@ static void ov65_022342A8(UnkStruct_ov65_0222EBE0 *param0, u32 heapID)
 {
     int v0;
     int v1;
-    BattleFrontier *v2;
+    BattleFrontier *frontier;
     Strbuf *v3;
 
-    v2 = SaveData_GetBattleFrontier(param0->saveData);
+    frontier = SaveData_GetBattleFrontier(param0->saveData);
     v0 = param0->unk_BE0.unk_71 - 1;
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 55, param0->unk_178);
         Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
-        v1 = sub_02030698(v2, 124, v0);
+        v1 = sub_02030698(frontier, 124, v0);
         v3 = MessageUtil_SpeciesName(v1, heapID);
 
         {
@@ -6376,15 +6376,15 @@ static void ov65_02234628(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_02234694(UnkStruct_ov65_0222EBE0 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
     int v0;
-    BattleFrontier *v1 = SaveData_GetBattleFrontier(param0->saveData);
-    v0 = sub_02030698(v1, param2, param3);
+    BattleFrontier *frontier = SaveData_GetBattleFrontier(param0->saveData);
+    v0 = sub_02030698(frontier, param2, param3);
 
     ov65_02234708(param0, param1, v0, param4, param5);
 }
 
 static void ov65_022346C4(UnkStruct_ov65_0222EBE0 *param0, Strbuf *param1, u32 param2, u32 param3)
 {
-    BattleFrontier *v0;
+    BattleFrontier *frontier;
     BOOL v1;
     u32 v2;
     static const u32 v3[6] = {
@@ -6398,8 +6398,8 @@ static void ov65_022346C4(UnkStruct_ov65_0222EBE0 *param0, Strbuf *param1, u32 p
 
     GF_ASSERT(param2 < 6);
 
-    v0 = SaveData_GetBattleFrontier(param0->saveData);
-    v1 = sub_02030698(v0, v3[param2], param3);
+    frontier = SaveData_GetBattleFrontier(param0->saveData);
+    v1 = sub_02030698(frontier, v3[param2], param3);
 
     if (v1 == 0) {
         v2 = 57;

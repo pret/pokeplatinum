@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0202C844_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_02072014.h"
 
 #include "field/field_system.h"
@@ -125,13 +125,13 @@ u8 sub_02071F28(FieldSystem *fieldSystem)
     GameRecords *gameRecords;
     VarsFlags *varsFlags;
     SecretBaseRecord *v4;
-    BattleFrontier *v5;
+    BattleFrontier *frontier;
 
     saveData = FieldSystem_GetSaveData(fieldSystem);
     gameRecords = SaveData_GetGameRecords(saveData);
     varsFlags = SaveData_GetVarsFlags(saveData);
     v4 = SaveData_SecretBaseRecord(saveData);
-    v5 = SaveData_GetBattleFrontier(saveData);
+    frontier = SaveData_GetBattleFrontier(saveData);
     v0 = 0;
 
     if (SystemFlag_CheckGameCompleted(varsFlags)) {
@@ -142,7 +142,7 @@ u8 sub_02071F28(FieldSystem *fieldSystem)
         v0++;
     }
 
-    if ((sub_02030698(v5, 0, 0xff) >= 100) || (sub_02030698(v5, 2, 0xff) >= 100) || (sub_02030698(v5, 4, 0xff) >= 100) || (sub_02030698(v5, 6, 0xff) >= 100) || (sub_02030698(v5, 8, 0xff) >= 100)) {
+    if ((sub_02030698(frontier, 0, 0xff) >= 100) || (sub_02030698(frontier, 2, 0xff) >= 100) || (sub_02030698(frontier, 4, 0xff) >= 100) || (sub_02030698(frontier, 6, 0xff) >= 100) || (sub_02030698(frontier, 8, 0xff) >= 100)) {
         v0++;
     }
 

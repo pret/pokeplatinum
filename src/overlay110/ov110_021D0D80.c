@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202D750_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_02099F80.h"
@@ -54,7 +54,7 @@ typedef struct {
     PaletteData *unk_120;
     const Options * unk_124;
     SaveData *saveData;
-    BattleFrontier * unk_12C;
+    BattleFrontier *frontier;
 } UnkStruct_ov110_021D0F78;
 
 int ov110_021D0D80(OverlayManager * param0, int * param1);
@@ -115,7 +115,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     v2 = (UnkStruct_0203E564 *)OverlayManager_Args(param0);
 
     v1->saveData = v2->saveData;
-    v1->unk_12C = SaveData_GetBattleFrontier(v1->saveData);
+    v1->frontier = SaveData_GetBattleFrontier(v1->saveData);
     v1->unk_05 = v2->unk_04;
     v1->unk_06 = v2->unk_05;
     v1->unk_08 = v2->unk_06;
@@ -563,16 +563,16 @@ static void ov110_021D1468 (UnkStruct_ov110_021D0F78 * param0)
     Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
     v0 = 2;
     ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D17AC(param0, 0), 1);
-    ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E430(0, param0->unk_05), 0xFF));
+    ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E430(0, param0->unk_05), 0xFF));
     ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
-    ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E488(0, param0->unk_05), 0xFF));
+    ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E488(0, param0->unk_05), 0xFF));
     ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
     Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
     v0 = 3;
     ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
-    ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E45C(0, param0->unk_05), 0xFF));
+    ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E45C(0, param0->unk_05), 0xFF));
     ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
-    ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E4B4(0, param0->unk_05), 0xFF));
+    ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E4B4(0, param0->unk_05), 0xFF));
     ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
     Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
 }

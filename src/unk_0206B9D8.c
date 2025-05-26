@@ -8,7 +8,7 @@
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -70,43 +70,43 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
 {
     u8 v0;
     SaveData *saveData;
-    PartyManagementData *v2 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_AllocFromHeapAtEnd(heapID, sizeof(PartyManagementData));
 
     saveData = fieldSystem->saveData;
-    MI_CpuClear8(v2, sizeof(PartyManagementData));
+    MI_CpuClear8(partyMan, sizeof(PartyManagementData));
 
-    v2->unk_0C = SaveData_GetOptions(saveData);
-    v2->unk_00 = SaveData_GetParty(saveData);
-    v2->unk_04 = SaveData_GetBag(saveData);
-    v2->unk_21 = 0;
-    v2->unk_20 = param0->unk_08;
-    v2->unk_32_0 = param0->unk_0A;
-    v2->unk_32_4 = param0->unk_0B;
-    v2->unk_33 = param0->unk_0C;
-    v2->selectedMonSlot = param0->unk_0D;
+    partyMan->options = SaveData_GetOptions(saveData);
+    partyMan->party = SaveData_GetParty(saveData);
+    partyMan->bag = SaveData_GetBag(saveData);
+    partyMan->unk_21 = 0;
+    partyMan->unk_20 = param0->unk_08;
+    partyMan->unk_32_0 = param0->unk_0A;
+    partyMan->unk_32_4 = param0->unk_0B;
+    partyMan->unk_33 = param0->unk_0C;
+    partyMan->selectedMonSlot = param0->unk_0D;
 
     for (v0 = 0; v0 < 6; v0++) {
-        v2->unk_2C[v0] = param0->unk_0E[v0];
+        partyMan->unk_2C[v0] = param0->unk_0E[v0];
     }
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    *(param0->unk_14) = v2;
+    *(param0->unk_14) = partyMan;
     return 1;
 }
 
 static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
 {
     int v0;
-    PartyManagementData *v1;
+    PartyManagementData *partyMan;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 1;
     }
 
-    v1 = *(param0->unk_14);
+    partyMan = *(param0->unk_14);
 
-    switch (v1->selectedMonSlot) {
+    switch (partyMan->selectedMonSlot) {
     case 7:
         param0->unk_00 = 0;
         return 4;
@@ -117,9 +117,9 @@ static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
         break;
     }
 
-    MI_CpuCopy8(v1->unk_2C, param0->unk_0E, 6);
-    param0->unk_0D = v1->selectedMonSlot;
-    Heap_FreeToHeap(v1);
+    MI_CpuCopy8(partyMan->unk_2C, param0->unk_0E, 6);
+    param0->unk_0D = partyMan->selectedMonSlot;
+    Heap_FreeToHeap(partyMan);
     *(param0->unk_14) = NULL;
 
     return 2;
@@ -326,14 +326,14 @@ void sub_0206BD88(FieldTask *param0, u16 param1, u16 param2)
 
 u16 sub_0206BDBC(SaveData *saveData)
 {
-    BattleFrontier *v0;
+    BattleFrontier *frontier;
     UnkStruct_0202D750 *v1;
     UndergroundData *v2;
     u16 v3;
     u8 v4, v5, v6, v7, v8, v9;
 
-    v0 = SaveData_GetBattleFrontier(saveData);
-    v3 = sub_02030698(v0, 0, 0xff);
+    frontier = SaveData_GetBattleFrontier(saveData);
+    v3 = sub_02030698(frontier, 0, 0xff);
 
     if (v3 < 20) {
         return 0;
@@ -401,13 +401,13 @@ u16 sub_0206BDBC(SaveData *saveData)
 
 u16 sub_0206BF04(SaveData *saveData)
 {
-    BattleFrontier *v0;
+    BattleFrontier *frontier;
     UnkStruct_0202D750 *v1;
     u16 v2;
     u8 v3, v4, v5, v6, v7, v8;
 
-    v0 = SaveData_GetBattleFrontier(saveData);
-    v2 = sub_02030698(v0, 0, 0xff);
+    frontier = SaveData_GetBattleFrontier(saveData);
+    v2 = sub_02030698(frontier, 0, 0xff);
 
     if (v2 < 20) {
         return 0;

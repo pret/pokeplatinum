@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_0203068C_H
-#define POKEPLATINUM_STRUCT_0203068C_H
+#ifndef POKEPLATINUM_STRUCT_BATTLE_FRONTIER_H
+#define POKEPLATINUM_STRUCT_BATTLE_FRONTIER_H
 
 #include "struct_defs/struct_0202D060.h"
 #include "struct_defs/struct_0202D080.h"
@@ -15,7 +15,7 @@
 #include "struct_defs/struct_020305B8.h"
 #include "struct_defs/struct_02030698.h"
 
-typedef struct BattleFrontier_t {
+typedef struct BattleFrontier {
     UnkStruct_02030698 unk_00;
     union {
         UnkStruct_0202D060 unk_8E0_val1;
@@ -43,4 +43,4 @@ typedef struct BattleFrontier_t {
     } unk_1620;
 } BattleFrontier;
 
-#endif // POKEPLATINUM_STRUCT_0203068C_H
+#endif // POKEPLATINUM_STRUCT_BATTLE_FRONTIER_H

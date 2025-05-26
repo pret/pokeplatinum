@@ -76,7 +76,7 @@ void sub_02082CEC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3, N
     SpriteTemplateFromResourceHeader v1;
     u32 v2;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param1);
 
     param0->unk_704[param1].unk_16 = param2;
     param0->unk_704[param1].unk_18 = param3;
@@ -111,7 +111,7 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
     NNSG2dCharacterData *v6;
     BOOL v7;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param1);
     v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
@@ -282,7 +282,7 @@ static void sub_02083138(Sprite *param0, u8 param1)
 
 static u8 sub_02083158(StrBufWrapper *param0)
 {
-    if (param0->unk_06 == 0) {
+    if (param0->curHP == 0) {
         return 0;
     }
 
@@ -290,7 +290,7 @@ static u8 sub_02083158(StrBufWrapper *param0)
         return 5;
     }
 
-    switch (HealthBar_Color(param0->unk_06, param0->unk_08, 48)) {
+    switch (HealthBar_Color(param0->curHP, param0->maxHP, 48)) {
     case 4:
         return 1;
     case 3:
@@ -326,7 +326,7 @@ void sub_020831B4(GameWindowLayout *param0)
         sub_02083138(v0->unk_24, v2);
         Sprite_UpdateAnim(v0->unk_24, FX32_ONE);
 
-        if ((param0->unk_B11 == v1) && (v2 != 0) && (v2 != 5)) {
+        if ((param0->partySlot == v1) && (v2 != 0) && (v2 != 5)) {
             if (Sprite_GetAnimFrame(v0->unk_24) == 0) {
                 Sprite_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 - 3);
             } else {
@@ -345,7 +345,7 @@ void sub_0208327C(GameWindowLayout *param0, u8 param1, u8 param2)
     u8 v0, v1;
 
     GridMenuCursor_GetFirstCoords(&param0->unk_7F4[param1], &v0, &v1);
-    Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
+    Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, param1));
     Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
     Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);
     Sprite_SetExplicitPalette2(param0->unk_5B0[6], param2);
