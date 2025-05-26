@@ -357,21 +357,21 @@ static BOOL sub_02097F38(FieldTask *param0)
         }
     } break;
     case 3: {
-        PartyManagementData *v6 = v0->unk_0C;
+        PartyManagementData *partyMan = v0->unk_0C;
 
-        v6->party = v1->unk_1C;
-        v6->bag = SaveData_GetBag(v0->saveData);
-        v6->mailBox = SaveData_GetMailBox(v0->saveData);
-        v6->selectedMonSlot = 0;
-        v6->unk_21 = 0;
-        v6->unk_20 = 15;
-        v6->options = v1->unk_24;
+        partyMan->party = v1->unk_1C;
+        partyMan->bag = SaveData_GetBag(v0->saveData);
+        partyMan->mailBox = SaveData_GetMailBox(v0->saveData);
+        partyMan->selectedMonSlot = 0;
+        partyMan->unk_21 = 0;
+        partyMan->unk_20 = 15;
+        partyMan->options = v1->unk_24;
 
-        FieldTask_RunApplication(param0, &Unk_020F1E88, v6);
+        FieldTask_RunApplication(param0, &Unk_020F1E88, partyMan);
         v0->unk_14 = 4;
     } break;
     case 4: {
-        PartyManagementData *v7 = v0->unk_0C;
+        PartyManagementData *partyMan = v0->unk_0C;
         Pokemon *v8;
         UnkStruct_0202CA28 *v9;
         UnkStruct_0202CA64 *v10;
@@ -381,8 +381,8 @@ static BOOL sub_02097F38(FieldTask *param0)
 
         v13 = sub_02097F18(v0->unk_08) + 1;
 
-        if (v7->selectedMonSlot != 7) {
-            v8 = sub_02097F00(v0->unk_08, v7->selectedMonSlot);
+        if (partyMan->selectedMonSlot != 7) {
+            v8 = sub_02097F00(v0->unk_08, partyMan->selectedMonSlot);
 
             Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v13);
             Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(v1->unk_20, v13 - 1));

@@ -1262,23 +1262,23 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         sub_0203C2D8(taskMan, sub_0207CB94(v2));
         break;
     case 2: {
-        PartyManagementData *v6;
+        PartyManagementData *partyMan;
 
-        v6 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
-        memset(v6, 0, sizeof(PartyManagementData));
+        partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+        memset(partyMan, 0, sizeof(PartyManagementData));
 
-        v6->party = SaveData_GetParty(fieldSystem->saveData);
-        v6->bag = SaveData_GetBag(fieldSystem->saveData);
-        v6->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
-        v6->options = SaveData_GetOptions(fieldSystem->saveData);
-        v6->fieldMoveContext = &menu->fieldMoveContext;
-        v6->unk_21 = 0;
-        v6->unk_20 = 9;
-        v6->usedItemID = sub_0207CB94(v2);
-        v6->fieldSystem = fieldSystem;
+        partyMan->party = SaveData_GetParty(fieldSystem->saveData);
+        partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
+        partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+        partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
+        partyMan->fieldMoveContext = &menu->fieldMoveContext;
+        partyMan->unk_21 = 0;
+        partyMan->unk_20 = 9;
+        partyMan->usedItemID = sub_0207CB94(v2);
+        partyMan->fieldSystem = fieldSystem;
 
-        FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v6);
-        menu->taskData = v6;
+        FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+        menu->taskData = partyMan;
         sub_0203B674(menu, sub_0203B7C0);
     } break;
     case 4: {
@@ -1303,29 +1303,29 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             menu->unk_260 = sub_0203C540(v10, 0, (u8)v9);
             sub_0203B674(menu, sub_0203C558);
         } else {
-            PartyManagementData *v13;
+            PartyManagementData *partyMan;
 
-            v13 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
-            memset(v13, 0, sizeof(PartyManagementData));
+            partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+            memset(partyMan, 0, sizeof(PartyManagementData));
 
-            v13->party = v7;
-            v13->bag = SaveData_GetBag(fieldSystem->saveData);
-            v13->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
-            v13->options = SaveData_GetOptions(fieldSystem->saveData);
-            v13->fieldMoveContext = &menu->fieldMoveContext;
-            v13->unk_21 = 0;
-            v13->usedItemID = sub_0207CB94(v2);
-            v13->selectedMonSlot = (u8)v9;
-            v13->fieldSystem = fieldSystem;
+            partyMan->party = v7;
+            partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
+            partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+            partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
+            partyMan->fieldMoveContext = &menu->fieldMoveContext;
+            partyMan->unk_21 = 0;
+            partyMan->usedItemID = sub_0207CB94(v2);
+            partyMan->selectedMonSlot = (u8)v9;
+            partyMan->fieldSystem = fieldSystem;
 
-            if (v13->usedItemID == 0) {
-                v13->unk_20 = 0;
+            if (partyMan->usedItemID == 0) {
+                partyMan->unk_20 = 0;
             } else {
-                v13->unk_20 = 10;
+                partyMan->unk_20 = 10;
             }
 
-            FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v13);
-            menu->taskData = v13;
+            FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+            menu->taskData = partyMan;
             sub_0203B674(menu, sub_0203B7C0);
         }
     } break;
@@ -1581,38 +1581,38 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
 
     switch (v2->mode) {
     case SUMMARY_MODE_SELECT_MOVE: {
-        PartyManagementData *v3;
+        PartyManagementData *partyMan;
         UnkStruct_0203C1C8 *v4;
 
-        v3 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+        partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
         v4 = (UnkStruct_0203C1C8 *)menu->unk_260;
 
-        memset(v3, 0, sizeof(PartyManagementData));
+        memset(partyMan, 0, sizeof(PartyManagementData));
 
-        v3->party = SaveData_GetParty(fieldSystem->saveData);
-        v3->bag = SaveData_GetBag(fieldSystem->saveData);
-        v3->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
-        v3->options = SaveData_GetOptions(fieldSystem->saveData);
-        v3->fieldMoveContext = &menu->fieldMoveContext;
-        v3->unk_21 = 0;
-        v3->fieldSystem = fieldSystem;
+        partyMan->party = SaveData_GetParty(fieldSystem->saveData);
+        partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
+        partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+        partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
+        partyMan->fieldMoveContext = &menu->fieldMoveContext;
+        partyMan->unk_21 = 0;
+        partyMan->fieldSystem = fieldSystem;
 
         if (v4->unk_00 != 0) {
-            v3->unk_20 = 7;
-            v3->unk_34 = 0;
+            partyMan->unk_20 = 7;
+            partyMan->unk_34 = 0;
         } else {
-            v3->unk_20 = 8;
-            v3->unk_34 = v4->unk_02;
+            partyMan->unk_20 = 8;
+            partyMan->unk_34 = v4->unk_02;
         }
 
-        v3->usedItemID = v4->unk_00;
-        v3->selectedMonSlot = v2->monIndex;
-        v3->learnedMove = v2->move;
-        v3->selectedMoveSlot = v2->selectedMoveSlot;
+        partyMan->usedItemID = v4->unk_00;
+        partyMan->selectedMonSlot = v2->monIndex;
+        partyMan->learnedMove = v2->move;
+        partyMan->selectedMoveSlot = v2->selectedMoveSlot;
 
-        FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v3);
+        FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
         Heap_FreeToHeap(menu->unk_260);
-        menu->taskData = v3;
+        menu->taskData = partyMan;
         sub_0203B674(menu, sub_0203B7C0);
     } break;
     default:
