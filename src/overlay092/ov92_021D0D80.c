@@ -5,8 +5,8 @@
 
 #include "constants/screen.h"
 
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_02099F80.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay092/struct_ov92_021D28C0.h"
 #include "overlay115/camera_angle.h"
@@ -67,7 +67,7 @@ typedef struct {
 
 typedef struct {
     int heapID;
-    UnkStruct_0202C878 *unk_04;
+    WiFiHistory *wiFiHistory;
     Options *unk_08;
     UnkStruct_ov92_021D1B24_sub1 unk_0C;
     BgConfig *unk_B810;
@@ -327,10 +327,10 @@ int ov92_021D0D80(ApplicationManager *appMan, int *param1)
     {
         SaveData *saveData = ApplicationManager_Args(appMan);
 
-        v0->unk_04 = sub_0202C878(saveData);
-        v0->unk_BB14 = sub_0202C8C0(v0->unk_04);
-        v0->unk_BB18 = sub_0202C8C4(v0->unk_04);
-        v0->unk_BB24 = sub_0202C990(v0->unk_04);
+        v0->wiFiHistory = SaveData_WiFiHistory(saveData);
+        v0->unk_BB14 = WiFiHistory_GetCountry(v0->wiFiHistory);
+        v0->unk_BB18 = sub_0202C8C4(v0->wiFiHistory);
+        v0->unk_BB24 = sub_0202C990(v0->wiFiHistory);
         v0->unk_08 = SaveData_GetOptions(saveData);
     }
 
@@ -545,7 +545,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         switch (v9) {
         case 0:
             ov92_021D1F74(v0);
-            sub_0202C88C(v0->unk_04, v0->unk_BB1C, v0->unk_BB20);
+            sub_0202C88C(v0->wiFiHistory, v0->unk_BB1C, v0->unk_BB20);
 
             v0->unk_BB14 = v0->unk_BB1C;
             v0->unk_BB18 = v0->unk_BB20;
@@ -794,7 +794,7 @@ static void ov92_021D1634(UnkStruct_ov92_021D1B24 *param0, u32 param1, s16 param
     ov92_021D23E8(&v0, &v1);
 
     param0->unk_0C.unk_04[param1].unk_04 = v0;
-    param0->unk_0C.unk_04[param1].unk_28 = sub_0202C8C8(param0->unk_04, param4, param5);
+    param0->unk_0C.unk_04[param1].unk_28 = sub_0202C8C8(param0->wiFiHistory, param4, param5);
     param0->unk_0C.unk_04[param1].unk_2A = param4;
     param0->unk_0C.unk_04[param1].unk_2C = param5;
 }

@@ -6,10 +6,10 @@
 #include "constants/screen.h"
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
@@ -247,7 +247,7 @@ typedef struct {
     u16 unk_00;
     u16 unk_02;
     UnkStruct_ov69_0225DA74 unk_04;
-    UnkStruct_0202C878 *unk_0C;
+    WiFiHistory *wiFiHistory;
     Options *unk_10;
     int unk_14;
     int unk_18;
@@ -684,10 +684,10 @@ int ov69_0225C700(ApplicationManager *appMan, int *param1)
     v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov69_0225CE64), HEAP_ID_105);
     memset(v0, 0, sizeof(UnkStruct_ov69_0225CE64));
 
-    v0->unk_0C = sub_0202C878(v1->saveData);
+    v0->wiFiHistory = SaveData_WiFiHistory(v1->saveData);
     v0->unk_10 = SaveData_GetOptions(v1->saveData);
-    v0->unk_14 = sub_0202C8C0(v0->unk_0C);
-    v0->unk_18 = sub_0202C8C4(v0->unk_0C);
+    v0->unk_14 = WiFiHistory_GetCountry(v0->wiFiHistory);
+    v0->unk_18 = sub_0202C8C4(v0->wiFiHistory);
     v0->unk_1C = v1->unk_08;
 
     ov69_0225D2A8(v0, v1);

@@ -4106,7 +4106,7 @@ static BOOL ScrCmd_1D8(ScriptContext *ctx)
         return FALSE;
     }
 
-    if (Poffin_GetNumberOfFilledSlots(SaveData_GetPoffinCase(ctx->fieldSystem->saveData)) >= MAX_POFFINS) {
+    if (PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(ctx->fieldSystem->saveData)) >= MAX_POFFINS) {
         *v0 = 2;
         return FALSE;
     }
@@ -7063,14 +7063,14 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
     }
 
     u8 v4 = ScriptContext_GetVar(ctx);
-    Poffin *v0 = Poffin_New(HEAP_ID_FIELD);
-    int v1 = sub_0202A9E4(v0, v3, v4, FALSE);
-    PoffinCase *v2 = SaveData_GetPoffinCase(ctx->fieldSystem->saveData);
-    u16 v5 = Poffin_AddToCase(v2, v0);
+    Poffin *poffin = Poffin_New(HEAP_ID_FIELD);
+    int v1 = sub_0202A9E4(poffin, v3, v4, FALSE);
+    PoffinCase *poffinCase = SaveData_GetPoffinCase(ctx->fieldSystem->saveData);
+    u16 slotId = PoffinCase_AddPoffin(poffinCase, poffin);
 
-    Heap_FreeToHeap(v0);
+    Heap_FreeToHeap(poffin);
 
-    if (v5 == POFFIN_NONE) {
+    if (slotId == POFFIN_NONE) {
         *v6 = 0xffff;
     } else {
         *v6 = v1;
@@ -7084,7 +7084,7 @@ static BOOL ScrCmd_28A(ScriptContext *ctx)
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
     PoffinCase *poffinCase = SaveData_GetPoffinCase(ctx->fieldSystem->saveData);
 
-    if (Poffin_GetEmptyCaseSlot(poffinCase) == POFFIN_NONE) {
+    if (PoffinCase_GetEmptySlot(poffinCase) == POFFIN_NONE) {
         *v1 = 0;
     } else {
         *v1 = 1;
@@ -7097,7 +7097,7 @@ static BOOL ScrCmd_307(ScriptContext *ctx)
 {
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
     PoffinCase *poffinCase = SaveData_GetPoffinCase(ctx->fieldSystem->saveData);
-    *v1 = Poffin_GetNumberOfEmptySlots(poffinCase);
+    *v1 = PoffinCase_CountEmptySlots(poffinCase);
 
     return FALSE;
 }

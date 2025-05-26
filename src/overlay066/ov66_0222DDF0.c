@@ -11,9 +11,9 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014FB0_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_02030EC4_decl.h"
 #include "struct_decls/struct_0207E060_decl.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_0223177C.h"
@@ -2277,7 +2277,7 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, u
 {
     TrainerInfo *v0;
     Party *v1;
-    UnkStruct_0202C878 *v2;
+    WiFiHistory *wiFiHistory;
     Pokedex *v3;
     GameTime *v4;
 
@@ -2285,7 +2285,7 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, u
         v0 = SaveData_GetTrainerInfo(saveData);
         v1 = SaveData_GetParty(saveData);
         v3 = SaveData_GetPokedex(saveData);
-        v2 = sub_0202C878(saveData);
+        wiFiHistory = SaveData_WiFiHistory(saveData);
         v4 = SaveData_GetGameTime(saveData);
     }
 
@@ -2325,8 +2325,8 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, u
     param0->unk_20.unk_39 = TrainerInfo_RegionCode(v0);
     param0->unk_20.unk_3A = TrainerInfo_Appearance(v0);
     param0->unk_20.unk_3A = ov66_02230C0C(param0->unk_20.unk_3A);
-    param0->unk_20.unk_3C = sub_0202C8C0(v2);
-    param0->unk_20.unk_3E = sub_0202C8C4(v2);
+    param0->unk_20.unk_3C = WiFiHistory_GetCountry(wiFiHistory);
+    param0->unk_20.unk_3E = sub_0202C8C4(wiFiHistory);
     param0->unk_20.unk_3F = Pokedex_IsNationalDexObtained(v3);
     param0->unk_20.unk_40 = TrainerInfo_IsMainStoryCleared(v0);
     param0->unk_20.unk_41 = 0xff;

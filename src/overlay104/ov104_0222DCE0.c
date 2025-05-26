@@ -5,10 +5,10 @@
 
 #include "generated/species_data_params.h"
 
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub1.h"
@@ -636,8 +636,8 @@ int ov104_0222E5F0(const TrainerInfo *param0)
 
 void ov104_0222E630(SaveData *saveData)
 {
-    UnkStruct_0202C878 *v0 = sub_0202C878(saveData);
+    WiFiHistory *wiFiHistory = SaveData_WiFiHistory(saveData);
 
-    sub_02038F8C(v0);
+    sub_02038F8C(wiFiHistory);
     return;
 }
