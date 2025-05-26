@@ -342,7 +342,7 @@ static void ov23_02249438(BgConfig *param0)
 
 static void ov23_0224944C(BgConfig *param0, Window *param1)
 {
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(1, 0x0);
     ov23_02249438(param0);
 
     {
@@ -423,7 +423,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
     FieldMessage_AddWindow(param0, param1, 7);
     Window_FillTilemap(param1, 0);
     Graphics_LoadPalette(50, 52, 4, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
-    sub_0200F338(1);
+    ResetScreenMasterBrightness(1);
 }
 
 static void ov23_02249584(UnkStruct_ov23_0224942C *param0)

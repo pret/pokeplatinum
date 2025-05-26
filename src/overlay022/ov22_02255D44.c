@@ -1255,7 +1255,7 @@ static void ov22_02257104(UnkStruct_ov22_02255D44 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_0200F338(0);
+    ResetScreenMasterBrightness(0);
 }
 
 static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0)
@@ -1266,7 +1266,7 @@ static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0)
 
     ov22_022568DC(param0);
 
-    sub_0200F344(0, 0x0);
+    SetScreenColorBrightness(0, 0x0);
     SpriteList_SetActive(param0->unk_00.unk_44, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);

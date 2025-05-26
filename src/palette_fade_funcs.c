@@ -86,7 +86,7 @@ typedef struct {
     int heapID;
     int unk_2C;
     HardwareWindowSettings *unk_30;
-    UnkStruct_0200F600 *unk_34;
+    PaletteFadeHBlanks *unk_34;
 } UnkStruct_0201109C;
 
 typedef struct {
@@ -109,7 +109,7 @@ typedef struct {
     int unk_1C;
     int unk_20;
     HardwareWindowSettings *unk_24;
-    UnkStruct_0200F600 *unk_28;
+    PaletteFadeHBlanks *unk_28;
     int heapID;
 } UnkStruct_02011360;
 
@@ -132,7 +132,7 @@ typedef struct {
     int unk_20;
     int unk_24;
     HardwareWindowSettings *unk_28;
-    UnkStruct_0200F600 *unk_2C;
+    PaletteFadeHBlanks *unk_2C;
     int heapID;
 } UnkStruct_02011568;
 
@@ -160,7 +160,7 @@ typedef struct {
     int unk_1C;
     int unk_20;
     HardwareWindowSettings *unk_24;
-    UnkStruct_0200F600 *unk_28;
+    PaletteFadeHBlanks *unk_28;
     int heapID;
 } UnkStruct_0201184C;
 
@@ -190,7 +190,7 @@ typedef struct {
     int unk_28;
     int heapID;
     HardwareWindowSettings *unk_30;
-    UnkStruct_0200F600 *unk_34;
+    PaletteFadeHBlanks *unk_34;
 } UnkStruct_02011AFC;
 
 typedef struct {
@@ -217,7 +217,7 @@ typedef struct {
     int unk_28;
     int heapID;
     HardwareWindowSettings *unk_30;
-    UnkStruct_0200F600 *unk_34;
+    PaletteFadeHBlanks *unk_34;
 } UnkStruct_02011E04;
 
 typedef struct {
@@ -257,7 +257,7 @@ typedef struct {
     int unk_324;
     int heapID;
     HardwareWindowSettings *unk_32C;
-    UnkStruct_0200F600 *unk_330;
+    PaletteFadeHBlanks *unk_330;
 } UnkStruct_020120D4;
 
 typedef struct {
@@ -301,75 +301,75 @@ static void sub_020106A8(HardwareWindowSettings *param0, int param1, int param2,
 static void sub_02010710(HardwareWindowSettings *param0, int param1, int param2, int param3);
 static void sub_02010728(UnkStruct_0201076C *param0, int param1, int param2, int param3, int param4);
 static void sub_0201076C(UnkStruct_0201076C *param0);
-static void sub_02010784(UnkStruct_0200F600 *param0, UnkStruct_0201076C *param1, u32 heapID);
-static void sub_0201079C(UnkStruct_0200F600 *param0, UnkStruct_0201076C *param1, u32 param2);
+static void sub_02010784(PaletteFadeHBlanks *param0, UnkStruct_0201076C *param1, u32 heapID);
+static void sub_0201079C(PaletteFadeHBlanks *param0, UnkStruct_0201076C *param1, u32 param2);
 static void sub_020107AC(SysTask *param0, void *param1);
 static void sub_020107D8(void *param0);
-static void sub_02010238(UnkStruct_0200F7A0 *param0, int param1);
-static BOOL sub_020102D8(UnkStruct_0200F7A0 *param0);
+static void sub_02010238(PaletteFade *param0, int param1);
+static BOOL sub_020102D8(PaletteFade *param0);
 static BOOL sub_02010318(UnkStruct_02010318 *param0);
-static void sub_02010CF4(UnkStruct_0200F7A0 *param0, const UnkStruct_0200F980 *param1);
-static BOOL sub_02010D44(UnkStruct_0200F7A0 *param0);
-static void sub_02010D94(UnkStruct_0200F7A0 *param0, const UnkStruct_0200F980 *param1, const UnkStruct_0200F980 *param2);
-static BOOL sub_02010DEC(UnkStruct_0200F7A0 *param0);
+static void sub_02010CF4(PaletteFade *param0, const UnkStruct_0200F980 *param1);
+static BOOL sub_02010D44(PaletteFade *param0);
+static void sub_02010D94(PaletteFade *param0, const UnkStruct_0200F980 *param1, const UnkStruct_0200F980 *param2);
+static BOOL sub_02010DEC(PaletteFade *param0);
 static void sub_02010E48(UnkStruct_02010EA4 *param0, const UnkStruct_0200F980 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5);
 static BOOL sub_02010EA4(UnkStruct_02010EA4 *param0);
-static void sub_02010F2C(UnkStruct_0200F7A0 *param0, const UnkStruct_0200FB7C *param1);
-static BOOL sub_02010F64(UnkStruct_0200F7A0 *param0);
-static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02010F2C(PaletteFade *param0, const UnkStruct_0200FB7C *param1);
+static BOOL sub_02010F64(PaletteFade *param0);
+static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID);
 static BOOL sub_0201109C(UnkStruct_0201109C *param0);
 static void sub_02011180(UnkStruct_0201109C *param0);
-static void sub_02011204(UnkStruct_0200F7A0 *param0, const UnkStruct_0200FC2C *param1);
-static BOOL sub_0201123C(UnkStruct_0200F7A0 *param0);
-static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02011204(PaletteFade *param0, const UnkStruct_0200FC2C *param1);
+static BOOL sub_0201123C(PaletteFade *param0);
+static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID);
 static BOOL sub_02011360(UnkStruct_02011360 *param0);
 static void sub_020113B0(UnkStruct_02011360 *param0);
-static void sub_02011408(UnkStruct_0200F7A0 *param0, const UnkStruct_0200FD34 *param1);
-static BOOL sub_02011440(UnkStruct_0200F7A0 *param0);
-static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02011408(PaletteFade *param0, const UnkStruct_0200FD34 *param1);
+static BOOL sub_02011440(PaletteFade *param0);
+static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID);
 static BOOL sub_02011568(UnkStruct_02011568 *param0);
 static void sub_020115B8(UnkStruct_02011568 *param0);
-static void sub_020116A0(UnkStruct_0200F7A0 *param0, const UnkStruct_02011738 *param1);
-static BOOL sub_020116D8(UnkStruct_0200F7A0 *param0);
+static void sub_020116A0(PaletteFade *param0, const UnkStruct_02011738 *param1);
+static BOOL sub_020116D8(PaletteFade *param0);
 static BOOL sub_0201184C(UnkStruct_0201184C *param0);
-static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID);
 static void sub_0201189C(UnkStruct_0201184C *param0);
 static void sub_020118AC(UnkStruct_0201184C *param0);
 static void sub_02011938(UnkStruct_0201184C *param0);
 static void sub_020118E0(UnkStruct_02010588 *param0, UnkStruct_020101B0 *param1);
-static void sub_02011960(UnkStruct_0200F7A0 *param0, UnkStruct_0200FEA4 *param1);
-static BOOL sub_020119A0(UnkStruct_0200F7A0 *param0);
-static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02011960(PaletteFade *param0, UnkStruct_0200FEA4 *param1);
+static BOOL sub_020119A0(PaletteFade *param0);
+static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID);
 static BOOL sub_02011AFC(UnkStruct_02011AFC *param0);
 static void sub_02011B54(UnkStruct_02011AFC *param0);
 static void sub_02011B58(UnkStruct_02011AFC *param0);
 static void sub_02011C7C(UnkStruct_02011C7C *param0, int param1, int param2);
-static void sub_02011C94(UnkStruct_0200F7A0 *param0, UnkStruct_0200FF30 *param1);
-static BOOL sub_02011CD4(UnkStruct_0200F7A0 *param0);
-static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02011C94(PaletteFade *param0, UnkStruct_0200FF30 *param1);
+static BOOL sub_02011CD4(PaletteFade *param0);
+static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID);
 static BOOL sub_02011E04(UnkStruct_02011E04 *param0);
 static void sub_02011E5C(UnkStruct_02011E04 *param0);
 static void sub_02011E60(UnkStruct_02011E04 *param0);
 static void sub_02011F2C(UnkStruct_02011F2C *param0, int param1, int param2);
-static void sub_02011F44(UnkStruct_0200F7A0 *param0, UnkStruct_0200FE6C *param1);
-static BOOL sub_02011F88(UnkStruct_0200F7A0 *param0);
-static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02011F44(PaletteFade *param0, UnkStruct_0200FE6C *param1);
+static BOOL sub_02011F88(PaletteFade *param0);
+static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID);
 static BOOL sub_020120D4(UnkStruct_020120D4 *param0);
 static void sub_02012134(UnkStruct_020120D4 *param0);
 static void sub_02012138(UnkStruct_020120D4 *param0);
 static void sub_02012174(const UnkStruct_0200F898 *param0, UnkStruct_02012174 *param1, int param2, int param3);
-static void sub_020121C4(UnkStruct_0200F7A0 *param0, UnkStruct_0201006C *param1);
-static BOOL sub_02012228(UnkStruct_0200F7A0 *param0);
-static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int param7);
-static BOOL sub_02012310(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1);
-static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
-static BOOL sub_020123F4(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1);
+static void sub_020121C4(PaletteFade *param0, UnkStruct_0201006C *param1);
+static BOOL sub_02012228(PaletteFade *param0);
+static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int param7);
+static BOOL sub_02012310(UnkStruct_02012290 *param0, PaletteFade *param1);
+static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID);
+static BOOL sub_020123F4(UnkStruct_02012290 *param0, PaletteFade *param1);
 
-BOOL sub_0200F85C(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200F85C(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
-        param0->unk_28 = 1;
-        param0->unk_2C = 1;
+    if (param0->state == 0) {
+        param0->direction = FADE_OUT;
+        param0->method = FADE_BRIGHTNESS;
 
         sub_02010238(param0, 1);
         return 0;
@@ -378,11 +378,11 @@ BOOL sub_0200F85C(UnkStruct_0200F7A0 *param0)
     return sub_020102D8(param0);
 }
 
-BOOL sub_0200F878(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200F878(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
-        param0->unk_28 = 0;
-        param0->unk_2C = 1;
+    if (param0->state == 0) {
+        param0->direction = FADE_IN;
+        param0->method = FADE_BRIGHTNESS;
 
         sub_02010238(param0, 0);
         return 0;
@@ -391,9 +391,9 @@ BOOL sub_0200F878(UnkStruct_0200F7A0 *param0)
     return sub_020102D8(param0);
 }
 
-BOOL sub_0200F898(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200F898(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F898 v0 = {
             0, 192, 1
         };
@@ -403,11 +403,11 @@ BOOL sub_0200F898(UnkStruct_0200F7A0 *param0)
 
         v1.unk_00 = &v0;
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011F44(param0, &v1);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -415,9 +415,9 @@ BOOL sub_0200F898(UnkStruct_0200F7A0 *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200F8D4(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200F8D4(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F898 v0 = {
             0, 192, 0
         };
@@ -427,11 +427,11 @@ BOOL sub_0200F8D4(UnkStruct_0200F7A0 *param0)
 
         v1.unk_00 = &v0;
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011F44(param0, &v1);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -439,9 +439,9 @@ BOOL sub_0200F8D4(UnkStruct_0200F7A0 *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200F90C(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200F90C(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F898 v0 = {
             192,
             0,
@@ -455,11 +455,11 @@ BOOL sub_0200F90C(UnkStruct_0200F7A0 *param0)
 
         v1.unk_00 = &v0;
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011F44(param0, &v1);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -467,9 +467,9 @@ BOOL sub_0200F90C(UnkStruct_0200F7A0 *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200F948(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200F948(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F898 v0 = {
             192,
             0,
@@ -483,11 +483,11 @@ BOOL sub_0200F948(UnkStruct_0200F7A0 *param0)
 
         v1.unk_00 = &v0;
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011F44(param0, &v1);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -495,9 +495,9 @@ BOOL sub_0200F948(UnkStruct_0200F7A0 *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200F980(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200F980(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 255, 192 },
             { 0, 0, 0, 192 },
@@ -507,20 +507,20 @@ BOOL sub_0200F980(UnkStruct_0200F7A0 *param0)
             1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010CF4(param0, &v0);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200F9AC(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200F9AC(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 0, 192 },
             { 0, 0, 255, 192 },
@@ -530,11 +530,11 @@ BOOL sub_0200F9AC(UnkStruct_0200F7A0 *param0)
             0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010CF4(param0, &v0);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -542,9 +542,9 @@ BOOL sub_0200F9AC(UnkStruct_0200F7A0 *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200F9D8(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200F9D8(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[2] = {
             { 0, 96, 1 },
             { 192, 96, 1 }
@@ -556,11 +556,11 @@ BOOL sub_0200F9D8(UnkStruct_0200F7A0 *param0)
         };
 
         v1.unk_00 = v0;
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011F44(param0, &v1);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -568,9 +568,9 @@ BOOL sub_0200F9D8(UnkStruct_0200F7A0 *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200FA14(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FA14(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[2] = {
             { 96, 0, 0 },
             { 96, 192, 0 }
@@ -583,11 +583,11 @@ BOOL sub_0200FA14(UnkStruct_0200F7A0 *param0)
 
         v1.unk_00 = v0;
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011F44(param0, &v1);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -595,9 +595,9 @@ BOOL sub_0200FA14(UnkStruct_0200F7A0 *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200FA4C(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FA4C(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[2] = {
             { 96, 0, 1 },
             { 96, 192, 1 }
@@ -610,11 +610,11 @@ BOOL sub_0200FA4C(UnkStruct_0200F7A0 *param0)
 
         v1.unk_00 = v0;
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011F44(param0, &v1);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -622,9 +622,9 @@ BOOL sub_0200FA4C(UnkStruct_0200F7A0 *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200FA88(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FA88(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[2] = {
             { 0, 96, 0 },
             { 192, 96, 0 }
@@ -637,11 +637,11 @@ BOOL sub_0200FA88(UnkStruct_0200F7A0 *param0)
 
         v1.unk_00 = v0;
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011F44(param0, &v1);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -649,9 +649,9 @@ BOOL sub_0200FA88(UnkStruct_0200F7A0 *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200FAC0(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FAC0(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 255, 192 },
             { 128, 0, 128, 192 },
@@ -661,11 +661,11 @@ BOOL sub_0200FAC0(UnkStruct_0200F7A0 *param0)
             1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010CF4(param0, &v0);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -673,9 +673,9 @@ BOOL sub_0200FAC0(UnkStruct_0200F7A0 *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200FAEC(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FAEC(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 128, 0, 128, 192 },
             { 0, 0, 255, 192 },
@@ -685,20 +685,20 @@ BOOL sub_0200FAEC(UnkStruct_0200F7A0 *param0)
             0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010CF4(param0, &v0);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200FB18(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FB18(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 128, 0, 128, 192 },
             { 0, 0, 128, 192 },
@@ -716,11 +716,11 @@ BOOL sub_0200FB18(UnkStruct_0200F7A0 *param0)
             1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010D94(param0, &v0, &v1);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -728,9 +728,9 @@ BOOL sub_0200FB18(UnkStruct_0200F7A0 *param0)
     return sub_02010DEC(param0);
 }
 
-BOOL sub_0200FB4C(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FB4C(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 128, 192 },
             { 128, 0, 128, 192 },
@@ -748,11 +748,11 @@ BOOL sub_0200FB4C(UnkStruct_0200F7A0 *param0)
             0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010D94(param0, &v0, &v1);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -760,9 +760,9 @@ BOOL sub_0200FB4C(UnkStruct_0200F7A0 *param0)
     return sub_02010DEC(param0);
 }
 
-BOOL sub_0200FB7C(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FB7C(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200FB7C v0 = {
             256,
             0,
@@ -774,11 +774,11 @@ BOOL sub_0200FB7C(UnkStruct_0200F7A0 *param0)
             1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010F2C(param0, &v0);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -786,9 +786,9 @@ BOOL sub_0200FB7C(UnkStruct_0200F7A0 *param0)
     return sub_02010F64(param0);
 }
 
-BOOL sub_0200FBA8(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FBA8(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200FB7C v0 = {
             0,
             256,
@@ -800,11 +800,11 @@ BOOL sub_0200FBA8(UnkStruct_0200F7A0 *param0)
             0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010F2C(param0, &v0);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -812,9 +812,9 @@ BOOL sub_0200FBA8(UnkStruct_0200F7A0 *param0)
     return sub_02010F64(param0);
 }
 
-BOOL sub_0200FBD4(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FBD4(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200FB7C v0 = {
             512,
             0,
@@ -826,11 +826,11 @@ BOOL sub_0200FBD4(UnkStruct_0200F7A0 *param0)
             1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010F2C(param0, &v0);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -838,9 +838,9 @@ BOOL sub_0200FBD4(UnkStruct_0200F7A0 *param0)
     return sub_02010F64(param0);
 }
 
-BOOL sub_0200FC00(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FC00(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200FB7C v0 = {
             0,
             512,
@@ -852,11 +852,11 @@ BOOL sub_0200FC00(UnkStruct_0200F7A0 *param0)
             0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010F2C(param0, &v0);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -864,9 +864,9 @@ BOOL sub_0200FC00(UnkStruct_0200F7A0 *param0)
     return sub_02010F64(param0);
 }
 
-BOOL sub_0200FC2C(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FC2C(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200FC2C v0 = {
             ((0xffff * 90) / 360),
             0,
@@ -876,11 +876,11 @@ BOOL sub_0200FC2C(UnkStruct_0200F7A0 *param0)
             1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011204(param0, &v0);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -888,9 +888,9 @@ BOOL sub_0200FC2C(UnkStruct_0200F7A0 *param0)
     return sub_0201123C(param0);
 }
 
-BOOL sub_0200FC58(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FC58(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200FC2C v0 = {
             0,
             ((0xffff * 90) / 360),
@@ -900,11 +900,11 @@ BOOL sub_0200FC58(UnkStruct_0200F7A0 *param0)
             0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011204(param0, &v0);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -912,18 +912,18 @@ BOOL sub_0200FC58(UnkStruct_0200F7A0 *param0)
     return sub_0201123C(param0);
 }
 
-BOOL sub_0200FC84(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FC84(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 255, 192 }, { 128, 96, 128, 96 }, 0, GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010CF4(param0, &v0);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -931,18 +931,18 @@ BOOL sub_0200FC84(UnkStruct_0200F7A0 *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200FCB0(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FCB0(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 128, 96, 128, 96 }, { 0, 0, 255, 192 }, 0, GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010CF4(param0, &v0);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -950,18 +950,18 @@ BOOL sub_0200FCB0(UnkStruct_0200F7A0 *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200FCDC(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FCDC(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 128, 96, 128, 96 }, { 0, 0, 255, 192 }, 0, GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010CF4(param0, &v0);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -969,18 +969,18 @@ BOOL sub_0200FCDC(UnkStruct_0200F7A0 *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200FD08(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FD08(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 255, 192 }, { 128, 96, 128, 96 }, 0, GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010CF4(param0, &v0);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -988,9 +988,9 @@ BOOL sub_0200FD08(UnkStruct_0200F7A0 *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200FD34(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FD34(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200FD34 v0 = {
             ((0xffff * 90) / 360),
             ((0xffff * 0) / 360),
@@ -1000,20 +1000,20 @@ BOOL sub_0200FD34(UnkStruct_0200F7A0 *param0)
             1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011408(param0, &v0);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_02011440(param0);
 }
 
-BOOL sub_0200FD60(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FD60(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200FD34 v0 = {
             ((0xffff * 0) / 360),
             ((0xffff * 90) / 360),
@@ -1023,11 +1023,11 @@ BOOL sub_0200FD60(UnkStruct_0200F7A0 *param0)
             0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011408(param0, &v0);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -1035,9 +1035,9 @@ BOOL sub_0200FD60(UnkStruct_0200F7A0 *param0)
     return sub_02011440(param0);
 }
 
-BOOL sub_0200FD8C(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FD8C(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200FD8C v0[] = {
             { 0, 0, 255, 48 },
             { 0, 47, 255, 96 },
@@ -1060,20 +1060,20 @@ BOOL sub_0200FD8C(UnkStruct_0200F7A0 *param0)
         v2.unk_0D = GX_BLEND_PLANEMASK_BD;
         v2.unk_0E = 1;
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_020116A0(param0, &v2);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_020116D8(param0);
 }
 
-BOOL sub_0200FDE0(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FDE0(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200FD8C v0[] = {
             { 255, 0, 255, 48 }, { 0, 47, 0, 96 }, { 255, 96, 255, 144 }, { 0, 144, 0, 192 }
         };
@@ -1090,20 +1090,20 @@ BOOL sub_0200FDE0(UnkStruct_0200F7A0 *param0)
         v2.unk_0D = GX_BLEND_PLANEMASK_BD;
         v2.unk_0E = 0;
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_020116A0(param0, &v2);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_020116D8(param0);
 }
 
-BOOL sub_0200FE30(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FE30(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[3] = {
             { 0, 64, 1 },
             { 64, 128, 1 },
@@ -1114,11 +1114,11 @@ BOOL sub_0200FE30(UnkStruct_0200F7A0 *param0)
         };
 
         v1.unk_00 = v0;
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011F44(param0, &v1);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -1126,9 +1126,9 @@ BOOL sub_0200FE30(UnkStruct_0200F7A0 *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200FE6C(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FE6C(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[3] = {
             { 64, 0, 0 },
             { 128, 64, 0 },
@@ -1139,11 +1139,11 @@ BOOL sub_0200FE6C(UnkStruct_0200F7A0 *param0)
         };
 
         v1.unk_00 = v0;
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011F44(param0, &v1);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -1151,153 +1151,153 @@ BOOL sub_0200FE6C(UnkStruct_0200F7A0 *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200FEA4(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FEA4(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         UnkStruct_0200FEA4 v0 = {
             ((0 * 0xffff) / 360), ((179 * 0xffff) / 360), GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011960(param0, &v0);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_020119A0(param0);
 }
 
-BOOL sub_0200FEEC(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FEEC(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         UnkStruct_0200FEA4 v0 = {
             ((0 * 0xffff) / 360), ((179 * 0xffff) / 360), GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011960(param0, &v0);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_020119A0(param0);
 }
 
-BOOL sub_0200FF30(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FF30(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         UnkStruct_0200FF30 v0 = {
             ((0 * 0xffff) / 360), ((45 * 0xffff) / 360), GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011C94(param0, &v0);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_02011CD4(param0);
 }
 
-BOOL sub_0200FF78(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FF78(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         UnkStruct_0200FF30 v0 = {
             ((0 * 0xffff) / 360), ((45 * 0xffff) / 360), GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02011C94(param0, &v0);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_02011CD4(param0);
 }
 
-BOOL sub_0200FFBC(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FFBC(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200FB7C v0 = {
             512, 0, 128, -80, 0, GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010F2C(param0, &v0);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_02010F64(param0);
 }
 
-BOOL sub_0200FFE8(UnkStruct_0200F7A0 *param0)
+BOOL sub_0200FFE8(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200FB7C v0 = {
             0, 512, 128, -80, 0, GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010F2C(param0, &v0);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_02010F64(param0);
 }
 
-BOOL sub_02010014(UnkStruct_0200F7A0 *param0)
+BOOL sub_02010014(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 0, 192 }, { 0, 0, 255, 192 }, 0, GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 1
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010CF4(param0, &v0);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_02010D44(param0);
 }
 
-BOOL sub_02010040(UnkStruct_0200F7A0 *param0)
+BOOL sub_02010040(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 255, 192 }, { 0, 0, 0, 192 }, 0, GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 0
         };
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_02010CF4(param0, &v0);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_02010D44(param0);
 }
 
-BOOL sub_0201006C(UnkStruct_0200F7A0 *param0)
+BOOL sub_0201006C(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[2] = {
             { 0, 94, 1 },
             { 192, 98, 1 },
@@ -1321,20 +1321,20 @@ BOOL sub_0201006C(UnkStruct_0200F7A0 *param0)
 
         v1.unk_0C.unk_00 = v0;
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_020121C4(param0, &v1);
 
-        param0->unk_28 = 1;
-        param0->unk_2C = 0;
+        param0->direction = FADE_OUT;
+        param0->method = FADE_WINDOW;
         return 0;
     }
 
     return sub_02012228(param0);
 }
 
-BOOL sub_020100A8(UnkStruct_0200F7A0 *param0)
+BOOL sub_020100A8(PaletteFade *param0)
 {
-    if (param0->unk_0C == 0) {
+    if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[2] = {
             { 94, 0, 0 },
             { 98, 192, 0 },
@@ -1358,11 +1358,11 @@ BOOL sub_020100A8(UnkStruct_0200F7A0 *param0)
 
         v1.unk_0C.unk_00 = v0;
 
-        sub_0200F42C(param0->unk_24);
+        SetScreenBackgroundColor(param0->color);
         sub_020121C4(param0, &v1);
 
-        param0->unk_28 = 0;
-        param0->unk_2C = 0;
+        param0->direction = FADE_IN;
+        param0->method = FADE_WINDOW;
 
         return 0;
     }
@@ -1468,20 +1468,20 @@ static void sub_020101D4(UnkStruct_020101B0 *param0, UnkStruct_020101B0 *param1,
     param2->unk_0C = sub_02010190(param3->unk_03, param4->unk_03, param5);
 }
 
-static void sub_02010238(UnkStruct_0200F7A0 *param0, int param1)
+static void sub_02010238(PaletteFade *param0, int param1)
 {
     int v0, v1;
     UnkStruct_02010318 *v2;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010318));
-    memset(param0->unk_14, 0, sizeof(UnkStruct_02010318));
-    v2 = param0->unk_14;
+    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010318));
+    memset(param0->data, 0, sizeof(UnkStruct_02010318));
+    v2 = param0->data;
 
     if (param1 == 0) {
-        if (param0->unk_24 == 0x7fff) {
+        if (param0->color == 0x7fff) {
             v0 = 16;
             v1 = 0;
-        } else if (param0->unk_24 == 0x0) {
+        } else if (param0->color == 0x0) {
             v0 = -16;
             v1 = 0;
         } else {
@@ -1491,10 +1491,10 @@ static void sub_02010238(UnkStruct_0200F7A0 *param0, int param1)
             GF_ASSERT(0);
         }
     } else {
-        if (param0->unk_24 == 0x7fff) {
+        if (param0->color == 0x7fff) {
             v0 = 0;
             v1 = 16;
-        } else if (param0->unk_24 == 0x0) {
+        } else if (param0->color == 0x0) {
             v0 = 0;
             v1 = -16;
         } else {
@@ -1505,37 +1505,37 @@ static void sub_02010238(UnkStruct_0200F7A0 *param0, int param1)
         }
     }
 
-    sub_0200F44C(param0->unk_10, v0);
+    SetScreenMasterBrightness(param0->screen, v0);
 
-    v2->unk_00 = param0->unk_04;
-    v2->unk_04 = param0->unk_08;
+    v2->unk_00 = param0->steps;
+    v2->unk_04 = param0->framesPerStep;
     v2->unk_08 = 0;
     v2->unk_0C = v0 * 128;
     v2->unk_10 = v1 * 128;
-    v2->unk_14 = sub_02010190(v0, v1, param0->unk_04);
-    v2->unk_18 = param0->unk_10;
+    v2->unk_14 = sub_02010190(v0, v1, param0->steps);
+    v2->unk_18 = param0->screen;
 
-    param0->unk_0C++;
+    param0->state++;
 }
 
-static BOOL sub_020102D8(UnkStruct_0200F7A0 *param0)
+static BOOL sub_020102D8(PaletteFade *param0)
 {
-    UnkStruct_02010318 *v0 = param0->unk_14;
+    UnkStruct_02010318 *v0 = param0->data;
     BOOL v1;
     BOOL v2 = 0;
 
-    switch (param0->unk_0C) {
+    switch (param0->state) {
     case 1:
         v1 = sub_02010318(v0);
 
         if (v1 == 1) {
-            param0->unk_0C++;
+            param0->state++;
         }
         break;
     case 2:
-        Heap_FreeToHeap(param0->unk_14);
-        param0->unk_14 = NULL;
-        param0->unk_0C++;
+        Heap_FreeToHeap(param0->data);
+        param0->data = NULL;
+        param0->state++;
         v2 = 1;
         break;
     case 3:
@@ -1566,7 +1566,7 @@ static BOOL sub_02010318(UnkStruct_02010318 *param0)
             v0 = 1;
         }
 
-        sub_0200F44C(param0->unk_18, param0->unk_0C / 128);
+        SetScreenMasterBrightness(param0->unk_18, param0->unk_0C / 128);
     }
 
     return v0;
@@ -1741,12 +1741,12 @@ static void sub_0201076C(UnkStruct_0201076C *param0)
     SysTask_ExecuteAfterVBlank(sub_020107AC, param0, 1023);
 }
 
-static void sub_02010784(UnkStruct_0200F600 *param0, UnkStruct_0201076C *param1, u32 heapID)
+static void sub_02010784(PaletteFadeHBlanks *param0, UnkStruct_0201076C *param1, u32 heapID)
 {
     sub_0200F6D8(param0, param1, sub_020107D8, param1->unk_309, heapID);
 }
 
-static void sub_0201079C(UnkStruct_0200F600 *param0, UnkStruct_0201076C *param1, u32 heapID)
+static void sub_0201079C(PaletteFadeHBlanks *param0, UnkStruct_0201076C *param1, u32 heapID)
 {
     sub_0200F704(param0, param1->unk_309, heapID);
 }
@@ -1840,46 +1840,46 @@ static void sub_020107D8(void *param0)
     }
 }
 
-static void sub_02010CF4(UnkStruct_0200F7A0 *param0, const UnkStruct_0200F980 *param1)
+static void sub_02010CF4(PaletteFade *param0, const UnkStruct_0200F980 *param1)
 {
     UnkStruct_02010EA4 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010EA4));
+    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010EA4));
 
-    v0 = (UnkStruct_02010EA4 *)param0->unk_14;
+    v0 = (UnkStruct_02010EA4 *)param0->data;
 
-    sub_02010E48(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18);
+    sub_02010E48(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings);
 
     if (param1->unk_08 == 0) {
-        sub_02010710(param0->unk_18, GX_WNDMASK_W0, v0->unk_30, v0->unk_44);
+        sub_02010710(param0->hwSettings, GX_WNDMASK_W0, v0->unk_30, v0->unk_44);
     } else {
-        sub_02010710(param0->unk_18, GX_WNDMASK_W1, v0->unk_30, v0->unk_44);
+        sub_02010710(param0->hwSettings, GX_WNDMASK_W1, v0->unk_30, v0->unk_44);
     }
 
-    param0->unk_0C++;
+    param0->state++;
 }
 
-static BOOL sub_02010D44(UnkStruct_0200F7A0 *param0)
+static BOOL sub_02010D44(PaletteFade *param0)
 {
     UnkStruct_02010EA4 *v0;
     BOOL v1;
     BOOL v2 = 0;
 
-    v0 = (UnkStruct_02010EA4 *)param0->unk_14;
+    v0 = (UnkStruct_02010EA4 *)param0->data;
 
-    switch (param0->unk_0C) {
+    switch (param0->state) {
     case 1:
         v1 = sub_02010EA4(v0);
 
         if (v1 == 1) {
-            sub_02010658(v0->unk_44, param0->unk_18, param0->unk_10);
-            param0->unk_0C++;
+            sub_02010658(v0->unk_44, param0->hwSettings, param0->screen);
+            param0->state++;
         }
         break;
     case 2:
-        Heap_FreeToHeap(param0->unk_14);
-        param0->unk_14 = NULL;
-        param0->unk_0C++;
+        Heap_FreeToHeap(param0->data);
+        param0->data = NULL;
+        param0->state++;
         v2 = 1;
         break;
 
@@ -1894,43 +1894,43 @@ static BOOL sub_02010D44(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02010D94(UnkStruct_0200F7A0 *param0, const UnkStruct_0200F980 *param1, const UnkStruct_0200F980 *param2)
+static void sub_02010D94(PaletteFade *param0, const UnkStruct_0200F980 *param1, const UnkStruct_0200F980 *param2)
 {
     UnkStruct_02010D94 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010D94));
-    v0 = (UnkStruct_02010D94 *)param0->unk_14;
+    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010D94));
+    v0 = (UnkStruct_02010D94 *)param0->data;
 
-    sub_02010E48(&v0->unk_00, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18);
-    sub_02010E48(&v0->unk_4C, param2, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18);
-    sub_02010710(param0->unk_18, GX_WNDMASK_W0 | GX_WNDMASK_W1, param0->unk_10, v0->unk_00.unk_44);
+    sub_02010E48(&v0->unk_00, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings);
+    sub_02010E48(&v0->unk_4C, param2, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings);
+    sub_02010710(param0->hwSettings, GX_WNDMASK_W0 | GX_WNDMASK_W1, param0->screen, v0->unk_00.unk_44);
 
-    param0->unk_0C++;
+    param0->state++;
 }
 
-static BOOL sub_02010DEC(UnkStruct_0200F7A0 *param0)
+static BOOL sub_02010DEC(PaletteFade *param0)
 {
     UnkStruct_02010D94 *v0;
     BOOL v1;
     BOOL v2 = 0;
 
-    v0 = (UnkStruct_02010D94 *)param0->unk_14;
+    v0 = (UnkStruct_02010D94 *)param0->data;
 
-    switch (param0->unk_0C) {
+    switch (param0->state) {
     case 1:
         v1 = sub_02010EA4(&v0->unk_00);
         v1 += sub_02010EA4(&v0->unk_4C);
 
         if (v1 == 2) {
-            sub_02010658(v0->unk_00.unk_44, param0->unk_18, param0->unk_10);
+            sub_02010658(v0->unk_00.unk_44, param0->hwSettings, param0->screen);
 
-            param0->unk_0C++;
+            param0->state++;
         }
         break;
     case 2:
-        Heap_FreeToHeap(param0->unk_14);
-        param0->unk_14 = NULL;
-        param0->unk_0C++;
+        Heap_FreeToHeap(param0->data);
+        param0->data = NULL;
+        param0->state++;
         v2 = 1;
         break;
     case 3:
@@ -1977,40 +1977,40 @@ static BOOL sub_02010EA4(UnkStruct_02010EA4 *param0)
     return 0;
 }
 
-static void sub_02010F2C(UnkStruct_0200F7A0 *param0, const UnkStruct_0200FB7C *param1)
+static void sub_02010F2C(PaletteFade *param0, const UnkStruct_0200FB7C *param1)
 {
     UnkStruct_0201109C *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0201109C));
-    v0 = (UnkStruct_0201109C *)param0->unk_14;
+    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0201109C));
+    v0 = (UnkStruct_0201109C *)param0->data;
 
-    sub_02010FC0(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
+    sub_02010FC0(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
 
-    param0->unk_0C++;
+    param0->state++;
 }
 
-static BOOL sub_02010F64(UnkStruct_0200F7A0 *param0)
+static BOOL sub_02010F64(PaletteFade *param0)
 {
     UnkStruct_0201109C *v0;
     BOOL v1;
     BOOL v2 = 0;
 
-    v0 = (UnkStruct_0201109C *)param0->unk_14;
+    v0 = (UnkStruct_0201109C *)param0->data;
 
-    switch (param0->unk_0C) {
+    switch (param0->state) {
     case 1:
         v1 = sub_0201109C(v0);
 
         if (v1 == 1) {
-            sub_02010658(v0->unk_2C, v0->unk_30, param0->unk_10);
-            param0->unk_0C++;
+            sub_02010658(v0->unk_2C, v0->unk_30, param0->screen);
+            param0->state++;
         }
         break;
     case 2:
         sub_020105EC(&v0->unk_00);
-        Heap_FreeToHeap(param0->unk_14);
-        param0->unk_14 = NULL;
-        param0->unk_0C++;
+        Heap_FreeToHeap(param0->data);
+        param0->data = NULL;
+        param0->state++;
         v2 = 1;
         break;
     case 3:
@@ -2024,7 +2024,7 @@ static BOOL sub_02010F64(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID)
 {
     int v0;
     UnkStruct_02010FC0 *v1;
@@ -2142,39 +2142,39 @@ static void sub_02011180(UnkStruct_0201109C *param0)
     }
 }
 
-static void sub_02011204(UnkStruct_0200F7A0 *param0, const UnkStruct_0200FC2C *param1)
+static void sub_02011204(PaletteFade *param0, const UnkStruct_0200FC2C *param1)
 {
     UnkStruct_02011360 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011360));
-    v0 = (UnkStruct_02011360 *)param0->unk_14;
+    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011360));
+    v0 = (UnkStruct_02011360 *)param0->data;
 
-    sub_02011298(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
-    param0->unk_0C++;
+    sub_02011298(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
+    param0->state++;
 }
 
-static BOOL sub_0201123C(UnkStruct_0200F7A0 *param0)
+static BOOL sub_0201123C(PaletteFade *param0)
 {
     UnkStruct_02011360 *v0;
     BOOL v1;
     BOOL v2 = 0;
 
-    v0 = (UnkStruct_02011360 *)param0->unk_14;
+    v0 = (UnkStruct_02011360 *)param0->data;
 
-    switch (param0->unk_0C) {
+    switch (param0->state) {
     case 1:
         v1 = sub_02011360(v0);
 
         if (v1 == 1) {
-            sub_02010658(v0->unk_20, v0->unk_24, param0->unk_10);
-            param0->unk_0C++;
+            sub_02010658(v0->unk_20, v0->unk_24, param0->screen);
+            param0->state++;
         }
         break;
     case 2:
         sub_020105EC(&v0->unk_00);
-        Heap_FreeToHeap(param0->unk_14);
-        param0->unk_14 = NULL;
-        param0->unk_0C++;
+        Heap_FreeToHeap(param0->data);
+        param0->data = NULL;
+        param0->state++;
         v2 = 1;
         break;
     case 3:
@@ -2188,7 +2188,7 @@ static BOOL sub_0201123C(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID)
 {
     UnkStruct_02010FC0 *v0;
 
@@ -2254,39 +2254,39 @@ static void sub_020113B0(UnkStruct_02011360 *param0)
     }
 }
 
-static void sub_02011408(UnkStruct_0200F7A0 *param0, const UnkStruct_0200FD34 *param1)
+static void sub_02011408(PaletteFade *param0, const UnkStruct_0200FD34 *param1)
 {
     UnkStruct_02011568 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011568));
-    v0 = (UnkStruct_02011568 *)param0->unk_14;
+    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011568));
+    v0 = (UnkStruct_02011568 *)param0->data;
 
-    sub_02011494(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
-    param0->unk_0C++;
+    sub_02011494(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
+    param0->state++;
 }
 
-static BOOL sub_02011440(UnkStruct_0200F7A0 *param0)
+static BOOL sub_02011440(PaletteFade *param0)
 {
     UnkStruct_02011568 *v0;
     BOOL v1;
     BOOL v2 = 0;
 
-    v0 = (UnkStruct_02011568 *)param0->unk_14;
+    v0 = (UnkStruct_02011568 *)param0->data;
 
-    switch (param0->unk_0C) {
+    switch (param0->state) {
     case 1:
         v1 = sub_02011568(v0);
 
         if (v1 == 1) {
-            sub_02010658(v0->unk_24, v0->unk_28, param0->unk_10);
-            param0->unk_0C++;
+            sub_02010658(v0->unk_24, v0->unk_28, param0->screen);
+            param0->state++;
         }
         break;
     case 2:
         sub_020105EC(&v0->unk_00);
-        Heap_FreeToHeap(param0->unk_14);
-        param0->unk_14 = NULL;
-        param0->unk_0C++;
+        Heap_FreeToHeap(param0->data);
+        param0->data = NULL;
+        param0->state++;
         v2 = 1;
         break;
     case 3:
@@ -2297,7 +2297,7 @@ static BOOL sub_02011440(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID)
 {
     int v0;
     UnkStruct_02010FC0 *v1;
@@ -2402,40 +2402,40 @@ static void sub_020115B8(UnkStruct_02011568 *param0)
     }
 }
 
-static void sub_020116A0(UnkStruct_0200F7A0 *param0, const UnkStruct_02011738 *param1)
+static void sub_020116A0(PaletteFade *param0, const UnkStruct_02011738 *param1)
 {
     UnkStruct_0201184C *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0201184C));
-    v0 = (UnkStruct_0201184C *)param0->unk_14;
+    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0201184C));
+    v0 = (UnkStruct_0201184C *)param0->data;
 
-    sub_02011738(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
-    param0->unk_0C++;
+    sub_02011738(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
+    param0->state++;
 }
 
-static BOOL sub_020116D8(UnkStruct_0200F7A0 *param0)
+static BOOL sub_020116D8(PaletteFade *param0)
 {
     UnkStruct_0201184C *v0;
     BOOL v1;
     BOOL v2 = 0;
 
-    v0 = (UnkStruct_0201184C *)param0->unk_14;
+    v0 = (UnkStruct_0201184C *)param0->data;
 
-    switch (param0->unk_0C) {
+    switch (param0->state) {
     case 1:
         v1 = sub_0201184C(v0);
 
         if (v1 == 1) {
-            sub_02010658(v0->unk_20, v0->unk_24, param0->unk_10);
-            param0->unk_0C++;
+            sub_02010658(v0->unk_20, v0->unk_24, param0->screen);
+            param0->state++;
         }
         break;
     case 2:
         sub_0201189C(v0);
         sub_020105EC(&v0->unk_00);
-        Heap_FreeToHeap(param0->unk_14);
-        param0->unk_14 = NULL;
-        param0->unk_0C++;
+        Heap_FreeToHeap(param0->data);
+        param0->data = NULL;
+        param0->state++;
         v2 = 1;
         break;
     case 3:
@@ -2449,7 +2449,7 @@ static BOOL sub_020116D8(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID)
 {
     int v0;
     UnkStruct_02010FC0 *v1;
@@ -2553,42 +2553,42 @@ static void sub_02011938(UnkStruct_0201184C *param0)
     }
 }
 
-static void sub_02011960(UnkStruct_0200F7A0 *param0, UnkStruct_0200FEA4 *param1)
+static void sub_02011960(PaletteFade *param0, UnkStruct_0200FEA4 *param1)
 {
     UnkStruct_02011AFC *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011AFC));
-    memset(param0->unk_14, 0, sizeof(UnkStruct_02011AFC));
+    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011AFC));
+    memset(param0->data, 0, sizeof(UnkStruct_02011AFC));
 
-    v0 = param0->unk_14;
-    sub_02011A00(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
+    v0 = param0->data;
+    sub_02011A00(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
 
-    param0->unk_0C++;
+    param0->state++;
 }
 
-static BOOL sub_020119A0(UnkStruct_0200F7A0 *param0)
+static BOOL sub_020119A0(PaletteFade *param0)
 {
     UnkStruct_02011AFC *v0;
     BOOL v1;
     BOOL v2 = 0;
 
-    v0 = (UnkStruct_02011AFC *)param0->unk_14;
+    v0 = (UnkStruct_02011AFC *)param0->data;
 
-    switch (param0->unk_0C) {
+    switch (param0->state) {
     case 1:
         v1 = sub_02011AFC(v0);
 
         if (v1 == 1) {
-            sub_02010658(v0->unk_28, v0->unk_30, param0->unk_10);
-            param0->unk_0C++;
+            sub_02010658(v0->unk_28, v0->unk_30, param0->screen);
+            param0->state++;
         }
         break;
     case 2:
         sub_02011B54(v0);
         sub_020105EC(&v0->unk_00);
-        Heap_FreeToHeap(param0->unk_14);
-        param0->unk_14 = NULL;
-        param0->unk_0C++;
+        Heap_FreeToHeap(param0->data);
+        param0->data = NULL;
+        param0->state++;
         v2 = 1;
         break;
     case 3:
@@ -2602,7 +2602,7 @@ static BOOL sub_020119A0(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID)
 {
     UnkStruct_02010FC0 *v0;
     UnkStruct_02010FC0 *v1;
@@ -2728,42 +2728,42 @@ static void sub_02011C7C(UnkStruct_02011C7C *param0, int param1, int param2)
     param0->unk_00 = v0 + param0->unk_04;
 }
 
-static void sub_02011C94(UnkStruct_0200F7A0 *param0, UnkStruct_0200FF30 *param1)
+static void sub_02011C94(PaletteFade *param0, UnkStruct_0200FF30 *param1)
 {
     UnkStruct_02011E04 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011E04));
-    memset(param0->unk_14, 0, sizeof(UnkStruct_02011E04));
+    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011E04));
+    memset(param0->data, 0, sizeof(UnkStruct_02011E04));
 
-    v0 = param0->unk_14;
-    sub_02011D34(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
+    v0 = param0->data;
+    sub_02011D34(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
 
-    param0->unk_0C++;
+    param0->state++;
 }
 
-static BOOL sub_02011CD4(UnkStruct_0200F7A0 *param0)
+static BOOL sub_02011CD4(PaletteFade *param0)
 {
     UnkStruct_02011E04 *v0;
     BOOL v1;
     BOOL v2 = 0;
 
-    v0 = (UnkStruct_02011E04 *)param0->unk_14;
+    v0 = (UnkStruct_02011E04 *)param0->data;
 
-    switch (param0->unk_0C) {
+    switch (param0->state) {
     case 1:
         v1 = sub_02011E04(v0);
 
         if (v1 == 1) {
-            sub_02010658(v0->unk_28, v0->unk_30, param0->unk_10);
-            param0->unk_0C++;
+            sub_02010658(v0->unk_28, v0->unk_30, param0->screen);
+            param0->state++;
         }
         break;
     case 2:
         sub_02011E5C(v0);
         sub_020105EC(&v0->unk_00);
-        Heap_FreeToHeap(param0->unk_14);
-        param0->unk_14 = NULL;
-        param0->unk_0C++;
+        Heap_FreeToHeap(param0->data);
+        param0->data = NULL;
+        param0->state++;
         v2 = 1;
         break;
     case 3:
@@ -2777,7 +2777,7 @@ static BOOL sub_02011CD4(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID)
 {
     UnkStruct_02010FC0 *v0;
     UnkStruct_02010FC0 *v1;
@@ -2882,41 +2882,41 @@ static void sub_02011F2C(UnkStruct_02011F2C *param0, int param1, int param2)
     param0->unk_00 = v0 + param0->unk_04;
 }
 
-static void sub_02011F44(UnkStruct_0200F7A0 *param0, UnkStruct_0200FE6C *param1)
+static void sub_02011F44(PaletteFade *param0, UnkStruct_0200FE6C *param1)
 {
     UnkStruct_020120D4 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_020120D4));
-    memset(param0->unk_14, 0, sizeof(UnkStruct_020120D4));
+    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_020120D4));
+    memset(param0->data, 0, sizeof(UnkStruct_020120D4));
 
-    v0 = param0->unk_14;
-    sub_02011FE8(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
+    v0 = param0->data;
+    sub_02011FE8(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
 
-    param0->unk_0C++;
+    param0->state++;
 }
 
-static BOOL sub_02011F88(UnkStruct_0200F7A0 *param0)
+static BOOL sub_02011F88(PaletteFade *param0)
 {
     UnkStruct_020120D4 *v0;
     BOOL v1;
     BOOL v2 = 0;
 
-    v0 = (UnkStruct_020120D4 *)param0->unk_14;
+    v0 = (UnkStruct_020120D4 *)param0->data;
 
-    switch (param0->unk_0C) {
+    switch (param0->state) {
     case 1:
         v1 = sub_020120D4(v0);
 
         if (v1 == 1) {
-            sub_02010658(v0->unk_324, v0->unk_32C, param0->unk_10);
-            param0->unk_0C++;
+            sub_02010658(v0->unk_324, v0->unk_32C, param0->screen);
+            param0->state++;
         }
         break;
     case 2:
         sub_02012134(v0);
-        Heap_FreeToHeap(param0->unk_14);
-        param0->unk_14 = NULL;
-        param0->unk_0C++;
+        Heap_FreeToHeap(param0->data);
+        param0->data = NULL;
+        param0->state++;
         v2 = 1;
         break;
     case 3:
@@ -2930,7 +2930,7 @@ static BOOL sub_02011F88(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID)
 {
     sub_02010728(&param0->unk_00, param4, 1, 0, 0);
 
@@ -3046,33 +3046,33 @@ static void sub_02012174(const UnkStruct_0200F898 *param0, UnkStruct_02012174 *p
     }
 }
 
-static void sub_020121C4(UnkStruct_0200F7A0 *param0, UnkStruct_0201006C *param1)
+static void sub_020121C4(PaletteFade *param0, UnkStruct_0201006C *param1)
 {
     UnkStruct_02012290 *v0;
 
-    param0->unk_14 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02012290));
-    memset(param0->unk_14, 0, sizeof(UnkStruct_02012290));
+    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02012290));
+    memset(param0->data, 0, sizeof(UnkStruct_02012290));
 
-    v0 = param0->unk_14;
+    v0 = param0->data;
 
     if (param1->unk_00.unk_0B == 0) {
-        sub_02012290(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
+        sub_02012290(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
     } else {
-        sub_02012384(v0, param1, param0->unk_04, param0->unk_08, param0->unk_10, param0->unk_18, param0->unk_1C, param0->heapID);
+        sub_02012384(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
     }
 
-    param0->unk_0C++;
+    param0->state++;
 }
 
-static BOOL sub_02012228(UnkStruct_0200F7A0 *param0)
+static BOOL sub_02012228(PaletteFade *param0)
 {
     UnkStruct_02012290 *v0;
     BOOL v1;
     BOOL v2 = 0;
 
-    v0 = (UnkStruct_02012290 *)param0->unk_14;
+    v0 = (UnkStruct_02012290 *)param0->data;
 
-    switch (param0->unk_0C) {
+    switch (param0->state) {
     case 1:
         if (v0->unk_386 == 0) {
             v1 = sub_02012310(v0, param0);
@@ -3081,14 +3081,14 @@ static BOOL sub_02012228(UnkStruct_0200F7A0 *param0)
         }
 
         if (v1 == 1) {
-            sub_02010658(param0->unk_28, param0->unk_18, param0->unk_10);
-            param0->unk_0C++;
+            sub_02010658(param0->direction, param0->hwSettings, param0->screen);
+            param0->state++;
         }
         break;
     case 2:
-        Heap_FreeToHeap(param0->unk_14);
-        param0->unk_14 = NULL;
-        param0->unk_0C++;
+        Heap_FreeToHeap(param0->data);
+        param0->data = NULL;
+        param0->state++;
         v2 = 1;
         break;
     case 3:
@@ -3102,7 +3102,7 @@ static BOOL sub_02012228(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int param7)
+static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int param7)
 {
     int v0 = FX_Mul(param2 * FX32_ONE, param1->unk_14) >> FX32_SHIFT;
 
@@ -3121,7 +3121,7 @@ static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1,
     param0->unk_385 = 0;
 }
 
-static BOOL sub_02012310(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1)
+static BOOL sub_02012310(UnkStruct_02012290 *param0, PaletteFade *param1)
 {
     BOOL v0;
     BOOL v1 = 0;
@@ -3133,7 +3133,7 @@ static BOOL sub_02012310(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1)
         if (v0 == 1) {
             param0->unk_385++;
 
-            sub_02011FE8(&param0->unk_4C, &param0->unk_380->unk_0C, param0->unk_384, param1->unk_08, param1->unk_10, param1->unk_18, param1->unk_1C, param1->heapID);
+            sub_02011FE8(&param0->unk_4C, &param0->unk_380->unk_0C, param0->unk_384, param1->framesPerStep, param1->screen, param1->hwSettings, param1->hblanks, param1->heapID);
         }
         break;
     case 1:
@@ -3152,7 +3152,7 @@ static BOOL sub_02012310(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1)
     return v1;
 }
 
-static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, PaletteFadeHBlanks *param6, int heapID)
 {
     int v0;
 
@@ -3168,7 +3168,7 @@ static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1,
     param0->unk_385 = 0;
 }
 
-static BOOL sub_020123F4(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1)
+static BOOL sub_020123F4(UnkStruct_02012290 *param0, PaletteFade *param1)
 {
     BOOL v0;
     BOOL v1 = 0;
@@ -3179,12 +3179,12 @@ static BOOL sub_020123F4(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1)
 
         if (v0 == 1) {
             param0->unk_385++;
-            sub_02010E48(&param0->unk_00, &param0->unk_380->unk_00, param0->unk_384, param1->unk_08, param1->unk_10, param1->unk_18);
+            sub_02010E48(&param0->unk_00, &param0->unk_380->unk_00, param0->unk_384, param1->framesPerStep, param1->screen, param1->hwSettings);
 
             if (param0->unk_380->unk_00.unk_08 == 0) {
-                sub_02010710(param1->unk_18, GX_WNDMASK_W0, param1->unk_10, param0->unk_380->unk_00.unk_0B);
+                sub_02010710(param1->hwSettings, GX_WNDMASK_W0, param1->screen, param0->unk_380->unk_00.unk_0B);
             } else {
-                sub_02010710(param1->unk_18, GX_WNDMASK_W1, param1->unk_10, param0->unk_380->unk_00.unk_0B);
+                sub_02010710(param1->hwSettings, GX_WNDMASK_W1, param1->screen, param0->unk_380->unk_00.unk_0B);
             }
         }
         break;

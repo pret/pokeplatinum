@@ -394,7 +394,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         }
         break;
     case 18:
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(1, 0x7fff);
 
         if (param0->unk_20 != NULL) {
             *(param0->unk_20) = 1;

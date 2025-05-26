@@ -1082,8 +1082,8 @@ static int ov97_0222E2DC(ApplicationManager *param0, int *param1)
     ov97_02232054();
     ov97_0222DBC4(v0->unk_00);
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(0, 0x0);
+    SetScreenColorBrightness(1, 0x0);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_10, SEQ_PRESENT, 1);
     ov97_02237520(86);

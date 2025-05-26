@@ -110,8 +110,8 @@ int ov72_0223D7A0(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(0, 0x0);
+        SetScreenColorBrightness(1, 0x0);
         SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();

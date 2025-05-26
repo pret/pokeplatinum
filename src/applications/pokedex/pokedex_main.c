@@ -146,8 +146,8 @@ int PokedexMain_Main(ApplicationManager *appMan, int *state)
         break;
     case POKEDEX_STATE_WAIT_EXIT:
         if (TransitionComplete(appPtr)) {
-            sub_0200F32C(0);
-            sub_0200F32C(1);
+            ResetVisibleHardwareWindows(0);
+            ResetVisibleHardwareWindows(1);
             G2_BlendNone();
             G2S_BlendNone();
             return 1;

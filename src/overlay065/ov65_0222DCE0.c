@@ -933,8 +933,8 @@ static void ov65_0222E5E0(void *param0)
     inline_ov61_0222C1FC(&v0->unk_E2C);
 
     if (v0->unk_1158 == 1) {
-        sub_0200F338(0);
-        sub_0200F338(1);
+        ResetScreenMasterBrightness(0);
+        ResetScreenMasterBrightness(1);
         v0->unk_1158 = 0;
     }
 }
@@ -2031,8 +2031,8 @@ static int ov65_0222F90C(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     if (!sub_020334A4()) {
         if (ov65_02235194(&param0->unk_3EC) == 1) {
-            sub_0200F344(0, 0x0);
-            sub_0200F344(1, 0x0);
+            SetScreenColorBrightness(0, 0x0);
+            SetScreenColorBrightness(1, 0x0);
             ov65_02235130(&param0->unk_3EC);
 
             for (v0 = 0; v0 < (32 + 1); v0++) {

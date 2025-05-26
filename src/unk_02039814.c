@@ -107,8 +107,8 @@ void sub_02039834(int heapID, int param1, int param2)
         break;
     }
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(0, 0x0);
+    SetScreenColorBrightness(1, 0x0);
 
     (void)OS_DisableIrqMask(OS_IE_V_BLANK);
     OS_SetIrqFunction(OS_IE_V_BLANK, sub_02039814);
@@ -161,8 +161,8 @@ void sub_02039834(int heapID, int param1, int param2)
     Strbuf_Free(v3);
 
     GXLayers_TurnBothDispOn();
-    sub_0200F338(0);
-    sub_0200F338(1);
+    ResetScreenMasterBrightness(0);
+    ResetScreenMasterBrightness(1);
     BrightnessController_SetScreenBrightness(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
 
     Window_Remove(&v1);

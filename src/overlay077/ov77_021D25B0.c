@@ -931,8 +931,8 @@ static int ov77_021D2D08(ApplicationManager *appMan, int *param1)
     int heapID = HEAP_ID_76;
 
     BrightnessController_ResetAllControllers();
-    sub_0200F344(0, 0x7fff);
-    sub_0200F344(1, 0x7fff);
+    SetScreenColorBrightness(0, 0x7fff);
+    SetScreenColorBrightness(1, 0x7fff);
     SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
@@ -963,8 +963,8 @@ static int ov77_021D2D94(ApplicationManager *appMan, int *param1)
     if ((v0->unk_2A8) && ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_BUTTON_START))) {
         v0->unk_08 = 1;
         gSystem.unk_6C = 0;
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(0, 0x0);
+        SetScreenColorBrightness(1, 0x0);
     }
 
     switch (*param1) {
@@ -1010,7 +1010,7 @@ static int ov77_021D2E60(ApplicationManager *appMan, int *param1)
     UnkStruct_ov77_021D2E9C *v0 = ApplicationManager_Data(appMan);
 
     if (IsScreenTransitionDone() == 0) {
-        sub_0200F2C0();
+        FinishPaletteFade();
     }
 
     LCRNG_SetSeed(v0->unk_14);
@@ -1094,8 +1094,8 @@ static void ov77_021D2F38(UnkStruct_ov77_021D2F38 *param0)
 
     OS_WaitIrq(1, OS_IE_V_BLANK);
 
-    sub_0200F338(0);
-    sub_0200F338(1);
+    ResetScreenMasterBrightness(0);
+    ResetScreenMasterBrightness(1);
     GXLayers_TurnBothDispOn();
 }
 
@@ -1521,8 +1521,8 @@ static void ov77_021D37C0(UnkStruct_ov77_021D37C0 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
 
-    sub_0200F338(0);
-    sub_0200F338(1);
+    ResetScreenMasterBrightness(0);
+    ResetScreenMasterBrightness(1);
     NARC_dtor(v1);
 
     param0->unk_03 = 1;
@@ -2519,8 +2519,8 @@ static void ov77_021D52C8(UnkStruct_ov77_021D2E9C *param0)
 
     param0->unk_298.unk_08 = param0->unk_0C;
 
-    sub_0200F344(0, 0x7fff);
-    sub_0200F344(1, 0x7fff);
+    SetScreenColorBrightness(0, 0x7fff);
+    SetScreenColorBrightness(1, 0x7fff);
 
     G2_BlendNone();
 

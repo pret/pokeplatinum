@@ -1578,7 +1578,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         }
         break;
     case 21:
-        sub_0200F338(0);
+        ResetScreenMasterBrightness(0);
 
         if (IsScreenTransitionDone()) {
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
@@ -1639,8 +1639,8 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         v0->unk_00 = 26;
         break;
     case 26:
-        sub_0200F32C(0);
-        sub_0200F338(0);
+        ResetVisibleHardwareWindows(0);
+        ResetScreenMasterBrightness(0);
         Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), 63, 0, NULL);
         v0->unk_4C = 60;
         v0->unk_00 = 15;

@@ -1580,7 +1580,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         }
         break;
     case 1:
-        sub_0200F2C0();
+        FinishPaletteFade();
         StartScreenTransition(2, 16, 18, 0x0, 6, 1, HEAP_ID_FIELD);
         ov23_0224942C(fieldSystem->unk_6C);
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
@@ -1614,7 +1614,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         break;
     case 6:
         fieldSystem->unk_6C = ov23_02249404(fieldSystem);
-        sub_0200F2C0();
+        FinishPaletteFade();
         StartScreenTransition(1, 17, 19, 0x0, 6, 1, HEAP_ID_FIELD);
         (v1->unk_0C)++;
         break;

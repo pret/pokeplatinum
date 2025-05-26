@@ -180,7 +180,7 @@ void EncounterEffect_Grass_HigherLevel(SysTask *task, void *param)
         }
         break;
     case 5:
-        sub_0200F370(0x0);
+        SetColorBrightness(0x0);
 
         G2_SetBG0Offset(0, 0);
         G2_SetBG1Offset(0, 0);
@@ -273,7 +273,7 @@ void EncounterEffect_Grass_LowerLevel(SysTask *task, void *param)
         }
         break;
     case 5:
-        sub_0200F370(0x0);
+        SetColorBrightness(0x0);
 
         G2_SetBG0Offset(0, 0);
         G2_SetBG1Offset(0, 0);
@@ -345,7 +345,7 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
         }
 
         EncounterEffect_Finish(encEffect, task);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(1, 0x0);
         break;
     }
 }
@@ -403,7 +403,7 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
         }
 
         EncounterEffect_Finish(encEffect, task);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(1, 0x0);
         break;
     }
 }
@@ -513,7 +513,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
         }
 
         EncounterEffect_Finish(encEffect, task);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(1, 0x0);
         break;
     }
 }
@@ -571,7 +571,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
         }
 
         EncounterEffect_Finish(encEffect, task);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(1, 0x0);
         break;
     }
 }
@@ -797,7 +797,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
         break;
 
     case 7:
-        sub_0200F370(0x0);
+        SetColorBrightness(0x0);
 
         if (encEffect->done != NULL) {
             *(encEffect->done) = 1;
@@ -941,7 +941,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel(SysTask *param0, void *param1)
         break;
 
     case 7:
-        sub_0200F370(0x0);
+        SetColorBrightness(0x0);
 
         if (encEffect->done != NULL) {
             *(encEffect->done) = 1;
@@ -1110,7 +1110,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
         break;
 
     case 7:
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(1, 0x0);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -1289,7 +1289,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         break;
 
     case 7:
-        sub_0200F370(0x0);
+        SetColorBrightness(0x0);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -1456,7 +1456,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
         break;
 
     case 7:
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(1, 0x0);
 
         HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
@@ -1638,7 +1638,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
         break;
 
     case 9:
-        sub_0200F370(0x0);
+        SetColorBrightness(0x0);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -1798,7 +1798,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
         break;
 
     case 7:
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(1, 0x0);
 
         HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
@@ -1914,7 +1914,7 @@ void EncounterEffect_Double(SysTask *param0, void *param1)
         break;
 
     case 7:
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(1, 0x0);
 
         HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
@@ -2074,7 +2074,7 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
         break;
 
     case 7:
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(1, 0x0);
 
         HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
@@ -2218,7 +2218,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         break;
 
     case 7:
-        sub_0200F370(0x0);
+        SetColorBrightness(0x0);
 
         ov5_021DEC18(v1->unk_04);
 
@@ -2465,7 +2465,7 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
         break;
 
     case 7:
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(1, 0x7fff);
 
         FieldMotionBlur_Stop(&mythicalEffect->motionBlur);
 
@@ -2476,7 +2476,7 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
         }
 
         EncounterEffect_Finish(encEffect, task);
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(1, 0x7fff);
         break;
     }
 }
@@ -2568,7 +2568,7 @@ void EncounterEffect_Legendary(SysTask *task, void *param)
         break;
 
     case 9:
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(1, 0x7fff);
 
         FieldMotionBlur_Stop(&legendaryEffect->motionBlur);
 
@@ -2579,7 +2579,7 @@ void EncounterEffect_Legendary(SysTask *task, void *param)
         }
 
         EncounterEffect_Finish(encEffect, task);
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(1, 0x7fff);
         break;
     }
 }
@@ -3077,7 +3077,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
         break;
 
     case 15:
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(1, 0x7fff);
 
         if (encEffect->done != NULL) {
             *(encEffect->done) = 1;
@@ -3537,7 +3537,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         break;
 
     case 14:
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(1, 0x7fff);
 
         if (encEffect->done != NULL) {
             *(encEffect->done) = 1;

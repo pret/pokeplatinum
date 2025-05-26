@@ -1,8 +1,11 @@
 #include "palette_fade.h"
 
-#include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+#include "constants/screen.h"
+
+#include "brightness_controller.h"
 #include "enums.h"
 #include "hardware_window.h"
 #include "heap.h"
@@ -11,540 +14,520 @@
 #include "sys_task_manager.h"
 #include "system.h"
 
-typedef struct UnkStruct_0200F6D8 {
-    UnkStruct_0200F600 *unk_00;
-    void *unk_04;
-    UnkFuncPtr_0200F634 unk_08;
-    int unk_0C;
-} UnkStruct_0200F6D8;
-
-typedef struct UnkStruct_0200F704 {
-    UnkStruct_0200F600 *unk_00;
-    int unk_04;
-} UnkStruct_0200F704;
-
-typedef struct UnkStruct_0200F4C4 {
-    int unk_00;
-    BOOL unk_04;
-    BOOL unk_08;
-    BOOL unk_0C;
-    BOOL unk_10;
-} UnkStruct_0200F4C4;
-
-typedef struct UnkStruct_0200F46C {
-    UnkStruct_0200F4C4 unk_00;
-    UnkStruct_0200F7A0 unk_14;
-    UnkStruct_0200F7A0 unk_44;
-    UnkStruct_0200F600 unk_74;
-    HardwareWindowSettings unk_8C;
-    u16 unk_14C;
-    u8 unk_14E;
-    u8 unk_14F;
-    u16 unk_150;
-} UnkStruct_0200F46C;
-
-static void sub_0200F46C(UnkStruct_0200F46C *param0);
-static void sub_0200F814(UnkStruct_0200F46C *param0);
-static void sub_0200F600(UnkStruct_0200F600 *param0);
-static void sub_0200F61C(void *param0);
-static void sub_0200F728(SysTask *param0, void *param1);
-static void sub_0200F748(SysTask *param0, void *param1);
-static BOOL sub_0200F4C4(UnkStruct_0200F4C4 *param0, UnkStruct_0200F7A0 *param1, UnkStruct_0200F7A0 *param2);
-static void sub_0200F534(BOOL *param0, UnkStruct_0200F7A0 *param1);
-static BOOL sub_0200F550(UnkStruct_0200F7A0 *param0);
-static void sub_0200F564(int param0, UnkStruct_0200F4C4 *param1);
-static void sub_0200F5D4(UnkStruct_0200F7A0 *param0, int param1, int param2, int param3, int param4, void *param5, int param6, HardwareWindowSettings *param7, UnkStruct_0200F600 *param8, int heapID, u16 param10);
-static void sub_0200F5C8(UnkStruct_0200F4C4 *param0, int param1, BOOL param2, BOOL param3);
-static void sub_0200F634(UnkStruct_0200F600 *param0, void *param1, UnkFuncPtr_0200F634 param2, int param3);
-static void sub_0200F6AC(UnkStruct_0200F600 *param0, int param1);
-static void sub_0200F764(void *param0);
-static u16 sub_0200F768(UnkStruct_0200F46C *param0, u16 param1);
-static u16 sub_0200F77C(const UnkStruct_0200F46C *param0);
-static void sub_0200F7E4(UnkStruct_0200F7A0 *param0);
-static void sub_0200F7B4(UnkStruct_0200F7A0 *param0);
-static void sub_0200F7A0(SysTask *param0, void *param1);
-
-static const UnkFuncPtr_0200F6D8 Unk_020E5074[] = {
-    sub_0200F85C,
-    sub_0200F878,
-    sub_0200F898,
-    sub_0200F8D4,
-    sub_0200F90C,
-    sub_0200F948,
-    sub_0200F980,
-    sub_0200F9AC,
-    sub_0200F9D8,
-    sub_0200FA14,
-    sub_0200FA4C,
-    sub_0200FA88,
-    sub_0200FAC0,
-    sub_0200FAEC,
-    sub_0200FB18,
-    sub_0200FB4C,
-    sub_0200FB7C,
-    sub_0200FBA8,
-    sub_0200FBD4,
-    sub_0200FC00,
-    sub_0200FC2C,
-    sub_0200FC58,
-    sub_0200FC84,
-    sub_0200FCB0,
-    sub_0200FCDC,
-    sub_0200FD08,
-    sub_0200FD34,
-    sub_0200FD60,
-    sub_0200FD8C,
-    sub_0200FDE0,
-    sub_0200FE30,
-    sub_0200FE6C,
-    sub_0200FEA4,
-    sub_0200FEEC,
-    sub_0200FF30,
-    sub_0200FF78,
-    sub_0200FFBC,
-    sub_0200FFE8,
-    sub_02010014,
-    sub_02010040,
-    sub_0201006C,
-    sub_020100A8
+enum ScreenFadeOrder {
+    ORDER_SIMULTANEOUS,
+    ORDER_MAIN_FIRST,
+    ORDER_SUB_FIRST
 };
 
-static UnkStruct_0200F46C Unk_021BF474;
+typedef struct EnableHBlankTemplate {
+    PaletteFadeHBlanks *hblanks;
+    void *data;
+    Callback callback;
+    enum DSScreen screen;
+} EnableHBlankTemplate;
 
-void StartScreenTransition(int param0, int param1, int param2, u16 param3, int param4, int param5, int heapID)
+typedef struct DisableHBlankTemplate {
+    PaletteFadeHBlanks *hblanks;
+    enum DSScreen screen;
+} DisableHBlankTemplate;
+
+typedef struct PaletteFadeScreen {
+    enum ScreenFadeOrder order;
+    BOOL activeMain;
+    BOOL activeSub;
+    BOOL existsMain;
+    BOOL existsSub;
+} PaletteFadeScreen;
+
+typedef struct PaletteFadeManager {
+    PaletteFadeScreen screen;
+    PaletteFade mainScreenFade;
+    PaletteFade subScreenFade;
+    PaletteFadeHBlanks hblanks;
+    HardwareWindowSettings hwSettings;
+    u16 active;
+    u8 dummy_14E;
+    u8 dummy_14F;
+    u16 savedColor;
+} PaletteFadeManager;
+
+static void ResetPaletteFadeManager(PaletteFadeManager *manager);
+static void ZeroPaletteFadeManager(PaletteFadeManager *manager);
+static void ClearHBlanks(PaletteFadeHBlanks *hblanks);
+static void RunHBlankCallbacks(void *data);
+static BOOL TryPaletteFade(PaletteFadeScreen *screen, PaletteFade *fadeMain, PaletteFade *fadeSub);
+static void TryPaletteFadeFunc(BOOL *running, PaletteFade *fade);
+static BOOL CallPaletteFadeFunc(PaletteFade *fade);
+static void SetupPaletteFadeScreen(enum FadeMode mode, PaletteFadeScreen *screen);
+static void InitPaletteFade(PaletteFade *fade, enum FadeType type, int steps, int framesPerStep, enum FadeState state, void *data, enum DSScreen screen, HardwareWindowSettings *hwSettings, PaletteFadeHBlanks *hblanks, enum HeapId heapID, u16 color);
+static void InitPaletteFadeScreen(PaletteFadeScreen *screen, enum ScreenFadeOrder order, BOOL fadeMain, BOOL fadeSub);
+static void EnableScreenHBlank(PaletteFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen);
+static void DisableScreenHBlank(PaletteFadeHBlanks *hblanks, enum DSScreen screen);
+static u16 GetFadeColor(PaletteFadeManager *manager, u16 color);
+static u16 GetSavedFadeColor(const PaletteFadeManager *manager);
+static void ResetWindowPaletteFade(PaletteFade *fade);
+static void RequestResetScreenMasterBrightness(PaletteFade *fade);
+
+static void Task_EnableScreenHBlank(SysTask *task, void *data);
+static void Task_DisableScreenHBlank(SysTask *task, void *data);
+static void Task_ResetScreenMasterBrightness(SysTask *task, void *data);
+
+static void DummyHBlankCallback(void *data);
+
+static const PaletteFadeFunc sPaletteFadeFuncs[FADE_TYPE_MAX] = {
+    [FADE_TYPE_UNK_00] = sub_0200F85C,
+    [FADE_TYPE_UNK_01] = sub_0200F878,
+    [FADE_TYPE_UNK_02] = sub_0200F898,
+    [FADE_TYPE_UNK_03] = sub_0200F8D4,
+    [FADE_TYPE_UNK_04] = sub_0200F90C,
+    [FADE_TYPE_UNK_05] = sub_0200F948,
+    [FADE_TYPE_UNK_06] = sub_0200F980,
+    [FADE_TYPE_UNK_07] = sub_0200F9AC,
+    [FADE_TYPE_UNK_08] = sub_0200F9D8,
+    [FADE_TYPE_UNK_09] = sub_0200FA14,
+    [FADE_TYPE_UNK_10] = sub_0200FA4C,
+    [FADE_TYPE_UNK_11] = sub_0200FA88,
+    [FADE_TYPE_UNK_12] = sub_0200FAC0,
+    [FADE_TYPE_UNK_13] = sub_0200FAEC,
+    [FADE_TYPE_UNK_14] = sub_0200FB18,
+    [FADE_TYPE_UNK_15] = sub_0200FB4C,
+    [FADE_TYPE_UNK_16] = sub_0200FB7C,
+    [FADE_TYPE_UNK_17] = sub_0200FBA8,
+    [FADE_TYPE_UNK_18] = sub_0200FBD4,
+    [FADE_TYPE_UNK_19] = sub_0200FC00,
+    [FADE_TYPE_UNK_20] = sub_0200FC2C,
+    [FADE_TYPE_UNK_21] = sub_0200FC58,
+    [FADE_TYPE_UNK_22] = sub_0200FC84,
+    [FADE_TYPE_UNK_23] = sub_0200FCB0,
+    [FADE_TYPE_UNK_24] = sub_0200FCDC,
+    [FADE_TYPE_UNK_25] = sub_0200FD08,
+    [FADE_TYPE_UNK_26] = sub_0200FD34,
+    [FADE_TYPE_UNK_27] = sub_0200FD60,
+    [FADE_TYPE_UNK_28] = sub_0200FD8C,
+    [FADE_TYPE_UNK_29] = sub_0200FDE0,
+    [FADE_TYPE_UNK_30] = sub_0200FE30,
+    [FADE_TYPE_UNK_31] = sub_0200FE6C,
+    [FADE_TYPE_UNK_32] = sub_0200FEA4,
+    [FADE_TYPE_UNK_33] = sub_0200FEEC,
+    [FADE_TYPE_UNK_34] = sub_0200FF30,
+    [FADE_TYPE_UNK_35] = sub_0200FF78,
+    [FADE_TYPE_UNK_36] = sub_0200FFBC,
+    [FADE_TYPE_UNK_37] = sub_0200FFE8,
+    [FADE_TYPE_UNK_38] = sub_02010014,
+    [FADE_TYPE_UNK_39] = sub_02010040,
+    [FADE_TYPE_UNK_40] = sub_0201006C,
+    [FADE_TYPE_UNK_41] = sub_020100A8,
+};
+
+static PaletteFadeManager sPaletteFadeManager;
+
+void StartScreenTransition(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapId heapID)
 {
-    UnkStruct_0200F46C *v0;
-    u16 v1;
+    GF_ASSERT(steps);
+    GF_ASSERT(framesPerStep);
+    GF_ASSERT(sPaletteFadeManager.active == FALSE);
 
-    GF_ASSERT(param4);
-    GF_ASSERT(param5);
-    GF_ASSERT(Unk_021BF474.unk_14C == 0);
+    PaletteFadeManager *manager = &sPaletteFadeManager;
+    ZeroPaletteFadeManager(manager);
+    SetupPaletteFadeScreen(mode, &manager->screen);
+    ClearHBlanks(&manager->hblanks);
 
-    v0 = &Unk_021BF474;
+    u16 fadeColor = GetFadeColor(manager, color);
+    InitPaletteFade(&manager->mainScreenFade, typeMain, steps, framesPerStep, FADE_IDLE, NULL, DS_SCREEN_MAIN, &manager->hwSettings, &manager->hblanks, heapID, fadeColor);
+    InitPaletteFade(&manager->subScreenFade, typeSub, steps, framesPerStep, FADE_IDLE, NULL, DS_SCREEN_SUB, &manager->hwSettings, &manager->hblanks, heapID, fadeColor);
 
-    sub_0200F814(v0);
-    sub_0200F564(param0, &v0->unk_00);
-    sub_0200F600(&v0->unk_74);
+    manager->active = TRUE;
+    TryPaletteFadeFunc(&manager->screen.activeMain, &manager->mainScreenFade);
+    TryPaletteFadeFunc(&manager->screen.activeSub, &manager->subScreenFade);
 
-    v1 = sub_0200F768(v0, param3);
-
-    sub_0200F5D4(&v0->unk_14, param1, param4, param5, 0, NULL, 0, &v0->unk_8C, &v0->unk_74, heapID, v1);
-    sub_0200F5D4(&v0->unk_44, param2, param4, param5, 0, NULL, 1, &v0->unk_8C, &v0->unk_74, heapID, v1);
-
-    v0->unk_14C = 1;
-
-    sub_0200F534(&v0->unk_00.unk_04, &v0->unk_14);
-    sub_0200F534(&v0->unk_00.unk_08, &v0->unk_44);
-
-    if (v0->unk_00.unk_0C) {
-        sub_0200F7B4(&v0->unk_14);
-        v0->unk_14E = 1;
+    if (manager->screen.existsMain) {
+        RequestResetScreenMasterBrightness(&manager->mainScreenFade);
+        manager->dummy_14E = 1;
     }
 
-    if (v0->unk_00.unk_10) {
-        sub_0200F7B4(&v0->unk_44);
-        v0->unk_14F = 1;
+    if (manager->screen.existsSub) {
+        RequestResetScreenMasterBrightness(&manager->subScreenFade);
+        manager->dummy_14F = 1;
     }
 }
 
-void sub_0200F27C(void)
+void ExecPaletteFade(void)
 {
-    UnkStruct_0200F46C *v0 = &Unk_021BF474;
-    BOOL v1;
-
-    if (v0->unk_14C) {
-        v1 = sub_0200F4C4(&v0->unk_00, &v0->unk_14, &v0->unk_44);
-
-        if (v1 == 1) {
-            sub_0200F46C(v0);
-        }
+    PaletteFadeManager *manager = &sPaletteFadeManager;
+    if (manager->active && TryPaletteFade(&manager->screen, &manager->mainScreenFade, &manager->subScreenFade) == TRUE) {
+        ResetPaletteFadeManager(manager);
     }
 }
 
 BOOL IsScreenTransitionDone(void)
 {
-    if (Unk_021BF474.unk_14C) {
-        return 0;
-    }
-
-    return 1;
+    return !sPaletteFadeManager.active;
 }
 
-void sub_0200F2C0(void)
+void FinishPaletteFade(void)
 {
-    sub_0200F6AC(&Unk_021BF474.unk_74, 0);
-    sub_0200F6AC(&Unk_021BF474.unk_74, 1);
+    DisableScreenHBlank(&sPaletteFadeManager.hblanks, DS_SCREEN_MAIN);
+    DisableScreenHBlank(&sPaletteFadeManager.hblanks, DS_SCREEN_SUB);
 
-    if (Unk_021BF474.unk_00.unk_04) {
-        Unk_021BF474.unk_14.unk_0C = 2;
+    if (sPaletteFadeManager.screen.activeMain) {
+        sPaletteFadeManager.mainScreenFade.state = FADE_CLEANUP;
     }
 
-    if (Unk_021BF474.unk_00.unk_08) {
-        Unk_021BF474.unk_44.unk_0C = 2;
+    if (sPaletteFadeManager.screen.activeSub) {
+        sPaletteFadeManager.subScreenFade.state = FADE_CLEANUP;
     }
 
-    sub_0200F534(&Unk_021BF474.unk_00.unk_04, &Unk_021BF474.unk_14);
-    sub_0200F534(&Unk_021BF474.unk_00.unk_08, &Unk_021BF474.unk_44);
+    TryPaletteFadeFunc(&sPaletteFadeManager.screen.activeMain, &sPaletteFadeManager.mainScreenFade);
+    TryPaletteFadeFunc(&sPaletteFadeManager.screen.activeSub, &sPaletteFadeManager.subScreenFade);
 
-    Unk_021BF474.unk_14C = 0;
-    Unk_021BF474.unk_14E = 0;
-    Unk_021BF474.unk_14F = 0;
+    sPaletteFadeManager.active = 0;
+    sPaletteFadeManager.dummy_14E = 0;
+    sPaletteFadeManager.dummy_14F = 0;
 
-    sub_0200F814(&Unk_021BF474);
+    ZeroPaletteFadeManager(&sPaletteFadeManager);
 }
 
-void sub_0200F32C(int param0)
+void ResetVisibleHardwareWindows(enum DSScreen screen)
 {
-    SetVisibleHardwareWindows(GX_WNDMASK_NONE, param0);
+    SetVisibleHardwareWindows(GX_WNDMASK_NONE, screen);
 }
 
-void sub_0200F338(int param0)
+void ResetScreenMasterBrightness(enum DSScreen screen)
 {
-    sub_0200F44C(param0, 0);
+    SetScreenMasterBrightness(screen, 0);
 }
 
-void sub_0200F344(int param0, u16 param1)
+void SetScreenColorBrightness(enum DSScreen screen, u16 color)
 {
-    int v0;
-
-    if (param1 == 0xffff) {
-        param1 = Unk_021BF474.unk_150;
+    if (color == FADE_SAVED) {
+        color = sPaletteFadeManager.savedColor;
     }
 
-    if (param1 == 0x7fff) {
-        v0 = 16;
+    int brightness;
+    if (color == FADE_WHITE) {
+        brightness = BRIGHTNESS_WHITE;
     } else {
-        v0 = -16;
+        brightness = BRIGHTNESS_BLACK;
     }
 
-    sub_0200F44C(param0, v0);
+    SetScreenMasterBrightness(screen, brightness);
 }
 
-void sub_0200F370(u16 param0)
+void SetColorBrightness(u16 color)
 {
-    int v0;
-
-    if (param0 == 0xffff) {
-        param0 = Unk_021BF474.unk_150;
+    if (color == FADE_SAVED) {
+        color = sPaletteFadeManager.savedColor;
     }
 
-    if (param0 == 0x7fff) {
-        v0 = 16;
+    int brightness;
+    if (color == FADE_WHITE) {
+        brightness = BRIGHTNESS_WHITE;
     } else {
-        v0 = -16;
+        brightness = BRIGHTNESS_BLACK;
     }
 
-    sub_0200F44C(0, v0);
-    sub_0200F44C(1, v0);
-
-    Unk_021BF474.unk_150 = param0;
+    SetScreenMasterBrightness(DS_SCREEN_MAIN, brightness);
+    SetScreenMasterBrightness(DS_SCREEN_SUB, brightness);
+    sPaletteFadeManager.savedColor = color;
 }
 
-void sub_0200F3B0(int param0, u16 param1)
+void SetupPaletteFadeRegisters(enum DSScreen screen, u16 color)
 {
-    if (param1 == 0xffff) {
-        param1 = Unk_021BF474.unk_150;
+    if (color == FADE_SAVED) {
+        color = sPaletteFadeManager.savedColor;
     }
 
-    if (param0 == 0) {
-        GX_LoadBGPltt((void *)&param1, 0, sizeof(short));
+    if (screen == DS_SCREEN_MAIN) {
+        GX_LoadBGPltt((void *)&color, 0, sizeof(u16));
     } else {
-        GXS_LoadBGPltt((void *)&param1, 0, sizeof(short));
+        GXS_LoadBGPltt((void *)&color, 0, sizeof(u16));
     }
 
-    RequestVisibleHardwareWindows(&Unk_021BF474.unk_8C, GX_WNDMASK_W0, param0);
-    RequestHardwareWindowMaskInsidePlane(&Unk_021BF474.unk_8C, GX_BLEND_ALL, 0, 0, param0);
-    RequestHardwareWindowDimensions(&Unk_021BF474.unk_8C, 0, 0, 0, 0, 0, param0);
-    RequestHardwareWindowMaskOutsidePlane(&Unk_021BF474.unk_8C, GX_BLEND_PLANEMASK_BD, 0, param0);
+    RequestVisibleHardwareWindows(&sPaletteFadeManager.hwSettings, GX_WNDMASK_W0, screen);
+    RequestHardwareWindowMaskInsidePlane(&sPaletteFadeManager.hwSettings, GX_BLEND_ALL, 0, 0, screen);
+    RequestHardwareWindowDimensions(&sPaletteFadeManager.hwSettings, 0, 0, 0, 0, 0, screen);
+    RequestHardwareWindowMaskOutsidePlane(&sPaletteFadeManager.hwSettings, GX_BLEND_PLANEMASK_BD, 0, screen);
 }
 
-void sub_0200F42C(u16 param0)
+void SetScreenBackgroundColor(u16 color)
 {
-    GX_LoadBGPltt((void *)&param0, 0, sizeof(short));
-    GXS_LoadBGPltt((void *)&param0, 0, sizeof(short));
+    GX_LoadBGPltt((void *)&color, 0, sizeof(u16));
+    GXS_LoadBGPltt((void *)&color, 0, sizeof(u16));
 }
 
-void sub_0200F44C(int param0, int param1)
+void SetScreenMasterBrightness(enum DSScreen screen, int brightness)
 {
-    if (param0 == 0) {
-        GX_SetMasterBrightness(param1);
+    if (screen == DS_SCREEN_MAIN) {
+        GX_SetMasterBrightness(brightness);
     } else {
-        GXS_SetMasterBrightness(param1);
+        GXS_SetMasterBrightness(brightness);
     }
 }
 
-static void sub_0200F46C(UnkStruct_0200F46C *param0)
+static void ResetPaletteFadeManager(PaletteFadeManager *manager)
 {
-    param0->unk_14C = 0;
-    param0->unk_150 = sub_0200F77C(param0);
+    manager->active = FALSE;
+    manager->savedColor = GetSavedFadeColor(manager);
 
-    if (param0->unk_00.unk_0C) {
-        sub_0200F7E4(&param0->unk_14);
-
-        if (param0->unk_14.unk_28 == 0) {
-            Unk_021BF474.unk_14E = 0;
+    if (manager->screen.existsMain) {
+        ResetWindowPaletteFade(&manager->mainScreenFade);
+        if (manager->mainScreenFade.direction == FADE_IN) {
+            sPaletteFadeManager.dummy_14E = 0;
         }
     }
 
-    if (param0->unk_00.unk_10) {
-        sub_0200F7E4(&param0->unk_44);
-
-        if (param0->unk_14.unk_28 == 0) {
-            Unk_021BF474.unk_14F = 0;
+    if (manager->screen.existsSub) {
+        ResetWindowPaletteFade(&manager->subScreenFade);
+        if (manager->mainScreenFade.direction == FADE_IN) {
+            sPaletteFadeManager.dummy_14F = 0;
         }
     }
 
-    sub_0200F814(param0);
+    ZeroPaletteFadeManager(manager);
 }
 
-static BOOL sub_0200F4C4(UnkStruct_0200F4C4 *param0, UnkStruct_0200F7A0 *param1, UnkStruct_0200F7A0 *param2)
+static BOOL TryPaletteFade(PaletteFadeScreen *screen, PaletteFade *fadeMain, PaletteFade *fadeSub)
 {
-    switch (param0->unk_00) {
-    case 0:
-        sub_0200F534(&param0->unk_04, param1);
-        sub_0200F534(&param0->unk_08, param2);
+    switch (screen->order) {
+    case ORDER_SIMULTANEOUS:
+        TryPaletteFadeFunc(&screen->activeMain, fadeMain);
+        TryPaletteFadeFunc(&screen->activeSub, fadeSub);
         break;
-    case 1:
-        if (param0->unk_04) {
-            sub_0200F534(&param0->unk_04, param1);
+
+    case ORDER_MAIN_FIRST:
+        if (screen->activeMain) {
+            TryPaletteFadeFunc(&screen->activeMain, fadeMain);
         } else {
-            sub_0200F534(&param0->unk_08, param2);
+            TryPaletteFadeFunc(&screen->activeSub, fadeSub);
         }
         break;
-    case 2:
-        if (param0->unk_08) {
-            sub_0200F534(&param0->unk_08, param2);
+
+    case ORDER_SUB_FIRST:
+        if (screen->activeSub) {
+            TryPaletteFadeFunc(&screen->activeSub, fadeSub);
         } else {
-            sub_0200F534(&param0->unk_04, param1);
+            TryPaletteFadeFunc(&screen->activeMain, fadeMain);
         }
         break;
     }
 
-    if ((param0->unk_04 == 0) && (param0->unk_08 == 0)) {
-        return 1;
+    if (screen->activeMain == FALSE && screen->activeSub == FALSE) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void sub_0200F534(BOOL *param0, UnkStruct_0200F7A0 *param1)
+static void TryPaletteFadeFunc(BOOL *running, PaletteFade *fade)
 {
-    int v0;
-
-    if (*param0) {
-        v0 = sub_0200F550(param1);
-
-        if (v0 == 1) {
-            *param0 = 0;
-        }
+    if (*running && CallPaletteFadeFunc(fade) == TRUE) {
+        *running = FALSE;
     }
 }
 
-static BOOL sub_0200F550(UnkStruct_0200F7A0 *param0)
+static BOOL CallPaletteFadeFunc(PaletteFade *fade)
 {
-    return Unk_020E5074[param0->unk_00](param0);
+    return sPaletteFadeFuncs[fade->type](fade);
 }
 
-static void sub_0200F564(int param0, UnkStruct_0200F4C4 *param1)
+static void SetupPaletteFadeScreen(enum FadeMode mode, PaletteFadeScreen *screen)
 {
-    switch (param0) {
-    case 0:
-        sub_0200F5C8(param1, 0, 1, 1);
+    switch (mode) {
+    case MODE_BOTH_SCREENS:
+        InitPaletteFadeScreen(screen, ORDER_SIMULTANEOUS, TRUE, TRUE);
         break;
-    case 1:
-        sub_0200F5C8(param1, 1, 1, 1);
+
+    case MODE_MAIN_THEN_SUB:
+        InitPaletteFadeScreen(screen, ORDER_MAIN_FIRST, TRUE, TRUE);
         break;
-    case 2:
-        sub_0200F5C8(param1, 2, 1, 1);
+
+    case MODE_SUB_THEN_MAIN:
+        InitPaletteFadeScreen(screen, ORDER_SUB_FIRST, TRUE, TRUE);
         break;
-    case 3:
-        sub_0200F5C8(param1, 1, 1, 0);
+
+    case MODE_MAIN_ONLY:
+        InitPaletteFadeScreen(screen, ORDER_MAIN_FIRST, TRUE, FALSE);
         break;
-    case 4:
-        sub_0200F5C8(param1, 2, 0, 1);
+
+    case MODE_SUB_ONLY:
+        InitPaletteFadeScreen(screen, ORDER_SUB_FIRST, FALSE, TRUE);
         break;
     }
 }
 
-static void sub_0200F5C8(UnkStruct_0200F4C4 *param0, int param1, BOOL param2, BOOL param3)
+static void InitPaletteFadeScreen(PaletteFadeScreen *screen, enum ScreenFadeOrder order, BOOL fadeMain, BOOL fadeSub)
 {
-    param0->unk_00 = param1;
-    param0->unk_04 = param2;
-    param0->unk_08 = param3;
-    param0->unk_0C = param2;
-    param0->unk_10 = param3;
+    screen->order = order;
+    screen->activeMain = fadeMain;
+    screen->activeSub = fadeSub;
+    screen->existsMain = fadeMain;
+    screen->existsSub = fadeSub;
 }
 
-static void sub_0200F5D4(UnkStruct_0200F7A0 *param0, int param1, int param2, int param3, int param4, void *param5, int param6, HardwareWindowSettings *param7, UnkStruct_0200F600 *param8, int heapID, u16 param10)
+static void InitPaletteFade(PaletteFade *fade, enum FadeType type, int steps, int framesPerStep, enum FadeState state, void *data, enum DSScreen screen, HardwareWindowSettings *hwSettings, PaletteFadeHBlanks *hblanks, enum HeapId heapID, u16 color)
 {
-    param0->unk_00 = param1;
-    param0->unk_04 = param2;
-    param0->unk_08 = param3;
-    param0->unk_0C = param4;
-    param0->unk_14 = param5;
-    param0->unk_10 = param6;
-    param0->unk_18 = param7;
-    param0->unk_1C = param8;
-    param0->heapID = heapID;
-    param0->unk_24 = param10;
+    fade->type = type;
+    fade->steps = steps;
+    fade->framesPerStep = framesPerStep;
+    fade->state = state;
+    fade->data = data;
+    fade->screen = screen;
+    fade->hwSettings = hwSettings;
+    fade->hblanks = hblanks;
+    fade->heapID = heapID;
+    fade->color = color;
 }
 
-static void sub_0200F600(UnkStruct_0200F600 *param0)
+static void ClearHBlanks(PaletteFadeHBlanks *hblanks)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_00[v0] = NULL;
-        param0->unk_08[v0] = sub_0200F764;
-        param0->unk_10[v0] = 0;
+    for (int screen = 0; screen < DS_SCREEN_MAX; screen++) {
+        hblanks->data[screen] = NULL;
+        hblanks->callback[screen] = DummyHBlankCallback;
+        hblanks->running[screen] = FALSE;
     }
 }
 
-static void sub_0200F61C(void *param0)
+static void RunHBlankCallbacks(void *data)
 {
-    int v0;
-    UnkStruct_0200F600 *v1 = param0;
-
-    for (v0 = 0; v0 < 2; v0++) {
-        v1->unk_08[v0](v1->unk_00[v0]);
+    PaletteFadeHBlanks *hblanks = data;
+    for (int screen = 0; screen < DS_SCREEN_MAX; screen++) {
+        hblanks->callback[screen](hblanks->data[screen]);
     }
 }
 
-void sub_0200F634(UnkStruct_0200F600 *param0, void *param1, UnkFuncPtr_0200F634 param2, int param3)
+static void EnableScreenHBlank(PaletteFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen)
 {
-    u8 v0 = 1;
+    u8 validCallback = TRUE;
+    GF_ASSERT(hblanks->running[screen] == FALSE);
+    GF_ASSERT(hblanks->callback[screen] != NULL);
 
-    GF_ASSERT(param0->unk_10[param3] == 0);
-    GF_ASSERT(param0->unk_08[param3] != NULL);
-
-    if ((param0->unk_10[0] == 0) && (param0->unk_10[1] == 0)) {
-        v0 = SetHBlankCallback(sub_0200F61C, param0);
+    if (hblanks->running[DS_SCREEN_MAIN] == FALSE && hblanks->running[DS_SCREEN_SUB] == FALSE) {
+        validCallback = SetHBlankCallback(RunHBlankCallbacks, hblanks);
     }
 
-    GF_ASSERT(v0 == 1);
+    GF_ASSERT(validCallback == TRUE);
 
-    param0->unk_00[param3] = param1;
+    hblanks->data[screen] = data;
 
-    if (param2) {
-        param0->unk_08[param3] = param2;
+    if (callback) {
+        hblanks->callback[screen] = callback;
     } else {
-        param0->unk_08[param3] = sub_0200F764;
+        hblanks->callback[screen] = DummyHBlankCallback;
     }
 
-    param0->unk_10[param3] = 1;
+    hblanks->running[screen] = TRUE;
 }
 
-void sub_0200F6AC(UnkStruct_0200F600 *param0, int param1)
+static void DisableScreenHBlank(PaletteFadeHBlanks *hblanks, enum DSScreen screen)
 {
-    param0->unk_10[param1] = 0;
+    hblanks->running[screen] = FALSE;
 
-    if ((param0->unk_10[0] == 0) && (param0->unk_10[1] == 0)) {
+    if (hblanks->running[DS_SCREEN_MAIN] == FALSE && hblanks->running[DS_SCREEN_SUB] == FALSE) {
         DisableHBlank();
     }
 
-    param0->unk_08[param1] = sub_0200F764;
-    param0->unk_00[param1] = NULL;
+    hblanks->callback[screen] = DummyHBlankCallback;
+    hblanks->data[screen] = NULL;
 }
 
-void sub_0200F6D8(UnkStruct_0200F600 *param0, void *param1, UnkFuncPtr_0200F634 param2, int param3, int heapID)
+void sub_0200F6D8(PaletteFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapId heapID)
 {
-    UnkStruct_0200F6D8 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_0200F6D8));
+    EnableHBlankTemplate *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(EnableHBlankTemplate));
+    v0->hblanks = hblanks;
+    v0->data = data;
+    v0->callback = callback;
+    v0->screen = screen;
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_0C = param3;
-
-    SysTask_ExecuteAfterVBlank(sub_0200F728, v0, 1024);
+    SysTask_ExecuteAfterVBlank(Task_EnableScreenHBlank, v0, 1024);
 }
 
-void sub_0200F704(UnkStruct_0200F600 *param0, int param1, int heapID)
+void sub_0200F704(PaletteFadeHBlanks *hblanks, enum DSScreen screen, enum HeapId heapID)
 {
-    UnkStruct_0200F704 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_0200F704));
+    DisableHBlankTemplate *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(DisableHBlankTemplate));
+    v0->hblanks = hblanks;
+    v0->screen = screen;
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-
-    SysTask_ExecuteAfterVBlank(sub_0200F748, v0, 1024);
+    SysTask_ExecuteAfterVBlank(Task_DisableScreenHBlank, v0, 1024);
 }
 
-static void sub_0200F728(SysTask *param0, void *param1)
+static void Task_EnableScreenHBlank(SysTask *task, void *data)
 {
-    UnkStruct_0200F6D8 *v0 = (UnkStruct_0200F6D8 *)param1;
-
-    sub_0200F634(v0->unk_00, v0->unk_04, v0->unk_08, v0->unk_0C);
-    SysTask_Done(param0);
-    Heap_FreeToHeap(param1);
+    EnableHBlankTemplate *template = data;
+    EnableScreenHBlank(template->hblanks, template->data, template->callback, template->screen);
+    SysTask_Done(task);
+    Heap_FreeToHeap(data);
 }
 
-static void sub_0200F748(SysTask *param0, void *param1)
+static void Task_DisableScreenHBlank(SysTask *task, void *data)
 {
-    UnkStruct_0200F704 *v0 = (UnkStruct_0200F704 *)param1;
-
-    sub_0200F6AC(v0->unk_00, v0->unk_04);
-    SysTask_Done(param0);
-    Heap_FreeToHeap(param1);
+    DisableHBlankTemplate *template = data;
+    DisableScreenHBlank(template->hblanks, template->screen);
+    SysTask_Done(task);
+    Heap_FreeToHeap(data);
 }
 
-static void sub_0200F764(void *param0)
+static void DummyHBlankCallback(void *data)
 {
     return;
 }
 
-static u16 sub_0200F768(UnkStruct_0200F46C *param0, u16 param1)
+static u16 GetFadeColor(PaletteFadeManager *manager, u16 color)
 {
-    if (param1 == 0xffff) {
-        return param0->unk_150;
+    if (color == 0xffff) {
+        return manager->savedColor;
     }
 
-    return param1;
+    return color;
 }
 
-static u16 sub_0200F77C(const UnkStruct_0200F46C *param0)
+static u16 GetSavedFadeColor(const PaletteFadeManager *manager)
 {
-    const UnkStruct_0200F7A0 *v0;
-
-    if (param0->unk_00.unk_0C == 1) {
-        v0 = &param0->unk_14;
+    const PaletteFade *fade;
+    if (manager->screen.existsMain == TRUE) {
+        fade = &manager->mainScreenFade;
     } else {
-        v0 = &param0->unk_44;
+        fade = &manager->subScreenFade;
     }
 
-    if (v0->unk_28 == 1) {
-        return v0->unk_24;
+    if (fade->direction == FADE_OUT) {
+        return fade->color;
     }
 
-    return param0->unk_150;
+    return manager->savedColor;
 }
 
-static void sub_0200F7A0(SysTask *param0, void *param1)
+static void Task_ResetScreenMasterBrightness(SysTask *task, void *data)
 {
-    UnkStruct_0200F7A0 *v0 = param1;
-
-    sub_0200F44C(v0->unk_10, 0);
-    SysTask_Done(param0);
+    PaletteFade *fade = data;
+    SetScreenMasterBrightness(fade->screen, 0);
+    SysTask_Done(task);
 }
 
-static void sub_0200F7B4(UnkStruct_0200F7A0 *param0)
+static void RequestResetScreenMasterBrightness(PaletteFade *fade)
 {
-    if ((param0->unk_28 == 0) && ((param0->unk_24 == 0x7fff) || (param0->unk_24 == 0x0)) && (param0->unk_2C == 0)) {
-        SysTask_ExecuteAfterVBlank(sub_0200F7A0, param0, 1024);
-    }
-}
-
-static void sub_0200F7E4(UnkStruct_0200F7A0 *param0)
-{
-    if ((param0->unk_28 == 1) && ((param0->unk_24 == 0x7fff) || (param0->unk_24 == 0x0)) && (param0->unk_2C == 0)) {
-        sub_0200F344(param0->unk_10, param0->unk_24);
-        sub_0200F32C(param0->unk_10);
+    if (fade->direction == FADE_IN
+        && (fade->color == FADE_WHITE || fade->color == FADE_BLACK)
+        && fade->method == FADE_WINDOW) {
+        SysTask_ExecuteAfterVBlank(Task_ResetScreenMasterBrightness, fade, 1024);
     }
 }
 
-static void sub_0200F814(UnkStruct_0200F46C *param0)
+static void ResetWindowPaletteFade(PaletteFade *fade)
 {
-    memset(&param0->unk_00, 0, sizeof(UnkStruct_0200F4C4));
-    memset(&param0->unk_14, 0, sizeof(UnkStruct_0200F7A0));
-    memset(&param0->unk_44, 0, sizeof(UnkStruct_0200F7A0));
-    memset(&param0->unk_74, 0, sizeof(UnkStruct_0200F600));
-    memset(&param0->unk_8C, 0, sizeof(HardwareWindowSettings));
+    if (fade->direction == FADE_OUT
+        && (fade->color == FADE_WHITE || fade->color == FADE_BLACK)
+        && fade->method == FADE_WINDOW) {
+        SetScreenColorBrightness(fade->screen, fade->color);
+        ResetVisibleHardwareWindows(fade->screen);
+    }
+}
+
+static void ZeroPaletteFadeManager(PaletteFadeManager *manager)
+{
+    memset(&manager->screen, 0, sizeof(PaletteFadeScreen));
+    memset(&manager->mainScreenFade, 0, sizeof(PaletteFade));
+    memset(&manager->subScreenFade, 0, sizeof(PaletteFade));
+    memset(&manager->hblanks, 0, sizeof(PaletteFadeHBlanks));
+    memset(&manager->hwSettings, 0, sizeof(HardwareWindowSettings));
 }

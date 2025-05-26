@@ -196,8 +196,8 @@ int ov80_021D1550(UnkStruct_ov80_021D2A08 *param0)
 
     StartScreenTransition(1, 17, 37, 0x0, 6, 1, param0->heapID);
     Sound_PlayEffect(SEQ_SE_DP_MEKURU);
-    sub_0200F338(0);
-    sub_0200F338(1);
+    ResetScreenMasterBrightness(0);
+    ResetScreenMasterBrightness(1);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 28, 4);
     return 0;
@@ -217,7 +217,7 @@ int ov80_021D15C8(UnkStruct_ov80_021D2A08 *param0)
 
     StartScreenTransition(3, 17, 17, 0x0, 6, 1, param0->heapID);
     Sound_PlayEffect(SEQ_SE_DP_MEKURU);
-    sub_0200F338(0);
+    ResetScreenMasterBrightness(0);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 28, 4);
     return 0;

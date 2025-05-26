@@ -160,8 +160,8 @@ static int ov77_021D0D80(ApplicationManager *appMan, int *param1)
     UnkStruct_ov77_021D17B4 *v0;
     int heapID = HEAP_ID_DISTORTION_WORLD_WARP;
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(0, 0x0);
+    SetScreenColorBrightness(1, 0x0);
 
     G2S_BlendNone();
     G2_BlendNone();
@@ -1001,7 +1001,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
     if (ov77_021D11A4() == 1) {
         param0->unk_29C = 1;
         param0->unk_2A0 = 0;
-        sub_0200F2C0();
+        FinishPaletteFade();
         BrightnessController_ResetScreenController(BRIGHTNESS_BOTH_SCREENS);
         return 1;
     }
@@ -1065,7 +1065,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
                 param0->unk_22A = 10;
                 param0->unk_00 = 8;
                 param0->unk_29C = 1;
-                sub_0200F344(0, 0x0);
+                SetScreenColorBrightness(0, 0x0);
             }
         }
         break;
@@ -1152,8 +1152,8 @@ static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         }
 
-        sub_0200F338(0);
-        sub_0200F338(1);
+        ResetScreenMasterBrightness(0);
+        ResetScreenMasterBrightness(1);
 
         param0->unk_04.unk_AC = 2;
         NNS_G3dGlbLightColor(1, 0x7fff);

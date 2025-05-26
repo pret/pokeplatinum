@@ -217,8 +217,8 @@ static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC *param0)
         GXS_SetVisiblePlane(0);
 
         ov90_021D1014();
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        ResetVisibleHardwareWindows(0);
+        ResetVisibleHardwareWindows(1);
         ov90_021D11EC(param0);
         break;
     case 1:

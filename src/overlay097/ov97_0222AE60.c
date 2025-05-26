@@ -973,8 +973,8 @@ static int ov97_0222BD70(ApplicationManager *appMan, int *param1)
     memset(v0, 0, sizeof(UnkStruct_0222AE60));
     v0->unk_00 = BgConfig_New(HEAP_ID_81);
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(0, 0x0);
+    SetScreenColorBrightness(1, 0x0);
 
     v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     v0->unk_14 = SaveData_GetMysteryGift(v0->saveData);

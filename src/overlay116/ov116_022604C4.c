@@ -1131,10 +1131,10 @@ static u32 ov116_022617E4(UnkStruct_ov116_0226139C *param0)
     if (ov114_0225CA54(&param0->unk_84) == 1) {
         if (param0->unk_48.unk_2C.unk_00 == 0) {
             if (IsScreenTransitionDone() == 1) {
-                sub_0200F2C0();
+                FinishPaletteFade();
             }
 
-            sub_0200F370(0x0);
+            SetColorBrightness(0x0);
             param0->unk_48.unk_2C.unk_00 = 1;
 
             return 1;

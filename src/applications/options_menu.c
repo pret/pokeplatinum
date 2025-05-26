@@ -358,8 +358,8 @@ static int SetupMenuVisuals(OptionsMenuData *menuData)
         GXS_SetVisiblePlane(0);
 
         SetVRAMBanks();
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        ResetVisibleHardwareWindows(0);
+        ResetVisibleHardwareWindows(1);
         SetupBgs(menuData);
         break;
 

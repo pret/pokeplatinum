@@ -89,8 +89,8 @@ int sub_0209A300(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200F344(0, 0);
-        sub_0200F344(1, 0);
+        SetScreenColorBrightness(0, 0);
+        SetScreenColorBrightness(1, 0);
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();

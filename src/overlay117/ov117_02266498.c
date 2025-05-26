@@ -35,10 +35,10 @@ int ov117_022664BC(ApplicationManager *appMan, int *param1)
         switch (v0->unk_00->unk_3E) {
         case 0:
             if (IsScreenTransitionDone() == 1) {
-                sub_0200F2C0();
+                FinishPaletteFade();
             }
 
-            sub_0200F370(0x0);
+            SetColorBrightness(0x0);
             v0->unk_00->unk_3E++;
             break;
         case 1:

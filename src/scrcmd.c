@@ -4397,8 +4397,8 @@ static BOOL ScrCmd_FadeScreen(ScriptContext *ctx)
     u16 color = ScriptContext_ReadHalfWord(ctx);
 
     StartScreenTransition(0, type, type, color, transition, frames, HEAP_ID_FIELD);
-    sub_0200F32C(0);
-    sub_0200F32C(1);
+    ResetVisibleHardwareWindows(0);
+    ResetVisibleHardwareWindows(1);
 
     return FALSE;
 }

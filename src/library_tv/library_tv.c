@@ -69,8 +69,8 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
 
     switch (*state) {
     case STATE_INIT:
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(0, 0x0);
+        SetScreenColorBrightness(1, 0x0);
 
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);

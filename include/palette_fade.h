@@ -1,44 +1,123 @@
 #ifndef POKEPLATINUM_PALETTE_FADE_H
 #define POKEPLATINUM_PALETTE_FADE_H
 
+#include "constants/heap.h"
+#include "constants/screen.h"
+
 #include "hardware_window.h"
+#include "system.h"
 
-typedef void (*UnkFuncPtr_0200F634)(void *);
+#define FADE_WHITE 0x7FFF
+#define FADE_BLACK 0x0000
+#define FADE_SAVED 0xFFFF
 
-typedef struct UnkStruct_0200F600 {
-    void *unk_00[2];
-    UnkFuncPtr_0200F634 unk_08[2];
-    int unk_10[2];
-} UnkStruct_0200F600;
+enum FadeMode {
+    MODE_BOTH_SCREENS = 0,
+    MODE_MAIN_THEN_SUB,
+    MODE_SUB_THEN_MAIN,
+    MODE_MAIN_ONLY,
+    MODE_SUB_ONLY,
+};
 
-typedef struct UnkStruct_0200F7A0 {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    void *unk_14;
-    HardwareWindowSettings *unk_18;
-    UnkStruct_0200F600 *unk_1C;
-    int heapID;
-    u16 unk_24;
-    u8 padding_26[2];
-    u32 unk_28;
-    u32 unk_2C;
-} UnkStruct_0200F7A0;
+enum FadeDirection {
+    FADE_IN = 0,
+    FADE_OUT,
+};
 
-void StartScreenTransition(int param0, int param1, int param2, u16 param3, int param4, int param5, int heapID);
-void sub_0200F27C(void);
+enum FadeMethod {
+    FADE_WINDOW = 0,
+    FADE_BRIGHTNESS,
+};
+
+enum FadeType {
+    FADE_TYPE_UNK_00 = 0,
+    FADE_TYPE_UNK_01,
+    FADE_TYPE_UNK_02,
+    FADE_TYPE_UNK_03,
+    FADE_TYPE_UNK_04,
+    FADE_TYPE_UNK_05,
+    FADE_TYPE_UNK_06,
+    FADE_TYPE_UNK_07,
+    FADE_TYPE_UNK_08,
+    FADE_TYPE_UNK_09,
+    FADE_TYPE_UNK_10,
+    FADE_TYPE_UNK_11,
+    FADE_TYPE_UNK_12,
+    FADE_TYPE_UNK_13,
+    FADE_TYPE_UNK_14,
+    FADE_TYPE_UNK_15,
+    FADE_TYPE_UNK_16,
+    FADE_TYPE_UNK_17,
+    FADE_TYPE_UNK_18,
+    FADE_TYPE_UNK_19,
+    FADE_TYPE_UNK_20,
+    FADE_TYPE_UNK_21,
+    FADE_TYPE_UNK_22,
+    FADE_TYPE_UNK_23,
+    FADE_TYPE_UNK_24,
+    FADE_TYPE_UNK_25,
+    FADE_TYPE_UNK_26,
+    FADE_TYPE_UNK_27,
+    FADE_TYPE_UNK_28,
+    FADE_TYPE_UNK_29,
+    FADE_TYPE_UNK_30,
+    FADE_TYPE_UNK_31,
+    FADE_TYPE_UNK_32,
+    FADE_TYPE_UNK_33,
+    FADE_TYPE_UNK_34,
+    FADE_TYPE_UNK_35,
+    FADE_TYPE_UNK_36,
+    FADE_TYPE_UNK_37,
+    FADE_TYPE_UNK_38,
+    FADE_TYPE_UNK_39,
+    FADE_TYPE_UNK_40,
+    FADE_TYPE_UNK_41,
+
+    FADE_TYPE_MAX,
+};
+
+enum FadeState {
+    FADE_IDLE,
+    FADE_ACTIVE,
+    FADE_CLEANUP,
+    FADE_DONE,
+};
+
+typedef struct PaletteFadeHBlanks {
+    void *data[DS_SCREEN_MAX];
+    Callback callback[DS_SCREEN_MAX];
+    BOOL running[DS_SCREEN_MAX];
+} PaletteFadeHBlanks;
+
+typedef struct PaletteFade {
+    enum FadeType type;
+    int steps;
+    int framesPerStep;
+    enum FadeState state;
+    enum DSScreen screen;
+    void *data;
+    HardwareWindowSettings *hwSettings;
+    PaletteFadeHBlanks *hblanks;
+    enum HeapId heapID;
+    u16 color;
+    // u8 padding_26[2];
+
+    enum FadeDirection direction;
+    enum FadeMethod method;
+} PaletteFade;
+
+void StartScreenTransition(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapId heapID);
+void ExecPaletteFade(void);
 BOOL IsScreenTransitionDone(void);
-void sub_0200F2C0(void);
-void sub_0200F32C(int param0);
-void sub_0200F338(int param0);
-void sub_0200F344(int param0, u16 param1);
-void sub_0200F370(u16 param0);
-void sub_0200F3B0(int param0, u16 param1);
-void sub_0200F42C(u16 param0);
-void sub_0200F44C(int param0, int param1);
-void sub_0200F6D8(UnkStruct_0200F600 *param0, void *param1, UnkFuncPtr_0200F634 param2, int param3, int heapID);
-void sub_0200F704(UnkStruct_0200F600 *param0, int param1, int heapID);
+void FinishPaletteFade(void);
+void ResetVisibleHardwareWindows(enum DSScreen screen);
+void ResetScreenMasterBrightness(enum DSScreen screen);
+void SetScreenColorBrightness(enum DSScreen screen, u16 color);
+void SetColorBrightness(u16 color);
+void SetupPaletteFadeRegisters(enum DSScreen screen, u16 color);
+void SetScreenBackgroundColor(u16 param0);
+void SetScreenMasterBrightness(enum DSScreen screen, int brightness);
+void sub_0200F6D8(PaletteFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapId heapID);
+void sub_0200F704(PaletteFadeHBlanks *hblanks, enum DSScreen screen, enum HeapId heapID);
 
 #endif // POKEPLATINUM_PALETTE_FADE_H

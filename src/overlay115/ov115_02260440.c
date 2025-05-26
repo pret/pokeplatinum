@@ -92,10 +92,10 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
         case 0:
 
             if (IsScreenTransitionDone() == 1) {
-                sub_0200F2C0();
+                FinishPaletteFade();
             }
 
-            sub_0200F370(0x0);
+            SetColorBrightness(0x0);
             v0->unk_78++;
             break;
         case 1:

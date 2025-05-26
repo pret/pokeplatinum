@@ -170,8 +170,8 @@ int ov99_021D0D80(ApplicationManager *appMan, int *param1)
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_14, SEQ_BLD_ENDING, 1);
 
     BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
-    sub_0200F44C(0, 0);
-    sub_0200F44C(1, 0);
+    SetScreenMasterBrightness(0, 0);
+    SetScreenMasterBrightness(1, 0);
 
     Bg_ToggleLayer(1, 1);
     Bg_ToggleLayer(5, 1);

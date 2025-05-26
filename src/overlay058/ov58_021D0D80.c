@@ -179,8 +179,8 @@ int ov58_021D0D80(ApplicationManager *appMan, int *param1)
         ov58_021D1184();
         ov58_021D11A4(v0->unk_00);
 
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(0, 0x0);
+        SetScreenColorBrightness(1, 0x0);
         StartScreenTransition(0, 17, 17, 0x0, 16, 1, HEAP_ID_39);
 
         {

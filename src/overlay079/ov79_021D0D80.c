@@ -129,10 +129,10 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        SetScreenColorBrightness(0, 0x0);
+        SetScreenColorBrightness(1, 0x0);
+        ResetVisibleHardwareWindows(0);
+        ResetVisibleHardwareWindows(1);
         EnableTouchPad();
         InitializeTouchPad(4);
         break;
@@ -175,8 +175,8 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         break;
     case 6:
         DisableTouchPad();
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(0, 0x0);
+        SetScreenColorBrightness(1, 0x0);
         SetVBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();

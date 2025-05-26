@@ -160,8 +160,8 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
         G2_BlendNone();
         G2S_BlendNone();
 
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        ResetVisibleHardwareWindows(0);
+        ResetVisibleHardwareWindows(1);
         ov5_021D173C(fieldSystem);
         FieldMapChange_Set3DDisplay(fieldSystem);
 

@@ -153,8 +153,8 @@ void FieldCommMan_ReconnectBattleClient(void)
 
 void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
 {
-    sub_0200F3B0(0, 0x0);
-    sub_0200F3B0(1, 0x0);
+    SetupPaletteFadeRegisters(0, 0x0);
+    SetupPaletteFadeRegisters(1, 0x0);
     CommMan_SetErrorHandling(1, 1);
 
     if (!CommMan_IsInitialized()) {
@@ -311,8 +311,8 @@ static void sub_020599E4(void)
 
     if (CommTiming_IsSyncState(92)) {
         StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        ResetVisibleHardwareWindows(0);
+        ResetVisibleHardwareWindows(1);
         CommPlayerMan_Restart();
         CommPlayer_SendPos(0);
         FieldCommMan_SetTask(sub_02059A70, 1);
@@ -387,8 +387,8 @@ static void sub_02059B10(void)
         CommSys_SendDataFixedSize(94, &v0);
 
         StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        ResetVisibleHardwareWindows(0);
+        ResetVisibleHardwareWindows(1);
         FieldCommMan_SetTask(sub_02059CD8, 0);
     }
 }

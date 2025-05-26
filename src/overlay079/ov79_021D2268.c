@@ -198,10 +198,10 @@ int ov79_021D22E4(ApplicationManager *appMan, int *param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        SetScreenColorBrightness(0, 0x0);
+        SetScreenColorBrightness(1, 0x0);
+        ResetVisibleHardwareWindows(0);
+        ResetVisibleHardwareWindows(1);
         break;
     case 1:
         if (!ov79_021D247C(v0)) {
@@ -244,8 +244,8 @@ int ov79_021D22E4(ApplicationManager *appMan, int *param1)
 
         break;
     case 7:
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(0, 0x0);
+        SetScreenColorBrightness(1, 0x0);
         SetVBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();

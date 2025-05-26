@@ -86,8 +86,8 @@ void *ov97_022376C4(ApplicationManager *appMan, int heapID, int param2, int para
 
     memset(v0, 0, param2);
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(0, 0x0);
+    SetScreenColorBrightness(1, 0x0);
 
     return v0;
 }

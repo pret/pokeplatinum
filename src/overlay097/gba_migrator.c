@@ -1827,8 +1827,8 @@ static int GBAMigrator_Init(ApplicationManager *appMan, int *state)
     migrator->bgConfig = BgConfig_New(HEAP_ID_MIGRATE_FROM_GBA);
     migrator->unk_E8EC = sub_02015920(HEAP_ID_MIGRATE_FROM_GBA);
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(0, 0x0);
+    SetScreenColorBrightness(1, 0x0);
 
     migrator->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     migrator->unk_14 = SaveData_GetTrainerInfo(migrator->saveData);

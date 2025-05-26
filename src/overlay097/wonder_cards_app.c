@@ -1201,8 +1201,8 @@ static BOOL WonderCardsApp_Init(ApplicationManager *appMan, int *unused)
     appData->bgConfig = BgConfig_New(HEAP_ID_WONDER_CARDS_APP);
     appData->heapID = HEAP_ID_WONDER_CARDS_APP;
 
-    sub_0200F344(DS_SCREEN_MAIN, 0x0);
-    sub_0200F344(DS_SCREEN_SUB, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_SUB, 0x0);
 
     appData->selectedWondercardSlot = NUM_WONDERCARD_SLOTS - 1;
     appData->numPlayerConnections = 1;

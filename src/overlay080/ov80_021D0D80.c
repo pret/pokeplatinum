@@ -518,10 +518,10 @@ static int ov80_021D13DC(UnkStruct_ov80_021D2A08 *param0)
 {
     if (IsScreenTransitionDone()) {
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_NONE, 31, 0);
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        SetScreenColorBrightness(0, 0x0);
+        SetScreenColorBrightness(1, 0x0);
+        ResetVisibleHardwareWindows(0);
+        ResetVisibleHardwareWindows(1);
         return 8;
     }
 

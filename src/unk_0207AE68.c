@@ -189,8 +189,8 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
 {
     int v0;
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(0, 0x0);
+    SetScreenColorBrightness(1, 0x0);
     SetVBlankCallback(NULL, NULL);
     Windows_Delete(param0->unk_04, 1);
     PaletteData_FreeBuffer(param0->unk_14, 0);
@@ -253,8 +253,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 1:
-        sub_0200F338(0);
-        sub_0200F338(1);
+        ResetScreenMasterBrightness(0);
+        ResetScreenMasterBrightness(1);
         sub_02015738(param0->unk_58, 0);
 
         if (param0->unk_7C & 0x2) {
@@ -492,8 +492,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         break;
     case 22:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
-            sub_0200F344(0, 0x0);
-            sub_0200F344(1, 0x0);
+            SetScreenColorBrightness(0, 0x0);
+            SetScreenColorBrightness(1, 0x0);
             sub_0207C460(param0->unk_00);
             PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_HIDE, 1);
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_HIDE, 1);
@@ -526,8 +526,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 24:
-        sub_0200F338(0);
-        sub_0200F338(1);
+        ResetScreenMasterBrightness(0);
+        ResetScreenMasterBrightness(1);
 
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
             if (param0->unk_3C->selectedMoveSlot == LEARNED_MOVES_MAX) {

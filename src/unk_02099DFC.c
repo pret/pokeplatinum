@@ -104,8 +104,8 @@ int sub_02099E38(ApplicationManager *appMan, int *param1)
         Sound_StopBGM(SEQ_TITLE01, 0);
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
         Sound_SetScene(SOUND_SCENE_NONE);
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(0, 0x0);
+        SetScreenColorBrightness(1, 0x0);
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();

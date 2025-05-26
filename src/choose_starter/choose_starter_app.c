@@ -394,8 +394,8 @@ BOOL ChooseStarter_Main(ApplicationManager *appMan, int *state)
 
     case CHOOSE_STARTER_MAIN_WAIT_FADE_IN:
         if (IsFadeDone(app)) {
-            sub_0200F32C(0);
-            sub_0200F32C(1);
+            ResetVisibleHardwareWindows(0);
+            ResetVisibleHardwareWindows(1);
             (*state)++;
         }
         break;
@@ -416,8 +416,8 @@ BOOL ChooseStarter_Main(ApplicationManager *appMan, int *state)
 
     case CHOOSE_STARTER_MAIN_WAIT_FADE_OUT:
         if (IsFadeDone(app)) {
-            sub_0200F32C(0);
-            sub_0200F32C(1);
+            ResetVisibleHardwareWindows(0);
+            ResetVisibleHardwareWindows(1);
 
             return TRUE;
         }

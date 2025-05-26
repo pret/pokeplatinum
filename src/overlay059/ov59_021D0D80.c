@@ -191,8 +191,8 @@ int ov59_021D0D80(ApplicationManager *appMan, int *param1)
         ov59_021D1128();
         ov59_021D1148(v0->unk_00);
 
-        sub_0200F338(0);
-        sub_0200F338(1);
+        ResetScreenMasterBrightness(0);
+        ResetScreenMasterBrightness(1);
         StartScreenTransition(0, 17, 17, 0x0, 16, 1, HEAP_ID_51);
 
         ov59_021D1388(v0, v1);

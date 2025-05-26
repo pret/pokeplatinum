@@ -566,7 +566,7 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
         break;
     case 9:
         if (IsScreenTransitionDone() == 0) {
-            sub_0200F2C0();
+            FinishPaletteFade();
         }
 
         StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_118);

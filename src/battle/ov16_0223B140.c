@@ -711,8 +711,8 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
         BattleSystem_LoadFightOverlay(battleSystem, 0);
     }
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(0, 0x0);
+    SetScreenColorBrightness(1, 0x0);
     BattleSystem_SetBurmyForm(battleSystem);
 
     if (battleSystem->resultMask != 0x4) {
@@ -818,8 +818,8 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
 static void ov16_0223C004(BattleSystem *battleSys, BgConfig *param1)
 {
     GXLayers_DisableEngineALayers();
-    sub_0200F338(0);
-    sub_0200F338(1);
+    ResetScreenMasterBrightness(0);
+    ResetScreenMasterBrightness(1);
 
     {
         UnkStruct_02099F80 v0 = {
@@ -1761,7 +1761,7 @@ static BOOL ov16_0223D354(ApplicationManager *appMan)
 
     switch (v0->unk_1021) {
     case 0:
-        sub_0200F338(0);
+        ResetScreenMasterBrightness(0);
         sub_02036378(1);
         v0->unk_1021++;
         break;
@@ -1982,7 +1982,7 @@ static void ov16_0223D7B4(ApplicationManager *appMan)
     UnkStruct_0207A778 *v0 = ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
-    sub_0200F344(0, 0x0);
+    SetScreenColorBrightness(0, 0x0);
     PaletteData_FreeBuffer(v0->unk_0C, 0);
     PaletteData_Free(v0->unk_0C);
     Windows_Delete(v0->unk_08, 1);
