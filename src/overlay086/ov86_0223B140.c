@@ -283,16 +283,16 @@ static BOOL ov86_0223D2A4(UnkStruct_ov86_0223D264 *param0);
 static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const TrainerInfo *param2);
 static SysTask *ov86_0223CAE4(UnkStruct_ov86_0223C9B0 *param0, fx16 param1, fx32 param2, int param3);
 
-int ov86_0223B140(OverlayManager *param0, int *param1)
+int ov86_0223B140(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov86_0223B3C8 *v0;
 
     SetVBlankCallback(NULL, NULL);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_63, 196608);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov86_0223B3C8), HEAP_ID_63);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov86_0223B3C8), HEAP_ID_63);
 
-    v0->unk_0C = OverlayManager_Args(param0);
+    v0->unk_0C = ApplicationManager_Args(appMan);
     v0->unk_1C50 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0351, HEAP_ID_63);
     v0->unk_1C48 = Strbuf_Init(500, HEAP_ID_63);
     v0->unk_1C4C = Strbuf_Init(500, HEAP_ID_63);
@@ -339,11 +339,11 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov86_0223B2E4(OverlayManager *param0, int *param1)
+int ov86_0223B2E4(ApplicationManager *appMan, int *param1)
 {
     switch (*param1) {
     case 0: {
-        UnkStruct_ov86_0223B3C8 *v0 = OverlayManager_Data(param0);
+        UnkStruct_ov86_0223B3C8 *v0 = ApplicationManager_Data(appMan);
 
         SysTask_Done(v0->unk_1C28);
 
@@ -358,7 +358,7 @@ int ov86_0223B2E4(OverlayManager *param0, int *param1)
         Strbuf_Free(v0->unk_1C4C);
         MessageLoader_Free(v0->unk_1C50);
         NARC_dtor(v0->unk_1C54);
-        OverlayManager_FreeData(param0);
+        ApplicationManager_FreeData(appMan);
         Heap_Destroy(HEAP_ID_63);
     }
         (*param1)++;
@@ -372,7 +372,7 @@ int ov86_0223B2E4(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov86_0223B394(OverlayManager *param0, int *param1)
+int ov86_0223B394(ApplicationManager *appMan, int *param1)
 {
     static BOOL (*const v0[])(UnkStruct_ov86_0223B3C8 *) = {
         ov86_0223B3C8,
@@ -382,7 +382,7 @@ int ov86_0223B394(OverlayManager *param0, int *param1)
         ov86_0223B40C
     };
 
-    UnkStruct_ov86_0223B3C8 *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov86_0223B3C8 *v1 = ApplicationManager_Data(appMan);
 
     if ((*param1) < NELEMS(v0)) {
         if (v0[(*param1)](v1)) {

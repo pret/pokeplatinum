@@ -76,9 +76,9 @@ typedef struct {
     UnkStruct_ov61_0222C3B0 unk_A4;
 } UnkStruct_ov61_0222C664;
 
-int ov61_0222BF44(OverlayManager *param0, int *param1);
-int ov61_0222C0F8(OverlayManager *param0, int *param1);
-int ov61_0222C160(OverlayManager *param0, int *param1);
+int ov61_0222BF44(ApplicationManager *appMan, int *param1);
+int ov61_0222C0F8(ApplicationManager *appMan, int *param1);
+int ov61_0222C160(ApplicationManager *appMan, int *param1);
 static void ov61_0222C1FC(void *param0);
 static void ov61_0222C224(BgConfig *param0);
 static void ov61_0222C38C(BgConfig *param0);
@@ -137,7 +137,7 @@ static const WindowTemplate Unk_ov61_0222E4A0 = {
     0x0
 };
 
-int ov61_0222BF44(OverlayManager *param0, int *param1)
+int ov61_0222BF44(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov61_0222C664 *v0;
 
@@ -155,9 +155,9 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_117, 0x50000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov61_0222C664), HEAP_ID_117);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov61_0222C664), HEAP_ID_117);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov61_0222C664));
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     v0->unk_04 = BgConfig_New(HEAP_ID_117);
 
     VramTransfer_New(64, HEAP_ID_117);
@@ -207,9 +207,9 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov61_0222C0F8(OverlayManager *param0, int *param1)
+int ov61_0222C0F8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov61_0222C664 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov61_0222C664 *v0 = ApplicationManager_Data(appMan);
     int v1, v2;
 
     switch (*param1) {
@@ -243,9 +243,9 @@ int ov61_0222C0F8(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov61_0222C160(OverlayManager *param0, int *param1)
+int ov61_0222C160(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov61_0222C664 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov61_0222C664 *v0 = ApplicationManager_Data(appMan);
 
     inline_ov61_0222C160(&v0->unk_A4);
 
@@ -267,7 +267,7 @@ int ov61_0222C160(OverlayManager *param0, int *param1)
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_117);
 
     return 1;

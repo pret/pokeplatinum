@@ -715,7 +715,7 @@ static void ov65_0222E01C(UnkStruct_ov65_0222EBE0 *param0)
     NARC_dtor(v0);
 }
 
-int ov65_0222E2A8(OverlayManager *param0, int *param1)
+int ov65_0222E2A8(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov65_0222EBE0 *v0;
     UnkStruct_ov98_02247168 *v1;
@@ -723,7 +723,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        v1 = OverlayManager_Args(param0);
+        v1 = ApplicationManager_Args(appMan);
 
         if (sub_020389B8()) {
             switch (v1->unk_04) {
@@ -755,7 +755,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_54, 0xa0000);
         }
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_0222EBE0), HEAP_ID_54);
+        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov65_0222EBE0), HEAP_ID_54);
 
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov65_0222EBE0));
         VramTransfer_New(32, HEAP_ID_54);
@@ -786,7 +786,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 1:
-        v0 = OverlayManager_Data(param0);
+        v0 = ApplicationManager_Data(appMan);
         (*param1) = 0;
         return 1;
         break;
@@ -795,9 +795,9 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov65_0222E3FC(OverlayManager *param0, int *param1)
+int ov65_0222E3FC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov65_0222EBE0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov65_0222EBE0 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -874,14 +874,14 @@ static void ov65_0222E47C(UnkStruct_ov65_0222EBE0 *param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
 }
 
-int ov65_0222E548(OverlayManager *param0, int *param1)
+int ov65_0222E548(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov65_0222EBE0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov65_0222EBE0 *v0 = ApplicationManager_Data(appMan);
     UnkStruct_ov98_02247168 *v1;
 
     ov65_0222E47C(v0);
 
-    v1 = OverlayManager_Args(param0);
+    v1 = ApplicationManager_Args(appMan);
     v1->unk_04 = v0->unk_3AC;
 
     if ((v0->unk_3AC == 8) || (v0->unk_3AC == 10)) {
@@ -892,7 +892,7 @@ int ov65_0222E548(OverlayManager *param0, int *param1)
 
     ov65_0222EC2C(v0);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     DisableTouchPad();
     VramTransfer_Free();
     Heap_Destroy(HEAP_ID_54);

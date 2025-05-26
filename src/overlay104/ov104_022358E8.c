@@ -110,7 +110,7 @@ BOOL ov104_0223597C(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay107);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         ov107_02241AE0,
         ov107_02241BD4,
         ov107_02241D2C,
@@ -138,7 +138,7 @@ BOOL ov104_022359D0(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay107);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         NULL,
         NULL,
         NULL,
@@ -201,7 +201,7 @@ BOOL ov104_02235AAC(UnkStruct_ov104_0222E930 *param0)
 
     v1->unk_0C = v0;
 
-    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v0, 0, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
     return 1;
 }
 
@@ -214,7 +214,7 @@ BOOL ov104_02235AE8(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay107);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         ov107_02245EB0,
         ov107_02245FD0,
         ov107_02246130,

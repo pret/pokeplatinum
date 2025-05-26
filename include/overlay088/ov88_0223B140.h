@@ -6,9 +6,9 @@
 #include "overlay_manager.h"
 #include "party.h"
 
-int ov88_0223B140(OverlayManager *param0, int *param1);
-int ov88_0223B57C(OverlayManager *param0, int *param1);
-int ov88_0223C03C(OverlayManager *param0, int *param1);
+int ov88_0223B140(ApplicationManager *appMan, int *param1);
+int ov88_0223B57C(ApplicationManager *appMan, int *param1);
+int ov88_0223C03C(ApplicationManager *appMan, int *param1);
 void ov88_0223D044(int param0, int param1, int param2);
 void ov88_0223D058(UnkStruct_02095E80 *param0, int param1, int param2);
 void ov88_0223D098(int param0, Party *param1, int param2);

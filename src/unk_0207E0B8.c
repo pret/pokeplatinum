@@ -72,9 +72,9 @@ typedef struct {
     u16 unk_0A;
 } UnkStruct_020F1DF8;
 
-static int sub_0207E0B8(OverlayManager *param0, int *param1);
-static int sub_0207E2A8(OverlayManager *param0, int *param1);
-static int sub_0207E7E0(OverlayManager *param0, int *param1);
+static int sub_0207E0B8(ApplicationManager *appMan, int *param1);
+static int sub_0207E2A8(ApplicationManager *appMan, int *param1);
+static int sub_0207E7E0(ApplicationManager *appMan, int *param1);
 static int sub_0207E490(GameWindowLayout *param0);
 static int sub_0207E518(GameWindowLayout *param0);
 static int sub_0207E5B4(GameWindowLayout *param0);
@@ -90,7 +90,7 @@ static void sub_0207E8C0(void);
 static void sub_0207E918(BgConfig *param0);
 static void sub_0207EA24(BgConfig *param0);
 static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1);
-static GameWindowLayout *sub_0207ECC0(OverlayManager *param0);
+static GameWindowLayout *sub_0207ECC0(ApplicationManager *appMan);
 static void sub_0207EE14(GameWindowLayout *param0);
 static void sub_0207F308(GameWindowLayout *param0);
 static u8 sub_0207F984(GameWindowLayout *param0, u8 param1);
@@ -152,7 +152,7 @@ u8 sub_02080488(GameWindowLayout *param0, u8 param1);
 static u8 CheckPokemonCondition(GameWindowLayout *param0);
 static BOOL UpdatePokemonStatus(GameWindowLayout *param0, u8 param1, s8 param2);
 
-const OverlayManagerTemplate Unk_020F1E88 = {
+const ApplicationManagerTemplate Unk_020F1E88 = {
     sub_0207E0B8,
     sub_0207E2A8,
     sub_0207E7E0,
@@ -240,7 +240,7 @@ static const u16 Unk_020F1CB0[] = {
     0x87,
 };
 
-static int sub_0207E0B8(OverlayManager *param0, int *param1)
+static int sub_0207E0B8(ApplicationManager *appMan, int *param1)
 {
     GameWindowLayout *v0;
     NARC *v1;
@@ -259,7 +259,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_12, 0x30000);
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_12);
-    v0 = sub_0207ECC0(param0);
+    v0 = sub_0207ECC0(appMan);
 
     StartScreenTransition(1, 3, 3, 0x0, 6, 1, HEAP_ID_12);
     sub_0207EDC0(v0);
@@ -316,9 +316,9 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int sub_0207E2A8(OverlayManager *param0, int *param1)
+static int sub_0207E2A8(ApplicationManager *appMan, int *param1)
 {
-    GameWindowLayout *v0 = OverlayManager_Data(param0);
+    GameWindowLayout *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -637,9 +637,9 @@ static int sub_0207E750(GameWindowLayout *param0)
     return 21;
 }
 
-static int sub_0207E7E0(OverlayManager *param0, int *param1)
+static int sub_0207E7E0(ApplicationManager *appMan, int *param1)
 {
-    GameWindowLayout *v0 = OverlayManager_Data(param0);
+    GameWindowLayout *v0 = ApplicationManager_Data(appMan);
     u32 v1;
 
     SetVBlankCallback(NULL, NULL);
@@ -668,7 +668,7 @@ static int sub_0207E7E0(OverlayManager *param0, int *param1)
         sub_0207A2C0(v0->unk_B20);
     }
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_12);
 
     return 1;
@@ -935,15 +935,15 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
     Bg_MaskPalette(4, 0);
 }
 
-static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
+static GameWindowLayout *sub_0207ECC0(ApplicationManager *appMan)
 {
     GameWindowLayout *v0;
     u32 v1;
 
-    v0 = OverlayManager_NewData(param0, sizeof(GameWindowLayout), HEAP_ID_12);
+    v0 = ApplicationManager_NewData(appMan, sizeof(GameWindowLayout), HEAP_ID_12);
     memset(v0, 0, sizeof(GameWindowLayout));
 
-    v0->partyManagementData = OverlayManager_Args(param0);
+    v0->partyManagementData = ApplicationManager_Args(appMan);
     v0->unk_00 = BgConfig_New(HEAP_ID_12);
 
     if ((v0->partyManagementData->unk_20 == 2) && (v0->partyManagementData->battleRegulation != NULL)) {

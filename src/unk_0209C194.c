@@ -36,8 +36,8 @@ typedef struct {
 } UnkStruct_0209C1EC;
 
 static BOOL (*const Unk_020F951C[6])(UnkStruct_0209C1EC *);
-static const OverlayManagerTemplate Unk_020F94FC;
-static const OverlayManagerTemplate Unk_020F950C;
+static const ApplicationManagerTemplate Unk_020F94FC;
+static const ApplicationManagerTemplate Unk_020F950C;
 
 UnkStruct_0209C194 *sub_0209C194(UnkStruct_0209C194_1 *param0, u32 heapID)
 {
@@ -174,14 +174,14 @@ static BOOL (*const Unk_020F951C[6])(UnkStruct_0209C1EC *) = {
     sub_0209C364,
 };
 
-static const OverlayManagerTemplate Unk_020F94FC = {
+static const ApplicationManagerTemplate Unk_020F94FC = {
     ov109_021D3D50,
     ov109_021D3EB0,
     ov109_021D3F9C,
     FS_OVERLAY_ID(overlay109)
 };
 
-static const OverlayManagerTemplate Unk_020F950C = {
+static const ApplicationManagerTemplate Unk_020F950C = {
     ov109_021D0D80,
     ov109_021D0F2C,
     ov109_021D0EB4,

@@ -90,7 +90,7 @@ static void ov88_0223C0E0(void *param0);
 static void ov88_0223C15C(void);
 static void ov88_0223C17C(BgConfig *param0);
 static void ov88_0223C63C(void);
-static void ov88_0223C370(UnkStruct_02095E80 *param0, OverlayManager *param1);
+static void ov88_0223C370(UnkStruct_02095E80 *param0, ApplicationManager *appMan);
 static void ov88_0223C44C(BgConfig *param0);
 static void ov88_0223C4E0(BgConfig *param0, int param1, int param2);
 static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1);
@@ -268,7 +268,7 @@ static const u8 Unk_ov88_0223F004[][4][6] = {
     },
 };
 
-int ov88_0223B140(OverlayManager *param0, int *param1)
+int ov88_0223B140(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_02095E80 *v0;
     NARC *v1;
@@ -284,7 +284,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x50000 + 0x20000 + 2000);
 
     v1 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, HEAP_ID_26);
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02095E80), HEAP_ID_26);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02095E80), HEAP_ID_26);
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_02095E80));
 
@@ -293,9 +293,9 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     v0->unk_17C = StringTemplate_Default(HEAP_ID_26);
     v0->unk_180 = StringTemplate_Default(HEAP_ID_26);
     v0->unk_184 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);
-    v0->unk_40 = NULL;
+    v0->appMan = NULL;
 
-    ov88_0223C370(v0, param0);
+    ov88_0223C370(v0, appMan);
     SetAutorepeat(4, 8);
     ov88_0223C15C();
     ov88_0223C17C(v0->unk_174);
@@ -405,9 +405,9 @@ static void ov88_0223B4F0(UnkStruct_02095E80 *param0)
     ov88_0223C4E0(param0->unk_174, Party_GetCurrentCount(param0->unk_2270), Party_GetCurrentCount(param0->unk_2274));
 }
 
-int ov88_0223B57C(OverlayManager *param0, int *param1)
+int ov88_0223B57C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02095E80 *v0 = OverlayManager_Data(param0);
+    UnkStruct_02095E80 *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
 
     switch (*param1) {
@@ -448,8 +448,8 @@ int ov88_0223B57C(OverlayManager *param0, int *param1)
             }
             break;
         case 5:
-            if (OverlayManager_Exec(v0->unk_40)) {
-                OverlayManager_Free(v0->unk_40);
+            if (ApplicationManager_Exec(v0->appMan)) {
+                ApplicationManager_Free(v0->appMan);
                 ov88_0223B3C0(v0);
 
                 v0->unk_44 = 0;
@@ -857,10 +857,10 @@ static void ov88_0223BFD8(UnkStruct_02095E80 *param0)
     }
 }
 
-int ov88_0223C03C(OverlayManager *param0, int *param1)
+int ov88_0223C03C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02095E80 *v0 = OverlayManager_Data(param0);
-    UnkStruct_ov88_0223C370 *v1 = OverlayManager_Args(param0);
+    UnkStruct_02095E80 *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_ov88_0223C370 *v1 = ApplicationManager_Args(appMan);
     int v2;
 
     v1->unk_28 = v0->unk_5C;
@@ -880,7 +880,7 @@ int ov88_0223C03C(OverlayManager *param0, int *param1)
     StringTemplate_Free(v0->unk_17C);
     StringTemplate_Free(v0->unk_178);
     Strbuf_Free(v0->unk_18C);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_26);
 
@@ -1109,9 +1109,9 @@ static void ov88_0223C17C(BgConfig *param0)
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 }
 
-static void ov88_0223C370(UnkStruct_02095E80 *param0, OverlayManager *param1)
+static void ov88_0223C370(UnkStruct_02095E80 *param0, ApplicationManager *appMan)
 {
-    UnkStruct_ov88_0223C370 *v0 = OverlayManager_Args(param1);
+    UnkStruct_ov88_0223C370 *v0 = ApplicationManager_Args(appMan);
 
     param0->unk_08 = v0;
     param0->unk_6CC = 4;
@@ -1735,7 +1735,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 
-    param0->unk_40 = OverlayManager_New(&gPokemonSummaryScreenApp, &param0->unk_0C, 26);
+    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_0C, 26);
     param0->unk_3C = param1;
 }
 

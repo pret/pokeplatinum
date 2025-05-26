@@ -385,10 +385,10 @@ static void (*const Unk_ov65_02239A2C[4])(UnkStruct_ov65_022367A8 *, UnkStruct_o
     ov65_0223796C,
 };
 
-int ov65_0223648C(OverlayManager *param0, int *param1)
+int ov65_0223648C(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov65_022367A8 *v0;
-    UnkStruct_0207DE04 *v1 = OverlayManager_Args(param0);
+    UnkStruct_0207DE04 *v1 = ApplicationManager_Args(appMan);
     BOOL v2;
 
     Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
@@ -399,7 +399,7 @@ int ov65_0223648C(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_96, 0x18000);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_97, 0xa000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_022367A8), HEAP_ID_96);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov65_022367A8), HEAP_ID_96);
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov65_022367A8));
     MI_CpuFill8(v0->unk_00.unk_1C, 1, sizeof(u8) * 4);
@@ -425,10 +425,10 @@ int ov65_0223648C(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov65_02236548(OverlayManager *param0, int *param1)
+int ov65_02236548(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov65_022367A8 *v0 = OverlayManager_Data(param0);
-    UnkStruct_0207DE04 *v1 = OverlayManager_Args(param0);
+    UnkStruct_ov65_022367A8 *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_0207DE04 *v1 = ApplicationManager_Args(appMan);
     BOOL v2;
 
     switch (*param1) {
@@ -492,10 +492,10 @@ int ov65_02236548(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov65_0223668C(OverlayManager *param0, int *param1)
+int ov65_0223668C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov65_022367A8 *v0 = OverlayManager_Data(param0);
-    UnkStruct_0207DE04 *v1 = OverlayManager_Args(param0);
+    UnkStruct_ov65_022367A8 *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_0207DE04 *v1 = ApplicationManager_Args(appMan);
 
     SetVBlankCallback(NULL, NULL);
 
@@ -505,7 +505,7 @@ int ov65_0223668C(OverlayManager *param0, int *param1)
     ov65_022367F8(v0, 96);
 
     VramTransfer_Free();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_97);
     Heap_Destroy(HEAP_ID_96);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));

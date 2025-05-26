@@ -105,32 +105,32 @@ void Strbuf_ToChars(const Strbuf *param0, u16 *param1, u32 param2);
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
 MysteryGift *SaveData_GetMysteryGift(SaveData *saveData);
 void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapId heapID);
-static int ov97_0222D474(OverlayManager *param0);
-static int ov97_0222D4D8(OverlayManager *param0);
-static int ov97_0222DA18(OverlayManager *param0);
-static int ov97_0222D984(OverlayManager *param0);
-static int ov97_0222D75C(OverlayManager *param0);
-static int ov97_0222D94C(OverlayManager *param0);
-static int ov97_0222D798(OverlayManager *param0);
-static int ov97_0222D814(OverlayManager *param0);
-static int ov97_0222D884(OverlayManager *param0);
-static int ov97_0222D9BC(OverlayManager *param0);
-static int ov97_0222D9F0(OverlayManager *param0);
-static int ov97_0222DA64(OverlayManager *param0);
-static int ov97_0222DA84(OverlayManager *param0);
-static int ov97_0222DB08(OverlayManager *param0);
-static int ov97_0222DB40(OverlayManager *param0);
-static void ov97_0222DD1C(OverlayManager *param0, UnkStruct_ov97_0223E5B8 *param1, int param2, Window *param3, u32 param4);
-static void ov97_0222DDD0(OverlayManager *param0, int param1, u32 param2);
-static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2);
+static int ov97_0222D474(ApplicationManager *param0);
+static int ov97_0222D4D8(ApplicationManager *param0);
+static int ov97_0222DA18(ApplicationManager *param0);
+static int ov97_0222D984(ApplicationManager *param0);
+static int ov97_0222D75C(ApplicationManager *param0);
+static int ov97_0222D94C(ApplicationManager *param0);
+static int ov97_0222D798(ApplicationManager *param0);
+static int ov97_0222D814(ApplicationManager *param0);
+static int ov97_0222D884(ApplicationManager *param0);
+static int ov97_0222D9BC(ApplicationManager *param0);
+static int ov97_0222D9F0(ApplicationManager *param0);
+static int ov97_0222DA64(ApplicationManager *param0);
+static int ov97_0222DA84(ApplicationManager *param0);
+static int ov97_0222DB08(ApplicationManager *param0);
+static int ov97_0222DB40(ApplicationManager *param0);
+static void ov97_0222DD1C(ApplicationManager *param0, UnkStruct_ov97_0223E5B8 *param1, int param2, Window *param3, u32 param4);
+static void ov97_0222DDD0(ApplicationManager *param0, int param1, u32 param2);
+static void ov97_0222DE78(ApplicationManager *param0, Window *param1, u32 param2);
 static void ov97_022302D4(void);
 static void ov97_02230224(UnkStruct_ov97_0222D04C *param0);
 static void ov97_022302F4(UnkStruct_ov97_0222D04C *param0);
-static int ov97_0222E228(OverlayManager *param0, Window *param1, int param2, int param3);
-int ov97_02238EAC(OverlayManager *param0, int *param1);
+static int ov97_0222E228(ApplicationManager *param0, Window *param1, int param2, int param3);
+int ov97_02238EAC(ApplicationManager *param0, int *param1);
 static void ov97_0222EEB8(SysTask *param0, void *param1);
 
-static OverlayManager *Unk_ov97_0223F1B0;
+static ApplicationManager *Unk_ov97_0223F1B0;
 
 UnkStruct_ov97_0223E5B8 Unk_ov97_0223E5B8[] = {
     { 0xC, (u32)ov97_0222DA84 },
@@ -220,10 +220,10 @@ void ov97_0222D344(UnkStruct_ov97_0222D04C *param0, int param1)
     ov97_0222D30C(param0, param1);
 }
 
-static void ov97_0222D34C(OverlayManager *param0)
+static void ov97_0222D34C(ApplicationManager *param0)
 {
     int v0;
-    UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
 
     ov97_02237DA0();
 
@@ -287,9 +287,9 @@ static void ov97_0222D45C(Window *param0, u8 param1)
     }
 }
 
-static int ov97_0222D474(OverlayManager *param0)
+static int ov97_0222D474(ApplicationManager *param0)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
 
     if (v0->unk_1638 != 2) {
         ov97_0222DE78(param0, &v0->unk_18, 3);
@@ -309,9 +309,9 @@ static int ov97_0222D474(OverlayManager *param0)
     }
 }
 
-static int ov97_0222D4D8(OverlayManager *param0)
+static int ov97_0222D4D8(ApplicationManager *param0)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
 
     if (v0->unk_80 == 1) {
         return 49;
@@ -345,9 +345,9 @@ static int ov97_0222D4D8(OverlayManager *param0)
     }
 }
 
-static PGT *ov97_0222D55C(OverlayManager *param0)
+static PGT *ov97_0222D55C(ApplicationManager *param0)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
     WonderCard *v1 = &v0->unk_8C.unk_50;
     WonderCardMetadata *v2 = &v0->unk_8C.unk_00;
     UnkStruct_ov97_0223829C *v3;
@@ -416,13 +416,13 @@ static void ov97_0222D614(void *param0)
     }
 }
 
-static void ov97_0222D658(OverlayManager *param0)
+static void ov97_0222D658(ApplicationManager *param0)
 {
     int v0, v1;
-    UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(param0);
     WonderCardMetadata *v3 = &v2->unk_8C.unk_00;
     WonderCard *v4 = &v2->unk_8C.unk_50;
-    SaveData *saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    SaveData *saveData = ((ApplicationArgs *)ApplicationManager_Args(param0))->saveData;
     MysteryGift *v6;
 
     if (v3->saveWonderCard == 0) {
@@ -456,11 +456,11 @@ static void ov97_0222D658(OverlayManager *param0)
     v2->unk_2A48 = ov97_0222D614;
 }
 
-static void ov97_0222D6F8(OverlayManager *param0, int param1)
+static void ov97_0222D6F8(ApplicationManager *param0, int param1)
 {
     int v0;
     Window *v1;
-    UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(param0);
 
     if (param1 == 0) {
         v0 = 4;
@@ -478,9 +478,9 @@ static void ov97_0222D6F8(OverlayManager *param0, int param1)
     ov97_0222DD1C(param0, Unk_ov97_0223E5A8, NELEMS(Unk_ov97_0223E5A8), v1, v0);
 }
 
-static int ov97_0222D75C(OverlayManager *param0)
+static int ov97_0222D75C(ApplicationManager *param0)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
 
     ov97_0222D444(&v0->unk_28[2], 0);
     ov97_0222D444(&v0->unk_58, 0);
@@ -494,10 +494,10 @@ static int ov97_0222D75C(OverlayManager *param0)
     return ov97_0222DA84(param0);
 }
 
-static int ov97_0222D798(OverlayManager *param0)
+static int ov97_0222D798(ApplicationManager *param0)
 {
     Window *v0;
-    UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
 
     if (ov97_02237624()) {
         v1->unk_1638 = 2;
@@ -519,10 +519,10 @@ static int ov97_0222D798(OverlayManager *param0)
     return 5;
 }
 
-static int ov97_0222D814(OverlayManager *param0)
+static int ov97_0222D814(ApplicationManager *param0)
 {
     Window *v0;
-    UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
 
     v1->unk_1638 = 4;
 
@@ -540,10 +540,10 @@ static int ov97_0222D814(OverlayManager *param0)
     return 5;
 }
 
-static int ov97_0222D884(OverlayManager *param0)
+static int ov97_0222D884(ApplicationManager *param0)
 {
     Window *v0;
-    UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
 
     v1->unk_1638 = 3;
 
@@ -561,10 +561,10 @@ static int ov97_0222D884(OverlayManager *param0)
     return 5;
 }
 
-static void ov97_0222D8F4(OverlayManager *param0)
+static void ov97_0222D8F4(ApplicationManager *param0)
 {
     Window *v0;
-    UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
 
     v0 = &v1->unk_28[2];
 
@@ -576,9 +576,9 @@ static void ov97_0222D8F4(OverlayManager *param0)
     ov97_0222DD1C(param0, Unk_ov97_0223E588, NELEMS(Unk_ov97_0223E588), v0, 4);
 }
 
-static int ov97_0222D94C(OverlayManager *param0)
+static int ov97_0222D94C(ApplicationManager *param0)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
 
     ov97_0222D444(&v0->unk_28[2], 0);
     ov97_0222D444(&v0->unk_58, 0);
@@ -592,9 +592,9 @@ static int ov97_0222D94C(OverlayManager *param0)
     return ov97_0222DA84(param0);
 }
 
-static int ov97_0222D984(OverlayManager *param0)
+static int ov97_0222D984(ApplicationManager *param0)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
 
     ov97_0222DE78(param0, &v0->unk_18, 3);
     ov97_0222D444(&v0->unk_28[2], 0);
@@ -604,9 +604,9 @@ static int ov97_0222D984(OverlayManager *param0)
     return 32;
 }
 
-static int ov97_0222D9BC(OverlayManager *param0)
+static int ov97_0222D9BC(ApplicationManager *param0)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
 
     if ((v0->unk_80 == 3) || (v0->unk_80 == 4) || (v0->unk_80 == 2)) {
         return 49;
@@ -618,7 +618,7 @@ static int ov97_0222D9BC(OverlayManager *param0)
     return 33;
 }
 
-static int ov97_0222D9F0(OverlayManager *param0)
+static int ov97_0222D9F0(ApplicationManager *param0)
 {
     if ((Unk_ov97_0223F1A8 == 40) || (Unk_ov97_0223F1A8 == 41) || (Unk_ov97_0223F1A8 == 48)) {
         if (ov97_022389C8()) {
@@ -629,9 +629,9 @@ static int ov97_0222D9F0(OverlayManager *param0)
     return 36;
 }
 
-static int ov97_0222DA18(OverlayManager *param0)
+static int ov97_0222DA18(ApplicationManager *param0)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
 
     ov97_0222DE78(param0, &v0->unk_18, 3);
     ov97_0222D30C(v0, 1);
@@ -644,9 +644,9 @@ static int ov97_0222DA18(OverlayManager *param0)
     return 27;
 }
 
-static int ov97_0222DA64(OverlayManager *param0)
+static int ov97_0222DA64(ApplicationManager *param0)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
 
     ov97_0222D444(&v0->unk_28[1], 0);
     ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
@@ -654,11 +654,11 @@ static int ov97_0222DA64(OverlayManager *param0)
     return 3;
 }
 
-static int ov97_0222DA84(OverlayManager *param0)
+static int ov97_0222DA84(ApplicationManager *param0)
 {
     Window *v0;
     SystemData *v1;
-    UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(param0);
     MysteryGift *v3 = SaveData_GetMysteryGift(v2->saveData);
 
     if (v2->unk_62C == 30) {
@@ -679,9 +679,9 @@ static int ov97_0222DA84(OverlayManager *param0)
     return 4;
 }
 
-static int ov97_0222DB08(OverlayManager *param0)
+static int ov97_0222DB08(ApplicationManager *param0)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
 
     if (v0->unk_62C == 30) {
         v0->unk_630 = 1;
@@ -692,9 +692,9 @@ static int ov97_0222DB08(OverlayManager *param0)
     return -1;
 }
 
-static int ov97_0222DB40(OverlayManager *param0)
+static int ov97_0222DB40(ApplicationManager *param0)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
 
     if (v0->unk_62C == 30) {
         v0->unk_630 = 1;
@@ -768,11 +768,11 @@ static void ov97_0222DC9C(BgConfig *param0)
     ov97_0222DC20(param0);
 }
 
-static void ov97_0222DD1C(OverlayManager *param0, UnkStruct_ov97_0223E5B8 *param1, int param2, Window *param3, u32 param4)
+static void ov97_0222DD1C(ApplicationManager *param0, UnkStruct_ov97_0223E5B8 *param1, int param2, Window *param3, u32 param4)
 {
     int v0;
     ListMenuTemplate v1;
-    UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(param0);
 
     if (v2->unk_7C) {
         StringList_Free(v2->unk_7C);
@@ -804,9 +804,9 @@ static void ov97_0222DD1C(OverlayManager *param0, UnkStruct_ov97_0223E5B8 *param
     }
 }
 
-static void ov97_0222DDD0(OverlayManager *param0, int param1, u32 param2)
+static void ov97_0222DDD0(ApplicationManager *param0, int param1, u32 param2)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
     Window *v1;
     UnkStruct_ov97_0223E5B8 v2[4];
     int v3, v4 = 0;
@@ -829,10 +829,10 @@ static void ov97_0222DDD0(OverlayManager *param0, int param1, u32 param2)
     ov97_0222DD1C(param0, v2, v4, v1, param2);
 }
 
-static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
+static void ov97_0222DE78(ApplicationManager *param0, Window *param1, u32 param2)
 {
     Strbuf *v0;
-    UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
 
     v1->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_86);
     v1->unk_0C = StringTemplate_Default(HEAP_ID_86);
@@ -858,10 +858,10 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
     v1->unk_68 = 0xff;
 }
 
-static void ov97_0222DF10(OverlayManager *param0, Window *param1, u16 *param2)
+static void ov97_0222DF10(ApplicationManager *param0, Window *param1, u16 *param2)
 {
     Strbuf *v0;
-    UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
 
     v0 = Strbuf_Init(36 + 1, HEAP_ID_86);
 
@@ -872,12 +872,12 @@ static void ov97_0222DF10(OverlayManager *param0, Window *param1, u16 *param2)
     Strbuf_Free(v0);
 }
 
-static void ov97_0222DF70(OverlayManager *param0, int *param1, int (*param2)(OverlayManager *))
+static void ov97_0222DF70(ApplicationManager *param0, int *param1, int (*param2)(ApplicationManager *))
 {
     u32 v0;
     int v1;
-    UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
-    static int (*v3)(OverlayManager *);
+    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(param0);
+    static int (*v3)(ApplicationManager *);
 
     v0 = ListMenu_ProcessInput(v2->unk_78);
 
@@ -899,7 +899,7 @@ static void ov97_0222DF70(OverlayManager *param0, int *param1, int (*param2)(Ove
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (v0) {
-            v3 = (static int (*)(OverlayManager *))v0;
+            v3 = (static int (*)(ApplicationManager *))v0;
             v1 = v3(param0);
 
             if (v1 != -1) {
@@ -910,7 +910,7 @@ static void ov97_0222DF70(OverlayManager *param0, int *param1, int (*param2)(Ove
     }
 }
 
-static BOOL ov97_0222DFD4(OverlayManager *param0, UnkStruct_ov97_0222D04C *param1)
+static BOOL ov97_0222DFD4(ApplicationManager *param0, UnkStruct_ov97_0222D04C *param1)
 {
     int v0;
 
@@ -936,9 +936,9 @@ static BOOL ov97_0222DFD4(OverlayManager *param0, UnkStruct_ov97_0222D04C *param
     return 1;
 }
 
-static void ov97_0222E080(OverlayManager *param0, int *param1)
+static void ov97_0222E080(ApplicationManager *param0, int *param1)
 {
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
 
     switch (ov97_02238EAC(param0, &v0->unk_1644)) {
     case 0:
@@ -997,10 +997,10 @@ void ov97_0222E13C(UnkStruct_ov97_0222D04C *param0)
     StringTemplate_Free(v0);
 }
 
-static int ov97_0222E1D8(OverlayManager *param0)
+static int ov97_0222E1D8(ApplicationManager *param0)
 {
     int v0;
-    UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
 
     if (v1->unk_80 == 3) {
         v0 = 21;
@@ -1018,11 +1018,11 @@ static int ov97_0222E1D8(OverlayManager *param0)
     return ov97_0222E228(param0, &v1->unk_18, v0, 51);
 }
 
-static int ov97_0222E228(OverlayManager *param0, Window *param1, int param2, int param3)
+static int ov97_0222E228(ApplicationManager *param0, Window *param1, int param2, int param3)
 {
     StringTemplate *v0;
     MessageLoader *v1;
-    UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(param0);
 
     if (param1 && param2) {
         v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_86);
@@ -1065,14 +1065,14 @@ static void ov97_0222E2AC(UnkStruct_ov97_0222D04C *param0)
     }
 }
 
-static int ov97_0222E2DC(OverlayManager *param0, int *param1)
+static int ov97_0222E2DC(ApplicationManager *param0, int *param1)
 {
     UnkStruct_ov97_0222D04C *v0;
 
     ov97_022301B0(param0);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_86, 0x30000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_0222D04C), HEAP_ID_86);
+    v0 = ApplicationManager_NewData(param0, sizeof(UnkStruct_ov97_0222D04C), HEAP_ID_86);
     memset(v0, 0, sizeof(UnkStruct_ov97_0222D04C));
     v0->unk_00 = BgConfig_New(HEAP_ID_86);
 
@@ -1095,7 +1095,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
     }
 
     v0->unk_62C = 29;
-    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(param0))->saveData;
     v0->unk_08 = SaveData_GetOptions(v0->saveData);
     v0->unk_68 = 0xff;
 
@@ -1964,11 +1964,11 @@ static void ov97_0222F4BC(SysTask *param0, void *param1)
     ov97_0222E694(v0);
 }
 
-static int ov97_0222F75C(OverlayManager *param0, int *param1)
+static int ov97_0222F75C(ApplicationManager *param0, int *param1)
 {
     u32 v0, v1;
     PGT *v2;
-    UnkStruct_ov97_0222D04C *v3 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v3 = ApplicationManager_Data(param0);
 
     CTRDG_IsExisting();
 
@@ -2409,33 +2409,33 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-OverlayManager *ov97_022301A4(void)
+ApplicationManager *ov97_022301A4(void)
 {
     return Unk_ov97_0223F1B0;
 }
 
-void ov97_022301B0(OverlayManager *param0)
+void ov97_022301B0(ApplicationManager *param0)
 {
     Unk_ov97_0223F1B0 = param0;
 }
 
-extern const OverlayManagerTemplate gWonderCardsAppTemplate;
+extern const ApplicationManagerTemplate gWonderCardsAppTemplate;
 
-static int ov97_022301BC(OverlayManager *param0, int *param1)
+static int ov97_022301BC(ApplicationManager *param0, int *param1)
 {
     FS_EXTERN_OVERLAY(overlay77);
     FS_EXTERN_OVERLAY(overlay97);
 
-    UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
 
     if (v0->unk_440 == 0) {
-        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
     } else if (v0->unk_440 == 1) {
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &gWonderCardsAppTemplate);
     }
 
     Heap_Destroy(HEAP_ID_91);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_86);
 
     if (v0->unk_1638 == 2) {
@@ -2579,7 +2579,7 @@ static void ov97_022302F4(UnkStruct_ov97_0222D04C *param0)
     }
 }
 
-const OverlayManagerTemplate Unk_ov97_0223D71C = {
+const ApplicationManagerTemplate Unk_ov97_0223D71C = {
     ov97_0222E2DC,
     ov97_0222F75C,
     ov97_022301BC,

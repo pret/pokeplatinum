@@ -582,15 +582,15 @@ static const ListMenuTemplate Unk_ov70_0226D644 = {
     NULL,
 };
 
-int ov70_0225D9A4(OverlayManager *param0, int *param1)
+int ov70_0225D9A4(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov70_0225DEE8 *v0;
-    UnkStruct_ov66_02230E68 *v1 = OverlayManager_Args(param0);
+    UnkStruct_ov66_02230E68 *v1 = ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_112, 0x3a000);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_113, 0x3d000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov70_0225DEE8), HEAP_ID_112);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov70_0225DEE8), HEAP_ID_112);
     memset(v0, 0, sizeof(UnkStruct_ov70_0225DEE8));
 
     v0->unk_38 = &v1->unk_0C;
@@ -650,14 +650,14 @@ int ov70_0225D9A4(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov70_0225DB90(OverlayManager *param0, int *param1)
+int ov70_0225DB90(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov70_0225DEE8 *v0;
     UnkStruct_ov66_02230E68 *v1;
     BOOL v2;
 
-    v0 = OverlayManager_Data(param0);
-    v1 = OverlayManager_Args(param0);
+    v0 = ApplicationManager_Data(appMan);
+    v1 = ApplicationManager_Args(appMan);
 
     switch (*param1) {
     case 0:
@@ -770,13 +770,13 @@ int ov70_0225DB90(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov70_0225DDF8(OverlayManager *param0, int *param1)
+int ov70_0225DDF8(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov70_0225DEE8 *v0;
     UnkStruct_ov66_02230E68 *v1;
 
-    v0 = OverlayManager_Data(param0);
-    v1 = OverlayManager_Args(param0);
+    v0 = ApplicationManager_Data(appMan);
+    v1 = ApplicationManager_Args(appMan);
 
     {
         v1->unk_18 = v0->unk_01;

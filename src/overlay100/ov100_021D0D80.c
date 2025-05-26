@@ -43,15 +43,15 @@ static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0);
 static void ov100_021D1208(BgConfig *param0);
 static void ov100_021D13B4(void *param0);
 
-int ov100_021D0D80(OverlayManager *param0, int *param1)
+int ov100_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov100_021D4DD8 *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_111, 0xC0000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov100_021D4DD8), HEAP_ID_111);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov100_021D4DD8), HEAP_ID_111);
     memset(v0, 0, sizeof(UnkStruct_ov100_021D4DD8));
-    v0->unk_D0 = OverlayManager_Args(param0);
+    v0->unk_D0 = ApplicationManager_Args(appMan);
 
     ov100_021D1034(&v0->unk_0C);
     StartScreenTransition(0, 1, 1, 0x0, 6 * 2, 1, HEAP_ID_111);
@@ -94,9 +94,9 @@ static const struct {
     { ov100_021D2340, ov100_021D2428, ov100_021D2C8C },
 };
 
-int ov100_021D0EA8(OverlayManager *param0, int *param1)
+int ov100_021D0EA8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov100_021D4DD8 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov100_021D4DD8 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0: {
@@ -134,9 +134,9 @@ int ov100_021D0EA8(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov100_021D0F44(OverlayManager *param0, int *param1)
+int ov100_021D0F44(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov100_021D4DD8 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov100_021D4DD8 *v0 = ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -148,7 +148,7 @@ int ov100_021D0F44(OverlayManager *param0, int *param1)
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_111);
     Sound_Set2PokemonCriesAllowed(0);
 

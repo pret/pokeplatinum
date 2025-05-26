@@ -10872,7 +10872,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v16->unk_08 = Pokemon_GetValue(v3, MON_DATA_FORM, NULL);
                 v16->unk_48 = ov16_0223E228(v2->battleSys);
                 v16->unk_10 = Pokemon_GetValue(v3, MON_DATA_GENDER, NULL);
-                v2->tmpPtr[0] = OverlayManager_New(&Unk_020F2DAC, v16, 5);
+                v2->tmpPtr[0] = ApplicationManager_New(&Unk_020F2DAC, v16, 5);
                 v2->seqNum = 21;
 
                 ov16_0223F414(v2->battleSys);
@@ -10897,7 +10897,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 21:
-        if (OverlayManager_Exec(v2->tmpPtr[0])) {
+        if (ApplicationManager_Exec(v2->tmpPtr[0])) {
             {
                 UnkStruct_0208737C *v19;
                 int v20;
@@ -10911,7 +10911,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 }
 
                 sub_0208716C(v19);
-                OverlayManager_Free(v2->tmpPtr[0]);
+                ApplicationManager_Free(v2->tmpPtr[0]);
                 ov16_0223F314(v2->battleSys, 2);
 
                 v2->seqNum = 23;

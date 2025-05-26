@@ -177,7 +177,7 @@ static const struct {
     { 0x1F, 0x2B, 0x2C, 0x2D, 0x2E }
 };
 
-int ov117_02260668(OverlayManager *param0, int *param1)
+int ov117_02260668(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov117_02261280 *v0;
 
@@ -191,12 +191,12 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_ALL, 16, 16);
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG3), (GX_BLEND_BGALL | GX_BLEND_PLANEMASK_OBJ), 13, 3);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_02261280), HEAP_ID_110);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov117_02261280), HEAP_ID_110);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_02261280));
     Heap_FndInitAllocatorForExpHeap(&v0->unk_A8, HEAP_ID_110, 32);
 
     v0->unk_98 = ov117_02260E14(HEAP_ID_110);
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     ov117_022665FC(v0);
     v0->unk_8C = PaletteData_New(HEAP_ID_110);
 
@@ -290,9 +290,9 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov117_0226098C(OverlayManager *param0, int *param1)
+int ov117_0226098C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov117_02261280 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov117_02261280 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     if (v0->unk_00->unk_3D == 1) {
@@ -423,9 +423,9 @@ int ov117_0226098C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov117_02260C10(OverlayManager *param0, int *param1)
+int ov117_02260C10(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov117_02261280 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov117_02261280 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     v0->unk_00->unk_10.unk_14 = v0->unk_2FD0;
@@ -478,7 +478,7 @@ int ov117_02260C10(OverlayManager *param0, int *param1)
 
     ov117_02260EB8(v0->unk_98);
     DisableTouchPad();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
