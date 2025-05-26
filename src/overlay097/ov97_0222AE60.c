@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/pokedexdata_decl.h"
+#include "struct_defs/pokedex.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay077/const_ov77_021D742C.h"

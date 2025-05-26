@@ -27,33 +27,13 @@ static const u16 sExcludedMonsNational[] = {
 };
 static const u16 sExcludedMonsLocal[] = {};
 
-#define DEX_SIZE_U32          ((int)((NATIONAL_DEX_COUNT - 1) / 32) + 1) // default 16
 #define MAGIC_NUMBER          0xBEEFCAFE
 #define NUM_EXCLUDED_NATIONAL ((int)(sizeof(sExcludedMonsNational) / sizeof(u16)))
 #define NUM_EXCLUDED_LOCAL    0 //((int)(sizeof(sExcludedMonsLocal) / sizeof(u16)))
 #define NATIONAL_DEX_GOAL     (NATIONAL_DEX_COUNT - NUM_EXCLUDED_NATIONAL)
 #define LOCAL_DEX_GOAL        (LOCAL_DEX_COUNT - NUM_EXCLUDED_LOCAL)
 
-typedef struct Pokedex {
-    u32 magic;
-    u32 caughtPokemon[DEX_SIZE_U32];
-    u32 seenPokemon[DEX_SIZE_U32];
-    u32 recordedGenders[2][DEX_SIZE_U32];
-    u32 spindaForm;
-    u8 shellosFormsSeen;
-    u8 gastrodonFormsSeen;
-    u8 burmyFormsSeen;
-    u8 wormadamFormsSeen;
-    u8 unownFormsSeen[UNOWN_FORM_COUNT];
-    u8 recordedLanguages[MAX_SPECIES + 1];
-    u8 canDetectForms;
-    u8 canDetectLanguages;
-    u8 pokedexObtained;
-    u8 nationalDexObtained;
-    u32 rotomFormsSeen;
-    u8 shayminFormsSeen;
-    u8 giratinaFormsSeen;
-} Pokedex;
+#include "struct_defs/pokedex.h"
 
 int Pokedex_SaveSize(void)
 {

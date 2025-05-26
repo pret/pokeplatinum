@@ -5,9 +5,9 @@
 
 #include "generated/catching_show_points_category.h"
 
-#include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
+#include "struct_defs/pc_boxes.h"
+#include "struct_defs/pokedex.h"
 
 #include "savedata/save_table.h"
 

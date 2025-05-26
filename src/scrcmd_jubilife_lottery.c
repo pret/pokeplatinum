@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/pc_boxes_decl.h"
+#include "struct_defs/pc_boxes.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"

@@ -4,12 +4,12 @@
 #include "constants/battle.h"
 #include "generated/map_headers.h"
 
-#include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pc_boxes.h"
+#include "struct_defs/pokedex.h"
 #include "struct_defs/trainer.h"
 
 #include "field/field_system_decl.h"

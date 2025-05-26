@@ -7,10 +7,10 @@
 #include "constants/species.h"
 #include "generated/first_arrival_to_zones.h"
 
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
+#include "struct_defs/pokedex.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"
