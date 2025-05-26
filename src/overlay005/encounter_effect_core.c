@@ -2728,7 +2728,7 @@ typedef struct EliterFourChampionEncounterParam {
 } EliterFourChampionEncounterParam;
 
 static const EliterFourChampionEncounterParam sEliteFourChampionEncounterParams[5] = {
-    { .mugshotPlttIdx = mugshot_elite_four_aaron_NCLR, // Narc indices of the Elite Four and Champion
+    { .mugshotPlttIdx = mugshot_elite_four_aaron_NCLR,
         .bannerPlttIdx = banner_elite_four_aaron_NCLR,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_AARON,

@@ -44,13 +44,23 @@ TRAINER_DIRS.append('dp_rival')
 # char, palette, cell, anim, scan
 with open(output_dir / 'trbgra.order', "w", encoding="utf-8") as order_file:
     for i, subdir in enumerate(TRAINER_DIRS):
-        # char
-        file_name = f'back_{subdir}.NCGR'
-        src = source_dir / subdir / 'back.png'
-        dst = private_dir / file_name
-        # Back sprites are optional
+        # cell
+        # must be done before char
+        cell_file = f'front_{subdir}.NCER'
+        src = source_dir / subdir / 'front_cell.json'
+        dst = private_dir / cell_file
+        # back sprites are optional
         if src.exists():
-            print(file_name, file=order_file)
+            subprocess.run([
+                args.nitrogfx,
+                src,
+                dst,
+            ])
+
+            # char
+            char_file = f'front_{subdir}.NCGR'
+            src = source_dir / subdir / 'front.png'
+            dst = private_dir / char_file
             subprocess.run([
                 args.nitrogfx,
                 src,
@@ -59,24 +69,13 @@ with open(output_dir / 'trbgra.order', "w", encoding="utf-8") as order_file:
                 '-vram',
                 '-clobbersize',
                 '-mappingtype', '64',
+                '-cell', (private_dir / cell_file),
             ])
             
             # palette
-            file_name = f'back_{subdir}.NCLR'
-            src = source_dir / subdir / 'back.png'
-            dst = private_dir / file_name
-            print(file_name, file=order_file)
-            subprocess.run([
-                args.nitrogfx,
-                src,
-                dst,
-            ])
-            
-            # cell
-            file_name = f'back_{subdir}.NCER'
-            src = source_dir / subdir / 'back_cell.json'
-            dst = private_dir / file_name
-            print(file_name, file=order_file)
+            pal_file = f'front_{subdir}.NCLR'
+            src = source_dir / subdir / 'front.png'
+            dst = private_dir / pal_file
             subprocess.run([
                 args.nitrogfx,
                 src,
@@ -84,10 +83,9 @@ with open(output_dir / 'trbgra.order', "w", encoding="utf-8") as order_file:
             ])
             
             # anim
-            file_name = f'back_{subdir}.NANR'
-            src = source_dir / subdir / 'back_anim.json'
-            dst = private_dir / file_name
-            print(file_name, file=order_file)
+            anim_file = f'front_{subdir}.NANR'
+            src = source_dir / subdir / 'front_anim.json'
+            dst = private_dir / anim_file
             subprocess.run([
                 args.nitrogfx,
                 src,
@@ -95,15 +93,20 @@ with open(output_dir / 'trbgra.order', "w", encoding="utf-8") as order_file:
             ])
             
             # scan
-            file_name = f'back_{subdir}_scan.NCGR'
-            src = source_dir / subdir / 'back_scan.png'
-            dst = private_dir / file_name
-            print(file_name, file=order_file)
+            scan_file = f'front_{subdir}_scan.NCGR'
+            src = source_dir / subdir / 'front_scan.png'
+            dst = private_dir / scan_file
             subprocess.run([
                 args.nitrogfx,
                 src,
                 dst,
                 '-scanfronttoback',
             ])
+
+            print(char_file, file=order_file)
+            print(pal_file, file=order_file)
+            print(cell_file, file=order_file)
+            print(anim_file, file=order_file)
+            print(scan_file, file=order_file)
 
 subprocess.run([args.narc, 'create', '--naix', '--order', output_dir / 'trbgra.order', '--output', output_dir / 'trbgra.narc', private_dir])
