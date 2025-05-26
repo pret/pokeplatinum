@@ -208,7 +208,7 @@ static int ov95_0224AC98(UnkStruct_ov95_0224AC64 *param0, int *param1)
 {
     ov95_0224AE1C(param0);
     ov95_0224B084(param0);
-    StartScreenTransition(0, 1, 1, 0x7fff, 8, 1, HEAP_ID_58);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_WHITE, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -217,7 +217,7 @@ static int ov95_0224ACC8(UnkStruct_ov95_0224AC64 *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             param0->unk_08 = 0;
             ov95_0224B274(param0, &(param0->unk_30));
             (*param1)++;
@@ -271,12 +271,12 @@ static int ov95_0224AD98(UnkStruct_ov95_0224AC64 *param0, int *param1)
         break;
     case 1:
         if (++(param0->unk_08) > 13) {
-            StartScreenTransition(0, 0, 0, 0x0, 8, 1, HEAP_ID_58);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 8, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() && (param0->unk_1C)) {
+        if (IsScreenFadeDone() && (param0->unk_1C)) {
             return 1;
         }
         break;

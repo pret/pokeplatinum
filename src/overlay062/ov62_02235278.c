@@ -122,12 +122,12 @@ static BOOL ov62_02235324(UnkStruct_0208C06C *param0)
         if (param0->unk_0C != 0) {
             param0->unk_0C -= 4;
         } else {
-            StartScreenTransition(0, 0, 0, 0, 6, 1, HEAP_ID_102);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_102);
             param0->unk_08++;
         }
         break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov62_02234540(param0, 0);
             return 1;
         }

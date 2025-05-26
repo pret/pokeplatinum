@@ -116,9 +116,9 @@ static int ov6_022471C0(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
     }
 
     if (param2->unk_08 == 2) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
     } else {
-        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 6, 1, HEAP_ID_FIELD);
     }
 
     param2->unk_00++;
@@ -132,7 +132,7 @@ static int ov6_02247244(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
         param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return 0;
     }
 
@@ -216,9 +216,9 @@ static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param
 static int ov6_02247354(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
 {
     if (param2->unk_08 == 2) {
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
     } else {
-        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_WHITE, 6, 1, HEAP_ID_FIELD);
     }
 
     param2->unk_14 = ov5_021F0EB0(fieldSystem, HEAP_ID_FIELD);
@@ -236,7 +236,7 @@ static int ov6_022473C8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
         param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return 0;
     }
 

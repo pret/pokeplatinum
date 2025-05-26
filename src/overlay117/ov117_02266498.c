@@ -34,11 +34,11 @@ int ov117_022664BC(ApplicationManager *appMan, int *param1)
     if (v0->unk_00->unk_3D == 1) {
         switch (v0->unk_00->unk_3E) {
         case 0:
-            if (IsScreenTransitionDone() == 1) {
+            if (IsScreenFadeDone() == TRUE) {
                 FinishScreenFade();
             }
 
-            SetColorBrightness(0x0);
+            SetColorBrightness(FADE_BLACK);
             v0->unk_00->unk_3E++;
             break;
         case 1:

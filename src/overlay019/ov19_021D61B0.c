@@ -447,11 +447,11 @@ static void ov19_021D671C(SysTask *param0, void *param1)
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_10);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 8, 1, HEAP_ID_10);
         v2->unk_06++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             ov19_021D6640(v2);
         }
         break;
@@ -469,11 +469,11 @@ static void ov19_021D6780(SysTask *param0, void *param1)
     switch (v2->unk_06) {
     case 0:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_10);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_10);
         v2->unk_06++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             ov19_021D6640(v2);
         }
         break;
@@ -490,11 +490,11 @@ static void ov19_021D67DC(SysTask *param0, void *param1)
 
     switch (v2->unk_06) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_10);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_10);
         v2->unk_06++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             ov19_021D6640(v2);
         }
         break;
@@ -1523,11 +1523,11 @@ static void ov19_021D7460(SysTask *param0, void *param1)
     switch (v2->unk_06) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_10);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_10);
         v2->unk_06++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             ov19_021D6640(v2);
         }
         break;

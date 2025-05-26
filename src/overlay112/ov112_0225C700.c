@@ -357,12 +357,12 @@ int ov112_0225C7C4(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_107);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_107);
         ov66_0222E31C(v1->unk_08, 1);
         (*param1)++;
         break;
     case 1:
-        v2 = IsScreenTransitionDone();
+        v2 = IsScreenFadeDone();
 
         if (v2 == 1) {
             (*param1)++;
@@ -395,11 +395,11 @@ int ov112_0225C7C4(ApplicationManager *appMan, int *param1)
         }
         break;
     case 3:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_107);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_107);
         (*param1)++;
         break;
     case 4:
-        v2 = IsScreenTransitionDone();
+        v2 = IsScreenFadeDone();
 
         if (v2 == 1) {
             return 1;

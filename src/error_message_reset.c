@@ -102,8 +102,8 @@ void ErrorMessageReset_PrintErrorAndReset(void)
 
     v4 = 3;
 
-    SetScreenColorBrightness(0, 0x0);
-    SetScreenColorBrightness(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
 
     OS_DisableIrqMask(OS_IE_V_BLANK);
     OS_SetIrqFunction(OS_IE_V_BLANK, VBlankIntr);
@@ -152,8 +152,8 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     Strbuf_Free(errorString);
 
     GXLayers_TurnBothDispOn();
-    ResetScreenMasterBrightness(0);
-    ResetScreenMasterBrightness(1);
+    ResetScreenMasterBrightness(DS_SCREEN_MAIN);
+    ResetScreenMasterBrightness(DS_SCREEN_SUB);
     BrightnessController_SetScreenBrightness(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
     sub_02037DB0();
 
@@ -178,8 +178,8 @@ void ErrorMessageReset_PrintErrorAndReset(void)
         OS_WaitIrq(1, OS_IE_V_BLANK);
     }
 
-    SetScreenColorBrightness(0, 0x7fff);
-    SetScreenColorBrightness(1, 0x7fff);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_WHITE);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_WHITE);
 
     Window_Remove(&window);
     MessageLoader_Free(errorMsgData);

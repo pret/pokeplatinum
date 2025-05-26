@@ -637,7 +637,7 @@ static void ov91_021D11F0(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D1214(UnkStruct_ov91_021D0ED8 *param0)
 {
-    if (IsScreenTransitionDone() == 1) {
+    if (IsScreenFadeDone() == TRUE) {
         return param0->unk_180;
     }
 

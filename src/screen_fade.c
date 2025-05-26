@@ -78,16 +78,16 @@ static void Task_ResetScreenMasterBrightness(SysTask *task, void *data);
 static void DummyHBlankCallback(void *data);
 
 static const ScreenFadeFunc sScreenFadeFuncs[FADE_TYPE_MAX] = {
-    [FADE_TYPE_UNK_00] = sub_0200F85C,
-    [FADE_TYPE_UNK_01] = sub_0200F878,
-    [FADE_TYPE_UNK_02] = sub_0200F898,
-    [FADE_TYPE_UNK_03] = sub_0200F8D4,
-    [FADE_TYPE_UNK_04] = sub_0200F90C,
-    [FADE_TYPE_UNK_05] = sub_0200F948,
-    [FADE_TYPE_UNK_06] = sub_0200F980,
-    [FADE_TYPE_UNK_07] = sub_0200F9AC,
-    [FADE_TYPE_UNK_08] = sub_0200F9D8,
-    [FADE_TYPE_UNK_09] = sub_0200FA14,
+    [FADE_TYPE_UNK_0] = sub_0200F85C,
+    [FADE_TYPE_UNK_1] = sub_0200F878,
+    [FADE_TYPE_UNK_2] = sub_0200F898,
+    [FADE_TYPE_UNK_3] = sub_0200F8D4,
+    [FADE_TYPE_UNK_4] = sub_0200F90C,
+    [FADE_TYPE_UNK_5] = sub_0200F948,
+    [FADE_TYPE_UNK_6] = sub_0200F980,
+    [FADE_TYPE_UNK_7] = sub_0200F9AC,
+    [FADE_TYPE_UNK_8] = sub_0200F9D8,
+    [FADE_TYPE_UNK_9] = sub_0200FA14,
     [FADE_TYPE_UNK_10] = sub_0200FA4C,
     [FADE_TYPE_UNK_11] = sub_0200FA88,
     [FADE_TYPE_UNK_12] = sub_0200FAC0,
@@ -124,7 +124,7 @@ static const ScreenFadeFunc sScreenFadeFuncs[FADE_TYPE_MAX] = {
 
 static ScreenFadeManager sScreenFadeManager;
 
-void StartScreenTransition(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapId heapID)
+void StartScreenFade(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapId heapID)
 {
     GF_ASSERT(steps);
     GF_ASSERT(framesPerStep);
@@ -162,7 +162,7 @@ void ExecScreenFade(void)
     }
 }
 
-BOOL IsScreenTransitionDone(void)
+BOOL IsScreenFadeDone(void)
 {
     return !sScreenFadeManager.active;
 }

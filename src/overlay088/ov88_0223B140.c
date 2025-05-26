@@ -299,7 +299,7 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
     SetAutorepeat(4, 8);
     ov88_0223C15C();
     ov88_0223C17C(v0->unk_174);
-    StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_26);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 16, 1, HEAP_ID_26);
     ov88_0223C504(v0, v1);
     SetVBlankCallback(ov88_0223C0E0, v0);
     ov88_0223C63C();
@@ -412,7 +412,7 @@ int ov88_0223B57C(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 1;
 
             ov88_0223B320(v0);
@@ -428,15 +428,15 @@ int ov88_0223B57C(ApplicationManager *appMan, int *param1)
             ov88_0223CE74(v0);
             break;
         case 2:
-            StartScreenTransition(0, 0, 0, 0x0, 8, 1, HEAP_ID_26);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 8, 1, HEAP_ID_26);
             *param1 = 2;
             break;
         case 3:
-            StartScreenTransition(0, 0, 0, 0x0, 8, 1, HEAP_ID_26);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 8, 1, HEAP_ID_26);
             v0->unk_48 = 4;
             break;
         case 4:
-            if (IsScreenTransitionDone()) {
+            if (IsScreenFadeDone()) {
                 ov88_0223BFD8(v0);
                 ov88_0223BF7C(v0);
                 ov88_0223C44C(v0->unk_174);
@@ -463,18 +463,18 @@ int ov88_0223B57C(ApplicationManager *appMan, int *param1)
             }
             break;
         case 6:
-            StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_26);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 8, 1, HEAP_ID_26);
             v0->unk_48 = 7;
             break;
         case 7:
-            if (IsScreenTransitionDone()) {
+            if (IsScreenFadeDone()) {
                 v0->unk_48 = 1;
             }
             break;
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v1 = 1;
         }
         break;

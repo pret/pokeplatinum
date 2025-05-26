@@ -547,7 +547,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         }
         break;
     case 33:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             sub_0205AAA0(v0, 0);
             sub_0205A0D8(v0, v0->fieldSystem, v0->unk_50, v0->unk_84, 1, HEAP_ID_FIELDMAP);
             v0->unk_34 = 34;
@@ -1036,7 +1036,7 @@ static BOOL sub_0205B140(FieldTask *param0)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v1->unk_28++;
         }
         break;

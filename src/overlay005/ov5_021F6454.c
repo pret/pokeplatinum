@@ -376,7 +376,7 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
         return;
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 

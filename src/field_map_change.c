@@ -552,8 +552,8 @@ static BOOL FieldTask_LoadMapFromError(FieldTask *task)
 
     switch (*state) {
     case 0:
-        SetScreenColorBrightness(0, 0x0);
-        SetScreenColorBrightness(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
         SaveData_LoadAndUpdateUnderground(fieldSystem->saveData);
         fieldSystem->journalEntry = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags));
         (*state)++;

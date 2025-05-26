@@ -824,9 +824,9 @@ static BOOL ov104_0222FF90(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222EA48(param0);
     u16 v3 = ov104_0222EA48(param0);
 
-    StartScreenTransition(0, v2, v2, v3, v0, v1, HEAP_ID_FIELDMAP);
-    ResetVisibleHardwareWindows(0);
-    ResetVisibleHardwareWindows(1);
+    StartScreenFade(MODE_BOTH_SCREENS, v2, v2, v3, v0, v1, HEAP_ID_FIELDMAP);
+    ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+    ResetVisibleHardwareWindows(DS_SCREEN_SUB);
 
     return 0;
 }
@@ -839,7 +839,7 @@ static BOOL ov104_0222FFD8(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_0222FFE8(UnkStruct_ov104_0222E930 *param0)
 {
-    if (IsScreenTransitionDone() == 1) {
+    if (IsScreenFadeDone() == TRUE) {
         return 1;
     }
 
@@ -2051,13 +2051,13 @@ static BOOL ov104_02231148(UnkStruct_ov104_02231148 *param0)
             break;
         }
 
-        ResetVisibleHardwareWindows(0);
-        ResetVisibleHardwareWindows(1);
-        StartScreenTransition(0, 32, 32, 0x0, 12, 1, HEAP_ID_FIELDMAP);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, FADE_BLACK, 12, 1, HEAP_ID_FIELDMAP);
         param0->unk_04++;
         break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 0;
         }
         break;
@@ -2101,14 +2101,14 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
         }
     } break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov104_0223EBD0(param0->unk_2C);
 
             Window_ClearAndCopyToVRAM(param0->unk_28);
             Window_Remove(param0->unk_28);
             Windows_Delete(param0->unk_28, 1);
-            SetScreenColorBrightness(0, 0x0);
-            SetScreenColorBrightness(1, 0x0);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
             Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
 
@@ -2156,15 +2156,15 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
     } break;
 
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov104_0223EBD0(param0->unk_2C);
 
             Window_ClearAndCopyToVRAM(param0->unk_28);
             Window_Remove(param0->unk_28);
             Windows_Delete(param0->unk_28, 1);
 
-            SetScreenColorBrightness(0, 0x0);
-            SetScreenColorBrightness(1, 0x0);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
 
             Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
@@ -2499,8 +2499,8 @@ static BOOL ov104_02231AA8(UnkStruct_ov104_0222E930 *param0)
     v0 = Unk_ov104_0223F65C[v1->unk_08](v1);
 
     if (v0 == 0) {
-        SetScreenColorBrightness(0, 0x0);
-        SetScreenColorBrightness(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
         sub_0209B980(param0->unk_00->unk_00, v1->unk_14);
         Heap_FreeToHeap(v1);
     }

@@ -96,7 +96,7 @@ BOOL ov95_02249FC8(void *param0, int *param1)
 static int ov95_02249FF8(UnkStruct_ov95_02249FF8 *param0, int *param1)
 {
     ov95_0224A10C(param0);
-    StartScreenTransition(0, 1, 1, 0x7fff, 8, 1, HEAP_ID_58);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_WHITE, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -105,7 +105,7 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             param0->unk_10 = UnkEnum_ov95_0224A020_02 << 12;
             param0->unk_14 = UnkEnum_ov95_0224A020_00 << 12;
             param0->unk_18 = ((UnkEnum_ov95_0224A020_03 - UnkEnum_ov95_0224A020_02) << 12) / UnkEnum_ov95_0224A020_04;
@@ -119,12 +119,12 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
     case 1:
         if (param0->unk_20) {
             Sound_PlayEffect(SEQ_SE_DP_KOUKAN03);
-            StartScreenTransition(0, 0, 0, 0x7fff, 16, 1, HEAP_ID_58);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 16, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;

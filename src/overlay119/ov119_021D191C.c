@@ -74,7 +74,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
         ov119_021D1028();
         param0->unk_60++;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             Sound_StopWaveOutAndSequences();
             Sound_SetSceneAndPlayBGM(SOUND_SCENE_13, SEQ_SHINKA, 1);
             param0->unk_60++;
@@ -200,7 +200,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
         ov119_021D1048();
         param0->unk_60++;
     case 16:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_60++;
         }
         break;
@@ -254,7 +254,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         ov119_021D1028();
         param0->unk_60++;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             Sound_SetSceneAndPlayBGM(SOUND_SCENE_13, SEQ_SHINKA, 1);
             param0->unk_60++;
         }
@@ -350,7 +350,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         ov119_021D1048();
         param0->unk_60++;
     case 16:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_60++;
         }
         break;

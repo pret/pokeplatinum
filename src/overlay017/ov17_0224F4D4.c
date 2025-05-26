@@ -202,7 +202,7 @@ int ov17_0224F4D4(ApplicationManager *appMan, int *param1)
     ov17_02250744(v0);
 
     sub_02039734();
-    StartScreenTransition(1, 33, 33, 0x0, 6, 1, HEAP_ID_24);
+    StartScreenFade(MODE_MAIN_THEN_SUB, FADE_TYPE_UNK_33, FADE_TYPE_UNK_33, FADE_BLACK, 6, 1, HEAP_ID_24);
 
     v0->unk_04 = SysTask_Start(ov17_0224FAFC, v0, 80000);
     v0->unk_850 = 1;
@@ -229,7 +229,7 @@ int ov17_0224F754(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             SetHBlankCallback(ov17_0224FAAC, v0);
             v0->unk_848 = ov17_0223F70C(HEAP_ID_24, v0->unk_10.unk_C0, Unk_ov17_02254AB4, NELEMS(Unk_ov17_02254AB4), 0xff, (50000 + 5000));
             *param1 = 1;
@@ -263,7 +263,7 @@ int ov17_0224F754(ApplicationManager *appMan, int *param1)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;

@@ -138,7 +138,7 @@ int ov96_0223B7F8(ApplicationManager *appMan, int *param1)
         *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][0])(v0, *param1);
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 3;
         }
         break;
@@ -146,7 +146,7 @@ int ov96_0223B7F8(ApplicationManager *appMan, int *param1)
         *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][1])(v0, *param1);
         break;
     case 4:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][2])(v0, *param1);
         }
         break;

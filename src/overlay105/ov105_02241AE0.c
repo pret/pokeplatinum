@@ -637,11 +637,11 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
 
         Bg_SetOffset(param0->unk_4C, 2, 0, (33 * 8));
         PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_93);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1 * 3, HEAP_ID_93);
         param0->unk_08++;
         break;
     case 3:
-        if (IsScreenTransitionDone() == 0) {
+        if (IsScreenFadeDone() == FALSE) {
             break;
         }
 
@@ -720,14 +720,14 @@ static BOOL ov105_022421F0(UnkStruct_ov105_02241FF4 *param0)
         }
 
         if (param0->unk_13_4 == 1) {
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_93);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1 * 3, HEAP_ID_93);
         }
 
         param0->unk_13_4 = 1;
         param0->unk_08++;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -927,7 +927,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_93);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_93);
             param0->unk_08++;
             break;
         case 1:
@@ -964,7 +964,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 3:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
             param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, 93);
@@ -978,7 +978,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 5:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_08 = 2;
         }
         break;
@@ -1455,7 +1455,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_93);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_93);
             param0->unk_08++;
             break;
         case 4:
@@ -1479,7 +1479,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 3:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
             param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, 93);
@@ -1493,7 +1493,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 5:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_08 = 2;
         }
         break;
@@ -2048,11 +2048,11 @@ static BOOL ov105_022443DC(UnkStruct_ov105_02241FF4 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_93);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_93);
         param0->unk_08++;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;

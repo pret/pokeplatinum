@@ -433,11 +433,11 @@ int ov65_02236548(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_96);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_96);
         (*param1)++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param1)++;
         }
         break;
@@ -475,11 +475,11 @@ int ov65_02236548(ApplicationManager *appMan, int *param1)
         }
         break;
     case 3:
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_96);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_96);
         (*param1)++;
         break;
     case 4:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
 
@@ -2690,7 +2690,7 @@ static BOOL ov65_022387E8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     if ((sub_020380E4() == 1) && (CommSys_IsPlayerConnected(0) == 1)) {
         sub_0203632C(0);
         ov65_022378C4(param0, param1, heapID);
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, heapID);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, heapID);
         param0->unk_00.unk_05 = 27;
     }
 
@@ -2699,7 +2699,7 @@ static BOOL ov65_022387E8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_02238838(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         CommInfo_Init(param1->saveData, NULL);
 
         param0->unk_00.unk_27 = 1;
@@ -2731,7 +2731,7 @@ static BOOL ov65_02238838(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
             memset(param0->unk_00.unk_28, 0, sizeof(u8) * 4);
         }
 
-        StartScreenTransition(3, 1, 1, 0x0, 6, 1, heapID);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, heapID);
 
         param0->unk_00.unk_05 = 28;
     }
@@ -2741,7 +2741,7 @@ static BOOL ov65_02238838(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_022388FC(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 param2)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         param0->unk_00.unk_05 = 0;
     }
 

@@ -1696,13 +1696,13 @@ static void ov114_0225D688(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        StartScreenTransition(3, 1, 1, 0xffff, 6, 1, v0->heapID);
+        StartScreenFade(MODE_MAIN_ONLY, 1, 1, 0xffff, 6, 1, v0->heapID);
         ov114_0225E244(&v0->unk_230, &v0->unk_30, v0->heapID);
         v0->unk_00++;
         break;
     case 1:
         ov114_0225E31C(&v0->unk_230, &v0->unk_30);
-        v1 = IsScreenTransitionDone();
+        v1 = IsScreenFadeDone();
 
         if (v1 == 1) {
             v0->unk_00++;
@@ -1820,7 +1820,7 @@ static void ov114_0225D688(SysTask *param0, void *param1)
         }
         break;
     case 13:
-        StartScreenTransition(3, 0, 1, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, v0->heapID);
         ov114_0225DA5C(v0);
 
         if (v0->unk_08.unk_09 == 0) {
@@ -1845,7 +1845,7 @@ static void ov114_0225D688(SysTask *param0, void *param1)
         break;
     case 14:
         ov114_0225DA5C(v0);
-        v1 = IsScreenTransitionDone();
+        v1 = IsScreenFadeDone();
 
         if (v1 == 1) {
             ov114_0225DFFC(&v0->unk_348);
@@ -2604,11 +2604,11 @@ static void ov114_0225E874(SysTask *param0, void *param1)
             }
         }
 
-        StartScreenTransition(3, 1, 1, 0xffff, 6, 1, v0->heapID);
+        StartScreenFade(MODE_MAIN_ONLY, 1, 1, 0xffff, 6, 1, v0->heapID);
         v0->unk_04++;
         break;
     case 1:
-        v1 = IsScreenTransitionDone();
+        v1 = IsScreenFadeDone();
 
         if (v1) {
             v0->unk_04++;
@@ -2841,11 +2841,11 @@ static void ov114_0225E874(SysTask *param0, void *param1)
         }
         break;
     case 17:
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, v0->heapID);
         v0->unk_04++;
         break;
     case 18:
-        v1 = IsScreenTransitionDone();
+        v1 = IsScreenFadeDone();
 
         if (v1) {
             v0->unk_04 = 21;
@@ -2915,11 +2915,11 @@ static void ov114_0225ED40(SysTask *param0, void *param1)
             }
         }
 
-        StartScreenTransition(3, 1, 1, 0xffff, 6, 1, v0->heapID);
+        StartScreenFade(MODE_MAIN_ONLY, 1, 1, 0xffff, 6, 1, v0->heapID);
         v0->unk_04++;
         break;
     case 1:
-        v1 = IsScreenTransitionDone();
+        v1 = IsScreenFadeDone();
 
         if (v1) {
             v0->unk_04++;
@@ -3081,11 +3081,11 @@ static void ov114_0225ED40(SysTask *param0, void *param1)
         }
         break;
     case 16:
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, v0->heapID);
         v0->unk_04++;
         break;
     case 17:
-        v1 = IsScreenTransitionDone();
+        v1 = IsScreenFadeDone();
 
         if (v1) {
             v0->unk_04 = 20;
@@ -3211,7 +3211,7 @@ static BOOL ov114_0225F27C(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_022
 
     switch (param0->unk_00) {
     case 0:
-        StartScreenTransition(0, 0, 1, 0x0, 6, 1, heapID);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, heapID);
         sub_020397C8(0, heapID);
 
         if (param0->unk_01) {
@@ -3221,7 +3221,7 @@ static BOOL ov114_0225F27C(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_022
         param0->unk_00++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             param0->unk_00++;
         }
         break;
@@ -3287,11 +3287,11 @@ static BOOL ov114_0225F27C(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_022
         }
         break;
     case 10:
-        StartScreenTransition(4, 0, 0, 0x0, 6, 1, heapID);
+        StartScreenFade(MODE_SUB_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, heapID);
         param0->unk_00++;
         break;
     case 11:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             sub_02039794();
 
             if (param0->unk_01) {

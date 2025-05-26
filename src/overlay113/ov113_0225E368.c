@@ -529,7 +529,7 @@ void ov113_0225E65C(UnkStruct_ov113_0225EB20 *param0, int param1)
     }
 
     if (param0->unk_740 && (param1 != 3)) {
-        SetScreenMasterBrightness(0, param0->unk_742);
+        SetScreenMasterBrightness(DS_SCREEN_MAIN, param0->unk_742);
         param0->unk_740 = 0;
     }
 }

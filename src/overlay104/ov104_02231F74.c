@@ -396,7 +396,7 @@ static void ov104_022324C8(SysTask *param0, void *param1)
         return;
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -616,7 +616,7 @@ static void ov104_0223296C(SysTask *param0, void *param1)
         return;
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 

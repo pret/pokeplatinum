@@ -160,8 +160,8 @@ static int ov77_021D0D80(ApplicationManager *appMan, int *param1)
     UnkStruct_ov77_021D17B4 *v0;
     int heapID = HEAP_ID_DISTORTION_WORLD_WARP;
 
-    SetScreenColorBrightness(0, 0x0);
-    SetScreenColorBrightness(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
 
     G2S_BlendNone();
     G2_BlendNone();
@@ -253,7 +253,7 @@ static int ov77_021D0E3C(ApplicationManager *appMan, int *param1)
 
         if ((gSystem.heldKeys & (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) == (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) {
             v0->unk_4E8 = 2;
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->heapID);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, v0->heapID);
             *param1 = 6;
             break;
         }
@@ -274,10 +274,10 @@ static int ov77_021D0E3C(ApplicationManager *appMan, int *param1)
         ov77_021D20E4(&v0->unk_238, v0->unk_04, v0->heapID);
 
         if ((++v0->unk_4FC) == 10) {
-            StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, v0->heapID);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 6, 1, v0->heapID);
         }
 
-        if ((Sound_IsPokemonCryPlaying() == 0) && (IsScreenTransitionDone() == 1) && (v0->unk_4FC >= 10)) {
+        if ((Sound_IsPokemonCryPlaying() == 0) && (IsScreenFadeDone() == TRUE) && (v0->unk_4FC >= 10)) {
             Sound_StopBGM(SEQ_TITLE01, 0);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
@@ -288,7 +288,7 @@ static int ov77_021D0E3C(ApplicationManager *appMan, int *param1)
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-            StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, v0->heapID);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_WHITE, 6, 1, v0->heapID);
             *param1 = 6;
         }
         break;
@@ -298,12 +298,12 @@ static int ov77_021D0E3C(ApplicationManager *appMan, int *param1)
 
         if (Sound_IsFadeActive() == FALSE) {
             Sound_StopBGM(SEQ_TITLE01, 0);
-            StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, v0->heapID);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 6, 1, v0->heapID);
             *param1 = 6;
         }
         break;
     case 6:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             if (ov77_021D21C0(&v0->unk_238, v0->unk_04, v0->heapID) == 1) {
                 return 1;
             }
@@ -1011,11 +1011,11 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         param0->unk_296 = 0;
         param0->unk_22A = 15 + 252;
-        StartScreenTransition(0, 1, 1, 0x0, 15, 3, heapID);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 15, 3, heapID);
         param0->unk_00 = 1;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             if (param0->unk_22A) {
                 param0->unk_22A--;
             } else {
@@ -1055,9 +1055,9 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         }
         break;
     case 5:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             if (param0->unk_22A) {
-                StartScreenTransition(0, 0, 0, 0x7fff, 5, 2, heapID);
+                StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 5, 2, heapID);
                 param0->unk_296 = 2;
                 param0->unk_22A--;
                 param0->unk_00 = 6;
@@ -1065,18 +1065,18 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
                 param0->unk_22A = 10;
                 param0->unk_00 = 8;
                 param0->unk_29C = 1;
-                SetScreenColorBrightness(0, 0x0);
+                SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
             }
         }
         break;
     case 6:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_2A0 = 0;
             {
                 GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
             }
             param0->unk_04.unk_AC = 2;
-            StartScreenTransition(3, 1, 1, 0x7fff, 16, 3, heapID);
+            StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_WHITE, 16, 3, heapID);
             param0->unk_00 = 5;
         }
         break;
@@ -1088,7 +1088,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         }
         break;
     case 7:
-        StartScreenTransition(3, 1, 1, 0x0, 48, 1, heapID);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 48, 1, heapID);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         param0->unk_00 = 9;
         param0->unk_2A4 = 0;
@@ -1107,7 +1107,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
             {
                 ov77_021D1CC0(param1, heapID);
             }
-            StartScreenTransition(4, 1, 1, 0x7fff, 16, 3, heapID);
+            StartScreenFade(MODE_SUB_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_WHITE, 16, 3, heapID);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
             param0->unk_22A = 90;
@@ -1118,7 +1118,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         if (param0->unk_22A) {
             param0->unk_22A--;
         } else {
-            if (IsScreenTransitionDone() == 1) {
+            if (IsScreenFadeDone() == TRUE) {
                 v0 = 1;
             }
         }
@@ -1152,8 +1152,8 @@ static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         }
 
-        ResetScreenMasterBrightness(0);
-        ResetScreenMasterBrightness(1);
+        ResetScreenMasterBrightness(DS_SCREEN_MAIN);
+        ResetScreenMasterBrightness(DS_SCREEN_SUB);
 
         param0->unk_04.unk_AC = 2;
         NNS_G3dGlbLightColor(1, 0x7fff);

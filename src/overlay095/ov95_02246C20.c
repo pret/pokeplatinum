@@ -125,7 +125,7 @@ static const struct {
 
 int ov95_02246C20(ApplicationManager *appMan, int *param1)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         UnkStruct_ov95_02247628 *v0;
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_57, 98304);

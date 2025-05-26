@@ -569,7 +569,7 @@ static void FreeStrings(PokemonSummaryScreen *summaryScreen)
 
 static int WaitSummaryScreenTransition(PokemonSummaryScreen *summaryScreen)
 {
-    if (IsScreenTransitionDone() == TRUE) {
+    if (IsScreenFadeDone() == TRUE) {
         PokemonSummaryScreen_LoadMonAnimation(summaryScreen);
         PlayMonCry(summaryScreen);
 
@@ -1039,7 +1039,7 @@ static u8 SummaryScreenTransitionOut(PokemonSummaryScreen *dummy)
 
 static u8 ScreenTransitionIsDone(PokemonSummaryScreen *dummy)
 {
-    return IsScreenTransitionDone() == TRUE;
+    return IsScreenFadeDone() == TRUE;
 }
 
 static void SetMonData(PokemonSummaryScreen *summaryScreen)

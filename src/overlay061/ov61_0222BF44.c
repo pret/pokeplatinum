@@ -177,7 +177,7 @@ int ov61_0222BF44(ApplicationManager *appMan, int *param1)
     ov61_0222C3B0(v0);
     ov61_0222C664(v0);
 
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_117);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_117);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
@@ -214,7 +214,7 @@ int ov61_0222C0F8(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 1;
         }
         break;
@@ -233,7 +233,7 @@ int ov61_0222C0F8(ApplicationManager *appMan, int *param1)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -848,7 +848,7 @@ static int ov61_0222CCAC(UnkStruct_ov61_0222C664 *param0)
 
     sub_02039794();
     ov61_0222C86C(param0);
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_117);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_117);
     param0->unk_08 = 0;
 
     return 1;

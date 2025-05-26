@@ -69,8 +69,8 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
 
     switch (*state) {
     case STATE_INIT:
-        SetScreenColorBrightness(0, 0x0);
-        SetScreenColorBrightness(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
 
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
@@ -107,14 +107,14 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1, ltv->heapID);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, ltv->heapID);
             *state = STATE_FADE_WAIT;
         }
         break;
     case STATE_FADE_WAIT:
         LibraryTV_UpdateScanLines(ltv);
 
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ltv->waitTiming = LIBRARY_TV_DURATION;
             *state = STATE_MAIN;
         }
@@ -126,14 +126,14 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, ltv->heapID);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, ltv->heapID);
             *state = STATE_EXIT;
         }
         break;
     case STATE_EXIT:
         LibraryTV_UpdateScanLines(ltv);
 
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             LibraryTV_ReleaseMsgLdr(ltv);
             LibraryTV_ReleaseVramBank(ltv);
             SetVBlankCallback(NULL, NULL);

@@ -394,8 +394,8 @@ BOOL ChooseStarter_Main(ApplicationManager *appMan, int *state)
 
     case CHOOSE_STARTER_MAIN_WAIT_FADE_IN:
         if (IsFadeDone(app)) {
-            ResetVisibleHardwareWindows(0);
-            ResetVisibleHardwareWindows(1);
+            ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+            ResetVisibleHardwareWindows(DS_SCREEN_SUB);
             (*state)++;
         }
         break;
@@ -416,8 +416,8 @@ BOOL ChooseStarter_Main(ApplicationManager *appMan, int *state)
 
     case CHOOSE_STARTER_MAIN_WAIT_FADE_OUT:
         if (IsFadeDone(app)) {
-            ResetVisibleHardwareWindows(0);
-            ResetVisibleHardwareWindows(1);
+            ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+            ResetVisibleHardwareWindows(DS_SCREEN_SUB);
 
             return TRUE;
         }
@@ -477,17 +477,17 @@ static void ChooseStarterAppMainCallback(void *data)
 
 static void StartFadeIn(ChooseStarterApp *param0)
 {
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
 }
 
 static void StartFadeOut(ChooseStarterApp *param0)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
 }
 
 static BOOL IsFadeDone(ChooseStarterApp *param0)
 {
-    return IsScreenTransitionDone();
+    return IsScreenFadeDone();
 }
 
 static void SetupDrawing(ChooseStarterApp *app, enum HeapId heap)

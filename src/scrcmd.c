@@ -4396,9 +4396,9 @@ static BOOL ScrCmd_FadeScreen(ScriptContext *ctx)
     u16 type = ScriptContext_ReadHalfWord(ctx);
     u16 color = ScriptContext_ReadHalfWord(ctx);
 
-    StartScreenTransition(0, type, type, color, transition, frames, HEAP_ID_FIELD);
-    ResetVisibleHardwareWindows(0);
-    ResetVisibleHardwareWindows(1);
+    StartScreenFade(MODE_BOTH_SCREENS, type, type, color, transition, frames, HEAP_ID_FIELD);
+    ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+    ResetVisibleHardwareWindows(DS_SCREEN_SUB);
 
     return FALSE;
 }
@@ -4411,7 +4411,7 @@ static BOOL ScrCmd_WaitFadeScreen(ScriptContext *ctx)
 
 static BOOL ScriptContext_ScreenWipeDone(ScriptContext *ctx)
 {
-    return IsScreenTransitionDone() == TRUE;
+    return IsScreenFadeDone() == TRUE;
 }
 
 static BOOL ScrCmd_Warp(ScriptContext *ctx)

@@ -104,8 +104,8 @@ int sub_02099E38(ApplicationManager *appMan, int *param1)
         Sound_StopBGM(SEQ_TITLE01, 0);
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
         Sound_SetScene(SOUND_SCENE_NONE);
-        SetScreenColorBrightness(0, 0x0);
-        SetScreenColorBrightness(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
@@ -119,22 +119,22 @@ int sub_02099E38(ApplicationManager *appMan, int *param1)
         sub_0209A098(v0);
         SetVBlankCallback(sub_02099F74, (void *)v0);
         GXLayers_TurnBothDispOn();
-        StartScreenTransition(0, 1, 1, 0, 6, 1, v0->heapID);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, v0->heapID);
         *param1 = 1;
         break;
     case 1:
-        if (IsScreenTransitionDone() == TRUE) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 2;
         }
         break;
     case 2:
         if (sub_0209A0F4(v0) == TRUE) {
-            StartScreenTransition(0, 0, 0, 0, 6, 1, v0->heapID);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, v0->heapID);
             *param1 = 3;
         }
         break;
     case 3:
-        if (IsScreenTransitionDone() == TRUE) {
+        if (IsScreenFadeDone() == TRUE) {
             sub_0209A0E0(v0);
             sub_0209A044(v0);
             SetVBlankCallback(NULL, NULL);

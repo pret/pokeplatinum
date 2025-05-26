@@ -146,8 +146,8 @@ int PokedexMain_Main(ApplicationManager *appMan, int *state)
         break;
     case POKEDEX_STATE_WAIT_EXIT:
         if (TransitionComplete(appPtr)) {
-            ResetVisibleHardwareWindows(0);
-            ResetVisibleHardwareWindows(1);
+            ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+            ResetVisibleHardwareWindows(DS_SCREEN_SUB);
             G2_BlendNone();
             G2S_BlendNone();
             return 1;
@@ -188,17 +188,17 @@ static void VBlankCallBack(void *data)
 
 static void EntranceTransition(PokedexApp **appPtr)
 {
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_POKEDEX);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_POKEDEX);
 }
 
 static void ExitTransition(PokedexApp **appPtr)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_POKEDEX);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_POKEDEX);
 }
 
 static BOOL TransitionComplete(PokedexApp **appPtr)
 {
-    return IsScreenTransitionDone();
+    return IsScreenFadeDone();
 }
 
 const static UnkFuncPtr_ov21_021E9B74 Unk_ov21_021E9B74[10] = {

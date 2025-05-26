@@ -475,7 +475,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
                 param0->unk_08++;
             }
         } else {
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_103);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1 * 3, HEAP_ID_103);
             param0->unk_08++;
         }
         break;
@@ -483,7 +483,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
         if (ov104_0223C000(param0->unk_09) == 1) {
             if (param0->unk_0F >= 2) {
                 param0->unk_0F = 0;
-                StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_103);
+                StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1 * 3, HEAP_ID_103);
                 param0->unk_08++;
             }
         } else {
@@ -491,7 +491,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
         }
         break;
     case 9:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -706,11 +706,11 @@ static BOOL ov108_022421F0(UnkStruct_ov108_02241DB0 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_103);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_103);
         param0->unk_08++;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;

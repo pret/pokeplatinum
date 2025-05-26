@@ -465,7 +465,7 @@ int ov116_02260CF4(ApplicationManager *appMan, int *param1)
         ov116_0226178C(v0, v1, 4, param1);
         break;
     case 4:
-        v1 = IsScreenTransitionDone();
+        v1 = IsScreenFadeDone();
         ov116_0226178C(v0, v1, 5, param1);
         break;
     case 5:
@@ -581,7 +581,7 @@ int ov116_02260CF4(ApplicationManager *appMan, int *param1)
         ov116_0226178C(v0, v1, 16, param1);
         break;
     case 16:
-        v1 = IsScreenTransitionDone();
+        v1 = IsScreenFadeDone();
 
         if (v1) {
             ov116_022610FC(v0);
@@ -1088,7 +1088,7 @@ static void ov116_022616CC(UnkStruct_ov116_0226139C *param0)
 
 static BOOL ov116_02261768(int param0)
 {
-    StartScreenTransition(0, param0, param0, 0, 6, 1, HEAP_ID_106);
+    StartScreenFade(MODE_BOTH_SCREENS, param0, param0, 0, 6, 1, HEAP_ID_106);
     return 1;
 }
 
@@ -1130,11 +1130,11 @@ static u32 ov116_022617E4(UnkStruct_ov116_0226139C *param0)
 {
     if (ov114_0225CA54(&param0->unk_84) == 1) {
         if (param0->unk_48.unk_2C.unk_00 == 0) {
-            if (IsScreenTransitionDone() == 1) {
+            if (IsScreenFadeDone() == TRUE) {
                 FinishScreenFade();
             }
 
-            SetColorBrightness(0x0);
+            SetColorBrightness(FADE_BLACK);
             param0->unk_48.unk_2C.unk_00 = 1;
 
             return 1;

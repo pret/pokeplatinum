@@ -170,7 +170,7 @@ int ov99_021D0D80(ApplicationManager *appMan, int *param1)
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_14, SEQ_BLD_ENDING, 1);
 
     BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
-    SetScreenMasterBrightness(0, 0);
+    SetScreenMasterBrightness(DS_SCREEN_MAIN, 0);
     SetScreenMasterBrightness(1, 0);
 
     Bg_ToggleLayer(1, 1);
@@ -190,7 +190,7 @@ int ov99_021D1028(ApplicationManager *appMan, int *param1)
 
     if (v0->unk_00->unk_04 && (gSystem.pressedKeys & PAD_BUTTON_START)) {
         if ((v0->unk_1100 == 0) && (v0->unk_1101 < 6)) {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_75);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_75);
             v0->unk_1100 = 1;
         }
     }
@@ -199,7 +199,7 @@ int ov99_021D1028(ApplicationManager *appMan, int *param1)
     case 0:
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (v0->unk_1102 == 1) {
                 ov99_021D1CFC(v0, v0->unk_1101);
                 v0->unk_1102 = 0;

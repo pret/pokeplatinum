@@ -1313,7 +1313,7 @@ static void ov97_02234B0C(GBAMigrator *migrator, BoxPokemonGBA *boxMonGBA)
 
 static void ov97_02234CC4(GBAMigrator *migrator, int param1, int param2, int *state)
 {
-    StartScreenTransition(0, param1, param1, 0x0, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    StartScreenFade(MODE_BOTH_SCREENS, param1, param1, 0x0, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     if (state != NULL) {
         *state = GBA_MIGRATOR_STATE_23;
@@ -1324,7 +1324,7 @@ static void ov97_02234CC4(GBAMigrator *migrator, int param1, int param2, int *st
 
 static void ov97_02234CF4(GBAMigrator *migrator, int param1, int param2, int *state)
 {
-    StartScreenTransition(0, param1, param1, 0x7fff, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    StartScreenFade(MODE_BOTH_SCREENS, param1, param1, 0x7fff, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     if (state != NULL) {
         *state = GBA_MIGRATOR_STATE_23;
@@ -1827,8 +1827,8 @@ static int GBAMigrator_Init(ApplicationManager *appMan, int *state)
     migrator->bgConfig = BgConfig_New(HEAP_ID_MIGRATE_FROM_GBA);
     migrator->unk_E8EC = sub_02015920(HEAP_ID_MIGRATE_FROM_GBA);
 
-    SetScreenColorBrightness(0, 0x0);
-    SetScreenColorBrightness(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
 
     migrator->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     migrator->unk_14 = SaveData_GetTrainerInfo(migrator->saveData);
@@ -2164,7 +2164,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         }
         break;
     case GBA_MIGRATOR_STATE_23:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *state = migrator->unk_24;
         }
         break;

@@ -335,11 +335,11 @@ static void ov20_021D2414(SysTask *param0, void *param1)
 
     switch (v0->unk_14) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 5, 1, HEAP_ID_35);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 5, 1, HEAP_ID_35);
         v0->unk_14++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             int v2;
 
             ov20_021D2EF0(v0->unk_00->unk_244);
@@ -488,11 +488,11 @@ static void ov20_021D2570(SysTask *param0, void *param1)
 
     switch (v0->unk_14) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x0, 5, 1, HEAP_ID_35);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 5, 1, HEAP_ID_35);
         v0->unk_14++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0->unk_14++;
         }
         break;

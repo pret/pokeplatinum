@@ -30,16 +30,16 @@ enum FadeMethod {
 };
 
 enum FadeType {
-    FADE_TYPE_UNK_00 = 0,
-    FADE_TYPE_UNK_01,
-    FADE_TYPE_UNK_02,
-    FADE_TYPE_UNK_03,
-    FADE_TYPE_UNK_04,
-    FADE_TYPE_UNK_05,
-    FADE_TYPE_UNK_06,
-    FADE_TYPE_UNK_07,
-    FADE_TYPE_UNK_08,
-    FADE_TYPE_UNK_09,
+    FADE_TYPE_UNK_0 = 0,
+    FADE_TYPE_UNK_1,
+    FADE_TYPE_UNK_2,
+    FADE_TYPE_UNK_3,
+    FADE_TYPE_UNK_4,
+    FADE_TYPE_UNK_5,
+    FADE_TYPE_UNK_6,
+    FADE_TYPE_UNK_7,
+    FADE_TYPE_UNK_8,
+    FADE_TYPE_UNK_9,
     FADE_TYPE_UNK_10,
     FADE_TYPE_UNK_11,
     FADE_TYPE_UNK_12,
@@ -106,16 +106,16 @@ typedef struct ScreenFade {
     enum FadeMethod method;
 } ScreenFade;
 
-void StartScreenTransition(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapId heapID);
+void StartScreenFade(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapId heapID);
 void ExecScreenFade(void);
-BOOL IsScreenTransitionDone(void);
+BOOL IsScreenFadeDone(void);
 void FinishScreenFade(void);
 void ResetVisibleHardwareWindows(enum DSScreen screen);
 void ResetScreenMasterBrightness(enum DSScreen screen);
 void SetScreenColorBrightness(enum DSScreen screen, u16 color);
 void SetColorBrightness(u16 color);
 void SetupScreenFadeRegisters(enum DSScreen screen, u16 color);
-void SetScreenBackgroundColor(u16 param0);
+void SetScreenBackgroundColor(u16 color);
 void SetScreenMasterBrightness(enum DSScreen screen, int brightness);
 void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapId heapID);
 void RequestDisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen, enum HeapId heapID);

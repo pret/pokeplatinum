@@ -179,9 +179,9 @@ int ov58_021D0D80(ApplicationManager *appMan, int *param1)
         ov58_021D1184();
         ov58_021D11A4(v0->unk_00);
 
-        SetScreenColorBrightness(0, 0x0);
-        SetScreenColorBrightness(1, 0x0);
-        StartScreenTransition(0, 17, 17, 0x0, 16, 1, HEAP_ID_39);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, FADE_BLACK, 16, 1, HEAP_ID_39);
 
         {
             UnkStruct_0203DDFC *v2 = (UnkStruct_0203DDFC *)ApplicationManager_Args(appMan);
@@ -247,7 +247,7 @@ int ov58_021D0F08(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (CommSys_CurNetId() != 0) {
                 if (ov58_021D2A30() >= 2) {
                     CommSys_SendData(128, NULL, 0);
@@ -282,7 +282,7 @@ int ov58_021D0F08(ApplicationManager *appMan, int *param1)
         }
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -1150,7 +1150,7 @@ static int ov58_021D20C8(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D20F4(UnkStruct_02095EAC *param0, int param1)
 {
     if (++param0->unk_374 > 60) {
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_39);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_BLACK, 16, 1, HEAP_ID_39);
         param1 = 3;
     }
 
@@ -1240,7 +1240,7 @@ static int ov58_021D2270(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D2298(UnkStruct_02095EAC *param0, int param1)
 {
     if (CommTiming_IsSyncState(200) || (CommSys_ConnectedCount() == 1)) {
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_39);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_BLACK, 16, 1, HEAP_ID_39);
         param1 = 3;
     }
 

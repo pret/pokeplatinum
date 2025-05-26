@@ -256,7 +256,7 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
     sub_02039734();
 
     v0->unk_D4 = ov117_022626B0(v0);
-    StartScreenTransition(0, 27, 27, 0x0, 6, 1, HEAP_ID_110);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_27, FADE_TYPE_UNK_27, FADE_BLACK, 6, 1, HEAP_ID_110);
     v0->unk_94 = SysTask_Start(ov117_02260F7C, v0, 60000);
 
     gSystem.whichScreenIs3D = DS_SCREEN_SUB;
@@ -298,11 +298,11 @@ int ov117_0226098C(ApplicationManager *appMan, int *param1)
     if (v0->unk_00->unk_3D == 1) {
         switch (v0->unk_00->unk_3E) {
         case 0:
-            if (IsScreenTransitionDone() == 1) {
+            if (IsScreenFadeDone() == TRUE) {
                 FinishScreenFade();
             }
 
-            SetColorBrightness(0x0);
+            SetColorBrightness(FADE_BLACK);
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
             v0->unk_00->unk_3E++;
             break;
@@ -320,7 +320,7 @@ int ov117_0226098C(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             (*param1)++;
         }
         break;
@@ -347,7 +347,7 @@ int ov117_0226098C(ApplicationManager *appMan, int *param1)
     case 5:
         if (v0->unk_2FC0 == 1) {
             ov117_02266150(v0);
-            StartScreenTransition(0, 26, 26, 0x0, 6, 1, HEAP_ID_110);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_26, FADE_TYPE_UNK_26, FADE_BLACK, 6, 1, HEAP_ID_110);
             (*param1)++;
         }
 
@@ -411,7 +411,7 @@ int ov117_0226098C(ApplicationManager *appMan, int *param1)
         }
         break;
     case 6:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;

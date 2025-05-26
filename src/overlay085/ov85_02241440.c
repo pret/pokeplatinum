@@ -692,7 +692,7 @@ static void ov85_02241CD0(UnkStruct_ov85_022417E4 *param0)
 
 static int ov85_02241CE8(UnkStruct_ov85_022417E4 *param0)
 {
-    if (IsScreenTransitionDone() == 1) {
+    if (IsScreenFadeDone() == TRUE) {
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2, 16, 0);
         return 1;
     }
@@ -754,7 +754,7 @@ static int ov85_02241D10(UnkStruct_ov85_022417E4 *param0)
 
 static u8 ov85_02241DEC(UnkStruct_ov85_022417E4 *param0)
 {
-    return IsScreenTransitionDone();
+    return IsScreenFadeDone();
 }
 
 static int ov85_02241DF8(UnkStruct_ov85_022417E4 *param0)

@@ -407,7 +407,7 @@ int ov84_0223B5A0(ApplicationManager *appMan, int *param1)
     v0->unk_00 = BgConfig_New(HEAP_ID_6);
     v0->unk_425 = TrainerInfo_Gender(v0->unk_CC);
 
-    StartScreenTransition(1, 3, 3, 0x0, 6, 1, HEAP_ID_6);
+    StartScreenFade(MODE_MAIN_THEN_SUB, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, FADE_BLACK, 6, 1, HEAP_ID_6);
     SetAutorepeat(3, 8);
 
     ov84_0223BEAC(v0);
@@ -454,7 +454,7 @@ int ov84_0223B76C(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             if (v0->unk_C4->unk_65 == 2) {
                 *param1 = 16;
             } else if (v0->unk_C4->unk_65 == 1) {
@@ -547,7 +547,7 @@ int ov84_0223B76C(ApplicationManager *appMan, int *param1)
         *param1 = ov84_0223EA18(v0);
         break;
     case 24:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;

@@ -773,7 +773,7 @@ int ov65_0222E2A8(ApplicationManager *appMan, int *param1)
         ov65_0222EBE0(v0);
         ov65_0222E01C(v0);
 
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_54);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_54);
 
         if (sub_020389B8()) {
             sub_02039734();
@@ -801,7 +801,7 @@ int ov65_0222E3FC(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 1;
         }
         break;
@@ -818,7 +818,7 @@ int ov65_0222E3FC(ApplicationManager *appMan, int *param1)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -933,8 +933,8 @@ static void ov65_0222E5E0(void *param0)
     inline_ov61_0222C1FC(&v0->unk_E2C);
 
     if (v0->unk_1158 == 1) {
-        ResetScreenMasterBrightness(0);
-        ResetScreenMasterBrightness(1);
+        ResetScreenMasterBrightness(DS_SCREEN_MAIN);
+        ResetScreenMasterBrightness(DS_SCREEN_SUB);
         v0->unk_1158 = 0;
     }
 }
@@ -1396,7 +1396,7 @@ static int ov65_0222EBAC(u32 param0)
 
 static int ov65_0222EBB8(void)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_54);
     ov65_02231A0C();
 
     return 18;
@@ -2031,8 +2031,8 @@ static int ov65_0222F90C(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     if (!sub_020334A4()) {
         if (ov65_02235194(&param0->unk_3EC) == 1) {
-            SetScreenColorBrightness(0, 0x0);
-            SetScreenColorBrightness(1, 0x0);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
             ov65_02235130(&param0->unk_3EC);
 
             for (v0 = 0; v0 < (32 + 1); v0++) {
@@ -2379,7 +2379,7 @@ static int ov65_0222FFAC(UnkStruct_ov65_0222EBE0 *param0, int param1)
     UnkStruct_ov65_022354D8 *v4;
     int v5;
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return param1;
     }
 
@@ -2437,7 +2437,7 @@ static int ov65_0222FFAC(UnkStruct_ov65_0222EBE0 *param0, int param1)
     param0->unk_3D0 = -1;
 
     NARC_dtor(v3);
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_54);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_54);
     param0->unk_3A8 = 19;
 
     CommMan_SetErrorHandling(0, 0);
@@ -2564,7 +2564,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     UnkStruct_ov65_022354D8 *v3;
     u32 v4;
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return param1;
     }
 
@@ -3411,7 +3411,7 @@ static int ov65_02231200(UnkStruct_ov65_0222EBE0 *param0, int param1)
         CommMan_SetErrorHandling(0, 1);
 
         sub_0203632C(0);
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_54);
 
         param0->unk_3E4 = 0;
 
@@ -4076,7 +4076,7 @@ static int ov65_02231E64(UnkStruct_ov65_0222EBE0 *param0, int param1)
             param0->unk_3AC = ov65_0222DD94(v0);
 
             sub_0203632C(0);
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_54);
 
             param0->unk_3E4 = 0;
             param1 = 2;
@@ -4374,7 +4374,7 @@ static int ov65_022323C0(UnkStruct_ov65_0222EBE0 *param0, int param1)
         ov65_02231A74(param0, ov4_021D2388());
         ov65_02232E58(param0, v0);
 
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_54);
 
         param1 = 2;
     }
@@ -4705,7 +4705,7 @@ static int ov65_0223294C(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_02232B28(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     if (!CommMan_IsInitialized()) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_54);
         param1 = 2;
     }
 

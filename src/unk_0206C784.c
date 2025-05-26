@@ -199,12 +199,12 @@ static BOOL sub_0206C964(FieldTask *taskMan)
         }
     } break;
     case 2:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELDMAP);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_FIELDMAP);
         Sound_FadeOutBGM(0, 6);
         v1->unk_00 = 3;
         break;
     case 3:
-        if (!IsScreenTransitionDone() || (Sound_IsFadeActive())) {
+        if (!IsScreenFadeDone() || (Sound_IsFadeActive())) {
             return 0;
         }
 

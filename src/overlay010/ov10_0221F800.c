@@ -690,7 +690,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
 
 static u8 ov10_0221FE10(UnkStruct_ov10_0221FB28 *param0)
 {
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return 0;
     }
 
@@ -813,10 +813,10 @@ static u8 ov10_02220014(UnkStruct_ov10_0221FB28 *param0)
 static u8 ov10_02220228(UnkStruct_ov10_0221FB28 *param0)
 {
     if (param0->unk_B76 == 8) {
-        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, param0->unk_00->heapID);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 6, 1, param0->unk_00->heapID);
     }
 
-    if ((param0->unk_B76 >= 8) && (IsScreenTransitionDone() == 1)) {
+    if ((param0->unk_B76 >= 8) && (IsScreenFadeDone() == TRUE)) {
         param0->unk_B73 = 2;
         return 1;
     }
@@ -1131,7 +1131,7 @@ static u8 ov10_02220A34(UnkStruct_ov10_0221FB28 *param0)
 
 static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
 {
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return 0;
     }
 

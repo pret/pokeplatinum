@@ -318,7 +318,7 @@ static void JournalController_FreeStringUtil(JournalManager *journalManager)
 
 static int JournalController_IsOpeningTransitionDone(JournalManager *journalManager)
 {
-    if (IsScreenTransitionDone() == TRUE) {
+    if (IsScreenFadeDone() == TRUE) {
         return JOURNAL_STATE_HANDLE_INPUT;
     }
 
@@ -416,7 +416,7 @@ static int JournalController_TurnPageRight(JournalManager *journalManager)
 
 static int JournalController_IsClosingTransitionDone(JournalManager *journalManager)
 {
-    return IsScreenTransitionDone();
+    return IsScreenFadeDone();
 }
 
 static void ov81_021D1360(JournalManager *journalManager)

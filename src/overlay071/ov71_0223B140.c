@@ -245,7 +245,7 @@ int ov71_0223B140(ApplicationManager *appMan, int *param1)
     SetVBlankCallback(ov71_0223C18C, NULL);
     DrawWifiConnectionIcon();
     Sound_SetPlayerVolume(1, (127 / 3));
-    StartScreenTransition(2, 3, 3, 0x0, 6, 1, HEAP_ID_25);
+    StartScreenFade(MODE_SUB_THEN_MAIN, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, FADE_BLACK, 6, 1, HEAP_ID_25);
     NARC_dtor(v1);
 
     return 1;
@@ -257,7 +257,7 @@ int ov71_0223B388(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 1;
         }
 
@@ -315,7 +315,7 @@ int ov71_0223B388(ApplicationManager *appMan, int *param1)
             } else if (v1 == 4) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-                StartScreenTransition(1, 4, 4, 0x0, 6, 1, HEAP_ID_25);
+                StartScreenFade(MODE_MAIN_THEN_SUB, FADE_TYPE_UNK_4, FADE_TYPE_UNK_4, FADE_BLACK, 6, 1, HEAP_ID_25);
                 *param1 = 2;
             }
         }
@@ -323,7 +323,7 @@ int ov71_0223B388(ApplicationManager *appMan, int *param1)
         ov71_0223C5A4(v0, v0->unk_B4->unk_04_1);
     } break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;

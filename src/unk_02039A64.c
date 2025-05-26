@@ -72,8 +72,8 @@ void sub_02039A64(int heapID, int unused)
     Strbuf *v3;
     int v4 = 16;
 
-    SetScreenColorBrightness(0, 0x0);
-    SetScreenColorBrightness(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
     SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
@@ -113,8 +113,8 @@ void sub_02039A64(int heapID, int unused)
     Text_AddPrinterWithParams(&v1, FONT_SYSTEM, v3, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Strbuf_Free(v3);
     GXLayers_TurnBothDispOn();
-    ResetScreenMasterBrightness(0);
-    ResetScreenMasterBrightness(1);
+    ResetScreenMasterBrightness(DS_SCREEN_MAIN);
+    ResetScreenMasterBrightness(DS_SCREEN_SUB);
     BrightnessController_SetScreenBrightness(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
 
     while (TRUE) {

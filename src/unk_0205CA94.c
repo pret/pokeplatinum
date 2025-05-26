@@ -142,7 +142,7 @@ void sub_0205CA94(SysTask *param0, void *param1)
         }
 
         if (v1[0] == 2) {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
         }
 
         for (v2 = 0; v2 < v0->unk_1E0; v2++) {
@@ -156,7 +156,7 @@ void sub_0205CA94(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0->unk_1E4++;
         }
         break;
@@ -197,7 +197,7 @@ void sub_0205CBFC(SysTask *param0, void *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
         sub_0205D274(v0, &v0->unk_1C0[0], 2);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
         Sound_PlayEffect(SEQ_SE_DP_PYUU);
         v0->unk_1E0 = 1;
         v0->unk_1E4++;
@@ -205,7 +205,7 @@ void sub_0205CBFC(SysTask *param0, void *param1)
     case 2:
         v1 = v0->unk_1C0[0].unk_0C(&v0->unk_1C0[0]);
 
-        if ((v1 == 0) && (IsScreenTransitionDone())) {
+        if ((v1 == 0) && (IsScreenFadeDone())) {
             Sound_PlayEffect(SEQ_SE_DP_SUTYA);
             v0->unk_1E4++;
             v0->unk_1E8 = -255;
@@ -265,7 +265,7 @@ void sub_0205CD3C(SysTask *param0, void *param1)
 
         if (v1 == 2) {
             v0->unk_1E8 = 0;
-            StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, HEAP_ID_FIELD);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 6, 1, HEAP_ID_FIELD);
         }
 
         if (v1 == 0) {
@@ -273,7 +273,7 @@ void sub_0205CD3C(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0->unk_1E8 = 0;
             v0->unk_1E4++;
         }
@@ -310,11 +310,11 @@ void sub_0205CE7C(SysTask *param0, void *param1)
         v0->unk_1E4++;
         break;
     case 1:
-        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_WHITE, 6, 1, HEAP_ID_FIELD);
         v0->unk_1E4++;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             Sound_PlayEffect(SEQ_SE_DP_GYURU);
             v0->unk_1E4++;
         }

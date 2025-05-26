@@ -285,7 +285,7 @@ int ov94_022414B8(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_0224170C(param0);
     ov94_022417A0(param0);
 
-    StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
+    StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_62);
 
     ov94_02245934(param0);
     ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], 0, 3, -1);
@@ -516,7 +516,7 @@ static void ov94_02241920(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0224195C(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         ov94_0224158C(param0, 9, TEXT_SPEED_FAST, 0, 0xf0f);
         ov94_0223C3F4(param0, 16, 1);
     }
@@ -802,10 +802,10 @@ static int ov94_0224208C(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_022420E4(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_18 == 0) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_62);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_62);
         param0->unk_1110 = 1;
     } else {
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_62);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_62);
     }
 
     param0->unk_2C = 0;

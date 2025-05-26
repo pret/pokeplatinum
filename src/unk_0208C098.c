@@ -80,9 +80,9 @@ u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize)
 void sub_0208C120(u8 param0, u32 heapID)
 {
     if (param0 == 0) {
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, heapID);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, heapID);
     } else {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, heapID);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, heapID);
     }
 }
 

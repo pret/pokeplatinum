@@ -1581,13 +1581,13 @@ static BOOL ov23_0224C790(FieldTask *param0)
         break;
     case 1:
         FinishScreenFade();
-        StartScreenTransition(2, 16, 18, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(MODE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
         ov23_0224942C(fieldSystem->unk_6C);
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         v1->unk_0C++;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (fieldSystem->unk_6C == NULL) {
                 (v1->unk_0C)++;
             }
@@ -1615,11 +1615,11 @@ static BOOL ov23_0224C790(FieldTask *param0)
     case 6:
         fieldSystem->unk_6C = ov23_02249404(fieldSystem);
         FinishScreenFade();
-        StartScreenTransition(1, 17, 19, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(MODE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
         (v1->unk_0C)++;
         break;
     case 7:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             break;
         }
 
@@ -2378,7 +2378,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        StartScreenTransition(2, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(MODE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
         break;
     case 4:
         Heap_FreeToHeap(param1);

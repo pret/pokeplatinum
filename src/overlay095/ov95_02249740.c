@@ -193,7 +193,7 @@ static int ov95_022497F8(UnkStruct_ov95_022497D8 *param0, int *param1)
     param0->unk_0C = 0;
 
     SysTask_ExecuteAfterVBlank(ov95_02249F38, param0, 0);
-    StartScreenTransition(0, 1, 1, 0x7fff, 3, 1, HEAP_ID_58);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_WHITE, 3, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -223,12 +223,12 @@ static int ov95_02249840(UnkStruct_ov95_022497D8 *param0, int *param1)
         break;
     case 3:
         if (Sprite_IsAnimated(param0->unk_20[0]) == 0) {
-            StartScreenTransition(0, 0, 0, 0x7fff, 16, 1, HEAP_ID_58);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 16, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
     case 4:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
     }

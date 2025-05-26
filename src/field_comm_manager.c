@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/screen.h"
 
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_defs/struct_0205964C.h"
@@ -153,8 +154,8 @@ void FieldCommMan_ReconnectBattleClient(void)
 
 void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
 {
-    SetupScreenFadeRegisters(0, 0x0);
-    SetupScreenFadeRegisters(1, 0x0);
+    SetupScreenFadeRegisters(DS_SCREEN_MAIN, FADE_BLACK);
+    SetupScreenFadeRegisters(DS_SCREEN_SUB, FADE_BLACK);
     CommMan_SetErrorHandling(1, 1);
 
     if (!CommMan_IsInitialized()) {
@@ -310,9 +311,9 @@ static void sub_020599E4(void)
     }
 
     if (CommTiming_IsSyncState(92)) {
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
-        ResetVisibleHardwareWindows(0);
-        ResetVisibleHardwareWindows(1);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         CommPlayerMan_Restart();
         CommPlayer_SendPos(0);
         FieldCommMan_SetTask(sub_02059A70, 1);
@@ -386,9 +387,9 @@ static void sub_02059B10(void)
         u8 v0 = 1;
         CommSys_SendDataFixedSize(94, &v0);
 
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
-        ResetVisibleHardwareWindows(0);
-        ResetVisibleHardwareWindows(1);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         FieldCommMan_SetTask(sub_02059CD8, 0);
     }
 }

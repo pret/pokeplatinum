@@ -520,7 +520,7 @@ static void SysTaskCallback(SysTask *sysTask, void *_moveTutorManager)
         return;
     }
 
-    if (IsScreenTransitionDone() == FALSE) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 

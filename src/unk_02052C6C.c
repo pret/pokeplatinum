@@ -100,12 +100,12 @@ static BOOL sub_02052CBC(FieldTask *param0)
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD, 0x20000);
             sub_02052F28(fieldSystem, v3);
-            StartScreenTransition(3, 1, 1, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
+            StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
             (*v4)++;
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (SaveData_OverwriteCheck(fieldSystem->saveData) == 0) {
                 sub_02052FA8(fieldSystem, v3);
                 (*v4)++;
@@ -145,11 +145,11 @@ static BOOL sub_02052CBC(FieldTask *param0)
         }
         break;
     case 7:
-        StartScreenTransition(3, 0, 0, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
         (*v4)++;
         break;
     case 8:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             sub_02053098(fieldSystem, v3);
             sub_0203E274(fieldSystem, &(v3->unk_10));
             (*v4)++;

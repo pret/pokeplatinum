@@ -345,7 +345,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
         break;
 
     case 2:
-        if (IsScreenTransitionDone() != 1) {
+        if (IsScreenFadeDone() != 1) {
             break;
         }
 
@@ -424,7 +424,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_3D4++;
         break;
     case 6:
-        if (IsScreenTransitionDone() != 1) {
+        if (IsScreenFadeDone() != 1) {
             break;
         }
         Window_Remove(&param0->unk_D4.unk_18[0]);
@@ -1180,7 +1180,7 @@ static BOOL ov76_0223E8A4(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_3D4++;
         break;
     case 2:
-        if (IsScreenTransitionDone() != 1) {
+        if (IsScreenFadeDone() != 1) {
             break;
         }
 

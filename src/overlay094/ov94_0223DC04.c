@@ -81,7 +81,7 @@ int ov94_0223DC04(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_0223E358(param0->unk_B90, &param0->unk_FCC[7]);
     ov94_0223E240(param0);
 
-    StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
+    StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_62);
 
     param0->unk_2C = 0;
     return 2;
@@ -361,7 +361,7 @@ static int ov94_0223E0A4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223E188(UnkStruct_ov94_0223FD4C *param0)
 {
-    StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_62);
+    StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_62);
 
     param0->unk_2C = 0;
     return 4;

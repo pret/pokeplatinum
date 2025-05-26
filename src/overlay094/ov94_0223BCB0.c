@@ -168,7 +168,7 @@ int ov94_0223BE2C(ApplicationManager *appMan, int *param1)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 3;
         }
         break;
@@ -176,7 +176,7 @@ int ov94_0223BE2C(ApplicationManager *appMan, int *param1)
         *param1 = (*Unk_ov94_0224674C[v0->unk_14][1])(v0, *param1);
         break;
     case 4:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (v0->unk_104) {
                 ov94_0223C4E0(v0);
                 ov94_02243EF8(v0, TrainerInfo_Gender(v0->unk_00->unk_1C));

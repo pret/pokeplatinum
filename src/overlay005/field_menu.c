@@ -231,7 +231,7 @@ static void MenuSysTaskCallback(SysTask *sysTask, void *param)
         return;
     }
 
-    if (IsScreenTransitionDone() == FALSE) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -447,7 +447,7 @@ static void ListMenuSysTaskCallback(SysTask *sysTask, void *param)
         return;
     }
 
-    if (IsScreenTransitionDone() == FALSE) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 

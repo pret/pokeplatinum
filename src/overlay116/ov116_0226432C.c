@@ -328,7 +328,7 @@ static void ov116_022647BC(SysTask *param0, void *param1)
         FX32_CONST(+2)
     };
 
-    if ((IsScreenTransitionDone() == 0) || (v0->unk_A4->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v0->unk_A4->unk_2C.unk_00 == 1)) {
         for (v1 = 0; v1 < 3; v1++) {
             Sprite_DeleteAndFreeResources(v0->unk_08[v1]);
         }
@@ -422,7 +422,7 @@ static void ov116_022649E4(SysTask *param0, void *param1)
     UnkStruct_ov116_02264FEC *v0 = param1;
     UnkStruct_ov116_022649E4 *v1 = v0->unk_00->unk_14;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_2C.unk_00 == 1)) {
         *v0->unk_10 = 0;
         SysTask_Done(param0);
         Heap_FreeToHeap(v0);
@@ -827,7 +827,7 @@ static void ov116_0226534C(SysTask *param0, void *param1)
     UnkStruct_ov116_0226534C *v0 = param1;
     UnkStruct_ov116_022649E4 *v1 = v0->unk_84;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
 
         return;
@@ -1154,7 +1154,7 @@ static void ov116_0226591C(SysTask *param0, void *param1)
 
     v2 = *v3->unk_0C;
 
-    if ((IsScreenTransitionDone() == 0) || (v3->unk_30->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v3->unk_30->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         return;
     }
@@ -1224,7 +1224,7 @@ static void ov116_02265AA4(SysTask *param0, void *param1)
     fx32 v3, v4;
     fx32 v5, v6;
 
-    if ((IsScreenTransitionDone() == 0) || (v0->unk_30->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v0->unk_30->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         return;
     }
@@ -1489,7 +1489,7 @@ static void ov116_022660A8(SysTask *param0, void *param1)
     fx32 v4, v5;
     fx32 v6, v7;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_30->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         return;
     }
@@ -1616,7 +1616,7 @@ static void ov116_0226644C(SysTask *param0, void *param1)
     fx32 v4, v5;
     fx32 v6, v7;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_30->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         return;
     }
@@ -1734,7 +1734,7 @@ static void ov116_022667F4(SysTask *param0, void *param1)
     fx32 v4, v5;
     fx32 v6, v7;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_30->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         return;
     }
@@ -1880,7 +1880,7 @@ static void ov116_02266BF0(SysTask *param0, void *param1)
     fx32 v4, v5;
     fx32 v6, v7;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_30->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         return;
     }

@@ -103,7 +103,7 @@ void FieldTransition_StartMap(FieldTask *task)
 
 static BOOL FieldTask_WaitUntilScreenTransitionDone(FieldTask *task)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         return TRUE;
     }
 
@@ -118,7 +118,7 @@ void FieldTransition_FadeOut(FieldTask *task)
         return;
     }
 
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
     FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 
@@ -130,7 +130,7 @@ void FieldTransition_FadeIn(FieldTask *task)
         return;
     }
 
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
     FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 

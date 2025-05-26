@@ -159,7 +159,7 @@ int ov93_021D0E70(ApplicationManager *appMan, int *param1)
                 sub_0208C120(1, HEAP_ID_72);
             }
         } else {
-            if (IsScreenTransitionDone()) {
+            if (IsScreenFadeDone()) {
                 return 1;
             }
         }

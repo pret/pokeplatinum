@@ -344,11 +344,11 @@ static BOOL ov106_02241D28(UnkStruct_ov106_02243118 *param0)
         break;
     case 2:
         ov106_02241DD4(param0);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_98);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1 * 3, HEAP_ID_98);
         param0->unk_08++;
         break;
     case 3:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -408,7 +408,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov104_0223B5A4(param0->unk_0D) == 0xfe) {
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-                StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_98);
+                StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_98);
 
                 param0->unk_10 = 1;
                 param0->unk_08 = 6;
@@ -510,7 +510,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         }
         break;
     case 6:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov106_02242CA4(param0);
             ov106_022423E8(param0);
             param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_BC, 98);
@@ -692,12 +692,12 @@ static BOOL ov106_02242344(UnkStruct_ov106_02243118 *param0)
 
         if (param0->unk_1B == 0) {
             ov106_022432D4(param0);
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_98);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_98);
             param0->unk_08++;
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;

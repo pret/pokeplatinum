@@ -109,7 +109,7 @@ static int sub_02098304(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             (*param1)++;
         }
 
@@ -141,7 +141,7 @@ static int sub_02098304(ApplicationManager *appMan, int *param1)
         ov119_021D1004();
     } break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
 

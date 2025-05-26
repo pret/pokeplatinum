@@ -1009,12 +1009,12 @@ static NARC *ov6_02243F20(void)
 
 static void ov6_02243F2C(void)
 {
-    StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_WHITE, 6, 1, HEAP_ID_FIELD);
 }
 
 static void ov6_02243F50(void)
 {
-    StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 6, 1, HEAP_ID_FIELD);
 }
 
 static void ov6_02243F74(FieldSystem *fieldSystem, int param1)
@@ -1530,7 +1530,7 @@ static int ov6_022445EC(UnkStruct_ov6_02243FFC *param0)
 
 static int ov6_02244634(UnkStruct_ov6_02243FFC *param0)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         param0->unk_00++;
     }
 

@@ -350,19 +350,19 @@ int ov68_0225C798(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_122);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_122);
         ov66_0222E31C(v1->unk_04, 1);
         (*param1)++;
         break;
     case 1:
-        v2 = IsScreenTransitionDone();
+        v2 = IsScreenFadeDone();
 
         if (v2 == 1) {
             (*param1)++;
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             if (ov66_0222E12C(v1->unk_04) == 1) {
                 ov66_0222E2A4(v1->unk_04);
                 (*param1)++;
@@ -382,11 +382,11 @@ int ov68_0225C798(ApplicationManager *appMan, int *param1)
         }
         break;
     case 3:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_122);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_122);
         (*param1)++;
         break;
     case 4:
-        v2 = IsScreenTransitionDone();
+        v2 = IsScreenFadeDone();
 
         if (v2 == 1) {
             ov68_0225D2A0(&v0->unk_2CC);
@@ -1160,21 +1160,21 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         }
     } break;
     case 9:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, heapID);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, heapID);
         param0->unk_60 = 10;
         break;
     case 10:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov68_0225DB3C(param0, param1, param2, heapID);
             param0->unk_60 = 11;
         }
         break;
     case 11:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, heapID);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, heapID);
         param0->unk_60 = 12;
         break;
     case 12:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_60 = 13;
         }
         break;

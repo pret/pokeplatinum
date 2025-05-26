@@ -110,8 +110,8 @@ int ov72_0223D7A0(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        SetScreenColorBrightness(0, 0x0);
-        SetScreenColorBrightness(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
         SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
@@ -132,7 +132,7 @@ int ov72_0223D7A0(ApplicationManager *appMan, int *param1)
         SetAutorepeat(4, 8);
         ov72_0223DA70();
         ov72_0223DA90(v0->unk_00);
-        StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_39);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 16, 1, HEAP_ID_39);
 
         {
             SaveData *saveData = (SaveData *)ApplicationManager_Args(appMan);
@@ -176,7 +176,7 @@ int ov72_0223D920(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 1;
         }
         break;
@@ -189,7 +189,7 @@ int ov72_0223D920(ApplicationManager *appMan, int *param1)
         ov72_0223E8D0(&v0->unk_437C);
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -763,7 +763,7 @@ static int ov72_0223E488(UnkStruct_ov72_0223DB98 *param0, int param1)
         GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_114);
         Window_EraseMessageBox(&param0->unk_338, 1);
         sub_02015A54(param0->unk_5D00);
-        StartScreenTransition(0, 0, 0, 0x0, 16, 1, HEAP_ID_39);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 16, 1, HEAP_ID_39);
         return 2;
         break;
     case 2:

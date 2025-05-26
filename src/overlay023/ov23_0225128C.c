@@ -613,11 +613,11 @@ static BOOL ov23_02251ACC(FieldTask *param0)
     switch (v1->unk_00) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
-        StartScreenTransition(2, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(MODE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
         v1->unk_00 = 1;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             PlayerAvatar_SetHidden(fieldSystem->playerAvatar, 0);
 
             ov23_02251A84(1, fieldSystem);
@@ -634,11 +634,11 @@ static BOOL ov23_02251ACC(FieldTask *param0)
     case 4:
         PlayerAvatar_SetHidden(fieldSystem->playerAvatar, 1);
         ov23_02251A84(0, fieldSystem);
-        StartScreenTransition(1, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(MODE_MAIN_THEN_SUB, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_FIELD);
         v1->unk_00 = 5;
         break;
     case 5:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             ov23_0224B2C8(fieldSystem);
             SystemFlag_SetDecoratedSecretBase(SaveData_GetVarsFlags(fieldSystem->saveData));
             ov23_02251F94(fieldSystem);

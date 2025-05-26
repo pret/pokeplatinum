@@ -371,10 +371,10 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        SetScreenColorBrightness(0, 0x0);
-        SetScreenColorBrightness(1, 0x0);
-        ResetVisibleHardwareWindows(0);
-        ResetVisibleHardwareWindows(1);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         break;
     case 1:
         if (!ov75_021D13E8(param0)) {
@@ -383,7 +383,7 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
 
         SetVBlankCallback(ov75_021D131C, param0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-        ResetScreenMasterBrightness(0);
+        ResetScreenMasterBrightness(DS_SCREEN_MAIN);
 
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 28, 4);
 
@@ -425,8 +425,8 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
             return 0;
         }
 
-        SetScreenColorBrightness(0, 0x0);
-        SetScreenColorBrightness(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
         SetVBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();

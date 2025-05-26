@@ -294,20 +294,20 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         param0->unk_00++;
         break;
     case 1:
-        StartScreenTransition(0, 0, 0, 0x7fff, 3, 1, heapID);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             param0->unk_00++;
         }
         break;
     case 3:
-        StartScreenTransition(3, 1, 1, 0x7fff, 3, 1, heapID);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_WHITE, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 4:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             param0->unk_00++;
         }
         break;
@@ -355,11 +355,11 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
             break;
         }
 
-        StartScreenTransition(3, 0, 0, 0x7fff, 3, 1, heapID);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 12:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             PaletteData_BlendMulti(param0->unk_1C, 2, param0->unk_164 ^ 0x3fff, 14, 0x0);
             PaletteData_Blend(param0->unk_1C, 2, param0->unk_160 * 16, 16, 0, (GX_RGB(0, 0, 0)));
             BrightnessController_SetScreenBrightness(-14, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_MAIN_SCREEN);
@@ -368,11 +368,11 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         }
         break;
     case 13:
-        StartScreenTransition(3, 1, 1, 0x7fff, 3, 1, heapID);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_WHITE, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 14:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0->unk_78 = 26;
             param0->unk_00++;
         }
@@ -385,16 +385,16 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         }
         break;
     case 16:
-        StartScreenTransition(3, 0, 0, 0x7fff, 15, 1, HEAP_ID_94);
+        StartScreenFade(MODE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 15, 1, HEAP_ID_94);
         param0->unk_00++;
         break;
     case 17:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             param0->unk_00++;
         }
         break;
     case 18:
-        SetScreenColorBrightness(1, 0x7fff);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_WHITE);
 
         if (param0->unk_20 != NULL) {
             *(param0->unk_20) = 1;

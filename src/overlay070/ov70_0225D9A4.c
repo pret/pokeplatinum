@@ -661,12 +661,12 @@ int ov70_0225DB90(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_112);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_112);
         v0->unk_03 = 1;
         (*param1)++;
         break;
     case 1:
-        v2 = IsScreenTransitionDone();
+        v2 = IsScreenFadeDone();
 
         if (v2 == 1) {
             v0->unk_03 = 0;
@@ -741,21 +741,21 @@ int ov70_0225DB90(ApplicationManager *appMan, int *param1)
         v3 = ov70_0225F798(&v0->unk_1E8);
 
         if (v3 == 5) {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_112);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_112);
             v0->unk_03 = 1;
             (*param1)++;
             break;
         }
 
         if (v3 == 0) {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_112);
+            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_112);
             v0->unk_03 = 1;
             (*param1)++;
             break;
         }
     } break;
     case 8:
-        v2 = IsScreenTransitionDone();
+        v2 = IsScreenFadeDone();
 
         if (v2 == 1) {
             v0->unk_03 = 0;
@@ -2093,11 +2093,11 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
         }
         break;
     case 1:
-        StartScreenTransition(4, 0, 0, 0x7fff, 4, 1, heapID);
+        StartScreenFade(MODE_SUB_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_WHITE, 4, 1, heapID);
         param0->unk_00++;
         break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             {
                 const UnkStruct_ov66_0222E71C *v4;
 
@@ -2114,11 +2114,11 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
         }
         break;
     case 3:
-        StartScreenTransition(4, 1, 1, 0x7fff, 6, 1, heapID);
+        StartScreenFade(MODE_SUB_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_WHITE, 6, 1, heapID);
         param0->unk_00++;
         break;
     case 4:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_00++;
         }
         break;
@@ -2175,11 +2175,11 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
         }
         break;
     case 6:
-        StartScreenTransition(4, 1, 0, 0x0, 3, 1, heapID);
+        StartScreenFade(MODE_SUB_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_0, FADE_BLACK, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 7:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             switch (param0->unk_01) {
             case 1:
             case 4:
@@ -2258,7 +2258,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
         param0->unk_00++;
     } break;
     case 9:
-        StartScreenTransition(4, 1, 1, 0x0, 3, 1, heapID);
+        StartScreenFade(MODE_SUB_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 3, 1, heapID);
 
         if (param0->unk_01 == 2) {
             ov70_0225FACC(&param0->unk_08, &param1->unk_37C);
@@ -2267,7 +2267,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
         param0->unk_00++;
         break;
     case 10:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_00 = 5;
         }
         break;

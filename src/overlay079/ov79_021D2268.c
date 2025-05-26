@@ -198,10 +198,10 @@ int ov79_021D22E4(ApplicationManager *appMan, int *param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        SetScreenColorBrightness(0, 0x0);
-        SetScreenColorBrightness(1, 0x0);
-        ResetVisibleHardwareWindows(0);
-        ResetVisibleHardwareWindows(1);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         break;
     case 1:
         if (!ov79_021D247C(v0)) {
@@ -216,10 +216,10 @@ int ov79_021D22E4(ApplicationManager *appMan, int *param1)
         }
 
         v0->unk_04 = 0;
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, v0->heapID);
         break;
     case 3:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             return 0;
         }
 
@@ -229,10 +229,10 @@ int ov79_021D22E4(ApplicationManager *appMan, int *param1)
             return 0;
         }
 
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, v0->heapID);
         break;
     case 5:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             return 0;
         }
 
@@ -244,8 +244,8 @@ int ov79_021D22E4(ApplicationManager *appMan, int *param1)
 
         break;
     case 7:
-        SetScreenColorBrightness(0, 0x0);
-        SetScreenColorBrightness(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
         SetVBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
