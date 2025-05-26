@@ -1,140 +1,144 @@
 #include "hardware_window.h"
 
+#include <nitro/gx/gx.h>
+
+#include "constants/screen.h"
+
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-static void sub_020126CC(SysTask *param0, void *param1);
-static void sub_020126E0(SysTask *param0, void *param1);
-static void sub_020126FC(SysTask *param0, void *param1);
-static void sub_02012714(SysTask *param0, void *param1);
+#define LOCAL_TASK_PRIORITY 1
 
-void sub_02012480(int param0, int param1)
+static void Task_SetVisibleHardwareWindows(SysTask *task, void *data);
+static void Task_SetHardwareWindowMaskInsidePlane(SysTask *task, void *data);
+static void Task_SetHardwareWindowMaskOutsidePlane(SysTask *task, void *data);
+static void Task_SetHardwareWindowDimensions(SysTask *task, void *data);
+
+void SetVisibleHardwareWindows(GXWndMask windowMask, enum DSScreen screen)
 {
-    if (param1 == 0) {
-        GX_SetVisibleWnd(param0);
+    if (screen == DS_SCREEN_MAIN) {
+        GX_SetVisibleWnd(windowMask);
     } else {
-        GXS_SetVisibleWnd(param0);
+        GXS_SetVisibleWnd(windowMask);
     }
 }
 
-void sub_020124AC(int param0, BOOL param1, int param2, int param3)
+void SetHardwareWindowMaskInsidePlane(int wnd, BOOL applyColorEffect, enum HardwareWindow windowID, enum DSScreen screen)
 {
-    if (param2 == 0) {
-        if (param3 == 0) {
-            G2_SetWnd0InsidePlane(param0, param1);
+    if (windowID == HW_WINDOW_WND0) {
+        if (screen == DS_SCREEN_MAIN) {
+            G2_SetWnd0InsidePlane(wnd, applyColorEffect);
         } else {
-            G2S_SetWnd0InsidePlane(param0, param1);
+            G2S_SetWnd0InsidePlane(wnd, applyColorEffect);
         }
     } else {
-        if (param3 == 0) {
-            G2_SetWnd1InsidePlane(param0, param1);
+        if (screen == DS_SCREEN_MAIN) {
+            G2_SetWnd1InsidePlane(wnd, applyColorEffect);
         } else {
-            G2S_SetWnd1InsidePlane(param0, param1);
-        }
-    }
-}
-
-void sub_02012534(int param0, BOOL param1, int param2)
-{
-    if (param2 == 0) {
-        G2_SetWndOutsidePlane(param0, param1);
-    } else {
-        G2S_SetWndOutsidePlane(param0, param1);
-    }
-}
-
-void sub_02012574(int param0, int param1, int param2, int param3, int param4, int param5)
-{
-    if (param4 == 0) {
-        if (param5 == 0) {
-            G2_SetWnd0Position(param0, param1, param2, param3);
-        } else {
-            G2S_SetWnd0Position(param0, param1, param2, param3);
-        }
-    } else {
-        if (param5 == 0) {
-            G2_SetWnd1Position(param0, param1, param2, param3);
-        } else {
-            G2S_SetWnd1Position(param0, param1, param2, param3);
+            G2S_SetWnd1InsidePlane(wnd, applyColorEffect);
         }
     }
 }
 
-void sub_02012634(UnkStruct_02010658 *param0, int param1, int param2)
+void SetHardwareWindowMaskOutsidePlane(int wnd, BOOL applyColorEffect, enum DSScreen screen)
 {
-    UnkStruct_02012634 *v0 = &param0->unk_00[param2];
-
-    v0->unk_00 = param1;
-    v0->unk_04 = param2;
-
-    SysTask_ExecuteAfterVBlank(sub_020126CC, v0, 1);
+    if (screen == DS_SCREEN_MAIN) {
+        G2_SetWndOutsidePlane(wnd, applyColorEffect);
+    } else {
+        G2S_SetWndOutsidePlane(wnd, applyColorEffect);
+    }
 }
 
-void sub_02012650(UnkStruct_02010658 *param0, int param1, BOOL param2, int param3, int param4)
+void SetHardwareWindowDimensions(int left, int top, int right, int bottom, enum HardwareWindow windowID, enum DSScreen screen)
 {
-    UnkStruct_02012650 *v0 = &param0->unk_10[param4][param3];
-
-    v0->unk_00 = param1;
-    v0->unk_04 = param2;
-    v0->unk_08 = param3;
-    v0->unk_0C = param4;
-
-    SysTask_ExecuteAfterVBlank(sub_020126E0, v0, 1);
+    if (windowID == HW_WINDOW_WND0) {
+        if (screen == DS_SCREEN_MAIN) {
+            G2_SetWnd0Position(left, top, right, bottom);
+        } else {
+            G2S_SetWnd0Position(left, top, right, bottom);
+        }
+    } else {
+        if (screen == DS_SCREEN_MAIN) {
+            G2_SetWnd1Position(left, top, right, bottom);
+        } else {
+            G2S_SetWnd1Position(left, top, right, bottom);
+        }
+    }
 }
 
-void sub_02012678(UnkStruct_02010658 *param0, int param1, BOOL param2, int param3)
+void RequestVisibleHardwareWindows(HardwareWindowSettings *settings, GXWndMask windowMask, enum DSScreen screen)
 {
-    UnkStruct_02012678 *v0 = &param0->unk_5C[param3];
+    HardwareWindowVisibility *visible = &settings->visible[screen];
+    visible->windowMask = windowMask;
+    visible->screen = screen;
 
-    v0->unk_00 = param1;
-    v0->unk_04 = param2;
-    v0->unk_08 = param3;
-
-    SysTask_ExecuteAfterVBlank(sub_020126FC, v0, 1);
+    SysTask_ExecuteAfterVBlank(Task_SetVisibleHardwareWindows, visible, LOCAL_TASK_PRIORITY);
 }
 
-void sub_02012698(UnkStruct_02010658 *param0, int param1, int param2, int param3, int param4, int param5, int param6)
+void RequestHardwareWindowMaskInsidePlane(HardwareWindowSettings *settings, int wnd, BOOL applyColorEffect, enum HardwareWindow windowID, enum DSScreen screen)
 {
-    UnkStruct_02012698 *v0 = &param0->unk_74[param6][param5];
+    HardwareWindowInsidePlane *inside = &settings->inside[screen][windowID];
+    inside->wnd = wnd;
+    inside->applyColorEffect = applyColorEffect;
+    inside->windowID = windowID;
+    inside->screen = screen;
 
-    v0->unk_00 = param1;
-    v0->unk_02 = param2;
-    v0->unk_04 = param3;
-    v0->unk_06 = param4;
-    v0->unk_08 = param5;
-    v0->unk_0C = param6;
-
-    SysTask_ExecuteAfterVBlank(sub_02012714, v0, 1);
+    SysTask_ExecuteAfterVBlank(Task_SetHardwareWindowMaskInsidePlane, inside, LOCAL_TASK_PRIORITY);
 }
 
-static void sub_020126CC(SysTask *param0, void *param1)
+void RequestHardwareWindowMaskOutsidePlane(HardwareWindowSettings *settings, int wnd, BOOL applyColorEffect, enum DSScreen screen)
 {
-    UnkStruct_02012634 *v0 = (UnkStruct_02012634 *)param1;
+    HardwareWindowOutsidePlane *outside = &settings->outside[screen];
+    outside->wnd = wnd;
+    outside->applyColorEffect = applyColorEffect;
+    outside->screen = screen;
 
-    sub_02012480(v0->unk_00, v0->unk_04);
-    SysTask_Done(param0);
+    SysTask_ExecuteAfterVBlank(Task_SetHardwareWindowMaskOutsidePlane, outside, LOCAL_TASK_PRIORITY);
 }
 
-static void sub_020126E0(SysTask *param0, void *param1)
+void RequestHardwareWindowDimensions(HardwareWindowSettings *settings, int left, int top, int right, int bottom, enum HardwareWindow windowID, enum DSScreen screen)
 {
-    UnkStruct_02012650 *v0 = (UnkStruct_02012650 *)param1;
+    HardwareWindowDimensions *v0 = &settings->dimensions[screen][windowID];
+    v0->left = left;
+    v0->top = top;
+    v0->right = right;
+    v0->bottom = bottom;
+    v0->windowID = windowID;
+    v0->screen = screen;
 
-    sub_020124AC(v0->unk_00, v0->unk_04, v0->unk_08, v0->unk_0C);
-    SysTask_Done(param0);
+    SysTask_ExecuteAfterVBlank(Task_SetHardwareWindowDimensions, v0, LOCAL_TASK_PRIORITY);
 }
 
-static void sub_020126FC(SysTask *param0, void *param1)
+static void Task_SetVisibleHardwareWindows(SysTask *task, void *data)
 {
-    UnkStruct_02012678 *v0 = (UnkStruct_02012678 *)param1;
-
-    sub_02012534(v0->unk_00, v0->unk_04, v0->unk_08);
-    SysTask_Done(param0);
+    HardwareWindowVisibility *visible = data;
+    SetVisibleHardwareWindows(visible->windowMask, visible->screen);
+    SysTask_Done(task);
 }
 
-static void sub_02012714(SysTask *param0, void *param1)
+static void Task_SetHardwareWindowMaskInsidePlane(SysTask *task, void *data)
 {
-    UnkStruct_02012698 *v0 = (UnkStruct_02012698 *)param1;
+    HardwareWindowInsidePlane *inside = data;
+    SetHardwareWindowMaskInsidePlane(inside->wnd, inside->applyColorEffect, inside->windowID, inside->screen);
+    SysTask_Done(task);
+}
 
-    sub_02012574(v0->unk_00, v0->unk_02, v0->unk_04, v0->unk_06, v0->unk_08, v0->unk_0C);
-    SysTask_Done(param0);
+static void Task_SetHardwareWindowMaskOutsidePlane(SysTask *task, void *data)
+{
+    HardwareWindowOutsidePlane *outside = data;
+    SetHardwareWindowMaskOutsidePlane(outside->wnd, outside->applyColorEffect, outside->screen);
+    SysTask_Done(task);
+}
+
+static void Task_SetHardwareWindowDimensions(SysTask *task, void *data)
+{
+    HardwareWindowDimensions *dimensions = data;
+    SetHardwareWindowDimensions(
+        dimensions->left,
+        dimensions->top,
+        dimensions->right,
+        dimensions->bottom,
+        dimensions->windowID,
+        dimensions->screen);
+    SysTask_Done(task);
 }

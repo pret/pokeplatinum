@@ -18,7 +18,7 @@ typedef struct UnkStruct_0200F7A0 {
     int unk_0C;
     int unk_10;
     void *unk_14;
-    UnkStruct_02010658 *unk_18;
+    HardwareWindowSettings *unk_18;
     UnkStruct_0200F600 *unk_1C;
     int heapID;
     u16 unk_24;

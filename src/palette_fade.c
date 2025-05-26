@@ -36,7 +36,7 @@ typedef struct UnkStruct_0200F46C {
     UnkStruct_0200F7A0 unk_14;
     UnkStruct_0200F7A0 unk_44;
     UnkStruct_0200F600 unk_74;
-    UnkStruct_02010658 unk_8C;
+    HardwareWindowSettings unk_8C;
     u16 unk_14C;
     u8 unk_14E;
     u8 unk_14F;
@@ -53,7 +53,7 @@ static BOOL sub_0200F4C4(UnkStruct_0200F4C4 *param0, UnkStruct_0200F7A0 *param1,
 static void sub_0200F534(BOOL *param0, UnkStruct_0200F7A0 *param1);
 static BOOL sub_0200F550(UnkStruct_0200F7A0 *param0);
 static void sub_0200F564(int param0, UnkStruct_0200F4C4 *param1);
-static void sub_0200F5D4(UnkStruct_0200F7A0 *param0, int param1, int param2, int param3, int param4, void *param5, int param6, UnkStruct_02010658 *param7, UnkStruct_0200F600 *param8, int heapID, u16 param10);
+static void sub_0200F5D4(UnkStruct_0200F7A0 *param0, int param1, int param2, int param3, int param4, void *param5, int param6, HardwareWindowSettings *param7, UnkStruct_0200F600 *param8, int heapID, u16 param10);
 static void sub_0200F5C8(UnkStruct_0200F4C4 *param0, int param1, BOOL param2, BOOL param3);
 static void sub_0200F634(UnkStruct_0200F600 *param0, void *param1, UnkFuncPtr_0200F634 param2, int param3);
 static void sub_0200F6AC(UnkStruct_0200F600 *param0, int param1);
@@ -195,7 +195,7 @@ void sub_0200F2C0(void)
 
 void sub_0200F32C(int param0)
 {
-    sub_02012480(GX_WNDMASK_NONE, param0);
+    SetVisibleHardwareWindows(GX_WNDMASK_NONE, param0);
 }
 
 void sub_0200F338(int param0)
@@ -252,10 +252,10 @@ void sub_0200F3B0(int param0, u16 param1)
         GXS_LoadBGPltt((void *)&param1, 0, sizeof(short));
     }
 
-    sub_02012634(&Unk_021BF474.unk_8C, GX_WNDMASK_W0, param0);
-    sub_02012650(&Unk_021BF474.unk_8C, GX_BLEND_ALL, 0, 0, param0);
-    sub_02012698(&Unk_021BF474.unk_8C, 0, 0, 0, 0, 0, param0);
-    sub_02012678(&Unk_021BF474.unk_8C, GX_BLEND_PLANEMASK_BD, 0, param0);
+    RequestVisibleHardwareWindows(&Unk_021BF474.unk_8C, GX_WNDMASK_W0, param0);
+    RequestHardwareWindowMaskInsidePlane(&Unk_021BF474.unk_8C, GX_BLEND_ALL, 0, 0, param0);
+    RequestHardwareWindowDimensions(&Unk_021BF474.unk_8C, 0, 0, 0, 0, 0, param0);
+    RequestHardwareWindowMaskOutsidePlane(&Unk_021BF474.unk_8C, GX_BLEND_PLANEMASK_BD, 0, param0);
 }
 
 void sub_0200F42C(u16 param0)
@@ -375,7 +375,7 @@ static void sub_0200F5C8(UnkStruct_0200F4C4 *param0, int param1, BOOL param2, BO
     param0->unk_10 = param3;
 }
 
-static void sub_0200F5D4(UnkStruct_0200F7A0 *param0, int param1, int param2, int param3, int param4, void *param5, int param6, UnkStruct_02010658 *param7, UnkStruct_0200F600 *param8, int heapID, u16 param10)
+static void sub_0200F5D4(UnkStruct_0200F7A0 *param0, int param1, int param2, int param3, int param4, void *param5, int param6, HardwareWindowSettings *param7, UnkStruct_0200F600 *param8, int heapID, u16 param10)
 {
     param0->unk_00 = param1;
     param0->unk_04 = param2;
@@ -546,5 +546,5 @@ static void sub_0200F814(UnkStruct_0200F46C *param0)
     memset(&param0->unk_14, 0, sizeof(UnkStruct_0200F7A0));
     memset(&param0->unk_44, 0, sizeof(UnkStruct_0200F7A0));
     memset(&param0->unk_74, 0, sizeof(UnkStruct_0200F600));
-    memset(&param0->unk_8C, 0, sizeof(UnkStruct_02010658));
+    memset(&param0->unk_8C, 0, sizeof(HardwareWindowSettings));
 }

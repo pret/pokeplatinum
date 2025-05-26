@@ -45,7 +45,7 @@ typedef struct {
     int unk_3C;
     int unk_40;
     int unk_44;
-    UnkStruct_02010658 *unk_48;
+    HardwareWindowSettings *unk_48;
 } UnkStruct_02010EA4;
 
 typedef struct {
@@ -85,7 +85,7 @@ typedef struct {
     int unk_24;
     int heapID;
     int unk_2C;
-    UnkStruct_02010658 *unk_30;
+    HardwareWindowSettings *unk_30;
     UnkStruct_0200F600 *unk_34;
 } UnkStruct_0201109C;
 
@@ -108,7 +108,7 @@ typedef struct {
     int unk_18;
     int unk_1C;
     int unk_20;
-    UnkStruct_02010658 *unk_24;
+    HardwareWindowSettings *unk_24;
     UnkStruct_0200F600 *unk_28;
     int heapID;
 } UnkStruct_02011360;
@@ -131,7 +131,7 @@ typedef struct {
     int unk_1C;
     int unk_20;
     int unk_24;
-    UnkStruct_02010658 *unk_28;
+    HardwareWindowSettings *unk_28;
     UnkStruct_0200F600 *unk_2C;
     int heapID;
 } UnkStruct_02011568;
@@ -159,7 +159,7 @@ typedef struct {
     int unk_18;
     int unk_1C;
     int unk_20;
-    UnkStruct_02010658 *unk_24;
+    HardwareWindowSettings *unk_24;
     UnkStruct_0200F600 *unk_28;
     int heapID;
 } UnkStruct_0201184C;
@@ -189,7 +189,7 @@ typedef struct {
     int unk_24;
     int unk_28;
     int heapID;
-    UnkStruct_02010658 *unk_30;
+    HardwareWindowSettings *unk_30;
     UnkStruct_0200F600 *unk_34;
 } UnkStruct_02011AFC;
 
@@ -216,7 +216,7 @@ typedef struct {
     int unk_24;
     int unk_28;
     int heapID;
-    UnkStruct_02010658 *unk_30;
+    HardwareWindowSettings *unk_30;
     UnkStruct_0200F600 *unk_34;
 } UnkStruct_02011E04;
 
@@ -256,7 +256,7 @@ typedef struct {
     int unk_320;
     int unk_324;
     int heapID;
-    UnkStruct_02010658 *unk_32C;
+    HardwareWindowSettings *unk_32C;
     UnkStruct_0200F600 *unk_330;
 } UnkStruct_020120D4;
 
@@ -290,15 +290,15 @@ static int sub_02010190(int param0, int param1, int param2);
 static int sub_020101A0(int param0, int param1);
 static void sub_020101B0(UnkStruct_020101B0 *param0, UnkStruct_020101B0 *param1);
 static void sub_020101D4(UnkStruct_020101B0 *param0, UnkStruct_020101B0 *param1, UnkStruct_020101B0 *param2, const UnkStruct_0200FD8C *param3, const UnkStruct_0200FD8C *param4, int param5);
-static void sub_02010658(int param0, UnkStruct_02010658 *param1, int param2);
+static void sub_02010658(int param0, HardwareWindowSettings *param1, int param2);
 static void sub_0201035C(void *param0);
 static void sub_02010588(UnkStruct_02010588 *param0, int param1, int param2, int heapID);
 static void sub_020105EC(UnkStruct_02010588 *param0);
 static void sub_020105F4(UnkStruct_02010588 *param0);
 static UnkStruct_02010FC0 *sub_02010604(UnkStruct_02010588 *param0, int param1);
 static void sub_02010624(SysTask *param0, void *param1);
-static void sub_020106A8(UnkStruct_02010658 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
-static void sub_02010710(UnkStruct_02010658 *param0, int param1, int param2, int param3);
+static void sub_020106A8(HardwareWindowSettings *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
+static void sub_02010710(HardwareWindowSettings *param0, int param1, int param2, int param3);
 static void sub_02010728(UnkStruct_0201076C *param0, int param1, int param2, int param3, int param4);
 static void sub_0201076C(UnkStruct_0201076C *param0);
 static void sub_02010784(UnkStruct_0200F600 *param0, UnkStruct_0201076C *param1, u32 heapID);
@@ -312,57 +312,57 @@ static void sub_02010CF4(UnkStruct_0200F7A0 *param0, const UnkStruct_0200F980 *p
 static BOOL sub_02010D44(UnkStruct_0200F7A0 *param0);
 static void sub_02010D94(UnkStruct_0200F7A0 *param0, const UnkStruct_0200F980 *param1, const UnkStruct_0200F980 *param2);
 static BOOL sub_02010DEC(UnkStruct_0200F7A0 *param0);
-static void sub_02010E48(UnkStruct_02010EA4 *param0, const UnkStruct_0200F980 *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5);
+static void sub_02010E48(UnkStruct_02010EA4 *param0, const UnkStruct_0200F980 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5);
 static BOOL sub_02010EA4(UnkStruct_02010EA4 *param0);
 static void sub_02010F2C(UnkStruct_0200F7A0 *param0, const UnkStruct_0200FB7C *param1);
 static BOOL sub_02010F64(UnkStruct_0200F7A0 *param0);
-static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
 static BOOL sub_0201109C(UnkStruct_0201109C *param0);
 static void sub_02011180(UnkStruct_0201109C *param0);
 static void sub_02011204(UnkStruct_0200F7A0 *param0, const UnkStruct_0200FC2C *param1);
 static BOOL sub_0201123C(UnkStruct_0200F7A0 *param0);
-static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
 static BOOL sub_02011360(UnkStruct_02011360 *param0);
 static void sub_020113B0(UnkStruct_02011360 *param0);
 static void sub_02011408(UnkStruct_0200F7A0 *param0, const UnkStruct_0200FD34 *param1);
 static BOOL sub_02011440(UnkStruct_0200F7A0 *param0);
-static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
 static BOOL sub_02011568(UnkStruct_02011568 *param0);
 static void sub_020115B8(UnkStruct_02011568 *param0);
 static void sub_020116A0(UnkStruct_0200F7A0 *param0, const UnkStruct_02011738 *param1);
 static BOOL sub_020116D8(UnkStruct_0200F7A0 *param0);
 static BOOL sub_0201184C(UnkStruct_0201184C *param0);
-static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
 static void sub_0201189C(UnkStruct_0201184C *param0);
 static void sub_020118AC(UnkStruct_0201184C *param0);
 static void sub_02011938(UnkStruct_0201184C *param0);
 static void sub_020118E0(UnkStruct_02010588 *param0, UnkStruct_020101B0 *param1);
 static void sub_02011960(UnkStruct_0200F7A0 *param0, UnkStruct_0200FEA4 *param1);
 static BOOL sub_020119A0(UnkStruct_0200F7A0 *param0);
-static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
 static BOOL sub_02011AFC(UnkStruct_02011AFC *param0);
 static void sub_02011B54(UnkStruct_02011AFC *param0);
 static void sub_02011B58(UnkStruct_02011AFC *param0);
 static void sub_02011C7C(UnkStruct_02011C7C *param0, int param1, int param2);
 static void sub_02011C94(UnkStruct_0200F7A0 *param0, UnkStruct_0200FF30 *param1);
 static BOOL sub_02011CD4(UnkStruct_0200F7A0 *param0);
-static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
 static BOOL sub_02011E04(UnkStruct_02011E04 *param0);
 static void sub_02011E5C(UnkStruct_02011E04 *param0);
 static void sub_02011E60(UnkStruct_02011E04 *param0);
 static void sub_02011F2C(UnkStruct_02011F2C *param0, int param1, int param2);
 static void sub_02011F44(UnkStruct_0200F7A0 *param0, UnkStruct_0200FE6C *param1);
 static BOOL sub_02011F88(UnkStruct_0200F7A0 *param0);
-static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
 static BOOL sub_020120D4(UnkStruct_020120D4 *param0);
 static void sub_02012134(UnkStruct_020120D4 *param0);
 static void sub_02012138(UnkStruct_020120D4 *param0);
 static void sub_02012174(const UnkStruct_0200F898 *param0, UnkStruct_02012174 *param1, int param2, int param3);
 static void sub_020121C4(UnkStruct_0200F7A0 *param0, UnkStruct_0201006C *param1);
 static BOOL sub_02012228(UnkStruct_0200F7A0 *param0);
-static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int param7);
+static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int param7);
 static BOOL sub_02012310(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1);
-static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID);
+static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID);
 static BOOL sub_020123F4(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1);
 
 BOOL sub_0200F85C(UnkStruct_0200F7A0 *param0)
@@ -1686,37 +1686,37 @@ static void sub_02010624(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-static void sub_02010658(int param0, UnkStruct_02010658 *param1, int param2)
+static void sub_02010658(int param0, HardwareWindowSettings *param1, int param2)
 {
     if (param0 == 0) {
-        sub_02012634(param1, GX_WNDMASK_NONE, param2);
+        RequestVisibleHardwareWindows(param1, GX_WNDMASK_NONE, param2);
     } else {
-        sub_02012634(param1, GX_WNDMASK_W0, param2);
-        sub_02012650(param1, GX_BLEND_ALL, 0, 0, param2);
-        sub_02012698(param1, 0, 0, 0, 0, 0, param2);
-        sub_02012678(param1, GX_BLEND_PLANEMASK_BD, 0, param2);
+        RequestVisibleHardwareWindows(param1, GX_WNDMASK_W0, param2);
+        RequestHardwareWindowMaskInsidePlane(param1, GX_BLEND_ALL, 0, 0, param2);
+        RequestHardwareWindowDimensions(param1, 0, 0, 0, 0, 0, param2);
+        RequestHardwareWindowMaskOutsidePlane(param1, GX_BLEND_PLANEMASK_BD, 0, param2);
     }
 }
 
-static void sub_020106A8(UnkStruct_02010658 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
+static void sub_020106A8(HardwareWindowSettings *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
     if (param9 == 0) {
-        sub_020124AC(param1, 0, param3, param4);
-        sub_02012534(param2, 0, param4);
-        sub_02012574(param5, param6, param7, param8, param3, param4);
+        SetHardwareWindowMaskInsidePlane(param1, 0, param3, param4);
+        SetHardwareWindowMaskOutsidePlane(param2, 0, param4);
+        SetHardwareWindowDimensions(param5, param6, param7, param8, param3, param4);
     } else {
-        sub_02012650(param0, param1, 0, param3, param4);
-        sub_02012678(param0, param2, 0, param4);
-        sub_02012698(param0, param5, param6, param7, param8, param3, param4);
+        RequestHardwareWindowMaskInsidePlane(param0, param1, 0, param3, param4);
+        RequestHardwareWindowMaskOutsidePlane(param0, param2, 0, param4);
+        RequestHardwareWindowDimensions(param0, param5, param6, param7, param8, param3, param4);
     }
 }
 
-static void sub_02010710(UnkStruct_02010658 *param0, int param1, int param2, int param3)
+static void sub_02010710(HardwareWindowSettings *param0, int param1, int param2, int param3)
 {
     if (param3 == 0) {
-        sub_02012480(param1, param2);
+        SetVisibleHardwareWindows(param1, param2);
     } else {
-        sub_02012634(param0, param1, param2);
+        RequestVisibleHardwareWindows(param0, param1, param2);
     }
 }
 
@@ -1941,7 +1941,7 @@ static BOOL sub_02010DEC(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02010E48(UnkStruct_02010EA4 *param0, const UnkStruct_0200F980 *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5)
+static void sub_02010E48(UnkStruct_02010EA4 *param0, const UnkStruct_0200F980 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5)
 {
     sub_020101D4(&param0->unk_00, &param0->unk_20, &param0->unk_10, &param1->unk_00, &param1->unk_04, param2);
 
@@ -1967,11 +1967,11 @@ static BOOL sub_02010EA4(UnkStruct_02010EA4 *param0)
             param0->unk_38--;
             sub_020101B0(&param0->unk_00, &param0->unk_10);
         } else {
-            sub_02012698(param0->unk_48, param0->unk_20.unk_00, param0->unk_20.unk_04, param0->unk_20.unk_08, param0->unk_20.unk_0C, param0->unk_34, param0->unk_30);
+            RequestHardwareWindowDimensions(param0->unk_48, param0->unk_20.unk_00, param0->unk_20.unk_04, param0->unk_20.unk_08, param0->unk_20.unk_0C, param0->unk_34, param0->unk_30);
             return 1;
         }
 
-        sub_02012698(param0->unk_48, param0->unk_00.unk_00 / 128, param0->unk_00.unk_04 / 128, param0->unk_00.unk_08 / 128, param0->unk_00.unk_0C / 128, param0->unk_34, param0->unk_30);
+        RequestHardwareWindowDimensions(param0->unk_48, param0->unk_00.unk_00 / 128, param0->unk_00.unk_04 / 128, param0->unk_00.unk_08 / 128, param0->unk_00.unk_0C / 128, param0->unk_34, param0->unk_30);
     }
 
     return 0;
@@ -2024,7 +2024,7 @@ static BOOL sub_02010F64(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
 {
     int v0;
     UnkStruct_02010FC0 *v1;
@@ -2188,7 +2188,7 @@ static BOOL sub_0201123C(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
 {
     UnkStruct_02010FC0 *v0;
 
@@ -2297,7 +2297,7 @@ static BOOL sub_02011440(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
 {
     int v0;
     UnkStruct_02010FC0 *v1;
@@ -2449,7 +2449,7 @@ static BOOL sub_020116D8(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
 {
     int v0;
     UnkStruct_02010FC0 *v1;
@@ -2602,7 +2602,7 @@ static BOOL sub_020119A0(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
 {
     UnkStruct_02010FC0 *v0;
     UnkStruct_02010FC0 *v1;
@@ -2777,7 +2777,7 @@ static BOOL sub_02011CD4(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
 {
     UnkStruct_02010FC0 *v0;
     UnkStruct_02010FC0 *v1;
@@ -2930,7 +2930,7 @@ static BOOL sub_02011F88(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
 {
     sub_02010728(&param0->unk_00, param4, 1, 0, 0);
 
@@ -3102,7 +3102,7 @@ static BOOL sub_02012228(UnkStruct_0200F7A0 *param0)
     return v2;
 }
 
-static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int param7)
+static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int param7)
 {
     int v0 = FX_Mul(param2 * FX32_ONE, param1->unk_14) >> FX32_SHIFT;
 
@@ -3152,7 +3152,7 @@ static BOOL sub_02012310(UnkStruct_02012290 *param0, UnkStruct_0200F7A0 *param1)
     return v1;
 }
 
-static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int heapID)
+static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, UnkStruct_0200F600 *param6, int heapID)
 {
     int v0;
 
