@@ -413,7 +413,7 @@ static void ov13_02225C4C(UnkStruct_ov13_022213F0 *param0, u16 *param1, u8 param
                 }
             }
         } else {
-            if (param0->unk_04[param2 - 0].unk_10 == 0) {
+            if (param0->unk_04[param2 - 0].curHP == 0) {
                 for (v3 = 0; v3 < v1 * v2; v3++) {
                     param1[v3] = (param1[v3] & 0xfff) | (2 << 12);
                 }

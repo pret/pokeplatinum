@@ -377,47 +377,47 @@ void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *overlayArgs)
 
 static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, int param2, int param3)
 {
-    PartyManagementData *v0 = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
 
-    MI_CpuClearFast(v0, sizeof(PartyManagementData));
+    MI_CpuClearFast(partyMan, sizeof(PartyManagementData));
 
-    v0->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    v0->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-    v0->unk_21 = param2;
-    v0->unk_20 = param3;
-    v0->unk_1C = fieldSystem;
+    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMan->unk_21 = param2;
+    partyMan->unk_20 = param3;
+    partyMan->fieldSystem = fieldSystem;
 
-    return v0;
+    return partyMan;
 }
 
 void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2)
 {
-    PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 0);
+    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 0);
 
-    v0->unk_18 = param1;
-    v0->selectedMonSlot = param2;
+    partyMan->fieldMoveContext = param1;
+    partyMan->selectedMonSlot = param2;
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    return v0;
+    return partyMan;
 }
 
 void *sub_0203D3C0(int param0, FieldSystem *fieldSystem)
 {
-    PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 3);
+    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 3);
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
-    return v0;
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    return partyMan;
 }
 
 void *sub_0203D3E4(int param0, FieldSystem *fieldSystem)
 {
-    PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 19);
+    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 19);
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
-    return v0;
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    return partyMan;
 }
 
 int PartyManagementData_GetSelectedSlot(PartyManagementData *partyMan)
@@ -437,8 +437,8 @@ void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2)
 
 int sub_0203D438(void *param0)
 {
-    PartyManagementData *v0 = param0;
-    return v0->unk_23;
+    PartyManagementData *partyMan = param0;
+    return partyMan->menuSelectionResult;
 }
 
 int sub_0203D440(void *param0)
@@ -501,40 +501,40 @@ static BOOL sub_0203D444(FieldTask *param0)
 void *sub_0203D50C(FieldTask *taskMan, int heapID)
 {
     UnkStruct_0203D444 *v0;
-    PartyManagementData *v1;
+    PartyManagementData *partyMan;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203D444));
     v0->heapID = heapID;
-    v1 = sub_0203D344(heapID, fieldSystem, 0, 2);
-    v1->unk_32_0 = 2;
-    v1->unk_32_4 = 2;
-    v1->unk_33 = 30;
-    v1->unk_14 = NULL;
-    v0->unk_04 = v1;
+    partyMan = sub_0203D344(heapID, fieldSystem, 0, 2);
+    partyMan->unk_32_0 = 2;
+    partyMan->unk_32_4 = 2;
+    partyMan->unk_33 = 30;
+    partyMan->battleRegulation = NULL;
+    v0->unk_04 = partyMan;
 
     FieldTask_InitCall(taskMan, sub_0203D444, v0);
 
-    return v1;
+    return partyMan;
 }
 
 void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3, int param4, int param5)
 {
-    PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 13);
+    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 13);
 
-    v0->selectedMonSlot = param5;
-    v0->unk_29 = 2;
-    v0->unk_2A = param2;
+    partyMan->selectedMonSlot = param5;
+    partyMan->unk_29 = 2;
+    partyMan->unk_2A = param2;
 
     if (param4 == 0) {
-        v0->unk_2B = param3;
+        partyMan->unk_2B = param3;
     } else {
-        v0->unk_2B = 0;
+        partyMan->unk_2B = 0;
     }
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    return v0;
+    return partyMan;
 }
 
 void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
@@ -562,12 +562,12 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
 
 void *sub_0203D644(FieldSystem *fieldSystem, int param1)
 {
-    PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 21);
+    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 21);
 
-    v0->selectedMonSlot = param1;
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
+    partyMan->selectedMonSlot = param1;
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    return v0;
+    return partyMan;
 }
 
 PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode)
@@ -1712,24 +1712,24 @@ void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, i
 
 PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int param2)
 {
-    PartyManagementData *v0 = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
-    memset(v0, 0, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
+    memset(partyMan, 0, sizeof(PartyManagementData));
 
-    v0->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    v0->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-    v0->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    v0->unk_18 = NULL;
-    v0->unk_21 = 0;
-    v0->unk_20 = 5;
-    v0->unk_24 = param2;
-    v0->selectedMonSlot = 0;
-    v0->unk_1C = fieldSystem;
+    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    partyMan->fieldMoveContext = NULL;
+    partyMan->unk_21 = 0;
+    partyMan->unk_20 = 5;
+    partyMan->usedItemID = param2;
+    partyMan->selectedMonSlot = 0;
+    partyMan->fieldSystem = fieldSystem;
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    return v0;
+    return partyMan;
 }
 
 void *sub_0203E608(FieldSystem *fieldSystem, int heapID)

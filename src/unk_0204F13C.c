@@ -329,38 +329,38 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
 {
     u8 v0;
 
-    PartyManagementData *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
-    MI_CpuClearFast(v1, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+    MI_CpuClearFast(partyMan, sizeof(PartyManagementData));
 
-    v1->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    v1->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v1->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    v1->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
+    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
 
-    v1->unk_21 = 0;
+    partyMan->unk_21 = 0;
 
-    v1->unk_20 = 22;
-    v1->unk_1C = fieldSystem;
+    partyMan->unk_20 = 22;
+    partyMan->fieldSystem = fieldSystem;
 
-    v1->selectedMonSlot = param0->unk_05;
+    partyMan->selectedMonSlot = param0->unk_05;
 
     for (v0 = 0; v0 < 2; v0++) {
-        v1->unk_2C[v0] = param0->unk_06[v0];
+        partyMan->unk_2C[v0] = param0->unk_06[v0];
     }
 
-    v1->unk_33 = 30;
+    partyMan->unk_33 = 30;
 
-    v1->unk_32_0 = 1;
-    v1->unk_32_4 = 1;
+    partyMan->unk_32_0 = 1;
+    partyMan->unk_32_4 = 1;
 
     if (param0->unk_04 == 1) {
-        v1->unk_32_0 = 2;
-        v1->unk_32_4 = 2;
+        partyMan->unk_32_0 = 2;
+        partyMan->unk_32_4 = 2;
     }
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v1);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    *(param0->unk_08) = v1;
+    *(param0->unk_08) = partyMan;
 
     return UnkEnum_0204F13C_2;
 }
@@ -368,15 +368,15 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
 static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
 {
     int v0;
-    PartyManagementData *v1;
+    PartyManagementData *partyMan;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return UnkEnum_0204F13C_2;
     }
 
-    v1 = *(param0->unk_08);
+    partyMan = *(param0->unk_08);
 
-    switch (v1->selectedMonSlot) {
+    switch (partyMan->selectedMonSlot) {
     case 7:
         return UnkEnum_0204F13C_5;
 
@@ -387,11 +387,11 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
         break;
     }
 
-    MI_CpuCopy8(v1->unk_2C, param0->unk_06, 2);
+    MI_CpuCopy8(partyMan->unk_2C, param0->unk_06, 2);
 
-    param0->unk_05 = v1->selectedMonSlot;
+    param0->unk_05 = partyMan->selectedMonSlot;
 
-    Heap_FreeToHeap(v1);
+    Heap_FreeToHeap(partyMan);
     *(param0->unk_08) = NULL;
     return UnkEnum_0204F13C_3;
 }

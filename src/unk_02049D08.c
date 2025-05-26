@@ -428,11 +428,11 @@ void sub_0204A358(UnkStruct_0204AFC4 *param0, FieldTask *param1, void **param2)
 BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *saveData)
 {
     u16 v0 = 0;
-    PartyManagementData *v1 = *param1;
+    PartyManagementData *partyMan = *param1;
     Party *v2;
     Pokemon *v3;
 
-    if ((v1->unk_23 != 0) || (v1->selectedMonSlot == 7)) {
+    if ((partyMan->menuSelectionResult != 0) || (partyMan->selectedMonSlot == 7)) {
         Heap_FreeToHeap(*param1);
         *param1 = NULL;
         return 0;
@@ -441,7 +441,7 @@ BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *saveData)
     v2 = SaveData_GetParty(saveData);
 
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
-        param0->unk_2A[v0] = v1->unk_2C[v0] - 1;
+        param0->unk_2A[v0] = partyMan->unk_2C[v0] - 1;
         v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_2A[v0]);
         param0->unk_2E[v0] = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
         param0->unk_36[v0] = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
