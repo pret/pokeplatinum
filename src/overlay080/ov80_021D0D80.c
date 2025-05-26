@@ -19,7 +19,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "strbuf.h"
 #include "system.h"

@@ -10,7 +10,7 @@
 #include "overlay117/struct_ov117_022605C0.h"
 
 #include "overlay_manager.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 
 typedef struct {
     UnkStruct_ov117_022605C0 *unk_00;
@@ -35,7 +35,7 @@ int ov117_022664BC(ApplicationManager *appMan, int *param1)
         switch (v0->unk_00->unk_3E) {
         case 0:
             if (IsScreenTransitionDone() == 1) {
-                FinishPaletteFade();
+                FinishScreenFade();
             }
 
             SetColorBrightness(0x0);

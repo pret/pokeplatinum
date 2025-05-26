@@ -6,7 +6,7 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "narc.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "system.h"
 
 __attribute__((aligned(4))) static const u16 Unk_020F4030[] = {

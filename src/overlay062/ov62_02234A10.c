@@ -18,7 +18,7 @@
 #include "math_util.h"
 #include "message.h"
 #include "palette.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"

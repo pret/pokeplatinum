@@ -19,10 +19,10 @@
 #include "main.h"
 #include "math_util.h"
 #include "overlay_manager.h"
-#include "palette_fade.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_system.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -154,7 +154,7 @@ void NitroMain(void)
         gSystem.frameCounter = 0;
 
         BrightnessController_Update();
-        ExecPaletteFade();
+        ExecScreenFade();
 
         if (gSystem.vblankCallback != NULL) {
             gSystem.vblankCallback(gSystem.vblankCallbackData);

@@ -19,7 +19,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "math_util.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sys_task.h"

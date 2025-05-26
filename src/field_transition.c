@@ -12,7 +12,7 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "sound.h"
 
 typedef struct EncounterEffectTaskData {

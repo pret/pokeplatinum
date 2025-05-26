@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "system.h"
 #include "text.h"
 

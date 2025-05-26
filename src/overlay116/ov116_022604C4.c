@@ -33,7 +33,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
@@ -1131,7 +1131,7 @@ static u32 ov116_022617E4(UnkStruct_ov116_0226139C *param0)
     if (ov114_0225CA54(&param0->unk_84) == 1) {
         if (param0->unk_48.unk_2C.unk_00 == 0) {
             if (IsScreenTransitionDone() == 1) {
-                FinishPaletteFade();
+                FinishScreenFade();
             }
 
             SetColorBrightness(0x0);

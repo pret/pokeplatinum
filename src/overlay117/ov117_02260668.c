@@ -35,10 +35,10 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
-#include "palette_fade.h"
 #include "particle_system.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
@@ -299,7 +299,7 @@ int ov117_0226098C(ApplicationManager *appMan, int *param1)
         switch (v0->unk_00->unk_3E) {
         case 0:
             if (IsScreenTransitionDone() == 1) {
-                FinishPaletteFade();
+                FinishScreenFade();
             }
 
             SetColorBrightness(0x0);

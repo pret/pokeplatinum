@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_PALETTE_FADE_H
-#define POKEPLATINUM_PALETTE_FADE_H
+#ifndef POKEPLATINUM_SCREEN_FADE_H
+#define POKEPLATINUM_SCREEN_FADE_H
 
 #include "constants/heap.h"
 #include "constants/screen.h"
@@ -83,13 +83,13 @@ enum FadeState {
     FADE_DONE,
 };
 
-typedef struct PaletteFadeHBlanks {
+typedef struct ScreenFadeHBlanks {
     void *data[DS_SCREEN_MAX];
     Callback callback[DS_SCREEN_MAX];
     BOOL running[DS_SCREEN_MAX];
-} PaletteFadeHBlanks;
+} ScreenFadeHBlanks;
 
-typedef struct PaletteFade {
+typedef struct ScreenFade {
     enum FadeType type;
     int steps;
     int framesPerStep;
@@ -97,27 +97,27 @@ typedef struct PaletteFade {
     enum DSScreen screen;
     void *data;
     HardwareWindowSettings *hwSettings;
-    PaletteFadeHBlanks *hblanks;
+    ScreenFadeHBlanks *hblanks;
     enum HeapId heapID;
     u16 color;
     // u8 padding_26[2];
 
     enum FadeDirection direction;
     enum FadeMethod method;
-} PaletteFade;
+} ScreenFade;
 
 void StartScreenTransition(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapId heapID);
-void ExecPaletteFade(void);
+void ExecScreenFade(void);
 BOOL IsScreenTransitionDone(void);
-void FinishPaletteFade(void);
+void FinishScreenFade(void);
 void ResetVisibleHardwareWindows(enum DSScreen screen);
 void ResetScreenMasterBrightness(enum DSScreen screen);
 void SetScreenColorBrightness(enum DSScreen screen, u16 color);
 void SetColorBrightness(u16 color);
-void SetupPaletteFadeRegisters(enum DSScreen screen, u16 color);
+void SetupScreenFadeRegisters(enum DSScreen screen, u16 color);
 void SetScreenBackgroundColor(u16 param0);
 void SetScreenMasterBrightness(enum DSScreen screen, int brightness);
-void sub_0200F6D8(PaletteFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapId heapID);
-void sub_0200F704(PaletteFadeHBlanks *hblanks, enum DSScreen screen, enum HeapId heapID);
+void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapId heapID);
+void RequestDisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen, enum HeapId heapID);
 
-#endif // POKEPLATINUM_PALETTE_FADE_H
+#endif // POKEPLATINUM_SCREEN_FADE_H

@@ -14,7 +14,7 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"

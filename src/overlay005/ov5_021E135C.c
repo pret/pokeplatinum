@@ -11,8 +11,8 @@
 
 #include "heap.h"
 #include "map_object.h"
-#include "palette_fade.h"
 #include "player_avatar.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"

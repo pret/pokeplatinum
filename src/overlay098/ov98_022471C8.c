@@ -41,7 +41,7 @@
 #include "system_data.h"
 #include "text.h"
 #include "sound_playback.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "touch_pad.h"
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"

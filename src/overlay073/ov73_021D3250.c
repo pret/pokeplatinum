@@ -16,7 +16,7 @@
 #include "strbuf.h"
 #include "text.h"
 #include "sound.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "system.h"
 
 typedef struct {

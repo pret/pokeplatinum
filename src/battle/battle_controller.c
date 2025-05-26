@@ -37,9 +37,9 @@
 #include "heap.h"
 #include "item.h"
 #include "move_table.h"
-#include "palette_fade.h"
 #include "party.h"
 #include "pokemon.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "trainer_info.h"
 

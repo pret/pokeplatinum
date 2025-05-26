@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "system.h"
 #include "unk_0202419C.h"

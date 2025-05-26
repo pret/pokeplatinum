@@ -27,9 +27,9 @@
 #include "math_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
-#include "palette_fade.h"
 #include "particle_system.h"
 #include "render_oam.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -1010,7 +1010,7 @@ static int ov77_021D2E60(ApplicationManager *appMan, int *param1)
     UnkStruct_ov77_021D2E9C *v0 = ApplicationManager_Data(appMan);
 
     if (IsScreenTransitionDone() == 0) {
-        FinishPaletteFade();
+        FinishScreenFade();
     }
 
     LCRNG_SetSeed(v0->unk_14);

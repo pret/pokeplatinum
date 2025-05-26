@@ -23,7 +23,7 @@
 #include "easy3d.h"
 #include "field_task.h"
 #include "heap.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "system.h"
 #include "text.h"

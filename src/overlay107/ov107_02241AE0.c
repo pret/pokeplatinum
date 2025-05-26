@@ -52,7 +52,7 @@
 #include "sprite_util.h"
 #include "render_oam.h"
 #include "unk_0200C440.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "system.h"
 #include "vram_transfer.h"
 #include "unk_020302D0.h"

@@ -25,7 +25,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "strbuf.h"
@@ -1001,7 +1001,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
     if (ov77_021D11A4() == 1) {
         param0->unk_29C = 1;
         param0->unk_2A0 = 0;
-        FinishPaletteFade();
+        FinishScreenFade();
         BrightnessController_ResetScreenController(BRIGHTNESS_BOTH_SCREENS);
         return 1;
     }

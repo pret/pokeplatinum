@@ -24,7 +24,7 @@
 #include "inlines.h"
 #include "math_util.h"
 #include "palette.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sys_task.h"

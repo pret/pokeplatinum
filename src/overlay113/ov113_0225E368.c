@@ -31,8 +31,8 @@
 #include "heap.h"
 #include "math_util.h"
 #include "narc.h"
-#include "palette_fade.h"
 #include "pokemon.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 
 __attribute__((aligned(4))) static const s16 Unk_ov113_02260BCC[] = {

@@ -1,4 +1,4 @@
-#include "palette_fade.h"
+#include "screen_fade.h"
 
 #include <string.h>
 
@@ -9,10 +9,12 @@
 #include "enums.h"
 #include "hardware_window.h"
 #include "heap.h"
-#include "palette_fade_funcs.h"
+#include "screen_fade_funcs.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+
+#define LOCAL_TASK_PRIORIITY 1024
 
 enum ScreenFadeOrder {
     ORDER_SIMULTANEOUS,
@@ -21,53 +23,53 @@ enum ScreenFadeOrder {
 };
 
 typedef struct EnableHBlankTemplate {
-    PaletteFadeHBlanks *hblanks;
+    ScreenFadeHBlanks *hblanks;
     void *data;
     Callback callback;
     enum DSScreen screen;
 } EnableHBlankTemplate;
 
 typedef struct DisableHBlankTemplate {
-    PaletteFadeHBlanks *hblanks;
+    ScreenFadeHBlanks *hblanks;
     enum DSScreen screen;
 } DisableHBlankTemplate;
 
-typedef struct PaletteFadeScreen {
+typedef struct ScreenFadeParams {
     enum ScreenFadeOrder order;
     BOOL activeMain;
     BOOL activeSub;
     BOOL existsMain;
     BOOL existsSub;
-} PaletteFadeScreen;
+} ScreenFadeParams;
 
-typedef struct PaletteFadeManager {
-    PaletteFadeScreen screen;
-    PaletteFade mainScreenFade;
-    PaletteFade subScreenFade;
-    PaletteFadeHBlanks hblanks;
+typedef struct ScreenFadeManager {
+    ScreenFadeParams screen;
+    ScreenFade mainScreenFade;
+    ScreenFade subScreenFade;
+    ScreenFadeHBlanks hblanks;
     HardwareWindowSettings hwSettings;
     u16 active;
     u8 dummy_14E;
     u8 dummy_14F;
     u16 savedColor;
-} PaletteFadeManager;
+} ScreenFadeManager;
 
-static void ResetPaletteFadeManager(PaletteFadeManager *manager);
-static void ZeroPaletteFadeManager(PaletteFadeManager *manager);
-static void ClearHBlanks(PaletteFadeHBlanks *hblanks);
+static void ResetScreenFadeManager(ScreenFadeManager *manager);
+static void ZeroScreenFadeManager(ScreenFadeManager *manager);
+static void ClearHBlanks(ScreenFadeHBlanks *hblanks);
 static void RunHBlankCallbacks(void *data);
-static BOOL TryPaletteFade(PaletteFadeScreen *screen, PaletteFade *fadeMain, PaletteFade *fadeSub);
-static void TryPaletteFadeFunc(BOOL *running, PaletteFade *fade);
-static BOOL CallPaletteFadeFunc(PaletteFade *fade);
-static void SetupPaletteFadeScreen(enum FadeMode mode, PaletteFadeScreen *screen);
-static void InitPaletteFade(PaletteFade *fade, enum FadeType type, int steps, int framesPerStep, enum FadeState state, void *data, enum DSScreen screen, HardwareWindowSettings *hwSettings, PaletteFadeHBlanks *hblanks, enum HeapId heapID, u16 color);
-static void InitPaletteFadeScreen(PaletteFadeScreen *screen, enum ScreenFadeOrder order, BOOL fadeMain, BOOL fadeSub);
-static void EnableScreenHBlank(PaletteFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen);
-static void DisableScreenHBlank(PaletteFadeHBlanks *hblanks, enum DSScreen screen);
-static u16 GetFadeColor(PaletteFadeManager *manager, u16 color);
-static u16 GetSavedFadeColor(const PaletteFadeManager *manager);
-static void ResetWindowPaletteFade(PaletteFade *fade);
-static void RequestResetScreenMasterBrightness(PaletteFade *fade);
+static BOOL TryScreenFade(ScreenFadeParams *screen, ScreenFade *fadeMain, ScreenFade *fadeSub);
+static void TryScreenFadeFunc(BOOL *running, ScreenFade *fade);
+static BOOL CallScreenFadeFunc(ScreenFade *fade);
+static void SetupScreenFadeParams(enum FadeMode mode, ScreenFadeParams *params);
+static void InitScreenFade(ScreenFade *fade, enum FadeType type, int steps, int framesPerStep, enum FadeState state, void *data, enum DSScreen screen, HardwareWindowSettings *hwSettings, ScreenFadeHBlanks *hblanks, enum HeapId heapID, u16 color);
+static void InitScreenFadeParams(ScreenFadeParams *params, enum ScreenFadeOrder order, BOOL fadeMain, BOOL fadeSub);
+static void EnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen);
+static void DisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen);
+static u16 GetFadeColor(ScreenFadeManager *manager, u16 color);
+static u16 GetSavedFadeColor(const ScreenFadeManager *manager);
+static void ResetWindowScreenFade(ScreenFade *fade);
+static void RequestResetScreenMasterBrightness(ScreenFade *fade);
 
 static void Task_EnableScreenHBlank(SysTask *task, void *data);
 static void Task_DisableScreenHBlank(SysTask *task, void *data);
@@ -75,7 +77,7 @@ static void Task_ResetScreenMasterBrightness(SysTask *task, void *data);
 
 static void DummyHBlankCallback(void *data);
 
-static const PaletteFadeFunc sPaletteFadeFuncs[FADE_TYPE_MAX] = {
+static const ScreenFadeFunc sScreenFadeFuncs[FADE_TYPE_MAX] = {
     [FADE_TYPE_UNK_00] = sub_0200F85C,
     [FADE_TYPE_UNK_01] = sub_0200F878,
     [FADE_TYPE_UNK_02] = sub_0200F898,
@@ -120,26 +122,26 @@ static const PaletteFadeFunc sPaletteFadeFuncs[FADE_TYPE_MAX] = {
     [FADE_TYPE_UNK_41] = sub_020100A8,
 };
 
-static PaletteFadeManager sPaletteFadeManager;
+static ScreenFadeManager sScreenFadeManager;
 
 void StartScreenTransition(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapId heapID)
 {
     GF_ASSERT(steps);
     GF_ASSERT(framesPerStep);
-    GF_ASSERT(sPaletteFadeManager.active == FALSE);
+    GF_ASSERT(sScreenFadeManager.active == FALSE);
 
-    PaletteFadeManager *manager = &sPaletteFadeManager;
-    ZeroPaletteFadeManager(manager);
-    SetupPaletteFadeScreen(mode, &manager->screen);
+    ScreenFadeManager *manager = &sScreenFadeManager;
+    ZeroScreenFadeManager(manager);
+    SetupScreenFadeParams(mode, &manager->screen);
     ClearHBlanks(&manager->hblanks);
 
     u16 fadeColor = GetFadeColor(manager, color);
-    InitPaletteFade(&manager->mainScreenFade, typeMain, steps, framesPerStep, FADE_IDLE, NULL, DS_SCREEN_MAIN, &manager->hwSettings, &manager->hblanks, heapID, fadeColor);
-    InitPaletteFade(&manager->subScreenFade, typeSub, steps, framesPerStep, FADE_IDLE, NULL, DS_SCREEN_SUB, &manager->hwSettings, &manager->hblanks, heapID, fadeColor);
+    InitScreenFade(&manager->mainScreenFade, typeMain, steps, framesPerStep, FADE_IDLE, NULL, DS_SCREEN_MAIN, &manager->hwSettings, &manager->hblanks, heapID, fadeColor);
+    InitScreenFade(&manager->subScreenFade, typeSub, steps, framesPerStep, FADE_IDLE, NULL, DS_SCREEN_SUB, &manager->hwSettings, &manager->hblanks, heapID, fadeColor);
 
     manager->active = TRUE;
-    TryPaletteFadeFunc(&manager->screen.activeMain, &manager->mainScreenFade);
-    TryPaletteFadeFunc(&manager->screen.activeSub, &manager->subScreenFade);
+    TryScreenFadeFunc(&manager->screen.activeMain, &manager->mainScreenFade);
+    TryScreenFadeFunc(&manager->screen.activeSub, &manager->subScreenFade);
 
     if (manager->screen.existsMain) {
         RequestResetScreenMasterBrightness(&manager->mainScreenFade);
@@ -152,40 +154,40 @@ void StartScreenTransition(enum FadeMode mode, enum FadeType typeMain, enum Fade
     }
 }
 
-void ExecPaletteFade(void)
+void ExecScreenFade(void)
 {
-    PaletteFadeManager *manager = &sPaletteFadeManager;
-    if (manager->active && TryPaletteFade(&manager->screen, &manager->mainScreenFade, &manager->subScreenFade) == TRUE) {
-        ResetPaletteFadeManager(manager);
+    ScreenFadeManager *manager = &sScreenFadeManager;
+    if (manager->active && TryScreenFade(&manager->screen, &manager->mainScreenFade, &manager->subScreenFade) == TRUE) {
+        ResetScreenFadeManager(manager);
     }
 }
 
 BOOL IsScreenTransitionDone(void)
 {
-    return !sPaletteFadeManager.active;
+    return !sScreenFadeManager.active;
 }
 
-void FinishPaletteFade(void)
+void FinishScreenFade(void)
 {
-    DisableScreenHBlank(&sPaletteFadeManager.hblanks, DS_SCREEN_MAIN);
-    DisableScreenHBlank(&sPaletteFadeManager.hblanks, DS_SCREEN_SUB);
+    DisableScreenHBlank(&sScreenFadeManager.hblanks, DS_SCREEN_MAIN);
+    DisableScreenHBlank(&sScreenFadeManager.hblanks, DS_SCREEN_SUB);
 
-    if (sPaletteFadeManager.screen.activeMain) {
-        sPaletteFadeManager.mainScreenFade.state = FADE_CLEANUP;
+    if (sScreenFadeManager.screen.activeMain) {
+        sScreenFadeManager.mainScreenFade.state = FADE_CLEANUP;
     }
 
-    if (sPaletteFadeManager.screen.activeSub) {
-        sPaletteFadeManager.subScreenFade.state = FADE_CLEANUP;
+    if (sScreenFadeManager.screen.activeSub) {
+        sScreenFadeManager.subScreenFade.state = FADE_CLEANUP;
     }
 
-    TryPaletteFadeFunc(&sPaletteFadeManager.screen.activeMain, &sPaletteFadeManager.mainScreenFade);
-    TryPaletteFadeFunc(&sPaletteFadeManager.screen.activeSub, &sPaletteFadeManager.subScreenFade);
+    TryScreenFadeFunc(&sScreenFadeManager.screen.activeMain, &sScreenFadeManager.mainScreenFade);
+    TryScreenFadeFunc(&sScreenFadeManager.screen.activeSub, &sScreenFadeManager.subScreenFade);
 
-    sPaletteFadeManager.active = 0;
-    sPaletteFadeManager.dummy_14E = 0;
-    sPaletteFadeManager.dummy_14F = 0;
+    sScreenFadeManager.active = 0;
+    sScreenFadeManager.dummy_14E = 0;
+    sScreenFadeManager.dummy_14F = 0;
 
-    ZeroPaletteFadeManager(&sPaletteFadeManager);
+    ZeroScreenFadeManager(&sScreenFadeManager);
 }
 
 void ResetVisibleHardwareWindows(enum DSScreen screen)
@@ -201,7 +203,7 @@ void ResetScreenMasterBrightness(enum DSScreen screen)
 void SetScreenColorBrightness(enum DSScreen screen, u16 color)
 {
     if (color == FADE_SAVED) {
-        color = sPaletteFadeManager.savedColor;
+        color = sScreenFadeManager.savedColor;
     }
 
     int brightness;
@@ -217,7 +219,7 @@ void SetScreenColorBrightness(enum DSScreen screen, u16 color)
 void SetColorBrightness(u16 color)
 {
     if (color == FADE_SAVED) {
-        color = sPaletteFadeManager.savedColor;
+        color = sScreenFadeManager.savedColor;
     }
 
     int brightness;
@@ -229,13 +231,13 @@ void SetColorBrightness(u16 color)
 
     SetScreenMasterBrightness(DS_SCREEN_MAIN, brightness);
     SetScreenMasterBrightness(DS_SCREEN_SUB, brightness);
-    sPaletteFadeManager.savedColor = color;
+    sScreenFadeManager.savedColor = color;
 }
 
-void SetupPaletteFadeRegisters(enum DSScreen screen, u16 color)
+void SetupScreenFadeRegisters(enum DSScreen screen, u16 color)
 {
     if (color == FADE_SAVED) {
-        color = sPaletteFadeManager.savedColor;
+        color = sScreenFadeManager.savedColor;
     }
 
     if (screen == DS_SCREEN_MAIN) {
@@ -244,10 +246,10 @@ void SetupPaletteFadeRegisters(enum DSScreen screen, u16 color)
         GXS_LoadBGPltt((void *)&color, 0, sizeof(u16));
     }
 
-    RequestVisibleHardwareWindows(&sPaletteFadeManager.hwSettings, GX_WNDMASK_W0, screen);
-    RequestHardwareWindowMaskInsidePlane(&sPaletteFadeManager.hwSettings, GX_BLEND_ALL, 0, 0, screen);
-    RequestHardwareWindowDimensions(&sPaletteFadeManager.hwSettings, 0, 0, 0, 0, 0, screen);
-    RequestHardwareWindowMaskOutsidePlane(&sPaletteFadeManager.hwSettings, GX_BLEND_PLANEMASK_BD, 0, screen);
+    RequestVisibleHardwareWindows(&sScreenFadeManager.hwSettings, GX_WNDMASK_W0, screen);
+    RequestHardwareWindowMaskInsidePlane(&sScreenFadeManager.hwSettings, GX_BLEND_ALL, 0, 0, screen);
+    RequestHardwareWindowDimensions(&sScreenFadeManager.hwSettings, 0, 0, 0, 0, 0, screen);
+    RequestHardwareWindowMaskOutsidePlane(&sScreenFadeManager.hwSettings, GX_BLEND_PLANEMASK_BD, 0, screen);
 }
 
 void SetScreenBackgroundColor(u16 color)
@@ -265,49 +267,49 @@ void SetScreenMasterBrightness(enum DSScreen screen, int brightness)
     }
 }
 
-static void ResetPaletteFadeManager(PaletteFadeManager *manager)
+static void ResetScreenFadeManager(ScreenFadeManager *manager)
 {
     manager->active = FALSE;
     manager->savedColor = GetSavedFadeColor(manager);
 
     if (manager->screen.existsMain) {
-        ResetWindowPaletteFade(&manager->mainScreenFade);
+        ResetWindowScreenFade(&manager->mainScreenFade);
         if (manager->mainScreenFade.direction == FADE_IN) {
-            sPaletteFadeManager.dummy_14E = 0;
+            sScreenFadeManager.dummy_14E = 0;
         }
     }
 
     if (manager->screen.existsSub) {
-        ResetWindowPaletteFade(&manager->subScreenFade);
+        ResetWindowScreenFade(&manager->subScreenFade);
         if (manager->mainScreenFade.direction == FADE_IN) {
-            sPaletteFadeManager.dummy_14F = 0;
+            sScreenFadeManager.dummy_14F = 0;
         }
     }
 
-    ZeroPaletteFadeManager(manager);
+    ZeroScreenFadeManager(manager);
 }
 
-static BOOL TryPaletteFade(PaletteFadeScreen *screen, PaletteFade *fadeMain, PaletteFade *fadeSub)
+static BOOL TryScreenFade(ScreenFadeParams *screen, ScreenFade *fadeMain, ScreenFade *fadeSub)
 {
     switch (screen->order) {
     case ORDER_SIMULTANEOUS:
-        TryPaletteFadeFunc(&screen->activeMain, fadeMain);
-        TryPaletteFadeFunc(&screen->activeSub, fadeSub);
+        TryScreenFadeFunc(&screen->activeMain, fadeMain);
+        TryScreenFadeFunc(&screen->activeSub, fadeSub);
         break;
 
     case ORDER_MAIN_FIRST:
         if (screen->activeMain) {
-            TryPaletteFadeFunc(&screen->activeMain, fadeMain);
+            TryScreenFadeFunc(&screen->activeMain, fadeMain);
         } else {
-            TryPaletteFadeFunc(&screen->activeSub, fadeSub);
+            TryScreenFadeFunc(&screen->activeSub, fadeSub);
         }
         break;
 
     case ORDER_SUB_FIRST:
         if (screen->activeSub) {
-            TryPaletteFadeFunc(&screen->activeSub, fadeSub);
+            TryScreenFadeFunc(&screen->activeSub, fadeSub);
         } else {
-            TryPaletteFadeFunc(&screen->activeMain, fadeMain);
+            TryScreenFadeFunc(&screen->activeMain, fadeMain);
         }
         break;
     }
@@ -319,53 +321,53 @@ static BOOL TryPaletteFade(PaletteFadeScreen *screen, PaletteFade *fadeMain, Pal
     return FALSE;
 }
 
-static void TryPaletteFadeFunc(BOOL *running, PaletteFade *fade)
+static void TryScreenFadeFunc(BOOL *running, ScreenFade *fade)
 {
-    if (*running && CallPaletteFadeFunc(fade) == TRUE) {
+    if (*running && CallScreenFadeFunc(fade) == TRUE) {
         *running = FALSE;
     }
 }
 
-static BOOL CallPaletteFadeFunc(PaletteFade *fade)
+static BOOL CallScreenFadeFunc(ScreenFade *fade)
 {
-    return sPaletteFadeFuncs[fade->type](fade);
+    return sScreenFadeFuncs[fade->type](fade);
 }
 
-static void SetupPaletteFadeScreen(enum FadeMode mode, PaletteFadeScreen *screen)
+static void SetupScreenFadeParams(enum FadeMode mode, ScreenFadeParams *params)
 {
     switch (mode) {
     case MODE_BOTH_SCREENS:
-        InitPaletteFadeScreen(screen, ORDER_SIMULTANEOUS, TRUE, TRUE);
+        InitScreenFadeParams(params, ORDER_SIMULTANEOUS, TRUE, TRUE);
         break;
 
     case MODE_MAIN_THEN_SUB:
-        InitPaletteFadeScreen(screen, ORDER_MAIN_FIRST, TRUE, TRUE);
+        InitScreenFadeParams(params, ORDER_MAIN_FIRST, TRUE, TRUE);
         break;
 
     case MODE_SUB_THEN_MAIN:
-        InitPaletteFadeScreen(screen, ORDER_SUB_FIRST, TRUE, TRUE);
+        InitScreenFadeParams(params, ORDER_SUB_FIRST, TRUE, TRUE);
         break;
 
     case MODE_MAIN_ONLY:
-        InitPaletteFadeScreen(screen, ORDER_MAIN_FIRST, TRUE, FALSE);
+        InitScreenFadeParams(params, ORDER_MAIN_FIRST, TRUE, FALSE);
         break;
 
     case MODE_SUB_ONLY:
-        InitPaletteFadeScreen(screen, ORDER_SUB_FIRST, FALSE, TRUE);
+        InitScreenFadeParams(params, ORDER_SUB_FIRST, FALSE, TRUE);
         break;
     }
 }
 
-static void InitPaletteFadeScreen(PaletteFadeScreen *screen, enum ScreenFadeOrder order, BOOL fadeMain, BOOL fadeSub)
+static void InitScreenFadeParams(ScreenFadeParams *params, enum ScreenFadeOrder order, BOOL fadeMain, BOOL fadeSub)
 {
-    screen->order = order;
-    screen->activeMain = fadeMain;
-    screen->activeSub = fadeSub;
-    screen->existsMain = fadeMain;
-    screen->existsSub = fadeSub;
+    params->order = order;
+    params->activeMain = fadeMain;
+    params->activeSub = fadeSub;
+    params->existsMain = fadeMain;
+    params->existsSub = fadeSub;
 }
 
-static void InitPaletteFade(PaletteFade *fade, enum FadeType type, int steps, int framesPerStep, enum FadeState state, void *data, enum DSScreen screen, HardwareWindowSettings *hwSettings, PaletteFadeHBlanks *hblanks, enum HeapId heapID, u16 color)
+static void InitScreenFade(ScreenFade *fade, enum FadeType type, int steps, int framesPerStep, enum FadeState state, void *data, enum DSScreen screen, HardwareWindowSettings *hwSettings, ScreenFadeHBlanks *hblanks, enum HeapId heapID, u16 color)
 {
     fade->type = type;
     fade->steps = steps;
@@ -379,7 +381,7 @@ static void InitPaletteFade(PaletteFade *fade, enum FadeType type, int steps, in
     fade->color = color;
 }
 
-static void ClearHBlanks(PaletteFadeHBlanks *hblanks)
+static void ClearHBlanks(ScreenFadeHBlanks *hblanks)
 {
     for (int screen = 0; screen < DS_SCREEN_MAX; screen++) {
         hblanks->data[screen] = NULL;
@@ -390,13 +392,13 @@ static void ClearHBlanks(PaletteFadeHBlanks *hblanks)
 
 static void RunHBlankCallbacks(void *data)
 {
-    PaletteFadeHBlanks *hblanks = data;
+    ScreenFadeHBlanks *hblanks = data;
     for (int screen = 0; screen < DS_SCREEN_MAX; screen++) {
         hblanks->callback[screen](hblanks->data[screen]);
     }
 }
 
-static void EnableScreenHBlank(PaletteFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen)
+static void EnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen)
 {
     u8 validCallback = TRUE;
     GF_ASSERT(hblanks->running[screen] == FALSE);
@@ -419,7 +421,7 @@ static void EnableScreenHBlank(PaletteFadeHBlanks *hblanks, void *data, Callback
     hblanks->running[screen] = TRUE;
 }
 
-static void DisableScreenHBlank(PaletteFadeHBlanks *hblanks, enum DSScreen screen)
+static void DisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen)
 {
     hblanks->running[screen] = FALSE;
 
@@ -431,24 +433,24 @@ static void DisableScreenHBlank(PaletteFadeHBlanks *hblanks, enum DSScreen scree
     hblanks->data[screen] = NULL;
 }
 
-void sub_0200F6D8(PaletteFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapId heapID)
+void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapId heapID)
 {
-    EnableHBlankTemplate *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(EnableHBlankTemplate));
-    v0->hblanks = hblanks;
-    v0->data = data;
-    v0->callback = callback;
-    v0->screen = screen;
+    EnableHBlankTemplate *template = Heap_AllocFromHeapAtEnd(heapID, sizeof(EnableHBlankTemplate));
+    template->hblanks = hblanks;
+    template->data = data;
+    template->callback = callback;
+    template->screen = screen;
 
-    SysTask_ExecuteAfterVBlank(Task_EnableScreenHBlank, v0, 1024);
+    SysTask_ExecuteAfterVBlank(Task_EnableScreenHBlank, template, LOCAL_TASK_PRIORIITY);
 }
 
-void sub_0200F704(PaletteFadeHBlanks *hblanks, enum DSScreen screen, enum HeapId heapID)
+void RequestDisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen, enum HeapId heapID)
 {
-    DisableHBlankTemplate *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(DisableHBlankTemplate));
-    v0->hblanks = hblanks;
-    v0->screen = screen;
+    DisableHBlankTemplate *template = Heap_AllocFromHeapAtEnd(heapID, sizeof(DisableHBlankTemplate));
+    template->hblanks = hblanks;
+    template->screen = screen;
 
-    SysTask_ExecuteAfterVBlank(Task_DisableScreenHBlank, v0, 1024);
+    SysTask_ExecuteAfterVBlank(Task_DisableScreenHBlank, template, LOCAL_TASK_PRIORIITY);
 }
 
 static void Task_EnableScreenHBlank(SysTask *task, void *data)
@@ -472,7 +474,7 @@ static void DummyHBlankCallback(void *data)
     return;
 }
 
-static u16 GetFadeColor(PaletteFadeManager *manager, u16 color)
+static u16 GetFadeColor(ScreenFadeManager *manager, u16 color)
 {
     if (color == 0xffff) {
         return manager->savedColor;
@@ -481,9 +483,9 @@ static u16 GetFadeColor(PaletteFadeManager *manager, u16 color)
     return color;
 }
 
-static u16 GetSavedFadeColor(const PaletteFadeManager *manager)
+static u16 GetSavedFadeColor(const ScreenFadeManager *manager)
 {
-    const PaletteFade *fade;
+    const ScreenFade *fade;
     if (manager->screen.existsMain == TRUE) {
         fade = &manager->mainScreenFade;
     } else {
@@ -499,21 +501,21 @@ static u16 GetSavedFadeColor(const PaletteFadeManager *manager)
 
 static void Task_ResetScreenMasterBrightness(SysTask *task, void *data)
 {
-    PaletteFade *fade = data;
+    ScreenFade *fade = data;
     SetScreenMasterBrightness(fade->screen, 0);
     SysTask_Done(task);
 }
 
-static void RequestResetScreenMasterBrightness(PaletteFade *fade)
+static void RequestResetScreenMasterBrightness(ScreenFade *fade)
 {
     if (fade->direction == FADE_IN
         && (fade->color == FADE_WHITE || fade->color == FADE_BLACK)
         && fade->method == FADE_WINDOW) {
-        SysTask_ExecuteAfterVBlank(Task_ResetScreenMasterBrightness, fade, 1024);
+        SysTask_ExecuteAfterVBlank(Task_ResetScreenMasterBrightness, fade, LOCAL_TASK_PRIORIITY);
     }
 }
 
-static void ResetWindowPaletteFade(PaletteFade *fade)
+static void ResetWindowScreenFade(ScreenFade *fade)
 {
     if (fade->direction == FADE_OUT
         && (fade->color == FADE_WHITE || fade->color == FADE_BLACK)
@@ -523,11 +525,11 @@ static void ResetWindowPaletteFade(PaletteFade *fade)
     }
 }
 
-static void ZeroPaletteFadeManager(PaletteFadeManager *manager)
+static void ZeroScreenFadeManager(ScreenFadeManager *manager)
 {
-    memset(&manager->screen, 0, sizeof(PaletteFadeScreen));
-    memset(&manager->mainScreenFade, 0, sizeof(PaletteFade));
-    memset(&manager->subScreenFade, 0, sizeof(PaletteFade));
-    memset(&manager->hblanks, 0, sizeof(PaletteFadeHBlanks));
+    memset(&manager->screen, 0, sizeof(ScreenFadeParams));
+    memset(&manager->mainScreenFade, 0, sizeof(ScreenFade));
+    memset(&manager->subScreenFade, 0, sizeof(ScreenFade));
+    memset(&manager->hblanks, 0, sizeof(ScreenFadeHBlanks));
     memset(&manager->hwSettings, 0, sizeof(HardwareWindowSettings));
 }

@@ -27,7 +27,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -92,7 +92,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
         case 0:
 
             if (IsScreenTransitionDone() == 1) {
-                FinishPaletteFade();
+                FinishScreenFade();
             }
 
             SetColorBrightness(0x0);

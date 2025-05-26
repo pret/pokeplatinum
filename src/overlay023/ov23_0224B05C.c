@@ -41,10 +41,10 @@
 #include "map_object_move.h"
 #include "menu.h"
 #include "message.h"
-#include "palette_fade.h"
 #include "player_avatar.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -1580,7 +1580,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         }
         break;
     case 1:
-        FinishPaletteFade();
+        FinishScreenFade();
         StartScreenTransition(2, 16, 18, 0x0, 6, 1, HEAP_ID_FIELD);
         ov23_0224942C(fieldSystem->unk_6C);
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
@@ -1614,7 +1614,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         break;
     case 6:
         fieldSystem->unk_6C = ov23_02249404(fieldSystem);
-        FinishPaletteFade();
+        FinishScreenFade();
         StartScreenTransition(1, 17, 19, 0x0, 6, 1, HEAP_ID_FIELD);
         (v1->unk_0C)++;
         break;

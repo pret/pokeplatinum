@@ -20,9 +20,9 @@
 #include "encounter.h"
 #include "field_system.h"
 #include "heap.h"
-#include "palette_fade.h"
 #include "party.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -153,8 +153,8 @@ void FieldCommMan_ReconnectBattleClient(void)
 
 void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
 {
-    SetupPaletteFadeRegisters(0, 0x0);
-    SetupPaletteFadeRegisters(1, 0x0);
+    SetupScreenFadeRegisters(0, 0x0);
+    SetupScreenFadeRegisters(1, 0x0);
     CommMan_SetErrorHandling(1, 1);
 
     if (!CommMan_IsInitialized()) {

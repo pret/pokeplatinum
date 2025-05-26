@@ -13,7 +13,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"

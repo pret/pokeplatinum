@@ -46,7 +46,7 @@
 #include "touch_screen.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
-#include "palette_fade.h"
+#include "screen_fade.h"
 #include "unk_02012744.h"
 #include "touch_screen_actions.h"
 #include "pokedex.h"

@@ -44,13 +44,13 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
-#include "palette_fade.h"
 #include "party.h"
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -566,7 +566,7 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
         break;
     case 9:
         if (IsScreenTransitionDone() == 0) {
-            FinishPaletteFade();
+            FinishScreenFade();
         }
 
         StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_118);
