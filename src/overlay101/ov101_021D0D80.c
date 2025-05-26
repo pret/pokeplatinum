@@ -25,6 +25,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette_fade.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "render_window.h"
@@ -36,7 +37,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020711EC.h"
 #include "vram_transfer.h"
 

@@ -21,6 +21,7 @@
 #include "inlines.h"
 #include "list_menu.h"
 #include "message.h"
+#include "palette_fade.h"
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
@@ -33,7 +34,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "tutor_movesets.h"
-#include "unk_0200F174.h"
 #include "unk_02054884.h"
 
 #include "res/pokemon/species_learnsets_by_tutor.h"

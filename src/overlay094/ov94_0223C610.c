@@ -17,6 +17,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "palette_fade.h"
 #include "render_window.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -25,7 +26,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 
 static void ov94_0223C720(BgConfig *param0);

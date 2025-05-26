@@ -27,12 +27,12 @@
 #include "heap.h"
 #include "message.h"
 #include "palette.h"
+#include "palette_fade.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 
 typedef void (*UnkFuncPtr_ov99_021D4A04)(UnkStruct_ov99_021D2CB0 *);
 typedef BOOL (*UnkFuncPtr_ov99_021D4A04_1)(UnkStruct_ov99_021D2CB0 *, UnkStruct_ov99_021D3A40 *);

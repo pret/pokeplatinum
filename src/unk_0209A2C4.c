@@ -11,12 +11,12 @@
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "palette_fade.h"
 #include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 
 FS_EXTERN_OVERLAY(overlay97);
 

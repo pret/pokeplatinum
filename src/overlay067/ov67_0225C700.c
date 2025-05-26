@@ -28,6 +28,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette_fade.h"
 #include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
@@ -37,7 +38,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 

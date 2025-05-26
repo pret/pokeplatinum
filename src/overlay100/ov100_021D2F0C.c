@@ -19,6 +19,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "palette_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
@@ -26,7 +27,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
 static void ov100_021D3084(UnkStruct_ov100_021D3084 *param0);

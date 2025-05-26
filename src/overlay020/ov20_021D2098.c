@@ -24,13 +24,13 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette_fade.h"
 #include "render_oam.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_0200F174.h"
 
 typedef struct UnkStruct_ov20_021D2128_t {
     SysTask *unk_00;

@@ -16,11 +16,11 @@
 #include "heap.h"
 #include "main.h"
 #include "message.h"
+#include "palette_fade.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020366A0.h"
 
 static const UnkStruct_02099F80 sErrorMessageBanksConfig = {

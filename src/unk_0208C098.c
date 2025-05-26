@@ -6,8 +6,8 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette_fade.h"
 #include "system.h"
-#include "unk_0200F174.h"
 
 __attribute__((aligned(4))) static const u16 Unk_020F4030[] = {
     0x20,

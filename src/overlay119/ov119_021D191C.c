@@ -10,6 +10,7 @@
 #include "gx_layers.h"
 #include "menu.h"
 #include "palette.h"
+#include "palette_fade.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
@@ -18,7 +19,6 @@
 #include "sprite.h"
 #include "sprite_system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_02015F84.h"
 
 static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0);

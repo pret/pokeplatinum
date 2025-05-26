@@ -23,6 +23,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette_fade.h"
 #include "party.h"
 #include "play_time.h"
 #include "pokemon.h"
@@ -39,7 +40,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 
 typedef struct {

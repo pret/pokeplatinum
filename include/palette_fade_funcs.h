@@ -1,7 +1,9 @@
-#ifndef POKEPLATINUM_UNK_0200F85C_H
-#define POKEPLATINUM_UNK_0200F85C_H
+#ifndef POKEPLATINUM_PALETTE_FADE_FUNCS_H
+#define POKEPLATINUM_PALETTE_FADE_FUNCS_H
 
-#include "struct_defs/struct_0200F7A0.h"
+#include "palette_fade.h"
+
+typedef BOOL (*UnkFuncPtr_0200F6D8)(UnkStruct_0200F7A0 *);
 
 BOOL sub_0200F85C(UnkStruct_0200F7A0 *param0);
 BOOL sub_0200F878(UnkStruct_0200F7A0 *param0);
@@ -46,4 +48,4 @@ BOOL sub_02010040(UnkStruct_0200F7A0 *param0);
 BOOL sub_0201006C(UnkStruct_0200F7A0 *param0);
 BOOL sub_020100A8(UnkStruct_0200F7A0 *param0);
 
-#endif // POKEPLATINUM_UNK_0200F85C_H
+#endif // POKEPLATINUM_PALETTE_FADE_FUNCS_H

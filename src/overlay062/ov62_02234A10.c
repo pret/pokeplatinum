@@ -18,12 +18,12 @@
 #include "math_util.h"
 #include "message.h"
 #include "palette.h"
+#include "palette_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0208B284.h"
 

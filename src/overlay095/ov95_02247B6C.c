@@ -19,6 +19,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "palette_fade.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
@@ -29,7 +30,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 

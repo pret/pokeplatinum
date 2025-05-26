@@ -19,11 +19,11 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette_fade.h"
 #include "sound.h"
 #include "strbuf.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "unk_0200F174.h"
 #include "unk_0208C098.h"
 
 int ov80_021D0D80(ApplicationManager *appMan, int *param1);

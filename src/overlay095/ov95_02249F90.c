@@ -13,10 +13,10 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "palette_fade.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
 
 enum {
     UnkEnum_ov95_0224A020_00 = 0x50,

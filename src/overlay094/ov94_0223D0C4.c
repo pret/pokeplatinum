@@ -22,6 +22,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
+#include "palette_fade.h"
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
@@ -32,7 +33,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_020393C8.h"
 

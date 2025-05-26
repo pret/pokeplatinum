@@ -1,13 +1,4 @@
-#include "unk_02012480.h"
-
-#include <nitro.h>
-#include <string.h>
-
-#include "struct_defs/struct_02010658.h"
-#include "struct_defs/struct_02012634.h"
-#include "struct_defs/struct_02012650.h"
-#include "struct_defs/struct_02012678.h"
-#include "struct_defs/struct_02012698.h"
+#include "hardware_window.h"
 
 #include "sys_task.h"
 #include "sys_task_manager.h"

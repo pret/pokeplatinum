@@ -18,6 +18,7 @@
 #include "map_object.h"
 #include "math_util.h"
 #include "narc.h"
+#include "palette_fade.h"
 #include "player_avatar.h"
 #include "pokemon.h"
 #include "sound_playback.h"
@@ -27,7 +28,6 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_020711EC.h"
 

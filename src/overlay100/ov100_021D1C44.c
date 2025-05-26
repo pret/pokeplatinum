@@ -22,13 +22,13 @@
 #include "math_util.h"
 #include "narc.h"
 #include "palette.h"
+#include "palette_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
 static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0);

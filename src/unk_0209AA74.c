@@ -14,11 +14,11 @@
 #include "heap.h"
 #include "main.h"
 #include "message.h"
+#include "palette_fade.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 
 static const UnkStruct_02099F80 Unk_020F8B54 = {
     GX_VRAM_BG_256_AB,

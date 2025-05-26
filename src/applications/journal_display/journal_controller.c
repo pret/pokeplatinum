@@ -19,6 +19,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette_fade.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sound.h"
@@ -27,7 +28,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 

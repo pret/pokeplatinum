@@ -13,6 +13,7 @@
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "palette_fade.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -20,7 +21,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 
 typedef struct {
     int heapID;

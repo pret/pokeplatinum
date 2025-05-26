@@ -15,6 +15,7 @@
 #include "map_header_util.h"
 #include "map_matrix.h"
 #include "message.h"
+#include "palette_fade.h"
 #include "render_window.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -25,7 +26,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 
 typedef struct {
     int unk_00;

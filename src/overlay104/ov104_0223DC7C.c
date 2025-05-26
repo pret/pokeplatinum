@@ -14,6 +14,7 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "palette_fade.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -21,7 +22,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_0200679C.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 
 typedef struct {

@@ -27,7 +27,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200F174.h"
+#include "palette_fade.h"
 #include "system.h"
 #include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"

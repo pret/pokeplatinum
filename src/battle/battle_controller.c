@@ -37,11 +37,11 @@
 #include "heap.h"
 #include "item.h"
 #include "move_table.h"
+#include "palette_fade.h"
 #include "party.h"
 #include "pokemon.h"
 #include "sound_playback.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 
 #include "res/battle/scripts/sub_seq.naix.h"
 

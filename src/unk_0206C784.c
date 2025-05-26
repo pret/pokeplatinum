@@ -19,11 +19,11 @@
 #include "field_task.h"
 #include "field_transition.h"
 #include "heap.h"
+#include "palette_fade.h"
 #include "player_avatar.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_0200F174.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
 

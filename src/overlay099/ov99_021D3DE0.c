@@ -7,8 +7,8 @@
 #include "overlay099/struct_ov99_021D3A40.h"
 #include "overlay099/struct_ov99_021D3DE0.h"
 
+#include "palette_fade.h"
 #include "system.h"
-#include "unk_0200F174.h"
 
 BOOL ov99_021D3DE0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *param1)
 {

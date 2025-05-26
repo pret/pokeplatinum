@@ -10,6 +10,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_object.h"
+#include "palette_fade.h"
 #include "player_avatar.h"
 #include "save_player.h"
 #include "sound_playback.h"
@@ -20,7 +21,6 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_0200679C.h"
-#include "unk_0200F174.h"
 
 typedef struct {
     SpriteList *unk_00;

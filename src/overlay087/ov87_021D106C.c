@@ -17,6 +17,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "palette_fade.h"
 #include "pokemon.h"
 #include "render_oam.h"
 #include "render_window.h"
@@ -28,7 +29,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 
 typedef struct UnkStruct_ov87_021D106C_t {

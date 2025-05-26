@@ -26,10 +26,10 @@
 #include "map_header.h"
 #include "map_object.h"
 #include "map_tile_behavior.h"
+#include "palette_fade.h"
 #include "player_avatar.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_0200F174.h"
 #include "unk_020553DC.h"
 #include "unk_020655F4.h"
 

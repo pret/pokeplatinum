@@ -14,9 +14,9 @@
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "palette_fade.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 
 #define LIBRARY_TV_DURATION 90 + 150
 

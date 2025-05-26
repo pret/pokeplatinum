@@ -7,13 +7,13 @@
 
 #include "heap.h"
 #include "palette.h"
+#include "palette_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "unk_0208A3F4.h"
 

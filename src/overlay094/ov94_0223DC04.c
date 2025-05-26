@@ -20,6 +20,7 @@
 #include "menu.h"
 #include "message.h"
 #include "message_util.h"
+#include "palette_fade.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "sound_playback.h"
@@ -28,7 +29,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 
 static void ov94_0223DD1C(BgConfig *param0);

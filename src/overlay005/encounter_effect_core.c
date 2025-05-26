@@ -27,6 +27,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "palette_fade.h"
 #include "save_player.h"
 #include "screen_scroll_manager.h"
 #include "sprite.h"
@@ -36,7 +37,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
 // EncounterEffect_Grass_HigherLevel

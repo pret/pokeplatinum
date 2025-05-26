@@ -25,6 +25,7 @@
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "palette_fade.h"
 #include "pokemon.h"
 #include "render_oam.h"
 #include "sound.h"
@@ -36,7 +37,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_020393C8.h"
 

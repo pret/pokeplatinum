@@ -11,9 +11,9 @@
 
 #include "field_task.h"
 #include "heap.h"
+#include "palette_fade.h"
 #include "savedata_misc.h"
 #include "string_template.h"
-#include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0203D1B8.h"
 #include "unk_0209747C.h"

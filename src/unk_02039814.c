@@ -13,12 +13,12 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "palette_fade.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 
 static const UnkStruct_02099F80 Unk_020E5EFC = {
     GX_VRAM_BG_256_AB,

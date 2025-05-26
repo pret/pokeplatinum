@@ -33,6 +33,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
+#include "palette_fade.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
@@ -43,7 +44,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
 

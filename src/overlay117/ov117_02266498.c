@@ -10,7 +10,7 @@
 #include "overlay117/struct_ov117_022605C0.h"
 
 #include "overlay_manager.h"
-#include "unk_0200F174.h"
+#include "palette_fade.h"
 
 typedef struct {
     UnkStruct_ov117_022605C0 *unk_00;

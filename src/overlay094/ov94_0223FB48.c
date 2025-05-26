@@ -28,6 +28,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "palette_fade.h"
 #include "party.h"
 #include "pc_boxes.h"
 #include "pokemon.h"
@@ -40,7 +41,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 
 typedef struct {

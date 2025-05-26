@@ -1,36 +1,29 @@
-#include "unk_0200F174.h"
+#include "palette_fade.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200F600.h"
-#include "struct_defs/struct_0200F7A0.h"
-#include "struct_defs/struct_02010658.h"
-
-#include "functypes/funcptr_0200F634.h"
-#include "functypes/funcptr_0200F6D8.h"
-
 #include "enums.h"
+#include "hardware_window.h"
 #include "heap.h"
+#include "palette_fade_funcs.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_0200F85C.h"
-#include "unk_02012480.h"
 
-typedef struct {
+typedef struct UnkStruct_0200F6D8 {
     UnkStruct_0200F600 *unk_00;
     void *unk_04;
     UnkFuncPtr_0200F634 unk_08;
     int unk_0C;
 } UnkStruct_0200F6D8;
 
-typedef struct {
+typedef struct UnkStruct_0200F704 {
     UnkStruct_0200F600 *unk_00;
     int unk_04;
 } UnkStruct_0200F704;
 
-typedef struct {
+typedef struct UnkStruct_0200F4C4 {
     int unk_00;
     BOOL unk_04;
     BOOL unk_08;
@@ -38,7 +31,7 @@ typedef struct {
     BOOL unk_10;
 } UnkStruct_0200F4C4;
 
-typedef struct {
+typedef struct UnkStruct_0200F46C {
     UnkStruct_0200F4C4 unk_00;
     UnkStruct_0200F7A0 unk_14;
     UnkStruct_0200F7A0 unk_44;
@@ -62,13 +55,16 @@ static BOOL sub_0200F550(UnkStruct_0200F7A0 *param0);
 static void sub_0200F564(int param0, UnkStruct_0200F4C4 *param1);
 static void sub_0200F5D4(UnkStruct_0200F7A0 *param0, int param1, int param2, int param3, int param4, void *param5, int param6, UnkStruct_02010658 *param7, UnkStruct_0200F600 *param8, int heapID, u16 param10);
 static void sub_0200F5C8(UnkStruct_0200F4C4 *param0, int param1, BOOL param2, BOOL param3);
+static void sub_0200F634(UnkStruct_0200F600 *param0, void *param1, UnkFuncPtr_0200F634 param2, int param3);
+static void sub_0200F6AC(UnkStruct_0200F600 *param0, int param1);
+static void sub_0200F764(void *param0);
 static u16 sub_0200F768(UnkStruct_0200F46C *param0, u16 param1);
 static u16 sub_0200F77C(const UnkStruct_0200F46C *param0);
 static void sub_0200F7E4(UnkStruct_0200F7A0 *param0);
 static void sub_0200F7B4(UnkStruct_0200F7A0 *param0);
 static void sub_0200F7A0(SysTask *param0, void *param1);
 
-const static UnkFuncPtr_0200F6D8 Unk_020E5074[] = {
+static const UnkFuncPtr_0200F6D8 Unk_020E5074[] = {
     sub_0200F85C,
     sub_0200F878,
     sub_0200F898,

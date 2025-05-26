@@ -26,13 +26,13 @@
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "heap.h"
+#include "palette_fade.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
 
 static int ov17_02251DAC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
 static void ov17_02251DC0(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);

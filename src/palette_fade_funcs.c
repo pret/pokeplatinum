@@ -1,20 +1,15 @@
-#include "unk_0200F85C.h"
+#include "palette_fade_funcs.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200F600.h"
-#include "struct_defs/struct_0200F7A0.h"
-#include "struct_defs/struct_02010658.h"
-
 #include "enums.h"
+#include "hardware_window.h"
 #include "heap.h"
-#include "inlines.h"
+#include "palette_fade.h"
 #include "string.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
-#include "unk_02012480.h"
 
 typedef struct {
     int unk_00;

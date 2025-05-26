@@ -19,6 +19,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "palette_fade.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "sound.h"
@@ -27,7 +28,6 @@
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 

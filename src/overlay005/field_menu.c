@@ -17,6 +17,7 @@
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
+#include "palette_fade.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "sound_playback.h"
@@ -28,7 +29,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202D05C.h"
 
 #include "res/text/bank/common_strings_2.h"

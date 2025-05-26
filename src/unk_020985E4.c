@@ -13,10 +13,10 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
+#include "palette_fade.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 
 FS_EXTERN_OVERLAY(overlay100);
 
