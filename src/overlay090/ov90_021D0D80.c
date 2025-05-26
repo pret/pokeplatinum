@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_02099F80.h"
@@ -74,7 +74,7 @@ typedef struct {
     BgConfig *unk_10;
     UnkStruct_ov90_021D0D80 *unk_14;
     Options *unk_18;
-    BattleFrontier *unk_1C;
+    BattleFrontier *frontier;
     UnkStruct_0202D750 *unk_20;
     UnkStruct_0202D764 *unk_24;
     UnkStruct_ov90_021D0ECC_sub1 unk_28;
@@ -127,7 +127,7 @@ int ov90_021D0D80(ApplicationManager *appMan, int *param1)
     v0->unk_08 = v1->unk_04;
     v0->unk_0A = v1->unk_06;
     v0->unk_18 = SaveData_GetOptions(v1->saveData);
-    v0->unk_1C = SaveData_GetBattleFrontier(v1->saveData);
+    v0->frontier = SaveData_GetBattleFrontier(v1->saveData);
     v0->unk_20 = sub_0202D750(v1->saveData);
     v0->unk_24 = sub_0202D764(v1->saveData);
     v0->heapID = HEAP_ID_74;
@@ -643,8 +643,8 @@ static void ov90_021D14C8(UnkStruct_ov90_021D0ECC *param0, Window *param1, u8 pa
     u16 v0, v1, v2;
     int v3;
 
-    v1 = sub_02030698(param0->unk_1C, param3, 0xff);
-    v2 = sub_02030698(param0->unk_1C, param3 + 1, 0xff);
+    v1 = sub_02030698(param0->frontier, param3, 0xff);
+    v2 = sub_02030698(param0->frontier, param3 + 1, 0xff);
     v0 = sub_0202D414(param0->unk_20, 8 + param2, 0);
 
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_28.unk_24[v0], 4, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);

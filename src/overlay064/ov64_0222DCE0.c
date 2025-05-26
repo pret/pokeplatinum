@@ -8,7 +8,7 @@
 #include "constants/screen.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02099F80.h"

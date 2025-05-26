@@ -122,7 +122,7 @@ static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
 
         Heap_FreeToHeap(param0->unk_30);
 
-        if (param0->unk_30->unk_23 == 1) {
+        if (param0->unk_30->menuSelectionResult == 1) {
             param0->unk_34 = sub_0203D670(param0->fieldSystem, HEAP_ID_APPLICATION, SUMMARY_MODE_NORMAL);
             param0->unk_04 = v0;
             param0->unk_34->monIndex = v0;

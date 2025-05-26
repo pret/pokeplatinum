@@ -501,7 +501,7 @@ static void sub_020726B4(SysTask *param0, void *param1)
 static void sub_02072754(SysTask *param0, void *param1)
 {
     u8 v0;
-    PartyManagementData *v1;
+    PartyManagementData *partyMan;
     UnkStruct_02072334 *v2 = (UnkStruct_02072334 *)param1;
 
     switch (v2->unk_10) {
@@ -581,7 +581,7 @@ static void sub_02072878(SysTask *param0, void *param1)
 {
     int v0;
     u8 v1, v2;
-    PartyManagementData *v3;
+    PartyManagementData *partyMan;
     UnkStruct_02072334 *v4 = (UnkStruct_02072334 *)param1;
 
     switch (v4->unk_10) {
@@ -605,7 +605,7 @@ static void sub_02072878(SysTask *param0, void *param1)
         }
 
         v1 = v4->unk_1B4->selectedMonSlot;
-        v2 = v4->unk_1B4->unk_23;
+        v2 = v4->unk_1B4->menuSelectionResult;
 
         Heap_FreeToHeap(v4->unk_1B4);
 
@@ -1195,27 +1195,27 @@ static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1)
 
 static int sub_02073524(UnkStruct_02072334 *param0, int param1)
 {
-    PartyManagementData *v0;
+    PartyManagementData *partyMan;
 
     switch (param0->unk_12) {
     case 0:
-        v0 = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
-        MI_CpuClear8(v0, sizeof(PartyManagementData));
+        partyMan = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
+        MI_CpuClear8(partyMan, sizeof(PartyManagementData));
 
-        v0->unk_00 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_04 = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_0C = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_08 = SaveData_GetMailBox(param0->fieldSystem->saveData);
-        v0->unk_21 = 0;
-        v0->unk_20 = param1;
-        v0->unk_24 = param0->unk_1C[param0->unk_18].item;
+        partyMan->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMan->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMan->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMan->mailBox = SaveData_GetMailBox(param0->fieldSystem->saveData);
+        partyMan->unk_21 = 0;
+        partyMan->unk_20 = param1;
+        partyMan->usedItemID = param0->unk_1C[param0->unk_18].item;
 
         if (param1 == 11) {
-            v0->selectedMonSlot = param0->unk_17;
+            partyMan->selectedMonSlot = param0->unk_17;
         }
 
-        FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, v0);
-        param0->unk_1B4 = v0;
+        FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, partyMan);
+        param0->unk_1B4 = partyMan;
         param0->unk_12++;
         break;
     case 1:
