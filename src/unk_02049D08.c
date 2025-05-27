@@ -15,7 +15,6 @@
 #include "struct_defs/struct_02098C44.h"
 
 #include "field/field_system.h"
-#include "overlay104/struct_ov104_0223A348_sub2.h"
 #include "savedata/save_table.h"
 
 #include "field_overworld_state.h"
@@ -745,7 +744,7 @@ void sub_0204A97C(UnkStruct_0204AFC4 *param0)
 
 u16 sub_0204A9E0(UnkStruct_0204AFC4 *param0, u16 param1)
 {
-    return sub_0204AF9C(param0->unk_78[param1].unk_00.unk_04);
+    return sub_0204AF9C(param0->unk_78[param1].unk_00.trainerType);
 }
 
 u16 sub_0204A9F8(UnkStruct_0204AFC4 *param0)
@@ -999,52 +998,46 @@ static u16 sub_0204ACC8(UnkStruct_0204AFC4 *param0)
     return 1;
 }
 
-static void sub_0204ACFC(UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1)
+static void sub_0204ACFC(FrontierPokemonDataDTO *param0, Pokemon *mon)
 {
     int v0;
 
-    param0->unk_00_val1_0 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
-    param0->unk_00_val1_11 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
-    param0->unk_02 = Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
+    param0->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    param0->form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    param0->item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        param0->unk_04[v0] = Pokemon_GetValue(param1, MON_DATA_MOVE1 + v0, NULL);
-        param0->unk_1E_val2 |= ((Pokemon_GetValue(param1, MON_DATA_MOVE1_PP_UPS + v0, NULL)) << (v0 * 2));
+        param0->moves[v0] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + v0, NULL);
+        param0->combinedPPUps |= ((Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + v0, NULL)) << (v0 * 2));
     }
 
-    param0->unk_1F = Pokemon_GetValue(param1, MON_DATA_LANGUAGE, NULL);
-    param0->unk_0C = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    param0->unk_10 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-    param0->unk_14_val2 = Pokemon_GetValue(param1, MON_DATA_COMBINED_IVS, NULL);
+    param0->language = Pokemon_GetValue(mon, MON_DATA_LANGUAGE, NULL);
+    param0->otID = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
+    param0->personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+    param0->combinedIVs = Pokemon_GetValue(mon, MON_DATA_COMBINED_IVS, NULL);
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_18_val2[v0] = Pokemon_GetValue(param1, MON_DATA_HP_EV + v0, NULL);
+        param0->evList[v0] = Pokemon_GetValue(mon, MON_DATA_HP_EV + v0, NULL);
     }
 
-    param0->unk_20 = Pokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
-    param0->unk_21 = Pokemon_GetValue(param1, MON_DATA_FRIENDSHIP, NULL);
+    param0->ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
+    param0->friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
-    Pokemon_GetValue(param1, MON_DATA_NICKNAME, param0->unk_22);
+    Pokemon_GetValue(mon, MON_DATA_NICKNAME, param0->nickname);
 }
 
 static void sub_0204AE20(UnkStruct_0204AFC4 *param0, SaveData *saveData, int param2)
 {
-    int v0 = 0;
-    UnkStruct_ov104_0223A348_sub2 *v1;
-    Party *v2;
-    Pokemon *v3;
+    FrontierPokemonDataDTO *v1 = Heap_AllocFromHeapAtEnd(param0->heapID, sizeof(FrontierPokemonDataDTO) * 3);
+    MI_CpuClear8(v1, sizeof(FrontierPokemonDataDTO) * 3);
+    Party *party = SaveData_GetParty(saveData);
 
-    v1 = Heap_AllocFromHeapAtEnd(param0->heapID, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
-    MI_CpuClear8(v1, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
-    v2 = SaveData_GetParty(saveData);
-
-    for (v0 = 0; v0 < 3; v0++) {
-        v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_2A[v0]);
-        sub_0204ACFC(&(v1[v0]), v3);
+    for (int i = 0; i < 3; i++) {
+        sub_0204ACFC(&(v1[i]), Party_GetPokemonBySlotIndex(party, param0->unk_2A[i]));
     }
 
     sub_0202D2F0(param0->unk_74, param2, v1);
-    MI_CpuClear8(v1, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
+    MI_CpuClear8(v1, sizeof(FrontierPokemonDataDTO) * 3);
     Heap_FreeToHeap(v1);
 }
 

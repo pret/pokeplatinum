@@ -6,14 +6,11 @@
 #include "struct_decls/struct_02030114_decl.h"
 #include "struct_decls/struct_0203026C_decl.h"
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/struct_0204B184.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223AF58.h"
 #include "overlay104/struct_ov104_02235208.h"
-#include "overlay104/struct_ov104_0223A348_sub1.h"
-#include "overlay104/struct_ov104_0223A348_sub2.h"
 #include "overlay104/struct_ov104_0223B5C0.h"
 
 #include "heap.h"
@@ -155,7 +152,6 @@ static void ov104_022350B8(UnkStruct_ov104_0223B5C0 *param0)
     u8 v0, v1, v2, v3;
     int v4, v5;
     Pokemon *v6;
-    UnkStruct_ov104_0223A348_sub2 v7;
 
     v3 = 0;
     v1 = 1;
@@ -330,14 +326,12 @@ u16 ov104_022354BC(UnkStruct_ov104_0223B5C0 *param0)
 
 u16 ov104_022354C0(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
 {
-    UnkStruct_ov104_0223A348_sub1 v0;
-    UnkStruct_0204B184 *v1;
+    FrontierTrainerDataDTO v0;
     u8 v2 = (param0->unk_05 * 2) + param1;
-    v1 = ov104_0222DD04(&v0, param0->unk_18[v2], 11, 178);
 
-    Heap_FreeToHeap(v1);
+    Heap_FreeToHeap(ov104_0222DD04(&v0, param0->unk_18[v2], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-    return ov104_0222E10C(v0.unk_04);
+    return ov104_0222E10C(v0.trainerType);
 }
 
 void ov104_022354F4(UnkStruct_ov104_0223B5C0 *param0)
