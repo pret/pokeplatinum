@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV13_022264F4_H
-#define POKEPLATINUM_OV13_022264F4_H
+#ifndef POKEPLATINUM_BATTLE_BAG_TASK_H
+#define POKEPLATINUM_BATTLE_BAG_TASK_H
 
 #include "struct_decls/struct_0200C440_decl.h"
 
@@ -63,4 +63,4 @@ typedef struct BattleBagTask {
 void BattleBagTask_Start(BattleBagBattleInfo *battleInfo);
 int GetSelectedPartySlot(BattleBagTask *battleBagTask);
 
-#endif // POKEPLATINUM_OV13_022264F4_H
+#endif // POKEPLATINUM_BATTLE_BAG_TASK_H

@@ -8,9 +8,9 @@
 #include "battle/ov16_0226DE44.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
 #include "battle/struct_ov16_0226DEEC_decl.h"
+#include "overlay013/battle_bag_task.h"
 #include "overlay013/battle_bag_utils.h"
 #include "overlay013/battle_sub_menu_cursor.h"
-#include "overlay013/ov13_022264F4.h"
 
 #include "grid_menu_cursor_position.h"
 #include "gx_layers.h"
@@ -272,27 +272,27 @@ static const GridMenuCursorPosition *const Unk_ov13_02229BC8[] = {
     Unk_ov13_02229BD4
 };
 
-void ov13_02228008(BattleBagTask *param0, u8 param1)
+void SetupBattleBagCursor(BattleBagTask *battleBagTask, enum BattleBagScreen screen)
 {
-    SetBattleSubMenuCursorPositions(param0->cursor, Unk_ov13_02229BC8[param1]);
+    SetBattleSubMenuCursorPositions(battleBagTask->cursor, Unk_ov13_02229BC8[screen]);
 
-    switch (param1) {
-    case 0:
-        SetBattleSubMenuCursorCurrentPosition(param0->cursor, param0->currentBattlePocket);
+    switch (screen) {
+    case BATTLE_BAG_SCREEN_MENU:
+        SetBattleSubMenuCursorCurrentPosition(battleBagTask->cursor, battleBagTask->currentBattlePocket);
         break;
-    case 1:
-        SetBattleSubMenuCursorCurrentPosition(param0->cursor, param0->battleInfo->pocketCurrentPagePositions[param0->currentBattlePocket]);
+    case BATTLE_BAG_SCREEN_POCKET_MENU:
+        SetBattleSubMenuCursorCurrentPosition(battleBagTask->cursor, battleBagTask->battleInfo->pocketCurrentPagePositions[battleBagTask->currentBattlePocket]);
         break;
-    case 2:
+    case BATTLE_BAG_SCREEN_USE_ITEM:
         break;
     }
 }
 
-void ov13_02228050(BattleBagTask *param0)
+void DisableBattleBagCursor(BattleBagTask *battleBagTask)
 {
-    SetBattleSubMenuCursorVisibility(param0->cursor, 0);
-    ResetBattleSubMenuCursorCurrentPosition(param0->cursor);
-    ov16_0226DDE8(GetBattleSubMenuCursorSprites(param0->cursor));
+    SetBattleSubMenuCursorVisibility(battleBagTask->cursor, FALSE);
+    ResetBattleSubMenuCursorCurrentPosition(battleBagTask->cursor);
+    ov16_0226DDE8(GetBattleSubMenuCursorSprites(battleBagTask->cursor));
 }
 
 static void ov13_02228070(BattleBagTask *param0)

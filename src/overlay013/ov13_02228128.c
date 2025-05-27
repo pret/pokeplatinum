@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay013/battle_bag_task.h"
 #include "overlay013/battle_bag_utils.h"
-#include "overlay013/ov13_022264F4.h"
 
 #include "bg_window.h"
 #include "heap.h"

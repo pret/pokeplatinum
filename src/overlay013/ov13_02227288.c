@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "battle/ov16_0223DF00.h"
-#include "overlay013/ov13_022264F4.h"
+#include "overlay013/battle_bag_task.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -368,11 +368,11 @@ static void ov13_02227974(BattleBagTask *param0)
     ov13_02227374(param0, 3, 31, FONT_SUBSCREEN, 6, TEXT_COLOR(3, 2, 1));
 }
 
-void ov13_022279F4(BattleBagTask *param0)
+void DisplayBattleBagMessage(BattleBagTask *battleBagTask)
 {
-    Window_DrawMessageBoxWithScrollCursor(&param0->messageBoxWindow, 1, 1024 - (18 + 12), 14);
-    Window_FillTilemap(&param0->messageBoxWindow, 15);
-    ov13_02227A1C(param0);
+    Window_DrawMessageBoxWithScrollCursor(&battleBagTask->messageBoxWindow, 1, 1024 - (18 + 12), 14);
+    Window_FillTilemap(&battleBagTask->messageBoxWindow, 15);
+    ov13_02227A1C(battleBagTask);
 }
 
 void ov13_02227A1C(BattleBagTask *param0)
