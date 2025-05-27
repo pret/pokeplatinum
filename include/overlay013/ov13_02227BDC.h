@@ -2,7 +2,6 @@
 #define POKEPLATINUM_OV13_02227BDC_H
 
 #include "overlay013/battle_bag_task.h"
-#include "overlay013/ov13_02227288.h"
 
 void ov13_02227BDC(BattleBagTask *param0);
 void ov13_02227E08(BattleBagTask *param0);

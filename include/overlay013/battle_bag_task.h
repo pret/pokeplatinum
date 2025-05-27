@@ -15,6 +15,12 @@
 #include "strbuf.h"
 #include "string_template.h"
 
+enum BattleBagScreen {
+    BATTLE_BAG_SCREEN_MENU = 0,
+    BATTLE_BAG_SCREEN_POCKET_MENU,
+    BATTLE_BAG_SCREEN_USE_ITEM,
+};
+
 typedef struct BattleBagTask {
     BattleBagBattleInfo *battleInfo;
     BgConfig *background;

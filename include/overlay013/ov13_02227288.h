@@ -3,12 +3,6 @@
 
 #include "overlay013/battle_bag_task.h"
 
-enum BattleBagScreen {
-    BATTLE_BAG_SCREEN_MENU = 0,
-    BATTLE_BAG_SCREEN_POCKET_MENU,
-    BATTLE_BAG_SCREEN_USE_ITEM,
-};
-
 void ov13_02227288(BattleBagTask *param0);
 void ov13_022272AC(BattleBagTask *param0, u32 param1);
 void ov13_02227324(BattleBagTask *param0);
