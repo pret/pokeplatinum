@@ -67,6 +67,6 @@ typedef struct BattleBag {
 } BattleBag;
 
 void BattleBagTask_Start(BattleBagContext *context);
-int BattleBagTask_GetSelectedPartySlot(BattleBag *battleBagTask);
+int BattleBagTask_GetSelectedPartySlot(BattleBag *battleBag);
 
 #endif // POKEPLATINUM_BATTLE_BAG_H

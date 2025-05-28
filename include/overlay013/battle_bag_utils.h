@@ -11,9 +11,9 @@ enum BattlePocketIndex {
     BATTLE_POCKET_INDEX_NONE,
 };
 
-BOOL BattleBag_CanUseLastUsedItem(BattleBag *battleBagTask);
-void BattleBag_SetLastUsedPocket(BattleBag *battleBagTask);
-void BattleBag_Init(BattleBag *battleBagTask);
-u16 BattleBag_GetItem(BattleBag *battleBagTask, u32 pagePosition);
+BOOL BattleBag_CanUseLastUsedItem(BattleBag *battleBag);
+void BattleBag_SetLastUsedPocket(BattleBag *battleBag);
+void BattleBag_Init(BattleBag *battleBag);
+u16 BattleBag_GetItem(BattleBag *battleBag, u32 pagePosition);
 
 #endif // POKEPLATINUM_BATTLE_BAG_UTILS

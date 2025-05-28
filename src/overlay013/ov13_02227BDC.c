@@ -272,27 +272,27 @@ static const GridMenuCursorPosition *const Unk_ov13_02229BC8[] = {
     Unk_ov13_02229BD4
 };
 
-void SetupBattleBagCursor(BattleBag *battleBagTask, enum BattleBagScreen screen)
+void SetupBattleBagCursor(BattleBag *battleBag, enum BattleBagScreen screen)
 {
-    SetBattleSubMenuCursorPositions(battleBagTask->cursor, Unk_ov13_02229BC8[screen]);
+    SetBattleSubMenuCursorPositions(battleBag->cursor, Unk_ov13_02229BC8[screen]);
 
     switch (screen) {
     case BATTLE_BAG_SCREEN_MENU:
-        SetBattleSubMenuCursorCurrentPosition(battleBagTask->cursor, battleBagTask->currentBattlePocket);
+        SetBattleSubMenuCursorCurrentPosition(battleBag->cursor, battleBag->currentBattlePocket);
         break;
     case BATTLE_BAG_SCREEN_POCKET_MENU:
-        SetBattleSubMenuCursorCurrentPosition(battleBagTask->cursor, battleBagTask->context->pocketCurrentPagePositions[battleBagTask->currentBattlePocket]);
+        SetBattleSubMenuCursorCurrentPosition(battleBag->cursor, battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket]);
         break;
     case BATTLE_BAG_SCREEN_USE_ITEM:
         break;
     }
 }
 
-void DisableBattleBagCursor(BattleBag *battleBagTask)
+void DisableBattleBagCursor(BattleBag *battleBag)
 {
-    SetBattleSubMenuCursorVisibility(battleBagTask->cursor, FALSE);
-    ResetBattleSubMenuCursorCurrentPosition(battleBagTask->cursor);
-    ov16_0226DDE8(GetBattleSubMenuCursorSprites(battleBagTask->cursor));
+    SetBattleSubMenuCursorVisibility(battleBag->cursor, FALSE);
+    ResetBattleSubMenuCursorCurrentPosition(battleBag->cursor);
+    ov16_0226DDE8(GetBattleSubMenuCursorSprites(battleBag->cursor));
 }
 
 static void ov13_02228070(BattleBag *param0)

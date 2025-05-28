@@ -10,7 +10,7 @@ void ov13_02227334(BattleBag *param0);
 void ov13_02227350(BattleBag *param0, u32 param1);
 void ov13_02227650(BattleBag *param0);
 void ov13_02227698(BattleBag *param0);
-void DisplayBattleBagMessage(BattleBag *battleBagTask);
+void DisplayBattleBagMessage(BattleBag *battleBag);
 void ov13_02227A1C(BattleBag *param0);
 
 #endif // POKEPLATINUM_OV13_02227288_H

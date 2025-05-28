@@ -368,11 +368,11 @@ static void ov13_02227974(BattleBag *param0)
     ov13_02227374(param0, 3, 31, FONT_SUBSCREEN, 6, TEXT_COLOR(3, 2, 1));
 }
 
-void DisplayBattleBagMessage(BattleBag *battleBagTask)
+void DisplayBattleBagMessage(BattleBag *battleBag)
 {
-    Window_DrawMessageBoxWithScrollCursor(&battleBagTask->messageBoxWindow, 1, 1024 - (18 + 12), 14);
-    Window_FillTilemap(&battleBagTask->messageBoxWindow, 15);
-    ov13_02227A1C(battleBagTask);
+    Window_DrawMessageBoxWithScrollCursor(&battleBag->messageBoxWindow, 1, 1024 - (18 + 12), 14);
+    Window_FillTilemap(&battleBag->messageBoxWindow, 15);
+    ov13_02227A1C(battleBag);
 }
 
 void ov13_02227A1C(BattleBag *param0)
