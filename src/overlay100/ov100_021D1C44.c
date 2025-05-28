@@ -22,13 +22,13 @@
 #include "math_util.h"
 #include "narc.h"
 #include "palette.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
 static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0);
@@ -304,13 +304,13 @@ BOOL ov100_021D2428(void *param0)
 
     switch (v0->unk_00) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, HEAP_ID_111);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 6, 1, HEAP_ID_111);
         v0->unk_1EBC->unk_50.unk_03 = 0;
         G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
         G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
         v0->unk_00++;
     case 1:
-        if (IsScreenTransitionDone() == 0) {
+        if (IsScreenFadeDone() == FALSE) {
             break;
         }
         v0->unk_00++;
@@ -643,10 +643,10 @@ BOOL ov100_021D2428(void *param0)
         }
         break;
     case 20:
-        StartScreenTransition(0, 0, 0, 0x0, 1, 1, HEAP_ID_111);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 1, 1, HEAP_ID_111);
         v0->unk_00++;
     case 21:
-        if (IsScreenTransitionDone() == 0) {
+        if (IsScreenFadeDone() == FALSE) {
             break;
         }
 

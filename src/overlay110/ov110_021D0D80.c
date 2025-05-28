@@ -27,7 +27,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200F174.h"
+#include "screen_fade.h"
 #include "system.h"
 #include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
@@ -194,12 +194,12 @@ static BOOL ov110_021D0F78 (UnkStruct_ov110_021D0F78 * param0)
         param0->unk_04++;
         break;
     case 1:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_114);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_114);
         ov110_021D140C(param0);
         param0->unk_04++;
         break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -233,11 +233,11 @@ static BOOL ov110_021D1000 (UnkStruct_ov110_021D0F78 * param0)
 
     switch (param0->unk_04) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_114);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_114);
         param0->unk_04++;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
 

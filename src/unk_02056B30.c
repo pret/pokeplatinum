@@ -27,9 +27,9 @@
 #include "map_object.h"
 #include "map_tile_behavior.h"
 #include "player_avatar.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_0200F174.h"
 #include "unk_020553DC.h"
 #include "unk_020655F4.h"
 
@@ -122,11 +122,11 @@ static BOOL sub_02056B70(FieldTask *taskMan)
     switch (v1->unk_00) {
     case 0:
         HBlankSystem_Stop(fieldSystem->unk_04->hBlankSystem);
-        StartScreenTransition(v1->unk_04, v1->unk_08, v1->unk_0C, v1->unk_10, v1->unk_14, v1->unk_18, v1->heapID);
+        StartScreenFade(v1->unk_04, v1->unk_08, v1->unk_0C, v1->unk_10, v1->unk_14, v1->unk_18, v1->heapID);
         v1->unk_00++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
             Heap_FreeToHeap(v1);
             return 1;
@@ -368,7 +368,7 @@ static BOOL sub_02056F1C(FieldTask *taskMan)
         (v1->unk_04)++;
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -570,7 +570,7 @@ static BOOL sub_02057218(FieldTask *taskMan)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (v1->unk_04)++;
         }
         break;

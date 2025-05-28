@@ -48,6 +48,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -59,7 +60,6 @@
 #include "terrain_attributes.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_0203A7D8.h"
 #include "unk_0203D1B8.h"
@@ -552,8 +552,8 @@ static BOOL FieldTask_LoadMapFromError(FieldTask *task)
 
     switch (*state) {
     case 0:
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         SaveData_LoadAndUpdateUnderground(fieldSystem->saveData);
         fieldSystem->journalEntry = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags));
         (*state)++;

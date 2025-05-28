@@ -22,11 +22,11 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_system.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "unk_0200F174.h"
 #include "unk_02017428.h"
 #include "unk_02022844.h"
 #include "unk_0202419C.h"
@@ -102,8 +102,8 @@ void NitroMain(void)
             break;
 
         case RESET_ERROR:
-            sub_0200F344(0, 0x0);
-            sub_0200F344(1, 0x0);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
             sApplication.args.error = TRUE;
             EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveAppTemplate);
             break;
@@ -154,7 +154,7 @@ void NitroMain(void)
         gSystem.frameCounter = 0;
 
         BrightnessController_Update();
-        sub_0200F27C();
+        ExecScreenFade();
 
         if (gSystem.vblankCallback != NULL) {
             gSystem.vblankCallback(gSystem.vblankCallbackData);
@@ -250,8 +250,8 @@ static void CheckHeapCanary(void)
 
 static void SoftReset(enum OSResetParameter resetParam)
 {
-    sub_0200F344(DS_SCREEN_MAIN, 0x7fff);
-    sub_0200F344(DS_SCREEN_SUB, 0x7fff);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_WHITE);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
 
     if (sub_02037DB0()) {
         SaveData_SaveStateCancel(SaveData_Ptr());

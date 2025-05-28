@@ -16,7 +16,7 @@
 #include "strbuf.h"
 #include "text.h"
 #include "sound.h"
-#include "unk_0200F174.h"
+#include "screen_fade.h"
 #include "system.h"
 
 typedef struct {
@@ -64,8 +64,8 @@ int ov73_021D3280 (ApplicationManager *appMan, int * param1)
 
     switch (*param1) {
     case 0:
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
@@ -108,14 +108,14 @@ int ov73_021D3280 (ApplicationManager *appMan, int * param1)
             v0->unk_24--;
         } else {
             v0->unk_24 = 0;
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
             *param1 = 3;
         }
         break;
     case 3:
         ov73_021D37AC(v0);
 
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 4;
         }
         break;
@@ -123,14 +123,14 @@ int ov73_021D3280 (ApplicationManager *appMan, int * param1)
         ov73_021D37AC(v0);
 
         if (ov73_021D3698(v0, 0, 5 * 8, 6 * 8) == 1) {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
             *param1 = 5;
         }
         break;
     case 5:
         ov73_021D37AC(v0);
 
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov73_021D368C(v0);
             ov73_021D35F4(v0);
             SetVBlankCallback(NULL, NULL);

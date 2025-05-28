@@ -34,6 +34,7 @@
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -47,7 +48,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02030EE0.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -191,9 +191,9 @@ int ov59_021D0D80(ApplicationManager *appMan, int *param1)
         ov59_021D1128();
         ov59_021D1148(v0->unk_00);
 
-        sub_0200F338(0);
-        sub_0200F338(1);
-        StartScreenTransition(0, 17, 17, 0x0, 16, 1, HEAP_ID_51);
+        ResetScreenMasterBrightness(DS_SCREEN_MAIN);
+        ResetScreenMasterBrightness(DS_SCREEN_SUB);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, FADE_TO_BLACK, 16, 1, HEAP_ID_51);
 
         ov59_021D1388(v0, v1);
         SetVBlankCallback(ov59_021D1100, v0);
@@ -241,7 +241,7 @@ int ov59_021D0F00(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 1;
 
             if (CommSys_CurNetId() != 0) {
@@ -276,7 +276,7 @@ int ov59_021D0F00(ApplicationManager *appMan, int *param1)
         }
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -1135,7 +1135,7 @@ static int ov59_021D1E98(UnkStruct_020961E8 *param0, int param1)
 static int ov59_021D1EB8(UnkStruct_020961E8 *param0, int param1)
 {
     if (++param0->unk_3B4 > 60) {
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_51);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 16, 1, HEAP_ID_51);
         param1 = 3;
     }
 
@@ -1231,7 +1231,7 @@ static int ov59_021D2064(UnkStruct_020961E8 *param0, int param1)
 {
     if (CommTiming_IsSyncState(201)) {
         CommMan_SetErrorHandling(0, 0);
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_51);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 16, 1, HEAP_ID_51);
 
         param1 = 3;
     }

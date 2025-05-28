@@ -24,10 +24,10 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sprite_system.h"
 #include "system.h"
-#include "unk_0200F174.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"
 
@@ -54,7 +54,7 @@ int ov100_021D0D80(ApplicationManager *appMan, int *param1)
     v0->unk_D0 = ApplicationManager_Args(appMan);
 
     ov100_021D1034(&v0->unk_0C);
-    StartScreenTransition(0, 1, 1, 0x0, 6 * 2, 1, HEAP_ID_111);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6 * 2, 1, HEAP_ID_111);
     SetVBlankCallback(ov100_021D13B4, v0);
 
     v0->unk_0C.unk_50.unk_00 = 31;

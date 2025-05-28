@@ -30,6 +30,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -39,7 +40,6 @@
 #include "system_data.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_020366A0.h"
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
@@ -973,8 +973,8 @@ static int ov97_0222BD70(ApplicationManager *appMan, int *param1)
     memset(v0, 0, sizeof(UnkStruct_0222AE60));
     v0->unk_00 = BgConfig_New(HEAP_ID_81);
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     v0->unk_14 = SaveData_GetMysteryGift(v0->saveData);

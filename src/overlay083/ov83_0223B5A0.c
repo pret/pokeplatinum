@@ -30,11 +30,11 @@
 #include "journal.h"
 #include "overlay_manager.h"
 #include "poffin.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "system.h"
-#include "unk_0200F174.h"
 #include "unk_0202ACE0.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -287,11 +287,11 @@ static int ov83_0223B78C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         (*param2)++;
         break;
     case 1:
-        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, param1->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, 1, 1, 0xffff, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return param1->unk_0C + 1;
         }
         break;
@@ -547,11 +547,11 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
             break;
         }
 
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, param1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (param0->unk_26) {
                 sub_0203632C(0);
             }
@@ -647,11 +647,11 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         param1->unk_31C = 0;
 
         ov83_0223F730(&param1->unk_1478, 128, 144, param1->unk_1494.unk_58.unk_0C, param1->heapID);
-        StartScreenTransition(3, 1, 0, 0x0, 6, 1, param1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param2)++;
             param1->unk_1C = (30 * 1);
         }
@@ -813,11 +813,11 @@ static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         }
         break;
     case 2:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, param1->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param2)++;
         }
         break;

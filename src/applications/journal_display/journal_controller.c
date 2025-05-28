@@ -21,13 +21,13 @@
 #include "overlay_manager.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 
@@ -318,7 +318,7 @@ static void JournalController_FreeStringUtil(JournalManager *journalManager)
 
 static int JournalController_IsOpeningTransitionDone(JournalManager *journalManager)
 {
-    if (IsScreenTransitionDone() == TRUE) {
+    if (IsScreenFadeDone() == TRUE) {
         return JOURNAL_STATE_HANDLE_INPUT;
     }
 
@@ -416,7 +416,7 @@ static int JournalController_TurnPageRight(JournalManager *journalManager)
 
 static int JournalController_IsClosingTransitionDone(JournalManager *journalManager)
 {
-    return IsScreenTransitionDone();
+    return IsScreenFadeDone();
 }
 
 static void ov81_021D1360(JournalManager *journalManager)

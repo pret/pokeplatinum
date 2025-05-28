@@ -32,6 +32,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -44,7 +45,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -939,7 +939,7 @@ static BOOL SetupEntriesCount(WonderCardsAppData *appData, Window *window, TextC
 
 static void DoScreenTransitionToState(WonderCardsAppData *appData, int param1, enum WonderCardsAppState nextState, enum WonderCardsAppState *state)
 {
-    StartScreenTransition(0, param1, param1, 0x0, 6, 1, HEAP_ID_WONDER_CARDS_APP);
+    StartScreenFade(FADE_BOTH_SCREENS, param1, param1, 0x0, 6, 1, HEAP_ID_WONDER_CARDS_APP);
 
     if (state) {
         *state = WC_APP_STATE_WAIT_FOR_SCREEN_TRANSITION;
@@ -1201,8 +1201,8 @@ static BOOL WonderCardsApp_Init(ApplicationManager *appMan, int *unused)
     appData->bgConfig = BgConfig_New(HEAP_ID_WONDER_CARDS_APP);
     appData->heapID = HEAP_ID_WONDER_CARDS_APP;
 
-    sub_0200F344(DS_SCREEN_MAIN, 0x0);
-    sub_0200F344(DS_SCREEN_SUB, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     appData->selectedWondercardSlot = NUM_WONDERCARD_SLOTS - 1;
     appData->numPlayerConnections = 1;
@@ -1606,7 +1606,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         DoScreenTransitionToState(appData, 0, WC_APP_STATE_EXIT, state);
         break;
     case WC_APP_STATE_WAIT_FOR_SCREEN_TRANSITION:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *state = appData->queuedState;
         }
         break;

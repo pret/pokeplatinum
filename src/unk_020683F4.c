@@ -45,6 +45,7 @@
 #include "pokeradar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "start_menu.h"
 #include "strbuf.h"
@@ -52,7 +53,6 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
-#include "unk_0200F174.h"
 #include "unk_02028124.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
@@ -1195,7 +1195,7 @@ static BOOL sub_0206932C(FieldTask *task)
         v1->unk_2A = 1;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v1->unk_24 = v1->unk_20(fieldSystem);
             v1->unk_2A = 2;
         }
@@ -1224,7 +1224,7 @@ static BOOL sub_0206932C(FieldTask *task)
         }
         break;
     case 4:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
             Heap_FreeToHeap(v1);
             return 1;

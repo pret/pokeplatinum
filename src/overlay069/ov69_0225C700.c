@@ -38,6 +38,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -49,7 +50,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -718,12 +718,12 @@ int ov69_0225C820(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_105);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_105);
         ov66_0222E31C(v1->unk_0C, 1);
         (*param1)++;
         break;
     case 1:
-        v2 = IsScreenTransitionDone();
+        v2 = IsScreenFadeDone();
 
         if (v2 == 1) {
             (*param1)++;
@@ -747,11 +747,11 @@ int ov69_0225C820(ApplicationManager *appMan, int *param1)
         }
         break;
     case 5:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_105);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_105);
         (*param1)++;
         break;
     case 6:
-        v2 = IsScreenTransitionDone();
+        v2 = IsScreenFadeDone();
 
         if (v2 == 1) {
             return 1;

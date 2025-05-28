@@ -151,6 +151,7 @@
 #include "scrcmd_shop.h"
 #include "scrcmd_sound.h"
 #include "scrcmd_system_flags.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "sound.h"
 #include "special_encounter.h"
@@ -165,7 +166,6 @@
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02014D38.h"
 #include "unk_02028124.h"
 #include "unk_0202854C.h"
@@ -4396,9 +4396,9 @@ static BOOL ScrCmd_FadeScreen(ScriptContext *ctx)
     u16 type = ScriptContext_ReadHalfWord(ctx);
     u16 color = ScriptContext_ReadHalfWord(ctx);
 
-    StartScreenTransition(0, type, type, color, transition, frames, HEAP_ID_FIELD);
-    sub_0200F32C(0);
-    sub_0200F32C(1);
+    StartScreenFade(FADE_BOTH_SCREENS, type, type, color, transition, frames, HEAP_ID_FIELD);
+    ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+    ResetVisibleHardwareWindows(DS_SCREEN_SUB);
 
     return FALSE;
 }
@@ -4411,7 +4411,7 @@ static BOOL ScrCmd_WaitFadeScreen(ScriptContext *ctx)
 
 static BOOL ScriptContext_ScreenWipeDone(ScriptContext *ctx)
 {
-    return IsScreenTransitionDone() == TRUE;
+    return IsScreenFadeDone() == TRUE;
 }
 
 static BOOL ScrCmd_Warp(ScriptContext *ctx)

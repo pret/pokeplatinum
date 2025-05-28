@@ -24,6 +24,7 @@
 #include "overlay_manager.h"
 #include "render_oam.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -31,7 +32,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
@@ -158,11 +158,11 @@ int ov90_021D0E04(ApplicationManager *appMan, int *param1)
             break;
         }
 
-        StartScreenTransition(3, 1, 1, 0x0, 6, 1, v1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v1->heapID);
         (*param1)++;
         break;
     case 1:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             break;
         }
 
@@ -179,11 +179,11 @@ int ov90_021D0E04(ApplicationManager *appMan, int *param1)
             break;
         }
 
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v1->heapID);
         (*param1)++;
         break;
     case 3:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             break;
         }
 
@@ -217,8 +217,8 @@ static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC *param0)
         GXS_SetVisiblePlane(0);
 
         ov90_021D1014();
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         ov90_021D11EC(param0);
         break;
     case 1:

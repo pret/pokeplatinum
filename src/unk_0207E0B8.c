@@ -33,6 +33,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -45,7 +46,6 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200C440.h"
-#include "unk_0200F174.h"
 #include "unk_02024220.h"
 #include "unk_0202602C.h"
 #include "unk_020393C8.h"
@@ -261,7 +261,7 @@ static int sub_0207E0B8(ApplicationManager *appMan, int *param1)
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_12);
     v0 = sub_0207ECC0(appMan);
 
-    StartScreenTransition(1, 3, 3, 0x0, 6, 1, HEAP_ID_12);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, FADE_TO_BLACK, 6, 1, HEAP_ID_12);
     sub_0207EDC0(v0);
     sub_0207E8C0();
     sub_0207E918(v0->unk_00);
@@ -437,7 +437,7 @@ static int sub_0207E2A8(ApplicationManager *appMan, int *param1)
         *param1 = 33;
         break;
     case 33:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             v0->partyManagementData->selectedMonSlot = v0->partySlot;
             return 1;
         }
@@ -454,7 +454,7 @@ static int sub_0207E2A8(ApplicationManager *appMan, int *param1)
 
 static int sub_0207E490(GameWindowLayout *param0)
 {
-    if (IsScreenTransitionDone() == 1) {
+    if (IsScreenFadeDone() == TRUE) {
         if ((param0->partyManagementData->unk_20 == 5) || (param0->partyManagementData->unk_20 == 16)) {
             if (CheckItemSacredAsh(param0->partyManagementData->usedItemID) == 1) {
                 param0->unk_B0E = 0;

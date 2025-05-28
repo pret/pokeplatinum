@@ -36,6 +36,7 @@
 #include "render_window.h"
 #include "ribbon.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_chatot.h"
 #include "sound_playback.h"
@@ -48,7 +49,6 @@
 #include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0200C440.h"
-#include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -569,7 +569,7 @@ static void FreeStrings(PokemonSummaryScreen *summaryScreen)
 
 static int WaitSummaryScreenTransition(PokemonSummaryScreen *summaryScreen)
 {
-    if (IsScreenTransitionDone() == TRUE) {
+    if (IsScreenFadeDone() == TRUE) {
         PokemonSummaryScreen_LoadMonAnimation(summaryScreen);
         PlayMonCry(summaryScreen);
 
@@ -1039,7 +1039,7 @@ static u8 SummaryScreenTransitionOut(PokemonSummaryScreen *dummy)
 
 static u8 ScreenTransitionIsDone(PokemonSummaryScreen *dummy)
 {
-    return IsScreenTransitionDone() == TRUE;
+    return IsScreenFadeDone() == TRUE;
 }
 
 static void SetMonData(PokemonSummaryScreen *summaryScreen)

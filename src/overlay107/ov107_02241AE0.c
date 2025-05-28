@@ -52,7 +52,7 @@
 #include "sprite_util.h"
 #include "render_oam.h"
 #include "unk_0200C440.h"
-#include "unk_0200F174.h"
+#include "screen_fade.h"
 #include "system.h"
 #include "vram_transfer.h"
 #include "unk_020302D0.h"
@@ -621,7 +621,7 @@ static BOOL ov107_02241D6C (UnkStruct_ov107_02241D6C * param0)
             }
         } else {
             ov107_02241E70(param0);
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_100);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_100);
             param0->unk_08++;
         }
         break;
@@ -630,7 +630,7 @@ static BOOL ov107_02241D6C (UnkStruct_ov107_02241D6C * param0)
             if (param0->unk_0F >= 2) {
                 param0->unk_0F = 0;
                 ov107_02241E70(param0);
-                StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_100);
+                StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_100);
                 param0->unk_08++;
             }
         } else {
@@ -638,7 +638,7 @@ static BOOL ov107_02241D6C (UnkStruct_ov107_02241D6C * param0)
         }
         break;
     case 4:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -1349,11 +1349,11 @@ static BOOL ov107_02242DCC (UnkStruct_ov107_02241D6C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_100);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_100);
         param0->unk_08++;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;

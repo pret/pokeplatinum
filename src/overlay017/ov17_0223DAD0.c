@@ -36,6 +36,7 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
@@ -46,7 +47,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -311,7 +311,7 @@ int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
     ov17_0224B59C(v0);
 
     sub_02039734();
-    StartScreenTransition(1, 17, 37, 0x0, 6, 1, HEAP_ID_23);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_37, FADE_TO_BLACK, 6, 1, HEAP_ID_23);
 
     v0->unk_04 = SysTask_Start(ov17_0223E1FC, v0, 80000);
     v0->unk_1098 = 1;
@@ -339,7 +339,7 @@ int ov17_0223DDD4(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 1;
         }
         break;
@@ -358,7 +358,7 @@ int ov17_0223DDD4(ApplicationManager *appMan, int *param1)
             } else if ((v1 == 3) && (v0->unk_1B24 == 1)) {
                 *param1 = 2;
                 MI_CpuClear8(&v0->unk_1B1C, sizeof(UnkStruct_ov17_0223E838));
-                StartScreenTransition(2, 30, 30, 0x0, 6, 1, HEAP_ID_23);
+                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_30, FADE_TYPE_UNK_30, FADE_TO_BLACK, 6, 1, HEAP_ID_23);
                 break;
             }
         }
@@ -369,12 +369,12 @@ int ov17_0223DDD4(ApplicationManager *appMan, int *param1)
         if ((v0->unk_1B24 == 1) && (ov17_0224F3D0(&v0->unk_109C) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_1B1C, sizeof(UnkStruct_ov17_0223E838));
-            StartScreenTransition(2, 30, 30, 0x0, 6, 1, HEAP_ID_23);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_30, FADE_TYPE_UNK_30, FADE_TO_BLACK, 6, 1, HEAP_ID_23);
         }
         break;
     case 2:
         if (v0->unk_1B24 == 1) {
-            if (IsScreenTransitionDone() == 1) {
+            if (IsScreenFadeDone() == TRUE) {
                 return 1;
             }
         }

@@ -17,12 +17,12 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_text.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 
@@ -87,7 +87,7 @@ BOOL DWWarp_Init(ApplicationManager *appMan, int *state)
 
     DWWarp_InitModel(dww);
     DWWarp_InitCamera(dww);
-    StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
 
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
@@ -116,7 +116,7 @@ BOOL DWWarp_Main(ApplicationManager *appMan, int *state)
 
     switch (*state) {
     case DWARP_SEQ_SCREENWIPE:
-        if (IsScreenTransitionDone() == TRUE) {
+        if (IsScreenFadeDone() == TRUE) {
             (*state)++;
         }
         break;
@@ -133,11 +133,11 @@ BOOL DWWarp_Main(ApplicationManager *appMan, int *state)
         }
         break;
     case DWARP_SEQ_CLEAR_SCREEN:
-        StartScreenTransition(0, 0, 0, 0x0, 20, 1, HEAP_ID_DISTORTION_WORLD_WARP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 20, 1, HEAP_ID_DISTORTION_WORLD_WARP);
         (*state)++;
         break;
     case DWARP_SEQ_WAIT:
-        if (IsScreenTransitionDone() == TRUE) {
+        if (IsScreenFadeDone() == TRUE) {
             return TRUE;
         }
         break;

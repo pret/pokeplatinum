@@ -23,6 +23,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -31,7 +32,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
@@ -637,7 +637,7 @@ static void ov91_021D11F0(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D1214(UnkStruct_ov91_021D0ED8 *param0)
 {
-    if (IsScreenTransitionDone() == 1) {
+    if (IsScreenFadeDone() == TRUE) {
         return param0->unk_180;
     }
 

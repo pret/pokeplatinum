@@ -28,6 +28,7 @@
 #include "pokemon_icon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -40,7 +41,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_0200679C.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
 #include "vram_transfer.h"
@@ -910,7 +910,7 @@ static int sub_0208694C(ApplicationManager *appMan, int *param1)
         sub_02087FC0(v0, appMan, v1);
         sub_02088754(&v0->unk_41C[4], v0->unk_D8, v0->unk_158, v0->unk_15A, v0->unk_528, v0->unk_17C);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
-        StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_18);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 1, HEAP_ID_18);
         sub_0208732C(1);
 
         {
@@ -954,7 +954,7 @@ static int sub_02086B64(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 1;
             v0->unk_630 = 0;
         }
@@ -996,7 +996,7 @@ static int sub_02086B64(ApplicationManager *appMan, int *param1)
             v0->unk_630++;
 
             if (v0->unk_630 > 30) {
-                StartScreenTransition(2, 0, 0, 0x0, 16, 1, HEAP_ID_18);
+                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 16, 1, HEAP_ID_18);
                 *param1 = 3;
             }
             break;
@@ -1007,7 +1007,7 @@ static int sub_02086B64(ApplicationManager *appMan, int *param1)
         sub_02088514(&v0->unk_38);
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -2290,7 +2290,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
         if (param0->unk_14 == 0) {
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
             param0->unk_4F4[6]++;
-            StartScreenTransition(2, 0, 0, 0x0, 16, 1, HEAP_ID_18);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 16, 1, HEAP_ID_18);
             return 3;
         } else {
             param0->unk_4C0 = 5;

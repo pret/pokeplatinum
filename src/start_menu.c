@@ -54,6 +54,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -66,7 +67,6 @@
 #include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02028124.h"
 #include "unk_0202D778.h"
@@ -457,7 +457,7 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
         }
         break;
     case START_MENU_STATE_9:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             sub_0203B2EC(menu, fieldSystem);
             Heap_FreeToHeap(menu);
             MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
@@ -472,7 +472,7 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
         }
         break;
     case START_MENU_STATE_11:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             FieldTask_InitJump(taskMan, menu->callback, menu->taskData);
             Heap_FreeToHeap(menu);
         }
@@ -492,7 +492,7 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
         return TRUE;
     case START_MENU_STATE_14:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             menu->state = START_MENU_STATE_SELECT;
         }
         break;
@@ -880,7 +880,7 @@ static void StartMenu_ApplicationStart(FieldTask *taskMan)
     FieldSystem *fieldSystem;
     StartMenu *menu;
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 

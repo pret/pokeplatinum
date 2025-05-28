@@ -54,6 +54,7 @@
 #include "pokemon_icon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_chatot.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -66,7 +67,6 @@
 #include "touch_screen.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
 #include "unk_0208694C.h"
@@ -10856,8 +10856,8 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             {
                 UnkStruct_0208737C *v16;
 
-                sub_0200F344(0, 0x0);
-                sub_0200F344(1, 0x0);
+                SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+                SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                 v16 = sub_0208712C(HEAP_ID_BATTLE, 1, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, ov16_0223EDA4(v2->battleSys));

@@ -28,6 +28,7 @@
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "strbuf.h"
@@ -36,7 +37,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020711EC.h"
 #include "vram_transfer.h"
 
@@ -105,7 +105,7 @@ int ov101_021D0D80(ApplicationManager *appMan, int *param1)
     ov101_021D5C28(v1);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_66, SEQ_NONE, 0);
     ov101_021D18C0(v1);
-    StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_79);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_79);
 
     return 1;
 }
@@ -117,19 +117,19 @@ int ov101_021D0E40(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param1)++;
         }
         break;
     case 1:
         if (ov101_021D1AAC(v1) == 1) {
             (*param1)++;
-            StartScreenTransition(2, 0, 0, 0x0, 8, 1, HEAP_ID_79);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_79);
             ov101_021D1894(v1, UnkEnum_ov101_021D1894_00);
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() == 0) {
+        if (IsScreenFadeDone() == FALSE) {
             break;
         }
         (*param1)++;

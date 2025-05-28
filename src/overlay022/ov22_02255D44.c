@@ -59,6 +59,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -71,7 +72,6 @@
 #include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0200679C.h"
-#include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
@@ -243,11 +243,11 @@ int ov22_02255E50(ApplicationManager *appMan, int *param1)
     switch (*param1) {
     case 0:
     case 1:
-        StartScreenTransition(1, 5, 5, 0x0, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_5, FADE_TYPE_UNK_5, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
         (*param1) = 2;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param1)++;
         }
         break;
@@ -338,11 +338,11 @@ int ov22_02255E50(ApplicationManager *appMan, int *param1)
         }
         break;
     case 11:
-        StartScreenTransition(1, 0, 0, 0x0, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 12:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param1) = 0;
             v0->unk_70C = 10;
             v1 = 1;
@@ -549,11 +549,11 @@ int ov22_022562EC(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 11:
-        StartScreenTransition(1, 17, 19, 0x0, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 12:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             Sound_SetSceneAndPlayBGM(SOUND_SCENE_7, SEQ_CO_DRESS, 0);
             (*param1)++;
         }
@@ -606,12 +606,12 @@ int ov22_022562EC(ApplicationManager *appMan, int *param1)
             break;
         }
 
-        StartScreenTransition(1, 26, 26, 0x0, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_26, FADE_TYPE_UNK_26, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
         Sound_PlayEffect(SEQ_SE_DP_CON_017);
         (*param1)++;
         break;
     case 20:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param1) = 0;
             v0->unk_70C = 10;
             v1 = 1;
@@ -1255,7 +1255,7 @@ static void ov22_02257104(UnkStruct_ov22_02255D44 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_0200F338(0);
+    ResetScreenMasterBrightness(DS_SCREEN_MAIN);
 }
 
 static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0)
@@ -1266,7 +1266,7 @@ static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0)
 
     ov22_022568DC(param0);
 
-    sub_0200F344(0, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
     SpriteList_SetActive(param0->unk_00.unk_44, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);

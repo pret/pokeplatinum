@@ -19,11 +19,11 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "strbuf.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "unk_0200F174.h"
 #include "unk_0208C098.h"
 
 int ov80_021D0D80(ApplicationManager *appMan, int *param1);
@@ -496,7 +496,7 @@ static int ov80_021D1354(UnkStruct_ov80_021D2A08 *param0)
 
 static int ov80_021D138C(UnkStruct_ov80_021D2A08 *param0)
 {
-    if (!IsScreenTransitionDone()) {
+    if (!IsScreenFadeDone()) {
         return 3;
     }
 
@@ -516,12 +516,12 @@ static int ov80_021D13A0(UnkStruct_ov80_021D2A08 *param0)
 
 static int ov80_021D13DC(UnkStruct_ov80_021D2A08 *param0)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_NONE, 31, 0);
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         return 8;
     }
 

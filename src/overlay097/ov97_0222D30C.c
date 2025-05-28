@@ -34,6 +34,7 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -48,7 +49,6 @@
 #include "system.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -1082,8 +1082,8 @@ static int ov97_0222E2DC(ApplicationManager *param0, int *param1)
     ov97_02232054();
     ov97_0222DBC4(v0->unk_00);
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_10, SEQ_PRESENT, 1);
     ov97_02237520(86);

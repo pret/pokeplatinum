@@ -54,6 +54,7 @@
 #include "pokemon_sprite.h"
 #include "poketch.h"
 #include "render_text.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -63,7 +64,6 @@
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0202F1D4.h"
 #include "unk_0206CCB0.h"
@@ -1560,7 +1560,7 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
 
     ov16_0226CEB0(battleSys->unk_198, flag);
 
-    StartScreenTransition(3, 0, 0, 0, 16, 2, HEAP_ID_BATTLE);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 16, 2, HEAP_ID_BATTLE);
     Sound_StopWaveOutAndSequences();
     Sound_SetMasterVolume(0);
 

@@ -27,8 +27,8 @@
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "screen_fade.h"
 #include "system.h"
-#include "unk_0200F174.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -91,11 +91,11 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
         switch (v0->unk_78) {
         case 0:
 
-            if (IsScreenTransitionDone() == 1) {
-                sub_0200F2C0();
+            if (IsScreenFadeDone() == TRUE) {
+                FinishScreenFade();
             }
 
-            sub_0200F370(0x0);
+            SetColorBrightness(FADE_TO_BLACK);
             v0->unk_78++;
             break;
         case 1:
@@ -198,13 +198,13 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
             break;
         }
 
-        StartScreenTransition(0, 27, 27, 0xffff, 6, 1, HEAP_ID_99);
+        StartScreenFade(FADE_BOTH_SCREENS, 27, 27, 0xffff, 6, 1, HEAP_ID_99);
         (*param1)++;
         break;
     case 4:
         ov115_02260DAC(v0->unk_34, 0);
 
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (v0->unk_44 == 0) {
                 v2 = CommSys_SendData(22, NULL, 0);
 
@@ -302,14 +302,14 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
         }
         break;
     case 11:
-        StartScreenTransition(0, 26, 26, 0xffff, 6, 1, HEAP_ID_99);
+        StartScreenFade(FADE_BOTH_SCREENS, 26, 26, 0xffff, 6, 1, HEAP_ID_99);
         ov115_02260F70(v0->unk_34, 1);
         (*param1)++;
         break;
     case 12:
         ov115_02260F70(v0->unk_34, 1);
 
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             CommTiming_StartSync(3);
             (*param1)++;
         }

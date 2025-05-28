@@ -14,9 +14,9 @@
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "system.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_0208C098.h"
 
@@ -159,7 +159,7 @@ int ov93_021D0E70(ApplicationManager *appMan, int *param1)
                 sub_0208C120(1, HEAP_ID_72);
             }
         } else {
-            if (IsScreenTransitionDone()) {
+            if (IsScreenFadeDone()) {
                 return 1;
             }
         }

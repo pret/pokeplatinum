@@ -15,12 +15,12 @@
 #include "overlay_manager.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 
 typedef struct {
     int heapID;
@@ -69,8 +69,8 @@ int ov102_021D0D80(ApplicationManager *appMan, int *param1)
         v0->unk_0C = SaveData_GetTrainerInfo(v0->saveData);
     }
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
     SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
@@ -113,11 +113,11 @@ int ov102_021D0E2C(ApplicationManager *appMan, int *param1)
         ;
         Bg_ToggleLayer(7, 1);
         ;
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
         *param1 = 1;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             v0->unk_40 = 0;
             *param1 = 2;
         }
@@ -141,12 +141,12 @@ int ov102_021D0E2C(ApplicationManager *appMan, int *param1)
         break;
     case 4:
         if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B) || (gSystem.touchPressed)) {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
             *param1 = 5;
         }
         break;
     case 5:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             v1 = 1;
         }
         break;

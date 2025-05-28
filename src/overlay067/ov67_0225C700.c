@@ -32,12 +32,12 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
@@ -201,11 +201,11 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
+        StartScreenFade(FADE_BOTH_SCREENS, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param1)++;
         }
         break;
@@ -360,11 +360,11 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         }
         break;
     case 7:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_112);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 8:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -437,11 +437,11 @@ int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
+        StartScreenFade(FADE_BOTH_SCREENS, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param1) = 2;
         }
         break;
@@ -497,11 +497,11 @@ int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
         }
         break;
     case 9:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_112);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 10:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             ov67_0225D310(&v0->unk_40);
             return 1;
         }

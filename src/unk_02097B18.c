@@ -32,11 +32,11 @@
 #include "pokemon_sprite.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "system.h"
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
-#include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_02024220.h"
 #include "unk_02028124.h"
@@ -191,7 +191,7 @@ static int sub_02097D30(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 1;
         }
         break;
@@ -207,7 +207,7 @@ static int sub_02097D30(ApplicationManager *appMan, int *param1)
         ov76_0223BF50();
     } break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;

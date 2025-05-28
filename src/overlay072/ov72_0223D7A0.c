@@ -35,6 +35,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -47,7 +48,6 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_0202C7FC.h"
@@ -110,8 +110,8 @@ int ov72_0223D7A0(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
@@ -132,7 +132,7 @@ int ov72_0223D7A0(ApplicationManager *appMan, int *param1)
         SetAutorepeat(4, 8);
         ov72_0223DA70();
         ov72_0223DA90(v0->unk_00);
-        StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_39);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 1, HEAP_ID_39);
 
         {
             SaveData *saveData = (SaveData *)ApplicationManager_Args(appMan);
@@ -176,7 +176,7 @@ int ov72_0223D920(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 1;
         }
         break;
@@ -189,7 +189,7 @@ int ov72_0223D920(ApplicationManager *appMan, int *param1)
         ov72_0223E8D0(&v0->unk_437C);
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -763,7 +763,7 @@ static int ov72_0223E488(UnkStruct_ov72_0223DB98 *param0, int param1)
         GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_114);
         Window_EraseMessageBox(&param0->unk_338, 1);
         sub_02015A54(param0->unk_5D00);
-        StartScreenTransition(0, 0, 0, 0x0, 16, 1, HEAP_ID_39);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 16, 1, HEAP_ID_39);
         return 2;
         break;
     case 2:

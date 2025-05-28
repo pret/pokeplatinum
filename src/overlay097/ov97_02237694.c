@@ -29,6 +29,7 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -38,7 +39,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02033200.h"
 #include "vram_transfer.h"
@@ -86,8 +86,8 @@ void *ov97_022376C4(ApplicationManager *appMan, int heapID, int param2, int para
 
     memset(v0, 0, param2);
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     return v0;
 }
@@ -145,9 +145,9 @@ void ov97_02237790(int param0, int param1, int *param2, int param3)
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
     if (v0->unk_10 == 0) {
-        StartScreenTransition(0, param0, param0, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, param0, param0, 0x0, 6, 1, v0->heapID);
     } else {
-        StartScreenTransition(0, param0, param0, 0x7fff, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, param0, param0, 0x7fff, 6, 1, v0->heapID);
     }
 
     if (param2) {
@@ -161,7 +161,7 @@ void ov97_022377F0(int *param0)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         *param0 = v0->unk_0C;
     }
 }

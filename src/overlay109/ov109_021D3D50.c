@@ -35,6 +35,7 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -48,7 +49,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02030EE0.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -196,7 +196,7 @@ int ov109_021D3D50(ApplicationManager *appMan, int *param1)
         SetAutorepeat(4, 8);
         ov109_021D40D0();
         ov109_021D40F0(v0->unk_14);
-        StartScreenTransition(0, 17, 17, 0x0, 16, 1, HEAP_ID_95);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, FADE_TO_BLACK, 16, 1, HEAP_ID_95);
         ov109_021D4300(v0, v1);
         SetVBlankCallback(ov109_021D40A8, v0);
         ov109_021D41F8(v0, v1);
@@ -236,7 +236,7 @@ int ov109_021D3EB0(ApplicationManager *appMan, int *param1)
 
     switch (v0->unk_00) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0->unk_00 = 1;
 
             if (CommSys_CurNetId() != 0) {
@@ -276,7 +276,7 @@ int ov109_021D3EB0(ApplicationManager *appMan, int *param1)
 
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
 
@@ -1109,7 +1109,7 @@ static int ov109_021D4D9C(UnkStruct_ov109_021D5140 *param0, int param1)
 static int ov109_021D4DBC(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     if (++param0->unk_3C4 > 60) {
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_95);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 16, 1, HEAP_ID_95);
         param1 = 3;
     }
 
@@ -1203,7 +1203,7 @@ static int ov109_021D4F6C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     if (CommTiming_IsSyncState(202)) {
         CommMan_SetErrorHandling(0, 0);
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_95);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 16, 1, HEAP_ID_95);
         param1 = 3;
     }
 
@@ -1294,7 +1294,7 @@ static int ov109_021D5098(UnkStruct_ov109_021D5140 *param0, int param1)
 static int ov109_021D510C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     sub_0205BEA8(12);
-    StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_95);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 16, 1, HEAP_ID_95);
 
     param0->unk_08 = 1;
     param1 = 3;

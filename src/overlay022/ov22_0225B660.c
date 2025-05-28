@@ -23,12 +23,12 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "screen_fade.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
 #include "unk_02094EDC.h"
@@ -127,11 +127,11 @@ int ov22_0225B738(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 1:
-        StartScreenTransition(0, 5, 1, 0x0, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_5, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param1)++;
         }
         break;
@@ -141,11 +141,11 @@ int ov22_0225B738(ApplicationManager *appMan, int *param1)
         }
         break;
     case 4:
-        StartScreenTransition(0, 2, 0, 0x0, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_2, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 5:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;

@@ -29,13 +29,13 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_0202C858.h"
 #include "unk_020996D0.h"
@@ -377,7 +377,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
 
         v0->unk_BAEC = 0;
 
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
@@ -385,7 +385,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         *param1 = 1;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 2;
         }
         break;
@@ -646,11 +646,11 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
     } break;
     case 17:
         v0->unk_BAEC = 0;
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
         *param1 = 18;
         break;
     case 18:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             v0->unk_BAE8 = 1;
 
             ov92_021D1B24(v0);

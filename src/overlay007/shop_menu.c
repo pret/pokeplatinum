@@ -35,6 +35,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "shop_misc.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -49,7 +50,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200C440.h"
-#include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D05C.h"
@@ -94,7 +94,7 @@ static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu);
 static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu);
 static u8 Shop_ReinitContextMenu(ShopMenu *shopMenu);
 static void Shop_PrintExit(FieldSystem *fieldSystem, ShopMenu *shopMenu);
-static void Shop_StartScreenTransition(FieldSystem *fieldSystem, ShopMenu *shopMenu);
+static void Shop_StartScreenFade(FieldSystem *fieldSystem, ShopMenu *shopMenu);
 static void Shop_FinishScreenTransition(FieldTask *task);
 static u8 Shop_ReinitMerchantMessage(FieldSystem *fieldSystem, ShopMenu *shopMenu);
 static void Shop_DrawSprites(ShopMenu *shopMenu);
@@ -331,7 +331,7 @@ BOOL FieldTask_InitShop(FieldTask *task)
         shopMenu->state = Shop_ReinitContextMenu(shopMenu);
         break;
     case SHOP_STATE_START_SCREEN_TRANSITION:
-        Shop_StartScreenTransition(fieldSystem, shopMenu);
+        Shop_StartScreenFade(fieldSystem, shopMenu);
         break;
     case SHOP_STATE_WAIT_SCREEN_TRANSITION:
         Shop_FinishScreenTransition(task);
@@ -1597,7 +1597,7 @@ static void Shop_SetCursorSpritePalette(ShopMenu *shopMenu, u8 selected)
     Sprite_SetExplicitPalette2(shopMenu->sprites[SHOP_SPRITE_CURSOR], selected);
 }
 
-static void Shop_StartScreenTransition(FieldSystem *fieldSystem, ShopMenu *shopMenu)
+static void Shop_StartScreenFade(FieldSystem *fieldSystem, ShopMenu *shopMenu)
 {
     ov5_021D1744(0);
     shopMenu->state = SHOP_STATE_WAIT_SCREEN_TRANSITION;
@@ -1608,7 +1608,7 @@ static void Shop_FinishScreenTransition(FieldTask *task)
     FieldSystem *fieldSystem;
     ShopMenu *shopMenu;
 
-    if (IsScreenTransitionDone() == FALSE) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -1629,7 +1629,7 @@ static void Shop_FinishScreenTransition(FieldTask *task)
 
 static u8 Shop_ReinitMerchantMessage(FieldSystem *fieldSystem, ShopMenu *shopMenu)
 {
-    if (IsScreenTransitionDone() == FALSE) {
+    if (IsScreenFadeDone() == FALSE) {
         return SHOP_STATE_REINIT_MERCHANT_MESSAGE;
     }
 

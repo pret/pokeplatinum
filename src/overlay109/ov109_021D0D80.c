@@ -38,6 +38,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
@@ -50,7 +51,6 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -481,7 +481,7 @@ int ov109_021D0D80(ApplicationManager *appMan, int *param1)
     ov109_021D3584(v0);
     ov109_021D379C(v0);
     ov109_021D3884(v0);
-    StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_95);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_95);
 
     return 1;
 }
@@ -552,7 +552,7 @@ static int ov109_021D0F78(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D0F8C(UnkStruct_ov109_021D0F70 *param0)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         if (CommSys_CurNetId() == 0) {
             param0->unk_00 = 2;
         } else {
@@ -1451,7 +1451,7 @@ static int ov109_021D1B8C(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 {
-    StartScreenTransition(2, 0, 0, 0x0, 8, 1, HEAP_ID_95);
+    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_95);
 
     if (param0->unk_1C != Sound_Impl_GetCurrentBGM()) {
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, param0->unk_1C, 1);
@@ -1463,7 +1463,7 @@ static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1BE4(UnkStruct_ov109_021D0F70 *param0)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         param0->unk_00 = 53;
         return 1;
     }

@@ -29,6 +29,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -37,7 +38,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_02028124.h"
 #include "unk_0203D1B8.h"
 #include "unk_0206A780.h"
@@ -1136,11 +1136,11 @@ static int sub_02073438(UnkStruct_02072334 *param0, int param1)
 {
     switch (param0->unk_12) {
     case 0:
-        StartScreenTransition(0, param1, param1, 0x0, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, param1, param1, 0x0, 6, 1, param0->heapID);
         param0->unk_12++;
         break;
     case 1:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             break;
         }
 

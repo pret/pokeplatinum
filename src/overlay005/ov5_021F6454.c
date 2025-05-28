@@ -37,6 +37,7 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "savedata_misc.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -46,7 +47,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_vars.h"
-#include "unk_0200F174.h"
 #include "unk_02020AEC.h"
 #include "unk_0202C858.h"
 #include "unk_02030880.h"
@@ -376,7 +376,7 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
         return;
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 

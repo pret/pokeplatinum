@@ -25,6 +25,7 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "sound_playback.h"
 #include "strbuf.h"
@@ -33,7 +34,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "tutor_movesets.h"
-#include "unk_0200F174.h"
 #include "unk_02054884.h"
 
 #include "res/pokemon/species_learnsets_by_tutor.h"
@@ -520,7 +520,7 @@ static void SysTaskCallback(SysTask *sysTask, void *_moveTutorManager)
         return;
     }
 
-    if (IsScreenTransitionDone() == FALSE) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 

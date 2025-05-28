@@ -76,9 +76,9 @@
 #include "pokeradar.h"
 #include "render_oam.h"
 #include "savedata_misc.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "system.h"
-#include "unk_0200F174.h"
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
 #include "unk_020553DC.h"
@@ -160,8 +160,8 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
         G2_BlendNone();
         G2S_BlendNone();
 
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         ov5_021D173C(fieldSystem);
         FieldMapChange_Set3DDisplay(fieldSystem);
 
@@ -769,9 +769,9 @@ static void ov5_021D173C(FieldSystem *fieldSystem)
 void ov5_021D1744(const u8 param0)
 {
     if (param0 == 1) {
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
     } else if (param0 == 0) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
     } else {
         GF_ASSERT(FALSE);
     }
