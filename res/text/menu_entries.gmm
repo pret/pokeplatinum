@@ -828,35 +828,35 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 54, 0, 0} Coins</language>
 	</row>
-	<row id="pl_msg_00000361_00198" index="198">
+	<row id="MenuEntries_Text_PalPark_BasicRules" index="198">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">BASIC RULES</language>
 	</row>
-	<row id="pl_msg_00000361_00199" index="199">
+	<row id="MenuEntries_Text_PalPark_CatchingShow" index="199">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CATCHING SHOW</language>
 	</row>
-	<row id="pl_msg_00000361_00200" index="200">
+	<row id="MenuEntries_Text_PalPark_StockingPokemon" index="200">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">STOCKING POKéMON</language>
 	</row>
-	<row id="pl_msg_00000361_00201" index="201">
+	<row id="MenuEntries_Text_PalPark_Stocking2_Unused" index="201">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">STOCKING 2</language>
 	</row>
-	<row id="pl_msg_00000361_00202" index="202">
+	<row id="MenuEntries_Text_PalPark_Understood" index="202">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">UNDERSTOOD!</language>
 	</row>
-	<row id="pl_msg_00000361_00203" index="203">
+	<row id="MenuEntries_Text_PalPark_Enter" index="203">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ENTER</language>
 	</row>
-	<row id="pl_msg_00000361_00204" index="204">
+	<row id="MenuEntries_Text_PalPark_Info" index="204">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">INFO</language>
 	</row>
-	<row id="pl_msg_00000361_00205" index="205">
+	<row id="MenuEntries_Text_PalPark_Exit" index="205">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">EXIT</language>
 	</row>

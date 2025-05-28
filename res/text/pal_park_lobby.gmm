@@ -1,153 +1,153 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="32395" />
-	<row id="pl_msg_00000515_00000" index="0">
+	<row id="PalParkLobby_Text_Oak_AhPlayerThisIsItThisIsPalPark_PlayerMale" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oak: Ah, {STRVAR_1 3, 0, 0}!\nThis is it! This is Pal Park!\r</language>
 	</row>
-	<row id="pl_msg_00000515_00001" index="1">
+	<row id="PalParkLobby_Text_Oak_AhPlayerThisIsItThisIsPalPark_PlayerFemale" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oak: Ah, {STRVAR_1 3, 0, 0}!\nThis is it! This is Pal Park!\r</language>
 	</row>
-	<row id="pl_msg_00000515_00002" index="2">
+	<row id="PalParkLobby_Text_Oak_PokemonFromAroundTheCountryCanBeBroughtHere" index="2">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon from around the country\ncan be brought here.\rIn other words, Pokémon from\nplaces like Kanto and Hoenn.\rThis place also happens to be where\nyou compete to see how quickly you\fcan catch those Pokémon!\r</language>
 	</row>
-	<row id="pl_msg_00000515_00003" index="3">
+	<row id="PalParkLobby_Text_Oak_LetMeMakeAGiftOfThisTrainerCounterApp" index="3">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">It’s good to see you’ve come\nto join us for a visit.\rLet me make a gift of this Trainer\nCounter app for your Pokétch.\r</language>
 	</row>
-	<row id="pl_msg_00000515_00004" index="4">
+	<row id="PalParkLobby_Text_Oak_IPlanToBeInEternaCityForSomeTime" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oak: I plan to be in Eterna City\nfor some time.\rBeing here, I should make the best\nof my time studying the Pokémon of\fthe Sinnoh region.\r</language>
 	</row>
-	<row id="pl_msg_00000515_00005" index="5">
+	<row id="PalParkLobby_Text_PalParkIsSoScintillating" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pal Park is so scintillating!\rTrainers and Pokémon are so full of\nintensity here!\r</language>
 	</row>
-	<row id="pl_msg_00000515_00006" index="6">
+	<row id="PalParkLobby_Text_IveNeverSeenSomePokemon" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’ve never seen some Pokémon.\nWould you show me if you had one?\r</language>
 	</row>
-	<row id="pl_msg_00000515_00007" index="7">
+	<row id="PalParkLobby_Text_Unused_00007" index="7">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000515_00008" index="8">
+	<row id="PalParkLobby_Text_Unused_00008" index="8">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000515_00009" index="9">
+	<row id="PalParkLobby_Text_Unused_00009" index="9">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000515_00010" index="10">
+	<row id="PalParkLobby_Text_APokemonThatDoesNothingButEatAndSleep" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Let me see...\rA Pokémon that does nothing but\neat and sleep.\r</language>
 	</row>
-	<row id="pl_msg_00000515_00011" index="11">
+	<row id="PalParkLobby_Text_OhASnorlaxItSureLooksLikeItCanEat" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, a SNORLAX?\nIt sure looks like it can eat!\rI have a Pokétch app that has\na SNORLAX motif.\rYou can have it for showing me\na real SNORLAX!\r</language>
 	</row>
-	<row id="pl_msg_00000515_00012" index="12">
+	<row id="PalParkLobby_Text_DoesntThatKitchenTimerMakeYouWantToCookSomething" index="12">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Doesn’t that {STRVAR_1 24, 0, 0}\nmake you want to cook something?\n</language>
 	</row>
-	<row id="pl_msg_00000515_00013" index="13">
+	<row id="PalParkLobby_Text_APokemonThatChangesColorWheneverSomethingHappens" index="13">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Let me see...\rA Pokémon that changes color\nwhenever something happens.\r</language>
 	</row>
-	<row id="pl_msg_00000515_00014" index="14">
+	<row id="PalParkLobby_Text_OhAKecleonHowColorful" index="14">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, a KECLEON!\nHow colorful!\rI have a Pokétch app that features\na KECLEON design.\rYou can have it for showing me\na real KECLEON!\r</language>
 	</row>
-	<row id="pl_msg_00000515_00015" index="15">
+	<row id="PalParkLobby_Text_ChangingColorsCanChangeYourMoodToo" index="15">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Changing colors can change your\nmood, too.</language>
 	</row>
-	<row id="pl_msg_00000515_00016" index="16">
+	<row id="PalParkLobby_Text_Unused_00016" index="16">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000515_00017" index="17">
+	<row id="PalParkLobby_Text_Unused_00017" index="17">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000515_00018" index="18">
+	<row id="PalParkLobby_Text_Unused_00018" index="18">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000515_00019" index="19">
+	<row id="PalParkLobby_Text_WhatWasThatPokemonNameNow" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">What was that Pokémon’s name now...?\nOh, it’s on the tip of my tongue!</language>
 	</row>
-	<row id="pl_msg_00000515_00020" index="20">
+	<row id="PalParkLobby_Text_PalParkIsSoScintillatingAreYouTakingTheChallengeToo" index="20">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pal Park is so scintillating!\rTrainers and Pokémon are so full of\nintensity here!\rAre you taking the challenge, too?</language>
 	</row>
-	<row id="pl_msg_00000515_00021" index="21">
+	<row id="PalParkLobby_Text_WelcomeToPalPark_PlayerMale" index="21">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome to Pal Park!\rThis is where top-notch Trainers come\nto demonstrate their Pokémon-catching\ftechniques to their peers.\r...Oh?\rAre you maybe...\nAh, you are {STRVAR_1 3, 0, 0}!\rWe’ve all heard rumors about you!\nWord is, you’re a hotshot Trainer?!\rWe’d be honored if you would\nparticipate in our Catching Shows.</language>
 	</row>
-	<row id="pl_msg_00000515_00022" index="22">
+	<row id="PalParkLobby_Text_WelcomeToPalPark_PlayerFemale" index="22">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome to Pal Park!\rThis is where top-notch Trainers come\nto demonstrate their Pokémon-catching\ftechniques to their peers.\r...Oh?\rAre you maybe...\nAh, you are {STRVAR_1 3, 0, 0}!\rWe’ve all heard rumors about you!\nWord is, you’re a hotshot Trainer?!\rWe’d be honored if you would\nparticipate in our Catching Shows.</language>
 	</row>
-	<row id="pl_msg_00000515_00023" index="23">
+	<row id="PalParkLobby_Text_YesYouAgreedToParticipateItsAHappyDayForMe" index="23">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Yes! You agreed to participate!\nIt’s a happy day for me!\rLet’s not waste any time!\nLet me explain how Pal Park works.\rI wrote the Pal Park manual for\nsituations just like this.\rWhat should I explain?</language>
 	</row>
-	<row id="pl_msg_00000515_00024" index="24">
+	<row id="PalParkLobby_Text_Manual_BasicRules" index="24">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pal Park is a place where you are\ntimed on the catching of six Pokémon.\rYou are provided with six special\nPoké Balls for the challenge.\rParticipating Trainers are required to\nsupply the six Pokémon that are to\fbe caught.\rIf you do not supply the stock of six\nPokémon, you may not participate in\fthe Catching Show.\r...Do you want me to explain anything\nelse?</language>
 	</row>
-	<row id="pl_msg_00000515_00025" index="25">
+	<row id="PalParkLobby_Text_Manual_CatchingShow" index="25">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">At the start of the Catching Show,\nyou will be given six Park Balls.\rUse the Park Balls to catch the\nsix Pokémon you provide.\r...Do you want me to explain anything\nelse?</language>
 	</row>
-	<row id="pl_msg_00000515_00026" index="26">
+	<row id="PalParkLobby_Text_Manual_StockingPokemon" index="26">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You may make Pokémon migrate from\nKanto or Hoenn. Doing so will stock\fyour Catching Game.\rInsert a Game Boy Advance Pokémon\nRuby, Sapphire, Emerald, FireRed,\for LeafGreen in the Game Pak slot.\rWhen your DS is turned on, currently\ncaught Pokémon can migrate from\fthe Game Pak to the DS Game Card.\r...Do you want me to explain anything\nelse?</language>
 	</row>
-	<row id="pl_msg_00000515_00027" index="27">
+	<row id="PalParkLobby_Text_Manual_Stocking2_Unused" index="27">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon caught in Sinnoh may also\nbe used to stock your Catching Game.\rPlease ask the guy next to me who’s\nin charge of stocking Pokémon.\r...Do you want me to explain anything\nelse?</language>
 	</row>
-	<row id="pl_msg_00000515_00028" index="28">
+	<row id="PalParkLobby_Text_WouldYouLikeToTakePartInACatchingShowNow" index="28">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Would you like to take part in\na Catching Show now?</language>
 	</row>
-	<row id="pl_msg_00000515_00029" index="29">
+	<row id="PalParkLobby_Text_AwwThatsTooBad" index="29">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Aww, that’s too bad.\rWell, just give me a shout if you’d\nlike to participate.</language>
 	</row>
-	<row id="pl_msg_00000515_00030" index="30">
+	<row id="PalParkLobby_Text_Greeting_PlayerMale" index="30">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hi there, {STRVAR_1 3, 0, 0}!\rDid you come to participate in\na Catching Show?</language>
 	</row>
-	<row id="pl_msg_00000515_00031" index="31">
+	<row id="PalParkLobby_Text_Greeting_PlayerFemale" index="31">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hi there, {STRVAR_1 3, 0, 0}!\rDid you come to participate in\na Catching Show?</language>
 	</row>
-	<row id="pl_msg_00000515_00032" index="32">
+	<row id="PalParkLobby_Text_OkHereAreYourParkBalls_PlayerMale" index="32">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK, here are your Park Balls!\r{STRVAR_1 3, 0, 0} received\nsix Park Balls.\rThe current record holder is\n{STRVAR_1 3, 1, 0} with {STRVAR_1 53, 2, 0} points.\rOK, off you go, {STRVAR_1 3, 0, 0}.\rDazzle us with a masterful display\nof Pokémon catching!\r</language>
 	</row>
-	<row id="pl_msg_00000515_00033" index="33">
+	<row id="PalParkLobby_Text_OkHereAreYourParkBalls_PlayerFemale" index="33">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK, here are your Park Balls!\r{STRVAR_1 3, 0, 0} received\nsix Park Balls.\rThe current record holder is\n{STRVAR_1 3, 1, 0} with {STRVAR_1 53, 2, 0} points.\rOK, off you go, {STRVAR_1 3, 0, 0}.\rDazzle us with a masterful display\nof Pokémon catching!\r</language>
 	</row>
-	<row id="pl_msg_00000515_00034" index="34">
+	<row id="PalParkLobby_Text_YouDontHaveEnoughPokemonForACatchingShow" index="34">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, hold on. You don’t have enough\nPokémon for a Catching Show.\rYou’ll need to stock us with six\nPokémon to participate.\rYou should make some Pokémon migrate\nfrom Kanto or Hoenn!</language>
 	</row>
-	<row id="pl_msg_00000515_00035" index="35">
+	<row id="PalParkLobby_Text_VeryWellLetMeExplainHowThingsWorkAroundHere" index="35">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Very well, let me explain how things\nwork around here.\rI’ll read to you from the Pal Park\nmanual I wrote.</language>
 	</row>
@@ -155,92 +155,92 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’m sorry you had to retire.\nWe hope you try harder next time.\rI’ll take what Park Balls you\nhave left.\rNext time, please do stay to catch\nall six Pokémon.</language>
 	</row>
-	<row id="pl_msg_00000515_00037" index="37">
+	<row id="PalParkLobby_Text_YouHaveNoRoomForSixMorePokemon" index="37">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, your PC Boxes are filled. You\nhave no room for six more Pokémon.\rYou won’t be able to accept them,\neven if you do catch them.\rMake enough room in a PC Box and\ncome back for your Catching Show.</language>
 	</row>
-	<row id="pl_msg_00000515_00038" index="38">
+	<row id="PalParkLobby_Text_CongratulationsThatsAllSixPokemonCaught" index="38">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Congratulations!\nThat’s all six Pokémon caught!\rThe audience sure enjoyed watching\nyour Catching Show.\rAll right, let’s see your all-important\nscore from this show!\r...\n...\rCatching Points: {STRVAR_1 53, 0, 0}!\rTime Points: {STRVAR_1 53, 1, 0}!\rType Points: {STRVAR_1 53, 2, 0}!\rThe total is...\r...\n...\r{STRVAR_1 53, 3, 0} points!\r</language>
 	</row>
-	<row id="pl_msg_00000515_00039" index="39">
+	<row id="PalParkLobby_Text_WowThatsAnOutstandingRecord" index="39">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Wow! That’s an outstanding record!\nKudos to you!\r</language>
 	</row>
-	<row id="pl_msg_00000515_00040" index="40">
+	<row id="PalParkLobby_Text_GoodThatsADecentRecord" index="40">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Good! That’s a decent record.\nProps to you!\r</language>
 	</row>
-	<row id="pl_msg_00000515_00041" index="41">
+	<row id="PalParkLobby_Text_AskToStoreCaughtMon" index="41">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Would you like to put all the Pokémon\nyou’ve caught in PC Boxes?</language>
 	</row>
-	<row id="pl_msg_00000515_00042" index="42">
+	<row id="PalParkLobby_Text_DoneYourPokemonHaveBeenBoxedAway" index="42">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Done!\nYour Pokémon have been boxed away.\rYou’ll now have to save the game.\r</language>
 	</row>
-	<row id="pl_msg_00000515_00043" index="43">
+	<row id="PalParkLobby_Text_OhThenItMightBeFunForYouToGoForAnEvenBetterScore" index="43">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, then it might be fun for you to\ngo for an even better score by\ftrying to catch these six again.\rIf you want to do another Catching\nShow, just come see us!</language>
 	</row>
-	<row id="pl_msg_00000515_00044" index="44">
+	<row id="PalParkLobby_Text_IfYouWantToDoAnotherCatchingShowComeSeeUsAgain" index="44">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">If you want to do another Catching\nShow, come see us again!</language>
 	</row>
-	<row id="pl_msg_00000515_00045" index="45">
+	<row id="PalParkLobby_Text_ItsTimeForYourPrize" index="45">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">It’s time for your prize!\nHere you are!\r</language>
 	</row>
-	<row id="pl_msg_00000515_00046" index="46">
+	<row id="PalParkLobby_Text_AskToRedoCatchingShow" index="46">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Would you like to do another Catching\nShow with the same Pokémon?</language>
 	</row>
-	<row id="pl_msg_00000515_00047" index="47">
+	<row id="PalParkLobby_Text_Unused_00047" index="47">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000515_00048" index="48">
+	<row id="PalParkLobby_Text_Unused_00048" index="48">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000515_00049" index="49">
+	<row id="PalParkLobby_Text_Unused_00049" index="49">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000515_00050" index="50">
+	<row id="PalParkLobby_Text_Unused_00050" index="50">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000515_00051" index="51">
+	<row id="PalParkLobby_Text_Unused_00051" index="51">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000515_00052" index="52">
+	<row id="PalParkLobby_Text_ICameToSeePlayersCatchingShowWithDaddy" index="52">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I came to see {STRVAR_1 3, 0, 0}’s Catching\nShow with Daddy.\rI hope it starts soon...</language>
 	</row>
-	<row id="pl_msg_00000515_00053" index="53">
+	<row id="PalParkLobby_Text_EekPlayerYourCatchingShowWasFantastic" index="53">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Eek! {STRVAR_1 3, 0, 0}!\nYour Catching Show was fantastic!\rI hope I can become an expert\nTrainer like you one day!</language>
 	</row>
-	<row id="pl_msg_00000515_00054" index="54">
+	<row id="PalParkLobby_Text_OhPlayerIHopeYouDoBetterNextTime" index="54">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, {STRVAR_1 3, 0, 0}!\nI hope you do better next time.</language>
 	</row>
-	<row id="pl_msg_00000515_00055" index="55">
+	<row id="PalParkLobby_Text_PlayerMyDaughterIsABigFanOfYours" index="55">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 3, 0, 0}, my daughter is a big\nfan of yours.\rA day doesn’t go by without her\ndemanding we come see Catching Shows.</language>
 	</row>
-	<row id="pl_msg_00000515_00056" index="56">
+	<row id="PalParkLobby_Text_WeGetToSeeRareAndExoticPokemon" index="56">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">People come here not only to see\nthe Catching Show.\rWe get to see rare and exotic\nPokémon on top of the catches.\rThe excitement gets me all jacked up!</language>
 	</row>
-	<row id="pl_msg_00000515_00057" index="57">
+	<row id="PalParkLobby_Text_TheCurrentRecordHolderIsXWithYPoints" index="57">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The current record holder is\n{STRVAR_1 3, 1, 0} with {STRVAR_1 53, 2, 0} points.\fCan you top that?</language>
 	</row>
@@ -272,44 +272,44 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your Bag is full.\nYou should come back later.</language>
 	</row>
-	<row id="pl_msg_00000515_00065" index="65">
+	<row id="PalParkLobby_Text_RarePokemonTakeLongerToAppear" index="65">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’ve heard Trainers complain that\nrare Pokémon take longer to appear.\rIs it easier to start with common\nPokémon?</language>
 	</row>
-	<row id="pl_msg_00000515_00066" index="66">
+	<row id="PalParkLobby_Text_IEspeciallyLookForwardToSeeingPokemonFromKantoAndHoenn" index="66">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The Catching Show...\rIt’s a head-on clash of will and\nwits between Trainer and Pokémon.\rI especially look forward to seeing\nPokémon from Kanto and Hoenn.\rBut it tugs at my heartstrings to\nknow they’re so far away from home.</language>
 	</row>
-	<row id="pl_msg_00000515_00067" index="67">
+	<row id="PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Crown" index="67">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your performance left my heart\naflutter today...\rI must crown you with this...\nCrown.\rOh, before you get the wrong idea,\nit’s an Accessory for Pokémon.\r</language>
 	</row>
-	<row id="pl_msg_00000515_00068" index="68">
+	<row id="PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Tiara" index="68">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your performance left my heart\naflutter today...\rI feel compelled to give you this\nTiara.\rOh, before you get the wrong idea,\nit’s an Accessory for Pokémon.\r</language>
 	</row>
-	<row id="pl_msg_00000515_00069" index="69">
+	<row id="PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Seafloor" index="69">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your performance left my heart\naflutter today...\rI wish you would take this\n“Seafloor” Backdrop.\rPlease try using it when dressing up\nyour Pokémon with Accessories.\r</language>
 	</row>
-	<row id="pl_msg_00000515_00070" index="70">
+	<row id="PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Underground" index="70">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your performance left my heart\naflutter today...\rI wish you would take this\n“Underground” Backdrop.\rPlease try using it when dressing up\nyour Pokémon with Accessories.\r</language>
 	</row>
-	<row id="pl_msg_00000515_00071" index="71">
+	<row id="PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Sky" index="71">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your performance left my heart\naflutter today...\rI wish you would take this\n“Sky” Backdrop.\rPlease try using it when dressing up\nyour Pokémon with Accessories.\r</language>
 	</row>
-	<row id="pl_msg_00000515_00072" index="72">
+	<row id="PalParkLobby_Text_NotOnlyAreThereCatchingShowsThereAreAlsoPokemonContests" index="72">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Not only are there Catching Shows,\nthere are also Pokémon Contests...\rIt’s so dreamy...\nSinnoh sets my heart aflutter.</language>
 	</row>
-	<row id="pl_msg_00000515_00073" index="73">
+	<row id="PalParkLobby_Text_Unused_00073" index="73">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000515_00074" index="74">
+	<row id="PalParkLobby_Text_Unused_00074" index="74">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
