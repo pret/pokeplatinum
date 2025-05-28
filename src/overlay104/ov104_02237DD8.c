@@ -8,15 +8,12 @@
 
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
-#include "struct_defs/struct_0204B184.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_0223BCBC.h"
 #include "overlay104/struct_ov104_02238240.h"
-#include "overlay104/struct_ov104_0223A348_sub1.h"
-#include "overlay104/struct_ov104_0223A348_sub2.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 
@@ -247,31 +244,15 @@ void ov104_0223806C(UnkStruct_ov104_0223BFFC *param0, u16 param1)
 
 static void ov104_02238080(UnkStruct_ov104_0223BFFC *param0)
 {
-    u16 v0;
-    int v1;
-    UnkStruct_ov104_0223A348_sub2 v2;
-    Pokemon *v3;
-    Party *v4;
-    u16 v5[6];
-    u16 v6[6];
-
     ov104_0223BD28(param0->unk_10, ov104_0223C124(param0), param0->unk_78, (7 * 2));
-
-    for (v1 = 0; v1 < (7 * 2); v1++) {
-        (void)0;
-    }
 
     ov104_0222E4BC(ov104_0223BDA4(param0->unk_10, 1), param0->unk_78[param0->unk_11], param0->unk_78[param0->unk_11 + 7], param0->unk_314, param0->unk_330, param0->unk_31C, param0->unk_320, ov104_0223C000(param0->unk_10));
 
-    for (v1 = 0; v1 < 4; v1++) {
-        (void)0;
-    }
+    u16 v0 = ov104_0223C124(param0);
 
-    v0 = ov104_0223C124(param0);
-
-    for (v1 = 0; v1 < (NELEMS(Unk_ov104_0223FAF8)); v1++) {
-        if (v0 >= Unk_ov104_0223FAF8[v1][0]) {
-            param0->unk_1C = Unk_ov104_0223FAF8[v1][1];
+    for (int i = 0; i < (NELEMS(Unk_ov104_0223FAF8)); i++) {
+        if (v0 >= Unk_ov104_0223FAF8[i][0]) {
+            param0->unk_1C = Unk_ov104_0223FAF8[i][1];
             break;
         }
     }
@@ -281,11 +262,8 @@ static void ov104_02238080(UnkStruct_ov104_0223BFFC *param0)
 
 static void ov104_02238114(UnkStruct_ov104_0223BFFC *param0)
 {
-    u16 v0;
     int v1;
-    Pokemon *v2;
-    u8 v3;
-    UnkStruct_ov104_0223A348_sub2 v4[6];
+    FrontierPokemonDataDTO v4[6];
     u8 v5[6];
     u16 v6[6];
     u32 v7[6];
@@ -301,9 +279,9 @@ static void ov104_02238114(UnkStruct_ov104_0223BFFC *param0)
         param0->unk_314[v1] = v6[v1];
     }
 
-    ov104_0222E330(v4, v6, v5, NULL, v7, 4, 11, 179);
+    ov104_0222E330(v4, v6, v5, NULL, v7, 4, HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
-    v2 = Pokemon_New(HEAP_ID_FIELDMAP);
+    Pokemon *v2 = Pokemon_New(HEAP_ID_FIELDMAP);
 
     for (v1 = 0; v1 < 4; v1++) {
         ov104_0222DF40(&v4[v1], v2, ov104_0223BFFC(param0));
@@ -463,14 +441,12 @@ u16 ov104_02238460(UnkStruct_ov104_0223BFFC *param0)
 
 u16 ov104_02238464(UnkStruct_ov104_0223BFFC *param0, u8 param1)
 {
-    UnkStruct_ov104_0223A348_sub1 v0;
-    UnkStruct_0204B184 *v1;
+    FrontierTrainerDataDTO v0;
     u8 v2 = ov104_02238498(param0, param1);
-    v1 = ov104_0222DD04(&v0, param0->unk_78[v2], 11, 178);
 
-    Heap_FreeToHeap(v1);
+    Heap_FreeToHeap(ov104_0222DD04(&v0, param0->unk_78[v2], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-    return ov104_0222E10C(v0.unk_04);
+    return ov104_0222E10C(v0.trainerType);
 }
 
 u16 ov104_02238498(UnkStruct_ov104_0223BFFC *param0, u8 param1)

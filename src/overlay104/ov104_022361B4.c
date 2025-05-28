@@ -8,7 +8,6 @@
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/struct_0204B184.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
@@ -17,8 +16,6 @@
 #include "overlay104/struct_ov104_022320B4_decl.h"
 #include "overlay104/struct_ov104_022320B4_t.h"
 #include "overlay104/struct_ov104_0223597C.h"
-#include "overlay104/struct_ov104_0223A348_sub1.h"
-#include "overlay104/struct_ov104_0223A348_sub2.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 
@@ -173,36 +170,20 @@ void ov104_02236514(UnkStruct_ov104_0223BA10 *param0, u16 param1)
 
 static void ov104_02236528(UnkStruct_ov104_0223BA10 *param0)
 {
-    u8 v0;
-    int v1;
-    UnkStruct_ov104_0223A348_sub2 v2;
-    Pokemon *v3;
-    Party *v4;
-    u16 v5[6];
-    u16 v6[6];
+    u8 v0 = Party_GetCurrentCount(param0->unk_28);
 
-    v0 = Party_GetCurrentCount(param0->unk_28);
+    for (int i = 0; i < v0; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_28, i);
 
-    for (v1 = 0; v1 < v0; v1++) {
-        v3 = Party_GetPokemonBySlotIndex(param0->unk_28, v1);
-
-        param0->unk_394[v1][0] = Pokemon_GetValue(v3, MON_DATA_MOVE1_CUR_PP, NULL);
-        param0->unk_394[v1][1] = Pokemon_GetValue(v3, MON_DATA_MOVE2_CUR_PP, NULL);
-        param0->unk_394[v1][2] = Pokemon_GetValue(v3, MON_DATA_MOVE3_CUR_PP, NULL);
-        param0->unk_394[v1][3] = Pokemon_GetValue(v3, MON_DATA_MOVE4_CUR_PP, NULL);
+        param0->unk_394[i][0] = Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP, NULL);
+        param0->unk_394[i][1] = Pokemon_GetValue(mon, MON_DATA_MOVE2_CUR_PP, NULL);
+        param0->unk_394[i][2] = Pokemon_GetValue(mon, MON_DATA_MOVE3_CUR_PP, NULL);
+        param0->unk_394[i][3] = Pokemon_GetValue(mon, MON_DATA_MOVE4_CUR_PP, NULL);
     }
 
     ov104_0223B760(param0->unk_10, ov104_0223BB60(param0), param0->unk_30, (7 * 2));
 
-    for (v1 = 0; v1 < (7 * 2); v1++) {
-        (void)0;
-    }
-
     ov104_0222E4BC(ov104_0223B7DC(param0->unk_10, 1), param0->unk_30[param0->unk_11], param0->unk_30[param0->unk_11 + 7], param0->unk_26C, param0->unk_288, param0->unk_274, param0->unk_278, ov104_0223BA14(param0->unk_10));
-
-    for (v1 = 0; v1 < 4; v1++) {
-        (void)0;
-    }
 
     return;
 }
@@ -213,7 +194,7 @@ static void ov104_022365F8(UnkStruct_ov104_0223BA10 *param0)
     int v1;
     Pokemon *v2;
     u8 v3;
-    UnkStruct_ov104_0223A348_sub2 v4[6];
+    FrontierPokemonDataDTO v4[6];
     u8 v5[6];
     u16 v6[6];
     u32 v7[6];
@@ -452,14 +433,12 @@ u16 ov104_02236B54(UnkStruct_ov104_0223BA10 *param0)
 
 u16 ov104_02236B58(UnkStruct_ov104_0223BA10 *param0, u8 param1)
 {
-    UnkStruct_ov104_0223A348_sub1 v0;
-    UnkStruct_0204B184 *v1;
+    FrontierTrainerDataDTO v0;
     u8 v2 = param0->unk_11 + (param1 * 7);
-    v1 = ov104_0222DD04(&v0, param0->unk_30[v2], 11, 178);
 
-    Heap_FreeToHeap(v1);
+    Heap_FreeToHeap(ov104_0222DD04(&v0, param0->unk_30[v2], 11, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-    return ov104_0222E10C(v0.unk_04);
+    return ov104_0222E10C(v0.trainerType);
 }
 
 void ov104_02236B8C(UnkStruct_ov104_0223BA10 *param0)

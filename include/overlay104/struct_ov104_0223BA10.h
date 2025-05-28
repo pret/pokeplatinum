@@ -3,8 +3,7 @@
 
 #include "struct_decls/struct_020302DC_decl.h"
 
-#include "overlay104/struct_ov104_0223A348.h"
-#include "overlay104/struct_ov104_0223A348_sub2.h"
+#include "overlay104/frontier_data_transfer.h"
 
 #include "party.h"
 #include "savedata.h"
@@ -33,7 +32,7 @@ typedef struct {
     u16 unk_26C[4];
     u8 unk_274[4];
     u32 unk_278[4];
-    UnkStruct_ov104_0223A348_sub2 unk_288[4];
+    FrontierPokemonDataDTO unk_288[4];
     u16 unk_368;
     u16 unk_36A[3];
     u8 unk_370[4];

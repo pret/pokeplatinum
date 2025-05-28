@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0202D750_H
 #define POKEPLATINUM_STRUCT_0202D750_H
 
-#include "overlay104/struct_ov104_0223A348_sub2.h"
+#include "overlay104/frontier_data_transfer.h"
 
 typedef struct UnkStruct_0202D750_t {
     u16 unk_00;
@@ -30,8 +30,8 @@ typedef struct UnkStruct_0202D750_t {
     };
     u16 unk_0A[6];
     u16 unk_16;
-    UnkStruct_ov104_0223A348_sub2 unk_18[3];
-    UnkStruct_ov104_0223A348_sub2 unk_C0[3];
+    FrontierPokemonDataDTO unk_18[3];
+    FrontierPokemonDataDTO unk_C0[3];
 } UnkStruct_0202D750;
 
 #endif // POKEPLATINUM_STRUCT_0202D750_H

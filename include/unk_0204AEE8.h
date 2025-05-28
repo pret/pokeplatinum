@@ -5,7 +5,7 @@
 #include "struct_defs/struct_0204B404.h"
 
 #include "field/field_system_decl.h"
-#include "overlay104/struct_ov104_0223A348.h"
+#include "overlay104/frontier_data_transfer.h"
 
 #include "savedata.h"
 #include "string_template.h"

@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/struct_0204B404.h"
 
-#include "overlay104/struct_ov104_0223A348.h"
+#include "overlay104/frontier_data_transfer.h"
 
 #include "location.h"
 

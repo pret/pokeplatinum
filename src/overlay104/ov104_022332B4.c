@@ -285,10 +285,10 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
         *v15 = ov104_02234430(v4);
         break;
     case 15:
-        *v15 = v4->unk_3F0[v13].unk_00_val1_0;
+        *v15 = v4->unk_3F0[v13].species;
         break;
     case 16:
-        *v15 = v4->unk_3F0[v13].unk_04[v14];
+        *v15 = v4->unk_3F0[v13].moves[v14];
         break;
     case 17:
         v3 = Pokemon_New(HEAP_ID_FIELDMAP);
