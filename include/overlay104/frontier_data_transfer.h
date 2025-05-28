@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_FRONTIER_DATA_TRANSFER
 #define POKEPLATINUM_FRONTIER_DATA_TRANSFER
 
+#include "constants/moves.h"
 #include "constants/string.h"
 
 typedef struct FrontierTrainerDataDTO {
@@ -19,7 +20,7 @@ typedef struct FrontierPokemonDataDTO {
         u16 form : 5;
     };
     u16 item;
-    u16 moves[4];
+    u16 moves[LEARNED_MOVES_MAX];
     u32 otID;
     u32 personality;
     union {

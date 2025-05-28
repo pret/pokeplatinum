@@ -4,7 +4,7 @@
 typedef struct BattleFrontierTrainerData {
     u16 trainerType;
     u16 numSets;
-    u16 setIDs[1];
+    u16 setIDs[];
 } BattleFrontierTrainerData;
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_FRONTIER_TRAINER_DATA
