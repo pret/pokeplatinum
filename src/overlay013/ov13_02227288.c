@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "battle/ov16_0223DF00.h"
-#include "overlay013/battle_bag_task.h"
+#include "overlay013/battle_bag.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -16,9 +16,9 @@
 #include "string_template.h"
 #include "text.h"
 
-static void ov13_022273CC(BattleBagTask *param0);
-static void ov13_02227888(BattleBagTask *param0);
-static void ov13_02227974(BattleBagTask *param0);
+static void ov13_022273CC(BattleBag *param0);
+static void ov13_02227888(BattleBag *param0);
+static void ov13_02227974(BattleBag *param0);
 
 static const WindowTemplate Unk_ov13_02229A60 = {
     0x4,
@@ -74,13 +74,13 @@ static const WindowTemplate Unk_ov13_02229A68[] = {
     { 0x5, 0xA, 0x14, 0x6, 0x3, 0x0, 0x38F }
 };
 
-void ov13_02227288(BattleBagTask *param0)
+void ov13_02227288(BattleBag *param0)
 {
     Window_AddFromTemplate(param0->background, &param0->messageBoxWindow, &Unk_ov13_02229A60);
     ov13_022272AC(param0, param0->currentScreen);
 }
 
-void ov13_022272AC(BattleBagTask *param0, u32 param1)
+void ov13_022272AC(BattleBag *param0, u32 param1)
 {
     const WindowTemplate *v0;
     u8 v1;
@@ -100,19 +100,19 @@ void ov13_022272AC(BattleBagTask *param0, u32 param1)
         break;
     }
 
-    param0->windows = Window_New(param0->battleInfo->heapID, param0->numWindows);
+    param0->windows = Window_New(param0->context->heapID, param0->numWindows);
 
     for (v1 = 0; v1 < param0->numWindows; v1++) {
         Window_AddFromTemplate(param0->background, &param0->windows[v1], &v0[v1]);
     }
 }
 
-void ov13_02227324(BattleBagTask *param0)
+void ov13_02227324(BattleBag *param0)
 {
     Windows_Delete(param0->windows, param0->numWindows);
 }
 
-void ov13_02227334(BattleBagTask *param0)
+void ov13_02227334(BattleBag *param0)
 {
     u32 v0;
 
@@ -120,7 +120,7 @@ void ov13_02227334(BattleBagTask *param0)
     Window_Remove(&param0->messageBoxWindow);
 }
 
-void ov13_02227350(BattleBagTask *param0, u32 param1)
+void ov13_02227350(BattleBag *param0, u32 param1)
 {
     switch (param1) {
     case 0:
@@ -135,7 +135,7 @@ void ov13_02227350(BattleBagTask *param0, u32 param1)
     }
 }
 
-static void ov13_02227374(BattleBagTask *param0, u32 param1, u32 param2, u32 param3, u32 param4, TextColor param5)
+static void ov13_02227374(BattleBag *param0, u32 param1, u32 param2, u32 param3, u32 param4, TextColor param5)
 {
     Window *v0;
     Strbuf *v1;
@@ -152,7 +152,7 @@ static void ov13_02227374(BattleBagTask *param0, u32 param1, u32 param2, u32 par
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_022273CC(BattleBagTask *param0)
+static void ov13_022273CC(BattleBag *param0)
 {
     u32 v0;
 
@@ -167,7 +167,7 @@ static void ov13_022273CC(BattleBagTask *param0)
     ov13_02227374(param0, 2, 7, FONT_SUBSCREEN, 8, TEXT_COLOR(3, 2, 1));
     ov13_02227374(param0, 3, 6, FONT_SUBSCREEN, 8, TEXT_COLOR(3, 2, 1));
 
-    if (param0->battleInfo->lastUsedItem != ITEM_NONE) {
+    if (param0->context->lastUsedItem != ITEM_NONE) {
         Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 8); // Possibly TRAINER_NAME_LEN + 1
 
         Text_AddPrinterWithParamsAndColor(&param0->windows[4], FONT_SUBSCREEN, v1, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
@@ -185,7 +185,7 @@ static const u32 Unk_ov13_02229AB0[][2] = {
     { 0x13, 0x14 }
 };
 
-static void ov13_022274A8(BattleBagTask *param0, u32 param1, u32 param2, u32 param3, u32 param4, TextColor param5)
+static void ov13_022274A8(BattleBag *param0, u32 param1, u32 param2, u32 param3, u32 param4, TextColor param5)
 {
     Window *v0;
     Strbuf *v1;
@@ -196,10 +196,10 @@ static void ov13_022274A8(BattleBagTask *param0, u32 param1, u32 param2, u32 par
 
     Window_FillTilemap(v0, 0);
 
-    if (param0->battleBagItems[param0->currentBattlePocket][param1].item != 0) {
+    if (param0->items[param0->currentBattlePocket][param1].item != 0) {
         v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, Unk_ov13_02229AB0[param2][0]);
 
-        StringTemplate_SetItemName(param0->stringTemplate, 0, param0->battleBagItems[param0->currentBattlePocket][param1].item);
+        StringTemplate_SetItemName(param0->stringTemplate, 0, param0->items[param0->currentBattlePocket][param1].item);
         StringTemplate_Format(param0->stringTemplate, param0->strbuf, v1);
 
         v2 = Font_CalcStrbufWidth(param4, param0->strbuf, 0);
@@ -212,17 +212,17 @@ static void ov13_022274A8(BattleBagTask *param0, u32 param1, u32 param2, u32 par
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_0222754C(BattleBagTask *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, TextColor param6)
+static void ov13_0222754C(BattleBag *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, TextColor param6)
 {
     Strbuf *v0;
     Window *v1 = &param0->windows[param3];
 
     Window_FillTilemap(v1, 0);
 
-    if (param0->battleBagItems[param0->currentBattlePocket][param1].quantity != 0) {
+    if (param0->items[param0->currentBattlePocket][param1].quantity != 0) {
         v0 = MessageLoader_GetNewStrbuf(param0->messageLoader, Unk_ov13_02229AB0[param2][1]);
 
-        StringTemplate_SetNumber(param0->stringTemplate, 0, param0->battleBagItems[param0->currentBattlePocket][param1].quantity, 3, 0, 1);
+        StringTemplate_SetNumber(param0->stringTemplate, 0, param0->items[param0->currentBattlePocket][param1].quantity, 3, 0, 1);
         StringTemplate_Format(param0->stringTemplate, param0->strbuf, v0);
         Text_AddPrinterWithParamsAndColor(v1, param4, param0->strbuf, 0, param5, TEXT_SPEED_NO_TRANSFER, param6, NULL);
         Strbuf_Free(v0);
@@ -231,10 +231,10 @@ static void ov13_0222754C(BattleBagTask *param0, u32 param1, u32 param2, u32 par
     Window_ScheduleCopyToVRAM(v1);
 }
 
-static void ov13_022275E0(BattleBagTask *param0, u32 param1)
+static void ov13_022275E0(BattleBag *param0, u32 param1)
 {
     u32 v0;
-    u32 v1 = param0->battleInfo->pocketCurrentPages[param0->currentBattlePocket] * 6 + param1;
+    u32 v1 = param0->context->pocketCurrentPages[param0->currentBattlePocket] * 6 + param1;
 
     if (param0->unk_31 == 0) {
         v0 = 0;
@@ -246,7 +246,7 @@ static void ov13_022275E0(BattleBagTask *param0, u32 param1)
     ov13_0222754C(param0, v1, param1, v0 + 1 + param1 * 2, FONT_SYSTEM, 4, TEXT_COLOR(1, 2, 0));
 }
 
-void ov13_02227650(BattleBagTask *param0)
+void ov13_02227650(BattleBag *param0)
 {
     u16 v0;
 
@@ -259,7 +259,7 @@ void ov13_02227650(BattleBagTask *param0)
     param0->unk_31 ^= 1;
 }
 
-void ov13_02227698(BattleBagTask *param0)
+void ov13_02227698(BattleBag *param0)
 {
     Window *v0;
     Strbuf *v1;
@@ -283,7 +283,7 @@ void ov13_02227698(BattleBagTask *param0)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 30);
-    StringTemplate_SetNumber(param0->stringTemplate, 0, param0->battleInfo->pocketCurrentPages[param0->currentBattlePocket] + 1, 2, 0, 1);
+    StringTemplate_SetNumber(param0->stringTemplate, 0, param0->context->pocketCurrentPages[param0->currentBattlePocket] + 1, 2, 0, 1);
     StringTemplate_Format(param0->stringTemplate, param0->strbuf, v1);
 
     v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
@@ -292,7 +292,7 @@ void ov13_02227698(BattleBagTask *param0)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_022277C8(BattleBagTask *param0)
+static void ov13_022277C8(BattleBag *param0)
 {
     Window_FillTilemap(&param0->windows[24], 0);
 
@@ -314,14 +314,14 @@ static void ov13_022277C8(BattleBagTask *param0)
     }
 }
 
-static void ov13_02227888(BattleBagTask *param0)
+static void ov13_02227888(BattleBag *param0)
 {
     ov13_02227650(param0);
     ov13_022277C8(param0);
     ov13_02227698(param0);
 }
 
-static void ov13_022278A0(BattleBagTask *param0, u32 param1)
+static void ov13_022278A0(BattleBag *param0, u32 param1)
 {
     Window *v0;
     Strbuf *v1;
@@ -329,7 +329,7 @@ static void ov13_022278A0(BattleBagTask *param0, u32 param1)
     v0 = &param0->windows[0];
     v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, Unk_ov13_02229AB0[0][0]);
 
-    StringTemplate_SetItemName(param0->stringTemplate, 0, param0->battleBagItems[param0->currentBattlePocket][param1].item);
+    StringTemplate_SetItemName(param0->stringTemplate, 0, param0->items[param0->currentBattlePocket][param1].item);
     StringTemplate_Format(param0->stringTemplate, param0->strbuf, v1);
     Window_FillTilemap(v0, 0);
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -337,21 +337,21 @@ static void ov13_022278A0(BattleBagTask *param0, u32 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_02227910(BattleBagTask *param0, u32 param1)
+static void ov13_02227910(BattleBag *param0, u32 param1)
 {
     Window *v0;
     Strbuf *v1;
 
     v0 = &param0->windows[2];
-    v1 = Strbuf_Init(130, param0->battleInfo->heapID);
+    v1 = Strbuf_Init(130, param0->context->heapID);
 
-    Item_LoadDescription(v1, param0->battleBagItems[param0->currentBattlePocket][param1].item, param0->battleInfo->heapID);
+    Item_LoadDescription(v1, param0->items[param0->currentBattlePocket][param1].item, param0->context->heapID);
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v1);
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_02227974(BattleBagTask *param0)
+static void ov13_02227974(BattleBag *param0)
 {
     u32 v0;
     u32 v1;
@@ -360,7 +360,7 @@ static void ov13_02227974(BattleBagTask *param0)
         Window_FillTilemap(&param0->windows[v0], 0);
     }
 
-    v1 = param0->battleInfo->pocketCurrentPages[param0->currentBattlePocket] * 6 + param0->battleInfo->pocketCurrentPagePositions[param0->currentBattlePocket];
+    v1 = param0->context->pocketCurrentPages[param0->currentBattlePocket] * 6 + param0->context->pocketCurrentPagePositions[param0->currentBattlePocket];
 
     ov13_022278A0(param0, v1);
     ov13_0222754C(param0, v1, 0, 1, FONT_SYSTEM, 0, TEXT_COLOR(1, 2, 0));
@@ -368,15 +368,15 @@ static void ov13_02227974(BattleBagTask *param0)
     ov13_02227374(param0, 3, 31, FONT_SUBSCREEN, 6, TEXT_COLOR(3, 2, 1));
 }
 
-void DisplayBattleBagMessage(BattleBagTask *battleBagTask)
+void DisplayBattleBagMessage(BattleBag *battleBagTask)
 {
     Window_DrawMessageBoxWithScrollCursor(&battleBagTask->messageBoxWindow, 1, 1024 - (18 + 12), 14);
     Window_FillTilemap(&battleBagTask->messageBoxWindow, 15);
     ov13_02227A1C(battleBagTask);
 }
 
-void ov13_02227A1C(BattleBagTask *param0)
+void ov13_02227A1C(BattleBag *param0)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(1);
-    param0->textPrinterID = Text_AddPrinterWithParams(&param0->messageBoxWindow, FONT_MESSAGE, param0->strbuf, 0, 0, BattleSystem_TextSpeed(param0->battleInfo->battleSystem), NULL);
+    param0->textPrinterID = Text_AddPrinterWithParams(&param0->messageBoxWindow, FONT_MESSAGE, param0->strbuf, 0, 0, BattleSystem_TextSpeed(param0->context->battleSystem), NULL);
 }

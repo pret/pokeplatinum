@@ -1,12 +1,12 @@
-#ifndef POKEPLATINUM_BATTLE_BAG_BATTLE_INFO
-#define POKEPLATINUM_BATTLE_BAG_BATTLE_INFO
+#ifndef POKEPLATINUM_BATTLE_BAG_CONTEXT
+#define POKEPLATINUM_BATTLE_BAG_CONTEXT
 
 #include "struct_decls/battle_system.h"
 
 #include "bag.h"
 #include "trainer_info.h"
 
-typedef struct BattleBagBattleInfo {
+typedef struct BattleBagContext {
     BattleSystem *battleSystem;
     TrainerInfo *trainerInfo;
     Bag *bag;
@@ -25,6 +25,6 @@ typedef struct BattleBagBattleInfo {
     u8 battleBagExited;
     u8 pocketCurrentPagePositions[BATTLE_POCKET_MAX];
     u8 pocketCurrentPages[BATTLE_POCKET_MAX];
-} BattleBagBattleInfo;
+} BattleBagContext;
 
-#endif // POKEPLATINUM_BATTLE_BAG_BATTLE_INFO
+#endif // POKEPLATINUM_BATTLE_BAG_CONTEXT

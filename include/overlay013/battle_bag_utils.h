@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_BATTLE_BAG_UTILS
 #define POKEPLATINUM_BATTLE_BAG_UTILS
 
-#include "overlay013/battle_bag_task.h"
+#include "overlay013/battle_bag.h"
 
 enum BattlePocketIndex {
     BATTLE_POCKET_INDEX_RECOVER_HP_PP = 0,
@@ -11,9 +11,9 @@ enum BattlePocketIndex {
     BATTLE_POCKET_INDEX_NONE,
 };
 
-BOOL IsLastUsedBattleBagItemUsable(BattleBagTask *battleBagTask);
-void SetBattlePocketPositionToLastUsedItem(BattleBagTask *battleBagTask);
-void InitializeBattleBag(BattleBagTask *battleBagTask);
-u16 GetBattleBagItem(BattleBagTask *battleBagTask, u32 pagePosition);
+BOOL BattleBag_CanUseLastUsedItem(BattleBag *battleBagTask);
+void BattleBag_SetLastUsedPocket(BattleBag *battleBagTask);
+void BattleBag_Init(BattleBag *battleBagTask);
+u16 BattleBag_GetItem(BattleBag *battleBagTask, u32 pagePosition);
 
 #endif // POKEPLATINUM_BATTLE_BAG_UTILS

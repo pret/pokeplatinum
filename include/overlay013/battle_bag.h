@@ -1,10 +1,10 @@
-#ifndef POKEPLATINUM_BATTLE_BAG_TASK_H
-#define POKEPLATINUM_BATTLE_BAG_TASK_H
+#ifndef POKEPLATINUM_BATTLE_BAG_H
+#define POKEPLATINUM_BATTLE_BAG_H
 
 #include "struct_decls/struct_0200C440_decl.h"
 
 #include "battle/struct_ov16_0226DEEC_decl.h"
-#include "overlay013/battle_bag_battle_info.h"
+#include "overlay013/battle_bag_context.h"
 #include "overlay013/battle_sub_menu_cursor.h"
 
 #include "bag.h"
@@ -21,8 +21,8 @@ enum BattleBagScreen {
     BATTLE_BAG_SCREEN_USE_ITEM,
 };
 
-typedef struct BattleBagTask {
-    BattleBagBattleInfo *battleInfo;
+typedef struct BattleBag {
+    BattleBagContext *context;
     BgConfig *background;
     PaletteData *palette;
     UnkStruct_0200C440 *unk_0C;
@@ -36,7 +36,7 @@ typedef struct BattleBagTask {
     u8 textPrinterID;
     BattleSubMenuCursor *cursor;
     UnkStruct_ov16_0226DEEC *unk_38;
-    BagItem battleBagItems[BATTLE_POCKET_MAX][BATTLE_POCKET_SIZE];
+    BagItem items[BATTLE_POCKET_MAX][BATTLE_POCKET_SIZE];
     SpriteManager *spriteManager;
     ManagedSprite *unk_310[6];
     u16 unk_328[3][144];
@@ -64,9 +64,9 @@ typedef struct BattleBagTask {
     u8 numBattlePocketPages[BATTLE_POCKET_MAX];
     u8 catchTutorialState;
     u8 catchTutorialTickCount; // Seems unused
-} BattleBagTask;
+} BattleBag;
 
-void BattleBagTask_Start(BattleBagBattleInfo *battleInfo);
-int GetSelectedPartySlot(BattleBagTask *battleBagTask);
+void BattleBagTask_Start(BattleBagContext *context);
+int BattleBagTask_GetSelectedPartySlot(BattleBag *battleBagTask);
 
-#endif // POKEPLATINUM_BATTLE_BAG_TASK_H
+#endif // POKEPLATINUM_BATTLE_BAG_H

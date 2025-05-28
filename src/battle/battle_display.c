@@ -107,8 +107,8 @@
 #include "overlay012/struct_ov12_02237728.h"
 #include "overlay012/struct_ov12_02237F38.h"
 #include "overlay012/struct_ov12_022380DC.h"
-#include "overlay013/battle_bag_battle_info.h"
-#include "overlay013/battle_bag_task.h"
+#include "overlay013/battle_bag.h"
+#include "overlay013/battle_bag_context.h"
 #include "overlay013/battle_bag_utils.h"
 #include "overlay013/ov13_0221FC20.h"
 #include "overlay013/struct_ov13_0221FC20.h"
@@ -3545,8 +3545,8 @@ static void ov16_022611DC(SysTask *param0, void *param1)
             {
                 ov16_0223B384(v0->unk_00);
 
-                v0->unk_04 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleBagBattleInfo));
-                memset(v0->unk_04, 0, sizeof(BattleBagBattleInfo));
+                v0->unk_04 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleBagContext));
+                memset(v0->unk_04, 0, sizeof(BattleBagContext));
 
                 v0->unk_04->battleSystem = v0->unk_00;
                 v0->unk_04->trainerInfo = BattleSystem_TrainerInfo(v0->unk_00, v0->unk_0D);

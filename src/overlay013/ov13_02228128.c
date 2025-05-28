@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay013/battle_bag_task.h"
+#include "overlay013/battle_bag.h"
 #include "overlay013/battle_bag_utils.h"
 
 #include "bg_window.h"
@@ -167,7 +167,7 @@ static const u8 *const Unk_ov13_02229DC0[] = {
     Unk_ov13_02229D54
 };
 
-void ov13_02228128(BattleBagTask *param0, u16 *param1)
+void ov13_02228128(BattleBag *param0, u16 *param1)
 {
     ov13_02228460(param0->unk_328[0], param1, 0, 0, 16, 9);
     ov13_02228460(param0->unk_328[1], param1, 0, (0 + 9), 16, 9);
@@ -225,7 +225,7 @@ static void ov13_02228460(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 par
     }
 }
 
-static u16 *ov13_022284B0(BattleBagTask *param0, u8 param1, u8 param2)
+static u16 *ov13_022284B0(BattleBag *param0, u8 param1, u8 param2)
 {
     switch (param1) {
     case 0:
@@ -257,7 +257,7 @@ static u16 *ov13_022284B0(BattleBagTask *param0, u8 param1, u8 param2)
     return NULL;
 }
 
-static u16 ov13_02228558(BattleBagTask *param0, u8 param1, u8 param2, u8 param3)
+static u16 ov13_02228558(BattleBag *param0, u8 param1, u8 param2, u8 param3)
 {
     if (param2 == 3) {
         return 5;
@@ -295,7 +295,7 @@ static u16 ov13_02228558(BattleBagTask *param0, u8 param1, u8 param2, u8 param3)
     return 0;
 }
 
-static void ov13_022285C8(BattleBagTask *param0, u16 *param1, u8 param2, u8 param3)
+static void ov13_022285C8(BattleBag *param0, u16 *param1, u8 param2, u8 param3)
 {
     u16 *v0;
     u16 v1, v2;
@@ -319,7 +319,7 @@ static void ov13_022285C8(BattleBagTask *param0, u16 *param1, u8 param2, u8 para
     }
 }
 
-static void ov13_0222863C(BattleBagTask *param0, u16 *param1, u8 param2, u8 param3, u8 param4)
+static void ov13_0222863C(BattleBag *param0, u16 *param1, u8 param2, u8 param3, u8 param4)
 {
     u16 *v0;
     u16 v1;
@@ -335,9 +335,9 @@ static void ov13_0222863C(BattleBagTask *param0, u16 *param1, u8 param2, u8 para
     ov13_022285C8(param0, param1, param2, param3);
 }
 
-static void ov13_022286B8(BattleBagTask *param0, u8 param1, u8 param2, u8 param3)
+static void ov13_022286B8(BattleBag *param0, u8 param1, u8 param2, u8 param3)
 {
-    u16 *v0 = Heap_AllocFromHeap(param0->battleInfo->heapID, Unk_ov13_02229D7C[param1].unk_02 * Unk_ov13_02229D7C[param1].unk_03 * 2);
+    u16 *v0 = Heap_AllocFromHeap(param0->context->heapID, Unk_ov13_02229D7C[param1].unk_02 * Unk_ov13_02229D7C[param1].unk_03 * 2);
 
     ov13_0222863C(param0, v0, param1, param2, param3);
 
@@ -346,7 +346,7 @@ static void ov13_022286B8(BattleBagTask *param0, u8 param1, u8 param2, u8 param3
     Heap_FreeToHeap(v0);
 }
 
-static void ov13_0222872C(BattleBagTask *param0, u8 param1, u8 param2)
+static void ov13_0222872C(BattleBag *param0, u8 param1, u8 param2)
 {
     const u8 *v0;
     u16 v1;
@@ -384,7 +384,7 @@ static void ov13_0222872C(BattleBagTask *param0, u8 param1, u8 param2)
     }
 }
 
-static void ov13_022287A4(BattleBagTask *param0, u8 param1, u8 param2)
+static void ov13_022287A4(BattleBag *param0, u8 param1, u8 param2)
 {
     ManagedSprite *v0;
     u8 v1;
@@ -414,7 +414,7 @@ static void ov13_022287A4(BattleBagTask *param0, u8 param1, u8 param2)
     }
 }
 
-void ov13_0222880C(BattleBagTask *param0, u8 param1, u8 param2)
+void ov13_0222880C(BattleBag *param0, u8 param1, u8 param2)
 {
     param0->unk_113E = 0;
     param0->unk_113F = 0;
@@ -423,7 +423,7 @@ void ov13_0222880C(BattleBagTask *param0, u8 param1, u8 param2)
     param0->unk_1141_0 = 1;
 }
 
-void ov13_02228848(BattleBagTask *param0)
+void ov13_02228848(BattleBag *param0)
 {
     if (param0->unk_1141_0 == 0) {
         return;
@@ -455,7 +455,7 @@ void ov13_02228848(BattleBagTask *param0)
     }
 }
 
-void ov13_02228924(BattleBagTask *param0, u8 param1)
+void ov13_02228924(BattleBag *param0, u8 param1)
 {
     switch (param1) {
     case 0:
@@ -464,7 +464,7 @@ void ov13_02228924(BattleBagTask *param0, u8 param1)
         ov13_022286B8(param0, 2, 0, param1);
         ov13_022286B8(param0, 3, 0, param1);
 
-        if (param0->battleInfo->lastUsedItem == ITEM_NONE) {
+        if (param0->context->lastUsedItem == ITEM_NONE) {
             ov13_022286B8(param0, 4, 3, param1);
         } else {
             ov13_022286B8(param0, 4, 0, param1);
@@ -476,7 +476,7 @@ void ov13_02228924(BattleBagTask *param0, u8 param1)
         u32 v0;
 
         for (v0 = 0; v0 < BATTLE_POCKET_ITEMS_PER_PAGE; v0++) {
-            if (GetBattleBagItem(param0, v0) == ITEM_NONE) {
+            if (BattleBag_GetItem(param0, v0) == ITEM_NONE) {
                 ov13_022286B8(param0, 6 + v0, 3, param1);
             } else {
                 ov13_022286B8(param0, 6 + v0, 0, param1);
