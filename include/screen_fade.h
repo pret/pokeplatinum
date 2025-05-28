@@ -7,16 +7,16 @@
 #include "hardware_window.h"
 #include "system.h"
 
-#define FADE_WHITE 0x7FFF
-#define FADE_BLACK 0x0000
-#define FADE_SAVED 0xFFFF
+#define FADE_TO_WHITE       0x7FFF
+#define FADE_TO_BLACK       0x0000
+#define FADE_TO_SAVED_COLOR 0xFFFF
 
 enum FadeMode {
-    MODE_BOTH_SCREENS = 0,
-    MODE_MAIN_THEN_SUB,
-    MODE_SUB_THEN_MAIN,
-    MODE_MAIN_ONLY,
-    MODE_SUB_ONLY,
+    FADE_BOTH_SCREENS = 0,
+    FADE_MAIN_THEN_SUB,
+    FADE_SUB_THEN_MAIN,
+    FADE_MAIN_ONLY,
+    FADE_SUB_ONLY,
 };
 
 enum FadeDirection {
@@ -25,8 +25,8 @@ enum FadeDirection {
 };
 
 enum FadeMethod {
-    FADE_WINDOW = 0,
-    FADE_BRIGHTNESS,
+    FADE_BY_WINDOW = 0,
+    FADE_BY_BRIGHTNESS,
 };
 
 enum FadeType {

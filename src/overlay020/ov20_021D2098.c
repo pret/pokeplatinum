@@ -335,7 +335,7 @@ static void ov20_021D2414(SysTask *param0, void *param1)
 
     switch (v0->unk_14) {
     case 0:
-        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 5, 1, HEAP_ID_35);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 5, 1, HEAP_ID_35);
         v0->unk_14++;
         break;
     case 1:
@@ -488,7 +488,7 @@ static void ov20_021D2570(SysTask *param0, void *param1)
 
     switch (v0->unk_14) {
     case 0:
-        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 5, 1, HEAP_ID_35);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 5, 1, HEAP_ID_35);
         v0->unk_14++;
         break;
     case 1:

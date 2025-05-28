@@ -69,8 +69,8 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
 
     switch (*state) {
     case STATE_INIT:
-        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
-        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
@@ -107,7 +107,7 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, ltv->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, ltv->heapID);
             *state = STATE_FADE_WAIT;
         }
         break;
@@ -126,7 +126,7 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, ltv->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, ltv->heapID);
             *state = STATE_EXIT;
         }
         break;

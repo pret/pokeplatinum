@@ -1088,7 +1088,7 @@ static void ov116_022616CC(UnkStruct_ov116_0226139C *param0)
 
 static BOOL ov116_02261768(int param0)
 {
-    StartScreenFade(MODE_BOTH_SCREENS, param0, param0, 0, 6, 1, HEAP_ID_106);
+    StartScreenFade(FADE_BOTH_SCREENS, param0, param0, 0, 6, 1, HEAP_ID_106);
     return 1;
 }
 
@@ -1134,7 +1134,7 @@ static u32 ov116_022617E4(UnkStruct_ov116_0226139C *param0)
                 FinishScreenFade();
             }
 
-            SetColorBrightness(FADE_BLACK);
+            SetColorBrightness(FADE_TO_BLACK);
             param0->unk_48.unk_2C.unk_00 = 1;
 
             return 1;

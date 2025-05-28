@@ -102,8 +102,8 @@ void NitroMain(void)
             break;
 
         case RESET_ERROR:
-            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
-            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
             sApplication.args.error = TRUE;
             EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveAppTemplate);
             break;
@@ -250,8 +250,8 @@ static void CheckHeapCanary(void)
 
 static void SoftReset(enum OSResetParameter resetParam)
 {
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_WHITE);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_WHITE);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_WHITE);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
 
     if (sub_02037DB0()) {
         SaveData_SaveStateCancel(SaveData_Ptr());

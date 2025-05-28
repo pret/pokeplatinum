@@ -86,8 +86,8 @@ void *ov97_022376C4(ApplicationManager *appMan, int heapID, int param2, int para
 
     memset(v0, 0, param2);
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     return v0;
 }
@@ -145,9 +145,9 @@ void ov97_02237790(int param0, int param1, int *param2, int param3)
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
     if (v0->unk_10 == 0) {
-        StartScreenFade(MODE_BOTH_SCREENS, param0, param0, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, param0, param0, 0x0, 6, 1, v0->heapID);
     } else {
-        StartScreenFade(MODE_BOTH_SCREENS, param0, param0, 0x7fff, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, param0, param0, 0x7fff, 6, 1, v0->heapID);
     }
 
     if (param2) {

@@ -189,8 +189,8 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
 {
     int v0;
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
     SetVBlankCallback(NULL, NULL);
     Windows_Delete(param0->unk_04, 1);
     PaletteData_FreeBuffer(param0->unk_14, 0);
@@ -492,8 +492,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         break;
     case 22:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
-            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
-            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
             sub_0207C460(param0->unk_00);
             PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_HIDE, 1);
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_HIDE, 1);

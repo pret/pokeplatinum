@@ -202,12 +202,12 @@ void ResetScreenMasterBrightness(enum DSScreen screen)
 
 void SetScreenColorBrightness(enum DSScreen screen, u16 color)
 {
-    if (color == FADE_SAVED) {
+    if (color == FADE_TO_SAVED_COLOR) {
         color = sScreenFadeManager.savedColor;
     }
 
     int brightness;
-    if (color == FADE_WHITE) {
+    if (color == FADE_TO_WHITE) {
         brightness = BRIGHTNESS_WHITE;
     } else {
         brightness = BRIGHTNESS_BLACK;
@@ -218,12 +218,12 @@ void SetScreenColorBrightness(enum DSScreen screen, u16 color)
 
 void SetColorBrightness(u16 color)
 {
-    if (color == FADE_SAVED) {
+    if (color == FADE_TO_SAVED_COLOR) {
         color = sScreenFadeManager.savedColor;
     }
 
     int brightness;
-    if (color == FADE_WHITE) {
+    if (color == FADE_TO_WHITE) {
         brightness = BRIGHTNESS_WHITE;
     } else {
         brightness = BRIGHTNESS_BLACK;
@@ -236,7 +236,7 @@ void SetColorBrightness(u16 color)
 
 void SetupScreenFadeRegisters(enum DSScreen screen, u16 color)
 {
-    if (color == FADE_SAVED) {
+    if (color == FADE_TO_SAVED_COLOR) {
         color = sScreenFadeManager.savedColor;
     }
 
@@ -336,23 +336,23 @@ static BOOL CallScreenFadeFunc(ScreenFade *fade)
 static void SetupScreenFadeParams(enum FadeMode mode, ScreenFadeParams *params)
 {
     switch (mode) {
-    case MODE_BOTH_SCREENS:
+    case FADE_BOTH_SCREENS:
         InitScreenFadeParams(params, ORDER_SIMULTANEOUS, TRUE, TRUE);
         break;
 
-    case MODE_MAIN_THEN_SUB:
+    case FADE_MAIN_THEN_SUB:
         InitScreenFadeParams(params, ORDER_MAIN_FIRST, TRUE, TRUE);
         break;
 
-    case MODE_SUB_THEN_MAIN:
+    case FADE_SUB_THEN_MAIN:
         InitScreenFadeParams(params, ORDER_SUB_FIRST, TRUE, TRUE);
         break;
 
-    case MODE_MAIN_ONLY:
+    case FADE_MAIN_ONLY:
         InitScreenFadeParams(params, ORDER_MAIN_FIRST, TRUE, FALSE);
         break;
 
-    case MODE_SUB_ONLY:
+    case FADE_SUB_ONLY:
         InitScreenFadeParams(params, ORDER_SUB_FIRST, FALSE, TRUE);
         break;
     }
@@ -476,7 +476,7 @@ static void DummyHBlankCallback(void *data)
 
 static u16 GetFadeColor(ScreenFadeManager *manager, u16 color)
 {
-    if (color == 0xffff) {
+    if (color == FADE_TO_SAVED_COLOR) {
         return manager->savedColor;
     }
 
@@ -509,8 +509,8 @@ static void Task_ResetScreenMasterBrightness(SysTask *task, void *data)
 static void RequestResetScreenMasterBrightness(ScreenFade *fade)
 {
     if (fade->direction == FADE_IN
-        && (fade->color == FADE_WHITE || fade->color == FADE_BLACK)
-        && fade->method == FADE_WINDOW) {
+        && (fade->color == FADE_TO_WHITE || fade->color == FADE_TO_BLACK)
+        && fade->method == FADE_BY_WINDOW) {
         SysTask_ExecuteAfterVBlank(Task_ResetScreenMasterBrightness, fade, LOCAL_TASK_PRIORIITY);
     }
 }
@@ -518,8 +518,8 @@ static void RequestResetScreenMasterBrightness(ScreenFade *fade)
 static void ResetWindowScreenFade(ScreenFade *fade)
 {
     if (fade->direction == FADE_OUT
-        && (fade->color == FADE_WHITE || fade->color == FADE_BLACK)
-        && fade->method == FADE_WINDOW) {
+        && (fade->color == FADE_TO_WHITE || fade->color == FADE_TO_BLACK)
+        && fade->method == FADE_BY_WINDOW) {
         SetScreenColorBrightness(fade->screen, fade->color);
         ResetVisibleHardwareWindows(fade->screen);
     }

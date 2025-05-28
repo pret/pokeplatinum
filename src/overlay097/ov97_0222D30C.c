@@ -1082,8 +1082,8 @@ static int ov97_0222E2DC(ApplicationManager *param0, int *param1)
     ov97_02232054();
     ov97_0222DBC4(v0->unk_00);
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_10, SEQ_PRESENT, 1);
     ov97_02237520(86);

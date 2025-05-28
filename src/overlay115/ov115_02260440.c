@@ -95,7 +95,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
                 FinishScreenFade();
             }
 
-            SetColorBrightness(FADE_BLACK);
+            SetColorBrightness(FADE_TO_BLACK);
             v0->unk_78++;
             break;
         case 1:
@@ -198,7 +198,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
             break;
         }
 
-        StartScreenFade(MODE_BOTH_SCREENS, 27, 27, 0xffff, 6, 1, HEAP_ID_99);
+        StartScreenFade(FADE_BOTH_SCREENS, 27, 27, 0xffff, 6, 1, HEAP_ID_99);
         (*param1)++;
         break;
     case 4:
@@ -302,7 +302,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
         }
         break;
     case 11:
-        StartScreenFade(MODE_BOTH_SCREENS, 26, 26, 0xffff, 6, 1, HEAP_ID_99);
+        StartScreenFade(FADE_BOTH_SCREENS, 26, 26, 0xffff, 6, 1, HEAP_ID_99);
         ov115_02260F70(v0->unk_34, 1);
         (*param1)++;
         break;

@@ -939,7 +939,7 @@ static BOOL SetupEntriesCount(WonderCardsAppData *appData, Window *window, TextC
 
 static void DoScreenTransitionToState(WonderCardsAppData *appData, int param1, enum WonderCardsAppState nextState, enum WonderCardsAppState *state)
 {
-    StartScreenFade(MODE_BOTH_SCREENS, param1, param1, 0x0, 6, 1, HEAP_ID_WONDER_CARDS_APP);
+    StartScreenFade(FADE_BOTH_SCREENS, param1, param1, 0x0, 6, 1, HEAP_ID_WONDER_CARDS_APP);
 
     if (state) {
         *state = WC_APP_STATE_WAIT_FOR_SCREEN_TRANSITION;
@@ -1201,8 +1201,8 @@ static BOOL WonderCardsApp_Init(ApplicationManager *appMan, int *unused)
     appData->bgConfig = BgConfig_New(HEAP_ID_WONDER_CARDS_APP);
     appData->heapID = HEAP_ID_WONDER_CARDS_APP;
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     appData->selectedWondercardSlot = NUM_WONDERCARD_SLOTS - 1;
     appData->numPlayerConnections = 1;

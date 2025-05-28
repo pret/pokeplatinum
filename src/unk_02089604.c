@@ -128,7 +128,7 @@ BOOL sub_02089820(UnkStruct_02089688 *param0)
     }
 
     sub_02089808(param0, 1);
-    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, HEAP_ID_101);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_101);
 
     return 0;
 }
@@ -137,7 +137,7 @@ BOOL sub_020898DC(UnkStruct_02089688 *param0)
 {
     switch (param0->unk_29C) {
     case 0:
-        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_101);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_101);
         param0->unk_29C++;
         break;
     case 1:

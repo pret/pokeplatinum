@@ -69,8 +69,8 @@ int ov102_021D0D80(ApplicationManager *appMan, int *param1)
         v0->unk_0C = SaveData_GetTrainerInfo(v0->saveData);
     }
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
     SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
@@ -113,7 +113,7 @@ int ov102_021D0E2C(ApplicationManager *appMan, int *param1)
         ;
         Bg_ToggleLayer(7, 1);
         ;
-        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
         *param1 = 1;
         break;
     case 1:
@@ -141,7 +141,7 @@ int ov102_021D0E2C(ApplicationManager *appMan, int *param1)
         break;
     case 4:
         if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B) || (gSystem.touchPressed)) {
-            StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
             *param1 = 5;
         }
         break;

@@ -369,7 +369,7 @@ BOOL sub_0200F85C(ScreenFade *param0)
 {
     if (param0->state == 0) {
         param0->direction = FADE_OUT;
-        param0->method = FADE_BRIGHTNESS;
+        param0->method = FADE_BY_BRIGHTNESS;
 
         sub_02010238(param0, 1);
         return 0;
@@ -382,7 +382,7 @@ BOOL sub_0200F878(ScreenFade *param0)
 {
     if (param0->state == 0) {
         param0->direction = FADE_IN;
-        param0->method = FADE_BRIGHTNESS;
+        param0->method = FADE_BY_BRIGHTNESS;
 
         sub_02010238(param0, 0);
         return 0;
@@ -407,7 +407,7 @@ BOOL sub_0200F898(ScreenFade *param0)
         sub_02011F44(param0, &v1);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -431,7 +431,7 @@ BOOL sub_0200F8D4(ScreenFade *param0)
         sub_02011F44(param0, &v1);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -459,7 +459,7 @@ BOOL sub_0200F90C(ScreenFade *param0)
         sub_02011F44(param0, &v1);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -487,7 +487,7 @@ BOOL sub_0200F948(ScreenFade *param0)
         sub_02011F44(param0, &v1);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -511,7 +511,7 @@ BOOL sub_0200F980(ScreenFade *param0)
         sub_02010CF4(param0, &v0);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -534,7 +534,7 @@ BOOL sub_0200F9AC(ScreenFade *param0)
         sub_02010CF4(param0, &v0);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -560,7 +560,7 @@ BOOL sub_0200F9D8(ScreenFade *param0)
         sub_02011F44(param0, &v1);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -587,7 +587,7 @@ BOOL sub_0200FA14(ScreenFade *param0)
         sub_02011F44(param0, &v1);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -614,7 +614,7 @@ BOOL sub_0200FA4C(ScreenFade *param0)
         sub_02011F44(param0, &v1);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -641,7 +641,7 @@ BOOL sub_0200FA88(ScreenFade *param0)
         sub_02011F44(param0, &v1);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -665,7 +665,7 @@ BOOL sub_0200FAC0(ScreenFade *param0)
         sub_02010CF4(param0, &v0);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -689,7 +689,7 @@ BOOL sub_0200FAEC(ScreenFade *param0)
         sub_02010CF4(param0, &v0);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -720,7 +720,7 @@ BOOL sub_0200FB18(ScreenFade *param0)
         sub_02010D94(param0, &v0, &v1);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -752,7 +752,7 @@ BOOL sub_0200FB4C(ScreenFade *param0)
         sub_02010D94(param0, &v0, &v1);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -778,7 +778,7 @@ BOOL sub_0200FB7C(ScreenFade *param0)
         sub_02010F2C(param0, &v0);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -804,7 +804,7 @@ BOOL sub_0200FBA8(ScreenFade *param0)
         sub_02010F2C(param0, &v0);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -830,7 +830,7 @@ BOOL sub_0200FBD4(ScreenFade *param0)
         sub_02010F2C(param0, &v0);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -856,7 +856,7 @@ BOOL sub_0200FC00(ScreenFade *param0)
         sub_02010F2C(param0, &v0);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -880,7 +880,7 @@ BOOL sub_0200FC2C(ScreenFade *param0)
         sub_02011204(param0, &v0);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -904,7 +904,7 @@ BOOL sub_0200FC58(ScreenFade *param0)
         sub_02011204(param0, &v0);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -923,7 +923,7 @@ BOOL sub_0200FC84(ScreenFade *param0)
         sub_02010CF4(param0, &v0);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -942,7 +942,7 @@ BOOL sub_0200FCB0(ScreenFade *param0)
         sub_02010CF4(param0, &v0);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -961,7 +961,7 @@ BOOL sub_0200FCDC(ScreenFade *param0)
         sub_02010CF4(param0, &v0);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -980,7 +980,7 @@ BOOL sub_0200FD08(ScreenFade *param0)
         sub_02010CF4(param0, &v0);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -1004,7 +1004,7 @@ BOOL sub_0200FD34(ScreenFade *param0)
         sub_02011408(param0, &v0);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -1027,7 +1027,7 @@ BOOL sub_0200FD60(ScreenFade *param0)
         sub_02011408(param0, &v0);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -1064,7 +1064,7 @@ BOOL sub_0200FD8C(ScreenFade *param0)
         sub_020116A0(param0, &v2);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -1094,7 +1094,7 @@ BOOL sub_0200FDE0(ScreenFade *param0)
         sub_020116A0(param0, &v2);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -1118,7 +1118,7 @@ BOOL sub_0200FE30(ScreenFade *param0)
         sub_02011F44(param0, &v1);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -1143,7 +1143,7 @@ BOOL sub_0200FE6C(ScreenFade *param0)
         sub_02011F44(param0, &v1);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }
@@ -1162,7 +1162,7 @@ BOOL sub_0200FEA4(ScreenFade *param0)
         sub_02011960(param0, &v0);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -1180,7 +1180,7 @@ BOOL sub_0200FEEC(ScreenFade *param0)
         sub_02011960(param0, &v0);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -1198,7 +1198,7 @@ BOOL sub_0200FF30(ScreenFade *param0)
         sub_02011C94(param0, &v0);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -1216,7 +1216,7 @@ BOOL sub_0200FF78(ScreenFade *param0)
         sub_02011C94(param0, &v0);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -1234,7 +1234,7 @@ BOOL sub_0200FFBC(ScreenFade *param0)
         sub_02010F2C(param0, &v0);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -1252,7 +1252,7 @@ BOOL sub_0200FFE8(ScreenFade *param0)
         sub_02010F2C(param0, &v0);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -1270,7 +1270,7 @@ BOOL sub_02010014(ScreenFade *param0)
         sub_02010CF4(param0, &v0);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -1288,7 +1288,7 @@ BOOL sub_02010040(ScreenFade *param0)
         sub_02010CF4(param0, &v0);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -1325,7 +1325,7 @@ BOOL sub_0201006C(ScreenFade *param0)
         sub_020121C4(param0, &v1);
 
         param0->direction = FADE_OUT;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
         return 0;
     }
 
@@ -1362,7 +1362,7 @@ BOOL sub_020100A8(ScreenFade *param0)
         sub_020121C4(param0, &v1);
 
         param0->direction = FADE_IN;
-        param0->method = FADE_WINDOW;
+        param0->method = FADE_BY_WINDOW;
 
         return 0;
     }

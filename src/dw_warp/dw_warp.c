@@ -87,7 +87,7 @@ BOOL DWWarp_Init(ApplicationManager *appMan, int *state)
 
     DWWarp_InitModel(dww);
     DWWarp_InitCamera(dww);
-    StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_BLACK, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
 
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
@@ -133,7 +133,7 @@ BOOL DWWarp_Main(ApplicationManager *appMan, int *state)
         }
         break;
     case DWARP_SEQ_CLEAR_SCREEN:
-        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 20, 1, HEAP_ID_DISTORTION_WORLD_WARP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 20, 1, HEAP_ID_DISTORTION_WORLD_WARP);
         (*state)++;
         break;
     case DWARP_SEQ_WAIT:

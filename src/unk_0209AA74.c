@@ -80,8 +80,8 @@ void sub_0209AA74(int heapID, int param1)
         v4 = 0;
     }
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
     SetDummyVBlankIntr();
     SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);

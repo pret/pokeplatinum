@@ -201,7 +201,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenFade(MODE_BOTH_SCREENS, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
+        StartScreenFade(FADE_BOTH_SCREENS, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 1:
@@ -360,7 +360,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         }
         break;
     case 7:
-        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_112);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 8:
@@ -437,7 +437,7 @@ int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenFade(MODE_BOTH_SCREENS, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
+        StartScreenFade(FADE_BOTH_SCREENS, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 1:
@@ -497,7 +497,7 @@ int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
         }
         break;
     case 9:
-        StartScreenFade(MODE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_BLACK, 6, 1, HEAP_ID_112);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 10:

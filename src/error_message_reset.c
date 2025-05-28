@@ -102,8 +102,8 @@ void ErrorMessageReset_PrintErrorAndReset(void)
 
     v4 = 3;
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     OS_DisableIrqMask(OS_IE_V_BLANK);
     OS_SetIrqFunction(OS_IE_V_BLANK, VBlankIntr);
@@ -178,8 +178,8 @@ void ErrorMessageReset_PrintErrorAndReset(void)
         OS_WaitIrq(1, OS_IE_V_BLANK);
     }
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_WHITE);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_WHITE);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_WHITE);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
 
     Window_Remove(&window);
     MessageLoader_Free(errorMsgData);
