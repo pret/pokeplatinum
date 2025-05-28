@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_OV104_0223A7F4_H
 #define POKEPLATINUM_OV104_0223A7F4_H
 
-#include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/frontier_data_transfer.h"
+#include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223ADA0.h"
 #include "overlay104/struct_ov104_0224028C.h"
 

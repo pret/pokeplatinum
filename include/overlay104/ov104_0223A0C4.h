@@ -4,8 +4,8 @@
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204B404.h"
 
-#include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/frontier_data_transfer.h"
+#include "overlay104/struct_ov104_02230BE4.h"
 
 #include "field_battle_data_transfer.h"
 #include "savedata.h"

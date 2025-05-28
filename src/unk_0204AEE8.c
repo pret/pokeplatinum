@@ -3,15 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/species_data_params.h"
-#include "generated/object_events.h"
-
 #include "constants/trainer.h"
+#include "generated/object_events.h"
+#include "generated/species_data_params.h"
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_defs/struct_0204AFC4.h"
-#include "struct_defs/battle_frontier_trainer_data.h"
 #include "struct_defs/battle_frontier_pokemon_data.h"
+#include "struct_defs/battle_frontier_trainer_data.h"
+#include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204B404.h"
 
 #include "field/field_system.h"

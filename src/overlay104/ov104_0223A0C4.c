@@ -5,9 +5,9 @@
 
 #include "generated/species_data_params.h"
 
+#include "struct_defs/battle_frontier_pokemon_data.h"
 #include "struct_defs/struct_0202D764.h"
 #include "struct_defs/struct_0204AFC4.h"
-#include "struct_defs/battle_frontier_pokemon_data.h"
 #include "struct_defs/struct_0204B404.h"
 
 #include "overlay104/ov104_0222DCE0.h"

@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/battle_frontier_trainer_data.h"
 #include "struct_defs/battle_frontier_pokemon_data.h"
+#include "struct_defs/battle_frontier_trainer_data.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/struct_ov104_02230BE4.h"

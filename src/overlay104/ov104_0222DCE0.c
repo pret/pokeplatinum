@@ -3,10 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/species_data_params.h"
-#include "generated/object_events.h"
-
 #include "constants/trainer.h"
+#include "generated/object_events.h"
+#include "generated/species_data_params.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/wi_fi_history.h"
@@ -32,7 +31,6 @@
 #include "unk_02038F8C.h"
 #include "unk_0208C098.h"
 #include "unk_02092494.h"
-
 
 static const u16 sTrainerClassToObjectID[][2] = {
     { TRAINER_CLASS_TRAINER_CHERYL, OBJ_EVENT_GFX_CHERYL },
