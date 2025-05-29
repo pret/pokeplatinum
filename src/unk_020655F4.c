@@ -2016,285 +2016,285 @@ static int sub_02067394(MapObject *mapObj)
     return 1;
 }
 
-int (*const gMovementActionFuncs_000[])(MapObject *) = {
+int (*const gMovementActionFuncs_FaceNorth[])(MapObject *) = {
     MovementAction_FaceNorth_Step0,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_001[])(MapObject *) = {
+int (*const gMovementActionFuncs_FaceSouth[])(MapObject *) = {
     MovementAction_FaceSouth_Step0,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_002[])(MapObject *) = {
+int (*const gMovementActionFuncs_FaceWest[])(MapObject *) = {
     MovementAction_FaceWest_Step0,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_003[])(MapObject *) = {
+int (*const gMovementActionFuncs_FaceEast[])(MapObject *) = {
     MovementAction_FaceEast_Step0,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_004[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkSlowerNorth[])(MapObject *) = {
     MovementAction_WalkSlowerNorth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_005[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkSlowerSouth[])(MapObject *) = {
     MovementAction_WalkSlowerSouth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_006[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkSlowerWest[])(MapObject *) = {
     MovementAction_WalkSlowerWest_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_007[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkSlowerEast[])(MapObject *) = {
     MovementAction_WalkSlowerEast_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_008[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkSlowNorth[])(MapObject *) = {
     MovementAction_WalkSlowNorth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_009[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkSlowSouth[])(MapObject *) = {
     MovementAction_WalkSlowSouth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_010[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkSlowWest[])(MapObject *) = {
     MovementAction_WalkSlowWest_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_011[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkSlowEast[])(MapObject *) = {
     MovementAction_WalkSlowEast_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_012[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkNormalNorth[])(MapObject *) = {
     MovementAction_WalkNormalNorth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_013[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkNormalSouth[])(MapObject *) = {
     MovementAction_WalkNormalSouth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_014[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkNormalWest[])(MapObject *) = {
     MovementAction_WalkNormalWest_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_015[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkNormalEast[])(MapObject *) = {
     MovementAction_WalkNormalEast_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_016[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkFastNorth[])(MapObject *) = {
     MovementAction_WalkFastNorth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_017[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkFastSouth[])(MapObject *) = {
     MovementAction_WalkFastSouth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_018[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkFastWest[])(MapObject *) = {
     MovementAction_WalkFastWest_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_019[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkFastEast[])(MapObject *) = {
     MovementAction_WalkFastEast_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_020[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkFasterNorth[])(MapObject *) = {
     MovementAction_WalkFasterNorth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_021[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkFasterSouth[])(MapObject *) = {
     MovementAction_WalkFasterSouth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_022[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkFasterWest[])(MapObject *) = {
     MovementAction_WalkFasterWest_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_023[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkFasterEast[])(MapObject *) = {
     MovementAction_WalkFasterEast_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_084[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkFastestNorth[])(MapObject *) = {
     MovementAction_WalkFastestNorth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_085[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkFastestSouth[])(MapObject *) = {
     MovementAction_WalkFastestSouth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_086[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkFastestWest[])(MapObject *) = {
     MovementAction_WalkFastestWest_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_087[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkFastestEast[])(MapObject *) = {
     MovementAction_WalkFastestEast_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_024[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotSlowerNorth[])(MapObject *) = {
     MovementAction_WalkOnSpotSlowerNorth_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_025[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotSlowerSouth[])(MapObject *) = {
     MovementAction_WalkOnSpotSlowerSouth_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_026[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotSlowerWest[])(MapObject *) = {
     MovementAction_WalkOnSpotSlowerWest_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_027[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotSlowerEast[])(MapObject *) = {
     MovementAction_WalkOnSpotSlowerEast_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_028[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotSlowNorth[])(MapObject *) = {
     MovementAction_WalkOnSpotSlowNorth_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_029[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotSlowSouth[])(MapObject *) = {
     MovementAction_WalkOnSpotSlowSouth_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_030[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotSlowWest[])(MapObject *) = {
     MovementAction_WalkOnSpotSlowWest_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_031[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotSlowEast[])(MapObject *) = {
     MovementAction_WalkOnSpotSlowEast_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_032[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotNormalNorth[])(MapObject *) = {
     MovementAction_WalkOnSpotNormalNorth_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_033[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotNormalSouth[])(MapObject *) = {
     MovementAction_WalkOnSpotNormalSouth_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_034[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotNormalWest[])(MapObject *) = {
     MovementAction_WalkOnSpotNormalWest_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_035[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotNormalEast[])(MapObject *) = {
     MovementAction_WalkOnSpotNormalEast_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_036[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotFastNorth[])(MapObject *) = {
     MovementAction_WalkOnSpotFastNorth_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_037[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotFastSouth[])(MapObject *) = {
     MovementAction_WalkOnSpotFastSouth_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_038[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotFastWest[])(MapObject *) = {
     MovementAction_WalkOnSpotFastWest_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_039[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotFastEast[])(MapObject *) = {
     MovementAction_WalkOnSpotFastEast_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_040[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotFasterNorth[])(MapObject *) = {
     MovementAction_WalkOnSpotFasterNorth_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_041[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotFasterSouth[])(MapObject *) = {
     MovementAction_WalkOnSpotFasterSouth_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_042[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotFasterWest[])(MapObject *) = {
     MovementAction_WalkOnSpotFasterWest_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_043[])(MapObject *) = {
+int (*const gMovementActionFuncs_WalkOnSpotFasterEast[])(MapObject *) = {
     MovementAction_WalkOnSpotFasterEast_Step0,
     MovementAction_WalkOnSpot_Step1,
     sub_02065924,
@@ -2420,43 +2420,43 @@ int (*const gMovementActionFuncs_095[])(MapObject *) = {
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_060[])(MapObject *) = {
+int (*const gMovementActionFuncs_Delay1[])(MapObject *) = {
     MovementAction_Delay1_Step0,
     MovementAction_Delay_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_061[])(MapObject *) = {
+int (*const gMovementActionFuncs_Delay2[])(MapObject *) = {
     MovementAction_Delay2_Step0,
     MovementAction_Delay_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_062[])(MapObject *) = {
+int (*const gMovementActionFuncs_Delay4[])(MapObject *) = {
     MovementAction_Delay4_Step0,
     MovementAction_Delay_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_063[])(MapObject *) = {
+int (*const gMovementActionFuncs_Delay8[])(MapObject *) = {
     MovementAction_Delay8_Step0,
     MovementAction_Delay_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_064[])(MapObject *) = {
+int (*const gMovementActionFuncs_Delay15[])(MapObject *) = {
     MovementAction_Delay15_Step0,
     MovementAction_Delay_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_065[])(MapObject *) = {
+int (*const gMovementActionFuncs_Delay16[])(MapObject *) = {
     MovementAction_Delay16_Step0,
     MovementAction_Delay_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_066[])(MapObject *) = {
+int (*const gMovementActionFuncs_Delay32[])(MapObject *) = {
     MovementAction_Delay32_Step0,
     MovementAction_Delay_Step1,
     sub_02065924,
@@ -2474,22 +2474,22 @@ int (*const gMovementActionFuncs_068[])(MapObject *) = {
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_069[])(MapObject *) = {
+int (*const gMovementActionFuncs_SetInvisible[])(MapObject *) = {
     MovementAction_SetInvisible_Step0,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_070[])(MapObject *) = {
+int (*const gMovementActionFuncs_SetVisible[])(MapObject *) = {
     MovementAction_SetVisible_Step0,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_071[])(MapObject *) = {
+int (*const gMovementActionFuncs_LockDir[])(MapObject *) = {
     MovementAction_LockDir_Step0,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_072[])(MapObject *) = {
+int (*const gMovementActionFuncs_UnlockDir[])(MapObject *) = {
     MovementAction_UnlockDir_Step0,
     sub_02065924,
 };
@@ -2504,7 +2504,7 @@ int (*const gMovementActionFuncs_074[])(MapObject *) = {
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_075[])(MapObject *) = {
+int (*const gMovementActionFuncs_ExclamationPoint[])(MapObject *) = {
     sub_020664F0,
     sub_020664C8,
     sub_02065924,
@@ -2564,25 +2564,25 @@ int (*const gMovementActionFuncs_083[])(MapObject *) = {
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_088[])(MapObject *) = {
+int (*const gMovementActionFuncs_RunNorth[])(MapObject *) = {
     MovementAction_RunNorth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_089[])(MapObject *) = {
+int (*const gMovementActionFuncs_RunSouth[])(MapObject *) = {
     MovementAction_RunSouth_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_090[])(MapObject *) = {
+int (*const gMovementActionFuncs_RunWest[])(MapObject *) = {
     MovementAction_RunWest_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,
 };
 
-int (*const gMovementActionFuncs_091[])(MapObject *) = {
+int (*const gMovementActionFuncs_RunEast[])(MapObject *) = {
     MovementAction_RunEast_Step0,
     MovementAction_Walk_Step1,
     sub_02065924,

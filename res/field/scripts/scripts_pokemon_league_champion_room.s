@@ -83,26 +83,26 @@ _0121:
 
     .balign 4, 0
 _012C:
-    MoveAction_012 4
+    MoveAction_WalkNormalNorth 4
     EndMovement
 
     .balign 4, 0
 _0134:
-    MoveAction_012 6
+    MoveAction_WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
 _013C:
-    MoveAction_012 6
+    MoveAction_WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_014
-    MoveAction_033
+    MoveAction_WalkNormalWest
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0150:
-    MoveAction_032
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement

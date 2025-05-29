@@ -100,77 +100,77 @@ _012A:
 
     .balign 4, 0
 _0140:
-    MoveAction_014
-    MoveAction_063
+    MoveAction_WalkNormalWest
+    MoveAction_Delay8
     EndMovement
 
     .balign 4, 0
 _014C:
-    MoveAction_035
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0154:
-    MoveAction_063
-    MoveAction_033
+    MoveAction_Delay8
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0160:
-    MoveAction_062
-    MoveAction_002
-    MoveAction_075
-    MoveAction_003
+    MoveAction_Delay4
+    MoveAction_FaceWest
+    MoveAction_ExclamationPoint
+    MoveAction_FaceEast
     EndMovement
 
     .balign 4, 0
 _0174:
-    MoveAction_033
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _017C:
-    MoveAction_033
-    MoveAction_065 2
-    MoveAction_035
-    MoveAction_063
-    MoveAction_032
-    MoveAction_063
+    MoveAction_WalkOnSpotNormalSouth
+    MoveAction_Delay16 2
+    MoveAction_WalkOnSpotNormalEast
+    MoveAction_Delay8
+    MoveAction_WalkOnSpotNormalNorth
+    MoveAction_Delay8
     EndMovement
 
     .balign 4, 0
 _0198:
-    MoveAction_033
-    MoveAction_063
+    MoveAction_WalkOnSpotNormalSouth
+    MoveAction_Delay8
     EndMovement
 
     .balign 4, 0
 _01A4:
-    MoveAction_034
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _01AC:
-    MoveAction_013 2
+    MoveAction_WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
 _01B4:
-    MoveAction_002
-    MoveAction_075
-    MoveAction_003
+    MoveAction_FaceWest
+    MoveAction_ExclamationPoint
+    MoveAction_FaceEast
     EndMovement
 
     .balign 4, 0
 _01C4:
-    MoveAction_032
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _01CC:
-    MoveAction_014 3
-    MoveAction_013 3
-    MoveAction_014 2
-    MoveAction_013
-    MoveAction_014 6
+    MoveAction_WalkNormalWest 3
+    MoveAction_WalkNormalSouth 3
+    MoveAction_WalkNormalWest 2
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkNormalWest 6
     EndMovement

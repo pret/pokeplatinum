@@ -450,48 +450,48 @@ FootstepHouse_PokemonSilentType_GiveRibbon:
 
     .balign 4, 0
 _0698:
-    MoveAction_071
-    MoveAction_015
-    MoveAction_072
+    MoveAction_LockDir
+    MoveAction_WalkNormalEast
+    MoveAction_UnlockDir
     EndMovement
 
     .balign 4, 0
 _06A8:
-    MoveAction_071
-    MoveAction_014
-    MoveAction_072
+    MoveAction_LockDir
+    MoveAction_WalkNormalWest
+    MoveAction_UnlockDir
     EndMovement
 
     .balign 4, 0
 _06B8:
-    MoveAction_071
-    MoveAction_013
-    MoveAction_072
+    MoveAction_LockDir
+    MoveAction_WalkNormalSouth
+    MoveAction_UnlockDir
     EndMovement
 
     .balign 4, 0
 _06C8:
-    MoveAction_071
-    MoveAction_012
-    MoveAction_072
+    MoveAction_LockDir
+    MoveAction_WalkNormalNorth
+    MoveAction_UnlockDir
     EndMovement
 
     .balign 4, 0
 _06D8:
-    MoveAction_014
+    MoveAction_WalkNormalWest
     EndMovement
 
     .balign 4, 0
 _06E0:
-    MoveAction_015
+    MoveAction_WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _06E8:
-    MoveAction_012
+    MoveAction_WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _06F0:
-    MoveAction_013
+    MoveAction_WalkNormalSouth
     EndMovement

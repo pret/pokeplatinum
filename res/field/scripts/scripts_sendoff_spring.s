@@ -50,21 +50,21 @@ _0021:
 
     .balign 4, 0
 _0098:
-    MoveAction_034
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _00A0:
-    MoveAction_038
-    MoveAction_063
-    MoveAction_039
-    MoveAction_063 2
-    MoveAction_036
+    MoveAction_WalkOnSpotFastWest
+    MoveAction_Delay8
+    MoveAction_WalkOnSpotFastEast
+    MoveAction_Delay8 2
+    MoveAction_WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
 _00B8:
-    MoveAction_035
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
 _00C0:

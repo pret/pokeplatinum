@@ -2392,10 +2392,10 @@ _2125:
 
     .balign 4, 0
 _212C:
-    MoveAction_003
+    MoveAction_FaceEast
     EndMovement
 
     .balign 4, 0
 _2134:
-    MoveAction_002
+    MoveAction_FaceWest
     EndMovement

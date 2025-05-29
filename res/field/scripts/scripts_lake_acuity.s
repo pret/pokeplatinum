@@ -105,85 +105,85 @@ _018C:
 
     .balign 4, 0
 _0198:
-    MoveAction_012 5
-    MoveAction_015 2
+    MoveAction_WalkNormalNorth 5
+    MoveAction_WalkNormalEast 2
     EndMovement
 
     .balign 4, 0
 _01A4:
-    MoveAction_012 5
-    MoveAction_015
+    MoveAction_WalkNormalNorth 5
+    MoveAction_WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _01B0:
-    MoveAction_035
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01B8:
-    MoveAction_063
-    MoveAction_033
+    MoveAction_Delay8
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _01C4:
-    MoveAction_032
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _01CC:
-    MoveAction_034
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _01D4:
-    MoveAction_032
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _01DC:
-    MoveAction_013 2
-    MoveAction_014 2
-    MoveAction_013 3
+    MoveAction_WalkNormalSouth 2
+    MoveAction_WalkNormalWest 2
+    MoveAction_WalkNormalSouth 3
     EndMovement
 
     .balign 4, 0
 _01EC:
-    MoveAction_033
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _01F4:
-    MoveAction_014 2
-    MoveAction_013 6
-    MoveAction_034
+    MoveAction_WalkNormalWest 2
+    MoveAction_WalkNormalSouth 6
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0204:
-    MoveAction_014 2
-    MoveAction_013 5
+    MoveAction_WalkNormalWest 2
+    MoveAction_WalkNormalSouth 5
     EndMovement
 
     .balign 4, 0
 _0210:
-    MoveAction_033
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0218:
-    MoveAction_014
-    MoveAction_013
-    MoveAction_033
+    MoveAction_WalkNormalWest
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0228:
-    MoveAction_012 5
+    MoveAction_WalkNormalNorth 5
     EndMovement
 
     .balign 4, 0
 _0230:
-    MoveAction_013 5
+    MoveAction_WalkNormalSouth 5
     EndMovement

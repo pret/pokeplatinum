@@ -31,45 +31,45 @@ _0006:
 
     .balign 4, 0
 _0064:
-    MoveAction_013 6
-    MoveAction_034
+    MoveAction_WalkNormalSouth 6
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0070:
-    MoveAction_032
+    MoveAction_WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0078:
-    MoveAction_034
+    MoveAction_WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0080:
-    MoveAction_063 3
-    MoveAction_014 10
+    MoveAction_Delay8 3
+    MoveAction_WalkNormalWest 10
     EndMovement
 
     .balign 4, 0
 _008C:
-    MoveAction_032
-    MoveAction_063 4
-    MoveAction_035
+    MoveAction_WalkOnSpotNormalNorth
+    MoveAction_Delay8 4
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _009C:
-    MoveAction_063 3
-    MoveAction_032
-    MoveAction_063
-    MoveAction_035
+    MoveAction_Delay8 3
+    MoveAction_WalkOnSpotNormalNorth
+    MoveAction_Delay8
+    MoveAction_WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _00B0:
-    MoveAction_013
-    MoveAction_032
-    MoveAction_063 2
-    MoveAction_034
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkOnSpotNormalNorth
+    MoveAction_Delay8 2
+    MoveAction_WalkOnSpotNormalWest
     EndMovement

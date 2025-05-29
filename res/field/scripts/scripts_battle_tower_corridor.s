@@ -106,13 +106,13 @@ _0124:
 
     .balign 4, 0
 _0140:
-    MoveAction_013 3
-    MoveAction_000
+    MoveAction_WalkNormalSouth 3
+    MoveAction_FaceNorth
     EndMovement
 
     .balign 4, 0
 _014C:
-    MoveAction_013 2
+    MoveAction_WalkNormalSouth 2
     EndMovement
 
     .byte 0
@@ -154,60 +154,60 @@ _014C:
 
     .balign 4, 0
 _0178:
-    MoveAction_015 4
-    MoveAction_012 2
-    MoveAction_069
+    MoveAction_WalkNormalEast 4
+    MoveAction_WalkNormalNorth 2
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _0188:
-    MoveAction_013
-    MoveAction_015 4
-    MoveAction_012 2
-    MoveAction_069
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkNormalEast 4
+    MoveAction_WalkNormalNorth 2
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _019C:
-    MoveAction_015 8
-    MoveAction_012 2
-    MoveAction_069
+    MoveAction_WalkNormalEast 8
+    MoveAction_WalkNormalNorth 2
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _01AC:
-    MoveAction_013
-    MoveAction_015 8
-    MoveAction_012 2
-    MoveAction_069
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkNormalEast 8
+    MoveAction_WalkNormalNorth 2
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _01C0:
-    MoveAction_015 12
-    MoveAction_012 2
-    MoveAction_069
+    MoveAction_WalkNormalEast 12
+    MoveAction_WalkNormalNorth 2
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _01D0:
-    MoveAction_013
-    MoveAction_015 12
-    MoveAction_012 2
-    MoveAction_069
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkNormalEast 12
+    MoveAction_WalkNormalNorth 2
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _01E4:
-    MoveAction_015 16
-    MoveAction_012 2
-    MoveAction_069
+    MoveAction_WalkNormalEast 16
+    MoveAction_WalkNormalNorth 2
+    MoveAction_SetInvisible
     EndMovement
 
     .balign 4, 0
 _01F4:
-    MoveAction_013
-    MoveAction_015 16
-    MoveAction_012 2
-    MoveAction_069
+    MoveAction_WalkNormalSouth
+    MoveAction_WalkNormalEast 16
+    MoveAction_WalkNormalNorth 2
+    MoveAction_SetInvisible
     EndMovement

@@ -315,18 +315,18 @@ _045E:
 
     .balign 4, 0
 _046C:
-    MoveAction_062 3
-    MoveAction_002
-    MoveAction_062 3
-    MoveAction_003
-    MoveAction_062 3
-    MoveAction_000
-    MoveAction_012 2
-    MoveAction_069
-    MoveAction_063 3
-    MoveAction_001
-    MoveAction_070
-    MoveAction_013 2
+    MoveAction_Delay4 3
+    MoveAction_FaceWest
+    MoveAction_Delay4 3
+    MoveAction_FaceEast
+    MoveAction_Delay4 3
+    MoveAction_FaceNorth
+    MoveAction_WalkNormalNorth 2
+    MoveAction_SetInvisible
+    MoveAction_Delay8 3
+    MoveAction_FaceSouth
+    MoveAction_SetVisible
+    MoveAction_WalkNormalSouth 2
     EndMovement
 
 _04A0:

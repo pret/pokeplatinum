@@ -329,81 +329,81 @@ _04CE:
 
     .balign 4, 0
 _0504:
-    MoveAction_062
-    MoveAction_012
-    MoveAction_002
-    MoveAction_014 3
-    MoveAction_000
-    MoveAction_012 3
-    MoveAction_003
+    MoveAction_Delay4
+    MoveAction_WalkNormalNorth
+    MoveAction_FaceWest
+    MoveAction_WalkNormalWest 3
+    MoveAction_FaceNorth
+    MoveAction_WalkNormalNorth 3
+    MoveAction_FaceEast
     EndMovement
 
     .balign 4, 0
 _0524:
-    MoveAction_013
-    MoveAction_003
-    MoveAction_015 3
-    MoveAction_001
-    MoveAction_013 3
-    MoveAction_002
+    MoveAction_WalkNormalSouth
+    MoveAction_FaceEast
+    MoveAction_WalkNormalEast 3
+    MoveAction_FaceSouth
+    MoveAction_WalkNormalSouth 3
+    MoveAction_FaceWest
     EndMovement
 
     .balign 4, 0
 _0540:
-    MoveAction_015
+    MoveAction_WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _0548:
-    MoveAction_014
+    MoveAction_WalkNormalWest
     EndMovement
 
     .balign 4, 0
 _0550:
-    MoveAction_003
-    MoveAction_015
-    MoveAction_000
-    MoveAction_012 3
-    MoveAction_002
-    MoveAction_014 3
-    MoveAction_000
-    MoveAction_012
+    MoveAction_FaceEast
+    MoveAction_WalkNormalEast
+    MoveAction_FaceNorth
+    MoveAction_WalkNormalNorth 3
+    MoveAction_FaceWest
+    MoveAction_WalkNormalWest 3
+    MoveAction_FaceNorth
+    MoveAction_WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0574:
-    MoveAction_014
-    MoveAction_002
+    MoveAction_WalkNormalWest
+    MoveAction_FaceWest
     EndMovement
 
     .balign 4, 0
 _0580:
-    MoveAction_015
+    MoveAction_WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _0588:
-    MoveAction_003
+    MoveAction_FaceEast
     EndMovement
 
     .balign 4, 0
 _0590:
-    MoveAction_002
-    MoveAction_014
-    MoveAction_003
+    MoveAction_FaceWest
+    MoveAction_WalkNormalWest
+    MoveAction_FaceEast
     EndMovement
 
     .balign 4, 0
 _05A0:
-    MoveAction_002
+    MoveAction_FaceWest
     EndMovement
 
     .balign 4, 0
 _05A8:
-    MoveAction_009
-    MoveAction_003
-    MoveAction_011 3
-    MoveAction_001
-    MoveAction_009 3
-    MoveAction_002
+    MoveAction_WalkSlowSouth
+    MoveAction_FaceEast
+    MoveAction_WalkSlowEast 3
+    MoveAction_FaceSouth
+    MoveAction_WalkSlowSouth 3
+    MoveAction_FaceWest
     EndMovement
