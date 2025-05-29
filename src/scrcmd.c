@@ -3734,7 +3734,7 @@ static BOOL sub_02041CF4(ScriptContext *ctx)
         return FALSE;
     }
 
-    if (v2->unk_08 == 1) {
+    if (v2->RecordBoxUseInJournal == TRUE) {
         void *journalEntryLocationEvent;
 
         journalEntryLocationEvent = JournalEntry_CreateEventUsedPCBox(HEAP_ID_FIELDMAP);

@@ -576,9 +576,9 @@ void ov19_021D845C(UnkStruct_ov19_021D8318 *param0, u32 param1, const UnkStruct_
     ov19_021D89F4(param0, param1);
 }
 
-UnkStruct_ov19_021DCD18 *ov19_021D84C8(UnkStruct_ov19_021D8318 *param0, u32 param1)
+UnkStruct_ov19_021DCD18 *ov19_021D84C8(UnkStruct_ov19_021D8318 *param0, u32 posInBox)
 {
-    return &param0->unk_A8[param0->unk_02][param1];
+    return &param0->unk_A8[param0->unk_02][posInBox];
 }
 
 void ov19_021D84E0(UnkStruct_ov19_021D8318 *param0)
@@ -782,12 +782,12 @@ static void ov19_021D8764(u16 *param0, const u16 *param1, u32 param2, u32 param3
     }
 }
 
-void ov19_021D8860(UnkStruct_ov19_021D8318 *param0, u32 param1)
+void ov19_021D8860(UnkStruct_ov19_021D8318 *param0, u32 boxCursorPosition)
 {
-    param0->unk_A0 = param1;
+    param0->unk_A0 = boxCursorPosition;
     param0->unk_A4 = 0;
 
-    ov19_021DA7B8(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][param1]), 1);
+    ov19_021DA7B8(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][boxCursorPosition]), 1);
 }
 
 BOOL ov19_021D8898(UnkStruct_ov19_021D8318 *param0)
@@ -799,10 +799,10 @@ BOOL ov19_021D8898(UnkStruct_ov19_021D8318 *param0)
         if (ov19_021DA7E0(param0->unk_58F0, v0)) {
             const UnkStruct_ov19_021D5DF8 *v1 = ov19_021D7964(param0->unk_58FC);
 
-            if (ov19_021D3B18(v1)) {
-                if (ov19_021D3B20(v1)) {
+            if (ov19_HasCheckedCanReleaseMon(v1)) {
+                if (ov19_CanReleaseMon(v1)) {
                     ov19_021DA3F0(param0->unk_58F0, v0, 1);
-                    return 1;
+                    return TRUE;
                 } else {
                     ov19_021DA7B8(param0->unk_58F0, v0, 2);
                     param0->unk_A4++;
@@ -814,12 +814,12 @@ BOOL ov19_021D8898(UnkStruct_ov19_021D8318 *param0)
 
     case 1:
         if (ov19_021DA7E0(param0->unk_58F0, v0)) {
-            return 1;
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void ov19_021D8938(UnkStruct_ov19_021D8318 *param0)
