@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay019/struct_box_menu.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DB6F0.h"
-#include "overlay019/struct_ov19_021DF964.h"
 
 #include "bg_window.h"
 #include "enums.h"
@@ -22,20 +22,20 @@
 #include "text.h"
 
 static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);
-static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 param2, u32 param3);
+static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 markings, u32 param3);
 static void ov19_021DB684(UnkStruct_ov19_021DB6F0 *param0, u32 param1);
 static void ov19_021DB7BC(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);
 static void ov19_021DB84C(BgConfig *param0, Window *param1);
 static void ov19_021DB898(BgConfig *param0, Window *param1);
 
-BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, MessageLoader *param5, const StringTemplate *param6, int param7, NARC *param8)
+BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, MessageLoader *boxMessagesLoader, const StringTemplate *messageVariableBuffer, int optionsFrame, NARC *param8)
 {
     param0->unk_0C = param1;
     param0->unk_00 = param3;
     param0->unk_08 = param2;
-    param0->unk_2C = param6;
-    param0->unk_20 = param7;
-    param0->unk_10 = param5;
+    param0->unk_2C = messageVariableBuffer;
+    param0->unk_20 = optionsFrame;
+    param0->unk_10 = boxMessagesLoader;
     param0->unk_14 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_STORAGE_SYSTEM, HEAP_ID_10);
     param0->unk_30 = Strbuf_Init(64, HEAP_ID_10);
     param0->unk_34 = Strbuf_Init(64, HEAP_ID_10);
@@ -159,7 +159,7 @@ static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, 
     v0[4 + param4] = (8 << 12) | (521 + 17);
 }
 
-void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF964 *param1)
+void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *param1)
 {
     Window *v0;
     u32 v1, v2;
@@ -170,13 +170,13 @@ void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF96
 
     v0 = &(param0->unk_18[1]);
     Window_FillTilemap(v0, 15);
-    v1 = (8 - param1->unk_21) * 16;
+    v1 = (8 - param1->totalMenuItems) * 16;
 
-    for (v2 = 0; v2 < param1->unk_21; v2++) {
-        if ((param1->unk_00[v2] >= UnkEnum_021DFB94_56) && (param1->unk_00[v2] <= UnkEnum_021DFB94_61)) {
-            ov19_021DB638(param0, v0, param1->unk_22, param1->unk_00[v2] - UnkEnum_021DFB94_56);
+    for (v2 = 0; v2 < param1->totalMenuItems; v2++) {
+        if ((param1->menuItems[v2] >= BOX_MENU_CIRCLE) && (param1->menuItems[v2] <= BOX_MENU_DIAMOND)) {
+            ov19_021DB638(param0, v0, param1->markings, param1->menuItems[v2] - BOX_MENU_CIRCLE);
         } else {
-            MessageLoader_GetStrbuf(param0->unk_14, 24 + param1->unk_00[v2], param0->unk_30);
+            MessageLoader_GetStrbuf(param0->unk_14, 24 + param1->menuItems[v2], param0->unk_30);
             Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_30, 10, v1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(11, 12, 15), NULL);
         }
 
@@ -184,7 +184,7 @@ void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF96
     }
 
     ov19_021DB748(param0, param1);
-    ov19_021DB684(param0, param1->unk_21);
+    ov19_021DB684(param0, param1->totalMenuItems);
 
     Window_LoadTiles(v0);
     Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
@@ -192,9 +192,9 @@ void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF96
     param0->unk_1E = 1;
 }
 
-static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 param2, u32 param3)
+static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 markings, u32 param3)
 {
-    Window_BlitBitmapRectWithTransparency(param1, param0->unk_28->pRawData, param3 * 8, ((param2 & (1 << param3)) ? 0 : 8), 48, 16, 44, param3 * 16 + 4, 8, 8, 0xff);
+    Window_BlitBitmapRectWithTransparency(param1, param0->unk_28->pRawData, param3 * 8, ((markings & (1 << param3)) ? 0 : 8), 48, 16, 44, param3 * 16 + 4, 8, 8, 0xff);
 }
 
 static void ov19_021DB684(UnkStruct_ov19_021DB6F0 *param0, u32 param1)
@@ -246,20 +246,20 @@ void ov19_021DB724(UnkStruct_ov19_021DB6F0 *param0)
     Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
 }
 
-void ov19_021DB748(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF964 *param1)
+void ov19_021DB748(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu)
 {
     Window *v0;
     u32 v1;
 
     v0 = &(param0->unk_18[1]);
-    v1 = (8 - param1->unk_21) * 16;
+    v1 = (8 - menu->totalMenuItems) * 16;
 
-    Window_FillRectWithColor(v0, 15, 0, v1, 10, param1->unk_21 * 16);
-    Window_DrawMenuCursor(v0, 0, v1 + (param1->unk_20 * 16));
+    Window_FillRectWithColor(v0, 15, 0, v1, 10, menu->totalMenuItems * 16);
+    Window_DrawMenuCursor(v0, 0, v1 + (menu->selectedMenuItemIndex * 16));
     Window_LoadTiles(v0);
 }
 
-void ov19_021DB790(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF964 *param1)
+void ov19_021DB790(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu)
 {
     Window *v0;
     int v1;
@@ -267,7 +267,7 @@ void ov19_021DB790(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF96
     v0 = &(param0->unk_18[1]);
 
     for (v1 = 0; v1 < 6; v1++) {
-        ov19_021DB638(param0, v0, param1->unk_22, v1);
+        ov19_021DB638(param0, v0, menu->markings, v1);
     }
 
     Window_LoadTiles(v0);

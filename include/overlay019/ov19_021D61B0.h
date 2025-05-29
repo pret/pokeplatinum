@@ -17,11 +17,66 @@
 #include "sprite.h"
 #include "sys_task_manager.h"
 
+enum BoxFunctions {
+    FUNCTION_ov19_021D6694,
+    FUNCTION_ov19_021D671C,
+    FUNCTION_ov19_021D6780,
+    FUNCTION_ov19_021D67DC,
+    FUNCTION_ov19_021D6824,
+    FUNCTION_ov19_021D68E4,
+    FUNCTION_ov19_021D6940,
+    FUNCTION_ov19_021D69BC,
+    FUNCTION_ov19_021D6A1C,
+    FUNCTION_ov19_021D6A38,
+    FUNCTION_ov19_021D6A74,
+    FUNCTION_ov19_021D6AB0,
+    FUNCTION_ov19_021D6AEC,
+    FUNCTION_ov19_021D6B1C,
+    FUNCTION_ov19_PlayReleaseCursorMonAnimation,
+    FUNCTION_ov19_PlayReleaseBoxMonAnimation,
+    FUNCTION_ov19_PlayReleasePartyMonAnimation,
+    FUNCTION_ov19_021D6C38,
+    FUNCTION_ov19_021D6C74,
+    FUNCTION_ov19_021D6CB0,
+    FUNCTION_ov19_021D6CF8,
+    FUNCTION_ov19_021D6D40,
+    FUNCTION_ov19_021D6D88,
+    FUNCTION_ov19_021D6DF8,
+    FUNCTION_ov19_DisplayBoxMessage,
+    FUNCTION_ov19_021D6E70,
+    FUNCTION_ov19_CloseMessageBox,
+    FUNCTION_ov19_021D6EC0,
+    FUNCTION_ov19_021D6EDC,
+    FUNCTION_ov19_021D6F0C,
+    FUNCTION_ov19_021D6F3C,
+    FUNCTION_ov19_021D6F78,
+    FUNCTION_ov19_021D6FB0,
+    FUNCTION_ov19_021D6FEC,
+    FUNCTION_ov19_021D7028,
+    FUNCTION_ov19_021D70E8,
+    FUNCTION_ov19_021D7138,
+    FUNCTION_ov19_PlayAdjustPartyAnimation,
+    FUNCTION_ov19_021D71F8,
+    FUNCTION_ov19_021D7248,
+    FUNCTION_ov19_021D7278,
+    FUNCTION_ov19_021D72E8,
+    FUNCTION_ov19_021D7324,
+    FUNCTION_ov19_021D7340,
+    FUNCTION_ov19_021D735C,
+    FUNCTION_ov19_021D7380,
+    FUNCTION_ov19_021D7398,
+    FUNCTION_ov19_021D73B0,
+    FUNCTION_ov19_021D73EC,
+    FUNCTION_ov19_021D7408,
+    FUNCTION_ov19_021D7424,
+    FUNCTION_ov19_021D7460,
+};
+
 BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4DF0 *param1, const UnkStruct_ov19_021D5DF8 *param2);
 void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0);
-void ov19_021D6594(UnkStruct_ov19_021D61B0 *param0, u32 param1);
-BOOL ov19_021D6600(UnkStruct_ov19_021D61B0 *param0, u32 param1);
-BOOL ov19_021D6628(UnkStruct_ov19_021D61B0 *param0);
+void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions function);
+BOOL ov19_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions function);
+BOOL ov19_CheckTasksDone(UnkStruct_ov19_021D61B0 *param0);
 SysTask *ov19_021D77C8(SysTaskFunc param0, void *param1, u32 param2);
 NNSG2dImagePaletteProxy *ov19_021D77D0(UnkStruct_ov19_021D61B0 *param0);
 UnkStruct_ov19_021DA384 *ov19_021D77D8(UnkStruct_ov19_021D61B0 *param0);
