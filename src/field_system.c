@@ -15,8 +15,8 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/signpost.h"
-#include "overlay025/poketch_system.h"
 #include "overlay077/const_ov77_021D742C.h"
+#include "poketch/poketch_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
