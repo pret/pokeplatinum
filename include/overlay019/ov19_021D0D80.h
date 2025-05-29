@@ -85,7 +85,7 @@ u32 ov19_GetMultiSelectTopLeftPos(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetRelativeMonPosInMultiSelection(const UnkStruct_ov19_021D4DF0 *param0, u32 param1);
 u32 ov19_GetCursorItem(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetCursorOrPreviewedItem(const UnkStruct_ov19_021D4DF0 *param0);
-u32 ov19_021D5F9C(const UnkStruct_ov19_021D4DF0 *param0);
+u32 ov19_GetCompareMonSlot(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5FA4(const UnkStruct_ov19_021D4DF0 *param0);
 const PCCompareMon *ov19_GetCompareMonFrom(const UnkStruct_ov19_021D4DF0 *param0, int compareSlot);
 BOOL ov19_021D5FB8(const UnkStruct_ov19_021D4DF0 *param0, int param1);
