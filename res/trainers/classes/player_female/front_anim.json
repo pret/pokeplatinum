@@ -1,0 +1,23 @@
+{
+	"labelEnabled":	true,
+	"sequenceCount":	1,
+	"frameCount":	1,
+	"sequences":	[{
+			"frameCount":	1,
+			"loopStartFrame":	0,
+			"animationElement":	0,
+			"animationType":	1,
+			"playbackMode":	2,
+			"frameData":	[{
+					"frameDelay":	40,
+					"resultId":	0
+				}]
+		}],
+	"animationResults":	[{
+			"resultType":	0,
+			"index":	0
+		}],
+	"resultCount":	1,
+	"labels":	["\b"],
+	"labelCount":	1
+}

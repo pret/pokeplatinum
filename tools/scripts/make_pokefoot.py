@@ -70,14 +70,14 @@ subprocess.run([
 
 # cell
 src = source_dir / '.shared' / 'pokefoot_cell.json'
-dst = output_dir / '.shared' / 'footprints.NCER'
+cell_NCER = output_dir / '.shared' / 'footprints.NCER'
 subprocess.run([
     args.nitrogfx,
     src,
-    dst,
+    cell_NCER,
 ])
 
-src = dst
+src = cell_NCER
 dst = private_dir / cell_file
 subprocess.run([
     args.nitrogfx,
@@ -111,6 +111,7 @@ with open(output_dir / 'pokefoot.order', "w", encoding="utf-8") as order_file:
             '-version101',
             '-clobbersize',
             '-mappingtype', '128',
+            '-cell', cell_NCER,
         ])
 
         src = dst
