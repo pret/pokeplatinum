@@ -749,8 +749,8 @@ BOOL ov19_021D995C(UnkStruct_ov19_021D8E00 *param0)
         }
         break;
     case 1:
-        if (ov19_021D3B18(v0)) {
-            if (ov19_021D3B20(v0)) {
+        if (ov19_HasCheckedCanReleaseMon(v0)) {
+            if (ov19_CanReleaseMon(v0)) {
                 Sprite_SetAnim(param0->unk_04, 0);
                 ov19_021DA204(param0);
                 return 1;

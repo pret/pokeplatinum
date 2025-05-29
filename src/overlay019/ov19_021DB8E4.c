@@ -197,7 +197,7 @@ void ov19_021DBAD0(UnkStruct_ov19_021DBA9C *param0)
 
 void ov19_021DBB48(UnkStruct_ov19_021DBA9C *param0)
 {
-    param0->unk_E0 = ov19_021D5EA8(param0->unk_0C);
+    param0->unk_E0 = ov19_GetBoxSelectionBoxID(param0->unk_0C);
     ov19_021DBDF4(param0);
     ov19_021DC034(param0, 0);
 }
@@ -209,7 +209,7 @@ BOOL ov19_021DBB68(UnkStruct_ov19_021DBA9C *param0)
 
 void ov19_021DBB70(UnkStruct_ov19_021DBA9C *param0)
 {
-    param0->unk_E0 = ov19_021D5EA8(param0->unk_0C);
+    param0->unk_E0 = ov19_GetBoxSelectionBoxID(param0->unk_0C);
 
     ov19_021DBF18(param0);
     ov19_021DBF4C(param0);

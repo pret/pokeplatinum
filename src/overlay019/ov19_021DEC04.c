@@ -153,7 +153,7 @@ void ov19_021DECE8(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
 void ov19_021DEDDC(UnkStruct_ov19_021DEC04 *param0, BOOL param1)
 {
     if (param0) {
-        int v0 = ov19_021D5F9C(param0->unk_08);
+        int v0 = ov19_GetCompareMonSlot(param0->unk_08);
 
         if (param1) {
             Sprite_SetAnim(param0->unk_28[v0 ^ 1], 2);
@@ -172,19 +172,19 @@ void ov19_021DEE34(UnkStruct_ov19_021DEC04 *param0)
     ov19_021DF834(param0);
 
     if (param0) {
-        int v0 = ov19_021D5F9C(param0->unk_08);
+        int compareMonSlot = ov19_GetCompareMonSlot(param0->unk_08);
 
-        ov19_021DF8C8(param0, v0);
+        ov19_021DF8C8(param0, compareMonSlot);
 
         switch (ov19_021D5FA4(param0->unk_08)) {
         case 0:
-            ov19_021DF3AC(param0, v0);
+            ov19_021DF3AC(param0, compareMonSlot);
             break;
         case 1:
-            ov19_021DF178(param0, v0);
+            ov19_021DF178(param0, compareMonSlot);
             break;
         case 2:
-            ov19_021DF4D0(param0, v0);
+            ov19_021DF4D0(param0, compareMonSlot);
             break;
         }
     }
@@ -229,7 +229,7 @@ BOOL ov19_021DEEA8(UnkStruct_ov19_021DEC04 *param0)
 
 static void ov19_021DEEFC(UnkStruct_ov19_021DEC04 *param0)
 {
-    NNSG2dScreenData *v0 = (ov19_021D5F9C(param0->unk_08) == 0) ? param0->unk_368 : param0->unk_36C;
+    NNSG2dScreenData *v0 = (ov19_GetCompareMonSlot(param0->unk_08) == 0) ? param0->unk_368 : param0->unk_36C;
 
     Bg_CopyToTilemapRect(param0->unk_0C, 2, 0, 0, 6, 32, v0->rawData, 0, 0, 32, 32);
     Bg_CopyToTilemapRect(param0->unk_0C, 2, 26, 0, 6, 32, v0->rawData, 26, 0, 32, 32);
@@ -367,7 +367,7 @@ static void ov19_021DF140(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int param1)
+static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
 {
 #define DEFINE_00(tx) ((128 << FX32_SHIFT) + (((((tx) - 128) << FX32_SHIFT) * 10) / 100))
 #define DEFINE_01(ty) ((484 << FX32_SHIFT) + (((((ty) - 484) << FX32_SHIFT) * 10) / 100))
@@ -388,10 +388,10 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int param1)
     const PCCompareMon *compareMon;
     BOOL isMonUnderCursor, v3, v4;
 
-    compareMon = ov19_GetCompareMonFrom(param0->unk_08, param1);
+    compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
     isMonUnderCursor = ov19_IsMonUnderCursor(param0->unk_08);
-    v3 = (ov19_021D5F9C(param0->unk_08) == param1);
-    v4 = ov19_021D5FB8(param0->unk_08, param1);
+    v3 = ov19_GetCompareMonSlot(param0->unk_08) == compareMonSlot;
+    v4 = ov19_021D5FB8(param0->unk_08, compareMonSlot);
 
     if ((((isMonUnderCursor == TRUE) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) && (compareMon->isEgg == FALSE)) {
         int i;
@@ -403,26 +403,26 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int param1)
         for (i = 0; i < CONTEST_TYPE_MAX; i++) {
             v6.x = v0[i].unk_00 + (((v0[i].unk_08 - v0[i].unk_00) / 256) * (int)(*contestStat));
             v6.y = v0[i].unk_04 + (((v0[i].unk_0C - v0[i].unk_04) / 256) * (int)(*contestStat));
-            Sprite_SetPosition(param0->unk_34[param1][i], &v6);
-            ov19_021D78AC(param0->unk_34[param1][i], 0);
-            ov19_021D78AC(param0->unk_34[param1 ^ 1][i], 1);
-            Sprite_SetDrawFlag(param0->unk_34[param1][i], 1);
+            Sprite_SetPosition(param0->unk_34[compareMonSlot][i], &v6);
+            ov19_021D78AC(param0->unk_34[compareMonSlot][i], 0);
+            ov19_021D78AC(param0->unk_34[compareMonSlot ^ 1][i], 1);
+            Sprite_SetDrawFlag(param0->unk_34[compareMonSlot][i], 1);
             contestStat++;
         }
     } else {
-        ov19_021DF250(param0, param1);
+        ov19_021DF250(param0, compareMonSlot);
     }
 
 #undef DEFINE_00
 #undef DEFINE_01
 }
 
-static void ov19_021DF250(UnkStruct_ov19_021DEC04 *param0, int param1)
+static void ov19_021DF250(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
 {
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        Sprite_SetDrawFlag(param0->unk_34[param1][v0], 0);
+        Sprite_SetDrawFlag(param0->unk_34[compareMonSlot][v0], 0);
     }
 }
 
@@ -509,7 +509,7 @@ static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
     window = &(param0->unk_78[3 + compareMonSlot]);
     compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
     isMonUnderCursor = ov19_IsMonUnderCursor(param0->unk_08);
-    compareSlot = ov19_021D5F9C(param0->unk_08) == compareMonSlot;
+    compareSlot = ov19_GetCompareMonSlot(param0->unk_08) == compareMonSlot;
     v4 = ov19_021D5FB8(param0->unk_08, compareMonSlot);
 
     Window_FillTilemap(window, 0);
@@ -547,7 +547,7 @@ static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
     v0 = &(param0->unk_78[5 + compareMonSlot]);
     compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
     isMonUnderCursor = ov19_IsMonUnderCursor(param0->unk_08);
-    v3 = (ov19_021D5F9C(param0->unk_08) == compareMonSlot);
+    v3 = (ov19_GetCompareMonSlot(param0->unk_08) == compareMonSlot);
     v4 = ov19_021D5FB8(param0->unk_08, compareMonSlot);
 
     Window_FillTilemap(v0, 0);
@@ -629,17 +629,16 @@ static void ov19_021DF730(UnkStruct_ov19_021DEC04 *param0, u32 param1)
     };
     NNSG2dImageProxy v1;
     SpriteResourcesHeader v2;
-    int v3;
 
     ov19_021D783C(&v2, &v1, ov19_021D77D0(param0->unk_04), ov19_021DA80C(param0->unk_14), ov19_021DA810(param0->unk_14), 1);
 
-    for (v3 = 0; v3 < 2; v3++) {
-        param0->unk_18[v3] = param1 + (v3 * (4 * 4) * 0x20);
+    for (int i = 0; i < 2; i++) {
+        param0->unk_18[i] = param1 + (i * (4 * 4) * 0x20);
         NNS_G2dInitImageProxy(&v1);
-        NNS_G2dSetImageLocation(&v1, NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_18[v3]);
+        NNS_G2dSetImageLocation(&v1, NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_18[i]);
         v1.attr.mappingType = GXS_GetOBJVRamModeChar();
-        param0->unk_20[v3] = ov19_021D785C(param0->unk_10, &v2, v0[v3].unk_00, v0[v3].unk_02, 1 - v3, NNS_G2D_VRAM_TYPE_2DSUB);
-        Sprite_SetDrawFlag(param0->unk_20[v3], 0);
+        param0->unk_20[i] = ov19_021D785C(param0->unk_10, &v2, v0[i].unk_00, v0[i].unk_02, 1 - i, NNS_G2D_VRAM_TYPE_2DSUB);
+        Sprite_SetDrawFlag(param0->unk_20[i], FALSE);
     }
 }
 
@@ -667,7 +666,7 @@ static void ov19_021DF7D0(UnkStruct_ov19_021DEC04 *param0)
 
 static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0)
 {
-    int compareMonSlot = ov19_021D5F9C(param0->unk_08);
+    int compareMonSlot = ov19_GetCompareMonSlot(param0->unk_08);
     const PCCompareMon *compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
     Sprite *v2 = param0->unk_20[compareMonSlot];
     BoxPokemon *boxMon = compareMon->mon;
@@ -693,7 +692,7 @@ static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
 {
     Window *window;
 
-    compareMonSlot = ov19_021D5F9C(param0->unk_08);
+    compareMonSlot = ov19_GetCompareMonSlot(param0->unk_08);
     window = &(param0->unk_78[0 + compareMonSlot]);
 
     Window_FillTilemap(window, 0);
