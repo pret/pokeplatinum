@@ -287,10 +287,10 @@ int ov19_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov19_021D5DF8 *v0;
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_9, 16384);
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BOX_DATA, 16384);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BOX_GRAPHICS, 245760);
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov19_021D5DF8), HEAP_ID_9);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov19_021D5DF8), HEAP_ID_BOX_DATA);
 
     if (v0 != NULL) {
         ov19_021D4BE0(v0, ApplicationManager_Args(appMan));
@@ -343,8 +343,8 @@ int ov19_021D0E58(ApplicationManager *appMan, int *param1)
     ov19_021D64A0(v0->unk_114);
     ov19_021D4D58(v0);
 
-    Heap_Destroy(HEAP_ID_9);
-    Heap_Destroy(HEAP_ID_10);
+    Heap_Destroy(HEAP_ID_BOX_DATA);
+    Heap_Destroy(HEAP_ID_BOX_GRAPHICS);
 
     return 1;
 }
@@ -2358,9 +2358,9 @@ static void ov19_021D3B34(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 1:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_ov19_021D67DC)) {
             ov19_021D64A0(param0->unk_114);
-            Heap_Destroy(HEAP_ID_10);
+            Heap_Destroy(HEAP_ID_BOX_GRAPHICS);
             PCBoxes_BufferBoxName(param0->pcBoxes, PCBoxes_GetCurrentBoxID(param0->pcBoxes), param0->unk_128->unk_18);
-            param0->ApplicationManager = ApplicationManager_New(&Unk_020F2DAC, param0->unk_128, HEAP_ID_9);
+            param0->ApplicationManager = ApplicationManager_New(&Unk_020F2DAC, param0->unk_128, HEAP_ID_BOX_DATA);
             (*param1)++;
         }
         break;
@@ -2369,7 +2369,7 @@ static void ov19_021D3B34(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             u32 boxID = PCBoxes_GetCurrentBoxID(param0->pcBoxes);
 
             ApplicationManager_Free(param0->ApplicationManager);
-            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BOX_GRAPHICS, 245760);
             PCBoxes_RenameBox(param0->pcBoxes, boxID, param0->unk_128->unk_18);
 
             PCBoxes_LoadCustomization(param0->pcBoxes, &param0->unk_00.customization);
@@ -2390,9 +2390,9 @@ static void ov19_021D3C28(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 1:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_ov19_021D67DC)) {
             ov19_021D64A0(param0->unk_114);
-            Heap_Destroy(HEAP_ID_10);
+            Heap_Destroy(HEAP_ID_BOX_GRAPHICS);
             ov19_021D1C84(param0);
-            param0->ApplicationManager = ApplicationManager_New(&gPokemonSummaryScreenApp, &(param0->monSummary), HEAP_ID_9);
+            param0->ApplicationManager = ApplicationManager_New(&gPokemonSummaryScreenApp, &(param0->monSummary), HEAP_ID_BOX_DATA);
             (*param1)++;
         }
         break;
@@ -2401,7 +2401,7 @@ static void ov19_021D3C28(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             u32 v0 = PCBoxes_GetCurrentBoxID(param0->pcBoxes);
 
             ApplicationManager_Free(param0->ApplicationManager);
-            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BOX_GRAPHICS, 245760);
 
             if (ov19_GetPreviewMonSource(&param0->unk_00) == PREVIEW_MON_UNDER_CURSOR) {
                 ov19_SetCursorPosToSummaryMonPos(&(param0->unk_00), param0);
@@ -2458,13 +2458,13 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 1:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_ov19_021D67DC)) {
             ov19_021D64A0(param0->unk_114);
-            Heap_Destroy(HEAP_ID_10);
+            Heap_Destroy(HEAP_ID_BOX_GRAPHICS);
 
             Bag *bag = SaveData_GetBag(param0->saveData);
-            param0->unk_214 = sub_0207D824(bag, bagPockets, HEAP_ID_9);
+            param0->unk_214 = sub_0207D824(bag, bagPockets, HEAP_ID_BOX_DATA);
             sub_0207CB2C(param0->unk_214, param0->saveData, 1, NULL);
             Overlay_LoadByID(FS_OVERLAY_ID(overlay84), 2);
-            param0->ApplicationManager = ApplicationManager_New(&Unk_ov84_02241130, param0->unk_214, HEAP_ID_9);
+            param0->ApplicationManager = ApplicationManager_New(&Unk_ov84_02241130, param0->unk_214, HEAP_ID_BOX_DATA);
             (*param1)++;
         }
         break;
@@ -2479,12 +2479,12 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             if ((item == ITEM_GRISEOUS_ORB) && (BoxPokemon_GetValue(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
                 (void)0;
             } else if (item != ITEM_NONE) {
-                Bag_TryRemoveItem(SaveData_GetBag(param0->saveData), item, 1, HEAP_ID_9);
+                Bag_TryRemoveItem(SaveData_GetBag(param0->saveData), item, 1, HEAP_ID_BOX_DATA);
                 ov19_GiveItemToSelectedMon(&param0->unk_00, item, param0);
                 ov19_FlagRecordBoxUseInJournal(param0);
             }
 
-            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BOX_GRAPHICS, 245760);
             ov19_021D61B0(&(param0->unk_114), &param0->unk_00, param0);
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6694);
             (*param1)++;
@@ -2572,7 +2572,7 @@ static void ov19_021D3FB0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         break;
     case 2:
-        if (Bag_TryAddItem(SaveData_GetBag(param0->saveData), item, 1, HEAP_ID_9)) {
+        if (Bag_TryAddItem(SaveData_GetBag(param0->saveData), item, 1, HEAP_ID_BOX_DATA)) {
             ov19_GiveItemToSelectedMon(&param0->unk_00, ITEM_NONE, param0);
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6D88);
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6940);
@@ -2649,7 +2649,7 @@ static void ov19_021D4184(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         break;
     case 2:
-        if (Bag_TryAddItem(SaveData_GetBag(param0->saveData), item, 1, HEAP_ID_9)) {
+        if (Bag_TryAddItem(SaveData_GetBag(param0->saveData), item, 1, HEAP_ID_BOX_DATA)) {
             if (ov19_GetCursorItem(&param0->unk_00) != ITEM_NONE) {
                 ov19_RemoveCursorItem(&param0->unk_00);
                 *param1 = 4;
@@ -3142,23 +3142,23 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     param0->options = SaveData_GetOptions(param1->saveData);
     param0->unk_118 = param1;
     param1->RecordBoxUseInJournal = FALSE;
-    param0->boxMessagesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BOX_MESSAGES, HEAP_ID_9);
-    param0->speciesNameLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_9);
-    param0->natureNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NATURE_NAMES, HEAP_ID_9);
-    param0->abilityNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_NAMES, HEAP_ID_9);
-    param0->MessageVariableBuffer = StringTemplate_Default(HEAP_ID_9);
-    param0->mon = Heap_AllocFromHeap(HEAP_ID_9, Pokemon_StructSize());
+    param0->boxMessagesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BOX_MESSAGES, HEAP_ID_BOX_DATA);
+    param0->speciesNameLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_BOX_DATA);
+    param0->natureNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NATURE_NAMES, HEAP_ID_BOX_DATA);
+    param0->abilityNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_NAMES, HEAP_ID_BOX_DATA);
+    param0->MessageVariableBuffer = StringTemplate_Default(HEAP_ID_BOX_DATA);
+    param0->mon = Heap_AllocFromHeap(HEAP_ID_BOX_DATA, Pokemon_StructSize());
 
     GF_ASSERT(param0->MessageVariableBuffer);
-    param0->unk_128 = sub_0208712C(HEAP_ID_9, 2, 0, 8, param0->options);
+    param0->unk_128 = sub_0208712C(HEAP_ID_BOX_DATA, 2, 0, 8, param0->options);
 
     if (param1->boxMode != PC_MODE_COMPARE) {
-        param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sMainPcButtons, NELEMS(sMainPcButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_9);
+        param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sMainPcButtons, NELEMS(sMainPcButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_BOX_DATA);
     } else {
-        param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sComparePokemonButtons, NELEMS(sComparePokemonButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_9);
+        param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sComparePokemonButtons, NELEMS(sComparePokemonButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_BOX_DATA);
     }
 
-    param0->markingsButtonsAction = TouchScreenActions_RegisterHandler(sPokemonMarkingsButtons, NELEMS(sPokemonMarkingsButtons), ov19_BoxTouchScreenMarkingsButtonHandler, param0, HEAP_ID_9);
+    param0->markingsButtonsAction = TouchScreenActions_RegisterHandler(sPokemonMarkingsButtons, NELEMS(sPokemonMarkingsButtons), ov19_BoxTouchScreenMarkingsButtonHandler, param0, HEAP_ID_BOX_DATA);
     param0->unk_00.pcBoxes = param0->pcBoxes;
     param0->unk_00.party = param0->party;
     param0->unk_00.unk_110 = 0;
@@ -3231,7 +3231,7 @@ static void ov19_InitCursor(UnkStruct_ov19_021D5DF8 *param0)
 
 static void ov19_InitMonSelection(BoxMonSelection *selection)
 {
-    selection->boxMon = Heap_AllocFromHeap(HEAP_ID_9, MAX_MONS_PER_BOX * BoxPokemon_GetStructSize());
+    selection->boxMon = Heap_AllocFromHeap(HEAP_ID_BOX_DATA, MAX_MONS_PER_BOX * BoxPokemon_GetStructSize());
     selection->selectedMonCount = 0;
     selection->cursorMonIsPartyMon = FALSE;
 }
@@ -3244,7 +3244,7 @@ static void ov19_MonSelectionFree(BoxMonSelection *selection)
 static void PCBoxes_InitCustomization(PCBoxes *pcBoxes, BoxCustomization *customization)
 {
     customization->boxID = PCBoxes_GetCurrentBoxID(pcBoxes);
-    customization->name = Strbuf_Init(PC_BOX_NAME_BUFFER_LEN, HEAP_ID_9);
+    customization->name = Strbuf_Init(PC_BOX_NAME_BUFFER_LEN, HEAP_ID_BOX_DATA);
     PCBoxes_LoadCustomization(pcBoxes, customization);
 }
 
@@ -3255,11 +3255,11 @@ static void Customization_Free(BoxCustomization *customization)
 
 static void PCMonPreviewInit(PCMonPreview *param0)
 {
-    param0->nickname = Strbuf_Init(12, HEAP_ID_9);
-    param0->speciesName = Strbuf_Init(12, HEAP_ID_9);
-    param0->heldItemName = Strbuf_Init(18, HEAP_ID_9);
-    param0->nature = Strbuf_Init(12, HEAP_ID_9);
-    param0->ability = Strbuf_Init(16, HEAP_ID_9);
+    param0->nickname = Strbuf_Init(12, HEAP_ID_BOX_DATA);
+    param0->speciesName = Strbuf_Init(12, HEAP_ID_BOX_DATA);
+    param0->heldItemName = Strbuf_Init(18, HEAP_ID_BOX_DATA);
+    param0->nature = Strbuf_Init(12, HEAP_ID_BOX_DATA);
+    param0->ability = Strbuf_Init(16, HEAP_ID_BOX_DATA);
 }
 
 static void PCMonPreviewFree(PCMonPreview *param0)
@@ -3279,8 +3279,8 @@ static void ov19_PCCompareMonsInit(UnkStruct_ov19_021D4EE4 *param0)
 
     for (int i = 0; i < 2; i++) {
         param0->unk_02[i] = 0;
-        param0->compareMons[i].monName = Strbuf_Init(12, HEAP_ID_9);
-        param0->compareMons[i].nature = Strbuf_Init(12, HEAP_ID_9);
+        param0->compareMons[i].monName = Strbuf_Init(12, HEAP_ID_BOX_DATA);
+        param0->compareMons[i].nature = Strbuf_Init(12, HEAP_ID_BOX_DATA);
     }
 }
 
@@ -3947,7 +3947,7 @@ static void ov19_LoadBoxMonIntoPreview(UnkStruct_ov19_021D4DF0 *param0, BoxPokem
     preview->heldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
     preview->dexNum = GetDexNumber(SaveData_GetDexMode(param2->saveData), preview->species);
     preview->isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL);
-    SpeciesData *speciesData = SpeciesData_FromMonSpecies(preview->species, HEAP_ID_9);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(preview->species, HEAP_ID_BOX_DATA);
     preview->level = SpeciesData_GetLevelAt(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_EXP, NULL));
     preview->markings = BoxPokemon_GetValue(boxMon, MON_DATA_MARKS, NULL);
     preview->type1 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_1, NULL);
@@ -3969,7 +3969,7 @@ static void ov19_LoadBoxMonIntoPreview(UnkStruct_ov19_021D4DF0 *param0, BoxPokem
     }
 
     if (preview->heldItem != ITEM_NONE) {
-        Item_LoadName(preview->heldItemName, preview->heldItem, HEAP_ID_9);
+        Item_LoadName(preview->heldItemName, preview->heldItem, HEAP_ID_BOX_DATA);
     } else {
         MessageLoader_GetStrbuf(param2->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
     }
@@ -4072,7 +4072,7 @@ static void ov19_GiveItemToSelectedMon(UnkStruct_ov19_021D4DF0 *param0, u16 item
     preview->heldItem = item;
 
     if (preview->heldItem != 0) {
-        Item_LoadName(preview->heldItemName, preview->heldItem, HEAP_ID_9);
+        Item_LoadName(preview->heldItemName, preview->heldItem, HEAP_ID_BOX_DATA);
     } else {
         MessageLoader_GetStrbuf(param2->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
     }

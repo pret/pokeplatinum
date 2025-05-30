@@ -72,7 +72,7 @@ static void ov19_021DE8E0(SysTask *param0, void *param1);
 
 BOOL ov19_021DE3E8(UnkStruct_ov19_021DE3E8 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4)
 {
-    UnkStruct_ov19_021DE3E8 *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DE3E8));
+    UnkStruct_ov19_021DE3E8 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DE3E8));
 
     if (v0) {
         v0->unk_04 = param1;
@@ -109,7 +109,7 @@ static void ov19_021DE450(UnkStruct_ov19_021DE3E8 *param0)
         int v4;
 
         ov19_021D783C(&v0, &v1, ov19_021D77D0(param0->unk_04), param0->unk_14->unk_1C, param0->unk_14->unk_20, 0);
-        v3 = Graphics_GetCharData(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(1, 1), 0, &v2, HEAP_ID_10);
+        v3 = Graphics_GetCharData(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(1, 1), 0, &v2, HEAP_ID_BOX_GRAPHICS);
 
         if (v3) {
             int v5;
@@ -227,8 +227,8 @@ static void ov19_021DE5D4(UnkStruct_ov19_021DE3E8 *param0)
             v2 = 2;
         }
 
-        Graphics_LoadObjectTiles(16, Item_FileID(item, 1), 0, Unk_ov19_021E04CC[v3].unk_00, 0, 0, HEAP_ID_10);
-        Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, 2), 1, Unk_ov19_021E04CC[v3].unk_04 * 0x20, 0x20, HEAP_ID_10);
+        Graphics_LoadObjectTiles(16, Item_FileID(item, 1), 0, Unk_ov19_021E04CC[v3].unk_00, 0, 0, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, 2), 1, Unk_ov19_021E04CC[v3].unk_04 * 0x20, 0x20, HEAP_ID_BOX_GRAPHICS);
         Sprite_SetExplicitPriority(param0->unk_1C[v3], v2);
 
         ov19_021D78AC(param0->unk_1C[v3], 2);
@@ -268,8 +268,8 @@ static void ov19_021DE718(UnkStruct_ov19_021DE3E8 *param0, int param1, int param
 
         ov19_021DE694(param0, &v0, &v1);
 
-        Graphics_LoadObjectTiles(16, Item_FileID(param2, 1), 0, Unk_ov19_021E04CC[param1].unk_00, 0, 0, HEAP_ID_10);
-        Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(param2, 2), 1, Unk_ov19_021E04CC[param1].unk_04 * 0x20, 0x20, HEAP_ID_10);
+        Graphics_LoadObjectTiles(16, Item_FileID(param2, 1), 0, Unk_ov19_021E04CC[param1].unk_00, 0, 0, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(param2, 2), 1, Unk_ov19_021E04CC[param1].unk_04 * 0x20, 0x20, HEAP_ID_BOX_GRAPHICS);
         Sprite_SetExplicitPriority(param0->unk_1C[param1], v1);
 
         ov19_021D78AC(param0->unk_1C[param1], 3);
@@ -332,7 +332,7 @@ BOOL ov19_021DE800(UnkStruct_ov19_021DE3E8 *param0)
 
 static void ov19_021DE858(UnkStruct_ov19_021DE3E8 *param0, int param1, const VecFx32 *param2, int param3, int param4)
 {
-    UnkStruct_ov19_021DE858 *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DE858));
+    UnkStruct_ov19_021DE858 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DE858));
 
     if (v0) {
         v0->unk_00 = param0;

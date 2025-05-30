@@ -305,7 +305,7 @@ BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *pa
         *param0 = NULL;
         return 1;
     } else {
-        UnkStruct_ov19_021DCF88 *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DCF88));
+        UnkStruct_ov19_021DCF88 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DCF88));
 
         if (v0) {
             int v1;
@@ -315,7 +315,7 @@ BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *pa
             v0->unk_04 = param2;
             v0->unk_0C = param4;
             v0->unk_14 = NULL;
-            v0->unk_84 = Strbuf_Init(32, HEAP_ID_10);
+            v0->unk_84 = Strbuf_Init(32, HEAP_ID_BOX_GRAPHICS);
             v0->unk_10 = param2->unk_9C.unk_00;
             v0->unk_98 = NULL;
             v0->unk_A0 = NULL;
@@ -418,10 +418,10 @@ void ov19_021DD078(UnkStruct_ov19_021DCF88 *param0)
 void ov19_021DD114(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 {
     if (param0) {
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 127, param0->unk_08, 7, 0, 0, 1, HEAP_ID_10);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 124, param0->unk_08, 7, 0, 0, 1, HEAP_ID_10);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 125, param0->unk_08, 6, 0, 0, 1, HEAP_ID_10);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 126, param0->unk_08, 5, 0, 0, 1, HEAP_ID_10);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 127, param0->unk_08, 7, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 124, param0->unk_08, 7, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 125, param0->unk_08, 6, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 126, param0->unk_08, 5, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
         Bg_FillTilesRange(param0->unk_08, 4, 0x0, 1, 0);
         Bg_FillTilemapRect(param0->unk_08, 4, 0x0, 0, 0, 32, 32, 17);
         Bg_CopyTilemapBufferToVRAM(param0->unk_08, 4);
@@ -430,7 +430,7 @@ void ov19_021DD114(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
         Window_FillTilemap(&(param0->unk_88), 0x0);
         Window_CopyToVRAM(&param0->unk_88);
         ov19_021DE324(param0);
-        Graphics_LoadPaletteFromOpenNARC(param1, 128, 4, 0, 0x20 * 3, HEAP_ID_10);
+        Graphics_LoadPaletteFromOpenNARC(param1, 128, 4, 0, 0x20 * 3, HEAP_ID_BOX_GRAPHICS);
         ov19_021DD224(param0, param1);
     }
 }
@@ -459,10 +459,10 @@ static void ov19_021DD224(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 
 static void ov19_021DD2BC(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 {
-    param0->unk_98 = Graphics_GetCellBankFromOpenNARC(param1, 139, 1, &(param0->unk_9C), HEAP_ID_10);
-    param0->unk_A0 = Graphics_GetAnimBankFromOpenNARC(param1, 140, 1, &(param0->unk_A4), HEAP_ID_10);
-    param0->unk_A8 = Graphics_GetCellBankFromOpenNARC(param1, 142, 1, &(param0->unk_AC), HEAP_ID_10);
-    param0->unk_B0 = Graphics_GetAnimBankFromOpenNARC(param1, 143, 1, &(param0->unk_B4), HEAP_ID_10);
+    param0->unk_98 = Graphics_GetCellBankFromOpenNARC(param1, 139, 1, &(param0->unk_9C), HEAP_ID_BOX_GRAPHICS);
+    param0->unk_A0 = Graphics_GetAnimBankFromOpenNARC(param1, 140, 1, &(param0->unk_A4), HEAP_ID_BOX_GRAPHICS);
+    param0->unk_A8 = Graphics_GetCellBankFromOpenNARC(param1, 142, 1, &(param0->unk_AC), HEAP_ID_BOX_GRAPHICS);
+    param0->unk_B0 = Graphics_GetAnimBankFromOpenNARC(param1, 143, 1, &(param0->unk_B4), HEAP_ID_BOX_GRAPHICS);
 
     NNS_G2dInitImagePaletteProxy(&(param0->unk_18));
     Graphics_LoadPartialPaletteFromOpenNARC(param1, 144, NNS_G2D_VRAM_TYPE_2DSUB, 0, 10, &(param0->unk_18));
@@ -1142,7 +1142,7 @@ static void ov19_021DDD80(UnkStruct_ov19_021DCF88 *param0)
     UnkStruct_ov19_021DDBF8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DDBF8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
 
     if (v0) {
         SysTask *v2;
@@ -1257,7 +1257,7 @@ static void ov19_021DDFA8(UnkStruct_ov19_021DCF88 *param0)
     UnkStruct_ov19_021DDBF8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DDBF8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
 
     if (v0) {
         SysTask *v2;
@@ -1316,7 +1316,7 @@ static void ov19_021DE0A0(UnkStruct_ov19_021DCF88 *param0)
     UnkStruct_ov19_021DDBF8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DDBF8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
 
     if (v0) {
         SysTask *v2;
@@ -1440,7 +1440,7 @@ static void ov19_021DE2A4(UnkStruct_ov19_021DCF88 *param0)
     UnkStruct_ov19_021DDBF8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DDBF8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
 
     if (v0) {
         SysTask *v2;

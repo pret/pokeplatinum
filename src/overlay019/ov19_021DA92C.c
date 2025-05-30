@@ -64,13 +64,13 @@ BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_4C = NULL;
     param0->unk_24 = NULL;
     param0->unk_20 = ov19_021D7818(param1);
-    param0->unk_18 = sub_0200C440(9, 6, 15, HEAP_ID_10);
-    param0->unk_1C = sub_0200C440(1, 2, 15, HEAP_ID_10);
-    param0->unk_28 = Graphics_GetCellBankFromOpenNARC(param6, 16, 1, &(param0->unk_2C), HEAP_ID_10);
+    param0->unk_18 = sub_0200C440(9, 6, 15, HEAP_ID_BOX_GRAPHICS);
+    param0->unk_1C = sub_0200C440(1, 2, 15, HEAP_ID_BOX_GRAPHICS);
+    param0->unk_28 = Graphics_GetCellBankFromOpenNARC(param6, 16, 1, &(param0->unk_2C), HEAP_ID_BOX_GRAPHICS);
     param0->unk_30 = NULL;
     param0->unk_44 = MessageLoader_GetNewStrbuf(param5, 21);
     param0->unk_48 = MessageLoader_GetNewStrbuf(param5, 22);
-    param0->unk_34 = Graphics_GetCellBank(TypeIcon_GetNARC(), TypeIcon_GetCell(), 1, &(param0->unk_38), HEAP_ID_10);
+    param0->unk_34 = Graphics_GetCellBank(TypeIcon_GetNARC(), TypeIcon_GetCell(), 1, &(param0->unk_38), HEAP_ID_BOX_GRAPHICS);
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_3C[v0] = NULL;
@@ -179,7 +179,7 @@ void ov19_021DAADC(UnkStruct_ov19_021DA9E0 *param0)
         return;
     }
 
-    param0->unk_04 = Window_New(HEAP_ID_10, 4);
+    param0->unk_04 = Window_New(HEAP_ID_BOX_GRAPHICS, 4);
 
     if (param0->unk_04) {
         int v1;
@@ -211,7 +211,7 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
     narcID = TypeIcon_GetNARC();
     v3 = TypeIcon_GetChar(2);
 
-    Graphics_LoadPalette(narcID, TypeIcon_GetPlttSrc(), 1, 10 * 0x20, 0x20 * 3, HEAP_ID_10);
+    Graphics_LoadPalette(narcID, TypeIcon_GetPlttSrc(), 1, 10 * 0x20, 0x20 * 3, HEAP_ID_BOX_GRAPHICS);
 
     for (i = 0; i < 2; i++) {
         NNS_G2dInitImageProxy(&v0);
@@ -235,7 +235,7 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
 static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0)
 {
     if (param0->unk_4C == NULL) {
-        UnkStruct_ov19_021DAE2C *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DAE2C));
+        UnkStruct_ov19_021DAE2C *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DAE2C));
 
         if (v0) {
             const PCMonPreview *preview = ov19_GetPCMonPreview(param0->unk_10);
@@ -405,7 +405,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
         v3 = TypeIcon_GetNARC();
         v4 = TypeIcon_GetChar(param1->unk_10->pcMonPreview.type1);
 
-        Graphics_LoadObjectTiles(TypeIcon_GetNARC(), TypeIcon_GetChar(param1->unk_10->pcMonPreview.type1), 0, 1504 * 0x20, 0, 1, HEAP_ID_10);
+        Graphics_LoadObjectTiles(TypeIcon_GetNARC(), TypeIcon_GetChar(param1->unk_10->pcMonPreview.type1), 0, 1504 * 0x20, 0, 1, HEAP_ID_BOX_GRAPHICS);
 
         v2 = *Sprite_GetPosition(param1->unk_3C[0]);
         v2.y = (176 + (16 * param3)) << FX32_SHIFT;
@@ -415,7 +415,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
         Sprite_SetDrawFlag(param1->unk_3C[0], 1);
 
         if (param1->unk_10->pcMonPreview.type1 != param1->unk_10->pcMonPreview.type2) {
-            Graphics_LoadObjectTiles(TypeIcon_GetNARC(), TypeIcon_GetChar(param1->unk_10->pcMonPreview.type2), 0, (1504 + 8) * 0x20, 0, 1, HEAP_ID_10);
+            Graphics_LoadObjectTiles(TypeIcon_GetNARC(), TypeIcon_GetChar(param1->unk_10->pcMonPreview.type2), 0, (1504 + 8) * 0x20, 0, 1, HEAP_ID_BOX_GRAPHICS);
 
             v2.x += (36 << FX32_SHIFT);
 
