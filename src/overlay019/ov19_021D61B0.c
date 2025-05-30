@@ -149,18 +149,18 @@ static void ov19_021D797C(void);
 
 BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4DF0 *param1, const UnkStruct_ov19_021D5DF8 *param2)
 {
-    UnkStruct_ov19_021D61B0 *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021D61B0));
+    UnkStruct_ov19_021D61B0 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D61B0));
 
     if (v0 != NULL) {
         v0->unk_1C4 = param1;
-        v0->unk_1C0 = BgConfig_New(HEAP_ID_10);
+        v0->unk_1C0 = BgConfig_New(HEAP_ID_BOX_GRAPHICS);
 
         if (v0->unk_1C0 != NULL) {
             u32 v1;
             BOOL v2 = 1;
             NARC *v3;
 
-            v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_10);
+            v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_BOX_GRAPHICS);
 
             SetVBlankCallback(NULL, NULL);
             DisableHBlank();
@@ -174,7 +174,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             NNS_G2dInitOamManagerModule();
 
             RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 10);
-            v0->unk_18 = SpriteList_InitRendering(128, &v0->unk_1C, HEAP_ID_10);
+            v0->unk_18 = SpriteList_InitRendering(128, &v0->unk_1C, HEAP_ID_BOX_GRAPHICS);
             SetSubScreenViewRect(&(v0->unk_1C), 0, (384 << FX32_SHIFT));
 
             NNS_G2dInitImagePaletteProxy(&(v0->unk_1A8));
@@ -182,7 +182,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             Graphics_LoadPartialPaletteFromOpenNARC(v3, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(v0->unk_1A8));
             Font_UseImmediateGlyphAccess(FONT_SYSTEM, 10);
 
-            v0->unk_1BC = PokemonSpriteManager_New(HEAP_ID_10);
+            v0->unk_1BC = PokemonSpriteManager_New(HEAP_ID_BOX_GRAPHICS);
 
             for (v1 = 0; v1 < 4; v1++) {
                 v0->unk_08[v1] = NULL;
@@ -326,7 +326,7 @@ void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions func
 
         for (u32 i = 0; i < 4; i++) {
             if (param0->unk_08[i] == NULL) {
-                taskParams = Heap_AllocFromHeap(HEAP_ID_10, sizeof(BoxTaskParams) + functions[function].unk_04);
+                taskParams = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(BoxTaskParams) + functions[function].unk_04);
 
                 if (taskParams != NULL) {
                     taskParams->function = function;
@@ -407,7 +407,7 @@ static void ov19_021D6694(SysTask *param0, void *param1)
 
     switch (v2->unk_06) {
     case 0: {
-        NARC *v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_10);
+        NARC *v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_BOX_GRAPHICS);
 
         ov19_021D74B4(v0, v1);
         ov19_021D75CC(v0, v1, v3);
@@ -443,7 +443,7 @@ static void ov19_021D671C(SysTask *param0, void *param1)
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_10);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_BOX_GRAPHICS);
         v2->unk_06++;
         break;
     case 1:
@@ -465,7 +465,7 @@ static void ov19_021D6780(SysTask *param0, void *param1)
     switch (v2->unk_06) {
     case 0:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_10);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
         v2->unk_06++;
         break;
     case 1:
@@ -486,7 +486,7 @@ static void ov19_021D67DC(SysTask *param0, void *param1)
 
     switch (v2->unk_06) {
     case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_10);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
         v2->unk_06++;
         break;
     case 1:
@@ -1519,7 +1519,7 @@ static void ov19_021D7460(SysTask *param0, void *param1)
     switch (v2->unk_06) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_10);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
         v2->unk_06++;
         break;
     case 1:
@@ -1739,14 +1739,14 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
 
 static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_021D4DF0 *param1, NARC *param2)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 4, param0->unk_1C0, 1, 0, 0, 1, HEAP_ID_10);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 4, param0->unk_1C0, 1, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
     Bg_FillTilemapRect(param0->unk_1C0, 1, 0x0, 0, 0, 32, 32, 17);
     Bg_CopyTilemapBufferToVRAM(param0->unk_1C0, 1);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 1, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_10);
-    Graphics_LoadPaletteFromOpenNARC(param2, 5, 0, 0, 0x20 * 7, HEAP_ID_10);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 1, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
+    Graphics_LoadPaletteFromOpenNARC(param2, 5, 0, 0, 0x20 * 7, HEAP_ID_BOX_GRAPHICS);
 
     if (ov19_GetBoxMode(param1) != PC_MODE_COMPARE) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 0, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 0, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
     }
 
     ov19_021D7A9C(&param0->unk_494);
@@ -1884,7 +1884,7 @@ Sprite *ov19_021D785C(SpriteList *param0, SpriteResourcesHeader *param1, u32 par
     v0.position.z = 0;
     v0.priority = param4;
     v0.vramType = param5;
-    v0.heapID = HEAP_ID_10;
+    v0.heapID = HEAP_ID_BOX_GRAPHICS;
 
     {
         OSIntrMode v2 = OS_DisableInterrupts();

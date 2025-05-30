@@ -82,8 +82,8 @@ BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_10 = NULL;
     param0->unk_754 = 0;
     param0->unk_78E = 1;
-    param0->unk_14 = Graphics_GetCellBankFromOpenNARC(param4, 13, 1, &(param0->unk_1C), HEAP_ID_10);
-    param0->unk_18 = Graphics_GetAnimBankFromOpenNARC(param4, 14, 1, &(param0->unk_20), HEAP_ID_10);
+    param0->unk_14 = Graphics_GetCellBankFromOpenNARC(param4, 13, 1, &(param0->unk_1C), HEAP_ID_BOX_GRAPHICS);
+    param0->unk_18 = Graphics_GetAnimBankFromOpenNARC(param4, 14, 1, &(param0->unk_20), HEAP_ID_BOX_GRAPHICS);
 
     if ((param0->unk_14 == NULL) || (param0->unk_18 == NULL)) {
         return 0;
@@ -535,7 +535,7 @@ BOOL ov19_021D9530(UnkStruct_ov19_021D8E00 *param0)
 
 static void ov19_021D9554(UnkStruct_ov19_021D8E00 *param0, Sprite *param1, fx32 param2, s32 param3, u32 param4)
 {
-    UnkStruct_ov19_021D9554 *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021D9554));
+    UnkStruct_ov19_021D9554 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D9554));
 
     if (v0) {
         VecFx32 v1;
