@@ -172,7 +172,7 @@ void ov19_021D7B4C(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *cust
 static void ov19_021D7BC0(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, int param2, BOOL param3)
 {
     NNSG2dPaletteData *v0;
-    void *v1 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__BOX, Unk_ov19_021E0178[customization->wallpaper].unk_02, &v0, HEAP_ID_10);
+    void *v1 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__BOX, Unk_ov19_021E0178[customization->wallpaper].unk_02, &v0, HEAP_ID_BOX_GRAPHICS);
 
     if (v1) {
         int v2;
@@ -196,7 +196,7 @@ static void ov19_021D7BC0(UnkStruct_ov19_021D8318 *param0, const BoxCustomizatio
 
 static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, int param2)
 {
-    void *v0 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__BOX, Unk_ov19_021E0178[customization->wallpaper].unk_01, TRUE, HEAP_ID_10, TRUE);
+    void *v0 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__BOX, Unk_ov19_021E0178[customization->wallpaper].unk_01, TRUE, HEAP_ID_BOX_GRAPHICS, TRUE);
 
     if (v0 != NULL) {
         NNSG2dCharacterData *v1;
@@ -204,7 +204,7 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const BoxCustomizatio
         if (NNS_G2dGetUnpackedBGCharacterData(v0, &v1)) {
             Window *v2;
 
-            v2 = Window_New(HEAP_ID_10, 1);
+            v2 = Window_New(HEAP_ID_BOX_GRAPHICS, 1);
 
             if (v2) {
                 u32 v3, v4;
@@ -230,7 +230,7 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const BoxCustomizatio
 
 static void ov19_021D7D00(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, u32 param2, u32 param3, u32 param4)
 {
-    void *v0 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__BOX, Unk_ov19_021E0178[customization->wallpaper].unk_00, TRUE, HEAP_ID_10, TRUE);
+    void *v0 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__BOX, Unk_ov19_021E0178[customization->wallpaper].unk_00, TRUE, HEAP_ID_BOX_GRAPHICS, TRUE);
 
     if (v0) {
         u16 *v1;
@@ -438,7 +438,7 @@ static void ov19_021D81B8(UnkStruct_ov19_021D8318 *param0, int param1, int param
     UnkStruct_ov19_021D81B8 *v0;
 
     param0->unk_A3 = 0;
-    v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021D81B8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D81B8));
 
     if (v0) {
         v0->unk_00 = param0;
@@ -571,14 +571,14 @@ void ov19_021D845C(UnkStruct_ov19_021D8318 *param0, u32 param1, const UnkStruct_
     ov19_021DA418(param2, v1, 1);
     ov19_021DA7F4(param0->unk_58F0, v1, 0);
     ov19_021DA754(param0->unk_58F0, v1, v0);
-    ov19_021D78AC(v1->unk_00, ov19_021D85B4(param1));
+    BoxGraphics_SetSpritePriority(v1->unk_00, ov19_021D85B4(param1));
 
     ov19_021D89F4(param0, param1);
 }
 
-UnkStruct_ov19_021DCD18 *ov19_021D84C8(UnkStruct_ov19_021D8318 *param0, u32 param1)
+UnkStruct_ov19_021DCD18 *ov19_021D84C8(UnkStruct_ov19_021D8318 *param0, u32 posInBox)
 {
-    return &param0->unk_A8[param0->unk_02][param1];
+    return &param0->unk_A8[param0->unk_02][posInBox];
 }
 
 void ov19_021D84E0(UnkStruct_ov19_021D8318 *param0)
@@ -782,12 +782,12 @@ static void ov19_021D8764(u16 *param0, const u16 *param1, u32 param2, u32 param3
     }
 }
 
-void ov19_021D8860(UnkStruct_ov19_021D8318 *param0, u32 param1)
+void ov19_021D8860(UnkStruct_ov19_021D8318 *param0, u32 boxCursorPosition)
 {
-    param0->unk_A0 = param1;
+    param0->unk_A0 = boxCursorPosition;
     param0->unk_A4 = 0;
 
-    ov19_021DA7B8(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][param1]), 1);
+    ov19_021DA7B8(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][boxCursorPosition]), 1);
 }
 
 BOOL ov19_021D8898(UnkStruct_ov19_021D8318 *param0)
@@ -799,10 +799,10 @@ BOOL ov19_021D8898(UnkStruct_ov19_021D8318 *param0)
         if (ov19_021DA7E0(param0->unk_58F0, v0)) {
             const UnkStruct_ov19_021D5DF8 *v1 = ov19_021D7964(param0->unk_58FC);
 
-            if (ov19_021D3B18(v1)) {
-                if (ov19_021D3B20(v1)) {
+            if (ov19_HasCheckedCanReleaseMon(v1)) {
+                if (ov19_CanReleaseMon(v1)) {
                     ov19_021DA3F0(param0->unk_58F0, v0, 1);
-                    return 1;
+                    return TRUE;
                 } else {
                     ov19_021DA7B8(param0->unk_58F0, v0, 2);
                     param0->unk_A4++;
@@ -814,12 +814,12 @@ BOOL ov19_021D8898(UnkStruct_ov19_021D8318 *param0)
 
     case 1:
         if (ov19_021DA7E0(param0->unk_58F0, v0)) {
-            return 1;
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void ov19_021D8938(UnkStruct_ov19_021D8318 *param0)
