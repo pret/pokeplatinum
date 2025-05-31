@@ -395,7 +395,7 @@ void ov19_021DCC80(UnkStruct_ov19_021DC680 *param0, u32 param1, const UnkStruct_
     ov19_021DA418(param2, v2, 1);
     ov19_021DA754(param0->unk_38, v2, v1);
     Sprite_SetExplicitPriority(v2->unk_00, 1);
-    ov19_021D78AC(v2->unk_00, 4 + v0);
+    BoxGraphics_SetSpritePriority(v2->unk_00, 4 + v0);
 
     param0->unk_28 = param1;
 }
@@ -413,7 +413,7 @@ void ov19_021DCCD4(UnkStruct_ov19_021DC680 *param0, u32 param1, const UnkStruct_
     ov19_021DA418(param2, v2, 1);
     ov19_021DA754(param0->unk_38, v2, v1);
     Sprite_SetExplicitPriority(v2->unk_00, 1);
-    ov19_021D78AC(v2->unk_00, 4 + v0);
+    BoxGraphics_SetSpritePriority(v2->unk_00, 4 + v0);
 
     param0->unk_28 = param1;
 }

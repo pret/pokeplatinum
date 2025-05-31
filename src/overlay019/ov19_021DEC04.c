@@ -404,8 +404,8 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
             v6.x = v0[i].unk_00 + (((v0[i].unk_08 - v0[i].unk_00) / 256) * (int)(*contestStat));
             v6.y = v0[i].unk_04 + (((v0[i].unk_0C - v0[i].unk_04) / 256) * (int)(*contestStat));
             Sprite_SetPosition(param0->unk_34[compareMonSlot][i], &v6);
-            ov19_021D78AC(param0->unk_34[compareMonSlot][i], 0);
-            ov19_021D78AC(param0->unk_34[compareMonSlot ^ 1][i], 1);
+            BoxGraphics_SetSpritePriority(param0->unk_34[compareMonSlot][i], 0);
+            BoxGraphics_SetSpritePriority(param0->unk_34[compareMonSlot ^ 1][i], 1);
             Sprite_SetDrawFlag(param0->unk_34[compareMonSlot][i], 1);
             contestStat++;
         }

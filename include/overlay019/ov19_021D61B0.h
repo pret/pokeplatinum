@@ -19,9 +19,9 @@
 
 enum BoxFunctions {
     FUNCTION_ov19_021D6694,
-    FUNCTION_ov19_021D671C,
-    FUNCTION_ov19_021D6780,
-    FUNCTION_ov19_021D67DC,
+    FUNCTION_BoxGraphics_ScreenFadeBothToBlack0,
+    FUNCTION_BoxGraphics_ScreenFadeBothToBlack1,
+    FUNCTION_BoxGraphics_ScreenFadeBothToBlack2,
     FUNCTION_ov19_021D6824,
     FUNCTION_ov19_021D68E4,
     FUNCTION_ov19_021D6940,
@@ -32,9 +32,9 @@ enum BoxFunctions {
     FUNCTION_ov19_021D6AB0,
     FUNCTION_ov19_021D6AEC,
     FUNCTION_ov19_021D6B1C,
-    FUNCTION_ov19_PlayReleaseCursorMonAnimation,
-    FUNCTION_ov19_PlayReleaseBoxMonAnimation,
-    FUNCTION_ov19_PlayReleasePartyMonAnimation,
+    FUNCTION_BoxGraphics_PlayReleaseCursorMonAnimation,
+    FUNCTION_BoxGraphics_PlayReleaseBoxMonAnimation,
+    FUNCTION_BoxGraphics_PlayReleasePartyMonAnimation,
     FUNCTION_ov19_021D6C38,
     FUNCTION_ov19_021D6C74,
     FUNCTION_ov19_021D6CB0,
@@ -42,9 +42,9 @@ enum BoxFunctions {
     FUNCTION_ov19_021D6D40,
     FUNCTION_ov19_021D6D88,
     FUNCTION_ov19_021D6DF8,
-    FUNCTION_ov19_DisplayBoxMessage,
+    FUNCTION_BoxGraphics_DisplayBoxMessage,
     FUNCTION_ov19_021D6E70,
-    FUNCTION_ov19_CloseMessageBox,
+    FUNCTION_BoxGraphics_CloseMessageBox,
     FUNCTION_ov19_021D6EC0,
     FUNCTION_ov19_021D6EDC,
     FUNCTION_ov19_021D6F0C,
@@ -55,7 +55,7 @@ enum BoxFunctions {
     FUNCTION_ov19_021D7028,
     FUNCTION_ov19_021D70E8,
     FUNCTION_ov19_021D7138,
-    FUNCTION_ov19_PlayAdjustPartyAnimation,
+    FUNCTION_BoxGraphics_PlayAdjustPartyAnimation,
     FUNCTION_ov19_021D71F8,
     FUNCTION_ov19_021D7248,
     FUNCTION_ov19_021D7278,
@@ -69,14 +69,14 @@ enum BoxFunctions {
     FUNCTION_ov19_021D73EC,
     FUNCTION_ov19_021D7408,
     FUNCTION_ov19_021D7424,
-    FUNCTION_ov19_021D7460,
+    FUNCTION_BoxGraphics_ScreenFadeBothToBlackLogOff,
 };
 
-BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4DF0 *param1, const UnkStruct_ov19_021D5DF8 *param2);
-void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0);
+BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4DF0 *param1, const UnkStruct_ov19_021D5DF8 *param2);
+void BoxGraphics_Free(UnkStruct_ov19_021D61B0 *param0);
 void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions function);
 BOOL ov19_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions function);
-BOOL ov19_CheckTasksDone(UnkStruct_ov19_021D61B0 *param0);
+BOOL ov19_CheckAllTasksDone(UnkStruct_ov19_021D61B0 *param0);
 SysTask *ov19_021D77C8(SysTaskFunc param0, void *param1, u32 param2);
 NNSG2dImagePaletteProxy *ov19_021D77D0(UnkStruct_ov19_021D61B0 *param0);
 UnkStruct_ov19_021DA384 *ov19_021D77D8(UnkStruct_ov19_021D61B0 *param0);
@@ -89,7 +89,7 @@ PokemonSpriteManager *ov19_021D7818(UnkStruct_ov19_021D61B0 *param0);
 int ov19_021D7820(UnkStruct_ov19_021D61B0 *param0);
 void ov19_021D783C(SpriteResourcesHeader *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, NNSG2dCellDataBank *param3, NNSG2dCellAnimBankData *param4, u32 param5);
 Sprite *ov19_021D785C(SpriteList *param0, SpriteResourcesHeader *param1, u32 param2, u32 param3, u32 param4, int param5);
-void ov19_021D78AC(Sprite *param0, u32 param1);
+void BoxGraphics_SetSpritePriority(Sprite *sprite, u32 priority);
 void ov19_021D78C8(const u16 *param0, u16 *param1, u32 param2, u16 param3, u32 param4);
 const UnkStruct_ov19_021D5DF8 *ov19_021D7964(UnkStruct_ov19_021D61B0 *param0);
 void ov19_021D79B8(void *param0, UnkFuncPtr_ov19_021D79B8 param1, void *param2);

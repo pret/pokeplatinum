@@ -231,7 +231,7 @@ static void ov19_021DE5D4(UnkStruct_ov19_021DE3E8 *param0)
         Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, 2), 1, Unk_ov19_021E04CC[v3].unk_04 * 0x20, 0x20, HEAP_ID_BOX_GRAPHICS);
         Sprite_SetExplicitPriority(param0->unk_1C[v3], v2);
 
-        ov19_021D78AC(param0->unk_1C[v3], 2);
+        BoxGraphics_SetSpritePriority(param0->unk_1C[v3], 2);
 
         Sprite_SetPosition(param0->unk_1C[v3], &v1);
         Sprite_SetAnim(param0->unk_1C[v3], 0);
@@ -272,7 +272,7 @@ static void ov19_021DE718(UnkStruct_ov19_021DE3E8 *param0, int param1, int param
         Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(param2, 2), 1, Unk_ov19_021E04CC[param1].unk_04 * 0x20, 0x20, HEAP_ID_BOX_GRAPHICS);
         Sprite_SetExplicitPriority(param0->unk_1C[param1], v1);
 
-        ov19_021D78AC(param0->unk_1C[param1], 3);
+        BoxGraphics_SetSpritePriority(param0->unk_1C[param1], 3);
         Sprite_SetPosition(param0->unk_1C[param1], &v0);
     }
 }
@@ -371,7 +371,7 @@ static void ov19_021DE8E0(SysTask *param0, void *param1)
         break;
     case 1:
         if (Sprite_IsAnimated(v0->unk_04) == 0) {
-            ov19_021D78AC(v0->unk_04, v0->unk_28);
+            BoxGraphics_SetSpritePriority(v0->unk_04, v0->unk_28);
             v0->unk_00->unk_34--;
             SysTask_Done(param0);
             ov19_021D79B8(v0, NULL, NULL);
