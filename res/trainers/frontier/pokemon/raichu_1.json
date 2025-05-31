@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_RAICHU",
+    "moves": [
+        "MOVE_THUNDER_PUNCH",
+        "MOVE_IRON_TAIL",
+        "MOVE_SLAM",
+        "MOVE_QUICK_ATTACK"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_WIDE_LENS",
+    "form": 0
+}

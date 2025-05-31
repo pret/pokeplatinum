@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_BRONZONG",
+    "moves": [
+        "MOVE_DREAM_EATER",
+        "MOVE_HYPNOSIS",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_TRICK_ROOM"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

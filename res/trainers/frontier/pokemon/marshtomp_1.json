@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MARSHTOMP",
+    "moves": [
+        "MOVE_MUD_SHOT",
+        "MOVE_WATER_PULSE",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_GROWL"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MASQUERAIN",
+    "moves": [
+        "MOVE_SILVER_WIND",
+        "MOVE_AIR_CUTTER",
+        "MOVE_SWEET_SCENT",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_SILVERPOWDER",
+    "form": 0
+}

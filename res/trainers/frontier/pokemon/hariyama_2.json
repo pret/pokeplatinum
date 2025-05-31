@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_HARIYAMA",
+    "moves": [
+        "MOVE_REVENGE",
+        "MOVE_PAYBACK",
+        "MOVE_FLING",
+        "MOVE_FAKE_OUT"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_IRON_BALL",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SWAMPERT",
+    "moves": [
+        "MOVE_MUDDY_WATER",
+        "MOVE_EARTH_POWER",
+        "MOVE_ICE_BEAM",
+        "MOVE_COUNTER"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_EXPERT_BELT",
+    "form": 0
+}

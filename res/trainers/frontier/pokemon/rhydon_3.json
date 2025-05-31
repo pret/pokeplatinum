@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_RHYDON",
+    "moves": [
+        "MOVE_OUTRAGE",
+        "MOVE_HAMMER_ARM",
+        "MOVE_SHADOW_CLAW",
+        "MOVE_AVALANCHE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_BRAVE",
+    "item": "ITEM_PERSIM_BERRY",
+    "form": 0
+}

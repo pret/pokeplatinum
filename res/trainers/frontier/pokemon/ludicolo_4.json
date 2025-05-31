@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_LUDICOLO",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_GIGA_DRAIN",
+        "MOVE_ICE_BEAM",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

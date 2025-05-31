@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_FURRET",
+    "moves": [
+        "MOVE_FRUSTRATION",
+        "MOVE_SHADOW_CLAW",
+        "MOVE_TRICK",
+        "MOVE_ASSIST"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHOICE_BAND",
+    "form": 0
+}

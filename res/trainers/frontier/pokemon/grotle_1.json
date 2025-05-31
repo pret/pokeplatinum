@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_GROTLE",
+    "moves": [
+        "MOVE_RAZOR_LEAF",
+        "MOVE_BITE",
+        "MOVE_LEECH_SEED",
+        "MOVE_SYNTHESIS"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_RELAXED",
+    "item": "ITEM_BIG_ROOT",
+    "form": 0
+}

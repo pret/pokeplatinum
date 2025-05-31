@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SKIPLOOM",
+    "moves": [
+        "MOVE_MEGA_DRAIN",
+        "MOVE_AERIAL_ACE",
+        "MOVE_CONFUSION",
+        "MOVE_COTTON_SPORE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_DOCILE",
+    "item": "ITEM_BIG_ROOT",
+    "form": 0
+}

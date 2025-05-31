@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_PARASECT",
+    "moves": [
+        "MOVE_BUG_BITE",
+        "MOVE_GRASS_KNOT",
+        "MOVE_SCRATCH",
+        "MOVE_STUN_SPORE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_ASPEAR_BERRY",
+    "form": 0
+}

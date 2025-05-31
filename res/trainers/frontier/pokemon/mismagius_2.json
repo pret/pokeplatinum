@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MISMAGIUS",
+    "moves": [
+        "MOVE_SHADOW_BALL",
+        "MOVE_CONFUSE_RAY",
+        "MOVE_PERISH_SONG",
+        "MOVE_MEAN_LOOK"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

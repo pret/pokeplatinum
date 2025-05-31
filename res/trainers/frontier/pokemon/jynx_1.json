@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_JYNX",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_ICE_BEAM",
+        "MOVE_LOVELY_KISS",
+        "MOVE_FAKE_TEARS"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

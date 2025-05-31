@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MOLTRES",
+    "moves": [
+        "MOVE_FIRE_BLAST",
+        "MOVE_SOLAR_BEAM",
+        "MOVE_HYPER_BEAM",
+        "MOVE_SUNNY_DAY"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_HEAT_ROCK",
+    "form": 0
+}

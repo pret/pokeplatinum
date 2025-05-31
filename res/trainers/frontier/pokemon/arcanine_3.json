@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_ARCANINE",
+    "moves": [
+        "MOVE_OVERHEAT",
+        "MOVE_SOLAR_BEAM",
+        "MOVE_DRAGON_PULSE",
+        "MOVE_SUNNY_DAY"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

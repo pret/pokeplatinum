@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_GRIMER",
+    "moves": [
+        "MOVE_TOXIC",
+        "MOVE_SHADOW_SNEAK",
+        "MOVE_ACID_ARMOR",
+        "MOVE_MINIMIZE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BLACK_SLUDGE",
+    "form": 0
+}

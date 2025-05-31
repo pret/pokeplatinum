@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CHIKORITA",
+    "moves": [
+        "MOVE_BULLET_SEED",
+        "MOVE_SECRET_POWER",
+        "MOVE_GROWL",
+        "MOVE_LIGHT_SCREEN"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

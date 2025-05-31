@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_AMPHAROS",
+    "moves": [
+        "MOVE_THUNDER",
+        "MOVE_FOCUS_BLAST",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_POWER_GEM"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_ZOOM_LENS",
+    "form": 0
+}

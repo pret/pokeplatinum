@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_GLISCOR",
+    "moves": [
+        "MOVE_GUILLOTINE",
+        "MOVE_EARTHQUAKE",
+        "MOVE_U_TURN",
+        "MOVE_COUNTER"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_FOCUS_SASH",
+    "form": 0
+}

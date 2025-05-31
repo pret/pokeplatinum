@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_GLOOM",
+    "moves": [
+        "MOVE_MEGA_DRAIN",
+        "MOVE_ACID",
+        "MOVE_STUN_SPORE",
+        "MOVE_MOONLIGHT"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_MIRACLE_SEED",
+    "form": 0
+}

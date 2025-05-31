@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_LANTURN",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_DISCHARGE",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_AQUA_RING"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_RINDO_BERRY",
+    "form": 0
+}

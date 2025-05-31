@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MIME_JR",
+    "moves": [
+        "MOVE_COPYCAT",
+        "MOVE_CONFUSION",
+        "MOVE_BARRIER",
+        "MOVE_LIGHT_SCREEN"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

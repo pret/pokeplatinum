@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_KRICKETOT",
+    "moves": [
+        "MOVE_BUG_BITE",
+        "MOVE_BIDE",
+        "MOVE_MUD_SLAP",
+        "MOVE_GROWL"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_RELAXED",
+    "item": "ITEM_LIECHI_BERRY",
+    "form": 0
+}

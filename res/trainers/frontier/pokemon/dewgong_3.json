@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_DEWGONG",
+    "moves": [
+        "MOVE_SHEER_COLD",
+        "MOVE_HORN_DRILL",
+        "MOVE_REST",
+        "MOVE_SLEEP_TALK"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_SALAC_BERRY",
+    "form": 0
+}

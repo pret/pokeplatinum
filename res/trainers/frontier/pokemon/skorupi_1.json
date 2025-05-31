@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SKORUPI",
+    "moves": [
+        "MOVE_POISON_FANG",
+        "MOVE_BUG_BITE",
+        "MOVE_BITE",
+        "MOVE_TOXIC_SPIKES"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_POISON_BARB",
+    "form": 0
+}

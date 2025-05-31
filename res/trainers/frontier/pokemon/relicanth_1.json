@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_RELICANTH",
+    "moves": [
+        "MOVE_WATER_PULSE",
+        "MOVE_ROCK_TOMB",
+        "MOVE_MUD_SPORT",
+        "MOVE_HARDEN"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_RELAXED",
+    "item": "ITEM_WAVE_INCENSE",
+    "form": 0
+}

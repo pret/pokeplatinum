@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_NOSEPASS",
+    "moves": [
+        "MOVE_ANCIENT_POWER",
+        "MOVE_SHOCK_WAVE",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_HARD_STONE",
+    "form": 0
+}

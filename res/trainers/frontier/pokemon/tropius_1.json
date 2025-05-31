@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_TROPIUS",
+    "moves": [
+        "MOVE_RAZOR_LEAF",
+        "MOVE_AERIAL_ACE",
+        "MOVE_LEECH_SEED",
+        "MOVE_CAPTIVATE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LANSAT_BERRY",
+    "form": 0
+}

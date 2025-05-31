@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_RAPIDASH",
+    "moves": [
+        "MOVE_FLARE_BLITZ",
+        "MOVE_POISON_JAB",
+        "MOVE_IRON_TAIL",
+        "MOVE_HORN_DRILL"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_ANORITH",
+    "moves": [
+        "MOVE_FURY_CUTTER",
+        "MOVE_ROCK_BLAST",
+        "MOVE_METAL_CLAW",
+        "MOVE_PROTECT"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_METRONOME",
+    "form": 0
+}

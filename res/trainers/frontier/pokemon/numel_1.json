@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_NUMEL",
+    "moves": [
+        "MOVE_MAGNITUDE",
+        "MOVE_EMBER",
+        "MOVE_ROCK_TOMB",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_SERIOUS",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

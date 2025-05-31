@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SHINX",
+    "moves": [
+        "MOVE_THUNDER_FANG",
+        "MOVE_BITE",
+        "MOVE_HOWL",
+        "MOVE_LEER"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_KINGS_ROCK",
+    "form": 0
+}

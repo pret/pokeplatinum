@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_ARCANINE",
+    "moves": [
+        "MOVE_FIRE_FANG",
+        "MOVE_EXTREME_SPEED",
+        "MOVE_CRUNCH",
+        "MOVE_WILL_O_WISP"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

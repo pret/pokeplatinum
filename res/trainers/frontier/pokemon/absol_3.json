@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_ABSOL",
+    "moves": [
+        "MOVE_NIGHT_SLASH",
+        "MOVE_PSYCHO_CUT",
+        "MOVE_X_SCISSOR",
+        "MOVE_AERIAL_ACE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

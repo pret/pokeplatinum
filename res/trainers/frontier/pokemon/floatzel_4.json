@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_FLOATZEL",
+    "moves": [
+        "MOVE_AQUA_TAIL",
+        "MOVE_ICE_FANG",
+        "MOVE_CRUNCH",
+        "MOVE_BRICK_BREAK"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_FANG",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_BRONZONG",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_SHADOW_BALL",
+        "MOVE_CHARGE_BEAM",
+        "MOVE_SIGNAL_BEAM"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

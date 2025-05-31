@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CHATOT",
+    "moves": [
+        "MOVE_CHATTER",
+        "MOVE_SWIFT",
+        "MOVE_SING",
+        "MOVE_MIRROR_MOVE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_PERSIM_BERRY",
+    "form": 0
+}

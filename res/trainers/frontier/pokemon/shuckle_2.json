@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SHUCKLE",
+    "moves": [
+        "MOVE_WRAP",
+        "MOVE_SWAGGER",
+        "MOVE_ATTRACT",
+        "MOVE_TOXIC"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_GRIP_CLAW",
+    "form": 0
+}

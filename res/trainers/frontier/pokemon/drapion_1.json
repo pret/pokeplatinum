@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_DRAPION",
+    "moves": [
+        "MOVE_POISON_JAB",
+        "MOVE_CRUNCH",
+        "MOVE_AQUA_TAIL",
+        "MOVE_ACUPRESSURE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

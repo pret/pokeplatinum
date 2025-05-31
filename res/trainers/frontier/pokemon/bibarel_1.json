@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_BIBAREL",
+    "moves": [
+        "MOVE_HEADBUTT",
+        "MOVE_WATER_PULSE",
+        "MOVE_QUICK_ATTACK",
+        "MOVE_GROWL"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_QUIRKY",
+    "item": "ITEM_CHOPLE_BERRY",
+    "form": 0
+}

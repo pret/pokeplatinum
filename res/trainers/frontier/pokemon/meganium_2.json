@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MEGANIUM",
+    "moves": [
+        "MOVE_GIGA_DRAIN",
+        "MOVE_LEECH_SEED",
+        "MOVE_TOXIC",
+        "MOVE_SUBSTITUTE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_BIG_ROOT",
+    "form": 0
+}

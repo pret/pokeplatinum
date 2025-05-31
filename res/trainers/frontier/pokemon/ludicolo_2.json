@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_LUDICOLO",
+    "moves": [
+        "MOVE_LEECH_SEED",
+        "MOVE_TOXIC",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

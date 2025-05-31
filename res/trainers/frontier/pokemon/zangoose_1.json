@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_ZANGOOSE",
+    "moves": [
+        "MOVE_SCRATCH",
+        "MOVE_PURSUIT",
+        "MOVE_DETECT",
+        "MOVE_LEER"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_PERSIM_BERRY",
+    "form": 0
+}

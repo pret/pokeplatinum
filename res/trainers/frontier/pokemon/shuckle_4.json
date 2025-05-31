@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SHUCKLE",
+    "moves": [
+        "MOVE_TOXIC",
+        "MOVE_SUBSTITUTE",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

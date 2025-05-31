@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_VICTREEBEL",
+    "moves": [
+        "MOVE_SOLAR_BEAM",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_WRING_OUT",
+        "MOVE_SUNNY_DAY"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}
