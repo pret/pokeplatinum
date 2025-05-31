@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_BLAZIKEN",
+    "moves": [
+        "MOVE_BLAZE_KICK",
+        "MOVE_REVERSAL",
+        "MOVE_AERIAL_ACE",
+        "MOVE_ENDURE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SALAC_BERRY",
+    "form": 0
+}

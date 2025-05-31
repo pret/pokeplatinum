@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_NUZLEAF",
+    "moves": [
+        "MOVE_RAZOR_LEAF",
+        "MOVE_FAINT_ATTACK",
+        "MOVE_SWAGGER",
+        "MOVE_HARDEN"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_ASPEAR_BERRY",
+    "form": 0
+}

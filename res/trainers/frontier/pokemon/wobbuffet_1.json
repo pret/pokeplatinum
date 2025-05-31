@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_WOBBUFFET",
+    "moves": [
+        "MOVE_COUNTER",
+        "MOVE_MIRROR_COAT",
+        "MOVE_CHARM",
+        "MOVE_SPLASH"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_DRATINI",
+    "moves": [
+        "MOVE_TWISTER",
+        "MOVE_WATER_PULSE",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_SUPERSONIC"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_CHERI_BERRY",
+    "form": 0
+}

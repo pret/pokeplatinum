@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_COMBUSKEN",
+    "moves": [
+        "MOVE_FIRE_PUNCH",
+        "MOVE_DOUBLE_KICK",
+        "MOVE_QUICK_ATTACK",
+        "MOVE_SAND_ATTACK"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LIECHI_BERRY",
+    "form": 0
+}

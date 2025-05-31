@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_XATU",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_AIR_CUTTER",
+        "MOVE_OMINOUS_WIND",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_COLBUR_BERRY",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_TORTERRA",
+    "moves": [
+        "MOVE_FRENZY_PLANT",
+        "MOVE_EARTH_POWER",
+        "MOVE_HYPER_BEAM",
+        "MOVE_LEECH_SEED"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

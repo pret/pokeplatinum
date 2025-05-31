@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SNORLAX",
+    "moves": [
+        "MOVE_OUTRAGE",
+        "MOVE_SUPERPOWER",
+        "MOVE_GUNK_SHOT",
+        "MOVE_SEED_BOMB"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

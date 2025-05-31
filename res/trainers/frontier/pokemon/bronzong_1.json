@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_BRONZONG",
+    "moves": [
+        "MOVE_EXTRASENSORY",
+        "MOVE_IRON_HEAD",
+        "MOVE_ROCK_SLIDE",
+        "MOVE_TRICK_ROOM"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_KINGS_ROCK",
+    "form": 0
+}

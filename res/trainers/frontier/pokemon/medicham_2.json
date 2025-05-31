@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MEDICHAM",
+    "moves": [
+        "MOVE_DRAIN_PUNCH",
+        "MOVE_POISON_JAB",
+        "MOVE_DETECT",
+        "MOVE_RECOVER"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_CHERI_BERRY",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SEVIPER",
+    "moves": [
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_CRUNCH",
+        "MOVE_AQUA_TAIL",
+        "MOVE_SWAGGER"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BLACK_SLUDGE",
+    "form": 0
+}

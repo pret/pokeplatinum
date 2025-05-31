@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_BAYLEEF",
+    "moves": [
+        "MOVE_GIGA_DRAIN",
+        "MOVE_BODY_SLAM",
+        "MOVE_GRASS_WHISTLE",
+        "MOVE_REST"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_DOCILE",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

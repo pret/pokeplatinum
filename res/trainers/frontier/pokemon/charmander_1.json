@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CHARMANDER",
+    "moves": [
+        "MOVE_FIRE_FANG",
+        "MOVE_METAL_CLAW",
+        "MOVE_SMOKE_SCREEN",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

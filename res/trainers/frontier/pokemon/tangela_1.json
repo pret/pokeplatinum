@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_TANGELA",
+    "moves": [
+        "MOVE_MEGA_DRAIN",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_TOXIC",
+        "MOVE_BIND"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_PECHA_BERRY",
+    "form": 0
+}

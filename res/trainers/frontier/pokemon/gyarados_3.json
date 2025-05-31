@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_GYARADOS",
+    "moves": [
+        "MOVE_OUTRAGE",
+        "MOVE_WATERFALL",
+        "MOVE_STONE_EDGE",
+        "MOVE_GIGA_IMPACT"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_PERSIM_BERRY",
+    "form": 0
+}

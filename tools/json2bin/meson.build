@@ -13,5 +13,5 @@ encdata_ex_trophy_garden_py = find_program('encdata_ex_trophy_garden.py', native
 encdata_ex_great_marsh_py = find_program('encdata_ex_great_marsh.py', native: true)
 map_matrix_py = find_program('map_matrix.py', native: true)
 npc_trades_py = find_program('npc_trades.py', native: true)
-battletower_data_py = find_program('battletower_data.py', native: true)
+frontier_pokemon_py = find_program('frontier_pokemon.py', native: true)
 frontier_trainers_py = find_program('frontier_trainers.py', native: true)

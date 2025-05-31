@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MILTANK",
+    "moves": [
+        "MOVE_RETURN",
+        "MOVE_IRON_HEAD",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_MILK_DRINK"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_CHERI_BERRY",
+    "form": 0
+}

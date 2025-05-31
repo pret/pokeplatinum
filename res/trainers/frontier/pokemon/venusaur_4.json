@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_VENUSAUR",
+    "moves": [
+        "MOVE_FRENZY_PLANT",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_HYPER_BEAM",
+        "MOVE_SYNTHESIS"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WISE_GLASSES",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_UMBREON",
+    "moves": [
+        "MOVE_PAYBACK",
+        "MOVE_TRUMP_CARD",
+        "MOVE_CURSE",
+        "MOVE_MOONLIGHT"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

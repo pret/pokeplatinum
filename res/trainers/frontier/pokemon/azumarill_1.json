@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_AZUMARILL",
+    "moves": [
+        "MOVE_BUBBLE_BEAM",
+        "MOVE_ROLLOUT",
+        "MOVE_DEFENSE_CURL",
+        "MOVE_TAIL_WHIP"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_PECHA_BERRY",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_DRAGONITE",
+    "moves": [
+        "MOVE_DRACO_METEOR",
+        "MOVE_FLAMETHROWER",
+        "MOVE_THUNDERBOLT",
+        "MOVE_SURF"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_EXPERT_BELT",
+    "form": 0
+}
