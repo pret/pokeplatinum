@@ -588,7 +588,7 @@ static void ov19_021D9600(SysTask *param0, void *param1)
         v0->unk_04--;
 
         if (v0->unk_04 == v0->unk_06) {
-            ov19_021D78AC(v0->unk_00, v0->unk_08);
+            BoxGraphics_SetSpritePriority(v0->unk_00, v0->unk_08);
         }
 
         v0->unk_0C += v0->unk_1C;
@@ -1069,7 +1069,7 @@ static void ov19_021DA038(UnkStruct_ov19_021D8E00 *param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_754; v0++) {
-        ov19_021D78AC(param0->unk_4C[v0].unk_00, 2);
+        BoxGraphics_SetSpritePriority(param0->unk_4C[v0].unk_00, 2);
     }
 
     param0->unk_78C = 1;

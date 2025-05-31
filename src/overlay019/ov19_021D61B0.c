@@ -77,7 +77,7 @@ struct UnkStruct_ov19_021D61B0_t {
 typedef struct {
     enum BoxFunctions function;
     u16 unk_04;
-    u16 unk_06;
+    u16 state;
     u16 unk_08;
     u16 unk_0A;
     UnkStruct_ov19_021D61B0 *unk_0C;
@@ -88,9 +88,9 @@ static void ov19_021D6474(SysTask *param0, void *param1);
 static void BoxTaskParams_Free(BoxTaskParams *params);
 static void ov19_021D6664(SysTask *param0, void *param1);
 static void ov19_021D6694(SysTask *param0, void *param1);
-static void ov19_021D671C(SysTask *param0, void *param1);
-static void ov19_021D6780(SysTask *param0, void *param1);
-static void ov19_021D67DC(SysTask *param0, void *param1);
+static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *task, void *param1);
+static void BoxGraphics_ScreenFadeBothToBlack1(SysTask *task, void *param1);
+static void BoxGraphics_ScreenFadeBothToBlack2(SysTask *task, void *param1);
 static void ov19_021D6824(SysTask *param0, void *param1);
 static void ov19_021D68E4(SysTask *param0, void *param1);
 static void ov19_021D6940(SysTask *param0, void *param1);
@@ -101,9 +101,9 @@ static void ov19_021D6A74(SysTask *param0, void *param1);
 static void ov19_021D6AB0(SysTask *param0, void *param1);
 static void ov19_021D6AEC(SysTask *param0, void *param1);
 static void ov19_021D6B1C(SysTask *param0, void *param1);
-static void ov19_PlayReleaseCursorMonAnimation(SysTask *task, void *param1);
-static void ov19_PlayReleaseBoxMonAnimation(SysTask *task, void *param1);
-static void ov19_PlayReleasePartyMonAnimation(SysTask *task, void *param1);
+static void BoxGraphics_PlayReleaseCursorMonAnimation(SysTask *task, void *param1);
+static void BoxGraphics_PlayReleaseBoxMonAnimation(SysTask *task, void *param1);
+static void BoxGraphics_PlayReleasePartyMonAnimation(SysTask *task, void *param1);
 static void ov19_021D6C38(SysTask *param0, void *param1);
 static void ov19_021D6C74(SysTask *param0, void *param1);
 static void ov19_021D6CB0(SysTask *param0, void *param1);
@@ -111,9 +111,9 @@ static void ov19_021D6CF8(SysTask *param0, void *param1);
 static void ov19_021D6D40(SysTask *param0, void *param1);
 static void ov19_021D6D88(SysTask *param0, void *param1);
 static void ov19_021D6DF8(SysTask *param0, void *param1);
-static void ov19_DisplayBoxMessage(SysTask *task, void *param1);
+static void BoxGraphics_DisplayBoxMessage(SysTask *task, void *param1);
 static void ov19_021D6E70(SysTask *param0, void *param1);
-static void ov19_CloseMessageBox(SysTask *task, void *param1);
+static void BoxGraphics_CloseMessageBox(SysTask *task, void *param1);
 static void ov19_021D6EC0(SysTask *param0, void *param1);
 static void ov19_021D6EDC(SysTask *param0, void *param1);
 static void ov19_021D6F0C(SysTask *param0, void *param1);
@@ -124,7 +124,7 @@ static void ov19_021D6FEC(SysTask *param0, void *param1);
 static void ov19_021D7028(SysTask *param0, void *param1);
 static void ov19_021D70E8(SysTask *param0, void *param1);
 static void ov19_021D7138(SysTask *param0, void *param1);
-static void ov19_PlayAdjustPartyAnimation(SysTask *task, void *param1);
+static void BoxGraphics_PlayAdjustPartyAnimation(SysTask *task, void *param1);
 static void ov19_021D71F8(SysTask *param0, void *param1);
 static void ov19_021D7248(SysTask *param0, void *param1);
 static void ov19_021D7278(SysTask *param0, void *param1);
@@ -138,7 +138,7 @@ static void ov19_021D73B0(SysTask *param0, void *param1);
 static void ov19_021D73EC(SysTask *param0, void *param1);
 static void ov19_021D7408(SysTask *param0, void *param1);
 static void ov19_021D7424(SysTask *param0, void *param1);
-static void ov19_021D7460(SysTask *param0, void *param1);
+static void BoxGraphics_ScreenFadeBothToBlackLogOff(SysTask *task, void *param1);
 static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_021D4DF0 *param1);
 static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_021D4DF0 *param1, NARC *param2);
 static void ov19_021D76FC(void);
@@ -147,7 +147,7 @@ static int ov19_021D77A4(u32 param0, u32 param1);
 static void ov19_021D7970(void);
 static void ov19_021D797C(void);
 
-BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4DF0 *param1, const UnkStruct_ov19_021D5DF8 *param2)
+BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4DF0 *param1, const UnkStruct_ov19_021D5DF8 *param2)
 {
     UnkStruct_ov19_021D61B0 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D61B0));
 
@@ -157,10 +157,10 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
 
         if (v0->unk_1C0 != NULL) {
             u32 v1;
-            BOOL v2 = 1;
-            NARC *v3;
+            BOOL v2 = TRUE;
+            NARC *boxGraphicsNarc;
 
-            v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_BOX_GRAPHICS);
+            boxGraphicsNarc = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_BOX_GRAPHICS);
 
             SetVBlankCallback(NULL, NULL);
             DisableHBlank();
@@ -179,7 +179,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
 
             NNS_G2dInitImagePaletteProxy(&(v0->unk_1A8));
 
-            Graphics_LoadPartialPaletteFromOpenNARC(v3, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(v0->unk_1A8));
+            Graphics_LoadPartialPaletteFromOpenNARC(boxGraphicsNarc, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(v0->unk_1A8));
             Font_UseImmediateGlyphAccess(FONT_SYSTEM, 10);
 
             v0->unk_1BC = PokemonSpriteManager_New(HEAP_ID_BOX_GRAPHICS);
@@ -191,29 +191,29 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             ov19_021D7970();
             *param0 = v0;
 
-            v2 &= ov19_021DA270(&(v0->unk_1C8), v0, v0->unk_1C4, v0->unk_18, v3);
+            v2 &= ov19_021DA270(&(v0->unk_1C8), v0, v0->unk_1C4, v0->unk_18, boxGraphicsNarc);
             v2 &= ov19_021D79F8(&(v0->unk_494), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
-            v2 &= ov19_021D8B54(&(v0->unk_5E24), v0, v0->unk_1C4, v0->unk_18, v3);
-            v2 &= ov19_021DA814(&(v0->unk_65BC), v0, v0->unk_1C4, v0->unk_18, v3);
-            v2 &= ov19_021DA92C(&(v0->unk_6604), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), v3);
-            v2 &= ov19_021DB2FC(&(v0->unk_6658), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), ov19_GetMessageVariableBuffer(param2), ov19_GetOptionsFrame(param2), v3);
-            v2 &= ov19_021DB8E4(&(v0->unk_6690), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, v3);
-            v2 &= ov19_021DC5F0(&(v0->unk_B290), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, v3);
+            v2 &= ov19_021D8B54(&(v0->unk_5E24), v0, v0->unk_1C4, v0->unk_18, boxGraphicsNarc);
+            v2 &= ov19_021DA814(&(v0->unk_65BC), v0, v0->unk_1C4, v0->unk_18, boxGraphicsNarc);
+            v2 &= ov19_021DA92C(&(v0->unk_6604), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), boxGraphicsNarc);
+            v2 &= ov19_021DB2FC(&(v0->unk_6658), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), ov19_GetMessageVariableBuffer(param2), ov19_GetOptionsFrame(param2), boxGraphicsNarc);
+            v2 &= ov19_021DB8E4(&(v0->unk_6690), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, boxGraphicsNarc);
+            v2 &= ov19_021DC5F0(&(v0->unk_B290), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, boxGraphicsNarc);
             v2 &= ov19_021DCF88(&(v0->unk_B408), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
             v2 &= ov19_021DE3E8(&(v0->unk_B40C), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
-            v2 &= ov19_021DEC04(&(v0->unk_B410), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), v3);
+            v2 &= ov19_021DEC04(&(v0->unk_B410), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), boxGraphicsNarc);
 
             v0->unk_B414 = param2;
             v0->unk_00 = SysTask_Start(ov19_021D6474, v0, 2);
             v0->unk_04 = ov19_021D77C8(ov19_021D6664, v0, 1);
 
-            NARC_dtor(v3);
+            NARC_dtor(boxGraphicsNarc);
 
             return v2;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void ov19_021D6474(SysTask *param0, void *param1)
@@ -231,7 +231,7 @@ static void ov19_021D6474(SysTask *param0, void *param1)
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 }
 
-void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0)
+void BoxGraphics_Free(UnkStruct_ov19_021D61B0 *param0)
 {
     SetVBlankCallback(NULL, NULL);
     SysTask_Done(param0->unk_00);
@@ -268,9 +268,9 @@ void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions func
         u32 unk_04;
     } functions[] = {
         { ov19_021D6694, 0 },
-        { ov19_021D671C, 0 },
-        { ov19_021D6780, 0 },
-        { ov19_021D67DC, 0 },
+        { BoxGraphics_ScreenFadeBothToBlackLogIn, 0 },
+        { BoxGraphics_ScreenFadeBothToBlack1, 0 },
+        { BoxGraphics_ScreenFadeBothToBlack2, 0 },
         { ov19_021D6824, 0 },
         { ov19_021D68E4, 0 },
         { ov19_021D6940, 0 },
@@ -281,9 +281,9 @@ void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions func
         { ov19_021D6AB0, 0 },
         { ov19_021D6AEC, 0 },
         { ov19_021D6B1C, 0 },
-        { ov19_PlayReleaseCursorMonAnimation, 0 },
-        { ov19_PlayReleaseBoxMonAnimation, 0 },
-        { ov19_PlayReleasePartyMonAnimation, 0 },
+        { BoxGraphics_PlayReleaseCursorMonAnimation, 0 },
+        { BoxGraphics_PlayReleaseBoxMonAnimation, 0 },
+        { BoxGraphics_PlayReleasePartyMonAnimation, 0 },
         { ov19_021D6C38, 0 },
         { ov19_021D6C74, 0 },
         { ov19_021D6CB0, 0 },
@@ -291,9 +291,9 @@ void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions func
         { ov19_021D6D40, 0 },
         { ov19_021D6D88, 0 },
         { ov19_021D6DF8, 0 },
-        { ov19_DisplayBoxMessage, 0 },
+        { BoxGraphics_DisplayBoxMessage, 0 },
         { ov19_021D6E70, 0 },
-        { ov19_CloseMessageBox, 0 },
+        { BoxGraphics_CloseMessageBox, 0 },
         { ov19_021D6EC0, 0 },
         { ov19_021D6EDC, 0 },
         { ov19_021D6F0C, 0 },
@@ -304,7 +304,7 @@ void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions func
         { ov19_021D7028, 0 },
         { ov19_021D70E8, 0 },
         { ov19_021D7138, 0 },
-        { ov19_PlayAdjustPartyAnimation, 0 },
+        { BoxGraphics_PlayAdjustPartyAnimation, 0 },
         { ov19_021D71F8, 0 },
         { ov19_021D7248, 0 },
         { ov19_021D7278, 0 },
@@ -318,7 +318,7 @@ void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions func
         { ov19_021D73EC, 0 },
         { ov19_021D7408, 0 },
         { ov19_021D7424, 0 },
-        { ov19_021D7460, 0 },
+        { BoxGraphics_ScreenFadeBothToBlackLogOff, 0 },
     };
 
     if (function < NELEMS(functions)) {
@@ -331,7 +331,7 @@ void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions func
                 if (taskParams != NULL) {
                     taskParams->function = function;
                     taskParams->unk_04 = i;
-                    taskParams->unk_06 = 0;
+                    taskParams->state = 0;
                     taskParams->unk_0C = param0;
                     taskParams->unk_10 = ((u8 *)(taskParams) + functions[function].unk_04);
 
@@ -365,7 +365,7 @@ BOOL ov19_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions funct
     return TRUE;
 }
 
-BOOL ov19_CheckTasksDone(UnkStruct_ov19_021D61B0 *param0)
+BOOL ov19_CheckAllTasksDone(UnkStruct_ov19_021D61B0 *param0)
 {
     for (int i = 0; i < 4; i++) {
         if (param0->unk_08[i] != NULL) {
@@ -401,37 +401,37 @@ static void ov19_021D6694(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
+    BoxTaskParams *params = (BoxTaskParams *)param1;
+    v0 = params->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (params->state) {
     case 0: {
-        NARC *v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_BOX_GRAPHICS);
+        NARC *boxGraphicsNarc = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_BOX_GRAPHICS);
 
         ov19_021D74B4(v0, v1);
-        ov19_021D75CC(v0, v1, v3);
-        ov19_021D7774(v0, v1, v3);
-        NARC_dtor(v3);
+        ov19_021D75CC(v0, v1, boxGraphicsNarc);
+        ov19_021D7774(v0, v1, boxGraphicsNarc);
+        NARC_dtor(boxGraphicsNarc);
     }
 
         if (ov19_GetBoxMode(v1) != PC_MODE_COMPARE) {
             ov19_021DAA90(&v0->unk_6604);
-            v2->unk_06++;
+            params->state++;
         } else {
-            BoxTaskParams_Free(v2);
+            BoxTaskParams_Free(params);
         }
         break;
     case 1:
         if (ov19_021DAAC4(&v0->unk_6604)) {
             ov19_021DAF98(&(v0->unk_6604));
-            BoxTaskParams_Free(v2);
+            BoxTaskParams_Free(params);
         }
         break;
     }
 }
 
-static void ov19_021D671C(SysTask *param0, void *param1)
+static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
@@ -439,12 +439,12 @@ static void ov19_021D671C(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_BOX_GRAPHICS);
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (IsScreenFadeDone()) {
@@ -454,7 +454,7 @@ static void ov19_021D671C(SysTask *param0, void *param1)
     }
 }
 
-static void ov19_021D6780(SysTask *param0, void *param1)
+static void BoxGraphics_ScreenFadeBothToBlack1(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
@@ -462,11 +462,11 @@ static void ov19_021D6780(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (IsScreenFadeDone()) {
@@ -476,7 +476,7 @@ static void ov19_021D6780(SysTask *param0, void *param1)
     }
 }
 
-static void ov19_021D67DC(SysTask *param0, void *param1)
+static void BoxGraphics_ScreenFadeBothToBlack2(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
@@ -484,10 +484,10 @@ static void ov19_021D67DC(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (IsScreenFadeDone()) {
@@ -505,23 +505,23 @@ static void ov19_021D6824(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021DE9B8(v0->unk_B40C);
-        v2->unk_06++;
+        v2->state++;
     case 1:
         if (ov19_021DE9E4(v0->unk_B40C) == 0) {
             break;
         }
 
-        v2->unk_06++;
+        v2->state++;
     case 2: {
         int v3 = ov19_021D77A4(v0->unk_494.boxID, v1->customization.boxID);
 
         ov19_021D7B4C(&v0->unk_494, &v1->customization, v3, TRUE);
         ov19_021D7D70(&v0->unk_494, &v1->customization, v3);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        v2->unk_06++;
+        v2->state++;
     }
     case 3:
         if (ov19_021D7E1C(&v0->unk_494) == 0) {
@@ -529,7 +529,7 @@ static void ov19_021D6824(SysTask *param0, void *param1)
         }
 
         ov19_021DE7A0(v0->unk_B40C);
-        v2->unk_06++;
+        v2->state++;
     case 4:
         if (ov19_021DE800(v0->unk_B40C) == 0) {
             break;
@@ -548,12 +548,12 @@ static void ov19_021D68E4(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov19_021D8F60(&(v0->unk_5E24));
         ov19_021DE7A0(v0->unk_B40C);
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D9074(&(v0->unk_5E24))
@@ -573,10 +573,10 @@ static void ov19_021D6940(SysTask *param0, void *param1)
     v1 = v0->unk_1C4;
 
     if (ov19_GetBoxMode(v1) != PC_MODE_COMPARE) {
-        switch (v2->unk_06) {
+        switch (v2->state) {
         case 0:
             ov19_021DAFF8(&(v0->unk_6604));
-            v2->unk_06++;
+            v2->state++;
             break;
         case 1:
             if (ov19_021DB220(&(v0->unk_6604))) {
@@ -585,10 +585,10 @@ static void ov19_021D6940(SysTask *param0, void *param1)
             break;
         }
     } else {
-        switch (v2->unk_06) {
+        switch (v2->state) {
         case 0:
             ov19_021DEE34(v0->unk_B410);
-            v2->unk_06++;
+            v2->state++;
             break;
         case 1:
             if (ov19_021DEE84(v0->unk_B410)) {
@@ -644,10 +644,10 @@ static void ov19_021D6A38(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9230(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D9278(&(v0->unk_5E24))) {
@@ -665,10 +665,10 @@ static void ov19_021D6A74(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9368(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D939C(&(v0->unk_5E24))) {
@@ -686,10 +686,10 @@ static void ov19_021D6AB0(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D94B4(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D9530(&(v0->unk_5E24))) {
@@ -707,10 +707,10 @@ static void ov19_021D6AEC(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9900(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         BoxTaskParams_Free(v2);
@@ -726,14 +726,14 @@ static void ov19_021D6B1C(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021DCAC0(&(v0->unk_B290));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         ov19_021DC834(&(v0->unk_B290));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 2:
         if (ov19_021DC95C(&(v0->unk_B290))) {
@@ -743,7 +743,7 @@ static void ov19_021D6B1C(SysTask *param0, void *param1)
     }
 }
 
-static void ov19_PlayReleaseCursorMonAnimation(SysTask *task, void *param1)
+static void BoxGraphics_PlayReleaseCursorMonAnimation(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
@@ -751,10 +751,10 @@ static void ov19_PlayReleaseCursorMonAnimation(SysTask *task, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9938(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D995C(&(v0->unk_5E24))) {
@@ -764,7 +764,7 @@ static void ov19_PlayReleaseCursorMonAnimation(SysTask *task, void *param1)
     }
 }
 
-static void ov19_PlayReleaseBoxMonAnimation(SysTask *param0, void *param1)
+static void BoxGraphics_PlayReleaseBoxMonAnimation(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
@@ -772,10 +772,10 @@ static void ov19_PlayReleaseBoxMonAnimation(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D8860(&(v0->unk_494), ov19_GetCursorBoxPosition(v1));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D8898(&(v0->unk_494))) {
@@ -785,7 +785,7 @@ static void ov19_PlayReleaseBoxMonAnimation(SysTask *param0, void *param1)
     }
 }
 
-static void ov19_PlayReleasePartyMonAnimation(SysTask *param0, void *param1)
+static void BoxGraphics_PlayReleasePartyMonAnimation(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
@@ -793,10 +793,10 @@ static void ov19_PlayReleasePartyMonAnimation(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021DCAFC(&(v0->unk_B290), ov19_GetCursorPartyPosition(v1));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021DCB20(&(v0->unk_B290))) {
@@ -814,10 +814,10 @@ static void ov19_021D6C38(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021DC29C(&(v0->unk_6690));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021DC364(&(v0->unk_6690))) {
@@ -835,10 +835,10 @@ static void ov19_021D6C74(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021DC3F4(&(v0->unk_6690));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021DC43C(&(v0->unk_6690))) {
@@ -856,10 +856,10 @@ static void ov19_021D6CB0(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9B34(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D9B64(&(v0->unk_5E24))) {
@@ -878,10 +878,10 @@ static void ov19_021D6CF8(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9BD4(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D9C04(&(v0->unk_5E24))) {
@@ -900,10 +900,10 @@ static void ov19_021D6D40(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9C74(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D9CA0(&(v0->unk_5E24))) {
@@ -953,11 +953,11 @@ static void ov19_021D6DF8(SysTask *param0, void *param1)
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9D10(&v0->unk_5E24);
         ov19_021DEB18(v0->unk_B40C);
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021DEB60(v0->unk_B40C)) {
@@ -968,7 +968,7 @@ static void ov19_021D6DF8(SysTask *param0, void *param1)
     }
 }
 
-static void ov19_DisplayBoxMessage(SysTask *param0, void *param1)
+static void BoxGraphics_DisplayBoxMessage(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     BoxTaskParams *params;
@@ -997,7 +997,7 @@ static void ov19_021D6E70(SysTask *param0, void *param1)
     BoxTaskParams_Free(v1);
 }
 
-static void ov19_CloseMessageBox(SysTask *param0, void *param1)
+static void BoxGraphics_CloseMessageBox(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     BoxTaskParams *v1 = (BoxTaskParams *)param1;
@@ -1057,10 +1057,10 @@ static void ov19_021D6F3C(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021DBB48(&(v0->unk_6690));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021DBB68(&(v0->unk_6690))) {
@@ -1079,11 +1079,11 @@ static void ov19_021D6F78(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov19_021DBB70(&(v0->unk_6690));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         BoxTaskParams_Free(v1);
@@ -1100,10 +1100,10 @@ static void ov19_021D6FB0(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021DBB94(&(v0->unk_6690));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021DBBA0(&(v0->unk_6690))) {
@@ -1122,10 +1122,10 @@ static void ov19_021D6FEC(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021D8350(&(v0->unk_494));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021D8370(&(v0->unk_494))) {
@@ -1145,11 +1145,11 @@ static void ov19_021D7028(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov19_021D9690(&(v0->unk_5E24));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021D9704(&(v0->unk_5E24))) {
@@ -1163,14 +1163,14 @@ static void ov19_021D7028(SysTask *param0, void *param1)
             }
 
             v1->unk_08 = 0;
-            v1->unk_06++;
+            v1->state++;
         }
         break;
     case 2:
         if (++(v1->unk_08) >= 6) {
             ov19_021D97FC(&(v0->unk_5E24));
             ov19_021DA8FC(&(v0->unk_65BC), 0);
-            v1->unk_06++;
+            v1->state++;
         }
         break;
     case 3:
@@ -1191,12 +1191,12 @@ static void ov19_021D70E8(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_OPEN7);
         ov19_021D99F4(&(v0->unk_5E24));
         ov19_021DC6C8(&(v0->unk_B290));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021DC6F8(&(v0->unk_B290))) {
@@ -1216,20 +1216,20 @@ static void ov19_021D7138(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021DE9B8(v0->unk_B40C);
-        v1->unk_06++;
+        v1->state++;
     case 1:
         if (ov19_021DE9E4(v0->unk_B40C) == 0) {
             break;
         }
 
-        v1->unk_06++;
+        v1->state++;
     case 2:
         Sound_PlayEffect(SEQ_SE_DP_CLOSE7);
         ov19_021DC768(&(v0->unk_B290));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 3:
         if (ov19_021DC788(&(v0->unk_B290))) {
@@ -1240,7 +1240,7 @@ static void ov19_021D7138(SysTask *param0, void *param1)
     }
 }
 
-static void ov19_PlayAdjustPartyAnimation(SysTask *task, void *param1)
+static void BoxGraphics_PlayAdjustPartyAnimation(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     BoxTaskParams *params;
@@ -1250,10 +1250,10 @@ static void ov19_PlayAdjustPartyAnimation(SysTask *task, void *param1)
     v0 = params->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (params->unk_06) {
+    switch (params->state) {
     case 0:
         ov19_021DC834(&(v0->unk_B290));
-        params->unk_06++;
+        params->state++;
         break;
     case 1:
         if (ov19_021DC95C(&(v0->unk_B290))) {
@@ -1273,11 +1273,11 @@ static void ov19_021D71F8(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         if (ov19_GetCursorLocation(v2) == CURSOR_IN_PARTY) {
             ov19_021DC96C(&v0->unk_B290);
-            v1->unk_06++;
+            v1->state++;
             break;
         }
 
@@ -1317,10 +1317,10 @@ static void ov19_021D7278(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021DD378(v0->unk_B408);
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021DD45C(v0->unk_B408)) {
@@ -1328,7 +1328,7 @@ static void ov19_021D7278(SysTask *param0, void *param1)
                 BoxTaskParams_Free(v1);
             } else {
                 ov19_021DD714(v0->unk_B408);
-                v1->unk_06++;
+                v1->state++;
             }
         }
         break;
@@ -1350,10 +1350,10 @@ static void ov19_021D72E8(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021DD768(v0->unk_B408);
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021DD820(v0->unk_B408)) {
@@ -1444,10 +1444,10 @@ static void ov19_021D73B0(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021D9230(&(v0->unk_5E24));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021D9278(&(v0->unk_5E24))) {
@@ -1495,10 +1495,10 @@ static void ov19_021D7424(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021DEE88(v0->unk_B410);
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021DEEA8(v0->unk_B410)) {
@@ -1508,23 +1508,23 @@ static void ov19_021D7424(SysTask *param0, void *param1)
     }
 }
 
-static void ov19_021D7460(SysTask *param0, void *param1)
+static void BoxGraphics_ScreenFadeBothToBlackLogOff(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
+    BoxTaskParams *params = (BoxTaskParams *)param1;
+    v0 = params->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (params->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
-        v2->unk_06++;
+        params->state++;
         break;
     case 1:
         if (IsScreenFadeDone()) {
-            BoxTaskParams_Free(v2);
+            BoxTaskParams_Free(params);
         }
         break;
     }
@@ -1901,12 +1901,12 @@ Sprite *ov19_021D785C(SpriteList *param0, SpriteResourcesHeader *param1, u32 par
     return v1;
 }
 
-void ov19_021D78AC(Sprite *param0, u32 param1)
+void BoxGraphics_SetSpritePriority(Sprite *sprite, u32 priority)
 {
-    OSIntrMode v0 = OS_DisableInterrupts();
+    OSIntrMode mode = OS_DisableInterrupts();
 
-    Sprite_SetPriority(param0, param1);
-    OS_RestoreInterrupts(v0);
+    Sprite_SetPriority(sprite, priority);
+    OS_RestoreInterrupts(mode);
 }
 
 void ov19_021D78C8(const u16 *param0, u16 *param1, u32 param2, u16 param3, u32 param4)

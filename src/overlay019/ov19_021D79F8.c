@@ -571,7 +571,7 @@ void ov19_021D845C(UnkStruct_ov19_021D8318 *param0, u32 param1, const UnkStruct_
     ov19_021DA418(param2, v1, 1);
     ov19_021DA7F4(param0->unk_58F0, v1, 0);
     ov19_021DA754(param0->unk_58F0, v1, v0);
-    ov19_021D78AC(v1->unk_00, ov19_021D85B4(param1));
+    BoxGraphics_SetSpritePriority(v1->unk_00, ov19_021D85B4(param1));
 
     ov19_021D89F4(param0, param1);
 }
