@@ -210,8 +210,8 @@ BOOL ScrCmd_1DE(ScriptContext *param0)
     v2 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
     v3 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
 
-    *v2 = v4->unk_298[v0].unk_30[v1].unk_00_val1_0;
-    *v3 = v4->unk_298[v0].unk_30[v1].unk_04[0];
+    *v2 = v4->unk_298[v0].unk_30[v1].species;
+    *v3 = v4->unk_298[v0].unk_30[v1].moves[0];
 
     return 0;
 }

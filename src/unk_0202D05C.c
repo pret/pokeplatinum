@@ -17,9 +17,6 @@
 #include "overlay090/struct_ov90_021D1750.h"
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 #include "overlay096/struct_ov96_0223B450_sub2.h"
-#include "overlay104/struct_ov104_0223A348.h"
-#include "overlay104/struct_ov104_0223A348_sub1.h"
-#include "overlay104/struct_ov104_0223A348_sub2.h"
 
 #include "heap.h"
 #include "inlines.h"
@@ -229,21 +226,21 @@ u8 sub_0202D2C0(UnkStruct_0202D750 *param0, int param1)
     return param0->unk_03;
 }
 
-void sub_0202D2F0(UnkStruct_0202D750 *param0, int param1, UnkStruct_ov104_0223A348_sub2 *param2)
+void sub_0202D2F0(UnkStruct_0202D750 *param0, int param1, FrontierPokemonDataDTO *param2)
 {
     if (param1 == 0) {
-        MI_CpuCopy8(param2, param0->unk_C0, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
+        MI_CpuCopy8(param2, param0->unk_C0, sizeof(FrontierPokemonDataDTO) * 3);
     } else {
-        MI_CpuCopy8(param2, param0->unk_18, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
+        MI_CpuCopy8(param2, param0->unk_18, sizeof(FrontierPokemonDataDTO) * 3);
     }
 }
 
 void sub_0202D314(UnkStruct_0202D750 *param0, int param1, UnkStruct_0202D314 *param2)
 {
     if (param1 == 0) {
-        MI_CpuCopy8(param0->unk_C0, param2, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
+        MI_CpuCopy8(param0->unk_C0, param2, sizeof(FrontierPokemonDataDTO) * 3);
     } else {
-        MI_CpuCopy8(param0->unk_18, param2, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
+        MI_CpuCopy8(param0->unk_18, param2, sizeof(FrontierPokemonDataDTO) * 3);
     }
 }
 
@@ -490,31 +487,26 @@ void sub_0202D628(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1)
 
 void sub_0202D63C(UnkStruct_0202D764 *param0, UnkStruct_ov104_0223A348 *param1, const u8 param2)
 {
-    UnkStruct_ov104_0223A348_sub1 *v0;
-    UnkStruct_ov104_0223A348_sub2 *v1;
-    UnkStruct_0202D63C *v2;
-    MessageLoader *v3;
+    FrontierTrainerDataDTO *v0 = &(param1->unk_00);
+    FrontierPokemonDataDTO *v1 = param1->unk_30;
+    UnkStruct_0202D63C *v2 = &(param0->unk_104[param2]);
 
-    v0 = &(param1->unk_00);
-    v1 = param1->unk_30;
-    v2 = &(param0->unk_104[param2]);
-
-    v0->unk_00 = 10000;
-    v0->unk_04 = v2->unk_C9;
+    v0->trainerID = 10000;
+    v0->trainerType = v2->unk_C9;
 
     if (v2->unk_C8_val1_unk_00_0) {
-        v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, HEAP_ID_FIELDMAP);
+        MessageLoader *v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, HEAP_ID_FIELDMAP);
 
-        MessageLoader_Get(v3, 22 + v2->unk_C8_val1_unk_00_1, v0->unk_08);
+        MessageLoader_Get(v3, 22 + v2->unk_C8_val1_unk_00_1, v0->trainerName);
         MessageLoader_Free(v3);
     } else {
-        MI_CpuCopy8(v2->unk_A8, v0->unk_08, 16);
+        MI_CpuCopy8(v2->unk_A8, v0->trainerName, 16);
     }
 
     MI_CpuCopy8(v2->unk_CA, v0->unk_18, 8);
     MI_CpuCopy8(v2->unk_D2, v0->unk_20, 8);
     MI_CpuCopy8(v2->unk_DA, v0->unk_28, 8);
-    MI_CpuCopy8(v2->unk_00, v1, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
+    MI_CpuCopy8(v2->unk_00, v1, sizeof(FrontierPokemonDataDTO) * 3);
 }
 
 void sub_0202D6DC(UnkStruct_0202D764 *param0, UnkStruct_ov96_0223B450_sub2 *param1, u8 param2, u8 param3)

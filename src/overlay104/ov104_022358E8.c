@@ -329,10 +329,10 @@ BOOL ov104_02235BC0(UnkStruct_ov104_0222E930 *param0)
         *v17 = ov104_02236B48(v3);
         break;
     case 15:
-        *v17 = v3->unk_288[v15].unk_00_val1_0;
+        *v17 = v3->unk_288[v15].species;
         break;
     case 16:
-        *v17 = v3->unk_288[v15].unk_04[v16];
+        *v17 = v3->unk_288[v15].moves[v16];
         break;
     case 18:
         v2 = SaveData_GetParty(v11->saveData);
