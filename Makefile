@@ -1,4 +1,24 @@
-.PHONY: all release debug check rom data target format clean distclean purge update setup_release setup_debug configure skrew meson
+# Keep this list in alphabetical order for ease of reference.
+.PHONY:           \
+	all           \
+	check         \
+	clean         \
+	configure     \
+	data          \
+	distclean     \
+	debug         \
+	format        \
+	meson         \
+	purge         \
+	release       \
+	rom           \
+	setup_debug   \
+	setup_release \
+	skrew         \
+	skrewrm       \
+	skrewup       \
+	target        \
+	update
 
 SUBPROJ_DIR := subprojects
 
@@ -30,7 +50,7 @@ endif
 
 # Set up the compiler toolchain dependency
 SKREW_GET := tools/devtools/get_metroskrew.sh
-SKREW_VER := 0.1.2
+SKREW_VER := 0.1.3
 SKREW_DIR := $(SUBPROJ_DIR)/metroskrew
 
 ifneq (,$(findstring Linux,$(UNAME_S)))
@@ -114,8 +134,8 @@ else
 	$(MESON) subprojects purge --confirm
 endif
 
-update: meson
-	$(MESON) subprojects update
+update: meson skrewup
+	$(MESON) subprojects update || true
 
 setup_release: $(BUILD)/build.ninja
 	$(MESON) configure build -Dgdb_debugging=false
@@ -150,6 +170,11 @@ $(MESON_SUB):
 	$(GIT) clone --depth=1 -b $(MESON_VER) https://github.com/mesonbuild/meson $(@D)
 
 skrew: $(SKREW_EXE)
+
+skrewrm:
+	rm -rf $(SKREW_DIR)
+
+skrewup: skrewrm skrew
 
 $(SKREW_EXE):
 	SKREW_SYS=$(SKREW_SYS) SKREW_VER=$(SKREW_VER) SKREW_DIR=$(SKREW_DIR) $(SKREW_GET)
