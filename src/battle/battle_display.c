@@ -1905,7 +1905,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         v2.heapID = HEAP_ID_BATTLE;
         v2.target = v0->unk_81;
         v2.ballID = v0->unk_8E;
-        v2.cellActorSys = ov16_0223E010(v0->unk_00);
+        v2.cellActorSys = BattleSystem_GetSpriteSystem(v0->unk_00);
         v2.paletteSys = BattleSystem_PaletteSys(v0->unk_00);
         v2.bgPrio = 1;
         v2.surface = 0;
@@ -2158,7 +2158,7 @@ static void ov16_0225F764(SysTask *param0, void *param1)
                 v5.mode = 5;
                 v5.target = v0->unk_69;
                 v5.ballID = v0->unk_6E;
-                v5.cellActorSys = ov16_0223E010(v0->unk_00);
+                v5.cellActorSys = BattleSystem_GetSpriteSystem(v0->unk_00);
                 v5.paletteSys = BattleSystem_PaletteSys(v0->unk_00);
                 v5.bgPrio = 1;
                 v5.surface = 0;
@@ -2174,7 +2174,7 @@ static void ov16_0225F764(SysTask *param0, void *param1)
                 v6.mode = 5;
                 v6.target = v0->unk_69;
                 v6.ballID = v0->unk_6E;
-                v6.cellActorSys = ov16_0223E010(v0->unk_00);
+                v6.cellActorSys = BattleSystem_GetSpriteSystem(v0->unk_00);
                 v6.paletteSys = BattleSystem_PaletteSys(v0->unk_00);
                 v6.bgPrio = 1;
                 v6.surface = 0;
@@ -2512,7 +2512,7 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
                 v6.heapID = HEAP_ID_BATTLE;
                 v6.mode = 4;
                 v6.target = v0->unk_09;
-                v6.cellActorSys = ov16_0223E010(v0->unk_00);
+                v6.cellActorSys = BattleSystem_GetSpriteSystem(v0->unk_00);
                 v6.paletteSys = BattleSystem_PaletteSys(v0->unk_00);
                 v6.surface = 0;
                 v6.battleSys = v0->unk_00;
@@ -2555,7 +2555,7 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
                 {
                     SpriteManager *v8;
 
-                    v8 = ov16_0223E018(v0->unk_00);
+                    v8 = BattleSystem_GetSpriteManager(v0->unk_00);
                     Sprite_DeleteAndFreeResources(v0->unk_04->unk_18);
                     v0->unk_04->unk_18 = NULL;
 
@@ -2608,7 +2608,7 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
             {
                 SpriteManager *v10;
 
-                v10 = ov16_0223E018(v0->unk_00);
+                v10 = BattleSystem_GetSpriteManager(v0->unk_00);
 
                 Sprite_DeleteAndFreeResources(v0->unk_04->unk_18);
                 v0->unk_04->unk_18 = NULL;
@@ -2698,7 +2698,7 @@ static void ov16_02260284(SysTask *param0, void *param1)
     case 1: {
         SpriteManager *v3;
 
-        v3 = ov16_0223E018(v0->unk_00);
+        v3 = BattleSystem_GetSpriteManager(v0->unk_00);
         Sprite_DeleteAndFreeResources(v0->unk_04->unk_18);
         v0->unk_04->unk_18 = NULL;
 
@@ -3216,7 +3216,7 @@ static void ov16_02260C00(SysTask *param0, void *param1)
             NARC *v11 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
             for (i = 0; i < 4; i++) {
-                v8.unk_00[i] = v0->unk_0C[i];
+                v8.moveIDs[i] = v0->unk_0C[i];
                 v8.unk_08[i] = v0->unk_14[i];
                 v8.unk_0C[i] = v0->unk_18[i];
             }
@@ -5297,7 +5297,7 @@ static void ShowPartyGaugeTask(SysTask *param0, void *param1)
             }
         }
 
-        v3 = PartyGauge_Show(v0->status, v1, v4, v5, ov16_0223E010(v0->battleSys), ov16_0223E018(v0->battleSys));
+        v3 = PartyGauge_Show(v0->status, v1, v4, v5, BattleSystem_GetSpriteSystem(v0->battleSys), BattleSystem_GetSpriteManager(v0->battleSys));
         ov16_0223E040(v0->battleSys, v1, v3);
     }
         v0->state++;
@@ -6075,8 +6075,8 @@ static ManagedSprite *ov16_022643B8(BattleSystem *battleSys, int param1, int par
     ManagedSprite *v3;
     int v4;
 
-    v0 = ov16_0223E010(battleSys);
-    v1 = ov16_0223E018(battleSys);
+    v0 = BattleSystem_GetSpriteSystem(battleSys);
+    v1 = BattleSystem_GetSpriteManager(battleSys);
     v2 = BattleSystem_PaletteSys(battleSys);
 
     if (param1 & 0x1) {
@@ -6106,7 +6106,7 @@ static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, UnkStruc
 
     v0.unk_04 = BattleSystem_BGL(battleSys);
     v0.unk_08 = BattleSystem_PaletteSys(battleSys);
-    v0.unk_00 = ov16_0223E010(battleSys);
+    v0.unk_00 = BattleSystem_GetSpriteSystem(battleSys);
 
     for (i = 0; i < 4; i++) {
         v0.unk_0C[i] = ov16_0223F2AC(battleSys, i);

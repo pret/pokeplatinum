@@ -78,8 +78,8 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSystem);
 UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem);
-SpriteSystem *ov16_0223E010(BattleSystem *battleSystem);
-SpriteManager *ov16_0223E018(BattleSystem *battleSystem);
+SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSystem);
+SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSystem);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSystem, int param1);
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSystem);
 UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *battleSystem);
@@ -297,12 +297,12 @@ UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem)
     return battleSystem->unk_8C;
 }
 
-SpriteSystem *ov16_0223E010(BattleSystem *battleSystem)
+SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSystem)
 {
     return battleSystem->unk_90;
 }
 
-SpriteManager *ov16_0223E018(BattleSystem *battleSystem)
+SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSystem)
 {
     return battleSystem->unk_94;
 }

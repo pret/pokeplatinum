@@ -1352,7 +1352,7 @@ static void ov91_021D22A0(UnkStruct_ov91_021D0ED8 *param0, u16 param1, u16 param
     }
 
     SpriteSystem_ReplaceCharResObj(param0->unk_110, param0->unk_114, GetBattleGraphicNarcIndex(), GetIconFromMoveType(v0), 1, 47276 + param2);
-    ManagedSprite_SetExplicitPalette(param0->unk_118[6 + param2], GetPalleteFromMoveType(v0) + 2);
+    ManagedSprite_SetExplicitPalette(param0->unk_118[6 + param2], GetPaletteFromMoveType(v0) + 2);
 }
 
 static void ov91_021D2314(UnkStruct_ov91_021D0ED8 *param0)
@@ -1430,7 +1430,7 @@ static void ov91_021D24B4(UnkStruct_ov91_021D0ED8 *param0, u16 param1)
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
     SpriteSystem_ReplaceCharResObj(param0->unk_110, param0->unk_114, sub_0207CAC0(), GetIconFromMoveCategory(v0), 1, 47275);
-    ManagedSprite_SetExplicitPalette(param0->unk_118[5], GetPalleteFromMoveCategory(v0) + 2);
+    ManagedSprite_SetExplicitPalette(param0->unk_118[5], GetPaletteFromMoveCategory(v0) + 2);
 }
 
 static void ov91_021D2508(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)

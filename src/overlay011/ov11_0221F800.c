@@ -415,21 +415,21 @@ void include_unk_ov11_0221FBAC()
     Unk_ov11_0221FBAC[0];
 }
 
-const u16 *ov11_0221F800(int param0)
+const u16 *GetPaletteSourceFromMoveType(int moveType)
 {
-    const u16 *v0;
+    const u16 *paletteSource;
 
-    if (param0 != -1) {
-        v0 = Unk_ov11_0221FBD0[param0];
+    if (moveType != -1) {
+        paletteSource = Unk_ov11_0221FBD0[moveType];
     } else {
-        v0 = Unk_ov11_0221F96C;
+        paletteSource = Unk_ov11_0221F96C;
     }
 
-    return v0;
+    return paletteSource;
 }
 
-void ov11_0221F81C(PaletteData *param0, int param1, int param2, int param3, int param4)
+void ov11_0221F81C(PaletteData *paletteSys, int moveType, int unused, int bufferID, int paletteIndex)
 {
-    const u16 *v0 = ov11_0221F800(param1);
-    PaletteData_LoadBuffer(param0, v0, param3, param4 * 16, 0x20);
+    const u16 *paletteSource = GetPaletteSourceFromMoveType(moveType);
+    PaletteData_LoadBuffer(paletteSys, paletteSource, bufferID, paletteIndex * 16, 0x20);
 }

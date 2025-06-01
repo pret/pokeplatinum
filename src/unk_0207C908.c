@@ -34,7 +34,7 @@ __attribute__((aligned(4))) static const u32 sMoveTypeIconIndex[] = {
     0xEF
 };
 
-__attribute__((aligned(4))) static const u8 sMoveTypeIconPalleteIndex[] = {
+__attribute__((aligned(4))) static const u8 sMoveTypeIconPaletteIndex[] = {
     0x0, // 0 to 17 are pokemon types
     0x0,
     0x1,
@@ -66,7 +66,7 @@ __attribute__((aligned(4))) static const u32 sMoveCategoryIconIndex[] = {
     0xF5
 };
 
-__attribute__((aligned(4))) static const u8 sMoveCategoryIconPalleteIndex[] = {
+__attribute__((aligned(4))) static const u8 sMoveCategoryIconPaletteIndex[] = {
     0x0,
     0x1,
     0x0
@@ -93,10 +93,10 @@ u32 GetMoveTypeIconAnimBank(void)
     return 243;
 }
 
-u8 GetPalleteFromMoveType(int moveType)
+u8 GetPaletteFromMoveType(int moveType)
 {
-    GF_ASSERT(moveType < NELEMS(sMoveTypeIconPalleteIndex));
-    return sMoveTypeIconPalleteIndex[moveType];
+    GF_ASSERT(moveType < NELEMS(sMoveTypeIconPaletteIndex));
+    return sMoveTypeIconPaletteIndex[moveType];
 }
 
 enum NarcID GetBattleGraphicNarcIndex(void)
@@ -141,16 +141,16 @@ void sub_0207CA44(SpriteManager *param0, u32 param1, u32 param2)
     SpriteManager_UnloadAnimObjById(param0, param2);
 }
 
-ManagedSprite *sub_0207CA58(SpriteSystem *param0, SpriteManager *param1, int param2, const SpriteTemplate *param3)
+ManagedSprite *CreateMoveSelectSprite(SpriteSystem *spriteSys, SpriteManager *spriteMan, int moveType, const SpriteTemplate *spriteTemplate)
 {
-    ManagedSprite *v0;
-    SpriteTemplate v1;
+    ManagedSprite *managedSprite;
+    SpriteTemplate template;
 
-    v1 = *param3;
-    v1.plttIdx = GetPalleteFromMoveType(param2);
-    v0 = SpriteSystem_NewSprite(param0, param1, &v1);
+    template = *spriteTemplate;
+    template.plttIdx = GetPaletteFromMoveType(moveType);
+    managedSprite = SpriteSystem_NewSprite(spriteSys, spriteMan, &template);
 
-    return v0;
+    return managedSprite;
 }
 
 void sub_0207CA88(ManagedSprite *param0)
@@ -164,10 +164,10 @@ u32 GetIconFromMoveCategory(int moveCat)
     return sMoveCategoryIconIndex[moveCat];
 }
 
-u8 GetPalleteFromMoveCategory(int moveCat)
+u8 GetPaletteFromMoveCategory(int moveCat)
 {
-    GF_ASSERT(moveCat < NELEMS(sMoveCategoryIconPalleteIndex));
-    return sMoveCategoryIconPalleteIndex[moveCat];
+    GF_ASSERT(moveCat < NELEMS(sMoveCategoryIconPaletteIndex));
+    return sMoveCategoryIconPaletteIndex[moveCat];
 }
 
 enum NarcID sub_0207CAC0(void)

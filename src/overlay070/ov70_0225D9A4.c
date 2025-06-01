@@ -2625,7 +2625,7 @@ static void ov70_0225FDA0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225FA
             Bg_LoadTiles(param2->unk_00, Unk_ov70_0226D5CC[3], v4->pRawData, 4 * 2 * 32, Unk_ov70_0226D590[v1]);
             Heap_FreeToHeap(v3);
             Bg_CopyToTilemapRect(param2->unk_00, Unk_ov70_0226D5CC[3], 26, 2 + (2 * v1), 4, 2, Unk_ov70_0226D624[v1], 0, 0, 4, 2);
-            Bg_ChangeTilemapRectPalette(param2->unk_00, Unk_ov70_0226D5CC[3], 26, 2 + (2 * v1), 4, 2, 11 + GetPalleteFromMoveType(v2));
+            Bg_ChangeTilemapRectPalette(param2->unk_00, Unk_ov70_0226D5CC[3], 26, 2 + (2 * v1), 4, 2, 11 + GetPaletteFromMoveType(v2));
             Bg_ScheduleTilemapTransfer(param2->unk_00, Unk_ov70_0226D5CC[3]);
         }
     }

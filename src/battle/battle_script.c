@@ -10562,7 +10562,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v7.heapID = HEAP_ID_BATTLE;
                 v7.target = v1 + 20000;
                 v7.ballID = v2->ball;
-                v7.cellActorSys = ov16_0223E010(v2->battleSys);
+                v7.cellActorSys = BattleSystem_GetSpriteSystem(v2->battleSys);
                 v7.paletteSys = BattleSystem_PaletteSys(v2->battleSys);
                 v7.bgPrio = 1;
                 v7.surface = 0;
@@ -12201,8 +12201,8 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     v7 = ov16_0223E0D4(battleSys);
     v5 = BattleSystem_StringTemplate(battleSys);
     v8 = BattleSystem_BGL(battleSys);
-    v1 = ov16_0223E010(battleSys);
-    v2 = ov16_0223E018(battleSys);
+    v1 = BattleSystem_GetSpriteSystem(battleSys);
+    v2 = BattleSystem_GetSpriteManager(battleSys);
     v3 = BattleSystem_PaletteSys(battleSys);
 
     SpriteSystem_LoadCharResObj(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 256, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
@@ -12272,7 +12272,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
 
 static void BattleScript_FreePartyLevelUpIcon(BattleSystem *battleSys, BattleScriptTaskData *param1)
 {
-    SpriteManager *v0 = ov16_0223E018(battleSys);
+    SpriteManager *v0 = BattleSystem_GetSpriteManager(battleSys);
 
     Sprite_DeleteAndFreeResources(param1->sprites[0]);
     Sprite_DeleteAndFreeResources(param1->sprites[1]);

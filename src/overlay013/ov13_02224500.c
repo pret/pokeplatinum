@@ -234,7 +234,7 @@ void ov13_02224500(UnkStruct_ov13_022213F0 *param0)
 static void ov13_0222453C(UnkStruct_ov13_022213F0 *param0)
 {
     SpriteResourceCapacities v0 = { 18, 6, 6, 6, 0, 0 };
-    SpriteSystem *v1 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteSystem *v1 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
     param0->unk_1FB0 = SpriteManager_New(v1);
 
@@ -247,7 +247,7 @@ static void ov13_02224588(UnkStruct_ov13_022213F0 *param0)
     SpriteSystem *v0;
     u32 v1;
     NARC *v2 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_00->heapID);
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, v0, param0->unk_1FB0, v2, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, 45063);
     SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v2, PokeIcon32KCellsFileIndex(), FALSE, 45063);
@@ -266,7 +266,7 @@ static void ov13_02224588(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02224670(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteSystem *v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->heapID);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconPltt(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45064);
@@ -281,7 +281,7 @@ static void ov13_02224720(UnkStruct_ov13_022213F0 *param0)
     SpriteSystem *v0;
     u32 v1;
 
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
     sub_0207C9B0(param0->unk_1E4, 3, v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 45065);
     sub_0207C9EC(v0, param0->unk_1FB0, 45065, 45065);
@@ -298,7 +298,7 @@ static void ov13_02224798(UnkStruct_ov13_022213F0 *param0)
     SpriteSystem *v0;
     u32 v1;
     NARC *v2 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->heapID);
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, v0, param0->unk_1FB0, v2, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45066);
     SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v2, sub_02081938(), FALSE, 45066);
@@ -309,7 +309,7 @@ static void ov13_02224798(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02224848(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteSystem *v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
     SpriteSystem_LoadPaletteBuffer(param0->unk_1E4, 3, v0, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 27, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45067);
     SpriteSystem_LoadCellResObj(v0, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 25, FALSE, 45067);
@@ -320,7 +320,7 @@ static void ov13_02224848(UnkStruct_ov13_022213F0 *param0)
 static ManagedSprite *ov13_022248D8(UnkStruct_ov13_022213F0 *param0, u32 param1)
 {
     SpriteTemplate v0;
-    SpriteSystem *v1 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteSystem *v1 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
     v0.x = 0;
     v0.y = 0;
@@ -355,7 +355,7 @@ void ov13_02224970(UnkStruct_ov13_022213F0 *param0)
     SpriteSystem *v0;
     u32 v1;
 
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
     for (v1 = 0; v1 < 38; v1++) {
         Sprite_DeleteAndFreeResources(param0->unk_1FB4[v1]);
@@ -386,18 +386,18 @@ static void ov13_022249CC(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02224A0C(UnkStruct_ov13_022213F0 *param0, ManagedSprite *param1, u32 param2, u8 moveType)
 {
-    SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteSystem *v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
     SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, GetBattleGraphicNarcIndex(), GetIconFromMoveType(moveType), 1, param2);
-    ManagedSprite_SetExplicitPalette(param1, GetPalleteFromMoveType(moveType) + 4);
+    ManagedSprite_SetExplicitPalette(param1, GetPaletteFromMoveType(moveType) + 4);
 }
 
 static void ov13_02224A5C(UnkStruct_ov13_022213F0 *param0, ManagedSprite *param1, u32 param2)
 {
-    SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteSystem *v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
     SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, sub_0207CAC0(), GetIconFromMoveCategory(param2), 1, 45077);
-    ManagedSprite_SetExplicitPalette(param1, GetPalleteFromMoveCategory(param2) + 4);
+    ManagedSprite_SetExplicitPalette(param1, GetPaletteFromMoveCategory(param2) + 4);
 }
 
 static void ov13_02224AB0(u16 param0, ManagedSprite *param1, const int param2, const int param3)
@@ -785,7 +785,7 @@ static void ov13_0222554C(UnkStruct_ov13_022213F0 *param0)
     SpriteSystem *v0;
     UnkStruct_ov16_0226DC24 *v1;
 
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
     ov16_0226DB7C(v0, param0->unk_1FB0, param0->unk_1E4, param0->unk_00->heapID, 45080, 45068, 45068, 45068);
     v1 = ov16_0226DC24(v0, param0->unk_1FB0, param0->unk_00->heapID, 45080, 45068, 45068, 45068, 0, 1);
 

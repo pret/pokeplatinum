@@ -3,7 +3,7 @@
 
 #include "palette.h"
 
-const u16 *ov11_0221F800(int param0);
-void ov11_0221F81C(PaletteData *param0, int param1, int param2, int param3, int param4);
+const u16 *GetPaletteSourceFromMoveType(int moveType);
+void ov11_0221F81C(PaletteData *paletteSys, int moveType, int unused, int bufferID, int paletteIndex);
 
 #endif // POKEPLATINUM_OV11_0221F800_H

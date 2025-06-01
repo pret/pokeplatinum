@@ -37,7 +37,7 @@ u32 GetIconFromMoveType(int moveType);
 u32 sub_0207C920(void);
 u32 GetMoveTypeIconCellBank(void);
 u32 GetMoveTypeIconAnimBank(void);
-u8 GetPalleteFromMoveType(int moveType);
+u8 GetPaletteFromMoveType(int moveType);
 enum NarcID GetBattleGraphicNarcIndex(void);
 void Window_PutRectToTilemap(Window *param0, u32 param1, u32 param2);
 static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0);
@@ -417,7 +417,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
         v2.y = (176 + (16 * param3)) << FX32_SHIFT;
 
         Sprite_SetPosition(param1->unk_3C[0], &v2);
-        Sprite_SetExplicitPalette(param1->unk_3C[0], 10 + GetPalleteFromMoveType(param1->unk_10->pcMonPreview.type1));
+        Sprite_SetExplicitPalette(param1->unk_3C[0], 10 + GetPaletteFromMoveType(param1->unk_10->pcMonPreview.type1));
         Sprite_SetDrawFlag(param1->unk_3C[0], 1);
 
         if (param1->unk_10->pcMonPreview.type1 != param1->unk_10->pcMonPreview.type2) {
@@ -426,7 +426,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
             v2.x += (36 << FX32_SHIFT);
 
             Sprite_SetPosition(param1->unk_3C[1], &v2);
-            Sprite_SetExplicitPalette(param1->unk_3C[1], 10 + GetPalleteFromMoveType(param1->unk_10->pcMonPreview.type2));
+            Sprite_SetExplicitPalette(param1->unk_3C[1], 10 + GetPaletteFromMoveType(param1->unk_10->pcMonPreview.type2));
             Sprite_SetDrawFlag(param1->unk_3C[1], 1);
         } else {
             Sprite_SetDrawFlag(param1->unk_3C[1], 0);
