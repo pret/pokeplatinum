@@ -1,16 +1,16 @@
 #ifndef POKEPLATINUM_OV13_02227288_H
 #define POKEPLATINUM_OV13_02227288_H
 
-#include "overlay013/struct_ov13_02227244.h"
+#include "overlay013/battle_bag.h"
 
-void ov13_02227288(UnkStruct_ov13_02227244 *param0);
-void ov13_022272AC(UnkStruct_ov13_02227244 *param0, u32 param1);
-void ov13_02227324(UnkStruct_ov13_02227244 *param0);
-void ov13_02227334(UnkStruct_ov13_02227244 *param0);
-void ov13_02227350(UnkStruct_ov13_02227244 *param0, u32 param1);
-void ov13_02227650(UnkStruct_ov13_02227244 *param0);
-void ov13_02227698(UnkStruct_ov13_02227244 *param0);
-void ov13_022279F4(UnkStruct_ov13_02227244 *param0);
-void ov13_02227A1C(UnkStruct_ov13_02227244 *param0);
+void ov13_02227288(BattleBag *param0);
+void ov13_022272AC(BattleBag *param0, u32 param1);
+void ov13_02227324(BattleBag *param0);
+void ov13_02227334(BattleBag *param0);
+void ov13_02227350(BattleBag *param0, u32 param1);
+void ov13_02227650(BattleBag *param0);
+void ov13_02227698(BattleBag *param0);
+void DisplayBattleBagMessage(BattleBag *battleBag);
+void ov13_02227A1C(BattleBag *param0);
 
 #endif // POKEPLATINUM_OV13_02227288_H
