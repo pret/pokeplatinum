@@ -8,7 +8,6 @@
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay005/struct_ov5_021DE5D0.h"
 #include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
@@ -792,7 +791,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     PokemonSpriteTemplate v1;
     SpriteResourcesHeader v2;
     SpriteListTemplate v3;
-    UnkStruct_ov5_021DE5D0 v4;
+    TrainerClassGraphics trainerClassGraphics;
     NNSG2dImageProxy v5;
     NNSG2dImagePaletteProxy v6;
     NNSG2dCharacterData *v7;
@@ -858,13 +857,13 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     NNS_G2dLoadImage1DMapping(v7, 38400, NNS_G2D_VRAM_TYPE_2DMAIN, &v5);
     NNS_G2dLoadPalette(v8, 192, NNS_G2D_VRAM_TYPE_2DMAIN, &v6);
 
-    sub_02076AAC(((TrainerInfo_Gender(param0->unk_0C->unk_00) == 1) ? 1 : 0), 2, &v4);
-    sub_020135F0(v4.unk_00, v4.unk_14, HEAP_ID_63, &v0[0], param0->unk_310);
+    Pokemon_InitTrainerClassGraphics(((TrainerInfo_Gender(param0->unk_0C->unk_00) == GENDER_FEMALE) ? TRAINER_CLASS_PLAYER_FEMALE : TRAINER_CLASS_PLAYER_MALE), 2, &trainerClassGraphics);
+    sub_020135F0(trainerClassGraphics.narcID, trainerClassGraphics.scan, HEAP_ID_63, &v0[0], param0->unk_310);
 
     DC_FlushRange(param0->unk_310, 3200);
     GX_LoadOBJ(param0->unk_310, 38400, 3200);
 
-    Graphics_LoadPalette(v4.unk_00, v4.unk_08, 1, 192, 0x20, HEAP_ID_63);
+    Graphics_LoadPalette(trainerClassGraphics.narcID, trainerClassGraphics.palette, 1, 192, 0x20, HEAP_ID_63);
 
     v3.priority = 0;
     param0->unk_1CC = SpriteList_Add(&v3);

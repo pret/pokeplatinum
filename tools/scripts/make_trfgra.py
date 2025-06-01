@@ -51,8 +51,20 @@ with open(output_dir / 'trfgra.order', "w", encoding="utf-8") as order_file:
             src,
             dst,
         ])
+        key_file = dst
 
         # char
+        # Check for png key
+        key_src = source_dir / subdir / 'front_key.json'
+        if key_src.exists():
+            (output_dir / subdir).mkdir(parents=True, exist_ok=True)
+            key_file = output_dir / subdir / 'front_key.NCER'
+            subprocess.run([
+                args.nitrogfx,
+                key_src,
+                key_file,
+            ])
+
         char_file = f'front_{subdir}.NCGR'
         src = source_dir / subdir / 'front.png'
         dst = private_dir / char_file
@@ -64,7 +76,7 @@ with open(output_dir / 'trfgra.order', "w", encoding="utf-8") as order_file:
             '-vram',
             '-clobbersize',
             '-mappingtype', '64',
-            '-cell', (private_dir / cell_file),
+            '-cell', key_file,
         ])
         
         # palette
@@ -104,4 +116,4 @@ with open(output_dir / 'trfgra.order', "w", encoding="utf-8") as order_file:
         print(anim_file, file=order_file)
         print(scan_file, file=order_file)
 
-subprocess.run([args.narc, 'create', '--naix', '--order', output_dir / 'trfgra.order', '--output', output_dir / 'trfgra.narc', private_dir])
+subprocess.run([args.narc, 'create', '--order', output_dir / 'trfgra.order', '--output', output_dir / 'trfgra.narc', private_dir])

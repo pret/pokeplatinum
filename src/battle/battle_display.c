@@ -535,7 +535,7 @@ void ov16_0225D360(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         {
             Trainer *trainer = BattleSystem_GetTrainer(battleSys, param1->battler);
             v0->unk_0B = 0;
-            v0->unk_0C = sub_020788D0(ov16_02264768(battleSys, param1->battler, trainer->header.trainerType));
+            v0->unk_0C = Pokemon_TrainerClassBackSpriteIdx(ov16_02264768(battleSys, param1->battler, trainer->header.trainerType));
         }
     }
 

@@ -1,5 +1,0 @@
-trainer_back_files += files('back.png')
-trainer_back_files += files('back_anim.json')
-trainer_back_files += files('back_cell.json')
-trainer_back_files += files('back_scan.png')
-trainer_back_files += files('back_scan.png.key')

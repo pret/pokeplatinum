@@ -6,6 +6,7 @@
 #include "constants/forms.h"
 #include "constants/pokemon.h"
 #include "constants/sound.h"
+#include "generated/trainer_classes.h"
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02078B40_decl.h"
@@ -13,8 +14,6 @@
 #include "struct_defs/pokemon.h"
 #include "struct_defs/species.h"
 #include "struct_defs/sprite_animation_frame.h"
-
-#include "overlay005/struct_ov5_021DE5D0.h"
 
 #include "narc.h"
 #include "palette.h"
@@ -39,6 +38,15 @@ enum EvolutionClass {
     EVO_CLASS_UNUSED_02,
     EVO_CLASS_BY_ITEM,
 };
+
+typedef struct TrainerClassGraphics {
+    int narcID;
+    int tiles;
+    int palette;
+    int cells;
+    int anims;
+    int scan;
+} TrainerClassGraphics;
 
 /**
  * @brief Zeros out a Pokemon data structure, then encrypts the result
@@ -482,8 +490,8 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
  */
 u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
 void sub_0207697C(PokemonSpriteTemplate *param0, u16 param1);
-ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
-void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
+ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, enum TrainerClass trainerClass, int param6, int param7, int heapID);
+void Pokemon_InitTrainerClassGraphics(enum TrainerClass trainerClass, int param1, TrainerClassGraphics *trainerClassGraphics);
 
 /**
  * @brief Returns the size in bytes of a Pokemon struct as a u32
@@ -824,7 +832,7 @@ BOOL sub_02078804(u16 param0);
 u16 sub_02078824(u8 index);
 BOOL sub_02078838(Pokemon *mon);
 BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID);
-int sub_020788D0(int param0);
+int Pokemon_TrainerClassBackSpriteIdx(enum TrainerClass trainerClass);
 void sub_0207893C(Pokemon *mon);
 void BoxPokemon_RestorePP(BoxPokemon *boxMon);
 

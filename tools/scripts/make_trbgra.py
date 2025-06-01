@@ -56,6 +56,17 @@ with open(output_dir / 'trbgra.order', "w", encoding="utf-8") as order_file:
                 src,
                 dst,
             ])
+            key_file = dst
+
+            key_src = source_dir / subdir / 'back_key.json'
+            if key_src.exists():
+                (output_dir / subdir).mkdir(parents=True, exist_ok=True)
+                key_file = output_dir / subdir / 'back_key.NCER'
+                subprocess.run([
+                    args.nitrogfx,
+                    key_src,
+                    key_file,
+                ])
 
             # char
             char_file = f'back_{subdir}.NCGR'
@@ -69,7 +80,7 @@ with open(output_dir / 'trbgra.order', "w", encoding="utf-8") as order_file:
                 '-vram',
                 '-clobbersize',
                 '-mappingtype', '64',
-                '-cell', (private_dir / cell_file),
+                '-cell', key_file,
             ])
             
             # palette
@@ -100,7 +111,7 @@ with open(output_dir / 'trbgra.order', "w", encoding="utf-8") as order_file:
                 args.nitrogfx,
                 src,
                 dst,
-                '-scanbacktoback',
+                '-scanfronttoback',
             ])
 
             print(char_file, file=order_file)
@@ -109,4 +120,4 @@ with open(output_dir / 'trbgra.order', "w", encoding="utf-8") as order_file:
             print(anim_file, file=order_file)
             print(scan_file, file=order_file)
 
-subprocess.run([args.narc, 'create', '--naix', '--order', output_dir / 'trbgra.order', '--output', output_dir / 'trbgra.narc', private_dir])
+subprocess.run([args.narc, 'create', '--order', output_dir / 'trbgra.order', '--output', output_dir / 'trbgra.narc', private_dir])

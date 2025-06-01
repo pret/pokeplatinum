@@ -54,13 +54,61 @@ foreach trainer_class : trainer_class_consts
 endforeach
 
 # 3. Walk trainer class subdirectories; `trainer_class_dirnames` is the authority.
+front_file_names = [
+    'front.png',
+    'front_cell.json',
+    'front_anim.json',
+    'front_scan.png',
+    'front_scan.png.key',
+    'front_key.json',
+]
+
+back_file_names = [
+    'back.png',
+    'back_cell.json',
+    'back_anim.json',
+    'back_scan.png',
+    'back_scan.png.key',
+    'back_key.json',
+]
+
+encounter_file_names = [
+    'mugshot.png',
+    'mugshot.pal',
+    'mugshot_cell.json',
+    'mugshot_anim.json',
+    'banner.png',
+    'banner.pal',
+    'banner.NSCR',
+]
+
 foreach trainer_class : trainer_class_dirnames
-    subdir(trainer_class)
+    foreach file_name : front_file_names
+        if fs.exists(trainer_class / file_name)
+            trainer_front_files += files(trainer_class / file_name)
+        endif
+    endforeach
+    foreach file_name : back_file_names
+        if fs.exists(trainer_class / file_name)
+            trainer_back_files += files(trainer_class / file_name)
+        endif
+    endforeach
+    foreach file_name : encounter_file_names
+        if fs.exists(trainer_class / file_name)
+            trainer_encounter_files += files(trainer_class / file_name)
+        endif
+    endforeach
 endforeach
 
 # dp_rival is not a trainer class
 # but the back sprite is present in the default rom
-subdir('dp_rival')
+back_file_names += files(
+    'dp_rival' / 'back.png',
+    'dp_rival' / 'back_cell.json',
+    'dp_rival' / 'back_anim.json',
+    'dp_rival' / 'back_scan.png',
+    'dp_rival' / 'back_scan.png.key',
+)
 
 # Stash the listing of trainer classes in an environment so that other processes can make
 # use of it.
@@ -73,10 +121,7 @@ trainer_class_env.append('PYTHONPATH', meson.project_build_root()) # For python 
 #    latter maintains that compilation must reoccur when source files change.
 
 trfgra_narc = custom_target('trfgra.narc',
-    output: [
-        'trfgra.narc',
-        'trfgra.naix.h',
-    ],
+    output: 'trfgra.narc',
     input: trainer_front_files,
     command: [
         make_trfgra_py,
@@ -89,13 +134,9 @@ trfgra_narc = custom_target('trfgra.narc',
     env: trainer_class_env,
     depends: [ py_consts_generators ],
 )
-naix_headers += trfgra_narc[1]
 
 trbgra_narc = custom_target('trbgra.narc',
-    output: [
-        'trbgra.narc',
-        'trbgra.naix.h',
-    ],
+    output: 'trbgra.narc',
     input: trainer_back_files,
     command: [
         make_trbgra_py,
@@ -108,7 +149,6 @@ trbgra_narc = custom_target('trbgra.narc',
     env: trainer_class_env,
     depends: [ py_consts_generators ],
 )
-naix_headers += trbgra_narc[1]
 
 field_encounteffect_order = files('field_encounteffect.order')
 

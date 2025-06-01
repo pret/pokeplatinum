@@ -1,5 +1,0 @@
-trainer_front_files += files('front.png')
-trainer_front_files += files('front_anim.json')
-trainer_front_files += files('front_cell.json')
-trainer_front_files += files('front_scan.png')
-trainer_front_files += files('front_scan.png.key')

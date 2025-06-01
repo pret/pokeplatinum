@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "constants/trainer.h"
+#include "generated/trainer_classes.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"

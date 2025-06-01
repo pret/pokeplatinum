@@ -58,9 +58,10 @@ form_sprites_shared = files(
 )
 
 pokefoot_files = files(
-    '.shared/pokefoot.pal',
-    '.shared/pokefoot_anim.json',
-    '.shared/pokefoot_cell.json',
+    '.shared/footprint.pal',
+    '.shared/footprint_anim.json',
+    '.shared/footprint_cell.json',
+    '.shared/footprint_key.json',
 )
 
 sinnoh_pokedex = files('sinnoh_pokedex.json')

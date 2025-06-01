@@ -62,6 +62,16 @@ for i, subdir in enumerate(TRAINER_DIRS):
             '-bitdepth', '4',
         ])
         
+        # cell
+        file_name = f'mugshot_{subdir}.NCER'
+        src = source_dir / subdir / 'mugshot_cell.json'
+        cell_file = private_dir / file_name
+        subprocess.run([
+            args.nitrogfx,
+            src,
+            cell_file,
+        ])
+        
         # char
         file_name = f'mugshot_{subdir}.NCGR'
         src = source_dir / subdir / 'mugshot.png'
@@ -75,6 +85,7 @@ for i, subdir in enumerate(TRAINER_DIRS):
                 '-version101',
                 '-clobbersize',
                 '-mappingtype', '128',
+                '-cell', cell_file,
             ])
         else:
             subprocess.run([
@@ -83,17 +94,8 @@ for i, subdir in enumerate(TRAINER_DIRS):
                 dst,
                 '-version101',
                 '-clobbersize',
+                '-cell', cell_file,
             ])
-        
-        # cell
-        file_name = f'mugshot_{subdir}.NCER'
-        src = source_dir / subdir / 'mugshot_cell.json'
-        dst = private_dir / file_name
-        subprocess.run([
-            args.nitrogfx,
-            src,
-            dst,
-        ])
         
         # anim
         file_name = f'mugshot_{subdir}.NANR'
@@ -141,7 +143,7 @@ for i, subdir in enumerate(TRAINER_DIRS):
             shutil.copy2(src, dst)
 
 # Shared assets
-for file_name in os.listdir(source_dir / '.shared'):
+for file_name in sorted(os.listdir(source_dir / '.shared'), reverse=True):
     src = source_dir / '.shared' / file_name
     if 'anim' in file_name:
         base_name = file_name[:-10]
@@ -159,6 +161,7 @@ for file_name in os.listdir(source_dir / '.shared'):
             src,
             dst,
         ])
+        key_file = dst
     elif 'pal' in file_name:
         base_name = file_name[:-4]
         dst = private_dir / f'{base_name}.NCLR'
@@ -178,6 +181,7 @@ for file_name in os.listdir(source_dir / '.shared'):
                 '-version101',
                 '-clobbersize',
                 '-mappingtype', '128',
+                '-cell', key_file,
             ])
         elif 'dummy_banner' in file_name:
             subprocess.run([
@@ -195,6 +199,7 @@ for file_name in os.listdir(source_dir / '.shared'):
                 dst,
                 '-version101',
                 '-clobbersize',
+                '-cell', key_file,
             ])
     else:
         dst = private_dir / file_name

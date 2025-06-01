@@ -40,9 +40,10 @@ private_dir.mkdir(parents=True, exist_ok=True)
 palette_file = 'footprint.NCLR'
 anim_file = 'footprint.NANR.lz'
 cell_file = 'footprint.NCER.lz'
+cell_key_file = 'footprint_key.NCER'
 
 # palette
-src = source_dir / '.shared' / 'pokefoot.pal'
+src = source_dir / '.shared' / 'footprint.pal'
 dst = private_dir / palette_file
 subprocess.run([
     args.nitrogfx,
@@ -51,7 +52,7 @@ subprocess.run([
 ])
 
 # anim
-src = source_dir / '.shared' / 'pokefoot_anim.json'
+src = source_dir / '.shared' / 'footprint_anim.json'
 dst = output_dir / '.shared' / 'footprints.NANR'
 subprocess.run([
     args.nitrogfx,
@@ -69,7 +70,7 @@ subprocess.run([
 ])
 
 # cell
-src = source_dir / '.shared' / 'pokefoot_cell.json'
+src = source_dir / '.shared' / 'footprint_cell.json'
 cell_NCER = output_dir / '.shared' / 'footprints.NCER'
 subprocess.run([
     args.nitrogfx,
@@ -84,6 +85,15 @@ subprocess.run([
     src,
     dst,
     '-nopad',
+])
+
+# key cells for PNGs
+src = source_dir / '.shared' / 'footprint_key.json'
+cell_key_file = output_dir / '.shared' / 'footprints.NCER'
+subprocess.run([
+    args.nitrogfx,
+    src,
+    cell_key_file,
 ])
 
 with open(output_dir / 'pokefoot.order', "w", encoding="utf-8") as order_file:
@@ -111,7 +121,7 @@ with open(output_dir / 'pokefoot.order', "w", encoding="utf-8") as order_file:
             '-version101',
             '-clobbersize',
             '-mappingtype', '128',
-            '-cell', cell_NCER,
+            '-cell', cell_key_file,
         ])
 
         src = dst

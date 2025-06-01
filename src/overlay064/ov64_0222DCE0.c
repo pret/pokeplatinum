@@ -3872,7 +3872,7 @@ asm static void ov64_02231164 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     bl sub_0205CA14
     mov r1, #2
     add r2, sp, #0x38
-    bl sub_02076AAC
+    bl Pokemon_InitTrainerClassGraphics
     mov r1, #0x32
     ldr r0, [sp, #0x24]
     lsl r1, r1, #6
