@@ -8,8 +8,8 @@
 #include "palette.h"
 #include "sprite_system.h"
 
-__attribute__((aligned(4))) static const u32 Unk_020F0AF0[] = {
-    0xEA,
+__attribute__((aligned(4))) static const u32 sMoveTypeIconIndex[] = {
+    0xEA, // 0 to 17 are pokemon types
     0xE1,
     0xE3,
     0xEB,
@@ -27,15 +27,15 @@ __attribute__((aligned(4))) static const u32 Unk_020F0AF0[] = {
     0xE6,
     0xDD,
     0xE0,
-    0xF0,
+    0xF0, // 18 to 22 are contest types
     0xDB,
     0xDC,
     0xE8,
     0xEF
 };
 
-__attribute__((aligned(4))) static const u8 Unk_020F0B4C[] = {
-    0x0,
+__attribute__((aligned(4))) static const u8 sMoveTypeIconPalleteIndex[] = {
+    0x0, // 0 to 17 are pokemon types
     0x0,
     0x1,
     0x1,
@@ -53,29 +53,29 @@ __attribute__((aligned(4))) static const u8 Unk_020F0B4C[] = {
     0x1,
     0x2,
     0x0,
-    0x0,
+    0x0, // 18 to 22 are contest types
     0x1,
     0x1,
     0x2,
     0x0
 };
 
-__attribute__((aligned(4))) static const u32 Unk_020F0AE4[] = {
+__attribute__((aligned(4))) static const u32 sMoveCategoryIconIndex[] = {
     0xF4,
     0xF6,
     0xF5
 };
 
-__attribute__((aligned(4))) static const u8 Unk_020F0AE0[] = {
+__attribute__((aligned(4))) static const u8 sMoveCategoryIconPalleteIndex[] = {
     0x0,
     0x1,
     0x0
 };
 
-u32 sub_0207C908(int param0)
+u32 GetIconFromMoveType(int moveType)
 {
-    GF_ASSERT(param0 < NELEMS(Unk_020F0AF0));
-    return Unk_020F0AF0[param0];
+    GF_ASSERT(moveType < NELEMS(sMoveTypeIconIndex));
+    return sMoveTypeIconIndex[moveType];
 }
 
 u32 sub_0207C920(void)
@@ -83,46 +83,46 @@ u32 sub_0207C920(void)
     return 74;
 }
 
-u32 sub_0207C924(void)
+u32 GetMoveTypeIconCellBank(void)
 {
     return 242;
 }
 
-u32 sub_0207C928(void)
+u32 GetMoveTypeIconAnimBank(void)
 {
     return 243;
 }
 
-u8 sub_0207C92C(int param0)
+u8 GetPalleteFromMoveType(int moveType)
 {
-    GF_ASSERT(param0 < NELEMS(Unk_020F0B4C));
-    return Unk_020F0B4C[param0];
+    GF_ASSERT(moveType < NELEMS(sMoveTypeIconPalleteIndex));
+    return sMoveTypeIconPalleteIndex[moveType];
 }
 
-enum NarcID sub_0207C944(void)
+enum NarcID GetBattleGraphicNarcIndex(void)
 {
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
 }
 
 void sub_0207C948(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
 {
-    SpriteSystem_LoadCharResObj(param0, param1, sub_0207C944(), sub_0207C908(param3), TRUE, param2, param4);
+    SpriteSystem_LoadCharResObj(param0, param1, GetBattleGraphicNarcIndex(), GetIconFromMoveType(param3), TRUE, param2, param4);
 }
 
 void sub_0207C97C(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, u32 param3)
 {
-    SpriteSystem_LoadPlttResObj(param0, param1, sub_0207C944(), sub_0207C920(), FALSE, 3, param2, param3);
+    SpriteSystem_LoadPlttResObj(param0, param1, GetBattleGraphicNarcIndex(), sub_0207C920(), FALSE, 3, param2, param3);
 }
 
 void sub_0207C9B0(PaletteData *param0, int param1, SpriteSystem *param2, SpriteManager *param3, NNS_G2D_VRAM_TYPE param4, u32 param5)
 {
-    SpriteSystem_LoadPaletteBuffer(param0, param1, param2, param3, sub_0207C944(), sub_0207C920(), FALSE, 3, param4, param5);
+    SpriteSystem_LoadPaletteBuffer(param0, param1, param2, param3, GetBattleGraphicNarcIndex(), sub_0207C920(), FALSE, 3, param4, param5);
 }
 
 void sub_0207C9EC(SpriteSystem *param0, SpriteManager *param1, u32 param2, u32 param3)
 {
-    SpriteSystem_LoadCellResObj(param0, param1, sub_0207C944(), sub_0207C924(), TRUE, param2);
-    SpriteSystem_LoadAnimResObj(param0, param1, sub_0207C944(), sub_0207C928(), TRUE, param3);
+    SpriteSystem_LoadCellResObj(param0, param1, GetBattleGraphicNarcIndex(), GetMoveTypeIconCellBank(), TRUE, param2);
+    SpriteSystem_LoadAnimResObj(param0, param1, GetBattleGraphicNarcIndex(), GetMoveTypeIconAnimBank(), TRUE, param3);
 }
 
 void sub_0207CA34(SpriteManager *param0, u32 param1)
@@ -147,7 +147,7 @@ ManagedSprite *sub_0207CA58(SpriteSystem *param0, SpriteManager *param1, int par
     SpriteTemplate v1;
 
     v1 = *param3;
-    v1.plttIdx = sub_0207C92C(param2);
+    v1.plttIdx = GetPalleteFromMoveType(param2);
     v0 = SpriteSystem_NewSprite(param0, param1, &v1);
 
     return v0;
@@ -158,16 +158,16 @@ void sub_0207CA88(ManagedSprite *param0)
     Sprite_DeleteAndFreeResources(param0);
 }
 
-u32 sub_0207CA90(int param0)
+u32 GetIconFromMoveCategory(int moveCat)
 {
-    GF_ASSERT(param0 < NELEMS(Unk_020F0AE4));
-    return Unk_020F0AE4[param0];
+    GF_ASSERT(moveCat < NELEMS(sMoveCategoryIconIndex));
+    return sMoveCategoryIconIndex[moveCat];
 }
 
-u8 sub_0207CAA8(int param0)
+u8 GetPalleteFromMoveCategory(int moveCat)
 {
-    GF_ASSERT(param0 < NELEMS(Unk_020F0AE0));
-    return Unk_020F0AE0[param0];
+    GF_ASSERT(moveCat < NELEMS(sMoveCategoryIconPalleteIndex));
+    return sMoveCategoryIconPalleteIndex[moveCat];
 }
 
 enum NarcID sub_0207CAC0(void)
@@ -177,7 +177,7 @@ enum NarcID sub_0207CAC0(void)
 
 void sub_0207CAC4(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
 {
-    SpriteSystem_LoadCharResObj(param0, param1, sub_0207CAC0(), sub_0207CA90(param3), TRUE, param2, param4);
+    SpriteSystem_LoadCharResObj(param0, param1, sub_0207CAC0(), GetIconFromMoveCategory(param3), TRUE, param2, param4);
 }
 
 void sub_0207CAF8(SpriteManager *param0, u32 param1)

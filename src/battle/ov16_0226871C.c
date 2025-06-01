@@ -2763,7 +2763,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if ((param2->move[i] != v0->unk_00.move[i]) && (param2->move[i] != 0)) {
             v5 = MoveTable_LoadParam(param2->move[i], MOVEATTRIBUTE_TYPE);
-            v1 = Graphics_GetCharData(sub_0207C944(), sub_0207C908(v5), 1, &v2, HEAP_ID_BATTLE);
+            v1 = Graphics_GetCharData(GetBattleGraphicNarcInde(), GetIconFromMoveType(v5), 1, &v2, HEAP_ID_BATTLE);
             MI_CpuCopy32(v2->pRawData, v0->unk_18[i], v3);
             Heap_FreeToHeap(v1);
         }

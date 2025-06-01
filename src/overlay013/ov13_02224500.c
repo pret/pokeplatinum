@@ -384,20 +384,20 @@ static void ov13_022249CC(UnkStruct_ov13_022213F0 *param0)
     }
 }
 
-static void ov13_02224A0C(UnkStruct_ov13_022213F0 *param0, ManagedSprite *param1, u32 param2, u8 param3)
+static void ov13_02224A0C(UnkStruct_ov13_022213F0 *param0, ManagedSprite *param1, u32 param2, u8 moveType)
 {
     SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, sub_0207C944(), sub_0207C908(param3), 1, param2);
-    ManagedSprite_SetExplicitPalette(param1, sub_0207C92C(param3) + 4);
+    SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, GetBattleGraphicNarcIndex(), GetIconFromMoveType(moveType), 1, param2);
+    ManagedSprite_SetExplicitPalette(param1, GetPalleteFromMoveType(moveType) + 4);
 }
 
 static void ov13_02224A5C(UnkStruct_ov13_022213F0 *param0, ManagedSprite *param1, u32 param2)
 {
     SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, sub_0207CAC0(), sub_0207CA90(param2), 1, 45077);
-    ManagedSprite_SetExplicitPalette(param1, sub_0207CAA8(param2) + 4);
+    SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, sub_0207CAC0(), GetIconFromMoveCategory(param2), 1, 45077);
+    ManagedSprite_SetExplicitPalette(param1, GetPalleteFromMoveCategory(param2) + 4);
 }
 
 static void ov13_02224AB0(u16 param0, ManagedSprite *param1, const int param2, const int param3)
