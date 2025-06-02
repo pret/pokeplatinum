@@ -19,9 +19,6 @@
 #include "overlay012/ov12_02226998.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_022380BC.h"
-#include "overlay012/struct_ov12_0222118C_decl.h"
-#include "overlay012/struct_ov12_022211D8_decl.h"
-#include "overlay012/struct_ov12_022222D4_decl.h"
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ov12_02226504_decl.h"
 #include "overlay012/struct_ov12_022380DC.h"
@@ -48,92 +45,6 @@
 #include "system.h"
 #include "vram_transfer.h"
 
-typedef struct UnkStruct_ov12_02223178_t {
-    u8 unk_00;
-    u8 unk_01;
-    u16 unk_02;
-    s32 unk_04;
-    u16 unk_08;
-    u16 unk_0A;
-    u32 unk_0C;
-    u16 unk_10;
-    u16 unk_12;
-    u16 unk_14;
-    u16 unk_16;
-    int unk_18;
-    ParticleSystem *unk_1C[16];
-    SPLEmitter *unk_5C[20];
-    SpriteSystem *unk_AC;
-    UnkStruct_ov16_0223E0C8 *unk_B0[4];
-    u8 unk_C0[4];
-    PokemonSprite *unk_C4[4];
-    u32 battleType;
-    u16 unk_D8[4];
-    u8 unk_E0[4];
-    u8 unk_E4[4];
-    u8 unk_E8[4];
-    u32 unk_EC[4];
-    u32 unk_FC[4];
-    ChatotCry *unk_10C;
-    u8 *unk_110;
-    u16 *unk_114;
-    int unk_118;
-} UnkStruct_ov12_02223178;
-
-typedef struct {
-    u32 *unk_00;
-    u8 unk_04;
-    u8 unk_05;
-    BOOL unk_08;
-} UnkStruct_ov12_0221FCDC_sub1;
-
-typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
-    SpriteManager *unk_04;
-    ManagedSprite *unk_08;
-    BOOL unk_0C;
-} UnkStruct_ov12_02221810;
-
-typedef struct UnkStruct_ov12_0221FCDC_t {
-    int heapID;
-    enum NarcID narcID;
-    BOOL unk_08;
-    BOOL unk_0C;
-    BOOL unk_10;
-    void *unk_14;
-    u32 *unk_18;
-    u32 *unk_1C[3];
-    UnkStruct_ov12_0221FCDC_sub1 unk_28[3];
-    UnkStruct_ov12_02221810 unk_48[2];
-    u8 unk_68[16];
-    u8 unk_78[16];
-    s8 unk_88;
-    u8 unk_89;
-    u16 unk_8A;
-    u16 unk_8C;
-    s32 unk_90[10];
-    UnkFuncPtr_ov12_02239EEC unk_B8;
-    UnkStruct_ov12_02223178 *unk_BC;
-    BgConfig *unk_C0;
-    PaletteData *unk_C4;
-    SpriteManager *unk_C8[4];
-    ManagedSprite *unk_D8[10];
-    SpriteTemplate unk_100;
-    SpriteManager *unk_134;
-    ManagedSprite *unk_138[5];
-    BOOL unk_14C[5];
-    UnkStruct_ov12_0222118C *unk_160[5];
-    UnkStruct_ov12_022211D8 *unk_174;
-    u8 unk_178;
-    u8 unk_179;
-    u8 unk_17A;
-    u8 unk_17B;
-    UnkStruct_ov12_022222D4 *unk_17C;
-    UnkStruct_ov16_02264408_sub1 unk_180;
-    int unk_198;
-    u8 unk_19C[4];
-    NARC *unk_1A0[6];
-} UnkStruct_ov12_0221FCDC;
 
 typedef struct UnkStruct_ov12_02220314_t {
     u8 unk_00;
@@ -148,7 +59,7 @@ typedef struct UnkStruct_ov12_02220314_t {
     u8 unk_18;
     u16 unk_1A;
     u32 unk_1C[7];
-    UnkStruct_ov12_0221FCDC *unk_38;
+    MoveEffectSystem *unk_38;
 } UnkStruct_ov12_02220314;
 
 typedef struct UnkStruct_ov12_02221BBC_t {
@@ -170,59 +81,19 @@ typedef struct UnkStruct_ov12_02221BBC_t {
     u16 unk_44_0 : 1;
     u16 unk_44_1 : 1;
     u16 unk_44_2 : 14;
-    UnkStruct_ov12_0221FCDC *unk_48;
+    MoveEffectSystem *unk_48;
 } UnkStruct_ov12_02221BBC;
 
-typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-    s16 unk_04;
-    s16 unk_06;
-    int unk_08;
-} UnkStruct_ov12_022224F8_sub1;
 
-typedef struct {
-    UnkStruct_ov12_022224F8_sub1 unk_00[16];
-    UnkStruct_ov12_02226504 *unk_C0;
-} UnkStruct_ov12_022224F8;
 
-typedef struct UnkStruct_ov12_022222D4_t {
-    BgConfig *unk_00;
-    s16 unk_04;
-    s16 unk_06;
-    s16 unk_08;
-    s16 unk_0A;
-    int unk_0C;
-    int unk_10;
-    BOOL unk_14;
-    BOOL unk_18;
-    UnkStruct_ov12_022224F8 *unk_1C;
-} UnkStruct_ov12_022222D4;
-
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    PokemonSprite *unk_04;
-    SysTask *unk_08;
-} UnkStruct_ov12_0222118C_sub1;
-
-typedef struct UnkStruct_ov12_0222118C_t {
-    ManagedSprite *unk_00;
-    UnkStruct_ov12_0222118C_sub1 unk_04;
-} UnkStruct_ov12_0222118C;
-
-typedef struct UnkStruct_ov12_022211D8_t {
-    BgConfig *unk_00;
-    UnkStruct_ov12_0222118C_sub1 unk_04;
-} UnkStruct_ov12_022211D8;
 
 static void ov12_022224F8(SysTask *param0, void *param1);
-static void ov12_0221FC20(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_0221FC44(UnkStruct_ov12_0221FCDC *param0);
-static SysTask *ov12_0221FC68(u8 param0, UnkStruct_ov12_0221FCDC *param1, SysTaskFunc param2, void *param3, u32 param4);
-static void ov12_0221FCA4(u8 param0, UnkStruct_ov12_0221FCDC *param1, SysTask *param2);
-static UnkStruct_ov12_02220314 *ov12_02220314(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220344(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_02220314 *param1);
+static void ov12_0221FC20(MoveEffectSystem *param0);
+static void ov12_0221FC44(MoveEffectSystem *param0);
+static SysTask *ov12_0221FC68(u8 param0, MoveEffectSystem *param1, SysTaskFunc param2, void *param3, u32 param4);
+static void ov12_0221FCA4(u8 param0, MoveEffectSystem *param1, SysTask *param2);
+static UnkStruct_ov12_02220314 *ov12_02220314(MoveEffectSystem *param0);
+static void ov12_02220344(MoveEffectSystem *param0, UnkStruct_ov12_02220314 *param1);
 static void ov12_0222035C(SysTask *param0, void *param1);
 static BOOL ov12_0222039C(UnkStruct_ov12_02220314 *param0);
 static BOOL ov12_022203A0(UnkStruct_ov12_02220314 *param0);
@@ -230,94 +101,94 @@ static BOOL ov12_022203FC(UnkStruct_ov12_02220314 *param0);
 static BOOL ov12_02220404(UnkStruct_ov12_02220314 *param0);
 static BOOL ov12_0222040C(UnkStruct_ov12_02220314 *param0);
 static BOOL ov12_0222044C(UnkStruct_ov12_02220314 *param0);
-static void ov12_022204C4(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022204E4(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_0222070C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_0222074C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220798(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222950(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221284(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221288(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222CAC(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222CDC(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220E14(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220E44(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220504(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220524(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022206A4(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022206E8(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220F30(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221064(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221098(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222724(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222774(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022227CC(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222820(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222840(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222860(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222984(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022229BC(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022229D8(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222B94(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222BF8(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222CE4(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222C50(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222C54(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220E70(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_0222128C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_0222144C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022214C4(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022217B4(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022217E0(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221A00(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221A14(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221A30(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221424(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220EA8(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022228DC(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222A78(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222AF0(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_0222293C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222940(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222944(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221A4C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221A50(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222948(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_0222294C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222968(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220F5C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220FA0(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220FFC(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221024(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022230D4(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02223134(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220ED0(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022209A8(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220A3C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220B8C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220C44(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220CFC(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220D3C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220D90(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02220DE8(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022230CC(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02223160(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222CE8(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222D84(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222DCC(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222E2C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222E74(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222EBC(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02222FC8(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_0222307C(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022230A8(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_02221834(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_022219E8(UnkStruct_ov12_0221FCDC *param0);
-static void ov12_0222048C(UnkStruct_ov12_0221FCDC *param0);
-static int ov12_022210A8(UnkStruct_ov12_0221FCDC *param0, int param1);
-static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, UnkStruct_ov12_0221FCDC *param1, int param2);
-static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, UnkStruct_ov12_0221FCDC *param1, int param2, int param3);
+static void ov12_022204C4(MoveEffectSystem *param0);
+static void ov12_022204E4(MoveEffectSystem *param0);
+static void ov12_0222070C(MoveEffectSystem *param0);
+static void ov12_0222074C(MoveEffectSystem *param0);
+static void ov12_02220798(MoveEffectSystem *param0);
+static void ov12_02222950(MoveEffectSystem *param0);
+static void ov12_02221284(MoveEffectSystem *param0);
+static void ov12_02221288(MoveEffectSystem *param0);
+static void ov12_02222CAC(MoveEffectSystem *param0);
+static void ov12_02222CDC(MoveEffectSystem *param0);
+static void ov12_02220E14(MoveEffectSystem *param0);
+static void ov12_02220E44(MoveEffectSystem *param0);
+static void ov12_02220504(MoveEffectSystem *param0);
+static void ov12_02220524(MoveEffectSystem *param0);
+static void ov12_022206A4(MoveEffectSystem *param0);
+static void ov12_022206E8(MoveEffectSystem *param0);
+static void ov12_02220F30(MoveEffectSystem *param0);
+static void ov12_02221064(MoveEffectSystem *param0);
+static void ov12_02221098(MoveEffectSystem *param0);
+static void ov12_02222724(MoveEffectSystem *param0);
+static void ov12_02222774(MoveEffectSystem *param0);
+static void ov12_022227CC(MoveEffectSystem *param0);
+static void ov12_02222820(MoveEffectSystem *param0);
+static void ov12_02222840(MoveEffectSystem *param0);
+static void ov12_02222860(MoveEffectSystem *param0);
+static void ov12_02222984(MoveEffectSystem *param0);
+static void ov12_022229BC(MoveEffectSystem *param0);
+static void ov12_022229D8(MoveEffectSystem *param0);
+static void ov12_02222B94(MoveEffectSystem *param0);
+static void ov12_02222BF8(MoveEffectSystem *param0);
+static void ov12_02222CE4(MoveEffectSystem *param0);
+static void ov12_02222C50(MoveEffectSystem *param0);
+static void ov12_02222C54(MoveEffectSystem *param0);
+static void ov12_02220E70(MoveEffectSystem *param0);
+static void ov12_0222128C(MoveEffectSystem *param0);
+static void ov12_0222144C(MoveEffectSystem *param0);
+static void ov12_022214C4(MoveEffectSystem *param0);
+static void ov12_02221580(MoveEffectSystem *param0);
+static void ov12_022217B4(MoveEffectSystem *param0);
+static void ov12_022217E0(MoveEffectSystem *param0);
+static void ov12_02221A00(MoveEffectSystem *param0);
+static void ov12_02221A14(MoveEffectSystem *param0);
+static void ov12_02221A30(MoveEffectSystem *param0);
+static void ov12_02221424(MoveEffectSystem *param0);
+static void ov12_02220EA8(MoveEffectSystem *param0);
+static void ov12_022228DC(MoveEffectSystem *param0);
+static void ov12_02222A78(MoveEffectSystem *param0);
+static void ov12_02222AF0(MoveEffectSystem *param0);
+static void ov12_0222293C(MoveEffectSystem *param0);
+static void ov12_02222940(MoveEffectSystem *param0);
+static void ov12_02222944(MoveEffectSystem *param0);
+static void ov12_02221A4C(MoveEffectSystem *param0);
+static void ov12_02221A50(MoveEffectSystem *param0);
+static void ov12_02222948(MoveEffectSystem *param0);
+static void ov12_0222294C(MoveEffectSystem *param0);
+static void ov12_02222968(MoveEffectSystem *param0);
+static void ov12_02220F5C(MoveEffectSystem *param0);
+static void ov12_02220FA0(MoveEffectSystem *param0);
+static void ov12_02220FFC(MoveEffectSystem *param0);
+static void ov12_02221024(MoveEffectSystem *param0);
+static void ov12_022230D4(MoveEffectSystem *param0);
+static void ov12_02223134(MoveEffectSystem *param0);
+static void ov12_02220ED0(MoveEffectSystem *param0);
+static void ov12_022209A8(MoveEffectSystem *param0);
+static void ov12_02220A3C(MoveEffectSystem *param0);
+static void ov12_02220B8C(MoveEffectSystem *param0);
+static void ov12_02220C44(MoveEffectSystem *param0);
+static void ov12_02220CFC(MoveEffectSystem *param0);
+static void ov12_02220D3C(MoveEffectSystem *param0);
+static void ov12_02220D90(MoveEffectSystem *param0);
+static void ov12_02220DE8(MoveEffectSystem *param0);
+static void ov12_022230CC(MoveEffectSystem *param0);
+static void ov12_02223160(MoveEffectSystem *param0);
+static void ov12_02222CE8(MoveEffectSystem *param0);
+static void ov12_02222D84(MoveEffectSystem *param0);
+static void ov12_02222DCC(MoveEffectSystem *param0);
+static void ov12_02222E2C(MoveEffectSystem *param0);
+static void ov12_02222E74(MoveEffectSystem *param0);
+static void ov12_02222EBC(MoveEffectSystem *param0);
+static void ov12_02222FC8(MoveEffectSystem *param0);
+static void ov12_0222307C(MoveEffectSystem *param0);
+static void ov12_022230A8(MoveEffectSystem *param0);
+static void ov12_02221834(MoveEffectSystem *param0);
+static void ov12_022219E8(MoveEffectSystem *param0);
+static void ov12_0222048C(MoveEffectSystem *param0);
+static int ov12_022210A8(MoveEffectSystem *param0, int param1);
+static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, MoveEffectSystem *param1, int param2);
+static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, MoveEffectSystem *param1, int param2, int param3);
 static int ov12_02221B54(int param0, int param1);
 static void ov12_02221B64(UnkStruct_ov12_02221BBC *param0);
 static BOOL ov12_02221C50(SysTask *param0, UnkStruct_ov12_02221BBC *param1);
@@ -356,7 +227,7 @@ static const s16 Unk_ov12_02238660[] = {
     0x20
 };
 
-static void ov12_0221FC20(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_0221FC20(MoveEffectSystem *param0)
 {
     if (param0->unk_89 == 0) {
         param0->unk_89 == 0;
@@ -366,7 +237,7 @@ static void ov12_0221FC20(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_0221FC44(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_0221FC44(MoveEffectSystem *param0)
 {
     UnkFuncPtr_ov12_02239EEC v0;
 
@@ -376,7 +247,7 @@ static void ov12_0221FC44(UnkStruct_ov12_0221FCDC *param0)
     } while (param0->unk_89 == 0 && param0->unk_10 == 1);
 }
 
-static SysTask *ov12_0221FC68(u8 param0, UnkStruct_ov12_0221FCDC *param1, SysTaskFunc param2, void *param3, u32 param4)
+static SysTask *ov12_0221FC68(u8 param0, MoveEffectSystem *param1, SysTaskFunc param2, void *param3, u32 param4)
 {
     SysTask *v0;
 
@@ -396,7 +267,7 @@ static SysTask *ov12_0221FC68(u8 param0, UnkStruct_ov12_0221FCDC *param1, SysTas
     return v0;
 }
 
-static void ov12_0221FCA4(u8 param0, UnkStruct_ov12_0221FCDC *param1, SysTask *param2)
+static void ov12_0221FCA4(u8 param0, MoveEffectSystem *param1, SysTask *param2)
 {
     switch (param0) {
     case 1:
@@ -413,93 +284,87 @@ static void ov12_0221FCA4(u8 param0, UnkStruct_ov12_0221FCDC *param1, SysTask *p
     SysTask_Done(param2);
 }
 
-UnkStruct_ov12_0221FCDC *ov12_0221FCDC(int heapID)
+MoveEffectSystem *MoveEffectSystem_New(enum HeapId heapID)
 {
-    int v0;
-    UnkStruct_ov12_0221FCDC *v1 = NULL;
+    int i;
+    MoveEffectSystem *system = Heap_AllocFromHeap(heapID, sizeof(MoveEffectSystem));
 
-    v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_0221FCDC));
-
-    if (v1 == NULL) {
-        GF_ASSERT(v1 != NULL);
+    if (system == NULL) {
+        GF_ASSERT(system != NULL);
         return NULL;
     }
 
-    memset(v1, 0, sizeof(UnkStruct_ov12_0221FCDC));
+    memset(system, 0, sizeof(MoveEffectSystem));
 
-    v1->heapID = heapID;
-    v1->unk_08 = 0;
-    v1->unk_BC = Heap_AllocFromHeap(v1->heapID, sizeof(UnkStruct_ov12_02223178));
-    v1->unk_1A0[0] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, heapID);
-    v1->unk_1A0[1] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, heapID);
-    v1->unk_1A0[2] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECHAR, heapID);
-    v1->unk_1A0[3] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WEPLTT, heapID);
-    v1->unk_1A0[4] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECELL, heapID);
-    v1->unk_1A0[5] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECELLANM, heapID);
+    system->heapID = heapID;
+    system->unk_08 = 0;
+    system->unk_BC = Heap_AllocFromHeap(system->heapID, sizeof(UnkStruct_ov12_02223178));
+    system->arcs[MOVE_EFFECT_SYSTEM_ARC_BATT_BG] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, heapID);
+    system->arcs[MOVE_EFFECT_SYSTEM_ARC_BATT_OBJ] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, heapID);
+    system->arcs[MOVE_EFFECT_SYSTEM_ARC_WECHAR] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECHAR, heapID);
+    system->arcs[MOVE_EFFECT_SYSTEM_ARC_WEPLTT] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WEPLTT, heapID);
+    system->arcs[MOVE_EFFECT_SYSTEM_ARC_WECELL] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECELL, heapID);
+    system->arcs[MOVE_EFFECT_SYSTEM_ARC_WECELLANM] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECELLANM, heapID);
 
-    if (v1->unk_BC == NULL) {
-        GF_ASSERT(v1->unk_BC != NULL);
+    if (system->unk_BC == NULL) {
+        GF_ASSERT(system->unk_BC != NULL);
         return NULL;
     }
 
-    memset(v1->unk_BC, 0, sizeof(UnkStruct_ov12_02223178));
+    memset(system->unk_BC, 0, sizeof(UnkStruct_ov12_02223178));
 
-    v1->unk_0C = 0;
-    v1->unk_18 = NULL;
+    system->unk_0C = 0;
+    system->unk_18 = NULL;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v1->unk_C8[v0] = NULL;
+    for (i = 0; i < 4; i++) {
+        system->unk_C8[i] = NULL;
     }
 
-    for (v0 = 0; v0 < (4 + 1); v0++) {
-        v1->unk_160[v0] = NULL;
+    for (i = 0; i < (4 + 1); i++) {
+        system->unk_160[i] = NULL;
     }
 
-    v1->unk_174 = NULL;
-    v1->unk_0C = 1;
+    system->unk_174 = NULL;
+    system->unk_0C = 1;
 
-    return v1;
+    return system;
 }
 
-void ov12_0221FDC0(UnkStruct_ov12_0221FCDC *param0, BOOL param1)
+void ov12_0221FDC0(MoveEffectSystem *param0, BOOL param1)
 {
     GF_ASSERT(param0 != NULL);
     param0->unk_08 = param1;
 }
 
-BOOL ov12_0221FDD4(UnkStruct_ov12_0221FCDC *param0)
+BOOL ov12_0221FDD4(MoveEffectSystem *param0)
 {
     GF_ASSERT(param0 != NULL);
     return param0->unk_08;
 }
 
-int ov12_0221FDE4(UnkStruct_ov12_0221FCDC *param0)
+int ov12_0221FDE4(MoveEffectSystem *param0)
 {
     GF_ASSERT(param0 != NULL);
     return param0->heapID;
 }
 
-BOOL ov12_0221FDF4(UnkStruct_ov12_0221FCDC *param0)
+BOOL MoveEffectSystem_Delete(MoveEffectSystem *system)
 {
-    if (ov12_022201B4(param0) == 0) {
-        return 0;
+    if (ov12_022201B4(system) == 0) {
+        return FALSE;
     }
 
-    {
-        int v0;
-
-        for (v0 = 0; v0 < 6; v0++) {
-            NARC_dtor(param0->unk_1A0[v0]);
-        }
+    for (int i = 0; i < MOVE_EFFECT_SYSTEM_ARC_COUNT; i++) {
+        NARC_dtor(system->arcs[i]);
     }
 
-    Heap_Free(param0->unk_BC);
-    Heap_Free(param0);
+    Heap_Free(system->unk_BC);
+    Heap_Free(system);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL ov12_0221FE30(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3)
+BOOL ov12_0221FE30(MoveEffectSystem *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3)
 {
     int v0;
     int v1 = param2;
@@ -629,7 +494,7 @@ BOOL ov12_0221FE30(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov16_02265BBC *par
     return 1;
 }
 
-BOOL ov12_0222016C(UnkStruct_ov12_0221FCDC *param0)
+BOOL ov12_0222016C(MoveEffectSystem *param0)
 {
     if (ov12_022201B4(param0) == 0) {
         return 0;
@@ -639,12 +504,12 @@ BOOL ov12_0222016C(UnkStruct_ov12_0221FCDC *param0)
     return 1;
 }
 
-BOOL ov12_02220188(UnkStruct_ov12_0221FCDC *param0)
+BOOL ov12_02220188(MoveEffectSystem *param0)
 {
     return (param0->unk_10 == 1) ? 1 : 0;
 }
 
-BOOL ov12_02220198(UnkStruct_ov12_0221FCDC *param0)
+BOOL ov12_02220198(MoveEffectSystem *param0)
 {
     if (param0->unk_14 == NULL) {
         GF_ASSERT(param0->unk_14);
@@ -655,7 +520,7 @@ BOOL ov12_02220198(UnkStruct_ov12_0221FCDC *param0)
     return 1;
 }
 
-BOOL ov12_022201B4(UnkStruct_ov12_0221FCDC *param0)
+BOOL ov12_022201B4(MoveEffectSystem *param0)
 {
     if (param0 == NULL) {
         return 0;
@@ -664,72 +529,72 @@ BOOL ov12_022201B4(UnkStruct_ov12_0221FCDC *param0)
     return (param0->unk_0C == 1) ? 1 : 0;
 }
 
-SysTask *ov12_022201CC(UnkStruct_ov12_0221FCDC *param0, SysTaskFunc param1, void *param2, u32 param3)
+SysTask *ov12_022201CC(MoveEffectSystem *param0, SysTaskFunc param1, void *param2, u32 param3)
 {
     SysTask *v0 = ov12_0221FC68(1, param0, param1, param2, param3);
     return v0;
 }
 
-SysTask *ov12_022201E8(UnkStruct_ov12_0221FCDC *param0, SysTaskFunc param1, void *param2)
+SysTask *ov12_022201E8(MoveEffectSystem *param0, SysTaskFunc param1, void *param2)
 {
     SysTask *v0 = ov12_0221FC68(1, param0, param1, param2, 1100);
     return v0;
 }
 
-SysTask *ov12_02220204(UnkStruct_ov12_0221FCDC *param0, SysTaskFunc param1, void *param2, u32 param3)
+SysTask *ov12_02220204(MoveEffectSystem *param0, SysTaskFunc param1, void *param2, u32 param3)
 {
     SysTask *v0 = ov12_0221FC68(2, param0, param1, param2, param3);
     return v0;
 }
 
-void ov12_02220220(UnkStruct_ov12_0221FCDC *param0, SysTask *param1)
+void ov12_02220220(MoveEffectSystem *param0, SysTask *param1)
 {
     ov12_0221FCA4(1, param0, param1);
 }
 
-void ov12_02220230(UnkStruct_ov12_0221FCDC *param0, SysTask *param1)
+void ov12_02220230(MoveEffectSystem *param0, SysTask *param1)
 {
     ov12_0221FCA4(2, param0, param1);
 }
 
-u16 ov12_02220240(UnkStruct_ov12_0221FCDC *param0)
+u16 ov12_02220240(MoveEffectSystem *param0)
 {
     return param0->unk_BC->unk_14;
 }
 
-u16 ov12_02220248(UnkStruct_ov12_0221FCDC *param0)
+u16 ov12_02220248(MoveEffectSystem *param0)
 {
     return param0->unk_BC->unk_16;
 }
 
-ParticleSystem *ov12_02220250(UnkStruct_ov12_0221FCDC *param0)
+ParticleSystem *ov12_02220250(MoveEffectSystem *param0)
 {
     return param0->unk_BC->unk_1C[param0->unk_BC->unk_18];
 }
 
-ParticleSystem *ov12_02220260(UnkStruct_ov12_0221FCDC *param0, int param1)
+ParticleSystem *ov12_02220260(MoveEffectSystem *param0, int param1)
 {
     return param0->unk_BC->unk_1C[param1];
 }
 
-SPLEmitter *ov12_0222026C(UnkStruct_ov12_0221FCDC *param0, int param1)
+SPLEmitter *ov12_0222026C(MoveEffectSystem *param0, int param1)
 {
     SPLEmitter *v0 = param0->unk_BC->unk_5C[param1];
     return v0;
 }
 
-BgConfig *ov12_02220278(UnkStruct_ov12_0221FCDC *param0)
+BgConfig *ov12_02220278(MoveEffectSystem *param0)
 {
     return param0->unk_C0;
 }
 
-s32 ov12_02220280(UnkStruct_ov12_0221FCDC *param0, int param1)
+s32 ov12_02220280(MoveEffectSystem *param0, int param1)
 {
     GF_ASSERT(param1 < (8 + 2));
     return param0->unk_90[param1];
 }
 
-ManagedSprite *ov12_02220298(UnkStruct_ov12_0221FCDC *param0, int param1)
+ManagedSprite *ov12_02220298(MoveEffectSystem *param0, int param1)
 {
     GF_ASSERT(param1 < 10);
     GF_ASSERT(param0 != NULL);
@@ -738,7 +603,7 @@ ManagedSprite *ov12_02220298(UnkStruct_ov12_0221FCDC *param0, int param1)
     return param0->unk_D8[param1];
 }
 
-ManagedSprite *ov12_022202C0(UnkStruct_ov12_0221FCDC *param0, int param1)
+ManagedSprite *ov12_022202C0(MoveEffectSystem *param0, int param1)
 {
     GF_ASSERT(param1 < (4 + 1));
     GF_ASSERT(param0 != NULL);
@@ -747,18 +612,18 @@ ManagedSprite *ov12_022202C0(UnkStruct_ov12_0221FCDC *param0, int param1)
     return param0->unk_138[param1];
 }
 
-SpriteManager *ov12_022202EC(UnkStruct_ov12_0221FCDC *param0)
+SpriteManager *ov12_022202EC(MoveEffectSystem *param0)
 {
     GF_ASSERT(param0 != NULL);
     return param0->unk_134;
 }
 
-SpriteManager *ov12_02220300(UnkStruct_ov12_0221FCDC *param0)
+SpriteManager *ov12_02220300(MoveEffectSystem *param0)
 {
     return param0->unk_C8[0];
 }
 
-SpriteSystem *ov12_02220308(UnkStruct_ov12_0221FCDC *param0)
+SpriteSystem *ov12_02220308(MoveEffectSystem *param0)
 {
     return param0->unk_BC->unk_AC;
 }
@@ -772,7 +637,7 @@ static BOOL (*const Unk_ov12_0223862C[])(UnkStruct_ov12_02220314 *) = {
     ov12_0222044C
 };
 
-static UnkStruct_ov12_02220314 *ov12_02220314(UnkStruct_ov12_0221FCDC *param0)
+static UnkStruct_ov12_02220314 *ov12_02220314(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02220314 *v0 = NULL;
 
@@ -789,7 +654,7 @@ static UnkStruct_ov12_02220314 *ov12_02220314(UnkStruct_ov12_0221FCDC *param0)
     return v0;
 }
 
-static void ov12_02220344(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_02220314 *param1)
+static void ov12_02220344(MoveEffectSystem *param0, UnkStruct_ov12_02220314 *param1)
 {
     param1->unk_38 = param0;
     SysTask_Start(ov12_0222035C, param1, 1100);
@@ -1018,7 +883,7 @@ static inline int inline_ov12_022204C4(u32 *param0)
     return inline_ov12_022204C4_sub(param0, 1);
 }
 
-static void ov12_0222048C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_0222048C(MoveEffectSystem *param0)
 {
     param0->unk_89 = 1;
 
@@ -1032,7 +897,7 @@ static void ov12_0222048C(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_022204C4(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022204C4(MoveEffectSystem *param0)
 {
     param0->unk_18 += 1;
     param0->unk_89 = (u8)inline_ov12_022204C4(param0->unk_18);
@@ -1040,7 +905,7 @@ static void ov12_022204C4(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_B8 = ov12_0221FC20;
 }
 
-static void ov12_022204E4(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022204E4(MoveEffectSystem *param0)
 {
     if (param0->unk_8A == 0) {
         param0->unk_18 += 1;
@@ -1050,7 +915,7 @@ static void ov12_022204E4(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02220504(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220504(MoveEffectSystem *param0)
 {
     u32 v0;
     u32 v1;
@@ -1069,7 +934,7 @@ static void ov12_02220504(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02220524(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220524(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -1080,7 +945,7 @@ static void ov12_02220524(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-int ov12_02220540(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_02220540(MoveEffectSystem *param0, int param1)
 {
     int v0 = 0;
 
@@ -1111,7 +976,7 @@ int ov12_02220540(UnkStruct_ov12_0221FCDC *param0, int param1)
     return v0;
 }
 
-void ov12_02220590(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_022380DC *param1, int param2)
+void ov12_02220590(MoveEffectSystem *param0, UnkStruct_ov12_022380DC *param1, int param2)
 {
     int v0;
 
@@ -1149,7 +1014,7 @@ void ov12_02220590(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_022380DC *par
     }
 }
 
-static void ov12_022206A4(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022206A4(MoveEffectSystem *param0)
 {
     int v0;
     UnkStruct_ov12_022380DC v1;
@@ -1169,7 +1034,7 @@ static void ov12_022206A4(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_022206E8(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022206E8(MoveEffectSystem *param0)
 {
     int v0;
     UnkStruct_ov12_022380DC v1;
@@ -1182,7 +1047,7 @@ static void ov12_022206E8(UnkStruct_ov12_0221FCDC *param0)
     ov12_022382BC(&v1, param0->heapID);
 }
 
-static void ov12_0222070C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_0222070C(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -1203,7 +1068,7 @@ static void ov12_0222070C(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_0222074C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_0222074C(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -1226,7 +1091,7 @@ static void ov12_0222074C(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02220798(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220798(MoveEffectSystem *param0)
 {
     int v0;
     int v1 = 0;
@@ -1321,7 +1186,7 @@ static void ov12_02220798(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_10 = 0;
 }
 
-static void ov12_022209A8(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022209A8(MoveEffectSystem *param0)
 {
     u32 v0;
     u32 v1;
@@ -1353,7 +1218,7 @@ static void ov12_022209A8(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_BC->unk_5C[0] = ov12_02223880(param0->unk_BC->unk_1C[v2], v0, v1, param0);
 }
 
-static void ov12_02220A3C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220A3C(MoveEffectSystem *param0)
 {
     u32 v0;
     u32 v1;
@@ -1389,7 +1254,7 @@ static void ov12_02220A3C(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_BC->unk_5C[v3] = ov12_02223880(param0->unk_BC->unk_1C[v2], v0, v1, param0);
 }
 
-static int ov12_02220ADC(UnkStruct_ov12_0221FCDC *param0)
+static int ov12_02220ADC(MoveEffectSystem *param0)
 {
     int v0;
     int v1, v2;
@@ -1414,7 +1279,7 @@ static int ov12_02220ADC(UnkStruct_ov12_0221FCDC *param0)
     return v0 - 1;
 }
 
-static int ov12_02220B34(UnkStruct_ov12_0221FCDC *param0)
+static int ov12_02220B34(MoveEffectSystem *param0)
 {
     int v0;
     int v1, v2;
@@ -1439,7 +1304,7 @@ static int ov12_02220B34(UnkStruct_ov12_0221FCDC *param0)
     return v0;
 }
 
-static void ov12_02220B8C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220B8C(MoveEffectSystem *param0)
 {
     int v0;
     u32 v1[6];
@@ -1480,7 +1345,7 @@ static void ov12_02220B8C(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_BC->unk_5C[0] = ov12_02223880(param0->unk_BC->unk_1C[v3], v4, v2, param0);
 }
 
-static void ov12_02220C44(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220C44(MoveEffectSystem *param0)
 {
     int v0;
     u32 v1[4];
@@ -1521,7 +1386,7 @@ static void ov12_02220C44(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_BC->unk_5C[0] = ov12_02223880(param0->unk_BC->unk_1C[v3], v4, v2, param0);
 }
 
-static void ov12_02220CFC(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220CFC(MoveEffectSystem *param0)
 {
     int v0;
     int v1 = 0;
@@ -1542,7 +1407,7 @@ static void ov12_02220CFC(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02220D3C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220D3C(MoveEffectSystem *param0)
 {
     u32 v0;
     u32 v1;
@@ -1562,7 +1427,7 @@ static void ov12_02220D3C(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_B8 = ov12_0221FC20;
 }
 
-static void ov12_02220D90(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220D90(MoveEffectSystem *param0)
 {
     u32 v0;
     u32 v1;
@@ -1586,7 +1451,7 @@ static void ov12_02220D90(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_B8 = ov12_0221FC20;
 }
 
-static void ov12_02220DE8(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220DE8(MoveEffectSystem *param0)
 {
     u32 v0;
 
@@ -1598,7 +1463,7 @@ static void ov12_02220DE8(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_BC->unk_1C[v0] = NULL;
 }
 
-static void ov12_02220E14(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220E14(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -1616,7 +1481,7 @@ static void ov12_02220E14(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02220E44(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220E44(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -1634,7 +1499,7 @@ static void ov12_02220E44(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02220E70(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220E70(MoveEffectSystem *param0)
 {
     u32 v0;
     u32 v1;
@@ -1654,7 +1519,7 @@ static void ov12_02220E70(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02220EA8(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220EA8(MoveEffectSystem *param0)
 {
     param0->unk_18 += 1;
 
@@ -1665,7 +1530,7 @@ static void ov12_02220EA8(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02220ED0(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220ED0(MoveEffectSystem *param0)
 {
     int v0;
     u32 v1;
@@ -1694,7 +1559,7 @@ static void ov12_02220ED0(UnkStruct_ov12_0221FCDC *param0)
     v3(param0);
 }
 
-static void ov12_02220F30(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220F30(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -1707,7 +1572,7 @@ static void ov12_02220F30(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_18 += (u32)inline_ov12_022204C4(param0->unk_18);
 }
 
-static void ov12_02220F5C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220F5C(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -1730,7 +1595,7 @@ static void ov12_02220F5C(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_18 += (u32)inline_ov12_022204C4(param0->unk_18);
 }
 
-static void ov12_02220FA0(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220FA0(MoveEffectSystem *param0)
 {
     int v0;
     int v1[] = {
@@ -1761,7 +1626,7 @@ static void ov12_02220FA0(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_18 += (u32)inline_ov12_022204C4(param0->unk_18);
 }
 
-static void ov12_02220FFC(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02220FFC(MoveEffectSystem *param0)
 {
     param0->unk_18 += 1;
 
@@ -1772,7 +1637,7 @@ static void ov12_02220FFC(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02221024(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02221024(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -1789,7 +1654,7 @@ static void ov12_02221024(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02221064(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02221064(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -1805,13 +1670,13 @@ static void ov12_02221064(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02221098(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02221098(MoveEffectSystem *param0)
 {
     param0->unk_18 += 1;
     param0->unk_18 += (u32)inline_ov12_022204C4(param0->unk_18);
 }
 
-static int ov12_022210A8(UnkStruct_ov12_0221FCDC *param0, int param1)
+static int ov12_022210A8(MoveEffectSystem *param0, int param1)
 {
     int v0;
 
@@ -1957,7 +1822,7 @@ static void ov12_022211D8(SysTask *param0, void *param1)
     Bg_SetOffset(v0->unk_00, BG_LAYER_MAIN_2, 3, -(v2 - 40));
 }
 
-void ov12_02221238(UnkStruct_ov12_0221FCDC *param0, int param1)
+void ov12_02221238(MoveEffectSystem *param0, int param1)
 {
     if (param1 == 4) {
         if (param0->unk_174 != NULL) {
@@ -1974,17 +1839,17 @@ void ov12_02221238(UnkStruct_ov12_0221FCDC *param0, int param1)
     }
 }
 
-static void ov12_02221284(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02221284(MoveEffectSystem *param0)
 {
     return;
 }
 
-static void ov12_02221288(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02221288(MoveEffectSystem *param0)
 {
     return;
 }
 
-static void ov12_0222128C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_0222128C(MoveEffectSystem *param0)
 {
     void *v0 = NULL;
     int v1;
@@ -2023,7 +1888,7 @@ static void ov12_0222128C(UnkStruct_ov12_0221FCDC *param0)
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
     Bg_LoadTiles(param0->unk_C0, 2, v0, (10 * 10 * ((8 / 2) * 8)), 0);
     PaletteData_LoadBufferFromFileStart(param0->unk_C4, v4, v5, param0->heapID, 0, 0, (8 * 16));
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A0[0], v6, param0->unk_C0, 2, 0, 0, 0, param0->heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->arcs[0], v6, param0->unk_C0, 2, 0, 0, 0, param0->heapID);
 
     if (v2 == 1) {
         SysTask *v9;
@@ -2055,7 +1920,7 @@ static void ov12_0222128C(UnkStruct_ov12_0221FCDC *param0)
     Bg_SetPriority(BG_LAYER_MAIN_2, ov12_0222339C(param0));
 }
 
-static void ov12_02221424(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02221424(MoveEffectSystem *param0)
 {
     param0->unk_18 += 1;
     param0->unk_18 += 1;
@@ -2068,7 +1933,7 @@ static void ov12_02221424(UnkStruct_ov12_0221FCDC *param0)
     ov12_02221238(param0, 4);
 }
 
-static void ov12_0222144C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_0222144C(MoveEffectSystem *param0)
 {
     int v0 = (4 + 1);
     SpriteResourceCapacities v1 = {
@@ -2088,7 +1953,7 @@ static void ov12_0222144C(UnkStruct_ov12_0221FCDC *param0)
     SpriteSystem_InitManagerWithCapacities(param0->unk_BC->unk_AC, param0->unk_134, &v1);
 }
 
-static void ov12_022214C4(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022214C4(MoveEffectSystem *param0)
 {
     int v0[6];
     int v1;
@@ -2104,13 +1969,13 @@ static void ov12_022214C4(UnkStruct_ov12_0221FCDC *param0)
     v0[4] = 0;
     v0[5] = 0;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->unk_1A0[1], 76, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v0[SPRITE_RESOURCE_PLTT]);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, PLTTBUF_MAIN_OBJ, param0->unk_BC->unk_AC, param0->unk_134, param0->unk_1A0[1], 75, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v0[SPRITE_RESOURCE_PLTT]);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->unk_1A0[1], 77, FALSE, v0[SPRITE_RESOURCE_CELL]);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->unk_1A0[1], 78, FALSE, v0[SPRITE_RESOURCE_ANIM]);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->arcs[1], 76, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v0[SPRITE_RESOURCE_PLTT]);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, PLTTBUF_MAIN_OBJ, param0->unk_BC->unk_AC, param0->unk_134, param0->arcs[1], 75, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v0[SPRITE_RESOURCE_PLTT]);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->arcs[1], 77, FALSE, v0[SPRITE_RESOURCE_CELL]);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->arcs[1], 78, FALSE, v0[SPRITE_RESOURCE_ANIM]);
 }
 
-static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02221580(MoveEffectSystem *param0)
 {
     u8 *v0 = NULL;
     ManagedSprite *v1 = NULL;
@@ -2236,7 +2101,7 @@ static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_022217B4(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022217B4(MoveEffectSystem *param0)
 {
     param0->unk_18 += 1;
 
@@ -2247,7 +2112,7 @@ static void ov12_022217B4(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_134 = NULL;
 }
 
-static void ov12_022217E0(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022217E0(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -2278,7 +2143,7 @@ static void ov12_02221810(SysTask *param0, void *param1)
     }
 }
 
-static void ov12_02221834(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02221834(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -2384,7 +2249,7 @@ static void ov12_02221834(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_022219E8(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022219E8(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -2395,7 +2260,7 @@ static void ov12_022219E8(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_48[v0].unk_0C = 0;
 }
 
-static void ov12_02221A00(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02221A00(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -2406,7 +2271,7 @@ static void ov12_02221A00(UnkStruct_ov12_0221FCDC *param0)
     ov12_02221238(param0, v0);
 }
 
-static void ov12_02221A14(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02221A14(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -2421,7 +2286,7 @@ static void ov12_02221A14(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_68[v0] = v1;
 }
 
-void ov12_02221A30(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02221A30(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -2436,12 +2301,12 @@ void ov12_02221A30(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_78[v0] = v1;
 }
 
-static void ov12_02221A4C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02221A4C(MoveEffectSystem *param0)
 {
     return;
 }
 
-static void ov12_02221A50(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02221A50(MoveEffectSystem *param0)
 {
     return;
 }
@@ -2465,7 +2330,7 @@ static BOOL (*const Unk_ov12_02238644[])(UnkStruct_ov12_02221BBC *) = {
     ov12_022224E4
 };
 
-static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, UnkStruct_ov12_0221FCDC *param1, int param2)
+static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, MoveEffectSystem *param1, int param2)
 {
     int v0;
     int v1;
@@ -2492,7 +2357,7 @@ static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, UnkStruct_ov12_0221FC
     return 0;
 }
 
-static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, UnkStruct_ov12_0221FCDC *param1, int param2, int param3)
+static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, MoveEffectSystem *param1, int param2, int param3)
 {
     Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(param3, HEAP_ID_SYSTEM), param1->unk_C0, param2, 0, 0, 1, param1->heapID);
     PaletteData_LoadBufferFromFileStart(param1->unk_C4, 7, ov12_022234E4(param3, 1), param1->heapID, 0, 0x20, (9 * 16));
@@ -2555,7 +2420,7 @@ static void ov12_02221B64(UnkStruct_ov12_02221BBC *param0)
     }
 }
 
-static UnkStruct_ov12_02221BBC *ov12_02221BBC(UnkStruct_ov12_0221FCDC *param0)
+static UnkStruct_ov12_02221BBC *ov12_02221BBC(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02221BBC *v0 = NULL;
 
@@ -2904,7 +2769,7 @@ static void ov12_022222D4(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02222338(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02222338(MoveEffectSystem *param0)
 {
     GF_ASSERT(param0);
 
@@ -2915,7 +2780,7 @@ void ov12_02222338(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_17C->unk_18 = 1;
 }
 
-int ov12_02222354(UnkStruct_ov12_0221FCDC *param0)
+int ov12_02222354(MoveEffectSystem *param0)
 {
     return param0->unk_198;
 }
@@ -2959,7 +2824,7 @@ static BOOL ov12_02222360(UnkStruct_ov12_02221BBC *param0)
 static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0)
 {
     int v0, v1;
-    UnkStruct_ov12_0221FCDC *v2 = param0->unk_48;
+    MoveEffectSystem *v2 = param0->unk_48;
     UnkStruct_ov12_022222D4 *v3 = Heap_AllocFromHeap(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
 
     v3->unk_1C = Heap_AllocFromHeap(v2->heapID, sizeof(UnkStruct_ov12_022224F8));
@@ -2988,7 +2853,7 @@ static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0)
 
 static BOOL ov12_022224E4(UnkStruct_ov12_02221BBC *param0)
 {
-    UnkStruct_ov12_0221FCDC *v0 = param0->unk_48;
+    MoveEffectSystem *v0 = param0->unk_48;
     UnkStruct_ov12_022222D4 *v1 = param0->unk_48->unk_17C;
 
     param0->unk_44_1 = 1;
@@ -3026,7 +2891,7 @@ static void ov12_022224F8(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02222590(UnkStruct_ov12_0221FCDC *param0, int param1)
+void ov12_02222590(MoveEffectSystem *param0, int param1)
 {
     int v0 = ov12_02223428(param0, 2);
 
@@ -3051,7 +2916,7 @@ void ov12_02222590(UnkStruct_ov12_0221FCDC *param0, int param1)
     Graphics_LoadTilemapToBgLayer(param0->unk_180.unk_00, param0->unk_180.unk_0C, param0->unk_C0, param1, 0, 0, 1, param0->heapID);
 }
 
-void ov12_02222664(UnkStruct_ov12_0221FCDC *param0, int param1)
+void ov12_02222664(MoveEffectSystem *param0, int param1)
 {
     int v0 = ov12_02223428(param0, 1);
 
@@ -3092,7 +2957,7 @@ static void ov12_022226F4(SysTask *param0, void *param1)
     }
 }
 
-static void ov12_02222724(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222724(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02221BBC *v0;
     int v1;
@@ -3114,7 +2979,7 @@ static void ov12_02222724(UnkStruct_ov12_0221FCDC *param0)
     SysTask_Start(ov12_022226F4, v0, 1100);
 }
 
-static void ov12_02222774(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222774(MoveEffectSystem *param0)
 {
     int v0;
     s16 v1;
@@ -3145,7 +3010,7 @@ static void ov12_02222774(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_022227CC(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022227CC(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02221BBC *v0;
     int v1;
@@ -3167,7 +3032,7 @@ static void ov12_022227CC(UnkStruct_ov12_0221FCDC *param0)
     SysTask_Start(ov12_022226F4, v0, 1100);
 }
 
-static void ov12_02222820(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222820(MoveEffectSystem *param0)
 {
     if (param0->unk_178 == 2) {
         param0->unk_18 += 1;
@@ -3177,7 +3042,7 @@ static void ov12_02222820(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02222840(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222840(MoveEffectSystem *param0)
 {
     if (param0->unk_178 == 0) {
         param0->unk_18 += 1;
@@ -3187,7 +3052,7 @@ static void ov12_02222840(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02222860(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222860(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -3200,7 +3065,7 @@ static void ov12_02222860(UnkStruct_ov12_0221FCDC *param0)
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_DEBUG), param0->unk_C0, 3, 0, 0, 1, param0->heapID);
 }
 
-static void ov12_022228DC(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022228DC(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02221BBC *v0;
     int v1, v2, v3;
@@ -3231,32 +3096,32 @@ static void ov12_022228DC(UnkStruct_ov12_0221FCDC *param0)
     SysTask_Start(ov12_022226F4, v0, 1100);
 }
 
-static void ov12_0222293C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_0222293C(MoveEffectSystem *param0)
 {
     return;
 }
 
-static void ov12_02222940(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222940(MoveEffectSystem *param0)
 {
     return;
 }
 
-static void ov12_02222944(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222944(MoveEffectSystem *param0)
 {
     return;
 }
 
-static void ov12_02222948(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222948(MoveEffectSystem *param0)
 {
     return;
 }
 
-static void ov12_0222294C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_0222294C(MoveEffectSystem *param0)
 {
     return;
 }
 
-static void ov12_02222950(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222950(MoveEffectSystem *param0)
 {
     u16 v0;
 
@@ -3267,7 +3132,7 @@ static void ov12_02222950(UnkStruct_ov12_0221FCDC *param0)
     Sound_PlayEffect(v0);
 }
 
-static void ov12_02222968(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222968(MoveEffectSystem *param0)
 {
     u16 v0;
 
@@ -3279,7 +3144,7 @@ static void ov12_02222968(UnkStruct_ov12_0221FCDC *param0)
     Sound_StopEffect(v0, 0);
 }
 
-static void ov12_02222984(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222984(MoveEffectSystem *param0)
 {
     u16 v0;
     int v1;
@@ -3298,7 +3163,7 @@ static void ov12_02222984(UnkStruct_ov12_0221FCDC *param0)
     Sound_PanEffect(v0, SOUND_PLAYBACK_TRACK_ALL, v1);
 }
 
-static void ov12_022229BC(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022229BC(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -3311,7 +3176,7 @@ static void ov12_022229BC(UnkStruct_ov12_0221FCDC *param0)
     Sound_PanAllEffects(v0);
 }
 
-static void ov12_022229D8(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022229D8(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02220314 *v0 = NULL;
 
@@ -3346,7 +3211,7 @@ static void ov12_022229D8(UnkStruct_ov12_0221FCDC *param0)
     ov12_02220344(param0, v0);
 }
 
-static void ov12_02222A78(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222A78(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02220314 *v0 = NULL;
 
@@ -3377,7 +3242,7 @@ static void ov12_02222A78(UnkStruct_ov12_0221FCDC *param0)
     ov12_02220344(param0, v0);
 }
 
-static void ov12_02222AF0(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222AF0(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02220314 *v0 = NULL;
 
@@ -3412,7 +3277,7 @@ static void ov12_02222AF0(UnkStruct_ov12_0221FCDC *param0)
     ov12_02220344(param0, v0);
 }
 
-static void ov12_02222B94(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222B94(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02220314 *v0 = NULL;
 
@@ -3440,7 +3305,7 @@ static void ov12_02222B94(UnkStruct_ov12_0221FCDC *param0)
     ov12_02220344(param0, v0);
 }
 
-static void ov12_02222BF8(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222BF8(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02220314 *v0 = NULL;
 
@@ -3465,12 +3330,12 @@ static void ov12_02222BF8(UnkStruct_ov12_0221FCDC *param0)
     ov12_02220344(param0, v0);
 }
 
-static void ov12_02222C50(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222C50(MoveEffectSystem *param0)
 {
     (void)0;
 }
 
-static void ov12_02222C54(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222C54(MoveEffectSystem *param0)
 {
     if (param0->unk_8C) {
         param0->unk_89 = 1;
@@ -3494,7 +3359,7 @@ static void ov12_02222C54(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02222CAC(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222CAC(MoveEffectSystem *param0)
 {
     u16 v0;
     u16 v1;
@@ -3510,17 +3375,17 @@ static void ov12_02222CAC(UnkStruct_ov12_0221FCDC *param0)
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG1, v0, v1);
 }
 
-static void ov12_02222CDC(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222CDC(MoveEffectSystem *param0)
 {
     ov12_02220474();
 }
 
-static void ov12_02222CE4(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222CE4(MoveEffectSystem *param0)
 {
     return;
 }
 
-static void ov12_02222CE8(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222CE8(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -3553,7 +3418,7 @@ static void ov12_02222CE8(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02222D84(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222D84(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -3566,10 +3431,10 @@ static void ov12_02222D84(UnkStruct_ov12_0221FCDC *param0)
     v1 = inline_ov12_022204C4(param0->unk_18);
     param0->unk_18 += 1;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->unk_1A0[2], v1, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v1 + 5000);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[2], v1, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v1 + 5000);
 }
 
-static void ov12_02222DCC(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222DCC(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -3586,10 +3451,10 @@ static void ov12_02222DCC(UnkStruct_ov12_0221FCDC *param0)
     v2 = inline_ov12_022204C4(param0->unk_18);
     param0->unk_18 += 1;
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, 2, param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->unk_1A0[3], v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v2, v1 + 5000);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, 2, param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[3], v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v2, v1 + 5000);
 }
 
-static void ov12_02222E2C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222E2C(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -3602,10 +3467,10 @@ static void ov12_02222E2C(UnkStruct_ov12_0221FCDC *param0)
     v1 = inline_ov12_022204C4(param0->unk_18);
     param0->unk_18 += 1;
 
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->unk_1A0[4], v1, 1, v1 + 5000);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[4], v1, 1, v1 + 5000);
 }
 
-static void ov12_02222E74(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222E74(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -3618,10 +3483,10 @@ static void ov12_02222E74(UnkStruct_ov12_0221FCDC *param0)
     v1 = inline_ov12_022204C4(param0->unk_18);
     param0->unk_18 += 1;
 
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->unk_1A0[5], v1, 1, v1 + 5000);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[5], v1, 1, v1 + 5000);
 }
 
-static void ov12_02222EBC(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222EBC(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -3680,7 +3545,7 @@ static void ov12_02222EBC(UnkStruct_ov12_0221FCDC *param0)
     v5(param0, param0->unk_BC->unk_AC, param0->unk_C8[v2], v4);
 }
 
-static void ov12_02222FC8(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02222FC8(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -3725,7 +3590,7 @@ static void ov12_02222FC8(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_0222307C(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_0222307C(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -3741,7 +3606,7 @@ static void ov12_0222307C(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_C8[v0] = NULL;
 }
 
-static void ov12_022230A8(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022230A8(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -3757,12 +3622,12 @@ static void ov12_022230A8(UnkStruct_ov12_0221FCDC *param0)
     ManagedSprite_SetDrawFlag(param0->unk_138[v0], v1);
 }
 
-static void ov12_022230CC(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022230CC(MoveEffectSystem *param0)
 {
     GF_ASSERT(FALSE);
 }
 
-static void ov12_022230D4(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_022230D4(MoveEffectSystem *param0)
 {
     enum PokemonCryMod cryMod;
     s16 v1;
@@ -3788,7 +3653,7 @@ static void ov12_022230D4(UnkStruct_ov12_0221FCDC *param0)
     Pokemon_PlayCry(param0->unk_BC->unk_10C, cryMod, v3, v4, v1, v2, param0->unk_BC->unk_118, param0->heapID);
 }
 
-static void ov12_02223134(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02223134(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -3803,7 +3668,7 @@ static void ov12_02223134(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02223160(UnkStruct_ov12_0221FCDC *param0)
+static void ov12_02223160(MoveEffectSystem *param0)
 {
     return;
 }
@@ -3822,7 +3687,7 @@ int ov12_02223178(UnkStruct_ov12_02223178 *param0)
     return param0->unk_01;
 }
 
-s8 ov12_0222317C(UnkStruct_ov12_0221FCDC *param0, s8 param1)
+s8 ov12_0222317C(MoveEffectSystem *param0, s8 param1)
 {
     int v0 = param1;
 
@@ -3869,7 +3734,7 @@ s8 ov12_02223234(s8 param0, s8 param1, s8 param2)
     return v0;
 }
 
-BOOL ov12_0222325C(UnkStruct_ov12_0221FCDC *param0, int param1[], int param2)
+BOOL ov12_0222325C(MoveEffectSystem *param0, int param1[], int param2)
 {
     int v0, v1;
 
@@ -3891,37 +3756,37 @@ BOOL ov12_0222325C(UnkStruct_ov12_0221FCDC *param0, int param1[], int param2)
     return 1;
 }
 
-SpriteTemplate ov12_0222329C(UnkStruct_ov12_0221FCDC *param0)
+SpriteTemplate ov12_0222329C(MoveEffectSystem *param0)
 {
     return param0->unk_100;
 }
 
-int ov12_022232B8(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_022232B8(MoveEffectSystem *param0, int param1)
 {
     return param0->unk_BC->unk_C0[param1];
 }
 
-int ov12_022232C4(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_022232C4(MoveEffectSystem *param0, int param1)
 {
     return param0->unk_BC->unk_E0[param1];
 }
 
-int ov12_022232D0(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_022232D0(MoveEffectSystem *param0, int param1)
 {
     return param0->unk_BC->unk_D8[param1];
 }
 
-int ov12_022232E0(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_022232E0(MoveEffectSystem *param0, int param1)
 {
     return param0->unk_BC->unk_E8[param1];
 }
 
-int ov12_022232EC(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_022232EC(MoveEffectSystem *param0, int param1)
 {
     return param0->unk_BC->unk_EC[param1];
 }
 
-PokemonSprite *ov12_022232FC(UnkStruct_ov12_0221FCDC *param0, int param1)
+PokemonSprite *ov12_022232FC(MoveEffectSystem *param0, int param1)
 {
     if (param0->unk_BC->unk_C4[param1] == NULL) {
         return NULL;
@@ -3934,39 +3799,39 @@ PokemonSprite *ov12_022232FC(UnkStruct_ov12_0221FCDC *param0, int param1)
     }
 }
 
-PaletteData *ov12_0222332C(UnkStruct_ov12_0221FCDC *param0)
+PaletteData *ov12_0222332C(MoveEffectSystem *param0)
 {
     return param0->unk_C4;
 }
 
-int ov12_02223334(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_02223334(MoveEffectSystem *param0, int param1)
 {
     return param0->unk_BC->unk_B0[param1]->unk_08;
 }
 
-int ov12_02223344(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_02223344(MoveEffectSystem *param0, int param1)
 {
     return param0->unk_BC->unk_B0[param1]->unk_04;
 }
 
-int ov12_02223354(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_02223354(MoveEffectSystem *param0, int param1)
 {
     return param0->unk_BC->unk_B0[param1]->unk_0C;
 }
 
-BOOL ov12_02223364(UnkStruct_ov12_0221FCDC *param0)
+BOOL ov12_02223364(MoveEffectSystem *param0)
 {
     u32 v0 = (param0->unk_BC->battleType & BATTLE_TYPE_DOUBLES);
     return (v0 != 0) ? 1 : 0;
 }
 
-BOOL ov12_0222337C(UnkStruct_ov12_0221FCDC *param0, int param1)
+BOOL ov12_0222337C(MoveEffectSystem *param0, int param1)
 {
     int v0 = param0->unk_BC->unk_FC[param1] & (0x40 | 0x80 | 0x40000 | 0x20000000);
     return (v0 != 0) ? 1 : 0;
 }
 
-int ov12_0222339C(UnkStruct_ov12_0221FCDC *param0)
+int ov12_0222339C(MoveEffectSystem *param0)
 {
     int v0;
 
@@ -3979,7 +3844,7 @@ int ov12_0222339C(UnkStruct_ov12_0221FCDC *param0)
     return v0;
 }
 
-int ov12_022233B0(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_022233B0(MoveEffectSystem *param0, int param1)
 {
     int v0;
     int v1[][3] = {
@@ -3996,7 +3861,7 @@ int ov12_022233B0(UnkStruct_ov12_0221FCDC *param0, int param1)
     return v0;
 }
 
-int ov12_022233EC(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_022233EC(MoveEffectSystem *param0, int param1)
 {
     int v0;
     int v1[][3] = {
@@ -4013,7 +3878,7 @@ int ov12_022233EC(UnkStruct_ov12_0221FCDC *param0, int param1)
     return v0;
 }
 
-int ov12_02223428(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_02223428(MoveEffectSystem *param0, int param1)
 {
     int v0;
 
@@ -4047,17 +3912,17 @@ int ov12_02223428(UnkStruct_ov12_0221FCDC *param0, int param1)
     return v0;
 }
 
-void ov12_02223460(UnkStruct_ov12_0221FCDC *param0, int param1)
+void ov12_02223460(MoveEffectSystem *param0, int param1)
 {
     Bg_LoadTiles(param0->unk_C0, param1, param0->unk_BC->unk_110, 0x10000, 0);
 }
 
-void ov12_02223488(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02223488(MoveEffectSystem *param0)
 {
     PaletteData_LoadBuffer(param0->unk_C4, param0->unk_BC->unk_114, 0, 0, 0x200);
 }
 
-BOOL ov12_022234A8(UnkStruct_ov12_0221FCDC *param0, int param1)
+BOOL ov12_022234A8(MoveEffectSystem *param0, int param1)
 {
     int v0;
     int v1;

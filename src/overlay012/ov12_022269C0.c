@@ -14,22 +14,22 @@
 
 typedef struct {
     u8 unk_00;
-    UnkStruct_ov12_0221FCDC *unk_04;
+    MoveEffectSystem *unk_04;
 } UnkStruct_ov12_022269C4;
 
 typedef struct {
     u8 unk_00;
-    UnkStruct_ov12_0221FCDC *unk_04;
+    MoveEffectSystem *unk_04;
 } UnkStruct_ov12_02226A14;
 
 typedef struct {
     u8 unk_00;
-    UnkStruct_ov12_0221FCDC *unk_04;
+    MoveEffectSystem *unk_04;
 } UnkStruct_ov12_02226A64;
 
 typedef struct {
     u8 unk_00;
-    UnkStruct_ov12_0221FCDC *unk_04;
+    MoveEffectSystem *unk_04;
     SpriteSystem *unk_08;
     SpriteManager *unk_0C;
     ManagedSprite *unk_10;
@@ -37,7 +37,7 @@ typedef struct {
     Sprite *unk_1A4[10];
 } UnkStruct_ov12_02226AAC;
 
-void ov12_022269C0(UnkStruct_ov12_0221FCDC *param0)
+void ov12_022269C0(MoveEffectSystem *param0)
 {
     return;
 }
@@ -57,7 +57,7 @@ static void ov12_022269C4(SysTask *param0, void *param1)
     }
 }
 
-void ov12_022269EC(UnkStruct_ov12_0221FCDC *param0)
+void ov12_022269EC(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_022269C4 *v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_022269C4));
 
@@ -82,7 +82,7 @@ static void ov12_02226A14(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02226A3C(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02226A3C(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02226A14 *v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226A14));
 
@@ -107,7 +107,7 @@ static void ov12_02226A64(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02226A88(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02226A88(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02226A64 *v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226A64));
 
@@ -134,7 +134,7 @@ static void ov12_02226AAC(SysTask *param0, void *param1)
         SpriteSystem_DrawSprites(v0->unk_0C);
         break;
     case 1: {
-        UnkStruct_ov12_0221FCDC *v1 = v0->unk_04;
+        MoveEffectSystem *v1 = v0->unk_04;
 
         Sprite_DeleteAndFreeResources(v0->unk_10);
         Heap_Free(v0);
@@ -143,7 +143,7 @@ static void ov12_02226AAC(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02226B1C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_02226B1C(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_02226AAC *v0;
     SpriteTemplate v1;

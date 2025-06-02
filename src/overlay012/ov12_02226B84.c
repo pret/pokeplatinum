@@ -59,7 +59,7 @@ typedef struct {
 
 typedef struct {
     u8 unk_00;
-    UnkStruct_ov12_0221FCDC *unk_04;
+    MoveEffectSystem *unk_04;
     PokemonSprite *unk_08;
     UnkStruct_ov12_02225D50 unk_0C;
     s32 unk_20;
@@ -69,7 +69,7 @@ typedef struct {
 } UnkStruct_ov12_02227390;
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     UnkStruct_ov12_02225F6C unk_04;
     PokemonSprite *unk_28;
     s16 unk_2C;
@@ -77,7 +77,7 @@ typedef struct {
 } UnkStruct_ov12_022274E4;
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     SpriteSystem *unk_04;
     SpriteManager *unk_08;
     int unk_0C;
@@ -93,12 +93,12 @@ typedef struct {
 } UnkStruct_ov12_02227620;
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     PaletteData *unk_04;
 } UnkStruct_ov12_02227808;
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     PokemonSprite *unk_04;
     int unk_08;
     int unk_0C;
@@ -109,7 +109,7 @@ typedef struct {
 } UnkStruct_ov12_022278D0;
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     SpriteManager *unk_04;
     int unk_08;
     s16 unk_0C;
@@ -126,7 +126,7 @@ typedef struct {
 } UnkStruct_ov12_02227B4C;
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     int unk_04;
     s16 unk_08;
     s16 unk_0A;
@@ -143,7 +143,7 @@ typedef struct {
 } UnkStruct_ov12_02227DE0;
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     SpriteManager *unk_04;
     UnkStruct_ov12_02226454 unk_08;
 } UnkStruct_ov12_0222813C;
@@ -154,7 +154,7 @@ typedef struct {
     int unk_08;
     UnkStruct_ov12_02235998 unk_0C;
     UnkStruct_ov12_0223595C unk_20;
-    UnkStruct_ov12_0221FCDC *unk_3C;
+    MoveEffectSystem *unk_3C;
 } UnkStruct_ov12_02228268;
 
 typedef struct {
@@ -183,7 +183,7 @@ typedef struct {
     UnkStruct_ov12_02235998 unk_10;
     UnkStruct_ov12_0223595C unk_24;
     UnkStruct_ov12_02225F6C unk_40;
-    UnkStruct_ov12_0221FCDC *unk_64;
+    MoveEffectSystem *unk_64;
 } UnkStruct_ov12_0222830C;
 
 typedef struct {
@@ -193,7 +193,7 @@ typedef struct {
     UnkStruct_ov12_02235998 unk_0C;
     UnkStruct_ov12_0223595C unk_20;
     UnkStruct_ov12_02225F6C unk_3C;
-    UnkStruct_ov12_0221FCDC *unk_60;
+    MoveEffectSystem *unk_60;
     s16 unk_64;
 } UnkStruct_ov12_02228488;
 
@@ -205,7 +205,7 @@ typedef struct {
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
-    UnkStruct_ov12_0221FCDC *unk_0C;
+    MoveEffectSystem *unk_0C;
     PokemonSprite *unk_10;
     UnkStruct_ov12_02225F6C unk_14;
     UnkStruct_ov12_02225F6C unk_38;
@@ -222,7 +222,7 @@ typedef struct {
     int unk_0C;
     int unk_10;
     int unk_14;
-    UnkStruct_ov12_0221FCDC *unk_18;
+    MoveEffectSystem *unk_18;
     PokemonSprite *unk_1C;
     UnkStruct_ov12_02225F6C unk_20;
     UnkStruct_ov12_02225F6C unk_44;
@@ -242,7 +242,7 @@ typedef struct {
     UnkStruct_ov12_02235998 unk_0C;
     UnkStruct_ov12_0223595C unk_20;
     UnkStruct_ov12_02225F6C unk_3C;
-    UnkStruct_ov12_0221FCDC *unk_60;
+    MoveEffectSystem *unk_60;
     s16 unk_64;
     s16 unk_66;
 } UnkStruct_ov12_02228BD0;
@@ -311,7 +311,7 @@ typedef struct {
     int unk_20;
     int unk_24;
     BgConfig *unk_28;
-    UnkStruct_ov12_0221FCDC *unk_2C;
+    MoveEffectSystem *unk_2C;
     SpriteManager *unk_30;
     UnkStruct_ov12_02235998 unk_34[4];
     UnkStruct_ov12_02235998 unk_84[4];
@@ -425,7 +425,7 @@ typedef struct {
     UnkStruct_ov12_0222660C *unk_24;
 } UnkStruct_ov12_0222ABBC;
 
-static int ov12_02229454(UnkStruct_ov12_0221FCDC *param0, int param1);
+static int ov12_02229454(MoveEffectSystem *param0, int param1);
 
 static void ov12_02226B84(PokemonSprite *param0)
 {
@@ -481,7 +481,7 @@ static void ov12_02226BA0(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02226CB0(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02226CB0(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02226BA0 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02226BA0));
     int v1;
@@ -599,7 +599,7 @@ static void ov12_02226D38(SysTask *param0, void *param1)
     Bg_SetOffset(v0->unk_1C.unk_14, 2, 3, v0->unk_0C);
 }
 
-void ov12_02226EB0(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02226EB0(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02226D38 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02226D38));
     int v1;
@@ -757,7 +757,7 @@ static void ov12_02227064(SysTask *param0, void *param1)
     Bg_SetOffset(v0->unk_1C.unk_14, 2, 3, v0->unk_0C);
 }
 
-void ov12_022271D8(UnkStruct_ov12_0221FCDC *param0)
+void ov12_022271D8(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02227064 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02227064));
     int v1;
@@ -845,7 +845,7 @@ static void ov12_02227390(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02227408(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02227408(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02227390 *v0;
     int v1;
@@ -907,7 +907,7 @@ static void ov12_022274E4(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02227534(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02227534(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_022274E4 *v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_022274E4));
     v0->unk_00 = param0;
@@ -1019,7 +1019,7 @@ static void ov12_02227738(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_08);
 }
 
-void ov12_0222777C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222777C(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_02227620 *v0;
     PokemonSprite *v1;
@@ -1057,7 +1057,7 @@ static void ov12_02227808(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02227828(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02227828(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02227808 *v0;
     u16 v1;
@@ -1129,7 +1129,7 @@ static void ov12_022278D0(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222797C(UnkStruct_ov12_0221FCDC *param0)
+void ov12_0222797C(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_022278D0 *v0;
     int v1;
@@ -1327,7 +1327,7 @@ static void ov12_02227B4C(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_04);
 }
 
-void ov12_02227CBC(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02227CBC(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02227B4C *v0;
     PokemonSprite *v1;
@@ -1427,7 +1427,7 @@ static void ov12_02227DE0(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02227F30(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02227F30(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02227DE0 *v0;
     UnkStruct_ov12_02235998 v1[4];
@@ -1571,7 +1571,7 @@ static void ov12_0222813C(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02228168(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02228168(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_0222813C *v0;
     int v1;
@@ -1602,7 +1602,7 @@ void ov12_02228168(UnkStruct_ov12_0221FCDC *param0)
     ov12_022201E8(v0->unk_00, ov12_0222813C, v0);
 }
 
-void ov12_02228214(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02228214(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02235998 v0;
     int v1;
@@ -1642,7 +1642,7 @@ static void ov12_02228268(SysTask *param0, void *param1)
     }
 }
 
-void ov12_022282BC(UnkStruct_ov12_0221FCDC *param0)
+void ov12_022282BC(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02228268 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02228268));
 
@@ -1678,7 +1678,7 @@ static void ov12_0222830C(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02228394(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02228394(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -1761,7 +1761,7 @@ static void ov12_02228488(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02228520(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02228520(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -1888,7 +1888,7 @@ static void ov12_0222862C(SysTask *param0, void *param1)
     }
 }
 
-void ov12_022287CC(UnkStruct_ov12_0221FCDC *param0)
+void ov12_022287CC(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_0222862C *v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222862C));
 
@@ -1981,7 +1981,7 @@ static void ov12_02228868(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02228A0C(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02228A0C(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02228868 *v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_02228868));
 
@@ -2034,7 +2034,7 @@ static void ov12_02228B10(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_04.unk_0C);
 }
 
-void ov12_02228B40(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02228B40(MoveEffectSystem *param0)
 {
     int v0;
     UnkStruct_ov12_02228B10 *v1 = NULL;
@@ -2081,7 +2081,7 @@ static void ov12_02228BD0(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02228C6C(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02228C6C(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -2169,7 +2169,7 @@ static void ov12_02228DB8(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02228E00(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02228E00(MoveEffectSystem *param0)
 {
     int v0;
     UnkStruct_ov12_02228DB8 *v1 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02228DB8));
@@ -2209,7 +2209,7 @@ static void ov12_02228E78(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02228EC0(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02228EC0(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02235350 v0;
     int v1;
@@ -2257,7 +2257,7 @@ void ov12_02228EC0(UnkStruct_ov12_0221FCDC *param0)
     ov12_022201E8(v5->unk_00.unk_04, ov12_02228E78, v5);
 }
 
-void ov12_02228FB4(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02228FB4(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02235350 v0;
     int v1;
@@ -2315,7 +2315,7 @@ void ov12_02228FB4(UnkStruct_ov12_0221FCDC *param0)
     ov12_022201E8(v6->unk_00.unk_04, ov12_02228E78, v6);
 }
 
-void ov12_022290DC(UnkStruct_ov12_0221FCDC *param0)
+void ov12_022290DC(MoveEffectSystem *param0)
 {
     int v0;
     int v1;
@@ -2365,7 +2365,7 @@ static void ov12_02229184(SysTask *param0, void *param1)
     }
 }
 
-void ov12_022291AC(UnkStruct_ov12_0221FCDC *param0)
+void ov12_022291AC(MoveEffectSystem *param0)
 {
     int v0;
     UnkStruct_ov12_02229184 *v1 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229184));
@@ -2434,7 +2434,7 @@ static void ov12_02229278(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02229304(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02229304(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02229278 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229278));
 
@@ -2493,7 +2493,7 @@ void ov12_02229304(UnkStruct_ov12_0221FCDC *param0)
     ov12_022201E8(v0->unk_00.unk_04, ov12_02229278, v0);
 }
 
-static int ov12_02229454(UnkStruct_ov12_0221FCDC *param0, int param1)
+static int ov12_02229454(MoveEffectSystem *param0, int param1)
 {
     int v0 = 0;
 
@@ -2614,7 +2614,7 @@ static void ov12_022295C4(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02229638(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02229638(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_022294AC *v0;
     int v1;
@@ -2708,7 +2708,7 @@ static void ov12_02229738(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02229810(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02229810(MoveEffectSystem *param0)
 {
     int v0;
     UnkStruct_ov12_02229738 *v1 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229738));
@@ -2766,7 +2766,7 @@ static void ov12_0222988C(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_0C);
 }
 
-void ov12_02229908(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02229908(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_0222988C *v0;
     int v1;
@@ -2798,7 +2798,7 @@ void ov12_02229908(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-static void ov12_02229980(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_02229980 *param1)
+static void ov12_02229980(MoveEffectSystem *param0, UnkStruct_ov12_02229980 *param1)
 {
     param1->unk_00 = ov12_02220280(param0, 0);
     param1->unk_0C.unk_00 = ov12_02220280(param0, 1);
@@ -2899,7 +2899,7 @@ static void ov12_02229A6C(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02229B28(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02229B28(MoveEffectSystem *param0)
 {
     int v0;
     VecFx32 v1;
@@ -2939,7 +2939,7 @@ void ov12_02229B28(UnkStruct_ov12_0221FCDC *param0)
     ov12_022201E8(v3->unk_3C.unk_04, ov12_02229A6C, v3);
 }
 
-void ov12_02229C5C(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02229C5C(MoveEffectSystem *param0)
 {
     VecFx32 v0;
     VecFx32 v1;
@@ -3035,7 +3035,7 @@ static void ov12_02229DF0(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02229E54(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02229E54(MoveEffectSystem *param0)
 {
     int v0;
     VecFx32 v1;
@@ -3095,7 +3095,7 @@ static void ov12_02229F9C(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222A00C(UnkStruct_ov12_0221FCDC *param0)
+void ov12_0222A00C(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_02229F9C *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229F9C));
 
@@ -3158,7 +3158,7 @@ static void ov12_0222A178(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v1->unk_00.unk_10);
 }
 
-void ov12_0222A1AC(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222A1AC(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_0222A178 *v0 = NULL;
 
@@ -3301,7 +3301,7 @@ static void ov12_0222A1F4(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_10);
 }
 
-void ov12_0222A34C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222A34C(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_0222A1F478 *v0 = NULL;
 
@@ -3348,7 +3348,7 @@ static void ov12_0222A3DC(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_10);
 }
 
-void ov12_0222A410(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222A410(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_0222A3DC *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222A1F478));
     ov12_0223595C(param0, &v0->unk_00);
@@ -3434,7 +3434,7 @@ static void ov12_0222A4A0(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_10);
 }
 
-void ov12_0222A5C0(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222A5C0(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_0222A4A0 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222A4A0));
     ov12_0223595C(param0, &v0->unk_00);
@@ -3446,7 +3446,7 @@ void ov12_0222A5C0(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
     ov12_022201E8(v0->unk_00.unk_04, ov12_0222A4A0, v0);
 }
 
-void ov12_0222A604(UnkStruct_ov12_0221FCDC *param0)
+void ov12_0222A604(MoveEffectSystem *param0)
 {
     int v0 = ov12_02220280(param0, 0);
 
@@ -3588,7 +3588,7 @@ static void ov12_0222A878(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_0C);
 }
 
-void ov12_0222A8F4(UnkStruct_ov12_0221FCDC *param0)
+void ov12_0222A8F4(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_0222A624 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222A624));
     ov12_0223595C(param0, &v0->unk_00);
@@ -3729,7 +3729,7 @@ static void ov12_0222AB10(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v1->unk_00.unk_0C);
 }
 
-void ov12_0222AB50(UnkStruct_ov12_0221FCDC *param0)
+void ov12_0222AB50(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_0222AB10 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222AB10));
     ov12_0223595C(param0, &v0->unk_00);
@@ -3790,7 +3790,7 @@ static void ov12_0222ABBC(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222AC40(UnkStruct_ov12_0221FCDC *param0)
+void ov12_0222AC40(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_0222ABBC *v0 = NULL;
 

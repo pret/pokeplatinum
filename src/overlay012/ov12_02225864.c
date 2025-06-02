@@ -102,7 +102,7 @@ void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3)
     }
 }
 
-void ov12_02225898(UnkStruct_ov12_0221FCDC *param0, int param1, s16 *param2, s16 *param3)
+void ov12_02225898(MoveEffectSystem *param0, int param1, s16 *param2, s16 *param3)
 {
     if (ov12_0221FDD4(param0) == 1) {
         ov12_02225864(0, param1 + 2, param2, param3);
@@ -115,7 +115,7 @@ void ov12_02225898(UnkStruct_ov12_0221FCDC *param0, int param1, s16 *param2, s16
     }
 }
 
-s16 ov12_022258E0(UnkStruct_ov12_0221FCDC *param0, int param1, int param2)
+s16 ov12_022258E0(MoveEffectSystem *param0, int param1, int param2)
 {
     int v0, v1;
 
@@ -149,7 +149,7 @@ u8 ov12_02225950(ManagedSprite *param0)
     return PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(param0->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
-int ov12_02225964(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_02225964(MoveEffectSystem *param0, int param1)
 {
     int v0;
     int v1 = 1;
@@ -169,7 +169,7 @@ int ov12_02225964(UnkStruct_ov12_0221FCDC *param0, int param1)
     return v1;
 }
 
-int ov12_0222598C(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_0222598C(MoveEffectSystem *param0, int param1)
 {
     int v0;
     int v1 = 1;
@@ -1190,7 +1190,7 @@ static void ov12_022268DC(u16 *param0, u16 param1)
     }
 }
 
-void ov12_02226924(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02226924(MoveEffectSystem *param0)
 {
     PaletteData *v0 = ov12_0222332C(param0);
     u16 *v1 = PaletteData_GetFadedBuffer(v0, 0);
@@ -1202,7 +1202,7 @@ void ov12_02226924(UnkStruct_ov12_0221FCDC *param0)
     }
 }
 
-void ov12_02226954(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02226954(MoveEffectSystem *param0)
 {
     PaletteData *v0 = ov12_0222332C(param0);
 
