@@ -88,8 +88,8 @@ typedef struct UnkStruct_ov12_02221BBC_t {
 
 
 static void ov12_022224F8(SysTask *param0, void *param1);
-static void ov12_0221FC20(MoveEffectSystem *param0);
-static void ov12_0221FC44(MoveEffectSystem *param0);
+static void MoveEffectSystem_WaitForEffect(MoveEffectSystem *param0);
+static void MoveEffectSystem_ExecuteEffectScript(MoveEffectSystem *param0);
 
 // See enum MoveEffectTaskKind for 'kind'
 static SysTask *MoveEffectSystem_StartTask(u8 kind, MoveEffectSystem *param1, SysTaskFunc param2, void *param3, u32 param4);
@@ -104,8 +104,8 @@ static BOOL ov12_022203FC(UnkStruct_ov12_02220314 *param0);
 static BOOL ov12_02220404(UnkStruct_ov12_02220314 *param0);
 static BOOL ov12_0222040C(UnkStruct_ov12_02220314 *param0);
 static BOOL ov12_0222044C(UnkStruct_ov12_02220314 *param0);
-static void ov12_022204C4(MoveEffectSystem *param0);
-static void ov12_022204E4(MoveEffectSystem *param0);
+static void MoveEffectScriptCmd_Delay(MoveEffectSystem *param0);
+static void MoveEffectScriptCmd_WaitForEffect(MoveEffectSystem *param0);
 static void ov12_0222070C(MoveEffectSystem *param0);
 static void ov12_0222074C(MoveEffectSystem *param0);
 static void ov12_02220798(MoveEffectSystem *param0);
@@ -207,9 +207,9 @@ static BOOL ov12_022226E8(UnkStruct_ov12_02221BBC *param0);
 static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0);
 static BOOL ov12_022224E4(UnkStruct_ov12_02221BBC *param0);
 
-static inline int inline_ov12_022204C4_sub_sub(u32 *param0, u8 param1, u8 param2);
-static inline int inline_ov12_022204C4_sub(u32 *param0, u8 param1);
-static inline int inline_ov12_022204C4(u32 *param0);
+static inline void MoveEffectScript_Next(MoveEffectSystem *system);
+static inline void MoveEffectScript_SetupArgs(MoveEffectSystem *system);
+static inline int MoveEffectScript_ReadWord(u32 *param0);
 
 static const s16 Unk_ov12_02238660[] = {
     0x20,
@@ -230,24 +230,22 @@ static const s16 Unk_ov12_02238660[] = {
     0x20
 };
 
-static void ov12_0221FC20(MoveEffectSystem *param0)
+static void MoveEffectSystem_WaitForEffect(MoveEffectSystem *system)
 {
-    if (param0->unk_89 == 0) {
-        param0->unk_89 == 0;
-        param0->unk_B8 = ov12_0221FC44;
+    if (system->scriptDelay == 0) {
+        system->scriptDelay == 0;
+        system->executeEffectScriptFunc = MoveEffectSystem_ExecuteEffectScript;
     } else {
-        param0->unk_89--;
+        system->scriptDelay--;
     }
 }
 
-static void ov12_0221FC44(MoveEffectSystem *param0)
+static void MoveEffectSystem_ExecuteEffectScript(MoveEffectSystem *system)
 {
-    UnkFuncPtr_ov12_02239EEC v0;
-
     do {
-        v0 = ov12_02223164(*(param0->unk_18));
-        v0(param0);
-    } while (param0->unk_89 == 0 && param0->unk_10 == 1);
+        MoveEffectScriptCmd cmd = MoveEffectSystem_GetScriptCmd(*system->effectScriptPtr);
+        cmd(system);
+    } while (system->scriptDelay == 0 && system->unk_10 == 1);
 }
 
 static SysTask *MoveEffectSystem_StartTask(u8 kind, MoveEffectSystem *system, SysTaskFunc func, void *param, u32 priority)
@@ -314,7 +312,7 @@ MoveEffectSystem *MoveEffectSystem_New(enum HeapId heapID)
     memset(system->unk_BC, 0, sizeof(UnkStruct_ov12_02223178));
 
     system->isActive = FALSE;
-    system->unk_18 = NULL;
+    system->effectScriptPtr = NULL;
 
     for (i = 0; i < 4; i++) {
         system->unk_C8[i] = NULL;
@@ -464,7 +462,7 @@ BOOL ov12_0221FE30(MoveEffectSystem *param0, UnkStruct_ov16_02265BBC *param1, u1
         return 0;
     }
 
-    param0->unk_18 = (u32 *)param0->unk_14;
+    param0->effectScriptPtr = (u32 *)param0->unk_14;
     param0->bgLayerPriorities[BG_LAYER_MAIN_0] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_0);
     param0->bgLayerPriorities[BG_LAYER_MAIN_1] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_1);
     param0->bgLayerPriorities[BG_LAYER_MAIN_2] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_2);
@@ -480,8 +478,8 @@ BOOL ov12_0221FE30(MoveEffectSystem *param0, UnkStruct_ov16_02265BBC *param1, u1
     }
 
     param0->unk_17C = NULL;
-    param0->unk_B8 = ov12_0221FC44;
-    param0->unk_89 = 0;
+    param0->executeEffectScriptFunc = MoveEffectSystem_ExecuteEffectScript;
+    param0->scriptDelay = 0;
 
     if (ov12_0221FDD4(param0) == 1) {
         param0->unk_198 = 0x7;
@@ -500,7 +498,7 @@ BOOL ov12_0222016C(MoveEffectSystem *param0)
         return 0;
     }
 
-    param0->unk_B8(param0);
+    param0->executeEffectScriptFunc(param0);
     return 1;
 }
 
@@ -765,9 +763,9 @@ static BOOL ov12_0222044C(UnkStruct_ov12_02220314 *param0)
     return v0;
 }
 
-static const UnkFuncPtr_ov12_02239EEC Unk_ov12_022387D4[] = {
-    ov12_022204C4,
-    ov12_022204E4,
+static const MoveEffectScriptCmd sMoveEffectScriptCmdTable[] = {
+    MoveEffectScriptCmd_Delay,
+    MoveEffectScriptCmd_WaitForEffect,
     ov12_0222070C,
     ov12_0222074C,
     ov12_02220798,
@@ -858,57 +856,52 @@ void ov12_02220474(void)
     G2_SetBlendAlpha((GX_BLEND_PLANEMASK_NONE), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 8, 8);
 }
 
-static inline int inline_ov12_022204C4_sub_sub(u32 *param0, u8 param1, u8 param2)
+static inline void MoveEffectScript_Next(MoveEffectSystem *system)
 {
-    int v0 = param0[param1];
-
-    if (param2 != 1) {
-        GF_ASSERT(0);
-    }
-
-    return v0;
+    system->effectScriptPtr += 1;
 }
 
-static inline int inline_ov12_022204C4_sub(u32 *param0, u8 param1)
+static inline void MoveEffectScript_SetupArgs(MoveEffectSystem *system)
 {
-    int v0 = inline_ov12_022204C4_sub_sub(param0, 0, param1);
-    return v0;
+    MoveEffectScript_Next(system);
 }
 
-static inline int inline_ov12_022204C4(u32 *param0)
+static inline int MoveEffectScript_ReadWord(u32 *scriptPtr)
 {
-    return inline_ov12_022204C4_sub(param0, 1);
+    return *scriptPtr;
 }
 
 static void ov12_0222048C(MoveEffectSystem *param0)
 {
-    param0->unk_89 = 1;
+    param0->scriptDelay = 1;
 
     if (gSystem.heldKeys & PAD_BUTTON_L) {
         if (gSystem.heldKeys & PAD_BUTTON_R) {
             if (gSystem.pressedKeys & PAD_BUTTON_X) {
-                param0->unk_18 += 1;
-                param0->unk_89 = 0;
+                param0->effectScriptPtr += 1;
+                param0->scriptDelay = 0;
             }
         }
     }
 }
 
-static void ov12_022204C4(MoveEffectSystem *param0)
+static void MoveEffectScriptCmd_Delay(MoveEffectSystem *system)
 {
-    param0->unk_18 += 1;
-    param0->unk_89 = (u8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
-    param0->unk_B8 = ov12_0221FC20;
+    MoveEffectScript_SetupArgs(system);
+
+    system->scriptDelay = (u8)MoveEffectScript_ReadWord(system->effectScriptPtr);
+    MoveEffectScript_Next(system);
+
+    system->executeEffectScriptFunc = MoveEffectSystem_WaitForEffect;
 }
 
-static void ov12_022204E4(MoveEffectSystem *param0)
+static void MoveEffectScriptCmd_WaitForEffect(MoveEffectSystem *system)
 {
-    if (param0->activeEffectTasks == 0) {
-        param0->unk_18 += 1;
-        param0->unk_89 = 0;
+    if (system->activeEffectTasks == 0) {
+        MoveEffectScript_Next(system);
+        system->scriptDelay = 0;
     } else {
-        param0->unk_89 = 1;
+        system->scriptDelay = 1;
     }
 }
 
@@ -917,13 +910,13 @@ static void ov12_02220504(MoveEffectSystem *param0)
     u32 v0;
     u32 v1;
 
-    param0->unk_18 += 1;
-    v0 = (u32)inline_ov12_022204C4(param0->unk_18);
+    param0->effectScriptPtr += 1;
+    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
 
-    param0->unk_18 += 1;
-    v1 = (u32)inline_ov12_022204C4(param0->unk_18);
+    param0->effectScriptPtr += 1;
+    v1 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
     if (v0 < (8 + 2)) {
         param0->unk_90[v0] = v1;
@@ -935,7 +928,7 @@ static void ov12_02220524(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
     for (v0 = 0; v0 < (8 + 2); v0++) {
         param0->unk_90[v0] = 0;
@@ -1016,9 +1009,9 @@ static void ov12_022206A4(MoveEffectSystem *param0)
     int v0;
     UnkStruct_ov12_022380DC v1;
 
-    param0->unk_18 += 1;
-    v0 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
+    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     ov12_02220590(param0, &v1, v0);
 
@@ -1036,9 +1029,9 @@ static void ov12_022206E8(MoveEffectSystem *param0)
     int v0;
     UnkStruct_ov12_022380DC v1;
 
-    param0->unk_18 += 1;
-    v0 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
+    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     ov12_02220590(param0, &v1, v0);
     ov12_022382BC(&v1, param0->heapID);
@@ -1048,7 +1041,7 @@ static void ov12_0222070C(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_28[v0].unk_08 == 1) {
@@ -1057,9 +1050,9 @@ static void ov12_0222070C(MoveEffectSystem *param0)
 
         param0->unk_28[v0].unk_08 = 1;
         param0->unk_28[v0].unk_04 = 0;
-        param0->unk_28[v0].unk_05 = (u8)inline_ov12_022204C4(param0->unk_18);
-        param0->unk_18 += 1;
-        param0->unk_28[v0].unk_00 = param0->unk_18;
+        param0->unk_28[v0].unk_05 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+        param0->effectScriptPtr += 1;
+        param0->unk_28[v0].unk_00 = param0->effectScriptPtr;
 
         return;
     }
@@ -1069,7 +1062,7 @@ static void ov12_0222074C(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
     for (v0 = 3 - 1; v0 >= 0; v0--) {
         if (param0->unk_28[v0].unk_08 == 0) {
@@ -1081,7 +1074,7 @@ static void ov12_0222074C(MoveEffectSystem *param0)
         if (param0->unk_28[v0].unk_04 == param0->unk_28[v0].unk_05) {
             param0->unk_28[v0].unk_08 = 0;
         } else {
-            param0->unk_18 = param0->unk_28[v0].unk_00;
+            param0->effectScriptPtr = param0->unk_28[v0].unk_00;
         }
 
         return;
@@ -1094,7 +1087,7 @@ static void ov12_02220798(MoveEffectSystem *param0)
     int v1 = 0;
 
     if (param0->unk_17A < 1) {
-        param0->unk_89 = 1;
+        param0->scriptDelay = 1;
         param0->unk_17A++;
         return;
     }
@@ -1106,7 +1099,7 @@ static void ov12_02220798(MoveEffectSystem *param0)
     }
 
     if ((v1 != 0) || (param0->activeEffectTasks != 0) || (param0->activeSoundTasks != 0)) {
-        param0->unk_89 = 1;
+        param0->scriptDelay = 1;
         param0->unk_179 = 0;
         return;
     }
@@ -1116,9 +1109,9 @@ static void ov12_02220798(MoveEffectSystem *param0)
 
         if (param0->unk_179 > 90) {
             param0->unk_179 = 0;
-            param0->unk_89 = 0;
+            param0->scriptDelay = 0;
         } else {
-            param0->unk_89 = 1;
+            param0->scriptDelay = 1;
             return;
         }
     }
@@ -1189,16 +1182,16 @@ static void ov12_022209A8(MoveEffectSystem *param0)
     u32 v1;
     u32 v2;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v2 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v2 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     param0->unk_BC->unk_18 = v2;
 
@@ -1222,19 +1215,19 @@ static void ov12_02220A3C(MoveEffectSystem *param0)
     u32 v2;
     u32 v3;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v2 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v2 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v3 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v3 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     param0->unk_BC->unk_18 = v2;
 
@@ -1309,18 +1302,18 @@ static void ov12_02220B8C(MoveEffectSystem *param0)
     u32 v3;
     u32 v4;
 
-    param0->unk_18 += 1;
-    v3 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    MoveEffectScript_SetupArgs(param0);
+    v3 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     for (v0 = 0; v0 < 6; v0++) {
-        v1[v0] = (u32)inline_ov12_022204C4(param0->unk_18);
-        param0->unk_18 += 1;
+        v1[v0] = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+        param0->effectScriptPtr += 1;
     }
 
-    v2 = (u32)inline_ov12_022204C4(param0->unk_18);
+    v2 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
     param0->unk_BC->unk_18 = v3;
 
     if (param0->unk_78[v3] != 0) {
@@ -1350,18 +1343,18 @@ static void ov12_02220C44(MoveEffectSystem *param0)
     u32 v3;
     u32 v4;
 
-    param0->unk_18 += 1;
-    v3 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
+    v3 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v1[v0] = (u32)inline_ov12_022204C4(param0->unk_18);
-        param0->unk_18 += 1;
+        v1[v0] = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+        param0->effectScriptPtr += 1;
     }
 
-    v2 = (u32)inline_ov12_022204C4(param0->unk_18);
+    v2 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
     param0->unk_BC->unk_18 = v3;
 
     if (param0->unk_78[v3] != 0) {
@@ -1397,10 +1390,10 @@ static void ov12_02220CFC(MoveEffectSystem *param0)
     }
 
     if (v1 == 0) {
-        param0->unk_18 += 1;
-        param0->unk_89 = 0;
+        param0->effectScriptPtr += 1;
+        param0->scriptDelay = 0;
     } else {
-        param0->unk_89 = 1;
+        param0->scriptDelay = 1;
     }
 }
 
@@ -1409,19 +1402,19 @@ static void ov12_02220D3C(MoveEffectSystem *param0)
     u32 v0;
     u32 v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v1 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     GF_ASSERT(param0->unk_BC->unk_1C[v1] == NULL);
 
-    v0 = (u32)inline_ov12_022204C4(param0->unk_18);
+    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
     param0->unk_BC->unk_1C[v1] = ov12_022237F0(param0->heapID, v0, 0);
-    param0->unk_89 = 2;
-    param0->unk_B8 = ov12_0221FC20;
+    param0->scriptDelay = 2;
+    param0->executeEffectScriptFunc = MoveEffectSystem_WaitForEffect;
 }
 
 static void ov12_02220D90(MoveEffectSystem *param0)
@@ -1430,31 +1423,31 @@ static void ov12_02220D90(MoveEffectSystem *param0)
     u32 v1;
     u32 v2;
 
-    param0->unk_18 += 1;
-    v2 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
+    v2 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
     v1 = 100;
 
     GF_ASSERT(param0->unk_BC->unk_1C[v2] == NULL);
 
-    v0 = (u32)inline_ov12_022204C4(param0->unk_18);
+    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
     param0->unk_BC->unk_1C[v2] = ov12_02223818(param0->heapID, v1, v0, 0);
-    param0->unk_89 = 2;
-    param0->unk_B8 = ov12_0221FC20;
+    param0->scriptDelay = 2;
+    param0->executeEffectScriptFunc = MoveEffectSystem_WaitForEffect;
 }
 
 static void ov12_02220DE8(MoveEffectSystem *param0)
 {
     u32 v0;
 
-    param0->unk_18 += 1;
-    v0 = (u32)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
+    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     ov12_02223894(param0->unk_BC->unk_1C[v0]);
     param0->unk_BC->unk_1C[v0] = NULL;
@@ -1464,15 +1457,15 @@ static void ov12_02220E14(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_1C[v0] != NULL) {
             continue;
         }
 
-        param0->unk_1C[v0] = param0->unk_18 + 1;
-        param0->unk_18 += (u32)inline_ov12_022204C4(param0->unk_18);
+        param0->unk_1C[v0] = param0->effectScriptPtr + 1;
+        param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
 
         return;
     }
@@ -1482,14 +1475,14 @@ static void ov12_02220E44(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
     for (v0 = 3 - 1; v0 >= 0; v0--) {
         if (param0->unk_1C[v0] == NULL) {
             continue;
         }
 
-        param0->unk_18 = param0->unk_1C[v0];
+        param0->effectScriptPtr = param0->unk_1C[v0];
         param0->unk_1C[v0] = NULL;
 
         return;
@@ -1501,29 +1494,29 @@ static void ov12_02220E70(MoveEffectSystem *param0)
     u32 v0;
     u32 v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     if (v1 == param0->unk_90[v0]) {
-        param0->unk_18 = (u32 *)inline_ov12_022204C4(param0->unk_18);
+        param0->effectScriptPtr = (u32 *)MoveEffectScript_ReadWord(param0->effectScriptPtr);
     } else {
-        param0->unk_18 += 1;
+        param0->effectScriptPtr += 1;
     }
 }
 
 static void ov12_02220EA8(MoveEffectSystem *param0)
 {
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
     if (ov12_02223178(param0->unk_BC)) {
-        param0->unk_18 = (u32 *)inline_ov12_022204C4(param0->unk_18);
+        param0->effectScriptPtr = (u32 *)MoveEffectScript_ReadWord(param0->effectScriptPtr);
     } else {
-        param0->unk_18 += 1;
+        param0->effectScriptPtr += 1;
     }
 }
 
@@ -1532,21 +1525,21 @@ static void ov12_02220ED0(MoveEffectSystem *param0)
     int v0;
     u32 v1;
     u32 v2;
-    UnkFuncPtr_ov12_02239EEC v3;
+    MoveEffectScriptCmd v3;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v3 = ov12_02226998(v1);
 
-    v2 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     for (v0 = 0; v0 < v2; v0++) {
-        param0->unk_90[v0] = inline_ov12_022204C4(param0->unk_18);
-        param0->unk_18 += 1;
+        param0->unk_90[v0] = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+        param0->effectScriptPtr += 1;
     }
 
     for (; v0 < (8 + 2); v0++) {
@@ -1560,13 +1553,13 @@ static void ov12_02220F30(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
     if (param0->unk_BC->unk_10 & 1) {
-        param0->unk_18 += 1;
+        param0->effectScriptPtr += 1;
     }
 
-    param0->unk_18 += (u32)inline_ov12_022204C4(param0->unk_18);
+    param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
 }
 
 static void ov12_02220F5C(MoveEffectSystem *param0)
@@ -1574,10 +1567,10 @@ static void ov12_02220F5C(MoveEffectSystem *param0)
     int v0;
     int v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     if (v0 == 0) {
         v1 = ov12_0223525C(param0, param0->unk_BC->unk_14);
@@ -1586,10 +1579,10 @@ static void ov12_02220F5C(MoveEffectSystem *param0)
     }
 
     if (v1 == 0x4) {
-        param0->unk_18 += 1;
+        param0->effectScriptPtr += 1;
     }
 
-    param0->unk_18 += (u32)inline_ov12_022204C4(param0->unk_18);
+    param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
 }
 
 static void ov12_02220FA0(MoveEffectSystem *param0)
@@ -1602,11 +1595,11 @@ static void ov12_02220FA0(MoveEffectSystem *param0)
         0xC0,
     };
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
     v0 = param0->unk_BC->unk_0C;
 
     if (v0 != 0) {
-        param0->unk_18 += 1;
+        param0->effectScriptPtr += 1;
         {
             int v2;
 
@@ -1614,23 +1607,23 @@ static void ov12_02220FA0(MoveEffectSystem *param0)
                 if (v0 & v1[v2]) {
                     break;
                 } else {
-                    param0->unk_18 += 1;
+                    param0->effectScriptPtr += 1;
                 }
             }
         }
     }
 
-    param0->unk_18 += (u32)inline_ov12_022204C4(param0->unk_18);
+    param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
 }
 
 static void ov12_02220FFC(MoveEffectSystem *param0)
 {
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
     if (ov12_0221FDD4(param0) == 1) {
-        param0->unk_18 += (u32)inline_ov12_022204C4(param0->unk_18);
+        param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
     } else {
-        param0->unk_18 += 1;
+        param0->effectScriptPtr += 1;
     }
 }
 
@@ -1639,15 +1632,15 @@ static void ov12_02221024(MoveEffectSystem *param0)
     int v0;
     int v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
     v0 = ov12_0223525C(param0, param0->unk_BC->unk_14);
     v1 = ov12_0223525C(param0, param0->unk_BC->unk_16);
 
     if (v0 == v1) {
-        param0->unk_18 += (u32)inline_ov12_022204C4(param0->unk_18);
+        param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
     } else {
-        param0->unk_18 += 1;
+        param0->effectScriptPtr += 1;
     }
 }
 
@@ -1655,22 +1648,22 @@ static void ov12_02221064(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     if (v0 == param0->unk_BC->unk_10) {
-        param0->unk_18 += (u32)inline_ov12_022204C4(param0->unk_18);
+        param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
     } else {
-        param0->unk_18 += 1;
+        param0->effectScriptPtr += 1;
     }
 }
 
 static void ov12_02221098(MoveEffectSystem *param0)
 {
-    param0->unk_18 += 1;
-    param0->unk_18 += (u32)inline_ov12_022204C4(param0->unk_18);
+    param0->effectScriptPtr += 1;
+    param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
 }
 
 static int ov12_022210A8(MoveEffectSystem *param0, int param1)
@@ -1857,13 +1850,13 @@ static void ov12_0222128C(MoveEffectSystem *param0)
     int v6;
     int v7;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v2 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v3 = ov12_022210A8(param0, v1);
     v4 = param0->unk_BC->unk_B0[v3]->unk_04;
@@ -1919,8 +1912,8 @@ static void ov12_0222128C(MoveEffectSystem *param0)
 
 static void ov12_02221424(MoveEffectSystem *param0)
 {
-    param0->unk_18 += 1;
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
+    param0->effectScriptPtr += 1;
 
     {
         u8 *v0 = Bg_GetCharPtr(2);
@@ -1942,7 +1935,7 @@ static void ov12_0222144C(MoveEffectSystem *param0)
         0x0
     };
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
     param0->unk_134 = SpriteManager_New(param0->unk_BC->unk_AC);
 
     SpriteSystem_InitSprites(param0->unk_BC->unk_AC, param0->unk_134, v0);
@@ -1955,9 +1948,9 @@ static void ov12_022214C4(MoveEffectSystem *param0)
     int v0[6];
     int v1;
 
-    param0->unk_18 += 1;
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v0[0] = 20001 + v1 + ((param0->unk_BC->unk_14) * 5000);
     v0[1] = 20001 + v1 + ((param0->unk_BC->unk_14) * 5000);
@@ -1986,19 +1979,19 @@ static void ov12_02221580(MoveEffectSystem *param0)
     int v9;
     int v10;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v3 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v3 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v4 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v4 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v5 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v5 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v6 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v6 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v2[0] = 20001 + v6 + ((param0->unk_BC->unk_14) * 5000);
     v2[1] = 20001 + v6 + ((param0->unk_BC->unk_14) * 5000);
@@ -2100,7 +2093,7 @@ static void ov12_02221580(MoveEffectSystem *param0)
 
 static void ov12_022217B4(MoveEffectSystem *param0)
 {
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
     if (param0->unk_134 != NULL) {
         SpriteSystem_FreeResourcesAndManager(param0->unk_BC->unk_AC, param0->unk_134);
@@ -2113,10 +2106,10 @@ static void ov12_022217E0(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     if (param0->unk_138[v0] != NULL) {
         Sprite_DeleteAndFreeResources(param0->unk_138[v0]);
@@ -2146,16 +2139,16 @@ static void ov12_02221834(MoveEffectSystem *param0)
     int v1;
     int v2;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v2 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     param0->unk_48[v1].unk_00 = param0;
     param0->unk_48[v1].unk_04 = param0->unk_134;
@@ -2250,10 +2243,10 @@ static void ov12_022219E8(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
     param0->unk_48[v0].unk_0C = 0;
 }
 
@@ -2261,9 +2254,9 @@ static void ov12_02221A00(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     ov12_02221238(param0, v0);
 }
@@ -2273,13 +2266,13 @@ static void ov12_02221A14(MoveEffectSystem *param0)
     int v0;
     int v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
     param0->unk_68[v0] = v1;
 }
 
@@ -2288,13 +2281,13 @@ void ov12_02221A30(MoveEffectSystem *param0)
     int v0;
     int v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
     param0->unk_78[v0] = v1;
 }
 
@@ -2962,13 +2955,13 @@ static void ov12_02222724(MoveEffectSystem *param0)
     v0 = ov12_02221BBC(param0);
 
     v0->unk_0D = ov12_02220280(param0, 4);
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0->unk_10 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_10 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v0->unk_14 = (v1 & 0xFFFF);
     v0->unk_18 = (v1 & 0xFFFF0000) >> 16;
@@ -2981,13 +2974,13 @@ static void ov12_02222774(MoveEffectSystem *param0)
     int v0;
     s16 v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     switch (v0) {
     case 0:
@@ -3015,13 +3008,13 @@ static void ov12_022227CC(MoveEffectSystem *param0)
     v0 = ov12_02221BBC(param0);
 
     v0->unk_0D = ov12_02220280(param0, 4);
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0->unk_10 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_10 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v0->unk_14 = (v1 & 0xFFFF) + 3;
     v0->unk_18 = (v1 & 0xFFFF0000) >> 16;
@@ -3032,20 +3025,20 @@ static void ov12_022227CC(MoveEffectSystem *param0)
 static void ov12_02222820(MoveEffectSystem *param0)
 {
     if (param0->unk_178 == 2) {
-        param0->unk_18 += 1;
-        param0->unk_89 = 0;
+        param0->effectScriptPtr += 1;
+        param0->scriptDelay = 0;
     } else {
-        param0->unk_89 = 1;
+        param0->scriptDelay = 1;
     }
 }
 
 static void ov12_02222840(MoveEffectSystem *param0)
 {
     if (param0->unk_178 == 0) {
-        param0->unk_18 += 1;
-        param0->unk_89 = 0;
+        param0->effectScriptPtr += 1;
+        param0->scriptDelay = 0;
     } else {
-        param0->unk_89 = 1;
+        param0->scriptDelay = 1;
     }
 }
 
@@ -3053,9 +3046,9 @@ static void ov12_02222860(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_SYSTEM), param0->bgConfig, 3, 0, 0, 1, param0->heapID);
     Graphics_LoadPalette(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_SAVE), 0, 0, 0, param0->heapID);
@@ -3069,16 +3062,16 @@ static void ov12_022228DC(MoveEffectSystem *param0)
 
     v0 = ov12_02221BBC(param0);
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v2 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v3 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v3 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     if (ov12_0221FDD4(param0) == 1) {
         v0->unk_10 = v3;
@@ -3122,9 +3115,9 @@ static void ov12_02222950(MoveEffectSystem *param0)
 {
     u16 v0;
 
-    param0->unk_18 += 1;
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     Sound_PlayEffect(v0);
 }
@@ -3133,10 +3126,10 @@ static void ov12_02222968(MoveEffectSystem *param0)
 {
     u16 v0;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     Sound_StopEffect(v0, 0);
 }
@@ -3146,13 +3139,13 @@ static void ov12_02222984(MoveEffectSystem *param0)
     u16 v0;
     int v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = (u16)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = (int)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = (int)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v1 = ov12_0222317C(param0, v1);
 
@@ -3164,10 +3157,10 @@ static void ov12_022229BC(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = (int)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = (int)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v0 = ov12_0222317C(param0, v0);
     Sound_PanAllEffects(v0);
@@ -3181,22 +3174,22 @@ static void ov12_022229D8(MoveEffectSystem *param0)
     memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
 
     v0->unk_00 = 1;
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0->unk_1A = (u16)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_1A = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_08 = (int)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_08 = (int)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_0C = (int)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_0C = (int)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_10 = (int)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_10 = (int)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_03 = (u8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_03 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v0->unk_08 = ov12_0222317C(param0, v0->unk_08);
     v0->unk_0C = ov12_0222317C(param0, v0->unk_0C);
@@ -3216,22 +3209,22 @@ static void ov12_02222A78(MoveEffectSystem *param0)
     memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
 
     v0->unk_00 = 2;
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0->unk_1A = (u16)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_1A = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_08 = (s8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_08 = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_0C = (s8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_0C = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_10 = (s8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_10 = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_03 = (u8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_03 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     Sound_PlayEffect(v0->unk_1A);
     Sound_PanEffect(v0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, v0->unk_08);
@@ -3247,22 +3240,22 @@ static void ov12_02222AF0(MoveEffectSystem *param0)
     memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
 
     v0->unk_00 = 1;
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0->unk_1A = (u16)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_1A = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_08 = (s8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_08 = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_0C = (s8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_0C = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_10 = (s8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_10 = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_03 = (u8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_03 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v0->unk_08 = ov12_0222317C(param0, v0->unk_08);
     v0->unk_0C = ov12_0222317C(param0, v0->unk_0C);
@@ -3282,19 +3275,19 @@ static void ov12_02222B94(MoveEffectSystem *param0)
     memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
 
     v0->unk_00 = 4;
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0->unk_1A = (u16)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_1A = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_14 = (s8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_14 = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_03 = (u8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_03 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_18 = (u8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_18 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v0->unk_04 = v0->unk_03;
     v0->unk_14 = ov12_0222317C(param0, v0->unk_14);
@@ -3311,16 +3304,16 @@ static void ov12_02222BF8(MoveEffectSystem *param0)
 
     v0->unk_00 = 5;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0->unk_1A = (u16)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_1A = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_14 = (s8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_14 = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v0->unk_03 = (u8)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0->unk_03 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v0->unk_14 = ov12_0222317C(param0, v0->unk_14);
 
@@ -3335,7 +3328,7 @@ static void ov12_02222C50(MoveEffectSystem *param0)
 static void ov12_02222C54(MoveEffectSystem *param0)
 {
     if (param0->activeSoundTasks) {
-        param0->unk_89 = 1;
+        param0->scriptDelay = 1;
         param0->unk_179 = 0;
         return;
     }
@@ -3346,13 +3339,13 @@ static void ov12_02222C54(MoveEffectSystem *param0)
         if (param0->unk_179 > 90) {
             param0->unk_179 = 0;
         } else {
-            param0->unk_89 = 1;
+            param0->scriptDelay = 1;
             return;
         }
     } else {
-        param0->unk_89 = 0;
+        param0->scriptDelay = 0;
         param0->unk_179 = 0;
-        param0->unk_18 += 1;
+        param0->effectScriptPtr += 1;
     }
 }
 
@@ -3361,13 +3354,13 @@ static void ov12_02222CAC(MoveEffectSystem *param0)
     u16 v0;
     u16 v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = (u16)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = (u16)inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG1, v0, v1);
 }
@@ -3388,13 +3381,13 @@ static void ov12_02222CE8(MoveEffectSystem *param0)
     int v1;
     int v2;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v2 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     GF_ASSERT(param0->unk_C8[v1] == NULL);
     param0->unk_C8[v1] = SpriteManager_New(param0->unk_BC->unk_AC);
@@ -3407,8 +3400,8 @@ static void ov12_02222CE8(MoveEffectSystem *param0)
         SpriteResourceCapacities v3;
 
         for (v0 = 0; v0 < 6; v0++) {
-            v3.asArray[v0] = inline_ov12_022204C4(param0->unk_18);
-            param0->unk_18 += 1;
+            v3.asArray[v0] = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+            param0->effectScriptPtr += 1;
         }
 
         SpriteSystem_InitManagerWithCapacities(param0->unk_BC->unk_AC, param0->unk_C8[v1], &v3);
@@ -3420,13 +3413,13 @@ static void ov12_02222D84(MoveEffectSystem *param0)
     int v0;
     int v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[2], v1, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v1 + 5000);
 }
@@ -3437,16 +3430,16 @@ static void ov12_02222DCC(MoveEffectSystem *param0)
     int v1;
     int v2;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v2 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, 2, param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[3], v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v2, v1 + 5000);
 }
@@ -3456,13 +3449,13 @@ static void ov12_02222E2C(MoveEffectSystem *param0)
     int v0;
     int v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[4], v1, 1, v1 + 5000);
 }
@@ -3472,13 +3465,13 @@ static void ov12_02222E74(MoveEffectSystem *param0)
     int v0;
     int v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[5], v1, 1, v1 + 5000);
 }
@@ -3492,13 +3485,13 @@ static void ov12_02222EBC(MoveEffectSystem *param0)
     ManagedSprite *v4;
     UnkFuncPtr_ov12_02239E68 v5;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v2 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     {
         SpriteTemplate v6;
@@ -3517,8 +3510,8 @@ static void ov12_02222EBC(MoveEffectSystem *param0)
         v6.vramTransfer = FALSE;
 
         for (v0 = 0; v0 < 6; v0++) {
-            v6.resources[v0] = inline_ov12_022204C4(param0->unk_18) + 5000;
-            param0->unk_18 += 1;
+            v6.resources[v0] = MoveEffectScript_ReadWord(param0->effectScriptPtr) + 5000;
+            param0->effectScriptPtr += 1;
         }
 
         param0->unk_100 = v6;
@@ -3526,12 +3519,12 @@ static void ov12_02222EBC(MoveEffectSystem *param0)
         v4 = SpriteSystem_NewSprite(param0->unk_BC->unk_AC, param0->unk_C8[v2], &v6);
     }
 
-    v3 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v3 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     for (v0 = 0; v0 < v3; v0++) {
-        param0->unk_90[v0] = inline_ov12_022204C4(param0->unk_18);
-        param0->unk_18 += 1;
+        param0->unk_90[v0] = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+        param0->effectScriptPtr += 1;
     }
 
     for (; v0 < (8 + 2); v0++) {
@@ -3550,13 +3543,13 @@ static void ov12_02222FC8(MoveEffectSystem *param0)
     ManagedSprite *v3;
     UnkFuncPtr_ov12_02239E68 v4;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v2 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     {
         SpriteTemplate v5;
@@ -3575,8 +3568,8 @@ static void ov12_02222FC8(MoveEffectSystem *param0)
         v5.vramTransfer = FALSE;
 
         for (v0 = 0; v0 < 6; v0++) {
-            v5.resources[v0] = inline_ov12_022204C4(param0->unk_18) + 5000;
-            param0->unk_18 += 1;
+            v5.resources[v0] = MoveEffectScript_ReadWord(param0->effectScriptPtr) + 5000;
+            param0->effectScriptPtr += 1;
         }
 
         param0->unk_100 = v5;
@@ -3591,10 +3584,10 @@ static void ov12_0222307C(MoveEffectSystem *param0)
 {
     int v0;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     if (param0->unk_C8[v0] != NULL) {
         SpriteSystem_FreeResourcesAndManager(param0->unk_BC->unk_AC, param0->unk_C8[v0]);
@@ -3608,13 +3601,13 @@ static void ov12_022230A8(MoveEffectSystem *param0)
     int v0;
     int v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     ManagedSprite_SetDrawFlag(param0->unk_138[v0], v1);
 }
@@ -3632,17 +3625,17 @@ static void ov12_022230D4(MoveEffectSystem *param0)
     int v3;
     int v4;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    cryMod = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    cryMod = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
-    v1 = (s16)inline_ov12_022204C4(param0->unk_18);
+    v1 = (s16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
     v1 = ov12_0222317C(param0, v1);
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v2 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     v3 = param0->unk_BC->unk_D8[param0->unk_BC->unk_14];
     v4 = param0->unk_BC->unk_E8[param0->unk_BC->unk_14];
@@ -3655,13 +3648,13 @@ static void ov12_02223134(MoveEffectSystem *param0)
     int v0;
 
     if (Sound_IsPokemonCryPlaying() == 0) {
-        param0->unk_18 += 1;
-        v0 = inline_ov12_022204C4(param0->unk_18);
-        param0->unk_18 += 1;
-        param0->unk_89 = 0;
+        param0->effectScriptPtr += 1;
+        v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+        param0->effectScriptPtr += 1;
+        param0->scriptDelay = 0;
         Sound_StopPokemonCries(v0);
     } else {
-        param0->unk_89 = 1;
+        param0->scriptDelay = 1;
     }
 }
 
@@ -3670,13 +3663,13 @@ static void ov12_02223160(MoveEffectSystem *param0)
     return;
 }
 
-UnkFuncPtr_ov12_02239EEC ov12_02223164(u32 param0)
+MoveEffectScriptCmd MoveEffectSystem_GetScriptCmd(u32 id)
 {
-    if (param0 > (NELEMS(Unk_ov12_022387D4))) {
+    if (id > NELEMS(sMoveEffectScriptCmdTable)) {
         return NULL;
     }
 
-    return Unk_ov12_022387D4[param0];
+    return sMoveEffectScriptCmdTable[id];
 }
 
 int ov12_02223178(UnkStruct_ov12_02223178 *param0)
@@ -3735,10 +3728,10 @@ BOOL ov12_0222325C(MoveEffectSystem *param0, int param1[], int param2)
 {
     int v0, v1;
 
-    param0->unk_18 += 1;
+    param0->effectScriptPtr += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
-    param0->unk_18 += 1;
+    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->effectScriptPtr += 1;
 
     if (v0 != param2) {
         GF_ASSERT(v0 == param2);
@@ -3746,8 +3739,8 @@ BOOL ov12_0222325C(MoveEffectSystem *param0, int param1[], int param2)
     }
 
     for (v1 = 0; v1 < param2; v1++) {
-        param1[v1] = inline_ov12_022204C4(param0->unk_18);
-        param0->unk_18 += 1;
+        param1[v1] = MoveEffectScript_ReadWord(param0->effectScriptPtr);
+        param0->effectScriptPtr += 1;
     }
 
     return 1;
